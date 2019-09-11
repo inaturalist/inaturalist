@@ -61,6 +61,7 @@ class PhotoBrowser extends React.Component {
           role="button"
           className="add-photo image-gallery-thumbnail"
           onClick={ ( ) => this.refs.dropzone.open( ) }
+          title={I18n.t( "add_photos_to_this_observation" )}
         >
           <i className="fa fa-picture-o" />
           <i className="fa fa-plus" />

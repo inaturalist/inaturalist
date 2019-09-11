@@ -77,6 +77,7 @@ gem "rack-google-analytics", git: "https://github.com/kueda/rack-google-analytic
 gem "rack-mobile-detect"
 gem "rails-observers"
 gem "rails-html-sanitizer", "~> 1.0.4"
+gem 'rails-i18n', '~> 4.0'
 gem "rakismet"
 gem "rest-client", require: "rest_client"
 gem "riparian", git: "https://github.com/inaturalist/riparian.git"

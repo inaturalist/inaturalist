@@ -21,6 +21,258 @@ I18n.translations["af"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "Son",
+      "Maan",
+      "Dins",
+      "Woe",
+      "Don",
+      "Vry",
+      "Sat"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mei",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Des"
+    ],
+    "day_names": [
+      "Sondag",
+      "Maandag",
+      "Dinsdag",
+      "Woensdag",
+      "Donderdag",
+      "Vrydag",
+      "Saterdag"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Januarie",
+      "Februarie",
+      "Maart",
+      "April",
+      "Mai",
+      "Junie",
+      "Julie",
+      "Augustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["ak"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["am"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
     "formats": {
     }
   },
@@ -2103,8 +2355,56 @@ I18n.translations["az"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "B.",
+      "B.E.",
+      "Ç.A.",
+      "Ç.",
+      "C.A.",
+      "C.",
+      "Ş."
+    ],
+    "abbr_month_names": [
+      null,
+      "Yan",
+      "Fev",
+      "Mar",
+      "Apr",
+      "May",
+      "İyn",
+      "İyl",
+      "Avq",
+      "Sen",
+      "Okt",
+      "Noy",
+      "Dek"
+    ],
+    "day_names": [
+      "Bazar",
+      "Bazar ertəsi",
+      "Çərşənbə axşamı",
+      "Çərşənbə",
+      "Cümə axşamı",
+      "Cümə",
+      "Şənbə"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "Yanvar",
+      "Fevral",
+      "Mart",
+      "Aprel",
+      "May",
+      "İyun",
+      "İyul",
+      "Avqust",
+      "Sentyabr",
+      "Oktyabr",
+      "Noyabr",
+      "Dekabr"
+    ]
   },
   "date_format": {
     "month": {
@@ -2205,8 +2505,56 @@ I18n.translations["be"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "Пан",
+      "Аўт",
+      "Сер",
+      "Чцв",
+      "Пят",
+      "Суб",
+      "Ндз"
+    ],
+    "abbr_month_names": [
+      null,
+      "Сту",
+      "Лют",
+      "Сак",
+      "Кра",
+      "Тра",
+      "Чэр",
+      "Ліп",
+      "Жні",
+      "Вер",
+      "Кас",
+      "Ліс",
+      "Сне"
+    ],
+    "day_names": [
+      "Нядзеля",
+      "Панядзелак",
+      "Аўторак",
+      "Серада",
+      "Чацвер",
+      "Пятніца",
+      "Субота"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "Студзень",
+      "Люты",
+      "Сакавік",
+      "Красавік",
+      "Травень",
+      "Чэрвень",
+      "Ліпень",
+      "Жнівень",
+      "Верасень",
+      "Кастрычнік",
+      "Лістапад",
+      "Снежань"
+    ]
   },
   "date_format": {
     "month": {
@@ -3438,7 +3786,361 @@ I18n.translations["bg"] = {
   "zoom_in": "Приближи",
   "zoom_out": "Отдалечи"
 };
+I18n.translations["bh"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["bm"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["bn"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "রবিবার",
+      "সোমবার",
+      "মঙ্গলবার",
+      "বুধবার",
+      "বৃহস্পতিবার",
+      "শুক্রবার",
+      "শনিবার"
+    ],
+    "abbr_month_names": [
+      null,
+      "জানুয়ারি",
+      "ফেব্রুয়ারি",
+      "মার্চ",
+      "এপ্রিল",
+      "মে",
+      "জুন",
+      "জুলাই",
+      "অগাস্ট",
+      "সেপ্টেমবার",
+      "অক্টোবার",
+      "নভেম্বার",
+      "ডিসেম্বার"
+    ],
+    "day_names": [
+      "রবিবার",
+      "সোমবার",
+      "মঙ্গলবার",
+      "বুধবার",
+      "বৃহস্পতিবার",
+      "শুক্রবার",
+      "শনিবার"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "জানুয়ারি",
+      "ফেব্রুয়ারি",
+      "মার্চ",
+      "এপ্রিল",
+      "মে",
+      "জুন",
+      "জুলাই",
+      "অগাস্ট",
+      "সেপ্টেমবার",
+      "অক্টোবার",
+      "নভেম্বার",
+      "ডিসেম্বার"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["bo"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -4148,6 +4850,155 @@ I18n.translations["br"] = {
   }
 };
 I18n.translations["bs"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "ned",
+      "pon",
+      "uto",
+      "sri",
+      "čet",
+      "pet",
+      "sub"
+    ],
+    "abbr_month_names": [
+      null,
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "maj",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "okt",
+      "nov",
+      "dec"
+    ],
+    "day_names": [
+      "nedjelja",
+      "ponedjeljak",
+      "utorak",
+      "srijeda",
+      "četvrtak",
+      "petak"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "januar",
+      "februar",
+      "mart",
+      "april",
+      "maj",
+      "juni",
+      "juli",
+      "august",
+      "septembar",
+      "oktobar",
+      "novembar",
+      "decembar"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["by"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -8165,6 +9016,156 @@ I18n.translations["cs"] = {
   "zoom_out": "Oddálit",
   "zoom_photo": "Přiblížit fotku"
 };
+I18n.translations["cy"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Sul",
+      "Llun",
+      "Maw",
+      "Mer",
+      "Iau",
+      "Gwe",
+      "Sad"
+    ],
+    "abbr_month_names": [
+      null,
+      "Ion",
+      "Chw",
+      "Maw",
+      "Ebr",
+      "Mai",
+      "Meh",
+      "Gor",
+      "Awst",
+      "Med",
+      "Hyd",
+      "Tach",
+      "Rha"
+    ],
+    "day_names": [
+      "Dydd Sul",
+      "Dydd Llun",
+      "Dydd Mawrth",
+      "Dydd Mercher",
+      "Dydd Iau",
+      "Dydd Gwener",
+      "Dydd Sadwrn"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Ionawr",
+      "Chwefror",
+      "Mawrth",
+      "Ebrill",
+      "Mai",
+      "Mehefin",
+      "Gorffennaf",
+      "Awst",
+      "Medi",
+      "Hydref",
+      "Tachwedd",
+      "Rhagfyr"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["da"] = {
   "<%= name": {
     "parameterize": {
@@ -11916,7 +12917,457 @@ I18n.translations["de"] = {
   "zoom_in": "Heranzoomen",
   "zoom_out": "Herauszoomen"
 };
+I18n.translations["de-AT"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "So",
+      "Mo",
+      "Di",
+      "Mi",
+      "Do",
+      "Fr",
+      "Sa"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jän",
+      "Feb",
+      "Mär",
+      "Apr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Dez"
+    ],
+    "day_names": [
+      "Sonntag",
+      "Montag",
+      "Dienstag",
+      "Mittwoch",
+      "Donnerstag",
+      "Freitag",
+      "Samstag"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Jänner",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["de-CH"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "So",
+      "Mo",
+      "Di",
+      "Mi",
+      "Do",
+      "Fr",
+      "Sa"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mär",
+      "Apr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Dez"
+    ],
+    "day_names": [
+      "Sonntag",
+      "Montag",
+      "Dienstag",
+      "Mittwoch",
+      "Donnerstag",
+      "Freitag",
+      "Samstag"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["de-DE"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "So",
+      "Mo",
+      "Di",
+      "Mi",
+      "Do",
+      "Fr",
+      "Sa"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mär",
+      "Apr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Dez"
+    ],
+    "day_names": [
+      "Sonntag",
+      "Montag",
+      "Dienstag",
+      "Mittwoch",
+      "Donnerstag",
+      "Freitag",
+      "Samstag"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["dz"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -15273,7 +16724,7 @@ I18n.translations["en"] = {
       "new": {
         "a_project_allows_you_to_gather": "A collection project allows you to gather and visualize observations\nusing the core iNaturalist search tools. Everything that meets the\nparameters set by the project will be automatically included.\n",
         "an_umbrella_project_can_be_used_to": "An umbrella project can be used to compare statistics across two or more Collection or\nTraditional Projects. The other projects need to exist before you can add them to an\numbrella project. You can include hundreds of projects under a single umbrella. Umbrella\nprojects cannot contain other umbrella projects.\n",
-        "are_you_ready_to_duplicate": "Are you ready to leave this page to duplicate this project?",
+        "are_you_ready_to_duplicate": "Are you ready to leave this page to duplicate this project? Please note the project icon\nand banner will not be duplicated, and would need to be re-uploaded in the duplicate\nproject.\n",
         "are_you_sure_you_want_to_delete": "Are you sure you want to delete this project?",
         "can_be_included_in_multiple": "Can be included in multiple umbrella projects",
         "click_through_to_individual_projects": "Click through to individual projects",
@@ -15560,6 +17011,306 @@ I18n.translations["en"] = {
   "zoom_out": "Zoom Out",
   "zoom_photo": "Zoom Photo"
 };
+I18n.translations["en-AU"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["en-CA"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["en-GB"] = {
   "<%= name": {
     "parameterize": {
@@ -15582,8 +17333,506 @@ I18n.translations["en-GB"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
     "formats": {
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
     }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["en-IE"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["en-IN"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["en-NZ"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
   },
   "date_format": {
     "month": {
@@ -15663,6 +17912,156 @@ I18n.translations["en-GB"] = {
   }
 };
 I18n.translations["en-US"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["en-ZA"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -18988,6 +21387,906 @@ I18n.translations["es"] = {
   "zoom_out": "Alejar Zoom",
   "zoom_photo": "Ampliar foto"
 };
+I18n.translations["es-419"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["es-AR"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["es-CL"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["es-CO"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["es-CR"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["es-EC"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["es-ES"] = {
   "<%= name": {
     "parameterize": {
@@ -19189,8 +22488,56 @@ I18n.translations["es-ES"] = {
   "data_deficient": "datos insuficientes",
   "data_quality_assessment": "Evaluación de la calidad de datos",
   "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
   },
   "date_added": "Fecha añadida",
   "date_format": {
@@ -21645,6 +24992,606 @@ I18n.translations["es-MX"] = {
   "zoom_in": "Acercar Zoom",
   "zoom_out": "Alejar Zoom",
   "zoom_photo": "Ampliar foto"
+};
+I18n.translations["es-PA"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["es-PE"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["es-US"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["es-VE"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
 I18n.translations["et"] = {
   "<%= name": {
@@ -24542,6 +28489,156 @@ I18n.translations["fa"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "ی",
+      "د",
+      "س",
+      "چ",
+      "پ",
+      "ج",
+      "ش"
+    ],
+    "abbr_month_names": [
+      null,
+      "ژانویه",
+      "فوریه",
+      "مارس",
+      "آوریل",
+      "مه",
+      "ژوئن",
+      "ژوئیه",
+      "اوت",
+      "سپتامبر",
+      "اکتبر",
+      "نوامبر",
+      "دسامبر"
+    ],
+    "day_names": [
+      "یکشنبه",
+      "دوشنبه",
+      "سه‌شنبه",
+      "چهارشنبه",
+      "پنج‌شنبه",
+      "جمعه",
+      "شنبه"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "ژانویه",
+      "فوریه",
+      "مارس",
+      "آوریل",
+      "مه",
+      "ژوئن",
+      "ژوئیه",
+      "اوت",
+      "سپتامبر",
+      "اکتبر",
+      "نوامبر",
+      "دسامبر"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["ff"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
     "formats": {
     }
   },
@@ -26345,6 +30442,108 @@ I18n.translations["fi"] = {
   "zoom_in": "Lähennä",
   "zoom_out": "Loitonna",
   "zoom_photo": "Zoomaa kuvaa"
+};
+I18n.translations["fil"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
 I18n.translations["fr"] = {
   "<%= name": {
@@ -28348,6 +32547,558 @@ I18n.translations["fr-CA"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "dim",
+      "lun",
+      "mar",
+      "mer",
+      "jeu",
+      "ven",
+      "sam"
+    ],
+    "abbr_month_names": [
+      null,
+      "jan.",
+      "fév.",
+      "mar.",
+      "avr.",
+      "mai",
+      "juin",
+      "juil.",
+      "août",
+      "sept.",
+      "oct.",
+      "nov.",
+      "déc."
+    ],
+    "day_names": [
+      "dimanche",
+      "lundi",
+      "mardi",
+      "mercredi",
+      "jeudi",
+      "vendredi",
+      "samedi"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "janvier",
+      "février",
+      "mars",
+      "avril",
+      "mai",
+      "juin",
+      "juillet",
+      "août",
+      "septembre",
+      "octobre",
+      "novembre",
+      "décembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["fr-CH"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dim",
+      "lun",
+      "mar",
+      "mer",
+      "jeu",
+      "ven",
+      "sam"
+    ],
+    "abbr_month_names": [
+      null,
+      "jan.",
+      "fév.",
+      "mar.",
+      "avr.",
+      "mai",
+      "juin",
+      "juil.",
+      "août",
+      "sept.",
+      "oct.",
+      "nov.",
+      "déc."
+    ],
+    "day_names": [
+      "dimanche",
+      "lundi",
+      "mardi",
+      "mercredi",
+      "jeudi",
+      "vendredi",
+      "samedi"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "janvier",
+      "février",
+      "mars",
+      "avril",
+      "mai",
+      "juin",
+      "juillet",
+      "août",
+      "septembre",
+      "octobre",
+      "novembre",
+      "décembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["fr-FR"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dim",
+      "lun",
+      "mar",
+      "mer",
+      "jeu",
+      "ven",
+      "sam"
+    ],
+    "abbr_month_names": [
+      null,
+      "jan.",
+      "fév.",
+      "mar.",
+      "avr.",
+      "mai",
+      "juin",
+      "juil.",
+      "août",
+      "sept.",
+      "oct.",
+      "nov.",
+      "déc."
+    ],
+    "day_names": [
+      "dimanche",
+      "lundi",
+      "mardi",
+      "mercredi",
+      "jeudi",
+      "vendredi",
+      "samedi"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "janvier",
+      "février",
+      "mars",
+      "avril",
+      "mai",
+      "juin",
+      "juillet",
+      "août",
+      "septembre",
+      "octobre",
+      "novembre",
+      "décembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["ga"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["gd"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
     "formats": {
     }
   },
@@ -29209,6 +33960,210 @@ I18n.translations["gl"] = {
   "your_hard_drive": "O teu disco duro",
   "your_observations": "As túas observacións"
 };
+I18n.translations["guw"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["gv"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ha"] = {
   "<%= name": {
     "parameterize": {
@@ -29579,8 +34534,56 @@ I18n.translations["he"] = {
   "customize_location": "התאמת מיקום",
   "data_quality": "איכות הנתון",
   "date": {
+    "abbr_day_names": [
+      "א",
+      "ב",
+      "ג",
+      "ד",
+      "ה",
+      "ו",
+      "ש"
+    ],
+    "abbr_month_names": [
+      null,
+      "ינו",
+      "פבר",
+      "מרץ",
+      "אפר",
+      "מאי",
+      "יונ",
+      "יול",
+      "אוג",
+      "ספט",
+      "אוק",
+      "נוב",
+      "דצמ"
+    ],
+    "day_names": [
+      "ראשון",
+      "שני",
+      "שלישי",
+      "רביעי",
+      "חמישי",
+      "שישי",
+      "שבת"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "ינואר",
+      "פברואר",
+      "מרץ",
+      "אפריל",
+      "מאי",
+      "יוני",
+      "יולי",
+      "אוגוסט",
+      "ספטמבר",
+      "אוקטובר",
+      "נובמבר",
+      "דצמבר"
+    ]
   },
   "date_": "תאריך",
   "date_added": "תאריך הוספה",
@@ -30638,8 +35641,206 @@ I18n.translations["hi"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "रवि",
+      "सोम",
+      "मंगल",
+      "बुध",
+      "गुरु",
+      "शुक्र",
+      "शनि"
+    ],
+    "abbr_month_names": [
+      null,
+      "जन",
+      "फर",
+      "मार्च",
+      "अप्रै",
+      "मई",
+      "जून",
+      "जुला",
+      "अग",
+      "सितं",
+      "अक्टू",
+      "नवं",
+      "दिस"
+    ],
+    "day_names": [
+      "रविवार",
+      "सोमवार",
+      "मंगलवार",
+      "बुधवार",
+      "गुरुवार",
+      "शुक्रवार",
+      "शनिवार"
+    ],
     "formats": {
+    },
+    "month_names": [
+      null,
+      "जनवरी",
+      "फरवरी",
+      "मार्च",
+      "अप्रैल",
+      "मई",
+      "जून",
+      "जुलाई",
+      "अगस्त",
+      "सितंबर",
+      "अक्टूबर",
+      "नवंबर",
+      "दिसंबर"
+    ]
+  },
+  "date_format": {
+    "month": {
     }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["hi-IN"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "रवि",
+      "सोम",
+      "मंगल",
+      "बुध",
+      "गुरु",
+      "शुक्र",
+      "शनि"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "रविवार",
+      "सोमवार",
+      "मंगलवार",
+      "बुधवार",
+      "गुरुवार",
+      "शुक्रवार",
+      "शनिवार"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "जनवरी",
+      "फरवरी",
+      "मार्च",
+      "अप्रैल",
+      "मई",
+      "जून",
+      "जुलाई",
+      "अगस्त",
+      "सितंबर",
+      "अक्टूबर",
+      "नवंबर",
+      "दिसंबर"
+    ]
   },
   "date_format": {
     "month": {
@@ -30719,6 +35920,156 @@ I18n.translations["hi"] = {
   }
 };
 I18n.translations["hr"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Ned",
+      "Pon",
+      "Uto",
+      "Sri",
+      "Čet",
+      "Pet",
+      "Sub"
+    ],
+    "abbr_month_names": [
+      null,
+      "Sij",
+      "Veǉ",
+      "Ožu",
+      "Tra",
+      "Svi",
+      "Lip",
+      "Srp",
+      "Kol",
+      "Ruj",
+      "Lis",
+      "Stu",
+      "Pro"
+    ],
+    "day_names": [
+      "Nedjelja",
+      "Ponedjeljak",
+      "Utorak",
+      "Srijeda",
+      "Četvrtak",
+      "Petak",
+      "Subota"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Siječanj",
+      "Veljača",
+      "Ožujak",
+      "Travanj",
+      "Svibanj",
+      "Lipanj",
+      "Srpanj",
+      "Kolovoz",
+      "Rujan",
+      "Listopad",
+      "Studeni",
+      "Prosinac"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["hsb"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -30842,8 +36193,56 @@ I18n.translations["hu"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "v.",
+      "h.",
+      "k.",
+      "sze.",
+      "cs.",
+      "p.",
+      "szo."
+    ],
+    "abbr_month_names": [
+      null,
+      "jan.",
+      "febr.",
+      "márc.",
+      "ápr.",
+      "máj.",
+      "jún.",
+      "júl.",
+      "aug.",
+      "szept.",
+      "okt.",
+      "nov.",
+      "dec."
+    ],
+    "day_names": [
+      "vasárnap",
+      "hétfő",
+      "kedd",
+      "szerda",
+      "csütörtök",
+      "péntek",
+      "szombat"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "január",
+      "február",
+      "március",
+      "április",
+      "május",
+      "június",
+      "július",
+      "augusztus",
+      "szeptember",
+      "október",
+      "november",
+      "december"
+    ]
   },
   "date_format": {
     "month": {
@@ -32038,7 +37437,7 @@ I18n.translations["ig"] = {
     }
   }
 };
-I18n.translations["is"] = {
+I18n.translations["ii"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -32062,6 +37461,156 @@ I18n.translations["is"] = {
   "date": {
     "formats": {
     }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["is"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "sun",
+      "mán",
+      "þri",
+      "mið",
+      "fim",
+      "fös",
+      "lau"
+    ],
+    "abbr_month_names": [
+      null,
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "maí",
+      "jún",
+      "júl",
+      "ágú",
+      "sep",
+      "okt",
+      "nóv",
+      "des"
+    ],
+    "day_names": [
+      "sunnudaginn",
+      "mánudaginn",
+      "þriðjudaginn",
+      "miðvikudaginn",
+      "fimmtudaginn",
+      "föstudaginn",
+      "laugardaginn"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "janúar",
+      "febrúar",
+      "mars",
+      "apríl",
+      "maí",
+      "júní",
+      "júlí",
+      "ágúst",
+      "september",
+      "október",
+      "nóvember",
+      "desember"
+    ]
   },
   "date_format": {
     "month": {
@@ -34119,6 +39668,258 @@ I18n.translations["it"] = {
   "zoom_out": "Zoom indietro",
   "zoom_photo": "Zoom sulla foto"
 };
+I18n.translations["it-CH"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Dom",
+      "Lun",
+      "Mar",
+      "Mer",
+      "Gio",
+      "Ven",
+      "Sab"
+    ],
+    "abbr_month_names": [
+      null,
+      "Gen",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mag",
+      "Giu",
+      "Lug",
+      "Ago",
+      "Set",
+      "Ott",
+      "Nov",
+      "Dic"
+    ],
+    "day_names": [
+      "Domenica",
+      "Lunedì",
+      "Martedì",
+      "Mercoledì",
+      "Giovedì",
+      "Venerdì",
+      "Sabato"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Gennaio",
+      "Febbraio",
+      "Marzo",
+      "Aprile",
+      "Maggio",
+      "Giugno",
+      "Luglio",
+      "Agosto",
+      "Settembre",
+      "Ottobre",
+      "Novembre",
+      "Dicembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["iu"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["iw"] = {
   "<%= name": {
     "parameterize": {
@@ -34269,6 +40070,9 @@ I18n.translations["ja"] = {
   "add_link": "リンクを追加",
   "add_one_now": "今すぐ追加",
   "add_photos_to_this_observation": "この観測記録に写真を追加",
+  "add_plant_phenology_budding_annotation": "Add \"Plant Phenology: Budding\" annotation",
+  "add_plant_phenology_flowering_annotation": "Add \"Plant Phenology: Flowering\" annotation",
+  "add_plant_phenology_fruiting_annotation": "Add \"Plant Phenology: Fruiting\" annotation",
   "add_sex_female_annotation": "“性別: メス”の注釈を追加する",
   "add_sex_male_annotation": "“性別: オス”の注釈を追加する",
   "add_tag": "新規タグ",
@@ -34289,11 +40093,15 @@ I18n.translations["ja"] = {
   "agree_with_current_taxon": "現在の分類群に賛成",
   "aka": "別名",
   "all": "すべて",
+  "all_flags_must_be_resolved": "All flags must be resolved",
   "all_rank_added_to_the_database": {
     "class": "データベースに追加した綱の合計",
+    "complex": "All complexes added to the database",
+    "epifamily": "All epifamilies added to the database",
     "family": "データベースに追加した科の合計",
     "form": "データベースに追加した形態の合計",
     "genus": "データベースに追加した属の合計",
+    "genushybrid": "All genushybrids added to the database",
     "hybrid": "データベースに追加した交雑種の合計",
     "infraclass": "データベースに追加した下綱の合計",
     "infraorder": "データベースに追加した下目の合計",
@@ -34341,16 +40149,51 @@ I18n.translations["ja"] = {
     "ray_finned_fishes": "条鰭綱",
     "reptiles": "爬虫類",
     "life": "生命",
+    "x_plantae": {
+      "other": "%{count} plants"
+    },
+    "x_animalia": {
+      "other": "%{count} animals"
+    },
+    "x_mollusca": {
+      "other": "%{count} mollusks"
+    },
+    "x_amphibia": {
+      "other": "%{count} amphibians"
+    },
+    "x_mammalia": {
+      "other": "%{count} mammals"
+    },
     "x_actinopterygii": {
-      "one": "側棘鰭上目1種",
       "other": "側棘鰭上目%{count}種"
     },
+    "x_reptilia": {
+      "other": "%{count} reptiles"
+    },
+    "x_aves": {
+      "other": "%{count} birds"
+    },
+    "x_insecta": {
+      "other": "%{count} insects"
+    },
+    "x_arachnida": {
+      "other": "%{count} arachnids"
+    },
+    "x_fungi": {
+      "other": "%{count} fungi"
+    },
     "x_chromista": {
-      "one": "クロミスタ1類",
       "other": "クロミスタ%{count}類"
+    },
+    "x_protozoa": {
+      "other": "%{count} protozoa"
+    },
+    "x_other_animals": {
+      "other": "%{count} other animals"
     }
   },
   "all_taxa_": "すべての分類群",
+  "allow_curator_access": "Allow curator access",
   "allow_project_curators_to_view_your_private_coordinates": "プロジェクトのキュレーター管理者に非表示の位置情報の閲覧を許可",
   "amphibians": "両生類",
   "and": "そして",
@@ -34359,6 +40202,7 @@ I18n.translations["ja"] = {
   "annotation": "注釈",
   "annotations": "注釈",
   "any": "すべて",
+  "any_": "Any",
   "arachnids": "クモ綱",
   "are_you_sure?": "本当によろしいですか？",
   "are_you_sure_leave_this_project": "このプロジェクトを退会して本当によろしいですか？",
@@ -34370,8 +40214,9 @@ I18n.translations["ja"] = {
   "atom": "Atom",
   "attention": "注意",
   "attribute": "属性",
+  "back_to_suggestions": "Back to Suggestions",
   "back_to_x": "%{noun}に戻る",
-  "based_on_the_evidence_can_id_be_improved": "証拠に基づいてコミュニティー分類を確定しますか、改善しますか？",
+  "based_on_the_evidence_can_id_be_improved": "証拠に基づいてコミュニティー分類を確定しますか、改善しますか？\n",
   "be_the_first_to_fave_this_observation": "本観測の最初のお気に入り登録者になろう！",
   "birds": "鳥類",
   "black": "黒",
@@ -34388,43 +40233,84 @@ I18n.translations["ja"] = {
   "casual": "カジュアル",
   "casual_": "カジュアル",
   "categories": "カテゴリ",
+  "cc_0_description": "This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.",
   "cc_0_name": "著作権なし(CC0)",
+  "cc_by_description": "This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.",
   "cc_by_name": "表示",
+  "cc_by_nc_description": "This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don't have to license their derivative works on the same terms.",
   "cc_by_nc_name": "表示—非営利",
+  "cc_by_nc_nd_description": "This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can't change them in any way or use them commercially.",
   "cc_by_nc_nd_name": "表示—非営利—改変禁止",
+  "cc_by_nc_sa_description": "This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.",
   "cc_by_nc_sa_name": "表示—非営利—継承",
+  "cc_by_nd_description": "This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.",
   "cc_by_nd_name": "表示—改変禁止",
+  "cc_by_sa_description": "This license lets others remix, tweak, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. All new works based on yours will carry the same license, so any derivatives will also allow commercial use.",
   "cc_by_sa_name": "表示—継承",
   "change_types": {
     "input_taxa_were_merged_into_output_taxon_html": "%{input_taxa}は%{output_taxon}に統合されました",
     "input_taxa_will_be_merged_into_output_taxon_html": "%{input_taxa}は%{output_taxon}に統合されます",
+    "input_taxon_was_dropped_html": "%{input_taxon} was dropped",
     "input_taxon_was_replaced_by_output_taxon_html": "%{input_taxon}は%{output_taxon}と置き換えられました",
     "input_taxon_was_split_into_output_taxa_html": "%{input_taxon}は%{output_taxa}に分割されました",
+    "input_taxon_will_be_dropped_html": "%{input_taxon} will be dropped",
     "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon}は%{output_taxon}に置き換えられます",
     "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon}を%{output_taxa}に分割します"
   },
+  "check_above_for_errors": "Check above for errors",
+  "check_back_soon": "Check back soon!",
   "checklist": "チェックリスト",
+  "choose_a_field": "Choose a field",
+  "choose_file": "Choose file",
+  "choose_files": "Choose files",
   "choose_photos_for_this_taxon": "分類群の写真を選択",
   "clear": "クリア",
+  "close": "Close",
   "colors": "色",
   "combine": "統合",
   "comment_": "コメント",
   "commercial_solicitation": "セールス、どこにも繋がらないリンクなど。",
+  "community_curated": "Community Curated",
   "community_id_at_genus_level_or_lower": "層レベル以下のコミュニティー分類の有無",
   "community_id_at_species_level_or_lower": "種以下の階級によるコミニュティ分類",
   "community_id_heading": "コミュニティー分類",
+  "compare": "Compare",
   "comprehensive_list": "包括リスト",
+  "computer_vision_suggestion": "Computer Vision Suggestion",
+  "computer_vision_suggestion_desc": "Computer vision is the process of teaching computers to recognize patterns\nin images. We provide tools that use computer vision models trained on the\ncommunity's photos to provide identification suggestions, like the auto-\ncomplete and comparison features. This label indicates when a person added\nan identification using one of these tools.\n",
   "confirm": "確認",
   "confirmed": "確認済",
   "conservation_status": "保全状況",
+  "conservation_status_geoprivacy_desc": "Default geoprivacy applied to all observations of this taxon in this place\n",
+  "contact_support": "Contact Support",
+  "content_hidden": "Content Hidden",
+  "content_hidden_by_user_on_date_because_reason_html": "Content hidden by %{user} on %{date} because: \"%{reason}\"\n",
   "continue": "続行",
   "controlled_term_labels": {
+    "adult": "Adult",
+    "budding": "Budding",
+    "egg": "Egg",
+    "female": "Female",
+    "flowering": "Flowering",
+    "fruiting": "Fruiting",
+    "juvenile": "Juvenile",
+    "larva": "Larva",
+    "life_stage": "Life Stage",
+    "male": "Male",
+    "nymph": "Nymph",
+    "plant_phenology": "Plant Phenology",
+    "pupa": "Pupa",
+    "sex": "Sex",
+    "subimago": "Subimago",
+    "teneral": "Teneral"
   },
+  "convert": "Convert",
   "copyright": {
     "some_rights_reserved": "いくつかの権利を保有",
     "some_rights_reserved_by": "(c) %{name}, いくつかの権利を保有 (%{license_short})",
     "all_rights_reserved": "(c) %{name}, 全ての権利を保有",
     "no_known_copyright_restrictions": "%{name}, 著作権の制限は報告されていない (%{license_name})",
+    "no_known_copyright_restrictions_text": "no known copyright restrictions",
     "no_rights_reserved": "何の権利も保有しない",
     "no_rights_reserved_by": "%{name}, 何の権利も保有しません %{license_name}",
     "anonymous": "匿名",
@@ -34439,14 +40325,25 @@ I18n.translations["ja"] = {
     "attribution_noderivs_license": "表示 - 改変禁止",
     "gnu_free_documentation_license": "GNUフリー文書利用許諾契約書"
   },
+  "copyright_info": "Copyright Info",
+  "copyright_info_and_more": "Copyright Info and More",
+  "copyright_infringement": "Copyright Infringement",
+  "copyright_infringement_desc": "Violates copyright law or was created by someone other than the observer and lacks attribution",
+  "create_an_atlas": "Create an Atlas",
   "created_by": "作成者：",
   "created_on": "作成日:",
   "critically_endangered": "絶滅危惧IA類",
   "csv": "CSV",
+  "cumulative_ids": "Cumulative IDs: %{count} of %{total}",
   "curation": "キュレーター管理",
+  "current_flags": "Current Flags",
+  "customize_location": "Customize Location",
   "dashboard": "ダッシュボード",
   "data_deficient": "データ不足",
+  "data_quality": "Data Quality",
   "data_quality_assessment": "データ質評定",
+  "data_quality_assessment_": "data quality assessment",
+  "data_used": "Data used:",
   "date": {
     "abbr_day_names": [
       "日",
@@ -34457,20 +40354,21 @@ I18n.translations["ja"] = {
       "金",
       "土"
     ],
-    "abbr_month_names": {
-      "1": "1月",
-      "2": "2月",
-      "3": "3月",
-      "4": "4月",
-      "5": "5月",
-      "6": "6月",
-      "7": "7月",
-      "8": "8月",
-      "9": "9月",
-      "10": "10月",
-      "11": "11月",
-      "12": "12月"
-    },
+    "abbr_month_names": [
+      null,
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月",
+      "6月",
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ],
     "day_names": [
       "日曜日",
       "月曜日",
@@ -34492,20 +40390,21 @@ I18n.translations["ja"] = {
     "formats": {
       "month_day_year": "%Y年%B%d日"
     },
-    "month_names": {
-      "1": "1月",
-      "2": "2月",
-      "3": "3月",
-      "4": "4月",
-      "5": "5月",
-      "6": "6月",
-      "7": "7月",
-      "8": "8月",
-      "9": "9月",
-      "10": "10月",
-      "11": "11月",
-      "12": "12月"
-    }
+    "month_names": [
+      null,
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月",
+      "6月",
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ]
   },
   "date_": "日付",
   "date_added": "追加した日",
@@ -34525,24 +40424,33 @@ I18n.translations["ja"] = {
       "december": "12月"
     }
   },
+  "date_is_accurate": "Date is accurate",
+  "date_observed_": "Date Observed",
   "date_picker": {
     "closeText": "閉じる",
     "currentText": "今日",
     "prevText": "前へ",
-    "nextText": "次へ"
+    "nextText": "次へ",
+    "range": "Range"
   },
+  "date_specified": "Date specified",
   "date_time": "日付と時刻",
   "date_updated": "更新日",
   "datetime": {
+    "countdown_x_days": {
+      "other": "days"
+    },
     "countdown_x_hours": {
-      "one": "時間",
       "other": "時間"
     },
+    "countdown_x_minutes": {
+      "other": "min"
+    },
     "countdown_x_seconds": {
-      "one": "秒",
       "other": "秒"
     }
   },
+  "decrease_brightness": "Decrease Brightness",
   "default": "既定",
   "delete": "削除",
   "deleting": "削除しています...",
@@ -34553,10 +40461,19 @@ I18n.translations["ja"] = {
   "description_slash_tags": "説明／タグ",
   "details": "詳細",
   "did_you_mean": "もしかして:",
+  "disagree_": "Disagree",
+  "discoveries": "Discoveries",
   "do_not_show_this_message_again": "今後このメッセージを表示しない",
   "doh_something_went_wrong": "エラーが発生しました。",
+  "doh_something_went_wrong_error": "D'oh, something went wrong: %{error}",
+  "done": "Done",
   "download": "ダウンロード",
+  "drag_and_drop_some_photos_or_sounds": "Drag & drop some photos or sounds",
+  "drop_it": "Drop it",
+  "duplicate_observation_flag_warning": "For duplicate observations, please ask the observer to address the issue\ninstead of adding a flag, because site curators cannot remove observations.\n",
+  "duplicate_verb": "Duplicate",
   "edit": "編集",
+  "edit_atlas": "Edit Atlas",
   "edit_license": "ライセンスを編集",
   "edit_multiple_dates": "複数の日付を編集",
   "edit_multiple_descriptions": "複数の説明欄を編集",
@@ -34569,11 +40486,12 @@ I18n.translations["ja"] = {
   "edit_your_global_project_settings": "プロジェクトのグローバル設定を変更",
   "edit_your_settings_for_this_project": "このプロジェクトの個人設定を編集",
   "editing_observations": {
-    "one": "<span class=\"count\">1</span>件の観察記録を編集中：",
     "other": "<span class=\"count\">%{count}</span>件の観察記録を編集中："
   },
   "eligible_for_research_grade": "研究用候補",
+  "encompassing_places": "Encompassing Places",
   "end": "終了",
+  "end_date_time": "End Date / Time",
   "endangered": "絶滅危惧IB類",
   "endemic": "固有種",
   "endemic_to_x": "%{x}の固有種",
@@ -34588,8 +40506,15 @@ I18n.translations["ja"] = {
   },
   "establishment_means": "定着方法",
   "event_in_progress": "進行中のイベント",
+  "everyone_": "Everyone",
+  "evidence_of_organism": "Evidence of organism",
+  "exact": "Exact",
   "exact_date": "正確な日付",
   "exact_location": "正確な位置情報",
+  "examples_of_ranking_organizations": "Examples of Ranking Organizations",
+  "except": "except",
+  "exclude_x": "Exclude %{x}",
+  "exclusion_filters": "Exclusion Filters",
   "exit_full_screen": "全画面表示を終了",
   "export_observations": "観測記録をエクスポート",
   "exporting": "エクスポート中...",
@@ -34598,73 +40523,122 @@ I18n.translations["ja"] = {
   "facebook": "Facebook",
   "failed_to_find_your_location": "現在地を特定できませんでした。",
   "failed_to_save_record": "記録の保存に失敗しました。しばらくしてからもう一度お試しください。",
+  "faved_this_observation": "faved this observation",
   "faves": "お気に入り",
   "favorites": "お気に入り",
+  "feature_this_project_": "Feature This Project",
+  "featured": "Featured",
+  "featuring": "Featuring",
   "fields_": "フィールド",
   "fill_out_project_observation_fields": "プロジェクトの観察フィールドを入力してください",
   "filter_by_place": "場所でフィルター",
+  "filter_by_taxon": "Filter by Taxon",
   "filters": "フィルター",
   "find": "検索",
   "find_observations": "観測記録を探す",
   "find_photos": "写真を探す",
   "find_your_current_location": "現在地を取得",
   "finished": "完了",
+  "finished_with_page": "Finished With Page",
   "first_observation": "初観察",
+  "first_observation_by_date_added": "First observation by date added",
   "flag": "フラグ",
   "flag_an_item": "項目をフラグ",
+  "flag_as_inappropriate": "Flag As Inappropriate",
   "flag_for_curation": "要キュレーター管理のフラグを付ける",
   "flag_this_observation": "この観察記録にフラグ",
   "flag_this_photo": "この写真にフラグ付け",
+  "flag_this_sound": "Flag This Sound",
+  "flagged_": "Flagged",
+  "flagging_desc": "Flagging brings something to the attention of volunteer site curators.\nPlease don't flag problems you can address with identifications, the Data\nQuality Assessment, or by talking to the person who made the content.\n",
+  "flags_with_count": "Flags (%{count})",
   "flickr_has_no_creative_commons": "Flickrにはこの場所からのクリエイティブ・コモンズライセンス写真がありません",
+  "flowering_phenology": "Flowering Phenology",
+  "fluid_layout": "Fluid Layout",
+  "follow": "Follow",
+  "frequency": "Frequency",
   "from": "次の場所から：",
   "from_flickr_facebook_etc": "Flickr、Facebookなどから",
   "from_soundcloud": "Soundcloudから",
   "full_screen": "全画面表示",
   "fungi": {
-    "one": "菌類",
     "other": "菌類"
   },
   "gbif_occurrences": "GBIF発生データ",
+  "generate_your_stats": "Generate Your Stats",
   "geoprivacy": "位置情報プライバシー",
+  "geoprivacy_is_obscured": "Geoprivacy is obscured",
+  "geoprivacy_is_obscured_desc": "Observer has chosen to obscure the coordinates.",
+  "geoprivacy_is_private": "Geoprivacy is private",
+  "geoprivacy_is_private_desc": "Observer has chosen to hide the coordinates.",
   "get_started": "始めよう",
   "globally": "世界中",
+  "go": "Go",
   "go_back": "戻る",
   "going_to_your_observations": "あなたの観察記録へ移行中",
   "good_choice_for_sharing": "科学者にデータ共有できるのでオススメ",
+  "google": "Google",
   "green": "緑",
   "grey": "灰",
   "grid": "グリッド",
   "grid_layout": "グリッドレイアウト",
   "grid_tooltip": "グリッド表示",
+  "grouping": "Grouping",
+  "has_id_supported_by_two_or_more": "Has ID supported by two or more",
   "has_one_or_more_faves": "お気に入り登録件数が1件以上",
+  "has_photo": "Has Photo",
+  "has_photo_and_sound": "Has Both Photo and Sound",
   "has_photos": "写真あり",
+  "has_photos_or_sounds": "Has Photos or Sounds",
+  "has_sound": "Has Sound",
   "has_sounds": "音声あり",
   "heads_up": "お知らせ",
+  "here_are_our_top_species_suggestions": "Here are our top species suggestions",
+  "hide_content": "Hide Content",
+  "hide_desc": "Hiding content will remove it from public view, but people will still be\nable to see that something was hidden, and site curators and the author of\nthe content will still be able to see the hidden content. Generally, this\nonly applies to written content, e.g. if you hide the content of an\nidentification, the identification is still visible but the identifier's\nremarks are hidden. You cannot undo this, and only site staff can unhide\ncontent once it has been hidden, so be careful and only use this for very\nobjectionable content.\n",
+  "hide_running_total": "Hide Running Total",
+  "hide_uncountable_species": "Hide Uncountable Species",
   "high": "高",
   "history": "履歴",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "I don't know but I am sure this is %{taxon}",
   "id_categories": {
     "tooltips": {
-      "leading": "分類群は上位の群落からつながっています。この同定は正しい答えに結びつく可能性があります。"
+      "improving": "First suggestion of this taxon that the community subsequently agreed with. This helped\nrefine the community taxon.\n",
+      "leading": "分類群は上位の群落からつながっています。この同定は正しい答えに結びつく可能性があります。\n",
+      "maverick": "Taxon is not a descendant or ancestor of the community taxon, i.e. the community does not\nagree with this taxon.\n"
     }
   },
+  "id_withdrawn": "ID Withdrawn",
   "identifications": "同定",
   "identifiers": "ID判定者",
   "identify": "ID判定",
   "identify_observations": "観察記録をID判定",
   "identify_title": "ID判定",
+  "ids_by_taxon": "IDs By Taxon",
   "ids_made_for_others": "他のユーザのためのID",
+  "if_for_some_reason_a_user_doesnt_agree": "If for some reason you don't agree with the community taxon, you can reject it,\nwhich means your ID is the one used for linking to other observations, updating life lists,\netc. It also means your observation can only become research grade when the community agrees\nwith you.\n",
+  "ignore_and_continue": "Ignore and continue",
+  "imperiled": "Imperiled",
   "import": "インポート",
+  "improving": "Improving",
   "in_progress": "処理中",
   "in_the_past_week": "ここ1週間以内",
   "inactive_taxon": "無効な分類群",
+  "inappropriate_content": "Inappropriate content?",
   "including": "次を含む：",
+  "increase_brightness": "Increase Brightness",
   "info": "情報",
   "input_taxon": "分類群を入力",
   "insect_life_stage": "昆虫の変態段階",
   "insects": "昆虫類",
+  "interactions": "Interactions",
   "introduced": "移入種",
   "introduced_in_place": "%{place}の移入種",
   "iphone": "iPhone",
+  "is_an_evaluation": "is an evaluation of an observation’s accuracy.\nResearch Grade observations may be used by scientists for research. Cast your vote below:\n",
+  "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Is the evidence provided enough to confirm this is %{taxon}?",
+  "it_can_now_be_used_for_research": "It can now be used for research and featured on other websites",
+  "item_flagged_notice_html": "This has been flagged as spam and is no longer\npublicly visible. You can see it because you created it, or you are a\nsite curator. If you think this is a mistake, please\n<a href=\"mailto:%{help_email}\" class=\"contact\">contact us</a>.\n<a href=\"%{manage_flags_path}\">Manage flags</a>\n",
   "join": "参加",
   "join_project": "このプロジェクトに参加する",
   "join_this_project": "このプロジェクトに参加",
@@ -34673,30 +40647,42 @@ I18n.translations["ja"] = {
   "keep_editing": "編集を続行",
   "keyboard_shortcuts": "キーボード ショートカット",
   "kml_file_size_error": "1MBより少ないKMLでなければなりません",
+  "label_colon": "%{label}:",
   "labels": "ラベル",
   "language_slash_type": "言語／種類",
   "last_observation": "最終観察記録",
+  "last_year": "Last Year",
   "lat": "緯度:",
   "latitude": "緯度",
   "layers": "レイヤー",
   "leaderboard": "リーダーボード",
+  "leading": "Leading",
   "least_concern": "低危険種/<br />軽度懸念",
+  "leave": "Leave",
   "leave_a_comment": "コメントする",
   "less": "より少なく",
   "lexicons": {
     "scientific_names": "学名",
     "afrikaans": "アフリカーンス語",
+    "albanian": "Albanian",
     "bengali": "ベンガル語",
     "catalan": "カタロニア語",
     "cebuano": "セブアノ語",
+    "chinese_simplified": "Chinese (simplified)",
+    "chinese_traditional": "Chinese (traditional)",
     "creole_french": "クレオール語（フランス語）",
     "creole_portuguese": "クレオール語（ポルトガル語）",
+    "czech": "Czech",
+    "danish": "Danish",
     "davawenyo": "ダバオ語",
     "dutch": "オランダ語",
     "english": "英語",
+    "estonian": "Estonian",
+    "finnish": "Finnish",
     "french": "フランス語",
     "gela": "ゲラ語",
     "german": "ドイツ語",
+    "greek": "Greek",
     "hawaiian": "ハワイ語",
     "hebrew": "ヘブライ語",
     "hiligaynon": "ヒリガイノン語",
@@ -34705,10 +40691,13 @@ I18n.translations["ja"] = {
     "italian": "イタリア語",
     "japanese": "日本語",
     "korean": "韓国語",
+    "lithuanian": "Lithuanian",
+    "luxembourgish": "Luxembourgish",
     "maltese": "マルタ語",
     "maori": "マオリ語",
     "misima_paneati": "ミシマパネアティ語",
     "norwegian": "ノルウェー語",
+    "occitan": "Occitan",
     "pangasinan": "パンガシナン語",
     "portuguese": "ポルトガル語",
     "romanian": "ルーマニア語",
@@ -34722,17 +40711,24 @@ I18n.translations["ja"] = {
     "waray_waray": "ワライ語"
   },
   "life": "生命",
+  "linear_scale_label": "Linear",
   "list": "リスト",
   "list_tooltip": "リストを表示",
   "lists": "リスト",
   "loading": "読み込み中...",
   "loading_metadata": "メタデータを読込中...",
+  "loading_suggestions": "Loading suggestions...",
   "locality_notes": "地域メモ",
   "location": "場所",
+  "location_is_accurate": "Location is accurate",
   "location_is_obscured": "位置情報はカモフラージュ中",
   "location_is_private": "位置情報は非公開",
   "location_is_public": "位置情報は公開中",
+  "location_private": "Location Private",
+  "location_specified": "Location specified",
+  "location_unknown": "Location Unknown",
   "log_in": "ログイン",
+  "log_scale_label": "Log",
   "long": "経度:",
   "longitude": "軽度",
   "lookup": "調べる",
@@ -34740,9 +40736,11 @@ I18n.translations["ja"] = {
   "make_this_your_default_license": "デフォルの%{type}トライセンスにする",
   "mammals": "哺乳類",
   "manage_names": "名称を管理",
+  "manage_your_relationships": "Manage your relationships",
   "map": "マップ",
   "map_legend": "地図記号一覧",
   "map_marker_size": "地図マーカー大きさ",
+  "map_of_observations": "Map of Observations",
   "map_tooltip": "マップを表示",
   "maps": {
     "overlays": {
@@ -34750,6 +40748,7 @@ I18n.translations["ja"] = {
       "every_publicly_visible_observation": "iNaturalistネットワーク上のすべての公開中観察記録",
       "featured_observations": "注目の観察記録",
       "gbif_network": "GBIFネットワーク",
+      "gbif_network_description": "Records from museums and other occurrence providers distributed by the Global Biodiversity Informatics Facility",
       "observations": "観察記録",
       "place_boundary": "場所範囲",
       "checklist_places": "チェックリスト場所",
@@ -34760,10 +40759,13 @@ I18n.translations["ja"] = {
   "mark_all_as_reviewed": "すべてに査読済の印を付ける",
   "mark_all_as_unreviewed": "すべてに未査読の印を付ける",
   "mark_as_reviewed": "査読済の印を付ける",
+  "maverick": "Maverick",
   "media": "メディア",
+  "media_type": "Media Type",
   "members": "メンバー一覧",
   "messages": "メッセージ",
-  "misleading_or_illegal_content_html": "紛らわしいまたは違法な内容、人種及び民族に対する差別的な内容、など",
+  "misidentifications": "Misidentifications",
+  "misleading_or_illegal_content_html": "紛らわしいまたは違法な内容、人種及び民族に対する差別的な内容、など\n",
   "mollusks": "軟体動物",
   "momentjs": {
     "shortRelativeTime": {
@@ -34780,84 +40782,157 @@ I18n.translations["ja"] = {
       "MM": "%dmo",
       "y": "1年",
       "yy": "%dy"
-    }
+    },
+    "datetime_with_zone": "MMM D, YYYY · LT z",
+    "datetime_with_offset": "MMM D, YYYY · LT Z"
   },
   "months": "ヶ月",
   "more": "続き",
   "more_filters": "その他のフィルター",
+  "more_from_x": "More from %{x}",
   "more_import_options": "その他のインポート設定",
   "more_info": "詳細情報",
   "more_info_title": "詳細情報",
   "more_photos": "写真をもっと表示",
+  "more_than_a_week_ago": "More than a week ago",
   "most_comments_and_faves": "最多のコメント・いいね数",
   "most_observations": "最多の観察記録",
+  "most_observed_introduced_species": "Most Observed Introduced Species",
   "most_observed_species": "最も観察された種",
+  "most_observed_threatened_species": "Most Observed Threatened Species",
+  "most_recent_observation_by_date_observed": "Most recent verifiable observation by date observed",
   "most_species": "最多の種",
   "multiple": "複数",
   "multiple_select_option": "--複数--",
+  "must_be_observed_after": "must be observed after %{operand}\n",
+  "must_be_observed_before": "must be observed before %{operand}\n",
   "name": "名称",
+  "name_or_slug": "Name or URL slug, e.g. my-project",
   "names": "名称",
   "native": "原生",
   "native_to_place": "%{place}の在来種",
   "near_threatened": "近危急種/準絶滅危惧種",
+  "nearby_observations_": "Nearby observations",
   "needs_id": "要ID",
+  "needs_id_": "Needs ID",
+  "new": "New",
+  "new_and_noteworthy": "New & Noteworthy",
   "new_observation_field": "新規観測記録フィールド",
   "new_observations": "新規観測記録",
+  "new_observations_this_year": "New Observations This Year",
+  "new_species_added_in_interval": "New Species Added In %{interval}",
+  "new_species_added_in_interval_x_of_y": "New Species Added In %{interval} (Showing %{x} of %{y})",
+  "new_users": "New Users",
+  "new_users_this_year": "New Users This Year",
+  "newly_added": "Newly Added",
+  "newly_added_species": "Newly Added Species",
+  "newly_observed_species": "Newly Observed Species",
+  "newly_observed_species_this_year": "Newly Added Species This Year",
+  "news": "News",
   "next": "次",
+  "next_observation": "Next Observation",
+  "next_photo": "Next Photo",
+  "next_tab": "Next Tab",
   "no": "いいえ",
+  "no_but_it_is_a_member_of_taxon": "No, but it is a member of %{taxon}",
   "no_identifications": "同定なし",
+  "no_ids_have_been_suggested_yet": "No IDs have been suggested yet",
+  "no_interaction_data_available": "No interaction data available",
+  "no_its_as_good_as_it_can_be": "No, it's as good as it can be",
   "no_license_all_rights_reserved": "ライセンスなし（著作権を全て留保する）",
   "no_matching_observations": "一致する観察記録がありません",
   "no_matching_users": "一致するユーザーありません",
   "no_misidentifications_yet": "誤った同定がまだありません",
   "no_more_results_found": "これ以上結果がありません",
   "no_more_taxa_to_load": "未読込の分類群がありません",
+  "no_news_yet": "No news yet",
   "no_observations": "観測記録ありません",
   "no_observations_from_this_place_yet": "この場所からの観測記録はまだありません",
   "no_observations_yet": "観測記録はまだありません",
+  "no_photo": "No Photo",
   "no_photos": "写真がありません",
   "no_places_available": "有効な場所がありません",
   "no_range_data_available": "分布・生息区域データありません",
+  "no_relevant_annotations": "No Relevant Annotations",
   "no_results_for": "該当するものはありません",
   "no_results_found": "該当するものはありません",
   "no_sections_available": "使用可能なセクションがありません",
   "no_species_observed": "観察された種がありません",
+  "no_suggestions_available": "No Suggestions Available",
   "no_summary_from_wikipedia": "ウィキペディアに記述ありません",
   "none": "該当する項目ありません",
+  "none_found": "None found",
   "not_evaluated": "未評価",
+  "not_recorded": "Not recorded",
   "number_selected": "# 選択済み",
   "obs": "不明瞭",
+  "obs_cid_d": "Obs CID'd",
+  "obs_id_d": "Obs ID'd",
   "obscured": "不明瞭",
   "observation": "観察記録",
+  "observation_": "observation",
   "observation_date": "日付",
+  "observation_field_details": "Observation field details",
   "observation_fields": "観測記録フィールド",
+  "observation_requirements": "Observation Requirements",
+  "observation_without_media": "Observation without media",
   "observations": "観察記録",
+  "observations_": "observations",
+  "observations_annotated_with_annotation": "Observations annotated with %{annotation}",
+  "observations_by_category": "Observations By category",
+  "observations_in_this_project_must": "Observations in this project must meet the following criteria",
   "observations_map": "観測記録 / マップ",
+  "observations_of_relatives": "Observations of relatives",
+  "observations_this_year_vs_last_year": "Observations This Year vs. Last Year",
   "observations_total": "観察記録合計",
+  "observations_with_this_field": "Observations with this field",
+  "observations_with_this_field_and_value": "Observations with this field and value",
+  "observations_without_media": "Observations w/o Media",
   "observed": "観察済",
   "observed_on": "観測日時",
   "observers": "観察者",
   "of": "の",
+  "of_identifiers": "identifiers",
+  "of_observations": "observations",
+  "of_observers": "observers",
   "of_places": "場所",
   "of_species": "種",
+  "of_this_taxon": "Of this taxon",
   "offensive_inappropriate": "不快／不適切",
   "ok": "OK",
   "old_observation_form": "旧観察記録記入フォーム（非推奨）",
   "open": "公開",
+  "open_": "Open",
+  "open_street_map": "OpenStreetMap",
+  "or": "or",
   "orange": "橙",
   "order_by": "並び順:",
   "organism_appears_captive_cultivated": "飼育/栽培と推定",
+  "organism_is_wild": "Organism is wild",
   "other": "その他",
   "other_species_commonly_misidentified_as_this_species": "この種とよく間違われる種",
+  "other_species_commonly_misidentified_as_this_species_in_place_html": "Other species commonly misidentified as this species in <a href=\"%{url}\">%{place}</a>\n",
+  "other_taxa_commonly_misidentified_as_this_rank": "Other taxa commonly misidentified as this %{rank}",
+  "other_taxa_commonly_misidentified_as_this_rank_in_place_html": "Other taxa commonly misidentified as this %{rank} in <a href=\"%{url}\">%{place}</a>\n",
   "output_taxon": "出力分類群",
+  "overview": "Overview",
+  "per_day": "Per Day",
+  "per_month": "Per Month",
+  "per_week": "Per Week",
   "person": "人",
   "photo": "写真",
   "photo_attribution": "写真 %{attribution}",
   "photo_browser": "写真ブラウザー",
   "photo_licensing": "写真ライセンス",
+  "photos_chosen_for_this_taxon": "Photos chosen for this taxon",
+  "photos_from": "Photos from",
   "photos_of_taxon_html": "%{taxon}の写真",
+  "photos_or_sounds": "Photos or sounds",
+  "pin_verb": "Pin",
   "pink": "桃",
+  "pinned_locations_desc": "Pin this combination of coordinates, accuracy, geoprivacy, and locality notes for later use.\n",
   "place": "場所",
+  "place_autocomplete_placeholder": "Zion National Park, Miami, etc.",
   "place_geo": {
     "geo_planet_place_types": {
       "Aggregate": "複数の場所の集合",
@@ -34967,88 +41042,322 @@ I18n.translations["ja"] = {
   "places_name": {
     "afghanistan": "アフガニスタン",
     "africa": "アフリカ",
+    "akrotiri_and_dhekelia": "Akrotiri and Dhekelia",
+    "aland": "Åland",
+    "albania": "Albania",
+    "algeria": "Algeria",
+    "american_samoa": "American Samoa",
+    "andorra": "Andorra",
+    "angola": "Angola",
+    "anguilla": "Anguilla",
+    "antarctica": "Antarctica",
     "antigua_and_barbuda": "アンティグアバーブーダ",
+    "argentina": "Argentina",
+    "armenia": "Armenia",
+    "aruba": "Aruba",
     "australia": "オーストラリア",
     "austria": "オーストリア",
+    "azerbaijan": "Azerbaijan",
+    "bahamas": "Bahamas",
+    "bahrain": "Bahrain",
+    "bangladesh": "Bangladesh",
+    "barbados": "Barbados",
+    "belarus": "Belarus",
     "belgium": "ベルギー",
+    "belize": "Belize",
+    "benin": "Benin",
+    "bermuda": "Bermuda",
+    "bhutan": "Bhutan",
+    "bolivia": "Bolivia",
+    "bonaire_saint_eustatius_and_saba": "Bonaire, Saint Eustatius and Saba",
     "bosnia_and_herzegovina": "ボスニアヘルツェゴビナ",
+    "botswana": "Botswana",
+    "bouvet_island": "Bouvet Island",
     "brazil": "ブラジル",
+    "british_indian_ocean_territory": "British Indian Ocean Territory",
+    "british_virgin_islands": "British Virgin Islands",
+    "brunei": "Brunei",
+    "bulgaria": "Bulgaria",
+    "burkina_faso": "Burkina Faso",
+    "burundi": "Burundi",
+    "cambodia": "Cambodia",
+    "cameroon": "Cameroon",
+    "canada": "Canada",
+    "cape_verde": "Cape Verde",
+    "cayman_islands": "Cayman Islands",
+    "central_african_republic": "Central African Republic",
     "central_america": "中米",
+    "chad": "Chad",
+    "chile": "Chile",
     "china": "中国",
+    "christmas_island": "Christmas Island",
+    "clipperton_island": "Clipperton Island",
+    "cocos_islands": "Cocos Islands",
+    "colombia": "Colombia",
+    "commonwealth_of_the_northern_mariana_islands": "Commonwealth of the Northern Mariana Islands",
+    "comoros": "Comoros",
+    "cook_islands": "Cook Islands",
+    "costa_rica": "Costa Rica",
+    "cote_d_ivoire": "Côte d'Ivoire",
+    "croatia": "Croatia",
+    "cuba": "Cuba",
+    "curacao": "Curaçao",
+    "cyprus": "Cyprus",
+    "czech_republic": "Czech Republic",
+    "democratic_republic_of_the_congo": "Democratic Republic of the Congo",
     "denmark": "デンマーク",
+    "djibouti": "Djibouti",
+    "dominica": "Dominica",
+    "dominican_republic": "Dominican Republic",
+    "east_timor": "East Timor",
+    "ecuador": "Ecuador",
     "egypt": "エジプト",
+    "el_salvador": "El Salvador",
     "equatorial_guinea": "赤道ギニア",
+    "eritrea": "Eritrea",
+    "estonia": "Estonia",
+    "ethiopia": "Ethiopia",
     "europe": "ヨーロッパ",
+    "falkland_islands": "Falkland Islands",
+    "faroe_islands": "Faroe Islands",
+    "fiji": "Fiji",
+    "finland": "Finland",
     "france": "フランス",
+    "french_guiana": "French Guiana",
+    "french_polynesia": "French Polynesia",
+    "french_southern_territories": "French Southern Territories",
+    "gabon": "Gabon",
+    "gambia": "Gambia",
+    "georgia": "Georgia",
     "germany": "ドイツ",
+    "ghana": "Ghana",
+    "gibraltar": "Gibraltar",
     "greece": "ギリシア",
+    "greenland": "Greenland",
+    "grenada": "Grenada",
+    "guadeloupe": "Guadeloupe",
+    "guam": "Guam",
+    "guatemala": "Guatemala",
+    "guernsey": "Guernsey",
+    "guinea": "Guinea",
+    "guinea_bissau": "Guinea-Bissau",
+    "guyana": "Guyana",
+    "haiti": "Haiti",
+    "heard_island_and_mcdonald_islands": "Heard Island and McDonald Islands",
+    "honduras": "Honduras",
     "hong_kong": "香港",
     "hungary": "ハンガリー",
+    "iceland": "Iceland",
     "india": "インド",
+    "indonesia": "Indonesia",
+    "iran": "Iran",
     "iraq": "イラク",
+    "ireland": "Ireland",
+    "isle_of_man": "Isle of Man",
+    "israel": "Israel",
     "italy": "イタリア",
+    "jamaica": "Jamaica",
     "japan": "日本",
+    "jersey": "Jersey",
+    "jordan": "Jordan",
+    "kazakhstan": "Kazakhstan",
+    "kenya": "Kenya",
+    "kiribati": "Kiribati",
     "korea": "韓国",
+    "kosovo": "Kosovo",
+    "kuwait": "Kuwait",
+    "kyrgyzstan": "Kyrgyzstan",
+    "laos": "Laos",
+    "latvia": "Latvia",
+    "lebanon": "Lebanon",
+    "lesotho": "Lesotho",
+    "liberia": "Liberia",
+    "libya": "Libya",
+    "liechtenstein": "Liechtenstein",
+    "lithuania": "Lithuania",
+    "luxembourg": "Luxembourg",
+    "macao": "Macao",
+    "macedonia": "Macedonia",
+    "madagascar": "Madagascar",
+    "malawi": "Malawi",
+    "malaysia": "Malaysia",
+    "maldives": "Maldives",
+    "mali": "Mali",
+    "malta": "Malta",
+    "marshall_islands": "Marshall Islands",
     "martinique": "マルティニーク",
+    "mauritania": "Mauritania",
+    "mauritius": "Mauritius",
+    "mayotte": "Mayotte",
     "mexico": "メキシコ",
+    "micronesia": "Micronesia",
+    "moldova": "Moldova",
+    "monaco": "Monaco",
+    "mongolia": "Mongolia",
+    "montenegro": "Montenegro",
+    "montserrat": "Montserrat",
+    "morocco": "Morocco",
+    "mozambique": "Mozambique",
+    "myanmar": "Myanmar",
+    "namibia": "Namibia",
+    "nauru": "Nauru",
+    "nepal": "Nepal",
     "netherlands": "オランダ",
+    "new_caledonia": "New Caledonia",
     "new_guinea": "ニューギニア",
     "new_zealand": "ニュージーランド",
+    "nicaragua": "Nicaragua",
+    "niger": "Niger",
+    "nigeria": "Nigeria",
+    "niue": "Niue",
+    "norfolk_island": "Norfolk Island",
     "north_africa": "北アフリカ",
     "north_america": "北米",
+    "north_korea": "North Korea",
+    "northern_cyprus": "Northern Cyprus",
+    "norway": "Norway",
+    "oman": "Oman",
+    "pakistan": "Pakistan",
+    "palau": "Palau",
+    "palestina": "Palestina",
     "palestine": "パレスチナ",
     "panama": "パナマ",
+    "papua_new_guinea": "Papua New Guinea",
+    "paraguay": "Paraguay",
     "peru": "ペルー",
+    "philippines": "Philippines",
+    "pitcairn_islands": "Pitcairn Islands",
     "poland": "ポランド",
     "portugal": "ポルトガル",
+    "puerto_rico": "Puerto Rico",
+    "qatar": "Qatar",
     "republic_of_congo": "コンゴ共和国",
+    "reunion": "Reunion",
+    "romania": "Romania",
     "russia": "ロシア",
+    "rwanda": "Rwanda",
+    "saint_barthelemy": "Saint-Barthélemy",
+    "saint_helena": "Saint Helena",
+    "saint_kitts_and_nevis": "Saint Kitts and Nevis",
+    "saint_lucia": "Saint Lucia",
+    "saint_martin": "Saint-Martin",
+    "saint_pierre_and_miquelon": "Saint Pierre and Miquelon",
+    "saint_vincent_and_the_grenadines": "Saint Vincent and the Grenadines",
+    "samoa": "Samoa",
+    "san_marino": "San Marino",
     "sao_tome_and_principe": "サントメプリンシペ",
     "saudi_arabia": "サウジアラビア",
+    "senegal": "Senegal",
+    "serbia": "Serbia",
+    "seychelles": "Seychelles",
+    "sierra_leone": "Sierra Leone",
     "singapore": "シンガポール",
+    "sint_maarten": "Sint Maarten",
+    "slovakia": "Slovakia",
+    "slovenia": "Slovenia",
+    "solomon_islands": "Solomon Islands",
+    "somalia": "Somalia",
     "south_africa": "南アフリカ",
     "south_america": "南米",
+    "south_georgia_and_the_south_sandwich_islands": "South Georgia and the South Sandwich Islands",
+    "south_korea": "South Korea",
+    "south_sudan": "South Sudan",
     "spain": "スペイン",
+    "sri_lanka": "Sri Lanka",
+    "sudan": "Sudan",
+    "suriname": "Suriname",
+    "svalbard_and_jan_mayen": "Svalbard and Jan Mayen",
+    "swaziland": "Swaziland",
     "sweden": "スェーデン",
     "switzerland": "スイス",
     "syria": "シリア",
+    "taiwan": "Taiwan",
+    "tajikistan": "Tajikistan",
+    "tanzania": "Tanzania",
     "thailand": "タイ",
+    "togo": "Togo",
+    "tokelau": "Tokelau",
+    "tonga": "Tonga",
     "trinidad_and_tobago": "トリニダードトバゴ",
+    "tunisia": "Tunisia",
     "turkey": "トルコ",
+    "turkmenistan": "Turkmenistan",
+    "turks_and_caicos_islands": "Turks and Caicos Islands",
+    "tuvalu": "Tuvalu",
+    "uganda": "Uganda",
+    "ukraine": "Ukraine",
+    "united_arab_emirates": "United Arab Emirates",
     "united_kingdom": "イギリス",
     "united_states": "アメリカ",
+    "united_states_minor_outlying_islands": "United States Minor Outlying Islands",
+    "united_states_virgin_islands": "United States Virgin Islands",
+    "uruguay": "Uruguay",
+    "uzbekistan": "Uzbekistan",
+    "vanuatu": "Vanuatu",
+    "vatican_city": "Vatican City",
+    "venezuela": "Venezuela",
+    "vietnam": "Vietnam",
     "virgin_islands": "ヴァージン諸島",
-    "west_africa": "西アフリカ"
+    "wallis_and_futuna": "Wallis and Futuna",
+    "west_africa": "西アフリカ",
+    "western_sahara": "Western Sahara",
+    "yemen": "Yemen",
+    "zambia": "Zambia",
+    "zimbabwe": "Zimbabwe"
   },
   "places_of_interest": "注目の場所",
   "plants": "植物",
+  "please_allow_a_few_weeks_for_external_sites": "Please allow a few weeks for external sites to sync changes from this observation",
+  "please_complete_the_following_to_add_project": "Please complete the following to add this observation to the project:\n",
+  "please_explain_why_you_want_to_hide_this": "Please explain why you want to hide this",
+  "please_explain_why_you_want_to_unhide_this": "Please explain why you want to unhide this",
   "popular": "人気",
+  "potential_disagreement": "Potential Disagreement",
   "prev": "前へ",
   "preview": "プレビュー",
+  "preview_observations": "Preview Observations",
   "previous": "前へ",
+  "previous_observation": "Previous Observation",
+  "previous_photo": "Previous Photo",
+  "previous_tab": "Previous Tab",
+  "private_": "Private",
   "proceed": "続行",
   "profile": "プロフィール",
   "project": "プロジェクト",
+  "project_admins": {
+    "other": "Project admins"
+  },
+  "project_requirements": "Project Requirements",
   "projects": "プロジェクト",
   "proposed_taxa_that_contradict_the_community_id": "コミュニティー鑑定を否定する種分類",
+  "proposed_taxa_that_support_the_community_id": "Proposed taxa that support the Community ID",
   "protozoans": "原生動物",
   "public_domain": "パブリックドメイン",
   "purple": "紫",
   "quality_grade": "データ品質",
+  "quality_grade_": "Quality Grade",
+  "random": "Random",
   "range_from": "分布範囲情報提供先：",
   "rank": "階級",
   "rank_position": "順位",
   "ranks": {
+    "stateofmatter": "State of matter",
     "kingdom": "界",
+    "subkingdom": "Subkingdom",
     "phylum": "門",
     "subphylum": "亜門",
     "superclass": "上綱",
     "class": "綱",
     "subclass": "亜綱",
+    "infraclass": "Infraclass",
     "superorder": "上目",
     "order": "目",
     "suborder": "亜目",
     "infraorder": "下目",
+    "subterclass": "Subterclass",
+    "parvorder": "Parvorder",
+    "zoosection": "Zoosection",
+    "zoosubsection": "Zoosubsection",
     "superfamily": "上科",
     "epifamily": "上科",
     "family": "科",
@@ -35057,61 +41366,107 @@ I18n.translations["ja"] = {
     "tribe": "族",
     "subtribe": "亜族",
     "genus": "属",
+    "genushybrid": "Genushybrid",
+    "subgenus": "Subgenus",
+    "section": "Section",
+    "subsection": "Subsection",
+    "complex": "Complex",
     "species": "種",
     "hybrid": "雑種",
     "subspecies": "亜種",
     "variety": "変種",
     "form": "品種",
+    "infrahybrid": "Infrahybrid",
     "leaves": "末端ノード"
   },
   "ray_finned_fishes": "条鰭綱",
+  "read_more": "Read More",
   "recent": "新着",
+  "recent_evidence_of_organism": "Recent evidence of an organism",
+  "recent_observations_": "Recent Observations",
   "red": "赤",
   "redo_search_in_map": "マップ範囲内で再検索",
+  "regenerate_stats": "Regenerate Stats",
+  "reject?": "Reject?",
+  "relative_observations": "Relative Observations",
   "reload_timed_out": "再読み込みがタイムアウトしました。しばらくしてから再度お試しください。",
   "remove": "削除",
+  "remove_from_featured": "Remove from featured",
   "remove_from_project": "プロジェクトから除去",
+  "remove_observations": {
+    "other": "Remove %{count} observations?"
+  },
   "removed!": "取り除きました！",
   "removing": "除去中...",
   "reptiles": "爬虫類",
   "request_failed": "リクエストが失敗しました",
+  "required_": "Required",
   "research": "研究",
+  "research_": "Research",
   "research_grade": "研究用",
+  "research_grade_qualification": "Research Grade Qualification",
   "research_grade_short_html": "研究<span class='full'>用データ</span>",
+  "reset_brightness": "Reset Brightness",
   "reset_search_filters": "検索フィルターを解除",
   "restore": "復元",
   "review_all": "すべてを確認済に",
   "reviewed": "確認済",
+  "rg_observations": "RG Observations",
+  "running_total": "Running Total",
+  "same_day_obscured": "Another observation by this person on this day is obscured",
+  "same_day_obscured_desc": "When coordinates are obscured because of a threatened taxon, all other\nobservations by that person on that day are also obscured to prevent people\nfrom guessing the coordinates based on observations made around the same\ntime. Individuals can also apply this protection to coordinates they have\nchosen to obscure.\n",
+  "same_day_private": "Another observation by this person on this day is private",
+  "same_day_private_desc": "When coordinates are hidden because of a threatened taxon, all other\nobservations by that person on that day are also hidden to prevent people\nfrom guessing the coordinates based on observations made around the same\ntime. Individuals can also apply this protection to coordinates they have\nchosen to hide.\n",
   "satellite": "航空写真",
   "save": "保存",
   "save_photos": "写真を保存",
+  "saved": "Saved",
   "saving": "保存中...",
   "saving_num_of_count_observations": {
-    "one": "観察記録を保存中...",
     "other": "%{count}件中%{num}件目の観察記録を保存中..."
   },
   "saving_verb": "保存中",
+  "scale_colon": "Scale:",
   "search": "検索",
+  "search_by_taxon_name_or_flickr_photo_id": "Search by taxon name or Flickr photo ID",
+  "search_by_taxon_name_or_observation_id": "Search by taxon name or observation ID",
   "search_external_name_providers": "外部の名称提供データを検索",
   "search_for_a_location": "場所を検索",
+  "search_remote": "Search Remote",
   "search_species_": "種を検索...",
   "seasonality": "季節性",
+  "seen_nearby": "Seen Nearby",
   "select": "選択",
   "select_all": "すべて選択",
+  "select_at_least_one": "Select At Least One",
   "select_none": "すべて選択解除",
   "select_observations_to_edit": "編集する観察記録を選択...",
   "select_options": "オプションを選択",
+  "select_this_taxon": "Select This Taxon",
   "selected_photos": "選択された写真",
   "set_license": "ライセンスを設定",
+  "share": "Share",
   "show": "表示",
+  "show_hidden_content": "Show Hidden Content",
+  "show_keyboard_shortcuts": "Show Keyboard Shortcuts",
+  "show_relative_proportions_of_all_observations": "Show relative proportions of all observations",
+  "show_running_total": "Show Running Total",
   "show_taxa_from_everywhere": "すべての場所からの分類群を表示",
   "show_taxa_from_place": "%{place}からの分類群を表示",
+  "show_total_counts": "Show total counts",
+  "show_uncountable_species": "Show uncountable species",
   "showing_taxa_from_everywhere": "すべての場所からの分類群を表示中",
   "showing_taxa_from_place": "%{place}からの分類群を表示中",
+  "showing_x_of_y_listings": "Showing %{x} of %{y} listings",
   "sign_out": "ログアウト",
   "sign_up": "ユーザー登録",
   "similar_species": "近縁種",
+  "similar_taxa": "Similar Taxa",
+  "site_admin_tools": "Site admin tools",
   "skip_to_next_page": "次のページへスキップ",
+  "some_observations_failed_to_be_added": "Some observations failed to be added to projects",
+  "some_observations_failed_to_save": "Some observations failed to save",
+  "some_other_reason": "Some other reason you can explain below.",
   "some_rights_reserved": "いくつかの権利を保有",
   "something": "何か",
   "something_went_wrong_adding": "種をリストに追加する際に問題が発生しました",
@@ -35119,76 +41474,132 @@ I18n.translations["ja"] = {
   "sort_by": "並び順",
   "sounds": {
     "selected_sounds": "選択された音声データ",
+    "sound_has_been_flagged": "This sound has been flagged.",
     "sounds": "音声"
   },
   "source": "ソース",
   "source_": "情報源:",
+  "source_list_": "Source List",
+  "source_wikipedia": "Source: Wikipedia",
   "spam": "スパム",
   "species": "種",
+  "species_by_category": "species by category",
   "species_name_cap": "種名",
   "species_unknown": "種不明",
+  "specify_the_reason_youre_flagging": "Specify the reason you're flagging this item",
   "standard": "標準",
   "start": "開始",
+  "start_date_time": "Start Date / Time",
   "start_typing_taxon_name": "分類群を入力",
   "stats": "統計",
+  "stats_for_this_year_have_not_been_generated": "Stats for this year have not been generated.",
   "status": "状況",
   "status_globally": "世界中で%{status}",
   "status_in_place": "%{place}で%{status}",
+  "stay_and_try_again": "Stay and try again",
+  "stop_testing": "Stop Testing",
+  "stop_trusting_this_person_with_your_private_coordinates": "Stop trusting this person with your hidden coordinates",
+  "studies_that_used_inaturalist_data_in_year": "Studies That Used iNaturalist Data in %{year}",
+  "submit_observations": {
+    "other": "Submit %{count} observations"
+  },
   "submitted": "投稿済",
   "suggest_an_identification": "同定を提案",
+  "suggestions": "Suggestions",
+  "support_inaturalist": "Support iNaturalist",
+  "supporting": "Supporting",
   "table": "表",
   "tagging": "タグを付けています...",
   "tags": "タグ",
   "taxa": "分類群",
   "taxon": "分類群",
+  "taxon_autocomplete_placeholder": "Birds, monarch, etc.",
   "taxon_changes": "分類群の変更",
   "taxon_drop": "分類群ドロップ",
+  "taxon_geoprivacy": "Taxon Geoprivacy",
+  "taxon_is_threatened_coordinates_hidden": "Taxon is threatened, coordinates hidden by default",
+  "taxon_is_threatened_coordinates_hidden_desc": "One of the taxa suggested in the identifications, or one of the taxa that\ncontain any of these taxa, is known to be rare and/or threatened, so the\nlocation of this observation has been obscured.\n",
+  "taxon_is_threatened_coordinates_obscured": "Taxon is threatened, coordinates obscured by default",
+  "taxon_is_threatened_coordinates_obscured_desc": "One of the taxa suggested in the identifications, or one of the taxa that\ncontain any of these taxa, is known to be rare and/or threatened, so the\nlocation of this observation has been obscured.\n",
   "taxon_map": {
+    "overlays": "Overlays"
   },
   "taxon_merge": "分類群の統合",
+  "taxon_schemes": "Taxon Schemes",
   "taxon_split": "分類群分割",
+  "taxon_stage": "taxon stage",
   "taxon_swap": "分類群の入れ替え",
   "taxonomic": "分類学上",
   "taxonomic_groups": "分類群グループ",
   "taxonomy": "分類",
+  "taxonomy_details": "Taxonomy Details",
+  "tell_us_why": "Tell us why...",
   "terms": "規約",
   "terrain": "地形",
   "that_was_the_last_observation_matching_the_current_filters": "現在のフィルター設定に該当する最後の観察記録です",
+  "the_": "The",
+  "the_below_items_are_needed_to_achieve": "The below items are needed to achieve <span className=\"bold\">Research Grade:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "コミュニティーIDには最低2件の判定が必要です。",
-  "the_community_must_feel_that": "コミュニティーは、証拠に基づいたコミュニティー分類は最善だと確信する必要があります",
+  "the_community_must_feel_that": "コミュニティーは、証拠に基づいたコミュニティー分類は最善だと確信する必要があります\n",
   "the_world": "世界中",
+  "then_keybord_sequence": "then",
   "there_were_problems_adding_taxa": "指定の分類群を追加する際にエラーが発生しました：%{errors}",
-  "these_observations_have_not_been_uploaded_yet": "こちらの観察記録はまだアップロードされていません。",
+  "there_were_some_problems_with_these_files": "There were some problems with these files:",
+  "these_observations_have_not_been_uploaded_yet": "こちらの観察記録はまだアップロードされていません。\n",
+  "this_bioblitz_beings_in": "This bioblitz begins in",
+  "this_id_was_added_due_to_a": "This ID was added due to a",
+  "this_is_your_observation": "This is your observation",
+  "this_is_your_observation_desc": "You can always see the coordinates of your own observations.",
   "this_job_failed_to_run": "実行できませんでした。%{email}にご連絡ください。",
+  "this_observation": "This observation",
   "this_observation_is_featured_on_x_sites": {
-    "one": "この観察はウェブサイト1箇所に掲載されています",
     "other": "この観察はウェブサイト %{count}箇所に掲載されています"
   },
+  "this_observation_is_research_grade": "This observation is Research Grade!",
+  "this_observation_was_created_using": "This observation was created using:",
   "this_taxon_concept_is_inactive": "この分類群概念は廃止されました",
   "this_taxon_has_no_default_photo": "この分類群のデファルト写真がありません",
+  "this_year": "This Year",
   "threatened": "絶滅危惧種",
+  "to": "to",
   "to_add_comments": "すれば、コメントを投稿することができます",
   "to_suggest_an_identification": "同定を提案",
   "today": "今日",
+  "too_many_results": "Too Many Results",
   "top_identifier": "トップ同定者",
   "top_identifiers": "同定の達人",
+  "top_identifiers_of_taxon": "Top Identifiers of %{taxon}",
   "top_observer": "トップ観察者",
+  "top_observers": "Top Observers",
   "top_species": "トップ種",
   "total": "合計",
   "total_observations": "合計観察記録数",
+  "total_species_observed": "Total Species Observed",
+  "trending": "Trending",
+  "trends": "Trends",
+  "trust_this_person_with_your_private_coordinates": "Trust this person with your hidden coordinates",
   "twitter": "ツイッター",
+  "two_thirds": "2/3rds",
   "type_species_name": "種名を入力",
+  "umbrella_projects": "Umbrella Projects",
+  "unfollow": "Unfollow",
+  "unhide_content": "Unhide Content",
+  "unhide_desc": "Unhiding will reveal this content for everyone to see. Curators can still\nchoose to hide it again in the future.\n",
   "unknown": "不明",
   "unknown_error": "不明なエラー",
+  "unreview_all": "Unreview All",
+  "update_observations": "Update Observations",
   "update_past": "過去の%{type}を更新",
   "update_search": "検索結果を更新",
   "update_x_selected_taxa": {
-    "one": "選んだ分類群1件を更新",
     "other": "選んだ分類群%{count}件を更新"
   },
   "uploader": {
     "errors": {
+      "file_too_big": "File must be less than %{megabytes} MB",
+      "unsupported_file_type": "File type not supported. We accept JPG, PNG, GIF, WAV, AAC, MP3, and MP4 (audio only)"
     },
+    "resize_tip": "If your photo files are too big, try cropping them down to a maximum\nof 2048 by 2048 pixels. This will happen to all photos on the\nserver anyway, and will make for a faster upload.\n",
     "tooltips": {
       "add": "観察記録を追加",
       "combine": "選択された観察記録を統合",
@@ -35196,51 +41607,429 @@ I18n.translations["ja"] = {
       "remove": "選択された観察記録を削除",
       "remove_observation": "観察記録を取り除く",
       "remove_photo": "写真を除去",
-      "select_all": "すべての観察記録を選択"
+      "select_all": "すべての観察記録を選択",
+      "upload_failed": "Upload failed"
     }
   },
   "uploading_num_of_count_photos": {
-    "one": "写真をアップロード中...",
     "other": "%{num}/%{count}枚の写真をアップロード中..."
   },
+  "use_name_as_a_placeholder": "Use <span class='ac-placeholder'>\"%{name}\"</span> as a placeholder\n",
   "user": "ユーザー",
+  "user_autocomplete_placeholder": "kueda, simon123, etc.",
+  "user_commented": "%{user} commented",
+  "user_disagrees_this_is_taxon": "%{user} disagrees this is %{taxon}",
+  "user_disagrees_with_previous_finer_identifications": "%{user} disagrees with previous finer identifications",
   "user_has_opted_out_of_community_id": "利用者はコミュニティー分類の通知を受け取りません",
+  "user_helped_x_people_with_y_ids_html": "%{user} helped <strong>%{x} people</strong> with <strong>%{y} IDs</strong>",
+  "user_suggested_an_id": "%{user} suggested an ID",
+  "user_trusts_you_with_their_private_coordinates": "%{user} trusts you with their hidden coordinates",
+  "user_trusts_you_with_their_private_coordinates_desc": "The observer has chosen to trust you with the hidden coordinates of all\ntheir observations.\n",
+  "user_wrote_html": "<a href=\"%{url}\" target=\"_blank\">%{user}</a> wrote,",
   "username_or_user_id": "ユーザー名またはユーザーID",
   "users": "ユーザー",
   "users_comment_html": "<a href='%{url}'>%{user}</a>のコメント",
+  "users_identification_short_html": "<a href='%{url}'>%{user}</a>'s ID",
+  "value": "Value",
   "verbing_x_of_y": "%{y}部の%{x}を%{verb}中...",
   "verifiable": "確認できる",
+  "verifiable_observations": "Verifiable Observations",
+  "verifiable_observations_by_observation_date": "Verifiable Observations By Observation Date",
   "view": "表示",
   "view_all": "すべて表示",
   "view_all_members": "メンバーをすべて表示",
   "view_field_options": "フィールドオプションを表示",
+  "view_flag": "View Flag",
   "view_flags": "フラッグを表示",
+  "view_full_size_photo": "View full-size photo",
   "view_license": "ライセンスを表示",
+  "view_moderation_history": "View Moderation History",
   "view_more": "もっと表示",
+  "view_more_unreviewed": "View more unreviewed",
   "view_observation": "観察記録を表示",
   "view_observations": "観測記録を表示",
+  "view_observations_causing_this_observation_to_be_obscured": "View observations causing this observation to be obscured\n",
+  "view_observations_of_this_taxon_by": "View observations of this taxon by",
   "view_on": "次のサイトで表示：",
+  "view_sample": "View sample",
+  "view_taxon_change": "View taxon change",
+  "view_year_stats_for_site": "View %{year} Stats For %{site}",
+  "view_your_year_stats": "View Your %{year} Stats",
   "view_yours": "自分のを表示",
   "views": {
     "observations": {
       "community_id": {
-        "explanation": "<p>\n  もし利用者が何らかの理由でコミュニティのタクソンに同意しない\n  場合は否定できます。するとその利用者の判定がその他の鑑定への\n  リンク、その他の観察、人生リストの更新などに使われます。また\n　コミュニティーの同意が得られた場合にのみ、その観察は学術研究\n　レベルと認められます。\n</p>\n<p>\n  その場合であっても、コミュニティーの判定は表示され、判定の差\n　をだれでも確認できます。\n</p>",
+        "agreement": "Agreement",
+        "algorithm_summary": "Algorithm Summary",
+        "ancestor_disagreements": "Ancestor Disagreements",
+        "below_cutoff": "Below Cutoff",
+        "cumulative_count": "Cumulative Count",
+        "disagreement": "Disagreement",
+        "disagreement_count": "Disagreement Count",
+        "explanation": "<p>\nもし利用者が何らかの理由でコミュニティのタクソンに同意しない\n場合は否定できます。するとその利用者の判定がその他の鑑定への\nリンク、その他の観察、人生リストの更新などに使われます。また\n　コミュニティーの同意が得られた場合にのみ、その観察は学術研究\n　レベルと認められます。\n</p>\n<p>\nその場合であっても、コミュニティーの判定は表示され、判定の差\n　をだれでも確認できます。\n</p>\n",
         "identification_count": "同定件数",
+        "opt_in_for_this_observation": "Opt in for this observation",
+        "score": "Score",
         "you_have_opted_out": "コミュニティー判定の通知を解除しました",
-        "your_id_does_not_match": "利用者の判定（<span class=\"bold\">%{taxon_name}</span>）はコミュニティーの判定と一致しません"
+        "your_id_does_not_match": "利用者の判定（<span class=\"bold\">%{taxon_name}</span>）はコミュニティーの判定と一致しません\n"
       },
       "export": {
+        "taking_a_while": "This is taking a while. Please try one of the options below.",
         "well_email_you": "準備ができましたら電子メールでお知らせします。"
       },
       "identify": {
         "review_all_tooltip": "ページ内のすべての観察記録を確認済みにする",
-        "unreview_all_tooltip": "ページ内のすべての観察記録を未確認にする"
+        "too_many_results_desc": "Page number times the number of results per page cannot exceed 10,000.\nTry applying filters to reduce the number of results, or mark\nobservations as reviewed and use the \"View More\" button instead of\npagination\n",
+        "unreview_all_tooltip": "ページ内のすべての観察記録を未確認にする",
+        "you_reviewed_message": "You reviewed %{reviewed} of %{pageTotal} observations on this page out of %{total} matching observations."
       },
       "show": {
         "ancestor_disagreements_desc": "分類群の祖先の中に含まれてはいるが、この分類に適合しないもの用した最初の同定後に作成された、同定された分類群の数 (つまり「属は正しいはずだが、この種とは思わない」分類)",
-        "community_taxon_desc_html": "<p class=\"ui\">\n  コミュニティ分類（もしくはコミュニティ判定）とは\n  %{site_name}コミュニティが特定の観察において\n  認定した分類です。もしコミュニティ判定の選択基準に\n  関心がある場合は、以下のアルゴリズムの注記を参照できますが、一般的に\n  <strong>判定者の 2/3 以上が同意した分類\n  を選択しています</strong>。場合によっては、これは\n  より上位の分類を選択することで矛盾する分類を複数\n  含みます（たとえばキングヘビだと予想するあなたと\n  ガラガラヘビと考える私がいると iNat ではすべてのヘビ類を含む\n  ヘビ亜目を採用するなど。）アルゴリズムはまた、異議申し立て者が\n  正しい場合の多さを発見したため、異議を唱える人を\n  やや優先しがちです。\n</p>\n<p class=\"ui\">\n  研究レベルの観察では（その他の規定に優先して）コミュニティ\n  分類が必要です。特定の観察において識別が\n  1件のみの場合、コミュニティ分類はゼロです。すべての\n  観察で最低識別が1件ある場合は必ず観察\n  分類を伴います。観察分類とはデータ提供者と\n  観察を共有するときに用いる分類であり、その観察地における\n  同一の分類の観察の共有や生涯リスト更新その他に用います。ほとんどの\n  場合、観察分類は結局はコミュニティ分類を採用することに\n  なるものの、ときには合致しないことがあり、特にコミュニティが\n  識別の合意を得ないうちは起こりがちです。たとえばあなたは\n  ヘビ（ヘビ亜目）だと考え、私はキングヘビ\n  （<i>キングヘビ</i>属）だと考えた場合、識別分類はキングヘビ属（根拠は私の識別のみ）であって、コミュニティ分類としては\n  ヘビ亜目（最低2件の識別が支持）になります。あるいは\n  その他の理由であなたがコミュニティ分類に不賛同な場合、\n  それを個人の識別では否定しておき、観察\n  分類は（あなた個人の識別となり）コミュニティ分類と合致しません。\n  さらに、あなた個人の観察は、コミュニティの<em>同意</em>を得るまでは研究レベルの観察とは\n  なりえないことを意味します。コミュニティ分類という考え方そのものを\n  容認できない場合、<a href=\"/users/edit\" target=\"_blank\">個人設定を編集し</a>\n   まったく不採用にすることも可能です。\n</p>\n<p class=\"ui\">\n  <strong>アルゴリズム：</strong>すべての識別された分類とそれを含む分類\n  (たとえば<i>ホモ</i>属には<i>ホモサピエンス</i>が含まれる)が、互いを「賛成」の件数 - その分類の累積IDに対する\n  「反対」の件数 - まったく異なるIDの件数（たとえば分類IDで\n  計算した分類を含まない物）と、「祖先の不一致」 - より\n  保守的なIDでより詳細な分類と不一致の件数の割合として算出します。スコアが 2/3 以上の識別分類で\n  最低2件の識別がある場合、もっとも低位の分類を選択します。\n</p>",
+        "community_taxon_desc_html": "<p class=\"ui\">\nコミュニティ分類（もしくはコミュニティ判定）とは\n%{site_name}コミュニティが特定の観察において\n認定した分類です。もしコミュニティ判定の選択基準に\n関心がある場合は、以下のアルゴリズムの注記を参照できますが、一般的に\n<strong>判定者の 2/3 以上が同意した分類\nを選択しています</strong>。場合によっては、これは\nより上位の分類を選択することで矛盾する分類を複数\n含みます（たとえばキングヘビだと予想するあなたと\nガラガラヘビと考える私がいると iNat ではすべてのヘビ類を含む\nヘビ亜目を採用するなど。）アルゴリズムはまた、異議申し立て者が\n正しい場合の多さを発見したため、異議を唱える人を\nやや優先しがちです。\n</p>\n<p class=\"ui\">\n研究レベルの観察では（その他の規定に優先して）コミュニティ\n分類が必要です。特定の観察において識別が\n1件のみの場合、コミュニティ分類はゼロです。すべての\n観察で最低識別が1件ある場合は必ず観察\n分類を伴います。観察分類とはデータ提供者と\n観察を共有するときに用いる分類であり、その観察地における\n同一の分類の観察の共有や生涯リスト更新その他に用います。ほとんどの\n場合、観察分類は結局はコミュニティ分類を採用することに\nなるものの、ときには合致しないことがあり、特にコミュニティが\n識別の合意を得ないうちは起こりがちです。たとえばあなたは\nヘビ（ヘビ亜目）だと考え、私はキングヘビ\n（<i>キングヘビ</i>属）だと考えた場合、識別分類はキングヘビ属（根拠は私の識別のみ）であって、コミュニティ分類としては\nヘビ亜目（最低2件の識別が支持）になります。あるいは\nその他の理由であなたがコミュニティ分類に不賛同な場合、\nそれを個人の識別では否定しておき、観察\n分類は（あなた個人の識別となり）コミュニティ分類と合致しません。\nさらに、あなた個人の観察は、コミュニティの<em>同意</em>を得るまでは研究レベルの観察とは\nなりえないことを意味します。コミュニティ分類という考え方そのものを\n容認できない場合、<a href=\"/users/edit\" target=\"_blank\">個人設定を編集し</a>\nまったく不採用にすることも可能です。\n</p>\n<p class=\"ui\">\n<strong>アルゴリズム：</strong>すべての識別された分類とそれを含む分類\n(たとえば<i>ホモ</i>属には<i>ホモサピエンス</i>が含まれる)が、互いを「賛成」の件数 - その分類の累積IDに対する\n「反対」の件数 - まったく異なるIDの件数（たとえば分類IDで\n計算した分類を含まない物）と、「祖先の不一致」 - より\n保守的なIDでより詳細な分類と不一致の件数の割合として算出します。スコアが 2/3 以上の識別分類で\n最低2件の識別がある場合、もっとも低位の分類を選択します。\n</p>\n",
         "cumulative_count_desc": "単一の分類群とその下位分類に対する同定の総数",
-        "identification_count_desc": "単一の分類群に対する同定の件数"
+        "disagreement_count_desc": "# of identified taxa that are not among a taxon's ancestors",
+        "identification_count_desc": "単一の分類群に対する同定の件数",
+        "quality_assessment_help_html": "<p>\nThe data quality assessment is a summary of an observation's accuracy. All\nobservations start as <strong>\"casual\"</strong> grade, and become\n<strong>\"needs ID\"</strong> when\n</p>\n\n<ul>\n<li>the observation <strong>has a date</strong></li>\n<li>the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)</li>\n<li>the observation <strong>has photos or sounds</strong></li>\n<li>the observation <strong>isn't of a human</strong></li>\n</ul>\n<p>\nObservations become <strong>\"research grade\"</strong> when\n</p>\n<ul>\n<li>\nthe %{site_name} <strong>community agrees on species-level ID or lower</strong>, i.e.\nwhen more than 2/3 of identifiers agree on a taxon\n</li>\n</ul>\n<p>\nObservations will revert to <strong>\"casual\"</strong> if the above conditions aren't met or the community agrees\n</p>\n<ul>\n<li>\nthe <strong>location doesn't look\naccurate</strong> (e.g. monkeys in the middle of the ocean,\nhippos in office buildings, etc.)\n</li>\n<li>\nthe <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans\nor intelligent space aliens)\n</li>\n<li>\nthe observation <strong>doesn't present evidence of an\norganism</strong>, e.g. images of landscapes, water features,\nrocks, etc.\n</li>\n<li>\nthe observation <strong>doesn't present recent (~100 years) evidence of\nthe organism</strong> (e.g. fossils, but tracks, scat, and dead leaves\nare ok)\n</li>\n<li>\nthe observation no longer needs an ID <em>and</em> the community ID is above family\n</li>\n<li>\nthe observer has opted out of the community ID and the community\nID taxon is not an ancestor or descendant of the taxon associated\nwith the observer's ID\n</li>\n</ul>\n<p>\nAnd if that wasn't complicated enough, there are also situations where the system gets a vote:\n</p>\n<ul>\n<li>\nThe system will vote that the observation is not wild/naturalized\nif there are at least 10 other observations of a genus or lower in\nthe smallest county-, state-, or country-equivalent place that\ncontains this observation and 80% or more of those observations\nhave been marked as not wild/naturalized.\n</li>\n</ul>\n",
+        "score_desc": "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
+      }
+    },
+    "projects": {
+      "collection": "Collection",
+      "new": {
+        "a_project_allows_you_to_gather": "A collection project allows you to gather and visualize observations\nusing the core iNaturalist search tools. Everything that meets the\nparameters set by the project will be automatically included.\n",
+        "an_umbrella_project_can_be_used_to": "An umbrella project can be used to compare statistics across two or more Collection or\nTraditional Projects. The other projects need to exist before you can add them to an\numbrella project. You can include hundreds of projects under a single umbrella. Umbrella\nprojects cannot contain other umbrella projects.\n",
+        "are_you_ready_to_duplicate": "Are you ready to leave this page to duplicate this project? Please note the project icon\nand banner will not be duplicated, and would need to be re-uploaded in the duplicate\nproject.\n",
+        "are_you_sure_you_want_to_delete": "Are you sure you want to delete this project?",
+        "can_be_included_in_multiple": "Can be included in multiple umbrella projects",
+        "click_through_to_individual_projects": "Click through to individual projects",
+        "collection_project_features": "Collection Project features:",
+        "collection_projects": "Collection Projects",
+        "contain_entire_image_without_cropping": "Contain entire image without cropping",
+        "custom_banner_icon_and_project_description": "Custom banner, icon, and project description",
+        "data_visualizations": "Data visualizations",
+        "delete_project": "Delete Project",
+        "display_project_name": "Display project name",
+        "do_you_need_features_from_traditional": "Do you need features from traditional projects, such as access to true coordinates,\ncustom observation fields, or adding individual observations that can’t be automatically\nfiltered?\n",
+        "duplicate_project": "Duplicate Project",
+        "errors": {
+          "cannot_have_more_than_x_project_rules": "Cannot have more than %{x} project rules",
+          "name_already_taken": "Project name already taken",
+          "name_is_required": "Project name is required",
+          "summary_is_required": "Project summary text is required"
+        },
+        "leaderboards_among_individuals": "Leaderboards among <strong>individuals</strong>",
+        "leaderboards_among_projects_and_bioblitzes": "Leaderboards among <strong>projects</strong>\n",
+        "multiple_project_administrators": "Multiple project administrators",
+        "name_placeholder": "Birds of Chicago, Amazing Dragonflies, etc.",
+        "no_need_to_rely_on_manual_addition": "No manual addition of observations\n",
+        "note_these_users_will_be_able_to_edit": "Note: these users will be able to edit ALL project details including admins.\n",
+        "note_you_can_delete_the_time": "(Note: you can delete the time zone and precise times if you want to include whole days.)\n",
+        "or_drag_and_drop": "(or drag and drop)",
+        "please_specify_the_requirements": "Please specify the requirements for the observations to be added to\nthis project.\n",
+        "please_specify_the_requirements_html": "Please specify the requirements for the observations to be added to\nthis project. You can specify multiple species, places, users, or\nquality grades to be automatically included, or leave a field blank if\nyou have no specific requirement for it. Explanations for each field\ncan found <a href=\"%{url}\">here</a>.\n",
+        "project_background_color": "Project Summary Background Color",
+        "project_background_color_help": "Make sure to choose a color dark enough so the white overlaid text is legible.",
+        "project_banner": "Project Banner (PNG, JPG, or GIF)",
+        "project_banner_help": "Optional banner image. Ideal dimensions are 760px by 320px.",
+        "project_details": "Project Details",
+        "project_icon": "Project Icon (PNG, JPG, or GIF)",
+        "project_icon_help": "Optional icon. Should be a minimum of 72px x 72px and will be cropped to a square.\n",
+        "project_name": "Project Name",
+        "project_summary": "Project Summary",
+        "project_summary_help": "Give a concise explanation of your project. Approximately the first 200 characters will\nbe visible to the right of the project home screen banner so put the best stuff first!\n",
+        "project_summary_placeholder": "Discover and track the birds of Golden Gate Park...",
+        "show_projects_as_flags": "Show projects as flags in map",
+        "start_and_end_times_for_bioblitzes": "Start and end date/times (for bioblitz-type events)",
+        "umbrella_project_features": "Umbrella Project features:",
+        "unique_url_for_outreach": "Unique URL for outreach",
+        "use_this_link_to_create_html": "Use <a href=\"%{url}\">this link</a> to create a traditional project instead.\n",
+        "users_can_follow_your_project": "Users can follow your project for updates via journal posts",
+        "visual_comparison_of_data_among": "Visual comparisons of data among projects under the umbrella",
+        "we_have_redesigned_projects": "Projects are designed to automatically include all of the observations that fit the\nplaces, taxa, users, quality, and dates that you define. Choose between two main types:\nCollection Projects and Umbrella Projects, which share the following features:\n",
+        "welcome_to_projects": "Welcome to Projects!",
+        "you_can_learn_more_html": "You can learn more about managing projects\n<a href=\"https://www.inaturalist.org/pages/managing-projects\">here</a>\nor read the history of projects on\n<a href=\"https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist\">our blog</a>.\n",
+        "you_have_not_defined_any_observation_requirements": "You have not defined any observation requirements. Make sure to select one or more taxa\n(e.g. birds, conifers), places (e.g. Brazil, Yellowstone), users, and/or dates to define\nthe observations that you want to include in your project.\n"
+      },
+      "project_type": "Project Type",
+      "projects_included": "Projects Included",
+      "show": {
+        "are_you_sure_you_want_to_convert": "Are you sure you want to convert this project to a Collection Project?\n",
+        "click_here_to_convert_this_project": "Click here to convert this project to a Collection Project.\n",
+        "make_sure_you_have_read_about_the_differences": "Make sure you have read about the differences in\nour <a href=\"%{url}\" target=\"_blank\">blog post about Collection Projects</a>.\n",
+        "this_is_a_preview": "This is a preview of what this project would look like as a Collection Project.\n"
+      },
+      "tracks_multiple_projects": "tracks multiple projects",
+      "umbrella": "Umbrella"
+    },
+    "shared": {
+      "blocked": {
+        "youve_been_blocked": "You've Been Blocked",
+        "youve_been_blocked_desc": "The owner of this resource has blocked you, which prevents you from\ncommunicating with them. Most interactive features on this page will\nnot work.\n",
+        "youve_blocked": "You've Blocked This Person",
+        "youve_blocked_desc": "You have blocked the owner of this resource, which prevents you from\ncommunicating with them. Most interactive features on this page will\nnot work.\n"
+      },
+      "spam": {
+        "this_has_been_flagged_as_spam": "スパムとしてフラグ付けられました"
+      }
+    },
+    "stats": {
+      "index": {
+        "avg_ttcid": "Avg TTCID",
+        "avg_ttid": "Avg TTID",
+        "med_ttcid": "Med TTCID",
+        "med_ttid": "Med TTID",
+        "obs_1_day": "Obs (1 day)",
+        "obs_cid_d_to_genus": "Obs CID'd to genus",
+        "recent_w_0_obs": "Recent w/ 0 obs",
+        "recent_w_7_obs": "Recent w/ >= 7 obs"
+      },
+      "year": {
+        "growth_by_country_desc_html": "Where is growth happening? This map and chart attempt to break this\ndown by country, which turns out to be complicated because growth by\ncountry can be very imbalanced. Here we've chosen to omit the United\nStates and use a log scale by default to accentuate differences\nbetween other countries. If a country is colored black that means it\ndid not contribute signicantly to a percentage, or it had no growth\nthis year, or did not have more observations this year than last year\n(hover over a country to see a little more detail). <strong>\"% of\ntotal growth\"</strong> means how much of worldwide growth came from a\nparticular country, e.g. if there were 20 observations in 2018 and 10\nin 2017, that would be 10 observations of growth, and if 5 of those\nobservations were from Benin, then Benin contributed 50% of total\ngrowth. <strong>\"% growth\"</strong> means the number of observations\nthis year in that country as a percent of observations last year in\nthat country, so if there were 10 observations in Laos last year but\n20 this year, that would be 100% growth, and if there were 0 last year\nand 1 this year, that's infinity % growth.\n",
+        "growth_by_country_title": "Growth By Country",
+        "growth_in_year_obs": "Growth in %{year} (obs)",
+        "growth_title": "Growth",
+        "include_usa": "Include US",
+        "new_species_desc_html": "Species that were added for the first time this year.\nClick on a month to view some of the new species added in that month.\nYou can also view the total species accumulation, or move the slider\nback in time to see other newly-observed species. This chart shows\nspecies from verifiable observations by the month they were uploaded\nto %{site_name} (not the month they were observed). It does not\ninclude higher or lower level taxa, so an observation identified as\nMammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.\n<i>arctos</i> will just count as <i>Canis lupus</i>.\n",
+        "obs_in_year": "Obs in %{year}",
+        "percent_growth_in_year": "% Growth in %{year}",
+        "percent_of_total_growth": "% of Total Growth",
+        "publications_desc_html": "Impact data and visualizations courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
+        "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
+      }
+    },
+    "taxa": {
+      "show": {
+        "about_conservation_status_desc": "The conservation status summarizes the risk of extinction for a group of organisms.\n",
+        "about_establishment_desc": "「定着方法」とは、あるが種がどのように現在の場所で棲息することになったことを示します。「移入種」とは、人間の活動によりこの場所で棲息するようになった場合を指し、「在来種」とは、人間の活動に頼らず、以前から棲息していたことを示します。「固定種」とは、特定の場所にしか存在しないことを表します。\n",
+        "about_names_desc": "<p>\nMost categories of organisms have \"common names\" in spoken\nlanguages. These names are usually recognizable, easy to pronounce,\nand stable over time, but many organisms have several different\nnames in different places, even in the same language, which can make\nit difficult to communicate about these organisms without confusion.\nScientists address this problem by using a single \"scientific name\"\nfor each category of organism that conforms to the rules of\n<a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">biological nomenclature</a>,\nbut these names tend to be based on Latin, a language nobody\nspeaks, so they are not as memorable as common names for many\npeople. Scientific names can also reflect an organism's taxonomic\nplacement, so they can change when scientists develop more\naccurate theories about the evolutionary relationships between\ndifferent organisms, again reducing their usefulness in\ncommunication, even among people who know scientific names.\n</p>\n<p>\nThe old adage sums it up: \"Common names change from place to\nplace, and scientific names change from time to time.\"\n</p>\n<p>\nWe try to address these shortcomings by showing both common\nand scientific names wherever possible, and choosing common names\nbased on the language and geographic preferences of the viewer.\n</p>\n",
+        "charts_help_history": "This chart shows the number of observations of this taxon by month for\nthe last ten years. Again, it is biased by the number of people\nobserving, but it will show you unusual spikes in observations, and if\nit seems flat or decreasing despite an increasing number of observers,\nthat might suggest a change in abundance.\n",
+        "charts_help_other": "We also show seasonality charts for observation annotations.\nAnnotations are a new system for adding metadata to observations using\na controlled vocabulary of terms. So far we are only using \"Life\nStage\" and \"Plant Phenology\" (when the plant is flowering or\nfruiting). We do not yet have a way to add annotations directly, so\nfor now we are converting data from observation fields to annotations.\nIf you can't wait for us to build our annotating system, you can\ncontribute to \"Life Stage\" annotations by adding observation field\nvalues that have any of the following values: Adult, Teneral, Pupa,\nNymph, Larva, Egg, or Juvenile. So in particular, the \"Life Stage\" and\n\"Insect Life Stage\" fields are good. For \"Plant Phenology,\" we're\nlooking at any field with the word \"phenology\" in its name and\n\"flower\" or \"fruit\" in the value, so the \"Flowering Phenology\" field\nis a good one to use.\n",
+        "charts_help_relative_observations": "Showing frequency as a relative proportion of all observations helps\nsmooth out the effect of the overall growth of the site. For example,\nif the site is growing as we get more observations with every passing\nyear, we get more observations of any individual taxon, which doesn't\ntell you anything about whether there are more of that taxon around to\nobserve, just that there are more people observing it. Showing the\nrelative proportion means that if there are 100 observations total but\n20 observations of this taxon, the proportion is 0.2 (20 / 100). If\npeople observe 2000 observations the next year and 400 observations of\nthis taxon, the proportion is still 0.2 (400 / 2000). This causes some\nabberrations when there are very few observers in an area, or for taxa\nthat are very infrequently observed, but that's true of total counts\nas well.\n",
+        "charts_help_seasonality": "This chart shows the number of observations of this taxon grouped by\nmonth. Keep in mind that these are numbers of observations, so they\nare influenced both by when the organism can be observed and when\npeople bother to observe them. So a bird might seem to be very active\nin May, but that could also be due to more people birding in May who\ntend to ignore that species in later months. Similarly, if you see\nmore dragonflies in June than in January, that's probably because we\nhave more people observing in the northern hemisphere than in the\nsouthern hemisphere and not because dragonflies are more active in\nJune, so check the map when considering these charts. It's always a\ngood idea to be skeptical of these charts when there are low numbers\nof observations and/or large discrepancies between the number of\n\"Verifiable\" and \"Research Grade\" observations.\n",
+        "complete_taxon_desc": "\"Complete\" taxa have all of their descendant, extant taxa of a\nspecific rank present in the site's database. When a taxon is\ncomplete to species, for example, we can say how many of its species\nhave been observed and how many still need to be observed. Counts of\nspecies for \"complete\" taxa complete to species do not include\n\"uncountable\" species like extinct species or inactive species\nconcepts, and they only include species, not infraspecific taxa like\nsubspecies or varieties.\n",
+        "discoveries_desc": "Most recent newly-identified species in this taxon",
+        "frequency": {
+          "research": "研究用",
+          "verifiable": "確認できる",
+          "Flowering Phenology=bare": "花なし",
+          "Flowering Phenology=budding": "Budding",
+          "Flowering Phenology=flower": "Flowering",
+          "Flowering Phenology=fruit": "Fruiting",
+          "Life Stage=egg": "卵",
+          "Life Stage=larva": "幼虫",
+          "Life Stage=teneral": "脱皮直後",
+          "Life Stage=subimago": "Subimago",
+          "Life Stage=nymph": "若虫",
+          "Life Stage=pupa": "蛹",
+          "Life Stage=adult": "成虫",
+          "unannotated": "No Annotation"
+        },
+        "max_photos_desc": "A taxon can only have %{max} photos. You'll need to remove existing\nphotos to add more.\n",
+        "photo_chooser_modal_desc": "Drag photos here from the left, or drag photos here to re-arrange.\n",
+        "photo_chooser_modal_explanation": "Note that the taxon page will show photos of this taxon\nand its descendants. The photos chosen for this\ntaxon will show first, though. The first photo will be\nthe default image used across the site.\n",
+        "trending_desc": "Most-observed taxa in the last month",
+        "trending_in_place_desc_html": "Most-observed taxa in the last month in <a href=\"%{url}\">%{place}</a>",
+        "wanted_desc": "Species in this taxon that have not been observed yet."
+      }
+    },
+    "users": {
+      "edit": {
+        "licensing_desc_html": "Licensing your content gives anyone the legal right to use it without\nasking your permission if they abide by the terms of the license. In\naddition, %{site_name} includes your Creative Commons-licensed content\nin regularly-updated archives produced for select partner\norganizations interested in our data. For example, we include No\nCopyright (CC0), Attribution (CC BY), and Attribution-NonCommercial\n(CC BY-NC) records in the archive we generate for the\n<a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), an international, inter-governmental organization\nthat compiles and distributes biodiversity information from around the\nworld.\n"
+      }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "観察された種"
+      }
+    }
+  },
+  "visually_similar": "Visually Similar",
+  "vulnerable": "危急種/絶滅危惧II類",
+  "wanted": "Wanted",
+  "we_have_no_conservation_status_for_this_taxon": "この分類群の保護ステータス情報がありません",
+  "we_have_no_establishment_data_for_this_taxon": "こちらの分類群の定着方法情報がありません。",
+  "website": "Website",
+  "week_of_date": "Week of %{date}",
+  "were_pretty_sure_this_is_in_the_rank": "We're pretty sure this is in the %{rank}",
+  "whats_this?": "What's this?",
+  "white": "白",
+  "who_can_see_the_coordinates": "Who Can See the Coordinates",
+  "who_can_see_the_coordinates_observer": "The person who made the observation",
+  "who_can_see_the_coordinates_projects": "Curators of the following projects",
+  "who_can_see_the_coordinates_trusted": "Individuals who the observer has trusted with their hidden coordinates",
+  "who_helped_user_the_most": "Who Helped %{user} the Most",
+  "who_user_helped_the_most": "Who %{user} Helped the Most",
+  "why_the_coordinates_are_obscured": "Why the Coordinates Are Obscured",
+  "why_you_can_see_the_coordinates": "Why You Can See the Coordinates",
+  "wild": "野生",
+  "with_annotation": "With Annotation",
+  "withdraw": "撤回",
+  "without_annotation": "Without Annotation",
+  "worldwide": "Worldwide",
+  "x_comments": {
+    "other": "%{count}件のコメント"
+  },
+  "x_faves": {
+    "other": "%{count} faves"
+  },
+  "x_flagged": "%{x} flagged",
+  "x_flagged_as_flag": "%{x} flagged as %{flag}",
+  "x_identifications": {
+    "other": "%{count} identifications"
+  },
+  "x_identifications_": {
+    "other": "%{count} Identifications"
+  },
+  "x_identifications_html": {
+    "other": "<span class=\"count\">%{count}</span> identifications"
+  },
+  "x_matching_taxa_html": {
+    "other": "<span class=\"count\">%{count}</span>件の該当する分類群"
+  },
+  "x_misidentifications_of_species_in_this_rank": {
+    "other": "%{count} misidentifications of species in this %{rank}"
+  },
+  "x_misidentifications_of_this_species": {
+    "other": "%{count} misidentifications of this species"
+  },
+  "x_new_species": {
+    "other": "%{count} New Species"
+  },
+  "x_observations": {
+    "other": "%{count} observations"
+  },
+  "x_observations_": {
+    "other": "%{count} Observations"
+  },
+  "x_observations_failed": {
+    "other": "%{count} observations failed"
+  },
+  "x_observations_html": {
+    "other": "<span class='count'>%{count}</span> observations"
+  },
+  "x_observations_link_html": {
+    "other": "<a href='%{url}'>%{count} observations</a>"
+  },
+  "x_observations_reviewed_html": {
+    "other": "<span class='count'>%{count}</span> observations reviewed"
+  },
+  "x_of_y": "%{x} of %{y}",
+  "x_of_y_people_over_two_thirds_agree_it_is": "%{x} of %{y} people (over 2/3) agree it is",
+  "x_others": {
+    "other": "%{count} others"
+  },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました",
+  "x_photos": {
+    "other": "%{count}枚の写真"
+  },
+  "x_species": {
+    "other": "%{count} Species"
+  },
+  "x_species_html": {
+    "other": "<span class='count'>%{count}</span> species"
+  },
+  "x_species_link_html": {
+    "other": "<a href='%{url}'>%{count} species</a>"
+  },
+  "x_suggestions_filtered_by_colon": {
+    "other": "%{count} Suggestions Filtered By:"
+  },
+  "year_in_review": "Year In Review %{year}",
+  "yellow": "黄",
+  "yes": "はい",
+  "yes_reject_it": "Yes, reject it",
+  "yesterday": "昨日",
+  "you_": "You",
+  "you_appear_offline_try_again": "現在はオフラインのようです。インタネットに接続したらまたお試しください。\n",
+  "you_are_not_editing_any_guides_add_one_html": "You are not editing any guides. <a href=\"/guides/new\">Add one</a>\n",
+  "you_are_setting_this_project_to_aggregate": "You are setting this project to aggregate all observations matching the\nfollowing rules: %{rules} Do you want to proceed?\n",
+  "you_are_submitting_obs_with_no_date_or_no_location": "You are submitting observations without dates or locations. Observations\nwithout this information are often impossible to identify and will not be\nvisible by default in observation searches.\n",
+  "you_are_submitting_obs_without_photos_and_names": "You are submitting observations without photos and taxon names. Observations\nwithout this information are often impossible to identify and will not be\nvisible by default in observation searches.\n",
+  "you_curate_a_project_that_contains_this_observation": "You curate a project that contains this observation",
+  "you_curate_a_project_that_contains_this_observation_desc": "You can see obscured coordinates when you curate a project that contains an\nobservation and the observer has chosen to share coordinates with curators\nof that project.\n",
+  "you_faved_this": "You faved this!",
+  "you_must_fill_out_the_required_fields": "You must fill out the required fields",
+  "you_must_select_at_least_one_taxon": "一つ以上の分類群を選択しなければなりません",
+  "you_retain_full_copyright": "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service.",
+  "you_sure_delete_comment?": "このコメントを削除して本当によろしいですか？",
+  "you_sure_delete_this_observation": "この観察記録を削除して本当によろしいですか？",
+  "your_browser_does_not_support_the_audio_element": "Your browser does not support the audio element.",
+  "your_coarser_id": "より大まかな<span class='taxon'>%{coarser_taxon_name}</span>の同定が、下位分類の<span class='taxon'>%{finer_taxon_name}</span>の同定と一致していないようです。このまま保存してよいですか？<br><br>\n<a href='/pages/getting+started' target='_blank'>同定の方法について、詳しい説明はこちら&raquo;</a>\n",
+  "your_default": "自分のデフォルト",
+  "your_hard_drive": "マイパソコンから",
+  "your_observations": "自分の観察記録",
+  "your_pinned_locations": "Your Pinned Locations",
+  "yours": "Yours",
+  "zoom_in": "拡大",
+  "zoom_out": "縮小",
+  "zoom_photo": "Zoom Photo"
+};
+I18n.translations["jv"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
       }
     },
     "projects": {
@@ -35255,7 +42044,6 @@ I18n.translations["ja"] = {
       "blocked": {
       },
       "spam": {
-        "this_has_been_flagged_as_spam": "スパムとしてフラグ付けられました"
       }
     },
     "stats": {
@@ -35266,18 +42054,6 @@ I18n.translations["ja"] = {
     },
     "taxa": {
       "show": {
-        "about_establishment_desc": "「定着方法」とは、あるが種がどのように現在の場所で棲息することになったことを示します。「移入種」とは、人間の活動によりこの場所で棲息するようになった場合を指し、「在来種」とは、人間の活動に頼らず、以前から棲息していたことを示します。「固定種」とは、特定の場所にしか存在しないことを表します。",
-        "frequency": {
-          "research": "研究用",
-          "verifiable": "確認できる",
-          "Flowering Phenology=bare": "花なし",
-          "Life Stage=egg": "卵",
-          "Life Stage=larva": "幼虫",
-          "Life Stage=teneral": "脱皮直後",
-          "Life Stage=nymph": "若虫",
-          "Life Stage=pupa": "蛹",
-          "Life Stage=adult": "成虫"
-        }
       }
     },
     "users": {
@@ -35286,42 +42062,9 @@ I18n.translations["ja"] = {
     },
     "welcome": {
       "index": {
-        "species_observed": "観察された種"
       }
     }
-  },
-  "vulnerable": "危急種/絶滅危惧II類",
-  "we_have_no_conservation_status_for_this_taxon": "この分類群の保護ステータス情報がありません",
-  "we_have_no_establishment_data_for_this_taxon": "こちらの分類群の定着方法情報がありません。",
-  "white": "白",
-  "wild": "野生",
-  "withdraw": "撤回",
-  "x_comments": {
-    "one": "1件のコメント",
-    "other": "%{count}件のコメント"
-  },
-  "x_matching_taxa_html": {
-    "one": "<span class=\"count\">1</span>件の該当する分類群",
-    "other": "<span class=\"count\">%{count}</span>件の該当する分類群"
-  },
-  "x_people_helped_user_with_y_ids_html": "<strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました",
-  "x_photos": {
-    "one": "1枚の写真",
-    "other": "%{count}枚の写真"
-  },
-  "yellow": "黄",
-  "yes": "はい",
-  "yesterday": "昨日",
-  "you_appear_offline_try_again": "現在はオフラインのようです。インタネットに接続したらまたお試しください。",
-  "you_must_select_at_least_one_taxon": "一つ以上の分類群を選択しなければなりません",
-  "you_sure_delete_comment?": "このコメントを削除して本当によろしいですか？",
-  "you_sure_delete_this_observation": "この観察記録を削除して本当によろしいですか？",
-  "your_coarser_id": "より大まかな<span class='taxon'>%{coarser_taxon_name}</span>の同定が、下位分類の<span class='taxon'>%{finer_taxon_name}</span>の同定と一致していないようです。このまま保存してよいですか？<br><br>\n<a href='/pages/getting+started' target='_blank'>同定の方法について、詳しい説明はこちら&raquo;</a>",
-  "your_default": "自分のデフォルト",
-  "your_hard_drive": "マイパソコンから",
-  "your_observations": "自分の観察記録",
-  "zoom_in": "拡大",
-  "zoom_out": "縮小"
+  }
 };
 I18n.translations["ka"] = {
   "<%= name": {
@@ -35347,6 +42090,612 @@ I18n.translations["ka"] = {
   "date": {
     "formats": {
     }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["kab"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["kde"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["kea"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["km"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "អា",
+      "ច",
+      "អ",
+      "ពុ",
+      "ព្រហ",
+      "សុ",
+      "ស"
+    ],
+    "abbr_month_names": [
+      null,
+      "មករា",
+      "កុម្ភៈ",
+      "មិនា",
+      "មេសា",
+      "ឧសភា",
+      "មិថុនា",
+      "កក្កដា",
+      "សីហា",
+      "កញ្ញា",
+      "តុលា",
+      "វិច្ឆិកា",
+      "ធ្នូ"
+    ],
+    "day_names": [
+      "អាទិត្យ",
+      "ចន្ទ",
+      "អង្គារ",
+      "ពុធ",
+      "ព្រហស្បតិ៍",
+      "សុក្រ",
+      "សៅរ៍"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "មករា",
+      "កុម្ភៈ",
+      "មិនា",
+      "មេសា",
+      "ឧសភា",
+      "មិថុនា",
+      "កក្កដា",
+      "សីហា",
+      "កញ្ញា",
+      "តុលា",
+      "វិច្ឆិកា",
+      "ធ្នូ"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["kn"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "ರವಿ",
+      "ಸೋಮ",
+      "ಮಂಗಳ",
+      "ಬುಧ",
+      "ಗುರು",
+      "ಶುಕ್ರ",
+      "ಶನಿ"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "ರವಿವಾರ",
+      "ಸೋಮವಾರ",
+      "ಮಂಗಳವಾರ",
+      "ಬುಧವಾರ",
+      "ಗುರುವಾರ",
+      "ಶುಕ್ರವಾರ",
+      "ಶನಿವಾರ"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "ಜನವರಿ",
+      "ಫೆಬ್ರವರಿ",
+      "ಮಾರ್ಚ್",
+      "ಏಪ್ರಿಲ್",
+      "ಮೇ",
+      "ಜೂನ್",
+      "ಜುಲೈ",
+      "ಆಗಸ್ಟ್",
+      "ಸೆಪ್ಟೆಂಬರ್",
+      "ಅಕ್ಟೋಬರ್",
+      "ನವಂಬರ್",
+      "ಡಿಸೆಂಬರ್"
+    ]
   },
   "date_format": {
     "month": {
@@ -36600,6 +43949,312 @@ I18n.translations["ko"] = {
   "your_pinned_locations": "내가 저장한 위치",
   "zoom_photo": "사진 확대/축소"
 };
+I18n.translations["ksh"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["kw"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["lag"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["lb"] = {
   "<%= name": {
     "parameterize": {
@@ -37717,6 +45372,258 @@ I18n.translations["lexicons"] = {
     }
   }
 };
+I18n.translations["ln"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["lo"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "abbr_month_names": [
+      null,
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "day_names": [
+      "ອາທິດ",
+      "ຈັນ",
+      "ອັງຄານ",
+      "ພຸດ",
+      "ພະຫັດ",
+      "ສຸກ",
+      "ເສົາ"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "ມັງກອນ",
+      "ກຸມພາ",
+      "ມີນາ",
+      "ເມສາ",
+      "ພຶດສະພາ",
+      "ມິຖຸນາ",
+      "ກໍລະກົດ",
+      "ສິງຫາ",
+      "ກັນຍາ",
+      "ຕຸລາ",
+      "ພະຈິກ",
+      "ທັນວາ"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["lo-LA"] = {
   "<%= name": {
     "parameterize": {
@@ -38100,6 +46007,21 @@ I18n.translations["lt"] = {
       "Ket",
       "Pen",
       "Šeš"
+    ],
+    "abbr_month_names": [
+      null,
+      "Sau",
+      "Vas",
+      "Kov",
+      "Bal",
+      "Geg",
+      "Bir",
+      "Lie",
+      "Rgp",
+      "Rgs",
+      "Spa",
+      "Lap",
+      "Grd"
     ],
     "day_names": [
       "Sekmadienis",
@@ -38615,6 +46537,156 @@ I18n.translations["lt"] = {
   "your_pinned_locations": "Jūsų išsaugotos vietos"
 };
 I18n.translations["lv"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Sv.",
+      "P.",
+      "O.",
+      "T.",
+      "C.",
+      "Pk.",
+      "S."
+    ],
+    "abbr_month_names": [
+      null,
+      "Janv",
+      "Febr",
+      "Marts",
+      "Apr",
+      "Maijs",
+      "Jūn",
+      "Jūl",
+      "Aug",
+      "Sept",
+      "Okt",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "svētdiena",
+      "pirmdiena",
+      "otrdiena",
+      "trešdiena",
+      "ceturtdiena",
+      "piektdiena",
+      "sestdiena"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Janvāris",
+      "Februāris",
+      "Marts",
+      "Aprīlis",
+      "Maijs",
+      "Jūnijs",
+      "Jūlijs",
+      "Augusts",
+      "Septembris",
+      "Oktobris",
+      "Novembris",
+      "Decembris"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["mg"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -39474,7 +47546,763 @@ I18n.translations["mk"] = {
   "yes": "Да",
   "your_observations": "Ваши набљудувања"
 };
+I18n.translations["mn"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Ня",
+      "Да",
+      "Мя",
+      "Лх",
+      "Пү",
+      "Ба",
+      "Бя"
+    ],
+    "abbr_month_names": [
+      null,
+      "1 сар",
+      "2 сар",
+      "3 сар",
+      "4 сар",
+      "5 сар",
+      "6 сар",
+      "7 сар",
+      "8 сар",
+      "9 сар",
+      "10 сар",
+      "11 сар",
+      "12 сар"
+    ],
+    "day_names": [
+      "Ням",
+      "Даваа",
+      "Мягмар",
+      "Лхагва",
+      "Пүрэв",
+      "Баасан",
+      "Бямба"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "1 сар",
+      "2 сар",
+      "3 сар",
+      "4 сар",
+      "5 сар",
+      "6 сар",
+      "7 сар",
+      "8 сар",
+      "9 сар",
+      "10 сар",
+      "11 сар",
+      "12 сар"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["mo"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["mr-IN"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "सोम",
+      "मंगळ",
+      "बुध",
+      "गुरु",
+      "शुक्र",
+      "शनि",
+      "रवि"
+    ],
+    "abbr_month_names": [
+      null,
+      "जाने",
+      "फेब्रु",
+      "मार्च",
+      "एप्रि",
+      "मे",
+      "जून",
+      "जुलै",
+      "ऑग",
+      "सेप्टें",
+      "ऑक्टोबर",
+      "नोव्हें",
+      "डिसे"
+    ],
+    "day_names": [
+      "सोमवार",
+      "मंगळवार",
+      "बुधवार",
+      "गुरुवार",
+      "शुक्रवार",
+      "शनिवार",
+      "रविवार"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "जानेवारी",
+      "फेब्रुवारी",
+      "मार्च",
+      "एप्रिल",
+      "मे",
+      "जून",
+      "जुलै",
+      "ऑगस्ट",
+      "सप्टेंबर",
+      "ऑक्टोबर",
+      "नोव्हेंबर",
+      "डिसेंबर"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ms"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Ahd",
+      "Isn",
+      "Sel",
+      "Rab",
+      "Kha",
+      "Jum",
+      "Sab"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mac",
+      "Apr",
+      "Mei",
+      "Jun",
+      "Jul",
+      "Ogo",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Dis"
+    ],
+    "day_names": [
+      "Ahad",
+      "Isnin",
+      "Selasa",
+      "Rabu",
+      "Khamis",
+      "Jumaat",
+      "Sabtu"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Januari",
+      "Febuari",
+      "Mac",
+      "April",
+      "Mei",
+      "Jun",
+      "Julai",
+      "Ogos",
+      "September",
+      "Oktober",
+      "November",
+      "Disember"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["mt"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["my"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["naq"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -39598,8 +48426,206 @@ I18n.translations["nb"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "søn",
+      "man",
+      "tir",
+      "ons",
+      "tor",
+      "fre",
+      "lør"
+    ],
+    "abbr_month_names": [
+      null,
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "mai",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "okt",
+      "nov",
+      "des"
+    ],
+    "day_names": [
+      "søndag",
+      "mandag",
+      "tirsdag",
+      "onsdag",
+      "torsdag",
+      "fredag",
+      "lørdag"
+    ],
     "formats": {
+    },
+    "month_names": [
+      null,
+      "januar",
+      "februar",
+      "mars",
+      "april",
+      "mai",
+      "juni",
+      "juli",
+      "august",
+      "september",
+      "oktober",
+      "november",
+      "desember"
+    ]
+  },
+  "date_format": {
+    "month": {
     }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["ne"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "आईत",
+      "सोम",
+      "मंगल",
+      "बुध",
+      "बिही",
+      "शुक्र",
+      "शनि"
+    ],
+    "abbr_month_names": [
+      null,
+      "जन.",
+      "फेब्रु.",
+      "मार्च",
+      "अप्रिल",
+      "मई",
+      "जुन",
+      "जुलाई",
+      "अगष्ट",
+      "सेप्ट.",
+      "अक्टो.",
+      "नोभ.",
+      "डिसे."
+    ],
+    "day_names": [
+      "आईतबार",
+      "सोमबार",
+      "मंगलबार",
+      "बुधबार",
+      "बिहीबार",
+      "शुक्रबार",
+      "शनिबार"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "जनवरी",
+      "फेब्रुवरी",
+      "मार्च",
+      "अप्रिल",
+      "मई",
+      "जुन",
+      "जुलाई",
+      "अगष्ट",
+      "सेप्टेम्बार",
+      "अक्टोबर",
+      "नोभेम्बर",
+      "डिसेम्बर"
+    ]
   },
   "date_format": {
     "month": {
@@ -41658,6 +50684,156 @@ I18n.translations["nl"] = {
   "zoom_out": "Uitzoomen",
   "zoom_photo": "Inzoomen op foto"
 };
+I18n.translations["nn"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "sun",
+      "mån",
+      "tys",
+      "ons",
+      "tor",
+      "fre",
+      "lau"
+    ],
+    "abbr_month_names": [
+      null,
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "mai",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "okt",
+      "nov",
+      "des"
+    ],
+    "day_names": [
+      "sundag",
+      "måndag",
+      "tysdag",
+      "onsdag",
+      "torsdag",
+      "fredag",
+      "laurdag"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "januar",
+      "februar",
+      "mars",
+      "april",
+      "mai",
+      "juni",
+      "juli",
+      "august",
+      "september",
+      "oktober",
+      "november",
+      "desember"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["nn-NO"] = {
   "<%= name": {
     "parameterize": {
@@ -41761,6 +50937,108 @@ I18n.translations["nn-NO"] = {
   }
 };
 I18n.translations["no"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["nso"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -42596,6 +51874,306 @@ I18n.translations["oc"] = {
     "other": "<a href='%{url}'>%{count} espècias</a>"
   }
 };
+I18n.translations["or"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "ରବି",
+      "ସୋମ",
+      "ମଂଗଳ",
+      "ବୁଧ",
+      "ଗୁରୁ",
+      "ଶୁକ୍ର",
+      "ଶନି"
+    ],
+    "abbr_month_names": [
+      null,
+      "ଜାନୁ",
+      "ଫେବରୁ",
+      "ମାର",
+      "ଏପ୍ର",
+      "ମାଈ",
+      "ଜୁନ୍",
+      "ଜୁଲ୍",
+      "ଅଗସ୍ଟ",
+      "ସେପ୍ଟ",
+      "ଅକ୍ଟ",
+      "ନୋଭ",
+      "ଡିସ୍"
+    ],
+    "day_names": [
+      "ରବିବାର",
+      "ସୋମବାର",
+      "ମଗଂଳବାର",
+      "ବୁଧବାର",
+      "ଗୁରୁବାର",
+      "ଶୁକ୍ରବାର",
+      "ଶନିବାର"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "ଜାନୁୟାରୀ",
+      "ଫେବୃୟାରୀ",
+      "ମାର୍ଚ଼",
+      "ଏପ୍ରଲ",
+      "ମାଈ",
+      "ଜୁନ୍",
+      "ଜୁଲାୟ",
+      "ଅଗଷ୍ତ",
+      "ସେପ୍ଟମ୍ବର୍",
+      "ଅକ୍ଟୋବର୍",
+      "ନୋଭେମ୍ବର",
+      "ଡିସମ୍ବର"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["pa"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "ਅੈਤ",
+      "ਸੋਮ",
+      "ਮੰਗਲ",
+      "ਬੱੁਧ",
+      "ਵੀਰ",
+      "ਸ਼ੁੱਕਰ",
+      "ਸ਼ਨਿੱਚਰ"
+    ],
+    "abbr_month_names": [
+      null,
+      "ਜਨ",
+      "ਫ਼ਰ",
+      "ਮਾਰਚ",
+      "ਅਪ੍ਰੈ",
+      "ਮਈ",
+      "ਜੂਨ",
+      "ਜੁਲਾ",
+      "ਅਗ",
+      "ਸਤੰ",
+      "ਅਕਤੂ",
+      "ਨਵੰ",
+      "ਦਸੰ"
+    ],
+    "day_names": [
+      "ਐਤਵਾਰ",
+      "ਸੋਮਵਾਰ",
+      "ਮੰਗਲਵਾਰ",
+      "ਬੁੱਧਵਾਰ",
+      "ਵੀਰਵਾਰ",
+      "ਸ਼ੁੱਕਰਵਾਰ",
+      "ਸ਼ਨਿੱਚਰਵਾਰ"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "ਜਨਵਰੀ",
+      "ਫ਼ਰਵਰੀ",
+      "ਮਾਰਚ",
+      "ਅਪ੍ਰੈਲ",
+      "ਮਈ",
+      "ਜੂਨ",
+      "ਜੁਲਾਈ",
+      "ਅਗਸਤ",
+      "ਸਤੰਬਰ",
+      "ਅਕਤੂਬਰ",
+      "ਨਵੰਬਰ",
+      "ਦਸੰਬਰ"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["pap-AW"] = {
   "<%= name": {
     "parameterize": {
@@ -43066,8 +52644,56 @@ I18n.translations["pl"] = {
   "data_quality": "Jakość danych",
   "data_used": "Użyte dane:",
   "date": {
+    "abbr_day_names": [
+      "nie",
+      "pon",
+      "wto",
+      "śro",
+      "czw",
+      "pią",
+      "sob"
+    ],
+    "abbr_month_names": [
+      null,
+      "sty",
+      "lut",
+      "mar",
+      "kwi",
+      "maj",
+      "cze",
+      "lip",
+      "sie",
+      "wrz",
+      "paź",
+      "lis",
+      "gru"
+    ],
+    "day_names": [
+      "niedziela",
+      "poniedziałek",
+      "wtorek",
+      "środa",
+      "czwartek",
+      "piątek",
+      "sobota"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "styczeń",
+      "luty",
+      "marzec",
+      "kwiecień",
+      "maj",
+      "czerwiec",
+      "lipiec",
+      "sierpień",
+      "wrzesień",
+      "październik",
+      "listopad",
+      "grudzień"
+    ]
   },
   "date_": "Data",
   "date_added": "Data dodania",
@@ -43740,8 +53366,56 @@ I18n.translations["pt"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "Dom",
+      "Seg",
+      "Ter",
+      "Qua",
+      "Qui",
+      "Sex",
+      "Sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez"
+    ],
+    "day_names": [
+      "Domingo",
+      "Segunda-feira",
+      "Terça-feira",
+      "Quarta-feira",
+      "Quinta-feira",
+      "Sexta-feira",
+      "Sábado"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "Janeiro",
+      "Fevereiro",
+      "Março",
+      "Abril",
+      "Maio",
+      "Junho",
+      "Julho",
+      "Agosto",
+      "Setembro",
+      "Outubro",
+      "Novembro",
+      "Dezembro"
+    ]
   },
   "date_format": {
     "month": {
@@ -47205,7 +56879,307 @@ I18n.translations["pt-PT"] = {
   "your_observations": "Suas observações",
   "zoom_photo": "Ampliar Foto"
 };
+I18n.translations["rm"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "du",
+      "gli",
+      "ma",
+      "me",
+      "gie",
+      "ve",
+      "so"
+    ],
+    "abbr_month_names": [
+      null,
+      "schan",
+      "favr",
+      "mars",
+      "avr",
+      "matg",
+      "zercl",
+      "fan",
+      "avust",
+      "sett",
+      "oct",
+      "nov",
+      "dec"
+    ],
+    "day_names": [
+      "dumengia",
+      "glindesdi",
+      "mardi",
+      "mesemna",
+      "gievgia",
+      "venderdi",
+      "sonda"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "schaner",
+      "favrer",
+      "mars",
+      "avrigl",
+      "matg",
+      "zercladur",
+      "fanadur",
+      "avust",
+      "settember",
+      "october",
+      "november",
+      "december"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ro"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Dum",
+      "Lun",
+      "Mar",
+      "Mie",
+      "Joi",
+      "Vin",
+      "Sâm"
+    ],
+    "abbr_month_names": [
+      null,
+      "Ian",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mai",
+      "Iun",
+      "Iul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Noi",
+      "Dec"
+    ],
+    "day_names": [
+      "Duminică",
+      "Luni",
+      "Marți",
+      "Miercuri",
+      "Joi",
+      "Vineri",
+      "Sâmbată"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Ianuarie",
+      "Februarie",
+      "Martie",
+      "Aprilie",
+      "Mai",
+      "Iunie",
+      "Iulie",
+      "August",
+      "Septembrie",
+      "Octombrie",
+      "Noiembrie",
+      "Decembrie"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["root"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -49318,6 +59292,618 @@ I18n.translations["ru"] = {
   "zoom_out": "Уменьшить",
   "zoom_photo": "Увеличить фото"
 };
+I18n.translations["sah"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["se"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["ses"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["sg"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["sh"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["shi"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["si"] = {
   "<%= name": {
     "parameterize": {
@@ -51135,6 +61721,564 @@ I18n.translations["sl"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "ned",
+      "pon",
+      "tor",
+      "sre",
+      "čet",
+      "pet",
+      "sob"
+    ],
+    "abbr_month_names": [
+      null,
+      "jan",
+      "feb",
+      "mar",
+      "apr",
+      "maj",
+      "jun",
+      "jul",
+      "avg",
+      "sep",
+      "okt",
+      "nov",
+      "dec"
+    ],
+    "day_names": [
+      "nedelja",
+      "ponedeljek",
+      "torek",
+      "sreda",
+      "četrtek",
+      "petek",
+      "sobota"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "januar",
+      "februar",
+      "marec",
+      "april",
+      "maj",
+      "junij",
+      "julij",
+      "avgust",
+      "september",
+      "oktober",
+      "november",
+      "december"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["sma"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["smi"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["smj"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["smn"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["sms"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
     "formats": {
     }
   },
@@ -51536,8 +62680,56 @@ I18n.translations["sq"] = {
   "data_quality_assessment": "Vlerësimi i cilësisë së të dhënave",
   "data_quality_assessment_": "vlerësimi i cilësisë së të dhënave",
   "date": {
+    "abbr_day_names": [
+      "E Diel",
+      "E Hënë",
+      "E Martë",
+      "E Mërkurë",
+      "E Enjte",
+      "E Premte",
+      "E Shtunë"
+    ],
+    "abbr_month_names": [
+      null,
+      "Janar",
+      "Shkurt",
+      "Mars",
+      "Prill",
+      "Maj",
+      "Qershor",
+      "Korrik",
+      "Gusht",
+      "Shtator",
+      "Tetor",
+      "Nëntor",
+      "Dhjetor"
+    ],
+    "day_names": [
+      "E Diel",
+      "E Hënë",
+      "E Martë",
+      "E Mërkurë",
+      "E Enjte",
+      "E Premte",
+      "E Shtunë"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "Janar",
+      "Shkurt",
+      "Mars",
+      "Prill",
+      "Maj",
+      "Qershor",
+      "Korrik",
+      "Gusht",
+      "Shtator",
+      "Tetor",
+      "Nëntor",
+      "Dhjetor"
+    ]
   },
   "date_": "Data",
   "date_added": "Data e shtuar",
@@ -52511,8 +63703,56 @@ I18n.translations["sr"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "Нед",
+      "Пон",
+      "Уто",
+      "Сре",
+      "Чет",
+      "Пет",
+      "Суб"
+    ],
+    "abbr_month_names": [
+      null,
+      "Јан",
+      "Феб",
+      "Мар",
+      "Апр",
+      "Мај",
+      "Јун",
+      "Јул",
+      "Авг",
+      "Сеп",
+      "Окт",
+      "Нов",
+      "Дец"
+    ],
+    "day_names": [
+      "Недеља",
+      "Понедељак",
+      "Уторак",
+      "Среда",
+      "Четвртак",
+      "Петак",
+      "Субота"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "Јануар",
+      "Фабруар",
+      "Март",
+      "Април",
+      "Мај",
+      "Јун",
+      "Јул",
+      "Август",
+      "Септембар",
+      "Октобар",
+      "Новембар",
+      "Децембар"
+    ]
   },
   "date_format": {
     "month": {
@@ -53907,7 +65147,457 @@ I18n.translations["sv"] = {
   "zoom_out": "Zooma ut",
   "zoom_photo": "Zooma foto"
 };
+I18n.translations["sw"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "J2",
+      "J3",
+      "J4",
+      "J5",
+      "Al",
+      "Ij",
+      "J1"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mac",
+      "Apr",
+      "Mei",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Des"
+    ],
+    "day_names": [
+      "Jumapili",
+      "Jumatatu",
+      "Jumanne",
+      "Jumatano",
+      "Alhamisi",
+      "Ijumaa",
+      "Jumamosi"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Mwezi wa kwanza",
+      "Mwezi wa pili",
+      "Mwezi wa tatu",
+      "Mwezi wa nne",
+      "Mwezi wa tano",
+      "Mwezi wa sita",
+      "Mwezi wa saba",
+      "Mwezi wa nane",
+      "Mwezi wa tisa",
+      "Mwezi wa kumi",
+      "Mwezi wa kumi na moja",
+      "Mwezi wa kumi na mbili"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["ta"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "ஞாயிறு",
+      "திங்கள்",
+      "செவ்வாய்",
+      "புதன்",
+      "வியாழன்",
+      "வெள்ளி",
+      "சனி"
+    ],
+    "abbr_month_names": [
+      null,
+      "ஜன",
+      "பிப்",
+      "மார்ச்",
+      "ஏப்",
+      "மே",
+      "ஜூன்",
+      "ஜூலை",
+      "ஆக",
+      "செப்",
+      "அக்",
+      "நவ",
+      "டிச"
+    ],
+    "day_names": [
+      "ஞாயிற்றுக்கிழமை",
+      "திங்கட்கிழமை",
+      "செவ்வாய்க்கிழமை",
+      "புதன்கிழமை",
+      "வியாழக்கிழமை",
+      "வெள்ளிக்கிழமை",
+      "சனிக்கிழமை"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "ஜனவரி",
+      "பிப்ரவரி",
+      "மார்ச்",
+      "ஏப்ரல்",
+      "மே",
+      "ஜூன்",
+      "ஜூலை",
+      "ஆகஸ்ட்",
+      "செப்டம்பர்",
+      "அக்டோபர்",
+      "நவம்பர்",
+      "டிசம்பர்"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["th"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "อา",
+      "จ",
+      "อ",
+      "พ",
+      "พฤ",
+      "ศ",
+      "ส"
+    ],
+    "abbr_month_names": [
+      null,
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค."
+    ],
+    "day_names": [
+      "อาทิตย์",
+      "จันทร์",
+      "อังคาร",
+      "พุธ",
+      "พฤหัสบดี",
+      "ศุกร์",
+      "เสาร์"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "มกราคม",
+      "กุมภาพันธ์",
+      "มีนาคม",
+      "เมษายน",
+      "พฤษภาคม",
+      "มิถุนายน",
+      "กรกฎาคม",
+      "สิงหาคม",
+      "กันยายน",
+      "ตุลาคม",
+      "พฤศจิกายน",
+      "ธันวาคม"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["ti"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -54031,6 +65721,156 @@ I18n.translations["tl"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "Lin",
+      "Lun",
+      "Mar",
+      "Miy",
+      "Huw",
+      "Biy",
+      "Sab"
+    ],
+    "abbr_month_names": [
+      null,
+      "Ene",
+      "Peb",
+      "Mar",
+      "Abr",
+      "May",
+      "Hun",
+      "Hul",
+      "Ago",
+      "Set",
+      "Okt",
+      "Nob",
+      "Dis"
+    ],
+    "day_names": [
+      "Linggo",
+      "Lunes",
+      "Martes",
+      "Miyerkules",
+      "Huwebes",
+      "Biyernes",
+      "Sabado"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Enero",
+      "Pebrero",
+      "Marso",
+      "Abril",
+      "Mayo",
+      "Hunyo",
+      "Hulyo",
+      "Agosto",
+      "Setyembre",
+      "Oktubre",
+      "Nobyembre",
+      "Disyembre"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["to"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
     "formats": {
     }
   },
@@ -54133,8 +65973,458 @@ I18n.translations["tr"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "Pzr",
+      "Pzt",
+      "Sal",
+      "Çrş",
+      "Prş",
+      "Cum",
+      "Cts"
+    ],
+    "abbr_month_names": [
+      null,
+      "Oca",
+      "Şub",
+      "Mar",
+      "Nis",
+      "May",
+      "Haz",
+      "Tem",
+      "Ağu",
+      "Eyl",
+      "Eki",
+      "Kas",
+      "Ara"
+    ],
+    "day_names": [
+      "Pazar",
+      "Pazartesi",
+      "Salı",
+      "Çarşamba",
+      "Perşembe",
+      "Cuma",
+      "Cumartesi"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Ocak",
+      "Şubat",
+      "Mart",
+      "Nisan",
+      "Mayıs",
+      "Haziran",
+      "Temmuz",
+      "Ağustos",
+      "Eylül",
+      "Ekim",
+      "Kasım",
+      "Aralık"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["tt"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Якш",
+      "Дүш",
+      "Сиш",
+      "Чәр",
+      "Пән",
+      "Җом",
+      "Шим"
+    ],
+    "abbr_month_names": [
+      null,
+      "гыйн.",
+      "февр.",
+      "март",
+      "апр.",
+      "май",
+      "июнь",
+      "июль",
+      "авг.",
+      "сент.",
+      "окт.",
+      "нояб.",
+      "дек."
+    ],
+    "day_names": [
+      "якшәмбе",
+      "дүшәмбе",
+      "сишәмбе",
+      "чәршәмбе",
+      "пәнҗешәмбе",
+      "җомга",
+      "шимбә"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "гыйнвар",
+      "февраль",
+      "март",
+      "апрель",
+      "май",
+      "июнь",
+      "июль",
+      "август",
+      "сентябрь",
+      "октябрь",
+      "ноябрь",
+      "декабрь"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["tzm"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
     "formats": {
     }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["ug"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "يەكشەنبە",
+      "دۈشەنبە",
+      "سەيشەنبە",
+      "چارشەنبە",
+      "پەيشەنبە",
+      "جۈمە",
+      "شەنبە"
+    ],
+    "abbr_month_names": [
+      null,
+      "يانۋار",
+      "فېۋرال",
+      "مارت",
+      "ئاپرېل",
+      "ماي",
+      "ئىيۇن",
+      "ئىيۇل",
+      "ئاۋغۇست",
+      "سېنتەبىر",
+      "ئۆكتەبىر",
+      "نويابىر",
+      "دېكابىر"
+    ],
+    "day_names": [
+      "يەكشەنبە",
+      "دۈشەنبە",
+      "سەيشەنبە",
+      "چارشەنبە",
+      "پەيشەنبە",
+      "جۈمە",
+      "شەنبە"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "يانۋار",
+      "فېۋرال",
+      "مارت",
+      "ئاپرېل",
+      "ماي",
+      "ئىيۇن",
+      "ئىيۇل",
+      "ئاۋغۇست",
+      "سېنتەبىر",
+      "ئۆكتەبىر",
+      "نويابىر",
+      "دېكابىر"
+    ]
   },
   "date_format": {
     "month": {
@@ -54235,8 +66525,56 @@ I18n.translations["uk"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "нд.",
+      "пн.",
+      "вт.",
+      "ср.",
+      "чт.",
+      "пт.",
+      "сб."
+    ],
+    "abbr_month_names": [
+      null,
+      "січ.",
+      "лют.",
+      "бер.",
+      "квіт.",
+      "трав.",
+      "черв.",
+      "лип.",
+      "серп.",
+      "вер.",
+      "жовт.",
+      "лист.",
+      "груд."
+    ],
+    "day_names": [
+      "неділя",
+      "понеділок",
+      "вівторок",
+      "середа",
+      "четвер",
+      "п'ятниця",
+      "субота"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "Січня",
+      "Лютого",
+      "Березня",
+      "Квітня",
+      "Травня",
+      "Червня",
+      "Липня",
+      "Серпня",
+      "Вересня",
+      "Жовтня",
+      "Листопада",
+      "Грудня"
+    ]
   },
   "date_format": {
     "month": {
@@ -54337,8 +66675,206 @@ I18n.translations["ur"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "اتوار",
+      "سوموار",
+      "منگل",
+      "بدھ",
+      "جمعرات",
+      "جمعہ",
+      "ہفتہ"
+    ],
+    "abbr_month_names": [
+      null,
+      "جنوری",
+      "فروری",
+      "مارچ",
+      "اپریل",
+      "مئی",
+      "جون",
+      "جولائی",
+      "اگست",
+      "ستمبر",
+      "اکتوبر",
+      "نومبر",
+      "دسمبر"
+    ],
+    "day_names": [
+      "اتوار",
+      "سوموار",
+      "منگل",
+      "بدھ",
+      "جمعرات",
+      "جمعہ",
+      "ہفتہ"
+    ],
     "formats": {
+    },
+    "month_names": [
+      null,
+      "جنوری",
+      "فروری",
+      "مارچ",
+      "اپریل",
+      "مئی",
+      "جون",
+      "جولائی",
+      "اگست",
+      "ستمبر",
+      "اکتوبر",
+      "نومبر",
+      "دسمبر"
+    ]
+  },
+  "date_format": {
+    "month": {
     }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["uz"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Ya",
+      "Du",
+      "Sh",
+      "Ch",
+      "Pa",
+      "Ju",
+      "Sh"
+    ],
+    "abbr_month_names": [
+      null,
+      "yan.",
+      "fev.",
+      "mart",
+      "apr.",
+      "may",
+      "iyun",
+      "iyul",
+      "avg.",
+      "sen.",
+      "okt.",
+      "noy.",
+      "dek."
+    ],
+    "day_names": [
+      "yakshanba",
+      "dushanba",
+      "seshanbe",
+      "chorshanba",
+      "payshanba",
+      "juma",
+      "shanba"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "yanvar",
+      "fevral",
+      "mart",
+      "aprel",
+      "may",
+      "iyun",
+      "iyul",
+      "avgust",
+      "sentyabr",
+      "oktyabr",
+      "noyabr",
+      "dekabr"
+    ]
   },
   "date_format": {
     "month": {
@@ -54418,6 +66954,156 @@ I18n.translations["ur"] = {
   }
 };
 I18n.translations["vi"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Chủ nhật",
+      "Thứ hai",
+      "Thứ ba",
+      "Thứ tư",
+      "Thứ năm",
+      "Thứ sáu",
+      "Thứ bảy"
+    ],
+    "abbr_month_names": [
+      null,
+      "Tháng một",
+      "Tháng hai",
+      "Tháng ba",
+      "Tháng tư",
+      "Tháng năm",
+      "Tháng sáu",
+      "Tháng bảy",
+      "Tháng tám",
+      "Tháng chín",
+      "Tháng mười",
+      "Tháng mười một",
+      "Tháng mười hai"
+    ],
+    "day_names": [
+      "Chủ nhật",
+      "Thứ hai",
+      "Thứ ba",
+      "Thứ tư",
+      "Thứ năm",
+      "Thứ sáu",
+      "Thứ bảy"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Tháng một",
+      "Tháng hai",
+      "Tháng ba",
+      "Tháng tư",
+      "Tháng năm",
+      "Tháng sáu",
+      "Tháng bảy",
+      "Tháng tám",
+      "Tháng chín",
+      "Tháng mười",
+      "Tháng mười một",
+      "Tháng mười hai"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["wa"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -54519,7 +67205,259 @@ I18n.translations["vi"] = {
     }
   }
 };
+I18n.translations["wo"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Dib",
+      "Alt",
+      "Tal",
+      "All",
+      "Alx",
+      "Ajj",
+      "Gaw"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "Dibèer",
+      "Altine",
+      "Talaata",
+      "Allarba",
+      "Alxamess",
+      "Ajjouma",
+      "Gaawu"
+    ],
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "Tamkharit",
+      "Digui Gamou",
+      "Gamou",
+      "Raki Gamou",
+      "Rakati Gamou",
+      "Mamou Kor",
+      "Ndeyou Kor",
+      "Baraxlou",
+      "Kor",
+      "Kori",
+      "Digui Tabaski",
+      "Tabaski"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["yo"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["zh"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -56326,8 +69264,56 @@ I18n.translations["zh-HK"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "周日",
+      "周一",
+      "周二",
+      "周三",
+      "周四",
+      "周五",
+      "周六"
+    ],
+    "abbr_month_names": [
+      null,
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月",
+      "6月",
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ],
+    "day_names": [
+      "星期日",
+      "星期一",
+      "星期二",
+      "星期三",
+      "星期四",
+      "星期五",
+      "星期六"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "一月",
+      "二月",
+      "三月",
+      "四月",
+      "五月",
+      "六月",
+      "七月",
+      "八月",
+      "九月",
+      "十月",
+      "十一月",
+      "十二月"
+    ]
   },
   "date_format": {
     "month": {
@@ -58408,8 +71394,56 @@ I18n.translations["zh-YUE"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "周日",
+      "周一",
+      "周二",
+      "周三",
+      "周四",
+      "周五",
+      "周六"
+    ],
+    "abbr_month_names": [
+      null,
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月",
+      "6月",
+      "7月",
+      "8月",
+      "9月",
+      "10月",
+      "11月",
+      "12月"
+    ],
+    "day_names": [
+      "星期日",
+      "星期一",
+      "星期二",
+      "星期三",
+      "星期四",
+      "星期五",
+      "星期六"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "一月",
+      "二月",
+      "三月",
+      "四月",
+      "五月",
+      "六月",
+      "七月",
+      "八月",
+      "九月",
+      "十月",
+      "十一月",
+      "十二月"
+    ]
   },
   "date_format": {
     "month": {

@@ -1,4 +1,5 @@
 en:
+  # Pluralization of comments
   x_comments:
     one: '1 comment'
     other: '%{count} comments'
@@ -114,13 +115,11 @@ en:
   a_default_taxon_name_will_automatically_created: |
     A default taxon name will automatically be created from the scientific name attribute of this taxon. 
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
-  a_few_points_to_make_things_clear: "A few points to make things a bit clearer:"
   a_flag_for_x: "a flag for %{x}"
   a_member_of: "A member of"
   a_member_of_taxon_html: "a member of %{taxon}"
-  able_to_connect_flickr: Great!  We were able to link to your Flickr account.
-  about: About
-  about_bioblitz_results: About bioblitz results
+  # General header for descriptive sections (comment above line)
+  about: About #General header for descriptive sections (comment inline)
   about_blocking: About Blocking
   about_charts: About Charts
   about_community_taxa: About community taxa
@@ -128,16 +127,12 @@ en:
   about_conservation_status: About Conservation Status
   about_editing_observation_fields: About Editing Observation Fields
   about_establishment_means: About Establishment Means
-  about_external_links: About External Links
   about_licenses: About licenses
   about_licensing: About licensing
-  about_life!: About Life!
   about_muting: About Muting
   about_names: About Names
   about_places: About Places
-  about_taxon_changes: About Taxon Changes
   about_the_cc_licenses: About Creative Commons licenses
-  about_the_taxobox_raquo: "About the taxobox &raquo;"
   about_these_licenses: About these licenses
   about_this_bioblitz: About this bioblitz
   about_this_map: About This Map
@@ -160,13 +155,14 @@ en:
   accept: accept
   accept_community_identifications: Accept community identifications
   accuracy: Accuracy
-  accuracy_m: Accuracy (m)
   accuracy_meters: Accuracy (meters)
-  accuracy_of_the_coordinates: 'Accuracy of the coordinates in meters. You can edit this by click the "edit" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you are sure you were somewhere inside it.'
-  acquaintances: acquaintances
+  accuracy_of_the_coordinates: |
+    Accuracy of the coordinates in meters. You can edit this by clicking the
+    "edit" link above or by clicking on the map marker and dragging the handles.
+    Try to make the circle big enough that you are sure you were somewhere
+    inside it.
   action: Action
   actions: Actions
-  activate_user: Activate user
   active: Active
   active_users: Active Users
   activity: Activity
@@ -174,22 +170,16 @@ en:
   adapted_by_name_from_a_work_by_original: "Adapted by %{name} from a work by %{original}"
   add: Add
   add_a_batch_of_observations: Add a Batch of Observations
-  add_a_batch_of_observations_by_csv: Add a Batch of Observations By CSV
   add_a_batch_of_taxa: Add a Batch of Taxa
   add_a_comment: Add a Comment
   add_a_field: Add a Field
   add_a_flag: Add a Flag
-  add_a_link_raquo: "Add a Link &raquo;"
   add_a_name: Add a Name
   add_a_new_change_group: Add a New Change Group
-  add_a_new_observation_to_id_please!: Add a New Observation to ID Please!
-  add_a_place_raquo: "Add a Place &raquo;"
   add_a_single_observation: Add a Single Observation.
   add_a_taxon: Add a Taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
     Add a <a target="_blank" href="%{url}">taxon swap</a> if you want to change the name
-  add_all_your_matching_obs_of_this_taxon: Add all your matching obs. of this taxon to this project
-  add_all_your_matching_obs_to_this_project: Add all your matching obs. to this project
   add_an_assessment: Add an Assessment
   add_an_identification: Add an Identification
   add_an_observation: Add an Observation
@@ -200,35 +190,26 @@ en:
     sex: Add Annotations for "Sex"
     plant_phenology: Add Annotations for "Plant Phenology"
     life_stage: Add Annotations for "Life Stage"
-  add_another: Add Another
   add_another_flag: Add Another Flag
   add_another_photo: Add Another Photo
   add_another_section: Add Another Section
   add_another_subscription: Add Another Subscription
   add_asset: Add Asset
   add_batch: Add Batch
-  add_colors: Add Colors
   add_comma_separated_tags: "Add Comma-separated Tags"
   add_comment: Add a Comment
-  add_common_names_for: Add Common Names for Existing Taxa
   add_conservation_status: Add Conservation Status
   add_countries: Add Countries
   add_custom_project_fields: Add Custom Project Fields
   add_edit_flags: Add/Edit Flags
-  add_edit_more_fields: Add/Edit More Fields
   add_editor: Add Editor
   add_description: "Add %{description_name}"
-  add_field: Add Field
   add_from_your_observations: Add from Your Observations
   add_link: Add Link
-  add_listed_taxa_from_observations: Add Listed Taxa from Observations
   add_higher_level_taxon: Add a higher-level taxon (e.g. "birds")
   add_id: Add ID
-  add_it_to_place_raquo: "Add It to a Place &raquo;"
-  add_more_photos: Add More Photos
   add_new_lexicon: Add New Lexicon
-  add_new_observations: Add New Observations
-  add_new_photos_by_their_ids: Add New Photos by Their Flickr Ids (must be Creative Commons!)
+  add_new_photos_by_their_ids: Add New Photos By Their Flickr IDs (must be Creative Commons!)
   add_new_place: Add a New Place
   add_new_rule: Add a New Rule
   add_new_source: "Add New Source..."
@@ -236,12 +217,8 @@ en:
   add_notes_about_this_taxon: Add notes about this taxon in this place, e.g. where and when it occurs.
   add_obs_from_a_link: "Add Obs from list: %{link}"
   add_obs_from_a_list: Add Obs from a List
-  add_observation: Add Observation
-  add_observations!: Add Observations!
   add_observations: Add Observations
   add_observations_by_checking_off: Add observations by checking off species from a list.
-  add_observations_from_list: Add Observations from a List
-  add_observations_of_taxa_youve_added: "Add observations of taxa you've added to a list.  Under development, still working out the bugs..."
   add_observations_project: Add Observations to This Project
   add_one: Add One!
   add_one_now: Add One Now
@@ -264,23 +241,19 @@ en:
   add_several_observations_at_once: Add several observations at once.
   add_sex_female_annotation: 'Add "Sex: Female" annotation'
   add_sex_male_annotation: 'Add "Sex: Male" annotation'
-  add_shape: Add Shape
   add_some_now: Add Some Now
   add_tag: Add Tag
   add_tags: Add Tags
   add_tags_to_selected_taxa: Add Tags to Selected Taxa
   add_taxa: Add Taxa
-  add_taxa_to_places:  Add Taxa to Places
   add_taxon_batch_to: "Add Taxon Batch to %{list}"
   add_taxon_range: Add Taxon Range
   add_taxonomic_tags_to: "Add taxonomic tags to selected Flickr photos &raquo;"
-  add_taxonomic_tags_to_the_flickr_photos: Add taxonomic tags to the Flickr photos associated with the selected observations.
   add_to_a_scheme: Add to a Scheme
   add_to_a_project: Add to a Project
   add_to_calendar: Add to Calendar
   add_to_checklist: Add to Checklist
   add_to_favorites: Add to Favorites
-  add_to_id_please: Add to ID Please
   add_to_list: Add to List
   add_to_project: Add to Project
   add_to_your_life_list: Add to Your Life List!
@@ -293,38 +266,29 @@ en:
   add_your_photo_to: "Add Your Photo to %{project}"
   added: Added
   added!: Added!
-  added_an: added an
   added_as_a_part_of: Added as part of a
   added_by: Added by
   added_by_user_on_date_html: "Added by %{user} on %{date}"
-  added_identifications_to: added identifications to anyone's observations.
   added_on: Added on
-  added_to: Added to
-  added_to_favorites: Added to favorites
   added_to_favorites_html: |
     Added to <a href="%{url}">favorites</a>
   adding: "Adding..."
-  adding_observations: Adding observations
-  adding_to_your_life_list: "Adding to your life list..."
   additional_range: Additional range
   additional_range_data_from_an_unknown_source: Additional range data from an unknown source
   adjust_brightness: Adjust Brightness
   admin: Admin
   admin_s: Admin(s)
-  admin_any_projects: admin any projects
   admin_only: Admin-only
   admin_tools: Admin Tools
   agree: agree
   agree_: Agree
   agree?: Agree?
-  agree_to_the_project_terms: Agree to the project terms
   agree_with_current_taxon: Agree with current taxon
   agreeing: Agreeing...
   aka: aka
   all: All
   all_colors: "&laquo; All Colors"
   all_comments: All comments
-  all_csv: All CSV
   all_flags_must_be_resolved: All flags must be resolved
   all_life: All life
   all_names: All Names
@@ -332,7 +296,6 @@ en:
   all_photos: All photos
   all_places: "All Places"
   all_projects: All Projects
-  all_children_added_to_the_database: All children added to the database
   all_rank_added_to_the_database:
     phylum: All phyla added to the database
     subphylum: All subphyla added to the database
@@ -363,7 +326,6 @@ en:
     variety: All varieties added to the database
     form: All forms added to the database
   all_rights_reserved: all rights reserved
-  all_species: All Species
   all_taxa:
     rank:
       kingdom: Kingdom
@@ -435,32 +397,23 @@ en:
   all_updates: All Updates
   all_your_observations_will_default_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
-  all_your_projects: All your projects
   allow_any: allow any
   allow_curator_access: Allow curator access
-  allow_curator_coordinate_access: Allow curator coordinate access
   allow_project_curators_to_view_your_private_coordinates: Allow project curators to view your hidden coordinates
   allowed_establish_means_values: Allowed establish means values
   allowed_html: Allowed HTML
   allowed_occurrence_status_values: Allowed occurrence status values
   allowed_values: Allowed values
   almost_there_: Almost There...
-  alphabetical: Alphabetical
+  # alphabetical: Alphabetical
   alphabetical_order: Alphabetical Order
   already_have_an_account_log_in_html: Already have an account? <strong>Log in.</strong>
   amphibians: amphibians
-  amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb doesn't have any information about this species.
-  amphibiaweb_taxonomy: AmphibiaWeb Taxonomy
   an: an
-  an_: an
   ancestor_taxon: Ancestor Taxon
   and: and
-  and_choose_a_matching_taxon: and choose a matching taxon from the list.  If you don't end up with something like
   and_help_the_inaturalist_community_grow: "and help the %{site_name} community grow."
-  and_make_some_new: and make some new
   and_other_taxa: "&amp; Other Taxa"
-  and_un_license_all_your_observations: and un-license all your observations
-  and_you_havent_linked: "...and you haven't linked one of these external accounts, you should sign in through %{site_name} first, then edit your profile and link your account from there. Otherwise %{site_name} may not be able to tell that the two accounts are connected and try to create a new account for you instead!"
   and_x_more_people!: 
     one: "and 1 more person!"
     other: "and %{count} more people!"
@@ -488,29 +441,20 @@ en:
   are_you_sure?: Are you sure?
   are_you_sure_no_undo: Are you sure? This cannot be undone.
   are_you_sure_delete_asset: Are you sure you want to delete this asset?
-  are_you_sure_delete_observation_from_project: "Are you sure you want to remove this observation from %{project}?"
   are_you_sure_delete_post: Are you sure you want to delete this post?
   are_you_sure_delete_taxon_move_associates: "Are you sure you want to delete %{taxonname} (%{taxonid}) and move all its associates?"
-  are_you_sure_delete_this: Are you sure you want to delete this? You should probably check to see if it has observations or listed taxa first.
   are_you_sure_delete_this_place: Are you sure you want to delete this place?
   are_you_sure_leave_this_project: Are you sure you want to leave this project?
   are_you_sure_merge_these_places: Are you sure you want to merge these places?  This cannot be undone.
-  are_you_sure_remove_curator: "Are you sure you want to remove %{user} as a curator?"
-  are_you_sure_remove_from_project: "Are you sure you want to remove %{user} from this project?"
   are_you_sure_remove_photo: "Are you sure you want to remove this photo?"
   are_you_sure_remove_relationship: Are you sure you want to remove this relationship? This will unfollow this person and revoke access to your hidden coordinates if you had enabled such access.
   are_you_sure_remove_taxon_from_list: "Are you sure you want to remove this taxon from the list?"
-  are_you_sure_remove_taxon_from_place: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Are you sure? This will reload the page you may lose some of your changes.
-  are_you_sure_want_activate_account: Are you sure you want to activate this account?
-  are_you_sure_want_delete_account: "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go."
   are_you_sure_want_delete_taxon: "Are you sure you want to delete this taxon? %{msg}"
   are_you_sure_want_delete_taxon_link: Are you sure you want to delete this taxon link?
   are_you_sure_want_delete_this_name: Are you sure you want to delete this name?
   are_you_sure_want_delete_this_range: Are you sure you want to delete this range?
-  are_you_sure_want_join: Are you sure you want to join
-  are_you_sure_you_want_sync_this: Are you sure you want to sync this observation's data with this Flickr photo? You will lose changes you've made to this form, but you will be able to revert to your saved copy.
   are_you_sure_you_want_to_commit_this_change: Are you sure you want to commit this change? This cannot be undone.
   are_you_sure_you_want_to_delete_this: Are you sure you want to delete this?
   are_you_sure_you_want_to_delete_this_assessment?: Are you sure you want to delete the assessment?
@@ -526,9 +470,7 @@ en:
     Any spam flags on their content will be resolved.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Are you sure you want to remove these %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
-  are_you_sure_you_want_to_remove_this_taxon: Are you sure you want to remove this taxon?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
-  articles: Articles
   associated_observations: Associated observations
   associated_taxa: Associated taxa
   attention: Attention
@@ -536,7 +478,6 @@ en:
   you_sure_delete_taxon_from_list?: "Are you sure you want to remove %{taxon} from the list?"
   asc: Asc
   ascending: Ascending
-  aside_from_extraordinary_circumstances: "Aside from extraordinary circumstances, we will never ask you for your password."
   assessment: assessment
   assessment_has_benn_completed: Assessment has been completed
   assessment_sections: Assessment Sections
@@ -547,7 +488,6 @@ en:
   assessments: assessments
   associations: Associations
   at: at
-  at_any_time_change: at any time (<span class="button">change</span>)
   at_time: "at %{time}"
   atom: Atom
   attached_taxon: Attached Taxon
@@ -559,11 +499,9 @@ en:
     cites: CITES
   authorize: Authorize
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
-  automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
   automatic_short: Auto
   automatically_add_to_project: Automatically add to project
   automatically_add_observations_to_this_project: Automatically add observations to this project
-  automatically_share_your_observations_on: Automatically share your observations on
   automatically_id_new: Automatically ID the new obs as
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
   back: Back
@@ -1581,7 +1519,6 @@ en:
   heads_up_this_photo_is_already_associated_with: "Heads up: this photo is already associated with <a target='_blank' href='%{url}'>another observation</a>"
   heads_up_this_taxon_locked_users_cant_add_descendants: "<strong>Heads up:</strong> this taxon is locked, which means that most users can't add new descendants to it by importing taxa. Curators can still do so by editing taxa and choosing a parent, but please consider merging taxa instead."
   heads_up_you_have_multiple: "Heads up: You have multiple taxonomic machine tags for identicical ranks. They're color-coded below by rank."
-  hello: <test> 
   help: Help
   help_confirm_observations!: Help confirm observations!
   help_faq: Help / FAQ
@@ -2021,6 +1958,7 @@ en:
     fi: Finnish
     fr: French
     gl: Galician
+    he: Hebrew
     id: Indonesian
     it: Italian
     iw: Hebrew
@@ -2265,7 +2203,6 @@ en:
   need_id_help?: Need ID help?
   needs_id: needs ID
   needs_id_: Needs ID
-  Needs_ID!: Needs ID!
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
   needs_to_be_identified: Needs to be identified
   new: New
@@ -5181,207 +5118,6 @@ en:
           You can copy this taxon into another guide. If you are one of the
           editors of this guide it should copy everything, but if you're not, it
           will only copy the licensed content.
-    help:
-      index:
-        welcome_message_html: |
-          Howdy. If you're just getting started with %{site_name}, check out our
-          <a href="%{url}">%{getting_started}</a>
-          guide to tour some of the site's features. If you have a
-          question about the site, please peruse the FAQ below. If you're still
-          looking for answers, please 
-          <a href="%{feedback_url}">post your question to our feedback group</a>.
-        what_is_inaturalist?: What is %{site_name}?
-        who_is_behind_inaturalist?: Who is behind %{site_name}?
-        what_technologies_does_the_project_use?: What technologies and data sources does the project use?
-        inaturalist_provides_a_place_to: |
-          %{site_name} provides a place to record and organize nature findings,
-          meet other nature enthusiasts, and learn about the natural world. It
-          encourages the participation of a wide variety of nature
-          enthusiasts, including, but not exclusive to, hikers, hunters,
-          birders, beach combers, mushroom foragers, park rangers, ecologists,
-          and fishermen. Through connecting these different perceptions and
-          expertise of the natural world, %{site_name} hopes to create
-          extensive community awareness of local biodiversity and promote
-          further exploration of local environments.
-        who_is_behind_inaturalist: Who is behind %{site_name}?
-        inaturalist_was_originally_the_masters_final_html: |
-          %{site_name} was originally the Master's final project of Nathan Agrin,
-          Jessica Kline, and Ken-ichi Ueda at UC Berkeley's 
-          <a href="http://www.ischool.berkeley.edu">School of Information</a>.
-          Check out the <a href="/about">About page</a> for more info on the people currently managing the site.
-        what_technologies_does_the_project_use?: What technologies and data sources does the project use?
-        inaturalist_is_built_using_html: |
-          %{site_name} software is built using <a
-          href="http://www.rubyonrails.org/">Ruby on Rails</a>, <a
-          href="http://mysql.com/">MySQL</a>, <a
-          href="http://jquery.com/">jQuery</a> and <a
-          href="http://code.google.com/apis/maps//">Google Maps</a>, and <a
-          href="http://flickr.com/">Flickr</a>. It also utilizes the <a
-          href="http://www.catalogueoflife.org">Catalogue of Life</a> and
-          <a href="http://ubio.org/">uBio</a> data sources for taxonomic data.
-        what_can_i_do_to_help_inaturalist?: What can I do to help %{site_name}
-        you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-          You can help %{site_name} by giving us your feedback: join our 
-          <a href="%{feedback_url}">feedback group</a> 
-          to report bugs and request new
-          features. You can also help %{site_name} by adding your observations
-          and helping other community members identify their unidentified
-          observations. If you know how to code and want to help work on some
-          features,
-          <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master - GitHub">fork us on GitHub</a>!
-        how_do_i_contact_inaturalist?: How do I contact %{site_name}
-        you_can_contact_us_at_html: 'You can contact us at <a href="mailto:%{help_email}">%{help_email}</a>'
-        what_are_admins_and_curators?: What are admins and curators?
-        inat_admins_are_the_people_who: |
-          %{site_name} admins are the people who run the site. They have direct access
-          to the underlying code and the database, and they can change anything
-          on the site.
-        curators_are_inat_users_who_volunteer_to_html: |
-          Curators are %{site_name} users who volunteer to help keep our taxonomic data
-          up to date. If you're interested in becoming a curator, please 
-          <a href="mailto:%{help_email}">contact us</a>. Curators can
-          also promote other users to curator status. Please only promote people
-          you trust and that you know to have some taxonomic knowledge.
-        what_is_considered_inappropriate_content?: What is considered inappropriate content?
-        you_know_it_when_you_see_it_html: | 
-          You <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">know it when you see it</a>, 
-          right?  Stuff that violates Section 2 of our <a href="/terms.html">Terms of Service</a> 
-          is definitely inappropriate and worth flagging or otherwise notifying
-          the admins about. Milder forms of rudeness are unfortunate, but
-          probably not something we'll delete. Observations of pets, captive
-          animals, humans, and other organisms most naturalists may not find
-          interesting are ok (they're alive, after all). Observations of things
-          that aren't organisms are a gray area. Things that clearly have
-          nothing to do with nature, like what someone had for lunch, are worth
-          flagging and may be deleted, but evidence of pollution or disturbance
-          could be interesting, and probably won't be removed.
-        what_is_an_observation?: What is an observation?
-        an_observation_is_the_what_where_and_when_html: |
-          An observation is the what, where, and when of a finding in nature. 
-          %{site_name} provides a place to add this information along with associated text, 
-          photos, and tags. %{site_name} encourages the recording of all nature findings, 
-          whether they feature identified species or simple narrative descriptions. 
-          (In %{site_name} the same lizard can be described as a Desert Horned Lizard as well 
-          as &quot;Mystery Lizard of Death Valley&quot;)
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Why doesn't %{site_name} recognize the name I've entered?"
-        inaturalist_has_name_information_for_mammals:  |
-          %{site_name} has name information for mammals, birds, reptiles,
-          and amphibians, and continues to add new species names into our
-          database. If we do not recognize a particular name, try
-          alternative names that we might recognize and add the original
-          name to the tags or description fields.
-        how_can_i_get_help_identifying_what_i_saw?: How can I get help identifying what I saw?
-        check_the_id_please_checkbox_when_html: | 
-          Check the "ID Please" checkbox when adding / editing your
-          observation and your observation will appear in
-          <a href="%{url}">ID Please</a>.
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: What does it mean to link %{site_name} to my Flickr account?
-        inaturalist_can_link_directly_to_the_flickr_photo_service: | 
-          %{site_name} can link directly to the Flickr photo service so
-          that you can add your Flickr photos to your observations. When
-          you agree to link your Flickr account, you are simply linking
-          two accounts; we do not have access to your Flickr password and
-          you are not forsaking your copyright nor giving us the ability
-          to use any of your photos in ways that you do not want.
-        can_i_add_photos_without_a_flickr_account?: Can I add photos without a Flickr account?
-        we_also_support_google_html:  'We also support Google Photos: <a href="%{url}">Configure your Google account &raquo;</a>'
-        we_also_support_uploading_photos: |
-                We also support uploading photos directly to %{site_name}, but it can be a bit
-                slow, so we only allow one upload at a time. Using Flickr or Google is
-                probably faster if you already use those services.
-        what_are_tags?:  What are tags?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Tags are keywords you can add to an observation to make them easier to find. 
-          For example, if a barracuda followed you on a scuba diving trip in Turks and Caicos, 
-          you might tag the observation &quot;scary, barracuda, scuba diving, vacation, turks and caicos&quot;.
-        can_i_include_my_observations_on_my_blog?: Can I include my %{site_name} observations on my own website of blog?
-        sure_check_out_our_widget_html: |
-          Sure, check out our <a href="%{url}" title="Observations Widget">Observations Widget</a>.
-        what_kind_of_photos_should_i_attach: What kind of photos should I attach to observations?  Can I attach photos I didn't take?
-        photos_attached_to_observations_should_be: | 
-          Photos attached to observations should be of the individual observed
-          at the time of the observation. If you record an observation of a
-          tree, then go back a day later to take a picture, please add a new
-          observation for the picture, because it represents the tree at a
-          different point in time.
-        please_do_not_upload_pictures_you_didnt_take_html: | 
-          Please <em>do not upload pictures you didn't take</em> unless you have
-          obtained permission from the photographer. It is illegal to publish
-          copyrighted works without some form of license granted by the creator
-          of the work, and all photographers have full copyright over their
-          photos by default. If the photo was of the thing you observed, and
-          someone else took it and you've obtained their permission to publish
-          it, you should also note the name of the photographer in the
-          observation's description.
-        what_is_geoprivacy?: What is geoprivacy?
-        geoprivacy_is_a_setting_you_can: |
-          Geoprivacy is a setting you can make on your observations that
-          controls how the spatial coordinates (latitude and longitude) are 
-          displayed. Here are the options:
-        note_that_curators_of: | 
-          Note that curators of individual projects can always see the
-          coordinates regardless of your geoprivacy setting, so if you are
-          concerned about who has access to the coordinates you should be sure
-          you trust the curators of the projects in which you participate.
-        what_is_does_it_mean_for: What is does it mean for an observation to be obscured?
-        when_coordinates_are_obscured_it_means_that: |
-          When coordinates are obscured it means that a random point within
-          %{km}KM of the true coordinates 
-          is shown publicly (i.e. on the home page, the observations page, and 
-          project pages), while the true coordinates are only visible when you
-          are viewing your own observations (i.e. on the individual project
-          pages and the list of your own observations). Note that curators of
-          the projects to which you've added an observation can also see the
-          true coordinates. Obscured coordinates should always be symbolized by
-          circular marker without stems on maps and in geospatial feeds.
-        coordinates_are_obscured_for_all_taxa: | 
-          Coordinates are automatically obscured for all taxa that are "NEAR
-          THREATENED" or worse according to the IUCN Red List. Some taxa may be
-          declared threatened according to other conservation authorities, and
-          some may be simply marked as threatened by %{site_name} site curators if they
-          believe it merits protection.
-        you_can_also_obscure_the_coordinates_html: | 
-          You can also obscure the coordinates of your own observations 
-          regardless of what the taxon is.  See <a href="#geoprivacy">geoprivacy</a> above.
-        what_is_the_quality_assessment: What is the quality assessment and how do observations qualify to become "research" grade?
-        what_is_a_life_list?: What is a life list?
-        just_a_simple_list: Just a simple list of taxa with no special behavior.
-        automatically_updates_based_on_your_observations: |
-          Automatically updates based on your observations. Everyone on %{site_name}
-          has a default life list that contains every species that person has
-          observed. If you delete an observation or change your ID, the
-          species will get removed. You can also manually add taxa to your
-          life list just like you can with an ordinary list. The species you
-          add manually won't get removed if you observe them and then delete
-          the observation.
-        you_can_also_make_additional_life_lists: |
-          You can also make additional life lists for specific groups of
-          organisms, like a life list of birds, or a life list of milkweeds.
-        a_project_list_belongs: |
-          A project list belongs to a project and lists all the taxa
-          observed by members of that project. Project lists can also be
-          populated manually by the admin of that project, and can be used
-          to restrict project contributions to taxa that are on the list.
-        a_check_list_is_html: |
-          A check list is a list of taxa that occur in a place. Every place
-          has a default check list, and whenever an observation is made
-          within the place's boundaries <em>and</em> it has achieved
-          research-grade status, the species observed will get automatically
-          added to the place's check list.
-        inat_users_can_also: |
-          %{site_name} users can also add additional check lists to places, but
-          these check lists are not automatically updated. They mainly
-          provide a way for people to bring in outside sources of data or
-          just list things based on their own experience.
-        is_a_list_of_every_species_that_you_have_seen: |
-          A life list is a list of every species that you have seen. Every %{site_name} user has a life 
-          list and these lists are automatically populated from the observations added to %{site_name}.
-        i_observed_a_species: "I observed a species, why isn't it showing up in my life list?"
-        while_the_life_list_is_automatically_populated: |
-                While the life list is automatically populated from added
-                observations, the species will not be added to this list if
-                %{site_name} does not recognize the name you used. We recommend
-                trying alternative names that we might recognize.
     listed_taxa:
       establishment_field:
         confirmation: |

@@ -131,21 +131,26 @@ data.each do |key, translation|
     end
   end
 
-  if key =~ /#{locale}\..+\.one$/
-    other_key = key.sub( /\.one$/ , ".other" )
-    if !data[other_key] && @levels.include?( "error" )
-      problems[other_key] = problems[other_key] || []
-      problems[other_key] << "**ERROR:** Missing part of a plural key"
-    end
-  end
-
-  if key =~ /#{locale}\..+\.other$/
-    one_key = key.sub( /\.other$/ , ".one" )
-    if !data[one_key] && @levels.include?( "error" )
-      problems[one_key] = problems[one_key] || []
-      problems[one_key] << "**ERROR:** Missing part of a plural key"
-    end
-  end
+  
+  #
+  # Neither of the following are required if you have pluralizations configured
+  # correctly, e.g. never sending the `one` variable when translating a plural
+  # key into Japanese
+  #
+  # if key =~ /#{locale}\..+\.one$/
+  #   other_key = key.sub( /\.one$/ , ".other" )
+  #   if !data[other_key] && @levels.include?( "error" )
+  #     problems[other_key] = problems[other_key] || []
+  #     problems[other_key] << "**ERROR:** Missing part of a plural key"
+  #   end
+  # end
+  # if key =~ /#{locale}\..+\.other$/
+  #   one_key = key.sub( /\.other$/ , ".one" )
+  #   if !data[one_key] && @levels.include?( "error" )
+  #     problems[one_key] = problems[one_key] || []
+  #     problems[one_key] << "**ERROR:** Missing part of a plural key"
+  #   end
+  # end
 
   # https://stackoverflow.com/a/3314572
   if @levels.include?( "error" ) && translation =~ /<\/?\s+[^\s]+>/
