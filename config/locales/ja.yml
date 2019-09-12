@@ -82,11 +82,11 @@ ja:
     one: <span class='count'>1</span>件の観察済分類群
     other: <span class='count'>%{count}</span>件の観察済分類群
   x_research_grade_observations_html:
-    one: <span class='count'>1</span>件の研究用観察記録</span>
-    other: <span class='count'>%{count}</span>件の研究用観察記録</span>
+    one: <span class='count'>1</span>件の研究用観察記録
+    other: <span class='count'>%{count}</span>件の研究用観察記録
   x_research_grade_observations_to_species_html:
-    one: <span class='count'>1</span>件の種もしくはそれ以下の研究用観察記録</span>
-    other: <span class='count'>%{count}</span>件の種もしくはそれ以下の研究用観察記録</span>
+    one: <span class='count'>1</span>件の種もしくはそれ以下の研究用観察記録
+    other: <span class='count'>%{count}</span>件の種もしくはそれ以下の研究用観察記録
   x_taxa_matching_current_filters:
     other: '%{count}件の現在の絞込みに該当する分類群'
   x_taxon_changes_added_html:
@@ -3142,6 +3142,9 @@ ja:
   white: 白
   widget: ウィジェット
   widget_code: ウィジェットコード
+  wikipedia_attribution_cc_by_sa_3_html: |-
+    この記事に流用するウィキペディア掲載の記事<a href="%{url}">"%{title}"</a>の内容は、権利の継承を<a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
+    Commons Attribution-Share-Alike License 3.0</a>に指定されています。元の記事から除去された可能性はあっても、このページ上で内容の改変は行われていません。
   wikipedia_entry: ウィキペディアの記事
   wikipedia_taxobox_raquo: ウィキペディア分類群ボックス&raquo;
   withdraw: 撤回

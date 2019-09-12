@@ -11,6 +11,7 @@
 # Author: Uziel302
 # Author: YaronSh
 # Author: המקיסט
+# Author: ديفيد
 ---
 he:
   x_comments:
@@ -59,8 +60,19 @@ he:
   x_observations_reviewed_html:
     one: נסקרה תצפית <span class='count'>אחת</span>
     other: <span class='count'>%{count}</span> תצפיות נסקרו
+  x_others:
+    one: אחר%{count} אחרים
+  x_people_found_this_helpful:
+    one: 'צופה 1 מצאו זיהוי זה מועיל '
+    other: '%{count} מצאו זיהוי זה מןעיל'
   x_people_like_this: '%{count} אנשים אוהבים את זה'
   x_people_agree_html: <span class="count">%{count}</span> אנשים מסכימים
+  x_photos:
+    one: תמונה 1
+    other: '%{count} תמונות'
+  x_new_species:
+    one: מין אחד חדש
+    other: '%{count} מינים חדשים'
   x_species:
     one: מין אחד
     other: '%{count} מינים'
@@ -74,11 +86,17 @@ he:
     one: טקסון <span class='count'>אחד</span> נצפה
     other: <span class='count'>%{count}</span> טקסונים נצפו
   x_research_grade_observations_html:
-    one: תצפית מחקר כיתתית <span class='count'>אחת</span>
-    other: <span class='count'>%{count}</span> תצפיות מחקר כיתתיות</span>
+    one: תצפית  <span class='count'>אחת בדרגת מחקר מדעית</span>
+    other: <span class='count'>%{count}</span> תצפיות בדרגת מחקר מדעית</span>
+  x_taxa_curated_html:
+    one: טקסון <span class='count'>אחד</span> נאצר
+    other: <span class='count'>%{count}</span> טקסונים נאצרו
   x_taxa_matching_current_filters:
     one: טקסון אחד מתאים למסננים הנוכחיים
     other: '%{count} טקסונים מתאימים למסננים הנוכחיים'
+  x_people_helped_user_with_y_ids_html: <strong>%{x} אנשים</strong> עזרו ל%{user}
+    עם <strong>%{y} זיהויים</strong>
+  _100_day_trends: מגמת 100 הימים
   _percent_ID_d: אחוז מזוהה
   a_community_for_naturalist: קהילה של אוהבי טבע
   a_default_taxon_name_will_automatically_created: |-
@@ -213,10 +231,18 @@ he:
   add_plant_phenology_budding_annotation: 'הוספת תווית "פנולוגיית צומח: ניצן"'
   add_plant_phenology_flowering_annotation: 'הוספת תווית "פנולוגיית צומח: פריחה"'
   add_plant_phenology_fruiting_annotation: 'הוספת תווית "פנולוגיית צומח: יצירת פרי"'
+  add_life_stage_adult_annotation: 'הוספת תווית "שלב חיים: בוגר"'
+  add_life_stage_teneral_annotation: 'הוספת תווית "שלב חיים: לאחר השלה"'
+  add_life_stage_subimago_annotation: 'הוספת תווית "שלב חיים: טרום-בוגר"'
+  add_life_stage_pupa_annotation: 'הוספת תווית "שלב חיים: גולם"'
+  add_life_stage_nymph_annotation: 'הוספת תווית "שלב חיים: נימפה"'
+  add_life_stage_larva_annotation: 'הוספת תווית "שלב חיים: זחל"'
+  add_life_stage_juvenile_annotation: 'הוספת תווית "שלב חיים: צעיר"'
   add_life_stage_egg_annotation: 'הוספת תווית "שלב חיים: ביצה"'
   add_section: הוסף בחירה
   add_several_observations_at_once: הוספת מספר תצפיות בפעולה אחת.
   add_sex_female_annotation: 'הוספת תווית "זוויג: נקבה"'
+  add_sex_male_annotation: 'הוספת תווית "זוויג: זכר"'
   add_shape: הוספת צורה
   add_some_now: הוספה עכשיו
   add_tag: הוספת תגית
@@ -263,7 +289,9 @@ he:
   additional_range_data_from_an_unknown_source: מגוון נתונים נוסף ממקור שאינו ידוע
   adjust_brightness: התאמת בהירות
   admin: מנהל
+  admin_s: מנהל(ים)
   admin_any_projects: לנהל את כל הפרויקטים
+  admin_only: מנהלים בלבד
   admin_tools: כלי מנהלים
   agree: הסכמה
   agree_: הסכמה
@@ -283,16 +311,23 @@ he:
   all_places: כל המקומות
   all_projects: כל הפרויקטים
   all_rank_added_to_the_database:
+    phylum: כל המערכות הוספו לבסיס הנתונים
+    subphylum: כל תתי-המערכות הוספו לבסיס הנתונים
     superclass: כל מחלקות העל הוספו לבסיס הנתונים
     class: כל המחלקות הוספו לבסיס הנתונים
     subclass: כל תתי-המחלקות הוספו לבסיס הנתונים
+    infraclass: כל מחלקות העל הוספו לבסיס הנתונים
     superorder: כל סדרות העל הוספו לבסיס הנתונים
     order: כל הסדרות הוספו לבסיס הנתונים
     suborder: כל תתי-הסדרות הוספו לבסיס הנתונים
+    infraorder: כל תתי המחלקות הוספו לבסיס הנתונים
     superfamily: כל משפחות העל הוספו לבסיס הנתונים
+    epifamily: כל העל-משפחות הוספו לבסיס הנתונים
     family: כל המשפחות הוספו לבסיס הנתונים
     subfamily: כל תתי-המשפחות הוספו לבסיס הנתונים
     supertribe: כל שבטי-על הוספו לבסיס הנתונים
+    tribe: כל השבטים הוספו לבסיס הנתונים
+    subtribe: כל תתי-השבטים הוספו לבסיס הנתונים
     genus: כל הסוגים הוספו לבסיס הנתונים
     subgenus: כל תתי-הסוגים הוספו לבסיס הנתונים
     species: כל המינים הוספו לבסיס הנתונים
@@ -404,6 +439,7 @@ he:
     other: ועוד %{count}!
   android: אנדרואיד
   animals: בעלי־חיים
+  animated_observations_map: מפות תצפית מאויירות
   annotation: תווית
   annotations: תוויות
   announcement_was_successfully_created: המודעה נוצרה בהצלחה.
@@ -479,6 +515,7 @@ he:
   are_you_sure_you_want_to_remove_this_taxon: האם ברצונך להסיר את הטקסון הזה?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: האם ברצונך להסיר את הטקסון
     הזה מרשימת המינים של %{place}?
+  articles: ערכים
   associated_observations: תצפיות משויכות
   associated_taxa: טקסונים משויכים
   attention: לתשומת לבך
@@ -533,6 +570,7 @@ he:
   back_to_post: '&laquo; חזרה לפוסט'
   back_to_projects: חזרה לפרויקטים
   back_to_shared_taxon: חזרה ל"%{sharedtaxon}"
+  back_to_suggestions: חזרה להצעות
   back_to_taxon: חזרה ל"%{defaulttaxon}"
   back_to_taxon_changes: חזרה לשינויי טקסון
   back_to_viewing: חזרה לטקסון <i>%{taxon}</i>
@@ -672,6 +710,14 @@ he:
     replaced_with: הוחלף ב
     dropped: הושלך
     staged: אורגן
+    input_taxon_was_split_into_output_taxa_html: '%{input_taxon} פוצל ל%{output_taxa}'
+    input_taxon_will_be_split_into_output_taxa_html: '%{input_taxon} יפוצל ל%{output_taxa}'
+    input_taxon_was_dropped_html: '%{input_taxon} הושמט'
+    input_taxon_will_be_dropped_html: '%{input_taxon} יושמט'
+    input_taxon_was_replaced_by_output_taxon_html: '%{input_taxon} הוחלף ב%{output_taxon}'
+    input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon} יוחלף ב%{output_taxon}'
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa} אוחדו ל%{output_taxon}'
+    input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa} יאוחדו ל%{output_taxon}'
   change_visibility_of: לשנות את מצב התצוגה של קואורדינטות חלליות?
   change_your_matching: שינוי הצמד שלך
   change_your_password: שינוי הסיסמה שלך
@@ -786,6 +832,7 @@ he:
   committed: בוצע
   committing: מבצע...
   community: קהילה
+  community_curated: נאצר על ידי הקהילה
   community_id: 'מזהה <strong>קהילה/</strong>:'
   community_moderation_settings: הגדרות מתינות הקהילה
   community_supported_id: מזהה שנתמך על־ידי הקהילה
@@ -804,10 +851,12 @@ he:
   concept_status: מצב הקונספט
   configure: הגדרה
   confirm: אישור
+  confirm_membership: אישור חברות
   confirm_new_password: אישור ססמה חדשה
   confirm_now: אשר עכשיו
   confirm_your_info: אשר את המידע שלך
   confirmed: אושר
+  confirmed_observations_are: תצפיות מאושרות הן
   confirming_identifications: מאשר זיהויים
   connect_to_provider: התחבר ל %{provider}
   connected_accounts: חשבונות משוייכים
@@ -815,14 +864,25 @@ he:
   connecting_to_facebook: מתחבר לפייסבוק...
   conservation_status: סטטוס שימור
   conservation_status_descriptions:
+    description: תיאור קצר מדוע מין זה הוסף לרשימה.
+    authority: הגוף שהכריז על סטטוס זה. ניתן לדלג על שלב זה במידה ואת/ה רוצים להיות
+      רשומים כבעלי הסמכות.
     place: מיקום באשר סטטוס זה הינו מוגבל
     url: URL לדף המתאר סטטוס זה
     geoprivacy: הגדרת פרטיות-מקום לטקסון זה
+    iucn: קוד שקול ברשימה האדומה של IUCN
+  conservation_status_geoprivacy_desc: מיקום מוסתר מוגדר כברירת מחדל עבור טקסון זה
+    במקום זה
   contact_support: יצירת קשר עם תמיכה
   content_hidden: תוכן מוסתר
   content_hidden_by_user_on_date_because_reason_html: 'תוכן הוסתר על ידי %{user} בתאריך
     %{date} בגלל: "%{reason}"'
+  user_hid_this_item_because_reason_html: '%{user} הסתיר %{item} זה בגלל %{reason}'
+  user_unhid_this_item_because_reason_html: '%{user} חשף %{item} זה בגלל %{reason}'
   continue: להמשיך
+  continue_to_site: להמשיך ל%{site_name}
+  contributor_cannot_be_found: לא ניתן למצוא את התורמים
+  contributors_to_project: התורמים ל%{project}
   controlled_term_labels:
     sex: זוויג
     male: זכר
@@ -833,20 +893,35 @@ he:
     fruiting: יצירת פרי
     life_stage: שלב חיים
     adult: בוגר
+    teneral: לאחר השלה
+    subimago: טרום-בוגר
+    pupa: גולם
     nymph: נימפה
     larva: לרווה
     egg: ביצה
     juvenile: צעיר
+  controls: פקדים
   convert: המרה
   coordinate_systems: מערכת קואורדינטות
   coordinates: קואורדינטות
+  coordinates_private: (קואורדינטות מוסתרות)
   copy: העתקה
+  copy_and_paste_the_following_code_to: העתק והדבק קוד זה על מנת להטמיע הערכה זו בדף
+    אינטרנט אחר.
+  copy_and_paste_this_into_your_own_html: העתקה והדבקה ל HTML שלך.
   copyright:
     some_rights_reserved: זכויות יוצרים מסוימות שמורות
+    some_rights_reserved_by: (c) %{name},  זכויות יוצרים חלקיות (%{license_short})
+    all_rights_reserved: (c) %{name}, כל הזכויות שמורות
+    no_known_copyright_restrictions: '%{name}, לא ידועות מגבלות של זכויות יוצרים  (%{license_name})'
     no_known_copyright_restrictions_text: מגבלות זכויות יוצרים אינן ידועות
     no_rights_reserved: ללא זכויות יוצרים
+    no_rights_reserved_by: '%{name}, ללא זכויות יוצרים של %{license_name}'
     anonymous: אנונימי
+    public_domain: נחלת הכלל
     copyright: זכויות יוצרים
+    no_copyright: ללא זכויות יוצרים (CC0)
+    attribution_noncommercial_sharealike_license: רישיון ייחוס–לא מסחרי–ShareAlike
   copyright_holder: מחזיק זכויות היוצרים
   copyright_info: אודות זכויות היוצרים
   copyright_info_and_more: אודות זכויות היוצרים ועוד
@@ -854,7 +929,10 @@ he:
   couldnt_change_your_password: 'לא ניתן היה לשנות את סיסמתך: %{e}'
   couldnt_find_a_user_matching_x_param: לא ניתן היה למצוא משתמש תואם ל %{id}
   couldnt_find_that_taxon: לא ניתן לאתר טקסון זה
+  couldnt_log_you_in_x: לא ניתן להיכנס כ%{x}
   countries: מדינות
+  country_stats: סטטיסטיקות המדינה עבור תצפיות שנוצרו ב
+  create: יצירה
   create_a_guide: יצירת מגדיר
   create_a_list: יצירת רשימה
   create_a_new_field: יצירת שדה חדש
@@ -869,10 +947,12 @@ he:
   created_by: נוצר על־ידי
   created_by_user_on_date: נוסף על־ידי %{user} בתאריך %{date}
   created_on: נוצר ב-
+  creating_your_account: יצירת החשבון שלך
   critically_endangered: בסכנת הכחדה קריטית
   critically_imperiled: בסכנת אנושה
   csv: CSV
   csv_file: קובץ CSV
+  cumulative_ids: 'סה"כ זיהויים: %{count} מ %{total}'
   curate_observations: אצירת תצפיות
   curate_taxa: אצירת טקסונים
   curate_user: אצירת משתמשים
@@ -888,7 +968,10 @@ he:
   custom_field_values: התאמה אישית של השדות בטופס
   custom_project_fields: שדות יחודיים לפרוייקט
   customize_location: התאמת מיקום
+  dashboard: לוח בקרה
+  data_deficient: מיעוט נתונים
   data_quality: איכות הנתון
+  data_used: 'הנתונים שבהם נעשה שימוש:'
   date_: תאריך
   date?: תאריך?
   date_added: תאריך הוספה
@@ -898,7 +981,7 @@ he:
       january: ינואר %{day} %{year}
       february: '%{day} ]פברואר %{year}'
       march: '%{day} מרץ %{year}'
-      april: '%{day} אפריל %{day}'
+      april: '%{day} אפריל %{year}'
       may: '%{day} מאי %{year}'
       june: '%{day} יוני %{year}'
       july: '%{day} יולי %{year}'
@@ -921,6 +1004,7 @@ he:
       november: נובמבר
       december: דצמבר
   date_is_accurate: התאריך מדוייק
+  date_joined: תאריך הצטרפות
   date_observed: תאריך צפייה
   date_observed_: תאריך צפייה
   date_observed_on: תאריך צפייה
@@ -935,6 +1019,8 @@ he:
   dates: תאריכים
   datetime_: תאריך/שעה
   day: יום
+  default: ברירת המחדל
+  default_invite_comment: תמונה נהדרת! צריך להעלות אותה ל%{site_name}{{INVITE_LINK}}
   default_observation_license: רשיון ברירת המחדל של התצפית
   default_photo_license: רשיון ברירת המחדל של התמונה
   default_sound_license: רשיון ברירת המחדל של הקול
@@ -951,11 +1037,14 @@ he:
   delete_user: מחיקת משתמש
   delete_your_account: מחיקת חשבון זה
   deleted_user: מחיקת משתמש
+  deleted_vote: הצבעה נמחקה
   deleting: מוחק...
   deleting_verb: מוחק...
+  deny: דחיה
   descending: בסדר יורד
   describe_purpose: תאר את מטרת הפרוייקט
   description: תיאור
+  description_from: תיאור מ
   description_slash_tags: תאור / תגיות
   desription: תאור
   destroy: השמד
@@ -970,11 +1059,13 @@ he:
   did_not_send_invitations_because: לא נשלחה הזמנה בגלל ש...
   did_you_mean: האם התכוונת ל
   did_you_photos_flickr?: האם העלית תמונות ל Flickr?
+  disable: כיבוי
   disagree: לא מסכים/מה
   disagree_: לא מסכים/מה
   disconnect_provider: ניתוק %{provider}
   display_listings_added_by_curators: הצגרת רשומות שהועלו על ידי אוצרים
   dna_: DNA
+  documentation_for_developers_html: דוקומנטציה בשביל <a href="/pages/developers">מפתחים</a>
   do_not_show_this_message_again: לא להציג את ההודעה הזאת שוב
   do_you_know_where_this_species_lives: האם יש מידע לגבי מקום המצאותו של מין זה?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: האם אתה חוקר נמטודות? האם
@@ -989,7 +1080,9 @@ he:
   doh_something_went_wrong_error: 'אופס... משהוא לא הלכך כמו שצריך: %{error}'
   done: בוצע
   dont_filter: ללא סינון
+  dont_have_an_account_sign_up_html: אין לכם חשבון? <strong>להרשמה.</strong>
   dont_send_me_email: אל תשלחו לי אימיילים!
+  dont_use_double_quotes: אין לעשות שימוש בגרשיים כפולים בכל מקום אחר
   double_click_to_finish: (הקלקה כפולה לסיום)
   download: הורדה
   download_csv: הורדה כקובץ CSV

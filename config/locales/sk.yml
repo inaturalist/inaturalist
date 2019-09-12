@@ -481,7 +481,7 @@ sk:
     účet. Inak %{site_name} nerozpozná, že sú tieto dva účty prepojené, a namiesto
     toho vám vytvorí nový účet!'
   and_x_more_people!:
-    one: and 1 ďalšia osoba!
+    one: a 1 ďalšia osoba!
     other: a %{count} ďalší ľudia!
   android: Android
   animals: Zvieratá
@@ -647,6 +647,8 @@ sk:
   back_to_your_observations: Späť na vaše pozorovania
   back_to_your_profile: Späť na váš profil
   back_to_your_projects: Späť k vašim projektom
+  based_on_the_evidence_can_id_be_improved: Môže byť komunitný taxón na základe dôkazov
+    potvrdený alebo vylepšený?
   basic: Základné
   batch: Séria
   batch_edit: Upraviť sériu
@@ -1026,7 +1028,7 @@ sk:
   cover: Obal
   create: Vytvoriť
   create_a_guide: Vytvoriť sprievodcu
-  create_a_list: Vytvoriť zoznam
+  create_a_list: Vytvorte zoznam
   create_a_new_field: Vytvoriť nové pole
   create_a_new_place: Vytvoriť nové miesto
   create_a_new_taxon: Vytvoriť nový taxón
@@ -1372,8 +1374,8 @@ sk:
   extinct_in_the_wild: Vyhynutý vo voľnej prírode
   extra_properties: Ďalšie vlastnosti
   extras: Ďalší
-  evidence_of_organism: Dôkaz o organizmu
-  evidence_of_organism?: Dôkaz o organizmu?
+  evidence_of_organism: Dôkaz o organizme
+  evidence_of_organism?: Dôkaz o organizme?
   facebook: Facebook
   facebook_account_information: Informácie z vášho facebookového účtu
   facebook_options: Možnosti Facebooku
@@ -1568,7 +1570,7 @@ sk:
   geoprivacy_is_obscured: Geosúkromie je ukryté
   geoprivacy_is_obscured_desc: Pozorovateľ sa rozhodol zakryť súradnice.
   geoprivacy_is_private: Geosúkromie je súkromné
-  geoprivacy_is_private_desc: Pozorovateľ sa rozhodl skryť súradnice.
+  geoprivacy_is_private_desc: Pozorovateľ sa rozhodol skryť súradnice.
   georeferenced: Georeferenčný?
   georeferenced?: georeferenčný
   get_current_position: Získať aktuálnu polohu
@@ -1666,7 +1668,7 @@ sk:
   highlights_and_stats_from_year_on_site: Najvýznamnejšie udalosti a štatistiky z
     roku %{year} v %{site}
   history: História
-  home: Domov
+  home: Doma
   home_faq: Často kladené otázky
   hybrid: kríženec
   i_agree_to_the_project_terms: Súhlasím s podmienkami projektu
@@ -1687,7 +1689,7 @@ sk:
   identify_observations: Identifikovať pozorovania
   identify_observations_by_these_users: Identifikovať pozorovania týmito užívateľmi
   identify_title: Identifikovať
-  identification: identifikácia
+  identification: identifikáciu
   identification_by_user: Identifikácia užívateľa %{user}
   identification_deleted: Identifikácia zmazaná.
   identification_saved: Identifikácia uložená!
@@ -2348,9 +2350,9 @@ sk:
   nearby_observations_: Blízke pozorovania
   nearby_observations: Blízke pozorovania
   need_id_help?: Potrebujete pomoc s ID?
-  needs_id: potrebuje ID
-  needs_id_: Potrebuje ID
-  Needs_ID!: Potrebuje ID!
+  needs_id: nutné ID
+  needs_id_: Nutné ID
+  Needs_ID!: Nutné ID!
   needs_id_expandable_html: <span class='full'>Potrebuje </span>ID
   needs_to_be_identified: Musí byť identifikovaný
   new: Nový
@@ -2739,8 +2741,10 @@ sk:
   optional: voliteľný
   or: alebo
   or_all_caps: ALEBO
+  or_invite_your_friends: Alebo pozvite svojich priateľov
   or_invited: alebo pozvaný.
   or_log_in_with_colon: 'Alebo sa prihláste cez:'
+  or_post_message_to_google_group: 'Alebo pošlite správu našej skupine Google Group:'
   or_upload: Alebo nahrať
   or_you_can: Alebo môžete...
   or_you_can_: alebo môžete
@@ -2751,6 +2755,8 @@ sk:
   organisms: Organizmy
   original: Pôvodný
   originally_flagged_by: Pôvodne označené používateľom
+  originally_imported_from_url_html: Pôvodne importované z <a href='%{url}'>%{url}</a>
+  original_page_url_for_this_photo: Pôvodné URL stránky pre túto fotku.
   original_rights_holder: Pôvodný vlastník práv
   original_url: Originálne URL
   original_url_for_this_map: Originálne URL pre túto mapu
@@ -2793,7 +2799,7 @@ sk:
   people: Ľudia
   people_agree: ľudia súhlasia
   people_following_user: Ľudia sledujú užívateľa %{user}
-  people_user_follows: Ludia, ktorí sledujú užívateľa %{user}
+  people_user_follows: Ľudia, ktorí sledujú užívateľa %{user}
   people_added:
     observation: pridal/a %{observation_link} @vow_or_con{vow:an|a} %{taxon_link}
     identification:
@@ -2819,6 +2825,8 @@ sk:
   photo_by_id_attribution: Fotka %{id}, %{attribution}
   photo_credits: Foto kredity
   photo_deleted: Fotka zmazaná
+  photo_destroyed_because_it_was_deleted_from: Fotka bola zničená, pretože bola zmazána
+    z externej stránky alebo %{site_name} už nemá povolenie na jej zobrazenie
   photo_hosting_accounts: Účty s uloženými fotkami
   photo_integration: Integrácia fotky
   photo_licensing: Licencia k fotke
@@ -3262,8 +3270,8 @@ sk:
   posts: Príspevky
   potential_disagreement: Potenciálna nezhoda
   powered_by: Vytvorené pomocou
-  powered_by_inaturalist_open_source_software_html: Vytvorené pomocou otvoreného softvéru<a
-    href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>
+  powered_by_inaturalist_open_source_software_html: Vytvorené pomocou otvoreného softvéru
+    <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>
   present: prítomný
   press: Tlač
   preview: Náhľad
@@ -3780,10 +3788,18 @@ sk:
     select_one_or_more_sounds: Vyberte jeden alebo viac zvukov
     selected_sounds: Vybrané zvuky
     sound: Zvuk
+    sound_has_been_flagged: Tento zvuk bol označený.
+    soundcloud_replied_with_an_error: SoundCloud odpovedal chybou. Skúste to prosím
+      znovu neskôr.
     sounds: Zvuky
     sounds_size_sound: '%{sounds_size} Zvuk'
     sounds_size_sounds: '%{sounds_size} Zvuky'
     view_all_soundcount_sounds: Zobraziť všetky %{sound_count} zvuky
+    we_didnt_find_any_sounds: Prepáčte! Nezískali sme žiadne zvuky z vášho účtu na
+      SoundCloud.
+    you_need_to_link_your_soundcloud_account: Aby ste mohli pridávať zvuky, musíte
+      si prepojiť svoj účet na SoundCloud.
+    your_soundcloud_account: váš účet na SoundCloud
   source: Zdroj
   source_: 'Zdroj:'
   source_wikipedia: 'Zdroj: Wikipédia'
@@ -3891,6 +3907,7 @@ sk:
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Prihlásiť sa k odberu</a>
     to %{x} z tohto %{y}.
   subscriptions: Odoberania
+  successfully_changed_your_password: Vaše heslo bolo úspešne zmenené.
   suggest_an_id: Navrhnúť ID
   suggest_an_identification: Navrhnúť identifikáciu
   suggestions: Návrhy
@@ -3932,6 +3949,8 @@ sk:
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} je ríša s 1 pozorovaním'
     other: '%{taxon} je ríša s %{count} pozorovaniami'
+  taxon_is_threatened_coordinates_hidden: Taxón je ohrozený, súradnice sú štandardne
+    nastavené ako skryté
   taxonomy: Taxonómia
   taxon_: taxón
   taxon_change: zmena taxónu
@@ -3949,9 +3968,17 @@ sk:
   taxon_curators: Kurátori taxónov
   taxon_extras: Doplnky taxónu
   taxon_framework: Rámec taxónu
+  taxon_framework_notes: Poznámky k rámcu taxónu
+  taxon_framework_relationship: Rámcový vzťah taxónu
+  taxon_framework_relationship_for: Rámcový vzťah taxónu pre
+  taxon_framework_relationship_number: Rámcový vzťah taxónu %{number}
+  taxon_framework_relationships: Vzťahy medzi taxónmi
+  taxon_framework_taxon: Taxón rámca taxónu
   taxon_links: Odkazy taxónu
   taxon_merge: zlúčenie taxónu
   taxon_name: Názov taxónu
+  taxon_name_must_match_an_existing_taxon_in_our_database: Názov taxónu musí súhlasiť
+    s existujúcim taxónom v našej databáze
   taxon_observed_by_html: <a href="%{url}">%{taxon}</a> pozorovaný od
   taxon_observed_by_user: '%{taxon} pozorovaný užívateľom %{user}'
   taxon_or_place_observations: Pozorovania taxónu alebo miesta
@@ -3994,6 +4021,7 @@ sk:
     rámce taxónu, ktoré pomáhajú opísať, čo máme na mysli pod pojmom taxón. <a href="/pages/taxon_frameworks">
     Ďalšie informácie </a>.
   taxonomy_settings: Nastavenie Taxonómie
+  teachers_guide: Príručka pre učiteľa
   tell_everyone_a_little_about_you: Povedzte ostatným niečo málo o sebe
   tell_the_world_a_little_about_yourself: Povedzte nám niečo o sobe
   tell_us_why: Povedzte nám prečo...
@@ -4022,16 +4050,24 @@ sk:
     odpovedajúce aktuálnym filtrom.
   thats_not_a_real_date: Toto nie je skutočný dátum!
   the: ten
-  the_: Ten
+  the_: Toto
+  the_below_items_are_needed_to_achieve: Tieto nižšie uvedené položky sú nevyhnutné
+    k dosiahnutiu <span className="bold">výskumného stupňa:</span>
   the_community_id_requires_at_least_two_identifications: Komunitné ID vyžaduje aspoň
     dve identifikácie.
+  the_community_must_feel_that: Komunita sa musí zhodnúť, že komunitný taxón je na
+    základe dôkazov najlepší aký môže byť
   the_list: zoznam
   the_past: minulý
   the_people_of_inat: Ľudia z %{site_name}
   the_project: projekt
+  the_user_x_has_been_suspended: Užívateľ %{user} bol vylúčený
+  the_user_x_has_been_unsuspended: Vylúčenie užívateľa %{user} bolo zrušené
   the_world: Svet
   then_keybord_sequence: potom
   there_is_no_wikipedia_page_matching: Na Wikipédii nie je odpovedajúca stránka
+  there_was_a_problem_saving_your_identification: 'Pri ukladaní vašej identifikácie
+    nastal problém: %{error}'
   there_were_errors: Objavili sa chyby.
   these_folks_kindly_volunteer_to: Títo ľudia sú takí dobrí, že dobrovoľne udržujú
     našu taxonómiu a riešia ďalšie problémy.
@@ -4141,8 +4177,15 @@ sk:
   user_added_an_x_to_noun_html: Používateľ %{user} pridal %{x} k %{noun}
   user_added_x_observations_html: Užívateľ %{user} pridal %{x} pozorovaní
   user_commented: '%{user} komentoval'
+  user_commented_on: Užívateľ %{user} komentoval váš %{title} %{time}
   user_disagrees_this_is_taxon: Užívateľ %{user} nesúhlasí s tým, že toto je %{taxon}
   user_flagged_as_a_spammer_html: '%{user} označený ako spamer'
+  user_invite_observation_to_project: Užívateľ %{user} by rád pripojil vaše pozorovanie
+    „%{observation}“ k projektu %{project}.
+  user_invited_you_to_join_project: Užívateľ %{user} vás pozval, aby ste sa pripojili
+    k projektu %{project}
+  user_invited_your_x_to_a_project_html: Užívateľ %{user} prizval váš %{x} k projektu
+  user_suggested_an_id: '%{user} navrhol ID'
   user_thinks_yours_is: '%{user} %{noun} vaše pozorovanie %{observation} je'
   username: Používateľské meno
   username_or_email: Používateľské meno alebo email
@@ -4169,6 +4212,7 @@ sk:
   view_leaderboard_from_last_year: Zobraziť prehľad najlepších za minulý rok
   view_license: Zobraziť licenciu
   view_listing: Zobraziť záznam
+  view_more: Zobraziť viac
   view_more_about_x: Zobraziť viac o %{x}
   view_more_observations_from_x: Zobraziť viac pozorovaní z %{x}
   view_more_observations_near_x_place: Zobraziť viac pozorovaní blízko %{place} na
@@ -4208,8 +4252,11 @@ sk:
   view_your_life_list: Zobraziť váš zoznam života
   view_your_calendar: Zobraziť váš kalendár
   view_your_observations: Zobraziť vaše pozorovania.
+  view_your_year_stats: Zobraziť vašu štatistiku za rok %{year}
   view_yours: Zobraziť váš
   view_all_of_your_observations_from_x: Zobraziť všetky vaše pozorovania z %{x}
+  want_to_show_off_some_of_your_favorite_taxa: Chcete tu ukázať niektoré svoje obľúbené
+    taxóny?
   we_had_a_problem_flagging_that_item: Máme problém s označením tejto položky:%{flag_error}
   welcome!: Vitajte!
   welcome: vitajte
@@ -4220,23 +4267,40 @@ sk:
   x_flagged: '%{x} označené'
   x_flagged_as_flag: '%{x} označené ako %{flag}'
   x_of_y: '%{x} z %{y}'
+  x_sent_you_a_new_message_on_y_html: '%{x} vám poslal/a správu na %{y}:'
+  year_month: rok/mesiac
   "yes": Áno
   yes_i_want_to_join: Áno, chcem sa pridať
+  you: vás
+  you_admin: vy spravujete
+  you_are_now: Teraz ste
+  you_are_now_role_for_project_html: teraz <strong>ste</strong> %{role} pre %{project}
+  you_are_already_a_member_of_this_project: Už ste členom tohto projektu!
   you_are_setting_this_project_to_aggregate: 'Nastavujete tento projekt tak, aby zoskupil
     všetky pozorovania, ktoré spĺňajú následujúce pravidlá: %{rules} Chcete pokračovať?'
   you_are_subscribed_to: Ste prihlásení k odberu
   you_cant_flag_that: Toto nemôžete označiť
   you_faved_this: Toto ste označili ako obľúbené!
+  you_have_to: Musíte
+  youll_need_to_link: Budete musieť pripojiť
   your_: Váš
   your_comment_was_saved: Váš obsah bol uložený
+  your_content: Váš obsah
+  your_home: Vaša domovská stránka
+  your_id: Vaše ID
+  your_identification: Vaša identifikácia
   your_life_list: váš zoznam života!
   your_membership: Vaše členstvo
+  your_month_observations: vaše pozorovania za %{month}
   your_name_was_saved: Vaše meno bolo uložené.
   your_observation_wont_get: vaše pozorovanie nebude spojené s ďalšími pozorovaniami
     tohto druhu a váš zoznam života nebude aktualizovaný.
   your_observations: Vaše pozorovania
+  your_google_account: Váš účet Google
+  your_pinned_locations: Vaše pripojené miesta
   your_profile_was_successfully_updated: Váš profil bol úspešne aktualizovaný!
   your_recent_projects: Vaše nedávne projekty
+  your_world!: Váš svet!
   your_dashboard_helps_you: Na svojej nástenke môžete sledovať, čo ostatní na stránkach
     tobia. Ak chcete sledovať niekoho aktualizácie, kliknite na odkaz „Sledovať [meno]“
     v nadpise, keď sa dívate na pozorovanie alebo profil tejto osoby.
@@ -4262,7 +4326,14 @@ sk:
           pozorovanie zmažete.
     messages:
       subject: Predmet
+    oauth:
+      authorizations:
+        new:
+          more_about_application: Viac o %{application}
     observations:
+      community_id:
+        your_id_does_not_match: Vaše ID (<span class="bold">%{taxon_name}</span>)
+          nesúhlasí s komunitným ID
       export:
         geo_help_html: |-
           Pole mesta, okresu, štátu podľa súradníc. Pre pozorovánia, na ktoré sa tieto typy nevzťahujú, budú použité odpovedajúcej správnej úrovne.
@@ -4441,6 +4512,9 @@ sk:
       less_than_x_minutes:
         one: menej než minútou
         other: menej než %{count} minútami
+      x_months:
+        one: 1 mesiac
+        other: '%{count} mesiace/cov'
     prompts:
       day: Deň
       hour: Hodina
@@ -4472,6 +4546,10 @@ sk:
         pre ostatných aby ste mohli
       requires_privilege_organizer: musíte mať 50 overených pozorovaní aby ste mohli
       taken: už bolo prijaté
+  helpers:
+    submit:
+      create: Vytvoriť %{model}
+      update: Aktualizovať %{model}
   activerecord:
     attributes:
       project:
