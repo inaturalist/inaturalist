@@ -6,6 +6,8 @@ I18N_LOCALES = Dir[Rails.root.join('config', 'locales', '*.{rb,yml}')].sort.map{
 }.compact.uniq
 I18N_SUPPORTED_LOCALES = I18N_LOCALES.reject{|l| l == 'qqq' || l =~ /\-phonetic/}
 
+Rails.application.config.i18n.available_locales = I18N_SUPPORTED_LOCALES
+
 # set up fallbacks
 require "i18n/backend/fallbacks"
 I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
