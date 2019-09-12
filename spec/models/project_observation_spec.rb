@@ -594,13 +594,17 @@ describe ProjectObservation, "elastic indexing" do
   #
   before(:all) do
     DatabaseCleaner.strategy = :truncation
-    Observation.__elasticsearch__.create_index!
-    Identification.__elasticsearch__.create_index!
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
+      Observation.__elasticsearch__.client.delete_by_query(
+        index: Observation.index_name, body: { query: { match_all: { } } })
+    end
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
+      Identification.__elasticsearch__.client.delete_by_query(
+        index: Identification.index_name, body: { query: { match_all: { } } })
+    end
   end
   after(:all) do
     DatabaseCleaner.strategy = :transaction
-    Observation.__elasticsearch__.delete_index!
-    Identification.__elasticsearch__.delete_index!
   end
 
   it "should update projects for observations" do
