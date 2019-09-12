@@ -102,7 +102,7 @@ class IdentificationsController < ApplicationController
     )
     # turn the instances into a WillPaginate Collection
     @identifications = WillPaginate::Collection.create(params[:page], limited_per_page,
-      result.response.hits.total) do |pager|
+      result.response.hits.total.value) do |pager|
       pager.replace(instances.to_a)
     end
     respond_to do |format|
