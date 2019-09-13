@@ -131,13 +131,13 @@ it:
     one: <span class='count'>1</span> taxon osservato
     other: <span class='count'>%{count}</span> taxa osservati
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> osservazione livello di ricerca</span>
-    other: <span class='count'>%{count}</span> osservazioni livello di ricerca</span>
+    one: <span class='count'>1</span> osservazione livello di ricerca
+    other: <span class='count'>%{count}</span> osservazioni livello di ricerca
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span> osservazione livello di ricerca identificate
-      al grado di specie o inferiore</span>
+      al grado di specie o inferiore
     other: <span class='count'>%{count}</span> osservazioni livello di ricerca identificate
-      al grado di specie o inferiore</span>
+      al grado di specie o inferiore
   x_taxa_curated_html:
     one: <span class='count'>1</span> taxon curato
     other: <span class='count'>%{count}</span> taxa curati
@@ -1229,6 +1229,7 @@ it:
       november: Novembre
       december: Dicembre
   date_is_accurate: La data è accurata
+  date_joined: Data di Adesione
   date_observed: Data osservazione
   date_observed_: Data osservazione
   date_observed_on: osservata in data
@@ -2118,7 +2119,7 @@ it:
     sito.
   lexicon: Lessico
   lexicons:
-    scientific_names: Nomi Scientifici
+    scientific_names: Nomi scientifici
     afrikaans: Afrikaans
     albanian: Albanese
     bengali: Bengalese
@@ -2147,6 +2148,7 @@ it:
     italian: Italiano
     japanese: Giapponese
     korean: Coreano
+    lithuanian: Lituano
     luxembourgish: Lussemburghese
     maltese: Maltese
     maori: Maori
@@ -2306,6 +2308,7 @@ it:
     ja: Giapponese
     ko: Coreano
     lb: Lussemburghese
+    lt: Lituano
     mk: Macedone
     nl: Olandese
     oc: Occitano
@@ -2479,8 +2482,10 @@ it:
       "y": 1 anno
       yy: '%d anni'
     datetime_with_zone: D MMM YYYY · LT z
+    datetime_with_offset: D MMM YYYY · LT Z
   mon: Lun
   month: Mese
+  monthly_supporter_since_date: Sostenitore mensile da %{date}
   months: Mesi
   months_ago: '%{text} fa'
   more: Di più
@@ -4040,8 +4045,8 @@ it:
   search_your_photos: Cerca tra le tue foto
   searching: Ricerca in corso...
   seasonality: Stagionalità
-  second_person_possessive_plural: Le tue/I tuoi %{noun}
-  second_person_possessive_singular: Il tuo %{noun}
+  second_person_possessive_plural: Il tuo %{noun}
+  second_person_possessive_singular: Le tue/I tuoi %{noun}
   see_something_wrong_with_taxon: Vedi qualcosa di sbagliato riguardo questo taxon?
     Informa i curatori.
   seen_it?: Lo hai visto?
@@ -4691,6 +4696,7 @@ it:
   they_already_have_iNat_accounts: '...hanno già account %{site_name}'
   they_have_been_invited: '...sono già stati invitati'
   third_person_possessive_singular: '%{noun} di %{object_phrase}'
+  third_person_possessive_plural: '%{noun} di %{object_phrase}'
   this: questo
   this_bioblitz_beings_in: Questo bioblitz inizia in
   this_id_was_added_due_to_a: Questa ID è stata aggiunta per
@@ -5602,6 +5608,9 @@ it:
           iNaturalist è un'iniziativa congiunta della California Academy of Sciences e della National Geographic Society. Tutte le donazioni saranno ricevute dalla California Academy of Sciences, una organizzazione no-profit esente tasse 501(c)(3) con base negli United States of America.
         </p>
       post_donate_social_media_text: Io sostengo iNaturalist perché...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Diventa un Sostenitore Mensile
+          di iNaturalist
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: Per favore risolvi i contrassegni
@@ -6539,6 +6548,9 @@ it:
           Collezione. Gli altri progetti devono già esistere prima di poterli aggiungere
           ad un progetto Ombrello. Puoi includerne a centinaia. I progetti Ombrello
           non possono contenere altri progetti Ombrello.
+        are_you_ready_to_duplicate: Sei pronto a lasciare questa pagina per duplicare
+          il progetto?
+        are_you_sure_you_want_to_delete: Sei sicuro di voler eliminare questo progetto?
         can_be_included_in_multiple: Può essere incluso in più progetti Ombrello
         click_through_to_individual_projects: Navigazione tra i singoli progetti
         collection_projects: Progetti Collezione
@@ -6553,6 +6565,7 @@ it:
           progetti tradizionali, come l'accesso alle coordinate precise, campi di
           osservazione personalizzati, o di aggiungere osservazioni che non possono
           essere filtrate automaticamente?
+        duplicate_project: Duplica Progetto
         leaderboards_among_individuals: Classifiche tra <strong>utenti</strong>
         leaderboards_among_projects_and_bioblitzes: Classifiche tra <strong>progetti</strong>
         multiple_project_administrators: Più di un amministratore del progetto
@@ -6590,6 +6603,8 @@ it:
         show_projects_as_flags: Mostra i progetti come segnalini sulla mappa
         start_and_end_times_for_bioblitzes: Ora/data di inizio e fine (per eventi
           tipo bioblitz)
+        traditional_projects_cannot_be_copied: I progetti tradizionali non possono
+          essere copiati
         umbrella_project_features: Caratteristiche dei Progetti Ombrello
         unique_url_for_outreach: Unico URL per raggiungerlo
         users_can_follow_your_project: Gli utenti possono seguire il tuo progetto
@@ -7016,6 +7031,8 @@ it:
         common_names_desc: Mostra i nomi comuni. Disabilita se vuoi vedere i nomi
           scientifici. Nota che puoi controllare quali nomi comuni vedere cambiando
           le impostazioni locali e quelle del luogo.
+        display_monthly_supporter_status_on_my_profile: Visualizza lo stato di Sostenitore
+          Mensile sul mio profilo
         if_you_change_your_mind_you_can_always_edit_your_settings_html: Se cambi idea
           puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         inaturalist_network_affiliation_desc_html: |-
@@ -7078,6 +7095,7 @@ it:
           opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai
           un aggiornamento sulla modifica, con un link ad uno strumento che potrai
           usare per aggiornare manualmente il tuo contenuto.
+        thanks_for_supporting_us!: Grazie di sostenerci!
         this_only_applies_to_traditional_projects: Questo si applica ai progetti tradizionali.
           Non puoi escludere delle osservazioni dai progetti collezione ed ombrello,
           che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.

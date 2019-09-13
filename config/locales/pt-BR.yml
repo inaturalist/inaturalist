@@ -1,6 +1,7 @@
 # Messages for Brazilian Portuguese (português do Brasil)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Abijeet Patro
 # Author: Allysson
 # Author: AndroidOSUser
 # Author: Angelocl
@@ -120,12 +121,12 @@ pt-BR:
     other: <span class='count'>%{count}</span> táxons observados
   x_research_grade_observations_html:
     one: <span class='count'>1</span> observação na categoria de pesquisa</span>
-    other: <span class='count'>%{count}</span> observações na categoria de pesquisa</span>
+    other: <span class='count'>%{count}</span> observações na categoria de pesquisa
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span> observação na categoria de pesquisa identificada
       ao nível de espécie ou menos</span>
     other: <span class='count'>%{count}</span> observações na categoria de pesquisa
-      identificada ao nível de espécie ou menos</span>
+      identificada ao nível de espécie ou menos
   x_taxa_curated_html:
     one: <span class='count'>1</span> táxon verificado
     other: <span class='count'>%{count}</span> táxons verificados
@@ -1222,6 +1223,7 @@ pt-BR:
       november: Novembro
       december: Dezembro
   date_is_accurate: Data é acurada
+  date_joined: Data de inscrição
   date_observed: Data de observação
   date_observed_: Data da observação
   date_observed_on: Data de observação
@@ -2471,6 +2473,7 @@ pt-BR:
       "y": 1a
       yy: '%da'
     datetime_with_zone: MMM D, YYYY · LT z
+    datetime_with_offset: MMM D, AAAA · LT Z
   mon: Seg
   month: Mês
   monthly_supporter_since_date: Apoiador mensal desde %{date}
@@ -4685,6 +4688,7 @@ pt-BR:
   they_already_have_iNat_accounts: '...eles já tem contas em %{site_name}'
   they_have_been_invited: '...eles já foram convidados'
   third_person_possessive_singular: '%{noun} de %{object_phrase}'
+  third_person_possessive_plural: '%{noun} de %{object_phrase}'
   this: este
   this_bioblitz_beings_in: Esta maratona naturalista começa em
   this_id_was_added_due_to_a: Esta identificação foi adicionada devido a
@@ -6550,6 +6554,10 @@ pt-BR:
           projetos precisam existir antes de você adicioná-los a um projeto de guarda-chuva.
           Você pode incluir centenas de projetos sob um único guarda-chuva. Projetos
           de guarda-chuva não podem conter outros projetos de guarda-chuva.
+        are_you_ready_to_duplicate: Você está pronto para sair desta página para duplicar
+          este projeto?
+        are_you_sure_you_want_to_delete: Você tem certeza que deseja remover este
+          projeto?
         can_be_included_in_multiple: Pode ser incluído em vários projetos de guarda-chuva
         click_through_to_individual_projects: Clique para projetos individuais
         collection_projects: Projeto de coleção
@@ -6564,6 +6572,7 @@ pt-BR:
           projetos tradicionais, como acessar coordenadas reais, campos de observação
           personalizados ou adicionar observações individuais que não podem ser filtradas
           automaticamente?
+        duplicate_project: Projeto duplicado
         leaderboards_among_individuals: Classificações entre <strong>indivíduos</strong>
         leaderboards_among_projects_and_bioblitzes: Classificações entre <strong>projetos</strong>
         multiple_project_administrators: Administradores de vários projetos
@@ -6602,6 +6611,7 @@ pt-BR:
         show_projects_as_flags: Mostrar projetos como sinalizadores no mapa
         start_and_end_times_for_bioblitzes: Data e hora de início e término (para
           eventos do tipo bioblitz)
+        traditional_projects_cannot_be_copied: Projeto tradicional não pode ser copiado
         umbrella_project_features: 'Recursos do projeto guarda-chuva:'
         unique_url_for_outreach: URL exclusivo para divulgação
         users_can_follow_your_project: Os usuários podem acompanhar seu projeto para

@@ -4,6 +4,7 @@
 # Author: 1233thehongkonger
 # Author: 578985s
 # Author: A2093064
+# Author: Abijeet Patro
 # Author: Aru
 # Author: Chestnut123tw
 # Author: Corainn
@@ -113,11 +114,11 @@ zh-TW:
     one: <span class='count'>1</span> 筆已觀察的物種分類群
     other: <span class='count'>%{count}</span> 筆已觀察的物種分類群
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> 筆研究等級的觀察記錄</span>
-    other: <span class='count'>%{count}</span> 筆研究等級的觀察記錄</span>
+    one: <span class='count'>1</span> 筆研究等級的觀察紀錄
+    other: <span class='count'>%{count}</span> 筆研究等級的觀察紀錄
   x_research_grade_observations_to_species_html:
-    one: <span class='count'>1</span> 筆被分類到「種」或種下階層的研究等級觀察記錄 </span>
-    other: <span class='count'>%{count}</span> 筆被分類到「種」或種下階層的研究等級觀察記錄 </span>
+    one: <span class='count'>1</span> 筆被分類到「種」或種下階層的研究等級觀察紀錄
+    other: <span class='count'>%{count}</span> 筆被分類到「種」或種下階層的研究等級觀察紀錄
   x_taxa_curated_html:
     one: <span class='count'>1</span> 個物種分類已策展
     other: <span class='count'>%{count}</span> 個物種分類已策展
@@ -1044,6 +1045,7 @@ zh-TW:
       november: 11月
       december: 12月
   date_is_accurate: 日期正確
+  date_joined: 加入日期
   date_observed: 觀察日期
   date_observed_: 觀察日期
   date_observed_on: 觀察日期
@@ -2129,6 +2131,7 @@ zh-TW:
       "y": 1y
       yy: '%dy'
     datetime_with_zone: MMM D, YYYY · LT z
+    datetime_with_offset: MMM D, YYYY · LT Z
   mon: 週一
   month: 月
   monthly_supporter_since_date: 自 %{date} 開始的每月贊助者
@@ -4020,6 +4023,7 @@ zh-TW:
   they_already_have_iNat_accounts: '...他們已有 %{site_name} 帳號'
   they_have_been_invited: '...他們已經被邀請'
   third_person_possessive_singular: '%{object_phrase}的%{noun}'
+  third_person_possessive_plural: '%{object_phrase}的%{noun}'
   this: 此
   this_bioblitz_beings_in: 此 bioblitz 開始於
   this_id_was_added_due_to_a: 此鑑定已添加由於
@@ -5394,6 +5398,8 @@ zh-TW:
       new:
         a_project_allows_you_to_gather: 收藏專案允許您使用核心 iNaturalist 搜尋工具來聚集並視覺化觀察。相符由專案所設定參數的一切內容將會自動囊括。
         an_umbrella_project_can_be_used_to: 綜合專案可用來比較兩個或以上的收藏、傳統專案之間的統計內容。在您添加內容至綜合專案前，需要先有其它的專案存在。您可以在一個綜合專案裡加入上百個專案，但不可讓綜合專案含有別的綜合專案。
+        are_you_ready_to_duplicate: 您確定要離開這個頁面來重複此專案嗎？
+        are_you_sure_you_want_to_delete: 您確定要刪除此專案嗎？
         can_be_included_in_multiple: 可包含在多項綜合專案
         click_through_to_individual_projects: 點擊至各項專案
         collection_projects: 收藏專案
@@ -5404,6 +5410,7 @@ zh-TW:
         delete_project: 刪除專案
         display_project_name: 顯示專案名稱
         do_you_need_features_from_traditional: 您需要傳統專案的特性嗎？例如像是存取實際座標、自定義觀察欄位，或是添加無法被自動篩選掉的個別觀察？
+        duplicate_project: 重複專案
         leaderboards_among_individuals: <strong>個人</strong>排行榜
         leaderboards_among_projects_and_bioblitzes: <strong>專案</strong>排行榜
         multiple_project_administrators: 多項專案管理員
@@ -5428,6 +5435,7 @@ zh-TW:
         project_summary_placeholder: 探索並追蹤在金門公園的鳥類...
         show_projects_as_flags: 在地圖上顯示專案成標籤
         start_and_end_times_for_bioblitzes: 起始與結束日期/時間（用於 bioblitz 類型活動）
+        traditional_projects_cannot_be_copied: 傳統專案無法複製
         umbrella_project_features: 綜合專案特性：
         unique_url_for_outreach: 用於推廣的獨一 URL 地址
         users_can_follow_your_project: 使用者可透過日誌發布文章的更新來關注您的專案

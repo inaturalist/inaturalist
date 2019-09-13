@@ -1,6 +1,7 @@
 # Messages for Russian (русский)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Abijeet Patro
 # Author: Alexandr Efremov
 # Author: ArtyomMatrokov
 # Author: Av6
@@ -37,6 +38,7 @@
 # Author: Vlad5250
 # Author: WindEwriX
 # Author: Дмитрий
+# Author: Марио
 # Author: Ядерный Трамвай
 ---
 ru:
@@ -162,14 +164,11 @@ ru:
     few: <span class='count'>%{count}</span> наблюдаемых таксона
     other: <span class='count'>%{count}</span> наблюдаемых таксонов
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> наблюдение исследовательского уровня
-    few: <span class='count'>%{count}</span> наблюдения исследовательского уровня
+    one: '<span class=''count''>1</span> наблюдение исследовательского уровня '
     other: <span class='count'>%{count}</span> наблюдений исследовательского уровня
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span> наблюдение исследовательского уровня с идентификацией
       до вида или ниже
-    few: <span class='count'>%{count}</span> наблюдения исследовательского уровня
-      с идентификацией до вида или ниже
     other: <span class='count'>%{count}</span> наблюдений исследовательского уровня
       с идентификацией до вида или ниже
   x_taxa_curated_html:
@@ -1266,6 +1265,7 @@ ru:
       november: Ноябрь
       december: Декабрь
   date_is_accurate: Дата является точной
+  date_joined: Дата регистрации
   date_observed: Дата наблюдения
   date_observed_: Дата наблюдения
   date_observed_on: дата наблюдения
@@ -2514,6 +2514,7 @@ ru:
       "y": 1г
       yy: '%dy'
     datetime_with_zone: MMM D, YYYY · LT z
+    datetime_with_offset: MMM D, YYYY · LT Z
   mon: Пн
   month: Месяц
   monthly_supporter_since_date: Ежемесячная поддержка начиная с %{date}
@@ -4007,7 +4008,7 @@ ru:
     могли угадать координаты на основе наблюдений, сделанных примерно в одно и то
     же время. Люди могут также применять эту защиту к координатам, которые они хотят
     скрыть.
-  said: упомянутый
+  said: добавил
   sat: Сб
   satellite: спутниковый
   save: Сохранить
@@ -4075,7 +4076,7 @@ ru:
   search_your_photos: Поиск ваших фото
   searching: Поиск...
   seasonality: Сезонность
-  second_person_possessive_plural: Ваши %{noun}
+  second_person_possessive_plural: Ваше %{noun}
   second_person_possessive_singular: Ваше %{noun}
   see_something_wrong_with_taxon: Что-то не так с этим таксоном? Сообщите кураторам.
   seen_it?: Видели ли вы это?
@@ -4728,6 +4729,7 @@ ru:
   they_already_have_iNat_accounts: '... у них уже есть учетные записи %{site_name}'
   they_have_been_invited: '... они уже были приглашены'
   third_person_possessive_singular: '%{noun} %{object_phrase}'
+  third_person_possessive_plural: '%{noun}%{object_phrase}'
   this: это
   this_bioblitz_beings_in: Биоблиц начинается в
   this_id_was_added_due_to_a: Этот ID был добавлен из-за
@@ -6533,6 +6535,9 @@ ru:
           проектам. Остальные проекты должны существовать до того, как вы сможете
           добавить их в зонтичный проект. Вы можете объединить сотни проектов под
           одним зонтиком. Зонтичные проекты не могут содержать другие зонтичные проекты.
+        are_you_ready_to_duplicate: Готовы ли вы уйти с этой страницы, чтобы продублировать
+          этот проект?
+        are_you_sure_you_want_to_delete: Вы уверены, что хотите удалить этот проект?
         can_be_included_in_multiple: Может быть включён в несколько зонтичных проектов
         click_through_to_individual_projects: Перейдите к отдельным проектам
         collection_projects: Коллекционные проекты
@@ -6547,6 +6552,7 @@ ru:
         do_you_need_features_from_traditional: Нужны ли вам функции традиционных проектов,
           такие как доступ к реальным  координатам, пользовательские поля наблюдения
           или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?
+        duplicate_project: Дублировать проект
         leaderboards_among_individuals: Таблицы лидеров среди <strong>отдельных лиц</strong>
         leaderboards_among_projects_and_bioblitzes: Лидеры <strong>проектов</strong>
         multiple_project_administrators: Администраторы нескольких проектов
@@ -6583,6 +6589,7 @@ ru:
         show_projects_as_flags: Показывать проекты как флажки на карте
         start_and_end_times_for_bioblitzes: Дата/время начала и окончания (для событий
           типа биоблицев)
+        traditional_projects_cannot_be_copied: Традиционный проект не может быть скопирован
         umbrella_project_features: 'Особенности зонтичного проекта:'
         unique_url_for_outreach: Уникальный URL для охвата
         users_can_follow_your_project: Пользователи могут следить за обновлениями

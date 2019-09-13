@@ -131,21 +131,21 @@ data.each do |key, translation|
     end
   end
 
-  if key =~ /#{locale}\..+\.one$/
-    other_key = key.sub( /\.one$/ , ".other" )
-    if !data[other_key] && @levels.include?( "error" )
-      problems[other_key] = problems[other_key] || []
-      problems[other_key] << "**ERROR:** Missing part of a plural key"
-    end
-  end
-
-  if key =~ /#{locale}\..+\.other$/
-    one_key = key.sub( /\.other$/ , ".one" )
-    if !data[one_key] && @levels.include?( "error" )
-      problems[one_key] = problems[one_key] || []
-      problems[one_key] << "**ERROR:** Missing part of a plural key"
-    end
-  end
+  # These should not be necessary now that we're using the rails-i18n gem
+  # if key =~ /#{locale}\..+\.one$/
+  #   other_key = key.sub( /\.one$/ , ".other" )
+  #   if !data[other_key] && @levels.include?( "error" )
+  #     problems[other_key] = problems[other_key] || []
+  #     problems[other_key] << "**ERROR:** Missing part of a plural key"
+  #   end
+  # end
+  # if key =~ /#{locale}\..+\.other$/
+  #   one_key = key.sub( /\.other$/ , ".one" )
+  #   if !data[one_key] && @levels.include?( "error" )
+  #     problems[one_key] = problems[one_key] || []
+  #     problems[one_key] << "**ERROR:** Missing part of a plural key"
+  #   end
+  # end
 
   # https://stackoverflow.com/a/3314572
   if @levels.include?( "error" ) && translation =~ /<\/?\s+[^\s]+>/

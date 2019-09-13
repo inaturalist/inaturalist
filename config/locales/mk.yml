@@ -36,8 +36,8 @@ mk:
     one: <span class='count'>1</span> набљудување
     other: <span class='count'>%{count}</span> набљудувања
   x_observations_link_html:
-    one: <a href='%{url}'>1</a> набљудување
-    other: <a href='%{url}'>%{count}</a> набљудувања
+    one: <a href='%{url}'>1 набљудување</a>
+    other: <a href='%{url}'>%{count} набљудувања</a>
   x_others:
     one: 1 друг
     other: '%{count} други'
@@ -57,8 +57,8 @@ mk:
     one: <span class='count'>1</span> вид
     other: <span class='count'>%{count}</span> видови
   x_species_link_html:
-    one: <a href='%{url}'>1</a> вид
-    other: <a href='%{url}'>%{count}</a> видови
+    one: <a href='%{url}'>1 вид</a>
+    other: <a href='%{url}'>%{count} видови</a>
   x_taxa_observed_html:
     one: Набљудуван <span class='count'>1</span> таксон
     other: <span class='count'>Набљудувани %{count}</span> таксони
@@ -208,6 +208,7 @@ mk:
   additional_range: Дополнителна распространетост
   admin: Админ
   admin_s: Администратор(и)
+  admin_only: Само за администратори
   admin_tools: Администраторски алатки
   agree: се согласувам
   agree_: Се согласувам
@@ -939,7 +940,7 @@ mk:
     white_text_transparent_png: преѕирен PNG со бел текст
     none: без лого
   long: Г.Д.
-  longitude: Геог. должина
+  longitude: Гео. должина
   longitude_in_decimal: Географска должина во децимални степени, како на пр. -122.123
   look_up_name: Побарај го името
   looks_like_neither_have!: Изгледа обете немаат никакви таксони!
@@ -1879,6 +1880,11 @@ mk:
     projects:
       edit:
         start_time_desc: Почетно време на вашиот биоблиц
+      new:
+        are_you_ready_to_duplicate: Дали сте сигурни дека сакате да ја напуштите страницава
+          за дуплирање овој проект?
+        are_you_sure_you_want_to_delete: Дали сте сигурни дека сакате да го избришете
+          овој проект?
   date:
     abbr_day_names:
     - нед
