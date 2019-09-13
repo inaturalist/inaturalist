@@ -355,7 +355,7 @@
     prev.click(function(e) {
       var prevOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
       var currentURL = $( ".urlselect select", wrapper ).val( );
-      if ( currentURL.match( /picasa/ ) ) {
+      if ( currentURL && currentURL.match( /picasa/ ) ) {
         return false;
       }
       var pagenum = parseInt( $( wrapper ).find( ".photoSelectorPage" ).val( ) );
@@ -372,7 +372,7 @@
     next.click(function(e) {
       var nextOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
       var currentURL = $( ".urlselect select", wrapper ).val( );
-      if ( currentURL.match( /picasa/ ) ) {
+      if ( currentURL && currentURL.match( /picasa/ ) ) {
         var nextPageToken = $( "[name='next_page_token']", wrapper ).val( );
         if ( nextPageToken ) {
           nextOpts.urlParams = $.extend({}, nextOpts.urlParams, { page_token: nextPageToken } );
@@ -478,7 +478,7 @@
     options.urlParams.context = (context || 'user');
     options.urlParams.object_id = (object_id || null);
     $(wrapper).data('photoSelectorOptions', options);
-    if ( url.match( /picasa/ ) ) {
+    if ( url && url.match( /picasa/ ) ) {
       $( ".photoSelectorSearch", wrapper ).hide( );
       $( ".prevlink", wrapper ).hide( );
     } else {
@@ -557,11 +557,11 @@
         }
         $(wrapper).data('photoSelectorExisting', null)
         
-        if (options.baseURL.match(/local_photo/)) {
+        if (options.baseURL && options.baseURL.match(/local_photo/)) {
           $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).hide()
           $(wrapper).find('.local_photos').show()
         } else {
-          if ( options.baseURL.match( /picasa/ ) ) {
+          if ( options.baseURL && options.baseURL.match( /picasa/ ) ) {
             $('.nextlink, .allNone, .photoSelectorSearch', wrapper).show( );
             $( ".photoSelectorSearch input" ).hide( );
           } else {

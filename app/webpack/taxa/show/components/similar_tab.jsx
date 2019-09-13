@@ -27,7 +27,11 @@ const SimilarTab = ( {
             <TaxonThumbnail
               taxon={result.taxon}
               key={`similar-taxon-${result.taxon.id}`}
-              badgeText={result.count}
+              badgeText={config.testNewSimilar ? (
+                <a href={`/observations?ident_taxon_id_exclusive=${result.taxon.id},${taxon.id}&place_id=any&verifiable=any`}>
+                  { result.count }
+                </a>
+              ) : result.count}
               badgeTip={tip}
               height={190}
               truncate={20}

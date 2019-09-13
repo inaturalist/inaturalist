@@ -392,8 +392,15 @@ export function fetchWanted( ) {
 
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
-    const { taxon } = getState( ).taxon;
-    inatjs.identifications.similar_species( defaultObservationParams( getState( ) ) ).then(
+    const state = getState( );
+    const { taxon } = state.taxon;
+    const endpoint = state.config.testNewSimilar
+      ? inatjs.observations.similarSpecies
+      : inatjs.identifications.similar_species;
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      verifiable: "any"
+    } );
+    endpoint( params ).then(
       response => {
         const withoutAncestors = response.results.filter( r => taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
         const commonlyMisidentified = withoutAncestors.filter( r => ( r.count > 1 ) );

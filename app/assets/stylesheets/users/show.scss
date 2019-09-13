@@ -64,7 +64,8 @@ h1 {
   .date {
     margin-right: 20px;
   }
-  .monthly-supporter {
+  .monthly-supporter,
+  .monthly-supporter a {
     color: $inat-green;
     white-space: nowrap;
     i {

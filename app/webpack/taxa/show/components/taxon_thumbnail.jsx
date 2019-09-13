@@ -86,6 +86,7 @@ TaxonThumbnail.propTypes = {
   taxon: PropTypes.object.isRequired,
   key: PropTypes.string,
   badgeText: PropTypes.oneOfType( [
+    PropTypes.object,
     PropTypes.string,
     PropTypes.number
   ] ),

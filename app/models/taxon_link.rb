@@ -52,7 +52,11 @@ class TaxonLink < ActiveRecord::Base
   def url_for_taxon(taxon)
     new_url = url.sub('[NAME]', taxon.name)
     new_url = new_url.sub('[RANK]', taxon.rank)
-    new_url = new_url.sub('[NAME_WITH_RANK]', taxon.name_with_rank)
+    new_url = if taxon.rank_level.to_i < Taxon::SPECIES_LEVEL
+      new_url.sub( '[NAME_WITH_RANK]', taxon.name_with_rank )
+    else
+      new_url.sub( '[NAME_WITH_RANK]', taxon.name )
+    end
     if taxon.species_or_lower? && pieces = taxon.name.split
       new_url.sub!('[GENUS]', pieces.first)
       new_url.sub!('[SPECIES]', pieces[1] || '')

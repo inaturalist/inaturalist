@@ -843,6 +843,10 @@ $nav-btn-dim: 40px;
   position: absolute;
   top: 5px;
   right: 5px;
+  color: white;
+}
+.TaxonThumbnail .badge a {
+  color: white;
 }
 .TaxonThumbnail .badge.with-tip {
   cursor: pointer;
