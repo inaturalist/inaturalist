@@ -122,18 +122,20 @@
         </div>
       </div>
 
-      <a name="donors"></a>
-      <h3><%=t :monthly_supporter %></h3>
-      <div class="stacked">
-        <%= f.check_box :prefers_monthly_supporter_badge,
-          label: t( "views.users.edit.display_monthly_supporter_status_on_my_profile" ),
-          description: @monthly_supporter ?
-            t( "views.users.edit.thanks_for_supporting_us!" ) :
-            t( "views.users.edit.monthly_supporter_desc_html", url: monthly_supporters_url( utm_campaign: "monthly-supporter", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: "account-settings" ) ),
-          label_after: true,
-          disabled: !@monthly_supporter
-        %>
-      </div>
+      <%= feature_test :monthly_supporters do %>
+        <a name="donors"></a>
+        <h3><%=t :monthly_supporter %></h3>
+        <div class="stacked">
+          <%= f.check_box :prefers_monthly_supporter_badge,
+            label: t( "views.users.edit.display_monthly_supporter_status_on_my_profile" ),
+            description: @monthly_supporter ?
+              t( "views.users.edit.thanks_for_supporting_us!" ) :
+              t( "views.users.edit.monthly_supporter_desc_html", url: monthly_supporters_url( utm_campaign: "monthly-supporter", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: "account-settings" ) ),
+            label_after: true,
+            disabled: !@monthly_supporter
+          %>
+        </div>
+      <% end %>
     </div>
 
     <div class="last column span-9 stacked">

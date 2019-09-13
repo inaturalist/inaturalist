@@ -70,10 +70,11 @@
           =t :last_active_with_date, date: l( @user.last_active, format: :short_with_year )
         - else
           =t :last_active_with_date, date: t(:unknown)
-      - if @donor_since && @user.prefers_monthly_supporter_badge?
-        %span.date.monthly-supporter
-          %i.icon-iconic-aves
-          =t :monthly_supporter_since_date_html, date: l( @donor_since, format: :month_year ), url: monthly_supporters_url( utm_campaign: "monthly-supporter-profile", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: @user.login )
+      = feature_test :monthly_supporters do
+        - if @donor_since && @user.prefers_monthly_supporter_badge?
+          %span.date.monthly-supporter
+            %i.icon-iconic-aves
+            =t :monthly_supporter_since_date_html, date: l( @donor_since, format: :month_year ), url: monthly_supporters_url( utm_campaign: "monthly-supporter-profile", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: @user.login )
 
     #description
       - if @user.description.blank?
