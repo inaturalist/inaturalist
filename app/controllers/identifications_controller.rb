@@ -219,9 +219,6 @@ class IdentificationsController < ApplicationController
   def update
     @identification.assign_attributes( params[:identification] )
     if @identification.body_changed? && @identification.hidden?
-      puts "@identification.body_changed?: #{@identification.body_changed?}"
-      puts "@identification.body_was:      #{@identification.body_was}"
-      puts "@identification.body:          #{@identification.body}"
       respond_to do |format|
         msg = t(:cant_edit_or_delete_hidden_content)
         format.html do

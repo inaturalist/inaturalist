@@ -280,7 +280,7 @@ shared_examples_for "an IdentificationsController" do
     end
     it "should include place-specific taxon name" do
       ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
-      place = Place.make!
+      place = make_place_with_geom
       tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS[:ENGLISH] )
       ptn = PlaceTaxonName.make!( taxon_name: tn, place: place )
       user.update_attributes( place: place, locale: "en" )

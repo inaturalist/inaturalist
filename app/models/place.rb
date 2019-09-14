@@ -23,7 +23,7 @@ class Place < ActiveRecord::Base
   # do not destroy observations_places. That will happen
   # in update_observations_places, from a callback in place_geometry
   has_many :observations_places
-  has_one :place_geometry, :dependent => :destroy
+  has_one :place_geometry, dependent: :destroy, inverse_of: :place
   has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
   before_save :calculate_bbox_area, :set_display_name
@@ -46,6 +46,7 @@ class Place < ActiveRecord::Base
   validate :validate_parent_is_not_self
   validate :validate_name_does_not_start_with_a_number
   validate :custom_errors
+  validates :place_geometry, presence: true, on: :create
   
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}

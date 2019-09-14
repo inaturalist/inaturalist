@@ -54,7 +54,7 @@ describe CheckList, "creation" do
   after( :each ) { disable_elastic_indexing( Observation, Place ) }
   it "should populate with taxa from RG observations within place boundary" do
     obs = make_research_grade_observation( latitude: 0.5, longitude: 0.5 )
-    place = Place.make!
+    place = make_place_with_geom
     without_delay do
       place.save_geom( GeoRuby::SimpleFeatures::Geometry.from_ewkt( "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" ) )
     end
@@ -247,7 +247,7 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should update old listed taxa which this observation confirmed" do
-    other_place = Place.make!( name: "other place" )
+    other_place = make_place_with_geom( name: "other place" )
     other_place.save_geom( GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0 )))"))
     o = make_research_grade_observation(latitude: other_place.latitude, 
       longitude: other_place.longitude, taxon: @taxon)
@@ -308,7 +308,7 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should not remove taxa just because obs obscured" do
-    p = Place.make!
+    p = make_place_with_geom
     p.save_geom( GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0 )))"))
     o = make_research_grade_observation( latitude: p.latitude, longitude: p.longitude )
     CheckList.refresh_with_observation( o )
@@ -357,13 +357,13 @@ describe CheckList, "refresh_with_observation" do
     let( :species ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
 
     it "should add listed taxa descendant of admin_level 0 place if taxon atlased but not parent admin_level 0 place" do
-      @atlas_place = Place.make!(admin_level: 0)
+      @atlas_place = make_place_with_geom(admin_level: 0)
       @atlas_place.save_geom(
         GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt(
           "MULTIPOLYGON( ((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679 )))"
         )
       )
-      @descendant_place = Place.make!(parent: @atlas_place)
+      @descendant_place = make_place_with_geom(parent: @atlas_place)
       @descendant_place.save_geom(
         GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt(
           "MULTIPOLYGON( ((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679 )))"
@@ -470,9 +470,9 @@ end
 
 describe CheckList, "sync_with_parent" do
   it "should add taxa to the parent" do
-    parent_place = Place.make!
+    parent_place = make_place_with_geom
     parent_list = parent_place.check_list
-    place = Place.make!( parent: parent_place )
+    place = make_place_with_geom( parent: parent_place )
     list = place.check_list
     taxon = Taxon.make!
     
@@ -484,8 +484,8 @@ describe CheckList, "sync_with_parent" do
   end
 
   it "should work if parent doesn't have a check list" do
-    parent = Place.make!( :prefers_check_lists => false )
-    place = Place.make!( parent: parent )
+    parent = make_place_with_geom( :prefers_check_lists => false )
+    place = make_place_with_geom( parent: parent )
     list = place.check_list
     taxon = Taxon.make!
     list.add_taxon( taxon )

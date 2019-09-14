@@ -26,7 +26,7 @@ describe Emailer, "updates_notification" do
   end
 
   it "should use common names for a user's place" do
-    p = Place.make!
+    p = make_place_with_geom
     t = Taxon.make!
     tn_default = TaxonName.make!( taxon: t, lexicon: TaxonName::LEXICONS[:ENGLISH], name: "Default Name" )
     tn_local = TaxonName.make!( taxon: t, lexicon: TaxonName::LEXICONS[:ENGLISH], name: "Localized Name" )

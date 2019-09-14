@@ -10,7 +10,7 @@ describe "Taxon Index" do
   describe "prepare_batch_for_index" do
     it "caches project_ids" do
       t = Taxon.make!
-      lt = ListedTaxon.make!(taxon: t, list: CheckList.make!, place: Place.make!)
+      lt = ListedTaxon.make!(taxon: t, list: CheckList.make!, place: make_place_with_geom)
       expect(t.indexed_place_ids).to eq nil
       Taxon.prepare_batch_for_index([ t ])
       expect(t.indexed_place_ids).to eq [ lt.place_id ]

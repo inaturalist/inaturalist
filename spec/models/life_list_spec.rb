@@ -191,10 +191,6 @@ describe LifeList do
       l.reload
       expect(l.rules.detect{|r| r.operator == "observed_in_place?"}).to be_blank
     end
-    it "should not allow places without boundaries" do
-      l = LifeList.make(:place => Place.make!)
-      expect(l).not_to be_valid
-    end
     it "should allow taxa observed in place" do
       t = Taxon.make!
       o = Observation.make!(:taxon => t, :latitude => place.latitude, :longitude => place.longitude)
