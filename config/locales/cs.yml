@@ -143,7 +143,6 @@ cs:
     názvy atd.).
   a_few_points_to_make_things_clear: 'Několik bodů, které by vám to mohly ujasnit:'
   a_flag_for_x: prapor pro %{x}
-  a_greasemonkey_script: text Greasemonkey
   a_member_of: Člen
   a_member_of_taxon_html: člen %{taxon}
   able_to_connect_flickr: Skvěle!Byli jsme schopni propojit váš účet Flickr.
@@ -833,7 +832,6 @@ cs:
   check_here_to_autoload_photos: Označte pro automatické nahrání fotek z Flickru.
     Označení můžete zrušit, pokud je vědecký název taxonu zároveň nevědeckým výrazem
     nebo běžně používaným chybným označením.
-  check_it_out: Zkontrolovat
   check_list: Zaškrtávací seznam
   check_list_description: Vyberte vyšší taxon, který chcete uvést v tomto seznamu,
     např. „Aves“ pro ptáky nebo „Amphibia“ pro obojživelníky. Pokud vytvoříte například
@@ -1806,7 +1804,6 @@ cs:
     skupiny zpětné vazby <a href="%{feedback_url}"></a>.
   if_you_have_trouble_with_the_site: 'Pokud máte se stránkou jakékoliv problémy, podívejte
     se prosím do sekce nápovědy:'
-  if_you_use: Použijete-li
   if_youd_like_us_to_share_your_observations_with: Pokud chcete, abychom vaše pozorování
     sdíleli s partnery, ověřte si, že jste pro svá pozorování vybrali licenci Creative
     Commons.
@@ -2088,7 +2085,6 @@ cs:
     Googlu
   link_your_facebook_account: Propojit váš účet na Facebooku
   link_your_flickr_account: Propojit váš účet na Flickru
-  link_your_flickr_account_with_inat: Propojit váš účet na Flickru s %{site_name}
   link_your_flickr_account_with_inat_so: Propojit váš účet na Flickru s %{site_name},
     abyste mohli přidávat fotky z vašich pozorování.
   link_your_google_account: Propojit váš účet na Googlu
@@ -2634,7 +2630,6 @@ cs:
   not_filtering: Nefiltruje se
   not_findig_what_you_want: Nenašli jste, co jste chtěli?
   not_finding_place_you_want?: Nenašli jste místo, které jste hledali?
-  not_finding_what_looking_for: Nenašli jste, co jste hledali?
   not_found: Nenalezeno
   not_just_creative_commons_licensed: nevztahuje se pouze licence Creative Commons
   not_linked_facebook: Váš účet na %{site_name} není propojen s vaším účtem na Facebooku
@@ -4221,6 +4216,9 @@ cs:
   taxon_is_a_rank_of_amphibia_with_x_observations:
     one: '%{taxon} je %{rank} obojživeníků s jedním pozorování'
     other: '%{taxon} je %{rank} obojživelníků s %{count} pozorování'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} je %{rank} ptáků s jedním pozorováním %{taxon} je %{rank} ptáků
+      s %{count} pozorováními'
   taxon_is_a_rank_of_mammalia_with_x_observations:
     one: '%{taxon} je %{rank} savců s jedním pozorováním'
     other: '%{taxon} je %{rank} savců s %{count} pozorováními'
@@ -4372,8 +4370,6 @@ cs:
   that_role_doesnt_exist: Tato funkce neexistuje.
   that_was_the_last_observation_matching_the_current_filters: Toto bylo poslední pozorování
     odpovídající aktuálním filtrům.
-  that_will_insert_a_link_to: tímto se vloží odkaz na odkaz na tento nástroj na každou
-    stránku s fotkami z Flickru.
   thats_okay_we_forget: Nevadí! My taky zapomínáme. Pošlete nám e-mailovou adresu,
     kterou jste použili při zakládání svého účtu, a my vám pošleme odkaz na obnovení
     hesla.
@@ -4464,7 +4460,6 @@ cs:
     to tak, dejte nám o tom prosím vědět.
   there_were_some_problems_with_fields: 'Nastaly problémy u následujících polí:'
   there_were_some_problems_with_these_files: 'Vyskytly se problémy s těmito soubory:'
-  theres_also: také je tu
   theres_something_wrong_with_taxon_framework_relationship: Je je špatně - nemůžeme
     určit vztah mezi jakýmkoliv vnitřním a vnějším taxonem
   these_are_items_people_on: Toto jsou položky, které lidé na stránce označili ke
@@ -4585,8 +4580,6 @@ cs:
   to_include_your_google_with_inat: k přidání vašeho účtu Google na %{site_name}
   to_recipient: k provedení
   to_suggest_an_identification: k navržení identifikace
-  to_tag_your_flickr_from_here: k označení vašich fotek na Flickru odtud, aniž byste
-    je museli vybírat a vkládat.
   to_the_bat_cave: Do netopýří jeskyně!
   today: Dnes
   too_many_observations_csv: Máte spoustu pozorování!<br /> Můžeme přijmout jen vašich
@@ -4721,6 +4714,8 @@ cs:
       remove_photo: Odstranit fotografii
       select_all: Vybrat všechna pozorování
       upload_failed: Nahrávání se nezdařilo
+  uploading_num_of_count_photos: Nahrávání {{PLURAL:%{count}|fotografie|%{num} ze
+    %{count} fotografií|%{num} z %{count} fotografií}}...
   url_identifier_of_a_project_derived_from: URL / identifikátor projektu odvozený
     z externího zdroje
   url_of_this_taxon_on_the_source_website: URL tohoto taxonu na webové stránce zdroje
@@ -5326,6 +5321,17 @@ cs:
             %{site_name} se studenty.
     donate:
       donate_short_desc: Darujte nyní, abyste ukázali, že nás podporujete!
+      donate_desc_html: "<p class = \"lead\">\n  <strong> iNaturalist je jednou z
+        největších komunit na světě\n  zkoumající biologickou rozmanitost. Děkujeme
+        za to, že jste součástí! </ Strong>\n</ P>\n<p class = \"lead\">\n  Pokud
+        věříte v sílu této globální komunity, \n  sdílejte znalosti a vytvářejte nenahraditelná
+        data o biodiverzitě,\n  prosím, zvažte jednorázový nebo opakovaný dar.\n</
+        P>\n<p class = \"lead\">\n  Vaše dary pomáhají podporovat iNaturalist, komunita
+        roste, od\n  zdokonalení počítačů a zavádění nových funkcí\n  pro naše servery
+        a zaměstnance.\n</ P>\n<p class = \"text-muted\">\n  iNaturalist je společná
+        iniciativa Kalifornské akademie věd\n  a National Geographic Society. Všechny
+        dary obdrží\n  Kalifornská akademie věd, 501 (c) (3) nezdanitelný zisk\n  organizace
+        se sídlem ve Spojených státech amerických.\n</ P>"
       post_donate_social_media_text: Podporuji iNaturalist protože...
     flags:
       show:

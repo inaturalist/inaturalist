@@ -7,6 +7,7 @@
 # Author: Fugithora
 # Author: IBDJ
 # Author: Joedalton
+# Author: JonNPoulsen
 # Author: Jorn Ari
 # Author: Kranix
 # Author: Kueda
@@ -139,7 +140,6 @@ da:
   a_few_points_to_make_things_clear: 'Et par punkter for at gøre tingene lidt mere
     tydelige:'
   a_flag_for_x: en markering for %{x}
-  a_greasemonkey_script: et Greasemonkey-script
   a_member_of: Et medlem af
   a_member_of_taxon_html: et medlem af %{taxon}
   able_to_connect_flickr: Super! Det lykkedes os at tilknytte din Flickr-konto.
@@ -858,7 +858,6 @@ da:
   check_here_to_autoload_photos: Sæt markering her for at auto-indlæse fotos fra Flickr..
     Du vil muligvis fjerne markeringen igen, når et taksons videnskabelige navn også
     er et ikke-videnskabeligt ord eller en almindelig fejlstavning, som "Parus".
-  check_it_out: Tjek det ud
   check_list: Tjekliste
   check_list_description: Vælg en takson på et højere niveau som du vil vise på denne
     liste, som "Aves" for fugle eller "Amphibia" for padder. Når den først er indstillet,
@@ -1868,7 +1867,6 @@ da:
     <a href="%{feedback_url}"> feedbackgruppe </a> .
   if_you_have_trouble_with_the_site: 'Hvis du har problemer med webstedet, kan du
     tjekke vores hjælpesektion:'
-  if_you_use: Hvis du bruger
   if_youd_like_us_to_share_your_observations_with: |-
     Hvis du vil have os til at dele dine observationer med datapartnere, skal du være
     sikker på, at du har valgt at licensere dine observationer med en Kreativ
@@ -2158,7 +2156,6 @@ da:
   link_or_unlink_your_google_account: Tilknyt eller frakobl din Google konto
   link_your_facebook_account: Tilknyt din Facebook konto
   link_your_flickr_account: Tilknyt din Flickr konto
-  link_your_flickr_account_with_inat: Tilknyt din Flickr konto med %{site_name}
   link_your_flickr_account_with_inat_so: Tilknyt din Flickr konto med %{site_name}
     så du kan tilføje fotos af dine observationer.
   link_your_google_account: Tilknyt din Google konto
@@ -2442,7 +2439,6 @@ da:
     datetime_with_zone: MMM D, YYYY · LT z
   mon: Man
   month: Måned
-  monthly_supporter_since_date: Månedlig supporter siden %{date}
   months: Måneder
   months_ago: '%{text} siden'
   more: Mere
@@ -2713,7 +2709,6 @@ da:
   not_filtering: Ikke filtreret
   not_findig_what_you_want: Kan du ikke finde hvad du ønsker?
   not_finding_place_you_want?: Kan du ikke finde det sted du ønsker?
-  not_finding_what_looking_for: Kan du ikke finde det du leder efter?
   not_found: Ikke fundet
   not_just_creative_commons_licensed: ikke kun Creative Commons licenseret
   not_linked_facebook: Din %{site_name} konto er ikke tilknyttet til din Facebook-konto
@@ -4500,8 +4495,6 @@ da:
   that_role_doesnt_exist: Denne rolle eksisterer ikke
   that_was_the_last_observation_matching_the_current_filters: Det var den sidste observation,
     der matchede de aktuelle filtre.
-  that_will_insert_a_link_to: der vil indsætte et link til dette værktøj på hver Flickr
-    fotoside.
   thats_okay_we_forget: Det er okay! Vi glemmer også vores. Send os den e-mail adresse,
     du brugte til at oprette din konto, og vi sender dig et link til at nulstille
     din adgangskode.
@@ -4601,7 +4594,6 @@ da:
     tilfældet, så fortæl os det.
   there_were_some_problems_with_fields: 'Der var nogle problemer med følgende felter:'
   there_were_some_problems_with_these_files: 'Der var nogle problemer med disse filer:'
-  theres_also: der er også
   theres_something_wrong_with_taxon_framework_relationship: Der er noget galt her
     - vi kan ikke bestemme forbindelsen mellem intern og ekstern taksa
   these_are_items_people_on: |-
@@ -4724,8 +4716,6 @@ da:
   to_include_your_google_with_inat: for at inkludere din Google konto med %{site_name}
   to_recipient: til
   to_suggest_an_identification: at foreslå en identifikation
-  to_tag_your_flickr_from_here: for at tagge dine Flickr fotos herfra uden at skære
-    og indsætte.
   to_the_bat_cave: Til flagermus hulen!
   today: I dag
   too_many_observations_csv: Du har en bikube af observationer! <br /> Vi kan kun
@@ -6500,6 +6490,8 @@ da:
           Projekterne skal være oprettet, før du kan tilføje dem til et paraplyprojekt.
           Du kan inkludere hundredevis af projekter under én enkelt paraply. Paraplyprojekter
           kan ikke indeholde andre paraplyprojekter.
+        are_you_ready_to_duplicate: Er du klar til at forlade denne side for at duplikere
+          dette projekt?
         are_you_sure_you_want_to_delete: Er du sikker på, at du vil slette dette projekt?
         can_be_included_in_multiple: Kan inkluderes i flere paraplyprojekter
         click_through_to_individual_projects: Klik videre til individuelle projekter
@@ -6514,6 +6506,7 @@ da:
         do_you_need_features_from_traditional: Har du brug for egenskaber fra de traditionelle
           projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter
           eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?
+        duplicate_project: Duplikér Projekt
         leaderboards_among_individuals: Toplister iblandt <strong>individuelle</strong>
         leaderboards_among_projects_and_bioblitzes: Toplister iblandt <strong>projekter</strong>
         multiple_project_administrators: Flere projektadministratorer
@@ -6550,6 +6543,7 @@ da:
         project_summary_placeholder: Opdag og følg Golden Gate Parks fugle...
         show_projects_as_flags: Vis projekter som flag på kort
         start_and_end_times_for_bioblitzes: Start og slut tidspunkt for bioblitzer
+        traditional_projects_cannot_be_copied: Det oprindelige projekt kan ikke kopieres
         umbrella_project_features: 'Paraplyprojekt egenskaber:'
         unique_url_for_outreach: Unik URL til opsøgning
         users_can_follow_your_project: Brugere kan følge dit projekt for opdateringer

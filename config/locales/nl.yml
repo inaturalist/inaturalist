@@ -148,7 +148,6 @@ nl:
   a_few_points_to_make_things_clear: 'Enkele opmerkingen om de zaken wat duidelijker
     te maken:'
   a_flag_for_x: een markering voor %{x}
-  a_greasemonkey_script: een Greasemonkeyscript
   a_member_of: Een lid van
   a_member_of_taxon_html: een lid van %{taxon}
   able_to_connect_flickr: Fijn! Het is ons gelukt om uw Flickraccount te koppelen.
@@ -869,7 +868,6 @@ nl:
     laden. Je wil dit misschien deselecteren als een taxon's wetenschappelijke naam
     ook een niet-wetenschappelijke woord of veel voorkomende spellingsfout is, zoals
     "Parus".
-  check_it_out: Controleer
   check_list: Checklist
   check_list_description: Kies een hoger niveau taxon dat u in deze lijst wilt weergeven,
     zoals 'Aves' voor vogels of 'Amphibia' voor amfibieën. Wanneer ingesteld, staat
@@ -1885,7 +1883,6 @@ nl:
     onze <a href="%{feedback_url}">feedbackgroep</a>.
   if_you_have_trouble_with_the_site: 'Als je problemen hebt met de site, kijk dan
     in onze help-sectie:'
-  if_you_use: Als je gebruikt
   if_youd_like_us_to_share_your_observations_with: Als u wilt dat wij uw waarnemingen
     met gegevenspartners delen, zorg er dan voor dat je gekozen hebt om je waarnemingen
     in licentie te geven met een Creative Commons-licentie.
@@ -2177,7 +2174,6 @@ nl:
   link_or_unlink_your_google_account: Koppel of ontkoppel uw Google-account
   link_your_facebook_account: Koppel uw Facebookaccount
   link_your_flickr_account: uw Flickr-account koppelen
-  link_your_flickr_account_with_inat: Uw Flickr-account koppelen met %{site_name}
   link_your_flickr_account_with_inat_so: Koppel je Flickr-account aan %{site_name}
     zodat je foto's van je waarnemingen kan toevoegen.
   link_your_google_account: Uw Google-account koppelen
@@ -2465,7 +2461,8 @@ nl:
     datetime_with_offset: D MMM YYYY · LT Z
   mon: ma
   month: Maand
-  monthly_supporter_since_date: Maandelijkse Supporter sinds %{date}
+  monthly_supporter_since_date_html: <a href="%{url}">Maandelijkse Supporter</a> sinds
+    %{date}
   months: Maanden
   months_ago: '%{text} geleden'
   more: Meer
@@ -2735,7 +2732,6 @@ nl:
   not_filtering: Niet filteren
   not_findig_what_you_want: Niet gevonden wat je zoekt?
   not_finding_place_you_want?: Niet de plek gevonden die je zoekt?
-  not_finding_what_looking_for: Niet gevonden waar je naar zocht?
   not_found: Niet gevonden
   not_just_creative_commons_licensed: niet alleen met Creative Commons-licentie
   not_linked_facebook: Uw %{site_name}-account is niet aan uw Facebookaccount gekoppeld
@@ -4532,8 +4528,6 @@ nl:
   that_role_doesnt_exist: Die rol bestaat niet
   that_was_the_last_observation_matching_the_current_filters: Dat was de laatste waarneming
     die overeenkomt met de huidige filters.
-  that_will_insert_a_link_to: die op elke Flickr-fotopagina een link naar deze tool
-    invoegt.
   thats_okay_we_forget: Dat is niet erg! We vergeten ook wel eens de onze. Stuur ons
     het e-mailadres dat u hebt gebruikt om uw account aan te maken en we sturen u
     een e-mail met een link om uw wachtwoord opnieuw in te stellen.
@@ -4631,7 +4625,6 @@ nl:
     Als dat het \ngeval is, laat het ons dan weten."
   there_were_some_problems_with_fields: 'Er was een probleem met de volgende velden:'
   there_were_some_problems_with_these_files: 'De volgende bestanden hebben een probleem:'
-  theres_also: er is eveneens
   theres_something_wrong_with_taxon_framework_relationship: Er is hier iets mis. We
     kunnen de relatie tussen interne en externe taxa niet bepalen
   these_are_items_people_on: |-
@@ -4759,8 +4752,6 @@ nl:
   to_include_your_google_with_inat: om uw Google-account toe te voegen aan %{site_name}
   to_recipient: naar
   to_suggest_an_identification: om een identificatie voor te stellen
-  to_tag_your_flickr_from_here: om uw Flickrfoto's vanuit hier te labelen zonder kopiëren
-    en plakken.
   to_the_bat_cave: Naar de vleermuizengrot!
   today: Vandaag
   too_many_observations_csv: Je hebt een bijenkorf van waarnemingen!<br/> We kunnen
@@ -6471,8 +6462,9 @@ nl:
         an_umbrella_project_can_be_used_to: |-
           Een overkoepelend project kan worden gebruikt om statistieken uit twee of meer Collection- of Traditionele projecten te vergelijken. De andere projecten moeten bestaan voordat je ze aan een kunt toevoegen parapluproject. U kunt honderden projecten onder één paraplu onderbrengen. Paraplu
           projecten kunnen geen andere parapluprojecten bevatten.
-        are_you_ready_to_duplicate: Ben je klaar met deze pagina om een kopie van
-          dit project te maken?
+        are_you_ready_to_duplicate: Is deze pagina af en klaar om een kopie van dit
+          project te maken? Let op dat het projectpictogram en banner niet worden
+          gedupliceerd en opnieuw moeten worden geüpload in het duplicaat project.
         are_you_sure_you_want_to_delete: Weet je zeker dat je dit project wilt verwijderen?
         can_be_included_in_multiple: Kan worden opgenomen in meerdere parapluprojecten
         click_through_to_individual_projects: Doorklikken naar individuele projecten

@@ -164,7 +164,6 @@ fr:
   a_few_points_to_make_things_clear: 'Quelques précisions pour rendre les choses plus
     claires :'
   a_flag_for_x: un repère pour %{x}
-  a_greasemonkey_script: un script Greasemonkey
   a_member_of: Un membre de
   a_member_of_taxon_html: un membre de %{taxon}
   able_to_connect_flickr: Super ! Nous avons pu nous connecter à votre compte Flickr.
@@ -343,8 +342,8 @@ fr:
   add_taxa_to_places: Ajouter des taxons aux lieux
   add_taxon_batch_to: Ajouter un lot de taxons à %{list}
   add_taxon_range: Ajouter un périmètre de taxon
-  add_taxonomic_tags_to: Ajouter des étiquettes taxinomiques aux photos Flickr sélectionnées
-    &raquo;
+  add_taxonomic_tags_to: Ajouter des étiquettes taxinomiques aux photos ''Flickr''
+    sélectionnées &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Ajouter les balises taxonomiques aux photos
     Flickr associées avec les observations sélectionnées.
   add_to_a_scheme: Ajouter à un programme
@@ -515,9 +514,9 @@ fr:
     vous le définissez autrement.
   all_your_projects: Tous vos projets
   allow_any: Autoriser tout
-  allow_curator_access: Autoriser l’accès au superviseur
-  allow_curator_coordinate_access: Autoriser l’accès aux coordonnées par le superviseur
-  allow_project_curators_to_view_your_private_coordinates: Autoriser les superviseurs
+  allow_curator_access: Autoriser l’accès au responsable
+  allow_curator_coordinate_access: Autoriser l’accès aux coordonnées par le responsable
+  allow_project_curators_to_view_your_private_coordinates: Autoriser les responsables
     du projet à voir vos coordonnées masquées
   allowed_establish_means_values: Valeurs des moyens d’établissement autorisées
   allowed_html: HTML autorisé
@@ -917,7 +916,6 @@ fr:
     Cochez ici pour charger automatiquement les photos à partir de Flickr. Ne
     cochez pas si le nom scientifique d’un taxon est aussi un nom non
     scientifique ou un mot souvent mal écrit, comme « Parus ».
-  check_it_out: Vérifier
   check_list: Vérifier la liste
   check_list_description: |-
     Choisissez un taxon d’une catégorie supérieure que vous voulez afficher
@@ -1101,7 +1099,7 @@ fr:
   conservation_status_geoprivacy_desc: La confidentialité géographique par défaut
     est appliquée à toutes les observations de taxon à cet endroit
   conservation_summary: Résumé de la situation de conservation
-  contact_support: Contacter le support
+  contact_support: Contacter le soutien
   contain_all_descendants?: Cette liste de contrôle contient-elle tous les descendants
     de ce taxon qui sont présents ici?
   content_hidden: Contenu masqué
@@ -1194,9 +1192,8 @@ fr:
   create_new_taxon: Créer un nouveau taxon
   create_observations: Créer des observations
   create_observations_by_uploading_photos_to: |-
-    Créez des observations en téléversant des photos sur %{place}. Quand
-    ce sera fait, %{place} essaiera d’extraire les coordonnées GPS et
-    l’horodatage de la photo. Pour démarrer,
+    Créez des observations en téléversant des photos sur %{place}. %{place} essaiera d’extraire les coordonnées GPS et
+    l’horodatage de chaque photo. Pour démarrer,
   created: Date de création
   created_by: Créé@{f:e|} par
   created_by_user_on_date: Créé par %{user} le %{date}
@@ -1278,6 +1275,7 @@ fr:
       november: Novembre
       december: Décembre
   date_is_accurate: La date est actuelle
+  date_joined: Date d’adhésion
   date_observed: Date observée
   date_observed_: Date d’observation
   date_observed_on: date observée le
@@ -1383,7 +1381,7 @@ fr:
   dont_filter: Ne pas filtrer
   dont_have_an_account_sign_up_html: Vous n'avez pas encore de compte ? <strong>Enregistrez-vous.</strong>
   dont_send_me_email: Ne m’envoyez pas de courriel !
-  dont_use_double_quotes: N’utilisez pas de guillemets ailleurs
+  dont_use_double_quotes: N’utilisez pas de guillemets anglais ailleurs
   drop_it: Le déposer
   double_click_to_finish: (double cliquez pour finir)
   download: Télécharger
@@ -1682,7 +1680,7 @@ fr:
   flagged_for_curation: Marqué pour supervision
   flagged_taxon: Taxon marqué
   flagged_thing_explanation: Les utilisateurs ont signalé ce %{thing} parce que
-  flagging_desc: Le marquage attire l’attention des superviseurs bénévoles du site
+  flagging_desc: Le marquage attire l’attention des responsables bénévoles du site
     sur quelque chose. Veuillez ne pas marquer les problèmes que vous pouvez régler
     par les identifications, par l’Évaluation de la qualité des données, ou en parlant
     à la personne qui a rédigé le contenu.
@@ -1690,7 +1688,7 @@ fr:
   flags: Drapeaux
   flags_with_count: Indicateurs (%{count})
   flags_explanation: Les utilisateurs de %{site_name} signalent les choses qui méritent
-    l’attention des superviseurs ou des administrateurs du site.
+    l’attention des responsables ou des administrateurs du site.
   flags_for_x_html: Etioquettes pour %{x}
   flags_on_users_content: Drapeaux sur le contenu de %{user}
   flickr_account_information: Informations sur votre compte Flickr
@@ -1739,8 +1737,8 @@ fr:
     news_and_updates: Nouvelles & Mises à jour
     tutorials: Tutoriels
   forum_desc: Le forum est un endroit pour discuter de iNat lui-même, y compris pour
-    l’aide et le support, les demandes de fonctionnalité, les rapports de bogue, les
-    annonces, et autres.
+    l’aide et le soutien, les demandes de fonctionnalité, les rapports de bogues,
+    les annonces, et autres.
   frequency: Fréquence
   fri: Ven
   from: À partir de
@@ -1770,7 +1768,7 @@ fr:
   generally_these_come_from_iucn_red_list: En général, ils viennent de la liste rouge
     de l’UICN et, s’ils viennent d’ailleurs, ils respecteront les catégories de l’UICN.
   generate_taxonomic_tags_for_flickr: Générer des étiquettes taxinomiques pour vos
-    photos Flickr.
+    photos ''Flickr''.
   generate_widget: Générer le widget
   generate_your_stats: Générer vos statistiques
   generating: Génération en cours…
@@ -1971,7 +1969,6 @@ fr:
     sur notre <a href="%{feedback_url}">groupe de commentaires</a>.
   if_you_have_trouble_with_the_site: 'Si vous avez des problèmes avec le site, veuillez
     consulter notre section d’aide :'
-  if_you_use: Si vous utilisez
   if_youd_like_us_to_share_your_observations_with: Si vous aimeriez que nous échangions
     vos observations avec nos partenaires d’échange de données, assurez-vous d’avoir
     mis vos observations sous la licence Creative Commons.
@@ -2009,7 +2006,7 @@ fr:
   improving: Amélioration
   in_n: dans %{n}
   in_place_x: '%{place}'
-  inaturalist_network_affiliation: Affiliation de Réseau iNaturalist
+  inaturalist_network_affiliation: Affiliation au réseau iNaturalist
   inbox: Boîte de réception
   including: y compris
   increase_brightness: Augmenter la luminosité
@@ -2048,7 +2045,7 @@ fr:
   input_taxon: Entrer un taxon
   insects: insectes
   insect_life_stage: Stade de l'insecte
-  inspired_by_the_flickr_group: Inspirée par le groupe Flickr <a href='http://flickr.com/groups/idplease/'>,
+  inspired_by_the_flickr_group: Inspiré par le groupe Flickr <a href='http://flickr.com/groups/idplease/'>,
     Identification SVP</a> est un endroit où vous pouvez publier des observations
     sur des choses que vous ne connaissez pas et où vous pouvez aider les gens à identifier
     des créatures mystérieuses !
@@ -2106,7 +2103,7 @@ fr:
   item_flagged_notice_html: |-
     Ceci a été marqué comme pourriel et n’est plus
     visible publiquement. Vous pouvez le voir parce que vous l’avez créé, ou que vous êtes un
-    superviseur du site. Si vous pensez que c’est une erreur, veuillez
+    responsable du site. Si vous pensez que c’est une erreur, veuillez
     <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
     <a href="%{manage_flags_path}">Gérer les drapeaux</a>
   its_important_that_you: Il est important que vous cliquiez
@@ -2135,7 +2132,7 @@ fr:
   jpg_png_or_gif: JPG, PNG ou GIF
   jump_to_letter: Sauter à la lettre
   just_a_reminder: Juste un rappel, parce que vous pouvez avoir donné les droits aux
-    superviseurs de projet pour voir les coordonnées masquées de vos observations
+    responsables de projet pour voir les coordonnées masquées de vos observations
     dans ce projet.
   just_added!: Ajouts récents
   keep_editing: Continuer à modifier
@@ -2171,7 +2168,7 @@ fr:
     species: Le plus d'espèces en %{time}
     observations: Le plus d'observations en %{time}
     identifications: Le plus d'identifications en %{time}
-  leading: Principal
+  leading: En tête
   learn!: Apprenez!
   learn: Apprendre
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent
@@ -2204,7 +2201,7 @@ fr:
     creole_portuguese: Créole (Portugais)
     czech: Tchèque
     danish: Danois
-    davawenyo: Davawenyo
+    davawenyo: davawenyo
     dutch: Néerlandais
     english: Anglais
     estonian: Estonien
@@ -2249,10 +2246,10 @@ fr:
     licence.\n%{site_name} utilise votre contenu sous licence Creative Commons pour\nl’échanger
     avec des partenaires comme \n<a href=\"http://www.gbif.org/\">Global Biodiversity
     Information Facility</a> (GBIF)."
-  licensing_your_content_gives_others_legal: En mettant votre contenu sous licence,
+  licensing_your_content_gives_others_legal: 'En mettant votre contenu sous licence,
     vous donnez aux autres le droit de l’utiliser s’ils respectent les conditions
     de la licence. %{site_name} utilise votre contenu sous licence Creative Commons
-    pour l’échanger avec des partenaires d’échange de données comme la
+    pour l’échanger avec des partenaires d’échange de données tels que :'
   life: Êtres vivants
   life!: Êtres vivants!
   life_list: Liste des êtres vivants de %{user}
@@ -2272,7 +2269,6 @@ fr:
   link_or_unlink_your_google_account: Lier ou dissocier votre compte Google
   link_your_facebook_account: Lier votre compte Facebook
   link_your_flickr_account: Lier votre compte Flickr
-  link_your_flickr_account_with_inat: Lier votre compte Flickr à %{site_name}
   link_your_flickr_account_with_inat_so: Lier votre compte Flickr à %{site_name} afin
     de pouvoir ajouter des photos de vos observations.
   link_your_google_account: Lier votre compte Google
@@ -2347,7 +2343,7 @@ fr:
   loading_full_description_html: Chargement de la description complète…
   loading_images: Chargement des images…
   loading_map: Chargement de la carte…
-  loading_metadata: Chargement des métadonnées…
+  loading_metadata: Chargement des métadonnées...
   loading_more_photos: Chargement de plus de photos…
   loading_observations: Chargement des observations…
   loading_preview_and_code: Chargement de l’aperçu et du code…
@@ -2359,7 +2355,7 @@ fr:
     de date.
   locales_: Paramètres régionaux
   locales:
-    ar: Arabe
+    ar: arabe
     bg: Bulgare
     br: Breton
     ca: Catalan
@@ -2368,15 +2364,15 @@ fr:
     de: Allemand
     el: Grec
     en-US: Anglais (États-Unis)
-    en: Anglais
+    en: anglais
     eo: Espéranto
     es-ES: Espagnol (Espagne)
-    es-MX: Espagnol (Mexique)
+    es-MX: espagnol mexicain
     es: Espagnol
     et: Estonien
     eu: Basque
     fi: Finnois
-    fr: Français
+    fr: français
     gl: Galicien
     id: Indonésien
     it: Italien
@@ -2386,7 +2382,7 @@ fr:
     lb: Luxembourgeois
     lt: Lithuanien
     mk: Macédonien
-    nl: Néerlandais
+    nl: néerlandais
     oc: Occitan
     pl: Polonais
     pt-BR: Portugais (Brésil)
@@ -2395,7 +2391,7 @@ fr:
     sk: Slovaque
     sq: Albanais
     sv: Suédois
-    zh-CN: Chinois (simplifié)
+    zh-CN: chinois simplifié
     zh-TW: Chinois (traditionnel)
   locality_notes: Notes localisées
   localized_species_accounts: Comptes d’espèces localisées
@@ -2559,9 +2555,10 @@ fr:
       "y": 1y
       yy: '%dy'
     datetime_with_zone: D MMM YYYY · LT z
+    datetime_with_offset: MMM D, YYYY · LT Z
   mon: Lun
   month: Mois
-  monthly_supporter_since_date: Soutien mensuel depuis %{date}
+  monthly_supporter_since_date_html: <a href="%{url}">Soutien mensuel</a> depuis %{date}
   months: Mois
   months_ago: il y a %{text}
   more: Plus
@@ -2835,7 +2832,6 @@ fr:
   not_filtering: Le filtrage n’a pas lieu
   not_findig_what_you_want: Vous n’avez pas trouvé ce que vous vouliez?
   not_finding_place_you_want?: Vous n’avez pas trouvé le lieu que vous vouliez?
-  not_finding_what_looking_for: Vous ne trouvez pas ce que vous cherchez?
   not_found: Non trouvé
   not_just_creative_commons_licensed: pas seulement sous licence Creative Commons
   not_linked_facebook: Votre compte %{site_name} n’est pas lié à votre compte Facebook
@@ -3739,7 +3735,7 @@ fr:
   private: privé
   private_: Privé
   private_description: Coordonnées complètement masquées des cartes publiques. Les
-    vraies coordonnées ne sont visibles que par vous et les superviseurs de projets
+    vraies coordonnées ne sont visibles que par vous et les responsables de projets
     auxquels vous avez ajouté l’observation. Les observations avec des coordonnées
     masquées seront toujours utilisées pour vérifier les listes de contrôle des lieux.
   probably_spam: Sans doute du pourriel
@@ -3765,7 +3761,7 @@ fr:
   project_assets: Biens du projet
   project_cover: Couverture du projet
   project_created_on: projet créé le %{date}
-  project_curator_changes: Modifications de superviseur du projet
+  project_curator_changes: Modifications de responsable du projet
   project_curator_id: ID du responsable de l’organisation du projet
   project_curator_tools: Outils du chef de projet
   project_curators: Responsables de l’organisation du projet
@@ -3781,7 +3777,7 @@ fr:
     title: List de contrôle de %{owner_name}
     description: Liste des spécimens de %{owner_name}
   project_curators_added_some_of_your_observations_html: |-
-    les superviseurs de <a href="%{url}">%{project}</a>
+    les responsables de <a href="%{url}">%{project}</a>
     ont ajouté certaines de vos observations
   project_id: ID de projet
   project_members: Membres de %{project}
@@ -4055,7 +4051,7 @@ fr:
     must_be_observed_in_place: doit être observé fans le lieu
     must_be_in: doit être dans le taxon
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser
-      les superviseurs du projet à voir les coordonnées.
+      les responsables du projet à voir les coordonnées.
   running_total: Total actuel
   same_day_obscured: Une autre observation de cette personne faite ce jour est obscurcie
   same_day_obscured_desc: |-
@@ -4257,7 +4253,7 @@ fr:
   some_other_reason: Une autre raison que vous pouvez expliquer ci-dessous.
   duplicate_observation_flag_warning: Pour les observations dupliquées, veuillez demander
     à l’observateur de régler le problème au lieu de mettre un marquage, parce que
-    les superviseurs du site ne peuvent pas supprimer les observations.
+    les responsables du site ne peuvent pas supprimer les observations.
   some_people: Certaines personnes
   some_people_that: Certaines personnes qui
   some_rights_reserved: certains droits réservés
@@ -4464,7 +4460,7 @@ fr:
   suggestions: Suggestions
   summary: Résumé
   supporting: Soutenir
-  support_inaturalist: Supporter iNaturalist
+  support_inaturalist: Soutenir iNaturalist
   suspicious_photos: Photos suspectes
   siutable_observations: observations appropriées
   sun: Dim
@@ -4593,7 +4589,7 @@ fr:
     overlays: Superpositions
   taxon_changes: Modifications de taxon
   taxon_colors: Couleurs des taxons
-  taxon_curators: Superviseurs des taxons
+  taxon_curators: Responsables des taxons
   taxon_extras: Taxons additionnels
   taxon_framework: Cadre de taxon
   taxon_framework_notes: Notes du cadre de taxon
@@ -4676,8 +4672,6 @@ fr:
   that_role_doesnt_exist: Ce rôle n’existe pas
   that_was_the_last_observation_matching_the_current_filters: C’était la dernière
     observation correspondant aux filtres actuels.
-  that_will_insert_a_link_to: cette action insérera un lien vers cet outil dans chaque
-    page de photo de Flickr.
   thats_okay_we_forget: Pas de problème! Il nous arrive aussi d’oublier le nôtre.
     Envoyez l’adresse électronique que vous avez utilisée pour créer votre compte
     et nous vous enverrons un message avec un lien pour réinitialiser votre mot de
@@ -4784,7 +4778,6 @@ fr:
     :'
   there_were_some_problems_with_these_files: 'Il y a eu quelques problèmes avec ces
     fichiers :'
-  theres_also: il y a aussi
   theres_something_wrong_with_taxon_framework_relationship: Il y a quelque chose en
     erreur ici — nous ne pouvons pas déterminer la relation entre des taxons interne
     et externe
@@ -4810,6 +4803,7 @@ fr:
   they_already_have_iNat_accounts: … ils ont déjà des comptes sur %{site_name}
   they_have_been_invited: …ils ont déjà été invités
   third_person_possessive_singular: '%{noun} de %{object_phrase}'
+  third_person_possessive_plural: '%{noun} de %{object_phrase}'
   this: ce
   this_bioblitz_beings_in: Ce bioblitz commence dans
   this_id_was_added_due_to_a: Cet ID a été ajouté suite à un(e)
@@ -4916,8 +4910,6 @@ fr:
   to_include_your_google_with_inat: pour inclure votre compte Google avec %{site_name}
   to_recipient: À
   to_suggest_an_identification: pour suggérer une identification
-  to_tag_your_flickr_from_here: pour étiquetter vos photos de Flickr à partir d’ici
-    sans couper/coller.
   to_the_bat_cave: vers la caverne des chauves-souris!
   today: Aujourd’hui
   too_many_observations_csv: Vous avez trop d’observations !<br /> Nous ne pouvons
@@ -4981,7 +4973,7 @@ fr:
   unclassified: Non classifié
   ungrafted_taxa: Taxons non greffés
   unhide_content: Démasquer le contenu
-  unhide_desc: Réafficher ce contenu le révélera à tout le monde. Les superviseurs
+  unhide_desc: Réafficher ce contenu le révélera à tout le monde. Les responsables
     pourront toujours choisir de le masquer à nouveau à l’avenir.
   uninvite: désinviter
   unique_identifier_of_this_taxon: Identifiant unique de ce taxon dans la base de
@@ -5080,8 +5072,8 @@ fr:
   use_unique_file_names_for_separate_uploads: Utilisez des noms de fichier uniques
     pour les téléversements séparés
   use_well_formed_csv: Utilisez un format CSV bien formé, ce qui signifie que le texte
-    avec des virgules doit être inclus dans des guillemets. La plupart des applications
-    de tableur exportent le CSV dans ce format.
+    avec des virgules doit être inclus dans des guillemets anglais. La plupart des
+    applications de tableur exportent le CSV dans ce format.
   used_x_times:
     one: Utilisé une fois
     other: Utilisé %{count} fois
@@ -5318,8 +5310,8 @@ fr:
   we_know_is_inconvenience_but_will_allow_grow: Nous savons que c’est un inconvénient,
     mais notre nouveau système d’autorisation permettra à %{sitename} de mieux progresser
     dans l’avenir et vous fournira une sécurité supplémentaire.
-  we_support_flickr: Pour le moment, nous acceptons Flickr pour l’hébergement d’images
-    et espérons ajouter d’autres hébergeurs prochainement.
+  we_support_flickr: Pour le moment, nous prenons en charge ''Flickr'' pour l’hébergement
+    d’images et espérons ajouter d’autres hébergeurs prochainement.
   we_tried_to_process_your_upload_named_filename: |-
     Nous avons essayé de traiter votre téléversement appelé %{filename}, mais cela n’a pas fonctionné.
     Veuillez résoudre le(s) problème(s) suivant(s) et réessayer.
@@ -5372,7 +5364,7 @@ fr:
     projet ?
   who_can_see_the_coordinates: Qui peut voir les coordonnées
   who_can_see_the_coordinates_observer: La personne qui fait l'observation
-  who_can_see_the_coordinates_projects: Superviseurs des projets suivants
+  who_can_see_the_coordinates_projects: Responsables des projets suivants
   who_can_see_the_coordinates_trusted: Particuliers à qui l’observateur a fait confiance,
     avec leur coordonnées masquées
   who_helped_user_the_most: Qui a le plus aidé %{user}
@@ -5534,7 +5526,7 @@ fr:
     contient cette remarque
   you_curate_a_project_that_contains_this_observation_desc: Vous pouvez voir les coordonnées
     dissimulées quand vous supervisez un projet qui contient une observation et que
-    l’observateur a choisi de partager les coordonnées avec les superviseurs de ce
+    l’observateur a choisi de partager les coordonnées avec les responsables de ce
     projet.
   you_didnt_select_any_observations: Vous n’avez sélectionné aucune observation.
   you_didnt_select_any_photos_to_tag: Vous n’avez sélectionné aucune photo à étiquetée!
@@ -5547,7 +5539,7 @@ fr:
   you_dont_have_permission_to_edit_that_project: Vous n’avez pas le droit de modifier
     ce projet.
   you_dont_have_permission_to_edit_that_taxon: Vous n’avez pas le droit de modifier
-    ce taxon. Veuillez contacter un des superviseurs des taxons ou marquer le taxon
+    ce taxon. Veuillez contacter un des responsables des taxons ou marquer le taxon
     pour demander des modifications.
   you_dont_have_permission_to_edit_those_photos: Vous n’avez pas le droit de modifier
     ces photos.
@@ -5622,8 +5614,8 @@ fr:
     vous connecter pour continuer.
   your_activation_code_was_missing: Votre code d’activation est manquant. Veuillez
     suivre l’URL de votre courriel.
-  your_browser_does_not_support_the_audio_element: Votre navigateur ne supporte pas
-    l’élément audio
+  your_browser_does_not_support_the_audio_element: Votre navigateur ne prend pas en
+    charge l’élément audio
   your_coarser_id: |-
     Votre ID plus générale de <span class='taxon'>%{coarser_taxon_name}</span> implique que vous
     n’êtes pas d’accord avec l’ID plus précise de
@@ -5757,6 +5749,32 @@ fr:
       post_donate_social_media_text: Je soutiens iNaturalist  parce que...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Devenir un soutien mensuel de iNaturalist
+        desc_html: |-
+          <p class="lead">
+            <strong>iNaturalist est une des plus grandes communautés du monde dédiées
+            à l’exploration de la biodiversité. Merci à vous pour en faire partie !</strong>
+          </p>
+          <p class="lead">
+            Nous désirons garder iNaturalist libre à l’utilisation, mais il n’est pas gratuit
+            à mettre en œuvre. Si vous aimez iNaturalist, merci de songer à en devenir un
+            parrain mensuel. Les dons récurrents aident à assurer qu’iNaturalist pourra
+            continuer à faire évoluer son infrastructure et ses équipes en fournissant des
+            ressources suffisantes et prévisibles. Vous pouvez accepter d’afficher votre
+            statut de parrain régulier sur votre profil d’utilisateur.
+          </p>
+          <p class="lead">
+            Vos dons charitables aident à soutenir la croissance de la communauté, depuis
+            la vision informatique avancée, la mise en oeuvre de  nouvelles fonctionnalités
+            et la prise en charge de nos serveurs et le soutien de nos personnels. Si vous
+            préférez effectuer un don en une fois, veuillez <a href="%{donate_url}">cliquer ici</a>.
+          </p>
+          <p class="text-muted">
+            iNaturalist est une initiative conjointe de l’Académie des sciences de Californie
+            et de la Société géographique nationale (''National Geographic Society''). Tous
+            les dons seront reçus par l’Académie des sciences de Californie, une organisation
+            sans but lucratif exemptée de taxes aux États-Unis d’Amérique selon le code
+            fiscal américain 501(c)(3).
+          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |-
@@ -6326,7 +6344,7 @@ fr:
           attendant, vous pouvez téléverser les fichiers de son directement en utilisant
           <a href="/observations/upload">Uploader</a>.
       show:
-        allow_curator_coordinate_access_desc_html: Permettre aux superviseurs de projet
+        allow_curator_coordinate_access_desc_html: Permettre aux responsables de projet
           de voir les coordonnées masquées de cette observation.
         ancestor_disagreements_desc: Nombre de taxons identifiés faisant partie des
           ancêtres d’un taxon, mais qui contrarient ce taxon (par exemple, « Je pense
@@ -6385,8 +6403,8 @@ fr:
           tous ses descendants
         curator_coordinate_access_disabled_desc_html: |-
           Ce projet n’autorise pas d’observations avec des coordonnées
-          non visibles par les superviseurs. Si vous ne voulez pas partager les
-          coordonnées de cette observation avec les superviseurs de ce projet,
+          non visibles par les responsables. Si vous ne voulez pas partager les
+          coordonnées de cette observation avec les responsables de ce projet,
           vous devez supprimer l’observation du projet.
         disagreement_count_desc: Nombre de taxons identifiés qui ne font pas partie
           des ancêtres d’un taxon
@@ -6395,7 +6413,7 @@ fr:
           Certaines de ces photos ont été signalées comme étant inappropriée ou
           une violation du droit d’auteur. Pour obtenir les détails, consultez %{links}
         join_project_desc_html: |-
-          Rejoindre le projet donnera aux superviseurs du projet la
+          Rejoindre le projet donnera aux responsables du projet la
           capacité de voir les coordonnées cachées de cette ou de toute
           autre observation dans le projet et implique que vous acceptez les
           <a href="%{url}" target="_blank">conditions</a> du projet.
@@ -6469,7 +6487,7 @@ fr:
         observation_flagged_notice_html: |-
           Cette observation a été marquée comme pourriel et n’est plus
           visible publiquement. Vous pouvez la voir parce que vous l’avez créée, ou êtes un
-          superviseur du site. SI vous pensez que c’est une erreur, veuillez
+          responsable du site. SI vous pensez que c’est une erreur, veuillez
           <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
           <a href="/observations/%{observation_id}/flags">Gérer les marques</a>
       user_stats:
@@ -6707,35 +6725,35 @@ fr:
       tracks_multiple_projects: suit de multiples projets
       projects_included: Projets inclus
       collection_and_umbrellas_do_not_support: Les collections et les projets chapeau
-        ne supportent pas actuellement l’accès aux coordonnées masquées.
+        ne prennent pas actuellement en charge l’accès aux coordonnées masquées.
       curator_coordinate_access_desc_html: |-
-        Souvenez-vous, <strong>les superviseurs du projet peuvent ajouter n’importe laquelle de vos observations à
+        Souvenez-vous, <strong>les responsables du projet peuvent ajouter n’importe laquelle de vos observations à
         leur projet</strong> sauf si vous avez choisi l’inverse dans vos <a
         href="/users/edit">paramètres de compte</a>. Cochez cette case uniquement si vous
-        faites confiance aux superviseurs du projet pour voir vos coordonnées masquées sur n’importe quelle
+        faites confiance aux responsables du projet pour voir vos coordonnées masquées sur n’importe quelle
         observation que vous pouvez avoir ajoutée à ce projet. Si vous
         choisissez de ne pas leur accorder ce droit, vous pourrez toujours accorder l’accès
         aux coordonnées masquées observation par observation.
       confirm_leave:
         what_would_you_like: Que voulez-vous faire avec vos observations dans ce projet ?
         keep_observations_label: Laisser vos observations dans ce projet
-        keep_observations_desc: Vos observations resteront dans le projet et les superviseurs
+        keep_observations_desc: Vos observations resteront dans le projet et les responsables
           pourront encore voir leurs coordonnées masquées.
         project_requires_curator_coordinate_access_desc: |-
           Ce projet n’autorise pas d’observations avec des coordonnées
-          non visibles par les superviseurs. Si vous ne voulez pas partager les
-          coordonnées de cette observation avec les superviseurs de ce projet,
+          non visibles par les responsables. Si vous ne voulez pas partager les
+          coordonnées de cette observation avec les responsables de ce projet,
           vous devez supprimer l’observation du projet.
         remove_observations_label: Supprimer toutes vos observations de ce projet
         remove_observations_desc_html: |-
-          Gardez à l’esprit que les superviseurs du projet pourront toujours ajouter vos
+          Gardez à l’esprit que les responsables du projet pourront toujours ajouter vos
           observations à leur projet sauf si vous modifiez vos
           <a href="/users/edit">paramètres de compte</a>.
         revoke_observations_label: |-
-          Laisser vos observations sur ce projet mais empêcher les superviseurs de voir
+          Laisser vos observations sur ce projet mais empêcher les responsables de voir
           leurs coordonnées masquées
         revoke_observations_desc: Si le seul motif de votre départ est d’empêcher
-          les superviseurs du projet de voir vos coordonnées masquées.
+          les responsables du projet de voir vos coordonnées masquées.
       edit:
         aggregation_pending: En attente d'aggrégation
         new_place_desc_html: "Essayez de voir en utilisant \n<a href=\"%{places_url}\"
@@ -6751,7 +6769,7 @@ fr:
             amusante d’initier les gens à la biodiversité tout en récoltant des données
             précieuses.
           </p>
-        change_admin_desc: Choisir un des superviseurs du projet pour être le nouvel
+        change_admin_desc: Choisir un des responsables du projet pour être le nouvel
           administrateur.
         cover_desc: Image de bannière facultative qui apparaîtra en haut de votre
           page de projet. Elle doit faire 950px de large et moins de 400px de haut.
@@ -6769,9 +6787,9 @@ fr:
           être converti en un nouveau <a href="%{url}">project Collection</a>.
         last_aggregated_at_desc: Moment où l’agrégateur a terminé d’ajouter des observations
           à ce projet
-        no_curators: Il n’y a pas de superviseur de projet. Si vous voulez affecter
+        no_curators: Il n’y a pas de responsable de projet. Si vous voulez affecter
           une nouvelle personne comme administrateur, elle doit d’abord rejoindre
-          ce projet, et vous devez la rendre superviseur.
+          ce projet, et vous devez la rendre responsable.
         observation_aggregation_desc_html: |-
           <p class="description">
             L’agrégation d’observations ajoutera automatiquement vos observations appropriées à votre
@@ -6809,7 +6827,7 @@ fr:
         rules:
           captive: être captif/cultivé
           coordinates_shareable_by_project_curators: coordonnées partageables par
-            les superviseurs du projet
+            les responsables du projet
           georeferenced: avoir des coordonnées
           has_a_photo: avoir une photo
           has_a_sound: avoir un son
@@ -6823,7 +6841,7 @@ fr:
         start_time_desc: 'Date de début de votre bioblitz. Format: AAAA-MM-JJThh:mm:ss±hh:mm'
         submission_models:
           any: n’importe qui
-          curators: superviseurs du projet
+          curators: responsables du projet
         trusted_project_means: |-
           Le fait de faire confiance à un projet signifie que les gestionnaires du projet peuvent ajouter des biens
           et des attributs personnalisés au projet (par ex. une bannière HTML, des éléments en format CSS). En ayant accès
@@ -6865,6 +6883,11 @@ fr:
           Les autres projets doivent exister avant que vous puissiez les ajouter.
           Vous pouvez inclure des centaines de projets sous un seul cadre. Les projets
           cadres ne peuvent pas contenir d’autres projets caders.
+        are_you_ready_to_duplicate: |-
+          Êtes-vous prêt à sortir de cette page pour dupliquer ce projet ? Veuillez noter que l’icône du projet
+          et sa bannière ne seront pas dupliqués, et devront être rechargés dans le projet
+          dupliqué.
+        are_you_sure_you_want_to_delete: Êtes-vous sûr de vouloir supprimer ce projet ?
         can_be_included_in_multiple: Peut être inclus dans plusieurs projets chapeau
         click_through_to_individual_projects: Cliquez parmi les projets individuels
         collection_projects: Projets de collections
@@ -6878,6 +6901,7 @@ fr:
         do_you_need_features_from_traditional: |-
           Avez-vous besoin des fonctionnalités des projets traditionnels, comme accéder aux coordonnées réelles,
           des champs d’observation personnalisés, ou ajouter des observations qui ne peuvent pas être filtrées automatiquement ?
+        duplicate_project: Dupliquer le projet
         leaderboards_among_individuals: Classements entre <strong>individus</strong>
         leaderboards_among_projects_and_bioblitzes: Classements entre <strong>projets</strong>
         multiple_project_administrators: Administrateurs multiples du projet
@@ -6914,6 +6938,8 @@ fr:
         show_projects_as_flags: Afficher les projets avec des drapeaux sur la carte
         start_and_end_times_for_bioblitzes: Heures de début et de fin (pour les événements
           de type bioblitz)
+        traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas
+          être copié
         umbrella_project_features: 'Fonctionnalités du projet cadre:'
         unique_url_for_outreach: URL unique pour le dépassement
         users_can_follow_your_project: Les utilisateurs peuvent suivre les mises à
@@ -6946,7 +6972,7 @@ fr:
           summary_is_required: Le texte du résumé du projet est obligatoire
       project_location_privacy_notice_html: |-
         <p>
-          Soyez bien conscient que les superviseurs du projet pourront voir n’importe quel emplacement
+          Soyez bien conscient que les responsables du projet pourront voir n’importe quel emplacement
           privé ou masqué de vos observations dans ce projet, sauf si vous
           supprimez ce droit, et qu’ils pourront ajouter n’importe laquelle de vos
           observations à ce projet sauf si vous <a href="/users/edit">modifiez
@@ -6955,7 +6981,7 @@ fr:
         </p>
         <p>
           Si vous êtes préoccupé par la confidentialité de la localisation, ne rejoignez pas des projets
-          sauf si vous faites confiance aux superviseurs du projet.
+          sauf si vous faites confiance aux responsables du projet.
         </p>
       project_user_curator_coordinate_access_labels:
         observer: Oui, mais seulement si je peux ajouter moi-même l'observation au
@@ -6968,7 +6994,7 @@ fr:
         masquées des observations dans ce projet au cas par cas. Ce sont juste les
         valeurs par défaut pour les nouvelles observations ajoutées au projet.
       project_terms_desc_html: |-
-        Permettre aux superviseurs de ce projet d’utiliser vos observations d’après
+        Permettre aux responsables de ce projet d’utiliser vos observations d’après
         les <a href="%{url}">conditions du projet</a>.
       show:
         are_you_sure_you_want_to_convert: Êtes-vous sûr de vouloir convertir ce projet
@@ -7023,22 +7049,22 @@ fr:
             <li>
               <strong>Ajouter un drapeau à un taxon de plus haut niveau</strong>
               <p>
-                Par ex. le genre qui contient une espèce. Avec de la chance, un superviseur
+                Par ex. le genre qui contient une espèce. Avec de la chance, un responsable
                 ami ajoutera le taxon s’il peut être ajouté.
               </p>
             </li>
             <li>
               <strong><a href="%{feedback_url}">Contacter le Forum</a></strong>
               <p>
-                Beaucoup de superviseurs du site gardent trace des messages vers le Forum.
+                Beaucoup de responsables du site gardent trace des messages vers le Forum.
               </p>
             </li>
             <li>
               <strong>
-                <a href="mailto:%{help_email}">Contacter le support</a>
+                <a href="mailto:%{help_email}">Contacter le soutien</a>
               </strong>
               <p>
-                Soyez patient, nous n’avons pas une grosse équipe dédiée au support.
+                Soyez patient, nous n’avons pas une grosse équipe dédiée au soutien.
               </p>
             </li>
           </ul>
@@ -7307,10 +7333,10 @@ fr:
         rare_desc: Taxons menacés les moins observés
         rare_in_place_desc_html: Taxons menacés les moins observés à <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |-
-          Les superviseurs du site ont temporairement désactivé l’affichage de <a href="%{url}">ce
+          Les responsables du site ont temporairement désactivé l’affichage de <a href="%{url}">ce
           contenu de Wikipédia</a>. Vous pouvez aider en modifiant la page sur
           Wikipédia en la rendant appropriée à ce taxon, ou en marquant ce
-          taxon pour attirer l’attention des superviseurs du site.
+          taxon pour attirer l’attention des responsables du site.
         trending_desc: Taxons les plus observés lors du dernier mois
         trending_in_place_desc_html: Taxons les plus observés dans le dernier mois
           à <a href="%{url}">%{place}</a>
@@ -7516,6 +7542,17 @@ fr:
           href=\"http://www.gbif.org/\">Système mondial d’information sur la\nbiodiversité</a>
           (SMIB), une organisation internationale\nintergouvernementale qui compile
           et distribue des informations sur la\nbiodiversité dans le monde entier."
+        monthly_supporter_desc_html: |-
+          Les parrains réguliers d’iNaturalist font des contributions mensualisées
+          automatiques qui sont reçues par l’Académie des sciences de Californie
+          (Code fiscal des États-Unis IRS FIN 94-1156258) afin de soutenir les
+          opérations à but non-lucratif d’iNaturalist et les sites en ligne d’iNaturalist.
+          <a href="%{url}">Cliquez ici pour devenir un parrain mensualisé</a>.
+          Lorsque nous avons confirmé votre soutien, vous pourrez vérifiez cette
+          boîte pour afficher ce statut sur votre profil. Note : vous devrez utiliser
+          exactement la même adresse courriel sur Donorbox que celle que vous
+          utilisez sur iNaturalist pour nous permettre de confirmer que vous êtes
+          un parrain mensualisé.
         muting_desc_html: |-
           <p>
             Imposer silence à quelqu’un vous évite de recevoir des notifications au sujet de choses
@@ -7582,9 +7619,9 @@ fr:
           ou d’identifications, mais une description e profil. </dd> <dt>Pourriel
           automatique</dt> <dd> Pollueur qui a été marqué automatiquement comme tel
           par le système. </dd> <dt>Pourriel manuel</dt> <dd> Pollueur qui a été marqué
-          comme tel par un superviseur du site. </dd> <dt>Faux positifs</dt> <dd>
+          comme tel par un responsable du site. </dd> <dt>Faux positifs</dt> <dd>
           Utilisateurs qui ont été marqués comme pollueurs mais les marquages ont
-          été résolus par les superviseurs du site parce qu’ils ne sont pas vraiment
+          été résolus par les responsables du site parce qu’ils ne sont pas vraiment
           des pollueurs. </dd> </dl>
         recent_users_desc_html: |-
           <p>
@@ -8131,7 +8168,7 @@ fr:
               user_does_not_accept_fields_from_others: l'utilisateur n'accepte pas
                 les champs des autres
               user_only_accepts_fields_from_site_curators: l’utilisateur accepte uniquement
-                les champs des superviseurs du site
+                les champs des responsables du site
         place:
           attributes:
             place_geometry:
@@ -8160,22 +8197,22 @@ fr:
           attributes:
             rank:
               can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
+                par un responsable de ce taxon
             rank_level:
               can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
+                par un responsable de ce taxon
             ancestry:
               can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
+                par un responsable de ce taxon
             is_active:
               can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
+                par un responsable de ce taxon
             complete:
               can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
+                par un responsable de ce taxon
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
+                par un responsable de ce taxon
             name:
               bad_format: "ne peut contenir que des caractères standards latins, des
                 tirets, des espaces, et \n×; notez que les taxons et cultivars putatifs

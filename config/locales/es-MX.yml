@@ -129,7 +129,6 @@ es-MX:
     obsoletos, etc.)
   a_few_points_to_make_things_clear: Algunos puntos para aclarar las cosas
   a_flag_for_x: una alerta para %{x}
-  a_greasemonkey_script: una secuencia de órdenes de Greasemonkey
   a_member_of: Un miembro de
   a_member_of_taxon_html: un miembro de %{taxon}
   able_to_connect_flickr: ¡Excelente! Pudimos enlazar tu cuenta de Flickr.
@@ -837,7 +836,6 @@ es-MX:
   check_here_to_autoload_photos: Selecciona aquí para cargar tus fotos de  Flickr.
     Puedes quitar la selección cuando el nombre científico de la especie también es
     una palabra no científica o un error común de escritura como "Parus".
-  check_it_out: Revísalo
   check_list: lista de comprobación de
   check_list_description: Selecciona un grupo de especies que te gustaría mostrar
     en esta lista, como "Aves" para pájaros, o "Anfibios" para ranas y sapos. Una
@@ -1753,8 +1751,6 @@ es-MX:
   hex_color_eg: Color en hexadecimal, ej. 65644F
   hi: Hola,
   hi_user: Hola %{user}
-  hide: Ocultar
-  hide_details: Esconde los detalles
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
   high: alta
@@ -1835,7 +1831,6 @@ es-MX:
     o incluye un mensaje o nota en nuestro <a href="%{feedback_url}">grupo de retroalimentación</a>.
   if_you_have_trouble_with_the_site: 'Si tienes cualquier problema con este sitio,
     por favor revisa nuestra sección de ayuda:'
-  if_you_use: Si usas
   if_youd_like_us_to_share_your_observations_with: |-
     Si deseas compartir tus observaciones con la comunidad científica, asegurate
     de haber escogido una licencia Creative Commons para tus observaciones.
@@ -2123,7 +2118,6 @@ es-MX:
   link_or_unlink_your_google_account: Enlaza o desenlaza tu cuenta de Google
   link_your_facebook_account: Enlaza tu cuenta de Facebook
   link_your_flickr_account: Enlaza tu cuenta de Flickr
-  link_your_flickr_account_with_inat: Enlaza tu cuenta de Flickr con %{site_name}
   link_your_flickr_account_with_inat_so: Enlaza tu cuenta Flickr con %{site_name}
     para que puedas añadir fotos de tus observaciones.
   link_your_google_account: Enlaza tu cuenta de Google
@@ -2674,7 +2668,6 @@ es-MX:
   not_filtering: Sin filtrar
   not_findig_what_you_want: ¿No encuentras lo que buscas?
   not_finding_place_you_want?: ¿No encontraste el lugar que buscabas?
-  not_finding_what_looking_for: ¿No encuentras lo que buscas?
   not_found: No encontrado
   not_just_creative_commons_licensed: No solamente licencias de Creative Commons
   not_linked_facebook: Tu cuenta de %{site_name} no se ha enlazado a tu cuenta de
@@ -3061,7 +3054,6 @@ es-MX:
   photo?: ¿Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Navegador de fotos
-  photo_by: Foto por
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_credits: Créditos de las fotos
   photo_deleted: Foto borrada
@@ -4474,8 +4466,6 @@ es-MX:
   that_role_doesnt_exist: Ese rol no existe.
   that_was_the_last_observation_matching_the_current_filters: Esa fué la última observación
     que coincidió con los actuales filtros.
-  that_will_insert_a_link_to: que insertará un enlace en esta herramienta en cada
-    página de fotos de Flickr
   thats_okay_we_forget: ¡No hay problema! Nosotros también olvidamos la nuestra. Envíanos
     la dirección de correo electrónico que usaste para crear tu cuenta y te enviaremos
     un enlace para volver a cargar tu contraseña.
@@ -4576,7 +4566,6 @@ es-MX:
   there_were_some_problems_with_fields: 'Hubo algunos problemas con los siguientes
     campos:'
   there_were_some_problems_with_these_files: 'Hubo algunos problemas con estos archivos:'
-  theres_also: También hay
   theres_something_wrong_with_taxon_framework_relationship: Hay algo mal aquí - no
     podemos determinar la relación entre cualquier taxón interno y externo
   these_are_items_people_on: Son contenidos que la gente a puesto como advertencia
@@ -4707,8 +4696,6 @@ es-MX:
   to_include_your_google_with_inat: para incluir tu cuenta de Google con %{site_name}
   to_recipient: a
   to_suggest_an_identification: sugerir una identificación
-  to_tag_your_flickr_from_here: para etiquetar tus fotos de Flickr desde aquí sin
-    cortar y pegar
   to_the_bat_cave: ¡A la baticueva!
   today: Hoy
   too_many_observations_csv: ¡Tienes una colmena de observaciones! <br /> Solo podemos
@@ -6830,20 +6817,6 @@ es-MX:
           any: Cualquiera
           joined: Proyectos a los que te has unido
           none: 'Ninguno: solo tú puedes añadir observaciones a los proyectos'
-        this_only_applies_to_traditional_projects: Esto sólo aplica a proyectos tradicionales.
-          No puedes excluir observaciones de proyectos de colección o contenedores,
-          los cuales son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
-        project_settings_desc: Recuerda, esto no le da permiso a los proyectos para
-          acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte
-          a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso
-          particular.
-        taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia
-          de nombre en %{site_name}, \ntus observaciones, listas de especies, identificaciones,
-          etc., serán automaticamente\nactualizados al nuevo nombre si el cambio no
-          es ambiguo. Si no quieres hacer el \ncambio o es ambiguo (por ejemplo, la
-          división de una especie en dos) recibirás\nuna actualización sobre el cambio
-          con un enlace a una herramienta que puedes usar\nmanualmente para actualizar
-          el contenido."
         prefers_community_taxa_desc: '%{site_name} rastrea lo que piensas que son
           tus observaciones y lo que piensa la comunidad. La identificación que compartimos
           con los socios de datos es la de la comunidad, pero si tu no crees que la
@@ -6852,15 +6825,29 @@ es-MX:
           no será priorizadas frente a la tuya. Esto significa que tus observaciones
           sólo serán de grado de investigación, cuando tu estés de acuerdo con la
           comunidad.'
-        search_place_help_html: Sitio predeterminado para las búsquedas de observaciones.
-        scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
-        youve_used_all_of_your_blocks: Has utilizado todos tus bloqueos. Quita un
-          bloqueo para añadir otro.
-        same_day_geoprivacy_protection: Protección de geoprivacidad "del mismo día"
         prefers_coordinate_interpolation_protection_desc: Cuando configuras la geoprivacidad
           de una observación como "oculto" o "privado" se aplicará la misma geoprivacidad
           a todas las observaciones del mismo día para evitar sacar conclusiones de
           coordenadas mediante observaciones que se hicieron alrededor del mismo tiempo.
+        project_settings_desc: Recuerda, esto no le da permiso a los proyectos para
+          acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte
+          a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso
+          particular.
+        same_day_geoprivacy_protection: Protección de geoprivacidad "del mismo día"
+        search_place_help_html: Sitio predeterminado para las búsquedas de observaciones.
+        scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
+        taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia
+          de nombre en %{site_name}, \ntus observaciones, listas de especies, identificaciones,
+          etc., serán automaticamente\nactualizados al nuevo nombre si el cambio no
+          es ambiguo. Si no quieres hacer el \ncambio o es ambiguo (por ejemplo, la
+          división de una especie en dos) recibirás\nuna actualización sobre el cambio
+          con un enlace a una herramienta que puedes usar\nmanualmente para actualizar
+          el contenido."
+        this_only_applies_to_traditional_projects: Esto sólo aplica a proyectos tradicionales.
+          No puedes excluir observaciones de proyectos de colección o contenedores,
+          los cuales son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
+        youve_used_all_of_your_blocks: Has utilizado todos tus bloqueos. Quita un
+          bloqueo para añadir otro.
       recent:
         about_recent_users: Acerca de
         definitions_html: <dl><dt>Probablemente Spam</dt><dd> Usuario que probablemente

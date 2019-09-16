@@ -130,7 +130,6 @@ sk:
     názvy atď.).
   a_few_points_to_make_things_clear: 'Niekoľko bodov, ktoré by vám to mohli ujasniť:'
   a_flag_for_x: značka pre %{x}
-  a_greasemonkey_script: skript Greasemonkey
   a_member_of: Člen
   a_member_of_taxon_html: člen %{taxon}
   able_to_connect_flickr: Výborne! Pripojili sme sa na Váš Flickr účet.
@@ -813,7 +812,6 @@ sk:
   check_here_to_autoload_photos: Označte pre automatické nahranie fotiek z Flickr.
     Označenie môžete zrušiť, ak je vedecký názov taxónu zároveň nevedeckým výrazom
     alebo bežne používaným chybným označením.
-  check_it_out: Skontrolovať
   check_list: Zoznam
   check_list_description: Vyberte vyšší taxón, ktorý chcete uviesť v tomto zozname,
     napr. "Aves" pre vtáky alebo "Amphibia" pre obojživelníky. Ak vytvoríte napríklad
@@ -1145,6 +1143,11 @@ sk:
   delete_photo: Zmazať fotku
   delete_project: Zmazať tento projekt
   delete_selected: Zmazať vybrané
+  delete_taxon_and_merge_most_data_html: Zmazať <i>%{taxon}</ i> a zlúčiť väčšinu
+    jeho údajov s iným taxónmi. Tento nástroj použite na <strong>odstránenie zdvojených
+    taxónov</ strong>. Pokiaľ chcete odstrániť zastarané synonymum, vytvorte prosím
+    zámenu taxónov. <Strong>POZOR!</ Strong> Mazaním taxónov môže dôjsť k veľkým škodám.
+    Viac informácií nájdete v <a href="%{curator_url}">sprievodcovi pre kurátorov</a>.
   delete_this_name: Zmazať tento názov
   delete_user: Zmazať používateľa
   delete_your_account: Zmazať váš účet
@@ -1629,6 +1632,10 @@ sk:
     načítať maximálne 50 stránok'
   heads_up_this_observation_has_been_flagged: 'POZOR: toto pozorovanie bolo označené.'
   heads_up_this_photo_has_been_flagged: 'POZOR: táto fotka bola označená.'
+  heads_up_this_taxon_locked_users_cant_add_descendants: <Strong>Pozor:</ strong>
+    tento taxón je zamknutý, čo znamená, že väčšina užívateľov nemôže pridať ďalšie
+    nástupcu importovaním taxónov. Kurátori to urobiť môžu editovaním taxónov a výberom
+    základného taxónu, namiesto toho však zvážte zlúčenie taxónov.
   hello: <test>
   help: Pomoc
   help_confirm_observations!: Pomôžte potvrdiť pozorovania!
@@ -1710,7 +1717,6 @@ sk:
     taxóny, môžete použiť tagy šablóny k vyplneniu názvu taxónu v URL
   if_you_already_have_an_account: Ak už máte účet %{article} %{site_name}...
   if_you_dont_want_us_to_share_your_data: Ak nechcete, aby sme zdieľali vaše údaje
-  if_you_use: Ak použijete
   if_you_want_to_change_the_name: ak chcete zmeniť názov
   ignore: ignorovať
   ignore_and_continue: Ignorovať a pokračovať
@@ -1759,6 +1765,11 @@ sk:
   inaturalist_is_catching_some_zs: '%{site_name} práve spí'
   inaturalist_observations_by: '%{site_name} &#58; Pozorovania užívateľa %{login}'
   inaturalist_places: '%{site_name} Miesta'
+  inaturalist_places_are_way_record_what_lives_where: '%{Site_name} Miesta sú spôsob,
+    ako zaznamenávať, čo kde žije. Ak hľadáte konkrétny druh, budete vedieť, kde hľadať.
+    Každé miesto má zoznam, do ktorého sa zapisujú všetky druhy vyskytujúce sa na
+    tomto mieste, čo tiež pomáha pri vyhľadávaní niečoho, čo ste objavili v konkrétnej
+    lokalite.'
   info: Informácie
   input_taxon: Vstupný taxón
   insects: hmyz
@@ -1975,7 +1986,6 @@ sk:
   link_or_unlink_your_google_account: Prihlásiť alebo zrušiť pripojenie účtu na Google
   link_your_facebook_account: Pripojiť váš účet na Facebooku
   link_your_flickr_account: Pripojiť účet Flickr
-  link_your_flickr_account_with_inat: Pripojiť váš účet na Flickr s %{site_name}
   link_your_flickr_account_with_inat_so: Prepojiť váš účet na Flickr so %{site_name},
     aby ste mohli pridávať fotky z vašich pozorovaní.
   link_your_google_account: Pripojiť účet Google
@@ -2006,6 +2016,9 @@ sk:
     keď si vytvoríte nový účet na Flickr, s ktorým chcete prepojiť %{site_name}.
   linked_flickr_hotwo: Svoj účet na Flickr môžete aktivovať prostredníctvom %{site_name},
     aby ste mohli pridávať fotky, kliknutím na tento odkaz.
+  linked_flickr_password_html: <Strong>Nikdy vás nebudeme žiadať o vaše heslo na Flickr</
+    strong> (Flickr o neho však žiadať môže, skontrolujte url a overte si, že ide
+    o Flickr.com).
   linked_flickr_photo_copy_html: <strong>Nikdy nebudeme ukladať kópie vašich fotiek
     ani meniť vaše údaje na Flickr (ak nás o to nepožiadate). </strong> Príliš sa
     zaujímame o vtáky, chrobáky a ulitníkov, než aby sme sa hrali s vašimi údajmi!
@@ -2256,7 +2269,6 @@ sk:
     datetime_with_zone: MMM D, YYYY · LT z
   mon: Pon
   month: Mesiac
-  monthly_supporter_since_date: Mesačný podporovateľ od %{date}
   months: Mesiace
   months_ago: pred %{text}
   more: Viac
@@ -2511,7 +2523,6 @@ sk:
   not_filtering: Nefiltruje sa
   not_findig_what_you_want: Nenašli ste, čo ste chceli?
   not_finding_place_you_want?: Nenašli ste miesto, ktoré ste hľadali?
-  not_finding_what_looking_for: Nenašli ste, čo ste hľadali?
   not_found: Nenájdené
   not_just_creative_commons_licensed: nevzťahuje sa iba licencia Creative Commons
   not_linked_facebook: Váš účet na %{site_name} nie je pripojený s vašim účtom na

@@ -25,8 +25,10 @@ ja:
     other: <span class='count'>%{count}</span>件の解決済みフラグ
   x_followers:
     other: '%{count}人のフォロワー'
+  x_identifications: '{{PLURAL%{count}件の同定}}'
   x_identifications_html:
     other: <span class="count">%{count}</span>件の同定
+  x_identifications_: '{{PLURAL%{count}件の同定}}'
   x_ids:
     other: '%{count}件の同定'
   x_lists:
@@ -98,7 +100,6 @@ ja:
     保存が完了しましたら、別の名称（俗名、旧学名など）を追加することができます。
   a_few_points_to_make_things_clear: より明確な記述にするコツ：
   a_flag_for_x: '%{x}用のフラグ'
-  a_greasemonkey_script: Greasemonkeyスクリプトを使用しています
   a_member_of: 属する分類は
   a_member_of_taxon_html: '%{taxon}の1つ'
   able_to_connect_flickr: 完了です。Flickrアカウントと連携しました。
@@ -628,7 +629,6 @@ ja:
     input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa}は%{output_taxon}に統合されます'
   change_visibility_of: 位置情報の公開設定を変更しますか？
   change_your_password: パスワードを変更
-  check_it_out: 見てね
   check_list: チェックリスト
   check_list_for_individual_taxa_that: この地域で棲息する分類群のチェックリスト（例：「%{place}の鳥類」）
   check_list_individual_taxa: この地域で棲息する分類群のチェックリスト（例：「%{place}の鳥類」）
@@ -1276,7 +1276,6 @@ ja:
   if_you_already_have_an_account: すでに%{site_name}%{article}に投稿してある場合…
   if_you_dont_want_us_to_share_your_data: あなたが提供したデータを共有してほしくない場合、
   if_you_have_trouble_with_the_site: お困りのことがありませんか？ヘルプをご覧ください：
-  if_you_use: ご利用ですか？
   if_you_want_to_change_the_name: 名称を変更したければ
   ignore: 無視
   ignore_times: 時間を無視する
@@ -1459,7 +1458,6 @@ ja:
   link_or_unlink_your_flickr_account: Flickrアカウントとのリンク開始・解除
   link_your_facebook_account: Facebookアカウントと連携させる
   link_your_flickr_account: Flickrアカウントと連携させる
-  link_your_flickr_account_with_inat: '%{site_name}とFlickrアカウントを連携させる'
   link_your_flickr_account_with_inat_so: 観測記録の写真を追加できるように、%{site_name}とFlickrアカウントを連携させましょう
   linked_facebook: 現在あなたの%{site_name}アカウントはFacebookアカウントと連携されている
   linked_facebook_howto: Facebookと%{site_name}を同期したければ、右のリンクをクリックして、Facebook.comにログインしてください。
@@ -1822,7 +1820,6 @@ ja:
   not_filtering: フィルターなし
   not_findig_what_you_want: お探しのもの見つかりませんか？
   not_finding_place_you_want?: お探しの場所は見つかりませんか？
-  not_finding_what_looking_for: お探しのもの見つかりませんか？
   not_found: 見つかりません
   not_linked_facebook: 現在あなたの%{site_name}アカウントはFacebookアカウントと連携されていません
   not_linked_flickr: 現在あなたの%{site_name}アカウントはFlickrアカウントと連携されていません
@@ -2805,7 +2802,6 @@ ja:
   that_project_doesnt_exist: お探しのプロジェクトは存在しません。
   that_role_doesnt_exist: その役割は存在しません
   that_was_the_last_observation_matching_the_current_filters: 現在のフィルター設定に該当する最後の観察記録です
-  that_will_insert_a_link_to: すべてのFlickr写真ページにこのツールへのリンクが挿入されます
   thats_okay_we_forget: ご心配無用！管理者もよく忘れてしまいます。パスワードリセットを送るために、アカウント作成用のメールアドレスをご記入ください。
   thats_not_a_real_date: 入力した日付は無効です
   the_community_agrees_location_doesnt: コミュニティーの意見では、<strong>位置情報が正確ではない</strong>ようです。（例：海の真ん中に猿がいたり、オフィスビルの中にカバがいるなど）
@@ -2847,7 +2843,6 @@ ja:
   there_were_some_problems_saving_those_colors: 色を保存する際に問題が発生しました：%{error}
   there_were_some_problems_with: CSVファイルにエラーが発生しました。失敗した行を修正の上、再度お試しください。iNaturalist側の問題であれば、ぜひご連絡ください。
   there_were_some_problems_with_fields: 以下のフィールドに問題があります：
-  theres_also: こちらもある
   these_are_items_people_on: これらはサイト上の人々が、裁定のフラグを立てたアイテムです。スパムコメントは削除し、スパムを追加したユーザーは活動停止されるべきです（相手のプロフィールページの右下にある「ユーザーの活動停止」ボタンをクリック、ログインできないようにします。他のフラグが付いたアイテムは明らかな嫌悪、違法性などの場合は削除するべきです。無礼、不快な言葉などは丁寧なコメントで処理する必要があります。常習の違反者はサイト管理者または%{email}に報告する必要があります
   these_folks_kindly_volunteer_to: 分類群の管理、さまざまな問題対応などを行っているボランティアの皆さんです。
   these_observations_have_not_been_uploaded_yet: こちらの観察記録はまだアップロードされていません。

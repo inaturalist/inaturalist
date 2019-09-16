@@ -157,7 +157,6 @@ de:
     Wenn du das neue Taxon gespeichert hast, kannst du hier andere Namen (umgangssprachliche Namen, veraltete wissenschaftliche Bezeichnungen usw.) hinzufügen.
   a_few_points_to_make_things_clear: 'Ein paar Punkte sollen die Dinge etwas verdeutlichen:'
   a_flag_for_x: ein Merker für %{x}
-  a_greasemonkey_script: ein Greasemonkey-Skript
   a_member_of: Ein Mitglied von
   a_member_of_taxon_html: ein Mitglied von %{taxon}
   able_to_connect_flickr: Großartig! Wir konnten deinen Flickr-Account verlinken.
@@ -879,7 +878,6 @@ de:
     geladen werden sollen. Sie wollen dies vielleicht abwählen, wenn der wissenschaftliche
     Name eines Taxons auch ein nichtwissenschaftliches Wort oder eine häufige Falschschreibung
     ist.
-  check_it_out: Probier es aus
   check_list: Checkliste
   check_list_description: Wähle ein höherstufiges Taxon, wie "Aves" für Vögel oder
     "Amphibia" für Lurche aus, das du in dieser Liste anzeigen möchtest. Wenn gesetzt,
@@ -1801,7 +1799,6 @@ de:
     unsere <a href="%{feedback_url}">Feedback-Gruppe</a>.
   if_you_have_trouble_with_the_site: 'Wenn du irgendwelche Probleme mit der Seite
     hast, schau dir bitte unsere Hilfe an:'
-  if_you_use: Wenn du verwendest
   if_youd_like_us_to_share_your_observations_with: Wenn du willst, dass wir deine
     Beobachtungen mit Datenpartnern teilen, stelle sicher, dass du deine Beobachtungen
     mit einer Creative-Commons-Lizenz versiehst.
@@ -2031,6 +2028,7 @@ de:
     italian: Italienisch
     japanese: Japanisch
     korean: Koreanisch
+    lithuanian: Litauisch
     luxembourgish: Luxemburgisch
     maltese: Maltesisch
     maori: Maori
@@ -2079,7 +2077,6 @@ de:
   link_or_unlink_your_google_account: Verknüpfe oder entferne deinen Google-Account
   link_your_facebook_account: Verknüpfe deinen Facebook-Account
   link_your_flickr_account: Verknüpfe deinen Flickr-Account
-  link_your_flickr_account_with_inat: Verknüpfe deinen Flickr-Account mit %{site_name}
   link_your_flickr_account_with_inat_so: Verlinke deinen Flickr-Account mit %{site_name},
     damit du Bilder von deinen dortigen Beobachtungen hinzufügen kannst.
   link_your_google_account: Verknüpfe deinen Google-Account
@@ -2189,9 +2186,11 @@ de:
     ja: Japanisch
     ko: Koreanisch
     lb: Luxemburgisch
+    lt: litauisch
     mk: Mazedonisch
     nl: Niederländisch
     oc: Okzitanisch
+    pl: polnisch
     pt-BR: Portugiesisch (Brasilien)
     pt-PT: Portugiesisch (Portugal)
     ru: Russisch
@@ -2597,7 +2596,6 @@ de:
   not_filtering: Keine Filterung
   not_findig_what_you_want: Nicht gefunden, was du suchst?
   not_finding_place_you_want?: Den gewünschten Ort nicht gefunden?
-  not_finding_what_looking_for: Nicht gefunden, was du suchst?
   not_found: Nicht gefunden
   not_just_creative_commons_licensed: nicht nur Creative-Commons-lizenziert
   not_linked_facebook: Dein %{site_name}-Benutzerkonto ist nicht mit deinem Facebook-Benutzerkonto
@@ -4254,7 +4252,6 @@ de:
     kontaktieren Sie uns bitte.'
   there_were_some_problems_with_fields: 'Es gab einige Probleme mit den folgenden
     Feldern:'
-  theres_also: es gibt auch
   these_are_items_people_on: Das sind Dinge, die die Leute auf der Seite zur Kuration
     gemeldet haben. Spam-Kommentare sollten gelöscht werden und Benutzer, die Spam
     verbreiten, sollten gesperrt werden (gehe zu deren Profilseite und klicke unten
@@ -4334,8 +4331,6 @@ de:
   to_add_ids: um Kennungen hinzuzufügen
   to_recipient: an
   to_suggest_an_identification: eine Identifikation vorschlagen
-  to_tag_your_flickr_from_here: um deine Flickr-Bilder von hier aus ohne Ausschneiden
-    und Einfügen zu taggen.
   today: Heute
   too_many_observations_csv: Du hast einen Bienenstock voll mit Beobachtungen!<br
     /> Wir können nur deine ersten %{max_rows} Beobachtungen aus jedem CSV nehmen.
@@ -5284,6 +5279,9 @@ de:
           <li>Lösche keine Felder, die von Leuten benutzt werden.</li>
           <li> Übersetze vorhandene Feldnamen nicht in verschiedene Sprachen. Englisch ist die Lingua franca dieser Webseite. Wenn du wirklich ein Feld willst, das das gleiche Konzept kapselt, aber in einer anderen Sprache, erstelle bitte ein neues Beobachtungsfeld.</li>
         </ol>
+    emailer:
+      parental_consent:
+        subject: Dein Kind würde gerne iNaturalist benutzen
     photos:
       inviter:
         automatically_add_to_project: Automatisch zum Projekt hinzufügen
@@ -5311,6 +5309,7 @@ de:
       formatting_none_help: Kein HTML eingefügt, sondern nur die von dir eingegebenen
         Tags.
     projects:
+      collection: Sammlung
       confirm_leave:
         keep_observations_desc: Deine Beobachtungen bleiben im Projekt und die Kuratoren
           können weiterhin die versteckten Koordinaten einsehen.
