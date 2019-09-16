@@ -2,7 +2,7 @@
 # places table, but geometries can get rather large, and loading them into
 # memory every time you want to work with a place is expensive.
 class PlaceGeometry < ActiveRecord::Base
-  belongs_to :place
+  belongs_to :place, inverse_of: :place_geometry
   belongs_to :source
   scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
 

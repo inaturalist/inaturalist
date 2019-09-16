@@ -76,7 +76,7 @@ describe ConservationStatus, "saving" do
 
   it "should should not set taxon conservation_status if not global" do
     t = Taxon.make!
-    p = Place.make!
+    p = make_place_with_geom
     cs = ConservationStatus.make!(:taxon => t, :place => p)
     t.reload
     expect(t.conservation_status).to be_blank

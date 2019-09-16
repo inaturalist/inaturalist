@@ -33,8 +33,8 @@ end
 
 describe GuidesController, "index" do
   it "should filter by place" do
-    p1 = Place.make!
-    p2 = Place.make!
+    p1 = make_place_with_geom
+    p2 = make_place_with_geom
     g = make_published_guide(place: p1)
     get :index, :place_id => p1.id
     expect(assigns(:guides)).to include g

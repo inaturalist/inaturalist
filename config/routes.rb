@@ -206,6 +206,9 @@ Rails.application.routes.draw do
   resources :soundcloud_sounds, :only => [:index]
   resources :sounds, only: [:show, :local_sound_fields, :create] do
     resources :flags
+    collection do
+      get :local_sound_fields
+    end
   end
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
