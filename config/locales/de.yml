@@ -1618,6 +1618,7 @@ de:
     italian: Italienisch
     japanese: Japanisch
     korean: Koreanisch
+    lithuanian: Litauisch
     luxembourgish: Luxemburgisch
     maltese: Maltesisch
     norwegian: Norwegisch
@@ -1731,9 +1732,11 @@ de:
     ja: Japanisch
     ko: Koreanisch
     lb: Luxemburgisch
+    lt: litauisch
     mk: Mazedonisch
     nl: Niederländisch
     oc: Okzitanisch
+    pl: polnisch
     pt-BR: Portugiesisch (Brasilien)
     pt-PT: Portugiesisch (Portugal)
     ru: Russisch
@@ -4253,6 +4256,9 @@ de:
         <li>Lösche keine Felder, die von Leuten benutzt werden.</li>
         <li> Übersetze vorhandene Feldnamen nicht in verschiedene Sprachen. Englisch ist die Lingua franca dieser Webseite. Wenn du wirklich ein Feld willst, das das gleiche Konzept kapselt, aber in einer anderen Sprache, erstelle bitte ein neues Beobachtungsfeld.</li>
         </ol>
+    emailer:
+      parental_consent:
+        subject: Dein Kind würde gerne iNaturalist benutzen
     photos:
       inviter:
         automatically_add_to_project: Automatisch zum Projekt hinzufügen
@@ -4271,6 +4277,7 @@ de:
     posts:
       formatting_none_help: "Kein HTML eingefügt, sondern nur die von dir eingegebenen Tags."
     projects:
+      collection: Sammlung
       confirm_leave:
         keep_observations_desc: |
           Deine Beobachtungen bleiben im Projekt und die Kuratoren können weiterhin die versteckten Koordinaten einsehen.
