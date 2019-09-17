@@ -36,7 +36,8 @@ before_script:
 
 env:
   - TRAVIS_CI=true TESTFOLDER=spec/models/*(observation|taxon)_spec.rb
-  - TRAVIS_CI=true TESTFOLDER=spec/models/!(observation|taxon)_spec.rb
+  - TRAVIS_CI=true TESTFOLDER=spec/models/*(identification|project_observation|project|user)_spec.rb
+  - TRAVIS_CI=true TESTFOLDER=spec/models/!(observation|taxon|identification|project_observation|project|user)_spec.rb
   - TRAVIS_CI=true TESTFOLDER='spec/controllers spec/helpers spec/initializers spec/lib spec/views'
 
 script: "bundle exec rspec $TESTFOLDER"
