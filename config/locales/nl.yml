@@ -1962,6 +1962,8 @@ nl:
     datetime_with_offset: "D MMM YYYY · LT Z"
   mon: ma
   month: Maand
+  monthly_supporter_since_date_html: |
+    <a href="%{url}">Maandelijkse Supporter</a> sinds %{date}
   months: Maanden
   months_ago: "%{text} geleden"
   more: Meer
@@ -5247,7 +5249,7 @@ nl:
           Een overkoepelend project kan worden gebruikt om statistieken uit twee of meer Collection- of Traditionele projecten te vergelijken. De andere projecten moeten bestaan voordat je ze aan een kunt toevoegen parapluproject. U kunt honderden projecten onder één paraplu onderbrengen. Paraplu
           projecten kunnen geen andere parapluprojecten bevatten.
         are_you_ready_to_duplicate: |
-          Ben je klaar met deze pagina om een kopie van dit project te maken?
+          Is deze pagina af en klaar om een kopie van dit project te maken? Let op dat het projectpictogram en banner niet worden gedupliceerd en opnieuw moeten worden geüpload in het duplicaat project.
         are_you_sure_you_want_to_delete: Weet je zeker dat je dit project wilt verwijderen?
         can_be_included_in_multiple: Kan worden opgenomen in meerdere parapluprojecten
         click_through_to_individual_projects: Doorklikken naar individuele projecten
