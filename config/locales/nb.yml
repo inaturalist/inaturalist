@@ -1,4 +1,106 @@
 nb:
+  x_comments:
+    one: '1 kommentar'
+    other: '%{count} kommentarer'
+  x_faves:
+    one: '1 favoritt'
+    other: '%{count} favoritter'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> markering løst"
+    other: "<span class='count'>%{count}</span> markeringer løst"
+  x_followers:
+    one: '1 følger'
+    other: '%{count} følgere'
+  x_identifications:
+    one: '1 identifikasjon'
+    other: '%{count} identifikasjoner'
+  x_identifications_html:
+    one: '<span class="count">1</span> identifikasjon'
+    other: '<span class="count">%{count}</span> identifikasjoner'
+  x_identifications_:
+    one: '1 Identifikasjon'
+    other: '%{count} Identifikasjoner'
+  x_ids:
+    one: '1 ID'
+    other: '%{count} ID''er'
+  x_lists:
+    one: '1 liste'
+    other: '%{count} lister'
+  x_journal_posts:
+    one: '1 journalinnlegg'
+    other: '%{count} journalinnlegg'
+  x_journal_posts_html:
+    one: '<span class="count">1</span> journalinnlegg'
+    other: '<span class="count">%{count}</span> journalinnlegg'
+  x_matching_taxa:
+    one: '1 overensstemmende takson'
+    other: '%{count} overensstemmende taksa'
+  x_matching_taxa_html:
+    one: '<span class="count">1</span> overensstemmende takson'
+    other: '<span class="count">%{count}</span> overensstemmende taksa'
+  x_misidentifications_of_this_species:
+    one: "1 feilidentifikasjon av denne arten"
+    other: "%{count} feilidentifikasjoner av denne arten"
+  x_misidentifications_of_species_in_this_rank:
+    one: "1 feilidentifikasjon av arter i denne %{rank}"
+    other: "%{count} feilidentifikasjoner av arter i denne %{rank}"
+  x_observations:
+    one: "1 observasjon"
+    other: "%{count} observasjoner"
+  x_observations_:
+    one: "1 Observasjon"
+    other: "%{count} Observasjoner"
+  x_observations_html:
+    one: "<span class=\"count\">1</span> observasjon"
+    other: "<span class=\"count\">%{count}</span> observasjoner"
+  x_observations_link_html:
+    one: "<a href='%{url}'>1 observasjon</a>"
+    other: "<a href='%{url}'>%{count} observasjoner</a>"
+  x_observations_reviewed_html:
+    one: "<span class='antal'>1</span> observasjon gransket"
+    other: "<span class=\"count\">%{count}</span> observasjoner gransket"
+  x_others:
+    one: "1 annen"
+    other: "%{count} andre"
+  x_people_found_this_helpful:
+    one: 'En person syns dette var nyttig'
+    other: '%{count} personer syns dette var nyttig'
+  x_people_like_this:
+    one: '1 person liker dette'
+    other: '%{count} personer liker dette'
+  x_people_agree_html:
+    one: '<span class="count">1</span> person er enig'
+    other: '<span class="count">%{count}</span> personer er enige'
+  x_photos:
+    one: "1 bilde"
+    other: "%{count} bilder"
+  x_new_species:
+    one: "1 Ny Art"
+    other: "%{count} Nye Arter"
+  x_species:
+    one: '1 Art'
+    other: '%{count} Arter'
+  x_species_html:
+    one: "<span class='count'>1</span> art"
+    other: "<span class='count'>%{count}</span> arter"
+  x_species_link_html:
+    one: "<a href='%{url}'>1 art</a>"
+    other: "<a href='%{url}'>%{count} arter</a>"
+  x_suggestions_filtered_by_colon:
+    one: "1 Forslag Filtrert Etter:"
+    other: "%{count} Forslag Filtrert Etter:"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> takson observert"
+    other: "<span class='count'>%{count}</span> taksa observert"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> observasjon av forskningskvalitet"
+    other: "<span class='count'>%{count}</span> observasjoner av forskningskvalitet"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> observasjon av forskningskvalitet identifisert til art eller lavere"
+    other: "<span class='count'>%{count}</span> observasjoner av forskningskvalitet identifisert til art eller lavere"
+  x_taxa_curated_html:
+    one: "<span class='count'>1</span> takson kuratert"
+    other: "<span class='count'>%{count}</span> taksa kuratert"
   date:
     abbr_month_names:
       - 
