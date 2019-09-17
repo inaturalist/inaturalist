@@ -1976,6 +1976,8 @@ it:
     datetime_with_offset: "D MMM YYYY · LT Z"
   mon: Lun
   month: Mese
+  monthly_supporter_since_date_html: |
+    <a href="%{url}">Sostenitore mensile</a> dal %{date}
   months: Mesi
   months_ago: "%{text} fa"
   more: Di più
@@ -4464,7 +4466,7 @@ it:
         </p>
       post_donate_social_media_text: Io sostengo iNaturalist perché...
       monthly_supporters:
-        become_a_monthly_supporter_of_inaturalist: Diventa un Sostenitore Mensile di iNaturalist
+        become_a_monthly_supporter_of_inaturalist: Diventa un sostenitore mensile di iNaturalist
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -5183,7 +5185,7 @@ it:
         an_umbrella_project_can_be_used_to: |
           Un progetto Ombrello può essere usato per confrontare le statistiche tra due o più progetti tradizionali o progetti Collezione. Gli altri progetti devono già esistere prima di poterli aggiungere ad un progetto Ombrello. Puoi includerne a centinaia. I progetti Ombrello non possono contenere altri progetti Ombrello.
         are_you_ready_to_duplicate: |
-          Sei pronto a lasciare questa pagina per duplicare il progetto?
+          Sei pronto a lasciare questa pagina per duplicare il progetto? Nota che l'icona del progetto e il banner non saranno duplicati e sarà necessario ricaricarli nel progetto duplicato.
         are_you_sure_you_want_to_delete: Sei sicuro di voler eliminare questo progetto?
         can_be_included_in_multiple: Può essere incluso in più progetti Ombrello
         click_through_to_individual_projects: Navigazione tra i singoli progetti
@@ -5196,7 +5198,7 @@ it:
         display_project_name: Visualizza il nome del Progetto
         do_you_need_features_from_traditional: |
           Hai bisogno di caratteristiche dei progetti tradizionali, come l'accesso alle coordinate precise, campi di osservazione personalizzati, o di aggiungere osservazioni che non possono essere filtrate automaticamente?
-        duplicate_project: Duplica Progetto
+        duplicate_project: Duplica progetto
         leaderboards_among_individuals: Classifiche tra <strong>utenti</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Classifiche tra <strong>progetti</strong>
@@ -5535,7 +5537,7 @@ it:
         common_names_desc: |
           Mostra i nomi comuni. Disabilita se vuoi vedere i nomi scientifici. Nota che puoi controllare quali nomi comuni vedere cambiando le impostazioni locali e quelle del luogo.
         display_monthly_supporter_status_on_my_profile: |
-          Visualizza lo stato di Sostenitore Mensile sul mio profilo
+          Visualizza lo stato di sostenitore mensile sul mio profilo
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Se cambi idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         inaturalist_network_affiliation_desc_html: |
