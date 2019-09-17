@@ -934,6 +934,7 @@ es:
       november: Noviembre
       december: Diciembre
   date_is_accurate: La fecha es correcta
+  date_joined: Fecha de Registro
   date_observed: Fecha de observación
   date_observed_: Fecha de observación
   date_observed_on: fecha que se observó
@@ -3813,6 +3814,7 @@ es:
   they_already_have_iNat_accounts: "...que ya tienen cuentas %{site_name}"
   they_have_been_invited: ...ellos ya han sido invitados.
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
+  third_person_possessive_plural: "%{object_phrase} del  %{noun}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
   this_id_was_added_due_to_a: Esta Identificación se añadió debido a
@@ -5397,6 +5399,9 @@ es:
           Un proyecto de recopilación le permite recopilar y visualizar observaciones utilizando las principales herramientas de búsqueda de iNaturalist. Todo lo que cumpla con los parámetros establecidos por el proyecto se incluirá automáticamente.
         an_umbrella_project_can_be_used_to: |
           Un proyecto de paraguas puede comparar estadísticas de dos o más proyectos tradicionales o de colección. Los otros proyectos tienen que existir antes de que los añadas a un proyecto paraguas. Puedes incluir centenares de proyectos bajo un solo paraguas. Los proyectos paraguas no pueden contener otros proyectos paraguas.
+        are_you_ready_to_duplicate: |
+          ¿Estás listo para salir de esta página para duplicar este proyecto?
+        are_you_sure_you_want_to_delete: '¿Estás seguro de que deseas eliminar este proyecto?'
         can_be_included_in_multiple: Puede ser incluido en múltiples proyectos paraguas
         click_through_to_individual_projects: Selecciona para los proyectos individuales
         collection_projects: Proyectos de colección
@@ -5408,6 +5413,7 @@ es:
         display_project_name: Exhibe nombre del proyecto
         do_you_need_features_from_traditional: |
           ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación a la medida, o añadir observaciones individuales que no pueden ser filtradas automáticamente?
+        duplicate_project: Proyecto duplicado
         leaderboards_among_individuals: Tabler de líderes entre <strong>@individuos</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Tablas de clasificación entre <strong>proyectos</strong>
