@@ -141,7 +141,6 @@ ar:
     عند حفظ هذه الأصنوفة الجديدة، ستتمكن من إضافة أسماء أخرى هنا (الأسماء الشائعة والأسماء العلمية القديمة وغير ذلك).
   a_few_points_to_make_things_clear: مزيد من النقاط لجعل الأمور أوضح قليلا
   a_flag_for_x: علم ل%{x}
-  a_greasemonkey_script: سكريبت غريسمونكي (Greasemonkey)
   a_member_of: عضو في
   a_member_of_taxon_html: عضو في %{taxon}
   able_to_connect_flickr: رائع لقد استطعنا ربط حساب فليكر الخاص بك
@@ -822,7 +821,6 @@ ar:
   check_here_to_autoload_photos: تحقق هنا  من التحميل التلقائي للصور من فليكر، قد
     ترغب في إلغاء تحديده عندما يكون الاسم العلمي للأصنوفة أيضا كلمة غير علمية أو خطأ
     شائعا، مثل "Parus".
-  check_it_out: تحقق من ذلك
   check_list: قائمة التدقيق
   check_list_description: اختر أعلى مستوى أصنوفة تريد أن يظهر في هذه القائمة، مثل
     "طائر" للطيور، أو "برمائي" للبرمائيات، عند التعيين، لن تسمح  هذه القائمة بالأصناف
@@ -1812,7 +1810,6 @@ ar:
     ردود الأفعال</a>.
   if_you_have_trouble_with_the_site: 'إذا كانت لديك أية مشكلة مع الموقع، الرجاء مراجعة
     قسم المساعدة لدينا:'
-  if_you_use: إذا كنت تستخدم
   if_youd_like_us_to_share_your_observations_with: |-
     إذا كنت تريد منا مشاركة ملاحظاتك مع شركاء البيانات،
     فتأكد من أنك قد اخترت ترخيص ملاحظاتك باستخدام
@@ -2096,7 +2093,6 @@ ar:
   link_or_unlink_your_google_account: ربط أو إلغاء ربط حساب جوجل الخاص بك
   link_your_facebook_account: ربط حساب فيسبوك الخاص بك
   link_your_flickr_account: ربط أو إلغاء ربط حساب فليكر الخاص بك
-  link_your_flickr_account_with_inat: ربط حساب فليكر بـ%{site_name}
   link_your_flickr_account_with_inat_so: اربط حسابك فليكر بـ%{site_name} حتى تتمكن
     من إضافة صور ملاحظاتك.
   link_your_google_account: ربط حسابك في جوجل
@@ -2370,7 +2366,7 @@ ar:
     datetime_with_zone: ي شش سسسس · LT مز
   mon: شهر
   month: شهر
-  monthly_supporter_since_date: مؤيد شهري منذ %{date}
+  monthly_supporter_since_date_html: <a href="%{url}">داعم شهري</a> منذ %{date}
   months: أشهر
   months_ago: قبل %{text}
   more: المزيد
@@ -2635,7 +2631,6 @@ ar:
   not_filtering: عدم التصفية
   not_findig_what_you_want: لم تجد ما تريد؟
   not_finding_place_you_want?: لا تجد المكان الذي تريده؟
-  not_finding_what_looking_for: لم تجد ما كنت تبحث عنه؟
   not_found: لم يتم العثور عليه
   not_just_creative_commons_licensed: ليست المرخصة برخص المشاع الإبداعي فقط
   not_linked_facebook: حسابك في %{site_name} غير مرتبط بحسابك في فيسبوك
@@ -4381,8 +4376,6 @@ ar:
   that_role_doesnt_exist: هذا الدور غير موجود
   that_was_the_last_observation_matching_the_current_filters: كانت هذه الملاحظة الأخيرة
     مطابقة للمرشحات الحالية.
-  that_will_insert_a_link_to: التي من شأنها إدراج رابط لهذه الأداة على كل صفحة صورة
-    في فليكر.
   thats_okay_we_forget: حسنا! ننسى لنا أيضا، أرسل إلينا عنوان البريد الإلكتروني الذي
     استخدمته لإنشاء حسابك وسنرسل لك رسالة إلكترونية لإعادة تعيين كلمة المرور.
   thats_not_a_real_date: هذا ليس تاريخا حقيقيا!
@@ -4473,7 +4466,6 @@ ar:
     \nالحال، اسمح لنا أن نعرف."
   there_were_some_problems_with_fields: 'كانت هناك بعض المشاكل في الحقول التالية:'
   there_were_some_problems_with_these_files: 'كانت هناك بعض المشاكل في هذه الملفات:'
-  theres_also: هناك أيضا
   theres_something_wrong_with_taxon_framework_relationship: هناك شيء خطأ هنا; لا يمكننا
     تحديد العلاقة بين أية أصناف داخلية وخارجية
   these_are_items_people_on: "هؤلاء هم أشخاص العناصر التي تم وضع علامة عليهم في الموقع
@@ -4590,7 +4582,6 @@ ar:
   to_include_your_google_with_inat: لتضمين حسابك في جوجل مع %{site_name}
   to_recipient: إلى
   to_suggest_an_identification: لاقتراح هوية
-  to_tag_your_flickr_from_here: لوضع علامة على صورك في فليكر من هنا دون قص ولصق.
   to_the_bat_cave: إلى كهف الخفافيش!
   today: اليوم
   too_many_observations_csv: لديك خلية نحل من الملاحظات!<br /> لا يمكننا أن نأخذ سوى
@@ -6191,7 +6182,9 @@ ar:
           عبر مجموعتين أو أكثر من \nالمشروعات التقليدية، يجب أن توجد المشاريع الأخرى
           قبل أن تتمكن من إضافتها إلى \nمشروع مظلة، يمكنك تضمين مئات المشاريع تحت
           مظلة واحدة، لا يمكن \nلمشاريع المظلة أن تحتوي على مشاريع مظلة أخرى."
-        are_you_ready_to_duplicate: هل أنت مستعد لمغادرة هذه الصفحة لتكرار هذا المشروع؟
+        are_you_ready_to_duplicate: |-
+          هل أنت مستعد لمغادرة هذه الصفحة لتكرار هذا المشروع؟ تُرجَى ملاحظة أيقونة المشروع
+          ولن يتم تكرار الشعارات، وستحتاج إلى إعادة رفعلها في المشروع المكرر.
         are_you_sure_you_want_to_delete: هل أنت متأكد أنك تريد حذف هذا المشروع؟
         can_be_included_in_multiple: يمكن تضمينها في مشاريع مظلة متعددة
         click_through_to_individual_projects: انقر من خلال المشاريع الفردية

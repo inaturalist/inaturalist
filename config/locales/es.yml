@@ -180,7 +180,6 @@ es:
   a_few_points_to_make_things_clear: 'Unos cuantos puntos para hacer las cosas un
     poco más claras:'
   a_flag_for_x: una marca para %{x}
-  a_greasemonkey_script: una secuencia de órdenes de Greasemonkey
   a_member_of: Un miembro de
   a_member_of_taxon_html: un miembro de %{taxon}
   able_to_connect_flickr: ¡Muy bien! Pudimos vincular tu cuenta de Flickr.
@@ -891,7 +890,6 @@ es:
   check_here_to_autoload_photos: Marca aquí para auto-cargar fotos desde Flickr. Puedes
     querer desmarcarlo cuando el nombre científico de un taxón también es una palabra
     no científica o una falta de ortografía común, como "Parus".
-  check_it_out: Échale un vistazo
   check_list: Lista de comprobación
   check_list_description: Selecciona un taxón de más alto nivel que desees mostrar
     en esta lista, como "Aves" para aves, o "Anfibios" para anfibios. Cuando termines,
@@ -1236,6 +1234,7 @@ es:
       november: Noviembre
       december: Diciembre
   date_is_accurate: La fecha es correcta
+  date_joined: Fecha de Registro
   date_observed: Fecha de observación
   date_observed_: Fecha de observación
   date_observed_on: fecha que se observó
@@ -1902,7 +1901,6 @@ es:
     un mensaje a nuestro <a href="%{feedback_url}">grupo de participación</a>.
   if_you_have_trouble_with_the_site: Si tuvieras algún problema con el sitio, por
     favor revisa nuestra sección de ayuda
-  if_you_use: Si usas
   if_youd_like_us_to_share_your_observations_with: |-
     Si deseas compartir tus observaciones con la comunidad científica, asegúrate
     de haber escogido una licencia Creative Commons para tus observaciones.
@@ -2190,7 +2188,6 @@ es:
   link_or_unlink_your_google_account: Enlaza o desenlaza tu cuenta de Google
   link_your_facebook_account: Vincula tu cuenta de Facebook
   link_your_flickr_account: Vincula tu cuenta de Flickr
-  link_your_flickr_account_with_inat: Vincula tu cuenta de Flickr con %{site_name}
   link_your_flickr_account_with_inat_so: Vincula tu cuenta de Flickr con %{site_name}
     para poder agregar fotos de tus observaciones.
   link_your_google_account: Enlaza tu cuenta de Google
@@ -2477,7 +2474,6 @@ es:
     datetime_with_offset: MMM D, AAAA · LT Z
   mon: lun
   month: Mes
-  monthly_supporter_since_date: Partidario mensual desde %{date}
   months: Meses
   months_ago: hace %{text}
   more: Más
@@ -2751,7 +2747,6 @@ es:
   not_filtering: Sin filtrar
   not_findig_what_you_want: ¿No encuentra lo que desea?
   not_finding_place_you_want?: ¿No encontraste el lugar que buscabas?
-  not_finding_what_looking_for: ¿No encuentra lo que está buscando?
   not_found: No encontrado
   not_just_creative_commons_licensed: No solamente licencias de Creative Commons
   not_linked_facebook: Tu cuenta de %{site_name} no está vinculada con tu cuenta de
@@ -4575,8 +4570,6 @@ es:
   that_role_doesnt_exist: Ese rol no existe.
   that_was_the_last_observation_matching_the_current_filters: Esa fue la última observación
     que coincidió con los actuales filtros.
-  that_will_insert_a_link_to: que insertará un vínculo a esta herramienta en cada
-    página de fotos de Flickr.
   thats_okay_we_forget: ¡No hay problema! Nosotros también olvidamos las nuestras.
     Envíanos el correo electrónico que usaste para crear tu cuenta y te enviaremos
     un vínculo para restablecer tu contraseña.
@@ -4678,7 +4671,6 @@ es:
   there_were_some_problems_with_fields: Hubo algunos problemas con los siguientes
     campos
   there_were_some_problems_with_these_files: 'Hubo algunos problemas con estos archivos:'
-  theres_also: también hay
   theres_something_wrong_with_taxon_framework_relationship: Hay algo mal aquí - no
     podemos determinar la relación entre cualquier taxón interno y externo
   these_are_items_people_on: Son contenidos que las personas han marcado para su curación.
@@ -4701,6 +4693,7 @@ es:
   they_already_have_iNat_accounts: '...que ya tienen cuentas %{site_name}'
   they_have_been_invited: '...ellos ya han sido invitados.'
   third_person_possessive_singular: '%{noun} de %{object_phrase}'
+  third_person_possessive_plural: '%{object_phrase} del  %{noun}'
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
   this_id_was_added_due_to_a: Esta Identificación se añadió debido a
@@ -4804,8 +4797,6 @@ es:
   to_include_your_google_with_inat: para incluir tu cuenta de Google con %{site_name}
   to_recipient: a
   to_suggest_an_identification: para sugerir una identificación
-  to_tag_your_flickr_from_here: para etiqutar sus fotos de Flickr desde aquí sin cortar
-    y pegar.
   to_the_bat_cave: A la Bati-cueva!
   today: Hoy
   too_many_observations_csv: ¡Tienes demasiadas observaciones! Solo podemos incluir
@@ -6580,6 +6571,10 @@ es:
           proyectos tienen que existir antes de que los añadas a un proyecto paraguas.
           Puedes incluir centenares de proyectos bajo un solo paraguas. Los proyectos
           paraguas no pueden contener otros proyectos paraguas.
+        are_you_ready_to_duplicate: ¿Estás listo para salir de esta página para duplicar
+          este proyecto?
+        are_you_sure_you_want_to_delete: ¿Estás seguro de que deseas eliminar este
+          proyecto?
         can_be_included_in_multiple: Puede ser incluido en múltiples proyectos paraguas
         click_through_to_individual_projects: Selecciona para los proyectos individuales
         collection_projects: Proyectos de colección
@@ -6594,6 +6589,7 @@ es:
           tradicionales, como acceder a coordenadas verdaderas, campos de observación
           a la medida, o añadir observaciones individuales que no pueden ser filtradas
           automáticamente?
+        duplicate_project: Proyecto duplicado
         leaderboards_among_individuals: Tabler de líderes entre <strong>@individuos</strong>
         leaderboards_among_projects_and_bioblitzes: Tablas de clasificación entre
           <strong>proyectos</strong>

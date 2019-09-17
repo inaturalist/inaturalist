@@ -194,7 +194,6 @@ ru:
     устаревшие научные названия и т.д.).
   a_few_points_to_make_things_clear: 'Несколько уточняющих моментов:'
   a_flag_for_x: флаг для %{x}
-  a_greasemonkey_script: сценарий Greasemonkey
   a_member_of: Член
   a_member_of_taxon_html: член %{taxon}
   able_to_connect_flickr: Отлично! Удалось связать учётную запись с вашим аккаунтом
@@ -916,7 +915,6 @@ ru:
   check_here_to_autoload_photos: Проверьте автозагрузку фото с Flickr. Возможно, вы
     захотите отменить её в случае, если научное название таксона таковым не является
     или если имеется обычная опечатка, как, например "Парус"
-  check_it_out: Проверьте это
   check_list: Контрольный список
   check_list_description: Выберите таксон верхнего уровня для этого списка, такие
     как "Aves" для птиц или "Amphibia" для земноводных. После этого выбора в список
@@ -1941,7 +1939,6 @@ ru:
     href="%{feedback_url}">feedback group</a>.
   if_you_have_trouble_with_the_site: 'Если у вас возникли проблемы с сайтом, ознакомьтесь
     с разделом нашей справки:'
-  if_you_use: Если вы используете
   if_youd_like_us_to_share_your_observations_with: Если вы хотите, чтобы мы поделились
     вашими наблюдениями с партнерами по данным, убедитесь, что вы выбрали свои наблюдения
     с лицензией Creative Commons.
@@ -2230,7 +2227,6 @@ ru:
   link_or_unlink_your_google_account: Привязать или отвязать свою учётную запись Google
   link_your_facebook_account: Привяжите вашу учётную запись Facebook
   link_your_flickr_account: Привязать свою учётную запись Flickr
-  link_your_flickr_account_with_inat: Привязать ваш аккаунт Flickr к %{site_name}
   link_your_flickr_account_with_inat_so: Привязать свою учётную запись Flickr к %{site_name}
     с тем, чтобы вы могли добавлять фото своих наблюдений.
   link_your_google_account: Привяжите ваш Google аккаунт
@@ -2517,7 +2513,7 @@ ru:
     datetime_with_offset: MMM D, YYYY · LT Z
   mon: Пн
   month: Месяц
-  monthly_supporter_since_date: Ежемесячная поддержка начиная с %{date}
+  monthly_supporter_since_date_html: <a href="%{url}">Ежемесячный спонсор</a> с %{date}
   months: Месяцы
   months_ago: '%{text} назад'
   more: Ещё
@@ -2789,7 +2785,6 @@ ru:
   not_filtering: Нет фильтрации
   not_findig_what_you_want: Не нашли то, что искали?
   not_finding_place_you_want?: Не нашлось место, которое вы искали?
-  not_finding_what_looking_for: Не нашли то, что искали?
   not_found: Не найдено
   not_just_creative_commons_licensed: не только лицензии Creative Commons
   not_linked_facebook: Ваша учётная запись %{site_name} не связана с учётной записью
@@ -4603,8 +4598,6 @@ ru:
   that_role_doesnt_exist: Эта роль не существует
   that_was_the_last_observation_matching_the_current_filters: Это было последнее наблюдение,
     удовлетворяющее текущим фильтрам.
-  that_will_insert_a_link_to: это добавит ссылку этот инструмент на каждую  фото-страницу
-    на Flickr.
   thats_okay_we_forget: Это нормально! Мы тоже свои забываем. Отправьте нам адрес
     электронной почты, который вы использовали для создания своей учётной записи,
     и мы отправим вам по электронной почте ссылку для сброса пароля.
@@ -4706,7 +4699,6 @@ ru:
     полями:'
   there_were_some_problems_with_these_files: 'Возникли некоторые проблемы со этими
     файлами:'
-  theres_also: существует также
   theres_something_wrong_with_taxon_framework_relationship: Здесь что-то не так -
     мы не можем определить связь между внутренними и внешними таксонами
   these_are_items_people_on: Это элементы, которые люди на сайте отметили для курирования.
@@ -4834,8 +4826,6 @@ ru:
   to_include_your_google_with_inat: включить ваш аккаунт Google на %{site_name}
   to_recipient: для
   to_suggest_an_identification: предлагать идентификацию
-  to_tag_your_flickr_from_here: чтобы добавить отсюда теги к вашим фото на Flickr
-    без операций "вырезать" и "вставить".
   to_the_bat_cave: К пещере летучих мышей!
   today: Сегодня
   too_many_observations_csv: У вас масса наблюдений!<br/> Мы можем принять только

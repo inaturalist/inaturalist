@@ -158,7 +158,6 @@ it:
     comuni, nomi scientifici in disuso, ecc.)."
   a_few_points_to_make_things_clear: 'Alcune note per chiarire le cose:'
   a_flag_for_x: un contrassegno per %{x}
-  a_greasemonkey_script: uno script Greasemonkey
   a_member_of: Un membro di
   a_member_of_taxon_html: un membro di %{taxon}
   able_to_connect_flickr: Grande! Siamo stati in grado di collegare il tuo account
@@ -886,7 +885,6 @@ it:
     da Flickr. Potresti voler deselezionare la casella quando il nome scientifico
     di un taxon è anche un nome comune o una parola spesso scritta erroneamente, come
     "Rana".
-  check_it_out: Controlla
   check_list: Checklist
   check_list_description: Scegli un taxon di livello superiore da mostrare in questa
     lista, come "Aves" per gli uccelli, o "Amphibia" per gli anfibi. Quando è selezionato,non
@@ -1910,7 +1908,6 @@ it:
     <a href="%{feedback_url}">gruppo di feedback</a>.
   if_you_have_trouble_with_the_site: Se hai dei problemi col sito, controlla la nostra
     sezione "aiuto"
-  if_you_use: Se utilizzi
   if_youd_like_us_to_share_your_observations_with: Se desideri che condividiamo le
     tue osservazioni coi nostri partner, accertati di aver scelto una licenza Creative
     Commons per le tue osservazioni.
@@ -2199,7 +2196,6 @@ it:
   link_or_unlink_your_google_account: Collega o scollega il tuo account Google
   link_your_facebook_account: Collega il tuo account Facebook
   link_your_flickr_account: Collega il tuo account Flickr
-  link_your_flickr_account_with_inat: Collega il tuo account Flickr con %{site_name}
   link_your_flickr_account_with_inat_so: Collega il tuo account Flickr con %{site_name}
     così da poter aggiungere foto alle tue osservazioni.
   link_your_google_account: Collega il tuo account Google
@@ -2485,7 +2481,8 @@ it:
     datetime_with_offset: D MMM YYYY · LT Z
   mon: Lun
   month: Mese
-  monthly_supporter_since_date: Sostenitore mensile da %{date}
+  monthly_supporter_since_date_html: <a href="%{url}">Sostenitore mensile</a> dal
+    %{date}
   months: Mesi
   months_ago: '%{text} fa'
   more: Di più
@@ -2756,7 +2753,6 @@ it:
   not_filtering: Filtro inattivo
   not_findig_what_you_want: Non trovi quello che vuoi?
   not_finding_place_you_want?: Non trovi il luogo che cerchi?
-  not_finding_what_looking_for: Non trovi quello che stai cercando?
   not_found: Non trovato
   not_just_creative_commons_licensed: Non solo con licenza Creative Commons
   not_linked_facebook: La tua utenza %{site_name} non è attualmente collegata col
@@ -4571,8 +4567,6 @@ it:
   that_role_doesnt_exist: Il ruolo non esiste
   that_was_the_last_observation_matching_the_current_filters: Questa era l'ultima
     osservazione corrispondente ai filtri impostati.
-  that_will_insert_a_link_to: che inserirà un link a questo strumento su ogni pagina
-    della foto Flickr.
   thats_okay_we_forget: Nessun problema! Anche noi dimenticheremo le nostre. Mandaci
     l'email che hai utilizzato per creare il tuo account e noi ti manderemo il link
     per resettare la tua password.
@@ -4671,7 +4665,6 @@ it:
     anche causa nostra. Se è così, faccelo sapere.
   there_were_some_problems_with_fields: 'Ci sono stati problemi con i seguenti campi:'
   there_were_some_problems_with_these_files: 'Ci sono stati problemi con questi file:'
-  theres_also: c'è anche
   theres_something_wrong_with_taxon_framework_relationship: C'è qualcosa di sbagliato
     qui - non possiamo determinare la relazione tra nessuno dei taxa interni ed esterni
   these_are_items_people_on: Ci sono elementi che le persone hanno contrassegnato
@@ -4800,8 +4793,6 @@ it:
   to_include_your_google_with_inat: per includere il tuo account Google con %{site_name}
   to_recipient: a
   to_suggest_an_identification: per suggerire un'identificazione
-  to_tag_your_flickr_from_here: per etichettare le tue foto Flickr da qui senza tagliare
-    e incollare.
   to_the_bat_cave: Per la Bat Caverna!
   today: Oggi
   too_many_observations_csv: Hai troppe osservazioni!<br /> Possiamo caricare solo
@@ -5609,7 +5600,7 @@ it:
         </p>
       post_donate_social_media_text: Io sostengo iNaturalist perché...
       monthly_supporters:
-        become_a_monthly_supporter_of_inaturalist: Diventa un Sostenitore Mensile
+        become_a_monthly_supporter_of_inaturalist: Diventa un sostenitore mensile
           di iNaturalist
     flags:
       show:
@@ -6549,7 +6540,8 @@ it:
           ad un progetto Ombrello. Puoi includerne a centinaia. I progetti Ombrello
           non possono contenere altri progetti Ombrello.
         are_you_ready_to_duplicate: Sei pronto a lasciare questa pagina per duplicare
-          il progetto?
+          il progetto? Nota che l'icona del progetto e il banner non saranno duplicati
+          e sarà necessario ricaricarli nel progetto duplicato.
         are_you_sure_you_want_to_delete: Sei sicuro di voler eliminare questo progetto?
         can_be_included_in_multiple: Può essere incluso in più progetti Ombrello
         click_through_to_individual_projects: Navigazione tra i singoli progetti
@@ -6565,7 +6557,7 @@ it:
           progetti tradizionali, come l'accesso alle coordinate precise, campi di
           osservazione personalizzati, o di aggiungere osservazioni che non possono
           essere filtrate automaticamente?
-        duplicate_project: Duplica Progetto
+        duplicate_project: Duplica progetto
         leaderboards_among_individuals: Classifiche tra <strong>utenti</strong>
         leaderboards_among_projects_and_bioblitzes: Classifiche tra <strong>progetti</strong>
         multiple_project_administrators: Più di un amministratore del progetto
@@ -7031,8 +7023,8 @@ it:
         common_names_desc: Mostra i nomi comuni. Disabilita se vuoi vedere i nomi
           scientifici. Nota che puoi controllare quali nomi comuni vedere cambiando
           le impostazioni locali e quelle del luogo.
-        display_monthly_supporter_status_on_my_profile: Visualizza lo stato di Sostenitore
-          Mensile sul mio profilo
+        display_monthly_supporter_status_on_my_profile: Visualizza lo stato di sostenitore
+          mensile sul mio profilo
         if_you_change_your_mind_you_can_always_edit_your_settings_html: Se cambi idea
           puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         inaturalist_network_affiliation_desc_html: |-

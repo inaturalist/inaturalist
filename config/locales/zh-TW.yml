@@ -138,7 +138,6 @@ zh-TW:
     當您儲存這個新分類群後，您將可為這個物種加上其他名稱(例如俗名、過時的學名等)。
   a_few_points_to_make_things_clear: '令事情更清楚的幾個要點 :'
   a_flag_for_x: '%{x} 已被標記'
-  a_greasemonkey_script: Greasemonkey (firefox 瀏覽器外掛) 指令稿
   a_member_of: 成員隸屬於
   a_member_of_taxon_html: '%{taxon} 之一員'
   able_to_connect_flickr: 好極了！ 我們已能夠連接你的Flickr帳戶。
@@ -746,7 +745,6 @@ zh-TW:
   check_back_soon: 請稍後查看！
   check_here_to_autoload_description: 在此勾選來從維基百科自動載入描述。當某一物種分類的學名同為非學術字詞，或是常見的拼寫錯誤字詞時，例如「Parus」：，可能會讓您取消勾選。
   check_here_to_autoload_photos: 在此勾選來從 Flickr 自動載入描述。當某一物種分類的學名同為非學術字詞，或是常見的拼寫錯誤字詞時，例如「Parus」：，可能會讓您取消勾選。
-  check_it_out: 瞧瞧看
   check_list: 核對清單
   check_list_description: 請挑選您想要顯示在此清單的更高層級物種分類，像是將「鳥綱」用於鳥；「兩棲綱」用於兩棲動物。當設定好後，此清單將不允許不在此物種分類的物種分類群。例如您創建了鳥類清單後，您不能將青蛙類加在該清單裡。
   check_list_for_individual_taxa_that: 於此地棲息的單一物種分類群清單，例如：「%{place}的鳥類」。
@@ -1636,7 +1634,6 @@ zh-TW:
   if_you_have_any_trouble_with_the_site_check_out: 若您有任何問題，請查看我們的<a href="%{help_url}">幫助章節</a>，或發佈訊息至我們的<a
     href="%{feedback_url}">意見回饋群組</a>。
   if_you_have_trouble_with_the_site: 如果您在此網站上碰到任何問題，請查看我們的幫助章節：
-  if_you_use: 如果您使用
   if_youd_like_us_to_share_your_observations_with: 如果您想讓我們與資料合作者來分享您的觀察，請確定您挑選創用CC許可授權在您的觀察上。
   if_you_want_to_change_the_name: 如果您想要更改名稱
   if_your_project_is: 若您的專案是在特定地點，請透過點擊地圖或手動輸入內容來設定座標。
@@ -1887,7 +1884,6 @@ zh-TW:
   link_or_unlink_your_google_account: 連結或取消連結至您的 Google 帳號
   link_your_facebook_account: 連結您的臉書帳號
   link_your_flickr_account: 連結您的 Flickr 帳號
-  link_your_flickr_account_with_inat: 連結至您的 Flickr 帳號與 %{site_name}
   link_your_flickr_account_with_inat_so: 連接您的 Flickr 帳號至 %{site_name}，這樣您便可添加您觀察的照片。
   link_your_google_account: 連結您的 Google 帳號
   linked_facebook: 您的 %{site_name} 帳號目前已連結至您的臉書帳號。
@@ -2134,7 +2130,7 @@ zh-TW:
     datetime_with_offset: MMM D, YYYY · LT Z
   mon: 週一
   month: 月
-  monthly_supporter_since_date: 自 %{date} 開始的每月贊助者
+  monthly_supporter_since_date_html: <a href="%{url}">每月捐款者</a> since %{date}
   months: 月
   months_ago: '%{text}前'
   more: 更多
@@ -2384,7 +2380,6 @@ zh-TW:
   not_filtering: 未篩選
   not_findig_what_you_want: 沒有找到您要的東西嗎？
   not_finding_place_you_want?: 沒有找到您要的地點嗎？
-  not_finding_what_looking_for: 沒有找到您要尋找的嗎？
   not_found: 未找到
   not_just_creative_commons_licensed: 不只是創用 CC 許可
   not_linked_facebook: 您的 %{site_name} 帳號目前已未連結至您的臉書帳號
@@ -3955,7 +3950,6 @@ zh-TW:
   that_project_doesnt_exist: 該專案不存在。
   that_role_doesnt_exist: 該身份不存在。
   that_was_the_last_observation_matching_the_current_filters: 那是最後符合目前篩選條件的觀察。
-  that_will_insert_a_link_to: 那將會在各 Flickr 照片頁面插入工具連結。
   thats_okay_we_forget: 沒關係！因為我們自己的也忘記了。請寄送給我們您所使用的電子郵件地址，以創建您的帳號，之後我們會寄給您一個用來重新設定密碼的連結。
   thats_not_a_real_date: 那不是一個實際日期！
   the: 該
@@ -4012,7 +4006,6 @@ zh-TW:
   there_were_some_problems_with: 在您的 CSV 檔案裡有一些問題。請重新修改失效的行列。當然問題也會可能是出在我們這裡，若真是如此的話，請讓我們知道。
   there_were_some_problems_with_fields: 以下欄位出現了一些問題：
   there_were_some_problems_with_these_files: 這些檔案出現了一些問題：
-  theres_also: 這裡也有
   theres_something_wrong_with_taxon_framework_relationship: 發生錯誤 - 我們無法判斷任何內部與外部物種分類群之間的關聯
   these_are_items_people_on: 這些是人們在網站上標記為策展的項目。垃圾評論會被刪除，而添加該內容的用戶會被停用（前往他們的個人檔案頁面，並在右下點擊「停用用戶」來防止他們登入）。評論應以禮儀方式進行，若其它被標記項目有著仇恨、非法、粗魯、冒犯等等言行，該項目會被刪除。如有多次重犯情況應回報給網站管理員或電郵至
     %{email}
@@ -4097,7 +4090,6 @@ zh-TW:
   to_include_your_google_with_inat: 來與 %{site_name} 包含您的 Google 帳號
   to_recipient: 至
   to_suggest_an_identification: 提議一個鑑定
-  to_tag_your_flickr_from_here: 來於此標記您的 Flickr 照片且不裁切並貼上。
   to_the_bat_cave: 到蝙蝠洞！
   today: 今日
   too_many_observations_csv: 您擁有著大量觀察！<br />我們僅能在每個 CSV 裡最多取用您的前 %{max_rows} 觀察
@@ -5398,7 +5390,7 @@ zh-TW:
       new:
         a_project_allows_you_to_gather: 收藏專案允許您使用核心 iNaturalist 搜尋工具來聚集並視覺化觀察。相符由專案所設定參數的一切內容將會自動囊括。
         an_umbrella_project_can_be_used_to: 綜合專案可用來比較兩個或以上的收藏、傳統專案之間的統計內容。在您添加內容至綜合專案前，需要先有其它的專案存在。您可以在一個綜合專案裡加入上百個專案，但不可讓綜合專案含有別的綜合專案。
-        are_you_ready_to_duplicate: 您確定要離開這個頁面來重複此專案嗎？
+        are_you_ready_to_duplicate: 您確定要離開這個頁面來對此專案產生複本嗎？請注意並不會一同複製專案的圖示與橫幅，而是需要在複本專案裡重新上傳。
         are_you_sure_you_want_to_delete: 您確定要刪除此專案嗎？
         can_be_included_in_multiple: 可包含在多項綜合專案
         click_through_to_individual_projects: 點擊至各項專案
