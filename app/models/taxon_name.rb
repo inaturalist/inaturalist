@@ -109,7 +109,7 @@ class TaxonName < ActiveRecord::Base
     "german"                => "de",
     "greek"                 => "el",
     "hawaiian"              => "haw",
-    "hebrew"                => "iw",
+    "hebrew"                => "he",
     "indonesian"            => "id",
     "italian"               => "it",
     "japanese"              => "ja",
