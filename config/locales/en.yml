@@ -446,7 +446,6 @@ en:
   are_you_sure_no_undo: Are you sure? This cannot be undone.
   are_you_sure_delete_post: Are you sure you want to delete this post?
   are_you_sure_delete_taxon_move_associates: "Are you sure you want to delete %{taxonname} (%{taxonid}) and move all its associates?"
-  are_you_sure_delete_this: Are you sure you want to delete this? You should probably check to see if it has observations or listed taxa first.
   are_you_sure_delete_this_place: Are you sure you want to delete this place?
   are_you_sure_leave_this_project: Are you sure you want to leave this project?
   are_you_sure_merge_these_places: Are you sure you want to merge these places?  This cannot be undone.
@@ -509,15 +508,12 @@ en:
   automatically_id_new: Automatically ID the new obs as
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
   back: Back
-  back_to_albums: Back to albums
   back_to_all_species: Back to All Species
   back_to_browsing_people: Back to browsing people
   back_to_calendar: "Back to %{user} calendar"
   back_to_editing_observation: Back to editing observation
   back_to_friends: Back to friends
   back_to_flags_html: "&laquo; Back to flags"
-  back_to_help: Back to Help
-  back_to_import: Back to Import
   back_to_lists: "Back to %{name} lists"
   back_to_observation: Back to observation
   back_to_observation_fields: Back to observation fields
@@ -526,7 +522,6 @@ en:
   back_to_possessive_user_profile: "Back to %{possuser}'s profile"
   back_to_post: '&laquo; Back to post'
   back_to_projects: Back to projects
-  back_to_shared_taxon: "Back to %{sharedtaxon}"
   back_to_suggestions: Back to Suggestions
   back_to_taxon: "Back to %{defaulttaxon}"
   back_to_taxon_changes: "Back to taxon changes"
@@ -538,7 +533,6 @@ en:
   back_to_x_journal: "Back to %{user}'s journal"
   back_to_x_blog: "Back to %{x}'s blog"
   back_to_your_dashboard: Back to your dashboard
-  back_to_x_observations: "Back to %{user}'s observations"
   back_to_your_lists: Back to your lists
   back_to_your_journal: Back to your journal
   back_to_your_observations: Back to your observations
@@ -546,17 +540,14 @@ en:
   back_to_your_projects: Back to your projects
   based_on_the_evidence_can_id_be_improved: |
     Based on the evidence, can the Community Taxon still be confirmed or improved?
-  basic: Basic
   batch: Batch
   batch_edit: Batch edit
   batch_edit_taxa_for_x_html: "Batch edit taxa for %{x}"
   batch_operations: Batch Operations
   be_the_first_to_fave_this_observation: Be the first to fave this observation!
-  beacuse_we_recently_changed_auth_system: Because we recently changed our user authentication system, it was necessary for your password to be reset.
   because: because
   because_of: because of
   before_importing_photos: before importing photos
-  before_you_can_contribute_your_observations: before you can contribute your observations.
   belives_this_is_a_comprehensive_list_of: believes this is a comprehensive list of
   bg_color: BG Color
   bioblitz: Bioblitz
@@ -575,8 +566,6 @@ en:
   breadcrumbs: Breadcrumbs
   breadcrumbs_description: "This will replace the h1 and default calls to action, so make sure to include them if they're important to this project and remember the max width allow is 950px"
   brief_caption: Brief caption
-  brief_description_on_what_you_observed: Brief description of what you observed
-  brief_description_of_what_you_saw: Brief description of what you saw
   brown: brown
   browse: Browse
   browse_all_projects: Browse All Projects
@@ -585,19 +574,14 @@ en:
   browse_people: Browse People
   browse_projects: Browse Projects
   browse_species_that_occur_near_this_observation: Browse species that occur near this observation.
-  browse_your_observations: Browse your observations
   built_with_site_guides_html: "Built with <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Bulk import of %{filename} is complete"
-  but_we_didnt_add_this_observation_to_the_x_project: "But we didn't add this observation to the %{project} project because you didn't agree to the project terms."
   by: by
-  by_adding_ids_to_observations: by adding IDs to observations
   by_everyone: By everyone
-  by_project_list: by project list
   by_user: "By %{user}"
   by_you: By you
   calendar: Calendar
   calendars_only_show_x_observations_at_time: Calendars only show %{x} observations at a time
-  can_you_help_your_friends_id_these: Can you help your friends ID these?
   cancel: Cancel
   cant_edit_or_delete_hidden_content: You can't edit or delete content that has been hidden by site curators
   cant_flag_an_object_that_doesnt_exist: Can't flag an object that doesn't exist
@@ -2207,7 +2191,6 @@ en:
   need_id_help?: Need ID help?
   needs_id: needs ID
   needs_id_: Needs ID
-  Needs_ID!: Needs ID!
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
   needs_to_be_identified: Needs to be identified
   new: New
