@@ -53,10 +53,6 @@
           %td= record.created_at
           %td= record.updated_at
           %td
-            - begin
-              = link_to("view", record)
-              = link_to "delete", record, 
-                :data => {:method => :delete, :confirm => "Are you sure you want to delete this?"}
-            - rescue
+            = link_to("view", record) rescue nil
   - if @records.respond_to?(:total_pages)
     = will_paginate @records
