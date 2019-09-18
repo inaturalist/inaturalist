@@ -260,7 +260,18 @@ en:
   add_your_photo_to: "Add Your Photo to %{project}"
   added: Added
   added!: Added!
-  added_as_a_part_of: Added as part of a
+  added_as_a_part_of_a_taxon_change_html: |
+    Added as part of a
+    <a target="%{target}" class="%{class}" href="%{url}">taxon change</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    Added as part of a
+    <a target="%{target}" class="%{class}" href="%{url}">taxon merge</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    Added as part of a
+    <a target="%{target}" class="%{class}" href="%{url}">taxon split</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    Added as part of a
+    <a target="%{target}" class="%{class}" href="%{url}">taxon swap</a>
   added_by: Added by
   added_by_user_on_date_html: "Added by %{user} on %{date}"
   added_on: Added on
@@ -4135,7 +4146,6 @@ en:
   third_person_possessive_plural: "%{object_phrase}'s %{noun}"
   this: this
   this_bioblitz_beings_in: This bioblitz begins in
-  this_id_was_added_due_to_a: This ID was added due to a
   this_is_a: This is a
   this_is_a_cached_summary_based_on: This is a cached summary of this taxon based on its
   this_is_a_life_list_of: This is a life list of
