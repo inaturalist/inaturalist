@@ -944,7 +944,7 @@ nl:
   delete_project: Dit project verwijderen
   delete_selected: Verwijder geselecteerde items
   delete_taxon_and_merge_most_data_html: |
-    Verwijder <i>%{taxon}</i> en voeg het grootste deel van de gegevens samen met een andere taxon. Gebruik deze tool voor <strong>het verwijderen van dubbele  taxa</strong>. Maak een taxonswap aan als je een verouderd synoniem wilt verwijderen. <strong>WEES VOORZICHTIG!</strong> Het verwijderen van taxa is erg destructief! Bekijk de <a href="%{curator_url}">Curator Gids</a> voor meer details.
+    Verwijder <i>%{taxon}</i> en voeg het grootste deel van de gegevens samen met een ander taxon. Gebruik deze tool voor <strong>het verwijderen van dubbele taxa</strong>. Maak een taxonwissel aan als je een verouderd synoniem wilt verwijderen. <strong>WEES VOORZICHTIG!</strong> Het verwijderen van taxa kan erg destructief zijn! Bekijk de <a href="%{curator_url}">Curator Gids</a> voor meer details.
   delete_this_name: Deze naam verwijderen
   delete_user: Gebruiker verwijderen
   delete_your_account: Uw account verwijderen
@@ -1851,7 +1851,7 @@ nl:
   mail_disclaimer: "%{site_name} laat niet toe dat gebruikers jouw aanvullende uitnodigingen versturen via onze uitnodig-functie. Rapporteer misbruik to %{site}"
   main_content: Belangrijkste inhoud
   make_a_new_place: Een nieuwe plaats aanmaken
-  make_a_taxon_swap_instead?: Misschien kan je daarvoor in de plaats een TaxonSwap voor aanmaken?
+  make_a_taxon_swap_instead?: Maak in plaats daarvan een Taxonwissel?
   make_curator: Beheerder maken
   make_it_a_life_list?: Er een levenslijst van maken?
   make_manager: Maak manager
@@ -3275,7 +3275,7 @@ nl:
   simple: Eenvoudig
   sign_in_exclamation: Aanmelden
   single_observation: Enkele waarneming
-  single_taxon: Enkel taxon (input voor split/drop/stage, uitvoer voor merge/swap)
+  single_taxon: Enkel taxon (invoer voor opdelen/droppen/publiseren, uitvoer voor samenvoegen/wisselen)
   sizes: Afmetingen
   skip_to_next_page: "Ga verder naar volgende pagina"
   small: klein
@@ -5567,9 +5567,8 @@ nl:
         equivalenten met de nieuwe genus- of soortnaam.
       form:
         move_children_desc_html: |
-          Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar de output taxon voor swaps en fusies wanneer deze wijziging is bevestigd. Als deze verandering naar een genus of lager is, zal het Taxon Swaps voor alle afstammelingen creëren met een impliciete naamswijziging. Bijvoorbeeld als je de familie Canidae swapt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae tot Dogidae. Als je het geslacht <i>Canis</i> swapt in het geslacht <i>Dogis</i>, maakt en bevestigt het 
-          Taxon Swaps om <i>Canis lupus</i> te wijzigen in <i>Dogis lupus</i> en <i>Canis lupus</i> ssp. <i>lupus</i> voor <i>Dogis lupus</i> ssp. <i>lupus</i>. 
-          Dit kan een behoorlijke rotzooi veroorzaken, dus gebruik het voorzichtig.
+          Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor wissels en fusies wanneer deze wijziging is bevestigd. Als deze verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met een impliciete naamswijziging. Bijvoorbeeld als je de familie Canidae swapt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, maakt en bevestigt het 
+          Taxonwissels om <i>Canis lupus</i> te wijzigen in <i>Dogis lupus</i> en <i>Canis lupus</i> ssp. <i>lupus</i> voor <i>Dogis lupus</i> ssp. <i>lupus</i>. Dit kan een behoorlijke rotzooi veroorzaken, dus gebruik het voorzichtig.
     taxon_links:
       form:
         name_with_rank_desc: |
