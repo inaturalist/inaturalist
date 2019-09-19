@@ -248,7 +248,6 @@ de:
   add_your_photo_to: "Dein Foto zu %{project} hinzufügen"
   added: Hinzugefügt
   added!: Hinzugefügt!
-  added_as_a_part_of: Hinzugefügt als Teil von
   added_by: Hinzugefügt von
   added_by_user_on_date_html: "Von %{user} am %{date} hinzugefügt"
   added_on: Hinzugefügt am
@@ -421,7 +420,6 @@ de:
   are_you_sure_no_undo: Bist du sicher? Diese Aktion kann nicht rückgängig gemacht werden.
   are_you_sure_delete_post: Bist du sicher, dass du diesen Beitrag löschen möchtest?
   are_you_sure_delete_taxon_move_associates: "Soll %{taxonname} (%{taxonid}) wirklich gelöscht werden und alle seine Mitglieder verschoben werden?"
-  are_you_sure_delete_this: Möchtest du dies wirklich löschen? Du solltest prüfen, ob Beobachtungen oder gelistete Taxa dazugehören.
   are_you_sure_delete_this_place: Bist du sicher, dass du diesen Ort löschen willst?
   are_you_sure_leave_this_project: Bist du sicher, dass du dieses Projekt verlassen willst?
   are_you_sure_merge_these_places: Bist du sicher, dass du diese Orte zusammenführen willst? Dies kann nicht rückgängig gemacht werden.
@@ -479,15 +477,12 @@ de:
   automatically_id_new: Die neuen Beobachtungen automatisch wie folgt kennzeichnen
   automatically_update_my_content_for_taxon_changes: Automatisch meine Inhalte bei Taxonänderungen aktualisieren
   back: Zurück
-  back_to_albums: Zurück zu den Alben
   back_to_all_species: Zurück zu Alle Arten
   back_to_browsing_people: Zurück zur Personensuche
   back_to_calendar: "Zurück zu %{user}s Kalender"
   back_to_editing_observation: Zurück zur Beobachtungsbearbeitung
   back_to_friends: Zurück zu den Freunden
   back_to_flags_html: "&laquo; Zurück zu den Meldungen"
-  back_to_help: Zurück zur Hilfe
-  back_to_import: Zurück zum Import
   back_to_lists: "Zurück zu den %{name}-Listen"
   back_to_observation: Zurück zur Beobachtung
   back_to_observation_fields: Zurück zu den Beobachtungsfeldern
@@ -496,7 +491,6 @@ de:
   back_to_possessive_user_profile: "Zurück zum Profil von %{possuser}"
   back_to_post: '&laquo; Zurück zum Beitrag'
   back_to_projects: Zurück zu den Projekten
-  back_to_shared_taxon: "Zurück zu %{sharedtaxon}"
   back_to_suggestions: Zurück zu den Vorschlägen
   back_to_taxon: "Zurück zu %{defaulttaxon}"
   back_to_taxon_changes: "Zurück zu Taxonänderungen"
@@ -507,7 +501,6 @@ de:
   back_to_x_journal: "Zurück zum Journal von %{user}"
   back_to_x_blog: "Zurück zum Blog von %{x}"
   back_to_your_dashboard: Zurück zu Deinem Dashboard
-  back_to_x_observations: "Zurück zu den Beobachtungen von %{user}"
   back_to_your_lists: Zurück zu deinen Listen
   back_to_your_journal: Zurück zu deinem Journal
   back_to_your_observations: Zurück zu deinen Beobachtungen
@@ -515,17 +508,14 @@ de:
   back_to_your_projects: Zurück zu deinen Projekten
   based_on_the_evidence_can_id_be_improved: |
     Kann die Community-ID mithilfe der vorhandenen Belege noch bestätigt oder verbessert werden?
-  basic: Einfach
   batch: Bündel
   batch_edit: Stapelbearbeitung
   batch_edit_taxa_for_x_html: "Taxa als Bündel bearbeiten für %{x}"
   batch_operations: Stapeloperationen
   be_the_first_to_fave_this_observation: Sei der erste, der diese Beobachtung favorisiert!
-  beacuse_we_recently_changed_auth_system: Da wir kürzlich unser Nutzeranmeldesystem geändert haben, war es notwendig dein Passwort zurückzusetzen.
   because: weil
   because_of: wegen
   before_importing_photos: vor dem Importieren von Bildern
-  before_you_can_contribute_your_observations: bevor Du Deine Beobachtungen beitragen kannst.
   belives_this_is_a_comprehensive_list_of: glaubt, dass dies eine umfassende Liste ist von
   bg_color: Hintergrundfarbe
   birds: Vögel
@@ -542,8 +532,6 @@ de:
   bounding_box: Rahmen
   breadcrumbs: Brotkrumen
   brief_caption: Kurzbeschriftung
-  brief_description_on_what_you_observed: Kurze Beschreibung dessen, was Du beobachtet hast
-  brief_description_of_what_you_saw: Kurze Beschreibung dessen, was Du gesehen hast
   brown: braun
   browse: Durchsuchen
   browse_all_projects: Alle Projekte durchsuchen
@@ -552,19 +540,14 @@ de:
   browse_people: Personen durchsuchen
   browse_projects: Projekte durchsuchen
   browse_species_that_occur_near_this_observation: Nach Arten suchen, die in der Nähe dieser Beobachtung vorkommen.
-  browse_your_observations: Eigene Beobachtungen durchsuchen
   built_with_site_guides_html: "Erstellt mit <a href='%{url}'>%{site_name}-Guides</a>"
   bulk_import_of_filename_is_complete: "Massenimport von %{filename} ist abgeschlossen"
-  but_we_didnt_add_this_observation_to_the_x_project: "Aber wir haben diese Beobachtung nicht zu %{project} hinzugefügt, da du dich nicht mit den Projektbedingungen einverstanden erklärt hast."
   by: durch
-  by_adding_ids_to_observations: durch Hinzufügen von IDs zu Beobachtungen
   by_everyone: Von allen
-  by_project_list: nach Projektliste
   by_user: "von %{user}"
   by_you: Von dir
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalender zeigen nur %{x} Beobachtungen auf einmal
-  can_you_help_your_friends_id_these: Kannst du deinen Freunden helfen, diese zu bestimmen?
   cancel: Abbrechen
   cant_flag_an_object_that_doesnt_exist: Nicht vorhandenes Objekt kann nicht gemeldet werden.
   cant_merge_a_taxon_with_itself: Kann kein Taxon mit sich selbst zusammenführen.
@@ -1931,7 +1914,6 @@ de:
   need_id_help?: Brauchst du Hilfe zur ID?
   needs_id: braucht ID
   needs_id_: Braucht ID
-  Needs_ID!: Braucht ID!
   needs_id_expandable_html: "<span class='full'>Benötigt</span> Kennung"
   needs_to_be_identified: Muss bestimmt werden
   new: Neu
