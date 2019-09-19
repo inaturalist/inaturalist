@@ -243,7 +243,6 @@ fi:
   add_your_photo_to: "Lisää kuvasi projektiin %{project}"
   added: Lisätty
   added!: Lisätty!
-  added_as_a_part_of: Lisätty osana
   added_by: Lisännyt
   added_by_user_on_date_html: "Lisännyt %{user} %{date}"
   added_on: Lisätty
@@ -415,7 +414,6 @@ fi:
   are_you_sure_no_undo: Oletko varma? Tätä ei voi perua.
   are_you_sure_delete_post: Haluatko varmasti poistaa tämän julkaisun?
   are_you_sure_delete_taxon_move_associates: "Haluatko varmasti poistaa taksonin %{taxonname} (%{taxonid}), ja siirtää kaikki sen kumppanit?"
-  are_you_sure_delete_this: Haluatko varmasti poistaa tämän? Sinun tulisi todennäköisesti ensin tarkistaa, nähdäksesi jos siinä on havaintoja tai luetteloituja taksoneita.
   are_you_sure_delete_this_place: Haluatko varmasti poistaa tämän paikan?
   are_you_sure_leave_this_project: Haluatko varmasti lähteä pois tästä projektista?
   are_you_sure_merge_these_places: Haluatko varmasti yhdistää nämä paikat? Tätä ei voi perua.
@@ -471,15 +469,12 @@ fi:
   automatically_id_new: Määritä automaattisesti uudet havainnot
   automatically_update_my_content_for_taxon_changes: Päivitä taksonimuutokset automaattisesti omiin havaintoihini.
   back: Takaisin
-  back_to_albums: Takaisin albumeihin
   back_to_all_species: Takaisin kaikkiin lajeihin
   back_to_browsing_people: Takaisin ihmisten selailuun
   back_to_calendar: "Takaisin käyttäjän %{user} kalenteriin"
   back_to_editing_observation: Takaisin muokkaamaan havaintoa
   back_to_friends: Takaisin ystäviin
   back_to_flags_html: "&laquo; Takaisin lippuihin"
-  back_to_help: Takaisin Avustajaan
-  back_to_import: Takaisin tuontiin
   back_to_lists: "Takaisin käyttäjän %{name} listoihin"
   back_to_observation: Takaisin havaintoon
   back_to_observation_fields: Takaisin havaintokenttiin
@@ -488,7 +483,6 @@ fi:
   back_to_possessive_user_profile: "Takaisin %{possuser}:n profiiliin"
   back_to_post: '&laquo; Takaisin viestiin'
   back_to_projects: Takaisin projekteihin
-  back_to_shared_taxon: "Takaisin %{sharedtaxon}"
   back_to_suggestions: Takaisin ehdotuksiin
   back_to_taxon: "Takaisin %{defaulttaxon}"
   back_to_taxon_changes: "Takaisin taksonin muutoksiin"
@@ -499,7 +493,6 @@ fi:
   back_to_x_journal: "Takaisin käyttäjän %{user} päiväkirjaan"
   back_to_x_blog: "Takaisin sivun %{x} blogiin"
   back_to_your_dashboard: Takaisin omaan kojelautaan
-  back_to_x_observations: "Takaisin käyttäjän %{user} havaintoihin"
   back_to_your_lists: Takaisin omiin luetteloihin
   back_to_your_journal: Takaisin päiväkirjaasi
   back_to_your_observations: Takaisin omiin havaintoihin
@@ -507,16 +500,13 @@ fi:
   back_to_your_projects: Takaisin projekteihisi
   based_on_the_evidence_can_id_be_improved: |
     Voiko yhteisön tekemää tunnistusta vielä vahvistaa tai parantaa perustuen havainnon tietoihin?
-  basic: Perus
   batch: Erä
   batch_edit: Erän muokkaus
   batch_operations: Erätoiminnot
   be_the_first_to_fave_this_observation: Ole ensimmäinen tätä suositteleva!
-  beacuse_we_recently_changed_auth_system: Koska muutimme äskettäin käyttäjien tunnistautumisjärjestelmäämme, oli tarpeen uusia salasanasi.
   because: koska
   because_of: koska
   before_importing_photos: ennen kuvien tuontia
-  before_you_can_contribute_your_observations: ennen kun voit edistää omia havaintojasi.
   belives_this_is_a_comprehensive_list_of: uskoo tämän olevan kokonaisvaltainen luettelo
   bg_color: Taustaväri
   birds: linnut
@@ -533,8 +523,6 @@ fi:
   bounding_box: Rajoituslaatikko
   breadcrumbs: Leivänmurut
   brief_caption: Lyhyt kuvaus
-  brief_description_on_what_you_observed: Lyhyt kuvaus havainnostasi
-  brief_description_of_what_you_saw: Lyhyt kuvaus siitä mitä näit
   brown: ruskea
   browse: Selaa
   browse_all_projects: Selaa kaikkia projekteja
@@ -543,19 +531,14 @@ fi:
   browse_people: Selaa henkilöitä
   browse_projects: Selaa projekteja
   browse_species_that_occur_near_this_observation: Selaa lajeja, jotka esiintyvät tämän havainnon lähellä.
-  browse_your_observations: Selaa omia havaintojasi
   built_with_site_guides_html: "Rakennettu <a href='%{url}'>%{site_name} oppailla</a>"
   bulk_import_of_filename_is_complete: "Tiedoston %{filename} massasiirto on valmis"
-  but_we_didnt_add_this_observation_to_the_x_project: "Mutta emme lisänneet tätä havaintoa projektiin %{project} koska et hyväksynyt projektin ehtoja."
   by: käyttäjältä
-  by_adding_ids_to_observations: lisäämällä tunnistukset havaintoihin
   by_everyone: Kaikkien
-  by_project_list: projektilistoittain
   by_user: "käyttäjältä %{user}"
   by_you: Sinulta
   calendar: Kalenteri
   calendars_only_show_x_observations_at_time: Kalenterit näyttävät vain %{x} havaintoa kerrallaan
-  can_you_help_your_friends_id_these: Voitko auttaa ystäviäsi tunnistamaan nämä?
   cancel: Peruuta
   cant_flag_an_object_that_doesnt_exist: Olematonta kohdetta ei voi liputtaa.
   cant_merge_a_taxon_with_itself: Ei voi yhdistää taksonia itsensä kanssa.
@@ -1865,7 +1848,6 @@ fi:
   need_id_help?: Tarvitsetko tunnisteapua?
   needs_id: tarvitsee tunnistuksen
   needs_id_: Tarvitsee tunnistuksen
-  Needs_ID!: Tarvitsee tunnistuksen!
   needs_id_expandable_html: "<span class='full'>Tarvitsee </span>tunnistuksen"
   needs_to_be_identified: On tunnistettava
   new: Uusi
