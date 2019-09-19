@@ -110,7 +110,6 @@ id:
   add_your_photo_to: "Tambahkan foto Anda ke %{project}"
   added: Ditambahkan
   added!: Ditambahkan!
-  added_as_a_part_of: Ditambahkan sebagai bagian dari
   added_by: Ditambahkan oleh
   added_on: Ditambahkan
   adding: "Menambahkan..."
@@ -191,7 +190,6 @@ id:
   are_you_sure_no_undo: Apakah Anda yakin? Ini tidak dapat dibatalkan.
   are_you_sure_delete_post: Apakah Anda yakin ingin menghapus postingan ini?
   are_you_sure_delete_taxon_move_associates: "Apakah Anda yakin ingin menghapus %{taxonname}(%{taxonid}) dan memindahkan semua asosiasi?"
-  are_you_sure_delete_this: Apakah Anda yakin ingin menghapus ini? Anda mungkin harus memeriksa untuk melihat apakah ia memiliki pengamatan atau taksa terdaftar pertama.
   are_you_sure_delete_this_place: Apakah Anda yakin ingin menghapus tempat ini?
   are_you_sure_leave_this_project: Apa anda yakin ingin meninggalkan proyek ini?
   are_you_sure_merge_these_places: Apakah Anda yakin ingin menggabungkan tempat-tempat ini? Ini tidak dapat dibatalkan.
@@ -244,13 +242,10 @@ id:
   automatically_id_new: Secara otomatis memberikan ID kepada observasi baru sebagai
   automatically_update_my_content_for_taxon_changes: Memperbarui konten saya untuk perubahan takson otomatis
   back: Kembali
-  back_to_albums: Kembali ke album
   back_to_all_species: Kembali ke semua spesies
   back_to_browsing_people: Kembali ke pencarian orang
   back_to_calendar: "Kembali ke kalender %{user}"
   back_to_editing_observation: Kembali ke merubah observasi
-  back_to_help: Kembali ke Bantuan
-  back_to_import: Kembali ke Impor
   back_to_lists: "Kembali ke daftar %{name}"
   back_to_observation: Kembali ke pengamatan
   back_to_observation_fields: Kembali ke bidang pengamatan
@@ -259,7 +254,6 @@ id:
   back_to_possessive_user_profile: "kembali ke %{possuser}'s profil"
   back_to_post: '&laquo; Kembali ke post'
   back_to_projects: Kembali ke proyek
-  back_to_shared_taxon: "Kembali ke %{sharedtaxon}"
   back_to_taxon: "Kembali ke %{defaulttaxon}"
   back_to_taxon_changes: "Kembali ke perubahan taksa"
   back_to_viewing: "Kembali ke tampilan <i>%{taxon}</i>"
@@ -267,22 +261,18 @@ id:
   back_to_x_assessment: "Kembali ke %{project} penilaian"
   back_to_x_history: "Kembali ke %{x} history"
   back_to_x_journal: "Kembali ke %{user}'s journal"
-  back_to_x_observations: "Kembali ke %{user}'s observations"
   back_to_your_lists: Kembali ke daftar anda
   back_to_your_journal: Kembali ke jurnal anda
   back_to_your_observations: Kembali ke pengamatan anda
   back_to_your_profile: Kembali ke profil anda
   back_to_your_projects: Kembali ke proyek anda
-  basic: Dasar
   batch: Jamak
   batch_edit: Sejumlah perubahan
   batch_edit_taxa_for_x_html: "Perubahan taksa sejumlah %{x}"
   batch_operations: Beberapa operasi
-  beacuse_we_recently_changed_auth_system: Karena kami baru saja mengubah sistem otentikasi pengguna Anda, hal itu perlu bagi sandi Anda diatur ulang.
   because: Karena
   because_of: karena
   before_importing_photos: sebelum memasukkan foto
-  before_you_can_contribute_your_observations: sebelum Anda dapat mengkontribusikan pengamatan Anda.
   belives_this_is_a_comprehensive_list_of: percaya bahwa ini adalah daftar lengkap dalam
   bg_color: Warna latar
   birds: Burung
@@ -295,8 +285,6 @@ id:
   breadcrumbs: Tepung roti
   breadcrumbs_description: "Ini akan menggantikan H1 dan standar panggilan untuk bertindak, jadi pastikan untuk menyertakan mereka jika mereka penting untuk proyek ini dan ingat lebar max memungkinkan adalah 950px"
   brief_caption: keterangan singkat
-  brief_description_on_what_you_observed: Deskripsi singkat tentang apa yang Anda amati
-  brief_description_of_what_you_saw: Deskripsi singkat tentang apa yang Anda amati
   brown: Coklat
   browse: Telusuri
   browse_all_projects: Mencari semua proyek
@@ -305,18 +293,13 @@ id:
   browse_people: Cari Orang
   browse_projects: Jelajahi proyek
   browse_species_that_occur_near_this_observation: Mencari spesies yang dekat dengan lokasi observasi
-  browse_your_observations: Mencari observasi anda
   built_with_site_guides_html: "Dibangun dengan <a href='%{url}'> %{site_name} Panduan </a>"
   bulk_import_of_filename_is_complete: "Impor massal dari %{filename} selesai"
-  but_we_didnt_add_this_observation_to_the_x_project: "Tapi kami tidak menambahkan pengamatan ini ke %{project} proyek karena Anda tidak setuju dengan persyaratan proyek."
   by: oleh
-  by_adding_ids_to_observations: dengan menambahkan ID pengamatan
   by_everyone: Oleh semua orang
-  by_project_list: Dari daftar proyek
   by_user: "Oleh %{user}"
   by_you: Oleh anda
   calendar: Kalender
-  can_you_help_your_friends_id_these: Anda dapat membantu teman-teman anda mengidentifikasi ini?
   cancel: Batalkan
   cant_flag_an_object_that_doesnt_exist: Tidak dapat menandai objek yang tidak ada
   cant_merge_a_taxon_with_itself: Tidak dapat menggabungkan takson yang sama
@@ -1431,7 +1414,6 @@ id:
   nearby_observations: Pengamatan terdekat
   need_id_help?: Butuh bantuan ID?
   needs_id: butuh ID
-  Needs_ID!: Butuh ID!
   needs_to_be_identified: Butuh untuk diidentifikasi
   new: Baru
   new_announcement: Pengumuman baru
