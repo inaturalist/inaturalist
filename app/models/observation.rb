@@ -2471,7 +2471,7 @@ class Observation < ActiveRecord::Base
 
   def self.places_without_obscuration_protection
     return [] if Rails.env.test?
-    Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
+    @@places_without_obscuration_protection ||= Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
       [
         19126, # City Nature Challenge 2018
         29625  # City Nature Challenge 2019

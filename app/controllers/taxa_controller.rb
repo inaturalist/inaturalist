@@ -172,6 +172,7 @@ class TaxaController < ApplicationController
         @chosen_tab = session[:preferred_taxon_page_tab]
         @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
         @test_new_similar = params[:test] == "similar"
+        @test_new_recent = params[:test] == "recent"
         render layout: "bootstrap", action: "show"
       end
       
