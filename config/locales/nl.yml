@@ -244,7 +244,6 @@ nl:
   add_your_photo_to: "Uw foto toevoegen aan %{project}"
   added: Toegevoegd
   added!: Toegevoegdǃ
-  added_as_a_part_of: Toegevoegd als onderdeel van
   added_by: Toegevoegd door
   added_by_user_on_date_html: "Toegevoegd door %{user} op %{date}"
   added_on: Toegevoegd op
@@ -406,7 +405,6 @@ nl:
   are_you_sure_no_undo: Weet u het zeker?  Deze handeling kan niet ongedaan worden gemaakt.
   are_you_sure_delete_post: Weet u zeker dat u deze reactie wilt verwijderen?
   are_you_sure_delete_taxon_move_associates: "Weet u zeker dat u %{taxonname} (%{taxonid}) wilt verwijderen en alle verwante items wilt verplaatsen?"
-  are_you_sure_delete_this: Ben je zeker dat je dit wil verwijderen? Controleer eerst even of hier waarnemingen of een soortenlijst aan verbonden zijn.
   are_you_sure_delete_this_place: Weet u zeker dat u deze plaats wil verwijderen?
   are_you_sure_leave_this_project: Weet u zeker dat u dit project wilt verlaten?
   are_you_sure_merge_these_places: Weet je zeker dat je deze plaatsen wilt samenvoegen. Dit kan niet ongedaan gemaakt worden.
@@ -465,15 +463,12 @@ nl:
   automatically_id_new: Determineer de nieuwe wrn automatisch als
   automatically_update_my_content_for_taxon_changes: Werk mijn inhoud automatisch bij voor aanpassingen van het taxon
   back: Terug
-  back_to_albums: Terug naar albums
   back_to_all_species: Terug naar Alle Soorten
   back_to_browsing_people: Terug naar personen doorzoeken
   back_to_calendar: "Terug naar %{user} kalender"
   back_to_editing_observation: Terug naar waarneming bewerken
   back_to_friends: Terug naar vrienden
   back_to_flags_html: "&laquo; Terug naar markering"
-  back_to_help: Terug naar Help
-  back_to_import: Terug naar Import
   back_to_lists: "Terug naar %{name} lijsten"
   back_to_observation: Terug naar waarneming
   back_to_observation_fields: Terug naar waarnemingsvelden
@@ -482,7 +477,6 @@ nl:
   back_to_possessive_user_profile: "Terug naar het profiel van %{possuser}"
   back_to_post: '&laquo; Terug naar bericht'
   back_to_projects: Terug naar projecten
-  back_to_shared_taxon: "Terug naar %{sharedtaxon}"
   back_to_suggestions: Terug naar Suggesties
   back_to_taxon: "Terug naar %{defaulttaxon}"
   back_to_taxon_changes: "Terug naar aanpassingen van het taxon"
@@ -494,7 +488,6 @@ nl:
   back_to_x_journal: "Terug naar het dagboek van %{user}"
   back_to_x_blog: "Terug naar de blog van %{x}"
   back_to_your_dashboard: Terug naar je dashboard
-  back_to_x_observations: "Terug naar de waarnemingen van %{user}"
   back_to_your_lists: Terug naar uw overzichten
   back_to_your_journal: Terug naar uw dagboek
   back_to_your_observations: Terug naar uw waarnemingen
@@ -502,16 +495,13 @@ nl:
   back_to_your_projects: Terug naar uw projecten
   based_on_the_evidence_can_id_be_improved: |
     Gebaseerd op het bewijs, kan het GemeenschapsTaxon nog steeds bevestigd of verbeterd worden?
-  basic: Basis
   batch_edit: Bewerk in batch
   batch_edit_taxa_for_x_html: "Bewerk taxa in batch voor %{x}"
   batch_operations: Batchbewerkingen
   be_the_first_to_fave_this_observation: Wees de eerste om deze waarneming aan je favorieten toe te voegen!
-  beacuse_we_recently_changed_auth_system: Omdat we onlangs ons gebruikersauthenticatiesysteem hebben veranderd, was het noodzakelijk om uw wachtwoord opnieuw in te stellen.
   because: omdat
   because_of: wegens
   before_importing_photos: vóór het importeren van foto's
-  before_you_can_contribute_your_observations: voordat u uw waarnemingen kunt bijdragen
   belives_this_is_a_comprehensive_list_of: vindt dat dit een uitgebreide lijst is van
   bg_color: Achtergrondkleur
   birds: vogels
@@ -529,8 +519,6 @@ nl:
   breadcrumbs: Broodkruimels
   breadcrumbs_description: "Dit zal de h1 en standaard calls-to-action vervangen, dus zorg ervoor dat je ze opneemt als ze belangrijk zijn voor dit project en onthoud dat de max. toegestane breedte 950px is"
   brief_caption: Kort onderschrift
-  brief_description_on_what_you_observed: Korte beschrijving van uw waarneming
-  brief_description_of_what_you_saw: Korte beschrijving van je waarneming
   brown: bruin
   browse: Bladeren
   browse_all_projects: Surf door alle projecten
@@ -539,19 +527,14 @@ nl:
   browse_people: Surf door Personen
   browse_projects: Surf door projecten
   browse_species_that_occur_near_this_observation: Soorten bekijken in de buurt van deze waarneming
-  browse_your_observations: Surf door waarnemingen
   built_with_site_guides_html: "Gebouwd met <a href='%{url}'>%{site_name} Gidsen</a>"
   bulk_import_of_filename_is_complete: "Bulk import van %{filename} is klaar"
-  but_we_didnt_add_this_observation_to_the_x_project: "De waarneming werd niet aan het %{project}-project toegevoegd aangezien je je nog niet akkoord verklaarde met de projectvoorwaarden."
   by: door
-  by_adding_ids_to_observations: door ID's aan waarnemingen toe te voegen
   by_everyone: Door iedereen
-  by_project_list: op projectlijst
   by_user: "Door %{user}"
   by_you: Door u
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalenders tonen slechts %{x} waarnemingen tegelijk
-  can_you_help_your_friends_id_these: Kan je je vrienden helpen om deze te identificeren?
   cancel: Annuleren
   cant_edit_or_delete_hidden_content: Je kunt inhoud die is verborgen door sitecuratoren niet bewerken of verwijderen
   cant_flag_an_object_that_doesnt_exist: Niet mogelijk om een object te markeren dat niet bestaat
@@ -2034,7 +2017,6 @@ nl:
   need_id_help?: ID hulp nodig?
   needs_id: ID gewenst
   needs_id_: ID gewenst
-  Needs_ID!: ID gewenst!
   needs_id_expandable_html: "ID <span class='full'>gewenst</span>"
   needs_to_be_identified: moet geïdentificeerd worden
   new: Nieuw
@@ -3714,7 +3696,6 @@ nl:
   third_person_possessive_plural: "%{noun} van %{object_phrase}"
   this: deze
   this_bioblitz_beings_in: Deze bioblitz start in
-  this_id_was_added_due_to_a: Dit ID werd toegevoegd wegens een
   this_is_a: Dit is een
   this_is_a_cached_summary_based_on: Dit is een gecachte samenvatting van dit taxon op basis van zijn
   this_is_a_life_list_of: Dit is een levenslijst van
