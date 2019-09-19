@@ -142,7 +142,6 @@ ar:
   add_your_photo_to: "أضف صورتك إلى %{project}"
   added: تمت إضافته
   added!: تمت إضافته!
-  added_as_a_part_of: تمت الإضافة كجزء من
   added_by: أُضيفت بواسطة
   added_by_user_on_date_html: "تمت الإضافة بواسطة %{user} في %{date}"
   added_on: تمت الإضافة في
@@ -271,7 +270,6 @@ ar:
   are_you_sure_no_undo: هل أنت متأكد؟هذا لا يمكن التراجع عنها.
   are_you_sure_delete_post: هل أنت متأكد أنك تريد حذف هذه المشاركة؟
   are_you_sure_delete_taxon_move_associates: "هل أنت متأكد أنك تريد حذف %{taxonname} (%{taxonid}) ونقل جميع شركائها؟"
-  are_you_sure_delete_this: هل أنت متأكد أنك تريد حذف هذا؟ ربما ينبغي عليك التحقق لمعرفة ما إذا كان لديه ملاحظات أو أصناف مدرجة أولا.
   are_you_sure_delete_this_place: هل تريد بالتأكيد حذف هذا المكان؟
   are_you_sure_leave_this_project: هل أنت متأكد من أنك ترغب في مغادرة هذا المشروع؟
   are_you_sure_merge_these_places: هل تريد بالتأكيد دمج هذه الأماكن؟ هذا لا يمكن التراجع عنه.
@@ -334,15 +332,12 @@ ar:
   automatically_id_new: عرف الملاحظات الجديدة تلقائيا ك
   automatically_update_my_content_for_taxon_changes: تحديث المحتوى الخاص بي تلقائيا لتغييرات الأصناف
   back: عودة
-  back_to_albums: العودة للألبومات
   back_to_all_species: عودة إلى كل الأنواع
   back_to_browsing_people: العودة إلى تصفح الأشخاص
   back_to_calendar: "الرجوع إلى تقويم %{user}"
   back_to_editing_observation: العودة إلى تحرير الملاحظة
   back_to_friends: العودة إلى الأصدقاء
   back_to_flags_html: "&laquo; رجوع إلى الأعلام"
-  back_to_help: عودة إلى المساعدة
-  back_to_import: رجوع إلى الاستيراد
   back_to_lists: "الرجوع إلى قوائم %{name}"
   back_to_observation: العودة إلى الملاحظة
   back_to_observation_fields: العودة إلى حقول الملاحظة
@@ -351,7 +346,6 @@ ar:
   back_to_possessive_user_profile: "عودة إلى الملف الشخصي ل%{possuser}"
   back_to_post: '&laquo; رجوع إلى المشاركة'
   back_to_projects: العودة إلى المشاريع
-  back_to_shared_taxon: "عودة إلى %{sharedtaxon}"
   back_to_suggestions: الرجوع إلى الاقتراحات
   back_to_taxon: "عودة إلى %{defaulttaxon}"
   back_to_taxon_changes: "الرجوع إلى التغييرات في الأصناف"
@@ -363,7 +357,6 @@ ar:
   back_to_x_journal: "الرجوع إلى مجلة %{user}"
   back_to_x_blog: "الرجوع إلى مدونة %{x}"
   back_to_your_dashboard: العودة إلى لوحة معلوماتك
-  back_to_x_observations: "الرجوع إلى ملاحظات %{user}"
   back_to_your_lists: العودة إلى قوائمك
   back_to_your_journal: العودة إلى مجلتك
   back_to_your_observations: الرجوع إلى ملاحظاتك
@@ -371,17 +364,14 @@ ar:
   back_to_your_projects: العودة إلى مشاريعك
   based_on_the_evidence_can_id_be_improved: |
     استنادا إلى الأدلة، هل يمكن تأكيد أو تحسين أصنوفة المجتمع؟
-  basic: الأساسية
   batch: دفعة
   batch_edit: دفعة تعديلات
   batch_edit_taxa_for_x_html: "دفعة تحرير الأصناف لـ%{x}"
   batch_operations: دفعة عمليات
   be_the_first_to_fave_this_observation: كن أول من يفضل هذه الملاحظة!
-  beacuse_we_recently_changed_auth_system: نظرا لأننا قمنا مؤخرا بتغيير نظام مصادقة المستخدم لدينا؛ كان من الضروري إعادة تعيين كلمة مرورك.
   because: بسبب
   because_of: بسبب
   before_importing_photos: قبل استيراد الصور
-  before_you_can_contribute_your_observations: قبل أن تتمكن من المساهمة في ملاحظاتك.
   belives_this_is_a_comprehensive_list_of: يعتقد أن هذه قائمة شاملة بـ
   bg_color: لون الخلفية
   bioblitz: بيوبليتز
@@ -400,8 +390,6 @@ ar:
   breadcrumbs: ممر التصفح
   breadcrumbs_description: "سيحل هذا محل h1 والعبارات التي تحث المستخدم على اتخاذ إجراء; لذا تأكد من تضمينها إذا كانت مهمة لهذا المشروع وتذكر أن الحد الأقصى المسموح به للعرض هو 950 بكسل"
   brief_caption: شرح موجز
-  brief_description_on_what_you_observed: وصف موجز لما لاحظت
-  brief_description_of_what_you_saw: وصف موجز لما رأيت
   brown: بني
   browse: تصفح
   browse_all_projects: تصفح جميع المشاريع
@@ -410,19 +398,14 @@ ar:
   browse_people: تصفح الأشخاص
   browse_projects: تصفح المشاريع
   browse_species_that_occur_near_this_observation: تصفح الأنواع التي تحدث بالقرب من هذه الملاحظة.
-  browse_your_observations: تصفح ملاحظاتك
   built_with_site_guides_html: "تم إنشاؤها باستخدام أدلة <a href='%{url}'>%{site_name}</a>"
   bulk_import_of_filename_is_complete: "اكتمل الاستيراد المجمع لـ%{filename}"
-  but_we_didnt_add_this_observation_to_the_x_project: "لكننا لم نضف هذه الملاحظة إلى مشروع %{project} لأنك لم توافق على شروط المشروع."
   by: بواسطة
-  by_adding_ids_to_observations: بإضافة المعرفات إلى الملاحظات
   by_everyone: بواسطة الجميع
-  by_project_list: حسب قائمة المشروع
   by_user: "حسب %{user}"
   by_you: بواسطتك
   calendar: تقويم
   calendars_only_show_x_observations_at_time: لا تعرض التقاويم سوى %{x} من الملاحظات في كل مرة
-  can_you_help_your_friends_id_these: هل يمكنك مساعدة معرفات أصدقائك هؤلاء؟
   cancel: إلغاء
   cant_edit_or_delete_hidden_content: لا يمكنك تحرير أو حذف المحتوى الذي تم إخفاؤه بواسطة منسقي الموقع
   cant_flag_an_object_that_doesnt_exist: لا يمكن وضع علامة على كائن غير موجود
@@ -1977,7 +1960,6 @@ ar:
   need_id_help?: تحتاج مساعدة معرف؟
   needs_id: يحتاج معرفا
   needs_id_: يحتاج معرفا
-  Needs_ID!: يحتاج معرفا!
   needs_id_expandable_html: "<span class='full'>يحتاج </span>معرفا"
   needs_to_be_identified: ينبغي تحديدها
   new: جديد
@@ -3840,7 +3822,6 @@ ar:
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: هذا
   this_bioblitz_beings_in: هذا bioblitz يبدأ في
-  this_id_was_added_due_to_a: تمت إضافة هذا المعرف بسبب
   this_is_a: هذا هو
   this_is_a_cached_summary_based_on: هذا ملخص مخبأ لهذه الأصنوفة على أساس
   this_is_a_life_list_of: هذه قائمة حياة
