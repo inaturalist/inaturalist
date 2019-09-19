@@ -140,7 +140,6 @@ cs:
   add_your_photo_to: "Přidat vlastní obrázek k projektu %{project}"
   added: Přidáno
   added!: Přidáno!
-  added_as_a_part_of: Přidáno jako část
   added_by: Přidáno uživatelem
   added_by_user_on_date_html: "Přidáno uživatelem %{user} dne %{date}"
   added_on: Přidáno na
@@ -267,7 +266,6 @@ cs:
   are_you_sure_no_undo: Jste si jistí? Tento krok nelze vrátit.
   are_you_sure_delete_post: Opravdu chcete odstranit tento post?
   are_you_sure_delete_taxon_move_associates: "Jste si jisti, že chcete smazat %{taxonname} (%{taxonid}) a přesunout všechny jeho vazby?"
-  are_you_sure_delete_this: Jste si jisti, že tohle chcete smazat? Asi by jste nejprve měli zjistit, jestli to neobsahuje pozorování či seznamy taxonů.
   are_you_sure_delete_this_place: Jste si jisti, že chcete smazat toto místo?
   are_you_sure_leave_this_project: Jste si jisti, že chcete opustit tento pojekt?
   are_you_sure_merge_these_places: Jste si jisti, že chcete sloučit tato místa? Tohle nejde vrátit.
@@ -326,15 +324,12 @@ cs:
   automatically_id_new: Automaticky přiřadit ID novým pozorováním jako
   automatically_update_my_content_for_taxon_changes: Automaticky aktualizovat můj obsah při změnách taxonů
   back: Zpět
-  back_to_albums: Zpět do alba
   back_to_all_species: Zpět na Všechny Druhy
   back_to_browsing_people: Zpět k procházení lidí
   back_to_calendar: "Zpět do kalendáře %{user}"
   back_to_editing_observation: Zpět na editaci pozorování
   back_to_friends: Zpět k přátelům
   back_to_flags_html: "&laquo; Zpět k vlajkám"
-  back_to_help: Zpět k nápovědě
-  back_to_import: Zpět na Import
   back_to_lists: "Zpět do seznamů %{name}"
   back_to_observation: Zpět na pozorování
   back_to_observation_fields: Zpět na pozorovací pole
@@ -343,7 +338,6 @@ cs:
   back_to_possessive_user_profile: "Zpátky na profil uživatele %{possuser}"
   back_to_post: '&laquo; Zpět k postu'
   back_to_projects: Zpátky na projekty
-  back_to_shared_taxon: "Zpět do %{sharedtaxon}"
   back_to_suggestions: Zpět do návrhů
   back_to_taxon: "Zpět do %{defaulttaxon}"
   back_to_taxon_changes: "Zpět do změn taxonů"
@@ -355,7 +349,6 @@ cs:
   back_to_x_journal: "Zpět do deníku uživatele %{user}"
   back_to_x_blog: "Zpět do blogu uživatele %{x}"
   back_to_your_dashboard: Zpátky na hlavní panel
-  back_to_x_observations: "Zpět do pozorování uživatele %{user}"
   back_to_your_lists: Zpátky na vaše seznamy
   back_to_your_journal: Zpátky na váš deník
   back_to_your_observations: Zpátky na vaše pozorování
@@ -363,17 +356,14 @@ cs:
   back_to_your_projects: Zpátky na vaše projekty
   based_on_the_evidence_can_id_be_improved: |
     Může být na základě důkazů komunitní ID stále potvrzeno nebo vylepšeno?
-  basic: Základní
   batch: Série
   batch_edit: Upravit sérii
   batch_edit_taxa_for_x_html: "Hromadná editace taxonů pro %{x}"
   batch_operations: Hromadné operace
   be_the_first_to_fave_this_observation: Buďte první, komu se toto pozorování líbí!
-  beacuse_we_recently_changed_auth_system: Protože jsme nedávno změnili systém ověřování uživatelů, bylo nutné opětovné nastavení vašeho hesla.
   because: protože
   because_of: kvůli
   before_importing_photos: před importováním fotek
-  before_you_can_contribute_your_observations: než budete moci vkládat svá pozorování.
   belives_this_is_a_comprehensive_list_of: je přesvědčen/a, že toto je úplný seznam
   bg_color: Barva pozadí
   birds: ptáci
@@ -391,8 +381,6 @@ cs:
   breadcrumbs: Strouhanka
   breadcrumbs_description: "Toto nahradí h1 a základní nastavení výzev, proto je přidejte, pokud jsou pro tento projekt důležité, a nezapomeňte, že maximální povolená velikost je 950px"
   brief_caption: Stručný titulek
-  brief_description_on_what_you_observed: Stručný popis vašeho pozorování
-  brief_description_of_what_you_saw: Stručný popis toho, co jste viděli
   brown: hnědá
   browse: Procházet
   browse_all_projects: Procházet všechny projekty
@@ -401,19 +389,14 @@ cs:
   browse_people: Procházet lidi
   browse_projects: Procházet Projekty
   browse_species_that_occur_near_this_observation: Procházet druhy, které se vyskytují v blízkosti tohoto pozorování.
-  browse_your_observations: Procházet vaše pozorování
   built_with_site_guides_html: "Vytvořeno s průvodci <a href='%{url}'>%{site_name}</a>"
   bulk_import_of_filename_is_complete: "Hromadný import %{filename} byl dokončen"
-  but_we_didnt_add_this_observation_to_the_x_project: "Toto pozorování nebylo přidáno do %{project} projektu, protože jste nesouhlasili s jeho podmínkami."
   by: od
-  by_adding_ids_to_observations: přidáním ID k pozorováním
   by_everyone: Všichni
-  by_project_list: podle seznamu projektu
   by_user: "uživatel %{user}"
   by_you: vámi
   calendar: Kalendář
   calendars_only_show_x_observations_at_time: Kalendáře zobrazují najednou jen %{x} pozorování
-  can_you_help_your_friends_id_these: Můžete pomoci vašim přátelům toto identifikovat?
   cancel: Storno
   cant_flag_an_object_that_doesnt_exist: Není možné označit objekt, který neexistuje
   cant_merge_a_taxon_with_itself: Nelze sloučit taxon se stejným taxonem.
@@ -1865,7 +1848,6 @@ cs:
   need_id_help?: Potřebujete pomoc s ID?
   needs_id: nutné ID
   needs_id_: Nutné ID
-  Needs_ID!: Nutné ID!
   needs_id_expandable_html: "<span class='full'>Nutné </span>ID"
   needs_to_be_identified: Musí být identifikován
   new: Nový
@@ -3544,7 +3526,6 @@ cs:
   third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: tento
   this_bioblitz_beings_in: Tento bioblitz začíná v
-  this_id_was_added_due_to_a: Toto ID bylo přidáno kvůli
   this_is_a: Toto je
   this_is_a_cached_summary_based_on: Toto je skrytý přehled tohoto taxonu podle
   this_is_a_life_list_of: Toto je seznam života
