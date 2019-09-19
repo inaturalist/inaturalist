@@ -142,7 +142,6 @@ ru:
   add_your_photo_to: "Добавить ваше фото к %{project}"
   added: Добавлено
   added!: Добавлено!
-  added_as_a_part_of: Добавлено как часть
   added_by: Добавлено
   added_by_user_on_date_html: "Добавленно %{user} в %{date}"
   added_on: Добавил
@@ -271,7 +270,6 @@ ru:
   are_you_sure_no_undo: Вы уверены? Это действие невозможно отменить.
   are_you_sure_delete_post: Вы уверены, что хотите удалить это сообщение?
   are_you_sure_delete_taxon_move_associates: "Вы уверены, что хотите удалить %{taxonname}(%{taxonid}) и переместить все связанные с ним ассоциации?"
-  are_you_sure_delete_this: Вы действительно хотите удалить это? Вероятно, вы должны проверить вначале, есть ли у него наблюдения или перечисленные таксоны.
   are_you_sure_delete_this_place: Вы уверены, что хотите удалить это место?
   are_you_sure_leave_this_project: Вы уверены, что хотите выйти из этого проекта?
   are_you_sure_merge_these_places: Вы уверены, что хотите объединить эти места? Это действие не может быть отменено.
@@ -332,15 +330,12 @@ ru:
   automatically_id_new: Автоматически идентифицировать новые наблюдения как
   automatically_update_my_content_for_taxon_changes: Автоматически обновлять мой контент при изменении таксона
   back: Назад
-  back_to_albums: Назад к альбомам
   back_to_all_species: Назад ко Всем Видам
   back_to_browsing_people: Вернуться к поиску людей
   back_to_calendar: "Вернуться к календарю %{user}"
   back_to_editing_observation: Вернуться к редактированию наблюдения
   back_to_friends: Назад к друзьям
   back_to_flags_html: "&laquo; Назад к флагам"
-  back_to_help: Назад к Справке
-  back_to_import: Назад к Импорту
   back_to_lists: "Назад к спискам %{name}"
   back_to_observation: Назад к наблюдению
   back_to_observation_fields: Назад к полям наблюдения
@@ -349,7 +344,6 @@ ru:
   back_to_possessive_user_profile: "Обратно к профилю %{possuser}"
   back_to_post: '&laquo; Назад, к сообщению'
   back_to_projects: Вернуться к проектам
-  back_to_shared_taxon: "Вернуться к %{sharedtaxon}"
   back_to_suggestions: Назад, к предложениям
   back_to_taxon: "Вернуться к %{defaulttaxon}"
   back_to_taxon_changes: "Вернуться к изменениям таксона"
@@ -361,7 +355,6 @@ ru:
   back_to_x_journal: "Вернуться к журналу %{user}"
   back_to_x_blog: "Вернуться к блогу %{x}"
   back_to_your_dashboard: Обратно к вашей панели мониторинга
-  back_to_x_observations: "Назад к наблюдениям %{user}"
   back_to_your_lists: Назад к вашим спискам
   back_to_your_journal: Обратно в свой журнал
   back_to_your_observations: Вернуться к вашим наблюдениям
@@ -369,17 +362,14 @@ ru:
   back_to_your_projects: Вернуться к вашим проектам
   based_on_the_evidence_can_id_be_improved: |
     Основываясь на свидетельствах, можно ли подтвердить или улучшить таксон сообщества?
-  basic: Основное
   batch: Пакетная загрузка
   batch_edit: Пакетное редактирование
   batch_edit_taxa_for_x_html: "Пакетное редактирование таксонов для %{x}"
   batch_operations: Пакетные Операции
   be_the_first_to_fave_this_observation: Будьте первым, кто добавил это наблюдение в фавориты!
-  beacuse_we_recently_changed_auth_system: Поскольку мы недавно изменили систему авторизации пользователей, ваш пароль был сброшен.
   because: потому что
   because_of: поскольку
   before_importing_photos: прежде чем импортировать фото
-  before_you_can_contribute_your_observations: прежде чем вводить ваши наблюдения
   belives_this_is_a_comprehensive_list_of: считает, что это полный список
   bg_color: Цвет фона
   bioblitz: Биоблиц
@@ -398,8 +388,6 @@ ru:
   breadcrumbs: Панировочные сухари
   breadcrumbs_description: "Это заменит h1 и действия по умолчанию, поэтому обязательно включите их, если они важны для этого проекта, и помните, что максимальная ширина 950px"
   brief_caption: Краткий заголовок
-  brief_description_on_what_you_observed: Краткое описание того, что вы видели
-  brief_description_of_what_you_saw: Краткое описание того, что вы видели
   brown: коричневый
   browse: Обзор
   browse_all_projects: Просмотр всех проектов
@@ -408,19 +396,14 @@ ru:
   browse_people: Искать людей
   browse_projects: Просмотр Проектов
   browse_species_that_occur_near_this_observation: Посмотреть виды, которые встречались рядом с местом этого наблюдения.
-  browse_your_observations: Просмотр ваших наблюдений
   built_with_site_guides_html: "Постройте с <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Групповой импорт %{filename} завершён"
-  but_we_didnt_add_this_observation_to_the_x_project: "Мы не добавили это наблюдение к проекту %{project} потому, что вы не согласны с условиями проекта."
   by: _
-  by_adding_ids_to_observations: добавляя идентификаторы к наблюдениям
   by_everyone: Любые
-  by_project_list: по списку проекта
   by_user: "%{user}"
   by_you: Ваши
   calendar: Календарь
   calendars_only_show_x_observations_at_time: Календари показывают только %{x} наблюдений в это время
-  can_you_help_your_friends_id_these: Вы можете помочь своим друзьям идентифицировать это?
   cancel: Отмена
   cant_edit_or_delete_hidden_content: Вы не можете редактировать или удалять контент, скрытый кураторами сайта
   cant_flag_an_object_that_doesnt_exist: Не может отметить объект который не существует
@@ -1916,7 +1899,6 @@ ru:
   need_id_help?: Нужна помощь в идентификации?
   needs_id: требуется идентификация
   needs_id_: Требуется идентификация
-  Needs_ID!: Требуется идентификация!
   needs_to_be_identified: Нуждается в определении
   new: Новички
   new_and_noteworthy: Новые и значимые
@@ -3685,7 +3667,6 @@ ru:
   third_person_possessive_plural: "%{noun}%{object_phrase}"
   this: это
   this_bioblitz_beings_in: Биоблиц начинается в
-  this_id_was_added_due_to_a: Этот ID был добавлен из-за
   this_is_a: Это
   this_is_a_cached_summary_based_on: Это кэшированная сводка этого таксона на основе его
   this_is_a_life_list_of: Это список жизни для
