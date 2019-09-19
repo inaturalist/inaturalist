@@ -231,7 +231,6 @@ sv:
   add_your_photo_to: "Lägg till ditt foto till %{project}"
   added: Lades till
   added!: Lades till!
-  added_as_a_part_of: Lades till som en del av
   added_by: Lades till av
   added_by_user_on_date_html: "Lades till av %{user} den %{date}"
   added_on: Lades till den
@@ -398,7 +397,6 @@ sv:
   are_you_sure_no_undo: Är du säker? Detta kan inte ångras.
   are_you_sure_delete_post: Är du säker på att du vill radera denna kommentar?
   are_you_sure_delete_taxon_move_associates: "Är du säker på att du vill ta bort %{taxonname} (%{taxonid}) och flytta alla dess tillhörande?"
-  are_you_sure_delete_this: Är du säker på att du vill ta bort denna? Du ska nog först kontrollera om den har observationer eller listad taksa.
   are_you_sure_delete_this_place: Är du säker på att du vill radera denna plats?
   are_you_sure_leave_this_project: Är du säker på att du vill lämna detta projekt?
   are_you_sure_merge_these_places: Är du säker på att du vill slå ihop dessa platser. Detta går inte att ångra.
@@ -454,15 +452,12 @@ sv:
   automatically_id_new: Lägg till ID automatiskt för de nya observationerna som
   automatically_update_my_content_for_taxon_changes: Automatiskt uppdatera mitt innehåll för taxon ändringar
   back: Tillbaka
-  back_to_albums: Tillbaka till album
   back_to_all_species: Tillbaka till alla arter
   back_to_browsing_people: Tillbaka till att bläddra bland personer
   back_to_calendar: "Tillbaka till %{user}s kalender"
   back_to_editing_observation: Tillbaka till att ändra observation
   back_to_friends: Tillbaka till vänner
   back_to_flags_html: "&laquo; Tillbaka till flaggor"
-  back_to_help: Tillbaka till hjälp
-  back_to_import: Tillbaka till import
   back_to_lists: "Tillbaka till %{name} listor"
   back_to_observation: Tillbaka till observation
   back_to_observation_fields: Tillbaka till observationsfält
@@ -471,7 +466,6 @@ sv:
   back_to_possessive_user_profile: "Tillbaka till %{possuser}s profil"
   back_to_post: '&laquo; Tillbaka till inlägg'
   back_to_projects: Tillbaka till projekten
-  back_to_shared_taxon: "Tillbaka till %{sharedtaxon}"
   back_to_suggestions: Tillbaka till förslag
   back_to_taxon: "Tillbaka till %{defaulttaxon}"
   back_to_taxon_changes: "Tillbaka till ändringar i taxon"
@@ -482,7 +476,6 @@ sv:
   back_to_x_journal: "Tillbaka till %{user}s journal"
   back_to_x_blog: "Tillbaka till %{x}s blogg"
   back_to_your_dashboard: Tillbaka till din översikt
-  back_to_x_observations: "Tillbaka till %{user}s observationer"
   back_to_your_lists: Tillbaka till dina listor
   back_to_your_journal: Tillbaka till din journal
   back_to_your_observations: Tillbaka till dina observationer
@@ -490,13 +483,11 @@ sv:
   back_to_your_projects: Tillbaka till dina projekt
   based_on_the_evidence_can_id_be_improved: |
     Baserat på ovan, kan Community ID bekräftas eller förbättras?
-  basic: Enkel
   batch: Bunt
   batch_edit: Redigera en bunt
   batch_edit_taxa_for_x_html: "Redigera en bunt taxa för %{x}"
   batch_operations: Buntkommandon
   be_the_first_to_fave_this_observation: Bli den första att lägga till den här observationen till favoriter!
-  beacuse_we_recently_changed_auth_system: Eftersom vi nyligen gjorde ändringar i vårt autentiseringssystem, var det nödvändigt att ditt lösenord nollställdes.
   because: eftersom
   because_of: eftersom
   before_importing_photos: innan foton importeras
@@ -514,8 +505,6 @@ sv:
   bounding_box: Konturlinje
   breadcrumbs: Brödsmulor
   brief_caption: Kort bildtext
-  brief_description_on_what_you_observed: Kort beskrivning av vad du observerade
-  brief_description_of_what_you_saw: Kort beskrivning av vad du såg
   brown: brun
   browse: Bläddra
   browse_all_projects: Bläddra alla projekt
@@ -524,18 +513,14 @@ sv:
   browse_people: Bläddra personer
   browse_projects: Bläddra projekt
   browse_species_that_occur_near_this_observation: Bläddra arter som förkommer nära den här obvservationen
-  browse_your_observations: Bläddra dina observationer
   built_with_site_guides_html: "Byggt med <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Multi import av %{filename} är utfört"
-  but_we_didnt_add_this_observation_to_the_x_project: "Men vi bifogade inte denna observation till %{project} eftersom du inte godkände projektvillkoren."
   by: av
   by_everyone: Av alla
-  by_project_list: av projekt lista
   by_user: "Av %{user}"
   by_you: Av du
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendrar visar endast %{x} observationer åt gången
-  can_you_help_your_friends_id_these: Kan du hjälpa dina vänner att identifiera dessa?
   cancel: Avbryt
   cant_flag_an_object_that_doesnt_exist: Det går inte att markera ett objekt som inte existerar
   cant_merge_a_taxon_with_itself: Det går inte slå ihop en taxon med sig själv.
