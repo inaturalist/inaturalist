@@ -234,7 +234,6 @@ da:
   add_your_photo_to: "Tilføj dit foto til %{project}"
   added: Tilføjet
   added!: Tilføjet!
-  added_as_a_part_of: Tilføjet som en del af
   added_by: Tilføjet af
   added_by_user_on_date_html: "Tilføjet af %{user} den %{date}"
   added_on: Tilføjet den
@@ -404,7 +403,6 @@ da:
   are_you_sure_no_undo: Er du sikker? Dette kan ikke fortrydes.
   are_you_sure_delete_post: Er du sikker på, at du vil slette dette indlæg?
   are_you_sure_delete_taxon_move_associates: "Er du sikker på, at du vil slette %{taxonname} (%{taxonid}) og flytte alle dets associerede?"
-  are_you_sure_delete_this: Er du sikker på, at du vil slette dette? Du skal nok først kontrollere, om det har observationer eller opførte taksa.
   are_you_sure_delete_this_place: Er du sikker på, at du vil slette dette sted?
   are_you_sure_leave_this_project: Er du sikker på, at du vil forlade dette projekt?
   are_you_sure_merge_these_places: Er du sikker på, at du vil sammenlægge disse steder? Dette kan ikke fortrydes.
@@ -463,15 +461,12 @@ da:
   automatically_id_new: Automatisk ID de nye obs som
   automatically_update_my_content_for_taxon_changes: Opdatér automatisk mit indhold med taksonændringer
   back: Tilbage
-  back_to_albums: Tilbage til album
   back_to_all_species: Tilbage til Alle arter
   back_to_browsing_people: Tilbage til "at browse" personer
   back_to_calendar: "Tilbage til %{user} kalender"
   back_to_editing_observation: Tilbage til redigering af observation
   back_to_friends: Tilbage til venner
   back_to_flags_html: "&laquo;Tilbage til markeringer"
-  back_to_help: Tilbage til Hjælp
-  back_to_import: Tilbage til Importér
   back_to_lists: "Tilbage til %{name} lister"
   back_to_observation: Tilbage til observation
   back_to_observation_fields: Tilbage til observationsfelter
@@ -480,7 +475,6 @@ da:
   back_to_possessive_user_profile: "Tilbage til %{possuser}'s profil"
   back_to_post: '&laquo; Tilbage til indlæg'
   back_to_projects: Tilbage til projekter
-  back_to_shared_taxon: "Tilbage til %{sharedtaxon}"
   back_to_suggestions: Tilbage til Forslag
   back_to_taxon: "Tilbage til %{defaulttaxon}"
   back_to_taxon_changes: "Tilbage til taksonændringer"
@@ -492,7 +486,6 @@ da:
   back_to_x_journal: "Tilbage til %{user}'s journal"
   back_to_x_blog: "Tilbage til %{x}s blog"
   back_to_your_dashboard: Tilbage til dit betjeningspanel
-  back_to_x_observations: "Tilbage til %{user}s observationer"
   back_to_your_lists: Tilbage til dine lister
   back_to_your_journal: Tilbage til din journal
   back_to_your_observations: Tilbage til dine observationer
@@ -500,17 +493,14 @@ da:
   back_to_your_projects: Tilbage til dine projekter
   based_on_the_evidence_can_id_be_improved: |
     På baggrund af ovenstående, kan fællesskabs ID'et stadig bekræftes eller forbedres?
-  basic: Grundlæggende
   batch: Bundt
   batch_edit: Multi redigere
   batch_edit_taxa_for_x_html: "Bundt redigere takson for %{x}"
   batch_operations: Multi operationer
   be_the_first_to_fave_this_observation: Vær den første til at gøre denne observation til favorit
-  beacuse_we_recently_changed_auth_system: Fordi vi for nylig har ændret vores bruger godkendelsessystem, var det nødvendigt, at din adgangskode blev nulstillet.
   because: fordi
   because_of: på grund af
   before_importing_photos: før import af fotos
-  before_you_can_contribute_your_observations: før du kan bidrage med dine observationer.
   belives_this_is_a_comprehensive_list_of: mener, at dette er en omfattende liste over
   bg_color: Baggrundsfarve
   birds: fugle
@@ -527,8 +517,6 @@ da:
   breadcrumbs: Brødkrummer
   breadcrumbs_description: "Dette vil erstatte h1 og vil som standard kræve handling, så sørg for at medtage dem, hvis de er vigtige for dette projekt, og husk det maksimale tilladte er 950px"
   brief_caption: Kort billedtekst
-  brief_description_on_what_you_observed: Kort beskrivelse af din observation
-  brief_description_of_what_you_saw: Kort beskrivelse af hvad du så
   brown: brun
   browse: Gennemse
   browse_all_projects: Gennemse alle projekter
@@ -537,19 +525,14 @@ da:
   browse_people: Browse personer
   browse_projects: Gennemse projekter
   browse_species_that_occur_near_this_observation: Gennemse arter, der forekommer nær denne observation.
-  browse_your_observations: Gennemse dine observationer
   built_with_site_guides_html: "Bygget med <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Multi import af %{filename} er udført"
-  but_we_didnt_add_this_observation_to_the_x_project: "Men vi tilføjede ikke denne observation til %{project} fordi du ikke var enig i projektvilkårene."
   by: af
-  by_adding_ids_to_observations: ved at tilføje id'er til observationer
   by_everyone: Af alle
-  by_project_list: efter projektliste
   by_user: "af %{user}"
   by_you: Af dig
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendere viser kun %{x} observationer ad gangen
-  can_you_help_your_friends_id_these: Kan du hjælpe dine venner med at identificere disse?
   cancel: Annullér
   cant_edit_or_delete_hidden_content: Du kan ikke redigere eller slette indhold, som er blevet skjult af sidens kuratorer
   cant_flag_an_object_that_doesnt_exist: Kan ikke markere et objekt, som ikke eksisterer
@@ -2024,7 +2007,6 @@ da:
   need_id_help?: Hjælp til ID?
   needs_id: behøver ID
   needs_id_: Behøver ID
-  Needs_ID!: Behøver ID!
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
   needs_to_be_identified: Behøver en identifikation
   new: Ny
@@ -3746,7 +3728,6 @@ da:
   they_have_been_invited: ... de er allerede blevet inviteret
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
-  this_id_was_added_due_to_a: Dette ID blev tilføjet på grund af
   this_is_a: Dette er en
   this_is_a_cached_summary_based_on: Dette er en cachelagret oversigt over denne takson baseret på dens
   this_is_a_life_list_of: Dette er en livsliste for
