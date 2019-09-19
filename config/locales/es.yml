@@ -245,7 +245,6 @@ es:
   add_your_photo_to: "Agregar tu foto a %{project}"
   added: Añadido
   added!: '¡Añadido!'
-  added_as_a_part_of: Añadido como parte de un
   added_by: Añadido por
   added_by_user_on_date_html: "Añadido por %{user} el %{date}"
   added_on: Añadido el
@@ -412,7 +411,6 @@ es:
   are_you_sure_no_undo: '¿Estás seguro? Esto no se puede deshacer.'
   are_you_sure_delete_post: '¿Estás seguro que quieres eliminar esta publicación?'
   are_you_sure_delete_taxon_move_associates: "¿Estás seguro que deseas eliminar %{taxonname} (%{taxonid}) y mover todos sus asociados?"
-  are_you_sure_delete_this: '¿Estás seguro que deseas eliminar esto? Tal vez deberías revisar primero si tiene observaciones o taxones.'
   are_you_sure_delete_this_place: '¿Estás seguro que quieres eliminar este lugar?'
   are_you_sure_leave_this_project: '¿Estás seguro que quieres abandonar este proyecto?'
   are_you_sure_merge_these_places: '¿Estás seguro que deseas combinar estos lugares?  Esto no podrá deshacerse.'
@@ -473,15 +471,12 @@ es:
   automatically_id_new: Identifica nuevas observaciones automáticamente como
   automatically_update_my_content_for_taxon_changes: Actualizar mi contenido automáticamente cuando exista un cambio en el taxón
   back: Volver
-  back_to_albums: Volver a los álbumes
   back_to_all_species: Volver a todas las especies
   back_to_browsing_people: Volver a la búsqueda de personas
   back_to_calendar: "Volver al calendario de %{user}"
   back_to_editing_observation: Volver a editar la observación
   back_to_friends: Volver a amigos
   back_to_flags_html: "&laquo; Volver a las marcas"
-  back_to_help: Volver a Ayuda
-  back_to_import: Volver a Importar
   back_to_lists: "Volver a las listas de %{name}"
   back_to_observation: Volver a la observación
   back_to_observation_fields: Volver a los campos de observación
@@ -490,7 +485,6 @@ es:
   back_to_possessive_user_profile: "Regresar al perfil de %{possuser}"
   back_to_post: '&laquo; Regresar a la publicación'
   back_to_projects: Regresar a Proyectos
-  back_to_shared_taxon: "Regresar a %{sharedtaxon}"
   back_to_suggestions: Regresa a sugerencias
   back_to_taxon: "Regresa a %{defaulttaxon}"
   back_to_taxon_changes: "Regresa a los cambios del taxón"
@@ -502,7 +496,6 @@ es:
   back_to_x_journal: "Regresar al diario de %{user}"
   back_to_x_blog: "Regresar al blog de %{x}"
   back_to_your_dashboard: Regresar a tu tablero
-  back_to_x_observations: "Regresar a las observaciones de %{user}"
   back_to_your_lists: Regresa a tus listas
   back_to_your_journal: Regresa a tu diario
   back_to_your_observations: Regresa a tus observaciones
@@ -510,17 +503,14 @@ es:
   back_to_your_projects: Regresa a tus proyectos
   based_on_the_evidence_can_id_be_improved: |
     Basándose en las evidencias, ¿la ID de la comunidad puede ser confirmada o mejorada?
-  basic: Básico
   batch: Grupo
   batch_edit: Editar por lotes
   batch_edit_taxa_for_x_html: "Editar por lotes los datos de los taxones para %{x}"
   batch_operations: Operaciones por lotes
   be_the_first_to_fave_this_observation: '¡Se el primero en agregar esta observación a favoritos!'
-  beacuse_we_recently_changed_auth_system: Debido a que cambiamos nuestro sistema de autenticación de usuarios recientemente, fue necesario restablecer tu contraseña.
   because: porque
   because_of: debido a
   before_importing_photos: antes de importar fotos
-  before_you_can_contribute_your_observations: antes de poder contribuir con tus observaciones.
   belives_this_is_a_comprehensive_list_of: considera que ésta es una lista exhaustiva de
   bg_color: Color de fondo
   bioblitz: Maratón naturalista
@@ -539,8 +529,6 @@ es:
   breadcrumbs: Rastros de navegación
   breadcrumbs_description: "Esto reemplazará el h1 y los llamados a acción por defecto, asegúrate de incluirlos si son importantes para este proyecto y recuerda que el ancho máximo permitido es de 950 px."
   brief_caption: Leyenda breve
-  brief_description_on_what_you_observed: Breve descripción de lo que observaste
-  brief_description_of_what_you_saw: Descripción breve de lo que viste
   brown: marrón
   browse: Examinar
   browse_all_projects: Examinar todos los proyectos
@@ -549,19 +537,14 @@ es:
   browse_people: Examinar personas
   browse_projects: Examinar proyectos
   browse_species_that_occur_near_this_observation: Examinar especies que existan cerca de esta observación.
-  browse_your_observations: Examinar tus observaciones
   built_with_site_guides_html: "Construido con las guías de <a href='%{url}'>%{site_name}"
   bulk_import_of_filename_is_complete: "La importación masiva de %{filename} está completa"
-  but_we_didnt_add_this_observation_to_the_x_project: "Esta observación no se añadió al proyecto %{project}, porque no aceptaste los términos del proyecto."
   by: por
-  by_adding_ids_to_observations: agregando identificaciones a las observaciones
   by_everyone: Por cualquiera
-  by_project_list: por lista de proyecto
   by_user: "por %{user}"
   by_you: Tuyas
   calendar: Calendario
   calendars_only_show_x_observations_at_time: Los calendarios sólo muestran %{x} observaciones a la vez
-  can_you_help_your_friends_id_these: '¿Puedes ayudar a tus amigos a identificar estas observaciones?'
   cancel: Cancelar
   cant_edit_or_delete_hidden_content: No puede editar o eliminar contenido que haya sido ocultado por los administradores del sitio.
   cant_flag_an_object_that_doesnt_exist: No puedes marcar un objeto que no existe
@@ -2073,7 +2056,6 @@ es:
   need_id_help?: '¿Necesita ayuda en la ID?'
   needs_id: necesita identificador
   needs_id_: '¡Necesita identificación!'
-  Needs_ID!: '¡Necesita identificador!'
   needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
   needs_to_be_identified: Necesita identificarse
   new: Nuevo
@@ -3817,7 +3799,6 @@ es:
   third_person_possessive_plural: "%{object_phrase} del  %{noun}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
-  this_id_was_added_due_to_a: Esta Identificación se añadió debido a
   this_is_a: Esta es una
   this_is_a_cached_summary_based_on: Este es un resumen en caché de este taxón con base en su
   this_is_a_life_list_of: Esta es una lista de vida de
