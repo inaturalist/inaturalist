@@ -146,13 +146,13 @@ class Taxon < ActiveRecord::Base
     end
     json = {
       id: id,
-      name: name,
       rank: rank,
       rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
-      parent_id: parent_id,
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
-      is_active: is_active
+      is_active: is_active,
+      min_species_taxon_id: (rank_level && rank_level < RANK_LEVELS["species"]) ?
+        parent_id : id
     }
     # min_species_* below means don't consider any ranks more specific than species.
     # If the taxon is a subspecies, its min_species_ancestry stops at species
@@ -164,20 +164,15 @@ class Taxon < ActiveRecord::Base
       if Taxon::LIFE
         json[:ancestor_ids].delete(Taxon::LIFE.id)
       end
-      json[:ancestry] = json[:ancestor_ids].join(",")
       json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
-        json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
-      unless options[:for_observation]
-        json[:min_species_ancestors] = json[:min_species_ancestry].split(",").
-          map{ |aid| { id: aid.to_i } }
-      end
+        json[:ancestor_ids][0...-1].join(",") : json[:ancestor_ids].join(",")
     else
+      json[:name] = name
+      json[:parent_id] = parent_id
       json[:ancestry] = json[:ancestor_ids].join(",")
       json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
         json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
     end
-    json[:min_species_taxon_id] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
-      parent_id : id
     # indexing originating Observations, not via another model
     unless options[:no_details]
       unless options[:for_observation]

@@ -108,7 +108,6 @@ module ElasticModel
       query[:bool][:must_not] = options[:inverse_filters]
     end
     elastic_hash = { query: { constant_score: { filter: query } } }
-    # elastic_hash[:track_total_hits] = true
     elastic_hash[:sort] = options[:sort] if options[:sort]
     elastic_hash[:size] = options[:size] if options[:size]
     elastic_hash[:from] = options[:from] if options[:from]
@@ -126,6 +125,9 @@ module ElasticModel
       }]
     elsif options[:aggs]
       elastic_hash[:aggs] = options[:aggs]
+    end
+    if options[:track_total_hits]
+      elastic_hash[:track_total_hits] = true
     end
     elastic_hash
   end

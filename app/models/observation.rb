@@ -2303,33 +2303,40 @@ class Observation < ActiveRecord::Base
   def self.update_stats_for_observations_of( taxon )
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    result = Identification.elastic_search(
-      filters: [ { bool: { should: [
-        { term: { "taxon.ancestor_ids": taxon.id } },
-        { term: { "observation.taxon.ancestor_ids": taxon.id } },
-      ]}}],
-      size: 0,
-      aggregate: {
-        obs: {
-          terms: { field: "observation.id", size: 3000000 }
-        }
-      }
-    )
-    obs_ids = result.response.aggregations.obs.buckets.map{ |b| b[:key] }
-    obs_ids.in_groups_of(1000) do |batch_ids|
-      Observation.includes(:taxon, { identifications: :taxon }, :flags,
-        { photos: :flags }, :quality_metrics, :sounds, :votes_for).where(id: batch_ids).find_each do |o|
+    search_params = {
+      ident_taxon_id: taxon.id,
+      order_by: "id",
+      order: "asc",
+      per_page: 1000
+    }
+    results_remaining = true
+    batch_start_id = 0
+    while results_remaining
+      puts batch_start_id
+      observations = Observation.page_of_results( search_params.merge( id_above: batch_start_id ) )
+      if observations.blank? || observations.total_entries == 0
+        results_remaining = false
+        break
+      end
+      Observation.preload_associations(observations, [
+        :taxon, :flags, :quality_metrics, :sounds, :votes_for,
+        { identifications: :taxon },
+        { photos: :flags }
+      ])
+      changed_ids = []
+      observations.each do |o|
         o.set_community_taxon
         o.update_stats(skip_save: true)
         if o.changed?
           o.skip_indexing = true
           o.save
+          changed_ids << o.id
           Identification.update_categories_for_observation( o )
         end
       end
-      Observation.elastic_index!(ids: batch_ids)
+      Observation.elastic_index!(ids: changed_ids)
+      batch_start_id = observations.last.id
     end
-    Rails.logger.info "[INFO #{Time.now}] Finished Observation.update_stats_for_observations_of(#{taxon})"
   end
   
   def self.random_neighbor_lat_lon(lat, lon)

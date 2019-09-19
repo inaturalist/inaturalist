@@ -1213,7 +1213,8 @@ class User < ActiveRecord::Base
           { term: { "user.id": user_id } },
         ] } }
       ],
-      size: 0
+      size: 0,
+      track_total_hits: true
     )
     count = (result && result.response) ? result.response.hits.total.value : 0
     User.where( id: user_id ).update_all( observations_count: count )

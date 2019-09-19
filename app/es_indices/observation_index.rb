@@ -98,7 +98,7 @@ class Observation < ActiveRecord::Base
       indexes :geojson, type: "geo_shape"
       indexes :geoprivacy, type: "keyword"
       indexes :id, type: "integer"
-      # indexes :id_please, type: "boolean"
+      indexes :id_please, type: "boolean"
       indexes :ident_taxon_ids, type: "integer"
       indexes :identification_categories, type: "keyword"
       indexes :identifications_count, type: "short"
@@ -243,7 +243,6 @@ class Observation < ActiveRecord::Base
     t = taxon
     json = {
       id: id,
-      uuid: uuid,
       site_id: site_id,
       created_at: created,
       created_at_details: ElasticModel.date_details(created),
@@ -251,18 +250,23 @@ class Observation < ActiveRecord::Base
       observed_on_details: ElasticModel.date_details(datetime),
       time_observed_at: time_observed_at_in_zone,
       place_ids: (indexed_place_ids || public_places.map(&:id)).compact.uniq,
-      private_place_ids: (indexed_private_place_ids || places.map(&:id)).compact.uniq,
       quality_grade: quality_grade,
-      captive: captive,
-      user: user ? user.as_indexed_json(no_details: true) : nil,
       taxon: t ? t.as_indexed_json(for_observation: true,
         no_details: options[:no_details],
         for_identification: options[:for_identification]) : nil
     }
 
+
     current_ids = identifications.select(&:current?)
-    unless options[:no_details]
+    if options[:no_details]
       json.merge!({
+        user_id: user.id
+      })
+    else options[:no_details]
+      json.merge!({
+        uuid: uuid,
+        user: user ? user.as_indexed_json(no_details: true) : nil,
+        captive: captive,
         created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
         updated_at: updated_at.in_time_zone(timezone_object || "UTC"),
         observed_time_zone: timezone_object.blank? ? nil : timezone_object.tzinfo.name,
@@ -357,8 +361,9 @@ class Observation < ActiveRecord::Base
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
+    return if batch_ids_string.blank?
     # fetch all place_ids store them in `indexed_place_ids`
-    if !batch_ids_string.blank? && ( options.blank? || options[:places] )
+    if options.blank? || options[:places]
       connection.execute("
         SELECT observation_id, place_id
         FROM observations_places
@@ -391,7 +396,9 @@ class Observation < ActiveRecord::Base
           end
         end
       end
+    end
 
+    if options.blank?
       taxon_establishment_places = { }
       taxon_ids = observations.map(&:taxon_id).compact.uniq
       uniq_obs_place_ids = observations.map{ |o|o.indexed_private_places.map(&:path_ids) }.flatten.compact.uniq.join(',')
@@ -935,7 +942,8 @@ class Observation < ActiveRecord::Base
       per_page: p[:per_page] || 30,
       page: p[:page],
       sort: sort,
-      extra_preloads: extra_preloads }
+      extra_preloads: extra_preloads,
+      track_total_hits: !!p[:track_total_hits] }
   end
 
   private

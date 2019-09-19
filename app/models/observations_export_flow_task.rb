@@ -93,6 +93,7 @@ class ObservationsExportFlowTask < FlowTask
   def observations_count
     return 0 if params.blank?
     search_params = Observation.get_search_params( params.merge( per_page: 1 ) )
+    search_params[:track_total_hits] = true
     Observation.elastic_query( search_params ).total_entries
   end
 

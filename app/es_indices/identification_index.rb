@@ -36,7 +36,6 @@ class Identification < ActiveRecord::Base
       indexes :hidden, type: "boolean"
       indexes :id, type: "integer"
       indexes :observation do
-        indexes :captive, type: "boolean"
         indexes :created_at, type: "date"
         indexes :created_at_details do
           indexes :date, type: "date", index: false
@@ -57,45 +56,31 @@ class Identification < ActiveRecord::Base
           indexes :year, type: "short", index: false
         end
         indexes :place_ids, type: "integer"
-        indexes :private_place_ids, type: "integer"
         indexes :quality_grade, type: "keyword"
         indexes :site_id, type: "integer"
         indexes :taxon do
           indexes :ancestor_ids, type: "integer"
-          indexes :ancestry, type: "keyword"
           indexes :iconic_taxon_id, type: "integer"
           indexes :id, type: "integer"
           indexes :is_active, type: "boolean"
           indexes :min_species_ancestry, type: "keyword"
           indexes :min_species_taxon_id, type: "integer"
-          indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-          indexes :parent_id, type: "integer"
           indexes :rank, type: "keyword"
           indexes :rank_level, type: "scaled_float", scaling_factor: 100
         end
         indexes :time_observed_at, type: "date"
-        indexes :user do
-          indexes :created_at, type: "date"
-          indexes :id, type: "integer"
-          indexes :login, type: "keyword"
-          indexes :spam, type: "boolean"
-          indexes :suspended, type: "boolean"
-        end
-        indexes :uuid, type: "keyword"
+        indexes :user_id, type: "integer"
       end
       indexes :own_observation, type: "boolean"
       indexes :previous_observation_taxon_id, type: "integer"
       indexes :spam, type: "boolean"
       indexes :taxon do
         indexes :ancestor_ids, type: "integer"
-        indexes :ancestry, type: "keyword"
         indexes :iconic_taxon_id, type: "integer"
         indexes :id, type: "integer"
         indexes :is_active, type: "boolean"
         indexes :min_species_ancestry, type: "keyword"
         indexes :min_species_taxon_id, type: "integer"
-        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-        indexes :parent_id, type: "integer"
         indexes :rank, type: "keyword"
         indexes :rank_level, type: "scaled_float", scaling_factor: 100
       end

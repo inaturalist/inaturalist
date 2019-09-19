@@ -597,6 +597,7 @@ class ListedTaxon < ActiveRecord::Base
       # in a single ES query with the top_hits aggregation
       rs = Observation.elastic_search(search_params.merge(
         size: 0,
+        track_total_hits: true,
         aggregate: {
           earliest: {
             top_hits: {
