@@ -228,7 +228,6 @@ fr:
   add_your_photo_to: "Ajouter votre photo à %{project}"
   added: Ajouté
   added!: Ajouté !
-  added_as_a_part_of: Ajouté comme partie d’un
   added_by: Ajouté par
   added_by_user_on_date_html: "Ajouté par %{user} le %{date}"
   added_on: Ajouté le
@@ -391,7 +390,6 @@ fr:
   are_you_sure_no_undo: Êtes-vous sûr ? Cela ne peut pas être annulé.
   are_you_sure_delete_post: Êtes-vous certain de vouloir supprimer cette note ?
   are_you_sure_delete_taxon_move_associates: "Êtes-vous certain de vouloir supprimer %{taxonname} (%{taxonid}) et déplacer tous les taxons connexes?"
-  are_you_sure_delete_this: Êtes-vous certain de vouloir supprimer? Vous devriez d’abord vérifier s’il y a des observations ou des taxons de répertoriés.
   are_you_sure_delete_this_place: Êtes-vous certain de vouloir supprimer ce lieu ?
   are_you_sure_leave_this_project: Êtes-vous certain de vouloir quitter ce projet?
   are_you_sure_merge_these_places: Êtes-vous certain de vouloir fusionner ces lieux
@@ -445,15 +443,12 @@ fr:
   automatically_id_new: Identifier automatiquement les nouvelles observations comme
   automatically_update_my_content_for_taxon_changes: Automatiquement mettre à jour mon contenu des modifications de taxon
   back: Retourner
-  back_to_albums: Retourner aux albums
   back_to_all_species: Retourner à Toutes les Espèces
   back_to_browsing_people: Retourner à l’exploration par personne
   back_to_calendar: "Retourner au calendrier de %{user}"
   back_to_editing_observation: Retourner à la modification des observations
   back_to_friends: Retour aux amis
   back_to_flags_html: "&laquo; Retour aux marques"
-  back_to_help: Retourner à l’aide
-  back_to_import: Retourner à l’importation
   back_to_lists: "Retourner aux listes de %{name}"
   back_to_observation: Retourner à l’observation
   back_to_observation_fields: Retourner aux champs de l’observation
@@ -462,7 +457,6 @@ fr:
   back_to_possessive_user_profile: "Retourner au profil de %{possuser}"
   back_to_post: '&laquo; Retourner à la note'
   back_to_projects: Retourner aux projets
-  back_to_shared_taxon: "Retourner à %{sharedtaxon}"
   back_to_suggestions: Retour aux propositions
   back_to_taxon: "Retourner à %{defaulttaxon}"
   back_to_taxon_changes: "Retour aux modifications taxinomiques"
@@ -474,7 +468,6 @@ fr:
   back_to_x_journal: "Retourner au journal de %{user}"
   back_to_x_blog: "Retour au blogue de %{x}"
   back_to_your_dashboard: Retour à votre tableau de bord
-  back_to_x_observations: "Retourner aux observations de %{user}"
   back_to_your_lists: Retourner à vos listes
   back_to_your_journal: Retourner à votre journal
   back_to_your_observations: Retourner à vos observations
@@ -482,17 +475,14 @@ fr:
   back_to_your_projects: Retourner à vos projets
   based_on_the_evidence_can_id_be_improved: |
     D’après les preuves, le taxon de communauté peut-il être encore confirmé ou amélioré ?
-  basic: Basique
   batch: Lot
   batch_edit: Modifier en lot
   batch_edit_taxa_for_x_html: "Modifier en lot les taxons %{x}"
   batch_operations: Opérations par lot
   be_the_first_to_fave_this_observation: Soyez le premier à mettre cette observation en favori !
-  beacuse_we_recently_changed_auth_system: Puisque nous avons récemment modifié notre système d’authentification des utilisateurs, votre mot de passe a dû être réinitialisé.
   because: parce que
   because_of: en raison de
   before_importing_photos: avant d’importer des photos
-  before_you_can_contribute_your_observations: avant de pouvoir contribuer par vos observations.
   belives_this_is_a_comprehensive_list_of: pense que c’est une liste complète de
   bg_color: Couleur de fond
   birds: oiseaux
@@ -510,8 +500,6 @@ fr:
   breadcrumbs: Piste de navigation
   breadcrumbs_description: "Cette action remplacera le h1 et les appels à l’action par défaut;\nassurez-vous de les inclure s’ils sont importants au projet et\nrappelez-vous que la largeur maximale autorisée est de 950px"
   brief_caption: Courte légende
-  brief_description_on_what_you_observed: Courte description de ce que vous avez observé
-  brief_description_of_what_you_saw: Courte description de ce que vous avez vu
   brown: brun
   browse: Explorer
   browse_all_projects: Explorer tous les projets
@@ -520,19 +508,14 @@ fr:
   browse_people: Parcourir les personnes
   browse_projects: Explorer les projets
   browse_species_that_occur_near_this_observation: Explorer les espèces présentes à proximité de cette observation.
-  browse_your_observations: Explorer vos observations
   built_with_site_guides_html: "Construit avec les <a href='%{url}'>guides d’%{site_name}</a>"
   bulk_import_of_filename_is_complete: "L’importation en vrac de %{filename} est terminée"
-  but_we_didnt_add_this_observation_to_the_x_project: "Mais nous n’avons pas ajouté cette observation au projet %{project} parce\nque vous n’avez pas accepté les modalités."
   by: par
-  by_adding_ids_to_observations: en ajoutant des identifications aux observations
   by_everyone: Par tout le monde
-  by_project_list: par liste de projet
   by_user: "Par %{user}"
   by_you: Par vous
   calendar: Calendrier
   calendars_only_show_x_observations_at_time: Les agendas ne montrent que %{x} observations à la fois
-  can_you_help_your_friends_id_these: Pouvez-vous aider vos amis à identifier ceci?
   cancel: Annuler
   cant_edit_or_delete_hidden_content: Vous ne pouvez modifier ou supprimer du contenu masqué par des utilisateurs du site
   cant_flag_an_object_that_doesnt_exist: Impossible de signaler un objet qui n’existe pas
@@ -2013,7 +1996,6 @@ fr:
   need_id_help?: Besoin d’aide avec l’identification ?
   needs_id: besoin ID
   needs_id_: Nécessite un ID
-  Needs_ID!: Besoin ID!
   needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
   needs_to_be_identified: Doit être identifié
   new: Nouveau
@@ -3764,7 +3746,6 @@ fr:
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: ce
   this_bioblitz_beings_in: Ce bioblitz commence dans
-  this_id_was_added_due_to_a: Cet ID a été ajouté suite à un(e)
   this_is_a: Il s’agit d’un
   this_is_a_cached_summary_based_on: Voici un résumé cahcé de ce taxon basé sur son
   this_is_a_life_list_of: Voici une liste des êtres vivants de
