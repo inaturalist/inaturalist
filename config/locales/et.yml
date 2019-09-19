@@ -246,7 +246,6 @@ et:
   add_your_photo_to: "Lisa projekti %{project} juurde oma pilt"
   added: Lisatud
   added!: Lisatud!
-  added_as_a_part_of: Lisas osana
   added_by: Lisanud
   added_by_user_on_date_html: "Lisanud %{user} kuupäeval %{date}"
   added_on: Lisatud
@@ -416,7 +415,6 @@ et:
   are_you_sure_no_undo: Oled sa kindel? Seda otsust ei saa tagasi võtta.
   are_you_sure_delete_post: Oled sa kindel, et soovid selle postituse kustutada?
   are_you_sure_delete_taxon_move_associates: "Oled sa kindel, et soovid taksoni %{taxonname} (%{taxonid}) kustuta ja ümber tõsta kõik sellega seonduva?"
-  are_you_sure_delete_this: Oled sa kindel, et soovid seda kustutada? Peaksid esmalt kontrollima, kas sellega on seotud vaatluseid või taksoneid.
   are_you_sure_delete_this_place: Oled sa kindel, et soovid selle koha kustutada?
   are_you_sure_leave_this_project: Ole sa kindel, et soovid sellest projektist lahkuda?
   are_you_sure_merge_these_places: Oled sa kindel, et soovid neid kohti omavahel ühendada? Seda otsust ei saa tagasi võtta.
@@ -476,15 +474,12 @@ et:
   automatically_id_new: Lisa uuele vaatlusele automaatselt määratlus
   automatically_update_my_content_for_taxon_changes: Uuenda automaatselt minu loodud sisu vastavalt taksonimuudatustele
   back: Tagasi
-  back_to_albums: Tagasi albumite juurde
   back_to_all_species: Tagasi kõigi liikide juurde
   back_to_browsing_people: Tagasi inimeste juurde
   back_to_calendar: "Tagasi kasutaja %{user} kalendrisse"
   back_to_editing_observation: Tagasi vaatlust muutma
   back_to_friends: Tagasi sõprade juurde
   back_to_flags_html: "&laquo; Tagasi märkuste juurde"
-  back_to_help: Tagasi abisse
-  back_to_import: Tagasi importimise juurde
   back_to_lists: "Tagasi kasutaja %{name} nimekirjadesse"
   back_to_observation: Tagasi vaatluse juurde
   back_to_observation_fields: Tagasi vaatluse väljade juurde
@@ -493,7 +488,6 @@ et:
   back_to_possessive_user_profile: "Tagasi kasutaja %{possuser} profiilile"
   back_to_post: '&laquo; Tagasi postituse juurde'
   back_to_projects: Tagasi projektide juurde
-  back_to_shared_taxon: "Tagasi takson %{sharedtaxon} juurde"
   back_to_suggestions: Tagasi pakkumiste juurde
   back_to_taxon: "Tagasi takson %{defaulttaxon} juurde"
   back_to_taxon_changes: "Tagasi taksonimuudatuste juurde"
@@ -504,7 +498,6 @@ et:
   back_to_x_journal: "Tagasi kasutaja %{user} päevikusse"
   back_to_x_blog: "Tagasi kasutaja %{x} blogisse"
   back_to_your_dashboard: Tagasi oma töölauale
-  back_to_x_observations: "Tagasi kasutaja %{user} vaatluste juurde"
   back_to_your_lists: Tagasi oma nimekirjadesse
   back_to_your_journal: Tagasi enda päevikusse
   back_to_your_observations: Tagasi oma vaatluste juurde
@@ -512,17 +505,14 @@ et:
   back_to_your_projects: Tagasi oma projektide juurde
   based_on_the_evidence_can_id_be_improved: |
     Kas vastavalt tõenditele saab kogukondliku määratluse kinnitada või seda parandada?
-  basic: Lihnte
   batch: Komplekt
   batch_edit: Muuda komplektina
   batch_edit_taxa_for_x_html: "Muuda komplektina %{x} taksoneid"
   batch_operations: Komplekstegevused
   be_the_first_to_fave_this_observation: Nimeta esimesena see vaatlus enda lemmikuks!
-  beacuse_we_recently_changed_auth_system: Kuna me muutsime hiljuti enda tuvastussüsteemi, pidime lähtestama sinu salasõna.
   because: sest
   because_of: sest
   before_importing_photos: enne fotode importi
-  before_you_can_contribute_your_observations: enne kui saad oma vaatluse lisada.
   belives_this_is_a_comprehensive_list_of: usub, et tegu on täieliku nimekirjaga
   bg_color: Taustavärv
   bioblitz: Välkvaatlus
@@ -541,8 +531,6 @@ et:
   breadcrumbs: Hierarhia
   breadcrumbs_description: "See asendab pealkirja h1 ja vaikimisi üleskutse, nii et kui nende sisu on projekti jaoks olulised, lisa ka need ning pea meeles, et maksimaalne laius on 950 pikslit."
   brief_caption: Lühikokkuvõte
-  brief_description_on_what_you_observed: Vaatluse lühikokkuvõte
-  brief_description_of_what_you_saw: Nähtu lühikokkuvõte
   brown: pruun
   browse: Sirvi
   browse_all_projects: Sirvi kõiki projekte
@@ -551,19 +539,14 @@ et:
   browse_people: Sirvi inimesi
   browse_projects: Sirivi projekte
   browse_species_that_occur_near_this_observation: Sirvi selle vaatluse lähedal paiknevaid liike.
-  browse_your_observations: Sirvi enda vaatlusi
   built_with_site_guides_html: "Ehitatud <a href='%{url}'>%{site_name} juhenditega</a>"
   bulk_import_of_filename_is_complete: "Faili %{filename} massimport on lõppenud"
-  but_we_didnt_add_this_observation_to_the_x_project: "Aga me ei lisanud seda vaatlus projekti %{project} alla, sest sa ei nõustunud selle projekti tingimustega."
   by: kasutaja
-  by_adding_ids_to_observations: lisades vaatlustele määratlusi
   by_everyone: Kõikidelt
-  by_project_list: projekti nimekirja järgi
   by_user: "Kasutaja %{user} poolt"
   by_you: Sinu poolt
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendrites näeb korraga vaid %{x} vaatlust
-  can_you_help_your_friends_id_these: Saad sa oma sõpru nende määramisega aidata?
   cancel: Loobu
   cant_flag_an_object_that_doesnt_exist: Ei saa lisada märkust objektile, mida ei eksisteeri
   cant_merge_a_taxon_with_itself: Taksonit ei saa ühendada iseendaga.
@@ -2022,7 +2005,6 @@ et:
   need_id_help?: Vajad abi määramisel?
   needs_id: vajab määramist
   needs_id_: Vajab määramist
-  Needs_ID!: Vajab määramist!
   needs_id_expandable_html: "<span class='full'>Vajab </span>määramist"
   needs_to_be_identified: Vajab määramist
   new: Uus
@@ -3704,7 +3686,6 @@ et:
   third_person_possessive_singular: "Kasutaja %{object_phrase} %{noun}"
   this: see
   this_bioblitz_beings_in: Välkvaatlus algab
-  this_id_was_added_due_to_a: Määratlus lisati kuna
   this_is_a: See on
   this_is_a_cached_summary_based_on: See on antud taksoni arhiveeritud kokkuvõte, mis põhineb selle
   this_is_a_life_list_of: 'See on failide nimekiri:'
