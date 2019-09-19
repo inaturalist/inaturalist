@@ -155,7 +155,6 @@ eu:
   add_your_photo_to: "Zure argazkia %{project}-ra gehitu"
   added: 'Egun honetan gehitua:'
   added!: Gehituta!
-  added_as_a_part_of: 'Honen zati gisa gehituta:'
   added_by: 'Honek gehitua:'
   added_on: 'Egun honetan gehitua:'
   added_to_favorites_html: |
@@ -278,7 +277,6 @@ eu:
   are_you_sure_no_undo: Ziur zaude? Ekintza hau ezin da desegin.
   are_you_sure_delete_post: Ziur zaude sarrera hau ezabatu nahi duzula?
   are_you_sure_delete_taxon_move_associates: "Ziur zaude %{taxonname} (%{taxonid}) ezabatu nahi duzula eta elkartutako guztiak lekuz aldatu nahi dituzula?"
-  are_you_sure_delete_this: Ziur zaude hau ezabatu nahi duzula? Agian lehenik eta behin oharrik edo taxonik baduzun berrikusi behar zenuke.
   are_you_sure_delete_this_place: Ziur zaude leku hau ezabatu nahi duzula?
   are_you_sure_leave_this_project: Ziur zaude proiektu honetatik irten nahi duzula?
   are_you_sure_merge_these_places: Ziur zaude leku hauek konbinatu nahi dituzula?  Hau ezingo da desegin.
@@ -316,13 +314,10 @@ eu:
   automatically_id_new: 'Ohar berriak automatikoki identifikatu honela:'
   automatically_update_my_content_for_taxon_changes: Nire edukia automatikoki eguneratu aldaketa dagoenean
   back: Itzuli
-  back_to_albums: Albumera itzuli
   back_to_all_species: Espezie guztietara itzuli
   back_to_browsing_people: Pertsonen bilaketara itzuli
   back_to_calendar: "%{user} egutegira itzuli"
   back_to_editing_observation: Oharra berriro aldatu
-  back_to_help: Laguntza atalera itzuli
-  back_to_import: Berriro Inportatu
   back_to_lists: "Zerrendetara itzuli: %{name}'s"
   back_to_observation: Oharrera itzuli
   back_to_observation_fields: Behaketa-eremuetara itzuli
@@ -331,13 +326,11 @@ eu:
   back_to_possessive_user_profile: "Honen profilera itzuli: %{possuser}"
   back_to_post: '« Oharrera itzuli'
   back_to_projects: Proiektuetara itzuli/
-  back_to_shared_taxon: "Hona itzuli: %{sharedtaxon}"
   back_to_suggestions: Bueltatu iradokizunetara
   back_to_taxon: "Hona itzuli: %{defaulttaxon}"
   back_to_viewing: "<i>%{taxon}</i> berriro ikusi"
   back_to_x: "Hona itzuli: %{noun}"
   back_to_x_journal: "Honen egutegira itzuli: %{user}"
-  back_to_x_observations: "Honen oharretara itzuli: %{user}"
   back_to_your_journal: Zure egunkarira itzuli
   back_to_your_observations: Zure oharretara itzuli
   back_to_your_profile: Zure profilera itzuli
@@ -346,10 +339,8 @@ eu:
   batch_edit: Taldea aldatu
   batch_edit_taxa_for_x_html: "Datuen edizioa loteka honetarako: %{x}"
   batch_operations: Taldeetako eragiketak
-  beacuse_we_recently_changed_auth_system: Duela gutxi erabiltzaileak egiaztatzeko sistema aldatu genuenez, beharrezkoa zen zure pasahitza berrabiaraztea.
   because: zeren eta
   before_importing_photos: Argazkiak inportatu aurretik.
-  before_you_can_contribute_your_observations: behaketekin ekarpena egin ahal izan aurretik.
   belives_this_is_a_comprehensive_list_of: 'hau honen zerrenda zehatza dela uste du:'
   bg_color: BG kolorea
   birds: hegaztiak
@@ -361,8 +352,6 @@ eu:
   body: Gorputza
   breadcrumbs: Nabigazioko aztarnak
   breadcrumbs_description: "Horrek h1 eta ekintzako lehenetsitako doikuntzak ordezkatuko ditu; ziurtatu proiektu honetarako garrantzitsuak direnak gehitu dituzula."
-  brief_description_on_what_you_observed: Behatutakoaren deskribapen laburra
-  brief_description_of_what_you_saw: Ikusi zenuenaren deskribapen laburra
   brown: marroia
   browse: Taxonomian nabigatu
   browse_all_projects: Proiektu guztiak bilatu
@@ -371,16 +360,11 @@ eu:
   browse_people: Jendea Arakatu
   browse_projects: Proiektuak arakatu
   browse_species_that_occur_near_this_observation: Behaketa horretatik gertu gertatzen diren espezieak bilatu.
-  browse_your_observations: Zure oharrak arakatu
-  but_we_didnt_add_this_observation_to_the_x_project: "Ohar hau ez zaio %{project} proiektuari gehitu, ez zenituelako proiektuko baldintzak onartu."
   by: 'honen arabera:'
-  by_adding_ids_to_observations: oharrei identifikadoreak gehituta
   by_everyone: Edonork
-  by_project_list: proiektu-zerrendaren arabera
   by_user: "Nork: %{user}"
   by_you: Norbere
   calendar: Egutegia
-  can_you_help_your_friends_id_these: Ohar hauek identifikatzen lagundu al dezakezu?
   cancel: Utzi
   cant_flag_an_object_that_doesnt_exist: Ezin diozu ohartarazpenik jarri dagoeneko existitzen ez den edukiari
   cant_merge_a_taxon_with_itself: Taxon hau ezin duzu bere buruarekin konbinatu.
@@ -2410,7 +2394,6 @@ eu:
   they_have_been_invited: ...haiek dagoeneko gonbidatuak izan dira.
   third_person_possessive_singular: "%{object_phrase}-(r)en %{noun}"
   this: hau
-  this_id_was_added_due_to_a: NAN hau gehitu zen, izan ere
   this_is_a: 'Hau zera da:'
   this_is_a_cached_summary_based_on: 'Hau taxon honen cache-laburpena da, zure zera honetan oinarritua:'
   this_is_a_life_list_of: 'Honen bizitzako zerrenda da hau:'
