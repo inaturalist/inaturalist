@@ -140,7 +140,6 @@ sk:
   add_your_photo_to: "Vložiť vlastnú fotku do %{project}"
   added: Pridané
   added!: Pridané!
-  added_as_a_part_of: Pridané ako časť
   added_by: Pridané užívateľom
   added_by_user_on_date_html: "Pridal užívateľ %{user} dňa %{date}"
   added_on: Pridané na
@@ -268,7 +267,6 @@ sk:
   are_you_sure_no_undo: Ste si istý? Tento krok nemožno vrátiť.
   are_you_sure_delete_post: Naozaj chcete odstrániť tento príspevok?
   are_you_sure_delete_taxon_move_associates: "Ste si istý, že chcete zmazat %{taxonname} (%{taxonid}) a presunúť všetky jeho väzby?"
-  are_you_sure_delete_this: Ste si istý, že toto chcete zmazat? Asi by ste najprv mali zistiť, či to neobsahuje pozorovania alebo zoznamy taxónov.
   are_you_sure_delete_this_place: Naozaj chcete odstrániť toto miesto?
   are_you_sure_leave_this_project: Ste si istý, že chcete opustiť tento projekt?
   are_you_sure_merge_these_places: Ste si istý, že chcete zlúčiť tieto miesta? Toto sa nedá vrátiť.
@@ -327,15 +325,12 @@ sk:
   automatically_id_new: Automaticky priradiť ID novým pozorovaniam ako
   automatically_update_my_content_for_taxon_changes: Automaticky aktualizovať môj obsah pri zmenách taxónov
   back: Späť
-  back_to_albums: Späť do albumov
   back_to_all_species: Späť na všetky druhy
   back_to_browsing_people: Späť k prehľadávaniu ľudí
   back_to_calendar: "Späť do kalendára %{user}"
   back_to_editing_observation: Späť na editáciu pozorovania
   back_to_friends: Späť k priateľom
   back_to_flags_html: "&laquo; Späť k vlajkám"
-  back_to_help: Späť na nápovedu
-  back_to_import: Späť na import
   back_to_lists: "Späť do zoznamu %{name}"
   back_to_observation: Späť na pozorovanie
   back_to_observation_fields: Späť na pozorovacie polia
@@ -344,7 +339,6 @@ sk:
   back_to_possessive_user_profile: "Späť na profil užívateľa %{possuser}"
   back_to_post: '&laquo; Späť k príspevku'
   back_to_projects: Späť k projektom
-  back_to_shared_taxon: "Späť do %{sharedtaxon}"
   back_to_suggestions: Späť k návrhom
   back_to_taxon: "Späť do %{defaulttaxon}"
   back_to_taxon_changes: "Späť do zmeny taxónov"
@@ -356,7 +350,6 @@ sk:
   back_to_x_journal: "Späť do denníka %{user}"
   back_to_x_blog: "Späť na blog užívateľa %{x}"
   back_to_your_dashboard: Späť na nástenku
-  back_to_x_observations: "Späť na pozorovania užívateľa %{user}"
   back_to_your_lists: Späť na váš zoznam
   back_to_your_journal: Späť na váš denník
   back_to_your_observations: Späť na vaše pozorovania
@@ -364,17 +357,14 @@ sk:
   back_to_your_projects: Späť k vašim projektom
   based_on_the_evidence_can_id_be_improved: |
     Môže byť komunitný taxón na základe dôkazov potvrdený alebo vylepšený?
-  basic: Základné
   batch: Séria
   batch_edit: Upraviť sériu
   batch_edit_taxa_for_x_html: "Hromadná editácia taxónov pre %{x}"
   batch_operations: Hromadné operácie
   be_the_first_to_fave_this_observation: Buďte prvý, komu sa toto pozorovanie páči!
-  beacuse_we_recently_changed_auth_system: Pretože sme nedávno zmenili systém overovania užívateľov, bolo nutné opätovné nastavenie vášho hesla.
   because: pretože
   because_of: pretože
   before_importing_photos: pred importovaním fotiek
-  before_you_can_contribute_your_observations: než budete môcť pridávať svoje pozorovania.
   belives_this_is_a_comprehensive_list_of: je presvedčený/á, že toto je úplný zoznam
   bg_color: Farba pozadia
   birds: vtáky
@@ -392,8 +382,6 @@ sk:
   breadcrumbs: Strúhanka
   breadcrumbs_description: "Toto nahradí h1 a základné nastavenie výziev, preto ich pridajte, ak sú pre tento projekt dôležité, a nezabudnite, že maximálna povolená veľkosť je 950px"
   brief_caption: Stručný opis
-  brief_description_on_what_you_observed: Stručný opis, čo ste pozorovali
-  brief_description_of_what_you_saw: Stručný opis čo ste videli
   brown: hnedá
   browse: Prehliadať
   browse_all_projects: Prehliadať všetky projekty
@@ -402,19 +390,14 @@ sk:
   browse_people: Prehliadať ľudí
   browse_projects: Prehliadať projekty
   browse_species_that_occur_near_this_observation: Prehliadať druhy, ktoré sa vyskytují v blízkosti tohto pozorovania.
-  browse_your_observations: Prehliadať vaše pozorovania.
   built_with_site_guides_html: "Vytvorené s <a href='%{url}'>%{site_name} sprievodcami</a>"
   bulk_import_of_filename_is_complete: "Hromadný import %{filename} bol dokončený"
-  but_we_didnt_add_this_observation_to_the_x_project: "Toto pozorovanie nebolo pridané do %{project} projektu, pretože ste nesúhlasili s jeho podmienkami."
   by: od
-  by_adding_ids_to_observations: pridaním ID do pozorovaní
   by_everyone: Všetkými
-  by_project_list: podľa zoznamu projektu
   by_user: "užívateľ %{user}"
   by_you: Vami
   calendar: Kalendár
   calendars_only_show_x_observations_at_time: Kalendáre zobrazujú naraz iba %{x} pozorovaní
-  can_you_help_your_friends_id_these: Môžete pomôcť vašim priateľom toto identifikovať?
   cancel: Zrušiť
   cant_edit_or_delete_hidden_content: Nemôžete upravovať ani mazať obsah, ktorý bol skrytý kurátormi stránok
   cant_flag_an_object_that_doesnt_exist: Nie je možné označiť objekt, ktorý neexistuje
@@ -1814,7 +1797,6 @@ sk:
   need_id_help?: Potrebujete pomoc s ID?
   needs_id: nutné ID
   needs_id_: Nutné ID
-  Needs_ID!: Nutné ID!
   needs_id_expandable_html: "<span class='full'>Potrebuje </span>ID"
   needs_to_be_identified: Musí byť identifikovaný
   new: Nový
