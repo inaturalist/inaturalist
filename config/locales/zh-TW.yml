@@ -214,7 +214,6 @@ zh-TW:
   add_your_photo_to: "新增你的圖片至%{project}專案"
   added: 已新增
   added!: 已新增!
-  added_as_a_part_of: 已添加成為部份
   added_by: 新增自
   added_by_user_on_date_html: "由 %{user} 於 %{date} 所新增"
   added_on: 已添加在
@@ -373,7 +372,6 @@ zh-TW:
   are_you_sure_no_undo: 您確定嗎？這將無法恢復。
   are_you_sure_delete_post: 您確定要刪除此發表內容？
   are_you_sure_delete_taxon_move_associates: "您確定您要刪除%{taxonname}（%{taxonid}）並移動所有相關項目嗎？"
-  are_you_sure_delete_this: 您確定您要刪除這個嗎？您應該先查看是否有觀察或已列出的物種分類群。
   are_you_sure_delete_this_place: 您確定要刪除此地點？
   are_you_sure_leave_this_project: 您確定要離開這個專案嗎？
   are_you_sure_merge_these_places: 您確定您要合併這些地點嗎？此操作為不可回復。
@@ -434,15 +432,12 @@ zh-TW:
   automatically_id_new: 自動把新的觀察紀錄鑒定為
   automatically_update_my_content_for_taxon_changes: 自動更新我的內容以用於物種分類更改
   back: 返回
-  back_to_albums: 返回至相簿
   back_to_all_species: 返回至所有物種
   back_to_browsing_people: 返回至瀏覽人員
   back_to_calendar: "返回至%{user}行事曆"
   back_to_editing_observation: 返回至編輯觀察
   back_to_friends: 返回好友
   back_to_flags_html: "&laquo; 返回至標記"
-  back_to_help: 返回至協助
-  back_to_import: 返回至匯入
   back_to_lists: "返回至%{name}清單"
   back_to_observation: 回到觀察紀錄
   back_to_observation_fields: 返回觀察欄位
@@ -451,7 +446,6 @@ zh-TW:
   back_to_possessive_user_profile: "返回至%{possuser}的個人檔案"
   back_to_post: '&laquo; 返回至發佈'
   back_to_projects: 返回專案
-  back_to_shared_taxon: "返回至%{sharedtaxon}"
   back_to_suggestions: 返回至建議
   back_to_taxon: "返回至%{defaulttaxon}"
   back_to_taxon_changes: "返回至分類更改"
@@ -463,7 +457,6 @@ zh-TW:
   back_to_x_journal: "返回至%{user}的日誌"
   back_to_x_blog: "返回至%{x}的部落格"
   back_to_your_dashboard: 回到您的控制面板
-  back_to_x_observations: "返回至%{user}的觀察"
   back_to_your_lists: 返回至您的清單
   back_to_your_journal: 返回至您的日誌
   back_to_your_observations: 返回至您的觀察
@@ -471,17 +464,14 @@ zh-TW:
   back_to_your_projects: 返回至您的專案
   based_on_the_evidence_can_id_be_improved: |
     基於現有證據，仍需要確認或改善社群分類群嗎?
-  basic: 基本
   batch: 批量
   batch_edit: 批次編輯
   batch_edit_taxa_for_x_html: "批量編輯%{x}物種分類群"
   batch_operations: 批量操作
   be_the_first_to_fave_this_observation: 成為最先將此觀察列為最愛的人吧！
-  beacuse_we_recently_changed_auth_system: 因為我們近期更改了用戶驗證系統，您必須重新設定您的密碼。
   because: 因為
   because_of: 因為
   before_importing_photos: 在匯入照片前
-  before_you_can_contribute_your_observations: 在您可以貢獻您的觀察之前。
   belives_this_is_a_comprehensive_list_of: 相信這是綜合清單有關於
   bg_color: 背景顏色
   birds: 鳥類
@@ -499,8 +489,6 @@ zh-TW:
   breadcrumbs: 麵包屑導航
   breadcrumbs_description: "這將會取代掉 h1 並預設成起作用，因此如果它們對於專案相當重要，請確認有包含到，另外請記住所允許的最大寬度是 950 像素"
   brief_caption: 簡要說明
-  brief_description_on_what_you_observed: 您所觀察到的簡要描述
-  brief_description_of_what_you_saw: 您所看到的簡要描述
   brown: 棕色
   browse: 瀏覽
   browse_all_projects: 瀏覽所有專案
@@ -509,19 +497,14 @@ zh-TW:
   browse_people: 瀏覽人物
   browse_projects: 瀏覽專案
   browse_species_that_occur_near_this_observation: 瀏覽接近此觀察所出現的物種。
-  browse_your_observations: 瀏覽您的觀察
   built_with_site_guides_html: "建於 <a href='%{url}'>%{site_name} 指南</a>"
   bulk_import_of_filename_is_complete: "%{filename} 的巨量匯入已完成"
-  but_we_didnt_add_this_observation_to_the_x_project: "但我們並未添加此觀察至%{project}專案，因為您尚未同意專案條款。"
   by: 由
-  by_adding_ids_to_observations: 經由添加鑑定至觀察裡
   by_everyone: 由任何人
-  by_project_list: 依專案清單
   by_user: "由 %{user}"
   by_you: 由您
   calendar: 行事曆
   calendars_only_show_x_observations_at_time: 行事曆每次僅會顯示 %{x} 個觀察
-  can_you_help_your_friends_id_these: 您可以幫助您的好友來鑑定這些嗎？
   cancel: 取消
   cant_edit_or_delete_hidden_content: 因這已被網站策展人給隱藏，您不能編輯或刪除內容
   cant_flag_an_object_that_doesnt_exist: 未能為不存在的物件加上旗號標記
@@ -2029,7 +2012,6 @@ zh-TW:
   need_id_help?: 需要鑑定協助？
   needs_id: 需要鑑定
   needs_id_: 需要鑑定
-  Needs_ID!: 需要鑑定！
   needs_id_expandable_html: "<span class='full'>需要</span>鑑定"
   needs_to_be_identified: 需要被鑑定
   new: 新
@@ -3843,7 +3825,6 @@ zh-TW:
   third_person_possessive_plural: "%{object_phrase}的%{noun}"
   this: 此
   this_bioblitz_beings_in: 此 bioblitz 開始於
-  this_id_was_added_due_to_a: 此鑑定已添加由於
   this_is_a: 這是一個
   this_is_a_cached_summary_based_on: 這是物種分類快取摘要，基於它的
   this_is_a_life_list_of: 這生物清單屬於
