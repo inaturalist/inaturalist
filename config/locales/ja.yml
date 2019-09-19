@@ -199,7 +199,6 @@ ja:
   add_your_photo_to: "%{project}に自分の写真を追加"
   added: 追加されました
   added!: 追加されました！
-  added_as_a_part_of: '追加先:'
   added_by: '追加者:'
   added_by_user_on_date_html: "%{date}に%{user}によって追加されました"
   added_on: 追加日付
@@ -348,7 +347,6 @@ ja:
   are_you_sure_no_undo: 本当によろしいですか？このアクションは取り消しできません。
   are_you_sure_delete_post: この投稿を削除して本当によろしいですか？
   are_you_sure_delete_taxon_move_associates: "関連する分類群"
-  are_you_sure_delete_this: こちらを削除して本当によろしいですか？観察記録またはリストされた分類群があるかどうかお確かめの上、削除をオススメします
   are_you_sure_delete_this_place: この場所を削除して本当によろしいですか？
   are_you_sure_leave_this_project: このプロジェクトを退会して本当によろしいですか？
   are_you_sure_merge_these_places: この場所を統合して本当によろしいですか？この操作は元に戻すことができません。
@@ -405,13 +403,10 @@ ja:
   automatically_id_new: 新規観察記録を自動的に次のIDを付与：
   automatically_update_my_content_for_taxon_changes: 分類群の変更を自分のデータに自動的に反映
   back: 戻る
-  back_to_albums: アルバムに戻る
   back_to_all_species: すべての種に戻る
   back_to_browsing_people: ユーザー閲覧へ戻る
   back_to_calendar: "%{user}カレンダーに戻る"
   back_to_editing_observation: 観測記録の編集に戻る
-  back_to_help: ヘルプに戻る
-  back_to_import: インポートに戻る
   back_to_lists: "%{name}リストに戻る"
   back_to_observation: 観測記録に戻る
   back_to_observation_fields: 観測記録フィールドに戻る
@@ -420,7 +415,6 @@ ja:
   back_to_possessive_user_profile: "%{possuser}のプロフィールに戻る"
   back_to_post: '&laquo; 投稿に戻る'
   back_to_projects: プロジェクト一覧に戻る
-  back_to_shared_taxon: "%{sharedtaxon}に戻る"
   back_to_taxon: "%{defaulttaxon}に戻る"
   back_to_taxon_changes: "分類群変更履歴へ戻る"
   back_to_viewing: "<i>%{taxon}</i>に戻る"
@@ -430,7 +424,6 @@ ja:
   back_to_x_journal: "%{user}のジャーナルへ戻る"
   back_to_x_blog: "%{x}のブログに戻る"
   back_to_your_dashboard: 自分のダッシュボードに戻る
-  back_to_x_observations: "%{user}の観察記録へ戻る"
   back_to_your_lists: 自分のリストに戻る
   back_to_your_journal: 自分の日記に戻る
   back_to_your_observations: 自分の観察記録に戻る
@@ -438,17 +431,14 @@ ja:
   back_to_your_projects: 自分のプロジェクトに戻る
   based_on_the_evidence_can_id_be_improved: |
     証拠に基づいてコミュニティー分類を確定しますか、改善しますか？
-  basic: 基本
   batch: 一括
   batch_edit: 一括編集
   batch_edit_taxa_for_x_html: "%{x}の分類群一括編集"
   batch_operations: 一括操作
   be_the_first_to_fave_this_observation: 本観測の最初のお気に入り登録者になろう！
-  beacuse_we_recently_changed_auth_system: 認証システムが変わったためパスワードがリセットされました。
   because: その理由は：
   because_of: 理由として
   before_importing_photos: 写真をインポートする前に
-  before_you_can_contribute_your_observations: 観察記録を提供することができる前に
   bg_color: 背景色
   bioblitz: バイオビリッツ（生物観察会）
   birds: 鳥類
@@ -463,8 +453,6 @@ ja:
   bounding_box: 境界ボックス
   breadcrumbs: パンくずリスト
   brief_caption: 短い説明
-  brief_description_on_what_you_observed: 観察内容の短い説明
-  brief_description_of_what_you_saw: 観察内容の短い説明
   brown: 褐
   browse: 閲覧
   browse_all_projects: すべてのプロジェクトを閲覧
@@ -473,17 +461,13 @@ ja:
   browse_people: ユーザーを見る
   browse_projects: プロジェクト一覧
   browse_species_that_occur_near_this_observation: この観察記録近隣の種を表示
-  browse_your_observations: 自分の観測記録を表示
   built_with_site_guides_html: "<a href='%{url}'>%{site_name}ガイド</a>で作成されました"
   bulk_import_of_filename_is_complete: "%{filename}の一括インポートが完了しました"
   by: '投稿者:'
-  by_adding_ids_to_observations: 観察記録に同定を付ける
   by_everyone: みんなの
-  by_project_list: プロジェクトリストで
   by_user: "%{user}による"
   by_you: 自分の
   calendar: カレンダー
-  can_you_help_your_friends_id_these: 仲間の観察記録を同定しませんか？
   cancel: キャンセル
   cant_flag_an_object_that_doesnt_exist: 存在しないオブジェクトはフラグ付けできません
   cant_merge_a_taxon_with_itself: 同じ分類群と統合できません
@@ -1574,7 +1558,6 @@ ja:
   nearby_observations: 近隣観測記録
   need_id_help?: 識別協力を依頼する？
   needs_id: 要ID
-  Needs_ID!: 要ID!
   needs_id_expandable_html: "<span class='full'>要</span>ID"
   needs_to_be_identified: 要ID
   new_announcement: 新着お知らせ
