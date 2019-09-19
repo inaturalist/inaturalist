@@ -115,7 +115,6 @@ ko:
   add_your_photo_to: "%{project}에 내 사진 추가하기"
   added: 추가됨
   added!: 추가되었습니다!
-  added_as_a_part_of: 일부분으로 추가됨
   added_by: 추가함
   added_by_user_on_date_html: "%{date}에 %{user}님이 추가함"
   added_on: 추가됨
@@ -232,7 +231,6 @@ ko:
   are_you_sure_no_undo: 확실합니까? 이 동작은 취소할 수 없습니다.
   are_you_sure_delete_post: 이 게시글을 삭제하겠습니까?
   are_you_sure_delete_taxon_move_associates: "이 %{taxonname} (%{taxonid})와(과) 관련 모든 정보를 이동하겠습니까?"
-  are_you_sure_delete_this: 정말 삭제하시겠습니까? 우선 관찰이나 분류군이 포함되어 있는지 다시 확인해 보세요.
   are_you_sure_delete_this_place: 이 장소를 삭제하겠습니까?
   are_you_sure_leave_this_project: 정말 이 프로젝트를 떠나겠습니까?
   are_you_sure_merge_these_places: 이 장소들을 합치겠습니까? 이것은 되돌릴 수 없습니다.
@@ -288,14 +286,11 @@ ko:
   automatically_id_new: 자동으로 새로운 관찰을 ID함
   automatically_update_my_content_for_taxon_changes: 분류군 변화 자동 업데이트
   back: 뒤로 가기
-  back_to_albums: 앨범으로 돌아가기
   back_to_all_species: 모든 종으로 돌아가기
   back_to_browsing_people: 사람들 검색으로 돌아가기
   back_to_calendar: "%{user} 달력으로 돌아가기"
   back_to_editing_observation: 관찰 편집하기로 돌아가기
   back_to_friends: 친구들로 돌아가기
-  back_to_help: 도움말로 돌아가기
-  back_to_import: 끌어오기로 돌아가기
   back_to_lists: "%{name} 목록으로 돌아가기"
   back_to_observation: 관찰로 돌아가기
   back_to_observation_fields: 관찰 분야들로 돌아가기
@@ -304,7 +299,6 @@ ko:
   back_to_possessive_user_profile: "%{possuser}의 프로파일로 돌아가기"
   back_to_post: '&laquo; 포스트로 돌아가기'
   back_to_projects: 프로젝트틀로 돌아가기
-  back_to_shared_taxon: "%{sharedtaxon}(으)로 돌아가기"
   back_to_suggestions: 제안으로 돌아가기
   back_to_taxon: "%{defaulttaxon}(으)로 돌아가기"
   back_to_taxon_changes: "분류군 변화들로 돌아가기"
@@ -315,21 +309,17 @@ ko:
   back_to_x_journal: "%{user}의 일지로 돌아가기"
   back_to_x_blog: "%{x}의 블로그로 돌아가기"
   back_to_your_dashboard: 내 대시보드로 돌아가기
-  back_to_x_observations: "%{user}의 관찰로 돌아가기"
   back_to_your_lists: 사용자의 목록으로 돌아가기
   back_to_your_journal: 너의 일지로 돌아가기
   back_to_your_observations: 너의 관찰로 돌아가기
   back_to_your_profile: 너의 프로파일로 돌아가기
   back_to_your_projects: 너의 프로젝트들로 돌아가기
-  basic: 기본
   batch: 일괄
   batch_edit: 일괄 편집
   batch_edit_taxa_for_x_html: "%{x}로 분류군 일괄 편집"
   batch_operations: 일괄 운영
-  beacuse_we_recently_changed_auth_system: 사용자 인증 시스템을 최근에 변경하였기에 당신의 비밀번호가 초기화되었습니다.
   because: 왜냐하면
   before_importing_photos: 사진을 불러오기 전에
-  before_you_can_contribute_your_observations: 관찰을 기록하기 전에 해야 합니다.
   belives_this_is_a_comprehensive_list_of: 포괄적인 목록으로 여겨집니다.
   bg_color: 배경 색
   bioblitz: 바이오블릿츠
@@ -348,8 +338,6 @@ ko:
   breadcrumbs: 빵 부스러기
   breadcrumbs_description: "이것은 h1과 디폴트 명령들을 대체할 것이기에 이 프로젝트에 중요하다면 포함시키는 것에 유의하고 최대 가능한 폭이 950px이라는 것을 기억할 것"
   brief_caption: 간결한 캡션
-  brief_description_on_what_you_observed: 관찰한 것의 간결한 설명
-  brief_description_of_what_you_saw: 본 것의 간결한 설명
   brown: 갈색
   browse: 찾아보기
   browse_all_projects: 모든 프로젝트 찾아보기
@@ -358,15 +346,10 @@ ko:
   browse_people: 사람 찾아보기
   browse_projects: 프로젝트 검색
   browse_species_that_occur_near_this_observation: 이 관찰 주변에서 서식하는 종 검색
-  browse_your_observations: 너의 관찰 검색
-  but_we_didnt_add_this_observation_to_the_x_project: "프로젝트 조건에 동의하지 않았기 때문에 %{project}에 관찰을 추가하지 않았습니다."
-  by_adding_ids_to_observations: 동정을 관찰에 추가
   by_everyone: 모두
-  by_project_list: 프로젝트 목록으로
   by_user: "%{user}님께서"
   by_you: 내가
   calendar: 일정
-  can_you_help_your_friends_id_these: 동정을 도와줄 수 있나요?
   cancel: 취소
   cant_flag_an_object_that_doesnt_exist: 존제하지 않는 물체에 플래그를 세울 수 없다.
   cant_merge_a_taxon_with_itself: 분류군을 자기 자신과 병합할 수 없습니다.
@@ -1473,7 +1456,6 @@ ko:
   need_id_help?: 동정에 도움이 필요하십니까?
   needs_id: 동정이 필요합니다.
   needs_id_: ID가 필요합니다
-  Needs_ID!: 동정 필요!
   needs_to_be_identified: 동정 필요
   new: 신규
   new_and_noteworthy: 새롭고 주목할 만한 사항
@@ -2278,7 +2260,6 @@ ko:
   these_observations_have_not_been_uploaded_yet: |
     아직 업로드되지 않은 관찰입니다.
   third_person_possessive_plural: "%{object_phrase}의 %{noun}"
-  this_id_was_added_due_to_a: '이 ID는 다음의 이유로 추가되었습니다:'
   this_observation_was_created_using: "이 관찰은 다음을 사용하여 만들어졌습니다:"
   this_photo_is_already_associated: 이 사진은 이미 관찰에 사용되었습니다.
   this_place_has_no_check_list: "이 장소에는 체크리스트가 없습니다."
