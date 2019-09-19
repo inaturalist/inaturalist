@@ -202,7 +202,6 @@ zh-CN:
   add_your_photo_to: "添加您的照片至 %{project}"
   added: 已添加
   added!: 已添加！
-  added_as_a_part_of: 已加入为一个
   added_by: 添加自
   added_by_user_on_date_html: "由%{user}加入于%{date}"
   added_on: 添加在
@@ -356,7 +355,6 @@ zh-CN:
   are_you_sure_no_undo: 您确定么？这不能恢复。
   are_you_sure_delete_post: 您确定要删除此帖子么？
   are_you_sure_delete_taxon_move_associates: "您确定您要删除%{taxonname}（%{taxonid}），并移除所有它的关联项吗？"
-  are_you_sure_delete_this: 您确定要删除这个么？您应该首先检查它是否有观察或列举的分类群。
   are_you_sure_delete_this_place: 您确定要删除此地点么？
   are_you_sure_leave_this_project: 您确定要离开这个项目么？
   are_you_sure_merge_these_places: 您确定要合并这些地点么？它不能被撤销。
@@ -413,14 +411,11 @@ zh-CN:
   automatically_id_new: 自动把这些新观察记录作鉴定为
   automatically_update_my_content_for_taxon_changes: 自动更新我的内容，以为分类单元更改
   back: 返回
-  back_to_albums: 回到专辑
   back_to_all_species: 返回所有物种
   back_to_browsing_people: 回到查找人
   back_to_calendar: "回到 %{user} 日历"
   back_to_editing_observation: 回到编辑观察
   back_to_friends: 返回到朋友
-  back_to_help: 回到帮助
-  back_to_import: 回到导入
   back_to_lists: "回到 %{name} 列表"
   back_to_observation: 回到观察
   back_to_observation_fields: 回到观察字段
@@ -429,7 +424,6 @@ zh-CN:
   back_to_possessive_user_profile: "回到 %{possuser} 的详细信息"
   back_to_post: '&laquo; 回到发布'
   back_to_projects: 回到项目
-  back_to_shared_taxon: "回到 %{sharedtaxon}"
   back_to_suggestions: 返回建议
   back_to_taxon: "回到 %{defaulttaxon}"
   back_to_taxon_changes: "回到分类单元更改"
@@ -440,7 +434,6 @@ zh-CN:
   back_to_x_journal: "回到 %{user} 的日记"
   back_to_x_blog: "返回至 %{x} 的博客"
   back_to_your_dashboard: 返回您的控制面板
-  back_to_x_observations: "回到 %{user} 的观察"
   back_to_your_lists: 回到您的列表
   back_to_your_journal: 回到您的日记
   back_to_your_observations: 回到您的观察
@@ -448,17 +441,14 @@ zh-CN:
   back_to_your_projects: 回到您的项目
   based_on_the_evidence_can_id_be_improved: |
     根据此证据，社区ID能否得到确认或改善？
-  basic: 基本
   batch: 批
   batch_edit: 批编辑
   batch_edit_taxa_for_x_html: "为 %{x} 批处理编辑分类"
   batch_operations: 批操作
   be_the_first_to_fave_this_observation: 成为第一个发表这一观察的人！
-  beacuse_we_recently_changed_auth_system: 因为我们刚刚更改了我们用户的验证系统，您必须重置您的密码。
   because: 因为
   because_of: 因为
   before_importing_photos: 在导入照片前
-  before_you_can_contribute_your_observations: 在您可以贡献您的观察前。
   belives_this_is_a_comprehensive_list_of: 相信这是该事物的综合列表：
   bg_color: 背景颜色
   birds: 鸟
@@ -475,8 +465,6 @@ zh-CN:
   breadcrumbs: 面包屑
   breadcrumbs_description: "这将取代h1和默认调用行为，因此如果它们对此项目很重要，请确保包含它们，并记住最大宽度允许值为950px"
   brief_caption: 简要描述
-  brief_description_on_what_you_observed: 您观察到的事物的简短描述
-  brief_description_of_what_you_saw: 您看见的东西的简短描述
   brown: 棕色
   browse: 浏览
   browse_all_projects: 浏览所有项目
@@ -485,19 +473,14 @@ zh-CN:
   browse_people: 浏览人们
   browse_projects: 浏览项目
   browse_species_that_occur_near_this_observation: 浏览这条观察记录附近出现的物种
-  browse_your_observations: 浏览您的观点
   built_with_site_guides_html: "构造自<a href='%{url}'>%{site_name} 指南</a>"
   bulk_import_of_filename_is_complete: "%{filename} 的大量导入完成"
-  but_we_didnt_add_this_observation_to_the_x_project: "但我们不添加此观察至 %{project} 项目，因为您并未同意项目条款。"
   by: 由
-  by_adding_ids_to_observations: 通过添加ID至观察
   by_everyone: 由任何人
-  by_project_list: 依项目列表
   by_user: "由 %{user}"
   by_you: 由您
   calendar: 日历
   calendars_only_show_x_observations_at_time: 日历每次只显示%{x}个观察
-  can_you_help_your_friends_id_these: 您可以帮助您这些ID的朋友么？
   cancel: 取消
   cant_flag_an_object_that_doesnt_exist: 无法给不存在的对象进行标注
   cant_merge_a_taxon_with_itself: 不能将分类单元合并到它本身。
@@ -1902,7 +1885,6 @@ zh-CN:
   need_id_help?: 需要ID帮助？
   needs_id: 需要ID
   needs_id_: 需要ID
-  Needs_ID!: 需要ID！
   needs_id_expandable_html: "<span class='full'>需要</span>ID"
   needs_to_be_identified: 需要被鉴定
   new: 新
@@ -3440,7 +3422,6 @@ zh-CN:
   third_person_possessive_singular: "%{object_phrase} 的 %{noun}"
   this: 此
   this_bioblitz_beings_in: 此bioblitz开始于
-  this_id_was_added_due_to_a: 此ID已加入，由于
   this_is_a: 这是一个
   this_is_a_cached_summary_based_on: 这是此分类单元的已缓存摘要，基于它的
   this_is_a_life_list_of: 这是生命清单，其属于
