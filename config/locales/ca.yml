@@ -248,7 +248,6 @@ ca:
   add_your_photo_to: "Afegiu la vostra foto a %{project}"
   added: Afegit
   added!: Afegit!
-  added_as_a_part_of: Afegit com a part d'un
   added_by: Afegit per
   added_by_user_on_date_html: "Afegit per %{user} el %{date}"
   added_on: Afegit el
@@ -417,7 +416,6 @@ ca:
   are_you_sure_no_undo: N'esteu segur? Aquesta acció no es pot desfer.
   are_you_sure_delete_post: Esteu segur que voleu eliminar aquest enviament?
   are_you_sure_delete_taxon_move_associates: "Esteu segur que voleu eliminar %{taxonname} (%{taxonid}) i traslladar tots els seus associats?"
-  are_you_sure_delete_this: Esteu segur que ho voleu eliminar? Potser hauríeu de revisar primer si té observacions o tàxons.
   are_you_sure_delete_this_place: Esteu segur que voleu eliminar aquest lloc?
   are_you_sure_leave_this_project: Esteu segur que voleu sortir d'aquest projecte?
   are_you_sure_merge_these_places: Esteu segur que voleu combinar aquests llocs? Aquesta acció no podrà desfer-se.
@@ -477,15 +475,12 @@ ca:
   automatically_id_new: Identifiqueu les noves observacions automàticament com a
   automatically_update_my_content_for_taxon_changes: Actualitza el meu contingut automàticament quan hi hagi un canvi en el tàxon
   back: Torna
-  back_to_albums: Torna als àlbums
   back_to_all_species: Torna a totes les espècies
   back_to_browsing_people: Tornar a cerca de persones
   back_to_calendar: "Torna al calendari de %{user}"
   back_to_editing_observation: Torna a modificar l'observació
   back_to_friends: Torneu a amics
   back_to_flags_html: "&laquo: Tornar a les marques"
-  back_to_help: Torna a l'Ajuda
-  back_to_import: Torna a Importar
   back_to_lists: "Torna a les llistes de %{name}"
   back_to_observation: Torna a l'observació
   back_to_observation_fields: Torna als camps d'observació
@@ -494,7 +489,6 @@ ca:
   back_to_possessive_user_profile: "Tornar al perfil de %{possuser}"
   back_to_post: '« Torna a la nota'
   back_to_projects: Torna a projectes
-  back_to_shared_taxon: "Torna a %{sharedtaxon}"
   back_to_suggestions: Torna a Suggeriments
   back_to_taxon: "Torna a %{defaulttaxon}"
   back_to_taxon_changes: "Torna als canvis del tàxon"
@@ -506,7 +500,6 @@ ca:
   back_to_x_journal: "Torna al diari de %{user}"
   back_to_x_blog: "Tornar al blog de %{x}"
   back_to_your_dashboard: Tornar al vostre panell
-  back_to_x_observations: "Torna a les observacions de %{user}"
   back_to_your_lists: Torneu a les vostres llistes
   back_to_your_journal: Torneu al vostre diari
   back_to_your_observations: Torneu a les vostres observacions
@@ -514,17 +507,14 @@ ca:
   back_to_your_projects: Torneu als vostres projectes
   based_on_the_evidence_can_id_be_improved: |
     Basat en l'evidència, pot confirmar o millorar el Tàxon de la Comunitat?
-  basic: Bàsic
   batch: Grup
   batch_edit: Modifica el grup
   batch_edit_taxa_for_x_html: "Edició de dades per lot per a %{x}"
   batch_operations: Operacions de grups
   be_the_first_to_fave_this_observation: Sigueu el primer en fer aquesta observació favorita!
-  beacuse_we_recently_changed_auth_system: El nostre sistema d’autenticació d’usuaris ha canviat recentment. Per això ha calgut reinicialitzar la vostra contrasenya.
   because: perquè
   because_of: a causa de
   before_importing_photos: abans d'importar fotos.
-  before_you_can_contribute_your_observations: abans que podeu contribuir amb les vostres observacions.
   belives_this_is_a_comprehensive_list_of: creu que aquesta és una llista exhaustiva de
   bg_color: Color BG
   birds: aus
@@ -542,8 +532,6 @@ ca:
   breadcrumbs: Rastres de navegació
   breadcrumbs_description: "Això reemplaçarà l'h1 i la configuració per defecte de l'acció; assegureu-vos d'incloure-hi totes les opcions importants per a aquest projecte i recordeu que l'amplada màxima permesa és de 950 px."
   brief_caption: Breu llegenda
-  brief_description_on_what_you_observed: Breu descripció del que vau observar
-  brief_description_of_what_you_saw: Descripció breu del que vau veure
   brown: marró
   browse: Navega
   browse_all_projects: Navegar per tots els projectes
@@ -552,19 +540,14 @@ ca:
   browse_people: Examinar persones
   browse_projects: Examina els projectes
   browse_species_that_occur_near_this_observation: Veure espècies que es trobin prop d'aquesta observació.
-  browse_your_observations: Veure les vostres observacions
   built_with_site_guides_html: "Fet amb les <a href=\"%{url}\">Guies %{site_name}</a>"
   bulk_import_of_filename_is_complete: "La importació massiva de %{filename} s'ha completat"
-  but_we_didnt_add_this_observation_to_the_x_project: "Aquesta observació no s’ha pogut afegir al projecte %{project}, perquè no heu acceptat les condicions del projecte."
   by: per
-  by_adding_ids_to_observations: afegint ID a les observacions
   by_everyone: De tothom
-  by_project_list: per llista de projecte
   by_user: "per %{user}"
   by_you: Pròpies
   calendar: Calendari
   calendars_only_show_x_observations_at_time: Els calendaris només mostren %{x} observacions alhora
-  can_you_help_your_friends_id_these: Podeu ajudar a ID aquestes observacions?
   cancel: Cancel·la
   cant_edit_or_delete_hidden_content: No podeu editar o esborrar continguts que han estat ocultats pels supervisors del lloc
   cant_flag_an_object_that_doesnt_exist: No podeu posar una marca a un contingut que no existeix
@@ -2059,7 +2042,6 @@ ca:
   need_id_help?: Necessiteu ajuda amb la ID?
   needs_id: necessita ID
   needs_id_: Necessita ID
-  Needs_ID!: Necessita ID!
   needs_id_expandable_html: "<span class='full'>Necessita</span>ID"
   needs_to_be_identified: Ha de ser identificat
   new: Nou
@@ -3794,7 +3776,6 @@ ca:
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: aquest
   this_bioblitz_beings_in: Aquest bioblitz comença en
-  this_id_was_added_due_to_a: Aquest Identificació es va afegir a causa de
   this_is_a: Aquesta és una
   this_is_a_cached_summary_based_on: Això és un resum de memòria cau d'aquest tàxon basat en el vostre
   this_is_a_life_list_of: Això és una llista de vida de
