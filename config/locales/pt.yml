@@ -240,7 +240,6 @@ pt:
   add_your_photo_to: "Adicionar a sua fotografia a %{project}"
   added: Adicionado
   added!: Adicionado!
-  added_as_a_part_of: Adicionado como parte de um
   added_by: Adicionado por
   added_by_user_on_date_html: "Adicionado(s) por %{user} em %{date}"
   added_on: Adicionado a
@@ -404,7 +403,6 @@ pt:
   are_you_sure_no_undo: Tem a certeza? Isto não pode ser anulado.
   are_you_sure_delete_post: Tem a certeza que quer eliminar esta publicação?
   are_you_sure_delete_taxon_move_associates: "Tem a certeza que quer apagar %{taxonname} (%{taxonid}) e mover tudo o que lhe está associado?"
-  are_you_sure_delete_this: Tem a certeza que quer eliminar isto? Deve verificar se tem observações ou se está em alguma lista primeiro.
   are_you_sure_delete_this_place: Tem a certeza que quer eliminar este lugar?
   are_you_sure_leave_this_project: Tem a certeza que deseja abandonar este projeto?
   are_you_sure_merge_these_places: Tem a certeza que quer fundir estes locais? Isto não poderá ser desfeito.
@@ -459,14 +457,11 @@ pt:
   automatically_id_new: Identificar automaticamente novas observações como
   automatically_update_my_content_for_taxon_changes: Atualizar automaticamente o meu conteúdo quando existir alterações taxonómicas
   back: Voltar
-  back_to_albums: Voltar aos álbuns
   back_to_all_species: Voltar a Todas as Espécies
   back_to_browsing_people: Voltar à busca de pessoas
   back_to_calendar: "Voltar ao calendário de %{user}"
   back_to_editing_observation: Voltar à edição da observação
   back_to_friends: Voltar a amigos
-  back_to_help: Voltar para a Ajuda
-  back_to_import: Voltar para Importar
   back_to_lists: "Voltar às listas de %{name}"
   back_to_observation: Voltar à observação
   back_to_observation_fields: Voltar aos campos da observação
@@ -475,7 +470,6 @@ pt:
   back_to_possessive_user_profile: "Voltar ao perfil de %{possuser}"
   back_to_post: '&laquo; Voltar à publicação'
   back_to_projects: Voltar aos Projetos
-  back_to_shared_taxon: "Voltar a %{sharedtaxon}"
   back_to_suggestions: Voltar às Sugestões
   back_to_taxon: "Voltar a %{defaulttaxon}"
   back_to_taxon_changes: "Voltar às alterações do táxon"
@@ -486,7 +480,6 @@ pt:
   back_to_x_journal: "Voltar ao boletim de %{user}"
   back_to_x_blog: "Voltar ao blog de %{x}"
   back_to_your_dashboard: Voltar ao seu painel de controlo
-  back_to_x_observations: "Voltar às observações de %{user}"
   back_to_your_lists: Voltar às suas listas
   back_to_your_journal: Voltar para seu boletim
   back_to_your_observations: Voltar às suas observações
@@ -494,17 +487,14 @@ pt:
   back_to_your_projects: Voltar aos seus projetos
   based_on_the_evidence_can_id_be_improved: |
     Baseando na evidência, a ID da comunidade pode ainda ser confirmado ou melhorado?
-  basic: Básico
   batch: Conjunto
   batch_edit: Editar em conjunto
   batch_edit_taxa_for_x_html: "Editar táxons em conjunto para %{x}"
   batch_operations: Operações em conjunto
   be_the_first_to_fave_this_observation: Seja o primeiro a adicionar esta observação aos favoritos!
-  beacuse_we_recently_changed_auth_system: Por termos mudado o nosso sistema de autenticação de utilizadores, foi necessário repor a sua palavra-passe.
   because: porque
   because_of: devido a
   before_importing_photos: antes de importar fotografias
-  before_you_can_contribute_your_observations: antes de poder contribuir com as suas observações.
   belives_this_is_a_comprehensive_list_of: acredita que é uma lista compreensiva de
   bg_color: Cor do Fundo do Ecrã
   birds: aves
@@ -521,8 +511,6 @@ pt:
   breadcrumbs: Rastos de navegação
   breadcrumbs_description: "Isto irá substituir o h1 e as ações padrão, portanto certifique-se que são importantes para este projeto e lembre-se que a largura máxima é 950px"
   brief_caption: Breve legenda
-  brief_description_on_what_you_observed: Breve descrição do que observou
-  brief_description_of_what_you_saw: Breve descrição do que viu
   brown: castanho
   browse: Pesquisar
   browse_all_projects: Pesquisar todos os projectos
@@ -531,19 +519,14 @@ pt:
   browse_people: Procurar pessoas
   browse_projects: Pesquisar Projectos
   browse_species_that_occur_near_this_observation: Procurar espécies que ocorrem perto desta observação.
-  browse_your_observations: Pesquisar nas suas observações
   built_with_site_guides_html: "Construído com <a href='%{url}'>%{site_name} Guias</a>"
   bulk_import_of_filename_is_complete: "Importação em massa de %{filename} está completa"
-  but_we_didnt_add_this_observation_to_the_x_project: "Esta observação não foi adicionada ao projecto porque você não concordou com os termos do projecto."
   by: por
-  by_adding_ids_to_observations: ao adicionar IDs a observações
   by_everyone: Por todos
-  by_project_list: pela lista de projeto
   by_user: "por %{user}"
   by_you: Por si
   calendar: Calendário
   calendars_only_show_x_observations_at_time: Os calendários só mostram %{x} observações ao mesmo tempo
-  can_you_help_your_friends_id_these: Pode ajudar os seus amigos a identificar estas?
   cancel: Cancelar
   cant_flag_an_object_that_doesnt_exist: Não pode sinalizar um objeto que não existe
   cant_merge_a_taxon_with_itself: Não é possível fundir um taxon com ele mesmo.
@@ -1932,7 +1915,6 @@ pt:
   need_id_help?: Precisa de ajuda com a identificação (ID)?
   needs_id: Precisa de identificação
   needs_id_: Precisa de identificação
-  Needs_ID!: Precissa ID!
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
   needs_to_be_identified: Precisa ser identificado
   new: Novo
