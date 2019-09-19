@@ -238,7 +238,6 @@ pl:
   add_your_photo_to: "Dodaj swoje zdjęcie do %{project}"
   added: Dodano
   added!: Dodano!
-  added_as_a_part_of: Dodane jako część
   added_by: Dodane przez
   added_by_user_on_date_html: "Dodane %{date} przez %{user}"
   added_on: Dodane
@@ -358,7 +357,6 @@ pl:
   are_you_sure?: Na pewno?
   are_you_sure_no_undo: Czy na pewno? Tej czynności nie można cofnąć.
   are_you_sure_delete_post: Czy na pewno chcesz usunąć ten post?
-  are_you_sure_delete_this: Jesteś pewien, że chcesz to usunąć? Zanim to zrobisz, sprawdź czy znajdują się tam obserwacje lub taksony.
   are_you_sure_delete_this_place: Czy na pewno chcesz usunąć to miejsce?
   are_you_sure_leave_this_project: Czy na pewno chcesz opuścić ten projekt?
   are_you_sure_merge_these_places: Czy na pewno chcesz połączyć te miejsca? Nie można tego cofnąć.
@@ -401,15 +399,12 @@ pl:
   automatically_id_new: Automatycznie identyfikuj nowe obserwacje jako
   automatically_update_my_content_for_taxon_changes: Automatycznie aktualizuj moje obserwacje wraz ze zmianami taksonomicznymi
   back: Wstecz
-  back_to_albums: Wróć do albumów
   back_to_all_species: Wróć do wszystkich gatunków
   back_to_browsing_people: Wróć do przeglądania użytkowników
   back_to_calendar: "Wróć do kalendarza %{user}"
   back_to_editing_observation: Wróć do edycji obserwacji
   back_to_friends: Wróć do znajomych
   back_to_flags_html: "&laquo; Wróć do zgłoszeń"
-  back_to_help: Wróć do Pomocy
-  back_to_import: Wróć do importowania
   back_to_lists: "Wróć do list %{name}"
   back_to_observation: Wróć do obserwacji
   back_to_observation_fields: Wróć do notatek terenowych
@@ -418,7 +413,6 @@ pl:
   back_to_possessive_user_profile: "Wróć do profilu %{possuser}"
   back_to_post: '&laquo; Wróć do posta'
   back_to_projects: Wróć do projektów
-  back_to_shared_taxon: "Wróć do %{sharedtaxon}"
   back_to_suggestions: Wróć do sugestii
   back_to_taxon: "Wróć do %{defaulttaxon}"
   back_to_taxon_changes: "Wróć do zmian taksonu"
@@ -428,7 +422,6 @@ pl:
   back_to_x_journal: "Wróć do dziennika %{user}"
   back_to_x_blog: "Wróć do bloga %{x}"
   back_to_your_dashboard: Wróć do strony głównej
-  back_to_x_observations: "Wróć do obserwacji %{user}"
   back_to_your_lists: Wróć do swoich list
   back_to_your_journal: Wróć do swojego dziennika
   back_to_your_observations: Wróć do swoich obserwacji
@@ -436,17 +429,14 @@ pl:
   back_to_your_projects: Wróć do swoich projektów
   based_on_the_evidence_can_id_be_improved: |
     Czy na podstawie dostępnych danych takson społeczności może wciąż zostać sprawdzony lub ulepszony?
-  basic: Podstawowy
   batch: Seria
   batch_edit: Edycja serii
   batch_edit_taxa_for_x_html: "Seryjna edycja taksonów dla %{x}"
   batch_operations: Operacje seryjne
   be_the_first_to_fave_this_observation: Polub tę obserwację jako pierwszy!
-  beacuse_we_recently_changed_auth_system: Z powodu ostatniej zmiany systemu uwierzytelniania zresetowaliśmy twoje hasło.
   because: ponieważ
   because_of: z powodu
   before_importing_photos: przed zaimportowaniem zdjęć
-  before_you_can_contribute_your_observations: zanim będziesz mógł dodać swoje obserwacje.
   belives_this_is_a_comprehensive_list_of: uważa, że to jest kompleksowa lista
   bg_color: Kolor tła
   birds: ptaki
@@ -461,8 +451,6 @@ pl:
   blue_icons_represent_political_units: "Niebieskie ikony oznaczają jednostki administracyjne, takie jak państwa, województwa, stany, prowincje i podobne, a zielone ikony oznaczają różnego rodzaju przestrzenie publiczne (parki, rezerwaty). Po przybliżeniu zobaczysz więcej szczegółów."
   body: Treść
   brief_caption: Krótki podpis
-  brief_description_on_what_you_observed: Krótki opis tego, co widziałeś
-  brief_description_of_what_you_saw: Krótki opis tego, co widziałeś
   brown: brązowy
   browse: Przeglądaj
   browse_all_projects: Przeglądaj wszystkie projekty
@@ -471,17 +459,12 @@ pl:
   browse_people: Przeglądaj ludzi
   browse_projects: Przeglądaj projekty
   browse_species_that_occur_near_this_observation: Przeglądaj gatunki występujące w pobliżu obserwacji
-  browse_your_observations: Przeglądaj swoje obserwacje
   bulk_import_of_filename_is_complete: "Zbiorczy import %{filename} zakończony"
-  but_we_didnt_add_this_observation_to_the_x_project: "Ale nie dodaliśmy tej obserwacji do projektu %{project}, ponieważ nie zgodziłeś się z jego warunkami."
   by: przez
-  by_adding_ids_to_observations: poprzez dodawanie identyfikacji do obserwacji
   by_everyone: Przez wszystkich
-  by_project_list: przez listę projektu
   by_user: "Przez %{user}"
   by_you: Przez Ciebie
   calendar: Kalendarz
-  can_you_help_your_friends_id_these: Pomożesz znajomym to oznaczyć?
   cancel: Anuluj
   cant_flag_an_object_that_doesnt_exist: Nie można zgłosić elementu, który nie istnieje
   cant_merge_a_taxon_with_itself: Nie można połączyć taksonu z samym sobą.
@@ -1703,7 +1686,6 @@ pl:
   need_id_help?: Potrzebujesz pomocy z identyfikacją?
   needs_id: potrzebuje identyfikacji
   needs_id_: Potrzebuje identyfikacji
-  Needs_ID!: Potrzebuje identyfikacji!
   needs_id_expandable_html: "<span class='full'>Potrzebuje </span>identyfikacji"
   new: Nowe
   new_and_noteworthy: Nowe i godne uwagi
