@@ -248,7 +248,6 @@ it:
   add_your_photo_to: "Aggiungi la tua foto a %{project}"
   added: Aggiunte
   added!: Aggiunto!
-  added_as_a_part_of: Aggiunto come parte di un
   added_by: Aggiunta da
   added_by_user_on_date_html: "Aggiunto da %{user} il %{date}"
   added_on: Aggiunto il
@@ -419,7 +418,6 @@ it:
   are_you_sure_no_undo: Sei sicuro? Questa azione non può essere annullata.
   are_you_sure_delete_post: Sei sicuro di voler cancellare questo post?
   are_you_sure_delete_taxon_move_associates: "Sei sicuro di voler cancellare %{taxonname} (%{taxonid}) e spostare tutti i suoi taxa associati?"
-  are_you_sure_delete_this: Sei sicuro di volerlo cancellare? Dovresti probabilmente prima controllare se ha osservazioni o taxa elencati.
   are_you_sure_delete_this_place: Sei sicuro di voler cancellare questo luogo?
   are_you_sure_leave_this_project: Sei sicuro di voler abbandonare questo progetto?
   are_you_sure_merge_these_places: Sei sicuro di voler unire questi luoghi? L'operazione non può essere annullata.
@@ -478,15 +476,12 @@ it:
   automatically_id_new: Identifica automaticamente le nuove osservazioni come
   automatically_update_my_content_for_taxon_changes: Aggiorna automaticamente i miei contenuti con le modifiche del taxon
   back: Indietro
-  back_to_albums: Torna all'album
   back_to_all_species: Torna a Tutte le Specie
   back_to_browsing_people: Torna a navigare tra le persone
   back_to_calendar: "Torna al calendario di %{user}"
   back_to_editing_observation: Torna alla modifica dell'osservazione
   back_to_friends: Torna agli amici
   back_to_flags_html: "&laquo; Torna ai contrassegni"
-  back_to_help: Torna all'Aiuto
-  back_to_import: Torna all'Importazione
   back_to_lists: "Torna alle liste di %{name}"
   back_to_observation: Torna all'osservazione
   back_to_observation_fields: Torna ai campi dell'osservazione
@@ -495,7 +490,6 @@ it:
   back_to_possessive_user_profile: "Torna al profilo di %{possuser}"
   back_to_post: '&laquo; Torna al post'
   back_to_projects: Torna ai Progetti
-  back_to_shared_taxon: "Torna a %{sharedtaxon}"
   back_to_suggestions: Torna ai suggerimenti
   back_to_taxon: "Torna a %{defaulttaxon}"
   back_to_taxon_changes: "Torna ai cambiamenti di \"taxon\""
@@ -507,7 +501,6 @@ it:
   back_to_x_journal: "Torna al diario di %{user}"
   back_to_x_blog: "Torna al blog di %{x}"
   back_to_your_dashboard: Torna alla tua bacheca
-  back_to_x_observations: "Torna alle osservazioni di %{user}"
   back_to_your_lists: Torna alle tue liste
   back_to_your_journal: Torna al tuo diario
   back_to_your_observations: Torna alle tue osservazioni
@@ -515,17 +508,14 @@ it:
   back_to_your_projects: Torna ai tuoi progetti
   based_on_the_evidence_can_id_be_improved: |
     Basandosi sull'evidenza, il taxon della comunità può essere ancora confermato o migliorato?
-  basic: Base
   batch: Gruppo
   batch_edit: Modifica in gruppo
   batch_edit_taxa_for_x_html: "Modifica in gruppo i taxa %{x}"
   batch_operations: Operazioni a blocchi
   be_the_first_to_fave_this_observation: Aggiungi per primo questa osservazione ai preferiti!
-  beacuse_we_recently_changed_auth_system: Poiché di recente abbiamo cambiato il nostro sistema di autenticazione dell'utente, è necessario resettare la tua password.
   because: perché
   because_of: perché
   before_importing_photos: prima di importare le foto
-  before_you_can_contribute_your_observations: prima di contribuire con le tue osservazioni.
   belives_this_is_a_comprehensive_list_of: pensa che questa è una lista esaustiva di
   bg_color: Colore di sfondo
   birds: uccelli
@@ -542,8 +532,6 @@ it:
   breadcrumbs: Percorso di navigazione
   breadcrumbs_description: "Questa azione rimpiazzerà l'h1 e le istruzioni di default; assicuratevi di includerle se sono importanti per il progetto e ricordatevi che la larghezza massima autorizzata è di 950px"
   brief_caption: Breve didascalia
-  brief_description_on_what_you_observed: Breve descrizione di ciò che hai osservato
-  brief_description_of_what_you_saw: Breve descrizione di ciò che hai visto
   brown: marrone
   browse: Esplora
   browse_all_projects: Esplora tutti i progetti
@@ -552,19 +540,14 @@ it:
   browse_people: Esplora le Persone
   browse_projects: Esplora i Progetti
   browse_species_that_occur_near_this_observation: Esplora le specie presenti nei dintorni di questa osservazione.
-  browse_your_observations: Esplora le tue osservazioni
   built_with_site_guides_html: "Costruito con <a href=\"%{url}\">%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "L'importazione di gruppo del file %{filename} è completa"
-  but_we_didnt_add_this_observation_to_the_x_project: "Ma non abbiamo aggiunto questa osservazione al progetto %{project}, perché non hai accettato le condizioni del progetto."
   by: da
-  by_adding_ids_to_observations: aggiungendo le ID alle osservazioni
   by_everyone: Da tutti
-  by_project_list: per la lista del progetto
   by_user: "Da %{user}"
   by_you: Le mie
   calendar: Calendario
   calendars_only_show_x_observations_at_time: I calendari mostrano solo %{x} osservazioni alla volta
-  can_you_help_your_friends_id_these: Puoi aiutare i tuoi amici a identificare questi?
   cancel: Annulla
   cant_edit_or_delete_hidden_content: Non puoi modificare o cancellare contenuti che sono stati nascosti dai curatori del sito
   cant_flag_an_object_that_doesnt_exist: Non è possibile contrassegnare un oggetto che non esiste
@@ -2049,7 +2032,6 @@ it:
   need_id_help?: Aiuto su "Serve ID"?
   needs_id: serve ID
   needs_id_: Serve ID
-  Needs_ID!: Serve ID!
   needs_id_expandable_html: "<span class='full'>Serve </span>ID"
   needs_to_be_identified: Ha bisogno essere identificato
   new: Nuovo
@@ -3736,7 +3718,6 @@ it:
   third_person_possessive_plural: "%{noun} di %{object_phrase}"
   this: questo
   this_bioblitz_beings_in: Questo bioblitz inizia in
-  this_id_was_added_due_to_a: Questa ID è stata aggiunta per
   this_is_a: Questa è una
   this_is_a_cached_summary_based_on: Questo è un riassunto in cache di questo taxon basato sul suo
   this_is_a_life_list_of: Questa è una lista degli esseri viventi di
