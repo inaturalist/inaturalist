@@ -5819,6 +5819,11 @@ it:
       format:
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        units:
+          byte:
+            one: Byte
+            other: Byte
   support:
     array:
       last_word_connector: ', e'
