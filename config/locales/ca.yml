@@ -386,7 +386,6 @@ ca:
   alphabetical_order: Ordre alfabètic
   already_have_an_account_log_in_html: Ja teniu un compte?
   amphibians: amfibis
-  an: un
   ancestor_taxon: Tàxon Ancestral
   and: i
   and_help_the_inaturalist_community_grow: "i ajudar que la comunitat %{site_name} creixi."
@@ -573,7 +572,6 @@ ca:
   cc_by_sa_description: "Aquesta llicència permet que altres persones combinin, ajustin i facin creacions a partir dels vostres continguts, fins i tot amb finalitats comercials, sempre que se’n faci menció als crèdits i es doni llicència de les noves creacions amb les mateixes condicions. Aquesta llicència s’acostuma a comparar amb \"copyleft\", llicències de programari lliure i de codi obert. Tots els nous continguts que es basin en els vostres portaran la mateixa llicència, pel que també es permetrà l’ús comercial de tots els continguts que se’n derivin. És la llicència que fa servir Viquipèdia, i es recomana per als materials que es podrien beneficiar de la incorporació de continguts de Viquipèdia i per als projectes amb llicència similar."
   cc_by_sa_name: Reconeixement - Compartir igual
   cc_used_under_a: "Creative Commons, utilitzada amb una"
-  change: Canvia
   change_admin: Canviar Administrador
   change_cover: Canvia la portada
   change_descriptions:
@@ -612,8 +610,6 @@ ca:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} serà substituït per %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} s'ha fusionat amb %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} es fusionarà a %{output_taxon}"
-  change_visibility_of: Voleu canviar la visibilitat de les coordenades espacials?
-  change_your_matching: Canvia la vostra coincidència
   change_your_password: Canvia la vostra contrasenya
   changing_the_geoprivacy: 'Canviar la geoprivacitat modifica la manera en què altres persones veuen la localització de la vostra observació.'
   check_above_for_errors: Verifiqueu els errors anteriors
@@ -623,29 +619,19 @@ ca:
   check_list: llista de comprovació de
   check_list_description: Seleccioneu un tàxon d'un rang superior si voleu que aparegui en aquesta llista, com ara "Aus" per a aus, o "Amphibia" per a amfibis. Quan acabeu, aquesta llista no admetrà tàxons que no hi estiguin inclosos. Per exemple, si creeu una llista d'aus, no podreu afegir-hi granotes.
   check_list_for_individual_taxa_that: 'Llistes de comprovació per a una espècie o grup específic que habita aquí, p. ex. Aus de %{place}.'
-  check_list_individual_taxa: Llistes de comprovació per a un tàxon que habita aquí, p. ex. Aus de %{place}.
   check_lists_must_belong_to_a_place: |
     Les llistes de comprovació han de fer referència a un lloc. Per crear una nova llista de comprovació, visiteu una llista de comprovació d'un lloc per defecte i feu clic en l'enllaç "Crear una nova llista de comprovació'.
   check_list_of_species_occuring_in: Llista de comprovació d'espècies que existeixen a
   check_list_place: "Llista de comprovació de %{place}"
   check_list_updated: Llista de comprovació actualitzada!
-  check_list_source: Font <span class="meta">(opcional)</span>
   check_lists_for: "Altres llistes de comprovació per a %{place}"
   check_out_my_observations_at: Si voleu, podeu veure les meves observacions a
   check_out_our_blog: Comproveu el nostre Blog
   check_out_what_the_observation: Feu un cop d'ull a les observacions que esteu intentant identificar.
-  check_out_your_life_list: Reviseu la vostra Llista de vida
   check_this_box_if_html: |
     Seleccioneu aquest botó si voleu aplicar 
     <a href='https://creativecommons.org/licenses/by-nc/4.0/deed.ca' target='_blank'>Llicència de Reconeixement No Comercial Creative Commons</a> al contingut penjat. Això significa que qualsevol pot copiar i reutilitzar les teves fotos o observacions sense demanar-te permís indicant la vostra autoria i sembre que no l'utilitzeu per explotar-ho comercialment. Podeu escollir una llicència diferent o retirar la llicència més tard, però aquesta és la millor llicència per compartir amb investigadors.
   checklist: Llista de comprovació
-  checklists: Llistes de comprovació
-  checklist_places: Llocs amb llista de comprovació
-  checklist_places_absent: Llocs amb llista de comprovació (absents)
-  checklist_places_confirmed: Llocs amb llista de comprovació(confirmats)
-  checklist_places_introduced: Llocs amb llista de verificació (introduïts)
-  cheklist_places_are_places_with_contain_taxon: 'Els "Llocs amb llista de comprovació" són llocs amb llistes de comprovació que contenen aquest tàxon.'
-  child_taxa: Tàxons fills
   choose_a_field: Escolliu un camp
   choose_a_list_above: Selecciona una llista de dalt
   choose_a_place: Selecciona un lloc
@@ -654,13 +640,9 @@ ca:
   choose_columns: Escolliu columnes
   choose_file: Escolliu arxiu
   choose_files: Escolliu els fitxers
-  choose_files_from_your_computer: seleccioneu l'arxiu al vostre ordinador.
   choose_from_your_lists: Seleccioneu de les vostres llistes
-  choose_good_default_photos: seleccioneu bones fotos per defecte del grup de fotos de Creative Commons a Flickr
-  choose_photos: Escolliu fotos
   choose_photos_for_this_taxon: Seleccioneu fotos per a aquest tàxon
   choose_photos_to_tag_from_photostream: Trieu fotos per etiquetar del vostre Photostream
-  choose_place: Seleccioneu un lloc
   choose_rule: Seleccioneu una regla
   choose_subjects: Trieu subjectes
   choose_tags: Seleccioneu etiquetes
@@ -674,17 +656,10 @@ ca:
   clear_color_filters: Esborra els filtres de color
   clear_filters: Netegeu filtres
   clear_search: Esborra la cerca
-  click_on_the_map_to: Feu clic al mapa per afegir-hi la vostra observació
   click_the_map: "<strong>Feu clic al mapa</strong> per afegir-hi una localització."
   click_the_map_to_jump_new_place: Feu clic al mapa per moure-us a un lloc nou
   close: Tanca
   code: Codi HTML
-  collapse_days: replega dies
-  collapse_updates: replega actualitzacions
-  color_categories_for_this_species: |
-    Les categories de colors per a l'espècie; és com si volguéssiu realitzar una guia ordenada d'acord amb el seu color.
-    Si us plau, no llisteu tots els colors de l'organisme, només els més destacats. Per als colors de les plantes, utilitzeu
-    només el color de la seva flor.  Si us plau, no hi poseu colors que no ajudin a la categorització, per exemple: eviteu fer servir el color cafè per als mamífers i el verd per a les plantes.
   columns: Columnes
   combine: Combinar
   comma_separated_list_of_tracking_codes: |
@@ -693,19 +668,13 @@ ca:
     Es pot utilitzar per fer el seguiment de la participació en diferents fonts. Podeu accedir a aquests codis de seguiment
     quan descarregueu les observacions del projecte en format CSV.
   comma_separated_please: Si us plau, separeu per comes
-  comment_preview: Vista prèvia del comentari
   comment: comentari
   comment_: Comentari
-  comment_feed: Comentaris
   comment_deleted: El comentari s’ha esborrat
-  commented: comentat
   comments: Comentaris
-  comments_and_identifications: Comentaris i identificacions
-  comments_by_everyone: Comentaris de tothom
   comments_by_me: Els vostres comentaris
   comments_on: Comentaris sobre
   comments_on_my_observations: Comentaris sobre les vostres observacions
-  comments_youve_made_with_others: Comentaris que vau fer <br/>(sobre els continguts d'altres persones)<br/><span class="description">la setmana passada</span>
   commercial_solicitation: Anuncieu alguna cosa, els enllaços no són vàlids, etc.
   commit: Desa
   committed: Desa
@@ -714,7 +683,6 @@ ca:
   community: Comunitat
   community_curated: Supervisat per la Comunitat
   community_guidelines: Directrius de la comunitat
-  community_id: 'ID de la <strong>Comunitat</strong>:'
   community_id_heading: Tàxon segons la Comunitat
   community_id_at_species_or_lower?: Tàxon de la Comunitat a nivell específic o inferior?
   community_id_at_genus_level_or_lower: Tàxon de la Comunitat genèric o inferior
@@ -728,7 +696,6 @@ ca:
   comparing_versions_x_and_y: "Comparant les versions de %{x} i %{y}"
   comparing_observations_from: "Comparació de les observacions de %{user} el %{dates}"
   complete: Complet
-  complete_sets: Conjunts Complets
   compiled_by_name: "Elaborat per %{name}"
   completed: Completat
   completed_at: Completat a
@@ -744,8 +711,6 @@ ca:
   confirm_now: Confirmeu ara
   confirm_your_info: Confirmeu les vostres dades
   confirmed: confirmada
-  confirmed_observations_are: Les observacions confirmades són
-  confirming_identifications: confirmant identificacions
   connect_to_provider: "Connecteu-vos a %{provider}"
   connected_accounts: Comptes vinculats
   connecting_flickr: "Connectant-se a Flickr..."
@@ -762,7 +727,6 @@ ca:
     iucn: Equivalent del codi de la Llista Vermella (IUCN)
   conservation_status_geoprivacy_desc: |
     Geoprivacitat aplicada per defecte a totes les observacions d'aquest tàxon en aquest lloc
-  conservation_summary: Resum de conservació
   contact_support: Contacteu amb Suport
   contain_all_descendants?: Aquesta llista de comprovació conté tots els descendents d'aquest tàxon que es succeeixen aquí?
   content_hidden: Contingut amagat
@@ -772,11 +736,8 @@ ca:
     %{user} amagà aquest %{item} perquè "%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} ha deixat d'ocultar aquest %{item} perquè "%{reason}"
-  contest: concurs
   continue: Continua
   continue_to_site: Continueu a %{site_name}
-  contributions: contribucions
-  contributions_from: Aportacions de
   contributor_cannot_be_found: No s'ha pogut trobar al contribuïdor del projecte
   contributors_to_project: "Col·laboradors de %{project}"
   controlled_term_labels:
@@ -828,9 +789,7 @@ ca:
   couldnt_change_your_password: "La contrasenya no s’ha pogut modificar: %{e}"
   couldnt_find_a_user_matching_x_param: "No s’ha pogut trobar l'usuari amb els paràmetres següents: %{id}"
   couldnt_find_that_taxon: No es va trobar aquest tàxon
-  couldnt_log_you_in_x: "No s'ha pogut autenticar com a %{x}"
   countries: Països
-  country_stats: Estadístiques del país per a les observacions creades
   cover: Coberta
   create: Crea
   create_a_guide: Crea una guia
@@ -843,9 +802,6 @@ ca:
   create_an_atlas: Crear un Atlas
   create_new_taxon: Crea un nou tàxon
   create_observations: Crea observacions
-  create_observations_by_uploading_photos_to: |
-    Crea observacions pujant fotos a %{place}. Quan pugeu una foto, %{place} tractarà d'extreure les coordenades GPS, la data i l'hora de la foto.
-    Per començar,
   created: Creat
   created_by: Creat per
   created_by_user_on_date: Creat per %{user} el %{date}
@@ -854,7 +810,6 @@ ca:
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetades a Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons, llevat que s'indiqui el contrari."
   critically_endangered: En perill crític
-  critically_imperiled: Críticament en Perill
   css_description: Això s'inclourà després de tots els altres CSS de la pàgina.
   csv_file: Arxiu CSV
   csv_should_not_contain_a_header_row: El CSV no hauria de contenir cap capçalera de dades
@@ -862,10 +817,6 @@ ca:
   curate_observations: Supervisa observacions
   curate_taxa: Supervisa tàxons
   curate_user: Usuari supervisor
-  curate_users: Supervisa usuaris
-  curated: supervisat
-  curated_checklist: Llista de comprovació supervisada
-  curated_count: Compte supervisada
   curating: Supervisant
   curation: Supervisió
   curator: Supervisor
@@ -874,8 +825,6 @@ ca:
   curators_can_remove_observations_from: Els supervisors poden eliminar observacions del projecte i les seves identificacions es mostren en certes vistes (com a referència). A més, poden veure les coordenades enfosquides o privades del projecte.
   curator_identification: Identificació del supervisor
   current_flags: Etiquetes actuals
-  current_password: Contrasenya actual
-  custom_field_values: Valors del camp personalitzat
   custom_project_fields: Camps de projecte personalitzats
   custom_project_was_successfully_created: El projecte de l'usuari s'ha creat satisfactòriament.
   custom_project_was_successfully_updated: El projecte de l'usuari s'ha actualitzat correctament.
@@ -4023,7 +3972,6 @@ ca:
   user_invited_you_to_join_this_project_on_date_html: "%{user} us ha invitat a unir-vos a aquesta projecte en data %{date}"
   user_invited_your_x_to_a_project_html: "%{user} ha compartit la vostra %{x} a un projecte"
   user_is_a_naturalist: "%{user} és naturalista!"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> és ara %{role} de %{project}"
   user_muted: Usuari silenciat
   user_observations: Observacions de l'usuari
   user_observed_on_on_date_in_place: |
@@ -4158,7 +4106,6 @@ ca:
   w_photos_only: amb fotos
   w_sounds: amb sons
   wait_file_generation: Espereu mentre es genera l'arxiu. El procés pot trigar uns minuts per a les llistes grans.
-  want_to_add_one: Voleu afegir-ne una?
   want_to_show_off_some_of_your_favorite_taxa: Voleu incorporar alguns dels vostres tàxons preferits aquí?
   want_to_test_a_new_version_of_this_page: Vol provar una nova versió d'aquesta pàgina?
   wanted: Requerit
@@ -4306,7 +4253,6 @@ ca:
   you_are_over_your_invites_quota: ...ja heu enviat el màxim de 60 invitacions per aquest mes.
   you_are_now: Ara sou
   you_are_now_following_x: "Ara seguiu a %{friend_user}."
-  you_are_now_role_for_project_html: "<strong>Ara</strong> sou %{role} de %{project}"
   you_are_not_editing_any_guides_add_one_html: |
     No esteu editant cap guia. <a href="/guides/new">Afegiu una</a>
   you_are_already_a_member_of_this_project: "Ja sou membre d'aquest projecte!"
@@ -6171,12 +6117,9 @@ ca:
           notice: 'Aplicació revocada'
   i18n:
     inflections:
-      0:
+      - 
         vow: vocal
-      gender:
-        m: mascle
-        f: femella
-        "n": neutre
+      - 
   wild: Salvatge
   will_paginate:
     previous_label: "← Anterior"
