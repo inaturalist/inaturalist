@@ -374,7 +374,6 @@ ko:
   cc_by_sa_description: "이 라이선스는 저작자를 표시하고 같은 라이선스를 사용할 경우 상업적인 목적을 포함해 재배치, 변경, 추가할 수 있도록 한다. 새로운 결과물도 같은 라이선스를 사용하기 때문에 상업적 이용이 가능하다."
   cc_by_sa_name: 저작자표시-같은공유
   cc_used_under_a: "크리에이티브 커먼즈"
-  change: 변경
   change_admin: 관리자 변경
   change_cover: 겉표지 변경
   change_descriptions:
@@ -403,8 +402,6 @@ ko:
     replace_with: '바꾸기:'
     dropped: 포기함
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}은(는) %{output_taxon}으(로) 병합되었습니다"
-  change_visibility_of: 공간 좌표의 가시성을 변경
-  change_your_matching: 매치 변경
   change_your_password: 비밀번호 바꾸기
   changing_the_geoprivacy: '위치보호를 변경하면 다른 사람이 사용자의 관찰 위치를 보는 방식이 변경됩니다.'
   check_above_for_errors: 오류에 대해서는 상단을 확인하십시오
@@ -413,7 +410,6 @@ ko:
   check_list: 체크리스트
   check_list_description: 목록에 표시할 상위 분류군을 선택하세요. 예를 들어, 조류의 경우 Aves, 양서류의 경우 Amphibia를 넣으면 됩니다. 선택 후 이 분류군이 아닌 관찰을 여기에 추가할 수 없습니다. 예를 들어, 새 목록을 만들 경우 어떠한 개구리도 해당 목록에 넣을 수 없습니다.
   check_list_for_individual_taxa_that: '이 장소에 사는 각 분류군 체크리스트 (예: %{place}에 사는 새)'
-  check_list_individual_taxa: '이 장소에 사는 각 분류군 체크리스트 (예: %{place}에 사는 새)'
   check_lists_must_belong_to_a_place: |
     체크리스트는 장소를 지정해야 합니다. 새로운 체크리스트를 만들기 위해 기본 체크스트에 들어가서 '새로운 체크리스트' 링크를 선택하세요.
   check_list_of_species_occuring_in: 여기서 서식하는 종의 체크리스트
@@ -422,14 +418,7 @@ ko:
   check_out_my_observations_at: 에서 원한다면 내 관찰을 찾아볼 수 있습니다.
   check_out_our_blog: 블로그
   check_out_what_the_observation: 동정하고자 하는 관찰대상의 생김새를 확인합니다.
-  check_out_your_life_list: Life 목록을 확인하세요.
   checklist: 체크리스트
-  checklists: 체크리스트
-  checklist_places: 체크리스트 장소
-  checklist_places_absent: 체크리스트 장소 (부재)
-  checklist_places_confirmed: 체크리스트 장소 (확인)
-  checklist_places_introduced: 체크리스트 장소 (소개)
-  cheklist_places_are_places_with_contain_taxon: '체크리스트 장소는 이 분류군이 포함되어 있고 체크리스트가 있는 장소입니다.'
   choose_a_field: 필드 선택
   choose_a_list_above: 목록을 선택하세요.
   choose_a_place: 장소를 선택하세요.
@@ -437,13 +426,9 @@ ko:
   choose_columns: 열 선택
   choose_file: 파일 선택
   choose_files: 파일 선택
-  choose_files_from_your_computer: 컴퓨터에서 파일을 선택하세요
   choose_from_your_lists: 내 목록에서 선택하세요.
-  choose_good_default_photos: 플리커의 크리에이티브 커먼즈 사진에서 기본 사진을 선택하세요.
-  choose_photos: 사진 선택
   choose_photos_for_this_taxon: 이 분류군을 위한 사진을 선택
   choose_photos_to_tag_from_photostream: 내 사진에서 태그할 사진 선택
-  choose_place: 장소 선택
   choose_rule: 규칙 선택
   choose_subjects: 대상 선택
   choose_tags: 태그 선택
@@ -456,32 +441,24 @@ ko:
   clear_color_filters: 컬러 필터 지우기
   clear_filters: 필터 지움
   clear_search: 검색 지우기
-  click_on_the_map_to: 지도를 클릭하여 당신의 관찰을 놓으세요
   click_the_map: "<strong>지도를 클릭하여</strong> 장소를 추가하세요."
   click_the_map_to_jump_new_place: 지도를 클릭하여 새로운 장소로 이동하세요
   close: 닫기
   code: 코드
-  collapse_days: 날짜 접기
-  collapse_updates: 업데이트 접기
   colors: 색깔
   columns: 열
   combine: 병합
   comma_separated_please: 쉼표로 분리해주세요
-  comment_preview: 댓글 미리 보기
   comment: 댓글
   comment_: 댓글
   comment_deleted: 댓글 삭제됨
-  commented: 댓글 담
   comments: 댓글
-  comments_and_identifications: 댓글 & 아이디
-  comments_by_everyone: 모든 사람들의 댓글
   comments_by_me: 내가 작성한 댓글
   comments_on: 에 달린 댓글
   comments_on_my_observations: 내 관찰에 달린 댓글
   community: 공동체
   community_curated: 공동으로 큐래이션된
   community_guidelines: 공동체 지침
-  community_id: '<strong>공동체</strong> ID:'
   community_id_heading: 공동체 ID
   compare: 비교하기
   compare_with: 와 비교하다
@@ -504,8 +481,6 @@ ko:
   confirm_now: 지금 확인
   confirm_your_info: 정보 확인
   confirmed: 확인됨
-  confirmed_observations_are: 확정된 관찰은
-  confirming_identifications: 동정 확인
   connect_to_provider: "%{provider}에 연결"
   connected_accounts: 연결된 계정
   connecting_flickr: "플리커에 연결 중..."
@@ -519,14 +494,10 @@ ko:
     url: 보전 상태를 설명하는 페이지의 URL
     geoprivacy: 분류군 관찰에 대한 기본 위치보호 설정
     iucn: 동일한 IUCN 적색 목록 코드
-  conservation_summary: 보전 요약
   contact_support: 연락 지원
   contain_all_descendants?: 이 체크리스트가 여기 존재하는 하위 분류군을 모두 포함하고 있나요?
-  contest: 대회
   continue: 계속
   continue_to_site: '%{site_name}(으)로 계속하기'
-  contributions: 기여
-  contributions_from: '기여한 곳:'
   contributor_cannot_be_found: 기여자 찾을 수 없음
   contributors_to_project: "%{project}의 기여자들"
   controls: 제어
@@ -565,9 +536,7 @@ ko:
   couldnt_change_your_password: "비밀번호를 변경하지 못하였습니다: %{e}"
   couldnt_find_a_user_matching_x_param: "%{id}와(과) 일치하는 사용자를 찾을 수 없습니다"
   couldnt_find_that_taxon: 분류군을 찾지 못했습니다.
-  couldnt_log_you_in_x: "%{x}(으)로 로그인하지 못했습니다."
   countries: 국가
-  country_stats: 관찰을 통한 국가 통계를 만든 날짜
   cover: 겉표지
   create: 만들기
   create_a_guide: 가이드 만들기
@@ -579,9 +548,6 @@ ko:
   create_an_account: 계정 만들기
   create_new_taxon: 새로운 분류군 생성
   create_observations: 관찰 생성
-  create_observations_by_uploading_photos_to: |
-    %{place}에 사진을 업로드하는 것을 통해 관찰을 생성합니다. 업로드하면 %{place}에서 GPS 좌표를 책정하고 사진에서 날짜와 시간을 가져옵니다.
-    시작하기 위해:
   created: 생성함
   created_by: '작성자:'
   created_by_user_on_date: '%{date}에 %{user}의 의하여 만들어짐'
@@ -590,15 +556,10 @@ ko:
   creative_commons_flickr_tagged: 크리에이티브 커먼트 Flickr 사진 태그됨
   creative_commons_unless_otherwise_noted: "별도의 언급이 없으면 크리에이티브 커먼즈입니다."
   critically_endangered: 멸종위기
-  critically_imperiled: 위기종
   csv_file: CSV 파일
   csv_should_not_contain_a_header_row: CSV는 헤더 열을 포함하고 있으면 안 됩니다.
   curate_observations: 큐레이터 관찰
   curate_taxa: 큐레이터 분류군
-  curate_users: 큐레이터 사용자
-  curated: 큐레이트됨
-  curated_checklist: 큐레이터 체크리스트
-  curated_count: 큐레이터 통계
   curating: 큐레이팅
   curation: 큐레이션
   curator: 큐레이터
@@ -607,8 +568,6 @@ ko:
   curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트의 사적이거나 숨겨진 좌표와 관찰을 볼 수 있습니다.
   curator_identification: 큐레이터 확인
   current_flags: 현재 플래그
-  current_password: 현재 비밀번호
-  custom_field_values: 자체지정한 필드값
   custom_project_fields: 자체지정한 프로젝트 필드
   custom_project_was_successfully_created: 자체지정 프로젝트가 성공적으로 생성되었습니다.
   custom_project_was_successfully_updated: 자체지정 프로젝트가 성공적으로 업데이트되었습니다.
@@ -2824,11 +2783,9 @@ ko:
           notice: '애플리케이션이 업데이트되었습니다.'
   i18n:
     inflections:
-      0:
+      - 
         vow: 모음
         con: 자음
-      gender:
-        m: 남
-        f: 여
+      - 
   wild: 야생
   zoom_photo: 사진 확대/축소
