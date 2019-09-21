@@ -433,7 +433,6 @@ ar:
   cc_by_sa_description: "هذا الترخيص يتيح للآخرين إعادة ضبط، وتعديل، والبناء على عملك حتى لأغراض تجارية، طالما أنهم ينسبونها لك ويرخصون إبداعاتهم الجديدة تحت شروط متطابقة، وستحمل جميع الأعمال الجديدة القائمة على حقك نفس الترخيص، وبالتالي فإن أي مشتقات ستسمح أيضا بالاستخدام التجاري."
   cc_by_sa_name: إسناد المشاركة بالمثل
   cc_used_under_a: "المشاع الإبداعي، تُستخدَم تحت"
-  change: تغيير
   change_admin: تغيير الإداري
   change_cover: تغيير الغلاف
   change_descriptions:
@@ -472,8 +471,6 @@ ar:
     input_taxon_will_be_replaced_by_output_taxon_html: "سيتم استبدال%{input_taxon} بـ%{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "تم دمج %{input_taxa} في %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "سيتم دمج %{input_taxa} في %{output_taxon}"
-  change_visibility_of: تغيير رؤية الإحداثيات المكانية؟
-  change_your_matching: تغيير مطابقتك
   change_your_password: غير كلمة السر الخاصة بك
   changing_the_geoprivacy: 'تغيير الخصوصية الجغرافية يغير كيف يرى الآخرون موقع ملاحظتك.'
   check_above_for_errors: تحقق أعلاه من الأخطاء
@@ -483,19 +480,16 @@ ar:
   check_list: قائمة التدقيق
   check_list_description: اختر أعلى مستوى أصنوفة تريد أن يظهر في هذه القائمة، مثل "طائر" للطيور، أو "برمائي" للبرمائيات، عند التعيين، لن تسمح  هذه القائمة بالأصناف التي ليست في هذا الصنف، على سبيل المثال، إذا قمت بإنشاء قائمة الطيور، فلن تكون قادرا على إضافة أي ضفادع لها.
   check_list_for_individual_taxa_that: 'قوائم تحقق للأصناف الفردية التي تعيش هنا، على سبيل المثال "طيور %{place}".'
-  check_list_individual_taxa: قوائم تحقق للأصناف الفردية التي تعيش هنا، على سبيل المثال "طيور %{place}".
   check_lists_must_belong_to_a_place: |
     يجب أن تنتمي قوائم التحقق إلى مكان ما، لإنشاء قائمة تحقق جديدة; 
     انتقل إلى قائمة الاختيار الافتراضية للمكان وانقر على الرابط "إنشاء قائمة تحقق جديدة".
   check_list_of_species_occuring_in: قوائم تحقق للأنواع التي تحدث في
   check_list_place: "قائمة تحقق %{place}"
   check_list_updated: تم تحديث قائمة التحقق!
-  check_list_source: المصدر <span class="meta">(اختياري)</span>
   check_lists_for: "قوائم تحقق أخرى لـ%{place}"
   check_out_my_observations_at: إذا كنت تريد، يمكنك التحقق من ملاحظاتي في
   check_out_our_blog: تحقق من مدونتنا
   check_out_what_the_observation: تحقق مما تبدو عليه الملاحظة التي تحاول تحديدها.
-  check_out_your_life_list: تحقق من قائمة الحياة الخاصة بك
   check_this_box_if_html: |
     حدد هذا الصندوق إذا كنت تريد تطبيق <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -506,13 +500,6 @@ ar:
     إزالة الترخيص لاحقا، ولكن هذا هو أفضل ترخيص للمشاركة مع 
     الباحثين.
   checklist: قائمة التدقيق
-  checklists: قوائم التدقيق
-  checklist_places: قائمة تحقق الأماكن
-  checklist_places_absent: قائمة تحقق الأماكن (غائبة)
-  checklist_places_confirmed: قائمة تحقق الأماكن (مؤكدة)
-  checklist_places_introduced: قائمة تحقق الأماكن (تم إدخالها)
-  cheklist_places_are_places_with_contain_taxon: '"قائمة تحقق الأماكن" هي أماكن بقوائم تحقق تحتوي على هذه الأصنوفة.'
-  child_taxa: الأصناف الأطفال
   choose_a_field: اختر حقلا
   choose_a_list_above: اختر قائمة أعلاه.
   choose_a_place: اختر مكانا
@@ -521,13 +508,9 @@ ar:
   choose_columns: اختر أعمدة
   choose_file: اختر ملفا
   choose_files: اختر الملفات
-  choose_files_from_your_computer: اختيار الملفات من حاسوبك
   choose_from_your_lists: اختر من قوائمك
-  choose_good_default_photos: اختر صورا افتراضية جيدة من تجمع صور المشاع الإبداعي في فليكر
-  choose_photos: اختر الصور
   choose_photos_for_this_taxon: اختر صورا لهذه الأصنوفة
   choose_photos_to_tag_from_photostream: اختر صورا لوسم من مجموعة صورك
-  choose_place: اختر مكانا
   choose_rule: اختر دورا
   choose_subjects: اختر موضوعات
   choose_tags: اختر العلامات
@@ -541,38 +524,23 @@ ar:
   clear_color_filters: مسح مرشحات الألوان
   clear_filters: مسح المرشحات
   clear_search: مسح البحث
-  click_on_the_map_to: انقر على الخريطة لوضع ملاحظتك
   click_the_map: "<strong>انقر على الخريطة</strong> لإضافة موقع."
   click_the_map_to_jump_new_place: انقر على الخريطة للانتقال إلى مكان جديد
   close: إغلاق
   code: كود
-  collapse_days: طي الأيام
-  collapse_updates: طي التحديثات
-  color_categories_for_this_species: |
-    فئات اللون لهذه الأنواع، كما لو كنت ذاهبا لوضعه
-    في دليل ميداني مرتبة حسب اللون. الرجاء عدم إدراج كل لون على
-    الكائن الحي، فقط تلك البارزة، للنباتات المزهرة من فضلك
-    استخدم لون الزهور، يُرجَى تركها فارغة للألوان التي لن تكون
-    مفيدة في التصنيف، مثل الثدييات البنية والسرخس الأخضر.
   colors: ألوان
   columns: أعمدة
   combine: دمج
   comma_separated_list_of_tracking_codes: |
     قائمة مفصولة بفواصل من رموز التتبع، أضف هذه العناصر إذا كنت تريد إلحاق كود تتبع عند إرسال الأشخاص إلى نموذج الملاحظة الجديد، مثل %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123، يمكنك استخدام هذا لتتبع المشاركة من مصادر مختلفة، يمكنك الوصول إلى هذه الرموز عند تنزيل ملاحظات مشروعك كملف CSV.
   comma_separated_please: مفصولة بفواصل، من فضلك
-  comment_preview: معاينة التعليق
   comment: تعليق
   comment_: تعليق
-  comment_feed: خلاصة التعليقات
   comment_deleted: تم حذف التعليق
-  commented: تم التعليق
   comments: تعليقات
-  comments_and_identifications: التعليقات والمعرفات
-  comments_by_everyone: تعليقات بواسطة الجميع
   comments_by_me: تعليقات بواسطتي
   comments_on: تعليقات على
   comments_on_my_observations: تعليقات على ملاحظاتي
-  comments_youve_made_with_others: التعليقات التي أضفتها (أ/أخرى) <br/><span class="description">في الأسبوع الماضي</span>
   commercial_solicitation: التماس تجاري، وصلات إلى لا مكان، إلخ.
   commit: نفذ
   committed: نُفِّذ
@@ -581,7 +549,6 @@ ar:
   community: المجتمع
   community_curated: مجتمع مختار
   community_guidelines: إرشادات المجتمع
-  community_id: 'معرف <strong>المجتمع</strong>:'
   community_id_heading: أصنوفة المجتمع
   community_id_at_species_or_lower?: أصنوفة المجتمع في الأنواع أو أقل؟
   community_id_at_genus_level_or_lower: أصنوفة المجتمع على مستوى الجنس أو أقل
@@ -595,7 +562,6 @@ ar:
   comparing_versions_x_and_y: "مقارنة الإصدارات %{x} و%{y}"
   comparing_observations_from: "مقارنة %{user} الملاحظات من %{dates}"
   complete: اكتمال
-  complete_sets: مجموعات كاملة
   compiled_by_name: "تم تجميعها بواسطة %{name}"
   completed: اكتمل
   completed_at: اكتمل في
@@ -611,8 +577,6 @@ ar:
   confirm_now: أكد الآن
   confirm_your_info: أكد معلوماتك
   confirmed: تم التأكيد
-  confirmed_observations_are: الملاحظات المؤكدة هي
-  confirming_identifications: تأكيد الهويات
   connect_to_provider: "الاتصال بـ%{provider}"
   connected_accounts: حسابات متصلة
   connecting_flickr: "جارٍ الاتصال بفليكر..."
@@ -629,7 +593,6 @@ ar:
     iucn: يعادل رمز القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية
   conservation_status_geoprivacy_desc: |
     يتم تطبيق الخصوصية الجغرافية الافتراضي على جميع ملاحظات هذه الأصنوفة في هذا المكان
-  conservation_summary: ملخص الحفظ
   contact_support: اتصل بالدعم
   contain_all_descendants?: هل تحتوي قائمة التحقق هذه على جميع أحفاد هذه الأصنوفة التي تحدث هنا؟
   content_hidden: المحتوى المخفي
@@ -639,11 +602,8 @@ ar:
     %{user} أخفى هذا %{item} بسبب "%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} أظهر هذا %{item} بسبب "%{reason}"
-  contest: مسابقة
   continue: استمرار
   continue_to_site: المواصلة إلى %{site_name}
-  contributions: مساهمات
-  contributions_from: المساهمات من
   contributor_cannot_be_found: لا يمكن العثور على المساهم
   contributors_to_project: "المساهمون في %{project}"
   controlled_term_labels:
@@ -701,9 +661,7 @@ ar:
   couldnt_change_your_password: "تعذر تغيير كلمة مرورك: %{e}"
   couldnt_find_a_user_matching_x_param: "تعذر العثور على مستخدم يطابق %{id}"
   couldnt_find_that_taxon: لا يمكن العثور على أصنوفة.
-  couldnt_log_you_in_x: "تعذر تسجيل الدخول باسم '%{x}'"
   countries: بلدان
-  country_stats: إحصاءات البلد للملاحظات التي تم إنشاؤها في
   cover: غلاف
   create: إنشاء
   create_a_guide: إنشاء دليل
@@ -716,8 +674,6 @@ ar:
   create_an_atlas: إنشاء أطلس
   create_new_taxon: إنشاء أصنوفة جديدة
   create_observations: إنشاء ملاحظات
-  create_observations_by_uploading_photos_to: |
-    يمكنك إنشاء ملاحظات عن طريق تحميل الصور إلى %{place}، عند تحميل %{place} سيحاول استخراج إحداثيات GPS والتاريخ/الوقت من الصورة للبدء,
   created: تم الإنشاء
   created_by: أنشأه
   created_by_user_on_date: تم الإنشاء بواسطة %{user} في %{date}
@@ -726,7 +682,6 @@ ar:
   creative_commons_flickr_tagged: صور فليكر الموسومة بالمشاع الإبداعي
   creative_commons_unless_otherwise_noted: "المشاع الإبداعي ما لم يُذكَر خلاف ذلك."
   critically_endangered: مهدد بخطر انقراض أقصى
-  critically_imperiled: مهدد بشدة
   css_description: سيتم تضمين هذا بعد كل css الأخرى على الصفحة.
   csv_file: ملف CSV
   csv_should_not_contain_a_header_row: يجب ألا يحتوي CSV على صف رأس
@@ -734,10 +689,6 @@ ar:
   curate_observations: الإشراف على الملاحظات
   curate_taxa: تنظيف الأصناف
   curate_user: الإشراف على المستخدم
-  curate_users: الإشراف على المستخدمين
-  curated: تم تقييمه
-  curated_checklist: قائمة تدقيق منسقة
-  curated_count: عد منسق
   curating: المشرفون
   curation: إشراف
   curator: المشرف
@@ -746,8 +697,6 @@ ar:
   curators_can_remove_observations_from: يمكن للمشرفين إزالة الملاحظات من المشروع وتظهر هوياتهم جنبا إلى جنب مع الملاحظات على وجهات النظر الخاصة بالمشروع، يمكن للمشرفين أيضا رؤية الإحداثيات الحقيقية للمساهمات الخاصة والمحجوبة لهذا المشروع.
   curator_identification: تحديد الإشراف
   current_flags: الأعلام الحالية
-  current_password: كلمة السر الحالية
-  custom_field_values: قيم الحقول المخصصة
   custom_project_fields: حقول المشروع المخصصة
   custom_project_was_successfully_created: تم إنشاء مشروع مخصص بنجاح.
   custom_project_was_successfully_updated: تم تحديث  مشروع مخصص بنجاح.
@@ -4075,7 +4024,6 @@ ar:
   user_invited_you_to_join_this_project_on_date_html: "دعاك %{user} للانضمام لهذا المشروع في %{date}"
   user_invited_your_x_to_a_project_html: "دعا %{user} %{x} لمشروع"
   user_is_a_naturalist: "%{user} عالم طبيعي!"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> الآن %{role} ل%{project}"
   user_muted: تم كتم صوت المستخدم
   user_observations: ملاحظات المستخدم
   user_observed_on_on_date_in_place: |
@@ -4212,7 +4160,6 @@ ar:
   w_photos_only: بصور
   w_sounds: بأصوات
   wait_file_generation: يُرجَى الاستمرار في حين يتم إنشاء الملف، قد يستغرق الأمر بضع دقائق للقوائم الكبيرة.
-  want_to_add_one: تريد إضافة واحد؟
   want_to_show_off_some_of_your_favorite_taxa: تريد إظهار بعض من أصنافك المفضلة هنا؟
   want_to_test_a_new_version_of_this_page: هل تريد اختبار إصدار جديد لهذه الصفحة؟
   wanted: مطلوب
@@ -4367,7 +4314,6 @@ ar:
   you_are_over_your_invites_quota: ...لقد تجاوزت الحصة الشهرية لعدد 60 دعوة
   you_are_now: أنت الآن
   you_are_now_following_x: "أنت الآن تتابع %{friend_user}."
-  you_are_now_role_for_project_html: "<strong>أنت</strong> الآن %{role} ل%{project}"
   you_are_not_editing_any_guides_add_one_html: |
     أنت لا تقوم بتحرير أي أدلة، <a href="/guides/new">إضافة واحد</a>
   you_are_already_a_member_of_this_project: "أنت بالفعل عضو في هذا المشروع!"
@@ -6982,12 +6928,10 @@ ar:
           notice: 'تم إبطال الطلب.'
   i18n:
     inflections:
-      0:
+      - 
         vow: حرف مصوت
         con: صامت
-      gender:
-        m: ذكر
-        f: أنثى
+      - 
   wild: بري
   will_paginate:
     previous_label: "&#8592; السابق"
