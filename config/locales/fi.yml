@@ -565,7 +565,6 @@ fi:
   cc_by_sa_description: "Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisiin ja kaupallisiin tarkoituksiin, kunhan nimesi mainitaan alkuperäisen teoksen tekijänä ja uusi teos lisensoidaan tällä samalla lisenssillä. Teokseesi pohjautuvia uusia teoksia voidaan siis käyttää myös kaupallisiin tarkoituksiin."
   cc_by_sa_name: Nimeä-JaaSamoin
   cc_used_under_a: "Creative Commons, käytetty lisenssillä"
-  change: Muuta
   change_admin: Vaihda ylläpitäjä
   change_cover: Vaihda kansi
   change_descriptions:
@@ -603,7 +602,6 @@ fi:
     input_taxon_will_be_replaced_by_output_taxon_html: "taksoni %{input_taxon} tullaan korvaamaan taksonilla %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "taksonit %{input_taxa} yhdistettiin taksoniin %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "taksoni %{input_taxa} tullaan yhdistämään taksoniin %{output_taxon}"
-  change_visibility_of: Muutetaanko koordinaattien näkyvyyttä?
   change_your_password: Vaihda salasanasi
   changing_the_geoprivacy: 'Sijainnin tietosuojan muuttaminen vaikuttaa siihen miten muut ihmiset näkevät havaintopaikkasi sijainnin.'
   check_above_for_errors: Tarkista virheet ylempää
@@ -613,25 +611,16 @@ fi:
   check_list: Lajiluettelo
   check_list_description: Valitse ylemmän tason taksoni jonka haluat näyttää tässä listassa, kuten "Aves" linnuille, tai "Amphibia" sammakkoeläimille. Kun olet tehnyt sen, tämä luettelo ei salli taksoneita jotka eivät kuulu tähän taksoniin. Esimerkiksi, jos luot listan linnuista, et voi lisätä siihen sammakoita.
   check_list_for_individual_taxa_that: 'Lajilistat yksittäisistä taksoneista, jotka elävät täällä, esim. "Paikan %{place}" linnut.'
-  check_list_individual_taxa: Lajiluettelot yksittäisistä taksoneista, jotka elävät täällä, esim. "Paikan %{place}" linnut.
   check_lists_must_belong_to_a_place: |
     Lajilistojen on kuuluttava paikkoihin. Luodaksesi uuden lajiluettelon, mene paikan oletuslajiluetteloon ja klikkaa linkkiä  "Luo uusi lajiluettelo".
   check_list_of_species_occuring_in: Lajiluettelo lajeista jotka esiintyvät
   check_list_place: "%{place} Lajiluettelo"
   check_list_updated: Lajiluettelo päivitetty!
-  check_list_source: Lähde <span class="meta">(valinnainen)</span>
   check_lists_for: "Muut lajilistat paikalle %{place}"
   check_out_my_observations_at: Jos haluat, voit tarkastella havaintojani osoitteessa
   check_out_our_blog: Tutustu blogiimme
   check_out_what_the_observation: Katso, miltä havainnot, joita yrität tunnistaa, näyttävät
-  check_out_your_life_list: Tarkista elämäluettelosi
   checklist: Lajiluettelo
-  checklists: Tarkistuslistat
-  checklist_places: Lajiluetteloiden paikkoja
-  checklist_places_absent: Lajiluetteloiden paikkoja (poissa)
-  checklist_places_confirmed: Lajililuetteloiden paikkoja (vahvistettu)
-  cheklist_places_are_places_with_contain_taxon: '"Lajilistapaikat" ovat paikkoja joilla on lajilistoja,a jotka sisältävät tämän taksonin.'
-  child_taxa: Alataksoni
   choose_a_field: Valitse kenttä
   choose_a_list_above: Valitse luettelo yläpuolelta.
   choose_a_place: Valitse paikka
@@ -639,12 +628,9 @@ fi:
   choose_columns: Valitse sarakkeet
   choose_file: Valitse tiedosto
   choose_files: Valitse tiedostot
-  choose_files_from_your_computer: valitse tiedostot omalta tietokoneeltasi
   choose_from_your_lists: Valitse luetteloistasi
-  choose_photos: Valitse valokuvat
   choose_photos_for_this_taxon: Valitse kuvat tälle taksoninille
   choose_photos_to_tag_from_photostream: Valitse kuvia valokuvavirrastasi tunnisteiden lisäämiseksi.
-  choose_place: Valitse paikka
   choose_rule: Valitse sääntö
   choose_subjects: Valitse aiheet
   choose_tags: Valitse merkinnät
@@ -658,32 +644,21 @@ fi:
   clear_color_filters: Tyhjennä kaikki värisuodattimet
   clear_filters: Tyhjennä suodattimet
   clear_search: Tyhjennä haku
-  click_on_the_map_to: Klikkaa karttaa sijoittaaksesi havaintosi
   click_the_map: "<strong>Klikkaa karttaa</strong> lisätäksesi sijainnin."
   click_the_map_to_jump_new_place: Klikkaa karttaa, jos haluat siirtyä uuteen paikkaan
   close: Sulje
   code: Koodi
-  collapse_days: tiivistä päivät
-  collapse_updates: tiivistä päivitykset
-  color_categories_for_this_species: |
-    Väriluokat tälle lajille, samoin kuin asettaisit ne värilajitteluun kenttäoppaaseen. Ole ystävällinen äläkä listaa eliön kaikkia värejä, vaan ainoastaan huomiota herättävät värit. Kukkivissa kasveissa, ole hyvä ja käytä kukan väriä. Jätäthän kokonaan pois värit joilla ei ole luokittelun kannalta merkitystä, kuten ruskeat nisäkkäät ja vihreät saniaiset.
   colors: Värit
   columns: Sarakkeet
   combine: Yhdistä
   comma_separated_please: Pilkulla erotettu, kiitos
-  comment_preview: Kommentin esikatselu
   comment: kommentti
   comment_: Kommentti
-  comment_feed: Kommenttisyöte
   comment_deleted: Kommentti poistettu
-  commented: kommentoi
   comments: Kommentit
-  comments_and_identifications: Kommentit ja tunnistukset
-  comments_by_everyone: Kaikkien kommentit
   comments_by_me: Omat kommenttini
   comments_on: Kommentit
   comments_on_my_observations: Kommentit omissa havainnoissani
-  comments_youve_made_with_others: Tekemäsi kommentit (muiden kanssa)<br/><span class="description">viime viikolla</span>
   commercial_solicitation: Kaupallinen tarjous, linkit ei mihinkään, yms.
   commit: Sitoutua
   committed: Sitoutunut
@@ -691,7 +666,6 @@ fi:
   community: Yhteisö
   community_curated: Yhteisön kuratoimat
   community_guidelines: Yhteisön suuntaviivat
-  community_id: '<strong>Yhteisön</strong> tekemä tunnistus:'
   community_id_heading: Yhteisön taksoni
   community_id_at_species_or_lower?: Yhteisö tunnistanut lajilleen tai alemmalle tasolle?
   community_id_at_genus_level_or_lower: Yhteisö tunnistanut suvulleen tai alemmalle tasolle?
@@ -705,7 +679,6 @@ fi:
   comparing_versions_x_and_y: "Verrataan versioita %{x} ja %{y}"
   comparing_observations_from: "Verrataan käyttäjän %{user} havaintoja %{dates}"
   complete: Valmis
-  complete_sets: Täydelliset sarjat
   compiled_by_name: "Koostanut %{name}"
   completed: Valmis
   completed_at: Valmistunut
@@ -720,8 +693,6 @@ fi:
   confirm_now: Vahvista nyt
   confirm_your_info: Vahvista tietosi
   confirmed: vahvistettu
-  confirmed_observations_are: Varmistetut havainnot ovat
-  confirming_identifications: vahvistetaan tunnistuksia
   connect_to_provider: "Yhdistä palveluun %{provider}"
   connected_accounts: Yhdistetyt tilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
@@ -735,8 +706,6 @@ fi:
   content_hidden: Sisältö piilotettu
   continue: Jatka
   continue_to_site: Jatka %{site_name}iin
-  contributions: muokkaukset
-  contributions_from: Muokkaukset käyttäjältä
   contributor_cannot_be_found: Osallistujaa ei löydy
   contributors_to_project: "Projektin %{project} osallistujat"
   controlled_term_labels:
@@ -791,7 +760,6 @@ fi:
   couldnt_change_your_password: "Ei voitu vaihtaa salasanaasi: %{e}"
   couldnt_find_a_user_matching_x_param: "Emme löytäneet käyttäjää %{id}"
   couldnt_find_that_taxon: Taksonin löytäminen ei onnistunut.
-  couldnt_log_you_in_x: "Ei voitu kirjautua sisään käyttäjänä '%{x}'"
   countries: Maat
   cover: Kansi
   create: Luo
@@ -805,9 +773,6 @@ fi:
   create_an_atlas: Luo atlas
   create_new_taxon: Luo uusi taksoni
   create_observations: Luo havaintoja
-  create_observations_by_uploading_photos_to: |
-    Luo havaintoja tallentamalla kuvia paikkaan %{place}. Kun tallennat, %{place} yrittää poimia GPS-koordinaatit ja päivämäärän/ajan valokuvasta. 
-    Aloittaaksesi,
   created: Luotu
   created_by: Luonut
   created_by_user_on_date: Lisännyt %{user} %{date}
@@ -816,24 +781,18 @@ fi:
   creative_commons_flickr_tagged: Merkinnät lisätty Creative Commons Flickr-valokuviin
   creative_commons_unless_otherwise_noted: "Creative Commons, ellei toisin mainita."
   critically_endangered: Äärimmäisen uhanalainen
-  critically_imperiled: Äärimmäisen uhanalainen
   csv_file: CSV-tiedosto
   csv_should_not_contain_a_header_row: CSV ei saa sisältää otsikkoriviä
   cumulative_ids: "Kumulatiiviset tunnistukset: %{count}/%{total}"
   curate_observations: Kuratoi havaintoja
   curate_taxa: Kuratoi taksoneita
   curate_user: Kuratoi käyttäjää
-  curate_users: Kuratoi käyttäjiä
-  curated: kuratoitu
-  curated_checklist: Kuratoitu lajiluettelo
   curating: Kuratointi
   curation: Kuraatio
   curator: Kuraattori
   curators: Kuraattorit
   curator_identification: Kuraattorin tunnistus
   current_flags: Nykyiset liput
-  current_password: Nykyinen salasana
-  custom_field_values: Mukautetut kentän arvot
   custom_project_fields: Mukautetut projektikentät
   custom_project_was_successfully_created: CustomProject luotiin onnistuneesti.
   custom_project_was_successfully_updated: CustomProject päivitettiin onnistuneesti.
@@ -3316,7 +3275,6 @@ fi:
   user_invited_you_to_join_this_project_on_date_html: "%{user} kutsui sinut liittymään tähän projektiin %{date}"
   user_invited_your_x_to_a_project_html: "%{user} kutsui sinun %{x} projektiin"
   user_is_a_naturalist: "%{user} on luonnontieteilijä!"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> on nyt %{role} projektissa %{project}"
   user_muted: Käyttäjä hiljennetty
   user_observations: Käyttäjän havainnot
   user_s_id: "Käyttäjän %{user} %{id}"
@@ -3428,7 +3386,6 @@ fi:
   vulnerable: Vaarantunut
   w_photos_only: kuvia
   w_sounds: ääniä
-  want_to_add_one: Haluatko lisätä yhden?
   want_to_show_off_some_of_your_favorite_taxa: Haluatko esitellä joitakin lempitaksoneitasi täällä?
   want_to_test_a_new_version_of_this_page: Haluatko testata uutta versiota tästä sivusta?
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
@@ -3536,7 +3493,6 @@ fi:
     Näytät olevan offline-tilassa. Yritä uudelleen, kun olet yhteydessä Internetiin.
   you_are_now: Olet nyt
   you_are_now_following_x: "Seuraat nyt ystävää %{friend_user}."
-  you_are_now_role_for_project_html: "<strong>olet</strong> nyt %{role} projektissa %{project}"
   you_are_not_editing_any_guides_add_one_html: |
     Et muokkaa yhtään oppaita. <a href="/guides/new">Lisää yksi</a>
   you_are_already_a_member_of_this_project: "Olet jo tämän projektin jäsen!"
@@ -4516,13 +4472,10 @@ fi:
           notice: 'Hakemus hylätty.'
   i18n:
     inflections:
-      0:
+      - 
         vow: vokaali
         con: konsonantti
-      gender:
-        m: miespuolinen
-        f: naispuolinen
-        "n": neutri
+      - 
   wild: Villi
   will_paginate:
     previous_label: "&#8592; Edellinen"
