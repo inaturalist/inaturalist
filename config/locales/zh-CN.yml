@@ -325,7 +325,6 @@ zh-CN:
   alphabetical: 按字母排序
   alphabetical_order: 按字母顺序
   amphibians: 两栖动物
-  an: 一个
   and: 和
   and_help_the_inaturalist_community_grow: "并帮助%{site_name}社区成长。"
   and_other_taxa: "&amp; 其他分类"
@@ -507,7 +506,6 @@ zh-CN:
   cc_by_sa_description: "该许可协议允许其他人修改、转换或以您的作品为基础进行创作，甚至商业目的，只要他们依您的作品创作，并使用相同条款授权他们的新作品的话。所有基于您的新作品将携带相同的许可协议，因此所有衍生作品也将允许商业目的使用。"
   cc_by_sa_name: 署名-相同方式共享
   cc_used_under_a: "知识共享，使用"
-  change: 更改
   change_admin: 更改管理员
   change_cover: 更改封面
   change_descriptions:
@@ -545,8 +543,6 @@ zh-CN:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon}将被替换为%{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}已合并至%{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa}将被合并至%{output_taxon}"
-  change_visibility_of: 要改变空间坐标的可见与否吗？
-  change_your_matching: 更改您的匹配
   change_your_password: 更改您的密码
   changing_the_geoprivacy: '更改位置隐私会改变其他人看见您观察位置的方式。'
   check_above_for_errors: 检查上方错误
@@ -556,26 +552,16 @@ zh-CN:
   check_list: 监视列表
   check_list_description: 选择您想在此列表中列入的高阶分类单元，如为鸟类选择“Aves”，为两栖动物选择“Amphibia”。一旦做这样的设置，不再这一分类单元中之下的分类单元便不允许列入列表。例如，如果您创建了一个鸟类列表，那么就不能再向其中添加蛙类。
   check_list_for_individual_taxa_that: '在此地栖息的某一个分类单元的名录，例如，“%{place}的鸟类”。'
-  check_list_individual_taxa: 在此地栖息的某一个分类单元的名录，例如，“%{place}的鸟类”。
   check_lists_must_belong_to_a_place: |
     名录必须属于某一个地点。要创建一个新名录，请访问该地点的默认名录，并点击“创建新名录”的链接。
   check_list_of_species_occuring_in: 在以下地点出现的物种名录
   check_list_place: "%{place} 监视列表"
   check_list_updated: 监视列表已更新！
-  check_list_source: 来源<span class="meta">（可选）</span>
   check_lists_for: "用于%{place}的其他检查表"
   check_out_my_observations_at: 如果您希望，您可以在此检查我的观察
   check_out_our_blog: 看看我们的博客
   check_out_what_the_observation: 检查您要鉴定的观察记录外形。
-  check_out_your_life_list: 检查您的生命清单
   checklist: 检查表
-  checklists: 检查表
-  checklist_places: 检查表地点
-  checklist_places_absent: 名录地点（缺如）
-  checklist_places_confirmed: 名录地点（已确认）
-  checklist_places_introduced: 地点列表（介绍）
-  cheklist_places_are_places_with_contain_taxon: '“地点清单”是指那些包括该分类单元的清单上的地点'
-  child_taxa: 子分类
   choose_a_field: 选择字段
   choose_a_list_above: 在上方选择一个列表。
   choose_a_place: 选择一个地方
@@ -584,13 +570,9 @@ zh-CN:
   choose_columns: 选择列
   choose_file: 选择文件
   choose_files: 选择文件
-  choose_files_from_your_computer: 从您的电脑中选择文件
   choose_from_your_lists: 从您的列表中选择
-  choose_good_default_photos: 从Flickr上的知识共享图片池中选择良好的默认照片
-  choose_photos: 选择照片
   choose_photos_for_this_taxon: 为这个分类单元选择照片
   choose_photos_to_tag_from_photostream: 从您的照片流中选择照片并进行标记
-  choose_place: 选择一个地方
   choose_rule: 选择一条规则
   choose_subjects: 选择学科
   choose_tags: 选择标签
@@ -603,34 +585,23 @@ zh-CN:
   clear: 清除
   clear_color_filters: 清除颜色过滤器
   clear_search: 清空搜索
-  click_on_the_map_to: 点击地图进行观察
   click_the_map: "<strong>点击地图</strong>以增加一个地点。"
   click_the_map_to_jump_new_place: 点击地图切换到新地点
   close: 关闭
   code: 代码
-  collapse_days: 折叠日子
-  collapse_updates: 折叠更新
-  color_categories_for_this_species: |
-    用于此物种的颜色分类，就好像您要将它放在按颜色排序的野外生存指南中。请不要列举所有有机物的颜色，只列举显著的即可。对于开花植物，请使用花的颜色。在颜色对分类没有用的情况下，请将其留空，例如棕色的哺乳动物和绿色的蕨类植物。
   colors: 颜色
   columns: 列数
   combine: 结合
   comma_separated_list_of_tracking_codes: |
     以逗号分隔的追踪代码列表。如果您希望向人们发送新的观察表时附加追踪代码，请添加它，例如%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可以使用它追踪来自不同来源的参与者。当下载您项目的观察为CSV文件时，您可以访问这些代码。
   comma_separated_please: 请以逗号分隔
-  comment_preview: 评论预览
   comment: 评论
   comment_: 评论
-  comment_feed: 评论订阅源
   comment_deleted: 评论已删除
-  commented: 已评论
   comments: 评论
-  comments_and_identifications: 评论与鉴定
-  comments_by_everyone: 由任何人做出的评论
   comments_by_me: 由我做出的评论
   comments_on: 评论于
   comments_on_my_observations: 在我的观察上做出的评论
-  comments_youve_made_with_others: 您<span class="description">在上周</span>做出的评论<br/>（w/ 其他的）
   commercial_solicitation: 商业征集，链接至任何地方等
   commit: 提交
   committed: 已提交
@@ -639,7 +610,6 @@ zh-CN:
   community: 社区
   community_curated: 社区策划
   community_guidelines: 社群指引
-  community_id: '<strong>社区</strong>ID：'
   community_id_heading: 社群ID
   community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
   community_id_at_genus_level_or_lower: 属于“属”或更低一级的社区ID
@@ -653,7 +623,6 @@ zh-CN:
   comparing_versions_x_and_y: "比较版本 %{x} 和 %{y}"
   comparing_observations_from: "比较 %{user} 在 %{dates} 做出的观察"
   complete: 完成
-  complete_sets: 完整集
   compiled_by_name: "由 %{name} 编译"
   completed: 已完成
   completed_at: 完成于
@@ -669,8 +638,6 @@ zh-CN:
   confirm_now: 现在确认
   confirm_your_info: 确认您的信息
   confirmed: 已确认
-  confirmed_observations_are: 确认的观察有
-  confirming_identifications: 正在确认身份证明
   connect_to_provider: "连接至 %{provider}"
   connected_accounts: 已连接账户
   connecting_flickr: "正在连接至Flickr..."
@@ -687,12 +654,8 @@ zh-CN:
     iucn: 等价的世界自然保护联盟红色名录代码
   conservation_status_geoprivacy_desc: |
     默认的地理敏感信息应用到该地址的所有观察到的分类上
-  conservation_summary: 保护概要
   contain_all_descendants?: 这个清单是否包含这个分类单元在此地的所有后代？
-  contest: 竞赛
   continue: 继续
-  contributions: 贡献
-  contributions_from: 贡献自
   contributor_cannot_be_found: 找不到贡献者
   contributors_to_project: "贡献至 %{project}"
   controlled_term_labels:
@@ -747,9 +710,7 @@ zh-CN:
   couldnt_change_your_password: "无法更改您的密码：%{e}"
   couldnt_find_a_user_matching_x_param: "找不到符合%{id}的用户"
   couldnt_find_that_taxon: 找不到这个分类单元。
-  couldnt_log_you_in_x: "无法记录您作为“%{x}”"
   countries: 国家
-  country_stats: 用于观察的国家状态创建于
   cover: 封面
   create: 创建
   create_a_guide: 创建指导
@@ -762,9 +723,6 @@ zh-CN:
   create_an_atlas: 创建地图集
   create_new_taxon: 创建一个新分类单元
   create_observations: 创建观察
-  create_observations_by_uploading_photos_to: |
-    通过上传照片至 %{place} 创建观察。当您上传 %{place} 时将尝试从照片中摘取GPS坐标和日期/时间。
-    要入门，
   created: 已创建
   created_by: 创建由
   created_by_user_on_date: 由%{user}于%{date}创建
@@ -773,17 +731,12 @@ zh-CN:
   creative_commons_flickr_tagged: 知识共享Flickr照片已标记
   creative_commons_unless_otherwise_noted: "知识共享，除非另有声明。"
   critically_endangered: 极度濒危
-  critically_imperiled: 极度受威胁
   css_description: 这将在页面的所有其他CSS都包含后才包含。
   csv_file: CSV文件
   csv_should_not_contain_a_header_row: CSV不应该包含标题行
   cumulative_ids: "累计ID：%{count}个，共%{total}个"
   curate_observations: 助理观察
   curate_taxa: 助理分类群
-  curate_users: 助理用户
-  curated: 当馆长
-  curated_checklist: 被馆长巡视过的检查表
-  curated_count: 策划次数
   curating: 助理
   curation: 管理
   curator: 馆长
@@ -792,8 +745,6 @@ zh-CN:
   curators_can_remove_observations_from: 馆长可以从项目中删除观察结果，并将其标识与项目特定视图的观察结果一起显示。馆长也可以看到这个项目中私人贡献者和匿名贡献者的真实地理位置。
   curator_identification: 馆长鉴定
   current_flags: 当前标记
-  current_password: 当前密码
-  custom_field_values: 自定义字段值
   custom_project_fields: 自定义项目字段
   custom_project_was_successfully_created: 已成功创建定制项目。
   custom_project_was_successfully_updated: 已成功更新自定义项目。
@@ -3644,7 +3595,6 @@ zh-CN:
   user_invited_you_to_join_this_project_on_date_html: "%{user}邀请您于%{date}加入此项目"
   user_invited_your_x_to_a_project_html: "%{user}邀请您的%{x}加入项目"
   user_is_a_naturalist: "%{user}是一个自然主义者！"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong>现在是%{project}的%{role}"
   user_muted: 用户已禁言
   user_observations: 用户观察
   user_s_id: "%{user}的%{id}"
@@ -3765,7 +3715,6 @@ zh-CN:
   w_photos_only: w/ 照片
   w_sounds: w/ 声音
   wait_file_generation: 请等待文件生成。较大的列表可能需要几分钟。
-  want_to_add_one: 想加入一个？
   want_to_show_off_some_of_your_favorite_taxa: 想在这里展示一些您最喜欢的分类群吗？
   want_to_test_a_new_version_of_this_page: 想要测试此页面的新版本么？
   wanted: 希望的
@@ -3896,7 +3845,6 @@ zh-CN:
   you_are_over_your_invites_quota: '…您已达到每月60个邀请限额'
   you_are_now: 您现在
   you_are_now_following_x: "您正在关注%{friend_user}。"
-  you_are_now_role_for_project_html: "<strong>您</strong>现在是%{project}的%{role}"
   you_are_not_editing_any_guides_add_one_html: |
     您没有编辑任何指南。<a href="/guides/new">添加一个</a>
   you_are_already_a_member_of_this_project: "您已经是这个项目的一员了！"
@@ -5377,12 +5325,10 @@ zh-CN:
                 如果您有帐户，请在继续之前签名，或使用不同的电子邮件地址。
   i18n:
     inflections:
-      0:
+      - 
         vow: 元音
         con: 辅音
-      gender:
-        m: 男
-        f: 女
+      - 
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 上一页"
