@@ -385,7 +385,6 @@ et:
   alphabetical_order: Tähestikuline järjekord
   already_have_an_account_log_in_html: On juba konto? <strong>Logi sisse.</strong>
   amphibians: kahepaiksed
-  an: een
   and: ja
   and_help_the_inaturalist_community_grow: "ja aita %{site_name} kogukonnal kasvada."
   and_other_taxa: "&amp; Muud taksonid"
@@ -572,7 +571,6 @@ et:
   cc_by_sa_description: "See litsents lubab teistel sinu tööd ärilistel eesmärkidel muuta ja täiendada kuniks nad sinule viitavad ja jagavad uut loomingut identse litsentsi alusel. Kõik sinu loomingul põhinevad uued teosed kannavad sama litsentsi ning seega saab ka neid kasutada ärilistel eesmärkidel."
   cc_by_sa_name: Viitamine-Samatingimuslik
   cc_used_under_a: "Creative Commons, kasutatud litsentsiga"
-  change: Muuda
   change_admin: Muuda administraatorit
   change_cover: Muuda kaanepilti
   change_descriptions:
@@ -611,8 +609,6 @@ et:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} asendatakse taksoniga %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} ühendati taksoniga %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} ühendatakse taksoniga %{output_taxon}"
-  change_visibility_of: Muuda ruumiandmete nähtavust?
-  change_your_matching: Muuda oma sobivat
   change_your_password: Muuda oma salasõna
   changing_the_geoprivacy: 'Asukoha privaatsuse muutmine määrab seda, kuidas teised inimesed näevad sinu vaatluse asukohta.'
   check_above_for_errors: Kontrolli vigu
@@ -622,31 +618,21 @@ et:
   check_list: Kontrollnimekiri
   check_list_description: Vali mõni kõrgema taseme takson, mida sooviksid nimekirjas näha. Lindude jaoks näiteks "Aves" ja kahepaiksete jaoks "Aphmibia". Peale määramist, ei saa nimekiri sisaldada taksoneid, mis ei kuulu selle kõrgema taseme alla. Näiteks ei saa lindude jaoks loodud nimekirja lisada konnasid.
   check_list_for_individual_taxa_that: 'Otsi kontrollnimekirjadest üksikuid soovitud kohas elavaid taksoneid. Nt "%{place}" linnud.'
-  check_list_individual_taxa: Otsi nimekirjadest üksikuid soovitud kohas elavaid taksoneid. Nt "%{place}" linnud.
   check_lists_must_belong_to_a_place: |
     Kontrollnimekirjad peavad kuuluma kindla koha alla. Uue nimekirja loomiseks külasta koha vaikimisi nimekirja nin vajuta lingile "Loo uus nimekiri"
   check_list_of_species_occuring_in: Nimekiri liikidest, mida leidub kohas
   check_list_place: "%{place} kontrollnimekiri"
   check_list_updated: Nimekiri uuendatud!
-  check_list_source: Allikas <span class="meta">(valikuline)</span>
   check_lists_for: "Teised kontrollnimekirjad kohas %{place}"
   check_out_my_observations_at: Minu vaatluste nägemiseks külasta
   check_out_our_blog: Külasta meie blogi
   check_out_what_the_observation: Külasta vaatlust, mida oled proovinud määratleda.
-  check_out_your_life_list: Vaata oma elunimekirja
   check_this_box_if_html: |
     Pane siia kasti linnuke, kui soovid oma fotodele määrata
     <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons Viitamine-Mitteäriline litsentsi</a>. See tähendab, et kõik saavad sinu fotosid ja/või vaatluseid taaskasutada sinu käest luba küsimata, kuid peavad viitama sulle kui autorile ja ei saa neid kasutada ärilistel eesmärkidel. Võid hiljem valida erineva litsentsi või litsentsi eemaldada, kuid antud litsents on uurijatega andmete jagamiseks kõige parem.
   checklist: Kontrollnimekiri
-  checklists: Kontrollnimekirjad
-  checklist_places: Kontrollnimekirja kohad
-  checklist_places_absent: Kontrollnimekirja kohad (puuduvad)
-  checklist_places_confirmed: Kontrollnimekirja kohad (kinnitatud)
-  checklist_places_introduced: Kontrollnimekirja kohad (lisatud)
-  cheklist_places_are_places_with_contain_taxon: '"Kontrollnimekirja kohad" on kohad, mille kontrollnimekirjades sisaldub antud takson.'
-  child_taxa: Alamtaksonid
   choose_a_field: Vali väli
   choose_a_list_above: Vali ülalt nimekiri.
   choose_a_place: Vali koht
@@ -655,13 +641,9 @@ et:
   choose_columns: Vali tulbad
   choose_file: Vali fail
   choose_files: Vali failid
-  choose_files_from_your_computer: vali om arvutist failid
   choose_from_your_lists: Vali oma nimekirjadest
-  choose_good_default_photos: vali Flickr fotopangas olevate Creative Commons litsentsiga piltide hulgast head vaikimisifotod
-  choose_photos: Vali fotod
   choose_photos_for_this_taxon: Vali selle taksoni jaoks fotod
   choose_photos_to_tag_from_photostream: Vali märksõnade lisamiseks enda fotovoos olevad pildid
-  choose_place: Vali koht
   choose_rule: Vali reegel
   choose_subjects: Vali teemad
   choose_tags: Vali märksõnad
@@ -675,15 +657,10 @@ et:
   clear_color_filters: Tühjenda värvifiltrid
   clear_filters: Eemalda filtrid
   clear_search: Tühjenda otsing
-  click_on_the_map_to: Vajuta kaardile, et määrata oma vaatluse asukoht
   click_the_map: "Koha lisamiseks <strong>vajuta kaardile</strong>."
   click_the_map_to_jump_new_place: Vajuta kaardile, et vaadata järgmist kohta
   close: Sulge
   code: Kood
-  collapse_days: peida päevad
-  collapse_updates: peida uuendused
-  color_categories_for_this_species: |
-    Vali selle liigi värvikategooriad. Tee seda niimoodi, et neid saaks kasutada värvi järgi sorteeritava välimääraja koostamiseks. Ära nimeta organismi kõiki toone, vaid ainult kõige prominentsemad. Õitsevate taimede puhul kasuta õie värvust. Jäta see väli palun tühjaks, kui värvid ei aitaks määramisele kaasa, näiteks pruunid imetajad või rohelised sõnajalad.
   colors: Värvid
   columns: Tulbad
   combine: Ühenda
@@ -691,19 +668,13 @@ et:
     Komaga eraldatud nimekiri jälgimiskoodidest. Kasuta neid, kui soovid uue vaatluse lingile lisada jälgimiskoodi, nt. %{root_url}observations/new?project_id=%{project_id}&tracking_code=sinukood123.
     Saad neid kasutada erinevatest allikatest pärit osalemise jälgimiseks. Näed koode, kui laed projektis sisalduvad vaatlused CSV-failina alla.
   comma_separated_please: Palun eralda komadega
-  comment_preview: Kommentaari eelvaade
   comment: kommentaar
   comment_: Kommentaar
-  comment_feed: Kommentaaride voog
   comment_deleted: Kommentaar kustutatud
-  commented: kommenteeris
   comments: Kommentaarid
-  comments_and_identifications: Kommentaarid ja määratlused
-  comments_by_everyone: Kõigi kommentarid
   comments_by_me: Minu kommentaarid
   comments_on: Kommentaarid teemal
   comments_on_my_observations: Minu vaatluste kommentaarid
-  comments_youve_made_with_others: Sinu kommentaarid (koos teistega)<br/><span class="description">viimasel nädalal</span>
   commercial_solicitation: Ärilisi teateid, katkiseid linke, jne.
   commit: Sisesta
   committed: Sisestanud
@@ -712,7 +683,6 @@ et:
   community: Kogukond
   community_curated: Kogukondlikult kureeritud
   community_guidelines: Kogukonna reeglid
-  community_id: '<strong>Kogukondlik</strong> määratlus:'
   community_id_heading: Kogukondlik määratlus
   community_id_at_species_or_lower?: Kogukondlik määratlus liigina või sellest madalamal tasemel?
   community_id_at_genus_level_or_lower: Kogukondlik määratlus perekonnana või sellest madalamal tasemel
@@ -726,7 +696,6 @@ et:
   comparing_versions_x_and_y: "Võrdlen versiooni %{x} versiooniga %{y}"
   comparing_observations_from: "Võrdlen kasutaja %{user} vaatlusi kuupäevadel %{dates}"
   complete: Valmis
-  complete_sets: Täiskomplektid
   compiled_by_name: "Koostanud %{name}"
   completed: Lõpetatud
   completed_at: Lõpetatud
@@ -742,8 +711,6 @@ et:
   confirm_now: Konnita kohe
   confirm_your_info: Kinnita oma info
   confirmed: kinnitatud
-  confirmed_observations_are: Kinnitatud vaatlused
-  confirming_identifications: kinnitan määratlusi
   connect_to_provider: "Ühendan: %{provider}"
   connected_accounts: Ühendatud kontod
   connecting_flickr: "Ühendan lehega Flickr..."
@@ -758,13 +725,9 @@ et:
     url: Staatust kirjeldava lehe URL.
     geoprivacy: Selle taksoni vaatluste asukoha privaatsuse vaikimisi säte
     iucn: Samaväärne IUCNi punase nimestiku kood
-  conservation_summary: Kaitsestaatuse kokkuvõte
   contact_support: Klienditugi
   contain_all_descendants?: Kas see kontrollnimekiri sisaldab kõiki selles kohas leiduvaid antud taksoni järglasi?
-  contest: võistlus
   continue: Jätka
-  contributions: panus
-  contributions_from: Täjendused kasutajalt
   contributor_cannot_be_found: Täjendajat ei leita
   contributors_to_project: "Projekti %{project} täjendajad"
   controlled_term_labels:
@@ -821,9 +784,7 @@ et:
   couldnt_change_your_password: "Ei saanud muuta salasõna: %{e}"
   couldnt_find_a_user_matching_x_param: "Ei leidnud kasutajat, kes vastab tunnusele %{id}"
   couldnt_find_that_taxon: Ei leidnud taksonit.
-  couldnt_log_you_in_x: "Ei saanud tunnusega '%{x}' sisse logida"
   countries: Riigid
-  country_stats: Riigi statistika vaatlustest kuupäeval
   cover: Kaanepilt
   create: Loo
   create_a_guide: Loo juhend
@@ -836,9 +797,6 @@ et:
   create_an_atlas: Loo atlas
   create_new_taxon: Loo uus takson
   create_observations: Loo vaatlus
-  create_observations_by_uploading_photos_to: |
-    Loo vaatlusi laadides lehele %{place} fotosid. Laadimisel proovib %{place} leida foto andmetest GPS-koordinaadid ning kuupäeva ja kellaaja info.
-    Alustamiseks
   created: Loodud
   created_by: Loonud
   created_by_user_on_date: Loonud %{user} kuupäeval %{date}
@@ -847,7 +805,6 @@ et:
   creative_commons_flickr_tagged: Märksõnadega Creative Commons litsentsiga Flickr fotod
   creative_commons_unless_otherwise_noted: "Kui teisiti pole määratletud, kehtib Creative Commons litsents."
   critically_endangered: Kriitlises hävimisohus
-  critically_imperiled: Kriitilises ohus
   css_description: See lisatakse lehele peale ülejäänud css-stiili.
   csv_file: CSV-fail
   csv_should_not_contain_a_header_row: CSV ei tohiks sisaldada päiserida
@@ -855,10 +812,6 @@ et:
   curate_observations: Kureeri vaatlusi
   curate_taxa: Kureeri taksoneid
   curate_user: Kureeri kasutajat
-  curate_users: Kureeri kasutajaid
-  curated: kureerinud
-  curated_checklist: Kureeritud nimekiri
-  curated_count: Kureeritud loend
   curating: Kuraator
   curation: Kureerimine
   curator: Kuraator
@@ -867,8 +820,6 @@ et:
   curators_can_remove_observations_from: Kuraatorid võivad projektist vaatlusi eemaldada ja nende tehtud määratlused on projektipõhistel lehtedel vaatluse kõrval eraldi ära toodud. Kuraatorid näevad ka selle projekti alla lisatud vaatluste privaatseid ja varjatud tõeliseid koordinaate.
   curator_identification: Kuraatoritunnus
   current_flags: Praegused märkused
-  current_password: Praegune salasõna
-  custom_field_values: Spetsiaalväljade väärtused
   custom_project_fields: Projekti spetsiaalväljad
   custom_project_was_successfully_created: Spetsiaalse projekti loomine õnnestus.
   custom_project_was_successfully_updated: Spetsiaalse projekti uuendamine õnnestus.
@@ -3917,7 +3868,6 @@ et:
   user_invited_you_to_join_this_project_on_date_html: "Kasutaja %{user} kutsus sind liituma selle projektiga kuupäeval %{date}"
   user_invited_your_x_to_a_project_html: "Kasutaja %{user} kutsus sinu %{x} projekti"
   user_is_a_naturalist: "Kasutaja %{user} on loodusloolane!"
-  user_is_now_role_for_project_html: "Kasutaja <strong>%{user}</strong> on nüüd projekti %{project} %{role}"
   user_muted: Kasutaja vaigistatud
   user_observations: Kasutaja vaatlused
   user_s_id: "Kasutaja %{user} %{id}"
@@ -4041,7 +3991,6 @@ et:
   w_photos_only: fotodega
   w_sounds: helidega
   wait_file_generation: Palun oota hetk, kuni faili luuakse. Suurte nimekirjade puhul võib see võta paar minutit.
-  want_to_add_one: Soovid lisada?
   want_to_show_off_some_of_your_favorite_taxa: Soovid näidata siin mõningaid oma lemmiktaksoneid?
   want_to_test_a_new_version_of_this_page: Soovid testida selle lehe uut versiooni?
   wanted: Otsime
@@ -4181,7 +4130,6 @@ et:
   you_are_over_your_invites_quota: ...sa oled ületanud kuu piirangu (60 kutset)
   you_are_now: Oled nüüd
   you_are_now_following_x: "Jälgid nüüd kasutajat %{friend_user}"
-  you_are_now_role_for_project_html: "<strong>oled</strong> nüüd projekti %{project} %{role}"
   you_are_not_editing_any_guides_add_one_html: |
     Sa ei ole seotud ühegi juhendiga. <a href="/guides/new">Alusta uut</a>
   you_are_already_a_member_of_this_project: "Sa juba oled selle projekti liige!"
