@@ -322,7 +322,6 @@ eo:
   catalogue_of_life: Katalogo de Vivo
   categories: Kategorioj
   cc_0_name: Sen Aŭtorrajtoj (CC0)
-  change: Ŝanĝi
   change_cover: Ŝanĝi kovrilon
   change_geoprivacy: 'Ŝanĝi geografian privatecon'
   change_group: Ŝanĝi grupon
@@ -336,8 +335,6 @@ eo:
     staged: organizita
   change_your_password: Ŝanĝi Vian Pasvorton
   checklist: Kontrololisto
-  checklists: Kontrololistoj
-  child_taxa: Idaj taksonoj
   choose_a_field: Elekti kampon
   choose_a_list_above: Elektu unu el ĉi-supraj listoj.
   choose_a_place: Elekti lokon
@@ -345,11 +342,8 @@ eo:
   choose_columns: Elekti kolumnojn
   choose_file: Elekti dosieron
   choose_files: Elekti dosierojn
-  choose_files_from_your_computer: Elekti dosierojn el via komputilo
   choose_from_your_lists: Elekti unu el viaj listoj
-  choose_photos: Elekti fotojn
   choose_photos_for_this_taxon: Elekti fotoj pri ĉi tiu taksono
-  choose_place: Elekti lokon
   choose_rule: Elekti regulon
   choose_subjects: Elekti temojn
   choose_tags: Elekti etikedojn
@@ -366,13 +360,10 @@ eo:
   colors: Koloroj
   columns: Kolumnoj
   combine: Kunigi
-  comment_preview: Antaŭrigardo de komento
   comment: komento
   comment_: Komento
   comment_deleted: Koment forigita
-  commented: komentita
   comments: Komentoj
-  comments_by_everyone: Komentoj far ĉiu ajn
   comments_by_me: Komentoj far mi
   comments_on: Komentoj pri
   commit: Enmeti
@@ -386,7 +377,6 @@ eo:
   comparing_list_to_list: "Komparante liston %{list1} kun %{list2}"
   comparing_versions_x_and_y: "Komparante versiojn %{x} kaj %{y}"
   complete: Kompleta
-  complete_sets: Kompletaj Aroj
   compiled_by_name: "Kompilita de %{name}"
   completed: Kompletigita
   completed_at: Kompletigita Je
@@ -406,11 +396,8 @@ eo:
   connecting_to_facebook: "Konektanta Facebook..."
   conservation_status_descriptions:
     geoprivacy: Implicita geografia privateco por observoj de tiu taksono
-  contest: konkurso
   continue: Daŭrigi
   continue_to_site: Daŭrigi al %{site_name}
-  contributions: kontribuoj
-  contributions_from: Kontribuoj de
   contributor_cannot_be_found: Kontribuinto ne troviĝas
   contributors_to_project: "Kontribuintoj al %{project}"
   controlled_term_labels:
@@ -473,7 +460,6 @@ eo:
   curator: Kuratoro
   curators: Kuratoroj
   current_flags: Aktualaj Flagoj
-  current_password: Aktuala Pasvorto
   darr_apply_darr: "&darr; Apliki &darr;"
   dashboard: Stirpanelo
   data_used: "Dateno uzata:"
@@ -1840,7 +1826,6 @@ eo:
   view_your_life_list: Vidi vian vivoliston
   w_photos_only: kun fotoj
   w_sounds: kun sonoj
-  want_to_add_one: Volas aldoni?
   want_to_show_off_some_of_your_favorite_taxa: Ĉu vi volas prezenti kelkajn favoratajn taksonojn ĉi tie?
   weather: Vetero
   website: Retejo
@@ -2375,12 +2360,10 @@ eo:
           notice: 'Aplikaĵo revokiĝis.'
   i18n:
     inflections:
-      0:
+      - 
         vow: vokalo
         con: konsonanto
-      gender:
-        m: vira
-        f: ina
+      - 
   wild: Sovaĝa
   will_paginate:
     previous_label: "&#8592; Antaŭen"
