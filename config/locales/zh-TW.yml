@@ -342,7 +342,6 @@ zh-TW:
   alphabetical_order: 依字母排序
   already_have_an_account_log_in_html: 已經有帳號了嗎？現在就<strong>登入</strong>。
   amphibians: 兩棲類
-  an: 一個
   ancestor_taxon: 祖先分類
   and: 和
   and_help_the_inaturalist_community_grow: "並協助 %{site_name} 社群成長。"
@@ -532,7 +531,6 @@ zh-TW:
   cc_by_sa_description: "此許可協議可讓其他人發佈、重製、調整，和以您的作品為基礎來創作，甚至用於商業目的下，，只要他們註明於您並且以同樣條款在他們的新作品上。所有基於您原作的新作品將使用同樣許可協議，因此任何衍生作品也允許商業目的使用。"
   cc_by_sa_name: 姓名標示-相同方式分享
   cc_used_under_a: "創用 CC，用於"
-  change: 變更
   change_admin: 變更管理員
   change_cover: 變更封面
   change_descriptions:
@@ -571,8 +569,6 @@ zh-TW:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon}將被替換成%{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}已合併至%{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa}將被合併至%{output_taxon}"
-  change_visibility_of: 更改空間座標的能見度嗎？
-  change_your_matching: 更改您的比對
   change_your_password: 更改您的密碼
   changing_the_geoprivacy: '更改位置隱私會變動其他人如何查看您的觀察位置'
   check_above_for_errors: 檢查上方錯誤
@@ -582,28 +578,18 @@ zh-TW:
   check_list: 核對清單
   check_list_description: 請挑選您想要顯示在此清單的更高層級物種分類，像是將「鳥綱」用於鳥；「兩棲綱」用於兩棲動物。當設定好後，此清單將不允許不在此物種分類的物種分類群。例如您創建了鳥類清單後，您不能將青蛙類加在該清單裡。
   check_list_for_individual_taxa_that: '於此地棲息的單一物種分類群清單，例如：「%{place}的鳥類」。'
-  check_list_individual_taxa: 於此地棲息的單一物種分類清單，例如：「%{place}的鳥類」。
   check_lists_must_belong_to_a_place: |
     清單必須屬於某一地點。要創建一個新清單，請查看該地點的預設清單並點擊「創建新清單」連結。
   check_list_of_species_occuring_in: 物種清單出現在
   check_list_place: "%{place}清單"
   check_list_updated: 檢查列表已更新！
-  check_list_source: 來源<span class="meta">（可選）</span>
   check_lists_for: "用於%{place}的其它清單"
   check_out_my_observations_at: 若您有意願，您可以查看我的觀察在：
   check_out_our_blog: 看看我們的部落格
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
-  check_out_your_life_list: 退出及儲存您的生物清單
   check_this_box_if_html: |
     如果您想套用<a href='https://creativecommons.org/licenses/by-nc/4.0/deed.zh_TW' target='_blank'>創用 CC 姓名標示-非商業性許可版權</a>到上傳的內容，請勾選此框。這代表任何人只要有將您給表彰出，並且不使用在商業用途上，都能夠不需先詢問允許，便能複製和重複使用您的照片以及/或是觀察。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
   checklist: 檢查列表
-  checklists: 清單
-  checklist_places: 檢查列表地點
-  checklist_places_absent: 清單地點（缺少）
-  checklist_places_confirmed: 清單地點（已確認）
-  checklist_places_introduced: 清單地點（引進）
-  cheklist_places_are_places_with_contain_taxon: '「清單地點」是帶有包含此物種分類清單的地點。'
-  child_taxa: 子物種分類
   choose_a_field: 選擇欄位
   choose_a_list_above: 選擇一個在上方的清單。
   choose_a_place: 挑選一個地點
@@ -612,13 +598,9 @@ zh-TW:
   choose_columns: 選擇欄位
   choose_file: 選擇檔案
   choose_files: 挑選檔案
-  choose_files_from_your_computer: 從您的電腦選擇檔案
   choose_from_your_lists: 從您的清單挑選
-  choose_good_default_photos: 在 Flickr 上的創用CC照片共用池選擇好的預設照片
-  choose_photos: 挑選照片
   choose_photos_for_this_taxon: 挑選用於此分類的照片
   choose_photos_to_tag_from_photostream: 從您的照片串流挑選照片來標記
-  choose_place: 挑選地點
   choose_rule: 選擇一條規則
   choose_subjects: 選擇主題
   choose_tags: 選擇標籤
@@ -632,34 +614,23 @@ zh-TW:
   clear_color_filters: 清除色彩篩選
   clear_filters: 清除篩選
   clear_search: 清除搜尋
-  click_on_the_map_to: 在地圖上點擊以放置您的觀察
   click_the_map: "<strong>點擊地圖</strong>來添加一個位置。"
   click_the_map_to_jump_new_place: 點擊地圖來跳換到新地點
   close: 關閉
   code: 代碼
-  collapse_days: 摺疊日子
-  collapse_updates: 摺疊更新
-  color_categories_for_this_species: |
-    用於此物種的色彩分類，這就像您將此放置在依色彩排序的實地指南裡。請不要列出在該生物上所有的色彩，只要列出顯著具代表性的即可。用於在會開花植物上，請使用花朵的顏色。若色彩對於分類是無幫助的情況下，請將其留空，例如棕色的哺乳類動物或綠色的蕨類植物。
   colors: 色彩
   columns: 欄位
   combine: 結合
   comma_separated_list_of_tracking_codes: |
     以逗號分隔的追蹤代碼清單。當您以新觀察表格傳送人們時想附加追蹤代碼，請添加它，例如：%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可使用此追蹤來自不同來源的參與。您可在當下載您的專案觀察成 CSV 檔案時來存取這些代碼。
   comma_separated_please: 請以逗號分隔
-  comment_preview: 評論預覽
   comment: 評論
   comment_: 評論
-  comment_feed: 評論訊息來源
   comment_deleted: 評論已刪除
-  commented: 已評論
   comments: 評論
-  comments_and_identifications: 評論與鑑定
-  comments_by_everyone: 由任何人做出的評論
   comments_by_me: 由我做出的評論
   comments_on: 評論在
   comments_on_my_observations: 對我觀察的評論
-  comments_youve_made_with_others: 您（w/其它）在上週<br/><span class="description">所作出的評論</span>
   commercial_solicitation: 商業招攬，無效連結等等。
   commit: 提交
   committed: 已提交
@@ -668,7 +639,6 @@ zh-TW:
   community: 社群
   community_curated: 社群策劃
   community_guidelines: 社群指南
-  community_id: '<strong>社群</strong> ID：'
   community_id_heading: 社群分類群
   community_id_at_species_or_lower?: 在物種或更低階層的社群分類群？
   community_id_at_genus_level_or_lower: 在「屬」或較低階層的社群分類群
@@ -682,7 +652,6 @@ zh-TW:
   comparing_versions_x_and_y: "比較版本 %{x} 和 %{y}"
   comparing_observations_from: "比較 %{user} 自 %{dates} 的觀察"
   complete: 完成
-  complete_sets: 全集
   compiled_by_name: "編譯由%{name}"
   completed: 已完成
   completed_at: 完成於
@@ -698,8 +667,6 @@ zh-TW:
   confirm_now: 現在確認
   confirm_your_info: 確認您的資訊
   confirmed: 已確認
-  confirmed_observations_are: 已確認的觀察有
-  confirming_identifications: 確認鑑定中
   connect_to_provider: "連接至%{provider}"
   connected_accounts: 已連接帳號
   connecting_flickr: "連接至 Flickr..."
@@ -716,7 +683,6 @@ zh-TW:
     iucn: 等同國際自然保護聯盟瀕危物種（IUCN）紅色名錄規範
   conservation_status_geoprivacy_desc: |
     預設位置隱私會套用到在此地點上的所有分類群觀察
-  conservation_summary: 保育摘要
   contact_support: 聯絡支援
   contain_all_descendants?: 此清單是否包含所有出現於此的物種分類派生？
   content_hidden: 內容隱藏
@@ -726,11 +692,8 @@ zh-TW:
     %{user} 隱藏此%{item}，因為"%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} 取消隱藏此%{item}，因為"%{reason}"
-  contest: 比賽
   continue: 繼續
   continue_to_site: 繼續 %{site_name}
-  contributions: 貢獻
-  contributions_from: 貢獻自
   contributor_cannot_be_found: 查無貢獻者
   contributors_to_project: "貢獻至 %{project}"
   controlled_term_labels:
@@ -788,9 +751,7 @@ zh-TW:
   couldnt_change_your_password: "無法更改您的密碼：%{e}"
   couldnt_find_a_user_matching_x_param: "查無用戶符合 %{id}"
   couldnt_find_that_taxon: 找不到分類。
-  couldnt_log_you_in_x: "無法讓您以「%{x}」登入"
   countries: 國家
-  country_stats: 用於觀察的國家狀態創建於
   cover: 封面
   create: 建立
   create_a_guide: 建立一個指南
@@ -803,8 +764,6 @@ zh-TW:
   create_an_atlas: 建立一個地圖集
   create_new_taxon: 創建一個新物種分類
   create_observations: 建立觀察
-  create_observations_by_uploading_photos_to: |
-    透過上傳照片至%{place}來創建觀察。當您上傳到%{place}後將會嘗試提取來自於照片的 GPS 座標與時間/日期。要開始進行，
   created: 已建立
   created_by: 建立由
   created_by_user_on_date: 由 %{user} 於 %{date} 所建立
@@ -813,7 +772,6 @@ zh-TW:
   creative_commons_flickr_tagged: 創用 CC 的 Flickr 照片已標記
   creative_commons_unless_otherwise_noted: "創用 CC，除非另有聲明。"
   critically_endangered: 極度瀕危
-  critically_imperiled: 嚴重瀕絕
   css_description: 這將會在頁面上有所有其它 CSS 才包含。
   csv_file: CSV 檔案
   csv_should_not_contain_a_header_row: CSV 不應該包含標題列
@@ -821,10 +779,6 @@ zh-TW:
   curate_observations: 策展觀察
   curate_taxa: 策展物種分類
   curate_user: 策展用戶
-  curate_users: 策展用戶
-  curated: 已策展
-  curated_checklist: 已策展清單
-  curated_count: 策展次數
   curating: 策展中
   curation: 策展
   curator: 策展人
@@ -833,8 +787,6 @@ zh-TW:
   curators_can_remove_observations_from: 策展人可移除專案中的觀察紀錄，以及在特定專案檢視中的鑑定。策展人也可查看專案中私有和遮蔽觀察紀錄的實際座標。
   curator_identification: 策展人鑑定
   current_flags: 目前標記
-  current_password: 目前密碼
-  custom_field_values: 自訂欄位內容
   custom_project_fields: 自訂專案欄位
   custom_project_was_successfully_created: 自訂專案建立成功。
   custom_project_was_successfully_updated: 自訂專案更新成功。
@@ -4070,7 +4022,6 @@ zh-TW:
   user_invited_you_to_join_this_project_on_date_html: "%{user} 邀請您加入此專案於 %{date}"
   user_invited_your_x_to_a_project_html: "%{user} 邀請您%{x}一個專案"
   user_is_a_naturalist: "%{user} 是個博物學友！"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong>現在是 %{project} 的%{role}了"
   user_muted: 使用者已禁言
   user_observations: 用戶觀察
   user_observed_on_on_date_in_place: |
@@ -4206,7 +4157,6 @@ zh-TW:
   w_photos_only: 帶有照片
   w_sounds: 帶有聲音
   wait_file_generation: 請等待檔案產生。較大的清單可能會花費數分鐘。
-  want_to_add_one: 想添加一個？
   want_to_show_off_some_of_your_favorite_taxa: 要在此秀出您的最愛物種分類群裡一些內容嗎？
   want_to_test_a_new_version_of_this_page: 想要測試此頁面的新版本嗎？
   wanted: 徵求
@@ -4353,7 +4303,6 @@ zh-TW:
   you_are_over_your_invites_quota: ...您已超出使用您每月共 60 次邀請的額度
   you_are_now: 您現在
   you_are_now_following_x: "您正在關注 %{friend_user}。"
-  you_are_now_role_for_project_html: "<strong>您</strong>現在是 %{project} 的%{role}了"
   you_are_not_editing_any_guides_add_one_html: |
     您沒有編輯任何指南。<a href="/guides/new">添加一個</a>
   you_are_already_a_member_of_this_project: "您已經是該專案的成員了！"
@@ -6277,12 +6226,10 @@ zh-TW:
           notice: '應用程式已撤銷。'
   i18n:
     inflections:
-      0:
+      - 
         vow: 母音
         con: 子音
-      gender:
-        m: 男
-        f: 女
+      - 
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 上一頁"
