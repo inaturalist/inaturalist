@@ -1992,7 +1992,7 @@ it:
   new_check_list: Nuova cheklist
   new_check_list_for: "Crea una nuova checklist per %{place} &raquo;"
   new_check_list_record: "Se desideri contrassegnare la lista come esaustiva, creala, aggiungi i taxa e poi editala: troverai qui l'opzione per contrassegnarla come esaustiva."
-  new_comment_on_a_parent_by_user_link: Nuovo commento su @vow_or_con{vow:un|un} %{parent} di %{user_link}
+  new_comment_on_a_parent_by_user_link: Nuovo commento su @gender{m:un|f:una|n:un} %{parent} di %{user_link}
   new_custom_field_for: Nuovo campo personalizzato per
   new_flag_for: Nuovo Contrassegno per
   new_guide: Nuova guida
@@ -2436,14 +2436,14 @@ it:
   people_following_user: "Persone stanno seguendo %{user}"
   people_user_follows: "Persone che %{user} segue"
   people_added:
-    observation: ha aggiunto un'%{observation_link} di @vow_or_con{vow:un(a)|un(a)} %{taxon_link}
+    observation: ha aggiunto un'%{observation_link} di @gender{m:un|f:una|n:un} %{taxon_link}
     identification:
       with_observation: ha aggiunto una <strong>ID</strong> ad una %{observation_link} di %{user_link}
       without_observation: ha aggiunto una <strong>ID</strong>
     post: ha scritto un %{post_link}
     comment:
-      with_by: ha commentato @vow_or_con{vow:un'|un'}%{comment_subject_link} di %{by_link}
-      without_by: ha commentato @vow_or_con{vow:un'|un} %{comment_subject_link}
+      with_by: ha commentato @gender{m:un|f:una|n:un} %{comment_subject_link} di %{by_link}
+      without_by: ha commentato @gender{m:un|f:una|n:un} %{comment_subject_link}
   per_day: Per giorno
   per_month: Per mese
   per_week: Per settimana
@@ -3385,7 +3385,7 @@ it:
   stuff_just_added: "Le cose che hai appena aggiunto..."
   subject_resolved_noun_html: "%{subject} ha risolto %{noun}"
   subject_affecting_stuff_html: "%{subject} ha effetto su %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} ha validato %{thing} che ha effetto su %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} ha validato @gender{m:un|f:una|n:un} %{thing} che ha effetto su %{stuff}"
   submission_model: Modello di invio
   submission_model_description: Chi può aggiungere osservazioni al tuo progetto?
   submit: Invia
