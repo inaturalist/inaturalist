@@ -386,7 +386,6 @@ pt-BR:
   alphabetical_order: Ordem Alfabética
   already_have_an_account_log_in_html: Já tem uma conta? <strong>Entre</strong>
   amphibians: anfíbios
-  an: uma
   ancestor_taxon: Táxon ancestral
   and: e
   and_help_the_inaturalist_community_grow: "e ajude a comunidade %{site_name} crescer."
@@ -574,7 +573,6 @@ pt-BR:
   cc_by_sa_description: "Esta licença permite que outros remixem, adaptem, e criem obras derivadas ainda que para fins comerciais, contanto que o crédito seja atribuído ao autor e que essas obras sejam licenciadas sob os mesmos termos. Esta licença é geralmente comparada a licenças de software livre. Todas as obras derivadas devem ser licenciadas sob os mesmos termos desta. Dessa forma, as obras derivadas também poderão ser usadas para fins comerciais."
   cc_by_sa_name: Atribuição – Compartilhamento pela mesma Licença (by-sa)
   cc_used_under_a: "Creative Commons, utilizada sob uma"
-  change: Alterar
   change_admin: Mudar Administrador
   change_cover: Altere a capa
   change_descriptions:
@@ -613,8 +611,6 @@ pt-BR:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} será substituído por %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} foram agrupados em %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} serão agrupados em %{output_taxon}"
-  change_visibility_of: Mudar a visibilidade das coordenadas espaciais?
-  change_your_matching: Mude a correspondência
   change_your_password: Altere sua senha
   changing_the_geoprivacy: 'Mudar a geoprivacidade altera como as outras pessoas verão a localização das suas observações.'
   check_above_for_errors: Verifique erros acima
@@ -624,28 +620,19 @@ pt-BR:
   check_list: Lista de Verificação
   check_list_description: Selecione um táxon em um nível mais alto para exibir nesta lista, como por exemplo "Aves" para pássaros, ou "Anfíbios" para sapos. Uma vez selecionado, será restringida inclusão de espécies de outros táxons. Por exemplo, se for criada uma lista de aves, não poderão ser adicionadas espécies de aves.
   check_list_for_individual_taxa_that: 'Lista de verificação de táxons de espécies ou grupos que moram aqui, ex: "Aves de %{place}".'
-  check_list_individual_taxa: 'Lista de verificação de táxons que moram aqui, ex: "Aves de %{place}".'
   check_lists_must_belong_to_a_place: |
     Listas de Verificação devem pertencer a um lugar. Para criar uma nova lista de verificação, visite a lista padrão do local e selecione o link 'Crie uma nova lista de verificação'.
   check_list_of_species_occuring_in: Lista de Verificação de espécies que ocorrem em
   check_list_place: "Lista de Verificação de %{place}"
   check_list_updated: Check list Atualizada!
-  check_list_source: Fonte <span class="meta">(opcional)</span>
   check_lists_for: "Outras Check Lists para %{place}"
   check_out_my_observations_at: Se desejar, você pode ver minhas observações em
   check_out_our_blog: Confira nosso Blog
   check_out_what_the_observation: Dê uma olhada a que a observação que você esta tentando identificar se assemelha.
-  check_out_your_life_list: Reveja sua Lista de Vida
   check_this_box_if_html: |
     Marque esta caixa caso queira aplicar uma
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
     no conteúdo enviado. Isso significa que que qualquer um pode copiar e reutilizar suas fotos e/ou observações sem pedir permissão contanto que lhe deem credito e não usem os trabalhos comercialmente. Você pode escolher uma licença diferente ou remover a licença mais tarde, mas esta é a melhor licença para comaprtilhar seus registros com os pesquisadores.
-  checklist_places: Lugares com checklists disponíveis.
-  checklist_places_absent: Locais com checklists (ausentes)
-  checklist_places_confirmed: Locais com Checklists (confirmados)
-  checklist_places_introduced: Locais com checklists (introduzidos)
-  cheklist_places_are_places_with_contain_taxon: '"Locais com lista de verificação" são locais com listas de verificação que possuem este táxon.'
-  child_taxa: Táxons filhos.
   choose_a_field: Escolha um campo
   choose_a_list_above: Escolha uma lista acima.
   choose_a_place: Escolha um lugar
@@ -654,13 +641,9 @@ pt-BR:
   choose_columns: Escolha colunas
   choose_file: Escolher arquivo
   choose_files: Escolher arquivos
-  choose_files_from_your_computer: escolha arquivos do seu computador
   choose_from_your_lists: Escolha das suas listas
-  choose_good_default_photos: Escolha com atenção as imagens licenciadas apra Crative Commons do Flickr
-  choose_photos: Escolha fotos
   choose_photos_for_this_taxon: Escolhas fotos para este táxon
   choose_photos_to_tag_from_photostream: Escolha fotos para marcar do seu Photostream
-  choose_place: Escolha um lugar
   choose_rule: Escolha uma regra
   choose_subjects: Escolha assuntos
   choose_tags: Selecionar marcações
@@ -674,15 +657,10 @@ pt-BR:
   clear_color_filters: Limpe os filtros de cor
   clear_filters: Limpar filtros
   clear_search: Limpe a pesquisa
-  click_on_the_map_to: Clique no mapa para posicionar a sua observação
   click_the_map: "<strong>Clique no mapa</strong> para adicionar uma localização."
   click_the_map_to_jump_new_place: Clique no mapa para ir para um novo lugar
   close: Fechar
   code: Código
-  collapse_days: Agrupar todas as datas
-  collapse_updates: Agrupar todas as atualizações
-  color_categories_for_this_species: |
-    As categorias de cor para esta espécies, devem ser as mesmas selecionadas para a marcação no guia de campo. Por favor não descreva cada uma das cores do organismo, apenas aquelas que se destacam. Para plantas com flores por favor selecione a cor da flor. Por favor não inclua cores que não irão auxiliar na identificação, como marrom para mamíferos e verde para plantas
   colors: Cores
   columns: Colunas
   combine: Fundir
@@ -690,19 +668,13 @@ pt-BR:
     Lista de códigos de rastreamento em arquivo separado por vírgulas. Inclua este se você pretende incluir um código de rastreamento ao direcionar as pessoas para o formulário de novas observações, e.g. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Este código pode ser aplicado para rastrear a utilização de diferentes fontes nas participações, e estará disponível ao baixar os dados das observações do projeto como CSV.
   comma_separated_please: Por favor separe com vírgulas
-  comment_preview: Visualização do comentário
   comment: comentário
   comment_: Comentário
-  comment_feed: Feed de comentários
   comment_deleted: Comentário apagado
-  commented: comentado
   comments: Comentários
-  comments_and_identifications: Comentários e Identificações
-  comments_by_everyone: Comentários de todos
   comments_by_me: Meus comentários
   comments_on: Comentários sobre
   comments_on_my_observations: Comentários sobre minhas observações
-  comments_youve_made_with_others: Comentários você fez (w/ Others)<br/><span class="description"> na última semana</span>
   commercial_solicitation: Solicitação comercial, links sem vínculo, etc.
   commit: Salvar.
   committed: Salvar.
@@ -711,7 +683,6 @@ pt-BR:
   community: Comunidade
   community_curated: Supervisionado pela Comunidade
   community_guidelines: Diretrizes da comunidade
-  community_id: '<strong>Communidade</strong> ID:'
   community_id_heading: Taxon comunitário
   community_id_at_species_or_lower?: Táxon comunitário em espécie ou menor?
   community_id_at_genus_level_or_lower: Táxon Comunitário ao nível do gênero ou inferior
@@ -725,7 +696,6 @@ pt-BR:
   comparing_versions_x_and_y: "Comparando as versões %{x} e %{y}"
   comparing_observations_from: "Comparando %{user} observações de %{dates}"
   complete: Completo
-  complete_sets: Conjuntos Completos
   compiled_by_name: "Compilada por %{name}"
   completed: Concluído
   completed_at: Concluído em
@@ -741,8 +711,6 @@ pt-BR:
   confirm_now: Confirme agora
   confirm_your_info: Confirme sua informação
   confirmed: confirmado
-  confirmed_observations_are: As observações confirmadas são
-  confirming_identifications: confirmando identificações
   connect_to_provider: "Conectar com %{provider}"
   connected_accounts: Contas conectadas
   connecting_flickr: "Conectando ao Flickr..."
@@ -759,7 +727,6 @@ pt-BR:
     iucn: Código equivalente ao da Lista Vermelha IUCN
   conservation_status_geoprivacy_desc: |
     Geoprivacidade padrão aplicada a todas as observações deste táxon neste local
-  conservation_summary: Resumo de Conservação
   contact_support: Fale com o Suporte
   contain_all_descendants?: Este check list contém todos os representantes deste táxon que ocorrem na área?
   content_hidden: Conteúdo oculto
@@ -769,11 +736,8 @@ pt-BR:
     %{user} ocultou isso %{item} porque "%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} reexibir isso %{item} porque  "%{reason}"
-  contest: concurso
   continue: Continuar
   continue_to_site: Continuar para %{site_name}
-  contributions: contribuições
-  contributions_from: Contribuições de
   contributor_cannot_be_found: Colaborador não pode ser encontrado
   contributors_to_project: "Colaboradores para %{project}"
   controlled_term_labels:
@@ -827,9 +791,7 @@ pt-BR:
   couldnt_change_your_password: "Não foi possível mudas a sua senha: %{e}"
   couldnt_find_a_user_matching_x_param: "Não foi possível encontrar um usuário com parâmetros %{id}"
   couldnt_find_that_taxon: Não foi possível encontrar uma espécie ou grupo.
-  couldnt_log_you_in_x: "Não foi possível a sua entrada como '%{x}'"
   countries: Países
-  country_stats: Estatísticas de observações do país criadas em
   cover: Capa
   create: Criar
   create_a_guide: Crie um guia
@@ -842,9 +804,6 @@ pt-BR:
   create_an_atlas: Criar um Atlas
   create_new_taxon: Crie uma nova espécie ou grupo
   create_observations: Crie observações
-  create_observations_by_uploading_photos_to: |
-    Crie observações subindo fotos para %{place}. Quando você subir a foto %{place} irá tentar determinar as coordenadas GPS e a hora/data da foto. 
-    Para começar,
   created: Criado
   created_by: Criado por
   created_by_user_on_date: Criado por %{user} em %{date}
@@ -853,7 +812,6 @@ pt-BR:
   creative_commons_flickr_tagged: Fotos Creative Commons marcadas no Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons a não ser que prefira não licenciar desta maneira."
   critically_endangered: Criticamente em perigo
-  critically_imperiled: Criticamente em perigo
   css_description: Isto será incluído depois de todas as outras css na página
   csv_file: Arquivo CSV
   csv_should_not_contain_a_header_row: CSV não deve conter um linha de cabeçalho
@@ -861,10 +819,6 @@ pt-BR:
   curate_observations: Administrar observações
   curate_taxa: Táxon administrado
   curate_user: Usuário curador
-  curate_users: Administrar usuários
-  curated: Administrados
-  curated_checklist: Lista Oficial
-  curated_count: Levantamento Oficial
   curating: Em avaliação
   curation: Administração
   curator: Coordenador
@@ -873,8 +827,6 @@ pt-BR:
   curators_can_remove_observations_from: Coordenadores podem remover observações dos projetos e as identificações deles são apresentadas junto das observações dos projetos (em pontos específicos). Coordenadores também podem ver as coordenadas privadas ou contribuições ocultas neste projeto.
   curator_identification: Identificação do Administrador
   current_flags: Marcações Atuais
-  current_password: Senha Atual
-  custom_field_values: Valores de campo personalizados
   custom_project_fields: Personalize os campos de projeto
   custom_project_was_successfully_created: O Projeto Personalizado foi criado com sucesso.
   custom_project_was_successfully_updated: Projeto Personalizado foi atualizado com sucesso.
@@ -4058,7 +4010,6 @@ pt-BR:
   user_invited_you_to_join_this_project_on_date_html: "%{user} convidou você para fazer parte deste projeto em %{date}"
   user_invited_your_x_to_a_project_html: "%{user} convidou você para %{x} um projeto"
   user_is_a_naturalist: "%{user} é um naturalista!"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> é agora %{role} do %{project}"
   user_muted: Usuário silenciado
   user_observations: Observações do usuário
   user_observed_on_on_date_in_place: |
@@ -4194,7 +4145,6 @@ pt-BR:
   w_photos_only: com fotos
   w_sounds: com sons
   wait_file_generation: Por favor aguarde enquanto o arquivo é gerado. Isto pode levar alguns minutos para grandes listas de observação.
-  want_to_add_one: Deseja adicionar uma?
   want_to_show_off_some_of_your_favorite_taxa: Deseja mostrar alguns dos seus táxons favoritos aqui?
   want_to_test_a_new_version_of_this_page: Gostaria de testar uma nova versão desta página?
   wanted: Procurado
@@ -4343,7 +4293,6 @@ pt-BR:
   you_are_over_your_invites_quota: ...você já está acima da sua cota mensal de 60 convites.
   you_are_now: Você está agora
   you_are_now_following_x: "Agora você está seguindo %{friend_user}."
-  you_are_now_role_for_project_html: "<strong>você</strong> está agora como %{role} para %{project}"
   you_are_not_editing_any_guides_add_one_html: |
     Você não está modificando qualquer guia. <a href="/guides/new">Adicione uma</a>
   you_are_already_a_member_of_this_project: "Você já é membro deste projeto!"
@@ -6364,12 +6313,10 @@ pt-BR:
           notice: 'Aplicativo revogado.'
   i18n:
     inflections:
-      0:
+      - 
         vow: vogal
         con: consoante
-      gender:
-        m: macho
-        f: fêmea
+      - 
   wild: Selvagem
   will_paginate:
     previous_label: "&#8592; Prévia"
