@@ -168,6 +168,7 @@ fr:
   a_member_of_taxon_html: un membre de %{taxon}
   able_to_connect_flickr: Super ! Nous avons pu nous connecter à votre compte Flickr.
   about: À propos
+  activity_snipped_resource_with_indefinite_article: "@gender{m:un|une} %{resource}"
   about_bioblitz_results: À propos des résultats de bioblitz
   about_blocking: À propos du blocage
   about_charts: À propos des graphiques
@@ -8309,7 +8310,7 @@ fr:
         o: :@vow
         u: :@vow
         default: :@con
-      gender:
+      :@gender:
         m: masculin
         f: féminin
         observation: :@f

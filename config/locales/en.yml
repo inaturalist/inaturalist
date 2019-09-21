@@ -117,6 +117,26 @@ en:
   a_flag_for_x: "a flag for %{x}"
   a_member_of: "A member of"
   a_member_of_taxon_html: "a member of %{taxon}"
+  # Used as a noun phrase in sentences like "kueda added a comment to *an
+  # observation*". %{resource} could be any of the following:
+  # * assessment_section
+  # * atlas
+  # * listed_taxon
+  # * observation
+  # * observation_field
+  # * post
+  # * taxon_change
+  # * taxon_drop
+  # * taxon_link
+  # * taxon_merge
+  # * taxon_split
+  # * taxon_stage
+  # * taxon_swap
+  # Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  # to add masculine, feminine, and neuter forms of articles. I realize this is
+  # an awkward way to translate something, but fixing it will have to wait for
+  # an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: About
   about_blocking: About Blocking
   about_charts: About Charts
@@ -214,7 +234,10 @@ en:
   add_observations: Add Observations
   add_observations_by_checking_off: Add observations by checking off species from a list.
   add_observations_project: Add Observations to This Project
+  # Prompt to add a new journal post
   add_one: Add One!
+  # Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  # "one" refers to a photo
   add_one_now: Add One Now
   add_photos: Add Photos
   add_photos_to_this_observation: Add Photos to This Observation
@@ -414,7 +437,6 @@ en:
   alphabetical_order: Alphabetical Order
   already_have_an_account_log_in_html: Already have an account? <strong>Log in.</strong>
   amphibians: amphibians
-  an: an
   ancestor_taxon: Ancestor Taxon
   and: and
   and_help_the_inaturalist_community_grow: "and help the %{site_name} community grow."
@@ -3151,6 +3173,7 @@ en:
   position: Position
   positional_accuracy: Positional accuracy
   possessive_user: "%{user}'s"
+  # Noun, short version of a journal post
   post: Post
   post_from_journal_by_parent_html: Post from <a href="%{url}">journal by %{parent}</a>
   post_from_your_journal_html: Post from <a href="%{url}">your journal</a>
@@ -4398,7 +4421,12 @@ en:
   user_invited_you_to_join_this_project_on_date_html: "%{user} invited you to join this project on %{date}"
   user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
   user_is_a_naturalist: "%{user} is a naturalist!"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
+  user_is_now_the_admin_for_project_html: |
+    <strong>%{user}</strong> is now the admin for %{project}
+  user_is_now_a_manager_for_project_html: |
+    <strong>%{user}</strong> is now a manager for %{project}
+  user_is_now_a_curator_for_project_html: |
+    <strong>%{user}</strong> is now a curator for %{project}
   user_muted: User muted
   user_observations: User observations
   user_observed_on_on_date_in_place: |
@@ -4535,7 +4563,6 @@ en:
   w_photos_only: w/ photos
   w_sounds: w/ sounds
   wait_file_generation:  Please hold on while the file is generated.  It can take a couple minutes for large lists.
-  want_to_add_one: Want to add one?
   want_to_show_off_some_of_your_favorite_taxa: Want to show off some of your favorite taxa here?
   want_to_test_a_new_version_of_this_page: Want to test a new version of this page?
   wanted: Wanted
@@ -4695,7 +4722,12 @@ en:
   you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
   you_are_now: You are now
   you_are_now_following_x: "You are now following %{friend_user}."
-  you_are_now_role_for_project_html: "<strong>you</strong> are now %{role} for %{project}"
+  you_are_now_the_admin_for_project_html: |
+    <strong>you</strong> are now the admin for %{project}
+  you_are_now_a_curator_for_project_html: |
+    <strong>you</strong> are now a curator for %{project}
+  you_are_now_a_manager_for_project_html: |
+    <strong>you</strong> are now a manager for %{project}
   you_are_not_editing_any_guides_add_one_html: |
     You are not editing any guides. <a href="/guides/new">Add one</a>
   you_are_already_a_member_of_this_project: "You're already a member of this project!"
@@ -7433,21 +7465,52 @@ en:
         o: :@vow
         u: :@vow
         default: :@con
-      gender:
+      :@gender:
         m: male
         f: female
         "n": neuter
-        observation: :@f
-        note: :@f
-        place: :@m
-        identification: :@f
-        species: :@f
-        application: :@f
-        check_list: :@f
-        observation_field: :@m
-        post: :@m
-        taxon: :@m
-        default: :n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        application: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        assessment_section: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        atlas: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        check_list: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        identification: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        listed_taxon: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        note: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        observation: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        observation_field: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        place: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        post: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        species: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        taxon: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        taxon_change: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        taxon_drop: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        taxon_link: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        taxon_merge: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        taxon_split: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        taxon_stage: :@n
+        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
+        taxon_swap: :@n
+        # Default gender for nouns that aren't listed here
+        default: :@n
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Prev"

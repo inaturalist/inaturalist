@@ -1017,6 +1017,7 @@ module ApplicationHelper
     end
     class_name_key = update.resource.class.to_s.underscore
     class_name = class_name_key.humanize.downcase
+
     resource_link = if options[:skip_links]
       t(class_name_key, :default => class_name_key).downcase
     else
@@ -1024,7 +1025,11 @@ module ApplicationHelper
     end
 
     if notifier.is_a?(Comment) || notifier.is_a?(Identification) || update.notification == "mention"
-      noun = "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
+      noun = t( :activity_snipped_resource_with_indefinite_article,
+        resource: resource_link.html_safe,
+        vow_or_con: t(class_name_key, default: class_name_key)[0].downcase,
+        gender: class_name_key
+      ).html_safe
       if resource_name = resource.try_methods(:name, :title)
         noun += " (\"#{truncate(resource_name, :length => 30)}\")".html_safe
       end
@@ -1035,7 +1040,10 @@ module ApplicationHelper
     end
 
     if notifier.is_a?(ActsAsVotable::Vote)
-      noun = "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
+      noun = t( :activity_snipped_resource_with_indefinite_article,
+        resource: resource_link.html_safe,
+        vow_or_con: t(class_name_key, default: class_name_key)[0].downcase
+      ).html_safe
       s = t(:user_faved_a_noun_by_owner, 
         user: notifier_user.login, 
         noun: noun, 
