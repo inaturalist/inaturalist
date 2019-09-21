@@ -242,7 +242,6 @@ ru:
   alphabetical_order: В алфавитном порядке
   already_have_an_account_log_in_html: Уже есть учётная запись? <strong>Войдите.</strong>
   amphibians: земноводные
-  an: этому
   ancestor_taxon: Таксон-предок
   and: и
   and_help_the_inaturalist_community_grow: "и помочь росту сообщества %{site_name}"
@@ -432,7 +431,6 @@ ru:
   cc_by_sa_description: "Эта лицензия позволяет другим делать ремиксы, и использовать вашу работу за основу даже для коммерческих проектов, если они ссылаются на вас и назначают соответствующую лицензию своему готовому продукту. Все новые работы основанные на вашей будут иметь такие же лицензии, таким образом для них будет разрешено коммерческое использование."
   cc_by_sa_name: С указанием авторства-С сохранением условий
   cc_used_under_a: "Creative Commons, используется по"
-  change: Изменить
   change_admin: Изменить администрирование
   change_cover: Изменить обложку
   change_descriptions:
@@ -471,8 +469,6 @@ ru:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} будет заменен на %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} были сведены к %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} будет сведен в %{output_taxon}"
-  change_visibility_of: Изменить вид пространственных координат?
-  change_your_matching: Измените соответствие
   change_your_password: Изменить пароль
   changing_the_geoprivacy: 'Изменение настройки приватности местоположения влияет на то, могут ли другие люди видеть место вашего наблюдения.'
   check_above_for_errors: Проверьте ошибки
@@ -482,29 +478,19 @@ ru:
   check_list: Контрольный список
   check_list_description: Выберите таксон верхнего уровня для этого списка, такие как "Aves" для птиц или "Amphibia" для земноводных. После этого выбора в список нельзя будет включить вид не из этого таксона. Например, если вы создаёте список птиц, то лягушек в него включить будет нельзя.
   check_list_for_individual_taxa_that: 'Контрольные списки по отдельным таксонам, которые здесь обитают, например, "Птицы %{place}".'
-  check_list_individual_taxa: Контрольные списки по отдельным таксонам, которые здесь обитают, например, "Птицы %{place}".
   check_lists_must_belong_to_a_place: |
     Чеклисты должны принадлежать месту. Для того, чтобы создать чеклист, пройдите в чеклист этого места по умолчанию и кликните ссылку 'Create a new check list'
   check_list_of_species_occuring_in: Контрольный список видов, встречающихся
   check_list_place: "Контрольный список %{place}"
   check_list_updated: Контрольный список обновлён!
-  check_list_source: Источник <span class="meta">(optional)</span>
   check_lists_for: "Другие контрольные списки для %{place}"
   check_out_my_observations_at: Если вы хотите, вы можете проверить мои наблюдения на
   check_out_our_blog: Загляните в наш блог
   check_out_what_the_observation: Проверьте, как выглядит наблюдение, которое вы пытаетесь идентифицировать.
-  check_out_your_life_list: Проверьте свой список жизни
   check_this_box_if_html: |
     Установите этот флажок, если вы хотите использовать 
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>лицензию Creative Commons С указанием авторства-Некоммерческая</a> для загружаемого контента. Это означает, что любой может копировать и повторно использовать ваши фото и/или наблюдения, не спрашивая вашего разрешения, поскольку они признали, что не будут использовать работы в коммерческих целях. Вы можете выбрать другой вид лицензии, но эта - наилучшая для совместного использования с исследователями.
   checklist: Контрольный список
-  checklists: Чеклисты
-  checklist_places: Перечень мест с контрольными списками
-  checklist_places_absent: Места с контрольными списками (отсутствуют)
-  checklist_places_confirmed: Перечень мест с контрольными списками (подтвержденный)
-  checklist_places_introduced: Места чеклистов (введено)
-  cheklist_places_are_places_with_contain_taxon: '"Перечень мест с контрольными списками" - это места с контрольными списками, содержащими данный таксон.'
-  child_taxa: Дочерние таксоны
   choose_a_field: Выберите поле
   choose_a_list_above: Выберите список из приведённых выше
   choose_a_place: Выбрать место
@@ -513,13 +499,9 @@ ru:
   choose_columns: Выберите колонки
   choose_file: Выберите файл
   choose_files: Выберите файлы
-  choose_files_from_your_computer: выбрать файлы с вашего компьютера
   choose_from_your_lists: Выбрать из ваших списков
-  choose_good_default_photos: выбрать хорошие фото по умолчанию из множества фото с лицензией Creative Commons на Flickr
-  choose_photos: Выберите фото
   choose_photos_for_this_taxon: Выберите фото для этого таксона
   choose_photos_to_tag_from_photostream: Выбрать фото из своего фотострима, которым нужно присвоить теги
-  choose_place: Выбрать место
   choose_rule: Выберите правило
   choose_subjects: Выберите темы
   choose_tags: Выберите теги
@@ -533,15 +515,10 @@ ru:
   clear_color_filters: Очистить цветовые фильтры
   clear_filters: Очистить фильтры
   clear_search: Очистить поиск
-  click_on_the_map_to: Щелкните на карте, чтобы указать место вашего наблюдения
   click_the_map: "<strong>Кликните на карту</strong> чтобы добавить местоположение."
   click_the_map_to_jump_new_place: Щелкните на карте, чтобы перейти на новое место
   close: Закрыть
   code: Код
-  collapse_days: сбросить дни
-  collapse_updates: сбросить обновления
-  color_categories_for_this_species: |
-    Цветовые категории для данного вида, - это как если бы вы собирались поместить его в руководстве по полевым исследованиям с сортировкой по цвету. Пожалуйста, не перечисляйте все цвета организма, только самые основные. Для цветущих растений, пожалуйста, используйте цвет цветка. Пожалуйста, не указывайте цвет там, где это не будет полезно в классификации, например, коричневое млекопитающее и зеленый папоротник.
   colors: Цвета
   columns: Столбцы
   combine: Объединить
@@ -549,19 +526,13 @@ ru:
     Список кодов отслеживания, разделенных запятыми. Добавьте их, если вы хотите добавить код отслеживания, направляя людей в новую форму наблюдения, например, %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Вы можете использовать это для отслеживания участия из разных источников. Вы можете получить доступ к этим кодам при загрузке наблюдений в ваш проект в формате CSV.
   comma_separated_please: Разделитель запятая, пожалуйста
-  comment_preview: Предварительный просмотр комментария
   comment: комментарий
   comment_: Комментарий
-  comment_feed: Комментировать
   comment_deleted: Комментарий удалён
-  commented: Прокомментировано
   comments: Комментарии
-  comments_and_identifications: Комментарии и Идентификации
-  comments_by_everyone: Комментарии всех
   comments_by_me: Мои комментарии
   comments_on: Комментарии для
   comments_on_my_observations: Комментарии к моим наблюдениям
-  comments_youve_made_with_others: Комментарии, которые вы добавили (с другими)<br/><span class="description">на прошлой неделе</span>
   commercial_solicitation: Коммерческое ходатайство, ссылки и т.д.
   commit: Совершить
   committed: Выполнено
@@ -570,7 +541,6 @@ ru:
   community: Сообщество
   community_curated: Управляется сообществом
   community_guidelines: Правила сообщества
-  community_id: 'Идентификация<strong>сообществом</strong>:'
   community_id_heading: Таксон сообщества
   community_id_at_species_or_lower?: Таксон сообщества на уровне вида или ниже?
   community_id_at_genus_level_or_lower: Таксон сообщества на уровне рода или ниже
@@ -584,7 +554,6 @@ ru:
   comparing_versions_x_and_y: "Сравнение версий %{x} и %{y}"
   comparing_observations_from: "Сравнение наблюдений %{user} за %{dates}"
   complete: Завершено
-  complete_sets: Полные наборы
   compiled_by_name: "составлено %{name}"
   completed: Завершено
   completed_at: Завершено на
@@ -600,8 +569,6 @@ ru:
   confirm_now: Подтвердить сейчас
   confirm_your_info: Подтвердите вашу информацию
   confirmed: подтверждено
-  confirmed_observations_are: Подтверждённые наблюдения
-  confirming_identifications: подтверждение идентификаций
   connect_to_provider: "Подключиться к %{provider}"
   connected_accounts: Связанные учётные записи
   connecting_flickr: "Подключение к Flickr..."
@@ -618,7 +585,6 @@ ru:
     iucn: Эквивалент кода в Красном списке МСОП
   conservation_status_geoprivacy_desc: |
     Настройки по умолчанию приватности местоположения применены ко всем наблюдениям таксона в этом месте
-  conservation_summary: Сводка о природоохранном статусе
   contact_support: Служба поддержки
   contain_all_descendants?: Содержит ли этот контрольный список всех потомков этого таксона, которые здесь встречаются?
   content_hidden: Содержание скрыто
@@ -628,11 +594,8 @@ ru:
     %{user} скрыл это %{item}, поскольку "%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} открыл это %{item}, поскольку "%{reason}"
-  contest: конкурс
   continue: Продолжить
   continue_to_site: Переходим к %{site_name}
-  contributions: вклады
-  contributions_from: Вклад
   contributor_cannot_be_found: Не удаётся найти поставщика данных
   contributors_to_project: "Участники %{project}"
   controlled_term_labels:
@@ -689,9 +652,7 @@ ru:
   couldnt_change_your_password: "Не удалось сменить пароль: %{e}"
   couldnt_find_a_user_matching_x_param: "Не удаётся найти пользователя, соответствующего %{id}"
   couldnt_find_that_taxon: Этот таксон не найден.
-  couldnt_log_you_in_x: "Не удалось войти как '%{x}'"
   countries: Страны
-  country_stats: Статистика по странам для наблюдений, созданных на
   cover: Обложка
   create: Создать
   create_a_guide: Создать руководство
@@ -704,9 +665,6 @@ ru:
   create_an_atlas: Создать Атлас
   create_new_taxon: Создать новый таксон
   create_observations: Создать наблюдения
-  create_observations_by_uploading_photos_to: |
-    Создать наблюдения, загружая фотографии с привязкой к %{place}. После загрузки %{place} попытается извлечь GPS координаты и дату/время из фото.
-    Для начала
   created: Создано
   created_by: Создан
   created_by_user_on_date: Создан %{user} %{date}
@@ -715,7 +673,6 @@ ru:
   creative_commons_flickr_tagged: Фото с Flickr с лицензией Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, если не указано иное."
   critically_endangered: На грани исчезновения
-  critically_imperiled: В критической опасности
   css_description: Это будет включено после всех других CSS на странице.
   csv: CSV (формат comma separated values - значения, разделённые запятыми)
   csv_file: файл в формате CSV
@@ -724,10 +681,6 @@ ru:
   curate_observations: Курировать наблюдения
   curate_taxa: Курировать таксоны
   curate_user: Курировать пользователя
-  curate_users: Курировать пользователей
-  curated: курируемый
-  curated_checklist: Курируемый Контрольный список
-  curated_count: Курируемый Подсчет
   curating: Курирование
   curation: Курирование
   curator: Куратор
@@ -736,8 +689,6 @@ ru:
   curators_can_remove_observations_from: Кураторы могут удалять наблюдения из проекта, и их идентификации отображаются в наблюдениях в проектных представлениях. Кураторы также могут видеть истинные координаты конфиденциальных и скрытых наблюдений-вкладов в этот проект.
   curator_identification: Идентификация, сделанная куратором
   current_flags: Текущие флаги
-  current_password: Текущий пароль
-  custom_field_values: Пользовательские значения поля
   custom_project_fields: Пользовательские Поля Проекта
   custom_project_was_successfully_created: CustomProject был успешно создан.
   custom_project_was_successfully_updated: CustomProject был успешно обновлён.
@@ -3903,7 +3854,6 @@ ru:
   user_invited_you_to_join_this_project_on_date_html: "%{user} приглашает вас присоединиться к этому проекту %{date}"
   user_invited_your_x_to_a_project_html: "%{user} пригласил ваше %{x} в проект"
   user_is_a_naturalist: "%{user} - натуралист!"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> теперь является %{role} %{project}"
   user_muted: Пользователь отключён
   user_observations: Наблюдениях пользователя
   user_observed_on_on_date_in_place: |
@@ -4039,7 +3989,6 @@ ru:
   w_photos_only: с фото
   w_sounds: со звуком
   wait_file_generation: Пожалуйста, подождите, пока файл будет сгенерирован. Для больших списков это может занять несколько минут.
-  want_to_add_one: Хотите добавить?
   want_to_show_off_some_of_your_favorite_taxa: Хотите, покажем здесь некоторые из ваших любимых таксонов?
   want_to_test_a_new_version_of_this_page: Хотите протестировать новую версию этой страницы?
   wanted: Разыскиваемые
@@ -4187,7 +4136,6 @@ ru:
   you_are_over_your_invites_quota: ... вы превысили месячную квоту в 60 приглашений
   you_are_now: Вы сейчас
   you_are_now_following_x: "Теперь вы подписаны на %{friend_user}."
-  you_are_now_role_for_project_html: "Теперь <strong>вы</strong> являетесь %{role}%{project}"
   you_are_not_editing_any_guides_add_one_html: |
     Вы не редактируете никакие руководства. <a href="/guides/new">Добавить новое</a>
   you_are_already_a_member_of_this_project: "Вы уже являетесь участником этого проекта!"
