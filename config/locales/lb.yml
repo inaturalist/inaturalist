@@ -223,7 +223,6 @@ lb:
   alphabetical_order: Alphabetesch Reiefolleg
   already_have_an_account_log_in_html: Hutt Dir schonn e Benotzerkont? <strong>Aloggen.</strong>
   amphibians: Amphibien
-  an: een
   and: a(n)
   animals: Déieren
   annotation: Notiz
@@ -324,7 +323,6 @@ lb:
   catalogue_of_life: Katalog vum Liewen
   categories: Kategorien
   cc_by_name: Attributioun
-  change: Änneren
   change_admin: Administrateur änneren
   change_descriptions:
     swap: 1-zu-1-Nummännerung
@@ -342,15 +340,12 @@ lb:
   check_above_for_errors: Kuckt uewen no de Feeler hei driwwer
   check_out_our_blog: Besicht eise Blog
   checklist: Check-Lëscht
-  checklists: Check-Lëschten
   choose_a_field: E Feld eraussichen
   choose_a_place: Eng Plaz eraussichen
   choose_columns: Kolonnen eraussichen
   choose_file: Fichier eraussichen
   choose_files: Fichieren eraussichen
   choose_from_your_lists: Aus Äre Lëschten eraussichen
-  choose_photos: Fotoen eraussichen
-  choose_place: Eng Plaz eraussichen
   choose_rule: Eng Regel eraussichen
   choose_subjects: Sujeten eraussichen
   choose_your_username: Sicht Äre Benotzernumm eraus
@@ -360,14 +355,9 @@ lb:
   clear_color_filters: Faarffilter zrécksetzen
   clear_filters: Filteren zrécksetzen
   clear_search: Sich zrécksetzen
-  click_on_the_map_to: Klick op d'Kaart fir deng Observatioun ze lokaliséieren
   click_the_map: "<strong>Klickt op d'Kaart</strong> fir eng Plaz dobäizesetzen."
   click_the_map_to_jump_new_place: Klick op d'Kaart fir op eng nei Plaz ze sprangen
   close: Zoumaachen
-  collapse_days: Deeg zouklappen
-  collapse_updates: Updaten zesummeklappen
-  color_categories_for_this_species: |
-    Faarfkategorië fir dës Aart, wéi wanns de s'an engem Guide no Faarwe géifs zortéieren. Ziel w.e.g. net all Faarf um Organismus op, just déi markantst. Fir Planzen déi bléien, huel w.e.g. d'Faarf vun der Bléi. Looss eidel, wann d'Faarwen net hëllefen dës Aart ze kategoriséieren, wéi brong Mamendéieren oder gréng Faren.
   colors: Faarwen
   columns: Kolonnen
   combine: Combinéieren
@@ -395,11 +385,8 @@ lb:
   confirm_your_info: Confirméiert Är Informatioun
   confirmed: confirméiert
   connecting_to_facebook: "Mat Facebook verbannen..."
-  contest: Concours
   continue: Virufueren
   continue_to_site: Virun op %{site_name}
-  contributions: Kontributiounen
-  contributions_from: Kontributioune vum
   controlled_term_labels:
     sex: Geschlecht
     male: Männlech
@@ -430,7 +417,6 @@ lb:
   creating_your_account: "Äre Benotzerkont gëtt ugeluecht..."
   csv_file: CSV Fichier
   current_flags: Aktuell Markéierungen
-  current_password: Aktuellt Passwuert
   data_quality: Datequalitéit
   datatype: Datentyp
   date_: Datum
@@ -1896,12 +1882,10 @@ lb:
               must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
   i18n:
     inflections:
-      0:
+      - 
         vow: Vowell
         con: Konsonant
-      gender:
-        m: männlech
-        f: weiblech
+      - 
   wild: Wëll
   will_paginate:
     previous_label: "&#8592; Vireg"
