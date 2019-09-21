@@ -386,7 +386,6 @@ lt:
   cc_0_name: Nėra Autorinių Teisių (CC0)
   cc_attribution_license: Creative Commons Attribution licencija
   cc_by_name: Požymis
-  change: Keisti
   change_admin: Keisti Administratorių
   change_cover: Keisti viršelį
   change_descriptions:
@@ -409,8 +408,6 @@ lt:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} bus pakeistas į %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} buvo sujungtas į %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} bus sujungtas į %{output_taxon}"
-  change_visibility_of: Keisti erdvinių koordinačių matomumą?
-  change_your_matching: Keisti savo atitikimą
   change_your_password: Keisti Savo Slaptažodį
   changing_the_geoprivacy: 'Geoprivatumo pakeitimas lemia kaip kiti žmonės mato jūsų stebėjimo vietą.'
   check_above_for_errors: Patikrinkite, ar nėra klaidų
@@ -418,30 +415,21 @@ lt:
   check_list: Kontrolinis sąrašas
   check_list_description: Pasirinkite aukštesnio lygio taksoną, kurį norėtumėte matyti šiame sąraše, pvz. "Aves" paukščiams ar "Amphibia" varliagyviams. Taip nustačius, šiame sąraše nebus galimi taksonai, nepriklausantys nuradytam taksonui. Pavyzdžiui, jei sukursite paukščių sąrašą, jūs negalėsite pridėti prie jo varlių.
   check_list_for_individual_taxa_that: 'Patikrinkite atskirus, čia gyvenančius, taksonus, pvz. "%{place} paukščiai".'
-  check_list_individual_taxa: Patikrinkite atskirus, čia gyvenančius, taksonus, pvz. "%{place} paukščiai".
   check_list_place: "%{place} Kontrolinis Sąrašas"
   check_list_updated: Kontrolinis sąrašas atnaujintas!
-  check_list_source: Šaltinis <span class="meta">(neprivaloma)</span>
   check_lists_for: "Kiti %{place} Kontroliniai Sąrašai"
   check_out_my_observations_at: Jei norite, mano stebėjimus galite rasti
   check_out_our_blog: Pažvelkite į mūsų Dienoraštį
   check_out_what_the_observation: Patikrinkite kaip atrodo stebėjimas, kurį bandote įdentifikuoti.
   checklist: Kontrolinis sąrašas
-  checklists: Kontrolinis sąrašas
-  checklist_places: Kontrolinio sąrašo vieos
-  checklist_places_confirmed: Stebimųjų vietų sąrašas (patvirtintas)
-  child_taxa: Žemesni taksonai
   choose_a_field: Pasirinkite lauką
   choose_a_list_above: Pasirinkite sąrašą viršuje.
   choose_a_place: Pasirinkite vietą
   choose_a_taxon: Pasirinkite taksoną (nebūtinas)
   choose_file: Pasirinkti failą
   choose_files: Pasirinkti failus
-  choose_files_from_your_computer: pasirinkite failus iš savo kompiuterio
   choose_from_your_lists: Pasirinkite iš savo sąrašų
-  choose_photos: Pasirinkite nuotraukas
   choose_photos_for_this_taxon: Parinkite nuotraukas šiam taksonui
-  choose_place: Pasirinkite vietą
   choose_rule: Pasirinkite taisyklę
   choose_subjects: Pasirinkite temas
   choose_tags: Pasirinkite žymes
@@ -457,27 +445,19 @@ lt:
   click_the_map_to_jump_new_place: Paspauskite ant žemėlapio, kad pereitumėte į naują vietą
   close: Uždaryti
   code: Kodas
-  collapse_days: suskleisti dienas
-  collapse_updates: suskleisti atnaujinimus
   colors: Spalvos
   columns: Stulpeliai
   combine: Sujungti
   comma_separated_please: Prašome atskirti kableliais
-  comment_preview: Komentaro peržiūra
   comment: komentaras
-  comment_feed: Komentarų strautas
   comment_deleted: Komentaras ištrintas
-  commented: pakomentavo
   comments: Komentarai
-  comments_and_identifications: Komentarai ir identifikacijos
-  comments_by_everyone: Visų komentarai
   comments_by_me: Mano komentarai
   comments_on: Komentarai
   comments_on_my_observations: Mano stebėjimo komentarai
   community: Bendruomenė
   community_curated: Kuruojamas Bendruomenės
   community_guidelines: Bendruomenės gairės
-  community_id: '<strong>Bendruomenės</strong> ID:'
   community_id_heading: Bendruomenės taksonas
   community_moderation_settings: Bendruomenės Moderavimo Nustatymai
   compare: Palyginti
@@ -496,7 +476,6 @@ lt:
   confirm_now: Patvirtinti dabar
   confirm_your_info: Patvirtinkite savo informaciją
   confirmed: patvirtinta
-  confirming_identifications: identifikacijos tvirtinamos
   connect_to_provider: "Prisijungti prie %{provider}"
   connected_accounts: Prijungtos paskyros
   connecting_flickr: "Prisijungiama prie Flickr..."
@@ -504,12 +483,8 @@ lt:
   conservation_status: Apsaugos Būsena
   conservation_status_descriptions:
     url: Puslapio, apibūdinančio šią būseną, URL.
-  conservation_summary: Apsaugos Santrauka
   content_hidden: Turinys paslėptas
-  contest: konkursas
   continue: Tęsti
-  contributions: Įnašai
-  contributions_from: Įnašai iš
   contributor_cannot_be_found: Įnašai negali būti rasti
   contributors_to_project: "%{project} įnašai"
   controlled_term_labels:
@@ -552,7 +527,6 @@ lt:
   couldnt_change_your_password: "Negalima pakeisti jūsų slaptažodžio: %{e}"
   couldnt_find_a_user_matching_x_param: "Nepavyko rasti vartotojo atitinkančio %{id}"
   couldnt_find_that_taxon: Taksonas nerastas
-  couldnt_log_you_in_x: "Nepavyko prijungti jūsų kaip „%{x}“"
   countries: Šalys
   cover: Viršelis
   create: Kurti
@@ -573,16 +547,11 @@ lt:
   curate_observations: Kuruoti stebėjimus
   curate_taxa: Kuruoti taksonus
   curate_user: Kuruoti vartotoją
-  curate_users: Kuruoti vartotojus
-  curated: Kuruojama
-  curated_checklist: Kuruojamas Kontrolinis Sąrašas
-  curated_count: Kuruojamų Skaičius
   curating: Kuruojama
   curation: Kuravimas
   curator: Kuratorius
   curators: Kuratoriai
   curator_identification: Kuratorius identifikavimas
-  current_password: Dabartinis Slaptažodis
   darr_apply_darr: "&darr; Taikyti &darr;"
   dashboard: Valdymo skydas
   data_deficient: Trūksta duomenų
