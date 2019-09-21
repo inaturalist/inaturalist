@@ -2103,6 +2103,8 @@ en:
   merging: Merging
   merging_places: Merging Places
   message: Message
+  message_from_user_at_time: From %{user} at %{time}
+  message_from_user_on_date: From %{user} on %{date}
   messages: Messages
   misidentifications: Misidentifications
   misleading_or_illegal_content_html: |
@@ -2422,6 +2424,22 @@ en:
   observation_added: Observation added.
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
+  observation_brief_something_on_day: "something on %{day}"
+  observation_brief_something_by_user: "Something by %{user}"
+  observation_brief_something_from_place: "Something from %{place}"
+  observation_brief_something_from_place_by_user: "Something from %{place} by %{user}"
+  observation_brief_something_from_place_on_day: "Something from %{place} on %{day}"
+  observation_brief_something_from_place_on_day_by_user: "Something from %{place} on %{day} by %{user}"
+  observation_brief_something_from_place_on_day_at_time: "Something from %{place} on %{day} at %{time}"
+  observation_brief_something_from_place_on_day_at_time_by_user: "Something from %{place} on %{day} at %{time} by %{user}"
+  observation_brief_taxon_on_day: "%{taxon} on %{day}"
+  observation_brief_taxon_by_user: "%{taxon} by %{user}"
+  observation_brief_taxon_from_place: "%{taxon} from %{place}"
+  observation_brief_taxon_from_place_by_user: "%{taxon} from %{place} by %{user}"
+  observation_brief_taxon_from_place_on_day: "%{taxon} from %{place} on %{day}"
+  observation_brief_taxon_from_place_on_day_by_user: "%{taxon} from %{place} on %{day} by %{user}"
+  observation_brief_taxon_from_place_on_day_at_time: "%{taxon} from %{place} on %{day} at %{time}"
+  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} from %{place} on %{day} at %{time} by %{user}"
   observation_photo_uploader: Observation Photo Uploader
   observations_by_category: "Observations By category"
   observations_by_app: Observations By App

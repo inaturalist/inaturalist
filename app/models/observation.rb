@@ -752,19 +752,60 @@ class Observation < ActiveRecord::Base
   end
   
   def to_plain_s(options = {})
-    s = self.species_guess.blank? ? I18n.t(:something) : self.species_guess
-    if options[:verb]
-      s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
+    if true
+      s = self.species_guess.blank? ? I18n.t(:something) : self.species_guess
+      if options[:verb]
+        s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
+      end
+      unless self.place_guess.blank? || options[:no_place_guess] || coordinates_obscured?
+        s += " #{I18n.t(:from, :default => 'from').downcase} #{self.place_guess}"
+      end
+      s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
+      unless self.time_observed_at.blank? || options[:no_time]
+        s += " #{I18n.t(:at)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
+      end
+      s += " #{I18n.t(:by).downcase} #{user.try_methods(:name, :login)}" unless options[:no_user]
+      return s.gsub(/\s+/, ' ')
     end
+    # Making this unreachable until things get translated
+    # I18n.t( :observation_brief_something_on_day )
+    # I18n.t( :observation_brief_something_by_user )
+    # I18n.t( :observation_brief_something_from_place )
+    # I18n.t( :observation_brief_something_from_place_by_user )
+    # I18n.t( :observation_brief_something_from_place_on_day )
+    # I18n.t( :observation_brief_something_from_place_on_day_by_user )
+    # I18n.t( :observation_brief_something_from_place_on_day_at_time )
+    # I18n.t( :observation_brief_something_from_place_on_day_at_time_by_user )
+    # I18n.t( :observation_brief_taxon_on_day )
+    # I18n.t( :observation_brief_taxon_by_user )
+    # I18n.t( :observation_brief_taxon_from_place )
+    # I18n.t( :observation_brief_taxon_from_place_by_user )
+    # I18n.t( :observation_brief_taxon_from_place_on_day )
+    # I18n.t( :observation_brief_taxon_from_place_on_day_by_user )
+    # I18n.t( :observation_brief_taxon_from_place_on_day_at_time )
+    # I18n.t( :observation_brief_taxon_from_place_on_day_at_time_by_user )
+    key = species_guess.blank? ? "something" : "taxon"
+    i18n_vars = {}
     unless self.place_guess.blank? || options[:no_place_guess] || coordinates_obscured?
-      s += " #{I18n.t(:from, :default => 'from').downcase} #{self.place_guess}"
+      key += "_from_place"
+      i18n_vars[:place] = place_guess
     end
-    s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
+    unless self.observed_on.blank?
+      key += "_on_day"
+      i18n_vars[:day] = I18n.l( self.observed_on, format: :long )
+    end
     unless self.time_observed_at.blank? || options[:no_time]
-      s += " #{I18n.t(:at)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
+      key += "_at_time"
+      i18n_vars[:time] = I18n.t( time_observed_at_in_zone, format: :compact )
     end
-    s += " #{I18n.t(:by).downcase} #{user.try_methods(:name, :login)}" unless options[:no_user]
-    s.gsub(/\s+/, ' ')
+    unless options[:no_user]
+      key += "_by_user"
+      i18n_vars[:user] = user.try_methods(:name, :login)
+    end
+    if key != "something"
+      key = "observation_brief_#{key}"
+    end
+    I18n.t( key, i18n_vars.merge( default: I18n.t( :something ) ) )
   end
   
   def time_observed_at_utc
