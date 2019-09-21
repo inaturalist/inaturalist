@@ -257,7 +257,6 @@ eu:
   alphabetical: Ordena alfabetikoa
   alphabetical_order: Ordena alfabetikoa
   amphibians: anfibioak
-  an: bat
   and: eta
   and_help_the_inaturalist_community_grow: "eta  %{site_name} komunitatea hazten lagundu."
   and_other_taxa: "& Beste Taxon Batzuk"
@@ -386,7 +385,6 @@ eu:
   cc_by_sa_description: "Lizentzia honek merkataritzakoak diren xedeekin ere bere lanetik abiatuta beste batzuei konbinatzen, doitzen eta eraikitzen uzten die, kredituetan aipatzen denean, betiere, eta sorkuntza berrien lizentzia baldintza beretan ematen denean. Lizentzia hau \"copyleft\" software libreko eta kode irekiko lizentziekin alderatu ohi da. Zure lanean oinarritutako lan berri guztiek lizentzia bera izango dutenez, eratorritako guztiek ere merkataritzako erabilera ahalbidetuko dute. Hau da Wikipedia-k erabiltzen duen lizentzia eta Wikipedia-ra edukia txertatzearen onura eskuratu dezaketen materialetarako eta lizentzia duten antzeko proiektuetarako gomendatzen da."
   cc_by_sa_name: Esleipena-Berdin partekatu
   cc_used_under_a: "Creative Commons, honen mende erabilita:"
-  change: Aldatu
   change_admin: Administratzailea Aldatu
   change_descriptions:
     split: Espeziea edo taldea bereizita dago
@@ -413,7 +411,6 @@ eu:
     replaced_by: 'honek ordezkatua:'
     replace_with: 'honekin ordezkatua:'
     dropped: ezabatua
-  change_visibility_of: Koordenatu espazialen ikusgarritasuna aldatu?
   change_your_password: Zure pasahitza aldatu
   changing_the_geoprivacy: 'Geopribatutasuna aldatzeak beste pertsona batzuek zure oharraren kokapena ikusteko modua aldatzen du.'
   check_here_to_autoload_description: Markatu hemen deskribapena automatikoki Wikipedia-tik kargatzeko. Baliteke marka kendu nahi izatea taxonaren izen zientifikoa hitz ez-zientifikoa edo ortografia-akats arrunta ere badenean, hala nola "Parus".
@@ -423,32 +420,19 @@ eu:
   check_list_for_individual_taxa_that: 'Hemen bizi den espezie edo talde espezifiko baterako egiaztapen-zerrendak, adibidez: Hemengo hegaztiak: %{place}.'
   check_list_of_species_occuring_in: 'Hemen existitzen diren espezieen egiaztapen-zerrenda:'
   check_list_place: "Honen egiaztapen-zerrenda: %{place}"
-  check_list_source: Iturria <span class="meta">(opcional)</span>
   check_lists_for: "Honako beste egiaztapen-zerrenda batzuk: %{place}"
   check_out_my_observations_at: 'Nahi izanez gero, nire oharrak hemen ikus ditzakezu:'
   check_out_what_the_observation: Begirada bat eman identifikatu nahian zabiltzan behaketei.
-  check_out_your_life_list: Berrikusi zure Bizitzako Zerrenda
   checklist: Egiaztatzeko zerrenda
-  checklists: Egiazta-zerrendak
-  checklist_places: Egiaztapen-zerrenda duten lekuak
-  checklist_places_absent: Egiaztapen-zerrenda duten lekuak (ez daude)
-  checklist_places_confirmed: Egiaztapen-zerrenda duten lekuak (baieztatuak)
-  checklist_places_introduced: Egiaztapen-zerrenda duten lekuak (sartuak)
-  cheklist_places_are_places_with_contain_taxon: '"Egiaztapen-zerrenda duten lekuak" taxon hau eta egiaztapen-zerrenda duten lekuak dira.'
-  child_taxa: Mendeko taxonak
   choose_a_list_above: Zerrenda hautatu goian
   choose_a_place: Leku bat hautatu
   choose_a_taxon: Espeziea edo taldea hautatu (aukerakoa)
   choose_cc_licensed_photos_html: 'Lizentzia hau duten argazkiak topatu: <a href="http://creativecommons.org/">CC</a> Flickr-en edo zure oharretatik hautatu hemen: %{site_name}. Egin proba eta hautatu diagnosiko ezaugarriak</em> erakusten dituzten <em> eta <em> ikono</em> gisa ondo ikusten diren irudiak.  <em>Lehenengoa lehenetsita</em> azaltzen da.'
   choose_file: Fitxategia aukeratu
   choose_files: Artxiboak hautatu
-  choose_files_from_your_computer: zure ordenagailuko fitxategia hautatu.
   choose_from_your_lists: Zure zerrendetatik hautatu
-  choose_good_default_photos: argazki onak hautatu lehenespenez Creative Commons-eko argazki taldetik Flickr-en
-  choose_photos: Argazkiak aukeratu
   choose_photos_for_this_taxon: Taxon honetarako argazkiak hautatu
   choose_photos_to_tag_from_photostream: Etiketatzeko argazkiak aukeratu zure Photostream-etik
-  choose_place: Lekua hautatu
   choose_rule: Araua hautatu
   choose_subjects: Gaiak aukeratu
   choose_tags: Etiketak hautatu
@@ -460,20 +444,10 @@ eu:
   clear: Garbitu
   clear_color_filters: Kolore-iragazkiak ezabatu
   clear_search: Bilaketa ezabatu
-  click_on_the_map_to: Klikatu mapan zure oharra kokatzeko
   click_the_map: "<strong>Mapan klikatu</strong> kokapena gehitzeko."
   click_the_map_to_jump_new_place: Mapan klikatu beste leku batetara mugitzeko
   close: Itxi
   code: HTML kodea
-  collapse_days: egunak hartu
-  collapse_updates: eguneraketak egin
-  color_categories_for_this_species: |
-    Espezierako koloreen kategoriak, badirudi koloreen arabera ordenatutako
-    gida egitera zoazela. Mesedez, ez zerrendatu organismoaren kolore guztiak,
-    nabarmenenak soilik. Landareen koloreetarako, lorearen kolorea erabili.
-    Mesedez, ez jarri kategorizatzen laguntzen ez duen kolorerik, esate
-    baterako: ez erabili kafe kolorea ugaztunetarako eta berdea
-    landareetarako.
   colors: Koloreak
   columns: Zutabeak
   comma_separated_list_of_tracking_codes: |
@@ -484,17 +458,11 @@ eu:
     hauetara sar zaitezke zure proiektuko behaketak CSV formatuan
     deskargatzen dituzunean.
   comma_separated_please: Mesedez, komekin bereizi
-  comment_preview: Oharraren aurrebista
   comment: oharra
   comment_: Iruzkina
-  comment_feed: Iruzkinen jarioa
   comment_deleted: Oharra ezabatu egin da
-  commented: aipatzen dut
   comments: Oharrak
-  comments_and_identifications: Oharrak eta identifikazioak
-  comments_by_everyone: Denen oharrak
   comments_by_me: Nire oharrak
-  comments_youve_made_with_others: Joan den astean</span> <br />(besteen lanari buruz)<br/><span class="description"> egin dituzun oharrak
   commercial_solicitation: Iragarri zerbait, estekak ez dira baliagarriak eta abar.
   commit: Gorde
   committed: Gorde
@@ -518,20 +486,14 @@ eu:
   confirm_now: Orain baieztatu
   confirm_your_info: Zure informazioa baieztatu
   confirmed: baieztatuak
-  confirmed_observations_are: 'Hauek dira baieztatutako oharrak:'
-  confirming_identifications: identifikazioak baieztatu
   connect_to_provider: "Hona konektatu: %{provider}"
   connected_accounts: Lotutako kontuak
   connecting_flickr: "Flickr-era konektatzen..."
   connecting_to_facebook: "Facebook-era konektatzen..."
   connecting_your_inat_account_to_accounts_other_sites: "Zure %{site_name} kontua beste leku batzuetako kontuekin konektatzeak %{site_name} gunera horietako datuak erabilita sartzeko aukera emango dizu."
   conservation_status: Arrisku maila
-  conservation_summary: Kontserbazioaren laburpena
   contain_all_descendants?: Egiaztapen-zerrenda honek hemen sortutako taxon honen ondorengo guztiak al ditu?
-  contest: lehiaketa
   continue: Jarraitu
-  contributions: ekarpenak
-  contributions_from: 'Hauek ekarpenak:'
   contributor_cannot_be_found: Ezin izan da proiektuko ekarlea topatu
   contributors_to_project: "%{project}proiektuko parte-hartzaileak: Proiektuko parte-hartzaileak"
   controlled_term_labels:
@@ -574,9 +536,7 @@ eu:
   couldnt_change_your_password: "Zure pasahitza ezin izan da aldatu: %{e}"
   couldnt_find_a_user_matching_x_param: "Ezin izan da parametro hauek dituen erabiltzailea topatu: %{id}"
   couldnt_find_that_taxon: Espeziea edo taldea ez da topatu.
-  couldnt_log_you_in_x: "Ezin izan zaitut %{x} gisa baimendu"
   countries: Herrialdeak
-  country_stats: Herrialdeko estatistikak sortutako oharretarako
   create: Sortu
   create_a_list: Zerrenda sortu
   create_a_new_field: Eremu berria sortu
@@ -585,8 +545,6 @@ eu:
   create_an_account: Kontua sortu
   create_new_taxon: Taxon berria sortu
   create_observations: Oharrak sortu
-  create_observations_by_uploading_photos_to: |
-    Oharrak sortu hona argazkiak igota: %{place}. Argazkia igotzen duzunean, %{place} GPS koordenatuak, argazkiaren data eta ordua ateratzen saiatuko da. Hasteko
   created: Sortuta
   created_by: 'Honek sortua:'
   created_on: 'Egun honetan sortua:'
@@ -598,15 +556,12 @@ eu:
   csv_should_not_contain_a_header_row: CSVk ez luke datuen goibururik izan behar
   curate_observations: Oharrak administratu
   curate_taxa: Taxonak administratu
-  curate_users: Erabiltzaileak administratu
-  curated: administratuta
   curating: Administratzen
   curation: administrazioa
   curator: Administratzailea
   curators_changed_for_x_html: "%{x}-(e)rako administrariak aldatuta"
   curators: Administratzaileak
   curators_can_remove_observations_from: Administratzaileek behaketak ken ditzakete proiektutik eta identifikazioak zenbait ikuspegitan azaltzen dira (erreferentzia gisa). Gainera, proiektuko ilundutako koordenatuak edo koordenatu pribatuak ikus ditzakete.
-  current_password: Uneko pasahitza
   custom_project_fields: Pertsonalizatutako proiektu-eremuak
   darr_apply_darr: "↓ Aplikatu ↓"
   dashboard: Taula
@@ -2521,7 +2476,6 @@ eu:
   user_invite_observation_to_project: '%{user}-(e)k zure "%{observation}" behaketa %{project} proiektura gonbidatu nahi du.'
   user_invited_your_x_to_a_project_html: "%{user}-(e)k proiektu batetara gonbidatu zuen bere %{x}"
   user_is_a_naturalist: "%{user} naturalista da!"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> orain da %{project}-(e)ko %{role}"
   user_s_id: "%{user}-(r)en %{id}"
   user_s_lists: "%{user}-en zerrendak"
   user_thinks_yours_is: "%{user} %{noun} zure %{observation} behaketa honelakoa da:"
@@ -2604,7 +2558,6 @@ eu:
   w_photos_only: argazkiekin soilik
   w_sounds: soinuekin
   wait_file_generation: Itxaron fitxategia sortu bitartean. Agian minutu batzuk beharko ditu zerrenda handietarako.
-  want_to_add_one: Bat gehitu nahi duzu?
   want_to_show_off_some_of_your_favorite_taxa: Zure taxon gogokoenetako batzuk hemen gehitu nahi dituzu?
   was_it_captive_cultivated?: "Gatibu/hezia izan da?"
   we_also_support: |
@@ -2697,7 +2650,6 @@ eu:
     Guneko administratzailea zara eta datuak kudeatzen laguntzeko eta orrialdeko edukia gainbegiratzeko zure burua eskaini duzula esan nahi du horrek. Ez sentitu horrek dakarren guztiarekin behartuta, baina zenbait eduki aldez aurretik berrikusteko denbora baldin baduzu, eskertuko dizugu. Zalantzarik baldin baduzu, aipamenik baduzu edo besterik gabe, jada administratzaile izan nahi ez baduzu, jarri gurekin harremanetan hemen:
   you_are_over_your_invites_quota: ...dagoeneko gainditu duzu zure hileko kuota, 60 gonbidapenekoa.
   you_are_now_following_x: "Honi jarraitzen ari zara: %{friend_user}."
-  you_are_now_role_for_project_html: "<strong>Orain</strong> %{project}-(e)ko %{role}"
   you_are_already_a_member_of_this_project: "Dagoeneko proiektuko kidea zara!"
   you_are_no_longer_following_x: "Dagoeneko ez zara honi jarraitzen ari: %{friend}."
   you_are_subscribed_to: "Hemen harpidetuta zaude:"
@@ -3224,12 +3176,10 @@ eu:
         time_zone: Ordu-zona
   i18n:
     inflections:
-      0:
+      - 
         vow: bokala
         con: kontsonantea
-      gender:
-        m: gizona
-        f: emakumea
+      - 
   will_paginate:
     previous_label: "&#8592; Aurrekoa"
     next_label: "Hurrengoa &#8594;"
