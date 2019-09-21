@@ -490,7 +490,6 @@ pl:
   cc_by_nd_name: Uznanie autorstwa – Bez utworów zależnych
   cc_by_sa_description: "Ta licencja pozwala innym na remiksowanie, ulepszanie i nadbudowywanie twojej pracy, nawet w celach komercyjnych, o ile uznają twoje autorstwo i licencjonują nowe dzieła pod identycznymi zasadami. Wszystkie nowe utwory bazujące na twoich pracach będą miały taką samą licencję, więc jakiekolwiek utwory zależne również będą mogły zostać użyte komercyjnie."
   cc_by_sa_name: Uznanie autorstwa - Na tych samych warunkach
-  change: Zmiana
   change_admin: Zmień administratora
   change_descriptions:
     split: Stary takson został podzielony na kilka nowych taksonów
@@ -522,7 +521,6 @@ pl:
     input_taxon_will_be_replaced_by_output_taxon_html: "takson %{input_taxon} zostanie zastąpiony przez takson %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "taksony %{input_taxa} zostały włączone do taksonu %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "taksony %{input_taxa} zostaną włączone do taksonu %{output_taxon}"
-  change_visibility_of: Zmienić widoczność współrzędnych?
   change_your_password: Zmień hasło
   check_back_soon: Sprawdź ponownie wkrótce!
   check_here_to_autoload_description: Zaznacz tutaj, aby pobrać automatycznie opis z Wikipedii. Nie zaznaczaj, jeśli nazwa naukowa taksonu jest jednocześnie zwykłym słowem lub częstym błędem (np. "Lodówka").
@@ -530,13 +528,11 @@ pl:
   check_list: Checklista
   check_list_description: Wybierz takson wyższego rzędu, który chciałbyś ująć w liście (np. "Aves" dla ptaków, "Amphibia" dla płazów etc.). W wyniku takiego ustawienia na liście nie znajdą się taksony, które nie spełniają kryteriów - na przykład jeśli utworzysz listę ptaków, to nie będziesz mógł do niej dodać żadnych żab.
   check_list_for_individual_taxa_that: 'Checklisty dla pojedynczych taksonów, które tu występują, np. "%{place} - lista ptaków".'
-  check_list_individual_taxa: Checklisty dla pojedynczych taksonów, które tu występują, np. "%{place} - lista ptaków".
   check_lists_must_belong_to_a_place: |
     Checklista musi być przypisana do konkretnego miejsca. Aby stworzyć nową checklistę, otwórz stronę z domyślną listą utworzoną dla tego miejsca i kliknij "Stwórz nową checklistę".
   check_list_of_species_occuring_in: Checklista występujących gatunków na obszarze
   check_list_place: "Checklista %{place}"
   check_list_updated: Checklista uaktualniona!
-  check_list_source: Źródło <span class="meta">(opcjonalne)</span>
   check_lists_for: "Inne checklisty dla miejsca %{place}"
   check_out_my_observations_at: Jeśli chcesz, możesz zobaczyć moje obserwacje na
   check_out_our_blog: Sprawdź nasz Blog
@@ -546,7 +542,6 @@ pl:
     href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons Uznanie autorstwa - Użytek niekomercyjny</a> do przesłanej zawartości. Oznacza to, że każdy może skopiować i użyć ponownie twoich zdjęć i/lub obserwacji bez pytania cię o pozwolenie, o ile uznają twoje autorstwo i nie wykorzystają utworów w sposób komercyjny. Możesz wybrać inną licencję lub usunąć licencję później, jednak miej na uwadze, że to najlepszy rodzaj licencji do dzielenia się z naukowcami.
   checklist: Checklista
-  checklists: Checklisty
   choose_a_field: Wybierz notatkę
   choose_a_place: Wybierz miejsce
   choose_a_taxon: Wybierz takson (opcjonalne)
@@ -554,13 +549,9 @@ pl:
   choose_columns: Wybierz kolumny
   choose_file: Wybierz plik
   choose_files: Wybierz pliki
-  choose_files_from_your_computer: wybierz pliki z komputera
   choose_from_your_lists: Wybierz ze swoich list
-  choose_good_default_photos: wybierz odpowiednie domyślne zdjęcia ze zbiorów Creative Commons dostępnych na Flickrze
-  choose_photos: Wybierz zdjęcia
   choose_photos_for_this_taxon: Wybierz zdjęcia dla tego taksonu
   choose_photos_to_tag_from_photostream: Wybierz zdjęcia do otagowania
-  choose_place: Wybierz miejsce
   choose_rule: Wybierz regułę
   choose_subjects: Wybierz tematy
   choose_tags: Wybierz tagi
@@ -573,34 +564,24 @@ pl:
   clear_color_filters: Wyczyść filtry kolorów
   clear_filters: Wyczyść filtry
   clear_search: Wyczyść wyszukiwania
-  click_on_the_map_to: Zaznacz na mapie miejsce obserwacji
   click_the_map: "<strong>Kliknij mapę</strong>, aby dodać miejsce."
   click_the_map_to_jump_new_place: Kliknij mapę, aby przeskoczyć do następnego miejsca
   close: Zamknij
   code: Kod
-  color_categories_for_this_species: |
-    Dodaj kolor dla tego gatunku - w przewodniku kategoryzuje się kolorami. 
-    Nie dodawaj wszystkich kolorów, jakie widzisz u tego gatunku, tylko te najbardziej charakterystyczne. Dla roślin okrytonasiennych dodawaj barwę kwiatów. 
-    Zostaw to pole puste, jeśli nie można wyróżnić charakterystycznego koloru (tzn. nie dodawaj "brązowych ssaków" czy "zielonych paproci").
   colors: Kolory
   columns: Kolumny
   combine: Połącz
   comma_separated_please: Oddziel przecinkami, proszę
-  comment_preview: Podgląd komentarza
   comment: komentarz
   comment_: Komentarz
   comment_deleted: Komentarz skasowany
   comments: Komentarze
-  comments_and_identifications: Komentarze i Identyfikacje
-  comments_by_everyone: Komentarze wszystkich
   comments_by_me: Moje komentarze
   comments_on: Komentarze do
   comments_on_my_observations: Komentarze do moich obserwacji
-  comments_youve_made_with_others: Komentarze, które zamieściłeś<br/><span class="description">w zeszłym tygodniu</span>
   commercial_solicitation: Nachalny marketing, linki donikąd, itp.
   community: Społeczność
   community_guidelines: Standardy społeczności
-  community_id: 'Identyfikacja <strong>społeczności</strong>:'
   community_id_heading: Takson wybrany przez społeczność
   community_id_at_species_or_lower?: Takson wybrany przez społeczność na poziomie gatunku lub niższym?
   community_id_at_genus_level_or_lower: Takson wybrany przez społeczność na poziomie rodzaju lub niższym
@@ -624,8 +605,6 @@ pl:
   confirm_now: Potwierdź teraz
   confirm_your_info: Potwierdź swoje dane
   confirmed: potwierdzono
-  confirmed_observations_are: Potwierdzone obserwacje są
-  confirming_identifications: potwierdzanie identyfikacji
   connect_to_provider: "Połącz z %{provider}"
   connected_accounts: Podłączone konta
   connecting_flickr: "Łączenie z Flickr..."
@@ -702,7 +681,6 @@ pl:
   couldnt_change_your_password: "Nie udało się zmienić hasła: %{e}"
   couldnt_find_a_user_matching_x_param: "Nie udało się znaleźć użytkownika %{id}"
   couldnt_find_that_taxon: Nie udało się znaleźć podanego taksonu.
-  couldnt_log_you_in_x: "Nie udało się zalogować jako '%{x}'"
   countries: Kraje
   cover: Okładka
   create: Utwórz
@@ -716,9 +694,6 @@ pl:
   create_an_atlas: Stwórz atlas
   create_new_taxon: Utwórz nowy takson
   create_observations: Utwórz obserwacje
-  create_observations_by_uploading_photos_to: |
-    Utwórz obserwacje poprzez dodanie zdjęć do miejsca %{place}. Współrzędne i data/czas obserwacji zostaną zaimportowane z informacji o zdjęciu.
-    Aby rozpocząć,
   created: Utworzone
   created_by: Utworzone przez
   created_by_user_on_date: Utworzone %{date} przez %{user}
@@ -727,16 +702,12 @@ pl:
   creative_commons_flickr_tagged: Otagowane zdjęcia z Flickra na licencji Creative Commons
   creative_commons_unless_otherwise_noted: "Na licencji Creative Commons, chyba że podano inaczej."
   critically_endangered: Krytycznie zagrożony
-  critically_imperiled: Krytycznie zagrożony
   css_description: Zostanie ujęte po wszystkich pozostałych stylach CSS na stronie.
   csv_file: Plik CSV
   csv_should_not_contain_a_header_row: CSV nie powinien zawierać nagłówka wersu
   cumulative_ids: "Skumulowane identyfikacje: %{count} z %{total}"
   curate_observations: Napraw obserwacje
   curate_taxa: Napraw taksony
-  curated: naprawione
-  curated_checklist: Checklista naprawionych elementów
-  curated_count: Liczba naprawionych elementów
   curating: Naprawianie
   curation: Naprawa
   curator: Opiekun
@@ -745,7 +716,6 @@ pl:
   curators_can_remove_observations_from: Opiekunowie mogą usuwać obserwacje z projektu, a także mogą zobaczyć współrzędne prywatnych i utajnionych obserwacji zakwalifikowanych do projektu. Identyfikacje opiekunów są pokazane obok obserwacji dostępnych na stronie projektu.
   curator_identification: Identyfikacja opiekuna
   current_flags: Aktualne zgłoszenia
-  current_password: Bieżące hasło
   customize_location: Dostosuj lokalizację
   darr_apply_darr: "&darr; Zastosuj &darr;"
   dashboard: Strona główna
