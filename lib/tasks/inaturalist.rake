@@ -410,12 +410,18 @@ namespace :inaturalist do
   EOT
   task :potentially_unused_i18n_keys => :environment do
     patterns_to_ignore = [
-      /^Family/,
-      /^Genus/,
       /^activemodel\./,
       /^activerecord\./,
       /^add_annotations_for_controlled_attribute\./,
+      /^add_life_stage_/,
+      /^all_taxa\./,
+      /^alphabetical$/,
+      /^authority_list\./,
+      /^change_types\./,
+      /^copyright\,/,
+      /^Family/,
       /^forum_categories\./,
+      /^Genus/,
       /^i18n\./,
       /^lexicons\./,
       /^locale\./,
@@ -427,16 +433,12 @@ namespace :inaturalist do
       /^ranks\./,
       /^rules_types\./,
       /^source_list\./,
+      /^taxonomic$/,
       /^views\.observations\.field_descriptions\./,
       /^views\.projects\.edit\.rules\./,
       /^views\.projects\.edit\.rules\./,
       /^views\.projects\.project_user_curator_coordinate_access_labels\./,
       /^views\.taxa\.show\.frequency\./,
-      /^add_life_stage_/,
-      /^all_taxa\./,
-      /^alphabetical$/,
-      /^taxonomic$/,
-      /^authority_list\./,
     ]
     all_keys_in_use = (get_i18n_keys_in_js + get_i18n_keys_in_rb).uniq
 

@@ -632,7 +632,6 @@ en:
   cc_by_sa_description: "This license lets others remix, tweak, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. All new works based on yours will carry the same license, so any derivatives will also allow commercial use."
   cc_by_sa_name: Attribution-ShareAlike
   cc_used_under_a: "Creative Commons, used under a "
-  change: Change
   change_admin: Change Admin
   change_cover: Change cover
   change_descriptions:
@@ -671,8 +670,6 @@ en:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} will be replaced by %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} were merged into %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} will be merged into %{output_taxon}"
-  change_visibility_of: Change visibility of spatial coordinates?
-  change_your_matching: Change your matching
   change_your_password: Change Your Password
   changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
   check_above_for_errors: Check above for errors
@@ -682,19 +679,16 @@ en:
   check_list: Check list
   check_list_description: Choose a higher-level taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians. When set, this list won't allow taxa that are not in this taxon. For example, if you create a list of birds, you won't be able to add any frogs to it. 
   check_list_for_individual_taxa_that: 'Check lists for individual taxa that live here, e.g. "Birds of %{place}".'
-  check_list_individual_taxa: Check lists for individual taxa that live here, e.g. "Birds of %{place}".
   check_lists_must_belong_to_a_place: |
     Check lists must belong to a place. To create a new check list, visit
     a place's default check list and click the 'Create a new check list' link.
   check_list_of_species_occuring_in: Check list of species occuring in
   check_list_place: "%{place} Check List"
   check_list_updated: Check list updated!
-  check_list_source: Source <span class="meta">(optional)</span>
   check_lists_for: "Other Check Lists for %{place}"
   check_out_my_observations_at:  If you want, you can check out my observations at
   check_out_our_blog: Check out our Blog
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
-  check_out_your_life_list: Check out your Life List
   check_this_box_if_html: |
     Check this box if you want to apply a <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -705,13 +699,6 @@ en:
     remove the license later, but this is the best license for sharing with
     researchers.
   checklist: Checklist
-  checklists: Checklists
-  checklist_places: Checklist places
-  checklist_places_absent: Checklist places (absent)
-  checklist_places_confirmed: Checklist places (confirmed)
-  checklist_places_introduced: Checklist places (introduced)
-  cheklist_places_are_places_with_contain_taxon: '"Check-list places" are places with check lists that contain this taxon.'
-  child_taxa: Child taxa
   choose_a_field: Choose a field
   choose_a_list_above: Choose a list above.
   choose_a_place: Choose a place
@@ -720,13 +707,9 @@ en:
   choose_columns: Choose columns
   choose_file: Choose file
   choose_files: Choose files
-  choose_files_from_your_computer: choose files from your computer
   choose_from_your_lists: Choose from your lists
-  choose_good_default_photos: choose good default photos from the pool of Creative Commons photos on Flickr
-  choose_photos: Choose photos
   choose_photos_for_this_taxon: Choose photos for this taxon
   choose_photos_to_tag_from_photostream: Choose photos to tag from your photostream
-  choose_place: Choose a place
   choose_rule: Choose a rule
   choose_subjects: Choose subjects
   choose_tags: Choose tags
@@ -740,19 +723,10 @@ en:
   clear_color_filters: Clear color filters
   clear_filters: Clear filters
   clear_search: Clear search
-  click_on_the_map_to: Click on the map to place your observation
   click_the_map: "<strong>Click the map</strong> to add a location."
   click_the_map_to_jump_new_place: Click the map to jump to a new place
   close: Close
   code: Code
-  collapse_days: collapse days
-  collapse_updates: collapse updates
-  color_categories_for_this_species: |
-                Color categories for this species, as if you were going to place it
-                in a field guide sorted by color. Please don't list every color on
-                the organism, just the prominent ones. For flowering plants please
-                use flower color.  Please leave blank for colors that wouldn't be
-                useful in categorization, like brown mammals and green ferns.
   colors: Colors
   columns: Columns
   combine: Combine
@@ -761,19 +735,13 @@ en:
               people to the new observation form, e.g. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
               You can use this to track participation from different sources. You can access these codes when downloading your project's observations as CSV.
   comma_separated_please: Comma-separated, please
-  comment_preview: Comment preview
   comment: comment
   comment_: Comment
-  comment_feed: Comment feed
   comment_deleted: Comment deleted
-  commented: commented
   comments: Comments
-  comments_and_identifications: Comments & Identifications
-  comments_by_everyone: Comments by everyone
   comments_by_me: Comments by me
   comments_on: Comments on
   comments_on_my_observations: Comments on my observations
-  comments_youve_made_with_others: Comments You've Made (w/ Others)<br/><span class="description">in the past week</span>
   commercial_solicitation: Commercial solicitation, links to nowhere, etc.
   commit: Commit
   committed: Committed
@@ -782,7 +750,6 @@ en:
   community: Community
   community_curated: Community Curated
   community_guidelines: Community Guidelines
-  community_id: '<strong>Community</strong> ID: '
   community_id_heading: Community Taxon
   community_id_at_species_or_lower?: Community Taxon at species or lower?
   community_id_at_genus_level_or_lower: Community Taxon at genus level or lower
@@ -796,7 +763,6 @@ en:
   comparing_versions_x_and_y: "Comparing versions %{x} and %{y}"
   comparing_observations_from: "Comparing %{user} observations from %{dates}"
   complete: Complete
-  complete_sets: Complete Sets
   compiled_by_name: "Compiled by %{name}"
   completed: Completed
   completed_at: Completed At
@@ -815,8 +781,6 @@ en:
   confirm_now: Confirm now
   confirm_your_info: Confirm your info
   confirmed: confirmed
-  confirmed_observations_are: Confirmed observations are
-  confirming_identifications: confirming identifications
   connect_to_provider: "Connect to %{provider}"
   connected_accounts: Connected accounts
   connecting_flickr: "Connecting to Flickr... "
@@ -833,7 +797,6 @@ en:
     iucn: Equivalent IUCN Red List code
   conservation_status_geoprivacy_desc: |
     Default geoprivacy applied to all observations of this taxon in this place
-  conservation_summary: Conservation Summary
   contact_support: Contact Support
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
   content_hidden: Content Hidden
@@ -843,11 +806,8 @@ en:
     %{user} hid this %{item} because "%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} unhid this %{item} because "%{reason}"
-  contest: contest
   continue: Continue
   continue_to_site: Continue to %{site_name}
-  contributions: contributions
-  contributions_from: Contributions from
   contributor_cannot_be_found: Contributor cannot be found
   contributors_to_project: "Contributors to %{project}"
   controlled_term_labels:
@@ -906,9 +866,7 @@ en:
   couldnt_change_your_password: "Couldn't change your password: %{e}"
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
   couldnt_find_that_taxon: Could't find that taxon.
-  couldnt_log_you_in_x: "Couldn't log you in as '%{x}'"
   countries: Countries
-  country_stats: Country stats for observations created on
   cover: Cover
   create: Create
   create_a_guide: Create a Guide
@@ -921,9 +879,6 @@ en:
   create_an_atlas: Create an Atlas
   create_new_taxon: Create a New Taxon
   create_observations: Create Observations
-  create_observations_by_uploading_photos_to: |
-    Create observations by uploading photos to %{place}. When you upload %{place} will try to extract GPS coordinates and date/time from the photo.
-    To get started,
   created: Created
   created_by: Created by
   created_by_user_on_date: Created by %{user} on %{date}
@@ -932,7 +887,6 @@ en:
   creative_commons_flickr_tagged: Creative Commons Flickr Photos Tagged
   creative_commons_unless_otherwise_noted: "Creative Commons unless otherwise noted."
   critically_endangered: Critically Endangered
-  critically_imperiled: Critically Imperiled
   css_description: This will get included after all other css on the page.
   csv: CSV
   csv_file: CSV file
@@ -941,10 +895,6 @@ en:
   curate_observations: Curate observations
   curate_taxa: Curate taxa
   curate_user: Curate user
-  curate_users: Curate users
-  curated: curated
-  curated_checklist: Curated Checklist
-  curated_count: Curated Count
   curating: Curating
   curation: Curation
   curator: Curator
@@ -957,8 +907,6 @@ en:
     private and obscured contributions to this project.
   curator_identification: Curator identification
   current_flags: Current Flags
-  current_password: Current Password
-  custom_field_values: Custom field values
   custom_project_fields: Custom Project Fields
   custom_project_was_successfully_created: CustomProject was successfully created.
   custom_project_was_successfully_updated: CustomProject was successfully updated.
