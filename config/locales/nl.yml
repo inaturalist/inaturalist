@@ -375,7 +375,6 @@ nl:
   alphabetical_order: Alfabetische volgorde
   already_have_an_account_log_in_html: Heb je al een account? <strong>Log in.</strong>
   amphibians: amfibieën
-  an: een
   and: en
   and_help_the_inaturalist_community_grow: "en help de %{site_name} gemeenschap te groeien."
   and_other_taxa: "&amp; Andere Taxa"
@@ -562,7 +561,6 @@ nl:
   cc_by_sa_description: "Deze licentie laat anderen remixen, tweaken en voortbouwen op je werk, zelfs voor commerciële doeleinden, zolang ze je crediteren en hun nieuwe creaties onder dezelfde voorwaarden licentiëren. Alle nieuwe werken gebaseerd op de jouwe zullen dezelfde licentie hebben, dus eventuele afgeleide werken zullen ook commercieel gebruik toestaan."
   cc_by_sa_name: Naamsvermelding-GelijkDelen
   cc_used_under_a: "Creative Commons gebruikt onder een"
-  change: Wijzigen
   change_admin: Wijzig Admin
   change_cover: Cover wijzigen
   change_descriptions:
@@ -601,8 +599,6 @@ nl:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} wordt vervangen door %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} werden samengevoegd met %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} zal samengevoegd worden met %{output_taxon}"
-  change_visibility_of: De zichtbaarheid van de ruimtelijke coördinaten wijzigen
-  change_your_matching: Verander je matching
   change_your_password: Wijzig uw wachtwoord
   changing_the_geoprivacy: 'Door uw geoprivacy te wijzigen zal ook de manier waarop anderen de locatie van uw waarneming zien aangepast worden.'
   check_above_for_errors: Controleer hierboven op fouten
@@ -612,29 +608,20 @@ nl:
   check_list: Checklist
   check_list_description: Kies een hoger niveau taxon dat u in deze lijst wilt weergeven, zoals 'Aves' voor vogels of 'Amphibia' voor amfibieën. Wanneer ingesteld, staat deze lijst geen taxa toe die niet in dit taxon voorkomen. Als u bijvoorbeeld een lijst met vogels maakt, kunt u er geen kikkers aan toevoegen.
   check_list_for_individual_taxa_that: 'Checklists voor individuele taxa die hier voorkomen, bv. "Vogels van %{place}".'
-  check_list_individual_taxa: Checklists voor individuele taxa die hier voorkomen, bv. "Vogels van %{place}".
   check_lists_must_belong_to_a_place: |
     Checklists moeten bij een plaats horen. Ga om een nieuwe checklist te maken
     naar de standaard Checklijsten van een plaats en klik op de link 'Een nieuwe checklijst maken'.
   check_list_of_species_occuring_in: Checklist van soorten die voorkomen in
   check_list_place: "%{place} Checklist"
   check_list_updated: Checklist bijgewerkt!
-  check_list_source: Bron <span class="meta">(optioneel)</span>
   check_lists_for: "Andere Checklists voor %{place}"
   check_out_my_observations_at: Indien gewenst kan je mijn waarnemingen bekijken op
   check_out_our_blog: Bekijk onze Blog
   check_out_what_the_observation: Bekijk hoe de waarneming die je probeert te identificeren er uitziet.
-  check_out_your_life_list: Bekijk je Lifelist
   check_this_box_if_html: |
     Vink dit vakje aan als u een
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial-licentie</a> wil toekennen aan ingevoerde media en gegevens. 
     Dit betekent dat iedereen jouw foto's en/of waarnemingen kan kopiëren en hergebruiken zonder toestemming te vragen zolang ze je naam vermelden en de werken niet commercieel gebruiken. U kunt later een andere licentie kiezen of de licentie verwijderen, maar dit is de beste licentie als u gegevens wilt delen met de onderzoekers.
-  checklist_places: Checklist locaties
-  checklist_places_absent: Checklistplaatsen (ontbrekend)
-  checklist_places_confirmed: Checklist plaatsen (bevestigd)
-  checklist_places_introduced: Checklistplaatsen (voorgesteld)
-  cheklist_places_are_places_with_contain_taxon: '"Checklistplaatsen" zijn plaatsen met checklists die dit taxon bevatten.'
-  child_taxa: Kinder taxa
   choose_a_field: Kies een veld
   choose_a_list_above: Kies hierboven een lijst
   choose_a_place: Kies een locatie
@@ -642,13 +629,9 @@ nl:
   choose_columns: Kies kolommen
   choose_file: Kies bestand
   choose_files: Kies bestanden
-  choose_files_from_your_computer: Kies bestanden van je pc
   choose_from_your_lists: Kies uit uw lijsten
-  choose_good_default_photos: Kies goede standaard foto's van de groep foto's op Flickr met een Creative Commons licensie.
-  choose_photos: Kies foto's
   choose_photos_for_this_taxon: Kies foto's voor dit taxon
   choose_photos_to_tag_from_photostream: Kies te labelen foto's uit uw fotostream
-  choose_place: Kies een plaats
   choose_rule: Kies een regel
   choose_subjects: Kies onderwerpen
   choose_tags: Tags kiezen
@@ -662,17 +645,9 @@ nl:
   clear_color_filters: Verwijder kleur filters
   clear_filters: Filters wissen
   clear_search: Zoekopdracht wissen
-  click_on_the_map_to: Klik op de kaart om je waarneming te plaatsen
   click_the_map: "<strong>Klik op de kaart</strong> om een locatie toe te voegen."
   click_the_map_to_jump_new_place: Klik op de kaart om naar een nieuwe plaats te gaan
   close: Sluiten
-  collapse_days: dagen samenvouwen
-  collapse_updates: nieuwtjes samenvouwen
-  color_categories_for_this_species: |
-    Kleurcategorieën voor deze soort, alsof je deze zou plaatsen
-    in een veldgids gesorteerd op kleur. Gelieve niet elke kleur aan te geven van 
-    het organisme, alleen de prominente. Gebruik voor bloeiende planten alsjeblieft
-    alleen de bloemkleur. Niet invullen als de kleuren niet zinvol zijn bij indeling categorieën, zoals bruine zoogdieren en groene varens.
   colors: Kleuren
   columns: Kolommen
   combine: Samenvoegen
@@ -681,19 +656,13 @@ nl:
     %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     U kunt dit gebruiken om deelname vanaf verschillende bronnen bij te houden. U ziet deze codes wanneer u de waarnemingen van uw project downloadt als CSV.
   comma_separated_please: Gescheiden door komma's, graag
-  comment_preview: Bericht preview
   comment: reactie
   comment_: Reactie
-  comment_feed: Opmerkingen
   comment_deleted: Reactie verwijderd
-  commented: gereageerd
   comments: Reacties
-  comments_and_identifications: Opmerkingen en identificaties
-  comments_by_everyone: Reacties door iedereen
   comments_by_me: Reacties van mij
   comments_on: Reacties op
   comments_on_my_observations: Reacties op mijn waarnemingen
-  comments_youve_made_with_others: Opmerkingen die je gemaakt hebt (w/ Others)<br/><span class="description">in de afgelopen week</span>
   commercial_solicitation: Commerciële advertenties, koppelingen naar nergens, enzovoort.
   commit: Bevestig
   committed: Bevestigd
@@ -702,7 +671,6 @@ nl:
   community: Gemeenschap
   community_curated: Gemeenschap Curated
   community_guidelines: Gemeenschapsrichtlijnen
-  community_id: '<strong>Gemeenschaps</strong>ID:'
   community_id_heading: GemeenschapsTaxon
   community_id_at_species_or_lower?: GemeenschapsTaxon op soort of lager?
   community_id_at_genus_level_or_lower: GemeenschapsTaxon op genus niveau of lager
@@ -716,7 +684,6 @@ nl:
   comparing_versions_x_and_y: "Versies %{x} en %{y} vergelijken"
   comparing_observations_from: "Vergelijken van %{user} waarnemingen van %{dates}"
   complete: Afgerond
-  complete_sets: Volledige sets
   compiled_by_name: "Gecompileerd door %{name}"
   completed: Voltooid
   completed_at: Voltooid op
@@ -731,8 +698,6 @@ nl:
   confirm_now: Bevestig nu
   confirm_your_info: Bevestig uw informatie
   confirmed: bevestigd
-  confirmed_observations_are: Bevestigde waarnemingen zijn
-  confirming_identifications: identificaties bevestigen
   connect_to_provider: "Verbinden met %{provider}"
   connected_accounts: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
@@ -749,7 +714,6 @@ nl:
     iucn: Equivalent van IUCN Rode Lijst code
   conservation_status_geoprivacy_desc: |
     Default geoprivacy toegepast op alle waarnemingen van dit taxon op deze plaats.
-  conservation_summary: Beschermings Samenvatting
   contain_all_descendants?: Bevat deze checklist alle afstammelingen van dit taxon die hier voorkomen?
   content_hidden: Inhoud is verborgen
   content_hidden_by_user_on_date_because_reason_html: |
@@ -758,11 +722,8 @@ nl:
     %{user} verborg dit/deze %{item} met als reden: "%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} maakt dit/deze %{item} weer zichtbaar met als reden "%{reason}"
-  contest: wedstrijd
   continue: Doorgaan
   continue_to_site: Ga door naar %{site_name}
-  contributions: bijdragen
-  contributions_from: Bijdragen van
   contributor_cannot_be_found: Medewerker kan niet gevonden worden
   contributors_to_project: "Medewerkers aan %{project}"
   controlled_term_labels:
@@ -819,9 +780,7 @@ nl:
   couldnt_change_your_password: "Kon uw wachtwoord niet wijzigen: %{e}"
   couldnt_find_a_user_matching_x_param: "Kon geen gebruiker vinden overeenstemmend met %{id}"
   couldnt_find_that_taxon: Taxon niet gevonden.
-  couldnt_log_you_in_x: "Kon u niet aanmelden als %{x}"
   countries: Landen
-  country_stats: Landstatistieken voor waarnemingen aangemaakt op
   cover: Omslag
   create: Aanmaken
   create_a_guide: Maak een gids aan
@@ -834,9 +793,6 @@ nl:
   create_an_atlas: Een atlas aanmaken
   create_new_taxon: Een nieuw taxon aanmaken
   create_observations: Waarnemingen aanmaken
-  create_observations_by_uploading_photos_to: |
-    Maak waarnemingen aan door foto's te uploaden naar %{place}. Tijdens het uploaden zal %{place} proberen de exacte GPS-coordinaten en datum/tijd van deze foto uit te lezen.
-    Om te beginnen,
   created: Aangemaakt
   created_by: Aangemaakt door
   created_by_user_on_date: Aangemaakt door %{user} op %{date}
@@ -845,7 +801,6 @@ nl:
   creative_commons_flickr_tagged: Creative Commons Flickr foto's getagd
   creative_commons_unless_otherwise_noted: "Creative Commons tenzij anders vermeld."
   critically_endangered: Ernstig Bedreigd
-  critically_imperiled: Ernstig Bedreigd
   css_description: Dit wordt op de pagina ingevoegd na alle andere css.
   csv_file: CSV-bestand
   csv_should_not_contain_a_header_row: CSV mag geen kopregel bevatten
@@ -853,10 +808,6 @@ nl:
   curate_observations: Waarnemingen opvolgen
   curate_taxa: Taxa opvolgen
   curate_user: Gebruiker opvolgen
-  curate_users: Gebruikers opvolgen
-  curated: opgevolgd
-  curated_checklist: Opgevolgde checklist
-  curated_count: Opgevolgde telling
   curating: Aan het opvolgen
   curation: Beoordeling
   curators_changed_for_x_html: "Curatoren voor %{x} gewijzigd"
@@ -864,8 +815,6 @@ nl:
   curators_can_remove_observations_from: Curatoren kunnen waarnemingen van het project verwijderen en hun determinaties worden getoond naast de waarnemingen van projectspecifieke visies. Curatoren kunnen ook de echte coördinaten zien van privé- en vervaagde bijdragen aan dit project.
   curator_identification: Curator identificatie
   current_flags: Huidige markeringen
-  current_password: Huidige wachtwoord
-  custom_field_values: Veld waarden
   custom_project_fields: Aangepaste projectvelden
   custom_project_was_successfully_created: Project is succesvol aangemaakt.
   custom_project_was_successfully_updated: Project was succesvol bijgewerkt.
@@ -3947,7 +3896,6 @@ nl:
   user_invited_you_to_join_this_project_on_date_html: "%{user} nodigde je uit om aan te sluiten bij dit project op %{date}"
   user_invited_your_x_to_a_project_html: "%{user} nodigde uw %{x} uit tot een project"
   user_is_a_naturalist: "%{user} is een naturalist!"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> is nu %{role} voor %{project}"
   user_muted: Gebruiker muted
   user_observations: Gebruikerswaarnemingen
   user_observed_on_on_date_in_place: |
@@ -4081,7 +4029,6 @@ nl:
   w00t_no_ungrafted_taxa: w00t! Geen geënte taxa!
   w_photos_only: w/ foto's
   wait_file_generation: Even geduld, het bestand wordt aangemaakt. Voor lange lijsten kan dit enkele minuten in beslag nemen.
-  want_to_add_one: Wil je er één toevoegen?
   want_to_show_off_some_of_your_favorite_taxa: Wil je hier enkele van je favoriete taxa tonen?
   want_to_test_a_new_version_of_this_page: Een nieuwe versie van deze pagina testen?
   wanted: Gewenst
@@ -4227,7 +4174,6 @@ nl:
   you_are_over_your_invites_quota: .. je bent over je maandelijkse quotum van 60 uitnodigingen
   you_are_now: Je bent nu
   you_are_now_following_x: "Je volgt nu %{friend_user}"
-  you_are_now_role_for_project_html: "<strong>Je</strong> bent nu %{role} voor %{project}"
   you_are_not_editing_any_guides_add_one_html: |
     Je bewerkt geen gidsen. <a href="/guides/new">Voeg er één toe</a>
   you_are_already_a_member_of_this_project: "Je bent reeds lid van dit project!"
