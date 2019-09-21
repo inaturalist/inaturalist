@@ -259,7 +259,6 @@ bg:
   alphabetical: По азбучен ред
   alphabetical_order: По азбучен ред
   amphibians: земноводни
-  an: 1
   android: Андроид
   animals: Животни
   annotations: Анотации
@@ -362,7 +361,6 @@ bg:
   cc_by_nd_name: Признание-БезПроизводни
   cc_by_sa_description: "Този лиценз позволява на други хора да разпространяват, променят, допълват и използват Вашата творба, включително за комерсиални цели, стига да посочат Вас като автор на оригинала и стига да лицензират своите производни творби под същия лиценз."
   cc_by_sa_name: Признание-СподелянеСподеленото
-  change: Промени
   change_cover: Промени корицата
   change_geoprivacy: 'Промени геоповерителността'
   change_icon: Промени иконата
@@ -372,21 +370,17 @@ bg:
   check_list: Видов списък
   check_list_description: Изберете родителски таксон който искате да показвате в този списък - например "Aves" за птици, "Amphibia" за земноводни и т.н. Ако изберете родителски таксон, в списъка няма да се добавят таксони които не принадлежат на родителския таксон. Например, ако изберете "Птици" като родителски таксон, няма да можете да добавяте жаби към него.
   check_list_for_individual_taxa_that: 'Видов списък на отделни таксони които се срещат тук, например „Птици от %{place}“.'
-  check_list_individual_taxa: Видови списъци на отделни таксони които се срещат тук, например „Птици от %{place}“.
   check_lists_must_belong_to_a_place: |
     Видовите списъци трябва да са асоциирани с някакво място. За да създадете нов видов списък, посетете списъкът по подразбиране на желаното място и щракнете „Създай нов видов списък“.
   check_list_of_species_occuring_in: Видов списък на
   check_list_place: "Видов списък на %{place}"
   check_list_updated: Видовият списък е обновен!
   check_lists_for: "Други видови списъци за %{place}"
-  check_out_your_life_list: Провери своя житейски списък
   choose_a_field: Изберете поле
   choose_a_place: Изберете място
   choose_a_taxon: Изберете таксон (незадълж.)
   choose_files: Избор на файлове
-  choose_files_from_your_computer: избор на файлове от компютъра
   choose_from_your_lists: Изберете от вашите списъци
-  choose_photos: Избери снимки
   choose_photos_for_this_taxon: Избери снимки за този таксон
   choose_tags: Избери етикети
   choose_taxon: Избери таксон
@@ -401,19 +395,15 @@ bg:
   columns: Колони
   combine: Обедини
   comma_separated_please: Разделени със запетая, моля
-  comment_preview: Преглед на коментара
   comment: коментар
   comment_: Коментар
   comments: Коментари
-  comments_and_identifications: Коментари и разпознавания
-  comments_by_everyone: Коментари от всички
   comments_by_me: Коментари от мен
   comments_on: Коментари на
   comments_on_my_observations: Коментари на мои наблюдения
   community: Общност
   community_curated: Курирано от общността
   community_guidelines: Правила на общността
-  community_id: 'Разпознаване от <strong>общността</strong>:'
   community_id_heading: Разпознаване от общността
   community_id_at_species_or_lower?: Разпознаване от общността до вид или по-точно?
   community_id_at_species_level_or_lower: ID от общността на ниво вид или по-ниско
@@ -483,12 +473,10 @@ bg:
   created_by: Създадено от
   creating_your_account: "Създаване на акаунт..."
   critically_endangered: критично застрашен
-  critically_imperiled: критично застрашен
   csv_file: CSV файл
   csv_should_not_contain_a_header_row: CSV не трябва да съдържа заглавен ред
   curator: Куратор
   curators: Куратори
-  current_password: Текуща парола
   dashboard: Табло
   data_deficient: недостатъчно данни
   data_quality: Качество на данните
@@ -2112,7 +2100,6 @@ bg:
   user_invited_you_to_join_this_project_on_date_html: "%{user} Ви покани да се включите в проекта на %{date}"
   user_invited_your_x_to_a_project_html: "%{user} покани Ваш(а/е) %{x} в проект"
   user_is_a_naturalist: "%{user} е естествоизпитател!"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> вече е %{role} на %{project}"
   user_muted: Потребителят е заглушен
   user_observations: Потребителски наблюдения
   user_suggested_an_id: "%{user} предложи ID"
