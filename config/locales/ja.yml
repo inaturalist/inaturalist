@@ -319,7 +319,6 @@ ja:
   alphabetical_order: アルファベット順
   already_have_an_account_log_in_html: アカウントは登録済みですか？ <strong>ログインしてください。</strong>
   amphibians: 両生類
-  an: ある
   and: そして
   and_help_the_inaturalist_community_grow: "%{site_name}コミュニティーが更に大きくなるようにご協力を"
   and_other_taxa: "&amp; その他の分類群"
@@ -486,7 +485,6 @@ ja:
   cc_by_nd_name: 表示—改変禁止
   cc_by_sa_name: 表示—継承
   cc_used_under_a: "クリエイティブ・コモンズ："
-  change: 変更
   change_admin: 管理者を変更
   change_cover: カバーを変更
   change_descriptions:
@@ -515,37 +513,25 @@ ja:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon}は%{output_taxon}に置き換えられます"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}は%{output_taxon}に統合されました"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa}は%{output_taxon}に統合されます"
-  change_visibility_of: 位置情報の公開設定を変更しますか？
   change_your_password: パスワードを変更
   check_list: チェックリスト
   check_list_for_individual_taxa_that: 'この地域で棲息する分類群のチェックリスト（例：「%{place}の鳥類」）'
-  check_list_individual_taxa: この地域で棲息する分類群のチェックリスト（例：「%{place}の鳥類」）
   check_lists_must_belong_to_a_place: |
     チェックリストは場所に所属しなければなりません。新規チェックリストを作るには、場所のデフォルトチェックリストから、「新規チェックリストを作成」のリンクをクリックしてください。
   check_list_of_species_occuring_in: 種チェックリスト：
   check_list_place: "%{place} チェックリスト"
   check_list_updated: チェックリスト更新されました！
-  check_list_source: ソース<span class="meta">（任意）</span>
   check_lists_for: "%{place}のその他のチェックリスト"
   check_out_my_observations_at: よかったら、次の場所で私の観察記録をご覧ください：
   check_out_our_blog: 公式ブログも読んでみてください
-  check_out_your_life_list: 自分のライフリストを見てみましょう。
   checklist: チェックリスト
-  checklist_places: チェックリスト場所
-  checklist_places_absent: チェックリスト場所（不在）
-  checklist_places_confirmed: チェックリスト場所（確認済）
-  checklist_places_introduced: チェックリスト場所（移入）
-  child_taxa: 子の分類群
   choose_a_list_above: 上記からリストを選択してください。
   choose_a_place: 場所を選ぶ
   choose_a_taxon: 分類群を選択（任意）
   choose_cc_licensed_photos_html: '別のサイトの<a href=\"http://creativecommons.org/\">公開ライセンス</a>の写真を選択するか、%{site_name}の観察記録からお選びください。<em>同定に役立つ特徴</em>がはっきり写っている写真、<em>アイコンとしてよく見える</em>写真を推奨しています。<em>1枚目の写真はデファルトとなります。'
-  choose_files_from_your_computer: パソコンからファイルを選択
   choose_from_your_lists: 自分のリストから選択
-  choose_photos: 写真を選択
   choose_photos_for_this_taxon: 分類群の写真を選択
   choose_photos_to_tag_from_photostream: フォトストリームの中からタグする写真を選択
-  choose_place: 場所を選択
   choose_rule: ルールを選択
   choose_subjects: 対象を選択
   choose_tags: タグを選択
@@ -557,37 +543,25 @@ ja:
   clear: クリア
   clear_color_filters: 色フィルターを解除
   clear_search: 検索フィルターを解除
-  click_on_the_map_to: マップで観察された場所をクリックし、観察記録を置きましょう。
   click_the_map: "場所を追加するには、<strong>マップをクリック</strong>"
   click_the_map_to_jump_new_place: マップをクリックし、新しい場所を訪れましょう
   code: コード
-  collapse_days: 日を非表示
-  collapse_updates: 更新を非表示
-  color_categories_for_this_species: |
-    カラーコード付きの図鑑に掲載するときのように、この種を色で分類してください。生物のすべての色を列記しないでください。顕花植物の場合は花色を使用します。茶色の哺乳類や緑色のシダなど、分類の役に立たない色は空白のままにします。
   colors: 色
   columns: 列
   combine: 統合
   comma_separated_please: カンマ区切りでお願いします
-  comment_preview: コメントをプレビュー
   comment: コメント
   comment_: コメント
-  comment_feed: コメントフィード
   comment_deleted: コメント削除されました
-  commented: コメントしました
   comments: コメント
-  comments_and_identifications: コメント及び同定
-  comments_by_everyone: みんなのコメント
   comments_by_me: 自分のコメント
   comments_on: コメント：
   comments_on_my_observations: 自分の観察記録のコメント
-  comments_youve_made_with_others: あなたが (その他と) <br/><span class="description">過去1週間にしたコメント</span>
   commercial_solicitation: セールス、どこにも繋がらないリンクなど。
   commit: 確定
   committed: 確定済
   committing: 確定中...
   community: コミュニティ
-  community_id: '<strong>コミュニティー</strong>ID:'
   community_id_heading: コミュニティー分類
   community_id_at_species_or_lower?: 種以下の階級によるコミニュティ分類の有無は？
   community_id_at_genus_level_or_lower: 層レベル以下のコミュニティー分類の有無
@@ -611,8 +585,6 @@ ja:
   confirm_now: 今すぐ確認
   confirm_your_info: 登録情報をご確認ください
   confirmed: 確認済
-  confirmed_observations_are: 確認済みの観察記録は
-  confirming_identifications: 同定を確認中
   connect_to_provider: "%{provider}に接続"
   connected_accounts: 関連づけられたアカウント
   connecting_flickr: "Flickrに接続中..."
@@ -623,12 +595,8 @@ ja:
     url: 保全状況を明記するウェブページのURL
     geoprivacy: この分類群のデフォルト位置情報公開設定
     iucn: 相当するIUCNレッドリスト記号
-  conservation_summary: 保全概要
   contain_all_descendants?: リストにはこの場所で生息する当分類群のすべての種が含まれていますか？
-  contest: コンテスト
   continue: 続行
-  contributions: 提供コンテンツ
-  contributions_from: 提供者：
   contributor_cannot_be_found: 提供者が見つかりません
   contributors_to_project: "%{project}への貢献者"
   controls: 設定
@@ -661,9 +629,7 @@ ja:
   couldnt_change_your_password: "パスワードを変えることができませんでした：%{e}"
   couldnt_find_a_user_matching_x_param: "%{id}というユーザーが見つかりません"
   couldnt_find_that_taxon: お探しのタクソンが見つかりません
-  couldnt_log_you_in_x: "'%{x}'としてログインできませんでした"
   countries: 国
-  country_stats: 国の観察統計データ作成日：
   cover: カバー
   create: 作成
   create_a_guide: ガイドを作成
@@ -685,10 +651,6 @@ ja:
   csv_should_not_contain_a_header_row: ヘッダー行のないCSVでお願いします
   curate_observations: 観察記録を管理
   curate_taxa: 分類群を管理
-  curate_users: ユーザーを管理
-  curated: 管理済み
-  curated_checklist: キュレーター管理下のチェックリスト
-  curated_count: キュレーター管理回数
   curating: キュレーター管理中
   curation: キュレーター管理
   curator: キュレーター管理者
@@ -696,8 +658,6 @@ ja:
   curators: キュレーター管理者
   curators_can_remove_observations_from: キュレーターはプロジェクトから観察を削除でき、同定結果をプロジェクト固有の表示画面に示すことができます。キュレーターはこのプロジェクト上で個人の不明瞭な投稿の真の座標を閲覧することもできます。
   curator_identification: キューレータによるID
-  current_password: 現在のパスワード
-  custom_field_values: 任意フィールド値
   custom_project_fields: プロジェクト専用フィールド
   custom_project_was_successfully_created: カスタムプロジェクトは無事作成されました。
   custom_project_was_successfully_updated: カスタムプロジェクトは無事更新されました。
@@ -2852,7 +2812,6 @@ ja:
   user_invited_you_to_join_project: "%{user}から%{project}に参加するように招待されました"
   user_invited_your_x_to_a_project_html: "%{user}があなたの%{x}をプロジェクトに招待しました"
   user_is_a_naturalist: "%{user}はナチュラリストです！"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong>は%{project}の%{role}になりました"
   user_s_id: "%{user}の%{id}"
   user_s_lists: "%{user}さんのリスト"
   username: ユーザー名
@@ -2938,7 +2897,6 @@ ja:
   w00t_no_ungrafted_taxa: やった！未合体の分類群がありません！
   w_photos_only: 写真あり
   w_sounds: 音声あり
-  want_to_add_one: 一つ追加しませんか？
   want_to_show_off_some_of_your_favorite_taxa: こちらでお気に入りの分類群を表示しませんか？
   was_it_captive_cultivated?: "飼育/栽培？"
   we_also_support: |
@@ -3023,7 +2981,6 @@ ja:
     現在はオフラインのようです。インタネットに接続したらまたお試しください。
   you_are_over_your_invites_quota: ...１カ月分の招待６０件を超えています
   you_are_now_following_x: "%{friend_user}をフォローし始めました。"
-  you_are_now_role_for_project_html: "<strong>あなた</strong>は%{project}の%{role}になりました"
   you_are_already_a_member_of_this_project: "このプロジェクトはすでに参加しています！"
   you_are_no_longer_following_x: "%{friend}はもうフォローしていません。"
   you_are_subscribed_to: "あなたの購読先："
@@ -3712,12 +3669,10 @@ ja:
                 %{time}より前に観察されていなければなりません
   i18n:
     inflections:
-      0:
+      - 
         vow: 母音
         con: 子音
-      gender:
-        m: 雄
-        f: 雌
+      - 
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 前へ"
