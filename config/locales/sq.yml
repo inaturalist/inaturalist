@@ -298,7 +298,6 @@ sq:
   alphabetical: Alfabetike
   alphabetical_order: Sipas rendit alfabetik
   amphibians: amfibet
-  an: një
   and: dhe
   and_help_the_inaturalist_community_grow: "dhe ndihmo %{site_name} zgjerimin e komunitetit."
   and_other_taxa: "&amp; Taksa të Tjera"
@@ -476,7 +475,6 @@ sq:
   cc_by_sa_description: "Kjo licencë lejon të tjerët të kombinojnë, të nxjerrin dhe të plotësojnë punën tuaj, qoftë edhe për qëllime komerciale, përderisa jua veshin/atribuojnë juve dhe licencojnë krijimet e tyre të reja në pajtim me të njëjtat kushte identike. Të gjitha punimet e reja të bazuara mbi tuajat do të mbajnë të njëjtën licencë, dhe çdo gjë që rrjedh prej tyre po ashtu do të lejojë përdorimin komercial."
   cc_by_sa_name: Atribuimi-NdaniNjëlloj
   cc_used_under_a: "Creative Commons, përdorë nën një"
-  change: Ndrysho
   change_admin: Ndryshoje administratorin
   change_cover: Ndrysho kopertinën
   change_descriptions:
@@ -514,8 +512,6 @@ sq:
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} do të zëvendësohet nga %{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} u bashkuan në %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} do të bashkohen në %{output_taxon}"
-  change_visibility_of: Ndrysho dukshmërinë e koordinatave hapësinore?
-  change_your_matching: Ndrysho përputhjen tënde
   change_your_password: Ndrysho fjalëkalimin tënd
   changing_the_geoprivacy: 'Ndryshimi i gjeoprivatisë ndryshon mënyrën se si njerëzit e tjerë e shohin vendndodhjen e vëzhgimit tuaj.'
   check_above_for_errors: Shëno sipër për gabime
@@ -525,26 +521,16 @@ sq:
   check_list: Kontrollo listën
   check_list_description: Zgjidhni një taxon të nivelit më të lartë që dëshironi të shfaqni në këtë listë, si "Aves" për zogjtë, ose "Amphibia" për amfibët. Kur të vendoset, kjo listë nuk do të lejojë taxa që nuk janë në këtë taxon. Për shembull, nëse krijoni një listë zogjsh, nuk do të mundni të shtoni ndonjë bretkocë në të.
   check_list_for_individual_taxa_that: 'Kontrolloni listat për taxa individuale që jetojnë këtu, psh. "Zogjtë e %{place}".'
-  check_list_individual_taxa: Kontrolloni listat për taxa individuale që jetojnë këtu, psh. "Zogjtë e %{place}".
   check_lists_must_belong_to_a_place: |
     Listat kontrolluese kanë vend të caktuar. Për të krijuar një listë të re kontrolluese, gjeni listën shabllon të një vendi dhe klikoni në vegzën ‘Krijo listë të re kontrolluese’.
   check_list_of_species_occuring_in: Kontrollo listën e specieve që shfaqen në
   check_list_place: "%{place} Lista kontrolluese"
   check_list_updated: Lista kontrolluese është përditësuar!
-  check_list_source: Burimi <span class="meta">(optional)</span>
   check_lists_for: "Listat kontrolluese të tjerëve për %{place}"
   check_out_my_observations_at: Nëse dëshironi, mund të shikoni vëzhgimet e mia në
   check_out_our_blog: Shiko Blogun tonë
   check_out_what_the_observation: Shiko se si duket vëzhgimi që po përpiqeni të identifikoni.
-  check_out_your_life_list: Kontrollo listën tuaj të jetës
   checklist: Lista kontrollouese
-  checklists: Listat kontrolluese
-  checklist_places: Vendet e listave kontrolluese
-  checklist_places_absent: Vendet e listave kontrolluese (mungojnë)
-  checklist_places_confirmed: Vendet e listave kontrolluese (të konfirmuara)
-  checklist_places_introduced: Vendet e listës kontrolluese (të paraqitura)
-  cheklist_places_are_places_with_contain_taxon: '"Vendet e listës kontrolluese" janë vende me lista kontrolluese të cilat përmbajnë këtë taxon.'
-  child_taxa: Taxa bazë
   choose_a_field: Zgjidhni një fushë
   choose_a_list_above: Zgjidhni një listë më lart.
   choose_a_place: Zgjidhni një vend
@@ -553,13 +539,9 @@ sq:
   choose_columns: Zgjidh shtyllat
   choose_file: Zgjidh skedarin
   choose_files: Zgjidh dosjet
-  choose_files_from_your_computer: zgjidh dosjet nga kompjuteri juaj
   choose_from_your_lists: Zgjidh nga listat tuaja
-  choose_good_default_photos: zgjidh fotot e mira të përzgjedhura nga lëmi i fotografive të Creative Commons në Flickr
-  choose_photos: Zgjidh fotografitë
   choose_photos_for_this_taxon: Zgjidh fotografitë për këtë taxon
   choose_photos_to_tag_from_photostream: Zgjidh fotografitë për t'u etiketuar nga fotosfera juaj
-  choose_place: Zgjidh një vend
   choose_rule: Zgjidh një rregull
   choose_subjects: Zgjidh lëndët
   choose_tags: Zgjidh etiketat
@@ -572,16 +554,10 @@ sq:
   clear: fshije
   clear_color_filters: Pastro filtrat e ngjyrave
   clear_search: Fshi kërkimin
-  click_on_the_map_to: Kliko në hartë për të vendosur vëzhgimin tuaj
   click_the_map: "<strong>Kliko në hartë</strong> për të shtuar një vendndodhje."
   click_the_map_to_jump_new_place: Kliko në hartë për të kërcyer në një vend të ri
   close: Mbylle
   code: Kodi
-  collapse_days: shemb ditët
-  collapse_updates: shemb përditësimet
-  color_categories_for_this_species: |
-    Ngjyrosni kategoritë për këtë specie, sikur do ta vendosnit atë
-    në një udhëzues në terren të renditur sipas ngjyrës. Ju lutemi mos listoni çdo ngjyrë tek organizmi, vetëm ato të shquarat. Për bimët e lulëzuara ju lutemi përdorni ngjyrën e luleve. Ju lutemi të lini bosh për ngjyra që nuk do të ishin të dobishme për kategorizimin, si gjitarët kafe dhe fieret e gjelbra.
   colors: Ngjyrat
   columns: Shtyllat
   combine: Kombino
@@ -589,19 +565,13 @@ sq:
     Lista e kodeve gjurmuese të ndara me presje. Shtoni këto nëse doni të shtoni një kod gjurmues kur u dërgoni njerëzve formën e re të vëzhgimit, p.sh. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Ju mund ta përdorni këtë për të gjurmuar pjesëmarrjen nga burime të ndryshme. Këto kode mund të aksesohen kur shkarkoni vëzhgimet e projektit si CSV.
   comma_separated_please: Të ndara me pikëpresje, ju lutem
-  comment_preview: Shikoni komentin
   comment: koment
   comment_: Koment
-  comment_feed: Burimi i komentit
   comment_deleted: Komenti u fshi
-  commented: komentuar
   comments: Komentet
-  comments_and_identifications: Komentet dhe Identifikimet
-  comments_by_everyone: Komentet e të gjithëve
   comments_by_me: Komentet nga unë
   comments_on: Komente mbi
   comments_on_my_observations: Komentet për vëzhgimet e mia
-  comments_youve_made_with_others: Komentet që keni bërë (w/ Others)<br/><span class="description">javën e kaluar</span>
   commercial_solicitation: Kërkesa komerciale, lidhje askund, etj.
   commit: Kryej
   committed: Kryer
@@ -610,7 +580,6 @@ sq:
   community: Komuniteti
   community_curated: Komuniteti i kuruar
   community_guidelines: Udhëzimet e komunitetit
-  community_id: '<strong>Komuniteti</strong> ID:'
   community_id_heading: ID e komunitetit
   community_id_at_species_or_lower?: ID i komunitetit në specie ose më i ulët?
   community_id_at_genus_level_or_lower: ID e komunitetit në nivelin e gjinisë ose më të ulët
@@ -638,8 +607,6 @@ sq:
   confirm_now: Konfirmo tani
   confirm_your_info: Konfirmo informacionin tënd
   confirmed: i konfirmuar
-  confirmed_observations_are: Vëzhgimet e konfirmuara janë
-  confirming_identifications: duke konfirmuar identifikimet
   connect_to_provider: "Lidhu me %{provider}"
   connected_accounts: Llogaritë e lidhura
   connecting_flickr: "Duke u lidhur me Flickr..."
@@ -654,12 +621,8 @@ sq:
     url: URL për një faqe që përshkruan këtë status.
     geoprivacy: Gjeo-lokacioni i paracaktuar për vëzhgimet e këtij taxon
     iucn: Ekuivalenti IUCN i Kodit të Listës së Kuqe
-  conservation_summary: Përmbledhje e ruajtjes
   contain_all_descendants?: A përmban kjo listë të gjithë pasardhësit e këtij taxon që paraqiten këtu?
-  contest: garë
   continue: Vazhdo
-  contributions: kontributet
-  contributions_from: Kontributet nga
   contributor_cannot_be_found: Kontribuesi nuk mund të gjendet
   contributors_to_project: "Kontribuesit në %{project}"
   controlled_term_labels:
@@ -712,9 +675,7 @@ sq:
   couldnt_change_your_password: "Nuk mund ta ndryshoni fjalëkalimin tuaj: %{e}"
   couldnt_find_a_user_matching_x_param: "Nuk mund të gjendet përdoruesi që përputhet me %{id}"
   couldnt_find_that_taxon: Nuk mund të gjendet ky takson.
-  couldnt_log_you_in_x: "Nuk mund të hyni në llogarinë tuaj si '%{x}'"
   countries: Shtetet
-  country_stats: Statistikat e vendit për vëzhgimet e krijuara në
   cover: Mbulim
   create: Krijo
   create_a_guide: Krijo një udhëzues
@@ -727,9 +688,6 @@ sq:
   create_an_atlas: Krijo një atlas
   create_new_taxon: Krijo një taxon të ri
   create_observations: Krijo vëzhgime
-  create_observations_by_uploading_photos_to: |
-    Krijo vëzhgime duke ngarkuar fotot në %{place}. Pasi të ngarkoni foton, %{place} do te përpiqemi të nxjerrim koordinatat e pozicionimit global (GPS) dhe datën/kohën e fotos. 
-    Për të filluar,
   created: E Krijuar
   created_by: Krijuar nga
   created_by_user_on_date: Krijuar nga %{user} me %{date}
@@ -738,17 +696,12 @@ sq:
   creative_commons_flickr_tagged: Fotot Kreative te Përgjithshme te Flickr te Shenjuara
   creative_commons_unless_otherwise_noted: "Të zakonshmet e krijuara nese nuk jane shenuar ndryshe."
   critically_endangered: rrezikuar në mënyrë kritike
-  critically_imperiled: të rrezikuara në mënyrë kritike
   css_description: Kjo do të përfshihet pas të gjitha css të tjera në faqe.
   csv_file: Dosja CSV
   csv_should_not_contain_a_header_row: CSV nuk duhet të përmbajë një rresht në krye
   cumulative_ids: "ID-të kumulative: %{count} of %{total}"
   curate_observations: Kuro vëzhgimet
   curate_taxa: Kuro taxa
-  curate_users: Kuro përdoruesit
-  curated: e kuruar
-  curated_checklist: Lista e plote e perzgjedhur
-  curated_count: Llogaritja e përzgjedhur
   curating: Duke kuruar
   curation: Kurimi
   curator: Kurator
@@ -757,8 +710,6 @@ sq:
   curators_can_remove_observations_from: Kuratorët mund të heqin vëzhgimet nga projekti, dhe identifikimet e tyre shfaqen krahas vëzhgimeve në pamje specifike të projektit. Po ashtu, kuratorët mund të shohin koordinatat e vërteta të kontributeve private dhe të errësuara në projekt.
   curator_identification: Identifikimi i kuratorit
   current_flags: Flamujt aktuale
-  current_password: Fjalëkalimi aktual
-  custom_field_values: Vlerat e fushave të personalizuara
   custom_project_fields: Fushat e Projektit me porosi
   custom_project_was_successfully_created: CustomProject u krijua me sukses.
   custom_project_was_successfully_updated: CustomProject u përditësua me sukses.
