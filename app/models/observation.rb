@@ -2075,45 +2075,7 @@ class Observation < ActiveRecord::Base
   end
   
   def update_stats(options = {})
-    idents = [self.identifications.to_a, options[:include]].flatten.compact.uniq
-    current_idents = idents.select(&:current?)
-    if taxon_id.blank?
-      num_agreements    = 0
-      num_disagreements = 0
-    else
-      nodes = community_taxon_nodes
-      if node = nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
-        num_agreements = node[:cumulative_count]
-        num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
-        num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
-        num_agreements = 0 if current_idents.count <= 1
-        num_disagreements = 0 if current_idents.count <= 1
-      else
-        num_agreements    = current_idents.select{|ident| ident.is_agreement?(:observation => self)}.size
-        num_disagreements = current_idents.select{|ident| ident.is_disagreement?(:observation => self)}.size
-      end
-    end
-    
-    # Kinda lame, but Observation#get_quality_grade relies on these numbers
-    self.num_identification_agreements = num_agreements
-    self.num_identification_disagreements = num_disagreements
-    self.identifications_count = idents.size
-    new_quality_grade = get_quality_grade
-    self.quality_grade = new_quality_grade
-    
-    if !options[:skip_save] && (
-        num_identification_agreements_changed? ||
-        num_identification_disagreements_changed? ||
-        quality_grade_changed? ||
-        identifications_count_changed?)
-      Observation.where(id: id).update_all(
-        num_identification_agreements: num_agreements,
-        num_identification_disagreements: num_disagreements,
-        quality_grade: new_quality_grade,
-        identifications_count: identifications_count)
-      refresh_check_lists
-      refresh_lists
-    end
+    Observations::UpdateStats.new(self, options).call
   end
   
   def self.update_stats_for_observations_of( taxon )
