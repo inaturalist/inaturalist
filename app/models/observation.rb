@@ -1198,43 +1198,7 @@ class Observation < ActiveRecord::Base
   end
   
   def get_quality_grade
-    if !research_grade_candidate?
-      CASUAL
-    elsif voted_in_to_needs_id?
-      NEEDS_ID
-    elsif community_taxon_id && community_taxon_rejected?
-      if owners_identification.blank? || owners_identification.maverick?
-        CASUAL
-      elsif (
-        owners_identification &&
-        owners_identification.taxon.rank_level && (
-          (
-            owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
-            community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
-          ) || (
-            owners_identification.taxon.rank_level == Taxon::GENUS_LEVEL &&
-            community_taxon == owners_identification.taxon &&
-            voted_out_of_needs_id?
-          )
-        )
-      )
-        RESEARCH_GRADE
-      elsif voted_out_of_needs_id?
-        CASUAL
-      else
-        NEEDS_ID
-      end
-    elsif community_taxon_at_species_or_lower?
-      RESEARCH_GRADE
-    elsif community_taxon_id && voted_out_of_needs_id?
-      if community_taxon_below_family?
-        RESEARCH_GRADE
-      else
-        CASUAL
-      end
-    else
-      NEEDS_ID
-    end
+    Observations::CalcQualityGrade.new(self).call
   end
   
   def coordinates_obscured?
