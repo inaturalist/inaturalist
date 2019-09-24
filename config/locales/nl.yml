@@ -253,9 +253,9 @@ nl:
   additional_range: Bijkomende omvang
   additional_range_data_from_an_unknown_source: Bijkomende range data van een onbekende bron
   adjust_brightness: Helderheid aanpassen
-  admin_s: Beheerder(s)
-  admin_only: Alleen beheerders
-  admin_tools: Werktuigen voor de Admin
+  admin_s: Administrator(en)
+  admin_only: Alleen administratoren
+  admin_tools: Administrator-hulpmiddelen
   agree: akkoord
   agree_: Akkoord
   agree?: Akkoord?
@@ -1214,7 +1214,7 @@ nl:
   flagger: Markeerder
   flags: Markeringen
   flags_with_count: Markeringen %{count}
-  flags_explanation: "%{site_name} gebruikers markeren onderwerpen die aandacht nodig hebben van de sitecurators of siteadmins."
+  flags_explanation: "%{site_name}-gebruikers markeren zaken waar de site-curatoren of site-administratoren naar moeten kijken."
   flags_for_x_html: Markeringen voor %{x}
   flags_on_users_content: "Markeer %{user} inhoud"
   flickr_account_information: Uw Flickr-account informatie
@@ -2024,7 +2024,7 @@ nl:
   next_tab: Volgende tabblad
   'no': 'Nee'
   no_activity_in_the_past_week: Geen activiteit tijdens de voorbije week. Tijd om
-  no_administrator_knows_your_password: "Geen enkele %{sitename} beheerder weet je nieuwe wachtwoord of heeft ooit toegang tot je wachtwoord gehad."
+  no_administrator_knows_your_password: "Geen enkele %{sitename}-administrator weet je nieuwe wachtwoord, of heeft/had ooit toegang tot je wachtwoord."
   no_assessments_have_been_added_to_this_project_yet: Er zijn nog geen beoordelingen aan dit project toegevoegd.
   no_but_it_is_a_member_of_taxon: "Nee, maar het is een lid van %{taxon}"
   no_colors_selected: Geen kleuren geselecteerd.
@@ -2088,8 +2088,8 @@ nl:
   no_places_selected: Geen plaatsen geselecteerd.
   no_post_yet: Nog geen berichten!
   no_project_selected: Geen project geselecteerd
-  no_project_to_admin_current_user: "Je beheert geen enkel project"
-  no_project_to_admin_login: "%{login} beheert geen enkel project"
+  no_project_to_admin_current_user: "Je administreert geen enkel project"
+  no_project_to_admin_login: "%{login} administreert geen enkel project"
   no_projects_yet: Nog geen projecten
   no_range_data_available: Geen datareeks beschikbaar.
   no_recent_activity: Geen recente activiteit
@@ -2345,7 +2345,7 @@ nl:
   one_by_one: "Eén voor één"
   one_of_your_lists: "één van uw lijsten ..."
   only_a_project_manager_can_add: Alleen een projectmanager kan de projectcuratorstatus toevoegen
-  only_administrators_may_access_that_page: Alleen administrators hebben toegang tot deze pagina
+  only_administrators_may_access_that_page: Alleen administratoren hebben toegang tot deze pagina
   only_accepts_taxa: aanvaardt enkel taxa
   only_an_admin_can_remove_project_users: Alleen een admin kan projectgebruikers verwijderen
   only_country_state_and_county: "Alleen voor nu weergegeven landen, staten en provincies. Zoom in om kleinere plaatsen te zien."
@@ -2369,7 +2369,7 @@ nl:
   only_staff_can_edit_standard_places: Alleen de staf van de site kan plaatsen in de standaardhiërarchie bewerken
   only_the_author_of_this_post_can_do_that: Alleen de auteur van dit bericht kan dat doen. Wees niet slecht.
   only_the_owner_of_this_list_can_do_that: Alleen de eigenaar van deze lijst kan dat doen. Wees niet slecht.
-  only_the_project_admin_can_delete_this_project: Alleen de projectbeheerder kan dit project verwijderen.
+  only_the_project_admin_can_delete_this_project: Alleen de projectadministrator kan dit project verwijderen.
   only_you: Alleen u
   open_description: "De coördinaten zijn voor iedereen zichtbaar, tenzij het gaat om een bedreigd taxon."
   opt_in_for_this_observation: "Opt in voor deze waarneming"
@@ -2596,7 +2596,7 @@ nl:
   placement: plaatsing
   places: Plaatsen
   places_added_by_members_of_the_community: Plaatsen toegevoegd door leden van de gemeenschap
-  places_maintained_by_site_admins: Plaatsen die door sitebeheerders worden onderhouden
+  places_maintained_by_site_admins: Plaatsen die door siteadministratoren worden onderhouden
   places_name:
     africa: Afrika
     akrotiri_and_dhekelia: Akrotiri en Dhekelia
@@ -2808,8 +2808,8 @@ nl:
     publiekelijk zichtbaar nadat een gebruiker met verschillende Onderzoekskwaliteit-waarnemingen heeft bijgedragen.
   project_added_your_observations: Uw waarnemingen werden aan het project toegevoegd
   project_admins:
-    one: Projectbeheerder
-    other: Projectbeheerders
+    one: Projectadministrator
+    other: Projectadministratoren
   project_aggregator_filter_error: |
     Projecten kunnen automatische waarnemingsaggregatie niet inschakelen tenzij het
     project wordt geassocieerd met een plaats van gemiddelde grootte of het laat alleen toe
@@ -2862,7 +2862,7 @@ nl:
   projects_from_everywhere: Projecten van overal
   projects_from_place: "Projecten van %{place}"
   projects_in_x: "Projecten in %{x}"
-  projects_you_admin: Projecten die jij beheert
+  projects_you_admin: Projecten die jij administreert
   projects_youve_joined: Projecten waar je aan deelneemt
   proposed_taxa_that_contradict_the_community_id: Voorgestelde taxa die de gemeenschapsID tegenspreken
   proposed_taxa_that_support_the_community_id: Voorgestelde taxa die de gemeenschapsID ondersteunen
@@ -3555,8 +3555,8 @@ nl:
   the: de
   the_: De
   the_admin_is_the_person_who: |
-    De admin is de persoon die het project heeft gemaakt. Ze kunnen alles doen
-    managers en curatoren kunnen doen, ook het project verwijderen.
+    De administrator is de persoon die het project heeft gemaakt. Ze kunnen alles doen wat 
+    beheerders en curatoren kunnen doen, en ook het project verwijderen.
   the_below_items_are_needed_to_achieve: |
     De onderstaande items zijn nodig om <span className="bold">Onderzoekskwaliteit</span> te bereiken:
   the_community_agrees_location_doesnt: de gemeenschap vindt dat de <strong>lokatie niet nauwkeurig lijkt</strong> (bijvoorbeeld apen midden in de oceaan, nijlpaarden in kantoorgebouwen, enzovoort)
@@ -3629,8 +3629,8 @@ nl:
     Dit zijn items die mensen op de site hebben gemarkeerd voor een beoordeling. Spam
     reacties moeten worden verwijderd en gebruikers die spam toevoegen, moeten worden opgeschort (ga naar hun profielpagina en klik op 'Gebruiker opschorten' rechtsonder in om te voorkomen
     dat ze inloggen). Andere gemarkeerde items mogen alleen worden verwijderd
-    als ze duidelijk haatdragend, illegaal, etc. zijn. Roekeloos, beledigend taalgebruik,
-    etc. moet worden behandeld met een beleefde opmerking. Herhaaldelijke overtreders zouden moeten zijn gerapporteerd aan een websitebeheerder of %{email}
+    als ze duidelijk haatdragend, illegaal, etc. zijn. Onbeleefd, beledigend taalgebruik,
+    etc. moet worden behandeld met een beleefde opmerking. Herhaaldelijke overtreders moeten worden gerapporteerd aan een site-administrator of %{email}
   these_are_taxa_that: |
     Dit zijn taxa die %{site} niet automatisch aan onze taxonomische boom kan toevoegen om de één of andere reden. Je kunt ze aan de boom toevoegen door het taxon te bewerken en het kiezen van een bovenliggend record. Bijvoorbeeld het bovenliggend  record van van Homo sapiens is het geslacht Homo. Misschien wilt u ook synoniementaxa controleren en ze samenvoegen.
   these_arent_necessarily_relevant_to: "Deze zijn niet noodzakelijk relevant voor dit project. Controleer de"
@@ -4119,7 +4119,7 @@ nl:
   would_you_like_to: Zou jij
   would_you_prefer_to_view_common_names_used_in_place_html: Wil je liever lokale namen zien die worden gebruikt in <strong>%{place}</strong>?
   would_like_some_help_identifying_this: had graag wat hulp om dit te identificeren
-  x_admin: "%{login} beheerders"
+  x_admin: "%{login} administratoren"
   x_blog: "Blog van %{x}"
   x_deleted: "%{x} verwijderd"
   x_does_not_exist: "%{x} bestaat niet"
@@ -4164,7 +4164,7 @@ nl:
   yesterday_at: ', gisteren om 16 u.'
   you: u
   you_: U
-  you_admin: jij beheert
+  you_admin: jij administreert
   you_appear_offline_try_again: |
     Het lijkt erop dat je offline bent. Probeer opnieuw wanneer je verbonden bent met het Internet.
   youre_a_site_curator_which_means: |
@@ -4193,8 +4193,8 @@ nl:
   you_can_change_your_new_passwd_after_logging_in: "Je kunt je nieuwe wachtwoord wijzigen nadat je je hier hebt aangemeld:"
   you_can_choose_observations_associated: Je kunt waarnemingen kiezen om aan dit dagboekbericht te koppelen.
   you_can_edit_this_default_check_list_because: |
-    U kunt deze standaard checklist bewerken b/c je bent een
-    admin, maar daar zou eigenlijk geen behoefte aan moeten zijn.
+    Je kunt deze standaard-checklist bewerken omdat je een administrator
+    bent, maar daar zou eigenlijk geen behoefte aan moeten zijn.
   you_can_help_make_our: Je kunt helpen onze soortenpagina's nuttiger te maken door gegevens toe te voegen! Hier zijn een paar manieren waarop je kunt helpen
   you_can_only_destroy_taxa_you_created: "Je kunt alleen taxa die je zelf hebt gemaakt vernietigen maar je kunt geen taxa vernietigen die worden gebruikt in taxonwijzingen."
   you_can_only_block_three_users: Je kan slechts drie gebruikers blokkeren
@@ -4555,23 +4555,25 @@ nl:
           <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master-GitHub">fork ons op GitHub</a>!
         how_do_i_contact_inaturalist?: Hoe contacteer ik %{site_name}?
         you_can_contact_us_at_html: 'Je kunt contact met ons opnemen via <a href="mailto:%{help_email}">%{help_email}</a>'
-        what_are_admins_and_curators?: Wat zijn admins en curatoren?
+        what_are_admins_and_curators?: Wat zijn administratoren en curatoren?
         inat_admins_are_the_people_who: |
-          %{site_name}beheerders zijn mensen die de site beheren. Zij hebben directe toegang tot de onderliggende code en de database, en zij kunnen alles op de site wijzigen.
+          %{site_name}-administratoren zijn mensen die de site runnen. Ze hebben directe toegang tot de onderliggende code en de database, en ze kunnen alles op de site wijzigen.
         curators_are_inat_users_who_volunteer_to_html: |
           Curatoren zijn %{site_name}-gebruikers die zich vrijwillig aanmelden om onze taxonomische gegevens bij de tijd te houden. Als je interesse hebt om curator te worden, neem alsjeblieft
           <a href="mailto:%{help_email}">contact met ons op</a>. Curatoren kunnen ook andere gebruikers naar de status van curator promoten. Promoot alleen mensen die je vertrouwt en waarvan je weet dat die wat taxonomische kennis hebben.
         what_is_considered_inappropriate_content?: Wat wordt beschouwd als ongepaste inhoud?
         you_know_it_when_you_see_it_html: |
-          Je <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">gaat het pas zien als je het doorhebt</a>,of niet? 
+          Je <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">herkent het wel als je het ziet</a>, toch? 
           Dingen die in strijd zijn met sectie 2 van onze <a href="/terms.html">Servicevoorwaarden</a>
-          zijn absoluut ongepast en waard om te markeren of anderszins te melden
-          aan de admins. Mildere vormen van onbeschoftheid zijn ongelukkig, maar
-          waarschijnlijk niet iets dat we zullen verwijderen. Waarnemingen van huisdieren, gevangenen
-          dieren, mensen en andere organismen die de meeste natuuronderzoekers misschien niet
-          interessant vinden zijn OK (ze leven tenslotte nog). Waarnemingen van dingen
-          die geen organismen zijn vormen een grijs gebied. Voorwerpen die duidelijk niets met de natuur te maken hebben, zoals de lunch van iemand, loont het de moeite om te
-          markeren en kunnen verwijderd worden, maar als er geen bewijs is van vervuiling of verstoring kan interessant zijn en zal het waarschijnlijk niet worden verwijderd.
+          zijn absoluut ongepast en het waard om te markeren of anderszins te melden
+          aan de administratoren. Mildere vormen van onbeleefdheid zijn betreurenswaardig,
+          maar waarschijnlijk niet iets dat we zullen verwijderen. Waarnemingen van huisdieren,
+          dieren in gevangenschap, mensen en andere organismen die de meeste natuuronderzoekers
+          misschien niet interessant vinden zijn OK (ze leven immers). Waarnemingen van dingen die
+          geen organismen zijn vormen een grijs gebied. Voorwerpen die duidelijk niets met de natuur
+          te maken hebben, zoals iemands lunch, zijn het markeren waard en kunnen verwijderd
+          worden,  maar bewijs van vervuiling of verstoring kan interessant zijn en zal waarschijnlijk
+          niet worden verwijderd.
         what_is_an_observation?: Wat is een waarneming?
         an_observation_is_the_what_where_and_when_html: |
           Een waarneming is het wat, waar en wanneer van een bevinding in de natuur.
@@ -4654,7 +4656,7 @@ nl:
         a_project_list_belongs: |
           Een projectlijst hoort bij een project en somt alle taxa op
           die zijn waargenomen door leden van dat project. Projectlijsten kunnen ook 
-          handmatig ingevuld zijn door de admin van dat project en kan worden gebruikt
+          handmatig ingevuld zijn door de administrator van dat project en kunnen worden gebruikt
           om de projectbijdragen te beperken tot taxa die op de lijst staan.
         a_check_list_is_html: |
           Een checklist is een lijst met taxa die op een plaats voorkomen. Elke
@@ -4744,10 +4746,10 @@ nl:
         query_placeholder: "Kies onderstaande queryparameters of plak een waarnemings-URL in"
         taxon_extras_help_html: "Opmerking: deze kolommen vertragen het genereren van jouw export"
         geo_help_html: |
-          Plaats, land, provincie, graafschapvelden op basis van coördinaten. Vergelijkbare 
-          administratieve niveaus zullen worden gebruikt voor waarnemingen waar deze plaatsen
-          typen niet van toepassing zijn.
-          De private_*-velden worden alleen opgenomen wanneer u het gebruikersfilter gebruikt en je de gebruiker bent,of wanneer je het projectfilter gebruikt en je het project beheert.
+          Plaats-, gemeente-, provincie-, landvelden op basis van coördinaten. Vergelijkbare 
+          administratieve niveaus zullen worden gebruikt voor waarnemingen waar deze plaatstypen
+          niet van toepassing zijn.
+          De private_*-velden worden alleen opgenomen wanneer je het gebruikersfilter gebruikt en je die gebruiker bent, of wanneer je het projectfilter gebruikt en projectcurator bent.
         be_patient: |
           Even geduld, dit kan een paar minuten duren. Als dit te lang duurt, kan je
         check_back: |
@@ -5036,8 +5038,8 @@ nl:
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt echter
           <a href="%{url}">de KML downloaden</a>, bewerk deze dan in een GIS-applicatie van jouw keuze en upload de bewerkte KML.
         admin_level_desc: |
-          Moet alleen worden ingesteld voor politieke lichamen. In termen van VS-equivalenten, 
-          0=land, 1=staat, 2=graafschap(county), 3=stad
+          Moet alleen worden ingesteld voor politieke eenheden. In termen van VS-equivalenten, 
+          0 = land, 1 = staat, 2 = county, 3 = stad
       new:
         check_list_note: "Opmerking: checklists worden automatisch uitgeschakeld voor zeer grote plaatsen."
         coordinates_desc: Je moet coördinaten opgeven als je geen grens trekt of een KML uploadt.
@@ -5083,7 +5085,7 @@ nl:
              mogelijk binnen de tijdsperiode. Het is een leuke manier om mensen kennis te laten maken met biodiversiteit terwijl ze waardevolle gegevens aan het verzamelen zijn
              op hetzelfde moment.
           </p>
-        change_admin_desc: Kies één van de projectcuratoren als nieuwe beheerder.
+        change_admin_desc: Kies één van de projectcuratoren als de nieuwe administrator.
         cover_desc: "Optionele bannerafbeelding die boven aan uw projectpagina wordt weergegeven. Moet 950 px breed zijn, minder dan 400 px hoog."
         custom_project_fields_means: "Pas de projectbanner aan je eigen wensen, voeg inhoud aan de zijkant toe en bewerk  de CSS."
         end_time_desc: "Eindtijd voor jouw bioblitz. Moet minder dan een jaar na starttijd zijn"
@@ -5415,8 +5417,10 @@ nl:
         high_status_conservation_status_notice_html: |
           Het toevoegen van een natuurbeschermingstatus voor een hoger taxon is van invloed op waarnemingen van alle soorten in dit taxon. Voeg alsjeblieft geen statussen toe voor taxa die soorten bevatten die geen status hebben omdat dan de coördinaten ten onrechte vervaagd worden voor waaremingen van die soorten.
         complete_desc_html: |
-          Een "compleet" taxon bevat <em>alle</em> bekende afstammelingstaxa bij een
-          gespecificeerde rangorde die voldoet aan de taxonomiebeoordelingsbeleid van iNaturalist ongeacht of deze zijn waargenomen. Alleen sitebeheerders kunnen op dit moment taxa invullen.
+          Een "compleet" taxon bevat <em>alle</em> bekende afstammelingstaxa bij op een
+          gespecificeerd taxonomisch niveau die voldoen aan het taxonomiebeoordelingsbeleid
+          van iNaturalist, ongeacht of deze zijn waargenomen of niet. Op dit moment kunnen alleen
+          siteadministratoren taxa als compleet aanduiden.
         complete_rank_desc_html: |
           Rang waarop dit taxon voltooid is, bijv. als deze familie al zijn geslachten bevat, maar niet alle soorten, zou dit worden ingesteld op 'genus'. Standaard is de soort.
       show:
@@ -5556,7 +5560,7 @@ nl:
         you_may_want_to_update: Je hebt wat inhoud met betrekking tot deze taxa die je mogelijk wilt bijwerken.
         cannot_update_your_content: "%{site_name} kan uw inhoud niet automatisch bijwerken voor deze wijziging."
         new_project_admin_html: |
-          Vraagt u zich af waarom u nu admin bent voor dit project? De vorige eigenaar ofwel heeft je aangewezen als de nieuwe admin, of ze hebben hun account verwijderd en %{site_name} heeft je aangewezen omdat je een projectmanager bent of een site-curator. Als je niet de projectbeheerder wilt zijn, neem dan contact op met <a href="mailto:%{help_email}">%{help_email}</a>
+          Vraag je je af waarom je nu admin bent voor dit project? Ofwel heeft de vorige eigenaar je aangewezen als de nieuwe administrator, of diegene heeft zijn of haar account verwijderd en heeft %{site_name} je aangewezen omdat je een projectbeheerder of sitecurator bent. Als je de projectadministrator niet wilt zijn, neem dan contact op met <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
           Vergeet niet dat projectcuratoren de privé en vervaagde
           coördinaten kunnen zien van waarnemingen die u toevoegt aan dit project.
