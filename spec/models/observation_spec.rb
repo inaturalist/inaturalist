@@ -193,6 +193,18 @@ describe Observation do
         @observation.save
       }.not_to raise_error
     end
+
+    it "should restore original Time.zone value in case of parsing error" do
+      begin
+        original_tz = Time.zone
+        Time.zone = ActiveSupport::TimeZone['America/New_York']
+        allow(Chronic).to receive(:parse) { raise ArgumentError }
+        @observation.update(observed_on_string: 'October 30, 2008 10:31PM')
+        expect(Time.zone).to eq ActiveSupport::TimeZone['America/New_York']
+      ensure
+        Time.zone = original_tz
+      end
+    end
   
     it "should have an identification if taxon is known" do
       @observation.save
