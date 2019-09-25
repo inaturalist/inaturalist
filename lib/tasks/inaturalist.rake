@@ -429,6 +429,7 @@ namespace :inaturalist do
       /^forum_categories\./,
       /^Genus/,
       /^i18n\./,
+      /^helpers\./,
       /^lexicons\./,
       /^locale\./,
       /^momentjs\./,
