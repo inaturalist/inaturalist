@@ -208,7 +208,8 @@ en:
   add_another_photo: Add Another Photo
   add_another_section: Add Another Section
   add_another_subscription: Add Another Subscription
-  add_asset: Add Asset
+  # Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Add Project Asset
   add_batch: Add Batch
   add_comma_separated_tags: "Add Comma-separated Tags"
   add_comment: Add a Comment
@@ -516,6 +517,8 @@ en:
   at_time: "at %{time}"
   atom: Atom
   attached_taxon: Attached Taxon
+  # Noun form, as in a property of something. Generally used to describe the
+  # name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribute
   attribution: Attribution
   authority_list:
@@ -611,7 +614,6 @@ en:
   captive: Captive
   captive_cultivated: Captive / Cultivated
   card: Card
-  case_plural: 's'
   casual: casual
   casual_: Casual
   catalogue_of_life: Catalogue of Life
@@ -652,12 +654,19 @@ en:
     swap: Swap
     stage: Stage
     drop: Drop
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: split from
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: split into
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: merge into
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: merged into
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: replaced by
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: replace with
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: replaced with
     dropped: dropped
     staged: staged
@@ -908,8 +917,8 @@ en:
   curator_identification: Curator identification
   current_flags: Current Flags
   custom_project_fields: Custom Project Fields
-  custom_project_was_successfully_created: CustomProject was successfully created.
-  custom_project_was_successfully_updated: CustomProject was successfully updated.
+  custom_project_was_successfully_created: Project customizations added
+  custom_project_was_successfully_updated: Project customizations updated
   customize_location: Customize Location
   darr_apply_darr: "&darr; Apply &darr;"
   dashboard: Dashboard
@@ -920,7 +929,6 @@ en:
   data_used: "Data used:"
   datatype: Datatype
   date_: Date
-  date?: Date?
   date_added: Date Added
   date_created: Date Created
   date_format:
@@ -965,8 +973,6 @@ en:
   date_specified: Date specified
   date_time: Date/Time
   date_updated: Date Updated
-  dates: dates
-  datetime_: Date/Time
   day: Day
   decrease_brightness: Decrease Brightness
   default: default
@@ -991,7 +997,6 @@ en:
     remove an outdated synonym, please create a taxon swap. <strong>BE
     CAREFUL!</strong> Deleting taxa can be highly destructive. Check out the
     <a href="%{curator_url}">Curator Guide</a> for more details.
-  delete_this_name: Delete this name
   delete_user: Delete user
   delete_your_account: Delete your account
   deleted_synonyms: Deleted synonyms
@@ -1019,41 +1024,33 @@ en:
     failure:
       user:
         suspended: Your account has been suspended
-  developers: Developers
-  device: Device
   discoveries: Discoveries
   did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disable: Disable
-  disagree: disagree
   disagree_: Disagree
   disconnect_provider: "Disconnect %{provider}"  
   display_link_to_checklist: Display link to project list from project page
-  display_listings_added_by_curators: Display listings added by curators
-  display_listings_from_place: Display listings from place
   distance_traveled_value: "Distance traveled: %{distance}m"
   distance_traveled: "Distance traveled (m)"
   dna_: DNA
   documentation_for_developers_html: Documentation for <a href="/pages/developers">developers</a>
   do_not_show_this_message_again: Do not show this message again
-  do_you_know_where_this_species_lives: Do you know where this species lives?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |    
     Do you study nematodes? Are you the world's foremost expert on barnacle
     taxonomy? Do you just like looking at pretty flowers? Filling out your
     profile adds some personality and helps establish your credibility when
     helping people out with identifications.
-  do_you_want_to_proceed: Do you want to proceed?
-  does_the_location_seem_accurate: "Does the location seem accurate?"
-  does_the_date_seem_accurate: "Does the date seem accurate?"
   doesnt_have_default_photo: doesn't have a default photo yet.
   doh_something_went_wrong: D'oh, something went wrong.
   doh_something_went_wrong_error: "D'oh, something went wrong: %{error}"
   done: Done
-  dont_filter: "Don't filter"
   dont_have_an_account_sign_up_html: Don't have an account? <strong>Sign up.</strong>
   dont_send_me_email: "Don't send me any email!"
   dont_use_double_quotes: Don't use double quotes anywhere else
+  # Prompt shown when you are dragging a file somewhere and should release it to
+  # add the file as, for example, a new photo in the Uploader
   drop_it: Drop it
   double_click_to_finish: (double click to finish)
   download: Download
@@ -1068,7 +1065,6 @@ en:
   downstream_deviations: Downstream deviations
   downstream_deviations_for_taxon: "Downstream deviations for %{taxon}"
   downstream_flagged_covered_taxa: Downstream flagged covered taxa
-  drag_and_drop_photos: drag and drop photos onto this window or
   draft: draft
   draft_: Draft
   draft_saved: Draft saved!
@@ -1084,43 +1080,33 @@ en:
   edit_assessment: Edit Assessment
   edit_atlas: Edit Atlas
   edit_body: Edit Body
-  edit_colors: Edit Colors
   edit_comment: Edit Your Comment
   edit_custom_project_fields: Edit Custom Project Fields
   edit_field: Edit Field
-  edit_flagged_observation: Edit Flagged Observation
   edit_license: Edit License
   edit_multiple_dates: Edit Multiple Dates
   edit_multiple_descriptions: Edit Multiple Descriptions
   edit_multiple_locations: Edit Multiple Locations
   edit_multiple_species: Edit Multiple Species
   edit_notes: Edit Notes
-  edit_observation: Edit Observation
   edit_observations: Edit Observations
   edit_photos: Edit Photos
   edit_photos_for_observation_id: "Edit Photos for Observation %{obs_id}"
   edit_place: Edit Place
   edit_project: Edit Project
-  edit_range_raquo: "Edit Range &raquo;"
   edit_remove: Edit/Remove
   edit_selected: Edit Selected
   edit_source: Edit Source
   edit_taxa: Edit Taxa
   edit_taxon: Edit Taxon
-  edit_taxon_change: Edit Taxon Change
   edit_taxon_link: Edit Taxon Link
   edit_taxon_range: Edit Taxon Range
   edit_the_observation: Edit The Observation
-  edit_this_link: Edit This Link
-  edit_your_account: Edit Your Account
   edit_your_account_and_profile_html: "Edit Your Account & Profile"
   edit_your_default_settings: "Edit Your Default Settings"
   edit_your_global_project_settings: Edit Your Global Project Settings
   edit_your_identification: Edit Your Identification
-  edit_your_profile: Edit Your Profile
   edit_your_settings_for_this_project: Edit Your Settings For This Project
-  edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Edit your settings</a> to change the kinds of updates you receive or unsubscribe completely."
-  edited: Edited
   edited_by_name_html: "Edited by %{name}"
   edited_by_name_some_rights_reserved_html: |
     Edited by %{name}, some rights reserved (%{license})
@@ -1152,13 +1138,11 @@ en:
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_settings: Email settings
   embed: 'Embed'
-  embed_a_widget_for_this_taxon_on_website: "Embed a widget for this taxon on your website &raquo;"
   embed_place_widget: Embed place widget
   embed_this_assessment: Embed this assessment
   embed_widget_project: Embed a widget for this project on your website
   enable_offline_access: Enable offline access
   enable_offline_access_for_mobile: Enable offline access for mobile
-  enlarge: Enlarge
   encompassing_places: Encompassing Places
   end: End
   end_date_time: End Date / Time
@@ -1177,16 +1161,10 @@ en:
     native: Native
     naturalised: Naturalised
   establishment_means: Establishment Means
-  establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: Arrived in the region via anthropogenic means
-    native_and_occurs_nowhere_else: Native and occurs nowhere else
-    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: |
-      Evolved in this region or arrived by non-anthropogenic means
   establishment_means_describes_how: |
     Establishment means describes how the taxon came to be established in an area.  
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
   event_in_progress: Event in progress
-  event_registration_url: Event registration URL
   event_stats: Event Stats
   event_url: Event URL
   events_only: Events only
@@ -1206,33 +1184,24 @@ en:
   existing_flags: Existing Flags
   exit_full_screen: "Exit Full Screen"
   examples_of_ranking_organizations: Examples of Ranking Organizations
-  expand_days: Expand Days
-  expand_updates: Expand Updates
-  explore!: Explore!
   explore: Explore
-  explore_everyones_observations: Explore Everyone's Observations
   export: Export
   export_observations: Export Observations
   export_with_private_coordinates: Export with Hidden Coordinates
   exporting: "Exporting..."
-  external_links: External Links
   external_taxon_including_children: External taxon (including children)
   external_taxon_rank: External taxon rank
   extinct: EXTINCT
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
   extra_properties: Extra Properties
-  extras: Extras
   evidence_of_organism: Evidence of organism
-  evidence_of_organism?: Evidence of organism?
   facebook: Facebook
   facebook_account_information: Your Facebook Account Information
   facebook_account_not_linked: "%{user} doesn't have a linked facebook account anymore, so %{site_name} doesn't have permission to access this photo."
   facebook_access_token_expired: "Access token has expired. %{user} needs to re-link their Facebook account."
-  facebook_confirmation: "Facebook would like to confirm that you want your account connected to %{site_name}."
   facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
   facebook_options: Facebook Options
-  facts_and_stats: Facts and Stats
   failed_to_find_your_location: Failed to find your location.
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
   failed_to_save_record: "Failed to save record. Please try again later."
@@ -1244,7 +1213,6 @@ en:
   faved_this_observation: faved this observation
   favorite_taxa: Favorite Taxa
   favorites: "Favorites"
-  fblocale: en_US
   feature_this_project: "Feature this project?"
   feature_this_project_: "Feature This Project"
   featured: Featured
@@ -1303,6 +1271,7 @@ en:
   first_observation_by_date_added: First observation by date added
   first_observer: 1st observer
   first_report: first report
+  # Verb form, as in "Flag this item"
   flag: Flag
   flag_as_inappropriate: Flag As Inappropriate
   flag_an_item: Flag An Item
@@ -1624,7 +1593,7 @@ en:
   inactive: Inactive
   inactive_taxon: Inactive Taxon
   inactive_taxon_concepts_are:
-    Inactive taxon concepts are either taxonomically outdated or being staged for a a taxon change.
+    Inactive taxon concepts are either taxonomically outdated or being staged for a taxon change.
     Outdated concepts are kept to maintain history and compatibility with some partner sites.
   inappropriate: Inappropriate?
   inappropriate_content: Inappropriate content?
@@ -1871,7 +1840,7 @@ en:
   listing_announcement: Listing announcement
   listing_announcements: Listing announcements
   listing_lists: Listing lists
-  listing_project_assets: Listing project_assets
+  listing_project_assets: Listing Project Assets
   listing_taxa: Listing Taxa
   listing_taxon_names: Listing Taxon Names
   lists: Lists
@@ -2043,7 +2012,7 @@ en:
   mentioned_you_in_an_x_on_noun_html: "%{user} mentioned you in an %{x} on %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} mentioned you in a %{x} on %{noun} by %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} mentioned you in an %{x} on %{noun} by %{by}"
-  mentions: "Mentions"
+  mentions: "Mentions"  
   merge: Merge
   merge_it_with_another_place: Merge it with another place
   merge_two_places_together: Merge two places together. All species on the checklists will be merged, as well as any geographic data.
@@ -2193,7 +2162,7 @@ en:
   new_password: New Password
   new_post: New Post
   new_project: New Project
-  new_project_asset: New project_asset
+  new_project_asset: New Project Asset
   new_project_asset_for: New Project Asset for
   new_source: New Source
   new_species_added_in_interval: New Species Added In %{interval}
@@ -2402,6 +2371,13 @@ en:
   observation_date?: Date?
   observation_field: Observation field
   observation_field_details: Observation field details
+  observation_field_type_text: Text
+  observation_field_type_numeric: Numeric
+  observation_field_type_date: Date
+  observation_field_type_time: Time
+  observation_field_type_datetime: Datetime
+  observation_field_type_taxon: Taxon
+  observation_field_type_dna: DNA
   observation_fields: Observation Fields
   observation_fields_are_additional: Observation fields are additional data fields that can be added to observations.
   observation_fields_by_preferences_description: |
@@ -3965,6 +3941,7 @@ en:
   taxon_search: Taxon Search
   taxon_search_results_for: Taxon Search results for
   taxon_split: taxon split
+  # A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: taxon stage
   taxon_subscription: taxon subscription
   taxon_swap: taxon swap
@@ -4076,7 +4053,7 @@ en:
   there_isnt_a_wikipedia_article_titled_x_html: |
     There isn't a Wikipedia article or redirect titled '%{x}'.  Perhaps you'd
     like to <a href='http://en.wikipedia.org/wiki/%{x}'>make one</a>?
-  there_merge_problems_with_the_merge: "There merge problems with the merge: %{merged_errors}"
+  there_merge_problems_with_the_merge: "There were problems with the merge: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "There was a problem saving your identification: %{error}"
   there_were_errors: There were errors.
   there_were_problems_adding_taxa: "There were problems adding those taxa: %{errors}"
@@ -4777,7 +4754,7 @@ en:
   you_need_to_select_some_observations_first: You need to select some observations first.
   you_retain_full_copyright: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
   you_retain_full_copyright_over_your_content: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
-  you_sure_delete_asset?: Are you sure you want to delete this asset?
+  you_sure_delete_asset?: Are you sure you want to delete this Project Asset?
   you_sure_delete_check_list: "Are you sure you want to delete this list? Some people may have put a lot of work into it..."
   you_sure_delete_comment?: Are you sure you want to delete this comment?
   you_sure_delete_custom_field?: Are you sure you want to delete these custom fields? 
@@ -5132,15 +5109,6 @@ en:
           <a href="http://www.ischool.berkeley.edu">School of Information</a>.
           Check out the <a href="/about">About page</a> for more info on the people currently managing the site.
         what_technologies_does_the_project_use?: What technologies and data sources does the project use?
-        inaturalist_is_built_using_html: |
-          %{site_name} software is built using <a
-          href="http://www.rubyonrails.org/">Ruby on Rails</a>, <a
-          href="http://mysql.com/">MySQL</a>, <a
-          href="http://jquery.com/">jQuery</a> and <a
-          href="http://code.google.com/apis/maps//">Google Maps</a>, and <a
-          href="http://flickr.com/">Flickr</a>. It also utilizes the <a
-          href="http://www.catalogueoflife.org">Catalogue of Life</a> and
-          <a href="http://ubio.org/">uBio</a> data sources for taxonomic data.
         what_can_i_do_to_help_inaturalist?: What can I do to help %{site_name}
         you_can_help_inaturalist_by_giving_us_your_feedback_html: |
           You can help %{site_name} by giving us your feedback: join our 
@@ -5977,7 +5945,7 @@ en:
             </li>
           </ol>
         project_assets_desc_html: |
-          <p class="description">Project assets are just files associated with your project, with some special rules:</p>
+          <p class="description">Project Assets are just files associated with your project, with some special rules:</p>
           <ol class="description">
             <li>Files ending in .logo.jpg, .logo.png, etc. will be used as the project's logo on the project page instead of the project icon</li>
             <li>KML and KMZ files will be added to the map on the project page</li>
@@ -6007,8 +5975,8 @@ en:
           any: anyone
           curators: project curators
         trusted_project_means: |
-          Trusting a project means that the project managers can add project
-          assets and custom project attributes (e.g. banner HTML, CSS). Access
+          Trusting a project means that the project managers can add Project
+          Assets and custom project attributes (e.g. banner HTML, CSS). Access
           to custom project attributes means the project managers can
           potentially add malicious Javascript, so only trust projects that
           have managers that are both responsible and technically competent.
