@@ -465,7 +465,6 @@ eo:
   data_used: "Dateno uzata:"
   datatype: Datentipo
   date_: Dato
-  date?: Dato?
   date_format:
     date_long:
       january: '%{day}-a de januaro %{year}'
@@ -502,8 +501,6 @@ eo:
     prevText: Antaŭen
     nextText: Sekven
   date_time: Dato/tempo
-  dates: datoj
-  datetime_: Dato/tempo
   day: Tago
   default: implicita
   definitions: Difinoj
@@ -515,7 +512,6 @@ eo:
   delete_photo: Forigi foton
   delete_project: Forigi ĉi tiun projekton
   delete_selected: Forigi Elektitojn
-  delete_this_name: Forigi ĉi tiun nomon
   delete_user: Forigi uzanton
   delete_your_account: Forigi vian konton
   deleted_synonyms: Forigitaj sinonimoj
@@ -537,19 +533,15 @@ eo:
   desription: Priskribo
   destroy: Detrui
   details: Detaloj
-  developers: Programistoj
-  device: Aparato
   discoveries: Eltrovoj
   did_you_mean: 'Ĉu vi intencis'
   disable: Malŝalti
-  disagree: malkonsenti
   disagree_: Malkonsenti
   disconnect_provider: "Malkonekti provizanton %{provider}"
   documentation_for_developers_html: Dokumentaro por <a href="/pages/developers">evoluigantoj</a>
   doh_something_went_wrong: Domaĝe, io misfunkciis.
   doh_something_went_wrong_error: "Domaĝe, io misfunkciis: %{error}"
   done: Farita
-  dont_filter: "Ne filtri"
   dont_have_an_account_sign_up_html: Ĉu vi ne havas konton? <strong>Registriĝu.</strong>
   dont_send_me_email: "Ne sendu al mi ajnan retmesaĝon!"
   download: Elŝuti
@@ -564,14 +556,12 @@ eo:
   duplicate_verb: Duplikato
   edit: Redakti
   edit_atlas: Redakti Atlason
-  edit_colors: Redakti Kolorojn
   edit_comment: Redakti Vian Komenton
   edit_field: Redakti Kampon
   edit_license: Redakti Permesilon
   edit_multiple_descriptions: Redakti Plurajn Priskribojn
   edit_multiple_species: Redakti Plurajn Speciojn
   edit_notes: Redakti Notojn
-  edit_observation: Redakti Observon
   edit_observations: Redakti Observojn
   edit_photos: Redakti Fotojn
   edit_place: Redakti Lokon
@@ -580,11 +570,7 @@ eo:
   edit_source: Redakti Fonton
   edit_taxa: Redakti Taksonojn
   edit_taxon: Redakti Taksonon
-  edit_this_link: Redakti Ĉi Tiun Ligilon
-  edit_your_account: Redakti Vian Konton
   edit_your_account_and_profile_html: "Redakti Viajn Konton & Profilon"
-  edit_your_profile: Redakti Vian Profilon
-  edited: Redaktita
   edited_by_name_html: "Redaktita de %{name}"
   editing: Redaktado
   editing_announcement: Redaktanta anoncon
@@ -593,7 +579,6 @@ eo:
   eg: 'ekz.'
   either: Aŭ
   email: Retpoŝta adreso
-  enlarge: Pligrandigi
   end: Fino
   eol: EdV
   eol_collection_url: "Retadreso de kolekto ĉe EdV"
@@ -616,29 +601,21 @@ eo:
   exact_location: Ekzakta_loko
   exclude_x: Ekskluzivi %{x}
   exit_full_screen: "Malŝalti plenekranan reĝimon"
-  explore!: Esploru!
   explore: Esplori
   export: Elporti
   exporting: "Elportanta..."
-  external_links: Eksteraj Ligiloj
   extinct: formortinta
   evidence_of_organism: Atesto de organismo
-  evidence_of_organism?: Ĉu atesto de organismo?
   facebook_account_information: Informo pri Via Konto ĉe Facebook
-  facts_and_stats: Faktoj kaj Statistikoj
   failed_to_find_your_location: Malsukcesis trovi vian lokon.
   failed_to_repair_photo: "Malsukcesis ripari foton: %{errors}"
   'false': 'Malvera'
-  faq: Oftaj demandoj
   fave: favori
   Family: Familio
   faved_this_observation: favoras ĉi tiun observon
   favorite_taxa: Favorata Taksono
   favorites: "Favoratoj"
-  fblocale: eo
   featured: Elstara
-  featured?: ĉu elstara?
-  field_guides: Kampogvidiloj
   fields: kampoj
   fields_: Kampoj
   file: Dosiero
@@ -657,7 +634,6 @@ eo:
   find_species: Trovi Specion
   finished: Finita
   finished_with_page: Finita Kun Paĝo
-  first_report: unua raporto
   flag: Flago
   flag_it!: Flagi ĝin!
   flag_this_photo: Flagi Tiun Foton
@@ -676,7 +652,6 @@ eo:
   follow: Aboni
   follow_user: "Aboni uzanton %{user}"
   followed_projects: Abonataj Projektoj
-  follower: abonanto
   followers: Abonantoj
   following: Abonante
   following_x_people:
@@ -684,7 +659,6 @@ eo:
     other: 'Abonante %{count} Homojn'
   for: por
   for_a_taxon: por taksono
-  for_more_information: por pli da informo.
   formatting: Aranĝado
   forgot_your_password: Ĉu forgesis vian pasvorton?
   forum: Forumo
@@ -693,25 +667,18 @@ eo:
     feature_requests: Petoj por Trajto
     tutorials: Lerniloj
   frequency: Ofteco
-  fri: ven
   from_list: De listo
   from_photos: De fotoj
   from_place: De loko
   full_screen: Plenekrane
-  general: Ĝenerale
   Genus: Genro
-  genus_slash_species: "[GENRO] / [SPECIO]"
   geoprivacy: Geografia privateco
   geoprivacy_is_private: Geografia privateco estas privata
   get_started: Komenci
-  getting_started: Komencado
   getting_started_guide: Lernilo pri Komencado
   go: Ek
   go_back: Reen
   got_it!: Komprenite!
-  gray: griza
-  green: verda
-  grey: griza
   group: Grupo
   grouping: Grupigado
   guess_description: Konjekto / Priskribo
@@ -725,7 +692,6 @@ eo:
   has_sound: Havas Sonon
   has_sounds: Havas Sonojn
   help: Helpo
-  help_faq: Helpo / Oftaj Demandoj
   help_support_inaturalist: "Helpi Subtenadon de iNaturalist"
   hex_color_eg: Deksesuma koloro, ekz. 65644F
   hi: Saluton,
@@ -733,8 +699,6 @@ eo:
   high: Alta
   history: Historio
   home: Ĉefpaĝo
-  home_faq: Oftaj demandoj
-  hybrid: hibrido
   i_agree_to_the_project_terms: Mi konsentas kondiĉojn de la projekto
   i_dont_know_but_i_am_sure_this_is_taxon: Mi ne certas, sed mi certas ke ĉi tiu estas %{taxon}
   icon: Ikono
