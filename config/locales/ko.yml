@@ -59,7 +59,6 @@ ko:
   add_another_photo: 다른 사진 추가하기
   add_another_section: 다른 구역 추가하기
   add_another_subscription: 다른 구독 추가하기
-  add_asset: 자산 추가하기
   add_batch: 여러 개 추가하기
   add_comma_separated_tags: "쉼표로 구분된 태그 추가하기"
   add_comment: 댓글 추가
@@ -569,8 +568,6 @@ ko:
   curator_identification: 큐레이터 확인
   current_flags: 현재 플래그
   custom_project_fields: 자체지정한 프로젝트 필드
-  custom_project_was_successfully_created: 자체지정 프로젝트가 성공적으로 생성되었습니다.
-  custom_project_was_successfully_updated: 자체지정 프로젝트가 성공적으로 업데이트되었습니다.
   darr_apply_darr: "&darr; 적용 &darr;"
   dashboard: 대시보드
   data_deficient: 데이터 부족
@@ -579,7 +576,6 @@ ko:
   data_used: "사용된 데이터:"
   datatype: 데이터 유형
   date_: 날짜
-  date?: 날짜?
   date_added: 날짜 추가됨
   date_created: 만든 날짜
   date_format:
@@ -622,8 +618,6 @@ ko:
   date_range: 날짜 범위
   date_time: 날짜/시간
   date_updated: 업데이트한 날짜
-  dates: 날짜
-  datetime_: 날짜/시간
   day: 일
   decrease_brightness: 밝기 줄이기
   default: 기본값
@@ -643,7 +637,6 @@ ko:
   delete_selected: 선택한 것을 삭제
   delete_taxon_and_merge_most_data_html: |
     <i>%{taxon}</i> 삭제하고 그것의 대부분의 데이터를 다른 분류군 안으로 병합합니다. <strong>중복되는 분류군을 제거</strong>하기 위해 이 도구를 사용합니다. 오래된 동의어를 제거하고자 한다면, 분류군 교환을 만드시기 바랍니다. <strong>조심합니다!</strong> 분류군을 삭제하는 것은 매우 파괴적일 수 있습니다. 자세한 사항은 <a href="%{curator_url}">큐레이터 안내서</a>를 확인합니다.
-  delete_this_name: 이 이름 삭제
   delete_user: 사용자 삭제
   delete_your_account: 계정 지우기
   deleted_synonyms: 삭제된 동의어
@@ -668,32 +661,22 @@ ko:
     failure:
       user:
         suspended: 당신의 계정은 일시 중지되었습니다.
-  developers: 개발자
-  device: 장치
   did_not_send_invitations_because: '초대장을 보내지 않은 이유:'
   did_you_mean: '이것을 찾으셨나요:'
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
   disable: 비활성화
-  disagree: 동의하지 않음
   disagree_: 동의하지 않음
   disconnect_provider: "%{provider} 연결 끊기"
   display_link_to_checklist: 프로젝트 페이지에서 프로젝트 목록으로 링크 표시
-  display_listings_added_by_curators: 큐레이터가 추가한 목록 표시
-  display_listings_from_place: 장소로부터 목록 표시
   distance_traveled: "여행한 거리 (m)"
   documentation_for_developers_html: <a href="/pages/developers">개발자</a>를 위한 문서
   do_not_show_this_message_again: 다시는 이 메시지 표시하지 않기
-  do_you_know_where_this_species_lives: 이 종이 어디 사는지 아시나요?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     프로필을 채우는 것은 개성을 주고, 동정을 도울 때 신뢰성을 줍니다.
-  do_you_want_to_proceed: 진행하겠습니까?
-  does_the_location_seem_accurate: "장소가 정확한가요?"
-  does_the_date_seem_accurate: "날짜가 정확한가요?"
   doesnt_have_default_photo: 기본 사진이 없습니다.
   doh_something_went_wrong: 문제가 생겼습니다.
   doh_something_went_wrong_error: "무언가 잘못되었습니다: %{error}"
   done: 완료
-  dont_filter: "필터 제거"
   dont_have_an_account_sign_up_html: 계정이 없으십니까? <strong>가입하세요.</strong>
   dont_send_me_email: "메일 수신 거부"
   dont_use_double_quotes: 따옴표를 사용하지 마세요.
@@ -703,7 +686,6 @@ ko:
   download_csv: CSV 다운로드
   download_csv_template: CSV 양식 다운로드
   download_kml: KML 다운로드
-  drag_and_drop_photos: 이 창에 드래그 앤 드롭하시거나
   draft: 초안
   draft_: 초안
   draft_saved: 초안이 저장되었습니다!
@@ -714,11 +696,9 @@ ko:
   edit_account_settings_and_profile: "계정 설정 편집"
   edit_assessment: 평가 편집
   edit_body: 본문 편집
-  edit_colors: 색 편집
   edit_comment: 내 댓글 편집
   edit_custom_project_fields: 사용자 지정 프로젝트 필드 편집
   edit_field: 분야 편집
-  edit_flagged_observation: 플래그된 관찰 편집
   edit_license: 라이선스 수정
   edit_multiple_dates: 다수의 날짜 편집
   edit_multiple_descriptions: 여러 설명 편집
@@ -729,25 +709,18 @@ ko:
   edit_photos_for_observation_id: "관찰 %{obs_id}의 사진 편집"
   edit_place: 장소 수정
   edit_project: 프로젝트 편집
-  edit_range_raquo: "범위 편집 &raquo;"
   edit_remove: 편집/삭제
   edit_selected: 선택 항목 편집
   edit_source: 출처 편집
   edit_taxa: 분류군 편집
-  edit_taxon_change: 분류군 변화 편집
   edit_taxon_link: 분류군 링크 편집
   edit_taxon_range: 분류군 범위 편집
   edit_the_observation: 관찰 편집
-  edit_this_link: 이 링크 편집
-  edit_your_account: 내 계정 편집
   edit_your_account_and_profile_html: "계정 및 프로필 편집"
   edit_your_default_settings: "내 기본 설정 편집하기"
   edit_your_global_project_settings: 내 전역 프로젝트 설정 편집
   edit_your_identification: 내 동정 편집
-  edit_your_profile: 내 프로필 편집하기
   edit_your_settings_for_this_project: 이 프로젝트에 대한 내 설정 편집
-  edit_your_settings_to_unsubscribe_html: "<a href='%{url}'> 설정</a>을 편집하여 받는 업데이트의 종류를 변경하거나 구독 취소를 합니다."
-  edited: 편집됨
   edited_by_name_html: "편집자 : %{name}"
   editing: 편집
   editing_announcement: 공지 편집
@@ -774,7 +747,6 @@ ko:
   email_copyright: "저작권 &copy; %{x}, 모든 권리 보유"
   email_settings: 이메일 설정
   embed: '내장'
-  embed_a_widget_for_this_taxon_on_website: "이 분류군을 위한 위젯을 당신의 웹사이트에 내장 &raquo;"
   embed_place_widget: 장소 위젯 내장
   embed_this_assessment: 이 평가 내장
   embed_widget_project: 이 프로젝트를 위한 위젯을 당신의 웹사이트에 내장
@@ -795,13 +767,9 @@ ko:
     managed: 관리됨
     native: 토착종
     naturalised: 토착화됨
-  establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: 사람들에 의해 이 지역에 유입되었다
-    native_and_occurs_nowhere_else: 토착종이고 다른 어떤 곳에서도 발견되지 않는다
   establishment_means_describes_how: |
     확립은 이 분류군이 어떻게 이 지역에 서식하게 되었는지를 뜻한다. Darwincore를 통해<ahref="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a> 확인할 수 있다.
   event_in_progress: 진행 중인 이벤트
-  event_registration_url: 이벤트 등록 URL
   event_stats: 이벤트 통계
   event_url: 이벤트 URL
   events_only: 이벤트만
@@ -819,32 +787,23 @@ ko:
   exclusion_filters: 제외 필터
   existing_flags: 기존 플래그
   exit_full_screen: "전체 화면에서 나가기"
-  expand_days: 요일 확장
-  expand_updates: 업데이트 확장
-  explore!: 알아보기
-  explore_everyones_observations: 모든 사람들의 관찰 탐색
   export: 내보내기
   export_observations: 관찰 내보내기
   export_with_private_coordinates: 비공개 좌표와 함께 내보내기
   exporting: "내보내는 중..."
-  external_links: 외부 링크
   extinct: 멸종
   extinct_in_the_wild: 야생에서 멸종
   extra_properties: 추가 특징들
-  extras: 엑스트라들
-  evidence_of_organism?: 생물의 증거가 있습니까?
   facebook: 페이스북
   facebook_account_information: 페이스북 계정 정보
   facebook_account_not_linked: "%{user}님이 더 이상 연결된 페이스북 계정이 없기 때문에 %{site_name}이(가) 이 사진을 접근할 권한이 없습니다."
   facebook_access_token_expired: "접근 토큰 기간이 만료되었습니다. %{user}는 다시 본인의 페이스북 계정을 연결해야 합니다."
-  facebook_confirmation: "페이스북이 당신의 계정을 %{site_name}에 연결하는 것을 확인하고자 합니다."
   facebook_needs_the_owner_of_that_photo_to: 페이스북이 사진의 저작권 소유자가 %{site_name_short}과의 관계를 재확인하는 것을 필요합니다.
   facebook_options: 페이스북 옵션
   failed_to_find_your_location: 당신의 위치를 찾는데 실패하였습니다.
   failed_to_repair_photo: "사진을 수리하는데 실패했습니다. %{errors}"
   failed_to_save_record: "기록을 저장하는데 실패했습니다. 나중에 다시 시도해주십시오."
   'false': '거짓'
-  faq: 자주 묻는 질문
   Family: 과
   favorite_taxa: 좋아하는 분류군
   favorites: "즐겨찾기"
@@ -861,8 +820,6 @@ ko:
   file_should_be_in_the_following_format: "파일은 다음의 형식을 따라야 합니다: 분류군 이름, 설명"
   fill_out_project_observation_fields: 프로젝트 관찰 필드를 기입하십시오
   fill_out_your_profile: 프로파일을 완성하십시오
-  filling_out_checklist_for_place: 잘 아는 장소들의 체크리스트를 기입하십시오
-  filling_out_your_profile: 프로파일을 기입하십시오
   filter: 필터
   filter_by_curator_identification: 큐래이터 동정으로 필터
   filter_by_place: 장소로 필터
@@ -890,7 +847,6 @@ ko:
   first_connect_your_provider_account_to_your_site: "먼저, %{provider} 계정을 %{site_name}과 연결하세요;"
   first_inat_observation: "첫 번째 %{site_name} 관찰"
   first_observer: 첫 번째 관찰자
-  first_report: 첫 번째 보고서
   flag: 플래그
   flag_as_inappropriate: 부적절한 것으로 표시
   flag_an_item: 항목을 플래그
@@ -912,22 +868,18 @@ ko:
   flags_explanation: "%{site_name} 사용자들은 오류를 발견했을 때 플래그를 합니다. 여기 큐래이터들이 아직 해결하지 않은 사안들이 있습니다."
   flags_on_users_content: "%{user}의 콘텐츠에 달린 플래그들"
   flickr_account_information: Flickr 계정 정보
-  flickr_description: FLickr는 온라인 사진 호스팅 서비스입니다. 아마 이미 알고 있으셨을지도 몰라요!
   flickr_has_no_creative_commons: Flickr는 이곳에서 크리에이티브 커먼즈 인증된 사진들이 없습니다.
   flickr_identity: Flickr 신원
-  flickr_invite_link_raquo: "Flickr 링크 초대 &raquo;"
   flickr_needs_to_confirm: "Flickr가 당신의 계정을 %{site_name}에 연결하는 것을 확인하고자 합니다."
   flickr_photo: Flickr 사진
   flickr_photos: Flickr 사진
   flickr_style: Flickr-스타일
   flickr_tagger: Flickr 태그 단 사용자
   flickr_tags: Flickr 태그
-  flickr_youre_all_set: "%{site_name}을 탐색할 준비가 다 되었습니다."
   fluid: 유체
   follow: 팔로우
   follow_user: "%{user} 팔로우"
   followed_projects: 팔로우한 프로젝트
-  follower: 팔로우하는 사용자들
   followers: 팔로어
   following: 팔로잉
   for: 위해
@@ -939,7 +891,6 @@ ko:
     feature_requests: 기능 요청
     news_and_updates: 소식 및 업데이트
   frequency: 주기
-  fri: 금
   from: 보낸이
   from_a_place: 어떤 장소로부터
   from_eol_collection: EOL 모음집으로부터
@@ -951,26 +902,15 @@ ko:
   from_soundcloud: 사운드클라우드로부터
   from_your_site_observations: "%{site_name} 관찰로부터"
   from_licensed_site_observations: "인증된 %{site_name} 관찰로부터"
-  full_id_please: ID를 입력해주세요!
-  full_id_please!: "ID를 입력해주세요!"
-  full_id_please?: "ID를 입력해주세요!"
   full_screen: 전체 화면
   gbif_occurrences: GBIF 발생건들
-  general: 일반
-  generally_these_come_from_iucn_red_list: 대체적으로 이들은 IUCN 적색 목록에서 가져왔고, 다른 곳이 출처라도 IUCN 범주를 고수합니다.
   generate_taxonomic_tags_for_flickr: Flickr 사진들을 위한 분류군 태그를 생성합니다.
   generate_widget: 위젯 생성하기
-  generating: "생성 중..."
   generating_mobile_archive: "모바일 아카이브를 생성"
   Genus: 속
-  genus_slash_species: "[속] / [종]"
   geoprivacy: 지역 개인 정보
-  get_current_position: 현 위치 불러오기
-  get_started_raquo: "시작하기 &raquo;"
   get_started: 시작하기
-  getting_started: 시작하기
   give_it_some_detail: 상세설명 추가해주세요!
-  global_conservation_status: "세계적 보존 상태:"
   global_names: 세계적 이름들
   globally: 세계적으로
   go: 가기
@@ -980,12 +920,8 @@ ko:
   google: 구글
   got_it!: 알겠습니다!
   got_your_data_somewhere_else?: 다른 곳에서 데이터를 가져왔습니까? 우리가 도울 수 있습니다.
-  gray: 회색
-  green: 초록
-  grey: 회색
   group: 그룹
   guides: 가이드
-  guide_colors: 가이드 색
   guide_compiled_by: 가이드 엮은이는
   guide_deleted: 가이드 삭제됨
   guide_will_be_deleted: 가이드가 삭제될 것입니다. 큰 가이드일 수록 오래걸립니다.
@@ -1005,31 +941,22 @@ ko:
   hate_me_facebook: "페이스북과 %{site_name} 계정 연결을 끊습니다"
   hate_me_flickr: "Flickr와 %{site_name} 계정 연결을 끊습니다"
   heads_up: 주의
-  heads_up_observation_search_can_only_load: "주의: 관찰 검색은 최대 50페이지까지만 불러올 수 있습니다."
-  heads_up_this_observation_has_been_flagged: "주의: 이 관찰은 플래그되었습니다."
   heads_up_this_photo_has_been_flagged: "주의: 이 사진은 플래그되었습니다."
   heads_up_this_photo_is_already_associated_with: "주의: 이 사진은 이미 <a target='_blank' href='%{url}'>다른 관찰</a>와 연결되어 있습니다."
-  heads_up_this_taxon_locked_users_cant_add_descendants: "<strong>주의:</strong> 이 분류군은 잠겨있습니다. 이는 대부분의 사용자들이 분류군들을 들여와서 새로운 자손을 추가할 수 없다는 것을 의미합니다. 큐레이터들은 분류군을 편집하고 부모를 선택함으로서 편집이 가능하지만, 그것보다는 분류군들을 병합하는 것을 고려해주십시오."
   heads_up_you_have_multiple: "주의: 당신은 동일한 랭크들에 대해 다수의 분류학상의 기작 태그가 달려 있습니다. 랭크에 따라 아래에 색으로 구분되어있습니다."
-  hello: <테스트>
   help: 도움말
   help_confirm_observations!: 관찰을 인증하는 것을 도와주세요!
-  help_faq: 도움말 / FAQ
-  help_out!: 도와주세요!
   help_support_inaturalist: "iNaturalist 지원 돕기"
   here_are_3_examples: 잘 만들어진 데이터의 3가지 예시이다
-  here_are_some_things_you_can_do_meantime: "그 동안 하실 수 있는 몇 가지 일들은 다음와 같습니다:"
   hi: 안녕하세요,
   hi_user: "%{user}님, 안녕하세요."
   hide_content: 내용 숨기기
   hide_uncountable_species: 셀 수 없는 종을 숨기기
-  hidden_content_explanation: 내용이 숨겨져 있습니다
   high: 높음
   highest_rank: 가장 높은 랭크
   history: 역사
   home: 처음으로
   however_there_were_some_issues: "하지만, 몇 가지 문제가 있었습니다: %{issues}"
-  hybrid: 혼성체
   i_agree_to_the_project_terms: 나는 이 약관에 동의합니다
   icon: 아이콘
   icon_size: 아이콘 크긱
@@ -1083,7 +1010,6 @@ ko:
   in_the_past_week: 지난 한 주 동안
   inactive: 비활성
   inactive_taxon: 비활성 분류군
-  inactive_taxon_concepts_are: 비활성화된 분류군 개념들은 분류학적으로 구식이거나 분류군 변형 예정인 것들입니다. 구식인 개념들은 역사와 파트너 웹사이트와의 호환을 위해 유지되고 있습니다.
   inappropriate: 부적절한가요?
   inappropriate_content: 내용이 부적절합니까?
   inat_account_action: "%{site_name} &#58; 계정 &#58; %{action_name}"
@@ -1440,7 +1366,6 @@ ko:
   new_password: 새 비밀번호
   new_post: 새 게시글
   new_project: 새 프로젝트
-  new_project_asset: 새로운 프로젝트_자산
   new_project_asset_for: 새로운 프로젝트 자산
   new_source: 새로운 소스
   new_taxon_change: 새로운 분류군 편집
@@ -1670,7 +1595,6 @@ ko:
     small: 작게
     medium: 보통
     large: 크게
-  google_account_not_linked: "%{user}님이 더 이상 연결된 구글 계정이 없기 때문에 %{site_name}이(가) 이 사진을 접근할 권한이 없습니다."
   pi_consent_desc_title: 개인 정보에 관해
   pin_verb: 저장
   pink: 핑크
