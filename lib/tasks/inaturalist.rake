@@ -431,14 +431,14 @@ namespace :inaturalist do
       /^Genus/,
       /^i18n\./,
       /^helpers\./,
-      /^inbox$/
+      /^inbox$/,
       /^inviteonly$/,
       /^lexicons\./,
       /^locale\./,
       /^momentjs\./,
       /^number\./,
       /^occurrence_status_descriptions\./,
-      /^open$/
+      /^open$/,
       /^place_geo\./,
       /^places_name\./,
       /^ranks\./,
