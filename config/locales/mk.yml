@@ -114,7 +114,6 @@ mk:
   add_another_photo: Додај друга слика
   add_another_section: Додај друг оддел
   add_another_subscription: Додај друга претплата
-  add_asset: Додај средство
   add_batch: Додај збир
   add_comma_separated_tags: "Додај ознаки одделени со запирки"
   add_comment: Додај коментар
@@ -437,7 +436,6 @@ mk:
   data_quality_assessment: Оценка на квалитетот на податоците
   datatype: Податочен тип
   date_: Датум
-  date?: Датум?
   date_added: Додадено на
   date_created: датум на создавање
   date_format:
@@ -475,7 +473,6 @@ mk:
     prevText: Прет
     nextText: След
   date_time: Датум/време
-  datetime_: Датум/време
   day: Ден
   default: по основно
   default_invite_comment: "Одлична слика!  Треба да ја објавите на %{site_name}: {{INVITE_LINK}}"
@@ -494,13 +491,8 @@ mk:
   desription: Опис
   destroy: Уништи
   details: Подробно
-  developers: Програмери
-  device: Уред
   did_you_mean: 'Дали мислевте на'
-  disagree: не се согласувам
   disconnect_provider: "Отстрани ја врската со %{provider}"
-  does_the_location_seem_accurate: "Дали местоположбата изгледа на точна?"
-  dont_filter: "Не филтрирај"
   dont_send_me_email: "Не ми испраќај пошта"
   double_click_to_finish: (стиснете двапати за да довршите)
   download: Преземи
@@ -511,31 +503,24 @@ mk:
   edit_account_settings_and_profile: "Измени поставки на сметката и профилот"
   edit_assessment: измени оценка
   edit_body: Измени содржина
-  edit_colors: Измени бои
   edit_comment: Изменете го вашиот коментар
   edit_custom_project_fields: Измени прилагодени проектни полиња
   edit_field: Измени поле
-  edit_flagged_observation: Измени обележано набљудување
   edit_license: Измени лиценца
   edit_notes: Измени белешки
   edit_photos: Измени слики
   edit_photos_for_observation_id: "Измени слики од набљудувањето %{obs_id}"
   edit_place: Измени место
   edit_project: Измени проект
-  edit_range_raquo: "Измени распространетост &raquo;"
   edit_remove: Измени/Отстрани
   edit_selected: Измени одбрано
   edit_source: Измени извор
   edit_taxa: Уреди таксони
-  edit_taxon_change: измени таксонска промена
   edit_taxon_link: Измени таксонска врска
   edit_taxon_range: Измени распространетост на таксонот
   edit_the_observation: Измени го набљудувањето
-  edit_this_link: Измени ја врскава
-  edit_your_account: измени корисничка сметка
   edit_your_account_and_profile_html: "Измени ја сметката и профилот"
   edit_your_default_settings: "Измени ги стандардните поставки"
-  edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Изменете си ги поставките</a> за да одредите какви новости да добивате или сосема да се отпишете од билтенот."
   edited_by_name_html: "Изменето од %{name}"
   editing_taxon_range: Уредување на Распространетост на таксонот
   eg: 'на пр.'
@@ -554,27 +539,18 @@ mk:
   exact_location: Точна_местоположба
   exact_rank: Точен ранг
   exit_full_screen: "Излези од цел екран"
-  explore!: истражете!
-  explore_everyones_observations: Разгледајте ги набљудувањата на сите учесници
   export: Извези
   export_observations: Извези набљудувања
   exporting: "Извезувам..."
-  external_links: Надворешни врски
   extinct: изумрен
   extinct_in_the_wild: изумрен во дивина
   extra_properties: Дополнителни својства
-  extras: Дополнително
   facebook_account_information: Информации за вашата сметка на Facebook
   Family: Семејство
   favorite_taxa: омилени таксони
   favorites: "Омилени"
-  feature_this_project: "Да го истакнам проектов?"
   featured: истакнат
-  featured?: истакнат?
-  featured_projects_from_everywhere: Истакнати проекти од секаде
-  featured_projects_from_place: "Истакнати проекти од %{place}"
   feeds: 'Тековници'
-  feeds_for_current_filters: Тековници за тековни филтри
   field_note: |
     <strong>Напомена:</strong> Ако сакате да направите поле, стиснете да проверите да не е веќе направено од друг, со цел да избегнете удвојувања.
   fields: полиња
@@ -603,41 +579,24 @@ mk:
   flagger: Обележал
   flickr_account_information: Информации за вашата сметка на Flickr
   follow_user: "Следи го/ја %{user}"
-  follower: следбеник
   following: следач
   for: за
   for_a_taxon: за таксон
-  for_more_information: за повеќе информации
-  fri: пет
   from: Од
   from_a_place: од местото
-  full_id_please: Препознајте!
-  full_id_please!: "Препознајте!"
-  full_id_please?: "Препознајте?"
   fungi:
-    one: габа
-    other: габи
-  fungus:
     one: габа
     other: габи
   generate_taxonomic_tags_for_flickr: Создај таксономски ознаки за моите слики на Flickr.
   generate_widget: Создај поср. елемент
-  generating: "Создавам..."
   generating_mobile_archive: "Создавам мобилна архива"
   Genus: Род
-  genus_slash_species: "[РОД] / [ВИД]"
   geoprivacy: Геоприватност
   georeferenced: Геоозначено?
-  georeferenced?: геоозначено
-  get_current_position: Дај тековна местоположба
-  gray: сива
-  green: зелена
-  grey: сива
   grid: Решетка
   grid_tooltip: Дај решетест поглед
   group: Група
   guides: Водичи
-  guide_colors: бои на водичот
   guide_compiled_by: Водичот го составил
   guide_deleted: Водичот е избришан
   guide_will_be_deleted: Водичот ќе биде избришан. Може да потрае подолго за поголемите водичи.
@@ -646,18 +605,13 @@ mk:
   guide_was_successfully_published: Водичот е успешно објавен.
   guide_was_successfully_updated: Водичот е успешно подновен.
   has_already_been_flagged_by: е веќе обележан од
-  has_been: е
-  hello: <проба>
   help: Помош
   help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
-  help_faq: Помош / ЧПП
-  help_out!: Помогнете!
   here_are_some_things_you_can_do_in_the_meantime: "Еве што друго можете да правите во меѓувреме"
   hex_color_eg: Хексадецимална боја, на пр. 65644F
   hi: Здраво,
   highest_rank: Највисок ранг
   home: Почетна
-  home_faq: ЧПП
   icon_size: Големина на иконата
   icon_slash_photo: Икона / Слика
   iconic_taxon: Иконски таксон
@@ -926,7 +880,6 @@ mk:
   new_password: Нова лозинка
   new_post: Нова објава
   new_project: Нов проект
-  new_project_asset: Ново проектно_средство
   new_project_asset_for: Ново проектно средство за
   new_source: Нов извор
   new_taxon_change: Нова таксонска промена
