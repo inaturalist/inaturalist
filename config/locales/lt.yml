@@ -560,7 +560,6 @@ lt:
   data_used: "Naudota data:"
   datatype: Duomenų Tipas
   date_: Data
-  date?: Data?
   date_added: Įkėlimo data
   date_created: data sukurta
   date_format:
@@ -602,8 +601,6 @@ lt:
   date_specified: Data nurodyta
   date_time: Data/Laikas
   date_updated: Data atnaujinta
-  dates: datos
-  datetime_: Data/Laikas
   day: Diena
   decrease_brightness: Sumažinti ryškumą
   default: bumatytasis
@@ -621,7 +618,6 @@ lt:
   delete_photo: Ištrinti nuotrauką
   delete_project: Ištrinti šį projektą
   delete_selected: Ištrinti Pasirinktus
-  delete_this_name: Ištrinti šį pavadinimą
   delete_user: Ištrinti vartotoją
   delete_your_account: Ištrinti savo paskyrą
   deleted_synonyms: Ištrinti sinonimus
@@ -644,28 +640,19 @@ lt:
     failure:
       user:
         suspended: Jūsų paskyra buvo laikinai sustabdyta
-  developers: Kūrėjai
-  device: Įrenginys
   discoveries: Atradimai
   did_not_send_invitations_because: Nesiuntė pakvietimų šiems, nes...
   did_you_mean: 'Ar turėjote omenyje'
   did_you_photos_flickr?: Ar įkėlėte nuotraukų į Flickr?
   disable: Išjungti
-  disagree: nesutikti
   disagree_: Nesutikti
   disconnect_provider: "Atjungti %{provider}"
   distance_traveled: "Nukeliautas atstumas (m)"
-  dna_: DNR
   do_not_show_this_message_again: Daugiau neberodyti šio pranešimo
-  do_you_know_where_this_species_lives: Ar žinote, kur ši rūšis gyvena?
-  do_you_want_to_proceed: Ar norite tęsti?
-  does_the_location_seem_accurate: "Ar vieta atrodo tiksli?"
-  does_the_date_seem_accurate: "Ar duomenys atrodo tikslūs?"
   doesnt_have_default_photo: dar neturi numatytosios nuotraukos.
   doh_something_went_wrong: Oi, kažkas nutiko.
   doh_something_went_wrong_error: "Oi, kažkas nepavyko: %{error}"
   done: Baigta
-  dont_filter: "Nefiltruoti"
   dont_send_me_email: "Nesiųsti man el. laiškų!"
   dont_use_double_quotes: Daugiau niekur nenaudoti dvigubų kabučių
   drop_it: Mesti
@@ -674,7 +661,6 @@ lt:
   download_csv: Atsisiųsti CSV
   download_csv_template: Atsisiųsti CSV šabloną
   download_kml: Atsisiųsti KML
-  drag_and_drop_photos: vilkite ir paleiskite nuotraukas lange arba
   draft: ruošinys
   draft_: Ruošinys
   draft_saved: Ruošinys išsaugotas!
@@ -686,41 +672,31 @@ lt:
   edit_account_settings_and_profile: "Redaguoti paskyros nustatymus ir profilį"
   edit_assessment: Redaguoti įvertinimą
   edit_body: Redaguoti turinį
-  edit_colors: Redaguoti spalvas
   edit_comment: Redaguoti savo komentarą
   edit_custom_project_fields: Redaguoti pritaikytus projekto laukus
   edit_field: Redaguoti lauką
-  edit_flagged_observation: Redaguoti pažymėtus stebėjimus
   edit_license: Redaguoti licenciją
   edit_multiple_dates: Redaguoti kelias datas
   edit_multiple_descriptions: Redaguoti kelius aprašymus
   edit_multiple_locations: Redaguoti kelias vietas
   edit_multiple_species: Redaguoti kelias rūšis
   edit_notes: Redaguoti pastabas
-  edit_observation: Redaguoti stebėjimus
   edit_observations: Redaguoti stebėjimus
   edit_photos: Redaguoti nuotraukas
   edit_place: Redaguoti vietą
   edit_project: Redaguoti projektą
-  edit_range_raquo: "Redaguoti diapazoną &raquo;"
   edit_remove: Redaguoti/Šalinti
   edit_selected: Redaguoti pasirinktus
   edit_source: Redaguoti šaltinį
   edit_taxa: Redaguoti taksonus
   edit_taxon: Redaguoti taksoną
-  edit_taxon_change: Redaguoti taksono pakeitimus
   edit_taxon_link: Redaguoti taksono nuorodą
   edit_the_observation: Redaguoti stebėjimą
-  edit_this_link: Redaguoti šią nuorodą
-  edit_your_account: Redaguoti savo paskyrą
   edit_your_account_and_profile_html: "Redaguoti Savo Paskyrą ir Profilį"
   edit_your_default_settings: "Redaguoti savo numatytuosius nustatymus"
   edit_your_global_project_settings: Redaguoti savo bendrus projekto nustatymus
   edit_your_identification: Redaguoti savo identifikaciją
-  edit_your_profile: Redaguoti savo profilį
   edit_your_settings_for_this_project: Redaguoti savo nustatymus šiam projektui
-  edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Redaguokite savo nustatymus</a>, kad pakeistumėte kuriuos atnaujinimus gaunate arba visiškai atsisakytumėte prenumeratos."
-  edited: Redaguota
   edited_by_name_html: "Redagavo %{name}"
   editing: Redaguojama
   editing_announcement: Redagavimo skelbimas
@@ -745,7 +721,6 @@ lt:
   embed_widget_project: Įterpti šio projekto valdiklį savo svetainėje
   enable_offline_access: Įgalinti prieigą neprisijungus
   enable_offline_access_for_mobile: Įgalinti prieigą neprisijungus mobiliesiems
-  enlarge: Padidinti
   encompassing_places: Apimamos vietos
   end: Baigti
   endangered: Nykstantis
@@ -761,12 +736,7 @@ lt:
     managed: Kontroliuojamas
     native: Vietinis
   establishment_means: Įstaiga reiškia
-  establishment_means_descriptions:
-    native_and_occurs_nowhere_else: vietinis ir nėra niekur kitus
-    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: |
-      Atsirado šiame regione arba atkeliavo čia be žmonių pagalbos
   event_in_progress: Renginys vyksta
-  event_registration_url: Renginio registracijos URL
   event_stats: Renginio Statistika
   event_url: Renginio URL
   events_only: Tik renginiai
@@ -783,49 +753,34 @@ lt:
   except: išskyrus
   exclude_x: Neįtraukti %{x}
   exit_full_screen: "Išeiti iš viso ekrano režimo"
-  expand_days: išplėsti dienas
-  expand_updates: išplėsti atnaujinimus
-  explore!: Naršyti!
   explore: Tyrinėti
   export: Eksportuoti
   export_with_private_coordinates: Eksportuoti su privačiomis koordinatėmis
   exporting: "Eksportuojama..."
-  external_links: Išorinės Nuorodos
   extinct: išnykę
   extinct_in_the_wild: išnykę laisvėje
   extra_properties: Papildomos Savybės
-  extras: Papildoma
-  evidence_of_organism?: Įrodymai apie organizmą?
   facebook_account_information: Jūsų Facebook Paskyros Informacija
   facebook_account_not_linked: "%{user} nebeturi susietos facebook paskyros, todėl %{site_name} nebeturi leidimo prieiti prie šios nuotraukos."
   facebook_access_token_expired: "Prieigos rakto galiojimas baigėsi. %{user} turi sujungti savo Facebook paskyrą iš naujo."
-  facebook_confirmation: "Facebook nori patvirtinti ar norite sujungti savo paskyrą su %{site_name}."
   facebook_needs_the_owner_of_that_photo_to: Facebook reikia, kad tos nuotraukos savininkas patvirtintu savo prieigą prie %{site_name_short} iš naujo.
   facebook_options: Facebook Pasirinktys
   failed_to_find_your_location: Nepavyko rasti jūsų vietos.
   failed_to_repair_photo: "Nepavyko pataisyti nuotraukos: %{errors}"
   failed_to_save_record: "Nepavyko įrašyti įrašo. Prašome pabandyti vėliau."
   'false': 'Netiesa'
-  faq: Dažnai Užduodami Klausimai
   fave: mėgstamas
   faves: Pamėgimai
   Family: Šeima
   faved_this_observation: pamėgti šį stebėjimą
   favorite_taxa: Mėgiamiausi taksonai
   favorites: "Mėgstamiausi"
-  feature_this_project: "Siūlyti šį projektą?"
   feature_this_project_: "Siūlyti šį projektą"
   featured: Siūlomi
-  featured?: siūlomi?
-  featured_projects_from_everywhere: Siūlomi projektai iš kitur
-  featured_projects_from_place: "Siūlomi projektai iš %{place}"
   featuring: Siūloma
   feedback: Atsiliepimai
-  feedback_group: Atsiliepimų Grupė
   feeds: 'Srautai'
-  feeds_for_current_filters: Dabartinių Filtrų Srautai
   failed: Nepavyko
-  field_guides: Lauko vadovai
   field_note: |
     <strong>Pastaba:</strong> Jei norite sukurti lauką, patikrinkite ar kas nors kitas to dar nepadarė, kad būtų išvengta dublikatų.
   fields: laukai
@@ -833,7 +788,6 @@ lt:
   fields_can_only_be_edited_by_the_people_who: Laukai gali būti redaguojami tik tų žmonių, kurie juos sukūrė arba puslapio kuratorių
   fields_merged: Laukai sujungti
   fill_out_your_profile: užbaigti savo profilį
-  filling_out_your_profile: pildomas mano profilis
   filter: Filtras
   filter_by_curator_identification: Filtruoti pagal kuratoriaus identifikavimą
   filter_by_place: Filtruoti pagal vietą
@@ -853,7 +807,6 @@ lt:
   finished_with_page: Su Puslapiu Baigta
   first_connect_your_provider_account_to_your_site: "Pirma prijunkite savo %{provider} paskyrą prie %{site_name}:"
   first_observation: Pirmasis stebėjimas
-  first_report: pirmas pranešimas
   flag: Žymėti
   flag_an_item: Žymėti elementą
   flag_as_spammer: Žymėti kaip šlamštą
@@ -874,29 +827,23 @@ lt:
   flags_explanation: "%{site_name} vartotojai pažymi objektus, kai su jais kažkas ne taip. Štai keletas problemų, kurios dar nebuvo išspręstos kuratorių."
   flags_on_users_content: "Žymės %{user} turinyje"
   flickr_account_information: Jūsų Flickr Paskyros Informacija
-  flickr_description: Flickr yra internetinė nuotraukų talpinimo paslauga, galbūt jūs jau apie tai žinote!
   flickr_identity: Flickr Tapatybė
-  flickr_invite_link_raquo: "Flickr pakvietimo nuoroda &raquo;"
   flickr_needs_to_confirm: "Flickr reikia patvirtinimo, kad jūs norite savo paskyrą prijungti prie %{site_name}."
   flickr_photo: Flickr Nuotrauka
   flickr_photos: Flickr Nuotraukos
   flickr_tagger: Flickr Žymeklis
   flickr_tags: Flickr Žymės
-  flickr_youre_all_set: "Jūs esate pasirengęs pradėti naršyti %{site_name}"
   follow_receive_updates_about_new_observations: Sekti (gauti naujienas apie naujus stebėjimus)
   follow_user: "Sekti %{user}"
   followed_projects: Sekami projektai
-  follower: sekėjas
   followers: Sekėjai
   following: sekama
   for: dėl
   for_a_taxon: taksonui
-  for_more_information: dėl daugiau informacijos.
   forgot_your_password: Pamiršote savo slaptažodį?
   forum: Forumas
   forum_categories:
     forum_feedback: Forumo atsiliepimai
-  fri: Pen
   from: Nuo
   from_a_place: iš vietos
   from_eol_collection: Iš EOL kolekcijos
@@ -907,24 +854,14 @@ lt:
   from_place: Iš vietos
   from_soundcloud: Iš Soundcloud
   from_your_site_observations: "Stebėjimai iš %{site_name}"
-  full_id_please: ID, Prašome!
-  full_id_please!: "ID, Prašome!"
-  full_id_please?: "ID, Prašome?"
   full_screen: Visas Ekranas
-  general: Bendras
   generate_widget: Kurti Valdiklį
   generate_your_stats: Sugeneruoti Jūsų Statistiką
-  generating: "Kuriama..."
   generating_mobile_archive: "Generuojamas mobilus archyvas"
   Genus: Gentis
-  genus_slash_species: "[GENTIS] / [RŪŠIS]"
-  get_current_position: Gauti dabartinę padėtį
-  get_started_raquo: "Pradėti &raquo;"
   get_started: Pradėti
-  getting_started: Pradžia
   getting_started_guide: Darbo Pradžios Vadovas
   give_it_some_detail: Pridėkite informacijos!
-  global_conservation_status: "Pasaulinis apsaugos statusas:"
   global_names: Pasauliniai pavadinimai
   globally: visame pasaulyje
   go: Eiti
@@ -934,15 +871,11 @@ lt:
   got_it!: Aišku!
   got_your_data_somewhere_else?: Jūsų duomenys kažkur kitur?  Mes galime padėti.
   grant_role: "%{grant} %{role} vaidmenį"
-  gray: pilka
-  green: žalia
-  grey: pilka
   grid: Tinklelis
   grid_tooltip: Rodyti tinklelį
   group: Grupė
   guess_description: Spėjimas / Aprašymas
   guides: Gidai
-  guide_colors: Gido Spalvos
   guide_compiled_by: Gidas sukurtas
   guide_deleted: Gidas ištrintas
   guide_will_be_deleted: Gidas bus ištrintas. Tai šiek tiek užtrunka, jei gidas didelis.
@@ -952,7 +885,6 @@ lt:
   guide_was_successfully_updated: Gidas buvo sėkmingai atnaujintas.
   guidelines: Gairės
   has_already_been_flagged_by: jau buvo pažymėtas
-  has_been: buvo
   has_one_or_more_faves: Turi vieną ar daugiau patinka
   has_photos: turi nuotraukų
   has_photos_or_sounds: Turi nuotraukų ar garsų
@@ -961,26 +893,18 @@ lt:
   hate_me_facebook: "Atsieti savo Facebook ir %{site_name} Paskyras"
   hate_me_flickr: "Atsieti savo Flickr ir %{site_name} Paskyras"
   heads_up: Dėmesio
-  heads_up_this_observation_has_been_flagged: "DĖMESIO: šis stebėjimas buvo pažymėtas."
   heads_up_this_photo_has_been_flagged: "DĖMESIO: ši nuotrauka buvo pažymėta."
-  hello: <testas>
   help: Pagalba
   help_confirm_observations!: Padėk identifikuoti stebėjimus!
-  help_faq: Pagalba / DUK
-  help_out!: Padėkite!
   help_support_inaturalist: "Padėkite palaikyti iNaturalist"
   here_are_3_examples: Štai 3 gerai suformuotų duomenų pavyzdžiai
-  here_are_some_things_you_can_do_meantime: "Tuo tarpu, štai keletas dalykų, kuriuos galite padaryti:"
-  heres_a_litle_about: Šiek tiek apie
   hex_color_eg: Hex spalva, pvz., 65644F
   hi: Labas,
   hi_user: "Labas, %{user}"
   high: aukštas
   highest_rank: Aukščiausias rangas
   home: Pradžia
-  home_faq: DUK
   however_there_were_some_issues: "Tačiau, kilo keletas problemų: %{issues}"
-  hybrid: hibridas
   i_agree_to_the_project_terms: Aš sutinku su projekto sąlygomis
   icon: Ikona
   icon_size: Ikonos dydis
