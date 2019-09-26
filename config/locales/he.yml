@@ -66,7 +66,6 @@ he:
   add_another_photo: הוספת תמונה נוספת
   add_another_section: הוספת בחירה נוספת
   add_another_subscription: הוספת מינוי חדש
-  add_asset: הוספת נכס
   add_batch: להוסיף כמה
   add_comma_separated_tags: "הוספת תגיות (מופרדות בפסיקים)"
   add_comment: הוספת תגובה
@@ -639,7 +638,6 @@ he:
   data_used: "הנתונים שבהם נעשה שימוש:"
   datatype: סוג נתונים
   date_: תאריך
-  date?: תאריך?
   date_added: תאריך הוספה
   date_created: תאריך יצירה
   date_format:
@@ -682,8 +680,6 @@ he:
   date_range: טווח תאריכים
   date_time: תאריך/שעה
   date_updated: תעריך עידכון
-  dates: תאריכים
-  datetime_: תאריך/שעה
   day: יום
   default: ברירת המחדל
   default_invite_comment: "תמונה נהדרת! צריך להעלות אותה ל%{site_name}{{INVITE_LINK}}"
@@ -699,7 +695,6 @@ he:
   delete_photo: מחיקת תמונה
   delete_project: מחיקת פרויקט
   delete_selected: מחיקת בחירה
-  delete_this_name: מחק שם זה
   delete_user: מחיקת משתמש
   delete_your_account: מחיקת חשבון זה
   deleted_user: מחיקת משתמש
@@ -719,31 +714,21 @@ he:
     failure:
       user:
         suspended: חשבונך הושהה
-  developers: מפתחים
-  device: התקן
   discoveries: תגליות
   did_not_send_invitations_because: לא נשלחה הזמנה בגלל ש...
   did_you_mean: 'האם התכוונת ל'
   did_you_photos_flickr?: האם העלית תמונות ל Flickr?
   disable: כיבוי
-  disagree: לא מסכים/מה
   disagree_: לא מסכים/מה
   disconnect_provider: "ניתוק %{provider}"
-  display_listings_added_by_curators: הצגרת רשומות שהועלו על ידי אוצרים
-  display_listings_from_place: הצגת רשימות מהמקום
   documentation_for_developers_html: דוקומנטציה בשביל <a href="/pages/developers">מפתחים</a>
   do_not_show_this_message_again: לא להציג את ההודעה הזאת שוב
-  do_you_know_where_this_species_lives: האם יש מידע לגבי מקום המצאותו של מין זה?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     האם אתה חוקר נמטודות? האם את המומחית העולמית לטקסונומיה של בלוטי ים? האם אתם פשוט אוהבים להתבונן בפרחים יפים? מילוי הפרטים בפרופיל מוסיף אישיות ותוכן ועוזר לאנשים אחרים להכיר במומחיותכם כשאתם מסייעים בזיהוי והגדרה של מינים.
-  do_you_want_to_proceed: האם ברצונך להמשיך?
-  does_the_location_seem_accurate: "האם המיקום נראה מדויק?"
-  does_the_date_seem_accurate: "האם התאריך נראה מדויק?"
   doesnt_have_default_photo: אין תמונת ברירת מחדל כרגע.
   doh_something_went_wrong: אופס... משהו לא הלך כמו שצריך.
   doh_something_went_wrong_error: "אופס... משהוא לא הלכך כמו שצריך: %{error}"
   done: בוצע
-  dont_filter: "ללא סינון"
   dont_have_an_account_sign_up_html: אין לכם חשבון? <strong>להרשמה.</strong>
   dont_send_me_email: "אל תשלחו לי אימיילים!"
   dont_use_double_quotes: אין לעשות שימוש בגרשיים כפולים בכל מקום אחר
@@ -764,18 +749,15 @@ he:
   edit_a_batch_of_observations: עריכת תצפיות מרובות
   edit_atlas: ערוך אטלס
   edit_body: ערוך תוכן
-  edit_colors: ערוך צבעים
   edit_comment: עריכת תגובתך
   edit_custom_project_fields: עריכת שדות פרויקט מותאמים אישית
   edit_field: עריכת שדה
-  edit_flagged_observation: עריכת תצפית מסומנת
   edit_license: עריכת רשיון
   edit_multiple_dates: עריכת מספר תאריכים
   edit_multiple_descriptions: עריכת מספר תיאורים
   edit_multiple_locations: עריכת מספר מיקומים
   edit_multiple_species: עריכת מספר מינים
   edit_notes: עריכת הודעות
-  edit_observation: עריכת תצפית
   edit_observations: עריכת תצפיות
   edit_photos: עריכת תמונות
   edit_photos_for_observation_id: "עריכת תמונות עבור תצפית %{obs_id}"
@@ -786,18 +768,13 @@ he:
   edit_source: עריכת מקור
   edit_taxa: עריכת טקסונים
   edit_taxon: עריכת טקסון
-  edit_taxon_change: עריכת שינוי בטקסון
   edit_taxon_link: ערכית קישור לטקסון
   edit_the_observation: עריכת תצפית
-  edit_this_link: עריכת קישור זה
-  edit_your_account: עריכת חשבון
   edit_your_account_and_profile_html: "עריכת חשבון ופרופיל"
   edit_your_default_settings: "עריכת הגדרות ברירת מחדל"
   edit_your_global_project_settings: עריכת הגדרות פרויקט גלובליות
   edit_your_identification: עריכת תצפיתך
-  edit_your_profile: עריכת פרופיל
   edit_your_settings_for_this_project: עריכת הגדרות לפרויקט זה
-  edited: נערך
   edited_by_name_html: "נערל על ידי %{name}"
   edited_by_name_some_rights_reserved_html: |
     נערך על ידי %{name}, חלק מזכויות היוצרים שמורות (%{license})
@@ -822,7 +799,6 @@ he:
   embed: 'הטמע'
   enable_offline_access: אפשר גישה לא מקוונת
   enable_offline_access_for_mobile: אפשר גישה לא מקוונת מטלפון נייד
-  enlarge: הגדלה
   endangered: בסכנת הכחדה
   endemic: אנדמי
   endemic_to_x: "אנדמי ל%{x}"
@@ -835,9 +811,6 @@ he:
     native: מקומי
     naturalised: מין מגויר
   establishment_means: דרכי התבססות
-  establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: הגיע לאזור באמצעות פעילות אנתרופוגנית
-    native_and_occurs_nowhere_else: מקומי ולא מופיע במקומות אחרים
   event_stats: סטטיסטיקות האירוע
   event_url: URL של האירוע
   events_only: אירועים בלבד
@@ -852,39 +825,28 @@ he:
   exact_rank: דרוג מדויק
   except: למעט
   exit_full_screen: "יציאה ממסך מלא"
-  expand_days: הרחב ימים
   export: ייצוא
   export_observations: ייצוא תצפיות
   export_with_private_coordinates: ייצוא עם קואורדינטות מוסתרות
   exporting: "מתבצע ייצוא..."
-  external_links: קישורים חיצוניים
   extinct: נכחד
   extinct_in_the_wild: נכחד בבר
   extra_properties: תכונות נוספות
-  extras: תוספות
   evidence_of_organism: עדות לאורגניזם
-  evidence_of_organism?: עדות לאורגניזם?
   facebook: פייסבוק
   facebook_account_information: פרטי חשבון הפייסבוק שלך
   facebook_account_not_linked: "ל%{user} אין חשבון פייסבוק מקושר כעת, לכן ל%{site_name} אין גישה לתמונות."
-  facebook_confirmation: "פייסבוק רוצה לוודא כי ברצונך שחשבונך יהיה מחובר ל%{site_name}"
   facebook_options: אפשרויות פייסבוק
-  facts_and_stats: עובדות וסטטיסטיקות
   failed_to_find_your_location: לא ניתן למצוא את מיקומך
   failed_to_repair_photo: "לא ניתן היה לתקן את התמונה: %{errors}"
   failed_to_save_record: "לא ניתן היה לשמור את הרישום. נא לנסות שוב מאוחר יותר."
-  faq: שאלות נפוצות
   fave: מועדפים
   Family: משפחה
   favorite_taxa: קבוצת אורגניזמים אהובה
   favorites: "מועדפים"
-  fblocale: אנגלית (ארה"ב)
-  feature_this_project: "להציג פרוייקט זה?"
   feature_this_project_: "הצגת פרוייקט זה"
   feedback: משוב
-  feedback_group: קבוצת משוב
   failed: נכשל
-  field_guides: מגדירי שדה
   field_note: |
     <strong>לתשומת לבך:</strong> אם ברצונך להוסיף שדה, יש לבדוק אם הדבר טרם נעשה, על מנת להמנע מכפילויות.
   fields: שדות
@@ -934,19 +896,16 @@ he:
   flagged_taxon: טקסון שסומן
   flagged_thing_explanation: "משתמשים סימנו את %{thing} בגלל"
   flickr_account_information: מידע אודות חשבון ה Flickr שלך
-  flickr_description: Flickr הוא שרות איחסון תמונות מקוון, ייתכן וזה כבר מוכר לך!
   flickr_needs_to_confirm: "Flickr מבקש לאשר שברצונך לחבר את חשבונך ל%{site_name}"
   flickr_tagger: מתייג Flickr
   flickr_tags: תגיות Flickr
   flowering_phenology: פנולוגיית פריחה
   follow_receive_updates_about_new_observations: לעקוב ולקבלת עידכונים על תצפיות חדשות
   follow_user: "לעקוב אחרי %{user}"
-  follower: עוקב
   followers: עוקבים
   following: עוקב אחרי
   for: עבור
   for_a_taxon: עבור טקסון
-  for_more_information: למידע נוסף
   formatting: עיצוב
   forgot_your_password: שכחת את ססמתך?
   forum: פורום
@@ -959,7 +918,6 @@ he:
   forum_desc: |
     הפורום הוא המקום לדון ב iNat, וזה כולל עזרה ותמיכה, בקשות לשיפורים, דיווח על באגים, הודעות ועוד.
   frequency: תדירות
-  fri: יום שישי
   from: מ
   from_a_place: ממקום
   from_flickr_facebook_etc: מתוך Flickr, Facebook, וכו'.
@@ -968,27 +926,18 @@ he:
   from_photos: מתמונות
   from_place: ממקום
   from_soundcloud: מתוך Soundcloud
-  full_id_please: זיהוי בבקשה!
-  full_id_please!: "זיהוי בבקשה!"
-  full_id_please?: "זיהוי בבקשה?"
   full_screen: מסך מלא
-  general: כללי
   generate_taxonomic_tags_for_flickr: יצירת תגיות טקסונומיות לתמונות ה Flickr שלך.
   generate_your_stats: יצירת סטטיסטיקה
-  generating: "עובדים על זה..."
   Genus: סוג
-  genus_slash_species: "[סוג]/[מין]"
   geoprivacy: מיקום פרטי
   geoprivacy_is_obscured: מיקום פרטי מוסתר
   geoprivacy_is_obscured_desc: הצופה בחר להסתיר מיקום.
   geoprivacy_is_private: מיקום פרטי הוא פרטי
   geoprivacy_is_private_desc: הצופה בחר להסתיר מיקום.
   georeferenced: ממוקם במרחב?
-  georeferenced?: ממוקם במרחב
-  get_current_position: מציאת מיקום נוכחי
   get_started: התחל
   getting_started_guide: מדריך התחלה
-  global_conservation_status: "סטטוסי שימור עולמי:"
   globally: עולמי
   go_back: חזרה
   going_to_your_observations: מעבר לתצפיות שלך...
@@ -997,13 +946,9 @@ he:
   got_it!: הבנתי!
   got_your_data_somewhere_else?: מצאת את הנתונים במקום אחר? אנחנו יכולים לעזור.
   grant_role: "%{grant} תפקיד של %{role}"
-  gray: אפור
-  green: ירוק
-  grey: אפור
   grid: שריג
   group: קבוצה
   guides: מגדירים
-  guide_colors: צבעי המדריך
   guide_compiled_by: המגדיר נערך על ידי
   guide_deleted: המגדיר נמחק
   guide_will_be_deleted: המדריך ימחק. זה לוקח קצת זמן למדריכים גדולים.
@@ -1018,29 +963,22 @@ he:
   hate_me_facebook: "ניתוק חשבונות פייסבוק ו%{site_name} שלך"
   hate_me_flickr: "ניתוק חשבונות Flickr ו%{site_name} שלך"
   heads_up: שימו לב
-  heads_up_observation_search_can_only_load: "שימו לב: בחיפוש תצפיות ניתן לטעון עד 50 עמודים"
-  heads_up_this_observation_has_been_flagged: "שימו לב: תצפיות זו סומנה."
   heads_up_this_photo_has_been_flagged: "שימו לב: תמונה זו סומנה."
   heads_up_this_photo_is_already_associated_with: "שימו לב: תצפית זו משוייכת כבר עם <a target='_blank' href='%{url}'>תצפית אחרת</a>"
   help: עזרה
   help_confirm_observations!: עזרו לאשר תצפיות!
-  help_faq: עזרה / שאלות נפוצות
   help_support_inaturalist: "תמיכה בiNaturalist"
   here_are_3_examples: 3 דוגמאות לנתונים שמובנים היטב
   here_are_our_top_suggestions: הינה ההצעות הטובות ביותר שלנו
   here_are_our_top_species_suggestions: הינה ההצעות הטובות ביותר שלנו
-  here_are_some_things_you_can_do_meantime: "הינה כמה דברים שאפשר לעשות בינתיים:"
   here_are_some_things_you_can_do_in_the_meantime: "הינה כמה דברים שאפשר לעשות בינתיים"
-  heres_a_litle_about: הנה קצת על
   hex_color_eg: צבע Hex, לדוגמא 65644F
   hi: שלום,
   hi_user: "שלום %{user}"
   hide_content: הסתרת תוכן
-  hidden_content_explanation: התוכן מוסתר
   highest_rank: הדרוג הגבוה ביותר
   history: היסטוריה
   home: דף הבית
-  home_faq: שאלות נפוצות
   icon: אייקון
   icon_size: גודל האייקון
   icon_slash_photo: אייקון/תמונה
@@ -1822,7 +1760,6 @@ he:
     medium: בינוני
     large: גדול
   photos_updated: תמונות עודכנו.
-  google_account_not_linked: "ל%{user} אין יותר שיוך לחשבון גוגל, לכן ל%{site_name} אין הרשאת גישה לתמונה זה."
   pi_consent_desc_title: הוספת מידע אישי
   pick_a_username: בחירת שם משתמש
   pin_verb: נעץ מיקום
@@ -2940,7 +2877,6 @@ he:
   you_must_specify_and_confirm_a_new_password: יש צורך להגדיר ולאשר ססמה חדשה.
   you_need_to_select_at_least_one_photo: יש צורך לבחור תמונה אחת לפחות!
   you_need_to_select_some_observations_first: יש צורך לבחור מספר תצפיות תחילה.
-  you_sure_delete_asset?: האם ברצונך למחוק את הנכס הזה?
   you_sure_delete_comment?: האם ברצונך באמת למחוק את התגובה הזאת?
   you_sure_delete_project?: האם ברצונך למחוק באמת את הפרוייקט הזה?
   you_sure_delete_this_observation: "האם באמת התכוונת למחוק את התצפית הזאת?"
