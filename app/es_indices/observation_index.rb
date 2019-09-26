@@ -262,7 +262,7 @@ class Observation < ActiveRecord::Base
       json.merge!({
         user_id: user.id
       })
-    else options[:no_details]
+    else
       json.merge!({
         uuid: uuid,
         user: user ? user.as_indexed_json(no_details: true) : nil,

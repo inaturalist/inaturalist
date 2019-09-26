@@ -508,7 +508,7 @@ class Project < ActiveRecord::Base
           rule_value = rule_value.split( "," ).map( &:strip )
           rule_value.map!( &:to_i ) if is_int
         end
-        params[ rule.sub( "rule_", "" ) ] = rule_value
+        params[ rule.sub( "rule_", "" ).to_sym ] = rule_value
       end
     end
     without_taxon_ids = without_taxon_ids.compact.uniq

@@ -86,7 +86,11 @@ class Project < ActiveRecord::Base
         indexes :d1, type: "date", format: "dateOptionalTime"
         indexes :d2, type: "date", format: "dateOptionalTime"
         indexes :d2_date, type: "date", format: "yyyy-MM-dd"
+        indexes :introduced, type: "boolean"
         indexes :month, type: "byte"
+        indexes :native, type: "boolean"
+        indexes :not_in_place, type: "integer"
+        indexes :not_user_id, type: "integer"
         indexes :observed_on, type: "date", format: "dateOptionalTime"
         indexes :photos, type: "boolean"
         indexes :place_id, type: "integer"
@@ -94,7 +98,10 @@ class Project < ActiveRecord::Base
         indexes :quality_grade, type: "keyword"
         indexes :sounds, type: "boolean"
         indexes :taxon_id, type: "integer"
+        indexes :term_id, type: "integer"
+        indexes :term_value_id, type: "integer"
         indexes :user_id, type: "integer"
+        indexes :without_taxon_id, type: "integer"
       end
       indexes :search_parameters, type: :nested do
         indexes :field, type: "keyword"
@@ -112,6 +119,7 @@ class Project < ActiveRecord::Base
       end
       indexes :slug, analyzer: "keyword_analyzer"
       indexes :spam, type: "boolean"
+      indexes :subproject_ids, type: "integer"
       indexes :terms, type: "text", index: false
       indexes :title, analyzer: "ascii_snowball_analyzer"
       indexes :title_autocomplete, analyzer: "autocomplete_analyzer",
