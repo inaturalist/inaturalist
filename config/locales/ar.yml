@@ -71,7 +71,6 @@ ar:
   add_another_photo: إضافة صورة أخرى
   add_another_section: أضف قسما آخر
   add_another_subscription: أضف اشتراكا آخر
-  add_asset: إضافة الأصول
   add_batch: أضف دفعة
   add_comma_separated_tags: "أضف علامات مفصولة بفواصل"
   add_comment: إضافة تعليق
@@ -698,8 +697,6 @@ ar:
   curator_identification: تحديد الإشراف
   current_flags: الأعلام الحالية
   custom_project_fields: حقول المشروع المخصصة
-  custom_project_was_successfully_created: تم إنشاء مشروع مخصص بنجاح.
-  custom_project_was_successfully_updated: تم تحديث  مشروع مخصص بنجاح.
   customize_location: تخصيص الموقع
   darr_apply_darr: "&darr; تطبيق &darr;"
   dashboard: لوحة التحكم
@@ -710,7 +707,6 @@ ar:
   data_used: "البيانات المستخدمة:"
   datatype: نوع البيانات
   date_: تاريخ
-  date?: تاريخ؟
   date_added: تاريخ الإضافة
   date_created: تاريخ الإنشاء
   date_format:
@@ -755,8 +751,6 @@ ar:
   date_specified: التاريخ المحدد
   date_time: تاريخ/وقت
   date_updated: تاريخ التحديث
-  dates: تواريخ
-  datetime_: تاريخ/وقت
   day: يوم
   decrease_brightness: تقليل السطوع
   default: الافتراضي
@@ -777,7 +771,6 @@ ar:
   delete_selected: احذف المحدد
   delete_taxon_and_merge_most_data_html: |
     احذف <i>%{taxon}</i> وادمج معظم بياناتها في أصنوفة أخرى، استخدم هذه الأداة <strong>إزالة الأصناف المكررة</strong>، إذا كنت تريد إزالة مرادف قديم، فالرجاء إنشاء مبادلة أصنوفة، <strong>كن حذرا!</strong> يمكن أن يكون حذف العلامات مدمرا للغاية، اطلع على <a href="%{curator_url}">دليل الإشراف</a>  لمزيد من التفاصيل.
-  delete_this_name: احذف هذا الاسم
   delete_user: حذف المستخدم
   delete_your_account: حذف حسابك
   deleted_synonyms: تم حذف المرادفات
@@ -805,38 +798,27 @@ ar:
     failure:
       user:
         suspended: تم تعليق حسابك
-  developers: مطورون
-  device: جهاز
   discoveries: اكتشافات
   did_not_send_invitations_because: لم يتم إرسال دعوات إلى ما يلي بسبب...
   did_you_mean: 'هل تقصد'
   did_you_photos_flickr?: هل وضعت أي صور على فليكر؟
   disable: تعطيل
-  disagree: أعارض
   disagree_: أعارض
   disconnect_provider: "افصل %{provider}"
   display_link_to_checklist: عرض رابط لقائمة المشروع من صفحة المشروع
-  display_listings_added_by_curators: عرض القوائم المضافة بواسطة المشرفين
-  display_listings_from_place: عرض قوائم من مكان
   distance_traveled_value: "المسافة المقطوعة: %{distance}م"
   distance_traveled: "المسافة المقطوعة (م)"
-  dna_: دنا
   documentation_for_developers_html: مستندات <a href="/pages/developers">للمطورين</a>
   do_not_show_this_message_again: لا تظهر هذه الرسالة مرة أخرى
-  do_you_know_where_this_species_lives: هل تعرف أين يعيش هذا النوع؟
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     هل تدرس الديدان الخيطية؟ هل أنت خبير في العالم قبل كل شيء في
     تصنيف برنقيل؟ هل ترغب فقط في النظر إلى الزهور الجميلة؟ ملء 
     ملف التعريف الخاص بك يضيف بعض الشخصية ويساعد على تأسيس مصداقيتك عند 
     مساعدة الناس مع تحديد الهوية.
-  do_you_want_to_proceed: هل تريد المتابعة؟
-  does_the_location_seem_accurate: "هل يبدو الموقع دقيقا؟"
-  does_the_date_seem_accurate: "هل يبدو التاريخ دقيقا؟"
   doesnt_have_default_photo: ليس لديك صورة افتراضية بعد.
   doh_something_went_wrong: أوه، حدث خطأ ما.
   doh_something_went_wrong_error: "عفوا، حدث خطأ ما: %{error}"
   done: تم
-  dont_filter: "عدم التصفية"
   dont_have_an_account_sign_up_html: ليس لديك حساب؟ <strong>قم بالاشتراك.</strong>
   dont_send_me_email: "لا ترسل لي أي بريد إلكتروني!"
   dont_use_double_quotes: لا تستخدم علامات الاقتباس المزدوجة في أي مكان آخر
@@ -854,7 +836,6 @@ ar:
   downstream_deviations: الانحرافات للأسفل
   downstream_deviations_for_taxon: "الانحرافات في اتجاه مجرى النهر لـ%{taxon}"
   downstream_flagged_covered_taxa: الأصناف المتدفقة المعلمة المغطاه
-  drag_and_drop_photos: سحب وإسقاط الصور على هذه النافذة أو
   draft: مسودة
   draft_: مسودة
   draft_saved: تم حفظ المسودة!
@@ -870,43 +851,33 @@ ar:
   edit_assessment: تعديل التقييم
   edit_atlas: تحرير أطلس
   edit_body: تعديل الجسم
-  edit_colors: تعديل الألوان
   edit_comment: عدل تعليقك
   edit_custom_project_fields: تحرير حقول المشروع المخصصة
   edit_field: تعديل الحقل
-  edit_flagged_observation: تعديل الملاحظة المعلمة
   edit_license: تعديل الترخيص
   edit_multiple_dates: تعديل تواريخ متعددة
   edit_multiple_descriptions: تعديل أوصاف متعددة
   edit_multiple_locations: تعديل مواقع متعددة
   edit_multiple_species: تحرير أنواع متعددة
   edit_notes: تحرير الملاحظات
-  edit_observation: تحرير الملاحظة
   edit_observations: تحرير الملاحظات
   edit_photos: تحرير الصور
   edit_photos_for_observation_id: "تعديل الصور للملاحظة %{obs_id}"
   edit_place: تعديل المكان
   edit_project: تعديل المشروع
-  edit_range_raquo: "تعديل النطاق &raquo;&raquo;"
   edit_remove: تحرير/إزالة
   edit_selected: تعديل المحدد
   edit_source: عدل المصدر
   edit_taxa: تعديل الأصناف
   edit_taxon: تعديل أصنوفة
-  edit_taxon_change: تحرير تعديل أصنوفة
   edit_taxon_link: تحرير رابط أصنوفة
   edit_taxon_range: تحرير نطاق الأصنوفة
   edit_the_observation: تحرير الملاحظة
-  edit_this_link: عدل هذا الرابط
-  edit_your_account: عدل حسابك
   edit_your_account_and_profile_html: "عدل حسابك وملفك الشخصي"
   edit_your_default_settings: "عدل الإعدادات الافتراضية"
   edit_your_global_project_settings: عدل إعدادات المشروع العالمية
   edit_your_identification: تعديل هويتك
-  edit_your_profile: عدل ملفك الشخصي
   edit_your_settings_for_this_project: عدل إعدادات هذا المشروع
-  edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>عدل إعداداتك</a> لتغيير أنواع التحديثات التي تتلقاها أو إلغاء الاشتراك تماما."
-  edited: عُدِّل
   edited_by_name_html: "تم التعديل بواسطة %{name}"
   edited_by_name_some_rights_reserved_html: |
     تم التعديل بواسطة %{name}، بعض الحقوق محفوظة (%{license})
@@ -935,13 +906,11 @@ ar:
   email_copyright: "حقوق النشر &copy; %{x}، جميع الحقوق محفوظة"
   email_settings: إعدادات البريد الإلكتروني
   embed: 'تضمين'
-  embed_a_widget_for_this_taxon_on_website: "تضمين أداة لهذه الأصنوفة على موقعك الإلكتروني &raquo;"
   embed_place_widget: تضمين مكان الأداة
   embed_this_assessment: تضمين هذا التقييم
   embed_widget_project: تضمين أداة لهذا المشروع على موقعك الإلكتروني
   enable_offline_access: تمكين الدخول بلا اتصال
   enable_offline_access_for_mobile: تمكين الدخول بلا اتصال للجوال
-  enlarge: تكبير
   encompassing_places: تشمل الأماكن
   end: نهاية
   end_date_time: تاريخ / وقت الانتهاء
@@ -960,16 +929,10 @@ ar:
     native: محلي
     naturalised: متجنس
   establishment_means: وسائل الإنشاء
-  establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: وصل إلى المنطقة عبر وسائل بشرية
-    native_and_occurs_nowhere_else: أصلي ويحدث في أي مكان آخر
-    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: |
-      تطورت في هذه المنطقة أو وصلت بوسائل غير بشرية
   establishment_means_describes_how: |
     تصف وسائل الإنشاء كيفية إنشاء هذه الأصنوفة في منطقة ما،
     راجع داروينكور <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">لمزيد من المعلومات حول المصطلحات</a>.
   event_in_progress: الحدث قيد التقدم
-  event_registration_url: مسار تسجيل الأحداث
   event_stats: إحصائيات الحدث
   event_url: مسار الحدث
   events_only: الأحداث فقط
@@ -989,57 +952,39 @@ ar:
   existing_flags: الأعلام الموجودة
   exit_full_screen: "إنهاء وضع الشاشة الكاملة"
   examples_of_ranking_organizations: أمثلة لمنظمات التصنيف
-  expand_days: توسيع الأيام
-  expand_updates: توسيع التحديثات
-  explore!: استكشف!
   explore: استكشف
-  explore_everyones_observations: استكشاف ملاحظات الجميع
   export: تصدير
   export_observations: تصدير الملاحظات
   export_with_private_coordinates: تصدير بإحداثيات مخفية
   exporting: "جارٍ التصدير..."
-  external_links: وصلات خارجية
   external_taxon_including_children: الأصنوفة الخارجية (بما في ذلك الأطفال)
   external_taxon_rank: تصنيف الأصنوفة الخارجية
   extinct: منقرض
   extinct_in_the_wild: منقرض في البرية
   extra_properties: خصائص إضافية
-  extras: إضافات
   evidence_of_organism: دليل على الكائن الحي
-  evidence_of_organism?: دليل على الكائن الحي؟
   facebook: فيسبوك
   facebook_account_information: معلومات حساب فيسبوك الخاص بك
   facebook_account_not_linked: "لم يعد لدى %{user} حساب فيسبوك مرتبط بعد الآن; لذلك ليس لدى %{site_name} إذن بالدخول إلى هذه الصورة."
   facebook_access_token_expired: "انتهت صلاحية الرمز المميز للدخول; يحتاج %{user} إلى إعادة ربط حساب فيسبوك."
-  facebook_confirmation: "يريد فيسبوك تأكيد أنك تريد ربط حسابك بـ%{site_name}."
   facebook_needs_the_owner_of_that_photo_to: يحتاج فيسبوك إلى مالك هذه الصورة لإعادة تأكيد اتصاله بـ%{site_name_short}.
   facebook_options: خيارات فيسبوك
-  facts_and_stats: الحقائق والإحصائيات
   failed_to_find_your_location: أخفق البحث عن موقعك.
   failed_to_repair_photo: "فشل إصلاح الصورة: %{errors}"
   failed_to_save_record: "أخفق حفظ السجل؛ الرجاء معاودة المحاولة في وقت لاحق."
   'false': 'خطأ'
-  faq: أسئلة مكررة
   fave: المفضلة
   faves: المفضلة
   Family: فصيلة
   faved_this_observation: علم هذه الملاحظة كمفضلة
   favorite_taxa: الأصناف المفضلة
   favorites: "المفضلة"
-  fblocale: ar
-  feature_this_project: "تمييز هذا المشروع؟"
   feature_this_project_: "تمييز هذا المشروع"
   featured: مميز
-  featured?: مميز؟
-  featured_projects_from_everywhere: مشاريع مميزة من كل مكان
-  featured_projects_from_place: "مشاريع مميزة من %{place}"
   featuring: تمييز
   feedback: ردود الفعل
-  feedback_group: مجموعة ردود الفعل
   feeds: 'التلقيمات'
-  feeds_for_current_filters: خلاصات المرشحات الحالية
   failed: فشل
-  field_guides: الأدلة الميدانية
   field_note: |
     <strong>ملاحظة:</strong> إذا كنت ترغب في إنشاء حقل، فتحقق مما إذا كان شخص آخر قد أجرى ذلك بالفعل لتجنب التكرار.
   fields: مجالات
@@ -1050,8 +995,6 @@ ar:
   file_should_be_in_the_following_format: "يجب أن يكون الملف بالتنسيق التالي: اسم الأصنوفة، الوصف"
   fill_out_project_observation_fields: املأ حقول ملاحظة المشروع
   fill_out_your_profile: أكمل ملفك الشخصي
-  filling_out_checklist_for_place: املأ قوائم الفحص للأماكن التي تعرفها جيدا
-  filling_out_your_profile: املأ ملفك الشخصي
   filter: رشح
   filter_by_curator_identification: تصفية حسب تحديد المشرف
   filter_by_place: التصفية حسب المكان
@@ -1059,7 +1002,6 @@ ar:
   filter_by_place_taxon_and_color: تصفية حسب المكان، والأصنوفة، واللون باستخدام عناصر التحكم.
   filter_list_by_this_taxon: تصفية قائمة بواسطة هذه الأصنوفة
   filtering: تصفية
-  filtering_observations_that_pass_the: "تصفية الملاحظات التي تمر بقواعد المشروع أو تم إجراؤها في مكان المشروع ولم تتم المساهمة فيها بعد"
   filters: مرشحات
   find: جد
   find_a_guide: البحث عن دليل
@@ -1082,7 +1024,6 @@ ar:
   first_observation: الملاحظة الأولى
   first_observation_by_date_added: الملاحظة الأولى حسب تاريخ الإضافة
   first_observer: المراقب الأول
-  first_report: التقرير الأول
   flag: علم
   flag_as_inappropriate: التعليم كغير لائق
   flag_an_item: التعليم على عنصر
@@ -1115,17 +1056,14 @@ ar:
   flags_for_x_html: أعلام ل%{x}
   flags_on_users_content: "أعلام على محتوى %{user}"
   flickr_account_information: معلومات حساب فليكر الخاص بك
-  flickr_description: فليكر خدمة استضافة صور على الإنترنت، وربما كنت تعرف ذلك بالفعل!
   flickr_has_no_creative_commons: فليكر ليس لديه صور مرخصة كمشاع إبداعي من هذا المكان.
   flickr_identity: هوية فليكر
-  flickr_invite_link_raquo: "رابط دعوة فليكر &raquo;"
   flickr_needs_to_confirm: "يحتاج فليكر إلى تأكيد أنك تريد ربط حسابك بـ%{site_name}."
   flickr_photo: صورة فليكر
   flickr_photos: صور فليكر
   flickr_style: أسلوب فليكر
   flickr_tagger: محدد علامات فليكر
   flickr_tags: وسوم فليكر
-  flickr_youre_all_set: "أنت جاهز لبدء استكشاف %{site_name}"
   flowering_phenology: دراسة أحداث الإزهار البيولوجية
   fluid_layout: تصميم السائل
   fluid: مائع
@@ -1133,13 +1071,10 @@ ar:
   follow_receive_updates_about_new_observations: تابع (تلقى آخر المعلومات حول الملاحظات الجديدة)
   follow_user: "اتبع %{user}"
   followed_projects: المشاريع المتبعة
-  follower: متابع
   followers: متابعون
   following: التالي
   for: لـ
   for_a_taxon: لأصنوفة
-  for_a_widget_showing_recent_observations_from: بالنسبة للأداة التي تعرض الملاحظات الأخيرة من %{place_name}، اطلع على
-  for_more_information: للمزيد من المعلومات.
   formatting: الصيغة
   forgot_your_password: نسيت كلمة مرورك؟
   forum: منتدى
@@ -1155,7 +1090,6 @@ ar:
     feature requests, bug reports, announcements, and more.
     المنتدى هو مكان لمناقشة إنات نفسه، بما في ذلك المساعدة والدعم، وطلبات الميزات، وتقارير الأخطاء، والإعلانات، والمزيد.
   frequency: تردد
-  fri: جم
   from: من
   from_a_place: من مكان
   from_eol_collection: من مجموعة موسوعة الحياة
@@ -1167,35 +1101,22 @@ ar:
   from_soundcloud: من ساوند كلاود
   from_your_site_observations: "من ملاحظات %{site_name}"
   from_licensed_site_observations: "من ملاحظات %{site_name} المرخصة"
-  full_id_please: معرف من فضلك!
-  full_id_please!: "معرف من فضلك!"
-  full_id_please?: "معرف من فضلك!"
   full_screen: ملء الشاشة
   gbif_occurrences: أحداث المرفق العالمي لمعلومات التنوع البيولوجي
-  geo: جغر
-  general: عام
-  generally_these_come_from_iucn_red_list: بوجه عام، تأتي هذه القوائم من القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية، وإذا كانت تأتي من أماكن أخرى، فإنها ستلتزم بفئات الاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية.
   generate_taxonomic_tags_for_flickr: توفير علامات تصنيفية لصور فليكر الخاصة بك
   generate_widget: توفير أداة
   generate_your_stats: توليد إحصاءاتك
-  generating: "جارٍ التوفير..."
   generating_mobile_archive: "توفير أرشيف جوال"
   Genus: جنس
-  genus_slash_species: "[جنس] / [نوع]"
   geoprivacy: خصوصية جغرافية
   geoprivacy_is_obscured: الخصوصية الجغرافية محجوبة
   geoprivacy_is_obscured_desc: اختار المراقب إخفاء الإحداثيات.
   geoprivacy_is_private: الخصوصية الجغرافية خاصة
   geoprivacy_is_private_desc: اختار المراقب إخفاء الإحداثيات.
   georeferenced: المرجعية الجغرافية؟
-  georeferenced?: المرجعية الجغرافية
-  get_current_position: الحصول على الموقف الحالي
-  get_started_raquo: "ابدأ &raquo;"
   get_started: ابدأ
-  getting_started: ابدأ
   getting_started_guide: الحصول على دليل البداية
   give_it_some_detail: أعطها بعض التفاصيل!
-  global_conservation_status: "حالة الحفظ العالمية:"
   global_names: الأسماء العالمية
   globally: عالميا
   go: اذهب
@@ -1206,12 +1127,8 @@ ar:
   got_it!: حسنا!
   got_your_data_somewhere_else?: هل حصلت على بياناتك في مكان آخر؟ نستطيع المساعدة.
   graft: تطعيم
-  grafting: "جارٍ التطعيم..."
   grafting_attemps_to_insert_this_taxon: محاولات تطعيم لإدراج هذا الصنف في شجرة التصنيف لدينا، والعثور على الأصنوفة الأم القائمة أو إنشاء كل الضروري بين الأصناف لإرفاقها إلى أصناف قائمة في مستوى أعلى.
   grant_role: "دور %{grant} %{role}"
-  gray: رمادي
-  green: أخضر
-  grey: رمادي
   grid: شبكة
   grid_layout: تصميم الشبكة
   grid_tooltip: إظهار عرض الشبكة
@@ -1219,7 +1136,6 @@ ar:
   grouping: تجمع
   guess_description: تخمين / وصف
   guides: خطوط إرشاد
-  guide_colors: دليل الألوان
   guide_compiled_by: تم تجميع الدليل بواسطة
   guide_deleted: تم حذف الدليل
   guide_will_be_deleted: سيتم حذف الدليل، يستغرق بعض الوقت للأدلة الأكبر.
@@ -1229,7 +1145,6 @@ ar:
   guide_was_successfully_updated: تم تحديث الدليل بنجاح.
   guidelines: الإرشادات
   has_already_been_flagged_by: تم تعليمها بواسطة
-  has_been: تم
   has_id_supported_by_two_or_more: لديه معرف مدعوم من قبل اثنين أو أكثر
   has_one_or_more_faves: لديه واحد مفضل أو أكثر
   has_photo: لديه صورة
@@ -1242,25 +1157,17 @@ ar:
   hate_me_facebook: "إلغاء ربط حساباتك بفيسبوك و%{site_name}"
   hate_me_flickr: "إلغاء ربط حساباتك بفليكر و%{site_name}"
   heads_up: انتباه
-  heads_up_observation_search_can_only_load: "انتباه: بحث الملاحظات يمكنه تحميل ما يصل إلى 50 صفحة فقط"
-  heads_up_this_observation_has_been_flagged: "انتباه: تم التعليم على هذه الملاحظة"
   heads_up_this_photo_has_been_flagged: "انتباه: تم التعليم على هذه الصورة"
   heads_up_this_photo_is_already_associated_with: "تنبيه: هذه الصورة مقترنة بالفعل <a target='_blank' href='%{url}'>بملاحظة أخرى</a>"
-  heads_up_this_taxon_locked_users_cant_add_descendants: "<strong>تنبيه:</strong> هذه الأصنوفة مغلقة: مما يعني أن معظم المستخدمين لا يمكنهم إضافة أحفاد جديدة إليها عن طريق استيراد أصناف، يمكن للمشرفين القيام بذلك عن طريق تعديل أصناف واختيار أحد الوالدين، ولكن يُرجَى النظر في دمج الأصناف بدلا من ذلك."
   heads_up_you_have_multiple: "تنبيه: لديك عدة علامات تصنيفية للتصنيفات المميزة، إنها مرمزة بالألوان أدناه حسب الرتبة."
-  hello: <اختبار>
   help: مساعدة
   help_confirm_observations!: المساعدة في تأكيد الملاحظات!
-  help_faq: مساعدة / أسئلة مكررة
-  help_out!: مساعدة!
   help_support_inaturalist: "مساعدة دعم إيناتوراليست"
   helped_the_observer_make: ساعد المراقب في صنع معرفهم النهائي (أي أنهم قُدِّموا قبل المعرف النهائي وطابقوه)
   here_are_3_examples: في ما يلي 3 أمثلة للبيانات التي تم تشكيلها بشكل جيد
   here_are_our_top_suggestions: فيما يلي أهم اقتراحاتنا
   here_are_our_top_species_suggestions: فيما يلي أهم اقتراحات الأنواع
-  here_are_some_things_you_can_do_meantime: "إليك بعض الأشياء التي يمكنك القيام بها في هذه الأثناء:"
   here_are_some_things_you_can_do_in_the_meantime: "إليك بعض الأشياء التي يمكنك القيام بها في غضون ذلك"
-  heres_a_litle_about: هنا القليل عن
   hex_color_eg: لون Hex، على سبيل المثال 65644F
   hi: مرحبًا،
   hi_user: "مرحبا %{user}"
@@ -1276,16 +1183,12 @@ ar:
     للمحتوى غير المرغوب فيه للغاية.
   hide_running_total: إخفاء تشغيل الاجمالي
   hide_uncountable_species: إخفاء الأنواع التي لا تحصى
-  hidden_content_explanation: تم إخفاء المحتوى
   high: مرتفع
   highest_rank: أعلى رتبة
-  highlights: الأبرز
   highlights_and_stats_from_year_on_site: "أبرز أفعال وإحصاءات %{year} في %{site}"
   history: التاريخ
   home: الصفحة الرئيسية
-  home_faq: الأسئلة المتكررة
   however_there_were_some_issues: "ومع ذلك، كانت هناك بعض المشكلات: %{issues}"
-  hybrid: هجين
   i_agree_to_the_project_terms: أوافق على شروط المشروع
   i_dont_know_but_i_am_sure_this_is_taxon: أنا لا أعرف ولكن أنا متأكد من أن هذا %{taxon}
   icon: أيقونة
@@ -1393,7 +1296,6 @@ ar:
   in_the_past_week: في الأسبوع الماضي
   inactive: غير نشط
   inactive_taxon: أصنوفة غير نشطة
-  inactive_taxon_concepts_are: مفاهيم الأصنوفة غير النشطة إما قديمة العهد من الناحية التصنيفية أو يجري وضعها لتغير الأصنوفة، يتم الاحتفاظ بالمفاهيم القديمة للحفاظ على التاريخ والتوافق مع بعض مواقع الشركاء.
   inappropriate: غير مناسب؟
   inappropriate_content: محتوى غير لائق؟
   inat_account_action: "%{site_name} &#58; الحساب &#58; %{action_name}"
@@ -1634,7 +1536,6 @@ ar:
   listing_announcement: إعلان الإدراج
   listing_announcements: إعلانات الإدراج
   listing_lists: قوائم الإدراج
-  listing_project_assets: إدراج أصول المشروع
   listing_taxa: إدراج أصناف
   listing_taxon_names: إدراج أسماء أصناف
   lists: قوائم
@@ -1938,7 +1839,6 @@ ar:
   new_password: كلمة السر الجديدة
   new_post: منشور جديد
   new_project: مشروع جديد
-  new_project_asset: أصول المشروع الجديد
   new_project_asset_for: أصول المشروع الجديد لـ
   new_source: مصدر جديد
   new_species_added_in_interval: الأنواع الجديدة المضافة في %{interval}
@@ -2426,7 +2326,6 @@ ar:
   photos_size_photos: "%{photos_size} صورة"
   photos_size_photo: "%{photos_size} صورة"
   photos_updated: تم تحديث الصور.
-  google_account_not_linked: "لم يعد لدى %{user} حساب جوجل مرتبط بعد الآن; لذلك ليس لدى %{site_name} إذن بالدخول إلى هذه الصورة."
   pi_consent_desc_title: حول المعلومات الشخصية
   pi_consent_desc_html: |
     نقوم بتخزين المعلومات الشخصية مثل أسماء المستخدمين وعناوين البريد الإلكتروني من أجل 
@@ -3730,7 +3629,6 @@ ar:
   there_isnt_wiki_article: "لا توجد مقالة أو تحويلة في ويكيبيديا بعنوان '<i>%{taxon}</i>'; ربما كنت ترغب في"
   there_isnt_a_wikipedia_article_titled_x_html: |
     لا توجد مقالة أو تحويلة في ويكيبيديا بعنوان '%{x}'; ربما كنت ترغب في <a href='http://en.wikipedia.org/wiki/%{x}'>إنشاء واحدة</a>؟
-  there_merge_problems_with_the_merge: "هناك مشكلات في الدمج: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "حدثت مشكلة أثناء حفظ هويتك: %{error}"
   there_were_errors: حدثت أخطاء.
   there_were_problems_adding_taxa: "حدثت مشكلات أثناء إضافة هذه الأصناف: %{errors}"
@@ -4397,7 +4295,6 @@ ar:
   you_need_to_select_some_observations_first: تحتاج إلى تحديد بعض الملاحظات أولا.
   you_retain_full_copyright: "احتفظ بحقوق الطبع والنشر الكاملة على محتواك إلى جانب الحقوق الممنوحة ل%{site_name} في شروط الخدمة."
   you_retain_full_copyright_over_your_content: "احتفظ بحقوق الطبع والنشر الكاملة على محتواك إلى جانب الحقوق الممنوحة ل%{site_name} في شروط الخدمة."
-  you_sure_delete_asset?: هل تريد بالتأكيد حذف هذا الأصل؟
   you_sure_delete_check_list: "هل تريد بالتأكيد حذف هذه القائمة؟ قد يكون قد وضع بعض الناس الكثير من العمل فيها..."
   you_sure_delete_comment?: هل أنت متأكد أنك تريد حذف هذا التعليق؟
   you_sure_delete_custom_field?: هل أنت متأكد أنك تريد حذف هذه الحقول المخصصة؟
@@ -4748,15 +4645,6 @@ ar:
           وجيسيكا كلاين، و كين-إتشي أويدا في جامعة كاليفورنيا، بركلي
           (<a href="http://www.ischool.berkeley.edu">كلية الإعلام</a>)،
           اطلع على <a href="/about">الصفحة حول</a> للحصول على مزيد من المعلومات حول الأشخاص الذين يديرون الموقع حاليا.
-        inaturalist_is_built_using_html: |
-          تم إنشاء برنامج %{site_name} باستخدام <a
-          href="http://www.rubyonrails.org/">روبي أون رايلز</a> و<a
-          href="http://mysql.com/">ميسكل</a> و<a
-          href="http://jquery.com/">جكري</a> و<a
-          href="http://code.google.com/apis/maps//">خرائط جوجل</a> و<a
-          href="http://flickr.com/">فليكر</a>، كما يستخدم <a
-          href="http://www.catalogueoflife.org">> كتالوج الحياة</a> و
-          مصادر بيانات <a href="http://ubio.org/">أوبيو</a> للبيانات التصنيفية.
         what_can_i_do_to_help_inaturalist?: ماذا يمكنني أن أفعل لمساعدة %{site_name}
         you_can_help_inaturalist_by_giving_us_your_feedback_html: |
           يمكنك مساعدة %{site_name} من خلال تقديم تعليقاتك إلينا: انضم إلى  
@@ -5588,12 +5476,6 @@ ar:
              أو أن مشروعك يحتوي على قاعدة "يجب أن تكون في قاعدة الأصنوفة" 
             </li>
           </ol>
-        project_assets_desc_html: |
-          <p class="description">تعد أصول المشروع مجرد ملفات مقترنة بمشروعك، مع بعض القواعد الخاصة:</p>
-          <ol class="description">
-          <li> الملفات التي تنتهي ب.logo.jpg أو .logo.png وما إلى ذلك سيتم استخدامها كشعار للمشروع في صفحة المشروع بدلا من أيقونة المشروع</li>
-          <li>ستتم إضافة ملفات KML وKMZ إلى الخريطة في صفحة المشروع</li >
-          </ol>
         project_list_desc_html: |
           <p class="description">
             يمكنك إنشاء قائمة مشاريع مخصصة بالأصناف وربطها 
@@ -5618,12 +5500,6 @@ ar:
         submission_models:
           any: أي واحد
           curators: أمناء المشروع
-        trusted_project_means: |
-          الثقة في مشروع تعني أن مديري المشاريع يمكنهم إضافة 
-          أصول المشروع وخصائص مشروع مخصص (على سبيل المثال لافتة HTML أو CSS)، الوصول 
-          إلى سمات المشروع المخصصة يعني أن مديري المشاريع 
-          يحتمل أن يضيفوا جافا سكريبت ضارة; لذلك الثقة فقط بالمشاريع التي 
-          لديها المديرين المسؤولين وذوي كفاءة من الناحية الفنية.
         you_can_preview: |
           يمكنك معاينة الشكل الذي سيبدو عليه مشروعك كمشروع تجميع بواسطة 
           by <a href="%{url}">النقر هنا</a>.
