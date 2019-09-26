@@ -316,8 +316,8 @@ class Observation < ActiveRecord::Base
 
   validates :latitude, numericality: {
     allow_blank: true,
-    less_than_or_equal_to: 90,
-    greater_than_or_equal_to: -90
+    less_than: 90,
+    greater_than: -90
   }
   validates :longitude, numericality: {
     allow_blank: true,
