@@ -299,7 +299,8 @@
         <% elsif provider != "soundcloud" %>
           <li class="clear">
             <%= link_to t(:connect_to_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
-              auth_url_for(provider), 
+              auth_url_for(provider),
+              method: :post,
               :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} button" %>
           </li>
         <% end %>

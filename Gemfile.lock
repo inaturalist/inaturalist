@@ -462,6 +462,9 @@ GEM
     omniauth-orcid (2.1.1)
       omniauth-oauth2 (~> 1.3)
       ruby_dig (~> 0.0.2)
+    omniauth-rails_csrf_protection (0.1.2)
+      actionpack (>= 4.2)
+      omniauth (>= 1.3.1)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -728,13 +731,14 @@ DEPENDENCIES
   nokogiri (~> 1.10.4)
   non-stupid-digest-assets
   objectify-xml!
-  omniauth
+  omniauth (>= 1.9.0)
   omniauth-facebook (~> 5.0.0)
   omniauth-flickr!
   omniauth-google-oauth2 (~> 0.7.0)
   omniauth-oauth2 (= 1.6.0)
   omniauth-openid
   omniauth-orcid
+  omniauth-rails_csrf_protection
   omniauth-soundcloud!
   omniauth-twitter
   optimist

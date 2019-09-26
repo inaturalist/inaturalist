@@ -233,13 +233,14 @@
           <div id="link_flickr_message">
             <%= t(:you_need_to_have_linked_flickr_account) %>
             <%= link_to t(:connect_to_provider, provider: "Flickr" ),
-                        auth_url_for('flickr'),
-                        :class => 'button' %>
+              auth_url_for( "flickr", scope: "write" ),
+              method: :post,
+              :class => 'button' %>
           </div>
         <% end %>
       <% else %>
         <div id="sign_in_sign_up" class="inline buttonrow">
-          <%= link_to t( :sign_in_with_provider, provider: "Flickr" ), auth_url_for('flickr', :scope => 'write'), :class => "button" %>
+          <%= link_to t( :sign_in_with_provider, provider: "Flickr" ), auth_url_for('flickr', :scope => 'write'), method: :post, :class => "button" %>
         </div>
       <% end -%>
     </div>

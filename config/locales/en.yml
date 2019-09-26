@@ -793,6 +793,7 @@ en:
   connect_to_provider: "Connect to %{provider}"
   connected_accounts: Connected accounts
   connecting_flickr: "Connecting to Flickr... "
+  connect_to_flickr_again_to_authorize_write_permissions: Connect to Flickr again to authorize write permissions
   connecting_to_facebook: "Connecting to Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecting your %{site_name} account to accounts on other sites will allow you to login to %{site_name} using your credentials from those sites."
   conservation_status: Conservation Status
@@ -1437,8 +1438,6 @@ en:
   has_sound: Has Sound
   has_sounds: Has Sounds
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
-  hate_me_facebook: "Unlink your Facebook and %{site_name} Accounts"
-  hate_me_flickr: "Unlink your Flickr and %{site_name} Accounts"
   heads_up: Heads up
   heads_up_observation_search_can_only_load: "Heads up: observation search can only load up to 50 pages"
   heads_up_this_observation_has_been_flagged: "HEADS UP: this observation has been flagged."
@@ -4245,6 +4244,8 @@ en:
   unknown_taxon_framework_relationship: Unknown taxon framework relationship
   unfollow: Unfollow
   unlink_your_google_account: Unlink Your Google Account
+  unlink_your_facebook_account: "Unlink your Facebook Account"
+  unlink_your_flickr_account: "Unlink your Flickr Account"
   unmute: Unmute
   unobserved_listings: Unobserved Listings
   updates_notification_email_subject: "%{prefix} New updates %{date}"

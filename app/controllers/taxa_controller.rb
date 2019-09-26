@@ -1585,8 +1585,7 @@ class TaxaController < ApplicationController
       if e.message =~ /Insufficient permissions/ || e.message =~ /signature_invalid/
         auth_url = auth_url_for('flickr', :scope => 'write')
         flash[:error] = ("#{@site.site_name_short} can't add tags to your photos until " +
-          "Flickr knows you've given us permission.  " + 
-          "<a href=\"#{auth_url}\">Click here to authorize #{@site.site_name_short} to add tags</a>.").html_safe
+          "Flickr knows you've given us permission.").html_safe
       else
         flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
       end
@@ -1655,7 +1654,7 @@ class TaxaController < ApplicationController
     @provider_authorization = current_user.provider_authorizations.where(provider_name: "flickr").first
     if @provider_authorization.blank? || @provider_authorization.scope != 'write'
       session[:return_to] = request.get? ? request.fullpath : request.env['HTTP_REFERER']
-      redirect_to auth_url_for('flickr', :scope => 'write')
+      redirect_to url_for( controller: :flickr, action: :options, scope: "write" )
       return false
     end
   end
