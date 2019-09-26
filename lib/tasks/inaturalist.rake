@@ -427,6 +427,7 @@ namespace :inaturalist do
       /^doorkeeper\./,
       /^errors\./,
       /^Family/,
+      /^flag_for_/,
       /^forum_categories\./,
       /^Genus/,
       /^i18n\./,
