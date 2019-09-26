@@ -43,7 +43,6 @@ br:
   add_another_photo: Ouzhpennañ ur poltred all
   add_another_section: Ouzhpennañ ur rannskrid all
   add_another_subscription: Ouzhpennañ ur c'houmanant all
-  add_asset: Ouzhpennañ ur splet
   add_batch: Ouzpennañ ul lod
   add_comma_separated_tags: "Ouzhpennañ tikedennoù dispartiet gant skejoù"
   add_comment: Ouzhpennañ un evezhiadenn
@@ -390,14 +389,11 @@ br:
   creative_commons_flickr_tagged: Luc'hskeudennoù Flickr Creative Commons
   csv_file: Resr CSV
   custom_project_fields: Maeziennoù rakresoù personelaet
-  custom_project_was_successfully_created: Krouet mat eo bet ar raktres personelaet
-  custom_project_was_successfully_updated: Hizivaet mat eo bet ar raktres personelaet.
   darr_apply_darr: "&darr; Applica &darr;"
   dashboard: Taolenn-vourzh
   data_deficient: Roadennoù skort
   datatype: Seurt roadennoù
   date_: Deiziad
-  date?: Deiziad ?
   date_added: Deiziad ouzhpennet
   date_created: Deiziad krouet
   date_format:
@@ -435,7 +431,6 @@ br:
     prevText: Kent
     nextText: War-lerc'h
   date_time: Deiz/Eur
-  datetime_: Deiz/Eur
   day: Deiz
   default: dre ziouer
   default_invite_comment: "Nag ur gaer a luc'hskeudenn ! Ret e vefe deoc'h embann anezhi e %{site_name}} :"
@@ -453,7 +448,6 @@ br:
   delete_selected: Lemel an dibab
   delete_taxon_and_merge_most_data_html: |
     Dilamit <i>%{taxon}</i> ha kendeuzit an darn vrasañ eus ar roadennoù en un takson all. Implijit ar benveg-mañ evit dilemel <strong>an taksonoù e doubl</strong>. M'ho peus c'hoant da zilemel un heñvelster dispredet, krouit un eskemm taksonoù. <strong>DIWALLIT!</strong>Distrujus-kenañ e c'hall bezañ dilemel taksonoù. Lennit<a href="%{curator_url}>Sturlevr atebeien an aozadur</a> evit gouzout hiroc'h.
-  delete_this_name: Dilemel an anv-mañ
   delete_user: Dilemel an implijer
   delete_your_account: Dilemel ho kont
   deleted_synonyms: Heñvelstêrioù dilamet
@@ -475,19 +469,10 @@ br:
     failure:
       user:
         suspended: Astalet eo bet ho kont
-  developers: Diorroerien
-  device: Trobarzhell
   did_not_send_invitations_because: N'hoc'h eus kaset pedadenn ebet d'an dud-mañ peogwir...
   did_you_mean: 'N''hoc''h eus ket soñjet kentoc''h e'
   did_you_photos_flickr?: Lakaet ho peus luc'hskeudennoù war Fickr ?
-  disagree: Ne savan ket a-du
   disconnect_provider: "Digevreañ %{provider}"
-  display_listings_added_by_curators: Diskwel ar rolloù ouzhpennet gant atebeien an aozadur
-  display_listings_from_place: Diskwel rolloù al lec'h
-  dna_: TDN
-  do_you_know_where_this_species_lives: Ha gouzout a rit pelec'h emañ ar spesadoù o vevañ ?
-  does_the_location_seem_accurate: "Seblantout a ra al lec'hiadur bezañ reizh ?"
-  dont_filter: "Arabat silañ"
   dont_send_me_email: "Arabat kas posteloù din!"
   dont_use_double_quotes: Arabat ober gant "daouaskoù" e lec'h all
   double_click_to_finish: (daouglikit evit echuiñ)
@@ -498,7 +483,6 @@ br:
   download_csv: Pellgargit ar furmad CSV
   download_csv_template: Pellgargit ar patrom "CSV"
   download_kml: Pellgargañ KML
-  drag_and_drop_photos: Riklit ha dilec'hiit al luc'hskeudennoù er prenestr-mañ, pe
   draft: brouilhed
   draft_: brouilhed
   draft_saved: Brouilhed enrollet!
@@ -507,7 +491,6 @@ br:
   edit_a_batch_of_observations: Kemmañ ul lod evehiadennoù
   edit_account_settings_and_profile: "Kemmañ an arventennoù &amp, profil ur gont"
   edit_body: Kemmañ ar c'horf
-  edit_colors: Kemmañ al livioù
   edit_comment: Kemmañ hoc'h evezhiadenn
   edit_custom_project_fields: Kemmañ ar maeziennoù raktres personelaet
   edit_field: Kemmañ ar vaezienn
@@ -520,19 +503,13 @@ br:
   edit_selected: Kemmañ an dibab
   edit_source: Kemmañ ar vammenn
   edit_taxa: Kemmañ an taksonoù
-  edit_taxon_change: Kemmañ ar c'hemmadur takson
   edit_taxon_link: Kemmañ al liamm a denn d'an takson
   edit_the_observation: Kemmañ an arselladenn
-  edit_this_link: Kemmañ al liamm-mañ
-  edit_your_account: Kemmañ ho kont
   edit_your_account_and_profile_html: "Kemmañ ho kont &amp;hag ho profil"
   edit_your_default_settings: "Kemmañ hoc'h arventennoù dre ziouer"
   edit_your_global_project_settings: Kemmañ hoc'h arventennoù raktres hollek
   edit_your_identification: Kemmañ hoc'h anaouadur
-  edit_your_profile: Kemmañ ho profil
   edit_your_settings_for_this_project: Kemmañ hoc'h aventennoù evit ar raktres-mañ
-  edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Kemmañ hoc'h arventennoù</a> evit kemmañ ar seurt hizivadurioù a resevit pe evit  digoumanantiñ penn-da-benn."
-  edited: Kemmet
   edited_by_name_html: "Kemmet gant %{name}"
   editing: O kemmañ
   editing_announcement: Kemmañ ar gemennadenn
@@ -556,7 +533,6 @@ br:
   email_copyright: "Copyright &copy; %{x}, pep gwir miret strizh"
   email_settings: Arventennoù ar postel
   embed: 'Enframmañ'
-  embed_a_widget_for_this_taxon_on_website: "Enframmañ ur widged evit an takson-mañ en ho lec'hienn Web %raquo;"
   embed_place_widget: Enframmañ ur widged eus al lec'h
   embed_widget_project: Enframmañ ur widged evit ar raktres en ho lec'hienn Web
   enable_offline_access: Gweredekaat ar moned ezlinenn
@@ -568,9 +544,6 @@ br:
     invasive: Aloubus
     managed: Meret
     native: henvroad
-  establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: Erruet er rannvro gant doareoù deneiat
-    native_and_occurs_nowhere_else: Henvroad ha n'eus anezhañ e lec'h all ebet
   event_url: URL an obererezh
   events_only: Darvoudoù hepken
   every_species_seen_by: Pep spesad gwelet gant
@@ -580,36 +553,22 @@ br:
   exact_rank: Renk resis
   existing_flags: Banieloù zo anezho
   exit_full_screen: "Kuitaat ar mod skramm leun"
-  expand_days: diorren an deizioù
-  expand_updates: diorren an hizivadurioù
-  explore!: Ergerzhit !
   export: Ezporzhiañ
   export_observations: Ezporzhiañ an evezhiadennoù
   export_with_private_coordinates: Ezporzhiañ gant roadennoù prevez
   exporting: "Oc'h ezporzhiañ..."
-  external_links: Liammoù diavaez
   extinct: Aet da get
   extra_properties: Arventennoù ouzhpenn
-  extras: Ouzhpennadennoù
   facebook_account_information: Titouroù ho kont Facebook
   facebook_account_not_linked: "%{user} n'en deus kont Facebook ebet ken. Neuze ne c'hall ket %{site_name} tizhout al luc'hskeudenn-mañ."
   facebook_access_token_expired: "N'eo ket mat ar jedouer moned ken. Ret eo da %{user} adsevel al liamm gant e gont Facebook."
-  facebook_confirmation: "Fellout a ra da Facebook kadarnaat e vefe kevreet ho kont ouzh %{site_name}."
   facebook_needs_the_owner_of_that_photo_to: Fellout a ra da Facebook goulenn groñs e vefe kadarnaeet e gevreadenn ouzh %{site_name_short}.
   facebook_options: Dibarzhioù Facebook
   'false': 'Faos'
-  faq: Foar ar Goulennoù
   Family: Kerentiad
-  fblocale: Er_SUA
-  feature_this_project: "Lakaat a raktres-mañ e talvoud ?"
   featured: Lakaet da dalvezout
-  featured?: Lakaet da dalvezout ?
-  featured_projects_from_everywhere: Raktresoù lakaet e talvoud eus pep lec'h
-  featured_projects_from_place: "Raktresoù lakaet da dalvezout adalek %{place}"
   feedback: Evezhiadennoù
-  feedback_group: Strollad evezhiadennoù
   feeds: 'Gwazh'
-  feeds_for_current_filters: Gwazhioù evit ar restroù a vremañ
   failed: C'hwitet
   field_note: |
     <strong>Notenn :</strong> M'ho peus c'hoant da grouiñ ur vaezienn, gwiriit ha ma n'eo ket bet graet gant un den bennak dija evit mirout ne vefe ket krouet ar memes maeziennoù div wech.
@@ -619,8 +578,6 @@ br:
   fields_merged: Maeziennoù kendeuzet
   file_should_be_in_the_following_format: "Ret eo d'ar restr bezañ er furmad-mañ : an an takson, deskrivadur"
   fill_out_your_profile: Leugnit ho profil
-  filling_out_checklist_for_place: Leugnit rolloù kontroll evit al lec'hioù a anavezit mat
-  filling_out_your_profile: O leuniañ ho profil
   filter: Silañ
   filter_by_curator_identification: Sil dre anavezout ar penn raktres
   filter_by_place: Silañ dre lec'h
@@ -647,29 +604,23 @@ br:
   first_connect_your_provider_account_to_your_site: "Da gentañ, kevreit ho kont %{provider} ouzh %{site_name} :"
   first_inat_observation: "Evezhiadenn gentañ %{site_name}"
   first_observer: Evezhiadenn gentañ
-  first_report: Danevell gentañ
   flag: Banniel
   flag_an_item: Merkañ un elfenn
   flag_as_spammer: Merkañ evel ur strober
   flag_saved: Banniel enrollet.
   flags: Drapeaux
   flickr_identity: Identelezh Flickr
-  flickr_invite_link_raquo: "Lec'h pediñ Flickr &raquo;"
   flickr_needs_to_confirm: "Ret eo da Flickr kadarnaat e vo kevreet ho kont ouzh %{site_name}."
   flickr_photo: Luc'hskeudenn Flickr
   flickr_photos: Luc'hskeudennoù Flickr
   flickr_style: Stil Flickr
   flickr_tagger: Liketenniñ al luc'hskeudennoù Flickr
   flickr_tags: Liketennoù Flickr
-  flickr_youre_all_set: "Prest oc'h da gregiñ da ergerzhout %{site_name}"
   follow_user: "Heuliañ %{user}"
-  follower: Koumananter
   following: Emaoc'h o heuliañ
   for: evit
   for_a_taxon: evit un takson
-  for_more_information: Evit gouzout hiroc'h.
   forgot_your_password: Ankouaet ho ker-tremen ganeoc'h ?
-  fri: Gwe
   from: Eus
   from_a_place: Eus ul lec'h
   from_list: Eus ar roll-mañ
@@ -677,38 +628,24 @@ br:
   from_photos: Diwar luc'hskeudennoù
   from_place: Diwar al lec'h
   from_your_site_observations: "Diwar evezhiadennoù %{site_name}"
-  full_id_please: ID, mar plij !
-  full_id_please!: "ID, mar plij !"
-  full_id_please?: "ID, mar plij !"
   full_screen: Skramm leun
-  general: Hollek
   generate_taxonomic_tags_for_flickr: Genel al liketennoù taksonomek evit ho luc'hskeudennoù Flickr.
   generate_widget: Genel ar widged
-  generating: "O c'henel..."
   Genus: Genad
-  genus_slash_species: "[GENAD] / [SPESAD]"
   geoprivacy: Douarbrevezded
   georeferenced: Douarlec'hiet ?
-  georeferenced?: Douarlec'hiet
-  get_current_position: Kaout al lec'hiadur a vremañ
-  get_started_raquo: "Loc'hañ &raquo;"
   get_started: Kregiñ
-  getting_started: Loc'hañ
   getting_started_guide: Sturlevr evit kregiñ ganti
   give_it_some_detail: Roit titouroù !
   global_names: Anvioù hollek
   go: Mont
   go_back: Distreiñ
   grant_role: "%{grant} (%roll} %{role}"
-  gray: gris
-  green: gwer
-  grey: gris
   grid: Kael
   grid_tooltip: Diskwel ar gwel er mod kael
   group: Strollad
   guess_description: Martezeadenn/Deskrivadur
   guides: Sturlevrioù
-  guide_colors: Sturlevr al livioù
   guide_compiled_by: Sturlevr savet gant
   guide_deleted: Sturlevr dilamet
   guide_will_be_deleted: Dilamet e vo sturlevr, ar pezh a c'hall kemer amzer evit ar sturlevrioù bras.
@@ -717,20 +654,15 @@ br:
   guide_was_successfully_published: Embannet da vat eo bet ar sturlevr-mañ.
   guide_was_successfully_updated: Hizivaet da vat eo bet ar sturlevr-mañ.
   has_already_been_flagged_by: zo bet disklêriet gant
-  has_been: zo bet
   help: Skoazell
-  help_faq: Skoazell / Foar ar Goulennoù
   here_are_3_examples: Setu 3 skouer a roadennoù stummet mat
-  here_are_some_things_you_can_do_meantime: "Setu traoù zo a c'hallit ober e-pad ar mare-mañ :"
   hex_color_eg: Liv e niver c'hwezekredel, da sk. 65644F
   hi: Demat,
   hi_user: "Demat, %{user}"
   high: uhel
   highest_rank: Renk uhelañ
   home: Degemer
-  home_faq: FAG
   however_there_were_some_issues: "Un nebeud kudennoù zo bet, koulskoude : %{issues}"
-  hybrid: hiron
   i_agree_to_the_project_terms: Degemer a ran divizoù ar raktres
   icon: Arlun
   icon_size: Ment an arlun
@@ -990,7 +922,6 @@ br:
   new_password: Ger-tremen nevez
   new_post: Notenn nevez
   new_project: Raktres nevez
-  new_project_asset: Project_asset nevez
   new_source: Tarzh nevez
   new_taxon_change: Kemm takson nevez
   new_taxon_link: Liamm takson nevez
