@@ -160,7 +160,6 @@ sv:
   add_another_photo: Lägg till ett annat foto
   add_another_section: Lägg till ett annat avsnitt
   add_another_subscription: Bifoga ännu ett abonnemang
-  add_asset: Lägg till material
   add_batch: Lägg till bunt
   add_comma_separated_tags: "Lägg till kommaseparerade taggar"
   add_comment: Lägg till en kommentar
@@ -671,7 +670,6 @@ sv:
   data_used: "Data som används:"
   datatype: Datatyp
   date_: Datum
-  date?: Datum?
   date_format:
     date_long:
       january: '%{day} januari %{year}'
@@ -705,8 +703,6 @@ sv:
     prevText: Föreg.
     nextText: Nästa
   date_time: Datum/Tid
-  dates: datum
-  datetime_: Datum/Tid
   day: Dag
   default: standard
   default_invite_comment: "Snyggt foto! Du borde lägga upp den på %{site_name}: {{INVITE_LINK}}"
@@ -719,7 +715,6 @@ sv:
   delete_photo: Radera foto
   delete_project: Radera detta projekt
   delete_selected: Radera valda
-  delete_this_name: Radera detta namn
   delete_user: Radera användare
   delete_your_account: Radera ditt konto
   deleted_synonyms: Raderade synonymer
@@ -734,17 +729,13 @@ sv:
   desription: Beskrivning
   destroy: Förstör
   details: Detaljer
-  developers: Utvecklare
-  device: Enhet
   discoveries: Upptäckter
   did_you_mean: 'Menade du'
   disconnect_provider: "Koppla från %{provider}"
   documentation_for_developers_html: Dokumentation för <a href="/pages/developers">utvecklare</a>
   do_not_show_this_message_again: Visa inte detta meddelande igen
-  do_you_want_to_proceed: Vill du fortsätta?
   doh_something_went_wrong_error: "Attans, någonting gick fel: %{error}"
   done: Klar
-  dont_filter: "Filtrera inte"
   dont_have_an_account_sign_up_html: Har du inte ett konto? <strong>Registrera dig.</strong>
   dont_send_me_email: "Skicka inte någon e-post!"
   drop_it: Släpp den
@@ -760,7 +751,6 @@ sv:
   edit_account_settings_and_profile: "Redigera kontoinställningar och -profil"
   edit_atlas: Redigera Atlas
   edit_body: Redigera innehåll
-  edit_colors: Redigera färger
   edit_comment: Redigera din kommentar
   edit_field: Redigera fält
   edit_license: Redigera licens
@@ -769,7 +759,6 @@ sv:
   edit_multiple_locations: Redigera flera platser
   edit_multiple_species: Redigera flera arter
   edit_notes: Redigera anteckningar
-  edit_observation: Redigera observation
   edit_observations: Redigera observationer
   edit_photos: Redigera foton
   edit_photos_for_observation_id: "Redigera bilder för observation %{obs_id}"
@@ -781,15 +770,11 @@ sv:
   edit_taxa: Redigera taxa
   edit_taxon: Redigera taxon
   edit_the_observation: Redigera observation
-  edit_this_link: Redigera denna länk
-  edit_your_account: Redigera ditt konto
   edit_your_account_and_profile_html: "Redigera ditt konto och profil"
   edit_your_default_settings: "Ändra dina standardinställningar"
   edit_your_global_project_settings: Redigera dina globala projektinställningar
   edit_your_identification: Redigera din identifiering
-  edit_your_profile: Redigera din profil
   edit_your_settings_for_this_project: Ändra dina inställningar för detta projekt
-  edited: Redigerad
   edited_by_name_html: "Redigerad av %{name}"
   editing: Redigerar
   editing_observations:
@@ -811,28 +796,21 @@ sv:
   except: förutom
   existing_flags: Befintliga flaggor
   exit_full_screen: "Avsluta helskärmsläge"
-  explore!: Utforska!
   explore: Utforska
   export: Exportera
   export_observations: Exportera observationer
-  facts_and_stats: Fakta och statistik
   'false': 'Falskt'
-  faq: Vanliga frågor och svar
   faves: Favoriter
   Family: Familj
   favorite_taxa: Favorit taxa
   favorites: "Favoriter"
-  fblocale: sv_SE
   feedback: Återkoppling
-  feedback_group: Återkopplingsgrupp
   feeds: 'Matningar'
   failed: Misslyckades
-  field_guides: Fältguider
   fields: fält
   fields_: Fält
   file: Fil
   fill_out_your_profile: slutför din profil
-  filling_out_your_profile: fyller i din profil
   filters: Filter
   find: Hitta
   find_a_guide: Hitta en guide
@@ -866,7 +844,6 @@ sv:
   flags_for_x_html: Flaggor för %{x}
   flags_on_users_content: "Flaggor på %{user}s innehåll"
   follow_user: "Följ %{user}"
-  follower: följare
   followers: Följare
   following: Följer
   following_x_people:
@@ -877,7 +854,6 @@ sv:
   formatting: Formatering
   forgot_your_password: Glömt ditt lösenord?
   frequency: Frekvens
-  fri: Fre
   from: Från
   from_a_place: från en plats
   from_eol_collection: Från EOL-samling
@@ -891,28 +867,21 @@ sv:
   fungi:
     one: svamp
     other: svampar
-  fungus:
-    one: svamp
-    other: svampar
   generate_your_stats: Generera din statistik
-  get_started_raquo: "Kom igång &raquo;"
   get_started: Kom igång
   getting_started_guide: Komma igång guide
   globally: Globalt
   go: Gå
   go_back: Gå tillbaka
   got_it!: Uppfattat!
-  green: grön
   grid_layout: Rutnätslayout
   group: Grupp
   grouping: Gruppering
   guides: Guider
   has_photo: Har foto
   help: Hjälp
-  help_faq: Hjälp / FAQ
   help_support_inaturalist: "Hjälp till att stödja iNaturalist"
   here_are_our_top_species_suggestions: Här är våra populäraste förslag på arter
-  heres_a_litle_about: Här är lite om
   hi: Hej,
   hi_user: "Hej %{user}"
   hide_uncountable_species: Dölj oräkneliga arter
@@ -1259,7 +1228,6 @@ sv:
   photo_licensing: Foto licensiering
   photos_of_taxon_html: "Foton av %{taxon}"
   photos_or_sounds: Foton eller ljud
-  google_account_not_linked: "%{user} har inte ett länkat Google-konto längre, så %{site_name} har inte behörighet att komma åt detta foto."
   pin_verb: Fäst
   place: Plats
   placeholder: Platshållare
