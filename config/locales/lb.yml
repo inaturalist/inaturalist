@@ -420,7 +420,6 @@ lb:
   data_quality: Datequalitéit
   datatype: Datentyp
   date_: Datum
-  date?: Datum?
   date_added: Datum derbäigesat
   date_format:
     date_long:
@@ -453,8 +452,6 @@ lb:
     range: Beräich
   date_time: Datum/Zäit
   date_updated: Datum aktualiséiert
-  dates: Datumen
-  datetime_: Datum/Zäit
   day: Dag
   default: Standard
   default_invite_comment: "Schéi Foto! Dir misst déi op %{site_name} publizéieren: {{INVITE_LINK}}"
@@ -463,7 +460,6 @@ lb:
   delete_all: All läschen
   delete_photo: Foto läschen
   delete_project: Dëse Projet läschen
-  delete_this_name: Dësen Numm läschen
   delete_user: Benotzer läschen
   delete_your_account: Äre Benotzerkont läschen
   deleted_synonyms: Geläscht Synonymmer
@@ -482,8 +478,6 @@ lb:
     failure:
       user:
         suspended: Äre Benotzerkont gouf suspendéiert
-  developers: Entwéckler
-  device: Apparat
   discoveries: Entdeckungen
   did_you_mean: 'Mengt Dir'
   did_you_photos_flickr?: Hutt Dir Fotoen op Flickr gesat?
@@ -492,11 +486,9 @@ lb:
   disconnect_provider: "%{provider} trennen"
   documentation_for_developers_html: Dokumentatioun fir <a href="/pages/developers">Entwéckler</a>
   do_not_show_this_message_again: Dëse Message net,méi weisen
-  do_you_want_to_proceed: Wëllt Dir virufueren?
   doh_something_went_wrong: Ups, da ass eppes schif gaang.
   doh_something_went_wrong_error: "Ups et ass Eppes schif gaangen: %{error}"
   done: Fäerdeg
-  dont_filter: "Net filteren"
   dont_send_me_email: "Schéckt mir keng E-Mailen!"
   double_click_to_finish: (duebele Klick fir ofzeschléissen)
   download: Eroflueden
@@ -512,14 +504,12 @@ lb:
   duration_value: "Dauer: %{duration} Minutten"
   edit: Änneren
   edit_atlas: Atlas änneren
-  edit_colors: Faarwen änneren
   edit_comment: Är Bemierkung änneren
   edit_field: Feld änneren
   edit_license: Lizenz änneren
   edit_multiple_dates: Méi Datumen änneren
   edit_multiple_descriptions: Méi Beschreiwungen änneren
   edit_notes: Notizen änneren
-  edit_observation: Observatioun änneren
   edit_observations: Observatiounen änneren
   edit_photos: Fotoen änneren
   edit_place: Plaz änneren
@@ -527,13 +517,9 @@ lb:
   edit_remove: Änneren/Ewechhuelen
   edit_source: Quell änneren
   edit_the_observation: D'Observatioun änneren
-  edit_this_link: Dëse Link änneren
-  edit_your_account: Ännert Äre Benotzerkont
   edit_your_account_and_profile_html: "Ännert Äre Benotzerkont an Äre Profil"
   edit_your_identification: Är Identifikatioun änneren
-  edit_your_profile: Ännert Äre Profil
   edit_your_settings_for_this_project: Ännert Är Astellunge fir dëse Projet
-  edited: Geännert
   edited_by_name_html: "Geännert vum %{name}"
   editing: Änneren
   editing_project: '%{project} änneren'
@@ -542,7 +528,6 @@ lb:
   email: E-Mail
   email_settings: E-Mail-Astellungen
   embed: 'Abannen'
-  enlarge: Vergréisseren
   end: Schluss
   endangered: Bedréit
   endemic: Endemesch
@@ -559,16 +544,11 @@ lb:
   explore: Entdecken
   export: Exportéieren
   export_observations: Observatiounen exportéieren
-  external_links: Extern Linken
   extinct: ausgestuerwen
-  extras: Extraen
-  evidence_of_organism?: Beweis vum Organismus?
   facebook_account_information: D'Informatioun vun Ärem Facebook-Benotzerkont
   facebook_options: Facebook-Optiounen
-  facts_and_stats: Fakten a Statistiken
   failed_to_find_your_location: Är Positioun gouf net fonnt.
   'false': 'Falsch'
-  faq: Dacks gestallt Froen
   Family: Famill
   favorites: "Favoriten"
   failed: Huet net funktionéiert
@@ -587,7 +567,6 @@ lb:
   finished_with_page: Fäerdeg mat der Säit
   first_observation: Éischt Observatioun
   first_observation_by_date_added: Éischt Observatioun nom Datum derbäigesat
-  first_report: éischte Rapport
   flag_as_inappropriate: Als onpassend markéieren
   flag_it!: Markéiert et!
   flag_saved: Markéierung gespäichert
@@ -603,31 +582,24 @@ lb:
   follow: Iwwerwaachen
   followed_projects: Suivéiert Projeten
   for: fir
-  for_more_information: fir méi Informatiounen.
   formatting: Formatéierung
   forgot_your_password: Hutt Dir Äert Passwuert vergiess?
   forum_categories:
     news_and_updates: Neiegkeeten & Aktualisatiounen
   frequency: Frequenz
-  fri: Fre
   from: Vum
   from_a_place: vun enger Plaz
   from_flickr_facebook_etc: Vu Flickr, Facebook, asw.
   from_photos: Vu Fotoen
   full_screen: Ganzen Ecran
-  general: Allgemeng
   generate_your_stats: Generéiert Är Statistiken
   get_started: Fir unzefänken
-  getting_started: Fir unzefänken
   getting_started_guide: Guide fir unzefänken
   global_names: Global Nimm
   globally: Global
   go: Lass
   go_back: Zréck goen
   got_it!: Verstan!
-  gray: gro
-  green: gréng
-  grey: gro
   grid: Gitter
   group: Grupp
   guides: Guiden
@@ -641,13 +613,11 @@ lb:
   hasnt_contributed_any_observations: huet keng Observatiounen zu dësem Projet bäigedroen.
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
-  help_faq: Hëllef / FAQ
   here_are_our_top_suggestions: Hei sinn eis Top-Virschléi
   here_are_some_things_you_can_do_in_the_meantime: "Hei sinn e puer Saachen déi Dir an der Tëschenzäit maache kënnt"
   hi_user: "Salut %{user}"
   hide_content: Inhalt verstoppen
   high: Héich
-  highlights: Héichpunkten
   history: Geschicht
   identify: Identifizéieren
   identification: Identifikatioun
