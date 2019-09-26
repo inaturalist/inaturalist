@@ -74,7 +74,7 @@
         %p
           If you haven't done it recently, please re-connect your account to make sure iNat has permission to access your photos.
         %p
-          = link_to t(:connect_to_provider, provider: @provider_name.capitalize), auth_url_for(@provider_name), :class => "providerlink #{@provider_name} btn #{@provider_identity && @provider_identity.updated_at > 1.month.ago ? 'btn-default' : 'btn-warning'}"
+          = link_to t(:connect_to_provider, provider: @provider_name.capitalize), auth_url_for(@provider_name), method: :post, :class => "providerlink #{@provider_name} btn #{@provider_identity && @provider_identity.updated_at > 1.month.ago ? 'btn-default' : 'btn-warning'}"
           - if @provider_identity
             %small.meta
               Last authorized at

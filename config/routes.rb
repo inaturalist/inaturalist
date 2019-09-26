@@ -130,7 +130,7 @@ Rails.application.routes.draw do
   get '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
   get '/help' => 'help#index', :as => :help
   get '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
-  get '/auth/:provider' => 'provider_authorizations#blank'
+  post '/auth/:provider' => 'provider_authorizations#blank'
   get '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback
   post '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback_post
   delete '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect
@@ -138,13 +138,6 @@ Rails.application.routes.draw do
   get '/facebook/photo_fields' => 'facebook#photo_fields'
   get "/eol/photo_fields" => "eol#photo_fields"
   get '/wikimedia_commons/photo_fields' => 'wikimedia_commons#photo_fields'
-  
-  get '/flickr/invite' => 'photos#invite', :as => :flickr_accept_invite
-  get '/facebook/invite' => 'photos#invite', :as => :fb_accept_invite
-  
-  get '/google_photos/invite' => 'photos#invite', :as => :picasa_accept_invite
-
-  match "/photos/inviter" => "photos#inviter", as: :photo_inviter, via: [:get, :post]
   post '/facebook' => 'facebook#index'
   
   resources :announcements
@@ -198,11 +191,13 @@ Rails.application.routes.draw do
     end
   end
   delete 'google_photos/unlink' => 'picasa#unlink'
+  
   post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account'
+  get 'flickr/photos.:format' => 'flickr#photos'
+  get "flickr/options" => "flickr#options", as: "flickr_options"
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   resources :observation_sounds, :only => [:show, :create, :update, :destroy]
-  get 'flickr/photos.:format' => 'flickr#photos'
   resources :soundcloud_sounds, :only => [:index]
   resources :sounds, only: [:show, :local_sound_fields, :create] do
     resources :flags

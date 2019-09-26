@@ -33,8 +33,9 @@
     <%= link_to t(:unlink_your_google_account, :site_name => @site.name),
       omniauth_disconnect_path('google'), :class => 'delete button', :method => 'delete' %>
   <% else %>
-    <%= link_to t(:link_your_google_account), auth_url_for('google_oauth2'), 
-                :onclick => "$('.picasa-button').toggle();", :class => 'picasa-button default button' %>
+    <%= link_to t(:link_your_google_account), auth_url_for('google_oauth2'),
+      method: :post,
+      :onclick => "$('.picasa-button').toggle();", :class => 'picasa-button default button' %>
     <div class="picasa-button" style="display:none;">
       <span class="loading status"><%=t :loading %></span>
     </div>

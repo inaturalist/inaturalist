@@ -1,0 +1,11 @@
+- content_for :extracss do
+  = stylesheet_link_tag "responsive"
+.container-fluid
+  .row
+    .col-xs-12
+      .text-center
+        = link_to t(:connect_to_provider,
+          provider: ProviderAuthorization::PROVIDER_NAMES[params[:provider]]),
+          auth_url_for( params[:provider] ),
+          method: :post,
+          class: "btn btn-primary"
