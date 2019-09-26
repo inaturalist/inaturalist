@@ -484,7 +484,6 @@ bg:
   data_quality_assessment_: оценка на качеството на данните
   datatype: Тип данни
   date_: Дата
-  date?: Дата?
   date_added: Дата на добавяне
   date_created: дата на създаване
   date_format:
@@ -527,8 +526,6 @@ bg:
   date_range: Интервал от време
   date_specified: Указана дата
   date_time: Дата/Час
-  dates: дати
-  datetime_: Дата/Час
   day: Ден
   default: по подразбиране
   default_invite_comment: "Страхотна снимка! Трябва да я публикувате на %{site_name}: {{INVITE_LINK}}"
@@ -554,24 +551,15 @@ bg:
     failure:
       user:
         suspended: Вашият акаунт е преустановен
-  developers: Разработчици
-  device: Устройство
   disable: Изключване
-  disagree: несъгласен
   disagree_: Несъгласен
   disconnect_provider: "Откачи %{provider}"
-  dna_: ДНК
   documentation_for_developers_html: Документация за <a href="/pages/developers">разработчици</a>
   do_not_show_this_message_again: Не показвай това събщение повече
-  do_you_know_where_this_species_lives: Знаете ли къде живее този вид?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Може би изучавате нематодите? Или сте най-изтъкнатият експерт по таксономия на веслоногите? Може би просто се захласвате по красивите цветя? Попълването на профила Ви му придава по-личен характер и способства за установяване на Вашият авторитет когато помагате на други хора с разпознаването.
-  do_you_want_to_proceed: Искате ли да продължите?
-  does_the_location_seem_accurate: "Изглежда ли местоположението точно?"
-  does_the_date_seem_accurate: "Изглежда ли дата точна?"
   doh_something_went_wrong: Ох, нещо се обърка.
   done: Готово
-  dont_filter: "Не филтрирай"
   dont_send_me_email: "Не ми изпращайте никакви писма!"
   drop_it: Пусни го тук
   double_click_to_finish: (двойно щракване за да приключите)
@@ -582,7 +570,6 @@ bg:
   download_csv: Изтегли CSV
   download_csv_template: Изтегли CSV шаблон
   download_kml: Изтегли KML
-  drag_and_drop_photos: завлачи и пусни снимки в прозореца или
   draft: чернова
   draft_: Чернова
   draft_saved: Черновата е запазена!
@@ -595,15 +582,11 @@ bg:
   edit_body: Редактирай съдържанието
   edit_field: Редактирай полето
   edit_license: Редактиране на лиценза
-  edit_observation: Редактирай наблюдението
   edit_observations: Редактиране на наблюдения
   edit_photos_for_observation_id: "Редактиране на снимки на наблюдение %{obs_id}"
   edit_your_account_and_profile_html: "Редактиране на вашия акаунт и профил"
   edit_your_identification: Промени разпознаването си
-  edit_your_profile: Редактирай профила си
   edit_your_settings_for_this_project: Промени настройките си за този проект
-  edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Променете настройките си</a> за да определите какви обновления искате да получавате или за да се отпишете напълно."
-  edited: Редактирано
   edited_by_name_html: "Редактирано от %{name}"
   editing: Редактиране
   editing_observation_id: "Редактиране на наблюдение %{obs_id}"
@@ -616,7 +599,6 @@ bg:
   email: Електронна поща
   email_copyright: "Авторско право &copy; %{x}, всички права запазени"
   email_settings: Настройки за имейл
-  embed_a_widget_for_this_taxon_on_website: "Вмъкни widget за този таксон на сайта си"
   embed_widget_project: Вмъкни widget за този проект на сайта си
   encompassing_places: Обхващащи места
   end: Край
@@ -632,8 +614,6 @@ bg:
     native: местен
     naturalised: натурализиран
   establishment_means: Начин на заселване
-  establishment_means_descriptions:
-    native_and_occurs_nowhere_else: местен и не се среща другаде
   every_species_seen_by: Всеки вид видян от
   everyone: всички
   everyone_: Всички
@@ -644,31 +624,24 @@ bg:
   exact_rank: Точен ранг
   existing_flags: Съществуващи маркери
   exit_full_screen: "Излез от цял екран"
-  explore!: Изследвайте!
   explore: Изследвайте
   export: Експортирай
   export_observations: Експортирай наблюдения
   export_with_private_coordinates: Експортирай с лични координати
   exporting: "Експортиране..."
-  external_links: Външни препратки
   extinct: изчезнал
   extinct_in_the_wild: изчезнал в природата
   extra_properties: Допълнителни свойства
-  extras: Допълнителни
   evidence_of_organism: Наличност (или следи) на организъм
-  evidence_of_organism?: Наличност (или следи) на организъм?
   facebook: Фейсбук
   facebook_account_information: Информация за вашия акаунт на Facebook
   facebook_account_not_linked: "%{user} вече не е със свързан Фейсбук акаунт, затова %{site_name} няма достъп до тази снимка."
-  facts_and_stats: Факти и статистика
   'false': 'Невярно'
-  faq: Често задавани въпроси
   Family: Семейство
   faved_this_observation: харесва(т) това наблюдение
   favorite_taxa: Любими таксони
   favorites: "Любими"
   featured: препоръчани
-  featured_projects_from_everywhere: Препоръчани проекти отвсякъде
   feedback: Обратна връзка
   field_note: |
     <strong>Забележка:</strong> Ако искате да създадете поле, проверете дали някой друг не го е създал вече за да се избегне дублирането.
@@ -716,12 +689,10 @@ bg:
   flags_explanation: "Потребителите на %{site_name} могат да маркират неща когато сметнат нещо за нередно. Ето някои от нередностите които все още не са ревизирани от кураторите."
   flags_on_users_content: "Маркери на съдържанието на %{user}"
   flickr_account_information: Информация за Вашия акаунт на Flickr
-  flickr_description: Flickr е сайт за съхранение на снимки. Може би вече знаете за него!
   flickr_tags: Flickr етикети
   flowering_phenology: Фенология на цъфтене
   follow: Следвай
   follow_user: "Следвай %{user}"
-  follower: последовател
   followers: Последователи
   following: Следване
   following_x_people:
@@ -733,7 +704,6 @@ bg:
   forgot_your_password: Забравена парола?
   forum: Форум
   frequency: Честота
-  fri: пт
   from: От
   from_a_place: от място
   from_flickr_facebook_etc: От Flickr, Facebook и др.
@@ -742,22 +712,14 @@ bg:
   fungi:
     one: гъба
     other: гъби
-  fungus:
-    one: гъба
-    other: гъби
-  general: Общи
   Genus: Род
   geoprivacy: Геоповерителност
-  get_started_raquo: "Започнете &raquo;"
   getting_started_guide: Ръководство за начинаещи
   give_it_some_detail: Добави детайли
   globally: глобално
   go: Напред
   go_back: Върни се
   got_it!: Разбраx!
-  gray: сиво
-  green: зелено
-  grey: сиво
   grid: Решетка
   grid_layout: Решетъчно оформление
   grid_tooltip: Покажи изглед „решетка“
@@ -777,17 +739,13 @@ bg:
   hate_me_flickr: "Прекрати връзката между Flickr и %{site_name} акаунтите"
   help: Помощ
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
-  help_faq: Помощ / ЧЗВ
   here_are_our_top_species_suggestions: Ето нашите най-добри предложения за видове
-  here_are_some_things_you_can_do_meantime: "Ето няколко неща, които бихте могли да правите през това време:"
   here_are_some_things_you_can_do_in_the_meantime: "Ето няколко неща, които бихте могли да правите през това време"
   hi: Привет,
   hi_user: "Здравей %{user}"
   highest_rank: Най-висок ранг
   history: История
   home: Начало
-  home_faq: ЧЗВ
-  hybrid: хибрид
   i_agree_to_the_project_terms: Съгласен съм с условията на проекта
   icon: Иконка
   icon_size: Размер на иконката
@@ -2293,15 +2251,6 @@ bg:
         who_is_behind_inaturalist: Кой стои зад %{site_name}?
         inaturalist_was_originally_the_masters_final_html: |
           %{site_name} започва като магистърски проект на Nathan Agrin, Jessica Kline и Ken-ichi Ueda в <a href="http://www.ischool.berkeley.edu">Училището по информатика</a> на Калифорнийския университет в Бъркли. Погледнете страницата <a href="/about">Относно</a> за повече информация относно хората, които поддържат сайта в момента.
-        inaturalist_is_built_using_html: |
-          %{site_name} е създаден с помощта на технологиите <a
-          href="http://www.rubyonrails.org/">Ruby on Rails</a>, <a
-          href="http://mysql.com/">MySQL</a>, <a
-          href="http://jquery.com/">jQuery</a>, <a
-          href="http://code.google.com/apis/maps//">Google Maps</a> и <a
-          href="http://flickr.com/">Flickr</a>. За източници на таксономични данни се използват <a
-          href="http://www.catalogueoflife.org">Catalogue of Life</a>,
-          <a href="http://ubio.org/">uBio</a> и много други.
         what_can_i_do_to_help_inaturalist?: С какво мога да помогна на %{site_name}
         you_can_help_inaturalist_by_giving_us_your_feedback_html: |
           Можете да помогнете на %{site_name} като споделите впечатленията си в нашата <a href="%{feedback_url}">Групата за обратна връзка</a>, където можете да докладвате проблеми и бъгове и да предложите нови функции. Помагате на %{site_name} и като добавяте свои наблюдения и разпознавате наблюденията на други. Ако можете да програмирате и искате да помогнете с разработването на софтуера, можете да <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master - GitHub">направите форк на GitHub</a>!
