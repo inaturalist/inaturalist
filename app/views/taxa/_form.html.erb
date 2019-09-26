@@ -218,18 +218,17 @@
     <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving) } %>
     <%= link_to t(:cancel), taxon, :class => 'button' %>
     <%-
-      pieces = []
-      pieces << t(:descendant_taxa) if @descendants_exist
-      pieces << t(:listed_taxa).downcase if @listed_taxa_exist
-      pieces << t(:identifications).downcase if @identifications_exist
-      pieces << t(:observations).downcase if @observations_exist
-      msg = t(:it_has) + " " + commas_and(pieces) unless pieces.empty?
+      delete_confirmation_key = "are_you_sure_want_delete_taxon"
+      delete_confirmation_key += "_descendant_taxa" if @descendants_exist
+      delete_confirmation_key += "_listed_taxa" if @listed_taxa_exist
+      delete_confirmation_key += "_identifications" if @identifications_exist
+      delete_confirmation_key += "_observations" if @observations_exist
     -%>
     <% if taxon.deleteable_by?(current_user) -%>
       <%= link_to t(:delete), taxon,
-                  :method => :delete,
-                  :data => {:confirm => t(:are_you_sure_want_delete_taxon, :msg => "#{msg}")},
-                  :class => 'minor delete button' %>
+        method: :delete,
+        data: { confirm: t( delete_confirmation_key ) },
+        class: "minor delete button" %>
     <% else %>
       <span class="inter meta">
         <s><%=t :delete %></s>
