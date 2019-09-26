@@ -513,7 +513,6 @@ el:
   captive: Σε αιχμαλωσία
   captive_cultivated: Σε αιχμαλωσία / Καλλιεργούμενο
   card: Κάρτα
-  case_plural: 'δ'
   casual: περιστασιακή
   casual_: Περιστασιακή
   catalogue_of_life: Κατάλογος της ζωής
@@ -717,7 +716,6 @@ el:
   data_quality_assessment_: αποτίμηση ποιότητας δεδομένων
   datatype: Τύπος δεδομένων
   date_: Ημερομηνία
-  date?: Ημερομηνία;
   date_added: Ημερομηνία προσθήκης
   date_created: Ημερομηνία δημιουργίας
   date_format:
@@ -761,8 +759,6 @@ el:
   date_specified: Ημερομηνία έχει προσδιοριστεί
   date_time: Ημερομηνία/Ώρα
   date_updated: Η Ημερομηνία ενημερώθηκε
-  dates: ημερομηνίες
-  datetime_: Ημερομηνία/Ώρα
   day: Ημέρα
   default: προεπιλογή
   default_invite_comment: "Τέλεια φωτογραφία! Θα έπρεπε να την δημοσιεύσετε στο %{site_name}: {{INVITE_LINK}}"
@@ -778,7 +774,6 @@ el:
   delete_photo: Διαγραφή φωτογραφίας
   delete_project: Διαγραφή αυτού του πρότζεκτ
   delete_selected: Διαγραφή επιλεγμένων
-  delete_this_name: Διαγραφή αυτού του ονόματος
   delete_user: Διαγραφή Χρήστη
   delete_your_account: Διαγραφή του λογαριασμού σας
   deleted_synonyms: Διαγεγραμμένα συνώνυμα
@@ -802,24 +797,16 @@ el:
     failure:
       user:
         suspended: Ο λογαριασμός σας έχει ανασταλεί
-  developers: Προγραμματιστές
-  device: Συσκευή
   discoveries: Ανακαλύψεις
   did_not_send_invitations_because: Δεν στάλθηκαν προσκλήσεις στους παρακάτω επειδή...
   did_you_mean: 'Μήπως εννοείτε'
   did_you_photos_flickr?: Έχετε βάλει κάποια φωτογραφία στο Flickr;
   disable: Απενεργοποίηση
-  disagree: Διαφωνώ
   disagree_: Διαφωνώ
   disconnect_provider: "Αποσύνδεση %{provider}"
   do_not_show_this_message_again: Να μην εμφανιστεί ξανά αυτό το μήνυμα
-  do_you_know_where_this_species_lives: Μήπως ξέρετε που ζει αυτό το είδος;
-  do_you_want_to_proceed: Θέλετε να συνεχίσετε;
-  does_the_location_seem_accurate: "Η τοποθεσία φαίνεται ακριβής;"
-  does_the_date_seem_accurate: "Η ημερομηνία φαίνεται ακριβής;"
   doesnt_have_default_photo: δεν έχει ακόμα μια προεπιλεγμένη φωτογραφία.
   done: Έγινε
-  dont_filter: "Μη φιλτράρεις"
   dont_have_an_account_sign_up_html: Δεν έχετε λογαριασμό; <strong>Εγγραφή.</strong>
   dont_send_me_email: "Μη μου στείλεις κανένα email!"
   dont_use_double_quotes: Μήν χρησιμοποιείτε εισαγωγικά οπουδήποτε αλλού
@@ -841,7 +828,6 @@ el:
   edit_account_settings_and_profile: "Επεξεργασία ρυθμίσεων λογαριασμού &amp; προφίλ"
   edit_assessment: Επεξεργασία αποτίμησης
   edit_body: Επεξεργασία κυρίως σώματος
-  edit_colors: Επεξεργασία χρωμάτων
   edit_comment: Επεξεργασία του σχολίου σας
   edit_custom_project_fields: Επεξεργασία Πεδίων προσαρμοσμένων στο Πρότζεκτ
   edit_field: Επεξεργασία Πεδίου
@@ -851,31 +837,24 @@ el:
   edit_multiple_locations: Επεξεργασία Πολλαπλών Τοποθεσιών
   edit_multiple_species: Επεξεργασία Πολλαπλών Ειδών
   edit_notes: Επεξεργασία Σημειώσεων
-  edit_observation: Επεξεργασία Παρατήρησης
   edit_observations: Επεξεργασία παρατηρήσεων
   edit_photos: Επεξεργασία φωτογραφιών
   edit_photos_for_observation_id: "Επεξεργασία φωτογραφιών για την παρατήρηση %{obs_id}"
   edit_place: Επεξεργασία Τόπου
   edit_project: Επεξεργασία Πρότζεκτ
-  edit_range_raquo: "Επεξεργασία εύρους &raquo;"
   edit_remove: Επεξεργασία/Αφαίρεση
   edit_selected: Επεξεργασία επιλεγμένων
   edit_source: Επεξεργασία κώδικα
   edit_taxa: Επεξεργασία Taxa
   edit_taxon: Επεξεργασία Taxon
-  edit_taxon_change: Επεξεργασία αλλαγής Taxon
   edit_taxon_link: Επεξεργασία συνδέσμου του taxon
   edit_taxon_range: Επεξεργασία κατανομής του taxon
   edit_the_observation: Επεξεργασία της παρατήρησης
-  edit_this_link: Επεξεργασία αυτού του συνδέσμου
-  edit_your_account: Επεξεργασίου του λογαριασμού σας
   edit_your_account_and_profile_html: "Επεξεργασία του λογαριασμού και προφίλ σας"
   edit_your_default_settings: "Επεξεργασία των προεπιλεγμένων ρυθμίσεών σας"
   edit_your_global_project_settings: Επεξεργασία καθολικών ρυθμίσεων του πρότζεκτ
   edit_your_identification: Επεξεργασία της Αναγνώρισής σας
-  edit_your_profile: Επεξεργασία του προφίλ σας
   edit_your_settings_for_this_project: Επεξεργασία των ρυθμίσεων σας για αυτό το πρότζεκτ
-  edited: Επεξεργασμένο
   edited_by_name_html: "Επεξεργάστηκε από %{name}"
   edited_by_name_some_rights_reserved_html: |
     Επιμέλεια %{name}, υπό την επιφύλαξη κάποιων δικαιωμάτων (%{license})
@@ -901,7 +880,6 @@ el:
   embed: 'Ενσωμάτωση'
   enable_offline_access: Ενεργοποίηση πρόσβασης εκτός σύνδεσης
   enable_offline_access_for_mobile: Ενεργοποίηση πρόσβασης εκτός σύνδεσης για κινητά
-  enlarge: Μεγέθυνση
   end: Τέλος
   end_date_time: Ημερομηνία λήξης / ώρα
   endangered: Κινδυνεύον
@@ -914,9 +892,6 @@ el:
     invasive: Χωροκατακτητικό
     native: Αυτόχθον
     naturalised: Εγκλιματισμένο
-  establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: Έφθασε στην περιοχή με ανθρωπογενή μέσα
-    native_and_occurs_nowhere_else: Αυτόχθον και δεν απαντάται πουθενά αλλού
   event_stats: Στατιστικά γεγονότος
   event_url: Διεύθυνση URL του γεγονότος
   events_only: Γεγονότα μόνο
@@ -933,31 +908,21 @@ el:
   exclusion_filters: Φίλτρα Εξαίρεσης
   existing_flags: Υπάρχουσες αναφορές
   exit_full_screen: "Έξοδος από πλήρη οθόνη"
-  expand_days: Επέκταση ημερών
-  expand_updates: Επέκταση ενημερώσεων
-  explore!: Εξερευνήστε!
   explore: Εξερεύνηση
-  explore_everyones_observations: Εξερευνήστε τις παρατηρήσεις του καθένα
   export: Εξαγωγή
   export_observations: Εξαγωγή Παρατηρήσεων
   export_with_private_coordinates: Εξαγωγή με απόκρυψη γεωγραφικών συντεταγμένων
   exporting: "Εξαγωγή..."
-  external_links: Εξωτερικοί σύνδεσμοι
   extinct: εξαφανισμένο
   extinct_in_the_wild: εξαφανισμένο στη φύση
   extra_properties: Πρόσθετες ιδιότητες
-  extras: Πρόσθετα
   evidence_of_organism: Αποδείξεις του οργανισμού
-  evidence_of_organism?: Αποδείξεις του οργανισμού;
   facebook_account_information: Πληροφορίες του λογαριασμού σας στο Facebook
-  facebook_confirmation: "Το Facebook επιθυμεί να επιβεβαιώσει πως θέλετε ο λογαριασμός να συνδεθεί με το %{site_name}."
   facebook_options: Επιλογές Facebook
-  facts_and_stats: Γεγονότα και στατιστικά
   failed_to_find_your_location: Η εύρεση της τοποθεσίας σας απέτυχε.
   failed_to_repair_photo: "Η επισκευή της φωτογραφίας απέτυχε: %{errors}"
   failed_to_save_record: "Η αποθήκευση της εγγραφής απέτυχε. Παρακαλώ προσπαθήστε πάλι αργότερα."
   'false': 'Ψευδές'
-  faq: Συχνές ερωτήσεις
   faves: Αγαπημένα
   Family: Οικογένεια
   favorite_taxa: Αγαπημένα Taxa
@@ -966,7 +931,6 @@ el:
   featuring: Χαρακτηριστικό
   feeds: 'Ροές'
   failed: Απέτυχε
-  field_guides: Οδηγοί πεδίων
   field_note: |
     <strong>Σημείωση:</strong> Εάν επιθυμείτε να δημιουργήσετε ένα πεδίο, ελέγξτε για να δείτε αν κάποιος άλλος το έχει ήδη δημιουργήσει για να αποφεύγονται τα διπλά πεδία.
   fields: πεδία
@@ -1002,7 +966,6 @@ el:
   first_observation: Πρώτη παρατήρηση
   first_observation_by_date_added: Πρώτη παρατήρηση ανά ημέρα προσθήκης
   first_observer: 1ος παρατηρητής
-  first_report: πρώτη αναφορά
   flag: Αναφορά
   flag_as_inappropriate: Αναφορά ως ακατάλληλο
   flag_an_item: Αναφορά αντικειμένου
@@ -1012,7 +975,6 @@ el:
   flag_this_observation: Αναφορά αυτής της παρατήρησης
   flag_this_photo: Αναφορά αυτής της φωτογραφίας
   flickr_account_information: Πληροφορίες του λογαριασμού σας στο Flickr
-  flickr_description: Το Flickr είναι μια διαδικτυακή υπηρεσία φιλοξενίας φωτογραφιών, ίσως να ξέρετε γι'αυτό!
   flickr_has_no_creative_commons: Το Flickr δεν έχει καμιά φωτογραφία με άδεια Creative Commons αυτού του τόπου.
   flickr_identity: Ταυτότητα Flickr
   flickr_photo: Φωτογραφία Flickr
@@ -1021,12 +983,10 @@ el:
   follow: Ακολουθήστε
   follow_user: "Ακολουθήστε τον %{user}"
   followed_projects: Ακολουθούμενα πρότζεκτ
-  follower: ακόλουθος
   followers: Ακόλουθοι
   following: Ακολουθεί
   for: για
   for_a_taxon: για ένα taxon
-  for_more_information: για περισσότερες πληροφορίες.
   formatting: Μορφοποίηση
   forgot_your_password: Ξεχάσατε τον κωδικό σας;
   forum: Φόρουμ
@@ -1040,7 +1000,6 @@ el:
   forum_desc: |
     Το φόρουμ είναι ένα μέρος συζήτησης για το ίδιο το iNat, το οποίο περιλαμβάνει βοήθεια και υποστήριξη, αιτήματα για νέα χαρακτηριστικά, αναφορές σφαλμάτων, ανακοινώσεις και πολλά άλλα.
   frequency: Συχνότητα
-  fri: Πα
   from: Από
   from_a_place: από έναν τόπο
   from_eol_collection: Απο την συλλογή της EOL
@@ -1052,33 +1011,19 @@ el:
   from_soundcloud: Από το Soundcloud
   from_your_site_observations: "Από %{site_name} παρατηρήσεις"
   from_licensed_site_observations: "Από αδειοδοτημένες %{site_name} παρατηρήσεις"
-  full_id_please: ID Παρακαλώ!
-  full_id_please!: "ID Παρακαλώ!"
-  full_id_please?: "ID Παρακαλώ;"
   full_screen: Πλήρης οθόνη
   fungi:
     one: μήκυτας
     other: μήκυτες
-  fungus:
-    one: μήκυτας
-    other: μήκυτες
-  geo: Γεωγραφικό
-  general: Γενικά
   generate_taxonomic_tags_for_flickr: Παραγωγή ταξινομικών ετικετών για τις φωτογραφίες στο Flickr.
   generate_your_stats: Παραγωγή των στατιστικών σας
-  generating: "Παραγωγή..."
   Genus: Γένος
-  genus_slash_species: "[ΓΕΝΟΣ] / [ΕΙΔΟΣ]"
   geoprivacy: Γεωαπόρρητο
   geoprivacy_is_obscured_desc: Ο παρατηρητής έχει επιλέξει να αποκρύψει τις γεωγραφικές συντεταγμένες.
   geoprivacy_is_private_desc: Ο παρατηρητής έχει επιλέξει να αποκρύψει τις γεωγραφικές συντεταγμένες.
-  get_current_position: Λάβετε την τρέχουσα θέση
-  get_started_raquo: "Ξεκινήστε &raquo;"
   get_started: Ξεκινήστε
-  getting_started: Ξεκινώντας
   getting_started_guide: Οδηγός για το πως να ξεκινήσετε
   give_it_some_detail: Δώστε κάποιες λεπτομέρειες!
-  global_conservation_status: "Παγκόσμια κατάσταση διατήρησης:"
   global_names: Καθολικά ονόματα
   globally: Καθολικά
   go: Μετάβαση
@@ -1086,16 +1031,12 @@ el:
   going_to_your_observations: Μετάβαση στις παρατηρήσεις σας...
   got_it!: Κατάλαβα!
   got_your_data_somewhere_else?: Πήρατε τα δεδομένα σας κάπου αλλού; Μπορούμε να βοηθήσουμε.
-  gray: Γκρι
-  green: πράσινο
-  grey: γκρι
   grid: Πλέγμα
   grid_layout: Διάταξη Πλέγματος
   grid_tooltip: Εμφάνιση διάταξης πλέγματος
   group: Ομάδα
   grouping: Ομαδοποίηση
   guides: Οδηγοί
-  guide_colors: Χρώματα οδηγών
   guide_compiled_by: Οδηγός που έχει συνταχθεί από
   guide_deleted: Ο οδηγός διαγράφηκε
   guide_will_be_deleted: Ο οδηγός θα διαγραφεί. Παίρνει λίγο για μεγάλους οδηγούς.
@@ -1104,7 +1045,6 @@ el:
   guide_was_successfully_updated: Ο οδηγός ενημερώθηκε επιτυχώς.
   guidelines: Οδηγίες
   has_already_been_flagged_by: έχει ήδη αναφερθεί από τον
-  has_been: έχει
   has_id_supported_by_two_or_more: Έχει αναγνωριστεί από δύο ή περισσότερους
   has_one_or_more_faves: Έχει μία ή περισσότερες προσθήκες στα αγαπημένα
   has_photo: Έχει Φωτογραφία
@@ -1118,7 +1058,6 @@ el:
   hate_me_flickr: "Αποσυνδέστε τους λογαριασμούς σας στο Flickr και στο %{site_name}"
   help: Βοήθεια
   help_confirm_observations!: Βοήθεια για την επιβεβαίωση παρατηρήσεων!
-  help_faq: Βοήθεια / Συχνές ερωτήσεις
   help_support_inaturalist: "Βοήθησε στην υποστήριξη του iNaturalist!"
   hi: Γεια,
   hi_user: "Γεια %{user}"
@@ -1127,9 +1066,7 @@ el:
   highest_rank: Υψηλότερη κατάταξη
   history: Ιστορικό
   home: Αρχική
-  home_faq: Συχνές ερωτήσεις
   however_there_were_some_issues: "Ωστόσο, υπάρχουν μερικά ζητήματα: %{issues}"
-  hybrid: υβριδικό
   i_agree_to_the_project_terms: Συμφωνώ με τους όρους του πρότζεκτ
   i_dont_know_but_i_am_sure_this_is_taxon: Δεν γνωρίζω όμως είμαι βέβαιος πως είναι %{taxon}
   icon: Εικονίδιο
