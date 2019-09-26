@@ -1,5 +1,14 @@
+:ruby
+  @title = if @object.is_a?( Taxon )
+    t(:flag_for_taxon_title_html, title: link_to( render( "taxa/taxon.txt", taxon: @object ), @object ) )
+  elsif @object.is_a?( Observation )
+    t(:flag_for_observation_title_html, title: link_to( @object.to_plain_s, @object ) )
+  elsif @object.respond_to?( :title ) || @object.respond_to?( :name )
+    t( "flag_for_#{@object.class.name.underscore}_title_html", title: link_to( @object.try_methods(:title, :name), @object ) )
+  else
+    t( "flag_for_#{@object.class.name.underscore}_id_html", id: @object.id, url: url_for(@object) )
+  end
 - content_for(:title) do
-  - @title = "Flag for #{link_to(@object.to_plain_s, @object) rescue @object.to_plain_s}".html_safe
   = strip_tags @title
 - content_for :extrajs do
   :javascript
@@ -25,11 +34,11 @@
         %thead
           %tr
             %th=t :created
-            %th=t :object
+            %th=t :flag_object
             %th=t :flagger
             %th=t :reason
             %th=t :resolved_by
-            %th=t :resolve_comment
+            %th=t :flag_resolution
         %tbody
           %tr
             %td=l @flag.created_at

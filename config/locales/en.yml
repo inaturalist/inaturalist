@@ -808,9 +808,13 @@ en:
     Default geoprivacy applied to all observations of this taxon in this place
   contact_support: Contact Support
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
+  # Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  content: Content
+  content_author: Content Author
   content_hidden: Content Hidden
   content_hidden_by_user_on_date_because_reason_html: |
     Content hidden by %{user} on %{date} because: "%{reason}"
+  content_type: Content Type
   user_hid_this_item_because_reason_html: |
     %{user} hid this %{item} because "%{reason}"
   user_unhid_this_item_because_reason_html: |
@@ -1265,10 +1269,37 @@ en:
   flag_as_spammer: Flag As Spammer
   flag_as_non_spammer: Flag As Non-spammer
   flag_description: Flag this content to let the curators know something is wrong with it.
+  flag_for_check_list_title_html: |
+    Flag for Check List: %{title}
+  flag_for_comment_id_html: Flag for <a href="%{url}">Comment %{id}</a>
   flag_for_curation: Flag for Curation
+  flag_for_guide_title_html: |
+    Flag for Guide: %{title}
+  flag_for_identification_id_html: Flag for <a href="%{url}">Identification %{id}</a>
+  flag_for_life_list_title_html: |
+    Flag for Life List: %{title}
+  flag_for_list_title_html: |
+    Flag for List: %{title}
+  flag_for_message_id_html: Flag for <a href="%{url}">Message %{id}</a>
+  flag_for_observation_title_html: |
+    Flag for Observation: %{title}
+  flag_for_photo_id_html: Flag for <a href="%{url}">Photo %{id}</a>
+  flag_for_post_title_html: |
+    Flag for Post: %{title}
+  flag_for_project_title_html: |
+    Flag for Project: %{title}
+  flag_for_guide_section_id_html: Flag for <a href="%{url}">GuideSection %{id}</a>
+  flag_for_sound_id_html: Flag for <a href="%{url}">Sound %{id}</a>
+  flag_for_taxon_title_html: |
+    Flag for Taxon: %{title}
+  flag_for_user_title_html: |
+    Flag for User: %{title}
   flag_it!: Flag it!
   flag_marked_as_resolved_html: '<span class="meta">Flag marked as</span> <strong>resolved.</strong>'
+  # Label for the object that was flagged, e.g. a table header
+  flag_object: Object
   flag_reason: "&ldquo;I'm flagging this %{record} because"
+  flag_resolution: Resolution
   flag_saved: Flag Saved
   flag_saved_thanks_html: Flag saved. Thanks! <a href="%{url}" class="readmore">View flag</a>
   flag_this_observation: Flag This Observation
@@ -3359,6 +3390,7 @@ en:
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_grade_qualification: Research Grade Qualification
   research_quality: Research Quality
+  reset_filters_short: Reset
   reset_brightness: Reset Brightness
   reset_search_filters: Reset Search Filters
   reset_your_password: Reset Your Password
@@ -3458,6 +3490,8 @@ en:
   search_observations: "Search observations"
   search_places: Search Places
   search_projects: Search Projects
+  # Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: Search Reasons
   search_results_for: Search Results for
   search_results_for_query: 'Search Results for "%{query}"'
   search_remote: Search Remote
