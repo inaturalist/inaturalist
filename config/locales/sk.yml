@@ -69,7 +69,6 @@ sk:
   add_another_photo: Vložiť ďalšie foto
   add_another_section: Vložiť ďalší oddiel
   add_another_subscription: Vložiť ďalšie predplatné
-  add_asset: Pridajte položku
   add_batch: Vložiť skupinu
   add_comma_separated_tags: "Vložiť tagy oddelené čiarkou"
   add_comment: Pridať komentár
@@ -660,8 +659,6 @@ sk:
   curator_identification: Identifikácia správcu
   current_flags: Aktuálne značky
   custom_project_fields: Vlastné projektové polia
-  custom_project_was_successfully_created: Vlastný projekt bol úspešne vytvorený.
-  custom_project_was_successfully_updated: Vlastný projekt bol úspešne aktualizovaný.
   customize_location: Upraviť lokalitu
   darr_apply_darr: "&darr; Použiť &darr;"
   dashboard: Nástenka
@@ -672,7 +669,6 @@ sk:
   data_used: "Použité údaje:"
   datatype: Typ údaju
   date_: Dátum
-  date?: Dátum?
   date_added: Dátum pridaný
   date_created: Dátum vytvorený
   date_format:
@@ -708,8 +704,6 @@ sk:
   date_specified: Dátum špecifikovaný
   date_time: Dátum/čas
   date_updated: Dátum aktualizovaný
-  dates: dátumy
-  datetime_: Dátum/čas
   day: Deň
   decrease_brightness: Znížiť jas
   default: štandardne
@@ -728,7 +722,6 @@ sk:
   delete_photo: Zmazať fotku
   delete_project: Zmazať tento projekt
   delete_selected: Zmazať vybrané
-  delete_this_name: Zmazať tento názov
   delete_user: Zmazať používateľa
   delete_your_account: Zmazať váš účet
   deleted_synonyms: Zmazať synonymá
@@ -755,32 +748,22 @@ sk:
     failure:
       user:
         suspended: Váš účet bol pozastavený
-  developers: Vývojári
-  device: Zariadenie
   discoveries: Objavy
   did_not_send_invitations_because: Pozvánka týmto nebola odoslaná, pretože...
   did_you_mean: 'Mali ste na mysli'
   did_you_photos_flickr?: Nahrali ste nejaké fotografie na Flickr?
   disable: Vypnúť
-  disagree: nesúhlasím
   disagree_: Nesúhlasím
   disconnect_provider: "Odpojiť %{provider}"
   display_link_to_checklist: Zobraziť odkaz na zoznam projektu zo stránky projektu
-  display_listings_added_by_curators: Zobraziť záznamy pridané kurátormi
-  display_listings_from_place: Zobraziť výpisy z miesta
   distance_traveled_value: "Prejdená vzdialenosť: %{distance} m"
   distance_traveled: "Prejdená vzdialenosť (m)"
   documentation_for_developers_html: Dokumentácia pre <a href="/pages/developers">developerov</a>
   do_not_show_this_message_again: Znova nezobrazovať túto správu
-  do_you_know_where_this_species_lives: Viete, kde tento druh žije?
-  do_you_want_to_proceed: Chcete pokračovať?
-  does_the_location_seem_accurate: "Je táto poloha presná?"
-  does_the_date_seem_accurate: "Je tento dátum presný?"
   doesnt_have_default_photo: nemá ešte štandardnú fotku.
   doh_something_went_wrong: Och, niečo je zle.
   doh_something_went_wrong_error: "Och, niečo sa pokazilo: %{error}"
   done: Hotovo
-  dont_filter: "Nefiltrovať"
   dont_have_an_account_sign_up_html: Nemáte účet? <strong>Zaregistrujte sa.</strong>
   dont_send_me_email: "Neposielejte mi žiadne e-maily."
   dont_use_double_quotes: Nikde inde nepoužívajte dvojité úvodzovky
@@ -793,7 +776,6 @@ sk:
   download_csv_template: Stiahnuť šablónu CSV
   download_kml: Stiahnuť KML
   downstream_flagged_covered_taxa: Označené taxóny
-  drag_and_drop_photos: ťahaj a pusti fotky do tohto okna alebo
   draft: koncept
   draft_: Koncept
   draft_saved: Komcept uložený!
@@ -808,43 +790,33 @@ sk:
   edit_assessment: Upraviť hodnotenie
   edit_atlas: Upraviť atlas
   edit_body: Upraviť text
-  edit_colors: Upraviť farby
   edit_comment: Upraviť váš komentár
   edit_custom_project_fields: Upraviť vlastné projektové polia
   edit_field: Upraviť pole
-  edit_flagged_observation: Upraviť označené pozorovania
   edit_license: Upraviť licenciu
   edit_multiple_dates: Upraviť viaceré dátumy
   edit_multiple_descriptions: Upraviť viaceré opisy
   edit_multiple_locations: Upraviť viaceré lokácie
   edit_multiple_species: Upraviť viaceré druhy
   edit_notes: Upraviť poznámky
-  edit_observation: Upraviť pozorovanie
   edit_observations: Upraviť pozorovania
   edit_photos: Upraviť fotky
   edit_photos_for_observation_id: "Upraviť fotky pre pozorovania %{obs_id}"
   edit_place: Upraviť miesto
   edit_project: Upraviť projekt
-  edit_range_raquo: "Upraviť rozšírenie &raquo;"
   edit_remove: Upraviť/Odstrániť
   edit_selected: Upraviť vybrané
   edit_source: Upraviť zdroj
   edit_taxa: Upraviť taxóny
   edit_taxon: Upraviť taxón
-  edit_taxon_change: Upraviť zmenu taxónu
   edit_taxon_link: Upraviť odkaz na taxón
   edit_taxon_range: Upraviť rozsah taxónu
   edit_the_observation: Upraviť pozorovanie
-  edit_this_link: Upraviť tento odkaz
-  edit_your_account: Upraviť váš účet
   edit_your_account_and_profile_html: "Upraviť váš účet a profil"
   edit_your_default_settings: "Upraviť vaše štandardné nastavenia"
   edit_your_global_project_settings: Uprav vaše globálne nastavenie projektu
   edit_your_identification: Uprav vaši identifikáciu
-  edit_your_profile: Uprav váš profil
   edit_your_settings_for_this_project: Upraviť vaše nastavenie pre tento projekt
-  edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Upraviť vaše nastavenie</a> zmeníte tak druh aktualizácií, ktoré dostávate, alebo sa úplne odhlásiť."
-  edited: Upravené
   edited_by_name_html: "Upravené používateľom %{name}"
   edited_by_name_some_rights_reserved_html: |
     Upravené používateľom %{name}, niektoré práva vyhradené (%{license})
@@ -872,13 +844,11 @@ sk:
   email_copyright: "Autorské práva &copy; %{x}, všetky práva vyhradené"
   email_settings: Nastavenia emailu
   embed: 'Vložiť'
-  embed_a_widget_for_this_taxon_on_website: "Vložit widget pre tento taxón na vašu webovú stránku &raquo;"
   embed_place_widget: Vložiť widget miesta
   embed_this_assessment: Vložiť toto hodnotenie
   embed_widget_project: Vložiť widget pre tento projekt na vašu webovú stránku
   enable_offline_access: Povoliť prístup offline
   enable_offline_access_for_mobile: Povoliť prístup offline z mobilného zariadenia
-  enlarge: Zväčšiť
   encompassing_places: Okolné miesta
   end: Koniec
   end_date_time: Dátum a čas konca
@@ -896,15 +866,9 @@ sk:
     native: Pôvodný
     naturalised: Naturalizovaný
   establishment_means: Spôsobu vzniku
-  establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: Do regiónu prišiel prostredníctvom antropogénneho pôsobenia
-    native_and_occurs_nowhere_else: Miestny a nikde inde sa neobjavuje
-    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: |
-      Vyvinutý v tejto oblasti alebo prijatý neantropogénnymi prostriedkami
   establishment_means_describes_how: |
     Spôsob vzniku opisuje, ako začal daný taxón v oblasti existovať . Viac informácií o terminológii nájdete v DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"></a>.
   event_in_progress: Udalosť prebieha
-  event_registration_url: URL registrácia udalosti
   event_stats: Štatistiky udalosti
   event_url: URL udalosti
   events_only: Iba udalosti
@@ -924,50 +888,34 @@ sk:
   existing_flags: Existujúce značky
   exit_full_screen: "Ukončiť režim celej obrazovky"
   examples_of_ranking_organizations: Príklady klasifikujúcich organizácií
-  expand_days: Rozšíriť dni
-  expand_updates: Rozšíriť aktualizácie
-  explore!: Preskúmať!
   explore: Preskúmať
-  explore_everyones_observations: Preskúmať pozorovania každého
   export_observations: Exportovať pozorovania
   export_with_private_coordinates: Exportovať so skrytými súradnicami
   exporting: "Exportovanie..."
-  external_links: Externé odkazy
   external_taxon_including_children: Externý taxón (vrátane dcérskych)
   external_taxon_rank: Externé poradie taxónu
   extinct: vyhynutý
   extinct_in_the_wild: Vyhynutý vo voľnej prírode
   extra_properties: Ďalšie vlastnosti
-  extras: Ďalší
   evidence_of_organism: Dôkaz o organizme
-  evidence_of_organism?: Dôkaz o organizme?
   facebook_account_information: Informácie z vášho facebookového účtu
   facebook_options: Možnosti Facebooku
-  facts_and_stats: Fakty a štatistiky
   failed_to_find_your_location: Vaša lokalita nebola nájdená.
   failed_to_repair_photo: "Oprava fotky sa nepodarila: %{errors}"
   failed_to_save_record: "Nepodarilo sa uložiť záznam. Skúste to prosím znova."
   'false': 'Nepravda'
-  faq: Často kladené otázky
   fave: pridať k obľúbeným
   faves: Obľúbené
   Family: Čeľaď
   faved_this_observation: pridať toto pozorovanie k obľúbeným
   favorite_taxa: Obľúbené taxóny
   favorites: "Obľúbené"
-  feature_this_project: "Odporučiť tento projekt?"
   feature_this_project_: "Odporučiť tento projekt"
   featured: Odporúčané
-  featured?: odporúčané?
-  featured_projects_from_everywhere: Odporúčané projekty zo všetkých lokalít
-  featured_projects_from_place: "Odporučené projekty z %{place}"
   featuring: Odporúčané
   feedback: Spätná väzba
-  feedback_group: Skupina spätnej väzby
   feeds: 'Kanály'
-  feeds_for_current_filters: Kanály pre aktuálne filtre
   failed: Chyba
-  field_guides: Terénni sprievodcovia
   field_note: |
     <strong>Poznámka:</strong> Ak chcete vytvoriť pole, pozrite sa, či ho už nevytvoril niekto iný, aby nedochádzalo k duplicite.
   fields: polia
@@ -978,15 +926,12 @@ sk:
   file_should_be_in_the_following_format: "Súbor by mal byť v nasledujúcom formáte: názov taxónu, opis"
   fill_out_project_observation_fields: Vyplniť pole pozorovania v projekte
   fill_out_your_profile: dokončiť váš profil
-  filling_out_checklist_for_place: vyplnenie zoznamov pre miesta, ktoré dobre poznáte
-  filling_out_your_profile: vyplnenílie vášho profilu
   filter_by_curator_identification: Filtrovať podľa identifikácie kurátora
   filter_by_place: Filtrovať podľa polohy
   filter_by_taxon: Filtrovať podľa taxónu
   filter_by_place_taxon_and_color: Filtrovať podľa miesta, taxónu a farby pomocou ovládacích prvkov.
   filter_list_by_this_taxon: Filtrovať zoznam podľa tohto taxónu
   filtering: Filtrovanie
-  filtering_observations_that_pass_the: "Filtrovanie pozorovaní, ktoré spĺňajú pravidlá projektu alebo boli vytvorené na mieste projektu a zatiaľ neboli zadané"
   filters: Filtre
   find: Hľadať
   find_a_guide: Nájsť sprievodcu
@@ -1009,7 +954,6 @@ sk:
   first_observation: Prvé pozorovanie
   first_observation_by_date_added: Prvé pozorovanie podľa dátumu pridania
   first_observer: 1. pozorovateľ
-  first_report: prvé hlásenie
   flag: Značka
   flag_as_inappropriate: Označiť ako nevhodné
   flag_an_item: Označiť položku
@@ -1039,17 +983,14 @@ sk:
   flags_for_x_html: Značky pre %{x}
   flags_on_users_content: "Značky na obsahu používateľa %{user}"
   flickr_account_information: Informácie z vášho účtu Flickr
-  flickr_description: Flickr je služba online úložiska fotografií, možno ho poznáte!
   flickr_has_no_creative_commons: Flickr nemá z tohto miesta žiadne fotky s licenciou Creative Commons.
   flickr_identity: Identita na Flickr
-  flickr_invite_link_raquo: "Odkaz na pozvánku na Flickr &raquo;"
   flickr_needs_to_confirm: "Flickr vyžaduje potvrdenie, že chcete prepojiť svoj účet s %{site_name}."
   flickr_photo: Fotografia z Flickr
   flickr_photos: Fotografie z Flickr
   flickr_style: Štýl ako Flickr
   flickr_tagger: Autor tagov na Flickr
   flickr_tags: Tagy na Flickr
-  flickr_youre_all_set: "Teraz už môžete začať prechádzať %{site_name}"
   flowering_phenology: Fenológia kvitnutia
   fluid_layout: Premenlivé rozloženie
   fluid: premenlivé
@@ -1057,13 +998,10 @@ sk:
   follow_receive_updates_about_new_observations: Sledujte (dostanete informácie o nových pozorovaniach)
   follow_user: "Sledovať %{user}"
   followed_projects: Sledované projekty
-  follower: sledujúci
   followers: Sledovatelia
   following: Sledovať
   for: pre
   for_a_taxon: pre taxón
-  for_a_widget_showing_recent_observations_from: Widget zobrazujúci nedávne pozorovania z %{place_name} nájdete na
-  for_more_information: pre viac informácií
   formatting: Formátovanie
   forgot_your_password: Zabudli ste heslo?
   forum: Fórum
@@ -1078,7 +1016,6 @@ sk:
   forum_desc: |
     Fórum je miestom, kde môžete diskutovať o samotnom iNat, vrátane pomoci a podpory, požadavok na funkcie, hlásenie chýb, reklám  a ďalších informácií.
   frequency: Frekvencia
-  fri: Pia
   from: Od
   from_a_place: z miesta
   from_eol_collection: Z kolekcie EOL
@@ -1090,34 +1027,22 @@ sk:
   from_soundcloud: Zo Soundcloud
   from_your_site_observations: "Z pozorovaní %{site_name}"
   from_licensed_site_observations: "Z pozorovaní %{site_name} s licenciou"
-  full_id_please: ID prosím!
-  full_id_please!: "ID prosím!"
-  full_id_please?: "ID prosím?"
   full_screen: Celá obrazovka
   gbif_occurrences: Výskyty GBIF
-  general: Všeobecné
-  generally_these_come_from_iucn_red_list: Všeobecne sú z Červeného zoznamu IUCN, ak sú odinakiaľ, budú spadať do kategórií IUCN.
   generate_taxonomic_tags_for_flickr: Generovať taxonomické tagy pre vaše fotky na Flickr.
   generate_widget: Generovať widget
   generate_your_stats: Generovať vaše štatistiky
-  generating: "Generovanie..."
   generating_mobile_archive: "Generovanie mobilného archívu"
   Genus: Rod
-  genus_slash_species: "[ROD] / [DRUH]"
   geoprivacy: Geosúkromie
   geoprivacy_is_obscured: Geosúkromie je ukryté
   geoprivacy_is_obscured_desc: Pozorovateľ sa rozhodol zakryť súradnice.
   geoprivacy_is_private: Geosúkromie je súkromné
   geoprivacy_is_private_desc: Pozorovateľ sa rozhodol skryť súradnice.
   georeferenced: Georeferenčný?
-  georeferenced?: georeferenčný
-  get_current_position: Získať aktuálnu polohu
-  get_started_raquo: "Začať &raquo;"
   get_started: Začnite
-  getting_started: Začíname
   getting_started_guide: Príručka pre nováčikov
   give_it_some_detail: Pridajte nejaký detail!
-  global_conservation_status: "Globálny ochranársky status:"
   global_names: Globálne názvy
   globally: Globálne
   go: Ísť
@@ -1127,12 +1052,8 @@ sk:
   got_it!: Rozumiem
   got_your_data_somewhere_else?: Máte svoje údaje niekde inde? Dokážeme vám pomôcť.
   graft: Pripojiť
-  grafting: "Pripájanie..."
   grafting_attemps_to_insert_this_taxon: Cieľom pripojenia je vložiť tento taxón do nášho taxonomického stromu, nájdenie existujúceho  hlavného taxónu alebo vytvorenie všetkých nutných pomocných taxónov pre pripojenie k existujúcemu taxónu vyššej úrovne.
   grant_role: "%{grant} %{role} funkcia"
-  gray: sivá
-  green: zelená
-  grey: sivá
   grid: Mriežka
   grid_layout: Rozloženie mriežky
   grid_tooltip: Zobraziť pohľad s mriežkou
@@ -1140,7 +1061,6 @@ sk:
   grouping: Zoskupovanie
   guess_description: Domnienka / opis
   guides: Sprievodcovia
-  guide_colors: Farby sprievodcov
   guide_compiled_by: Sprievodcu zostavil/a
   guide_deleted: Sprievodca vymazaný
   guide_will_be_deleted: Sprievodca bude zmazaný. Zmazanie väčších sprievodcov chvíľu trvá.
@@ -1150,7 +1070,6 @@ sk:
   guide_was_successfully_updated: Sprievodca bol úspešne aktualizovaný.
   guidelines: Pokyny
   has_already_been_flagged_by: už je označené používateľom
-  has_been: bol
   has_id_supported_by_two_or_more: Má ID podporované dvoma alebo viac
   has_one_or_more_faves: Má jedno alebo viac označení ako obľúbený
   has_photo: Má fotku
@@ -1163,19 +1082,13 @@ sk:
   hate_me_facebook: "Zrušiť prepojenie vášho účtu na Facebooku a %{site_name}"
   hate_me_flickr: "Zrušiť prepojenie vášho účtu na Flickr a %{site_name}"
   heads_up: Pozor
-  heads_up_observation_search_can_only_load: "Pozor: vyhľadávanie pozorovaní môže načítať maximálne 50 stránok"
-  heads_up_this_observation_has_been_flagged: "POZOR: toto pozorovanie bolo označené."
   heads_up_this_photo_has_been_flagged: "POZOR: táto fotka bola označená."
   help: Pomoc
   help_confirm_observations!: Pomôžte potvrdiť pozorovania!
-  help_faq: Nápoveda / často kladené otázky
-  help_out!: Pomôžte!
   here_are_3_examples: Toto sú 3 príklady dobre zostavených údajov
   here_are_our_top_suggestions: Tu sú naše najlepšie návrhy
   here_are_our_top_species_suggestions: Tu sú naše najlepšie návrhy druhov
-  here_are_some_things_you_can_do_meantime: "Tu sú veci, ktoré môžete zatiaľ urobiť"
   here_are_some_things_you_can_do_in_the_meantime: "Tu sú veci, ktoré môžete zatiaľ urobiť"
-  heres_a_litle_about: Tu je niečo málo o
   hex_color_eg: Farba hex, napr. 65644F
   hi: Ahoj,
   hi_user: "Ahoj %{user}"
@@ -1187,15 +1100,11 @@ sk:
     vzťahuje iba na písomný obsah, napr. ak skryjete obsah
     identifikácie, identifikácia je stále viditeľná, ale poznámky identifikátora sú skryté. Nemôžete to vrátiť späť a iba pracovníci stránok môžu skryť obsah, keď bude skrytý, takže buďte opatrní a používajte ho iba pri obsahu, ktorý je nevhodný.
   hide_uncountable_species: Skryť nespočítateľné druhy
-  hidden_content_explanation: Obsah bol skrytý
   high: Vysoká
   highest_rank: Najvyššie poradie
-  highlights: Najvýznamnejšie udalosti
   highlights_and_stats_from_year_on_site: "Najvýznamnejšie udalosti a štatistiky z roku %{year} v %{site}"
   history: História
   home: Doma
-  home_faq: Často kladené otázky
-  hybrid: kríženec
   i_agree_to_the_project_terms: Súhlasím s podmienkami projektu
   i_dont_know_but_i_am_sure_this_is_taxon: Neviem, ale som si istý/á, že toto je %{taxon}
   icon: Ikona
@@ -1492,7 +1401,6 @@ sk:
   listing_announcement: Oznámenie o zápise do zoznamu
   listing_announcements: Oznámenie o zápisoch do zoznamu
   listing_lists: Zoznamy zápisov
-  listing_project_assets: Zápisy projektových_položiek
   listing_taxa: Zapísať do zoznamu taxónov
   listing_taxon_names: Zapísať do zoznamu názvov taxonov
   lists: Zoznamy
@@ -1784,7 +1692,6 @@ sk:
   new_password: Nové heslo
   new_post: Nový príspevok
   new_project: Nový projekt
-  new_project_asset: Nová projektová_položka
   new_project_asset_for: Nová projektová položka pre
   new_source: Nový zdroj
   new_species_added_in_interval: Nové druhy pridané v %{interval}
