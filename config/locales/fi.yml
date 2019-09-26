@@ -171,7 +171,6 @@ fi:
   add_another_photo: Lisää toinen kuva
   add_another_section: Lisää toinen jakso
   add_another_subscription: Lisää toinen tilaus
-  add_asset: Lisää ominaisuus
   add_batch: Lisää erä
   add_comma_separated_tags: "Lisää pilkulla erotellut merkinnät"
   add_comment: Lisää kommentti
@@ -545,7 +544,6 @@ fi:
   captive: Tarhattu
   captive_cultivated: Tarhattu / viljelty
   card: Kortti
-  case_plural: 'a'
   casual: epämuodollinen
   casual_: Harrastelija
   categories: Luokat
@@ -794,8 +792,6 @@ fi:
   curator_identification: Kuraattorin tunnistus
   current_flags: Nykyiset liput
   custom_project_fields: Mukautetut projektikentät
-  custom_project_was_successfully_created: CustomProject luotiin onnistuneesti.
-  custom_project_was_successfully_updated: CustomProject päivitettiin onnistuneesti.
   customize_location: Muokkaa sijaintia
   darr_apply_darr: "&darr; Käytä &darr;"
   dashboard: Kojelauta
@@ -805,7 +801,6 @@ fi:
   data_quality_assessment_: Tietojen laatuarvio
   datatype: Tietotyyppi
   date_: Päivämäärä
-  date?: Päivämäärä?
   date_added: Lisäyspäivämäärä
   date_created: Luontipäivämäärä
   date_format:
@@ -849,8 +844,6 @@ fi:
   date_specified: Päivämäärä määritetty
   date_time: Päiväys/Aika
   date_updated: Tiedot päivitetty
-  dates: päivämäärät
-  datetime_: Päiväys/Aika
   day: Päivä
   default: oletus
   default_invite_comment: "Hieno kuva! Sinun pitäisi lähettää se \n%{site_name}iin: {{INVITE_LINK}}"
@@ -870,7 +863,6 @@ fi:
   delete_selected: Poista valitut
   delete_taxon_and_merge_most_data_html: |
     Poista taksoni %{taxon} ja yhdistä valtaosa sen tiedoista toiseen taksoniin. Käytä tätä työkalua <strong>poistaaksesi kaksinkertaiset taksonit</strong>. Jos haluat poistaa vanhentuneen synonyymin, ole ystävällinen ja luo taksonin vaihto. <strong>OLE VAROVAINEN!</strong> Taksoneiden poisto voi olla erittäin tuhoisaa. Tarkista <a href="%{curator_url}">Kuraattorioppaasta</a> lisätietoja.
-  delete_this_name: Poista tämä nimi
   delete_user: Poista käyttäjä
   delete_your_account: Poista käyttäjätunnuksesi
   deleted_synonyms: Poistettu synonyymit
@@ -895,35 +887,25 @@ fi:
     failure:
       user:
         suspended: Käyttäjätunnuksesi on suljettu
-  developers: Kehittäjät
-  device: Laite
   discoveries: Löydöt
   did_not_send_invitations_because: Älä lähetä kutsuja seuraaville koska...
   did_you_mean: 'Tarkoititko'
   did_you_photos_flickr?: Laitoitko mitään kuvia Flickr'iin?
   disable: Poista käytöstä
-  disagree: eri mieltä
   disagree_: Eri mieltä
   disconnect_provider: "Katkaise yhteys palveluun %{provider}"
   display_link_to_checklist: Näytä linkki projektiluetteloon projektisivulta
-  display_listings_added_by_curators: Näytä kuraattorien lisäämät luettelot
-  display_listings_from_place: Näytä paikan luettelointi
   documentation_for_developers_html: Dokumentaatio <a href="/pages/developers">kehittäjille</a>
   do_not_show_this_message_again: Älä näytä tätä viestiä uudelleen
-  do_you_know_where_this_species_lives: Tiedätkö, missä tämä laji elää?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Opiskeletko sukkulamadoista? Oletko maailman johtava asiantuntija takiaisten
     taksonomiassa? Tykkäätkö vain katsella kauniita kukkia? 
     Profiilisi täyttäminen lisää hieman persoonallisuutta ja auttaa luomaan uskottavuuttasi kun
     autat ihmisiä tunnistuksissa.
-  do_you_want_to_proceed: Haluatko jatkaa?
-  does_the_location_seem_accurate: "Näyttääkö sijainti oikealta?"
-  does_the_date_seem_accurate: "Näyttääkö päiväys oikealta!"
   doesnt_have_default_photo: ei ole vielä oletuskuvaa.
   doh_something_went_wrong: Pahus, jotain meni pieleen.
   doh_something_went_wrong_error: "D'oh, jotain meni vikaan: %{error}"
   done: Valmis
-  dont_filter: "Älä suodata"
   dont_have_an_account_sign_up_html: Eikö sinulla vielä ole käyttäjätunnusta? <strong>Rekisteröidy.</strong>
   dont_send_me_email: "Älä lähetä minulle mitään sähköpostia!"
   dont_use_double_quotes: Älä käytä tuplalainausmerkkejä missään muualla
@@ -934,7 +916,6 @@ fi:
   download_csv_template: Lataa CSV-malli
   download_kml: Lataa KML
   downstream_coverage: Myötävirran näkyvyys
-  drag_and_drop_photos: vedä ja pudota kuvat tähän ikkunaan tai
   draft: luonnos
   draft_: Luonnos
   draft_saved: Luonnos tallennettu!
@@ -949,17 +930,14 @@ fi:
   edit_assessment: Muokkaa arviointia
   edit_atlas: Muokkaa atlasta
   edit_body: Muokkaa kappaletta
-  edit_colors: Muokkaa värejä
   edit_comment: Muokkaa kommenttiasi
   edit_field: Muokkaa kenttää
-  edit_flagged_observation: Muokkaa liputettua havaintoa
   edit_license: Muokkaa lisenssiä
   edit_multiple_dates: Muokkaa useita päivämääriä
   edit_multiple_descriptions: Muokkaa useita kuvauksia
   edit_multiple_locations: Muokkaa useita paikkoja
   edit_multiple_species: Muokkaa useita lajeja
   edit_notes: Muokkaa muistiinpanoja
-  edit_observation: Muokkaa havaintoa
   edit_observations: Muokkaa havaintoja
   edit_photos: Muokkaa valokuvia
   edit_photos_for_observation_id: "Muokkaa havaintoon %{obs_id} liittyviä valokuvia"
@@ -970,20 +948,14 @@ fi:
   edit_source: Muokkaa lähdettä
   edit_taxa: Muokkaa taksoneja
   edit_taxon: Muokkaa taksonia
-  edit_taxon_change: Muokkaa taksonin muutosta
   edit_taxon_link: Muokkaa taksonin linkkiä
   edit_taxon_range: Muokkaa taksonin levinneisyyttä
   edit_the_observation: Muokkaa havaintoa
-  edit_this_link: Muokkaa tätä linkkiä
-  edit_your_account: Muokkaa tiliäsi
   edit_your_account_and_profile_html: "Muokkaa tiliäsi ja profiiliasi"
   edit_your_default_settings: "Muokka oletusasetuksiasi"
   edit_your_global_project_settings: Muokkaa yleisiä projektiasetuksiasi
   edit_your_identification: Muokkaa tunnistustasi
-  edit_your_profile: Muokkaa profiiliasi
   edit_your_settings_for_this_project: Muokkaa asetuksiasi tässä projektissa
-  edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Muokkaa asetuksiasi</a> muuttaaksesi saamiasi erilaisia päivityksiä tai lopeta tilaus kokonaan."
-  edited: Muokattu
   edited_by_name_html: "Muokannut %{name}"
   editing: Muokataan
   editing_announcement: Muokataan ilmoitusta
@@ -1010,13 +982,11 @@ fi:
   email_copyright: "Copyright &copy; %{x}, kaikki oikeudet pidätetään"
   email_settings: Sähköpostiasetukset
   embed: 'Upota'
-  embed_a_widget_for_this_taxon_on_website: "Upota pienoisohjelma tälle taksonille verkkosivustollasi &raquo;"
   embed_place_widget: Upota paikkapienoisohjelma
   embed_this_assessment: Upota tämä arviointi
   embed_widget_project: Upota pienoisohjelma tälle projektille verkkosivustossasi
   enable_offline_access: Ota offline-yhteys käyttöön
   enable_offline_access_for_mobile: Ota offline-yhteys käyttöön mobiililaitteille
-  enlarge: Suurenna
   encompassing_places: Ympäröivät paikat
   end: Päättyy
   end_date_time: Päättymispäivä / aika
@@ -1033,9 +1003,6 @@ fi:
     native: Kotoperäinen
     naturalised: Luonnonmukaistunut
   establishment_means: Perustamisen keinot
-  establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: Saapunut alueelle ihmisen toiminnan seurauksena
-    native_and_occurs_nowhere_else: Kotoperäinen eikä esiinny missään muualla
   event_in_progress: Tapahtuma käynnissä
   event_stats: Tapahtuman tilastot
   events_only: Vain tapahtumat
@@ -1050,33 +1017,23 @@ fi:
   exact_rank: Tarkka arvo
   except: paitsi
   exit_full_screen: "Poistu kokoruututilasta"
-  expand_days: Laajenna päivät
-  expand_updates: Laajenna päivitykset
-  explore!: Tutki!
   explore: Tutki
-  explore_everyones_observations: Tutki kaikkien havaintoja
   export: Vie
   export_observations: Vie havaintoja
   export_with_private_coordinates: Vie piilotettuja koordinaatteja
   exporting: "Viedään..."
-  external_links: Ulkoiset linkit
   extinct: kuollut sukupuuttoon
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
-  extras: Ekstrat
   evidence_of_organism: Todiste eliöstä
-  evidence_of_organism?: Todiste eliöstä?
   facebook_account_information: Oman Facebook-tilisi tiedot
   facebook_account_not_linked: "Käyttäjällä %{user} ei ole enää linkitettyä Facebook-tiliä, joten %{site_name}lla ei ole lupaa saada tätä kuvaa."
   facebook_access_token_expired: "Pääsyoikeus on vanhentunut. Käyttäjän %{user} täytyy uudelleenlinkittää Facebook-tilinsä."
-  facebook_confirmation: "Facebook haluaa vahvistaa että haluat, että tilisi on kytketty %{site_name}iin."
   facebook_needs_the_owner_of_that_photo_to: Facebook tarvitsee kyseisen kuvan omistajan uudelleenvahvistamaan yhteyden %{site_name_short}iin.
   facebook_options: Facebook-asetukset
-  facts_and_stats: Faktat ja tilastot
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
   'false': 'Ei'
-  faq: Usein Kysytyt Kysymykset
   fave: suositus
   faves: Suositukset
   Family: Heimo
@@ -1084,12 +1041,9 @@ fi:
   favorite_taxa: Suosikkitaksonit
   favorites: "Suosikit"
   featured: Esittelyssä
-  featured_projects_from_everywhere: Suositellut projektit kaikkialta
   feedback: Palaute
-  feedback_group: Palauteryhmä
   feeds: 'Syötteet'
   failed: Epäonnistui
-  field_guides: Kenttäoppat
   field_note: |
     <strong>Huomautus:</strong> 
     Jos haluat luoda kentän, tarkista nähdäksesi jos joku muu on jo tehnyt sen päällekkäisyyden välttämiseksi.
@@ -1101,8 +1055,6 @@ fi:
   file_should_be_in_the_following_format: "Tiedoston pitäisi olla seuraavassa muodossa: taksonin nimi, kuvaus"
   fill_out_project_observation_fields: Täytä projektin havaintokentät
   fill_out_your_profile: täydennä profiilisi
-  filling_out_checklist_for_place: täyttämällä hyvien tuntemiesi paikkojen lajiluetteloita
-  filling_out_your_profile: täyttämällä profiilisi
   filter: Suodata
   filter_by_place: Suodata paikan mukaan
   filter_by_taxon: Suodata taksonin mukaan
@@ -1131,7 +1083,6 @@ fi:
   first_observation: Ensihavainto
   first_observation_by_date_added: Ensihavainto lisäyspäivämäärän mukaan
   first_observer: 1. havainnoitsija
-  first_report: ensimmäinen raportti
   flag: Lippu
   flag_as_inappropriate: Liputa sopimattomana
   flag_an_item: Liputa kohde
@@ -1157,23 +1108,19 @@ fi:
   flags_explanation: "%{site_name}in käyttäjät liputtavat asioita, jotka tarvitsevat huomiota sivuston kuraattoreilta ja/tai sivuston ylläpitäjiltä."
   flags_on_users_content: "Liput käyttäjän %{user} sisällössä"
   flickr_account_information: Flickr-tilisi tiedot
-  flickr_description: Flickr on valokuvien jakopalvelu, ehkä olet jo tiennytkin siitä!
   flickr_has_no_creative_commons: Flickr'issä ei ole Creative Commons -lisensoituja kuvia tästä paikasta.
   flickr_identity: Flickr-identiteetti
-  flickr_invite_link_raquo: "Flickr kutsulinkki &raquo;"
   flickr_needs_to_confirm: "Flickr haluaa varmistaa että haluat liittää tilisi sivustoon %{site_name}"
   flickr_photo: Flickr Valokuva
   flickr_photos: Flickr-valokuvia
   flickr_style: Flickr-tyyli
   flickr_tagger: Flickr tunnisteidenlisääjä
   flickr_tags: Flickr-merkinnät
-  flickr_youre_all_set: "Olet valmis aloittamaan %{site_name}in tutkimisen"
   flowering_phenology: Kukintafenologia
   fluid_layout: Virtaava asettelu
   follow: Seuraa
   follow_user: "Seuraa käyttäjää %{user}"
   followed_projects: Seuratut projektit
-  follower: seuraaja
   followers: Seuraajat
   following: Seurataan
   following_x_people:
@@ -1193,7 +1140,6 @@ fi:
   forum_desc: |
     Foorumi on paikka iNatista keskustelemiseen, mukaan lukien apu & tuki, ominaisuuspyynnöt, bugiraportit, ilmoitukset ja muuta.
   frequency: Lukumäärä
-  fri: Pe
   from: paikasta
   from_a_place: paikasta
   from_eol_collection: EOL-kokoelmasta
@@ -1204,31 +1150,18 @@ fi:
   from_place: Paikasta
   from_soundcloud: Soundcloudista
   from_your_site_observations: "Sivuston %{site_name} havainnot"
-  full_id_please: Tunnista kiitos!
-  full_id_please!: "Tunnista kiitos!"
-  full_id_please?: "Tunnista kiitos?"
   full_screen: Koko ruutu
   fungi:
     one: sieni
     other: sientä
-  fungus:
-    one: sieni
-    other: sientä
   gbif_occurrences: GBIF:n esiintymistiedot
-  general: Yleinen
   generate_taxonomic_tags_for_flickr: Luo taksonomisia merkintöjä Flickr-valokuviisi.
   generate_widget: Luo pienoisohjelma
   generate_your_stats: Tuota tilastosi
-  generating: "Tuotetaan..."
   Genus: Suku
-  genus_slash_species: "[SUKU] / [LAJI]"
   geoprivacy: Sijainnin tietosuoja
   georeferenced: Paikannettu?
-  georeferenced?: paikannettu
-  get_current_position: Hae nykyinen sijainti
-  get_started_raquo: "Aloita &raquo;"
   get_started: Aloita
-  getting_started: Aloittaminen
   getting_started_guide: Aloitusopas
   give_it_some_detail: Anna sille joitakin yksityiskohtia!
   global_names: Maailmanlaajuiset nimet
@@ -1238,9 +1171,6 @@ fi:
   going_to_your_observations: Siirrytään havaintoihisi ...
   got_it!: Selvä!
   grant_role: "%{grant} %{role} roolin"
-  gray: harmaa
-  green: vihreä
-  grey: harmaa
   grid: Ruudukko
   grid_layout: Ruudukkoasettelu
   grid_tooltip: Näytä ruudukkonäkymä
@@ -1254,7 +1184,6 @@ fi:
   guide_was_successfully_published: Oppaan julkaisu onnistui.
   guide_was_successfully_updated: Oppaan päivitys onnistui.
   guidelines: Ohjeet
-  has_been: on ollut
   has_id_supported_by_two_or_more: Kaksi tai useampi kannattaa samaa tunnistusta
   has_one_or_more_faves: On yksi tai useampi suosittelu
   has_photo: Kuvia
@@ -1267,14 +1196,10 @@ fi:
   hate_me_facebook: "Pura linkitys Facebook ja %{site_name} tileihisi"
   hate_me_flickr: "Pura linkitys Flickr- ja %{site_name}-tileihisi"
   heads_up: Huomio
-  heads_up_observation_search_can_only_load: "Huomio: havaintohaku voi ladata enintään vain 50 sivua"
-  heads_up_this_observation_has_been_flagged: "Tämä havainto on liputettu."
   heads_up_this_photo_has_been_flagged: "Tämä kuva on liputettu."
   heads_up_this_photo_is_already_associated_with: "Huomio: tämä kuva on jo yhdistetty <a target='_blank' href='%{url}'>toisen havainnon</a> kanssa"
   help: Apua
   help_confirm_observations!: Auta vahvistamaan havaintoja!
-  help_faq: Apua / UKK
-  help_out!: Auta!
   help_support_inaturalist: "Auta tukemaan iNaturalistia"
   here_are_our_top_suggestions: Tässä ovat parhaimmat suosituksemme
   here_are_our_top_species_suggestions: Täällä ovat parhaimmat lajiehdotuksemme
@@ -1283,15 +1208,11 @@ fi:
   hi_user: "Hei %{user}"
   hide_content: Piilota sisältö
   hide_uncountable_species: Piilota ei-laskettavat lajit
-  hidden_content_explanation: Sisältö on piilotettu
   high: Korkea
   highest_rank: Korkein arvo
-  highlights: Kohokohtia
   highlights_and_stats_from_year_on_site: "Kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   history: Historia
   home: Etusivu
-  home_faq: UKK
-  hybrid: risteymä
   i_agree_to_the_project_terms: Hyväksyn projektin ehdot
   i_dont_know_but_i_am_sure_this_is_taxon: En tiedä mutta olen varma että tämä on %{taxon}
   icon: Kuvake
@@ -3532,7 +3453,6 @@ fi:
   you_need_to_select_at_least_one_photo: Sinun täytyy valita ainakin yksi kuva!
   you_need_to_select_some_observations_first: Sinun täytyy ensin valita joitakin havaintoja.
   you_retain_full_copyright: "Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta %{site_name}ille myönnettyjä oikeuksia käyttöehdoissamme."
-  you_sure_delete_asset?: Haluatko varmasti poistaa tämän omaisuuden?
   you_sure_delete_check_list: "Haluatko varmasti poistaa tämän luettelon? Jotkut ihmiset ovat saattaneet tehdä paljon työtä sen eteen..."
   you_sure_delete_comment?: Haluatko varmasti poistaa tämän kommentin?
   you_sure_delete_custom_field?: Haluatko varmasti poistaa nämä mukautetut kentät?
@@ -3654,15 +3574,6 @@ fi:
         what_is_inaturalist?: Mikä on %{site_name}?
         who_is_behind_inaturalist?: Kuka on %{site_name}in takana?
         who_is_behind_inaturalist: Ketkä ovat %{site_name}in takana?
-        inaturalist_is_built_using_html: |
-          %{site_name} ohjelmisto on rakennettu käyttäen <a
-          href="http://www.rubyonrails.org/">Ruby on Rails:ia</a>, <a
-          href="http://mysql.com/">MySQL:lää</a>, <a
-          href="http://jquery.com/">jQuery:ä</a> ja <a
-          href="http://code.google.com/apis/maps//">Google Mapsia</a>, ja <a
-          href="http://flickr.com/">Flickr:ä</a>. Se hyödyntää myös <a
-          href="http://www.catalogueoflife.org">Catalogue of Life:ä</a> ja
-          <a href="http://ubio.org/">uBion</a> tietolähteitä taksonomista dataa varten.
         what_can_i_do_to_help_inaturalist?: Mitä voin tehdä auttaakseni %{site_name}ia
         you_can_help_inaturalist_by_giving_us_your_feedback_html: |
           Voit auttaa %{site_name}ia antamalla meille palautettasi: liity <a href="%{feedback_url}">palauteryhmäämme</a> 
