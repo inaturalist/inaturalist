@@ -202,31 +202,33 @@ module MakeHelpers
   #           `--- Magnoliopsida
   def load_test_taxa
     Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
-    @Life = Taxon.find_by_name( "Life" ) || Taxon.make!( name: 'Life', rank: "state of matter" )
-    
-    set_taxon_with_rank_and_parent( "Animalia", Taxon::KINGDOM, @Life, is_iconic: true )
-    set_taxon_with_rank_and_parent( "Chordata", Taxon::PHYLUM, @Animalia )
-    set_taxon_with_rank_and_parent( "Amphibia", Taxon::CLASS, @Chordata, is_iconic: true )
-    set_taxon_with_rank_and_parent( "Anura", Taxon::ORDER, @Amphibia )
-    set_taxon_with_rank_and_parent( "Hylidae", Taxon::FAMILY, @Anura )
-    set_taxon_with_rank_and_parent( "Pseudacris", Taxon::GENUS, @Hylidae )
-    set_taxon_with_rank_and_parent( "Pseudacris regilla", Taxon::SPECIES, @Pseudacris )
+    ActiveRecord::Base.transaction do
+      @Life = Taxon.find_by_name( "Life" ) || Taxon.make!( name: 'Life', rank: "state of matter" )
 
-    set_taxon_with_rank_and_parent( "Aves", Taxon::CLASS, @Chordata, is_iconic: true )
-    set_taxon_with_rank_and_parent( "Apodiformes", Taxon::ORDER, @Aves )
-    set_taxon_with_rank_and_parent( "Trochilidae", Taxon::FAMILY, @Apodiformes )
-    set_taxon_with_rank_and_parent( "Calypte", Taxon::GENUS, @Trochilidae )
-    set_taxon_with_rank_and_parent( "Calypte anna", Taxon::SPECIES, @Calypte, common_name: "Anna's Hummingbird" )
-    
-    set_taxon_with_rank_and_parent( "Plantae", Taxon::KINGDOM, @Life, is_iconic: true )
-    set_taxon_with_rank_and_parent( "Magnoliophyta", Taxon::PHYLUM, @Plantae )
-    set_taxon_with_rank_and_parent( "Magnoliopsida", Taxon::CLASS, @Magnoliophyta )
-    set_taxon_with_rank_and_parent( "Myrtales", Taxon::ORDER, @Magnoliopsida )
-    set_taxon_with_rank_and_parent( "Onagraceae", Taxon::FAMILY, @Myrtales )
-    set_taxon_with_rank_and_parent( "Clarkia", Taxon::GENUS, @Onagraceae )
-    set_taxon_with_rank_and_parent( "Clarkia amoena", Taxon::GENUS, @Clarkia )
+      set_taxon_with_rank_and_parent( "Animalia", Taxon::KINGDOM, @Life, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Chordata", Taxon::PHYLUM, @Animalia )
+      set_taxon_with_rank_and_parent( "Amphibia", Taxon::CLASS, @Chordata, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Anura", Taxon::ORDER, @Amphibia )
+      set_taxon_with_rank_and_parent( "Hylidae", Taxon::FAMILY, @Anura )
+      set_taxon_with_rank_and_parent( "Pseudacris", Taxon::GENUS, @Hylidae )
+      set_taxon_with_rank_and_parent( "Pseudacris regilla", Taxon::SPECIES, @Pseudacris )
 
-    Taxon.reset_iconic_taxa_constants_for_tests
+      set_taxon_with_rank_and_parent( "Aves", Taxon::CLASS, @Chordata, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Apodiformes", Taxon::ORDER, @Aves )
+      set_taxon_with_rank_and_parent( "Trochilidae", Taxon::FAMILY, @Apodiformes )
+      set_taxon_with_rank_and_parent( "Calypte", Taxon::GENUS, @Trochilidae )
+      set_taxon_with_rank_and_parent( "Calypte anna", Taxon::SPECIES, @Calypte, common_name: "Anna's Hummingbird" )
+
+      set_taxon_with_rank_and_parent( "Plantae", Taxon::KINGDOM, @Life, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Magnoliophyta", Taxon::PHYLUM, @Plantae )
+      set_taxon_with_rank_and_parent( "Magnoliopsida", Taxon::CLASS, @Magnoliophyta )
+      set_taxon_with_rank_and_parent( "Myrtales", Taxon::ORDER, @Magnoliopsida )
+      set_taxon_with_rank_and_parent( "Onagraceae", Taxon::FAMILY, @Myrtales )
+      set_taxon_with_rank_and_parent( "Clarkia", Taxon::GENUS, @Onagraceae )
+      set_taxon_with_rank_and_parent( "Clarkia amoena", Taxon::SPECIES, @Clarkia )
+
+      Taxon.reset_iconic_taxa_constants_for_tests
+    end
 
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end
@@ -241,16 +243,16 @@ module MakeHelpers
       instance_variable_set( "@#{varname}", existing_in_db )
       return instance_variable_get( "@#{varname}" )
     end
-    instance_variable_set( "@#{varname}", Taxon.make!( options.merge( name: name, rank: rank ) ) )
-    instance_variable_get( "@#{varname}" ).update_attributes( parent: parent )
+    taxon = Taxon.make( options.merge( name: name, rank: rank, parent: parent ) )
     if common_name
-      instance_variable_get( "@#{varname}" ).taxon_names << TaxonName.make!(
+      taxon.taxon_names << TaxonName.make(
         name: common_name, 
-        taxon: instance_variable_get( "@#{varname}" ),
+        taxon: taxon,
         lexicon: TaxonName::LEXICONS[:ENGLISH]
       )
     end
-    instance_variable_get( "@#{varname}" )
+    taxon.save!
+    instance_variable_set( "@#{varname}", taxon )
   end
 
   def make_check_listed_taxon( options = {} )

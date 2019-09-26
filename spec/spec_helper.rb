@@ -76,6 +76,8 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include RSpecHtmlMatchers
+  config.include EsToggling
+  config.extend EsTogglingHelper
   config.fixture_path = "#{::Rails.root}/spec/fixtures/"
   config.infer_spec_type_from_file_location!
   # disable certain specs. Useful for travis
@@ -182,36 +184,6 @@ end
 class LocalPhoto
   def processing?
     false
-  end
-end
-
-# Turn on elastic indexing for certain models. We do this selectively b/c
-# updating ES slows down the specs.
-def enable_elastic_indexing(*args)
-  classes = [args].flatten
-  classes.each do |klass|
-    begin
-      klass.__elasticsearch__.delete_index!
-    rescue Exception => e
-      raise e unless e.class.to_s =~ /NotFound/
-    end
-    klass.__elasticsearch__.create_index!
-    ElasticModel.wait_until_index_exists(klass.index_name)
-    klass.send :after_save, :elastic_index!
-    klass.send :after_destroy, :elastic_delete!
-    klass.send :after_touch, :elastic_index!
-  end
-end
-
-# Turn off elastic indexing for certain models. Make sure to do this after
-# specs if you used enable_elastic_indexing
-def disable_elastic_indexing(*args)
-  classes = [args].flatten
-  classes.each do |klass|
-    klass.send :skip_callback, :save, :after, :elastic_index!
-    klass.send :skip_callback, :destroy, :after, :elastic_delete!
-    klass.send :skip_callback, :touch, :after, :elastic_index!
-    klass.__elasticsearch__.delete_index!
   end
 end
 

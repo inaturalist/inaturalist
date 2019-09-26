@@ -6,9 +6,6 @@ describe Observation do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
 
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-
   describe "creation" do
 
     before(:each) do
@@ -1511,49 +1508,53 @@ describe Observation do
       end
     end
 
-    it "should increment the taxon's counter cache" do
-      o = Observation.make!
-      t = Taxon.make!
-      expect(t.observations_count).to eq(0)
-      o.update_attributes(:taxon => t)
-      Delayed::Job.find_each{|j| j.invoke_job}
-      t.reload
-      expect(t.observations_count).to eq(1)
-    end
-  
-    it "should increment the taxon's ancestors' counter caches" do
-      o = Observation.make!
-      p = without_delay { Taxon.make!(rank: Taxon::GENUS) }
-      t = without_delay { Taxon.make!(parent: p, rank: Taxon::SPECIES) }
-      expect(p.observations_count).to eq 0
-      o.update_attributes(:taxon => t)
-      Delayed::Job.find_each{|j| j.invoke_job}
-      p.reload
-      expect(p.observations_count).to eq 1
-      Observation.elastic_index!(ids: [ o.id ], delay: true)
-      p.reload
-      expect(p.observations_count).to eq 1
-    end
+    describe "counter caches updating" do
+      with_es_enabled_for_group(Observation, Taxon)
 
-    it "should decrement the taxon's counter cache" do
-      t = Taxon.make!
-      o = without_delay {Observation.make!(:taxon => t)}
-      t.reload
-      expect(t.observations_count).to eq(1)
-      o = without_delay {o.update_attributes(:taxon => nil)}
-      t.reload
-      expect(t.observations_count).to eq(0)
-    end
-  
-    it "should decrement the taxon's ancestors' counter caches" do
-      p = Taxon.make!(rank: Taxon::GENUS)
-      t = Taxon.make!(parent: p, rank: Taxon::SPECIES)
-      o = without_delay {Observation.make!(:taxon => t)}
-      p.reload
-      expect(p.observations_count).to eq(1)
-      o = without_delay {o.update_attributes(:taxon => nil)}
-      p.reload
-      expect(p.observations_count).to eq(0)
+      it "should increment the taxon's counter cache" do
+        o = Observation.make!
+        t = Taxon.make!
+        expect(t.observations_count).to eq(0)
+        o.update_attributes(:taxon => t)
+        Delayed::Job.find_each{|j| j.invoke_job}
+        t.reload
+        expect(t.observations_count).to eq(1)
+      end
+
+      it "should increment the taxon's ancestors' counter caches" do
+        o = Observation.make!
+        p = without_delay { Taxon.make!(rank: Taxon::GENUS) }
+        t = without_delay { Taxon.make!(parent: p, rank: Taxon::SPECIES) }
+        expect(p.observations_count).to eq 0
+        o.update_attributes(:taxon => t)
+        Delayed::Job.find_each{|j| j.invoke_job}
+        p.reload
+        expect(p.observations_count).to eq 1
+        Observation.elastic_index!(ids: [ o.id ], delay: true)
+        p.reload
+        expect(p.observations_count).to eq 1
+      end
+
+      it "should decrement the taxon's counter cache" do
+        t = Taxon.make!
+        o = without_delay {Observation.make!(:taxon => t)}
+        t.reload
+        expect(t.observations_count).to eq(1)
+        o = without_delay {o.update_attributes(:taxon => nil)}
+        t.reload
+        expect(t.observations_count).to eq(0)
+      end
+
+      it "should decrement the taxon's ancestors' counter caches" do
+        p = Taxon.make!(rank: Taxon::GENUS)
+        t = Taxon.make!(parent: p, rank: Taxon::SPECIES)
+        o = without_delay {Observation.make!(:taxon => t)}
+        p.reload
+        expect(p.observations_count).to eq(1)
+        o = without_delay {o.update_attributes(:taxon => nil)}
+        p.reload
+        expect(p.observations_count).to eq(0)
+      end
     end
 
     it "should update a life listed taxon stats" do
@@ -1574,6 +1575,7 @@ describe Observation do
   describe "destruction" do
     before { enable_has_subscribers }
     after { disable_has_subscribers }
+    with_es_enabled_for_each(Observation, Taxon)
 
     it "should decrement the counter cache in users" do
       @observation = Observation.make!
@@ -1859,6 +1861,7 @@ describe Observation do
     end
   
     it "should find observations requesting identification" do 
+      stub_elastic_indexing(Observation)
       pos = make_research_grade_candidate_observation
       expect( pos.quality_grade ).to eq Observation::NEEDS_ID
       observations = Observation.has_id_please
@@ -2922,6 +2925,8 @@ describe Observation do
   end
 
   describe "reassess_coordinates_for_observations_of" do
+    with_es_enabled_for_group(Observation, Taxon)
+
     it "should obscure coordinates for observations of threatened taxa" do
       t = Taxon.make!
       o = Observation.make!(:taxon => t, :latitude => 1, :longitude => 1)
@@ -3007,6 +3012,7 @@ describe Observation do
     end
 
     it "should preserve photos" do
+      stub_elastic_indexing(Observation)
       op = make_observation_photo(:observation => reject)
       keeper.merge(reject)
       op.reload

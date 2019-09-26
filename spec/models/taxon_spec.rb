@@ -1,9 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Taxon do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-
   before(:all) do
     load_test_taxa
     @taxon = @Calypte_anna
@@ -38,9 +35,6 @@ describe Taxon do
 end
 
 describe Taxon, "creation" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-  
   it "should set an iconic taxon if this taxon was grafted" do
     load_test_taxa
     taxon = Taxon.make!( name: "Pseudacris imaginarius", rank: Taxon::SPECIES )
@@ -208,12 +202,10 @@ describe Taxon, "creation" do
 end
 
 describe Taxon, "updating" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-  
   it "should update the ancestry col of all associated listed_taxa"
   
   it "should not destroy photos that have observations" do
+    stub_elastic_indexing(Observation)
     t = Taxon.make!
     o = Observation.make!
     p = Photo.make!
@@ -310,9 +302,6 @@ describe Taxon, "updating" do
 end
 
 describe Taxon, "destruction" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-  
   it "should work" do
     Taxon.make!.destroy
   end
@@ -328,8 +317,6 @@ describe Taxon, "destruction" do
 end
 
 describe Taxon, "orphan descendant destruction" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
   before(:each) do
     load_test_taxa
   end
@@ -403,8 +390,6 @@ describe "Updating iconic taxon" do
 end
 
 describe Taxon, "set_iconic_taxon_for_observations_of" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
   before(:each) do
     load_test_taxa
   end
@@ -629,9 +614,6 @@ describe Taxon, "tags_to_taxa" do
 end
 
 describe Taxon, "merging" do
-
-  before(:all) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:all) { disable_elastic_indexing( Observation, Taxon ) }
   before(:all) { load_test_taxa }
   before(:each) do
     # load_test_taxa
@@ -1054,8 +1036,6 @@ end
 
 
 describe Taxon, "grafting" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
   before(:each) do
     load_test_taxa
     @graftee = Taxon.make!(:rank => "species")
@@ -1196,8 +1176,6 @@ describe Taxon, "update_life_lists" do
 end
 
 describe Taxon, "threatened?" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
   it "should work for a place"
   it "should work for lat/lon" do
     p = make_place_with_geom
@@ -1209,8 +1187,6 @@ describe Taxon, "threatened?" do
 end
 
 describe Taxon, "geoprivacy" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
   it "should choose the maximum privacy relevant to the location" do
     t = Taxon.make!(:rank => Taxon::SPECIES)
     p = make_place_with_geom
@@ -1232,12 +1208,12 @@ describe Taxon, "max_geoprivacy" do
   let(:t1) { Taxon.make!(rank: Taxon::SPECIES) }
   let(:t2) { Taxon.make!(rank: Taxon::SPECIES) }
   let(:taxon_ids) { [t1.id, t2.id] }
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
   it "should be private if one of the taxa has a private global status" do
     cs_global = ConservationStatus.make!( taxon: t1, geoprivacy: Observation::PRIVATE )
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
   end
   it "should be private if one of the ancestor taxa has a private global status" do
+    stub_observations_stats_update
     parent = Taxon.make!( rank: Taxon::GENUS )
     cs_global = ConservationStatus.make!( taxon: parent, geoprivacy: Observation::PRIVATE )
     without_delay do
@@ -1409,11 +1385,13 @@ describe "taxon" do
         expect( root ).not_to be_valid
       end
       it "should allow moving root" do
+        stub_observations_stats_update
         other_root = Taxon.make!( rank: Taxon::SUPERFAMILY )
         root.update_attributes( parent: other_root, current_user: curator )
         expect( root ).to be_valid
       end
       it "should prevent moving internode" do
+        stub_observations_stats_update
         expect( internode.upstream_taxon_framework ).not_to be_blank
         other_root = Taxon.make!( rank: Taxon::FAMILY )
         expect( internode.parent ).to eq root
@@ -1422,6 +1400,7 @@ describe "taxon" do
         expect( internode.parent ).to eq other_root
       end
       it "should prevent moving tip" do
+        stub_observations_stats_update
         other_root = Taxon.make!( rank: Taxon::FAMILY )
         tip.update_attributes( parent: other_root, current_user: curator )
         expect( tip ).not_to be_valid
@@ -1476,6 +1455,7 @@ describe "taxon" do
         expect( deepertip ).not_to be_valid
       end
       it "should allow taxon_curator to move tip with overlapping upstream taxon framework" do
+        stub_observations_stats_update
         other_root = Taxon.make!( rank: Taxon::FAMILY )
         deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
         deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
@@ -1664,8 +1644,6 @@ describe "current_synonymous_taxon" do
 end
 
 describe Taxon, "set_photo_from_observations" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
   it "does not throw an error if observation photo positions are nil" do
     t = Taxon.make!( rank: "species" )
     o = make_research_grade_observation( taxon: t )
