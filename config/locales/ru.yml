@@ -70,7 +70,6 @@ ru:
   add_another_photo: Добавьте ещё фото
   add_another_section: Добавить ещё один раздел
   add_another_subscription: Добавить другую подписку
-  add_asset: Добавить актив
   add_batch: Добавить пакетное пополнение
   add_comma_separated_tags: "Добавить теги, разделённые запятыми"
   add_comment: Добавить комментарий
@@ -410,7 +409,6 @@ ru:
   captive: В неволе
   captive_cultivated: В неволе / Культивируемое
   card: Карта
-  case_plural: '_'
   casual: обыкновенное
   casual_: Обыкновенное
   catalogue_of_life: Каталог жизни
@@ -690,8 +688,6 @@ ru:
   curator_identification: Идентификация, сделанная куратором
   current_flags: Текущие флаги
   custom_project_fields: Пользовательские Поля Проекта
-  custom_project_was_successfully_created: CustomProject был успешно создан.
-  custom_project_was_successfully_updated: CustomProject был успешно обновлён.
   customize_location: Настройка местоположения
   darr_apply_darr: "&darr; Применить &darr;"
   dashboard: Панель мониторинга
@@ -702,7 +698,6 @@ ru:
   data_used: "Использованные данные:"
   datatype: Тип данных
   date_: Дата
-  date?: Дата?
   date_added: Дата добавления
   date_created: Дата создания
   date_format:
@@ -747,8 +742,6 @@ ru:
   date_specified: Указана дата
   date_time: Дата/Время
   date_updated: Обновленная дата
-  dates: даты
-  datetime_: Дата/Время
   day: День
   decrease_brightness: Уменьшить яркость
   default: по умолчанию
@@ -769,7 +762,6 @@ ru:
   delete_selected: Удалить Выбранное
   delete_taxon_and_merge_most_data_html: |
     Удалить <i>%{taxon}</i> и объединить большинство его данных с другим таксоном. Использовать этот инструмент для <strong>удаления задвоенности таксонов</strong>. Если вы хотите удалить устаревший синоним, пожалуйста, создайте таксон для замены. <strong>БУДЬТЕ ОСТОРОЖНЫ!</strong> Удаление таксонов может быть очень деструктивной операцией. Сверьтесь с <a href="%{curator_url}">Руководством для куратора</a> для более подробной информации.
-  delete_this_name: Удалить это имя
   delete_user: Удалить пользователя
   delete_your_account: Удалить вашу учётную запись
   deleted_synonyms: Удалённые синонимы
@@ -797,35 +789,24 @@ ru:
     failure:
       user:
         suspended: Ваш аккаунт был приостановлен
-  developers: Разработчики
-  device: Устройство
   discoveries: Открытия
   did_not_send_invitations_because: Не отправил приглашения следующим, потому что...
   did_you_mean: 'Возможно, вы имеете в виду'
   did_you_photos_flickr?: Размещаете ли вы фото на Flickr?
   disable: Отключить
-  disagree: не согласен
   disagree_: Не согласен
   disconnect_provider: "Отключить %{provider}"
   display_link_to_checklist: Показать ссылку на список проектов со страницы проекта
-  display_listings_added_by_curators: Отобразить перечень, добавленный кураторами
-  display_listings_from_place: Отобразить перечень мест
   distance_traveled_value: "Пройденное расстояние: %{distance} м"
   distance_traveled: "Пройденное расстояние (м)"
-  dna_: ДНК
   documentation_for_developers_html: Документация для <a href="/pages/developers">разработчиков</a>
   do_not_show_this_message_again: Не показывать это сообщение повторно
-  do_you_know_where_this_species_lives: Знаете ли вы, где обитают эти виды?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Вы изучаете нематоды? Вы самый главный специалист в мире по таксономии ракушек? Вам просто нравится смотреть на красивые цветы? Заполнение вашего профиля добавляет некоторую индивидуальность и помогает укрепить ваш авторитет, когда вы помогаете людям с идентификацией.
-  do_you_want_to_proceed: Вы хотите продолжить?
-  does_the_location_seem_accurate: "Выглядит ли местоположение точным?"
-  does_the_date_seem_accurate: "Выглядит ли дата точной?"
   doesnt_have_default_photo: отсутствует фото по умолчанию.
   doh_something_went_wrong: Ой, что-то пошло не так.
   doh_something_went_wrong_error: "Что-то пошло не так: %{error}"
   done: Готово
-  dont_filter: "Не фильтровать"
   dont_have_an_account_sign_up_html: Нет учётной записи? <strong>Зарегистрируйтесь.</strong>
   dont_send_me_email: "Не присылайте мне никаких писем!"
   dont_use_double_quotes: Воздержитесь от использования двойных кавычек
@@ -843,7 +824,6 @@ ru:
   downstream_deviations: Отклонения в направлении вниз
   downstream_deviations_for_taxon: "Отклонения в направлении вниз для %{taxon}"
   downstream_flagged_covered_taxa: Помеченные флагом таксоны в направлении вниз
-  drag_and_drop_photos: перетащите и отпустите фото в этом окне или
   draft: черновик
   draft_: Черновик
   draft_saved: Черновик сохранен!
@@ -859,43 +839,33 @@ ru:
   edit_assessment: Оценка редактирования
   edit_atlas: Редактировать атлас
   edit_body: Редактировать код
-  edit_colors: Редактировать цвета
   edit_comment: Редактировать ваш комментарий
   edit_custom_project_fields: Редактировать пользовательские поля проекта
   edit_field: Редактировать поле
-  edit_flagged_observation: Редактировать Отмеченное Наблюдение
   edit_license: Редактировать лицензию
   edit_multiple_dates: Редактировать несколько дат
   edit_multiple_descriptions: Редактировать множественные описания
   edit_multiple_locations: Редактировать множественные местоположения
   edit_multiple_species: Редактировать несколько видов
   edit_notes: Редактировать заметки
-  edit_observation: Редактировать наблюдение
   edit_observations: Редактировать наблюдения
   edit_photos: Редактировать фото
   edit_photos_for_observation_id: "Редактировать фото наблюдения %{obs_id}"
   edit_place: Редактировать место
   edit_project: Редактировать проект
-  edit_range_raquo: "Редактировать ареал &raquo;"
   edit_remove: Редактировать/Удалить
   edit_selected: Редактировать выбранное
   edit_source: Редактировать источник
   edit_taxa: Редактировать таксоны
   edit_taxon: Редактировать таксон
-  edit_taxon_change: Редактировать изменение таксона
   edit_taxon_link: Редактировать ссылку на таксон
   edit_taxon_range: Редактировать ареал таксона
   edit_the_observation: Редактировать наблюдение
-  edit_this_link: Редактировать эту ссылку
-  edit_your_account: Редактировать вашу учётную запись
   edit_your_account_and_profile_html: "Редактировать свою учётную запись и профиль"
   edit_your_default_settings: "Редактировать настройки по умолчанию"
   edit_your_global_project_settings: Редактировать глобальные параметры вашего проекта
   edit_your_identification: Редактировать вашу идентификацию
-  edit_your_profile: Редактировать ваш профиль
   edit_your_settings_for_this_project: Редактировать ваши настройки данного проекта
-  edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Отредактируйте свои настройки</a>, чтобы изменить вид получаемых вами обновлений или полностью отказаться от подписки."
-  edited: Редактор
   edited_by_name_html: "Редактор %{name}"
   edited_by_name_some_rights_reserved_html: |
     Отредактировано %{name}, некоторые права защищены (%{license})
@@ -924,13 +894,11 @@ ru:
   email_copyright: "Авторские права &copy; %{x}, все права защищены"
   email_settings: Настройки электронной почты
   embed: 'Вставить на страницу'
-  embed_a_widget_for_this_taxon_on_website: "Вставить виджет для этого таксона на ваш веб-сайт &raquo;"
   embed_place_widget: Встраиваемый виджет для места
   embed_this_assessment: Вставить эту оценку
   embed_widget_project: Встроить на вашем сайте виджет для этого проекта
   enable_offline_access: Разрешить доступ офлайн
   enable_offline_access_for_mobile: Разрешить доступ офлайт с мобильного телефона
-  enlarge: Увеличить
   encompassing_places: Охваченные места
   end: Конец
   end_date_time: Дата/время окончания
@@ -948,15 +916,9 @@ ru:
     native: Естественный
     naturalised: Натурализованный
   establishment_means: Способ возникновения
-  establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: Занесен в регион антропогенным способом
-    native_and_occurs_nowhere_else: Естественный и больше нигде не встречается
-    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: |
-      Развивались в этом регионе или оказались здесь неантропогенным способом
   establishment_means_describes_how: |
     Способ возникновения описывает, каким образом таксон появился в данной местности. Смотрите спецификацию DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> для получения большей информации о терминологии</a>.
   event_in_progress: Событие в прогрессе
-  event_registration_url: URL события регистрации
   event_stats: Статистика Событий
   event_url: URL события
   events_only: Только события
@@ -976,55 +938,38 @@ ru:
   existing_flags: Существующие флаги
   exit_full_screen: "Выйти из полноэкранного режима"
   examples_of_ranking_organizations: Примеры рейтинговых организаций
-  expand_days: Растянуть дни
-  expand_updates: Расширить обновления
-  explore!: Исследовать!
   explore: Исследуйте
-  explore_everyones_observations: Просмотреть чьи-либо наблюдения
   export: Экспорт
   export_observations: Экспортные наблюдения
   export_with_private_coordinates: Экспортировать со скрытыми координатами
   exporting: "Экспорт..."
-  external_links: Внешние Ссылки
   external_taxon_including_children: Внешний таксон (включая потомков)
   external_taxon_rank: Ранг внешнего таксона
   extinct: вымерший
   extinct_in_the_wild: Вымершие в дикой природе
   extra_properties: Дополнительные свойства
-  extras: Дополнительно
   evidence_of_organism: Свидетельство существования организма
-  evidence_of_organism?: Доказательство организма?
   facebook_account_information: Информация о вашей учётной записи Facebook
   facebook_account_not_linked: "У %{user} больше нет привязанной учётной записи Facebook, поэтому %{site_name} не имеет прав доступа к этому фото."
   facebook_access_token_expired: "Срок действия токена доступа истёк. %{user} должен вновь связать свою учётную запись с Facebook."
-  facebook_confirmation: "Facebook необходимо подтверждение того что вы хотите связать свою учётную запись с %{site_name}"
   facebook_needs_the_owner_of_that_photo_to: Facebook требует, чтобы владелец этого фото подтвердить свою привязку к %{site_name_short}
   facebook_options: Настройки Facebook
-  facts_and_stats: Факты и Статистика
   failed_to_find_your_location: Не удаётся найти ваше местоположение.
   failed_to_repair_photo: "Не удалось восстановить фото: %{errors}"
   failed_to_save_record: "Не удалось сохранить запись. Пожалуйста, попробуйте повторить позже."
   'false': 'Нет'
-  faq: Часто задаваемые вопросы
   fave: фаворит
   faves: Фавориты
   Family: Семейство
   faved_this_observation: добавил(и) это наблюдение к фаворитам
   favorite_taxa: Любимые таксоны
   favorites: "Фавориты"
-  feature_this_project: "Особенность этого проекта?"
   feature_this_project_: "Рекомендовать этот проект"
   featured: Рекомендуемые
-  featured?: рекомендуемые?
-  featured_projects_from_everywhere: Рекомендуемые проекты отовсюду
-  featured_projects_from_place: "Интересные проекта для %{place}"
   featuring: Демонстрация
   feedback: Обратная связь
-  feedback_group: Группа обратной связи
   feeds: 'Лента (feeds)'
-  feeds_for_current_filters: Лента (feeds) для текущих фильтров
   failed: Не удалось
-  field_guides: Полевые определители
   field_note: |
     <strong>Внимание:</strong> Если вы хотите создать поле, проверьте, не создал ли его кто-то другой, чтобы избежать дублирования.
   fields: поля
@@ -1035,8 +980,6 @@ ru:
   file_should_be_in_the_following_format: "Файл должен иметь следующий формат: наименование таксона, описание"
   fill_out_project_observation_fields: Заполнить поля наблюдения проекта
   fill_out_your_profile: заполните ваш профиль
-  filling_out_checklist_for_place: заполнение контрольных списков для мест, которые вы хорошо знаете
-  filling_out_your_profile: заполнение вашего профиля
   filter: Фильтр
   filter_by_curator_identification: Фильтровать по определению куратором
   filter_by_place: Фильтр по месту
@@ -1044,7 +987,6 @@ ru:
   filter_by_place_taxon_and_color: Фильтр по месту наблюдения таксона и цвету с использованием элементов управления.
   filter_list_by_this_taxon: Фильтровать список этим таксоном
   filtering: Фильтрация
-  filtering_observations_that_pass_the: "Фильтрация наблюдений, которые удовлетворяют правилам проекта или были сделаны в месте проекта, но ещё не учтены"
   filters: Фильтры
   find: Поиск
   find_a_guide: Найти руководство
@@ -1067,7 +1009,6 @@ ru:
   first_observation: Первое наблюдение
   first_observation_by_date_added: Первое наблюдение по дате добавления
   first_observer: 1-й наблюдатель
-  first_report: первый отчёт
   flag: Флаг
   flag_as_inappropriate: Пометить как неприемлемое
   flag_an_item: Отметить пункт
@@ -1097,17 +1038,14 @@ ru:
   flags_for_x_html: Флаги для %{x}
   flags_on_users_content: "Флаги в контенте %{user}"
   flickr_account_information: Информация о вашей учётной записи Flickr
-  flickr_description: Flickr - это онлайн фото-хостинг, возможно, вы уже об этом знаете!
   flickr_has_no_creative_commons: На Flickr не найдены фото с лицензией Creative Commons для этого места.
   flickr_identity: Идентичность на Flickr
-  flickr_invite_link_raquo: "Ссылка приглашения на Flickr &raquo;"
   flickr_needs_to_confirm: "Flickr необходимо подтверждение того что вы хотите связать свою учётную запись с %{site_name}"
   flickr_photo: Фото Flickr
   flickr_photos: Фото Flickr
   flickr_style: Стиль Flickr
   flickr_tagger: Средство создания тегов Flickr
   flickr_tags: Теги Flickr
-  flickr_youre_all_set: "Вы сделали все настройки, чтобы начать изучение %{site_name}"
   flowering_phenology: Фенология цветения
   fluid_layout: Гибкая разметка
   fluid: жидкий
@@ -1115,13 +1053,10 @@ ru:
   follow_receive_updates_about_new_observations: Подписаться (получать обновления о новых наблюдениях)
   follow_user: "Подписаться на %{user}"
   followed_projects: Проекты, на которые вы подписаны
-  follower: подписчик
   followers: Подписчики
   following: Подписка
   for: для
   for_a_taxon: для таксона
-  for_a_widget_showing_recent_observations_from: Для виджета, показывающего последние наблюдения в %{place_name}, проверьте
-  for_more_information: показать больше информации.
   formatting: Форматироватие
   forgot_your_password: Забыли пароль?
   forum: Форум
@@ -1136,7 +1071,6 @@ ru:
   forum_desc: |
     Форум - это место для обсуждения самого iNat, включая помощь и поддержку, пожелания, отчеты об ошибках, объявления и многое другое.
   frequency: Частота
-  fri: Пт
   from: Из
   from_a_place: в месте
   from_eol_collection: Из коллекции EOL
@@ -1148,18 +1082,11 @@ ru:
   from_soundcloud: Из Soundcloud
   from_your_site_observations: "Из наблюдений %{site_name}"
   from_licensed_site_observations: "Из лицензированных %{site_name} наблюдений"
-  full_id_please: ID пожалуйста!
-  full_id_please!: "ID пожалуйста!"
-  full_id_please?: "ID пожалуйста?"
   full_screen: Полный экран
   gbif_occurrences: Записи GBIF
-  geo: Гео
-  general: Общие
-  generally_these_come_from_iucn_red_list: Как правило, они поступают из Красного списка МСОП, но если они приходят из других источников, они будут придерживаться категорий МСОП.
   generate_taxonomic_tags_for_flickr: Создать таксономические теги для ваших фото на Flickr.
   generate_widget: Сгенерировать виджет
   generate_your_stats: Сгенерировать вашу статистику
-  generating: "Генерирование..."
   generating_mobile_archive: "Генерация мобильного архива"
   Genus: Род
   geoprivacy: Приватность местоположения
@@ -1168,14 +1095,9 @@ ru:
   geoprivacy_is_private: Информация о местоположении является конфиденциальной
   geoprivacy_is_private_desc: Наблюдатель решил скрыть координаты.
   georeferenced: Имеет геопривязку?
-  georeferenced?: имеет геопривязку
-  get_current_position: Получить настоящее местоположение
-  get_started_raquo: "Начать &raquo;"
   get_started: Начать
-  getting_started: Начало работы
   getting_started_guide: Руководство по началу работы
   give_it_some_detail: Предоставьте некоторые подробности!
-  global_conservation_status: "Глобальный природоохранный статус"
   global_names: Глобальные имена
   globally: Глобально
   go: Найти
@@ -1185,12 +1107,8 @@ ru:
   got_it!: Понятно!
   got_your_data_somewhere_else?: Ваши данные где-то ещё? Мы можем помочь.
   graft: Прививка
-  grafting: "Прививание..."
   grafting_attemps_to_insert_this_taxon: Привязка пытается вставить этот таксон в наше таксономическое дерево, найти существующий родительский таксон или создать все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону более высокого уровня.
   grant_role: "%{grant} %{role} роль"
-  gray: серый
-  green: зеленый
-  grey: серый
   grid: Плитка
   grid_layout: Разметка по сетке
   grid_tooltip: Показать в виде грида
@@ -1198,7 +1116,6 @@ ru:
   grouping: Группировка
   guess_description: Угадай / Описание
   guides: Руководства
-  guide_colors: Цвета руководства
   guide_compiled_by: Руководство составлено
   guide_deleted: Руководство удалено
   guide_will_be_deleted: Руководство будет удалено. Это может занять некоторое время для больших руководств.
@@ -1208,7 +1125,6 @@ ru:
   guide_was_successfully_updated: Руководство было успешно обновлено.
   guidelines: Руководства
   has_already_been_flagged_by: был уже отмечен
-  has_been: был
   has_id_supported_by_two_or_more: Поддержка идентификации двумя или более участниками
   has_one_or_more_faves: Имеет один или больше фаворитов
   has_photo: С фото
@@ -1221,24 +1137,17 @@ ru:
   hate_me_facebook: "Отвяжите ваш аккаунт Facebook от аккаунта %{site_name}"
   hate_me_flickr: "Отвязать свои учетные записи Flickr и %{site_name}"
   heads_up: Осторожно
-  heads_up_observation_search_can_only_load: "Внимание: поиск наблюдений может загружать до 50 страниц"
-  heads_up_this_observation_has_been_flagged: "Внимание: это наблюдение было отмечено."
   heads_up_this_photo_has_been_flagged: "ПРЕДУПРЕЖДЕНИЕ: это фото было помечено флагом."
   heads_up_this_photo_is_already_associated_with: "Внимание: это фото уже связано с <a target='_blank' href='%{url}'>другим наблюдением</a>"
-  heads_up_this_taxon_locked_users_cant_add_descendants: "<strong>Осторожно:</strong> этот таксон заблокирован, что означает, что большинство пользователей не могут добавлять к нему новых потомков путём импорта таксонов. Кураторы все ещё могут это сделать, редактируя таксон и выбирая родительский таксон, но, пожалуйста, рассмотрите взамен этого слияние таксонов."
   heads_up_you_have_multiple: "Внимание: у вас множество машинных таксономических тегов для идентичных классов. Ниже они кодируются цветом в зависимости от класса."
   help: Справка
   help_confirm_observations!: Помогите подтвердить наблюдения!
-  help_faq: Помощь / FAQ
-  help_out!: Помогите!
   help_support_inaturalist: "Помогите поддержать iNaturalist"
   helped_the_observer_make: помогли наблюдателю сделать окончатльное определение (т.е. первичные определения соответствуют окончательному)
   here_are_3_examples: Три примера хорошо сформированных данных
   here_are_our_top_suggestions: Вот наши лучшие предложения
   here_are_our_top_species_suggestions: Вот наши лучшие предложения видов
-  here_are_some_things_you_can_do_meantime: "Вот несколько вещей, которые вы можете сделать в это время:"
   here_are_some_things_you_can_do_in_the_meantime: "Вот некоторые вещи, которые вы можете сделать в это время"
-  heres_a_litle_about: Вот немного об этом
   hex_color_eg: Цвет в 16-ти разрядном представлении, например 6564FF
   hi: Привет,
   hi_user: "Здравствуйте, %{user}"
@@ -1247,16 +1156,12 @@ ru:
     Скрытие контента удалит его из публичного просмотра, но люди все равно смогут увидеть, что что-то было скрыто, а кураторы сайта и автор контента все равно смогут увидеть скрытый контент. Как правило, это относится только к письменному содержимому, например, если вы скрываете содержимое идентификации, идентификация все еще видна, но примечания к идентификации скрыты. Вы не можете отменить это, и только сотрудники сайта могут отобразить контент после его скрытия, поэтому будьте осторожны и используйте это только для очень нежелательного контента.
   hide_running_total: Скрыть текущий итог
   hide_uncountable_species: Не показывать неисчислимые виды
-  hidden_content_explanation: Контент был скрыт
   high: Высший
   highest_rank: Высший ранг
-  highlights: Особенности
   highlights_and_stats_from_year_on_site: "Основные моменты и статистика за %{year} на %{site}"
   history: История
   home: Главная
-  home_faq: ЧаВО
   however_there_were_some_issues: "Однако были некоторые проблемы: %{issues}"
-  hybrid: гибрид
   i_agree_to_the_project_terms: Я согласен с условиями проекта
   i_dont_know_but_i_am_sure_this_is_taxon: Я не знаю, но уверен, что это таксон %{taxon}
   icon: Иконка
@@ -1350,7 +1255,6 @@ ru:
   in_the_past_week: на прошлой неделе
   inactive: Неактивный
   inactive_taxon: Неактивный таксон
-  inactive_taxon_concepts_are: Концепция неактивных таксонов заключается в том, что либо таксоны  устарели, либо подверглись изменению. Устаревшие концепции сохраняются для поддержания истории и совместимости с некоторыми сайтами-партнерами.
   inappropriate: Неприемлемое?
   inappropriate_content: Неприемлемый контент?
   inat_account_action: "%{site_name} &#58; Учётная запись &#58; %{action_name}"
@@ -1582,7 +1486,6 @@ ru:
   listing_announcement: Объявление о создании списка
   listing_announcements: Объявления о создании списка
   listing_lists: Перечисляя списки
-  listing_project_assets: Перечень активов проекта
   listing_taxa: Список Таксонов
   listing_taxon_names: Список наименований таксонов
   lists: Списки
@@ -1878,7 +1781,6 @@ ru:
   new_password: Новый пароль
   new_post: Новое сообщение
   new_project: Новый Проект
-  new_project_asset: Новые активы проекта
   new_project_asset_for: Новый актив проекта для
   new_source: Новый Источник
   new_species_added_in_interval: Новые наблюдения, добавленные в %{interval}
@@ -2343,7 +2245,6 @@ ru:
   photos_size_photos: "%{photos_size} фото"
   photos_size_photo: "%{photos_size} фото"
   photos_updated: Фото обновлены.
-  google_account_not_linked: "У %{user} больше нет привязанной учётной записи Google, поэтому %{site_name} не имеет прав доступа к этому фото."
   pi_consent_desc_title: О личной информации
   pi_consent_desc_html: |
     Мы храним личную информацию, такую как имена пользователей и адреса электронной почты, чтобы управлять учётными записями на этом сайте и соблюдать законы о конфиденциальности; вы должны установить этот флажок, чтобы указать, что вы согласны на использование личной информации. Чтобы узнать больше о том, какую информацию мы собираем и как мы ее используем, пожалуйста, просмотрите нашу <a href='%{privacy_url}' target='_blank'>Политику конфиденциальности</a>
@@ -3588,7 +3489,6 @@ ru:
   there_isnt_wiki_article: "Не существует статьи в Википедии или идёт перенаправление по названию '<i>%{taxon}</i>'. Возможно, вы хотели бы"
   there_isnt_a_wikipedia_article_titled_x_html: |
     Нет статьи Википедии или перенаправления под названием '%{x}'.  Возможно, вы бы хотели <a href='http://en.wikipedia.org/wiki/%{x}'>создать её</a>?
-  there_merge_problems_with_the_merge: "Возникли проблемы слияния с кодом ошибки: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Возникла проблема с сохранением вашей идентификации: %{error}"
   there_were_errors: Были ошибки.
   there_were_problems_adding_taxa: "Возникли проблемы при создании этих таксонов: %{errors}"
@@ -4211,7 +4111,6 @@ ru:
   you_need_to_select_some_observations_first: Сначала нужно выбрать несколько наблюдений
   you_retain_full_copyright: "Вы сохраняете полное авторское право на свой контент, кроме тех прав, которые предоставляются %{site_name} в наших Условиях использования."
   you_retain_full_copyright_over_your_content: "Вы сохраняете полное авторское право на свой контент, кроме тех прав, которые предоставляются %{site_name} в наших Условиях использования."
-  you_sure_delete_asset?: Вы уверены, что хотите удалить этот актив?
   you_sure_delete_check_list: "Вы уверены, что хотите удалить этот список? Возможно, некоторые люди вложили в него много труда..."
   you_sure_delete_comment?: Вы уверены, что хотите удалить данный комментарий?
   you_sure_delete_custom_field?: Вы уверены, что хотите удалить эти настраиваемые поля?
@@ -4472,15 +4371,6 @@ ru:
           %{site_name} первоначально являлся финальным магистерским проектом Nathan Agrin, Jessica Kline, и Ken-ichi Ueda в  
           <a href="http://www.ischool.berkeley.edu">Школе информации Университета Беркли</a>.
           Ознакомьтесь со страницей <a href="/about">Подробнее</a> для получения дополнительной информации о лицах, которые сейчас управляют сайтом.
-        inaturalist_is_built_using_html: |
-          Программное обеспечение %{site_name} создано с использованием <a
-          href="http://www.rubyonrails.org/">Ruby on Rails</a>, <a
-          href="http://mysql.com/">MySQL</a>, <a
-          href="http://jquery.com/">jQuery</a> и <a
-          href="http://code.google.com/apis/maps//">Google Maps</a>, и <a
-          href="http://flickr.com/">Flickr</a>. Оно также использует как источники таксономических данных <a
-          href="http://www.catalogueoflife.org">Catalogue of Life</a> и
-          <a href="http://ubio.org/">uBio</a>.
         what_can_i_do_to_help_inaturalist?: Чем я могу помочь %{site_name}?
         you_can_help_inaturalist_by_giving_us_your_feedback_html: |
           Вы можете помочь сайту %{site_name}, давая нам свой отзыв: присоединяйтесь к <а href="%{feedback_url}">группе обратной связи</a>, чтобы сообщить об ошибках и запросить новые функции. Вы также можете помочь %{site_name}, добавляя свои наблюдения и помогая другим членам сообщества идентифицировать их неопознанные наблюдения. Если вы знаете программный код и хотите помочь в работе с некоторыми функциями, <a href="http://github.com/inaturalist/inaturalist" title= "inaturalist at master-GitHub" > развивайтесь с нами на GitHub</a>!
@@ -4983,12 +4873,6 @@ ru:
           ИЛИ ваш проект должен иметь хотя бы одно правило «наблюдение должно принадлежать таксону»
           </li>
           </ol>
-        project_assets_desc_html: |
-          <p class="description">Активы проекта - это просто файлы, связанные с вашим проектом, созданные по особыми правилам:
-          </p>
-          <ol class="description">
-          <li>Файлы, заканчивающиеся на .logo.jpg, .logo.png и т. д. будут использоваться в качестве логотипа проекта на странице проекта вместо иконки проекта</li>
-          <li>файлы KML и KMZ будут добавлены на карту на странице проекта</li></ol>
         project_list_desc_html: |
           <p class="description">
           Вы можете создать пользовательский список проектов таксонов и связать его с вашим проектом. Это может быть полезно для ограничения наблюдений, добавляемых в ваш проект, теми, которые соответствуют таксонам в вашем списке, с помощью правила «должно быть таксоном в списке проектов».
@@ -5010,8 +4894,6 @@ ru:
         submission_models:
           any: Любой
           curators: кураторы проекта
-        trusted_project_means: |
-          Доверять проекту означает, что менеджеры проекта могут добавить в проект активы и пользовательские атрибуты проекта (например, баннер HTML, CSS). Доступ к пользовательским атрибутам проекта означает, что менеджеры проектов теоретически могут добавить вредоносный JavaScript, поэтому доверяйте только тем проектам, у которых как ответственные, так и технически грамотные менеджеры.
         you_can_preview: |
           Вы можете просмотреть, как будет выглядеть ваш проект в виде проекта коллекции, <a href="%{url}">нажав здесь</a>.
       invite:
