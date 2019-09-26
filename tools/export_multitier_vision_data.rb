@@ -1,13 +1,13 @@
 directory = "/home/inaturalist"
-TEST_FLOOR = 30
-TEST_CEIL = 30
-TRAIN_FLOOR = 27
-TRAIN_CEIL = 990
-VAL_FLOOR = 3
-VAL_CEIL = 10
+TEST_FLOOR = 50
+TEST_CEIL = 50
+TRAIN_FLOOR = 45
+TRAIN_CEIL = 995
+VAL_FLOOR = 5
+VAL_CEIL = 5
 VAL_PERCENT_OF_TRAIN = 0.1
 ROOT_ID = 48460
-DATA_CSV_COLUMNS = [:id, :filename, :multitask_labels, :multitask_texts, :multitask_weights, :file_content_type]
+DATA_CSV_COLUMNS = [:id, :filename, :multitask_labels, :multitask_texts, :file_content_type]
 BAD_OBSERVATION_IDS = { }
 
 puts "Find obs with failing quality_metrics (ex. captive) and unresolved flags..."
@@ -281,13 +281,12 @@ end
 
 # Part 2: Fetch the photos on the taxonomy
 
-def photo_item_to_csv_row( item, labels, texts, weights )
+def photo_item_to_csv_row( item, labels, texts )
   row_hash = {
     filename: item["filename"],
     id: item["id"],
     multitask_labels: labels,
     multitask_texts: texts,
-    multitask_weights: weights,
     file_content_type: item["file_content_type"]
   }
   DATA_CSV_COLUMNS.map{ |c| row_hash[c] }
@@ -337,7 +336,7 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
   
   i = 0
   photos = []
-  while i < 1000
+  while i <= 1000
     if p = raw_photos[i]
       photos << p unless BAD_OBSERVATION_IDS[p["observation_id"].to_i]
     end
@@ -361,19 +360,19 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
     val_photos = nil
   end
   test_photos.each do |item|
-    out_row = photo_item_to_csv_row( item, multitask_labels, multitask_texts, multitask_weights )
+    out_row = photo_item_to_csv_row( item, multitask_labels.last, multitask_texts.last )
     test_csv << out_row
   end
   return unless photos.count > TEST_CEIL
   unless train_photos.nil?
     train_photos.each do |item|
-    out_row = photo_item_to_csv_row( item, multitask_labels, multitask_texts, multitask_weights )
+      out_row = photo_item_to_csv_row( item, multitask_labels.last, multitask_texts.last )
       train_csv << out_row
     end
   end
   unless val_photos.nil?
     val_photos.each do |item|
-    out_row = photo_item_to_csv_row( item, multitask_labels, multitask_texts, multitask_weights )
+      out_row = photo_item_to_csv_row( item, multitask_labels.last, multitask_texts.last )
       val_csv << out_row
     end
   end
@@ -391,6 +390,7 @@ CSV.open( "#{directory}/test_data.csv", "w" ) do |test_csv|
       val_csv << DATA_CSV_COLUMNS
       pp Benchmark.measure{
         new_res.each do |row|
+          next if INTERNODES.include? row[:id]
           process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
           processed_count += 1
           if processed_count % 50 == 0
