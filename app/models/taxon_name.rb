@@ -126,7 +126,8 @@ class TaxonName < ActiveRecord::Base
     "scientific_names"      => "sci",
     "slovak"                => "sk",
     "spanish"               => "es",
-    "swedish"               => "sv"
+    "swedish"               => "sv",
+    "turkish"               => "tr"
   }
   LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
 

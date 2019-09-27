@@ -9,6 +9,7 @@ class TaxonChangeTaxon < ActiveRecord::Base
   after_destroy :index_taxon
 
   def index_taxon
+    # unless draft?
     t = taxon || Taxon.find_by_id( taxon_id )
     t.delay( priority: USER_INTEGRITY_PRIORITY ).elastic_index! if t
     true
