@@ -426,7 +426,6 @@ de:
   are_you_sure_remove_taxon_from_list: "Bist du sicher, dass du dieses Taxon aus der Liste entfernen willst?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Bist du sicher? Die Seite wird neu geladen und deine Änderungen könnten verloren gehen.
-  are_you_sure_want_delete_taxon: "Bist du sicher, dass du dieses Taxon entfernen willst? %{msg}"
   are_you_sure_want_delete_taxon_link: Bist du sicher, dass du diesen Taxon-Link entfernen willst?
   are_you_sure_want_delete_this_name: Bist du sicher, dass du diesen Namen löschen willst?
   are_you_sure_want_delete_this_range: Soll dieser Bereich wirklich gelöscht werden?
@@ -1200,7 +1199,6 @@ de:
   grid_tooltip: Rasteransicht anzeigen
   group: Gruppe
   grouping: Gruppieren
-  guess_description: Vermutung / Beschreibung
   guides: Führer
   guide_compiled_by: Guide zusammengestellt von
   guide_deleted: Führer gelöscht
@@ -1220,8 +1218,6 @@ de:
   has_sound: Mit Audio
   has_sounds: mit Audio
   hasnt_contributed_any_observations: hat keine Beobachtungen zu diesem Projekt beigetragen.
-  hate_me_facebook: "Verlinkung zwischen Deinem Facebook- und %{site_name}-Konto entfernen"
-  hate_me_flickr: "Deine Flickr- und %{site_name}-Konten trennen"
   heads_up: Achtung
   heads_up_this_photo_has_been_flagged: "Achtung: dieses Foto wurde gemeldet."
   heads_up_this_photo_is_already_associated_with: "Achtung: dieses Foto ist schon mit <a target='_blank' href='%{url}'>einer anderen Beobachtung verbunden</a>"
@@ -1231,7 +1227,6 @@ de:
   help_support_inaturalist: "iNaturalist unterstützen"
   here_are_3_examples: Hier sind 3 Exemplare von gut formatierten Datensätzen.
   here_are_our_top_species_suggestions: Hier unsere top Arten-Vorschläge
-  here_are_some_things_you_can_do_in_the_meantime: "Hier sind ein paar Dinge, die Du in der Zwischenzeit tun kannst"
   hex_color_eg: Hex Farbe, z.B. 65644F
   hi: Hallo,
   hi_user: "Hallo %{user}"
@@ -1242,18 +1237,13 @@ de:
   history: Geschichte
   home: Dashboard
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
-  i_agree_to_the_project_terms: Ich stimme den Projekt-Bedingungen zu
   i_dont_know_but_i_am_sure_this_is_taxon: Ich weiß nicht, aber bin mir sicher, dass dies %{taxon} ist
   icon: Symbol
   icon_size: Symbolgröße
-  icon_slash_photo: Symbol/Foto
   id_categories:
     tooltips:
       improving: |
         Erster Vorschlag dieses Taxons, dem die Community anschließend zustimmte. Dies half dabei, das Community-Taxon zu verfeinern.
-  id_please!: ID Bitte!
-  id_please: ID Bitte
-  id_please_expandable_html: "ID <Bereich class='full'> Bitte</span>!"
   id_withdrawn: ID Zurückgezogen
   ids_by_taxon: Kennungen nach Taxon
   identify: Identifizieren
@@ -1264,12 +1254,10 @@ de:
   identification_by_user: Bestimmung durch %{user}
   identification_deleted: Bestimmung gelöscht.
   identification_saved: "Bestimmung gespeichert!"
-  identification_summary: Bestimmungs-Zusammenfassung
   identification_updated: Bestimmung aktualisiert!
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
   identifications_by: "Bestimmungen von %{user}"
-  identified?: bestimmt
   identifiers: Bestimmer
   identotron_for: Identotron für
   identotron_help: Identotron Hilfe
@@ -1278,14 +1266,8 @@ de:
     Wenn du aus irgendeinem Grund mit dem Community-Taxon nicht einverstanden bist, kannst du es ablehnen, was bedeutet, dass deine Bestimmung (ID) diejenige ist, die für die Verlinkung mit anderen Beobachtungen, die Aktualisierung von Lebenslisten usw. verwendet wird. Es bedeutet auch, dass deine Beobachtung nur dann Forschungsqualität erreichen kann, wenn die Community dir zustimmt.
   if_this_is_a_scientific_name: Falls dies ein wissenschaftlicher Name ist, ist er derzeit anerkannt?
   if_this_link_will_apply_to_descendant: Wenn dieser Link auf nachkommende Taxa zutrifft, kannst du Template-Tags verwenden, um den Taxon-Namen in die URL einzutragen
-  if_you_dont_want_us_to_share_your_data: Wenn Du nicht willst, dass wir Deine Daten teilen
   if_you_have_any_trouble_with_the_site_check_out: 'Wenn du Fragen hast, schau bitte auf unsere <a href="%{help_url}">Hilfe-Seite</a> oder schreib eine Nachricht an unsere <a href="%{feedback_url}">Feedback-Gruppe</a>.'
-  if_you_have_trouble_with_the_site: "Wenn du irgendwelche Probleme mit der Seite hast, schau dir bitte unsere Hilfe an:"
-  if_youd_like_us_to_share_your_observations_with: |
-    Wenn du willst, dass wir deine Beobachtungen mit Datenpartnern teilen, stelle sicher, dass du deine Beobachtungen mit einer Creative-Commons-Lizenz versiehst.
-  if_you_want_to_change_the_name: wenn du den Namen ändern willst
   if_your_project_is: Wenn es sich bei deinem Projekt um einen bestimmten Ort handelt, gib die Koordinaten ein, indem du auf die Karte klickst oder sie manuell eingibst.
-  if_your_search_comes_up: "Wenn die Suche erfolglos ist, solltest du einige Suchkästchen sehen, um die Suche über unsere externen Namensprovider wiederholen zu können:"
   ignore: ignorieren
   ignore_and_continue: Ignorieren und fortfahren
   image_must_be_exactly: Bild muss genau 950 px breit und maximal 400 px hoch sein
@@ -1297,14 +1279,11 @@ de:
   import_date_time_location_taxonomic: "Importdatum, Uhrzeit, Ort, Beschreibung und taxonomische Information des Bildes."
   import_from_csv: Von CSV importieren
   import_from_other_photo_sites: Von anderen Foto-Websites importieren
-  import_from_photos: Von Bildern importieren
-  import_from_yahoo: Von Yahoo importieren
   import_observations: Beobachtungen importieren
   import_observations_from_a_photo: Importiere Beobachtungen von einem Bilderdienst oder einer Datei auf deinem Computer.
   import_photos: Fotos importieren
   import_ranges: Reichweite importieren
   import_sections: Abschnitte importieren
-  import_sounds: Audio-Dateien importieren
   import_tags_from_csv: Tags aus CSV importieren
   importing: "Importiere…"
   improving: Wird besser
@@ -1312,75 +1291,53 @@ de:
   inbox: Posteingang
   including: beinhaltet
   increase_brightness: Helligkeit erhöhen
-  in_order_to_login_and_using_site_visit_url: "Um Dich einzuloggen und die Seite zu nutzen, musst Du diese URL besuchen, um Deinen Account zu aktivieren:"
   in_progress: in Bearbeitung
-  in_taxon?: in Taxon
   in_the_past: in der Vergangenheit
   in_the_past_week: In der vergangenen Woche
   inactive: Inaktiv
   inactive_taxon: Inaktives Taxon
-  inappropriate: Unangemessen?
   inappropriate_content: Unangemessener Inhalt?
   inat_believes_this_is_a_complete_listing: "%{site_name} glaubt, dass dies eine vollständige Auflistung dieses Taxons an diesem Ort ist."
   inat_user_profile: "%{site_name}:%{user}s Profil"
   inaturalist_is_a_joint_initiative: "%{site_name} ist eine gemeinsame Initiative der California Academy of Sciences und der National Geographic Society."
   inaturalist_is_an_online_community: "%{site_name} ist eine Online-Community für Naturforscher! Indem du dein Bild hinzufügst, kannst du Forschern helfen, mehr zu erfahren über"
-  inaturalist_observations_by: "%{site_name} &#58; Beobachtungen von %{login}"
   inaturalist_places: "%{site_name} Orte"
   inaturalist_places_are_way_record_what_lives_where: "%{site_name} Orte sind eine Möglichkeit zu erfassen, was wo lebt. Wenn du nach einer bestimmten Art suchst, weißt du, wo du suchen musst. Jeder Ort hat eine Checkliste, um alle dort vorkommenden Arten aufzuzeichnen, sodass sie auch nützlich sein können, um Dinge nachzuschlagen, die du an bestimmten Stellen gefunden hast."
   input_taxon: Taxon eingeben
   insects: Insekten
   insect_life_stage: Insekten-Lebensstadium
-  inspired_by_the_flickr_group: "Von der Flickr-Gruppe <a href='http://flickr.com/groups/idplease/'>ID Please</a> inspiriert, ist dies ein Ort, um Beobachtungen von Dingen, die du nicht kennst, zu veröffentlichen und Leuten zu helfen, mysteriöse Kreaturen zu bestimmen!"
   interactions: Interaktionen
   internal_server_error: Interner Serverfehler
-  internal_taxon: Internes Taxon
   internal_taxon_including_descendants: Internes Taxon (einschließlich Nachkommen)
   internal_taxon_rank: Interner Taxonrang
   introduced: Eingeführt
   introduced_in_place: "Eingeführt in %{place}"
-  invasive: Invasiv
   invitation: Einladung
-  invitations: Einladungen
   invite: einladen
   invite_flickr_photos: "Flickr Fotos einladen zu %{site_name}"
   invite_more: Mehr einladen
-  invite_observations: Beobachtungen einladen
   invite_people: Leute einladen
   invite_people_to_project: "Leute einladen zu %{project}"
-  invite_photos_from_other_sites: Fotos von anderen Seiten einladen
-  invite_photos_to: "Fotos einladen zu %{site_name}"
   invite_photos_to_raquo_html: "Fotos einladen zu <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Jemanden zu %{name} einladen!"
-  invite_to_project: Zum Projekt einladen
   invite_your_friends: Deine Freunde einladen
   invite_your_friends_description: "Hilf mit, %{site_name} zu einer größeren, besseren Community zu machen, indem du deine Freunde einlädst!"
   inviteonly: nur auf Einladung
-  invited: Eingeladen
-  invited_to_the_following_projects: "Zu folgenden Projekten eingeladen:"
   invited_x: "Eingeladen %{x}"
-  inviting: Einladen...
   is_an_evaluation: |
     ist eine Bewertung der Richtigkeit einer Beobachtung.
     Beobachtungen mit Forschungsqualität können von Wissenschaftlern für Forschungszwecke genutzt werden. Gib unten deine Stimme ab:
   is_not_following_anyone: folgt niemandem.
   is_now: ist jetzt
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Ist genug Evidenz gegeben um zu bestätigen, dass es sich um %{taxon} handelt?
-  is_the_organism_wild: "Ist der Organismus wild/ausgewildert?"
-  is_this_observation_offensive_html: 'Ist die Beobachtung <a href="/help#inappropriate">unangemessen</a>, Spam, oder anstößig?'
   is_this_offensive_html: 'Ist dies <a href="/help#inappropriate">unangemessen</a>, Spam, oder anstößig?'
   is_this_place_a_duplicate: Ist dieser Ort ein Duplikat?
-  it: Es
   it_can_now_be_used_for_research: Sie kann nun für Forschungszwecke verwendet und auf anderen Websites genutzt werden
   it_has: Es hat
   item_flagged_notice_html: |
     Dies ist als Spam gemeldet worden und ist nicht mehr
     öffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte<a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
     <a href="%{manage_flags_path}">Meldungen verwalten</a>
-  its_important_that_you: Es ist wichtig, dass du klickst
-  iucn_red_list: Rote Liste der IUCN
-  iucn_red_list_status: IUCN-Rote-Liste-Status
-  january: Januar
   join: Beitreten
   join_and: Beitreten und
   join_inat: '%{site_name} beitreten!'
