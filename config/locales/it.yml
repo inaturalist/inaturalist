@@ -179,6 +179,7 @@ it:
   add_another_photo: Aggiungi un'altra foto
   add_another_section: Aggiungi un'altra sezione
   add_another_subscription: Aggiungi un'altra sottoscrizione
+  add_asset: Aggiungi Risorsa di Progetto
   add_batch: Aggiungi batch
   add_comma_separated_tags: "Aggiungi etichette separate da virgole"
   add_comment: Aggiungi un commento
@@ -276,6 +277,7 @@ it:
   agree?: Concordi?
   agree_with_current_taxon: D'accordo con il taxon corrente
   agreeing: Accordo in corso...
+  aka: o
   all: Tutto
   all_colors: "&laquo; Tutti i colori"
   all_comments: Tutti i commenti
@@ -320,6 +322,7 @@ it:
     rank:
       kingdom: Regno
       class: Classe
+      phylum: Phylum
       species: Specie
       order: Ordine
     amphibians: Anfibi
@@ -405,6 +408,7 @@ it:
   and_x_more_people!:
     one: "e un'altra persona!"
     other: "e %{count} altre persone!"
+  android: Android
   animals: Animali
   annotation: Annotazione
   annotations: Annotazioni
@@ -436,7 +440,6 @@ it:
   are_you_sure_remove_taxon_from_list: "Sei sicuro di voler rimuovere questo taxon dall'elenco?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Sei sicuro? Questa operazione aggiornerà la pagina, potresti perdere alcune delle tue modifiche.
-  are_you_sure_want_delete_taxon: "Sei sicuro di voler cancellare questo taxon? %{msg}"
   are_you_sure_want_delete_taxon_link: Sei sicuro di voler cancellare questo collegamento del taxon?
   are_you_sure_want_delete_this_name: Sei sicuro di voler cancellare questo nome?
   are_you_sure_want_delete_this_range: Sei sicuro di voler cancellare questo areale?
@@ -474,13 +477,17 @@ it:
   associations: Associazioni
   at: in
   at_time: "alle ore %{time}"
+  atom: Atom
   attached_taxon: Taxon collegato
   attribute: Attributo
   attribution: Attribuzione
   authority_list:
     iucn_red_list: Lista Rossa IUCN
+    natureserve: NatureServe
+    cites: CITES
   authorize: Autorizza
   authorize_permissions_from_provider: "Autorizza i permessi da %{provider}"
+  automatic_short: Auto
   automatically_add_to_project: Aggiungi automaticamente al progetto
   automatically_add_observations_to_this_project: Aggiungi automaticamente le osservazioni a questo progetto
   automatically_id_new: Identifica automaticamente le nuove osservazioni come
@@ -528,6 +535,7 @@ it:
   before_importing_photos: prima di importare le foto
   belives_this_is_a_comprehensive_list_of: pensa che questa è una lista esaustiva di
   bg_color: Colore di sfondo
+  bioblitz: Bioblitz
   birds: uccelli
   birthday: Compleanno
   black: nero
@@ -567,6 +575,7 @@ it:
   card: Carta
   casual: casuale
   casual_: Casuale
+  catalogue_of_life: Catalogue of Life
   categories: Categorie
   cc_0_description: "Questa licenza rilascia il tuo lavoro nel pubblico dominio, in modo che altri possano copiare, modificare, distribuire ed eseguire il tuo lavoro, anche a fini commerciali, il tutto senza chiedere il permesso o concedendoti crediti. Questo è il tipo di licenza più permissiva. Raccomandato per la massima diffusione e utilizzo dei materiali concessi in licenza."
   cc_0_name: Nessun copyright (CC0)
@@ -644,6 +653,7 @@ it:
     Seleziona questa casella se vuoi applicare una
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licenza Creative Commons Attribuzione-NonCommerciale</a>
     al tuo contenuto caricato. Ciò significa che ognuno potrà copiare o riutilizzare le tue foto e/o le tue osservazioni senza chiederti permesso purché che ti accrediti e non le utilizzi a scopi commerciali. Puoi scegliere un'altra licenza o rimuoverla successivamente, ma questa è la miglior licenza per la condivisione con gli altri ricercatori.
+  checklist: Checklist
   choose_a_field: Scegli un campo
   choose_a_list_above: Scegli una lista qua sopra
   choose_a_place: Scegli un luogo
@@ -762,7 +772,10 @@ it:
     life_stage: Stadio Vitale
     adult: Adulto
     teneral: Immaturo
+    subimago: Subimago
+    pupa: Pupa
     nymph: Ninfa
+    larva: Larva
     egg: Uovo
     juvenile: Giovane
   controls: Controlli
@@ -784,6 +797,7 @@ it:
     no_rights_reserved_by: "%{name}, nessun diritto riservato (%{license_name})"
     anonymous: anonimo
     public_domain: pubblico dominio
+    copyright: copyright
     no_copyright: nessun copyright (CC0)
     attribution_noncommercial_sharealike_license: Licenza Attribuzione-Non Commerciale-Condividi allo Stesso Modo
     attribution_noncommercial_license: Licenza Attribuzione-Non Commerciale
@@ -824,6 +838,7 @@ it:
   creative_commons_unless_otherwise_noted: "Creative Commons, salvo diversamente indicato."
   critically_endangered: In Pericolo Critico
   css_description: Questo verrà incluso dopo tutti gli altri css della pagina.
+  csv: CSV
   csv_file: File CSV
   csv_should_not_contain_a_header_row: Il CSV non deve contenere la riga di intestazione
   cumulative_ids: "ID comulativo: %{count} di %{total}"
@@ -839,6 +854,8 @@ it:
   curator_identification: Identificazione del curatore
   current_flags: Segnalazione corrente
   custom_project_fields: Campi personalizzati del progetto
+  custom_project_was_successfully_created: Personalizzazioni del progetto aggiunte
+  custom_project_was_successfully_updated: Personalizzazioni del progetto aggiornate
   customize_location: Personalizza la posizione
   darr_apply_darr: "&darr; Applica &darr;"
   dashboard: Bacheca
@@ -1040,6 +1057,7 @@ it:
   either: Qualsiasi
   either_that_user_doesnt_exist_or: "Sia che l'utente non esista o tu li stia già seguendo."
   eligible_for_research_grade: Qualificate per il Livello ricerca
+  email: Email
   email_addresses_description: indirizzi email separati da virgola, il limite è di 60 ogni 30 giorni.
   email_address_for_comments_and_other_feedback: Indirizzo email per commenti e altri feedback
   email_addresses_to_receive_invites: Indirizzi email per ricevere inviti
@@ -1057,6 +1075,7 @@ it:
   endangered: In Pericolo
   endemic: Endemiche
   endemic_to_x: "Endemico in %{x}"
+  eol: EOL
   eol_collection_url: "URL della raccolta EOL"
   error_updating_photo: "Errore nell'aggiornamento della foto: %{photo_errors}"
   establishment:
@@ -1102,6 +1121,7 @@ it:
   extinct_in_the_wild: Estinta in Natura
   extra_properties: Proprietà aggiuntive
   evidence_of_organism: Evidenza della presenza dell'organismo
+  facebook: Facebook
   facebook_account_information: Informazioni del tuo account Facebook
   facebook_account_not_linked: "%{user} ha scollegato l'account Facebook, pertanto %{site_name} non ha il permesso di accedere alla foto."
   facebook_access_token_expired: "Il token di accesso è scaduto. %{user} deve ricollegare il proprio account Facebook."
@@ -1120,6 +1140,8 @@ it:
   feature_this_project_: "Evidenzia questo progetto"
   featured: In evidenza
   featuring: Presentando
+  feedback: Feedback
+  feeds: 'Feeds'
   failed: Non riuscito
   field_note: |
     <strong>Nota:</strong> Se desideri creare un campo, controlla se qualcun altro non l'ha già fatto, per evitare duplicati.
@@ -1127,6 +1149,7 @@ it:
   fields_: Campi
   fields_can_only_be_edited_by_the_people_who: I campi possono essere modificati solo da chi li ha creati e dai curatori del sito
   fields_merged: Campi uniti
+  file: File
   file_should_be_in_the_following_format: "Il file deve essere nel seguente formato: nome del taxon, descrizione"
   fill_out_project_observation_fields: Compila i campi dell'osservazione del progetto
   fill_out_your_profile: completa il tuo profilo
@@ -1213,6 +1236,7 @@ it:
   for_a_taxon: per un taxon
   formatting: Formattazione
   forgot_your_password: Hai dimenticato la password?
+  forum: Forum
   forum_categories:
     bug_reports: Rapporti errori
     feature_requests: Richiesta di nuove funzioni
@@ -1245,6 +1269,7 @@ it:
   generate_your_stats: Genera le tue Statistiche
   generating_mobile_archive: "Creazione di un archivio mobile"
   Genus: Genere
+  geoprivacy: Geoprivacy
   geoprivacy_is_obscured: La geoprivacy è oscurata
   geoprivacy_is_obscured_desc: L'osservatore ha scelto di nascondere le coordinate.
   geoprivacy_is_private: La geoprivacy è privata
@@ -1259,6 +1284,7 @@ it:
   go_back: Indietro
   going_to_your_observations: Stai andando alle tue osservazioni...
   good_choice_for_sharing: Buona scelta per condivider con gli scienziati
+  google: Google
   got_it!: Capito!
   got_your_data_somewhere_else?: Avete ottenuto i dati in un altro modo? Vi possiamo aiutare.
   graft: Innesta
@@ -1269,7 +1295,6 @@ it:
   grid_tooltip: Mostra la visualizzazione a griglia
   group: Gruppo
   grouping: Raggruppamento
-  guess_description: Ipotesi / Descrizione
   guides: Guide
   guide_compiled_by: Guida realizzata da
   guide_deleted: Guida rimossa
@@ -1289,8 +1314,6 @@ it:
   has_sound: Ha suoni
   has_sounds: Ha suoni
   hasnt_contributed_any_observations: non ha contribuito con nessuna osservazione a questo progetto.
-  hate_me_facebook: "Scollega i tuoi account Facebook e %{site_name}"
-  hate_me_flickr: "Scollega i tuoi account Flickr e %{site_name}"
   heads_up: Avviso
   heads_up_this_photo_has_been_flagged: "AVVISO: questa foto è stata contrassegnata."
   heads_up_this_photo_is_already_associated_with: "Avviso: questa foto è già associata con un'<a target='_blank' href='%{url}'>altra osservazione</a>"
@@ -1302,7 +1325,6 @@ it:
   here_are_3_examples: Qui ci sono tre esempi di dati ben organizzati
   here_are_our_top_suggestions: Questi sono i nostri migliori suggerimenti
   here_are_our_top_species_suggestions: Questi sono i nostri migliori suggerimenti per la specie
-  here_are_some_things_you_can_do_in_the_meantime: "Ecco alcune cose che puoi fare nel frattempo"
   hex_color_eg: Colore in esadecimale, e.g. 65644F
   hi: Ciao,
   hi_user: "Ciao %{user}"
@@ -1315,13 +1337,13 @@ it:
   highest_rank: Il rango più alto
   highlights_and_stats_from_year_on_site: "Sintesi e statistiche dal %{year} su %{site}"
   history: Cronologia
+  home: Home
   however_there_were_some_issues: "Tuttavia, ci sono stati alcuni problemi: %{issues}"
-  i_agree_to_the_project_terms: Accetto i termini del progetto
   i_dont_know_but_i_am_sure_this_is_taxon: Non lo so ma sono sicuro che è %{taxon}
   icon: Icona
   icon_size: Dimensione dell'icona
-  icon_slash_photo: Icona / Foto
   iconic_taxon: Icona del taxon
+  id: ID
   id_categories:
     tooltips:
       leading: |
@@ -1330,10 +1352,6 @@ it:
         Il primo suggerimento per questo taxon che la comunità ha approvato successivamente. Questo suggerimento ha aiutato ad affinare il taxon della comunità.
       maverick: |
         Il taxon non è discendente o antenato del taxon della comunità, e.g., la comunità non concorda con questo taxon.
-  id_more_in_id_please: Più identificazioni in "ID per favore"
-  id_please!: ID per favore!
-  id_please: ID per favore
-  id_please_expandable_html: "ID<span class='full'> per favore</span>!"
   id_withdrawn: ID ritirata
   ids_by_taxon: ID per Taxon
   identify: Identifica
@@ -1344,17 +1362,16 @@ it:
   identification_by_user: Identificazione di %{user}
   identification_deleted: Identificazione eliminata.
   identification_saved: "Identificazione salvata!"
-  identification_summary: Riassunto dell'identificazione
   identification_updated: Identificazione aggiornata!
   identification_user_short: Utente ident.
   identification_withdrawn: Identificazione ritirata.
   identifications: Identificazioni
   identifications_by: "Identificazioni di %{user}"
-  identified?: identificati
   computer_vision_suggestion: Suggerimento della visione artificiale
   computer_vision_suggestion_desc: |
     La visione artificiale è il processo di addestramento dei computer a riconoscere gli schemi nelle immagini. Noi forniamo gli strumenti che usano i modelli di visione artificiale allenati sulle foto della comunità per fornire suggerimenti di identificazione, come l'auto-completamento e i confronti. Questa etichetta indica quando una persona ha aggiunto una identificazione per mezzo di uno di questi strumenti.
   identifiers: Identificatori
+  identotron: Identotron
   identotron_for: Identotron per
   identotron_help: Aiuto su Identotron
   ids: "ID"
@@ -1364,15 +1381,8 @@ it:
   if_matches_come_from_a_comprehensive_list: Se i risultati provengono da una lista esaustiva, qui verrà mostrata una barra verde.
   if_this_is_a_scientific_name: Se questo è un nome scientifico, è comunemente accettato?
   if_this_link_will_apply_to_descendant: Se questo link si applica ai taxa discendenti, puoi usare modelli di etichette per completare il nome del taxon nell'URL
-  if_you_already_have_an_account: "Se hai già un account %{article} su %{site_name}..."
-  if_you_dont_want_us_to_share_your_data: Se non vuoi che condividiamo i tuoi dati
   if_you_have_any_trouble_with_the_site_check_out: 'Se hai delle domande, controlla la nostra <a href="%{help_url}">sezione "aiuto"</a> o posta un messaggio al nostro <a href="%{feedback_url}">gruppo di feedback</a>.'
-  if_you_have_trouble_with_the_site: "Se hai dei problemi col sito, controlla la nostra sezione \"aiuto\""
-  if_youd_like_us_to_share_your_observations_with: |
-    Se desideri che condividiamo le tue osservazioni coi nostri partner, accertati di aver scelto una licenza Creative Commons per le tue osservazioni.
-  if_you_want_to_change_the_name: Se vuoi cambiare il nome
   if_your_project_is: Se il tuo progetto è su un luogo specifico, stabilisci le coordinate cliccando sulla mappa o inserendole manualmente.
-  if_your_search_comes_up: "Se la tua ricerca non restituisce risultati, aggiungi alcune informazioni nei campi di ricerca per ripetere la ricerca attraverso le nostre fonti esterne di nomi:"
   ignore: ignora
   ignore_and_continue: Ignora e continua
   ignore_times: Ignora il numero di volte
@@ -1385,92 +1395,68 @@ it:
   import_date_time_location_taxonomic: "Importa data, orario, luogo, descrizione, e informazioni tassonomiche da questa foto."
   import_from_csv: Importa da CSV
   import_from_other_photo_sites: Importa da altri siti di foto
-  import_from_photos: Importa da foto
-  import_from_yahoo: Importa da Yahoo
   import_observations: Importa osservazioni
   import_observations_from_a_photo: Importa osservazioni da un provider di foto o un file dal tuo computer.
   import_photos: Importa foto
   import_ranges: Importa areali
   import_sections: Importa sezioni
-  import_sounds: Importa suoni
   import_tags_from_csv: Importare i tag da file CSV
   importing: "Importazione in corso..."
   improving: Miglioramento
+  in_n: "in %{n}"
+  in_place_x: in %{place}
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
   inbox: Posta in arrivo
   including: incluso
   increase_brightness: Aumenta luminosità
-  in_order_to_login_and_using_site_visit_url: "Per accedere ed iniziare ad usare il sito devi visitare questo url per attivare il tuo account:"
   in_progress: in corso
-  in_taxon?: nel taxon
   in_the_past: in passato
   in_the_past_week: La scorsa settimana
   inactive: Inattivo
   inactive_taxon: Taxon inattivo
-  inappropriate: Inappropriato?
   inappropriate_content: Contenuto inappropriato?
   inat_believes_this_is_a_complete_listing: "%{site_name} crede che questa sia una lista completa di questo taxon in questo luogo."
   inat_user_profile: "%{site_name}: Profilo di %{user}"
-  inat_will_be_back_on: "%{site_name} tornerà in piedi/ali/pinne/tentacoli/pseudopodi"
   inaturalist_is_a_joint_initiative: "%{site_name} è un'iziativa congiunta della California Academy of Sciences e della National Geographic Society."
   inaturalist_is_an_online_community: "%{site_name} è una community online per naturalisti! Aggiungendo la tua foto, puoi permettere ai ricercatori di sapere di più su"
-  inaturalist_is_catching_some_zs: "%{site_name} sta schiacciando un sonnellino"
-  inaturalist_observations_by: "%{site_name} &#58; Le osservazioni di %{login}"
   inaturalist_places: "Luoghi di %{site_name}"
   inaturalist_places_are_way_record_what_lives_where: "I Luoghi di %{site_name} sono un modo di registrare cosa vive dove. Se stai cercando una specie particolare, saprai dove cercare. Ogni luogo ha una checklist che elenca le specie presenti, cosi possono essere utili per cercare quello che avete trovato in un posto particolare."
+  info: Info
   input_taxon: Inserisci un taxon
   insects: insetti
   insect_life_stage: Stadio vitale di insetto
-  inspired_by_the_flickr_group: "Ispirata dal gruppo Flickr <a href='http://flickr.com/groups/idplease/'>ID Per favore</a>, questa è la pagina dove postare le osservazioni di organismi che non conoscete ed aiutare le persone ad identificare le creature misteriose!"
   interactions: Interazioni
   internal_server_error: Errore interno del server
-  internal_taxon: Taxon interno
   internal_taxon_including_descendants: Taxon interno (inclusi discendenti)
   internal_taxon_rank: Rango del taxon interno
   introduced: Introdotta
   introduced_in_place: "Introdotto in %{place}"
-  invasive: Invasiva
   invitation: Invito
-  invitations: Inviti
   invite: invito
   invite_flickr_photos: "Invita le foto di Flickr in %{site_name}"
   invite_more: Invita ancora
-  invite_observations: Invita osservazioni
   invite_people: Invita persone
   invite_people_to_project: "Invita persone in %{project}"
-  invite_photos_from_other_sites: Invita foto da altri siti
-  invite_photos_to: "Invita foto in %{site_name}"
   invite_photos_to_raquo_html: "Invita foto in <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Invita qualcuno su %{name}!"
-  invite_to_project: Invita al progetto
   invite_your_friends: Invita i tuoi amici
   invite_your_friends_description: "Aiuta la community di %{site_name} a crescere e migliorare invitando i tuoi amici ad unirsi!"
   inviteonly: solo su invito
-  invited: Invitato
-  invited_to_the_following_projects: "Invitato ai seguenti progetti:"
   invited_x: "%{x} invitato(i)"
-  inviting: Invito in corso...
+  iphone: iPhone
   is_an_evaluation: |
     è una valutazione dell'accuratezza dell'osservazione.
     Le osservazioni di Livello Ricerca possono essere utilizzate dagli scienziati per le ricerche. Vota qui sotto:
   is_not_following_anyone: non segue nessuno.
   is_now: è ora
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: La prova fornita è sufficiente per confermare che questo è %{taxon}?
-  is_the_organism_wild: "L'organismo è selvatico/naturalizzato?"
-  is_this_observation_offensive_html: 'Questa osservazione è <a href="/help#inappropriate">inappropriata</a>, spam o offensiva?'
   is_this_offensive_html: 'Questo è <a href="/help#inappropriate">inappropriato</a>, spam, o offensivo?'
   is_this_place_a_duplicate: Questo luogo è un duplicato?
-  it: Esso
   it_can_now_be_used_for_research: Ora può essere usata per la ricerca o messa in risalto su altri siti web
   it_has: Ha
-  it_instead: invece.
   item_flagged_notice_html: |
     Questo è stato contrassegnato come spam e non è più visibile pubblicamente. Tu puoi vederlo perché l'hai creato o perché sei un curatore del sito. se pensi che sia un errore, per favore <a href="mailto:%{help_email}" class="contact">contattaci</a>.
     <a href="%{manage_flags_path}">Gestisci contrassegni</a>
-  its_important_that_you: È importante che tu clicchi
-  iucn_red_list: Lista Rossa IUCN
-  iucn_red_list_status: Stato delle Lista Rossa IUCN
-  january: Gennaio
   join: Unisciti
   join_and: Unisciti e
   join_inat: Unisciti ad %{site_name}!
@@ -1495,7 +1481,9 @@ it:
   keep_editing: Continua a modificare
   kelp_diatoms_and_allies: "alghe, diatomee, e affini"
   keyboard_shortcuts: Scorciatoie a tastiera
+  kml: KML
   kml_file_size_error: "Il KML deve essere meno di 1 MB"
+  label_colon: "%{label}:"
   labels: Etichette
   label_to_group_a_batch_of_taxon_changes: Etichetta per raggruppare una serie di modifiche dei taxa
   location_private: Posizione privata
@@ -1508,11 +1496,13 @@ it:
   last_observation: Ultima osservazione
   last_seen: Vista l'ultima volta
   last_year: L'anno scorso
+  lat: Lat
   latitude: Latitudine
   latitude_in_decimals: 'Latitudine in gradi decimali, ad esempio, 38.123'
   latitude_slash_y_coord_slash_northing: Latitudine / coord y / nord
   latitude_value: "Latitudine: %{latitude}"
   layers: Livelli
+  layout: Layout
   leaderboard: Classifica
   leaderboard_for_x: "Classifica per %{x}"
   leaderboards: Classifiche
@@ -1539,15 +1529,18 @@ it:
   lexicon: Lessico
   lexicons:
     scientific_names: Nomi scientifici
+    afrikaans: Africano
     albanian: Albanese
     bengali: Bengalese
     catalan: Catalano
+    cebuano: Cebuano
     chinese_simplified: Cinese (semplificato)
     chinese_traditional: Cinese (tradizionale)
     creole_french: creolo (francese)
     creole_portuguese: creolo (portoghese)
     czech: Ceco
     danish: Danese
+    davawenyo: Davaoeño
     dutch: Olandese
     english: Inglese
     estonian: Estone
@@ -1558,6 +1551,7 @@ it:
     hawaiian: Hawaiano
     hebrew: Ebraico
     icelandic: Islandese
+    ilokano: Ilokano
     italian: Italiano
     japanese: Giapponese
     korean: Coreano
