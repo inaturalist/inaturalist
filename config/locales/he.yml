@@ -263,7 +263,6 @@ he:
   are_you_sure_remove_taxon_from_list: "האם ברצונך להסיר את הטקסון הזה מהרשימה?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     אתם בטוחים? זה יטען מחדש את הדף, ואתם עלולים לאבד חלק מהשינויים שלכם.
-  are_you_sure_want_delete_taxon: "האם ברצונך למחוק את הטקסון הזה? %{msg}"
   are_you_sure_want_delete_taxon_link: האם ברצונך למחוק את הקישור של הטקסון הזה?
   are_you_sure_want_delete_this_name: האם ברצונך למחוק את השם הזה?
   are_you_sure_want_delete_this_range: האם ברצונך למחוק את המגוון הזה?
@@ -960,8 +959,6 @@ he:
   has_already_been_flagged_by: סומן כבר על ידי
   has_id_supported_by_two_or_more: זיהוי נתמך על ידי שניים או יותר
   hasnt_contributed_any_observations: לא טרם תצפיות לפרוייקט זה.
-  hate_me_facebook: "ניתוק חשבונות פייסבוק ו%{site_name} שלך"
-  hate_me_flickr: "ניתוק חשבונות Flickr ו%{site_name} שלך"
   heads_up: שימו לב
   heads_up_this_photo_has_been_flagged: "שימו לב: תמונה זו סומנה."
   heads_up_this_photo_is_already_associated_with: "שימו לב: תצפית זו משוייכת כבר עם <a target='_blank' href='%{url}'>תצפית אחרת</a>"
@@ -971,7 +968,6 @@ he:
   here_are_3_examples: 3 דוגמאות לנתונים שמובנים היטב
   here_are_our_top_suggestions: הינה ההצעות הטובות ביותר שלנו
   here_are_our_top_species_suggestions: הינה ההצעות הטובות ביותר שלנו
-  here_are_some_things_you_can_do_in_the_meantime: "הינה כמה דברים שאפשר לעשות בינתיים"
   hex_color_eg: צבע Hex, לדוגמא 65644F
   hi: שלום,
   hi_user: "שלום %{user}"
@@ -981,11 +977,7 @@ he:
   home: דף הבית
   icon: אייקון
   icon_size: גודל האייקון
-  icon_slash_photo: אייקון/תמונה
   iconic_taxon: טקסון אייקוני
-  id_please!: זיהוי בבקשה!
-  id_please: זיהוי בבקשה
-  id_please_expandable_html: "זיהוי<span class='full'> בבקשה</span>!"
   id_withdrawn: זיהוי נמשך
   ids_by_taxon: זיהויים לפי טקסון
   identify_observations: "זיהוי תצפיות"
@@ -994,16 +986,12 @@ he:
   identification_by_user: זיהוי על ידי %{user}
   identification_deleted: הזיהוי נמחק.
   identification_saved: "זיהוי נשמר!"
-  identification_summary: סיכום זיהוי
   identification_updated: זיהוי עודכן!
   identification_withdrawn: זיהוי בוטל
   identifications: זיהויים
   identifications_by: "הזיהויים של %{user}"
-  identified?: זוהה
   identifiers: מזהים
   if_this_is_a_scientific_name: אם זהו שם מדעי, האם זה השם המקובל כעת?
-  if_you_dont_want_us_to_share_your_data: במידה ואינך רוצה שנחלוק את הנתונים שלך
-  if_you_want_to_change_the_name: אם ברצונך לשנות את השם
   if_your_project_is: במידה והפרוייקט מתמקד באזור ספציפי, יש להגדיר את הקוארדינטות באמצעות הקלקה על המפה או על ידי הזנתן.
   ignore: התעלמות
   ignore_and_continue: התעלם והמשך
@@ -1016,12 +1004,9 @@ he:
   import_date_time_location_taxonomic: "ייבוא של תאריך, מיקום, תיאור ומידע טקסונומי מתמונה זו."
   import_from_csv: ייבוא מ CSV
   import_from_other_photo_sites: ייבוא מאתרי תמונות אחרים
-  import_from_photos: ייבוא מתמונות
-  import_from_yahoo: ייבוא מ Yahoo
   import_observations: ייבוא תצפיות
   import_photos: ייבוא תמונות
   import_sections: ייבוא חלקים
-  import_sounds: ייבוא צלילים
   import_tags_from_csv: ייבוא תגיות מ CSV
   importing: "מתבצע יבוא..."
   improving: שיפור
@@ -1030,12 +1015,10 @@ he:
   inbox: דואר נכנס
   including: כולל
   in_progress: בתהליך
-  in_taxon?: בטקסון
   in_the_past: בעבר
   in_the_past_week: בשבוע החולף
   inactive: לא פעיל
   inactive_taxon: טקסון לא פעיל
-  inappropriate: בלתי הולם?
   inat_user_profile: "הפרופיל של %{user} ב%{site_name}"
   inaturalist_is_a_joint_initiative: "%{site_name} הוא מיזם משותף של האקדמיה למדעים של קליפורניה ונשיונל ג'יאוגרפיק"
   inaturalist_is_an_online_community: "%{site_name} היא קהילה מקוונת של חובבי טבע! הוספת תצפיות מסייעת לחוקרים ללמוד על"
@@ -1045,31 +1028,18 @@ he:
   internal_server_error: שגיאת שרת פנימית
   introduced: הובא
   introduced_in_place: "הובא ל%{place}"
-  invasive: פולש
   invitation: הזמנה
-  invitations: הזמנות
   invite: הזמן
   invite_flickr_photos: "הזמנת תמונות Flickr ל%{site_name}"
   invite_more: הזמן עוד
-  invite_observations: הזמן תצפיות
   invite_people: הזמן אנשים
   invite_people_to_project: "הזמנת אנשים לפרוייקט %{project}"
-  invite_photos_from_other_sites: הזמנת צילומים מאתרים אחרים
-  invite_photos_to: "הזמנת תמונות ל%{site_name}"
-  invite_to_project: הזמן לפרויקט
   invite_your_friends: הזמנת חברים
   inviteonly: הזמנה בלבד
-  invited: הוזמן
   invited_x: "%{x} הוזמן"
-  inviting: מזמין...
   is_now: עכשיו
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: האם הנתונים מאפשרים לאשר שזהו %{taxon}?
-  is_the_organism_wild: "האם הפרט בר/מתורבת?"
   is_this_place_a_duplicate: האם מקום זה קיים כבר?
-  its_important_that_you: הקלקתך חשובה
-  iucn_red_list: רשימת המינים האדומים של IUCN
-  iucn_red_list_status: סטטוס לפי רשימת המינים האדומים של IUCN
-  january: ינואר
   join: הצטרפות
   join_and: הצטרפות ו
   join_inat: הצטרפות ל%{site_name}
