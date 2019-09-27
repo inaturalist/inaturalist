@@ -220,7 +220,6 @@ gl:
   are_you_sure_leave_this_project: Estás seguro de que desexas saír deste proxecto?
   are_you_sure_merge_these_places: Estás seguro de que desexas combinar estes lugares? Isto non poderá desfacerse.
   are_you_sure_remove_taxon_from_list: "Estás seguro de que desexas eliminar esta especie ou grupo da lista?"
-  are_you_sure_want_delete_taxon: "Estás seguro de que desexas eliminar este taxón? %{msg}"
   are_you_sure_want_delete_taxon_link: Estás seguro de que desexas eliminar este vínculo do taxón?
   are_you_sure_want_delete_this_name: Estás seguro de que desexas eliminar este nome?
   are_you_sure_want_delete_this_range: Estás seguro de que desexas eliminar este rango?
@@ -695,13 +694,10 @@ gl:
   grant_role: "Se %{grant} o permiso de %{role}"
   grid: Cuadrícula
   group: Grupo
-  guess_description: Estimación / Descrición
   guides: Guías
   guide_taxon: Taxón guía
   has_already_been_flagged_by: xa foi notificado por
   hasnt_contributed_any_observations: non achegaches ningunha observación a este proxecto.
-  hate_me_facebook: "Desvincular as túas contas de Facebook e %{site_name}"
-  hate_me_flickr: "Desvincular as túas contas de Flickr e %{site_name}"
   heads_up: Aviso
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto xa está asociada con <a target='_blank' href='%{url}'>outra observación</a>"
   heads_up_you_have_multiple: "Avisos. Xeraches varias etiquetas taxonómicas para rangos idénticos. Están codificadas por cor máis adiante segundo o rango."
@@ -709,7 +705,6 @@ gl:
   help_confirm_observations!: Axúdenos a confirmar observacións!
   helped_the_observer_make: axudaches ao observador a facer a túa identificación final (é dicir, fixéronse antes da identificación final e concordan)
   here_are_3_examples: Aquí hai 3 exemplos de datos ben formados
-  here_are_some_things_you_can_do_in_the_meantime: "Aquí hai algunhas cousas que podes facer mentres tanto"
   hex_color_eg: Cor en hexadecimal, ex. 65644F
   hi: Ola.
   highest_rank: Rango máis alto
@@ -718,18 +713,12 @@ gl:
   icon_size: Tamaño da icona
   iconic_taxon: Taxonomía da icona
   id: Identificación
-  id_: identificación
-  id_please!: ID, por favor!
-  id_please: ID, por favor
-  id_please_expandable_html: "ID,<span class='full'> por favor!</span>"
   identification: identificación
   identification_deleted: Identificación eliminada.
   identification_saved: "Identificación gardada!"
-  identification_summary: Resumo da identificación
   identification_updated: Identificación actualizada!
   identifications: Identificacións
   identifications_by: "Identificacións por %{user}"
-  identified?: con identificación
   identotron: Identotrón
   identotron_for: Identotrón para
   identotron_help: Axuda co identotrón
@@ -738,16 +727,8 @@ gl:
   if_matches_come_from_a_comprehensive_list: ' Se os resultados proceden dunha lista exhaustiva, mostrarase unha barra verde coma esta.'
   if_this_is_a_scientific_name: Se este é un nome científico, está aceptado actualmente?
   if_this_link_will_apply_to_descendant: Se aplicas este vínculo aos taxóns descendentes, podes empregar os seus modelos de etiquetas para introducir o nome do taxón na URL
-  if_you_already_have_an_account: "Se xa tes unha conta de %{site_name}..."
-  if_you_dont_want_us_to_share_your_data: Se non desexas compartir esta información
   if_you_have_any_trouble_with_the_site_check_out: 'Se tes algún problema co sitio, por favor revisa a nosa <a href="%{help_url}">sección de axuda</a> ou escribe unha mensaxe ó noso <a href="%{feedback_url}">grupo de retroalimentación</a>.'
-  if_you_have_trouble_with_the_site: "Se tiveses algún problema co sitio, por favor revisa a nosa sección de axuda"
-  if_youd_like_us_to_share_your_observations_with: |
-    Se desexas compartir as túas observacións coa comunidade científica, asegúrate
-    de ter escollido unha licenza Creative Commons para as túas observacións.
-  if_you_want_to_change_the_name: se só queres cambiar o nome
   if_your_project_is: Se o teu proxecto é sobre un lugar específico, engade as coordenadas seleccionando o enlace do mapa ou engádeas manualmente.
-  if_your_search_comes_up: "Se a túa procura non dá resultados, introduce máis detalles nos campos de procura para repetila a través dos nosos provedores externos de nomes"
   ignore: Ignorar
   import: Importar
   import_all_photos_as_observations: Importar todas as fotos como observacións
@@ -755,15 +736,11 @@ gl:
   import_as_another_observation: Importar como outra observación?
   import_date_time_location_taxonomic: "Importar data, hora, localización, descrición e información taxonómica desta foto."
   import_from_csv: Importar de CSV
-  import_from_photos: Importar das fotos
-  import_from_yahoo: Importar de Yahoo
   import_observations: Importar observacións
   import_observations_from_a_photo: Importar observacións dun provedor de fotos ou dun arquivo no teu ordenador.
   import_photos: Importar fotos
   importing: "Importando..."
   inbox: caixa do correo
-  in_order_to_login_and_using_site_visit_url: "Para rexistrarte e comezar a empregar o sitio, preme neste enlace para activar a túa conta"
-  in_taxon?: con especie ou grupo
   in_the_past: no pasado
   in_the_past_week: durante a semana pasada
   inactive: Inactiva
@@ -771,41 +748,22 @@ gl:
   inat_account_action: "%{site_name} : Conta : %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} cre que esta é unha listaxe completa deste taxón neste lugar."
   inat_user_profile: "%{site_name}: perfil de %{user}"
-  inat_will_be_back_on: "%{site_name} volverá estar operativo"
   inaturalist_is_an_online_community: "%{site_name} é unha comunidade en liña para naturalistas. Se engades fotos túas, poderás axudar aos investigadores a aprender máis sobre ti"
-  inaturalist_is_catching_some_zs: "%{site_name} está captando algunhas Zs"
-  inaturalist_observations_by: "%{site_name} : Observacións por %{login}"
   inaturalist_places: "Lugares %{site_name}"
   inaturalist_places_are_way_record_what_lives_where: "Lugares %{site_name} é unha forma de rexistrar onde vive cada cal. Se procuras unha especie en particular, saberás onde atopala. Cada lugar ten unha lista de verificación para rexistrar todas as especies que alí se atopan, de xeito que tamén poida ser útil para procurar cousas que atopaches en sitios particulares."
   info: Información
   insects: Insectos
-  inspired_by_the_flickr_group: "Inspirado polo grupo Flickr <a href='http://flickr.com/groups/idplease/'>Identificador por favor</a>, este é un lugar para colocar observacións de cousas que non sabes, e axudar a que outras persoas identifiquen criaturas misteriosas!"
   introduced: Introduciu
-  invasive: Invasoras
-  invitations: Invitacións
   invite: Convidar
   invite_flickr_photos: "Introducir as fotos de Flickr a %{site_name}"
   invite_more: Convidar a máis xente
-  invite_observations: Convida observacións ao teu proxecto
-  invite_photos_from_other_sites: Convidar as fotos doutros sitios
   invite_photos_to_raquo_html: "Convida a alguén con fotos de <nobr>%{site_name} »</nobr>"
   invite_someone_to: "Convida a alguén a %{name}!"
-  invite_to_project: Convidar o proxecto
   invite_your_friends: Convida os teus amigos
   invite_your_friends_description: "Axuda a que %{site_name} sexa unha comunidade mellor e máis numerosa convidando os teus amigos!"
-  invited: Convidado
-  invited_to_the_following_projects: "Estás convidado aos seguintes proxectos:"
-  inviting: convidando...
   is_not_following_anyone: Non estás seguindo a ninguén
-  is_the_organism_wild: "É o organismo salvaxe?"
-  is_this_observation_offensive_html: 'É esta observación <a href="/help#inappropriate">inapropiada</a>, invasiva ou ofensiva?'
   is_this_place_a_duplicate: Este lugar está duplicado?
-  it: Este
   it_has: Ten
-  it_instead: En vez diso.
-  its_important_that_you: É importante que premas o botón
-  iucn_red_list_status: Lista Vermella da UICN estado
-  january: Xaneiro
   join: '¡Únete a'
   join_and: Únete e
   join_inat: Únete a %{site_name}!
