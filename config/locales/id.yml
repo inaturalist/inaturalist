@@ -195,7 +195,6 @@ id:
   are_you_sure_remove_taxon_from_list: "Apakah Anda yakin ingin menghapus taksa ini dari daftar?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Apa kamu yakin? Ini akan memuat ulang halaman. Anda mungkin kehilangan beberapa perubahan.
-  are_you_sure_want_delete_taxon: "Apakah Anda yakin ingin menghapus takson ini? %{msg}"
   are_you_sure_want_delete_taxon_link: Apakah Anda yakin ingin menghapus link yang takson ini?
   are_you_sure_want_delete_this_name: Apakah Anda yakin ingin menghapus nama ini?
   are_you_sure_want_delete_this_range: Apakah Anda yakin ingin menghapus rentang ini?
@@ -832,7 +831,6 @@ id:
   grid_tooltip: Tampilkan tampilan kisi-kisi
   group: Kelompok
   grouping: Pengelompokan
-  guess_description: Dugaan / keterangan
   guides: Panduan
   guide_compiled_by: Panduan yang disusun oleh
   guide_deleted: panduan dihapus
@@ -847,8 +845,6 @@ id:
   has_photos: Foto
   has_sounds: Suara
   hasnt_contributed_any_observations: belum memberikan kontribusi pengamatan apapun untuk proyek ini.
-  hate_me_facebook: "Memutus link Facebook dan %{site_name} akun anda"
-  hate_me_flickr: "Memutus link Flick dan %{site_name} akun anda"
   heads_up: 'PENTING:'
   heads_up_this_photo_has_been_flagged: "PENTING: Foto ini telah ditandai."
   heads_up_this_photo_is_already_associated_with: "PENTING: foto ini sudah dikaitkan dengan <a target='_blank' href='%{url}'>observasi lain</a>"
@@ -858,7 +854,6 @@ id:
   help_support_inaturalist: "Bantu dukung iNaturalist"
   helped_the_observer_make: membantu pengamat membuat ID terakhir mereka (yaitu mereka dibuat sebelum ID final dan mereka mencocokan dengan itu)
   here_are_3_examples: Berikut adalah 3 contoh data yang terbentuk
-  here_are_some_things_you_can_do_in_the_meantime: "Berikut adalah beberapa hal yang dapat Anda lakukan sementara itu:"
   hex_color_eg: warna hex, e.g. 65644F
   hi: Halo,
   high: tinggi
@@ -866,26 +861,19 @@ id:
   history: Sejarah
   home: Halaman Utama
   however_there_were_some_issues: "Namun, ada beberapa masalah: %{issues}"
-  i_agree_to_the_project_terms: Saya setuju dengan persyaratan proyek
   icon: Ikon
   icon_size: Ukuran ikon
-  icon_slash_photo: Ikon / foto
   iconic_taxon: takson Iconic
-  id_more_in_id_please: Tolong berikan ID lain di ID
-  id_please!: Tolong masukkan ID!
-  id_please: Tolong masukkan ID
   identify: Mengenali
   identify_observations: "Mengidentifikasi pengamatan"
   identify_title: "Mengenali"
   identification: Mengidentifikasi
   identification_deleted: Identifikasi telah dihapus
   identification_saved: "Identifikasi telah disimpan"
-  identification_summary: Catatan identifikasi
   identification_updated: Identifikasi telah diperbaharui!
   identification_withdrawn: Identifikasi ditarik.
   identifications: Mengidentifikasi
   identifications_by: "Diidentifikasi oleh %{user}"
-  identified?: Telah diidentifiaksi
   identifiers: yang mengidentifikasi
   identotron_for: Identotron untuk
   identotron_help: Bantuan untuk identotron
@@ -894,14 +882,8 @@ id:
   if_matches_come_from_a_comprehensive_list: Jika kecocokan berasal dari daftar lengkap bar hijau akan menunjukkan disini.
   if_this_is_a_scientific_name: Jika ini adalah nama peneliti, apakah sekarang diterima?
   if_this_link_will_apply_to_descendant: Jika tautan ini akan berlaku untuk hubungan kekerabatan taxa, anda dapat menggunakan tag template untuk memasukkan nama taxon pada URL
-  if_you_dont_want_us_to_share_your_data: Jika anda tidak ingin kita untuk menyebarkan datamu
   if_you_have_any_trouble_with_the_site_check_out: 'Jika Anda memiliki pertanyaan, silakan lihat <a href="%{help_url}"> bagian bantuan kami </a> atau posting pesan ke <a href="%{feedback_url}"> Grup umpan balik kami</a> .'
-  if_you_have_trouble_with_the_site: "Jika anda memiliki masalah-masalah dengan situs ini, mohon periksa kembali bagian bantuan kami:"
-  if_youd_like_us_to_share_your_observations_with: |
-    Jika anda menginginkan kami untuk menyebarkan pengamatan-pengamatanmu dengan mitra data, pastikan anda telah memilih untuk lisensi pengamatan anda dengan lisensi Creative Commons.
-  if_you_want_to_change_the_name: Jika anda ingin untuk merubah nama
   if_your_project_is: Jika projek anda adalah mengenai tempat tertentu, atur koordinat dengan mengklik peta atau memasukkan secara manual.
-  if_your_search_comes_up: "Jika pencarianmu muncul kosong, anda akan melihat beberapa kotak pencarian untuk mengulang pencarian melalui penyedia nama eksternal anda:"
   ignore: abaikan
   ignore_times: abaikan waktu
   image_must_be_exactly: gambar harus tepat dengan lebar 950px dan paling tinggi 400px
@@ -913,61 +895,40 @@ id:
   import_date_time_location_taxonomic: "Masukkan tanggal, waktu, lokasi, deskripsi, dan informasi taksonomi dar foto ini."
   import_from_csv: Masukkan dari CSV
   import_from_other_photo_sites: Masukkan dari situs foto yang lain
-  import_from_photos: Masukkan dari foto-foto
-  import_from_yahoo: Masukan dari Yahoo
   import_observations: Masukkan Pengamatan
   import_observations_from_a_photo: Masukkan pengamatan dari pemberi foto atau data dari komputer anda.
   import_photos: Masukan foto-foto
-  import_sounds: Mengimpor suara
   import_tags_from_csv: Masukkan tanda dari CSV
   importing: "Masukkan..."
   in_n: "di %{n}"
   inaturalist_network_affiliation: Afiliasi Jaringan iNaturalist
   inbox: kotak masuk
   including: termasuk
-  in_order_to_login_and_using_site_visit_url: "Untuk masuk and memulai menggunakan situs ini anda harus mengunjungi url ini untuk mengaktivasi akun anda"
-  in_taxon?: dalam taxon
   in_the_past: masa lampau
   in_the_past_week: dalam seminggu terakhir
   inactive: tidak aktif
   inactive_taxon: takson yang tidak aktif
-  inappropriate: Tidak pantas?
   inat_user_profile: "%{site_name}: %{user}'s Profil"
   inaturalist_is_an_online_community: "%{site_name} adalah komunitas online untuk naturalis! Dengan menambahkan foto Anda, Anda dapat membantu peneliti mempelajari lebih lanjut tentang"
   input_taxon: Masukkan takson
   insects: serangga
   insect_life_stage: Tahapan Hidup Serangga
-  inspired_by_the_flickr_group: "Terinspirasi oleh Grup Flickr <a ID href='http://flickr.com/groups/idplease/'> Silakan </a>, ini adalah tempat untuk memasukkan pengamatan untuk hal yang Anda tidak tahu, dan untuk membantu orang mengidentifikasi makhluk misterius!"
   interactions: Interaksi
   internal_server_error: Kesalahan Server Internal
   introduced: introduksi
-  invasive: invasif
   invitation: Undangan
-  invitations: Undangan-undangan
   invite: undang
   invite_more: Undang lebih banyak
-  invite_observations: Undang pengamatan-pengamatan
   invite_people: Undang orang
   invite_people_to_project: "Undang orang ke %{project}"
-  invite_photos_from_other_sites: Undang foto dari situs lain
-  invite_to_project: Undang ke projek
   invite_your_friends: Undang teman-teman anda
   invite_your_friends_description: "Bantu membuat %{site_name} lebih besar, komunitas yang lebih baik dengan mengundang teman Anda untuk bergabung!"
   inviteonly: undang-satunya
-  invited: Telah diundang
-  invited_to_the_following_projects: "Telah diundang ke projek berikut:"
   invited_x: "Telah diundang %{x}"
-  inviting: Mengundang...
   is_not_following_anyone: tidak mengikuti siapapun.
   is_now: sekarang
-  is_the_organism_wild: "Apakah organisme liar/naturalisasi?"
   is_this_place_a_duplicate: Apakah tempat ini merupakan duplikasi?
-  it: Ini
   it_has: Ini memiliki
-  it_instead: ini bukan.
-  its_important_that_you: Ini penting untuk kamu klik
-  iucn_red_list_status: Status Daftar Merah IUCN
-  january: Januari
   join: Gabung
   join_and: Gabung dan
   join_inat: Gabung %{site_name}!
