@@ -392,7 +392,6 @@ el:
   are_you_sure_remove_taxon_from_list: "Είστε βέβαιοι πως θέλετε να αφαιρέσετε αυτό το taxon από τη λίστα;"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Είστε σίγουρος; Θα επαναφορτωθεί η σελίδα και μπορεί να χάσετε κάποιες από τις αλλαγές σας.
-  are_you_sure_want_delete_taxon: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή τη ταξινομία; %{msg}"
   are_you_sure_want_delete_taxon_link: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτόν τον σύνδεσμο στο taxon;
   are_you_sure_want_delete_this_name: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το όνομα;
   are_you_sure_want_delete_this_range: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το εύρος;
@@ -1054,8 +1053,6 @@ el:
   has_sound: Έχει Ήχο
   has_sounds: Έχει Ήχους
   hasnt_contributed_any_observations: δεν έχει συνεισφέρει καμιά παρατήρηση σε αυτό το πρότζεκτ.
-  hate_me_facebook: "Αποσυνδέστε τους λογαριασμούς σας στο Facebook και στο %{site_name}"
-  hate_me_flickr: "Αποσυνδέστε τους λογαριασμούς σας στο Flickr και στο %{site_name}"
   help: Βοήθεια
   help_confirm_observations!: Βοήθεια για την επιβεβαίωση παρατηρήσεων!
   help_support_inaturalist: "Βοήθησε στην υποστήριξη του iNaturalist!"
@@ -1067,17 +1064,11 @@ el:
   history: Ιστορικό
   home: Αρχική
   however_there_were_some_issues: "Ωστόσο, υπάρχουν μερικά ζητήματα: %{issues}"
-  i_agree_to_the_project_terms: Συμφωνώ με τους όρους του πρότζεκτ
   i_dont_know_but_i_am_sure_this_is_taxon: Δεν γνωρίζω όμως είμαι βέβαιος πως είναι %{taxon}
   icon: Εικονίδιο
   icon_size: Μέγεθος εικονιδίου
-  icon_slash_photo: Εικονίδιο / Φωτογραφία
   iconic_taxon: Εικονικό taxon
   id: Αναγνωριστικό
-  id_: Αναγνωριστικό
-  id_please!: Αναγνωριστικό παρακαλώ!
-  id_please: Αναγνωριστικό παρακαλώ
-  id_please_expandable_html: "Αναγνωριστικό<span class='full'> Παρακαλώ</span>!"
   id_withdrawn: Το αναγνωριστικό αποσύρθηκε
   ids_by_taxon: IDs ανά Taxon
   identify: Αναγνωρίστε
@@ -1088,20 +1079,15 @@ el:
   identification_by_user: Αναγνώριση από %{user}
   identification_deleted: Η αναγνώριση διαγράφηκε.
   identification_saved: "Η Αναγνώριση αποθηκεύτηκε!"
-  identification_summary: Περίληψη αναγνώρισης
   identification_updated: Η Αναγνώριση ενημερώθηκε!
   identification_withdrawn: Η αναγνώριση αποσύρθηκε.
   identifications: Αναγνωρίσεις
   identifications_by: "Αναγνωρίσεις από %{user}"
-  identified?: αναγνωρίστηκε
   identifiers: Ταυτοποιητές
   ids_made_for_others: ID σε παρατηρήσεις άλλων
   if_for_some_reason_a_user_doesnt_agree: |
     Αν για κάποιο λόγο δεν συμφωνείτε με το taxon της κοινότητας, μπορείτε να το απορρίψετε, πράγμα που σημαίνει πως η δική σας αναγνώριση θα χρησιμοποιείται για σύνδεση με άλλες παρατηρήσεις, ενημέρωση καταλόγων ζωής κλπ. Επίσης σημαίνει πως η παρατήρησή σας μπορεί να γίνει ερευνητικού επιπέδου μόνον όταν η κοινότητα συμφωνεί με εσάς.
   if_this_is_a_scientific_name: Εάν πρόκειται για επιστημονική ονομασία, είναι σήμερα αποδεκτή;
-  if_you_already_have_an_account: "Εάν ήδη έχετε %{article} %{site_name} λογαριασμό..."
-  if_you_dont_want_us_to_share_your_data: Αν δεν θέλετε να διαμοιραζόμαστε τα δεδομένα σας
-  if_you_want_to_change_the_name: αν θέλετε να αλλάξετε την ονομασία
   if_your_project_is: Εάν το πρότζεκτ σας αφορά έναν συγκεκριμένο τόπο, ορίστε τις συντεταγμένες κάνοντας κλικ στον χάρτη ή πληκτρολογήστε τις.
   ignore: Αγνόηση
   ignore_and_continue: Αγνόηση και συνέχεια
@@ -1113,14 +1099,11 @@ el:
   import_date_time_location_taxonomic: "Εισαγωγή ημερομηνίας, ώρας, τοποθεσίας, περιγραφής, και ταξινομικών πληροφοριών από αυτήν τη φωτογραφία."
   import_from_csv: Εισαγωγή από CSV
   import_from_other_photo_sites: Εισαγωή από άλλες ιστοσελίδες φωτογραφιών
-  import_from_photos: Εισαγωγή από φωτογραφίες
-  import_from_yahoo: Εισαγωγή από το Yahoo
   import_observations: Εισαγωγή παρατηρήσεων
   import_observations_from_a_photo: Εισαγωγή παρατηρήσεων από μια πλατφόρμα φωτογραφιών ή από ένα αρχείο στον υπολογιστή σας.
   import_photos: Εισαγωγή φωτογραφιών
   import_ranges: Εισαγωγή εύρων
   import_sections: Εισαγωγή τμημάτων
-  import_sounds: Εισαγωγή ήχων
   import_tags_from_csv: Εισαγωγή ετικετών από το CSV
   importing: "Εισάγεται..."
   improving: Βελτίωση
@@ -1128,20 +1111,16 @@ el:
   in_place_x: σε %{place}
   inbox: εισερχόμενα
   including: συμπεριλαμβανομένων
-  in_order_to_login_and_using_site_visit_url: "Για να συνδεθείτε και να αρχίσετε να χρησιμοποιείτε τον ιστότοπο πρέπει να επισκεφθείτε αυτό το url για να ενεργοποιήσετε τον λογαριασμό σας:"
   in_progress: σε εξέλιξη
   in_the_past: στο παρελθόν
   in_the_past_week: Την τελευταία εβδομάδα
   inactive: Ανενεργό
   inactive_taxon: Ανενεργό Taxon
-  inappropriate: Ακατάλληλο;
   inappropriate_content: Ακατάλληλο περιεχόμενο;
   inat_account_action: "%{site_name} &#58; Λογαριασμός &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "Το %{site_name} πιστεύει πως αυτή είναι μια πλήρης καταγραφή αυτού του taxon σε αυτόν τον τόπο."
   inat_user_profile: "%{site_name}: Προφίλ του/της %{user}"
   inaturalist_is_an_online_community: "To %{site_name} είναι μια online κοινότητα για φυσιοδίφες! Προσθέτοντας τη φωτογραφία σας, μπορεί να βοηθήσετε ερευνητές να μάθουν περισσότερα σχετικά"
-  inaturalist_is_catching_some_zs: "To %{site_name} παίρνει έναν υπνάκο"
-  inaturalist_observations_by: "%{site_name} &#58; Παρατηρήσεις της/του %{login}"
   inaturalist_places: "Τόποι του %{site_name}"
   inaturalist_places_are_way_record_what_lives_where: "Οι τόποι του %{site_name} είναι ένας τρόπος για την καταγραφή του τί ζει πού. Αν ψάχνετε για ένα συγκεκριμένο είδος, θα ξέρετε πού να ψάξετε. Κάθε τόπος έχει μια λίστα ελέγχου στην οποία καταγράφονται όλα τα είδη που εμφανίζονται εκεί, έτσι μπορεί να είναι επίσης χρήσιμοι για να ψάξετε για κάτι που έχετε βρει σε ένα συγκεκριμένο σημείο."
   info: Πληροφορίες
@@ -1151,39 +1130,24 @@ el:
   internal_server_error: Εσωτερικό Σφάλμα Διακομιστή
   introduced: Εισαχθέν
   introduced_in_place: "Εισήχθη σε %{place}"
-  invasive: Χωροκατακτητικό
   invitation: Πρόσκληση
-  invitations: Προσκλήσεις
   invite: πρόσκληση
   invite_flickr_photos: "Πρόσκληση φωτογραφιών Flickr στο %{site_name}"
   invite_more: Πρόσκληση περισσότερων
-  invite_observations: Πρόσκληση παρατηρήσεων
   invite_people: Πρόσκληση ατόμων
   invite_people_to_project: "Πρόσκληση ατόμων στο %{project}"
-  invite_photos_from_other_sites: Πρόσκληση φωτογραφιών από άλλους ιστότοπους
-  invite_photos_to: "Πρόσκληση φωτογραφιών στο %{site_name}"
   invite_photos_to_raquo_html: "Πρόσκληση φωτογραφιών στο <nobr>%{site_name} &raquo;</nobr>"
-  invite_to_project: Πρόσκληση στο πρότζεκτ
   invite_your_friends: Πρόσκληση των φίλων σας
-  invited: Προσκεκλημμένος
-  inviting: Γίνεται πρόσκληση...
   is_an_evaluation: |
     είναι μια αξιολόγηση της ακρίβειας της παρατήρησης.
     Οι παρατηρήσεις Ερευνητικού Επιπέδου μπορούν να χρησιμοποιηθούν από επιστήμονες για έρευνα. Δώστε την ψήφο σας παρακάτω:
   is_not_following_anyone: δεν ακολουθεί κάποιον.
   is_now: τώρα είναι
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Τα παρεχόμενα στοιχεία είναι επαρκή για να επιβεβαιωθεί πως αυτό είναι %{taxon};
-  is_the_organism_wild: "Είναι ο οργανισμός άγριος/εγκλιματισμένος;"
-  is_this_observation_offensive_html: 'Αυτή η παρατήρηση είναι <a href="/help#inappropriate">ακατάλληλη</a>, σπαμ, ή προσβλητική;'
   is_this_offensive_html: 'Είναι αυτό <a href="/help#inappropriate">ακατάλληλο</a>, σπαμ, ή προσβλητικό;'
   is_this_place_a_duplicate: Αυτός ο τόπος είναι διπλότυπος;
-  it: αυτό
   it_can_now_be_used_for_research: Τώρα μπορεί να χρησιμοποιηθεί για έρευνα και να προβληθεί σε άλλες ιστοσελίδες
   it_has: αυτό έχει
-  it_instead: αυτό αντί γι'αυτό.
-  its_important_that_you: Είναι σημαντικό που κάνετε κλικ
-  iucn_red_list: Κόκκινος Κατάλογος της IUCN
-  january: Ιανουάριος
   join: μπείτε
   join_and: μπείτε και
   join_inat: Μπείτε στο %{site_name}!
