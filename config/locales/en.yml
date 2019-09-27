@@ -23,6 +23,10 @@ en:
   x_ids:
     one: '1 ID'
     other: '%{count} IDs'
+  # Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    one: 1 life list first
+    other: "%{count} life list firsts"
   x_lists:
     one: '1 list'
     other: '%{count} lists'
@@ -280,8 +284,6 @@ en:
     Add your email to get feedback on your observation from the community.
     If you'd rather not share it, please check back soon!
   add_your_own_observations_at: "Add your own observations at %{site_name}"
-  add_your_photo: Add Your Photo
-  add_your_photo_to: "Add Your Photo to %{project}"
   added: Added
   added!: Added!
   added_as_a_part_of_a_taxon_change_html: |
@@ -440,7 +442,6 @@ en:
   amphibians: amphibians
   ancestor_taxon: Ancestor Taxon
   and: and
-  and_help_the_inaturalist_community_grow: "and help the %{site_name} community grow."
   and_other_taxa: "&amp; Other Taxa"
   and_x_more_people!: 
     one: "and 1 more person!"
@@ -561,9 +562,7 @@ en:
   authorize: Authorize
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_short: Auto
-  automatically_add_to_project: Automatically add to project
   automatically_add_observations_to_this_project: Automatically add observations to this project
-  automatically_id_new: Automatically ID the new obs as
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
   back: Back
   back_to_all_species: Back to All Species
@@ -1044,7 +1043,6 @@ en:
   deleting_verb: Deleting
   deny: Deny
   desc: Desc
-  descendant_taxa:  descendant taxa
   descending: Descending
   describe_purpose: Describe the purpose of this project.
   describe_your_interest_in_nature: Describe your interest in nature!
@@ -1585,7 +1583,6 @@ en:
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
   inat_user_profile: "%{site_name}: %{user}'s Profile"
   inaturalist_is_a_joint_initiative: "%{site_name} is a joint initiative of the California Academy of Sciences and the National Geographic Society."
-  inaturalist_is_an_online_community: "%{site_name} is an online community for naturalists! By adding your photo, you can help researchers learn more about"
   inaturalist_places: "%{site_name} Places"
   inaturalist_places_are_way_record_what_lives_where: "%{site_name} Places are a way to record what lives where. If you're looking for a particular species, you'll know where to search. Each place has a check list to record all the species that occur there, so they can also be useful for looking up things you've found at particular spots."
   info: Info
@@ -1600,11 +1597,9 @@ en:
   introduced_in_place: "Introduced in %{place}"
   invitation: Invitation
   invite: invite
-  invite_flickr_photos: "Invite Flickr Photos to %{site_name}"
   invite_more: Invite more
   invite_people: Invite people
   invite_people_to_project: "Invite people to %{project}"
-  invite_photos_to_raquo_html: "Invite photos to <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Invite someone to %{name}!"
   invite_your_friends: Invite your friends
   invite_your_friends_description: "Help make %{site_name} a bigger, better community by inviting your friends to join!"
@@ -1621,7 +1616,6 @@ en:
   is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
   is_this_place_a_duplicate: Is this place a duplicate? 
   it_can_now_be_used_for_research: It can now be used for research and featured on other websites
-  it_has: It has
   item_flagged_notice_html: |
     This has been flagged as spam and is no longer
     publicly visible. You can see it because you created it, or you are a
@@ -1630,7 +1624,6 @@ en:
     <a href="%{manage_flags_path}">Manage flags</a>
   join: Join
   join_and: Join and
-  join_inat: Join %{site_name}!
   join_project: Join this project
   join_some_projects_and_invite_some_observations_html: "Join some <a href='%{join_url}'>projects</a> and <a href='%{invite_url}'>invite some observations</a>"
   join_the_largest_group_of_naturalists_in_the_world: Join the largest group of naturalists in the world!
@@ -1639,7 +1632,6 @@ en:
   joined_any_projects: joined any projects
   joined_projects: Joined Projects
   joined_with_date: "Joined: %{date}"
-  joining: Joining...
   journal: Journal
   journal_archives_for: Journal archives for
   journal_post: Journal post
@@ -1650,7 +1642,6 @@ en:
   just_a_reminder: Just a reminder, since you may have given project curators permissions to view the hidden coordinates of your observations in this project.
   just_added!: Just added!
   keep_editing: Keep editing
-  kelp_diatoms_and_allies: "kelp, diatoms, and allies"
   keyboard_shortcuts: Keyboard Shortcuts
   kml: KML
   kml_file_size_error: "KML must be less than 1 MB in size"
@@ -1660,10 +1651,10 @@ en:
   location_private: Location Private
   location_unknown: Location Unknown
   language_slash_type: Language / Type
+  # Large photo size
   large: large
   last_active_with_date: "Last Active: %{date}"
   last_confirmed_observation: Last confirmed observation
-  last_inat_observation: "Last %{site_name} observation"
   last_observation: Last observation
   last_seen: Last seen
   last_year: Last Year
@@ -1682,7 +1673,6 @@ en:
     observations: Most observations in %{time}
     identifications: Most identifications in %{time}
   leading: Leading
-  learn!: Learn!
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
@@ -1751,21 +1741,12 @@ en:
   licensed_site_photos: "Licensed %{site_name} photos"
   license: License
   licensing: Licensing
-  licensing_your_content: |
-    Licensing your content gives others the legal right to use it if
-    they stick to the terms of the license. %{site_name} uses your Creative
-    Commons-licensed content to share with data partners like the 
-    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
   licensing_your_content_gives_others_legal: "Licensing your content gives others the legal right to use it if they stick to the terms of the license. %{site_name} uses your Creative Commons-licensed content to share with data partners like the "
   life: Life
-  life!: Life!
   life_list: "%{user}'s Life List"
   life_list_updated: Life list updated!
   life_list_updated_we_also_saved_a: Life list updated! We also saved a blank observation of this taxon.
   life_lists_automatically_fill: Life lists automatically fill up with new taxa as you observe them, and they can be restricted to higher level parent taxa, e.g. a life list of birds in the crow family (Corvidae).
-  life_list_first: "life list first"
-  life_list_firsts: "life list firsts"
   linear_scale_label: Linear
   link: Link
   link_or_unlink_your_facebook_account: Link or unlink your Facebook account
@@ -1773,7 +1754,6 @@ en:
   link_or_unlink_your_google_account: Link or unlink your Google account
   link_your_facebook_account: Link your Facebook account
   link_your_flickr_account: Link your Flickr account
-  link_your_flickr_account_with_inat_so: "Link your Flickr account with %{site_name} so you can add photos of your observations."
   link_your_google_account: Link your Google account
   linked_facebook: "Your %{site_name} account is currently linked to your Facebook account."
   linked_facebook_automaticaly: "Also, keep in mind that if you log in to %{site_name} via Facebook, we will automatically re-link your %{site_name} and Facebook accounts. Seems reasonable that if you use Facebook you'll want to be able to import Facebook photos, right?"
@@ -1783,9 +1763,7 @@ en:
   linked_flickr: "Your %{site_name} account is currently linked to your Flickr account."
   linked_flickr_automatically: "Also, keep in mind that if you log in to %{site_name} via Flickr, we will automatically re-link your %{site_name} and Flickr accounts. Seems reasonable that if you use Flickr you'll want to be able to import Flickr photos, right?"
   linked_flickr_description: "Keeping your %{site_name} account linked to your Flickr account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Flickr to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Flickr account that you want to link %{site_name} to."
-  linked_flickr_hotwo: "You can activate your Flickr account with %{site_name} to add photos by clicking on this link."
   linked_flickr_password_html: "<strong>We will never ask you for your Flickr password</strong> (but Flickr might, check the url that the button sends you and make sure it's Flickr.com)."
-  linked_flickr_photo_copy_html: "<strong>We will never store copies of your photos or change your Flickr data (unless you ask us to), ever.</strong> We care too much about birds, bugs and slugs to want to mess with your information!"
   linkedin: LinkedIn
   list: List
   list_deleted: List deleted.
@@ -1800,28 +1778,20 @@ en:
   listed_taxa: Listed Taxa
   listed_taxon: Listed taxon
   listed_taxon_updated: Listed taxon updated
-  listing_announcement: Listing announcement
-  listing_announcements: Listing announcements
   listing_lists: Listing lists
   listing_project_assets: Listing Project Assets
   listing_taxa: Listing Taxa
-  listing_taxon_names: Listing Taxon Names
   lists: Lists
-  lists_are_lists_of_species: "Lists are lists of species (or other taxa), like a life list of all the birds you've seen or a list of your favorite salamanders.  They are <em>not</em> lists of observations."
   lists_by_login:
     title:
       current_user: Your lists
       login: Lists by %{login}
-  lists_come_in_three: "Lists come in three varieties:"
   load: Load
   loading: "Loading..."
   loading_flickr_photos: "Loading Flickr photos..."
-  loading_full_description_html: "Loading full description..."
   loading_images: Loading images...
   loading_map: Loading map...
   loading_metadata: Loading metadata...
-  loading_more_photos: "Loading more photos..."
-  loading_observations: "Loading observations..."
   loading_preview_and_code: Loading preview and code...
   loading_suggestions: Loading suggestions...
   loading_tags: "Loading tags..."
@@ -1871,7 +1841,6 @@ en:
   locality_notes: Locality notes
   localized_species_accounts: Localized species accounts
   location: Location
-  location_: Location
   locations: Locations
   location_is_accurate: Location is accurate
   location_is_exact: location is exact
@@ -1882,7 +1851,6 @@ en:
   locked_taxa_will_not_allow_new: Locked taxa will not allow new descendent taxa to be added to them. So if you locked Amphibia and someone tried to import <i>Rana catesbeiana</i> from an external name provider, the new taxon would be created but it could not be classified as an amphibian. When this happens, the newly added taxa should be flagged for curator attention.  This should really only be used for taxa for which we think we already have all the descendants. Curator can override this by editing taxa and entering parent IDs directly, but please consider merging new taxa into existing ones instead.
   log_in: Log In
   log_scale_label: Log
-  logged_in_as: Logged in as
   login_slash_username: Login / username
   logo:
     logo: Logo
@@ -1899,7 +1867,6 @@ en:
   looks_like_neither_have!: Looks like neither have any taxa!
   looks_like_no_species_in_guide: Looks like you don't have an species in your guide yet.
   lookup: Lookup
-  lookup_user_rarr: "Lookup user &rarr;"
   low: Low
   lowest_rank: Lowest Rank
   made_a: made a
@@ -3782,7 +3749,8 @@ en:
   synonyms: Synonyms
   table: Table
   table_of_contents: Table of contents
-  tag: Tag
+  # Noun, as in "add a tag to this observation"
+  tag: tag
   tagging: 'Tagging...'
   tags: Tags
   tags_are_a_way: 'Tags are a way to organize your observations. For example, you might tag all your tidepool observations "tidepools" to make them easier to find later.'
@@ -4119,7 +4087,7 @@ en:
   this_will_update_all_last_observations: This will update all last observations and add new taxa from 
   this_year: This Year
   those_are_the_basics_of: |
-    Those are the basics of adding observations! There are plent of other
+    Those are the basics of adding observations! There are plenty of other
     things you can do, like searching and filtering your observations or
     editing them as a batch, but they should be pretty self-explanatory.
   those_observations_no_longer_exist: Those observations no longer exist.
