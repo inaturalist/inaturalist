@@ -25,5 +25,5 @@
       - provider, url = ProviderAuthorization::AUTH_URLS.detect{|p,u| p == provider_name }
       - provider_label = ProviderAuthorization::PROVIDER_NAMES[provider].downcase
       - btn_label = t("sign_in_with_provider", provider: ProviderAuthorization::PROVIDER_NAMES[provider] )
-      = link_to url, class: "btn btn-circle providerlink #{provider_label}", alt: btn_label, title: btn_label do
+      = link_to url, method: :post, class: "btn btn-circle providerlink #{provider_label}", alt: btn_label, title: btn_label do
         %i.fa{ class: "fa-#{provider_label}" }
