@@ -276,7 +276,6 @@ ru:
   are_you_sure_remove_taxon_from_list: "Вы уверены что хотите удалить этот таксон из списка?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Вы уверены? Это приведёт к перезагрузке страницы и вы можете потерять не сохранённые изменения.
-  are_you_sure_want_delete_taxon: "Вы уверены, что хотите удалить этот таксон? %{msg}"
   are_you_sure_want_delete_taxon_link: Вы уверены, что хотите удалить ссылку на этот таксон?
   are_you_sure_want_delete_this_name: Вы уверены, что хотите удалить это имя?
   are_you_sure_want_delete_this_range: Вы уверены, что хотите удалить этот ареал?
@@ -1114,7 +1113,6 @@ ru:
   grid_tooltip: Показать в виде грида
   group: Группа
   grouping: Группировка
-  guess_description: Угадай / Описание
   guides: Руководства
   guide_compiled_by: Руководство составлено
   guide_deleted: Руководство удалено
@@ -1134,8 +1132,6 @@ ru:
   has_sound: Содержит звук
   has_sounds: Со звуком
   hasnt_contributed_any_observations: не добавил никаких наблюдений к этому проекту
-  hate_me_facebook: "Отвяжите ваш аккаунт Facebook от аккаунта %{site_name}"
-  hate_me_flickr: "Отвязать свои учетные записи Flickr и %{site_name}"
   heads_up: Осторожно
   heads_up_this_photo_has_been_flagged: "ПРЕДУПРЕЖДЕНИЕ: это фото было помечено флагом."
   heads_up_this_photo_is_already_associated_with: "Внимание: это фото уже связано с <a target='_blank' href='%{url}'>другим наблюдением</a>"
@@ -1147,7 +1143,6 @@ ru:
   here_are_3_examples: Три примера хорошо сформированных данных
   here_are_our_top_suggestions: Вот наши лучшие предложения
   here_are_our_top_species_suggestions: Вот наши лучшие предложения видов
-  here_are_some_things_you_can_do_in_the_meantime: "Вот некоторые вещи, которые вы можете сделать в это время"
   hex_color_eg: Цвет в 16-ти разрядном представлении, например 6564FF
   hi: Привет,
   hi_user: "Здравствуйте, %{user}"
@@ -1162,11 +1157,9 @@ ru:
   history: История
   home: Главная
   however_there_were_some_issues: "Однако были некоторые проблемы: %{issues}"
-  i_agree_to_the_project_terms: Я согласен с условиями проекта
   i_dont_know_but_i_am_sure_this_is_taxon: Я не знаю, но уверен, что это таксон %{taxon}
   icon: Иконка
   icon_size: Размер иконки
-  icon_slash_photo: Иконка / Фото
   iconic_taxon: таксон с заданным цветом иконки
   id_categories:
     tooltips:
@@ -1176,10 +1169,6 @@ ru:
         Первое предложение этого таксона, с которым сообщество впоследствии согласилось. Это помогло уточнить таксон сообщества.
       maverick: |
         Таксон не является потомком или предком таксона сообщества, т.е. сообщество не согласно с этим таксоном.
-  id_more_in_id_please: ID больше в ID, пожалуйста
-  id_please!: ID пожалуйста!
-  id_please: ID пожалуйста
-  id_please_expandable_html: "ID<span class='full'> пожалуйста</span>!"
   id_withdrawn: Отзыв идентификации
   ids_by_taxon: Идентификации по таксону
   identify: Идентифицируйте
@@ -1190,13 +1179,11 @@ ru:
   identification_by_user: Определение %{user}
   identification_deleted: Определение удалено.
   identification_saved: "Идентификация сохранена!"
-  identification_summary: Отчет об определении
   identification_updated: Идентификация обновлена!
   identification_user_short: Идент. пользователя
   identification_withdrawn: Идентификация отозвана.
   identifications: Идентификации
   identifications_by: "Идентификации %{user}"
-  identified?: идентифицирован
   computer_vision_suggestion: Предложение системы компьютерного распознавания
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
@@ -1210,15 +1197,8 @@ ru:
   if_matches_come_from_a_comprehensive_list: Если совпадения взяты из исчерпывающего списка, здесь отобразится зеленая полоса.
   if_this_is_a_scientific_name: Если это научное название, является ли оно в настоящее время общепринятым?
   if_this_link_will_apply_to_descendant: Если применить эту ссылку к вложенным таксонам, можно использовать теги шаблона для вставки наименования таксона в URL
-  if_you_already_have_an_account: "Если у вас уже есть %{article} %{site_name} аккаунт..."
-  if_you_dont_want_us_to_share_your_data: Если вы не хотиде делиться вашими данными
   if_you_have_any_trouble_with_the_site_check_out: 'Если у вас есть вопросы, пожалуйста зайдите сюда <a href="%{help_url}">help section</a> or post a message to our <a href="%{feedback_url}">feedback group</a>.'
-  if_you_have_trouble_with_the_site: "Если у вас возникли проблемы с сайтом, ознакомьтесь с разделом нашей справки:"
-  if_youd_like_us_to_share_your_observations_with: |
-    Если вы хотите, чтобы мы поделились вашими наблюдениями с партнерами по данным, убедитесь, что вы выбрали свои наблюдения с лицензией Creative Commons.
-  if_you_want_to_change_the_name: если вы хотите изменить название
   if_your_project_is: Если ваш проект связан с определенным местом, задайте координаты на карте или введите их вручную.
-  if_your_search_comes_up: "Если ваш поиск окажется пустым, вы должны увидеть новое окно поиска, чтобы повторить поиск через наши внешние источники названий:"
   ignore: игнорировать
   ignore_and_continue: Пропустите и продолжайте
   ignore_times: Пропустите время
@@ -1231,14 +1211,11 @@ ru:
   import_date_time_location_taxonomic: "Импортировать дату, время, место, описание и таксономическую информацию из этого фото."
   import_from_csv: Импорт CSV
   import_from_other_photo_sites: Импортировать с других фотосайтов
-  import_from_photos: Импортировать из фотографий
-  import_from_yahoo: Импортировать из Yahoo
   import_observations: Импорт Наблюдений
   import_observations_from_a_photo: Импорт наблюдений от поставщика фото или файла на вашем компьютере.
   import_photos: Импортировать фото
   import_ranges: Импорт диапазонов
   import_sections: Импортировать разделы
-  import_sounds: Импорт звуков
   import_tags_from_csv: Импорт тегов формата CSV
   importing: "Импортирование …"
   improving: Улучшение
@@ -1248,80 +1225,55 @@ ru:
   inbox: Входящие
   including: включая
   increase_brightness: Увеличить яркость
-  in_order_to_login_and_using_site_visit_url: "Для того, чтобы войти и начать использовать сайт, вы должны посетить эту ссылку для активации вашей учётной записи:"
   in_progress: в процессе выполнения
-  in_taxon?: в таксоне
   in_the_past: в прошлом
   in_the_past_week: на прошлой неделе
   inactive: Неактивный
   inactive_taxon: Неактивный таксон
-  inappropriate: Неприемлемое?
   inappropriate_content: Неприемлемый контент?
   inat_account_action: "%{site_name} &#58; Учётная запись &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} считает, что это полный перечень этого таксона для данного места."
   inat_user_profile: "%{site_name}: Профиль %{user}"
-  inat_will_be_back_on: "%{site_name} будет назад на своих ногах/крыльях/плавниках/щупальцах/псевдоподиях"
   inaturalist_is_a_joint_initiative: "%{site_name} является совместной инициативой Калифорнийской академии наук и Национального географического общества."
   inaturalist_is_an_online_community: "%{site_name} это онлайн-сообщество для натуралистов! Добавляя ваши фото, вы можете помочь исследователям узнать больше"
-  inaturalist_is_catching_some_zs: "%{site_name} улавливает некоторые Zs"
-  inaturalist_observations_by: "%{site_name} &#58; Наблюдения %{login}"
   inaturalist_places: "%{site_name} Места"
   inaturalist_places_are_way_record_what_lives_where: "Места %{site_name} - это способ записи того, кто где обитает. Если вы ищете конкретный вид, вы будете знать, где искать. Каждое место имеет контрольный список для записи всех видов, которые там встречаются, поэтому они также могут быть полезны для поиска того, что вы нашли на отдельных участках."
   info: Информация
   input_taxon: Введите таксон
   insects: насекомые
   insect_life_stage: Стадия жизни насекомого
-  inspired_by_the_flickr_group: "Воодушевленное группой Flickr <a href=\"http://flickr.com/groups/idplease/\">ID Please</a>, это место, где вы можете размещать наблюдения объектов, которые вы не знаете, и помогать людям определять загадочные создания!"
   interactions: взаимодействия
   internal_server_error: Внутренняя ошибка сервера
-  internal_taxon: Внутренний таксон
   internal_taxon_including_descendants: Внутренний таксон (включая потомков)
   internal_taxon_rank: Ранг внутреннего таксона
   introduced: Интродуцент
   introduced_in_place: "Интродуцирован в %{place}"
-  invasive: Инвазивный
   invitation: Приглашение
-  invitations: Приглашения
   invite: пригласить
   invite_flickr_photos: "Пригласить фото Flickr  на сайт %{site_name}"
   invite_more: Пригласить больше
-  invite_observations: Пригласить наблюдения
   invite_people: Пригласить людей
   invite_people_to_project: "Пригласить людей в %{project}"
-  invite_photos_from_other_sites: Импорт фото с других сайтов
-  invite_photos_to: "Пригласить фото на сайт %{site_name}"
   invite_photos_to_raquo_html: "Пригласить фото на <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Пригласите кого-нибудь в %{name}!"
-  invite_to_project: Пригласить в проект
   invite_your_friends: Пригласить друзей
   invite_your_friends_description: "Помогите сделать %{site_name} больше и лучше, пригласив друзей присоединиться!"
   inviteonly: только по приглашению
-  invited: Приглашённый
-  invited_to_the_following_projects: "Приглашены в следующие проекты:"
   invited_x: "Приглашённое %{x}"
-  inviting: Процесс приглашения...
   is_an_evaluation: |
     - это оценка точности наблюдения.
     Наблюдения исследовательского уровня могут использоваться учёными для исследований. Оставьте свой голос ниже:
   is_not_following_anyone: ни на кого не подписан.
   is_now: сейчас
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Достаточно ли доказательств, подтверждающих, что это %{taxon}?
-  is_the_organism_wild: "Является организм диким/натурализованным?"
-  is_this_observation_offensive_html: 'Является ли это наблюдение <a href="/help#inappropriate">неприемлемым</a>, спамом или оскорбительным?'
   is_this_offensive_html: 'Является ли это <a href="/help#inappropriate">неприемлемым</a>, спамом или оскорбительным?'
   is_this_place_a_duplicate: Не является ли это место задвоенным?
-  it: это
   it_can_now_be_used_for_research: Теперь оно может использоваться в исследованиях и на других веб-сайтах.
   it_has: Это имеет
-  it_instead: Вместо
   item_flagged_notice_html: |
     Это помечено как спам и больше не является общедоступным. Вы можете видеть это, потому что вы создали это или вы куратор сайта. Если вы считаете, что это ошибка, пожалуйста,
     <a href="mailto:%{help_email}" class="contact">свяжитесь с нами</a>.
     <a href="%{manage_flags_path}">Управление флагами</a>
-  its_important_that_you: Важно, чтобы вы кликнули мышью
-  iucn_red_list: Красный список МСОП
-  iucn_red_list_status: Статус в Красном списке МСОП
-  january: Январь
   join: Присоединиться
   join_and: Присоединиться и
   join_inat: Присоединяйтесь к %{site_name}!
