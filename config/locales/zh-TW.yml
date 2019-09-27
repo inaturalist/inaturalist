@@ -378,7 +378,6 @@ zh-TW:
   are_you_sure_remove_taxon_from_list: "您確定要從清單移除此物種分類？"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     您確定嗎？這將會重新載入頁面而您會遺失您更改的內容。
-  are_you_sure_want_delete_taxon: "您確定要刪除此物種分類？%{msg}"
   are_you_sure_want_delete_taxon_link: 你確定要刪除此物種分類連結？
   are_you_sure_want_delete_this_name: 您確定要刪除此名稱？
   are_you_sure_want_delete_this_range: 您確定要刪除此範圍？
@@ -1222,7 +1221,6 @@ zh-TW:
   grid_tooltip: 顯示網格檢視
   group: 群組
   grouping: 分組中
-  guess_description: 猜測 / 描述
   guides: 指南
   guide_compiled_by: 指南完成由
   guide_deleted: 指南已刪除
@@ -1242,8 +1240,6 @@ zh-TW:
   has_sound: 擁有聲音
   has_sounds: 擁有聲音
   hasnt_contributed_any_observations: 沒有貢獻任何觀察至此專案。
-  hate_me_facebook: "取消連結您的臉書以及 %{site_name} 帳號"
-  hate_me_flickr: "取消連結您的 Flickr 以及 %{site_name} 帳號"
   heads_up: 注意
   heads_up_this_photo_has_been_flagged: "注意：此照片已被標記。"
   heads_up_this_photo_is_already_associated_with: "注意：此照片已關聯於<a target='_blank' href='%{url}'>其它觀察</a>"
@@ -1255,7 +1251,6 @@ zh-TW:
   here_are_3_examples: 此為 3 個良好格式資料的範例
   here_are_our_top_suggestions: 這是我們的最佳建議
   here_are_our_top_species_suggestions: 這是我們的最佳物種建議
-  here_are_some_things_you_can_do_in_the_meantime: "此期間有一些事情可讓您來做"
   hex_color_eg: 16 進位色彩碼，例如：65644F
   hi: 嗨，
   hi_user: "嗨 %{user}"
@@ -1270,14 +1265,11 @@ zh-TW:
   history: 歷史
   home: 首頁
   however_there_were_some_issues: "然而，這裡有一些狀況：%{issues}"
-  i_agree_to_the_project_terms: 我同意專案條款
   i_dont_know_but_i_am_sure_this_is_taxon: 我不清楚，但我確定這是%{taxon}
   icon: 圖示
   icon_size: 圖示大小
-  icon_slash_photo: 圖示/照片
   iconic_taxon: 圖像物種分類
   id: 鑑定
-  id_: 鑑定
   id_categories:
     tooltips:
       leading: |
@@ -1286,10 +1278,6 @@ zh-TW:
         首先建議此物種分類來讓社群後續同意。這有助於改進社群物種分類。
       maverick: |
         不是社群物種分類的祖先或派生，即代表著社群不同意此物種分類。
-  id_more_in_id_please: 在鑑定請求裡頭有更多鑑定
-  id_please!: 需要鑑定！
-  id_please: 需要鑑定
-  id_please_expandable_html: "<span class='full'>需要</span>鑑定！"
   id_withdrawn: 鑑定撤回
   ids_by_taxon: 按物種分類的鑑定
   identify: 鑑定
@@ -1300,13 +1288,11 @@ zh-TW:
   identification_by_user: 由 %{user} 做的鑑定
   identification_deleted: 鑑定已刪除
   identification_saved: "鑑定已儲存！"
-  identification_summary: 鑑定摘要
   identification_updated: 鑑定已更新！
   identification_user_short: 識別用戶
   identification_withdrawn: 鑑定撤回
   identifications: 鑑定
   identifications_by: "由 %{user} 做的鑑定"
-  identified?: 已鑑定
   computer_vision_suggestion: 電腦視覺建議
   computer_vision_suggestion_desc: |
     電腦視覺是一種教導電腦識別圖片方面形態的程序。我們所提供的工具，使用了以社群照片所培訓出的電腦視覺模組來提供鑑定建議，像是自動完成與比較的功能。此標籤代表著有人是使用這些工具其一來添加鑑定。
@@ -1320,15 +1306,8 @@ zh-TW:
   if_matches_come_from_a_comprehensive_list: 若符合來自於綜合列表內容，會在此顯示出綠色長條。
   if_this_is_a_scientific_name: 如果這是一個學名，它是否能被接受？
   if_this_link_will_apply_to_descendant: 如果此連結將套用到後代物種分類，您可以使用模版標籤來填寫 URL 裡的物種分類名稱
-  if_you_already_have_an_account: "如果您已經擁有 %{article} %{site_name} 帳號..."
-  if_you_dont_want_us_to_share_your_data: 如果您不希望我們分享您的資料
   if_you_have_any_trouble_with_the_site_check_out: '若您有任何問題，請查看我們的<a href="%{help_url}">幫助章節</a>，或發佈訊息至我們的<a href="%{feedback_url}">意見回饋群組</a>。'
-  if_you_have_trouble_with_the_site: "如果您在此網站上碰到任何問題，請查看我們的幫助章節："
-  if_youd_like_us_to_share_your_observations_with: |
-    如果您想讓我們與資料合作者來分享您的觀察，請確定您挑選創用CC許可授權在您的觀察上。
-  if_you_want_to_change_the_name: 如果您想要更改名稱
   if_your_project_is: 若您的專案是在特定地點，請透過點擊地圖或手動輸入內容來設定座標。
-  if_your_search_comes_up: "若您的搜尋結果為空，您應會看見一些搜尋框裡在透過我們的外部物種名稱提供者進行重複搜尋："
   ignore: 忽略
   ignore_and_continue: 忽略並繼續
   ignore_times: 忽略次數
@@ -1341,14 +1320,11 @@ zh-TW:
   import_date_time_location_taxonomic: "從此照片來匯入日期、時間、位置、描述、和物種分類訊息。"
   import_from_csv: 從 CSV 匯入
   import_from_other_photo_sites: 從其它照片網站匯入
-  import_from_photos: 匯入自照片
-  import_from_yahoo: 匯入自 Yahoo
   import_observations: 匯入自觀察
   import_observations_from_a_photo: 從照片提供者或您電腦上的檔案來匯入觀察。
   import_photos: 匯入照片
   import_ranges: 匯入範圍
   import_sections: 匯入章節
-  import_sounds: 匯入聲音
   import_tags_from_csv: 從 CSV 匯入標籤
   importing: "匯入中..."
   improving: 改進中
@@ -1358,79 +1334,54 @@ zh-TW:
   inbox: 收件匣
   including: 包含
   increase_brightness: 增加亮度
-  in_order_to_login_and_using_site_visit_url: "為了登入並開始使用網站，您必須訪問此 URL 來啟用您的帳號："
   in_progress: 任務進行中
-  in_taxon?: 在物種分類
   in_the_past: 在過去
   in_the_past_week: 在過去一週
   inactive: 不活躍
   inactive_taxon: 不起作用的物種分類
-  inappropriate: 不適當？
   inappropriate_content: 不適當內容？
   inat_account_action: "%{site_name} &#58;帳號&#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} 相信這是此地區物種分類的完整清單。"
   inat_user_profile: "%{site_name}：%{user}的個人檔案"
-  inat_will_be_back_on: "%{site_name} 將會返回它的足/翼/鰭/觸手/偽足"
   inaturalist_is_a_joint_initiative: "%{site_name} 為加利福尼亞州科學院與國家地理學會的聯合倡議。"
   inaturalist_is_an_online_community: "%{site_name} 線上的博物學友社群！透過添加您的照片，您可協助研究員學習更多有關"
-  inaturalist_is_catching_some_zs: "%{site_name} 正在獲取一些 Zs"
-  inaturalist_observations_by: "%{site_name} &#58;由 %{login} 作出的觀察"
   inaturalist_places: "%{site_name} 地點"
   inaturalist_places_are_way_record_what_lives_where: "%{site_name} 是個用來記錄生物居於何處的網站，如果您正在尋找著某個特定物種，這能幫助您了解要在何處搜尋。任一地點皆備有清單，是用來記錄出現於該地點的所有物種，這在您查找特定地點裡的事物時很有幫助。"
   info: 資訊
   input_taxon: 輸入物種分類
   insects: 昆蟲
   insect_life_stage: 昆蟲生命階段
-  inspired_by_the_flickr_group: "受到來自於 Flickr 群組<a href='http://flickr.com/groups/idplease/'>鑑定請求</a>的啟發，這裡是用於發佈您所不了解觀察事物的地點，來協助人們鑑定神祕生物吧！"
   interactions: 互動
   internal_server_error: 內部伺服器錯誤
-  internal_taxon: 內部物種分類
   internal_taxon_including_descendants: 內部分類（包含派生）
   internal_taxon_rank: 內部分類級別
   introduced: 引進
   introduced_in_place: "在%{place}引進"
-  invasive: 侵入
   invitation: 邀請
-  invitations: 邀請
   invite: 邀請
   invite_flickr_photos: "邀請 Flickr 的照片至 %{site_name}"
   invite_more: 邀請更多
-  invite_observations: 邀請觀察
   invite_people: 邀請人們
   invite_people_to_project: "邀請人們至%{project}"
-  invite_photos_from_other_sites: 從其它網站來徵求照片
-  invite_photos_to: "邀請照片至 %{site_name}"
   invite_photos_to_raquo_html: "徵求照片至<nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "邀請一些人來 %{name}！"
-  invite_to_project: 徵求至專案
   invite_your_friends: 邀請您的好友
   invite_your_friends_description: "透過邀請您的好友加入來協助讓 %{site_name} 成為更大、更好的社群！"
   inviteonly: 僅限邀請
-  invited: 已邀請
-  invited_to_the_following_projects: "被徵求到以下專案："
   invited_x: "已邀請%{x}"
-  inviting: 邀請中...
   is_an_evaluation: |
     是對觀察準確的評估。
     研究等級觀察有機會被科學家用於研究上。請在下方投下您的一票：
   is_not_following_anyone: 沒關注任何人。
   is_now: 現已
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: 證據是否提供足夠的內容來確定這是%{taxon}？
-  is_the_organism_wild: "是野生/歸化的生物？"
-  is_this_observation_offensive_html: '這是個<a href="/help#inappropriate">不適當</a>、濫發、或有冒犯內容的觀察嗎？'
   is_this_offensive_html: '這是個<a href="/help#inappropriate">不適當</a>、濫發、或冒犯的內容嗎？'
   is_this_place_a_duplicate: 此地點有重複嗎？
-  it: 它
   it_can_now_be_used_for_research: 現在可被用於在其它網站的研究和功能
   it_has: 它有
-  it_instead: 由它取代。
   item_flagged_notice_html: |
     這已被標記為垃圾訊息且不再公開可見。您仍可以看到它的原因出於這是由您所創建，或是您的身份為網站策展人。若您認為目前的情況有誤，請<a href="mailto:%{help_email}" class="contact">聯絡我們</a>。
     <a href="%{manage_flags_path}">管理標記</a>
-  its_important_that_you: 您所點擊是重要的
-  iucn_red_list: 國際自然保護聯盟瀕危物種（IUCN）紅色名錄
-  iucn_red_list_status: 國際自然保護聯盟瀕危物種（IUCN）紅色名錄現狀
-  january: 1月
   join: 加入
   join_and: 加入及
   join_inat: 加入 %{site_name}！
