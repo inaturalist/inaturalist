@@ -273,7 +273,6 @@ sk:
   are_you_sure_remove_taxon_from_list: "Ste si istý, že chcete odstrániť taxón z tohto zoznamu?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Ste si istí? Toto znovu načíta stránku a Vy môžete stratiť nejaké Vaše zmeny.
-  are_you_sure_want_delete_taxon: "Naozaj chcete odstrániť tento taxón %{msg}?"
   are_you_sure_want_delete_taxon_link: Naozaj chcete odstrániť tento link na taxón?
   are_you_sure_want_delete_this_name: Naozaj chcete odstrániť toto meno?
   are_you_sure_want_delete_this_range: Naozaj chcete odstrániť tento rozsah?
@@ -1059,7 +1058,6 @@ sk:
   grid_tooltip: Zobraziť pohľad s mriežkou
   group: Skupina
   grouping: Zoskupovanie
-  guess_description: Domnienka / opis
   guides: Sprievodcovia
   guide_compiled_by: Sprievodcu zostavil/a
   guide_deleted: Sprievodca vymazaný
@@ -1079,8 +1077,6 @@ sk:
   has_sound: Má zvuk
   has_sounds: Má zvuky
   hasnt_contributed_any_observations: nepridal/a žiadne pozorovania do tohto projektu.
-  hate_me_facebook: "Zrušiť prepojenie vášho účtu na Facebooku a %{site_name}"
-  hate_me_flickr: "Zrušiť prepojenie vášho účtu na Flickr a %{site_name}"
   heads_up: Pozor
   heads_up_this_photo_has_been_flagged: "POZOR: táto fotka bola označená."
   help: Pomoc
@@ -1088,7 +1084,6 @@ sk:
   here_are_3_examples: Toto sú 3 príklady dobre zostavených údajov
   here_are_our_top_suggestions: Tu sú naše najlepšie návrhy
   here_are_our_top_species_suggestions: Tu sú naše najlepšie návrhy druhov
-  here_are_some_things_you_can_do_in_the_meantime: "Tu sú veci, ktoré môžete zatiaľ urobiť"
   hex_color_eg: Farba hex, napr. 65644F
   hi: Ahoj,
   hi_user: "Ahoj %{user}"
@@ -1105,16 +1100,10 @@ sk:
   highlights_and_stats_from_year_on_site: "Najvýznamnejšie udalosti a štatistiky z roku %{year} v %{site}"
   history: História
   home: Doma
-  i_agree_to_the_project_terms: Súhlasím s podmienkami projektu
   i_dont_know_but_i_am_sure_this_is_taxon: Neviem, ale som si istý/á, že toto je %{taxon}
   icon: Ikona
   icon_size: Veľkosť ikony
-  icon_slash_photo: Ikona / Fotka
   iconic_taxon: Ikonický taxón
-  id_more_in_id_please: ID viac v ID prosím
-  id_please!: ID prosím!
-  id_please: ID prosím
-  id_please_expandable_html: "ID<span class='full'> prosím</span>!"
   id_withdrawn: ID odobrané
   ids_by_taxon: ID podľa taxónu
   identify: Identifikovať
@@ -1125,13 +1114,11 @@ sk:
   identification_by_user: Identifikácia užívateľa %{user}
   identification_deleted: Identifikácia zmazaná.
   identification_saved: "Identifikácia uložená!"
-  identification_summary: Identifikačný sumár
   identification_updated: Identifikácia aktualizovaná!
   identification_user_short: Ident. užívateľa
   identification_withdrawn: Identifikácia odstránená.
   identifications: Identifikácie
   identifications_by: "Identifikácie užívateľom %{user}"
-  identified?: identifikované
   computer_vision_suggestion: Návrh počítačového videnia
   identifiers: Identifikátory
   identotron_for: Identotron pre
@@ -1143,9 +1130,6 @@ sk:
   if_matches_come_from_a_comprehensive_list: Ak kombinácie pochádzajú z kompletného zoznamu, objaví sa tu zelený pruh.
   if_this_is_a_scientific_name: Ak je to vedecký názov, je v súčasnosti uznávaný?
   if_this_link_will_apply_to_descendant: Ak bude tento odkaz použitý pre následné taxóny, môžete použiť tagy šablóny k vyplneniu názvu taxónu v URL
-  if_you_already_have_an_account: "Ak už máte účet %{article} %{site_name}..."
-  if_you_dont_want_us_to_share_your_data: Ak nechcete, aby sme zdieľali vaše údaje
-  if_you_want_to_change_the_name: ak chcete zmeniť názov
   ignore: ignorovať
   ignore_and_continue: Ignorovať a pokračovať
   ignore_times: Ignorovať časy
@@ -1157,14 +1141,11 @@ sk:
   import_date_time_location_taxonomic: "Importuj dátum, čas, miesto, opis a taxonomické informácie z tejto fotografie."
   import_from_csv: Importovať z CSV
   import_from_other_photo_sites: Importovať z iných stránok s fotkami
-  import_from_photos: Importovať z fotografií
-  import_from_yahoo: Importovať z Yahoo
   import_observations: Importovať pozorovania
   import_observations_from_a_photo: Importovať pozorovania od poskytovateľov fotografií alebo zo súboru na vašom počítači.
   import_photos: Importovať fotografie
   import_ranges: Importovať rozšírenia
   import_sections: Importovať sekcie
-  import_sounds: Importovať zvuky
   import_tags_from_csv: Importovať tagy z CSV
   importing: "Importuje sa..."
   improving: Zlepšovanie
@@ -1175,74 +1156,50 @@ sk:
   including: vrátane
   increase_brightness: Zvýšiť jas
   in_progress: prebieha
-  in_taxon?: v taxóne
   in_the_past: v minulosti
   in_the_past_week: v minulom týždni
   inactive: neaktívny
   inactive_taxon: Neaktívny taxón
-  inappropriate: Nevhodné?
   inappropriate_content: Nevhodný obsah?
   inat_account_action: "%{site_name} &#58; Účet &#58; %{action_name}"
   inat_user_profile: "%{site_name}: Profil užívateľa %{user}"
-  inat_will_be_back_on: "%{site_name} bude zas na nohách/krídloch/plutvách/chápadlách/panôžkách"
   inaturalist_is_a_joint_initiative: "%{site_name} je spoločná iniciatíva California Academy of Sciences a National Geographic Society."
-  inaturalist_is_catching_some_zs: "%{site_name} práve spí"
-  inaturalist_observations_by: "%{site_name} &#58; Pozorovania užívateľa %{login}"
   inaturalist_places: "%{site_name} Miesta"
   info: Informácie
   input_taxon: Vstupný taxón
   insects: hmyz
   insect_life_stage: Štádium života hmyzu
-  inspired_by_the_flickr_group: "Na základe inšpirácie skupinou na Flickr <a href='http://flickr.com/groups/idplease/'>ID Please</a> vzniklo toto miesto, kam môžete vkladať pozorovanie vecí, ktoré nepoznáte, a kde môžete ľuďom pomáhať identifikovať záhadné stvorenia!"
   interactions: Interakcie
   internal_server_error: Interná chyba serveru
-  internal_taxon: Interný taxón
   internal_taxon_including_descendants: Interný taxón (vrátane potomkov)
   internal_taxon_rank: Hodnosť interného taxónu
   introduced: Introdukovaný
   introduced_in_place: "Introdukovaný v %{place}"
-  invasive: Invazívny
   invitation: Pozvánka
-  invitations: Pozvánky
   invite: pozvať
   invite_flickr_photos: "Požiadať o fotky z Flickr na %{site_name}"
   invite_more: Pozvať viac
-  invite_observations: Požiadať o pozorovania
   invite_people: Pozvať ľudí
   invite_people_to_project: "Pozvať ľudí do %{project}"
-  invite_photos_from_other_sites: Požiadať o fotky z iných stránok
-  invite_photos_to: "Požiadať o fotky na %{site_name}"
   invite_photos_to_raquo_html: "Požiadať o fotky na <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Pozvať niekoho do %{name}!"
-  invite_to_project: Pozvať do projektu
   invite_your_friends: Pozvite svojich priateľov
   invite_your_friends_description: "Pomôžte zväčšiť %{site_name} a vytvoriť lepšiu komunitu prizvaním svojich priateľov!"
   inviteonly: iba pre pozvaných
-  invited: Pozvaný
-  invited_to_the_following_projects: "Pozvaný/a k následujúcim projektom:"
   invited_x: "Pozvaný/á %{x}"
-  inviting: Pozývam...
   is_an_evaluation: |
     je hodnotenie presnosti pozorovania. Pozorovanie výskumného stupňa môžu vedci používať pri výskume. Hlasujte nižšie:
   is_not_following_anyone: nikoho nesleduje.
   is_now: je teraz
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Sú predložené dôkazy dostatočné na potvrdenie, že toto je %{taxon}?
-  is_the_organism_wild: "Je organizmus divoký/naturalizovaný?"
-  is_this_observation_offensive_html: 'Je toto pozorovanie <a href="/help#inappropriate">nevhodné</a>, spam, alebo urážlivé?'
   is_this_offensive_html: 'Je toto <a href="/help#inappropriate">nevhodné</a>, spam, alebo urážlivé?'
   is_this_place_a_duplicate: Je toto miesto duplikát?
-  it: To
   it_can_now_be_used_for_research: Teraz to môže byť využité pre výskum a zobrazovanie na ďalších webových stránkach
   it_has: Má
-  it_instead: namiesto toho.
   item_flagged_notice_html: |
     Toto bolo označené ako spam a teraz nie je viditeľné. Vám sa text zobrazuje, pretože ste jeho autorom, alebo kurátor stránok.
     Ak si myslíte, že ide o chybu, <a href="mailto:%{help_email}" class="contact">napíšte nám</a>.
     <a href="%{manage_flags_path}">Správa značiek</a>
-  its_important_that_you: Je dôležité, aby ste klikli
-  iucn_red_list: Červený zoznam IUCN
-  iucn_red_list_status: Status na Červenom zozname IUCN
-  january: Január
   join: Pridať sa
   join_and: Pridať sa a
   join_inat: Pridať sa k %{site_name}!
