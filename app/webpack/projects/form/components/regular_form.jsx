@@ -168,7 +168,7 @@ class RegularForm extends React.Component {
                   id="project-quality-research"
                   name="quality_grade"
                   value="research"
-                  defaultChecked={project.rule_quality_grade.research || qualityEmpty}
+                  defaultChecked={project.rule_quality_grade.research}
                   onChange={( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) )}
                 />
                 { I18n.t( "research_" ) }

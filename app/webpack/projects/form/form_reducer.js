@@ -80,7 +80,8 @@ export function createNewProject( type, copyProject ) {
     const newProjectAttributes = {
       project_type: type,
       user_id: config.currentUser.id,
-      admins: [{ user: config.currentUser, role: "manager" }]
+      admins: [{ user: config.currentUser, role: "manager" }],
+      rule_quality_grade: { research: true, needs_id: true }
     };
     if ( copyProject ) {
       const attributesToInherit = [
