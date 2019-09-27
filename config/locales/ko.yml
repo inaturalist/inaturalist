@@ -237,7 +237,6 @@ ko:
   are_you_sure_remove_taxon_from_list: "이 분류군을 목록에서 삭제하겠습니까?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     확실한가요? 이것은 페이지를 새로 불러오기 때문에 변경사항을 일부 잃을 수 있습니다.
-  are_you_sure_want_delete_taxon: "이 분류군을 삭제하겠습니까? %{msg}"
   are_you_sure_want_delete_taxon_link: 이 분류군 링크를 삭제하겠습니까?
   are_you_sure_want_delete_this_name: 이 이름을 삭제하겠습니까?
   are_you_sure_want_delete_this_range: 이 범위를 삭제하겠습니까?
@@ -938,8 +937,6 @@ ko:
   has_sound: 소리가 있음
   has_sounds: 소리가 있음
   hasnt_contributed_any_observations: 이 프로젝트에 관찰을 기여하지 않았습니다.
-  hate_me_facebook: "페이스북과 %{site_name} 계정 연결을 끊습니다"
-  hate_me_flickr: "Flickr와 %{site_name} 계정 연결을 끊습니다"
   heads_up: 주의
   heads_up_this_photo_has_been_flagged: "주의: 이 사진은 플래그되었습니다."
   heads_up_this_photo_is_already_associated_with: "주의: 이 사진은 이미 <a target='_blank' href='%{url}'>다른 관찰</a>와 연결되어 있습니다."
@@ -957,33 +954,21 @@ ko:
   history: 역사
   home: 처음으로
   however_there_were_some_issues: "하지만, 몇 가지 문제가 있었습니다: %{issues}"
-  i_agree_to_the_project_terms: 나는 이 약관에 동의합니다
   icon: 아이콘
   icon_size: 아이콘 크긱
-  icon_slash_photo: 아이콘 / 사진
   iconic_taxon: 아이코닉 분류군
-  id_please!: ID를 입력해주세요!
-  id_please: ID를 입력해주세요
   identify: 동정함
   identify_title: "동정함"
   identification: 동정
   identification_deleted: 동정 삭제됨
   identification_saved: "동정 저장됨"
-  identification_summary: 동정 요약
   identification_updated: 동정 업데이트됨
   identifications: 동정
   identifications_by: "%{user}님이 한 동정"
-  identified?: 동정됨
   identifiers: 동정한 사용자들
   if_this_is_a_scientific_name: 이것이 학명이라면, 현재 받아들여지는 학명인가요?
   if_this_link_will_apply_to_descendant: 이 링크가 후손 분류군들에 적용되는 것이라면, 형식 태그로 URL에 분류군 이름을 기입할 수 있습니다.
-  if_you_already_have_an_account: "%{article} %{site_name} 계정이 이미 있다면..."
-  if_you_dont_want_us_to_share_your_data: 당신의 데이터를 공유하는 것을 원친 않는다면
   if_you_have_any_trouble_with_the_site_check_out: '질문이 있으시다면, <a href="%{help_url}">도움말 문단</a>을 확인하시거나, <a href="%{feedback_url}">피드백 그룹</a>에 글을 남겨주세요.'
-  if_you_have_trouble_with_the_site: "사이트 이용이 불편이 있다면, 도움말 섹션을 참조해주세요."
-  if_youd_like_us_to_share_your_observations_with: |
-    당신의 관찰들을 데이터 파트너들과 공유하고 싶다면 당신의 관찰들을 크리에이티브 커먼즈로 인증하는 것을 잊지 말아 주세요.
-  if_you_want_to_change_the_name: 이름을 바꾸고 싶다면
   if_your_project_is: 프로젝트가 특정한 장소에 대한 것이라면 지도를 클릭하여 좌표를 설정하거나 직접 입력해주세요.
   ignore: 무시
   ignore_and_continue: 무시하고 계속하기
@@ -996,12 +981,9 @@ ko:
   import_date_time_location_taxonomic: "이 사진에서 날짜, 시간, 장소, 설명, 그리고 분류학적 정보를 들여온다."
   import_from_csv: CSV에서 가져오기
   import_from_other_photo_sites: 다른 사이트들에서 사진 들여오기
-  import_from_photos: 사진에서 가져오기
-  import_from_yahoo: 야후에서 가져오기
   import_observations: 관찰 들여오기
   import_observations_from_a_photo: 컴퓨터에 있는 파일이나 사진 제공자부터 관찰 가져오기
   import_photos: 사진 가져오기
-  import_sounds: 음원 불러오기
   import_tags_from_csv: CSV로부터 태그 가져오기
   importing: "가져오는 중..."
   improving: 개선 중
@@ -1010,48 +992,32 @@ ko:
   in_the_past_week: 지난 한 주 동안
   inactive: 비활성
   inactive_taxon: 비활성 분류군
-  inappropriate: 부적절한가요?
   inappropriate_content: 내용이 부적절합니까?
   inat_account_action: "%{site_name} &#58; 계정 &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name}은 이것이 이 분류군의 모든 것의 목록이라고 합니다."
   inat_user_profile: "%{site_name}: %{user}의 프로파일"
-  inat_will_be_back_on: "%{site_name} 다시 발/날개/진러미/촉수/위족으로 일어설 것입니다."
-  inaturalist_is_catching_some_zs: "%{site_name}은 현재 정비 중입니다."
-  inaturalist_observations_by: "%{site_name} &#58; %{login}을 통한 관찰"
   inaturalist_places: "%{site_name} 장소들"
   inaturalist_places_are_way_record_what_lives_where: "%{site_name} 장소들은 어떤 생물이 어떤곳에서 사는지 기록하는 방법입니다. 이 기능을 통해 특정한 종을 찾고 있다면 어느 곳을 탐색해야 하는지 알 수 있을 것입니다. 각 장소에는 그 곳에서 서식하는 생물종을 모아놓은 체크리스트가 있어서 특정 지역에서 발견한 생물들을 찾아보는데 용이합니다."
   info: 정보
   input_taxon: 분류군 입력
   insects: 곤충
-  inspired_by_the_flickr_group: "Flickr 공동체인 <a href='http://flickr.com/groups/idplease/'>ID Please</a>에 영감을 받아 시작된 이 웹사이트는 당신이 모르는 생물체들의 관찰에 대해 올리고, 다양한 사람들이 그 미지의 생물을 동정하는 곳입니다."
   internal_server_error: 내부 서버 오류
   introduced: 도입종
   introduced_in_place: "%{place}에서 유입됨"
-  invasive: 외래종
   invitation: 초대장
-  invitations: 초대장들
   invite: 초대
   invite_flickr_photos: "Flickr 사진을 %{site_name}(으)로 초대"
   invite_more: 더 초대
-  invite_observations: 관찰 초대
   invite_people: 사용자들 초대
   invite_people_to_project: "%{project}(으)로 사용자 초대"
-  invite_photos_from_other_sites: 다른 사이트의 사진들 초대
-  invite_photos_to: "%{site_name}(으)로 사진 초대"
   invite_photos_to_raquo_html: "<nobr>%{site_name} &raquo;</nobr>로 사진들 초대"
   invite_someone_to: "%{name}에 사용자를 초대합니다!"
-  invite_to_project: 프로젝트로 초대
   invite_your_friends: 친구들 초대
   invite_your_friends_description: "친구들을 초대해서 %{site_name}이 더 크고 좋은 공동체가 될 수 있게 만들어가요!"
   inviteonly: 초대로만 가능
-  invited: 초대됨
-  invited_to_the_following_projects: "다음 프로젝트들에 초대됨:"
   invited_x: "%{x}을(를) 초대했습니다."
-  inviting: 초대하는 중...
   iphone: 아이폰
   is_not_following_anyone: 은 아무도 팔로잉하고 있지 않다.
-  is_the_organism_wild: "생물체는 야생/토착화되었나요?"
-  is_this_observation_offensive_html: '이 관찰이 <a href="/help#inappropriate">부적절</a>하거나, 스팸, 또는 불쾌한 것으로 보입니까?'
   is_this_offensive_html: '이것이 <a href="/help#inappropriate">부적절</a>하거나, 스팸, 또는 불쾌합니까?'
   is_this_place_a_duplicate: 이 장소는 중복되었나요?
   it_can_now_be_used_for_research: 이제 연구를 위해 사용하거나 다른 웹사이트에 실을 수 있습니다
@@ -1061,10 +1027,6 @@ ko:
     스팸이 실수라고 생각되신다면
     <a href="mailto:%{help_email}" class="contact">저희에게 연락하십시오</a>.
     <a href="%{manage_flags_path}">표시 관리</a>
-  its_important_that_you: 클릭하는 것이 중요합니다.
-  iucn_red_list: IUCN 적색 목록
-  iucn_red_list_status: IUCN Red List 상태
-  january: 1월
   join: 가입하기
   join_and: 가입하고
   join_inat: '%{site_name} 가입하기'
