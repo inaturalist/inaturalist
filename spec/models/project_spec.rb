@@ -423,7 +423,7 @@ describe Project do
     it "adds observations whose users updated their project addition preference since last_aggregated_at" do
       project.update_attributes(place: make_place_with_geom, trusted: true)
       o1 = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
-      o2 = Observation.make!(latitude: 90, longitude: 90)
+      o2 = Observation.make!(latitude: 89, longitude: 89)
       project.aggregate_observations
       expect( project.observations.count ).to eq 1
       o2.update_attributes(latitude: project.place.latitude, longitude: project.place.longitude)
