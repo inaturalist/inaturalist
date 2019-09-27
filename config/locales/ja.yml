@@ -352,7 +352,6 @@ ja:
   are_you_sure_remove_taxon_from_list: "リストからこの分類群を削除して本当によろしいですか？"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     本当によろしいですか？ページを再読み込みし、変更が失われる可能性があります。
-  are_you_sure_want_delete_taxon: "この分類群を削除して本当によろしいですか？%{msg}"
   are_you_sure_want_delete_taxon_link: この分類群リンクを削除して本当によろしいですか？
   are_you_sure_want_delete_this_name: この名前を削除して本当によろしいですか？
   are_you_sure_want_delete_this_range: この分布・生息区域を削除して本当によろしいですか？
@@ -987,14 +986,11 @@ ja:
   has_photos: 写真あり
   has_sounds: 音声あり
   hasnt_contributed_any_observations: はまだこのプロジェクトに観察記録を提供していません
-  hate_me_facebook: "Facebookと%{site_name}アカウントとの同期を解除する"
-  hate_me_flickr: "Flickrと%{site_name}アカウントの連携を解除する"
   heads_up: お知らせ
   heads_up_this_photo_has_been_flagged: "お知らせ：この写真はフラグ付けられました"
   help: ヘルプ
   help_confirm_observations!: 観測を記録しましょう！
   here_are_3_examples: 質の高いデータの例として次の３つをご覧ください
-  here_are_some_things_you_can_do_in_the_meantime: "とりあえず、次のようなことができます："
   hex_color_eg: 16進色、例：65644F
   hi: こんにちは、
   hi_user: "こんにちは、%{user}"
@@ -1003,19 +999,13 @@ ja:
   history: 履歴
   home: ホーム
   however_there_were_some_issues: "しかし、問題がありました：%{issues}"
-  i_agree_to_the_project_terms: プロジェクト規約に同意します
   icon: アイコン
   icon_size: アイコンの大きさ
-  icon_slash_photo: アイコン/写真
   iconic_taxon: 代表的な分類群
   id_categories:
     tooltips:
       leading: |
         分類群は上位の群落からつながっています。この同定は正しい答えに結びつく可能性があります。
-  id_more_in_id_please: 同定待ち観察記録を同定しましょう
-  id_please!: IDお願い！
-  id_please: IDお願い
-  id_please_expandable_html: "<span class='full'>要</span>ID!"
   identify: ID判定
   identify_observations: "観察記録をID判定"
   identify_title: "ID判定"
@@ -1023,22 +1013,16 @@ ja:
   identification_by_user: '%{user}さんの同定'
   identification_deleted: 同定が削除されました
   identification_saved: "判定が保存されました！"
-  identification_summary: 同定概要
   identification_updated: 同定が更新されました
   identification_withdrawn: 同定が撤回されました。
   identifications: 同定
   identifications_by: "%{user}の同定"
-  identified?: 同定済
   identifiers: ID判定者
   identotron: らくらくID判定
   identotron_help: らくらくID判定ヘルプ
   ids: "ID"
   ids_made_for_others: 他のユーザのためのID
   if_this_is_a_scientific_name: 学名の場合、現在認められているものでしょうか？
-  if_you_already_have_an_account: "すでに%{site_name}%{article}に投稿してある場合…"
-  if_you_dont_want_us_to_share_your_data: あなたが提供したデータを共有してほしくない場合、
-  if_you_have_trouble_with_the_site: "お困りのことがありませんか？ヘルプをご覧ください："
-  if_you_want_to_change_the_name: 名称を変更したければ
   ignore: 無視
   ignore_times: 時間を無視する
   image_must_be_exactly: 画像の大きさは高さ400px以下、幅はちょうど950pxでなけれなりません。
@@ -1049,12 +1033,9 @@ ja:
   import_date_time_location_taxonomic: "この写真から日付、時間、場所、説明、分類群情報を読み込む。"
   import_from_csv: CSVからインポート
   import_from_other_photo_sites: その他の写真ウェブサイトからインポート
-  import_from_photos: 写真からインポート
-  import_from_yahoo: Yahooからインポート
   import_observations: 観測記録をインポート
   import_observations_from_a_photo: 写真共有サイト及びパソコンの写真ファイルから観察記録をインポート
   import_photos: 写真をインポート
-  import_sounds: 音声データをインポート
   import_tags_from_csv: CSVからタグをインポート
   importing: "インポート中..."
   in_n: "%{n}に"
@@ -1062,18 +1043,13 @@ ja:
   inbox: 受信箱
   including: 次を含む：
   in_progress: 処理中
-  in_taxon?: 次の分類群の中
   in_the_past: ここ
   in_the_past_week: ここ1週間以内
   inactive: 廃止
   inactive_taxon: 無効な分類群
-  inappropriate: 不適切な内容？
   inat_believes_this_is_a_complete_listing: "%{site_name}は、この場所における当分類群のリストとして完全なものだと認識しています。"
   inat_user_profile: "%{site_name}: %{user}さんのプロフィール"
-  inat_will_be_back_on: "%{site_name}の復旧予定時間は"
   inaturalist_is_an_online_community: "%{site_name}は自然大好きなナチュラリストのためのオンラインコミュニティーです！写真を追加すると、学習の次の研究に貢献できます："
-  inaturalist_is_catching_some_zs: "%{site_name}は現在お休み中"
-  inaturalist_observations_by: "%{site_name} &#58; %{login}による観察記録"
   inaturalist_places: "%{site_name} 場所"
   info: 情報
   input_taxon: 分類群を入力
@@ -1082,36 +1058,22 @@ ja:
   internal_server_error: サーバー内部エラー
   introduced: 移入種
   introduced_in_place: "%{place}の移入種"
-  invasive: 外来種
   invitation: 招待
-  invitations: 招待
   invite: 招待する
   invite_flickr_photos: "%{site_name}にFlickr写真を招待"
   invite_more: もっと招待
-  invite_observations: 観測記録を招待
   invite_people: ユーザーを紹介する
   invite_people_to_project: "%{project}にメンバーを招待"
-  invite_photos_from_other_sites: 外部ウェブサイトより写真を招待する
-  invite_photos_to: "%{site_name}に写真を招待"
   invite_photos_to_raquo_html: "<nobr>%{site_name}に写真を招待 &raquo;</nobr>"
   invite_someone_to: "%{name}に人を紹介しましょう！"
-  invite_to_project: プロジェクトに招待
   invite_your_friends: 友人を招待する
   invite_your_friends_description: "%{site_name}をより大きくより良いコミュニティーにしましょう。友達を参加するように招待を送りましょう！"
   inviteonly: 招待のみ
-  invited: 招待済
-  invited_to_the_following_projects: "次のプロジェクトに招待した："
   invited_x: "%{x}を招待しました"
-  inviting: 招待中...
   is_not_following_anyone: 誰もフォローしていません
   is_now: は今
-  is_the_organism_wild: "野生または帰化していますか？"
-  is_this_observation_offensive_html: 'この観察記録の内容は<a href="/help#inappropriate">不適切</a>、迷惑、不愉快ですか？'
   is_this_offensive_html: 'この内容は<a href="/help#inappropriate">不適切</a>、迷惑、不愉快ですか？'
   is_this_place_a_duplicate: この場所は重複していますか？
-  its_important_that_you: 必ずクリックしてください：
-  iucn_red_list_status: IUCNレッドリスト状況
-  january: 1月
   join: 参加
   join_and: 参加し、
   join_inat: '%{site_name}に参加しましょう！'
