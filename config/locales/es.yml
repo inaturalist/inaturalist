@@ -417,7 +417,6 @@ es:
   are_you_sure_remove_taxon_from_list: "¿Estás seguro que quieres eliminar a este taxón de la lista?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     ¿Estás seguro? Esto volverá a cargar la página y es posible que pierdas algunos de tus cambios.
-  are_you_sure_want_delete_taxon: "¿Estás seguro que quieres eliminar este taxón? %{msg}"
   are_you_sure_want_delete_taxon_link: '¿Estás seguro que quieres eliminar este enlace del taxón?'
   are_you_sure_want_delete_this_name: '¿Estás seguro que quieres eliminar este nombre?'
   are_you_sure_want_delete_this_range: '¿Estás seguro que quieres eliminar esta área?'
@@ -1263,7 +1262,6 @@ es:
   grid_tooltip: Mostrar la vista de rejilla
   group: Grupo
   grouping: Agrupamiento
-  guess_description: Estimación / Descripción
   guides: Guías
   guide_compiled_by: Guía compilada por
   guide_deleted: Guía eliminada
@@ -1283,8 +1281,6 @@ es:
   has_sound: Tiene sonido
   has_sounds: Tiene sonidos
   hasnt_contributed_any_observations: no ha aportado ninguna observación a este proyecto.
-  hate_me_facebook: "Desvincular sus cuentas de Facebook e %{site_name}"
-  hate_me_flickr: "Desvincular sus cuentas de Flickr e %{site_name}"
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto ha sido marcada."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto ya está asociada con <a target='_blank' href='%{url}'>otra observación</a>"
@@ -1296,7 +1292,6 @@ es:
   here_are_3_examples: Aquí hay 3 ejemplos de datos bien formados
   here_are_our_top_suggestions: Éstas son nuestras principales sugerencias
   here_are_our_top_species_suggestions: Éstas son nuestras sugerencias principales de especies
-  here_are_some_things_you_can_do_in_the_meantime: "Aquí hay algunas cosas que puedes hacer mientras tanto"
   hex_color_eg: Color en hexadecimal, ej. 65644F
   hi: 'Hola:'
   hi_user: "Hola, %{user}"
@@ -1312,14 +1307,11 @@ es:
   history: Historial
   home: Inicio
   however_there_were_some_issues: "Sin embargo, hubo algunos problemas: %{issues}"
-  i_agree_to_the_project_terms: Estoy de acuerdo con los términos del proyecto
   i_dont_know_but_i_am_sure_this_is_taxon: No lo sé, pero estoy seguro de que es %{taxon}
   icon: Ícono
   icon_size: Tamaño del icono
-  icon_slash_photo: Icono / Foto
   iconic_taxon: Taxón icónico
   id: Identificación
-  id_: Identificación
   id_categories:
     tooltips:
       leading: |
@@ -1328,10 +1320,6 @@ es:
         Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón comunitario.
       maverick: |
         El taxón no desciende o es antepasado del taxón de la comunidad, p.e. la comunidad no está de acuerdo con este taxón.
-  id_more_in_id_please: ID más en "ID por favor"
-  id_please!: '¡ayuda por favor!'
-  id_please: ID por favor
-  id_please_expandable_html: "¡Ayuda<span class='full'> por favor!</span>"
   id_withdrawn: Id. retirada
   ids_by_taxon: Identificación por taxón
   identify: Identifica
@@ -1342,13 +1330,11 @@ es:
   identification_by_user: Identificación por %{user}
   identification_deleted: Identificación eliminada.
   identification_saved: "¡Identificación guardada!"
-  identification_summary: Resumen de la identificación
   identification_updated: '¡Identificación actualizada!'
   identification_user_short: Usuario ident.
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
   identifications_by: "Identificaciones de %{user}"
-  identified?: con identificación
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
     Visión de computador es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión de computador enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.
@@ -1363,16 +1349,8 @@ es:
   if_matches_come_from_a_comprehensive_list: Si los resultados provienen de una lista exhaustiva, una barra verde como esta se mostrará.
   if_this_is_a_scientific_name: Si este es un nombre científico, ¿está aceptado actualmente?
   if_this_link_will_apply_to_descendant: Si este vínculo se aplicará a los taxones descendientes, puedes usar tus plantillas de etiquetas para llenar el nombre del taxón en la URL
-  if_you_already_have_an_account: "Si ya tienes una %{article} %{site_name} cuenta..."
-  if_you_dont_want_us_to_share_your_data: Si no deseas compartir esta información
   if_you_have_any_trouble_with_the_site_check_out: 'Si tienes alguna duda con el sitio, por favor revise nuestra <a href="%{help_url}">sección de ayuda</a> o escribe un mensaje a nuestro <a href="%{feedback_url}">grupo de participación</a>.'
-  if_you_have_trouble_with_the_site: "Si tuvieras algún problema con el sitio, por favor revisa nuestra sección de ayuda"
-  if_youd_like_us_to_share_your_observations_with: |
-    Si deseas compartir tus observaciones con la comunidad científica, asegúrate
-    de haber escogido una licencia Creative Commons para tus observaciones.
-  if_you_want_to_change_the_name: si solo quieres cambiar el nombre
   if_your_project_is: Si tu proyecto es acerca de un lugar especifico, añade las coordenadas seleccionando el enlace del mapa o añadelas manualmente.
-  if_your_search_comes_up: "Si tu búsqueda regresa vacía, deberías ver algunas cajas de búsqueda para repetir la búsqueda a través de nuestros proveedores externos de nombres"
   ignore: Ignora
   ignore_and_continue: Ignora y continúa
   ignore_times: Ignora los tiempos
@@ -1385,14 +1363,11 @@ es:
   import_date_time_location_taxonomic: "Importa fecha, hora, ubicación, descripción e información taxonómica de esta foto."
   import_from_csv: Importa de CSV
   import_from_other_photo_sites: Importa desde otros sitios de fotos
-  import_from_photos: Importa de las fotos
-  import_from_yahoo: Importa de Yahoo
   import_observations: Importa observaciones
   import_observations_from_a_photo: Importa observaciones de un proveedor de fotos o de un archivo en tu computadora.
   import_photos: Importa fotos
   import_ranges: Importa distribuciones
   import_sections: Importa secciones
-  import_sounds: Importa sonidos
   import_tags_from_csv: Importar etiquetas de CSV
   importing: "Importando..."
   improving: Mejorando
@@ -1402,80 +1377,55 @@ es:
   inbox: Buzón de entrada
   including: incluyendo
   increase_brightness: Aumentar brillo
-  in_order_to_login_and_using_site_visit_url: "Con el fin de ingresar y comenzar a utilizar el sitio debes visitar este URL para activar tu cuenta"
   in_progress: en curso
-  in_taxon?: con especie o grupo
   in_the_past: en el pasado
   in_the_past_week: Durante la semana pasada
   inactive: Inactiva
   inactive_taxon: Especie o grupo inactivo
-  inappropriate: '¿Es inapropiado?'
   inappropriate_content: '¿Contenido inapropiado?'
   inat_account_action: "%{site_name} : Cuenta : %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} cree que este es un listado completo de este taxón en este lugar."
   inat_user_profile: "%{site_name}:  perfil de %{user}"
-  inat_will_be_back_on: "%{site_name} volverá a estar en sus pies/alas/aletas/tentáculos/pseudópodos"
   inaturalist_is_a_joint_initiative: "%{site_name} es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society."
   inaturalist_is_an_online_community: "¡%{site_name} es una comunidad en línea para naturalistas! Al agregar tu foto podrá ayudar a los investigadores a aprender más sobre"
-  inaturalist_is_catching_some_zs: "%{site_name} está captando algunas Zs"
-  inaturalist_observations_by: "%{site_name} &#58; Observaciones por %{login}"
   inaturalist_places: "Lugares %{site_name}"
   inaturalist_places_are_way_record_what_lives_where: "Lugares %{site_name} es una forma de registrar qué vive dónde. Si buscas una especie en particular, sabrás dónde buscar. Cada lugar tiene una lista de verificación para registrar todas las especies que se encuentran allí, para que pueda también ser útil para buscar especies que encontraste en sitios particulares."
   info: Información
   input_taxon: Taxón de entrada
   insects: insectos
   insect_life_stage: Etapa vital del insecto
-  inspired_by_the_flickr_group: "Inspirado por el grupo Flickr <a href='http://flickr.com/groups/idplease/'>ID por favor</a>, este es un lugar para colocar observaciones de cosas que no sabes ¡y ayudar a que otras personas identifiquen criaturas misteriosas!"
   interactions: Interacciones
   internal_server_error: Error interno del servidor
-  internal_taxon: Taxon interno
   internal_taxon_including_descendants: Taxón interno (incluyendo descendientes)
   internal_taxon_rank: Rango de taxón interno
   introduced: Introducida
   introduced_in_place: "Introducción en %{place}"
-  invasive: Invasoras
   invitation: Invitación
-  invitations: Invitaciones
   invite: invitar
   invite_flickr_photos: "Invitar las fotos de Flickr a %{site_name}"
   invite_more: Invitar más gente
-  invite_observations: Invita a observaciones para tu proyecto
   invite_people: Invita gente
   invite_people_to_project: "Invitar gente al %{project}"
-  invite_photos_from_other_sites: Invitar las fotos de otros sitios
-  invite_photos_to: "Invita fotos para %{site_name}"
   invite_photos_to_raquo_html: "Invita a alguien con fotos de <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "¡Invita a alguien a %{name}!"
-  invite_to_project: Invitar al proyecto
   invite_your_friends: Invita a sus amigos
   invite_your_friends_description: "¡Ayude a que %{site_name} sea una comunidad más grande y mejor invitando a sus amigos!"
   inviteonly: por invitación solamente
-  invited: Invitado
-  invited_to_the_following_projects: "Esta invitado a los siguientes proyectos:"
   invited_x: "Invitado %{x}"
-  inviting: invitando...
   is_an_evaluation: |
     es una evaluación de la exactitud de una observación. Las observaciones de Grado de Investigación pueden ser usadas por los científicos para su investigación. Vota aquí abajo:
   is_not_following_anyone: No está siguiendo a nadie
   is_now: ahora es
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: '¿La evidencia provista es suficiente para confirmar que se trata de %{taxon}?'
-  is_the_organism_wild: "¿Es el organismo silvestre?"
-  is_this_observation_offensive_html: '¿Esta observación es <a href="/help#inappropriate">inapropiada</a>, spam u ofensiva?'
   is_this_offensive_html: '¿Esto es <a href="/help#inappropriate">inapropiado</a>, spam u ofensivo?'
   is_this_place_a_duplicate: '¿Está duplicado este lugar?'
-  it: Este
   it_can_now_be_used_for_research: Ahora puede utilizarse para propósitos de investigación y presentarse en otros sitios web
   it_has: Tiene
-  it_instead: en vez de eso.
   item_flagged_notice_html: |
     Esto ha sido señalado como spam y ya no es
     visible públicamente. \ Lo puedes ver porque tu lo creaste, o  porque eres un curador de sitio. Si piensas que esto es una equivocación, 
     <a href="mailto:%{help_email}" class="contact">contáctanos </a>.
     <a href="%{manage_flags_path}">Administra advertencias</a>
-  its_important_that_you: Es importante que haga click
-  iucn_red_list: Lista Roja de la UICN
-  iucn_red_list_status: Lista Roja de la UICN estado
-  january: Enero
   join: '¡Únete a'
   join_and: Únase y
   join_inat: '¡Únete a %{site_name}!'
