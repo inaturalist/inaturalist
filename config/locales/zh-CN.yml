@@ -360,7 +360,6 @@ zh-CN:
   are_you_sure_remove_taxon_from_list: "您确定要从列表中移除这个分类单元吗？"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     您确定么？这将重新加载页面，您可能会丢失您的一些更改。
-  are_you_sure_want_delete_taxon: "您确定要删除这个分类单元吗？%{msg}"
   are_you_sure_want_delete_taxon_link: 您确定要删除此分类链接么？
   are_you_sure_want_delete_this_name: 您确定要删除此名称吗？
   are_you_sure_want_delete_this_range: 您确定要删除此范围吗？
@@ -1131,7 +1130,6 @@ zh-CN:
   grid_tooltip: 显示网格预览
   group: 组
   grouping: 正在分组
-  guess_description: 猜 / 描述
   guides: 指南
   guide_compiled_by: 此指南由下列用户编辑
   guide_deleted: 指南已删除
@@ -1151,8 +1149,6 @@ zh-CN:
   has_sound: 有声音
   has_sounds: 有声音
   hasnt_contributed_any_observations: 没有对这一项目贡献观察记录
-  hate_me_facebook: "取消链接您的Facebook和 %{site_name} 账户"
-  hate_me_flickr: "取消链接您的Flickr和 %{site_name} 账户"
   heads_up: 小心
   heads_up_this_photo_has_been_flagged: "请注意：这张照片已被标记过。"
   heads_up_this_photo_is_already_associated_with: "请注意：这张照片已经同<a target='_blank' href='%{url}'>另一条观察记录</a>进行过关联"
@@ -1162,7 +1158,6 @@ zh-CN:
   helped_the_observer_make: 帮助观察者制作他们最终的ID（就是他们在最终ID之前制作并且匹配它的）
   here_are_3_examples: 这里是3个格式良好数据的例子
   here_are_our_top_species_suggestions: 这里有我们最常用的物种建议
-  here_are_some_things_you_can_do_in_the_meantime: "在此期间您可以做这些事情："
   hex_color_eg: 十六进制颜色代码，例如：65644F
   hi: 嗨，
   hi_user: "您好，%{user}"
@@ -1173,11 +1168,9 @@ zh-CN:
   history: 历史
   home: 首页
   however_there_were_some_issues: "然而，这里有一些问题：%{issues}"
-  i_agree_to_the_project_terms: 我同意项目条款
   i_dont_know_but_i_am_sure_this_is_taxon: 我不知道，但我确信这是%{taxon}
   icon: 图标
   icon_size: 图标大小
-  icon_slash_photo: 图标 / 照片
   iconic_taxon: 标志性的分类单元
   id_categories:
     tooltips:
@@ -1187,10 +1180,6 @@ zh-CN:
         此分类单元在该社区被接纳的第一个提议。这有助于完善社区分类单元。
       maverick: |
         分类单元并不是社区分类单元的后代或者祖先分类单元，这意味着社区并不赞同这个分类单元。
-  id_more_in_id_please: 更多ID请在ID中
-  id_please!: 请添加ID！
-  id_please: 请添加ID
-  id_please_expandable_html: "<span class='full'>请提供</span>ID！"
   id_withdrawn: ID撤回
   ids_by_taxon: ID（按分类单元排序）
   identify: 鉴定
@@ -1200,13 +1189,11 @@ zh-CN:
   identification_by_user: 由 %{user} 做出的身份证明
   identification_deleted: 身份验证已删除。
   identification_saved: "身份验证已保存！"
-  identification_summary: 身份证明摘要
   identification_updated: 身份证明已更新！
   identification_user_short: 鉴别用户
   identification_withdrawn: 身份验证已放弃。
   identifications: 身份证明
   identifications_by: "由 %{user} 做出的身份证明"
-  identified?: 已认证
   identifiers: 标识符
   identotron_for: Identotron 为
   identotron_help: Identotron帮助
@@ -1217,15 +1204,8 @@ zh-CN:
   if_matches_come_from_a_comprehensive_list: 如果比赛来自综合名单，这里会显示一个绿色栏。
   if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
   if_this_link_will_apply_to_descendant: 如果此链接适用于后代分类群，你可以使用模板标签在URL中填写分类单元名称
-  if_you_already_have_an_account: "如果你已经拥有 %{article} %{site_name} 账号..."
-  if_you_dont_want_us_to_share_your_data: 如果您不希望我们分享您的数据
   if_you_have_any_trouble_with_the_site_check_out: '如果您有任何问题，请您查看我们的<a href="%{help_url}">帮助区</a>或在我们的<a href="%{feedback_url}">反馈群组</a>提交信息。'
-  if_you_have_trouble_with_the_site: "如果您在使用本网站时遇到问题，请查看我们的帮助区："
-  if_youd_like_us_to_share_your_observations_with: |
-    如果您愿意让我们将您的观察记录和数据合作者进行分享，请确定您已经将您的观察记录进行知识共享协议授权。
-  if_you_want_to_change_the_name: 如果您希望更改名称
   if_your_project_is: 如果您的项目有关特定地点，请通过点击地图或手动输入设置坐标。
-  if_your_search_comes_up: "如果您的搜索结果为空，您可以通过搜索选项在我们的外部物种名称提供者那里进行同样的搜索："
   ignore: 忽略
   ignore_and_continue: 忽略并继续
   ignore_times: 忽略时间
@@ -1238,14 +1218,11 @@ zh-CN:
   import_date_time_location_taxonomic: "从此照片导入日期、时间、位置、描述和分类信息。"
   import_from_csv: 从CSV导入
   import_from_other_photo_sites: 从其他照片网站导入
-  import_from_photos: 从照片导入
-  import_from_yahoo: 从Yahoo导入
   import_observations: 导入观察
   import_observations_from_a_photo: 从照片提供者或您电脑中的文件导入观察。
   import_photos: 导入照片
   import_ranges: 导入范围
   import_sections: 导入章节
-  import_sounds: 导入声音
   import_tags_from_csv: 从CSV导入标签
   importing: "正在导入..."
   improving: 正在改进
@@ -1253,74 +1230,51 @@ zh-CN:
   inaturalist_network_affiliation: iNaturalist网络关系
   inbox: 收件箱
   including: 包括
-  in_order_to_login_and_using_site_visit_url: "如果要登录站点并开始使用，您首先应当访问这一地址来激活您的账户："
   in_progress: 进行中
-  in_taxon?: 在分类单元
   in_the_past: 在过去
   in_the_past_week: 在上周
   inactive: 不活跃
   inactive_taxon: 不活跃的分类单元
-  inappropriate: 不适当？
   inappropriate_content: 不适当的内容？
   inat_account_action: "%{site_name} &#58; 账户 &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name}相信这是此地区内，这种分类单元的完整列表。"
   inat_user_profile: "%{site_name}：%{user}的详细资料"
-  inat_will_be_back_on: "%{site_name} 将会回到它的脚/翅膀/鱼鳍/触手/伪足上"
   inaturalist_is_an_online_community: "%{site_name}是一个在线的自然法学派社群！通过添加您的照片，您可以帮助研究员了解有关"
-  inaturalist_is_catching_some_zs: "%{site_name} 正在抓住一些Zs"
-  inaturalist_observations_by: "%{site_name}&#58;由%{login}做出的观察"
   inaturalist_places: "%{site_name} 地点"
   inaturalist_places_are_way_record_what_lives_where: "%{site_name}地点是记录生物在哪里的一种方式。如果你正在寻找一个特定的物种，你会知道去哪里找寻。每个地点都有一个清单，记录所有在那里被发现的物种，因此它们也可以用于查找你在特定地点发现的生物。"
   info: 信息
   input_taxon: 输入分类单元
   insects: 昆虫
   insect_life_stage: 昆虫生命阶段
-  inspired_by_the_flickr_group: "这里是受到Flickr群组<a href='http://flickr.com/groups/idplease/'>“请进行鉴定”（ID Please）</a>的启发，您如果有不认识的物种，可在此发布其观察记录，给其他人一个鉴定这些神秘生物的机会！"
   interactions: 互动
   internal_server_error: 内部服务器错误
   introduced: 引进
   introduced_in_place: "在%{place}中引进"
-  invasive: 侵入
   invitation: 引诱
-  invitations: 引诱
   invite: 邀请
   invite_flickr_photos: "将Flickr照片邀请到%{site_name}"
   invite_more: 邀请更多
-  invite_observations: 邀请观察
   invite_people: 邀请人们
   invite_people_to_project: "邀请人们至 %{project}"
-  invite_photos_from_other_sites: 从其他网站邀请照片
-  invite_photos_to: "邀请照片到%{site_name}"
   invite_photos_to_raquo_html: "邀请照片到<nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "邀请一些人至 %{name}！"
-  invite_to_project: 邀请至项目
   invite_your_friends: 邀请您的朋友
   invite_your_friends_description: "您可以邀请您的朋友加入，让%{site_name}变成一个更大、更好的社区！"
   inviteonly: 仅邀请
-  invited: 已邀请
-  invited_to_the_following_projects: "受邀到下列项目："
   invited_x: "已邀请 %{x}"
-  inviting: 正在邀请...
   is_an_evaluation: |
     是对观测精度的评估。
     科研级的观察可能被科学家用于研究。请在下方投票：
   is_not_following_anyone: 未关注任何人。
   is_now: 现已
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: 有提供足够证据来确认这是%{taxon}么？
-  is_the_organism_wild: "这个生物是野生或野化的吗？"
-  is_this_observation_offensive_html: '此观察是<a href="/help#inappropriate">不可接受</a>、滥发消息或攻击性的么？'
   is_this_offensive_html: '这是<a href="/help#inappropriate">不可接受</a>、滥发消息或攻击性内容么？'
   is_this_place_a_duplicate: 此地点是否重复？
-  it: 它
   it_can_now_be_used_for_research: 它现在可以用于科学研究，并在其他网站上展示
   it_has: 它有
-  it_instead: 而不是它。
   item_flagged_notice_html: |
     这已被标记为垃圾邮件，不再公开可见。你可以看到它，因为你是创建者，或者你是站点馆长。 如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。
     <a href="%{manage_flags_path}">管理标签</a>
-  its_important_that_you: 点此链接对您而言是重要的
-  iucn_red_list_status: IUCN红色名录状态
-  january: 一月
   join: 加入
   join_and: 加入并
   join_inat: 加入 %{site_name} 吧！
