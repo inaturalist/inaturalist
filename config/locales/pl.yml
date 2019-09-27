@@ -179,8 +179,10 @@ pl:
   a_flag_for_x: "Zgłoszenie dla %{x}"
   a_member_of: "należy do"
   a_member_of_taxon_html: "należy do %{taxon}"
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: O nas
   about_blocking: O blokowaniu
+  about_charts: O wykresach
   about_community_taxa: O taksonach społeczności
   about_complete_taxa: O kompletnych taksonach
   about_conservation_status: O Statusie Ochrony
@@ -223,6 +225,9 @@ pl:
   add_a_new_change_group: Dodaj nową grupę zmian
   add_a_single_observation: Dodaj pojedynczą obserwację
   add_a_taxon: Dodaj takson
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    Dodaj <a target="_blank" href="%{url}">zamianę taksonu</a> jeżeli chcesz zmienić nazwę
+  add_an_assessment: Dodaj ocenę
   add_an_identification: Dodaj identyfikację
   add_an_observation: Dodaj obserwację
   add_an_observation?: Dodać obserwację?
@@ -241,6 +246,7 @@ pl:
   add_comment: Dodaj komentarz
   add_conservation_status: Dodaj status ochronny
   add_countries: Dodaj kraje
+  add_custom_project_fields: Dodaj własne pola projektu
   add_edit_flags: Dodaj/Edytuj zgłoszenia
   add_editor: Dodaj edytora
   add_description: "Dodaj %{description_name}"
@@ -253,6 +259,7 @@ pl:
   add_new_place: Dodaj nowe miejsce
   add_new_rule: Dodaj nową regułę
   add_new_source: "Dodaj nowe źródło..."
+  add_new_taxon_name: Dodaj nazwę nowego taksonu
   add_notes_about_this_taxon: Dodaj informacje o taksonie na tym terenie, np. gdzie i kiedy występuje.
   add_obs_from_a_link: "Dodaj obserwacje z listy: %{link}"
   add_obs_from_a_list: Dodaj obserwacje z listy
@@ -503,7 +510,6 @@ pl:
   are_you_sure_remove_taxon_from_list: "Czy na pewno chcesz usunąć ten takson z listy?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Jesteś pewien? Strona zostanie załadowana ponownie i możesz utracić niektóre zmiany.
-  are_you_sure_want_delete_taxon: "Czy na pewno chesz usunąć ten takson? %{msg}"
   are_you_sure_want_delete_this_name: Czy na pewno chcesz usunąć tę nazwę?
   are_you_sure_want_delete_this_range: Czy na pewno chcesz usunąć ten zasięg?
   are_you_sure_you_want_to_commit_this_change: Czy na pewno chcesz zapisać te zmiany? Nie można tego cofnąć.
@@ -604,6 +610,7 @@ pl:
   by_you: Przez Ciebie
   calendar: Kalendarz
   cancel: Anuluj
+  cant_edit_or_delete_hidden_content: Nie możesz edytować ani usuwać treści ukrytych przez opiekunów strony
   cant_flag_an_object_that_doesnt_exist: Nie można zgłosić elementu, który nie istnieje
   cant_merge_a_taxon_with_itself: Nie można połączyć taksonu z samym sobą.
   captive: Hodowany
@@ -629,9 +636,11 @@ pl:
   cc_by_sa_description: "Ta licencja pozwala innym na remiksowanie, ulepszanie i nadbudowywanie twojej pracy, nawet w celach komercyjnych, o ile uznają twoje autorstwo i licencjonują nowe dzieła pod identycznymi zasadami. Wszystkie nowe utwory bazujące na twoich pracach będą miały taką samą licencję, więc jakiekolwiek utwory zależne również będą mogły zostać użyte komercyjnie."
   cc_by_sa_name: Uznanie autorstwa - Na tych samych warunkach
   change_admin: Zmień administratora
+  change_cover: Zmień okładkę
   change_descriptions:
     split: Stary takson został podzielony na kilka nowych taksonów
     swap: Zmiana nazwy 1:1
+  change_geoprivacy: 'Zmień geoprywatność'
   change_group: Zmień grupę
   change_icon: Zmień ikonę
   change_password: Zmień hasło
@@ -681,6 +690,7 @@ pl:
     target='_blank'>Creative Commons Uznanie autorstwa - Użytek niekomercyjny</a> do przesłanej zawartości. Oznacza to, że każdy może skopiować i użyć ponownie twoich zdjęć i/lub obserwacji bez pytania cię o pozwolenie, o ile uznają twoje autorstwo i nie wykorzystają utworów w sposób komercyjny. Możesz wybrać inną licencję lub usunąć licencję później, jednak miej na uwadze, że to najlepszy rodzaj licencji do dzielenia się z naukowcami.
   checklist: Checklista
   choose_a_field: Wybierz notatkę
+  choose_a_list_above: Wybierz listę powyżej.
   choose_a_place: Wybierz miejsce
   choose_a_taxon: Wybierz takson (opcjonalne)
   choose_cc_licensed_photos_html: 'Wybierz zdjęcie na prawach <a href="http://creativecommons.org/">wolnej licencji</a> z innych stron lub wybierz spośród obserwacji dostępnych na %{site_name}. Staraj się wybrać zdjęcia, które <em>ukazują kryteria diagnostyczne pomocne w oznaczaniu</em> i <em>wyglądają dobrze jako ikony</em>. <em>Pierwsze zdjęcie jest domyślnym</em>.'
@@ -815,6 +825,7 @@ pl:
   copyright_holder: Właściciel praw autorskich
   copyright_info: Informacje o prawach autorskich
   copyright_info_and_more: Informacje o prawach autorskich i więcej
+  copyright_infringement: Naruszenie praw autorskich
   copyright_infringement_desc: Narusza przepisy prawa autorskiego lub zostało stworzone przez kogoś innego niż obserwator i brakuje uznania autorstwa
   couldnt_change_your_password: "Nie udało się zmienić hasła: %{e}"
   couldnt_find_a_user_matching_x_param: "Nie udało się znaleźć użytkownika %{id}"
@@ -892,8 +903,10 @@ pl:
       november: Listopad
       december: Grudzień
   date_is_accurate: Data jest precyzyjna
+  date_joined: Data dołączenia
   date_observed: Data obserwacji
   date_observed_: Data obserwacji
+  date_observed_on: data obserwacji
   date_picker:
     closeText: Zamknij
     currentText: Dzisiaj
@@ -933,6 +946,7 @@ pl:
   describe_purpose: Opisz cel projektu.
   describe_your_interest_in_nature: Opisz swoje przyrodnicze zainteresowania!
   description: Opis
+  description_from: Opis z
   description_sections: Sekcje opisu
   description_slash_tags: Opis / Tagi
   description_tags_more: "Opis, Tagi, &amp; Więcej"
@@ -1008,6 +1022,7 @@ pl:
   edited_by_name_some_rights_reserved_html: |
     Edytowany przez %{name}, niektóre prawa zastrzeżone (%{license})
   editing: Edycja
+  editing_announcement: Edytowanie ogłoszenia
   editing_observation_id: "Edycja obserwacji %{obs_id}"
   editing_project: Edycja projektu %{project}
   editing_taxon_link: Edytuj Łącze Taksonu
@@ -1021,6 +1036,7 @@ pl:
   email: E‐mail
   email_addresses_description: Adresy e-mail oddzielone przecinkami (limit 60 na każde 30 dni).
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
+  email_addresses_to_receive_invites: Adresy e-mail do odbierania zaproszeń
   email_copyright: "Chroniony prawem autorskim &copy; %{x}, wszelkie prawa zastrzeżone"
   email_settings: Ustawienia E-maili
   embed: 'Osadź'
@@ -1066,6 +1082,7 @@ pl:
   extinct_in_the_wild: Wymarły na wolności
   extra_properties: Dodatkowe właściwości
   evidence_of_organism: Ślad organizmu
+  facebook: Facebook
   facebook_account_information: Informacja o Twoim koncie na Facebooku
   facebook_account_not_linked: "użytkownik %{user} nie ma już połączonego konta z kontem na Facebooku, dlatego %{site_name} nie ma zgody na dostęp do zdjęcia"
   facebook_access_token_expired: "Token wygasł. Użytkownik %{user} musi ponownie połączyć konto z kontem na Facebooku."
@@ -1193,6 +1210,7 @@ pl:
   generate_your_stats: Wygeneruj swoje statystyki
   generating_mobile_archive: "Generowanie moblinego archiwum"
   Genus: Rodzaj
+  geoprivacy: Geoprywatność
   geoprivacy_is_obscured_desc: Obserwator utajnił współrzędne.
   geoprivacy_is_private_desc: Obserwator ukrył współrzędne.
   get_started: Rozpocznij
@@ -1203,6 +1221,7 @@ pl:
   go_back: Wróć
   going_to_your_observations: Przechodzenie do twoich obserwacji...
   good_choice_for_sharing: To dobry wybór, aby podzielić się z naukowacami
+  google: Google
   got_it!: Wszystko jasne!
   got_your_data_somewhere_else?: Przechowujesz dane gdzieś indziej? Możemy pomóc.
   grant_role: "%{grant} status %{role}a"
@@ -1221,8 +1240,6 @@ pl:
   has_sound: Posiada nagranie dźwiękowe
   has_sounds: Posiada nagrania dźwiękowe
   hasnt_contributed_any_observations: nie dodał obserwacji do tego projektu.
-  hate_me_facebook: "Usuń powiązanie swoich kont na Facebooku i %{site_name}"
-  hate_me_flickr: "Usuń powiązanie swoich kont na Flickrze i %{site_name}"
   heads_up: Uwaga
   heads_up_this_photo_has_been_flagged: "UWAGA: zdjęcie zostało zgłoszone."
   heads_up_this_photo_is_already_associated_with: "Uwaga: to zdjęcie jest już powiązane z <a target='_blank' href='%{url}'>inną obserwacją</a>"
@@ -1232,7 +1249,6 @@ pl:
   here_are_3_examples: Tutaj są 3 przykłady dobrze przygotowanych danych
   here_are_our_top_suggestions: Nasze sugestie
   here_are_our_top_species_suggestions: Nasze sugestie dot. gatunku
-  here_are_some_things_you_can_do_in_the_meantime: "Rzeczy, które możesz zrobić w międzyczasie"
   hex_color_eg: Kod HEX koloru, np. 65644F
   hi: Witaj,
   hi_user: "Witaj %{user}"
@@ -1245,17 +1261,10 @@ pl:
   history: Historia
   home: Strona główna
   however_there_were_some_issues: "Jednak wystąpiły pewne problemy: %{issues}"
-  i_agree_to_the_project_terms: Zgadzam się z warunkami projektu
   i_dont_know_but_i_am_sure_this_is_taxon: Nie wiem, ale jestem pewien, że to %{taxon}
   icon: Ikona
   icon_size: Rozmiar ikony
-  icon_slash_photo: Ikona / Zdjęcie
   id: Identyfikacja
-  id_: Identyfikacja
-  id_more_in_id_please: Zidentyfikuj więcej w dziale Proszę o identyfikację
-  id_please!: Proszę o identyfikację!
-  id_please: Proszę o identyfikację
-  id_please_expandable_html: "<span class='full'>Proszę</span> o identyfikację!"
   id_withdrawn: Identyfikacja wycofana
   identify: Identyfikuj
   identify_observations: "Identyfikuj obserwacje"
@@ -1264,27 +1273,18 @@ pl:
   identification_by_user: Identyfikacja użytkownika %{user}
   identification_deleted: Identyfikacja usunięta.
   identification_saved: "Identyfikacja zapisana!"
-  identification_summary: Podsumowanie identyfikacji
   identification_updated: Identyfikacja zaktualizowana!
   identification_withdrawn: Identyfikacja wycofana.
   identifications: Identyfikacje
   identifications_by: "Identyfikacje użytkownika %{user}"
-  identified?: zidentyfikowany
   computer_vision_suggestion: Sugestia na podstawie rozpoznawania obrazów
   computer_vision_suggestion_desc: |
     Rozpoznawanie obrazów to proces uczenia komputerów rozpoznawania wzorów w ilustracjach. Dostarczamy narzędzi (np. autouzupełniania czy porównywania), które używają rozpoznawania obrazów wyuczonego na bazie zdjęć społeczności, aby proponować sugestie identyfikacji. Ta etykieta informuje, że osoba dodała identyfikację korzystając z jednego z tych narzędzi.
   identifiers: Identyfikujący
   ids: "Identyfikacje"
   if_this_is_a_scientific_name: Jeśli jest to nazwa naukowa, to czy jest aktualnie akceptowana?
-  if_you_already_have_an_account: "Jeśli masz już konto na %{site_name}..."
-  if_you_dont_want_us_to_share_your_data: Jeśli nie chcesz, żebyśmy udostępniali twoje dane
   if_you_have_any_trouble_with_the_site_check_out: 'Jeśli masz jakieś pytania, zobacz <a href="%{help_url}">sekcję pomocy</a> lub napisz wiadomość do naszej <a href="%{feedback_url}">grupy</a>.'
-  if_you_have_trouble_with_the_site: "Jeśli masz jakieś problemy ze stroną, zobacz sekcję pomocy:"
-  if_youd_like_us_to_share_your_observations_with: |
-    Jeśli chcesz, żebyśmy udostępnili twoje obserwacje partnerom, upewnij się, że wybrałeś odpowiednią licencję Creative Commons dla obserwacji.
-  if_you_want_to_change_the_name: jeśli chcesz zmienić nazwę
   if_your_project_is: Jeśli twój projekt dotyczy konkretnego miejsca, ustaw współrzędne poprzez kliknięcie mapy lub ręczne wprowadzenie.
-  if_your_search_comes_up: "Jeśli wyszukiwanie nie da żadnych wyników, użyj wyszukiwarki naszych zewnętrznych dostawców nazw:"
   ignore: ignoruj
   ignore_and_continue: Ignoruj i kontynuuj
   image_must_be_exactly: obraz musi mieć dokładnie 950px szerokości i najwyżej 400px wysokości
@@ -1296,13 +1296,10 @@ pl:
   import_date_time_location_taxonomic: "Importuj datę, czas, lokalizację, opis i informację taksonomiczną z tego zdjęcia."
   import_from_csv: Importuj z pliku CSV
   import_from_other_photo_sites: Importuj z innych stron fotograficznych
-  import_from_photos: Importuj ze zdjęć
-  import_from_yahoo: Importuj z Yahoo
   import_observations: Importuj obserwacje
   import_photos: Importuj zdjęcia
   import_ranges: Importuj zakresy
   import_sections: Importuj sekcje
-  import_sounds: Importuj nagrania dźwiękowe
   import_tags_from_csv: Importuj tagi z pliku CSV
   importing: "Importowanie..."
   improving: Ulepszony
@@ -1310,68 +1307,48 @@ pl:
   in_place_x: w miejscu %{place}
   inbox: skrzynka odbiorcza
   increase_brightness: Zwiększ jasność
-  in_order_to_login_and_using_site_visit_url: "Aby się zalogować i rozpocząć korzystanie ze strony musisz aktywować konto poprzez kliknięcie w ten link:"
   in_progress: w trakcie
-  in_taxon?: w taksonie
   in_the_past: w przeszłości
   in_the_past_week: w zeszłym tygodniu
   inactive: Nieaktywny
   inactive_taxon: Takson nieaktywny
-  inappropriate: Nieodpowiednie?
   inappropriate_content: Nieodpowiednia zawartość?
   inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} uważa, że to jest kompletna lista taksonów dla tego miejsca."
   inat_user_profile: "%{site_name}: Profil użytkownika %{user}"
-  inat_will_be_back_on: "%{site_name} będzie z powrotem na nogach/skrzydłach/płetwach/mackach/nibynóżkach"
   inaturalist_is_a_joint_initiative: "%{site_name} to wspólna inicjatywa California Academy of Sciences i National Geographic Society."
   inaturalist_is_an_online_community: "%{site_name} to społeczność przyrodników online! Dzięki dodawaniu swoich zdjęć możesz pomóc badaczom dowiedzieć się więcej o"
-  inaturalist_observations_by: "%{site_name} &#58; Obserwacje użytkownika %{login}"
   inaturalist_places: "Miejsca na %{site_name}"
   inaturalist_places_are_way_record_what_lives_where: "Miejsca na %{site_name} to sposób na rejestrowanie co gdzie żyje. Jeśli szukasz konkretnego gatunku, będziesz wiedzieć gdzie można go znaleźć. Każde miejsce posiada checklistę, która zapisuje wszystkie gatunki występujące na danym terenie - może to być pomocne przy identyfikowaniu organizmów znalezionych w konkretnym miejscu."
   info: Informacje
   input_taxon: Takson wejściowy
   insects: owady
   insect_life_stage: Stadium rozwoju owada
-  inspired_by_the_flickr_group: "Zainspirowane grupą z Flickra <a href='http://flickr.com/groups/idplease/'>ID Please</a> - w tym miejscu możesz dodawać obserwacje nieznanych rzeczy, a także pomóc użytkownikom w identyfikacji tajemniczych stworzeń!"
   interactions: Interakcje
   internal_server_error: Błąd Wewnętrzny Serwera
-  internal_taxon: Takson wewnętrzny
   internal_taxon_rank: Ranga wewnętrznego taksonu
   introduced: Introdukowany
   introduced_in_place: "Introdukowany w miejscu %{place}"
-  invasive: Inwazyjny
   invitation: Zaproszenie
-  invitations: Zaproszenia
   invite: zaproś
   invite_more: Zaproś więcej
   invite_people: Zaproś ludzi
   invite_people_to_project: "Zaproś ludzi do projektu %{project}"
   invite_someone_to: "Zaproś kogoś do %{name}!"
-  invite_to_project: Zaproś do projektu
   invite_your_friends: Zaproś znajomych
   invite_your_friends_description: "Pomóż %{site_name} stać się większą, lepszą społecznością poprzez zaproszenie znajomych!"
   inviteonly: tylko dla zaproszonych
-  invited: Zaproszony
-  invited_to_the_following_projects: "Zaproszony do następujących projektów:"
   invited_x: "Zaproszony %{x}"
-  inviting: Zapraszanie...
   is_not_following_anyone: nikogo nie obserwuje.
   is_now: jest teraz
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Czy podane dane są wystarczające do potwierdzenia, że jest to %{taxon}?
-  is_the_organism_wild: "Czy organizm jest dziki/został naturalizowany?"
-  is_this_observation_offensive_html: 'Czy ta obserwacja jest <a href="/help#inappropriate">nieodpowiednia</a>, obraźliwa lub jest spamem?'
   is_this_offensive_html: 'Czy to jest <a href="/help#inappropriate">nieodpowiednie</a>, obraźliwe lub jest spamem?'
   is_this_place_a_duplicate: Czy to miejsce jest zduplikowane?
-  it: To
   it_has: Posiada
   item_flagged_notice_html: |
     To zostało zgłoszone jako spam i przestało być publicznie widoczne. Widzisz to, ponieważ jesteś autorem lub opiekunem strony. Jeśli uważasz, że to pomyłka, 
     <a href="mailto:%{help_email}" class="contact">skontaktuj się z nami</a>.
     <a href="%{manage_flags_path}">Zarządzaj zgłoszeniami</a>
-  its_important_that_you: Ważne, abyś kliknął
-  iucn_red_list: Czerwona księga gatunków zagrożonych
-  iucn_red_list_status: Kategoria wg Czerwonej księgi gatunków zagrożonych
-  january: Styczeń
   join: Dołączyć do
   join_and: Dołączyć i
   join_inat: Dołącz do %{site_name}!
@@ -1435,9 +1412,11 @@ pl:
   lexicon: Leksykon
   lexicons:
     scientific_names: Nazwy naukowe
+    afrikaans: Afrikaans
     albanian: Albański
     bengali: Bengalski
     catalan: Kataloński
+    cebuano: Cebuano
     chinese_simplified: Chiński (uproszczony)
     chinese_traditional: Chiński (tradycyjny)
     creole_french: Kreolski (francuski)
@@ -1458,6 +1437,7 @@ pl:
     italian: Włoski
     japanese: Japoński
     korean: Koreański
+    lithuanian: Litewski
     luxembourgish: Luksemburski
     maltese: Maltański
     maori: Maoryjski
@@ -1536,6 +1516,7 @@ pl:
     el: Grecki
     en-US: Angielski (Stany Zjednoczone)
     en: Angielski
+    eo: Esperanto
     es-ES: Hiszpański (Hiszpania)
     es-MX: Hiszpański (Meksyk)
     es: Hiszpański
@@ -1544,11 +1525,13 @@ pl:
     fi: Fiński
     fr: Francuski
     gl: Galicyjski
+    he: Hebrajski
     id: Indonezyjski
     it: Włoski
     ja: Japoński
     ko: Koreański
     lb: Luksemburski
+    lt: Litewski
     mk: Macedoński
     nl: Holenderski
     oc: Oksytański
@@ -1571,9 +1554,11 @@ pl:
   location_is_private: Lokalizacja jest prywatna
   location_specified: Lokalizacja określona
   log_in: Zaloguj się
+  log_scale_label: Dziennik
   logged_in_as: Zalogowano jako
   login_slash_username: Login / nazwa użytkownika
   logo:
+    logo: Logo
     white_bg_gif: GIF z białym tłem
     transparent_png: transparentny PNG
     none: żaden
@@ -1581,6 +1566,7 @@ pl:
   longitude: Długość
   longitude_in_decimal: 'Długość w stopniach dziesiętnych, np. -122.123'
   longitude_value: "Długość: %{longitude}"
+  look_up_name: "Wyszukaj nazwę"
   looks_like_no_species_in_guide: Wygląda na to, że jeszcze nie masz żadnych gatunków w przewodniku.
   make_admin: Nadaj uprawnienia administratora
   make_an_observation: utwórz obserwację
@@ -1611,6 +1597,7 @@ pl:
       observations: Obserwacje
       range: Zakres
   map_tooltip: Pokaż widok mapy
+  map_for: Mapa dla
   mark_as_reviewed: Oznacz jako przejrzane
   mark_all_as_reviewed: Oznacz wszystkie jako przejrzane
   mark_all_as_unreviewed: Oznacz wszystkie jako nieprzejrzane
@@ -1646,6 +1633,14 @@ pl:
   momentjs:
     shortRelativeTime:
       future: "w %s"
+      past: "%s"
+      s: "1 s"
+      m: "1 min"
+      mm: "%dm m"
+      h: "1 h"
+      hh: "%d h"
+      d: "1 d"
+      dd: "%d d"
       M: "1msc"
       MM: "%dmsc"
       'y': "1r"
@@ -1781,6 +1776,7 @@ pl:
   no_favorites_added:
     current_user: Nie dodałeś jeszcze niczego do ulubionych.
     user: "%{user} nie dodał jeszcze niczego do ulubionych."
+  no_journal_post_have_been: Żadne wpisy w dzienniku nie zostały jeszcze dodane do tego projektu.
   no_license_all_rights_reserved: Brak licencji (wszelkie prawa zastrzeżone)
   no_link_flickr: "Wolałbym nie."
   no_managers_set: Brak ustanowionych managerów
@@ -1873,6 +1869,9 @@ pl:
   observations_by_app: Obserwacje po aplikacji
   observation_date: Data
   observation_date?: Data?
+  observation_field_type_text: Tekst
+  observation_field_type_date: Data
+  observation_field_type_time: Czas
   observation_flagged: Obserwacja zgłoszona
   observation_flagged_as_flag: Obserwacja zgłoszona jako %{flag}
   observation_removed_from_the_project: "Obserwacja usunięta z projektu \"%{project}\""
@@ -1912,11 +1911,15 @@ pl:
   open_: Otwórz
   optional: opcjonalne
   or: lub
+  or_log_in_with_colon: "Lub zaloguj się przez:"
   orange: pomarańczowy
   order: Kolejność
+  organism_is_wild: Organizm jest dziki
   organisms: Organizmy
   original: Oryginalny
+  originally_flagged_by: Pierwotnie zgłoszone przez
   other: Inne
+  other_animals: inne zwierzęta
   other_animals_plural:
     one: inne zwierzę
     few: inne zwierzęta
@@ -1926,17 +1929,28 @@ pl:
   parent: Rodzic
   parent_name: Nazwa rodzica
   password: Hasło
+  paste: Wklej
+  pdf: PDF
   people_added:
     identification:
       with_observation: dodał <strong>identyfikację</strong> do %{observation_link} użytkownika %{user_link}
+  per_day: Dziennie
+  per_month: Miesięcznie
+  per_week: Tygodniowo
   person: osoba
+  per_page: "Na stronę"
+  permalink: Link bezpośredni
+  photo: Zdjęcie
   photo?: Zdjęcie?
+  photo_browser: Przeglądarka zdjęć
   photos_size:
     small: mały
     medium: średni
     large: duży
+  pick_a_username: Wybierz nazwę użytkownika
   pink: różowy
   place: Miejsce
+  placeholder: Tekst zastępczy
   place_geo:
     geo_planet_place_types:
       Airport: Lotnisko
@@ -1968,8 +1982,58 @@ pl:
   places: Miejsca
   places_name:
     africa: Afryka
+    albania: Albania
+    algeria: Algieria
+    american_samoa: Samoa Amerykańskie
+    antarctica: Antarktyda
+    antigua_and_barbuda: Antigua i Barbuda
+    argentina: Argentyna
+    armenia: Armenia
+    aruba: Aruba
+    australia: Australia
     austria: Australia
+    azerbaijan: Azerbejdżan
+    bahamas: Bahamy
+    bahrain: Bahrajn
+    bangladesh: Bangladesz
+    barbados: Barbados
+    belarus: Białoruś
     belgium: Belgia
+    belize: Belize
+    benin: Benin
+    bermuda: Bermudy
+    bhutan: Bhutan
+    bolivia: Boliwia
+    bonaire_saint_eustatius_and_saba: Bonaire, Sint Eustatius i Saba
+    bosnia_and_herzegovina: Bośnia i Hercegowina
+    botswana: Botswana
+    bouvet_island: Wyspa Bouveta
+    brazil: Brazylia
+    british_indian_ocean_territory: Brytyjskie Terytorium Oceanu Indyjskiego
+    british_virgin_islands: Brytyjskie Wyspy Dziewicze
+    brunei: Brunei
+    bulgaria: Bułgaria
+    burkina_faso: Burkina Faso
+    burundi: Burundi
+    cambodia: Kambodża
+    cameroon: Kamerun
+    canada: Kanada
+    cape_verde: Republika Zielonego Przylądka
+    cayman_islands: Kajmany
+    central_african_republic: Republika Środkowoafrykańska
+    central_america: Ameryka Środkowa
+    chad: Czad
+    chile: Chile
+    china: Chiny
+    christmas_island: Wyspa Bożego Narodzenia
+    clipperton_island: Wyspa Clippertona
+    cocos_islands: Wyspy Kokosowe
+    colombia: Kolumbia
+    commonwealth_of_the_northern_mariana_islands: Mariany Północne
+    comoros: Komory
+    costa_rica: Kostaryka
+    croatia: Chorwacja
+    cuba: Kuba
     europe: Europa
     france: Francja
     georgia: Gruzja
@@ -1981,6 +2045,32 @@ pl:
     grenada: Grenada
     india: Indie
     italy: Włochy
+    kazakhstan: Kazachstan
+    kenya: Kenia
+    kiribati: Kiribati
+    korea: Korea
+    kosovo: Kosowo
+    kuwait: Kuwejt
+    laos: Laos
+    latvia: Łotwa
+    lebanon: Liban
+    liberia: Liberia
+    libya: Libia
+    liechtenstein: Liechtenstein
+    lithuania: Litwa
+    luxembourg: Luksemburg
+    macedonia: Macedonia Północna
+    madagascar: Madagaskar
+    malawi: Malawi
+    malaysia: Malezja
+    maldives: Malediwy
+    mali: Mali
+    malta: Malta
+    marshall_islands: Wyspy Marshalla
+    martinique: Martynika
+    mauritania: Mauretania
+    mauritius: Mauritius
+    mexico: Meksyk
     qatar: Katar
     republic_of_congo: Republika Kongo
     romania: Rumunia
@@ -2029,22 +2119,42 @@ pl:
     wallis_and_futuna: Wallis i Futuna
     zambia: Zambia
   plants: rośliny
+  posts: Posty
+  preview: Podgląd
+  preview_your_message: Podgląd wiadomości
   previous: Poprzedni
   previous_observation: Poprzednia obserwacja
+  previous_page: Poprzednia strona
   previous_photo: Poprzednie zdjęcie
   previous_tab: Poprzednia strona
   print_verb: Drukuj
+  privacy: Prywatność
+  privacy_policy: Polityka prywatności
+  proceed: Kontynuuj
   processing: Przetwarzanie
   processing3p: "Przetwarzanie..."
   profile: Profil
   project: Projekt
+  project_admins:
+    one: Administrator projektu
+    few: Administratorów projektu
+    many: Administratorów projektu
+    other: Administratora projektu
+  project_cover: Okładka projektu
+  project_group_label: Grupa
+  project_icon: Ikona projektu
   projects: Projekty
   projects_from_place: "Projekty z miejsca %{place}"
   projects_you_admin: Projekty, którymi administrujesz
+  radius: Promień (m)
+  radius_value: "Promień (m): %{radius}"
   rank_position: Ranga
   ranks:
+    kingdom: Królestwo
+    subkingdom: Podkrólestwo
     phylum: Typ
     subphylum: Podtyp
+    superclass: Nadklasa
     class: Klasa
     subclass: Podklasa
     infraclass: Infraklasa
@@ -2052,6 +2162,7 @@ pl:
     order: Rząd
     suborder: Podrząd
     infraorder: Infrarząd
+    superfamily: Nadrodzina
     family: Rodzina
     subfamily: Podrodzina
     supertribe: Nadplemię
@@ -2068,15 +2179,26 @@ pl:
     form: Forma
     infrahybrid: Infrahybryda
     leaves: Liście
+  read_more: Czytaj więcej
+  read_the_full_wikipedia: Przeczytaj pełen opis na Wikipedii
+  real_time_stats: Statystyki w czasie rzeczywistym
   reason: Powód
   reason_label: "Powód:"
   recently_active_projects_from_everywhere: "Niedawno aktywne projekty z całego świata"
   recently_created_projects_from_everywhere: "Niedawno utworzone projekty z całego świata"
+  refresh: Odśwież
+  refreshing: odświeżanie
+  remember_me: Zapamiętaj mnie
   remove: Usuń
   remove_all_tags: Usuń wszystkie tagi
   remove_from: Usuń z
+  remove_curator: Usuń opiekuna
+  remove_curator_role: Usuń rolę opiekuna
+  remove_curator_status: Usuń status opiekuna
   remove_from_id_please?: Usunąć z działu Proszę o identyfikację?
   remove_from_list: Usuń z listy
+  remove_from_project: Usuń z projektu
+  remove_this_section: Usuń tą sekcję
   remove_photo: Usuń zdjęcie
   remove_section: Usuń sekcję
   remove_selected: Usuń zaznaczone
@@ -2086,12 +2208,16 @@ pl:
   removing: "Usuwanie..."
   reply: Odpowiedz
   reptiles: gady
+  research_grade: Poziom Badawczy
   review_all: Przejrzyj wszystkie
   review_verb: Przejrzyj
   reviewed: Przejrzane
   rg_observations: Obserwacje RG
+  row_singular_or_plural: Wiersz(e)
+  satellite: satelita
   save: Zapisz
   save_all: Zapisz wszystko
+  save_and_add_another: Zapisz i dodaj kolejny
   save_changes: Zapisz zmiany
   save_colors: Zapisz kolory
   save_comment: Zapisz komentarz
