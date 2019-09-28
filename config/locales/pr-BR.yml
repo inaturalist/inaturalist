@@ -242,8 +242,6 @@ pt-BR:
   add_your_email_to_get: |
     Adicione seu email para receber retorno sobre suas observações. Se prefere não compartilhar seu email, você pode verificar na própria página depois.
   add_your_own_observations_at: "Adicione suas próprias observações no %{site_name}"
-  add_your_photo: Adicione sua foto
-  add_your_photo_to: "Adicione sua foto ao %{project}"
   added: Adicionado
   added!: Adicionado!
   added_by: Adicionado por
@@ -387,7 +385,6 @@ pt-BR:
   amphibians: anfíbios
   ancestor_taxon: Táxon ancestral
   and: e
-  and_help_the_inaturalist_community_grow: "e ajude a comunidade %{site_name} crescer."
   and_other_taxa: "&amp; Outros Táxons"
   and_x_more_people!:
     one: "e 1 pessoa a mais"
@@ -468,9 +465,7 @@ pt-BR:
   authorize: Autorizar
   authorize_permissions_from_provider: "Autorizar permissões de %{provider}"
   automatic_short: Automático
-  automatically_add_to_project: Adicione automaticamente ao projeto
   automatically_add_observations_to_this_project: Adicionar automaticamente observações a este projeto
-  automatically_id_new: Identificar automaticamente novas observações como
   automatically_update_my_content_for_taxon_changes: Atualiza automaticamente o seu conteúdo quando existir uma mudança de espécies e grupos
   back: Voltar
   back_to_all_species: Voltar para Todas as Espécies
@@ -908,7 +903,6 @@ pt-BR:
   deleting: Excluindo...
   deleting_verb: Excluindo
   deny: Negar
-  descendant_taxa: taxóns descendentes
   descending: Descendente
   describe_purpose: Descreva o objetivo deste projeto.
   describe_your_interest_in_nature: Descreva seu interesse na natureza!
@@ -1389,7 +1383,6 @@ pt-BR:
   inat_believes_this_is_a_complete_listing: "%{site_name} acredita que é uma lista completa de táxons deste local."
   inat_user_profile: "%{site_name}: Perfil de %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society."
-  inaturalist_is_an_online_community: "%{site_name} é uma comunidade online de naturalistas! Adicionando sua foto, você pode ajudar pesquisadores a aprender mais sobre as espécies"
   inaturalist_places: "%{site_name} Lugares"
   inaturalist_places_are_way_record_what_lives_where: "%{site_name} Lugares são uma maneira de registrar o que vive aonde. Se você está procurando por uma espécie em particular, você saberá onde procurar. Todo lugar tem uma lista de verificação que registra todas as espécies que ocorrem lá, então elas também podem ser úteis para procurar organismos que você encontrou em determinados locais."
   info: Informação
@@ -1404,11 +1397,9 @@ pt-BR:
   introduced_in_place: "Introduzido em %{place}"
   invitation: Convite
   invite: convidar
-  invite_flickr_photos: "Convidar fotos do Flickr para %{site_name}"
   invite_more: convidar mais
   invite_people: Convide pessoas
   invite_people_to_project: "Convide pessoas para %{project}"
-  invite_photos_to_raquo_html: "Convide fotos para <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Convide alguém para %{name}!"
   invite_your_friends: Convide seus amigos
   invite_your_friends_description: "Ajude a fazer %{site_name} uma comunidade melhor e maior convidando seus amigos para participar!"
@@ -1423,14 +1414,12 @@ pt-BR:
   is_this_offensive_html: 'Esta observação é <a href="/help#inappropriate">inapropriada</a>, spam, ou ofensiva?'
   is_this_place_a_duplicate: Este local está duplicado?
   it_can_now_be_used_for_research: Pode agora ser utilizada para pesquisa ou visualizada em outros sites
-  it_has: Tem
   item_flagged_notice_html: |
     Isto foi marcado como spam e não está mais visível publicamente. Você pode vê-lo porque o criou, ou você é um curador do site. Se você acha que foi um erro, por favor
     <a href="mailto:%{help_email}" class="contact">contact us</a>.
     <a href="%{manage_flags_path}">Manage flags</a>
   join: Faça parte
   join_and: Faça parte e
-  join_inat: Participe %{site_name}!
   join_project: Entre neste projeto
   join_some_projects_and_invite_some_observations_html: "Junte-se a alguns <a href='%{join_url}'>projetos</a> e <a href='%{invite_url}'>convide alguma observações</a>"
   join_the_largest_group_of_naturalists_in_the_world: Junte-se ao maior grupo de naturalistas do mundo!
@@ -1439,7 +1428,6 @@ pt-BR:
   joined_any_projects: participações e projetos
   joined_projects: Projetos a que aderiu
   joined_with_date: "Entrou: %{date}"
-  joining: Participando...
   journal: Boletim Informativo
   journal_archives_for: Arquivos do Boletim Informativo
   journal_post: Publique no Boletim Informativo
@@ -1450,7 +1438,6 @@ pt-BR:
   just_a_reminder: Apenas um lembrete, já que você pode ter dado permissões aos curadores do projeto para visualizar as coordenadas ocultas de suas observações neste projeto.
   just_added!: Recém adicionado!
   keep_editing: Continuar editando
-  kelp_diatoms_and_allies: "algas, diatomáceas e similares"
   keyboard_shortcuts: Atalhos de Teclado
   kml_file_size_error: "KML deve ter menos que 1 MB de tamanho"
   labels: Etiquetas
@@ -1461,7 +1448,6 @@ pt-BR:
   large: grande
   last_active_with_date: "Última vez ativo: %{date}"
   last_confirmed_observation: Última observação confirmada
-  last_inat_observation: "Última observação %{site_name}"
   last_observation: Última observação
   last_seen: Última visualização
   last_year: Ano Passado
@@ -1477,7 +1463,6 @@ pt-BR:
     observations: A maioria das observações em %{time}
     identifications: A maioria das identificações %{time}
   leading: Conduzindo
-  learn!: Aprenda!
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre espécies que vivem em
   learn_more: Saiba mais
@@ -1540,26 +1525,17 @@ pt-BR:
   licensed_site_photos: "Fotos com licença %{site_name}"
   license: Licença
   licensing: Licenciando
-  licensing_your_content: |
-    Licenciar seu conteúdo permite que outros tenham direito de utilizar se praticarem os termos da licença. %{site_name} Utilize seu conteúdo licenciado pela Creative
-    Commons-para compartilhar dados com associados como a 
-    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
   licensing_your_content_gives_others_legal: "Licenciar seu conteúdo dá a oportunidade legal para outros usuários utilizarem se eles respeitarem os termos da licença. %{site_name} utiliza o conteúdo sob licença Creative Commons para compartilhar dados com parceiros como"
   life: Vida
-  life!: Vida!
   life_list: "Lista de Vida de %{user}"
   life_list_updated: Lista da Vida atualizada!
   life_list_updated_we_also_saved_a: A lista da Vida está atualizada! Nós também salvamos uma observação em branco para este táxon.
   life_lists_automatically_fill: 'A Lista da Vida adiciona automaticamente novos táxons conforme você os observa, e eles podem ser restritos a um nível mais alto de parentesco de grupos ou espécies, ex: uma lista de vida de aves na família dos corvos (Corvidae)'
-  life_list_first: "primeiro da lista da vida"
-  life_list_firsts: "primeiros da lista da vida"
   link_or_unlink_your_facebook_account: Conecte ou desconecte sua conta do Facebook
   link_or_unlink_your_flickr_account: Conecte ou desconecte sua conta do Flickr
   link_or_unlink_your_google_account: Vincular ou desvincular sua conta do Google
   link_your_facebook_account: Conecte a sua conta do Facebook
   link_your_flickr_account: Conecte sua conta do Flickr
-  link_your_flickr_account_with_inat_so: "Conecte sua conta do Flickr com %{site_name} assim você poderá adicionar fotos das suas observações."
   link_your_google_account: Vincule sua conta do Google
   linked_facebook: "Sua conta %{site_name} está conectada à sua conta do Facebook."
   linked_facebook_automaticaly: "Também, fique sabendo que quando você entrar no %{site_name} via Facebook, nós iremos automaticamente reconectar seu %{site_name} e conta do Facebook. Parece razoável se você utiliza Facebook, que você desejará importar suas fotos que estão na conta do Facebook, certo?"
@@ -1569,9 +1545,7 @@ pt-BR:
   linked_flickr: "Sua conta %{site_name} já está vinculada à sua conta do Flickr."
   linked_flickr_automatically: "Saiba também que se você entrar no %{site_name} através do Flickr, nós iremos automaticamente re-conectar sua conta do %{site_name} e do Flickr. Parece rasoável que se você utiliza o Flickr, você irá desejar importar suas fotos publicadas por lá, correto?"
   linked_flickr_description: "Manter sua conta %{site_name} conectada ao seu perfil do Flickr permite que você adicione múltiplas fotos nas suas observações. Claro que a qualquer momento você pode encerrar a conexão entre %{site_name} e o Flickr, nós não impedimos isto, você somente não poderá adicionar fotos. Algumas vezes isto pode ser para melhorar algo, como por exemplo se você desejar criar uma nova conta no Flickr que você quer conectar com %{site_name}."
-  linked_flickr_hotwo: "Você pode ativar sua conta do Flickr com %{site_name} para adicionar fotos clicando neste link."
   linked_flickr_password_html: "<strong>Nós nunca pediremos sua senha do Flickr</strong> (mas o Flickr pode, verifique o link que o botão te redireciona e tenha certeza que é Flickr.com)."
-  linked_flickr_photo_copy_html: "<strong>Nós nunca iremos armazenar cópias das suas fotos ou mudar seus dados do Flickr (a não ser que você solicite isto para nós).</strong> Nós nos preocupamos muito sobre aves, insetos e lesmas para querer causar qualquer confusão com suas informações!"
   list: Lista
   list_deleted: Lista excluída.
   list_saved: Lista salva.
@@ -1585,27 +1559,19 @@ pt-BR:
   listed_taxa: Táxon listado
   listed_taxon: Táxon listado
   listed_taxon_updated: A lista de espécies e grupos foi atualizada
-  listing_announcement: Listando aviso
-  listing_announcements: Listando avisos
   listing_lists: Mostrando listas
   listing_taxa: Listando os Táxons
-  listing_taxon_names: Listando os nomes de Táxon
   lists: Listas
-  lists_are_lists_of_species: "Listas são listas de espécies (ou outros grupos de táxons), como a lista de vida de todas as aves que você viu ou a lista das suas salamandras favoritas. Elas <em>não</em> são listas de observações."
   lists_by_login:
     title:
       current_user: Suas listas
       login: Listas por %{login}
-  lists_come_in_three: "Listas são de três tipos:"
   load: Carregar
   loading: "Carregando..."
   loading_flickr_photos: "Carregando fotos do Flickr..."
-  loading_full_description_html: "Carregando descrição completa..."
   loading_images: Carregando imagens...
   loading_map: Carregando mapa...
   loading_metadata: Carregando metadados ...
-  loading_more_photos: "Carregando mais fotos..."
-  loading_observations: "Carregando observações..."
   loading_preview_and_code: Carregando a pré-visualização e o código...
   loading_suggestions: Carregando sugestões...
   loading_tags: "Carregando marcações..."
@@ -1653,7 +1619,6 @@ pt-BR:
   locality_notes: Notas por localidade
   localized_species_accounts: Contas de espécies localizadas
   location: Localização
-  location_: Localização
   locations: Locais
   location_is_accurate: Localização correta
   location_is_exact: a localização é exata
@@ -1664,7 +1629,6 @@ pt-BR:
   locked_taxa_will_not_allow_new: Táxons bloqueados não permitem alterações ou inclusões. Ou seja, se você bloquear o táxon Amphibia e um dos usuários tentar importar os dados de <i>Rana catesbeiana</i> a partir de um provedor externo, um novo táxon será criado mas não será classificado como um anfíbio. Quando isto ocorre, a nova recém inclusão deve ser marcada para que os administradores a localizem. Esta alternativa deve ser utilizada somente para táxons em que acreditamos ter todos os descendentes. Coordenadores podem sobrepor esta inserção editando táxons e incluindo identificações parentes diretamente, mas por favor considere mesclar novos táxons em um táxon já presente.
   log_in: Entrar
   log_scale_label: Registro
-  logged_in_as: Entrou como
   login_slash_username: Login / nome de usuário
   logo:
     logo: Logotipo
@@ -1678,7 +1642,6 @@ pt-BR:
   looks_like_neither_have!: Parece que também não tem táxons!
   looks_like_no_species_in_guide: Aparentemente você não tem nenhuma espécie nas suas guias ainda.
   lookup: Procurar
-  lookup_user_rarr: "Procure usuário &rarr;"
   low: Baixa
   lowest_rank: Classificação mais baixa
   made_a: fez um
@@ -3366,7 +3329,6 @@ pt-BR:
   synonyms: Sinônimos
   table: Tabela
   table_of_contents: Índice de informações
-  tag: Etiqueta
   tagging: 'Marcando...'
   tags: Marcações
   tags_are_a_way: 'Marcações são uma maneira de organizar as coleções de observações. Utilize palavras chaves para marcar suas fotos e crie um índice de suas observações.'
@@ -3664,8 +3626,6 @@ pt-BR:
   this_will_try_to_add_tags_to_your_flickr: Isto irá tentar adicionar marcações nas suas fotos do Flickr. Deseja continuar?
   this_will_update_all_last_observations: Isto irá atualizar todas as observações e vai adicionar novos táxons de
   this_year: Este Ano
-  those_are_the_basics_of: |
-    Isto é o básico sobre adicionar observações! Existem muitas outras coisas que você pode fazer, como por exemplo pesquisar e filtrar observações ou editar elas em massa, mas isto deve ser simples de explorar sozinho.
   those_observations_no_longer_exist: Estas observações não existem mais.
   threatened: Ameaçado
   thu: Qui
