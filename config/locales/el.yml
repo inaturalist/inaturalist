@@ -220,8 +220,6 @@ el:
   add_to_your_life_list: Προσθήκη στην "λίστα ζωής" σας!
   add_to_your_list: Προσθήκη στη λίστα σας
   add_your_own_observations_at: "Προσθέστε τις δικές παρατηρήσεις στο %{site_name}"
-  add_your_photo: Προσθέστε τη Φωτογραφία σας
-  add_your_photo_to: "Προσθήκη της φωτογραφίας σας στο %{project}"
   added: Προστέθηκε
   added!: Προστέθηκε!
   added_by: Προστέθηκε από
@@ -358,7 +356,6 @@ el:
   already_have_an_account_log_in_html: Έχετε ήδη λογαριασμό;<strong>Συνδεθείτε.</strong>
   amphibians: Αμφίβια
   and: και
-  and_help_the_inaturalist_community_grow: "και βοηθήστε την κοινότητα %{site_name} να αυξηθεί."
   and_other_taxa: "&amp; Άλλα Taxa"
   and_x_more_people!:
     one: "και 1 ακόμα άτομο!"
@@ -435,9 +432,7 @@ el:
   attribution: Απόδοση
   authority_list:
     iucn_red_list: Κόκκινη Λίστα της ΔΕΠΦ
-  automatically_add_to_project: Αυτόματη προσθήκη στο πρότζεκτ
   automatically_add_observations_to_this_project: Αυτόματη προσθήκη παρατηρήσεων σε αυτό το πρότζεκτ
-  automatically_id_new: Αυτόματο ID των νέων παρ/σεων ως
   automatically_update_my_content_for_taxon_changes: Αυτόματη ενημέρωση του περιεχομένου μου για ταξινομικές αλλαγές
   back: Πίσω
   back_to_all_species: Πίσω σε όλα τα είδη
@@ -1120,7 +1115,6 @@ el:
   inat_account_action: "%{site_name} &#58; Λογαριασμός &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "Το %{site_name} πιστεύει πως αυτή είναι μια πλήρης καταγραφή αυτού του taxon σε αυτόν τον τόπο."
   inat_user_profile: "%{site_name}: Προφίλ του/της %{user}"
-  inaturalist_is_an_online_community: "To %{site_name} είναι μια online κοινότητα για φυσιοδίφες! Προσθέτοντας τη φωτογραφία σας, μπορεί να βοηθήσετε ερευνητές να μάθουν περισσότερα σχετικά"
   inaturalist_places: "Τόποι του %{site_name}"
   inaturalist_places_are_way_record_what_lives_where: "Οι τόποι του %{site_name} είναι ένας τρόπος για την καταγραφή του τί ζει πού. Αν ψάχνετε για ένα συγκεκριμένο είδος, θα ξέρετε πού να ψάξετε. Κάθε τόπος έχει μια λίστα ελέγχου στην οποία καταγράφονται όλα τα είδη που εμφανίζονται εκεί, έτσι μπορεί να είναι επίσης χρήσιμοι για να ψάξετε για κάτι που έχετε βρει σε ένα συγκεκριμένο σημείο."
   info: Πληροφορίες
@@ -1132,11 +1126,9 @@ el:
   introduced_in_place: "Εισήχθη σε %{place}"
   invitation: Πρόσκληση
   invite: πρόσκληση
-  invite_flickr_photos: "Πρόσκληση φωτογραφιών Flickr στο %{site_name}"
   invite_more: Πρόσκληση περισσότερων
   invite_people: Πρόσκληση ατόμων
   invite_people_to_project: "Πρόσκληση ατόμων στο %{project}"
-  invite_photos_to_raquo_html: "Πρόσκληση φωτογραφιών στο <nobr>%{site_name} &raquo;</nobr>"
   invite_your_friends: Πρόσκληση των φίλων σας
   is_an_evaluation: |
     είναι μια αξιολόγηση της ακρίβειας της παρατήρησης.
@@ -1147,10 +1139,8 @@ el:
   is_this_offensive_html: 'Είναι αυτό <a href="/help#inappropriate">ακατάλληλο</a>, σπαμ, ή προσβλητικό;'
   is_this_place_a_duplicate: Αυτός ο τόπος είναι διπλότυπος;
   it_can_now_be_used_for_research: Τώρα μπορεί να χρησιμοποιηθεί για έρευνα και να προβληθεί σε άλλες ιστοσελίδες
-  it_has: αυτό έχει
   join: μπείτε
   join_and: μπείτε και
-  join_inat: Μπείτε στο %{site_name}!
   join_project: Γίνετε μέλος σε αυτό το πρότζεκτ
   join_some_projects_and_invite_some_observations_html: "Γίνετε μέλος σε <a href='%{join_url}'>πρότζεκτ</a> και <a href='%{invite_url}'>προσκαλέστε μερικές παρατηρήσεις</a>"
   join_this_project: Γίνετε μέλος σε αυτό το πρότζεκτ
@@ -1171,7 +1161,6 @@ el:
   large: μεγάλο
   last_active_with_date: "Ενεργός για τελευταία φορά στις: %{date}"
   last_confirmed_observation: Τελευταία επιβεβαιωμένη παρατήρηση
-  last_inat_observation: "Τελευταία %{site_name} παρατήρηση"
   last_observation: Τελευταία παρατήρηση
   last_seen: Προβλήθηκε για τελευταία φορά
   last_year: Πέρυσι
@@ -1188,7 +1177,6 @@ el:
     observations: Περισσότερες παρατηρήσεις στο %{time}
     identifications: Περισσότερες αναγνωρίσεις στο %{time}
   leading: Κορυφαίος
-  learn!: Γνωριμία!
   learn: Γνωριμία
   learn_about_the_species_live_in: Μάθετε σχετικά με τα είδη που ζουν εκεί
   learn_more: Μάθετε περισσότερα
@@ -1253,7 +1241,6 @@ el:
   license: Άδεια
   licensing: Αδειοδότηση
   life: Ζωή
-  life!: Ζωή!
   life_list: "Λίστα ζωής του %{user}"
   life_list_updated: Η λίστα ζωής ενημερώθηκε!
   life_list_updated_we_also_saved_a: Η λίστα ζωής ενημερώθηκε! Επίσης αποθηκεύσαμε μια κενή παρατήρηση αυτής της ταξονομίας.
@@ -1263,7 +1250,6 @@ el:
   link_or_unlink_your_google_account: Συνδέστε ή ξεσυνδέστε τον λογαριασμό σας στο Google
   link_your_facebook_account: Συνδέστε τον λογαριασμό σας στο Facebook
   link_your_flickr_account: Συνδέστε τον λογαριασμό σας στο Flickr
-  link_your_flickr_account_with_inat_so: "Συνδέστε τον λογαριασμό σας στο Flickr με το %{site_name} για να μπορέσετε να προσθέσετε φωτογραφίες των παρατηρήσεων σας."
   link_your_google_account: Συνδέστε τον λογαριασμό σας στο Google
   linked_facebook_howto: "Για να συνδέσετε το Facebook με το %{site_name}, κάντε κλικ στον σύνδεσμο δεξιά και συνδεθείτε στο Facebook.com."
   list: Κατάλογος
@@ -1283,12 +1269,9 @@ el:
   load: Φόρτωση
   loading: "Φόρτωση σε εξέλιξη..."
   loading_flickr_photos: "Η φόρτωση φωτογραφιών Flickr είναι σε εξέλιξη..."
-  loading_full_description_html: "Φόρτωση πλήρης περιγραφής..."
   loading_images: Φόρτωση εικόνων σε εξέλιξη...
   loading_map: Φόρτωση χάρτη...
   loading_metadata: Φόρτωση μεταδεδομένων...
-  loading_more_photos: "Φόρτωση περισσότερων φωτογραφιών..."
-  loading_observations: "Φόρτωση παρατηρήσεων σε εξέλιξη..."
   loading_suggestions: Φόρτωση προτάσεων...
   loading_tags: "Φόρτωση ετικετών σε εξέλιξη..."
   loading_taxa_from_your: "Φόρτωση taxa από τις παρατηρήσεις σας..."
@@ -1328,7 +1311,6 @@ el:
     zh-CN: Κινέζικα (Απλοποιημένα)
     zh-TW: Κινεζικά (Παραδοσιακά)
   location: Τοποθεσία
-  location_: Τοποθεσία
   locations: Τοποθεσίες
   location_is_accurate: Η τοποθεσία είναι ακριβής
   location_is_exact: Η τοποθεσία είναι ακριβής
@@ -1336,7 +1318,6 @@ el:
   location_is_private: Η τοποθεσία είναι ιδιωτική
   location_specified: Η τοποθεσία είναι ορισμένη
   log_in: Σύνδεση
-  logged_in_as: Συνδεδεμένος ως
   login_slash_username: Σύνδεση / όνομα χρήστη
   logo:
     logo: Λογότυπο
@@ -2638,7 +2619,6 @@ el:
   synonyms: Συνώνυμα
   table: Πίνακας
   table_of_contents: Πίνακας περιεχομένων
-  tag: Ετικέτα
   tags: Ετικέτες
   taxa_info: Πληροφορίες ταξινομίας
   taxa_all_species_html: "Όλα τα είδη"
