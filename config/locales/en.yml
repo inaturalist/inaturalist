@@ -3821,7 +3821,7 @@ en:
   taxon_is_threatened_coordinates_hidden_desc: |
     One of the taxa suggested in the identifications, or one of the taxa that
     contain any of these taxa, is known to be rare and/or threatened, so the
-    location of this observation has been obscured.
+    location of this observation has been hidden.
   taxon_is_threatened_coordinates_obscured: Taxon is threatened, coordinates obscured by default
   taxon_is_threatened_coordinates_obscured_desc: |
     One of the taxa suggested in the identifications, or one of the taxa that
@@ -5322,8 +5322,8 @@ en:
         iconic_taxon_name: Higher-level taxonomic category for the observed taxon
         taxon_id: Unique identifier for the observed taxon
         id_please: Whether or not the observer requested ID help
-        num_identification_agreements: Number of identifications in concurrence with the observer's identiication
-        num_identification_disagreements: Number of identifications conflicting with the observer's identiication
+        num_identification_agreements: Number of identifications in concurrence with the observer's identification
+        num_identification_disagreements: Number of identifications conflicting with the observer's identification
         observed_on_string: Date/time as entered by the observer
         observed_on: Normalized date of observation
         time_observed_at: Normalized datetime of observation
@@ -5604,7 +5604,7 @@ en:
             but your child will not be able to contribute observations to
             iNaturalist. iNaturalist is a citizen-science social network where
             participants share observations and identifications of living things
-            to teach each others about nature and generate biodiversity data for
+            to teach each other about nature and generate biodiversity data for
             science.
           </p>
           <p>
@@ -7192,10 +7192,10 @@ en:
             value:
               dna_only_atcg: "for DNA can only contain the characters A, T, C, or G"
               date_format: |
-                must by in the form YYYY-MM-DD for a date field ("%{observation_field_name}" 
+                must be in the form YYYY-MM-DD for a date field ("%{observation_field_name}" 
                 in your observation of "%{observation_species_guess}")
               time_format: |
-                must by in the form hh:mm for a time field ("%{observation_field_name}" 
+                must be in the form hh:mm for a time field ("%{observation_field_name}" 
                 in your observation of "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: user does not accept fields from others
