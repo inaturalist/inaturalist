@@ -135,8 +135,6 @@ sk:
   add_your_email_to_get: |
     Vložením svojho e-mailu získate spätnú väzbu ku svojim pozorovaniam od komunity. Ak by ste ho radšej nezdieľali, čoskoro to prosím skúste!
   add_your_own_observations_at: "Vložte vaše vlastné pozorovania na %{site_name}"
-  add_your_photo: Vložiť vlastnú fotku
-  add_your_photo_to: "Vložiť vlastnú fotku do %{project}"
   added: Pridané
   added!: Pridané!
   added_by: Pridané užívateľom
@@ -240,7 +238,6 @@ sk:
   already_have_an_account_log_in_html: Už máte účet? <strong>Prihláste sa.</strong>
   amphibians: obojživelníci
   and: a
-  and_help_the_inaturalist_community_grow: "a pomôžte %{site_name} komunite rásť."
   and_other_taxa: "&amp; Ďalšie taxóny"
   animals: Zvieratá
   annotation: Anotácia
@@ -317,9 +314,7 @@ sk:
   authorize: Autorizovať
   authorize_permissions_from_provider: "Schváliť povolenie od %{provider}"
   automatic_short: Automaticky
-  automatically_add_to_project: Automaticky pridať do projektu
   automatically_add_observations_to_this_project: Automaticky pridať pozorovanie do tohto projektu
-  automatically_id_new: Automaticky priradiť ID novým pozorovaniam ako
   automatically_update_my_content_for_taxon_changes: Automaticky aktualizovať môj obsah pri zmenách taxónov
   back: Späť
   back_to_all_species: Späť na všetky druhy
@@ -1177,11 +1172,9 @@ sk:
   introduced_in_place: "Introdukovaný v %{place}"
   invitation: Pozvánka
   invite: pozvať
-  invite_flickr_photos: "Požiadať o fotky z Flickr na %{site_name}"
   invite_more: Pozvať viac
   invite_people: Pozvať ľudí
   invite_people_to_project: "Pozvať ľudí do %{project}"
-  invite_photos_to_raquo_html: "Požiadať o fotky na <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Pozvať niekoho do %{name}!"
   invite_your_friends: Pozvite svojich priateľov
   invite_your_friends_description: "Pomôžte zväčšiť %{site_name} a vytvoriť lepšiu komunitu prizvaním svojich priateľov!"
@@ -1195,14 +1188,12 @@ sk:
   is_this_offensive_html: 'Je toto <a href="/help#inappropriate">nevhodné</a>, spam, alebo urážlivé?'
   is_this_place_a_duplicate: Je toto miesto duplikát?
   it_can_now_be_used_for_research: Teraz to môže byť využité pre výskum a zobrazovanie na ďalších webových stránkach
-  it_has: Má
   item_flagged_notice_html: |
     Toto bolo označené ako spam a teraz nie je viditeľné. Vám sa text zobrazuje, pretože ste jeho autorom, alebo kurátor stránok.
     Ak si myslíte, že ide o chybu, <a href="mailto:%{help_email}" class="contact">napíšte nám</a>.
     <a href="%{manage_flags_path}">Správa značiek</a>
   join: Pridať sa
   join_and: Pridať sa a
-  join_inat: Pridať sa k %{site_name}!
   join_project: Zapojiť sa do tohto projektu
   join_some_projects_and_invite_some_observations_html: "Zapojte sa do niektorých <a href='%{join_url}'>projektov</a> a <a href='%{invite_url}'>požiadejte o pozorovania</a>"
   join_the_largest_group_of_naturalists_in_the_world: Pripojte sa k najväčšej skupine prírodovedcov na svete!
@@ -1211,7 +1202,6 @@ sk:
   joined_any_projects: zapojil/a sa do projektov
   joined_projects: Projekty, ku ktorým ste sa pridali
   joined_with_date: "Pripojil sa %{date}"
-  joining: Pripojovanie...
   journal: Denník
   journal_archives_for: Archívy denníkov pre
   journal_post: Záznam v denníku
@@ -1222,7 +1212,6 @@ sk:
   just_a_reminder: Len pre pripomenutie, pretože ste možno dali kurátorom projektov povolenie nazerať na súkromné súradnice vašich pozorovaní v tomto projekte.
   just_added!: Práve pridané!
   keep_editing: Pokračovať v editácii
-  kelp_diatoms_and_allies: "chaluhy, rozsievky a príbuzné rody"
   keyboard_shortcuts: Klavesové skratky
   kml_file_size_error: "KML musí byť menší ako 1 MB"
   labels: Štítky
@@ -1233,7 +1222,6 @@ sk:
   large: veľký
   last_active_with_date: "Naposledy aktívny %{date}"
   last_confirmed_observation: Posledné potvrdené pozorovanie
-  last_inat_observation: "Posledné pozorovanie %{site_name}"
   last_observation: Posledné pozorovanie
   last_seen: Naposledy videný
   last_year: Minulý rok
@@ -1252,7 +1240,6 @@ sk:
     observations: Najviac pozorovaní v %{time}
     identifications: Najviac identifikácií v %{time}
   leading: Najlepší
-  learn!: Učte sa!
   learn: Učiť sa
   learn_about_the_species_live_in: Naučte sa o druhoch, ktoré žijú v
   learn_more: Viac info
@@ -1311,18 +1298,12 @@ sk:
   licensed_site_photos: "Fotky s licenciou %{site_name}"
   license: Licencia
   licensing: Licencovanie
-  licensing_your_content: |
-    Udelením licencie k vášmu obsahu dávate ostatným právo tento obsah používať, ak dodrží podmienky licencie. %{site_name} využíva váš obsah s licenciou Creative Commons pri zdieľaní s partnermi, ako je napríklad <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
   licensing_your_content_gives_others_legal: "Udelením licencie k vášmu obsahu dávate ostatným právo tento obsah používať, ak dodrží podmienky licencie. %{site_name} využíva váš obsah s licenciou Creative Commons pri zdieľaní s partnermi, ako je napríklad"
   life: Život
-  life!: Život!
   life_list: "Zoznam života užívateľa %{user}"
   life_list_updated: Zoznam života bol aktualizovaný!
   life_list_updated_we_also_saved_a: Zoznam života bol aktualizovaný! Uložili sme aj prázdne pozorovania tohto taxónu.
   life_lists_automatically_fill: Zoznamy života sa automaticky doplňujú novými taxónmi, ktoré pozorujete, a môžu byť obmedzené na hlavné taxóny vyšších úrovni, napr. zoznam života vtákov čeľade krkavcovitých (Corvidae).
-  life_list_first: "prvý na zozname života"
-  life_list_firsts: "prvý na zozname života"
   linear_scale_label: Lineárny
   link: Odkaz
   link_or_unlink_your_facebook_account: Pripojiť alebo zrušiť pripojenie vášho facebookového účtu
@@ -1330,7 +1311,6 @@ sk:
   link_or_unlink_your_google_account: Prihlásiť alebo zrušiť pripojenie účtu na Google
   link_your_facebook_account: Pripojiť váš účet na Facebooku
   link_your_flickr_account: Pripojiť účet Flickr
-  link_your_flickr_account_with_inat_so: "Prepojiť váš účet na Flickr so %{site_name}, aby ste mohli pridávať fotky z vašich pozorovaní."
   link_your_google_account: Pripojiť účet Google
   linked_facebook: "Váš účet na %{site_name} je teraz pripojený s vašim účtom na Facebooku."
   linked_facebook_automaticaly: "Ďalej nezabudnite, že keď sa prihlásite na %{site_name} cez Facebook, automaticky znovu prepojíme váš účet na %{site_name} s účtom na Facebooku. Zdá sa rozumné, že ak používate Facebook, budete chcieť importovať fotky z Facebooku, že?"
@@ -1340,8 +1320,6 @@ sk:
   linked_flickr: "Váš účet na %{site_name} je teraz pripojený s vašim účtom na Flickr."
   linked_flickr_automatically: "Ďalej nezabudnite, že keď sa prihlásite na %{site_name} cez Flickr, automaticky znovu prepojíme váš účet na %{site_name} s účtom na Flickr. Zdá sa rozumné, že ak používate Flickr, budete chcieť importovať fotky z Flickr, že?"
   linked_flickr_description: "Ak bude váš účet na %{site_name} prepojený s vaším účtom na Flickr, budete môcť pridávať ku svojim pozorovaniam viac fotiek. Samozrejme, ak budete kedykoľvek chcieť %{site_name} a Flickr oddeliť, nebudeme vám v tom brániť, len nebudete môcť pridávať fotky. Niekedy to môže byť dobré, napríklad keď si vytvoríte nový účet na Flickr, s ktorým chcete prepojiť %{site_name}."
-  linked_flickr_hotwo: "Svoj účet na Flickr môžete aktivovať prostredníctvom %{site_name}, aby ste mohli pridávať fotky, kliknutím na tento odkaz."
-  linked_flickr_photo_copy_html: "<strong>Nikdy nebudeme ukladať kópie vašich fotiek ani meniť vaše údaje na Flickr (ak nás o to nepožiadate). </strong> Príliš sa zaujímame o vtáky, chrobáky a ulitníkov, než aby sme sa hrali s vašimi údajmi!"
   list: Zoznam
   list_deleted: Zoznam bol zmazaný.
   list_saved: Zoznam bol uložený.
@@ -1355,27 +1333,19 @@ sk:
   listed_taxa: Taxóny uvedené na zozname
   listed_taxon: Taxón uvedený na zozname
   listed_taxon_updated: Taxón uvedený na zozname bol aktualizovaný
-  listing_announcement: Oznámenie o zápise do zoznamu
-  listing_announcements: Oznámenie o zápisoch do zoznamu
   listing_lists: Zoznamy zápisov
   listing_taxa: Zapísať do zoznamu taxónov
-  listing_taxon_names: Zapísať do zoznamu názvov taxonov
   lists: Zoznamy
-  lists_are_lists_of_species: "Zoznamy sú zoznamy druhov (alebo iných taxónov), napríklad zoznam všetkých vtákov, ktoré ste viděli, alebo zoznam vašich obľúbených mlokov. <em>Nie sú </em> to zoznamy pozorovaní."
   lists_by_login:
     title:
       current_user: Vaše zoznamy
       login: Zoznamy podľa %{login}
-  lists_come_in_three: "Zoznamy sú rozdelené do troch typov:"
   load: Načítať
   loading: "Načítava sa…"
   loading_flickr_photos: "Nahrávanie fotografií z Flickr..."
-  loading_full_description_html: "Nahrávanie plného opisu..."
   loading_images: Nahrávanie obrázkov...
   loading_map: Nahrávanie mapy...
   loading_metadata: Nahrávanie metadát...
-  loading_more_photos: "Nahrávanie viacerých fotiek..."
-  loading_observations: "Nahrávanie pozorovaní..."
   loading_preview_and_code: Nahrávanie náhľadu a kódu...
   loading_suggestions: Nahrávanie návrhov...
   loading_tags: "Nahrávanie tagov..."
@@ -1423,7 +1393,6 @@ sk:
   locality_notes: Poznámky k lokalite
   localized_species_accounts: Účty lokalizovaných druhov
   location: Miesto
-  location_: Miesto
   locations: Miesta
   location_is_accurate: Miesto je presné
   location_is_exact: miesto je exaktné
@@ -1434,7 +1403,6 @@ sk:
   locked_taxa_will_not_allow_new: Zamknuté taxóny neumožňujú pridávanie nových následných taxónov. Takže ak ste zamkli obojživelníky a niekto sa pokúsil importovať <i>Rana catesbeiana</i> od externého poskytovateľa názvov, nový taxón bude vytvorený, ale nemožno ho klasifikovať ako obojživelníka. Pokiaľ k tomuto dôjde, novo pridané taxóny by mali byť označené pre správcov. Tento postup by sa mal používať iba pre taxóny, u ktorých sme presvedčení, že už máme všetky následné. Kurátor môže vykonať úpravu editáciou taxónov a priamym zadaním základných ID, zvážte však prosím zlúčenie nových taxónov s existujúcimi taxóny.
   log_in: Prihlásiť sa
   log_scale_label: Protokol
-  logged_in_as: Prihlásený ako
   login_slash_username: Prihlásenie / užívateľské meno
   logo:
     white_bg_gif: GIF s bielym pozadím
@@ -1450,7 +1418,6 @@ sk:
   looks_like_neither_have!: Vyzerá to, že nemá žiadne taxóny!
   looks_like_no_species_in_guide: Vyzerá to, že vo svojom sprievodcovi nemáte ešte žiadny druh.
   lookup: Vyhľadať
-  lookup_user_rarr: "Vyhľadať užívateľa &rarr;"
   low: Nízka
   lowest_rank: Najnižšia hodnosť
   made_a: urobiť
