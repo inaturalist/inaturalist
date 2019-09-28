@@ -308,8 +308,6 @@ pl:
     Dodaj adres email, aby otrzymać informację zwrotną dotyczącą swojej obserwacji.
     Jeśli nie chcesz podawać adresu email, to wróć tu za jakiś czas!
   add_your_own_observations_at: "Dodaj swoje własne obserwacje na %{site_name}"
-  add_your_photo: Dodaj swoje zdjęcie
-  add_your_photo_to: "Dodaj swoje zdjęcie do %{project}"
   added: Dodano
   added!: Dodano!
   added_by: Dodane przez
@@ -475,7 +473,6 @@ pl:
   already_have_an_account_log_in_html: Masz już konto? <strong>Zaloguj się.</strong>
   amphibians: płazy
   and: i
-  and_help_the_inaturalist_community_grow: "i pomóż społeczności %{site_name} rosnąć."
   and_other_taxa: "&amp; Inne taksony"
   and_x_more_people!:
     one: "i jeszcze jedna osoba!"
@@ -538,9 +535,7 @@ pl:
     cites: Konwencja waszyngtońska (CITES)
   authorize: Autoryzuj
   automatic_short: Automatyczny
-  automatically_add_to_project: Automatycznie dodaj do projektu
   automatically_add_observations_to_this_project: Automatycznie dodaj obserwacje do tego projektu
-  automatically_id_new: Automatycznie identyfikuj nowe obserwacje jako
   automatically_update_my_content_for_taxon_changes: Automatycznie aktualizuj moje obserwacje wraz ze zmianami taksonomicznymi
   back: Wstecz
   back_to_all_species: Wróć do wszystkich gatunków
@@ -1317,7 +1312,6 @@ pl:
   inat_believes_this_is_a_complete_listing: "%{site_name} uważa, że to jest kompletna lista taksonów dla tego miejsca."
   inat_user_profile: "%{site_name}: Profil użytkownika %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} to wspólna inicjatywa California Academy of Sciences i National Geographic Society."
-  inaturalist_is_an_online_community: "%{site_name} to społeczność przyrodników online! Dzięki dodawaniu swoich zdjęć możesz pomóc badaczom dowiedzieć się więcej o"
   inaturalist_places: "Miejsca na %{site_name}"
   inaturalist_places_are_way_record_what_lives_where: "Miejsca na %{site_name} to sposób na rejestrowanie co gdzie żyje. Jeśli szukasz konkretnego gatunku, będziesz wiedzieć gdzie można go znaleźć. Każde miejsce posiada checklistę, która zapisuje wszystkie gatunki występujące na danym terenie - może to być pomocne przy identyfikowaniu organizmów znalezionych w konkretnym miejscu."
   info: Informacje
@@ -1344,21 +1338,18 @@ pl:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Czy podane dane są wystarczające do potwierdzenia, że jest to %{taxon}?
   is_this_offensive_html: 'Czy to jest <a href="/help#inappropriate">nieodpowiednie</a>, obraźliwe lub jest spamem?'
   is_this_place_a_duplicate: Czy to miejsce jest zduplikowane?
-  it_has: Posiada
   item_flagged_notice_html: |
     To zostało zgłoszone jako spam i przestało być publicznie widoczne. Widzisz to, ponieważ jesteś autorem lub opiekunem strony. Jeśli uważasz, że to pomyłka, 
     <a href="mailto:%{help_email}" class="contact">skontaktuj się z nami</a>.
     <a href="%{manage_flags_path}">Zarządzaj zgłoszeniami</a>
   join: Dołączyć do
   join_and: Dołączyć i
-  join_inat: Dołącz do %{site_name}!
   join_project: Dołącz do tego projektu
   join_some_projects_and_invite_some_observations_html: "Dołącz do <a href='%{join_url}'>projektów</a> i <a href='%{invite_url}'>dodaj obserwacje</a>"
   join_the_largest_group_of_naturalists_in_the_world: Dołącz do największej grupy przyrodników na świecie!
   join_this_project: Dołącz do tego projektu
   'joined!': Dołączono!
   joined_with_date: "Dołączono: %{date}"
-  joining: Dołączanie...
   journal: Dziennik
   journal_post: Wpis do dziennika
   journal_post_deleted: Wpis usunięty.
@@ -1367,7 +1358,6 @@ pl:
   jump_to_letter: Przejdź do litery
   just_added!: Właśnie dodano!
   keep_editing: Kontynuuj edycję
-  kelp_diatoms_and_allies: "listownice, okrzemki i inne"
   keyboard_shortcuts: Skróty Klawiaturowe
   kml_file_size_error: "plik KML musi mieć mniej niż 1 MB"
   labels: Etykiety
@@ -1377,7 +1367,6 @@ pl:
   large: duże
   last_active_with_date: "Ostatnia aktywność: %{date}"
   last_confirmed_observation: Ostatnia potwierdzona obserwacja
-  last_inat_observation: "Ostatnia obserwacja na %{site_name}"
   last_observation: Ostatnia obserwacja
   last_seen: Ostatnio widziany
   last_year: Poprzedni rok
@@ -1395,7 +1384,6 @@ pl:
     observations: Najwięcej obserwacji w %{time}
     identifications: Najwięcej obserwacji w %{time}
   leading: Wiodący
-  learn!: Dowiedz się!
   learn: Dowiedz się
   learn_about_the_species_live_in: Dowiedz się więcej o gatunkach, które żyją w
   learn_more: Dowiedz się więcej
@@ -1456,12 +1444,9 @@ pl:
   less: Mniej
   license: Licencja
   life: Życie
-  life!: Życie!
   life_list: "Lista życiowa użytkownika %{user}"
   life_list_updated: Lista życiowa zaktualizowana!
   life_lists_automatically_fill: Listy życiowe są automatycznie uzupełniane - wraz z kolejnymi obserwacjami - o nowe taksony. Listy można zawęzić do konkretnego taksonu, np. lista życiowa krukowatych (Corvidae).
-  life_list_first: "najpierw lista życiowa"
-  life_list_firsts: "najpierw listy życiowe"
   linear_scale_label: Liniowo
   link: Łącze
   link_or_unlink_your_facebook_account: Połącz lub usuń swoje konto Facebook
@@ -1485,20 +1470,15 @@ pl:
     photo: zdjęcie
   list_was_successfully_created: Lista została utworzona.
   lists: Listy
-  lists_are_lists_of_species: "Listy to listy gatunków (lub innych taksonów) - to może być na przykład lista życiowa wszystkich ptaków, które widziałeś, albo lista twoich ulubionych gatunków salamander. To <em>nie są</em> listy obserwacji."
   lists_by_login:
     title:
       current_user: Twoje listy
-  lists_come_in_three: "Listy dzielą się na trzy rodzaje:"
   load: Wczytaj
   loading: "Wczytywanie..."
   loading_flickr_photos: "Wczytywanie zdjęć z Flickra..."
-  loading_full_description_html: "Wczytywanie pełnego opisu..."
   loading_images: Wczytywanie obrazków...
   loading_map: Wczytywanie mapy...
   loading_metadata: Wczytywanie metadanych...
-  loading_more_photos: "Wczytywanie zdjęć..."
-  loading_observations: "Wczytywanie obserwacji..."
   loading_suggestions: Wczytywanie sugestii...
   loading_tags: "Wczytywanie tagów..."
   loading_taxa_from_your: "Wczytywanie taksonów z twoich obserwacji..."
@@ -1545,7 +1525,6 @@ pl:
     zh-CN: Chiński (uproszczony)
     zh-TW: Chiński (tradycyjny)
   location: Lokalizacja
-  location_: Lokalizacja
   locations: Lokalizacje
   location_is_accurate: Lokalizacja dokładna
   location_is_exact: lokalizacja dokładna
@@ -1555,7 +1534,6 @@ pl:
   location_specified: Lokalizacja określona
   log_in: Zaloguj się
   log_scale_label: Dziennik
-  logged_in_as: Zalogowano jako
   login_slash_username: Login / nazwa użytkownika
   logo:
     logo: Logo
