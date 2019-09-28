@@ -209,8 +209,6 @@ zh-TW:
   add_your_email_to_get: |
     添加您的電子郵件，以讓您的觀察能獲得來自於社群的意見回饋。若您不想分享它請立即查驗！
   add_your_own_observations_at: "新增您的觀察到 %{site_name}"
-  add_your_photo: 新增你的照片
-  add_your_photo_to: "新增你的圖片至%{project}專案"
   added: 已新增
   added!: 已新增!
   added_by: 新增自
@@ -343,7 +341,6 @@ zh-TW:
   amphibians: 兩棲類
   ancestor_taxon: 祖先分類
   and: 和
-  and_help_the_inaturalist_community_grow: "並協助 %{site_name} 社群成長。"
   and_other_taxa: "&amp;其它物種分類"
   and_x_more_people!:
     other: "以及其他 %{count} 個人！"
@@ -424,9 +421,7 @@ zh-TW:
   authorize: 授權
   authorize_permissions_from_provider: "來自於%{provider}的授權許可"
   automatic_short: 自動
-  automatically_add_to_project: 自動添加至專案
   automatically_add_observations_to_this_project: 自動添加觀察至此專案
-  automatically_id_new: 自動把新的觀察紀錄鑒定為
   automatically_update_my_content_for_taxon_changes: 自動更新我的內容以用於物種分類更改
   back: 返回
   back_to_all_species: 返回至所有物種
@@ -869,7 +864,6 @@ zh-TW:
   deleting_verb: 刪除中
   deny: 拒絕
   desc: 降冪
-  descendant_taxa: 派生物種分類
   descending: 降冪
   describe_purpose: 描述此專案的目的。
   describe_your_interest_in_nature: 描述您在大自然的興趣！
@@ -1344,7 +1338,6 @@ zh-TW:
   inat_believes_this_is_a_complete_listing: "%{site_name} 相信這是此地區物種分類的完整清單。"
   inat_user_profile: "%{site_name}：%{user}的個人檔案"
   inaturalist_is_a_joint_initiative: "%{site_name} 為加利福尼亞州科學院與國家地理學會的聯合倡議。"
-  inaturalist_is_an_online_community: "%{site_name} 線上的博物學友社群！透過添加您的照片，您可協助研究員學習更多有關"
   inaturalist_places: "%{site_name} 地點"
   inaturalist_places_are_way_record_what_lives_where: "%{site_name} 是個用來記錄生物居於何處的網站，如果您正在尋找著某個特定物種，這能幫助您了解要在何處搜尋。任一地點皆備有清單，是用來記錄出現於該地點的所有物種，這在您查找特定地點裡的事物時很有幫助。"
   info: 資訊
@@ -1359,11 +1352,9 @@ zh-TW:
   introduced_in_place: "在%{place}引進"
   invitation: 邀請
   invite: 邀請
-  invite_flickr_photos: "邀請 Flickr 的照片至 %{site_name}"
   invite_more: 邀請更多
   invite_people: 邀請人們
   invite_people_to_project: "邀請人們至%{project}"
-  invite_photos_to_raquo_html: "徵求照片至<nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "邀請一些人來 %{name}！"
   invite_your_friends: 邀請您的好友
   invite_your_friends_description: "透過邀請您的好友加入來協助讓 %{site_name} 成為更大、更好的社群！"
@@ -1378,13 +1369,11 @@ zh-TW:
   is_this_offensive_html: '這是個<a href="/help#inappropriate">不適當</a>、濫發、或冒犯的內容嗎？'
   is_this_place_a_duplicate: 此地點有重複嗎？
   it_can_now_be_used_for_research: 現在可被用於在其它網站的研究和功能
-  it_has: 它有
   item_flagged_notice_html: |
     這已被標記為垃圾訊息且不再公開可見。您仍可以看到它的原因出於這是由您所創建，或是您的身份為網站策展人。若您認為目前的情況有誤，請<a href="mailto:%{help_email}" class="contact">聯絡我們</a>。
     <a href="%{manage_flags_path}">管理標記</a>
   join: 加入
   join_and: 加入及
-  join_inat: 加入 %{site_name}！
   join_project: 加入此專案
   join_some_projects_and_invite_some_observations_html: "加入一些<a href='%{join_url}'>專案</a>並<a href='%{invite_url}'>徵求一些觀察</a>"
   join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的博物學群組！
@@ -1393,7 +1382,6 @@ zh-TW:
   joined_any_projects: 已加入任何專案
   joined_projects: 已加入的專案
   joined_with_date: "加入於：%{date}"
-  joining: 加入中…
   journal: 日誌
   journal_archives_for: 期刊歸檔用於
   journal_post: 日誌發佈文章
@@ -1404,7 +1392,6 @@ zh-TW:
   just_a_reminder: 小提醒，您可能已給予專案策展人在此專案裡可檢視您觀察上的隱藏座標。
   just_added!: 剛添加！
   keep_editing: 繼續編輯
-  kelp_diatoms_and_allies: "海藻、矽藻、與相關生物"
   keyboard_shortcuts: 鍵盤快速鍵
   kml_file_size_error: "KML 大小必須小於 1 MB"
   label_colon: "%{label}："
@@ -1416,7 +1403,6 @@ zh-TW:
   large: 大
   last_active_with_date: "最近活躍：%{date}"
   last_confirmed_observation: 最近提交的觀察
-  last_inat_observation: "最近 %{site_name} 的觀察"
   last_observation: 最近觀察
   last_seen: 上次看見
   last_year: 去年
@@ -1435,7 +1421,6 @@ zh-TW:
     observations: 在 %{time} 內做出最多觀察
     identifications: 在 %{time} 內做出最多鑑定
   leading: 優先
-  learn!: 了解！
   learn: 學習
   learn_about_the_species_live_in: 了較有關物種存活於
   learn_more: 了解更多
@@ -1503,17 +1488,12 @@ zh-TW:
   licensed_site_photos: "已授權的 %{site_name} 照片"
   license: 許可協議
   licensing: 許可協議
-  licensing_your_content: |
-    授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容，來與像是<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）的資料合作者共享內容。
   licensing_your_content_gives_others_legal: "授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容，來與其它資料合作者分享，例如"
   life: 生物
-  life!: 生物！
   life_list: "%{user}的生物清單"
   life_list_updated: 已更新生物清單!
   life_list_updated_we_also_saved_a: 生物清單已更新！我們還儲存一個空白觀察紀錄到這個物種分類中。
   life_lists_automatically_fill: 你觀察到的每個新物種分類群會自動添加到生物清單內，他們會受你訂立的較高階父級物種分類群所約束。例如，一個鴉科（Family Corvidae）的分類清單會列該科的鳥類。
-  life_list_first: "首次加入生命清單"
-  life_list_firsts: "首次加入生物清單"
   linear_scale_label: 線性
   link: 連結
   link_or_unlink_your_facebook_account: 連結或取消連結至您的 Facebook 帳號
@@ -1521,7 +1501,6 @@ zh-TW:
   link_or_unlink_your_google_account: 連結或取消連結至您的 Google 帳號
   link_your_facebook_account: 連結您的臉書帳號
   link_your_flickr_account: 連結您的 Flickr 帳號
-  link_your_flickr_account_with_inat_so: "連接您的 Flickr 帳號至 %{site_name}，這樣您便可添加您觀察的照片。"
   link_your_google_account: 連結您的 Google 帳號
   linked_facebook: "您的 %{site_name} 帳號目前已連結至您的臉書帳號。"
   linked_facebook_automaticaly: "另外，請留意如果您經由臉書登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name} 與臉書帳號。若您有使用臉書；您應該會想要匯入在臉書上的照片，很合理是吧？"
@@ -1531,9 +1510,7 @@ zh-TW:
   linked_flickr: "您的 %{site_name} 帳號目前已連結至您的 Flickr 帳號。"
   linked_flickr_automatically: "另外，請留意如果您經由 Flickr 登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name} 與 Flickr 帳號。若您有使用 Flickr；您應該會想要匯入在 Flickr 上的照片，很合理是吧？"
   linked_flickr_description: "保持您的 %{site_name} 帳號連結至您的 Flickr 帳號，來允許您能添加多張照片至您的觀察。當然假設您想要讓 %{site_name} 與 Flickr 之間的連結中斷，我們也不會制止您，這樣做頂多讓您無法添加照片而已。有時最好的方法，就是您另外建立一個專門連結至 %{site_name} 的新 Flickr 帳號。"
-  linked_flickr_hotwo: "您能以 %{site_name} 啟動您的 Flickr 帳號來透過點擊此連結添加照片。"
   linked_flickr_password_html: "<strong>我們不會詢問您的 Flickr 密碼</strong>（但 Flickr 也許會檢查按鍵所傳給您的 URL 來確認是屬於 Flickr.com）。"
-  linked_flickr_photo_copy_html: "<strong>我們絕不會儲存您照片的副本或更改您的 Flickr 資料（除非您有要求我們這樣做）。</strong>我們只關注在小鳥、蟲子，以及蛞蝓等生物上，因此決不會想去擾亂您的相關資訊！"
   list: 清單
   list_deleted: 列表已刪除。
   list_saved: 清單已儲存。
@@ -1547,27 +1524,19 @@ zh-TW:
   listed_taxa: 列出的物種分類
   listed_taxon: 列出的物種分類
   listed_taxon_updated: 列出的物種分類已更新
-  listing_announcement: 列舉公告
-  listing_announcements: 列舉通告
   listing_lists: 清單列出中
   listing_taxa: 物種分類列出中
-  listing_taxon_names: 物種分類名稱列出中
   lists: 清單
-  lists_are_lists_of_species: "清單為物種（或其它物種分類群）的清單，例如像是您觀察到的鳥類，或是您所喜好的有尾目動物的生物清單。然而它們<em>並不是</em>觀察清單。"
   lists_by_login:
     title:
       current_user: 您的清單
       login: 由 %{login} 列出
-  lists_come_in_three: "列表有三個變種："
   load: 載入
   loading: "載入中…"
   loading_flickr_photos: "正在載入 Flickr 照片…"
-  loading_full_description_html: "正在載入完整描述..."
   loading_images: 讀取圖片中...
   loading_map: 讀取地圖中...
   loading_metadata: 正在載入詮釋資料...
-  loading_more_photos: "正在載入更多照片…"
-  loading_observations: "正在載入觀察…"
   loading_preview_and_code: 正在載入預覽和代碼…
   loading_suggestions: 正在載入建議…
   loading_tags: "正在載入標籤…"
@@ -1616,7 +1585,6 @@ zh-TW:
   locality_notes: 位置註解
   localized_species_accounts: 在地化物種帳號
   location: 位置
-  location_: 位置
   locations: 位置
   location_is_accurate: 位置精準
   location_is_exact: 位置精準
@@ -1627,7 +1595,6 @@ zh-TW:
   locked_taxa_will_not_allow_new: 被鎖定的物種分類群不允許添加派生物種分類群在裡頭。因此如果您鎖定了兩棲動物，當其他人嘗試從外部名稱提供者匯入美洲牛蛙時，新的物種分類群創建後不會被歸類為兩棲動物。在以上情況發生時，新添加物種分類群應被標記來讓策展人關注。這應僅用在我們認為內容已包含所有相關派生的物種分類群上。雖然策展人可以透過直接編輯物種分類群以及輸入父級鑑定來覆蓋掉，但請考慮以合併新物種分類群至現有內容為主。
   log_in: 登入
   log_scale_label: 日誌
-  logged_in_as: 已登入為
   login_slash_username: 登入 / 用戶名稱
   logo:
     logo: 標誌
@@ -1644,7 +1611,6 @@ zh-TW:
   looks_like_neither_have!: 看起來沒有任何物種分類！
   looks_like_no_species_in_guide: 看起來在您的指南裡尚未有物種。
   lookup: 查詢
-  lookup_user_rarr: "查詢用戶 &rarr;"
   low: 低
   lowest_rank: 最低級別
   made_a: 製作一個
@@ -3399,7 +3365,6 @@ zh-TW:
   synonyms: 同種異名
   table: 表格
   table_of_contents: 目錄
-  tag: 標籤
   tagging: '標記中...'
   tags: 標籤
   tags_are_a_way: '標籤是個可組織您觀察的方式。舉例來說您可以標記您所有潮池方面的觀察為「潮池」，這樣可讓它們事後更容易被找尋。'
@@ -3676,8 +3641,6 @@ zh-TW:
   this_will_try_to_add_tags_to_your_flickr: 這將會嘗試添加標籤至您的 Flickr 照片，要繼續嗎？
   this_will_update_all_last_observations: 這將會更新所有最後的觀察並添加新物種分類群來自於
   this_year: 今年
-  those_are_the_basics_of: |
-    這些是添加觀察的基礎！這裡有許多其它您可做的事情，像是搜尋並篩選您的觀察、或是以批量來編輯它們，而它們應是不言而喻的。
   those_observations_no_longer_exist: 這些觀察已不存在。
   threatened: 受威脅
   thu: 週四
