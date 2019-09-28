@@ -194,8 +194,6 @@ ja:
   add_to_your_life_list: ライフリストに追加！
   add_to_your_list: 自分のリストに追加
   add_your_own_observations_at: "自分が観察したものを%{site_name}に追加しましょう"
-  add_your_photo: 自分の写真を追加
-  add_your_photo_to: "%{project}に自分の写真を追加"
   added: 追加されました
   added!: 追加されました！
   added_by: '追加者:'
@@ -319,7 +317,6 @@ ja:
   already_have_an_account_log_in_html: アカウントは登録済みですか？ <strong>ログインしてください。</strong>
   amphibians: 両生類
   and: そして
-  and_help_the_inaturalist_community_grow: "%{site_name}コミュニティーが更に大きくなるようにご協力を"
   and_other_taxa: "&amp; その他の分類群"
   and_x_more_people!:
     other: "他%{count}人!"
@@ -395,9 +392,7 @@ ja:
     iucn_red_list: IUCNレッドリスト
   authorize_permissions_from_provider: "%{provider}の権限を承認"
   automatic_short: 自動
-  automatically_add_to_project: プロジェクトに自動的に追加
   automatically_add_observations_to_this_project: このプロジェクトに観察記録を自動的に追加する
-  automatically_id_new: 新規観察記録を自動的に次のIDを付与：
   automatically_update_my_content_for_taxon_changes: 分類群の変更を自分のデータに自動的に反映
   back: 戻る
   back_to_all_species: すべての種に戻る
@@ -724,7 +719,6 @@ ja:
   deleting: 削除しています...
   deleting_verb: 削除しています
   desc: 降順
-  descendant_taxa: 子孫の分類群
   descending: 降順
   describe_purpose: このプロジェクトの目的を説明してください
   describe_your_interest_in_nature: 自然への関心を説明してください
@@ -1049,7 +1043,6 @@ ja:
   inactive_taxon: 無効な分類群
   inat_believes_this_is_a_complete_listing: "%{site_name}は、この場所における当分類群のリストとして完全なものだと認識しています。"
   inat_user_profile: "%{site_name}: %{user}さんのプロフィール"
-  inaturalist_is_an_online_community: "%{site_name}は自然大好きなナチュラリストのためのオンラインコミュニティーです！写真を追加すると、学習の次の研究に貢献できます："
   inaturalist_places: "%{site_name} 場所"
   info: 情報
   input_taxon: 分類群を入力
@@ -1060,11 +1053,9 @@ ja:
   introduced_in_place: "%{place}の移入種"
   invitation: 招待
   invite: 招待する
-  invite_flickr_photos: "%{site_name}にFlickr写真を招待"
   invite_more: もっと招待
   invite_people: ユーザーを紹介する
   invite_people_to_project: "%{project}にメンバーを招待"
-  invite_photos_to_raquo_html: "<nobr>%{site_name}に写真を招待 &raquo;</nobr>"
   invite_someone_to: "%{name}に人を紹介しましょう！"
   invite_your_friends: 友人を招待する
   invite_your_friends_description: "%{site_name}をより大きくより良いコミュニティーにしましょう。友達を参加するように招待を送りましょう！"
@@ -1076,13 +1067,11 @@ ja:
   is_this_place_a_duplicate: この場所は重複していますか？
   join: 参加
   join_and: 参加し、
-  join_inat: '%{site_name}に参加しましょう！'
   join_project: このプロジェクトに参加する
   join_this_project: このプロジェクトに参加
   'joined!': 参加しました！
   joined_any_projects: プロジェクトに参加していません
   joined_projects: 参加したプロジェクト
-  joining: 参加中...
   journal: ジャーナル
   journal_archives_for: ジャーナルアーカイブ：
   journal_post: ジャーナル投稿
@@ -1091,14 +1080,12 @@ ja:
   jump_to_letter: 次の文字に移動
   just_added!: 新しく追加！
   keep_editing: 編集を続行
-  kelp_diatoms_and_allies: "褐藻、珪藻、その他の藻類"
   keyboard_shortcuts: キーボード ショートカット
   kml_file_size_error: "1MBより少ないKMLでなければなりません"
   labels: ラベル
   language_slash_type: 言語／種類
   large: 大
   last_confirmed_observation: 最終確認済観察記録
-  last_inat_observation: "最後の%{site_name}の観察記録"
   last_observation: 最終観察記録
   last_seen: 最終観察時
   lat: '緯度:'
@@ -1114,7 +1101,6 @@ ja:
     species: '%{time}以内に種の最多数'
     observations: '%{time}以内に観察記録の最多数'
     identifications: '%{time}以内で最多数の同定'
-  learn!: 学習
   learn_about_the_species_live_in: 次の場所で生息する生き物について学ぶ：
   learn_more: もっと詳しく
   learn_more_raquo: "もっと詳しく &raquo;"
@@ -1167,19 +1153,15 @@ ja:
   licensed_site_photos: "ライセンス付の%{site_name}写真"
   licensing: ライセンス
   life: 生命
-  life!: 生命！
   life_list: "%{user}のライフリスト"
   life_list_updated: ライフリスト更新しました！
   life_list_updated_we_also_saved_a: ライフリストが更新されました！この分類群の空の観察記録も保存されました。
   life_lists_automatically_fill: ライフリストとは、観察された分類群が自動的に更新されるリストのことです。上位階級の分類群を指定したライフリストもできます。（例えば、これまで観察したカラス上科の鳥類をまとめたリストなど）
-  life_list_first: "ライフリスト初"
-  life_list_firsts: "ライフリスト初"
   link: リンク
   link_or_unlink_your_facebook_account: Facebookアカウントとのリンク開始・解除
   link_or_unlink_your_flickr_account: Flickrアカウントとのリンク開始・解除
   link_your_facebook_account: Facebookアカウントと連携させる
   link_your_flickr_account: Flickrアカウントと連携させる
-  link_your_flickr_account_with_inat_so: "観測記録の写真を追加できるように、%{site_name}とFlickrアカウントを連携させましょう"
   linked_facebook: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されている"
   linked_facebook_howto: "Facebookと%{site_name}を同期したければ、右のリンクをクリックして、Facebook.comにログインしてください。"
   linked_facebook_password: "我々は、あなたのFacebookのパスワードを聞くことは絶対にありません。（しかし、Facebookから聞かれることがあるかもしれませんので、URL先のアドレスが本当にFacebookかどうか必ず確認してください）。また、希望しない限り、あなたのFacebookの情報を変えることもありません。"
@@ -1196,26 +1178,19 @@ ja:
   listed_taxa: 分類群一覧
   listed_taxon: リストの分類群
   listed_taxon_updated: リストの分類群が更新されました
-  listing_announcement: お知らせ一覧
-  listing_announcements: お知らせ一覧
   listing_lists: リスト一覧
   listing_taxa: 分類群一覧
-  listing_taxon_names: 分類群名称一覧
   lists: リスト
   lists_by_login:
     title:
       current_user: あなたのリスト
       login: '%{login}のリスト'
-  lists_come_in_three: "リストは以下の３種類です："
   load: 読み込む
   loading: "読み込み中..."
   loading_flickr_photos: "Flickr写真を読み込み中..."
-  loading_full_description_html: "説明全文を読み込み中..."
   loading_images: 画像を読み込み中...
   loading_map: マップを読み込み中...
   loading_metadata: メタデータを読込中...
-  loading_more_photos: "さらに写真を読み込み中..."
-  loading_observations: "観測記録を読み込み中..."
   loading_preview_and_code: プレビュー及びコードを読み込み中...
   loading_tags: "タグを読み込み中..."
   loading_taxa_from_your: "観察記録から分類群を読み込み中..."
@@ -1247,13 +1222,11 @@ ja:
     zh-TW: 中国語 (繁体字)
   locality_notes: 地域メモ
   location: 場所
-  location_: 場所
   location_is_exact: 正確位置
   location_is_public: 位置情報は公開中
   location_is_obscured: 位置情報はカモフラージュ中
   location_is_private: 位置情報は非公開
   log_in: ログイン
-  logged_in_as: 次のユーザーとしてログイン中：
   login_slash_username: ログイン / ユーザー名
   logo:
     logo: ロゴ
@@ -1269,7 +1242,6 @@ ja:
   looks_like_neither_have!: どちらにも分類群がないようです
   looks_like_no_species_in_guide: ガイドにはまだ種が入っていないようです
   lookup: 調べる
-  lookup_user_rarr: "ユーザーを調べる &rarr;"
   low: 低
   lowest_rank: 最下位階級
   made_a: 作成した
