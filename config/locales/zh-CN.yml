@@ -197,8 +197,6 @@ zh-CN:
     添加您的电子邮件以获取来自社区的对您的观察的反馈。
     如果您不希望分享它，请尽快核对！
   add_your_own_observations_at: "在 %{site_name} 添加您的个人观察"
-  add_your_photo: 添加您的照片
-  add_your_photo_to: "添加您的照片至 %{project}"
   added: 已添加
   added!: 已添加！
   added_by: 添加自
@@ -325,7 +323,6 @@ zh-CN:
   alphabetical_order: 按字母顺序
   amphibians: 两栖动物
   and: 和
-  and_help_the_inaturalist_community_grow: "并帮助%{site_name}社区成长。"
   and_other_taxa: "&amp; 其他分类"
   and_x_more_people!:
     other: "以及其他 %{count} 个人！"
@@ -403,9 +400,7 @@ zh-CN:
   authority_list:
     iucn_red_list: IUCN红色名录
   authorize_permissions_from_provider: "来自%{provider}的授权权限"
-  automatically_add_to_project: 自动加入至项目
   automatically_add_observations_to_this_project: 自动添加观察至此项目
-  automatically_id_new: 自动把这些新观察记录作鉴定为
   automatically_update_my_content_for_taxon_changes: 自动更新我的内容，以为分类单元更改
   back: 返回
   back_to_all_species: 返回所有物种
@@ -820,7 +815,6 @@ zh-CN:
   deleting: 删除中……
   deleting_verb: 删除中
   desc: 描述
-  descendant_taxa: 后代分类群
   descending: 降序
   describe_purpose: 描述此项目的目的。
   describe_your_interest_in_nature: 描述您在自然中的兴趣！
@@ -1239,7 +1233,6 @@ zh-CN:
   inat_account_action: "%{site_name} &#58; 账户 &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name}相信这是此地区内，这种分类单元的完整列表。"
   inat_user_profile: "%{site_name}：%{user}的详细资料"
-  inaturalist_is_an_online_community: "%{site_name}是一个在线的自然法学派社群！通过添加您的照片，您可以帮助研究员了解有关"
   inaturalist_places: "%{site_name} 地点"
   inaturalist_places_are_way_record_what_lives_where: "%{site_name}地点是记录生物在哪里的一种方式。如果你正在寻找一个特定的物种，你会知道去哪里找寻。每个地点都有一个清单，记录所有在那里被发现的物种，因此它们也可以用于查找你在特定地点发现的生物。"
   info: 信息
@@ -1252,11 +1245,9 @@ zh-CN:
   introduced_in_place: "在%{place}中引进"
   invitation: 引诱
   invite: 邀请
-  invite_flickr_photos: "将Flickr照片邀请到%{site_name}"
   invite_more: 邀请更多
   invite_people: 邀请人们
   invite_people_to_project: "邀请人们至 %{project}"
-  invite_photos_to_raquo_html: "邀请照片到<nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "邀请一些人至 %{name}！"
   invite_your_friends: 邀请您的朋友
   invite_your_friends_description: "您可以邀请您的朋友加入，让%{site_name}变成一个更大、更好的社区！"
@@ -1271,13 +1262,11 @@ zh-CN:
   is_this_offensive_html: '这是<a href="/help#inappropriate">不可接受</a>、滥发消息或攻击性内容么？'
   is_this_place_a_duplicate: 此地点是否重复？
   it_can_now_be_used_for_research: 它现在可以用于科学研究，并在其他网站上展示
-  it_has: 它有
   item_flagged_notice_html: |
     这已被标记为垃圾邮件，不再公开可见。你可以看到它，因为你是创建者，或者你是站点馆长。 如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。
     <a href="%{manage_flags_path}">管理标签</a>
   join: 加入
   join_and: 加入并
-  join_inat: 加入 %{site_name} 吧！
   join_project: 加入这个项目
   join_some_projects_and_invite_some_observations_html: "加入一些<a href='%{join_url}'>项目</a>，并<a href='%{invite_url}'>邀请一些观察</a>"
   join_this_project: 加入这个项目
@@ -1285,7 +1274,6 @@ zh-CN:
   joined_any_projects: 已加入任何项目
   joined_projects: 加入的项目
   joined_with_date: "加入于：%{date}"
-  joining: 正在加入……
   journal: 杂志
   journal_archives_for: 日记存档，用于
   journal_post: 日记发布
@@ -1296,7 +1284,6 @@ zh-CN:
   just_a_reminder: 提醒一下，您可能已经向项目馆长授予了查看此项目中私人观察者的地理位置的权限。
   just_added!: 添加了！
   keep_editing: 保持编辑
-  kelp_diatoms_and_allies: "海带，硅藻和allies"
   keyboard_shortcuts: 键盘快捷键
   kml_file_size_error: "KML 大小必须小于 1 MB"
   labels: 标签
@@ -1307,7 +1294,6 @@ zh-CN:
   large: 大
   last_active_with_date: "上次活跃：%{date}"
   last_confirmed_observation: 最近确认的观察
-  last_inat_observation: "最近 %{site_name} 观察"
   last_observation: 最近观察
   last_seen: 上次看见
   last_year: 去年
@@ -1325,7 +1311,6 @@ zh-CN:
     observations: 在 %{time} 的多数观察
     identifications: '%{time}中的最多鉴定'
   leading: 标题
-  learn!: 学习！
   learn: 学习
   learn_about_the_species_live_in: 了解有关居住于此的物种
   learn_more: 了解更多
@@ -1391,24 +1376,18 @@ zh-CN:
   licensed_site_photos: "已授权的 %{site_name} 照片"
   license: 许可协议
   licensing: 授权协议
-  licensing_your_content: |
-    授权您的内容，提供其他法律权利，以在他们坚持许可条款时使用。%{site_name} 使用您的知识共享许可协议许可的内容以与数据提供商分享，例如<a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>（GBIF）。
   licensing_your_content_gives_others_legal: "对您的内容进行协议授权，可以授予遵守该协议的其他人使用您内容的合法权利。%{site_name}使用您知识共享协议授权的内容同其他数据合作伙伴进行分享，比如"
   life: 生命
-  life!: 生命！
   life_list: "%{user}的生命清单"
   life_list_updated: 生物列表已更新！
   life_list_updated_we_also_saved_a: 生命清单已更新！我们也保存了此分类单元的一份空白观察。
   life_lists_automatically_fill: 生物列表会自动填充您所观察到的新分类单元，它们可能会限定于更高阶的父分类单元，例如，鸦科（Corvidae）鸟类的生物列表。
-  life_list_first: "很稀有"
-  life_list_firsts: "较稀有"
   link: 链接
   link_or_unlink_your_facebook_account: 链接或取消链接您的Facebook账户
   link_or_unlink_your_flickr_account: 链接或取消链接您的Flickr账户
   link_or_unlink_your_google_account: 链接或取消链接您的Google账户
   link_your_facebook_account: 链接您的Facebook账户
   link_your_flickr_account: 链接您的Flickr账户
-  link_your_flickr_account_with_inat_so: "将您的Flickr账户连接到%{site_name}，这样您可以添加您观察的照片。"
   link_your_google_account: 链接您的Google账户
   linked_facebook: "您的%{site_name}账户目前已链接到您的Facebook账户。"
   linked_facebook_automaticaly: "另请注意，如果您通过Facebook登录至 %{site_name}，我们将自动重新连接您的 %{site_name} 账户与Facebook账户。看起来如果您使用Facebook的话，您将希望能够导入Facebook的照片，对么？"
@@ -1418,9 +1397,7 @@ zh-CN:
   linked_flickr: "您的%{site_name}账户目前已链接到您的Flickr账户。"
   linked_flickr_automatically: "另请注意，如果您通过Flickr登录至 %{site_name}，我们将自动重新连接您的 %{site_name} 账户与Flickr账户。看起来如果您使用Flickr的话，您将希望能够导入Flickr的照片，对么？"
   linked_flickr_description: "让您的%{site_name}帐户与您的Flickr帐户关联，可以让您为观察添加多张照片。当然，如果你想要%{site_name}和Flickr取消关联，我们不会阻止你，你只是无法添加照片。有时候，可能创建一个用于链接%{site_name}的新Flickr账户会是个最佳选择。"
-  linked_flickr_hotwo: "您可以通过在%{site_name}上激活您的Flickr帐户，点击此链接来添加照片。"
   linked_flickr_password_html: "<strong>我们将不会询问您的Flickr密码</strong>（但是Flickr可能检查按钮发送给您的URL并确保那是Flickr.com）。"
-  linked_flickr_photo_copy_html: "<strong>我们将不会存储您照片的拷贝，或更改您的Flickr数据（除非您要求我们去做）等。</strong>我们太过于在乎有关鸟、小虫和鼻涕虫，以避免接触您的信息！"
   list: 列表
   list_deleted: 列表已删除。
   list_saved: 列表已保存。
@@ -1434,27 +1411,19 @@ zh-CN:
   listed_taxa: 列举的分类群
   listed_taxon: 列举的分类单元
   listed_taxon_updated: 列举的分类已更新
-  listing_announcement: 列出公告
-  listing_announcements: 列出公告
   listing_lists: 正在列举列表
   listing_taxa: 列出分类群
-  listing_taxon_names: 正在列举分类单元名称
   lists: 列表
-  lists_are_lists_of_species: "列表是物种（或其他分类群）的列表，例如您所见过的所有鸟类的生物列表或您最喜爱的蝾螈列表。它们<em>不是</em>观察列表。"
   lists_by_login:
     title:
       current_user: 您的列表
       login: 由 %{login} 列举
-  lists_come_in_three: "有三种列表："
   load: 加载
   loading: "正在载入..."
   loading_flickr_photos: "正在加载Flickr照片……"
-  loading_full_description_html: "正在加载完整描述..."
   loading_images: 正在加载图片...
   loading_map: 正在加载地图...
   loading_metadata: 正在加载元数据...
-  loading_more_photos: "正在加载更多照片……"
-  loading_observations: "正在导入观察..."
   loading_preview_and_code: 正在加载预览和代码...
   loading_suggestions: 正在加载建议...
   loading_tags: "正在加载标签……"
@@ -1499,7 +1468,6 @@ zh-CN:
   locality_notes: 位置注释
   localized_species_accounts: 本地化物种账户
   location: 位置
-  location_: 位置
   locations: 位置
   location_is_accurate: 位置准确
   location_is_exact: 位置是精确的
@@ -1509,7 +1477,6 @@ zh-CN:
   location_specified: 位置被指定
   locked_taxa_will_not_allow_new: 锁定的分类群不允许将新的分类群添加到它们中。因此，如果你锁定了两栖动物，并且有人试图从外部名称提供者那里导入<i>Rana catesbeiana</i>，那么将会创建新的分类单元，但它不能被分类为两栖动物。当发生这种情况时，新添加的分类群应该被打上标记，以引起馆长的注意。 这应该只适用于我们认为我们已经囊括了所有后代的分类群。馆长可以通过编辑分类单元并直接输入父ID来覆盖此项，但请考虑将新分类单元合并为现有分类单元。
   log_in: 登录
-  logged_in_as: 登录为
   login_slash_username: 登录 / 用户名
   logo:
     logo: 标志
@@ -1525,7 +1492,6 @@ zh-CN:
   looks_like_neither_have!: 似乎还没有任何分类群！
   looks_like_no_species_in_guide: 似乎你的指南里目前还没有物种呢。
   lookup: 查找
-  lookup_user_rarr: "查找用户 &rarr;"
   low: 低
   lowest_rank: 最低级
   made_a: 做一个
@@ -3025,7 +2991,6 @@ zh-CN:
   synonyms: 同义词
   table: 表格
   table_of_contents: 目录
-  tag: 标签
   tagging: '正在添加标签……'
   tags: 标签
   tags_are_a_way: '标签是一种组织您的观察的方式。例如，您可以将所有潮池观察点标记为“tidepools”，便于以后查找。'
@@ -3276,8 +3241,6 @@ zh-CN:
   this_will_try_to_add_tags_to_your_flickr: 这将尝试为您的Flickr照片添加标签。要继续吗？
   this_will_update_all_last_observations: 这将更新所有最后的观察并添加新的分类单元来自于
   this_year: 今年
-  those_are_the_basics_of: |
-    这些就是添加观察的基本方法了！您还可以做很多其他的事情，例如搜索和筛选您的观察结果或对它们进行批量编辑，这些您一看就能学会。
   those_observations_no_longer_exist: 这些观察已不存在。
   threatened: 受到威胁
   thu: 四
