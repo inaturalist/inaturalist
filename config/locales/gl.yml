@@ -105,8 +105,6 @@ gl:
   add_to_your_life_list: Engadir á lista da túa vida
   add_to_your_list: Engadir á túa lista
   add_your_own_observations_at: "Engadir as túas propias observacións en %{site_name}"
-  add_your_photo: Engadir a túa foto
-  add_your_photo_to: "Engadir a túa foto a %{project}"
   added: Engadido o
   added!: '¡Engadido!'
   added_by: Engadido por
@@ -202,7 +200,6 @@ gl:
   alphabetical_order: Orde alfabética
   amphibians: Anfibios
   and: E
-  and_help_the_inaturalist_community_grow: "e axudar a que a comunidade %{site_name} creza."
   and_other_taxa: "&amp; Outros Taxóns"
   animals: Animais
   announcements: Anuncios
@@ -245,8 +242,6 @@ gl:
   authority_list:
     iucn_red_list: Lista vermella IUCN
   authorize_permissions_from_provider: "Autorizar permisos de %{provider}"
-  automatically_add_to_project: Engadir ao proxecto automaticamente
-  automatically_id_new: Identificar novas observacións automaticamente como características
   automatically_update_my_content_for_taxon_changes: Actualiza o meu contido automaticamente cando exista un cambio
   back: Retornar
   back_to_all_species: Volver a todas as especies
@@ -511,7 +506,6 @@ gl:
   delete_user: Eliminar usuario
   delete_your_account: Eliminar a túa conta
   deleting: Borrando...
-  descendant_taxa: taxóns descendentes
   descending: Descendente
   describe_purpose: Describe o obxectivo deste proxecto
   describe_your_interest_in_nature: Describe o teu interese na natureza!
@@ -748,25 +742,20 @@ gl:
   inat_account_action: "%{site_name} : Conta : %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} cre que esta é unha listaxe completa deste taxón neste lugar."
   inat_user_profile: "%{site_name}: perfil de %{user}"
-  inaturalist_is_an_online_community: "%{site_name} é unha comunidade en liña para naturalistas. Se engades fotos túas, poderás axudar aos investigadores a aprender máis sobre ti"
   inaturalist_places: "Lugares %{site_name}"
   inaturalist_places_are_way_record_what_lives_where: "Lugares %{site_name} é unha forma de rexistrar onde vive cada cal. Se procuras unha especie en particular, saberás onde atopala. Cada lugar ten unha lista de verificación para rexistrar todas as especies que alí se atopan, de xeito que tamén poida ser útil para procurar cousas que atopaches en sitios particulares."
   info: Información
   insects: Insectos
   introduced: Introduciu
   invite: Convidar
-  invite_flickr_photos: "Introducir as fotos de Flickr a %{site_name}"
   invite_more: Convidar a máis xente
-  invite_photos_to_raquo_html: "Convida a alguén con fotos de <nobr>%{site_name} »</nobr>"
   invite_someone_to: "Convida a alguén a %{name}!"
   invite_your_friends: Convida os teus amigos
   invite_your_friends_description: "Axuda a que %{site_name} sexa unha comunidade mellor e máis numerosa convidando os teus amigos!"
   is_not_following_anyone: Non estás seguindo a ninguén
   is_this_place_a_duplicate: Este lugar está duplicado?
-  it_has: Ten
   join: '¡Únete a'
   join_and: Únete e
-  join_inat: Únete a %{site_name}!
   join_project: Unirse a este proxecto
   join_some_projects_and_invite_some_observations_html: "Únete a certos <a href='%{join_url}'>proxectos</a> e <a href='%{invite_url}'>introduce algunhas observacións</a>"
   join_this_project: unirte a este proxecto.
@@ -777,12 +766,10 @@ gl:
   journal_post_deleted: A nota do diario borrouse.
   jump_to_letter: Saltar a letra
   just_added!: Acábase de agregar!
-  kelp_diatoms_and_allies: "algas pardas e parentes"
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Nome da etiqueta para agrupar os cambios de especie ou grupo
   large: Gran
   last_confirmed_observation: Última observación confirmada
-  last_inat_observation: "Última observación %{site_name}"
   last_observation: Última observación
   last_seen: Visto por última vez
   lat: Latitude
@@ -790,7 +777,6 @@ gl:
   layout: Disposición
   leaderboard_for_x: "Os máis activos de %{x}"
   leaderboards: Os máis activos
-  learn!: '¡Aprende!'
   learn_about_the_species_live_in: Aprende sobre as especies que viven en
   learn_more: Aprende máis
   learn_more_raquo: "Saber máis »"
@@ -834,36 +820,24 @@ gl:
   less: Menos
   license_descriptions_and_images: Descrición das licenzas e das túas respectivas imaxes
   licensing: Licenzas
-  licensing_your_content: |
-    Licenciar o teu contido dálle a outros o dereito legal de empregalo
-    se se apegan a os termos da licenza. Empregamos contido licenciado
-    baixo Creative Commons para compartir con asociados como
-    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
   licensing_your_content_gives_others_legal: "Aplicar unha licenza ao contido xerado por ti confire a outros o dereito a empregalo, sempre e cando acepten os termos da licenza. %{site_name} emprega unha licenza de Creative Commons para compartir datos con outras iniciativas, como"
   life: Vida
-  life!: a vida
   life_list: "Lista de vida de %{user}"
   life_list_updated: Lista de vida actualizada!
   life_list_updated_we_also_saved_a: Lista de vida actualizada! Tamén gardamos unha observación baleira para este taxón.
   life_lists_automatically_fill: Que desexas introducir na lista?
-  life_list_first: "primeira lista de vida"
-  life_list_firsts: "primeiros de lista"
   link: Vínculo
   link_or_unlink_your_facebook_account: Vincular ou desvincular a túa conta de Facebook
   link_or_unlink_your_flickr_account: Vincular ou desvincular a túa conta de Flickr
   link_your_facebook_account: Vincula a túa conta de Facebook
   link_your_flickr_account: Vincula a túa conta de Flickr
-  link_your_flickr_account_with_inat_so: "Vincula a túa conta de Flickr con %{site_name} para poder agregar fotos das túas observacións."
   linked_facebook: "A túa conta de %{site_name} está actualmente vinculada coa túa conta de Facebook."
   linked_facebook_description: "Manter a túa conta de %{site_name} vinculada á túa conta de Facebook permíteche engadir varias fotos ás túas observacións. Podes desvincular as túas contas de %{site_name} e de Facebook en calquera momento. Non cho impediremos, unicamente non poderás engadir fotos. Ás veces será o mellor, por exemplo, cando crees unha conta nova de Facebook que desexas vincular a %{site_name}."
   linked_facebook_howto: "Para conectar Facebook con %{site_name}, preme no vínculo da dereita e inicia sesión en facebook.com."
   linked_facebook_password: "Non che pediremos nunca o teu contrasinal de Facebook (pero Facebook podería facelo, verifica que o enderezo ó cal o botón te redirixe é facebook.com). Tampouco cambiaremos os teus datos de Facebook, a menos que o solicites."
   linked_flickr: "A túa conta de %{site_name} está vinculada actualmente coa túa conta de Flickr."
   linked_flickr_description: "Manter a túa conta de %{site_name} vinculada coa túa conta de Flickr permíteche engadir varias fotos ás túas observacións. Podes desvincular as túas contas de %{site_name} e de Flickr en calquera momento. Non cho impediremos, unicamente non poderás engadir fotos. Ás veces será o mellor, por exemplo, cando crees unha conta nova de Flickr que desexes vincular con %{site_name}."
-  linked_flickr_hotwo: "Podes vincular a túa conta de Flickr con %{site_name} para engadir fotos ao premer neste vínculo."
   linked_flickr_password_html: "<strong>Nunca che pediremos o teu contrasinal de Flickr</strong> (pero Flickr podería pedircho, verifica que o enderezo ó que o botón te redirixe é flickr.com)."
-  linked_flickr_photo_copy_html: "<strong>Nunca gardaremos copias das túas fotos nin cambiaremos os teus datos de Flickr (a menos que o solicites).</strong> Impórtannos moito as aves, insectos e lesmas como para querer enredar coa túa información!"
   list: Lista
   list_deleted: Lista eliminada.
   list_saved: Lista gardada.
@@ -875,20 +849,12 @@ gl:
   list_was_successfully_created: A lista creouse con éxito.
   listed_taxon: Taxón listado
   listed_taxon_updated: Actualizouse a listaxe de especie ou grupo
-  listing_announcement: Anuncio de lista
-  listing_announcements: Listaxe de anuncios
   listing_lists: Mostrando listas
   listing_taxa: Lista de taxóns
-  listing_taxon_names: Listando nomes de taxóns
   lists: Listas
-  lists_are_lists_of_species: "As listas son listas de especies (ou outros taxóns), como unha lista de vida de todas as aves que viches ou unha lista das túas píntegas favoritas. <em>Non</em> son listas de observacións."
-  lists_come_in_three: "As listas son de tres tipos"
   load: Cargar
   loading: "Cargando..."
   loading_flickr_photos: "Cargando fotos de Flickr..."
-  loading_full_description_html: "Cargando a descrición completa..."
-  loading_more_photos: "Cargando máis fotos..."
-  loading_observations: "Cargando observacións..."
   loading_preview_and_code: Cargando... o código...
   loading_tags: "Cargando etiquetas..."
   loading_taxa_from_your: "Cargando taxóns das túas observacións..."
@@ -896,11 +862,9 @@ gl:
   locale_description: Locale permite configurar o idioma e as preferencias de formato de data.
   localized_species_accounts: Contas de especies localizadas
   location: Localidade
-  location_: Localización
   location_is_exact: a localización é exacta
   locked_taxa_will_not_allow_new: Os taxóns bloqueados non permitirán que se agreguen novos taxóns descendentes. Por exemplo, se bloqueaches Amphibia e alguén tratou de importar <i>Ra catesbeiana</i> dun provedor externo de nomes, crearíase o novo taxón pero non podería clasificarse como un anfibio. Se isto ocorre, os taxóns engadidos recentemente deberían marcarse para que un administrador os revise. Isto soamente debería aplicarse con taxóns para os cales consideramos que xa temos todos os descendentes. Un administrador pode sobrescribir isto modificando os taxóns e introducindo identificadores pai directamente, pero en lugar diso, ti podes tratar de combinar os taxóns novos cos xa existentes.
   log_in: Iniciar sesión
-  logged_in_as: Iniciaches sesión como
   login_slash_username: Rexistro / nome de usuario
   logo:
     logo: Logotipo
@@ -914,7 +878,6 @@ gl:
   look_up_name: "Procurar o nome"
   looks_like_neither_have!: Parece que ningún ten taxóns!
   lookup: Procurar
-  lookup_user_rarr: "Procurar usuario →"
   lowest_rank: Rango máis baixo
   made_a: creo unha
   mail_disclaimer: "%{site_name} non permitirá que os teus usuarios che envíen máis invitacións a través do noso sistema. Por favor, denuncia o abuso de invitacións en %{site}."
@@ -1984,8 +1947,6 @@ gl:
     Isto aplicará novamente todas as regras da lista aos taxóns, por exemplo, para rexeitar taxóns que non están dentro do taxón da lista de vida ou dentro do rango seleccionado. Non agregará ningún taxón. Esta acción podería tardar uns minutos.
   this_will_try_to_add_tags_to_your_flickr: Con isto tratarase de engadir etiquetas ás túas fotos de Flickr. Desexas continuar?
   this_will_update_all_last_observations: Isto actualizará todas as observacións recentes e engadirá novos taxóns de recente incorporación
-  those_are_the_basics_of: |
-    Esas son as bases para engadir observacións! Hai moitas outras cousas que podes facer, como procurar e filtrar as túas observacións ou modificalas como un grupo, pero isto debería ser auto explicativo.
   those_observations_no_longer_exist: Estas observacións xa non existen.
   threatened: Ameazado
   thu: Xov
