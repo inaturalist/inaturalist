@@ -110,8 +110,6 @@ ko:
   add_your_email_to_get: |
     이메일을 추가하면 공동체가 내 관찰에 대한 피드백을 할 수 있습니다. 이메일을 추가하고 싶지 않다면 추후에 확인해 주세요!
   add_your_own_observations_at: "%{site_name}에 내 관찰 추가하기"
-  add_your_photo: 내 사진 추가하기
-  add_your_photo_to: "%{project}에 내 사진 추가하기"
   added: 추가됨
   added!: 추가되었습니다!
   added_by: 추가함
@@ -206,7 +204,6 @@ ko:
   already_have_an_account_log_in_html: 계정이 이미 있으십니까? <strong>로그인하세요.</strong>
   amphibians: 양서류
   and: 그리고
-  and_help_the_inaturalist_community_grow: "그리고 %{site_name} 공동체가 성장할 수 있도록 도와주세요."
   and_other_taxa: "&amp; 다른 분류군"
   android: 안드로이드
   animals: 동물
@@ -279,9 +276,7 @@ ko:
     iucn_red_list: IUCN 적색 목록
   authorize_permissions_from_provider: "%{provider}의 허용을 수락함"
   automatic_short: 자동
-  automatically_add_to_project: 자동으로 프로젝트에 추가
   automatically_add_observations_to_this_project: 이 프로젝트에 자동으로 관찰 추가
-  automatically_id_new: 자동으로 새로운 관찰을 ID함
   automatically_update_my_content_for_taxon_changes: 분류군 변화 자동 업데이트
   back: 뒤로 가기
   back_to_all_species: 모든 종으로 돌아가기
@@ -645,7 +640,6 @@ ko:
   deleting_verb: 삭제 중
   deny: 거부
   desc: 내림차순
-  descendant_taxa: 하위 분류군
   descending: 내림차순
   describe_purpose: 이 프로젝트 목적을 설명하세요.
   describe_your_interest_in_nature: 자연에 대한 관심을 표현해요!
@@ -1006,11 +1000,9 @@ ko:
   introduced_in_place: "%{place}에서 유입됨"
   invitation: 초대장
   invite: 초대
-  invite_flickr_photos: "Flickr 사진을 %{site_name}(으)로 초대"
   invite_more: 더 초대
   invite_people: 사용자들 초대
   invite_people_to_project: "%{project}(으)로 사용자 초대"
-  invite_photos_to_raquo_html: "<nobr>%{site_name} &raquo;</nobr>로 사진들 초대"
   invite_someone_to: "%{name}에 사용자를 초대합니다!"
   invite_your_friends: 친구들 초대
   invite_your_friends_description: "친구들을 초대해서 %{site_name}이 더 크고 좋은 공동체가 될 수 있게 만들어가요!"
@@ -1029,13 +1021,11 @@ ko:
     <a href="%{manage_flags_path}">표시 관리</a>
   join: 가입하기
   join_and: 가입하고
-  join_inat: '%{site_name} 가입하기'
   join_project: 이 프로젝트 가입하기
   join_this_project: 이 프로젝트 가입하기
   'joined!': 가입했습니다!
   joined_projects: 참가한 프로젝트
   joined_with_date: "가입일: %{date}"
-  joining: 참여중...
   journal: 일지
   journal_archives_for: 위한 일지 아카이브
   journal_post: 일지 포스트
@@ -1096,23 +1086,18 @@ ko:
     tagalog: tagalog
     turkish: Türk
   license: 라이선스
-  licensing_your_content: |
-    콘텐츠를 라이선스하면 다른 사람들이 라이선스 규칙을 지키는 한 합법적으로 해당 콘텐츠를 이용할 수 있습니다. %{site_name}은 당신의 크리에이티브 커먼즈 라이선스가 된 콘텐츠를 <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF)와 같은 데이터 파트너와 공유합니다.
   licensing_your_content_gives_others_legal: "콘텐츠를 라이선스하면 다른 사람들이 라이선스 규칙을 지키는 한 합법적으로 해당 콘텐츠를 이용할 수 있습니다. %{site_name}은 당신의 크리에이티브 커먼즈 라이선스가 된 콘텐츠를 데이터 파트너와 공유합니다."
   life: 생명
-  life!: 생명!
   life_list: "%{user}의 생물 목록"
   life_list_updated: 생물 목록을 업데이트했습니다!
   life_list_updated_we_also_saved_a: 생물 목록을 업데이트했습니다! 이 분류군의 비어있는 관측도 저장했습니다.
   life_lists_automatically_fill: '생물 목록은 관찰함으로써 자동적으로 새로운 분류군들로 채워져가고, 상위 분류군으로 제한될 수 있습니다. 예시: 까마귀과의 새들에 대한 생물 목록.'
-  life_list_first: "생물 목록 먼저"
   link: 링크
   link_or_unlink_your_facebook_account: 페이스북 계정을 연결하거나 연결을 끊는다
   link_or_unlink_your_flickr_account: Flickr 계정을 연결하거나 연결을 끊는다
   link_or_unlink_your_google_account: 구글 계정을 연결하거나 연결을 끊습니다
   link_your_facebook_account: 페이스북 계정을 연결한다
   link_your_flickr_account: Flickr 계정을 연결한다
-  link_your_flickr_account_with_inat_so: "Flickr 계정을 %{site_name}와 연결하여 관찰의 사진들을 추가할 수 있게 한다."
   link_your_google_account: 구글 계정을 연결합니다
   linked_facebook: "당신의 %{site_name} 계정은 페이스북 계정과 연결되어 있습니다."
   linked_facebook_automaticaly: "그리고, %{site_name}에 페이스북 계정으로 로그인하면, 자동적으로 페이스북과 %{site_name} 계정이 연동된다는 것을 유의해주십시오. 페이스북을 사용한다면 페이스북 사진을 들여오기 더 용이하게 하기 위함입니다."
@@ -1122,9 +1107,7 @@ ko:
   linked_flickr: "당신의 %{site_name} 계정은 Flickr 계정과 연결되어 있습니다."
   linked_flickr_automatically: "그리고, %{site_name}에 Flickr 계정으로 로그인하면, 자동적으로 Flickr와 %{site_name} 계정이 연동된다는 것을 유의해주십시오. Flickr를 사용한다면 사진을 들여오기 더 용이하게 하기 위함입니다."
   linked_flickr_description: "%{site_name} 계정을 Flickr 계정과 연동시키면 당신의 관찰에 대한 여러 사진들을 업로드할 수 있습니다. 물론 언제든지 %{site_name} 계정과 Flickr 계정의 연동을 끊을 수 있지만, 사진을 추가하지는 못하게 됩니다. 새로운 Flickr 계정을 만들어서 %{site_name}과 연동할 수도 있습니다."
-  linked_flickr_hotwo: "이 링크를 눌러서 %{site_name}를 통해 Flickr 계정을 활성화하여 사진을 업로드할 수 있습니다."
   linked_flickr_password_html: "<strong>우리는 당신의 Flickr 비밀번호를 절대 물어보지 않을 것입니다</strong>(하지만 Flickr은 물어볼 수 있기에 URL이 Flickr로 가는지 주소를 꼭 확인해 주십시오)."
-  linked_flickr_photo_copy_html: "<strong>우리는 당신이 원하지 않는 한 절대로 당신의 Flickr 정보를 변형하거나 사진들을 저장하지 않을 것입니다.<strong/> 우리는 당신의 개인정보를 조작하기에는 새와 벌레와 민달팽이를 너무나도 사랑합니다!"
   linkedin: 링크드인
   list: 목록
   list_deleted: 목록 삭제됨.
@@ -1136,12 +1119,9 @@ ko:
   load: 불러오기
   loading: "불러오는 중..."
   loading_flickr_photos: "Flickr 사진 불러오는 중..."
-  loading_full_description_html: "전체 설명 불러오는 중..."
   loading_images: 그림을 불러오는 중...
   loading_map: 지도를 불러오는 중...
   loading_metadata: 메타데이터 불러오는 중...
-  loading_more_photos: "더 많은 사진 불러오는 중..."
-  loading_observations: "관찰 불러오는 중..."
   loading_preview_and_code: 미리보기와 코드 불러오는 중...
   loading_suggestions: 제안을 불러오는 중...
   loading_tags: "태그를 불러오는 중..."
@@ -1180,7 +1160,6 @@ ko:
     sv: 스웨덴어
     zh-CN: 중국어(간체)
   location: 위치
-  location_: 위치
   locations: 위치
   location_is_accurate: 위치가 정확함
   location_is_exact: 위치가 정확하다
@@ -1189,7 +1168,6 @@ ko:
   location_is_private: 위치가 비공개이다
   log_in: 로그인
   log_scale_label: 로그
-  logged_in_as: '로그인한 사용자:'
   login_slash_username: 로그인 / 사용자 이름
   logo:
     logo: 로고
@@ -1204,7 +1182,6 @@ ko:
   looks_like_neither_have!: 둘 중 어느 것도 분류군이 없는 것 같습니다!
   looks_like_no_species_in_guide: 아직 가이드에 종이 없는 것 같군요.
   lookup: 검색
-  lookup_user_rarr: "사용자 검색 &rarr;"
   low: 낮음
   make_admin: 관리자 만들기
   manage: 관리
@@ -2084,7 +2061,6 @@ ko:
   siutable_observations: 적합한 관찰
   sync: 동기화하시겠습니까?
   sync_with_eol: EOL과 동기화하기
-  tag: 태그
   tags: 태그
   take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
