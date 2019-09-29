@@ -1135,7 +1135,7 @@ he:
   licensed_site_photos: "תמונות ברשיון מ%{site_name}"
   license: רשיון
   licensing: רישוי
-  life_list: "רשימת החיים של %{user}"
+  life_list: "%{user} רשימת החיים של "
   life_list_updated: רשימת חיים עודכנה!
   life_list_updated_we_also_saved_a: רשימת החיים שלך עודכנה! שמרנו גם תצפית ריקה של טקסון זה.
   linear_scale_label: לינארי
@@ -1458,6 +1458,7 @@ he:
   no_photos_of_that_size: אין תמונה בגודל זה
   no_places_available: אין מקומות זמינים
   no_places_selected: לא נבחרו מקומות.
+  no_post_yet: אין עדיין אף פוסט!
   no_project_selected: טרם נבחר פרוייקט
   no_project_to_admin_current_user: "אין לך זכויות אדמיניסטרציה באף פרוייקט"
   no_projects_yet: אין פרוייקטים עדיין
@@ -2211,7 +2212,7 @@ he:
   research_: מחקר
   research_grade: דרגת מחקר
   research_quality: דרגת מחקר
-  reset_search_filters: איפוס פילטרי חיפוש
+  reset_search_filters: איפוס פילטרים
   reset_your_password: איפוס הססמה
   resolved: נפתר
   resolved_by: נפתר על ידי
@@ -2986,7 +2987,7 @@ he:
           name_less_than_100_characters: שם הפרוייקט חייב להיות עם פחות מ 100 תווים
           name_already_taken: קיים כבר פרוייקט בשם זה
       project_user_curator_coordinate_access_labels:
-        observer: כן, אבל רק אם אני מוסיף את ההבחנה לפרויקט בעצמי
+        observer: כן, אבל רק אם אני מוסיף את התצפית לפרויקט בעצמי.
         none: לא
       show:
         this_is_a_preview: |
