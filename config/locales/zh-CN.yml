@@ -4088,8 +4088,6 @@ zh-CN:
         iconic_taxon_name: 被观察到的分类单元的高级分类学类别
         taxon_id: 用于观察到的分类的唯一标识符
         id_please: 观察者是否请求ID帮助
-        num_identification_agreements: 与观察者身份一致的身份证明数量
-        num_identification_disagreements: 与观察者身份相冲突的身份证明数量
         observed_on_string: 观察者输入的日期/时间
         observed_on: 规范化的观察日期
         time_observed_at: 规范化的观察日期与时间
@@ -5055,10 +5053,6 @@ zh-CN:
           attributes:
             value:
               dna_only_atcg: "对于DNA，只能包含字符A、T、C或G"
-              date_format: |
-                用于日期字段（在您“%{observation_species_guess}”的观察中的“%{observation_field_name}”）的日期格式必须为YYYY-MM-DD
-              time_format: |
-                必须以hh:mm形式填写时间字段（在您“%{observation_species_guess}”的观察中的“%{observation_field_name}”）
             observation_id:
               user_does_not_accept_fields_from_others: 用户不接受来自他人的字段
               user_only_accepts_fields_from_site_curators: 用户只接受来自网站馆长的字段
