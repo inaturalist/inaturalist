@@ -3334,8 +3334,6 @@ es-MX:
     one: "%{taxon} es un reino con una observación"
     other: "%{taxon} es un reino con %{count} observaciones"
   taxon_is_threatened_coordinates_hidden: Este taxón está amenazado, coordenadas ocultas por defecto
-  taxon_is_threatened_coordinates_hidden_desc: |
-    Uno de los taxa sugeridos en las identificaciones, o uno de los taxa incluídos en cualquiera de ellos, se consideran raros y/o amenazados, así que la ubicación de esta observación ha sido ocultada.
   taxon_is_threatened_coordinates_obscured: Este taxón está amenzado, las coordenadas se ocultan por defecto.
   taxon_is_threatened_coordinates_obscured_desc: |
     Uno de los taxa sugeridos en las identificaciones, o uno de los taxa incluídos en cualquiera de ellos, se consideran raros y/o amenazados, así que la ubicación de esta observación ha sido ocultada.
@@ -4609,8 +4607,6 @@ es-MX:
         iconic_taxon_name: Categoría taxonómica de nivel superior para el taxón observado
         taxon_id: Identificador único para la observación
         id_please: Haya o no el observador solicitado ayuda para la identificación
-        num_identification_agreements: Número de identificaciones que coinciden con la identificación del observador
-        num_identification_disagreements: Número de identificaciones que coinciden con la identificación del observador
         observed_on_string: Fecha/hora registrada por el observador
         observed_on: Fecha normalizada de observación
         time_observed_at: Fecha normalizada de observación
@@ -5780,10 +5776,6 @@ es-MX:
           attributes:
             value:
               dna_only_atcg: "para el ADN sólo puede contener los caracteres A, T, C o G"
-              date_format: |
-                debe estar en la forma AAAA-MM-DD para un campo de fecha ("%{observation_field_name}" en tu observación de "%{observation_species_guess}")
-              time_format: |
-                debe estar en la forma hh:mm para un campo de hora ("%{observation_field_name}" en tu observación de "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: el usuario no acepta campos de otros
               user_only_accepts_fields_from_site_curators: el usuario solo acepta campos de los curadores del sitio
