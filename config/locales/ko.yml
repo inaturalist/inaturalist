@@ -2604,12 +2604,6 @@ ko:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "좌표는 0,0이 될 수 없습니다"
-        observation_field_value:
-          attributes:
-            value:
-              date_format: |
-                날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 ("%{observation_species_guess}"의 
-                당신이 관찰한 "%{observation_field_name}")
         place:
           attributes:
             place_geometry:
