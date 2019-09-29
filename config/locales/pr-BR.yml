@@ -3395,9 +3395,6 @@ pt-BR:
     one: "%{taxon} é um reino com uma observação"
     other: "%{taxon} é um reino com %{count} observações"
   taxon_is_threatened_coordinates_hidden: Taxon está ameaçado, coordenadas ocultas por padrão
-  taxon_is_threatened_coordinates_hidden_desc: |
-    Um dos táxons sugeridos nas identificações, ou um dos táxons incluídos em qualquer deles, é considerado raro e/ou ameaçado,
-    a localização desta observação foi ocultada.
   taxon_is_threatened_coordinates_obscured: Taxon está ameaçado, coordenadas obscurecidas por padrão
   taxon_is_threatened_coordinates_obscured_desc: |
     Um dos táxons sugeridos nas identificações, ou um dos táxons incluídos em qualquer deles, é considerado raro e/ou ameaçado,
@@ -4600,8 +4597,6 @@ pt-BR:
         iconic_taxon_name: Categoria taxonômica de nível superior para o taxón observado
         taxon_id: Identificador único para o táxon observado
         id_please: Precisando ou não o observador solicitou ajuda com a identificação
-        num_identification_agreements: Número de identificações em concorrência com as identificações do observador
-        num_identification_disagreements: Número de identificações conflitando com a identificação do observador
         observed_on_string: Data/Hora conforme registrado pelo observador
         observed_on: Data normalizada de observação
         time_observed_at: Dia e Horário normalizados de observação
@@ -4773,52 +4768,6 @@ pt-BR:
           Houve uma falha na exportação de suas observações. Visite a <a href="%{url}">página de exportação de observações</a> para ver sua lista de exportações.
       parental_consent:
         subject: Seu filho gostaria de usar o iNaturalist
-        content_html: |
-          <p>
-          Seu filho está usando o aplicativo educacional do Seek by iNaturalist e gostaria de compartilhar dados com a plataforma ciência-cidadão nacionalista. Porque esses dados incluem identificação pessoal
-             Informação, não pode ser usada por pessoas com menos de 13 anos
-             sem o consentimento de um dos pais.
-          </p>
-          <p>
-          A busca do iNaturalist pode ser usada sem criar uma conta, e não usará os
-          os dados serão compartilhados, mas seu filho não poderá contribuir nas
-          observações para o iNaturalist. [EXPLANATION OF INAT]
-          </p>
-          <p>
-          Se você quiser dar consentimento para seu filho usar o iNaturalist, vamos precisar de você para fazer o seguinte:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Crie uma conta iNaturalist que seu filho usará
-                 indicando que a conta será usada por uma pessoa com
-          13 anos de idade seguindo este link:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Faça uma doação nominal de $1 com um cartão de crédito para o iNaturalist
-          para verificar se você é um adulto. Por favor, certifique-se de usar incluem
-          o mesmo e-mail que você usou para criar a conta ao lado da
-                 sua doação aqui: https://www.inaturalist.org/donate
-          </p>
-          </li>
-          <li>
-          <p>
-          Assim que processarmos a doação, enviaremos uma notificação na
-          conta e-mail que a conta foi ativada e você pode
-                 usar o nome de usuário e a senha do iNaturalist que você criou para entrar no
-          aplicativo Seek do seu filho.
-          </p>
-          </li>
-          </ol>
-          <p>
-          Saiba mais sobre quais compartilhamentos iNaturalist de Informações de Identificação Pessoal: …
-          </p>
-          <p>
-          Saiba mais sobre a Política de Privacidade da iNaturalist <a href="%{privacy_policy_url}">here</a>.
-          </p>
       photos_missing:
         subject: Algumas fotos precisam de reparos
         we_have_been_housekeeping: |
@@ -5986,12 +5935,6 @@ pt-BR:
           attributes:
             value:
               dna_only_atcg: "para DNA só pode conter os caracteres A, T, C ou G"
-              date_format: |
-                deve estar no formato AAAA-MM-DD para o campo de data ("%{observation_field_name}" 
-                na sua observação de "%{observation_species_guess}")
-              time_format: |
-                deve estar no formato hh:mm para o campo de horário ("%{observation_field_name}" 
-                na sua observação de "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: o usuário não aceita campos de outros
               user_only_accepts_fields_from_site_curators: usuário só aceita campos de curadores de site
