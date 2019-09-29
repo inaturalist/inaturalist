@@ -3416,8 +3416,6 @@ zh-TW:
   taxon_is_kingdom_of_life_with_x_observations:
     other: "帶有 %{count} 個觀察屬於生物界的%{taxon}"
   taxon_is_threatened_coordinates_hidden: 物種分類為受威脅狀態，按預設隱藏座標
-  taxon_is_threatened_coordinates_hidden_desc: |
-    鑑定中的其中一個分類群，或其中一個分類群包含這些分類群任何之一，為稀有或是受到威脅的，所以這筆觀察紀錄的地點被遮蔽了。
   taxon_is_threatened_coordinates_obscured: 物種分類為受威脅狀態，按預設隱蔽座標
   taxon_is_threatened_coordinates_obscured_desc: |
     在鑑定裡所提議、或是包含有這些任何物種分類的分類其一，已知是稀有以及/或受威脅，因此觀察的位置被隱蔽。
@@ -4600,8 +4598,6 @@ zh-TW:
         iconic_taxon_name: 用於所觀察物種分類的高階歸類類別
         taxon_id: 觀察物種分類的唯一鑑定
         id_please: 無論觀察者是否需要鑑定協助
-        num_identification_agreements: 鑑定號碼與觀察者的鑑定一致
-        num_identification_disagreements: 鑑定號碼與觀察者的鑑定相衝
         observed_on_string: 由觀察者輸入的日期/時間
         observed_on: 觀察的標準日期
         time_observed_at: 觀察的標準日期時間
@@ -4760,74 +4756,6 @@ zh-TW:
           您的觀察匯出失敗。請查看您所匯出清單的<a href="%{url}">觀察匯出頁面</a>。
       parental_consent:
         subject: 您的兒女想使用 iNaturalist
-        content_html: |
-          <p>
-          您的兒女目前使用 <strong>Seek by iNaturalist</strong>
-          教育應用程式，並且想與 iNaturalist 公眾科學平台分享資料。因為發佈到 iNaturalist 會揭示出個人身份資訊，未經父母同意、且年齡低於 13 歲之個人資訊 iNaturalist 是不能使用的。
-          </p>
-          <p>
-          <strong>Seek by iNaturalist</strong> 可以不必建立帳號便可使用，並且無需分享個人身份資訊；但您的兒女會無法貢獻觀察給 iNaturalist。iNaturalist 是個參與者能夠分享觀察、鑑定生物來互相指教有關自然方面、以及產生用於科學之生物多樣性資料的公眾科學社交網路。
-          </p>
-          <p>
-          若您同意讓您的兒女使用 iNaturalist，我們需要您進行以下事項：
-          </p>
-          <ol>
-          <li>
-          <p>
-          透過以下連結建立將給您兒女使用的 iNaturalist 帳號：
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          在您建立完您兒女的帳號後，我們會要求您以信用卡做出 $1 美元的小額捐款給 iNaturalist，以確認您確實為一名成人。請確認當作出捐款時，是使用您在輸入「父母電子郵件」欄位時的相同電子郵件地址。
-          </p>
-          </li>
-          <li>
-          <p>
-          一旦我們處理完捐款後，我們會發送給您另一封電子郵件來通知您兒女的帳號已啟用完成，而您可以使用您所建立的 iNaturalist 使用者名稱和密碼來登入您兒女的 Seek 應用程式。
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist 收集以下個人身份資訊：
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>電子郵件地址（非公開）：</strong>每個 iNaturalist
-          帳號都會有一個相關的電子郵件地址，並且不會將其公開。
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>使用者名稱（公開，為必要）：</strong>每個 iNaturalist 帳號都會有公開的使用者名稱與使用者是別號碼。使用者名稱不必得和個人真實名稱相似，但會用來透過公開評論和私訊來聯絡該人。
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP 位址（非公開，為必要）：</strong>iNaturalist 會儲存使用者的 IP；但不會將其公開，這會用來獲取像是位置之類的個人識別資訊（可識別到所在都市的準確度）。
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>個人檔案圖片（公開，為選用）：</strong>iNaturalist
-          的帳號可以讓使用者選擇使用能代表著他個人的圖片。
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>觀察位置（公開或非公開）：</strong>iNaturalist 上的觀察會含有關於建立出該觀察所的位置資訊。這可弄成為公開或保持非公開，而預設是將其公開。
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist 允許使用者分享公開圖片、公開評論、以及關聯他們帳號的私訊。
-          在該使用者所產生的內容裡，來包含他個人的識別資訊也是可能的。
-          </p>
-          <p>
-          請點擊<a href="%{privacy_policy_url}">此</a>了解更多 iNaturalist 的隱私政策。
-          </p>
       photos_missing:
         subject: 一些照片需要回報問題
         we_have_been_housekeeping: |
@@ -5906,10 +5834,6 @@ zh-TW:
           attributes:
             value:
               dna_only_atcg: "DNA 僅能包含 A、T、C，或是 G 字元"
-              date_format: |
-                日期欄位（在您的觀察「%{observation_species_guess}」裡的「%{observation_field_name}」）必須是 YYYY-MM-DD 格式
-              time_format: |
-                時間欄位（在您的觀察「%{observation_species_guess}」裡的「%{observation_field_name}」）必須是 hh:mm 格式
             observation_id:
               user_does_not_accept_fields_from_others: 用戶不接受來自其他人的欄位
               user_only_accepts_fields_from_site_curators: 用戶僅接受來自網站策展人的欄位
