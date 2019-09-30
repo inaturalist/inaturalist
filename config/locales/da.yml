@@ -229,8 +229,6 @@ da:
   add_your_email_to_get: |
     Tilføj din e-mailadresse for at få feedback på din observation fra fællesskabet. Hvis du helst ikke vil dele den, så vend tilbage snart!
   add_your_own_observations_at: "Tilføj dine egene observationer på %{site_name}"
-  add_your_photo: Tilføj dit foto
-  add_your_photo_to: "Tilføj dit foto til %{project}"
   added: Tilføjet
   added!: Tilføjet!
   added_by: Tilføjet af
@@ -373,7 +371,6 @@ da:
   amphibians: padder
   ancestor_taxon: Stamfader Takson
   and: og
-  and_help_the_inaturalist_community_grow: "og hjælp %{site_name} fællesskabet med at vokse."
   and_other_taxa: "&amp;Andre taksa"
   and_x_more_people!:
     one: "og 1 person mere!"
@@ -409,7 +406,6 @@ da:
   are_you_sure_remove_taxon_from_list: "Er du sikker på, at du vil fjerne denne takson fra listen?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Er du sikker? Dette vil genindlæse siden og du kan miste nogle af dine ændringer.
-  are_you_sure_want_delete_taxon: "Er du sikker på at du vil slette denne takson? %{msg}"
   are_you_sure_want_delete_taxon_link: Er du sikker på at du vil slette dette takson link?
   are_you_sure_want_delete_this_name: Er du sikker på, at du ønsker at slette dette navn?
   are_you_sure_want_delete_this_range: Er du sikker på, at du vil slette dette område?
@@ -454,9 +450,7 @@ da:
     iucn_red_list: IUCN rødliste
   authorize: Tillade
   authorize_permissions_from_provider: "Godkend tilladelser fra %{provider}"
-  automatically_add_to_project: Tilføj automatisk til projekt
   automatically_add_observations_to_this_project: Tilføj automatisk observationer til dette projekt
-  automatically_id_new: Automatisk ID de nye obs som
   automatically_update_my_content_for_taxon_changes: Opdatér automatisk mit indhold med taksonændringer
   back: Tilbage
   back_to_all_species: Tilbage til Alle arter
@@ -895,7 +889,6 @@ da:
   deleting_verb: Sletter
   deny: Nægte
   desc: Fald
-  descendant_taxa: efterkommer taksa
   descending: Faldende
   describe_purpose: Beskriv formålet med dette projekt.
   describe_your_interest_in_nature: Beskriv din interesse for naturen!
@@ -1242,7 +1235,6 @@ da:
   grid_tooltip: Vis gittervisning
   group: Gruppe
   grouping: Gruppering
-  guess_description: Gæt / Beskrivelse
   guides: Guider
   guide_compiled_by: Guide udarbejdet af
   guide_deleted: Guide slettet
@@ -1262,8 +1254,6 @@ da:
   has_sound: Har lyd
   has_sounds: Har lyde
   hasnt_contributed_any_observations: har ikke bidraget med nogle observationer til dette projekt.
-  hate_me_facebook: "Frakobl din Facebook- fra din %{site_name} konto"
-  hate_me_flickr: "Frakobl din Flickr- fra din %{site_name} konto"
   heads_up: OBS
   heads_up_this_photo_has_been_flagged: "BEMÆRK: dette foto er blevet markeret."
   heads_up_this_photo_is_already_associated_with: "BEMÆRK: Dette billede er allerede forbundet med <a target='_blank' href='%{url}'> en anden observation</a>"
@@ -1275,7 +1265,6 @@ da:
   here_are_3_examples: Her er 3 eksempler på data i korrekt formattering
   here_are_our_top_suggestions: Her er vores bedste forslag
   here_are_our_top_species_suggestions: Her er vores topforslag til art
-  here_are_some_things_you_can_do_in_the_meantime: "Her er nogle ting du kan gøre i mellemtiden"
   hex_color_eg: Hex farve, f.eks. 65644F
   hi: Hej,
   hi_user: "Hej,%{user}"
@@ -1290,11 +1279,9 @@ da:
   history: Historik
   home: Hjem
   however_there_were_some_issues: "Der var dog nogle problemer:%{issues}"
-  i_agree_to_the_project_terms: Jeg accepterer projektvilkårene
   i_dont_know_but_i_am_sure_this_is_taxon: Jeg ved det ikke, men jeg sikker på det er %{taxon}
   icon: Ikon
   icon_size: Ikon størrelse
-  icon_slash_photo: Ikon / Foto
   iconic_taxon: Ikonisk takson
   id_categories:
     tooltips:
@@ -1305,10 +1292,6 @@ da:
         Første forslag til dette takson, som fællesskabet efterfølgende var enige i. Dette hjalp med at forbedre fællesskabs taksonen.
       maverick: |
         Takson er ikke en efterkommer eller stamfader til fællesskabs taksonen, dvs. fællesskabet er ikke enig i denne takson
-  id_more_in_id_please: ID flere i ID Tak
-  id_please!: ID Tak!
-  id_please: ID Tak!
-  id_please_expandable_html: "ID<span class='full'>Tak</span>!"
   id_withdrawn: ID trukket tilbage
   ids_by_taxon: IDs efter takson
   identify: Identificér
@@ -1319,13 +1302,11 @@ da:
   identification_by_user: Identifikation af %{user}
   identification_deleted: Identifikation slettet
   identification_saved: "Identifikation gemt!"
-  identification_summary: Identifikationsoversigt
   identification_updated: Identifikation opdateret!
   identification_user_short: Ident. bruger
   identification_withdrawn: Identifikation trukket tilbage
   identifications: Identifikationer
   identifications_by: "Identifikationer af %{user}"
-  identified?: Identificeret
   computer_vision_suggestion: Computer vision forslag
   computer_vision_suggestion_desc: |
     Computersyn er en læringsproces, hvor man lærer computere at genkende visuelle mønstre. Vi leverer værktøjer, der bruger computersyn modeller, der er trænet på fællesskabets fotos, til at give forslag på identifikation, såsom autofuldførelse og sammenlignings funktionerne. Denne etikette angiver, hvornår en person tilføjede en identifikation ved hjælp af et af disse værktøjer.
@@ -1337,17 +1318,8 @@ da:
   if_matches_come_from_a_comprehensive_list: Hvis matchene kommer fra en omfattende liste, vises der en grøn bjælke her.
   if_this_is_a_scientific_name: Hvis dette er et videnskabeligt navn, er det så accepteret?
   if_this_link_will_apply_to_descendant: Hvis dette link virker på efterkommer taksa, kan du bruge skabelontags til at udfylde takson navnet i webadressen
-  if_you_already_have_an_account: "Hvis du allerede har %{article}%{site_name} konto..."
-  if_you_dont_want_us_to_share_your_data: Hvis du ikke vil have, at vi deler dine data
   if_you_have_any_trouble_with_the_site_check_out: 'Hvis du har spørgsmål, kan du tjekke vores <a href="%{help_url}"> hjælpesektion </a> eller sende en besked til vores <a href="%{feedback_url}"> feedbackgruppe </a> .'
-  if_you_have_trouble_with_the_site: "Hvis du har problemer med webstedet, kan du tjekke vores hjælpesektion:"
-  if_youd_like_us_to_share_your_observations_with: |
-    Hvis du vil have os til at dele dine observationer med datapartnere, skal du være
-    sikker på, at du har valgt at licensere dine observationer med en Kreativ
-    Commons licens.
-  if_you_want_to_change_the_name: hvis du vil ændre navnet
   if_your_project_is: Hvis dit projekt er på et bestemt sted, kan du indætte koordinaterne ved at klikke på kortet eller indtaste dem manuelt.
-  if_your_search_comes_up: "Hvis din søgning er uden resultat, skal du kigge i nogle søgefelter for at gentage søgningen gennem vores eksterne navne leverandører:"
   ignore: ignorér
   ignore_and_continue: Ignorér og fortsæt
   ignore_times: Ignorér antal gange
@@ -1360,14 +1332,11 @@ da:
   import_date_time_location_taxonomic: "Importér dato, tid, sted, beskrivelse og taksonomisk information fra dette foto."
   import_from_csv: Importér fra CSV
   import_from_other_photo_sites: Importér fra andre fotosider
-  import_from_photos: Importér fra foto´s
-  import_from_yahoo: Importér fra Yahoo
   import_observations: Importér observationer
   import_observations_from_a_photo: Importér observationer fra en fotoudbyder eller fra en fil på din computer.
   import_photos: Importér foto´s
   import_ranges: Importér områder
   import_sections: Importér sektioner
-  import_sounds: Importér lyde
   import_tags_from_csv: Importér tags fra CSV
   importing: "Importerer..."
   improving: Forbedring
@@ -1377,81 +1346,51 @@ da:
   inbox: Indbakke
   including: inklusiv
   increase_brightness: Øg lysstyrke
-  in_order_to_login_and_using_site_visit_url: "For at logge ind og begynde at bruge web-siden, skal du besøge denne webadresse for at aktivere din konto:"
   in_progress: i gang
-  in_taxon?: i takson
   in_the_past: i fortiden
   in_the_past_week: I den sidste uge
   inactive: Inaktiv
   inactive_taxon: inaktiv takson
-  inappropriate: Upassende?
   inappropriate_content: Upassende indhold?
   inat_account_action: "%{site_name} &#58; konto &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} mener, at dette er en komplet liste over denne taxon på dette sted."
   inat_user_profile: "%{site_name}: %{user}'s profil"
-  inat_will_be_back_on: "%{site_name} vil være tilbage på sine fødder / vinger / finner / tentakler / pseudopodier"
   inaturalist_is_a_joint_initiative: "%{site_name} er et fælles initiativ fra California Academy of Sciences og National Geographic Society."
-  inaturalist_is_an_online_community: "%{site_name} er et online fællesskab for naturelskere! Ved at tilføje dit billede kan du hjælpe forskere med at lære mere om"
-  inaturalist_is_catching_some_zs: "%{site_name} snorksover"
-  inaturalist_observations_by: "%{site_name} &#58; Observationer af %{login}"
   inaturalist_places: "%{site_name} steder"
   inaturalist_places_are_way_record_what_lives_where: "Med %{site_name} steder kan du registrere, hvad der bor hvor. Hvis du leder efter en bestemt art, så ved du hvor du skal lede. Hvert sted har en tjekliste, som indeholder alle de arter der findes der, og tjeklisterne kan også være nyttige hvis du vil slå arter op som du har fundet specifikke steder."
   input_taxon: Input takson
   insects: insekter
   insect_life_stage: Insekt livsstadie
-  inspired_by_the_flickr_group: "Inspireret af Flickr gruppen <a href='http://flickr.com/groups/idplease/'> ID tak </a>, er dette en webside hvor du kan indsende observationer af organismer du ikke kender, og en webside hvor du kan hjælpe andre personer med at identificere mystiske skabninger!"
   interactions: Interaktioner
   internal_server_error: Intern serverfejl
-  internal_taxon: Intern takson
   internal_taxon_including_descendants: Intern takson (inklusiv forfædre)
   internal_taxon_rank: Intern takson rang
   introduced: indført
   introduced_in_place: "indført i %{place}"
-  invasive: invasiv
-  invitations: Invitationer
   invite: invitér
-  invite_flickr_photos: "Invitér Flickr fotos til %{site_name}"
   invite_more: Invitér flere
-  invite_observations: Invitér observationer
   invite_people: Invitér personer
   invite_people_to_project: "Invitér personer til %{project}"
-  invite_photos_from_other_sites: Invitér fotos fra andre sider
-  invite_photos_to: "Invitér foto´s til %{site_name}"
-  invite_photos_to_raquo_html: "Invitér fotos til <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Invitér nogen til %{name}"
-  invite_to_project: Invitér til projekt
   invite_your_friends: Invitér dine venner
   invite_your_friends_description: "Hjælp med at gøre %{site_name} til et større og bedre fællesskab ved at invitere dine venner til at deltage!"
   inviteonly: kun invitaion
-  invited: Inviteret
-  invited_to_the_following_projects: "Inviteret til følgende projekter:"
   invited_x: "Inviteret %{x}"
-  inviting: Inviterer...
   is_an_evaluation: |
     er en evaluering af en observations nøjagtighed.
     Observationer af forskningsklasse kan blive brugt af forskere. Giv din mening til kende herunder:
   is_not_following_anyone: følger ikke nogen.
   is_now: er nu
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Er beviserne tilstrækkelige til at bekræfte, at dette er %{taxon}
-  is_the_organism_wild: "Er organismen vild / fra naturen?"
-  is_this_observation_offensive_html: 'Er denne observation <a href="/help#inappropriate">upassende</a>, spam, eller fornærmende?'
   is_this_offensive_html: 'Er dette <a href="/help#inappropriate">upassende</a>, spam, eller fornærmende?'
   is_this_place_a_duplicate: Er dette sted en kopi?
-  it: Det
   it_can_now_be_used_for_research: Den kan nu bruges til forskning og vises på andre web-sider
-  it_has: Det har
-  it_instead: det i stedet.
   item_flagged_notice_html: |
     Dette er blevet markeret som spam, og er ikke længere synligt for offentligheden. Du kan se det, enten fordi, at du har oprettet det eller du er sidekurator. Hvis du mener det er en fejl, så 
     <a href="mailto:%{help_email}" class="contact">kontakt os venligst</a>.
     <a href="%{manage_flags_path}">Manage flags</a>
-  its_important_that_you: Det er vigtigt, at du klikker
-  iucn_red_list: IUCN Rødliste
-  iucn_red_list_status: IUCN Rødliste status
-  january: Januar
   join: Tilslut
   join_and: Tilslut og
-  join_inat: Tilslut %{site_name}
   join_project: Bliv medlem af dette projekt
   join_some_projects_and_invite_some_observations_html: "Tilslut dig <a href='%{join_url}'>projekter</a> og <a href='%{invite_url}'>invitér nogle observationer</a>"
   join_the_largest_group_of_naturalists_in_the_world: Tilslut dig verdens største gruppe af naturelskere
@@ -1460,7 +1399,6 @@ da:
   joined_any_projects: tilsluttet nogen projekter
   joined_projects: Tilmeldte projekter
   joined_with_date: "Tilmeldt: %{date}"
-  joining: Tilslutter...
   journal_archives_for: Journal arkiveres til
   journal_post: Journal indlæg
   journal_post_deleted: Journal indlæg slettet.
@@ -1470,7 +1408,6 @@ da:
   just_a_reminder: Blot en påmindelse, da du måske har givet projekt kuratorer tilladelse til at se de skjulte koordinater for dine observationer i dette projekt.
   just_added!: Lige tilføjet!
   keep_editing: Fortsæt redigering
-  kelp_diatoms_and_allies: "tang, kiselalger og lignende"
   keyboard_shortcuts: Tastatur genveje
   kml_file_size_error: "KML skal være mindre end 1 MB i størrelse"
   label_colon: "%{label}"
@@ -1482,7 +1419,6 @@ da:
   large: stor
   last_active_with_date: "Senest aktiv: %{date}"
   last_confirmed_observation: Sidste bekræftede observation
-  last_inat_observation: "Sidste %{site_name} observation"
   last_observation: Sidste observation
   last_seen: Sidst set
   last_year: Sidste år
@@ -1501,7 +1437,6 @@ da:
     observations: Fleste observationer i %{time}
     identifications: Fleste identifikationer i %{time}
   leading: Førende
-  learn!: Lær!
   learn: Lære
   learn_about_the_species_live_in: Lær om de arter, der lever i
   learn_more: Lær mere
@@ -1555,24 +1490,18 @@ da:
   licensed_site_photos: "Licenserede %{site_name} fotos"
   license: Licens
   licensing: Valg af licens
-  licensing_your_content: |
-    Når du licenserer dit indhold giver du andre rettighed til at bruge det så længe de følger licensvilkårene. %{site_name} bruger dit Creative Commons-licenseret indhold til at dele med datapartnere som <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF).
   licensing_your_content_gives_others_legal: "Licensudstedelse af dit indhold giver andre legal ret til at bruge det, hvis de respekterer licensbetingelserne. %{site_name} bruger dit Creative Commons-licenserede indhold til at dele med datapartnere så som"
   life: Liv
-  life!: Liv!
   life_list: "%{user}'s Livsliste"
   life_list_updated: Livsliste opdateret!
   life_list_updated_we_also_saved_a: Livsliste opdateret! Vi gemte også en tom observation af denne takson.
   life_lists_automatically_fill: Livslisterne fyldes automatisk med nye taksa, efterhånden som du observerer dem, og de kan begrænses til højere niveau af overordnet taksa, f.eks. en livsliste over fugle i kragefamilien (Corvidae).
-  life_list_first: "livsliste først"
-  life_list_firsts: "livslister først"
   linear_scale_label: Lineær
   link_or_unlink_your_facebook_account: Tilknyt eller frakobl din Facebook konto
   link_or_unlink_your_flickr_account: Tilknyt eller frakobl din Flickr konto
   link_or_unlink_your_google_account: Tilknyt eller frakobl din Google konto
   link_your_facebook_account: Tilknyt din Facebook konto
   link_your_flickr_account: Tilknyt din Flickr konto
-  link_your_flickr_account_with_inat_so: "Tilknyt din Flickr konto med %{site_name} så du kan tilføje fotos af dine observationer."
   link_your_google_account: Tilknyt din Google konto
   linked_facebook: "Din %{site_name} konto er i øjeblikket tilknyttet til din Facebook konto."
   linked_facebook_automaticaly: "Husk også, at hvis du logger ind på %{site_name} via Facebook, vil vi automatisk genforbinde dine %{site_name} og Facebook konti. Det ser rimeligt ud, at hvis du bruger Facebook, vil du gerne kunne importere Facebook fotos, ikke?"
@@ -1582,9 +1511,7 @@ da:
   linked_flickr: "Din %{site_name} konto er i øjeblikket tilknyttet din Flickr konto."
   linked_flickr_automatically: "Husk også, at hvis du logger ind på %{site_name} via Flickr, vil vi automatisk genforbinde din %{site_name} og Flickr konti. Det virker rimeligt, at hvis du bruger Flickr, vil du gerne kunne importere Flickr foto´s, ikke?"
   linked_flickr_description: "Hvis du lader din %{site_name} konto være tilknyttet til din Flickr konto, kan du tilføje flere billeder til dine observationer. Selvfølgelig, hvis du nogensinde vil have %{site_name} og Flickr til ikke at være tilknyttede, så stopper vi dig ikke, du kan bare ikke tilføje billeder derfra. Nogle gange kan det være det bedste, hvis du opretter en helt ny Flickr-konto, som du vil tilknytte %{site_name} til."
-  linked_flickr_hotwo: "Du kan aktivere din Flickr-konto med %{site_name} for at tilføje billeder, ved at klikke på dette link."
   linked_flickr_password_html: "<strong>Vi vil aldrig bede dig om din Flickr adgangskode</strong> (men Flickr vil, tjekke URL adressen, som knappen sender dig og sikre sig at det er Flickr.com)."
-  linked_flickr_photo_copy_html: "<strong> Vi gemmer aldrig kopier af dine billeder eller ændrer i dine Flickr data (medmindre du spørger os). </strong> Vi holder så meget af fugle, insekter og snegle, til at vi vil rode med dine oplysninger!"
   list: Liste
   list_deleted: Liste slettet.
   list_saved: Liste gemt.
@@ -1598,27 +1525,19 @@ da:
   listed_taxa: Opførte taksa
   listed_taxon: Opført takson
   listed_taxon_updated: Opført takson opdateret
-  listing_announcement: Oversigts meddelelse
-  listing_announcements: Oversigts meddelelser
   listing_lists: Oversigts lister
   listing_taxa: Opføre taksa
-  listing_taxon_names: Oversigts takson navne
   lists: Lister
-  lists_are_lists_of_species: "Lister er lister med arter (eller andre taksa), som en livliste med alle de fugle du har set eller en liste med dine yndlings salamandere. De er <em>not</em> lister med observationer."
   lists_by_login:
     title:
       current_user: Dine lister
       login: Lister af %{login}
-  lists_come_in_three: "Listerne kommer i tre varianter:"
   load: Indlæs
   loading: "Indlæser…"
   loading_flickr_photos: "Indlæser Flickr fotos..."
-  loading_full_description_html: "Indlæser fuld beskrivelse..."
   loading_images: Indlæser billeder...
   loading_map: Indlæser kort...
   loading_metadata: Indlæser metadata...
-  loading_more_photos: "Indlæser flere fotos..."
-  loading_observations: "Indlæser observationer..."
   loading_preview_and_code: Indlæser forhåndsvisning og kode...
   loading_suggestions: Indlæser forslag...
   loading_tags: "Indlæser tags..."
@@ -1666,7 +1585,6 @@ da:
   locality_notes: Lokalitetsnotater
   localized_species_accounts: Steder med observerede arter
   location: Sted
-  location_: Sted
   locations: Steder
   location_is_accurate: Stedet er nøjagtig
   location_is_exact: stedet er eksakt
@@ -1676,7 +1594,6 @@ da:
   location_specified: Stedet er specificeret
   locked_taxa_will_not_allow_new: Låst taksa vil ikke tillade nye tilføjelser af efterkommer til taksa. Så hvis du har låst Padder og nogen forsøgte at importere <i>Rana catesbeiana </i> fra en ekstern navneudbyder, ville det nye takson blive oprettet, men det ville ikke kunne klassificeres som en padde. Når dette sker, skal den nyligt tilføjede taksa markeres, for at gøre kurator opmærksom på det. Dette bør egentlig kun bruges til taksa, da vi mener, at vi allerede har alle efterkommere. Kuratorer kan tilsidesætte dette, ved at redigere taksa og indtaste overordnet ID'er direkte, men vær venlig at overveje, at sammenlægge nye taksa med eksisterende i stedet.
   log_in: Login
-  logged_in_as: Logget ind som
   login_slash_username: Login / brugernavn
   logo:
     white_bg_gif: hvid BG GIF
@@ -1691,7 +1608,6 @@ da:
   looks_like_neither_have!: Ser ud som om ingen har nogen taksa!
   looks_like_no_species_in_guide: Det ser ud som om du ikke har nogen arter i din guide endnu.
   lookup: Slå op
-  lookup_user_rarr: "Slå op bruger &rarr;"
   low: lav
   lowest_rank: Laveste rang
   made_a: lavede en
@@ -3381,10 +3297,6 @@ da:
     one: "%{taxon} er et rige af liv med 1 observation"
     other: "%{taxon} er et rige af liv med %{count} observationer"
   taxon_is_threatened_coordinates_hidden: Takson er truet og koordinater er som standard skjult
-  taxon_is_threatened_coordinates_hidden_desc: |
-    En af de taksa, der er foreslået i identifikationerne, eller en af de taksa, der
-    indeholder nogen af disse taksa, er kendt for at være sjældne og/eller truede, så
-    stedet for denne observation er blevet skjult.
   taxon_is_threatened_coordinates_obscured: Takson er truet og koordinaterne er som standard sløret
   taxon_is_threatened_coordinates_obscured_desc: |
     En af de taksa, der er foreslået i identifikationerne, eller en af de taksa, der
@@ -3633,10 +3545,6 @@ da:
   this_will_try_to_add_tags_to_your_flickr: Dette vil forsøge at tilføje tags til dine Flickr foto´s. Fortsæt?
   this_will_update_all_last_observations: Dette opdaterer alle seneste observationer og tilføjer nye taksa fra
   this_year: Dette år
-  those_are_the_basics_of: |
-    Dette er det grundlæggende i at tilføje observationer! Der er masser af andre
-    ting du kan gøre, som at søge og filtrere dine observationer eller
-    redigere dem som et bundt, men de skal være ret selvforklarende.
   those_observations_no_longer_exist: Disse observationer eksisterer ikke længere.
   threatened: truet
   thu: Tor
@@ -4726,8 +4634,6 @@ da:
         iconic_taxon_name: Højere niveau taksonomisk kategori  for den observerede takson
         taxon_id: Unik identifikator for den observerede takson
         id_please: Uanset om observatøren har anmodet om ID-hjælp eller ej
-        num_identification_agreements: Antal identifikationer i overensstemmelse med observatørens identifikation
-        num_identification_disagreements: Antal identifikationer, der er i konflikt med observatørens identifikation
         observed_on_string: Dato/klokkeslæt som angivet af observatøren
         observed_on: Normaliseret observations dato
         time_observed_at: Normaliseret observationstidspunkt
@@ -4957,78 +4863,6 @@ da:
           <a href="%{url}"> observationseksport siden </a> for en liste over din eksport.
       parental_consent:
         subject: Dit barn ønsker at benytte iNaturalist
-        content_html: |
-          <p>
-          Dit barn bruger <strong>Seek af iNaturalist</strong>
-          lærings-app'en og vil gerne dele data med borgervidenskabs-platformen iNaturalist. Da posteringer på iNaturalist afslører
-          personligt identificerbare oplysninger, kan iNaturalist ikke bruges af en person under 13 år uden samtykke fra en forælder.
-          </p>
-          <p>
-          <strong>Seek af iNaturalist</strong> kan bruges uden at oprette en konto, og ingen personligt identificerbare oplysninger vil blive delt,
-          men dit barn vil ikke kunne bidrage med observationer til iNaturalist. iNaturalist borgervidenskabeligt socialt netværk, hvor deltagere deler observationer og identifikationer af levende ting for at lære hinanden om naturen og skabe biodiversitetsdata for videnskaben.
-          </p>
-          <p>
-          Hvis du gerne vil give dit barn samtykke til at bruge iNaturalist,
-          har vi brug for at du gør følgende:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Opret en iNaturalist-konto, som dit barn vil bruge ved at følge dette link:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Efter du opretter dit barns konto, vil vi bede dig om at give en lille donation på 1 US dollar med et kreditkort til iNaturalist for at bekræfte, at du er voksen. Sørg venligst for at benytte samme e-mailadresse, som du indtastede i "Forælder e-mail" under oprettelse, når du laver din donation.
-          </p>
-          </li>
-          <li>
-          <p>
-          Når vi behandler donationen, vil vi sende dig endnu en e-mail for at oplyse dig om, at dit barns konto er blevet aktiveret, og at du kan bruge iNaturalist-brugernavnet og adgangskoden, du oprettede, til at logge ind på dit barns Seek-app.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist indsamler følgende personligt identificerbare oplysninger:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>e-mailadresse (privat):</strong> enhver iNaturalist-konto har en tilknyttet e-mailadresse, som ikke offentliggøres.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>brugernavn (offentligt, obligatorisk):</strong> enhver iNaturalist-konto har et offentligt brugernavn og bruger-identifikationsnummer.
-          Brugernavnet behøver ikke at ligne personens rigtige navn, men det kan bruges til at kontakte personen via offentlige kommentarer og private direkte beskeder.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP-adresse (privat, obligatorisk):</strong> iNaturalist
-          indsamler, men offentliggøre ikke brugerens IP-adresse, som kan bruges til at udlede personligt identificerbare oplysninger såsom placering (med nøjagtighed på by-niveau).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>Profilbillede (offentligt, valgfrit):</strong> iNaturalist-konti har mulighed for at have et profilbillede, som ofte er billeder af brugeren.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>observationsplacering (offentlig eller privat,
-          obligatorisk):</strong> iNaturalist-observationer inkluderer placeringsinformation om, hvor observationen blev gjort. Dette kan gøres offentlig eller forblive privat, men der er offentlig som standard.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist tillader og brugere at dele offentlige billeder, offentlige kommentarer og private direkte beskeder i forbindelse med deres konto.
-          Der er muligt, at brugere kan inkluderer personligt identificerbare oplysninger i deres brugerskabte indhold.
-          </p>
-          <p>
-          Lær mere om iNaturalist’s privatlivspolitik <a href="%{privacy_policy_url}">her</a>.
-          </p>
       photos_missing:
         subject: Nogle billeder behøver reparation
         we_have_been_housekeeping: |
@@ -6301,12 +6135,6 @@ da:
           attributes:
             value:
               dna_only_atcg: "for DNA kan kun indeholde tegnene A, T, C eller G"
-              date_format: |
-                skal være i formatet ÅÅÅÅ-MM-DD for et datafelt ("%{observation_field_name}"
-                i din observation af "%{observation_species_guess}")
-              time_format: |
-                skal være i formatet tt:mm for et tidsfelt ("%{observation_field_name}"
-                i din observation af "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: bruger accepterer ikke felter fra andre
               user_only_accepts_fields_from_site_curators: bruger accepterer kun felter fra side kuratorer
