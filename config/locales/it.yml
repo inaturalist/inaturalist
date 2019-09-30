@@ -3642,6 +3642,8 @@ it:
     one: "%{taxon} è un regno animale con 1 osservazione"
     other: "%{taxon} è un regno animale con %{count} osservazioni"
   taxon_is_threatened_coordinates_hidden: Il taxon è minacciato, le coordinate sono nascoste in maniera predefinita
+  taxon_is_threatened_coordinates_hidden_desc: |
+    Uno dei taxa suggeriti nelle identificazioni, o uno dei taxa che contiene uno di questi taxa, è considerato raro e/o minacciato, sicché la localizzazione di questa osservazione è stata nascosta.
   taxon_is_threatened_coordinates_obscured: Il taxon è minacciato, le coordinate sono nascoste in maniera predefinita
   taxon_is_threatened_coordinates_obscured_desc: |
     Uno dei taxa suggeriti nelle identificazioni, o uno dei taxa che contiene uno di questi taxa, è considerato raro e/o minacciato, sicché l'ubicazione di questa osservazione è stata nascosta.
@@ -4854,6 +4856,8 @@ it:
         iconic_taxon_name: Livello tassonomico superiore del taxon osservato
         taxon_id: Identificatore univoco per il taxon osservato
         id_please: Se non l'osservatore ha richiesto aiuto nell'identificazione oppure no
+        num_identification_agreements: Numero di identificazioni che concordano con l'identificazione dell'osservatore
+        num_identification_disagreements: Numero di identificazioni che non concordano con l'identificazione dell'osservatore
         observed_on_string: Data/ora nel formato inserito dall'osservatore
         observed_on: Data dell'osservazione normalizzata
         time_observed_at: Ora dell'osservazione normalizzata
@@ -6137,6 +6141,12 @@ it:
           attributes:
             value:
               dna_only_atcg: "per sequenze di DNA può contenere solo i caratteri A, T, C, G"
+              date_format: |
+                deve essere in formato AAAA-MM-GG per un campo data ("%{observation_field_name}"
+                nella tua osservazione di "%{observation_species_guess}")
+              time_format: |
+                deve essere in forma hh:mm per un campo orario ("%{observation_field_name}"
+                nella tua osservazione di "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: l'utente non accetta campi da altri
               user_only_accepts_fields_from_site_curators: l'utente accetta i campi solo dai curatori del sito
