@@ -226,8 +226,6 @@ sv:
   add_your_email_to_get: |
     Bifoga din e-postadress för att få feedback på din observation från gemenskapen. Ifall du helst inte vill dela den, så återkom hit inom kort!
   add_your_own_observations_at: "Bifoga dina egna observationer på %{site_name}"
-  add_your_photo: Lägg till din foto
-  add_your_photo_to: "Lägg till ditt foto till %{project}"
   added: Lades till
   added!: Lades till!
   added_by: Lades till av
@@ -367,7 +365,6 @@ sv:
   already_have_an_account_log_in_html: Har du redan ett konto? <strong>Logga in.</strong>
   amphibians: amfibier
   and: och
-  and_help_the_inaturalist_community_grow: "och hjälp %{site_name}s gemenskap att växa."
   and_other_taxa: "&amp;Annan taxa"
   and_x_more_people!:
     one: "och 1 till person!"
@@ -402,7 +399,6 @@ sv:
   are_you_sure_remove_taxon_from_list: "Är du säker på att du vill ta bort den här taxon från listan?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Är du säker? Det här kommer ladda om sidan och dina ändringar kan gå förlorade.
-  are_you_sure_want_delete_taxon: "Är du säker på att du vill ta bort denna taxon? %{msg}"
   are_you_sure_want_delete_taxon_link: Är du säker på att du vill ta bort denna länk till taxon?
   are_you_sure_want_delete_this_name: Är du säker på att du vill radera detta namn?
   are_you_sure_want_delete_this_range: Är du säker på att du vill ta bort det här intervallet?
@@ -445,9 +441,7 @@ sv:
   authority_list:
     iucn_red_list: IUCN röda lista
   authorize_permissions_from_provider: "Godkänn tillstånd från %{provider}"
-  automatically_add_to_project: Lägg till automatiskt i projektet
   automatically_add_observations_to_this_project: Lägg till observationer automatiskt till detta projekt
-  automatically_id_new: Lägg till ID automatiskt för de nya observationerna som
   automatically_update_my_content_for_taxon_changes: Automatiskt uppdatera mitt innehåll för taxon ändringar
   back: Tillbaka
   back_to_all_species: Tillbaka till alla arter
@@ -888,12 +882,9 @@ sv:
   highlights_and_stats_from_year_on_site: "Höjdpunkter och statistik från %{year} på %{site}"
   history: Historia
   home: Hem
-  i_agree_to_the_project_terms: Jag samtycker med projektets villkor
   icon: Ikon
   icon_size: Ikon storlek
-  icon_slash_photo: Ikon / Foto
   id: Identifierare
-  id_: Identifierare
   identify: Identifiera
   identify_observations: "Identifiera observationer"
   identify_title: "Identifiera"
@@ -903,33 +894,26 @@ sv:
   identification_user_short: Ident. användare
   identifications: Identifieringar
   identifications_by: "Identifieringar av %{user}"
-  identified?: identifierade
   identifiers: Identifierare
   identotron_for: Identotron för
   ignore_and_continue: Ignorera och fortsätt
   import: Importera
   import_observations: Importera observationer
   import_photos: Importera foton
-  import_sounds: Importera ljud
   in_n: "i %{n}"
   in_place_x: i %{place}
   inaturalist_network_affiliation: iNaturalist Network anknytning
   in_progress: pågår
   in_the_past_week: Under senaste veckan
-  inappropriate: Olämplig?
   inat_user_profile: "%{site_name}: %{user}'s profil"
   inaturalist_is_a_joint_initiative: "%{site_name} är ett gemensamt initiativ av California Academy of Sciences och National Geographic Society"
-  inaturalist_observations_by: "%{site_name} &#58; Observationer av %{login}"
   inaturalist_places: "%{site_name} platser"
   is_now: är nu
-  january: Januari
   join: Gå med
   join_and: Gå med och
-  join_inat: Gå med %{site_name}!
   join_project: Gå med detta projektet
   join_this_project: Gå med detta projektet
   joined_with_date: "Gick med: %{date}"
-  joining: Ansluter...
   jpg_png_or_gif: "JPG, PNG, eller GIF"
   keep_editing: Fortsätt redigera
   keyboard_shortcuts: Kortkommandon
@@ -979,10 +963,6 @@ sv:
     turkish: Turkiska
   license: Licens
   licensing: Licensiering
-  licensing_your_content: |
-    När du licensierar dina bidrag får andra laglig rätt använda dem så längde de fäljer licensvillkoren. %{site_name} använder Creative
-    Commons-licensierat innehåll som delas med data partners som <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
   linear_scale_label: Linjärt
   link: Länk
   link_or_unlink_your_google_account: Länka eller avlänka ditt Google-konto
@@ -999,7 +979,6 @@ sv:
   loading: "Laddar..."
   loading_map: Laddar karta...
   loading_metadata: Laddar metadata...
-  loading_observations: "Laddar observationer..."
   loading_suggestions: Läser in förslag...
   locales_: Lokaler
   locales:
@@ -1037,13 +1016,11 @@ sv:
     zh-CN: Kinesiska (förenklad)
     zh-TW: Kinesiska (traditionell)
   location: Plats
-  location_: Plats
   locations: Platser
   location_is_public: Platsen är offentlig
   location_is_private: Platsen är privat
   log_in: Logga in
   log_scale_label: Logg
-  logged_in_as: Inloggad som
   logo:
     none: ingen
   longitude: Longitud
@@ -1552,7 +1529,6 @@ sv:
   supporting: Stödjer
   support_inaturalist: Stöd iNaturalist
   sun: Sön
-  tag: Tagg
   take_me_back: Ta mig tillbaka
   taxa_info: Taxainfo
   taxa_all_species_html: "Alla arter"
