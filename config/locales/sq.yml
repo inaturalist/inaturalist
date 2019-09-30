@@ -159,8 +159,6 @@ sq:
   add_your_email_to_get: |
     Shtoni emailin tuaj për të pranuar reagimet për vëzhgimin tuaj nga komuniteti. Nëse më me qejf nuk do ta ndanit atë, mund të riktheheni në këtë faqë së shpejti.
   add_your_own_observations_at: "Shto vëzhgimet tuaja në %{site_name}"
-  add_your_photo: Shto fotografinë tuaj
-  add_your_photo_to: "Shto fotografinë tuaj te %{project}"
   added: Shtuar
   added!: Shtuar!
   added_by: Shtuar nga
@@ -298,7 +296,6 @@ sq:
   alphabetical_order: Sipas rendit alfabetik
   amphibians: amfibet
   and: dhe
-  and_help_the_inaturalist_community_grow: "dhe ndihmo %{site_name} zgjerimin e komunitetit."
   and_other_taxa: "&amp; Taksa të Tjera"
   and_x_more_people!:
     one: "dhe 1 njeri më shumë"
@@ -332,7 +329,6 @@ sq:
   are_you_sure_remove_taxon_from_list: "Je i sigurt se doni ta hiqni këtë taxon nga lista?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     A je i sigurt? Kjo do të rifreskojë faqen dhe ju mund të humbni disa nga ndryshimet tuaja.
-  are_you_sure_want_delete_taxon: "Je i sigurt që dëshiron ta fshish këtë taxon? %{msg}"
   are_you_sure_want_delete_taxon_link: Je i sigurt që dëshiron ta fshish këtë lidhje taxon?
   are_you_sure_want_delete_this_name: Je i sigurt që dëshiron ta fshish këtë emër?
   are_you_sure_want_delete_this_range: Je i sigurt që dëshiron ta fshish këtë varg?
@@ -374,9 +370,7 @@ sq:
   authority_list:
     iucn_red_list: IUCN Lista e Kuqe
   authorize_permissions_from_provider: "Autorizo ​​lejet nga %{provider}"
-  automatically_add_to_project: Automatikisht shto në projekt
   automatically_add_observations_to_this_project: Shto automatikisht vëzhgime në këtë projekt
-  automatically_id_new: Automatikisht u cakto ID vëzhgimeve të reja si
   automatically_update_my_content_for_taxon_changes: Përditëso automatikisht përmbajtjen time për ndryshimet e taksonit
   back: Kthehu
   back_to_all_species: Kthehu tek të gjitha Speciet
@@ -786,7 +780,6 @@ sq:
   deleting: Fshirja ...
   deleting_verb: Fshirja
   desc: zbritje
-  descendant_taxa: taksa pasardhëse
   descending: duke zbritur
   describe_purpose: Shpjego qëllimin e këtij projekti
   describe_your_interest_in_nature: Përshkruaj interesin tënd në natyrë!
@@ -1085,7 +1078,6 @@ sq:
   grid_tooltip: Trego pamjen e rrjetit
   group: Grupi
   grouping: Grupim
-  guess_description: Supozo / Përshkrimi
   guides: Udhëzuesit
   guide_compiled_by: Udhëzues i përpiluar nga
   guide_deleted: Udhëzuesi fshihet
@@ -1105,8 +1097,6 @@ sq:
   has_sound: Ka zë
   has_sounds: ka tinguj
   hasnt_contributed_any_observations: nuk ka kontribuar asnjë vëzhgim në këtë projekt.
-  hate_me_facebook: "Shkëputini lidhjet tuaja me Facebook dhe Llogaritë në %{site_name}"
-  hate_me_flickr: "Shkëputini lidhjet tuaja me Flickr dhe Llogaritë në %{site_name}"
   heads_up: Vërejtje
   heads_up_this_photo_has_been_flagged: "VËREJTJE: kjo fotografi është etiketuar."
   heads_up_this_photo_is_already_associated_with: "Paralajmërim / Vini re: Kjo foto tashmë është e lidhur me <a target='_blank' href='%{url}'>një vëzhgim tjetër</a>"
@@ -1116,7 +1106,6 @@ sq:
   helped_the_observer_make: Ndihmon vrojtuesin/en për identifikimin përfundimtar (d.m.th. është kryer para identifikimit final dhe përputhet)
   here_are_3_examples: Këtu janë 3 shembuj të të dhënave të formuluara mirë
   here_are_our_top_species_suggestions: Këtu janë sugjerimet tona për speciet kryesore
-  here_are_some_things_you_can_do_in_the_meantime: "Këtu janë disa gjëra që mund të bëni në ndërkohë"
   hex_color_eg: Ngjyra Hex, p.sh. 65644F
   hi: Përshëndetje,
   hi_user: "Përshëndetje %{user}"
@@ -1127,11 +1116,9 @@ sq:
   history: Historiku
   home: Faqja kryesore
   however_there_were_some_issues: "Megjithatë, ka pasur disa probleme: %{issues}"
-  i_agree_to_the_project_terms: Pajtohem me kushtet e projektit
   i_dont_know_but_i_am_sure_this_is_taxon: Nuk e dij, por jam i sigurtë se kjo është %{taxon}
   icon: Ikonë
   icon_size: Madhësia e ikonës
-  icon_slash_photo: Ikonë / Fotografi
   iconic_taxon: Taxon ikonik
   id_categories:
     tooltips:
@@ -1141,10 +1128,6 @@ sq:
         Sugjerimi i parë i këtij taxon me të cilin komuniteti më pas pajtohet. Kjo ndihmon rafinimin komunitetit taxon.
       maverick: |
         Taxon nuk është pasardhëse apo paraardhëse e komunitetit taxon, d.m.th. komuniteti nuk pajtohet me këtë taxon.
-  id_more_in_id_please: ID me shumë në ID ju lutem
-  id_please!: ID Ju lutem!
-  id_please: ID Ju lutem
-  id_please_expandable_html: "Identifikimin<span class='full'> Ju lutem</span>!"
   id_withdrawn: Identifikimi është tërhequr
   ids_by_taxon: Identifikimet sipas taxonit
   identify: Identifiko
@@ -1154,13 +1137,11 @@ sq:
   identification_by_user: identifikim nga %{user}
   identification_deleted: Indentifikimi u fshi.
   identification_saved: "Indentifikimi u ruajt!"
-  identification_summary: Përmbledhje e identifikimit
   identification_updated: Identifikimi i përditësua!
   identification_user_short: Identifiko përdoruesin
   identification_withdrawn: Identifikimi u tërhoq.
   identifications: Identifikimet
   identifications_by: "Identifikimet nga %{user}"
-  identified?: e identifikuar
   identifiers: Identifikuesit
   identotron_for: Identotron për
   identotron_help: Ndihma identotron
@@ -1171,15 +1152,8 @@ sq:
   if_matches_come_from_a_comprehensive_list: Nëse përputhjet vijnë nga një listë gjithëpërfshirëse një shirit i gjelbër do të shfaqet këtu.
   if_this_is_a_scientific_name: Nëse ky është emër shkencor, a është tani i pranueshëm?
   if_this_link_will_apply_to_descendant: Nëse kjo vegëz do të aplikohet për taxat pasardhëse, mund të përdorni tiketat mostër për të futur emrin e taxon në URL
-  if_you_already_have_an_account: "Nëse tanimë keni %{article} %{site_name} llogari..."
-  if_you_dont_want_us_to_share_your_data: Nëse nuk dëshironi që ne ti ndajmë të dhënat tuaja
   if_you_have_any_trouble_with_the_site_check_out: 'Nëse keni ndonjë pyetje, ju lutemi shihi <a href="%{help_url}">seksioni ndihmës</a> apo posto një mesazh tek<a href="%{feedback_url}">grup pergjigjesh </a>tona.'
-  if_you_have_trouble_with_the_site: "Nëse keni ndonjë problem me këtë faqe, ju lutem shikoni seksionin tonë të ndihmës:"
-  if_youd_like_us_to_share_your_observations_with: |
-    Nëse dëshironi që të shpërndajmë vëzhgimet tuaja me partnerë të të dhënave, sigurohuni që të keni zgjedhur licencimin e vëzhgimeve tuaja me licencën Bashkësia Krijuese [Creative Commons].
-  if_you_want_to_change_the_name: Nëse dëshironi ta ndryshoni emrin
   if_your_project_is: Nëse projekti juaj është rreth një vendi të caktuar, zgjidhni koordinatat duke klikuar në hartë ose duke i shtuar manualisht.
-  if_your_search_comes_up: "Nëse kërkimi ju del i zbrazët shihni kutitë kërkuese për ta përsëritur kërkimin përmes ofruesve tanë të jashtëm:"
   ignore: injoro
   ignore_and_continue: injoro dhe vazhdo
   ignore_times: Injoro kohët
@@ -1192,14 +1166,11 @@ sq:
   import_date_time_location_taxonomic: "Importoni datën, kohën, vendndodhjen, përshkrimin dhe të dhënat klasifikuese nga kjo foto."
   import_from_csv: Importo nga CSV
   import_from_other_photo_sites: Importo nga faqe tjera të fotove
-  import_from_photos: Importo nga fotot
-  import_from_yahoo: Importo nga Yahoo!
   import_observations: Importo vëzhgime
   import_observations_from_a_photo: Importoni vëzhgimet nga një foto-shërbim apo nga skedat në kompjuterin tuaj.
   import_photos: Importo foto
   import_ranges: Importo rangjet
   import_sections: Importo seksione
-  import_sounds: Importo tinguj
   import_tags_from_csv: Importo etiketime nga CSV
   importing: "Duke importuar..."
   improving: Duke përmirësuar
@@ -1207,78 +1178,50 @@ sq:
   inaturalist_network_affiliation: Bashkim me Rrjetin iNaturalist
   inbox: Kutia e mesazheve
   including: përfshirë
-  in_order_to_login_and_using_site_visit_url: "Me qëllim që të hyni dhe të shfrytëzoni faqen duhet të vizitoni këtë vegëz (URL) për të aktivizuar llogarinë tuaj:"
   in_progress: në zhvillim
-  in_taxon?: në taxon
   in_the_past: në të kalaurën
   in_the_past_week: në javën e kaluar
   inactive: Joaktiv
   inactive_taxon: taxon joaktiv
-  inappropriate: e papërshtatshme?
   inappropriate_content: përmbajtje e papërshtatshme?
   inat_account_action: "%{site_name} &#58; Llogaria &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} beson që kjo është lista e plotë e këtij taxon-i në këtë vend."
   inat_user_profile: "%{site_name}: profili i %{user}"
-  inat_will_be_back_on: "%{site_name}do te jet ne fuksion/krah/pendë/këmbënofull/pseudopod"
-  inaturalist_is_an_online_community: "%{site_name} është komunitet online për adhuruesit e natyrës! Fotot tuaja ndihmojnë hulumtuesit të mësojnë më shumë rreth"
-  inaturalist_is_catching_some_zs: "%{site_name}po Zë disa Zs"
-  inaturalist_observations_by: "%{site_name} &#58; Vëzhgimet nga %{login}"
   inaturalist_places: "%{site_name} Vendet"
   inaturalist_places_are_way_record_what_lives_where: "Vendet në %{site_name} mundësojnë dokumentimin e krijesave që gjallojnë në vende të ndryshme. Nëse kërkoni një specie të veçantë, e dini ku të kërkoni. Secili vend ka një listë që dokumenton të gjitha speciet që ndodhen aty, çka ju ndihmon të hulumtoni rreth krijesave që mund të gjeni në vende të caktuara."
   info: Informacion
   input_taxon: Fut taxon
   insects: Insektet
   insect_life_stage: Etapat e jetës së insektit
-  inspired_by_the_flickr_group: "Të inspiruar nga grupi në Flickr <a href='http://flickr.com/groups/idplease/'>ID Please</a> ky është vendi për të postuar vëzhgime të gjërave që nuk i dini, dhe t'u ndihmoni njerëzve t'i identifikojnë krijesat misterioze!"
   interactions: Ndërveprime
   internal_server_error: Gabim në serverin e brendshëm
   introduced: E sjellë
   introduced_in_place: "e sjellur në %{place}"
-  invasive: pushtuese
   invitation: Ftesë
-  invitations: Ftesat
   invite: Fto
-  invite_flickr_photos: "Fto fotografitë Flickr në %{site_name}"
   invite_more: Fto më tepër
-  invite_observations: Fto vëzhgimet
   invite_people: Fto njerëz
   invite_people_to_project: "Fto njerëz në %{project}"
-  invite_photos_from_other_sites: Fto fotografitë nga faqet tjera
-  invite_photos_to: "Fto fotografitë në %{site_name}"
-  invite_photos_to_raquo_html: "Fto fotografitë në <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Fto dikë tek %{name}"
-  invite_to_project: Fto në projekt
   invite_your_friends: Fto miqtë e tu
   invite_your_friends_description: "Ndihmo ta bëjmë %{site_name} më të madhe dhe komunitet më të mirë duke ftuar miqtë të bashkangjiten!"
   inviteonly: Vetëm me ftesë
-  invited: I ftuar
-  invited_to_the_following_projects: "I ftuar në projektet në vazhdim:"
   invited_x: "I ftuar %{x}"
-  inviting: Duke ftuar...
   is_an_evaluation: |
     është vlerësim i saktësisë së një vëzhgimi. 
     Vezhgimet Nota e Hulumtimit [Research Grade] mund të përdoren nga shkencëtarët për hulumtime. Votoni këtu poshtë:
   is_not_following_anyone: nuk është duke ndjekur dikë.
   is_now: është tani
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: A është evidenca e siguruar e mjaftueshme për të konfirmuar që kjo është %{taxon}
-  is_the_organism_wild: "A është organizmi i egër/i natyralizar?"
-  is_this_observation_offensive_html: 'A është vëzhgimi <a href="/help#i papërshtatshëm">inappropriate</a>, spam ose ofendues?'
   is_this_offensive_html: 'A është kjo <a href="/help#i papërshtatshëm">inappropriate</a>,spam ose ofenduese?'
   is_this_place_a_duplicate: A është ky vend i dyfishuar?
-  it: Ajo
   it_can_now_be_used_for_research: Tani mund të përdoret për hulumtime, dhe mund të paraqitet në faqe të tjera.
-  it_has: Ka
-  it_instead: ajo në vend të.
   item_flagged_notice_html: |
     Kjo është etiketuar si spam më nuk është publikisht e dukshme. Ju mund ta shihni sepse e keni krijuar, ose ju jeni rregulluesi i faqes. Nëse mendoni se ky është gabim, ju lutem
     <a href="mailto:%{help_email}" class="contact">na kontaktoni</a>.
     <a href="%{manage_flags_path}">Menaxhoni shënimet</a>
-  its_important_that_you: Është me rendësi të klikoni
-  iucn_red_list_status: Me status në Listën e kuqe të IUCN
-  january: Janar
   join: Bashkangjitu
   join_and: Bashkangjitu dhe
-  join_inat: Bashkangjitju %{site_name}
   join_project: Bashkangjitju projektit
   join_some_projects_and_invite_some_observations_html: "Bashkangjitju ca <a href='%{join_url}'>projekteve</a>dhe<a href='%{invite_url}'>fto ca vëzhgime</a>"
   join_this_project: Bashkangjju ketij projekti
@@ -1286,7 +1229,6 @@ sq:
   joined_any_projects: Bashkangjitur ndonjë projekti
   joined_projects: Projekte të bashkangjitura
   joined_with_date: "Bashkangjitur: %{date}"
-  joining: Duke u bashkangjitur...
   journal: Ditari
   journal_archives_for: Arkivat e ditarit për
   journal_post: Publikimi i ditarit
@@ -1297,7 +1239,6 @@ sq:
   just_a_reminder: Vetëm për rikujtim, meqenëse mund t’u keni dhënë leje kuratorëve të projektit për të shikuar koordinatat private të vëzhgimeve tuaja në këtë projekt.
   just_added!: Sapo u shtua!
   keep_editing: Vazhdo përpunimin
-  kelp_diatoms_and_allies: "leshteriku, diatomet dhe aleatët"
   keyboard_shortcuts: Shkurtesat e tastierës
   kml_file_size_error: "KML duhet të jetë më i vogël sesa 1 MB në madhësi"
   labels: Etiketat
@@ -1308,7 +1249,6 @@ sq:
   large: e madhe
   last_active_with_date: "Së fundmi aktiv më %{date}"
   last_confirmed_observation: Vëzhgimi i fundit i konfirmuar
-  last_inat_observation: "Vëzhgimi i fundit i %{site_name}"
   last_observation: Vëzhgimi i fundit
   last_seen: Se fundmi i parë
   last_year: Vitin e kaluar
@@ -1325,7 +1265,6 @@ sq:
     observations: Më shumë vëzhgime për %{time}
     identifications: Më shumë identifikime për %{time}
   leading: Duke udhëhequr
-  learn!: Mëso!
   learn: Mëso
   learn_about_the_species_live_in: Mëso për speciet që jetojnë në
   learn_more: Mëso më shumë
@@ -1378,25 +1317,18 @@ sq:
   licensed_site_photos: "Fotot e licensuara %{site_name}"
   license: Liçenca
   licensing: Licensim
-  licensing_your_content: |
-    Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
   licensing_your_content_gives_others_legal: "Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave siç janë"
   life: Jeta
-  life!: Jeta!
   life_list: "%{user}lista Jetësore"
   life_list_updated: Lista jetësore e rinuar
   life_list_updated_we_also_saved_a: Lista jetësore u përditësua! Kemi ruajtur edhe një vëzhgim të zbrazët të këtij takson.
   life_lists_automatically_fill: Listat jetësore automatikisht plotësohen me klasa të reja ndërkohë që ju vrojtoni, dhe mund të kufizohen në shkallë më të lartë të klasave prindërore, p.sh. lista jetësore e zogjve në familjen e korbave (Corvidae).
-  life_list_first: "se pari lista jetësore"
-  life_list_firsts: "të parat listat jetësore"
   link: Vegëza
   link_or_unlink_your_facebook_account: Lidh ose çlidh llogarinë tuaj në Facebook
   link_or_unlink_your_flickr_account: Lidh ose çlidh llogarinë tuaj në Flickr
   link_or_unlink_your_google_account: Lidh ose çlidh llogarinë tuaj në Google
   link_your_facebook_account: Lidh llogarinë tuaj në Facebook
   link_your_flickr_account: Lidh llogarinë tuaj në Flickr
-  link_your_flickr_account_with_inat_so: "Lidhni llogarinë tuaj Flickr me %{site_name} që të mund të shtoni fotot e vëzhgimeve tuaja."
   link_your_google_account: Lidh llogarinë tuaj në Google
   linked_facebook: "Llogaria juaj në %{site_name} tani është e lidhur me llogarinë tuaj në Facebook"
   linked_facebook_automaticaly: "Po ashtu, mos harroni që nëse hyni (me emrin e përdoruesit dhe fjalëkalim) në %{site_name} përmes Facebook, ne do të lidhim automatikisht llogaritë tuaja në %{site_name} dhe në Facebook."
@@ -1406,9 +1338,7 @@ sq:
   linked_flickr: "Llogaria juaj në %{site_name} tani është e lidhur me llogarinë tuaj në Flickr."
   linked_flickr_automatically: "Gjithashtu, të keni parasysh se nëse qaseni në llogarinë tuaj në %{site_name} përmes Flickr, ne automatikisht do ta rilidhim llogarinë tuaj në %{site_name} me llogarinë tuaj në Flickr. Duket e arsyeshme që nëse përdoni Flickr ju gjithashtu do të dëshironi të mundeni të importoni Fotonga Flickr, e saktë?"
   linked_flickr_description: "Mbajtja e llogarisë suaj në %{site_name} të lidhur me llogarinë tuaj në Flickr mundëson shtimin e shumë fotove përnjëherësh në vëzhgimet tuaja. Natyrisht, nëse doni t’i ndani nga njëra-tjetra ne nuk jua ndalojmë, vetëm se nuk do të mund të shtoni më foto. Nganjëherë kjo mund të jetë gjë e mirë, p.sh. nëse krijoni një Flickr të ri me të cilin doni ta lidhni %{site_name}."
-  linked_flickr_hotwo: "Ju mund ta aktivizoni llogarinë tuaj Flickr përmes %{site_name} që të shtoni foto duke klikuar në këtë link."
   linked_flickr_password_html: "<strong>Ne kurrë nuk do tu kërkojmë fjalëkalimin tuaj të Flickr</strong> (Por Flickr mundet, kontrolloni adresen në të cilën ju dërgoni butoni dhe sigurohuni që është Flickr.com)."
-  linked_flickr_photo_copy_html: "<strong>Ne kurrë nuk do ti ruajmë kopjet nga fotografitë tuaja, ose ti ndryshojmë të dhënat tuaja në Flickr (Përderisa nuk na e kërkoni ju një gjë të tillë).</strong> Ne kujdesemi shumë për zogjtë, insektet, butakët kështuqë nuk dëshirojmë të tollovisim me informacionin tuaj!"
   list: Lista
   list_deleted: Lista u fshi.
   list_saved: Lista u ruajt.
@@ -1422,27 +1352,19 @@ sq:
   listed_taxa: taxon te listuara
   listed_taxon: taxon te listuara
   listed_taxon_updated: Përditësimi i taxonë të listuara
-  listing_announcement: Njoftimi i listimit
-  listing_announcements: Njoftim i redaktimit
   listing_lists: Listimi i listës
   listing_taxa: Listimi taxa
-  listing_taxon_names: Listimi i emrave taxon
   lists: Listat
-  lists_are_lists_of_species: "Listat janë lista të specieve (ose klasave të tjera), si p.sh. lista jetësore e të gjithë zogjve të parë gjatë jetës, ose lista e amfibëve të preferuar. Ato <em>nuk</em> janë lista të vrojtimeve."
   lists_by_login:
     title:
       current_user: Listat tuaja
       login: Listat sipas %{login}
-  lists_come_in_three: "Listat janë tre lloje:"
   load: Ngarko
   loading: "Po ngarkohet..."
   loading_flickr_photos: "Duke ngarkuar fotografi nga Flickr..."
-  loading_full_description_html: "Duke ngarkuar përshkrimin e plotë..."
   loading_images: Duke ngarkuar imazhet...
   loading_map: Duke ngarkuar hartën...
   loading_metadata: Ngarkimi i meta të dhënave
-  loading_more_photos: "Duke ngarkuar më shumë fotografi..."
-  loading_observations: "Duke ngarkuar observimet"
   loading_preview_and_code: Duke ngarkuar shikimin paraprak dhe kodin...
   loading_suggestions: Duke ngarkuar sugjerimet...
   loading_tags: "Duke ngarkuar etiketimet..."
@@ -1483,7 +1405,6 @@ sq:
   locality_notes: Shënime të lokalitetit
   localized_species_accounts: Llogaritë e specieve të lokalizuara
   location: Lokacioni
-  location_: Lokacioni
   locations: Lokacionet
   location_is_accurate: Lokacioni është i saktë
   location_is_exact: Lokacioni është i saktë
@@ -1493,7 +1414,6 @@ sq:
   location_specified: lokacioni është i specifikuar
   locked_taxa_will_not_allow_new: Klasat e kyçura nuk lejojnë shtimin e klasave të reja. Pra, nëse kyçni Amphibia dhe dikush përpiqet të importojë <i>Rana catesbeiana</i> nga një ofrues i jashtëm, krijohet një klasë e re por nuk klasifikohet si amfibe. Në këtë rast, klasa e re që shtohet duhet të shenjohet për vëmendje të mëtejshme nga ana e kuratorit. Në fakt, kjo duhet përdorur vetëm për klasa pasardhësit e të cilave mendojmë se i kemi të gjithë. Kuratori mund ta tejkalojë këtë duke ndryshuar klasat dhe duke vënë direkt identifikatin prindëror, por mundësisht sugjerohet bashkimi i klasave të reja me ato ekzistuese në vend të krijimit të klasave të tjera.
   log_in: Hyr
-  logged_in_as: I lidhur si
   login_slash_username: Hyr / Emri i përdoruesit
   logo:
     white_bg_gif: Prapavijë e bardhë GIF
@@ -1507,7 +1427,6 @@ sq:
   looks_like_neither_have!: Duke që asnjëra nuk ka ndonjë taxa!
   looks_like_no_species_in_guide: Duket sikur nuk keni një specie në udhërrëfyesin ruaj.
   lookup: Kërko
-  lookup_user_rarr: "Kërko përdorues &rarr;"
   low: ulët
   lowest_rank: Niveli më i ulët
   made_a: Bëje një
@@ -2886,7 +2805,6 @@ sq:
   synonyms: Sinonime
   table: Tabelë
   table_of_contents: Tabela e përmbajtjeve
-  tag: Etiketo
   tagging: 'Duke etiketuar...'
   tags: Etiketat
   taxa_all_species_html: "Të gjitha specjet"
