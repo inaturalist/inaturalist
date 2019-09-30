@@ -161,8 +161,6 @@ bg:
   add_to_your_list: Добавяне в своя списък
   add_your_email_to_get: |
     Добавете своя имейл за да получавате известия от общността за Вашите наблюдения. Ако предпочитате да не го споделяте, посетете ни отново скоро!
-  add_your_photo: Добавяне на своя снимка
-  add_your_photo_to: "Добавяне на своя снимка към %{project}"
   added: Добавено
   added!: Добавено!
   added_by: Добавено от
@@ -276,7 +274,6 @@ bg:
   are_you_sure_remove_taxon_from_list: "Сигурни ли сте, че искате да премахнете този таксон от списъка?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Сигурни ли сте? Това ще презареди страницата и може да изгубите някои от промените си.
-  are_you_sure_want_delete_taxon: "Сигурни ли сте, че искате да изтриете този таксон? %{msg}"
   are_you_sure_want_delete_this_name: Сигурни ли сте, че искате да изтриете това име?
   are_you_sure_you_want_to_delete_this: Сигурни ли сте, че искате да изтриете това?
   are_you_sure_you_want_to_delete_this_photo?: Сигурни ли сте, че искате да изтриете тази снимка?
@@ -735,21 +732,16 @@ bg:
   has_photos_or_sounds: Има снимки или звуци
   has_sound: Има звук
   has_sounds: има звуци
-  hate_me_facebook: "Прекрати връзката между Facebook и %{site_name} акаунтите."
-  hate_me_flickr: "Прекрати връзката между Flickr и %{site_name} акаунтите"
   help: Помощ
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
   here_are_our_top_species_suggestions: Ето нашите най-добри предложения за видове
-  here_are_some_things_you_can_do_in_the_meantime: "Ето няколко неща, които бихте могли да правите през това време"
   hi: Привет,
   hi_user: "Здравей %{user}"
   highest_rank: Най-висок ранг
   history: История
   home: Начало
-  i_agree_to_the_project_terms: Съгласен съм с условията на проекта
   icon: Иконка
   icon_size: Размер на иконката
-  icon_slash_photo: Иконка / снимка
   identify: Разпознаване
   identify_observations: "Разпознай наблюдения"
   identify_title: "Разпознай"
@@ -765,29 +757,21 @@ bg:
   ids: "Разпознавания"
   ids_made_for_others: Разпознавания направени за други
   if_this_is_a_scientific_name: Ако това е научно име, общоприето ли е в момента?
-  if_you_already_have_an_account: "Ако вече имате акаунт на %{site_name}..."
   import: Импортиране
   import_date_time_location_taxonomic: "Извлечи дата, време, място, описание и таксономична информация от снимката."
   import_from_csv: Импорт от CSV
   import_from_other_photo_sites: Импорт от други фото сайтове
-  import_from_photos: Импорт от снимки
-  import_from_yahoo: Импорт от Yahoo
   import_observations: Импортирай наблюдения
   import_observations_from_a_photo: Импортирай наблюдения от фото сайт или от файл на твоя компютър.
   import_photos: Импортирай снимки
-  import_sounds: Импортирай звуци
   import_tags_from_csv: Импортирай етикети от CSV
   importing: "Импортиране..."
   in_n: "във %{n}"
   inbox: входящи
   inactive_taxon: неактивен таксон
-  inappropriate: Неуместно?
   inappropriate_content: Неуместно съдържание?
   inat_believes_this_is_a_complete_listing: "%{site_name} смята, че това е пълен списък за този таксон на това място."
   inat_user_profile: "%{site_name}: Профил на %{user}"
-  inat_will_be_back_on: "%{site_name} ще върне на крака/криле/перки/пипала/псевдоподи"
-  inaturalist_is_an_online_community: "%{site_name} е онлайн общност за естествоизпитатели! Като добавяте свои снимки, помагате на изследователите да научат повече за"
-  inaturalist_observations_by: "%{site_name} &#58; Наблюдения на %{login}"
   inaturalist_places: "%{site_name} Места"
   inaturalist_places_are_way_record_what_lives_where: "%{site_name} Места е начин да документираме какво къде живее. Ако търсите определен вид - ще знаете къде да търсите. Всяко място има и видов списък регистриращ всички видове които се срещат на него, така че можете също и да проверите организмите които сте намерили на определено място в списъка."
   info: Информация
@@ -795,27 +779,19 @@ bg:
   internal_server_error: Вътрешна грешка на сървъра
   introduced: интродуциран
   introduced_in_place: "Интродуциран във %{place}"
-  invasive: инвазивен
   invitation: Покана
-  invitations: Покани
   invite: покани
   invite_more: Покани още
-  invite_observations: Покани наблюдения
   invite_people: Покани хора
   invite_people_to_project: "Покани хора във %{project}"
   invite_someone_to: "Покани някого на %{name}!"
-  invite_to_project: Покани в проекта
   invite_your_friends: Покани приятелите си
   is_not_following_anyone: не следва никого.
-  iucn_red_list_status: Статут според Червения списък на IUCN
-  january: януари
   join: Включи се
-  join_inat: Присъединете се към %{site_name}!
   join_project: Включи се в проекта
   join_some_projects_and_invite_some_observations_html: "Включете се в някой <a href='%{join_url}'>проект</a> и <a href='%{invite_url}'>поканете няколко наблюдения</a>"
   join_this_project: Включи се в проекта
   joined_any_projects: включили към никакъв проект
-  joining: Присъединяване...
   journal: Дневник
   journal_archives_for: Архиви на дневника на
   journal_post: Публикация в дневника
@@ -839,7 +815,6 @@ bg:
     species: Най-много видове за %{time}
     observations: Най-много наблюдения за %{time}
     identifications: Най-много разпознавания за %{time}
-  learn!: Научете!
   learn: Научете
   learn_about_the_species_live_in: Научи за видовете живеещи в
   learn_more: Научете повече
@@ -891,8 +866,6 @@ bg:
   less: По-малко
   license: Лиценз
   licensing: Лицензиране
-  licensing_your_content: |
-    Като лицензирате съдържанието си, давате легални права на други да го използват, ако спазват условията на лиценза. %{site_name} използва Вашето съдържание, лицензирано под Creative Commons, за да го сподели с партньори като <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF).
   life: Живот
   life_list: "Житейски списък на %{user}"
   life_list_updated: Житейският списък е обновен!
@@ -903,7 +876,6 @@ bg:
   link_or_unlink_your_google_account: Свържи или не своя Гугъл акаунт
   link_your_facebook_account: Свържете Вашия акаунт на Фейсбук
   link_your_flickr_account: Свържете Вашия акаунт на Flickr
-  link_your_flickr_account_with_inat_so: "Свържете Вашия акаунт на Flickr с %{site_name}, за да можете да добавяте снимки към Вашите наблюдения."
   link_your_google_account: Свържете Вашия акаунт на Гугъл
   linked_facebook: "Вашият акаунт на %{site_name} е свързан с акаунта Ви на Фейсбук."
   linked_flickr: "Вашият акаунт на %{site_name} е свързан с акаунта Ви на Flickr."
@@ -926,12 +898,9 @@ bg:
   load: Зареди
   loading: "Зареждане..."
   loading_flickr_photos: "Зареждане на снимки от Flickr..."
-  loading_full_description_html: "Зареждане на пълно описание..."
   loading_images: Зареждане на изображения...
   loading_map: Зареждане на карта...
   loading_metadata: Зареждане на метаданни...
-  loading_more_photos: "Зареждане на още снимки..."
-  loading_observations: "Зареждане на наблюдения..."
   loading_preview_and_code: Зареждане на преглед и код...
   loading_suggestions: Зареждане на предложения...
   loading_tags: "Зареждане на етикети..."
@@ -972,7 +941,6 @@ bg:
   locality_notes: Бележки за местността
   localized_species_accounts: Локализирани данни за видовете
   location: Местоположение
-  location_: Местоположение
   locations: Местоположения
   location_is_accurate: Местоположението е точно
   location_is_exact: местоположението е точно
@@ -981,7 +949,6 @@ bg:
   location_is_private: Местоположението е поверителено
   location_specified: Указано местонахождение
   log_in: Влизане
-  logged_in_as: Влезли сте като
   login_slash_username: Вход / потребителско име
   logo:
     logo: Лого
@@ -993,7 +960,6 @@ bg:
   longitude: Геогр. дължина
   longitude_in_decimal: 'Геогр. дължина в десетични градуси, например -122.123'
   lookup: Потърси
-  lookup_user_rarr: "Потърси потребител &rarr;"
   lowest_rank: Най-нисък ранг
   make_it_a_life_list?: Направи житейски списък?
   mammals: бозайници
@@ -1892,7 +1858,6 @@ bg:
   synonyms: Синоними
   table: Таблица
   table_of_contents: Съдържание
-  tag: Етикет
   tags: Етикети
   tags_are_a_way: 'Етикетите са допълнителен начин за организиране на Вашите наблюдения. Например, можете да добавите етикет "пещера" към наблюденията си от пещери, за да ги намерите лесно по-късно.'
   taxa: Таксони
