@@ -243,8 +243,6 @@ ca:
     Afegiu el correu electrònic per obtenir respostes sobre l'observació des de la comunitat.
     Si preferiu no compartir-la, si us plau, reviseu-la aviat!
   add_your_own_observations_at: "Afegiu les vostres pròpies observacions a %{site_name}"
-  add_your_photo: Afegiu la vostra foto
-  add_your_photo_to: "Afegiu la vostra foto a %{project}"
   added: Afegit
   added!: Afegit!
   added_by: Afegit per
@@ -387,7 +385,6 @@ ca:
   amphibians: amfibis
   ancestor_taxon: Tàxon Ancestral
   and: i
-  and_help_the_inaturalist_community_grow: "i ajudar que la comunitat %{site_name} creixi."
   and_other_taxa: "& altres tàxons"
   and_x_more_people!:
     one: "i una persona més!"
@@ -422,7 +419,6 @@ ca:
   are_you_sure_remove_taxon_from_list: "Esteu segur que voleu eliminar de la llista aquesta espècie o grup?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Esteu segur? Això tornarà a carregar la pàgina, i podeu perdre alguns dels vostres canvis.
-  are_you_sure_want_delete_taxon: "Esteu segur que voleu eliminar aquest tàxon?  %{msg}"
   are_you_sure_want_delete_taxon_link: Esteu segur que voleu eliminar aquest enllaç del tàxon?
   are_you_sure_want_delete_this_name: Esteu segur que voleu eliminar aquest nom?
   are_you_sure_want_delete_this_range: Esteu segur que voleu eliminar aquest interval?
@@ -468,9 +464,7 @@ ca:
   authorize: Autoritzeu
   authorize_permissions_from_provider: "Autoritza permisos de %{provider}"
   automatic_short: Automàtic
-  automatically_add_to_project: Afegeix al projecte automàticament
   automatically_add_observations_to_this_project: Afegeix automàticament observacions a aquest projecte
-  automatically_id_new: Identifiqueu les noves observacions automàticament com a
   automatically_update_my_content_for_taxon_changes: Actualitza el meu contingut automàticament quan hi hagi un canvi en el tàxon
   back: Torna
   back_to_all_species: Torna a totes les espècies
@@ -907,7 +901,6 @@ ca:
   deleting_verb: Eliminant
   deny: Refuseu
   desc: desc
-  descendant_taxa: tàxons descendents
   descending: descendent
   describe_purpose: Descriu l'objectiu d'aquest projecte
   describe_your_interest_in_nature: Descriu el vostre interès per la natura!
@@ -1257,7 +1250,6 @@ ca:
   grid_tooltip: Mostra la visualització en quadrícula
   group: Grup
   grouping: Agrupació
-  guess_description: Estimació/descripció
   guides: Guies
   guide_compiled_by: Guia elaborada per
   guide_deleted: Guia eliminada
@@ -1277,8 +1269,6 @@ ca:
   has_sound: Té so
   has_sounds: Té sons
   hasnt_contributed_any_observations: no heu fet cap observació en aquest projecte.
-  hate_me_facebook: "Desvincula els vostres comptes de Facebook i %{site_name}"
-  hate_me_flickr: "Desvincula els vostres comptes de Flickr i %{site_name}"
   heads_up: Avís
   heads_up_this_photo_has_been_flagged: "ATENCIÓ: s’ha marcat aquesta foto."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓ: aquesta foto ja està associada amb <a target='_blank' href='%{url}'>una altra observació</a>"
@@ -1290,7 +1280,6 @@ ca:
   here_are_3_examples: Aquí trobareu 3 exemples de dades ben formades
   here_are_our_top_suggestions: Aquí estan els vostres principals suggeriments
   here_are_our_top_species_suggestions: Aquí estan les principals espècies suggerides
-  here_are_some_things_you_can_do_in_the_meantime: "Mentrestant aquí trobareu coses per fer"
   hex_color_eg: Color en hexadecimal, ex. 65644F
   hi: Hola.
   hi_user: "Hola %{user}"
@@ -1305,11 +1294,9 @@ ca:
   history: Historial
   home: Inici
   however_there_were_some_issues: "Malgrat això, hi havia alguns problemes: %{issues}"
-  i_agree_to_the_project_terms: Estic d'acord amb les condicions del projecte
   i_dont_know_but_i_am_sure_this_is_taxon: No ho sé segur, però segur que és%{taxon}
   icon: Icona
   icon_size: Mida de la icona
-  icon_slash_photo: Icona/Foto
   iconic_taxon: Icona del Tàxon
   id_categories:
     tooltips:
@@ -1319,10 +1306,6 @@ ca:
         Primer suggeriment d'aquest tàxon sobre el que la comunitat ha estat posteriorment d'acord. Això va ajudar a refinar el tàxon proposat per la Comunitat.
       maverick: |
         Aquest tàxon no és un descendent o avantpassat del de la comunitat, i.e. la comunitat no està d'acord amb aquest tàxon.
-  id_more_in_id_please: ID més a "ID, si us plau"
-  id_please!: ID, si us plau!
-  id_please: ID, si us plau
-  id_please_expandable_html: "ID<span class='full'> si us plau</span>!"
   id_withdrawn: ID retirat
   ids_by_taxon: Ids. per tàxon
   identify: Identificar
@@ -1333,13 +1316,11 @@ ca:
   identification_by_user: Identificació de %{user}
   identification_deleted: Identificació eliminada.
   identification_saved: "Identificació desada!"
-  identification_summary: Resum de la identificació
   identification_updated: Identificació actualitzada!
   identification_user_short: Ident. Usuari
   identification_withdrawn: Identificació retirada.
   identifications: Identificacions
   identifications_by: "Identificacions de %{user}"
-  identified?: identificat
   computer_vision_suggestion: Suggeriment per Reconeixement Visual Artificial
   computer_vision_suggestion_desc: |
     El Reconeixement Visual Artificial és el procés pel qual ordinadors ensinistrats per a reconèixer patrons a les imatges. Proporcionem eines que utilitzen models de visió artificial obtinguts a partir d'imatges de la comunitat d'usuaris per oferir suggeriments d'identificació com l'auto-completat i la comparació de característiques. Aquesta etiqueta indica que una persona ha afegit una identificació emprant una d'aquestes eines.
@@ -1352,15 +1333,8 @@ ca:
   if_matches_come_from_a_comprehensive_list: Si els resultats procedeixen d'una llista exhaustiva, es mostrarà una barra verda com aquesta.
   if_this_is_a_scientific_name: Si es tracta d’un nom científic, està acceptat actualment?
   if_this_link_will_apply_to_descendant: Si apliqueu aquest enllaç als tàxons descendents, podeu fer servir les teves plantilles d'etiquetes per introduir el nom del tàxon a l’URL
-  if_you_already_have_an_account: "Si ja teniu %{article} compte a %{site_name}..."
-  if_you_dont_want_us_to_share_your_data: Si no voleu compartir aquesta informació
   if_you_have_any_trouble_with_the_site_check_out: 'Si teniu algun problema amb el lloc, si us plau, reviseu la nostra <a href="%{help_url}">secció d''ajuda</a> o escriviu un missatge al nostre <a href="%{feedback_url}">grup de participació</a>.'
-  if_you_have_trouble_with_the_site: "Si teniu cap problema amb el lloc, reviseu la nostra secció d'ajuda"
-  if_youd_like_us_to_share_your_observations_with: |
-    Si voleu compartir les observacions amb la comunitat científica, assegureu-vos d'haver escollit una llicència Creative Commons per a les vostres observacions.
-  if_you_want_to_change_the_name: si voleu canviar el nom
   if_your_project_is: Si el vostre projecte és sobre un lloc específic, afegiu les coordenades seleccionant l'enllaç del mapa o manualment.
-  if_your_search_comes_up: "Si la cerca no dóna resultats, introduïu més informació als camps de cerca per repetir-la a través dels nostres proveïdors de noms externs"
   ignore: Ignora
   ignore_and_continue: Ignora i continuar
   ignore_times: Ignoreu les vegades
@@ -1373,14 +1347,11 @@ ca:
   import_date_time_location_taxonomic: "Importa data, hora, ubicació, descripció i informació taxonòmica d'aquesta foto."
   import_from_csv: Importa des de CSV
   import_from_other_photo_sites: Importa foto des d'altres llocs
-  import_from_photos: Importa des de les fotos
-  import_from_yahoo: Importa des de Yahoo
   import_observations: Importa observacions
   import_observations_from_a_photo: Importa observacions d'un proveïdor de fotos o un arxiu del vostre ordinador.
   import_photos: Importa fotos
   import_ranges: Importeu interval
   import_sections: Importeu seccions
-  import_sounds: Importar sons
   import_tags_from_csv: Importa etiquetes des de CSV
   importing: "Important..."
   improving: Millorant
@@ -1390,84 +1361,54 @@ ca:
   inbox: bústia
   including: inclou
   increase_brightness: Augmenteu brillantor
-  in_order_to_login_and_using_site_visit_url: "Per accedir i començar a utilitzar el web, feu clic en aquest enllaç per activar el compte"
   in_progress: en curs
-  in_taxon?: al tàxon
   in_the_past: en el passat
   in_the_past_week: La setmana passada
   inactive: Inactiva
   inactive_taxon: Tàxon inactiu
-  inappropriate: Inadequat?
   inappropriate_content: Contingut inadequat?
   inat_account_action: "%{site_name} : Compte : %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} creu que el llistat d'aquest tàxon en aquest lloc és complet."
   inat_user_profile: "%{site_name}:  perfil de %{user}"
-  inat_will_be_back_on: "%{site_name} tornarà a estar operatiu pel seu propi peu, o ala, aleta, tentacle, pseudòpode (o el que sigui)"
   inaturalist_is_a_joint_initiative: "%{site_name} és una iniciativa conjunta de la California Academy of Sciences i National Geographic Society.."
-  inaturalist_is_an_online_community: "%{site_name} és una comunitat en línia per a naturalistes. Si afegiu fotos, ajudareu els investigadors a conèixer més"
-  inaturalist_is_catching_some_zs: "%{site_name} està captant algunes Zs"
-  inaturalist_observations_by: "%{site_name} : Observacions per %{login}"
   inaturalist_places: "Llocs %{site_name}"
   inaturalist_places_are_way_record_what_lives_where: "Llocs d'%{site_name} és una forma de registrar on viu cada espècie. Si busqueu una espècie en particular, sabreu on trobar-la. Cada lloc té una llista de comprovació per registrar totes les espècies que s’hi troben, de manera que també és útil per buscar dades que vau trobar en llocs concrets."
   info: Informació
   input_taxon: Introduir tàxon
   insects: Insectes
   insect_life_stage: Etapa vital de l'insecte
-  inspired_by_the_flickr_group: "Inspirat pel grup Flickr <a href='http://flickr.com/groups/idplease/'>ID, si us plau</a>, aquest és un lloc per afegir observacions de coses que no heu identificat, i ajudar que altres persones identifiquin criatures misterioses!"
   interactions: Interaccions
   internal_server_error: S'ha produït un error intern del servidor
-  internal_taxon: Taxó intern
   internal_taxon_including_descendants: Tàxon intern (inclosos els inferiors)
   internal_taxon_rank: Rang del tàxon intern
   introduced: Introduïda
   introduced_in_place: "Introduït a %{place}"
-  invasive: Invasora
   invitation: Invitació
-  invitations: Invitacions
   invite: convida
-  invite_flickr_photos: "Introduiu les fotos de Flickr a %{site_name}"
   invite_more: Convideu més gent
-  invite_observations: Convideu a introduir observacions al vostre projecte
   invite_people: Convida persones
   invite_people_to_project: "Convideu altres persones a %{project}"
-  invite_photos_from_other_sites: Compartiu les fotos d'altres llocs
-  invite_photos_to: "Convidar fotos de %{site_name}"
-  invite_photos_to_raquo_html: "Compartiu fotos de <nobr>%{site_name} »</nobr>"
   invite_someone_to: "Convideu algú a %{name}!"
-  invite_to_project: Convideu al projecte
   invite_your_friends: Convideu amics
   invite_your_friends_description: "Ajudeu que %{site_name} sigui una comunitat més nombrosa i millor convidant amics!"
   inviteonly: només convidats
-  invited: convidat
-  invited_to_the_following_projects: "Us han convidat als projectes següents:"
   invited_x: "Convidat %{x}"
-  inviting: Convidant...
   is_an_evaluation: |
     és una avaluació de la precisió d'una observació.
     Les observacions de Grau de Recerca poden ser utilitzades per científics a les seves recerques. Feu el vostre vot a sota:
   is_not_following_anyone: no segueix ningú
   is_now: és ara
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Aquesta evidència és suficient per confirmar que és %{taxon}?
-  is_the_organism_wild: "És un organisme salvatge/naturalitzat?"
-  is_this_observation_offensive_html: 'Aquesta observació és <a href="/help#inappropriate">inadequada</a>, agressiva o ofensiva?'
   is_this_offensive_html: 'És <a href="/help#inappropriate">inadequat</a>, brossa, o ofensiu?'
   is_this_place_a_duplicate: Aquest lloc està duplicat?
-  it: Aquest
   it_can_now_be_used_for_research: Ara pot ser utilitzat per a recerca i mostrat en altres pàgines web
-  it_has: Té
-  it_instead: en comptes d'això.
   item_flagged_notice_html: |
     Això ha estat marcat com spam i ja no és visible pel públic. El podeu veure perquè en sou el creador, o sou un
     supervisor del lloc. Si penseu que això és una errada, si us plau
     <a href="mailto:%{help_email}" class="contact">contacteu amb nosaltres</a>.
     <a href="%{manage_flags_path}">Gestioneu etiquetes</a>
-  its_important_that_you: És important que feu clic
-  iucn_red_list: Llista vermella d'UICN
-  iucn_red_list_status: Estat a la Llista vermella de la UICN
-  january: Gener
   join: Uniu-vos a
   join_and: Uniu-vos i
-  join_inat: Uniu-vos a %{site_name}!
   join_project: Uniu-vos a aquest projecte
   join_some_projects_and_invite_some_observations_html: "Uniu-vos a certs <a href='%{join_url}'>projectes</a> i <a href='%{invite_url}'>compartiu algunes observacions</a>"
   join_the_largest_group_of_naturalists_in_the_world: Uniu-vos al major grup de naturalistes del món!
@@ -1476,7 +1417,6 @@ ca:
   joined_any_projects: unit a cap projecte.
   joined_projects: Projectes als que us heu unit
   joined_with_date: "Donat d'alta: %{date}"
-  joining: Unint-se
   journal: Revista
   journal_archives_for: Arxius de revistes de
   journal_post: Article a Revista
@@ -1487,7 +1427,6 @@ ca:
   just_a_reminder: Només com a recordatori, doncs heu donat als supervisors del projecte permisos per veure les coordenades ocultes de les vostres observacions d'aquest projecte.
   just_added!: S'hi acaba d'afegir!
   keep_editing: Continueu editant
-  kelp_diatoms_and_allies: "algues brunes, diatomees i parents"
   keyboard_shortcuts: Dreceres de teclat
   kml_file_size_error: "L'arxiu KML ha de ser de menys de 1 MB"
   labels: Etiquetes
@@ -1498,7 +1437,6 @@ ca:
   large: gran
   last_active_with_date: "Darrera activitat: %{date}"
   last_confirmed_observation: Última observació confirmada
-  last_inat_observation: "Última observació a %{site_name}"
   last_observation: Darrera observació
   last_seen: Vist per última vegada
   last_year: Darrer any
@@ -1516,7 +1454,6 @@ ca:
     observations: La majoria de les observacions a %{time}
     identifications: La majoria de les identificacions a %{time}
   leading: Dirigint
-  learn!: Apreneu!
   learn: Apreneu-ne
   learn_about_the_species_live_in: Informeu-vos sobre les espècies que viuen a
   learn_more: Informeu-vos més
@@ -1579,17 +1516,12 @@ ca:
   licensed_site_photos: "Fotos amb llicència de %{site_name}"
   license: Llicència
   licensing: Llicències
-  licensing_your_content: |
-    Llicenciar el contingut permet a altres persones el dret legal d'utilitzar-ho si respecten els termes de la llicència. %{site_name} utilitza el vostre contingut amb llicència de Creative Commons per compartir amb altres associats com </a> href=http://www.gbif.org/>Global Biodiversity Information Facility</a> (GBIF).
   licensing_your_content_gives_others_legal: "Llicenciar el contingut que genereu dona a altres persones el dret a fer-lo servir, sempre que acceptin les condicions de la llicència. %{site_name} fa servir el vostre contingut amb llicència de Creative Commons per compartir dades amb altres proveïdors de dades, com"
   life: Vida
-  life!: La vida!
   life_list: "Llista de vida de %{user}"
   life_list_updated: Llista de vida actualitzada!
   life_list_updated_we_also_saved_a: Llista de vida actualitzada! També desem una observació buida per a aquest tàxon.
   life_lists_automatically_fill: Les llistes de vida s'omplen amb nous tàxons a mesura els observeu, i poden ser restringits a tàxons de nivells superiors, p.e. un llista de vida d'ocells de la família del corb (Corvidae)
-  life_list_first: "primera llista de vida"
-  life_list_firsts: "primers de la llista"
   linear_scale_label: Lineal
   link: Vincle
   link_or_unlink_your_facebook_account: Vinculeu o desvinculeu el compte de Facebook
@@ -1597,7 +1529,6 @@ ca:
   link_or_unlink_your_google_account: Vinculeu o desvinculeu el compte de Google
   link_your_facebook_account: Vinculeu el compte de Facebook
   link_your_flickr_account: Vinculeu el compte de Flickr
-  link_your_flickr_account_with_inat_so: "Vinculeu el compte de Flickr amb %{site_name} per poder afegir fotos de les vostres observacions."
   link_your_google_account: Vinculeu el compte de Google
   linked_facebook: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Facebook."
   linked_facebook_automaticaly: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Facebook, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Facebook. Sembla raonable que, si utilitzeu Facebook voldreu poder importar fotos de Facebook, és així?"
@@ -1607,9 +1538,7 @@ ca:
   linked_flickr: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Flickr."
   linked_flickr_automatically: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Flickr, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Flickr. Sembla raonable que, si utilitzeu Flickr voldreu ser capaços d'importar fotos de Flickr, no és així?"
   linked_flickr_description: "Vincular el vostre compte d’%{site_name} amb el compte de Flickr us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Flickr en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Flickr i el voleu vincular amb %{site_name}."
-  linked_flickr_hotwo: "Podeu vincular el vostre compte de Flickr amb %{site_name} per afegir fotos si feu clic en aquest enllaç."
   linked_flickr_password_html: "<strong>Mai no us demanarem la contrasenya de Flickr</strong> (però Flickr podria demanar-vos-la; verifiqueu que l’adreça on us redirigeix el botó és flickr.com)."
-  linked_flickr_photo_copy_html: "<strong>Mai no desarem còpies de les vostres fotos ni canviarem les dades de Flickr (tret que ho sol·liciteu).</strong> Ens importen massa les aus, els insectes i els llimacs per anar remenant la vostra informació!"
   list: Llista
   list_deleted: Llista eliminada.
   list_saved: Llista desada.
@@ -1623,27 +1552,19 @@ ca:
   listed_taxa: Tàxon llistat
   listed_taxon: Tàxon llistat
   listed_taxon_updated: S'ha actualitzat el llistat de tàxons
-  listing_announcement: Anunci de llista
-  listing_announcements: Llistat d'anuncis
   listing_lists: Mostrant llistes
   listing_taxa: Llistant tàxons
-  listing_taxon_names: Llistant noms de tàxons
   lists: Llistes
-  lists_are_lists_of_species: "Les llistes són llistes d'espècies (o altres tàxons), com una llista de vida de totes les aus que heu vist o una llista de les vostres salamandres preferides. <em>No</em> són llistes d'observacions."
   lists_by_login:
     title:
       current_user: Les vostres llistes
       login: Llistes de %{login}
-  lists_come_in_three: "Les llistes són de tres tipus"
   load: Carrega
   loading: "Carregant..."
   loading_flickr_photos: "Carregant fotos de Flickr..."
-  loading_full_description_html: "Carregant la descripció completa..."
   loading_images: Carregant imatges...
   loading_map: Carregant mapa...
   loading_metadata: Carregant metadades...
-  loading_more_photos: "Carregant més fotos..."
-  loading_observations: "Carregant observacions..."
   loading_preview_and_code: Carregant previsualització i codi...
   loading_suggestions: Carregant suggeriments...
   loading_tags: "Carregant etiquetes..."
@@ -1690,7 +1611,6 @@ ca:
   locality_notes: Notes locals
   localized_species_accounts: Comptes d'espècies localitzades
   location: Localitat
-  location_: Ubicació
   locations: Ubicacions
   location_is_accurate: La ubicació és acurada
   location_is_exact: la ubicació és exacta
@@ -1701,7 +1621,6 @@ ca:
   locked_taxa_will_not_allow_new: No és possible afegir nous tàxons descendents als tàxons bloquejats. Per exemple, si heu bloquejat Amphibia i algú intenta importar <i>Rana catesbeiana</i> d'un proveïdor de noms extern, es crearia el nou tàxon, però no podria classificar-se com a amfibi. En cas que això passi, els tàxons afegits recentment haurien de marcar-se perquè un supervisor els revisi. Això només hauria d'aplicar-se als tàxons per als quals considerem que tenim tots els descendents. Un supervisor ho pot sobreescriure modificant els tàxons i introduint identificadors pares directament, però et recomanem que en lloc d’això intentis combinar els tàxons nous amb els ja existents.
   log_in: Inicieu sessió
   log_scale_label: Registre
-  logged_in_as: Heu iniciat sessió com
   login_slash_username: Entrada/nom d'usuari
   logo:
     logo: Logotip
@@ -1718,7 +1637,6 @@ ca:
   looks_like_neither_have!: Sembla que cap no té tàxons!
   looks_like_no_species_in_guide: Sembla que encara no teniu cap espècie a la vostra guia.
   lookup: Cerca
-  lookup_user_rarr: "Busca usuari →"
   low: Baixa
   lowest_rank: Tàxon inferior
   made_a: creà una
@@ -3381,7 +3299,6 @@ ca:
   synonyms: Sinònims
   table: Taula
   table_of_contents: Taula de continguts
-  tag: Etiqueta
   tagging: 'Etiquetant...'
   tags: Etiquetes
   tags_are_a_way: 'Les etiquetes són paraules clau que podeu afegir a les observacions perquè sigui més fàcil trobar-les.'
@@ -3448,8 +3365,6 @@ ca:
     one: "%{taxon} és un regne amb 1 observació"
     other: "%{taxon} és un regne amb %{count} observacions"
   taxon_is_threatened_coordinates_hidden: El taxó està en perill, les coordenades s'oculten per defecte
-  taxon_is_threatened_coordinates_hidden_desc: |
-    Un dels taxons suggerits a les identificacions, o uns dels taxons que conté aquest taxó, és rar i/o està en perill, per això la localització d'aquesta observació ha estat enfosquida.
   taxon_is_threatened_coordinates_obscured: El taxó està en perill, les coordenades s'enfosqueixen per defecte
   taxon_is_threatened_coordinates_obscured_desc: |
     Un dels taxons suggerit suggerit a la identificació, un dels taxons que conté aquest taxó, se sap que és rar i/o està en perill, per això la localització d'aquesta observació ha estat enfosquida.
@@ -3675,8 +3590,6 @@ ca:
   this_will_try_to_add_tags_to_your_flickr: Això intentarà afegir etiquetes a les vostres fotos de Flickr. Voleu continuar?
   this_will_update_all_last_observations: Això actualitzarà totes les observacions recents i afegirà nous tàxons de
   this_year: Aquest any
-  those_are_the_basics_of: |
-    Aquestes són les bases per afegir observacions! Podeu fer moltes altres coses, com ara buscar i filtrar les teves observacions o modificar-les com a grup, però això hauria de ser autoexplicatiu.
   those_observations_no_longer_exist: Aquestes observacions ja no existeixen.
   threatened: Amenaçat
   thu: Dj.
@@ -4654,8 +4567,6 @@ ca:
         iconic_taxon_name: Categoria taxonòmica de nivell superior del tàxon observat
         taxon_id: Identificador únic del tàxon observat
         id_please: Tant si l'observador ha demanat ajuda per a la IDentificació o  no
-        num_identification_agreements: Nombre d'identificacions coincidents amb la identificació de l'observador
-        num_identification_disagreements: Nombre d'identificacions en conflicte amb la identificació de l'observador
         observed_on_string: Data i hora, com va ser introduïda per l'observador
         observed_on: Data normalitzada de l'observació
         time_observed_at: Data i hora normalitzada de l'observació
@@ -4835,8 +4746,6 @@ ca:
           <a href="%{url}">pàgina d'exportació d'observacions</a> per a obtenir un llistat de les exportacions.
       parental_consent:
         subject: Als vostres fills els podria agradar utilitzar iNaturalis
-        content_html: |
-          <p> El vostre fill utilitza l'aplicació educativa "Cerca amb iNaturalist" i vol compartir dades amb la plataforma de ciència ciutadana iNaturalist. Com aquestes dades inclouen informació d’identificació personal, no poden ser utilitzades per menors de 13 anys sense el consentiment d’un dels progenitors o tutors. </p> <p> La Cerca amb iNaturalist es pot utilitzar sense crear un compte i no es compartiran dades, però el vostre fill no podrà aportar observacions a iNaturalist. [EXPLICACIÓ D'INAT] </p> <p> Si voleu donar el vostre consentiment perquè el vostre fill utilitzi iNaturalist, necessitarem que feu el següent: </p> <ol> <li> <p> Creeu un compte iNaturalist perquè l'utilitzi el vostre fill indicant que el compte serà utilitzat per una persona menor de 13 anys seguint aquest enllaç: <a href="%{registration_url}">%{registration_url}</a> </p> </li><li> <p> Feu una donació d'1$ amb una targeta de crèdit a iNaturalist per verificar que sou un adult. Assegureu-vos que utilitzeu el mateix correu electrònic que vau utilitzar per crear el compte al costat de la vostra donació: https://www.inaturalist.org/donate </p> </li> <li> <p> Un cop processem el donació, enviarem una notificació al correu electrònic del compte que s'ha activat el compte i podeu utilitzar el nom d’usuari i la contrasenya d'iNaturalist que heu creat per iniciar sessió a l’aplicació de Cerca del vostre fill. </p> </li> </ol> <p> Més informació sobre la Informació d'Identificació Personal que es comparteix a iNaturalist: ... </p> <p> Més informació sobre la Política de Privacitat d'iNaturalist <a href="%{privacy_policy_url}"> aquí </a>. </p>
       photos_missing:
         subject: Algunes fotos s'han de reparar
         we_have_been_housekeeping: |
@@ -5885,12 +5794,6 @@ ca:
           attributes:
             value:
               dna_only_atcg: "l'ADN només pot contenir els caràcters A, T, C o G"
-              date_format: |
-                el camp de data ha de tenir la forma AAAA-MM-DD ("%{observation_field_name}" 
-                a la seva observació de "%{observation_species_guess}")
-              time_format: |
-                el camp d'hora ha de tenir la forma hh:mm,("%{observation_field_name}" 
-                a la seva observació de "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: l'usuari no accepta camps d'altri
               user_only_accepts_fields_from_site_curators: l'usuari únicament accepta camps dels supervisors del lloc
