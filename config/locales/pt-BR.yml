@@ -176,6 +176,8 @@ pt-BR:
   add_another_photo: Adicione outra foto
   add_another_section: Adicione outra secção
   add_another_subscription: Adicione outra assinatura
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Adicione especialidade
   add_batch: Adicione um grupo
   add_comma_separated_tags: "Adicionar marcações separadas por vírgulas"
   add_comment: Adicionar um comentário
@@ -423,6 +425,7 @@ pt-BR:
   are_you_sure_remove_taxon_from_list: "Você tem certeza que quer remover este táxon da lista?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Você tem certeza? Isto irá recarregar a página você provavelmente perderá algumas de suas alterações.
+  are_you_sure_want_delete_taxon: "Você tem certeza que deseja remover este táxon?"
   are_you_sure_want_delete_taxon_link: Tem certeza de que deseja excluir o vínculo para este táxon?
   are_you_sure_want_delete_this_name: Você tem certeza que deseja remover este nome?
   are_you_sure_want_delete_this_range: Você confirma a exclusão deste intervalo?
@@ -836,6 +839,8 @@ pt-BR:
   curator_identification: Identificação do Administrador
   current_flags: Marcações Atuais
   custom_project_fields: Personalize os campos de projeto
+  custom_project_was_successfully_created: O Projeto Personalizado foi criado com sucesso.
+  custom_project_was_successfully_updated: Projeto Personalizado foi atualizado com sucesso.
   customize_location: Personalizar Localização
   darr_apply_darr: "&darr; Aplicar &darr;"
   dashboard: Painel de controle
@@ -968,6 +973,9 @@ pt-BR:
   downstream_coverage_rank: Classificação de cobertura a jusante
   downstream_deviations: Desvios a jusante
   downstream_deviations_for_taxon: "Desvios a jusante para %{taxon}"
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa: Taxa coberta sinalizada a jusante
   draft: rascunho
   draft_: Rascunho
   draft_saved: Rascunho salvo!
@@ -1393,6 +1401,7 @@ pt-BR:
   in_the_past_week: Na semana passada
   inactive: Inativo
   inactive_taxon: Espécie ou grupo inativo
+  inactive_taxon_concepts_are: A nomenclatura de táxon inativo se refere ou a táxons desatualizados ou a categorizas em processo de revisão. Estas nomenclaturas são mantidas somente para rastrear o histórico de determinada espécie ou grupo em relação a compatibilidade com outros sites parceiros.
   inappropriate_content: Conteúdo inapropriado?
   inat_account_action: "%{site_name} &#58; Conta &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} acredita que é uma lista completa de táxons deste local."
@@ -1577,6 +1586,7 @@ pt-BR:
   listed_taxon: Táxon listado
   listed_taxon_updated: A lista de espécies e grupos foi atualizada
   listing_lists: Mostrando listas
+  listing_project_assets: Listando as avaliações de projeto
   listing_taxa: Listando os Táxons
   lists: Listas
   lists_by_login:
@@ -1605,8 +1615,8 @@ pt-BR:
     da: Dinamarquês
     de: Alemão
     el: Grego
-    en-US: Inglés (Estados Unidos)
     en: Inglês
+    en-US: Inglés (Estados Unidos)
     es-ES: Espanhol (Espanha)
     es-MX: Espanhol (México)
     es: Espanhol
@@ -1827,6 +1837,7 @@ pt-BR:
   new_password: Nova Senha
   new_post: Nova entrada
   new_project: Novo Projeto
+  new_project_asset: Novo arquivo de projeto
   new_project_asset_for: Novo arquivo de projeto
   new_source: Nova Fonte
   new_species_added_in_interval: Novas espécies adicionadas em %{interval}
@@ -3285,6 +3296,8 @@ pt-BR:
   synonyms: Sinônimos
   table: Tabela
   table_of_contents: Índice de informações
+  #Noun, as in "add a tag to this observation"
+  tag: Etiqueta
   tagging: 'Marcando...'
   tags: Marcações
   tags_are_a_way: 'Marcações são uma maneira de organizar as coleções de observações. Utilize palavras chaves para marcar suas fotos e crie um índice de suas observações.'
@@ -3351,6 +3364,9 @@ pt-BR:
     one: "%{taxon} é um reino com uma observação"
     other: "%{taxon} é um reino com %{count} observações"
   taxon_is_threatened_coordinates_hidden: Taxon está ameaçado, coordenadas ocultas por padrão
+  taxon_is_threatened_coordinates_hidden_desc: |
+    Um dos táxons sugeridos nas identificações, ou um dos táxons incluídos em qualquer deles, é considerado raro e/ou ameaçado,
+    a localização desta observação foi ocultada.
   taxon_is_threatened_coordinates_obscured: Taxon está ameaçado, coordenadas obscurecidas por padrão
   taxon_is_threatened_coordinates_obscured_desc: |
     Um dos táxons sugeridos nas identificações, ou um dos táxons incluídos em qualquer deles, é considerado raro e/ou ameaçado,
@@ -3499,6 +3515,7 @@ pt-BR:
   there_isnt_wiki_article: "Não existe um artigo na Wikipédia ou redirecionamento intitulado '<i>%{taxon}</i>'. Talvez você queira"
   there_isnt_a_wikipedia_article_titled_x_html: |
     Não existe um artigo na Wikipédia com o nome '%{x}'. Gostaria de <a href='http://en.wikipedia.org/wiki/%{x}'>fazer um</a>?
+  there_merge_problems_with_the_merge: "Existem problemas com a combinação: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Ocorreu um problema ao salvar sua identificação: %{error}"
   there_were_errors: Houveram erros.
   there_were_problems_adding_taxa: "Aconteceram problemas adicionando estes táxons: %{errors}"
@@ -3580,6 +3597,8 @@ pt-BR:
   this_will_try_to_add_tags_to_your_flickr: Isto irá tentar adicionar marcações nas suas fotos do Flickr. Deseja continuar?
   this_will_update_all_last_observations: Isto irá atualizar todas as observações e vai adicionar novos táxons de
   this_year: Este Ano
+  those_are_the_basics_of: |
+    Isto é o básico sobre adicionar observações! Existem muitas outras coisas que você pode fazer, como por exemplo pesquisar e filtrar observações ou editar elas em massa, mas isto deve ser simples de explorar sozinho.
   those_observations_no_longer_exist: Estas observações não existem mais.
   threatened: Ameaçado
   thu: Qui
@@ -4134,6 +4153,7 @@ pt-BR:
   you_need_to_select_some_observations_first: Você tem que selecionar algumas observações primeiro.
   you_retain_full_copyright: "Você possui total direito sobre o seu conteúdo a parte daqueles que são de direito concedido ao %{site_name} em nossos Termos de Serviço."
   you_retain_full_copyright_over_your_content: "Você detém total direito sobre seu conteúdo a parte dos direitos garantidos ao %{site_name} segundo nossos Termos de Serviços."
+  you_sure_delete_asset?: Tem certeza que deseja excluir este arquivo?
   you_sure_delete_check_list: "Você tem certeza que deseja apagar esta lista? Algumas pessoas podem ter dedicado muito trabalho nela..."
   you_sure_delete_comment?: Você tem certeza que deseja apagar este comentário?
   you_sure_delete_custom_field?: Você tem certeza que quer apagar estes campos personalizados?
@@ -4554,6 +4574,8 @@ pt-BR:
         iconic_taxon_name: Categoria taxonômica de nível superior para o taxón observado
         taxon_id: Identificador único para o táxon observado
         id_please: Precisando ou não o observador solicitou ajuda com a identificação
+        num_identification_agreements: Número de identificações em concorrência com as identificações do observador
+        num_identification_disagreements: Número de identificações conflitando com a identificação do observador
         observed_on_string: Data/Hora conforme registrado pelo observador
         observed_on: Data normalizada de observação
         time_observed_at: Dia e Horário normalizados de observação
@@ -4866,6 +4888,12 @@ pt-BR:
            \   Ou o seu projeto apresenta pelo menos uma regra 'especificando um táxon' 
             </li>
           </ol>
+        project_assets_desc_html: |
+          <p class="description">Ativos de projetos são somente arquivos associados com seu projeto, com algumas regras especiais:</p>
+          <ol class="description">
+          <li>Arquivos que terminam em .logo.jpg, .logo.png, etc. serão utilizados como o logotipo do projeto na página ao invés do ícone do projeto</li>
+          <li>Arquivos KML e KMZ serão adicionados ao mapa na página do projeto</li>
+          </ol>
         project_list_desc_html: |
           <p class="description">
             Você pode criar uma lista personalizada de um táxon e conectá-la ao seu 
@@ -4890,6 +4918,8 @@ pt-BR:
         submission_models:
           any: qualquer
           curators: Administradores do Projeto
+        trusted_project_means: |
+          Um projeto verificado significa que os moderadores podem adicionar ativos do projeto e atribuições personalizadas (ex: banner em HTML, CSS). Acesso aos atributos personalizados do projeto significa que os moderadores podem adicionar Javascript maliciosos, então somente confie em projetos que tem moderadores responsáveis e tecnicamente competentes.
         you_can_preview: |
           Você pode ver a visualização de como seu projeto se parecerá com um projeto de coleção
           Por quê? <a href="%{url}">selecione aqui</a>.
@@ -5893,6 +5923,12 @@ pt-BR:
           attributes:
             value:
               dna_only_atcg: "para DNA só pode conter os caracteres A, T, C ou G"
+              date_format: |
+                deve estar no formato AAAA-MM-DD para o campo de data ("%{observation_field_name}" 
+                na sua observação de "%{observation_species_guess}")
+              time_format: |
+                deve estar no formato hh:mm para o campo de horário ("%{observation_field_name}" 
+                na sua observação de "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: o usuário não aceita campos de outros
               user_only_accepts_fields_from_site_curators: usuário só aceita campos de curadores de site
@@ -6010,12 +6046,6 @@ pt-BR:
       authorized_applications:
         destroy:
           notice: 'Aplicativo revogado.'
-  i18n:
-    inflections:
-      - 
-        vow: vogal
-        con: consoante
-      - 
   wild: Selvagem
   will_paginate:
     previous_label: "&#8592; Prévia"
