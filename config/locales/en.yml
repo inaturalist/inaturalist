@@ -1957,16 +1957,27 @@ en:
     shortRelativeTime:
       future: "in %s"
       past: "%s"
+      # Short text representing 1 second in the past
       s:  "1s"
+      # Short text representing 1 minute in the past
       m:  "1min"
+      # Short text representing %d minutes in the past
       mm: "%dm"
+      # Short text representing 1 hour in the past
       h:  "1h"
+      # Short text representing %d hours in the past
       hh: "%dh"
+      # Short text representing 1 day in the past
       d:  "1d"
+      # Short text representing %d days in the past
       dd: "%dd"
+      # Short text representing 1 month in the past
       M:  "1mo"
+      # Short text representing %d months in the past
       MM: "%dmo"
+      # Short text representing 1 year in the past
       'y':  "1y"
+      # Short text representing %d years in the past
       yy: "%dy"
     datetime_with_zone: "MMM D, YYYY · LT z"
     datetime_with_offset: "MMM D, YYYY · LT Z"
@@ -7281,61 +7292,61 @@ en:
           notice: 'Application revoked.'
   i18n:
     inflections:
-      vow_or_con:
+      "@vow_or_con":
         vow: vowel
         con: consonant
-        a: :@vow
-        e: :@vow
-        i: :@vow
-        o: :@vow
-        u: :@vow
-        default: :@con
-      gender:
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
+      "@gender":
         m: male
         f: female
         "n": neuter
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        application: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        assessment_section: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        atlas: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        check_list: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        identification: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        listed_taxon: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        note: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        observation: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        observation_field: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        place: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        post: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        species: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_change: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_drop: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_link: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_merge: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_split: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_stage: :@n
-        # Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_swap: :@n
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@n"
         # Default gender for nouns that aren't listed here
-        default: :@n
+        default: "@n"
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Prev"
