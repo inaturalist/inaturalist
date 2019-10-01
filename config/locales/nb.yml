@@ -992,6 +992,7 @@ nb:
   default_sound_license: Standardlisens for lyder
   defaults_to_your_name_or_username: Standardverdi er ditt navn eller brukernavn
   defines_a_taxon_framework_for: Definerer et taksonrammeverk for %{taxon_name}
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definerer et taksonrammeverk for %{taxon} med %{source} som kilde
   definitions: Definisjoner
   delete: Slett
   delete_all: Slett alle
@@ -1099,6 +1100,7 @@ nb:
   edit_source: Rediger kilde
   edit_taxa: Rediger taksa
   edit_taxon: Rediger takson
+  edit_taxon_framework: Rediger taksonrammeverk
   edit_taxon_link: Rediger taksonlenke
   edit_taxon_range: Rediger taksonutbredelse
   edit_the_observation: Rediger observasjonen
@@ -1470,6 +1472,8 @@ nb:
   identifications: Identifikasjoner
   identifications_by: "Identifikasjoner av %{user}"
   computer_vision_suggestion: Forslag fra Computer Vision
+  computer_vision_suggestion_desc: |
+    Computer vision er prosedyren av å lære datamaskiner å gjenkjenne mønstre i bilder. Vi tilbyr verktøy som bruker computer vision modeller trent på fellesskapets bilder for å komme med forslag til identifisering, som funksjonalitet for auto-komplettering og sammenligning. Dette ikonet angir når noen har lagt til en identifikasjon ved bruk av et av disse verktøy.
   identifiers: Identifikatorer
   identotron: Identotron
   identotron_for: Identotron for
@@ -1692,7 +1696,10 @@ nb:
   linked_facebook: "Din %{site_name}-konto er knyttet til din Facebook-konto."
   linked_facebook_automaticaly: "Husk også at vi vil koble sammen din %{site_name} og Facebook kontoer på nytt automatisk hvis du logger inn på %{site_name} via Facebook. Når du bruker Facebook ønsker du jo å kunne importere Facebook-bilder, ikke sant?"
   linked_facebook_description: "Å holde din %{site_name}-konto koblet til din Facebook-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Facebook og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Facebook-konto som du vil koble %{site_name} opp mot."
+  linked_facebook_password: "Vi kommer aldri til å be deg om ditt Facebook-passord (men Facebook kan kanskje gjøre det, sjekk at url'en som knappen sender deg er Facebook.com). Vi vil heller ikke endre Facebook-opplysningene dine med mindre du ønsker det."
   linked_flickr: "Din %{site_name}-konto er knyttet til din Flickr-konto."
+  linked_flickr_automatically: "Husk også at vi vil koble sammen din %{site_name} og Flickr kontoer på nytt automatisk hvis du logger inn på %{site_name} via Flickr. Når du bruker Flickr ønsker du jo å kunne importere Flickr-bilder, ikke sant?"
+  linked_flickr_description: "Å holde din %{site_name}-konto koblet til din Flickr-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Flickr og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Flickr-konto som du vil koble %{site_name} opp mot."
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste slettet.
