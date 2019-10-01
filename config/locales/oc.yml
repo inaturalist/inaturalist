@@ -820,7 +820,9 @@ oc:
   momentjs:
     shortRelativeTime:
       future: "en %s"
+      #Short text representing 1 minute in the past
       m: "1 min"
+      #Short text representing 1 month in the past
       M: "1 min"
   month: Mes
   months: Meses
