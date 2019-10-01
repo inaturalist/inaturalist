@@ -94,6 +94,8 @@ sq:
   add_another_photo: Shto një fotografi tjetër
   add_another_section: Shto një seksion tjetër
   add_another_subscription: Shto një abonim tjetër
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Shto aset
   add_batch: Shto seri
   add_comma_separated_tags: "Shto etiketa të ndara me pikëpresje"
   add_comment: Shto një koment
@@ -332,6 +334,7 @@ sq:
   are_you_sure_remove_taxon_from_list: "Je i sigurt se doni ta hiqni këtë taxon nga lista?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     A je i sigurt? Kjo do të rifreskojë faqen dhe ju mund të humbni disa nga ndryshimet tuaja.
+  are_you_sure_want_delete_taxon: "Je i sigurt që dëshiron ta fshish këtë taxon? %{msg}"
   are_you_sure_want_delete_taxon_link: Je i sigurt që dëshiron ta fshish këtë lidhje taxon?
   are_you_sure_want_delete_this_name: Je i sigurt që dëshiron ta fshish këtë emër?
   are_you_sure_want_delete_this_range: Je i sigurt që dëshiron ta fshish këtë varg?
@@ -715,6 +718,8 @@ sq:
   curator_identification: Identifikimi i kuratorit
   current_flags: Flamujt aktuale
   custom_project_fields: Fushat e Projektit me porosi
+  custom_project_was_successfully_created: CustomProject u krijua me sukses.
+  custom_project_was_successfully_updated: CustomProject u përditësua me sukses.
   customize_location: Rregullo vendndodhjen
   darr_apply_darr: "&darr; apliko &darr;"
   dashboard: Paneli
@@ -1198,6 +1203,7 @@ sq:
   in_the_past_week: në javën e kaluar
   inactive: Joaktiv
   inactive_taxon: taxon joaktiv
+  inactive_taxon_concepts_are: Konceptet taxon joaktive janë vjetëruar si klasifikime, ose presin ndryshime në taxon. Konceptet e vjetëruara ruhen me qëllim të vazhdimësisë dhe përputhshmërisë me disa faqe partnere.
   inappropriate_content: përmbajtje e papërshtatshme?
   inat_account_action: "%{site_name} &#58; Llogaria &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} beson që kjo është lista e plotë e këtij taxon-i në këtë vend."
@@ -1370,6 +1376,7 @@ sq:
   listed_taxon: taxon te listuara
   listed_taxon_updated: Përditësimi i taxonë të listuara
   listing_lists: Listimi i listës
+  listing_project_assets: Listimi i asseteve-te projekteve
   listing_taxa: Listimi taxa
   lists: Listat
   lists_by_login:
@@ -1397,8 +1404,8 @@ sq:
     da: Danezisht
     de: Gjermanisht
     el: Greqisht
-    en-US: Anglisht (ShBA)
     en: Anglisht
+    en-US: Anglisht (ShBA)
     es-ES: Spanjisht (Spanjë)
     es-MX: Spanjisht (Meksikë)
     es: Spanjisht
@@ -1607,6 +1614,7 @@ sq:
   new_password: Fjalëkalimi i ri
   new_post: Postim i ri
   new_project: Projekt i ri
+  new_project_asset: Projekt_aset i ri
   new_project_asset_for: Projekt aset i ri për
   new_source: Burim i ri
   new_taxon_change: Ndryshim i ri në taxon
@@ -2765,6 +2773,8 @@ sq:
   synonyms: Sinonime
   table: Tabelë
   table_of_contents: Tabela e përmbajtjeve
+  #Noun, as in "add a tag to this observation"
+  tag: Etiketo
   tagging: 'Duke etiketuar...'
   tags: Etiketat
   taxa_all_species_html: "Të gjitha specjet"
