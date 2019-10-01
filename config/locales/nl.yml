@@ -1841,7 +1841,7 @@ nl:
   manage_your_relationships: Beheer je relaties
   manager: Beheerder
   managers: Beheerders
-  managers_can_do: Beheerders kunnen alles doen wat curatoren ook kunnen, plus projectinstellingen bewerken en artikelen in het projektjournaal schrijven.
+  managers_can_do: Beheerders kunnen alles doen wat curatoren ook kunnen, plus projectinstellingen bewerken en artikelen in het projectdagboek schrijven.
   managing_projects: Beheer van projecten
   map: Kaart
   map_legend: kaart legende
@@ -1901,17 +1901,28 @@ nl:
     shortRelativeTime:
       future: "over %s"
       past: "%s"
+      #Short text representing 1 second in the past
       s: "1s"
-      m: "1 minuut"
-      mm: "%d maand"
-      h: "1 uur"
-      hh: "%d uur"
-      d: "1 dag"
-      dd: "%d dagen"
+      #Short text representing 1 minute in the past
+      m: "1min"
+      #Short text representing %d minutes in the past
+      mm: "%dm"
+      #Short text representing 1 hour in the past
+      h: "1u"
+      #Short text representing %d hours in the past
+      hh: "%du"
+      #Short text representing 1 day in the past
+      d: "1d"
+      #Short text representing %d days in the past
+      dd: "%dd"
+      #Short text representing 1 month in the past
       M: "1mnd"
-      MM: "%d maand"
-      'y': "1 jaar"
-      yy: "%dy"
+      #Short text representing %d months in the past
+      MM: "%dmnd"
+      #Short text representing 1 year in the past
+      'y': "1j"
+      #Short text representing %d years in the past
+      yy: "%dj"
     datetime_with_zone: "D MMM YYYY · LT z"
     datetime_with_offset: "D MMM YYYY · LT Z"
   month: Maand
@@ -1941,7 +1952,7 @@ nl:
   most_observed_threatened_species: Meest waargenomen bedreigde soorten
   move_input_children_to_output?: Verplaats de kinderen naar de export?
   multiple: meerdere
-  multiple_select_option: '--meerdere--'
+  multiple_select_option: '-- meerdere --'
   multiple_taxa_for_taxon_change: "Meerdere taxa (invoer voor wisseling/samenvoeging, uitvoer voor opsplitsing)"
   multiple_taxon_ids_separated_by_commas: 'Meerdere taxonID''s gescheiden door komma''s, bijv. 123,654'
   must_be_observed_after: |
@@ -2348,7 +2359,7 @@ nl:
       <ul>
          <li><strong>Jouw inhoud:</strong> Reacties op je waarnemingen, bijv. opmerkingen, determinaties of markeringen als favoriet van de %{site_name}-gemeenschap. Je ontvangt ook updates wanneer iemand jouw waarneming toevoegt aan een project of annoteert met extra velden.</li>
       <li><strong>Mensen:</strong> Nieuwe waarnemingen of journaalberichten van de mensen die je volgt.</li>
-      <li><strong>Organismen, projecten en plaatsen:</strong> Nieuwe waarnemingen van specifieke organismen of plaatsen waarop je geabonneerd bent. Je kunt je ook aansluiten bij projecten, zodat je wordt geïnformeerd wanneer ze project-journaalberichten publiceren.</li>
+      <li><strong>Organismen, projecten en plaatsen:</strong> Nieuwe waarnemingen van specifieke organismen of plaatsen waarop je geabonneerd bent. Je kunt je ook aansluiten bij projecten, zodat je wordt geïnformeerd wanneer ze projectdagboek-berichten publiceren.</li>
       <li><strong>Discussies waaraan je deelneemt:</strong>Wanneer je opmerkingen of determinaties toevoegt aan de inhoud van iemand anders, abonneer je je automatisch op nieuwe activiteiten bij deze inhoud. Gebruik de tool 'Beheer je abonnementen' om geen updates meer te ontvangen. </li>
       </ul>
   one_by_one: "Eén voor één"
@@ -2968,7 +2979,7 @@ nl:
   project_assessments: Projectbeoordelingen
   project_assets: Projectbestanden
   project_cover: Coverfoto project
-  project_created_on: maakte dit projekt aan op %{date}
+  project_created_on: heeft dit project gemaakt op %{date}
   project_curator_changes: Project curator wijzigingen
   project_curator_id: Project curator determinatie
   project_curator_tools: Project Curator gereedschap
@@ -4187,7 +4198,7 @@ nl:
   view_full_observation: Volledige waarneming weergeven
   view_full_size_photo: Toonfull-size foto
   view_invitation: Uitnodiging weergeven
-  view_journal: Dagboek weergeven
+  view_journal: Dagboek bekijken
   view_leaderboard: Toplijst weergeven
   view_leaderboard_from_last_month: Toplijst van vorige maand weergeven
   view_leaderboard_from_last_year: Bekijk Toplijst van vorig jaar
@@ -4247,7 +4258,7 @@ nl:
   view_user_observations: "Waarnemingen van %{user} weergeven"
   view_x: "%{x} weergeven"
   view_x_from_x: "%{day_observations} van %{observed_on} weergeven"
-  view_xs_journal: "Dagboek van %{x} weergeven"
+  view_xs_journal: "Dagboek van %{x} bekijken"
   view_year_stats_for_site: "Statistieken van %{year} voor %{site} weergeven"
   view_your_dashboard: Bekijk je dashboard
   view_your_dashboard_for_more_updates_html: "\n<a href='%{url}'>Bekijk je dashboard</a> voor meer nieuws"
@@ -4369,8 +4380,8 @@ nl:
   x_flagged_as_flag: "%{x} gemeld als %{flag}"
   x_hasnt: "%{login} heeft niet"
   x_journal: "Dagboek van %{user}"
-  x_journal_archives_for_y: "%{user}'s dagboek • Archieven van"
-  x_journal_editing: "%{user}'s Dagboek • Bewerking"
+  x_journal_archives_for_y: "Dagboek van %{user} • Archief voor"
+  x_journal_editing: "Dagboek van %{user} • Bewerken"
   x_journal_middot: "Dagboek van %{user} •"
   x_journal_new_post: "Dagboek van %{user} • Nieuw bericht"
   x_observations_failed:
@@ -6535,63 +6546,6 @@ nl:
       authorized_applications:
         destroy:
           notice: 'Toepassing ingetrokken.'
-  i18n:
-    inflections:
-      vow_or_con:
-        vow: klinker
-        con: medeklinker
-        a: ':@vow'
-        e: ':@vow'
-        i: ':@vow'
-        o: ':@vow'
-        u: ':@vow'
-        default: ':@con'
-      gender:
-        m: mannelijk
-        f: vrouwelijk
-        "n": onzijdig
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        application: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        assessment_section: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        atlas: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        check_list: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        identification: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        listed_taxon: ':@n'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        note: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        observation: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        observation_field: ':@n'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        place: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        post: ':@n'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        species: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon: ':@n'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_change: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_drop: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_link: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_merge: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_split: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_stage: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_swap: ':@m'
-        #Default gender for nouns that aren't listed here
-        default: ':@m'
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Vorg"
