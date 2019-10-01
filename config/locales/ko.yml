@@ -59,6 +59,8 @@ ko:
   add_another_photo: 다른 사진 추가하기
   add_another_section: 다른 구역 추가하기
   add_another_subscription: 다른 구독 추가하기
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: 자산 추가하기
   add_batch: 여러 개 추가하기
   add_comma_separated_tags: "쉼표로 구분된 태그 추가하기"
   add_comment: 댓글 추가
@@ -235,6 +237,7 @@ ko:
   are_you_sure_remove_taxon_from_list: "이 분류군을 목록에서 삭제하겠습니까?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     확실한가요? 이것은 페이지를 새로 불러오기 때문에 변경사항을 일부 잃을 수 있습니다.
+  are_you_sure_want_delete_taxon: "이 분류군을 삭제하겠습니까?"
   are_you_sure_want_delete_taxon_link: 이 분류군 링크를 삭제하겠습니까?
   are_you_sure_want_delete_this_name: 이 이름을 삭제하겠습니까?
   are_you_sure_want_delete_this_range: 이 범위를 삭제하겠습니까?
@@ -574,6 +577,8 @@ ko:
   curator_identification: 큐레이터 확인
   current_flags: 현재 플래그
   custom_project_fields: 자체지정한 프로젝트 필드
+  custom_project_was_successfully_created: 자체지정 프로젝트가 성공적으로 생성되었습니다.
+  custom_project_was_successfully_updated: 자체지정 프로젝트가 성공적으로 업데이트되었습니다.
   darr_apply_darr: "&darr; 적용 &darr;"
   dashboard: 대시보드
   data_deficient: 데이터 부족
@@ -1002,6 +1007,7 @@ ko:
   in_the_past_week: 지난 한 주 동안
   inactive: 비활성
   inactive_taxon: 비활성 분류군
+  inactive_taxon_concepts_are: 비활성화된 분류군 개념들은 분류학적으로 구식이거나 분류군 변형 예정인 것들입니다. 구식인 개념들은 역사와 파트너 웹사이트와의 호환을 위해 유지되고 있습니다.
   inappropriate_content: 내용이 부적절합니까?
   inat_account_action: "%{site_name} &#58; 계정 &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name}은 이것이 이 분류군의 모든 것의 목록이라고 합니다."
@@ -1154,8 +1160,8 @@ ko:
     da: 덴마크어
     de: 독일어
     el: 그리스어
-    en-US: 영어 (미국)
     en: 영어
+    en-US: 영어 (미국)
     eo: 에스페란토어
     es-ES: 스페인어 (스페인)
     es-MX: 스페인어 (멕시코)
@@ -1305,6 +1311,7 @@ ko:
   new_password: 새 비밀번호
   new_post: 새 게시글
   new_project: 새 프로젝트
+  new_project_asset: 새로운 프로젝트_자산
   new_project_asset_for: 새로운 프로젝트 자산
   new_source: 새로운 소스
   new_taxon_change: 새로운 분류군 편집
@@ -2038,6 +2045,8 @@ ko:
   siutable_observations: 적합한 관찰
   sync: 동기화하시겠습니까?
   sync_with_eol: EOL과 동기화하기
+  #Noun, as in "add a tag to this observation"
+  tag: 태그
   tags: 태그
   take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
@@ -2582,6 +2591,12 @@ ko:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "좌표는 0,0이 될 수 없습니다"
+        observation_field_value:
+          attributes:
+            value:
+              date_format: |
+                날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 ("%{observation_species_guess}"의 
+                당신이 관찰한 "%{observation_field_name}")
         place:
           attributes:
             place_geometry:
@@ -2617,11 +2632,5 @@ ko:
           notice: '애플리케이션이 만들어졌습니다.'
         update:
           notice: '애플리케이션이 업데이트되었습니다.'
-  i18n:
-    inflections:
-      - 
-        vow: 모음
-        con: 자음
-      - 
   wild: 야생
   zoom_photo: 사진 확대/축소
