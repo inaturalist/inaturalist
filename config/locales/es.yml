@@ -968,6 +968,9 @@ es:
   downstream_coverage_rank: Rango de cobertura aguas abajo
   downstream_deviations: Desviaciones rio abajo
   downstream_deviations_for_taxon: "Desviaciones rio abajo para %{taxon}"
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa: Taxones descendientes marcados
   draft: borrador
   draft_: Borrador
   draft_saved: '¡Guardado en borrador!'
@@ -1609,8 +1612,8 @@ es:
     da: Danés
     de: Alemán
     el: Griego
-    en-US: Inglés (Estados Unidos)
     en: Inglés
+    en-US: Inglés (Estados Unidos)
     es-ES: Español (España)
     es-MX: Español (México)
     es: Español
@@ -6058,12 +6061,6 @@ es:
       authorized_applications:
         destroy:
           notice: 'Aplicación revocada.'
-  i18n:
-    inflections:
-      - 
-        vow: vocal
-        con: consonante
-      - 
   wild: Silveste
   will_paginate:
     previous_label: "&#8592; Previa"
