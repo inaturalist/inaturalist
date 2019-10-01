@@ -1401,11 +1401,17 @@ el:
   momentjs:
     shortRelativeTime:
       future: "σε %s"
+      #Short text representing 1 second in the past
       s: "1δ"
+      #Short text representing 1 minute in the past
       m: "1λεπ"
+      #Short text representing 1 hour in the past
       h: "1ω"
+      #Short text representing 1 day in the past
       d: "1ημ"
+      #Short text representing 1 month in the past
       M: "1μην"
+      #Short text representing 1 year in the past
       'y': "1ε"
   month: Μήνας
   months: Μήνες
