@@ -114,6 +114,8 @@ mk:
   add_another_photo: Додај друга слика
   add_another_section: Додај друг оддел
   add_another_subscription: Додај друга претплата
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Додај средство
   add_batch: Додај збир
   add_comma_separated_tags: "Додај ознаки одделени со запирки"
   add_comment: Додај коментар
@@ -734,8 +736,8 @@ mk:
   locale_description: Во локалот се задава претпочитаниот јазик и датумски формат.
   locales:
     ca: каталонски
-    en-US: англиски (САД)
     en: англиски
+    en-US: англиски (САД)
     es-ES: шпански (Шпанија)
     es-MX: шпански (Мексико)
     es: шпански
@@ -834,6 +836,7 @@ mk:
   new_password: Нова лозинка
   new_post: Нова објава
   new_project: Нов проект
+  new_project_asset: Ново проектно_средство
   new_project_asset_for: Ново проектно средство за
   new_source: Нов извор
   new_taxon_change: Нова таксонска промена
