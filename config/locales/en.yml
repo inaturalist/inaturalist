@@ -7281,7 +7281,7 @@ en:
           notice: 'Application revoked.'
   i18n:
     inflections:
-      :@vow_or_con:
+      vow_or_con:
         vow: vowel
         con: consonant
         a: :@vow
@@ -7290,7 +7290,7 @@ en:
         o: :@vow
         u: :@vow
         default: :@con
-      :@gender:
+      gender:
         m: male
         f: female
         "n": neuter
