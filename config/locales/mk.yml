@@ -294,8 +294,13 @@ mk:
   assessments: оценки
   associations: Поврзаности
   at_time: "во %{time}"
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
   atom: Атом
   attached_taxon: Приврзан таксон
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Атрибут
   attribution: Припис
   authority_list:
@@ -562,6 +567,7 @@ mk:
   find_some_people_to_follow: "Најдете некои луѓе за следење"
   find_species: Најди видови
   first_observer: прв набљудувач
+  #Verb form, as in "Flag this item"
   flag: Обележи
   flag_an_item: Обележи ставка
   flag_description: Обележете ја содржинава за да им соопштите на кустосите да ја згрижат бидејќи нешто не е во ред со неа.
@@ -643,6 +649,7 @@ mk:
   invite_someone_to: "Поканете некого на %{name}!"
   invite_your_friends: Поканете ги пријателите
   invite_your_friends_description: "Помогнете ни %{site_name} да стане поголема и подобра заедница поканувајќи ги пријателите да ни се придружат!"
+  #Type of project where people can only join after they have been invited
   inviteonly: само со покана
   join: Приклучи се
   join_and: Приклучи се и
@@ -753,25 +760,18 @@ mk:
   looks_like_neither_have!: Изгледа обете немаат никакви таксони!
   lookup: Побарај
   lowest_rank: Најнизок ранг
-  made_a: направи
   main_content: Главна содржина
   make_a_new_place: Направи ново место
   make_a_taxon_swap_instead?: А да го заменам таксонот?
   make_curator: Направи кустос
   make_it_a_life_list?: Да го направиме животен список?
   make_manager: Назначи за раководител
-  make_new_place: Направи ново место
-  make_one: да направам?
   mammals: цицачи
   manager: Раководител
   managers: Раководители
-  manually_create_new_place: Рачно создај ново место
   map: Карта
   map_tooltip: Дај картографски приказ
-  map_for: Карта за
-  matched_several_different_taxa: пронајде неколку различни таксони
   matching_species_will_shown_up_here: Пронајдените видови ќе се прикажат тука. Картите ќе прикажат распространетост ако еден од тие видови е присутен во %{place}.
-  maybe_your_signed_in_with: "Можеби се имате најавено со вашата сметка на %{omniauth}?"
   members: Членови
   merge: Спој
   merging: Спојување
@@ -780,19 +780,13 @@ mk:
   messages: Пораки
   misleading_or_illegal_content_html: |
     Заблудна или противзаконска содржина, расни или етнички навреди и тн.
-  mixed_licenses: мешовити лиценци
-  mobile_app_for: Мобилен прог. за
-  mobile_apps_for: 'Мобилни верзии:'
   mollusks: мекотелци
-  mon: пон
   month: Месец
-  months_ago: "пред %{text}"
   more: Повеќе
   more_fields: Повеќе полиња
   more_info: Повеќе инфо
   more_journal_posts: Повеќе дневнички објави
   more_observations: Повеќе набљудувања
-  most: Највеќе
   most_agree: највеќето се согласуваат
   most_disagree: највеќето не се согласуваат
   most_observations: Највеќе набљудувања
@@ -810,29 +804,21 @@ mk:
   n_person_disagrees: "%{amount} не се согласува"
   name: Име
   name_entered: Внесено име
-  name_llaves: "[ИМЕ]"
   name_of_the_place_you: Како се вика местото кајшто набљудувавте
-  name_provider: Добавувач на името
   name_providers:
     col: Каталог на животот
     nzor: Новозеландски регистар на организми
-  named_based_url_might_change: "URL-адресите со име можат да се сменат, но ова нема."
   names: Имиња
   names_for_taxon_html: "Имиња за %{taxon}"
-  naturalised: одомаќинет
-  naturalized: одомаќинет
   native: домороден
   ne_lat: СИ шир.
   ne_lon: СИ дол.
   near_threatened: речиси загрозен
-  nearby_observations: Набљудувања во близина
-  need_id_help?: Ви треба помош со препознавањето?
   new_announcement: Ново соопштение
   new_assessment: Нова оценка
   new_check_list: Нов контролен список
   new_check_list_for: "Создај нов контролен список за %{place} &raquo;"
   new_check_list_record: "Ако сакате да го означите списоков како сеопфатен, тогаш создајте го, додајте ги таксоните и потоа уредете го. Тогаш тука ќе ви се даде можноста да означите како сеопфатен."
-  new_custom_field_for: Ново прилагодено поле за
   new_flag_for: Нов обележувач за
   new_guide: Нов водич
   new_journal_post: Нова дневничка објава
@@ -840,7 +826,6 @@ mk:
   new_members: "Нови членови"
   new_message: Нова порака
   new_observation_field: Ново поле за набљудување
-  new_observation_rules: Нови правила за набљудувања
   new_observations: Нови набљудувања
   new_observations_ellispsis: "Нови набљудувања..."
   new_observations_from_place_html: "Нови набљудувања од %{place}"
@@ -853,14 +838,11 @@ mk:
   new_source: Нов извор
   new_taxon_change: Нова таксонска промена
   new_taxon_link: Нова врска за таксонот
-  new_taxon_name: Ново име на таксонот
   new_taxon_name_for: Ново таксонско име за
   new_taxon_range: Нова распространетост на таксонот
   new_taxonomic_change: Нова таксономска промена (нацрт)
   new_trip: Ново патување
   new_updates_in_the_last_24_hours_from: "Новости во последните 24 hours часа од %{site_name}"
-  new_user_rules: Правила за нови корисници
-  new_users_week: Нови корисници неделно
   next: Следно
   next_page: Следна страница
   'no': 'Не'
@@ -868,13 +850,9 @@ mk:
   no_countries_added_yet: Засега нема додадени земји
   no_curators_set: Нема зададени кустоси
   no_curators_yet: Засега нема кустоси!
-  no_facebook_photos: Не можеме да најдеме ниедна слика од Facebook.
   no_flags: Овој пат нема обележувачи
   no_flickr_photos_tagged: Нема означено слики од Flickr!
-  no_header_row: Нема насловен ред
-  no_journal_post_have_been: Во проектов сè уште нема додадено дневнички објави.
   no_license_all_rights_reserved: Нема лиценца (сите права задржани)
-  no_link_flickr: "Не, не би."
   no_managers_set: Нема зададено раководители
   no_matching_article_from_x: "Нема соодветна статија од %{x}"
   no_matching_invitations: Нема соодветни покани
@@ -889,7 +867,6 @@ mk:
   no_observations: нема набљудувања
   no_observations_from_this_place_yet: Засега нема ниедно набљудување од ова место.
   no_observations_matching_those_ids: Нема набљудувања за тие видови.
-  no_observations_need_an_id: Нема набљудувања на кои им треба препознавање. Неверојатно!
   no_observations_submitted: "Нема поднесени набљудувања!"
   no_observations_yet: Засега нема ниедно набљудување
   no_range_data_available: Нема податоци за распространетоста.
@@ -899,19 +876,14 @@ mk:
   no_taxa: Нема таксони
   no_taxa_listed: Нема наведени таксони
   no_taxa_selected: Немате избрано таксони!
-  no_taxa_yet: Засега нема таксони!
   no_taxonomic_changes_match_those_criteria: Ниедна таксономска промена не одговара на тие критериуми
   no_wikipedia_page_for_taxon: На Википедија нема страница за овој таксон.
   no_x_this_y: "Нема %{x} за овој %{y}"
   noble_curators: "Благородните кустоси на %{site}"
   none: Ништо
-  not_absent: не отсуствува
-  not_logged_in: Не сте најавени
   note: Напомена
   note_you_can_modify_the_height_attribute: "Напомена: Можете да го менувате атрибутот за висина за да се вклопи во расположивиот простор на вашата страница."
   number_of_observations: Број на набљудувања
-  numeric_: бројчено
-  noun_by_you: "%{noun} од вас"
   obscured: затскриено
   observation_date: Датум
   observation_date?: Датум?
@@ -1831,6 +1803,7 @@ mk:
       rfc: "%j %B %Y"
       day_month_year: "%j %B %Y"
     pm: попладне
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
       messages:
