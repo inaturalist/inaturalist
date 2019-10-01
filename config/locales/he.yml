@@ -1017,7 +1017,6 @@ he:
   full_screen: מסך מלא
   generate_taxonomic_tags_for_flickr: יצירת תגיות טקסונומיות לתמונות ה Flickr שלך.
   generate_your_stats: יצירת סטטיסטיקה
-  generating: עובדים על זה...
   Genus: סוג
   geoprivacy: מיקום פרטי
   geoprivacy_is_obscured: מיקום פרטי מוסתר
@@ -1038,7 +1037,6 @@ he:
   grid: שריג
   group: קבוצה
   guides: מגדירים
-  guide_colors: צבעי המדריך
   guide_compiled_by: המגדיר נערך על ידי
   guide_deleted: המגדיר נמחק
   guide_will_be_deleted: המדריך ימחק. זה לוקח קצת זמן למדריכים גדולים.
@@ -1127,7 +1125,6 @@ he:
   introduced_in_place: "הובא ל%{place}"
   invitation: הזמנה
   invite: הזמן
-  invite_flickr_photos: הזמנת תמונות Flickr ל%{site_name}
   invite_more: הזמן עוד
   invite_people: הזמן אנשים
   invite_people_to_project: "הזמנת אנשים לפרוייקט %{project}"
@@ -1271,7 +1268,6 @@ he:
   lists_by_login:
     title:
       current_user: הרשימות שלך
-  lists_come_in_three: 'רשימות מגיעות בשלוש תצורות:'
   load: טעינה
   loading: "טעינה..."
   loading_flickr_photos: "טוען תמונות מ Flickr..."
@@ -1398,11 +1394,17 @@ he:
   momentjs:
     shortRelativeTime:
       past: "%s"
+      #Short text representing 1 second in the past
       s: "שנייה אחת"
+      #Short text representing 1 minute in the past
       m: "דקה אחת"
+      #Short text representing 1 hour in the past
       h: "שעה אחת"
+      #Short text representing 1 day in the past
       d: "יום אחד"
+      #Short text representing 1 month in the past
       M: "חודש אחד"
+      #Short text representing 1 year in the past
       'y': "שנה אחת"
   month: חודש
   months: חודשים
