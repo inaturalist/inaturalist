@@ -1594,7 +1594,7 @@ nb:
   last_year: I fjor
   lat: Lat
   latitude: Breddegrad
-  latitude_in_decimals: 'Breddegrad i desimalgrader, f.eks. 38.123'
+  latitude_in_decimals: 'Breddegrad i desimalgrader, f.eks. 63.327'
   latitude_slash_y_coord_slash_northing: Breddegrad / y-koord / nordverdi
   latitude_value: "Breddegrad: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
@@ -1737,8 +1737,9 @@ nb:
     da: Dansk
     de: Tysk
     el: Gresk
-    en-US: Engelsk (USA)
     en: Engelsk
+    en-UK: Engelsk (Storbritannia)
+    en-US: Engelsk (USA)
     eo: Esperanto
     es-ES: Spansk (Spania)
     es-MX: Spansk (Mexico)
@@ -1746,17 +1747,22 @@ nb:
     et: Estisk
     eu: Baskisk
     fi: Finsk
+    fil: Filippinsk
     fr: Fransk
+    fr-CA: Fransk (Canada)
     gl: Galisisk
     he: Hebraisk
     id: Indonesisk
     it: Italiensk
     ja: Japansk
+    ka: Georgisk
     ko: Koreansk
     lb: Luxembourgsk
     lt: Litauisk
     mk: Makedonsk
+    nb: Norsk Bokmål
     nl: Nederlandsk
+    nn: Norsk Nynorsk
     oc: Oksitansk
     pl: Polsk
     pt-BR: Portugisisk (Brasil)
@@ -1783,8 +1789,16 @@ nb:
     transparent_png: gjennomsiktig png
     white_text_transparent_png: hvit tekst gjennomsiktig png
     none: ingen
+  long: Lgrad
+  longitude: Lengdegrad
+  longitude_in_decimal: 'Lengdegrad i desimalgrader, f.eks. 10.063'
+  longitude_slash_x_coord_slash_easting: Lengdegrad / x koord / østverdi
+  longitude_value: "Lengdegrad: %{longitude}"
+  look_up_name: "Slå opp navn"
   looks_like_neither_have!: Det virker som ingen av de har noen taksa!
+  looks_like_no_species_in_guide: Det ser ut som du ikke har noen arter i guiden din ennå.
   lookup: Slå opp
+  low: Lav
   lowest_rank: Laveste nivå
   make_admin: Gjør til admin
   main_content: Hovedinnhold
@@ -1850,7 +1864,32 @@ nb:
   merge_two_places_together: Slå sammen to steder. Alle arter op sjekklistene vil bli slått sammen, samt all geografiske data.
   merge_observation_field_x_into: 'Slå sammen observasjonsfelt "%{x}" til...'
   merging: Slår sammen
+  merging_places: Slår sammen steder
+  message: Melding
   message_from_user_at_time: Fra %{user} kl. %{time}
+  message_from_user_on_date: Fra %{user} på %{date}
+  messages: Meldinger
+  misidentifications: Feilidentifikasjoner
+  misleading_or_illegal_content_html: |
+    Misvisende eller ulovlig innhold, rasistiske eller upassende utsagn, osv. Les
+    mer om vår definisjon av "passende" i svarene på <a href="/help#inappropriate">ofte stilte spørsmål</a>.
+  mobile: Mobil
+  mollusks: bløtdyr
+  momentjs:
+    shortRelativeTime:
+      future: "i %s"
+      past: "%s"
+      s: "1s"
+      m: "1min"
+      mm: "%dm"
+      h: "1t"
+      hh: "%dt"
+      d: "1d"
+      dd: "%dd"
+      M: "1mnd"
+      MM: "%dmnd"
+      'y': "1å"
+      yy: "%då"
   month: Måned
   months: Måneder
   more: Mer
@@ -1867,6 +1906,8 @@ nb:
   most_agree: de fleste er enige
   most_disagree: de fleste er uenige
   multiple_taxa_for_taxon_change: "Flere taksa (input for bytting/sammenslåing, output for oppdeling)"
+  ne_lat: NØ bgrad.
+  ne_lon: NØ lgrad.
   new_project_asset: Ny projektressurs
   new_project_asset_for: Ny projektressurs for
   no_creative_commons_flickr_photos_tagged_x: 'Ingen Creative Commons Flickr-bilder med etikett "%{x}"'
@@ -1904,6 +1945,7 @@ nb:
   only_a_project_manager_can_add: Bare en prosjektmanager kan tildele prosjektkurator-status
   only_files_with_10000_rows_at_a_time: Kun filer med 10 000 rader om gangen, vær så snill
   or_if_you_dont_want_email: "Eller hvis du ikke ønsker noe som helst e-post..."
+  or_log_in_with_colon: "Eller logg inn med:"
   organism_appears_captive_cultivated: Organismen viker å være i fangenskap / dyrket
   parental_consent:
     must_specify_email: Du må oppgi en e-postadresse
@@ -1920,6 +1962,8 @@ nb:
     geo_planet_place_types:
       Time_Zone: Tidssone
       time_zone: tidssone
+  places_name:
+    saint_pierre_and_miquelon: Saint Pierre og Miquelon
   places_merged_successfully: Steder slått sammen!
   please_be_careful_particulary_when: "Vennligst vær forsiktig, spesielt når du sletter taksa. Hvis et takosn har tilknyttede observasjoner, id'er, taksa som er oppført på ei liste, osv., vennligst"
   privacy: Personvern
@@ -1932,6 +1976,15 @@ nb:
   real_time_discussions: Sanntids-diskusjoner
   receive_email_notifications_when_people_leave_you: Få e-postvarslinger om
   refresh_listed_taxa: last inn taksa oppført på lista på nytt
+  relationships:
+    one_to_one: en-til-en
+    alternate_position: alternativ posisjon
+    many_to_many: mange-til-mange
+    many_to_one: mange-til-en
+    one_to_many: en-til-mange
+    not_external: ikke ekstern
+    not_internal: ikke intern
+    error: feil
   remove_all_tags: Fjern alle etiketter
   remove_comma_separated_tags: "Fjern kommaseparerte etiketter"
   remove_from_batch: Fjern fra batch
@@ -1945,14 +1998,18 @@ nb:
     Når koordinater blir tilslørt på grunn av et truet takson, blir alle andre observasjoner av den personen den dagen også tilslørt får å unngå at man kan gjette koordinatene basert på observasjoner på omtrent samme tidspunkt. Folk kan også bruke denne beskyttelsen på koordinater som de har valgt å tilsløre.
   same_day_private_desc: |
     Når koordinater blir skjult på grunn av et truet takson, blir alle andre observasjoner av den personen den dagen også skjult får å unngå at man kan gjette koordinatene basert på observasjoner på omtrent samme tidspunkt. Folk kan også bruke denne beskyttelsen på koordinater som de har valgt å skjule.
+  scale_colon: "Skala:"
   search_by_name_or_email: Søk etter navn eller e-post
   search_descendant_taxa_raquo: "Søk etterkommer-taksa &raquo;"
   search_results_for_query: 'Søkeresultater for "%{query}"'
+  share_colon: "Del:"
   show_total_listed_taxa: Vis alle taksa oppført på lista
   single_taxon: Enkelt takson (input for oppdeling/fjerning/publisering, output for sammenslåing/bytting)
   sorry_you_can_only_add_1000_at_a_time: "Beklager, du kan bare legge til 1000 om gangen."
   start_date_time: Startdato / klokkeslett
   subject_committed_thing_affecting_stuff_html: "%{subject} har gjennomført @gender{m:en|f:ei|n:et} %{thing} som påvirker %{stuff}"
+  sw_lat: SV bgrad.
+  sw_lon: SV lgrad.
   tagging: 'Legger til etikett...'
   tags: Etiketter
   taxon_geoprivacy: Takson-geosperring
@@ -1990,13 +2047,26 @@ nb:
   user_is_now_a_manager_for_project_html: |
     <strong>%{user}</strong> er nå en manager for %{project}
   username_or_email: Brukernavn eller e-post
+  view_observations_causing_this_observation_to_be_obscured: |
+    Vis observasjoner som gjør at denne observasjonen blir tilslørt
+  view_your_dashboard: Vis din oversikt
+  view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Se din oversikt</a> for flere oppdateringer"
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
+  we_care_privacy: Vi bryr oss om ditt personvern!
+  why_the_coordinates_are_obscured: Hvorfor koordinatene er tilslørt
   you_are_now_a_manager_for_project_html: |
     <strong>du</strong> er nå en manager for %{project}
   you_can_also_add_flickr: Du kan også legge til Flickr-etiketter når du redigerer en observasjon, eller når du redigerer dine observasjoner som en batch.
+  you_can_alwais_add_new: Du kan alltid legge til nye observasjoner ved å klikke på den lille pilen øverst til høyre på siden og benytte nedtrekksmenyen.
+  you_curate_a_project_that_contains_this_observation_desc: |
+    Du kan se tilslørte koordinater når du kuraterer et prosjekt som inneholder en observasjon og observatøren har valgt å dele koordinatene med kuratorer av det prosjektet.
   you_must_be_project_manager_to_do_that: Du må være prosjektmanager for å kunne gjøre det
+  you_must_select_a_place_to_merge_with: Du må velge et sted for å slå sammen med.
   you_sure_delete_asset?: Er du sikker på at du vil slette denn projektressursen?
   your_default_time_zone: Din standard-tidssone
+  your_email_address: Din e-postadresse
+  your_tags: Dine etiketter
+  your_dashboard_helps_you: "Din oversikt hjelper deg med å følge med på hva folk gjør på siden. For å følge med på noens oppdateringer, klikk \"Følg [name]\"-lenken i overskriften når du ser på vedkommendes observasjoner eller profil."
   views:
     guides:
       index:
@@ -2006,23 +2076,63 @@ nb:
       edit:
         add_eol_content: |
           Legg til EOL-innhold til valgte taksa som batch. Dette kan ta litt tid, så vennligst vær tålmodig.
+      pdf_layout_notes:
+        journal: |
+          Del opp side, artsinformasjon til venstre, plass til notater til høyre. Artsinformasjon blir forkortet for å få plass på siden.
     help:
       index:
         what_are_tags?: Hva er etiketter?
         tags_are_keywords_you_can_add_to_an_html: |
           Etiketter er nøkkelord som du kan legge til dine observasjoner for å gjøre dem enklere å finne.
           Hvis du for eksempel blir fulgt av en barracuda mens du er på dykketur ved Turks- og Caicosøyene, kan du tagge observasjonen med &quot;skummelt, barracuda, dykking, ferie, Turks- og Caicosøyene&quot;.
+        what_is_geoprivacy?: Hva er geosperring?
+        geoprivacy_is_a_setting_you_can: |
+          Geosperring er en innstilling som du kan bruke på dine observasjoner som styrer hvordan stedskoordinatene (lengdegrad og breddegrad) vises. Her er valgmulighetene:
+        note_that_curators_of: |
+          Merk at kuratorer av individuelle prosjekter alltid kan se koordinatene uavhengig a dine geosperrings-innstillinger, så hvis du er bekymret for hvem som har tilgang til koordinatene må du forsikre deg om at du stoler på kuratorene i prosjekter som du deltar i.
+        what_is_does_it_mean_for: Hva betyr det når en observasjon er tilslørt?
+        when_coordinates_are_obscured_it_means_that: |
+          Når koordinater tilsløres betyr det at et vilkårig punkt innen %{km} km av de egentlige koordinatene blir vist offentlig (som på hjemmesiden, observasjonssiden, og prosjektsider), mens de sanne koordinatene kun er synlige hvis du viser dine egne observasjoner (som på de individuelle prosjektsidene og i listen over dine egne observasjoner). Merk at kuratorer av prosjektene som du har delt observasjonen med også kan se de sanne koordinatene. På kart og geo-strømmer skal tilsørte koordinater alltid representeres av runde markeringer uten stilker.
+        coordinates_are_obscured_for_all_taxa: |
+          Koordinater blir tilslørt automatisk for alle taksa som er "NÆR TRUET" eller verre ifølge IUCN-rødlista. Noen taksa kan være satt som truet av andre bevaringsinstanser, og noen kan bare være markert som truet av sidekuratorer på %{site_name} hvis de mener at det bør beskyttes.
+        you_can_also_obscure_the_coordinates_html: |
+          Du kan også tilsløre koordinatene til dine egne observasjoner uansett hvilket takson det er. Se <a href="#geoprivacy">geosperring</a> ovenfor.
+        what_is_the_quality_assessment: Hva er kvalitetsvurderingen og hvordan kvalifiseres observasjoner for å bli "forskingskvalitet"?
     observations:
+      community_id:
+        ancestor_disagreements: Ane-uenigheter
       captive_help_html: |
         Var organismen <strong>dyrket</strong> eller
         <strong>i fangenskap</strong>? Var det for eksempel i en <strong>hage,
         dyrehage, et akvarium</strong> eller en anden situasjon hvor den kun var
         til stede <strong>fordi mennesker hadde bestemt at den skulle være der</strong>? Alle observasjoner av levende organismer er velkomne, men vi vil gjerne vite det når noe ikke er vill/naturalisert.
+      export:
+        create_a_query_desc_html: |
+          Opprett en observasjonsspørring akkurat som du ville ha gjort andre steder på siden. Du kan også klippe og lime en observasjons-url fra en annen del av siden. Du må spesifisere et <strong>takson</strong>, <strong>sted</strong>, en <strong>bruker</strong>,
+          et <strong>prosjekt</strong>, eller en <strong>søkespørring</strong>.
+        query_placeholder: "Velg spørrinsgparametre under eller lim in en observasjons-url"
+        geo_help_html: |
+          By-, område-, fylke-, landsfelt basert på koordinater. Tilsvarende administrative nivåer brukes der disse stedstyper ikke brukes.
+          Privat_* feltene inkluderes kun ved bruk av brukerfilteret og du er den aktuelle brukeren, eller ved bruk av prosjektfilteret og du kuraterer prosjektet.
+        receive_an_email_with_your_data: Få en e-post med dine data
+        well_email_you: "Ok, vi sender deg en e-post når den er klar."
       field_descriptions:
         time_observed_at: Normalisert dato og klokkeslett for observasjon
         time_zone: Tidssone av observasjon
+        private_latitude: "Privat breddegrad, satt hvis observasjon privat eller tilslørt"
+        private_longitude: "Privat lengdegrad, satt hvis observasjon privat eller tilslørt"
+        geoprivacy: "Om observatøren har valgt å tilsløre eller skjule koordinatene eller ikke"
+        taxon_geoprivacy: "Den mest restriktive geosperringen brukes på grunn av bevaringsstatusen av taksa i den gjeldende identifikasjonen."
+        coordinates_obscured: "Om koordinatene har blitt tilslørt eller ikke, enten på grunn av geosperring eller et truet takson"
         tag_list: Kommaseparert liste over etiketter
+      identify:
+        too_many_results_desc: |
+          Sidenummer ganger antall resultater per side kan ikke være over 10 000. Bræv å bruk filter for å redusere antall resultater, eller marker observasjoner som vurdert og bruk kanppen "Vis mer" i steden for visning per side
+      import:
+        geoprivacy_must_be_in_english: |
+          Geosperring-kolonnen ("geoprivacy") må være på engelsk og skal være enten tom eller ha en av verdiene "obscured" (tilslørt) eller "private" (privat)
       show:
+        ancestor_disagreements_desc: "Antall taksa som er blant taksonets aner, men som er uenige i taksonet (f.eks. \"Jeg tror at det er i slekten men jeg er uenig at det er den arten\")"
         community_taxon_desc_html: |
           <p class="ui">
           Fellesskapets takson (eller fellesskapets identifikasjon) er det fellesskapet på %{site_name} tror avbildes i en observasjon. Hvis du lurer på hvordan vi velger fellesskapets takson, se notatene om algoritmen under, men generelt prøver vi å <strong>velge et takson som over 2/3 av de som identifiserte taksonet var enige i</strong>. Noen ganger betyr dette at det velges et høyere takson som inkluderer flere forskjellige taksa (f.eks. du mener at det er en kongeslange og jeg tror at det er en klapperslange, så da velger iNat underordenen Serpentes som inneholder alle slanger). Algoritmen heller også litt mer mot avvikende svar, fordi vi fant ut at de ofte er korrekte.
@@ -2033,6 +2143,12 @@ nb:
           <p class="ui">
           <strong>Algoritmen:</strong> for alle identifiserte taksa og taksa som inneholder dem (slekta <i>Homo</i> inneholder <i>Homo sapiens</i>, f.eks.), beregn poengsummen som fordelingen mellom antallet 'enigheter' - kumulative id'er som er helt ulike (dvs. id'er av taksa som ikke inneholder taksonet som poengsummen regnes ut for), og 'ane-uenigheter' - antallet mer konservative id'er som er uenige i det lavere taksonet. For de identifiserte taksa som har en poengsum over 2/3 og minst 2 identifikasjoner, velg det takonet med lavest taksonnivå.
           </p>
+        disagreement_count_desc: "antall identifiserte taksa som ikke er blant taksonets aner"
+        score_desc: "poengsum = totalt antall / (totalt antall + antall uenig + ane-uenigheter)"
+    observation_fields:
+      merge:
+        warning_html: |
+          Vennligst ha respekt for andres data og <strong>snakk med den som opprettet en observasjon før du slår sammen</strong>. Dette verktøyet vil ødelegge obserasjonsfeltet som slås sammen og flytte alle observasjoner som benytter det til eieren. <strong>Denne handlingen kan ikke angres</strong>, så vær forsiktig.
     projects:
       edit:
         project_assets_desc_html: |
@@ -2045,6 +2161,74 @@ nb:
           captive: å være i fangenskap/dyrket
         trusted_project_means: |
           Å stole på et prosjekt betyr at prosjektmanagere kan legge til prosjektressurser og egendefinerte prosjektegenskaper (f.eks banner-html, css). Tilgang til egendefinerte egenskaper betyr at prosjektmanagere potensielt kan legge til ondsinnet Javascript, så stol kun på prosjekter som har managere som er forsvarlige og teknisk kompetente.
+      invite:
+        description_html: |
+          <h3>Om invitasjoner</h3>
+          <p class="ui">
+          Å invitere personer til prosjektet ditt er litt annerledes fra å invitere
+          enkeltobservasjoner. Å invitere personer vil
+          </p>
+          <ol>
+          <li>Sende en epost til dem med en invitasjon til å bli med på prosjektet ditt</li>
+          <li>Vise en invitasjon i oversikten deres</li>
+          <li>Tillate dem å bli med på prosjektet ditt hvis det har blitt satt som kun på invitasjon</li>
+          </ol>
+          <p class="ui">
+          Kun prosjektkuratorer kan invitere personer til å bli med på et prosjekt. Du
+          burde kunne søke personer ved å bruke deres iNat brukernavn eller
+          deres <em>fullstendige</em> epostadresse, gitt at vi har det laget.
+          </p>
+      new:
+        or_drag_and_drop: (eller dra og slipp)
+      project_location_privacy_notice_html: |
+        <p>
+        Vennligst husk at prosjektkuratorer kan se private og tilslørte posisjoner av dine observasjoner i dette prosjektet med mindre du trekker den tillatelsen, og de vil kunne legge til dine observasjoner i dette prosjektet med mindre du <a href="/users/edit">endrer dine innstillinger</a>. Du kan også gi eller trekke tillatelse til observasjoner i prosjekter en og en.
+        </p>
+        <p>
+        Hvis du er bekymret for personvern rundt geografiske data, ikke bli med i prosjekter med mindre du stoler prosjektkuratorene.
+        </p>
+      curator_coordinate_access_label: |
+        Ønsker du å gjøre dine private/tilslørte observasjonskoordinater synlige for prosjektkuratorene?
+      show:
+        bioblitz_results_desc_html: |
+          <p>
+          I motsetning til vanlige prosjekter, viser bioblitz hendelsesstatistikker fra
+          <em>alle</em> observasjoner innen et sted og en periode, ikke bare
+          observasjoner som folk med vilje har lagt til prosjektet.
+          Hensikten er å fjerne hindringen av å legge til observasjoner til et prosjekt
+          bare for å kjøre sanntids-statistikk. Merk at observasjoner ikke vil være tilgjengelig for eksport eller visning i ulike prosjektvisninger
+          som medlemsbidrag på nettstedet eller prosjektobservasjonssøk i mobilappene, med mindre prosjektteamet og
+          deltakerne aktivt legger til relevante observasjoner slik som de ville ha gjort i
+          et ordinært prosjekt.
+          </p>
+          <p>
+          Merk at mens denne typen prosjekt viser statistikk for observasjoner som ikke har blitt lagt til prosjektet med vilje, 
+          tillater det ikke at kuratorer kan se private eller tilslørte koordinater for disse
+          observasjoner, eller anta at observatører har sagt seg enige i prosjektvilkårene. Hvis du er en prosjektkurator og trenger tilgang til private koordinater, trenger du at deltakerne dine samtykker til prosjektvilkårene, eller hvis du vil at observasjoner skal telles med i den kuraterte sjekklisten til prosjektet, sørg for at deltakerne blir med i prosjektet og legger til deres observasjoner slik som de ville ha gjort i et ordinært prosjekt.
+          </p>
+      updates_desc: |
+        Få oppdateringer om dette prosjektet i din oversikt og i den daglige oppdateringseposten.
+    taxa:
+      edit:
+        high_status_conservation_status_notice_html: |
+          Å legge til en bevaringsstatus for er takson på et høyere nivå påvirker observasjoner av alle arter i taksonet. Vennligst ikke legg til statuser for taksa som inneholder arter som ikke har en status, siden det vil feilaktig tilsløre koordinater av observasjoner av disse arter.
+      show:
+        frequency:
+          research: Forskningskvalitet
+          "Life Stage=egg": Egg
+          "Life Stage=larva": Larve
+          "Life Stage=teneral": Teneral
+          "Life Stage=subimago": Subimago
+          "Life Stage=nymph": Nymfe
+          "Life Stage=pupa": Puppe
+          "Life Stage=adult": Voksen
+    taxon_changes:
+      move_children_desc: |
+        Etterkommere av input-taksonet som er slekter eller høyere blir flyttet til output'en; arter, underarter, varieteter, osv. vil bli byttet til tilsvarende taksa med det ny slekts- eller artsnavnet.
+      form:
+        move_children_desc_html: |
+          Å krysse av denne boksen vil flytte etterkommere av input-taksonet til output-taksonet ved bytting eller sammenslåing når endringen blir gjennomført. Hvis denne endringer er på slektsnivå eller lavere, vil det generere taksonbytter for alle etterkommere som har en implisitt navneendring. Hvis du for eksempel bytter familien Canidae til Hundidae, vil foreldretaksonet for slekta <i>Canis</i> fra Canidae til Hundidae. Hvis du bytter slekta <i>Canis</i> til slekta <i>Hundis</i> blir det opprettet og gjennomført taksonendringer for å endre <i>Canis lupus</i> til <i>Hundis lupus</i> og <i>Canis lupus</i> ssp. <i>lupus</i> til <i>Hundis lupus</i> ssp.
+          <i>lupus</i>. Dette kan forårsake litt av et rot, så bruk med omhu.
     users:
       dashboard:
         taxon_change_desc: |
@@ -2052,12 +2236,40 @@ nb:
           Oftest vil %{site_name} holde innholdet ditt oppdatert automatisk når disse
           endringer skjer (med mindre du har slått det av), men vi ønsker likevel å
           si ifra når og hvordan dine data endres.
+        your_content_will_be_updated: Ditt innhold relatert til disse taksa vil bli oppdatert automatisk.
+        you_may_want_to_update: Du har noe innhold relatert til disse taksa, som du kanskje vil oppdatere.
+        cannot_update_your_content: "%{site_name} kan ikke oppdatere ditt innhold automatisk for denne endringen."
         new_project_admin_html: |
           Lurer du på hvorfor du nå er administrator for dette prosjektet? Den forrige eieren
           har enten erklært deg den nye administratoren, eller de har slettet sin konto og
           %{site_name} har tildelt deg rollen fordi du er en prosjektmanager eller en
           sidekurator. Hvis du ikke vil være prosjektets administrator, vennligst ta
           kontakt med <a href="mailto:%{help_email}">%{help_email}</a>
+        curators_can_see: |
+          Bare en påminnelse, prosjektkuratorer kan se private og skjulte
+          koordinater til observasjoner du legger til i dette prosjektet.
+      edit:
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">iNaturalist-nettverket</a> er en samling av lokaliserte nettsteder som er fullstendig tilkoble det verdensomspennende iNaturalist-fellesskapet. Nettverkssider støttes av lokale
+          institusjoner som har signert en avtale med iNaturalist til å
+          fremme lokal bruk og og gagne det lokale biologiske mangfoldet. De har tilgang
+          til sanne koordinater fra sine land som automatisk er
+          tilslørt fra offentlig innsyn for å beskytte truede arter.
+          </p>
+          <p>
+          Ditt brukernavn og passord fungerer på alle nettsteder som er en del av
+          iNaturalist-netverket. Hvis du velger å knytte det til en nettverksside, vil de lokale institusjonene som driver hvert nettsted også ha tilgang til e-postadressen din (bare for å kommunisere med deg om
+          nettstedaktiviteter) og ha tilgang til de sanne koordinatene for observasjoner
+          som er offentlig tilslørt eller privat.</p>
+          <p>
+          Merk: Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner.
+          </p>
+        prefers_coordinate_interpolation_protection_desc: |
+          Når su setter geosperringen av en observasjon til "tilslørt" eller "privat" brukes det samme geosperringen på alle dine andre observasjoner fra den dagen for å gjøre det vanskelige for folk å gjette de sanne koordinate basert på observasjoner gjort rundt samme tidspunkt.
+        same_day_geoprivacy_protection: Samme-dag geosperring
+        taxon_change_desc: |
+          Når taksa blir slått sammen eller får et nytt navn på %{site_name}, vil dine observasjoner, listede taksa, identifikasjoner, osv. bli oppdatert til det nye taksonet automatisk, hvis endringen er entydig. Hvis du velger å ikke gjøre det eller endringen er tvetydig (for eksempel en oppdeling), vil du få en oppdatering om endringen med en lenke til et verktøy for å oppdatere ditt innhold manuelt, hvis du velger å gjøre det.
     welcome:
       index:
         help_scientists: Hjelp forskere og forvaltere forstå hvor og når organismer forekommer.
@@ -2097,16 +2309,60 @@ nb:
       - September
       - October
       - November
-      - December
+      - desember
+  errors:
+    messages:
+      too_long:
+        one: er for lang (maks antall tegn er 1)
+        other: er for lang (maks antall tegn er %{count})
   number:
     human:
       format:
         significant: true
         strip_insignificant_zeros: true
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      messages:
+        too_long:
+          one: er for lang (maks antall tegn er 1)
+          other: er for lang (maks antall tegn er %{count})
   activerecord:
     attributes:
+      conservation_status:
+        geoprivacy: Geosperring
+      listed_taxon:
+        establishment_means: Etableringsmåter
       project:
         end_time: Slutttid
         start_time: Starttid
+      place:
+        latitude: Breddegrad
+        longitude: Lengdegrad
       user:
+        email: E-post
         time_zone: Tidssone
+    errors:
+      messages:
+        too_long:
+          one: er for lang (maks antall tegn er 1)
+          other: er for lang (maks antall tegn er %{count})
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              has_query_parameter: "kan ikke inneholde en spørringsparameter."
+        taxon:
+          attributes:
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kan kun endres av en kurator av dette taksonet
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: må se ut som en e-postadresse
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: |
+                hører til en eksisterende bruker; hvis du har en konto fra før, vennligst logg på før du fortsetter, eller bruk en annen e-postadresse
