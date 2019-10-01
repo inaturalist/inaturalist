@@ -1319,11 +1319,17 @@ ja:
   momentjs:
     shortRelativeTime:
       future: "%sに"
+      #Short text representing 1 second in the past
       s: "1秒"
+      #Short text representing 1 minute in the past
       m: "1分"
+      #Short text representing 1 hour in the past
       h: "1時間"
+      #Short text representing 1 day in the past
       d: "1日"
+      #Short text representing 1 month in the past
       M: "1分"
+      #Short text representing 1 year in the past
       'y': "1年"
   month: 月
   months: ヶ月
