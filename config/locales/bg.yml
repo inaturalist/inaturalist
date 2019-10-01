@@ -144,6 +144,7 @@ bg:
   add_new_source: "Добавяне на нов източник..."
   add_observations: Добавяне на наблюдения
   add_observations_project: Добави наблюдения към проекта
+  #Prompt to add a new journal post
   add_one: Добави!
   add_photos: Добавяне на снимки
   add_photos_to_this_observation: Добави снимки към това наблюдение
@@ -274,6 +275,7 @@ bg:
   are_you_sure_remove_taxon_from_list: "Сигурни ли сте, че искате да премахнете този таксон от списъка?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Сигурни ли сте? Това ще презареди страницата и може да изгубите някои от промените си.
+  are_you_sure_want_delete_taxon: "Сигурни ли сте, че искате да изтриете този таксон?"
   are_you_sure_want_delete_this_name: Сигурни ли сте, че искате да изтриете това име?
   are_you_sure_you_want_to_delete_this: Сигурни ли сте, че искате да изтриете това?
   are_you_sure_you_want_to_delete_this_photo?: Сигурни ли сте, че искате да изтриете тази снимка?
@@ -293,6 +295,8 @@ bg:
   ascending: възходящо
   assessment: оценка
   assessments: оценки
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Атрибут
   authority_list:
     iucn_red_list: Червен списък на IUCN
@@ -558,6 +562,8 @@ bg:
   doh_something_went_wrong: Ох, нещо се обърка.
   done: Готово
   dont_send_me_email: "Не ми изпращайте никакви писма!"
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
   drop_it: Пусни го тук
   double_click_to_finish: (двойно щракване за да приключите)
   download: Изтегли
@@ -669,6 +675,7 @@ bg:
   first_confirmed_inat_observation: "Първо потвърдено наблюдение на %{site_name}"
   first_inat_observation: "Първо наблюдения на %{site_name}"
   first_observer: 1-ви наблюдател
+  #Verb form, as in "Flag this item"
   flag: Маркирай
   flag_as_inappropriate: Маркирай като неуместно
   flag_an_item: Маркирай елемент
@@ -767,6 +774,7 @@ bg:
   import_tags_from_csv: Импортирай етикети от CSV
   importing: "Импортиране..."
   in_n: "във %{n}"
+  #Label for messages you've received
   inbox: входящи
   inactive_taxon: неактивен таксон
   inappropriate_content: Неуместно съдържание?
@@ -801,6 +809,7 @@ bg:
   kml_file_size_error: "KML файла трябва да е по-малък от 1MB"
   labels: Етикети
   language_slash_type: Език / Тип
+  #Large photo size
   large: голям
   last_confirmed_observation: Последно потвърдено наблюдение
   last_observation: Последно наблюдение
@@ -917,8 +926,8 @@ bg:
     da: датски
     de: немски
     el: гръцки
-    en-US: английски (САЩ)
     en: английски
+    en-US: английски (САЩ)
     es-ES: испански (Испания)
     es-MX: испански (Мексико)
     es: испански
@@ -941,7 +950,6 @@ bg:
   locality_notes: Бележки за местността
   localized_species_accounts: Локализирани данни за видовете
   location: Местоположение
-  locations: Местоположения
   location_is_accurate: Местоположението е точно
   location_is_exact: местоположението е точно
   location_is_public: местоположението е публично
@@ -966,8 +974,6 @@ bg:
   manage_all_your_subscriptions: Управление на всичките Ви абонаменти
   manage_your_project_invitations: Управление на Вашите покани за проекти
   manage_your_relationships: Управление на взаимоотношения
-  manage_subscriptions: Управление на абонаменти
-  manually_create_new_place: Ръчно създай ново място
   map: Карта
   map_legend: легенда на картата
   map_marker_size: размер на маркера на картата
@@ -982,7 +988,6 @@ bg:
       observations: Наблюдения
       range: Диапазон
   map_tooltip: Покажи на картата
-  map_for: Карта за
   mark_as_reviewed: Отбелязване като проверено
   mark_all_as_reviewed: Отбелязване на всички като проверени
   mark_all_as_unreviewed: Отбелязване на всички като непроверени
@@ -994,7 +999,6 @@ bg:
     Част от <a href="%{url}">Мрежата на iNaturalist</a>
   members: Членове
   mentioned_you_in_noun_html: "%{user} Ви спомена във %{noun}"
-  mentions: "Споменавания"
   message: Съобщение
   messages: Съобщения
   mollusks: мекотели
@@ -1007,10 +1011,8 @@ bg:
       d: "1д"
       M: "1мес"
       'y': "1г"
-  mon: пон
   month: Месец
   months: Месеци
-  months_ago: "преди %{text}"
   more: Още
   more_fields: Още полета
   more_filters: Още филтри
@@ -1043,7 +1045,6 @@ bg:
   name: Име
   name_or_slug: "Име или (част от) уебадрес"
   name_of_the_place_you: Име на мястото където сте направили наблюдението
-  name_or_username: Име или потребителско име
   names: Имена
   names_for_taxon_html: "Имена за %{taxon}"
   native: местен
@@ -1051,9 +1052,7 @@ bg:
   ne_lat: СИ шир.
   ne_lon: СИ дълж.
   near_threatened: почти застрашен
-  nearby: Наблизо
   nearby_observations_: Наблюдения наблизо
-  nearby_observations: Наблюдения наблизо
   needs_id: нуждае се от ID
   needs_id_expandable_html: "<span class='full'>Нуждае се от </span>ID"
   needs_to_be_identified: Нуждае се от разпознаване
@@ -1073,7 +1072,6 @@ bg:
   new_post: Нова публикация
   new_project: Нов проект
   new_source: Нов източник
-  new_taxon_name: Ново име на таксон
   new_taxon_name_for: Ново име на таксон за
   new_users: Нови потребители
   new_users_w_7_obs: Нови потребители със 7 набл.
@@ -1083,7 +1081,6 @@ bg:
   next_page: След. страница
   next_photo: Следваща снимка
   'no': 'Не'
-  no_colors_selected: Не са избрани цветове.
   no_comments_yet: Няма коментари.
   no_description: Липсва описание
   no_identifications: Няма разпознавания
@@ -1093,7 +1090,6 @@ bg:
   no_favorites_added:
     current_user: Все още не сте добавили любими.
     user: "%{user} няма добавени любими."
-  no_journal_post_have_been: Все още няма публикации в дневника на проекта.
   no_license_all_rights_reserved: Няма лиценз (всички права запазени)
   no_matching_article_from_x: "Няма намерена статия от %{x}"
   no_matching_invitations: Няма намерени покани
@@ -1104,7 +1100,6 @@ bg:
   no_matching_users: Няма намерени потребители.
   no_members_yet: "Засега няма членове."
   no_messages_yet: Засега няма съобщения
-  no_nearby_observations: "Няма наблюдения наблизо."
   no_new_messages: Няма нови съобщения
   no_news_yet: Все още няма новини
   no_observations: Няма наблюдения
@@ -1120,7 +1115,6 @@ bg:
   noble_curators: "Знатните куратори на %{site}"
   none: Нищо
   not_evaluated: неоценен
-  not_filtering: Не се филтрира
   not_linked_facebook: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Фейсбук"
   not_linked_flickr: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Flickr"
   note: Бележка
@@ -1490,6 +1484,7 @@ bg:
   popular: Популярно
   position: Позиция
   positional_accuracy: Точност на позицията
+  #Noun, short version of a journal post
   post: Публикувай
   post_published: Публикувано!
   posted_by: Публикувано от
@@ -1730,6 +1725,7 @@ bg:
   send_me_reset_password_instructions: Изпрати ми инструкции за възстановяване на паролата
   send_the_invites: Изпрати поканите
   sending: Изпращане...
+  #Label for messages you've sent
   sent: изпратени
   september: септември
   settings: настройки
@@ -1858,6 +1854,8 @@ bg:
   synonyms: Синоними
   table: Таблица
   table_of_contents: Съдържание
+  #Noun, as in "add a tag to this observation"
+  tag: Етикет
   tags: Етикети
   tags_are_a_way: 'Етикетите са допълнителен начин за организиране на Вашите наблюдения. Например, можете да добавите етикет "пещера" към наблюденията си от пещери, за да ги намерите лесно по-късно.'
   taxa: Таксони
@@ -2627,6 +2625,7 @@ bg:
       last_word_connector: ' и'
       two_words_connector: ' и'
       words_connector: ','
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
       messages:
