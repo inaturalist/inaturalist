@@ -994,6 +994,7 @@ it:
   default_sound_license: Licenza predefinita dei suoni
   defaults_to_your_name_or_username: Utilizza in maniera predefinita il tuo nome o il tuo nome utente
   defines_a_taxon_framework_for: Definisce un quadro del taxon per %{taxon_name}
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definisce in Quadro del Taxon per %{taxon} originato da %{source}
   definitions: Definizioni
   delete: Cancella
   delete_all: Cancella tutto
@@ -1062,6 +1063,7 @@ it:
   download_csv_template: Scarica modello CSV
   download_kml: Scarica il file KML
   downstream_coverage_rank: Rango di copertura a valle
+  downstream_coverage_colon_rank: "Copertura a valle: rango %{rank}"
   downstream_deviations: Deviazioni a valle
   downstream_deviations_for_taxon: "Deviazioni a valle per %{taxon}"
   #Label for a link to taxa that are descendants ("downstream") of the current
@@ -1101,6 +1103,7 @@ it:
   edit_source: Modifica la fonte
   edit_taxa: Modifica i taxa
   edit_taxon: Modifica taxon
+  edit_taxon_framework: Modifica Quadro del Taxon
   edit_taxon_link: Modifica il link del taxon
   edit_taxon_range: Modifica l'areale del taxon
   edit_the_observation: Modifica l'osservazione
@@ -1746,8 +1749,9 @@ it:
     da: Danese
     de: Tedesco
     el: Greco
-    en-US: Inglese (Stati Uniti)
     en: Inglese
+    en-UK: Inglese (Regno Unito)
+    en-US: Inglese (Stati Uniti)
     eo: Esperanto
     es-ES: Spagnolo (Spagna)
     es-MX: Spagnolo (Messico)
@@ -1755,17 +1759,22 @@ it:
     et: Estone
     eu: Basco
     fi: Finlandese
+    fil: Filippino
     fr: Francese
+    fr-CA: Francese (Canada)
     gl: Galiziano
     he: Ebraico
     id: Indonesiano
     it: Italiano
     ja: Giapponese
+    ka: Georgiano
     ko: Coreano
     lb: Lussemburghese
     lt: Lituano
     mk: Macedone
+    nb: Norvegese Bokmål
     nl: Olandese
+    nn: Norvegese Nynorsk
     oc: Occitano
     pl: Polacco
     pt-BR: Portoghese (Brasile)
@@ -2398,6 +2407,7 @@ it:
   out_of_range: Fuori areale
   output_taxon: Taxon in uscita
   overview: Panoramica
+  overlapping_downstream_taxon_frameworks_html: "Sovrapposizione di Quadri di Taxon a valle: %{count}"
   owner: Proprietario
   parent: Di Categoria superiore
   parent_name: Nome di categoria superiore
@@ -3653,10 +3663,15 @@ it:
   taxon_curators: Curatori del taxon
   taxon_extras: Extra del taxon
   taxon_framework: Quadro del Taxon
+  taxon_framework_complete: "Completato: vero"
+  taxon_framework_deviations_with_count_html: "Deviazioni: %{count}"
+  #Count of taxa covered by the Taxon Framework that have been flagged
+  taxon_framework_flagged_covered_taxa_count_html: "Taxa contrassegnati coperti: %{count}"
   taxon_framework_notes: Note del quadro del taxon
   taxon_framework_relationship: Relazione del quadro del taxon
   taxon_framework_relationship_for: Relazione del quadro del taxon per
   taxon_framework_relationship_number: "Relazioni del quadro del taxon %{number}"
+  taxon_framework_relationship_unknown_count_html: "Conteggio delle relazioni sconosciute: %{count}"
   taxon_framework_relationships: Relazioni del quadro del taxon
   taxon_framework_taxon: Taxon del quadro del taxon
   taxon_links: Link del Taxon
@@ -5645,6 +5660,9 @@ it:
           </p>
         licensing_desc_html: |
           Attribuendo una licenza ai tuoi contenuti darai a chiunque il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. In più, %{site_name} include i tuoi contenuti con licenza Creative Commons in archivi regolarmente aggiornati da selezionate organizzazioni partner interessate ai nostri dati. Per esempio noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non commerciale (CC BY-NC) nell'archivio generato per il <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo.
+        license_description_attribution_html: |
+          Descrizioni ed immagini delle licenze &copy; %{year} Creative Commons, usate sotto una <a href="http://creativecommons.org/licenses/by/3.0/">licenza Attribuzione Creative
+          Commons</a> (così metareferenziale!)
         monthly_supporter_desc_html: |
           I sostenitori mensili di iNaturalist forniscono donazioni mensili automatiche che sono ricevute dalla California Academy of Sciences (IRS FIN 94-1156258 degli Stati Uniti) a sostegno dell'azione no-profit di iNaturalist e dei siti del Network di iNaturalist.
           <a href="%{url}">Fai clic qui per diventare un sostenitore mensile</a>.
@@ -6314,16 +6332,16 @@ it:
           notice: 'Applicazione revocata.'
   i18n:
     inflections:
-      - 
-        vow: Vocale
-        con: Consonante
+      vow_or_con:
+        vow: vocale
+        con: consonante
         a: ':@vow'
         e: ':@vow'
         i: ':@vow'
         o: ':@vow'
         u: ':@vow'
         default: ':@con'
-      - 
+      gender:
         m: maschile
         f: femminile
         "n": neutro
@@ -6356,7 +6374,7 @@ it:
         #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon_change: ':@f'
         #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_drop: ':@f'
+        taxon_drop: ':@m'
         #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon_link: ':@m'
         #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
@@ -6368,7 +6386,7 @@ it:
         #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon_swap: ':@m'
         #Default gender for nouns that aren't listed here
-        default: ':@n'
+        default: ':@m'
   wild: Selvatico
   will_paginate:
     previous_label: "&#8592; Precedente"
