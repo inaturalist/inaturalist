@@ -1710,7 +1710,9 @@ zh-TW:
   momentjs:
     shortRelativeTime:
       future: "在%s"
+      #Short text representing 1 second in the past
       s: "1秒"
+      #Short text representing 1 minute in the past
       m: "1分"
   month: 月
   monthly_supporter_since_date_html: |
