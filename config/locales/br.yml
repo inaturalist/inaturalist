@@ -43,6 +43,8 @@ br:
   add_another_photo: Ouzhpennañ ur poltred all
   add_another_section: Ouzhpennañ ur rannskrid all
   add_another_subscription: Ouzhpennañ ur c'houmanant all
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Ouzhpennañ ur splet
   add_batch: Ouzpennañ ul lod
   add_comma_separated_tags: "Ouzhpennañ tikedennoù dispartiet gant skejoù"
   add_comment: Ouzhpennañ un evezhiadenn
@@ -65,7 +67,10 @@ br:
   add_observations: Ouzhpennañ evezhiadennoù
   add_observations_by_checking_off: Ouzhpennañ evezhiadennoù en ur askañ spesadoù en ul listenn.
   add_observations_project: Ouzhpennañ evezhiadennoù d'ar raktres-mañ
+  #Prompt to add a new journal post
   add_one: Ouzhpennañ unan !
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
   add_one_now: Ouzhpennañ unan bremañ
   add_photos: Ouzhpennañ skeudennoù
   add_photos_to_this_observation: Ouzhpennañ luc'hskeudennoù d'an evezhaiadenn-mañ
@@ -173,6 +178,7 @@ br:
   are_you_sure_remove_taxon_from_list: "Ha sur eo hoc'h eus c'hoant da dennañ an takson-mañ eus ar roll ?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Sur eo ? pellgarget e vo ar bajenn-mañ ha gallout a rafec'h koll lod eus ho kemmoù.
+  are_you_sure_want_delete_taxon: "Ha sur eo hoc'h eus c'hoant da zilemel an takson-mañ"
   are_you_sure_want_delete_this_name: Ha sur oc'h ho peus c'hoant da zilemel an anv-mañ ?
   are_you_sure_you_want_to_commit_this_change: Ha sur eo hoc'h eus c'hoant da gadarnaat ar c'hemm-se ? Ne c'hallo ket an ober-se bezañ nullet.
   are_you_sure_you_want_to_delete_this: Ha sur eo hoc'h eus c'hoant da zilemel an dra-mañ ?
@@ -277,11 +283,17 @@ br:
     swap: Eskemm
     stage: Aozañ
     drop: Lemel
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: Rannañ adalek
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: Rannet e
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: Kendeuziñ e
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: Kendeuzet e
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: Erlerc'hiet gant
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: erlerc'hiañ gant
     dropped: dilamet
     staged: kinniget
@@ -384,6 +396,8 @@ br:
   creative_commons_flickr_tagged: Luc'hskeudennoù Flickr Creative Commons
   csv_file: Resr CSV
   custom_project_fields: Maeziennoù rakresoù personelaet
+  custom_project_was_successfully_created: Krouet mat eo bet ar raktres personelaet
+  custom_project_was_successfully_updated: Hizivaet mat eo bet ar raktres personelaet.
   darr_apply_darr: "&darr; Applica &darr;"
   dashboard: Taolenn-vourzh
   data_deficient: Roadennoù skort
@@ -599,6 +613,7 @@ br:
   first_connect_your_provider_account_to_your_site: "Da gentañ, kevreit ho kont %{provider} ouzh %{site_name} :"
   first_inat_observation: "Evezhiadenn gentañ %{site_name}"
   first_observer: Evezhiadenn gentañ
+  #Verb form, as in "Flag this item"
   flag: Banniel
   flag_an_item: Merkañ un elfenn
   flag_as_spammer: Merkañ evel ur strober
@@ -671,6 +686,7 @@ br:
   import_tags_from_csv: Enporzhiañ an tikedennoù diwar ur restr CSV
   importing: "Oc'h enporzhiañ..."
   in_n: "e %{n}"
+  #Label for messages you've received
   inbox: boest resev
   including: en ur gontañ e-barzh
   in_the_past: en amzer-dremenet
@@ -697,6 +713,7 @@ br:
   just_added!: Ouzpennadennoù nevez
   kml_file_size_error: "Ar furmad KML a rank bezañ 1Mo da nebeutañ"
   labels: Labelioù
+  #Large photo size
   large: bras
   last_confirmed_observation: Arselladenn diwezhañ kardarnaet
   last_seen: Gwelet ar wech diwezhañ
@@ -705,6 +722,7 @@ br:
   latitude: Ledred
   latitude_in_decimals: 'Ledred e derezioù degel, da skouer 38,123'
   latitude_slash_y_coord_slash_northing: Ledred / daveennoù y / urzhienn
+  #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Gwiskadoù
   layout: Pajennaozañ
   leaderboards: Renkadurioù
@@ -739,7 +757,6 @@ br:
     tokelauan: Tahitianeg
     turkish: Turkeg
   less: Nebeutoc'h
-  license_descriptions_and_images: Deskrivadurioù ha skeudennoù eus an aotre-implijout
   licensing: Aotre-implijout
   life: Bev
   life_list: "Roll ar bevien %{user}"
@@ -771,8 +788,8 @@ br:
   loading_wikipedia_description: "O kargañ deskrivadur Wikipedia..."
   locales:
     ca: Katalaneg
-    en-US: Saozneg (Stadoù Unanet)
     en: Saozneg
+    en-US: Saozneg (Stadoù Unanet)
     es-ES: Spagnoleg (Spagn)
     es-MX: Spagnoleg (Mec'hiko)
     es: Spagnoleg
@@ -800,14 +817,11 @@ br:
   look_up_name: "Klask an anv"
   lookup: Klask
   lowest_rank: Renk an izelañ
-  made_a: en deus graet un
   mammals: bronneged
   manage_all_your_subscriptions: Merañ ho holl goumanantoù
   manage_names: Merañ an anvioù
-  managed: meret
   manager: Merañ
   managers: Merourien
-  manually_create_new_place: Krouiñ ul lec'h nevez dre zorn
   map: Kartenn
   map_legend: alc'hwez ar gartenn
   map_marker_size: ment ar merker war ar gartenn
@@ -820,9 +834,6 @@ br:
       checklist_places_description: Lec'hioù m'eo bet renablet an takson-mañ
       range: Lijorenn
   map_tooltip: Diskouez ar gwel eus ar gartenn
-  map_for: Kartenn
-  matched_several_different_taxa: a glot gant meur a dakson a bep seurt
-  maybe_your_signed_in_with: "Kevreet oc'h marteze gant ho kont %{omniauth}?"
   medium: etre
   member_of_the_inaturalist_network_html: |
     Ezel eus ar restr <a href="%{url}">Rouedad iNaturalist</a>
@@ -833,13 +844,11 @@ br:
   merging_places: O kendeuziñ al lec'hioù
   message: Kemennadenn
   messages: Kemennadennoù
-  mixed_licenses: aotreoù-implijout kemmesk
   mollusks: blotviled
   momentjs:
     shortRelativeTime:
       future: "e %s"
       h: "1 e"
-  mon: Lun
   month: Miz
   more: Muioc'h
   more_fields: Muioc'h a vaeziennoù
@@ -848,7 +857,6 @@ br:
   more_info: Gouzout hiroc'h
   more_info_title: Gouzout hiroc'h
   more_observations: Muioc'h a evezhiadennoù
-  most: Ar muiañ
   most_agree: A-du emañ an darn vrasañ
   most_disagree: N'emañ ket an darn vrasañ
   most_observations: Ar muiañ a evezhiadennoù
@@ -859,17 +867,11 @@ br:
   n_people_disagrees: "%{amount} a dud n'emaint ket a-du"
   name: Anv
   name_entered: Anv ebarzhet
-  name_llaves: "[ANV]"
-  name_provider: Pourchaser an anv
-  named_based_url_might_change: "An URLoù diazezet war an anvioù a c'hall cheñch,ket hemañ avat"
   names: Anvioù
   names_for_taxon_html: "Anvioù %{taxon}"
   ne_lat: Led B.
   ne_lon: Hed B.
-  near: e-kichen
-  nearby: Tostik
   new_check_list_for: "Krouiñ ur roll gwiriañ nevez evit %{place} &raquo;"
-  new_custom_field_for: Maezienn personelaet nevez evit
   new_flag_for: Banniel nevez evit
   new_guide: Sturlevr nevez
   new_list: Roll nevez
@@ -878,27 +880,21 @@ br:
   new_password: Ger-tremen nevez
   new_post: Notenn nevez
   new_project: Raktres nevez
+  new_project_asset: Project_asset nevez
   new_source: Tarzh nevez
   new_taxon_change: Kemm takson nevez
   new_taxon_link: Liamm takson nevez
-  new_taxon_name: Anv takson nevez
   new_taxon_name_for: Anv Takson nevez evit
   new_taxonomic_change: Kemm taksonomek nevez (brouilhed)
   new_trip: Beaj nevez
   new_updates_in_the_last_24_hours_from: "Hizivadurioù nevez er 24 eur ziwezhañ eus %{site_name}"
-  new_user_rules: Reolennoù nevez implijer
-  new_users_week: Implijerien Nevez/sizhun
   next: War-lerc'h
   next_page: Pajenn war-lerc'h
   'no': 'Ket'
-  no_activity_in_the_past_week: Obererezh ebet er sizhun dremenet. Poent eo
-  no_colors_selected: Liv ebet dibabet
   no_comments_yet: Evezhiaden ebet goulennet
   no_countries_added_yet: Bro ebet n'eo bet ouzhpennet betek-henn
-  no_creative_commons_flickr_photo: Luc'hskeudenn Flickr Creative Commons ebet n'eo bet liketennet
   no_creative_commons_flickr_photos_tagged_x: 'Luc''hskeudenn Flickr Creative Commons ebet n''eo bet liketennet %{x}'
   no_photos: Luc'hskeudenn ebet
-  no_places_selected: Lec'h all ebet dibabet
   no_post_yet: Notenn ebet betek-henn!
   no_project_selected: N'eus bet dibabet raktres ebet
   no_project_to_admin_current_user: "Ne verit rakres ebet"
@@ -907,13 +903,10 @@ br:
   no_x_this_y: "%{x}evet e-pad %{y}"
   none: Hini ebet
   normal: reizh
-  not_absent: n'eo ket ezvezant
   not_found: N'eo ket bet kavet
-  not_yet: Pas c'hoazh
   note: Notenn
   number_of_observations: Niver a evezhiadennoù
   number_selected: "niv. dibabet"
-  numeric_: niverel
   obscured: Kuzhet
   obscured_or_private: Kuzhet pe prevez
   observation_date: Deiziad
