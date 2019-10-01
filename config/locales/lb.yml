@@ -245,6 +245,7 @@ lb:
   are_you_sure_remove_taxon_from_list: "Sidd Dir sécher datt Dir dësen Taxon} vun der Lëscht erofhuele wëllt?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Sidd Dir sécher? D'Säit gëtt dann nei gelueden an Dir verléiert eventuell Är Ännerungen.
+  are_you_sure_want_delete_taxon: "Sidd Dir sécher datt Dir dësen Taxon läsche wëllt?"
   are_you_sure_want_delete_taxon_link: Sidd Dir sécher datt Dir dësen Taxon_link läsche wëllt?
   are_you_sure_want_delete_this_name: Sidd Dir sécher datt Dir dësen Numm läsche wëllt?
   are_you_sure_want_delete_this_range: Sidd Dir sécher datt Dir dëse Beräich läsche wëllt?
@@ -745,8 +746,8 @@ lb:
     da: Dänesch
     de: Däitsch
     el: Griichesch
-    en-US: Englesch (USA)
     en: Englesch
+    en-US: Englesch (USA)
     es-ES: Spuenesch (Spuenien)
     es-MX: Spuenesch (Mexiko)
     es: Spuenesch
@@ -1810,12 +1811,6 @@ lb:
           attributes:
             email:
               must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
-  i18n:
-    inflections:
-      - 
-        vow: Vowell
-        con: Konsonant
-      - 
   wild: Wëll
   will_paginate:
     previous_label: "&#8592; Vireg"
