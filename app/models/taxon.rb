@@ -310,6 +310,8 @@ class Taxon < ActiveRecord::Base
     "mexico",
     "oman",
     "pinecone",
+    "pupa",
+    "pupae",
     "sea",
     "sinaloa",
     "tanzania",

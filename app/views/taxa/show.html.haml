@@ -8,7 +8,8 @@
       place: #{ @node_place_json ? @node_place_json.encode.html_safe+".results[0]" : "null" },
       chosenTab: #{ @chosen_tab.to_json.html_safe },
       ancestorsShown: #{ @ancestors_shown.to_json.html_safe },
-      testNewSimilar: #{ !!@test_new_similar }
+      testNewSimilar: #{ !!@test_new_similar },
+      testNewRecent: #{ !!@test_new_recent }
     };
     SERVER_PAYLOAD.taxon.wikipedia_summary = #{ @taxon.wikipedia_summary.to_json.html_safe };
     SERVER_PAYLOAD.taxon.auto_summary = #{ @taxon.wikipedia_summary.blank? ? @taxon.auto_summary.to_json.html_safe : "null" };

@@ -14,7 +14,7 @@ describe Observation do
 
     it "filters by site place unless specified" do
       s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE,
-        place: Place.make!)
+        place: make_place_with_geom)
       req_params = { }
       query_params = Observation.site_search_params(s, req_params)
       expect( query_params[:place_id] ).to eq s.place.id

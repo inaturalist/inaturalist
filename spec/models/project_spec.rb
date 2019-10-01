@@ -137,7 +137,7 @@ describe Project do
 
     it "should delete associated rules" do
       project = Project.make!
-      rule = project.project_observation_rules.build( operator: "observed_in_place?", operand: Place.make! )
+      rule = project.project_observation_rules.build( operator: "observed_in_place?", operand: make_place_with_geom )
       rule.save!
       project.destroy
       expect( Rule.find_by_id( rule.id ) ).to be_blank
@@ -423,7 +423,7 @@ describe Project do
     it "adds observations whose users updated their project addition preference since last_aggregated_at" do
       project.update_attributes(place: make_place_with_geom, trusted: true)
       o1 = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
-      o2 = Observation.make!(latitude: 90, longitude: 90)
+      o2 = Observation.make!(latitude: 89, longitude: 89)
       project.aggregate_observations
       expect( project.observations.count ).to eq 1
       o2.update_attributes(latitude: project.place.latitude, longitude: project.place.longitude)
@@ -647,8 +647,8 @@ describe Project do
 
     it "includes multiple place ids" do
       p = Project.make!
-      place1 = Place.make!
-      place2 = Place.make!
+      place1 = make_place_with_geom
+      place2 = make_place_with_geom
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
       expect( p.observations_url_params[:place_id].sort ).to eq [place1.id, place2.id].sort
@@ -656,8 +656,8 @@ describe Project do
 
     it "can concatenate place ids" do
       p = Project.make!
-      place1 = Place.make!
-      place2 = Place.make!
+      place1 = make_place_with_geom
+      place2 = make_place_with_geom
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
       expect( p.observations_url_params(concat_ids: true)[:place_id] ).to eq [place1.id, place2.id].sort.join(",")

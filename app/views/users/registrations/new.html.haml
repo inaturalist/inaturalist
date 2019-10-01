@@ -18,6 +18,6 @@
       - provider_label = ProviderAuthorization::PROVIDER_NAMES[provider].downcase
       - btn_label = t("sign_up_with_provider", provider: ProviderAuthorization::PROVIDER_NAMES[provider] )
       .stacked
-        = link_to url, class: "btn btn-primary btn-lg providerlink #{provider_label}" do
+        = link_to url, method: :post, class: "btn btn-primary btn-lg providerlink #{provider_label}" do
           %i.fa{ class: "fa-#{provider_label}" }
           %span= btn_label

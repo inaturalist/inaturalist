@@ -155,7 +155,7 @@
                       = compact_date( datetime )
                     .text-muted.comments
                       %i.fa.fa-comments
-                      = topic["reply_count"]
+                      = topic["posts_count"].to_i - 1
       #subscriptions
         %h3.page-header
           = t :subscriptions

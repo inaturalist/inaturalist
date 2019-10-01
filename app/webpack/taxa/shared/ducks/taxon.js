@@ -360,13 +360,17 @@ export function fetchRare( ) {
 
 export function fetchRecent( ) {
   return ( dispatch, getState ) => {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+    const state = getState( );
+    const params = Object.assign( { }, defaultObservationParams( state ), {
       quality_grade: "needs_id,research",
       rank: "species",
       category: "improving,leading",
       per_page: 12
     } );
-    inatjs.identifications.recent_taxa( params ).then(
+    const endpoint = state.config.testNewRecent
+      ? inatjs.identifications.recent_taxa_revisited
+      : inatjs.identifications.recent_taxa;
+    endpoint( params ).then(
       response => dispatch( setRecent( response ) ),
       error => {
         console.log( "[DEBUG] error: ", error );
@@ -402,7 +406,8 @@ export function fetchSimilar( ) {
     } );
     endpoint( params ).then(
       response => {
-        const withoutAncestors = response.results.filter( r => taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
+        const withoutAncestors = response.results
+          .filter( r => taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
         const commonlyMisidentified = withoutAncestors.filter( r => ( r.count > 1 ) );
         if ( commonlyMisidentified.length === 0 ) {
           dispatch( setSimilar( withoutAncestors ) );

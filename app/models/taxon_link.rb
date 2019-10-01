@@ -95,9 +95,12 @@ class TaxonLink < ActiveRecord::Base
       TaxonLink.for_taxon( taxon ).where( species_only: false ).includes( :taxon ).to_a
     end
     tl_place_ids = taxon_links.map(&:place_id).compact
-    if options[:place]
-      tl_place_ids = options[:place].self_and_ancestor_ids
-    end
+    # Trying out removing the place-specific filtering. We already have the
+    # checklist filtering, so maybe this doesn't matter. Queue the screaming
+    # hordes...
+    # if options[:place]
+    #   tl_place_ids = options[:place].self_and_ancestor_ids
+    # end
     if !tl_place_ids.blank?
       if options[:reject_places]
         taxon_links.reject! { |tl| tl.place_id }

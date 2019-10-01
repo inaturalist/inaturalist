@@ -5,8 +5,9 @@ class Identification < ActiveRecord::Base
   DEFAULT_ES_BATCH_SIZE = 500
 
   scope :load_for_index, -> { includes(:taxon, :flags,
-    :stored_preferences, :taxon_change,
-    { observation: [ :taxon, { user: :flags } ] }, { user: :flags } ) }
+    :stored_preferences, :taxon_change, :moderator_actions,
+    { observation: [ :taxon, { user: :flags }, :identifications ] },
+    { user: :flags } ) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do

@@ -77,7 +77,7 @@ const Requirements = ( {
     ) );
   const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any" )
     : _.map( _.keys( project.rule_quality_grade ),
-      q => I18n.t( q === "research" ? "research_grade" : q ) ).join( ", " );
+      q => I18n.t( q === "research" ? "research_grade" : `${q}_` ) ).join( ", " );
   const media = [];
   if ( project.rule_photos ) {
     media.push( I18n.t( "photo" ) );
@@ -161,14 +161,19 @@ const Requirements = ( {
       <h2>
         { I18n.t( "project_requirements" ) }
         { includeArrowLink && (
-          <i
-            className="fa fa-arrow-circle-right"
+          <button
+            type="button"
+            className="btn btn-nostyle"
             onClick={( ) => setSelectedTab( "about" )}
-          />
+          >
+            <i
+              className="fa fa-arrow-circle-right"
+            />
+          </button>
         ) }
       </h2>
       <div className="section-intro">
-        { I18n.t( "observations_in_this_project_must" ) }:
+        { I18n.t( "label_colon", { label: I18n.t( "observations_in_this_project_must" ) } )}
       </div>
       <table>
         <tbody>

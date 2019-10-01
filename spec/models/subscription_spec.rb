@@ -28,7 +28,7 @@ describe Subscription do
     end
 
     it "does't allow users subscribe to North America without a taxon" do
-      na = Place.make!(name: "North America")
+      na = make_place_with_geom(name: "North America")
       expect { Subscription.make!(user: user, resource: na, taxon: nil) }.
         to raise_error(ActiveRecord::RecordInvalid,
           "Validation failed: Resource cannot subscribe to North America without conditions")

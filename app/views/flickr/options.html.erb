@@ -49,12 +49,23 @@
 
 <!-- options actions-->
 <div class="column span-7 last">
-<p>
-<% if current_user.flickr_identity %>
-<%= button_to t(:hate_me_flickr, :site_name => @site.name),
-  {:controller => 'flickr', :action => 'unlink_flickr_account'}, :class => 'delete button' %>
-<% else %>
-<%= render :partial => 'link_to_flickr', :locals => {:flickr_url => @flickr_url} -%>
-<% end %>
-</p>
+  <% if current_user.flickr_identity %>
+    <p>
+      <%= button_to t(:unlink_your_flickr_account),
+        { controller: "flickr", action: "unlink_flickr_account" }, class: "inline delete button" %>
+    </p>
+    <% if @scope && @provider_authorization && @provider_authorization.scope != @scope %>
+      <p class="ui">
+        <%=t :connect_to_flickr_again_to_authorize_write_permissions %>
+      </p>
+      <%= link_to t(:connect_to_provider, provider: "flickr" ), 
+        auth_url_for( "flickr", scope: @scope ),
+        method: :post,
+        class: "button" %>
+    <% end %>
+  <% else %>
+    <p>
+      <%= render :partial => 'link_to_flickr', :locals => { flickr_url: @flickr_url } -%>
+    </p>
+  <% end %>
 </div>

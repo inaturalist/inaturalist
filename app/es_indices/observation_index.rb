@@ -230,8 +230,9 @@ class Observation < ActiveRecord::Base
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
+    return if batch_ids_string.blank?
     # fetch all place_ids store them in `indexed_place_ids`
-    if !batch_ids_string.blank? && ( options.blank? || options[:places] )
+    if options.blank? || options[:places]
       connection.execute("
         SELECT observation_id, place_id
         FROM observations_places
@@ -264,7 +265,9 @@ class Observation < ActiveRecord::Base
           end
         end
       end
+    end
 
+    if options.blank?
       taxon_establishment_places = { }
       taxon_ids = observations.map(&:taxon_id).compact.uniq
       uniq_obs_place_ids = observations.map{ |o|o.indexed_private_places.map(&:path_ids) }.flatten.compact.uniq.join(',')

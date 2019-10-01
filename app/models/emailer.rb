@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Emailer < ActionMailer::Base 
   helper :application
   helper :observations
@@ -280,9 +281,10 @@ class Emailer < ActionMailer::Base
 
   def set_site_specific_opts
     @site_name = @site.name
+    # Can't have unicode chars in email headers
     {
-      :from => "#{@site.name} <#{@site.email_noreply}>",
-      :reply_to => @site.email_noreply
+      from: "#{@site.name.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').to_s} <#{@site.email_noreply}>",
+      reply_to: @site.email_noreply
     }
   end
 

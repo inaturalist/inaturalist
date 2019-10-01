@@ -2294,6 +2294,17 @@ describe Observation do
       expect(o.latitude).to be_blank
     end
 
+    it "should reset public_positional_accuracy" do
+      o = Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED, positional_accuracy: 5 )
+      expect( o.public_positional_accuracy ).not_to eq o.positional_accuracy
+      # unobscure_coordinates should be impossible if geoprivacy gets set
+      o.geoprivacy = nil
+      o.unobscure_coordinates
+      # public_positional_accuracy only gets reset after saving
+      o.save
+      expect( o.public_positional_accuracy ).to eq o.positional_accuracy
+    end
+
   end
 
   describe "geoprivacy" do

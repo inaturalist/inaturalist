@@ -1,3 +1,4 @@
+#encoding: utf-8
 class EmailerPreview < ActionMailer::Preview
   # Preview at /rails/mailers/emailer/updates_notification
   def updates_notification

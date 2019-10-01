@@ -152,7 +152,7 @@
             <div class="inner">
               <div class="count"><%= number_with_delimiter(@life_list_firsts.size) %></div>
               <div class="meta label">
-                <%=t @life_list_firsts.size == 1 ? :life_list_first : :life_list_firsts %>
+                <%=t :x_life_list_firsts, count: @life_list_firsts.size %>
               </div>
             </div>
           </div>

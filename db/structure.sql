@@ -9032,6 +9032,13 @@ CREATE INDEX index_users_on_curator_sponsor_id ON public.users USING btree (cura
 
 
 --
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_email ON public.users USING btree (email);
+
+
+--
 -- Name: index_users_on_identifications_count; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9057,6 +9064,13 @@ CREATE INDEX index_users_on_life_list_taxa_count ON public.users USING btree (li
 --
 
 CREATE UNIQUE INDEX index_users_on_login ON public.users USING btree (login);
+
+
+--
+-- Name: index_users_on_lower_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_lower_email ON public.users USING btree (lower((email)::text));
 
 
 --
@@ -9996,4 +10010,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190604231553');
 INSERT INTO schema_migrations (version) VALUES ('20190702063435');
 
 INSERT INTO schema_migrations (version) VALUES ('20190820224224');
+
+INSERT INTO schema_migrations (version) VALUES ('20190918161513');
 

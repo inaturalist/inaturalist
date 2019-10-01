@@ -4,7 +4,7 @@ describe ElasticModel do
 
   before(:all) do
     @taxon = Taxon.make!
-    @place = Place.make!
+    @place = make_place_with_geom
   end
 
   it "has a hash of analyzers and filters" do

@@ -71,7 +71,15 @@
 
     <% if tc = identification.taxon_change -%>
       <span class="small meta nobr">
-        <%= t :added_as_a_part_of %> <%= link_to tc.class.name.underscore.humanize.downcase, taxon_change_path(tc) -%>
+        <% if tc.is_a? TaxonSwap %>
+          <%= t :added_as_a_part_of_a_taxon_swap_html, target: "_self", url: taxon_change_path(tc), class: "taxon_change_link" %>
+        <% elsif tc.is_a? TaxonMerge %>
+          <%= t :added_as_a_part_of_a_taxon_merge_html, target: "_self", url: taxon_change_path(tc), class: "taxon_change_link" %>
+        <% elsif tc.is_a? TaxonSplit %>
+          <%= t :added_as_a_part_of_a_taxon_split_html, target: "_self", url: taxon_change_path(tc), class: "taxon_change_link" %>
+        <% else %>
+          <%= t :added_as_a_part_of_a_taxon_change_html, target: "_self", rl: taxon_change_path(tc), class: "taxon_change_link" %>
+        <% end %>
       </span>
     <% end -%>
 

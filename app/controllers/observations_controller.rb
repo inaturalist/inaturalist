@@ -437,7 +437,7 @@ class ObservationsController < ApplicationController
         sync_facebook_photo
       rescue Koala::Facebook::APIError => e
         raise e unless e.message =~ /OAuthException/
-        redirect_to ProviderAuthorization::AUTH_URLS['facebook']
+        redirect_to url_for( controller: "facebook", action: "options" )
         return
       end
     end
@@ -504,7 +504,7 @@ class ObservationsController < ApplicationController
         sync_facebook_photo
       rescue Koala::Facebook::APIError => e
         raise e unless e.message =~ /OAuthException/
-        redirect_to ProviderAuthorization::AUTH_URLS['facebook']
+        redirect_to url_for( controller: "facebook", action: "options" )
         return
       end
     end

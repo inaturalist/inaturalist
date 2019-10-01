@@ -374,20 +374,34 @@ const ActivityItem = ( {
   }
   let taxonChange;
   if ( item.taxon_change ) {
-    const type = _.snakeCase( item.taxon_change.type );
+    const taxonChangeLinkAttrs = {
+      url: `/taxon_changes/${item.taxon_change.id}`,
+      target: linkTarget,
+      class: "linky"
+    };
+    let taxonChangeLink;
+    switch ( item.taxon_change.type ) {
+      case "TaxonSwap":
+        taxonChangeLink = I18n.t( "added_as_a_part_of_a_taxon_swap_html", taxonChangeLinkAttrs );
+        break;
+      case "TaxonSplit":
+        taxonChangeLink = I18n.t( "added_as_a_part_of_a_taxon_split_html", taxonChangeLinkAttrs );
+        break;
+      case "TaxonMerge":
+        taxonChangeLink = I18n.t( "added_as_a_part_of_a_taxon_merge_html", taxonChangeLinkAttrs );
+        break;
+      default:
+        taxonChangeLink = I18n.t( "added_as_a_part_of_a_taxon_change_html", taxonChangeLinkAttrs );
+    }
     taxonChange = (
       <div className="taxon-change">
         <i className="fa fa-refresh" />
         { " " }
-        { I18n.t( "this_id_was_added_due_to_a" ) }
-        { " " }
-        <a
-          href={`/taxon_changes/${item.taxon_change.id}`}
-          target={linkTarget}
-          className="linky"
-        >
-          { I18n.t( type ) }
-        </a>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: taxonChangeLink
+          }}
+        />
       </div>
     );
   }

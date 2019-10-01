@@ -316,8 +316,8 @@ class Observation < ActiveRecord::Base
 
   validates :latitude, numericality: {
     allow_blank: true,
-    less_than_or_equal_to: 90,
-    greater_than_or_equal_to: -90
+    less_than: 90,
+    greater_than: -90
   }
   validates :longitude, numericality: {
     allow_blank: true,
@@ -752,19 +752,60 @@ class Observation < ActiveRecord::Base
   end
   
   def to_plain_s(options = {})
-    s = self.species_guess.blank? ? I18n.t(:something) : self.species_guess
-    if options[:verb]
-      s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
+    if true
+      s = self.species_guess.blank? ? I18n.t(:something) : self.species_guess
+      if options[:verb]
+        s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
+      end
+      unless self.place_guess.blank? || options[:no_place_guess] || coordinates_obscured?
+        s += " #{I18n.t(:from, :default => 'from').downcase} #{self.place_guess}"
+      end
+      s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
+      unless self.time_observed_at.blank? || options[:no_time]
+        s += " #{I18n.t(:at)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
+      end
+      s += " #{I18n.t(:by).downcase} #{user.try_methods(:name, :login)}" unless options[:no_user]
+      return s.gsub(/\s+/, ' ')
     end
+    # Making this unreachable until things get translated
+    # I18n.t( :observation_brief_something_on_day )
+    # I18n.t( :observation_brief_something_by_user )
+    # I18n.t( :observation_brief_something_from_place )
+    # I18n.t( :observation_brief_something_from_place_by_user )
+    # I18n.t( :observation_brief_something_from_place_on_day )
+    # I18n.t( :observation_brief_something_from_place_on_day_by_user )
+    # I18n.t( :observation_brief_something_from_place_on_day_at_time )
+    # I18n.t( :observation_brief_something_from_place_on_day_at_time_by_user )
+    # I18n.t( :observation_brief_taxon_on_day )
+    # I18n.t( :observation_brief_taxon_by_user )
+    # I18n.t( :observation_brief_taxon_from_place )
+    # I18n.t( :observation_brief_taxon_from_place_by_user )
+    # I18n.t( :observation_brief_taxon_from_place_on_day )
+    # I18n.t( :observation_brief_taxon_from_place_on_day_by_user )
+    # I18n.t( :observation_brief_taxon_from_place_on_day_at_time )
+    # I18n.t( :observation_brief_taxon_from_place_on_day_at_time_by_user )
+    key = species_guess.blank? ? "something" : "taxon"
+    i18n_vars = {}
     unless self.place_guess.blank? || options[:no_place_guess] || coordinates_obscured?
-      s += " #{I18n.t(:from, :default => 'from').downcase} #{self.place_guess}"
+      key += "_from_place"
+      i18n_vars[:place] = place_guess
     end
-    s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
+    unless self.observed_on.blank?
+      key += "_on_day"
+      i18n_vars[:day] = I18n.l( self.observed_on, format: :long )
+    end
     unless self.time_observed_at.blank? || options[:no_time]
-      s += " #{I18n.t(:at)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
+      key += "_at_time"
+      i18n_vars[:time] = I18n.t( time_observed_at_in_zone, format: :compact )
     end
-    s += " #{I18n.t(:by).downcase} #{user.try_methods(:name, :login)}" unless options[:no_user]
-    s.gsub(/\s+/, ' ')
+    unless options[:no_user]
+      key += "_by_user"
+      i18n_vars[:user] = user.try_methods(:name, :login)
+    end
+    if key != "something"
+      key = "observation_brief_#{key}"
+    end
+    I18n.t( key, i18n_vars.merge( default: I18n.t( :something ) ) )
   end
   
   def time_observed_at_utc
@@ -2171,17 +2212,10 @@ class Observation < ActiveRecord::Base
   end
 
   def update_quality_metrics
-    Rails.logger.debug "[DEBUG] update_quality_metrics"
     return true if skip_quality_metrics
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
-    # elsif captive_flag.noish? && force_quality_metrics
-    #   Rails.logger.debug "captive_flag: #{captive_flag}"
-    #   Rails.logger.debug "captive_flag.noish?: #{captive_flag.noish?}"
-    #   QualityMetric.vote( user, self, QualityMetric::WILD, true )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
-      Rails.logger.debug "existing: #{qm}, captive_flag: #{captive_flag}"
-      Rails.logger.debug "existing: #{qm}, captive_flag.noish?: #{captive_flag.noish?}"
       qm.update_attributes( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
@@ -2471,7 +2505,7 @@ class Observation < ActiveRecord::Base
 
   def self.places_without_obscuration_protection
     return [] if Rails.env.test?
-    Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
+    @@places_without_obscuration_protection ||= Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
       [
         19126, # City Nature Challenge 2018
         29625  # City Nature Challenge 2019
@@ -2920,7 +2954,8 @@ class Observation < ActiveRecord::Base
   end
 
   def update_public_positional_accuracy
-    update_column(:public_positional_accuracy, calculate_public_positional_accuracy)
+    self.public_positional_accuracy = calculate_public_positional_accuracy
+    update_column(:public_positional_accuracy, public_positional_accuracy)
   end
 
   def calculate_public_positional_accuracy
@@ -2937,6 +2972,7 @@ class Observation < ActiveRecord::Base
 
   def update_mappable
     update_column(:mappable, calculate_mappable)
+    true
   end
 
   def calculate_mappable

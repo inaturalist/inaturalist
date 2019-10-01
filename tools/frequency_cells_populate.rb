@@ -38,6 +38,8 @@ end
 
 # iterate through the grid and populate with FrequencyCellMonthTaxa
 PSQL.execute( "TRUNCATE TABLE frequency_cell_month_taxa RESTART IDENTITY" )
+start_time = Time.now
+cells_counted = 0
 Benchmark.measure do
   lat = -90
   while lat <= ( 90 - CELL_SIZE )
@@ -49,8 +51,9 @@ Benchmark.measure do
           swlng: lng,
           nelat: lat + CELL_SIZE,
           nelng: lng + CELL_SIZE,
-          quality_grade: "research",
-          taxon_is_active: "true"
+          quality_grade: "research,needs_id",
+          taxon_is_active: "true",
+          identifications: "most_agree"
         }
         response = INatAPIService.get( "/observations/taxa_counts_by_month",
           params, { retry_delay: 2.0, retries: 30, json: true }
@@ -63,9 +66,14 @@ Benchmark.measure do
               leaf_counts.filter{ |r| !r["taxon_id"].blank? }.map {|r| "(#{frequency_cell.id},#{month},#{r["taxon_id"]},#{r["count"]})" }.join( "," )
             PSQL.execute( sql )
           end
-          puts "Inserted #{lat},#{lng} :: #{month_of_year.map{ |m| m.length }.inject(:+)}"
+          puts "Inserted #{lat},#{lng} :: #{month_of_year.map{ |m,v| v.length }.inject(:+)}"
         end
         lng += CELL_SIZE
+        cells_counted += 1
+        total_time = Time.now - start_time
+        if cells_counted % 100 === 0
+          puts "#{cells_counted} cells in #{total_time}s, #{( cells_counted / total_time ).round( 2 )}cells/s"
+        end
       end
     end
     lat += CELL_SIZE
