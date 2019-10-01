@@ -104,7 +104,10 @@ lb:
   add_new_taxon_name: En neien Taxon-Numm derbäisetzen
   add_observations: Observatiounen derbäisetzen
   add_observations_project: Observatioune bei Dëse Projet derbäisetzen
+  #Prompt to add a new journal post
   add_one: Een derbäisetzen!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
   add_one_now: Elo eng derbäisetzen
   add_photos: Fotoen derbäisetzen
   add_photos_to_this_observation: Fotoe bei dës Observatioun derbäisetzen
@@ -329,8 +332,11 @@ lb:
     split: Opdeelen
     merge: Fusionéieren
     swap: Austauschen
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: ersat duerch
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: ersetzen duerch
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ersat duerch
   change_your_password: Ännert Äert Passwuert
   check_above_for_errors: Kuckt uewen no de Feeler hei driwwer
@@ -659,6 +665,7 @@ lb:
   location_private: Plaz ass privat
   location_unknown: Plaz onbekannt
   language_slash_type: Sprooch / Typ
+  #Large photo size
   large: grouss
   last_active_with_date: "Lescht Aktivitéit: %{date}"
   last_confirmed_observation: Lescht confirméiert Observatioun
@@ -766,7 +773,6 @@ lb:
     zh-CN: Chinesesch (Vereinfacht)
     zh-TW: Chinesesch (traditionell)
   location: Plaz
-  locations: Plazen
   location_is_public: D'Plaz ass ëffentlech
   location_is_private: Plaz ass privat
   log_in: Aloggen
@@ -776,10 +782,8 @@ lb:
     none: keen
   low: Niddreg
   make_admin: Administrateur maachen
-  make_an_observation: eng Observatioun maachen
   make_this_your_default_license: "Maacht heirauser Är Standard-%{type}-Lizenz"
   mammals: Mamendéieren
-  manage: Geréieren
   manage_names: Nimm geréieren
   manage_your_projects: Geréiert Är Projeten
   map: Kaart
@@ -789,7 +793,6 @@ lb:
       all_observations: All Observatiounen
       observations: Observatiounen
       range: Beräich
-  map_for: Kaart fir
   mark_as_reviewed: Als nogekuckt markéieren
   mark_all_as_reviewed: All als nogekuckt markéieren
   media: Medien
@@ -802,13 +805,10 @@ lb:
   mentioned_you_in_noun_by_html: "%{user} huet Iech op %{noun} vu(n) %{by} ernimmt."
   mentioned_you_in_an_x_on_noun_html: "%{user} huet Iech an engem %{x} op %{noun} ernimmt"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} huet Iech an engem %{x} iwwer %{noun} vum %{by} ernimmt"
-  mentions: "Mentiounen"
   merge: Fusionéieren
   merging: Gëtt fusionéiert
   messages: Messagen
   mobile: Mobil
-  mobile_app_for: Mobil App fir
-  mobile_apps_for: Mobil Appe fir
   momentjs:
     shortRelativeTime:
       future: "an %s"
@@ -819,22 +819,18 @@ lb:
       M: "1min"
       'y': "1 Joer"
       yy: "%d Joer"
-  mon: Méi
   month: Mount
   months: Méint
-  months_ago: "viru(n) %{text}"
   more: Méi
   more_fields: Méi Felder
   more_filters: Méi Filteren
   more_from_x: Méi iwwer %{x}
-  more_help: Méi Hëllef
   more_import_options: Méi Import-Optiounen
   more_info: Méi Informatiounen
   more_info_title: Méi Informatiounen
   more_observations: Méi Observatiounen
   more_photos: Méi Fotoen
   more_than_a_week_ago: Viru méi wéi enger Woch
-  most: Déi meescht
   most_browser_print_pdf: "Notiz: déi meescht Browser hunn eng Optioun fir PDF'en ze drécken"
   most_observations: Meescht Observatiounen
   most_observed_threatened_species: Bedroten Aarten déi am dacksten observéiert goufen
@@ -845,15 +841,8 @@ lb:
   mute_removed: Stomm schalten ewechgeholl
   n_ago: "viru(n) %{n}"
   name: Numm
-  name_llaves: "[NUMM]"
-  name_or_username: Numm oder Benotzernumm
   names: Nimm
   names_for_taxon_html: "Nimm fir %{taxon}"
-  naturalised: naturaliséiert
-  naturalized: naturaliséiert
-  near: beim
-  nearby: Nobäi
-  nearby_observations: Observatiounen nobäi
   needs_id_: Brauch eng ID
   needs_to_be_identified: Muss identifizéiet ginn
   new: Nei
@@ -876,7 +865,6 @@ lb:
   new_trip: Nei Rees
   new_users: Nei Benotzer
   new_users_this_year: Nei Benotzer an dësem Joer
-  new_users_week: Nei Benotzer / Woch
   newly_added: Nei derbäigesat
   news: Neiegkeeten
   next: Nächst
@@ -886,7 +874,6 @@ lb:
   next_tab: Nächsten Tab
   'no': 'Neen'
   no_but_it_is_a_member_of_taxon: "Neen, awer et ass e Member vu(n) %{taxon}"
-  no_colors_selected: Keng Faarwen erausgesicht.
   no_comments_yet: Nach keng Bemierkungen.
   no_countries_added_yet: Nach keng Länner derbäigesat
   no_description: Keng Beschreiwung
@@ -898,8 +885,6 @@ lb:
   no_members_yet: "Nach keng Memberen"
   no_messages_yet: Nach keng Messagen
   no_more_results_found: Net méi Resultater fonnt
-  no_more_updates: Keng weider Aktualisatiounen!
-  no_nearby_observations: "Keng Observatiounen nobäi."
   no_new_messages: Keng nei Messagen
   no_news_yet: Nach keng Neiegkeeten
   no_observations: Keng Observatiounen
@@ -909,13 +894,11 @@ lb:
   no_photo: Keng Foto
   no_photos: Keng Fotoen
   no_places_available: Keng Plazen disponibel.
-  no_places_selected: Keng Plazen erausgesicht.
   no_project_selected: Kee Projet eruasgesicht
   no_project_to_admin_current_user: "Dir administréiert keng Projeten"
   no_project_to_admin_login: "%{login} geréiert keng Projeten"
   no_projects_yet: Nach keng Projeten
   no_recent_activity: Keng rezent Aktivitéit
-  no_recently_active: Nach keng rezent aktiv Projeten.
   no_relevant_annotations: Keng relevant Notizen
   no_reply_yet: Nach keng Äntwert
   no_results_found: Näischt fonnt
@@ -934,16 +917,12 @@ lb:
   not_found: Net fonnt
   not_linked_facebook: "Äre(n) %{site_name}-Benotzerkont ass net mat Ärem Facebook-Benotzerkont verbonnen"
   not_linked_flickr: "Äre(n) %{site_name}-Benotzerkont ass net mat Ärem Flickr-Benotzerkont verbonnen"
-  not_logged_in: Net ageloggt
   not_on_this_list: Net op dëser Lëscht.
   not_recorded: Net enregistréiert
-  not_spam: Kee Spam
-  not_yet: Nach net
   note: Notiz
   notes: Notizen
   number_of_observations: Zuel vun Observatiounen
   number_selected: "# erausgesicht"
-  numeric_: numeresch
   observation: Observatioun
   observation_: Observatioun
   observations_by_category: "Observatioune Pro Kategorie"
@@ -1757,6 +1736,7 @@ lb:
     array:
       last_word_connector: ', an'
       two_words_connector: 'a(n)'
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
       messages:
