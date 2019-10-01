@@ -119,7 +119,10 @@ sq:
   add_observations: Shto vëzhgime
   add_observations_by_checking_off: Shto vëzhgime duke kontrolluar speciet nga një listë
   add_observations_project: Shto vëzhgime në këtë projekt
+  #Prompt to add a new journal post
   add_one: Shto një!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
   add_one_now: Shto një tani
   add_photos: Shto fotografi
   add_photos_to_this_observation: Shto fotografi këtij vëzhgimi
@@ -366,6 +369,8 @@ sq:
   associations: Shoqatat
   at: në
   at_time: "në %{time}"
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atribut
   authority_list:
     iucn_red_list: IUCN Lista e Kuqe
@@ -488,11 +493,17 @@ sq:
     swap: Shkëmbe
     stage: Fazë
     drop: Lësho
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: ndarë prej
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: ndaje në
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: bashko në
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: bashkuar në
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: zëvendësohet nga
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: zëvendësoj me
     dropped: lëshuar
     staged: i ndarë në faza
@@ -811,6 +822,8 @@ sq:
   done: U krye
   dont_send_me_email: "Mos më dërgoni asnjë email!"
   dont_use_double_quotes: Mos përdorni citate të dyfishta askund
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
   drop_it: Hidhe
   double_click_to_finish: (kliko dy herë për të përfunduar)
   download: Shkarko
@@ -995,6 +1008,7 @@ sq:
   first_observation: Vëzhgimi i Parë
   first_observation_by_date_added: Vëzhgimi i parë sipas datës u shtua
   first_observer: Vëzhguesi i 1-rë
+  #Verb form, as in "Flag this item"
   flag: Shëno
   flag_as_inappropriate: Shëno si e papërshtatshme
   flag_an_item: Etiketo një njësi
@@ -1176,6 +1190,7 @@ sq:
   improving: Duke përmirësuar
   in_n: "në %{n}"
   inaturalist_network_affiliation: Bashkim me Rrjetin iNaturalist
+  #Label for messages you've received
   inbox: Kutia e mesazheve
   including: përfshirë
   in_progress: në zhvillim
@@ -1205,6 +1220,7 @@ sq:
   invite_someone_to: "Fto dikë tek %{name}"
   invite_your_friends: Fto miqtë e tu
   invite_your_friends_description: "Ndihmo ta bëjmë %{site_name} më të madhe dhe komunitet më të mirë duke ftuar miqtë të bashkangjiten!"
+  #Type of project where people can only join after they have been invited
   inviteonly: Vetëm me ftesë
   invited_x: "I ftuar %{x}"
   is_an_evaluation: |
@@ -1246,6 +1262,7 @@ sq:
   location_private: Lokacioni privat
   location_unknown: Lokacioni i panjohur
   language_slash_type: Gjuha/Lloji
+  #Large photo size
   large: e madhe
   last_active_with_date: "Së fundmi aktiv më %{date}"
   last_confirmed_observation: Vëzhgimi i fundit i konfirmuar
@@ -1255,6 +1272,7 @@ sq:
   latitude: Gjerësia gjeografike
   latitude_in_decimals: 'Gjërësia gjeografike në shkallë decimale psh. 38.123'
   latitude_slash_y_coord_slash_northing: Gjerësia gjeografike/kordinata y/ verior
+  #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Shtresat
   layout: Planifikimi
   leaderboard: Fituesi
@@ -1313,7 +1331,6 @@ sq:
     tokelauan: Tokelauane
     turkish: Turqisht
   less: Më pak
-  license_descriptions_and_images: Përshkrimet e licencës dhe imazhet
   licensed_site_photos: "Fotot e licensuara %{site_name}"
   license: Liçenca
   licensing: Licensim
@@ -1405,7 +1422,6 @@ sq:
   locality_notes: Shënime të lokalitetit
   localized_species_accounts: Llogaritë e specieve të lokalizuara
   location: Lokacioni
-  locations: Lokacionet
   location_is_accurate: Lokacioni është i saktë
   location_is_exact: Lokacioni është i saktë
   location_is_public: Lokacioni është publik
@@ -1429,9 +1445,7 @@ sq:
   lookup: Kërko
   low: ulët
   lowest_rank: Niveli më i ulët
-  made_a: Bëje një
   make_admin: Bëje admin
-  make_an_observation: Bën një vëzhgim
   mail_disclaimer: "%{site_name} nuk do ti lejojë përdoruesit e saj të u dërgojnë ftesa të tjera përmes ftuesit tonë. Ju lutemi raporto abuzim të %{site}."
   main_content: Përmbajtja kryesore
   make_a_new_place: Bëj një vend të ri
@@ -1439,24 +1453,17 @@ sq:
   make_curator: Bëjë përgjegjës
   make_it_a_life_list?: Bëje list jetësore
   make_manager: Bëje menaxher
-  make_new_place: Krijoni një vend të ri
-  make_one: Krijoni një?
   make_sure_the_default_photo_looks_good: Sigurohuni që fotoja e parazgjedhur duket mirë në dimesione të mëdha.
-  make_taxonomic_flickr_tags_for_taxon_raquo: "Bëni etiketime taxonimike në Flickr për këtë taxon &raquo;"
   make_this_your_default_license: "Bëjeni liçencën %{type} si të parazgjedhur"
   make_this_the_primary_listing: "Bëjeni këtë listim primar"
   mammals: Gjitarët
-  manage: Menaxho
   manage_all_your_subscriptions: Menaxho të gjitha abonimet tua
   manage_names: Menaxho emrat
   manage_your_projects: Menaxho projektet tuaja
   manage_your_project_invitations: Menaxho ftesat e projektit tuaj
-  manage_subscriptions: Menaxho abonimet
-  managed: e menaxhuar
   manager: Menaxheri
   managers: Menaxherët
   managers_can_do: Menaxheri mund të kryejë të gjitha funksionet e kuratorit, si dhe mund të ndryshojë parametrat dhe të mbajë shënime rreth ecurisë së projektit.
-  manually_create_new_place: Krijo një vend të ri manualisht
   map: Harta
   map_legend: Legjenda e hartës
   map_marker_size: Madhësia e markuesit të hartës
@@ -1474,17 +1481,13 @@ sq:
       checklist_places_description: Vendet ku ky taxon është listuar
       range: Rangu
   map_tooltip: Shiko si hartë
-  map_for: Harta për
   mark_as_reviewed: Shëno si e rishikuar
   mark_all_as_reviewed: Shëno të gjitha si të rishikuara
   mark_all_as_unreviewed: Shënë të gjitha si të pashqyrtuara
-  matched_several_different_taxa: Janë hasur disa taxa të ndryshme
   matching_species_will_shown_up_here: Speciet që përputhen shfaqen këtu. Hartat tregojnë rrezen e mundshme në terren në qoftë se %{place} e ka një të tillë për atë specie.
   maverick: Rebel
-  maybe_your_signed_in_with: "Ndoshta jeni qasur me llogarinë tuaj %{omniauth}?"
   media_type: Tipi i medias
   medium: e mesme
-  medium_url: Url e mesme
   meet: Tako
   member_of_the_inaturalist_network_html: |
     Anëtarë i <a href="%{url}">iNaturalist Network</a>
@@ -1496,7 +1499,6 @@ sq:
   mentioned_you_in_an_x_on_noun_html: "%{user} u ka përmendur juve në një %{x} në %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} u ka përmendur juve në një %{x} në %{noun} nga %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} u ka përmendur juve në një %{x} në %{noun} nga %{by}"
-  mentions: "Përmendjet"
   merge: Bashko
   merge_it_with_another_place: Bashkoje me një vend tjetër
   merge_two_places_together: Bashkoni dy vende në një. Kur ato bashkohen (shkrihen), atëherë të gjitha speciet në listat kontrolluese shkrihen në një, e po ashtu edhe krejt të dhënat gjeografike.
@@ -1508,10 +1510,7 @@ sq:
   misidentifications: Keqindentifikimet
   misleading_or_illegal_content_html: |
     Përmbajtje mashtruese ose ilegale, sharje mbi baza racore ose etnike etj. Për më shumë mbi definicionin e "i papërshtatshëm", shihni te: <a href="/help#inappropriate">FAQ</sq>
-  mixed_licenses: Liçenca të përziera
   mobile: Celular
-  mobile_app_for: Aplikacion celular për
-  mobile_apps_for: Aplikacione celulare për
   mollusks: Molluskët
   momentjs:
     shortRelativeTime:
@@ -1520,10 +1519,8 @@ sq:
       d: "1 ditë"
       M: "1Mu"
       'y': "1v"
-  mon: Hën
   month: Muaj
   months: Muaj
-  months_ago: "%{text} më parë"
   more: Më shumë
   more_fields: Më shumë fusha
   more_filters: Më shumë filtra
@@ -1534,7 +1531,6 @@ sq:
   more_journal_posts: Më shumë postime gazetareske
   more_observations: Më shumë vëzhgime
   more_photos: Më shumë fotografi
-  most: Më së shumti
   most_agree: shumica pajtohen
   most_browser_print_pdf: "Shënim: shumica e shfletuesve kanë mundësinë e shtypjes në PDF"
   most_disagree: shumica nuk pajtohen
@@ -1567,32 +1563,22 @@ sq:
   n_person_disagrees: "%{amount} e personave nuk pajtohen"
   name: Emri
   name_entered: Emri u fut
-  name_llaves: "[EMËR]"
   name_or_slug: "Emri apo shkurtesa URL. p.sh. projekti-im"
   name_of_the_place_you: Emëro vendin ku ke bërë vëzhgimin
-  name_or_username: Emri ose emri i perdoruesit
-  name_provider: Emri i ofruesit
   name_providers:
     col: Katalogu i Jetës
     ubio: Biografia e përdoruesit
     nzor: Regjistri i Organizmave të Zelandës së Re
-  named_based_url_might_change: "Emri i bazuar ne IP adresen tuaj mund te ndryshoj, mirepo kjo jo."
   names: Emrat
   names_for_taxon_html: "Emrat për %{taxon}"
-  naturalised: i natyralizuar
-  naturalized: i natyralizuar
   native: autokton
   native_page_url: IP adresa e faqes vendëse
   native_to_place: "Autokton në %{place}"
   nav: Navigimi
   nav_description: Lorem Ipsum është një tekst shabllon i industrisë së printimit dhe shtypshkronjave. Lorem Ipsum ka qenë teksti shabllon i industrisë që nga vitet 1500, kur një shtypës i panjohur morri një galeri shkrimesh dhe i ngatërroi për të krijuar një libër mostër.
   ne_lat: NE Latinisht.
-  near: afër
   near_threatened: Afër kërcënimit
-  nearby: Pranë
   nearby_observations_: Vëzhgimet në afërsi
-  nearby_observations: Vëzhgimet në Afërsi
-  need_id_help?: Ke nevojë për ndihmë mbi ID?
   needs_id: Nevojitet ID
   needs_id_: Ka nevojë për ID
   needs_id_expandable_html: "<span class='full'>Ka nevojë për </span>ID"
@@ -1605,7 +1591,6 @@ sq:
   new_check_list_for: "Krijo një listë të re kontrolluese për %{place} &raquo;"
   new_check_list_record: "Nëse doni ta konsideroni këtë listë gjithëpërfshirëse, krijojeni atë, shtoni taxa, më pas rregullojeni, dhe këtu do të keni opsionin për ta shënuar si gjithëpërfshirëse."
   new_comment_on_a_parent_by_user_link: Koment i ri ne @vow_or_con{vow:an|a} %{parent} by %{user_link}
-  new_custom_field_for: Fushë e re rregullimi për
   new_flag_for: Etiketë e re për
   new_guide: Udhëzues i ri
   new_journal_post: Postim i ri i revistes
@@ -1614,7 +1599,6 @@ sq:
   new_members: "Anëtarë të rinj"
   new_message: Mesazh i ri
   new_observation_field: Fushë e re vëzhgimi
-  new_observation_rules: Rregulla të reja vëzhgimi
   new_observations: Vëzhgime të reja
   new_observations_ellispsis: "Vëzhgime të reja..."
   new_observations_from_place_html: "Vëzhgime të reja nga %{place}"
@@ -1627,16 +1611,13 @@ sq:
   new_source: Burim i ri
   new_taxon_change: Ndryshim i ri në taxon
   new_taxon_link: Linku i ri i taxonit
-  new_taxon_name: Emri i takson të ri
   new_taxon_name_for: Emri i ri i taxonit për
   new_taxon_range: Varg i Ri Taxon
   new_taxonomic_change: Ndryshim i ri Taksonimik (Skicë)
   new_trip: Udhëtim i ri
   new_updates_in_the_last_24_hours_from: "Përditësime të reja në 24 orëshin e fundit nga %{site_name}"
-  new_user_rules: Rregullat e reja të përdoruesit
   new_users: Përdorues i ri
   new_users_w_7_obs: Përdorues të rinj w/ 7 Obs
-  new_users_week: Përdorues të rinj / Javë
   news: Lajme
   next: Tjetër
   next_observation: Vëzhgimi i ardhshëm
@@ -1644,22 +1625,16 @@ sq:
   next_photo: Foto tjetër
   next_tab: Lidhësja e radhës
   'no': 'Jo'
-  no_activity_in_the_past_week: Asnjë aktivitet i javës së kaluar. Koha për
-  no_administrator_knows_your_password: "Asnjë %{sitename} nga administratorët nuk di fjalëkalimin tuaj të ri dhe nuk ka mundësi qasjeje në fjalëkalimin tuaj."
   no_assessments_have_been_added_to_this_project_yet: Asnjë vlerësim nuk është shtuar ende rreth këtij projekti.
   no_but_it_is_a_member_of_taxon: "Jo, por është anëtar i %{taxon}"
-  no_colors_selected: Nuk ka ngjyra të zgjedhura.
   no_comments_yet: Nuk ka komente ende.
   no_countries_added_yet: Asnjë vend nuk ka shtuar akoma
-  no_creative_commons_flickr_photo: Asnjë fotografi Flickr nën Creative Commons nuk është etiketuar
   no_creative_commons_flickr_photos_tagged_x: 'Asnjë fotografi Flickr nën Creative Commons nuk është etiketuar "%{x}"'
   no_curators_set: Asnjë kurator nuk është caktuar
   no_curators_yet: Asnjë kurator ende!
   no_description: Pa pershkrim
-  no_facebook_photos: Ne nuk mund të gjejmë ndonjë foto nga Facebook.
   no_flags: Nuk ka flamuj këtë herë
   no_flickr_photos_tagged: Nuk u gjet asnje etiketim në fotot e Flickr!
-  no_header_row: Nuka ka kryerradhë
   no_identifications: Asnjë identifikim
   no_identifications_added:
     current_user: Ju nuk keni shtuar identifikime për vëzhgimet e askujt.
@@ -1670,9 +1645,7 @@ sq:
   no_favorites_added:
     current_user: Ju nuk keni shtuar ende të preferuarit tuaj.
     user: "%{user} nuk ka shtuar të preferuarit."
-  no_journal_post_have_been: Asnjë postim i ditarit nuk është shtuar ende në këtë projekt.
   no_license_all_rights_reserved: Asnjë licencë (të gjitha të drejtat e rezervuara)
-  no_link_flickr: "Jo, nuk do të më pëlqente."
   no_managers_set: Asnjë menaxher nuk është caktuar
   no_matching_article_from_x: "Asnjë artikull nuk përputhet nga %{x}"
   no_matching_invitations: Nuk ka ftesa që përputhen
@@ -1687,25 +1660,19 @@ sq:
   no_more_mail_from_site: "Nuk dua të marr ndonjë email nga %{site_name}?  Ndrysho cilësimet e emalit në"
   no_more_taxa_to_load: Nuk ka më shumë taxa për tu ngarkuar!
   no_more_results_found: Nuk u gjetën më shumë rezultate
-  no_more_updates: Asnjë përditësim më shumë!
-  no_nearby_observations: "Nuk ka vëzhgime të perafërta."
   no_new_messages: Nuk ka mesazhe të reja
   no_news_yet: Asnjë lajm ende
   no_observations: nuk ka vëzhgime
   no_observations_from_this_place_yet: Asnjë vëzhgim nga ky vend ende.
   no_observations_matching_those_ids: Asnjë vëzhgim që përputhet me ato ID.
-  no_observations_need_an_id: Asnjë vëzhgim nuk ka nevoj për një ID mometalisht. Shkelqyeshem!
   no_observations_submitted: "Asnjë vëzhgim nuk është dorëzuar!"
-  no_observations_suitable_for_this_project: "Nuk ka vërejtje të ofruara apo të kërkuara për këtë projekt."
   no_observations_yet: Ende nuk ka vëzhgime
   no_one_has_added_any: Askush nuk ka shtuar ndonjë shënim për këtë vend
   no_one_has_been_invited_yet: Askush nuk është ftuar akoma
   no_one_posted_anything_yet: Askush nuk ka postuar asgjë akoma!
-  no_ones_observed: Askush nuk ka vëzhguar
   no_photo: Asnjë Foto
   no_photos: Asnjë foto
   no_places_available: Nuk ka vende në dispozicion
-  no_places_selected: Nuk ka vende të zgjedhura.
   no_post_yet: Ende nuk ka postime!
   no_project_selected: Asnjë projekt nuk është përzgjedhur
   no_project_to_admin_current_user: "Nuk administroni ndonjë projekt"
@@ -1713,7 +1680,6 @@ sq:
   no_projects_yet: Asnjë projekt ende
   no_range_data_available: Nuk ka të dhëna në dispozicion.
   no_recent_activity: Asnjë aktivitet i kohëve të fundit
-  no_recently_active: Ende nuk ka projekte aktive.
   no_relevant_annotations: Asnjë Shënim Përkatës
   no_reply_yet: Asnjë përgjigje ende
   no_results_found: Nuk u gjetën rezultate
@@ -1733,7 +1699,6 @@ sq:
   no_taxa: Nuk ka taxa
   no_taxa_listed: Nuk u listua asnjë taxa
   no_taxa_selected: Nuk u zgjodh asnjë taxa!
-  no_taxa_yet: Nuk ka taxa ende!
   no_taxonomic_changes_match_those_criteria: Asnjë ndryshim taksonomik nuk përputhet me këto kritere
   no_wikipedia_page_for_taxon: Asnjë faqe në Wikipedia për këtë takson.
   no_x_this_y: "Nuk ka %{x} ky %{y}"
@@ -1742,21 +1707,16 @@ sq:
   none: Asnjë
   none_found: Asnjë nuk u gjet
   normal: normale
-  not_absent: nuk mungon
   not_completed: Nuk është Përfunduar
   not_evaluated: Nuk është akoma e vlerësuar
-  not_filtering: Nuk filtron
   not_findig_what_you_want: Nuk gjetët atë që dëshiron?
   not_finding_place_you_want?: Nuk gjetët vendin që dëshiron?
   not_found: Nuk u gjet
-  not_just_creative_commons_licensed: Jo e licencuar vetëm sipas Creative Commons
   not_linked_facebook: "Llogaria e juaj në %{site_name} nuk është e lidhur me llogarinë tuaj në Facebook"
   not_linked_flickr: "Llogaria juaj në %{site_name} nuk është e lidhur me llogarinë tuaj në Flickr"
-  not_logged_in: Nuk jeni qasur
   not_on_this_list: Jo në këtë listë.
   not_recorded: Nuk regjistrohet
   not_seeing_what_looking_for: Nuk jeni duke parë atë që kërkoni?
-  not_yet: Jo ende
   note: Shënim
   notes: Shënime
   note_you_can_modify_the_height_attribute: "Shënim: Mund ta ndryshoni tiparin 'lartësi' që ti përshtatet hapësirës së lirë në web-faqen tuaj"
@@ -1766,8 +1726,6 @@ sq:
     Pranoni lajmërime rreth identifikimeve që përputhen me tuajat. Nëse nuk e zgjidhni këtë opsion, do të pranoni vetëm lajmërimet rreth identifikimeve të taxa që nuk përputhen fiks me taxon e identifikuar prej jush.
   number_of_observations: Numri i vëzhgimeve
   number_selected: "#i zgjedhur"
-  numeric_: numerike
-  noun_by_you: "%{noun} nga ti"
   obs: Vëzh
   obscured_: e fshehur
   obscured: E fshehur
@@ -2245,6 +2203,7 @@ sq:
   position: Pozita
   positional_accuracy: Saktësi pozicionimi
   possessive_user: "i/e %{user}"
+  #Noun, short version of a journal post
   post: Posto
   post_from_journal_by_parent_html: Publiko nga <a href="%{url}">ditari me %{parent}</a>
   post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
@@ -2607,6 +2566,7 @@ sq:
   send_me_reset_password_instructions: Më dërgoni instruksionet për rivendosjen e fjalëkalimit
   send_the_invites: Dërgoi ftesat
   sending: Duke u dërguar...
+  #Label for messages you've sent
   sent: Dërguar
   separate_values_with_a_pipe: Ndaji vlerat me një vizëgjatë, psh. "1-5|6-10|Shumë" ose "po|jo|ndoshta"
   september: Shtator
@@ -3006,6 +2966,7 @@ sq:
   time:
     am: pd
     pm: md
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
       format: '%{message} %{attribute}'
