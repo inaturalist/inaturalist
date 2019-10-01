@@ -133,6 +133,8 @@ ja:
   add_another_photo: 写真をもう1枚追加
   add_another_section: セクションを追加
   add_another_subscription: もう一つの購読を追加
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: アセットを追加
   add_batch: 一括追加
   add_comma_separated_tags: "カンマ区切りタグを追加"
   add_comment: コメントを追加
@@ -352,6 +354,7 @@ ja:
   are_you_sure_remove_taxon_from_list: "リストからこの分類群を削除して本当によろしいですか？"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     本当によろしいですか？ページを再読み込みし、変更が失われる可能性があります。
+  are_you_sure_want_delete_taxon: "この分類群を削除して本当によろしいですか？"
   are_you_sure_want_delete_taxon_link: この分類群リンクを削除して本当によろしいですか？
   are_you_sure_want_delete_this_name: この名前を削除して本当によろしいですか？
   are_you_sure_want_delete_this_range: この分布・生息区域を削除して本当によろしいですか？
@@ -662,6 +665,8 @@ ja:
   curators_can_remove_observations_from: キュレーターはプロジェクトから観察を削除でき、同定結果をプロジェクト固有の表示画面に示すことができます。キュレーターはこのプロジェクト上で個人の不明瞭な投稿の真の座標を閲覧することもできます。
   curator_identification: キューレータによるID
   custom_project_fields: プロジェクト専用フィールド
+  custom_project_was_successfully_created: カスタムプロジェクトは無事作成されました。
+  custom_project_was_successfully_updated: カスタムプロジェクトは無事更新されました。
   darr_apply_darr: "&darr; 適用 &darr;"
   dashboard: ダッシュボード
   data_deficient: データ不足
@@ -1053,6 +1058,7 @@ ja:
   in_the_past_week: ここ1週間以内
   inactive: 廃止
   inactive_taxon: 無効な分類群
+  inactive_taxon_concepts_are: 廃止された分類群概念は分類学上は無効と見なされた、または分類群変更待ちの状態です。廃止された分類群は履歴継承や、一部のパートナーサイトとの互換性を維持するために残してあります。
   inat_believes_this_is_a_complete_listing: "%{site_name}は、この場所における当分類群のリストとして完全なものだと認識しています。"
   inat_user_profile: "%{site_name}: %{user}さんのプロフィール"
   inaturalist_places: "%{site_name} 場所"
@@ -1193,6 +1199,7 @@ ja:
   listed_taxon: リストの分類群
   listed_taxon_updated: リストの分類群が更新されました
   listing_lists: リスト一覧
+  listing_project_assets: プロジェクトアセット一覧
   listing_taxa: 分類群一覧
   lists: リスト
   lists_by_login:
@@ -1217,8 +1224,8 @@ ja:
     ca: カタルーニャ語
     da: デンマーク語
     de: ドイツ語
-    en-US: 英語（アメリカ）
     en: 英語
+    en-US: 英語（アメリカ）
     es-ES: スペイン語（スペイン）
     es-MX: スペイン語（メキシコ）
     es: スペイン語
@@ -1378,6 +1385,7 @@ ja:
   new_password: 新しいパスワード
   new_post: 新しい投稿
   new_project: 新しいプロジェクト
+  new_project_asset: 新規プロジェクトアセット
   new_project_asset_for: 新規プロジェクトアセット：
   new_source: 新規ソース
   new_taxon_change: 新規分類群変更
@@ -2459,6 +2467,7 @@ ja:
   there_are_x_synonyms_html:
     other: "<span class='count'>%{count}つ</span>シノニムが存在します</span>"
   there_is_no_wikipedia_page_matching: 一致するウィキペディアページがありません
+  there_merge_problems_with_the_merge: "統合エラーが発生しました：%{merged_errors}"
   there_was_a_problem_saving_your_identification: "同定を保存する際にエラーが発生しました：%{error}"
   there_were_errors: エラーが発生しました
   there_were_problems_adding_taxa: "指定の分類群を追加する際にエラーが発生しました：%{errors}"
@@ -2832,6 +2841,7 @@ ja:
   you_must_select_dates_to_compare: 比較したい日付お選びください
   you_need_to_select_at_least_one_photo: 写真を一つ以上選択しなければなりません
   you_need_to_select_some_observations_first: まずは観察記録を選択する必要があります
+  you_sure_delete_asset?: このアセットを削除して本当によろしいですか？
   you_sure_delete_comment?: このコメントを削除して本当によろしいですか？
   you_sure_delete_custom_field?: この専用フィールドを削除して本当によろしいですか？
   you_sure_delete_flag?: このフラグを削除して本当によろしいですか？
@@ -2970,6 +2980,8 @@ ja:
         created_on_help: "作成された日付、「観察された」ではない、たとえば 2015-01-17, 2015-01, 2015"
       field_descriptions:
         taxon_id: 観察された分類群の一意の識子
+        num_identification_agreements: 観察者の同定と一致する同定
+        num_identification_disagreements: 観察者の同定と一致しない同定
         observed_on_string: 観察者が入力した日時
         time_zone: 観察地の時間帯
         latitude: 公開緯度
@@ -3068,6 +3080,8 @@ ja:
       edit:
         end_time_desc: "バイオブリッツの終了時間。開始時間より1年未満の期間でなければなりません。"
         icon_desc: "正方形にトリミングされます"
+        project_assets_desc_html: |
+          <p class=\"description\">プロジェクトアセットはプロジェクトに関わるファイルです。ただし、次のように特別な決まりがあります</p>\n<ol class=\"description\">\n <li>ファイル名が.logo.jpg, .logo.png,などで終わるものはプロジェクトページでプロジェクトアイコンの代わりに使用されます</li>\n<li>KML及びKMZファイルはプロジェクトページ上のマップに追加されます</li>\n</ol>
         rules:
           captive: 飼育/栽培
           georeferenced: 座標あり
@@ -3478,12 +3492,6 @@ ja:
                 %{time}より後に観察されていなければなりません
               must_be_observed_before: |
                 %{time}より前に観察されていなければなりません
-  i18n:
-    inflections:
-      - 
-        vow: 母音
-        con: 子音
-      - 
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 前へ"
