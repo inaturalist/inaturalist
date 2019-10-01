@@ -69,6 +69,8 @@ sk:
   add_another_photo: Vložiť ďalšie foto
   add_another_section: Vložiť ďalší oddiel
   add_another_subscription: Vložiť ďalšie predplatné
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Pridajte položku
   add_batch: Vložiť skupinu
   add_comma_separated_tags: "Vložiť tagy oddelené čiarkou"
   add_comment: Pridať komentár
@@ -273,6 +275,7 @@ sk:
   are_you_sure_remove_taxon_from_list: "Ste si istý, že chcete odstrániť taxón z tohto zoznamu?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Ste si istí? Toto znovu načíta stránku a Vy môžete stratiť nejaké Vaše zmeny.
+  are_you_sure_want_delete_taxon: "Naozaj chcete odstrániť tento taxón?"
   are_you_sure_want_delete_taxon_link: Naozaj chcete odstrániť tento link na taxón?
   are_you_sure_want_delete_this_name: Naozaj chcete odstrániť toto meno?
   are_you_sure_want_delete_this_range: Naozaj chcete odstrániť tento rozsah?
@@ -665,6 +668,8 @@ sk:
   curator_identification: Identifikácia správcu
   current_flags: Aktuálne značky
   custom_project_fields: Vlastné projektové polia
+  custom_project_was_successfully_created: Vlastný projekt bol úspešne vytvorený.
+  custom_project_was_successfully_updated: Vlastný projekt bol úspešne aktualizovaný.
   customize_location: Upraviť lokalitu
   darr_apply_darr: "&darr; Použiť &darr;"
   dashboard: Nástenka
@@ -782,6 +787,9 @@ sk:
   download_csv: Stiahnuť CSV
   download_csv_template: Stiahnuť šablónu CSV
   download_kml: Stiahnuť KML
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa: Označené taxóny
   draft: koncept
   draft_: Koncept
   draft_saved: Komcept uložený!
@@ -1349,6 +1357,7 @@ sk:
   listed_taxon: Taxón uvedený na zozname
   listed_taxon_updated: Taxón uvedený na zozname bol aktualizovaný
   listing_lists: Zoznamy zápisov
+  listing_project_assets: Zápisy projektových_položiek
   listing_taxa: Zapísať do zoznamu taxónov
   lists: Zoznamy
   lists_by_login:
@@ -1377,8 +1386,8 @@ sk:
     da: Dánčina
     de: Nemčina
     el: Gréčtina
-    en-US: Angličtina (Spojené štáty)
     en: Angličtina
+    en-US: Angličtina (Spojené štáty)
     es-ES: Španielčina (Španielsko)
     es-MX: Španielčina (Mexiko)
     es: Španielčina
@@ -1597,6 +1606,7 @@ sk:
   new_password: Nové heslo
   new_post: Nový príspevok
   new_project: Nový projekt
+  new_project_asset: Nová projektová_položka
   new_project_asset_for: Nová projektová položka pre
   new_source: Nový zdroj
   new_species_added_in_interval: Nové druhy pridané v %{interval}
@@ -2933,6 +2943,8 @@ sk:
   synonyms: Synonymá
   table: Tabuľka
   table_of_contents: Obsah
+  #Noun, as in "add a tag to this observation"
+  tag: Tag
   tagging: 'Tagovanie...'
   tags: Tagy
   take_me_facebook: Áno, chcem ísť na Facebook!
