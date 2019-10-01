@@ -1063,11 +1063,17 @@ sv:
   momentjs:
     shortRelativeTime:
       future: "i %s"
+      #Short text representing 1 hour in the past
       h: "1t"
+      #Short text representing %d hours in the past
       hh: "%dt"
+      #Short text representing 1 month in the past
       M: "1må"
+      #Short text representing %d months in the past
       MM: "%dmå"
+      #Short text representing 1 year in the past
       'y': "1å"
+      #Short text representing %d years in the past
       yy: "%då"
     datetime_with_zone: "D MMM YYYY · LT z"
     datetime_with_offset: "D MMM YYYY · LT Z"
