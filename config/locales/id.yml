@@ -59,6 +59,8 @@ id:
   add_another_photo: Menambahkan foto lain
   add_another_section: menambahkan bagian lain
   add_another_subscription: menambahkan pelanggan lain
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: menambahkan aset
   add_batch: menambahkan beberapa hal
   add_comma_separated_tags: "Tambahkan tag dipisahkan dengan koma"
   add_comment: Tambahkan Komentar
@@ -194,6 +196,7 @@ id:
   are_you_sure_remove_taxon_from_list: "Apakah Anda yakin ingin menghapus taksa ini dari daftar?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Apa kamu yakin? Ini akan memuat ulang halaman. Anda mungkin kehilangan beberapa perubahan.
+  are_you_sure_want_delete_taxon: "Apakah Anda yakin ingin menghapus takson ini?"
   are_you_sure_want_delete_taxon_link: Apakah Anda yakin ingin menghapus link yang takson ini?
   are_you_sure_want_delete_this_name: Apakah Anda yakin ingin menghapus nama ini?
   are_you_sure_want_delete_this_range: Apakah Anda yakin ingin menghapus rentang ini?
@@ -508,6 +511,8 @@ id:
   curators_can_remove_observations_from: Kurator dapat menghapus pengamatan dari proyek dan identifikasi mereka ditampilkan di samping pengamatan pada pandangan tertentu proyek-. Kurator juga dapat melihat koordinat sebenarnya dari kontribusi swasta dan menyembunyikannya untuk proyek ini.
   curator_identification: Kurator identifikasi
   custom_project_fields: Proyek lapangan kustom
+  custom_project_was_successfully_created: Proyek kustom telah berhasil dibuat
+  custom_project_was_successfully_updated: Proyek kustom telah berhasil diperbaharui
   customize_location: Sesuaikan Lokasi
   data_deficient: Kekurangan data
   data_quality_assessment: Penilaian kualitas data
@@ -914,6 +919,7 @@ id:
   in_the_past_week: dalam seminggu terakhir
   inactive: tidak aktif
   inactive_taxon: takson yang tidak aktif
+  inactive_taxon_concepts_are: Konsep takson yang tidak aktif baik yang usang secara taksonomi atau sedang ditampilkan untuk perubahan takson. Konsep usang tetap disimpan untuk mempertahankan sejarah dan kompatibilitas dengan beberapa situs mitra.
   inat_user_profile: "%{site_name}: %{user}'s Profil"
   input_taxon: Masukkan takson
   insects: serangga
@@ -1052,6 +1058,7 @@ id:
   listed_taxon: Daftar takson
   listed_taxon_updated: Daftar takson diperbaharui
   listing_lists: Pendaftaran daftar
+  listing_project_assets: Daftar aset_proyek
   listing_taxa: Pendaftaran taksa
   lists: Daftar
   lists_by_login:
@@ -1073,8 +1080,8 @@ id:
     ca: Bahasa Catalan
     cs: Cek
     el: Yunani
-    en-US: Bahasa Inggris (United States)
     en: Bahasa Inggris
+    en-US: Bahasa Inggris (United States)
     es-ES: Bahasa Spanyol
     es-MX: Bahasa Meksiko
     es: Bahasa Spanyol
@@ -1216,6 +1223,7 @@ id:
   new_password: Kata sandi baru
   new_post: Post Baru
   new_project: Proyek Baru
+  new_project_asset: Aset_proyek baru
   new_project_asset_for: Aset proyek baru untuk
   new_source: Sumber Baru
   new_taxon_change: Perubahan taksa baru
@@ -2269,6 +2277,7 @@ id:
     Dunia ini penuh dengan tempat-tempat menarik, masing-masing diisi dengan bentuk kehidupan yang aneh dan indah. Beberapa di sisi lain dunia, sementara yang lain hanya jalan!
   there_is_no_wikipedia_page_matching: Tidak ada halaman Wikipedia yang cocok
   there_isnt_wiki_article: "Tidak ada artikel Wikipedia atau arahan berjudul '<i>%{taxon}</i>'. Mungkin\nAnda ingin untuk"
+  there_merge_problems_with_the_merge: "Ada masalah penggabungan dengan gabungan: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Ada masalah dalam menyimpan identifikasi Anda: %{error}"
   there_were_errors: Ada kesalahan.
   there_were_problems_adding_taxa: "Ada kesalahan dalam menambahkan taksa tersebut %{errors}"
@@ -2318,6 +2327,8 @@ id:
   this_will_reload_and_refresh: Hal ini akan menambah taksa terdaftar dari pengamatan dan menyegarkan statistik pengamatan langsung. Ini mungkin memakan waktu lama dan gunakan dengan hemat.
   this_will_try_to_add_tags_to_your_flickr: Ini akan mencoba untuk menambahkan tag ke foto Flickr Anda. Lanjutkan?
   this_will_update_all_last_observations: Ini akan memperbarui semua pengamatan terakhir dan menambahkan taksa yang baru dari
+  those_are_the_basics_of: |
+    Itu adalah dasar-dasar menambahkan pengamatan! Ada banyak hal  lainnya yang dapat Anda lakukan, seperti mencari dan menyaring pengamatan atau mengedit mereka sebagai batch, tetapi mereka harus cukup jelas.
   those_observations_no_longer_exist: Pengamatan tersebut tidak lagi ada.
   threatened: terancam
   thu: Kam
@@ -2591,6 +2602,7 @@ id:
   you_need_to_have_linked_flickr_account: Anda butuh memiliki tautan akun Flickr untuk tag foto Anda
   you_need_to_select_at_least_one_photo: Anda harus memilih setidaknya satu foto!
   you_need_to_select_some_observations_first: Anda perlu memilih beberapa pengamatan pertama.
+  you_sure_delete_asset?: Apakah Anda yakin ingin menghapus aset ini?
   you_sure_delete_check_list: "Apakah Anda yakin ingin menghapus daftar ini? Beberapa orang mungkin telah menempatkan banyak pekerjaan ke dalamnya ..."
   you_sure_delete_comment?: Apakah Anda yakin ingin menghapus komentar ini?
   you_sure_delete_custom_field?: Apakah Anda yakin ingin menghapus kolom kustom ini?
@@ -2768,6 +2780,8 @@ id:
         iconic_taxon_name: Kategori Taksonomi tingkat lebih tinggi untuk takson yang diamati
         taxon_id: pengenal unik untuk pengamatan
         id_please: Apakah pengamat diminta ID bantuan
+        num_identification_agreements: Jumlah identifikasi dalam persetujuan dengan identifikasi pengamat
+        num_identification_disagreements: Jumlah identifikasi bertentangan dengan identifikasi pengamat
         observed_on_string: Tanggal/waktu telah dimasukkan oleh pengamat
         time_zone: Zona waktu pada pengamatan
         place_guess: deskripsi lokalitas seperti yang dimasukkan oleh pengamat
@@ -2847,6 +2861,9 @@ id:
         submission_models:
           any: siapapun
           curators: Kurator Proyek
+        trusted_project_means: |
+          Mempercayai proyek berarti bahwa manajer proyek dapat menambahkan proyek aset dan atribut proyek kustom (misalnya spanduk HTML, CSS). Mengakses
+          untuk atribut proyek kustom berarti manajer proyek dapat berpotensi menambah Javascript, sehingga hanya proyek kepercayaan berbahaya yang memiliki manajer yang baik bertanggung jawab dan kompeten secara teknis.
       join:
         invite_only_description: |
           Keanggotaan dalam proyek ini adalah dengan undangan saja. Jika Anda ingin bergabung, silahkan hubungi salah satu kurator di bawah ini dan meminta
@@ -3138,12 +3155,6 @@ id:
           attributes:
             user_id:
               must_be_curator: harus menjadi kurator pada proyek ini
-  i18n:
-    inflections:
-      - 
-        vow: vokal
-        con: konsonan
-      - 
   wild: Liar
   zoom_in: Perdekat
   zoom_out: Perjauh
