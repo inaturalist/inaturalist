@@ -1522,9 +1522,13 @@ sq:
   momentjs:
     shortRelativeTime:
       future: "në %s"
+      #Short text representing 1 hour in the past
       h: "1 ore"
+      #Short text representing 1 day in the past
       d: "1 ditë"
+      #Short text representing 1 month in the past
       M: "1Mu"
+      #Short text representing 1 year in the past
       'y': "1v"
   month: Muaj
   months: Muaj
