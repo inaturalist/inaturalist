@@ -884,10 +884,15 @@ eo:
   momentjs:
     shortRelativeTime:
       future: "en %s"
+      #Short text representing %d minutes in the past
       mm: "%dmin"
+      #Short text representing 1 day in the past
       d: "1t"
+      #Short text representing %d days in the past
       dd: "%dt"
+      #Short text representing 1 year in the past
       'y': "1j"
+      #Short text representing %d years in the past
       yy: "%j"
     datetime_with_zone: "YYYY-MM-DD · LT z"
   month: Monato
