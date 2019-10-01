@@ -1546,10 +1546,15 @@ cs:
   momentjs:
     shortRelativeTime:
       future: "v %s"
+      #Short text representing 1 minute in the past
       m: "1 min"
+      #Short text representing 1 hour in the past
       h: "1 h"
+      #Short text representing 1 day in the past
       d: "1 d"
+      #Short text representing 1 month in the past
       M: "1 m"
+      #Short text representing 1 year in the past
       'y': "1 r"
   month: Měsíc
   months: Měsíce
