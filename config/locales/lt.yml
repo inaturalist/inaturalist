@@ -92,7 +92,10 @@ lt:
   add_observations: Pridėti stebėjimus
   add_observations_by_checking_off: Pridėti stebėjimus patikrinant rūšis sąraše.
   add_observations_project: Pridėti stebėjimą šiam projektui
+  #Prompt to add a new journal post
   add_one: Pridėti!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
   add_one_now: Pridėti dabar
   add_photos: Pridėti nuotraukas
   add_photos_to_this_observation: Pridėti nuotraukas prie šio stebėjimo
@@ -294,8 +297,13 @@ lt:
   assessments: vertinimai
   associations: Asociacijos
   at_time: "%{time}"
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
   atom: Atomas
   attached_taxon: Susietas taksonas
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atributas
   attribution: Požymis
   authority_list:
@@ -649,6 +657,8 @@ lt:
   done: Baigta
   dont_send_me_email: "Nesiųsti man el. laiškų!"
   dont_use_double_quotes: Daugiau niekur nenaudoti dvigubų kabučių
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
   drop_it: Mesti
   double_click_to_finish: (dukart spustelėkite, kad baigtumėte)
   download: Atsisiųsti
@@ -801,6 +811,7 @@ lt:
   finished_with_page: Su Puslapiu Baigta
   first_connect_your_provider_account_to_your_site: "Pirma prijunkite savo %{provider} paskyrą prie %{site_name}:"
   first_observation: Pirmasis stebėjimas
+  #Verb form, as in "Flag this item"
   flag: Žymėti
   flag_an_item: Žymėti elementą
   flag_as_spammer: Žymėti kaip šlamštą
@@ -1020,7 +1031,6 @@ lt:
     zh-TW: Kinų (tradicinė)
   locality_notes: Vietos užrašai
   location: Vieta
-  locations: Vietos
   location_is_public: Vieta yra vieša
   location_is_obscured: Vieta yra paslėpta
   location_is_private: Vieta yra privati
@@ -1029,12 +1039,8 @@ lt:
   longitude_value: "Ilguma: %{longitude}"
   make_admin: Padaryti administratoriumi
   make_a_new_place: Sukurti naują vietą
-  make_new_place: Sukurti naują vietą
-  manage: Tvarkyti
   manage_your_projects: Tvarkyti savo projektus
-  manage_subscriptions: Tvarkyti Prenumeratas
   managing_projects: Projektų tvarkymas
-  manually_create_new_place: Patiems sukurti naują vietą
   map_legend: žemėlapio legenda
   maps:
     overlays:
@@ -1043,7 +1049,6 @@ lt:
   mentioned_you_in_a_x_on_noun_html: "%{user} paminėjo jus %{x} %{noun}"
   more: Daugiau
   more_filters: Daugiau filtrų
-  more_help: Daugiau pagalbos
   more_import_options: Daugiau įkėlimo variantų
   more_info: Daugiau informacijos
   more_journal_posts: Daugiau žurnalo įrašų
@@ -1058,9 +1063,7 @@ lt:
   multiple: keli
   multiple_select_option: '-- kelis --'
   name: Pavadinimas
-  name_llaves: "[PAVADINIMAS]"
   nearby_observations_: Stebėjimai netoliese
-  need_id_help?: Reikia ID pagalbos?
   needs_id: reikia ID
   needs_id_: Trūksta ID
   needs_to_be_identified: Reikia idendifikacijos
@@ -1078,7 +1081,6 @@ lt:
   next_tab: Kitas Skirtukas
   'no': 'Ne'
   no_countries_added_yet: Dar nepridėta jokia šalis
-  no_facebook_photos: Mes negalime rasti jokių nuotraukų iš Facebook.
   no_identifications: Nėra identifikacijų
   no_identifications_added:
     current_user: Jūs dar nepridėjote identifikacijų prie kitų vartotojų stebėjimų.
@@ -1088,7 +1090,6 @@ lt:
   no_matching_projects: Nėra atitinkamų projektų
   no_matching_species: Nėra atitinkančių rūšių.
   no_more_taxa_to_load: Nebėra neįkeltų taksonų!
-  no_nearby_observations: "Netoliese nėra stebėjimų."
   no_observations: Nėra stebėjimų
   no_observations_from_this_place_yet: Šioje vietoje dar nėra stebėjimų.
   no_observations_submitted: "Nepateikta jokių stebėjimų!"
@@ -1096,10 +1097,8 @@ lt:
   no_one_has_added_any: Niekas prie šios vietos nepridėjo užrašų
   no_project_to_admin_current_user: "Jūs nevaldote jokių projektų"
   no_projects_yet: Dar nėra projektų
-  no_recently_active: Dar nėra neseniai aktyvių projektų.
   no_taxa: Nėra taksonų
   no_taxa_selected: Jokie taksonai nepasirinkti!
-  no_taxa_yet: Dar nėra taksonų!
   non_human?: Ne žmogus?
   not_finding_place_you_want?: Nerandate norimos vietos?
   not_linked_facebook: "Jūsų %{site_name} paskyra nėra susieta su jūsų Facebook paskyra"
