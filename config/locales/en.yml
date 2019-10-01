@@ -1957,16 +1957,27 @@ en:
     shortRelativeTime:
       future: "in %s"
       past: "%s"
+      # Short text representing 1 second in the past
       s:  "1s"
+      # Short text representing 1 minute in the past
       m:  "1min"
+      # Short text representing %d minutes in the past
       mm: "%dm"
+      # Short text representing 1 hour in the past
       h:  "1h"
+      # Short text representing %d hours in the past
       hh: "%dh"
+      # Short text representing 1 day in the past
       d:  "1d"
+      # Short text representing %d days in the past
       dd: "%dd"
+      # Short text representing 1 month in the past
       M:  "1mo"
+      # Short text representing %d months in the past
       MM: "%dmo"
+      # Short text representing 1 year in the past
       'y':  "1y"
+      # Short text representing %d years in the past
       yy: "%dy"
     datetime_with_zone: "MMM D, YYYY · LT z"
     datetime_with_offset: "MMM D, YYYY · LT Z"
