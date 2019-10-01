@@ -67,6 +67,7 @@ eo:
   a_member_of: "Ano de"
   a_member_of_taxon_html: "ano de %{taxon}"
   about: Pri
+  about_blocking: Pri Blokado
   about_charts: Pri Diagramoj
   about_community_taxa: Pri komunumaj taksonoj
   about_complete_taxa: Pri Kompletaj Taksonoj
@@ -122,7 +123,10 @@ eo:
   add_new_taxon_name: Aldoni Novan Nomon de Taksono
   add_observations: Aldoni Observojn
   add_observations_project: Aldoni Observojn al Ĉi Tiu Projekto
+  #Prompt to add a new journal post
   add_one: Aldoni Unu!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
   add_one_now: Aldoni Unu Nun
   add_photos: Aldoni Fotojn
   add_photos_to_this_observation: Aldoni Fotojn al Ĉi Tiu Observo
@@ -632,6 +636,7 @@ eo:
   find_species: Trovi Specion
   finished: Finita
   finished_with_page: Finita Kun Paĝo
+  #Verb form, as in "Flag this item"
   flag: Flago
   flag_it!: Flagi ĝin!
   flag_this_photo: Flagi Tiun Foton
@@ -739,10 +744,12 @@ eo:
   keep_editing: Daŭrigi modifi
   kml: KML-dosiero
   labels: Etikedoj
+  #Large photo size
   large: granda
   last_year: Lasta Jaro
   latitude: Latitudo
   latitude_value: "Latitudo: %{latitude}"
+  #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Tavoloj
   learn: Lerni
   learn_more: Lerni Plu
@@ -816,8 +823,8 @@ eo:
     da: dana
     de: germana
     el: greka
-    en-US: angla (Usono)
     en: angla
+    en-US: angla (Usono)
     es-ES: hispana (Hispanio)
     es-MX: hispana (Meksiko)
     es: hispana
@@ -842,7 +849,6 @@ eo:
     zh-CN: ĉina (simpligita)
     zh-TW: ĉina (tradicia)
   location: Loko
-  locations: Lokoj
   location_is_accurate: Loko estas preciza
   location_is_exact: loko estas ekzakta
   location_is_public: Loko estas publika
@@ -855,27 +861,21 @@ eo:
   longitude: Longitudo
   longitude_value: "Longitudo: %{longitude}"
   low: Malalta
-  made_a: faris
   make_admin: Estigi administranto
   main_content: Ĉefenhavo
   make_a_new_place: Fari novan lokon
   make_curator: Estigi kuratoro
-  make_new_place: Fari novan lokon
   mammals: mamuloj
-  manage: Mastrumi
   manage_all_your_subscriptions: Mastrumi ĉiujn viajn abonojn
   manage_names: Mastrumi Nomojn
-  managed: mastrumata
   manager: Mastrumanto
   managers: Mastrumantoj
   map: Mapo
-  map_for: Mapo de
   medium: meza
   meet: Renkonti
   member_of_the_inaturalist_network_html: |
     Ano de la <a href="%{url}">Reto iNaturalist</a>
   members: Anoj
-  mentions: "Mencioj"
   merge: Kunigi
   merging: Kunigado
   message: Mesaĝo
@@ -890,30 +890,23 @@ eo:
       'y': "1j"
       yy: "%j"
     datetime_with_zone: "YYYY-MM-DD · LT z"
-  mon: lun
   month: Monato
   months: Monatoj
   more: Pli
   more_fields: Pli da Kampoj
   more_filters: Pli da Filtriloj
-  more_help: Pli da Helpo
   more_info: Pli da Informo
   more_info_title: Pli da Informo
   more_journal_posts: Pliaj Ĵurnalaj Afiŝoj
   most_species: Plejpartoj de Specioj
   name: Nomo
-  name_llaves: "[NOMO]"
   name_providers:
     col: Katalogo de Vivo
     nzor: Nov-Zelanda Registro de Organismoj
   names: Nomoj
   names_for_taxon_html: "Nomoj de %{taxon}"
-  naturalised: naturigita
-  naturalized: naturigita
   native: indiĝena
   ne_lat: Latitudo NE
-  near: apud
-  nearby: Apude
   new: Nova
   new_announcement: Nova anonco
   new_guide: Nova Gvidilo
@@ -928,7 +921,6 @@ eo:
   new_source: Nova Fonto
   new_species_added_in_interval: Novaj Specioj Aldonitaj dum %{interval}
   new_species_added_in_interval_x_of_y: Novaj Specioj Aldonitaj dum %{interval} (Montranta %{x} el %{y})
-  new_taxon_name: Nova nomo de taksono
   new_trip: Nova vojaĝo
   new_users: Novaj Uzantoj
   new_users_this_year: Uzantoj aniĝintaj nunan jaron
@@ -951,14 +943,11 @@ eo:
   no_subject_parens: "(sen temo)"
   no_taxa: Neniu taksono
   non_human?: Ĉu ne homa?
-  non_internal_taxon: neinterna taksono
   none: Nenio
   normal: normala
   not_found: Ne trovita
   note: Noto
   notes: Notoj
-  numeric_: nombra
-  noun_by_you: "%{noun} far vi"
   observation_date: Dato
   observation_date?: Ĉu dato?
   observations: Observoj
@@ -1529,6 +1518,7 @@ eo:
   send_invites_to: Sendi invitojn al
   send_the_invites: Sendi la Invitojn
   sending: Sendante...
+  #Label for messages you've sent
   sent: Sendita
   separate_values_with_a_pipe: Apartigu valorojn per vertikalo, ekz. "1-5|6-10|multe" aŭ "jes|ne|eble"
   september: septembro
@@ -1648,6 +1638,8 @@ eo:
   synonyms: Sinonimoj
   table: Tabelo
   table_of_contents: Enhavtabelo
+  #Noun, as in "add a tag to this observation"
+  tag: Etikedo
   tagging: 'Aldonante etikedon...'
   tags: Etikedoj
   take_me_facebook: Jes, ek al Facebook!
@@ -2156,6 +2148,7 @@ eo:
   time:
     am: atm
     pm: ptm
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
       messages:
@@ -2297,12 +2290,6 @@ eo:
       authorized_applications:
         destroy:
           notice: 'Aplikaĵo revokiĝis.'
-  i18n:
-    inflections:
-      - 
-        vow: vokalo
-        con: konsonanto
-      - 
   wild: Sovaĝa
   will_paginate:
     previous_label: "&#8592; Antaŭen"
