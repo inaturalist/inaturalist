@@ -1646,11 +1646,17 @@ ar:
   momentjs:
     shortRelativeTime:
       future: "في %s"
+      #Short text representing 1 second in the past
       s: "ثانية واحدة"
+      #Short text representing 1 minute in the past
       m: "دقيقة واحدة"
+      #Short text representing 1 hour in the past
       h: "ساعة واحدة"
+      #Short text representing 1 day in the past
       d: "يوم واحد"
+      #Short text representing 1 month in the past
       M: "شهر واحد"
+      #Short text representing 1 year in the past
       'y': "سنة واحدة"
     datetime_with_zone: "ي شش سسسس · LT مز"
   month: شهر
