@@ -1697,13 +1697,21 @@ et:
   momentjs:
     shortRelativeTime:
       future: "%s"
+      #Short text representing 1 hour in the past
       h: "1t"
+      #Short text representing %d hours in the past
       hh: "%dt"
+      #Short text representing 1 day in the past
       d: "1p"
+      #Short text representing %d days in the past
       dd: "%dp"
+      #Short text representing 1 month in the past
       M: "1k"
+      #Short text representing %d months in the past
       MM: "%dk"
+      #Short text representing 1 year in the past
       'y': "1a"
+      #Short text representing %d years in the past
       yy: "%da"
     datetime_with_zone: "D. MMM YYYY · LT z"
   month: Kuu
