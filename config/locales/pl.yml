@@ -260,6 +260,8 @@ pl:
   add_another_photo: Dodaj kolejne zdjęcie
   add_another_section: Dodaj kolejną sekcję
   add_another_subscription: Dodaj kolejną subskrypcję
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Dodaj zasób
   add_batch: Dodaj wiele
   add_comma_separated_tags: "Dodaj tagi oddzielone przecinkami"
   add_comment: Dodaj komentarz
@@ -529,6 +531,7 @@ pl:
   are_you_sure_remove_taxon_from_list: "Czy na pewno chcesz usunąć ten takson z listy?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Jesteś pewien? Strona zostanie załadowana ponownie i możesz utracić niektóre zmiany.
+  are_you_sure_want_delete_taxon: "Czy na pewno chesz usunąć ten takson?"
   are_you_sure_want_delete_this_name: Czy na pewno chcesz usunąć tę nazwę?
   are_you_sure_want_delete_this_range: Czy na pewno chcesz usunąć ten zasięg?
   are_you_sure_you_want_to_commit_this_change: Czy na pewno chcesz zapisać te zmiany? Nie można tego cofnąć.
@@ -1340,6 +1343,7 @@ pl:
   in_the_past_week: w zeszłym tygodniu
   inactive: Nieaktywny
   inactive_taxon: Takson nieaktywny
+  inactive_taxon_concepts_are: Nieaktywne taksony to taksony przestarzałe lub czekające w kolejce do zmiany. Przestarzałe taksony są utrzymywane, aby zachować historię i kompatybilność z niektórymi partnerskimi stronami.
   inappropriate_content: Nieodpowiednia zawartość?
   inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} uważa, że to jest kompletna lista taksonów dla tego miejsca."
@@ -1530,8 +1534,8 @@ pl:
     da: Duński
     de: Niemiecki
     el: Grecki
-    en-US: Angielski (Stany Zjednoczone)
     en: Angielski
+    en-US: Angielski (Stany Zjednoczone)
     eo: Esperanto
     es-ES: Hiszpański (Hiszpania)
     es-MX: Hiszpański (Meksyk)
@@ -1878,6 +1882,9 @@ pl:
   of_places: miejsca
   onboarding:
     follow_panel_title_local: Obserwuj przyrodników z okolicy
+  only_curators_can_add_edit_scientific_names: Tylko opiekuni mogą dodawać/edytować nazwy naukowe.
+  only_curators_can_access_that_page: Tylko opiekuni mają dostęp do tej strony.
+  only_project_curators_can_do_that: Tylko opiekuni projektu mogą to zrobić.
   only_species: tylko gatunki
   open: otwarty
   open_: Otwórz
@@ -1945,6 +1952,8 @@ pl:
       republic: republika
       Street: Ulica
       street: ulica
+      Time_Zone: Strefa czasowa
+      time_zone: strefa czasowa
       Town: Miasto
       town: miasto
       Undefined: Niezdefiniowane
@@ -2201,7 +2210,13 @@ pl:
   saved: Zapisano
   saving: "Zapisywanie..."
   saving_verb: Zapisywanie
+  search_obs: "Szukaj obserwacji..."
   search_projects: Szukaj Projektów
+  search_species: Szukaj gatunków
+  search_species_: Szukaj gatunków...
+  search_taxa: "Szukaj taksonów..."
+  search_this_taxon: szukaj tego taksonu
+  searching: "Szukanie..."
   select_this_taxon: Wybierz ten takson
   show_keyboard_shortcuts: Pokaż skróty klawiszowe
   show_less: Pokaż mniej
@@ -2212,39 +2227,108 @@ pl:
   sign_up!: Zarejestruj się!
   sign_up: Zarejestruj się
   sign_up_exclamation: Zarejestruj się!
+  similar_species: Podobne gatunki
+  similar_taxa: Podobne taksony
   sign_in_exclamation: Zaloguj się!
   some_observations_failed_to_be_added: Nie udało się dodać niektórych Obserwacji do projektów
   sounds:
     add_media: Dodaj media
     add_sounds: Dodaj dźwięki
   source_wikipedia: "Źródło: Wikipedia"
+  stop_editing: Przestań edytować
+  stop_following_user: "Przestań obserwować %{user}"
+  stop_testing: Przestań testować
+  stop_updating_position: Przestań aktualizować pozycję
   suggest_an_identification: Zasugeruj identyfikację
   suggestions: Sugestie
   taxa_info: Informacje o Taksonach
+  taxon_is_threatened_coordinates_hidden_desc: |
+    Jeden z taksonów zasugerowanych w identyfikacjach lub jeden z taksonów zawierających którykolwiek z tych taksonów jest znany jako rzadki i/lub zagrożony, dlatego miejsce tej obserwacji zostało ukryte.
+  tell_us_why: Powiedz nam dlaczego...
+  thanks!: Dzięki!
   thanks_for_signing_up: Dziękujemy za rejestrację!
   the_people_of_inat: "Ludzie z %{site_name}"
   then_keybord_sequence: potem
   these_are_items_people_on: |
     To są elementy, które zostały zgłoszone. Komentarze, które są spamem powinny zostać usunięte, a użytkownicy, którzy go dodali - zawieszeni (idź do ich profilu i kliknij "Zawieś użytkownika", aby zapobiec ponownemu zalogowaniu). Pozostałe zgłoszone elementy powinny zostać usunięte tylko wtedy, gdy są jednoznacznie nielegalne, pełne nienawiści itd. Reakcją na nieuprzejmość, przekleństwa itp. powinien być grzeczny komentarz. Jednak gdy ktoś robi to wielokrotnie, zgłoś go do administratora strony lub %{email}
+  they_have_been_invited: ...zostali już zaproszeni
+  this: to
+  this_is_a: To jest
+  this_is_your_observation: To jest Twoja obserwacja
+  this_list_is_empty!: Ta lista jest pusta!
+  this_observation: Ta obserwacja
   this_observation_was_created_using: "Ta obserwacja została wykonana przy użyciu:"
+  threatened: Zagrożony
+  to_add_comments: aby dodać komentarze
+  to_add_identifications: aby dodać identyfikacje
+  to_add_ids: aby dodać identyfikacje
+  to_configure_your_widget: aby skonfigurować swój widżet.
+  to_suggest_an_identification: aby zasugerować identyfikację
+  today: Dzisiaj
+  too_many_results: Zbyt wiele wyników
+  tools: Narzędzia
+  top_5_identifiers: 5 Najlepszych identyfikujących
+  top_identifier: Najlepszy identyfikujący
+  top_identifiers: Najlepsi identyfikujący
+  top_identifiers_of_taxon: Najlepsi identyfikujący %{taxon}
+  top_observer: Najlepszy obserwator
+  top_observers: Najlepsi obserwatorzy
   total: Razem
+  translated_languages: Przetłumaczone języki
+  trusted_project?: Zaufany projekt?
+  twitter: Twitter
+  two_thirds: 2/3
+  type: Typ
+  updating: Aktualizowanie...
   uploaded_by: Przesłane przez
+  user_added_a_x: "%{user} dodał %{x}"
+  user_added_an_x: "%{user} dodał %{x}"
   user_helped_x_people_with_y_ids_html: "%{user} pomógł <strong>%{x} ludziom</strong> z <strong>%{y} identyfikacjami</strong>"
   user_is_a_naturalist: "%{user} jest przyrodnikiem!"
   users_projects: "Projekty użytkownika %{user}"
   value: Wartość
   values: Wartości
+  view: Zobacz
+  view_all: Zobacz wszsytkie
+  view_all_flags: Zobacz wszystkie zgłoszenia
+  view_all_from_x: Zobacz wszsytkie od %{x}
+  view_all_members: Zobacz wszystkich użytkowników
+  view_all_n: "Zobacz wszystkie %{n}"
+  view_all_observations: Zobacz wszystkie obserwacje
   view_all_your_projects: Zobacz wszystkie swoje projekty
   view_change: Zobacz zmianę
+  view_full_observation: Zobacz pełną obserwację
+  view_more_observations: Zobacz więcej obserwacji
+  view_more_observations_from_x: "Zobacz więcej obserwacji od %{x}"
+  view_more_observations_from: Zobacz więcej obserwacji od
+  view_more_observations_near_x_place: "Zobacz więcej obserwacji w pobliżu %{place} na <nobr>%{site_name}&raquo;</nobr>"
+  view_more_observations_of_x_project: "Zobacz więcej obserwacji z projektu %{project} na <nobr>%{site_name}&raquo;</nobr>"
+  view_more_observations_of_x_taxon: "Zobacz więcej obserwacji %{taxon} na <nobr>%{site_name}&raquo;</nobr>"
+  view_more_recent_observations: Zobacz więcej ostatnich obserwacji
+  view_observation: Zobacz obserwację
+  view_observations: Zobacz obserwacje
+  view_observation_flags: Zobacz zgłoszenia obserwacji
+  view_post: Zobacz post
   view_projects_from_place: "Zobacz projekty z miejsca %{place}"
+  view_stats: Zobacz statystyki
+  view_the_observation: Zobacz obserwację
+  view_unidentified_observations: "Zobacz niezidentyfikowane obserwacje..."
+  view_user_observations: "Zobacz obserwacje %{user}"
+  view_x: "Zobacz %{x}"
+  view_xs_journal: "Zobacz dziennik %{x}"
   view_your_inbox: Zobacz skrzynkę odbiorczą
   view_your_observations: Zobacz swoje obserwacje
+  view_all_of_your_observations_from_x: "Zobacz wszystkie swoje obserwacje z %{x}"
+  visually_similar: Wizualnie podobne
+  weather: Pogoda
   website: Strona internetowa
+  wed: Śr
   what_did_you_see: Co zaobserwowałeś?
   what_did_you_see?: <em>Co</em> zaobserwowałeś?
   where: Gdzie
   where_were_you?: Gdzie byłeś?
   with_annotation: Z adnotacją
+  widget: Widżet
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} z %{y} ludzi (ponad 2/3) zgadza się, że to jest"
   x_site_is_a_social_network_for_naturalist: |
     %{site} to przyrodniczy portal społecznościowy! Dodawaj obserwacje roślin i zwierząt, dziel się nimi ze znajomymi i badaczami, dowiedz się więcej o świecie.
@@ -2260,6 +2344,7 @@ pl:
     help:
       index:
         what_are_admins_and_curators?: Kim są administratorzy i opiekunowie strony?
+        what_is_an_observation?: Czym jest obserwacja?
         check_the_id_please_checkbox_when_html: |
           Zaznacz "Proszę o identyfikację", kiedy dodajesz / edytujesz obserwację - dzięki temu twoja obserwacja pojawi się w dziale <a href="%{url}">Proszę o identyfikację</a>.
         what_are_tags?: Czym są tagi?
@@ -2274,6 +2359,10 @@ pl:
     observations:
       community_id:
         score: Ocena
+      field_descriptions:
+        id: "Unikalny identyfikator obserwacji"
+      identify:
+        review_all_tooltip: "Oznacz wszystkie obserwacje na stronie jako przejrzane"
     projects:
       project_type: Typ projektu
       collection: Kolekcja
@@ -2285,8 +2374,18 @@ pl:
       index:
         avg_ttcid: Średni TTCID
         avg_ttid: Średni TTCID
+    users:
+      edit:
+        project_addition_preferences:
+          joined: Projekty do których dołączyłeś
+      recent:
+        about_recent_users: O
+    user_parents:
+      new:
+        step1_title: UTWÓRZ KONTO DLA SWOJEGO DZIECKA
     welcome:
       index:
+        how_it_works: Jak to działa
         share_with_fellow_naturalists: Podziel się ze znajomymi
         build_your_knowledge: Zdobywaj doświadczenie i wiedzę poprzez dyskusje z przyrodnikami oraz pomoc innym użytkownikom.
         what_are_you_waiting_for: Nie czekaj!
@@ -2498,15 +2597,20 @@ pl:
         map_type: Typ mapy
         zoom_level: Poziom powiększenia
         source_url: Źródłowy adres URL
+        start_time: Czas rozpoczęcia
       place:
+        code: Kod
         display_name: Nazwa wyświetlana
         latitude: Szerokość geograficzna
         longitude: Długość geograficzna
         name: Nazwa
         parent_id: rodzic
+        place_type: Typ miejsca
       source:
         title: Tytuł
         url: Adres URL
+      taxon:
+        name: Nazwa
     errors:
       messages:
         inclusion: nie znajduje się na liście
@@ -2517,6 +2621,14 @@ pl:
         not_an_integer: musi być liczbą całkowitą
         odd: musi być liczbą nieparzystą
       models:
+        application:
+          attributes:
+            redirect_uri:
+              has_query_parameter: "nie może zawierać parametru zapytania."
+        flag:
+          attributes:
+            user_id:
+              already_flagged: "już zgłosił ten element"
         user:
           attributes:
             login:
@@ -2529,4 +2641,11 @@ pl:
             email:
               belongs_to_an_existing_user: |
                 należy do istniejącego użytkownika; jeżeli masz już konto, zaloguj się przed kontynuowaniem, lub użyj innego adresu e-mail
+  doorkeeper:
+    flash:
+      applications:
+        create:
+          notice: 'Aplikacja utworzona.'
+  zoom_in: Przybliż
+  zoom_out: Oddal
   zoom_photo: Przybliż zdjęcie
