@@ -1894,16 +1894,27 @@ it:
     shortRelativeTime:
       future: "in %s"
       past: "%s"
+      #Short text representing 1 second in the past
       s: "1s"
+      #Short text representing 1 minute in the past
       m: "1 min"
+      #Short text representing %d minutes in the past
       mm: "%d min"
+      #Short text representing 1 hour in the past
       h: "1 ora"
+      #Short text representing %d hours in the past
       hh: "%d ore"
+      #Short text representing 1 day in the past
       d: "1 g"
+      #Short text representing %d days in the past
       dd: "%d g"
+      #Short text representing 1 month in the past
       M: "1 mese"
+      #Short text representing %d months in the past
       MM: "%d mesi"
+      #Short text representing 1 year in the past
       'y': "1 anno"
+      #Short text representing %d years in the past
       yy: "%d anni"
     datetime_with_zone: "D MMM YYYY · LT z"
     datetime_with_offset: "D MMM YYYY · LT Z"
@@ -6330,63 +6341,6 @@ it:
       authorized_applications:
         destroy:
           notice: 'Applicazione revocata.'
-  i18n:
-    inflections:
-      vow_or_con:
-        vow: vocale
-        con: consonante
-        a: ':@vow'
-        e: ':@vow'
-        i: ':@vow'
-        o: ':@vow'
-        u: ':@vow'
-        default: ':@con'
-      gender:
-        m: maschile
-        f: femminile
-        "n": neutro
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        application: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        assessment_section: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        atlas: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        check_list: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        identification: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        listed_taxon: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        note: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        observation: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        observation_field: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        place: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        post: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        species: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_change: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_drop: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_link: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_merge: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_split: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_stage: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon_swap: ':@m'
-        #Default gender for nouns that aren't listed here
-        default: ':@m'
   wild: Selvatico
   will_paginate:
     previous_label: "&#8592; Precedente"
