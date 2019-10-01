@@ -1720,6 +1720,7 @@ fr:
   momentjs:
     shortRelativeTime:
       future: "en %s"
+      #Short text representing 1 month in the past
       M: "1min"
     datetime_with_zone: "D MMM YYYY · LT z"
   month: Mois
@@ -6601,29 +6602,25 @@ fr:
           notice: 'Application révoquée.'
   i18n:
     inflections:
-      gender:
+      "@gender":
         m: masculin
         f: féminin
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        application: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        check_list: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        identification: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        note: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        observation: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        observation_field: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        place: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        post: ':@m'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        species: ':@f'
-        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
-        taxon: ':@m'
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@m"
   wild: Sauvage
   will_paginate:
     previous_label: "&#8592; Précédent"
