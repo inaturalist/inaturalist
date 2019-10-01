@@ -160,6 +160,8 @@ sv:
   add_another_photo: Lägg till ett annat foto
   add_another_section: Lägg till ett annat avsnitt
   add_another_subscription: Bifoga ännu ett abonnemang
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Lägg till material
   add_batch: Lägg till bunt
   add_comma_separated_tags: "Lägg till kommaseparerade taggar"
   add_comment: Lägg till en kommentar
@@ -185,7 +187,10 @@ sv:
   add_observations: Lägg till observationer
   add_observations_by_checking_off: Lägg till observationer genom att markera arter på en lista.
   add_observations_project: Lägg till observationer i detta projekt
+  #Prompt to add a new journal post
   add_one: Lägg till en!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
   add_one_now: Lägg till en nu
   add_photos: Lägg till foton
   add_photos_to_this_observation: Lägg till foton i denna observation
@@ -399,6 +404,7 @@ sv:
   are_you_sure_remove_taxon_from_list: "Är du säker på att du vill ta bort den här taxon från listan?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Är du säker? Det här kommer ladda om sidan och dina ändringar kan gå förlorade.
+  are_you_sure_want_delete_taxon: "Är du säker på att du vill ta bort denna taxon?"
   are_you_sure_want_delete_taxon_link: Är du säker på att du vill ta bort denna länk till taxon?
   are_you_sure_want_delete_this_name: Är du säker på att du vill radera detta namn?
   are_you_sure_want_delete_this_range: Är du säker på att du vill ta bort det här intervallet?
@@ -436,6 +442,8 @@ sv:
   associations: Associationer
   at: vid
   at_time: "kl. %{time}"
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribut
   attribution: Erkännande
   authority_list:
@@ -541,12 +549,19 @@ sv:
     merge: Sammanfoga
     swap: Byt
     drop: Släpp
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: dela upp från
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dela upp till
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: sammanfoga till
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: sammanfogades till
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: ersattes av
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: ersätt med
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ersätt med
     dropped: släpptes
   change_your_password: Ändra ditt lösenord
@@ -732,6 +747,8 @@ sv:
   done: Klar
   dont_have_an_account_sign_up_html: Har du inte ett konto? <strong>Registrera dig.</strong>
   dont_send_me_email: "Skicka inte någon e-post!"
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
   drop_it: Släpp den
   download: Ladda ned
   download_csv: Ladda ned CSV
@@ -822,6 +839,7 @@ sv:
   finished: Slutfört
   first_inat_observation: "Första %{site_name} observation"
   first_observation: Första observation
+  #Verb form, as in "Flag this item"
   flag: Flagga
   flag_an_item: Flagga ett objekt
   flag_as_spammer: Flagga som spammare
@@ -990,8 +1008,8 @@ sv:
     da: Danska
     de: Tyska
     el: Grekiska
-    en-US: Engelska (USA)
     en: Engelska
+    en-US: Engelska (USA)
     es-ES: Spanska (Spanien)
     es-MX: Spanska (Mexiko)
     es: Spanska
@@ -1016,7 +1034,6 @@ sv:
     zh-CN: Kinesiska (förenklad)
     zh-TW: Kinesiska (traditionell)
   location: Plats
-  locations: Platser
   location_is_public: Platsen är offentlig
   location_is_private: Platsen är privat
   log_in: Logga in
@@ -1026,7 +1043,6 @@ sv:
   longitude: Longitud
   longitude_value: "Longitud: %{longitude}"
   make_admin: Gör admin
-  manage: Hantera
   manage_your_projects: Hantera dina projekt
   map: Karta
   map_of_observations: Karta över observationer
@@ -1055,10 +1071,8 @@ sv:
       yy: "%då"
     datetime_with_zone: "D MMM YYYY · LT z"
     datetime_with_offset: "D MMM YYYY · LT Z"
-  mon: Mån
   month: Månad
   months: Månader
-  months_ago: "%{text} sedan"
   more: Mer
   more_filters: Mer filtrerar
   more_from_x: Mer från %{x}
@@ -1067,7 +1081,6 @@ sv:
   more_observations: Mer observationer
   more_photos: Fler foton
   more_than_a_week_ago: Mer än en vecka sedan
-  most: Mest
   most_browser_print_pdf: "OBS: De flesta webbläsare har ett alternativ att skriva ut till PDF"
   most_comments_and_faves: Flest kommentarer och favoriter
   most_observations: Mest observationer
@@ -1076,7 +1089,6 @@ sv:
   multiple_select_option: '-- flera --'
   n_ago: "%{n} sedan"
   name: Namn
-  name_or_username: Namn eller användarnamn
   names: Namn
   names_for_taxon_html: "Namn för %{taxon}"
   new: Ny
@@ -1092,7 +1104,6 @@ sv:
   new_password: Nytt lösenord
   new_project: Nytt projekt
   new_species_added_in_interval_x_of_y: Nya arter som lades till i %{interval} (Visar %{x} av %{y})
-  new_taxon_name: Ny taxon namn
   new_taxon_name_for: Ny takson namn för
   new_users: Nya användare
   new_users_this_year: Ny användare i år
@@ -1120,14 +1131,11 @@ sv:
   none_found: Ingen hittades
   not_linked_facebook: "Ditt %{site_name}-konto är inte länkat till ditt Facebook-konto"
   not_linked_flickr: "Ditt %{site_name}-konto är inte länkat till ditt Flickr-konto"
-  not_logged_in: Inte inloggad
   not_on_this_list: Inte på denna lista.
-  not_spam: Inte spam
   notes: Kommentarer
   number_of_observers_value: "Antal observerare: %{number}"
   number_of_observers: "Antal observerare"
   number_selected: "Antal valda"
-  noun_by_you: "%{noun} av dej"
   observations_by_category: "Observationer efter kategori"
   observations_by_app: Observationer av app
   observations_by_rank: Observationer av rang
@@ -1529,6 +1537,8 @@ sv:
   supporting: Stödjer
   support_inaturalist: Stöd iNaturalist
   sun: Sön
+  #Noun, as in "add a tag to this observation"
+  tag: Tagg
   take_me_back: Ta mig tillbaka
   taxa_info: Taxainfo
   taxa_all_species_html: "Alla arter"
@@ -1997,6 +2007,7 @@ sv:
       rfc: "%-d %B %Y"
       day_month_year: "%-d %B %Y"
       hours: "%H:%M"
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
       messages:
