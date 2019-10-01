@@ -71,6 +71,8 @@ ar:
   add_another_photo: إضافة صورة أخرى
   add_another_section: أضف قسما آخر
   add_another_subscription: أضف اشتراكا آخر
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: إضافة الأصول
   add_batch: أضف دفعة
   add_comma_separated_tags: "أضف علامات مفصولة بفواصل"
   add_comment: إضافة تعليق
@@ -96,7 +98,10 @@ ar:
   add_observations: إضافة ملاحظات
   add_observations_by_checking_off: إضافة ملاحظات عن طريق التحقق من الأنواع من قائمة.
   add_observations_project: إضافة ملاحظات إلى هذا المشروع
+  #Prompt to add a new journal post
   add_one: أضف واحدا!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
   add_one_now: إضافة واحد الآن
   add_photos: أضف صورًا
   add_photos_to_this_observation: إضافة صور إلى هذه الملاحظة
@@ -274,6 +279,7 @@ ar:
   are_you_sure_remove_taxon_from_list: "هل تريد بالتأكيد إزالة هذه الأصنوفة من القائمة؟"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     هل أنت متأكد؟ سيؤدي ذلك إلى إعادة تحميل الصفحة التي قد تفقد بعض التغييرات فيها.
+  are_you_sure_want_delete_taxon: "هل تريد بالتأكيد حذف هذه الأصنوفة؟"
   are_you_sure_want_delete_taxon_link: هل تريد بالتأكيد حذف رابط هذه الأصنوفة؟
   are_you_sure_want_delete_this_name: هل تريد بالتأكيد حذف هذا الاسم؟
   are_you_sure_want_delete_this_range: هل تريد بالتأكيد حذف هذا النطاق؟
@@ -311,8 +317,13 @@ ar:
   associations: مرتبطة
   at: في
   at_time: "في %{time}"
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
   atom: ذرة
   attached_taxon: الأصنوفة المتعلقة
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: سمة
   attribution: النسبة
   authority_list:
@@ -446,12 +457,19 @@ ar:
     swap: تبديل
     stage: مرحلة
     drop: إسقاط
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: انقسام من
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: انقسام إلى
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: يندمج مع
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: معلومات الاندماج
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: حل محله
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: استبدال ب
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: اُستبدِل ب
     dropped: تم الإسقاط
     staged: نظمه
@@ -691,6 +709,8 @@ ar:
   curator_identification: تحديد الإشراف
   current_flags: الأعلام الحالية
   custom_project_fields: حقول المشروع المخصصة
+  custom_project_was_successfully_created: تم إنشاء مشروع مخصص بنجاح.
+  custom_project_was_successfully_updated: تم تحديث  مشروع مخصص بنجاح.
   customize_location: تخصيص الموقع
   darr_apply_darr: "&darr; تطبيق &darr;"
   dashboard: لوحة التحكم
@@ -786,7 +806,6 @@ ar:
   destroy: تدمير
   details: تفاصيل
   deviation: الانحراف
-  deviations: الانحرافات
   devise:
     failure:
       user:
@@ -815,6 +834,8 @@ ar:
   dont_have_an_account_sign_up_html: ليس لديك حساب؟ <strong>قم بالاشتراك.</strong>
   dont_send_me_email: "لا ترسل لي أي بريد إلكتروني!"
   dont_use_double_quotes: لا تستخدم علامات الاقتباس المزدوجة في أي مكان آخر
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
   drop_it: إسقاطه
   double_click_to_finish: (انقر نقرا مزدوجا للانتهاء)
   download: تنزيل
@@ -824,10 +845,11 @@ ar:
   download_csv: تحميل بصيغة CSV
   download_csv_template: تنزيل قالب CSV
   download_kml: تنزيل بصيغة KML
-  downstream_coverage: تغطية المصب
   downstream_coverage_rank: مستوى تغطية المصب
   downstream_deviations: الانحرافات للأسفل
   downstream_deviations_for_taxon: "الانحرافات في اتجاه مجرى النهر لـ%{taxon}"
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: الأصناف المتدفقة المعلمة المغطاه
   draft: مسودة
   draft_: مسودة
@@ -1017,6 +1039,7 @@ ar:
   first_observation: الملاحظة الأولى
   first_observation_by_date_added: الملاحظة الأولى حسب تاريخ الإضافة
   first_observer: المراقب الأول
+  #Verb form, as in "Flag this item"
   flag: علم
   flag_as_inappropriate: التعليم كغير لائق
   flag_an_item: التعليم على عنصر
@@ -1034,7 +1057,6 @@ ar:
   flag_this_sound: تعليم هذا الصوت
   flagged: مُعلَّم
   flagged_: مُعلَّم
-  flagged_covered_taxa: الأصناف المغطاة المعلمة
   flagged_for_curation: تم التعليم للمشرفين
   flagged_taxon: الأصنوفة المعلمة
   flagged_thing_explanation: "علم المستخدمون هذا %{thing} لأنه"
@@ -1254,6 +1276,7 @@ ar:
   in_n: "في %{n}"
   in_place_x: في %{place}
   inaturalist_network_affiliation: شبكة انتماء إيناتوراليست
+  #Label for messages you've received
   inbox: صندوق الوارد
   including: يتضمن
   increase_brightness: زيادة السطوع
@@ -1262,6 +1285,7 @@ ar:
   in_the_past_week: في الأسبوع الماضي
   inactive: غير نشط
   inactive_taxon: أصنوفة غير نشطة
+  inactive_taxon_concepts_are: مفاهيم الأصنوفة غير النشطة إما قديمة العهد من الناحية التصنيفية أو يجري وضعها لتغير الأصنوفة، يتم الاحتفاظ بالمفاهيم القديمة للحفاظ على التاريخ والتوافق مع بعض مواقع الشركاء.
   inappropriate_content: محتوى غير لائق؟
   inat_account_action: "%{site_name} &#58; الحساب &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "يعتقد %{site_name} أن هذه قائمة كاملة بأصناف هذا المكان."
@@ -1287,6 +1311,7 @@ ar:
   invite_someone_to: "دعوة شخص ما إلى %{name}!"
   invite_your_friends: ادعُ أصدقاءك
   invite_your_friends_description: "ساعد في جعل %{site_name} منتدى أكبر وأفضل من خلال دعوة أصدقائك للانضمام!"
+  #Type of project where people can only join after they have been invited
   inviteonly: دعوة فقط
   invited_x: "تمت دعوة %{x}"
   iphone: آيفون
@@ -1332,6 +1357,7 @@ ar:
   location_private: الموقع خاص
   location_unknown: الموقع غير معروف
   language_slash_type: اللغة / النوع
+  #Large photo size
   large: كبير
   last_active_with_date: "آخر نشاط: %{date}"
   last_confirmed_observation: آخر ملاحظة مؤكدة
@@ -1343,6 +1369,7 @@ ar:
   latitude_in_decimals: 'دائرة العرض بالدرجات العشرية، على سبيل المثال 38.123'
   latitude_slash_y_coord_slash_northing: عرض جغرافي / y coord / الشمال
   latitude_value: "خط العرض: %{latitude}"
+  #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: طبقات
   layout: تصميم
   leaderboard: المتصدرون
@@ -1416,7 +1443,6 @@ ar:
     turkish: التركية
     waray_waray: الواراي-واراي
   less: أقل
-  license_descriptions_and_images: أوصاف وصور التراخيص
   licensed_site_photos: "صور %{site_name} مرخصة"
   license: الترخيص
   licensing: الترخيص
@@ -1458,6 +1484,7 @@ ar:
   listed_taxon: الأصنوفة المدرجة
   listed_taxon_updated: تم تحديث الأصنوفة المدرجة
   listing_lists: قوائم الإدراج
+  listing_project_assets: إدراج أصول المشروع
   listing_taxa: إدراج أصناف
   lists: قوائم
   lists_by_login:
@@ -1486,8 +1513,8 @@ ar:
     da: الدنماركية
     de: الألمانية
     el: اليونانية
-    en-US: الإنجليزية (الولايات المتحدة)
     en: الإنجليزية
+    en-US: الإنجليزية (الولايات المتحدة)
     eo: إسبرانتو
     es-ES: الإسبانية (إسبانيا)
     es-MX: الإسبانية (المكسيك)
@@ -1518,7 +1545,6 @@ ar:
   locality_notes: ملاحظات محلية
   localized_species_accounts: حسابات الأنواع المترجمة
   location: الموقع
-  locations: المواقع
   location_is_accurate: الموقع دقيق
   location_is_exact: الموقع بالضبط
   location_is_public: الموقع عام
@@ -1546,9 +1572,7 @@ ar:
   lookup: ابحث عن
   low: منخفضة
   lowest_rank: أدنى رتبة
-  made_a: صنع
   make_admin: اصنع إداري
-  make_an_observation: اصنع ملاحظة
   mail_disclaimer: "لن يسمح %{site_name} لمستخدميه بإرسال دعوات إضافية لك عبر الداعي، الرجاء الإبلاغ عن الإساءة للدعوة في %{site}."
   main_content: المحتوى الرئيسي
   make_a_new_place: إنشاء مكان جديد
@@ -1556,26 +1580,19 @@ ar:
   make_curator: اصنع مشرفا
   make_it_a_life_list?: جعلها قائمة حياة؟
   make_manager: اصنع مديرا
-  make_new_place: إنشاء مكان جديد
-  make_one: اصنع واحدا؟
   make_sure_the_default_photo_looks_good: تأكد من أن الصورة الافتراضية تبدو جيدة بحجم كبير.
-  make_taxonomic_flickr_tags_for_taxon_raquo: "صنع علامات تصنيفية لوسوم فليكر لهذه الأصنوفة &raquo;"
   make_this_your_default_license: "اجعل هذا ترخيصك %{type} الافتراضي"
   make_this_the_primary_listing: "اجعل هذه القائمة الأساسية"
   mammals: الثدييات
-  manage: إدارة
   manage_all_your_subscriptions: إدارة جميع اشتراكاتك
   manage_names: إدارة الأسماء
   manage_your_projects: إدارة مشاريعك
   manage_your_project_invitations: إدارة دعوات مشروعك
   manage_your_relationships: إدارة علاقاتك
-  manage_subscriptions: إدارة الاشتراكات
-  managed: يديره
   manager: المدير
   managers: المديرون
   managers_can_do: يمكن للمديرين أن يفعلوا كل ما يمكن للقيمين القيام به وكذلك تحرير إعدادات المشروع وكتابة مشاركات مجلة المشروع.
   managing_projects: إدارة المشاريع
-  manually_create_new_place: إنشاء مكان جديد يدويا
   map: خريطة
   map_legend: مفتاح الخريطة
   map_marker_size: حجم علامة الخريطة
@@ -1593,18 +1610,14 @@ ar:
       checklist_places_description: الأماكن التي تم إدراج هذه الأصنوفة فيها
       range: النطاق
   map_tooltip: مشاهدة عرض الخريطة
-  map_for: خريطة لـ
   mark_as_reviewed: التعليم كمراجَعة
   mark_all_as_reviewed: التعليم على الكل كمراجع
   mark_all_as_unreviewed: التعليم على الكل كغير مراجع
-  matched_several_different_taxa: تمت مطابقة عدة أصناف مختلفة
   matching_species_will_shown_up_here: ستظهر الأنواع المطابقة هنا، ستعرض الخرائط نطاقا إذا كان %{place} يحتوي على واحد من هذا النوع.
   maverick: مستقل
-  maybe_your_signed_in_with: "ربما سجلت الدخول باستخدام حساب %{omniauth} الخاص بك؟"
   media: الوسائط
   media_type: نوع الوسائط
   medium: متوسط
-  medium_url: مسار الوسيط
   meet: يقابل
   member_of_the_inaturalist_network_html: |
     عضو في <a href="%{url}">شبكة إيناتوراليست</a>
@@ -1616,7 +1629,6 @@ ar:
   mentioned_you_in_an_x_on_noun_html: "أشار %{user} في %{x} عن %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "أشار %{user} لك في %{x} عن %{noun} بواسطة %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "أشار %{user} لك في %{x} عن %{noun} بواسطة %{by}"
-  mentions: "إشارات"
   merge: دمج
   merge_it_with_another_place: دمجه مع مكان آخر
   merge_two_places_together: دمج مكانين معا، سيتم دمج جميع الأنواع في قوائم التحقق، فضلا عن أي بيانات جغرافية.
@@ -1629,10 +1641,7 @@ ar:
   misleading_or_illegal_content_html: |
     محتوى مضلل أو غير قانوني، أو عبارات عرقية أو إثنية، إلخ، لمزيد من المعلومات عن تعريفنا "المناسب"; اطلع على
     <a href="/help#inappropriate">الأسئلة المتكررة</a>.
-  mixed_licenses: تراخيص مختلطة
   mobile: المحمول
-  mobile_app_for: تطبيق المحمول لـ
-  mobile_apps_for: تطبيقات المحمول لـ
   mollusks: الرخويات
   momentjs:
     shortRelativeTime:
@@ -1644,17 +1653,14 @@ ar:
       M: "شهر واحد"
       'y': "سنة واحدة"
     datetime_with_zone: "ي شش سسسس · LT مز"
-  mon: شهر
   month: شهر
   monthly_supporter_since_date_html: |
     <a href="%{url}">داعم شهري</a> منذ %{date}
   months: أشهر
-  months_ago: "قبل %{text}"
   more: المزيد
   more_fields: المزيد من الحقول
   more_filters: المزيد من المرشحات
   more_from_x: المزيد من %{x}
-  more_help: مزيد من المساعدة
   more_import_options: المزيد من خيارات الاستيراد
   more_info: المزيد من المعلومات
   more_info_title: المزيد من المعلومات
@@ -1662,7 +1668,6 @@ ar:
   more_observations: المزيد من الملاحظات
   more_photos: المزيد من الصور
   more_than_a_week_ago: منذ أكثر من أسبوع
-  most: الأكثر
   most_agree: الأكثر توافقا
   most_browser_print_pdf: "ملاحظة: لدى معظم المتصفحات خيار الطباعة إلى PDF"
   most_disagree: الأكثر خلافا
@@ -1696,31 +1701,21 @@ ar:
   n_person_disagrees: "لا يوافق %{amount} شخص"
   name: الاسم
   name_entered: تم إدخال الاسم
-  name_llaves: "[الاسم]"
   name_or_slug: "اسم أو مسار، على سبيل المثال مشروعي"
   name_of_the_place_you: اسم المكان الذي وضعت فيه الملاحظة
-  name_or_username: الاسم أو اسم المستخدم
-  name_provider: موفر الاسم
   name_providers:
     col: كتالوج الحياة
     nzor: سجل الكائنات الحية في نيوزيلندا
-  named_based_url_might_change: "قد تتغير المسارات المستندة إلى الأسماء، ولكن هذا لن يحدث."
   names: أسماء
   names_for_taxon_html: "أسماء لـ%{taxon}"
-  naturalised: متجنس
-  naturalized: متجنس
   native: محلي
   native_page_url: مسار الصفحة الأصلية
   native_to_place: "مواطن لـ%{place}"
   nav: محلي
   ne_lat: خط العرض الشمالي الشرقي
   ne_lon: خط الطول الشمالي الشرقي
-  near: قريب
   near_threatened: قريب مهدد
-  nearby: مجاور
   nearby_observations_: الملاحظات القريبة
-  nearby_observations: الملاحظات القريبة
-  need_id_help?: تحتاج مساعدة معرف؟
   needs_id: يحتاج معرفا
   needs_id_: يحتاج معرفا
   needs_id_expandable_html: "<span class='full'>يحتاج </span>معرفا"
@@ -1733,7 +1728,6 @@ ar:
   new_check_list_for: "إنشاء قائمة تحقق جديدة لـ%{place} &raquo;"
   new_check_list_record: "إذا كنت تريد وضع علامة على هذه القائمة على أنها شاملة، فقم بإنشائها، ثم أضفها، ثم عدلها، وسيكون لديك الخيار لوضع علامة عليها على أنها شاملة هنا."
   new_comment_on_a_parent_by_user_link: تعليق جديد على @vow_or_con{vow:an|a} %{parent} بواسطة %{user_link}
-  new_custom_field_for: حقل مخصص جديد لـ
   new_flag_for: علم جديد لـ
   new_guide: دليل جديد
   new_journal_post: مجلة مشاركة جديدة
@@ -1742,7 +1736,6 @@ ar:
   new_members: "أعضاء جدد"
   new_message: رسالة جديدة
   new_observation_field: حقل ملاحظة جديد
-  new_observation_rules: قواعد ملاحظة جديدة
   new_observations: ملاحظات جديدة
   new_observations_this_year: ملاحظات جديدة هذا العام
   new_observations_ellispsis: "ملاحظات جديدة..."
@@ -1752,23 +1745,21 @@ ar:
   new_password: كلمة السر الجديدة
   new_post: منشور جديد
   new_project: مشروع جديد
+  new_project_asset: أصول المشروع الجديد
   new_project_asset_for: أصول المشروع الجديد لـ
   new_source: مصدر جديد
   new_species_added_in_interval: الأنواع الجديدة المضافة في %{interval}
   new_species_added_in_interval_x_of_y: الأنواع الجديدة المضافة في %{interval} (عرض %{x} من %{y})
   new_taxon_change: تغيير الأصنوفة الجديد
   new_taxon_link: رابط الأصنوفة الجديدة
-  new_taxon_name: اسم الأصنوفة الجديدة
   new_taxon_name_for: اسم الأصنوفة الجديدة لـ
   new_taxon_range: مدى الأصنوفة الجديدة
   new_taxonomic_change: التغيير التصنيفي الجديد (مسودة)
   new_trip: رحلة جديدة
   new_updates_in_the_last_24_hours_from: "تحديثات جديدة في آخر 24 ساعة من %{site_name}"
-  new_user_rules: قواعد المستخدم الجديد
   new_users: مستخدمون جدد
   new_users_this_year: مستخدمون جدد هذا العام
   new_users_w_7_obs: المستخدمون الجدد w/ 7 ملا
-  new_users_week: المستخدمون الجدد / الأسبوع
   newly_added: مضاف حديثا
   newly_added_species: الأنواع المضافة حديثا
   newly_observed_species: الأنواع الملاحظة حديثا
@@ -1780,22 +1771,16 @@ ar:
   next_photo: الصورة التالية
   next_tab: علامة التبويب التالية
   'no': 'لا'
-  no_activity_in_the_past_week: لا يوجد نشاط في الأسبوع الماضي، وقت لـ
-  no_administrator_knows_your_password: "لا يعرف إداري %{sitename} كلمة السر الجديدة أو في أي وقت كان لديه حق الدخول إلى كلمة السر."
   no_assessments_have_been_added_to_this_project_yet: لم تتم إضافة أي تقديرات لهذا المشروع بعد.
   no_but_it_is_a_member_of_taxon: "لا، ولكنه عضو في %{taxon}"
-  no_colors_selected: لم يتم تحديد ألوان.
   no_comments_yet: لا تعليقات حتى الآن.
   no_countries_added_yet: لم تتم إضافة أي بلدان حتى الآن
-  no_creative_commons_flickr_photo: لا توجد صور فليكر موسومة بالمشاع الإبداعي
   no_creative_commons_flickr_photos_tagged_x: 'لا توجد صور فليكر موسومة بالمشاع الإبداعي "%{x}"'
   no_curators_set: لم يتم تعيين قيمين
   no_curators_yet: لا يوجد قيمون حتى الآن!
   no_description: لا يوجد وصف
-  no_facebook_photos: لا يمكننا العثور على أي صور من فيسبوك.
   no_flags: لا توجد أعلام هذه المرة
   no_flickr_photos_tagged: لا توجد صور فليكر موسومة!
-  no_header_row: لا يوجد صف رأس
   no_identifications: لا توجد هويات
   no_identifications_added:
     current_user: أنت لم تضف هويات إلى ملاحظات أي شخص.
@@ -1806,9 +1791,7 @@ ar:
   no_favorites_added:
     current_user: لم تضف المفضلة بعد.
     user: "لم يضف %{user} المفضلة."
-  no_journal_post_have_been: لم تتم إضافة أية مشاركات مجلات إلى هذا المشروع حتى الآن.
   no_license_all_rights_reserved: لا ترخيص (جميع الحقوق محفوظة)
-  no_link_flickr: "لا، أنا أفضل لا."
   no_managers_set: لا يوجد مديرون بعد
   no_matching_article_from_x: "لا توجد مقالة مطابقة من %{x}"
   no_matching_invitations: ليست هناك دعوات مطابقة
@@ -1823,26 +1806,20 @@ ar:
   no_more_mail_from_site: "لا تريد تلقي أي بريد إلكتروني من %{site_name}؟ عدل إعدادات البريد الإلكتروني في"
   no_more_taxa_to_load: لا يوجد المزيد من الأصناف للتحميل!
   no_more_results_found: لم يتم العثور على مزيد من النتائج
-  no_more_updates: لا يوجد المزيد من التحديثات!
-  no_nearby_observations: "لا توجد ملاحظات قريبة."
   no_new_messages: لا توجد رسائل جديدة
   no_news_yet: لا توجد أخبار حتى الآن
   no_observations: لا توجد ملاحظات
   no_observations_from_this_place_yet: لا توجد ملاحظات من هذا المكان حتى الآن.
   no_observations_matching_those_ids: لا توجد ملاحظات مطابقة لهذه المعرفات.
-  no_observations_need_an_id: لا توجد ملاحظات تحتاج إلى معرف الآن، مدهش!
   no_observations_submitted: "لم يتم إرسال أية ملاحظات!"
-  no_observations_suitable_for_this_project: "لا توجد ملاحظات مناسبة لهذا المشروع لم تتم المساهمة فيها أو دعوتها بعد."
   no_observations_yet: لا توجد ملاحظات حتى الآن
   no_one_has_added_any: لم يقم أحد بإضافة أية ملاحظات لهذا المكان
   no_one_has_been_invited_yet: لم تتم دعوة أي شخص حتى الآن
   no_one_posted_anything_yet: لم يتم نشر أي شيء حتى الآن!
-  no_ones_observed: لم يلاحظ أحد
   no_photo: لا توجد صورة
   no_photos: لا توجد صور
   no_photos_of_that_size: لا صورة بهذا الحجم.
   no_places_available: لا تتوفر أماكن
-  no_places_selected: لم يتم تحديد أماكن.
   no_post_yet: لا توجد مشاركات حتى الآن!
   no_project_selected: لم يتم تحديد أي مشروع
   no_project_to_admin_current_user: "لست إداريا بأي مشروع"
@@ -1850,7 +1827,6 @@ ar:
   no_projects_yet: لا توجد مشاريع بعد
   no_range_data_available: لا تتوفر بيانات نطاق.
   no_recent_activity: لا يوجد نشاط جديد
-  no_recently_active: لا توجد مشاريع نشطة مؤخرا حتى الآن.
   no_relevant_annotations: لا توجد شروح ذات صلة
   no_reply_yet: لا يوجد رد حتى الآن
   no_results_found: لم يتم العثور على نتائج
@@ -1871,34 +1847,26 @@ ar:
   no_taxa_listed: لم يتم إدراج أية أصناف
   no_taxa_selected: لم يتم اختيار أية أصناف
   no_taxa_with_unknown_relationships: لا أنواع بعلاقات غير معروفة
-  no_taxa_yet: لا توجد أصناف حتى الآن!
   no_taxon_framework_relationships: لا علاقات إطار للأنواع
   no_taxonomic_changes_match_those_criteria: لا تتطابق أي تغييرات تصنيفية مع تلك المعايير
   no_wikipedia_page_for_taxon: لا توجد صفحة في ويكيبيديا لهذا الصنف.
   no_x_this_y: "لا %{x} هذا %{y}"
   noble_curators: "%{site} قيمو نوبل"
   non_human?: غير بشري؟
-  non_internal_taxon: أصنوفة غير داخلية
   none: لا شيء
   none_found: لم يتم العثور على شيء
   normal: عادي
-  not_absent: ليس غائبا
   not_completed: غير مكتمل
   not_covered_by_any_taxon_frameworks: لا تغطيها أية أطر عمل تصنيفية
   not_evaluated: لم يتم تقييمه
-  not_filtering: عدم التصفية
   not_findig_what_you_want: لم تجد ما تريد؟
   not_finding_place_you_want?: لا تجد المكان الذي تريده؟
   not_found: لم يتم العثور عليه
-  not_just_creative_commons_licensed: ليست المرخصة برخص المشاع الإبداعي فقط
   not_linked_facebook: "حسابك في %{site_name} غير مرتبط بحسابك في فيسبوك"
   not_linked_flickr: "حسابك في %{site_name} غير مرتبط بحسابك في فليكر"
-  not_logged_in: غير مسجل الدخول
   not_on_this_list: ليس في هذه القائمة.
   not_recorded: غير مسجل
   not_seeing_what_looking_for: لم تر ما كنت تبحث عنه؟
-  not_spam: ليس بريدا موذيا
-  not_yet: ليس بعد
   note: ملحوظة
   notes: ملاحظات
   note_you_can_modify_the_height_attribute: "ملاحظة: يمكنك تعديل السمة 'ارتفاع' لتتناسب مع المساحة المتوفرة في صفحة الويب الخاصة بك."
@@ -1912,8 +1880,6 @@ ar:
   number_of_observers_value: "عدد المراقبين: %{number}"
   number_of_observers: "عدد المراقبين"
   number_selected: "تم اختيار #"
-  numeric_: رقمي
-  noun_by_you: "%{noun} بواسطتك"
   obs: ملاحظات
   obs_cid_d: ملا CID'd
   obs_id_d: ملا ID'd
@@ -2179,7 +2145,6 @@ ar:
   out_of_range: خارج النطاق
   output_taxon: إخراج الأصنوفة
   overview: نظرة عامة
-  overlapping_downstream_taxon_frameworks: تداخل أطر عمل تصنيفية مع التيار
   owner: المالك
   parent: الأصل
   parent_name: اسم الوالدين
@@ -2671,6 +2636,7 @@ ar:
   position: موقع
   positional_accuracy: الدقة الموضعية
   possessive_user: "%{user}"
+  #Noun, short version of a journal post
   post: إرسال
   post_from_journal_by_parent_html: منشور من <a href="%{url}">journal by %{parent}</a>
   post_from_your_journal_html: النشر من Post from <a href="%{url}">مجلتك</a>
@@ -3104,6 +3070,7 @@ ar:
   send_me_reset_password_instructions: أرسل لي تعليمات إعادة تعيين كلمة المرور
   send_the_invites: إرسال الدعوات
   sending: جارٍ الإرسال...
+  #Label for messages you've sent
   sent: تم إرسالها
   separate_values_with_a_pipe: قيم منفصلة بأنبوب، على سبيل المثال "1-5|6-10|الكثير" أو "نعم|لا|ربما"
   september: سبتمبر
@@ -3356,6 +3323,8 @@ ar:
   synonyms: مرادفات
   table: جدول
   table_of_contents: جدول المحتويات
+  #Noun, as in "add a tag to this observation"
+  tag: وسم
   tagging: 'جارٍ وضع علامات...'
   tags: وسوم
   tags_are_a_way: 'العلامات وسيلة لتنظيم ملاحظاتك، على سبيل المثال، قد تعلم كل ما ملاحظاتك عن "tidepool" لجعل لعثور عليها لاحقا أسهل.'
@@ -3377,6 +3346,10 @@ ar:
   taxon_geoprivacy: الخصوصية الجغرافية للأصنوفة
   taxon_is_a_rank: "%{taxon} %{rank}"
   taxon_is_threatened_coordinates_hidden: الأصنوفة مهددة; يتم إخفاء الإحداثيات بشكل افتراضي
+  taxon_is_threatened_coordinates_hidden_desc: |
+    من المعروف أن أحد الأصناف المقترحة في التعريفات، أو أحد الأصناف التي
+    تحتوي على أي من هذه الأصناف، نادرة و/أو مهددة; ولذلك 
+    تم حجب موقع هذه الملاحظة.
   taxon_is_threatened_coordinates_obscured: الأصنوفة مهددة; يتم تشويش الإحداثيات بشكل افتراضي
   taxon_is_threatened_coordinates_obscured_desc: |
     من المعروف أن أحد الأصناف المقترحة في التعريفات، أو أحد الأصناف التي
@@ -3430,6 +3403,7 @@ ar:
   taxon_search: بحث الأصنوفة
   taxon_search_results_for: نتائج بحث الأصنوفة عن
   taxon_split: تقسيم الأصنوفة
+  #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: مرحلة الأصنوفة
   taxon_subscription: اشتراك الأصنوفة
   taxon_swap: مبادلة الأصنوفة
@@ -3537,6 +3511,7 @@ ar:
   there_isnt_wiki_article: "لا توجد مقالة أو تحويلة في ويكيبيديا بعنوان '<i>%{taxon}</i>'; ربما كنت ترغب في"
   there_isnt_a_wikipedia_article_titled_x_html: |
     لا توجد مقالة أو تحويلة في ويكيبيديا بعنوان '%{x}'; ربما كنت ترغب في <a href='http://en.wikipedia.org/wiki/%{x}'>إنشاء واحدة</a>؟
+  there_merge_problems_with_the_merge: "هناك مشكلات في الدمج: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "حدثت مشكلة أثناء حفظ هويتك: %{error}"
   there_were_errors: حدثت أخطاء.
   there_were_problems_adding_taxa: "حدثت مشكلات أثناء إضافة هذه الأصناف: %{errors}"
@@ -3627,6 +3602,10 @@ ar:
   this_will_try_to_add_tags_to_your_flickr: سيحاول هذا إضافة علامات إلى صور فليكر، استمرار؟
   this_will_update_all_last_observations: سيحدث هذا جميع الملاحظات الأخيرة وسيضيف أصناف جديدة من
   this_year: هذا العام
+  those_are_the_basics_of: |
+    تلك هي أساسيات إضافة الملاحظات! هناك الكثير من
+    الأشياء الأخرى التي يمكنك القيام بها، مثل البحث وتصفية الملاحظات الخاصة بك أو 
+    تحريرها كدفعة، ولكن يجب أن تكون واضحة جدا.
   those_observations_no_longer_exist: لم تعد هذه الملاحظة موجودة.
   threatened: مهددة
   thu: خمي
@@ -4199,6 +4178,7 @@ ar:
   you_need_to_select_some_observations_first: تحتاج إلى تحديد بعض الملاحظات أولا.
   you_retain_full_copyright: "احتفظ بحقوق الطبع والنشر الكاملة على محتواك إلى جانب الحقوق الممنوحة ل%{site_name} في شروط الخدمة."
   you_retain_full_copyright_over_your_content: "احتفظ بحقوق الطبع والنشر الكاملة على محتواك إلى جانب الحقوق الممنوحة ل%{site_name} في شروط الخدمة."
+  you_sure_delete_asset?: هل تريد بالتأكيد حذف هذا الأصل؟
   you_sure_delete_check_list: "هل تريد بالتأكيد حذف هذه القائمة؟ قد يكون قد وضع بعض الناس الكثير من العمل فيها..."
   you_sure_delete_comment?: هل أنت متأكد أنك تريد حذف هذا التعليق؟
   you_sure_delete_custom_field?: هل أنت متأكد أنك تريد حذف هذه الحقول المخصصة؟
@@ -4826,6 +4806,8 @@ ar:
         iconic_taxon_name: فئة التصنيف العالي للأصنوفة الملاحظة
         taxon_id: معرف فريد للأضنوفة الملاحظة
         id_please: ما إذا كان المراقب طلب مساعدة معرف
+        num_identification_agreements: عدد الهويات التي تتوافق مع هوية الملاحظ
+        num_identification_disagreements: عدد الهويات التي تتعارض مع هوية الملاحظ
         observed_on_string: التاريخ/الوقت الذي أدخله الملاحظ
         observed_on: تاريخ الملاحظة المعتاد
         time_observed_at: تاريخ ووقت تطبيع الملاحظة
@@ -5088,6 +5070,107 @@ ar:
           <a href="%{url}">صفحة تصدير الملاحظات</a> للحصول على قائمة بصادراتك.
       parental_consent:
         subject: يود طفلك استخدام إيناتوراليست
+        content_html: |
+          <p>
+            يستخدم طفلك تطبيق <strong>بحث بواسطة إيناتوراليست</strong>
+           \ التعليمي ويرغب في مشاركة البيانات مع النظام الأساسي لعلوم 
+            المواطن في إيناتوراليست، نظرا لأن النشر على إيناتوراليست يكشف عن 
+            معلومات التعريف الشخصية؛ لا يمكن استخدام إيناتوراليست من قبل 
+            أشخاص تقل أعمارهم عن 13 عاما دون موافقة أحد الوالدين.
+          </p>
+          <p>
+            يمكن استخدام <strong>بحث بواسطة إيناتوراليست</strong> دون إنشاء 
+            حساب، ولن تتم مشاركة أية معلومات تعريف شخصية، 
+            ولكن لن يتمكن طفلك من المساهمة بملاحظات على 
+            إيناتوراليست، إيناتوراليست هي شبكة اجتماعية لعلوم المواطن فيها
+            يتشارك المشاركون ملاحظاتهم وهوياتهم
+            لتعليم بعضهم البعض عن الطبيعة وتوليد بيانات التنوع البيولوجي 
+            للعلوم.
+          </p>
+          <p>
+            إذا كنت ترغب في إعطاء موافقة لطفلك لاستخدام إيناتوراليست،
+           \ فسنحتاج منك القيام بما يلي:
+          </p>
+          <ol>
+            <li>
+              <p>
+                إنشاء حساب إيناتوراليست سيستخدمه طفلك
+                باتباع هذا الرابط:
+                <a href="%{registration_url}">%{registration_url}</a>
+           \   </p>
+            </li>
+            <li>
+              <p>
+               بعد إنشاء حساب طفلك، سنطلب منك تقديم
+               تبرع صغير بقيمة $1 دولار أمريكي باستخدام بطاقة ائتمان إلى إيناتوراليست للتحقق من
+               أنك بالغ، يُرجَى التأكد من استخدام نفس عنوان
+               البريد الإلكتروني  الذي أدخلته في حقل "البريد الإلكتروني الرئيسي" أثناء
+               الاشتراك عند التبرع. 
+              </p>
+            </li>
+            <li>
+              <p>
+               بمجرد أن نعالج التبرع، سنرسل إليك رسالة بريد إلكتروني أخرى 
+               لإعلامك بأنه قد تم تنشيط حساب طفلك 
+               ويمكنك استخدام اسم مستخدم وكلمة مرور إيناتوراليست اللذين قمت بإنشائهما 
+               لتسجيل الدخول إلى تطبيق بحث طفلك.
+              </p>
+            </li>
+          </ol>
+          <p>
+           \ يقوم إيناتوراليست بجمع  معلومات التعريف الشخصية 
+            التالية:
+          </p>
+          <ol>
+           \ <li>
+              <p>
+                <strong>عنوان البريد الإلكتروني (خاص):</strong> كل حساب إيناتوراليست
+                لديه عنوان بريد إلكتروني مرتبط به وهو غير متاح
+           \     للجمهور.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>اسم المستخدم (عام، مطلوب):</strong> لكل حساب
+                إيناتوراليست اسم مستخدم عام ورقم تعريف مستخدم،
+                ليس من الضروري أن يكون اسم المستخدم مشابها 
+                لاسم الشخص الحقيقي، ولكن يمكن استخدامه للاتصال بالشخص عبر 
+                التعليقات العامة والرسائل المباشرة الخاصة. 
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong> عنوان الآيبي (خاص، مطلوب):</strong> إيناتوراليست
+                يخزن ولكنه لا يعلن عن عنوان الآيبي الخاص بالمستخدم والذي يمكن
+                استخدامه لاشتقاق معلومات التعريف الشخصية مثل الموقع
+                 (بدقة على مستوى المدينة).
+              </p>
+           \ </li>
+            <li>
+              <p>
+                <strong> صورة الملف الشخصي (عامة، اختيارية):</strong> يمكن
+                يمكن أن تكون لحسابات إيناتوراليست صور للملف الشخصي والتي غالبا ما تكون 
+                صورا للمستخدم. 
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>موقع المراقبة (عام أو خاص،
+                مطلوب):</strong> تحتوي ملاحظات إيناتوراليست على
+                معلومات عن الموقع حول مكان إجراء الملاحظة، يمكن
+                جعلها عامة أو إبقاؤها كخاصة، لكنها عامة بشكل افتراضي.
+              </p>
+            </li>
+          </ol>
+          <p>
+           \ كما يسمح إيناتوراليست للمستخدمين بمشاركة الصور العامة والتعليقات 
+            العامة والرسائل المباشرة الخاصة المرتبطة بحسابهم،
+            من الممكن أن يقوم المستخدمون بتضمين تضمين معلومات التعريف 
+            الشخصية في المحتوى الذي أنشأه المستخدم.
+          </p>
+          <p>
+           \ اعرف المزيد حول سياسة خصوصية إيناتوراليست <a href="%{privacy_policy_url}">هنا</a>.
+          </p>
       photos_missing:
         subject: بعض الصور تحتاج إلى إصلاح
         we_have_been_housekeeping: |
@@ -5277,6 +5360,12 @@ ar:
              أو أن مشروعك يحتوي على قاعدة "يجب أن تكون في قاعدة الأصنوفة" 
             </li>
           </ol>
+        project_assets_desc_html: |
+          <p class="description">تعد أصول المشروع مجرد ملفات مقترنة بمشروعك، مع بعض القواعد الخاصة:</p>
+          <ol class="description">
+          <li> الملفات التي تنتهي ب.logo.jpg أو .logo.png وما إلى ذلك سيتم استخدامها كشعار للمشروع في صفحة المشروع بدلا من أيقونة المشروع</li>
+          <li>ستتم إضافة ملفات KML وKMZ إلى الخريطة في صفحة المشروع</li >
+          </ol>
         project_list_desc_html: |
           <p class="description">
             يمكنك إنشاء قائمة مشاريع مخصصة بالأصناف وربطها 
@@ -5301,6 +5390,12 @@ ar:
         submission_models:
           any: أي واحد
           curators: أمناء المشروع
+        trusted_project_means: |
+          الثقة في مشروع تعني أن مديري المشاريع يمكنهم إضافة 
+          أصول المشروع وخصائص مشروع مخصص (على سبيل المثال لافتة HTML أو CSS)، الوصول 
+          إلى سمات المشروع المخصصة يعني أن مديري المشاريع 
+          يحتمل أن يضيفوا جافا سكريبت ضارة; لذلك الثقة فقط بالمشاريع التي 
+          لديها المديرين المسؤولين وذوي كفاءة من الناحية الفنية.
         you_can_preview: |
           يمكنك معاينة الشكل الذي سيبدو عليه مشروعك كمشروع تجميع بواسطة 
           by <a href="%{url}">النقر هنا</a>.
@@ -6297,6 +6392,7 @@ ar:
   time:
     am: صباحا
     pm: مساء
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
       messages:
@@ -6479,6 +6575,12 @@ ar:
           attributes:
             value:
               dna_only_atcg: "لدنا يمكن أن يحتوي فقط على الحروف A أو T أو C أو أو G"
+              date_format: |
+                يجب أن يكون بالشكل سسسس-شش-يي لحقل التاريخ ("%{observation_field_name}" 
+                في ملاحظتك عن "%{observation_species_guess}")
+              time_format: |
+                يجب أن يكون بالشكل سس:دد لحقل التاريخ ("%{observation_field_name}" 
+                في ملاحظتك عن "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: المستخدم لا يقبل الحقول من الآخرين
               user_only_accepts_fields_from_site_curators: المستخدم يقبل فقط الحقول من أمناء الموقع
@@ -6572,6 +6674,7 @@ ar:
         المستخدم، وأيقونة المستخدم.
     errors:
       messages:
+        #Common error messages
         invalid_request: 'يفتقد الطلب إلى وسيط مطلوب، أو يتضمن قيمة وسيط غير مدعومة، أو غير صحيح بشكل آخر.'
         invalid_redirect_uri: 'إعادة توجيه uri المضمن غير صالحة.'
         unauthorized_client: 'العميل غير مخول بتنفيذ هذا الطلب باستخدام هذه الطريقة.'
@@ -6579,12 +6682,16 @@ ar:
         invalid_scope: 'النطاق المطلوب غير صالح، أو غير معروف، أو غير صحيح.'
         server_error: 'واجه خادم التفويض شرطا غير متوقع منعه من تنفيذ الطلب.'
         temporarily_unavailable: 'يتعذر على خادم التفويض حاليا معالجة الطلب بسبب التحميل الزائد المؤقت أو صيانة الخادم.'
+        #Configuration error messages
         credential_flow_not_configured: 'فشل تدفق بيانات اعتماد كلمة سر مالك المورد بسبب عدم تهيئة Doorkeeper.configure.resource_owner_from_credentials.'
         resource_owner_authenticator_not_configured: 'فشل العثور على مالك المورد بسبب عدم تهيئة Doorkeeper.configure.resource_owner_authenticator.'
+        #Access grant errors
         unsupported_response_type: 'لا يدعم خادم التفويض نوع الاستجابة هذا.'
+        #Access token errors
         invalid_client: 'فشلت مصادقة العميل نظرا لوجود عميل غير معروف، أو عدم وجود مصادقة عميل مدرجة، أو طريقة مصادقة غير مدعومة.'
         invalid_grant: 'إن منحة الترخيص المقدمة غير صالحة، أو منتهية الصلاحية، أو تم إبطالها، أو لا تتطابق مع إعادة توجيه URI المستخدم في طلب التفويض، أو تم إصدارها إلى عميل آخر.'
         unsupported_grant_type: 'نوع منحة الترخيص غير معتمد من قبل خادم التفويض.'
+        #Password Access token errors
         invalid_resource_owner: 'بيانات اعتماد مالك المورد المقدم غير صالحة، أو لا يمكن العثور على مالك المورد'
     flash:
       applications:
@@ -6597,12 +6704,6 @@ ar:
       authorized_applications:
         destroy:
           notice: 'تم إبطال الطلب.'
-  i18n:
-    inflections:
-      - 
-        vow: حرف مصوت
-        con: صامت
-      - 
   wild: بري
   will_paginate:
     previous_label: "&#8592; السابق"
