@@ -1642,16 +1642,27 @@ pl:
     shortRelativeTime:
       future: "w %s"
       past: "%s"
+      #Short text representing 1 second in the past
       s: "1 s"
+      #Short text representing 1 minute in the past
       m: "1 min"
+      #Short text representing %d minutes in the past
       mm: "%dm m"
+      #Short text representing 1 hour in the past
       h: "1 h"
+      #Short text representing %d hours in the past
       hh: "%d h"
+      #Short text representing 1 day in the past
       d: "1 d"
+      #Short text representing %d days in the past
       dd: "%d d"
+      #Short text representing 1 month in the past
       M: "1msc"
+      #Short text representing %d months in the past
       MM: "%dmsc"
+      #Short text representing 1 year in the past
       'y': "1r"
+      #Short text representing %d years in the past
       yy: "%dr"
     datetime_with_zone: "D MMM YYYY · LT z"
   month: Miesiąc
