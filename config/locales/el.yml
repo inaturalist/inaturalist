@@ -392,6 +392,7 @@ el:
   are_you_sure_remove_taxon_from_list: "Είστε βέβαιοι πως θέλετε να αφαιρέσετε αυτό το taxon από τη λίστα;"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Είστε σίγουρος; Θα επαναφορτωθεί η σελίδα και μπορεί να χάσετε κάποιες από τις αλλαγές σας.
+  are_you_sure_want_delete_taxon: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή τη ταξινομία; %{msg}"
   are_you_sure_want_delete_taxon_link: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτόν τον σύνδεσμο στο taxon;
   are_you_sure_want_delete_this_name: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το όνομα;
   are_you_sure_want_delete_this_range: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το εύρος;
@@ -1303,8 +1304,8 @@ el:
     da: Δανός
     de: Γερμανικά
     el: Ελληνικά
-    en-US: Αγγλικά (Ηνωμένων Πολιτειών)
     en: Αγγλικά
+    en-US: Αγγλικά (Ηνωμένων Πολιτειών)
     es-ES: Ισπανικά (Ισπανίας)
     es-MX: Ισπανικά (Μεξικού)
     es: Ισπανικά
@@ -2588,6 +2589,8 @@ el:
   synonyms: Συνώνυμα
   table: Πίνακας
   table_of_contents: Πίνακας περιεχομένων
+  #Noun, as in "add a tag to this observation"
+  tag: Ετικέτα
   tags: Ετικέτες
   taxa_info: Πληροφορίες ταξινομίας
   taxa_all_species_html: "Όλα τα είδη"
