@@ -1792,7 +1792,7 @@ nl:
     zh-CN: Chinees (vereenvoudigd)
     zh-TW: Chinees (traditioneel)
   locality_notes: Localiteits aantekeningen
-  localized_species_accounts: Lokale soortaccounts
+  localized_species_accounts: Lokale soortenoverzichten
   location: Locatie
   location_is_accurate: Locatie is nauwkeurig
   location_is_exact: locatie is nauwkeurig
@@ -6546,6 +6546,63 @@ nl:
       authorized_applications:
         destroy:
           notice: 'Toepassing ingetrokken.'
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: klinker
+        con: medeklinker
+        a: ":@vow"
+        e: ":@vow"
+        i: ":@vow"
+        o: ":@vow"
+        u: ":@vow"
+        default: ":@con"
+      "@gender":
+        m: mannelijk
+        f: vrouwelijk
+        "n": onzijdig
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@m"
+        #Default gender for nouns that aren't listed here
+        default: "@m"
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Vorg"
