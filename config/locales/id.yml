@@ -81,6 +81,7 @@ id:
   add_observations: Tambahkan pengamatan
   add_observations_by_checking_off: Tambahkan pengamatan dengan memeriksa off spesies dari daftar.
   add_observations_project: Tambahkan pengamatan untuk proyek ini
+  #Prompt to add a new journal post
   add_one: Tambahkan satu!
   add_photos: Tambahkan foto
   add_photos_to_this_observation: Tambahkan foto pada pengamatan ini
@@ -334,11 +335,17 @@ id:
     swap: menukar
     stage: Tingkat
     drop: Letakkan
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: Pisahkan dari
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: Pisahkan kedalam
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: Gabungkan kedalam
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: Gambungkan kedalam
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: Diubah oleh
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: Diubah dengan
     dropped: Diletakkan
     staged: Ditampilkan
@@ -587,6 +594,8 @@ id:
   doh_something_went_wrong: oh, Ada yang tidak beres.
   dont_send_me_email: "Jangan mengirim saya email!"
   dont_use_double_quotes: Jangan menggunakan tanda kutip ganda di tempat lain
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
   drop_it: Jatuhkan
   double_click_to_finish: (klik dua kali untuk menyelesaikan)
   download: Unduh
@@ -752,6 +761,7 @@ id:
   first_inat_observation: "Observasi pertama %{site_name}"
   first_observation: Pengamatan pertama
   first_observer: Pengamat pertama
+  #Verb form, as in "Flag this item"
   flag: Tanda
   flag_an_item: Tandai barang
   flag_as_spammer: Tandai sebagai spammer
@@ -897,6 +907,7 @@ id:
   importing: "Masukkan..."
   in_n: "di %{n}"
   inaturalist_network_affiliation: Afiliasi Jaringan iNaturalist
+  #Label for messages you've received
   inbox: kotak masuk
   including: termasuk
   in_the_past: masa lampau
@@ -917,6 +928,7 @@ id:
   invite_people_to_project: "Undang orang ke %{project}"
   invite_your_friends: Undang teman-teman anda
   invite_your_friends_description: "Bantu membuat %{site_name} lebih besar, komunitas yang lebih baik dengan mengundang teman Anda untuk bergabung!"
+  #Type of project where people can only join after they have been invited
   inviteonly: undang-satunya
   invited_x: "Telah diundang %{x}"
   is_not_following_anyone: tidak mengikuti siapapun.
@@ -941,6 +953,7 @@ id:
   label_to_group_a_batch_of_taxon_changes: Label untuk sekelompok grup pada perubahan takson
   location_unknown: Lokasi Tidak Diketahui
   language_slash_type: Bahasa / Tipe
+  #Large photo size
   large: besar
   last_active_with_date: "Terakhir Aktif: %{date}"
   last_confirmed_observation: Pengamatan yang telah dikonfirmasi
@@ -950,6 +963,7 @@ id:
   latitude: Garis Lintang
   latitude_in_decimals: 'Garis lintang pada angka desimal, contoh 38. 123'
   latitude_slash_y_coord_slash_northing: Garis lintang / koordinat y / utara
+  #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Lapisan
   layout: Rancangan
   leaderboards: Papan
@@ -1008,7 +1022,6 @@ id:
     turkish: Bahasa Turki
     waray_waray: Bahasa Waray-Waray
   less: Kurang
-  license_descriptions_and_images: Deskripsi lisensi dan gambar
   licensing: lisensi
   licensing_your_content_gives_others_legal: "Melisensi konten Anda memberikan orang lain hak hukum untuk menggunakannya jika mereka tetap dengan persyaratan lisensi. %{site_name} menggunakan konten Anda lisensi Creative Commons untuk berbagi dengan mitra Data seperti"
   life: Kehidupan
@@ -1099,30 +1112,22 @@ id:
   lookup: Lihatlah
   low: rendah
   lowest_rank: Ranking terendah
-  made_a: membuat sebuah
   make_admin: Jadikan pengurus
-  make_an_observation: buat sebuah observasi
   main_content: Konten Utama
   make_a_new_place: Buat tempat baru
   make_a_taxon_swap_instead?: Membuat sebuah TaxonSwap bukan?
   make_curator: Membuat kurator
   make_it_a_life_list?: Membuat daftar hidup?
   make_manager: Membuat manajer
-  make_new_place: Membuat tempat baru
-  make_one: Membuat lagi?
   make_sure_the_default_photo_looks_good: Pastikan foto tersebut terlihat bagus pada ukuran besar.
-  make_taxonomic_flickr_tags_for_taxon_raquo: "Buat tanda Flickr taksonomi untuk takson&raquo ini;"
   make_this_the_primary_listing: "Buat ini menjadi daftar utama"
   mammals: mamalia
-  manage: Kelola
   manage_all_your_subscriptions: Kelola semua abonemen Anda
   manage_names: Kelola nama
   manage_your_project_invitations: Kelola undangan proyek Anda
-  managed: kelola
   manager: Manajer
   managers: Manajer-manajer
   managers_can_do: Manajer dapat melakukan segala sesuatu yang kurator lakukan seperti mengedit pengaturan proyek dan postingan tulisan proyek jurnal.
-  manually_create_new_place: Secara manual membuat tempat baru
   map: Peta
   map_legend: legenda peta
   map_marker_size: ukuran penanda peta
@@ -1139,15 +1144,12 @@ id:
       checklist_places_description: Tempat dimana takson ini telah terdaftar
       range: Rentang
   map_tooltip: Tunjukan tampilan peta
-  map_for: Peta untuk
   mark_as_reviewed: Tandai sebagai telah ditinjau
   mark_all_as_reviewed: Tandai Semua sebagai Telah ditinjau
   mark_all_as_unreviewed: Tandai semua sebagai belum ditinjau
-  matched_several_different_taxa: cocok dengan beberapa taksa yang berbeda
   medium: Menengah
   members: Anggota
   mentioned_you_in_noun_html: "%{user} menyebut Anda di %{noun}"
-  mentions: "Sebutan"
   merge: Gabungkan
   merge_it_with_another_place: Gabungkan dengan tempat lainnya
   merge_two_places_together: Menggabungkan dua tempat bersama-sama. Semua spesies pada daftar periksa akan digabung, serta data geografis.
@@ -1155,9 +1157,6 @@ id:
   merging_places: Menggabungkan tempat
   message: Pesan
   messages: Pesan
-  mixed_licenses: lisensi campuran
-  mobile_app_for: Aplikasi ponsel untuk
-  mobile_apps_for: Aplikasi ponsel untuk
   mollusks: Moluska
   momentjs:
     shortRelativeTime:
@@ -1167,7 +1166,6 @@ id:
       d: "1 hari"
       M: "1 bulan"
       'y': "1 tahun"
-  mon: Senin
   month: Bulan
   months: Bulan
   more: Lainnya
@@ -1178,7 +1176,6 @@ id:
   more_journal_posts: Postingan jurnal lainnya
   more_observations: Pengamatan lainnya
   more_photos: Lebih Banyak Foto
-  most: Paling
   most_agree: Paling setuju
   most_disagree: Paling tidak setuju
   most_observations: Sebagian besar pengamatan
@@ -1189,24 +1186,14 @@ id:
   must_be_observed_in: harus diamati dalam
   name: Nama
   name_entered: Nama yang dimasukkan
-  name_llaves: "[NAMA]"
   name_of_the_place_you: Lokasi pengamatan
-  name_or_username: Nama pengguna
-  name_provider: Nama penyedia
   name_providers:
     col: Katalog hidup
     nzor: Daftar Organisme New Zealand
-  named_based_url_might_change: "Basis nama URLs dapat berubah, tapi ini tidak"
   names: Nama
   names_for_taxon_html: "Nama untuk %{taxon}"
-  naturalised: naturalisasi
-  naturalized: naturalisasi
   native: asli
-  near: dekat
   near_threatened: hampir terancam
-  nearby: Sekitaran
-  nearby_observations: Pengamatan terdekat
-  need_id_help?: Butuh bantuan ID?
   needs_id: butuh ID
   needs_to_be_identified: Butuh untuk diidentifikasi
   new: Baru
@@ -1214,7 +1201,6 @@ id:
   new_assessment: Penilaian baru
   new_check_list: Checklist baru
   new_check_list_record: "Jika Anda ingin menandai daftar ini sebagai komprehensif, membuatnya, menambahkan taksa, dan kemudian mengeditnya dan Anda akan memiliki pilihan untuk menandainya sebagai komprehensif di sini."
-  new_custom_field_for: Untuk bidang khusus baru
   new_flag_for: Untuk bendera baru
   new_guide: Panduan Baru
   new_journal_post: Postingan Jurnal Baru
@@ -1222,7 +1208,6 @@ id:
   new_members: "Anggota baru"
   new_message: Pesan baru
   new_observation_field: Bidang pengamatan baru
-  new_observation_rules: Aturan Pengamatan Baru
   new_observations: Pengamatan Baru
   new_observations_ellispsis: "Pengamatan baru..."
   new_observations_from_place_html: "Pengamatan baru dari %{place}"
@@ -1235,44 +1220,33 @@ id:
   new_source: Sumber Baru
   new_taxon_change: Perubahan taksa baru
   new_taxon_link: Tautan Taksa Baru
-  new_taxon_name: Nama taksa baru
   new_taxon_name_for: Nama Taksa Baru untuk
   new_taxon_range: Jarak Taksa Baru
   new_taxonomic_change: Perubahan Taksnomi Baru (Berkas)
   new_trip: Kunjungan baru
   new_updates_in_the_last_24_hours_from: "update baru dalam 24 jam terakhir dari %{site_name}"
-  new_user_rules: Aturan Pengguna Baru
   new_users: Pengguna Baru
   new_users_this_year: Pengguna Baru di Tahun Ini
-  new_users_week: Pengguna Baru / Minggu
   news: Berita
   next: Selanjutnya
   next_page: Halaman selanjutnya
   next_photo: Foto Selanjutnya
   'no': 'Tidak'
-  no_activity_in_the_past_week: Tidak ada aktivitas dalam seminggu terakhir. Waktunya untuk
-  no_administrator_knows_your_password: "Tidak ada %{sitename} administrator tahu sandi baru Anda atau pada setiap  titik yang anda miliki atau memiliki akses ke sandi Anda."
   no_assessments_have_been_added_to_this_project_yet: Tidak ada penilaian telah ditambahkan ke proyek ini.
-  no_colors_selected: Tidak ada warna dipilih.
   no_comments_yet: Belum ada komen.
   no_countries_added_yet: Belum ada negara yang ditambahkan.
-  no_creative_commons_flickr_photo: Tidak ada foto umum kreatif flickr ditandai
   no_creative_commons_flickr_photos_tagged_x: 'Tidak ada foto umum kreatif flickr ditandai "%{x}"'
   no_curators_set: Tidak ada kurator ditetapkan
   no_curators_yet: Belum ada kurator!
-  no_facebook_photos: Kami tidak dapat menemukan foto apapun dari Facebook.
   no_flags: Tidak ada tanda saat ini
   no_flickr_photos_tagged: Tidak ada foto flickr ditandai!
-  no_header_row: Tidak ada baris atas
   no_identifications_added:
     current_user: Anda belum menambahkan identifikasi pengamatan siapa pun.
     user: "%{user} belum menambahkan identifikasi pengamatan siapa pun."
   no_favorites_added:
     current_user: Anda belum memiliki tambahan foto favorit.
     user: "%{user} tidak memiliki favorit tambahan."
-  no_journal_post_have_been: Belum ada postingan jurnal yang ditambahkan pada proyek ini.
   no_license_all_rights_reserved: Tidak ada lisensi (semua hak cipta)
-  no_link_flickr: "Tidak,Saya tidak akan suka."
   no_managers_set: Tidak ada manajer ditetapkan
   no_matching_article_from_x: "Tidak ada artikel yang sesuai dari %{x}"
   no_matching_invitations: Tidak ada undangan yang sesuai
@@ -1285,23 +1259,17 @@ id:
   no_messages_yet: Belum ada pesan
   no_more_mail_from_site: "Tidak ingin untuk menerima email apapun dari %{site_name}? Ubah pengaturan email Anda pada"
   no_more_taxa_to_load: Tidak ada lagi taksa untuk memuat!
-  no_more_updates: Tidak ada lagi yang baru!
-  no_nearby_observations: "Tidak ada pengamatan terdekat."
   no_new_messages: Tidak ada pesan baru
   no_observations: tidak ada pengamatan
   no_observations_from_this_place_yet: Belum ada pengamatan dari tempat ini.
   no_observations_matching_those_ids: Tidak ada pengamatan yang sesuai pada ID ini.
-  no_observations_need_an_id: Tidak ada pengamatan memerlukan ID sekarang. Luar Biasa!
   no_observations_submitted: "Tidak ada pengamatan disampaikan!"
-  no_observations_suitable_for_this_project: "Tidak ada pengamatan cocok untuk proyek ini yang belum memberikan kontribusi atau diundang."
   no_observations_yet: Belum ada pengamatan
   no_one_has_added_any: Tidak ada orang yang ditambahkan pada setiap catatan untuk tempat ini
   no_one_has_been_invited_yet: Belum ada orang yang diundang
   no_one_posted_anything_yet: Belum ada orang yang memposting apapun!
-  no_ones_observed: Tidak ada yang diamati
   no_photos: Tidak ada foto
   no_places_available: Tidak ada tempat yang tersedia
-  no_places_selected: Tidak ada tempat yang dipilih.
   no_post_yet: Belum ada postingan!
   no_project_selected: Tidak ada proyek yang dipilih
   no_project_to_admin_current_user: "Anda tidak memiliki admin pada proyek"
@@ -1309,7 +1277,6 @@ id:
   no_projects_yet: Belum ada proyek
   no_range_data_available: Tidak ada jarak data yang tersedia
   no_recent_activity: Tidak ada aktivitas terkini
-  no_recently_active: Belum ada proyek aktif terkini
   no_reply_yet: Belum ada balasan
   no_results_found: Tidak ada hasil yang ditemukan
   no_results_for: 'Tidak ada hasil untuk'
@@ -1324,25 +1291,19 @@ id:
   no_taxa: Tidak ada taksa
   no_taxa_listed: Tidak ada daftar taksa
   no_taxa_selected: Tidak ada taksa yang dipilih!
-  no_taxa_yet: Belum ada taksa!
   no_taxonomic_changes_match_those_criteria: Tidak ada perubahan taksonomi yang sesuai pada kriteria
   no_wikipedia_page_for_taxon: Tidak ada halaman Wikipedia pada taksa ini
   no_x_this_y: "Tidak ada %{x} ini %{y}"
   none: Tak satupun
-  not_absent: tidak absen
   not_completed: Belum Selesai
   not_evaluated: tidak dievaluasi
-  not_filtering: Tidak disaring
   not_findig_what_you_want: Tidak menemukan apa yang Anda inginkan?
   not_finding_place_you_want?: Tidak menemukan tempat yang Anda inginkan?
   not_found: Tidak ditemukan
-  not_just_creative_commons_licensed: tidak hanya Lisensi-Umum Kreatif
   not_linked_facebook: "Akun %{site_name} Anda tidak terhubung pada akun Facebook Anda &#59;"
   not_linked_flickr: "Akun %{site_name} Anda tidak terhubung dengan akun Flickr Anda &#59;"
-  not_logged_in: Belum Masuk
   not_on_this_list: Tidak pada daftar ini.
   not_seeing_what_looking_for: tidak menemukan apa yang Anda ingin lihat?
-  not_yet: Belum
   note: Catatan
   note_you_can_modify_the_height_attribute: "Catatan: Anda dapat memodifikasi atribut 'tinggi' agar sesuai dengan ruang yang tersedia pada halaman web Anda."
   notify_me_of_mentions: 'Beritahu saya pada sebutan (contoh: @namapengguna)'
@@ -1353,8 +1314,6 @@ id:
     taksa yang tidak sesuai dengan takson dalam identifikasi Anda sendiri secara persis.
   number_of_observations: Jumlah dari pengamatan
   number_selected: "# dipilih"
-  numeric_: numerik
-  noun_by_you: "%{noun} oleh Anda"
   obs: Pengamatan
   obscured: Dikaburkan
   obscured_or_private: dikaburkan atau privat
@@ -1727,6 +1686,7 @@ id:
   popular: Populer
   position: Posisi
   positional_accuracy: Akurasi posisi
+  #Noun, short version of a journal post
   post: Tulis
   post_published: Tulisan diterbitkan!
   post_some_new_stuff: Tulis beberapa barang baru
@@ -2030,6 +1990,7 @@ id:
   send_me_reset_password_instructions: Kirim Saya instruksi ubah kata sandi
   send_the_invites: Kirim undagan
   sending: Mengirim...
+  #Label for messages you've sent
   sent: Telah dikirim
   september: Sepetember
   set_a_place_if_this_link_only_applies_to: Atur tempat jika link ini hanya berlaku untuk taksa dari tempat tertentu. Biarkan kosong jika itu berlaku untuk semua taksa di seluruh dunia.
@@ -2246,6 +2207,7 @@ id:
   taxon_search: Pencarian Takson
   taxon_search_results_for: Hasil Pencarian Takson untuk
   taxon_split: pemisahan takson
+  #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: tahap takson
   taxon_subscription: langganan takson
   taxon_swap: tukar takson
@@ -3061,6 +3023,7 @@ id:
   time:
     am: pagi
     pm: malam
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
       messages:
