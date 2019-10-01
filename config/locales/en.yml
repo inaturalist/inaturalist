@@ -1019,6 +1019,7 @@ en:
   default_sound_license: Default sound license
   defaults_to_your_name_or_username: Defaults to your name or username
   defines_a_taxon_framework_for:  Defines a Taxon Framework for %{taxon_name}
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Defines a Taxon Framework for %{taxon} sourced to %{source}
   definitions: Definitions
   delete: Delete
   delete_all: Delete all
@@ -1055,7 +1056,6 @@ en:
   destroy: Destroy
   details: Details
   deviation: Deviation
-  deviations: Deviations
   devise:
     failure:
       user:
@@ -1095,11 +1095,13 @@ en:
   download_csv: Download CSV
   download_csv_template: Download CSV template
   download_kml: Download KML
-  downstream_coverage: Downstream coverage
   downstream_coverage_rank: Downstream coverage rank
+  downstream_coverage_colon_rank: "Downstream coverage: rank %{rank}"
   downstream_deviations: Downstream deviations
   downstream_deviations_for_taxon: "Downstream deviations for %{taxon}"
-  downstream_flagged_covered_taxa: Downstream flagged covered taxa
+  # Label for a link to taxa that are descendants ("downstream") of the current
+  # taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa: Downstream flagged taxa
   draft: draft
   draft_: Draft
   draft_saved: Draft saved!
@@ -1134,6 +1136,7 @@ en:
   edit_source: Edit Source
   edit_taxa: Edit Taxa
   edit_taxon: Edit Taxon
+  edit_taxon_framework: Edit Taxon Framework
   edit_taxon_link: Edit Taxon Link
   edit_taxon_range: Edit Taxon Range
   edit_the_observation: Edit The Observation
@@ -1339,7 +1342,6 @@ en:
   flag_this_sound: Flag This Sound
   flagged: flagged
   flagged_: Flagged
-  flagged_covered_taxa: Flagged covered taxa
   flagged_for_curation: Flagged for Curation
   flagged_taxon: Flagged Taxon
   flagged_thing_explanation: "Users have flagged this %{thing} because"
@@ -1663,6 +1665,7 @@ en:
   latitude_in_decimals: 'Latitude in decimal degrees, e.g. 38.123'
   latitude_slash_y_coord_slash_northing: Latitude / y coord / northing
   latitude_value: "Latitude: %{latitude}"
+  # As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Layers
   layout: Layout
   leaderboard: Leaderboard
@@ -1737,7 +1740,6 @@ en:
     turkish: Turkish
     waray_waray: Waray-Waray
   less: Less
-  license_descriptions_and_images: License descriptions and images
   licensed_site_photos: "Licensed %{site_name} photos"
   license: License
   licensing: Licensing
@@ -1841,7 +1843,6 @@ en:
   locality_notes: Locality notes
   localized_species_accounts: Localized species accounts
   location: Location
-  locations: Locations
   location_is_accurate: Location is accurate
   location_is_exact: location is exact
   location_is_public: Location is public
@@ -1869,9 +1870,7 @@ en:
   lookup: Lookup
   low: Low
   lowest_rank: Lowest Rank
-  made_a: made a
   make_admin: Make admin
-  make_an_observation: make an observation
   mail_disclaimer: "%{site_name} will not allow its users to send you additional invitations via our inviter. Please report invitation abuse to %{site}."
   main_content: Main content
   main_content_description:  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -1880,26 +1879,19 @@ en:
   make_curator: Make curator
   make_it_a_life_list?: Make it a life list?
   make_manager: Make manager
-  make_new_place: Make a new place
-  make_one: make one?
   make_sure_the_default_photo_looks_good: Make sure the default photo looks good in large size.
-  make_taxonomic_flickr_tags_for_taxon_raquo: "Make taxonomic Flickr tags for this taxon &raquo;"
   make_this_your_default_license: "Make this your default %{type} license"
   make_this_the_primary_listing: "Make this the primary listing"
   mammals: mammals
-  manage: Manage
   manage_all_your_subscriptions: Manage all your subscriptions
   manage_names: Manage Names
   manage_your_projects: Manage Your Projects
   manage_your_project_invitations: Manage your project invitations
   manage_your_relationships: Manage your relationships
-  manage_subscriptions: Manage Subscriptions
-  managed: managed
   manager: Manager
   managers: Managers
   managers_can_do: Managers can do everything curators can do as well as editing project settings and write project journal posts.
   managing_projects: Managing Projects
-  manually_create_new_place: Manually create a new place
   map: Map
   map_legend: map legend
   map_marker_size: map marker size
@@ -1917,18 +1909,14 @@ en:
       checklist_places_description: Places where this taxon has been listed
       range: Range
   map_tooltip: Show map view
-  map_for: Map for
   mark_as_reviewed: Mark As Reviewed
   mark_all_as_reviewed: Mark All As Reviewed
   mark_all_as_unreviewed: Mark All As Unreviewed
-  matched_several_different_taxa: matched several different taxa
   matching_species_will_shown_up_here: Matching species will show up here. The maps will show a range if %{place} has one for that species.
   maverick: Maverick
-  maybe_your_signed_in_with: "Maybe you signed in with your %{omniauth} account?"
   media: Media
   media_type: Media Type
   medium: medium
-  medium_url: Medium URL
   meet: Meet
   member_of_the_inaturalist_network_html: |
     Member of the <a href="%{url}">iNaturalist Network</a>
@@ -1942,7 +1930,6 @@ en:
   mentioned_you_in_an_x_on_noun_html: "%{user} mentioned you in an %{x} on %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} mentioned you in a %{x} on %{noun} by %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} mentioned you in an %{x} on %{noun} by %{by}"
-  mentions: "Mentions"  
   merge: Merge
   merge_it_with_another_place: Merge it with another place
   merge_two_places_together: Merge two places together. All species on the checklists will be merged, as well as any geographic data.
@@ -1958,10 +1945,7 @@ en:
     Misleading or illegal content, racial or ethnic slurs, etc. For more on
     our definition of "appropriate," see the 
     <a href="/help#inappropriate">FAQ</a>.
-  mixed_licenses: mixed licenses
   mobile: Mobile
-  mobile_app_for: Mobile app for
-  mobile_apps_for: Mobile apps for
   mollusks: mollusks
   momentjs:
     shortRelativeTime:
@@ -1980,17 +1964,14 @@ en:
       yy: "%dy"
     datetime_with_zone: "MMM D, YYYY · LT z"
     datetime_with_offset: "MMM D, YYYY · LT Z"
-  mon: Mon
   month: Month
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monthly Supporter</a> since %{date}
   months: Months
-  months_ago: "%{text} ago"
   more: More
   more_fields: More Fields
   more_filters: More Filters
   more_from_x: More from %{x}
-  more_help: More Help
   more_import_options: More Import Options
   more_info: More Info
   more_info_title: More Info
@@ -1998,7 +1979,6 @@ en:
   more_observations: More Observations
   more_photos: More Photos
   more_than_a_week_ago: More than a week ago
-  most: Most
   most_agree: most agree
   most_browser_print_pdf: "Note: most browsers have an option to print to PDF"
   most_disagree: most disagree
@@ -2032,21 +2012,15 @@ en:
   n_person_disagrees: "%{amount} person disagrees"
   name: Name
   name_entered: Name entered
-  name_llaves: "[NAME]"
   name_or_slug: "Name or URL slug, e.g. my-project"
   name_of_the_place_you: Name of the place you made the observation
-  name_or_username: Name or username
-  name_provider: Name provider
   name_providers:
     col: Catalogue of Life
     ubio: uBio
     nzor: New Zealand Organisms Register
-  named_based_url_might_change: "Name-based URLs might change, but this won't."
   name: Name
   names: Names
   names_for_taxon_html: "Names for %{taxon}"
-  naturalised: naturalized
-  naturalized: naturalized
   native: native
   native_page_url: Native Page URL
   native_to_place: "Native to %{place}"
@@ -2054,12 +2028,8 @@ en:
   nav_description:  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: NE Lat.
   ne_lon: NE Lon.
-  near: near
   near_threatened: Near Threatened
-  nearby: Nearby
   nearby_observations_: Nearby observations
-  nearby_observations: Nearby Observations
-  need_id_help?: Need ID help?
   needs_id: needs ID
   needs_id_: Needs ID
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
@@ -2072,7 +2042,6 @@ en:
   new_check_list_for: "Create a new check list for %{place} &raquo;"
   new_check_list_record: "If you want to mark this list as comprehensive, create it, add the taxa, and then edit it and you'll have the option to mark it as comprehensive here."
   new_comment_on_a_parent_by_user_link: New comment on @vow_or_con{vow:an|a} %{parent} by %{user_link}
-  new_custom_field_for: New custom field for
   new_flag_for: New Flag for 
   new_guide: New Guide
   new_journal_post: New Journal Post
@@ -2081,7 +2050,6 @@ en:
   new_members: "New members"
   new_message: New message
   new_observation_field: New observation field
-  new_observation_rules: New Observation Rules
   new_observations: New observations
   new_observations_this_year: New Observations This Year
   new_observations_ellispsis: "New observations..."
@@ -2099,17 +2067,14 @@ en:
   new_species_added_in_interval_x_of_y: New Species Added In %{interval} (Showing %{x} of %{y})
   new_taxon_change: New taxon change
   new_taxon_link: New Taxon Link
-  new_taxon_name: New taxon name
   new_taxon_name_for: New Taxon Name for
   new_taxon_range: New Taxon Range
   new_taxonomic_change: New Taxonomic Change (Draft)
   new_trip: New trip
   new_updates_in_the_last_24_hours_from: "New updates in the last 24 hours from %{site_name}"
-  new_user_rules: New User Rules
   new_users: New Users
   new_users_this_year: New Users This Year
   new_users_w_7_obs: New Users w/ 7 Obs
-  new_users_week: New Users / Week
   newly_added: Newly Added
   newly_added_species: Newly Added Species
   newly_observed_species: Newly Observed Species
@@ -2121,22 +2086,16 @@ en:
   next_photo: Next Photo
   next_tab: Next Tab
   'no': 'No'
-  no_activity_in_the_past_week: No activity in the past week.  Time to 
-  no_administrator_knows_your_password: "No %{sitename} administrator knows your new password or at any point had or has access to your password."
   no_assessments_have_been_added_to_this_project_yet: No assessments have been added to this project yet.
   no_but_it_is_a_member_of_taxon: "No, but it is a member of %{taxon}"
-  no_colors_selected: No colors selected.
   no_comments_yet: No comments yet.
   no_countries_added_yet: No countries added yet
-  no_creative_commons_flickr_photo: No Creative Commons Flickr Photos Tagged
   no_creative_commons_flickr_photos_tagged_x: 'No Creative Commons Flickr photos tagged "%{x}"'
   no_curators_set: No curators set
   no_curators_yet: No curators yet!
   no_description: No description
-  no_facebook_photos: We can't find any photos from Facebook.
   no_flags: No flags this time
   no_flickr_photos_tagged: No Flickr photos tagged!
-  no_header_row: No header row
   no_identifications: No Identifications
   no_identifications_added:
     current_user: You haven't added identifications to anyone's observations.
@@ -2147,9 +2106,7 @@ en:
   no_favorites_added:
     current_user: You haven't added favorites yet.
     user: "%{user} hasn't added favorites."
-  no_journal_post_have_been: No journal posts have been added to this project yet.
   no_license_all_rights_reserved: No license (all rights reserved)
-  no_link_flickr: "No, I'd rather not."
   no_managers_set: No managers set
   no_matching_article_from_x: "No matching article from %{x}"
   no_matching_invitations: No matching invitations
@@ -2164,26 +2121,20 @@ en:
   no_more_mail_from_site: "Don't want to receive any email from %{site_name}?  Edit your email settings at"
   no_more_taxa_to_load: No more taxa to load!
   no_more_results_found: No more results found
-  no_more_updates: No more updates!
-  no_nearby_observations: "No nearby observations."
   no_new_messages: No new messages
   no_news_yet: No news yet
   no_observations: No Observations
   no_observations_from_this_place_yet: No observations from this place yet.
   no_observations_matching_those_ids: No observations matching those IDs.
-  no_observations_need_an_id: No observations need an ID right now.  Amazing!
   no_observations_submitted: "No observations submitted!"
-  no_observations_suitable_for_this_project: "No observations suitable for this project that haven't yet been contributed or invited."
   no_observations_yet: No observations yet
   no_one_has_added_any: No one has added any notes for this place
   no_one_has_been_invited_yet: No one has been invited yet
   no_one_posted_anything_yet: No one's posted anything yet!
-  no_ones_observed: No one's observed
   no_photo: No Photo
   no_photos: No photos
   no_photos_of_that_size: No photo of that size.
   no_places_available: No places available
-  no_places_selected: No places selected.
   no_post_yet: No posts yet!
   no_project_selected: No project selected
   no_project_to_admin_current_user: "You don't admin any projects"
@@ -2191,7 +2142,6 @@ en:
   no_projects_yet: No projects yet
   no_range_data_available: No range data available.
   no_recent_activity: No recent activity
-  no_recently_active: No recently active projects yet.
   no_relevant_annotations: No Relevant Annotations
   no_reply_yet: No reply yet
   no_results_found: No results found
@@ -2214,34 +2164,26 @@ en:
   no_taxa_listed: No taxa listed
   no_taxa_selected: No taxa selected!
   no_taxa_with_unknown_relationships: No taxa with unknown relationships
-  no_taxa_yet: No taxa yet!
   no_taxon_framework_relationships: no taxon framework relationships
   no_taxonomic_changes_match_those_criteria: No taxonomic changes match those criteria
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
   no_x_this_y: "No %{x} this %{y}"
   noble_curators: "%{site}'s Noble Curators"
   non_human?: Non-human?
-  non_internal_taxon: Non internal taxon
   none: None
   none_found: None found
   normal: normal
-  not_absent: not absent
   not_completed: Not Completed
   not_covered_by_any_taxon_frameworks: Not covered by any taxon frameworks
   not_evaluated: not evaluated
-  not_filtering: Not filtering
   not_findig_what_you_want: Not finding what you want?
   not_finding_place_you_want?: Not finding the place you want?
   not_found: Not found
-  not_just_creative_commons_licensed: not just Creative Commons-licensed
   not_linked_facebook: "Your %{site_name} account is not linked to your Facebook account"
   not_linked_flickr: "Your %{site_name} account is not linked to your Flickr account"
-  not_logged_in: Not logged in
   not_on_this_list: Not on this list.
   not_recorded: Not recorded
   not_seeing_what_looking_for: Not Seeing What You're Looking For?
-  not_spam: Not Spam
-  not_yet: Not yet
   note: Note
   notes: Notes
   note_you_can_modify_the_height_attribute: "Note: You can modify the 'height' attribute to fit the available space on your web page."
@@ -2255,8 +2197,6 @@ en:
   number_of_observers_value: "Number of observers: %{number}"
   number_of_observers: "Number of observers"
   number_selected: "# selected"
-  numeric_: numeric
-  noun_by_you: "%{noun} by you"
   obs: Obs
   obs_cid_d: Obs CID'd
   obs_id_d: Obs ID'd
@@ -2549,7 +2489,7 @@ en:
   out_of_range: Out of range
   output_taxon: Output taxon
   overview: Overview
-  overlapping_downstream_taxon_frameworks: Overlapping downstream Taxon Frameworks
+  overlapping_downstream_taxon_frameworks_html: "Overlapping downstream Taxon Frameworks: %{count}"
   owner: Owner
   parent: Parent
   parent_name: Parent name
@@ -3849,10 +3789,15 @@ en:
   taxon_curators: Taxon Curators
   taxon_extras: Taxon Extras
   taxon_framework: Taxon Framework
+  taxon_framework_complete: "Complete: true"
+  taxon_framework_deviations_with_count_html: "Deviations: %{count}"
+  # Count of taxa covered by the Taxon Framework that have been flagged
+  taxon_framework_flagged_covered_taxa_count_html: "Flagged covered taxa: %{count}"
   taxon_framework_notes: Taxon Framework notes
   taxon_framework_relationship: Taxon Framework Relationship
   taxon_framework_relationship_for: Taxon framework relationship for
   taxon_framework_relationship_number: "Taxon Framework Relationship %{number}"
+  taxon_framework_relationship_unknown_count_html: "Relationship unknown count: %{count}"
   taxon_framework_relationships: Taxon Framework Relationships
   taxon_framework_taxon: Taxon framework taxon
   taxon_links: Taxon Links
@@ -6617,6 +6562,10 @@ en:
           Facility</a> (GBIF), an international, inter-governmental organization
           that compiles and distributes biodiversity information from around the
           world.
+        license_description_attribution_html: |
+          License descriptions and images &copy; %{year} Creative Commons, used
+          under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative
+          Commons Attribution license</a> (so meta!)
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
           which are received by the California Academy of Sciences (United

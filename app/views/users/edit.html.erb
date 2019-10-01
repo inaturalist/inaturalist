@@ -245,10 +245,7 @@
           </div>
           
           <p class="ui description">
-            <%= t(:license_descriptions_and_images) %>
-            &copy; <%= Date.today.year %> <%= t(:cc_used_under_a) %> <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons &mdash; Attribution 3.0 Unported
-              &mdash; CC BY 3.0"><%= t(:cc_attribution_license) %></a>
-            (<%= t :so_meta! %>)
+            <%=t "views.users.edit.license_description_attribution_html", year: Date.today.year %>
           </p>
         </div>
       </div>
