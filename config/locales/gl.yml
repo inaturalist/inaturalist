@@ -68,6 +68,8 @@ gl:
   add_an_observation_of: "Engadir unha observación de %{taxon}"
   add_another_flag: Engadir outra marca.
   add_another_photo: Engadir outra foto
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Engadir activo
   add_batch: Engadir grupo
   add_comment: Engadir un comentario
   add_countries: Engadir países
@@ -88,6 +90,7 @@ gl:
   add_observations: Engadir observacións
   add_observations_by_checking_off: Engadir observacións seleccionando especies dunha lista.
   add_observations_project: Engadir observacións a este proxecto
+  #Prompt to add a new journal post
   add_one: Engadir un!
   add_photos: Engadir fotos
   add_photos_to_this_observation: Engadir fotos a esta observación
@@ -217,6 +220,7 @@ gl:
   are_you_sure_leave_this_project: Estás seguro de que desexas saír deste proxecto?
   are_you_sure_merge_these_places: Estás seguro de que desexas combinar estes lugares? Isto non poderá desfacerse.
   are_you_sure_remove_taxon_from_list: "Estás seguro de que desexas eliminar esta especie ou grupo da lista?"
+  are_you_sure_want_delete_taxon: "Estás seguro de que desexas eliminar este taxón?"
   are_you_sure_want_delete_taxon_link: Estás seguro de que desexas eliminar este vínculo do taxón?
   are_you_sure_want_delete_this_name: Estás seguro de que desexas eliminar este nome?
   are_you_sure_want_delete_this_range: Estás seguro de que desexas eliminar este rango?
@@ -328,11 +332,17 @@ gl:
     swap: Intercambiar
     stage: Etapa
     drop: Eliminar
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: dividido de
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: mesturado en
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: foi combinado en
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: substituído por
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: substituído con
     dropped: Eliminado
   change_your_password: Cambiar o teu contrasinal
@@ -633,6 +643,7 @@ gl:
   first_connect_your_provider_account_to_your_site: "Primeiro, conecta a túa conta %{provider} a %{site_name}:"
   first_inat_observation: "Primeira observación %{site_name}"
   first_observer: Primeiro observador
+  #Verb form, as in "Flag this item"
   flag: Reportar
   flag_an_item: Marca un contido
   flag_description: Marcar este contido para facer saber aos administradores que algo non vai ben.
@@ -734,11 +745,13 @@ gl:
   import_observations_from_a_photo: Importar observacións dun provedor de fotos ou dun arquivo no teu ordenador.
   import_photos: Importar fotos
   importing: "Importando..."
+  #Label for messages you've received
   inbox: caixa do correo
   in_the_past: no pasado
   in_the_past_week: durante a semana pasada
   inactive: Inactiva
   inactive_taxon: Especie ou grupo inactivo
+  inactive_taxon_concepts_are: Os conceptos inactivos son as especies ou grupos que taxonomicamente cambiáronse por outro nome. Os conceptos inactivos consérvanse para manter a historia da especie ou grupo e a compatibilidade con outros sitios.
   inat_account_action: "%{site_name} : Conta : %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} cre que esta é unha listaxe completa deste taxón neste lugar."
   inat_user_profile: "%{site_name}: perfil de %{user}"
@@ -768,6 +781,7 @@ gl:
   just_added!: Acábase de agregar!
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Nome da etiqueta para agrupar os cambios de especie ou grupo
+  #Large photo size
   large: Gran
   last_confirmed_observation: Última observación confirmada
   last_observation: Última observación
@@ -818,7 +832,6 @@ gl:
     turkish: Turco
     waray_waray: Samareño
   less: Menos
-  license_descriptions_and_images: Descrición das licenzas e das túas respectivas imaxes
   licensing: Licenzas
   licensing_your_content_gives_others_legal: "Aplicar unha licenza ao contido xerado por ti confire a outros o dereito a empregalo, sempre e cando acepten os termos da licenza. %{site_name} emprega unha licenza de Creative Commons para compartir datos con outras iniciativas, como"
   life: Vida
@@ -850,6 +863,7 @@ gl:
   listed_taxon: Taxón listado
   listed_taxon_updated: Actualizouse a listaxe de especie ou grupo
   listing_lists: Mostrando listas
+  listing_project_assets: Listaxe de posesións do Proxecto
   listing_taxa: Lista de taxóns
   lists: Listas
   load: Cargar
@@ -879,7 +893,6 @@ gl:
   looks_like_neither_have!: Parece que ningún ten taxóns!
   lookup: Procurar
   lowest_rank: Rango máis baixo
-  made_a: creo unha
   mail_disclaimer: "%{site_name} non permitirá que os teus usuarios che envíen máis invitacións a través do noso sistema. Por favor, denuncia o abuso de invitacións en %{site}."
   main_content: Contido principal
   make_a_new_place: Crea un novo lugar
@@ -887,23 +900,16 @@ gl:
   make_curator: Facer administrador
   make_it_a_life_list?: Crear unha lista de vida?
   make_manager: Facer xestor
-  make_new_place: Crear un Lugar novo
-  make_one: Crear un?
   make_sure_the_default_photo_looks_good: Asegúrate de que a foto por defecto se vexa ben en tamaño grande.
-  make_taxonomic_flickr_tags_for_taxon_raquo: "Facer etiquetas taxonómicas de Flickr para este taxón »"
   make_this_your_default_license: "Facer desta %{type} a túa licenza por defecto"
   mammals: Mamíferos
   manage_all_your_subscriptions: Administra todas as túas subscricións
   manage_your_project_invitations: Administra as invitacións dos teus proxectos
-  managed: Xestionado
   manager: Xestor
   managers: Xestores
   managers_can_do: Os xestores poden realizar as mesmas actividades que un administrador e adicionalmente poden cambiar as propiedades do proxecto e escribir notas no diario do proxecto.
-  manually_create_new_place: Crear un Lugar novo manualmente
   map: Mapa
-  map_for: Mapa para
   matching_species_will_shown_up_here: As especies que atopes mostraranse aquí. O mapa mostrará un rango se %{place} té algunha desas especies.
-  maybe_your_signed_in_with: "Quizais iniciaches sesión coa túa conta %{omniauth}?"
   medium: Medio
   members: Membros
   merge: Combinar
@@ -915,18 +921,13 @@ gl:
   messages: Mensaxes
   misleading_or_illegal_content_html: |
     Contido ilegal, enganoso, racista, xenófobo, etc.
-  mixed_licenses: Licenza combinada
-  mobile_apps_for: As aplicacións móbiles para
   mollusks: Moluscos
-  mon: Lun
   month: Mes
-  months_ago: "hai %{text}"
   more: Máis
   more_fields: Máis campos
   more_info: Máis información
   more_journal_posts: Máis notas de diario
   more_observations: Máis observacións
-  most: Máis
   most_agree: A maioría apóiaa
   most_disagree: A maioría non a apoia
   multiple_taxa_for_taxon_change: "Máis dunha especie ou grupo (entrada de datos para intercambiar/mesturar, saída de datos para separar)"
@@ -940,32 +941,24 @@ gl:
   name: Nome
   name_entered: Nome introducido
   name_of_the_place_you: Nome do lugar onde realizaches a observación
-  name_provider: Nome do provedor
   name_providers:
     col: Catálogo da Vida
-  named_based_url_might_change: "Name-based URLs might change, but this won't.: Os enlaces baseados en nomes poderían cambiar, pero este non."
   names: Nomes
-  naturalised: Naturalizado
-  naturalized: Naturalizado
   native: Nativa
   nav_description: Lorem ipsum dor sit amet, consectetur adipisicing elit, sede do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim ide est laborum.
   ne_lat: Lat. N.E.
   ne_lon: Lonx. N.E.
   near_threatened: case ameazado
-  nearby_observations: Observacións próximas
-  need_id_help?: Necesitas axuda?
   new_announcement: Novo anuncio
   new_check_list: Nova lista de verificación
   new_check_list_for: "Crear nova lista de verificación para {place} »"
   new_check_list_record: "Se desexas marcar esta lista coma exhaustiva, créaa, agrega os taxóns e logo modifícaa, e aquí terás a opción de marcala coma exhaustiva."
-  new_custom_field_for: Novo campo personalizado para
   new_flag_for: Nova Marca para
   new_journal_post: Novo artigo no diario
   new_list: Lista nova
   new_members: "Novos membros"
   new_message: Nova mensaxe
   new_observation_field: Novo campo de observación
-  new_observation_rules: Novas regras de observación
   new_observations: Novas observacións
   new_observations_ellispsis: "Novas observacións..."
   new_observations_from_place_html: "Novas observacións do %{place}"
@@ -974,37 +967,27 @@ gl:
   new_password: Contrasinal novo
   new_post: Nova entrada
   new_project: Proxecto novo
+  new_project_asset: Novo arquivo do Proxecto
   new_project_asset_for: Novo arquivo do proxecto para
   new_source: Nova fonte
   new_taxon_change: Novo cambio taxonómico
   new_taxon_link: Novo vínculo de taxón
-  new_taxon_name: Novo nome de taxón
   new_taxon_name_for: Novo nome de taxón para
   new_taxon_range: Novo Rango de Taxón
   new_taxonomic_change: Novo cambio taxonómico (borrador)
   new_updates_in_the_last_24_hours_from: "Novas actualizacións nas últimas 24 horas de %{site_name}"
-  new_user_rules: Novas regras de usuario
   new_users: Usuarios novos
-  new_users_week: Usuarios novos / Semana
   next: Seguinte
   next_page: Páxina seguinte
   'no': 'Non'
-  no_activity_in_the_past_week: Non houbo actividade na semana anterior. É hora de participar
-  no_administrator_knows_your_password: "Ningún administrador de %{sitename} coñece o teu novo contrasinal nin tivo acceso a el en ningún momento."
-  no_colors_selected: Non hai cores seleccionadas
   no_comments_yet: Aínda non hai comentarios
   no_countries_added_yet: Aínda non se agregaron países
-  no_creative_commons_flickr_photo: Non se etiquetaron fotos de Creative Commons en Flickr
   no_creative_commons_flickr_photos_tagged_x: 'Non hai fotos en Flickr etiquetadas con Creative Commons para "%{x}"'
   no_curators_set: Aínda non hai administradores
   no_curators_yet: '¡Aínda non hai administradores!'
-  no_facebook_photos: Non podemos atopar fotos en Facebook.
   no_flags: Non hai marcas
   no_flickr_photos_tagged: Non hai fotos etiquetadas con Flickr!
-  no_header_row: Non hai fila de cabeceira
-  no_journal_post_have_been: Non se engadiu ningunha nota de diario a este proxecto.
   no_license_all_rights_reserved: Non hai licenza (todos os dereitos reservados)
-  no_link_flickr: "Non, prefiro que non."
   no_managers_set: Aínda non hai xestores
   no_matching_invitations: Non hai invitacións que concorden
   no_matching_observations: Non hai observacións que coincidan
@@ -1016,26 +999,19 @@ gl:
   no_messages_yet: Aínda non hai ningunha mensaxe
   no_more_mail_from_site: "Non desexas recibir máis correos de %{site_name}? Edita a túa configuración de correo en"
   no_more_taxa_to_load: Non hai máis especies ou grupos que cargar!
-  no_more_updates: Non hai máis actualizacións!
-  no_nearby_observations: "Non hai observacións próximas."
   no_new_messages: Non hai novas mensaxes
   no_observations: non hai observacións
   no_observations_from_this_place_yet: Aínda non hai observacións de especies para este lugar.
   no_observations_matching_those_ids: Non hai observacións que coincidan con eses Identificadores.
-  no_observations_need_an_id: Ningunha observación require identificador neste momento. Estupendo!
   no_observations_submitted: "Non se enviou ningunha observación"
-  no_observations_suitable_for_this_project: "Non hai observacións que poidas engadir ou convidar o proxecto."
   no_observations_yet: Aínda non se engadiron observacións a este proxecto
   no_one_has_added_any: Ninguén engadiu notas para este lugar
   no_one_posted_anything_yet: Aínda non se introduciu nada!
-  no_ones_observed: Ninguén observou
   no_photos: Non hai fotos
-  no_places_selected: Non se seleccionaron lugares
   no_post_yet: Aínda non hai ningunha entrada!
   no_projects_yet: Aínda non hai proxectos
   no_range_data_available: Non hai ningún rango de datos dispoñible
   no_recent_activity: Non hai actividade recente
-  no_recently_active: Aínda non hai proxectos activos
   no_reply_yet: Aínda non respondeu
   no_results_found: Non se atoparon resultados.
   no_results_for: 'Sen resultados para esta procura'
@@ -1052,7 +1028,6 @@ gl:
   no_taxa: Non hai taxóns
   no_taxa_listed: Non se rexistraron taxóns
   no_taxa_selected: '¡Non seleccionaches ningunha especie ou grupo!'
-  no_taxa_yet: Aínda non hai taxóns!
   no_taxonomic_changes_match_those_criteria: Non hai cambios taxonómicos con este criterio de procura
   no_wikipedia_page_for_taxon: Non hai ningunha páxina en Wikipedia para este taxón.
   no_x_this_y: "Non hai %{x} deste %{y}"
@@ -1060,20 +1035,15 @@ gl:
   none: Ningún
   normal: Normal
   not_evaluated: non avaliado
-  not_filtering: Sen filtrar
   not_findig_what_you_want: Non atopas o que desexas?
   not_finding_place_you_want?: '¿Non atopaches o lugar que buscabas?'
-  not_just_creative_commons_licensed: non só licenzas Creative Commons
   not_linked_facebook: "A túa conta de %{site_name} xa non está vinculada coa túa conta de Facebook."
   not_linked_flickr: "A túa conta de %{site_name} non está vinculada coa túa conta de Flickr"
-  not_logged_in: Non iniciaches sesión
   not_on_this_list: Non estás nesta lista.
   not_seeing_what_looking_for: Non atopas o que estás procurando?
-  not_yet: Aínda non
   note: Nota
   notes: Notas
   number_of_observations: Número de observacións
-  noun_by_you: "%{noun} propias"
   obscured: Difusa
   obscured_description: |
     As coordenadas públicas móstranse nun punto ao chou dentro dun radio de 10 km das verdadeiras coordenadas. As coordenadas reais só podes velas ti e os administradores dos proxectos ós cales foron engadidos á observación.
@@ -1391,6 +1361,7 @@ gl:
   position: Posición
   positional_accuracy: precisión da túa localización
   possessive_user: "de %{user}"
+  #Noun, short version of a journal post
   post: Ingresar
   post_published: '¡Nota publicada!'
   post_some_new_stuff: publicar algo novo
@@ -1629,6 +1600,7 @@ gl:
   send_me_reset_password_instructions: Envíenme as instrucións para restablecer o meu contrasinal
   send_the_invites: Enviar as invitacións
   sending: Enviando...
+  #Label for messages you've sent
   sent: Enviado
   separate_values_with_a_pipe: Valores separados por barras, por exemplo "1-5|6-10|moitos" ou "si|non|talvez"
   september: Setembro
@@ -1828,6 +1800,7 @@ gl:
   taxon_search: Procura de Taxón
   taxon_search_results_for: Resultados de procura de Taxón para
   taxon_split: división de taxón
+  #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: montar a partir de taxón
   taxon_subscription: subscrición de especie ou grupo
   taxon_swap: intercambio de taxón
@@ -1896,6 +1869,7 @@ gl:
   there_is_no_wikipedia_page_matching: Non hai páxinas en Wikipedia que coincidan
   there_isnt_a_wikipedia_article_titled_x_html: |
     Non existe un artigo relacionado en Wikipedia co nome '%{x}. ¿Gustaríache <a href='http://en.wikipedia.org/wiki/%{x}'>crear</a> un?
+  there_merge_problems_with_the_merge: "Existen problemas ao tratar de combinar os lugares: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Houbo un problema ao gardar a túa identificación: %{error}"
   there_were_errors: Houbo erros.
   there_were_problems_adding_your_observation_to_this_project: "Houbo problemas ao engadir as túas observacións ao proxecto:"
@@ -1947,6 +1921,8 @@ gl:
     Isto aplicará novamente todas as regras da lista aos taxóns, por exemplo, para rexeitar taxóns que non están dentro do taxón da lista de vida ou dentro do rango seleccionado. Non agregará ningún taxón. Esta acción podería tardar uns minutos.
   this_will_try_to_add_tags_to_your_flickr: Con isto tratarase de engadir etiquetas ás túas fotos de Flickr. Desexas continuar?
   this_will_update_all_last_observations: Isto actualizará todas as observacións recentes e engadirá novos taxóns de recente incorporación
+  those_are_the_basics_of: |
+    Esas son as bases para engadir observacións! Hai moitas outras cousas que podes facer, como procurar e filtrar as túas observacións ou modificalas como un grupo, pero isto debería ser auto explicativo.
   those_observations_no_longer_exist: Estas observacións xa non existen.
   threatened: Ameazado
   thu: Xov
@@ -2250,6 +2226,7 @@ gl:
   you_need_to_select_some_observations_first: Debes seleccionar algunhas observacións primeiro.
   you_retain_full_copyright: "Es titular de todos os dereitos de autor sobre o teu contido á parte daqueles dereitos concedidos a %{site_name} segundo os nosos Termos de Servizo."
   you_retain_full_copyright_over_your_content: "Es titular de dereitos de autor completos sobre o teu contido, á parte daqueles dereitos outorgados a %{site_name} segundo os nosos Termos de Servizo."
+  you_sure_delete_asset?: Estás seguro de que desexas eliminar este arquivo?
   you_sure_delete_check_list: "Estás seguro de que desexas eliminar esta lista? Algunhas persoas poderían ter traballado moito nela..."
   you_sure_delete_comment?: Estás seguro de que queres borrar o comentario?
   you_sure_delete_custom_field?: Estás seguro de que desexas eliminar estes campos personalizados?
@@ -2537,6 +2514,19 @@ gl:
           Se se trata dunha URL Eventbrite que inclúe un identificador numérico, imos
           incluír un widget de inscrición na túa páxina de proxecto ata que comece o bioblitz.
         icon_desc: "Recortarase a un cadrado"
+        project_assets_desc_html: |
+          <p class="description">Os arquivos do proxecto son arquivos asociados ao proxecto, segundo certas regras especiais: </p>
+          <ol class="description">
+          <li>
+          Os arquivos que terminan en <code>.logo.jpg </code>,
+          <code>.logo.png</code>, etc serán empregados como logotipo do
+          proxecto na páxina do proxecto en lugar da icona de
+          proxecto
+          </li>
+          <li>Os arquivos KML e KMZ engadiranse ao mapa na páxina do proxecto</li>
+          </ol>
+        trusted_project_means: |
+          Cando un proxecto está verificado, os administradores e xestores do proxecto poden crear, actualizar e borrar os seus recursos do proxecto.
     users:
       dashboard:
         taxon_change_desc: |
