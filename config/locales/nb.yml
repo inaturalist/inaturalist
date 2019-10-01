@@ -1061,6 +1061,7 @@ nb:
   download_csv_template: Last ned CSV-mal
   download_kml: Last ned KML
   downstream_coverage_rank: Downstream dekningsnivå
+  downstream_coverage_colon_rank: "Dekning av underliggende: nivå %{rank}"
   downstream_deviations: Downstream avvik
   downstream_deviations_for_taxon: "Downstream avvik for %{taxon}"
   #Label for a link to taxa that are descendants ("downstream") of the current
@@ -1696,10 +1697,12 @@ nb:
   linked_facebook: "Din %{site_name}-konto er knyttet til din Facebook-konto."
   linked_facebook_automaticaly: "Husk også at vi vil koble sammen din %{site_name} og Facebook kontoer på nytt automatisk hvis du logger inn på %{site_name} via Facebook. Når du bruker Facebook ønsker du jo å kunne importere Facebook-bilder, ikke sant?"
   linked_facebook_description: "Å holde din %{site_name}-konto koblet til din Facebook-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Facebook og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Facebook-konto som du vil koble %{site_name} opp mot."
+  linked_facebook_howto: "For å koble Facebook til %{site_name}, klikk lenken til høyre og logg inn på Facebook.com."
   linked_facebook_password: "Vi kommer aldri til å be deg om ditt Facebook-passord (men Facebook kan kanskje gjøre det, sjekk at url'en som knappen sender deg er Facebook.com). Vi vil heller ikke endre Facebook-opplysningene dine med mindre du ønsker det."
   linked_flickr: "Din %{site_name}-konto er knyttet til din Flickr-konto."
   linked_flickr_automatically: "Husk også at vi vil koble sammen din %{site_name} og Flickr kontoer på nytt automatisk hvis du logger inn på %{site_name} via Flickr. Når du bruker Flickr ønsker du jo å kunne importere Flickr-bilder, ikke sant?"
   linked_flickr_description: "Å holde din %{site_name}-konto koblet til din Flickr-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Flickr og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Flickr-konto som du vil koble %{site_name} opp mot."
+  linked_flickr_password_html: "<strong>Vi kommer aldri til å be deg om ditt Flickr-passord</strong> (men Flickr kan kanskje gjøre det, sjekk at url'en som knappen sender deg er Flickr.com)."
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste slettet.
@@ -1781,6 +1784,7 @@ nb:
     zh-CN: Kinesisk (forenklet)
     zh-TW: Kinesisk (tradisjonell)
   locality_notes: Lokalitetsnotater
+  localized_species_accounts: Lokale artsoversikter
   location: Plassering
   location_is_accurate: Plassering er korrekt
   location_is_exact: plassering er nøyaktig
@@ -1788,6 +1792,8 @@ nb:
   location_is_obscured: Lokaliteten er tilslørt
   location_is_private: Plassering er privat
   location_specified: Plassering oppgitt
+  locked_taxa_will_not_allow_new: Låste taksa vil ikke la nye underliggende taksa bli lagt til seg. Så hvis du har låst Amphibia og noen prøver å importere <i>Rana catesbeiana</i> fra en ekstern navneleverandør, vil det nye taksonet bli opprettet men kan det ikke klassifiseres som en amfibie. Når det skjer, bør de nye taksa bli flagget slik at en kurator kan se på de. Dette bør bare brukes for taksa der vi tror at vi allerede har alle underliggende taksa. Kuratorer kan overstyre dette ved å redigere taksa og legge inn foreldretakson-id'er manuelt, men vennligst vurder å slå sammen nye taksa med eksisterende i stedet.
+  log_in: Logg inn
   log_scale_label: Log
   login_slash_username: Login / brukernavn
   logo:
@@ -1808,6 +1814,7 @@ nb:
   low: Lav
   lowest_rank: Laveste nivå
   make_admin: Gjør til admin
+  mail_disclaimer: "%{site_name} vil ikke la sine brukere sende deg flere invitasjoner via vår invitasjonsmodul. Vennligst rapporter misbruk til %{site}."
   main_content: Hovedinnhold
   main_content_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   make_a_new_place: Opprett et nytt sted
@@ -1908,7 +1915,11 @@ nb:
       'y': "1å"
       #Short text representing %d years in the past
       yy: "%då"
+    datetime_with_zone: "D MMM, YYYY · LT z"
+    datetime_with_offset: "D MMM, YYYY · LT Z"
   month: Måned
+  monthly_supporter_since_date_html: |
+    <a href="%{url}">Månedlig supporter</a> siden %{date}
   months: Måneder
   more: Mer
   more_fields: Flere felt
@@ -1922,7 +1933,18 @@ nb:
   more_photos: Flere bilder
   more_than_a_week_ago: Over en uke siden
   most_agree: de fleste er enige
+  most_browser_print_pdf: "Merk: de fleste nettlesere har muligheten for å skrive ut til pdf"
   most_disagree: de fleste er uenige
+  most_comments_and_faves: Fleste kommentarer og favoritter
+  most_observations: Fleste observasjoner
+  most_recent_observation_by_date_observed: Nyeste verifiserbare observasjoner per observasjonsdato
+  most_species: Fleste arter
+  most_observed_species: Fleste observerte arter
+  most_observed_introduced_species: Fleste observerte introduserte arter
+  most_observed_threatened_species: Fleste observerte truede arter
+  move_input_children_to_output?: Flytt underordnede til output?
+  multiple: flere
+  multiple_select_option: '-- flere --'
   multiple_taxa_for_taxon_change: "Flere taksa (input for bytting/sammenslåing, output for oppdeling)"
   ne_lat: NØ bgrad.
   ne_lon: NØ lgrad.
