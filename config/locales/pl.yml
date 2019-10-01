@@ -179,6 +179,25 @@ pl:
   a_flag_for_x: "Zgłoszenie dla %{x}"
   a_member_of: "należy do"
   a_member_of_taxon_html: "należy do %{taxon}"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: O nas
   about_blocking: O blokowaniu
@@ -266,7 +285,10 @@ pl:
   add_observations: Dodaj obserwacje
   add_observations_by_checking_off: Dodaj obserwacje poprzez odhaczenie gatunków z listy.
   add_observations_project: Dodaj obserwacje do tego projektu
+  #Prompt to add a new journal post
   add_one: Dodaj jeden!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
   add_one_now: Dodaj jeden teraz
   add_photos: Dodaj zdjęcia
   add_photos_to_this_observation: Dodaj zdjęcia do tej obserwacji
@@ -529,6 +551,8 @@ pl:
   at: o
   at_time: "o %{time}"
   attached_taxon: Powiązany takson
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atrybut
   authority_list:
     iucn_red_list: Czerwona księga gatunków zagrożonych
@@ -646,12 +670,19 @@ pl:
     swap: Zamień
     stage: Stadium
     drop: Odrzuć
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: wydziel z
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podziel na
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: włącz do
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: włączone do
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: zastąpione przez
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: zastąpione przez
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: zastąpione przez
     dropped: odrzucone
     input_taxon_was_split_into_output_taxa_html: "takson %{input_taxon} został podzielony na taksony %{output_taxa}"
@@ -1132,6 +1163,7 @@ pl:
   first_inat_observation: "Pierwsza obserwacja na %{site_name}"
   first_observation: Pierwsza obserwacja
   first_observer: Pierwszy obserwator
+  #Verb form, as in "Flag this item"
   flag: Zgłoś
   flag_as_inappropriate: Oznacz jako nieodpowienie
   flag_an_item: Zgłoś element
@@ -1300,6 +1332,7 @@ pl:
   improving: Ulepszony
   in_n: "w %{n}"
   in_place_x: w miejscu %{place}
+  #Label for messages you've received
   inbox: skrzynka odbiorcza
   increase_brightness: Zwiększ jasność
   in_progress: w trakcie
@@ -1331,6 +1364,7 @@ pl:
   invite_someone_to: "Zaproś kogoś do %{name}!"
   invite_your_friends: Zaproś znajomych
   invite_your_friends_description: "Pomóż %{site_name} stać się większą, lepszą społecznością poprzez zaproszenie znajomych!"
+  #Type of project where people can only join after they have been invited
   inviteonly: tylko dla zaproszonych
   invited_x: "Zaproszony %{x}"
   is_not_following_anyone: nikogo nie obserwuje.
@@ -1364,6 +1398,7 @@ pl:
   location_private: Lokalizacja prywatna
   location_unknown: Lokalizacja nieznana
   language_slash_type: Język / Typ
+  #Large photo size
   large: duże
   last_active_with_date: "Ostatnia aktywność: %{date}"
   last_confirmed_observation: Ostatnia potwierdzona obserwacja
@@ -1374,6 +1409,7 @@ pl:
   latitude: Szerokość geograficzna
   latitude_in_decimals: 'Szerokość w stopniach dziesiętnych, np. 38.123'
   latitude_value: "Szerokość: %{latitude}"
+  #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Warstwy
   layout: Układ
   leaderboard: Tablica wyników
@@ -1525,7 +1561,6 @@ pl:
     zh-CN: Chiński (uproszczony)
     zh-TW: Chiński (tradycyjny)
   location: Lokalizacja
-  locations: Lokalizacje
   location_is_accurate: Lokalizacja dokładna
   location_is_exact: lokalizacja dokładna
   location_is_public: Lokalizacja jest publiczna
@@ -1547,21 +1582,17 @@ pl:
   look_up_name: "Wyszukaj nazwę"
   looks_like_no_species_in_guide: Wygląda na to, że jeszcze nie masz żadnych gatunków w przewodniku.
   make_admin: Nadaj uprawnienia administratora
-  make_an_observation: utwórz obserwację
   main_content: Główna zawartość
   make_a_new_place: Utwórz nowe miejsce
   make_curator: Nadaj uprawnienia opiekuna
   make_it_a_life_list?: Utworzyć listę życiową?
   make_manager: Nadaj uprawnienia managera
-  make_new_place: Utwórz nowe miejsce
   make_sure_the_default_photo_looks_good: Upewnij się, że domyślne zdjęcie wygląda dobrze w dużym rozmiarze.
   mammals: ssaki
-  manage: Zarządzaj
   manage_names: Zarządzaj nazwami
   manage_your_projects: Zarządzanie swoimi projektami
   managers: Managerowie
   managing_projects: Zarządzanie projektami
-  manually_create_new_place: Utwórz ręcznie nowe miejsce
   map: Mapa
   map_legend: legenda mapy
   map_marker_size: wielkość znacznika
@@ -1575,12 +1606,10 @@ pl:
       observations: Obserwacje
       range: Zakres
   map_tooltip: Pokaż widok mapy
-  map_for: Mapa dla
   mark_as_reviewed: Oznacz jako przejrzane
   mark_all_as_reviewed: Oznacz wszystkie jako przejrzane
   mark_all_as_unreviewed: Oznacz wszystkie jako nieprzejrzane
   matching_species_will_shown_up_here: Tu pokażą się pasujące gatunki. Mapy pokażą zakres występowania, jeśli jest on zdefiniowany dla miejsca %{place}.
-  maybe_your_signed_in_with: "Może zalogowałeś się z użyciem konta %{omniauth}?"
   media: Multimedia
   media_type: Rodzaj multimediów
   medium: średni
@@ -1594,7 +1623,6 @@ pl:
   mentioned_you_in_an_x_on_noun_html: "%{user} wspomniał o tobie w %{x} w elemencie %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} wspomniał o tobie w %{x} w elemencie %{noun} użytkownika %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} wspomniał o tobie w %{x} w elemencie %{noun} użytkownika %{by}"
-  mentions: "Wzmianki"
   merge: Połącz
   merge_two_places_together: Połącz dwa miejsca w jedno. Wszystkie gatunki z checklist zostaną połączone, tak samo jak wszelkie informacje geograficzne.
   merge_observation_field_x_into: 'Połącz notatki terenowe "%{x}" w...'
@@ -1605,8 +1633,6 @@ pl:
   misidentifications: Błędne identyfikacje
   misleading_or_illegal_content_html: |
     Treści nielegalne lub mylące, rasistowskie lub ksenofobiczne wyzwiska itd. Aby dowiedzieć się więcej o tym, co uważamy za "odpowiednie", zobacz <a href"/help#innappropriate">FAQ</a>.
-  mobile_app_for: Aplikacja mobilna dla
-  mobile_apps_for: Aplikacje mobilne dla
   mollusks: mięczaki
   momentjs:
     shortRelativeTime:
@@ -1624,15 +1650,12 @@ pl:
       'y': "1r"
       yy: "%dr"
     datetime_with_zone: "D MMM YYYY · LT z"
-  mon: Pon
   month: Miesiąc
   months: Miesiące
-  months_ago: "%{text} temu"
   more: Więcej
   more_fields: Więcej notatek
   more_filters: Więcej filtrów
   more_from_x: Więcej od %{x}
-  more_help: Więcej Pomocy
   more_import_options: Więcej opcji importu
   more_info: Więcej informacji
   more_info_title: Więcej Informacji
@@ -1640,7 +1663,6 @@ pl:
   more_observations: Więcej obserwacji
   more_photos: Więcej zdjęć
   more_than_a_week_ago: Ponad tydzień temu
-  most: Większość
   most_agree: większość się zgadza
   most_browser_print_pdf: "Uwaga: większość przeglądarek ma opcję zapisywania do pliku PDF"
   most_disagree: większość się nie zgadza
@@ -1669,21 +1691,14 @@ pl:
   n_person_disagrees: "%{amount} osoba nie zgadza się"
   name: Nazwa
   name_entered: Nazwa wprowadzona
-  name_llaves: "[NAZWA]"
   name_or_slug: "Nazwa lub slug (uproszczony URL), np. moj-projekt"
   name_of_the_place_you: Nazwa miejsca, w którym dokonałeś obserwacji
-  name_or_username: Imię lub login
-  named_based_url_might_change: "URL bazowane na nazwach mogą się zmieniać, ale ten nie będzie."
   names: Nazwy
   names_for_taxon_html: "Nazwy dla taksonu %{taxon}"
   native: rodzimy
   native_to_place: "Rodzimy dla miejsca %{place}"
-  near: blisko
   near_threatened: Bliskie zagrożenia
-  nearby: W pobliżu
   nearby_observations_: Pobliskie obserwacje
-  nearby_observations: Pobliskie Obserwacje
-  need_id_help?: Potrzebujesz pomocy z identyfikacją?
   needs_id: potrzebuje identyfikacji
   needs_id_: Potrzebuje identyfikacji
   needs_id_expandable_html: "<span class='full'>Potrzebuje </span>identyfikacji"
@@ -1712,17 +1727,14 @@ pl:
   new_species_added_in_interval: Nowe gatunki dodane w %{interval}
   new_species_added_in_interval_x_of_y: Nowe gatunki dodane w %{interval} (Pokazano %{x} z %{y})
   new_taxon_change: Nowa zmiana taksonu
-  new_taxon_name: Nowa nazwa taksonu
   new_taxon_name_for: Nowa nazwa taksonu dla
   new_taxon_range: Nowy zasięg taksonu
   new_taxonomic_change: Nowa zmiana taksonomiczna (Szkic)
   new_trip: Nowa wycieczka
   new_updates_in_the_last_24_hours_from: "Najnowsze aktualizacje z %{site_name} (ostatnie 24 godziny)"
-  new_user_rules: Zasady dla nowych użytkowników
   new_users: Nowi użytkownicy
   new_users_this_year: Nowi użytkownicy w tym roku
   new_users_w_7_obs: Nowi użytkownicy z 7 Obserwacjami
-  new_users_week: Nowi użytkownicy / Tydzień
   newly_added: Nowo dodane
   newly_added_species: Nowo dodane gatunki
   newly_observed_species: Nowo zaobserwowane gatunki
@@ -1734,29 +1746,21 @@ pl:
   next_photo: Następne zdjęcie
   next_tab: Następna zakładka
   'no': 'Nie'
-  no_activity_in_the_past_week: Brak aktywności w zeszłym tygodniu. Czas na
-  no_administrator_knows_your_password: "Żaden administrator %{sitename} nie zna twojego nowego hasła, ani nie ma do niego dostępu."
   no_but_it_is_a_member_of_taxon: "Nie, ale należy do taksonu %{taxon}"
-  no_colors_selected: Nie wybrano kolorów.
   no_comments_yet: Brak komentarzy.
   no_countries_added_yet: Nie dodano krajów
-  no_creative_commons_flickr_photo: Brak otagowanych zdjęć z Flickra na licencji Creative Commons
   no_creative_commons_flickr_photos_tagged_x: 'Brak zdjęć z Flickra na licencji Creative Commons z tagiem "%{x}"'
   no_curators_set: Brak ustanowionych opiekunów
   no_curators_yet: Póki co brak opiekunów!
   no_description: Brak opisu
-  no_facebook_photos: Nie możemy znaleźć żadnych zdjęć z Facebooka.
   no_flags: Tym razem brak zgłoszeń
   no_flickr_photos_tagged: Brak otagowanych zdjęć z Flickra
-  no_header_row: Brak wiersza nagłówka
   no_identifications: Brak identyfikacji
   no_ids_have_been_suggested_yet: Nie zaproponowano jeszcze identyfikacji
   no_favorites_added:
     current_user: Nie dodałeś jeszcze niczego do ulubionych.
     user: "%{user} nie dodał jeszcze niczego do ulubionych."
-  no_journal_post_have_been: Żadne wpisy w dzienniku nie zostały jeszcze dodane do tego projektu.
   no_license_all_rights_reserved: Brak licencji (wszelkie prawa zastrzeżone)
-  no_link_flickr: "Wolałbym nie."
   no_managers_set: Brak ustanowionych managerów
   no_matching_article_from_x: "Brak pasującego artykułu z %{x}"
   no_matching_invitations: Brak pasujących zaproszeń
@@ -1770,15 +1774,11 @@ pl:
   no_misidentifications_yet: Brak nieprawidłowych identyfikacji
   no_more_mail_from_site: "Nie chcesz otrzymywać maili od %{site_name}?  Edytuj ustawienia maili na"
   no_more_results_found: Nie znaleziono więcej wyników
-  no_more_updates: Nie ma więcej aktualizacji!
-  no_nearby_observations: "Brak pobliskich obserwacji"
   no_new_messages: Brak nowych wiadomości
   no_news_yet: Brak aktualności
   no_observations: Brak Obserwacji
   no_observations_from_this_place_yet: Brak obserwacji z tego miejsca.
   no_observations_matching_those_ids: Brak obserwacji pasujących do tych identyfikacji.
-  no_observations_need_an_id: Żadna obserwacja nie potrzebuje identyfikacji. Niesamowite!
-  no_observations_suitable_for_this_project: "Brak pasujących obserwacji, które nie zostały jeszcze dodane lub zaproszone do projektu."
   no_observations_yet: Póki co brak obserwacji
   no_one_has_added_any: Nikt jeszcze nie dodał żadnych notatek dla tego miejsca
   no_one_has_been_invited_yet: Jeszcze nikt nie został zaproszony
@@ -1787,7 +1787,6 @@ pl:
   no_photos: Brak zdjęć
   no_photos_of_that_size: Brak zdjęć tego rozmiaru.
   no_places_available: Brak dostępnych miejsc
-  no_places_selected: Nie wybrano miejsc.
   no_post_yet: Póki co brak postów!
   no_project_selected: Nie wybrano projektów
   no_project_to_admin_current_user: "Nie administrujesz żadnym projektem"
@@ -1795,7 +1794,6 @@ pl:
   no_projects_yet: Póki co brak projektów
   no_range_data_available: Brak dostępnych danych zasięgu.
   no_recent_activity: Brak niedawnej aktywności
-  no_recently_active: Brak niedawno aktywnych projektów.
   no_relevant_annotations: Brak pasujących adnotacji
   no_reply_yet: Brak odpowiedzi
   no_results_found: Brak wyników
@@ -1810,7 +1808,6 @@ pl:
   no_summary_from_wikipedia: Brak podsumowania z Wikipedii
   no_summary_has_been_set: Nie ustawiono podsumowania.
   no_taxa_selected: Nie wybrano taksonów!
-  no_taxa_yet: Póki co brak taksonów!
   no_x_this_y: "Brak %{x} w %{y}"
   noble_curators: "Wybitni Opiekunowie %{site}"
   none: Brak
@@ -1821,10 +1818,8 @@ pl:
   not_found: Nie znaleziono
   not_linked_facebook: "Twoje konto %{site_name} nie jest połączone z kontem na Facebooku"
   not_linked_flickr: "Twoje konto %{site_name} nie jest połączone z kontem na Flickrze"
-  not_logged_in: Nie jesteś zalogowany
   not_on_this_list: Nie na tej liście.
   not_seeing_what_looking_for: Nie znalazłeś tego, czego szukałeś?
-  not_spam: To nie Spam
   note: Uwaga
   notes: Notatki
   note_you_can_modify_the_height_attribute: "Uwaga: Możesz modyfikować atrybut \"wysokość\", aby dopasować element do wolnej przestrzeni na swojej stronie internetowej."
@@ -1833,7 +1828,6 @@ pl:
   number_of_observations: Ilość obserwacji
   number_of_observers_value: "Ilość obserwujących: %{number}"
   number_of_observers: "Ilość obserwujących"
-  numeric_: numerycznie
   obscured_: ukryta
   obscured: Ukryta
   obscured_or_private: ukryta lub prywatna
@@ -2474,6 +2468,7 @@ pl:
           kb: KB
           mb: MB
           tb: TB
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
       messages:
