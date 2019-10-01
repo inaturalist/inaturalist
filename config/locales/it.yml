@@ -23,6 +23,7 @@ it:
   x_ids:
     one: '1 identificativo'
     other: '%{count} identificativi'
+  #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: 1 prima lista degli esseri viventi
     other: "%{count} prime liste prime degli esseri viventi"
@@ -120,6 +121,25 @@ it:
   a_flag_for_x: "un contrassegno per %{x}"
   a_member_of: "Un membro di"
   a_member_of_taxon_html: "un membro di %{taxon}"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "@gender{m:un|f:una|n:un} %{resource}"
   about: Informazioni
   about_blocking: Riguardo il blocco
@@ -183,6 +203,7 @@ it:
   add_another_photo: Aggiungi un'altra foto
   add_another_section: Aggiungi un'altra sezione
   add_another_subscription: Aggiungi un'altra sottoscrizione
+  #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Aggiungi Risorsa di Progetto
   add_batch: Aggiungi batch
   add_comma_separated_tags: "Aggiungi etichette separate da virgole"
@@ -209,7 +230,10 @@ it:
   add_observations: Aggiungi osservazioni
   add_observations_by_checking_off: Aggiungi osservazioni spuntando le specie da una lista
   add_observations_project: Aggiungi osservazioni a questo progetto
+  #Prompt to add a new journal post
   add_one: Aggiungine una!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
   add_one_now: Aggiungi una ora
   add_photos: Aggiungi foto
   add_photos_to_this_observation: Aggiungi foto a questa osservazione
@@ -512,8 +536,13 @@ it:
   associations: Associazioni
   at: in
   at_time: "alle ore %{time}"
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
   atom: Atom
   attached_taxon: Taxon collegato
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attributo
   attribution: Attribuzione
   authority_list:
@@ -647,12 +676,19 @@ it:
     swap: Scambia
     stage: Organizza
     drop: Elimina
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: suddividi da
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: suddividi in
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: unisci in
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: unito in
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: sostituito da
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: sostituisci con
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: sostituito con
     dropped: eliminato
     staged: organizzato
@@ -785,6 +821,7 @@ it:
     Geoprivacy predefinita applicata a tutte le osservazioni di questo taxon per questo luogo
   contact_support: Contatta il supporto
   contain_all_descendants?: Questa checklist include tutti i discendenti di questo taxon che vivono qui?
+  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Contenuto
   content_author: Autore del Contenuto
   content_hidden: Contenuto nascosto
@@ -989,7 +1026,6 @@ it:
   destroy: Distruggi
   details: Dettagli
   deviation: Scostamento
-  deviations: Scostamenti
   devise:
     failure:
       user:
@@ -1015,6 +1051,8 @@ it:
   dont_have_an_account_sign_up_html: Non hai un'utenza? <strong>Registrati.</strong>
   dont_send_me_email: "Non inviarmi nessuna e-mail!"
   dont_use_double_quotes: Non utilizzare le virgolette da nessun'altra parte
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
   drop_it: Trascina qua
   double_click_to_finish: (doppio clic per terminare)
   download: Scarica
@@ -1023,10 +1061,11 @@ it:
   download_csv: Scarica in formato CSV
   download_csv_template: Scarica modello CSV
   download_kml: Scarica il file KML
-  downstream_coverage: Copertura a valle
   downstream_coverage_rank: Rango di copertura a valle
   downstream_deviations: Deviazioni a valle
   downstream_deviations_for_taxon: "Deviazioni a valle per %{taxon}"
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taxa coperti segnalati a valle
   draft: bozza
   draft_: Bozza
@@ -1219,6 +1258,7 @@ it:
   first_observation: Prima osservazione
   first_observation_by_date_added: Prima osservazione per data aggiunta
   first_observer: 1° osservatore
+  #Verb form, as in "Flag this item"
   flag: Contrassegna
   flag_as_inappropriate: Contrassegna come inappropriato
   flag_an_item: Contrassegna un elemento
@@ -1252,6 +1292,7 @@ it:
     Contrassegno per l'Utente: %{title}
   flag_it!: Segnala!
   flag_marked_as_resolved_html: '<span class="meta">Segnalazione segnata come</span> <strong>risolta.</strong>'
+  #Label for the object that was flagged, e.g. a table header
   flag_object: Oggetto
   flag_reason: "&ldquo;Sto contrassegnando questo %{record} perché"
   flag_resolution: Risoluzione
@@ -1262,7 +1303,6 @@ it:
   flag_this_sound: Segnala questo suono
   flagged: ha segnalato
   flagged_: Contrassegnato
-  flagged_covered_taxa: Taxa coperti segnati
   flagged_for_curation: Contrassegnato per il controllo
   flagged_taxon: Taxon segnato
   flagged_thing_explanation: "Gli utenti hanno contrassegnato questa %{thing} perché"
@@ -1469,6 +1509,7 @@ it:
   in_n: "in %{n}"
   in_place_x: in %{place}
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
+  #Label for messages you've received
   inbox: Posta in arrivo
   including: incluso
   increase_brightness: Aumenta luminosità
@@ -1503,6 +1544,7 @@ it:
   invite_someone_to: "Invita qualcuno su %{name}!"
   invite_your_friends: Invita i tuoi amici
   invite_your_friends_description: "Aiuta la community di %{site_name} a crescere e migliorare invitando i tuoi amici ad unirsi!"
+  #Type of project where people can only join after they have been invited
   inviteonly: solo su invito
   invited_x: "%{x} invitato(i)"
   iphone: iPhone
@@ -1547,6 +1589,7 @@ it:
   location_private: Posizione privata
   location_unknown: Posizione sconosciuta
   language_slash_type: Lingua / Tipo
+  #Large photo size
   large: grande
   last_active_with_date: "Attivo l'ultima volta: %{date}"
   last_confirmed_observation: Ultima osservazione confermata
@@ -1558,6 +1601,7 @@ it:
   latitude_in_decimals: 'Latitudine in gradi decimali, ad esempio, 38.123'
   latitude_slash_y_coord_slash_northing: Latitudine / coord y / nord
   latitude_value: "Latitudine: %{latitude}"
+  #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Livelli
   layout: Layout
   leaderboard: Classifica
@@ -1632,7 +1676,6 @@ it:
     turkish: Turco
     waray_waray: Wáray-Wáray
   less: Meno
-  license_descriptions_and_images: Descrizione delle licenze e immagini
   licensed_site_photos: "Foto con licenza di %{site_name}"
   license: Licenza
   licensing: Licenze
@@ -1736,7 +1779,6 @@ it:
   locality_notes: Note locali
   localized_species_accounts: Pagine delle specie
   location: Localizzazione
-  locations: Località
   location_is_accurate: La posizione è accurata
   location_is_exact: la posizione è esatta
   location_is_public: La posizione è pubblica
@@ -1764,9 +1806,7 @@ it:
   lookup: Cerca
   low: Inferiore
   lowest_rank: Il rango più basso
-  made_a: fatto un
   make_admin: Rendi amministratore
-  make_an_observation: Aggiungi un'osservazione
   mail_disclaimer: "%{site_name} non permette ai suoi utenti di mandarti altri inviti utilizzando il nostro sistema di inviti. Per favore riporta l'abuso a %{site}."
   main_content: Contenuto principale
   main_content_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -1775,26 +1815,19 @@ it:
   make_curator: Rendi curatore
   make_it_a_life_list?: Vuoi creare una Lista degli Esseri Viventi?
   make_manager: Rendi gestore
-  make_new_place: Crea un nuovo luogo
-  make_one: vuoi farne uno?
   make_sure_the_default_photo_looks_good: Assicurati che la foto predefinita renda bene a grandi dimensioni.
-  make_taxonomic_flickr_tags_for_taxon_raquo: "Crea delle etichette tassonomiche Flickr per questo taxon &raquo;"
   make_this_your_default_license: "Rendi questa la tua licenza %{type} predefinita"
   make_this_the_primary_listing: "Rendi questa la lista principale"
   mammals: mammiferi
-  manage: Gestisci
   manage_all_your_subscriptions: Gestisci tutte le tue sottoscrizioni
   manage_names: Gestisci i nomi
   manage_your_projects: Gestisci i Tuoi Progetti
   manage_your_project_invitations: Gestisci i tuoi inviti al progetto
   manage_your_relationships: Organizza le tue relazioni
-  manage_subscriptions: Gestisci iscrizioni
-  managed: gestito
   manager: Gestore
   managers: Gestori
   managers_can_do: I gestori possono fare tutto quello che fanno i curatori come editare le impostazioni del progetto e scrivere il post del diario.
   managing_projects: Gestione progetti
-  manually_create_new_place: Crea manualmente un nuovo luogo
   map: Mappa
   map_legend: legenda della mappa
   map_marker_size: dimensione dell'indicatore della mappa
@@ -1812,18 +1845,14 @@ it:
       checklist_places_description: Luoghi dove questo taxon è stato inserito nella checklist
       range: Areale
   map_tooltip: Mostra la visualizzazione a mappa
-  map_for: Mappa per
   mark_as_reviewed: Contrassegna come revisionata
   mark_all_as_reviewed: Segna tutto come revisionato
   mark_all_as_unreviewed: Contrassegna tutto come non controllato
-  matched_several_different_taxa: diversi taxa distinti corrispondono
   matching_species_will_shown_up_here: Le specie che corrispondono saranno mostrati qui. Le mappe mostreranno un areale se il %{place} ne ha uno disponibile  per la specie.
   maverick: In disaccordo
-  maybe_your_signed_in_with: "Forse ti sei registrato con il tuo account %{omniauth}?"
   media: File multimediali
   media_type: Tipo di supporto
   medium: medio
-  medium_url: URL del contenuto
   meet: Incontra
   member_of_the_inaturalist_network_html: |
     Membri di <a href="%{url}">iNaturalist Network</a>
@@ -1837,7 +1866,6 @@ it:
   mentioned_you_in_an_x_on_noun_html: "%{user} ti ha menzionato in una %{x} su %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} ti ha menzionato in una %{x} su %{noun} di %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} ti ha menzionato in una %{x} su %{noun} di %{by}"
-  mentions: "Citazioni"
   merge: Unisci
   merge_it_with_another_place: Unisci con un altro luogo
   merge_two_places_together: Unisci insieme due luoghi. Tutte le specie sulla checklist saranno unite, nonché tutti i dati geografici.
@@ -1851,10 +1879,7 @@ it:
   misidentifications: Identificazioni erronee
   misleading_or_illegal_content_html: |
     Contenuto ingannevole o illegale, insulto etnico o razziale, etc. Per altre informazioni sulla definizione di “appropriato”, vedi <a href="/help#inappropriate">FAQ</a>.
-  mixed_licenses: licenze miste
   mobile: Cellulare
-  mobile_app_for: App per dispositivi mobili per
-  mobile_apps_for: App per dispositivi mobili per
   mollusks: molluschi
   momentjs:
     shortRelativeTime:
@@ -1873,17 +1898,14 @@ it:
       yy: "%d anni"
     datetime_with_zone: "D MMM YYYY · LT z"
     datetime_with_offset: "D MMM YYYY · LT Z"
-  mon: Lun
   month: Mese
   monthly_supporter_since_date_html: |
     <a href="%{url}">Sostenitore mensile</a> dal %{date}
   months: Mesi
-  months_ago: "%{text} fa"
   more: Di più
   more_fields: Più campi
   more_filters: Più filtri
   more_from_x: Più info su %{x}
-  more_help: Più aiuto
   more_import_options: Più opzioni di importazione
   more_info: Ulteriori informazioni
   more_info_title: Ulteriori informazioni
@@ -1891,7 +1913,6 @@ it:
   more_observations: Più osservazioni
   more_photos: Più Foto
   more_than_a_week_ago: Più di una settimana fa
-  most: Il più
   most_agree: la maggior parte è d’accordo
   most_browser_print_pdf: "Nota: la maggior parte dei browser ha un'opzione per stampare in PDF"
   most_disagree: la maggior parte è in disaccordo
@@ -1925,20 +1946,14 @@ it:
   n_person_disagrees: "%{amount} persona non è d'accordo"
   name: Nome
   name_entered: Nome inserito
-  name_llaves: "[NOME]"
   name_or_slug: "Nome o slug URL, ad esempio: mio-progetto"
   name_of_the_place_you: Il nome del luogo dove si è effettuata l'osservazione
-  name_or_username: Nome o nome utente
-  name_provider: Nome del fornitore dei dati
   name_providers:
     col: Catalogue of Life
     ubio: uBio
     nzor: Registro degli Organismi della Nuova Zelanda
-  named_based_url_might_change: "Il nome basato sugli URL potrebbe cambiare, ma questo non lo farà."
   names: Nomi
   names_for_taxon_html: "Nomi per %{taxon}"
-  naturalised: naturalizzato
-  naturalized: naturalizzato
   native: nativo
   native_page_url: URL della pagina originaria
   native_to_place: "Nativo in %{place}"
@@ -1946,12 +1961,8 @@ it:
   nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: Lat. NE
   ne_lon: Lon. NE
-  near: vicino
   near_threatened: Quasi minacciata
-  nearby: Nelle vicinanze
   nearby_observations_: Osservazioni nelle vicinanze
-  nearby_observations: Osservazioni nelle vicinanze
-  need_id_help?: Aiuto su "Serve ID"?
   needs_id: serve ID
   needs_id_: Serve ID
   needs_id_expandable_html: "<span class='full'>Serve </span>ID"
@@ -1964,7 +1975,6 @@ it:
   new_check_list_for: "Crea una nuova checklist per %{place} &raquo;"
   new_check_list_record: "Se desideri contrassegnare la lista come esaustiva, creala, aggiungi i taxa e poi editala: troverai qui l'opzione per contrassegnarla come esaustiva."
   new_comment_on_a_parent_by_user_link: Nuovo commento su @gender{m:un|f:una|n:un} %{parent} di %{user_link}
-  new_custom_field_for: Nuovo campo personalizzato per
   new_flag_for: Nuovo Contrassegno per
   new_guide: Nuova guida
   new_journal_post: Nuovo Post del Diario
@@ -1973,7 +1983,6 @@ it:
   new_members: "Nuovi membri"
   new_message: Nuovo messaggio
   new_observation_field: Nuovo campo di osservazione
-  new_observation_rules: Nuova Regole di Osservazione
   new_observations: Nuove osservazioni
   new_observations_this_year: Nuove Osservazioni Quest'Anno
   new_observations_ellispsis: "Nuove osservazioni..."
@@ -1990,17 +1999,14 @@ it:
   new_species_added_in_interval_x_of_y: Nuove Specie Aggiunte In %{interval} (Visualizzando %{x} di %{y})
   new_taxon_change: Nuova modifica tassonomica
   new_taxon_link: Nuovo Link del Taxon
-  new_taxon_name: Nuovo nome di taxon
   new_taxon_name_for: Nuovo nome di taxon per
   new_taxon_range: Nuovo Areale di Taxon
   new_taxonomic_change: Nuova Modifica Tassonomica (Bozza)
   new_trip: Nuovo viaggio
   new_updates_in_the_last_24_hours_from: "Nuovi aggiornamenti nelle ultime 24 ore da %{site_name}"
-  new_user_rules: Nuove Regole degli Utenti
   new_users: Nuovi utenti
   new_users_this_year: Nuovi Utenti Quest'Anno
   new_users_w_7_obs: Nuovi utenti con 7 osservazioni
-  new_users_week: Nuovi Utenti/Settimana
   newly_added: Appena Aggiunti
   newly_added_species: Specie Appena Aggiunte
   newly_observed_species: Specie Appena Osservate
@@ -2012,22 +2018,16 @@ it:
   next_photo: Prossima foto
   next_tab: Scheda successiva
   'no': 'No'
-  no_activity_in_the_past_week: Nessuna attività la scorsa settimana. E' ora di
-  no_administrator_knows_your_password: "Nessun amministratore di %{sitename} conosce la tua nuova password e ha o ha avuto accesso alla tua password."
   no_assessments_have_been_added_to_this_project_yet: Nessuna valutazione è stata ancora aggiunta al progetto.
   no_but_it_is_a_member_of_taxon: "No, ma questo è un membro di %{taxon}"
-  no_colors_selected: Nessun colore selezionato.
   no_comments_yet: Ancora nessun commento.
   no_countries_added_yet: Ancora nessuno stato aggiunto
-  no_creative_commons_flickr_photo: Nessuna Foto Creative Commons di Flickr è stata contrassegnata
   no_creative_commons_flickr_photos_tagged_x: 'Nessuna Foto Creative Commons di Flickr è stata contrassegnata "%{x}"'
   no_curators_set: Nessun curatore stabilito
   no_curators_yet: Ancora nessun curatore!
   no_description: Nessuna descrizione
-  no_facebook_photos: Non abbiamo trovato alcun foto da Facebook.
   no_flags: Non ci sono contrassegni questa volta
   no_flickr_photos_tagged: Nessuna foto di Flickr contrassegnata!
-  no_header_row: Senza riga di intestazione
   no_identifications: Nessuna identificazione
   no_identifications_added:
     current_user: Non hai aggiunto identificazioni a nessuna delle osservazioni
@@ -2038,9 +2038,7 @@ it:
   no_favorites_added:
     current_user: Non hai ancora aggiunto dei preferiti
     user: "%{user} non aggiunto ai preferiti"
-  no_journal_post_have_been: Nessun post è stato ancora aggiunto a questo progetto.
   no_license_all_rights_reserved: Nessuna licenza (tutti i diritti riservati)
-  no_link_flickr: "No, preferirei di no."
   no_managers_set: Nessun gestore stabilito
   no_matching_article_from_x: "Nessuna articolo da %{x} corrisponde"
   no_matching_invitations: Nessun invito corrisponde
@@ -2055,26 +2053,20 @@ it:
   no_more_mail_from_site: "Non vuoi ricevere nessuna email da %{site_name}? Modifica le tue impostazioni email a"
   no_more_taxa_to_load: Non ci sono più taxa da caricare!
   no_more_results_found: Nessun altro risultato trovato
-  no_more_updates: Non ci sono più aggiornamenti!
-  no_nearby_observations: "Nessuna osservazione nelle vicinanze."
   no_new_messages: Nessun nuovo messaggio
   no_news_yet: Accora nessuna notizia
   no_observations: Nessuna Osservazione
   no_observations_from_this_place_yet: Ancora nessuna osservazione da questo luogo.
   no_observations_matching_those_ids: Nessuna osservazione corrisponde a queste ID.
-  no_observations_need_an_id: Nessun osservazione ha bisogno di una ID ora! Fantastico!
   no_observations_submitted: "Nessuna osservazione inserita!"
-  no_observations_suitable_for_this_project: "Non c'è nessuna osservazione adatta a questo progetto che non sia già stata invitata o aggiunta."
   no_observations_yet: Ancora nessuna osservazione
   no_one_has_added_any: Nessuno ha aggiunto delle note per questo luogo
   no_one_has_been_invited_yet: Nessuno è stato ancora invitato
   no_one_posted_anything_yet: Nessuno ha ancora postato qualcosa!
-  no_ones_observed: Nessuno ha osservato
   no_photo: Nessuna foto
   no_photos: Nessuna foto
   no_photos_of_that_size: Nessuna foto di questa dimensione.
   no_places_available: Nessun luogo disponibile
-  no_places_selected: Nessun luogo selezionato.
   no_post_yet: Ancora nessun post!
   no_project_selected: Nessun progetto selezionato
   no_project_to_admin_current_user: "Non amministri alcun progetto"
@@ -2082,7 +2074,6 @@ it:
   no_projects_yet: Ancora nessun progetto
   no_range_data_available: Nessun dato di distribuzione disponibile.
   no_recent_activity: Nessuna attività recente
-  no_recently_active: Ancora nessun progetto con attività recenti.
   no_relevant_annotations: Non ci sono annotazioni rilevanti
   no_reply_yet: Ancora nessuna risposta
   no_results_found: Nessun risultato trovato
@@ -2104,34 +2095,26 @@ it:
   no_taxa_listed: Nessun taxa elencato
   no_taxa_selected: Nessun taxa selezionato!
   no_taxa_with_unknown_relationships: Nessun taxa con relazioni sconosciute
-  no_taxa_yet: Ancora nessun taxa!
   no_taxon_framework_relationships: nessuna relazione del quadro del taxon
   no_taxonomic_changes_match_those_criteria: Nessuna modifica tassonomica corrisponde a questi criteri
   no_wikipedia_page_for_taxon: Nessuna pagina Wikipedia per questo taxon.
   no_x_this_y: "Nessuna %{x} questo %{y}"
   noble_curators: "Curatori attivi di %{site}"
   non_human?: Non umano?
-  non_internal_taxon: Nessun taxon interno
   none: Nessuno
   none_found: Non trovato
   normal: normale
-  not_absent: non assente
   not_completed: Non Completato
   not_covered_by_any_taxon_frameworks: Non coperto da nessun quadro del taxon
   not_evaluated: Non Valutata
-  not_filtering: Filtro inattivo
   not_findig_what_you_want: Non trovi quello che vuoi?
   not_finding_place_you_want?: Non trovi il luogo che cerchi?
   not_found: Non trovato
-  not_just_creative_commons_licensed: Non solo con licenza Creative Commons
   not_linked_facebook: "La tua utenza %{site_name} non è attualmente collegata col tuo account Facebook"
   not_linked_flickr: "La tua utenza %{site_name} non è collegato al tuo account Flickr"
-  not_logged_in: Accesso non effettuato
   not_on_this_list: Non sulla lista.
   not_recorded: Non registrata
   not_seeing_what_looking_for: Non Vedi Quello Che Stai Cercando?
-  not_spam: Non Spam
-  not_yet: Non ancora
   note: Nota
   notes: Note
   note_you_can_modify_the_height_attribute: "Nota: È possibile modificare l'altezza per adattarla allo spazio disponibile sulla tua pagina web."
@@ -2143,8 +2126,6 @@ it:
   number_of_observers_value: "Numero di osservatori: %{number}"
   number_of_observers: "Numero di osservatori"
   number_selected: "# selezionati"
-  numeric_: numerico
-  noun_by_you: "tuoi/tue %{noun}"
   obs: Osservazioni
   obs_cid_d: Osservazioni con CID
   obs_id_d: Osservazioni con ID
@@ -2417,7 +2398,6 @@ it:
   out_of_range: Fuori areale
   output_taxon: Taxon in uscita
   overview: Panoramica
-  overlapping_downstream_taxon_frameworks: Sovrapposizione di Quadri di Taxon a valle
   owner: Proprietario
   parent: Di Categoria superiore
   parent_name: Nome di categoria superiore
@@ -2900,6 +2880,7 @@ it:
   position: Posizione
   positional_accuracy: Precisione della posizione
   possessive_user: "di %{user}"
+  #Noun, short version of a journal post
   post: Post
   post_from_journal_by_parent_html: Post dal <a href="%{url}">diario di %{parent}</a>
   post_from_your_journal_html: Post dal <a href="%{url}">tuo diario</a>
@@ -3281,6 +3262,7 @@ it:
   search_observations: "Cerca osservazioni"
   search_places: Cerca Luoghi
   search_projects: Cerca Progetti
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
   search_reasons: Cerca Motivazioni
   search_results_for: Cerca Risultati per
   search_results_for_query: 'Risultati della ricerca per"%{query}"'
@@ -3325,6 +3307,7 @@ it:
   send_me_reset_password_instructions: Mandami le istruzioni per resettare la password
   send_the_invites: Manda gli Inviti
   sending: Invio in corso...
+  #Label for messages you've sent
   sent: Inviato
   separate_values_with_a_pipe: Separa i valori con la barra verticale, e.g. "1-5|6-10|molti" o "si|no|forse"
   september: Settembre
@@ -3575,6 +3558,7 @@ it:
   synonyms: Sinonimi
   table: Tabella
   table_of_contents: Indice
+  #Noun, as in "add a tag to this observation"
   tag: etichetta
   tagging: 'Etichettatura in corso...'
   tags: Etichette
@@ -3695,6 +3679,7 @@ it:
   taxon_search: Ricerca di taxon
   taxon_search_results_for: Risultati della ricerca del taxon per
   taxon_split: divisione del taxon
+  #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: organizzazione del taxon
   taxon_subscription: iscrizione ad un taxon
   taxon_swap: scambio del taxon
@@ -5036,6 +5021,72 @@ it:
           La tua esportazione è fallita. Visita la <a href="%{url}">pagina delle esportazioni</a> per l'elenco delle tue esportazioni.
       parental_consent:
         subject: Tuo figlio vorrebbe usare iNaturalist
+        content_html: |
+          <p>
+          Tuo figlio sta utilizzando l'app di istruzione <strong>Seek di iNaturalist</strong> e vorrebbe condividere i dati con la piattaforma di citizen-science iNaturalist. Visto che pubbicare su iNaturalist rivela Dati Personali, iNaturalist non può essere usata da persone sotto i 13 anni di età senza il consenso di un genitore.
+          </p>
+          <p>
+          <strong>Seek di iNaturalist</strong> può essere utilizzata senza registrare un account, e senza condividere Dati Personali, ma tuo figlio non sarà in grado di contribuire con le sue osservazioni su iNaturalist. iNaturalist è un social network di citizen-science dove i partecipanti condividono osservazioni ed identificazioni di esseri viventi per conoscere la natura e fornire dati sulla biodiversità per la scienza.
+          </p>
+          <p>
+          Se dai il consenso a tuo figlio ad utilizzare iNaturalist, abbiamo bisogno che tu faccia questo:
+          </p>
+          <ol>
+          <li>
+          <p>
+          Crea un account iNaturalist che tuo figlio userà seguendo questo link:
+          <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          Dopo che avrei creato l'account per tuo figlio, ti chiederemo di fare una piccola donazione a favore di iNaturalist di 1 US $ con una carta di credito per verificare che tu sia un adulto. Quando fai la donazione, per favore assicurati di utilizzare lo stesso indirizzo email che tu hai inserito nel campo "Email del genitore" durante la registrazione.
+          </p>
+          </li>
+          <li>
+          <p>
+          Una volta processata la donazione, ti manderemo un'altra mail per notificarti che l'account di tuo figlio è stato attivato e tu potrai usare il nome utente e la password che hai creato per accedere alla app Seek di tuo figlio.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist raccoglie i seguenti Dati Personali:
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong>indirizzo email (privato):</strong> ogni account iNaturalist ha un indirizzo mail associato che non è reso pubblico.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>nomeutente (pubblico, obbligatorio):</strong> ogni account iNaturalist ha un nomeutente pubblico ed un numero identificativo dell'utente.
+          Il nomeutente non deve essere simile al nome reale della persona, ma può essere utilizzato per contattare quella persona nei commenti pubblici o nei messaggi privati diretti.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>indirizzo IP (privato, obbligatorio):</strong> iNaturalist conserva ma non rende pubblico l'indirizzo IP dell'utente che può essere utilizzato per derivare Dati Personali come la posizione (con accuratezza a livello di città).
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>immagine del profilo (pubblica, opzionale):</strong> gli account iNaturalist possono avere un immagine del profilo che sono spesso foto dell'utente stesso.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>posizione dell'osservazione (pubblica o privata, obbligatoria):</strong> le osservazioni di iNaturalist contengono informazioni sulla posizione di dove è stata fatta l'osservazione. Può essere resa pubblica o tenuta privata, ma è pubblica in maniera predefinita.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist permette anche agli utenti di condividere immagini pubbliche, commenti, e messaggi diretti associati ai loro account.
+          E' possibile che gli utenti includano Dati Personali in questi contenuti generati dall'utente stesso.
+          </p>
+          <p>
+          Scopri di più su Informativa sulla Privacy di iNaturalist <a href="%{privacy_policy_url}">qui</a>.
+          </p>
       photos_missing:
         subject: Alcune foto necessitano di riparazione
         we_have_been_housekeeping: |
@@ -5933,6 +5984,7 @@ it:
       day_month_year: "%d %B, %Y"
       hours: "%l:%M %p"
     pm: pm
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
       format: '%{attribute} %{message}'
@@ -6230,6 +6282,7 @@ it:
         Accedere a informazioni rilevanti per l'accesso, come l'email, il nome utente,e l'icona utente
     errors:
       messages:
+        #Common error messages
         invalid_request: 'La richiesta manca di un parametro necessario, include un parametro non supportato, o è in qualche altra maniera mal strutturata.'
         invalid_redirect_uri: 'L''uri di reindirizzamento incluso non è valido.'
         unauthorized_client: 'Il cliente non è autorizzato ad effettuare questa richiesta usando questo metodo.'
@@ -6237,12 +6290,16 @@ it:
         invalid_scope: 'L''ambito richiesto è invalido, sconosciuto, o malformato.'
         server_error: 'Il server di autorizzazione ha incontrato una condizione inaspettata che ha impedito di completare la richiesta.'
         temporarily_unavailable: 'Il server di autorizzazione non è al momento in grado di farsi carico della richiesta a causa di un temporaneo sovraccarico o manutenzione del server.'
+        #Configuration error messages
         credential_flow_not_configured: 'Il flusso delle credenziali delle password del proprietario della risorsa è fallito perché Doorkeeper.configure.resource_owner_from_credentials non è configurato.'
         resource_owner_authenticator_not_configured: 'La ricerca del proprietario della risorsa è fallita perché Doorkeeper.configure.resource_owner_authenticator non è configurato.'
+        #Access grant errors
         unsupported_response_type: 'Il server di autorizzazione non supporta questo tipo di risposta.'
+        #Access token errors
         invalid_client: 'L''autenticazione del cliente è fallita a causa di cliente sconosciuto, nessuna autenticazione del cliente inclusa, o per un metodo di autenticazione non previsto.'
         invalid_grant: 'Il rilascio di autorizzazione fornito è invalido, scaduto, revocato, non corrisponde l''URI di reindirizzamento usato nella richiesta di autorizzazione, o è stato rilasciato da un altro cliente.'
         unsupported_grant_type: 'Il tipo di rilascio di autorizzazione non è supportato dal server di autenticazione.'
+        #Password Access token errors
         invalid_resource_owner: 'Le credenziali fornite del proprietario delle risorsa non sono valide, o il proprietario della risorsa non può essere trovato'
     flash:
       applications:
@@ -6270,26 +6327,47 @@ it:
         m: maschile
         f: femminile
         "n": neutro
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         application: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         assessment_section: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         atlas: ':@m'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         check_list: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         identification: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         listed_taxon: ':@m'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         note: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         observation: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         observation_field: ':@m'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         place: ':@m'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         post: ':@m'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         species: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon: ':@m'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon_change: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon_drop: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon_link: ':@m'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon_merge: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon_split: ':@f'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon_stage: ':@m'
+        #Gender of this key translated in this locale (:@m for masculine, :@f for feminine, :@n for neuter)
         taxon_swap: ':@m'
+        #Default gender for nouns that aren't listed here
         default: ':@n'
   wild: Selvatico
   will_paginate:
