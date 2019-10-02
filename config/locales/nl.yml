@@ -1963,8 +1963,8 @@ nl:
   must_be_less_than_x_MB: "Moet kleiner zijn dan %{x} MB"
   must_have_observation_field: "Waarnemingsveld %{operand} is een verplicht veld"
   must_have_x: "%{x} vereist"
-  mute_user: Mute Gebruiker
-  mute_removed: Mute verwijderd
+  mute_user: Gebruiker dempen
+  mute_removed: Dempen verwijderd
   muted_users: Verstomde Gebruikers
   n_ago: "%{n} geleden"
   n_people_agrees: "%{amount} mensen gaan akkoord"
@@ -4022,7 +4022,7 @@ nl:
   unlink_your_google_account: Verbreek de koppeling met je Google-account
   unlink_your_facebook_account: "Verbreek koppeling met je Facebook-account"
   unlink_your_flickr_account: "Verbreek koppeling met je Flickr-account"
-  unmute: Onmute
+  unmute: Niet meer dempen
   unobserved_listings: Niet-waargenomen lijst
   updates_notification_email_subject: "%{prefix} Nieuwe nieuwtjes %{date}"
   updates_suspension_email_subject: "%{prefix} Je abonnementen staan in de wacht"
@@ -4138,7 +4138,7 @@ nl:
     <strong>%{user}</strong> is nu een beheerder} voor %{project}
   user_is_now_a_curator_for_project_html: |
     <strong>%{user}</strong> is nu een curator voor %{project}
-  user_muted: Gebruiker muted
+  user_muted: Gebruiker gedempt
   user_observations: Gebruikerswaarnemingen
   user_observed_on_on_date_in_place: |
     %{user} nam één waar op %{date} in %{place}
@@ -4629,28 +4629,23 @@ nl:
         become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van iNaturalist
         desc_html: |
           <p class="lead">
-            <strong>iNaturalist is één van 's werelds grootste gemeenschappen die zich toeleggen op het verkennen 
-            van de biodiversiteit. Fijn dat je er deel van uitmaakt!</strong>
+          <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
           </p>
           <p class="lead">
-             We willen iNaturalist gratis houden, maar het leveren van deze dienst is niet gratis.
-             Als je van iNaturalist houdt, kun je overwegen om iNaturalist maandelijks te steunen.
-             Terugkerende donaties helpen zorgen ervoor dat iNaturalist door kan gaan met het opschalen
-             van zijn infrastructuur en personeel vanwege voorspelbare inkomsten. 
-             Je kunt er voor kiezen om je supporterstatus weer te geven op je gebruikersprofiel.
+           We willen iNaturalist gratis houden, maar het leveren van deze dienst is niet gratis.
+           Als je van iNaturalist houdt, kun je overwegen om iNaturalist maandelijks te steunen.
+           Vaste donaties dragen ertoe bij dat iNaturalist door kan gaan met het opschalen
+             van zijn infrastructuur en personeel, door voorspelbare inkomsten te genereren.
+           Je kunt er ook voor kiezen om je status als donateur weer te geven op je gebruikersprofiel.
           </p>
           <p class="lead">
-           \  Je charitieve donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het 
-             verbeteren van Computer Vision en het implementeren van nieuwe functies
+           Je vrijwillige donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het 
+           verbeteren van Computer Vision en het implementeren van nieuwe functies
              ter ondersteuning van onze servers en medewerkers. Als je liever een
              eenmalige donatie wilt doen <a href="%{donate_url}">klik dan hier</a>.
           </p>
           <p class="text-muted">
-             iNaturalist is een gezamenlijk initiatief van 'California Academy of Sciences'
-             en 'National Geographic Society'. Alle donaties worden ontvangen door
-             de 'California Academy of Sciences', een 501(c)(3) belastingvrije non-profit
-             organisatie gevestigd in de Verenigde Staten van Amerika.
-          </p>
+          iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'.</p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -5860,10 +5855,10 @@ nl:
            zodat we weten dat jij maandelijkse supporter bent geworden.
         muting_desc_html: |
           <p>
-             Als je iemand negeert, krijg je geen meldingen meer over dingen die ze doen, inclusief als ze op je waarnemingen reageren, je berichten sturen, je naam noemen, etc. Negeren helpt je iemand te negeren zonder dat je beperkt wat ze kunnen doen.
+             Als je iemand dempt, krijg je geen meldingen meer over dingen die ze doen, inclusief als ze op je waarnemingen reageren, berichten naar je sturen, je naam noemen, etc. Dempen helpt je iemand te negeren zonder dat je beperkt wat ze kunnen doen.
           </p>
           <p>
-             Je kunt zoveel mensen negeren als je wilt, maar onthou dat je mogelijk belangrijke meldingen mist, zoals
+             Je kunt zoveel mensen dempen als je wilt, maar onthou dat je mogelijk belangrijke meldingen mist, zoals
              determinaties die de gemeenschapsdeterminatie op je waarnemingen veranderen.
           </p>
         name_place_help_html: |
