@@ -4,15 +4,55 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 
 ## Crowdin
 
+### Danish (`da`)
+* [Lekkim](https://crowdin.com/profile/Lekkim)
+
 ### Dutch (`nl`)
 * [Wouter Koch (wouter.koch)](https://crowdin.com/profile/wouter.koch)
+* [marcelhospers](https://crowdin.com/profile/marcelhospers)
 * [Marcel Hospers (optilete)](https://crowdin.com/profile/optilete)
+
+### Esperanto (`eo`)
+* [marcelhospers](https://crowdin.com/profile/marcelhospers)
 
 ### Finnish (`fi`)
 * [Pyscowicz](https://crowdin.com/profile/Pyscowicz)
 
+### French (`fr`)
+* [marcelhospers](https://crowdin.com/profile/marcelhospers)
+
 ### German (`de`)
+* [marcelhospers](https://crowdin.com/profile/marcelhospers)
 * [Epsilon3-28](https://crowdin.com/profile/Epsilon3-28)
+* [Katarama](https://crowdin.com/profile/Katarama)
+
+### Hebrew (`he`)
+* [dan.translate](https://crowdin.com/profile/dan.translate)
+
+### Italian (`it`)
+* [Daniele Seglie (danieleseglie)](https://crowdin.com/profile/danieleseglie)
+
+### Norwegian Bokmal (`nb`)
+* [Wouter Koch (wouter.koch)](https://crowdin.com/profile/wouter.koch)
+
+### Polish (`pl`)
+* [Konrad Kałużyński (kkaluzynski)](https://crowdin.com/profile/kkaluzynski)
+
+### Slovak (`sk`)
+* [Ela Baršváryová (elabarsvary)](https://crowdin.com/profile/elabarsvary)
+
+### Spanish, Argentina
+* [lroget](https://crowdin.com/profile/lroget)
+
+### Spanish, Colombia
+* [vdean](https://crowdin.com/profile/vdean)
+* [Néstor Beltrán (nestorbeltran)](https://crowdin.com/profile/nestorbeltran)
+* [Laura Valentina Grajales Olarte (valegrajales)](https://crowdin.com/profile/valegrajales)
+* [Karen Soacha (adrisoacha)](https://crowdin.com/profile/adrisoacha)
+* [Camila Plata (camisilver)](https://crowdin.com/profile/camisilver)
+* [Leonardo Buitrago (albuitrago)](https://crowdin.com/profile/albuitrago)
+* [Dairo Escobar (Dairo)](https://crowdin.com/profile/Dairo)
+* [Javier Gamboa (jgamboa)](https://crowdin.com/profile/jgamboa)
 
 ## Translatewiki
 
