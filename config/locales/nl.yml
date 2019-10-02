@@ -6543,12 +6543,12 @@ nl:
       "@vow_or_con":
         vow: klinker
         con: medeklinker
-        a: ":@vow"
-        e: ":@vow"
-        i: ":@vow"
-        o: ":@vow"
-        u: ":@vow"
-        default: ":@con"
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
       "@gender":
         m: mannelijk
         f: vrouwelijk
