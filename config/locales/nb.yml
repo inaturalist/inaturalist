@@ -1946,6 +1946,12 @@ nb:
   multiple: flere
   multiple_select_option: '-- flere --'
   multiple_taxa_for_taxon_change: "Flere taksa (input for bytting/sammenslåing, output for oppdeling)"
+  mute_user: Demp bruker
+  mute_removed: Demping fjernet
+  muted_users: Dempede brukere
+  native: stedegen
+  native_page_url: Opprinnelig side-url
+  native_to_place: "Stedegen til %{place}"
   ne_lat: NØ bgrad.
   ne_lon: NØ lgrad.
   new_project_asset: Ny projektressurs
@@ -2079,6 +2085,7 @@ nb:
   time_ago: "for %{time} siden"
   too_many_taxa_to_render: |
     Denne spørringen returnerer for mange taksa for å kunne vises på en gang. Prøv å legg til flere filtre
+  unmute: Fjern demping
   use_this_form_to_create_a_new: |
     Bruk dette skjemaet for å opprette et nytt utkast til en taksonomisk endring som beskriver en foreslått oppdeling, sammenslåing eller bytte av aktive taksa for gjennomførelse på et senere tidspunkt.
   used_x_times:
@@ -2086,6 +2093,7 @@ nb:
     other: Bruk %{count} ganger
   user_is_now_a_manager_for_project_html: |
     <strong>%{user}</strong> er nå en manager for %{project}
+  user_muted: Bruker dempet
   username_or_email: Brukernavn eller e-post
   view_observations_causing_this_observation_to_be_obscured: |
     Vis observasjoner som gjør at denne observasjonen blir tilslørt
@@ -2121,6 +2129,8 @@ nb:
           Del opp side, artsinformasjon til venstre, plass til notater til høyre. Artsinformasjon blir forkortet for å få plass på siden.
     help:
       index:
+        inaturalist_has_name_information_for_mammals: |
+          %{site_name} har informasjon om pattedyr, fugler, reptiler, og amfibier, og legger til nye navn i vår database fortløpende. Hvis vi ikke kjenner igjen et bestemt navn, prøv å bruk alternative navn som vi kanskje kjenner igjen og legg til det opprinnelige navnet som etikett eller i beskrivelsene.
         what_are_tags?: Hva er etiketter?
         tags_are_keywords_you_can_add_to_an_html: |
           Etiketter er nøkkelord som du kan legge til dine observasjoner for å gjøre dem enklere å finne.
@@ -2138,6 +2148,8 @@ nb:
         you_can_also_obscure_the_coordinates_html: |
           Du kan også tilsløre koordinatene til dine egne observasjoner uansett hvilket takson det er. Se <a href="#geoprivacy">geosperring</a> ovenfor.
         what_is_the_quality_assessment: Hva er kvalitetsvurderingen og hvordan kvalifiseres observasjoner for å bli "forskingskvalitet"?
+        while_the_life_list_is_automatically_populated: |
+          Mens livslisten automatisk blir fyllt ut fra observasjoner som legges til, blir arten ikke lagt til denne listen hvis %{site_name} ikke kjenner igjen navnet du bruker. Vi anbefaler å bruke alternative navn som vi kanskje kjenner igjen.
     observations:
       community_id:
         ancestor_disagreements: Ane-uenigheter
@@ -2253,6 +2265,8 @@ nb:
         high_status_conservation_status_notice_html: |
           Å legge til en bevaringsstatus for er takson på et høyere nivå påvirker observasjoner av alle arter i taksonet. Vennligst ikke legg til statuser for taksa som inneholder arter som ikke har en status, siden det vil feilaktig tilsløre koordinater av observasjoner av disse arter.
       show:
+        about_establishment_desc: |
+          "Etableringsmåte" beskriver hvordan arten kom dit den nå forekommer. Introdusert betyr at den kom på grunn av mennesklig aktivitet, mens stedegen betyr at den kom på egen hånd. Endemiske arter forkommer kun på et bestemt sted og ikke noe annet sted.
         frequency:
           research: Forskningskvalitet
           "Life Stage=egg": Egg
@@ -2288,6 +2302,9 @@ nb:
         curators_can_see: |
           Bare en påminnelse, prosjektkuratorer kan se private og skjulte
           koordinater til observasjoner du legger til i dette prosjektet.
+      delete:
+        settings_and_mute_html: |
+          Hvis denne siden genererer for mange varsler, vurder å <a href="/users/edit">redigere dine innstillinger</a> for å slå av bestemte varslinger eller å slutte å få epost fra oss. Hvis du har problemer med en bestemt person på siden, vurder å <a href="/users/edit">dempe</a> vedkommende i steden for å slette din konto.
       edit:
         inaturalist_network_affiliation_desc_html: |
           <p>
