@@ -6341,6 +6341,13 @@ it:
       authorized_applications:
         destroy:
           notice: 'Applicazione revocata.'
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: vocale
+        con: consonante
+        a: "@vow"
+        e: "@vow"
   wild: Selvatico
   will_paginate:
     previous_label: "&#8592; Precedente"
