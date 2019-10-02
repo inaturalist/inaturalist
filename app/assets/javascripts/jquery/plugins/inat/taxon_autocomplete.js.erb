@@ -246,16 +246,8 @@ $.fn.taxonAutocomplete = function( options ) {
       if( e ) { e.preventDefault( ); }
       return false;
     }
-    // show the best name in the search field
-    if( ui.item.id ) {
-      field.val( ui.item.textTitle || ui.item.title || ui.item.name );
-    }
-    // set the hidden taxon_id
-    options.idEl.val( ui.item.id );
-    // set the selection's thumbnail image
-    field.wrappingDiv.find(".ac-select-thumb").html( ui.item.defaultPhoto );
-    field.selection = ui.item;
-    field.data( 'autocomplete-item', ui.item );
+    // set the selection
+    field.trigger( "assignSelection", ui.item );
     if( options.afterSelect ) { options.afterSelect( ui ); }
     return false;
   };
@@ -283,7 +275,6 @@ $.fn.taxonAutocomplete = function( options ) {
     options.idEl.val( t.id );
     autocompleter.setTitle( t, options );
     field.val( t.textTitle || t.title );
-    field.data('autocomplete-item', t);
     var photo = autocompleter.defaultPhotoForResult(t)
     field.wrappingDiv.find(".ac-select-thumb").html( photo );
     field.selection = t;
@@ -295,6 +286,7 @@ $.fn.taxonAutocomplete = function( options ) {
       field.wrappingDiv.find(".ac-select-thumb").html( autocompleter.defaultPhotoForResult( { } ) );
     }
     field.selection = null;
+    field.selectedItem = null;
     field.data( "autocomplete-item", null );
   });
   if( options.initialSelection ) {

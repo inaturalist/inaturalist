@@ -343,7 +343,7 @@ class MapDetails extends React.Component {
             <span className="info">
               <a
                 className="value"
-                href={`https://www.google.com/maps?q=loc:${observation.latitude},${observation.longitude}`}
+                href={`https://www.google.com/maps?q=${observation.latitude},${observation.longitude}`}
               >
                 { I18n.t( "google" ) }
               </a>
