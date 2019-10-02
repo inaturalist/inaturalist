@@ -1946,23 +1946,90 @@ nb:
   multiple: flere
   multiple_select_option: '-- flere --'
   multiple_taxa_for_taxon_change: "Flere taksa (input for bytting/sammenslåing, output for oppdeling)"
+  multiple_taxon_ids_separated_by_commas: 'Flere kommaseparerte takson-id''er, f.eks. 123,654'
+  must_be_observed_after: |
+    må være observert etter %{operand}
+  must_be_observed_before: |
+    må være observert før %{operand}
+  must_be_observed_in: må være observert i
+  must_be_less_than_x_MB: "Må være mindre enn %{x} MB"
+  must_have_observation_field: "må ha en verdi for observasjonsfeltet '%{operand}'"
   must_have_x: "må ha %{x}"
   mute_user: Demp bruker
   mute_removed: Demping fjernet
   muted_users: Dempede brukere
+  n_ago: "%{n} siden"
+  n_people_agrees: "%{amount} personer er enige"
+  n_people_disagrees: "%{amount} personer er uenige"
+  n_person_agrees: "%{amount} person er enig"
+  n_person_disagrees: "%{amount} person er uenig"
+  name: Navn
+  name_entered: Navn oppgitt
+  name_or_slug: "Navn eller url-slug, f.eks mitt-prosjekt"
+  name_of_the_place_you: Navnet av stedet hvor du gjorde observasjonen
+  name_providers:
+    col: Catalogue of Life
+    ubio: uBio
+    nzor: New Zealand Organisms Register
+  names: Navn
+  names_for_taxon_html: "Navn for %{taxon}"
   native: stedegen
   native_page_url: Opprinnelig side-url
   native_to_place: "Stedegen til %{place}"
+  nav: Nav
+  nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: NØ bgrad.
   ne_lon: NØ lgrad.
+  near_threatened: Nær truet
+  nearby_observations_: Observasjoner i nærheten
+  needs_id: trenger ID
+  needs_id_: Trenger ID
+  needs_id_expandable_html: "<span class='full'>Trenger </span>ID"
+  needs_to_be_identified: Trenger å bli identifisert
+  new: Ny
+  new_and_noteworthy: Ny og oppsiktsvekkende
+  new_announcement: Ny kunngjøring
+  new_assessment: Ny vurdering
+  new_check_list: Ny sjekkliste
+  new_check_list_for: "Opprett en ny sjekkliste for %{place} &raquo;"
+  new_check_list_record: "Hvis du vil markere denne listen som omfattende, opprett den, legg til taksa, og så rediger den, da har du muligheten til å markere den som omfattende her."
   new_comment_on_a_parent_by_user_link: Ny kommentar på @gender{m:en|f:ei|n:et} %{parent} av %{user_link}
+  new_flag_for: Ny markering for
+  new_guide: Ny guide
+  new_journal_post: Nytt journalinnlegg
+  new_lexicon: Nytt leksikon
+  new_list: Ny liste
+  new_members: "Nye medlemmer"
+  new_message: Ny melding
+  new_observation_field: Nytt observasjonsfelt
+  new_observations: Nye observasjoner
+  new_observations_this_year: Nye observasjoner i år
+  new_observations_ellispsis: "Nye observasjoner..."
   new_observations_from_place_html: "Nye observasjoner fra %{place}"
+  new_observations_may_take_up_to: Det kan ta inntil %{widget_expiration} minutter før nye observasjoner blir synlige i widgeten.
+  new_observations_of_x_html: "Ny observasjon av %{x}"
+  new_password: Nytt passord
+  new_post: Nytt innlegg
+  new_project: Nytt prosjekt
   new_project_asset: Ny projektressurs
   new_project_asset_for: Ny projektressurs for
+  new_source: Ny kilde
   no_creative_commons_flickr_photos_tagged_x: 'Ingen Creative Commons Flickr-bilder med etikett "%{x}"'
   no_flags: Ingen markeringer denne gangen
+  no_identifications_added:
+    current_user: Du har ikke lagt til identifikasjoner til noen andres observasjoner.
+    user: "%{user} har ikke lagt til identifikasjoner til noen andres observasjoner."
+  no_ids_have_been_suggested_yet: Ingen id'er har blitt foreslått ennå
+  no_interaction_data_available: Ingen interaksjonsdata tilgjengelig
+  no_its_as_good_as_it_can_be: Nei, det er så bra som det kan bli
+  no_favorites_added:
+    current_user: Du har ikke lagt til favoritter ennå.
+    user: "%{user} har ikke lagt til favoritter."
+  no_license_all_rights_reserved: Ingen lisens (alle rettigheter forbeholdt)
   no_managers_set: Ingen managere valgt
   no_more_mail_from_site: "Vil du ikke få noe e-post fra %{site_name}? Rediger dine e-postinnstillinger på"
+  no_one_posted_anything_yet: Ingen har lagt inn noe ennå!
+  no_post_yet: Ingen innlegg ennå!
   no_species_have_been_listed: Ingen arter har blitt oppført på listen til dette stedet ennå!
   no_taxa_listed: Ingen taksa oppført på listen
   obscured_: tilslørt
@@ -1991,10 +2058,14 @@ nb:
   observations_have_had_their_coordinates: "observasjoner har fått sine koordinater flyttet til et vilkåring punkt innen %{km} km, enten fordi taksonet er truet eller fordi observatøren har valgt å tilsløre koordinatene."
   observations_obscured: Observasjoner (tilslørt)
   of_it_and_its_descendants: av seg selv og sine etterkommere
+  onboarding:
+    observe_panel_title: La oss komme i gang ved å legge ut noen observasjoner
   only_a_project_manager_can_add: Bare en prosjektmanager kan tildele prosjektkurator-status
   only_files_with_10000_rows_at_a_time: Kun filer med 10 000 rader om gangen, vær så snill
+  only_the_author_of_this_post_can_do_that: Bare innleggets forfatter kan gjøre det. Ikke vær slem.
   or_if_you_dont_want_email: "Eller hvis du ikke ønsker noe som helst e-post..."
   or_log_in_with_colon: "Eller logg inn med:"
+  or_post_message_to_google_group: "eller skriv et innlegg i vår Google Group:"
   organism_appears_captive_cultivated: Organismen viker å være i fangenskap / dyrket
   parental_consent:
     must_specify_email: Du må oppgi en e-postadresse
@@ -2015,21 +2086,35 @@ nb:
     Husk denne kombinasjonen av koordinater, nøyaktighet, geosperring og lokalitetsnotater for senere bruk.
   place_geo:
     geo_planet_place_types:
+      Postal_Code: Postnummer
+      postal_code: postnummer
       Time_Zone: Tidssone
       time_zone: tidssone
   places_name:
     saint_pierre_and_miquelon: Saint Pierre og Miquelon
   places_merged_successfully: Steder slått sammen!
   please_be_careful_particulary_when: "Vennligst vær forsiktig, spesielt når du sletter taksa. Hvis et takosn har tilknyttede observasjoner, id'er, taksa som er oppført på ei liste, osv., vennligst"
+  #Noun, short version of a journal post
+  post: Innlegg
+  post_from_journal_by_parent_html: Innlegg fra <a href="%{url}">journalen til %{parent}</a>
+  post_from_your_journal_html: Innlegg fra <a href="%{url}">din journal</a>
+  post_published: Innlegg publisert!
+  post_some_new_stuff: legg ut noe nytt
+  posted_by: Publisert av
+  posted_on: Publisert
+  posts: Innlegg
   privacy: Personvern
   privacy_policy: Personvernspolitikk
   project_assets: Projektressurser
+  project_journal_posts: 'Prosjektjournal-innlegg'
+  project_post: Projektinnlegg
   public_coordinates_obscured_by: "Offentlige koordinater tilslørt med %{distance} km"
   query: Spørring
   re_apply_list_rules: Påfør listeregler igjen
   real_time_stats: Sanntids-statistikker
   real_time_discussions: Sanntids-diskusjoner
   receive_email_notifications_when_people_leave_you: Få e-postvarslinger om
+  recent_post: Nylig innlegg
   refresh_listed_taxa: last inn taksa oppført på lista på nytt
   relationships:
     one_to_one: en-til-en
@@ -2061,6 +2146,7 @@ nb:
   show_total_listed_taxa: Vis alle taksa oppført på lista
   single_taxon: Enkelt takson (input for oppdeling/fjerning/publisering, output for sammenslåing/bytting)
   sorry_you_can_only_add_1000_at_a_time: "Beklager, du kan bare legge til 1000 om gangen."
+  sorry_you_need_to_be_signed_in_and: Beklager, du trenger å være pålogget og ha en Flickr-konto koblet for å kunne legge ut etiketter direkte på Flickr.
   start_date_time: Startdato / klokkeslett
   subject_committed_thing_affecting_stuff_html: "%{subject} har gjennomført @gender{m:en|f:ei|n:et} %{thing} som påvirker %{stuff}"
   sw_lat: SV bgrad.
@@ -2068,6 +2154,49 @@ nb:
   tagging: 'Legger til etikett...'
   tags: Etiketter
   taxon_geoprivacy: Takson-geosperring
+  taxon_is_a_rank: "%{taxon} er @gender{f:ei|n:et|en} %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} i %{iconic_taxon} med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} i %{iconic_taxon} med %{count} observasjoner"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med amfibier med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med amfibier med %{count} observasjoner"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med fugler med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med fugler med %{count} observasjoner"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med pattedyr med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med pattedyr med %{count} observasjoner"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med reptiler med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med reptiler med %{count} observasjoner"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med planter med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med planter med %{count} observasjoner"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med strålefinnefisker med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med strålefinnefisker med %{count} observasjoner"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med dyr med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med dyr med %{count} observasjoner"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med insekter med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med insekter med %{count} observasjoner"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med edderkoppdyr med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med edderkoppdyr med %{count} observasjoner"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med sopper med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med sopper med %{count} observasjoner"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med protozoer med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med protozoer med %{count} observasjoner"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med bløtdyr med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med bløtdyr med %{count} observasjoner"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med chromoster med 1 observasjon"
+    other: "%{taxon} er @gender{f:ei|n:et|en} %{rank} med chromoster med %{count} observasjoner"
   taxon_is_threatened_coordinates_obscured: Takson er truet, koordinater tilslørt som standard
   taxon_is_threatened_coordinates_obscured_desc: |
     Ett av de taksa foreslått i identifikasjonene, eller ett av de taksa som inneholder noen av disse taksa, er sjelden og/eller truet. Lokaliteten for denne observasjonen har derfor blitt tilslørt.
@@ -2100,17 +2229,24 @@ nb:
   used_x_times:
     one: Brukt 1 gang
     other: Bruk %{count} ganger
+  user_added_a_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
+  user_added_a_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
+  user_added_a_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
   user_is_now_a_manager_for_project_html: |
     <strong>%{user}</strong> er nå en manager for %{project}
   user_muted: Bruker dempet
   username_or_email: Brukernavn eller e-post
   view_observations_causing_this_observation_to_be_obscured: |
     Vis observasjoner som gjør at denne observasjonen blir tilslørt
+  view_post: Vis innlegg
   view_your_dashboard: Vis din oversikt
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Se din oversikt</a> for flere oppdateringer"
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
   we_care_privacy: Vi bryr oss om ditt personvern!
   why_the_coordinates_are_obscured: Hvorfor koordinatene er tilslørt
+  x_journal_new_post: "Journalen til %{user} • Nytt innlegg"
+  x_wrote_a_new_post_html: "%{x} har skrevet et nytt innlegg"
+  x_wrote_y_new_posts_html: "%{x} har skrevet %{y} nye innlegg"
   you_are_now_a_manager_for_project_html: |
     <strong>du</strong> er nå en manager for %{project}
   you_can_also_add_flickr: Du kan også legge til Flickr-etiketter når du redigerer en observasjon, eller når du redigerer dine observasjoner som en batch.
@@ -2125,6 +2261,8 @@ nb:
   your_tags: Dine etiketter
   your_dashboard_helps_you: "Din oversikt hjelper deg med å følge med på hva folk gjør på siden. For å følge med på noens oppdateringer, klikk \"Følg [name]\"-lenken i overskriften når du ser på vedkommendes observasjoner eller profil."
   views:
+    donate:
+      post_donate_social_media_text: Jeg støtter iNaturalist fordi...
     guides:
       index:
         funding_html: |
@@ -2241,6 +2379,7 @@ nb:
           </p>
       new:
         or_drag_and_drop: (eller dra og slipp)
+        users_can_follow_your_project: Brukere kan følge oppdateringer for ditt prosjekt via journalinnlegg
       project_location_privacy_notice_html: |
         <p>
         Vennligst husk at prosjektkuratorer kan se private og tilslørte posisjoner av dine observasjoner i dette prosjektet med mindre du trekker den tillatelsen, og de vil kunne legge til dine observasjoner i dette prosjektet med mindre du <a href="/users/edit">endrer dine innstillinger</a>. Du kan også gi eller trekke tillatelse til observasjoner i prosjekter en og en.
@@ -2399,6 +2538,9 @@ nb:
         geoprivacy: Geosperring
       listed_taxon:
         establishment_means: Etableringsmåter
+      post:
+        title: Tittel
+        body: Innhold
       project:
         end_time: Slutttid
         start_time: Starttid
@@ -2443,3 +2585,6 @@ nb:
         o: "@vow"
         u: "@vow"
         default: "@con"
+      "@gender":
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
