@@ -778,7 +778,7 @@ nl:
   community_id_at_species_or_lower?: GemeenschapsTaxon op soort of lager?
   community_id_at_genus_level_or_lower: GemeenschapsTaxon op genus niveau of lager
   community_id_at_species_level_or_lower: GemeenschapsTaxon op soortniveau of lager
-  community_moderation_settings: Community moderatie instellingen
+  community_moderation_settings: Instellingen voor gemeenschapsmoderatie
   community_supported_id: Gemeenschapondersteunde Taxon?
   compare: Vergelijken
   compare_with: Vergelijk met
@@ -1990,10 +1990,10 @@ nl:
   ne_lon: NO Lon.
   near_threatened: Gevoelig
   nearby_observations_: Waarnemingen dichtbij
-  needs_id: ID gewenst
-  needs_id_: ID gewenst
-  needs_id_expandable_html: "ID <span class='full'>gewenst</span>"
-  needs_to_be_identified: moet geïdentificeerd worden
+  needs_id: ID nodig
+  needs_id_: ID nodig
+  needs_id_expandable_html: "ID <span class='full'>nodig</span>"
+  needs_to_be_identified: Moet worden gedetermineerd
   new: Nieuw
   new_and_noteworthy: Nieuw & opmerkelijk
   new_announcement: Nieuwe aankondiging
@@ -2283,7 +2283,7 @@ nl:
   observations_was_successfully_updated: Waarneming(en) succesvol bewerkt.
   observations_week: Waarnemingen / Week
   observations_widget: Waarnemingen Widget
-  observations_will_revert_to_casual: Waarnemingen zullen terugkeren naar "onvolledig(casual)" als aan de bovenstaande voorwaarden niet wordt voldaan of
+  observations_will_revert_to_casual: Waarnemingen zullen "onvolledig" zijn als aan de bovenstaande voorwaarden niet wordt voldaan, of
   observations_with_this_field: Waarnemingen met dit veld
   observations_with_this_field_and_value: Waarnemingen met dit veld en waarde
   observations_without_media: Waarnemingen zonder media
@@ -3558,7 +3558,7 @@ nl:
   status_in_place: "%{status} in %{place}"
   stay_and_try_again: Blijf en probeer het opnieuw
   still_no_luck?: Nog steeds geen geluk?
-  still_needs_id?: Community kan ID bevestigen/verbeteren?
+  still_needs_id?: Kan gemeenschap ID bevestigen/verbeteren?
   still_working_on_classifying_taxon: Er wordt nog steeds aan het classificeren van dit taxon gewerkt. Kom later terug
   stop_editing: Stop bewerken
   stop_following_user: "Stop met %{user} te volgen"
@@ -3799,7 +3799,7 @@ nl:
   the_community_id_requires_at_least_two_identifications: Het gemeenschapsID vereist ten minste twee determinaties.
   the_community_must_feel_that: |
     De gemeenschap moet vinden dat het GemeenschapsTaxon het beste is op basis van het bewijs
-  the_data_quality_assessment_is: De gegevenskwaliteitsbeoordeling is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig(casual)"</strong> en bereiken <strong>"onderzoekskwaliteit(RG)"</strong> wanneer
+  the_data_quality_assessment_is: De beoordeling van de datakwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong>, en worden <strong>"onderzoekskwaliteit"</strong> wanneer
   the_following_lists: de volgende lijsten
   the_following_observations_could: "De volgende waarnemingen konden niet toegevoegd worden aan %{link}"
   the_following_photos_have_been_tagged: "Volgende foto's werden getagd:"
@@ -4093,10 +4093,7 @@ nl:
   use_this_form_to_create_a_new: |
     Gebruik dit formulier om een nieuw voorstel voor een taxonomische wijziging aan te maken die een voorgestelde opsplitsing, samenvoeging of wissel beschrijft van actieve taxa om later te worden vastgelegd.
   use_this_if_the_url_needs_genus_species_separated: |
-    Gebruik dit als de URL het geslacht en de soort moeten worden gescheiden in een
-    speciale manier. Als het taxon geen soort of infrasoort is, wordt alles
-    tussen [GENUS] en [SOORTEN] vervangen door de taxonnaam, dus gebruik het
-    spaarzaam.
+    Gebruik dit als het geslacht en de soort op een bepaalde manier moeten worden gescheiden de URL. Als het taxon geen soort of infrasoort is, wordt alles tussen [GENUS] en [SPECIES] vervangen door de taxonnaam, dus gebruik het spaarzaam.
   use_unique_file_names_for_separate_uploads: Gebruik unieke bestandsnamen voor afzonderlijke uploads
   use_well_formed_csv: |
     Gebruik goedgevormde CSV. Dit betekent dat tekst tussen dubbele aanhalingstekens moet staan en met komma's moet worden omgeven. De meeste spreadsheettoepassingen kunnen een bestand exporteren in dit formaat.
@@ -4567,7 +4564,7 @@ nl:
   your_relationships: Je relaties
   your_should_recognize: Je zou enkele van deze foto's moeten herkennen
   your_site_account_has_been_created: "Je account op %{site} is aangemaakt."
-  your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} heeft je nodig om meer machtigingen van %{provider} te autoriseren om door te gaan:"
+  your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} vereist dat je meer toestemmingen geeft voor %{provider} om door te gaan:"
   your_subscriptions: Jouw abonnementen
   your_sure_delete_list?: Weet je zeker dat je deze lijst wilt verwijderen?
   your_sure_delete_taxon_from_list?: "Weet je zeker dat je %{taxon} uit de lijst wilt verwijderen?"
@@ -4608,8 +4605,8 @@ nl:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Ben je van plan %{site_name} in de klas te gebruiken?
           community_guidelines_html: |
-            <a href="%{url}">Raadpleeg de Communityrichtlijnen</a> voor tips
-            om iNaturalist een vriendelijke en gastvrije plek te laten zijn.
+            <a href="%{url}">Raadpleeg de gemeenschapsrichtlijnen</a> voor tips
+            om iNaturalist een vriendelijke en gastvrije plek te houden.
           please_read_the_teachers_guide_html: |
             Lees alsjeblieft onze <a href="%{url}">Docentenhandleiding</a> voor
             tips over het gebruik van %{site_name} met studenten.
@@ -4968,7 +4965,7 @@ nl:
         you_have_opted_out: Je hebt je afgemeld voor gemeenschapsdeterminaties
         opt_in_for_this_observation: Opt in voor deze waarneming
         your_id_does_not_match: |
-          Je determinatie (<span class = "bold">%{taxon_name}</span>) komt niet overeen met de community-ID
+          Je determinatie (<span class = "bold">%{taxon_name}</span>) komt niet overeen met het gemeenschaps-ID
       copy_tip: "Voeg een nieuwe waarneming toe door de datum, plaats, foto's en waarnemingsvelden van deze waarneming te kopiëren."
       captive_help_html: |
         Was het organisme <strong>gecultiveerd</strong> of
@@ -5073,7 +5070,7 @@ nl:
           Het gemeenschapstaxon (of gemeenschapsdeterminatie) staat voor welk taxon de %{site_name}-gemeenschap denkt dat afgebeeld is in de waarneming. Als je geïnteresseerd bent in hoe we het gemeenschapstaxon kiezen, kijk dan bij de opmerkingen over het algoritme hieronder, maar in algemeen proberen we <strong>een taxon te kiezen waar meer dan 2/3 is van de ID's het mee eens zijn</strong>. Dit betekent soms dat er een taxon op een hoger niveau wordt gekozen dat een aantal taxa bevat waartussen onenigheid is (als jij bijvoorbeeld denkt dat het een koningsslang is en ik denk dat het ratelslang is, dan kiest iNat voor de suborde Serpentes die alle slangen omvat). Het algoritme neigt enigzins naar afwijkende meningen, omdat we hebben gemerkt dat andersdenkenden vaak gelijk hebben.
           </p>
           <p class="ui">
-          Het gemeenschapstaxon is het taxon dat we gebruiken bij het delen van waarnemingen met datapartners, die waarnemingen van hetzelfde taxon koppelen aan de site, het bijwerken van uw levenslijst, enz. Als je om een ​​of andere reden niet akkoord gaat met het gemeenschapstaxon kun je het afwijzen, wat betekent dat uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen te linken, het bijwerken van levenslijsten, enz. Het betekent ook dat jouw waarneming alleen Onderzoekskwaliteit kan worden wanneer de community het eens is met <em>u</em>. Als je het hele idee van community-taxa niet leuk vindt, kun je het volledig uitzetten in <a href="/users/edit" target="_blank">uw instellingen</a>.
+          Het gemeenschapstaxon is het taxon dat we gebruiken bij het delen van waarnemingen met datapartners, die waarnemingen van hetzelfde taxon koppelen aan de site, het bijwerken van uw levenslijst, enz. Als je om een ​​of andere reden niet akkoord gaat met het gemeenschapstaxon kun je het afwijzen, wat betekent dat uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen te linken, het bijwerken van levenslijsten, enz. Het betekent ook dat jouw waarneming alleen onderzoekskwaliteit kan worden wanneer de community het eens is met <em>u</em>. Als je het hele idee van community-taxa niet leuk vindt, kun je het volledig uitzetten in <a href="/users/edit" target="_blank">uw instellingen</a>.
           </p>
           <p class="ui">
           <strong>Het algoritme:</strong> voor alle geïdentificeerde taxa en de taxa waarin ze zijn opgenomen (bijvoorbeeld het geslacht <i>Homo</i> bevat <i>Homo sapiens</i>), score elk als de verhouding tussen het aantal cumulatieve ID's voor dat taxon over de som van de cumulatieve ID's, het aantal meer conservatieve ID's toegevoegd na de eerste ID van dat taxon en het aantal ID's dat compleet verschillend is (dat wil zeggen ID's van taxa die niet het taxon bevatten dat gescoord wordt). Voor de geïdentificeerde taxa die een score hebben van meer dan 2/3 en minstens 2 determinaties, wordt het laagst gerangschikte taxon gekozen.
@@ -5090,41 +5087,41 @@ nl:
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
         quality_assessment_help_html: |
           <p>
-          De gegevenskwaliteit is een weergave van de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>"onvolledig(casual)"</strong> en worden <strong>"ID gewenst"</strong> als
+          De gegevenskwaliteit is een weergave van de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden <strong>"ID nodig"</strong> als
           </p>
 
           <ul>
-             <li>de waarneming <strong>een datum heeft</strong></li>
+           <li>de waarneming <strong>een datum heeft</strong></li>
              <li>de waarneming <strong>geografische referenties heeft</strong> (heeft coördinaten)</li>
              <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
              <li>de waarneming <strong>geen mens is</strong></li>
           </ul>
           <p>
-            Waarnemingen worden <strong>"Onderzoekskwaliteit(RG)"</strong> als
+           Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
           </p>
           <ul>
-            <li>de %{site_name} <strong>gemeenschap het eens is over de determinatie op soortniveau of lager</strong>, d.w.z. meer dan 2/3 van de determinaties is het eens over een taxon</li>
+           <li>de %{site_name} <strong>gemeenschap het eens is over de determinatie op soortniveau of lager</strong>, d.w.z. meer dan 2/3 van de determinaties is het eens over een taxon</li>
           </ul>
 
           <p>
-          Waarnemingen worden teruggezet naar <strong>"onvolledig(casual)"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de community hiermee instemt
+          Waarnemingen worden teruggezet naar <strong>"onvolledig"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de gemeenschap hiermee instemt
           </p>
           <ul>
-            <li>de locatie <strong>lijkt niet nauwkeurig</strong> (bijvoorbeeld apen in het midden van 
-                de oceaan, nijlpaarden in kantoorgebouwen, etc.)</li>
-            <li>het <strong>organisme is niet wild/genaturaliseerd</strong> (bijvoorbeeld gevangen of 
-                gekweekt door mensen of intelligente ruimtewezens)</li>
+           <li>de locatie <strong>lijkt niet nauwkeurig</strong> (bijvoorbeeld apen in het midden van 
+           de oceaan, nijlpaarden in kantoorgebouwen, etc.)</li>
+           <li>het <strong>organisme is niet wild/genaturaliseerd</strong> (bijvoorbeeld gevangen of 
+           gekweekt door mensen of intelligente ruimtewezens)</li>
            \ <li>de waarneming <strong>levert geen bewijs op van een organisme </strong>, b.v. 
-                afbeeldingen van landschappen, waterpartijen, rotsen, etc.</li>
+           afbeeldingen van landschappen, waterpartijen, rotsen, etc.</li>
            \ <li>de waarneming <strong>bevat geen recent (~100 jaar) bewijs van het organisme</strong> (bijvoorbeeld fossielen, maar sporen, poep en dode bladeren zijn oké)</li>
-            <li>de waarneming heeft niet langer een naam nodig <em>en</em> de gemeenschapsID is boven de familie</li>
-            <li>de waarnemer heeft zich afgemeld voor de gemeenschapsID en het gemeenschapsID-taxon is geen voorouder of afstammeling van het taxon van de waarnemer</li>
+           <li>de waarneming heeft niet langer een naam nodig <em>en</em> de gemeenschapsID is boven de familie</li>
+           <li>de waarnemer heeft zich afgemeld voor de gemeenschapsID en het gemeenschapsID-taxon is geen voorouder of afstammeling van het taxon van de waarnemer</li>
           </ul>
           <p>
-             En als dat niet ingewikkeld genoeg was er zijn ook situaties waarin het systeem een stem krijgt:
+           En alsof dat nof niet ingewikkeld genoeg was er zijn ook situaties waarin het systeem een stem krijgt:
           </p>
           <ul>
-            <li>Het systeem zal aangeven dat de waarneming niet wild/ingeburgerd is als er minstens 10 andere waarnemingen van een genus zijn of lager in de kleinste provincie-, staats- of land-equivalent plaats die deze waarneming bevat en 80% of meer van die waarnemingen zijn gemarkeerd als niet wild/ingeburgerd.</li>
+           <li>Het systeem zal aangeven dat de waarneming niet wild/genaturaliseerd is als er minstens 10 andere waarnemingen van een genus zijn of lager in de kleinste provincie-, staats- of land-equivalent plaats die deze waarneming bevat en 80% of meer van die waarnemingen zijn gemarkeerd als niet wild/genaturaliseerd.</li>
           </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
@@ -5820,7 +5817,7 @@ nl:
           <p>Door iemand te blokkeren kunnen ze je berichten niet meer zien of reageren op jouw waarnemingen, je waarnemingen determineren of andere interacties met je hebben op %{site_name}. Het verwijdert ook hun waarnemingen uit je zoekresultaten en verwijdert jouw waarnemingen uit hun zoekresultaten. Het maakt je echter niet onzichtbaar voor ze. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met je aangaan.
           </p>
           <p>
-            Blokkeren is voor situaties waar je gewoon niet kunt opschieten met iemand en ze je niet met rust laten, ondanks je inspanningen om geschillen op een beschaafde manier regelen. Het is geen manier om je te verbergen voor mensen, om determinaties te voorkomen van mensen van wie je de mening niet vertrouwt, of niet voor het community-ID kiest (daar is een andere instelling voor). Blokkeren werkt dus in beide richtingen: als je iemand blokkeert, kunnen ze geen interactie met je hebben, maar je kunt ook geen interactie hebben met hen. Als je het misbruikt om te voorkomen dat iemand je waarnemingen determineert, voorkomt je ook dat je diegenes waarnemingen kan determineren.
+            Blokkeren is voor situaties waar je gewoon niet kunt opschieten met iemand en ze je niet met rust laten, ondanks je inspanningen om geschillen op een beschaafde manier regelen. Het is geen manier om je te verbergen voor mensen, om determinaties te voorkomen van mensen van wie je de mening niet vertrouwt, of niet voor het gemeenschaps-ID kiest (daar is een andere instelling voor). Blokkeren werkt dus in beide richtingen: als je iemand blokkeert, kunnen ze geen interactie met je hebben, maar je kunt ook geen interactie hebben met hen. Als je het misbruikt om te voorkomen dat iemand je waarnemingen determineert, voorkomt je ook dat je diegenes waarnemingen kan determineren.
           </p>
           <p>
             Je kunt maar drie mensen blokkeren. We denken dat dit een redelijk aantal is dat geschikt is voor de mensen die blokkering nodig hebben. Dit is om misbruik van blokkering te voorkomen. Als je vindt dat je meer mensen moet kunnen blokkeren <a href="mailto:%{help_email}">neem dan contact met ons op</a>.
