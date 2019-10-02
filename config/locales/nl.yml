@@ -2001,7 +2001,7 @@ nl:
   new_check_list: Nieuwe checklist
   new_check_list_for: "Maak een nieuwe checklist aan voor %{place} &raquo;"
   new_check_list_record: "Als je deze lijst wilt markeren als volledig, maak deze aan, voeg de taxa toe, en bewerk de lijst vervolgens. Dan heb je de optie om de lijst hier als volledig te markeren."
-  new_comment_on_a_parent_by_user_link: Nieuwe reactie op @vow_or_con{vow:een|een} %{parent} door %{user_link}
+  new_comment_on_a_parent_by_user_link: Nieuwe reactie op een %{parent} van %{user_link}
   new_flag_for: Nieuwe melding voor
   new_guide: Nieuwe Gids
   new_journal_post: Nieuw dagboekbericht
@@ -2459,13 +2459,13 @@ nl:
   people_following_user: "Personen die %{user} volgen"
   people_user_follows: "Personen die %{user} volgt"
   people_added:
-    observation: heeft een %{observation_link} van @vow_or_con{vow:een|een} %{taxon_link} toegevoegd
+    observation: heeft een %{observation_link} van een %{taxon_link} toegevoegd
     identification:
       with_observation: heeft een <strong>determinatie</strong> toegevoegd aan een %{observation_link} door %{user_link}
       without_observation: heeft een <strong>ID</strong> toegevoegd
     post: maakte een %{post_link}
     comment:
-      with_by: Reactie op @vow_or_con{vow:een|een} %{comment_subject_link} door %{by_link}
+      with_by: heeft gereageerd op een %{comment_subject_link} van %{by_link}
       without_by: reactie op een %{comment_subject_link}
   per_day: Per Dag
   per_month: Per Maand
