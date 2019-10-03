@@ -1,4 +1,4 @@
-- if @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY && @project_user_invitation.blank?
+- if !@project.is_new_project? && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY && @project_user_invitation.blank?
   .notice.box.centered
     = t 'views.projects.join.invite_only_description'
 - unless @project.description.blank?
@@ -29,7 +29,7 @@
   %h3= t(:rules_for_adding_observations)
   %ul.stacked
     = render partial: "rules_list"
-- if !params[:skip_form] && (@project.preferred_membership_model != Project::MEMBERSHIP_INVITE_ONLY || @project_user_invitation)
+- if !params[:skip_form] && (@project.preferred_membership_model != Project::MEMBERSHIP_INVITE_ONLY || @project_user_invitation || @project.is_new_project?)
   %h3= t(:other, default: 'other').capitalize
   = form_for @project.project_users.build(project: @project, user: current_user),
       builder: DefaultFormBuilder,

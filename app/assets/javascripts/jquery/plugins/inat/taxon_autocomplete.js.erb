@@ -52,6 +52,7 @@ autocompleter.setSubtitle = function( result, options ) {
 }
 
 autocompleter.stripRank = function( txt ) {
+  if ( !txt ) { return txt; }
   return txt.replace( /^(Kingdom|Subkingdom|Phylum|Subphylum|Superclass|Class|Subclass|Infraclass|Superorder|Order|Suborder|Infraorder|Parvorder|Zoosection|Zoosubsection|Superfamily|Epifamily|Family|Subfamily|Supertribe|Tribe|Subtribe|Genus|Genushybrid|Subgenus|Section|Subsection)\s+(.+)/g, "$2" );
 }
 

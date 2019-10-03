@@ -307,6 +307,7 @@ class ComputerVisionDemoApp extends Component {
           updateSingleObsCard
           { ...this.props }
           { ...this.props.locationChooser }
+          submitText={ I18n.t( "select" ) }
         />
       </div>
     );

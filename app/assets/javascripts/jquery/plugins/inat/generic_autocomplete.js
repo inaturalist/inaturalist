@@ -57,6 +57,7 @@ genericAutocomplete.renderMenu = function ( ul, items ) {
 };
 
 genericAutocomplete.stripTags = function ( txt ) {
+  if ( !txt ) { return txt; }
   return txt.replace( /<\w+>(.+)<\/\w+>/g, "$1" );
 };
 
