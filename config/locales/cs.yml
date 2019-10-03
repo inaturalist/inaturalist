@@ -318,6 +318,7 @@ cs:
   attribution: Uvedení autora
   authority_list:
     iucn_red_list: Červený seznam IUCN
+    cites: CITES
   authorize: Autorizovat
   authorize_permissions_from_provider: "Schválit povolení od %{provider}"
   automatic_short: Automaticky
@@ -579,7 +580,9 @@ cs:
     url: URL stránky popisující tento status.
     geoprivacy: Standardně nastavené geosoukromí pro pozorování tohoto taxonu
     iucn: Odpovídající kód v Červeném seznamu IUCN
+  contact_support: Kontaktovat podporu
   contain_all_descendants?: Obsahuje tento seznam všechny následné taxony, které se zde vyskytují?
+  content_hidden: Skrytý obsah
   continue: Pokračovat
   contributor_cannot_be_found: Přispěvatel nebyl nalezen
   contributors_to_project: "Přispěvatelé do %{project}"
@@ -931,6 +934,7 @@ cs:
   extinct_in_the_wild: vyhynulý v přírodě
   extra_properties: Další vlastnosti
   evidence_of_organism: Důkaz o organismu
+  facebook: Facebook
   facebook_account_information: Informace z vašeho facebookového účtu
   facebook_account_not_linked: "%{user} už nemá propojený facebookový účet, proto %{site_name} nemá povolení přístupu k této fotce."
   facebook_access_token_expired: "Platnost přístupového kódu vypršela. %{user} si musí znovu propojit svůj facebookový účet."
@@ -1001,6 +1005,8 @@ cs:
   flag_for_curation: Označit pro správu
   flag_it!: Označit!
   flag_marked_as_resolved_html: '<span class="meta">Vlajka označena jako</span> <strong>vyřešená.</strong>'
+  #Label for the object that was flagged, e.g. a table header
+  flag_object: Objekt
   flag_reason: "&ldquo;Toto %{record} označuji, protože"
   flag_saved: Označení uloženo.
   flag_saved_thanks_html: Stítky uloženy. Díky!<a href="%{url}" class="readmore">View flag</a>
@@ -1086,6 +1092,7 @@ cs:
   go_back: Jít zpět
   going_to_your_observations: Načítání vašich pozorování...
   good_choice_for_sharing: Dobrá volba pro sdílení s vědci
+  google: Google
   got_it!: Jasně!
   got_your_data_somewhere_else?: Máte své údaje někde jinde? Dokážeme vám pomoct.
   graft: Připojit
@@ -1124,10 +1131,12 @@ cs:
   help_support_inaturalist: "Nápověda iNaturalist"
   helped_the_observer_make: pomohl pozorovateli provést konečné ID (byly provedeny před konečným ID, kterému odpovídají)
   here_are_3_examples: Toto jsou 3 příklady dobře sestavených údajů
+  here_are_our_top_suggestions: Zde jsou naše top návrhy
   here_are_our_top_species_suggestions: Toto jsou naše nejlepší návrhy k druhům
   hex_color_eg: Barva hex, např. 65644F
   hi: Ahoj,
   hi_user: "Ahoj %{user}"
+  hide_content: Skrýt obsah
   hide_running_total: Skrýt Running Total
   hide_uncountable_species: Skrýt nespočitatelné druhy
   high: vysoká
@@ -1203,6 +1212,7 @@ cs:
   #Label for messages you've received
   inbox: doručená pošta
   including: včetně
+  increase_brightness: Zvýšit jas
   in_progress: probíhá
   in_the_past: v minulosti
   in_the_past_week: v minulém týdnu
@@ -1236,6 +1246,7 @@ cs:
   #Type of project where people can only join after they have been invited
   inviteonly: jen pro zvané
   invited_x: "Pozván/a %{x}"
+  iphone: iPhone
   is_an_evaluation: |
     je hodnocení přesnosti pozorování. Pozorování výzkumného stupně mohou vědci používat při výzkumu. Hlasujte níže:
   is_not_following_anyone: nikoho nesleduje.
@@ -2257,6 +2268,7 @@ cs:
     dominican_republic: Dominikánská republika
     east_timor: Východní Timor
     ecuador: Ekvádor
+    egypt: Egypt
     equatorial_guinea: Rovníková Guinea
     estonia: Estonsko
     ethiopia: Etiopie
@@ -2305,6 +2317,7 @@ cs:
     madagascar: Madagaskar
     malaysia: Malajsie
     maldives: Maledivy
+    malta: Malta
     marshall_islands: Marshallovy ostrovy
     martinique: Martinik
     mauritania: Mauritánie
@@ -2393,6 +2406,7 @@ cs:
     united_states_virgin_islands: Americké Panenské ostrovy
     uzbekistan: Uzbekistán
     vatican_city: Vatikán
+    vietnam: Vietnam
     virgin_islands: Panenské ostrovy
     wallis_and_futuna: Wallis a Futuna
     west_africa: Západní Afrika
@@ -3371,6 +3385,7 @@ cs:
   try_it_out: Vyzkoušejte to
   try_wikipedia: Chcete zkusit Wikipedii?
   tue: út
+  twitter: Twitter
   two_thirds: 2/3
   type: Psát
   type_a_name_and_click: Napište název a klikněte na HLEDAT
@@ -3532,6 +3547,7 @@ cs:
   valid_interrogation: Platné?
   valid_options_are: Platné možnosti jsou
   value: Hodnota
+  values: Hodnoty
   verbing_x_of_y: "%{verb} %{x} %{y}..."
   verifiable_observations_by_observation_date: Ověřitelná pozorování podle data pozorování
   view: Zobrazit
@@ -4169,6 +4185,10 @@ cs:
       show:
         project_list_desc: |
           Taxony přidané manuálně kurátory projektu a taxony z pozorování výzkumného stupně přidaných do projektu se objeví na seznamech projektu.
+    messages:
+      from: Od
+      to: Do
+      subject: Předmět
     oauth:
       authorizations:
         new:
@@ -4619,6 +4639,9 @@ cs:
         welcome_to_projects: Vítejte v projektech!
         you_have_not_defined_any_observation_requirements: |
           Nezadali jste žádná kritéria pozorování. Zkontrolujte, zda jste vybrali jeden nebo více taxonů (například ptáků, koníků), míst (například Brazílie, Yellowstone), uživatelů a / nebo dat pozorování, které chcete zahrnout do projektu.
+        errors:
+          name_is_required: Pole „Název projektu“ je povinné
+          name_less_than_100_characters: Název projektu musí mít méně než 100 znaků
       project_location_privacy_notice_html: |
         <p>
         Vezměte prosím na vědomí, že kurátoři projektu uvidí veškeré soukromé nebo skryté lokality vašich pozorování v tomto projektu, pokud toto povolení neodvoláte, a budou moci přidávat vaše pozorování do tohoto projektu, pokud <a href="/users/edit">si nezměníte nastavení</a>. Také můžete povolit nebo zrušit přístup k pozorováním projektu jednotlivě.
@@ -4933,6 +4956,7 @@ cs:
           Zobrazit vědecká jména před obvyklými jmény
         taxon_change_desc: |
           Když jsou na %{site_name} sloučeny nebo přejmenovány taxony, vaše pozorování, taxony na seznamu, identifikace atd. budou automaticky aktualizovány na nové taxony, pokud je změna jasná. Pokud si aktualizace zrušíte nebo je změna nejednoznačná (např. kvůli nejednotnosti názorů), dostanete oznámení o změně s odkazem na nástroj, který můžete použít k manuální aktualizaci svého obsahu, pokud chcete.
+        thanks_for_supporting_us!: Děkujeme za podporu!
         this_only_applies_to_traditional_projects: |
           To platí pouze pro tradiční projekty. Nemůžete vyloučit pozorování ze sbírek nebo ze zastřešujích projektů, které jsou v podstatě uložená vyhledávání.
           Další informace <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">zde</a>.
