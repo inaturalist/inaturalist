@@ -1546,7 +1546,7 @@ class Observation < ActiveRecord::Base
     if (
       ( latitude == private_latitude || longitude == private_longitude ) &&
       !( private_latitude_changed? || private_longitude_changed? ) &&
-      !geoprivacy_changed_from_private_to_obscured
+      !geoprivacy_changed_from_private_to_obscured && latitude_was && longitude_was
     )
       self.latitude, self.longitude = [latitude_was, longitude_was]
       set_geom_from_latlon
