@@ -122,6 +122,7 @@ class TaxonName < ActiveRecord::Base
     "maori"                 => "mi",
     "maya"                  => "myn",
     "norwegian"             => "nb",
+    "norwegian_bokmal"      => "nb",
     "occitan"               => "oc",
     "polish"                => "pl",
     "portuguese"            => "pt",
