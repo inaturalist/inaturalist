@@ -1,4 +1,51 @@
-directory = "/home/inaturalist"
+OPTS = Optimist::options do
+    banner <<-EOS
+
+THE DESCRIPTION
+
+Usage:
+
+  rails runner tools/export_multitier_vision_data.rb
+
+Options:
+EOS
+  opt :root_dir, "Root directory in which to save the export",
+    type: :string, short: "-r", default: "./"
+  opt :dir, "Directory name for this export",
+    type: :string, short: "-d", default: "slim_export_YYYYMMDD"
+  opt :root_taxon_id, "ID of the taxon whose data will be exported",
+    type: :string, short: "-t"
+end
+
+if OPTS[:dir] == "slim_export_YYYYMMDD"
+  datestring = Time.now.strftime( "%Y%m%d" )
+  OPTS[:dir] = "slim_export_#{datestring}"
+end
+
+puts "\n\n"
+unless Dir.exists?( OPTS[:root_dir] )
+  puts "Root directory `#{OPTS[:root_dir]}` does not exist. Exiting.\n\n"
+  exit( 0 )
+end
+
+export_dir_fullpath = File.join( OPTS[:root_dir], OPTS[:dir] )
+if Dir.exists?( export_dir_fullpath )
+  puts "Export directory `#{export_dir_fullpath}` already exists. Exiting.\n\n"
+  exit( 0 )
+end
+FileUtils.mkdir( export_dir_fullpath )
+puts "Export directory: #{export_dir_fullpath}"
+
+root_taxon = OPTS[:root_taxon_id] ?
+  Taxon.where( id: OPTS[:root_taxon_id] ).first : Taxon::LIFE
+if !root_taxon
+  puts "Invalid root taxon. Exiting.\n\n"
+  exit( 0 )
+end
+puts "Root taxon: #{root_taxon.name} [#{root_taxon.id}]"
+
+
+
 TEST_FLOOR = 50
 TEST_CEIL = 50
 TRAIN_FLOOR = 45
@@ -6,12 +53,11 @@ TRAIN_CEIL = 995
 VAL_FLOOR = 5
 VAL_CEIL = 5
 VAL_PERCENT_OF_TRAIN = 0.1
-ROOT_ID = 48460
 DATA_CSV_COLUMNS = [:id, :filename, :multitask_labels, :multitask_texts, :file_content_type]
 BAD_OBSERVATION_IDS = { }
 
 puts "Find obs with failing quality_metrics (ex. captive) and unresolved flags..."
-sql = <<-SQL
+quality_metrics_query = <<-SQL
   SELECT DISTINCT observation_id
   FROM (
     SELECT observation_id
@@ -23,30 +69,36 @@ sql = <<-SQL
   ) as subq;
 SQL
 
-QualityMetric.connection.execute(sql).each do |row|
+QualityMetric.connection.execute( quality_metrics_query ).each do |row|
   BAD_OBSERVATION_IDS[row["observation_id"].to_i] = true
 end
 
-sql = <<-SQL
+flags_query = <<-SQL
   SELECT DISTINCT flaggable_id
   FROM flags f
   WHERE f.flaggable_type = 'Observation' AND NOT f.resolved;
 SQL
 
-Flag.connection.execute(sql).each do |row|
+Flag.connection.execute( flags_query ).each do |row|
   BAD_OBSERVATION_IDS[row["flaggable_id"].to_i] = true
 end
 
-# Pick the root of some branch to export
-root = Taxon.find( ROOT_ID )
-ranks = Taxon::RANK_LEVELS.values.uniq.sort
-standard_ranks = Taxon::RANK_LEVELS.select{ |k,v| ( Taxon::PREFERRED_RANKS.include? k ) && v > Taxon::SUBSPECIES_LEVEL && v != Taxon::SUPERFAMILY_LEVEL }.values.reverse
-ancestry_string = root.rank_level == Taxon::ROOT_LEVEL ?
-  "#{ root.id }" : "#{ root.ancestry }/#{ root.id }"
-if root.rank_level == Taxon::ROOT_LEVEL
+extinct_taxon_ids = ConservationStatus.where( iucn: Taxon::IUCN_EXTINCT, place_id: nil ).distinct.pluck( :taxon_id )
+
+standard_ranks = Taxon::RANK_LEVELS.select do |k,v|
+  Taxon::PREFERRED_RANKS.include?( k ) &&
+  v > Taxon::SUBSPECIES_LEVEL &&
+  v != Taxon::SUPERFAMILY_LEVEL
+end.values.reverse
+
+ancestry_string = root_taxon.rank_level == Taxon::ROOT_LEVEL ?
+  "#{ root_taxon.id }" : "#{ root_taxon.ancestry }/#{ root_taxon.id }"
+if root_taxon.rank_level == Taxon::ROOT_LEVEL
   root_ancestors = []
 else
-  root_ancestors = root.ancestors.select{ |a| standard_ranks.include? a.rank_level}
+  root_ancestors = root_taxon.ancestors.select do |ancestor|
+    standard_ranks.include?( ancestor.rank_level )
+  end
 end
 
 # Part 1: determine the taxonomy
@@ -88,8 +140,8 @@ sql_query = <<-SQL
   JOIN ( #{CANDIDATE_OBSERVATIONS_SQL} ) o ON o.taxon_id = t.id
   WHERE t.is_active = true
   AND o.community_taxon_id IS NOT NULL AND o.community_taxon_id = o.taxon_id
-  AND ( t.id = #{ROOT_ID} OR t.ancestry = '#{ ancestry_string }' OR t.ancestry LIKE ( '#{ ancestry_string }/%' ) )
-  AND ( select count(*) from conservation_statuses ct where ct.taxon_id=t.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0
+  AND ( t.id = #{root_taxon.id} OR t.ancestry = '#{ ancestry_string }' OR t.ancestry LIKE ( '#{ ancestry_string }/%' ) )
+  AND t.id NOT IN (#{extinct_taxon_ids.join("," )})
   GROUP BY t.id;
 SQL
 puts "Looking up taxon CID supported obs counts..."
@@ -101,32 +153,33 @@ sql_query = <<-SQL
   FROM taxa t
   JOIN ( #{CANDIDATE_OBSERVATIONS_SQL} ) o ON o.taxon_id = t.id
   WHERE t.is_active = true
-  AND ( t.id = #{ROOT_ID} OR t.ancestry = '#{ ancestry_string }' OR t.ancestry LIKE ( '#{ ancestry_string }/%' ) )
-  AND ( select count(*) from conservation_statuses ct where ct.taxon_id=t.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0
+  AND ( t.id = #{root_taxon.id} OR t.ancestry = '#{ ancestry_string }' OR t.ancestry LIKE ( '#{ ancestry_string }/%' ) )
+  AND t.id NOT IN (#{extinct_taxon_ids.join("," )})
   GROUP BY t.id;
 SQL
 puts "Looking up taxon obs counts..."
 taxonomy = ActiveRecord::Base.connection.execute( sql_query )
 total_obs_counts = taxonomy.map{|row| [row["taxa_id"], row["count"].to_i]}.to_h
 
+
 # Keep only the leaves with enough downstream data
 puts "Trimming taxonomy based on obs counts..."
 enough = []
-ranks[1..-1].each do |i|
-  #puts i
+species_and_above_rank_levels =
+  Taxon::RANK_LEVELS.values.uniq.sort - [Taxon::RANK_LEVELS["subspecies"]]
+species_and_above_rank_levels.each do |rank_level|
   enough_set = enough.map{ |row| row[:taxon_id] }.to_set
-  Taxon.where("( ancestry = '#{ ancestry_string }' OR ancestry LIKE ( '#{ ancestry_string }/%' ) ) AND is_active = true AND rank_level = ?", i ).
-  where("( select count(*) from conservation_statuses ct where ct.taxon_id=taxa.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0").each do |t|
-    #puts "\t#{t.id}"
+  Taxon.where( "( ancestry = '#{ ancestry_string }' OR ancestry LIKE ( '#{ ancestry_string }/%' ) )" ).
+    where( "is_active = true AND rank_level = ?", rank_level ).
+    where("id NOT IN (?)", extinct_taxon_ids ).each do |t|
     dset = t.descendants.pluck( :id ).to_set
+    # internode
     if ( dset & enough_set ).count > 0
-      # internode
       enough << {
         taxon_id: t.id
       } 
-    else
-      # leaf
-      if ( ( [
+    # leaf
+    elsif ( ( [
           test_obs_counts[t.id.to_s],
           t.descendants.pluck( :id ).map{ |j|
             test_obs_counts[j.to_s]
@@ -140,79 +193,31 @@ ranks[1..-1].each do |i|
         enough << {
           taxon_id: t.id
         } 
-      end
     end
   end
 end
-if root.rank_level == Taxon::ROOT_LEVEL
+if root_taxon.rank_level == Taxon::ROOT_LEVEL
   enough_set = [enough.map{ |row| row[:taxon_id] }].flatten.to_set; nil
 else
-  enough_set = [enough.map{ |row| row[:taxon_id] },root.id].flatten.to_set
+  enough_set = [enough.map{ |row| row[:taxon_id] }, root_taxon.id].flatten.to_set
 end
 
 # Fetch the taxa
 taxa = Taxon.find( enough_set.to_a ); nil
-results = taxa.map{|i|
+export_taxonomy = taxa.map{|i|
     {
       id: i[:id],
       name: i[:name],
       rank_level: i[:rank_level],
-      ancestors: i[:ancestry].split( "/" ).select{ |j| enough_set.include? j.to_i }.map{ |j| j.to_i }
+      ancestors: i[:ancestry].split( "/" ).map{ |j| j.to_i } - [Taxon::LIFE.id]
     }
   }; nil
 
-# Add 'missing' nodes (e.g. if Class->Family, insert Order)
-puts "Adding missing taxonomy nodes..."
-results_hash = results.map{ |i| [i[:id],i[:rank_level]] }.to_h; nil
-FAKE_KEY = {}
-continue = true
-while continue
-  if row = results.select{ |i| ( standard_ranks.select{ |sr| sr > i[:rank_level] && sr < root.rank_level } - i[:ancestors].map{ |k| results_hash[k].to_i } ).count > 0 }.first
-    ancestors = row[:ancestors].map{ |i| results.select{ |j| j[:id]==i }.first }
-    standard_rank_levels = standard_ranks.select{ |sr| sr>row[:rank_level] && sr < root.rank_level }
-    actual_rank_levels = row[:ancestors].map{ |k| results.select{ |j| j[:id]==k }.first[:rank_level].to_i }
-    missing_rank_level = ( standard_rank_levels - actual_rank_levels ).first
-    child_rank_level = actual_rank_levels.select{ |a| a < missing_rank_level }.first
-    if child_rank_level.nil?
-      child_rank_level = row[:rank_level].to_i
-      child = row
-    else
-      child = ancestors.select{ |a| a[:rank_level] == child_rank_level }.first
-    end
-    parent_rank_level = actual_rank_levels.select{ |a| a > missing_rank_level }.last
-
-    new_node = {
-      id: ( 0...7 ).map { ( 65 + rand( 26 ) ).chr }.join,
-      name: nil,
-      rank_level: missing_rank_level,
-      ancestors: ancestors.select{ |a| a[:rank_level] >= parent_rank_level }.map{ |a| a[:id] }
-    }
-    results_hash = results_hash.merge( { new_node[:id] => new_node[:rank_level] } )
-    results.select{ |i| i[:ancestors].include? child[:id] }.map{ |i| i[:ancestors].insert( i[:ancestors].index( child[:id] ), new_node[:id] ) }
-    results.select{ |i| i[:id]==child[:id] }.map{ |i| i[:ancestors].append( new_node[:id] ) }
-    results << new_node
-    FAKE_KEY[new_node[:id]] = child[:id]
-  else
-    continue = false
-  end
-end
-
-# Remove non standard nodes and update ancestry
-to_del = results.select{ |a| !standard_ranks.include? a[:rank_level].to_i }; nil
-to_del_set = to_del.map{ |a| a[:id] }.to_set; nil
-new_res = results.select{ |a| standard_ranks.include? a[:rank_level].to_i }.
-  map{ |a| 
-    {
-      id: a[:id],
-      name: a[:name],
-      rank_level: a[:rank_level],
-      ancestors: [root_ancestors.map{|i| i.id}, a[:ancestors].select{ |i| !to_del_set.include? i }].flatten.compact
-    }
-    }; nil
-unless root.rank_level == Taxon::ROOT_LEVEL
+# add in ancestors of the exported taxon
+unless root_taxon.rank_level == Taxon::ROOT_LEVEL
   j = 2
   root_ancestors.reverse.each do |row|
-    new_res << {
+    export_taxonomy << {
       id: row.id,
       name: row.name,
       rank_level: row.rank_level,
@@ -222,68 +227,27 @@ unless root.rank_level == Taxon::ROOT_LEVEL
   end
 end
 
-INTERNODES = new_res.map{ |a| a[:ancestors] }.flatten.uniq.to_set; nil
+INTERNODES = export_taxonomy.map{ |a| a[:ancestors] }.flatten.uniq.to_set; nil
 
-# Map between taxon_id and class id
-CLASS_HASH = {}
-standard_ranks.each do |j|
-  taxon_ids = new_res.select{ |i| i[:rank_level] == j }.map{ |i| i[:id] }
-  indexes = ( 0..( taxon_ids.count - 1 ) ).step( 1 ).to_a
-  CLASS_HASH = CLASS_HASH.merge( taxon_ids.zip( indexes ).to_h )
-end
-
-taxon_ids = new_res.select{ |i| !INTERNODES.include? i[:id] }.map{ |i| i[:id] }
+taxon_ids = export_taxonomy.select{ |i| !INTERNODES.include? i[:id] }.map{ |i| i[:id] }
 indexes = ( 0..( taxon_ids.count - 1 ) ).step( 1 ).to_a
 LEAF_CLASS_HASH = taxon_ids.zip( indexes ).to_h
 
 # Export the taxonomy
-CSV.open( "#{directory}/taxonomy_data.csv", "wb" ) do |csv|
-  csv << ["parent_taxon_id", "taxon_id", "class_id", "rank_level", "leaf_class_id", "name"]
-  new_res.each do |row|
-    csv << [ row[:ancestors].last, row[:id], CLASS_HASH[row[:id]], row[:rank_level].to_i, LEAF_CLASS_HASH[row[:id]], row[:name] ]
+CSV.open( "#{export_dir_fullpath}/taxonomy_data.csv", "wb" ) do |csv|
+  csv << ["parent_taxon_id", "taxon_id", "rank_level", "leaf_class_id", "name"]
+  export_taxonomy.each do |row|
+    csv << [ row[:ancestors].last, row[:id], row[:rank_level].to_i, LEAF_CLASS_HASH[row[:id]], row[:name] ]
   end
-end
+end; nil
 
-# Some code for rendering out json to vizualize here http://loarie.github.io/treenew5.html
-=begin
-def go_deeper( row, nr )
-  children = nr.select{ |i| i[:ancestors].last==row[:id] }
-  fixed_children = []
-  children.each do |child|
-    child[:name] = child[:id] if child[:name].nil?
-    rr = { id: child[:id], name: child[:name] }
-    childd = go_deeper( rr, nr )
-    fixed_children << childd
-  end
-  if fixed_children.count > 0
-    row[:children] = fixed_children
-  end
-  return row
-end
 
-if root.rank_level == Taxon::ROOT_LEVEL
-  subject = { id: root.id, name: root.name, children: [] }
-  new_res.select{ |i| i[:ancestors].empty? }.each do |row|
-    rr = {id: row[:id], name: row[:name]}
-    subject[:children] << go_deeper( rr, new_res ); nil
-  end
-else
-  ss = new_res.select{ |a| a[:id] == root.ancestor_ids[1]}.first
-  subject = {id: ss[:id], name: ss[:name] }
-  subject = go_deeper( subject, new_res )
-end
-
-#puts subject.to_json
-File.open( "/home/inaturalist/subject.json", "w" ) do |f|
-  f.write( subject.to_json )
-end
-=end
 
 # Part 2: Fetch the photos on the taxonomy
 
 def photo_item_to_csv_row( item, labels, texts )
   row_hash = {
-    filename: item["filename"],
+    filename: item["filename"].sub(/\?.*/,''),
     id: item["id"],
     multitask_labels: labels,
     multitask_texts: texts,
@@ -298,23 +262,9 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
     row_id = FAKE_KEY[row_id]
   end
   ancestry = Taxon.find(row_id).ancestry+"/#{row_id}"
-  multitask_labels = [
-    row[:ancestors].map{ |i| CLASS_HASH[i] },
-    CLASS_HASH[row[:id]]
-  ].flatten
-  multitask_labels = multitask_labels.append( Array.new(7 - multitask_labels.count, 0) ).flatten
-  multitask_labels = multitask_labels.append( LEAF_CLASS_HASH[row[:id]].nil? ? 0 : LEAF_CLASS_HASH[row[:id]]  ).flatten
-  multitask_texts = [
-    row[:ancestors], 
-    row[:id]
-  ].flatten.map{|i| i.to_s}
-  multitask_texts = multitask_texts.append( Array.new(7 - multitask_texts.count, nil) ).flatten
-  multitask_texts = multitask_texts.append( LEAF_CLASS_HASH[row[:id]].nil? ? nil : row[:id].to_s  ).flatten
-  
-  multitask_weights = Array.new( 7, 1 )
-  multitask_weights[( 7 + 1 ) - row[:rank_level] / 10..7] = Array.new( row[:rank_level] / 10 - 1, 0 )
-  multitask_weights = multitask_weights.append( LEAF_CLASS_HASH[row[:id]].nil? ? 0 : 1  ).flatten
-  
+  multitask_label = LEAF_CLASS_HASH[row[:id]].nil? ? 0 : LEAF_CLASS_HASH[row[:id]]
+  multitask_text = LEAF_CLASS_HASH[row[:id]].nil? ? nil : row[:id].to_s
+    
   rank_level_clause = ""
   if INTERNODES.include? row_id
     rank_level_clause = "AND t.rank_level > #{ row[:rank_level] - 10 }"
@@ -327,12 +277,14 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
     JOIN photos p ON op.photo_id = p.id
     WHERE ( t.id = #{ row_id } OR t.ancestry = '#{ ancestry }' OR t.ancestry LIKE ( '#{ ancestry }/%' ) )
     #{ rank_level_clause }
+    AND p.original_url NOT LIKE '%attachment%'
+    AND p.original_url NOT LIKE '%copyright%'
     AND p.type = 'LocalPhoto'
     AND ( select count(*) from conservation_statuses ct where ct.taxon_id=t.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0
     ORDER BY has_cid DESC
     LIMIT 2000;
   SQL
-  raw_photos = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| i }; nil  
+  raw_photos = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| i }; nil
   
   i = 0
   photos = []
@@ -360,19 +312,19 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
     val_photos = nil
   end
   test_photos.each do |item|
-    out_row = photo_item_to_csv_row( item, multitask_labels.last, multitask_texts.last )
+    out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
     test_csv << out_row
   end
   return unless photos.count > TEST_CEIL
   unless train_photos.nil?
     train_photos.each do |item|
-      out_row = photo_item_to_csv_row( item, multitask_labels.last, multitask_texts.last )
+      out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
       train_csv << out_row
     end
   end
   unless val_photos.nil?
     val_photos.each do |item|
-      out_row = photo_item_to_csv_row( item, multitask_labels.last, multitask_texts.last )
+      out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
       val_csv << out_row
     end
   end
@@ -380,16 +332,16 @@ end
 
 photos_start_time = Time.now
 processed_count = 0
-total_taxa_count = new_res.length
+total_taxa_count = export_taxonomy.select{ |r| !INTERNODES.include?( r[:id] ) }.length
 puts "Starting to processing photos for #{total_taxa_count} taxa..."
-CSV.open( "#{directory}/test_data.csv", "w" ) do |test_csv|
-  CSV.open( "#{directory}/train_data.csv", "w" ) do |train_csv|
-    CSV.open( "#{directory}/val_data.csv", "w" ) do |val_csv|
+CSV.open( "#{export_dir_fullpath}/test_data.csv", "w" ) do |test_csv|
+  CSV.open( "#{export_dir_fullpath}/train_data.csv", "w" ) do |train_csv|
+    CSV.open( "#{export_dir_fullpath}/val_data.csv", "w" ) do |val_csv|
       test_csv << DATA_CSV_COLUMNS
       train_csv << DATA_CSV_COLUMNS
       val_csv << DATA_CSV_COLUMNS
       pp Benchmark.measure{
-        new_res.each do |row|
+        export_taxonomy.each do |row|
           next if INTERNODES.include? row[:id]
           process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
           processed_count += 1
@@ -403,5 +355,43 @@ CSV.open( "#{directory}/test_data.csv", "w" ) do |test_csv|
       }
     end
   end
+end; nil
+
+puts "Done\n\n"
+
+
+
+# Some code for rendering out json to vizualize here http://loarie.github.io/treenew5.html
+=begin
+def go_deeper( row, nr )
+  children = nr.select{ |i| i[:ancestors].last==row[:id] }
+  fixed_children = []
+  children.each do |child|
+    child[:name] = child[:id] if child[:name].nil?
+    rr = { id: child[:id], name: child[:name] }
+    childd = go_deeper( rr, nr )
+    fixed_children << childd
+  end
+  if fixed_children.count > 0
+    row[:children] = fixed_children
+  end
+  return row
 end
 
+if root_taxon.rank_level == Taxon::ROOT_LEVEL
+  subject = { id: root_taxon.id, name: root_taxon.name, children: [] }
+  export_taxonomy.select{ |i| i[:ancestors].empty? }.each do |row|
+    rr = {id: row[:id], name: row[:name]}
+    subject[:children] << go_deeper( rr, export_taxonomy ); nil
+  end
+else
+  ss = export_taxonomy.select{ |a| a[:id] == root_taxon.ancestor_ids[1]}.first
+  subject = {id: ss[:id], name: ss[:name] }
+  subject = go_deeper( subject, export_taxonomy )
+end
+
+#puts subject.to_json
+File.open( "/home/inaturalist/subject.json", "w" ) do |f|
+  f.write( subject.to_json )
+end
+=end
