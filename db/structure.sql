@@ -4046,7 +4046,6 @@ CREATE TABLE public.taxa (
     rank character varying(255),
     source_identifier character varying(255),
     source_url character varying(255),
-    parent_id integer,
     source_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -8731,13 +8730,6 @@ CREATE INDEX index_taxa_on_observations_count ON public.taxa USING btree (observ
 
 
 --
--- Name: index_taxa_on_parent_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_taxa_on_parent_id ON public.taxa USING btree (parent_id);
-
-
---
 -- Name: index_taxa_on_rank_level; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9982,6 +9974,8 @@ INSERT INTO schema_migrations (version) VALUES ('20181028002405');
 INSERT INTO schema_migrations (version) VALUES ('20181102233037');
 
 INSERT INTO schema_migrations (version) VALUES ('20181110004422');
+
+INSERT INTO schema_migrations (version) VALUES ('20181203171209');
 
 INSERT INTO schema_migrations (version) VALUES ('20181120235404');
 
