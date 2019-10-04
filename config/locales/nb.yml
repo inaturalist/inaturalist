@@ -37,8 +37,8 @@ nb:
     one: '<span class="count">1</span> journalinnlegg'
     other: '<span class="count">%{count}</span> journalinnlegg'
   x_matching_taxa:
-    one: '1 overensstemmende takson'
-    other: '%{count} overensstemmende taksa'
+    one: '1 matchende takson'
+    other: '%{count} matchende taksa'
   x_matching_taxa_html:
     one: '<span class="count">1</span> overensstemmende takson'
     other: '<span class="count">%{count}</span> overensstemmende taksa'
@@ -291,7 +291,7 @@ nb:
     Lagt til i <a href="%{url}">favoritter</a>
   adding: "Legger til..."
   additional_range: Ytterlig område
-  additional_range_data_from_an_unknown_source: Ytterlige områdedata fra en ukjent kilde
+  additional_range_data_from_an_unknown_source: Ytterlige utbredelsesdata fra en ukjent kilde
   adjust_brightness: Tilpass lysstyrke
   admin: Administrator
   admin_s: Administrator(er)
@@ -1503,7 +1503,7 @@ nb:
   import_observations: Importer observasjoner
   import_observations_from_a_photo: Importer observasjoner fra en bildeleverandær eller en fil på din enhet.
   import_photos: Importer bilder
-  import_ranges: Importer områder
+  import_ranges: Importer utbredelser
   import_sections: Importer seksjoner
   import_tags_from_csv: Importer etiketter fra csv
   importing: "Importerer..."
@@ -1850,7 +1850,7 @@ nb:
       place_boundary: Stedsavgrensning
       checklist_places: Steder på sjekklisten
       checklist_places_description: Steder hvor dette taksonet har blitt oppført på lista
-      range: Område
+      range: Utbredelse
   map_tooltip: Vis kartvisning
   mark_as_reviewed: Marker som vurdert
   mark_all_as_reviewed: Marker alle som vurdert
@@ -2014,6 +2014,18 @@ nb:
   new_project_asset: Ny projektressurs
   new_project_asset_for: Ny projektressurs for
   new_source: Ny kilde
+  new_species_added_in_interval: Nye arter lagt til i %{interval}
+  new_species_added_in_interval_x_of_y: Nye arter lagt til i %{interval} (viser %{x} av %{y})
+  new_taxon_change: Ny taksonendring
+  new_taxon_link: Ny taksonlenke
+  new_taxon_name_for: Nytt taksonnavn for
+  new_taxon_range: Ny taksonutbredelse
+  newly_added: Nye lagt til
+  newly_added_species: Nye arter lagt til
+  newly_observed_species: Nye arter observert
+  newly_observed_species_this_year: Nye arter lagt til i år
+  no_assessments_have_been_added_to_this_project_yet: Ingen vurderinger har blitt lagt til i dette prosjektet ennå.
+  no_countries_added_yet: Ingen land lagt til ennå
   no_creative_commons_flickr_photos_tagged_x: 'Ingen Creative Commons Flickr-bilder med etikett "%{x}"'
   no_flags: Ingen markeringer denne gangen
   no_identifications_added:
@@ -2027,16 +2039,23 @@ nb:
     user: "%{user} har ikke lagt til favoritter."
   no_license_all_rights_reserved: Ingen lisens (alle rettigheter forbeholdt)
   no_managers_set: Ingen managere valgt
+  no_matching_article_from_x: "Ingen matchende artikkel fra %{x}"
   no_more_mail_from_site: "Vil du ikke få noe e-post fra %{site_name}? Rediger dine e-postinnstillinger på"
+  no_one_has_added_any: Ingen har lagt til noen notater for dette stedet
   no_one_posted_anything_yet: Ingen har lagt inn noe ennå!
   no_post_yet: Ingen innlegg ennå!
+  no_range_data_available: Ingen utbredelsesdata tilgjengelig.
+  no_sections_have_been_added_to_this_assessments_yet: Ingen seksjoner har blitt lagt til denne vurderingen ennå.
   no_species_have_been_listed: Ingen arter har blitt oppført på listen til dette stedet ennå!
   no_taxa_listed: Ingen taksa oppført på listen
+  non_human?: Ikke-menneskelig?
   obscured_: tilslørt
   obscured: Tilslørt
   obscured_or_private: tilslørt eller privat
   obscured_description: |
     Offentlige koordinater vist som et vilkårlig punkt innen den 0,2 graders høyde/bredde ruten som inneholder de egentlige koordinatene.
+  observation_added: Observasjon lagt til.
+  observation_added_to_the_project: "Observasjon lagt til i prosjektet \"%{project}\""
   observation_brief_something_on_day: "noe på %{day}"
   observation_brief_something_by_user: "Noe av %{user}"
   observation_brief_something_from_place: "Noe fra %{place}"
@@ -2055,6 +2074,7 @@ nb:
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} fra %{place} på %{day} klokken %{time} av %{user}"
   observation_field_type_time: Klokkeslett
   observation_field_type_datetime: Dato og klokkeslett
+  observations_added_by_x_html: "Observasjoner lagt til av %{x}"
   observations_have_had_their_coordinates: "observasjoner har fått sine koordinater flyttet til et vilkåring punkt innen %{km} km, enten fordi taksonet er truet eller fordi observatøren har valgt å tilsløre koordinatene."
   observations_obscured: Observasjoner (tilslørt)
   of_it_and_its_descendants: av seg selv og sine etterkommere
@@ -2066,12 +2086,17 @@ nb:
   or_if_you_dont_want_email: "Eller hvis du ikke ønsker noe som helst e-post..."
   or_log_in_with_colon: "Eller logg inn med:"
   or_post_message_to_google_group: "eller skriv et innlegg i vår Google Group:"
+  orange: oransje
   organism_appears_captive_cultivated: Organismen viker å være i fangenskap / dyrket
+  out_of_range: Utenfor utbredelsen
   parental_consent:
     must_specify_email: Du må oppgi en e-postadresse
     invalid_email: Ugyldig e-postformat
   people_added:
     observation: har lagt til en %{observation_link} av @gender{m:en|f:ei|n:et} %{taxon_link}
+    identification:
+      with_observation: har lagt til en <strong>id</strong> til en %{observation_link} av %{user_link}
+      without_observation: har lagt til en <strong>id</strong>
     post: har opprettet et %{post_link}
     comment:
       with_by: har kommentert på @gender{m:en|f:ei|n:et} %{comment_subject_link} av %{by_link}
@@ -2084,14 +2109,18 @@ nb:
     hvordan vi bruker det, vennligst se vår <a href='%{privacy_url}' target='_blank'>personvernspolitikk</a> og våre <a href='%{terms_url}' target='_blank'>tjenestevilkår</a>.
   pinned_locations_desc: |
     Husk denne kombinasjonen av koordinater, nøyaktighet, geosperring og lokalitetsnotater for senere bruk.
+  place_added_to_inat_by: "Steder lagt til %{site_name} av"
   place_geo:
     geo_planet_place_types:
       Postal_Code: Postnummer
       postal_code: postnummer
       Time_Zone: Tidssone
       time_zone: tidssone
+  places_added_by_members_of_the_community: Steder lagt til av medlemmer av fellesskapet
   places_name:
+    akrotiri_and_dhekelia: Akrotiri og Dhekelia
     saint_pierre_and_miquelon: Saint Pierre og Miquelon
+    tokelau: Tokelau
   places_merged_successfully: Steder slått sammen!
   please_be_careful_particulary_when: "Vennligst vær forsiktig, spesielt når du sletter taksa. Hvis et takosn har tilknyttede observasjoner, id'er, taksa som er oppført på ei liste, osv., vennligst"
   #Noun, short version of a journal post
@@ -2110,6 +2139,9 @@ nb:
   project_post: Projektinnlegg
   public_coordinates_obscured_by: "Offentlige koordinater tilslørt med %{distance} km"
   query: Spørring
+  range: Intervall
+  range_from: 'Intervall fra '
+  ranges: Utbredelser
   re_apply_list_rules: Påfør listeregler igjen
   real_time_stats: Sanntids-statistikker
   real_time_discussions: Sanntids-diskusjoner
@@ -2129,6 +2161,7 @@ nb:
   remove_comma_separated_tags: "Fjern kommaseparerte etiketter"
   remove_from_batch: Fjern fra batch
   remove_manager: Fjern manager
+  remove_range: Fjern utbredelse
   remove_tags: Fjern etiketter
   research_grade: Forskningskvalitet
   research_grade_observations_have: 'Observasjoner av "forskningskvalitet" har en dato, bilde, koordinater, og en identifikasjon støttet av fellesskapet. Klikk videre for å se datakvalitetsvurderingen.'
@@ -2201,8 +2234,12 @@ nb:
   taxon_is_threatened_coordinates_obscured_desc: |
     Ett av de taksa foreslått i identifikasjonene, eller ett av de taksa som inneholder noen av disse taksa, er sjelden og/eller truet. Lokaliteten for denne observasjonen har derfor blitt tilslørt.
   taxon_change_must_be_committed_to_update_records: Taksonendring må være gjennomført for å oppdatere poster
+  taxon_doesnt_have_a_range: Takson har ingen utbredelse
   taxon_drop: fjerning av takson
   taxon_merge: taksonsammenslåing
+  taxon_range: Taksonutbredelse
+  taxon_range_created_notice: Taksonutbredelse opprettet. Det kan ta noen minutter før det vises på kartene.
+  taxon_range_updated_notice: Taksonutbredelse oppdatert. Det kan ta noen minutter før endringene vises på kartene.
   taxon_split: taksonoppdeling
   taxon_swap: taksonbytte
   taxon_swap_only_has_one_input: kun en input tillatt for et bytte
@@ -2214,6 +2251,7 @@ nb:
   these_are_taxa_that: |
     Dette er taksa som %{site} ikke kunne legge til vårt taksonomiske tre automatisk for en eller annen grunn. Du kan legge dem til treet ved å redigere taksonet og velge en foreldre-post. Foreldren til Homo sapiens, for eksempel, vil være slekta Homo. Du vil kanskje også sjekke for synonyme taksa og slå dem sammen.
   this_observation_is_research_grade: Denne observasjonen er av forskningskvalitet!
+  this_observation_lies_outside_the: "Denne observasjonen er utenfor utbredelsen %{site_name} har for denne arten. Dette kan bety at utbredelsen til %{site_name} er feil, at id'en er feil, et streif-individ, eller en utvidning av utbredelsen!"
   this_taxon_change_has_been_commited: |
     <strong>Denne taksonendring er gjennomført!</strong>
     Vennligst ikke rediger taksaene. Å redigere andre felt er i orden.
@@ -2224,6 +2262,7 @@ nb:
   too_many_taxa_to_render: |
     Denne spørringen returnerer for mange taksa for å kunne vises på en gang. Prøv å legg til flere filtre
   unmute: Fjern demping
+  upload_range: Last opp utbredelse
   use_this_form_to_create_a_new: |
     Bruk dette skjemaet for å opprette et nytt utkast til en taksonomisk endring som beskriver en foreslått oppdeling, sammenslåing eller bytte av aktive taksa for gjennomførelse på et senere tidspunkt.
   used_x_times:
@@ -2232,13 +2271,21 @@ nb:
   user_added_a_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
   user_added_a_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
   user_added_a_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
+  user_added_an_observation_field_html: '%{user} har lagt til en verdi for "%{field_name}" i en observasjon av %{owner}'
+  user_added_an_observation_html: "%{user} har lagt til en observasjon"
+  user_added_an_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
+  user_added_an_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
+  user_added_an_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
+  user_added_x_observations_html: "%{user} har lagt til %{x} observasjoner"
   user_is_now_a_manager_for_project_html: |
     <strong>%{user}</strong> er nå en manager for %{project}
   user_muted: Bruker dempet
   username_or_email: Brukernavn eller e-post
   view_observations_causing_this_observation_to_be_obscured: |
     Vis observasjoner som gjør at denne observasjonen blir tilslørt
+  view_photos_ranges_observations_more: "Vis bilder, artsutbredelser, observasjoner fra %{site_name}, og mer! Vi har sammenstilt informasjon fra mange forskjellig kilder og kombinert de for en rask oversikt over hver art på hvert sted."
   view_post: Vis innlegg
+  view_the_range: Vis utbredelsen
   view_your_dashboard: Vis din oversikt
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Se din oversikt</a> for flere oppdateringer"
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
@@ -2276,6 +2323,8 @@ nb:
           Del opp side, artsinformasjon til venstre, plass til notater til høyre. Artsinformasjon blir forkortet for å få plass på siden.
     help:
       index:
+        inaturalist_was_originally_the_masters_final_html: |
+          %{site_name} var opprinnelig et masterprosjekt av Nathan Agrin, Jessica Kline, og Ken-ichi Ueda på UC Berkeleys <a href="http://www.ischool.berkeley.edu">School of Information</a>. Sjekk ut <a href="/about">siden om prosjektet</a> for mer informasjon om hvem som vedlikeholder siden nå.
         inaturalist_has_name_information_for_mammals: |
           %{site_name} har informasjon om pattedyr, fugler, reptiler, og amfibier, og legger til nye navn i vår database fortløpende. Hvis vi ikke kjenner igjen et bestemt navn, prøv å bruk alternative navn som vi kanskje kjenner igjen og legg til det opprinnelige navnet som etikett eller i beskrivelsene.
         what_are_tags?: Hva er etiketter?
@@ -2315,6 +2364,7 @@ nb:
           Privat_* feltene inkluderes kun ved bruk av brukerfilteret og du er den aktuelle brukeren, eller ved bruk av prosjektfilteret og du kuraterer prosjektet.
         receive_an_email_with_your_data: Få en e-post med dine data
         well_email_you: "Ok, vi sender deg en e-post når den er klar."
+        date_range_help: "Maks og min observasjonsdatoer i ÅÅÅÅ-MM-DD format, f.eks. 2015-01-17"
       field_descriptions:
         time_observed_at: Normalisert dato og klokkeslett for observasjon
         time_zone: Tidssone av observasjon
@@ -2323,6 +2373,7 @@ nb:
         geoprivacy: "Om observatøren har valgt å tilsløre eller skjule koordinatene eller ikke"
         taxon_geoprivacy: "Den mest restriktive geosperringen brukes på grunn av bevaringsstatusen av taksa i den gjeldende identifikasjonen."
         coordinates_obscured: "Om koordinatene har blitt tilslørt eller ikke, enten på grunn av geosperring eller et truet takson"
+        out_of_range: Om denne observasjonen er utenfor taksonets kjente utbredelse eller ikke
         tag_list: Kommaseparert liste over etiketter
       identify:
         too_many_results_desc: |
@@ -2415,6 +2466,7 @@ nb:
       show:
         about_establishment_desc: |
           "Etableringsmåte" beskriver hvordan arten kom dit den nå forekommer. Introdusert betyr at den kom på grunn av mennesklig aktivitet, mens stedegen betyr at den kom på egen hånd. Endemiske arter forkommer kun på et bestemt sted og ikke noe annet sted.
+        discoveries_desc: "Siste ny identifiseringer av arter i dette taksonet"
         frequency:
           research: Forskningskvalitet
           "Life Stage=egg": Egg
@@ -2424,6 +2476,8 @@ nb:
           "Life Stage=nymph": Nymfe
           "Life Stage=pupa": Puppe
           "Life Stage=adult": Voksen
+        photo_chooser_modal_desc: |
+          Dra bilder fra venstresiden hit, eller flytt på bilder her for å endre rekkefølgen.
     taxon_changes:
       move_children_desc: |
         Etterkommere av input-taksonet som er slekter eller høyere blir flyttet til output'en; arter, underarter, varieteter, osv. vil bli byttet til tilsvarende taksa med det ny slekts- eller artsnavnet.
