@@ -524,7 +524,7 @@ nb:
   assessment_has_benn_completed: Vurdering er fullført
   assessment_sections: Vurderingsseksjoner
   assessment_was_deleted: Vurdering ble slettet.
-  assessment_was_successfully_created: Vurdering ble oprettet.
+  assessment_was_successfully_created: Vurdering ble opprettet.
   assessment_was_successfully_updated: Vurdering ble oppdatert.
   assessment_x: "%{assessment}-vurdering"
   assessments: vurderinger
@@ -1223,7 +1223,7 @@ nb:
     <strong>Obs:</strong> Hvis du vil opprette et felt, sjekk for å se om noen andre allerede har opprettet det for å unngå duplisering.
   fields: felter
   fields_: Felter
-  fields_can_only_be_edited_by_the_people_who: Felter kan kun redigeres av de som har oprettet dem og sidekuratorer
+  fields_can_only_be_edited_by_the_people_who: Felter kan kun redigeres av de som har opprettet dem og sidekuratorer
   fields_merged: Felter slått sammen
   file: Fil
   file_should_be_in_the_following_format: "Filen skal være i følgende format: taksonnavn, beskrivelse"
@@ -1405,7 +1405,7 @@ nb:
   guide_deleted: Guide slettet
   guide_will_be_deleted: Guide slettes. Det tar en stund for større guides.
   guide_taxon: Guide-takson
-  guide_was_successfully_created: Guide ble oprettet.
+  guide_was_successfully_created: Guide ble opprettet.
   guide_was_successfully_published: Guide ble publisert.
   guide_was_successfully_updated: Guide ble opdatert.
   guidelines: Rettningslinjer
@@ -1713,7 +1713,7 @@ nb:
     plain: enkel
     taxonomic: taksonomisk
     photo: bilde
-  list_was_successfully_created: Liste ble oprettet.
+  list_was_successfully_created: Liste ble opprettet.
   listed_taxa: Taksa som er oppført på listen
   listed_taxon: Takson som er oppført på listen
   listed_taxon_updated: Takson som er oppført på listen oppdatert
@@ -1842,7 +1842,7 @@ nb:
   maps:
     overlays:
       all_observations: Alle observasjoner
-      every_publicly_visible_observation: Alle offentlig synlige observasjoner oprettet i iNaturalist-nettverket
+      every_publicly_visible_observation: Alle offentlig synlige observasjoner opprettet i iNaturalist-nettverket
       featured_observations: Utvalgte observasjoner
       gbif_network: GBIF-nettverk
       gbif_network_description: Registreringer fra museer og andere leverandører av forekomster, distribuert av Global Biodiversity Informatics Facility
@@ -2040,10 +2040,15 @@ nb:
   no_license_all_rights_reserved: Ingen lisens (alle rettigheter forbeholdt)
   no_managers_set: Ingen managere valgt
   no_matching_article_from_x: "Ingen matchende artikkel fra %{x}"
+  no_matching_projects: Ingen matchende prosjekter
   no_more_mail_from_site: "Vil du ikke få noe e-post fra %{site_name}? Rediger dine e-postinnstillinger på"
   no_one_has_added_any: Ingen har lagt til noen notater for dette stedet
   no_one_posted_anything_yet: Ingen har lagt inn noe ennå!
   no_post_yet: Ingen innlegg ennå!
+  no_project_selected: Ingen prosjekt valgt
+  no_project_to_admin_current_user: "Du administrerer ingen prosjekter"
+  no_project_to_admin_login: "%{login} administrerer ingen prosjekter"
+  no_projects_yet: Ingen prosjekter ennå
   no_range_data_available: Ingen utbredelsesdata tilgjengelig.
   no_sections_have_been_added_to_this_assessments_yet: Ingen seksjoner har blitt lagt til denne vurderingen ennå.
   no_species_have_been_listed: Ingen arter har blitt oppført på listen til dette stedet ennå!
@@ -2137,6 +2142,7 @@ nb:
   project_assets: Projektressurser
   project_journal_posts: 'Prosjektjournal-innlegg'
   project_post: Projektinnlegg
+  project_was_successfully_created: Prosjektet ble opprettet.
   public_coordinates_obscured_by: "Offentlige koordinater tilslørt med %{distance} km"
   query: Spørring
   range: Intervall
