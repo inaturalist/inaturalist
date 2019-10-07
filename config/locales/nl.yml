@@ -2395,7 +2395,7 @@ nl:
   open_: Open
   open_description: "De coördinaten zijn voor iedereen zichtbaar, tenzij het gaat om een bedreigd taxon."
   open_street_map: OpenStreetMap
-  opt_in_for_this_observation: "Opt in voor deze waarneming"
+  opt_in_for_this_observation: "Kies voor deze waarneming"
   opt_out_of_community_ids_for_obs: "Afmelden voor de gemeenschapsdeterminatie van deze waarneming"
   optional: optioneel
   optional_columns_note_for_any: "Optionele kolommen (opmerking: als een van deze kolommen bij een waarneming moeten worden gebruikt, dan moeten ze allemaal aanwezig zijn)"
@@ -3087,7 +3087,7 @@ nl:
     variety: Variëteit
     form: Vorm
     infrahybrid: Infrahybride
-    leaves: Sluiten
+    leaves: Bladeren
   ranges: Bereik
   rare: Zeldzaam
   ray_finned_fishes: Straalvinnigen
@@ -3105,13 +3105,13 @@ nl:
   recaptcha_verification_failed: reCaptcha-verificatie mislukt
   receive_email_notifications_when_people_leave_you: Ontvang e-mailmeldingen over
   receive_updates_from_this_project: Updates ontvangen voor dit project
-  received: Ontvangen
+  received: ontvangen
   recent: Recent
   recent_additions: Recente toevoegingen
   recent_comments_on_your_stuff: Recente opmerkingen over je gegevens
   recent_evidence?: Recent bewijs
   recent_evidence_of_organism: Recent bewijs van een organisme
-  recent_new_users: Recente Nieuwe Gebruikers
+  recent_new_users: Recente nieuwe gebruikers
   recent_observations: Recente waarnemingen
   recent_observations_: Recente waarnemingen
   recent_post: Recent bericht
@@ -3119,8 +3119,8 @@ nl:
   recent_observations_by: "Recente waarnemingen door %{login}"
   recent_updates: Recente updates
   recently_active: Onlangs actief
-  recently_active_projects_from_everywhere: "Onlangs actieve projecten van overal"
-  recently_active_projects_from_place: "Onlangs actieve projecten van %{place}"
+  recently_active_projects_from_everywhere: "Onlangs actieve projecten van alle plaatsen"
+  recently_active_projects_from_place: "Onlangs actieve projecten uit %{place}"
   recently_created: Onlangs Aangemaakt
   recently_created_projects_from_everywhere: "Onlangs aangemaakte projecten van overal"
   recently_created_projects_from_place: "Onlangs aangemaakte projecten van %{place}"
@@ -3142,7 +3142,7 @@ nl:
   related_species: Verwante soorten
   relative_observations: Verwante waarnemingen
   relationship: "Relatie"
-  relationship_unknown_count: Onbekende relatietelling
+  relationship_unknown_count: Aantal relatie onbekend
   relationship_x: "Relatie: %{relationship}"
   relationships:
     match: komt overeen met
@@ -3203,10 +3203,10 @@ nl:
   replace_parentesis: (vervangen)
   replacing: vervangen
   reply: Antwoorden
-  report_any_problems: Probleem melden
+  report_any_problems: meld problemen
   reptiles: reptielen
-  request_failed: "Verzoek geweigerd"
-  request_id_help: Determinatieverzoek help
+  request_failed: "Verzoek mislukt"
+  request_id_help: Vraag ID hulp
   request_password: Wachtwoord aanvragen
   request_timed_out: Verzoek timed out!
   required: vereist
@@ -3304,10 +3304,10 @@ nl:
   search_creative_commons_photos_on_flickr: "Zoek Creative Commons-foto's op Flickr. Als je er een kiest, wees dan aardig en laat een bedankje achter!"
   search_descendant_taxa_raquo: "Zoek afstammelingen van taxa &raquo;"
   search_external_name_providers: Zoek externe naamaanbieders
-  search_for_a_location: Zoek naar een Locatie
-  search_for_new_taxa: Zoek naar Nieuwe Taxa
+  search_for_a_location: Een locatie zoeken
+  search_for_new_taxa: nieuwe taxa zoeken
   search_for_place_to_import_from_yahoo: Een plaats zoeken om te importeren vanuit Yahoo.
-  search_for_species: Zoek Soorten
+  search_for_species: Soorten zoeken
   search_list: zoeklijst
   search_obs: "Zoek waarnemingen"
   search_observations: "Doorzoek waarnemingen"
@@ -3319,12 +3319,12 @@ nl:
   search_results_for_query: 'Zoek resultaten voor "%{query}"'
   search_remote: Zoek op afstand
   search_species: Zoek Soorten
-  search_species_: Zoek Soorten
-  search_taxa: "Zoek taxa"
+  search_species_: Zoek soort...
+  search_taxa: "Zoek taxa..."
   search_the_map: Zoek op kaart
-  search_this_taxon: Zoek dit taxon
-  search_ubio: Zoek op '<a href="http://www.ubio.org">uBio</a>'
-  search_ubio_raquo: "Zoek uBio &raquo;"
+  search_this_taxon: zoek dit taxon
+  search_ubio: Zoek in '<a href="http://www.ubio.org">uBio</a>'
+  search_ubio_raquo: "Zoek in uBio &raquo;"
   search_your_photos: In je foto's zoeken
   searching: "Bezig met zoeken ..."
   seasonality: Seizoensinvloeden
@@ -4958,7 +4958,7 @@ nl:
           <p>Het gemeenschaps-ID wordt echter nog steeds weergegeven, dus iedereen kan de verschillende ID's zien die zijn voorgesteld.
           </p>
         you_have_opted_out: Je hebt je afgemeld voor gemeenschapsdeterminaties
-        opt_in_for_this_observation: Opt in voor deze waarneming
+        opt_in_for_this_observation: Kies voor deze waarneming
         your_id_does_not_match: |
           Je determinatie (<span class = "bold">%{taxon_name}</span>) komt niet overeen met het gemeenschaps-ID
       copy_tip: "Voeg een nieuwe waarneming toe door de datum, plaats, foto's en waarnemingsvelden van deze waarneming te kopiëren."
