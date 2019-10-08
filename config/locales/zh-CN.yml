@@ -606,6 +606,7 @@ zh-CN:
     以逗号分隔的追踪代码列表。如果您希望向人们发送新的观察表时附加追踪代码，请添加它，例如%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可以使用它追踪来自不同来源的参与者。当下载您项目的观察为CSV文件时，您可以访问这些代码。
   comma_separated_please: 请以逗号分隔
   comment: 评论
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: 评论
   comment_deleted: 评论已删除
   comments: 评论
@@ -1660,7 +1661,6 @@ zh-CN:
   needs_id_: 需要ID
   needs_id_expandable_html: "<span class='full'>需要</span>ID"
   needs_to_be_identified: 需要被鉴定
-  new: 新
   new_and_noteworthy: 新闻与显著内容
   new_announcement: 新公告
   new_assessment: 新评估
@@ -1809,7 +1809,6 @@ zh-CN:
   obs: 观察
   obs_cid_d: 观察CID'd
   obs_id_d: 观察ID'd
-  obscured_: 已遮盖
   obscured: 已遮盖
   obscured_or_private: 已掩盖或私有
   obscured_description: |
@@ -1819,7 +1818,6 @@ zh-CN:
   observation_added: 观察已添加。
   observation_added_to_the_project: "添加观察到项目“%{project}”"
   observation_aggregation: 观察聚合
-  observation_photo_uploader: 观察照片上传器
   observations_by_category: "按分类排序观察"
   observations_by_app: 通过应用观察
   observations_by_rank: 按等级排序观察
@@ -1827,7 +1825,6 @@ zh-CN:
   observations_by_you: "您的观察"
   observations_by_you_on_date: "由您于 %{date} 的观察"
   observation_calendar_for: "由 %{user} 于 %{year} 的观察日历"
-  observation_contest: 观察比赛
   observation_curation: 观察策展
   observation_date: 日期
   observation_date?: 日期？
@@ -1837,27 +1834,19 @@ zh-CN:
   observation_fields_are_additional: 观察字段是可被添加到观察中的附加数据字段。
   observation_fields_by_preferences_description: |
     观察字段有点像标签，不过任何人都可以默认地将它们添加到您的观察中。如果您希望只有您可以做到这一点，或者只有网站策展人，请改变此设置。
-  observation_flagged: 观察已标记
-  observation_flagged_as_flag: 观察被标记为 %{flag}
   observation_removed_from_the_project: "从项目“%{project}”中移除的观察"
   observation_requirements: 观察要求
-  observation_rights_html: "观察 %{rights}"
   observation_rules: 观察规则
   observation_rules_description: |
     您可以选择规则来决定可以添加到该项目中的观察，例如将观察限制在某个地区或分类群中。如果您对某个规则类别设置了多条规则，则如果任一条规则通过，则观察将有效。例如，如果你有“必须在两栖动物中”和“必须在爬行动物中”的规则，那么该项目将会接受对爬行动物或两栖动物的观察。
   observation_was_deleted: 观察已删除。
   observation_without_media: 没有媒体的观察
-  observation_would_like_some_help: "%{user}需要一些人帮助识别这个！"
   observations: 观察
   observations_: 观察
   observations_added_by_x_html: "由%{x}添加的观察"
   observations_annotated_with_annotation: "使用%{annotation}为观察结果注释"
   observations_by: 观察由
-  observations_by_everyone: 由任何人做出的观察
   observations_by_user: "由 %{user} 做出的观察"
-  observations_circle_have_their_radii_scaled: |
-    观察圈的半径与其定位精度成正比。没有定位精度数据的观察以最小尺寸显示。
-  observations_confirmed: 观察（已确认）
   observations_deleted: 观察已删除。
   observations_fields_are: |
     观察区域是与观察相关的额外数据，例如观察到的个体数量，栖息地描述或任何您想记录的东西！ 项目还可指定他们希望您来填写的字段。
@@ -1867,22 +1856,15 @@ zh-CN:
   observations_from_people_taxa_and_places_youre_following: "来自您所关注的人，地点和分类群的观察"
   observations_from_this_place: 来自此地区的观察
   observations_from_this_project: 来自此项目的观察
-  observations_from_you: 您的观察
-  observations_have_had_their_coordinates: "他们的观察中的坐标已转移至相距 %{km} 千米外的随机点上，既因为分类单元受到威胁，又因为观察者选择模糊坐标。"
   observations_in_this_project_must: 此项目中的观察必须符合以下标准
-  observations_it_may_take_a_few: 观察。这将需要几分钟。
-  observations_last500: 观察（最近500）
-  observations_last_aggregated: 最近聚合的观察
   observations_map: 观察 / 地图
   observation_must_dotdotdot: 观察必须...
   observations_near_a_place_are: |
     “靠近”某个地方的观察结果位于该地点边界周围的矩形内，这可能会导致形状不接近矩形的地点会出现一些不准确的结果。这是由于数据库的限制所致的，我们正在努力解决。
   observations_needing_curation: 需要策展的观察
-  observations_obscured: 观察（已隐藏）
   observations_observed_this_month: 本月<em>观察到</em>的观察结果，本月没有添加新的观察。到户外去吧！
   observations_of_relatives: 亲属的观察
   observations_of_taxon: "%{taxon_name} 的观察"
-  observations_on_inat_check_list: "位于%{site_name}的观察。检查清单中已确认的地点在其边界内至少有1个确认的观察地点。"
   observations_per_month: 观察 / 月
   observations_removed_from_the_project: "从项目“%{project}”中移除的观察"
   observations_saved: 观察报告已保存！
@@ -1890,26 +1872,20 @@ zh-CN:
   observations_text_search_warning: |
     当与其他过滤器结合使用时，文本搜索可能产生怪异结果。如果您希望查找特定物种的观察，请使用分类过滤器。
   observations_this_year_vs_last_year: 今年的观察 vs 去年的观察
-  observations_title: 所有人的观察
   observations_total: 观察总计
   observations_w: 观察 w/
   observations_w_field: 观察报告 w/ 字段
   observations_was_successfully_updated: 已成功更新的观察
-  observations_week: 观察 / 周
   observations_widget: 观察小窗口
-  observations_will_revert_to_casual: 观察将会回到“临时”等级，如果上述条件未得到满足或
   observations_with_this_field: 有此字段的观察
   observations_with_this_field_and_value: 有此字段和此值的观察
   observationcounts_refreshed: 观察计数已刷新
   observed: 已观察
   observed_by: 观察自
-  observed_in_place?: 观察到的地方
   observed_on: 观察于
-  observed_one: 观察一个
   observer: 观察者
   observers: 观察者
   observer_short: 观察者
-  observing: 正在观察
   occurence_status_describes_how: '发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。'
   occurrence_status: 发生状态
   occurrence_status_establishment_means: 发生状况，建立手段
@@ -1921,8 +1897,6 @@ zh-CN:
     doubtful: 可疑
     absent: 缺席
   of: 的
-  of_it_and_its_descendants: 和它及其后代
-  of_least_concern: 无需担心的
   of_observations: 观察
   of_species: 种
   of_observers: 观察者
@@ -1937,9 +1911,6 @@ zh-CN:
   on_: "在"
   on_date: "于 %{date}"
   on_day: "于"
-  on_edit_date: "在 %{editdate}"
-  on_list?: 在列表中
-  on_submit_date: "在 %{submitdate}"
   on_your_life_list: 在您的生物清单上
   onboarding:
     observe_panel_title: 让我们开始发表一些观察吧
@@ -1970,9 +1941,7 @@ zh-CN:
   one_of_your_lists: "您的列表中的一个..."
   only_a_project_manager_can_add: 只有项目经理可以添加项目馆长状态
   only_administrators_may_access_that_page: 只有管理员可以访问该页面
-  only_accepts_taxa: 只接受分类群
   only_an_admin_can_remove_project_users: 只有管理员才能删除项目用户
-  only_country_state_and_county: "现在只会显示国家、州省和区县一级的地方。放大来查看更小的地方。"
   only_curators_can_add_edit_scientific_names: 只有馆长可以添加/编辑科学名称。
   only_curators_can_access_that_page: 只有馆长可以访问该页面。
   only_files_with_10000_rows_at_a_time: 一次只能处理10000行的文件，请
@@ -1986,29 +1955,20 @@ zh-CN:
   only_show_for_species_subspecies_varieties_etc: 只显示种、亚种、变种等。
   only_show_taxa_fom_this_list: "只显示此清单中的分类群"
   only_showing_taxa_from: 只显示此清单中的分类群
-  only_site_curators_can_turn_on_observation_aggregation: 只有站点馆长可以开启项目聚合
   only_species: 只有物种
   only_species_and_subspecies: 只有种和亚种/变种
-  only_the_author_of_this_post_can_do_that: 只有这篇文章的作者可以做这个。不要做坏事。
   only_the_owner_of_this_list_can_do_that: 只有列表主人可以这样做。不要作恶。
   only_the_project_admin_can_delete_this_project: 只有项目管理员才能删除此项目。
   only_you: 只有您
   open: 打开
   open_: 打开
   open_description: "任何人可以查看观察，除非分类受到威胁。"
-  opt_in_for_this_observation: "加入这个观察"
-  opt_out_of_community_ids_for_obs: "去掉这个观察的社区标识"
   optional: 可选
   optional_columns_note_for_any: "可选列（注意：若要观察中使用这些列的任意一个，它们必须都存在）"
   or: 或
   or_choose_high_level_taxa: "...或者从一些高级别的分类群里选择"
   or_if_you_dont_want_email: "或如果您不希望接受任何电子邮件的话..."
-  or_invite_your_friends: 或者邀请您的好友
-  or_invited: 或邀请。
-  or_post_message_to_google_group: "或者向我们的Google群组发送消息："
   or_upload: 或上传
-  or_you_can: "或者您可以..."
-  or_you_can_: 或者您可以
   orange: 橙色
   order: 排序
   order_by: 排序方式：
@@ -2019,19 +1979,15 @@ zh-CN:
   originally_imported_from_url_html: "最初导入来自于<a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "本图片的原始页面URL。"
   original_rights_holder: 原始版权持有者
-  original_url: 原始URL
   original_url_for_this_map: 本地图的原始URL
   organism_appears_captive_cultivated: 生物似乎是被驯养/栽培
   other: 其他
   other_animals: 其他动物
-  other_animals_plural:
-    other: 其他动物
   other_lexicons: 其他辞典
   other_listings_of_this_taxon_for_this_place: 此地点关于该分类群的其他清单
   other_names: 别名
   other_species_commonly_misidentified_as_this_species: 会被误认为这个物种的其他物种
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    其他物种通常会被误认为这个物种在<a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: 其他物种通常会被误认为这个物种在<a href="%{url}">%{place}</a>
   our_blog: 我们的博客
   out_of_range: 超出范围
   output_taxon: 输出分类单元
@@ -2952,7 +2908,6 @@ zh-CN:
   supporting: 支持
   suspicious_photos: 可疑照片
   siutable_observations: 合适的观察
-  sun: 日
   suspend_user: 停用用户
   sw_lat: 西南纬度
   sw_lon: 西南经度
@@ -3220,7 +3175,6 @@ zh-CN:
     这些就是添加观察的基本方法了！您还可以做很多其他的事情，例如搜索和筛选您的观察结果或对它们进行批量编辑，这些您一看就能学会。
   those_observations_no_longer_exist: 这些观察已不存在。
   threatened: 受到威胁
-  thu: 四
   thumb_url: 缩略图URL
   time_: 时间
   time_ago: "%{time}前"
@@ -3265,7 +3219,6 @@ zh-CN:
   try_adding_species_form: 尝试使用此页面上的表单添加一些物种。
   try_it_out: 试试看
   try_wikipedia: 尝试维基百科？
-  tue: 二
   twitter: 推特
   two_thirds: 第2/3个
   type: 类型
@@ -3536,7 +3489,6 @@ zh-CN:
     请修复下列问题，然后重试。
   weather: 天气
   website: 网站
-  wed: 三
   week_of_date: "%{date}的一周"
   welcome!: 欢迎！
   welcome_comma!: 欢迎，
