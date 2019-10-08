@@ -519,6 +519,7 @@ sk:
   combine: Spojiť
   comma_separated_please: Oddeľte čiarkami, prosím
   comment: komentár
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentár
   comment_deleted: komentár zmazaný
   comments: Komentáre
@@ -1587,7 +1588,6 @@ sk:
   needs_id_: Nutné ID
   needs_id_expandable_html: "<span class='full'>Potrebuje </span>ID"
   needs_to_be_identified: Musí byť identifikovaný
-  new: Nový
   new_and_noteworthy: Nové a pozoruhodné
   new_announcement: Nové oznámenie
   new_assessment: Nové hodnotenie
@@ -1740,7 +1740,6 @@ sk:
   number_selected: "# vybrané"
   obs: Poz
   obs_id_d: ID pozorovaní
-  obscured_: skrytý
   obscured: Skrytý
   obscured_or_private: skrytý alebo súkromný
   observation: Pozorovanie
@@ -1748,7 +1747,6 @@ sk:
   observation_added: Pozorovanie pridané.
   observation_added_to_the_project: "Pozorovanie pridané k projektu \"%{project}\""
   observation_aggregation: Zoskupenie pozorovania
-  observation_photo_uploader: Fotka z pozorovania vložená užívateľom
   observations_by_category: "Pozorovania podľa kategórie"
   observations_by_app: Pozorovanie podľa aplikácie
   observations_by_rank: Pozorovanie podľa poradia
@@ -1756,7 +1754,6 @@ sk:
   observations_by_you: "Vaše pozorovania"
   observations_by_you_on_date: "Vaše pozorovania z dňa %{date}"
   observation_calendar_for: "Kalendár pozorovaní užívateľa %{user} v roku %{year}"
-  observation_contest: súťaž pozorovaní
   observation_curation: Správa pozorovaní
   observation_date: Dátum
   observation_date?: Dátum?
@@ -1766,23 +1763,17 @@ sk:
   observation_fields_are_additional: Polia pozorovaní sú dodatočné polia údajov, ktoré možno pridať k pozorovaniam.
   observation_fields_by_preferences_description: |
     Polia pozorovania sú trochu podobné tagom s tým rozdielom, že ich štandardne môže k vášmu pozorovaniu pridať ktokoľvek. Ak chcete, aby ste túto možnosť mali len vy alebo kurátori stránky, vykonajte zmenu nastavenia.
-  observation_flagged: Pozorovanie označené
-  observation_flagged_as_flag: Pozorovanie označené ako %{flag}
   observation_removed_from_the_project: "Pozorovanie odstránené z projektu \"%{project}\""
   observation_requirements: Požiadavky pozorovania
-  observation_rights_html: "Pozorovanie %{rights}"
   observation_rules: Pravidlá pozorovania
   observation_was_deleted: Pozorovanie bolo odstránené.
   observation_without_media: Pozorovanie bez média
-  observation_would_like_some_help: "Užívateľ %{user} by chcel pomôcť s touto identifikáciou!"
   observations: Pozorovania
   observations_: pozorovania
   observations_added_by_x_html: "Pozorovanie pridané užívateľom %{x}"
   observations_annotated_with_annotation: "Pozorovania komentované s %{annotation}"
   observations_by: Pozorovania od
-  observations_by_everyone: Pozorovania všetkých užívateľov
   observations_by_user: "Pozorovania od %{user}"
-  observations_confirmed: Pozorovania (potvrdené)
   observations_deleted: Pozorovania odstránené.
   observations_for: Pozorovania pre
   observations_for_project: "Pozorovania pre %{project}"
@@ -1790,15 +1781,10 @@ sk:
   observations_from_people_taxa_and_places_youre_following: "Pozorovania týkajúce sa ľudí, miest a taxónov, ktoré sledujete"
   observations_from_this_place: Pozorovania z tohto miesta
   observations_from_this_project: Pozorovania z tohto projektu
-  observations_from_you: Vaše pozorovania
   observations_in_this_project_must: Pozorovania v tomto projekte musia spĺňať následujúce kritéria
-  observations_it_may_take_a_few: pozorovania. Môže to pár minút trvať.
-  observations_last500: Pozorovania (posledných 500)
-  observations_last_aggregated: Naposledy zoskupené pozorovania
   observations_map: Pozorovania / Mapa
   observation_must_dotdotdot: Pozorovanie musí...
   observations_needing_curation: Pozorovania vyžadujúce správu
-  observations_obscured: Pozorovania (skryté)
   observations_observed_this_month: Pozorovania <em>uskutočnené</em> tento mesiac, nepridané tento mesiac. Choďte von!
   observations_of_relatives: Pozorovania príbuzných
   observations_of_taxon: "Pozorovania %{taxon_name}"
@@ -1808,12 +1794,10 @@ sk:
   observations_specifying_this_field: Pozorovania špecifikujúce toto pole
   observations_specifying_this_field_with_value: Pozorovania špecifikujú toto pole s "%{value}"
   observations_this_year_vs_last_year: Porovnanie minuloročných pozorovaní s tohtoročnými
-  observations_title: Pozorovania všetkých užívateľov
   observations_total: Pozorovania celkom
   observations_w: Pozorovania s
   observations_w_field: Pozorovania s poľom
   observations_was_successfully_updated: Pozorovanie/ia bolo/i úspešne aktualizované.
-  observations_week: Pozorovania / Týždeň
   observations_widget: Widget pozorovaní
   observations_with_this_field: Pozorovania s týmto poľom
   observations_with_this_field_and_value: Pozorovania s týmto poľom a hodnotou
@@ -1821,13 +1805,10 @@ sk:
   observationcounts_refreshed: Počet pozorovaní obnovený
   observed: Pozorované
   observed_by: Pozorované užívateľom
-  observed_in_place?: pozorované na mieste
   observed_on: Pozorované dňa
-  observed_one: pozorované raz
   observer: Pozorovateľ
   observers: Pozorovatelia
   observer_short: Pozorovateľ
-  observing: pozorujúci
   occurrence_status: Status výskytu
   occurrence_status_descriptions:
     absent: V tejto oblasti sa nevyskytuje
@@ -1845,8 +1826,6 @@ sk:
     doubtful: nepravdepodobný
     absent: neprítomný
   of: z
-  of_it_and_its_descendants: z tohto a následných
-  of_least_concern: Z najmenej ohrozených
   of_observations: pozorovania
   of_species: druh
   of_observers: pozorovatelia
@@ -1860,9 +1839,6 @@ sk:
   on_: "na"
   on_date: "dňa %{date}"
   on_day: "dňa"
-  on_edit_date: "dňa %{editdate}"
-  on_list?: v zozname
-  on_submit_date: "dňa %{submitdate}"
   on_your_life_list: na vašom zoznamu života
   onboarding:
     observe_panel_title: Začneme odoslaním nejakých pozorovaní
@@ -1878,9 +1854,7 @@ sk:
   one_of_your_lists: "jeden z vašich zoznamov..."
   only_a_project_manager_can_add: Status kurátora projektu môže pridať iba manažér projektu
   only_administrators_may_access_that_page: K tejto stránke majú pristup iba administrátori
-  only_accepts_taxa: prijíma iba taxóny
   only_an_admin_can_remove_project_users: Užívateľa projektu môže odobrať iba admin
-  only_country_state_and_county: "Teraz sa zobrazujú iba krajiny, štáty a odpovedajúce miesta. Pre zobrazenie menších oblastí použite priblíženie."
   only_curators_can_add_edit_scientific_names: Vedecké názvy môžu pridávať/editovať iba kurátori.
   only_curators_can_access_that_page: K tejto stránke majú prístup iba kurátori.
   only_files_with_10000_rows_at_a_time: Vkládejte prosím iba súbory s maximálne 10000 riadkami
@@ -1894,7 +1868,6 @@ sk:
   only_show_for_species_subspecies_varieties_etc: Zobraziť iba pre druhy, poddruhy, odrody atď.
   only_show_taxa_fom_this_list: "Zobraziť iba taxóny z tohto zoznamu"
   only_showing_taxa_from: zobrazené iba taxóny z tohto zoznamu
-  only_site_curators_can_turn_on_observation_aggregation: Zoskupenie projektov môžu povoliť iba kurátori stránky
   only_species: iba druhy
   only_species_and_subspecies: iba druhy a poddruhy/odrody
   only_staff_can_edit_large_places: Iba personál stránky môže upravovať veľmi veľké miesta
@@ -1905,13 +1878,8 @@ sk:
   optional: voliteľný
   or: alebo
   or_all_caps: ALEBO
-  or_invite_your_friends: Alebo pozvite svojich priateľov
-  or_invited: alebo pozvaný.
   or_log_in_with_colon: "Alebo sa prihláste cez:"
-  or_post_message_to_google_group: "Alebo pošlite správu našej skupine Google Group:"
   or_upload: Alebo nahrať
-  or_you_can: "Alebo môžete..."
-  or_you_can_: alebo môžete
   orange: oranžový
   order: Zoradiť
   order_by: Zoradiť podľa
@@ -1922,7 +1890,6 @@ sk:
   originally_imported_from_url_html: "Pôvodne importované z <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Pôvodné URL stránky pre túto fotku."
   original_rights_holder: Pôvodný vlastník práv
-  original_url: Originálne URL
   original_url_for_this_map: Originálne URL pre túto mapu
   organism_appears_captive_cultivated: Organizmus sa javí v zajatí / kultivácii
   other: Ostatné
@@ -1931,11 +1898,9 @@ sk:
   other_listings_of_this_taxon_for_this_place: Ďalšie záznamy o tomto taxóne z tohto miesta
   other_names: Ďalšie mená
   other_species_commonly_misidentified_as_this_species: Ďalšie druhy často chybne identifikované ako tento druh
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    Ďalšie druhy často chybne identifikované ako tento druh v <a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: Ďalšie druhy často chybne identifikované ako tento druh v <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Ďalšie taxóny bežne chybne označené ako tento %{rank}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
-    Ostatné taxóny bežne chybne označené ako %{rank}v<a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Ostatné taxóny bežne chybne označené ako %{rank}v<a href="%{url}">%{place}</a>
   our_blog: Náš blog
   out_of_range: Mimo rozsah
   output_taxon: Výstupný taxón
@@ -2939,7 +2904,6 @@ sk:
   support_inaturalist: Podpora iNaturalist
   suspicious_photos: Podozrelé fotky
   siutable_observations: vhodné pozorovania
-  sun: Ned
   suspend_user: Vylúčiť užívateľa
   sw_lat: z. d. JZ
   sw_lon: z. d. JZ
@@ -3087,7 +3051,6 @@ sk:
   this_taxon_is_inactive_this_means: |
     Tento taxón je <strong>neaktívny</strong>. To znamená, že ho kurátori %{site_name} nahradili konceptom, ktorý je taxonomicky aktuálnejší.
   threatened: Ohrozený
-  thu: Štv
   thumb_url: Adresa URL
   time_: čas
   time_ago: "pred %{time}"
@@ -3131,7 +3094,6 @@ sk:
   trusted: Dôveryhodné
   trusted_project?: Dôveryhodný projekt?
   try_wikipedia: Skúsiť Wikipédiu?
-  tue: Uto
   two_thirds: 2/3
   type: Napíšte
   type_a_name_and_click: Napíšte názov a kliknite na HĽADAŤ
