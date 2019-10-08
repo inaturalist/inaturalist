@@ -611,6 +611,7 @@ el:
   combine: Συνδυασμός
   comma_separated_please: Χωρισμένο με κόμμα, παρακαλώ
   comment: σχόλιο
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Σχόλιο
   comment_deleted: το σχόλιο διεγράφη
   comments: Σχόλια
@@ -1466,7 +1467,6 @@ el:
   needs_id_: Χρειάζεται ID
   needs_id_expandable_html: "<span class='full'>Χρειάζεται </span>ID"
   needs_to_be_identified: Πρέπει να αναγνωριστεί
-  new: Νέος
   new_announcement: Νέα ανακοίνωση
   new_assessment: Νέα αποτίμηση
   new_check_list: Νέα λίστα ελέγχου
@@ -1596,7 +1596,6 @@ el:
   observations_by_you: "Παρατηρήσεις από εσάς"
   observations_by_you_on_date: "Παρατηρήσεις από εσάς στις %{date}"
   observation_calendar_for: "Ημερολόγιο παρατηρήσεων για τον %{user} το %{year}"
-  observation_contest: διαγωνισμός παρατηρήσεων
   observation_curation: Επιμέλεια Παρατήρησης
   observation_date: Ημερομηνία
   observation_date?: Ημερομηνία;
@@ -1604,11 +1603,8 @@ el:
   observation_field_details: Λεπτομέρειες πεδίου παρατήρησης
   observation_fields: Πεδία παρατήρησης
   observation_fields_are_additional: Τα πεδία παρατήρησης είναι πρόσθετα πεδία δεδομένων που μπορούν να προστεθούν σε παρατηρήσεις.
-  observation_flagged: Η παρατήρηση έχει επισημανθεί
-  observation_flagged_as_flag: Η παρατήρηση έχει επισημανθεί ως %{flag}
   observation_removed_from_the_project: "Η Παρατήρηση αφαιρέθηκε από το πρότζεκτ \"%{project}\""
   observation_requirements: Απαιτήσεις παρατήρησης
-  observation_rights_html: "%{rights} Παρατηρήσεων"
   observation_rules: Κανόνες παρατηρήσεων
   observation_was_deleted: Η παρατήρηση διαγράφηκε.
   observation_without_media: Παρατήρηση χωρίς Ο/Α μέσα
@@ -1617,9 +1613,7 @@ el:
   observations_added_by_x_html: "Παρατηρήσεις που προστέθηκαν από τον %{x}"
   observations_annotated_with_annotation: "Παρατηρήσεις με ενδείξεις για %{annotation}"
   observations_by: Παρατηρήσεις από
-  observations_by_everyone: Παρατηρήσεις από τον καθένα
   observations_by_user: "Παρατηρήσεις από τον %{user}"
-  observations_confirmed: Παρατηρήσεις (επιβεβαιωμένος)
   observations_deleted: Οι παρατηρήσεις διαγράφηκαν.
   observations_for: Παρατηρήσεις για
   observations_for_project: "Παρατηρήσεις για το %{project}"
@@ -1627,10 +1621,7 @@ el:
   observations_from_people_taxa_and_places_youre_following: "Παρατηρήσεις από άτομα, τόπους και taxa που ακολουθείτε"
   observations_from_this_place: Παρατηρήσεις από αυτόν τον τόπο
   observations_from_this_project: Παρατηρήσεις από αυτό το πρότζεκτ
-  observations_from_you: Παρατηρήσεις από εσάς
   observations_in_this_project_must: Οι παρατηρήσεις σε αυτό το πρότζεκτ πρέπει να είναι σύμφωνες με τα παρακάτω κριτήρια
-  observations_it_may_take_a_few: Παρατηρήσεις. Μπορεί να πάρει λίγα λεπτά.
-  observations_last500: Παρατηρήσεις (τελευταίες 500)
   observations_map: Παρατηρήσεις / Χάρτης
   observation_must_dotdotdot: Οι παρατηρήσεις πρέπει...
   observations_needing_curation: Παρατηρήσεις που χρειάζονται επιμέλεια
@@ -1639,24 +1630,19 @@ el:
   observations_removed_from_the_project: "Οι παρατηρήσεις αφαιρέθηκαν από το πρότζεκτ %{project}"
   observations_saved: Η/Οι Παρατήρηση/-εις αποθηκεύτηκε/-αν!
   observations_this_year_vs_last_year: Παρατηρήσεις Φέτος έναντι Πέρυσι
-  observations_title: Παρατηρήσεις οποιουδήποτε
   observations_total: Σύνολο παρατηρήσεων
   observations_w: Παρατηρήσεις με
   observations_w_field: Παρατηρήσεις με πεδίο
   observations_was_successfully_updated: Η/Οι Παρατήρηση/-εις ενημερώθηκε/-αν επιτυχώς.
-  observations_week: Παρατηρήσεις ανά εβδομάδα
   observations_with_this_field: Παρατηρήσεις με αυτό το πεδίο
   observations_with_this_field_and_value: Παρατηρήσεις με αυτό το πεδίο και τιμή
   observations_without_media: Παρατηρήσει χωρίς ΟΑ μέσα
   observed: Παρατηρήθηκε
   observed_by: Παρατηρήθηκε από
-  observed_in_place?: Παρατηρήθηκε στον τόπο
   observed_on: Παρατηρήθηκε στις
-  observed_one: Παρατηρήθηκε από ένα
   observer: Παρατηρητής
   observers: Παρατηρητές
   observer_short: Παρατηρητής
-  observing: Παρατηρεί
   occurrence_status_descriptions:
     absent: Δεν συναντάται στην περιοχή
     common: Συναντάται συχνά
@@ -1668,8 +1654,6 @@ el:
     irregular: ανώμαλο
     absent: απών
   of: του
-  of_it_and_its_descendants: αυτού και των προγόνων του
-  of_least_concern: Τελευταίας ανησυχίας
   of_observations: Παρατηρήσεις
   of_species: είδη
   of_observers: Παρατηρητές
@@ -1683,9 +1667,6 @@ el:
   on_: "εντός"
   on_date: "στις %{date}"
   on_day: "εντός"
-  on_edit_date: "εντός της %{editdate}"
-  on_list?: στη λίστα
-  on_submit_date: "στις %{submitdate}"
   onboarding:
     observe_panel_title: Ας ξεκινήσουμε αναρτώντας κάποιες παρατηρήσεις
     following_panel_title: Παρακολουθήστε Άτομα, Taxa, και Τόπους
@@ -1714,11 +1695,8 @@ el:
   open_description: "Ο καθένας μπορεί να δει τις συντεταγμένες εκτός και αν το taxon είναι απειλούμενο."
   optional: προαιρετικό
   or: ή
-  or_invite_your_friends: ή προσκαλέστε τους φίλους σας
   or_log_in_with_colon: "Η συνδεθείτε με:"
   or_upload: Ή μεταφορτώστε
-  or_you_can: "Ή μπορείτε..."
-  or_you_can_: ή μπορείτε
   orange: Πορτοκαλί
   order: Σειρά
   order_by: Ταξινόμηση κατά
@@ -1726,20 +1704,15 @@ el:
   organisms: Οργανισμοί
   original: Πρωτότυπο
   original_rights_holder: Αρχικός κάτοχος δικαιωμάτων
-  original_url: Αρχική διεύθυνση URL
   original_url_for_this_map: Αρχικό URL για αυτόν τον χάρτη
   organism_appears_captive_cultivated: Ο οργανισμός φαίνεται Σε αιχμαλωσία / Καλλιεργούμενος
   other: Άλλα
   other_animals: άλλα ζώα
-  other_animals_plural:
-    one: άλλο ζώο
-    other: άλλα ζώα
   other_lexicons: Άλλα λεξικά
   other_listings_of_this_taxon_for_this_place: Άλλες καταγραφές αυτού του taxon για αυτόν τον τόπο
   other_names: Άλλα ονόματα
   other_species_commonly_misidentified_as_this_species: Άλλα είδη που συνήθως συγχέονται με αυτό το είδος
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    Άλλα είδη που συνήθως αναγνωρίζονται λανθασμένα ως αυτό το είδος σε <a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: Άλλα είδη που συνήθως αναγνωρίζονται λανθασμένα ως αυτό το είδος σε <a href="%{url}">%{place}</a>
   our_blog: Το ιστολόγιό μας
   out_of_range: Εκτός εύρους
   overview: Επισκόπηση
@@ -2591,7 +2564,6 @@ el:
   summary: Περίληψη
   support_inaturalist: Υποστήριξη του iNaturalist
   suspicious_photos: Ύποπτες φωτογραφίες
-  sun: Κυ
   synonyms: Συνώνυμα
   table: Πίνακας
   table_of_contents: Πίνακας περιεχομένων
@@ -2672,7 +2644,6 @@ el:
   this_year: Αυτό το έτος
   those_observations_no_longer_exist: Αυτές οι παρατηρήσεις δεν υπάρχουν πλέον.
   threatened: απειλούμενο
-  thu: Πε
   time_: Ώρα
   time_ago: "πρίν από %{time}"
   tired_of_testing_this_new_version: Είστε κουρασμένος από το να δοκιμάσετε τη νέα έκδοση;
@@ -3371,9 +3342,12 @@ el:
     flash:
       applications:
         create:
+          #Application as in a software application
           notice: 'Εφαρμογή δημιουργήθηκε.'
         destroy:
+          #Application as in a software application
           notice: 'Εφαρμογή διαγράφηκε.'
         update:
+          #Application as in a software application
           notice: 'Εφαρμογή ενημερώθηκε.'
   wild: Άγριο
