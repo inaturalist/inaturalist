@@ -397,6 +397,7 @@ id:
   combine: Menggabungkan
   comma_separated_please: Tolong dipisahkan dengan koma
   comment: Komentar
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentar
   comment_deleted: Hapus komentar
   comments: Komentar
@@ -1208,7 +1209,6 @@ id:
   near_threatened: hampir terancam
   needs_id: butuh ID
   needs_to_be_identified: Butuh untuk diidentifikasi
-  new: Baru
   new_announcement: Pengumuman baru
   new_assessment: Penilaian baru
   new_check_list: Checklist baru
@@ -1336,12 +1336,10 @@ id:
   observation_added: Pengamatan ditambahkan.
   observation_added_to_the_project: "Pengamatan ditambahkan pada proyek \"%{project}\""
   observation_aggregation: Agregasi Pengamatan
-  observation_photo_uploader: Pengunggah Foto Pengamatan
   observations_by_user_on_date: "Pengamatan oleh %{user} pada %{date}"
   observations_by_you: "Pengamatan oleh kamu"
   observations_by_you_on_date: "Pengamatn oleh kamu pada %{date}"
   observation_calendar_for: "Kalender Pengamatan untuk %{user} pada %{year}"
-  observation_contest: Kontes Pengamatan
   observation_curation: Kurasi Pengamatan
   observation_date: Tanggal
   observation_date?: Tanggal?
@@ -1351,20 +1349,14 @@ id:
   observation_fields_by_preferences_description: |
     Bidang pengamatan yang sedikit seperti tanda, kecuali ada yang bisa menambahkannya ke pengamatan Anda secara lalai. Ubah ini jika Anda lebih suka yang hanya dapat Anda lakukan ini, atau hanya situs kurator.
   observation_removed_from_the_project: "Pengamatan dihapus dari proyek \"%{project}\""
-  observation_rights_html: "Pengamatan %{rights}"
   observation_rules: Aturan pengamatan
   observation_rules_description: |
     Anda dapat memilik aturan untuk menjelaskan pengamatan apa yang dapat ditambahkan pada proyek ini, seperti membatasi pengamatan untuk tempat atau taksa tertentu. Jika Anda memiliki lebih dari satu aturan untuk tipe aturan, pengamatan akan menjadi akurat jika salah satu aturan berlalu. Misalnya, jika Anda memiliki aturan "harus dalam Amphibia "dan" harus dalam Reptilia ", maka proyek akan menerima pengamatan reptil atau amfibi.
   observation_was_deleted: Pengamatan telah dihapus.
-  observation_would_like_some_help: "%{user} ingin bantuan untuk mengidentifikasi ini!"
   observations: Pengamatan
   observations_added_by_x_html: "Pengamatan ditambahkan oleh %{x}"
   observations_by: Pengamatan oleh
-  observations_by_everyone: Pengamatan oleh semua orang
   observations_by_user: "Pengamatan oleh %{user}"
-  observations_circle_have_their_radii_scaled: |
-    lingkaran pengamatan memiliki skala jari-jari proporsional untuk akurasi posisi mereka. Pengamatan tanpa posisi akurasi data ditampilkan pada ukuran minimum.
-  observations_confirmed: Pengamatan (dikonfirmasi)
   observations_deleted: Pengamatan telah dihapus.
   observations_fields_are: |
     Bidang pengamatan adalah potongan-potongan tambahan data yang terkait dengan pengamatan, seperti jumlah individu yang diamati, deskripsi habitat, atau apa pun yang Anda inginkan! Proyek juga dapat menentukan bidang yang ingin mereka isi.
@@ -1373,19 +1365,12 @@ id:
   observations_from: Pengamatan dari %{date}
   observations_from_this_place: Pengamatan dari tempat ini
   observations_from_this_project: Pengamatan dari proyek ini
-  observations_from_you: Pengamatan oleh Anda
-  observations_have_had_their_coordinates: "pengamatan telah memiliki pergeseran koordinat ke titik acak dalam %{km} km, baik karena takson terancam atau karena pengamat memilih untuk mengaburkan koordinat."
-  observations_it_may_take_a_few: pengamatan. Membutuhkan waktu beberapa menit.
-  observations_last500: Pengamatan (terakhir 500)
-  observations_last_aggregated: Pengamatan agregat terakhir
   observations_map: Pengamatan / Peta
   observation_must_dotdotdot: Pengamatan harus...
   observations_near_a_place_are: |
     Pengamatan "dekat" tempat berada dalam persegi panjang yang ditarik sekitar batas tempat ini, yang dapat mengakibatkan beberapa hasil yang tidak akurat untuk tempat-tempat yang tidak menyerupai persegi panjang. Hal ini disebabkan keterbatasan dengan database kami bahwa kami sedang bekerja untuk menyelesaikannya.
   observations_needing_curation: Pengamatan Memerlukan Kurasi
-  observations_obscured: Pengamatan (dikaburkan)
   observations_of_taxon: "Pengamatan pada %{taxon_name}"
-  observations_on_inat_check_list: "pengamatan pada %{site_name}. Tempat checklist yang telah dikonfirmasi memiliki setidaknya 1 pengamatan dikonfirmasi dalam batas-batas mereka."
   observations_per_month: Pengamatan / Bulan
   observations_removed_from_the_project: "Pengamatan dihapus dari proyek \"%{project}\""
   observations_saved: Pengamatan disimpan!
@@ -1393,23 +1378,17 @@ id:
   observations_text_search_warning: |
     Pencarian teks dapat menghasilkan hasil yang aneh bila dikombinasikan dengan filter lainnya. Jika
     Anda ingin mencari pengamatan dari spesies tertentu, menggunakan saringan takson.
-  observations_title: Pengamatan oleh Semua Orang
   observations_w: Pengamatan dengan
   observations_w_field: Pengamatan dengan bidang
   observations_was_successfully_updated: Pengamatan telah sukses diperbarui.
-  observations_week: Pengamatan / Minggu
   observations_widget: Widget Pengamatan
-  observations_will_revert_to_casual: Pengamatan akan kembali ke tingkat "sederhana" jika kondisi di atas tidak terpenuhi atau
   observationcounts_refreshed: Jumlah pengamatan diperbarui
   observed: Diamati
   observed_by: Diamati oleh
-  observed_in_place?: Diamati di tempat
   observed_on: Diamati pada
-  observed_one: Diamati sekali
   observer: Pengamat
   observers: Pengamat
   observer_short: Pengamat
-  observing: mengamati
   occurrence_status: Status terjadinya
   occurrence_status_descriptions:
     absent: Tak terjadi di area tersebut
@@ -1422,8 +1401,6 @@ id:
     doubtful: ragu-ragu
     absent: absen
   of: dari
-  of_it_and_its_descendants: itu dan keturunannya
-  of_least_concern: Dari sedikitnya perhatian
   of_species: spesies
   offensive_inappropriate: ofensif / tidak pantas
   official_blog: Blog Resmi
@@ -1432,17 +1409,12 @@ id:
   on_: "Pada"
   on_date: "pada %{date}"
   on_day: "pada"
-  on_edit_date: "pada %{editdate}"
-  on_list?: pada daftar
-  on_submit_date: "pada %{submitdate}"
   on_your_life_list: pada daftar hidupmu
   one_by_one: "satu per satu"
   one_of_your_lists: "satu dari daftar Anda..."
   only_a_project_manager_can_add: Hanya manajer proyek yang dapat menambahkan status proyek kurator
   only_administrators_may_access_that_page: Hanya administrator dapat akses halaman ini
-  only_accepts_taxa: hanya menerima taksa
   only_an_admin_can_remove_project_users: Hanya admin yang dapat menghapus proyek pengguna
-  only_country_state_and_county: "Hanya negara, negara bagian, dan daerah tempat setara ditampilkan untuk saat ini. Perbesar untuk melihat tempat-tempat kecil."
   only_curators_can_add_edit_scientific_names: Hanya kurator yang dapat menambahkan/mengubah nama ilmiah.
   only_curators_can_access_that_page: Hanya kurator yang dapat akses halaman ini.
   only_files_with_10000_rows_at_a_time: Hanya file dengan 10000 baris pada satu waktu, silakan
@@ -1456,28 +1428,19 @@ id:
   only_show_for_species_subspecies_varieties_etc: Hanya tunjukkan untuk spesies, sub spesies, varietas, dan lainnya.
   only_show_taxa_fom_this_list: "Hanya tunjukkan taksa dari daftar ini"
   only_showing_taxa_from: hanya tujukkan taksa dari daftar ini
-  only_site_curators_can_turn_on_observation_aggregation: Hanya situs kurator dapat menghidupkan agregasi proyek
   only_species: hanya spesies
   only_species_and_subspecies: hanya spesies dan sub spesies/varietas
-  only_the_author_of_this_post_can_do_that: Hanya penulis posting ini bisa melakukan itu. Jangan jahat.
   only_the_owner_of_this_list_can_do_that: Hanya pemilik daftar ini bisa melakukan itu. Jangan jahat.
   only_the_project_admin_can_delete_this_project: Hanya admin proyek yang dapat menghapus proyek ini.
   open: buka
   open_: Buka
   open_description: "Semua orang dapat melihat koordinat kecuali takson terancam."
-  opt_in_for_this_observation: "Ikut serta untuk pengamatan ini"
-  opt_out_of_community_ids_for_obs: "Memilih keluar dari identifikasi masyarakat untuk pengamatan ini"
   optional: opsional
   optional_columns_note_for_any: "kolom opsional (catatan: untuk setiap kolom ini untuk digunakan dalam sebuah pengamatan, mereka semua harus hadir)"
   or: atau
   or_choose_high_level_taxa: "... Atau memilih dari beberapa tingkat tinggi taksa"
   or_if_you_dont_want_email: "Atau jika Anda tidak ingin email apapun..."
-  or_invite_your_friends: atau undang temanmu
-  or_invited: atau diundang.
-  or_post_message_to_google_group: "atau posting pesan ke Grup Google kami:"
   or_upload: Atau unggah
-  or_you_can: "Atau Anda dapat..."
-  or_you_can_: atau Anda dapat
   orange: jingga
   order: Urut
   order_by: 'Urut berdasarkan:'
@@ -1491,8 +1454,6 @@ id:
   organism_appears_captive_cultivated: Organisme muncul kaptif / dibudidayakan
   other: lainnya
   other_animals: binatangt lain
-  other_animals_plural:
-    other: binatang lainnya
   other_listings_of_this_taxon_for_this_place: Daftar lain dari takson ini untuk tempat ini
   our_blog: Blog Kami
   out_of_range: Jauh dari jarak
@@ -2179,7 +2140,6 @@ id:
   summary: Ringkasan
   suspicious_photos: Foto mencurigakan
   siutable_observations: pengamatan yang cocok
-  sun: Minggu
   suspend_user: menangguhkan pengguna
   sync_with_eol: Sync dengan EOL
   sync_obs_with_photo_metadata: "Sync pengamatan dengan metadata foto?"
@@ -2336,7 +2296,6 @@ id:
     Itu adalah dasar-dasar menambahkan pengamatan! Ada banyak hal  lainnya yang dapat Anda lakukan, seperti mencari dan menyaring pengamatan atau mengedit mereka sebagai batch, tetapi mereka harus cukup jelas.
   those_observations_no_longer_exist: Pengamatan tersebut tidak lagi ada.
   threatened: terancam
-  thu: Kam
   time_: Waktu
   time_ago: "%{time} yang lalu"
   title: judul
@@ -2364,7 +2323,6 @@ id:
   trusted_project?: Proyek terpercaya?
   try_adding_species_form: Mencoba menambahkan beberapa spesies menggunakan form pada halaman ini.
   try_wikipedia: Mencoba Wikipedia?
-  tue: Sel
   type: Tipe
   type_a_name_and_click: Nama tipe dan klik LIHAT
   type_a_place_name_and_click_search: Ketik nama tempat dan klik PENCARIAN untuk mencari
@@ -2510,7 +2468,6 @@ id:
   we_tried_to_process_your_upload_named_filename: |
     Kami mencoba untuk memproses nama unggahan Anda %{filename} tapi tidak berhasil.
     Harap memperbaiki masalah berikut dan coba lagi.
-  wed: Rab
   welcome!: Selamat datang!
   welcome_comma!: Selamat datang
   welcome: Selamat datang
