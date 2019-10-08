@@ -671,6 +671,7 @@ fi:
   combine: Yhdistä
   comma_separated_please: Pilkulla erotettu, kiitos
   comment: kommentti
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentti
   comment_deleted: Kommentti poistettu
   comments: Kommentit
@@ -1689,7 +1690,6 @@ fi:
   needs_id_: Tarvitsee tunnistuksen
   needs_id_expandable_html: "<span class='full'>Tarvitsee </span>tunnistuksen"
   needs_to_be_identified: On tunnistettava
-  new: Uusi
   new_and_noteworthy: Uutta ja huomionarvoista
   new_announcement: Uusi ilmoitus
   new_assessment: Uusi arviointi
@@ -1817,7 +1817,6 @@ fi:
   number_of_observations: Havaintojen lukumäärä
   number_selected: "# valittu"
   obs: Havainnot
-  obscured_: piilotettu
   obscured: Piilotettu
   obscured_or_private: piilotettu tai yksityinen
   observation: Havainto
@@ -1848,19 +1847,15 @@ fi:
   observation_fields_are_additional: Havaintokentät ovat lisätietokenttiä, joita voidaan lisätä havaintoihin.
   observation_fields_by_preferences_description: |
     Havaintokentät muistuttavat merkintöjä, paitsi kuka tahansa voi lisätä niitä havaintoosi oletuksena. Jos haluat mieluummin, että vain sinä tai vain sivuston kuraattorit voivat lisätä havaintokenttiä, sinun täytyy muuttaa oletusasetusta.
-  observation_flagged: Havainto liputettu
   observation_removed_from_the_project: "Havainnot poistettu projektista \"%{project}\""
   observation_requirements: Havaintovaatimukset
-  observation_rights_html: "Havainto %{rights}"
   observation_rules: Havainnointisäännöt
   observation_was_deleted: Havainto poistettiin.
   observation_without_media: Havainto ilman mediaa
-  observation_would_like_some_help: "%{user} haluaisi vähän apua tämän tunnistuksessa!"
   observations: Havainnot
   observations_: havaintoa
   observations_added_by_x_html: "Havainnon lisäsi %{x}"
   observations_by: Havainnot käyttäjältä
-  observations_by_everyone: Kaikkien havainnot
   observations_by_user: "Käyttäjän %{user} havainnot"
   observations_deleted: Havainnot on poistettu.
   observations_for_project: "Havainnot projektille %{project}"
@@ -1868,12 +1863,9 @@ fi:
   observations_from_people_taxa_and_places_youre_following: "Havainnot seuraamistasi ihmisistä, paikoista ja taksoneista"
   observations_from_this_place: Havainnot tästä paikasta
   observations_from_this_project: Havainnot tästä projektista
-  observations_from_you: Omat havainnot
   observations_in_this_project_must: Tässä projektissa olevien havaintojen on täytettävä seuraavat kriteerit
-  observations_last500: Havainnot (viimeisimmät 500)
   observations_map: Havainnot / Kartta
   observation_must_dotdotdot: Havainnon pitää...
-  observations_obscured: Havainnot (piilotettu)
   observations_observed_this_month: Havainnot jotka <em>havaittu</em> tässä kuussa, ei lisätty tässä kuussa. Mene ulos!
   observations_of_relatives: Sukulaisten havainnot
   observations_of_taxon: "Taksonin %{taxon_name} havainnot"
@@ -1883,24 +1875,18 @@ fi:
   observations_text_search_warning: |
     Tekstihaut saattavat tuottaa outoja tuloksia muihin suodattimiin yhdistettynä. Jos haluat hakea tietyn lajin havaintoa, käytä taksonisuodatinta.
   observations_this_year_vs_last_year: Tämän vuoden havainnot vs. viime vuoden havainnot
-  observations_title: Kaikkien havainnot
   observations_total: Havaintoa yhteensä
   observations_w: Havainnot w/
   observations_w_field: Havainnot w/ kenttä
   observations_was_successfully_updated: Havainto/havainnot päivitetty onnistuneesti.
-  observations_week: Havainnot / Viikko
   observations_widget: Havaintojen pienoisohjelma
-  observations_will_revert_to_casual: Havainnot muuttuvat "epämuodollisiksi" jos yllä olevat vaatimukset eivät täyty
   observations_with_this_field: Havainnot tällä kentällä
   observed: Havaittu
   observed_by: Havainnut
-  observed_in_place?: havaittu paikallaan
   observed_on: Havaittu
-  observed_one: havaitsi yhden
   observer: Havainnoi
   observers: Havainnoijat
   observer_short: Havainnoija
-  observing: havainnointi
   occurrence_status: Esiintymisen tila
   occurrence_status_descriptions:
     absent: Ei esiinny alueella
@@ -1927,9 +1913,6 @@ fi:
   on_: "päivänä"
   on_date: "%{date}"
   on_day: "päivänä"
-  on_edit_date: "%{editdate}"
-  on_list?: luettelossa
-  on_submit_date: "%{submitdate}"
   on_your_life_list: elämäluettelossasi
   onboarding:
     observe_panel_title: Aloita tallentamalla havaintoja
@@ -1958,7 +1941,6 @@ fi:
   one_of_your_lists: "yksi listoistasi..."
   only_administrators_may_access_that_page: Vain ylläpitäjät voivat päästä tälle sivulle
   only_an_admin_can_remove_project_users: Vain ylläpitäjä voi poistaa projektin käyttäjiä
-  only_country_state_and_county: "Vain maat, osavaltiot ja lääniä vastaavat paikat näytetään nyt. Lähennä nähdäksesi pienemmät paikat."
   only_curators_can_add_edit_scientific_names: Vain kuraattorit voivat lisätä/muokata tieteellisiä nimiä.
   only_curators_can_access_that_page: Vain kuraattoreilla on pääsy kyseiselle sivulle.
   only_letters_numbers: "Vain kirjaimia ja numeroita, ei välejä, täytyy alkaa kirjaimella"
@@ -1969,7 +1951,6 @@ fi:
   only_showing_taxa_from: näytetään vain taksonit tästä luettelosta
   only_species: vain lajit
   only_species_and_subspecies: vain lajit ja alalajit/variaatiot
-  only_the_author_of_this_post_can_do_that: Vain tämän viestin omistaja voi tehdä sen. Älä ole paha.
   only_the_owner_of_this_list_can_do_that: Vain tämän luettelon omistaja voi tehdä sen. Älä ole paha.
   only_the_project_admin_can_delete_this_project: Vain projektin ylläpitäjä voi poistaa tämän projektin.
   only_you: Vain sinä
@@ -1981,13 +1962,8 @@ fi:
   or_all_caps: TAI
   or_choose_high_level_taxa: "... tai valitse joistakin korkeatasoisista taksoneista"
   or_if_you_dont_want_email: "Tai jos et vain halua mitään sähköpostia..."
-  or_invite_your_friends: tai kutsu ystäviäsi
-  or_invited: tai kutsuttu.
   or_log_in_with_colon: "Tai kirjadu sisään seuraavilla:"
-  or_post_message_to_google_group: "tai lähetä viesti Google-ryhmäämme:"
   or_upload: Tai tallenna
-  or_you_can: "Tai voit..."
-  or_you_can_: tai voit
   orange: oranssi
   order: Lahko
   order_by: 'Järjestä:'
@@ -1998,19 +1974,14 @@ fi:
   originally_imported_from_url_html: "Alun perin tuotu sivulta <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Alkuperäinen URL-osoite tälle kuvalle."
   original_rights_holder: Alkuperäinen oikeuksien haltija
-  original_url: Alkuperäinen URL-osoite
   original_url_for_this_map: Alkuperäinen URL-osoite tälle kartalle
   organism_appears_captive_cultivated: Eliö vaikuttaa vangitulta tai viljellyltä
   other: Muu
   other_animals: muut eläimet
-  other_animals_plural:
-    one: muu eläin
-    other: muut eläimet
   other_lexicons: Muut sanastot
   other_names: Muut nimet
   other_species_commonly_misidentified_as_this_species: Lajeja, jotka usein määritetään virheellisesti täksi lajiksi
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    Lajeja, jotka usein määritetään virheellisesti täksi lajiksi <a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: Lajeja, jotka usein määritetään virheellisesti täksi lajiksi <a href="%{url}">%{place}</a>
   our_blog: Blogimme
   out_of_range: Pois alueelta
   overview: Yleiskatsaus
@@ -2848,7 +2819,6 @@ fi:
   supporting: Tukeminen
   support_inaturalist: Tue iNaturalistia
   siutable_observations: sopivia havaintoja
-  sun: Su
   sw_lat: SW leveysaste
   sw_lon: SW pituusaste
   sync: Synkronoi?
@@ -3009,7 +2979,6 @@ fi:
   this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä merkintöjä Flickr-valokuvillesi. Jatketaan?
   this_year: Tänä vuonna
   threatened: Uhanalainen
-  thu: To
   time_: aika
   time_ago: "%{time} sitten"
   tired_of_testing_this_new_version: Kyllästynyt kokeilemaan tätä uutta versiota?
@@ -3046,7 +3015,6 @@ fi:
   trusted_project?: Luotettava projekti?
   try_it_out: Kokeile sitä
   try_wikipedia: Kokeile Wikipediaa?
-  tue: Ti
   two_thirds: 2/3
   type: Kirjoita
   type_a_name_and_click: Kirjoita nimi ja klikkaa HAE
@@ -3272,7 +3240,6 @@ fi:
   we_had_trouble_saving_comment: "Meillä oli vaikeuksia tallentaa tätä kommenttia:"
   weather: Sää
   website: Verkkosivusto
-  wed: Ke
   welcome!: Tervetuloa!
   welcome_comma!: Tervetuloa,
   welcome: tervetuloa
@@ -4332,13 +4299,17 @@ fi:
     flash:
       applications:
         create:
+          #Application as in a software application
           notice: 'Hakemus luotu.'
         destroy:
+          #Application as in a software application
           notice: 'Hakemus poistettu.'
         update:
+          #Application as in a software application
           notice: 'Hakemus päivitetty.'
       authorized_applications:
         destroy:
+          #Application as in a software application
           notice: 'Hakemus hylätty.'
   wild: Villi
   will_paginate:
