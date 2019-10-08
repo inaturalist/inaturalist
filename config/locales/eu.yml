@@ -467,6 +467,7 @@ eu:
     deskargatzen dituzunean.
   comma_separated_please: Mesedez, komekin bereizi
   comment: oharra
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Iruzkina
   comment_deleted: Oharra ezabatu egin da
   comments: Oharrak
@@ -1298,11 +1299,9 @@ eu:
   observation: Behaketa
   observation_added: Oharra gehituta
   observation_added_to_the_project: "%{project} proiektuari gehitutako oharra"
-  observation_photo_uploader: Behaketak igo argazki baten bidez
   observations_by_user_on_date: "%{user}-(r)en behaketak egun honetan: %{date}"
   observations_by_you_on_date: "Zure behaketak egun honetan: %{date}"
   observation_calendar_for: "%{user}-(r)entzako behaketen egutegia %{year}. urtean"
-  observation_contest: behaketen lehiaketa
   observation_curation: Behaketa administratu
   observation_date: Data
   observation_date?: Data?
@@ -1310,17 +1309,11 @@ eu:
   observation_fields: Behaketa-eremuak
   observation_fields_are_additional: Behaketa-eremuak behaketei gehitu daitezkeen datu-eremu osagarriak dira.
   observation_removed_from_the_project: "%{project} proiektuaren behaketa ezabatu da"
-  observation_rights_html: "%{rights} behaketa"
   observation_rules: Behaketa-arauak
   observation_was_deleted: Behaketa ezabatu egin da.
-  observation_would_like_some_help: "¡%{user}-(e)k laguntza pixka bat beharko luke elementu hau identifikatzeko!"
   observations: Behaketak
   observations_by: 'Honek egindako behaketak:'
-  observations_by_everyone: Denen behaketak
   observations_by_user: "Honen behaketak: %{user}"
-  observations_circle_have_their_radii_scaled: |
-    Behaketa-zirkuluen erradioa posizioaren zehaztasunak baldintzatzen du. Zehaztugabeko posizioko behaketetako datuak tamaina txikienean azaltzen dira.
-  observations_confirmed: Behaketak (baieztatuak)
   observations_deleted: Behaketak ezabatu egin dira.
   observations_fields_are: |
     Eremuak zure behaketarekin lotutako aparteko informazioa dira, hala nola behatutako espezie kopurua, habitataren deskribapena edo aipatu nahi duzuna.
@@ -1329,40 +1322,28 @@ eu:
   observations_from: 'Egun honetako behaketak: %{date}'
   observations_from_this_place: Leku honetako behaketak
   observations_from_this_project: Proiektu honetako oharrak
-  observations_from_you: Zure oharrak
-  observations_have_had_their_coordinates: "Behaketetako koordenatuak ausazko puntu batetara lekualdatu dira, %{km} km-ren barruan, taxona mehatxatuta dagoelako edo behatzaileak koordenatuak ezkutatzea erabaki zuelako."
-  observations_it_may_take_a_few: behaketak. Ekintza honek minutu batzuk beharko ditu agian.
-  observations_last500: Behaketak (500 azkenekoak)
   observations_map: Behaketak / Mapa
   observations_near_a_place_are: |
     Irudiaren mugen inguruan laukizuzena duten leku batetik hurbileko behaketek zehatzak ez diren zenbait datu eman ditzakete emaitza gisa, laukizuzen itxura ez duten tokietarako. Hori gure datu-baseak dituen mugen ondorioz gertatzen da eta hori konpontzeko lanean ari gara
   observations_needing_curation: Administrariaren berrikusketa eskatzen duten behaketak
-  observations_obscured: Behaketak (ezkutukoak)
   observations_observed_this_month: Hilabete honetan <em>egindako</em> behaketak ez dira uneko hilabetera gehituko. Atera eta egin behaketak!
   observations_of_taxon: "Honen behaketa: %{taxon_name}"
-  observations_on_inat_check_list: "behaketak hemen: %{site_name}. Egiaztapen-zerrenda duten baieztatutako lekuek gutxienez baieztatutako 1 behaketa dute beren mugetan."
   observations_per_month: Behaketak / Hilabetea
   observations_removed_from_the_project: "%{project} proiektutik ezabatutako behaketak"
   observations_saved: Behaketa(k) gordeta!
   observations_specifying_this_field: Eremu hau espezifikatzen duten behaketak
   observations_text_search_warning: |
     Testu-bilaketek emaitza bitxiak eman ditzakete beste iragazki batzuekin konbinatzen direnean; espezie jakin baten behaketa topatu nahi baduzu, erabili iragazi taxona.
-  observations_title: Denen behaketak
   observations_w: 'Behaketen bilaketa honekin:'
   observations_w_field: Behaketen bilaketa eremuarekin
   observations_was_successfully_updated: Behaketa(k) arrakastarekin eguneratu da.
-  observations_week: Behaketak / Astea
   observations_widget: Widget-aren behaketak
-  observations_will_revert_to_casual: Behaketak "casual" egoerara itzuliko dira, aurreko baldintzak betetzen ez badira edo
   observed: 'Hau behatuta:'
   observed_by: ', honek ikusia:'
-  observed_in_place?: 'behaketak hemen:'
   observed_on: 'Hau behatuta:'
-  observed_one: bat behatua
   observer: Behatzailea
   observers: Begiraleak
   observer_short: Pertsona
-  observing: behatzen
   occurence_status_describes_how: 'Agerraldi-egoerak taxon batek eremu jakin batean duen presentzia edo bakantasun maila adierazten du. Ikusi DarwinCore honetarako: <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">terminologiari buruzko informazio gehiago</a>.'
   occurrence_status: Agerraldi-egoera
   occurrence_status_establishment_means: agerraldi-egoera, finkatzeko baliabidea
@@ -1374,20 +1355,13 @@ eu:
     doubtful: zalantzagarria
     absent: ez dago
   of: 'hemendik:'
-  of_it_and_its_descendants: horrena eta horren ondorengoena
-  of_least_concern: Kezka txikiagokoa
   offensive_inappropriate: Iraingarria/ Desegokia
   on_: "hemen:"
   on_date: "egun honetan: %{date}"
-  on_edit_date: "hemen: %{editdate}"
-  on_list?: zerrendan
-  on_submit_date: "hemen: %{submitdate}"
   on_your_life_list: zure bizitzako zerrendan
   one_of_your_lists: "zure zerrendetako bat..."
   only_a_project_manager_can_add: Proiektuko kudeatzaileak soilik eman diezaioke sailkapena proiektuko administratzaileari
-  only_accepts_taxa: taxonak soilik onartzen ditu
   only_an_admin_can_remove_project_users: Administratzaileak soilik ezaba ditzake proiektuko erabiltzaileak.
-  only_country_state_and_county: "Herrialdeko lekuak, estatua eta orduko herrialdeko baliokideak soilik erakusten dira. Irudia hurbildu leku txikiagoak ikusteko."
   only_curators_can_add_edit_scientific_names: Administratzaileek soilik gehi/edita ditzakete izen zientifikoak.
   only_files_with_10000_rows_at_a_time: 10000 errenkada dituzten fitxategiak soilik, mesedez.
   only_letters_numbers: "Letrak eta zenbakiak soilik, hutsunerik gabe, letra batekin hasi behar da"
@@ -1399,7 +1373,6 @@ eu:
   only_showing_taxa_from: zerrenda honetako taxonak soilik erakutsita
   only_species: espezieak soilik
   only_species_and_subspecies: espezieak eta azpiespezieak/aldaerak soilik
-  only_the_author_of_this_post_can_do_that: Ohar honen egileak soilik egin dezake hori. Ez izan gaiztoa.
   only_the_owner_of_this_list_can_do_that: Zerrenda honen jabeak soilik egin dezake hori.  Ez izan gaiztoa.
   only_the_project_admin_can_delete_this_project: Proiektuko administratzaileak soilik ezaba dezake proiektu hau.
   open: Transparente
@@ -1407,12 +1380,7 @@ eu:
   optional: aukerakoa
   or: edo
   or_choose_high_level_taxa: "... Edo aukeratu maila altuko zenbait taxonetatik"
-  or_invite_your_friends: edo gonbidatu zure lagunak
-  or_invited: edo gonbidatuak.
-  or_post_message_to_google_group: "edo bidali mezua gure Google-ko Taldera"
   or_upload: 'Edo deskargatu hau:'
-  or_you_can: "Edo hau egin dezakezu:..."
-  or_you_can_: 'edo hau egin dezakezu:'
   orange: laranja
   order: Ordena
   order_by: 'Honen arabera ordenatu:'
@@ -1421,9 +1389,6 @@ eu:
   organism_appears_captive_cultivated: Organismoak gatibua/landua dirudi
   other: Beste
   other_animals: beste animalia batzuk
-  other_animals_plural:
-    one: beste animalia bat
-    other: beste animalia batzuk
   our_blog: Gure bloga
   out_of_range: Mailatik kanpo
   owner: Jabea
@@ -2032,7 +1997,6 @@ eu:
   suggestions: Iradokizunak
   summary: Laburpena
   siutable_observations: gonbida ditzakezun behaketak
-  sun: Iga
   suspend_user: Erabiltzailea egonean
   sw_lat: lat. OS
   sw_lon: long. OS
@@ -2196,7 +2160,6 @@ eu:
     Horiek dira behaketak gehitzeko oinarriak! Egin ditzakezun beste gauza asko daude, hala nola zure behaketak bilatu eta iragazi edo talde gisa aldatu, baina horrek auto-argitzailea izan behar luke.
   those_observations_no_longer_exist: Behaketa horiek dagoeneko ez dira existitzen.
   threatened: Mehatxatuta
-  thu: Osg
   time_: ordua
   time_ago: "duela %{time}"
   title: izenburua
@@ -2223,7 +2186,6 @@ eu:
   trusted_project?: Egiaztatutako proiektua al da?
   try_adding_species_form: Saiatu espezieren bat gehitzen orrialde honetako formularioa erabilita.
   try_wikipedia: Wikipedia-rekin saiatu?
-  tue: Asr
   type: Mota
   type_a_name_and_click: Espeziearen izena tekleatu
   type_a_place_name_and_click_search: Jarri leku baten izena
@@ -2390,7 +2352,6 @@ eu:
   we_import_our_taxonomic_data: "Gure datu taxonomikoak kanpoko datu-base taxonomikoetatik inportatu genituen, esate baterako, Bizitzako katalogoa eta uBio. Gure zenbait taxon ere eskuz sartu dira eta edozein erabiltzailek izen berriak gehi ditzake. Taxon edo izen bat topatu ezin baduzu, probatu hau:"
   we_know_is_inconvenience_but_will_allow_grow: "Badakigu hau eragozpena dena, baina gure baimen-sistema berriak %{sitename} etorkizunean hobeto hazteko eta segurtasun handiago emateko aukera emango du."
   we_support_flickr: Flickr-ekin bateragarriak gara irudiak biltegiratzean eta denbora laburrean irudiak biltegiratzeko beste baliabide batzuk gehitzea espero dugu.
-  wed: Asz
   welcome!: Ongi etorri!
   welcome_comma!: Ongi etorri!
   welcome: Ongi etorri
