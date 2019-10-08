@@ -1825,6 +1825,7 @@ nl:
   make_admin: Maak admin
   mail_disclaimer: "%{site_name} staat niet toe dat gebruikers je aanvullende uitnodigingen versturen via onze uitnodig-functie. Meld misbruik bij %{site}."
   main_content: Belangrijkste inhoud
+  main_content_description: Hier komt de hoofdinhoud
   make_a_new_place: Een nieuwe plaats aanmaken
   make_a_taxon_swap_instead?: Maak in plaats daarvan een Taxonwissel?
   make_curator: Beheerder maken
@@ -1985,6 +1986,7 @@ nl:
   native_page_url: Inheemse Pagina URL
   native_to_place: "Inheems in %{place}"
   nav: Nav
+  nav_description: Hier komt de projectnavigatie.
   ne_lat: NO Lat.
   ne_lon: NO Lon.
   near_threatened: Gevoelig
@@ -2386,8 +2388,24 @@ nl:
   other_names: Andere namen
   other_species_commonly_misidentified_as_this_species: Andere soorten die vaak ten onrechte worden gedetermineerd als deze soort
   other_species_commonly_misidentified_as_this_species_in_place_html: Andere soorten die vaak ten onrechte worden gedetermineerd als deze soort in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_complex: Andere taxa die vaak ten onrechte worden gedetermineerd als dit complex
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als dit complex in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genus: Andere taxa die vaak ten onrechte worden gedetermineerd als dit geslacht
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als dit geslacht in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genushybrid: Andere taxa die vaak ten onrechte worden gedetermineerd als deze intragenerische hybride
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als deze intragenerische hybride in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_hybrid: Andere taxa die vaak ten onrechte worden gedetermineerd als deze hybride
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als deze hybride in <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Andere taxa die vaak ten onrechte worden gedetermineerd als @gender{n:dit|deze} %{rank}
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als @gender{n:dit|deze} %{rank} in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_section: Andere taxa die vaak ten onrechte worden gedetermineerd als deze sectie
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als deze sectie in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_species: Andere taxa die vaak ten onrechte worden gedetermineerd als deze soort
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als deze soort in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subgenus: Andere taxa die vaak ten onrechte worden gedetermineerd als dit ondergeslacht
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als dit ondergeslacht in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subsection: Andere taxa die vaak ten onrechte worden gedetermineerd als deze ondersectie
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als deze ondersectie in <a href="%{url}">%{place}</a>
   our_blog: Ons blog
   out_of_range: Buiten het verspreidingsgebied
   output_taxon: Uitvoer taxon
