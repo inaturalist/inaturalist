@@ -633,6 +633,7 @@ zh-TW:
     以逗號分隔的追蹤代碼清單。當您以新觀察表格傳送人們時想附加追蹤代碼，請添加它，例如：%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可使用此追蹤來自不同來源的參與。您可在當下載您的專案觀察成 CSV 檔案時來存取這些代碼。
   comma_separated_please: 請以逗號分隔
   comment: 評論
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: 評論
   comment_deleted: 評論已刪除
   comments: 評論
@@ -1781,7 +1782,6 @@ zh-TW:
   needs_id_: 需要鑑定
   needs_id_expandable_html: "<span class='full'>需要</span>鑑定"
   needs_to_be_identified: 需要被鑑定
-  new: 新
   new_and_noteworthy: 新事物與關注事項
   new_announcement: 新公告
   new_assessment: 新評估
@@ -1942,7 +1942,6 @@ zh-TW:
   obs: 觀察
   obs_cid_d: 觀察（社群鑑定）
   obs_id_d: 觀察（鑑定）
-  obscured_: 遮蔽
   obscured: 不清
   obscured_or_private: 遮蔽或私有
   obscured_description: |
@@ -1952,7 +1951,6 @@ zh-TW:
   observation_added: 觀察已添加
   observation_added_to_the_project: "觀察已添加至專案「%{project}」"
   observation_aggregation: 觀察聚集
-  observation_photo_uploader: 觀察照片上傳者
   observations_by_category: "依分類區分觀察"
   observations_by_app: 依應用程式區分觀察
   observations_by_rank: 依級別區分觀察
@@ -1960,7 +1958,6 @@ zh-TW:
   observations_by_you: "由您所做的觀察"
   observations_by_you_on_date: "於 %{date} 由您所做的觀察"
   observation_calendar_for: "於 %{year} 裡 %{user} 的觀察行事曆"
-  observation_contest: 觀察競賽
   observation_curation: 觀察策展
   observation_date: 日期
   observation_date?: 日期？
@@ -1970,27 +1967,19 @@ zh-TW:
   observation_fields_are_additional: 觀察欄位即為可被添加在觀察裡的額外資料欄位。
   observation_fields_by_preferences_description: |
     觀察欄位有些類似標籤，預設上只有您可以添加至您的觀察。若您只希望您自己，或網站策展人可操作請更改它。
-  observation_flagged: 觀察已標記
-  observation_flagged_as_flag: 觀察已標記為%{flag}
   observation_removed_from_the_project: "觀察已從專案「%{project}」裡移除"
   observation_requirements: 觀察需求
-  observation_rights_html: "觀察 %{rights}"
   observation_rules: 觀察規則
   observation_rules_description: |
     您可挑選規則來判斷哪種觀察可被添加至此專案，像是限制觀察對應的地點或物種。如果您在規則種類有超過一個以上的規則，觀察只要符合任一規則皆為有效。例如：如果您有「必須為兩棲類」和「必須為爬蟲類」這些規則，專案會接收內容符合兩棲類或是爬蟲類的觀察。
   observation_was_deleted: 觀察已被刪除。
   observation_without_media: 不帶有多媒體的觀察
-  observation_would_like_some_help: "%{user} 需要關於鑑定此方面的協助！"
   observations: 觀察
   observations_: 觀察
   observations_added_by_x_html: "由 %{x} 新增的觀察"
   observations_annotated_with_annotation: "觀察帶有%{annotation}註解"
   observations_by: 觀察由
-  observations_by_everyone: 由任何人做的觀察
   observations_by_user: "由 %{user} 做的觀察"
-  observations_circle_have_their_radii_scaled: |
-    觀察圈擁有它們依位置準確度縮放的半徑比例。不帶有位置準確度資料的觀察會以最小尺寸來顯示出。
-  observations_confirmed: 觀察（已確認）
   observations_deleted: 觀察已刪除。
   observations_fields_are: |
     專案欄位是與觀察所相關資料的額外資料部份，像是個體所觀察的數目、棲息地描述，或是其它您所想要的內容！專案也可指定出希望您能夠填寫的欄位。
@@ -2000,22 +1989,15 @@ zh-TW:
   observations_from_people_taxa_and_places_youre_following: "來自您正關注的人們、地點、和物種分類群的觀察"
   observations_from_this_place: 來自此地點的觀察
   observations_from_this_project: 來自此專案的觀察
-  observations_from_you: 由您所做的觀察
-  observations_have_had_their_coordinates: "觀察已讓它們的座標轉移至相距 %{km} 公里的隨機標點上，這是因為物種分類群受到威脅或是觀察者選擇來隱蔽座標。"
   observations_in_this_project_must: 此專案的觀察必須符合以下準則
-  observations_it_may_take_a_few: 觀察。這可能需花費幾分鐘。
-  observations_last500: 觀察（最近 500 項）
-  observations_last_aggregated: 上一次的觀察聚集
   observations_map: 觀察 / 地圖
   observation_must_dotdotdot: 觀察必須...
   observations_near_a_place_are: |
     當觀察「貼近」帶有矩形邊界的地點時，這可能導致非矩形地點出現一些不準確結果。這是出自於我們資料庫的限制，也是我們在努力解決的地方。
   observations_needing_curation: 觀察需要策展
-  observations_obscured: 觀察（遮蔽）
   observations_observed_this_month: 在本月沒有添加<em>已觀察</em>內容。到外頭走走看看吧！
   observations_of_relatives: 相關觀察
   observations_of_taxon: "%{taxon_name}的觀察"
-  observations_on_inat_check_list: "在 %{site_name} 的觀察。清單地點已被提交，且至少有 1 份提交的觀察帶有邊界。"
   observations_per_month: 觀察 / 月
   observations_removed_from_the_project: "觀察已從專案「%{project}」裡移除"
   observations_saved: 觀察已儲存！
@@ -2024,27 +2006,21 @@ zh-TW:
   observations_text_search_warning: |
     與其它篩選合併時，文字搜尋可能會出現異常結果。若您想要查找特定物種的觀察，請使用物種分類篩選。
   observations_this_year_vs_last_year: 今年觀察 vs 去年觀察
-  observations_title: 由任何人做的觀察
   observations_total: 觀察總計
   observations_w: 觀察 w/
   observations_w_field: 帶有此欄位的觀察
   observations_was_successfully_updated: 觀察已成功更新。
-  observations_week: 觀察 / 週
   observations_widget: 觀察小工具
-  observations_will_revert_to_casual: 觀察會被列為「粗略」等級，是在不符合以上條件情況或
   observations_with_this_field: 帶有此欄位的觀察
   observations_with_this_field_and_value: 帶有此欄位與內容值的觀察
   observations_without_media: 包含/不包含媒體的觀察
   observationcounts_refreshed: 觀察次數已重整
   observed: 已觀察
   observed_by: 觀察由
-  observed_in_place?: 觀察於地點
   observed_on: 觀察在
-  observed_one: 觀察了一個記錄
   observer: 觀察者
   observers: 觀察者
   observer_short: 觀察者
-  observing: 觀察中
   occurence_status_describes_how: '發生狀態描述出在指定地區裡的普遍、或稀有程度。請查看達爾文核心集<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">來了解更多有關術語的訊息</a>。'
   occurrence_status: 事件狀態
   occurrence_status_descriptions:
@@ -2063,8 +2039,6 @@ zh-TW:
     doubtful: 可疑
     absent: 缺失
   of: 的
-  of_it_and_its_descendants: 它和它的後代
-  of_least_concern: 最不重要的
   of_observations: 項觀察記錄
   of_species: 個物種
   of_observers: 個觀察者
@@ -2079,9 +2053,6 @@ zh-TW:
   on_: "在"
   on_date: "於 %{date}"
   on_day: "在"
-  on_edit_date: "在 %{editdate}"
-  on_list?: 在清單
-  on_submit_date: "在 %{submitdate}"
   on_your_life_list: 在妳的生命清單中
   onboarding:
     observe_panel_title: 讓我們來開始發佈一些觀察
@@ -2112,9 +2083,7 @@ zh-TW:
   one_of_your_lists: "您的清單之一..."
   only_a_project_manager_can_add: 僅有專案負責人可添加專案策展人狀態
   only_administrators_may_access_that_page: 僅有管理員可存取該頁面
-  only_accepts_taxa: 僅接受物種分類
   only_an_admin_can_remove_project_users: 僅有管理員可移除專案用戶
-  only_country_state_and_county: "僅國家、州、和目前所顯示的郡級地方。放大來查看較小的地方。"
   only_curators_can_add_edit_scientific_names: 僅有策展人可添加/編輯學名。
   only_curators_can_access_that_page: 僅有策展人能存取該頁面。
   only_files_with_10000_rows_at_a_time: 檔案一次只能 10000 行，再麻煩了
@@ -2128,12 +2097,10 @@ zh-TW:
   only_show_for_species_subspecies_varieties_etc: 僅用於顯示物種、亞種、變種、或其它
   only_show_taxa_fom_this_list: "僅從此清單顯示物種分類群"
   only_showing_taxa_from: 僅從此列表顯示物種分類
-  only_site_curators_can_turn_on_observation_aggregation: 僅網站策展人可啟動專案聚集
   only_species: 僅物種
   only_species_and_subspecies: 僅有物種和亞種/變種
   only_staff_can_edit_large_places: 僅有網站人員可以編輯特別廣大地點
   only_staff_can_edit_standard_places: 僅有網站人員可以編輯標準層次地點
-  only_the_author_of_this_post_can_do_that: 僅發佈此文章的作者可這樣做，並請不要破壞。
   only_the_owner_of_this_list_can_do_that: 僅有此清單的擁有者可以這樣做，請不要破壞。
   only_the_project_admin_can_delete_this_project: 僅專案管理員可刪除此專案。
   only_you: 僅有您
@@ -2141,21 +2108,14 @@ zh-TW:
   open_: 開啟
   open_description: "任何人皆可查看座標，除非該物種分類受到瀕臨滅絕危險。"
   open_street_map: 開放街圖
-  opt_in_for_this_observation: "用於此觀察的選項"
-  opt_out_of_community_ids_for_obs: "選擇讓此觀察排除社群鑑定"
   optional: 可選
   optional_columns_note_for_any: "選用欄位（註：適用於存在觀察裡的任一可用欄位）"
   or: 或
   or_all_caps: 或
   or_choose_high_level_taxa: "...或從更高階物種分類挑選"
   or_if_you_dont_want_email: "或者是您不想要接受任何電子郵件..."
-  or_invite_your_friends: 或邀請您的好友
-  or_invited: 或已邀請。
   or_log_in_with_colon: "或登入以："
-  or_post_message_to_google_group: "或發佈訊息至我們在 Google 上的群組："
   or_upload: 或上傳
-  or_you_can: "或著您可以..."
-  or_you_can_: 或著您可以
   orange: 橘色
   order: 排序
   order_by: 排序依
@@ -2166,22 +2126,17 @@ zh-TW:
   originally_imported_from_url_html: "最初從 <a href='%{url}'>%{url}</a> 所匯入"
   original_page_url_for_this_photo: "此照片的原始 URL。"
   original_rights_holder: 原有版權持有者
-  original_url: 原始 URL
   original_url_for_this_map: 此地圖的原始 URL
   organism_appears_captive_cultivated: 出現圈養/栽培生物
   other: 其它
   other_animals: 其它動物
-  other_animals_plural:
-    other: 個其它動物
   other_lexicons: 其它詞彙
   other_listings_of_this_taxon_for_this_place: 其它此地點的物種分類清單
   other_names: 別名
   other_species_commonly_misidentified_as_this_species: 常被誤認為是此物種的其它物種
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    在<a href="%{url}">%{place}</a>常被誤認為是此物種的其它物種
+  other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>常被誤認為是此物種的其它物種
   other_taxa_commonly_misidentified_as_this_rank: 常誤認為是%{rank}的分類
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
-    其它在<a href="%{url}">%{place}</a>常誤認為是%{rank}的分類
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: 其它在<a href="%{url}">%{place}</a>常誤認為是%{rank}的分類
   our_blog: 我們的部落格
   out_of_range: 超出範圍
   output_taxon: 輸出物種分類
@@ -3324,7 +3279,6 @@ zh-TW:
   support_inaturalist: 支持 iNaturalist
   suspicious_photos: 可移照片
   siutable_observations: 合適的觀察
-  sun: 週日
   suspend_user: 停用用戶
   sw_lat: 西南緯度
   sw_lon: 西南經度
@@ -3618,7 +3572,6 @@ zh-TW:
     這些是添加觀察的基礎！這裡有許多其它您可做的事情，像是搜尋並篩選您的觀察、或是以批量來編輯它們，而它們應是不言而喻的。
   those_observations_no_longer_exist: 這些觀察已不存在。
   threatened: 受威脅
-  thu: 週四
   time_: 時間
   time_ago: "%{time} 前"
   tired_of_testing_this_new_version: 對於測試此新版本感到厭倦？
@@ -3668,7 +3621,6 @@ zh-TW:
   try_adding_species_form: 嘗試使用此頁面上的表單來添加一些物種。
   try_it_out: 試試看
   try_wikipedia: 試試看維基百科？
-  tue: 週二
   two_thirds: 第2/3個
   type: 類型
   type_a_name_and_click: 輸入一個名稱然後點擊「查找」
@@ -3971,7 +3923,6 @@ zh-TW:
     請修正下列問題後再重試看看。
   weather: 天氣
   website: 網站
-  wed: 週三
   week_of_date: "%{date} 該週"
   welcome!: 歡迎！
   welcome_comma!: 歡迎，
@@ -6000,13 +5951,17 @@ zh-TW:
     flash:
       applications:
         create:
+          #Application as in a software application
           notice: '應用程式已建立。'
         destroy:
+          #Application as in a software application
           notice: '應用程式已刪除。'
         update:
+          #Application as in a software application
           notice: '應用程式已更新。'
       authorized_applications:
         destroy:
+          #Application as in a software application
           notice: '應用程式已撤銷。'
   wild: 野生
   will_paginate:
