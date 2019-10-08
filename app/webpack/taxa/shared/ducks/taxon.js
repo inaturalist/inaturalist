@@ -367,9 +367,7 @@ export function fetchRecent( ) {
       category: "improving,leading",
       per_page: 12
     } );
-    const endpoint = state.config.testNewRecent
-      ? inatjs.identifications.recent_taxa_revisited
-      : inatjs.identifications.recent_taxa;
+    const endpoint = inatjs.identifications.recent_taxa;
     endpoint( params ).then(
       response => dispatch( setRecent( response ) ),
       error => {
@@ -398,9 +396,7 @@ export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const { taxon } = state.taxon;
-    const endpoint = state.config.testNewSimilar
-      ? inatjs.observations.similarSpecies
-      : inatjs.identifications.similar_species;
+    const endpoint = inatjs.identifications.similar_species;
     const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       verifiable: "any"
     } );

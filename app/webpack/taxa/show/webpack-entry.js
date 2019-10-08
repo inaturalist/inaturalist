@@ -65,16 +65,6 @@ if ( serverPayload.ancestorsShown ) {
     ancestorsShown: serverPayload.ancestorsShown
   } ) );
 }
-if ( serverPayload.testNewSimilar ) {
-  store.dispatch( setConfig( {
-    testNewSimilar: true
-  } ) );
-}
-if ( serverPayload.testNewRecent ) {
-  store.dispatch( setConfig( {
-    testNewRecent: true
-  } ) );
-}
 
 const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
