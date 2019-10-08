@@ -18,8 +18,8 @@ class Emailer < ActionMailer::Base
     @personal_message = params[:personal_message]
     @sending_user = params[:sender_name]
     mail(set_site_specific_opts.merge(
-      :to => address,
-      :subject => @subject
+      to: address,
+      subject: escape_unicode( @subject )
     ))
     reset_locale
   end
@@ -38,8 +38,8 @@ class Emailer < ActionMailer::Base
     set_locale
     @inviter = project_invitation.user
     mail(set_site_specific_opts.merge(
-      :to => project_invitation.observation.user.email, 
-      :subject => @subject
+      to: project_invitation.observation.user.email,
+      subject: escape_unicode( @subject )
     ))
     reset_locale
   end
@@ -51,10 +51,10 @@ class Emailer < ActionMailer::Base
     @user = user
     set_locale
     @grouped_updates = UpdateAction.group_and_sort(updates, :skip_past_activity => true)
-    mail(set_site_specific_opts.merge(
-      :to => user.email,
-      :subject => t(:updates_notification_email_subject, :prefix => subject_prefix, :date => Date.today)
-    ))
+    mail( set_site_specific_opts.merge(
+      to: user.email,
+      subject: escape_unicode( t(:updates_notification_email_subject, prefix: subject_prefix, date: Date.today ) )
+    ) )
     reset_locale
   end
 
@@ -71,7 +71,10 @@ class Emailer < ActionMailer::Base
     if fmc = @message.from_user_copy
       return if fmc.flags.where("resolver_id IS NULL").count > 0
     end
-    mail(set_site_specific_opts.merge(:to => @user.email, :subject => "#{subject_prefix} #{@message.subject}"))
+    mail(set_site_specific_opts.merge(
+      to: @user.email,
+      subject: escape_unicode( "#{subject_prefix} #{@message.subject}" ) )
+    )
     reset_locale
   end
 
@@ -87,7 +90,7 @@ class Emailer < ActionMailer::Base
     mail(set_site_specific_opts.merge(
       to: @user.email,
       subject: t(:site_observations_export_from_date,
-        site_name: @site.name,
+        site_name: escape_unicode( @site.name ),
         date: l(@flow_task.created_at.in_time_zone(@user.time_zone), format: :long))
     ))
     reset_locale
@@ -102,7 +105,7 @@ class Emailer < ActionMailer::Base
     mail(set_site_specific_opts.merge(
       to: @user.email,
       subject: t(:site_observations_export_from_date,
-        site_name: @site.name,
+        site_name: escape_unicode( @site.name ),
         date: l(@flow_task.created_at.in_time_zone(@user.time_zone), format: :long))
     ))
     reset_locale
@@ -119,9 +122,12 @@ class Emailer < ActionMailer::Base
     return if @user.prefers_no_email?
     return if @project.user.suspended?
     mail(set_site_specific_opts.merge(
-      :to => @user.email, 
-      :subject => t(:user_invited_you_to_join_project, :user => @sender.try(:login), :project => @project.title)
-    ))
+      to: @user.email,
+      subject: t(:user_invited_you_to_join_project,
+        user: escape_unicode( @sender.try(:login) ),
+        project: escape_unicode( @project.title )
+      )
+    ) )
     reset_locale
   end
 
@@ -135,7 +141,7 @@ class Emailer < ActionMailer::Base
     @site_name = site_name
     mail(set_site_specific_opts.merge(
       to: @user.email,
-      subject: t(:updates_suspension_email_subject, prefix: subject_prefix)
+      subject: escape_unicode( t(:updates_suspension_email_subject, prefix: subject_prefix) )
     ))
     reset_locale
   end
@@ -150,7 +156,8 @@ class Emailer < ActionMailer::Base
     @errors        = error_details[:errors]
     @field_options = error_details[:field_options]
     mail(set_site_specific_opts.merge(
-      :to => "#{user.name} <#{user.email}>", :subject => @subject
+      to: "#{escape_unicode( user.name )} <#{user.email}>",
+      subject: escape_unicode( @subject )
     ))
     reset_locale
   end
@@ -162,7 +169,8 @@ class Emailer < ActionMailer::Base
     @subject = "#{subject_prefix} #{t(:bulk_import_of_filename_is_complete, :filename => filename)}"
     @filename = filename
     mail(set_site_specific_opts.merge(
-      :to => "#{user.name} <#{user.email}>", :subject => @subject
+      to: "#{escape_unicode( user.name )} <#{user.email}>",
+      subject: escape_unicode( @subject )
     ))
     reset_locale
   end
@@ -175,7 +183,8 @@ class Emailer < ActionMailer::Base
     @warnings = warnings
     @exception = mot.exception
     mail(set_site_specific_opts.merge(
-      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
+      to: "#{escape_unicode( @user.name )} <#{@user.email}>",
+      subject: escape_unicode( @subject )
     ))
     reset_locale
   end
@@ -186,7 +195,8 @@ class Emailer < ActionMailer::Base
     @subject = subject
     @body = body
     mail(set_site_specific_opts.merge(
-      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
+      to: "#{escape_unicode( @user.name )} <#{@user.email}>",
+      subject: escape_unicode( @subject )
     ))
     reset_locale
   end
@@ -198,7 +208,8 @@ class Emailer < ActionMailer::Base
     set_locale
     @subject = I18n.t( "views.emailer.photos_missing.subject" )
     mail(set_site_specific_opts.merge(
-      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
+      to: "#{escape_unicode( @user.name )} <#{@user.email}>",
+      subject: escape_unicode( @subject )
     ))
     reset_locale
   end
@@ -209,7 +220,7 @@ class Emailer < ActionMailer::Base
     @subject = "User #{user.id} (#{user.login}) blocked by #{user.user_blocks_as_blocked_user.count} people"
     mail( set_site_specific_opts.merge(
       to: @site.email_help,
-      subject: @subject
+      subject: escape_unicode( @subject )
     ) )
   end
 
@@ -218,7 +229,7 @@ class Emailer < ActionMailer::Base
     set_site
     mail( set_site_specific_opts.merge(
       to: email,
-      subject: t( "views.emailer.parental_consent.subject" )
+      subject: escape_unicode( t( "views.emailer.parental_consent.subject" ) )
     ) )
   end
 
@@ -227,7 +238,7 @@ class Emailer < ActionMailer::Base
     set_site
     mail( set_site_specific_opts.merge(
       to: user_parent.email,
-      subject: t( "views.emailer.user_parent_confirmation.subject" )
+      subject: escape_unicode( t( "views.emailer.user_parent_confirmation.subject" ) )
     ) )
     reset_locale
   end
@@ -283,9 +294,14 @@ class Emailer < ActionMailer::Base
     @site_name = @site.name
     # Can't have unicode chars in email headers
     {
-      from: "#{@site.name.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').to_s} <#{@site.email_noreply}>",
+      from: "#{escape_unicode( @site.name )} <#{@site.email_noreply}>",
       reply_to: @site.email_noreply
     }
+  end
+
+  # https://stackoverflow.com/a/27991429
+  def escape_unicode( s )
+    s.to_s.chars.map { |c| c.ord > 127 ? '\u%.4x' % c.ord : c }.join
   end
 
   def set_sendgrid_headers
