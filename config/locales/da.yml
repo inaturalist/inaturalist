@@ -713,6 +713,7 @@ da:
     Du kan bruge dette til at spore deltagelse fra forskellige kilder. Du kan få adgang til disse koder, når du downloader dit projekts observationer som CSV.
   comma_separated_please: Kommasepareret, tak
   comment: kommentar
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
   comment_deleted: Kommentar slettet
   comments: Kommentarer
@@ -1859,7 +1860,6 @@ da:
   native: hjemmehørende
   native_page_url: Oprindelsesside URL
   native_to_place: "Hjemmehørende i %{place}"
-  nav_description: Lorem ipsum dolor sit amet, consectetur adipiscing Elit, sed Tempor og vitalitet, så arbejdskraft og sorg, nogle vigtige ting at gøre eiusmod. I løbet af årene, vil jeg komme, som vil nostrud aliquip ud af hendes fordelen ved motion, således at stimulus indsats, hvis det skoledistrikt og lang levetid. Vil du være en smerte i cupidatat cillum er blevet kritiseret i Duis et dolore magna flygte producerer ingen resulterende fornøjelse. Excepteur cupidatat sorte er ikke excepteur, er beroligende for sjælen, det vil sige, de er min Møje de øde den generelle skylden, at tjenesteydelser bør være
   ne_lat: NØ Bre.
   ne_lon: NØ Læn.
   near_threatened: Næsten truet
@@ -1868,7 +1868,6 @@ da:
   needs_id_: Behøver ID
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
   needs_to_be_identified: Behøver en identifikation
-  new: Ny
   new_and_noteworthy: Nyt og bemærkelsesværdigt
   new_announcement: Ny meddelelse
   new_assessment: Ny vurdering
@@ -2031,7 +2030,6 @@ da:
   obs: Obs.
   obs_cid_d: Obs FID'et
   obs_id_d: Obs ID'et
-  obscured_: sløret
   obscured: Sløret
   obscured_or_private: Sløret eller privat
   obscured_description: |
@@ -2052,7 +2050,6 @@ da:
   observation_brief_taxon_by_user: "%{taxon} af %{user}"
   observation_brief_taxon_from_place: "%{taxon} fra %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} fra %{place} af %{user}"
-  observation_photo_uploader: Observationsfoto uploader
   observations_by_category: "Observationer efter kategori"
   observations_by_app: Observationer via App
   observations_by_rank: Observationer efter rang
@@ -2060,7 +2057,6 @@ da:
   observations_by_you: "Observationer af dig"
   observations_by_you_on_date: "Observationer af dig den %{date}"
   observation_calendar_for: "Observationskalender for %{user} i %{year}"
-  observation_contest: observations konkurrence
   observation_curation: Observation kuration
   observation_date: Dato
   observation_date?: Dato?
@@ -2076,11 +2072,8 @@ da:
   observation_fields_are_additional: Observationsfelter er yderligere datafelter, som kan tilføjes til observationer.
   observation_fields_by_preferences_description: |
     Observationsfelter er lidt som tags, bortset fra at enhver som standard kan tilføje dem til din observation. Du kan ændre dette hvis du foretrækker at det kun er dig eller side kuratoren, der kan gøre dette.
-  observation_flagged: Observation markeret
-  observation_flagged_as_flag: Observation markeret som %{flag}
   observation_removed_from_the_project: "Observation fjernet fra projektet %{project}"
   observation_requirements: Krav til observationer
-  observation_rights_html: "Observation %{rights}"
   observation_rules: Observationsregler
   observation_rules_description: |
     Du kan oprette regler, der afgør hvilke observationer, der kan tilføjes til dette projekt. Det kan være regler, som begrænser observationer til et bestemt geografisk sted eller eller til én bestemt takson. Hvis du har regler der overlapper hinanden, vil observationer blive accepteret hvis én af reglerne er i regelsættet opfyldes. For eksempel, hvis du har reglerne "skal være i
@@ -2088,19 +2081,12 @@ da:
     observationer af krybdyr ELLER amfibier.
   observation_was_deleted: Observation blev slettet.
   observation_without_media: Observation uden medie
-  observation_would_like_some_help: "%{user} vil gerne have hjælp til at identificere denne!"
   observations: Observationer
   observations_: observationer
   observations_added_by_x_html: "Observationer tilføjet af %{x}"
   observations_annotated_with_annotation: "Observationer anmærket med %{annotation}"
   observations_by: Observationer af
-  observations_by_everyone: Observationer af alle
   observations_by_user: "Observationer af %{user}"
-  observations_circle_have_their_radii_scaled: |
-    Observationscirkler har deres radii skaleret proportionalt til deres
-    positionsnøjagtighed. Observationer uden positionsnøjagtighedsdata er vist
-    i mindste størrelse.
-  observations_confirmed: Observationer (bekræftet)
   observations_deleted: Observationer slettet
   observations_fields_are: |
     Observationsfelter er ekstra datafelter i forbindelse med en
@@ -2113,12 +2099,7 @@ da:
   observations_from_people_taxa_and_places_youre_following: "Observationer fra personer, steder og taksa du følger"
   observations_from_this_place: Observationer fra dette sted
   observations_from_this_project: Observationer fra dette projekt
-  observations_from_you: Observationer af dig
-  observations_have_had_their_coordinates: "observationer har fået deres koordinater flyttet til et tilfældigt punkt indenfor %{km} km, enten fordi taksonen er truet eller fordi observatøren valgte at sløre koordinaterne."
   observations_in_this_project_must: Observationer i dette projekt skal leve op til følgende kriterier
-  observations_it_may_take_a_few: observationer. Det kan tage nogle minutter.
-  observations_last500: Observationer (mindst 500)
-  observations_last_aggregated: Observationer senest indsamlet
   observations_map: Observationer / Kort
   observation_must_dotdotdot: Observation skal...
   observations_near_a_place_are: |
@@ -2127,11 +2108,9 @@ da:
     steder, der ikke minder om rektangler. Dette skyldes en begrænsning i
     vores database, som vi arbejder på at løse.
   observations_needing_curation: Observationer kræver kuration
-  observations_obscured: Observationer (sløret)
   observations_observed_this_month: Observationer <em>observed</em> denne måned, ikke tilføjet denne måned. Kom i gang!
   observations_of_relatives: Observationer af familie
   observations_of_taxon: "Observationer af %{taxon_name}"
-  observations_on_inat_check_list: "observationer på %{site_name}. Tjekliste steder, der er bekræftet, har mindst 1 bekræftet observation inden for dets område."
   observations_per_month: Observationer / Måned
   observations_removed_from_the_project: "Observationer fjernet fra dette projekt %{project}"
   observations_saved: Observation(er) gemt!
@@ -2141,27 +2120,21 @@ da:
     Tekstsøgninger kan give underlige resultater, når de kombineres med andre filtre. Hvis du vil finde observationer af en bestemt art, brug takson
     filtret.
   observations_this_year_vs_last_year: Observationer dette år vs. sidste år
-  observations_title: Observationer af alle
   observations_total: Observationer total
   observations_w: Observationer m/
   observations_w_field: Observationer m/felt
   observations_was_successfully_updated: Observation(er) blev opdateret.
-  observations_week: Observationer / Uge
   observations_widget: Observations widget
-  observations_will_revert_to_casual: Observationer vil vende tilbage til "uformel" kvalitet, hvis ovennævnte betingelser ikke er opfyldt eller
   observations_with_this_field: Observationer med dette felt
   observations_with_this_field_and_value: Observationer med dette felt og værdi
   observations_without_media: Observationer uden media
   observationcounts_refreshed: Observations antal genopfrisket
   observed: Observeret
   observed_by: Observeret af
-  observed_in_place?: Observeret ved sted
   observed_on: Observeret den
-  observed_one: observerede en
   observer: Observatør
   observers: Observatører
   observer_short: Observatør
-  observing: observerer
   occurence_status_describes_how: 'Forekomst status beskriver, hvor almindelig eller sjælden en takson er i et givent område. Se DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> flere oplysninger om terminologi </a>.'
   occurrence_status: Forekomst status
   occurrence_status_descriptions:
@@ -2180,8 +2153,6 @@ da:
     doubtful: tvivlsom
     absent: ikke til stede
   of: af
-  of_it_and_its_descendants: af det og dets efterkommere
-  of_least_concern: Mindste bekymring
   of_observations: observationer
   of_species: arter
   of_observers: observatører
@@ -2196,9 +2167,6 @@ da:
   on_: "på"
   on_date: "den %{date}"
   on_day: "på"
-  on_edit_date: "den %{editdate}"
-  on_list?: på listen
-  on_submit_date: "i %{submitdate}"
   on_your_life_list: på din livsliste
   onboarding:
     observe_panel_title: Lad os komme i gang med at indsende nogle observationer
@@ -2230,9 +2198,7 @@ da:
   one_of_your_lists: "en af dine lister..."
   only_a_project_manager_can_add: Kun en projektleder kan tilføje projekt kuratorstatus
   only_administrators_may_access_that_page: Kun administratorer kan få adgang til denne side
-  only_accepts_taxa: accepterer kun taksa
   only_an_admin_can_remove_project_users: Kun en administrator kan fjerne projekt brugere
-  only_country_state_and_county: "Kun land, stat og region tilsvarende steder vist for nu. Zoom ind for at se mindre steder."
   only_curators_can_add_edit_scientific_names: Kun kuratorer kan tilføje / redigere videnskabelige navne.
   only_curators_can_access_that_page: Kun kuratorer har adgang til denne side.
   only_files_with_10000_rows_at_a_time: Kun filer med maks. 10000 rækker ad gangen, tak
@@ -2246,12 +2212,10 @@ da:
   only_show_for_species_subspecies_varieties_etc: Vis kun for arter, underarter, varianter etc.
   only_show_taxa_fom_this_list: "Vis kun taksa fra denne liste"
   only_showing_taxa_from: viser kun taksa fra denne liste
-  only_site_curators_can_turn_on_observation_aggregation: Kun sidekuratorer kan aktivere projekt sammenlægning
   only_species: kun arter
   only_species_and_subspecies: kun arter og underarter/varianter
   only_staff_can_edit_large_places: Kun hjemmesidens personale kan redigere meget store steder
   only_staff_can_edit_standard_places: Kun hjemmesidepersonale kan redigere steder i standardhierarkiet
-  only_the_author_of_this_post_can_do_that: Kun forfatteren af dette indlæg kan gøre det. Vær ikke ond.
   only_the_owner_of_this_list_can_do_that: Kun ejeren af denne liste kan gøre det. Vær ikke ond.
   only_the_project_admin_can_delete_this_project: Kun projektadministratoren kan slette dette projekt.
   only_you: Kun dig
@@ -2259,21 +2223,14 @@ da:
   open_: Åben
   open_description: "Alle kan se koordinaterne, medmindre taksonen er truet."
   open_street_map: OpenStreetMap
-  opt_in_for_this_observation: "Tilvælg for denne observation"
-  opt_out_of_community_ids_for_obs: "Fravælg for denne observation"
   optional: valgfri
   optional_columns_note_for_any: "Valgfrie kolonner (Bemærk: for brug af enhver af disse kolonner, der skal bruges til en observation, skal de alle være til stede)"
   or: eller
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller vælg fra et højere taksa niveau"
   or_if_you_dont_want_email: "Eller hvis du bare ikke vil have nogen e-mail ..."
-  or_invite_your_friends: eller invitere dine venner
-  or_invited: eller inviteret.
   or_log_in_with_colon: "Eller log ind med:"
-  or_post_message_to_google_group: "eller sende en besked til vores Google gruppe"
   or_upload: Eller upload
-  or_you_can: "Eller du kan..."
-  or_you_can_: eller du kan
   orange: orange
   order: Orden
   order_by: Sorteret efter
@@ -2287,18 +2244,13 @@ da:
   organism_appears_captive_cultivated: Organismen fremstår som i fangenskab / dyrket
   other: andet
   other_animals: andre dyr
-  other_animals_plural:
-    one: andet dyr
-    other: andre dyr
   other_lexicons: Andre leksika
   other_listings_of_this_taxon_for_this_place: Andre fortegnelser over denne takson for dette sted
   other_names: Andre navne
   other_species_commonly_misidentified_as_this_species: Andre arter, der ofte er fejlidentificeret som denne art
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    Andre arter, der ofte er fejlidentificeret som denne art i <a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: Andre arter, der ofte er fejlidentificeret som denne art i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Anden taksa, der ofte fejlidentificeres som denne %{rank}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
-    Anden taksa, der ofte fejlidentificeres som denne %{rank} i <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Anden taksa, der ofte fejlidentificeres som denne %{rank} i <a href="%{url}">%{place}</a>
   our_blog: Vores blog
   out_of_range: Udenfor område
   output_taxon: Output takson
@@ -3439,7 +3391,6 @@ da:
   support_inaturalist: Støt iNaturalist
   suspicious_photos: Mistænkelige foto´s
   siutable_observations: Mistænkelige observationer
-  sun: Søn
   suspend_user: Suspenderet bruger
   sw_lat: SV Bre.
   sw_lon: SV Læn.
@@ -3775,7 +3726,6 @@ da:
     redigere dem som et bundt, men de skal være ret selvforklarende.
   those_observations_no_longer_exist: Disse observationer eksisterer ikke længere.
   threatened: truet
-  thu: Tor
   thumb_url: Miniature URL
   time_: tidspunkt
   time_ago: "%{time} siden"
@@ -3825,7 +3775,6 @@ da:
   try_adding_species_form: Prøv at tilføje nogle arter ved hjælp af skemaet på denne side.
   try_it_out: Prøv det
   try_wikipedia: Prøv Wikipedia?
-  tue: Tir
   twitter: Twitter
   two_thirds: 2/3 dele
   type: Indtast
@@ -4132,7 +4081,6 @@ da:
     Vi forsøgte at behandle din upload med navnet %{filename}, men det fungerede ikke. Ret venligst følgende problem(er) og prøv igen.
   weather: Vejr
   website: Hjemmeside
-  wed: Ons
   week_of_date: "Ugen med %{date}"
   welcome!: Velkommen!
   welcome_comma!: Velkommen,
@@ -6574,13 +6522,17 @@ da:
     flash:
       applications:
         create:
+          #Application as in a software application
           notice: 'Ansøgning oprettet.'
         destroy:
+          #Application as in a software application
           notice: 'Ansøgning slettet.'
         update:
+          #Application as in a software application
           notice: 'Ansøgning opdateret.'
       authorized_applications:
         destroy:
+          #Application as in a software application
           notice: 'Ansøgning tilbagekaldt.'
   wild: vild
   will_paginate:
