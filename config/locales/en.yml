@@ -777,6 +777,7 @@ en:
               You can use this to track participation from different sources. You can access these codes when downloading your project's observations as CSV.
   comma_separated_please: Comma-separated, please
   comment: comment
+  # Verb, generally a label on a button that allows the user to add a comment
   comment_: Comment
   comment_deleted: Comment deleted
   comments: Comments
@@ -2051,7 +2052,6 @@ en:
   needs_id_: Needs ID
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
   needs_to_be_identified: Needs to be identified
-  new: New
   new_and_noteworthy: New & Noteworthy
   new_announcement: New announcement
   new_assessment: New assessment
@@ -2217,7 +2217,6 @@ en:
   obs: Obs
   obs_cid_d: Obs CID'd
   obs_id_d: Obs ID'd
-  obscured_: obscured
   obscured: Obscured
   obscured_or_private: obscured or private
   obscured_description: |
@@ -2244,7 +2243,6 @@ en:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} from %{place} on %{day} by %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} from %{place} on %{day} at %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} from %{place} on %{day} at %{time} by %{user}"
-  observation_photo_uploader: Observation Photo Uploader
   observations_by_category: "Observations By category"
   observations_by_app: Observations By App
   observations_by_rank: Observations By Rank
@@ -2252,7 +2250,6 @@ en:
   observations_by_you: "Observations by you"
   observations_by_you_on_date: "Observations by you on %{date}"
   observation_calendar_for: "Observation Calendar for %{user} in %{year}"
-  observation_contest: observations contest
   observation_curation: Observation Curation
   observation_date: Date
   observation_date?: Date?
@@ -2271,11 +2268,8 @@ en:
     Observation fields are a bit like tags, except anyone can add them to your
     observation by default. Change this if you'd prefer that only you can do
     this, or only site curators.
-  observation_flagged: Observation flagged
-  observation_flagged_as_flag: Observation flagged as %{flag}
   observation_removed_from_the_project: "Observation removed from the project \"%{project}\""
   observation_requirements: Observation Requirements
-  observation_rights_html: "Observation %{rights}"
   observation_rules: Observation rules
   observation_rules_description: |
     You can choose rules to determine what observations can be added to this
@@ -2286,19 +2280,12 @@ en:
     observations of reptiles OR amphibians.
   observation_was_deleted: Observation was deleted.
   observation_without_media: Observation without media
-  observation_would_like_some_help: "%{user} would like some help identifying this!"
   observations: Observations
   observations_: observations
   observations_added_by_x_html: "Observations added by %{x}"
   observations_annotated_with_annotation: "Observations annotated with %{annotation}"
   observations_by: Observations by
-  observations_by_everyone: Observations by everyone
   observations_by_user: "Observations by %{user}"
-  observations_circle_have_their_radii_scaled: |
-    Observation circles have their radii scaled proportionally to their
-    positional accuracy. Observations without positional accuracy data are shown
-    at the minimum size.
-  observations_confirmed: Observations (confirmed)
   observations_deleted: Observations deleted.
   observations_fields_are: |
     Observation fields are extra pieces of data associated with an
@@ -2311,12 +2298,7 @@ en:
   observations_from_people_taxa_and_places_youre_following: "Observations from people, places, and taxa you're following"
   observations_from_this_place: Observations from this place
   observations_from_this_project: Observations from this project
-  observations_from_you: Observations by you
-  observations_have_had_their_coordinates: "observations have had their coordinates shifted to a random point within %{km} km, either because the taxon is threatened or because the observer chose to obscure the coordinates."
   observations_in_this_project_must: Observations in this project must meet the following criteria
-  observations_it_may_take_a_few: observations.  It may take a few minutes. 
-  observations_last500: Observations (last 500)
-  observations_last_aggregated: Observations last aggregated
   observations_map: Observations / Map
   observation_must_dotdotdot: Observation must...
   observations_near_a_place_are: |
@@ -2325,11 +2307,9 @@ en:
     places that don't resemble rectangles. This is due to a limitation with
     our database that we're working to resolve.
   observations_needing_curation: Observations Needing Curation
-  observations_obscured: Observations (obscured)
   observations_observed_this_month: Observations <em>observed</em> this month, not added this month. Get outside!
   observations_of_relatives: Observations of relatives
   observations_of_taxon: "Observations of %{taxon_name}"
-  observations_on_inat_check_list: "observations on %{site_name}. Check list places that have been confirmed have at least 1 confirmed observation within their boundaries."
   observations_per_month: Observations / Month
   observations_removed_from_the_project: "Observations removed from the project \"%{project}\""
   observations_saved: Observation(s) saved!
@@ -2340,27 +2320,21 @@ en:
     you want to find observation of a particular species, use the taxon
     filter.
   observations_this_year_vs_last_year: Observations This Year vs. Last Year
-  observations_title: Observations by Everyone
   observations_total: Observations Total
   observations_w: Observations w/
   observations_w_field: Observations w/ field
   observations_was_successfully_updated: Observation(s) was successfully updated.
-  observations_week: Observations / Week
   observations_widget: Observations Widget
-  observations_will_revert_to_casual: Observations will revert to "casual" grade if the above conditions aren't met or
   observations_with_this_field: Observations with this field
   observations_with_this_field_and_value: Observations with this field and value
   observations_without_media: Observations w/o Media
   observationcounts_refreshed: Observation counts refreshed
   observed: Observed
   observed_by: Observed by
-  observed_in_place?: observed in place
   observed_on: Observed on
-  observed_one: observed one
   observer: Observer
   observers: Observers
   observer_short: Observer
-  observing: observing
   occurence_status_describes_how: Occurence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
   occurrence_status_descriptions:
@@ -2379,8 +2353,6 @@ en:
     doubtful: doubtful
     absent: absent
   of: of
-  of_it_and_its_descendants: of it and its descendants
-  of_least_concern: Of least concern
   of_observations: observations
   of_species: species
   of_observers: observers
@@ -2395,9 +2367,6 @@ en:
   on_: "on"
   on_date: "at %{date}"
   on_day: "on"
-  on_edit_date: "on %{editdate}"
-  on_list?: on list
-  on_submit_date: "on %{submitdate}"
   on_your_life_list: on your life list
   onboarding:
       observe_panel_title: Let's Get Started by Posting Some Observations
@@ -2431,9 +2400,7 @@ en:
   one_of_your_lists: "one of your lists..."
   only_a_project_manager_can_add: Only a project manager can add project curator status
   only_administrators_may_access_that_page: Only administrators may access that page
-  only_accepts_taxa: only accepts taxa
   only_an_admin_can_remove_project_users: Only an admin can remove project users
-  only_country_state_and_county: "Only country, state, and county equivalent places shown for now. Zoom in to see smaller places."
   only_curators_can_add_edit_scientific_names: Only curators can add/edit scientific names.
   only_curators_can_access_that_page: Only curators can access that page.
   only_files_with_10000_rows_at_a_time: Only files with 10000 rows at a time, please
@@ -2447,12 +2414,10 @@ en:
   only_show_for_species_subspecies_varieties_etc: Only show for species, subspecies, varieties, etc.
   only_show_taxa_fom_this_list: "Only show taxa from this list"
   only_showing_taxa_from: only showing taxa from this list
-  only_site_curators_can_turn_on_observation_aggregation: Only site curators can turn on project aggregation
   only_species: only species
   only_species_and_subspecies: only species and subspecies/varieties
   only_staff_can_edit_large_places: Only site staff can edit very large places
   only_staff_can_edit_standard_places: Only site staff can edit places in the standard hierarchy
-  only_the_author_of_this_post_can_do_that: Only the author of this post can do that. Don't be evil.
   only_the_owner_of_this_list_can_do_that: Only the owner of this list can do that.  Don't be evil.
   only_the_project_admin_can_delete_this_project: Only the project admin can delete this project.
   only_you: Only you
@@ -2460,21 +2425,14 @@ en:
   open_: Open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
   open_street_map: OpenStreetMap
-  opt_in_for_this_observation: "Opt in for this observation"
-  opt_out_of_community_ids_for_obs: "Opt out of the community identification for this observation"
   optional: optional
   optional_columns_note_for_any: "Optional columns (note: for any of these columns to be used in an observation, they must all be present)"
   or: or
   or_all_caps: OR
   or_choose_high_level_taxa: "... or choose from some high-level taxa"
   or_if_you_dont_want_email: "Or if you just don't want any email..."
-  or_invite_your_friends: or invite your friends
-  or_invited: or invited.
   or_log_in_with_colon: "Or log in with:"
-  or_post_message_to_google_group: "or post a message to our Google Group:"
   or_upload: Or upload
-  or_you_can: "Or you can..."
-  or_you_can_: or you can
   orange: orange
   order: Order
   order_by: Order by
@@ -2485,23 +2443,33 @@ en:
   originally_imported_from_url_html: "Originally imported from <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Original page URL for this photo."
   original_rights_holder: Original rights holder
-  original_url: Original URL
   original_url_for_this_map: Original URL for this map
   organism_appears_captive_cultivated: Organism Appears Captive / Cultivated
   other: Other
   other_animals: other animals
-  other_animals_plural:
-    one: other animal
-    other: other animals
   other_lexicons: Other Lexicons
   other_listings_of_this_taxon_for_this_place: Other listings of this taxon for this place
   other_names: Other Names
   other_species_commonly_misidentified_as_this_species: Other species commonly misidentified as this species
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    Other species commonly misidentified as this species in <a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: Other species commonly misidentified as this species in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_complex: Other taxa commonly misidentified as this complex
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: Other taxa commonly misidentified as this complex in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genus: Other taxa commonly misidentified as this genus
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: Other taxa commonly misidentified as this genus in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genushybrid: Other taxa commonly misidentified as this genushybrid
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Other taxa commonly misidentified as this genushybrid in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_hybrid: Other taxa commonly misidentified as this hybrid
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Other taxa commonly misidentified as this hybrid in <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Other taxa commonly misidentified as this %{rank}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
-    Other taxa commonly misidentified as this %{rank} in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Other taxa commonly misidentified as this %{rank} in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_section: Other taxa commonly misidentified as this section
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: Other taxa commonly misidentified as this section in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_species: Other taxa commonly misidentified as this species
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: Other taxa commonly misidentified as this species in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subgenus: Other taxa commonly misidentified as this subgenus
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Other taxa commonly misidentified as this subgenus in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subsection: Other taxa commonly misidentified as this subsection
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Other taxa commonly misidentified as this subsection in <a href="%{url}">%{place}</a>
   our_blog: Our Blog
   out_of_range: Out of range
   output_taxon: Output taxon
@@ -2536,7 +2504,7 @@ en:
   per_month: Per Month
   per_week: Per Week
   person: Person
-  personal_message: Personal Pessage
+  personal_message: Personal Message
   personal_message_description: Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
   per_page: "Per page"
   permalink: Permalink
@@ -3696,7 +3664,6 @@ en:
   support_inaturalist: Support iNaturalist
   suspicious_photos: Suspicious photos
   siutable_observations: suitable observations
-  sun: Sun
   suspend_user: Suspend user
   sw_lat: SW Lat.
   sw_lon: SW Lon.
@@ -4054,7 +4021,6 @@ en:
     editing them as a batch, but they should be pretty self-explanatory.
   those_observations_no_longer_exist: Those observations no longer exist.
   threatened: Threatened
-  thu: Thu
   thumb_url: Thumb URL
   time_: time
   time_ago: "%{time} ago"
@@ -4105,7 +4071,6 @@ en:
   try_adding_species_form: Try adding some species using the form on this page.
   try_it_out: Try it out
   try_wikipedia: Try Wikipedia?
-  tue: Tue
   twitter: Twitter
   two_thirds: 2/3rds
   type: Type
@@ -4431,7 +4396,6 @@ en:
     Please fix the following problem(s) and try again.
   weather: Weather
   website: Website
-  wed: Wed
   week_of_date: "Week of %{date}"
   welcome!: Welcome!
   welcome_comma!: Welcome,
@@ -7282,13 +7246,17 @@ en:
     flash:
       applications:
         create:
+          # Application as in a software application
           notice: 'Application created.'
         destroy:
+          # Application as in a software application
           notice: 'Application deleted.'
         update:
+          # Application as in a software application
           notice: 'Application updated.'
       authorized_applications:
         destroy:
+          # Application as in a software application
           notice: 'Application revoked.'
   i18n:
     inflections:

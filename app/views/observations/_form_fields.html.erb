@@ -128,10 +128,12 @@
         <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
           <p><%= t :changing_the_geoprivacy %></p>
           <dl>
-            <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
-              <dt><%= t(privacy) %></dt>
-              <dd><%= t(description) %></dd>
-            <% end %>
+            <dt><%= t(:open) %></dt>
+            <dd><%= t(:open_description) %></dd>
+            <dt><%= t(:obscured) %></dt>
+            <dd><%= t(:obscured_description) %></dd>
+            <dt><%= t(:private) %></dt>
+            <dd><%= t(:private_description) %></dd>
           </dl>
         </div>
       </div>
