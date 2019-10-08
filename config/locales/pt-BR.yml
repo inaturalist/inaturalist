@@ -680,6 +680,7 @@ pt-BR:
     Este código pode ser aplicado para rastrear a utilização de diferentes fontes nas participações, e estará disponível ao baixar os dados das observações do projeto como CSV.
   comma_separated_please: Por favor separe com vírgulas
   comment: comentário
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentário
   comment_deleted: Comentário apagado
   comments: Comentários
@@ -1817,7 +1818,6 @@ pt-BR:
   needs_id_: Precisa de identificação
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
   needs_to_be_identified: Precisa ser identificado
-  new: Novo
   new_and_noteworthy: Novo e Notável
   new_announcement: Novo anúncio
   new_assessment: Nova avaliação
@@ -1976,7 +1976,6 @@ pt-BR:
   number_of_observers: "Número de observadores"
   number_selected: "# selecionado"
   obs_id_d: Obs. identificada
-  obscured_: oculto
   obscured: Oculto
   obscured_or_private: oculta ou privada
   obscured_description: |
@@ -1986,7 +1985,6 @@ pt-BR:
   observation_added: Observação adicionada.
   observation_added_to_the_project: "Observação adicionada ao projeto \"%{project}\""
   observation_aggregation: Observações associadas
-  observation_photo_uploader: Carregador de Observações por Fotos
   observations_by_category: "Observações por categoria"
   observations_by_app: Observações por App
   observations_by_rank: Observações classificadas
@@ -1994,7 +1992,6 @@ pt-BR:
   observations_by_you: "Suas observações"
   observations_by_you_on_date: "Observações suas em %{date}"
   observation_calendar_for: "Calendário de Observação de %{user} em %{year}"
-  observation_contest: concurso de observações
   observation_curation: Moderar observações
   observation_date: Data
   observation_date?: Data?
@@ -2004,27 +2001,19 @@ pt-BR:
   observation_fields_are_additional: Campos de Observação são dados adicionais que podem ser somados às observações.
   observation_fields_by_preferences_description: |
     Campos de observação são como marcações, com exceção de que qualquer pessoa pode adicionar eles em suas observações padrão. Mude isto se você prefere que somente você faça isto, ou somente os coordenadores do site.
-  observation_flagged: Observação marcada
-  observation_flagged_as_flag: Observação marcada como %{flag}
   observation_removed_from_the_project: "Observação removida do projeto \"%{project}\""
   observation_requirements: requisitos de observação
-  observation_rights_html: "Observação %{rights}"
   observation_rules: Regras de Observação
   observation_rules_description: |
     Você pode escolher regras para determinar quais observações podem ser adicionadas neste projeto, por exemplo limitando as observações para lugares específicos. Se você tem mais de uma regra para um tipo específico de regra, observações vão ser validadas se passarem por elas. Por exemplo, se você determinar nas regras "deve ser Anfíbio" e "deve ser Réptil", então o projeto aceitará observações de répteis OU anfíbios.
   observation_was_deleted: Observação foi apagada.
   observation_without_media: Observação sem multimédia
-  observation_would_like_some_help: "%{user} gostaria de ajuda para identificar isto!"
   observations: Observações
   observations_: observações
   observations_added_by_x_html: "Observações adicionadas por %{x}"
   observations_annotated_with_annotation: "Observações registradas com %{annotation}"
   observations_by: Observações por
-  observations_by_everyone: Observações de todos
   observations_by_user: "Observações de %{user}"
-  observations_circle_have_their_radii_scaled: |
-    Os círculos de ocorrência de espécies possuem raio proporcional a acurácia de sua localização. Observações com baixa acurácia exibem o tamanho mínimo.
-  observations_confirmed: Observações (confirmadas)
   observations_deleted: Observações apagadas.
   observations_fields_are: |
     Campos de observações são pedaços extras de dados associados com uma observação, por exemplo o número de indivíduos observados, a descrição do habitat, ou qualquer coisa que desejar! Projetos também podem especificar campos que desejam ser preenchidos.
@@ -2034,22 +2023,15 @@ pt-BR:
   observations_from_people_taxa_and_places_youre_following: "Observações de pessoas, locais, e táxons que você segue"
   observations_from_this_place: Observações deste local
   observations_from_this_project: Observações deste projeto
-  observations_from_you: Suas observações
-  observations_have_had_their_coordinates: "observações tiveram as coordenadas ajustadas para um ponto qualquer dentro de %{km} km, ou porque a espécie está ameaçada, ou porque o observador escolheu ocultar as coordenadas."
   observations_in_this_project_must: As observações deste projeto têm de seguir os critérios seguintes
-  observations_it_may_take_a_few: observações. Isto pode levar alguns minutos.
-  observations_last500: Observações (últimas 500)
-  observations_last_aggregated: Últimas observações associadas
   observations_map: Observações / Mapa
   observation_must_dotdotdot: Observação deve...
   observations_near_a_place_are: |
     Observações "próximas" de um lugar estão dentro de um retângulo que demarca os limites desse lugar, o que pode resultar em um resultado impreciso para lugares que são muito diferentes de retângulos. Isto acontece devido uma limitação da nossa base de dados, no entanto estamos trabalhando para resolver.
   observations_needing_curation: Observações que precisam de moderação
-  observations_obscured: Observações (ocultas)
   observations_observed_this_month: Observações <em>observadas</em> este mês, não foram adicionadas. Vá la fora e faça mais observações!
   observations_of_relatives: Observações de parentes
   observations_of_taxon: "Observações de %{taxon_name}"
-  observations_on_inat_check_list: "observações em %{site_name}. As listas de verificação dos locais que foram confirmadas tem ao menos uma observação confirmada dentro de seus limites."
   observations_per_month: Observações / Mês
   observations_removed_from_the_project: "Observações removidas do projeto \"%{project}\""
   observations_saved: Observação/Observações salvas!
@@ -2058,27 +2040,21 @@ pt-BR:
   observations_text_search_warning: |
     Pesquisas de texto podem resultar em resultados estranhos quando combinadas com outros filtros. Se você deseja encontrar observações de uma espécie em particular, utilize o filtro de táxon.
   observations_this_year_vs_last_year: Observações deste ano vs. último ano
-  observations_title: Observações de Todos
   observations_total: Total de Observações
   observations_w: Observações com
   observations_w_field: Campo de Observação
   observations_was_successfully_updated: A(s) observação(ões) foram atualizadas com sucesso.
-  observations_week: Observações / Semana
   observations_widget: Widget de Observações
-  observations_will_revert_to_casual: As observações serão convertidas ao estado de "casuais" caso não atendam as condições acima ou
   observations_with_this_field: Observações com este campo
   observations_with_this_field_and_value: Observações com este campo e valor
   observations_without_media: Observações sem mídia
   observationcounts_refreshed: Contagem de observações atualizada
   observed: Observado
   observed_by: Observado por
-  observed_in_place?: observado no local
   observed_on: Observado em
-  observed_one: observado um(a)
   observer: Obsservador
   observers: Observadores
   observer_short: Observador
-  observing: observando
   occurence_status_describes_how: 'Status de ocorrência descreve o quanto comum ou raro é um táxon em uma área pré-definida. Veja DarwinCore para <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">maiores informações sobre esta terminologia</a>.'
   occurrence_status: Status de ocorrência
   occurrence_status_descriptions:
@@ -2096,8 +2072,6 @@ pt-BR:
     doubtful: duvidoso
     absent: ausente
   of: de
-  of_it_and_its_descendants: deste e de seus descendentes
-  of_least_concern: De pouca importância
   of_observations: observações
   of_species: espécies
   of_observers: observadores
@@ -2111,9 +2085,6 @@ pt-BR:
   on_: "no"
   on_date: "em %{date}"
   on_day: "no"
-  on_edit_date: "no %{editdate}"
-  on_list?: na lista
-  on_submit_date: "em %{submitdate}"
   on_your_life_list: em sua lista
   onboarding:
     observe_panel_title: Vamos começar adicionando algumas observações
@@ -2144,9 +2115,7 @@ pt-BR:
   one_of_your_lists: "uma de suas listas"
   only_a_project_manager_can_add: Apenas um moderador de projetos pode adicionar privilégios de coordenador a um usuário.
   only_administrators_may_access_that_page: Apenas administradores tem acesso a esta página
-  only_accepts_taxa: aceita apenas táxons
   only_an_admin_can_remove_project_users: Apenas administradores podem remover membros do projeto
-  only_country_state_and_county: "Apenas país, estado e distritos podem ser visualizados no momento. Utilize o soo para ver locais em menor escala."
   only_curators_can_add_edit_scientific_names: Somente coordenadores podem adicionar/editar nomes científicos.
   only_curators_can_access_that_page: Somente administradores podem acessar esta página.
   only_files_with_10000_rows_at_a_time: Somente um arquivo com 10000 linhas por vez, por favor
@@ -2160,33 +2129,24 @@ pt-BR:
   only_show_for_species_subspecies_varieties_etc: Mostrar somente espécies, subespécies, variedades, entre outros.
   only_show_taxa_fom_this_list: "Mostrar somente táxons desta lista"
   only_showing_taxa_from: mostrar somente táxons desta lista
-  only_site_curators_can_turn_on_observation_aggregation: A agregação de projetos pode ser ativada apenas pelos administradores do site
   only_species: apenas espécies
   only_species_and_subspecies: apenas espécies e subespécies/variedades
   only_staff_can_edit_large_places: Somente funcionários do site podem editar lugares muito grandes
   only_staff_can_edit_standard_places: Somente a equipe do site pode editar lugares na hierarquia padrão
-  only_the_author_of_this_post_can_do_that: Somente o autor desta postagem pode fazer isso. Não seja mal.
   only_the_owner_of_this_list_can_do_that: Somente o proprietário desta lista pode fazer isso. Não seja mal.
   only_the_project_admin_can_delete_this_project: Somente o administrador deste projeto pode apagá-lo.
   only_you: Só você
   open: abrir
   open_: Abrir
   open_description: "Qualquer um pode ter acesso as coordenadas a não ser que o táxon esteja em perigo."
-  opt_in_for_this_observation: "Opine sobre esta observação"
-  opt_out_of_community_ids_for_obs: "Opte por sair da comunidade de identificação para esta observação"
   optional: opcional
   optional_columns_note_for_any: "Colunas opcionais (nota: para qualquer uma destas colunas ser utilizada em uma observação, todas devem estar presentes)"
   or: ou
   or_all_caps: OU
   or_choose_high_level_taxa: "... ou escolha a partir de um táxon de alto nível"
   or_if_you_dont_want_email: "Ou se você simplesmente não quer receber nenhum email..."
-  or_invite_your_friends: ou convide seus amigos
-  or_invited: ou convidados.
   or_log_in_with_colon: "Ou entre com:"
-  or_post_message_to_google_group: "ou poste uma mensagem para o seu grupo no Google:"
   or_upload: Ou carregue
-  or_you_can: "Ou você pode..."
-  or_you_can_: ou você pode
   orange: laranja
   order: Ordem
   order_by: Ordenar por
@@ -2196,23 +2156,17 @@ pt-BR:
   originally_imported_from_url_html: "Originalmente importado por <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Endereço da página original desta foto"
   original_rights_holder: Titular original dos direitos
-  original_url: URL original
   original_url_for_this_map: URL original para este mapa
   organism_appears_captive_cultivated: Aparentemente o organismo é doméstico / cultivado
   other: Outro
   other_animals: outros animais
-  other_animals_plural:
-    one: outro animal
-    other: outros animais
   other_lexicons: Outros Léxicos
   other_listings_of_this_taxon_for_this_place: Outros registros deste táxon para este local
   other_names: Outros Nomes
   other_species_commonly_misidentified_as_this_species: Outras espécies que costumam ser confundidas com esta
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    Outras espécies que costumam ser confundidas com esta em <a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: Outras espécies que costumam ser confundidas com esta em <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Outro taxa comumente identificado erroneamente como este %{rank}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
-    Outro taxa comumente identificado erroneamente como este %{rank} no <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Outro taxa comumente identificado erroneamente como este %{rank} no <a href="%{url}">%{place}</a>
   our_blog: Nosso Blog
   out_of_range: Fora de alcance
   output_taxon: Taxón de saída
@@ -3291,7 +3245,6 @@ pt-BR:
   support_inaturalist: Apoiar iNaturalist
   suspicious_photos: Fotos suspeitas
   siutable_observations: observações adequadas
-  sun: Dom
   suspend_user: Suspender usuário
   sw_lat: Lat. S.O.
   sw_lon: Lon. S.O.
@@ -3606,7 +3559,6 @@ pt-BR:
     Isto é o básico sobre adicionar observações! Existem muitas outras coisas que você pode fazer, como por exemplo pesquisar e filtrar observações ou editar elas em massa, mas isto deve ser simples de explorar sozinho.
   those_observations_no_longer_exist: Estas observações não existem mais.
   threatened: Ameaçado
-  thu: Qui
   thumb_url: URL da Miniatura
   time_: horário
   time_ago: "há %{time}"
@@ -3656,7 +3608,6 @@ pt-BR:
   try_adding_species_form: Tente adicionar alguma espécie usando o formulário desta página.
   try_it_out: Experimente
   try_wikipedia: Deseja tentar com Wikipédia?
-  tue: Ter
   two_thirds: dois terços
   type: Tipo
   type_a_name_and_click: Digite um nome e clique na busca
@@ -3961,7 +3912,6 @@ pt-BR:
     Por favor corrija o seguinte problema(s) e tente novamente.
   weather: Tempo
   website: Site
-  wed: Qua
   week_of_date: "Semana de %{date}"
   welcome!: Bem vindo!
   welcome_comma!: Bem vindo,
@@ -6043,13 +5993,17 @@ pt-BR:
     flash:
       applications:
         create:
+          #Application as in a software application
           notice: 'Aplicativo criado.'
         destroy:
+          #Application as in a software application
           notice: 'Aplicativo excluído.'
         update:
+          #Application as in a software application
           notice: 'Aplicação atualizada.'
       authorized_applications:
         destroy:
+          #Application as in a software application
           notice: 'Aplicativo revogado.'
   wild: Selvagem
   will_paginate:
