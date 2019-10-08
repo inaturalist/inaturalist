@@ -243,6 +243,7 @@ cs:
   amphibians: obojživelníci
   and: a
   and_other_taxa: "&amp; Další taxony"
+  android: Android
   animals: Zvířata
   annotation: Anotace
   annotations: Anotace
@@ -524,6 +525,7 @@ cs:
     Seznam tracking kódů oddělených čárkou. Přidejte, pokud chcete připojit tracking kód při zadávání osob do formuláře nového pozorování, např. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123. Toto můžete využít při sledování účasti z různých zdrojů. Ke kódům máte přístup při stahování pozorování v projektu jako CSV.
   comma_separated_please: Oddělte čárkami prosím.
   comment: komentář
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentář
   comment_deleted: komentář smazán
   comments: Komentáře
@@ -1633,7 +1635,6 @@ cs:
   needs_id_: Nutné ID
   needs_id_expandable_html: "<span class='full'>Nutné </span>ID"
   needs_to_be_identified: Musí být identifikován
-  new: Nový
   new_and_noteworthy: Nové a pozoruhodné
   new_announcement: Nové oznámení
   new_assessment: Nové hodnocení
@@ -1794,7 +1795,6 @@ cs:
   number_selected: "# vybráno"
   obs: Skr
   obs_id_d: ID pozorování
-  obscured_: skrytý
   obscured: Skrytý
   obscured_or_private: skrytý nebo soukromý
   obscured_description: |
@@ -1804,7 +1804,6 @@ cs:
   observation_added: Pozorování přidáno.
   observation_added_to_the_project: "Pozorování přidáno k projektu \"%{project}\""
   observation_aggregation: Seskupení pozorování
-  observation_photo_uploader: Fotka z pozorování vložena uživatelem
   observations_by_category: "Pozorování podle kategorie"
   observations_by_app: Pozorování podle aplikace
   observations_by_rank: Pozoování podle pořadí
@@ -1812,37 +1811,30 @@ cs:
   observations_by_you: "Vaše pozorování"
   observations_by_you_on_date: "Vaše pozorování ze dne %{date}"
   observation_calendar_for: "Kalendář pozorování uživatele %{user} v roce %{year}"
-  observation_contest: soutěž pozorování
   observation_curation: Správa pozorování
   observation_date: Datum
   observation_date?: Datum?
   observation_field: Pole pozorování
   observation_field_details: Podrobnosti pole pozorování
+  observation_field_type_date: Datum
+  observation_field_type_dna: DNA
   observation_fields: Pole pozorování
   observation_fields_are_additional: Pole pozorování jsou dodatečná pole údajů, které lze přidat k pozorování.
   observation_fields_by_preferences_description: |
     Pole pozorování jsou trochu podobné tagům s tím rozdílem, že je standardně může k vašemu pozorování přidat kdokoliv. Pokud chcete, abyste tuto možnost měli jen vy nebo kurátoři stránky, proveďte změnu nastavení.
-  observation_flagged: Pozorování označeno
-  observation_flagged_as_flag: Pozorování označeno jako %{flag}
   observation_removed_from_the_project: "Pozorování odebráno z projektu \"%{project}\""
   observation_requirements: Požadavky pozorování
-  observation_rights_html: "Pozorování %{rights}"
   observation_rules: Pravidla pozorování
   observation_rules_description: |
     Můžete si zvolit pravidla, která určí, jaká pozorování lze k tomuto projektu přidat, například můžete pozorování omezit na určité místo nebo taxon. Pokud máte pro jeden typ pravidla více než jedno pravidlo, budou pozorování platná v případě, že bude splněno některé pravidlo. Pokud máte například nastavena pravidla „musí být obojživelník“ a „musí být plaz“, přijme projekt pozorování plazů NEBO obojživelníků.
   observation_was_deleted: Pozorování bylo smazáno.
   observation_without_media: Pozorování bez média
-  observation_would_like_some_help: "Uživatel %{user} by chtěl pomoct s touto identifikací!"
   observations: Pozorování
   observations_: pozorování
   observations_added_by_x_html: "Pozorování přidána uživatelem %{x}"
   observations_annotated_with_annotation: "Anotace pozorování %{annotation}"
   observations_by: Pozorování uživatele
-  observations_by_everyone: Pozorování všech uživatelů
   observations_by_user: "Pozorování uživatele %{user}"
-  observations_circle_have_their_radii_scaled: |
-    Poloměry okruhů pozorování odpovídají přesnosti jejich umístění. Pozorování bez údajů o přesném umístění jsou zobrazována v minimální velikosti.
-  observations_confirmed: Pozorování (potvrzená)
   observations_deleted: Pozorování byla smazána.
   observations_fields_are: |
     Pole pozorování jsou doplňující údaje související s pozorováním, například počet pozorovaných jedinců, popis prostředí nebo cokoliv chcete! Jednotlivé projekty mohou také specifikovat pole, jejichž vyplnění požadují.
@@ -1852,22 +1844,15 @@ cs:
   observations_from_people_taxa_and_places_youre_following: "Pozorování týkající se lidí, míst a taxonů, které sledujete"
   observations_from_this_place: Pozorování z tohoto místa
   observations_from_this_project: Pozorování z tohoto projektu
-  observations_from_you: Vaše pozorování
-  observations_have_had_their_coordinates: "souřadnice pozorování byly přesunuty do náhodného bodu v okruhu %{km} km buď proto, že je taxon ohrožený nebo proto, že si pozorovatel přál souřadnice skrýt."
   observations_in_this_project_must: Pozorování v tomto projektu musí splňovat následující kritéria
-  observations_it_may_take_a_few: pozorování. Může to pár minut trvat.
-  observations_last500: Pozorování (posledních 500)
-  observations_last_aggregated: Naposledy seskupená pozorování
   observations_map: Pozorování / Mapa
   observation_must_dotdotdot: Pozorování musí...
   observations_near_a_place_are: |
     Pozorování „poblíž“ místa jsou v pravoúhlém čtyřúhelníku okolo hranice místa, takže mohou vzniknout nepřesné výsledky pro místa, která nemají tvar pravoúhlého čtyřúhelníku. To je způsobeno omezením naší databáze, na jehož řešení pracujeme.
   observations_needing_curation: Pozorování vyžadující správu
-  observations_obscured: Pozorování (skrytá)
   observations_observed_this_month: Pozorování <em>provedená</em> tento měsíc, nepřidaná tento měsíc. Běžte ven!
   observations_of_relatives: Pozorování příbuzných
   observations_of_taxon: "Pozorování %{taxon_name}"
-  observations_on_inat_check_list: "pozorování na %{site_name}. Místa na seznamu, která byla potvrzena, mají na svém území alespoň 1 potvrzené pozorování."
   observations_per_month: Pozorování / Měsíc
   observations_removed_from_the_project: "Pozorování odebraná z projektu \"%{project}\""
   observations_saved: Pozorování uloženo/a!
@@ -1875,27 +1860,21 @@ cs:
   observations_text_search_warning: |
     Vyhledávání textu v kombinaci s dalšími filtry může ukazovat zvláštní výsledky. Pokud hledáte pozorování určitého druhu, použijte filtr taxonů.
   observations_this_year_vs_last_year: Pozorování letos v porovnání s minulým rokem
-  observations_title: Pozorování všech uživatelů
   observations_total: Pozorování celkem
   observations_w: Pozorování s
   observations_w_field: Pole pozorování s
   observations_was_successfully_updated: Pozorování bylo/a úspěšně aktualizováno/a.
-  observations_week: Pozorování / Týden
   observations_widget: Widget pozorování
-  observations_will_revert_to_casual: Pozorování se vrátí na úroveň „běžné“, pokud nebudou splněny výše uvedené podmínky, nebo
   observations_with_this_field: Pozorování s tímto polem
   observations_with_this_field_and_value: Pozorování s tímto polem a hodnotou
   observations_without_media: Pozorování bez médií
   observationcounts_refreshed: Počet pozorování znovu načten
   observed: Pozorováno
   observed_by: Pozorováno uživatelem
-  observed_in_place?: pozorováno v místě
   observed_on: Pozorováno dne
-  observed_one: pozorován jeden
   observer: Pozorovatel
   observers: Pozorovatelé
   observer_short: Pozorovatel
-  observing: pozorující
   occurence_status_describes_how: 'Status výskytu uvádí, jak běžně nebo zřídka se taxon v dané oblasti vyskytuje.  Více informací k terminologii najdete v DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"></a>.'
   occurrence_status: Status výskytu
   occurrence_status_descriptions:
@@ -1914,8 +1893,6 @@ cs:
     doubtful: nepravděpodobný
     absent: nepřítomný
   of: z
-  of_it_and_its_descendants: z tohoto a následných
-  of_least_concern: Nejméně obávaný
   of_observations: pozorování
   of_species: druh
   of_observers: pozorovatelé
@@ -1930,9 +1907,6 @@ cs:
   on_: "na"
   on_date: "dne %{date}"
   on_day: "dne"
-  on_edit_date: "dne %{editdate}"
-  on_list?: v seznamu
-  on_submit_date: "dne %{submitdate}"
   on_your_life_list: na vašem seznamu života
   onboarding:
     observe_panel_title: Začněme odesláním nějakých pozorování
@@ -1963,9 +1937,7 @@ cs:
   one_of_your_lists: "jeden z vašich seznamů..."
   only_a_project_manager_can_add: Status kurátora projektu může přidat pouze vedoucí projektu
   only_administrators_may_access_that_page: K této stránce mají přístup pouze správci
-  only_accepts_taxa: přijímá pouze taxony
   only_an_admin_can_remove_project_users: Uživatele projektu může odebrat pouze správce
-  only_country_state_and_county: "Aktuálně se zobrazuje pouze země, stát a odpovídající místa. Pro zobrazení menších oblastí použijte přiblížení."
   only_curators_can_add_edit_scientific_names: Vědecké názvy mohou přidávat/editovat pouze kurátoři.
   only_curators_can_access_that_page: K této stránce mají přístup pouze kurátoři.
   only_files_with_10000_rows_at_a_time: Vkládejte prosím pouze soubory s maximálně 10000 řádky
@@ -1979,31 +1951,22 @@ cs:
   only_show_for_species_subspecies_varieties_etc: Zobrazit pouze pro druhy, poddruhy, odrůdy atd.
   only_show_taxa_fom_this_list: "Zobrazit pouze taxony z tohoto seznamu"
   only_showing_taxa_from: zobrazeny pouze taxony z tohoto seznamu
-  only_site_curators_can_turn_on_observation_aggregation: Seskupení projektů mohou povolit pouze kurátoři stránky
   only_species: jenom druhy
   only_species_and_subspecies: jenom druhy a poddruhy/odrůdy
-  only_the_author_of_this_post_can_do_that: Tento krok může provést jen autor tohoto příspěvku. Nebuďte zlí.
   only_the_owner_of_this_list_can_do_that: Tento krok může provést pouze majitel tohoto seznamu. Nebuďte zlí.
   only_the_project_admin_can_delete_this_project: Tento projekt může smazat pouze správce projektu.
   only_you: Jen vy
   open: otevřený
   open_: Otevřený
   open_description: "Souřadnice uvidí všichni, pokud není taxon ohrožený."
-  opt_in_for_this_observation: "Vybrat pro toto pozorování"
-  opt_out_of_community_ids_for_obs: "Zakázat komunitní identifikaci pro toto pozorování"
   optional: nepovinné
   optional_columns_note_for_any: "Nepovinné sloupce (poznámka: aby mohly být tyto sloupce použity pro pozorování, musí být všechny přítomné)"
   or: nebo
   or_all_caps: NEBO
   or_choose_high_level_taxa: "... nebo vybrat z taxonů vyšší úrovně"
   or_if_you_dont_want_email: "Nebo pokud nechcete žádné e-maily..."
-  or_invite_your_friends: nebo pozvěte své přátele
-  or_invited: nebo pozvaní.
   or_log_in_with_colon: "Nebo se přihlaste pomocí:"
-  or_post_message_to_google_group: "nebo poslat zprávu naší skupině Google Group:"
   or_upload: Nebo nahrát
-  or_you_can: "Nebo můžete..."
-  or_you_can_: nebo můžete
   orange: oranžový
   order: Řadit
   order_by: Řadit podle
@@ -2014,7 +1977,6 @@ cs:
   originally_imported_from_url_html: "Původně importováno z <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Původní URL stránky pro tuto fotku."
   original_rights_holder: Původní držitel práv
-  original_url: Původní adresa URL
   original_url_for_this_map: Původní URL pro tuto mapu
   organism_appears_captive_cultivated: Organismus žije v zajetí / pěstuje se
   other: Ostatní
@@ -2023,11 +1985,9 @@ cs:
   other_listings_of_this_taxon_for_this_place: Jiné záznamy o tomto taxonu z tohoto místa
   other_names: Další jména
   other_species_commonly_misidentified_as_this_species: Další druhy často chybně identifikované jako tento druh
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    Další druhy často chybně identifikované jako tento druh v <a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: Další druhy často chybně identifikované jako tento druh v <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Ostatní taxony běžně chybně označeny jako tento %{rank}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
-    Ostatní taxony běžně chybně označeny jako %{rank}v<a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Ostatní taxony běžně chybně označeny jako %{rank}v<a href="%{url}">%{place}</a>
   our_blog: Náš blog
   out_of_range: Mimo dosah
   output_taxon: Výstupní taxon
@@ -3078,7 +3038,6 @@ cs:
   support_inaturalist: Podpora iNaturalist
   suspicious_photos: Podezřelé fotky
   siutable_observations: vhodná pozorování
-  sun: ne
   suspend_user: Vyloučit uživatele
   sw_lat: z. d. JZ
   sw_lon: z. d. JZ
@@ -3334,7 +3293,6 @@ cs:
     Toto jsou základy pro přidání pozorování! Můžete udělat spoustu dalších věcí, například prohledávat nebo filtrovat vaše pozorování nebo je editovat jako sérii, všechno by ale mělo být jasné.
   those_observations_no_longer_exist: Tato pozorování už neexistují.
   threatened: ohrožený
-  thu: čt
   thumb_url: Adresa URL
   time_: čas
   time_ago: "před %{time}"
@@ -3384,7 +3342,6 @@ cs:
   try_adding_species_form: Zkuste přidat některé druhy pomocí formuláře na této stránce.
   try_it_out: Vyzkoušejte to
   try_wikipedia: Chcete zkusit Wikipedii?
-  tue: út
   twitter: Twitter
   two_thirds: 2/3
   type: Psát
@@ -3672,7 +3629,6 @@ cs:
     Pokusili jsme se zpracovat váš nahraný příspěvek s názvem %{filename}, ale nepodařilo se to. Opravte prosím následující problém(y) a zkuste to znovu.
   weather: Počasí
   website: Webová stránka
-  wed: st
   week_of_date: "Týden %{date}"
   welcome!: Vítejte!
   welcome_comma!: Vítejte,
@@ -5110,6 +5066,11 @@ cs:
       submit: Uložit %{model}
       update: Aktualizovat %{model}
   number:
+    currency:
+      format:
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
     human:
       decimal_units:
         units:
@@ -5392,13 +5353,17 @@ cs:
     flash:
       applications:
         create:
+          #Application as in a software application
           notice: 'Aplikace vytvořena.'
         destroy:
+          #Application as in a software application
           notice: 'Aplikace vymazána.'
         update:
+          #Application as in a software application
           notice: 'Aplikace byla aktualizována.'
       authorized_applications:
         destroy:
+          #Application as in a software application
           notice: 'Aplikace zrušena.'
   wild: divoký
   will_paginate:
