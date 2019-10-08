@@ -366,6 +366,7 @@ lb:
   combine: Combinéieren
   comma_separated_please: W.e.g. mat Kommaen trennen
   comment: Bemierkung
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Bemierkung
   comment_deleted: Bemierkung geläscht
   comments: Bemierkungen
@@ -853,7 +854,6 @@ lb:
   names_for_taxon_html: "Nimm fir %{taxon}"
   needs_id_: Brauch eng ID
   needs_to_be_identified: Muss identifizéiet ginn
-  new: Nei
   new_and_noteworthy: Nei & Bemierkenswäert
   new_announcement: Nei Ukënnegung
   new_comment_on_a_parent_by_user_link: Nei Bemierkung iwwer @vow_or_con{vow:an|a} %{parent} vum %{user_link}
@@ -939,14 +939,12 @@ lb:
   observations_by_you_on_date: "Observatioune vun Iech de(n) %{date}"
   observation_date: Datum
   observation_date?: Datum?
-  observation_flagged: O bservatioun markéiert
   observation_was_deleted: Observatioun gouf geläscht.
   observation_without_media: Observatioun ouni Medien
   observations: Observatiounen
   observations_: Observatiounen
   observations_by: Observatioune vum
   observations_by_user: "Observatioune vum %{user}"
-  observations_confirmed: Observatiounen (confirméiert)
   observations_deleted: Observatioune goufe geläscht.
   observations_for: Observatioune fir
   observations_for_project: "Observatioune fir %{project}"
@@ -954,13 +952,10 @@ lb:
   observations_from_people_taxa_and_places_youre_following: "Observatioune vu Leit, Plazen an Taxa, déi Dir iwwerwaacht."
   observations_from_this_place: Observatioune vun dëser Plaz
   observations_from_this_project: Observatioune vun dësem Projet
-  observations_from_you: Observatioune vun Iech
-  observations_last500: Observatiounen (lescht 500)
   observations_map: Observatiounen / Kaart
   observations_of_taxon: "Observatioune vu(n) %{taxon_name}"
   observations_per_month: Observatiounen / Mount
   observations_w: Observatiounen w/
-  observations_week: Observatiounen / Woch
   observed: Observéiert
   observed_by: Observéiert vum
   observers: Observateuren
@@ -985,15 +980,10 @@ lb:
   optional: fakultativ
   or: oder
   or_all_caps: ODER
-  or_invite_your_friends: oder invitéiert Är Frënn
-  or_invited: oder invitéiert.
   or_upload: Oder Eroplueden
   organisms: Organismen
   other: Anerer
   other_animals: aner Déieren
-  other_animals_plural:
-    one: anert Déier
-    other: aner Déieren
   other_lexicons: Aner Lexikonen
   other_names: Aner Nimm
   our_blog: Eise Blog
@@ -1331,7 +1321,6 @@ lb:
   summary: Resumé
   supporting: Ënnerstëtzen
   support_inaturalist: iNaturalist ënnerstëtzen
-  sun: Son
   suspend_user: Benotzer suspendéieren
   table: Tabell
   take_me_back: Zréck goen
@@ -1356,7 +1345,6 @@ lb:
   this_observation: Dës Observatioun
   this_user_has_been_suspended: Dëse Benotzer gouf suspendéiert
   this_year: Dëst Joer
-  thu: Don
   thumb_url: URL vun der Miniatur
   time_: Zäit
   title: Titel
@@ -1369,7 +1357,6 @@ lb:
   trusted: Deem een traue kann
   try_it_out: Probéiert et aus
   try_wikipedia: Wikipedia probéieren?
-  tue: Dën
   type: Typ
   type_project_name: Tippt den Numm vum Projet
   unblock: Spär ophiewen
@@ -1447,7 +1434,6 @@ lb:
   we_had_trouble_saving_comment: "Mir hu Problemer fir déi Bemierkung ze späicheren:"
   weather: Wieder
   website: Internetsite
-  wed: Mët
   week_of_date: "Woch vum %{date}"
   welcome!: Wëllkomm!
   welcome_comma!: Wëllkomm,
