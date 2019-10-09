@@ -538,6 +538,7 @@ he:
     באפשרותכם להשתמש בזה כדי לעקוב אחרי השתתפויות ממקורות שונים. תוכלו לגשת לקודים האלה בעת הורדת הפרויקטים כקובצי CSV.
   comma_separated_please: נא להפריד באמצעות פסיקים
   comment: תגובה
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: תגובה
   comment_deleted: התגובה נמחקה
   comments: תגובות
@@ -826,6 +827,7 @@ he:
   edit_source: עריכת מקור
   edit_taxa: עריכת טקסונים
   edit_taxon: עריכת טקסון
+  edit_taxon_framework: עריכת מסגרת טקסון
   edit_taxon_link: ערכית קישור לטקסון
   edit_taxon_range: עריכת תחום תפוצה של טקסון
   edit_the_observation: עריכת תצפית
@@ -1132,6 +1134,8 @@ he:
   #Type of project where people can only join after they have been invited
   inviteonly: הזמנה בלבד
   invited_x: "%{x} הוזמן"
+  is_an_evaluation: |
+    הוא אומדן למידת הדיוק של זיהוי התצפית. תצפיות בדרגת מחקר משמשות אנשי מדע למחקריהם. הציעו את זיהוייכם:
   is_now: עכשיו
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: האם הנתונים מאפשרים לאשר שזהו %{taxon}?
   is_this_place_a_duplicate: האם מקום זה קיים כבר?
@@ -1289,6 +1293,7 @@ he:
     de: גרמנית
     el: יוונית
     en: אנגלית
+    en-UK: English (United Kingdom)
     en-US: אנגלית (ארה"ב)
     eo: אספרנטו
     es-ES: ספרדית (ספרד)
@@ -1297,17 +1302,22 @@ he:
     et: אסטונית
     eu: באסקית
     fi: פינית
+    fil: פיליפינית
     fr: צרפתית
+    fr-CA: צרפתית (קנדה)
     gl: גליציאנית
     he: עברית
     id: אינדונזית
     it: איטלקית
     ja: יפנית
+    ka: גאורגית
     ko: קוראנית
     lb: לוקסמבורגית
     lt: ליטאית
     mk: מקדונית
+    nb: נורווגית - בוקמאל
     nl: הולנדית
+    nn: נורבגית - נינורשק
     oc: אוקיטנית
     pl: פולנית
     pt-BR: פורטוגזית (ברזיל)
@@ -1454,14 +1464,12 @@ he:
   names_for_taxon_html: "שמות ל%{taxon}"
   native: מקומי
   native_to_place: "מקומי ל%{place}"
-  nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: קו רוחב צפון מזרחי
   ne_lon: קו אורך צפון מזרחי
   nearby_observations_: תצפיות בקרבת מקום
   needs_id: צריך זיהוי
   needs_id_: צריך זיהוי
   needs_to_be_identified: יש צורך בזיהוי
-  new: חדש
   new_and_noteworthy: חדש ומעניין
   new_announcement: הודעה חדשה
   new_assessment: הערכה חדשה
@@ -1589,7 +1597,7 @@ he:
   number_of_observers_value: "מספר המתצפתים: %{number}"
   number_of_observers: "מספר מתצפתים"
   obs: תצפיות
-  obscured_: מוסתר
+  obs_id_d: תצפית הוגדרה
   obscured: מוסתר
   obscured_or_private: מוסתר או פרטי
   observation: תצפית
@@ -1619,31 +1627,30 @@ he:
   observations_by_you: "התצפיות שלך"
   observations_by_you_on_date: "התצפיות שלך ב %{date}"
   observation_calendar_for: "יומן תצפיות של %{user} ב%{year}"
-  observation_contest: תחרות תצפיות
   observation_curation: אצירת תצפית
   observation_date: תאריך
   observation_date?: תאריך?
   observation_field: שדה התצפית
   observation_field_details: פרטי שדה התצפית
+  observation_field_type_text: טקסט
+  observation_field_type_numeric: ניומרי
+  observation_field_type_date: תאריך
+  observation_field_type_time: שעה
+  observation_field_type_taxon: טקסון
+  observation_field_type_dna: DNA
   observation_fields: שדות תצפית
   observation_fields_are_additional: שדות תצפית מאפשרים להוסיף נתוני שדות נוספים שיתווספו לתצפיות.
-  observation_flagged: התצפית סומנה
-  observation_flagged_as_flag: התצפית סומנה כ%{flag}
   observation_removed_from_the_project: "התצפית הוסרה מהפרוייקט %{project}"
   observation_requirements: דרישות לתצפית
-  observation_rights_html: "%{rights} התצפית"
   observation_rules: כללי התצפית
   observation_was_deleted: תצפית נמחקה
   observation_without_media: תצפית ללא תמונה/מדיה
-  observation_would_like_some_help: "%{user} רוצה לעזור לך להגדיר את זה!"
   observations: תצפיות
   observations_: הבחנות
   observations_added_by_x_html: "תצפיות הוספו על ידי %{x}"
   observations_annotated_with_annotation: "תצפיות שסומנו בתווית %{annotation}"
   observations_by: התצפיות של
-  observations_by_everyone: התצפיות של כולם
   observations_by_user: "התצפיות של %{user}"
-  observations_confirmed: תצפיות (אושרו)
   observations_deleted: תצפיות נמחקו.
   observations_for: תצפיות של
   observations_for_project: "תצפיות בפרוייקט %{project}"
@@ -1651,34 +1658,26 @@ he:
   observations_from_people_taxa_and_places_youre_following: "תצפיות מאנשים, מקומות וטקסונים שאתה עוקב אחריהם"
   observations_from_this_place: תצפיות ממקום זה
   observations_from_this_project: תצפיות מפרויקט זה
-  observations_from_you: התצפיות שלך
   observations_in_this_project_must: תצפיות בפרוייקט זה צריכות לעמוד בקריטריונים הבאים
-  observations_it_may_take_a_few: תצפיות. זה עשוי לקחת מספר דקות.
-  observations_last500: תצפיות (500 אחרונות)
   observations_map: תצפיות / מפה
   observation_must_dotdotdot: התצפית חייבת...
   observations_needing_curation: תצפיות שנדרשת אצירה עבורן
-  observations_obscured: תצפיות (הוסתרו)
   observations_of_taxon: "תצפיות של %{taxon_name}"
   observations_per_month: תצפיות / חודש
   observations_removed_from_the_project: "תצפיות שהוסרו מהפרוייקט %{project}"
   observations_saved: תצפית/יות נשמרו!
   observations_this_year_vs_last_year: תצפיות משנה זו בהשוואה לשנה הקודמת
-  observations_title: התצפיות של כולם
   observations_total: סך כל תצפיות
   observations_w: תצפיות עם
   observations_w_field: תצפיות עם שדה
   observations_was_successfully_updated: תצפית/יות עודכנו בהצלחה.
-  observations_week: תצפיות/שבוע
   observations_with_this_field: תצפיות עם שדה זה
   observations_with_this_field_and_value: תצפיות עם שדה וערך זה
   observations_without_media: תצפיות ללא תמונה/מדיה
   observationcounts_refreshed: מספר התצפיות רוענן
   observed: נצפה
   observed_by: נצפה על ידי
-  observed_in_place?: נצפה במקום
   observed_on: נצפה ב
-  observed_one: אחד נצפה
   observers: מתצפתים
   occurrence_status: סטטוס הופעה
   occurrence_status_descriptions:
@@ -1693,7 +1692,6 @@ he:
     irregular: לא סדיר
     doubtful: בספק
     absent: חסר/נעדר
-  of_least_concern: ללא חשש
   of_observations: תצפיות
   of_species: מינים
   of_observers: מתצפתים
@@ -1706,9 +1704,6 @@ he:
   old_observation_form: טופס תצפית ישן (לא בשימוש)
   ok: "אישור"
   on_date: "ב %{date}"
-  on_edit_date: "ב %{editdate}"
-  on_list?: ברשימה
-  on_submit_date: "ב %{submitdate}"
   on_your_life_list: ברשימת החיים שלך
   onboarding:
     observe_panel_title: בואו נתחיל בפרסום כמה תצפיות
@@ -1739,7 +1734,6 @@ he:
   one_by_one: "אחד אחד"
   one_of_your_lists: "אחת מהרשימות שלך..."
   only_administrators_may_access_that_page: רק לאדמיניסטורים גישה לדף זה
-  only_accepts_taxa: ניתן להזין טקסונים בלבד
   only_curators_can_add_edit_scientific_names: רק אוצרים יכולים להוסיף/לערוך שמות מדעיים
   only_curators_can_access_that_page: רק לאוצרים גישה לדף זה.
   only_files_with_10000_rows_at_a_time: רק קבצים עם 1000 שורות בכל פעם, בבקשה
@@ -1755,7 +1749,6 @@ he:
   only_species: מינים בלבד
   only_species_and_subspecies: מינים ותתי-מינים/זנים בלבד
   only_staff_can_edit_large_places: רק צוות האתר יכול לערוך מקומות גדולים
-  only_the_author_of_this_post_can_do_that: רק מחברי הפוסטים יכולים לעשות את זה. אל תהיו רעים.
   only_the_owner_of_this_list_can_do_that: רק בעלי הרשימה יכולים לעשות את זה. אל תהיו רעים.
   open: פתיחה
   open_: פתיחה
@@ -1765,8 +1758,6 @@ he:
   or: או
   or_all_caps: או
   or_choose_high_level_taxa: "...או שניתן לבחור מרמה טקסונית גבוהה יותר"
-  or_you_can: "או שניתן ל..."
-  or_you_can_: או שניתן ל...
   orange: כתום
   order: סדרה
   order_by: 'סדר לפי:'
@@ -1774,7 +1765,6 @@ he:
   organisms: אורגניזמים
   original: מקור
   original_rights_holder: בעלי זכויות מקוריים
-  original_url: URL מקורי
   original_url_for_this_map: URL מקורים למפה זו
   organism_appears_captive_cultivated: נראה כי הפרט בשבי או שהוא מתורבת
   other: אחר
@@ -2634,7 +2624,6 @@ he:
   support_inaturalist: תמיכה בiNaturalist
   suspicious_photos: תמונות חשודות
   siutable_observations: תצפיות מתאימות
-  sun: שמש
   suspend_user: השהיית משתמש
   sync: לסנכרן?
   synonyms: שמות נרדפים
@@ -2762,7 +2751,6 @@ he:
   those_are_the_basics_of: |
     אלה הדברים הבסיסיים להעלאת תצפיות! ישנן פעולות רבות שניתן לבצע, כגון חיפוש ומיון התצפיות שלך, או עריכתן בקבוצה. אבל כל אלה מובנים מאליהם.
   those_observations_no_longer_exist: תצפיות אלו לא קיימות יותר.
-  thu: יום חמישי
   time_ago: "לפני %{time}"
   title_and_description: "כותרת ותיאור"
   to_add_comments: להוספת הערות
@@ -2794,7 +2782,6 @@ he:
   trust_with_private_coordinates: אמון עם נקודות הציון המוסתרות
   try_it_out: נסו את זה
   try_wikipedia: לנסות ויקיפידיה?
-  tue: יום שלישי
   twitter: טוויטר
   two_thirds: שני שליש
   type_one_name_per_line: יש להזין שם אחד בשורה
@@ -2943,7 +2930,6 @@ he:
   we_have_no_conservation_status_for_this_taxon: אין לנו סטטוס שימור לטקסון זה
   weather: מזג־אוויר
   website: אתר אינטרנט
-  wed: יום רביעי
   week_of_date: "השבוע של ה%{date}"
   welcome!: ברוכים הבאים!
   welcome_comma!: ברוכים הבאים,
@@ -3170,6 +3156,7 @@ he:
         observed_on_string: תאריך/שעה כפי שהוזן על ידי המתצפת
         observed_on: תאריך תצפית מנורמל
         time_zone: אזור הזמן של התצפית
+        positional_accuracy: "רמת דיוק הקואורדינטה"
         url: URL של התצפית
         tag_list: רשימת תגיות מופרדת פסיקים
       identify:
@@ -3508,4 +3495,14 @@ he:
     flash:
       applications:
         update:
+          #Application as in a software application
           notice: 'היישום עודכן.'
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: תנועה
+        con: עיצור
+      "@gender":
+        m: זכר
+        f: נקבה
+        "n": ללא זוויג

@@ -589,6 +589,7 @@ sv:
   columns: Kolumner
   combine: Kombinera
   comment: kommentar
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
   comment_deleted: Kommentar raderad
   comments: Kommentarer
@@ -1097,7 +1098,6 @@ sv:
   name: Namn
   names: Namn
   names_for_taxon_html: "Namn för %{taxon}"
-  new: Ny
   new_comment_on_a_parent_by_user_link: Ny kommentar på @vow_or_con{vow:an|a} %{parent} av %{user_link}
   new_list: Ny lista
   new_members: "Nya medlemmar"
@@ -1155,17 +1155,12 @@ sv:
   observations_: observationer
   observations_added_by_x_html: "Observationer lades till av %{x}"
   observations_by: Observationer av
-  observations_by_everyone: Observationer av alla
   observations_by_user: "Observationer av %{user}"
   observations_for: Observationer för
   observations_from_people_taxa_and_places_youre_following: "Observationer från människor, platser och arter som du följer"
-  observations_from_you: Observationer av dig
   observations_map: Observationer / Karta
-  observations_title: Observationer av alla
-  observations_week: Observationer / Vecka
   observed: Observerade
   observed_by: Observerade av
-  observed_one: observerade ett
   observer: Observatör
   observers: Observatörer
   observer_short: Observatör
@@ -1179,9 +1174,6 @@ sv:
   on_: "på"
   on_date: "den %{date}"
   on_day: "på"
-  on_edit_date: "på %{editdate}"
-  on_list?: på listan
-  on_submit_date: "på %{submitdate}"
   onboarding:
     follow_panel_title_local: Följ några närliggande naturister
     following_panel_title: Håll reda på personer, arter och platser
@@ -1190,11 +1182,8 @@ sv:
   only_you: Endast dig
   or: eller
   or_all_caps: ELLER
-  or_invite_your_friends: eller invitera dina vänner
   or_log_in_with_colon: "Eller logga in med:"
   or_upload: Eller ladda upp
-  or_you_can: "Eller du kan..."
-  or_you_can_: eller du kan
   order_by: Sortera efter
   other_names: Andra namn
   our_blog: Vår blogg
@@ -1542,7 +1531,6 @@ sv:
   summary: Sammanfattning
   supporting: Stödjer
   support_inaturalist: Stöd iNaturalist
-  sun: Sön
   #Noun, as in "add a tag to this observation"
   tag: Tagg
   take_me_back: Ta mig tillbaka
@@ -1574,7 +1562,6 @@ sv:
   this_species: denna art
   this_user_has_been_suspended: Denna användare har stängts av
   this_year: Detta år
-  thu: Tor
   time_ago: "%{time} sedan"
   to: till
   to_: till
@@ -1588,7 +1575,6 @@ sv:
   trends: Trender
   trust_this_person_with_your_private_coordinates: Lita på denna person med dina dolda koordinater
   try_it_out: Prova
-  tue: Tis
   type_taxon_name: "Skriv taxon namn"
   unblock: Ta bort blockering
   unknown: Okänd
@@ -1679,7 +1665,6 @@ sv:
   we_care_privacy: Vi bryr oss om din integritet!
   weather: Väder
   website: Webbplats
-  wed: Ons
   week_of_date: "Vecka av %{date}"
   welcome!: Välkommen!
   welcome_comma!: Välkommen,

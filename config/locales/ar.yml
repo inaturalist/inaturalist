@@ -546,6 +546,7 @@ ar:
     قائمة مفصولة بفواصل من رموز التتبع، أضف هذه العناصر إذا كنت تريد إلحاق كود تتبع عند إرسال الأشخاص إلى نموذج الملاحظة الجديد، مثل %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123، يمكنك استخدام هذا لتتبع المشاركة من مصادر مختلفة، يمكنك الوصول إلى هذه الرموز عند تنزيل ملاحظات مشروعك كملف CSV.
   comma_separated_please: مفصولة بفواصل، من فضلك
   comment: تعليق
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: تعليق
   comment_deleted: تم حذف التعليق
   comments: تعليقات
@@ -1726,7 +1727,6 @@ ar:
   needs_id_: يحتاج معرفا
   needs_id_expandable_html: "<span class='full'>يحتاج </span>معرفا"
   needs_to_be_identified: ينبغي تحديدها
-  new: جديد
   new_and_noteworthy: جديد وجدير بالملاحظة
   new_announcement: إعلان جديد
   new_assessment: تقييم جديد
@@ -1889,7 +1889,6 @@ ar:
   obs: ملاحظات
   obs_cid_d: ملا CID'd
   obs_id_d: ملا ID'd
-  obscured_: مشوش
   obscured: مشوش
   obscured_or_private: محجوب أو خاص
   obscured_description: |
@@ -1900,7 +1899,6 @@ ar:
   observation_added: تمت إضافة الملاحظة
   observation_added_to_the_project: "تمت إضافة الملاحظة إلى المشروع \"%{project}\""
   observation_aggregation: تجميع الملاحظة
-  observation_photo_uploader: مراقبة رافع الصورة
   observations_by_category: "الملاحظات حسب التصنيف"
   observations_by_app: ملاحظات حسب التطبيق
   observations_by_rank: ملاحظات حسب الرتبة
@@ -1908,7 +1906,6 @@ ar:
   observations_by_you: "ملاحظات بواسطتك"
   observations_by_you_on_date: "ملاحظات بواسطتك في %{date}"
   observation_calendar_for: "تقويم الملاحظة لـ%{user} في %{year}"
-  observation_contest: مسابقة الملاحظات
   observation_curation: معالجة الملاحظات
   observation_date: التاريخ
   observation_date?: تاريخ؟
@@ -1920,11 +1917,8 @@ ar:
     حقول الملاحظة مثل الوسوم قليلا، إلا أنه يمكن لأي شخص إضافتها إلى
     ملاحظتك افتراضيا، يمكنك تغيير هذا الخيار إذا كنت تفضل ذلك فقط،
     أو القيمين على الموقع فقط.
-  observation_flagged: تم تعليم الملاحظة
-  observation_flagged_as_flag: تم تعليم الملاحظة كـ%{flag}
   observation_removed_from_the_project: "تمت إزالة الملاحظة من المشروع \"%{project}\""
   observation_requirements: متطلبات الملاحظة
-  observation_rights_html: "الملاحظة %{rights}"
   observation_rules: قواعد الملاحظة
   observation_rules_description: |
     يمكنك اختيار قواعد لتحديد الملاحظات التي يمكن أن تُضاف إلى هذا 
@@ -1935,19 +1929,12 @@ ar:
     ملاحظات الزواحف أو البرمائيات.
   observation_was_deleted: تم حذف الملاحظة.
   observation_without_media: الملاحظة دون وسائط
-  observation_would_like_some_help: "يريد %{user} بعض المساعدة في تحديد هذا!"
   observations: الملاحظات
   observations_: الملاحظات
   observations_added_by_x_html: "تمت إضافة الملاحظات بواسطة %{x}"
   observations_annotated_with_annotation: "ملاحظات مشروحة بـ%{annotation}"
   observations_by: ملاحظات بواسطة
-  observations_by_everyone: ملاحظات بواسطة الجميع
   observations_by_user: "ملاحظات بواسطة %{user}"
-  observations_circle_have_their_radii_scaled: |
-    تتميز دوائر الملاحظات بتقسيمها بشكل متناسب مع 
-    دقة الموضع، وتظهر الملاحظات دون بيانات الدقة الموضعية 
-    بالحد الأدنى للحجم.
-  observations_confirmed: ملاحظات (مؤكدة)
   observations_deleted: تم حذف الملاحظات.
   observations_fields_are: |
     حقول الملاحظات قطع إضافية من البيانات المرتبطة 
@@ -1960,12 +1947,7 @@ ar:
   observations_from_people_taxa_and_places_youre_following: "ملاحظات من الأشخاص والأماكن والأصناف التي تتابعها"
   observations_from_this_place: ملاحظات من هذا المكان
   observations_from_this_project: ملاحظات من هذا المشروع
-  observations_from_you: ملاحظات بواسطتك
-  observations_have_had_their_coordinates: "لقد تحولت الإحداثيات إلى نقطة عشوائية ضمن %{km} كم إما لأن الأصنوفة مهددة أو لأن المراقب اختار أن يحجب الإحداثيات."
   observations_in_this_project_must: يجب أن تفي الملاحظات في هذا المشروع بالمعايير التالية
-  observations_it_may_take_a_few: الملاحظات، قد تستغرق بضع دقائق.
-  observations_last500: ملاحظات (آخر 500)
-  observations_last_aggregated: الملاحظات التي تم تجميعها مؤخرا
   observations_map: ملاحظات / خريطة
   observation_must_dotdotdot: يجب على الملاحظة...
   observations_near_a_place_are: |
@@ -1974,11 +1956,9 @@ ar:
     للأماكن التي لا تشبه المستطيلات; ويرجع ذلك إلى وجود قيود في
     قاعدة بياناتنا والتي نعمل على حلها.
   observations_needing_curation: ملاحظات تحتاج معالجة
-  observations_obscured: ملاحظات (محجوبة)
   observations_observed_this_month: ملاحظات <em>ملحوظة</em> هذا الشهر، ولم تتم إضافتها هذا الشهر، اذهب الى الخارج!
   observations_of_relatives: ملاحظات الأقارب
   observations_of_taxon: "ملاحظات %{taxon_name}"
-  observations_on_inat_check_list: "الملاحظات في %{site_name}، تحقق من قائمة الأماكن التي تم تأكيدها على الأقل مرة واحدة داخل حدودها."
   observations_per_month: ملاحظات / شهر
   observations_removed_from_the_project: "تمت إزالة الملاحظات من المشروع \"%{project}\""
   observations_saved: تم حفظ الملاحظة(ات)!
@@ -1988,27 +1968,21 @@ ar:
     قد تؤدي عمليات البحث النصية إلى نتائج غريبة عند دمجها مع مرشحات أخرى;
     إذا كنت ترغب في العثور على ملاحظة نوع معين، استخدم مرشح الأصناف.
   observations_this_year_vs_last_year: ملاحظات هذا العام مقابل العام الماضي
-  observations_title: ملاحظات بواسطة الجميع
   observations_total: مجموع الملاحظات
   observations_w: ملاحظات مع/
   observations_w_field: ملاحظات مع/حقل
   observations_was_successfully_updated: تم تحديث الملاحظة(ات) بنجاح.
-  observations_week: ملاحظات / أسبوع
   observations_widget: أداة الملاحظات
-  observations_will_revert_to_casual: ستعود الملاحظات إلى درجة "عادية" إذا لم تستوف الشروط المذكورة أعلاه أو
   observations_with_this_field: ملاحظات مع هذا الحقل
   observations_with_this_field_and_value: ملاحظات مع هذا الحقل وهذه القيمة
   observations_without_media: ملاحظات بدون وسائط
   observationcounts_refreshed: تعد الملاحظات مرات التحديث
   observed: ملاحظ
   observed_by: تمت ملاحظتها من قبل
-  observed_in_place?: تمت ملاحظتها في المكان
   observed_on: تمت الملاحظة في
-  observed_one: الواحد الملاحظ
   observer: ملاحظ
   observers: الملاحظون
   observer_short: الملاحظ
-  observing: الملاحظة
   occurence_status_describes_how: 'تصف حالة الحدث كيف تكون الأصنوفة شائعة أو نادرة في منطقة معينة، راجع جوهر داروين <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">لمزيد من المعلومات حول المصطلحات</a>.'
   occurrence_status: حالة الحدوث
   occurrence_status_descriptions:
@@ -2027,8 +2001,6 @@ ar:
     doubtful: مشكوك فيه
     absent: غائب
   of: لـ
-  of_it_and_its_descendants: منه وذريته
-  of_least_concern: أقل قلقا
   of_observations: الملاحظات
   of_species: نوع
   of_observers: الملاحظون
@@ -2043,9 +2015,6 @@ ar:
   on_: "على"
   on_date: "في %{date}"
   on_day: "على"
-  on_edit_date: "في %{editdate}"
-  on_list?: في القائمة
-  on_submit_date: "في %{submitdate}"
   on_your_life_list: في قائمة حياتك
   onboarding:
     observe_panel_title: دعونا نبدأ من خلال نشر بعض الملاحظات
@@ -2079,9 +2048,7 @@ ar:
   one_of_your_lists: "إحدى قوائمك..."
   only_a_project_manager_can_add: يمكن لمدير المشروع فقط إضافة حالة أمين المشروع
   only_administrators_may_access_that_page: يمكن للإداريين فقط الدخول إلى هذه الصفحة
-  only_accepts_taxa: يقبل الأصناف فقط
   only_an_admin_can_remove_project_users: يمكن للإداري فقط إزالة مستخدمي المشروع
-  only_country_state_and_county: "لا يتم عرض إلا الأماكن المعادلة للبلد أو الولاية أو المقاطعة في الوقت الحالي، كبر لمشاهدة الأماكن الأصغر."
   only_curators_can_add_edit_scientific_names: يمكن فقط للأمناء إضافة/تحرير الأسماء العلمية.
   only_curators_can_access_that_page: يمكن فقط للأمناء الوصول إلى تلك الصفحة.
   only_files_with_10000_rows_at_a_time: الملفات ذات 10000 صف في وقت واحد فقط، من فضلك
@@ -2095,12 +2062,10 @@ ar:
   only_show_for_species_subspecies_varieties_etc: عرض فقط للأنواع، والأنواع الفرعية، والأصناف، وما إلى ذلك.
   only_show_taxa_fom_this_list: "لا تظهر سوى أصنافا من هذه القائمة"
   only_showing_taxa_from: أظهر أصنافأ فقط من هذه القائمة
-  only_site_curators_can_turn_on_observation_aggregation: يمكن فقط لأمناء الموقع تشغيل تجميع المشروع
   only_species: نوع فقط
   only_species_and_subspecies: الأنواع والنواع الفرعية/الأصناف فقط
   only_staff_can_edit_large_places: يمكن فقط لطاقم الموقع تعديل الأماكن الكبيرة جدا
   only_staff_can_edit_standard_places: يمكن فقط لطاقم الموقع تحرير الأماكن في التسلسل الهرمي القياسي
-  only_the_author_of_this_post_can_do_that: يمكن لمؤلف هذه المشاركة فقط القيام بذلك، لا تكن شريرا.
   only_the_owner_of_this_list_can_do_that: يمكن  لمالك هذه القائمة فقط القيام بذلك، لا تكن شريرا.
   only_the_project_admin_can_delete_this_project: يستطيع إداري المشروع فقط حذف هذا المشروع.
   only_you: أنت فقط
@@ -2108,21 +2073,14 @@ ar:
   open_: فتح
   open_description: "يمكن لأي شخص أن يرى الإحداثيات إذا لم تكن الأصناف مهددة."
   open_street_map: خريطة الشارع المفتوحة
-  opt_in_for_this_observation: "الاشتراك في هذه الملاحظة"
-  opt_out_of_community_ids_for_obs: "تعطيل تعريف المجتمع لهذه الملاحظة"
   optional: اختياري
   optional_columns_note_for_any: "الأعمدة الاختيارية (ملاحظة: لاستخدام أي من هذه الأعمدة في ملاحظة; يجب أن تكون جميعها موجودة)"
   or: أو
   or_all_caps: أو
   or_choose_high_level_taxa: "...أو الاختيار من بعض الأصناف عالية المستوى"
   or_if_you_dont_want_email: "أو إذا كنت لا تريد أي بريد إلكتروني..."
-  or_invite_your_friends: أو ادعُ أصدقاءك
-  or_invited: أو مدعو.
   or_log_in_with_colon: "أو قم بتسجيل الدخول باستخدام:"
-  or_post_message_to_google_group: "أو نشر رسالة إلى مجموعة جوجل الخاصة بنا:"
   or_upload: أو تحميل
-  or_you_can: "أو يمكنك..."
-  or_you_can_: أو يمكنك
   orange: برتقالي
   order: الترتيب
   order_by: ترتيب حسب
@@ -2133,7 +2091,6 @@ ar:
   originally_imported_from_url_html: "تم استيرادها أصلا من <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "مسار الصفحة الأصلية لهذه الصورة."
   original_rights_holder: صاحب الحقوق الأصلي
-  original_url: المسار الأصلي
   original_url_for_this_map: المسار الأصلي لهذه الخريطة
   organism_appears_captive_cultivated: يبدو الكائن أسيرا/مزروعا
   other: أخرى
@@ -2142,11 +2099,9 @@ ar:
   other_listings_of_this_taxon_for_this_place: قوائم أخرى لهذه الأصنوفة لهذا المكان
   other_names: أسماء أخرى
   other_species_commonly_misidentified_as_this_species: الأنواع الأخرى عادة ما يتم التعرف عليها بشكل خاطئ مثل هذا النوع
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    تم تعريف الأنواع الأخرى بشكل خاطئ على أنها في <a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: تم تعريف الأنواع الأخرى بشكل خاطئ على أنها في <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: الأصناف الأخرى التي يتم التعرف عليها عادة خطأ كهذه %{rank}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
-    الأصناف الأخرى التي يتم التعرف عليها عادة خطأ كهذه %{rank} in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: الأصناف الأخرى التي يتم التعرف عليها عادة خطأ كهذه %{rank} in <a href="%{url}">%{place}</a>
   our_blog: مدونتنا
   out_of_range: خارج النطاق
   output_taxon: إخراج الأصنوفة
@@ -3319,7 +3274,6 @@ ar:
   support_inaturalist: دعم إيناتوراليست
   suspicious_photos: الصور المشبوهة
   siutable_observations: ملاحظات مناسبة
-  sun: الأحد
   suspend_user: تعليق المستخدم
   sw_lat: سو لات.
   sw_lon: سو لون.
@@ -3614,7 +3568,6 @@ ar:
     تحريرها كدفعة، ولكن يجب أن تكون واضحة جدا.
   those_observations_no_longer_exist: لم تعد هذه الملاحظة موجودة.
   threatened: مهددة
-  thu: خمي
   thumb_url: مسار الصورة المصغرة
   time_: وقت
   time_ago: "قبل %{time}"
@@ -3665,7 +3618,6 @@ ar:
   try_adding_species_form: حاول إضافة بعض الأنواع باستخدام النموذج الموجود في هذه الصفحة.
   try_it_out: جرب هذا
   try_wikipedia: جرب ويكيبيديا؟
-  tue: ثلا
   twitter: تويتر
   two_thirds: 2/3
   type: النوع
@@ -3973,7 +3925,6 @@ ar:
     الرجاء إصلاح المشكلة(ات) التالية والمحاولة مرة أخرى.
   weather: الطقس
   website: الموقع الإلكتروني
-  wed: أرب
   week_of_date: "أسبوع %{date}"
   welcome!: مرحبا!
   welcome_comma!: أهلا بك،
@@ -6702,13 +6653,17 @@ ar:
     flash:
       applications:
         create:
+          #Application as in a software application
           notice: 'تم إنشاء الطلب.'
         destroy:
+          #Application as in a software application
           notice: 'تم حذف الطلب.'
         update:
+          #Application as in a software application
           notice: 'تم تحديث الطلب.'
       authorized_applications:
         destroy:
+          #Application as in a software application
           notice: 'تم إبطال الطلب.'
   wild: بري
   will_paginate:

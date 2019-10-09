@@ -760,6 +760,7 @@ it:
     Questo serve a tenere traccia della partecipazione da fonti diverse. Puoi accedere a questi codici durante il download delle osservazioni del progetto in formato CSV.
   comma_separated_please: Separati da virgola
   comment: nota
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Commenta
   comment_deleted: Commento cancellato
   comments: Commenti
@@ -994,7 +995,7 @@ it:
   default_sound_license: Licenza predefinita dei suoni
   defaults_to_your_name_or_username: Utilizza in maniera predefinita il tuo nome o il tuo nome utente
   defines_a_taxon_framework_for: Definisce un quadro del taxon per %{taxon_name}
-  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definisce in Quadro del Taxon per %{taxon} originato da %{source}
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definisce un Quadro del Taxon per %{taxon} originato da %{source}
   definitions: Definizioni
   delete: Cancella
   delete_all: Cancella tutto
@@ -1818,7 +1819,6 @@ it:
   make_admin: Rendi amministratore
   mail_disclaimer: "%{site_name} non permette ai suoi utenti di mandarti altri inviti utilizzando il nostro sistema di inviti. Per favore riporta l'abuso a %{site}."
   main_content: Contenuto principale
-  main_content_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   make_a_new_place: Crea un nuovo luogo
   make_a_taxon_swap_instead?: Preferisci invece fare uno Scambio Taxon?
   make_curator: Rendi curatore
@@ -1978,7 +1978,6 @@ it:
   native_page_url: URL della pagina originaria
   native_to_place: "Nativo in %{place}"
   nav: Navigatore
-  nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: Lat. NE
   ne_lon: Lon. NE
   near_threatened: Quasi minacciata
@@ -1987,7 +1986,6 @@ it:
   needs_id_: Serve ID
   needs_id_expandable_html: "<span class='full'>Serve </span>ID"
   needs_to_be_identified: Ha bisogno essere identificato
-  new: Nuovo
   new_and_noteworthy: Novità & Di Interesse
   new_announcement: Nuovo annuncio
   new_assessment: Nuova valutazione
@@ -2149,7 +2147,6 @@ it:
   obs: Osservazioni
   obs_cid_d: Osservazioni con CID
   obs_id_d: Osservazioni con ID
-  obscured_: oscurato
   obscured: Oscurata
   obscured_or_private: nascosto o privato
   obscured_description: |
@@ -2175,7 +2172,6 @@ it:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} in %{place} il %{day} da %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} in %{place} il %{day} alle %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} in %{place} il %{day} alle %{time} da %{user}"
-  observation_photo_uploader: Uploader delle foto dell'osservazione
   observations_by_category: "Osservazioni Per categoria"
   observations_by_app: Osservazioni Per App
   observations_by_rank: Osservazioni per rango
@@ -2183,7 +2179,6 @@ it:
   observations_by_you: "Le mie osservazioni"
   observations_by_you_on_date: "Le tue osservazioni del %{date}"
   observation_calendar_for: "Calendario delle osservazioni di %{user} nel %{year}"
-  observation_contest: gara di osservazioni
   observation_curation: Curatela delle osservazioni
   observation_date: Data
   observation_date?: Data?
@@ -2200,28 +2195,19 @@ it:
   observation_fields_are_additional: I campi delle osservazioni sono dati aggiuntivi che possono essere aggiunti alle osservazioni.
   observation_fields_by_preferences_description: |
     I campi delle osservazioni sono un po' come i tags, se non che, in modo predefinito, chiunque può aggiungerli alle tue osservazioni. Chambia questa opzione se preferisci che sia solo tu o i curatori del sito a poter fare ciò.
-  observation_flagged: Osservazione contrassegnata
-  observation_flagged_as_flag: Osservazione contrassegnata come %{flag}
   observation_removed_from_the_project: "Osservazione rimossa dal progetto \"%{project}\""
   observation_requirements: Requisiti dell'osservazione
-  observation_rights_html: "%{rights} sull'osservazione"
   observation_rules: Regole di osservazione
   observation_rules_description: |
     Puoi scegliere delle regole per determinare quale osservazioni possono essere aggiunte al progetto, come limitare le osservazioni ad in certo luogo o taxon. Se ha più di una regola per tipo, le osservazioni saranno valide se passano anche una sola regola. Per esempio, se hai impostato le regole "deve essere nel taxon Amphibia" e "deve essere nel taxon Reptilia", allora il progetto accetterà osservazioni sia di rettili che di anfibi.
   observation_was_deleted: L'osservazione è stata eliminata.
   observation_without_media: Osservazione senza mezzi
-  observation_would_like_some_help: "%{user} vorrebbe un aiuto per l'identificazione!"
   observations: Osservazioni
   observations_: osservazioni
   observations_added_by_x_html: "Osservazione aggiunta da %{x}"
   observations_annotated_with_annotation: "Osservazione annotata con %{annotation}"
   observations_by: Le osservazioni di
-  observations_by_everyone: Le osservazioni di tutti
   observations_by_user: "Le osservazioni di %{user}"
-  observations_circle_have_their_radii_scaled: |
-    I cerchi delle osservazioni hanno il loro raggio proporzionale all'accuratezza della posizione.
-    Le osservazioni senza accuratezza di posizione sono mostrate alla dimensione minima.
-  observations_confirmed: Osservazioni (confermate)
   observations_deleted: Osservazioni eliminate.
   observations_fields_are: |
     I campi delle osservazioni sono dati aggiuntivi associati all'osservazione, come il numero di individui osservati, descrizione dell'habitat, o ciò che vuoi! Nei progetti è possibile specificare i campi che vorresti fossero compilati.
@@ -2231,22 +2217,15 @@ it:
   observations_from_people_taxa_and_places_youre_following: "Osservazioni di persone, luoghi, e taxa che stai seguendo"
   observations_from_this_place: Osservazioni per questo luogo
   observations_from_this_project: Osservazioni di questo progetto
-  observations_from_you: Le mie osservazioni
-  observations_have_had_their_coordinates: "le coordinate delle osservazioni sono state traslate in un punto casuale nel raggio di %{km} Km, sia nel caso il taxon sia minacciato sia nel caso l'osservatore abbia deciso di oscurare le coordinate."
   observations_in_this_project_must: Le osservazioni in questo progetto devono soddisfare i seguenti criteri
-  observations_it_may_take_a_few: le osservazioni. L'operazione può durare alcuni minuti.
-  observations_last500: Osservazioni (le ultime 500)
-  observations_last_aggregated: Osservazioni aggregate per ultime
   observations_map: Osservazioni / Mappa
   observation_must_dotdotdot: L'osservazione deve...
   observations_near_a_place_are: |
     Le osservazioni "vicine" ad un luogo sono quelle all'interno di un rettangolo disegnato attorno al confine del luogo; ciò può determinare l'inaccuratezza dei risultati per i luoghi i cui confini non sono di forma rettangolare. Questo è un limite del nostro database che stiamo cercando di risolvere.
   observations_needing_curation: Osservazioni che hanno bisogno di revisione
-  observations_obscured: Osservazioni (oscurate)
   observations_observed_this_month: Si tratta delle osservazioni <em>fatte</em> questo mese, non di quelle inserite. Vai fuori e fai più osservazioni!
   observations_of_relatives: Osservazioni di organismi imparentati
   observations_of_taxon: "Osservazioni di %{taxon_name}"
-  observations_on_inat_check_list: "osservazioni su %{site_name}. I luoghi con checklist per cui è stata confermata almeno 1 osservazione all'interno dei suoi confini."
   observations_per_month: Osservazioni / Mese
   observations_removed_from_the_project: "Osservazioni rimosse dal progetto \"%{project}\""
   observations_saved: Osservazione(i) salvata(e)!
@@ -2255,27 +2234,21 @@ it:
   observations_text_search_warning: |
     Le ricerche di testo possono restituire risultati strani se combinate con altri filtri. Se vuoi trovare le osservazioni di una particolare specie, usa il filtro del taxon.
   observations_this_year_vs_last_year: Osservazioni di quest'anno rispetto all'anno scorso
-  observations_title: Le osservazioni di Tutti
   observations_total: Osservazioni totali
   observations_w: Osservazioni con
   observations_w_field: Osservazioni con il campo
   observations_was_successfully_updated: Aggiornamento osservazione(i) completato con successo.
-  observations_week: Osservazioni / Settimana
   observations_widget: Widget delle osservazioni
-  observations_will_revert_to_casual: Le osservazioni ritorneranno al livello "casuale" se le condizioni precedenti non sono rispettate o
   observations_with_this_field: Osservazioni con questo campo
   observations_with_this_field_and_value: Osservazioni con questo stesso campo e valore
   observations_without_media: Osservazioni senza contenuti multimediali
   observationcounts_refreshed: Conteggio delle osservazioni aggiornato
   observed: Osservata
   observed_by: Osservata da
-  observed_in_place?: osservata nel luogo
   observed_on: Osservata il
-  observed_one: l'ha osservata
   observer: Utente
   observers: Osservatori
   observer_short: Utente
-  observing: osservando
   occurence_status_describes_how: 'Lo stato di distribuzione descrive se il taxon è raro o comune in una determinata area.  Vai a DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">per più informazioni sulla terminologia</a>.'
   occurrence_status: Stato della distribuzione
   occurrence_status_descriptions:
@@ -2294,8 +2267,6 @@ it:
     doubtful: dubbia
     absent: assente
   of: di
-  of_it_and_its_descendants: suo e dei suoi discendenti
-  of_least_concern: Minor Preoccupazione
   of_observations: osservazioni
   of_species: specie
   of_observers: osservatori
@@ -2310,9 +2281,6 @@ it:
   on_: "nella lista"
   on_date: "in data %{date}"
   on_day: "in data"
-  on_edit_date: "in data %{editdate}"
-  on_list?: nella lista
-  on_submit_date: "in data %{submitdate}"
   on_your_life_list: nella tua lista degli Esseri Viventi
   onboarding:
     observe_panel_title: Inizia con l'invio di alcune Osservazioni
@@ -2343,9 +2311,7 @@ it:
   one_of_your_lists: "una delle tue liste..."
   only_a_project_manager_can_add: Solo il gestore del progetto può assegnare il ruolo di curatore
   only_administrators_may_access_that_page: Solo gli amministratori possono accedere a questa pagina
-  only_accepts_taxa: accetta solo taxa
   only_an_admin_can_remove_project_users: Solo l'amministratore può rimuovere gli utenti dal progetto
-  only_country_state_and_county: "Per ora solo nazioni, regioni e provincie sono visualizzabili. Ingrandisci per vedere i luoghi più piccoli."
   only_curators_can_add_edit_scientific_names: Solo i curatori possono aggiungere/modificare i nomi scientifici.
   only_curators_can_access_that_page: Solo i curatori possono accedere a quella pagina.
   only_files_with_10000_rows_at_a_time: Solo file con 10000 righe alla volta, per favore
@@ -2359,12 +2325,10 @@ it:
   only_show_for_species_subspecies_varieties_etc: Mostra solo per specie, sottospecie, varietà, etc.
   only_show_taxa_fom_this_list: "Mostra i taxa di questa lista"
   only_showing_taxa_from: si visualizzano solo i taxa di questa lista
-  only_site_curators_can_turn_on_observation_aggregation: Solo i curatori del sito possono attivare l'aggregazione di un progetto
   only_species: solo specie
   only_species_and_subspecies: solo specie e sottospecie/varietà
   only_staff_can_edit_large_places: Solo lo staff del sito può editare i luoghi molto vasti
   only_staff_can_edit_standard_places: Solo lo staff del sito può editare i luoghi nella gerarchia standard
-  only_the_author_of_this_post_can_do_that: Solo l'autore del post può fare questo. Sii gentile.
   only_the_owner_of_this_list_can_do_that: Solo il proprietario di questa lista può fare questo. Sii gentile.
   only_the_project_admin_can_delete_this_project: Solo l'amministratore del progetto può cancellare questo progetto.
   only_you: Solo tu
@@ -2372,21 +2336,14 @@ it:
   open_: Aperta
   open_description: "Tutti possono vedere le coordinate, a meno che il taxon non sia minacciato."
   open_street_map: OpenStreetMap
-  opt_in_for_this_observation: "Dò il consenso per questa osservazione"
-  opt_out_of_community_ids_for_obs: "Rinuncia alla identificazione della community per questa osservazione"
   optional: opzionale
   optional_columns_note_for_any: "Colonne facoltative (nota: affinché queste colonne possano essere utilizzate in una osservazione, esse devono essere tutte presenti)"
   or: o
   or_all_caps: O
   or_choose_high_level_taxa: "... o scegli da taxa di livello superiore"
   or_if_you_dont_want_email: "O se semplicemente non vuoi nessuna email..."
-  or_invite_your_friends: o invita i tuoi amici
-  or_invited: o invitata.
   or_log_in_with_colon: "Oppure accedi con:"
-  or_post_message_to_google_group: "o posta un messaggio al nostro Gruppo Google:"
   or_upload: Oppure carica
-  or_you_can: "O tu puoi..."
-  or_you_can_: o tu puoi
   orange: arancione
   order: Ordina
   order_by: Ordina per
@@ -2397,23 +2354,33 @@ it:
   originally_imported_from_url_html: "Originariamente importati da <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "URL della pagina originale per questa foto."
   original_rights_holder: Proprietario originale dei diritti
-  original_url: URL originale
   original_url_for_this_map: URL originale di questa mappa
   organism_appears_captive_cultivated: Organismo appare allevato in cattività / coltivato
   other: Altro
   other_animals: altri animali
-  other_animals_plural:
-    one: 1 altro animale
-    other: altri animali
   other_lexicons: Altre lingue
   other_listings_of_this_taxon_for_this_place: Altre osservazioni di questo taxon per questo luogo
   other_names: Altri nomi
   other_species_commonly_misidentified_as_this_species: Altre specie identificate erroneamente al posto di questa
-  other_species_commonly_misidentified_as_this_species_in_place_html: |
-    Altre specie comunemente identificate erroneamente al posto di questa in <a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: Altre specie comunemente identificate erroneamente al posto di questa in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_complex: Altri taxa spesso erroneamente identificati come questo complesso
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: Altri taxa spesso erroneamente identificati come questo complesso in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genus: Altri taxa spesso erroneamente identificati come questo genere
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: Altri taxa spesso erroneamente identificati come questo genere in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genushybrid: Altri taxa spesso erroneamente identificati come questo genere-ibrido
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Altri taxa spesso erroneamente identificati come questo genere-ibrido in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_hybrid: Altri taxa spesso erroneamente identificati come questo ibrido
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Altri taxa spesso erroneamente identificati come questo ibrido in <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Altri taxa spesso erroneamente identificati come questo %{rank}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
-    Altri taxa spesso erroneamente identificati come questo %{rank} in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Altri taxa spesso erroneamente identificati come questo %{rank} in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_section: Altri taxa spesso erroneamente identificati come questa sezione
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: Altri taxa spesso erroneamente identificati come questa sezione in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_species: Altri taxa spesso erroneamente identificati come questa specie
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: Altri taxa spesso erroneamente identificati come questa specie in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subgenus: Altri taxa spesso erroneamente identificati come questo sub-genere
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Altri taxa spesso erroneamente identificati come questo sub-genere in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subsection: Altri taxa spesso erroneamente identificati come questo sotto-sezione
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Altri taxa spesso erroneamente identificati come questo sotto-sezione in <a href="%{url}">%{place}</a>
   our_blog: Il nostro blog
   out_of_range: Fuori areale
   output_taxon: Taxon in uscita
@@ -3569,7 +3536,6 @@ it:
   support_inaturalist: Sostieni iNaturalist
   suspicious_photos: Foto sospette
   siutable_observations: osservazioni idonee
-  sun: Dom
   suspend_user: Sospendi utente
   sw_lat: Lat. SO
   sw_lon: Lon. SO
@@ -3887,7 +3853,6 @@ it:
     Queste sono le basi per l'aggiunta delle osservazioni! Ci sono un mucchio di altre cose che puoi fare, come cercare e filtrare le tue osservazioni, od editarle in gruppo, ma queste operazioni non dovrebbero avere bisogno di spiegazioni.
   those_observations_no_longer_exist: Queste osservazioni non esistono più.
   threatened: Minacciata
-  thu: Gio
   thumb_url: URL miniatura
   time_: tempo
   time_ago: "%{time} fa"
@@ -3938,7 +3903,6 @@ it:
   try_adding_species_form: Prova ad aggiungere alcune specie utilizzando il modulo in questa pagina.
   try_it_out: Provala
   try_wikipedia: Vuoi provare con Wikipedia?
-  tue: Mar
   twitter: Twitter
   two_thirds: due terzi
   type: Digita
@@ -4252,7 +4216,6 @@ it:
     Abbiamo provato a caricare il tuo file %{filename} ma non ha funzionato. Per favore correggi i seguenti problemi e prova ancora.
   weather: Meteo
   website: Sito web
-  wed: Mer
   week_of_date: "Settimana del %{date}"
   welcome!: Benvenuto/a!
   welcome_comma!: Benvenuto/a,
@@ -6333,13 +6296,17 @@ it:
     flash:
       applications:
         create:
+          #Application as in a software application
           notice: 'Applicazione creata.'
         destroy:
+          #Application as in a software application
           notice: 'Applicazione cancellata.'
         update:
+          #Application as in a software application
           notice: 'Applicazione aggiornata.'
       authorized_applications:
         destroy:
+          #Application as in a software application
           notice: 'Applicazione revocata.'
   i18n:
     inflections:

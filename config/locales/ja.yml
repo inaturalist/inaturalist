@@ -557,6 +557,7 @@ ja:
   combine: 統合
   comma_separated_please: カンマ区切りでお願いします
   comment: コメント
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: コメント
   comment_deleted: コメント削除されました
   comments: コメント
@@ -1492,18 +1493,15 @@ ja:
   number_of_observations: 観測記録数
   number_selected: "# 選択済み"
   obs: 不明瞭
-  obscured_: カモフラージュ中
   obscured: 不明瞭
   obscured_or_private: 不明瞭または非公開
   observation: 観察記録
   observation_added: 観察記録
   observation_added_to_the_project: "観察記録が「%{project}」というプロジェクトに追加されました"
-  observation_photo_uploader: 観察記録写真アプロードツール
   observations_by_user_on_date: "%{date}の%{user}の観察記録"
   observations_by_you: "自分の観測記録"
   observations_by_you_on_date: "%{date}のあなたの観察記録"
   observation_calendar_for: "%{user}観察記録カレンダー（%{year}）"
-  observation_contest: 観察記録コンテスト
   observation_curation: 観察記録キュレーション
   observation_date: 日付
   observation_date?: 日付？
@@ -1511,16 +1509,12 @@ ja:
   observation_fields: 観測記録フィールド
   observation_fields_are_additional: 観察フィールドは観察記録に追加できる任意データフィールドです
   observation_removed_from_the_project: "観察記録は「%{project}」から除去されました"
-  observation_rights_html: "観察記録 %{rights}"
   observation_rules: 観測記録ルール
   observation_was_deleted: 観察記録が削除されました
-  observation_would_like_some_help: "%{user}はID協力を依頼しています"
   observations: 観察記録
   observations_added_by_x_html: "%{x}によって追加された観察記録"
   observations_by: 観察者：
-  observations_by_everyone: みんなの観察記録
   observations_by_user: "%{user}の観察記録"
-  observations_confirmed: 観察記録（確認済）
   observations_deleted: 観察記録が削除されました
   observations_fields_are: |
     観察フィールドとは、観察記録に関わるさまざまな詳細データを記録する任意フィールドのことです。例えば、観察された個体数、生息環境などの説明、なんでも追加できます！プロジェクトでは、観察記録の記入フィールドの指定もできます。
@@ -1529,29 +1523,22 @@ ja:
   observations_from_people_taxa_and_places_youre_following: "フォロー中の場所、人、そして分類群の観察記録"
   observations_from_this_place: この場所からの観察記録
   observations_from_this_project: このプロジェクトの観察記録
-  observations_from_you: 自分の観察記録
-  observations_it_may_take_a_few: 観察記録。数�分かかる場合があります。
-  observations_last500: 観測記録（最新500件）
   observations_map: 観測記録 / マップ
   observation_must_dotdotdot: 観察記録の必要条件：
   observations_needing_curation: キュレーター管理者の手入れが必要な観察記録
-  observations_obscured: 観察記録（位置情報不明瞭）
   observations_of_taxon: "%{taxon_name}の観測記録"
   observations_per_month: 観測記録件数 / 月
   observations_removed_from_the_project: "「%{project}」というプロジェクトから観察記録が削除されました"
   observations_saved: 観測記録が保存されました！
   observations_specifying_this_field: このフィールドを使用している観察記録
-  observations_title: みんなの観測記録
   observations_total: 観察記録合計
   observations_w: 次を含む観察記録：
   observations_w_field: 次のフィールドを含む観察記録：
   observations_was_successfully_updated: 観察記録が無事更新されました
-  observations_week: 観測記録件数 / 週
   observations_widget: 観察記録ウィジェット
   observationcounts_refreshed: 観察記録数更新済
   observed: 観察済
   observed_by: 観測者：
-  observed_in_place?: 観察場所：
   observed_on: 観測日時
   observer: 観察者
   observers: 観察者
@@ -1567,7 +1554,6 @@ ja:
     doubtful: 不在疑惑
     absent: 不在
   of: の
-  of_least_concern: 軽度懸念
   of_species: 種
   of_places: 場所
   offensive_inappropriate: 不快／不適切
@@ -1575,7 +1561,6 @@ ja:
   offline_access_enabled: オフラインアクセス対応
   old_observation_form: 旧観察記録記入フォーム（非推奨）
   on_date: "%{date}"
-  on_submit_date: "%{submitdate}に"
   on_your_life_list: 自分のライフリストに
   onboarding:
     observe_panel_title: 早速観察記録を投稿しよう！
@@ -1600,7 +1585,6 @@ ja:
   one_of_your_lists: "自分のリストに"
   only_a_project_manager_can_add: プロジェクトキュレーター権限を付与できるのはプロジェクト管理者のみです
   only_administrators_may_access_that_page: このページはサイト管理者以外の方はアクセスできません。
-  only_accepts_taxa: 分類群以外の入力不可
   only_an_admin_can_remove_project_users: プロジェクトユーザーを削除するのは、管理者のみです。
   only_curators_can_add_edit_scientific_names: 学名の追加・変更ができるのはキュレーター管理者のみです。
   only_curators_can_access_that_page: このページにアクセスできるのは、キュレーター管理者のみです。
@@ -1612,21 +1596,14 @@ ja:
   only_showing_taxa_from: リスト内の分類群のみ表示中
   only_species: 種のみ
   only_species_and_subspecies: 種、亜種および品種のみ
-  only_the_author_of_this_post_can_do_that: 投稿の投稿者ではないとできません。いたずらしちゃダメですよ。
   only_the_owner_of_this_list_can_do_that: リストの作成者ではないとできません。いたずらしちゃダメですよ。
   only_the_project_admin_can_delete_this_project: プロジェクト管理者以外の方は削除できません。
   open: 公開
   open_description: "絶命の恐れがある場合を除き、分類群の位置情報が一般公開されます"
-  opt_in_for_this_observation: "この観察記録を購読"
-  opt_out_of_community_ids_for_obs: "この観察記録に対するコミュニティー分類群の通知を受け取らない"
   optional: 任意
   or_choose_high_level_taxa: "... もしくは上級の分類群から選択"
   or_if_you_dont_want_email: "全てのメールが不要な場合はこちら..."
-  or_invite_your_friends: または、友人を招待する
-  or_post_message_to_google_group: "またはGoogleグループでメッセージを投稿してください"
   or_upload: またはアップロード
-  or_you_can: "もしよかったら..."
-  or_you_can_: もしよかったら
   orange: 橙
   order: 目
   order_by: '並び順:'
@@ -1640,8 +1617,6 @@ ja:
   organism_appears_captive_cultivated: 飼育/栽培と推定
   other: その他
   other_animals: その他の動物
-  other_animals_plural:
-    other: その他の動物
   other_listings_of_this_taxon_for_this_place: この場所で同じ分類群の他の観察記録
   other_species_commonly_misidentified_as_this_species: この種とよく間違われる種
   our_blog: iNaturalistブログ
@@ -2351,7 +2326,6 @@ ja:
   suggest_or_require_that: ユーザーがプロジェクトに観察記録を追加する際に推奨／必須のフィールドを指定
   summary: 概要
   suspicious_photos: 怪しい写真
-  sun: 日
   suspend_user: ユーザーの利用停止
   sw_lat: 南西緯度
   sw_lon: 南西経度
@@ -2528,7 +2502,6 @@ ja:
   this_will_try_to_add_tags_to_your_flickr: Flickr上の写真にタグ追加を試みます。実行しますか？
   those_observations_no_longer_exist: お探しの観測記録は存在しません
   threatened: 絶滅危惧種
-  thu: 木
   time_: 時刻
   time_ago: "%{time}前"
   tired_of_testing_this_new_version: 新規バージョンのテストやめますか？
@@ -2556,7 +2529,6 @@ ja:
   trusted_project?: 信頼できるプロジェクト？
   try_it_out: お試しください
   try_wikipedia: ウィキペディアで探しますか？
-  tue: 火
   twitter: ツイッター
   type: 種類
   type_a_place_name_and_click_search: 場所名を入力し、検索をクリックしてください
@@ -2742,7 +2714,6 @@ ja:
   we_had_trouble_saving_comment: "コメントを保存できませんでした"
   we_have_no_conservation_status_for_this_taxon: この分類群の保護ステータス情報がありません
   we_have_no_establishment_data_for_this_taxon: "こちらの分類群の定着方法情報がありません。"
-  wed: 水
   welcome!: ようこそ!
   welcome_comma!: ようこそ
   welcome: ようこそ

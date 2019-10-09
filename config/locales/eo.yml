@@ -364,6 +364,7 @@ eo:
   columns: Kolumnoj
   combine: Kunigi
   comment: komento
+  #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komento
   comment_deleted: Koment forigita
   comments: Komentoj
@@ -912,7 +913,6 @@ eo:
   names_for_taxon_html: "Nomoj de %{taxon}"
   native: indiĝena
   ne_lat: Latitudo NE
-  new: Nova
   new_announcement: Nova anonco
   new_guide: Nova Gvidilo
   new_journal_post: Nova Ĵurnala Afiŝo
@@ -959,15 +959,12 @@ eo:
   observations_: observoj
   observations_added_by_x_html: "Observoj aldonitaj de %{x}"
   observations_by: Observoj far
-  observations_by_everyone: Observoj far ĉiu ajn
   observations_by_user: "Observoj far %{user}"
-  observations_from_you: Observoj far vi
   observed_by: Observita de
   observed_on: Observita je
   observer: Observinto
   observers: Observintoj
   observer_short: Observinto
-  observing: observanta
   occurrence_status_levels:
     common: ofta
     uncommon: malofta
@@ -982,7 +979,6 @@ eo:
   official_blog: Oficiala Rettaglibro
   ok: "Bone"
   on_date: "je %{date}"
-  on_list?: en listo
   on_your_life_list: en via vivolisto
   only_species: nur specio
   only_you: Nur vi
@@ -990,14 +986,11 @@ eo:
   open_: Malfermi
   or: aŭ
   or_all_caps: AŬ
-  or_you_can: "Aŭ vi povas..."
-  or_you_can_: aŭ vi povas
   orange: oranĝkolora
   order: Ordo
   order_by: Ordigi laŭ
   organisms: Organismoj
   original: Originalo
-  original_url: Originala retadreso
   original_url_for_this_map: Originala retadreso de ĉi tiu mapo
   other: Alia
   other_animals: aliaj bestoj
@@ -1635,7 +1628,6 @@ eo:
   suggestions: Sugestoj
   summary: Resumo
   support_inaturalist: Subteni iNaturalist
-  sun: dim
   sw_lat: Latitudo SU
   sw_lon: Longitudo SU
   sync: Ĉu sinkronigi?
@@ -1696,7 +1688,6 @@ eo:
   this_observation: Tiu observo
   this_species: la specio
   this_year: Nuna Jaro
-  thu: ĵaŭ
   time_: tempo
   title: titolo
   title_and_description: "Titolo & Priskribo"
@@ -1711,7 +1702,6 @@ eo:
   'true': 'Vera'
   trusted: Fidata
   trusted_project?: Ĉu fidata projekto?
-  tue: mar
   two_thirds: du trionoj
   unknown: Nekonata
   unknown_error: Nekonata eraro
@@ -1765,7 +1755,6 @@ eo:
   want_to_show_off_some_of_your_favorite_taxa: Ĉu vi volas prezenti kelkajn favoratajn taksonojn ĉi tie?
   weather: Vetero
   website: Retejo
-  wed: mer
   welcome!: Bonvenon!
   welcome_comma!: Bonvenon,
   welcome: bonvenon
@@ -2287,13 +2276,17 @@ eo:
     flash:
       applications:
         create:
+          #Application as in a software application
           notice: 'Aplikaĵo kreiĝis.'
         destroy:
+          #Application as in a software application
           notice: 'Aplikaĵo foriĝis.'
         update:
+          #Application as in a software application
           notice: 'Aplikaĵo ĝisdatiĝis.'
       authorized_applications:
         destroy:
+          #Application as in a software application
           notice: 'Aplikaĵo revokiĝis.'
   wild: Sovaĝa
   will_paginate:

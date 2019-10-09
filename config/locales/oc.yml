@@ -872,14 +872,11 @@ oc:
   observation_date?: Data ?
   observation_field: Camp d’observacion
   observation_fields: Camps d’observacion
-  observations_confirmed: Observacions (confirmadas)
   observed: Observat
   observed_by: Observat per
   observed_on: Observat sus
-  observed_one: observat un
   observer: Observador
   observer_short: Observador
-  observing: observacion
   occurrence_status_levels:
     common: comun
     uncommon: rare
@@ -889,9 +886,6 @@ oc:
   on_: "sus"
   on_date: "lo %{date}"
   on_day: "sus"
-  on_edit_date: "lo %{editdate}"
-  on_list?: dins la lista
-  on_submit_date: "lo %{submitdate}"
   onboarding:
     observe_panel_title: Començam per publicar qualques observacions
     follow_panel_title_global: Seguir qualques naturalistas actius
@@ -899,17 +893,12 @@ oc:
   open: dobrir
   optional: facultatiu
   or: o
-  or_you_can: "O ben podètz..."
-  or_you_can_: o podètz
   orange: irange
   order: Òrdre
   order_by: 'Triar per :'
   organisms: Organismes
   other: autre
   other_animals: autres animals
-  other_animals_plural:
-    one: autre animal
-    other: autres animals
   owner: Proprietari
   parent_name: Nom del parent
   password: Senhal
@@ -1170,7 +1159,6 @@ oc:
   status: Estat
   summary: Resumit
   siutable_observations: observacions apropriadas
-  sun: Dim
   taxa: Taxons
   taxa_all_species_html: "Totas las espècias"
   terms: Condicions
@@ -1181,7 +1169,6 @@ oc:
   the_past: lo passat
   those_are_the_basics_of: |
     S’agís de l’essencial per l’apondon d’observacions! I a fòrça causas mai que podètz far, coma cercar e filtrar vòstras observacions o las modificar dins un lòt, mas aquelas accions se deurián passar d’explicacions.
-  thu: Dij
   time_: ora
   time_ago: "i a %{time}"
   title: títol
@@ -1190,7 +1177,6 @@ oc:
   tools: Aisinas
   total: total
   'true': 'Verai'
-  tue: Mar
   type: Tipe
   unreview_all: Marcar tot coma pas relegit
   updated_daily: Mes a jorn a cada jorn

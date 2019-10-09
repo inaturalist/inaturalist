@@ -892,17 +892,13 @@ mk:
   observation_date?: Датум?
   observations: Набљудувања
   observations_by: Набљудувања од
-  observations_by_everyone: Набљудувања од сите
   observations_by_user: "Набљудувања од %{user}"
-  observations_confirmed: Набљудувања (потврдени)
   observations_deleted: Набљудувањата се избришани.
   observations_for: Набљудувања за
   observations_for_project: "Набљудувања за %{project}"
   observations_from: Набљудувања од %{date}
   observations_from_this_place: Набљудувања од ова место
   observations_from_this_project: Набљудувања од овој проект
-  observations_from_you: Ваши набљудувања
-  observations_last500: Набљудувања (последни 500)
   observations_map: Набљудувања  / Карта
   observation_must_dotdotdot: Набљудувањето мора да...
   observations_needing_curation: Набљудувања со потреба од згрижување
@@ -910,17 +906,12 @@ mk:
   observations_w: Набљудувања со
   observations_w_field: Набљудувања со поле
   observations_was_successfully_updated: Набљудувањата се успешно подновени.
-  observations_week: Набљудувања неделно
   observations_widget: Елемент за набљудувања
-  observations_will_revert_to_casual: Набљудувањата се враќаат на степенот „површно“ доколку не се задоволени горенаведените услови или доколку
   observationcounts_refreshed: Броевите на набљудувања се подновени
   observed_by: Забележан од
-  observed_in_place?: забележан во местото
   observed_on: Забележан на
-  observed_one: го забележа
   observer: Набљудувач
   observer_short: Видел
-  observing: набљудува
   occurence_status_describes_how: 'Застапеноста опишува колку чест или редок е таксонот на дадено подрачје. Погледајте го DarwinCore за <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">повеќе информации за поимите</a>.'
   occurrence_status: Застапеност
   occurrence_status_establishment_means: застапеност, начин на утврдување
@@ -932,16 +923,11 @@ mk:
     doubtful: сомнителен
     absent: отсутен
   of: од
-  of_it_and_its_descendants: од него и неговите потомци
-  of_least_concern: Со најмала загриженост
   offensive_inappropriate: навредливо / неумесно
   offline_access_enabled: Вонмрежниот пристап е вклучен
   on_: "на"
   on_date: "на %{date}"
   on_day: "на"
-  on_edit_date: "на %{editdate}"
-  on_list?: на списокот
-  on_submit_date: "на %{submitdate}"
   on_your_life_list: на вашиот животен список
   one_by_one: "Еден по еден"
   one_of_your_lists: "еден од вашите списоци..."
@@ -952,9 +938,6 @@ mk:
   order: Редослед
   order_by: Подреди по
   original: изворна
-  other_animals_plural:
-    one: друго животно
-    other: други животни
   out_of_range: Вон опсег
   output_taxon: Излезен таксон
   owner: Сопственик
@@ -1365,7 +1348,6 @@ mk:
   summary: Преглед
   suspicious_photos: Сомнителни слики
   siutable_observations: соодветни набљудувања
-  sun: нед
   suspend_user: Исклучи го корисникот
   sw_lat: ЈЗ шир.
   sw_lon: ЈЗ дол.
@@ -1412,7 +1394,6 @@ mk:
   this_species: овој вид
   this_tool_is_experimental: Оваа алатка е пробна, затоа
   threatened: Загрозен
-  thu: чет
   time_ago: "пред %{time}"
   today: Денес
   tools: Алатки
@@ -1421,7 +1402,6 @@ mk:
   total_observations: Вкупно набљудувања
   total_unique_observers: Вкупно посебни набљудувачи
   total_users: "вкупно корисници,"
-  tue: вто
   type: Внесете
   type_a_name_and_click: Внесете име и стиснете на ПОБАРАЈ
   type_authority: Внесете орган...
@@ -1524,7 +1504,6 @@ mk:
     <a href="http://facebook.com">Facebook</a>
     како места за вдомување на сликите.
   we_care_privacy: Вашата приватност ни значи!
-  wed: сре
   welcome!: Добре дојдовте!
   welcome_comma!: Добре дојдовте,
   welcome: добре дојдовте

@@ -1,5 +1,6 @@
 lt:
   _100_day_trends: 100 dienų tendencijos
+  _percent_ID_d: "% su ID"
   a_community_for_naturalist: Gamtininkų bendruomenė
   a_default_taxon_name_will_automatically_created: |
     Numatytasis taksono pavadinimas bus automatiškai sukurtas iš šio taksono mokslinio pavadinimo požymių. 
@@ -7,6 +8,26 @@ lt:
   a_flag_for_x: "%{x} žymė"
   a_member_of: "Narys"
   a_member_of_taxon_html: " %{taxon} narys"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Apie
   about_blocking: Apie bokavimą
   about_charts: Apie Diagramas
@@ -235,6 +256,7 @@ lt:
   ancestor_taxon: Ankstesnis taksonas
   and: ir
   and_other_taxa: "&amp; Kitas taksonas"
+  android: Android
   animals: Gyvūnai
   annotation: Komentaras
   annotations: Pastabos
@@ -309,8 +331,11 @@ lt:
   attribution: Požymis
   authority_list:
     iucn_red_list: IUCN Raudonasis Sąrašas
+    natureserve: NatureServe
+    cites: CITES
   authorize: Autorizuoti
   authorize_permissions_from_provider: "Leisti teises iš %{provider}"
+  automatic_short: Auto
   automatically_add_observations_to_this_project: Pridėti stebėjimus prie šio projekto automatiškai
   automatically_update_my_content_for_taxon_changes: Automatiškai atnaujinti mano turinį esant taksonų pokyčiams
   back: Atgal
@@ -443,6 +468,7 @@ lt:
   classification: Klasifikacija
   clear: išvalyti
   clear_color_filters: Valyti spalvos filtrus
+  clear_filters: Valyti filtrus
   clear_search: Valyti paiešką
   click_the_map: "<strong>Paspauskite ant žemėlapio</strong>, kad pridėtumėte vietą."
   click_the_map_to_jump_new_place: Paspauskite ant žemėlapio, kad pereitumėte į naują vietą
@@ -462,7 +488,11 @@ lt:
   community_curated: Kuruojamas Bendruomenės
   community_guidelines: Bendruomenės gairės
   community_id_heading: Bendruomenės taksonas
+  community_id_at_species_or_lower?: Bendruomenės ID rūšies lygmenyje ar žemiau?
+  community_id_at_genus_level_or_lower: Bendruomenės ID genties lygmenyje ar žemiau
+  community_id_at_species_level_or_lower: Bendruomenės ID rūšies lygmenyje ar žemiau
   community_moderation_settings: Bendruomenės Moderavimo Nustatymai
+  community_supported_id: Bendruomenės patvirtintas taksonas?
   compare: Palyginti
   compare_with: Lyginti su
   comparing: lyginama
@@ -765,6 +795,7 @@ lt:
   extinct: išnykę
   extinct_in_the_wild: išnykę laisvėje
   extra_properties: Papildomos Savybės
+  facebook: Facebook
   facebook_account_information: Jūsų Facebook Paskyros Informacija
   facebook_account_not_linked: "%{user} nebeturi susietos facebook paskyros, todėl %{site_name} nebeturi leidimo prieiti prie šios nuotraukos."
   facebook_access_token_expired: "Prieigos rakto galiojimas baigėsi. %{user} turi sujungti savo Facebook paskyrą iš naujo."
@@ -957,6 +988,7 @@ lt:
   latitude_value: "Platuma: %{latitude}"
   leading: Vadovaujantis
   learn_more: Sužinokite daugiau
+  leave_a_comment: Palikti komentarą
   leave_this_project: Palikite šį projektą
   let_us_walk_you_through: Leiskite jums pristatyti pagrindines puslapio funkcijas.
   lexicon: Leksikonas
@@ -1081,6 +1113,7 @@ lt:
   next_photo: Kita nuotrauka
   next_tab: Kitas Skirtukas
   'no': 'Ne'
+  no_comments_yet: Dar nėra komentarų.
   no_countries_added_yet: Dar nepridėta jokia šalis
   no_identifications: Nėra identifikacijų
   no_identifications_added:
@@ -1105,25 +1138,20 @@ lt:
   not_linked_facebook: "Jūsų %{site_name} paskyra nėra susieta su jūsų Facebook paskyra"
   not_linked_flickr: "Jūsų %{site_name} paskyra nėra susieta su jūsų Flickr paskyra"
   number_of_observations: Stebėjimų skaičius
-  obscured_: paslėpta
   obscured_or_private: paslėptas arba privatus
   observation: Stebėjimas
   observation_added: Stebėjimas pridėtas.
   observations_by_you: "Jūsų stebėjimai"
   observation_curation: Stebėjimo kuravimas
-  observation_flagged: Stebėjimas pažymėtas
   observation_without_media: Stebėjimas be nuotraukų/garsų
-  observation_would_like_some_help: "%{user} reikia pagalbos su šio stebėjimo identifikavimu!"
   observations: Stebėjimai
   observations_by: Stebėjimai pagal
   observations_by_user: "Stebėjimai pagal %{user}"
   observations_deleted: Stebėjimai ištrinti.
   observations_for: Stebėjimai
   observations_from: Stebėjimai nuo %{date}
-  observations_obscured: Stebėjimai (paslėpti)
   observations_per_month: Stebėjimai / Mėnuo
   observed: Stebėta
-  observed_in_place?: stebėtas vietovėje
   observed_on: Stebėta
   of_observations: stebėjimai
   of_species: rūšys
@@ -1143,7 +1171,6 @@ lt:
   only_species: tik rūšys
   or: arba
   or_choose_high_level_taxa: "...arba rinkitės aukštesnio lygio taksonus"
-  or_invite_your_friends: arba pakvieskite draugus
   or_upload: Arba įkelti
   other_animals: kiti gyvūnai
   our_blog: Mūsų dienoraštis
@@ -1239,6 +1266,7 @@ lt:
   restore: Atkurti
   rg_observations: ID stebėjimai
   save_and_add_taxa: "Išsaugoti ir pradėti pridėti rūšis"
+  save_comment: Išsaugoti komentarą
   save_photos: Saugoti nuotraukas
   save_place: Išsaugoti vietą
   scientific_names: Moksliniai pavadinimai
@@ -1299,6 +1327,7 @@ lt:
   stats_for_this_year_have_not_been_generated: Šių metų statistika nebuvo sugeneruota.
   stats_title: Statistika
   still_needs_id?: Vis dar reikia ID?
+  submit_comment: Pateikti komentarą
   submitted: Pateikta
   subscribe_to_a_taxon: Prenumeruoti Taksoną
   subscribe_to_a_place: Prenumeruoti Vietą
@@ -1334,7 +1363,6 @@ lt:
   to_add_identifications: pridėti identifikacijas
   totals: iš viso
   total_species_observed: Iš viso rūšių stebėta
-  tue: Ant
   type_date_time_or_use_the_calendar: Įveskite datą/laiką arba naudokite kalendorių
   type_species_name: "Įveskite rūšies pavadinimą"
   umbrella_projects: Skėtiniai projektai
