@@ -141,14 +141,6 @@ describe Emailer, "project_user_invitation" do
     mail = Emailer.project_user_invitation(pui)
     expect(mail.body).not_to be_blank
   end
-
-  it "should strip unicode from the title" do
-    p = Project.make!( title: "Éguî" )
-    pui = ProjectUserInvitation.make!( project: p )
-    mail = Emailer.project_user_invitation( pui )
-    expect( mail.subject ).not_to include p.title
-    expect( mail.subject ).to include "\\u00c9g"
-  end
 end
 
 describe Emailer, "bulk_observation_success" do
