@@ -35,6 +35,27 @@ class Identification < ActiveRecord::Base
       end
       indexes :hidden, type: "boolean"
       indexes :id, type: "integer"
+      indexes :moderator_actions do
+        indexes :action, type: "keyword", index: false
+        indexes :created_at, type: "date"
+        indexes :created_at_details do
+          indexes :date, type: "date", index: false
+          indexes :day, type: "byte", index: false
+          indexes :hour, type: "byte", index: false
+          indexes :month, type: "byte", index: false
+          indexes :week, type: "byte", index: false
+          indexes :year, type: "short", index: false
+        end
+        indexes :id, type: "integer"
+        indexes :reason, type: "text", analyzer: "ascii_snowball_analyzer", index: false
+        indexes :user do
+          indexes :created_at, type: "date"
+          indexes :id, type: "integer"
+          indexes :login, type: "keyword"
+          indexes :spam, type: "boolean"
+          indexes :suspended, type: "boolean"
+        end
+      end
       indexes :observation do
         indexes :created_at, type: "date"
         indexes :created_at_details do
