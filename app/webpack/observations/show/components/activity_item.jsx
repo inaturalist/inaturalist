@@ -51,11 +51,11 @@ const ActivityItem = ( {
   let contents;
   let header;
   let className;
-  if ( !config.showHidden && item.hidden && !isID ) {
+  if ( item.hidden && !isID && ( !canSeeHidden || !config.showHidden ) ) {
     return (
       <div className="ActivityItem">
         <div className="icon">
-          <UserImage user={null} />
+          <UserImage user={viewerIsActor ? item.user : null} />
         </div>
         <Panel className="moderator-hidden">
           <Panel.Heading>
@@ -171,7 +171,7 @@ const ActivityItem = ( {
           ) }
         </div>
       );
-    } else {
+    } else if ( !item.hidden || canSeeHidden ) {
       idBody = item.body && ( <UserText text={item.body} className="id_body" /> );
     }
     contents = (
@@ -195,7 +195,7 @@ const ActivityItem = ( {
         { idBody }
       </div>
     );
-  } else {
+  } else if ( !item.hidden || canSeeHidden ) {
     header = I18n.t( "user_commented", { user: ReactDOMServer.renderToString( userLink ) } );
     contents = ( <UserText text={item.body} /> );
   }
@@ -447,7 +447,9 @@ const ActivityItem = ( {
   return (
     <div id={elementID} className={`ActivityItem ${className} ${byClass}`}>
       <div className="icon">
-        <UserImage user={item.user} linkTarget={linkTarget} />
+        { ( !item.hidden || canSeeHidden || viewerIsActor ) && (
+          <UserImage user={item.user} linkTarget={linkTarget} />
+        ) }
       </div>
       <Panel className={panelClass}>
         <Panel.Heading>
