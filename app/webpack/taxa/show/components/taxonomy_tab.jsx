@@ -36,6 +36,7 @@ const TaxonomyTab = ( {
                 toggleAllChildrenShown={toggleAllChildrenShown}
                 allChildrenShown={allChildrenShown}
                 currentUser={currentUser}
+                tabular
               />
             </Col>
             <Col xs={4}>

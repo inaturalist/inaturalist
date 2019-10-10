@@ -24,6 +24,11 @@
       li.current .row-content > * {
         border-bottom: 1px solid #efefef;
       }
+      li.current li:last-child {
+        .row-content > * {
+          border-bottom: 0 none;
+        }
+      }
     }
     .label-complete {
       display: inline-block;

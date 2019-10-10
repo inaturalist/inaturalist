@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import _ from "lodash";
 import { urlForTaxon, RANK_LEVELS } from "../../taxa/shared/util";
+import { numberWithCommas } from "../util";
 import SplitTaxon from "./split_taxon";
 
 const TaxonomicBranch = ( {
@@ -11,7 +12,8 @@ const TaxonomicBranch = ( {
   toggleAllChildrenShown,
   currentUser,
   chooseTaxon,
-  noHideable
+  noHideable,
+  tabular
 } ) => {
   const branch = [];
   const currentTaxon = Object.assign( { }, taxon );
@@ -30,6 +32,10 @@ const TaxonomicBranch = ( {
       branch.push( taxon );
     }
   }
+  const currentUserIsCurator = currentUser && (
+    currentUser.roles.indexOf( "curator" ) >= 0
+    || currentUser.roles.indexOf( "admin" ) >= 0
+  );
   const renderTaxonomy = taxa => (
     <ul className="plain taxonomy">
       { ( _.sortBy( taxa, t => [( 100 - t.rank_level ), t.name] ) || [] ).map( t => {
@@ -45,7 +51,6 @@ const TaxonomicBranch = ( {
         const numHidableChildren = _.filter( t.children || [], c => (
           c.rank === "genushybrid" || c.rank === "hybrid" || !c.is_active || c.extinct
         ) ).length;
-        const tabular = false;
         if ( isTaxon ) {
           className += "current";
         }
@@ -80,6 +85,14 @@ const TaxonomicBranch = ( {
                     return false;
                   }}
                 />
+                { isDescendant && currentUserIsCurator && (
+                  <span>
+                    { " " }
+                    <a href={`/taxa/${t.id}/edit`}>
+                      <i className="fa fa-pencil" alt={I18n.t( "edit" )} />
+                    </a>
+                  </span>
+                ) }
                 { isComplete ? (
                   <div className="inlineblock taxonomy-complete-notice">
                     <div className="label-complete">
@@ -140,7 +153,9 @@ const TaxonomicBranch = ( {
               { tabular && isDescendant ? (
                 <div className={`text-${t.observations_count === 0 ? "default" : "success"} label-obs-count`}>
                   { t.observations_count === 0 ? t.observations_count : (
-                    <a href={`/observations?taxon_id=${t.id}&place_id=any`}>{ t.observations_count }</a>
+                    <a href={`/observations?taxon_id=${t.id}&place_id=any`}>
+                      { numberWithCommas( t.observations_count ) }
+                    </a>
                   ) }
                 </div>
               ) : null }
@@ -165,7 +180,8 @@ TaxonomicBranch.propTypes = {
   toggleAllChildrenShown: PropTypes.func,
   currentUser: PropTypes.object,
   chooseTaxon: PropTypes.func,
-  noHideable: PropTypes.bool
+  noHideable: PropTypes.bool,
+  tabular: PropTypes.bool
 };
 
 TaxonomicBranch.defaultProps = {
