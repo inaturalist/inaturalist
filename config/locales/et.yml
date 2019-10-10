@@ -1592,7 +1592,6 @@ et:
     oc: Oksitaani
     pl: Poola
     pt-BR: Portugali (Brasilia)
-    pt-PT: Portugali (Portugali)
     ru: Vene
     sq: Albaania
     sv: Rootsi
@@ -1628,6 +1627,7 @@ et:
   lowest_rank: Madalaim kategooria
   make_admin: Muuda administraatoriks
   mail_disclaimer: "%{site_name} ei luba oma kasutajatel sulle enam meie kutsesüsteemi abil kutseid saata. Kutsetega tülitamisest anna teada %{site}."
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: Peasisu
   make_a_new_place: Loo uus koht
   make_a_taxon_swap_instead?: Tee hoopis taksonite vahetus?
@@ -1769,6 +1769,8 @@ et:
   native: kohalik
   native_page_url: Lehe URL
   native_to_place: "Kohalik kohas %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: Menüü
   ne_lat: Kirdelaius
   ne_lon: Kirdepikkus
