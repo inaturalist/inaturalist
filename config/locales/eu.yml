@@ -1133,6 +1133,7 @@ eu:
   lookup: Bilatu
   lowest_rank: Mailarik baxuena
   mail_disclaimer: "%{site_name} webguneak ez die utziko erabiltzaileei gonbidapen gehiago bidaltzen gure sistemaren bidez. Mesedez, salatu gonbidapenen abusua hemen: %{site}."
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: Eduki nagusia
   make_a_new_place: Leku berri bat sortu
   make_a_taxon_swap_instead?: Espeziea edo taldea trukatu nahi duzu?
@@ -1188,6 +1189,8 @@ eu:
     col: Bizitzako katalogoa
   names: Izenak
   native: bertakoa
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: NAV
   ne_lat: Lat. N.E.
   ne_lon: Long. N.E.
