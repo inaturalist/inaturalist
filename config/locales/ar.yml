@@ -1536,7 +1536,6 @@ ar:
     oc: القسطانية
     pl: البولندية
     pt-BR: البرتغالية (البرازيل).
-    pt-PT: البرتغالية (البرتغال)
     ru: الروسية
     sk: السلوفاكية
     sq: الألبانية
@@ -1575,6 +1574,7 @@ ar:
   lowest_rank: أدنى رتبة
   make_admin: اصنع إداري
   mail_disclaimer: "لن يسمح %{site_name} لمستخدميه بإرسال دعوات إضافية لك عبر الداعي، الرجاء الإبلاغ عن الإساءة للدعوة في %{site}."
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: المحتوى الرئيسي
   make_a_new_place: إنشاء مكان جديد
   make_a_taxon_swap_instead?: صنع مبادلة أصناف بدلا من ذلك؟
@@ -1718,6 +1718,8 @@ ar:
   native: محلي
   native_page_url: مسار الصفحة الأصلية
   native_to_place: "مواطن لـ%{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: محلي
   ne_lat: خط العرض الشمالي الشرقي
   ne_lon: خط الطول الشمالي الشرقي
