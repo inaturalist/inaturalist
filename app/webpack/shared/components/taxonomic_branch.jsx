@@ -32,7 +32,7 @@ const TaxonomicBranch = ( {
       branch.push( taxon );
     }
   }
-  const currentUserIsCurator = currentUser && (
+  const currentUserIsCurator = currentUser && currentUser.roles && (
     currentUser.roles.indexOf( "curator" ) >= 0
     || currentUser.roles.indexOf( "admin" ) >= 0
   );
@@ -68,6 +68,9 @@ const TaxonomicBranch = ( {
         }
         if ( tabular ) {
           className += " tabular";
+        }
+        if ( numChildren > 0 ) {
+          className += " has-children";
         }
         return (
           <li key={`taxonomy-${t.id}`} className={className}>
@@ -145,7 +148,7 @@ const TaxonomicBranch = ( {
                   </div>
                 ) : null }
               </div>
-              { tabular && isTaxon ? (
+              { tabular && isTaxon && numChildren > 0 ? (
                 <div style={{ whiteSpace: "nowrap" }}>
                   { I18n.t( "observations" ) }
                 </div>
