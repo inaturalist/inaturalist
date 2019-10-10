@@ -345,7 +345,8 @@ button {
     padding-top: 22px;
     cursor: pointer;
     color: #888;
-    .stat {
+    .stat,
+    .count {
       display: block;
       font-size: 24px;
       font-weight: 600;

@@ -761,6 +761,12 @@ I18n.translations["ar"] = {
   "none_found": "لم يتم العثور على شيء",
   "not_evaluated": "لم يتم تقييمه",
   "not_recorded": "غير مسجل",
+  "number": {
+    "format": {
+      "delimiter": "،",
+      "separator": "."
+    }
+  },
   "number_selected": "تم اختيار #",
   "obs": "ملاحظات",
   "obs_cid_d": "ملا CID'd",
@@ -2368,6 +2374,12 @@ I18n.translations["bg"] = {
   "no_results_found": "Не бяха открити резултати",
   "none": "Нищо",
   "not_evaluated": "неоценен",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "obscured": "Замаскирано",
   "observation": "Наблюдение",
   "observation_": "наблюдение",
@@ -3245,6 +3257,10 @@ I18n.translations["br"] = {
   "no": "Ket",
   "no_photos": "Luc'hskeudenn ebet",
   "none": "Hini ebet",
+  "number": {
+    "format": {
+    }
+  },
   "number_selected": "niv. dibabet",
   "obscured": "Kuzhet",
   "observation_date": "Deiziad",
@@ -4262,6 +4278,12 @@ I18n.translations["ca"] = {
   "none_found": "No s'ha trobat cap",
   "not_evaluated": "no avaluat",
   "not_recorded": "No enregistrat",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# seleccionat",
   "obs_cid_d": "CID de l'observació",
   "obs_id_d": "ID de l'observació",
@@ -6019,6 +6041,12 @@ I18n.translations["cs"] = {
   "none_found": "Nenalezeno",
   "not_evaluated": "nehodnoceno",
   "not_recorded": "Nezaznamenáno",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# vybráno",
   "obs": "Skr",
   "obs_id_d": "ID pozorování",
@@ -7772,6 +7800,12 @@ I18n.translations["da"] = {
   "none_found": "Ingen fundet",
   "not_evaluated": "Ikke evalueret",
   "not_recorded": "Ikke registreret",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# valgte",
   "obs": "Obs.",
   "obs_cid_d": "Obs FID'et",
@@ -9657,6 +9691,12 @@ I18n.translations["de"] = {
   "none_found": "nichts gefunden",
   "not_evaluated": "nicht beurteilt",
   "not_recorded": "Nicht erfasst",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# ausgewählt",
   "obs": "Beobachtungen",
   "obscured": "Verschleiert",
@@ -11233,6 +11273,12 @@ I18n.translations["el"] = {
   "none_found": "Δεν βρέθηκε",
   "not_evaluated": "μη αξιολογημένο",
   "not_recorded": "μη καταγεγραμμένο",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# επιλεγμένα",
   "obs": "Παρατηρήσεις",
   "observation": "Παρατήρηση",
@@ -12886,6 +12932,12 @@ I18n.translations["en"] = {
   "none_found": "None found",
   "not_evaluated": "not evaluated",
   "not_recorded": "Not recorded",
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
+  },
   "number_selected": "# selected",
   "obs": "Obs",
   "obs_cid_d": "Obs CID'd",
@@ -13925,12 +13977,25 @@ I18n.translations["en"] = {
     "other": "%{count} identifications"
   },
   "x_identifications_": {
+    "zero": "0 Identifications",
     "one": "1 Identification",
+    "few": "%{count} Identifications",
+    "many": "%{count} Identifications",
     "other": "%{count} Identifications"
   },
   "x_identifications_html": {
+    "zero": "<span class=\"count\">0</span> identifications",
     "one": "<span class=\"count\">1</span> identification",
+    "few": "<span class=\"count\">%{count}</span> identifications",
+    "many": "<span class=\"count\">%{count}</span> identifications",
     "other": "<span class=\"count\">%{count}</span> identifications"
+  },
+  "x_identifiers_html": {
+    "zero": "<span class=\"count\">0</span> Identifiers",
+    "one": "<span class=\"count\">1</span> Identifier",
+    "few": "<span class=\"count\">%{count}</span> Identifiers",
+    "many": "<span class=\"count\">%{count}</span> Identifiers",
+    "other": "<span class=\"count\">%{count}</span> Identifiers"
   },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span> matching taxon",
@@ -13949,11 +14014,17 @@ I18n.translations["en"] = {
     "other": "%{count} New Species"
   },
   "x_observations": {
+    "zero": "0 observations",
     "one": "1 observation",
+    "few": "%{count} observations",
+    "many": "%{count} observations",
     "other": "%{count} observations"
   },
   "x_observations_": {
+    "zero": "0 Observations",
     "one": "1 Observation",
+    "few": "%{count} Observations",
+    "many": "%{count} Observations",
     "other": "%{count} Observations"
   },
   "x_observations_failed": {
@@ -13961,7 +14032,10 @@ I18n.translations["en"] = {
     "other": "%{count} observations failed"
   },
   "x_observations_html": {
+    "zero": "<span class='count'>0</span> observations",
     "one": "<span class='count'>1</span> observation",
+    "few": "<span class='count'>%{count}</span> observations",
+    "many": "<span class='count'>%{count}</span> observations",
     "other": "<span class='count'>%{count}</span> observations"
   },
   "x_observations_link_html": {
@@ -13971,6 +14045,13 @@ I18n.translations["en"] = {
   "x_observations_reviewed_html": {
     "one": "<span class='count'>1</span> observation reviewed",
     "other": "<span class='count'>%{count}</span> observations reviewed"
+  },
+  "x_observers_html": {
+    "zero": "<span class=\"count\">0</span> Observers",
+    "one": "<span class=\"count\">1</span> Observer",
+    "few": "<span class=\"count\">%{count}</span> Observers",
+    "many": "<span class=\"count\">%{count}</span> Observers",
+    "other": "<span class=\"count\">%{count}</span> Observers"
   },
   "x_of_y": "%{x} of %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} of %{y} people (over 2/3) agree it is",
@@ -13984,11 +14065,17 @@ I18n.translations["en"] = {
     "other": "%{count} photos"
   },
   "x_species": {
+    "zero": "0 Species",
     "one": "1 Species",
+    "few": "%{count} Species",
+    "many": "%{count} Species",
     "other": "%{count} Species"
   },
   "x_species_html": {
+    "zero": "<span class='count'>0</span> species",
     "one": "<span class='count'>1</span> species",
+    "few": "<span class='count'>%{count}</span> species",
+    "many": "<span class='count'>%{count}</span> species",
     "other": "<span class='count'>%{count}</span> species"
   },
   "x_species_link_html": {
@@ -14069,6 +14156,10 @@ I18n.translations["en-UK"] = {
     }
   },
   "momentjs": {
+  },
+  "number": {
+    "format": {
+    }
   },
   "place_geo": {
   },
@@ -14215,6 +14306,12 @@ I18n.translations["en-US"] = {
     }
   },
   "momentjs": {
+  },
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
   },
   "place_geo": {
   },
@@ -14806,6 +14903,12 @@ I18n.translations["eo"] = {
   "no_news_yet": "Ankoraŭ neniu novaĵo",
   "no_photos": "Neniu foto",
   "none": "Nenio",
+  "number": {
+    "format": {
+      "delimiter": " ",
+      "separator": ","
+    }
+  },
   "observation_date": "Dato",
   "observations": "Observoj",
   "observations_": "observoj",
@@ -15544,6 +15647,12 @@ I18n.translations["es"] = {
   },
   "momentjs": {
   },
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "place_geo": {
   },
   "sounds": {
@@ -15689,6 +15798,12 @@ I18n.translations["es-ES"] = {
     }
   },
   "momentjs": {
+  },
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
   },
   "place_geo": {
   },
@@ -16547,6 +16662,12 @@ I18n.translations["es-MX"] = {
   "none_found": "No se encontró ninguno",
   "not_evaluated": "No se ha evaluado",
   "not_recorded": "No grabado",
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
+  },
   "number_selected": "# seleccionado",
   "obs_cid_d": "Obs. identificadas por la comunidad",
   "obs_id_d": "Obs. identificadas",
@@ -18352,6 +18473,12 @@ I18n.translations["et"] = {
   "none_found": "Ei leitud",
   "not_evaluated": "pole hinnatud",
   "not_recorded": "Pole märgitud",
+  "number": {
+    "format": {
+      "delimiter": " ",
+      "separator": ","
+    }
+  },
   "number_selected": "# valitud",
   "obs": "Vaatlus",
   "obs_cid_d": "Kogukondlikud määratlused",
@@ -19886,6 +20013,12 @@ I18n.translations["eu"] = {
   "none": "Bat ere ez",
   "none_found": "Ez da aurkitu",
   "not_evaluated": "ebaluatu gabe",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "obs": "Beh.",
   "obscured": "Lausoa",
   "observation": "Behaketa",
@@ -21056,6 +21189,12 @@ I18n.translations["fi"] = {
   "none_found": "Ei löytynyt",
   "not_evaluated": "arvioimatta jätetty",
   "not_recorded": "Ei merkitty",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# valittu",
   "obs": "Havainnot",
   "obscured": "Piilotettu",
@@ -21952,6 +22091,10 @@ I18n.translations["fil"] = {
   },
   "momentjs": {
   },
+  "number": {
+    "format": {
+    }
+  },
   "place_geo": {
   },
   "sounds": {
@@ -22828,6 +22971,12 @@ I18n.translations["fr"] = {
   "none_found": "Aucun trouvé",
   "not_evaluated": "non évalué",
   "not_recorded": "Non enregistré",
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": ","
+    }
+  },
   "number_selected": "n° sélectionné",
   "obs": "Obs",
   "obs_cid_d": "CID de l’observation",
@@ -23979,6 +24128,12 @@ I18n.translations["fr-CA"] = {
   },
   "momentjs": {
   },
+  "number": {
+    "format": {
+      "delimiter": " ",
+      "separator": ","
+    }
+  },
   "place_geo": {
   },
   "sounds": {
@@ -24454,6 +24609,12 @@ I18n.translations["gl"] = {
   "no_summary_from_wikipedia": "No hay resumen de Wikipedia",
   "none": "Ningún",
   "not_evaluated": "non avaliado",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "obscured": "Difusa",
   "observation": "Observación",
   "observation_date": "Data",
@@ -25471,6 +25632,12 @@ I18n.translations["he"] = {
   "none_found": "לא נמצא דבר",
   "not_evaluated": "טרם הוערך",
   "not_recorded": "לא נרשם",
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
+  },
   "obs": "תצפיות",
   "obs_id_d": "תצפית הוגדרה",
   "obscured": "מוסתר",
@@ -26729,6 +26896,12 @@ I18n.translations["id"] = {
   "no_summary_from_wikipedia": "Tidak ada rangkuman dari Wikipedia",
   "none": "Tak satupun",
   "not_evaluated": "tidak dievaluasi",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# dipilih",
   "obs": "Pengamatan",
   "obscured": "Dikaburkan",
@@ -27969,6 +28142,12 @@ I18n.translations["it"] = {
   "none_found": "Non trovato",
   "not_evaluated": "Non Valutata",
   "not_recorded": "Non registrata",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# selezionati",
   "obs": "Osservazioni",
   "obs_cid_d": "Osservazioni con CID",
@@ -29157,6 +29336,10 @@ I18n.translations["iw"] = {
   },
   "momentjs": {
   },
+  "number": {
+    "format": {
+    }
+  },
   "place_geo": {
   },
   "sounds": {
@@ -29826,6 +30009,12 @@ I18n.translations["ja"] = {
   "no_summary_from_wikipedia": "ウィキペディアに記述ありません",
   "none": "該当する項目ありません",
   "not_evaluated": "未評価",
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
+  },
   "number_selected": "# 選択済み",
   "obs": "不明瞭",
   "obscured": "不明瞭",
@@ -30452,6 +30641,10 @@ I18n.translations["ka"] = {
     }
   },
   "momentjs": {
+  },
+  "number": {
+    "format": {
+    }
   },
   "place_geo": {
   },
@@ -31098,6 +31291,12 @@ I18n.translations["ko"] = {
   "none_found": "찾을 수 없음",
   "not_evaluated": "평가되지 않음",
   "not_recorded": "기록되지 않음",
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
+  },
   "number_selected": "# 선택됨",
   "obs": "관찰",
   "obscured": "숨김",
@@ -32159,6 +32358,12 @@ I18n.translations["lb"] = {
   "none_found": "Kee fonnt",
   "not_evaluated": "net bewäert",
   "not_recorded": "Net enregistréiert",
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
+  },
   "number_selected": "# erausgesicht",
   "observation": "Observatioun",
   "observation_": "Observatioun",
@@ -33094,6 +33299,12 @@ I18n.translations["lt"] = {
   "no_observations": "Nėra stebėjimų",
   "no_observations_from_this_place_yet": "Šioje vietoje dar nėra stebėjimų.",
   "no_observations_yet": "Dar nėra stebėjimų",
+  "number": {
+    "format": {
+      "delimiter": " ",
+      "separator": ","
+    }
+  },
   "observation": "Stebėjimas",
   "observation_without_media": "Stebėjimas be nuotraukų/garsų",
   "observations": "Stebėjimai",
@@ -33700,6 +33911,12 @@ I18n.translations["mk"] = {
   "no_range_data_available": "Нема податоци за распространетоста.",
   "no_summary_from_wikipedia": "Нема опис од Википедија",
   "none": "Ништо",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "obscured": "затскриено",
   "observation_date": "Датум",
   "observations": "Набљудувања",
@@ -34880,6 +35097,12 @@ I18n.translations["nb"] = {
   "none_found": "Ingen funnet",
   "not_evaluated": "ikke vurdert",
   "not_recorded": "Ikke registrert",
+  "number": {
+    "format": {
+      "delimiter": " ",
+      "separator": ","
+    }
+  },
   "number_selected": "# valgt",
   "obs": "Obs",
   "obs_cid_d": "Obs FID'et",
@@ -36509,6 +36732,12 @@ I18n.translations["nl"] = {
   "none_found": "Niet gevonden",
   "not_evaluated": "Niet beoordeeld",
   "not_recorded": "Niet opgenomen",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# geselecteerd",
   "obs": "Waarnemingen",
   "obs_cid_d": "Wrn CID'd",
@@ -37750,6 +37979,12 @@ I18n.translations["nn"] = {
   },
   "momentjs": {
   },
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
+  },
   "place_geo": {
   },
   "sounds": {
@@ -38224,6 +38459,10 @@ I18n.translations["oc"] = {
   "no_species_observed": "Cap d'espècias pas observadas.",
   "none": "Pas cap",
   "not_evaluated": "pas avalorat",
+  "number": {
+    "format": {
+    }
+  },
   "observation": "Observacion",
   "observation_date": "Data",
   "observation_fields": "Camps d’observacion",
@@ -39333,6 +39572,12 @@ I18n.translations["pl"] = {
   "no_summary_from_wikipedia": "Brak podsumowania z Wikipedii",
   "none": "Brak",
   "none_found": "Nie znaleziono",
+  "number": {
+    "format": {
+      "delimiter": " ",
+      "separator": ","
+    }
+  },
   "obscured": "Ukryta",
   "observation": "Obserwacja",
   "observation_": "obserwacja",
@@ -40619,6 +40864,12 @@ I18n.translations["pt"] = {
   "none_found": "Não encontrado",
   "not_evaluated": "Não avaliado",
   "not_recorded": "Não registado",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# selecionado",
   "obs": "Obs.",
   "obs_id_d": "Obs. identificada",
@@ -42010,6 +42261,12 @@ I18n.translations["pt-BR"] = {
   "none_found": "Não encontrado",
   "not_evaluated": "Não avaliado",
   "not_recorded": "Não registrado",
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ","
+    }
+  },
   "number_selected": "# selecionado",
   "obs_id_d": "Obs. identificada",
   "obscured": "Oculto",
@@ -43827,6 +44084,12 @@ I18n.translations["ru"] = {
   "none_found": "Ничего не найдено",
   "not_evaluated": "не оцененный",
   "not_recorded": "Не указана",
+  "number": {
+    "format": {
+      "delimiter": " ",
+      "separator": ","
+    }
+  },
   "number_selected": "# выбранный",
   "obs": "Набл",
   "obs_cid_d": "Наблюдения, идентифицированные сообществом",
@@ -45586,6 +45849,12 @@ I18n.translations["sk"] = {
   "none_found": "Nenájdené",
   "not_evaluated": "nehodnotené",
   "not_recorded": "Nebol zaznamenaný",
+  "number": {
+    "format": {
+      "delimiter": " ",
+      "separator": ","
+    }
+  },
   "number_selected": "# vybrané",
   "obs": "Poz",
   "obs_id_d": "ID pozorovaní",
@@ -47030,6 +47299,12 @@ I18n.translations["sq"] = {
   "none_found": "Asnjë nuk u gjet",
   "not_evaluated": "Nuk është akoma e vlerësuar",
   "not_recorded": "Nuk regjistrohet",
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
+  },
   "number_selected": "#i zgjedhur",
   "obs": "Vëzh",
   "obscured": "E fshehur",
@@ -48084,6 +48359,12 @@ I18n.translations["sv"] = {
   "no_suggestions_available": "Inga förslag tillgängliga",
   "none": "Ingen",
   "none_found": "Ingen hittades",
+  "number": {
+    "format": {
+      "delimiter": "",
+      "separator": ","
+    }
+  },
   "number_selected": "Antal valda",
   "observation_date": "Datum",
   "observations": "Observationer",
@@ -49342,6 +49623,12 @@ I18n.translations["zh-CN"] = {
   "none_found": "未找到",
   "not_evaluated": "未评估",
   "not_recorded": "未记录",
+  "number": {
+    "format": {
+      "delimiter": "，",
+      "separator": "."
+    }
+  },
   "number_selected": "# 已选择",
   "obs": "观察",
   "obs_cid_d": "观察CID'd",
@@ -50285,6 +50572,12 @@ I18n.translations["zh-HK"] = {
   },
   "momentjs": {
   },
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
+  },
   "place_geo": {
   },
   "sounds": {
@@ -51154,6 +51447,12 @@ I18n.translations["zh-TW"] = {
   "none_found": "未找到",
   "not_evaluated": "未評估",
   "not_recorded": "未記錄",
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": "."
+    }
+  },
   "number_selected": "# 已選擇",
   "obs": "觀察",
   "obs_cid_d": "觀察（社群鑑定）",
