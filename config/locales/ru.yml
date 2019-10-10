@@ -1,4 +1,195 @@
 ru:
+  x_comments:
+    one: '1 комментарий'
+    few: '%{count} комментария'
+    many: '%{count} комментариев'
+    other: '%{count} комментария'
+  x_faves:
+    one: '1 фаворит'
+    few: '%{count} фаворита'
+    many: '%{count} фаворитов'
+    other: '%{count} фаворита'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> флаг разрешен"
+    few: "<span class='count'>%{count}</span>флагов разрешено"
+    many: "<span class='count'>%{count}</span>флагов разрешены"
+    other: "<span class='count'>%{count}</span>флагов разрешены"
+  x_followers:
+    one: '1 подписчик'
+    few: '%{count} подписчика'
+    many: '%{count} подписчиков'
+    other: '%{count} подписчиков'
+  x_identifications:
+    one: '1 идентификация'
+    few: '%{count} идентификации'
+    many: '%{count} идентификаций'
+    other: '%{count} идентификаций'
+  x_identifications_html:
+    one: '<span class="count">1</span> идентификация'
+    few: '<span class="count">%{count}</span> идентификации'
+    many: '<span class="count">%{count}</span> идентификаций'
+    other: '<span class="count">%{count}</span> идентификаций'
+  x_identifications_:
+    one: '1 идентификация'
+    few: '%{count} идентификации'
+    many: '%{count} идентификаций'
+    other: '%{count} идентификаций'
+  x_ids:
+    one: '1 идентификация'
+    few: '%{count} идентификации'
+    many: '%{count} идентификаций'
+    other: '%{count} идентификаций'
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    one: Вначале 1 список Жизни
+    few: "Вначале %{count} списка Жизни"
+    many: "Вначале %{count} списков Жизни"
+    other: "Вначале %{count} списков Жизни"
+  x_lists:
+    one: '1 список'
+    few: '%{count} списка'
+    many: '%{count} списков'
+    other: '%{count} списков'
+  x_journal_posts:
+    one: '1 сообщение в журнале'
+    few: '%{count} сообщения в журнале'
+    many: '%{count} сообщений в журнале'
+    other: '%{count} сообщений в журнале'
+  x_journal_posts_html:
+    one: '<span class="count">1</span> сообщение в журнале'
+    few: '<span class="count">%{count}</span> сообщения в журнале'
+    many: '<span class="count">%{count}</span> сообщений в журнале'
+    other: '<span class="count">%{count}</span> сообщений в журнале'
+  x_matching_taxa:
+    one: '1 соответствующий таксон'
+    few: '%{count} соответствующих таксона'
+    many: '%{count} соответствующих таксонов'
+    other: '%{count} соответствующих таксонов'
+  x_matching_taxa_html:
+    one: '<span class="count">1</span> соответствующий таксон'
+    few: '<span class="count">%{count}</span> соответствующих таксона'
+    many: '<span class="count">%{count}</span> соответствующих таксонов'
+    other: '<span class="count">%{count}</span> соответствующих таксонов'
+  x_misidentifications_of_this_species:
+    one: "1 ошибочная идентификация этого вида"
+    few: "%{count} ошибочные идентификации этого вида"
+    many: "%{count} ошибочных идентификаций этого вида"
+    other: "%{count} ошибочных идентификаций этого вида"
+  x_misidentifications_of_species_in_this_rank:
+    one: "1 ошибочная идентификация видов в этом %{rank}"
+    few: "%{count} ошибочные идентификации видов в этом %{rank}"
+    many: "%{count} ошибочных идентификаций вида в этом %{rank}"
+    other: "%{count} ошибочных идентификаций видов в этом %{rank}"
+  x_observations:
+    one: "1 наблюдение"
+    few: "%{count} наблюдения"
+    many: "%{count} наблюдений"
+    other: "%{count} наблюдений"
+  x_observations_:
+    one: "1 наблюдение"
+    few: "%{count} наблюдения"
+    many: "%{count} наблюдений"
+    other: "%{count} наблюдений"
+  x_observations_html:
+    one: "<span class='count'>1</span> наблюдение"
+    few: "<span class='count'>%{count}</span> наблюдения"
+    many: "<span class='count'>%{count}</span> наблюдений"
+    other: "<span class='count'>%{count}</span> наблюдений"
+  x_observations_link_html:
+    one: "<a href='%{url}'>1 наблюдение</a>"
+    few: "<a href='%{url}'>%{count} наблюдения</a>"
+    many: "<a href='%{url}'>%{count} наблюдений</a>"
+    other: "<a href='%{url}'>%{count} наблюдений</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>1</span> наблюдение просмотрено"
+    few: "<span class='count'>%{count}</span> наблюдения просмотрено"
+    many: "<span class='count'>%{count}</span> наблюдений просмотрено"
+    other: "<span class='count'>%{count}</span> наблюдений просмотрено"
+  x_observers_html:
+    one: '<span class="count">1</span> наблюдатель'
+    few: '<span class="count">%{count}</span> наблюдателя'
+    many: '<span class="count">%{count}</span> наблюдателей'
+    other: '<span class="count">%{count}</span> наблюдателей'
+  x_others:
+    one: "1 другой"
+    few: "%{count} других"
+    many: "%{count} других"
+    other: "%{count} других"
+  x_people_found_this_helpful:
+    one: '1 человек считает это полезным'
+    few: '%{count} человека считают это полезным'
+    many: '%{count} человек считают это полезным'
+    other: '%{count} человек считают это полезным'
+  x_people_like_this:
+    one: '1 человеку это нравится'
+    few: '%{count} человекам это нравится'
+    many: '%{count} людям это нравится'
+    other: '%{count} людям это нравится'
+  x_people_agree_html:
+    one: '<span class="count">1</span> человек согласен'
+    few: '<span class="count">%{count}</span> человека согласны'
+    many: '<span class="count">%{count}</span> человек согласны'
+    other: '<span class="count">%{count}</span> человек согласны'
+  x_photos:
+    one: "1 фото"
+    few: "%{count} фото"
+    many: "%{count} фото"
+    other: "%{count} фото"
+  x_new_species:
+    one: "1 новый вид"
+    few: "%{count} новых вида"
+    many: "%{count} новых видов"
+    other: "%{count} новых видов"
+  x_species:
+    one: '1 вид'
+    few: '%{count} вида'
+    many: '%{count} видов'
+    other: '%{count} видов'
+  x_species_html:
+    one: "<span class='count'>1</span>вид"
+    few: "<span class='count'>%{count}</span> вида"
+    many: "<span class='count'>%{count}</span> видов"
+    other: "<span class='count'>%{count}</span> видов"
+  x_species_link_html:
+    one: "<a href='%{url}'>1 вид</a>"
+    few: "<a href='%{url}'>%{count} вида</a>"
+    many: "<a href='%{url}'>%{count} видов</a>"
+    other: "<a href='%{url}'>%{count} видов</a>"
+  x_suggestions_filtered_by_colon:
+    one: "1 предложение, отфильтрованное по:"
+    few: "%{count} предложения, отфильтрованных по:"
+    many: "%{count} предложений, отфильтрованных по:"
+    other: "%{count} предложений, отфильтрованных по:"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> наблюдаемый таксон"
+    few: "<span class='count'>%{count}</span> наблюдаемых таксона"
+    many: "<span class='count'>%{count}</span> наблюдаемых таксонов"
+    other: "<span class='count'>%{count}</span> наблюдаемых таксонов"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> наблюдение исследовательского уровня"
+    few: "<span class='count'>%{count}</span> наблюдения исследовательского уровня"
+    many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня"
+    other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> наблюдение исследовательского уровня, идентифицированное до вида или ниже"
+    few: "<span class='count'>%{count}</span> наблюдения исследовательского уровня, идентифицированных до вида или ниже"
+    many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
+    other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
+  x_taxa_curated_html:
+    one: "<span class='count'>1</span> курируемый таксон"
+    few: "<span class='count'>%{count}</span> курируемых таксона"
+    many: "<span class='count'>%{count}</span> курируемых таксонов"
+    other: "<span class='count'>%{count}</span> курируемых таксонов"
+  x_taxa_matching_current_filters:
+    one: "1 таксон, удовлетворяющий текущим фильтрам"
+    few: "%{count} таксона, удовлетворяющих текущим фильтрам"
+    many: "%{count} таксонов, удовлетворяющих текущим фильтрам"
+    other: "%{count} таксонов, удовлетворяющих текущим фильтрам"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>1</span> добавленный таксон"
+    few: "<span class='count'>%{count}</span> добавленных таксона"
+    many: "<span class='count'>%{count}</span> добавленных таксонов"
+    other: "<span class='count'>%{count}</span> добавленных таксонов"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} человек</strong> оказавшие помощь %{user} с <strong>%{y} идентификацией</strong>"
   _100_day_trends: 100-дневный тренд
   _percent_ID_d: "% идентифицированных"
@@ -258,6 +449,71 @@ ru:
     ray_finned_fishes: Лучепёрые Рыбы
     reptiles: Рептилии
     life: Жизнь
+    x_plantae:
+      one: "1 растение"
+      few: "%{count} растения"
+      many: "%{count} растений"
+      other: "%{count} растений"
+    x_animalia:
+      one: "1 животное"
+      few: "%{count} животных"
+      many: "%{count} животных"
+      other: "%{count} животных"
+    x_mollusca:
+      one: "1 моллюск"
+      few: "%{count} моллюска"
+      many: "%{count} моллюсков"
+      other: "%{count} моллюсков"
+    x_amphibia:
+      one: "1 амфибия"
+      few: "%{count} амфибии"
+      many: "%{count} амфибий"
+      other: "%{count} амфибий"
+    x_mammalia:
+      one: "1 млекопитающее"
+      few: "%{count} млекопитающих"
+      many: "%{count} млекопитающих"
+      other: "%{count} млекопитающих"
+    x_actinopterygii:
+      one: "1 лучепёрая рыба"
+      few: "%{count} лучепёрые рыбы"
+      many: "%{count} лучепёрых рыб"
+      other: "%{count} лучепёрых рыб"
+    x_reptilia:
+      one: "1 рептилия"
+      few: "%{count} рептилии"
+      many: "%{count} рептилий"
+      other: "%{count} рептилий"
+    x_aves:
+      one: "1 птица"
+      few: "%{count} птицы"
+      many: "%{count} птиц"
+      other: "%{count} птиц"
+    x_insecta:
+      one: "1 насекомое"
+      few: "%{count} насекомых"
+      many: "%{count} насекомых"
+      other: "%{count} насекомых"
+    x_arachnida:
+      one: "1 паукообразное"
+      few: "%{count} паукообразных"
+      many: "%{count} паукообразных"
+      other: "%{count} паукообразных"
+    x_fungi:
+      one: "1 гриб"
+      few: "%{count} гриба"
+      many: "%{count} грибов"
+      other: "%{count} грибов"
+    x_protozoa:
+      one: "1 простейшее"
+      few: "%{count} простейших"
+      many: "%{count} простейших"
+      other: "%{count} простейших"
+    x_other_animals:
+      one: "1 другое животное"
+      few: "%{count} других животных"
+      many: "%{count} других животных"
+      other: "%{count} других животных"
   all_taxa_: Все таксоны
   all_taxa_in_this_guide: Все таксоны этого руководства
   all_taxonomic_groups: "&laquo; Все Таксономические Группы"
@@ -279,6 +535,11 @@ ru:
   ancestor_taxon: Таксон-предок
   and: и
   and_other_taxa: "и Другие Таксоны"
+  and_x_more_people!:
+    one: "и ещё один человек!"
+    few: "и ещё %{count} человека!"
+    many: "и ещё %{count} человек!"
+    other: "и ещё %{count} человек!"
   android: Android
   animals: Животные
   annotation: Значение
@@ -964,6 +1225,11 @@ ru:
   editing_custom_project_fields_for: Редактирование пользовательских полей проекта для
   editing_observation_field: Редактирование поля наблюдения
   editing_observation_id: "Редактирование Наблюдения %{obs_id}"
+  editing_observations:
+    one: 'Редактировать <span class="count">1</span> наблюдение:'
+    few: 'Редактировать <span class="count">%{count}</span> наблюдения:'
+    many: 'Редактировать <span class="count">%{count}</span> наблюдений:'
+    other: 'Редактировать <span class="count">%{count}</span> наблюдений:'
   editing_project: Редактирование %{project}
   editing_project_asset: Редактирование актива проекта для
   editing_subscription_to_x_html: "Редактировать подписку на %{x}"
@@ -1175,6 +1441,11 @@ ru:
   followed_projects: Проекты, на которые вы подписаны
   followers: Подписчики
   following: Подписка
+  following_x_people:
+    one: 'Подписан на 1 человека'
+    few: 'Подписан на %{count} человек'
+    many: 'Подписан на %{count} человек'
+    other: 'Подписан на %{count} человек'
   for: для
   for_a_taxon: для таксона
   formatting: Форматироватие
@@ -1203,6 +1474,11 @@ ru:
   from_your_site_observations: "Из наблюдений %{site_name}"
   from_licensed_site_observations: "Из лицензированных %{site_name} наблюдений"
   full_screen: Полный экран
+  fungi:
+    one: гриб
+    few: гриба
+    many: грибов
+    other: грибов
   gbif_occurrences: Записи GBIF
   generate_taxonomic_tags_for_flickr: Создать таксономические теги для ваших фото на Flickr.
   generate_widget: Сгенерировать виджет
@@ -1613,7 +1889,6 @@ ru:
     oc: Окситанский
     pl: Польский
     pt-BR: Португальский (Бразилия)
-    pt-PT: Португальский (Португалия)
     ru: Русский
     sk: Словацкий
     sq: албанский
@@ -1652,7 +1927,10 @@ ru:
   lowest_rank: Низший ранг
   make_admin: Сделать администратором
   mail_disclaimer: "%{site_name} не позволит своим пользователям отправлять вам дополнительные приглашения через нашего приглашающего. Просьба сообщить о нарушении в %{site}"
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: Главное содержание
+  #Stub text for the main content section when editing custom project data
+  main_content_description: Основной контент размещается здесь
   make_a_new_place: Создать новое место
   make_a_taxon_swap_instead?: Сделать вместо этого TaxonSwap?
   make_curator: Сделать куратором
@@ -1811,7 +2089,10 @@ ru:
   native: естественный
   native_page_url: Собственный URL страницы
   native_to_place: "Естественный для %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: Навигация
+  #Stub text to show where the nav section of the project detail page is.
   nav_description: Отсюда начинается навигация проекта.
   ne_lat: СВ шир.
   ne_lon: СВ долг.
@@ -1990,6 +2271,14 @@ ru:
   observation_added: Наблюдение добавлено
   observation_added_to_the_project: "Наблюдение добавлено к проекту %{project}"
   observation_aggregation: Агрегация наблюдений
+  observation_brief_something_on_day: "некоторые за %{day}"
+  observation_brief_something_by_user: "Некоторые от %{user}"
+  observation_brief_something_from_place: "Некоторые из %{place}"
+  observation_brief_something_from_place_by_user: "Некоторые из %{place} от %{user}"
+  observation_brief_something_from_place_on_day: "Некоторые из %{place} от %{day}"
+  observation_brief_something_from_place_on_day_by_user: "Некоторые из %{place} за %{day} от %{user}"
+  observation_brief_something_from_place_on_day_at_time: "Некоторые из %{place} за %{day} в %{time}"
+  observation_brief_something_from_place_on_day_at_time_by_user: "Некоторые из %{place} за %{day} в %{time} от %{user}"
   observation_brief_taxon_on_day: "%{taxon} за %{day}"
   observation_brief_taxon_by_user: "%{taxon} %{user}"
   observation_brief_taxon_from_place: "%{taxon} из %{place}"
@@ -2737,6 +3026,11 @@ ru:
     В целях защиты от спама в %{site_name}, профили пользователей становятся общедоступными только после того, как пользователь предоставил несколько наблюдений исследовательского уровня.
   project: Проект
   project_added_your_observations: Добавлении проекта к вашим наблюдениям
+  project_admins:
+    one: Администратор проекта
+    few: Администратора проекта
+    many: Администраторов проекта
+    other: Администраторы проекта
   project_aggregator_filter_error: |
     Проекты не могут включить автоматическую агрегацию наблюдений, если только проект не связан с местом ограниченного размера или не разрешает наблюдения только определенных таксонов или таксонов из списка
   project_assessments: Оценки проекта
@@ -2939,6 +3233,11 @@ ru:
   remove_from_project: Удалить из проекта
   remove_this_section: Удалить этот раздел
   remove_manager: Удалить менеджера
+  remove_observations:
+    one: Удалить 1 наблюдение?
+    few: Удалить %{count} наблюдения?
+    many: Удалить %{count} наблюдений?
+    other: Удалить %{count} наблюдений?
   remove_photo: Удалить фото
   remove_place: Удалить место
   remove_project_user: Удалить участника проекта
@@ -3043,6 +3342,11 @@ ru:
   save_trip: Сохранить путешествие
   saved: Сохранено
   saving: "Сохраняется…"
+  saving_num_of_count_observations:
+    one: Сохранение наблюдения...
+    few: Сохранение %{num} из %{count} наблюдений...
+    many: Сохранение %{num} из %{count} наблюдений...
+    other: Сохранение %{num} из %{count} наблюдений...
   saving_verb: Сохраняется
   scale_colon: "Масштаб:"
   schemes: Схемы
@@ -3326,6 +3630,11 @@ ru:
   submission_model_description: Кто может добавлять наблюдения к вашему проекту?
   submit: Отправить
   submit_comment: Отправить комментарий
+  submit_observations:
+    one: Подтвердить 1 наблюдение
+    few: Подтвердить %{count} наблюдения
+    many: Подтвердить %{count} наблюдений
+    other: Подтвердить %{count} наблюдений
   submitted: Загружено
   subscribe_to_a_taxon: Подписаться на Таксон
   subscribe_to_a_place: Подписаться на Место
@@ -3380,6 +3689,81 @@ ru:
   taxon_autocomplete_placeholder: Птицы, бабочка монарх и т.д.
   taxon_geoprivacy: Приватность местоположения таксона
   taxon_is_a_rank: "%{taxon} - это %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: "%{taxon} является %{rank} в %{iconic_taxon} с 1 наблюдением"
+    few: "%{taxon} является %{rank} в %{iconic_taxon} с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} в %{iconic_taxon} с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} в %{iconic_taxon} с %{count} наблюдениями"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} является %{rank} амфибий с 1 наблюдением"
+    few: "%{taxon} является %{rank} амфибий с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} амфибий с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} амфибий с %{count} наблюдениями"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} является %{rank} птиц с 1 наблюдением"
+    few: "%{taxon} является %{rank} птиц с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} птиц с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} птиц с %{count} наблюдениями"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} является %{rank} млекопитающих с 1 наблюдением"
+    few: "%{taxon} является %{rank} млекопитающих с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} млекопитающих с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} млекопитающих с %{count} наблюдениями"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} является %{rank} рептилий с 1 наблюдением"
+    few: "%{taxon} является %{rank} рептилий с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} рептилий с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} рептилий с %{count} наблюдениями"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} является %{rank} растений с 1 наблюдением"
+    few: "%{taxon} является %{rank} растений с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} растений с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} растений с %{count} наблюдениями"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} является %{rank} лучепёрых рыб с 1 наблюдением"
+    few: "%{taxon} является %{rank} лучепёрых рыб с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} лучепёрых рыб с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} лучепёрых рыб с %{count} наблюдениями"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} является %{rank} животных с 1 наблюдением"
+    few: "%{taxon} является %{rank} животных с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} животных с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} животных с %{count} наблюдениями"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} является %{rank} насекомых с 1 наблюдением"
+    few: "%{taxon} является %{rank} насекомых с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} насекомых с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} насекомых с %{count} наблюдениями"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} является %{rank} паукообразных с 1 наблюдением"
+    few: "%{taxon} является %{rank} паукообразных с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} паукообразных с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} паукообразных с %{count} наблюдениями"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} является %{rank} грибов с 1 наблюдением"
+    few: "%{taxon} является %{rank} грибов с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} грибов с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} грибов с %{count} наблюдениями"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: "%{taxon} является %{rank} простейших с 1 наблюдением"
+    few: "%{taxon} является %{rank} простейших с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} простейших с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} простейших с %{count} наблюдениями"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} является %{rank} моллюсков с 1 наблюдением"
+    few: "%{taxon} является %{rank} моллюсков с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} моллюсков с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} моллюсков с %{count} наблюдениями"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: "%{taxon} является %{rank} хромист (бурые водоросли и родственные виды) с 1 наблюдением"
+    few: "%{taxon} является %{rank} хромист (бурые водоросли и родственные виды) с %{count} наблюдениями"
+    many: "%{taxon} является %{rank} хромист (бурые водоросли и родственные виды) с %{count} наблюдениями"
+    other: "%{taxon} является %{rank} хромист (бурые водоросли и родственные виды) с %{count} наблюдениями"
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: "%{taxon} является царством жизни с 1 наблюдением"
+    few: "%{taxon} является царством жизни с %{count} наблюдениями"
+    many: "%{taxon} является царством жизни с %{count} наблюдениями"
+    other: "%{taxon} является царством жизни с %{count} наблюдениями"
   taxon_is_threatened_coordinates_hidden: Таксон находится под угрозой, координаты скрыты по умолчанию
   taxon_is_threatened_coordinates_hidden_desc: |
     Один из таксонов, предложенных в идентификации, или один из таксонов, которые содержат любой из этих таксонов, является редким и/или находится под угрозой исчезновения, поэтому местоположение этого наблюдения было скрыто.
@@ -3528,6 +3912,11 @@ ru:
   the_world_is_full_of_interesting_places_short: |
     Мир полон интересных мест, каждое из которых наполнено странными и прекрасными жизненными формами. Некоторые из них находятся на другой стороне земли, а другие просто на улице!
   then_keybord_sequence: затем
+  there_are_x_synonyms_html:
+    one: "Существует <span class='count'>1</span> синоним</span>"
+    few: "Существует <span class='count'>%{count}</span> синонима</span>"
+    many: "Существует <span class='count'>%{count}</span> синонимов</span>"
+    other: "Существует <span class='count'>%{count}</span> синонимов</span>"
   there_is_no_wikipedia_page_matching: Нет соответствующей страницы Википедии
   there_isnt_wiki_article: "Не существует статьи в Википедии или идёт перенаправление по названию '<i>%{taxon}</i>'. Возможно, вы хотели бы"
   there_isnt_a_wikipedia_article_titled_x_html: |
@@ -3579,6 +3968,16 @@ ru:
   this_list_only_accepts_taxa_that_are: В этом списке допустимы только те таксоны, которые
   this_observation: Данное наблюдение
   this_observation_has_been_incorporated_into_the_following_external_websites: Это наблюдение было включено в следующие внешние веб-сайты
+  this_observation_is_featured_on_x_sites:
+    one: Это наблюдение размещено на 1 сайте
+    few: Это наблюдение размещено на %{count} сайтах
+    many: Это наблюдение размещено на %{count} сайтах
+    other: Это наблюдение размещено на %{count} сайтах
+  this_observation_is_in_x_projects:
+    one: Это наблюдение входит в 1 проект
+    few: Это наблюдение входит в %{count} проекта
+    many: Это наблюдение входит в %{count} проектов
+    other: Это наблюдение входит в %{count} проектов
   this_observation_is_research_grade: Это наблюдение достигло исследовательского уровня!
   this_observation_lies_outside_the: "Это наблюдение находится вне ареала %{site_name} для этого вида. Это может означать, что ареал %{site_name} неверен, идентификация неверна, появились блуждающие виды или ареал расширен!"
   this_observation_was_created_using: "Это наблюдение было создано с использованием:"
@@ -3724,6 +4123,11 @@ ru:
   update_selected_taxa: Обновите выбранные таксоны
   update_subscription: Обновить подписку
   update_subscription_preferences: Обновить настройки подписок
+  update_x_selected_taxa:
+    one: "Обновить 1 выбранный таксон"
+    few: "Обновить %{count} выбранных таксона"
+    many: "Обновить %{count} выбранных таксонов"
+    other: "Обновить %{count} выбранных таксонов"
   update_your_content: Обновить ваш контент
   update_with_eol_content: Обновить, используя контент EOL
   update_with_site_content: "Обновить содержимое %{site_name}"
@@ -3754,6 +4158,11 @@ ru:
       remove_photo: Удалить фото
       select_all: Выбрать все наблюдения
       upload_failed: Сбой при загрузке
+  uploading_num_of_count_photos:
+    one: Загрузка фото...
+    few: Загрузка %{num} фото из %{count}...
+    many: Загрузка %{num} фото из %{count}...
+    other: Загрузка %{num} фото из %{count}...
   url_identifier_of_a_project_derived_from: "URL / идентификатор проекта, полученный из некоего внешнего ресурса"
   url_of_this_taxon_on_the_source_website: URL этого таксона на веб-сайте источника
   US_states: США
@@ -3767,6 +4176,11 @@ ru:
   use_unique_file_names_for_separate_uploads: Используйте уникальные имена файлов для отдельных выгрузок.
   use_well_formed_csv: |
     Используйте правильно сформированный файл в формате CSV. Это означает, что текст с запятыми должен быть заключен в двойные кавычки. Большинство приложений электронных таблиц должны экспортировать файлы CSV в этом формате.
+  used_x_times:
+    one: Использовано 1 раз
+    few: Использовано %{count} раза
+    many: Использовано %{count} раз
+    other: Использовано %{count} раз
   user: Пользователь
   user_added_a_x: "%{user} добавил %{x}"
   user_added_a_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
@@ -4049,6 +4463,11 @@ ru:
   x_journal_editing: "Журнал %{user} • Редактирование"
   x_journal_middot: "Journal %{user}•"
   x_journal_new_post: "Журнал %{user} • Новое сообщение"
+  x_observations_failed:
+    one: "Не удалось создать 1 наблюдение"
+    few: "Не удалось создать %{count} наблюдения"
+    many: "Не удалось создать %{count} наблюдений"
+    other: "Не удалось создать %{count} наблюдений"
   x_of_y: "%{x} из %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} из %{y} человек (более 2/3) согласны с этим"
   x_is_the_root_of_the_tree: "%{rank}%{name} - это корень дерева"
@@ -5346,6 +5765,33 @@ ru:
       delete:
         by_deleting_your_account_you_will_remove: |
           Удаляя ваш аккаунт, вы удаляете
+        x_observations_html:
+          one: |
+            <strong class="count">1 наблюдение</strong>, в том числе помощь<strong class="count">%{helpers_count} человек,</strong> которые помогли вам с идентификациями
+          few: |
+            <strong class="count">%{count} наблюдения</strong>, в том числе помощь<strong class="count">%{helpers_count} человек,</strong> которые помогли вам с идентификациями
+          many: |
+            <strong class="count">%{count} наблюдений</strong>, в том числе помощь<strong class="count">%{helpers_count} человек,</strong> которые помогли вам с идентификациями
+          other: |
+            <strong class="count">%{count} наблюдения</strong>, в том числе помощь<strong class="count">%{helpers_count} человек,</strong> которые помогли вам с идентификациями
+        x_identifications_html:
+          one: |
+            <strong class="count">1 ваша идентификация</strong>
+            наблюдения другого человека, которая потенциально может повлиять на качество данных этого наблюдения
+          few: |
+            <strong class="count">%{count} ваши идентификации</strong>
+            наблюдений <strong class="count">%{helpees_count} других людей</strong>, которые потенциально могут повлиять на качество данных этих наблюдений
+          many: |
+            <strong class="count">%{count} ваших идентификаций</strong>
+            наблюдений <strong class="count">%{helpees_count} других людей</strong>, которые потенциально могут повлиять на качество данных этих наблюдений
+          other: |
+            <strong class="count">%{count} ваших идентификаций</strong>
+            наблюдений <strong class="count">%{helpees_count} других людей</strong>, которые потенциально могут повлиять на качество данных этих наблюдений
+        x_comments_html:
+          one: Вы добавили <strong class="count">1 комментарий</strong>
+          few: Вы добавили <strong class="count">%{count} комментария</strong>
+          many: Вы добавили <strong class="count">%{count} комментариев</strong>
+          other: Вы добавили <strong class="count">%{count} комментариев</strong>
         furthermore_cannot_undo_html: |
           Кроме того, <strong>это действие нельзя отменить.</strong> Если вы передумаете, вы не вернёте этот контент.
         settings_and_mute_html: |
@@ -5388,6 +5834,8 @@ ru:
           </p>
         licensing_desc_html: |
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
+        license_description_attribution_html: |
+          Описания и &copy; изображений лицензии %{year} Creative Commons, используемой по лицензии <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution</a>
         monthly_supporter_desc_html: |
           Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS FIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.
           <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором </a>.
@@ -5574,7 +6022,82 @@ ru:
       - Декабрь
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: около 1 часа
+        few: около %{count} часов
+        many: около %{count} часов
+        other: около %{count} часов
+      about_x_months:
+        one: около 1 месяца
+        few: около %{count} месяцев
+        many: около %{count} месяцев
+        other: около %{count} месяцев
+      about_x_years:
+        one: около 1 года
+        few: около %{count} лет
+        many: около %{count} лет
+        other: около %{count} лет
+      almost_x_years:
+        one: почти 1 год
+        few: почти %{count} года
+        many: почти %{count} лет
+        other: почти %{count} лет
       half_a_minute: полминуты
+      less_than_x_minutes:
+        one: менее минуты
+        few: менее %{count} минут
+        many: менее %{count} минут
+        other: менее %{count} минут
+      less_than_x_seconds:
+        one: менее 1 секунды
+        few: менее %{count} секунд
+        many: менее %{count} секунд
+        other: менее %{count} секунд
+      over_x_years:
+        one: более 1 года
+        few: более %{count} лет
+        many: более %{count} лет
+        other: более %{count} лет
+      x_days:
+        one: 1 день
+        few: '%{count} дня'
+        many: '%{count} дней'
+        other: '%{count} дней'
+      x_minutes:
+        one: 1 минута
+        few: '%{count} минуты'
+        many: '%{count} минут'
+        other: '%{count} минут'
+      x_months:
+        one: 1 месяц
+        few: '%{count} месяца'
+        many: '%{count} месяцев'
+        other: '%{count} месяцев'
+      x_seconds:
+        one: 1 секунда
+        few: '%{count} секунды'
+        many: '%{count} секунд'
+        other: '%{count} секунд'
+    countdown_x_days:
+      one: день
+      few: дня
+      many: дней
+      other: дней
+    countdown_x_hours:
+      one: час
+      few: часа
+      many: часов
+      other: часов
+    countdown_x_minutes:
+      one: мин
+      few: мин
+      many: мин
+      other: мин
+    countdown_x_seconds:
+      one: сек
+      few: сек
+      many: сек
+      other: сек
     prompts:
       day: День
       hour: Час
@@ -5583,6 +6106,7 @@ ru:
       second: Секунды
       year: Год
   errors:
+    format: '%{attribute} %{message}'
     messages:
       accepted: должно быть принято
       blank: не может быть пустым
@@ -5605,8 +6129,28 @@ ru:
         для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
       requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
       taken: уже было принято
+      too_long:
+        one: слишком длинное (максимум 1 символ)
+        few: слишком длинное (максимум %{count} символа)
+        many: слишком длинное (максимум %{count} символов)
+        other: слишком длинное (максимум %{count} символов)
+      too_short:
+        one: слишком короткое (минимум 1 символ)
+        few: слишком короткое (минимум %{count} символа)
+        many: слишком короткое (минимум %{count} символов)
+        other: слишком короткое (минимум %{count} символов)
+      wrong_length:
+        one: неверная длина (необходим 1 символ)
+        few: неверная длина (необходимо %{count} символа)
+        many: неверная длина (необходимо %{count} символов)
+        other: неверная длина (необходимо %{count} символов)
     template:
       body: 'Возникли некоторые проблемы со следующими полями:'
+      header:
+        one: 1 ошибка препятствует сохранению этой %{model}
+        few: '%{count} ошибки препятствуют сохранению этой %{model}'
+        many: '%{count} ошибок препятствуют сохранению этой %{model}'
+        other: '%{count} ошибок препятствуют сохранению этой %{model}'
   helpers:
     defaults:
       title: "ЭТО ЗАГОЛОВОК"
@@ -5617,8 +6161,22 @@ ru:
       submit: Сохранить %{model}
       update: Обновить %{model}
   number:
+    currency:
+      format:
+        delimiter: '，'
+        format: '%u%n'
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+        unit: '$'
+    format:
+      delimiter: ','
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
+        format: '%n %u'
         units:
           billion: Биллион
           million: Миллион
@@ -5626,10 +6184,17 @@ ru:
           thousand: Тысяча
           trillion: Триллион
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
       storage_units:
+        format: '%n %u'
         units:
+          byte:
+            one: байт
+            few: байта
+            many: байтов
+            other: байтов
           gb: Гб
           kb: Кб
           mb: Мб
@@ -5639,9 +6204,22 @@ ru:
       last_word_connector: ', и'
       two_words_connector: 'и'
       words_connector: ','
+  time:
+    am: утра
+    formats:
+      default: '%d %b %Y %H:%M:%S %z'
+      long: '%d %B %Y %I%M%p'
+      short: '%d %b %H:%M'
+      compact: "%H:%M"
+      observed_at: '%H:%M %Z'
+      rfc: "%d. %B %Y"
+      day_month_year: "%d %b. %Y"
+      hours: "%H:%M"
+    pm: вечера
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
+      format: '%{attribute} %{message}'
       messages:
         accepted: должно быть принято
         blank: не может быть пустым
@@ -5663,8 +6241,28 @@ ru:
         requires_privilege_speech: для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
         requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
         taken: уже было принято
+        too_long:
+          one: слишком длинное (максимум 1 символ)
+          few: слишком длинное (максимум %{count} символа)
+          many: слишком длинное (максимум %{count} символов)
+          other: слишком длинное (максимум %{count} символов)
+        too_short:
+          one: слишком короткое (минимум 1 символ)
+          few: слишком короткое (минимум %{count} символа)
+          many: слишком короткое (минимум %{count} символов)
+          other: слишком короткое (минимум %{count} символов)
+        wrong_length:
+          one: неверная длина (необходим 1 символ)
+          few: неверная длина (необходимо %{count} символа)
+          many: неверная длина (необходимо %{count} символов)
+          other: неверная длина (необходимо %{count} символов)
       template:
         body: 'Возникли некоторые проблемы со следующими полями:'
+        header:
+          one: 1 ошибка препятствует сохранению этой %{model}
+          few: '%{count} ошибки препятствуют сохранению этой %{model}'
+          many: '%{count} ошибок препятствуют сохранению этой %{model}'
+          other: '%{count} ошибок препятствуют сохранению этой %{model}'
   activerecord:
     models:
       AssessmentSection: Раздел оценки
@@ -5682,6 +6280,7 @@ ru:
         description: Описание
         authority: Природоохранные органы власти
         place_id: Место
+        url: URL
         geoprivacy: Приватность местоположения
         iucn: Эквивалент МСОП
       flag:
@@ -5732,9 +6331,11 @@ ru:
         parent_id: родитель
         place_type: Тип места
         prefers_check_lists: Контрольные списки разрешены?
+        woeid: WOEID (идентификатор Yahoo)
       source:
         title: Заголовок
         in_text: В тексте
+        url: URL
         citation: Ссылка
       taxon:
         name: Наименование
@@ -5761,6 +6362,7 @@ ru:
         place_id: Место
         preferred_observation_fields_by: Разрешить поля наблюдения от
     errors:
+      format: '%{attribute} %{message}'
       messages:
         accepted: должно быть принято
         blank: не может быть пустым
@@ -5782,8 +6384,28 @@ ru:
         requires_privilege_speech: для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
         requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
         taken: уже было принято
+        too_long:
+          one: слишком длинное (максимум 1 символ)
+          few: слишком длинное (максимум %{count} символа)
+          many: слишком длинное (максимум %{count} символов)
+          other: слишком длинное (максимум %{count} символов)
+        too_short:
+          one: слишком короткое (минимум 1 символ)
+          few: слишком короткое (минимум %{count} символа)
+          many: слишком короткое (минимум %{count} символов)
+          other: слишком короткое (минимум %{count} символов)
+        wrong_length:
+          one: неверная длина (необходим 1 символ)
+          few: неверная длина (необходимо %{count} символа)
+          many: неверная длина (необходимо %{count} символов)
+          other: неверная длина (необходимо %{count} символов)
       template:
         body: 'Возникли проблемы со следующими полями:'
+        header:
+          one: 1 ошибка препятствует сохранению этой %{model}
+          few: '%{count} ошибки препятствуют сохранению этой %{model}'
+          many: '%{count} ошибок препятствуют сохранению этой %{model}'
+          other: '%{count} ошибок препятствуют сохранению этой %{model}'
       models:
         application:
           attributes:
@@ -5940,10 +6562,20 @@ ru:
         destroy:
           #Application as in a software application
           notice: 'Приложение отозвано.'
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: гласная
+        con: согласная
+      "@gender":
+        m: мужской
+        f: женский
+        "n": нейтральный
   wild: Дикий
   will_paginate:
     previous_label: "&#8592; Пред"
     next_label: "Следующий &#8594;"
+    page_gap: "&hellip;"
   zoom_in: Увеличить
   zoom_out: Уменьшить
   zoom_photo: Увеличить фото
