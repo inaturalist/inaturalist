@@ -22,7 +22,6 @@ class FacebookController < ApplicationController
     end
   rescue Koala::Facebook::APIError => e
     Rails.logger.error "[Error #{Time.now}] Facebook connection failed, error ##{e.type} (#{e}):  #{e.message}"
-    Airbrake.notify(e, :request => request, :session => session) # testing
     Logstasher.write_exception(e, request: request, session: session, user: current_user)
     flash[:error] = "Ack! Something went horribly wrong, like a giant " +
                      "squid ate your Facebook info.  You can contact us at " +

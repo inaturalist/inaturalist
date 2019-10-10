@@ -59,7 +59,6 @@ class ObservationSoundsController < ApplicationController
           render :json => @observation_sound.to_json(:include => [:sound])
         else
           msg = "Failed to create observation sound: #{@observation_sound.errors.full_messages.to_sentence}"
-          Airbrake.notify(Exception.new(msg), :request => request, :session => session)
           Logstasher.write_exception(Exception.new(msg), request: request, session: session, user: current_user)
           Rails.logger.error "[ERROR #{Time.now}] #{msg}"
           render :json => {:errors => @observation_sound.errors.full_messages.to_sentence}, 
