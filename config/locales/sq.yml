@@ -1421,7 +1421,6 @@ sq:
     lb: Gjuhe e Luksemburgut
     mk: Maqedonisht
     pt-BR: Portugalisht (Brazil)
-    pt-PT: Portugalisht (Portugali)
     ru: Rusisht
     sq: Shqip
     zh-CN: Kinezisht (e thjeshtuar)
@@ -1454,6 +1453,7 @@ sq:
   lowest_rank: Niveli më i ulët
   make_admin: Bëje admin
   mail_disclaimer: "%{site_name} nuk do ti lejojë përdoruesit e saj të u dërgojnë ftesa të tjera përmes ftuesit tonë. Ju lutemi raporto abuzim të %{site}."
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: Përmbajtja kryesore
   make_a_new_place: Bëj një vend të ri
   make_a_taxon_swap_instead?: Bëni një shkëmbim Taksoni në vend të kësaj?
@@ -1585,6 +1585,8 @@ sq:
   native: autokton
   native_page_url: IP adresa e faqes vendëse
   native_to_place: "Autokton në %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: Navigimi
   ne_lat: NE Latinisht.
   near_threatened: Afër kërcënimit
