@@ -157,7 +157,6 @@ class FlickrController < ApplicationController
       @provider_authorization = current_user.provider_authorizations.where( provider_name: "flickr" ).first
     rescue FlickRaw::FailedResponse => e
       Rails.logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
-      Airbrake.notify(e, :request => request, :session => session)
       Logstasher.write_exception(e, request: request, session: session, user: current_user)
       flash[:notice] = <<-EOT
         Ack! Something went wrong connecting to Flickr. You might try unlinking 

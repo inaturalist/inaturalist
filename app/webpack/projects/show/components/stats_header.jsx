@@ -22,44 +22,36 @@ const StatsHeader = ( { config, project, setSelectedTab } ) => {
     <div className="StatsHeader">
       <Grid>
         <Row>
-          <Col xs={ 12 }>
+          <Col xs={12}>
             <ul>
               <li
-                className={ `overview-tab ${tab === "overview" && "active"}` }
-                onClick={ ( ) =>
+                className={`overview-tab ${tab === "overview" && "active"}`}
+                onClick={( ) =>
                   setSelectedTab( project.is_umbrella ? "umbrella_overview" : "overview" )
                 }
               >
                 { I18n.t( "overview" ) }
               </li>
               <li
-                className={ `stat-tab ${tab === "observations" && "active"} ${obsDisabled}` }
-                onClick={ ( ) => setSelectedTab( "observations" ) }
-              >
-                <span className="stat">{ obsCount }</span>
-                { I18n.t( "observations" ) }
-              </li>
+                className={`stat-tab ${tab === "observations" && "active"} ${obsDisabled}`}
+                onClick={( ) => setSelectedTab( "observations" )}
+                dangerouslySetInnerHTML={{ __html: I18n.t( "x_observations_html", { count: obsCount } ) }}
+              />
               <li
-                className={ `stat-tab ${tab === "species" && "active"} ${speciesDisabled}` }
-                onClick={ ( ) => setSelectedTab( "species" ) }
-              >
-                <span className="stat">{ speciesCount }</span>
-                { I18n.t( "species" ) }
-              </li>
+                className={`stat-tab ${tab === "species" && "active"} ${speciesDisabled}`}
+                onClick={( ) => setSelectedTab( "species" )}
+                dangerouslySetInnerHTML={{ __html: I18n.t( "x_species_html", { count: speciesCount } ) }}
+              />
               <li
-                className={ `stat-tab ${tab === "identifiers" && "active"} ${identifiersDisabled}` }
-                onClick={ ( ) => setSelectedTab( "identifiers" ) }
-              >
-                <span className="stat">{ identifiersCount }</span>
-                { I18n.t( "identifiers" ) }
-              </li>
+                className={`stat-tab ${tab === "identifiers" && "active"} ${identifiersDisabled}`}
+                onClick={( ) => setSelectedTab( "identifiers" )}
+                dangerouslySetInnerHTML={{ __html: I18n.t( "x_identifiers_html", { count: identifiersCount } ) }}
+              />
               <li
-                className={ `stat-tab ${tab === "observers" && "active"} ${observersDisabled}` }
-                onClick={ ( ) => setSelectedTab( "observers" ) }
-              >
-                <span className="stat">{ observersCount }</span>
-                { I18n.t( "observers" ) }
-              </li>
+                className={`stat-tab ${tab === "observers" && "active"} ${observersDisabled}`}
+                onClick={( ) => setSelectedTab( "observers" )}
+                dangerouslySetInnerHTML={{ __html: I18n.t( "x_observers_html", { count: observersCount } ) }}
+              />
               <li className="stats-tab">
                 <button
                   className={ `${config.selectedTab === "stats" ? "btn-green" : "btn-white"} ${statsDisabled}` }
