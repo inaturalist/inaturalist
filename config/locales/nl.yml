@@ -20,6 +20,10 @@ nl:
   x_identifications_:
     one: '1 determinatie'
     other: '%{count} determinaties'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    one: '<span class="count">1</span> determinator'
+    other: '<span class="count">%{count}</span> determinators'
   x_ids:
     one: '1 ID'
     other: '%{count} ID''s'
@@ -63,6 +67,9 @@ nl:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> waarneming gecontroleerd "
     other: "<span class='count'>%{count}</span> waarnemingen gecontroleerd"
+  x_observers_html:
+    one: '<span class="count">1</span> waarnemer'
+    other: '<span class="count">%{count}</span> waarnemers'
   x_others:
     one: "1 ander persoon"
     other: "%{count} anderen"
@@ -1785,7 +1792,6 @@ nl:
     oc: Provençaals
     pl: Pools
     pt-BR: Portugees (Brazilië)
-    pt-PT: Portugees (Portugal)
     ru: Russisch
     sk: Slowaaks
     sq: Albanees
@@ -1824,7 +1830,9 @@ nl:
   lowest_rank: Laagste rang
   make_admin: Maak admin
   mail_disclaimer: "%{site_name} staat niet toe dat gebruikers je aanvullende uitnodigingen versturen via onze uitnodig-functie. Meld misbruik bij %{site}."
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: Belangrijkste inhoud
+  #Stub text for the main content section when editing custom project data
   main_content_description: Hier komt de hoofdinhoud
   make_a_new_place: Een nieuwe plaats aanmaken
   make_a_taxon_swap_instead?: Maak in plaats daarvan een Taxonwissel?
@@ -1985,7 +1993,10 @@ nl:
   native: inheems
   native_page_url: Inheemse Pagina URL
   native_to_place: "Inheems in %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: Nav
+  #Stub text to show where the nav section of the project detail page is.
   nav_description: Hier komt de projectnavigatie.
   ne_lat: NO Lat.
   ne_lon: NO Lon.

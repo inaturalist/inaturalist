@@ -1267,6 +1267,7 @@ ja:
   low: 低
   lowest_rank: 最下位階級
   make_admin: 管理者権限を付与
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: メインコンテンツ
   make_a_new_place: 新規場所を作成
   make_a_taxon_swap_instead?: 代わりに分類群の入れ替えをしますか？
@@ -1367,6 +1368,8 @@ ja:
   names_for_taxon_html: "%{taxon}の名称一覧"
   native: 原生
   native_to_place: "%{place}の在来種"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: ナビ
   ne_lat: 北東緯度
   ne_lon: 北東経度

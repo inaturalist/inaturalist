@@ -1779,7 +1779,6 @@ it:
     oc: Occitano
     pl: Polacco
     pt-BR: Portoghese (Brasile)
-    pt-PT: Portoghese (Portogallo)
     ru: Russo
     sk: Slovacco
     sq: Albanese
@@ -1818,6 +1817,7 @@ it:
   lowest_rank: Il rango più basso
   make_admin: Rendi amministratore
   mail_disclaimer: "%{site_name} non permette ai suoi utenti di mandarti altri inviti utilizzando il nostro sistema di inviti. Per favore riporta l'abuso a %{site}."
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: Contenuto principale
   make_a_new_place: Crea un nuovo luogo
   make_a_taxon_swap_instead?: Preferisci invece fare uno Scambio Taxon?
@@ -1977,6 +1977,8 @@ it:
   native: nativo
   native_page_url: URL della pagina originaria
   native_to_place: "Nativo in %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: Navigatore
   ne_lat: Lat. NE
   ne_lon: Lon. NE

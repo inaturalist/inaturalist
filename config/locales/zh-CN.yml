@@ -1485,7 +1485,6 @@ zh-CN:
     oc: 奥克语
     pl: 抛光
     pt-BR: 葡萄牙语（巴西）
-    pt-PT: 葡萄牙语（葡萄牙）
     ru: 俄语
     sk: 斯洛伐克
     sq: 阿尔巴尼亚语
@@ -1521,6 +1520,7 @@ zh-CN:
   lowest_rank: 最低级
   make_admin: 做为管理员
   mail_disclaimer: "%{site_name}不允许其用户通过我们的邀请者向您发送其他邀请。请向%{site}举报滥用行为。"
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: 主内容
   make_a_new_place: 做出一个新地点
   make_a_taxon_swap_instead?: 改用TaxonSwap吗？
@@ -1652,6 +1652,8 @@ zh-CN:
   native: 本地
   native_page_url: 本地页面URL
   native_to_place: "原产于%{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: 导航
   ne_lat: 东北纬度
   ne_lon: 东北经度

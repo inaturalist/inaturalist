@@ -1452,7 +1452,6 @@ cs:
     nl: holandsky
     oc: okcitánština
     pt-BR: portugalština (Brazílie)
-    pt-PT: Portugalština
     ru: Rusky
     sq: albánsky
     sv: švédsky
@@ -1489,6 +1488,7 @@ cs:
   lowest_rank: Nejnižší hodnost
   make_admin: Dělat admina
   mail_disclaimer: "%{site_name} neumožňuje svým uživatelům zasílat vám další pozvánky prostřednictvím našeho systému pozvánek. Nahlaste prosím zneužití pozvánek %{site}."
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: Hlavní obsah
   make_a_new_place: Vytvořit nové místo
   make_a_taxon_swap_instead?: Místo toho provést záměnu taxonů?
@@ -1626,6 +1626,8 @@ cs:
   native: místní
   native_page_url: původní stránka URL
   native_to_place: "Místní v %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: Navigace
   ne_lat: z.d. SV
   ne_lon: z. š. SV

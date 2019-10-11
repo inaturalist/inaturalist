@@ -1558,7 +1558,6 @@ de:
     oc: Okzitanisch
     pl: polnisch
     pt-BR: Portugiesisch (Brasilien)
-    pt-PT: Portugiesisch (Portugal)
     ru: Russisch
     sq: Albanisch
     sv: Schwedisch
@@ -1590,6 +1589,7 @@ de:
   low: gering
   lowest_rank: Niedrigster Rang
   make_admin: Zum Administrator machen
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: Hauptinhalt
   make_a_new_place: Neuen Ort erstellen
   make_curator: Kurator machen
@@ -1716,6 +1716,8 @@ de:
   native: einheimisch
   native_page_url: Native Seiten-URL
   native_to_place: "Einheimisch in %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: Navigator
   ne_lat: NO Lat
   ne_lon: NO Lon.

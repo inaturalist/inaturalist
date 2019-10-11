@@ -1600,7 +1600,6 @@ zh-TW:
     oc: 奧克語
     pl: 波蘭語
     pt-BR: 葡萄牙語 (巴西)
-    pt-PT: 葡萄牙語 (葡萄牙)
     ru: 俄語
     sk: 斯洛伐克語
     sq: 阿爾巴尼亞
@@ -1639,6 +1638,7 @@ zh-TW:
   lowest_rank: 最低級別
   make_admin: 作為管理員
   mail_disclaimer: "%{site_name} 將不允許用戶經由我們的邀請者寄給您額外邀請。請回報濫用邀請至 %{site}。"
+  #Header for main content section of the project detail page when editing custom project data.
   main_content: 主要內容
   make_a_new_place: 建立一個新地點
   make_a_taxon_swap_instead?: 想要弄個物種分類對換來替代？
@@ -1773,6 +1773,8 @@ zh-TW:
   native: 本地
   native_page_url: 原生頁面 URL
   native_to_place: "%{place}本地"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
   nav: 領航
   ne_lat: 東北緯度
   ne_lon: 東北經度
