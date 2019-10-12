@@ -156,7 +156,7 @@ const TaxonomicBranch = ( {
               { tabular && isDescendant ? (
                 <div className={`text-${t.observations_count === 0 ? "default" : "success"} label-obs-count`}>
                   { t.observations_count === 0 ? t.observations_count : (
-                    <a href={`/observations?taxon_id=${t.id}&place_id=any`}>
+                    <a href={`/observations?taxon_id=${t.id}&place_id=any&verifiable=any`}>
                       { numberWithCommas( t.observations_count ) }
                     </a>
                   ) }
