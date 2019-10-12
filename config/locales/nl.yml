@@ -22,8 +22,8 @@ nl:
     other: '%{count} determinaties'
   #Number of people who have added identifications
   x_identifiers_html:
-    one: '<span class="count">1</span> determinator'
-    other: '<span class="count">%{count}</span> determinators'
+    one: '<span class="count">1</span> determineerder'
+    other: '<span class="count">%{count}</span> determineerders'
   x_ids:
     one: '1 ID'
     other: '%{count} ID''s'
@@ -86,8 +86,8 @@ nl:
     one: "1 foto"
     other: "%{count} foto's"
   x_new_species:
-    one: "1 Nieuwe Soort"
-    other: "%{count}Nieuwe Soorten"
+    one: "1 nieuwe soort"
+    other: "%{count} nieuwe soorten"
   x_species:
     one: '1 soort'
     other: '%{count} soorten'
@@ -190,7 +190,7 @@ nl:
   add_a_field: Veld toevoegen
   add_a_flag: Melding toevoegen
   add_a_name: Naam toevoegen
-  add_a_new_change_group: Nieuwe Wijzigingengroep toevoegen
+  add_a_new_change_group: Nieuwe wijzigingengroep toevoegen
   add_a_single_observation: Voeg één waarneming toe
   add_a_taxon: Een taxon toevoegen
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -210,7 +210,7 @@ nl:
   add_another_section: Nog een sectie toevoegen
   add_another_subscription: Nog een abonnement toevoegen
   #Project assets are files associated with projects, e.g. image files for a custom header
-  add_asset: Voeg projectbestand toe
+  add_asset: Projectbestand toevoegen
   add_batch: Batch toevoegen
   add_comma_separated_tags: "Door komma's gescheiden labels toevoegen"
   add_comment: Reactie toevoegen
@@ -220,7 +220,7 @@ nl:
   add_edit_flags: Meldingen toevoegen/bewerken
   add_editor: Editor toevoegen
   add_description: "%{description_name} toevoegen"
-  add_from_your_observations: Uit uw waarnemingen toevoegen
+  add_from_your_observations: Uit je waarnemingen toevoegen
   add_link: Voeg link toe
   add_higher_level_taxon: Taxon van hogere orde toevoegen (bv. "vogels")
   add_id: ID toevoegen
@@ -258,7 +258,7 @@ nl:
   add_relationship: 'Relatie toevoegen'
   add_section: Voeg een Sectie toe
   add_several_observations_at_once: Voeg meerdere waarnemingen tegelijk toe.
-  add_sex_female_annotation: 'Voeg "Sex: vrouw" annotation'
+  add_sex_female_annotation: 'Annotatie "Geslacht: vrouwelijk" toevoegen'
   add_sex_male_annotation: 'Voeg "Sexe: Man" annotation'
   add_some_now: Nu een aantal toevoegen
   add_tag: Label toevoegen
@@ -473,7 +473,7 @@ nl:
   are_you_sure_remove_relationship: Weet je zeker dat je deze relatie wilt verwijderen? Hierdoor wordt deze persoon niet meer gevolgd en wordt de toegang tot je verborgen coördinaten ingetrokken als je deze toegang had ingeschakeld.
   are_you_sure_remove_taxon_from_list: "Weet je zeker dat je dit taxon uit de lijst wilt verwijderen?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Weet je het zeker? Hierdoor zal je pagina vernieuwd worden en kunnen sommige van je aanpassingen verloren gaan.
+    Weet je het zeker? Dit zal de pagina herladen waardoor je je wijzigingen deels kunt verliezen.
   are_you_sure_want_delete_taxon: "Weet je zeker dat je dit taxon wilt verwijderen?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Weet je zeker dat je dit taxon wilt verwijderen? Het heeft onderliggende taxa.
@@ -626,7 +626,7 @@ nl:
   browse_people: Blader door personen
   browse_projects: Blader door projecten
   browse_species_that_occur_near_this_observation: Soorten bekijken in de buurt van deze waarneming
-  built_with_site_guides_html: "Gebouwd met <a href='%{url}'>%{site_name} Gidsen</a>"
+  built_with_site_guides_html: "Gebouwd met <a href='%{url}'>%{site_name}-gidsen</a>"
   bulk_import_of_filename_is_complete: "Bulk import van %{filename} is klaar"
   by: door
   by_everyone: Door iedereen
@@ -665,7 +665,7 @@ nl:
   change_cover: Cover wijzigen
   change_descriptions:
     split: Oud taxon opgesplitst in meerdere nieuwe taxa
-    merge: Verscheidene oude taxa zijn samengevoegd tot één nieuw taxon
+    merge: Meerdere oude taxa samengevoegd tot één nieuw taxon
     swap: 1-op-1 naam wijziging
     drop: Taxonconcept volledig ongeldig, behouden voor historische doeleinden of voor partner-compatibiliteit
     stage: Bereid een inactief concept voor op publicatie als onderdeel van een groep wijzigingen
@@ -707,7 +707,7 @@ nl:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} werden samengevoegd met %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} zal samengevoegd worden met %{output_taxon}"
   change_your_password: Wijzig je wachtwoord
-  changing_the_geoprivacy: 'De geoprivacy wijzigen verandert hoe anderen de locatie van je waarneming zien.'
+  changing_the_geoprivacy: 'Het wijzigen van de geoprivacy verandert hoe anderen de locatie van je waarneming zien.'
   check_above_for_errors: Controleer hierboven op fouten
   check_back_soon: Tot binnenkort!
   check_here_to_autoload_description: Klik hier om automatisch de beschrijving van Wikipedia te laden. Je zou dit kunnen deselecteren als een taxon's wetenschappelijke naam ook een niet-wetenschappelijke woord of veel voorkomende spellingsfout is, zoals "Parus".
@@ -716,8 +716,8 @@ nl:
   check_list_description: Kies een hoger niveau taxon dat je in deze lijst wilt weergeven, zoals 'Aves' voor vogels of 'Amphibia' voor amfibieën. Indien ingesteld staat deze lijst geen taxa toe die niet in dit taxon voorkomen. Als je bijvoorbeeld een lijst met vogels maakt, kun je er geen kikkers aan toevoegen.
   check_list_for_individual_taxa_that: 'Checklists voor individuele taxa die hier voorkomen, bv. "Vogels van %{place}".'
   check_lists_must_belong_to_a_place: |
-    Checklists moeten bij een plaats horen. Ga om een nieuwe checklist te maken
-    naar de standaard Checklijsten van een plaats en klik op de link 'Een nieuwe checklijst maken'.
+    Checklisten moeten bij een plaats horen. Ga om een nieuwe checklist te maken
+    naar de standaard-checklist van een plaats en klik op de link 'Maak een nieuwe checklist'.
   check_list_of_species_occuring_in: Checklist van soorten die voorkomen in
   check_list_place: "%{place} Checklist"
   check_list_updated: Checklist bijgewerkt!
@@ -896,7 +896,7 @@ nl:
   copyright_infringement_desc: Is in strijd met de auteursrechtwetgeving of is gemaakt door iemand anders dan de waarnemer en heeft geen aantrekkingskracht
   covered_by_a_taxon_framework_html: "Gedekt door een %{link}"
   covered_by_a_taxon_framework_link: "taxonkader voor %{taxon_framework_rank} %{taxon_framework_name}"
-  couldnt_change_your_password: "Kon je wachtwoord niet wijzigen: %{e}"
+  couldnt_change_your_password: "Je wachtwoord kon niet gewijzigd worden: %{e}"
   couldnt_find_a_user_matching_x_param: "Kon geen gebruiker vinden overeenstemmend met %{id}"
   couldnt_find_that_taxon: Taxon niet gevonden.
   countries: Landen
@@ -1211,7 +1211,7 @@ nl:
   facebook: Facebook
   facebook_account_information: Je Facebook-accountgegevens
   facebook_account_not_linked: "%{user} heeft geen gekoppeld Facebook-account meer, waardoor %{site_name} geen toegang meer heeft tot deze foto."
-  facebook_access_token_expired: "Access token is verlopen. %{user} moet opnieuw linken naar hun Facebook account"
+  facebook_access_token_expired: "Access token is verlopen. %{user} moet zijn of haar Facebook account opnieuw linken."
   facebook_needs_the_owner_of_that_photo_to: Facebook vereist dat de eigenaar van die foto hun verbinding met %{site_name_short} opnieuw bevestigt.
   facebook_options: Facebookopties
   failed_to_find_your_location: Locatie niet gevonden.
@@ -1252,7 +1252,7 @@ nl:
   find_a_guide: Vind een gids
   find_a_place: Zoek een plaats
   find_guides: Vind gidsen
-  find_new_place_to_explore: Zoek een nieuwe plek om te ontdekken
+  find_new_place_to_explore: Zoek een nieuwe plek om te ontdekken!
   find_observations: Vind waarnemingen
   find_photos: Foto's zoeken
   find_places: Zoek plaatsen
@@ -1767,9 +1767,9 @@ nl:
     en-UK: Engels (Verenigd Koninkrijk)
     en-US: Engels (Verenigde Staten)
     eo: Esperanto
-    es-ES: Spaans (Spanje)
-    es-MX: Spaans (Mexico)
     es: Spaans
+    es-AR: Spaans (Argentinië)
+    es-MX: Spaans (Mexico)
     et: Estlands
     eu: Baskisch
     fi: Fins
@@ -1791,12 +1791,14 @@ nl:
     nn: Noors Nynorsk
     oc: Provençaals
     pl: Pools
+    pt: Portugees
     pt-BR: Portugees (Brazilië)
     ru: Russisch
     sk: Slowaaks
     sq: Albanees
     sv: Zweeds
     zh-CN: Chinees (vereenvoudigd)
+    zh-HK: Chinees (traditioneel, Hongkong)
     zh-TW: Chinees (traditioneel)
   locality_notes: Localiteits aantekeningen
   localized_species_accounts: Lokale soortenoverzichten
@@ -2010,7 +2012,7 @@ nl:
   new_announcement: Nieuwe aankondiging
   new_assessment: Nieuwe schatting
   new_check_list: Nieuwe checklist
-  new_check_list_for: "Maak een nieuwe checklist aan voor %{place} &raquo;"
+  new_check_list_for: "Maak een nieuwe checklist voor %{place} &raquo;"
   new_check_list_record: "Als je deze lijst wilt markeren als volledig, maak deze aan, voeg de taxa toe, en bewerk de lijst vervolgens. Dan heb je de optie om de lijst hier als volledig te markeren."
   new_comment_on_a_parent_by_user_link: Nieuwe reactie op een %{parent} van %{user_link}
   new_flag_for: Nieuwe melding voor
@@ -3808,7 +3810,7 @@ nl:
   the_world: De wereld
   the_world_is_full_of_interesting_places: |
     De wereld zit vol met interessante plaatsen, elk gevuld met merkwaardige en
-    prachtige levensvormen. Soms aan de andere kant van de wereld, soms gewoon in de straat! %{site_name} Surf langs plaatsen en ontdek het leven van onze planeet. Begin met ontdekken!
+    prachtige levensvormen. Sommigen aan de andere kant van de wereld, anderen gewoon om de hoek! %{site_name}-plaatsen laten je door het leven van over de hele wereld bladeren. Begin met ontdekken!
   the_world_is_full_of_interesting_places_short: |
     De wereld zit vol met interessante plaatsen, elk met de meest bizarre en prachtige levensvormen. Sommige bevinden zich aan de andere kant van de wereld, terwijl anderen gewoon in jouw straat leven!
   then_keybord_sequence: dan
@@ -3853,7 +3855,7 @@ nl:
   third_person_possessive_singular: "%{noun} van %{object_phrase}"
   third_person_possessive_plural: "%{noun} van %{object_phrase}"
   this: deze
-  this_bioblitz_beings_in: Deze bioblitz start in
+  this_bioblitz_beings_in: Deze bioblitz begint over
   this_is_a: Dit is een
   this_is_a_cached_summary_based_on: Dit is een gecachte samenvatting van dit taxon op basis van zijn
   this_is_a_life_list_of: Dit is een levenslijst van
