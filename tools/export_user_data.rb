@@ -21,6 +21,7 @@ EOS
   opt :exclude, "Path to file containing email addresses to exclude", type: :string, short: "-x"
   opt :place_ids, "Comma-separated list of place IDs to include obs counts for. Obs counts will be of all obs, not verifiable.", type: :string, short: "-p"
   opt :staff_only, "Only export data for staff for testing", type: :boolean
+  opt :extras, "Path to a CSV file with headers to append to this file. Must have headers and an email column", type: :string
 end
 
 start = Time.now
@@ -86,10 +87,19 @@ headers = %w(
   header = "num_obs_#{place.display_name.parameterize.underscore.downcase}"
   headers << header
 end
+if OPTS.extras
+  @extras = {}
+  CSV.foreach( OPTS.extras, headers: true ) do |row|
+    @extras[row["email"]] = row.to_h
+  end
+  @extra_headers = @extras.first[1].keys.sort - ["email"]
+  headers += @extra_headers
+end
 CSV.open( @out_path, "wb" ) do |csv|
   csv << headers
   scope.script_find_each( flush: true ) do |user|
     next if @emails_to_exclude.include?( user.email )
+    next if user.prefers_no_email?
     user_count += 1
     user_filter = { term: { "user.id" => user.id } }
     num_identifications = Identification.elastic_search(
@@ -143,6 +153,10 @@ CSV.open( @out_path, "wb" ) do |csv|
     )
     row << obs_results.total_entries
     row += obs_cols.map{|c| obs_results.aggregations[c].doc_count}
+
+    if @extras && extra_data = @extras[user.email]
+      row += @extra_headers.map{|h| extra_data[h]}
+    end
 
     csv << row
   end
