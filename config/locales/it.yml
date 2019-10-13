@@ -20,6 +20,10 @@ it:
   x_identifications_:
     one: '1 identificazione'
     other: '%{count} identificazioni'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    one: '<span class="count">1</span> Identificatore'
+    other: '<span class="count">%{count}</span> Identificatori'
   x_ids:
     one: '1 identificativo'
     other: '%{count} identificativi'
@@ -63,6 +67,9 @@ it:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> osservazione controllata"
     other: "<span class='count'>%{count}</span> osservazioni controllate"
+  x_observers_html:
+    one: '<span class="count">1</span> Osservatore'
+    other: '<span class="count">%{count}</span> Osservatori'
   x_others:
     one: "un altro"
     other: "%{count} altri"
@@ -1755,6 +1762,7 @@ it:
     en-US: Inglese (Stati Uniti)
     eo: Esperanto
     es: Spagnolo
+    es-AR: Spagnolo (Argentina)
     es-MX: Spagnolo (Messico)
     et: Estone
     eu: Basco
@@ -1777,12 +1785,14 @@ it:
     nn: Norvegese Nynorsk
     oc: Occitano
     pl: Polacco
+    pt: Portoghese
     pt-BR: Portoghese (Brasile)
     ru: Russo
     sk: Slovacco
     sq: Albanese
     sv: Svedese
     zh-CN: Cinese (tradizionale)
+    zh-HK: Cinese (tradizionale, Hong Kong)
     zh-TW: Cinese (tradizionale)
   locality_notes: Note locali
   localized_species_accounts: Pagine delle specie
@@ -1818,6 +1828,8 @@ it:
   mail_disclaimer: "%{site_name} non permette ai suoi utenti di mandarti altri inviti utilizzando il nostro sistema di inviti. Per favore riporta l'abuso a %{site}."
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contenuto principale
+  #Stub text for the main content section when editing custom project data
+  main_content_description: Il contenuto principale va qui
   make_a_new_place: Crea un nuovo luogo
   make_a_taxon_swap_instead?: Preferisci invece fare uno Scambio Taxon?
   make_curator: Rendi curatore
@@ -1979,6 +1991,8 @@ it:
   #Short for "navigation," used to describe a navigational component on the
   #project detail page when editing custom project data
   nav: Navigatore
+  #Stub text to show where the nav section of the project detail page is.
+  nav_description: Il contenuto per la navigazione del progetto va qui.
   ne_lat: Lat. NE
   ne_lon: Lon. NE
   near_threatened: Quasi minacciata
