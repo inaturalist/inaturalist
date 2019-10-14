@@ -155,6 +155,9 @@ it:
   about_complete_taxa: A proposito dei taxa completi
   about_conservation_status: A proposito dello stato di conservazione
   about_editing_observation_fields: Riguardo la modifica dei campi delle osservazioni
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: A proposito dell'origine del popolamento
   about_licenses: A proposito delle licenze
   about_licensing: A proposito delle licenze
@@ -425,6 +428,7 @@ it:
   all_updates: Tutti gli aggiornamenti
   all_your_observations_will_default_this_time_zone: Tutte le tue osservazioni saranno assegnate di default a questo fuso orario a meno che non specifichi diversamente.
   all_your_observations_will_default_to_this_time_zone: Tutte le tue osservazioni saranno assegnate di default a questo fuso orario a meno che non specifichi diversamente
+  #Option to allow any taxa on a list
   allow_any: consenti a tutti
   allow_curator_access: Permetti l'accesso ai curatori
   allow_project_curators_to_view_your_private_coordinates: Consenti ai curatori del progetto di vedere le tue coordinate nascoste
@@ -2774,7 +2778,6 @@ it:
     oman: Oman
     pakistan: Pakistan
     palau: Palau
-    palestina: Palestina
     palestine: Palestina
     panama: Panama
     papua_new_guinea: Papua Nuova Guinea
@@ -3751,8 +3754,6 @@ it:
   the_following_lists: le liste seguenti
   the_following_observations_could: "Le seguenti osservazioni non possono essere aggiunte a  %{link}"
   the_following_photos_have_been_tagged: "Le foto seguenti sono state etichettate:"
-  the_identotron_is_a_tool_to: |
-    L'Identotron è uno strumento per aiutarti nell'identificazione basato sulla checklist di un %{place}. Fornendo un luogo ed un taxon di livello superiore (e.g., mammiferi dell'India), %{place} cercherà i valori della checklist che corrispondono a quel taxon in quel luogo, come una guida di campo dinamica dell'intero pianeta. La maggior parte delle checklist di %{place} sono ancora in aggiornamento, ma se ce n'è una che è esaustiva, che quindi comprende <em>tutti</em> i rappresentanti di quel taxon per quel luogo, l'Identotron mostrerà un messaggio.
   the_list: la lista
   the_name_of_the_taxon_including_space: Il nome del taxon, includendo lo spazio per specie e infraspecie.
   the_observation_form_looks: "Il formulario dell'osservazione assomiglia a questo:"
@@ -3884,7 +3885,6 @@ it:
   to_include_your_google_with_inat: "per includere il tuo account Google con %{site_name}"
   to_recipient: a
   to_suggest_an_identification: per suggerire un'identificazione
-  to_the_bat_cave: Per la Bat Caverna!
   today: Oggi
   too_many_observations_csv: "Hai troppe osservazioni!<br /> Possiamo caricare solo le prime %{max_rows} osservazioni di ogni CSV"
   too_many_results: Troppi risultati
@@ -4056,7 +4056,6 @@ it:
   user_has_opted_out_of_community_id: L'utente ha deselezionato il taxon della comunità
   user_has_opted_out_of_community_ids: "%{user} ha scelto di mantenere il controllo sui taxa associati alle loro osservazioni"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} ha scelto di mantenere il controllo sui taxa associati a questa osservazione"
-  user_hasnt: "%{user} non ha"
   user_helped_x_people_with_y_ids_html: "%{user} ha aiutato strong>%{x} persone</strong> con <strong>%{y} le ID</strong>"
   user_invite_observation_to_project: '%{user} avrebbe piacere di invitare la tua osservazione "%{observation}" al project %{project}.'
   user_invited_you_to_join_html: "%{user} ti ha invitato ad unirti"
