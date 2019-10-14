@@ -35,6 +35,9 @@ lt:
   about_complete_taxa: Apie pilnus taksonus
   about_conservation_status: Apie apsaugos statusą
   about_editing_observation_fields: Apie stebėjimo laukų redagavimą
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Apie įkūrimo priemones
   about_licenses: Apie licencijas
   about_licensing: Apie licencijavimą
@@ -242,6 +245,7 @@ lt:
   all_updates: Visi Atnaujinimai
   all_your_observations_will_default_this_time_zone: Visi jūsų stebėjimai bus numatyti pagal šią laiko juostą, nebent nurodysite kitaip.
   all_your_observations_will_default_to_this_time_zone: Visi jūsų stebėjimai bus numatyti pagal šią laiko juostą, nebent nurodysite kitaip.
+  #Option to allow any taxa on a list
   allow_any: leisti bet kuriuos
   allow_curator_access: Leisti kuratoriaus prieigą
   allow_project_curators_to_view_your_private_coordinates: Leisti projekto kuratoriams peržiūrėti paslėptas koordinates
