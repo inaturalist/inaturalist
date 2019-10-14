@@ -120,6 +120,9 @@ fi:
   about_complete_taxa: Tietoja täydellisistä taksoneista
   about_conservation_status: Tietoja suojelutasosta
   about_editing_observation_fields: Tietoja havaintokenttien muokkaamisesta
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Tietoja perustamisen keinoista
   about_licenses: Tietoja lisensseistä
   about_licensing: Tietoja lisensoinnista
@@ -377,6 +380,7 @@ fi:
   all_updates: Kaikki päivitykset
   all_your_observations_will_default_this_time_zone: Kaikki havaintosi tulevat olemaan oletusarvoisesti tällä aikavyöhykkeellä, ellet määritä toisin.
   all_your_observations_will_default_to_this_time_zone: Kaikki havaintosi tulevat olemaan oletusarvoisesti tällä aikavyöhykkeellä, ellet määritä toisin.
+  #Option to allow any taxa on a list
   allow_any: salli mikä tahansa
   allow_curator_access: Salli kuraattorin pääsy
   allow_project_curators_to_view_your_private_coordinates: Salli projektin kuraattorien katsoa piilotettuja koordinaattejasi
@@ -2229,7 +2233,6 @@ fi:
     north_korea: Pohjois-Korea
     northern_cyprus: Pohjois-Kypros
     norway: Norja
-    palestina: Palestiina
     palestine: Palestiina
     papua_new_guinea: Papua-Uusi-Guinea
     philippines: Filippiinit
@@ -3108,7 +3111,6 @@ fi:
   user_faved_a_noun_by_owner: "%{user} merkitsi käyttäjän %{owner} %{noun} suosikiksi"
   user_follows: "%{user} seuraa"
   user_has_opted_out_of_community_id: Käyttäjä on jättänyt yhteisön taksonin pois
-  user_hasnt: "%{user} ei ole"
   user_invite_observation_to_project: '%{user} haluaisi kutsua havaintosi "%{observation}" projektiin %{project}.'
   user_invited_you_to_join_html: "%{user} kutsui sinut liittymään"
   user_invited_you_to_join_project: "%{user} kutsui sinut liittymään projektiin %{project}"
