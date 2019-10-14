@@ -250,6 +250,7 @@ eu:
   all_updates: Eguneratze guztiak
   all_your_observations_will_default_this_time_zone: Zure ohar guztiak ordu-zona honetan egingo dira, zuk kontrakoa zehaztu ezean.
   all_your_observations_will_default_to_this_time_zone: Zure ohar guztiak ordu-zona honetan egingo dira, zuk kontrakoa zehaztu ezean.
+  #Option to allow any taxa on a list
   allow_any: baten bat baimendu
   allow_curator_access: Ontzailearen sartzea onartu
   allowed_establish_means_values: Finkatzeko baliabideetarako baimendutako balioak
@@ -2084,8 +2085,6 @@ eu:
   the_following_lists: hurrengo zerrendak
   the_following_observations_could: "Behaketa hauek ezin izan dira hona gehitu: %{link}"
   the_following_photos_have_been_tagged: "Argazki hauek etiketatuak izan dira"
-  the_identotron_is_a_tool_to: |
-     Identotron hemengo egiaztapen-zerrendetan oinarritutako behaketak identifikatzeko tresna da: %{place}. Klasea eta lekua emanda (adib. Ugaztunak eta India), %{place} egiaztapen-zerrendetan espezie edo talde horren eta lekuaren arteko bat-etortzeak bilatuko ditu, planeta guztiko espezieen gidaren modukoa da. %{place}(e)ko egiaztapen-zerrenda gehienetan oraindik lanean ari dira, baina zehatza den zerrendaren bat baldin badago, hau da, leku horretako espezie edo talde adierazgarri <em>guztiak</em> zerrendatzen dituena, identotron-ek abisua emango du.
   the_list: zerrenda
   the_name_of_the_taxon_including_space: Taxoiaren izena, espezieentzako eta infraespezieentzako tartea barne.
   the_observation_form_looks: "Behaketa-formularioa honelakoa da"
@@ -2173,7 +2172,6 @@ eu:
   to_add_ids: identifikazioak gehitzeko
   to_configure_your_widget: zure widget-a konfiguratzeko.
   to_suggest_an_identification: Identifikazio bat gomendatu
-  to_the_bat_cave: Baticueva-ra!
   today: Gaur
   too_many_observations_csv: "Behaketa gehiegi dituzu! CSV fitxategi bakoitzeko lehen %{max_rows} behaketak soilik jaso ditzakegu"
   tools: Tresnak
@@ -2251,7 +2249,6 @@ eu:
   user_added_x_observations_html: "%{user}-(e)k %{x} behaketa gehitu zituen"
   user_commented_on: "%{user}-(e)k aipatu zuen: %{title} %{time}"
   user_follows: "%{user}-(e)k honi jarraitzen dio:"
-  user_hasnt: "%{user}-(e)k ez du"
   user_invite_observation_to_project: '%{user}-(e)k zure "%{observation}" behaketa %{project} proiektura gonbidatu nahi du.'
   user_invited_your_x_to_a_project_html: "%{user}-(e)k proiektu batetara gonbidatu zuen bere %{x}"
   user_is_a_naturalist: "%{user} naturalista da!"
