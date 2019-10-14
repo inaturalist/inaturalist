@@ -132,6 +132,9 @@ fr:
   about_complete_taxa: À propos des taxons complets
   about_conservation_status: À propos de l’état de conservation
   about_editing_observation_fields: À propos de la modification des champs d’observation
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: À propos des moyens d’implantation
   about_licenses: À propos des licences
   about_licensing: À propos de l’octroi de licences
@@ -391,6 +394,7 @@ fr:
   all_updates: Toutes les mises à jour
   all_your_observations_will_default_this_time_zone: "Toutes vos observations seront par  défaut dans ce fuseau horaire, sauf si\nvous le définissez autrement."
   all_your_observations_will_default_to_this_time_zone: "Toutes vos observations seront par défaut dans ce fuseau horaire, sauf si\nvous le définissez autrement."
+  #Option to allow any taxa on a list
   allow_any: Autoriser tout
   allow_curator_access: Autoriser l’accès au responsable
   allow_project_curators_to_view_your_private_coordinates: Autoriser les responsables du projet à voir vos coordonnées masquées
@@ -2582,7 +2586,6 @@ fr:
     north_korea: Corée du Nord
     northern_cyprus: Chypre du nord
     norway: Norvège
-    palestina: Palestine
     papua_new_guinea: Papouasie Nouvelle Guinée
     peru: Pérou
     pitcairn_islands: Îles Pitcairn
@@ -3520,8 +3523,6 @@ fr:
   the_following_lists: les listes suivantes
   the_following_observations_could: "Les observations suivantes n’ont pas pu être ajoutées à %{link}"
   the_following_photos_have_been_tagged: "Les photos suivantes ont été étiquetées :"
-  the_identotron_is_a_tool_to: |
-    L’Identotron est un outil qui vous aide à identifier les observations selon les données de la liste de contrôle de %{place}. À partir d’un taxon de haut rang et d’un lieu (par ex. mammifères d’Inde), %{place} recherchera des entrées de la liste de contrôle qui correspondent au taxon dans ce lieu, un peu comme un guide d’excursions dynamique pour toute la planète. La plupart des listes de contrôle de %{place} sont en cours, mais s’il y en a de complètes, c.-à-d. qui répertorie <em>tous</em> les représentants de ce taxon dans un lieu, l’Identotron affichera un conseil.
   the_list: la liste
   the_name_of_the_taxon_including_space: Le nom du taxon, y compris le champ pour l’espèce et la sous-espèce.
   the_observation_form_looks: "Le formulaire d’observation ressemble à ceci :"
@@ -3660,7 +3661,6 @@ fr:
   to_include_your_google_with_inat: "pour inclure votre compte Google avec %{site_name}"
   to_recipient: À
   to_suggest_an_identification: pour suggérer une identification
-  to_the_bat_cave: vers la caverne des chauves-souris!
   today: Aujourd’hui
   too_many_observations_csv: "Vous avez trop d’observations !<br /> Nous ne pouvons prendre que vos %{max_rows} premières observations dans chaque CSV"
   too_many_results: Trop de résultats
@@ -3833,7 +3833,6 @@ fr:
   user_has_opted_out_of_community_id: L’utilisateur a refusé le taxon de communauté
   user_has_opted_out_of_community_ids: "%{user} a choisi de maintenir le contrôle des taxons associés à ses observations"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} a choisi de maintenir le contrôle des taxons associés à cette observation"
-  user_hasnt: "%{user} n’a pas"
   user_helped_x_people_with_y_ids_html: "%{user} a aidé <strong>%{x} personne(s)</strong> avec <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: '%{user} aimerait obtenir votre observation « %{observation} » dans le projet %{project}.'
   user_invited_you_to_join_html: "%{user} vous a invité à vous joindre"
