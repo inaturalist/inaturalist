@@ -121,6 +121,9 @@ de:
   about_complete_taxa: Über vollständige Taxa
   about_conservation_status: Über Schutzstatus
   about_editing_observation_fields: Über das Editieren von Beobachtungsfeldern
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Über Verbreitung
   about_licenses: Über Lizenzen
   about_licensing: Über Lizenzen
@@ -380,6 +383,7 @@ de:
   all_updates: Alle Neuigkeiten
   all_your_observations_will_default_this_time_zone: Alle deine Beobachtungen werden dieser Zeitzone zugeordnet, sofern du nichts anderes angibst.
   all_your_observations_will_default_to_this_time_zone: Alle deine Beobachtungen werden dieser Zeitzone zugeordnet, sofern du nichts anderes angibst.
+  #Option to allow any taxa on a list
   allow_any: Alle erlauben
   allow_curator_access: Kuratorenzugriff erlauben
   allow_project_curators_to_view_your_private_coordinates: Projektkuratoren die Ansicht deiner verborgenen Koordinaten erlauben
@@ -2342,7 +2346,6 @@ de:
     north_korea: Nordkorea
     northern_cyprus: Nordzypern
     norway: Norwegen
-    palestina: Palästina
     palestine: Palästina
     papua_new_guinea: Papua-Neuguinea
     philippines: Philippinen
@@ -3124,8 +3127,6 @@ de:
   the_following_lists: die folgenden Listen
   the_following_observations_could: "Die folgenden Beobachtungen konnten nicht zu %{link} hinzugefügt werden"
   the_following_photos_have_been_tagged: "Die folgenden Fotos wurden getaggt:"
-  the_identotron_is_a_tool_to: |
-    Das Identotron ist ein Werkzeug, das dir hilft, Beobachtungen anhand der Checklistendaten von %{place} zu identifizieren.  Bei einem höheren Taxon und einem Ort (z.B. Säugetiere in Indien) wird %{place} nach Checklisteneinträgen gesucht, die diesem Taxon an diesem Ort entsprechen, eine Art dynamischer Feldführer für den gesamten Planeten. Die meisten %{place}-Checklisten sind in Arbeit, aber wenn es eine gibt, die umfassend ist, d.h. sie listet <em>alle</em>  Repräsentanten ihres Taxons an einem Ort auf, wird das Identotron einen Hinweis anzeigen.
   the_list: die Liste
   the_observation_form_looks: "Das Beobachtungsformular sieht wie dieses aus:"
   the_observation_has_date: die Beobachtung <strong>hat ein Datum</strong>
@@ -3332,7 +3333,6 @@ de:
   user_faved_a_noun_by_owner: "%{user} hat %{noun} von %{owner} favorisiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
   user_follows: "%{user} folgt"
-  user_hasnt: "%{user} hat nicht"
   user_invited_you_to_join_project: "%{user} hat Dich eingeladen, bei %{project} mitzumachen"
   user_invited_you_to_join_this_project_on_date_html: "%{user} hat Dich eingeladen, diesem Projekt am %{date} beizutreten"
   user_is_a_naturalist: "%{user} ist ein Naturalist!"
