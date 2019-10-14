@@ -16,6 +16,9 @@ ar:
   about_complete_taxa: حول أصناف كاملة
   about_conservation_status: حول حالة الحفظ
   about_editing_observation_fields: حول تحرير مجالات الملاحظة
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: حول وسائل الإنشاء
   about_licenses: عن الرخصة
   about_licensing: عن الترخيص
@@ -232,6 +235,7 @@ ar:
   all_updates: جميع التحديثات
   all_your_observations_will_default_this_time_zone: سيتم تعيين جميع ملاحظاتك بشكل افتراضي إلى هذه المنطقة الزمنية ما لم تحدد خلاف ذلك.
   all_your_observations_will_default_to_this_time_zone: سيتم تعيين جميع ملاحظاتك بشكل افتراضي إلى هذه المنطقة الزمنية ما لم تحدد خلاف ذلك.
+  #Option to allow any taxa on a list
   allow_any: السماح لأي شخص
   allow_curator_access: السماح للأمين بالوصول
   allow_project_curators_to_view_your_private_coordinates: السماح لأمناء المشروع بعرض إحداثياتك المخفية
@@ -2489,7 +2493,6 @@ ar:
     oman: عمان
     pakistan: باكستان
     palau: بالاو
-    palestina: فلسطين
     palestine: فلسطين
     panama: بنما
     papua_new_guinea: بابوا غينيا الجديدة
@@ -3430,14 +3433,6 @@ ar:
   the_following_lists: القوائم التالية
   the_following_observations_could: "لا يمكن إضافة الملاحظات التالية إلى %{link}%{link}%{link}"
   the_following_photos_have_been_tagged: "تم وضع علامة على الصور التالية:"
-  the_identotron_is_a_tool_to: |
-    أداة إيدنتوترون هي أداة تساعدك على تحديد الملاحظات استنادا إلى 
-    بيانات قائمة التحقق من %{place}، وبالنظر إلى أصنوفة من مستوى أعلى
-    ومكان (مثل الثدييات في الهند)، سيبحث %{place} عن قوائم التحقق التي تتطابق مع هذه
-    الأصنوفة في ذلك المكان، وهو نوع مثل دليل ميداني ديناميكي لكوكب الأرض
-    بأكمله، معظم قوائم التحقق من %{place} أعمال قيد التنفيذ، ولكن إذا كانت هناك 
-    قائمة شاملة، أي أنها تسرد <em>جميع</em> ممثلي 
-    أصنوفتها في مكان ما، فسيعرض إيدنتوترون إشعارا.
   the_list: القائمة
   the_name_of_the_taxon_including_space: اسم الأصنوغة، بما في ذلك مساحة للأنواع والأنواع الفرعية.
   the_observation_form_looks: "يبدو شكل الملاحظة كما يلي:"
@@ -3585,7 +3580,6 @@ ar:
   to_include_your_google_with_inat: "لتضمين حسابك في جوجل مع %{site_name}"
   to_recipient: إلى
   to_suggest_an_identification: لاقتراح هوية
-  to_the_bat_cave: إلى كهف الخفافيش!
   today: اليوم
   too_many_observations_csv: "لديك خلية نحل من الملاحظات!<br /> لا يمكننا أن نأخذ سوى أول %{max_rows} ملاحظة في كل CSV"
   too_many_results: نتائج كثيرة جدا
@@ -3756,7 +3750,6 @@ ar:
   user_has_opted_out_of_community_id: لقد اختار المستخدم تعطيل أصنوفة المجتمع
   user_has_opted_out_of_community_ids: "اختار %{user} الاحتفاظ بالسيطرة على الأصناف المرتبطة بملاحظاته"
   user_has_opted_out_of_community_ids_for_this_obs: "اختار %{user} الاحتفاظ بالسيطرة على الأصناف المرتبطة  بهذه الملاحظة"
-  user_hasnt: "%{user} ليس لديه"
   user_helped_x_people_with_y_ids_html: "%{user} ساعد <strong>%{x} من الأشخاص </strong> ب<strong>%{y} المعرفات</strong>"
   user_invite_observation_to_project: 'يريد %{user} دعوة ملاحظتك "%{observation}" إلى مشروع %{project}.'
   user_invited_you_to_join_html: "دعاك %{user} للانضمام"
