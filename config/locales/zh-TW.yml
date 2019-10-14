@@ -88,6 +88,9 @@ zh-TW:
   about_complete_taxa: 關於完整的分類群
   about_conservation_status: 關於保育狀態
   about_editing_observation_fields: 關於編輯觀察欄位
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: 有關定居方式
   about_licenses: 關於授權
   about_licensing: 關於授權協議
@@ -332,6 +335,7 @@ zh-TW:
   all_updates: 所有更新
   all_your_observations_will_default_this_time_zone: 若您未指定的話，您所有的觀察將會被預設成此時區。
   all_your_observations_will_default_to_this_time_zone: 若您未指定的話，您所有的觀察將會被預設成此時區。
+  #Option to allow any taxa on a list
   allow_any: 允許任何
   allow_curator_access: 允許策展人存取
   allow_project_curators_to_view_your_private_coordinates: 允許專案策展人檢視您的隱藏座標
@@ -2513,7 +2517,6 @@ zh-TW:
     oman: 阿曼
     pakistan: 巴基斯坦
     palau: 帛琉
-    palestina: 巴勒斯坦
     palestine: 巴勒斯坦
     panama: 巴拿馬
     papua_new_guinea: 巴布亞紐幾內亞
@@ -3459,8 +3462,6 @@ zh-TW:
   the_following_lists: 以下清單
   the_following_observations_could: "以下觀察不能被添加至 %{link}"
   the_following_photos_have_been_tagged: "以下照片已被標記為："
-  the_identotron_is_a_tool_to: |
-    Identotron 是用來協助您基於 %{place} 之清單資料來鑑定觀察的工具。所指定更高層級的物種分類與地點（例如：印度的哺乳類）會讓 %{place} 查看在清單項目裡符合地點的物種，這就好比像是一個包含整個星球事物的動態實地指南。雖然多數 %{place} 檢驗清單為進行中的項目，但只要有一個就會是全面性的。註：在此所列出<em>所有</em>在地點裡的物種分類代表，會讓 Identotron 顯示出通知。
   the_list: 列表
   the_name_of_the_taxon_including_space: 物種分類的名稱，包含物種和次物種的空間。
   the_observation_form_looks: "觀察表單如下："
@@ -3588,7 +3589,6 @@ zh-TW:
   to_include_your_google_with_inat: "來與 %{site_name} 包含您的 Google 帳號"
   to_recipient: 至
   to_suggest_an_identification: 提議一個鑑定
-  to_the_bat_cave: 到蝙蝠洞！
   today: 今日
   too_many_observations_csv: "您擁有著大量觀察！<br />我們僅能在每個 CSV 裡最多取用您的前 %{max_rows} 觀察"
   too_many_results: 太多結果
@@ -3754,7 +3754,6 @@ zh-TW:
   user_has_opted_out_of_community_id: 用戶已選擇排除社群分類群
   user_has_opted_out_of_community_ids: "%{user} 已選擇保留對於關聯於他們觀察之物種分類群方面的控制"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} 已選擇保留對於關聯於此觀察之物種分類群方面的控制"
-  user_hasnt: "%{user}沒有"
   user_helped_x_people_with_y_ids_html: "%{user}以 <strong>%{y} 個鑑定</strong>幫助到了 <strong>%{x} 個人</strong>"
   user_invite_observation_to_project: '%{user} 想要徵求您的觀察「%{observation}」至 %{project} 專案。'
   user_invited_you_to_join_html: "%{user}邀請您加入"
