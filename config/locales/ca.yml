@@ -121,6 +121,9 @@ ca:
   about_complete_taxa: Sobre taxons complets
   about_conservation_status: Quant a l'estat de conservació
   about_editing_observation_fields: Quant a Editar camps d'observacions
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Sobre les formes d'establiment
   about_licenses: Sobre les llicències
   about_licensing: Quant a les llicències
@@ -376,6 +379,7 @@ ca:
   all_updates: Totes les actualitzacions
   all_your_observations_will_default_this_time_zone: Totes les observacions es faran en aquesta zona horària tret que especifiqueu el contrari.
   all_your_observations_will_default_to_this_time_zone: Totes les observacions es faran en aquesta zona horària tret que especifiqueu el contrari.
+  #Option to allow any taxa on a list
   allow_any: permetre-li a qualsevol
   allow_curator_access: Permeteu l'accés al supervisor
   allow_project_curators_to_view_your_private_coordinates: Permet als supervisors del projecte a visualitzar les vostres coordenades ocultes
@@ -3404,8 +3408,6 @@ ca:
   the_following_lists: les llistes següents
   the_following_observations_could: "Les observacions següents no s'han pogut afegir a %{link}"
   the_following_photos_have_been_tagged: "S’han etiquetat les fotos següents"
-  the_identotron_is_a_tool_to: |
-    L'identotron és una eina per identificar observacions basades en les llistes de comprovació de %{place}. Quan es dóna una classe i un lloc (ex. mamífers i l'Índia), %{place} cercarà en llistes de comprovació les coincidències entre aquesta espècie o grup i aquest lloc; és com una guia d'espècies de tot el planeta. En la majoria de les llistes de comprovació de %{place} encara s'hi està treballant, però si existeix alguna llista que sigui exhaustiva, és a dir, que llisti <em>totes</em> les espècies o grups representatius d'aquest lloc, l'identotron mostrarà un avís.
   the_list: la llista
   the_name_of_the_taxon_including_space: El nom del tàxon, incloent-hi l'espai per a les espècies i infraespècies.
   the_observation_form_looks: "El formulari d'observació és així"
@@ -3537,7 +3539,6 @@ ca:
   to_include_your_google_with_inat: "per incloure el vostre compte de Google amb %{site_name}"
   to_recipient: a
   to_suggest_an_identification: per suggerir una identificació
-  to_the_bat_cave: A la Baticova!
   today: Avui
   too_many_observations_csv: "Teniu massa observacions! Només podem incloure les primeres %{max_rows} observacions de cada arxiu CSV"
   too_many_results: Massa resultats
@@ -3703,7 +3704,6 @@ ca:
   user_has_opted_out_of_community_id: L'usuari ha refusat el Tàxon de la Comunitat
   user_has_opted_out_of_community_ids: "%{user} ha optat per mantenir el control sobre els tàxons associats a les seves observacions"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} ha optat per mantenir el control sobre els tàxons associats amb aquesta observació"
-  user_hasnt: "%{user} no ha"
   user_helped_x_people_with_y_ids_html: "%{user} ha ajudat <strong>%{x} persones</strong> amb <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: '%{user} vol compartir la vostra observació "%{observation}" al projecte %{project}.'
   user_invited_you_to_join_html: "%{user} us ha convidat a unir-vos"
