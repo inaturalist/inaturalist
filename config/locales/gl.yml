@@ -194,6 +194,7 @@ gl:
   all_taxonomic_groups: "&laquo; Todos os Grupos Taxonómicos"
   all_your_observations_will_default_this_time_zone: Todas as túas observacións faranse nesta zona horaria a menos que especifiques o contrario.
   all_your_observations_will_default_to_this_time_zone: Todas as túas observacións faranse nesta zona horaria a menos que especifiques o contrario.
+  #Option to allow any taxa on a list
   allow_any: Permitir algunha
   allowed_establish_means_values: Valores permitidos para os medios de establecemento
   allowed_html: Etiquetas permitidas de HTML
@@ -1809,8 +1810,6 @@ gl:
   the_following_lists: as seguintes listas
   the_following_observations_could: "As seguintes observacións non se puideron engadir a %{link}"
   the_following_photos_have_been_tagged: "As seguintes fotos foron etiquetadas"
-  the_identotron_is_a_tool_to: |
-     O identotrón é unha ferramenta para identificar observacións baseadas nas listas de comprobación de %{place}. Dada unha clase e un lugar (ex. mamíferos e a India), %{place} buscará en listas de comprobación as coincidencias entre esa especie ou grupo e ese lugar; é como unha guía de especies de todo o planeta. Aínda se está traballando na maioría das listas de comprobación de %{place}, pero se existe algunha lista que sexa exhaustiva, é dicir, que liste <em>todas</em> as especies ou grupos representativos dese lugar, o identotrón mostrará un aviso.
   the_list: a lista
   the_name_of_the_taxon_including_space: O nome do taxón, incluíndo o espazo para as especies e infraespecies.<br/><br/> <strong>Exemplo. </strong><br/>
   the_observation_form_looks: "O formulario de observación é así"
@@ -1898,7 +1897,6 @@ gl:
   to_add_identifications: para engadir identificacións.
   to_add_ids: para engadir identificacións
   to_configure_your_widget: para configurar o teu widget.
-  to_the_bat_cave: Á Baticova!
   today: Hoxe
   too_many_observations_csv: "Tes demasiadas observacións! Só podemos incluír as primeiras %{max_rows} observacións de cada arquivo CSV"
   tools: Ferramentas
@@ -1968,7 +1966,6 @@ gl:
   user_added_x_observations_html: "%{user} engadiches %{x} observacións"
   user_commented_on: "%{user} comentaches sobre o teu %{title} %{time}"
   user_follows: "%{user} segues a"
-  user_hasnt: "%{user} non"
   user_invite_observation_to_project: '%{user} desexa convidar a túa observación "%{observation}" ao proxecto %{project}.'
   user_invited_your_x_to_a_project_html: "%{user} convidaches ao teu %{x} a un proxecto"
   user_is_a_naturalist: "%{user} es un naturalista!"
