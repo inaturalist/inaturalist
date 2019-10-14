@@ -80,6 +80,9 @@ zh-CN:
   about_complete_taxa: 关于比较分类群
   about_conservation_status: 保护状态
   about_editing_observation_fields: 关于编辑观察字段
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: 关于确立意思
   about_licenses: 关于许可协议
   about_licensing: 关于许可协议
@@ -317,6 +320,7 @@ zh-CN:
   all_updates: 所有更新
   all_your_observations_will_default_this_time_zone: 如果您不进行另外的规定，那么您的全部观察记录都将默认按这一时区记录
   all_your_observations_will_default_to_this_time_zone: 如果您不进行另外的规定，那么您的全部观察记录都将默认按这一时区记录
+  #Option to allow any taxa on a list
   allow_any: 允许任何
   allow_curator_access: 允许馆长访问
   allow_project_curators_to_view_your_private_coordinates: 允许项目馆长查看您的私人坐标信息
@@ -2240,7 +2244,6 @@ zh-CN:
     north_america: 北美洲
     north_korea: 朝鲜
     norway: 挪威
-    palestina: 巴勒斯坦
     palestine: 巴勒斯坦
     panama: 巴拿马
     peru: 秘鲁
@@ -3068,8 +3071,6 @@ zh-CN:
   the_following_lists: 以下清单
   the_following_observations_could: "无法将以下观察添加到%{link}"
   the_following_photos_have_been_tagged: "以下照片已被标记："
-  the_identotron_is_a_tool_to: |
-    Identotron工具可以帮助您根据%{place}的检查清单的数据来识别观察结果。若给定更高级别的分类单元和地点（例如，印度的哺乳动物），%{place}将查找与该地区的分类单元匹配的清单项，就像是在整个星球上进行动态的地点导航。大多数%{place}的检查清单正在完善之中，但是如果其中一个已经足够全面，即，它列出了在一个地点的<em>所有</em>分类单元的代表生物，那么Identotron将会显示通知。
   the_list: 列表
   the_name_of_the_taxon_including_space: 分类单元名称，包括物种和亚种的空间。
   the_observation_form_looks: "观察表格如下："
@@ -3192,7 +3193,6 @@ zh-CN:
   to_include_your_google_with_inat: "来包含您的Google账户与%{site_name}"
   to_recipient: 至
   to_suggest_an_identification: 要建议一次鉴定
-  to_the_bat_cave: 去蝙蝠洞吧！
   today: 今天
   too_many_observations_csv: "您有了一个蜂巢观察！<br/>我们只记录您在每个CSV中进行的前%{max_rows}次观察"
   tools: 工具
@@ -3338,7 +3338,6 @@ zh-CN:
   user_has_opted_out_of_community_id: 用户已选择退出社区ID
   user_has_opted_out_of_community_ids: "%{user}已选择保留对与其观察相关的分类单元的控制权"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user}已保留对于与此观察有关的分类单元的控制权"
-  user_hasnt: "%{user}没有"
   user_invite_observation_to_project: '%{user}邀请把您的观察“%{observation}”加入至%{project}项目。'
   user_invited_you_to_join_html: "%{user}邀请您加入"
   user_invited_you_to_join_project: "%{user}邀请您加入%{project}"
