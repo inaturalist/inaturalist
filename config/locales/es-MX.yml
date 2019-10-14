@@ -120,6 +120,9 @@ es-MX:
   about_complete_taxa: Acerca de los taxones completos
   about_conservation_status: Acerca del estado de conservación
   about_editing_observation_fields: Acerca de la edición de campos de observación
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Acerca de los medios de establecimiento
   about_licenses: Acerca de las licencias
   about_licensing: Acerca de las licencias
@@ -369,6 +372,7 @@ es-MX:
   all_updates: Todas las actualizaciones
   all_your_observations_will_default_this_time_zone: Todas tus observaciones tendrán esta zona de tiempo a menos que especifiques otra cosa.
   all_your_observations_will_default_to_this_time_zone: Todas tus observaciones tendrán esta zona de tiempo a menos que especifiques otra cosa.
+  #Option to allow any taxa on a list
   allow_any: Permite a cualquiera
   allow_curator_access: Permite acceso al curador
   allow_project_curators_to_view_your_private_coordinates: Permite a los curadores del proyecto ver tus coordinadas privadas
@@ -3377,8 +3381,6 @@ es-MX:
   the_following_lists: Las siguientes listas
   the_following_observations_could: "Las siguientes observaciones no se pudieron añadir a %{link}"
   the_following_photos_have_been_tagged: "Las siguientes fotos han sido etiquetadas:"
-  the_identotron_is_a_tool_to: |
-    El identotrón es una herramienta para identificar observaciones basadas en las listas de comprobación de %{place}. Dada una clase y un lugar (ej. mamíferos y la India), %{place} buscara por listas de comprobación que concurran con esa especie o grupo en ese lugar, es como una guía de especies del planeta entero. En la mayoría de las listas de comprobación de %{place} aún se esta trabajando, pero si existe alguna lista que sea exhaustiva, es decir que liste <em>todas</em> las especies o grupos representativos de ese lugar, el identotrón mostrará un aviso.
   the_list: La lista
   the_name_of_the_taxon_including_space: El nombre de la especie o grupo, incluyendo el espacio para especies e infraespecies. <br/><br/> <strong>Ejemplo:</strong><br/>
   the_observation_form_looks: "La forma de la observación es así:"
@@ -3513,7 +3515,6 @@ es-MX:
   to_include_your_google_with_inat: "para incluir tu cuenta de Google con %{site_name}"
   to_recipient: a
   to_suggest_an_identification: sugerir una identificación
-  to_the_bat_cave: '¡A la baticueva!'
   today: Hoy
   too_many_observations_csv: "¡Tienes una colmena de observaciones! <br /> Solo podemos tomar tus primeras  %{max_rows} observaciones en cada CSV"
   too_many_taxa_to_render: |
@@ -3672,7 +3673,6 @@ es-MX:
   user_has_opted_out_of_community_id: El usuario ha rechazado la Identificación de la Comunidad
   user_has_opted_out_of_community_ids: "%{user} ha optado por mantener el control sobre los taxa asociados a sus observaciones"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} ha optado por mantener el control sobre los taxa asociados con esta observación"
-  user_hasnt: "El %{user} no ha"
   user_helped_x_people_with_y_ids_html: "%{user} ayudó a <strong>%{x} usuarios</strong> con <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: 'A %{user} le gustaría invitar tu observación  "%{observation}" al proyecto %{project}.'
   user_invited_you_to_join_html: "%{user} te invito a unirte"
