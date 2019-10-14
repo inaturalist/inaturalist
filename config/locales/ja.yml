@@ -82,6 +82,9 @@ ja:
   about_complete_taxa: 通知停止とは
   about_conservation_status: 保全状況について
   about_editing_observation_fields: 観察記録欄の編集
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: 定着方法について
   about_licenses: ライセンスについて
   about_licensing: ライセンスについて
@@ -311,6 +314,7 @@ ja:
   all_updates: すべての更新情報
   all_your_observations_will_default_this_time_zone: 今後、指定があった場合を除き、観察記録がデファルトでこの時間帯になります
   all_your_observations_will_default_to_this_time_zone: 今後、指定があった場合を除き、観察記録がデフォルトでこの時間帯になります
+  #Option to allow any taxa on a list
   allow_any: すべてを許可
   allow_project_curators_to_view_your_private_coordinates: プロジェクトのキュレーター管理者に非表示の位置情報の閲覧を許可
   allowed_establish_means_values: 使用可能な定着状況の値
@@ -2513,7 +2517,6 @@ ja:
   to_add_identifications: すれば、IDを追加することができます
   to_add_ids: すれば、IDを追加することができます
   to_suggest_an_identification: 同定を提案
-  to_the_bat_cave: いざ〜出発！
   today: 今日
   tools: ツール
   top_5_identifiers: 同定の達人（ベスト５人）
@@ -2611,7 +2614,6 @@ ja:
   user_faved_a_noun_by_owner: "%{user}が%{owner}の%{noun}をお気に入りに追加しました"
   user_follows: "%{user}がフォローしているユーザー"
   user_has_opted_out_of_community_id: 利用者はコミュニティー分類の通知を受け取りません
-  user_hasnt: "%{user}はまだ次のことをしていません："
   user_invited_you_to_join_html: "%{user}から招待が届いています："
   user_invited_you_to_join_project: "%{user}から%{project}に参加するように招待されました"
   user_invited_your_x_to_a_project_html: "%{user}があなたの%{x}をプロジェクトに招待しました"
