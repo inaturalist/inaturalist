@@ -121,6 +121,9 @@ pt:
   about_complete_taxa: Sobre os táxones completos
   about_conservation_status: Sobre o Estatuto de Conservação
   about_editing_observation_fields: Sobre a Edição dos Campos de Observação
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Sobre os meios de estabelecimento
   about_licenses: Acerca das licenças
   about_licensing: Acerca da certificação
@@ -369,6 +372,7 @@ pt:
   all_updates: Todas as atualizações
   all_your_observations_will_default_this_time_zone: Todas as suas observações serão registadas neste fuso horário a não ser que especifiques de maneira diferente.
   all_your_observations_will_default_to_this_time_zone: Todas as suas observações serão registadas neste fuso horário a não ser que especifiques de maneira diferente.
+  #Option to allow any taxa on a list
   allow_any: Permitir que qualquer
   allow_curator_access: Permitir acesso ao curador
   allow_project_curators_to_view_your_private_coordinates: Permitir aos Curadores do projeto visualizar as suas coordenadas privadas
