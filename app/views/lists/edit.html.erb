@@ -9,7 +9,7 @@
 <% end -%>
 <div id="pageheader" class="column span-24 last">
   <span class="breadcrumbs">    
-    <%= link_to "#{t(:back_to)} #{@list.title}", @list, :class => 'back crumb' %>
+    <%= link_to @list.title, @list, :class => 'back crumb' %>
   </span>
   <h2><%= t :editing %> "<%= @list.title %>"</h2>
 </div>
