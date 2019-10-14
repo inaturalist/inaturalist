@@ -108,6 +108,9 @@ sv:
   about_complete_taxa: Om komplett taxa
   about_conservation_status: Om bevaringsstatus
   about_editing_observation_fields: Om redigering av observationsfält
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Om ursprung
   about_licenses: Om licenser
   about_licensing: Om licensiering
@@ -357,6 +360,7 @@ sv:
   all_updates: Alla uppdateringar
   all_your_observations_will_default_this_time_zone: Alla dina observationer kommer som standard använda denna tidzon om du inte du ändrar den.
   all_your_observations_will_default_to_this_time_zone: Alla dina observationer kommer som standard använda denna tidzon om du inte du ändrar den.
+  #Option to allow any taxa on a list
   allow_any: tillåt alla
   allow_curator_access: Tillåt tillgång för kurator
   allow_project_curators_to_view_your_private_coordinates: Tillåt projektkuratorer att se dina dolda koordinater
