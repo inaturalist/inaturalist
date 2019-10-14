@@ -147,6 +147,9 @@ nb:
   about_complete_taxa: Om komplette taksa
   about_conservation_status: Om bevaringsstatus
   about_editing_observation_fields: Om redigering av observasjonsfelt
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Om etableringsmåter
   about_licenses: Om lisenser
   about_licensing: Om lisensiering
@@ -414,6 +417,7 @@ nb:
   all_updates: Alle oppdateringer
   all_your_observations_will_default_this_time_zone: Alle dine observasjoner vil bruke denne tidssonen som standard med mindre du overstyrer den.
   all_your_observations_will_default_to_this_time_zone: Alle dine observasjoner vil bruke denne tidssonen som standard med mindre du overstyrer den.
+  #Option to allow any taxa on a list
   allow_any: tillatt alle
   allow_curator_access: Tillat kuratortilgang
   allow_project_curators_to_view_your_private_coordinates: Tillat prosjektkuratorer å se dine skjulte koordinater
@@ -2756,7 +2760,6 @@ nb:
     oman: Oman
     pakistan: Pakistan
     palau: Palau
-    palestina: Palestina
     palestine: Palestina
     panama: Panama
     papua_new_guinea: Papua Ny-Guinea
