@@ -15,6 +15,9 @@ sk:
   about_complete_taxa: O kompletných taxónoch
   about_conservation_status: O statuse ochrany
   about_editing_observation_fields: O editovaní polí pozorovaní
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: O spôsobu vzniku
   about_licenses: O licenciách
   about_licensing: O licencovaní
@@ -230,6 +233,7 @@ sk:
   all_updates: Všetky aktualizácie
   all_your_observations_will_default_this_time_zone: Všetky vaše pozorovania budú mať toto časové pásmo, ak nezadáte iné.
   all_your_observations_will_default_to_this_time_zone: Všetky vaše pozorovania budú mať toto časové pásmo, ak nezadáte iné.
+  #Option to allow any taxa on a list
   allow_any: povoliť akýkoľvek
   allow_curator_access: Povoliť prístup kurátorovi
   allow_project_curators_to_view_your_private_coordinates: Povoliť kurátorom projektu náhľad vašich súkromných súradníc
@@ -2218,7 +2222,6 @@ sk:
     northern_cyprus: Severný Cyprus
     norway: Nórsko
     oman: Omán
-    palestina: Palestína
     palestine: Palestína
     papua_new_guinea: Papua Nová Guinea
     paraguay: Paraguaj
@@ -3068,7 +3071,6 @@ sk:
   to_include_your_google_with_inat: "k pridaniu vášho účtu Google na %{site_name}"
   to_recipient: k prevedeniu
   to_suggest_an_identification: k navrhnutiu identifikácie
-  to_the_bat_cave: Do netopierej jaskyne!
   today: Dnes
   too_many_observations_csv: "Máte veľa pozorovaní!<br /> Môžeme prijať iba vašich prvých %{max_rows} pozorovaní v každom CSV"
   too_many_results: Veľmi veľa výsledkov
