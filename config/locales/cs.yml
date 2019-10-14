@@ -15,6 +15,9 @@ cs:
   about_complete_taxa: O kompletních taxonech
   about_conservation_status: O stavu konzervace
   about_editing_observation_fields: O editování polí pozorování
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: O způsobu vzniku
   about_licenses: O licencích
   about_licensing: O licencích
@@ -229,6 +232,7 @@ cs:
   all_updates: Všechny aktualizace
   all_your_observations_will_default_this_time_zone: Všechna Vaše pozorování budou mít toto časové pásmo, pokud nespecifikujete jiné.
   all_your_observations_will_default_to_this_time_zone: Všechna Vaše pozorování budou míto toto časové pásmo, pokud neurčíte jiné.
+  #Option to allow any taxa on a list
   allow_any: dovolit jakýkoliv
   allow_curator_access: Povolit přístup správci
   allow_project_curators_to_view_your_private_coordinates: Povolit správcům projektu náhled vašich soukromých souřadnic
@@ -3181,9 +3185,6 @@ cs:
   the_following_lists: následující seznamy
   the_following_observations_could: "Následující pozorování nemohla být přidána k %{link}"
   the_following_photos_have_been_tagged: "Následující fotky byly označeny:"
-  the_identotron_is_a_tool_to: |
-    Identotron je nástroj, který vám pomůže identifikovat pozorování na základě údajů ze seznamu
-    %{place}.  Při zadání vyšší úrovně taxonu a místa (např. savci v Indii), vyhledá %{place} záznamy v seznamech, které tomuto taxonu na tomto místě odpovídají, jako takový dynamický průvodce celou planetou. Na většině seznamů %{place} se pracuje, ale pokud je některý kompletní, jsou na něm tedy <em>všichni</em> zástupci tohoto taxonu na daném místě, Idenotron to ohlásí.
   the_list: seznam
   the_name_of_the_taxon_including_space: Název taxonu, včetně prostoru pro druhy a infradruhy.
   the_observation_form_looks: "Formulář pozorování vypadá takto:"
@@ -3310,7 +3311,6 @@ cs:
   to_include_your_google_with_inat: "k přidání vašeho účtu Google na %{site_name}"
   to_recipient: k provedení
   to_suggest_an_identification: k navržení identifikace
-  to_the_bat_cave: Do netopýří jeskyně!
   today: Dnes
   too_many_observations_csv: "Máte spoustu pozorování!<br /> Můžeme přijmout jen vašich prvních %{max_rows} pozorování v každém CSV"
   too_many_taxa_to_render: |
@@ -3466,7 +3466,6 @@ cs:
   user_has_opted_out_of_community_id: Uživatel se rozhodl nepoužít komunitní ID
   user_has_opted_out_of_community_ids: "Uživatel %{user} se rozhodl zachovat si kontrolu nad taxony spojenými s jeho pozorováními"
   user_has_opted_out_of_community_ids_for_this_obs: "Uživatel %{user} se rozhodl zachovat si kontrolu nad taxony spojenými s tímto pozorováním"
-  user_hasnt: "Uživatel %{user} neprovedl"
   user_helped_x_people_with_y_ids_html: "%{user} pomoci <strong>%{x} lidé</strong> s <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: 'Uživatel %{user} by rád připojil vaše pozorování „%{observation}“ k projektu %{project}.'
   user_invited_you_to_join_html: "Uživatel %{user} vás pozval, abyste se připojili"
