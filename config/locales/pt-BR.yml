@@ -121,6 +121,9 @@ pt-BR:
   about_complete_taxa: Sobre táxons completos
   about_conservation_status: Sobre o Status de Conservação
   about_editing_observation_fields: Sobre a Edição dos Campos de Observação
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Sobre Formas de Estabelecimento
   about_licenses: Sobre as licenças
   about_licensing: Sobre as licenças
@@ -376,6 +379,7 @@ pt-BR:
   all_updates: Todas as atualizações
   all_your_observations_will_default_this_time_zone: Todas as suas observações serão feitas neste horário local a não ser que você especifique de maneira diferente.
   all_your_observations_will_default_to_this_time_zone: Todas as observações terão como padrão este horário local a não ser que você especifique de outra maneira.
+  #Option to allow any taxa on a list
   allow_any: permita qualquer
   allow_curator_access: Permitir o acesso do administrador
   allow_project_curators_to_view_your_private_coordinates: Permitir o acesso às suas coordenadas ocultas pelos administradores do projeto
@@ -2492,7 +2496,6 @@ pt-BR:
     norway: Noruega
     oman: Omã
     pakistan: Paquistão
-    palestina: Estado da Palestina
     palestine: Palestina
     panama: Panamá
     papua_new_guinea: Papua-Nova Guiné
@@ -3441,8 +3444,6 @@ pt-BR:
   the_following_lists: as seguintes listas
   the_following_observations_could: "As seguintes observações não puderam ser adicionadas a %{link}"
   the_following_photos_have_been_tagged: "As seguintes imagens foram marcadas:"
-  the_identotron_is_a_tool_to: |
-    O Identitron é uma ferramenta que te ajuda identificar suas observações baseado na lista de dados de %{place}. Dado o alto nível de táxons e lugares (ex: mamíferos da Índia), %{place} irá procurar por listas de verificação que combinem o táxon com o local, como um guia de campo dinâmico para todo o planeta. A maioria das listas de verificação de %{place} são trabalhos em andamento, mas se existir uma que seja compatível, por exemplo, ela lista <em>todos</em> os representantes desta táxon em um local, o Identitron lhe avisará.
   the_list: a lista
   the_name_of_the_taxon_including_space: O nome do táxon, incluindo o espaço para espécie e infraespécie.<br/><br/> <strong>Exemplo:</strong><br/>
   the_observation_form_looks: "O formulário de observação é semelhante a este:"
@@ -3574,7 +3575,6 @@ pt-BR:
   to_include_your_google_with_inat: "para incluir sua conta do Google com %{site_name}"
   to_recipient: para
   to_suggest_an_identification: para sugerir uma identificação
-  to_the_bat_cave: Para a Bat-Caverna!
   today: Hoje
   too_many_observations_csv: "Você tem um enxame de observações! <br />Nós só podemos mostras as primeiras %{max_rows} observações em cada CSV"
   too_many_results: Muitos resultados
@@ -3741,7 +3741,6 @@ pt-BR:
   user_has_opted_out_of_community_id: O usuário desativou o Ttáxon da comunidade
   user_has_opted_out_of_community_ids: "%{user} escolheu ter controle sobre os táxons associados às suas observações"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} escolheu ter controle sobre os táxons associados às suas observações"
-  user_hasnt: "%{user} não fez"
   user_helped_x_people_with_y_ids_html: "%{user} ajudou <strong>%{x} pessoas</strong> com <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: '%{user} gostaria de convidar sua observação "%{observation}" para o projeto %{project}.'
   user_invited_you_to_join_html: "%{user} convidou você para fazer parte"
