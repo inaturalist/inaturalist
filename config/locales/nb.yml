@@ -46,8 +46,8 @@ nb:
     one: "1 feilidentifikasjon av denne arten"
     other: "%{count} feilidentifikasjoner av denne arten"
   x_misidentifications_of_species_in_this_rank:
-    one: "1 feilidentifikasjon av arter i denne %{rank}"
-    other: "%{count} feilidentifikasjoner av arter i denne %{rank}"
+    one: "1 feilidentifikasjon av arter i @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}"
+    other: "%{count} feilidentifikasjoner av arter i @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}"
   x_observations:
     one: "1 observasjon"
     other: "%{count} observasjoner"
@@ -1062,7 +1062,7 @@ nb:
   download_csv_template: Last ned CSV-mal
   download_kml: Last ned KML
   downstream_coverage_rank: Downstream dekningsnivå
-  downstream_coverage_colon_rank: "Dekning av underliggende: nivå %{rank}"
+  downstream_coverage_colon_rank: "Dekning av underliggende: rang %{rank}"
   downstream_deviations: Downstream avvik
   downstream_deviations_for_taxon: "Downstream avvik for %{taxon}"
   #Label for a link to taxa that are descendants ("downstream") of the current
@@ -1180,7 +1180,7 @@ nb:
   exact_coordinates_obscured_for: Nøyaktige koordinater skjult for publikum for truede arter.
   exact_date: Nøyaktig dato
   exact_location: Nøyaktig_lokalitet
-  exact_rank: Nøyaktig nivå
+  exact_rank: Nøyaktig rang
   except: unntatt
   exclude_x: Ekskluder %{x}
   exclusion_filters: Ekskluderingsfiltre
@@ -1193,7 +1193,7 @@ nb:
   export_with_private_coordinates: Eksporter med skulte koordinater
   exporting: "Eksporterer..."
   external_taxon_including_children: Externt takson (inklusiv etterkommere)
-  external_taxon_rank: Eksternt taksonnivå
+  external_taxon_rank: Ekstern taksonrang
   extinct: utdødd
   extinct_in_the_wild: Utdødd i vill tilstand
   extra_properties: Ekstra egenskaper
@@ -1393,8 +1393,8 @@ nb:
   google: Google
   got_it!: Skjønner!
   got_your_data_somewhere_else?: Har du dataene dine et annet sted? Vi kan hjelpe.
-  graft: Flett sammen
-  grafting_attemps_to_insert_this_taxon: Sammenfletting forsøker å integrere dette taksonet i vårt taksonomiske tre, finne et eksisterende foreldretakson eller opprette alle taksa i mellom for å knytte det opp mot et takson på et høyere nivå.
+  graft: Pod
+  grafting_attemps_to_insert_this_taxon: Poding forsøker å integrere dette taksonet i vårt taksonomiske tre, finne et eksisterende foreldretakson eller opprette alle taksa i mellom for å knytte det opp mot et takson på et høyere nivå.
   grant_role: "%{grant} %{role}-rolle"
   grid: Rutenett
   grid_layout: Rutenettvisning
@@ -1423,7 +1423,7 @@ nb:
   heads_up: Obs
   heads_up_this_photo_has_been_flagged: "OBS: dette bildet har blitt markert."
   heads_up_this_photo_is_already_associated_with: "Obs: dette bildet allerede knyttet til <a target='_blank' href='%{url}'>en annen observasjon</a>"
-  heads_up_you_have_multiple: "Obs: Du har flere taksonomiske maskinmarkeringer for identiske nivå. De er fargekodert per nivå nedenfor."
+  heads_up_you_have_multiple: "Obs: Du har flere taksonomiske maskinmarkeringer for identiske ranger. De er fargekodert per rang nedenfor."
   help: Hjelp
   help_confirm_observations!: Hjelp å bekrefte observasjoner!
   help_support_inaturalist: "Hjelp med å støtte iNaturalist"
@@ -1440,7 +1440,7 @@ nb:
   hide_running_total: Skjul løpende total
   hide_uncountable_species: Skjul arter som ikke kan telles
   high: Høy
-  highest_rank: Høyeste nivå
+  highest_rank: Høyeste rang
   highlights_and_stats_from_year_on_site: "Høydepunkter og statistikker fra %{year} på %{site}"
   history: Historikk
   home: Hjem
@@ -1536,7 +1536,7 @@ nb:
   interactions: Interaksjoner
   internal_server_error: Intern serverfeil
   internal_taxon_including_descendants: Internt takson (inkl. etterkommer-taksa)
-  internal_taxon_rank: Internt taksonnivå
+  internal_taxon_rank: Intern taksonrang
   introduced: Introdusert
   introduced_in_place: "Introdusert i %{place}"
   invitation: Invitasjon
@@ -1811,7 +1811,7 @@ nb:
   looks_like_no_species_in_guide: Det ser ut som du ikke har noen arter i guiden din ennå.
   lookup: Slå opp
   low: Lav
-  lowest_rank: Laveste nivå
+  lowest_rank: Laveste rang
   make_admin: Gjør til admin
   mail_disclaimer: "%{site_name} vil ikke la sine brukere sende deg flere invitasjoner via vår invitasjonsmodul. Vennligst rapporter misbruk til %{site}."
   #Header for main content section of the project detail page when editing custom project data.
@@ -2173,7 +2173,7 @@ nb:
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} fra %{place} på %{day} klokken %{time} av %{user}"
   observations_by_category: "Observasjoner per kategori"
   observations_by_app: Observasjoner per app
-  observations_by_rank: Observasjoner per nivå
+  observations_by_rank: Observasjoner per rang
   observations_by_user_on_date: "Observasjoner av %{user} på %{date}"
   observations_by_you: "Observasjoner av deg"
   observations_by_you_on_date: "Observasjoner av deg på %{date}"
@@ -2365,7 +2365,7 @@ nb:
   other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Andre arter som ofte blir feilidentifisert som denne slektshybriden i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: Andre arter som ofte blir feilidentifisert som denne hybriden
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Andre arter som ofte blir feilidentifisert som denne hybriden i <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_rank: Andre arter som ofte blir feilidentifisert som denne %{rank}
+  other_taxa_commonly_misidentified_as_this_rank: Andre arter som ofte blir feilidentifisert som @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: Andre taksa som ofte blir feilidentifisert som @gender{n:dette|denne} %{rank}@gender{n:en|et} i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_section: Andre arter som ofte blir feilidentifisert som denne seksjonen
   other_taxa_commonly_misidentified_as_this_section_in_place_html: Andre arter som ofte blir feilidentifisert som denne seksjonen i <a href="%{url}">%{place}</a>
@@ -2981,9 +2981,9 @@ nb:
   random: Tilfeldig
   range: Intervall
   range_from: 'Intervall fra '
-  rank: Rangering
-  rank_position: Rangering
-  rank_restrictions: Rangeringsrestriksjoner
+  rank: Rang
+  rank_position: Rang
+  rank_restrictions: Rangrestriksjoner
   ranks:
     stateofmatter: Tilstand
     kingdom: Rike
@@ -3735,11 +3735,12 @@ nb:
   this_user_has_been_suspended_message: |
     Hvis dette er din konto og du mener at dette ble gjort ved en feiltagelse, vennligst <a href="mailto:%{email}">ta kontakt med oss</a>.
   this_will_re_apply_all_list_rules: |
-    Dette vil påføre alle listeregler på nytt på alle taksa på lista og oppdatere tilknyttede statistikker, f.eks. avvise taksa som ikke på lista eller som ikke er på det valgte taksonnivået. Det legges ikke til nye taksa. Det kan ta noen minutter.
+    Dette vil påføre alle listeregler på nytt på alle taksa på lista og oppdatere tilknyttede statistikker, f.eks. avvise taksa som ikke på lista eller som ikke er på den valgte rangen. Det legges ikke til nye taksa. Det kan ta noen minutter.
   time_: klokkeslett
   time_ago: "for %{time} siden"
   too_many_taxa_to_render: |
     Denne spørringen returnerer for mange taksa for å kunne vises på en gang. Prøv å legg til flere filtre
+  ungrafted_taxa: Upodede taksa
   unmute: Fjern demping
   unsuspend_user: Opphev suspenderingen til bruker
   upload_range: Last opp utbredelse
@@ -3768,6 +3769,7 @@ nb:
   view_the_range: Vis utbredelsen
   view_your_dashboard: Vis din oversikt
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Se din oversikt</a> for flere oppdateringer"
+  w00t_no_ungrafted_taxa: w00t!  Ingen upodede taksa!
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
   we_care_privacy: Vi bryr oss om ditt personvern!
   why_the_coordinates_are_obscured: Hvorfor koordinatene er tilslørt
