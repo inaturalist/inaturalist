@@ -123,6 +123,9 @@ da:
   about_complete_taxa: Om komplet taksa
   about_conservation_status: Om bevaringsstatus
   about_editing_observation_fields: Om redigering af observationsfelter
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Om oprindelse
   about_licenses: Om licenser
   about_licensing: Om ophavsrettigheder
@@ -393,6 +396,7 @@ da:
   all_updates: Alle opdateringer
   all_your_observations_will_default_this_time_zone: Alle dine observationer vil som standard bruge denne tidszone med mindre du ændrer den
   all_your_observations_will_default_to_this_time_zone: Alle dine observationer vil som standard bruge denne tidszone med mindre du ændrer den
+  #Option to allow any taxa on a list
   allow_any: tillad alle
   allow_curator_access: Tillad kuratoradgang
   allow_project_curators_to_view_your_private_coordinates: Tillad projektkuratorer at se dine private koordinater
@@ -2629,7 +2633,6 @@ da:
     oman: Oman
     pakistan: Pakistan
     palau: Palau
-    palestina: Palæstina
     palestine: Palæstina
     panama: Panama
     papua_new_guinea: Papua Ny Guinea
@@ -3587,15 +3590,6 @@ da:
   the_following_lists: den følgende liste
   the_following_observations_could: "Den følgende observation kunne ikke tilføjes til %{link}"
   the_following_photos_have_been_tagged: "De følgende foto´s er blevet tagget:"
-  the_identotron_is_a_tool_to: |
-    Identotronen er et værktøj, der kan hjælpe dig med at identificere
-    observationer baseret på %{place} 's tjekliste data. Givet et højere niveau
-    taksonnavn og et sted (f.eks. pattedyr i Indien), vil %{place} søge efter
-    tjeklister, der matcher denne taxon på dette sted, lidt ligesom en dynamisk
-    feltguide til hele planeten. De fleste %{place} tjeklister er igangværende
-    arbejder, men hvis der findes en omfattende liste, dvs. en, der viser <em>
-    alle </em> repræsentanter for dens taksoner på et sted, vil identotronen
-    vise en meddelelse.
   the_list: listen
   the_name_of_the_taxon_including_space: Taksonens navn, inklusiv pladsen til arter og infra arter.
   the_observation_form_looks: "Observationsformularen ser sådan ud:"
@@ -3741,7 +3735,6 @@ da:
   to_include_your_google_with_inat: "for at inkludere din Google konto med %{site_name}"
   to_recipient: til
   to_suggest_an_identification: at foreslå en identifikation
-  to_the_bat_cave: Til flagermus hulen!
   today: I dag
   too_many_observations_csv: "Du har en bikube af observationer! <br /> Vi kan kun tage dine første %{max_rows} observationer i hver CSV"
   too_many_results: For mange resultater
@@ -3914,7 +3907,6 @@ da:
   user_has_opted_out_of_community_id: Bruger har afmeldt sig fællesskabs ID
   user_has_opted_out_of_community_ids: "%{user}har valgt at bevare kontrollen over taksa tilknyttet deres observationer"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user}har valgt at bevare kontrollen over taksa tilknyttet denne observation"
-  user_hasnt: "%{user}har ikke"
   user_helped_x_people_with_y_ids_html: "%{user} hjalp <strong>%{x} personer</strong> med <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: '%{user}vil gerne invitere din observation%{observation}til%{project}projekt.'
   user_invited_you_to_join_html: "%{user}inviterede dig til at deltage"
