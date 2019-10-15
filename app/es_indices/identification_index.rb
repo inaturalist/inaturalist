@@ -23,6 +23,7 @@ class Identification < ActiveRecord::Base
       end
       indexes :current, type: "boolean"
       indexes :current_taxon, type: "boolean"
+      indexes :disagreement, type: "boolean"
       indexes :flags do
         indexes :comment, type: "keyword", index: false
         indexes :created_at, type: "date", index: false

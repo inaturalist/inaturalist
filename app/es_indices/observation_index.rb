@@ -196,6 +196,16 @@ class Observation < ActiveRecord::Base
         indexes :attribution, type: "keyword", index: false
         indexes :file_content_type, type: "keyword", index: false
         indexes :file_url, type: "keyword", index: false
+        indexes :flags do
+          indexes :comment, type: "keyword", index: false
+          indexes :created_at, type: "date", index: false
+          indexes :flag, type: "keyword", index: false
+          indexes :id, type: "integer", index: false
+          indexes :resolved, type: "boolean", index: false
+          indexes :resolver_id, type: "integer", index: false
+          indexes :updated_at, type: "date", index: false
+          indexes :user_id, type: "integer", index: false
+        end
         indexes :id, type: "integer"
         indexes :license_code, type: "keyword"
         indexes :native_sound_id, type: "keyword", index: false
