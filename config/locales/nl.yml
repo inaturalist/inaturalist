@@ -1447,6 +1447,8 @@ nl:
   hex_color_eg: Hexadecimale kleur, bijvoorbeeld 65644F
   hi: Hallo,
   hi_user: "Hallo %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Verbergen
   hide_content: Inhoud verbergen
   hide_desc: |
     Als je inhoud verbergt wordt deze niet meer openbaar weergegeven, maar mensen kunnen wel zien dat er iets verborgen  is. Site-curatoren en de auteur van de inhoud kunnen de verborgen inhoud nog steeds zien. Over het algemeen is dit
@@ -3787,6 +3789,11 @@ nl:
   the_following_lists: de volgende lijsten
   the_following_observations_could: "De volgende waarnemingen konden niet toegevoegd worden aan %{link}"
   the_following_photos_have_been_tagged: "Volgende foto's werden getagd:"
+  the_identotron_is_a_tool_to: |
+    De Identotron is een hulpmiddel om je te helpen bij het determineren van waarnemingen op basis van checklistdata op %{site_name}. Op basis van een hoger taxon en een plaats (bijv. zoogdieren in België), zoekt %{site_name} naar checklists die overeenkomen met dat
+    taxon op die plaats, als een soort dynamische veldgids voor de hele
+    planeet. De meeste checklists zijn nog niet af, maar als er eentje wel compleet is, d.w.z. dat het <em>alle</em> vertegenwoordigers van
+    dat taxon op een plaats bevat, dan zal de Identotron dat vermelden.
   the_list: de lijst
   the_name_of_the_taxon_including_space: De naam van het taxon, inclusief de ruimte voor soorten en infraspecies.
   the_observation_form_looks: "Het waarnemingsformulier ziet er als volgt uit:"
@@ -4296,7 +4303,7 @@ nl:
   what_do_you_want_to_list: Waar wil je een lijst van maken?
   what_to_keep: Wat bewaren?
   what_want_to_list?: Waar wil je een lijst van maken?
-  what_were_you_looking_for?: "Wat zoek je? (doellijst)"
+  what_were_you_looking_for?: "Waar heb je naar gezocht? (doellijst)"
   whats_this?: Wat is dit?
   when: Wanneer
   when_did_you_see_it?: Wanneer heb je het gezien??
@@ -4338,7 +4345,7 @@ nl:
   within_inaturalist: "In %{site_name}"
   worldwide: Wereldwijd
   wondering_what_to_do_next: Hier zijn een paar volgende stappen om je op weg te helpen naar het waarnemen en determineren van de natuurlijke wereld
-  would_you_like_to: Zou jij
+  would_you_like_to: Wil je
   would_you_prefer_to_view_common_names_used_in_place_html: Wil je liever lokale namen zien die worden gebruikt in <strong>%{place}</strong>?
   would_like_some_help_identifying_this: wil graag hulp om dit te determineren
   x_admin: "%{login} administratoren"
