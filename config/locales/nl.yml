@@ -5053,7 +5053,7 @@ nl:
         curator_coordinate_access_disabled_desc_html: |
           Dit project staat geen waarnemingen toe met coördinaten die niet zichtbaar zijn voor de projectcuratoren. Als je de coördinaten van deze waarneming niet wilt delen met de curatoren van dit project, moet je de waarneming uit het project verwijderen.
         disagreement_count_desc: "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon"
-        identification_count_desc: '# determinaties voor een individueel taxon'
+        identification_count_desc: 'Aantal determinaties voor een individueel taxon'
         flagged_photos_desc_html: |
           Sommige van deze foto's zijn gemeld wegens ongepaste inhoud of
           schending van auteursrechten. Zie %{links} voor details
@@ -5257,7 +5257,7 @@ nl:
         what_would_you_like: |
           Wat wil je doen met je waarnemingen in dit project?
         keep_observations_label: |
-          Voeg al je waarnemingen toe aan dit project
+          Laat je waarnemingen in dit project blijven
         keep_observations_desc: |
           Uw waarnemingen blijven in het project aanwezig en curatoren kunnen nog steeds hun verborgen coördinaten aflezen.
         project_requires_curator_coordinate_access_desc: |
@@ -5320,18 +5320,18 @@ nl:
           Je kunt een aangepaste projectlijst van taxa maken en deze koppelen aan je project. Dit kan handig zijn om waarnemingen die aan je project toegevoegd kunnen worden te beperken tot taxa die op je lijst voorkomen via de "moet taxon zijn op de projectlijst"-regel.
           </p>
         rules:
-          captive: gevangenschap/gecultiveerd
-          coordinates_shareable_by_project_curators: coördinaten te delen met projectbeheerders
-          georeferenced: hebben coördinaten
+          captive: in gevangenschap/gecultiveerd zijn
+          coordinates_shareable_by_project_curators: coördinaten te delen door projectcuratoren
+          georeferenced: coördinaten hebben
           has_a_photo: een foto hebben
-          has_a_sound: heeft geluid
+          has_a_sound: een geluid hebben
           has_media: media (foto of geluid) hebben
-          identified: is gedetermineerd
-          in_taxon: is in taxon
+          identified: gedetermineerd zijn
+          in_taxon: 'in taxon zijn:'
           observed_in_place: ter plaatse waargenomen
-          on_list: is een taxon op de projectlijst
-          verifiable: is verifieerbaar
-          wild: wild/ingeburgerd
+          on_list: van een taxon op de projectlijst zijn
+          verifiable: verifieerbaar zijn
+          wild: wild/genaturaliseerd zijn
         start_time_desc: "Starttijd voor je bioblitz. Formaat: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: iedereen
