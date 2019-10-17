@@ -90,7 +90,7 @@ describe ListedTaxon do
     end
 
     it "should set establishment_means to native if there is a native listing for a child place" do
-      child_place = Place.make!(:parent => @place)
+      child_place = make_place_with_geom(:parent => @place)
       t = Taxon.make!
       child_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::NATIVE)
       lt = @check_list.add_taxon(t)
@@ -98,8 +98,8 @@ describe ListedTaxon do
     end
 
     it "should set establishment_means to introduced if there is a introduced listing for a parent place" do
-      parent_place = Place.make!
-      place = Place.make!(:parent => parent_place)
+      parent_place = make_place_with_geom
+      place = make_place_with_geom(:parent => parent_place)
       t = Taxon.make!
       parent_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::INTRODUCED)
       lt = place.check_list.add_taxon(t)
@@ -109,7 +109,7 @@ describe ListedTaxon do
     it "should log listed_taxon_alterations if listed_taxa has_atlas_or_complete_set? on create" do
       taxon = Taxon.make!
       AncestryDenormalizer.denormalize
-      atlas_place = Place.make!(admin_level: 0)
+      atlas_place = make_place_with_geom(admin_level: 0)
       atlas = Atlas.make!(user: @user, taxon: taxon, is_active: true)
       atlas_place_check_list = List.find(atlas_place.check_list_id)
       check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
@@ -127,7 +127,7 @@ describe ListedTaxon do
     it "should log listed_taxon_alterations if listed_taxa has_atlas_or_complete_set? on destroy" do
       taxon = Taxon.make!
       AncestryDenormalizer.denormalize
-      atlas_place = Place.make!(admin_level: 0)
+      atlas_place = make_place_with_geom(admin_level: 0)
       atlas_place_check_list = List.find(atlas_place.check_list_id)
       @user = User.make!
       check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})
@@ -149,7 +149,7 @@ describe ListedTaxon do
   
   describe "check list auto removal" do
     before(:each) do
-      @place = Place.make!
+      @place = make_place_with_geom
       @check_list = @place.check_list
       expect(@check_list).to be_is_default
     end
@@ -223,7 +223,7 @@ describe ListedTaxon do
   
   describe "check list user removal" do
     before(:each) do
-      @place = Place.make!
+      @place = make_place_with_geom
       @check_list = @place.check_list
       expect(@check_list).to be_is_default
       @user = User.make!
@@ -338,7 +338,7 @@ describe ListedTaxon do
   
   describe "cache_columns" do
     before(:each) do
-      @place = Place.make!(:name => "foo to the bar")
+      @place = make_place_with_geom(:name => "foo to the bar")
       @place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
       @check_list = @place.check_list
       @taxon = Taxon.make!(:rank => Taxon::SPECIES)
@@ -360,7 +360,7 @@ describe ListedTaxon do
     before(:each) do
       @parent = Taxon.make!(rank: Taxon::GENUS)
       @taxon = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
-      @place = Place.make!
+      @place = make_place_with_geom
       @check_list = CheckList.make!(:place => @place, :taxon => @parent, :comprehensive => true)
       @check_listed_taxon = @check_list.add_taxon(@taxon)
     end
@@ -376,7 +376,7 @@ describe ListedTaxon do
     it "should fail if a comprehensive check list that doesn't contain this taxon exists for a parent taxon in an ancestor place" do
       t = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
       expect(@check_list.taxon_ids).not_to include(t.id)
-      p = Place.make!(:parent => @place)
+      p = make_place_with_geom(:parent => @place)
       lt = p.check_list.add_taxon(t)
       expect(lt).not_to be_valid
       expect(lt.errors[:taxon_id]).not_to be_blank
@@ -400,9 +400,9 @@ describe ListedTaxon do
   end
 
   describe "establishment means propagation" do
-    let(:parent) { Place.make! }
-    let(:place) { Place.make!(:parent => parent) }
-    let(:child) { Place.make!(:parent => place) }
+    let(:parent) { make_place_with_geom }
+    let(:place) { make_place_with_geom(:parent => parent) }
+    let(:child) { make_place_with_geom(:parent => place) }
     let(:taxon) { Taxon.make! }
     let(:parent_listed_taxon) { parent.check_list.add_taxon(taxon) }
     let(:place_listed_taxon) { place.check_list.add_taxon(taxon) }
@@ -478,7 +478,7 @@ describe ListedTaxon do
     end
 
     it "trickle should not update listed taxa for other places" do
-      sibling_place = Place.make!(:parent => parent)
+      sibling_place = make_place_with_geom(:parent => parent)
       sibling_lt = sibling_place.check_list.add_taxon(taxon, :establishment_means => ListedTaxon::NATIVE)
       expect(sibling_lt.establishment_means).to eq ListedTaxon::NATIVE
       place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
@@ -513,7 +513,7 @@ describe ListedTaxon do
   describe "parent check list syncing" do
     before do
       without_delay do
-        @parent = Place.make!
+        @parent = make_place_with_geom
         @place = make_place_with_geom(:parent => @parent)
         @check_list = @place.check_list
       end

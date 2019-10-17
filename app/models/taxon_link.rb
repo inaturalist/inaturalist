@@ -52,7 +52,11 @@ class TaxonLink < ActiveRecord::Base
   def url_for_taxon(taxon)
     new_url = url.sub('[NAME]', taxon.name)
     new_url = new_url.sub('[RANK]', taxon.rank)
-    new_url = new_url.sub('[NAME_WITH_RANK]', taxon.name_with_rank)
+    new_url = if taxon.rank_level.to_i < Taxon::SPECIES_LEVEL
+      new_url.sub( '[NAME_WITH_RANK]', taxon.name_with_rank )
+    else
+      new_url.sub( '[NAME_WITH_RANK]', taxon.name )
+    end
     if taxon.species_or_lower? && pieces = taxon.name.split
       new_url.sub!('[GENUS]', pieces.first)
       new_url.sub!('[SPECIES]', pieces[1] || '')
@@ -91,9 +95,12 @@ class TaxonLink < ActiveRecord::Base
       TaxonLink.for_taxon( taxon ).where( species_only: false ).includes( :taxon ).to_a
     end
     tl_place_ids = taxon_links.map(&:place_id).compact
-    if options[:place]
-      tl_place_ids = options[:place].self_and_ancestor_ids
-    end
+    # Trying out removing the place-specific filtering. We already have the
+    # checklist filtering, so maybe this doesn't matter. Queue the screaming
+    # hordes...
+    # if options[:place]
+    #   tl_place_ids = options[:place].self_and_ancestor_ids
+    # end
     if !tl_place_ids.blank?
       if options[:reject_places]
         taxon_links.reject! { |tl| tl.place_id }

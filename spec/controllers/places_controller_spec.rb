@@ -6,12 +6,14 @@ describe PlacesController do
     it "should make a place with no default type" do
       sign_in user
       expect {
-        post :create, :place => {
-          :name => "Pine Island Ridge Natural Area", 
-          :latitude => 26.08, 
-          :longitude => -80.27}
+        post(:create, {
+          place: {
+            name: "Pine Island Ridge Natural Area"
+          },
+          geojson: test_place_geojson
+        })
       }.to change(Place, :count).by(1)
-      expect(Place.last.place_type).to be_blank
+      expect( Place.last.place_type ).to be_blank
     end
 
     it "creates places with geojson" do
@@ -54,7 +56,7 @@ describe PlacesController do
 
   describe "update" do
     it "updates places with geojson" do
-      p = Place.make!(user: user)
+      p = make_place_with_geom(user: user)
       sign_in user
       put :update, id: p.id, place: {
         name: "Test geojson",
@@ -67,7 +69,7 @@ describe PlacesController do
     end
 
     it "does not allow non-admins to update places to make them huge" do
-      p = Place.make!(user: user)
+      p = make_place_with_geom(user: user)
       sign_in user
       put :update, id: p.id, place: {
         name: "Test non-admin geojson",
@@ -90,7 +92,7 @@ describe PlacesController do
 
     it "allows admins to create huge places" do
       user = make_admin
-      p = Place.make!(user: user)
+      p = make_place_with_geom(user: user)
       sign_in user
       put :update, id: p.id, place: {
         name: "Test admin geojson",
@@ -103,7 +105,7 @@ describe PlacesController do
     end
 
     it "should allow users without the organizaer privilege to update places they created" do
-      p = Place.make!( user: user )
+      p = make_place_with_geom( user: user )
       user.user_privileges.destroy_all
       sign_in user
       put :update, id: p.id, place: { name: "the new name" }
@@ -113,7 +115,7 @@ describe PlacesController do
   end
 
   describe "destroy" do
-    let(:place) { Place.make!( user: user ) }
+    let(:place) { make_place_with_geom( user: user ) }
     before do
       sign_in user
     end
@@ -137,8 +139,8 @@ describe PlacesController do
   end
 
   describe "search" do
-    let(:place) { Place.make!(:name => 'Panama') }
-    let(:another_place) { Place.make!(:name => 'Norway') }
+    let(:place) { make_place_with_geom(:name => 'Panama') }
+    let(:another_place) { make_place_with_geom(:name => 'Norway') }
     it "should return results in HTML" do
       expect(place).not_to be_blank
       expect(Place).to receive(:elastic_paginate).and_return([ place, another_place ])
@@ -197,7 +199,8 @@ end
 describe PlacesController, "geometry" do
   before do
     @place = make_place_with_geom(:user => @user)
-    @place_without_geom = Place.make!
+    @place_without_geom = make_place_with_geom
+    @place_without_geom.place_geometry.destroy
   end
 
   it "should return geojson when places have a geometry" do
@@ -211,83 +214,7 @@ describe PlacesController, "geometry" do
     }.to_not raise_error
     expect( response.body ).to eq("{}")
   end
-
-# If you ever figure out how to test page caching...
-#   # http://pivotallabs.com/tdd-action-caching-in-rails-3/
-#   around do |example|
-#     caching, ActionController::Base.perform_caching = ActionController::Base.perform_caching, true
-#     store, ActionController::Base.cache_store = ActionController::Base.cache_store, :memory_store
-#     silence_warnings { Object.const_set "RAILS_CACHE", ActionController::Base.cache_store }
-#     example.run
-#     silence_warnings { Object.const_set "RAILS_CACHE", store }
-#     ActionController::Base.cache_store = store
-#     ActionController::Base.perform_caching = caching
-#   end
-
-#   it "should page cache kml" do
-#     puts "ActionController::Base.perform_caching: #{ActionController::Base.perform_caching}"
-#     puts "PlacesController.perform_caching: #{PlacesController.perform_caching}"
-#     puts "ActionController::Base.cache_store: #{ActionController::Base.cache_store}"
-#     puts "PlacesController.cache_store: #{PlacesController.cache_store}"
-#     get :geometry, :id => @place.id, :format => :kml
-#     response.should be_page_cached
-#     get :geometry, :id => @place.slug, :format => :kml
-#     response.should be_page_cached
-#   end
 end
-
-# describe PlacesController, "update" do
-#   before do
-#     @user = User.make!
-#     sign_in @user
-#     @place = make_place_with_geom(:user => @user)
-#   end
-
-#   # http://pivotallabs.com/tdd-action-caching-in-rails-3/
-#   around do |example|
-#     caching, ActionController::Base.perform_caching = ActionController::Base.perform_caching, true
-#     store, ActionController::Base.cache_store = ActionController::Base.cache_store, :memory_store
-#     silence_warnings { Object.const_set "RAILS_CACHE", ActionController::Base.cache_store }
-#     example.run
-#     silence_warnings { Object.const_set "RAILS_CACHE", store }
-#     ActionController::Base.cache_store = store
-#     ActionController::Base.perform_caching = caching
-#   end
-
-#   it "should expire geometry kml page cache if geom changed" do
-#     get :geometry, :id => @place.id, :format => :kml
-#     response.should be_page_cached
-    
-#     get :geometry, :id => @place.slug, :format => :kml
-#     response.should be_page_cached
-
-#     kml = <<-KML
-#       <Polygon>
-#         <outerBoundaryIs>
-#           <LinearRing>
-#             <coordinates>
-#               -122.42399,37.716570000000004
-#               -122.42261,37.71694
-#               -122.42094000000002,37.71705
-#               -122.42149,37.71838
-#               -122.42247,37.717830000000006
-#               -122.42324,37.71833
-#               -122.42399,37.716570000000004
-#             </coordinates>
-#           </LinearRing>
-#         </outerBoundaryIs>
-#       </Polygon>
-#     KML
-#     without_delay do
-#       put :update, :id => @place.id, :kml => kml
-#     end
-#     response.should be_redirect
-#     get :geometry, :id => @place.id, :format => :kml
-#     response.should_not be_page_cached
-#     get :geometry, :id => @place.slug, :format => :kml
-#     response.should_not be_page_cached
-#   end
-# end
 
 def test_place_geojson(size = :default)
   coords = if size == :default

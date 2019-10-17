@@ -145,17 +145,18 @@ class FlickrController < ApplicationController
   def options
     begin
       flickr = get_flickraw
+      @scope = "write" if params[:scope] == "write"
       if current_user.flickr_identity
         @photos = flickr.photos.search(
           :user_id => current_user.flickr_identity.flickr_user_id, 
           :per_page => 6, 
           :extras => "url_sq")
       else
-        @flickr_url = auth_url_for('flickr')
+        @flickr_url = auth_url_for( "flickr", scope: @scope )
       end
+      @provider_authorization = current_user.provider_authorizations.where( provider_name: "flickr" ).first
     rescue FlickRaw::FailedResponse => e
       Rails.logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
-      Airbrake.notify(e, :request => request, :session => session)
       Logstasher.write_exception(e, request: request, session: session, user: current_user)
       flash[:notice] = <<-EOT
         Ack! Something went wrong connecting to Flickr. You might try unlinking 
@@ -221,19 +222,6 @@ class FlickrController < ApplicationController
         end
       end
     end
-  end
-
-  def invite
-    # params should include 'flickr_photo_id' and whatever else you want to add
-    # to the observation, e.g. taxon_id, project_id, etc
-    invite_params = params
-    invite_params[:flickr_photo_id] ||= request.env['HTTP_REFERER'].to_s[/flickr.com\/photos\/[^\/]+\/(\d+)/,1]
-    [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
-    session[:invite_params] = invite_params
-    pa = if logged_in?
-      current_user.provider_authorizations.where(:provider_name => :flickr)
-    end
-    redirect_to auth_url_for(:flickr, :scope => pa.try(:scope))
   end
   
   private

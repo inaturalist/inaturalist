@@ -3,15 +3,16 @@ import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import {
+  createStore, compose, applyMiddleware, combineReducers
+} from "redux";
 import { Taxon } from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-import taxonReducer, { setTaxon, fetchTaxon } from "../shared/ducks/taxon";
+import taxonReducer, { setTaxon, fetchTaxon, setDescription } from "../shared/ducks/taxon";
 import observationsReducer from "./ducks/observations";
 import leadersReducer from "./ducks/leaders";
 import photoModalReducer from "../shared/ducks/photo_modal";
-import { setDescription } from "../shared/ducks/taxon";
 import { fetchTaxonAssociates } from "./actions/taxon";
 import { windowStateForTaxon } from "../shared/util";
 
@@ -47,6 +48,7 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   } ) );
 }
 
+/* global SERVER_PAYLOAD */
 const serverPayload = SERVER_PAYLOAD;
 if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
   store.dispatch( setConfig( {
@@ -63,11 +65,7 @@ if ( serverPayload.ancestorsShown ) {
     ancestorsShown: serverPayload.ancestorsShown
   } ) );
 }
-if ( serverPayload.testNewSimilar ) {
-  store.dispatch( setConfig( {
-    testNewSimilar: true
-  } ) );
-}
+
 const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
 if ( taxon.wikipedia_summary ) {

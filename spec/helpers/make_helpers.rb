@@ -122,8 +122,9 @@ module MakeHelpers
   
   def make_place_with_geom(options = {})
     wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
-    place = Place.make!(options)
+    place = Place.make(options)
     place.save_geom(GeoRuby::SimpleFeatures::Geometry.from_ewkt(wkt))
+    place.save!
     place
   end
 
@@ -253,7 +254,7 @@ module MakeHelpers
   end
 
   def make_check_listed_taxon( options = {} )
-    list = CheckList.make!( place: options[:place] || Place.make! )
+    list = CheckList.make!( place: options[:place] || make_place_with_geom )
     list.add_taxon( options[:taxon] || Taxon.make! )
   end
 

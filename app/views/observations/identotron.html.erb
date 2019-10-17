@@ -241,7 +241,7 @@
   <div class="right">
     <%= link_to_dialog t(:identotron_help), :width => 600 do %>
 
-        <%= t(:the_identotron_is_a_tool_to, :place=>@site.site_name_short).html_safe %>
+        <%= t(:the_identotron_is_a_tool_to, site_name: @site.site_name_short).html_safe %>
 
       <table style="width:100%">
         <tr>
@@ -279,7 +279,7 @@
 <div class="column span-8 append-1">
   <div id="side">
     <div class="stacked" id="controlsbox">
-      <%= link_to_function t(:hide).humanize, "$(this).siblings('form').slideToggle(); $(this).text(function() { return $(this).text() == '#{t(:hide).humanize}' ? '#{t(:show).humanize}' : '#{t(:hide).humanize}'})", :class => "right" %>
+      <%= link_to_function t(:hide), "$(this).siblings('form').slideToggle(); $(this).text(function() { return $(this).text() == '#{t(:hide)}' ? '#{t(:show)}' : '#{t(:hide)}'})", :class => "right" %>
       <h3><%= t :controls %></h3>
       <%= form_tag url_for, :method => :get, :id => "controls" do %>
         <!-- <div class="field">
@@ -332,7 +332,7 @@
     </div>
     <% if @observation -%>
       <div id="observationbox">
-        <%= link_to_function t(:hide).humanize, "$(this).siblings('#observation').slideToggle(); $(this).text(function() { return $(this).text() == '#{t(:hide).humanize}' ? '#{t(:show).humanize}' : '#{t(:hide).humanize}'})", :class => "right" %>
+        <%= link_to_function t(:hide), "$(this).siblings('#observation').slideToggle(); $(this).text(function() { return $(this).text() == '#{t(:hide)}' ? '#{t(:show)}' : '#{t(:hide)}'})", :class => "right" %>
         <h3><%= t :observation %></h3>
         <div id="observation">
           <div class="photos">

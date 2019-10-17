@@ -5,7 +5,7 @@ shared_examples_for "a TaxaController" do
     elastic_models( Observation )
     it "should filter by place_id" do
       t = Taxon.make!
-      p = Place.make!
+      p = make_place_with_geom
       without_delay do
         p.check_list.add_taxon(t)
       end
@@ -43,7 +43,7 @@ shared_examples_for "a TaxaController" do
     it "should filter by place_id" do
       taxon_not_in_place = Taxon.make!
       taxon_in_place = Taxon.make!
-      p = Place.make!
+      p = make_place_with_geom
       without_delay do
         p.check_list.add_taxon(taxon_in_place)
       end
@@ -56,7 +56,7 @@ shared_examples_for "a TaxaController" do
     it "returns results in the configured place" do
       taxon_not_in_place = Taxon.make!(name: "Disco stu")
       taxon_in_place = Taxon.make!(name: "Disco stu")
-      p = Place.make!
+      p = make_place_with_geom
       without_delay do
         p.check_list.add_taxon(taxon_in_place)
       end
@@ -70,7 +70,7 @@ shared_examples_for "a TaxaController" do
     it "returns all results when there are none in the configured place" do
       taxon_not_in_place = Taxon.make!(name: "nonsense")
       taxon2_not_in_place = Taxon.make!(name: "nonsense")
-      p = Place.make!
+      p = make_place_with_geom
       Site.default.update_attributes(place_id: p.id)
       get :search, format: :json, q: "nonsense"
       json = JSON.parse(response.body)

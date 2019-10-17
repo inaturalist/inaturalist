@@ -58,6 +58,14 @@ GIT
     objectify-xml (0.2.3)
 
 GIT
+  remote: https://github.com/inaturalist/omniauth-openid
+  revision: b06b8d2c6bc0ac5eb63e4b9285148b409c0d3ca6
+  specs:
+    omniauth-openid (2.0.0)
+      omniauth (~> 1.0)
+      rack-openid (~> 1.4.0)
+
+GIT
   remote: https://github.com/inaturalist/riparian.git
   revision: 083846b15272cb8f4979d2bd331140fe868735cb
   specs:
@@ -180,9 +188,6 @@ GEM
     acts_as_votable (0.12.0)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    airbrake (7.4.0)
-      airbrake-ruby (~> 2.12)
-    airbrake-ruby (2.12.0)
     airbrussh (1.3.1)
       sshkit (>= 1.6.1, != 1.7.0)
     akami (1.3.1)
@@ -216,7 +221,7 @@ GEM
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
-    bcrypt (3.1.12)
+    bcrypt (3.1.13)
     better_errors (2.5.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -279,16 +284,16 @@ GEM
     debug_inspector (0.0.3)
     delayed_job (4.1.5)
       activesupport (>= 3.0, < 5.3)
-    devise (4.6.1)
+    devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 6.0)
+      railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
     devise-encryptable (0.2.0)
       devise (>= 2.1.0)
-    devise-i18n (1.7.2)
-      devise (>= 4.5)
+    devise-i18n (1.8.1)
+      devise (>= 4.6)
     devise_suspendable (0.6.1)
       devise
       rails (>= 3.0.4)
@@ -395,7 +400,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.1.0)
-    jwt (2.1.0)
+    jwt (2.2.1)
     koala (3.0.0)
       addressable
       faraday
@@ -440,22 +445,22 @@ GEM
       rack (>= 1.6.2, < 3)
     omniauth-facebook (5.0.0)
       omniauth-oauth2 (~> 1.2)
-    omniauth-google-oauth2 (0.5.4)
-      jwt (>= 1.5)
+    omniauth-google-oauth2 (0.7.0)
+      jwt (>= 2.0)
       omniauth (>= 1.1.1)
       omniauth-oauth2 (>= 1.5)
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
-    omniauth-oauth2 (1.5.0)
+    omniauth-oauth2 (1.6.0)
       oauth2 (~> 1.1)
-      omniauth (~> 1.2)
-    omniauth-openid (1.0.1)
-      omniauth (~> 1.0)
-      rack-openid (~> 1.3.1)
+      omniauth (~> 1.9)
     omniauth-orcid (2.1.1)
       omniauth-oauth2 (~> 1.3)
       ruby_dig (~> 0.0.2)
+    omniauth-rails_csrf_protection (0.1.2)
+      actionpack (>= 4.2)
+      omniauth (>= 1.3.1)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -478,7 +483,7 @@ GEM
     rack-cors (1.0.3)
     rack-mobile-detect (0.4.0)
       rack
-    rack-openid (1.3.1)
+    rack-openid (1.4.2)
       rack (>= 1.1.0)
       ruby-openid (>= 2.1.8)
     rack-test (0.6.3)
@@ -502,6 +507,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails-i18n (4.0.9)
+      i18n (~> 0.7)
+      railties (~> 4.0)
     rails-observers (0.1.5)
       activemodel (>= 4.0)
     rails_autolink (1.1.6)
@@ -511,7 +519,7 @@ GEM
       activesupport (= 4.2.11.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (12.3.2)
+    rake (12.3.3)
     rakismet (1.5.4)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
@@ -561,7 +569,7 @@ GEM
     rspec-support (3.8.0)
     ruby-openid (2.7.0)
     ruby_dig (0.0.2)
-    rubyzip (1.2.2)
+    rubyzip (1.3.0)
     safe_yaml (1.0.4)
     sass (3.7.3)
       sass-listen (~> 4.0.0)
@@ -659,7 +667,6 @@ DEPENDENCIES
   activerecord-session_store
   acts-as-taggable-on (~> 5.0)
   acts_as_votable (~> 0.12.0)
-  airbrake (~> 7.3)
   ancestry
   angular-rails-templates!
   apipie-rails
@@ -719,13 +726,14 @@ DEPENDENCIES
   nokogiri (~> 1.10.4)
   non-stupid-digest-assets
   objectify-xml!
-  omniauth
+  omniauth (>= 1.9.0)
   omniauth-facebook (~> 5.0.0)
   omniauth-flickr!
-  omniauth-google-oauth2 (~> 0.5.2)
-  omniauth-oauth2 (= 1.5.0)
-  omniauth-openid
+  omniauth-google-oauth2 (~> 0.7.0)
+  omniauth-oauth2 (= 1.6.0)
+  omniauth-openid!
   omniauth-orcid
+  omniauth-rails_csrf_protection
   omniauth-soundcloud!
   omniauth-twitter
   optimist
@@ -739,6 +747,7 @@ DEPENDENCIES
   rack-mobile-detect
   rails (= 4.2.11.1)
   rails-html-sanitizer (~> 1.0.4)
+  rails-i18n (~> 4.0)
   rails-observers
   rakismet
   rest-client

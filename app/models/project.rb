@@ -89,7 +89,7 @@ class Project < ActiveRecord::Base
   preference :banner_contain, :boolean, default: false
   preference :hide_title, :boolean, default: false
   preference :hide_umbrella_map_flags, :boolean, default: false
-  preference :rule_quality_grade, :string
+  preference :rule_quality_grade, :string, default: "research,needs_id"
   preference :rule_photos, :boolean
   preference :rule_sounds, :boolean
   preference :rule_observed_on, :string

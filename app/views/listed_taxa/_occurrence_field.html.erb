@@ -12,7 +12,7 @@
       <%= t("occurrence_status_levels.#{listed_taxon.occurrence_status}", :default => listed_taxon.occurrence_status) || t(:unknown).downcase %>
     <% end -%>
     <% if list.listed_taxa_editable_by?(current_user) -%>
-      <%= link_to_function t(:edit), "$(this).parents('.occurrence').hide(); $(this).parents('.occurrencefield').find('form').show()",
+      <%= link_to_function t(:edit), "$(this).parents('#occurrence').hide(); $(this).parents('.occurrencefield').find('form').show()",
         :class => "small" %>
     <% end -%>
     <span class="occurrence_tip_target description helptip" rel="#occurrence_tip"></span>
@@ -26,7 +26,7 @@
       <span class="occurrence_tip_target description helptip" rel="#occurrence_tip"></span>
       <%= f.submit t(:save), :class => "default button" %>
       <%= f.hidden_field :establishment_means %>
-      <%= link_to_function t(:cancel), "$(this).parents('.occurrence'); $(this).parents('.occurrencefield').find('form').hide()",
+      <%= link_to_function t(:cancel), "$(this).parents('.occurrencefield').find('#occurrence').show( ); $(this).parents('.occurrencefield').find('form').hide()",
         :class => "minor button" %>
     <% end %>
   <% end -%>

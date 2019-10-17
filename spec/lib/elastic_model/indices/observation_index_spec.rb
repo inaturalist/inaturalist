@@ -358,7 +358,7 @@ describe "Observation Index" do
     end
 
     it "filters by site place" do
-      s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE, place: Place.make!)
+      s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE, place: make_place_with_geom)
       expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
         filters: [ { terms: { "place_ids" => [ s.place.id ] } } ] )
     end

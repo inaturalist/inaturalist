@@ -596,7 +596,9 @@ class ApplicationController < ActionController::Base
     provider, url = ProviderAuthorization::AUTH_URLS.detect do |provider, url| 
       provider.downcase == params[:auth_provider].to_s.downcase
     end
-    redirect_to url if url
+    if url
+      return redirect_to oauth_bounce_url( provider: provider )
+    end
     true
   end
 

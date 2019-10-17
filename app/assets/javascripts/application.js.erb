@@ -1238,8 +1238,9 @@ function showJoinProjectDialog(projectId, options) {
 
 
 // http://stackoverflow.com/a/14839776/720268
-function preciseRound(num,decimals) {
-  return Math.round(num*Math.pow(10, decimals)) / Math.pow(10,decimals)
+function preciseRound( num, decimals ) {
+  if ( num === null ) { return null; }
+  return Math.round( num * Math.pow( 10, decimals ) ) / Math.pow( 10, decimals )
 }
 
 function updateSession(params) {

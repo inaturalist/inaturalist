@@ -37,11 +37,6 @@ base: &base
         # https://developer.apps.yahoo.com/wsregapp/
         app_id: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09
 
-    airbrake:
-        # https://airbrake.io/
-        # disable: false
-        api_key: 09af09af09af09af09af09af09af09af09af09af
-
     tile_servers:
         # EXPERIMENTAL: These endpoints should return map tiles when hit with
         # requests like /{Z}/{X}/{Y}.png.

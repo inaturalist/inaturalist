@@ -878,6 +878,9 @@ $nav-btn-dim: 40px;
   .outdated .comname {
     text-decoration: line-through;
   }
+  i.fa {
+    color: $text-grey;
+  }
 }
 
 .SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {

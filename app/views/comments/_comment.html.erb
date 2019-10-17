@@ -19,7 +19,7 @@
         <div class="comment_actions">
           <%-
             pieces = []
-            pieces << link_to("Edit", edit_comment_path(comment)) if comment.user_id == current_user.id
+            pieces << link_to(t(:edit), edit_comment_path(comment)) if comment.user_id == current_user.id
             pieces << link_to("Delete", comment, 
                         :data => {:confirm => t(:you_sure_delete_comment?)}, 
                         :method => :delete, 

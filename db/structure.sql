@@ -4046,7 +4046,6 @@ CREATE TABLE public.taxa (
     rank character varying(255),
     source_identifier character varying(255),
     source_url character varying(255),
-    parent_id integer,
     source_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -8731,13 +8730,6 @@ CREATE INDEX index_taxa_on_observations_count ON public.taxa USING btree (observ
 
 
 --
--- Name: index_taxa_on_parent_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_taxa_on_parent_id ON public.taxa USING btree (parent_id);
-
-
---
 -- Name: index_taxa_on_rank_level; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9032,6 +9024,13 @@ CREATE INDEX index_users_on_curator_sponsor_id ON public.users USING btree (cura
 
 
 --
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_email ON public.users USING btree (email);
+
+
+--
 -- Name: index_users_on_identifications_count; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9057,6 +9056,13 @@ CREATE INDEX index_users_on_life_list_taxa_count ON public.users USING btree (li
 --
 
 CREATE UNIQUE INDEX index_users_on_login ON public.users USING btree (login);
+
+
+--
+-- Name: index_users_on_lower_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_lower_email ON public.users USING btree (lower((email)::text));
 
 
 --
@@ -9971,6 +9977,8 @@ INSERT INTO schema_migrations (version) VALUES ('20181110004422');
 
 INSERT INTO schema_migrations (version) VALUES ('20181120235404');
 
+INSERT INTO schema_migrations (version) VALUES ('20181203171209');
+
 INSERT INTO schema_migrations (version) VALUES ('20190104024910');
 
 INSERT INTO schema_migrations (version) VALUES ('20190215195613');
@@ -9996,4 +10004,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190604231553');
 INSERT INTO schema_migrations (version) VALUES ('20190702063435');
 
 INSERT INTO schema_migrations (version) VALUES ('20190820224224');
+
+INSERT INTO schema_migrations (version) VALUES ('20190918161513');
 

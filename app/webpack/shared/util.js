@@ -77,7 +77,11 @@ function isBlank( val ) {
 
 function numberWithCommas( num ) {
   if ( !num && num !== 0 ) { return ""; }
-  return I18n.toNumber( num, { precision: 0 } );
+  return I18n.toNumber( num, {
+    precision: 0,
+    separator: I18n.t( "number.format.separator" ),
+    delimiter: I18n.t( "number.format.delimiter" )
+  } );
 }
 
 // "legacy disagreement" might be a better term here. Basically this is

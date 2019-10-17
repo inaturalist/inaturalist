@@ -28,12 +28,6 @@
     </div>
     <% if !photos.empty? && taxon.auto_photos? %>
       <div class="description"><%= t(:creative_commons_flickr_tagged) %> "<%= taxon.name %>."</div>
-      <div>
-        <%= link_to t(:invite_photos_to_raquo_html, :site_name => @site.preferred_site_name_short), photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
-        <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-          <%= t(:view_all_photos_tagged_taxon_html, :taxon => h(taxon.name) ) %>
-        </a>
-      </div>
     <% end %>
   <% end %>
 <% else %>
@@ -41,14 +35,6 @@
     <h3 class="description">
       <%=t :no_creative_commons_flickr_photos_tagged_x, :x => taxon.name %>
     </h3>
-
-    <% if taxon.auto_photos? %>
-      <%= link_to t(:invite_photos_to_raquo_html, :site_name => @site.preferred_site_name_short), photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
-      <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-        <%= t(:view_all_photos_tagged_taxon_html, :taxon => taxon.name).html_safe %>
-      </a><br/>
-      (<%=t :not_just_creative_commons_licensed %>)
-    <% end %>
   </div>
 <% end %>
 
@@ -59,12 +45,6 @@
       <% for photo in photos[1..6] %>
         <%= render "taxa/photo", :photo => photo, :css_class => cycle('first', '', '', '', '', 'last') %>
       <% end %>
-    </div>
-    <div class="description">
-      <%= link_to t(:invite_photos_to_raquo_html, :site_name => @site.preferred_site_name_short), photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
-      <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-        <%= t(:view_all_photos_tagged_taxon_html, :taxon => h(taxon.name) ) %>
-      </a>
     </div>
   <% end %>
 </div>

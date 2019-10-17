@@ -2,6 +2,7 @@
   donorbox_params = params.slice( :utm_source, :utm_campaign, :utm_content, :utm_medium )
   donorbox_params[:utm_source] = @site.name if donorbox_params[:utm_source].blank?
   donorbox_params[:utm_medium] = "web" if donorbox_params[:utm_medium].blank?
+  donorbox_params[:amount] = 15
 - content_for :title do
   =t "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist"
 - content_for :extrajs do

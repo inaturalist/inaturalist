@@ -175,9 +175,10 @@ class PlacesController < ApplicationController
         @geometry = geometry_from_geojson(params[:geojson])
         @place.validate_with_geom( @geometry, user: current_user )
       end
-      if @geometry && @place.valid?
-        @place.save
+
+      if @geometry # && @place.valid?
         @place.save_geom(@geometry, user: current_user)
+        @place.save
         if @place.too_big_for_check_list?
           notice = t(:place_too_big_for_check_list)
           @place.check_list.destroy if @place.check_list

@@ -7,7 +7,6 @@ import {
 } from "react-bootstrap";
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
-import UserWithIcon from "../../../observations/show/components/user_with_icon";
 import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
 
 const TaxonomyTab = ( {
@@ -32,11 +31,12 @@ const TaxonomyTab = ( {
             <Col xs={8}>
               <h3>{ I18n.t( "taxonomy" ) }</h3>
               <TaxonomicBranch
-                taxon={ taxon }
-                chooseTaxon={ t => showNewTaxon( t, { skipScrollTop: true } ) }
-                toggleAllChildrenShown={ toggleAllChildrenShown }
-                allChildrenShown={ allChildrenShown }
-                currentUser={ currentUser }
+                taxon={taxon}
+                chooseTaxon={t => showNewTaxon( t, { skipScrollTop: true } )}
+                toggleAllChildrenShown={toggleAllChildrenShown}
+                allChildrenShown={allChildrenShown}
+                currentUser={currentUser}
+                tabular
               />
             </Col>
             <Col xs={4}>
@@ -45,8 +45,8 @@ const TaxonomyTab = ( {
                   <a
                     href={`/taxa/${taxon.id}/taxonomy_details`}
                     rel="nofollow"
-                    >
-                    <i className="fa fa-sitemap accessory-icon"></i>
+                  >
+                    <i className="fa fa-sitemap accessory-icon" />
                     { I18n.t( "taxonomy_details" ) }
                   </a>
                 </li>
@@ -55,7 +55,7 @@ const TaxonomyTab = ( {
                     <span className="badge pull-right">
                       { I18n.toNumber( taxonChangesCount, { precision: 0 } ) }
                     </span>
-                    <i className="fa fa-random accessory-icon"></i>
+                    <i className="fa fa-random accessory-icon" />
                     { I18n.t( "taxon_changes" ) }
                   </a>
                 </li>
@@ -64,7 +64,7 @@ const TaxonomyTab = ( {
                     <span className="badge pull-right">
                       { I18n.toNumber( taxonSchemesCount, { precision: 0 } ) }
                     </span>
-                    <i className="glyphicon glyphicon-list-alt accessory-icon"></i>
+                    <i className="glyphicon glyphicon-list-alt accessory-icon" />
                     { I18n.t( "taxon_schemes" ) }
                   </a>
                 </li>
@@ -92,13 +92,13 @@ const TaxonomyTab = ( {
                   { sortedNames.map( n => (
                     <tr
                       key={`taxon-names-${n.id}`}
-                      className={ n.is_valid ? "" : "outdated" }
+                      className={n.is_valid ? "" : "outdated"}
                     >
                       <td>
                         { I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ) }
                       </td>
                       <td
-                        className={ n.lexicon && _.snakeCase( n.lexicon ).match( /scientific/ ) ? "sciname" : "comname" }
+                        className={n.lexicon && _.snakeCase( n.lexicon ).match( /scientific/ ) ? "sciname" : "comname"}
                       >
                         { n.name }
                       </td>
@@ -113,8 +113,8 @@ const TaxonomyTab = ( {
                   ) ) }
                 </tbody>
               </table>
-              <h3 className={ `text-center ${names.length > 0 ? "hidden" : ""}`}>
-                <i className="fa fa-refresh fa-spin"></i>
+              <h3 className={`text-center ${names.length > 0 ? "hidden" : ""}`}>
+                <i className="fa fa-refresh fa-spin" />
               </h3>
             </Col>
             <Col xs={4}>
@@ -122,7 +122,7 @@ const TaxonomyTab = ( {
                 { viewerIsCurator ? (
                   <li className="list-group-item internal">
                     <a href={`/taxa/${taxon.id}/names`} rel="nofollow">
-                      <i className="fa fa-gear accessory-icon"></i>
+                      <i className="fa fa-gear accessory-icon" />
                       { I18n.t( "manage_names" ) }
                     </a>
                   </li>
@@ -132,14 +132,14 @@ const TaxonomyTab = ( {
                     href={`/taxa/${taxon.id}/taxon_names/new`}
                     rel="nofollow"
                   >
-                    <i className="fa fa-plus accessory-icon"></i>
+                    <i className="fa fa-plus accessory-icon" />
                     { I18n.t( "add_a_name" ) }
                   </a>
                 </li>
               </ul>
               <h4>{ I18n.t( "about_names" ) }</h4>
               <UserText
-                text={ I18n.t( "views.taxa.show.about_names_desc" ).replace( /\n+/gm, " " )}
+                text={I18n.t( "views.taxa.show.about_names_desc" ).replace( /\n+/gm, " " )}
                 truncate={400}
               />
             </Col>

@@ -1,5 +1,13 @@
 class ProviderOauthController < ApplicationController
   before_filter :authenticate_user!, :only => [:bounce_back]
+
+  layout "bootstrap"
+  
+
+  def self.controller_path
+    "oauth"
+  end
+
   # OAuth2 assertion flow: http://tools.ietf.org/html/draft-ietf-oauth-assertions-01#section-6.3
   # Accepts Facebook and Google access tokens and returns an iNat access token
   def assertion
@@ -45,9 +53,13 @@ class ProviderOauthController < ApplicationController
     }
     if logged_in?
       redirect_to oauth_bounce_back_url
-    else
-      # redirect to auth url for specified provider
-      redirect_to auth_url_for(params[:provider])
+    end
+    respond_to do |format|
+      format.html do
+        @footless = true
+        @no_footer_gap = true
+        @responsive = true
+      end
     end
   end
 

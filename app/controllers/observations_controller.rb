@@ -437,7 +437,7 @@ class ObservationsController < ApplicationController
         sync_facebook_photo
       rescue Koala::Facebook::APIError => e
         raise e unless e.message =~ /OAuthException/
-        redirect_to ProviderAuthorization::AUTH_URLS['facebook']
+        redirect_to url_for( controller: "facebook", action: "options" )
         return
       end
     end
@@ -504,7 +504,7 @@ class ObservationsController < ApplicationController
         sync_facebook_photo
       rescue Koala::Facebook::APIError => e
         raise e unless e.message =~ /OAuthException/
-        redirect_to ProviderAuthorization::AUTH_URLS['facebook']
+        redirect_to url_for( controller: "facebook", action: "options" )
         return
       end
     end
@@ -2253,7 +2253,6 @@ class ObservationsController < ApplicationController
     rescue Timeout::Error => e
       flash.now[:error] = t(:sorry_flickr_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
-      Airbrake.notify(e, :request => request, :session => session)
       Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
@@ -2298,7 +2297,6 @@ class ObservationsController < ApplicationController
     rescue Timeout::Error => e
       flash.now[:error] = t(:sorry_picasa_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
-      Airbrake.notify(e, :request => request, :session => session)
       Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end

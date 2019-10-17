@@ -74,7 +74,6 @@ class ObservationPhotosController < ApplicationController
           render :json => @observation_photo.to_json(:include => [:photo])
         else
           msg = "Failed to create observation photo: #{@observation_photo.errors.full_messages.to_sentence}"
-          # Airbrake.notify(Exception.new(msg), :request => request, :session => session)
           Logstasher.write_exception(Exception.new(msg), request: request, session: session, user: current_user)
           Rails.logger.error "[ERROR #{Time.now}] #{msg}"
           status = :unprocessable_entity

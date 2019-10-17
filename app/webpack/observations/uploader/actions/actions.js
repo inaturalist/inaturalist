@@ -310,7 +310,7 @@ const actions = class actions {
       _.each( s.dragDropZone.obsCards, c => {
         if (
           !failed
-          && ( !c.files.length || c.files.length === 0 )
+          && _.size( c.files ) === 0
           && !c.taxon_id
           && !c.species_guess
         ) {

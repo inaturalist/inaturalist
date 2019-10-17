@@ -59,7 +59,7 @@ const IdentificationForm = ( {
     }}
   >
     <h3>{ I18n.t( "add_an_identification" ) }</h3>
-    <TaxonAutocomplete />
+    <TaxonAutocomplete bootstrapClear />
     <INatTextArea
       type="textarea"
       name="body"

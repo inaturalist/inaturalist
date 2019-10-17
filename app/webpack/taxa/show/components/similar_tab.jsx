@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
+import _ from "lodash";
 import TaxonThumbnail from "./taxon_thumbnail";
 
 const SimilarTab = ( {
@@ -27,11 +28,11 @@ const SimilarTab = ( {
             <TaxonThumbnail
               taxon={result.taxon}
               key={`similar-taxon-${result.taxon.id}`}
-              badgeText={config.testNewSimilar ? (
+              badgeText={(
                 <a href={`/observations?ident_taxon_id_exclusive=${result.taxon.id},${taxon.id}&place_id=any&verifiable=any`}>
                   { result.count }
                 </a>
-              ) : result.count}
+              )}
               badgeTip={tip}
               height={190}
               truncate={20}
@@ -56,22 +57,31 @@ const SimilarTab = ( {
   let title = I18n.t( "other_species_commonly_misidentified_as_this_species" );
   if ( taxon.rank_level > 10 ) {
     if ( place ) {
+      const misidentifiedOpts = {
+        place: place.display_name,
+        url: `/places/${place.id}`
+      };
+      const misidentifiedHeader = I18n.t(
+        `other_taxa_commonly_misidentified_as_this_${_.snakeCase( rank )}_in_place_html`,
+        Object.assign( {}, misidentifiedOpts, {
+          default: I18n.t(
+            "other_taxa_commonly_misidentified_as_this_rank_in_place_html",
+            Object.assign( {}, misidentifiedOpts, { gender: rank } )
+          )
+        } )
+      );
       title = (
         <span
-          dangerouslySetInnerHTML={{
-            __html: I18n.t(
-              "other_taxa_commonly_misidentified_as_this_rank_in_place_html",
-              {
-                rank,
-                place: place.display_name,
-                url: `/places/${place.id}`
-              }
-            )
-          }}
+          dangerouslySetInnerHTML={{ __html: misidentifiedHeader }}
         />
       );
     } else {
-      title = I18n.t( "other_taxa_commonly_misidentified_as_this_rank", { rank } );
+      title = I18n.t( `other_taxa_commonly_misidentified_as_this_${rank}`, {
+        default: I18n.t( "other_taxa_commonly_misidentified_as_this_rank", {
+          rank,
+          gender: _.snakeCase( rank )
+        } )
+      } );
     }
   } else if ( place ) {
     title = (

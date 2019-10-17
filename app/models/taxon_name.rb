@@ -103,13 +103,15 @@ class TaxonName < ActiveRecord::Base
     "english"               => "en",
     "esperanto"             => "eo",
     "estonian"              => "et",
+    "filipino"              => "fil",
     "finnish"               => "fi",
     "french"                => "fr",
     "galician"              => "gl",
+    "georgian"              => "ka",
     "german"                => "de",
     "greek"                 => "el",
     "hawaiian"              => "haw",
-    "hebrew"                => "iw",
+    "hebrew"                => "he",
     "indonesian"            => "id",
     "italian"               => "it",
     "japanese"              => "ja",
@@ -119,6 +121,8 @@ class TaxonName < ActiveRecord::Base
     "macedonian"            => "mk",
     "maori"                 => "mi",
     "maya"                  => "myn",
+    "norwegian"             => "nb",
+    "norwegian_bokmal"      => "nb",
     "occitan"               => "oc",
     "polish"                => "pl",
     "portuguese"            => "pt",
@@ -126,7 +130,8 @@ class TaxonName < ActiveRecord::Base
     "scientific_names"      => "sci",
     "slovak"                => "sk",
     "spanish"               => "es",
-    "swedish"               => "sv"
+    "swedish"               => "sv",
+    "turkish"               => "tr"
   }
   LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
 

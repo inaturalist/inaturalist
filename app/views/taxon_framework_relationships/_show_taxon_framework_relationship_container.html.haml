@@ -42,7 +42,7 @@
           = render partial: "/taxon_framework_relationships/show_downstream_deviations", object: { downstream_deviations_counts: downstream_deviations_counts, taxon_framework: upstream_taxon_framework}
           - if downstream_flagged_taxa_count > 0
             .flagged_taxa_count
-              = "#{ t( :downstream_flagged_covered_taxa ) }:"
+              =t :label_colon, label: t( :downstream_flagged_covered_taxa )
               = link_to downstream_flagged_taxa_count, "#"
             .flagged_taxa_table
               %table.table.table-bordered

@@ -245,7 +245,7 @@ describe ProjectObservation, "observed_in_place_bounding_box?" do
   
   it "should work" do
     setup_project_and_user
-    place = Place.make!(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
+    place = make_place_with_geom(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
     @observation.update_attributes(:latitude => 0.5, :longitude => 0.5)
     project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     expect(project_observation).to be_observed_in_bounding_box_of(place)
@@ -255,7 +255,7 @@ end
 
 describe ProjectObservation, "observed_in_place" do
   it "should use private coordinates" do
-    place = Place.make!(:name => "Berkeley")
+    place = make_place_with_geom(:name => "Berkeley")
     place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
     
     project_observation = make_project_observation
