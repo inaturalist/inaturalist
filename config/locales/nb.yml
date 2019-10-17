@@ -1445,6 +1445,8 @@ nb:
   hex_color_eg: Hex-farge, f.eks. 65644F
   hi: Hei,
   hi_user: "Hei %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Skjul
   hide_content: Skjul innhold
   hide_desc: |
     Skjuling av innhold vil fjerne det fra offentlig visning, men folk vil fortsatt kunne se, at noe er blitt skjult, og sidekuratorer og innholdets forfatter vil fortsatt kunne se det skjulte innholdet. Generelt gelder dette kun for skrevet innhold, dvs. hvis du skjuler innholdet i en identifikasjon, vil selve identifikasjonen fortsatt være synlig, men merknader fra personen bak identifikasjonen vil være skjult. Du kan ikke angre dette, og kun hjemmesidens personale kan gjøre innhold synlig igjen når det først er blitt skjult, så vær forsiktig og bruk dette kun ved veldig støtende innhold.
@@ -3748,6 +3750,8 @@ nb:
   the_following_lists: følgende lister
   the_following_observations_could: "De følgende observasjoner kunne ikke legges til %{link}"
   the_following_photos_have_been_tagged: "De følgende bilder har blitt tagget:"
+  the_identotron_is_a_tool_to: |
+    Identotron er et verktøy som hjelper deg med å identifisere observasjoner basert på sjekklistedata for %{place}. Gitt et høyere takson og et sted (f.eks. pattedyr i India), sjekker %{place} om det finnes oppføringer på sjekklister som stemmer overens med det taksonet på det stedet, litt som en dynamisk feltguide til hele planeten. De fleste sjekklister for %{place} er ikke ferdigutviklet, men hvis det finnes en som er fullstendig, dvs den inneholder <em>alle</em> medlemmer av sitt takson på det stedet, viser Identotron at det er tilfellet.
   the_list: listen
   the_name_of_the_taxon_including_space: Navnet til taksonet, inklusiv plassen til arter og infra-arter.
   the_observation_form_looks: "Observasjonsskjemaet ser slik ut:"
@@ -4120,8 +4124,44 @@ nb:
   view_flags: Vis markeringer
   view_flags_for_x_html: "Vis markeringer for %{x}"
   view_full_observation: Vis fullstendig observasjon
+  view_full_size_photo: Vis bilde i full størrelse
+  view_invitation: Vis invitasjon
+  view_journal: Vis journal
+  view_leaderboard: Vis toppliste
+  view_leaderboard_from_last_month: Vis toppliste fra forrige måned
+  view_leaderboard_from_last_year: Vis toppliste fra i fjor
+  view_license: Vis lisens
+  view_lists: Vis lister
+  view_listing: Vis oppføring
+  view_moderation_history: Vis historikk for moderering
+  view_moderation_history_for_this_comment: Vis historikk for moderering for denne kommentaren
+  view_more: Vis mer
+  view_more_about_x: "Vis mer om %{x}"
+  view_more_observations: Vis flere observasjoner
+  view_more_observations_from_x: "Vis flere observasjoner fra %{x}"
+  view_more_observations_from: Vis flere observasjoner fra
+  view_more_observations_near_x_place: "Vis flere observasjoner i nærheten av %{place} på <nobr>%{site_name} &raquo;</nobr>"
+  view_more_observations_of_x_project: "Vis flere observasjoner fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
+  view_more_observations_of_x_taxon: "Vis flere observasjoner av %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
+  view_more_recent_observations: Vis flere nylige observasjoner
+  view_more_unreviewed: "Vis flere ikke-vurdert"
+  view_observation: Vis observasjon
+  view_observations: Vis observasjoner
+  view_observation_flags: Vis observasjonsmarkeringer
+  view_observations_by_everyone: Vis observasjoner av alle
+  view_observations_by_these_users: Vis observasjoner av disse brukere
   view_observations_causing_this_observation_to_be_obscured: |
     Vis observasjoner som gjør at denne observasjonen blir tilslørt
+  view_observations_of_this_taxon_by: Vis observasjoner av dette taksonet av
+  view_observations_raquo: "Vis observasjoner &raquo;"
+  view_on: Vis på
+  view_on_amphibiaweb: Vis på AmphibiaWeb
+  view_on_flickr: Vis på Flickr
+  view_on_wikipedia: Vis på Wikipedia
+  view_original: "Vis original"
+  view_original_by: "Vis originalen av %{by} på %{photo}"
+  view_original_ccD_photo: "Vis opprinnelige cc'ede bilde av %{owner}"
+  view_other_taxa: "Vis andre <nobr>%{taxon_name} &raquo; </nobr>"
   view_photos_ranges_observations_more: "Vis bilder, artsutbredelser, observasjoner fra %{site_name}, og mer! Vi har sammenstilt informasjon fra mange forskjellig kilder og kombinert de for en rask oversikt over hver art på hvert sted."
   view_place: Vis sted
   view_post: Vis innlegg
@@ -4163,30 +4203,328 @@ nb:
   w00t_no_ungrafted_taxa: w00t!  Ingen upodede taksa!
   w_photos_only: med bilder
   w_sounds: med lyder
+  wait_file_generation: Vennligst vent mens denne filen genereres. Det kan ta noen minutter for store lister.
+  want_to_show_off_some_of_your_favorite_taxa: Vil du vise frem noen av dine favoritte taksa her?
+  want_to_test_a_new_version_of_this_page: Vil du teste en ny versjon av denne siden?
+  wanted: Ønskes
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
+  we_also_support: |
+    Vi støtter også <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google Bilder</a>, og <a href="http://facebook.com">Facebook</a> for bildelagring.
+  we_can_only_understand_csv_in: Vi kan kun forstå csv i følgende format
   we_care_privacy: Vi bryr oss om ditt personvern!
+  we_couldnt_find_a_user: Vi kunne ikke finne en bruker med den epostadressen.
+  we_couldnt_find_a_user_with_that_activation_code: "Vi kunne ikke finne en bruker med den aktiveringskoden. Du har muligens allerede aktivert din konto, vennligst prøv å logge på."
+  we_currently_support_flickr_for_image_hosting: For øyeblikket støtter vi Flickr til bildelagring.
+  we_didnt_find_any_photos: Vi fant ingen bilder med søkeordene du oppga.
+  we_had_a_problem_flagging_that_item: "Vi hadde et problem under markeringen av det objektet: %{flag_error}"
+  we_had_trouble_saving_comment: "Vi hadde problemer under lagring av den kommentaren:"
+  we_have_no_conservation_status_for_this_taxon: Vi har ingen bevaringsstatus for dette taksonet
+  we_have_no_establishment_data_for_this_taxon: "Vi har ingen etableringsdata for dette taksonet"
+  we_import_our_taxonomic_data: "Vi importerer våre taksonomiske data fra noen eksterne taksonomiske databaser derunder Catalogue of Life og uBio. Enkelte av våre taksa har også blitt lagt inn manuelt, og hvilken som helst bruker kan legge til nye navn for taksa. Hvis du ikke klarer å finne et takson eller navn, prøv"
+  we_know_is_inconvenience_but_will_allow_grow: "Vi vet at dette er litt plagsomt, men vårt nye system for autorisering gjør det mulig for %{sitename} å vokse i fremtiden og gi deg økt sikkerhet."
+  we_support_flickr: For øyeblikket støtter vi Flickr til bildelagring og håper å legge til andre tjenester for bildelagring på kort sikt.
+  we_tried_to_process_your_upload_named_filename: |
+    Vi prøvde å prosessere din opplasting med navn %{filename} men det fungerte ikke. Vennligst fiks de følgende problemer og prøv igjen.
+  weather: Vær
+  website: Nettsted
+  week_of_date: "Uka til %{date}"
+  welcome!: Velkommen!
+  welcome_comma!: Velkommen,
+  welcome: velkommen
+  welcome_back: Velkommen tilbake
+  welcome_back!: Velkommen tilbake!
+  welcome_comma: "Velkommen, "
+  welcome_login: "Velkommen, %{login}"
+  welcome_message: "hvor du kan <strong>registrere</strong> det du ser i naturen, <strong>treffe</strong> andre naturelskere, og <strong>lære</strong> om den naturlige verden."
+  welcome_to_inat: "Velkommen til %{site_name}!"
+  welcome_to_guides: "Velkommen til %{site_name}-guider!"
+  welcome_to_x_project: "Velkommen til %{project}"
+  were_currently_down_for: Vi er nede for øyeblikket for
   were_pretty_sure_this_is_in_the_rank: Vi er ganske sikker på at dette er i %{rank}@gender{n:et|en}
+  were_sorry_but_your_bulk_import_of_filename_has_failed: "Beklager, men din masseimport av %{filename} mislykkes."
+  what: Hva
+  what_color_was_it: Hvilken farge var den?
+  what_did_you_see: Hva så du?
+  what_did_you_see?: <em>Hva</em> så du?
+  what_do_you_think: Hva tror du?
+  what_do_you_want_to_list: Hva vil du ha på lista?
+  what_to_keep: Hva skal beholdes
+  what_want_to_list?: Hva vil du ha på lista?
+  what_were_you_looking_for?: "Hva lette du etter? (målliste)"
+  whats_this?: Hva er dette?
+  when: Når
+  when_did_you_see_it?: Når så du den?
+  when_did_you_see_them?: <em>Når</em> så du de?
+  where: Hvor
+  where_did_you_see_it: Hvor så du den?
+  where_do_x_live: Hvor lever %{taxa}?
+  where_does_x_live: Hvor lever %{taxa}?
+  where_were_they?: Hvor var de?
+  where_were_you?: Hvor var du?
+  which_projects_can_add_your_observations?: Hvilke tradisjonelle prosjekter kan legge til dine observasjoner?
+  white: hvit
+  why_you_can_see_the_coordinates: Hvorfor du kan se koordinatene
+  who_can_add_observations_to_this_project?: Hvem kan legge til observasjoner til dette prosjektet?
+  who_can_see_the_coordinates: Hvem kan se koordinatene
+  who_can_see_the_coordinates_observer: Personen som opprettet observasjonen
+  who_can_see_the_coordinates_projects: Kuratorer av de følgende prosjekter
+  who_can_see_the_coordinates_trusted: Individer som observatøren har stolt med sine skjulte koordinater
+  who_helped_user_the_most: "Hvem har hjulpet %{user} mest"
+  who_user_helped_the_most: "Hvem %{user} har hjulpet mest"
   why_the_coordinates_are_obscured: Hvorfor koordinatene er tilslørt
+  with_annotation: Med merknad
+  without_annotation: Uten merknad
+  widget: Widget
+  widget_code: Widgetkode
+  widget_for: Widget for
+  will_be: vil være
+  wikipedia_attribution_cc_by_sa_3: |
+    Kilde: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  wikipedia_attribution_cc_by_sa_3_html: |
+    Denne artikelen bruker innhold fra Wikipedia-artikelen
+    <a href="%{url}">"%{title}"</a>, som er lisensiert under en
+    <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
+    Commons Navngivelse-DelPåSammeVilkår lisens 3.0</a>. Innhold fra originalen kan være utelatt, men ingen innhold har blitt endret eller utvidet.
+  wikipedia_entry: Wikipedia-innlegg
+  wikipedia_taxobox_raquo: "Wikipedia taxobox &raquo;"
+  with: med
+  withdraw: Trekk
+  withdrawing: Trekker...
+  with_errors: Med feil
+  within_inaturalist: "Innen %{site_name}"
+  worldwide: I hele verden
+  wondering_what_to_do_next: Her er noen neste steg for å få deg i gang med å observere og identifisere den naturlige verden
+  would_you_like_to: Ønsker du å
+  would_you_prefer_to_view_common_names_used_in_place_html: Vil du heller se populærnavn brukt i <strong>%{place}</strong>?
+  would_like_some_help_identifying_this: vil ha litt hjelp med å identifisere dette
+  x_admin: "%{login} admins"
+  x_blog: "Bloggen til %{x}"
+  x_deleted: "%{x} slettet"
+  x_does_not_exist: "\"%{x}\" finnes ikke"
+  x_doesnt: "%{login} ikke"
+  x_flagged: "%{x} markert"
+  x_flagged_as_flag: "%{x} markert som %{flag}"
+  x_hasnt: "%{login} har ikke"
+  x_journal: "Journalen til %{user}"
+  x_journal_archives_for_y: "Journalen til %{user} • Arkiv for"
+  x_journal_editing: "Journalen til %{user} • Redigerer"
+  x_journal_middot: "Journalen til %{user} •"
   x_journal_new_post: "Journalen til %{user} • Nytt innlegg"
+  x_observations_failed:
+    one: "1 observasjon mislykkes"
+    other: "%{count} observasjoner mislykkes"
+  x_of_y: "%{x} av %{y}"
+  x_of_y_people_over_two_thirds_agree_it_is: "%{x} av %{y} personer (over 2/3) er enige i at det er"
   x_is_the_root_of_the_tree: "%{rank}%{name} er treets rot"
+  x_project_journal: "%{project}s %{name}"
+  x_project_stats: "%{project} statistikker"
+  x_sent_you_a_new_message_on_y_html: "%{x} har sendt deg en ny melding på %{y}: "
+  x_site_is_a_social_network_for_naturalist: |
+    %{site} er et sosialt nettverk for naturalister! Registerer dine observasjoner av planter og dyr, del de med venner og forskere, og lær om den naturlige verden.
+  x_site_shared_licensed_observation_data_with: |
+    %{site_name} deler lisensierte observasjonsdata med flere partnere slik at dine data kan være mer tilgjengelig for forskere.
   x_wrote_a_new_post_html: "%{x} har skrevet et nytt innlegg"
   x_wrote_y_new_posts_html: "%{x} har skrevet %{y} nye innlegg"
+  year: År
+  year_in_review: "Årsoversikt %{year}"
+  year_month: år/måned
+  year_on_site: "Året %{year} på %{site}"
+  yellow: gul
+  'yes': "Ja"
+  yes_find_them!: "Ja, finn dem!"
+  yes_i_want_to_join: Ja, jeg vil bli med
+  yes_license_my_childs_observations: Ja, lisensier mitt barns bilder, lyder, og observasjoner slik at forskere kan bruke dataene.
+  yes_license_my_observations_so_scientists_can_use: Ja, lisensier mine bilder, lyder, og observasjoner slik at forskere kan bruke mine data.
+  yes_reject_it: Ja, avvis det
+  yes_show_this_in_the_box: Ja, vis dette i den store boksen øverst på /taksa
+  yesterday: I går
+  yesterday_at: ', i går kl. 1600'
+  you: deg
+  you_: Du
+  you_admin: du administrerer
+  you_appear_offline_try_again: |
+    Du ser ut til å være offline. Vennligst prøv igjen når du er koblet til internettet.
+  youre_a_site_curator_which_means: |
+    Du er en sidekurator, noe som betyr at du har meldt deg frivillig til å kuratere våre data og holde et øye på innhold. Ikke føl deg forpliktet til å håndtere alle disse saker, men hvis du har tid til å ordne opp i noen av de setter vi pris på all hjelpen vi kan få. Hvis du har noen spørsmål angående kuratering av innhold eller ikke vil være kurator lengere, vennligst ta kontakt med oss på %{email}
+  you_are_over_your_invites_quota: ...du har oversteget din månedlige kvote på 60 invitasjoner
+  you_are_now: Du er nå
+  you_are_now_following_x: "Du følger nå %{friend_user}."
+  you_are_now_the_admin_for_project_html: |
+    <strong>du</strong> er nå admin for %{project}
+  you_are_now_a_curator_for_project_html: |
+    <strong>du</strong> er nå en kurator for %{project}
   you_are_now_a_manager_for_project_html: |
     <strong>du</strong> er nå en manager for %{project}
+  you_are_not_editing_any_guides_add_one_html: |
+    Du redigerer ingen guider. <a href="/guides/new">Legg til en</a>
+  you_are_already_a_member_of_this_project: "Du er allerede et medlem i dette prosjektet!"
+  you_are_no_longer_following_x: "Du følger ikke %{friend} lengere."
+  you_are_setting_this_project_to_aggregate: |
+    Du stiller inn dette prosjektet til å samle alle observasjoner som er i samsvar med følgende regler: %{rules} Vil du fortsette?
+  you_are_submitting_obs_without_photos_and_names: |
+    Du legger inn observasjoner uten bilder og taksonnavn. Observasjoner uten denne informasjonen er ofte umulige å identifisere og vil standard ikke være synlige i observasjonssøk.
+  you_are_submitting_obs_with_no_date_or_no_location: |
+    Du legger inn observasjoner uten datoer eller lokaliteter. Observasjoner uten denne informasjonen er ofte umulige å identifisere og vil standard ikke være synlige i observasjonssøk.
+  you_are_subscribed_to: "Du er abonnert på "
+  you_arent_a_member_of_that_project: Du er ikke et medlem i det prosjektet.
+  you_arent_following_that_person: "Du følger ikke den personen."
+  you_can_accept_invitations: Du kan akseptere invitasjonen her
   you_can_also_add_flickr: Du kan også legge til Flickr-etiketter når du redigerer en observasjon, eller når du redigerer dine observasjoner som en batch.
+  you_can_also_change_your_settings_for_this_project_or_change_your_global_settings_html: |
+    Du kan også <a href="%{project_settings_url}">endre dine innstillinger for dette prosjektet</a> eller <a href="/users/edit#projects">endre dine generelle innstillinger</a>.
   you_can_alwais_add_new: Du kan alltid legge til nye observasjoner ved å klikke på den lille pilen øverst til høyre på siden og benytte nedtrekksmenyen.
+  you_can_change_your_new_passwd_after_logging_in: "Du kan endre ditt nye passord etter at du logger inn her:"
+  you_can_choose_observations_associated: Du kan velge observasjoner som skal knyttes til dette journal-innlegget.
+  you_can_edit_this_default_check_list_because: |
+    Du kan redigere denne standard sjekkliste fordi du er en admin, men det bør egentlig ikke være noe grunn til å gjøre det.
+  you_can_help_make_our: Du kan hjelpe med å gjøre våre artssider mer nyttige ved å legge til data! Her er noen måter du kan hjelpe
+  you_can_only_destroy_taxa_you_created: "Du kan kun ødelegge taksa som du selv har opprettet, og du kan ikke ødelegge taksa som brukes i taksonendringer."
+  you_can_only_block_three_users: Du kan kun blokkere tre brukere
+  you_can_see_these_coordinates_because: Du kan se disse koordinatene fordi du kuraterer et av prosjektene denne observasjonen har blitt lagt til.
+  you_can_show_the_boundary_of: Du kan vise grensen til stedet på din prosjektside hvis dette stedet har en grense.
+  you_can_sign_free_at: "Du kan registrere deg for en gratis konto på %{site_name} på"
+  you_cant_compare_a_list_with_nothing: Du kan ikke sammenligne en liste med ingenting!
+  you_cant_delete_a_project_list: "Du kan ikke slette en projektliste"
+  you_cant_delete_observation_fields_that_people_are_using: "Du kan ikke slette observasjonsfelt som folk bruker"
+  you_cant_do_that_for_the_default_check_list_place: Du kan ikke gjøre det med et steds standard sjekkliste!
+  you_cant_flag_that: Du kan ikke markere det
+  you_cant_leave_a_project_you_created: Du kan ikke forlate et prosjekt som du har opprettet.
+  you_cant_remove_other_peoples_observations: Du kan ikke fjerne andres observasjoner.
+  you_cant_rotate_photos_hostde_outside: "Du kan ikke rotere bilder lagret utenfor %{site_name}."
+  you_curate_a_project_that_contains_this_observation: Du kuraterer et prosjekt som inneholder denne observasjonen
   you_curate_a_project_that_contains_this_observation_desc: |
     Du kan se tilslørte koordinater når du kuraterer et prosjekt som inneholder en observasjon og observatøren har valgt å dele koordinatene med kuratorer av det prosjektet.
+  you_didnt_select_any_observations: Du har ikke valgt noen observasjoner.
+  you_didnt_select_any_photos_to_tag: Du har ikke valgt noen bilder å tagge!
+  you_dont: Du har ikke
+  you_dont_have_any: "Du har ingen abonnementer på steder eller taksa"
+  you_dont_have_permission_to_do_that: Du har ikke lov til å gjøre det.
+  you_dont_have_permission_to_edit_that_observation: "Du har ikke lov til å redigere den observasjonen."
+  you_dont_have_permission_to_edit_that_project: Du har ikke lov til å redigere det prosjektet.
+  you_dont_have_permission_to_edit_that_taxon: |
+    Du har ikke lov til å redigere det taksonet. Vennligst ta kontakt med en av taksonets kuratorer eller markere taksonet for å be om endringer.
+  you_dont_have_permission_to_edit_those_photos: Du har ikke lov til å redigere disse bilder.
+  you_faved_this: Du har gjort dette til en favoritt!
+  you_have_left_x_project: "Du har forlatt %{project}"
+  you_have_logget_out: "Du har blitt logget ut. Kom tilbake snart!"
+  you_have_to: Du må
+  you_havent: Du har ikke
+  you_havent_left_any_comments_recently: Du har ikke kommentert i det siste. Gå og legg igjen en beskjed til noen!
+  you_havent_linked_your_inaturalist_google_account: "Du har ikke koblet dine kontoer på %{site_name} og Google ennå"
+  you_joined_this_project: Du har blitt medlem i dette prosjektet!
+  you_may_have: du kan ha. Det fungerer sannsynligvis kun i moderne nettlesere som følger standardene, som
+  you_must_be_a_member_of_this_project_to_do_that: Du må være medlem i dette prosjektet for å gjøre det
   you_must_be_project_manager_to_do_that: Du må være prosjektmanager for å kunne gjøre det
+  you_must_choose_an_observation_field: Du må velge et observasjonsfelt
+  you_must_fill_out_the_required_fields: Du må fylle ut de obligatoriske feltene
+  you_must_have_a_header_row: Du må ha en rad med overskrifter
+  you_must_select_a_csv_file_to_upload: Du må velge en csv-fil til opplasting.
   you_must_select_a_place_to_merge_with: Du må velge et sted for å slå sammen med.
+  you_must_select_at_least_one_taxon: Du må velge minst ett takson
+  you_must_select_dates_to_compare: Du må velge datoer for å sammenligne
+  you_must_specify_and_confirm_a_new_password: Du må oppgi og bekrefte et nytt passord.
+  you_need_to_have_linked_flickr_account: Du må ha koblet din Flickr-konto for å legge til etiketter til dine bilder.
+  you_need_to_select_at_least_one_photo: Du må velge minst ett bilde!
+  you_need_to_select_some_observations_first: Du må velge noen observasjoner først.
+  you_retain_full_copyright: "Du beholder alle rettigheter over ditt innhold bortsett fra rettighetene som gis til %{site_name} i våre tjenestevilkår."
+  you_retain_full_copyright_over_your_content: "Du beholder alle rettigheter over ditt innhold bortsett fra rettighetene som gis til %{site_name} i våre tjenestevilkår."
   you_sure_delete_asset?: Er du sikker på at du vil slette denn projektressursen?
+  you_sure_delete_check_list: "Er du sikker på at du vil slette denne listen? Noen personer kan ha lagt mye arbeid inn i den..."
+  you_sure_delete_comment?: Er du sikker på at du vil slette denne kommentaren?
+  you_sure_delete_custom_field?: Er du sikker på at du vil slette disse brukerdefinerte felter?
+  you_sure_delete_flag?: Er du sikker på at du vil slette denne markeringen?
+  you_sure_delete_project?: Er du sikker på at du vil slette dette prosjektet?
+  you_sure_delete_this_observation: "Er du sikker på at du vil slette denne observasjonen?"
+  you_sure_remove_taxon_from?: "Er du sikker på at du vil fjerne dette taksonet fra %{list}?"
+  you_sure_remove_this_invitation?: "Er du sikker på at du vil fjerne denne invitasjonen?"
+  you_sure_remove_this_observation?: Er du sikker på at du vil fjerne denne observasjonen?
+  you_think_observation_inacurate: |
+    Hvis du tror at en observasjon ikke stemmer, vennligst legg til en id, delta i kvalitetsvurderingen ovenfor, eller beskriv feilen i en kommentar.
+  you_tried_to_do_something_you_shouldnt: |
+    Du prøvde å gjøre noe du ikke burde, som å redigere noen andres data uten tillatelse. Ikke vær slem.
+  you_unlinked_your_provider_account: "Du har frakoblet din konto på %{provider}"
+  you_would_get_the: "du ville få følgende tags:"
+  youll_need_to_link: Du blir nødt til å lenke
+  youve_been_invited_to_join_this_project_html: |
+    Du har blitt invitert til å <a href="%{url}" class="readmore">bli med i dette prosjektet</a>
+  youve_joined_the_x_project: "Du har blitt medlem i prosjektet %{project_invitation} og din observasjon har blitt lagt til"
+  your: Din
+  your_: Din
+  your_account_has_been_activated: Din konto har blitt aktivert!
+  your_account_has_been_verified: "Din konto på %{site_name} er bekreftet! Vennligst logg inn for å fortsette."
+  your_activation_code_was_missing: "Din aktiveringskode manglet. Vennligst følg url'en fra din epost."
+  your_browser_does_not_support_the_audio_element: Din nettleser støtter ikke audio-elementet.
+  your_coarser_id: |
+    Din grovere id <span class='taxon'>%{coarser_taxon_name}</span> impliserer at du ikke er enig i den eksisterende finere id'en <span class='taxon'>%{finer_taxon_name}</span>. Er det det du vil gjøre?<br><br><a href='/pages/getting+started' target='_blank'>Lær mer om hvordan identifisering fungerer &raquo;</a>
+  your_comment_was_saved: Ditt innhold ble lagret
+  your_content: Ditt innhold
+  your_contributions_to_project: "Dine bidrag til %{project_title}"
+  your_default: din standard
   your_default_time_zone: Din standard-tidssone
+  your_drafts: Dine kladd
   your_email_address: Din e-postadresse
+  your_flickr_account: din Flickr-konto
+  your_flickr_photos_have_been_tagged: Dine Flickr-bilder ble tagget!
+  your_hard_drive: din harddisk
+  your_home: Din startside
+  your_id: Din id
+  your_identification: Din identifikasjon
+  your_inat_account_has_been_activated: "Din konto på %{inat} er aktivert."
+  your_life_list: din livsliste!
+  your_membership: Ditt medlemskap
+  your_month_observations: dine observasjoner for %{month}
+  your_name_was_saved: Navnet ditt ble lagret.
+  your_new_password_is: Ditt nye passord er
+  your_observation_will_get_shared_html: "Dine observasjoner blir delt på sosiale medier hvis du lar boksene stå krysset av. Du kan endre dine standardinnstillinger ved å <a href='%{url}' target='_blank'>redigere dine kontoinnstillinger</a>. Hvis du har koblet på dine kontoer på Facebook eller Twitter før denne funksjonen ble lagt til må du kanskje koble dine kontoer på Twitter eller Facebook på nytt fra din konto for å få dette til å fungere."
+  your_observation_wont_get: "din observasjon blir ikke knyttet til andre observasjoner av denne arten, og din livsliste vil ikke bli oppdatert."
+  your_observations: Dine observasjoner
+  your_observations_couldnt_be_added_to_that_project: "Dine observasjoner kunne ikke legges til i det prosjektet: %{errors}"
+  your_photos_have_been_tagged: Dine bilder har blitt tagget!
+  your_projects: Dine prosjekter
+  your_google_account: din Google-konto
+  your_google_account_info: Din Google-kontoinformasjon
+  your_pinned_locations: Dine faste lokaliteter
+  your_profile_was_successfully_updated: Din profil ble oppdatert!
+  your_recent_projects: Dine siste prosjekter
+  your_relationships: Dine relasjoner
+  your_should_recognize: Du bør kjenne igjen noen av disse bilder
+  your_site_account_has_been_created: "Din konto på %{site} har blitt opprettet."
+  your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} trenger din godkjenning for flere tillatelser fra %{provider} for å fortsette:"
+  your_subscriptions: Dine abonnementer
+  your_sure_delete_list?: Er du sikker på at du vil slette denne listen?
+  your_sure_delete_taxon_from_list?: "Er du sikker på at du vil fjerne %{taxon} fra denne listen?"
   your_tags: Dine etiketter
+  your_world!: Din verden!
+  yours: Dine
+  youre_following: du følger
+  youre_not_following_anyone: |-
+    Du følger ikke noen. Å følge andre naturalister gjør deg enkelt for deg å følge deres nyeste observasjoner. Gå og finn ut hva folk <a href="%{observations_path}">observerer</a> og bli kjent med nye <a href="%{people_path}">personer</a>.
+  youre_viewing_all_observations: Du ser på alle dine observasjoner
+  youre_viewing_site_name_observations_html: "Du ser på <strong>%{site_name}</strong>-observasjoner"
+  youve_already_added_an_identification: Du har allerede lagt til en identifikasjon, og du kan kun legge til en
+  youve_linked_your_inaturalist_google_account: "Du har koblet din konto på %{site_name} og din konto på Google. Dette lar deg knytte dine bilder på Google til dine observasjoner på %{site_name}."
+  youve_opted_out_of_community_ids: "Du har meldt deg ut av fellesskapets identifikasjoner"
+  youve_opted_out_of_community_ids_for_this_obs: "Du har meldt deg ut av fellesskapets identifikasjoner for denne observasjonen"
+  youve_seen_it_want_to: "Dette har du sett! Vil du"
+  youve_successfully_linked_your_provider_account: "Du har koblet din konto på %{provider}"
   your_dashboard_helps_you: "Din oversikt hjelper deg med å følge med på hva folk gjør på siden. For å følge med på noens oppdateringer, klikk \"Følg [name]\"-lenken i overskriften når du ser på vedkommendes observasjoner eller profil."
+  verifiable: Verifiserbar
+  verifiable_observations: Verifiserbare observasjoner
   views:
+    views: 'Visninger'
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: Planlegger du å bruke %{site_name} i klasserommet?
+          community_guidelines_html: |
+            <a href="%{url}">Sjekk ut fellesskapets retningslinjer</a> for tips om hvordan vi holder iNaturalist et hyggelig og inkluderende sted å være.
+          please_read_the_teachers_guide_html: |
+            I så fall, vennligst les vår <a href="%{url}">guide for lærere</a> for tips på å bruke %{site_name} med studenter.
     donate:
+      donate_short_desc: "Donér nå for å vise din støtte!"
       post_donate_social_media_text: Jeg støtter iNaturalist fordi...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Bli en månedlig supporter av iNaturalist
     guides:
       index:
         funding_html: |
@@ -4195,14 +4533,37 @@ nb:
       edit:
         add_eol_content: |
           Legg til EOL-innhold til valgte taksa som batch. Dette kan ta litt tid, så vennligst vær tålmodig.
+        add_color_tags_help: |
+          Legg til farge-tags fra farger knyttet til det valgte taksonet.
         add_rank_tags_help_html: |
           Legg til etiketter for taksonrang basert på vår taksonomi, f.eks. 
           <code>familie=Laridae</code>
           eller
           <code>familie=Måker</code>
+        coordinates_desc: |
+          Å gi guiden din koordinater hjelper folk med å finne den når de søker på lokalitet.
+        replace_existing_eol_desc: Slett eksisterende innhold før importering fra EOL
+        place_choose_taxon_note: |
+          Velg et takson å filtrere på hvis du vil begrense ditt søk, f.eks. "planter"
+      eolupdate_notice: |
+        Vennligst vær tålmodig, å importere innhold fra EOL kan ta et par minutter.
+      show:
+        draft_desc: |
+          Denne guiden vil kun være synlig for folk som kan redigere den inntil du publiserer den.
+      generating_mobile_archive_tip_html: |
+        Dette kan ta en stund, så prøv å laste inn denne siden på nytt om noen minutter.
+      mobile_downloads_tip_html: |
+        Denne guiden kan lastes ned til offline bruk i mobilappen.
+      pdf_layouts:
+        book: bok
+        journal: journal
       pdf_layout_notes:
         journal: |
           Del opp side, artsinformasjon til venstre, plass til notater til høyre. Artsinformasjon blir forkortet for å få plass på siden.
+      sorts:
+        default: Guide rekkefølge
+        alphaname: Alfabetisk etter vitenskapelig navn
+        alphadisplay: Alfabetisk etter visningsnavn
     help:
       index:
         inaturalist_was_originally_the_masters_final_html: |
@@ -4213,6 +4574,7 @@ nb:
         tags_are_keywords_you_can_add_to_an_html: |
           Etiketter er nøkkelord som du kan legge til dine observasjoner for å gjøre dem enklere å finne.
           Hvis du for eksempel blir fulgt av en barracuda mens du er på dykketur ved Turks- og Caicosøyene, kan du tagge observasjonen med &quot;skummelt, barracuda, dykking, ferie, Turks- og Caicosøyene&quot;.
+        what_kind_of_photos_should_i_attach: Hvilke typer bilder bør jeg legge ved i observasjoner? Kan jeg legge ved bilder som jeg ikke har tatt?
         what_is_geoprivacy?: Hva er geosperring?
         geoprivacy_is_a_setting_you_can: |
           Geosperring er en innstilling som du kan bruke på dine observasjoner som styrer hvordan stedskoordinatene (lengdegrad og breddegrad) vises. Her er valgmulighetene:
@@ -4226,20 +4588,48 @@ nb:
         you_can_also_obscure_the_coordinates_html: |
           Du kan også tilsløre koordinatene til dine egne observasjoner uansett hvilket takson det er. Se <a href="#geoprivacy">geosperring</a> ovenfor.
         what_is_the_quality_assessment: Hva er kvalitetsvurderingen og hvordan kvalifiseres observasjoner for å bli "forskingskvalitet"?
+        what_is_a_life_list?: Hva er en livsliste?
+        just_a_simple_list: Bare en enkel liste over taksa uten bestemt adferd.
+        i_observed_a_species: "Jeg har observert en art, hvorfor dukker den ikke opp i min livsliste?"
         while_the_life_list_is_automatically_populated: |
           Mens livslisten automatisk blir fyllt ut fra observasjoner som legges til, blir arten ikke lagt til denne listen hvis %{site_name} ikke kjenner igjen navnet du bruker. Vi anbefaler å bruke alternative navn som vi kanskje kjenner igjen.
+    listed_taxa:
+      establishment_field:
+        confirmation: |
+          Er du sikker? Dette vil endre etableringsmåten for ALLE oppførte taksa som hører til steder innen dette stedet. Du tilintetgjør muligens en god del arbeid.
+    messages:
+      from: Fra
+      to: Til
+      subject: Emne
+      subject_body: Emne / Innhold
+      index:
+        show_messages_from_user: Vis beskjeder fra %{user}
+        show_messages_to_user: Vis beskjeder til %{user}
+    oauth:
+      authorizations:
+        new:
+          authorize_application_to_use_your_account?: Tillat at %{application} kan bruke din konto?
+          this_application_will_be_able_to_colon: "Dette programmet vil kunne:"
+          more_about_application: Mer om %{application}
     observations:
       community_id:
+        agreement: Enighet
         ancestor_disagreements: Ane-uenigheter
+        disagreement: Uenighet
+        you_have_opted_out: Du har meldt deg ut av fellesskapets identifikasjoner
+        opt_in_for_this_observation: Meld på for denne observasjonen
       captive_help_html: |
         Var organismen <strong>dyrket</strong> eller
         <strong>i fangenskap</strong>? Var det for eksempel i en <strong>hage,
         dyrehage, et akvarium</strong> eller en anden situasjon hvor den kun var
         til stede <strong>fordi mennesker hadde bestemt at den skulle være der</strong>? Alle observasjoner av levende organismer er velkomne, men vi vil gjerne vite det når noe ikke er vill/naturalisert.
       export:
+        choose_columns_desc: Velg kolonnene du vil eksportere
         create_a_query_desc_html: |
           Opprett en observasjonsspørring akkurat som du ville ha gjort andre steder på siden. Du kan også klippe og lime en observasjons-url fra en annen del av siden. Du må spesifisere et <strong>takson</strong>, <strong>sted</strong>, en <strong>bruker</strong>,
           et <strong>prosjekt</strong>, eller en <strong>søkespørring</strong>.
+        ident_by_user_desc_html: |
+          Kolonner for den nåværende identifikasjonen av %{user}
         query_placeholder: "Velg spørrinsgparametre under eller lim in en observasjons-url"
         geo_help_html: |
           By-, område-, fylke-, landsfelt basert på koordinater. Tilsvarende administrative nivåer brukes der disse stedstyper ikke brukes.
