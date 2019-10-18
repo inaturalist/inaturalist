@@ -221,6 +221,7 @@ namespace :inaturalist do
     Dir.glob(Rails.root.join("app/views/**/*")).each(&scanner_proc)
     Dir.glob(Rails.root.join("app/models/**/*")).each(&scanner_proc)
     Dir.glob(Rails.root.join("app/helpers/**/*")).each(&scanner_proc)
+    Dir.glob(Rails.root.join("lib/**/*")).each(&scanner_proc)
     all_keys
   end
 
@@ -430,69 +431,41 @@ namespace :inaturalist do
   EOT
   task :potentially_unused_i18n_keys => :environment do
     patterns_to_ignore = [
-      /^activemodel\./,
-      /^activerecord\./,
-      /^add_annotations_for_controlled_attribute\./,
+      # Keys scoped with dots tend to come from third parties like momentjs or
+      # are intended to be dynamically generated, so I'm ignoring them here.
+      # There are almost certainly some view-specific keys that will get
+      # incorrectly omitted by this
+      /\./,
       /^add_life_stage_/,
       /^admin$/,
-      /^all_taxa\./,
       /^alphabetical$/,
       /^are_you_sure_want_delete_taxon/,
-      /^authority_list\./,
-      /^change_types\./,
       /^cc_/,
-      /^copyright\./,
       /^curator$/,
-      /^date\./,
-      /^date_format\./,
-      /^datetime\./,
-      /^devise\./,
-      /^doorkeeper\./,
-      /^errors\./,
       /^Family/,
       /^flag_for_/,
-      /^forum_categories\./,
       /^Genus/,
-      /^helpers\./,
-      /^i18n\./,
       /^inbox$/,
       /^inviteonly$/,
       /^large$/,
-      /^leaderboard_most\./,
-      /^lexicons\./,
-      /^list_views\./,
       /^listed_taxa$/,
-      /^locale\./,
-      /^locales\./,
       /^manager$/,
       /^medium$/,
       /^mentioned_you_in_/,
       /^message_from_user_/,
-      /^momentjs\./,
       /^most_agree$/,
       /^most_disagree$/,
-      /^name_providers\./,
-      /^number\./,
       /^observation_field_type_/,
-      /^occurrence_status_descriptions\./,
-      /^occurrence_status_levels\./,
       /^open$/,
       /^other_taxa_commonly_misidentified_as_this_/,
       /^original$/,
-      /^place_geo\./,
-      /^places_name\./,
-      /^ranks\./,
-      /^rules_types\./,
       /^sent$/,
+      /^simple$/,
       /^small$/,
       /^some_agree$/,
-      /^source_list\./,
+      /^taxon_is_a_rank_of_.*/,
       /^taxonomic$/,
-      /^views\.observations\.field_descriptions\./,
-      /^views\.projects\.edit\.rules\./,
-      /^views\.projects\.edit\.rules\./,
-      /^views\.projects\.project_user_curator_coordinate_access_labels\./,
-      /^views\.taxa\.show\.frequency\./,
+      /^user_added_a/,
     ]
     all_keys_in_use = (get_i18n_keys_in_js + get_i18n_keys_in_rb).uniq
 
