@@ -14,11 +14,6 @@ pl:
     few: "<span class='count'>%{count}</span> rozwiązane zgłoszenia"
     many: "<span class='count'>%{count}</span> rozwiązanych zgłoszeń"
     other: "<span class='count'>%{count}</span> rozwiązanego zgłoszenia"
-  x_followers:
-    one: '1 obserwujący'
-    few: '%{count} obserwujących'
-    many: '%{count} obserwujących'
-    other: '%{count} obserwującego'
   x_identifications:
     one: '1 identyfikacja'
     few: '%{count} identyfikacje'
@@ -40,21 +35,6 @@ pl:
     few: '<span class="count">%{count}</span> identyfikujących'
     many: '<span class="count">%{count}</span> identyfikujących'
     other: '<span class="count">%{count}</span> identyfikującego'
-  x_ids:
-    one: '1 identyfikacja'
-    few: '%{count} identyfikacje'
-    many: '%{count} identyfikacji'
-    other: '%{count} identyfikacji'
-  x_lists:
-    one: '1 lista'
-    few: '%{count} listy'
-    many: '%{count} list'
-    other: '%{count} listy'
-  x_journal_posts:
-    one: '1 wpis w dzienniku'
-    few: '%{count} wpisy w dzienniku'
-    many: '%{count} wpisów w dzienniku'
-    other: '%{count} wpisu w dzienniku'
   x_journal_posts_html:
     one: '<span class="count">1</span> wpis w dzienniku'
     few: '<span class="count">%{count}</span> wpisy w dzienniku'
@@ -115,21 +95,6 @@ pl:
     few: "%{count} inne osoby"
     many: "%{count} innych osób"
     other: "%{count} innej osoby"
-  x_people_found_this_helpful:
-    one: 'Jedna osoba uznała to za pomocne'
-    few: '%{count} osoby uznały to za pomocne'
-    many: '%{count} osób uznało to za pomocne'
-    other: '%{count} osoby uznało to za pomocne'
-  x_people_like_this:
-    one: '1 osoba lubi to'
-    few: '%{count} osoby lubią to'
-    many: '%{count} osób lubi to'
-    other: '%{count} osoby lubi to'
-  x_people_agree_html:
-    one: '<span class="count">1</span> osoba zgadza się'
-    few: '<span class="count">%{count}</span> osoby zgadzają się'
-    many: '<span class="count">%{count}</span> osób zgadza się'
-    other: '<span class="count">%{count}</span> osoby zgadza się'
   x_photos:
     one: "1 zdjęcie"
     few: "%{count} zdjęcia"
@@ -609,7 +574,6 @@ pl:
   assessment_was_successfully_created: Ocena została pomyślne utworzona.
   assessment_was_successfully_updated: Ocena została pomyślne zaktualizowana.
   associations: Powiązania
-  at: o
   at_time: "o %{time}"
   attached_taxon: Powiązany takson
   #Noun form, as in a property of something. Generally used to describe the
@@ -658,7 +622,6 @@ pl:
   batch_edit_taxa_for_x_html: "Seryjna edycja taksonów dla %{x}"
   batch_operations: Operacje seryjne
   be_the_first_to_fave_this_observation: Polub tę obserwację jako pierwszy!
-  because: ponieważ
   because_of: z powodu
   before_importing_photos: przed zaimportowaniem zdjęć
   belives_this_is_a_comprehensive_list_of: uważa, że to jest kompleksowa lista
@@ -698,7 +661,6 @@ pl:
   card: Karta
   casual: nieformalny
   casual_: Nieformalny
-  catalogue_of_life: Katalog Życia
   categories: Kategorie
   cc_0_description: "Ta licencja pozwala na opublikowanie twojej pracy w domenie publicznej. Dzięki temu inni mogą kopiować, modyfikować, dystrybuować i odtwarzać twoje dzieło, nawet w celach komercyjnych, bez pytania cię o zgodę oraz bez uznania twojego autorstwa. Jest to najbardziej otwarta forma licencjonowania, polecana do szerokiego rozprzestrzeniania licencjonowanych materiałów."
   cc_0_name: Brak praw autorskich (CC0)
@@ -893,7 +855,6 @@ pl:
   convert: Konwertuj
   coordinate_systems: System współrzędnych
   coordinates: Współrzędne
-  coordinates_private: (prywatne współrzędne)
   copy: Kopiuj
   copy_and_paste_the_following_code_to: Kopiuj i wklej ten kod, aby zagnieździć to oszacowanie na innej stronie.
   copy_and_paste_this_into_your_own_html: Kopiuj i wklej to do swojego HTMLa.
@@ -1164,7 +1125,6 @@ pl:
   everyone_: Wszyscy
   everywhere: wszędzie
   exact: Dokładne
-  exact_coordinates_obscured_for: Dokładne współrzędne obserwacji zagrożonych gatunków są ukryte.
   exact_date: Dokładna data
   exact_location: Dokładna lokalizacja
   except: poza
@@ -1351,7 +1311,6 @@ pl:
   help_confirm_observations!: Pomóż potwierdzić obserwacje!
   help_support_inaturalist: "Wesprzyj iNaturalist"
   here_are_3_examples: Tutaj są 3 przykłady dobrze przygotowanych danych
-  here_are_our_top_suggestions: Nasze sugestie
   here_are_our_top_species_suggestions: Nasze sugestie dot. gatunku
   hex_color_eg: Kod HEX koloru, np. 65644F
   hi: Witaj,
@@ -2010,7 +1969,6 @@ pl:
   parent_name: Nazwa rodzica
   password: Hasło
   paste: Wklej
-  pdf: PDF
   people_following_user: "Osoby obserwujące %{user}"
   people_user_follows: "Osoby, które obserwuje %{user}"
   people_added:
@@ -2021,9 +1979,7 @@ pl:
   per_week: Tygodniowo
   person: osoba
   per_page: "Na stronę"
-  permalink: Link bezpośredni
   photo: Zdjęcie
-  photo?: Zdjęcie?
   photo_browser: Przeglądarka zdjęć
   photo_deleted: Zdjęcie usunięte
   photo_type: Typ zdjęcia
@@ -2349,7 +2305,6 @@ pl:
   previous_tab: Poprzednia strona
   print_verb: Drukuj
   privacy: Prywatność
-  privacy_policy: Polityka prywatności
   proceed: Kontynuuj
   processing: Przetwarzanie
   processing3p: "Przetwarzanie..."
@@ -2401,11 +2356,7 @@ pl:
     leaves: Liście
   read_more: Czytaj więcej
   read_the_full_wikipedia: Przeczytaj pełen opis na Wikipedii
-  real_time_stats: Statystyki w czasie rzeczywistym
   reason: Powód
-  reason_label: "Powód:"
-  recently_active_projects_from_everywhere: "Niedawno aktywne projekty z całego świata"
-  recently_created_projects_from_everywhere: "Niedawno utworzone projekty z całego świata"
   refresh: Odśwież
   refreshing: odświeżanie
   remember_me: Zapamiętaj mnie
@@ -2413,9 +2364,7 @@ pl:
   remove_all_tags: Usuń wszystkie tagi
   remove_from: Usuń z
   remove_curator: Usuń opiekuna
-  remove_curator_role: Usuń rolę opiekuna
   remove_curator_status: Usuń status opiekuna
-  remove_from_id_please?: Usunąć z działu Proszę o identyfikację?
   remove_from_list: Usuń z listy
   remove_from_project: Usuń z projektu
   remove_this_section: Usuń tą sekcję
@@ -2430,7 +2379,6 @@ pl:
   reptiles: gady
   research_grade: Poziom Badawczy
   review_all: Przejrzyj wszystkie
-  review_verb: Przejrzyj
   reviewed: Przejrzane
   rg_observations: Obserwacje RG
   row_singular_or_plural: Wiersz(e)
@@ -2439,33 +2387,27 @@ pl:
   save_all: Zapisz wszystko
   save_and_add_another: Zapisz i dodaj kolejny
   save_changes: Zapisz zmiany
-  save_colors: Zapisz kolory
   save_comment: Zapisz komentarz
   save_draft: Zapisz wersję roboczą
   save_fields: Zapisz pola
-  save_guide: Zapisz poradnik
   save_observation: Zapisz obserwację
   save_photos: Zapisz zdjęcia
   saved: Zapisano
   saving: "Zapisywanie..."
   saving_verb: Zapisywanie
   search_for_species: Szukaj gatunków
-  search_obs: "Szukaj obserwacji..."
   search_projects: Szukaj Projektów
   search_species: Szukaj gatunków
   search_species_: Szukaj gatunków...
-  search_taxa: "Szukaj taksonów..."
   search_this_taxon: szukaj tego taksonu
   searching: "Szukanie..."
   select_this_taxon: Wybierz ten takson
-  send_invite: Wyślij zaproszenie
   send_invites_to: Wyślij zaproszenie do
   send_me_reset_password_instructions: Wyślij mi instrukcje resetowania hasła
   send_the_invites: Wyślij zaproszenia
   sending: Wysyłanie...
   #Label for messages you've sent
   sent: Wysłano
-  september: Wrzesień
   set_license: Ustaw licencję
   settings: Ustawienia
   share: Udostępnij
@@ -2476,12 +2418,9 @@ pl:
   sign_in: Zaloguj się
   sign_up_with_provider: "Zarejestruj się za pomocą %{provider}"
   sign_out: Wyloguj się
-  sign_up!: Zarejestruj się!
   sign_up: Zarejestruj się
-  sign_up_exclamation: Zarejestruj się!
   similar_species: Podobne gatunki
   similar_taxa: Podobne taksony
-  sign_in_exclamation: Zaloguj się!
   some_observations_failed_to_be_added: Nie udało się dodać niektórych Obserwacji do projektów
   some_rights_reserved: niektóre prawa zastrzeżone
   something: Coś
@@ -2502,42 +2441,33 @@ pl:
   source_url: Źródłowy adres URL
   sources: Źródła
   spam: Spam
-  spanish: Hiszpański
   states: Stany
   stats: Statystyki
   stats_for_this_year_have_not_been_generated: Statystyki dla tego roku nie zostały wygenerowane.
-  stats_title: Statystyki strony
   status: Status
   still_needs_id?: Społeczność może potwierdzić/ulepszyć oznaczenie?
   stop_editing: Przestań edytować
   stop_following_user: "Przestań obserwować %{user}"
   stop_testing: Przestań testować
-  stop_updating_position: Przestań aktualizować pozycję
   submission_model_description: Kto może dodawać obserwacje do Twojego projektu?
   subscribe_to_a_taxon: Subskrybuj takson
   subscribe_to_a_place: Subskrybuj lokalizację
-  subscribe_to_this_observation: Subskrybuj tę obserwację
   suggest_an_identification: Zasugeruj identyfikację
   suggestions: Sugestie
   support_inaturalist: Wesprzyj iNaturalist
-  suspicious_photos: Podejrzane zdjęcia
   take_me_flickr!: Tak, zabierz mnie do Flickr!
-  take_me_back: Zabierz mnie z powrotem
   taxa: Taksony
   taxa_info: Informacje o Taksonach
-  taxa_all_species_html: "Wszystkie gatunki"
   taxa_needing_curation: Taksony wymagające opieki
   taxon: Takson
   taxon_autocomplete_placeholder: Ptaki, monarcha, itp.
   taxon_is_threatened_coordinates_hidden_desc: |
     Jeden z taksonów zasugerowanych w identyfikacjach lub jeden z taksonów zawierających którykolwiek z tych taksonów jest znany jako rzadki i/lub zagrożony, dlatego miejsce tej obserwacji zostało ukryte.
   taxonomy: Taksonomia
-  taxon_: takson
   taxon_deleted: Takson usunięty.
   tell_the_world_a_little_about_yourself: Powiedz nam coś o sobie
   tell_us_why: Powiedz nam dlaczego...
   thanks!: Dzięki!
-  thanks_for_signing_up: Dziękujemy za rejestrację!
   thats_not_a_real_date: To nie jest prawdziwa data!
   the_people_of_inat: "Ludzie z %{site_name}"
   the_world: Świat
@@ -2553,14 +2483,12 @@ pl:
   this_observation_was_created_using: "Ta obserwacja została wykonana przy użyciu:"
   threatened: Zagrożony
   to_add_comments: aby dodać komentarze
-  to_add_identifications: aby dodać identyfikacje
   to_add_ids: aby dodać identyfikacje
   to_configure_your_widget: aby skonfigurować swój widżet.
   to_suggest_an_identification: aby zasugerować identyfikację
   today: Dzisiaj
   too_many_results: Zbyt wiele wyników
   tools: Narzędzia
-  top_5_identifiers: 5 Najlepszych identyfikujących
   top_identifier: Najlepszy identyfikujący
   top_identifiers: Najlepsi identyfikujący
   top_identifiers_of_taxon: Najlepsi identyfikujący %{taxon}
@@ -2574,7 +2502,6 @@ pl:
   type: Typ
   updating: Aktualizowanie...
   upload_photo: Prześlij zdjęcie
-  upload_photos: Prześlij zdjęcia
   uploaded_by: Przesłane przez
   uploader:
     tooltips:
@@ -2597,7 +2524,6 @@ pl:
   user_is_now_a_curator_for_project_html: |
     <strong>%{user}</strong> jest teraz opiekunem projektu %{project}
   user_muted: Użytkownik wyciszony
-  user_observations: Obserwacje użytkownika
   user_suggested_an_id: "%{user} zasugerował oznaczenie"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> napisał,
   username: Nazwa użytkownika
@@ -2605,30 +2531,23 @@ pl:
   username_or_user_id: Nazwa użytkownika lub identyfikator użytkownika
   users: Użytkownicy
   users_comment_html: "Komentarz <a href='%{url}'>%{user}</a>"
-  users_observations: "Obserwacje %{user}"
   users_projects: "Projekty użytkownika %{user}"
   value: Wartość
   values: Wartości
   view: Zobacz
   view_all: Zobacz wszsytkie
   view_all_flags: Zobacz wszystkie zgłoszenia
-  view_all_from_x: Zobacz wszsytkie od %{x}
   view_all_members: Zobacz wszystkich użytkowników
   view_all_n: "Zobacz wszystkie %{n}"
   view_all_observations: Zobacz wszystkie obserwacje
-  view_all_your_projects: Zobacz wszystkie swoje projekty
   view_assessment: Zobacz ocenę
-  view_change: Zobacz zmianę
   view_details: Zobacz szczegóły
   view_full_observation: Zobacz pełną obserwację
   view_journal: Zobacz dziennik
-  view_more_observations: Zobacz więcej obserwacji
-  view_more_observations_from_x: "Zobacz więcej obserwacji od %{x}"
   view_more_observations_from: Zobacz więcej obserwacji od
   view_more_observations_near_x_place: "Zobacz więcej obserwacji w pobliżu %{place} na <nobr>%{site_name}&raquo;</nobr>"
   view_more_observations_of_x_project: "Zobacz więcej obserwacji z projektu %{project} na <nobr>%{site_name}&raquo;</nobr>"
   view_more_observations_of_x_taxon: "Zobacz więcej obserwacji %{taxon} na <nobr>%{site_name}&raquo;</nobr>"
-  view_more_recent_observations: Zobacz więcej ostatnich obserwacji
   view_observation: Zobacz obserwację
   view_observations: Zobacz obserwacje
   view_observation_flags: Zobacz zgłoszenia obserwacji
@@ -2636,18 +2555,14 @@ pl:
   view_projects_from_place: "Zobacz projekty z miejsca %{place}"
   view_stats: Zobacz statystyki
   view_the_observation: Zobacz obserwację
-  view_unidentified_observations: "Zobacz niezidentyfikowane obserwacje..."
   view_user_observations: "Zobacz obserwacje %{user}"
   view_x: "Zobacz %{x}"
-  view_xs_journal: "Zobacz dziennik %{x}"
   view_your_inbox: Zobacz skrzynkę odbiorczą
   view_your_observations: Zobacz swoje obserwacje
   view_all_of_your_observations_from_x: "Zobacz wszystkie swoje obserwacje z %{x}"
   visually_similar: Wizualnie podobne
-  want_to_test_a_new_version_of_this_page: Chcesz przetestować nową wersję tej strony?
   weather: Pogoda
   website: Strona internetowa
-  welcome!: Witaj!
   what_did_you_see: Co zaobserwowałeś?
   what_did_you_see?: <em>Co</em> zaobserwowałeś?
   whats_this?: Co to jest?
@@ -2662,10 +2577,8 @@ pl:
   you_arent_a_member_of_that_project: Nie jesteś członkiem tego projektu.
   you_arent_following_that_person: "Nie obserwujesz tej osoby."
   you_can_only_block_three_users: Możesz zablokować tylko trzech użytkowników
-  you_cant_remove_other_peoples_observations: Nie możesz usunąć obserwacji innych ludzi.
   you_must_fill_out_the_required_fields: Musisz wypełnić wymagane pola
   you_sure_delete_check_list: "Czy na pewno chcesz usunąć tę listę? Ktoś mógł włożyć dużo pracy w stworzenie jej..."
-  your_drafts: Twoje szkice
   your_email_address: Twój adres email
   your_flickr_account: Twoje konto Flickr
   your_observations: Twoje obserwacje
