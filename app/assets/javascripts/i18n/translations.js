@@ -13630,7 +13630,6 @@ I18n.translations["en"] = {
   "terms": "Terms",
   "terrain": "terrain",
   "that_was_the_last_observation_matching_the_current_filters": "That was the last observation matching the current filters.",
-  "the_": "The",
   "the_below_items_are_needed_to_achieve": "The below items are needed to achieve <span className=\"bold\">Research Grade:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "The Community ID requires at least two identifications.",
   "the_community_must_feel_that": "The community must feel that the Community Taxon is the best it can be based on the evidence\n",

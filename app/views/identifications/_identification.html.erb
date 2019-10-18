@@ -26,9 +26,9 @@
       <span class="user">
         <% if user -%>
           <% if is_me?(user) %>
-            <strong><%=t(:your).singularize %></strong> <%= t :id %>:
+            <%=t :label_colon, label: t(:your_id) %>
           <% else %>
-            <%= link_to(t(:user_s_id, :user => user.login, :id => t(:id)), person_path(user)) %>:
+            <%=t( :label_colon, label: link_to( t(:users_id, user: user.login), person_path( user ) ).html_safe ).html_safe %>
           <% end %>
         <% elsif usertext %>
           <%= usertext %>

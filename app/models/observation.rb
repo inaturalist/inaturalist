@@ -752,22 +752,6 @@ class Observation < ActiveRecord::Base
   end
   
   def to_plain_s(options = {})
-    if true
-      s = self.species_guess.blank? ? I18n.t(:something) : self.species_guess
-      if options[:verb]
-        s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
-      end
-      unless self.place_guess.blank? || options[:no_place_guess] || coordinates_obscured?
-        s += " #{I18n.t(:from, :default => 'from').downcase} #{self.place_guess}"
-      end
-      s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
-      unless self.time_observed_at.blank? || options[:no_time]
-        s += " #{I18n.t(:at)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
-      end
-      s += " #{I18n.t(:by).downcase} #{user.try_methods(:name, :login)}" unless options[:no_user]
-      return s.gsub(/\s+/, ' ')
-    end
-    # Making this unreachable until things get translated
     # I18n.t( :observation_brief_something_on_day )
     # I18n.t( :observation_brief_something_by_user )
     # I18n.t( :observation_brief_something_from_place )

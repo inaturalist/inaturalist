@@ -3,20 +3,23 @@
 - flaggable = flaggable.becomes( Photo ) if flaggable.is_a?( Photo )
 - flaggable = flaggable.becomes( Sound ) if flaggable.is_a?( Sound )
 %div{ class: "flag #{"resolved" if flag.resolved?}" }
-  - if flag.user
-    = link_to flag.user.login, flag.user
-  - else
-    = @site.site_name_short
-  = link_to t(:flagged), flag, action: "show"
-  - if flaggable.respond_to?(:user) && flaggable.user
-    = link_to "#{flaggable.user.login}'s", :controller => "users", :action => "show", :id => flaggable.user.id
-  - else
-    = t(:the)
-  = flaggable_class.name.humanize.downcase
-  = link_to( flaggable.to_plain_s, flaggable ) if flaggable.respond_to?(:to_plain_s)
-  = t :because
-  = "\"#{flag.flag}\""
-  %span.small.meta.ui
+  %table.table.table-condensed.table-bordered.plain
+    %tbody
+      %tr
+        %th=t :flagger
+        %td
+          - if flag.user
+            = link_to_user flag.user
+          - else
+            = @site.site_name_short
+      %tr
+        %th=t :content
+        %td
+          = link_to flaggable.respond_to?( :to_plain_s ) ? flaggable.to_plain_s : t( flag.flaggable_type )
+      %tr
+        %th=t :reason
+        %td= "\"#{flag.flag}\""
+  .small.meta.ui
     = link_to flag do
       %span.count= flag.comments.size
       = t(:comments).downcase
