@@ -2,18 +2,9 @@ mk:
   x_comments:
     one: '1 коментар'
     other: '%{count} коментари'
-  x_followers:
-    one: '1 следбеник'
-    other: '%{count} следбеници'
   x_identifications:
     one: '1 назнака'
     other: '%{count} назнаки'
-  x_lists:
-    one: '1 список'
-    other: '%{count} списоци'
-  x_journal_posts:
-    one: '1 дневничка објава'
-    other: '%{count} дневнички објави'
   x_matching_taxa:
     one: '1 совпаднат таксон'
     other: '%{count} совпаднати таксони'
@@ -35,9 +26,6 @@ mk:
   x_others:
     one: "1 друг"
     other: "%{count} други"
-  x_people_agree_html:
-    one: '<span class="count">1</span> се согласува'
-    other: '<span class="count">%{count}</span> се согласуваат'
   x_photos:
     one: "1 слика"
     other: "%{count} слики"
@@ -326,7 +314,6 @@ mk:
   batch_edit: Збирно уредување
   batch_edit_taxa_for_x_html: "Збурно уредување на таксони за %{x}"
   batch_operations: Збирни постапки
-  because: бидејќи
   bg_color: заднинска боја
   black: црна
   blog_widget: Блоговски елемент
@@ -349,7 +336,6 @@ mk:
   cancel: Откажи
   captive_cultivated: Во заробеништво / одгледуван
   casual: површно
-  catalogue_of_life: Каталог на животот
   cc_attribution_license: лиценца Криејтив комонс Наведи извор
   cc_by_name: Припис
   change_cover: смени насловна
@@ -409,7 +395,6 @@ mk:
   conservation_status_descriptions:
     iucn: Истоветен код во Црвениот список на МСЗП
   coordinates: Координати
-  coordinates_private: (координатите се приватни)
   copy: Копирање
   copyright:
     some_rights_reserved: некои права задржани
@@ -539,7 +524,6 @@ mk:
   every_species_seen_by: Секој вид забележан од
   everyone: сите
   everywhere: насекаде
-  exact_coordinates_obscured_for: Точните координати на загрозените видови се прикриени за јавноста.
   exact_location: Точна_местоположба
   exact_rank: Точен ранг
   exit_full_screen: "Излези од цел екран"
@@ -658,7 +642,6 @@ mk:
   join_project: Приклучете се на проектов!
   join_this_project: Приклучи се на проектов
   'joined!': Приклучено!
-  joined_any_projects: приклучено кон ниеден проект
   journal: Дневник
   jpg_png_or_gif: "JPG, PNG или GIF"
   labels: Натписи
@@ -948,15 +931,12 @@ mk:
   paste: Вметни
   paste_in_a_comma_separated_list: Тука пекопирајте список на земји, одделени со запирки
   people: Луѓе
-  people_agree: се согласуваат
   people_following_user: "Луѓе што го следат корисникот %{user}"
   people_user_follows: "Луѓе што ги следи %{user}"
   person: лице
   personal_message: Лична порака
   per_page: "По страница"
-  permalink: Постојана врска
   photo: Слика
-  photo?: Слика?
   photo_attribution: "Слика: %{attribution}"
   photo_by_id_attribution: "Слика: %{id}, %{attribution}"
   photos_or_sounds?: Слики или звуци?
@@ -966,7 +946,6 @@ mk:
     large: голема
     original: изворно
   photos_size_photos: "%{photos_size} слики"
-  photos_size_photo: "%{photos_size} слика"
   photos_updated: Сликите се подновени.
   pick_a_username: Изберете корисничко име
   pink: розова
@@ -1094,7 +1073,6 @@ mk:
   plants: растенија
   please_add_a_citation_for_this_change: Додајте навод во страницава.
   position: Положба
-  positional_accuracy: Положбена уточнетост
   posted_by: Објавено од
   posted_on: Објавено на
   posts: Објави
@@ -1107,9 +1085,7 @@ mk:
   previous: Претходно
   prev: Прет
   previous_page: Претходна страница
-  print_in_browser: Испечати во прелистувач
   privacy: Заштита на личните податоци
-  privacy_policy: Заштита на личните податоци
   private: приватно
   processing3p: "Обработувам..."
   profile: Профил
@@ -1119,7 +1095,6 @@ mk:
   project_icon: Проектна икона
   project_members: "Членови на %{project}"
   project_rules: Правила на проектот
-  project_terms_and_rules: услови и правила на проектот
   project_x_was_delete: "%{project} е избришан"
   projects: Проекти
   projects_description: |
@@ -1127,9 +1102,7 @@ mk:
   projects_from_place: "Проекти од %{place}"
   projects_in_x: "Проекти во %{x}"
   projects_you_admin: Проекти што ги раководите
-  projects_youve_joined: Проекти во кои членувате
   protozoans: праживотни
-  public_coordinates_obscured_by: "Јавните координати се затскриени во растојание од %{distance} км"
   public_domain: Јавна сопственост
   publish: Објави
   purple: виолетова
@@ -1161,40 +1134,26 @@ mk:
     variety: разновидност
     form: облик
   ray_finned_fishes: зракоперки
-  recent_additions: Неодамна додадени
-  recent_comments_on_your_stuff: Скорешни коментари на вашите работи
   recent_observations: Скорешни набљудувања
   recent_post: Скорешна објава
   recent_atom_observations_by: "Скорешни набљудувања од %{login} (Атом)"
   recent_observations_by: "Скорешни набљудувања од %{login}"
-  recent_updates: Скорешни поднови
   recently_active: Неодамна активни
-  recently_active_projects_from_everywhere: "Неодамна активни проекти од секаде"
-  recently_active_projects_from_place: "Неодамна активни проекти од  %{place}"
   recently_created: Неодамна создадени
-  recently_created_projects_from_everywhere: "Неодамна создадени проекти од секаде"
-  recently_created_projects_from_place: "Неодамна создадени проекти од %{place}"
-  record!: Заведете!
   red: црвена
   redo_search_in_map_area: Пребарај одново за ова подрачје од картата
   refresh: Превчитај
-  remove_from_id_please?: Да го отстранам од „Препознајте!“?
   remove_from_list: Отстрани од списокот
   remove_from_project: Отстрани од проектот
   remove_this_section: Отстрани го делов
   remove_manager: Отстрани го раководителот
-  remove_project_user: ОТстрани го проектниот корисник
   remove_selected: Отстрани го одбраното
   remove_tags: Отстрани ги ознаките
-  research_quality: Истражен квалитет
-  reset_your_password: Ставете нова лозинка
   resolve: Реши
   results: ставки
-  roadmap: патна карта
   rules_types:
     must_be_in: мора да биде во таксон
   said: рече
-  sat: саб
   satellite: сателитска
   save: Зачувај
   save_all: Зачувај ги сите
@@ -1202,48 +1161,39 @@ mk:
   save_and_continue: "Зачувај и продолжи"
   save_and_add_taxa: "Зачувај и почни додавање на видови"
   save_changes: Зачувај проемни
-  save_colors: Зачувај бои
   save_comment: Зачувај коментар
   save_draft: Зачувај нацрт
   save_fields: Зачувај полиња
   save_flag: Зачувај
-  save_guide: Зачувај водич
   save_guide_taxon: Зачувај таксон на водичот
   save_identification: Зачувај препознавање
   save_observation: Зачувај
   saving: "Зачувувам..."
   schemes: Шеми
   schemes_including: Шеми со
-  scientific_names: Научни имиња
   search: Пребарај
   search_all_fields: пребарај по сите полиња
   search_by_name_or_email: Пребарај по име или е-пошта
   search_catalogue_of_life: 'Пребарај по <a href="http://www.catalogueoflife.org">Каталогот на животот</a>'
   search_catalogue_of_life_raquo: "Пребарај го Каталогот на животот &raquo;"
   search_for_species: Бребарај вид
-  search_places: Пребарај места
   search_projects: Пребарај проекти
   search_results_for: Исход од пребарувањето на
   search_remote: Пребарај далечински
   search_species: Пребарај видови
-  search_taxa: "Пребарај таксони..."
   search_the_map: Пребарај ја картата
   search_this_taxon: пребарај го таксонов
-  search_ubio: Пребарај го '<a href="http://www.ubio.org">uBio</a>'
   search_ubio_raquo: "Пребарај го uBio &raquo;"
   search_your_photos: Пребарајте по вашите слики
   searching: "Пребарувам..."
   select: Избери
   select_all: Избери сè
-  select_an_album: Избери албум
   select_one_or_more_photos: 'Изерете една или повеќе слики'
   select_none: Ниедно
   send: испрати
   sending: Испраќам...
-  september: септември
   set_license: Задај лиценца
   settings: Поставки
-  share_your_observation_with_researchers_by: Сподели го набљудувањето со истражувачите на
   short_code_for_this_place: Краток код за местово, на пр. US за Соединетите Држави
   show: Прикажи
   show_taxa_from_everywhere: "Прикажи таксони од секаде"
@@ -1251,25 +1201,18 @@ mk:
   showing_one_to: Приказ на 1 -
   showing_taxa_from_everywhere: "Приказ на таксони од секаде"
   showing_taxa_from_place: "Приказ на таксони од %{place}"
-  shown_publicly_as: Прикажано јавно како
   sign_in: Најава
   sign_in_with_provider: "Најави ме со %{provider}"
   sign_out: Одјава
-  sign_up!: Пријавете се!
   sign_up: Пријава
-  sign_up_exclamation: Пријавете се!
   similar_species: Слични видови
-  sign_in_exclamation: Најавете се!
   single_observation: Едно набљудување
   sizes: Големини
   site_name_place: "Место на %{site_name}"
   site_observations_export_from_date: "Извоз на набљудувања од %{site_name} од %{date}"
   site_taxon_page: "Таксонска промена на %{site_name}"
-  so_meta!: ама е мета!
   some_agree: некои се согласуваат
   some_other_reason: Друга причина што треба да ја наведете подолу.
-  some_people: Некои луѓе
-  some_people_that: Некои луѓе кои
   some_rights_reserved: некои права задржани
   something: Нешто
   something_: нешто
@@ -1311,23 +1254,15 @@ mk:
   sources_and_credits: Извори и приписи
   sourcing: Извори
   spam: спам
-  spanish: шпански
   species: Видови
   species_from_around_the_world: Видови од целиот свет
-  species_guide: Водич за видови
-  species_name: имиња на видови
-  species_or_lower: вид или пониско
   species_search: Пребарување на видови
   species_taxon_name: Име на видот / таксонот
   species_unknown: Непознат вид
   src: Извор
   start: Почни
-  start_a_new_list: Почни нов список
   start_a_new_project: Почни нов проект
   start_a_project: Почни проект
-  start_adding_observations: Почнете да додавате набљудувања
-  start_new_account: Започни нова сметка
-  start_new_project: Започни нов проект
   start_one_now: Започнете го сега!
   start_typing_field_name: Почнете да пишувате име на полето...
   start_typing_place_name: Почнете да пишувате име на местото...
@@ -1335,24 +1270,17 @@ mk:
   start_typing_someones_name: "Почнете да пишувате нечие име..."
   stop_editing: Запри со уредување
   stop_following_user: "Запри со следење на %{user}"
-  stop_updating_position: Запри поднова на положбата
   stuff_just_added: "Работи кои штотуку ги додадовте..."
   subject_resolved_noun_html: "%{subject} го реши %{noun}"
   subject_affecting_stuff_html: "%{subject} што се однесува на %{stuff}"
   subject_committed_thing_affecting_stuff_html: "%{subject} спроведе %{thing} што се однесува на %{stuff}"
-  submit: Поднеси
-  submit_comment: Поднеси коментар
   submitted: Поднесено
   subscribe_to_this: Претплати се на ова
-  suggest_an_id: Предложете што е
   summary: Преглед
-  suspicious_photos: Сомнителни слики
-  siutable_observations: соодветни набљудувања
   suspend_user: Исклучи го корисникот
   sw_lat: ЈЗ шир.
   sw_lon: ЈЗ дол.
   sync: Да усогласам?
-  sync_with_eol: Усогласи со EOL
   sync_obs_with_photo_metadata: "Да усогласам набљ. со метапод. од слики?"
   synonyms: Синоними
   table: Табела
@@ -1362,33 +1290,22 @@ mk:
   take_me_facebook: Да, одведи ме на Facebook!
   take_me_flickr!: Да, одведи ме на Flickr!
   taxa: Таксони
-  taxa_all_species_html: "Таксони &middot; Сите видови"
   taxa_needing_curation: Таксони со потреба од загрижување
   taxon: Таксон
-  taxon_: таксон
   taxon_map:
     data_url: Податочен URL
     overlays: Облоги
   tell_everyone_a_little_about_you: Кажете им на останатите нешто за себе
   terms: Услови
   terms_and_rules_html: "Услови и правила"
-  terms_of_service: Услови на употреба
   terms_service: Услови на употреба
   terrain: теренска
-  thanks_for_signing_up: Ви благодариме што се пријавивте!
   thats_not_a_real_date: Ова не е вистински датум!
-  the_data_quality_assessment_is: Оценката на квалитетот на податоците дава преглед на точноста на набљудувањето. Сите набљудувања почнуваат со степенот <strong>„површно“</strong>  <strong>„истражно“</strong> grade when
-  the_following_lists: следниве списоци
-  the_list: списокот
-  the_observation_is_georeferenced: набљудувањето <strong>е геоозначено</strong> (т.е. има координати со гео. ширина и должина)
   the_past: во минатото
   the_people_of_inat: "Луѓето на %{site_name}"
-  the_project: проектот
   the_user_x_has_been_suspended: "Корисникот %{user} е исклучен"
   the_user_x_has_been_unsuspended: "Корисникот %{user} е повторно примен"
   these_folks_kindly_volunteer_to: Овие луѓе љубезно и доброволно ја одржуваат нашата таксономија и се занимаваат со други проблематики.
-  this_species: овој вид
-  this_tool_is_experimental: Оваа алатка е пробна, затоа
   threatened: Загрозен
   time_ago: "пред %{time}"
   today: Денес
@@ -1397,18 +1314,13 @@ mk:
   total_members: Вкупно членови
   total_observations: Вкупно набљудувања
   total_unique_observers: Вкупно посебни набљудувачи
-  total_users: "вкупно корисници,"
   type: Внесете
-  type_a_name_and_click: Внесете име и стиснете на ПОБАРАЈ
   type_authority: Внесете орган...
-  type_taxon_name_and_click_lookup: "Внесете име на таксонот и стиснете на „Побарај“"
   uicn_red_list_status: "Статус на Црвениот список на МСЗП:"
-  un_license_this_observation: тргни ја лиценцата на набљудувањево
   unclassified: некласифициран
   uninvite: повлечи покана
   unique_identifier_of_this_taxon: Единствена назнака на таксонов во изворната база.
   unique_observers: поединечни набљудувачи
-  unique_observers_last_3_months: поединечни набљудувачи во послениве 3 месеци
   unknown: непознато
   unknown_rank: '(непознат ранг)'
   updating: Подновувам...
@@ -1434,7 +1346,6 @@ mk:
   user_added_an_x_to_noun_html: "%{user} додаде %{x} во %{noun}"
   user_added_x_observations_html: "%{user} додаде %{x} набљудувања"
   user_commented_on: "%{user} искоментира на вашето %{title} %{time}"
-  user_follows: "%{user} следи"
   users_profile: "Профилот на %{user}"
   view: Погл.
   view_all: Погл. сите
@@ -1442,10 +1353,7 @@ mk:
   view_all_n: "Погл. сите %{n}"
   view_all_observations: Погл. сите набљудувања
   view_all_photocount_photos: "Погл. сите %{photo_count} слики"
-  view_all_photos_tagged_taxon_html: 'Погл. сите слики означени со „%{taxon}“ на <nobr>Flickr &raquo;</nobr>'
-  view_all_your_projects: Погл. сите ваши проекти
   view_assessment: Погл. оценка
-  view_change: Погл. промена
   view_check_list_page: Погл. страница со контр. спис.
   view_contributions: Погл. придонеси
   view_details: Подробности
@@ -1454,40 +1362,30 @@ mk:
   view_full_observation: Погл. целосно набљудување
   view_invitation: Погл. покана
   view_journal: Погл. дневник
-  view_leaderboard: Погл. предводници
   view_leaderboard_from_last_month: Погл. предводници од минатиот месец
   view_leaderboard_from_last_year: Погл. предводници од лани
   view_license: Погл. лиценца
   view_lists: Погл. списоци
   view_more: Погл. повеќе
   view_more_about_x: "Погледајте повеќе за %{x}"
-  view_more_observations: Погл. повеќе набљудувања
-  view_more_observations_from_x: "Погледајте повеќе набљудувања од %{x}"
   view_more_observations_from: Погледајте повеќе набљудувања од
   view_more_observations_near_x_place: "Погледајте повеќе набљудувања кај %{place} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Погледајте повеќе набљудувања од %{project} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Погледајте повеќе набљудувања на %{taxon} сместени на <nobr>%{site_name} &raquo;</nobr>"
-  view_more_recent_observations: Погледајте скорешни набљудувања
   view_observation: Погл. набљудување
   view_observations: Погл. набљудувања
   view_observations_by_everyone: Погл. набљудувања од сите
-  view_observations_raquo: "Погл. набљудување &raquo;"
   view_on: Погл. на
-  view_on_amphibiaweb: Погл. на AmphibiaWeb
   view_on_flickr: Погл. на Flickr
-  view_on_wikipedia: Погл. на Википедија
   view_original: "Погл. изворна"
   view_original_by: "Погл. изворната од %{by} на %{photo}"
   view_original_ccD_photo: "Погл. изворната слика од %{owner}"
-  view_other_taxa: "Погл. други <nobr> %{taxon_name} &raquo; </nobr>"
   view_place: Погл. место
   view_post: Погл. објава
   view_projects_from_place: "Погл. проекти од %{place}"
   view_stats: Погл. статистики
   view_taxon_changes: Погл. таксонски промени
   view_taxon_page: Погл. таксонска промена
-  view_taxon_page_for: Погл. таксонската страница за овој
-  view_terms: Погл. услови
   view_your_dashboard: Погл. вашиот прегледник
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Погледајте го вашиот прегледник</a> за повеќе новини"
   vulnerable: ранлив
@@ -1499,13 +1397,8 @@ mk:
     <a href="http://picasaweb.google.com">Picasa</a> и
     <a href="http://facebook.com">Facebook</a>
     како места за вдомување на сликите.
-  we_care_privacy: Вашата приватност ни значи!
-  welcome!: Добре дојдовте!
-  welcome_comma!: Добре дојдовте,
   welcome: добре дојдовте
   welcome_back: Мило ни е што се вративте
-  welcome_comma: "Добре дојдовте,"
-  welcome_login: "Добре дојдовте, %{login}"
   welcome_to_inat: "Добре дојдовте на %{site_name}!"
   welcome_to_guides: "Добре дојдовте на Водичите на %{site_name}!"
   welcome_to_x_project: "Добре дојдовте на %{project}"
@@ -1514,7 +1407,6 @@ mk:
   when_did_you_see_it?: Кога го видовте?
   when_did_you_see_them?: <em>Кога</em> ги видовте?
   where: Каде
-  where_did_you_see_it: Каде го видовте?
   where_do_x_live: Каде живеат %{taxa}?
   where_does_x_live: Каде живее %{taxa}?
   where_were_they?: Каде беа?
@@ -1523,18 +1415,13 @@ mk:
   widget: Елемент
   widget_code: Код на елементот
   widget_for: Елемент за
-  will_be: ќе биде
   wikipedia_entry: Статија на Википедија
-  wikipedia_taxobox_raquo: "Таксономска кутија од Википедија &raquo;"
   with: со
   with_errors: Со грешки
-  within_inaturalist: "Во %{site_name}"
   wondering_what_to_do_next: 'Се прашувате што следно да правите? Предлагаме:'
   would_you_like_to: Дали би сакале да
-  would_like_some_help_identifying_this: бара помош со препозавање на видот
   x_journal: "Дневникот на %{user}"
   x_journal_archives_for_y: "Дневникот на %{user}&middot; Архиви за"
-  x_journal_editing: "Дневникот на %{user} &middot; Уредување"
   x_journal_middot: "Дневникот на %{user} &middot;"
   x_journal_new_post: "Дневникот на %{user} &middot; Нова објава"
   x_project_journal: "%{name} — %{project}"
@@ -1550,19 +1437,12 @@ mk:
   yes_i_want_to_join: Да, сакам да се придружам
   yesterday_at: ', вчера во 16:00 ч.'
   you: вие
-  you_admin: со кои раководите
   your_account_has_been_activated: Вашата сметка на е активирана.
   your_home: Ваша почетна
   your_id: Ваша назнака
   your_identification: Ваша назнака
-  your_inat_account_has_been_activated: "Вашата сметка на %{inat} е активирана."
-  your_life_list: вашиот животен список!
-  your_month_observations: вашите набљудувања во %{month}
-  your_new_password_is: Вашата нова лозинка гласи
   your_observations: Ваши набљудувања
   your_profile_was_successfully_updated: Вашиот профил е успешно подновен!
-  your_world!: го вашиот свет!
-  your_dashboard_helps_you: "Прегледникот ви помага да бидете во тек со сето она што другите го прават на iNat. За да следите нечии новини, стиснете на „Следи го/ја [name]“ во заглавието на набљудувањата или профилот на дадениот корисник."
   views:
     views: 'Посети'
     custom_projects:
@@ -1889,5 +1769,3 @@ mk:
           attributes:
             value:
               dna_only_atcg: "за ДНК се признаваат само знаците A, T, C и G"
-  zoom_to_taxon_name: "Приближи на %{taxonname}"
-  zoom_to_x: "приближи на %{x}"
