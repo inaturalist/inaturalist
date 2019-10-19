@@ -1,6 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Row, Col, Panel } from "react-bootstrap";
+import {
+  Grid,
+  Row,
+  Col,
+  Panel,
+  OverlayTrigger,
+  Popover
+} from "react-bootstrap";
 import ResearchGradeProgressContainer from "../containers/research_grade_progress_container";
 import QualityMetricsContainer from "../containers/quality_metrics_container";
 
@@ -14,25 +21,57 @@ class Assessment extends React.Component {
   }
 
   render( ) {
-    const { observation, config } = this.props;
+    const { observation, config, updateSession } = this.props;
     if ( !observation ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
+    const { open } = this.state
     return (
       <Grid>
         <div className="QualityMetrics collapsible-section">
-          <h3
-            className="collapsible"
-            onClick={ ( ) => {
-              if ( loggedIn ) {
-                this.props.updateSession( { prefers_hide_obs_show_quality_metrics: this.state.open } );
-              }
-              this.setState( { open: !this.state.open } );
-            } }
-          >
-            <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
-            { I18n.t( "data_quality_assessment" ) }
-          </h3>
-          <Panel expanded={ this.state.open } onToggle={ () => {} }>
+          <div>
+            <h3
+              className="collapsible"
+              onClick={( ) => {
+                if ( loggedIn ) {
+                  updateSession( { prefers_hide_obs_show_quality_metrics: open } );
+                }
+                this.setState( { open: !open } );
+              }}
+            >
+              <i className={`fa fa-chevron-circle-${open ? "down" : "right"}`} />
+              { I18n.t( "data_quality_assessment" ) }
+            </h3>
+            <OverlayTrigger
+              trigger="click"
+              rootClose
+              placement="top"
+              containerPadding={20}
+              overlay={(
+                <Popover
+                  className="DataQualityOverlay PopoverWithHeader"
+                  id="popover-data-quality"
+                >
+                  <div className="header">
+                    { I18n.t( "data_quality_assessment" ) }
+                  </div>
+                  <div
+                    className="contents"
+                    dangerouslySetInnerHTML={{
+                      __html: I18n.t( "views.observations.show.quality_assessment_help_html", {
+                        site_name: SITE.short_name
+                      } )
+                    }}
+                  />
+                </Popover>
+              )}
+              className="cool"
+            >
+              <span className="popover-data-quality-link">
+                <i className="fa fa-info-circle" />
+              </span>
+            </OverlayTrigger>
+          </div>
+          <Panel expanded={open} onToggle={() => {}}>
             <Panel.Collapse>
               <Row>
                 <Col xs={7}>

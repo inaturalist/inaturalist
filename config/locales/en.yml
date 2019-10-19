@@ -976,7 +976,6 @@ en:
   data_deficient: Data Deficient
   data_quality: Data Quality
   data_quality_assessment: Data Quality Assessment
-  data_quality_assessment_: data quality assessment
   data_used: "Data used:"
   datatype: Datatype
   date_: Date
@@ -1623,9 +1622,6 @@ en:
   inviteonly: invite-only
   invited_x: "Invited %{x}"
   iphone: iPhone
-  is_an_evaluation: |
-    is an evaluation of an observation’s accuracy.
-    Research Grade observations may be used by scientists for research. Cast your vote below:
   is_not_following_anyone: is not following anyone.
   is_now: is now
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is the evidence provided enough to confirm this is %{taxon}?
@@ -5085,6 +5081,10 @@ en:
           project curators cannot see. If you don't want to share the
           coordinates of this observation with the curators of this project,
           you must remove the observation from the project.
+        data_quality_assessment_desc_html: |
+          The Data Quality Assessment is an evaluation of an observation’s
+          accuracy. Research Grade observations may be used by scientists for
+          research. Cast your vote below:
         disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
         identification_count_desc: '# of identifications for an individual taxon'
         flagged_photos_desc_html: |

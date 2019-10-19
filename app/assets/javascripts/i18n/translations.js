@@ -268,7 +268,6 @@ I18n.translations["ar"] = {
   "data_deficient": "نقص البيانات",
   "data_quality": "جودة البيانات",
   "data_quality_assessment": "تقييم جودة البيانات",
-  "data_quality_assessment_": "تقييم جودة البيانات",
   "data_used": "البيانات المستخدمة:",
   "date": {
     "abbr_day_names": [
@@ -541,7 +540,6 @@ I18n.translations["ar"] = {
   "introduced": "أُدخِلت",
   "introduced_in_place": "قُدِّم في %{place}",
   "iphone": "آيفون",
-  "is_an_evaluation": "هو تقييم لدقة المراقبة.\nقد يستخدم علماء البحوث بحوث التقييم العلمي. أرسل تصويتك أدناه:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "هل الأدلة المقدمة تكفي لتأكيد أن هذا %{taxon}؟",
   "it_can_now_be_used_for_research": "يمكنها الآن أن تُستخدَم للبحث ومميزة على مواقع أخرى",
   "item_flagged_notice_html": "تم تعليم هذه كرسالة غير مرغوب فيها ولم تعد \nمرئية للجميع، يمكنك رؤيتها نظرا لأنك أنشأتها، أو لأنك\nأمين موقع، إذا كنت تعتقد أن هذا خطأ، فالرجاء\n<a href=\"mailto:%{help_email}\" class=\"contact\">الاتصال بنا</a>.\n<a href=\"%{manage_flags_path}\">إدارة الأعلام</a>\n",
@@ -1428,7 +1426,6 @@ I18n.translations["ar"] = {
   "terms": "الشروط",
   "terrain": "تضاريس",
   "that_was_the_last_observation_matching_the_current_filters": "كانت هذه الملاحظة الأخيرة مطابقة للمرشحات الحالية.",
-  "the_": "ال",
   "the_below_items_are_needed_to_achieve": "يلزم توفر العناصر التالية لتحقيق <span className=\"bold\"> درجة البحث:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "يتطلب معرف المجتمع معرفين على الأقل.",
   "the_community_must_feel_that": "یجب أن یشعر المجتمع بأن أصنوفة المجتمع ھي الأفضل التي یمكن أن تستند إلی الأدلة\n",
@@ -2003,7 +2000,6 @@ I18n.translations["bg"] = {
   "data_deficient": "недостатъчно данни",
   "data_quality": "Качество на данните",
   "data_quality_assessment": "Оценка на качеството на данните",
-  "data_quality_assessment_": "оценка на качеството на данните",
   "date": {
     "abbr_day_names": [
       "Нд",
@@ -3774,7 +3770,6 @@ I18n.translations["ca"] = {
   "data_deficient": "Dades Insuficients",
   "data_quality": "Qualitat de les dades",
   "data_quality_assessment": "Avaluació de la qualitat de dades",
-  "data_quality_assessment_": "Avaluació de la qualitat de les dades",
   "data_used": "Dades usades:",
   "date": {
     "abbr_day_names": [
@@ -4067,7 +4062,6 @@ I18n.translations["ca"] = {
   "interactions": "Interaccions",
   "introduced": "Introduïda",
   "introduced_in_place": "Introduït a %{place}",
-  "is_an_evaluation": "és una avaluació de la precisió d'una observació.\nLes observacions de Grau de Recerca poden ser utilitzades per científics a les seves recerques. Feu el vostre vot a sota:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Aquesta evidència és suficient per confirmar que és %{taxon}?",
   "it_can_now_be_used_for_research": "Ara pot ser utilitzat per a recerca i mostrat en altres pàgines web",
   "item_flagged_notice_html": "Això ha estat marcat com spam i ja no és visible pel públic. El podeu veure perquè en sou el creador, o sou un\nsupervisor del lloc. Si penseu que això és una errada, si us plau\n<a href=\"mailto:%{help_email}\" class=\"contact\">contacteu amb nosaltres</a>.\n<a href=\"%{manage_flags_path}\">Gestioneu etiquetes</a>\n",
@@ -4867,7 +4861,6 @@ I18n.translations["ca"] = {
   "terms": "Termes",
   "terrain": "terreny",
   "that_was_the_last_observation_matching_the_current_filters": "Aquesta ha estat la darrera observació que coincideix amb  els filtres actuals.",
-  "the_": "El/La",
   "the_below_items_are_needed_to_achieve": "Els elements de sota són necessaris per aconseguir el <span classname=\"bold\">Grau de Recerca</span>:\n",
   "the_community_id_requires_at_least_two_identifications": "La ID de la Comunitat necessita un mínim de dues identificacions.",
   "the_community_must_feel_that": "La comunitat ha de sentir que el Tàxon de la Comunitat és el millor basant-se en l'evidència\n",
@@ -5566,7 +5559,6 @@ I18n.translations["cs"] = {
   "data_deficient": "chybějící údaje",
   "data_quality": "Kvalita údajů",
   "data_quality_assessment": "Hodnocení kvality údajů",
-  "data_quality_assessment_": "hodnocení kvality údajů",
   "data_used": "Použité údaje",
   "date": {
     "abbr_day_names": [
@@ -5835,7 +5827,6 @@ I18n.translations["cs"] = {
   "introduced": "zavedený",
   "introduced_in_place": "Zavedený v %{place}",
   "iphone": "iPhone",
-  "is_an_evaluation": "je hodnocení přesnosti pozorování. Pozorování výzkumného stupně mohou vědci používat při výzkumu. Hlasujte níže:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Jsou předložené důkazy dostatečné k potvrzení, že toto je %{taxon}?",
   "it_can_now_be_used_for_research": "Nyní může být využito pro výzkum a zobrazováno na dalších webových stránkách",
   "item_flagged_notice_html": "Toto bylo označeno jako spam a není již viditelné. Vám se text zobrazuje, protože jste jeho autorem, nebo správce stránek.\nPokud se domníváte, že jde o chybu, <a href=\"mailto:%{help_email}\" class=\"contact\">napište nám</a>.\n<a href=\"%{manage_flags_path}\">Správa příznaků</a>\n",
@@ -6631,7 +6622,6 @@ I18n.translations["cs"] = {
   "terms": "Podmínky",
   "terrain": "terén",
   "that_was_the_last_observation_matching_the_current_filters": "Toto bylo poslední pozorování odpovídající aktuálním filtrům.",
-  "the_": "Ten",
   "the_below_items_are_needed_to_achieve": "Níže uvedené položky jsou nezbytné k dosažení <span className=\"bold\">výzkumného stupně:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "Komunitní ID vyžaduje alespoň dvě identifikace.",
   "the_community_must_feel_that": "Komunita musí být přesvědčena, že komunitní ID je na základě důkazů nejlepší\n",
@@ -7296,7 +7286,6 @@ I18n.translations["da"] = {
   "data_deficient": "Mangelfuld data",
   "data_quality": "Datakvalitet",
   "data_quality_assessment": "Vurdering af datakvalitet",
-  "data_quality_assessment_": "vurdering af datakvalitet",
   "data_used": "Data anvendt:",
   "date": {
     "abbr_day_names": [
@@ -7593,7 +7582,6 @@ I18n.translations["da"] = {
   "introduced": "indført",
   "introduced_in_place": "indført i %{place}",
   "iphone": "iPhone",
-  "is_an_evaluation": "er en evaluering af en observations nøjagtighed.\nObservationer af forskningsklasse kan blive brugt af forskere. Giv din mening til kende herunder:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Er beviserne tilstrækkelige til at bekræfte, at dette er %{taxon}",
   "it_can_now_be_used_for_research": "Den kan nu bruges til forskning og vises på andre web-sider",
   "item_flagged_notice_html": "Dette er blevet markeret som spam, og er ikke længere synligt for offentligheden. Du kan se det, enten fordi, at du har oprettet det eller du er sidekurator. Hvis du mener det er en fejl, så \n<a href=\"mailto:%{help_email}\" class=\"contact\">kontakt os venligst</a>.\n<a href=\"%{manage_flags_path}\">Manage flags</a>\n",
@@ -8462,7 +8450,6 @@ I18n.translations["da"] = {
   "terms": "Vilkår",
   "terrain": "terræn",
   "that_was_the_last_observation_matching_the_current_filters": "Det var den sidste observation, der matchede de aktuelle filtre.",
-  "the_": "En",
   "the_below_items_are_needed_to_achieve": "De nedenstående punkter mangler for at opnå <span className=\"bold\">forskningskvalitet:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "Fællesskabs ID kræver mindst to identifikationer.",
   "the_community_must_feel_that": "Fællesskabet må mene, at fællesskabs ID'et er det bedste, det kan være, baseret på beviserne\n",
@@ -9223,7 +9210,6 @@ I18n.translations["de"] = {
   "data_deficient": "ungenügende Datengrundlage",
   "data_quality": "Datenqualität",
   "data_quality_assessment": "Datenqualitätsbewertung",
-  "data_quality_assessment_": "Datenqualitätsbewertung",
   "data_used": "Verwendete Daten:",
   "date": {
     "abbr_day_names": [
@@ -9494,7 +9480,6 @@ I18n.translations["de"] = {
   "interactions": "Interaktionen",
   "introduced": "Eingeführt",
   "introduced_in_place": "Eingeführt in %{place}",
-  "is_an_evaluation": "ist eine Bewertung der Richtigkeit einer Beobachtung.\nBeobachtungen mit Forschungsqualität können von Wissenschaftlern für Forschungszwecke genutzt werden. Gib unten deine Stimme ab:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Ist genug Evidenz gegeben um zu bestätigen, dass es sich um %{taxon} handelt?",
   "it_can_now_be_used_for_research": "Sie kann nun für Forschungszwecke verwendet und auf anderen Websites genutzt werden",
   "item_flagged_notice_html": "Dies ist als Spam gemeldet worden und ist nicht mehr\nöffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte<a href=\"mailto:%{help_email}\" class=\"contact\">kontaktiere uns</a>.\n<a href=\"%{manage_flags_path}\">Meldungen verwalten</a>\n",
@@ -10226,7 +10211,6 @@ I18n.translations["de"] = {
   "terms": "Bedingungen",
   "terrain": "Gelände",
   "that_was_the_last_observation_matching_the_current_filters": "Das war die letzte Beobachtung, die dem aktuellen Filter entsprach.",
-  "the_": "Das",
   "the_below_items_are_needed_to_achieve": "Die folgenden Punkte werden benötigt, um <span className=\"bold\">Forschungsqualität</span> zu erreichen:\n",
   "the_community_id_requires_at_least_two_identifications": "Die Community-ID erfordert mindestens zwei Identifikationen.",
   "the_community_must_feel_that": "Die Community muss der Ansicht sein, dass das Community-Taxon das anhand der Belege bestmöglich erreichbare ist.\n",
@@ -10822,7 +10806,6 @@ I18n.translations["el"] = {
   "dashboard": "Αρχικό πάνελ",
   "data_quality": "Ποιότητα δεδομένων",
   "data_quality_assessment": "Αποτίμηση ποιότητας δεδομένων",
-  "data_quality_assessment_": "αποτίμηση ποιότητας δεδομένων",
   "date": {
     "abbr_day_names": [
       "Κυ",
@@ -11078,7 +11061,6 @@ I18n.translations["el"] = {
   "interactions": "Διαδράσεις",
   "introduced": "Εισαχθέν",
   "introduced_in_place": "Εισήχθη σε %{place}",
-  "is_an_evaluation": "είναι μια αξιολόγηση της ακρίβειας της παρατήρησης.\nΟι παρατηρήσεις Ερευνητικού Επιπέδου μπορούν να χρησιμοποιηθούν από επιστήμονες για έρευνα. Δώστε την ψήφο σας παρακάτω:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Τα παρεχόμενα στοιχεία είναι επαρκή για να επιβεβαιωθεί πως αυτό είναι %{taxon};",
   "it_can_now_be_used_for_research": "Τώρα μπορεί να χρησιμοποιηθεί για έρευνα και να προβληθεί σε άλλες ιστοσελίδες",
   "join": "μπείτε",
@@ -11852,7 +11834,6 @@ I18n.translations["el"] = {
   "tell_us_why": "Πείτε μας γιατί...",
   "terms": "Όροι",
   "terrain": "ανάγλυφο",
-  "the_": "το",
   "the_below_items_are_needed_to_achieve": "Τα παρακάτω στοιχεία είναι απαραίτητα για να επιτευχθεί <span className=\"bold\">Ερευνητικό Επίπεδο:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "La Comunidad ID requiere al menos dos identificaciones.",
   "there_were_problems_adding_taxa": "Παρουσιάστηκαν προβλήματα κατά την προσθήκη αυτών των taxa: %{errors}",
@@ -12407,7 +12388,6 @@ I18n.translations["en"] = {
   "data_deficient": "Data Deficient",
   "data_quality": "Data Quality",
   "data_quality_assessment": "Data Quality Assessment",
-  "data_quality_assessment_": "data quality assessment",
   "data_used": "Data used:",
   "date": {
     "abbr_day_names": [
@@ -12704,7 +12684,6 @@ I18n.translations["en"] = {
   "introduced": "Introduced",
   "introduced_in_place": "Introduced in %{place}",
   "iphone": "iPhone",
-  "is_an_evaluation": "is an evaluation of an observation’s accuracy.\nResearch Grade observations may be used by scientists for research. Cast your vote below:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Is the evidence provided enough to confirm this is %{taxon}?",
   "it_can_now_be_used_for_research": "It can now be used for research and featured on other websites",
   "item_flagged_notice_html": "This has been flagged as spam and is no longer\npublicly visible. You can see it because you created it, or you are a\nsite curator. If you think this is a mistake, please\n<a href=\"mailto:%{help_email}\" class=\"contact\">contact us</a>.\n<a href=\"%{manage_flags_path}\">Manage flags</a>\n",
@@ -13781,6 +13760,7 @@ I18n.translations["en"] = {
         "ancestor_disagreements_desc": "# of identified taxa that are among a taxon's ancestors, but disagree with the taxon (ie \"I think its in the genus but I disagree its that species\")",
         "community_taxon_desc_html": "<p class=\"ui\">\n  The community taxon (or community identification) represents\n  what taxon the %{site_name} community thinks is depicted in an\n  observation. If you're interested in how we choose the\n  community taxon, see the notes on the algorithm below, but in\n  general, we try to <strong>choose a taxon that more than 2/3\n  of the identifiers agree with</strong>. Sometimes this means\n  choosing a higher level taxon that contains a number of\n  disagreeing taxa (e.g. you think it's a kingsnake and I think\n  it's rattlesnake, so iNat chooses suborder Serpentes which\n  contains all snakes). The algorithm also slightly favors\n  dissent, because we've found that dissenters are often\n  correct.\n</p>\n<p class=\"ui\">\n  A research grade observation must have (among other criteria) a\n  community taxon. If an observation has\n  only one identification, it won’t have a community taxon. All\n  observations with at least one identification will also have an\n  observation taxon. The observation taxon is the taxon we use when\n  sharing observations with data partners, linking observations of\n  the same taxon on the site, updating your life list, etc. In most\n  cases the observation taxon will eventually be set to the community\n  taxon, but sometimes they will differ especially before the community\n  has settled on an identification. For example, if you think\n  its a snake (suborder Serpentes) and I think it’s a kingsnake (genus\n  <i>Lampropeltis</i>) the observation taxon will be at kingsnake (supported\n  by my identification only) but the community taxon will be at\n  serpentes (supported by at least two identifications). If for\n  some reason you don't agree with the community taxon, you can\n  reject it on your own observations, which means that observation\n  taxon will never be set to the community taxon (rather your own ID).\n  It also means your observation can only become research grade when the community\n  agrees with <em>you</em>. If you don't like the whole idea of\n  community taxa, you can opt out of them entirely by\n  <a href=\"/users/edit\" target=\"_blank\">editing your settings</a>.\n</p>\n<p class=\"ui\">\n  <strong>The algorithm:</strong> for all identified taxa and the taxa that contain them\n  (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score each as the ratio between\n  the number of ‘agreements’ - cumulative IDs for that taxon over the sum of the cumulative\n  IDs, ‘disagreements’ - the number of IDs that are completely different (i.e. IDs of taxa\n  that do not contain the taxon being scored), and ‘ancestor disagreements’ - the number of\n  more conservative IDs that disagree with the finer taxon. For the identified taxa that\n  have a score over 2/3 and at least 2 identifications, choose the lowest ranked taxon.\n</p>\n",
         "cumulative_count_desc": "# of identifications for an individual taxon and all its descendants",
+        "data_quality_assessment_desc_html": "The Data Quality Assessment is an evaluation of an\nobservation’s accuracy. Research Grade observations may be used by\nscientists for research. Cast your vote below:\n",
         "disagreement_count_desc": "# of identified taxa that are not among a taxon's ancestors",
         "identification_count_desc": "# of identifications for an individual taxon",
         "quality_assessment_help_html": "<p>\n  The data quality assessment is a summary of an observation's accuracy. All\n  observations start as <strong>\"casual\"</strong> grade, and become\n  <strong>\"needs ID\"</strong> when\n</p>\n\n<ul>\n  <li>the observation <strong>has a date</strong></li>\n  <li>the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)</li>\n  <li>the observation <strong>has photos or sounds</strong></li>\n  <li>the observation <strong>isn't of a human</strong></li>\n</ul>\n<p>\n  Observations become <strong>\"research grade\"</strong> when\n</p>\n<ul>\n  <li>\n    the %{site_name} <strong>community agrees on species-level ID or lower</strong>, i.e.\n    when more than 2/3 of identifiers agree on a taxon\n  </li>\n</ul>\n<p>\n  Observations will revert to <strong>\"casual\"</strong> if the above conditions aren't met or the community agrees\n</p>\n<ul>\n  <li>\n    the <strong>location doesn't look\n    accurate</strong> (e.g. monkeys in the middle of the ocean,\n    hippos in office buildings, etc.)\n  </li>\n  <li>\n    the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans\n    or intelligent space aliens)\n  </li>\n  <li>\n    the observation <strong>doesn't present evidence of an\n    organism</strong>, e.g. images of landscapes, water features,\n    rocks, etc.\n  </li>\n  <li>\n    the observation <strong>doesn't present recent (~100 years) evidence of\n    the organism</strong> (e.g. fossils, but tracks, scat, and dead leaves\n    are ok)\n  </li>\n  <li>\n    the observation no longer needs an ID <em>and</em> the community ID is above family\n  </li>\n  <li>\n    the observer has opted out of the community ID and the community\n    ID taxon is not an ancestor or descendant of the taxon associated\n    with the observer's ID\n  </li>\n</ul>\n<p>\n  And if that wasn't complicated enough, there are also situations where the system gets a vote:\n</p>\n<ul>\n  <li>\n    The system will vote that the observation is not wild/naturalized\n    if there are at least 10 other observations of a genus or lower in\n    the smallest county-, state-, or country-equivalent place that\n    contains this observation and 80% or more of those observations\n    have been marked as not wild/naturalized.\n  </li>\n</ul>\n",
@@ -15372,7 +15352,6 @@ I18n.translations["eo"] = {
   "taxonomic_groups": "Taksonomiaj Grupoj",
   "taxonomy": "Taksonomio",
   "terrain": "tereno",
-  "the_": "La",
   "the_world": "La Mondo",
   "then_keybord_sequence": "sekve",
   "this_bioblitz_beings_in": "Ĉi tiu biofulmado komencas en",
@@ -15857,7 +15836,6 @@ I18n.translations["es"] = {
   "data_deficient": "Datos insuficientes",
   "data_quality": "Calidad de datos",
   "data_quality_assessment": "Evaluación de la calidad de datos",
-  "data_quality_assessment_": "evaluación de la calidad de datos",
   "data_used": "Datos utilizados:",
   "date": {
     "abbr_day_names": [
@@ -16146,7 +16124,6 @@ I18n.translations["es"] = {
   "interactions": "Interacciones",
   "introduced": "Introducida",
   "introduced_in_place": "Introducción en %{place}",
-  "is_an_evaluation": "es una evaluación de la exactitud de una observación. Las observaciones de Grado de Investigación pueden ser usadas por los científicos para su investigación. Vota aquí abajo:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "¿La evidencia provista es suficiente para confirmar que se trata de %{taxon}?",
   "it_can_now_be_used_for_research": "Ahora puede utilizarse para propósitos de investigación y presentarse en otros sitios web",
   "item_flagged_notice_html": "Esto ha sido señalado como spam y ya no es\nvisible públicamente. \\ Lo puedes ver porque tu lo creaste, o  porque eres un curador de sitio. Si piensas que esto es una equivocación, \n<a href=\"mailto:%{help_email}\" class=\"contact\">contáctanos </a>.\n<a href=\"%{manage_flags_path}\">Administra advertencias</a>\n",
@@ -16941,7 +16918,6 @@ I18n.translations["es"] = {
   "terms": "Términos",
   "terrain": "terreno",
   "that_was_the_last_observation_matching_the_current_filters": "Esa fue la última observación que coincidió con los actuales filtros.",
-  "the_": "El",
   "the_below_items_are_needed_to_achieve": "Los elementos siguiente se necesitan para conseguir el <span classname=\"bold\">Grado de Investigación</span>:\n",
   "the_community_id_requires_at_least_two_identifications": "El id. comunitario necesita dos identificaciones por lo menos.",
   "the_community_must_feel_that": "La comunidad tiene que sentir que la Identificación de la comunidad ID es la mejor basándose en las evidencias existentes\n",
@@ -17835,7 +17811,6 @@ I18n.translations["es-MX"] = {
   "data_deficient": "con datos deficientes",
   "data_quality": "Calidad de datos",
   "data_quality_assessment": "Evaluación de calidad de los datos",
-  "data_quality_assessment_": "Evaluación de calidad de datos",
   "data_used": "Datos utilizados:",
   "date": {
     "abbr_day_names": [
@@ -18119,7 +18094,6 @@ I18n.translations["es-MX"] = {
   "interactions": "Interacciones",
   "introduced": "introducida",
   "introduced_in_place": "Introducida en %{place}",
-  "is_an_evaluation": "es una evaluación de la exactitud de una observación. Las observaciones de Grado de Investigación pueden ser usadas por los científicos para su investigación. Vota aquí abajo:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "¿La evidencia provista es suficiente para confirmar que se trata de %{taxon}?",
   "it_can_now_be_used_for_research": "Ahora puede utilizarse para propósitos de investigación y presentarse en otros sitios web",
   "item_flagged_notice_html": "Esto ha sido señalado como spam y ya no es\nvisible públicamente. \\ Lo puedes ver porque tu lo creaste, o  porque eres un curador de sitio. Si piensas que esto es una equivocación, \n<a href=\"mailto:%{help_email}\" class=\"contact\">contáctanos </a>.\n<a href=\"%{manage_flags_path}\">Administra advertencias</a>\n",
@@ -18910,7 +18884,6 @@ I18n.translations["es-MX"] = {
   "terms": "Condiciones",
   "terrain": "terreno",
   "that_was_the_last_observation_matching_the_current_filters": "Esa fué la última observación que coincidió con los actuales filtros.",
-  "the_": "El",
   "the_below_items_are_needed_to_achieve": "Los siguientes elementos se necesitan para conseguir el <span classname=\"bold\">Grado de Investigación</span>:\n",
   "the_community_id_requires_at_least_two_identifications": "El ID comunitario necesita dos identificaciones por lo menos.",
   "the_community_must_feel_that": "La comunidad debe sentir que el ID de la comunidad es el mejor que se puede en base a las evidencias\n",
@@ -19643,7 +19616,6 @@ I18n.translations["et"] = {
   "data_deficient": "Puudulikud andmed",
   "data_quality": "Andmete kvaliteet",
   "data_quality_assessment": "Andmete kvaliteedihinnang",
-  "data_quality_assessment_": "andmete kvaliteedihinnang",
   "data_used": "Kasutatud andmed:",
   "date": {
     "abbr_day_names": [
@@ -19924,7 +19896,6 @@ I18n.translations["et"] = {
   "interactions": "Vastastikmõjud",
   "introduced": "Sissetoodud",
   "introduced_in_place": "Sissetoodud kohta %{place}",
-  "is_an_evaluation": "on hinnang vaatluse täpsusele.\nTeaduskõlbulikke vaatluseid saab kasutada teaduse tegemiseks. Allpool saad anda enda hääle:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Kas on piisavalt tõendeid, et saab kinnitada määramist taksonisse %{taxon}?",
   "it_can_now_be_used_for_research": "Seda saab nüüd kasutada teaduse tegemiseks ning teistel veebilehekülgedel",
   "item_flagged_notice_html": "See märgiti rämpspostiks ja pole enam avalikult nähtav. Sina näed seda, kuna oled selle loonud kasutaja või lehe kuraator. Kui sa arvad, et tegu on eksitusega, võta meiega palun <a href=\"mailto:%{help_email}\" class=\"contact\">ühendust</a>.\n<a href=\"%{manage_flags_path}\">Halda märkuseid</a>\n",
@@ -21364,7 +21335,6 @@ I18n.translations["eu"] = {
   "data_deficient": "Datuak ez dira nahikoak",
   "data_quality": "Data kalitatea",
   "data_quality_assessment": "Datuen kalitatearen ebaluazioa",
-  "data_quality_assessment_": "Datuen kalitatearen ebaluazioa",
   "date": {
     "abbr_day_names": [
       "ig.",
@@ -21573,7 +21543,6 @@ I18n.translations["eu"] = {
   "info": "Informazioa",
   "insects": "intsektuak",
   "introduced": "sartu zuen",
-  "is_an_evaluation": "zehaztasun meaketaren ebaluaketa da.\nIkerketa Graduaren oharrak zientzialariek erabili ditzakete ikertzeko. Eman zure botoa hemen:\n",
   "join": "Bat egin",
   "join_project": "Proiektu honekin bat egin",
   "join_this_project": "gehitu behar duzu.",
@@ -21943,7 +21912,6 @@ I18n.translations["eu"] = {
   "tell_us_why": "Esaguzu zergatia...",
   "terms": "Baldintzak",
   "terrain": "eremua",
-  "the_": "a",
   "the_world": "Mundua",
   "then_keybord_sequence": "gero",
   "this_observation_was_created_using": "Behaketa hau honen bitartez sortu da:",
@@ -22388,7 +22356,6 @@ I18n.translations["fi"] = {
   "data_deficient": "Puutteellisesti tunnettu",
   "data_quality": "Tiedon laatu",
   "data_quality_assessment": "Tietojen laatuarvio",
-  "data_quality_assessment_": "Tietojen laatuarvio",
   "date": {
     "abbr_day_names": [
       "Su",
@@ -22662,7 +22629,6 @@ I18n.translations["fi"] = {
   "interactions": "Vuorovaikutukset",
   "introduced": "Esitelty",
   "introduced_in_place": "Esitelty paikassa %{place}",
-  "is_an_evaluation": "on havaintojen tarkkuuden arviointia.\nTutkijat saattavat käyttää tutkimusastehavaintoja tutkimukseen. Anna äänesi alla:\n",
   "it_can_now_be_used_for_research": "Sitä voidaan nyt käyttää tutkimukseen ja julkaista muilla verkkosivustoilla",
   "item_flagged_notice_html": "Tämä on liputettu roskapostina eikä enää ole\njulkisesti nähtävissä. Voit nähdä sen, koska olet luonut sen, tai olet\nsivuston kuraattori. Jos luulet, että tämä on erehdys,\n<a href=\"mailto:%{help_email}\" class=\"contact\"ota yhteyttä meihin</a>.\n<a href=\"%{manage_flags_path}\">Hallitse lippuja</a>\n",
   "join": "Liity",
@@ -24142,7 +24108,6 @@ I18n.translations["fr"] = {
   "data_deficient": "Données insuffisantes",
   "data_quality": "Qualité des données",
   "data_quality_assessment": "Évaluation de la qualité des données",
-  "data_quality_assessment_": "évaluation de la qualité de la donnée",
   "data_used": "Données utilisées :",
   "date": {
     "abbr_day_names": [
@@ -24435,7 +24400,6 @@ I18n.translations["fr"] = {
   "introduced": "Introduite",
   "introduced_in_place": "Introduit dans %{place}",
   "iphone": "iPhone",
-  "is_an_evaluation": "est une évaluation de la précision d’une observation.\nLes observations de niveau recherche peuvent être utilisées par les scientifiques pour leurs recherches. Donnez votre vote ci-dessous :\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Est-ce que l'évidence est suffisammnt flagrante pour confirmer que ceci est %{taxon} ?",
   "it_can_now_be_used_for_research": "Il peut maintenant être utilisé pour la recherche et mis en vedette sur d’autres sites web",
   "item_flagged_notice_html": "Ceci a été marqué comme pourriel et n’est plus\nvisible publiquement. Vous pouvez le voir parce que vous l’avez créé, ou que vous êtes un\nresponsable du site. Si vous pensez que c’est une erreur, veuillez\n<a href=\"mailto:%{help_email}\" class=\"contact\">nous contacter</a>.\n<a href=\"%{manage_flags_path}\">Gérer les drapeaux</a>\n",
@@ -25267,7 +25231,6 @@ I18n.translations["fr"] = {
   "tell_us_why": "Dites-nous pourquoi...",
   "terms": "Conditions",
   "that_was_the_last_observation_matching_the_current_filters": "C’était la dernière observation correspondant aux filtres actuels.",
-  "the_": "Le",
   "the_below_items_are_needed_to_achieve": "Les éléments ci-dessous doivent atteindre le <span className=\"bold\">Niveau recherche :</span>\n",
   "the_community_id_requires_at_least_two_identifications": "L’ID de la communauté nécessite au moins deux identifications.",
   "the_community_must_feel_that": "La communauté doit sentir que le taxon de communauté est le meilleur possible, d’après les preuves\n",
@@ -26871,7 +26834,6 @@ I18n.translations["he"] = {
   "data_deficient": "מיעוט נתונים",
   "data_quality": "איכות הנתון",
   "data_quality_assessment": "הערכת איכות הנתונים",
-  "data_quality_assessment_": "הערכת איכות הנתונים",
   "data_used": "הנתונים שבהם נעשה שימוש:",
   "date": {
     "abbr_day_names": [
@@ -27099,7 +27061,6 @@ I18n.translations["he"] = {
   "interactions": "אינטראקציות",
   "introduced": "הובא",
   "introduced_in_place": "הובא ל%{place}",
-  "is_an_evaluation": "הוא אומדן למידת הדיוק של זיהוי התצפית. תצפיות בדרגת מחקר משמשות אנשי מדע למחקריהם. הציעו את זיהוייכם:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "האם הנתונים מאפשרים לאשר שזהו %{taxon}?",
   "join": "הצטרפות",
   "join_project": "הצטרף לפרוייקט זה",
@@ -27867,7 +27828,6 @@ I18n.translations["he"] = {
   "terms": "תנאים",
   "terrain": "קרקע",
   "that_was_the_last_observation_matching_the_current_filters": "זו התצפית האחרונה שמתאימה למסננים הנוכחיים.",
-  "the_": "ה",
   "the_world": "העולם",
   "then_keybord_sequence": "אז",
   "there_were_some_problems_with_these_files": "קיימות בעיות עם קבצים אלו:",
@@ -29289,7 +29249,6 @@ I18n.translations["it"] = {
   "data_deficient": "Carente di Dati",
   "data_quality": "Qualità dei dati",
   "data_quality_assessment": "Valutazione della qualità dei dati",
-  "data_quality_assessment_": "Valutazione della qualità dei dati",
   "data_used": "Dati utilizzati:",
   "date": {
     "abbr_day_names": [
@@ -29586,7 +29545,6 @@ I18n.translations["it"] = {
   "introduced": "Introdotta",
   "introduced_in_place": "Introdotto in %{place}",
   "iphone": "iPhone",
-  "is_an_evaluation": "è una valutazione dell'accuratezza dell'osservazione.\nLe osservazioni di Livello Ricerca possono essere utilizzate dagli scienziati per le ricerche. Vota qui sotto:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "La prova fornita è sufficiente per confermare che questo è %{taxon}?",
   "it_can_now_be_used_for_research": "Ora può essere usata per la ricerca o messa in risalto su altri siti web",
   "item_flagged_notice_html": "Questo è stato contrassegnato come spam e non è più visibile pubblicamente. Tu puoi vederlo perché l'hai creato o perché sei un curatore del sito. se pensi che sia un errore, per favore <a href=\"mailto:%{help_email}\" class=\"contact\">contattaci</a>.\n<a href=\"%{manage_flags_path}\">Gestisci contrassegni</a>\n",
@@ -30513,7 +30471,6 @@ I18n.translations["it"] = {
   "terms": "Termini",
   "terrain": "terreno",
   "that_was_the_last_observation_matching_the_current_filters": "Questa era l'ultima osservazione corrispondente ai filtri impostati.",
-  "the_": "La",
   "the_below_items_are_needed_to_achieve": "Servono i requisiti sottostanti per raggiungere il <span className=\"bold\">Livello Ricerca:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "L'ID della Comunità richiede almeno due identificatori",
   "the_community_must_feel_that": "La comunità deve poter percepire che il taxon della comunità è il migliore che può avere in base alle evidenze\n",
@@ -34282,7 +34239,6 @@ I18n.translations["lb"] = {
   "taxon_map": {
   },
   "tell_us_why": "Sot eis firwat...",
-  "the_": "De(n)",
   "the_world": "D'Welt",
   "then_keybord_sequence": "da(nn)",
   "this_is_your_observation": "Dëst ass Är Observatioun",
@@ -36262,7 +36218,6 @@ I18n.translations["nb"] = {
   "data_deficient": "Datamangel",
   "data_quality": "Datakvalitet",
   "data_quality_assessment": "Datakvalitetsvurdering",
-  "data_quality_assessment_": "datakvalitetsvurdering",
   "data_used": "Data brukt:",
   "date": {
     "abbr_day_names": [
@@ -36542,7 +36497,6 @@ I18n.translations["nb"] = {
   "introduced": "Introdusert",
   "introduced_in_place": "Introdusert i %{place}",
   "iphone": "iPhone",
-  "is_an_evaluation": "er en vurdering av observasjonens nøyaktighet.\nObservasjoner av forskningskvalitet kan brukes av forskere innen forskning. Stem nedenfor:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Er bevismaterialet nok for å bekrefte at dette er %{taxon}?",
   "it_can_now_be_used_for_research": "Det kan nå brukes i forskning og vises på andre nettsider",
   "item_flagged_notice_html": "Dette har blitt markert som spam og er ikke synlig lenger. Du kan se det fordi du opprettet det, eller du er en sidekurator. Hvis du tror at dette er feil, vennligst <a href=\"mailto:%{help_email}\" class=\"contact\">ta kontakt</a>. <a href=\"%{manage_flags_path}\">Forvalt markeringer</a>\n",
@@ -37956,7 +37910,6 @@ I18n.translations["nl"] = {
   "data_deficient": "Gegevens Tekort",
   "data_quality": "Gegevenskwaliteit",
   "data_quality_assessment": "Beoordeling van Gegevenskwaliteit",
-  "data_quality_assessment_": "beoordeling van gegevenskwaliteit",
   "data_used": "Gebruikte gegevens:",
   "date": {
     "abbr_day_names": [
@@ -38253,7 +38206,6 @@ I18n.translations["nl"] = {
   "introduced": "Geïntroduceerd",
   "introduced_in_place": "Geïntroduceerd in %{place}",
   "iphone": "iPhone",
-  "is_an_evaluation": "is een evaluatie van de nauwkeurigheid van een waarneming. Waarnemingen van onderzoekskwaliteit kunnen door wetenschappers worden gebruikt voor onderzoek. Breng hieronder je stem uit:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Is het geleverde bewijsmateriaal voldoende om te bevestigen dat dit een %{taxon} is?",
   "it_can_now_be_used_for_research": "Het kan nu worden gebruikt voor onderzoek en getoond worden op andere websites",
   "item_flagged_notice_html": "Dit is gemeld als spam en is niet langer\npubliekelijk zichtbaar. Jij kunt het wel zien omdat je het hebt gemaakt of omdat je een\nwebsite-curator bent. Als je denkt dat dit een vergissing is, neem dan \n<a href=\"mailto:%{help_email}\" class=\"contact\">contact met ons op</a>.\n<a href=\"%{manage_flags_path}\">Beheer meldingen</a>\n",
@@ -39180,7 +39132,6 @@ I18n.translations["nl"] = {
   "terms": "Voorwaarden",
   "terrain": "terrein",
   "that_was_the_last_observation_matching_the_current_filters": "Dat was de laatste waarneming die overeenkomt met de huidige filters.",
-  "the_": "De",
   "the_below_items_are_needed_to_achieve": "De onderstaande items zijn nodig om <span className=\"bold\">onderzoekskwaliteit</span> te bereiken:\n",
   "the_community_id_requires_at_least_two_identifications": "Het gemeenschapsID vereist ten minste twee determinaties.",
   "the_community_must_feel_that": "De gemeenschap moet vinden dat het GemeenschapsTaxon het beste is op basis van het bewijs\n",
@@ -42145,7 +42096,6 @@ I18n.translations["pt"] = {
   "data_deficient": "informação insuficiente",
   "data_quality": "Qualidade dos Dados",
   "data_quality_assessment": "Avaliação da Qualidade dos Dados",
-  "data_quality_assessment_": "avaliação da qualidade dos dados",
   "date": {
     "abbr_day_names": [
       "Dom",
@@ -42420,7 +42370,6 @@ I18n.translations["pt"] = {
   "interactions": "Interações",
   "introduced": "introduzido",
   "introduced_in_place": "Introduzido em %{place}",
-  "is_an_evaluation": "é uma avaliação da veracidade da observação.\nAs observações classificadas com Grau de Pesquisa podem ser usadas na investigação por cientistas. Dê o seu voto em baixo:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "A evidência fornecida é suficiente para confirmar que é %{taxon}?",
   "it_can_now_be_used_for_research": "Agora pode ser usado para pesquisa e apresentado noutros sítios",
   "item_flagged_notice_html": "Isto foi sinalizado como spam e não está mais visível publicamente. Pode vê-lo porque o criou, ou você é um curador do site. Se acha que foi um erro, por favor\n<a href=\"mailto:%{help_email}\" class=\"contact\">contacte-nos</a>.\n<a href=\"%{manage_flags_path}\">Gerir sinalizadores</a>\n",
@@ -43062,7 +43011,6 @@ I18n.translations["pt"] = {
   "terms": "Termos",
   "terrain": "terreno",
   "that_was_the_last_observation_matching_the_current_filters": "Esta foi a última observação que corresponde com os filtros atuais.",
-  "the_": "O (A)",
   "the_world": "O Mundo",
   "then_keybord_sequence": "depois",
   "this_taxon_concept_is_inactive": "este conceito de táxon está inativo",
@@ -43555,7 +43503,6 @@ I18n.translations["pt-BR"] = {
   "data_deficient": "Dados insuficientes",
   "data_quality": "Qualidade dos Dados",
   "data_quality_assessment": "Avaliação da qualidade dos dados",
-  "data_quality_assessment_": "Avaliação da qualidade dos dados",
   "data_used": "Dados utilizados:",
   "date": {
     "abbr_day_names": [
@@ -43843,7 +43790,6 @@ I18n.translations["pt-BR"] = {
   "interactions": "Interações",
   "introduced": "Introduzida",
   "introduced_in_place": "Introduzido em %{place}",
-  "is_an_evaluation": "é uma avaliação de uma observação acurada.\nObservações ao Nível de Pesquisa podem ser utilizadas por cientistas. Vote abaixo:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "A evidência fornecida é suficiente para confirmar que é %{taxon}?",
   "it_can_now_be_used_for_research": "Pode agora ser utilizada para pesquisa ou visualizada em outros sites",
   "item_flagged_notice_html": "Isto foi marcado como spam e não está mais visível publicamente. Você pode vê-lo porque o criou, ou você é um curador do site. Se você acha que foi um erro, por favor\n<a href=\"mailto:%{help_email}\" class=\"contact\">contact us</a>.\n<a href=\"%{manage_flags_path}\">Manage flags</a>\n",
@@ -44661,7 +44607,6 @@ I18n.translations["pt-BR"] = {
   "terms": "Termos",
   "terrain": "terreno",
   "that_was_the_last_observation_matching_the_current_filters": "Esta foi a última observação que coincide aos filtros atuais.",
-  "the_": "O",
   "the_below_items_are_needed_to_achieve": "Os items abaixo são necessários para alcançar <span className=\"bold\">Nível de Pesquisa:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "O ID da comunidade requer pelo menos duas identificações.",
   "the_community_must_feel_that": "A comunidade deve sentir que o táxon comunitário é o melhor que pode ser baseado na evidência\n",
@@ -45458,7 +45403,6 @@ I18n.translations["ru"] = {
   "data_deficient": "нехватка данных",
   "data_quality": "Качество данных",
   "data_quality_assessment": "Оценка качества данных",
-  "data_quality_assessment_": "оценка качества данных",
   "data_used": "Использованные данные:",
   "date": {
     "abbr_day_names": [
@@ -45767,7 +45711,6 @@ I18n.translations["ru"] = {
   "introduced": "Интродуцент",
   "introduced_in_place": "Интродуцирован в %{place}",
   "iphone": "iPhone",
-  "is_an_evaluation": "- это оценка точности наблюдения.\nНаблюдения исследовательского уровня могут использоваться учёными для исследований. Оставьте свой голос ниже:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Достаточно ли доказательств, подтверждающих, что это %{taxon}?",
   "it_can_now_be_used_for_research": "Теперь оно может использоваться в исследованиях и на других веб-сайтах.",
   "item_flagged_notice_html": "Это помечено как спам и больше не является общедоступным. Вы можете видеть это, потому что вы создали это или вы куратор сайта. Если вы считаете, что это ошибка, пожалуйста,\n<a href=\"mailto:%{help_email}\" class=\"contact\">свяжитесь с нами</a>.\n<a href=\"%{manage_flags_path}\">Управление флагами</a>\n",
@@ -46702,7 +46645,6 @@ I18n.translations["ru"] = {
   "terms": "Обозначения",
   "terrain": "местность",
   "that_was_the_last_observation_matching_the_current_filters": "Это было последнее наблюдение, удовлетворяющее текущим фильтрам.",
-  "the_": "Определённый",
   "the_below_items_are_needed_to_achieve": "Перечисленные ниже пункты требуются для достижения <span className=\"bold\">Исследовательского статуса:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "Идентификация сообществом требует не менее двух идентификаций.",
   "the_community_must_feel_that": "Сообщество должно чувствовать, что таксон сообщества - это лучшее, что может быть основано на доказательствах\n",
@@ -47465,7 +47407,6 @@ I18n.translations["sk"] = {
   "data_deficient": "chýbajúce údaje",
   "data_quality": "Kvalita údajov",
   "data_quality_assessment": "Hodnotenie kvality údajov",
-  "data_quality_assessment_": "hodnotenie kvality údajov",
   "data_used": "Použité údaje:",
   "date": {
     "abbr_day_names": [
@@ -47725,7 +47666,6 @@ I18n.translations["sk"] = {
   "interactions": "Interakcie",
   "introduced": "Introdukovaný",
   "introduced_in_place": "Introdukovaný v %{place}",
-  "is_an_evaluation": "je hodnotenie presnosti pozorovania. Pozorovanie výskumného stupňa môžu vedci používať pri výskume. Hlasujte nižšie:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Sú predložené dôkazy dostatočné na potvrdenie, že toto je %{taxon}?",
   "it_can_now_be_used_for_research": "Teraz to môže byť využité pre výskum a zobrazovanie na ďalších webových stránkach",
   "item_flagged_notice_html": "Toto bolo označené ako spam a teraz nie je viditeľné. Vám sa text zobrazuje, pretože ste jeho autorom, alebo kurátor stránok.\nAk si myslíte, že ide o chybu, <a href=\"mailto:%{help_email}\" class=\"contact\">napíšte nám</a>.\n<a href=\"%{manage_flags_path}\">Správa značiek</a>\n",
@@ -48516,7 +48456,6 @@ I18n.translations["sk"] = {
   "terms": "Podmienky",
   "terrain": "terén",
   "that_was_the_last_observation_matching_the_current_filters": "Toto bolo posledné pozorovanie odpovedajúce aktuálnym filtrom.",
-  "the_": "Toto",
   "the_below_items_are_needed_to_achieve": "Tieto nižšie uvedené položky sú nevyhnutné k dosiahnutiu <span className=\"bold\">výskumného stupňa:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "Komunitné ID vyžaduje aspoň dve identifikácie.",
   "the_community_must_feel_that": "Komunita sa musí zhodnúť, že komunitný taxón je na základe dôkazov najlepší aký môže byť\n",
@@ -48948,7 +48887,6 @@ I18n.translations["sq"] = {
   "data_deficient": "të dhëna të mangëta",
   "data_quality": "Cilësia e të dhënave",
   "data_quality_assessment": "Vlerësimi i cilësisë së të dhënave",
-  "data_quality_assessment_": "vlerësimi i cilësisë së të dhënave",
   "date": {
     "abbr_day_names": [
       "E Diel",
@@ -49197,7 +49135,6 @@ I18n.translations["sq"] = {
   "interactions": "Ndërveprime",
   "introduced": "E sjellë",
   "introduced_in_place": "e sjellur në %{place}",
-  "is_an_evaluation": "është vlerësim i saktësisë së një vëzhgimi. \nVezhgimet Nota e Hulumtimit [Research Grade] mund të përdoren nga shkencëtarët për hulumtime. Votoni këtu poshtë:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "A është evidenca e siguruar e mjaftueshme për të konfirmuar që kjo është %{taxon}",
   "it_can_now_be_used_for_research": "Tani mund të përdoret për hulumtime, dhe mund të paraqitet në faqe të tjera.",
   "item_flagged_notice_html": "Kjo është etiketuar si spam më nuk është publikisht e dukshme. Ju mund ta shihni sepse e keni krijuar, ose ju jeni rregulluesi i faqes. Nëse mendoni se ky është gabim, ju lutem\n<a href=\"mailto:%{help_email}\" class=\"contact\">na kontaktoni</a>.\n<a href=\"%{manage_flags_path}\">Menaxhoni shënimet</a>\n",
@@ -50706,7 +50643,6 @@ I18n.translations["sv"] = {
   "taxonomy": "Taxonomi",
   "taxonomy_details": "Taxonomi detaljer",
   "terms": "Villkor",
-  "the_": "Den",
   "the_world": "Värld",
   "then_keybord_sequence": "sedan",
   "these_observations_have_not_been_uploaded_yet": "Dessa observationer har ännu inte laddats upp.\n",
@@ -51394,7 +51330,6 @@ I18n.translations["zh-CN"] = {
   "data_deficient": "数据有缺陷",
   "data_quality": "数据质量",
   "data_quality_assessment": "数据质量评价",
-  "data_quality_assessment_": "数据质量评价",
   "date": {
     "abbr_day_names": [
       "日",
@@ -51666,7 +51601,6 @@ I18n.translations["zh-CN"] = {
   "interactions": "互动",
   "introduced": "引进",
   "introduced_in_place": "在%{place}中引进",
-  "is_an_evaluation": "是对观测精度的评估。\n科研级的观察可能被科学家用于研究。请在下方投票：\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "有提供足够证据来确认这是%{taxon}么？",
   "it_can_now_be_used_for_research": "它现在可以用于科学研究，并在其他网站上展示",
   "item_flagged_notice_html": "这已被标记为垃圾邮件，不再公开可见。你可以看到它，因为你是创建者，或者你是站点馆长。 如果您认为这是一个误判，请<a href=\"mailto:%{help_email}\" class=\"contact\">联系我们</a>。\n<a href=\"%{manage_flags_path}\">管理标签</a>\n",
@@ -52354,7 +52288,6 @@ I18n.translations["zh-CN"] = {
   "terms": "条款",
   "terrain": "地形",
   "that_was_the_last_observation_matching_the_current_filters": "这是当前过滤器所匹配的最后一个观察。",
-  "the_": "该",
   "the_below_items_are_needed_to_achieve": "以下项需要达到特定<span className=\"bold\">研究等级：</span>\n",
   "the_community_id_requires_at_least_two_identifications": "社区ID至少需要两个标识。",
   "the_community_must_feel_that": "社区必须认为此社区ID是最好的，它可以基于如下证据\n",
@@ -53190,7 +53123,6 @@ I18n.translations["zh-TW"] = {
   "data_deficient": "資料不足",
   "data_quality": "資料品質",
   "data_quality_assessment": "資料品質估計",
-  "data_quality_assessment_": "資料品質估計",
   "data_used": "資料使用：",
   "date": {
     "abbr_day_names": [
@@ -53477,7 +53409,6 @@ I18n.translations["zh-TW"] = {
   "interactions": "互動",
   "introduced": "引進",
   "introduced_in_place": "在%{place}引進",
-  "is_an_evaluation": "是對觀察準確的評估。\n研究等級觀察有機會被科學家用於研究上。請在下方投下您的一票：\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "證據是否提供足夠的內容來確定這是%{taxon}？",
   "it_can_now_be_used_for_research": "現在可被用於在其它網站的研究和功能",
   "item_flagged_notice_html": "這已被標記為垃圾訊息且不再公開可見。您仍可以看到它的原因出於這是由您所創建，或是您的身份為網站策展人。若您認為目前的情況有誤，請<a href=\"mailto:%{help_email}\" class=\"contact\">聯絡我們</a>。\n<a href=\"%{manage_flags_path}\">管理標記</a>\n",
@@ -54372,7 +54303,6 @@ I18n.translations["zh-TW"] = {
   "terms": "條款",
   "terrain": "地形",
   "that_was_the_last_observation_matching_the_current_filters": "那是最後符合目前篩選條件的觀察。",
-  "the_": "此",
   "the_below_items_are_needed_to_achieve": "需補充以下項目才能達到<span className=\"bold\">研究等級：</span>\n",
   "the_community_id_requires_at_least_two_identifications": "社群鑑定至少要有兩份鑑定。",
   "the_community_must_feel_that": "社群必須認為社群分類群是最能夠作為證據方面\n",
