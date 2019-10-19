@@ -768,8 +768,13 @@ class Observation < ActiveRecord::Base
     # I18n.t( :observation_brief_taxon_from_place_on_day_by_user )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time_by_user )
-    key = species_guess.blank? ? "something" : "taxon"
     i18n_vars = {}
+    key = if species_guess.blank?
+      "something"
+    else
+      i18n_vars[:taxon] = species_guess
+      "taxon"
+    end
     unless self.place_guess.blank? || options[:no_place_guess] || coordinates_obscured?
       key += "_from_place"
       i18n_vars[:place] = place_guess
