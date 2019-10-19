@@ -377,7 +377,6 @@ lt:
   batch: Grupė
   batch_edit: Redaguoti grupę
   be_the_first_to_fave_this_observation: Pirmasis pamėk šį stebėjimą!
-  because: nes
   because_of: nes
   before_importing_photos: prieš importuodami nuotraukas
   bg_color: Fono Spalva
@@ -544,7 +543,6 @@ lt:
   convert: Konvertuoti
   coordinate_systems: Koordinačių sistemos
   coordinates: Koordinatės
-  coordinates_private: (koordinatės privačios)
   copy: Kopijuoti
   copyright:
     some_rights_reserved: kai kurios teisės saugomos
@@ -785,7 +783,6 @@ lt:
   everyone_journal_posts: Visų Žurnalo Įrašai
   everywhere: visur
   exact: Tikslus
-  exact_coordinates_obscured_for: Nykstančių rūšių tikslios koordinatės nerodomos viešai.
   exact_date: Tiksli data
   exact_location: Tiksli_vieta
   exact_rank: Tikslus rangas
@@ -1209,7 +1206,6 @@ lt:
       Unknown: Nežinomas
       unknown: Nežinomas
   place_name: Vietos pavadinimas
-  place_type_name: Įveskite vietos pavadinimą
   places: Vietos
   places_added_by_members_of_the_community: Vietas pridėjo bendruomenės nariai
   places_name:
@@ -1232,8 +1228,6 @@ lt:
   press: Spauda
   privacy: Privatumas
   profile: Profilis
-  project_id: Projekto ID
-  project_name: Projekto pavadinimas
   projects: Projektai
   projects_from_place: "Projektai iš %{place}"
   projects_you_admin: Jūsų valdomi projektai
@@ -1249,11 +1243,9 @@ lt:
   real_time_discussions: Realaus Laiko Diskusijos
   receive_email_notifications_when_people_leave_you: Gauti el. pašto pranešimus apie
   recent_observations: Nauji stebėjimai
-  recently_created_projects_from_everywhere: "Neseniai sukurti projektai iš bet kur"
   recently_observed: Neseniai stebėta
   redo_search_in_map: Pakartoti paieška žemėlapyje
   redo_search_in_map_area: Pakartoti paiešką žemėlapio plote
-  related_species: Susijusios rūšys
   remove: Pašalinti
   remove_curator: Pašalinti kuratorių
   remove_curator_status: Panaikinti kuratoriaus statusą
@@ -1271,18 +1263,14 @@ lt:
   save_comment: Išsaugoti komentarą
   save_photos: Saugoti nuotraukas
   save_place: Išsaugoti vietą
-  scientific_names: Moksliniai pavadinimai
   search: Paieška
   search_by_name_or_email: Ieškoti pagal vardą arba el. pašto adresą
   search_for_a_location: Ieškoti vietovės
-  search_for_place_to_import_from_yahoo: Ieškokite vietos įkelimui iš Yahoo.
   search_for_species: Ieškoti rūšių
   search_list: Ieškoti sąrašo
   search_observations: "Ieškoti stebėjimų"
-  search_places: Ieškoti vietų
   search_projects: Ieškoti projektų
   search_species: Ieškoti rūšių
-  search_taxa: "Ieškoti taksonų..."
   search_the_map: Ieškoti žemėlapyje
   search_this_taxon: ieškoti šio taksono
   searching: "Ieškoma..."
@@ -1292,55 +1280,41 @@ lt:
   select_one_or_more_photos: 'Pasirinkite vieną ar daugiau nuotraukų'
   select_options: Pažymėkite pasirinkimus
   send_the_invites: Siųsti kvietimus
-  september: Rugsėjis
   share: Dalintis
-  show_kml: Rodyti KML
   show_less: Rodyti mažiau
   show_more: Rodyti daugiau
-  show_observations_from: Rodyti stebėjimus pagal
   show_taxa_from_place: "Rodyti taksonus iš %{place}"
-  showing_observations_by: rodomi stebėjimai pagal
   showing_taxa_from_everywhere: "Rodyti taksonus iš visur"
   showing_taxa_from_place: "Rodomi taksonai iš %{place}"
   sign_out: Atsijungti
   similar_species: Panašios rūšys
   similar_taxa: Panašūs taksonai
+  #Journal post formatting option
   simple: Paprastas
   site_stats: Statistika
-  site_year_in_review: "%{site_name} %{year} Metų Apžvalga"
   some_observations_failed_to_be_added: Kai kurių stebėjimų nepavyko pridėti prie projektų
   sounds:
     no_photos_sounds: Nėra nuotraukų ar garsų
     select_one_or_more_sounds: Pasirinkite vieną ar daugiau garsų
   source_eg:
     citation: 'pvz.: Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
-  source_unknown: "Šaltinis nežinomas"
   species: Rūšis
   species_guess: rūšies spėjimas
-  species_guide: Rūšių vadovas
-  species_header: Rūšis
-  species_name: rušies pavadinimas
   species_names: rūšies pavadinimas
   species_search: Rūšies paieška
   species_taxon_name: Rūšis / Taksono pavadinimas
   species_unknown: Rūšis nežinoma
   standard: Standartinės
-  start_adding_observations: Pradėti stebėjimų pridėjimą
   stats_for_this_year_have_not_been_generated: Šių metų statistika nebuvo sugeneruota.
-  stats_title: Statistika
   still_needs_id?: Vis dar reikia ID?
-  submit_comment: Pateikti komentarą
   submitted: Pateikta
   subscribe_to_a_taxon: Prenumeruoti Taksoną
   subscribe_to_a_place: Prenumeruoti Vietą
-  subscribe_to_this_observation: Užsisakyti šį pastebėjimą
   subscriptions: Prenumeratos
   support_inaturalist: Paremkite iNaturalist
-  suspicious_photos: Įtartinos nuotraukos
   tags: Žymės
   taxa: Taksonai
   taxa_info: Taksonų informacija
-  taxa_all_species_html: "Visos Rūšys"
   taxa_needing_curation: Taksonams reikia kuravimo
   taxa_observed: taksonai stebėti
   taxa_to_include: Įtraukti taksonus
@@ -1357,15 +1331,11 @@ lt:
   taxon_removed_from_list: Taksonas pašalintas iš sąrašo.
   taxon_search: Taksono paieška
   tell_everyone_a_little_about_you: Trumpai save visiems pristatykite
-  terms_of_service: Paslaugų teikimo sąlygos
   these_observations_have_not_been_uploaded_yet: |
     Šie stebėjimai dar nebuvo įkelti
-  this_species: ši rūšis
   this_year: Šiais Metais
-  to_add_identifications: pridėti identifikacijas
   totals: iš viso
   total_species_observed: Iš viso rūšių stebėta
-  type_date_time_or_use_the_calendar: Įveskite datą/laiką arba naudokite kalendorių
   type_species_name: "Įveskite rūšies pavadinimą"
   umbrella_projects: Skėtiniai projektai
   unknown: Nežinoma
@@ -1373,7 +1343,6 @@ lt:
   update_photos: Atnaujinti nuotraukas
   update_search: Atnaujinti paiešką
   upload: Įkelti
-  upload_photos: Įkeltos nuotraukos
   uploaded_by: Įkėlė
   uploader:
     tooltips:
@@ -1395,12 +1364,10 @@ lt:
   users_year_on_site: "%{user} %{site} %{year} Metai"
   valid_options_are: Tinkami pasirinkimai yra
   view_all_observations: Peržiūrėti visus stebėjimus
-  view_all_your_projects: Žiūrėti visus jūsų projektus
   view_field_options: Rodyti Srities Nustatymus
   view_journal: Žiūrėti žurnalą
   view_lists: Žiūrėti sąrašus
   view_more: Rodyti daugiau
-  view_more_observations: Žiūrėti daugiau stebėjimų
   view_more_observations_from: Žiūrėti daugiau stebėjimų iš
   view_observation: Žiūrėti stebėjimą
   view_observations: Žiūrėti stebėjimus
@@ -1408,7 +1375,6 @@ lt:
   view_observations_by_everyone: Žiūrėti visų stebėjimus
   view_observations_by_these_users: Žiūrėti šių vartotojų stebėjimus
   view_observations_of_this_taxon_by: Žiūrėti šio taksono stebėjimus, kurie priklauso
-  view_observations_raquo: "Žiūrėti stebėjimus &raquo;"
   view_on: Žiūrėti per
   view_on_flickr: Žiūrėti per Flickr
   view_original: "Žiūrėti originalą"
@@ -1416,7 +1382,6 @@ lt:
   view_year_stats_for_site: "Žiūrėti %{year} %{site} Statistiką"
   view_your_dashboard: Žiūrėti jūsų valdymo skydą
   view_your_inbox: Žiūrėti pašto dėžutę
-  view_your_calendar: Žiūrėti kalendorių
   view_your_observations: Žiūrėti jūsų stebėjimus
   view_your_year_stats: "Žiūrėti Savo %{year} Statistiką"
   view_all_of_your_observations_from_x: "Žiūrėti visus %{x} stebėjimus"
@@ -1425,11 +1390,8 @@ lt:
     Mes taip pat palaikome vaizdų talpinimą <a href="http://flickr.com">Flickr</a>,
     <a href="http://picasaweb.google.com">Picasa</a>, ir
     <a href="http://facebook.com">Facebook</a>.
-  we_care_privacy: Mums rūpi jūsų privatumas!
   week_of_date: "%{date} Savaitė"
-  welcome_comma!: Sveiki atvykę,
   welcome_back: Sveiki sugrįžę
-  welcome_comma: "Sveiki atvykę,"
   welcome_to_inat: "Sveiki atvykę į %{site_name}!"
   welcome_to_x_project: "Sveiki atvykę į %{project}"
   where_were_they?: Kur jie?
@@ -1447,8 +1409,6 @@ lt:
     Šias pastabas bus sunku tinkamai identifikuoti.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Jūs siunčiate pastabas be datų ir vietų.
-  you_think_observation_inacurate: |
-    Jei manote, kad šis pastebėjimas yra netikslus, prašome įtraukti ID, dalyvauti įvertinant aukščiau minėto pastebėjimo kokybę, ar apibūdinti netikslumą komentaruose.
   your_account_has_been_activated: Jūsų paskyra buvo aktyvuota!
   your_content: Jūsų Turinys
   your_observations: Jūsų stebėjimai
