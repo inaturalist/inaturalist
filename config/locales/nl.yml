@@ -924,7 +924,6 @@ nl:
   data_deficient: Gegevens Tekort
   data_quality: Gegevenskwaliteit
   data_quality_assessment: Beoordeling van Gegevenskwaliteit
-  data_quality_assessment_: beoordeling van gegevenskwaliteit
   data_used: "Gebruikte gegevens:"
   datatype: Gegevenstype
   date_: Datum
@@ -1542,8 +1541,6 @@ nl:
   inviteonly: alleen op uitnodiging
   invited_x: "%{x} uitgenodigd"
   iphone: iPhone
-  is_an_evaluation: |
-    is een evaluatie van de nauwkeurigheid van een waarneming. Waarnemingen van onderzoekskwaliteit kunnen door wetenschappers worden gebruikt voor onderzoek. Breng hieronder je stem uit:
   is_not_following_anyone: volgt niemand.
   is_now: is nu
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is het geleverde bewijsmateriaal voldoende om te bevestigen dat dit een %{taxon} is?
@@ -4329,33 +4326,33 @@ nl:
           <table class="table">
           <tbody>
           <tr>
-          <th>Name</th>
-          <th>color</th>
-          <th>Number of hands</th>
+          <th>Naam</th>
+          <th>Kleur</th>
+          <th>Aantal handen</th>
           <th></th>
           </tr>
           <tr>
           <td>Homo sapiens</td>
           <td></td>
           <td>2</td>
-          <td>bipedal</td>
+          <td>tweevoeter</td>
           </tr>
           <tr>
           <td>Vulpes vulpes</td>
-          <td>red|black</td>
+          <td>rood|zwart</td>
           <td>0</td>
-          <td>quadripedal</td>
+          <td>viervoeter</td>
           </tr>
           </tbody>
           </table>
           <p>
-          De eerste rij begint met "Name" gevolgd door het predicaat of de categorieën van het label.
+          De eerste rij begint met "Naam" gevolgd door het predicaat of de categorieën van het label.
           Dan begint iedere volgende rij met de naam van het taxon, gevolgd door het bijbehorende predicaat van de kolom.
           In dit voorbeeld krijgt <i>Homo sapiens</i> de labels
-          <code>bipedal</code> en <code>Number of hands=2</code>,
-          en <i>Vulpes vulpes</i> krijgt <code>quadripedal</code>,
-          <code>color=red</code>, <code>color=black</code>, en
-          <code>Number of hands=0</code>. Lege velden worden genegeerd, en je
+          <code>tweevoeter</code> en <code>Aantal handen=2</code>,
+          en <i>Vulpes vulpes</i> krijgt <code>viervoeter</code>,
+          <code>Kleur=rood</code>, <code>Kleur=zwart</code>, en
+          <code>Aantal handen=0</code>. Lege velden worden genegeerd, en je
           kunt meerdere regels per taxon toevoegen. Je kunt ook meerdere
           waarden per cel toevoegen, gescheiden door een vertikale streep.
           </p>
@@ -5901,7 +5898,7 @@ nl:
       conservation_status:
         status: Status
         description: Beschrijving
-        authority: autoriteit
+        authority: Autoriteit
         place_id: Plaats
         url: URL
         geoprivacy: Geoprivacy
@@ -5951,7 +5948,7 @@ nl:
         latitude: Breedtegraad
         longitude: Lengtegraad
         name: Naam
-        parent_id: Ouder
+        parent_id: ouder
         place_type: Plaatstype
         prefers_check_lists: Controlelijsten toegestaan?
         woeid: WOEID
