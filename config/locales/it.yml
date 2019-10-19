@@ -8,9 +8,6 @@ it:
   x_flags_resolved_html:
     one: "<span class='count'>1</span> contrassegno risolto"
     other: "<span class='count'>%{count}</span> contrassegni risolti"
-  x_followers:
-    one: '1 seguace'
-    other: '%{count} seguaci'
   x_identifications:
     one: '1 identificazione'
     other: '%{count} identificazioni'
@@ -20,19 +17,14 @@ it:
   x_identifications_:
     one: '1 identificazione'
     other: '%{count} identificazioni'
-  x_ids:
-    one: '1 identificativo'
-    other: '%{count} identificativi'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    one: '<span class="count">1</span> Identificatore'
+    other: '<span class="count">%{count}</span> Identificatori'
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: 1 prima lista degli esseri viventi
     other: "%{count} prime liste prime degli esseri viventi"
-  x_lists:
-    one: '1 lista'
-    other: '%{count} liste'
-  x_journal_posts:
-    one: '1 post del diario'
-    other: '%{count} post del diario'
   x_journal_posts_html:
     one: '<span class="count">1</span> post del diario'
     other: '<span class="count">%{count}</span> post del diario'
@@ -63,18 +55,12 @@ it:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> osservazione controllata"
     other: "<span class='count'>%{count}</span> osservazioni controllate"
+  x_observers_html:
+    one: '<span class="count">1</span> Osservatore'
+    other: '<span class="count">%{count}</span> Osservatori'
   x_others:
     one: "un altro"
     other: "%{count} altri"
-  x_people_found_this_helpful:
-    one: 'Una persona lo ha trovato utile'
-    other: '%{count} persone lo hanno trovato utile'
-  x_people_like_this:
-    one: 'piace ad 1 persona'
-    other: 'piace a %{count} persone'
-  x_people_agree_html:
-    one: '<span class="count">1</span> persona è d''accordo'
-    other: '<span class="count">%{count}</span> persone sono d''accordo'
   x_photos:
     one: "1 foto"
     other: "%{count} foto"
@@ -148,6 +134,9 @@ it:
   about_complete_taxa: A proposito dei taxa completi
   about_conservation_status: A proposito dello stato di conservazione
   about_editing_observation_fields: Riguardo la modifica dei campi delle osservazioni
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: A proposito dell'origine del popolamento
   about_licenses: A proposito delle licenze
   about_licensing: A proposito delle licenze
@@ -418,6 +407,7 @@ it:
   all_updates: Tutti gli aggiornamenti
   all_your_observations_will_default_this_time_zone: Tutte le tue osservazioni saranno assegnate di default a questo fuso orario a meno che non specifichi diversamente.
   all_your_observations_will_default_to_this_time_zone: Tutte le tue osservazioni saranno assegnate di default a questo fuso orario a meno che non specifichi diversamente
+  #Option to allow any taxa on a list
   allow_any: consenti a tutti
   allow_curator_access: Permetti l'accesso ai curatori
   allow_project_curators_to_view_your_private_coordinates: Consenti ai curatori del progetto di vedere le tue coordinate nascoste
@@ -534,7 +524,6 @@ it:
   assessment_x: "%{assessment} valutazione"
   assessments: valutazioni
   associations: Associazioni
-  at: in
   at_time: "alle ore %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -592,7 +581,6 @@ it:
   batch_edit_taxa_for_x_html: "Modifica in gruppo i taxa %{x}"
   batch_operations: Operazioni a blocchi
   be_the_first_to_fave_this_observation: Aggiungi per primo questa osservazione ai preferiti!
-  because: perché
   because_of: perché
   before_importing_photos: prima di importare le foto
   belives_this_is_a_comprehensive_list_of: pensa che questa è una lista esaustiva di
@@ -638,7 +626,6 @@ it:
   card: Carta
   casual: casuale
   casual_: Casuale
-  catalogue_of_life: Catalogue of Life
   categories: Categorie
   cc_0_description: "Questa licenza rilascia il tuo lavoro nel pubblico dominio, in modo che altri possano copiare, modificare, distribuire ed eseguire il tuo lavoro, anche a fini commerciali, il tutto senza chiedere il permesso o concedendoti crediti. Questo è il tipo di licenza più permissiva. Raccomandato per la massima diffusione e utilizzo dei materiali concessi in licenza."
   cc_0_name: Nessun copyright (CC0)
@@ -858,7 +845,6 @@ it:
   convert: Converti
   coordinate_systems: Sistemi di coordinate
   coordinates: Coordinate
-  coordinates_private: (coordinate private)
   copy: Copia
   copy_and_paste_the_following_code_to: Copia e incolla il seguente codice per incorporare questa valutazione in un'altra pagina web.
   copy_and_paste_this_into_your_own_html: Copia e incolla nel tuo HTML.
@@ -1180,7 +1166,6 @@ it:
   everyone_journal_posts: Tutti i post del Diario
   everywhere: ovunque
   exact: Esatto
-  exact_coordinates_obscured_for: Le coordinate esatte per le specie minacciate sono oscurate alla vista del pubblico.
   exact_date: Data esatta
   exact_location: Località_esatta
   exact_rank: Rank esatto
@@ -1216,7 +1201,7 @@ it:
   Family: Famiglia
   faved_this_observation: ha aggiunto ai preferiti questa osservazione
   favorite_taxa: Taxa preferiti
-  favorites: "Contenuto preferito"
+  favorites: "Preferiti"
   feature_this_project_: "Evidenzia questo progetto"
   featured: In evidenza
   featuring: Presentando
@@ -1430,11 +1415,12 @@ it:
   help_support_inaturalist: "Aiuta a sostenere iNaturalist"
   helped_the_observer_make: ha aiutato l'osservatore a decidere la sua ID finale (e.g. sono state fatte prima dell'ID finale e corrispondono)
   here_are_3_examples: Qui ci sono tre esempi di dati ben organizzati
-  here_are_our_top_suggestions: Questi sono i nostri migliori suggerimenti
   here_are_our_top_species_suggestions: Questi sono i nostri migliori suggerimenti per la specie
   hex_color_eg: Colore in esadecimale, e.g. 65644F
   hi: Ciao,
   hi_user: "Ciao %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Nascondi
   hide_content: Nascondi il contenuto
   hide_desc: |
     Nascondere il contenuto rimuoverà lo stesso dalla vista pubblica, ma gli utenti potranno comunque vedere che qualcosa è stato nascosto, ed i curatori del sito e l'autore del contenuto potranno continuare a vedere il contenuto nascosto. In generale, questo si applica solo al contenuto scritto, ad esempio se avete nascosto dei contenuti da una identificazione, l'identificazione è ancora visibile ma i commenti dell'identificatore sono nascosti. Non è possibile annullare questa operazione, e solamente il personale del sito può annullare l'occultamento di contenuti nascosti, per cui siate prudenti ed usate questa funzione per contenuti particolarmente sgradevoli.
@@ -1571,7 +1557,6 @@ it:
   join_the_largest_group_of_naturalists_in_the_world: Unisciti al più grande gruppo di naturalisti al mondo!
   join_this_project: Aderisci a questo progetto
   'joined!': Hai aderito!
-  joined_any_projects: aderito a nessun progetto
   joined_projects: Progetti a cui ti sei unito
   joined_with_date: "Unito: %{date}"
   journal: Diario
@@ -1754,9 +1739,9 @@ it:
     en-UK: Inglese (Regno Unito)
     en-US: Inglese (Stati Uniti)
     eo: Esperanto
-    es-ES: Spagnolo (Spagna)
-    es-MX: Spagnolo (Messico)
     es: Spagnolo
+    es-AR: Spagnolo (Argentina)
+    es-MX: Spagnolo (Messico)
     et: Estone
     eu: Basco
     fi: Finlandese
@@ -1778,12 +1763,14 @@ it:
     nn: Norvegese Nynorsk
     oc: Occitano
     pl: Polacco
+    pt: Portoghese
     pt-BR: Portoghese (Brasile)
     ru: Russo
     sk: Slovacco
     sq: Albanese
     sv: Svedese
     zh-CN: Cinese (tradizionale)
+    zh-HK: Cinese (tradizionale, Hong Kong)
     zh-TW: Cinese (tradizionale)
   locality_notes: Note locali
   localized_species_accounts: Pagine delle specie
@@ -1819,6 +1806,8 @@ it:
   mail_disclaimer: "%{site_name} non permette ai suoi utenti di mandarti altri inviti utilizzando il nostro sistema di inviti. Per favore riporta l'abuso a %{site}."
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contenuto principale
+  #Stub text for the main content section when editing custom project data
+  main_content_description: Il contenuto principale va qui
   make_a_new_place: Crea un nuovo luogo
   make_a_taxon_swap_instead?: Preferisci invece fare uno Scambio Taxon?
   make_curator: Rendi curatore
@@ -1864,7 +1853,7 @@ it:
   medium: medio
   meet: Incontra
   member_of_the_inaturalist_network_html: |
-    Membri di <a href="%{url}">iNaturalist Network</a>
+    Membri del <a href="%{url}">Network iNaturalist</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Membro del %{partial_inat_network_tag_html}Network iNaturalist</a> un'iniziativa congiunta di %{cas_tag_html} e di %{nat_geo_tag_html}.
   members: Membri
@@ -1980,6 +1969,8 @@ it:
   #Short for "navigation," used to describe a navigational component on the
   #project detail page when editing custom project data
   nav: Navigatore
+  #Stub text to show where the nav section of the project detail page is.
+  nav_description: Il contenuto per la navigazione del progetto va qui.
   ne_lat: Lat. NE
   ne_lon: Lon. NE
   near_threatened: Quasi minacciata
@@ -2399,9 +2390,7 @@ it:
   paste: Incolla
   paste_in_a_bunch_of_names: Incolla in un gruppo di nomi, 1 per riga, e premi il pulsante!
   paste_in_a_comma_separated_list: Incolla come lista di stati separata da virgole
-  pdf: PDF
   people: Persone
-  people_agree: persone sono d'accordo
   people_following_user: "Persone stanno seguendo %{user}"
   people_user_follows: "Persone che %{user} segue"
   people_added:
@@ -2420,9 +2409,7 @@ it:
   personal_message: Messaggio personale
   personal_message_description: A nessuno piace ricevere e-mail da una macchina! Perché non fate sapere ai vostri amici perché li stai invitando?
   per_page: "Per pagina"
-  permalink: Link permanente
   photo: Foto
-  photo?: Foto?
   photo_attribution: "Foto di %{attribution}"
   photo_browser: Browser delle foto
   photo_by_id_attribution: "Foto %{id}, di %{attribution}"
@@ -2430,13 +2417,11 @@ it:
   photo_deleted: Foto cancellata
   photo_destroyed_because_it_was_deleted_from: "Foto distrutta perché è stata eliminata dal sito esterno o perché %{site_name} non ha più il permesso di vederla"
   photo_hosting_accounts: Account di hosting per le foto
-  photo_integration: Integrazione della foto
   photo_licensing: Licenza delle foto
   photo_type: Tipo di foto
   photo_urls_repaired: URL della foto riparati
   photos_chosen_for_this_taxon: Foto scelte per questo taxon
   photos_from: Foto da
-  photos_of: Foto di
   photos_of_taxon_html: "Foto di %{taxon}"
   photos_or_sounds: Foto o suoni
   photos_or_sounds?: Foto o suoni?
@@ -2446,7 +2431,6 @@ it:
     large: grande
     original: originale
   photos_size_photos: "Foto di %{photos_size}"
-  photos_size_photo: "foto di %{photos_size}"
   photos_updated: Foto aggiornate.
   pi_consent_desc_title: Riguardo le Informazioni Personali
   pi_consent_desc_html: |
@@ -2456,7 +2440,6 @@ it:
     Io acconsento che iNaturalist conservi e processi un limitato tipo di mie informazioni personali al fine di gestire il mio account
   pi_consent_child_label: |
     Io acconsento che iNaturalist conservi e processi un limitato tipo di informazioni personali su mio figlio al fine di gestire l'account di mio figlio
-  picasa_identity: Identità Picasa
   pick_a_username: Scegli un nome utente
   pin_verb: Memorizza
   pink: rosa
@@ -2572,10 +2555,8 @@ it:
   place_must_have_a_boundary_defined: Un Luogo deve avere un confine definito.
   place_name: Nome del luogo
   place_notes: Note sul luogo
-  place_subscription: iscrizione ad un luogo
   place_too_big_for_check_list: |
     Questo Luogo è troppo grande per una checklist. Calcolare la statistica di una checklist è alquanto laborioso, perciò non lo consentiamo per i luoghi molto estesi, a meno che non siano stati aggiunti dagli amministratori del sito. Tuttavia puoi usare questo Luogo per stabilire i confini del progetto o per le ricerche.
-  place_type_name: Nome del tipo di luogo
   place_updated: Luogo aggiornato!
   placement: Posizione
   places: Luoghi
@@ -2761,7 +2742,6 @@ it:
     oman: Oman
     pakistan: Pakistan
     palau: Palau
-    palestina: Palestina
     palestine: Palestina
     panama: Panama
     papua_new_guinea: Papua Nuova Guinea
@@ -2853,14 +2833,9 @@ it:
   please_add_this_observation_to: Per piacere aggiungi questa osservazione a
   please_add_this_to_x_html: "Per piacere aggiungi questo a %{x}"
   please_allow_a_few_weeks_for_external_sites: Per favore attendi alcune settimane affinché i siti esterni sincronizzino la modifiche per questa osservazione
-  please_be_careful_particulary_when: "Stai attento, specialmente nel cancellare dei taxa. Se un taxon ha osservazioni associate, identificazioni, taxa elencati, etc, per piacere"
-  please_check_for_you_confirmation_email: "Benvenuto su %{site_name}!  Per favore controlla la tua email di conferma, ma sentiti libero di iniziare a esplorare il sito."
-  please_cite_the_published_source_of_taxon: Per favore, cita la fonte per questo taxon.
   please_complete_the_following_to_add_project: |
     Per favore completa i campi seguenti per aggiungere l'osservazione al progetto:
   please_confirm_your_inat_username: "Per favore, conferma il tuo nome utente %{site_name}"
-  please_confirm_your_account_html: 'Per favore, dedica qualche secondo a <a href="%{url}">confermare il tuo account</a>'
-  please_enter_a_new_pass: Per favore inserisci una nuova password e confermala.
   please_explain_why_you_want_to_hide_this: Per favore spiegate perché vuoi nascondere questo
   please_explain_why_you_want_to_unhide_this: Per favore spiega perché vuoi scoprire questo
   please_fix_your_csv_and_try_again: Per favore  correggi il tuo CSV e prova di nuovo.
@@ -2868,14 +2843,10 @@ it:
   please_hold_on_while_the_file_is_generated: Per favore attendi la creazione del file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
   popular: Popolare
   position: Posizione
-  positional_accuracy: Precisione della posizione
   possessive_user: "di %{user}"
-  #Noun, short version of a journal post
-  post: Post
   post_from_journal_by_parent_html: Post dal <a href="%{url}">diario di %{parent}</a>
   post_from_your_journal_html: Post dal <a href="%{url}">tuo diario</a>
   post_published: Post pubblicato!
-  post_some_new_stuff: posta qualcosa di nuovo
   posted_by: Postato da
   posted_on: Postato il
   posts: Post
@@ -2897,9 +2868,7 @@ it:
   previous_photo: Foto Precedente
   previous_tab: Scheda precedente
   print_verb: Stampa
-  print_in_browser: Stampa nel browser
   privacy: Privacy
-  privacy_policy: Informativa sulla privacy
   private: privata
   private_: Privato
   private_description: "Le coordinate sono completamente nascoste al pubblico, le coordinate reali sono visibili solo a te e ai curatori dei progetti a cui ha aggiunto l'osservazione. Le osservazioni con coordinate nascoste saranno comunque usate per verificare le checklist di un luogo."
@@ -2908,11 +2877,9 @@ it:
   processing: Elaborazione in corso
   processing3p: "Elaborazione..."
   profile: Profilo
-  profile_visibility_pending_account_verification: La visibilità del profilo attende la verifica dell'account
   profile_visibility_desc: |
     Nello sforzo di tenere fuori lo spam da %{site_name}, i profili degli utenti diventano visibili pubblicamente solo dopo che un utente ha contribuito con alcune osservazioni a Livello Ricerca.
   project: Progetto
-  project_added_your_observations: Il Progetto ha aggiunto le tue osservazioni
   project_admins:
     one: Amministratore del Progetto
     other: Amministratori del Progetto
@@ -2922,7 +2889,6 @@ it:
   project_assets: Risorse del Progetto
   project_cover: Copertina del progetto
   project_created_on: ha creato questo progetto in data %{date}
-  project_curator_changes: Sostituzioni dei curatori del progetto
   project_curator_id: ID del curatore del progetto
   project_curator_tools: Strumenti curatore progetto
   project_curators: Curatori del progetto
@@ -2932,26 +2898,19 @@ it:
   project_icon: Icona del progetto
   project_id_or_url_slug: ID del progetto o URL, e.g. 333 o mio-progetto
   project_invitations: 'Inviti al progetto'
-  project_journal_posts: 'Post del diario di progetto'
   project_list: Lista del progetto
   project_list_defaults:
     title: "Checklist di %{owner_name}"
     description: La lista delle specie di %{owner_name}
   project_curators_added_some_of_your_observations_html: |
     I curatori di <a href="%{url}">%{project}</a> hanno aggiunto alcune delle tue osservazioni
-  project_id: ID del progetto
   project_members: "Membri di %{project}"
   project_membership_model_description: Il tuo progetto è aperto a tutti o solo alle persone che inviti?
-  project_name: Nome progetto
-  project_observation_settings: Impostazioni delle osservazioni del progetto
   project_observations: Osservazioni del Progetto
   project_post: Post del Progetto
-  project_preferred_count_description: |
-    Vuoi che per il tuo progetto il numero totale dei taxa sia indicato come specie, taxon, o semplicemente "foglie" dell'albero filogenetico?
   project_requirements: Requisiti del progetto
   project_rules: Regole del Progetto
   project_settings: Impostazioni del progetto
-  project_terms_and_rules: termini &amp; regole del progetto
   project_that_does_not_contain_these_observations: Progetto che non contiene queste osservazioni
   project_type_description: |
     Valutazioni e Bioblitz sono tipologie speciali di progetto. Le valutazioni sono fatte per collaborare nella valutazione di un gruppo di specie, di solito per determinarne la loro importanza conservazionistica. I Biobliz sono eventi che hanno un inizio e fine specificata.
@@ -2967,12 +2926,10 @@ it:
   projects_from_place: "Progetti in %{place}"
   projects_in_x: "Progetti in %{x}"
   projects_you_admin: Progetti che amministri
-  projects_youve_joined: Progetti a cui ti sei unito
   proposed_taxa_that_contradict_the_community_id: Taxa proposti che contraddicono l'ID della Comunità
   proposed_taxa_that_support_the_community_id: Taxa proposti che supportano l'ID della Comunità
   protozoans: protozoi
   provider_authorizations: Autorizzazioni dei fornitori
-  public_coordinates_obscured_by: "Coordinate pubbliche oscurate nel raggio di %{distance} Km"
   public_domain: Pubblico dominio
   publish: Pubblica
   purple: viola
@@ -3028,27 +2985,19 @@ it:
     infrahybrid: Infraibrido
     leaves: Foglie
   ranges: Areali
-  rare: Raro
   ray_finned_fishes: Attinopterigi
   re_apply_list_rules: Riapplica le regole della lista
   re_order_photos: "Riordina le foto &raquo;"
   read_more: Leggi di più
   read_our_getting_started_guide: leggi la nostra guida "Per iniziare"
   read_the_full_wikipedia: Leggi la descrizione completa di Wikipedia
-  ready_to_get_started?: "Pronto a iniziare?"
-  real_time_stats: Statistiche in tempo reale
   real_time_discussions: Discussioni in tempo reale
   reason: Motivo
-  reason_label: "Motivo:"
   reason_you_are_flagging_this_item: Motivo per cui stai segnalando questo elemento.
   recaptcha_verification_failed: verifica reCAPTCHA fallita
   receive_email_notifications_when_people_leave_you: Ricevi notifiche email su
   receive_updates_from_this_project: Ricevi aggiornamenti da questo progetto
-  received: ricevuto
   recent: Recenti
-  recent_additions: Aggiunte recenti
-  recent_comments_on_your_stuff: Ultimi commenti sui tuoi contenuti
-  recent_evidence?: Prova recente?
   recent_evidence_of_organism: Evidenze recenti della presenza dell'organismo
   recent_new_users: Nuovi Utenti Recenti
   recent_observations: Osservazioni recenti
@@ -3056,32 +3005,21 @@ it:
   recent_post: Post recenti
   recent_atom_observations_by: "Osservazioni recenti di %{login} (Atom)"
   recent_observations_by: "Osservazioni recenti di %{login}"
-  recent_updates: Aggiornamenti recenti
   recently_active: Attivi di recente
-  recently_active_projects_from_everywhere: "Progetti attivi di recente da tutto il mondo"
-  recently_active_projects_from_place: "Progetti attivi di recente in %{place}"
   recently_created: Creati di recente
-  recently_created_projects_from_everywhere: "Progetti creati di recente in tutto il mondo"
-  recently_created_projects_from_place: "Progetti creati di recente in %{place}"
   recently_finished: Terminato di recente
   recently_observed: Osservate di recente
   recently_resolved: Recentemente risolti
-  record!: Registra!
   red: rosso
   redo_search_in_map: Ripeti la ricerca nella mappa
   redo_search_in_map_area: Ripeti la ricerca nell'area di mappa
   refresh: Aggiorna
-  refresh_listed_taxa: aggiorna i taxa elencati
   refreshing: aggiornamento in corso
   regenerate_stats: Rigenera statistiche
-  regenerate_url: Rigenera l'URL
   register_for_this_event_at_x_html: "Registrati per questo evento in %{x}"
   reject?: Rifiuta?
-  reject_the_community_id: rifiuta l'ID della Comunità
-  related_species: Specie affini
   relative_observations: Osservazioni relative
   relationship: "Relazione"
-  relationship_unknown_count: Conteggio delle relazioni sconosciute
   relationship_x: "Relazione: %{relationship}"
   relationships:
     match: corrispondenza
@@ -3094,12 +3032,9 @@ it:
     not_internal: non interno
     error: errore
   relationship_html: "Relazioni: %{link}"
-  reload_and_refresh: Ricarica ed aggiorna la lista
   reload_from_observations: Ricarica dalle osservazioni
   reload_timed_out: 'Tempo del caricamento scaduto. Riprova più tardi.'
-  remarks_hidden: "Osservazioni nascosti"
   remarks_optional: 'Commenti <span class="small description">(optional)</span>'
-  remember_its_a_lot_easier_to_id: "Ricorda, è molto più facile identificare qualcosa se fornisci tutte le informazioni possibili. La cosa più importante è fornire un <strong>place</strong>, la <strong>data/time</strong>, qualche informazione sulla <strong>taglia</strong>."
   remember_me: Ricordati di me
   remove: Rimuovi
   remove_all_tags: Rimuovi tutti i tag
@@ -3108,12 +3043,9 @@ it:
   remove_conservation_status: rimuovi lo stato di conservazione
   remove_from: Rimuovi da
   remove_curator: Rimuovi il curatore
-  remove_curator_role: Rimuovi il ruolo di curatore
   remove_curator_status: Rimuovi lo stato del curatore
-  remove_from_batch: Rimuovi dal gruppo
   remove_from_featured: Rimuovi dagli evidenziati
   remove_from_guide: Rimuovi dalla guida
-  remove_from_id_please?: Rimuovi da "ID per favore"?
   remove_from_list: Rimuovi dall'elenco
   remove_from_project: Rimuovi dal progetto
   remove_this_section: Rimuovi questa sezione
@@ -3123,13 +3055,11 @@ it:
     other: Rimuovere %{count} osservazioni?
   remove_photo: Rimuovi foto
   remove_place: Rimuovi luogo
-  remove_project_user: Rimuovi l'utente del progetto
   remove_range: Rimuovi l'areale
   remove_relationship: Rimuovi relazione
   remove_section: Rimuovi sezione
   remove_selected: Rimuovi i selezionati
   remove_tags: Rimuovi i tag
-  remove_your_existing_id?: Rimuovi la tua ID?
   removed: Rimosso
   removed!: Rimosso!
   removed_project_user: Utente del progetto rimosso
@@ -3140,13 +3070,9 @@ it:
   repair_external_photos: Riparare le foto esterne
   replace_boundary_with_kml: Sostituisci il confine con il KML
   replace_parentesis: (sostituisci)
-  replacing: sostituzione in corso
   reply: Rispondi
-  report_any_problems: segnala eventuali problemi
   reptiles: rettili
   request_failed: "Richiesta fallita"
-  request_id_help: Richiedi aiuto per l'ID
-  request_password: Richiedi password
   request_timed_out: Richiesta scaduta!
   required: obbligatorio
   required_: Obbligatorio
@@ -3155,15 +3081,12 @@ it:
   research: ricerca
   research_: Ricerca
   research_grade: Livello ricerca
-  research_grade_expandable_html: "L<span class='full'>ivello</span>R<span class='full'>icerca </span>"
   research_grade_short_html: "L<span class='full'>ivello</span>R<span class='full'>icerca </span>"
   research_grade_observations_have: 'le osservazioni ad un "Livello ricerca" hanno foto, coordinate, data e una ID supportata dalla community. Clicca qui per vedere la valutazione della qualità dei dati'
   research_grade_qualification: Qualifica di Livello ricerca
-  research_quality: Qualità ricerca
   reset_filters_short: Azzera
   reset_brightness: Reimposta luminosità
   reset_search_filters: Resetta i filtri di ricerca
-  reset_your_password: Reimposta la tua password
   resolve: Risolvi
   resolve_this_flag: Risolvi questo contrassegno
   resolved: Risolte
@@ -3174,16 +3097,12 @@ it:
   restoring: Ripristino in corso...
   results: risultati
   review_all: Controlla tutto
-  review_verb: Revisiona
   reviewed: Revisionata
   rg_observations: Osservazioni LR
-  roadmap: cartina stradale
   role: Ruolo
   rotate_left: Ruota a sinistra
   rotate_right: Ruota a destra
   row_singular_or_plural: Riga
-  row_number_i_was_parsed_as: "Il numero della riga %{row} è stato processato come"
-  rule_must_be: "La regola deve essere..."
   rules_and_formatting: "Regole & Formattazione"
   rules_for_adding_observations: Regole per l'aggiunta di osservazioni
   rules_for_becoming_a_member: Regole per diventare un Membro
@@ -3203,7 +3122,6 @@ it:
   same_day_private_desc: |
     Quando le coordinate sono nascoste perché il taxon è minacciato, anche tutte le altre osservazioni di quella persona lo stesso giorno vengono nascoste per evitare che le persone intuiscano le coordinate basandosi sulle osservazioni effettuate nello stesso periodo. Gli utenti possono applicare questo tipo di protezione anche alle coordinate che hanno deciso di nascondere.
   said: detto
-  sat: Sab
   satellite: satellite
   save: Salva
   save_all: Salva tutto
@@ -3211,12 +3129,10 @@ it:
   save_and_continue: "Salva &amp; continua..."
   save_and_add_taxa: "Salva ed inizia ad aggiungere le specie"
   save_changes: Salva le modifiche
-  save_colors: Salva i Colori
   save_comment: Salva il commento
   save_draft: Salva la Bozza
   save_fields: Salva i campi
   save_flag: Salva il contrassegno
-  save_guide: Salva la guida
   save_guide_taxon: Salva la guida del taxon
   save_identification: Salva l'identificazione
   save_observation: Salva l'osservazione
@@ -3232,7 +3148,6 @@ it:
   scale_colon: "Scala:"
   schemes: Schemi
   schemes_including: Schemi che includono
-  scientific_names: Nomi scientifici
   search: Cerca
   search_all_fields: cerca in tutti i campi
   search_by_name_or_email: Cerca per nome o email
@@ -3240,17 +3155,11 @@ it:
   search_by_taxon_name_or_flickr_photo_id: Cerca per nome del taxon o ID della foto Flickr
   search_catalogue_of_life: 'Cerca in <a href="http://www.catalogueoflife.org">Catalogue of Life</a>'
   search_catalogue_of_life_raquo: "Cerca in Catalogue of Life &raquo;"
-  search_creative_commons_photos_on_flickr: "Cerca le foto Creative Commons su Flickr. Se ne selezioni una, sii gentile e lascia un ringraziamento nel commento!"
-  search_descendant_taxa_raquo: "Cerca nei taxa discendenti &raquo;"
   search_external_name_providers: Cerca nei fornitori di nomi esterni
   search_for_a_location: Cerca una Località
-  search_for_new_taxa: cerca Nuovi Taxa
-  search_for_place_to_import_from_yahoo: Cerca un luogo da importare da Yahoo.
   search_for_species: Cerca Specie
   search_list: Cerca Liste
-  search_obs: "Cerca osservazioni..."
   search_observations: "Cerca osservazioni"
-  search_places: Cerca Luoghi
   search_projects: Cerca Progetti
   #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
   search_reasons: Cerca Motivazioni
@@ -3259,10 +3168,8 @@ it:
   search_remote: Cerca In Remoto
   search_species: Cerca Specie
   search_species_: Cerca Specie...
-  search_taxa: "Cerca taxa..."
   search_the_map: Cerca sulla mappa
   search_this_taxon: cerca questo taxon
-  search_ubio: Cerca in '<a href="http://www.ubio.org">uBio</a>'
   search_ubio_raquo: "Cerca in uBio &raquo;"
   search_your_photos: Cerca tra le tue foto
   searching: "Ricerca in corso..."
@@ -3275,9 +3182,7 @@ it:
   seen_one: Ne hai visto uno?
   select: Seleziona
   select_all: Seleziona tutto
-  select_an_album: Seleziona un album
   select_at_least_one: Seleziona almeno uno
-  select_how_unobserved_listings_are_displayed: Seleziona la modalità in cui vengono visualizzate le specie non osservate nella lista del progetto
   select_one_or_more_photos: 'Seleziona una o più foto'
   select_none: Deseleziona tutto
   select_observations_to_edit: Seleziona le osservazioni da modificare...
@@ -3292,7 +3197,6 @@ it:
   selected_taxon: Taxon Selezionato
   select_this_taxon: Seleziona Questo Taxon
   send: invia
-  send_invite: Invia invito
   send_invites_to: Invia inviti a
   send_me_reset_password_instructions: Mandami le istruzioni per resettare la password
   send_the_invites: Manda gli Inviti
@@ -3300,27 +3204,22 @@ it:
   #Label for messages you've sent
   sent: Inviato
   separate_values_with_a_pipe: Separa i valori con la barra verticale, e.g. "1-5|6-10|molti" o "si|no|forse"
-  september: Settembre
   set_a_place_if_this_link_only_applies_to: Definisci un luogo solo se questo link si applica ai taxa di un luogo specifico. Lascia vuoto se si applica ai taxa di tutto il mondo.
   set_license: Imposta la licenza
   settings: Impostazioni
   share: Condividi
   share_colon: "Condividi:"
-  share_your_observation_with_researchers_by: Condividi la tua osservazione con i ricercatori in
   short_code_for_this_place: Codice breve per questo luogo, ad esempio, US per gli Stati Uniti
   short_or_abbreviated_title_for_display: Titolo corto o abbreviato per la visualizzazione in aree a spazio limitato. Max 10 caratteri.
   show: Mostra
   show_active_and_inactive_taxa: Mostra taxa attivi e inattivi
   show_common_names: Mostra nomi comuni
-  show_counts: Mostra i conteggi un base alla lista.
   show_default_taxon_photos: mostra le foto predefinite del taxon
   show_hidden_content: Mostra contenuti nascosti
   show_keyboard_shortcuts: Mostra Scorciatoie di Tastiera
-  show_kml: Mostra il KML
   show_less: Mostra meno
   show_more: Mostra di più
   show_observation_photos: mostra le foto delle osservazioni
-  show_observations_from: Mostra le osservazioni per
   show_off_your_recent_observations: Mostra le tue recenti osservazioni sul tuo blog o sul tuo sito!
   show_only: Mostra solo
   show_relative_proportions_of_all_observations: Mostra le proporzioni relative di tutte le osservazioni
@@ -3330,27 +3229,21 @@ it:
   show_taxa_from_everywhere: "Visualizza i taxa di tutto il mondo"
   show_taxa_from_place: "Mostra i taxa in %{place}"
   show_total_counts: Mostra tutti i conteggi
-  show_total_listed_taxa: Mostra il totale dei taxa osservati
   show_uncountable_species: Mostra le specie non conteggiabili
-  showing_observations_by: visualizzazione delle osservazioni per
   showing_one_to: Visualizzazione 1 -
   showing_taxa_from_everywhere: "Visualizzazione dei taxa di tutto il mondo"
   showing_taxa_from_place: "Visualizzazione taxa in %{place}"
   showing_x_of_y_listings: "Visualizzando %{x} di %{y} liste"
-  shown_publicly_as: Mostrato pubblicamente come
   sign_in: Accedi
   sign_in_with_provider: "Accedi con %{provider}"
   sign_up_with_provider: "Registrati con %{provider}"
   sign_out: Esci
-  sign_up!: Registrati!
   sign_up: Registrati
-  sign_up_exclamation: Registrati!
   similar_species: Specie simili
   similar_taxa: Taxa Simili
+  #Journal post formatting option
   simple: Semplice
-  sign_in_exclamation: Accedi!
   single_observation: Osservazione singola
-  single_taxon: Taxon unico (entra per separare/eliminare/organizzare, esci per unire/scambiare)
   sizes: Dimensioni
   skip_to_next_page: "Passa alla pagina successiva"
   small: piccola
@@ -3361,8 +3254,6 @@ it:
   site_staff: "Staff di %{site_name}"
   site_stats: Statistiche del sito
   site_taxon_page: "pagina %{site_name} del taxon"
-  site_year_in_review: "Anno %{site_name} in Riassunto %{year}"
-  so_meta!: così autoreferenziale!
   some_agree: alcuni concordano
   some_observations_failed_to_be_added: Alcune osservazioni non sono state aggiunte al progetto
   some_observations_failed_to_save: Alcune osservazioni non sono state salvate
@@ -3370,20 +3261,16 @@ it:
   some_other_reason: Qualche altro motivo che puoi spiegare qui sotto.
   duplicate_observation_flag_warning: |
     Per le osservazioni duplicate, per favore chiedi all'osservatore di risolvere il problema al posto di aggiungere un contrassegno, perché i curatori del sito non possono rimuovere le osservazioni.
-  some_people: Alcune persone
-  some_people_that: Alcune persone che
   some_rights_reserved: Alcuni diritti riservati
   something: Qualcosa
   something_: qualcosa
   something_went_wrong_adding: Qualcosa è andato storto aggiungendo la specie alla tua lista
   something_went_wrong_deleting_the_taxon_name: "Qualcosa è andato storto eliminando il nome del taxon '%{taxon_name}'!"
-  something_went_wrong_updating: Qualcosa è andato nell'aggiornamento della tua lista!
   somewhere_on_earth: da qualche parte sulla Terra
   somewhere: (Da qualche parte...)
   sorry_flickr_isnt_responding_at_the_moment: "Ci dispiace, Flickr al momento non risponde."
   sorry_how_about_we_try_repeat: "Spiacenti! Che ne dici se proviamo a ripetere la tua ricerca in altri database di nomi di specie? Se troveremo qualcosa, lo salveremo così potrai trovarlo anche tu la prossima volta."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Spiacenti, una delle foto Flickr o non esiste più o non sei autorizzato a visualizzarla."
-  sorry_google_isnt_responding_at_the_moment: "Ci dispiace, al momento Google non risponde."
   sorry_that_photo_provider_isnt_responding: "Spiacenti, il fornitore di foto non sta rispondendo al momento. Per favore, riprova più tardi."
   sorry_that_service_is_not_responding: "Spiacenti, il servizio non risponde. Per favore, riprova più tardi."
   sorry_there_were_problems_with_your_request: "Spiacenti, ci sono dei problemi con la tua richiesta: %{project_user}"
@@ -3444,8 +3331,6 @@ it:
     in_text: 'es. Greene, 2000'
     url: es. 'http://www.ucpress.edu/book.php?isbn=9780520224872'
     citation: 'es. Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
-  source_identifier: Identificatore della fonte
-  source_unknown: "Fonte sconosciuta"
   source_url: URL di origine
   source_of_coordinates: 'Origine delle coordinate e misura di accuratezza, impostate automaticamente.'
   sourced_to: Originato da
@@ -3455,17 +3340,12 @@ it:
   sourcing: Preparazione fonte
   spam: Spam
   spammer: Spammer
-  spanish: Spagnolo
   species: Specie
   species_by_category: specie per categoria
   species_from_around_the_world: Specie da tutto il mondo
   species_guess: specie suggerita
-  species_guide: Guida delle Specie
-  species_header: Specie
-  species_name: nome della specie
   species_name_cap: Nome della specie
   species_names: nomi delle specie
-  species_or_lower: specie o inferiore
   species_search: Cerca Specie
   species_taxon_name: Specie / Nome taxon
   species_unknown: Specie sconosciuta
@@ -3473,13 +3353,9 @@ it:
   src: Fonte
   standard: Standard
   start: Inizia
-  start_a_new_list: Inizia un nuovo elenco
   start_a_new_project: Avvia un nuovo progetto
   start_a_project: Avvia un progetto
-  start_adding_observations: Inizia ad aggiungere le osservazioni
   start_date_time: Data/ora di inizio
-  start_new_account: Crea una nuova utenza
-  start_new_project: Avvia un nuovo progetto
   start_one: Avviane uno
   start_one_now: Avviane uno ora!
   start_typing_field_name: Inizia a digitare il nome del campo...
@@ -3489,7 +3365,6 @@ it:
   states: Regioni
   stats: Statistiche
   stats_for_this_year_have_not_been_generated: Le statistiche per quest'anno non sono state generate.
-  stats_title: Statistiche del sito
   status: Stato
   status_globally: "%{status} a livello Globale"
   status_in_place: "%{status} in %{place}"
@@ -3501,7 +3376,6 @@ it:
   stop_following_user: "Smetti di seguire %{user}"
   stop_testing: Termina il test
   stop_trusting_this_person_with_your_private_coordinates: Smetti di rivelare a questa persona le tue coordinate nascoste
-  stop_updating_position: Arresta l'aggiornamento del posizionamento
   studies_that_used_inaturalist_data_in_year: Studi che hanno utilizzato i dati di iNaturalist nel %{year}
   stuff_just_added: "Le cose che hai appena aggiunto..."
   subject_resolved_noun_html: "%{subject} ha risolto %{noun}"
@@ -3509,8 +3383,6 @@ it:
   subject_committed_thing_affecting_stuff_html: "%{subject} ha validato @gender{m:un|f:una|n:un} %{thing} che ha effetto su %{stuff}"
   submission_model: Modello di invio
   submission_model_description: Chi può aggiungere osservazioni al tuo progetto?
-  submit: Invia
-  submit_comment: Invia commento
   submit_observations:
     one: Invia 1 osservazione
     other: Invia %{count} osservazioni
@@ -3522,27 +3394,22 @@ it:
   subscribe_to_places_to: |
     Iscriviti a un luogo per ricevere gli aggiornamenti sulle osservazioni che lo riguardano. Gli aggiornamenti delle persone che segui e sulle cose che hai commentato sono gestiti attraverso le iscrizioni; perciò se vuoi vedere a cosa sei iscritto oppure per disiscriverti da alcune cose, puoi cliccare su "Gestisci tutte le tue iscrizioni" qui sotto. Tu puoi anche disdire le iscrizioni sul sito visualizzando le pagine di riferimento.
   subscribe_to_this: Iscriviti
-  subscribe_to_this_observation: Iscriviti a questa osservazione
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Iscriviti</a>
     a %{x} da %{y}.
   subscriptions: Iscrizioni
   subscriptions_arent_available_for: Le iscrizioni non sono disponibili per i luoghi senza confine.
   successfully_changed_your_password: Password cambiata con successo.
-  suggest_an_id: Suggerisci una ID
   suggest_an_identification: Suggerisci un'identificazione
   suggest_or_require_that: Suggerisci o richiedi che chi contribuisce riempia questi campi per le osservazioni che aggiunge al progetto.
   suggestions: Suggerimenti
   summary: Riassunto
   supporting: Di supporto
   support_inaturalist: Sostieni iNaturalist
-  suspicious_photos: Foto sospette
-  siutable_observations: osservazioni idonee
   suspend_user: Sospendi utente
   sw_lat: Lat. SO
   sw_lon: Lon. SO
   sync: Sincronizza?
-  sync_with_eol: Sinc. con EOL
   sync_obs_with_photo_metadata: "Sinc. oss. con i metadati della foto?"
   synonyms: Sinonimi
   table: Tabella
@@ -3552,16 +3419,13 @@ it:
   tagging: 'Etichettatura in corso...'
   tags: Etichette
   tags_are_a_way: 'Le Etichette sono un modo per organizzare le tue osservazioni. Per esempio, puoi etichettare tutte le tue osservazioni relative alle pozze di marea con l''etichetta "pozze di marea" per trovarle più velocemente.'
-  tags_like_taxonomy_binomial: 'Le etichette come <code>taxonomy:binomial=Pseudacris crucifer</code> sono delle <a href="http://www.flickr.com/help/tags#613430">etichette automatiche</a>. Esse aiutano gli ingenieri a dare un senzo alle vostre etichette, e sono richieste da alcuni gruppi Flickr come il gruppo <a href="http://www.flickr.com/groups/encyclopedia_of_life/">Immagini di Encyclopedia of Life</a>.'
   take_me_facebook: Si, vai a Facebook!
   take_me_flickr!: Si, vai a Flickr!
-  take_me_back: Indietro
   target_list_alert: Sei sicuro di aver tentato di osservare tutte le specie nella tua lista di obbiettivi? Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi ma che tu non hai osservato sarà interpretato come un'assenza, perciò è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo di specie che hai cercato di trovare
   target_list_warning: Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi ma che tu non hai osservato nel raggio e per la durata di questo viaggio sarà interpretato come un'assenza. Per questo è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo di specie che hai cercato di trovare. Se non hai cercato una specie nella tua lista di obbiettivi o ogni specie inclusa in un gruppo della tua lista di obbiettivi, per favore rimuovila.
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa con relazioni sconosciute
   taxa_info: Info Taxa
-  taxa_all_species_html: "Tutte le specie"
   taxa_needing_curation: Taxa che necessitano di revisione
   taxa_observed: taxa osservati
   taxa_to_include: Taxa da includere
@@ -3621,11 +3485,9 @@ it:
   taxon_is_threatened_coordinates_obscured_desc: |
     Uno dei taxa suggeriti nelle identificazioni, o uno dei taxa che contiene uno di questi taxa, è considerato raro e/o minacciato, sicché l'ubicazione di questa osservazione è stata nascosta.
   taxonomy: Tassonomia
-  taxon_: taxon
   taxon_assessments_are: |
     Le valutazioni di un taxon sono dei documenti che stabiliscono lo stato corrente di una specie, in genere lo stato conservazionistico.
     Per esempio, una organizzazione conservazionistica regionale potrebbe usarle per organizzare le informazioni e sollecitare feedback sullo stato di diversi taxa minacciati nella regione.
-  taxon_change: modifiche di taxon
   taxon_change_must_be_committed_to_update_records: Per aggiornare i contenuti occorre confermare la modifica del taxon
   taxon_deleted: Taxon eliminato.
   taxon_doesnt_have_a_range: Il Taxon non ha un areale definito
@@ -3640,27 +3502,22 @@ it:
   taxon_changes: Modifiche del taxon
   taxon_colors: Colori del taxon
   taxon_curators: Curatori del taxon
-  taxon_extras: Extra del taxon
-  taxon_framework: Quadro del Taxon
   taxon_framework_complete: "Completato: vero"
   taxon_framework_deviations_with_count_html: "Deviazioni: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Taxa contrassegnati coperti: %{count}"
   taxon_framework_notes: Note del quadro del taxon
   taxon_framework_relationship: Relazione del quadro del taxon
-  taxon_framework_relationship_for: Relazione del quadro del taxon per
   taxon_framework_relationship_number: "Relazioni del quadro del taxon %{number}"
   taxon_framework_relationship_unknown_count_html: "Conteggio delle relazioni sconosciute: %{count}"
   taxon_framework_relationships: Relazioni del quadro del taxon
   taxon_framework_taxon: Taxon del quadro del taxon
-  taxon_links: Link del Taxon
   taxon_merge: unione del taxon
   taxon_name: Nome del taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Il nome del taxon deve corrispondere a uno di quelli del nostro database
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a> osservata da
   taxon_observed_by_user: "%{taxon} osservato da %{user}"
-  taxon_or_place_observations: Osservazioni del taxon o del luogo
   taxon_photos_updated: Foto del taxon aggiornate!
   taxon_range: Areale del taxon
   taxon_range_created_notice: L'areale del taxon è stato creato con successo. Attendi qualche minuto affinché appaia sulla mappa.
@@ -3669,30 +3526,24 @@ it:
   taxon_removed_from_list: Taxon rimosso dalla lista.
   taxon_scheme: Classificazione del taxon
   taxon_schemes: "Classificazione del taxon"
-  taxon_schemes_raquo_html: "Classificazioni <nobr>del taxon &raquo;</nobr>"
   taxon_search: Ricerca di taxon
   taxon_search_results_for: Risultati della ricerca del taxon per
   taxon_split: divisione del taxon
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: organizzazione del taxon
-  taxon_subscription: iscrizione ad un taxon
   taxon_swap: scambio del taxon
   taxon_swap_only_has_one_input: Solo un input consentito per uno scambio
   taxon_swap_has_inputs_and_outputs: Lo scambio deve avere entrambi gli input e gli output
-  taxon_to_delete: Taxon da cancellare
-  taxon_to_keep: Taxon da conservare
   taxon_name_was_deleted: Il nome del taxon è stato cancellato
   taxon_name_was_successfully_updated: Il nome del taxon è stato aggiornato con successo.
   taxon_was_successfully_created: Il taxon è stato creato con successo.
   taxon_was_successfully_updated: Il taxon è stato aggiornato con successo.
   taxonomic: Tassonomico
   taxonomic_changes: Modifiche tassonomiche
-  taxonomic_changes_raquo_html: "Modifiche <nobr>tassonomiche &raquo;</nobr>"
   taxonomic_groups: Gruppi Tassonomici
   taxonomic_order: Ordine Tassonomico
   taxonomic_status: Stato tassonomico
   taxonomic_tags_for_flickr: Etichette tassonomiche per Flickr
-  taxonomic_tree_browser: Browser dell'Albero Filogenetico
   taxonomy_details: Dettagli tassonomici
   taxonomy_details_for: Dettagli tassonomici per
   taxonomy_details_info: 'La pagina dei Dettagli Tassonomici usa i Quadri del Taxon per aiutare a descrivere cosa intendiamo per un taxon. <a href="/pages/taxon_frameworks">Leggi di più</a>.'
@@ -3704,14 +3555,10 @@ it:
   terms: Termini
   terms_and_rules_html: "Termini &amp; Regole"
   terms_new_users: "Se aggiungi termini, i nuovi utenti devono accettarli prima di unirsi al progetto."
-  terms_of_service: Termini del servizio
   terms_service: Termini del servizio
   terrain: terreno
   text: Testo
-  text_: testo
   thanks!: Grazie!
-  thanks_for_signing_up: Grazie per la registrazione!
-  thanks_for_using: Grazie per l'utilizzo
   thanks_from_all_of_us_here_at: Grazie da tutti noi a
   that_photo_doesnt_exist: La foto non esiste.
   that_observation_doesnt_exist: L'osservazione non esiste.
@@ -3721,35 +3568,22 @@ it:
   that_project_doesnt_exist: "Il progetto non esiste."
   that_role_doesnt_exist: Il ruolo non esiste
   that_was_the_last_observation_matching_the_current_filters: Questa era l'ultima osservazione corrispondente ai filtri impostati.
-  thats_okay_we_forget: Nessun problema! Anche noi dimenticheremo le nostre. Mandaci l'email che hai utilizzato per creare il tuo account e noi ti manderemo il link per resettare la tua password.
   thats_not_a_real_date: Questa non è una data verosimile!
-  the: l'
-  the_: La
   the_admin_is_the_person_who: |
     L'amministratore è la persona che ha creato il progetto. Possono fare le stesse code dei gestori e dei curatori, ma anche cancellare il progetto.
   the_below_items_are_needed_to_achieve: |
     Servono i requisiti sottostanti per raggiungere il <span className="bold">Livello Ricerca:</span>
-  the_community_agrees_location_doesnt: 'la community concorda che la <strong>posizione non sembra accurata</strong> (ad esempio: scimmie in mezzo all''oceano, ippopotami in ufficio, ecc.)'
-  the_community_agrees_organism_isnt: la community concorda che l'<strong>organismo non è selvatico/naturalizzato</strong> (e.g. in cattività o coltivato da umani o alieni spaziali intelligenti)
   the_community_id_requires_at_least_two_identifications: L'ID della Comunità richiede almeno due identificatori
   the_community_must_feel_that: |
     La comunità deve poter percepire che il taxon della comunità è il migliore che può avere in base alle evidenze
-  the_data_quality_assessment_is: La valutazione della qualità dei dati è un riassunto dell'accuratezza di un'osservazione. Tutte le osservazioni partono da un livello <strong>"casuale"</strong>, e raggiungono un livello <strong>"ricerca"</strong> quando
-  the_following_lists: le liste seguenti
   the_following_observations_could: "Le seguenti osservazioni non possono essere aggiunte a  %{link}"
   the_following_photos_have_been_tagged: "Le foto seguenti sono state etichettate:"
   the_identotron_is_a_tool_to: |
-    L'Identotron è uno strumento per aiutarti nell'identificazione basato sulla checklist di un %{place}. Fornendo un luogo ed un taxon di livello superiore (e.g., mammiferi dell'India), %{place} cercherà i valori della checklist che corrispondono a quel taxon in quel luogo, come una guida di campo dinamica dell'intero pianeta. La maggior parte delle checklist di %{place} sono ancora in aggiornamento, ma se ce n'è una che è esaustiva, che quindi comprende <em>tutti</em> i rappresentanti di quel taxon per quel luogo, l'Identotron mostrerà un messaggio.
-  the_list: la lista
+    L'Identotron è uno strumento che serve per aiutarti nell'identificazione basato sui dati delle checklist di %{site_name}. Fornendo un luogo ed un taxon di livello superiore (e.g., mammiferi dell'India), %{site_name} cercherà gli elementi della checklist che corrispondono a quel taxon in quel luogo, come una guida di campo dinamica dell'intero pianeta. La maggior parte delle checklist sono ancora in aggiornamento, ma se ce n'è una che è esaustiva, che quindi comprende <em>tutti</em> i rappresentanti di quel taxon per quel luogo, l'Identotron mostrerà un messaggio.
   the_name_of_the_taxon_including_space: Il nome del taxon, includendo lo spazio per specie e infraspecie.
-  the_observation_form_looks: "Il formulario dell'osservazione assomiglia a questo:"
-  the_observation_has_date: l'osservazione <strong>ha una data</strong>
-  the_observation_has_photo: l'osservazione <strong>ha una foto</strong>
-  the_observation_is_georeferenced: l'osservazione <strong>è georeferenziata</strong> (e.g. ha le coordinate lat/lon)
   the_observation_was_already_added_to_that_project: L'osservazione è stata già aggiunta al progetto.
   the_past: in passato
   the_people_of_inat: "Le persone di %{site_name}"
-  the_project: il progetto
   the_species_listed_below_were_not_found_in_the_site_database: |
     Le specie elencate qui sotto non sono state trovate nel database di %{site_name}.
   the_title_of_the_wikipedia_article_we_use: |
@@ -3766,22 +3600,17 @@ it:
     one: "C'è <span class='count'>1</span> sinonimo</span>"
     other: "Ci sono <span class='count'>%{count}</span> sinonimi</span>"
   there_is_no_wikipedia_page_matching: Non c'è una pagina Wikipedia corrispondente
-  there_isnt_wiki_article: "Non c'è un articolo Wikipedia o una pagina re-indirizzata titolata '<i>%{taxon}</i>'. Forse vorresti"
   there_isnt_a_wikipedia_article_titled_x_html: |
     Non c'è un articolo Wikipedia o una pagina re-indirizzata intitolata '%{x}'. Forse vorresti <a href='http://en.wikipedia.org/wiki/%{x}'>crearne una</a>?
   there_merge_problems_with_the_merge: "Ci sono problemi nell'unione: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Si è verificato un problema nel salvataggio della tua identificazione: %{error}"
-  there_were_errors: Ci sono stati errori.
   there_were_problems_adding_taxa: "Ci sono stati problemi nell'aggiunta di questi taxa: %{errors}"
-  there_were_problems_adding_your_observation_to_this_project: "Ci sono stati problemi nell'aggiungere la tua osservazione al progetto:"
   there_were_problems_adding_that_observation_to_this_project: "Ci sono stati problemi nell'aggiungere l'osservazione a questo progetto:"
   there_were_problems_importing_that_place: "Ci sono stati problemi nell'importare il luogo: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
     Ci sono stati problemi nell'importare la geometria del luogo: %{error}
   there_were_some_problems_saving_this_observation: Ci sono stati problemi nel salvare questa osservazione
   there_were_some_problems_saving_those_colors: "Ci sono stati problemi nel salvare questi colori: %{error}"
-  there_were_some_problems_with: |
-    Ci sono stati alcuni problemi con il tuo file CSV. Per piacere ricontrolla le righe con errori. Naturalmente il problema può essere anche causa nostra. Se è così, faccelo sapere.
   there_were_some_problems_with_fields: "Ci sono stati problemi con i seguenti campi:"
   there_were_some_problems_with_these_files: "Ci sono stati problemi con questi file:"
   theres_something_wrong_with_taxon_framework_relationship: C'è qualcosa di sbagliato qui - non possiamo determinare la relazione tra nessuno dei taxa interni ed esterni
@@ -3789,7 +3618,6 @@ it:
     Ci sono elementi che le persone hanno contrassegnato sul sito per essere revisionate. I commenti di spam devo essere cancellati e gli utenti che li hanno aggiunti devono essere sospesi (vai al loro profilo e seleziona "Sospendi utente" in basso a destra per impedirgli di accedere). Altri elementi dovrebbero essere eliminati solo se sono chiaramente odiosi, illegali, etc. Commenti sgarbati, linguaggio offensivo, etc, dovrebbero essere gestiti con gentilezza. Chi persiste in tali comportamenti deve essere segnalato all'amministratore del sito o %{email}
   these_are_taxa_that: |
     Questi sono taxa che %{site} non può aggiungere automaticamente al nostro albero filogenetico per alcune ragioni. Puoi aggiungerli all'albero modificando il taxon e scegliendo un taxon parentale. Ad esempio, il taxon parentale di Homo sapiens è il genere Homo. Tu potresti anche controllare la presenza di sinonimi e unirli.
-  these_arent_necessarily_relevant_to: "Queste osservazioni non sono necessariamente rilevanti per questo progetto. Per favore controlla le"
   these_folks_kindly_volunteer_to: Queste persone gentilmente mantengono in maniera volontaria la nostra tassonomia e risolvono molti altri problemi.
   these_observations_have_not_been_uploaded_yet: |
     Queste osservazioni non sono ancora state caricate.
@@ -3815,20 +3643,13 @@ it:
   this_list_is_empty!: Questa lista è vuota!
   this_list_only_accepts_taxa_that_are: Questa lista accetta solo taxa che sono
   this_observation: Questa osservazione
-  this_observation_has_been_incorporated_into_the_following_external_websites: Questa osservazione è stata incorporata nei seguenti siti web esterni
   this_observation_is_featured_on_x_sites:
     one: Questa osservazione è messa in risalto su 1 sito web
     other: Questa osservazione è messa in risalto su %{count} siti web
-  this_observation_is_in_x_projects:
-    one: Questa osservazione è in 1 progetto
-    other: Questa osservazione è in %{count} progetti
   this_observation_is_research_grade: Questa osservazione è di Livello ricerca!
-  this_observation_lies_outside_the: "Questa osservazione cade all'esterno dell'areale che %{site_name} ha memorizzato per questa specie. Questo può significare che l'areale di %{site_name} è sbagliato, o che l'ID è sbagliata, oppure che si tratta di un individuo in dispersione, o ancora che l'areale è in espansione."
   this_observation_was_created_using: "Questa osservazione è stata creata usando:"
   this_photo_is_already_associated: Questa foto è già associata ad una delle tue osservazioni.
   this_place_has_no_check_list: "Questa zona non ha una checklist."
-  this_species: questa specie
-  this_species_has_no_colors: Questa specie non ha colori! Contribuisci a migliorare la ricerca delle specie comunicandoci di che colore è questa!
   this_taxon_change_has_been_commited: |
     <strong>Questa modifica del taxon è stata salvata!</strong>
     Per favore non modificare i taxa. Modifica pure gli altri campi.
@@ -3838,7 +3659,6 @@ it:
     Questo taxon è <strong>inattivo</strong>. Questo significa che i curatori di %{site_name} l'hanno sostituito con un taxon più recente.
   this_taxon_name_was_originally_imported: "Questo nome di taxon è stato originariamente importato da un fornitore di nomi esterno:"
   this_taxon_was_originally_imported_from: "Questo taxon è stato originariamente importato da un fornitore di nomi esterno:"
-  this_tool_is_experimental: Questo strumento è sperimentale, quindi per favore
   this_user_has_been_suspended: Questo utente è stato sospeso
   this_user_has_been_suspended_message: |
     Se questo è il tuo account e se pensi che ciò sia accaduto per errore, per favore, <a href="mailto:%{email}">contattaci</a>.
@@ -3846,39 +3666,26 @@ it:
   this_will_refresh_listed_taxa: Questa operazione aggiornerà l'elenco dei taxa della lista. L'operazione durerà un po', quindi usala con moderazione e con brevi checklist
   this_will_re_apply_all_list_rules: |
     Questa operazione riapplicherà le regole ai taxa elencati e aggiornerà le statistiche associate, ad esempio eliminando i taxa che non sono elencati o non sono compresi nel rango selezionato. Non aggiungerà nessun nuovo taxa. Potrà impiegarci alcuni minuti.
-  this_will_refresh_without_reload: Questa operazione aggiornerà immediatamente le statistiche delle osservazioni. L'operazione potrà durare un po di tempo, usala con moderazione.
-  this_will_reload_and_refresh: Questa operazione aggiungerà i taxa elencati a partire dalle osservazioni e aggiornerà le statistiche. L’operazione potrà durare un po’ di tempo, usala con moderazione.
   this_will_try_to_add_tags_to_your_flickr: Questa operazione proverà ad aggiungere etichette alle tue foto Flickr. Continuare?
-  this_will_update_all_last_observations: Questa operazione aggiornerà tutte le ultime osservazioni è aggiungerà nuovi taxa da
   this_year: Questo anno
-  those_are_the_basics_of: |
-    Queste sono le basi per l'aggiunta delle osservazioni! Ci sono un mucchio di altre cose che puoi fare, come cercare e filtrare le tue osservazioni, od editarle in gruppo, ma queste operazioni non dovrebbero avere bisogno di spiegazioni.
   those_observations_no_longer_exist: Queste osservazioni non esistono più.
   threatened: Minacciata
-  thumb_url: URL miniatura
   time_: tempo
   time_ago: "%{time} fa"
-  tired_of_testing_this_new_version: Stanco di sperimentare questa nuova versione?
   title: titolo
   title_and_description: "Titolo & Descrizione"
   titled_favorites_and_the_most_recent_additions: intitolata "Preferiti" e le aggiunte più recenti appariranno in questo spazio.
   to: ad
-  to_: in
   to_add_comments: per aggiungere commenti
-  to_add_identifications: per aggiungere le identificazioni
   to_add_ids: per aggiungere ID
   to_configure_your_widget: per configurare il tuo widget.
-  to_include_your_google_with_inat: "per includere il tuo account Google con %{site_name}"
   to_recipient: a
   to_suggest_an_identification: per suggerire un'identificazione
-  to_the_bat_cave: Per la Bat Caverna!
   today: Oggi
-  too_many_observations_csv: "Hai troppe osservazioni!<br /> Possiamo caricare solo le prime %{max_rows} osservazioni di ogni CSV"
   too_many_results: Troppi risultati
   too_many_taxa_to_render: |
     Questa richiesta ha restituito troppi taxa per vederli in una volta sola. Prova ad aggiungere qualche filtro
   tools: Strumenti
-  top_5_identifiers: I migliori 5 identificatori
   top_contributors: I migliori collaboratori
   top_identifier: Il miglior identificatore
   top_identifiers: I migliori identificatori
@@ -3892,7 +3699,6 @@ it:
   total_observations: Totale osservazioni
   total_species_observed: Totale specie osservate
   total_unique_observers: Totale osservatori unici
-  total_users: "totale utenti,"
   translated_languages: Lingue tradotte
   'true': 'Vero'
   trending: Tendenze
@@ -3903,26 +3709,18 @@ it:
   trust_this_person_with_your_private_coordinates: Rivela a questa persona le tue coordinate nascoste
   trust_with_private_coordinates: Rivela le coordinate nascoste
   try_adding_species_form: Prova ad aggiungere alcune specie utilizzando il modulo in questa pagina.
-  try_it_out: Provala
-  try_wikipedia: Vuoi provare con Wikipedia?
   twitter: Twitter
   two_thirds: due terzi
   type: Digita
-  type_a_name_and_click: Scrivi un nome e clicca RICERCA
-  type_a_place_name_and_click_search: Scrivi il nome di un luogo e clicca CERCA
   type_authority: Scrivi il nome dell’ente di controllo
-  type_date_time_or_use_the_calendar: Scrivi la data/orario o usa il calendario
   type_one_name_per_line: Scrivi un nome per riga
   type_place_name: Scrivi il nome del luogo
-  type_project_name: Scrivi il nome del progetto
   type_source_name: Scrivi il nome della fonte
   type_source_title: "Scrivi il titolo della fonte"
   type_species_name: "Scrivi il nome della specie"
   type_taxon_name: "Scrivi il nome del taxon"
-  type_taxon_name_and_click_lookup: "Scrivi il nome del taxon e clicca ricerca"
   uicn_red_list_status: "Stato della IUCN Red List:"
   umbrella_projects: Progetti Ombrello
-  un_license_this_observation: togli la licenza a questa osservazione
   unblock: Sblocca
   unclassified: Non classificato
   ungrafted_taxa: Taxa senza relazioni tassonomiche
@@ -3932,34 +3730,27 @@ it:
   uninvite: revoca invito
   unique_identifier_of_this_taxon: Identificatore unico di questo taxon nel database sorgente.
   unique_observers: osservatori unici
-  unique_observers_last_3_months: osservatori unici negli ultimi tre mesi
   unknown: Sconosciuto
   unknown_error: Errore sconosciuto
   unknown_rank: '(Rango Sconosciuto)'
-  unknown_taxon_framework_relationship: Relazione del Quadro del Taxon sconosciuta
   unfollow: Smetti di seguire
   unlink_your_google_account: Scollega il tuo account Google
-  unlink_your_facebook_account: "Scollega il tuo Account Facebook"
   unlink_your_flickr_account: "Scollega il tuo Account Flickr"
   unmute: Riattiva
-  unobserved_listings: Liste delle non osservate
   updates_notification_email_subject: "Nuovi aggiornamenti %{prefix} in data %{date}"
   updates_suspension_email_subject: "%{prefix} Le tue sottoscrizioni sono in attesa"
   updating: Aggiornamento...
   unprocessable: Non processabile
   unpublish: Togli dai pubblicati
-  unreview: Rimuovi la revisione
   unreview_all: Rimuovi tutte le revisioni
   unsubscribe: Cancella iscrizione
   unsubscribe_from_this: Cancella la tua iscrizione da questo
   unsuspend_user: Riammetti utente
-  unverifiable: Non verificabile
   upcoming_bioblitzes: Prossime blioblitz
   update: Aggiorna
   update_existing_observations_with_new_license: Aggiorna le osservazioni esistenti con la nuova licenza scelta
   update_existing_photos_with_new_license: Aggiorna le foto con la nuova licenza scelta
   update_existing_sounds_with_new_license: Aggiorna i suoni con la nuova licenza scelta
-  update_observation: Aggiorna l'osservazione
   update_observations: Aggiorna osservazioni
   update_past: "Aggiorna le vecchie %{type}"
   update_photos: Aggiorna le foto
@@ -3982,7 +3773,6 @@ it:
   upload_a_csv_file_with_observation: |
     Carica un file CSV con le tue osservazioni. Se hai osservazioni su fogli di calcolo o database, questa è probabilmente la scelta giusta.
   upload_photo: Carica foto
-  upload_photos: Carica foto
   upload_range: Carica areale
   uploaded_by: Caricato da
   uploader:
@@ -4039,11 +3829,7 @@ it:
   user_faved_a_noun_by_owner: "%{user} ha messo nei preferiti %{noun} di %{owner}"
   user_flagged_as_a_spammer_html: "%{user} l'ha contrassegnato come uno spammer"
   user_flagged_as_a_non_spammer_html: "%{user} l'ha segnato come un non-spammer"
-  user_follows: "%{user} segue"
   user_has_opted_out_of_community_id: L'utente ha deselezionato il taxon della comunità
-  user_has_opted_out_of_community_ids: "%{user} ha scelto di mantenere il controllo sui taxa associati alle loro osservazioni"
-  user_has_opted_out_of_community_ids_for_this_obs: "%{user} ha scelto di mantenere il controllo sui taxa associati a questa osservazione"
-  user_hasnt: "%{user} non ha"
   user_helped_x_people_with_y_ids_html: "%{user} ha aiutato strong>%{x} persone</strong> con <strong>%{y} le ID</strong>"
   user_invite_observation_to_project: '%{user} avrebbe piacere di invitare la tua osservazione "%{observation}" al project %{project}.'
   user_invited_you_to_join_html: "%{user} ti ha invitato ad unirti"
@@ -4058,11 +3844,8 @@ it:
   user_is_now_a_curator_for_project_html: |
     <strong>%{user}</strong> è ora curatore di %{project}
   user_muted: Utente silenziato
-  user_observations: Osservazioni dell'utente
   user_observed_on_on_date_in_place: |
     %{user} ne ha osservata una il %{date} in %{place}
-  user_s_id: "%{id} di %{user}"
-  user_s_lists: "Elenchi di %{user}"
   user_suggested_an_id: "%{user} ha suggerito un ID"
   user_thinks_yours_is: "%{user} %{noun} che la tua osservazione %{observation} sia"
   user_trusts_you_with_their_private_coordinates: "%{user} ti ha rivelato le sue coordinate nascoste"
@@ -4077,16 +3860,11 @@ it:
   users_contributions_to_project_html: I contributi di <a href="%{url}">%{login}</a> al progetto %{project_title}
   users_highlights_and_stats_from_year_on_site: "Sintesi e statistiche di %{user} dal %{year} su %{site}"
   users_id: "ID di %{user}"
-  users_identification_html: "identificazione di <a href='%{url}'>%{user}</a>"
   users_identification_short_html: "ID <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Le osservazioni più recenti di %{user} su %{site}"
-  users_observations: "Le osservazioni di %{user}"
   users_profile: "Il profilo di %{user}"
   users_projects: "I progetti di %{user}"
   users_year_on_site: "Anno di %{user} su %{site} %{year}"
-  using_a_license: usare una licenza
-  using_cc_license_makes_easier_use_your_data: Usare una licenza <strong>Creative Commons Attribuzione</strong> rende più facile ai ricercatori utilizzare i tuoi dati. Puoi scegliere un altro tipo di licenza anche dopo esserti registrato.
-  valid_interrogation: Valido?
   valid_options_are: Le opzioni valide sono
   value: Valore
   values: Valori
@@ -4095,15 +3873,11 @@ it:
   view: Visualizza
   view_all: Mostra tutto
   view_all_flags: Mostra tutti i contrassegni
-  view_all_from_x: Vedi tutto da %{x}
   view_all_members: Visualizza tutti i membri
   view_all_n: "Visualizza tutte %{n}"
   view_all_observations: Visualizza tutte le osservazioni
   view_all_photocount_photos: "Visualizza tutte le %{photo_count} foto"
-  view_all_photos_tagged_taxon_html: 'Visualizza tutte le foto etichettate "%{taxon}" su <nobr>Flickr &raquo;</nobr>'
-  view_all_your_projects: Visualizza tutti i tuoi progetti
   view_assessment: Visualizza la valutazione
-  view_change: Visualizza la modifica
   view_check_list_page: Visualizza la pagina della checklist
   view_contributions: Visualizza i contributi
   view_details: Visualizza i dettagli
@@ -4115,7 +3889,6 @@ it:
   view_full_size_photo: Visualizza immagine a dimensione piena
   view_invitation: Visualizza l'invito
   view_journal: Visualizza il diario
-  view_leaderboard: Visualizza la classifica
   view_leaderboard_from_last_month: Visualizza la classifica dell'ultimo mese
   view_leaderboard_from_last_year: Visualizza la classifica dell'ultimo anno
   view_license: Visualizza la licenza
@@ -4125,13 +3898,10 @@ it:
   view_moderation_history_for_this_comment: Visualizza lo storico della moderazione per questo commento
   view_more: Mostra di più
   view_more_about_x: "Mostra di più su %{x}"
-  view_more_observations: Visualizza più osservazioni
-  view_more_observations_from_x: "Visualizza più osservazioni di %{x}"
   view_more_observations_from: Visualizza più osservazioni di
   view_more_observations_near_x_place: "Visualizza più osservazioni nelle vicinanze di %{place} su <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Visualizza più osservazioni dal progetto %{project} su <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Visualizza più osservazioni di %{taxon} su <nobr>%{site_name} &raquo;</nobr>"
-  view_more_recent_observations: Visualizza più osservazioni recenti
   view_more_unreviewed: "Esamina altri tra i non esaminati."
   view_observation: Visualizza osservazione
   view_observations: Visualizza osservazioni
@@ -4141,46 +3911,31 @@ it:
   view_observations_causing_this_observation_to_be_obscured: |
     Visualizza le osservazioni che determinano l'oscuramento di questa osservazione
   view_observations_of_this_taxon_by: Visualizza osservazioni di questo taxon per
-  view_observations_raquo: "Visualizza le osservazioni &raquo;"
   view_on: Visualizza su
-  view_on_amphibiaweb: Visualizza su AmphibiaWeb
   view_on_flickr: Visualizza su Flickr
-  view_on_wikipedia: Visualizza su Wikipedia
   view_original: "Mostra l'originale"
   view_original_by: "Visualizza l'originale di %{by} su %{photo}"
   view_original_ccD_photo: "Visualizza la foto originale sotto licenza CC di %{owner}"
-  view_other_taxa: "Visualizza altri <nobr> %{taxon_name} &raquo; </nobr>"
   view_photos_ranges_observations_more: "Visualizza foto, areali di specie, osservazioni %{site_name}, e altro! Abbiamo raccolto informazioni da fonti diverse e le abbiamo condensate in un breve riassunto di ogni specie per ogni luogo."
   view_place: Visualizza luogo
   view_post: Visualizza il post
   view_projects_from_place: "Visualizza i progetti in %{place}"
-  view_real_time_stats_in_a_new_window: Visualizza le statistiche in tempo reale in una nuova finestra
   view_sample: Visualizza esempio
-  view_site_name_observations_html: "Visualizza le osservazioni strong>%{site_name}</strong>"
   view_stats: Statistiche
   view_taxon_change: Visualizza le modifiche tassonomiche
   view_taxon_changes: Visualizza le modifiche tassonomiche
   view_taxon_framework_relationship: Visualizza relazioni del quadro del taxon
   view_taxon_page: Visualizza la pagina del taxon
-  view_taxon_page_for: Visualizza la pagina per questo
   view_taxon_page_for_this_x: "Visualizza la pagina per questo %{x}"
-  view_taxonomic_changes: Vedi i cambiamenti tassonomici
   view_taxononomy_details_for_taxon: "Visualizza i dettagli tassonomici per %{taxon}"
-  view_terms: Visualizza i termini
   view_the: "Visualizza la %{action}&#59; %{link}"
   view_the_observation: Visualizza l'osservazione
-  view_the_range: Visualizza l'areale
-  view_unidentified_observations: "Visualizza le osservazioni non identificate..."
   view_user_observations: "Visualizza le osservazioni di %{user}"
   view_x: "Visualizza %{x}"
-  view_x_from_x: "Visualizza %{day_observations} in data %{observed_on}"
-  view_xs_journal: "Visualizza il diario di %{x}"
   view_year_stats_for_site: "Visualizza statistica %{year} per %{site}"
   view_your_dashboard: Visualizza la tua bacheca
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Visualizza la tua bacheca</a> per altri aggiornamenti"
   view_your_inbox: Visualizza la tua posta in arrivo
-  view_your_life_list: Visualizza la tua lista degli esseri viventi
-  view_your_calendar: Visualizza il tuo calendario
   view_your_observations: Visualizza le tue osservazioni
   view_your_year_stats: "Visualizza le tue statistiche %{year}"
   view_yours: Visualizza le tue
@@ -4193,7 +3948,6 @@ it:
   w_sounds: con suoni
   wait_file_generation: Per favore attendi la creazione del file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
   want_to_show_off_some_of_your_favorite_taxa: Vuoi mostrare qui alcuni dei tuoi taxa preferiti?
-  want_to_test_a_new_version_of_this_page: Vuoi provare una nuova versione di questa pagina?
   wanted: Ricercate
   was_it_captive_cultivated?: "Era in cattività / coltivato?"
   we_also_support: |
@@ -4202,35 +3956,23 @@ it:
     <a href="http://facebook.com">Facebook</a>
     per l'hosting delle immagini.
   we_can_only_understand_csv_in: Possiamo processare i file CSV solo se hanno la seguente formattazione
-  we_care_privacy: Abbiamo a Cuore La Tua Privacy!
   we_couldnt_find_a_user: Non siamo riusciti a trovare alcun utente con questo indirizzo email.
   we_couldnt_find_a_user_with_that_activation_code: "Non siamo riusciti a trovare alcun utente con questo codice di attivazione. Potresti già aver attivato il tuo account, per favore prova ad accedere."
-  we_currently_support_flickr_for_image_hosting: Attualmente supportiamo Flickr per l'hosting delle immagini.
   we_didnt_find_any_photos: Non abbiamo trovato nessuna foto usando i termini di ricerca hai fornito.
   we_had_a_problem_flagging_that_item: "Abbiamo avuto un problema nell'etichettare questo oggetto: %{flag_error}"
   we_had_trouble_saving_comment: "Abbiamo riscontrato problemi nel salvare il commento:"
   we_have_no_conservation_status_for_this_taxon: Non è presente uno stato di conservazione per questo taxon
   we_have_no_establishment_data_for_this_taxon: "Non è indicata un origine del popolamento per questo taxon"
-  we_import_our_taxonomic_data: "Importiamo i nostri dati tassonomici da database esterni, che includono Catalogue of Life e uBio. Pochi dei nostri taxon sono stati anche inseriti manualmente e qualsiasi utente può aggiungere nuovi nomi di taxa. Se non trovi un taxon o un nome, prova a"
-  we_know_is_inconvenience_but_will_allow_grow: "Sappiamo che questo è un inconveniente, ma il nostro nuovo sistema di autorizzazione consentirà a %{sitename} di crescere in futuro e di fornirti maggiore sicurezza."
   we_support_flickr: Attualmente supportiamo Flickr per l'hosting delle immagini e speriamo di aggiungere a breve altri foto host.
-  we_tried_to_process_your_upload_named_filename: |
-    Abbiamo provato a caricare il tuo file %{filename} ma non ha funzionato. Per favore correggi i seguenti problemi e prova ancora.
   weather: Meteo
   website: Sito web
   week_of_date: "Settimana del %{date}"
-  welcome!: Benvenuto/a!
-  welcome_comma!: Benvenuto/a,
   welcome: benvenuto/a
   welcome_back: Bentornato/a
   welcome_back!: Bentornato!
-  welcome_comma: "Benvenuto/a,"
-  welcome_login: "Benvenuto/a, %{login}"
-  welcome_message: "dove puoi <strong>registrare</strong> ciò che vedi in natura, <strong>incontrare</strong> altri amanti della natura, ed <strong>imparare</strong> a conoscere il mondo naturale."
   welcome_to_inat: "Benvenuto/a su %{site_name}!"
   welcome_to_guides: "Benvenuto/a sulle Guide di %{site_name}"
   welcome_to_x_project: "Benvenuto/a nel progetto %{project}"
-  were_currently_down_for: Siamo attualmente fuori servizio per
   were_pretty_sure_this_is_in_the_rank: Siamo abbastanza sicuri che è in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ci dispiace ma la tua importazione in blocco di %{filename} è fallita."
   what: Che
@@ -4238,7 +3980,6 @@ it:
   what_did_you_see: Cosa hai visto?
   what_did_you_see?: <em>Cosa</em> hai visto?
   what_do_you_think: Cosa ne pensi?
-  what_do_you_want_to_list: Cosa vuoi elencare?
   what_to_keep: Cosa tenere
   what_want_to_list?: Cosa vuoi elencare?
   what_were_you_looking_for?: "Che cosa stavi cercando? (elenco obbiettivi)"
@@ -4247,7 +3988,6 @@ it:
   when_did_you_see_it?: Quando l'hai visto?
   when_did_you_see_them?: <em>Quando</em> l'hai visto?
   where: Dove
-  where_did_you_see_it: Dove l'hai visto?
   where_do_x_live: Dove vive %{taxa}?
   where_does_x_live: Dove vive il %{taxa}?
   where_were_they?: Dove erano?
@@ -4268,7 +4008,6 @@ it:
   widget: Widget
   widget_code: Codice del Widget
   widget_for: Widget per
-  will_be: sarà
   wikipedia_attribution_cc_by_sa_3: |
     Fonte: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
@@ -4276,28 +4015,21 @@ it:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licenza Creative
     Commons Attribuzione-Condividi allo stesso modo 3.0</a>. Alcuni contenuti possono essere stati omessi, ma nessuno è stato cambiato o esteso.
   wikipedia_entry: Voce di Wikipedia
-  wikipedia_taxobox_raquo: "Tassobox di Wikipedia &raquo;"
   with: con
   withdraw: Ritira
   withdrawing: Ritiro in corso...
   with_errors: Con errori
-  within_inaturalist: "All'interno di %{site_name}"
   worldwide: Tutto il mondo
   wondering_what_to_do_next: Ecco alcuni altri passaggi per procedere ad osservare e identificare il mondo naturale
   would_you_like_to: Ti piacerebbe
   would_you_prefer_to_view_common_names_used_in_place_html: Preferisci vedere i nomi comuni usati in <strong>%{place}</strong>?
-  would_like_some_help_identifying_this: vorresti qualche aiuto per identificare questo
-  x_admin: "%{login} amministra"
   x_blog: "Il Blog di %{x}"
   x_deleted: "%{x} eliminato"
   x_does_not_exist: "\"%{x}\" non esiste"
-  x_doesnt: "%{login} non"
   x_flagged: "%{x} contrassegnati"
   x_flagged_as_flag: "%{x} contrassegnati come %{flag}"
-  x_hasnt: "%{login} non ha"
   x_journal: "Diario di %{user}"
   x_journal_archives_for_y: "Diario di %{user} • Archivi di"
-  x_journal_editing: "Diario di %{user} • Modifica"
   x_journal_middot: "Diario di %{user} •"
   x_journal_new_post: "Diario di %{user} • Nuovo Post"
   x_observations_failed:
@@ -4311,8 +4043,6 @@ it:
   x_sent_you_a_new_message_on_y_html: "%{x} ti ha mandato un nuovo messaggio su %{y}:"
   x_site_is_a_social_network_for_naturalist: |
     %{site} è un social network per naturalisti! Registra le tue osservazioni di piante ed animali, condividile con i tuoi amici e con i ricercatori, e impara a conoscere il mondo della natura.
-  x_site_shared_licensed_observation_data_with: |
-    %{site_name} condivide le osservazioni con licenza con diversi partner, così i tuoi dati possono essere più accessibili a ricercatori e scienziati.
   x_wrote_a_new_post_html: "%{x} ha scritto un nuovo post"
   x_wrote_y_new_posts_html: "%{x} ha scritto %{y} nuovi post"
   year: Anno
@@ -4331,7 +4061,6 @@ it:
   yesterday_at: ', ieri alle 16'
   you: te
   you_: ' Tu'
-  you_admin: tu amministri
   you_appear_offline_try_again: |
     Sembra che tu sia offline. Prova di nuovo quando sarai connesso ad Internet.
   youre_a_site_curator_which_means: |
@@ -4359,18 +4088,11 @@ it:
   you_arent_a_member_of_that_project: Non sei un membro di questo progetto.
   you_arent_following_that_person: "Non stai seguendo questa persona."
   you_can_accept_invitations: Puoi accettare l'invito qui
-  you_can_also_add_flickr: Puoi aggiungere etichette Flickr anche quando modifichi un'osservazione, sia singolarmente che in gruppo.
-  you_can_also_change_your_settings_for_this_project_or_change_your_global_settings_html: |
-    Puoi anche <a href="%{project_settings_url}">cambiare le impostazioni del progetto</a> o <a href="/users/edit#projects">modificare le tue impostazioni generali</a>.
-  you_can_alwais_add_new: Puoi sempre aggiungere osservazioni cliccando sulla piccola freccia in alto a destra della pagina ed usando il menu a discesa.
-  you_can_change_your_new_passwd_after_logging_in: "Puoi cambiare la tua nuova password dopo aver effettuato il login qui:"
   you_can_choose_observations_associated: Tu puoi scegliere le osservazioni da associare a questo post del diario.
   you_can_edit_this_default_check_list_because: |
     Tu puoi modificare questa checklist predefinita perché sei un amministratore, ma non dovrebbe esserci bisogno di farlo.
-  you_can_help_make_our: Puoi aiutarci a rendere le pagine delle specie più utili aggiungendo dati! Ecco qualche modo per aiutarci
   you_can_only_destroy_taxa_you_created: "Puoi cancellare solo i taxa che hai creato, e non puoi eliminare i taxa che sono utilizzati nelle modifiche tassonomiche."
   you_can_only_block_three_users: Puoi bloccare solo tre utenti
-  you_can_see_these_coordinates_because: Puoi vedere le coordinate perché sei curatore di uno dei progetti ai quali questa osservazione è stata aggiunta.
   you_can_show_the_boundary_of: Puoi mostrare i confini del luogo sulla pagina del tuo progetto se il luogo ha i confini definiti.
   you_can_sign_free_at: "Puoi registrati per un account %{site_name} gratuito alla pagina"
   you_cant_compare_a_list_with_nothing: Non puoi confrontare una lista con nulla!
@@ -4379,15 +4101,12 @@ it:
   you_cant_do_that_for_the_default_check_list_place: Non puoi farlo per una checklist predefinita di un luogo!
   you_cant_flag_that: Questo non lo puoi contrassegnare!
   you_cant_leave_a_project_you_created: Non puoi lasciare un progetto che hai creato!
-  you_cant_remove_other_peoples_observations: Non puoi rimuovere le osservazioni di altre persone!
   you_cant_rotate_photos_hostde_outside: "Non puoi ruotare le foto ospitate al di fuori di %{site_name}."
   you_curate_a_project_that_contains_this_observation: Tu curi un progetto che contiene questa osservazione
   you_curate_a_project_that_contains_this_observation_desc: |
     Tu puoi vedere le coordinate oscurate quando curi un progetto che contiene un osservazione e l'osservatore ha scelto di condividere le coordinate con i curatori di quel progetto.
   you_didnt_select_any_observations: Non hai selezionato nessuna osservazione.
   you_didnt_select_any_photos_to_tag: Non hai selezionato nessuna foto da etichettare!
-  you_dont: Non hai
-  you_dont_have_any: "Non sei iscritto a nessun luogo o taxon"
   you_dont_have_permission_to_do_that: Non disponi dei permessi necessari.
   you_dont_have_permission_to_edit_that_observation: "Non disponi dei permessi necessari per modificare l'osservazione."
   you_dont_have_permission_to_edit_that_project: Non disponi dei permessi necessari per modificare il progetto.
@@ -4396,25 +4115,17 @@ it:
   you_dont_have_permission_to_edit_those_photos: Non disponi dei permessi necessari per modificare le foto.
   you_faved_this: L'hai aggiunta ai preferiti!
   you_have_left_x_project: "Hai abbandonato il progetto %{project}"
-  you_have_logget_out: "Ti sei disconnesso. Torna presto!"
-  you_have_to: Tu devi
-  you_havent: Non hai
-  you_havent_left_any_comments_recently: Non hai lasciato nessun commento recentemente. Fallo ora!
   you_havent_linked_your_inaturalist_google_account: "Non hai ancora collegato il tuo account %{site_name} a quello di Google"
   you_joined_this_project: Ti sei unito al progetto!
-  you_may_have: potresti avere. Probabilmente funziona solo in browser moderni e conformi agli standard come
   you_must_be_a_member_of_this_project_to_do_that: Deve essere un membro del progetto per poterlo fare
-  you_must_be_project_manager_to_do_that: Dovresti essere un gestore del progetto per poterlo fare
   you_must_choose_an_observation_field: Devi scegliere un campo dell'osservazione
   you_must_fill_out_the_required_fields: Devi compilare i campi richiesti
   you_must_have_a_header_row: Devi avere una riga d'intestazione
-  you_must_select_a_csv_file_to_upload: Devi selezionare un file CSV da caricare.
   you_must_select_a_place_to_merge_with: Devi selezionare un luogo da unire.
   you_must_select_at_least_one_taxon: Devi selezionare almeno un taxon
   you_must_select_dates_to_compare: Devi selezionare le date da confrontare
   you_must_specify_and_confirm_a_new_password: Devi specificare e confermare una nuova password.
   you_need_to_have_linked_flickr_account: Devi aver collegato un account Flickr per etichettare le tue foto.
-  you_need_to_select_at_least_one_photo: Devi selezionare almeno una foto!
   you_need_to_select_some_observations_first: Prima devi selezionare qualche osservazioni.
   you_retain_full_copyright: "Mantieni il pieno copyright sui tuoi contenuti tranne quelli concessi ad %{site_name} nei nostri Termini di Servizio."
   you_retain_full_copyright_over_your_content: "Mantieni il pieno copyright sui tuoi contenuti tranne quelli concessi ad %{site_name} nei nostri Termini di Servizio."
@@ -4426,22 +4137,9 @@ it:
   you_sure_delete_project?: Sei sicuro di voler cancellare questo progetto?
   you_sure_delete_this_observation: "Sei sicuro di voler cancellare questa osservazione?"
   you_sure_remove_taxon_from?: "Sei sicuro di voler rimuovere questo taxon dalla lista %{list}?"
-  you_sure_remove_this_invitation?: "Sei sicuro di voler ritirare questo invito?"
-  you_sure_remove_this_observation?: Sei sicuro di voler rimuovere questa osservazione?
-  you_think_observation_inacurate: |
-    Se pensi che questa osservazione sia imprecisa, ti preghiamo di aggiungere una ID, di
-    partecipare alla valutazione della qualità qui sopra, o descrivere l'imprecisione
-    in un commento.
-  you_tried_to_do_something_you_shouldnt: |
-    Hai provato a fare qualcosa che non dovresti, come modificare i dati di qualcun altro senza permessi! Sii gentile!
   you_unlinked_your_provider_account: "Hai scollegato il tuo account %{provider}"
-  you_would_get_the: "otterrai le seguenti etichette:"
   youll_need_to_link: Devi collegare
-  youve_been_invited_to_join_this_project_html: |
-    Sei stato invitato ad <a href="%{url}" class="readmore">unirti al progetto</a>
   youve_joined_the_x_project: "Ti sei unito al progetto %{project_invitation} e la tua osservazione è stata aggiunta"
-  your: Il tuo
-  your_: La tua/Il tuo
   your_account_has_been_activated: La tua utenza è stata attivata!
   your_account_has_been_verified: "Il tuo account %{site_name} è stato verificato! Effettua l'accesso per continuare."
   your_activation_code_was_missing: "Manca il tuo codice di attivazione. Per favore vai al link presente sulla tua email."
@@ -4455,7 +4153,6 @@ it:
   your_contributions_to_project: "I tuoi contributi al progetto %{project_title}"
   your_default: il tuo predefinito
   your_default_time_zone: Il tuo fuso orario predefinito
-  your_drafts: Le Tue Bozze
   your_email_address: Il tuo indirizzo email
   your_flickr_account: il tuo account Flickr
   your_flickr_photos_have_been_tagged: Le tue foto Flickr sono state etichettate!
@@ -4463,14 +4160,8 @@ it:
   your_home: La tua Home Page
   your_id: La tua ID
   your_identification: La tua Identificazione
-  your_inat_account_has_been_activated: "Il tuo account %{inat} è stato attivato"
-  your_life_list: la tua lista degli esseri viventi!
   your_membership: La tua adesione
-  your_month_observations: Le tue osservazioni di %{month}
   your_name_was_saved: Il tuo nome è stato salvato.
-  your_new_password_is: La tua nuova password è
-  your_observation_will_get_shared_html: "Se lasci queste caselle barrate la tua osservazione sarà condivisa sui social network. Puoi cambiare le tue impostazioni predefinite <a href='%{url}' target='_blank'>modificando le impostazioni dell'account</a>. Se avevi collegato i tou account Twitter o Facebook prima che questa caratteristica fosse aggiunte, devi ricollegare il tuo account a Facebook o Twitter perché essa funzioni correttamente."
-  your_observation_wont_get: "la tua osservazione non sarà associata ad altre osservazioni di questa specie e la tua lista degli esseri viventi non sarà aggiornata."
   your_observations: Le tue osservazioni
   your_observations_couldnt_be_added_to_that_project: "Le tue osservazioni non possono essere aggiunte al progetto: %{errors}"
   your_photos_have_been_tagged: Le tue foto sono state taggate!
@@ -4481,28 +4172,15 @@ it:
   your_profile_was_successfully_updated: Il tuo profilo è stato aggiornato con successo
   your_recent_projects: I tuoi progetti recenti
   your_relationships: Le tue relazioni
-  your_should_recognize: Dovresti riconosce alcune di queste foto
-  your_site_account_has_been_created: "Il tuo account %{site} è stato creato."
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} ha bisogno che tu autorizzi maggiori operazioni da %{provider} per poter procedere:"
-  your_subscriptions: Le tue iscrizioni
-  your_sure_delete_list?: Sei sicuro di voler cancellare questo elenco?
-  your_sure_delete_taxon_from_list?: "Sei sicuro di voler rimuovere %{taxon} dalla lista?"
   your_tags: Le tue etichette
-  your_world!: Il tuo mondo!
   yours: Le tue
-  youre_following: stai seguendo
   youre_not_following_anyone: |-
     Non stai seguendo nessuno. Seguendo altri naturalisti sarà più semplice controllare le loro ultime osservazioni. Guarda che cosa le persone stanno <a href="%{observations_path}">osservando</a> e fai alcune nuove
     <a href="%{people_path}">conoscenze</a>.
-  youre_viewing_all_observations: Stai visualizzando tutte le osservazioni
-  youre_viewing_site_name_observations_html: "Stai visualizzando tutte le osservazioni di <strong>%{site_name}</strong>"
-  youve_already_added_an_identification: Hai già aggiunto un'identificazione, ne puoi solo aggiungere una
   youve_linked_your_inaturalist_google_account: "Hai collegato il tuo account %{site_name} al tuo account Google. Questo ti permetterà di associare le tue foto Google con le tue osservazioni %{site_name}."
-  youve_opted_out_of_community_ids: "Hai deciso di non ricevere le identificazioni della community"
-  youve_opted_out_of_community_ids_for_this_obs: "Hai deciso di non ricevere le identificazioni della community per questa osservazione"
   youve_seen_it_want_to: "L'hai visto! Vuoi"
   youve_successfully_linked_your_provider_account: "Hai collegato con successo il tuo account %{provider}"
-  your_dashboard_helps_you: "La tua bacheca ti permette di tenere sotto controllo cosa stanno facendo le altre persone sul sito. Per seguire gli aggiornamenti di una persona, clicca il link 'Segui [nome]' nell'intestazione quando visualizzi le sue osservazioni o il suo profilo."
   verifiable: Verificabile
   verifiable_observations: Osservazioni verificabili
   views:
@@ -6375,5 +6053,3 @@ it:
   zoom_in: Zoom avanti
   zoom_out: Zoom indietro
   zoom_photo: Zoom sulla foto
-  zoom_to_taxon_name: "Zoom su %{taxonname}"
-  zoom_to_x: "Zoom su %{x}"

@@ -1,4 +1,4 @@
-es:
+es-AR:
   x_comments:
     one: '1 comentario'
     other: '%{count} comentarios'
@@ -311,7 +311,7 @@ es:
     animals: Animales
     arachnids: Arácnidos
     birds: Aves
-    chromista: Algas pardas y parientes
+    chromista: Chromista
     fungi: Hongos
     fungi_including_lichens: Hongos incluídos líquenes
     insects: Insectos
@@ -321,6 +321,7 @@ es:
     plants: Plantas
     protozoans: Protozoarios
     ray_finned_fishes: Peces con aletas radiadas
+    reptiles: Reptiles
     life: Vida
     x_plantae:
       one: "1 planta"
@@ -383,6 +384,7 @@ es:
   and_x_more_people!:
     one: "y una persona más"
     other: "y %{count} personas más"
+  android: Android
   animals: Animales
   annotation: Anotación
   annotations: Anotaciones
@@ -532,7 +534,6 @@ es:
   blue_icons_represent_political_units: "Los íconos azules representan unidades políticas como países, estados, provincias, condados y afines, mientras que los íconos verdes representan diferentes tipos de espacios abiertos (parques, reservas). Si haces un acercamiento, podrás ver más lugares pequeños."
   body: Cuerpo
   bounding_box: Contenedor
-  breadcrumbs: Rastros de navegación
   breadcrumbs_description: "Esto reemplazará el h1 y los llamados a acción por defecto, asegúrate de incluirlos si son importantes para este proyecto y recuerda que el ancho máximo permitido es de 950 px."
   brief_caption: Leyenda breve
   brown: marrón
@@ -762,7 +763,9 @@ es:
     life_stage: Etapa de vida
     adult: Adulto
     teneral: Imago tierno
+    pupa: Pupa
     nymph: Ninfa
+    larva: Larva
     egg: Huevo
     juvenile: Juvenil
   controls: Controles
@@ -824,6 +827,7 @@ es:
   creative_commons_unless_otherwise_noted: "Creative Commons a menos que se indique lo contrario"
   critically_endangered: En peligro crítico
   css_description: Esto se incluirá después de todas las otras css en la página.
+  csv: CSV
   csv_file: Archivo CSV
   csv_should_not_contain_a_header_row: El CSV no debería contener ninguna cabecera de datos
   cumulative_ids: "Identificadores acumulados: %{count} de %{total}"
@@ -924,7 +928,7 @@ es:
   deleting: Borrando...
   deleting_verb: Eliminando
   deny: Niega
-  desc: desc
+  desc: Desc
   descending: Descendente
   describe_purpose: Describa el propósito de este proyecto
   describe_your_interest_in_nature: '¡Describe tu interés en la naturaleza!'
@@ -1041,7 +1045,7 @@ es:
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
   editors: Editores
-  eg: 'ej. '
+  eg: 'ej.'
   either: Cualquiera
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya lo estás siguiendo."
   eligible_for_research_grade: Elegible para grado de Investigación
@@ -1063,7 +1067,7 @@ es:
   endangered: En peligro
   endemic: Endémica
   endemic_to_x: "Endémica de %{x}"
-  eol: EOL
+  eol: Enciclopedia de la Vida
   eol_collection_url: "URL de colección EOL"
   error_updating_photo: "Error al subir la foto: %{photo_errors}"
   establishment:
@@ -1107,6 +1111,7 @@ es:
   extinct_in_the_wild: Extinta en estado silvestre
   extra_properties: Propiedades extra
   evidence_of_organism: Evidencia de organismo
+  facebook: Facebook
   facebook_account_information: Información de tu cuenta de Facebook
   facebook_account_not_linked: "El %{user} ya no tiene vinculada la cuenta de facebook, para %{site_name} por lo que no tiene permiso para acceder a esta foto."
   facebook_access_token_expired: "El acceso de muestra ha expirado. El %{user} requiere volver a enlazar su cuenta de Facebook."
@@ -1126,7 +1131,6 @@ es:
   featured: Destacados
   featuring: Presentando
   feedback: Retroalimentación
-  feeds: 'Fuentes:'
   failed: Fallido
   field_note: |
     <strong>Nota:</strong> si quieres crear un campo, verifica si alguien más ya lo ha hecho, para evitar la duplicación.
@@ -1360,7 +1364,6 @@ es:
   identotron: Identotrón
   identotron_for: Identotrón para
   identotron_help: Ayuda con el identotrón
-  ids: "Identificaciones"
   ids_made_for_others: Identificaciones hechas por otros
   if_for_some_reason_a_user_doesnt_agree: |
     Si por alguna razón un usuario no está de acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que su Identificación será usada para enlazar con otras observaciones, actualizar listas de vida, etc. También significa que la observación únicamente podrá ser de grado de investigación si la comunidad está de acuerdo con ella.
@@ -1403,7 +1406,6 @@ es:
   inactive_taxon: Especie o grupo inactivo
   inactive_taxon_concepts_are: Taxones inactivos son aquéllos que taxonómicamente se han cambiado por otro nombre. Los nombres anticuados se mantienen por razones históricas y para mantener la compatibilidad con otros sitios.
   inappropriate_content: '¿Contenido inapropiado?'
-  inat_account_action: "%{site_name} : Cuenta : %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} cree que este es un listado completo de este taxón en este lugar."
   inat_user_profile: "%{site_name}:  perfil de %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society."
@@ -1968,7 +1970,7 @@ es:
   not_finding_place_you_want?: '¿No encontraste el lugar que buscabas?'
   not_found: No encontrado
   not_linked_facebook: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Facebook"
-  not_linked_flickr: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Flickr "
+  not_linked_flickr: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Flickr"
   not_on_this_list: No está en esta lista.
   not_recorded: No grabado
   not_seeing_what_looking_for: '¿No ve lo que está buscando?'
@@ -2086,6 +2088,7 @@ es:
     present: presente
     common: común
     uncommon: no común
+    irregular: irregular
     doubtful: dudoso
     absent: ausente
   of: de
@@ -2171,7 +2174,7 @@ es:
   order_by: Ordenar por
   organism_is_wild: El organismo es silvestre
   organisms: Organismos
-  original: original
+  original: Original
   originally_flagged_by: Originalmente marcada por
   originally_imported_from_url_html: "Originalmente importados de <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Página original URL de esta foto"
@@ -2381,20 +2384,31 @@ es:
     afghanistan: Afganistán
     africa: África
     akrotiri_and_dhekelia: Acrotiri y Dhekelia
+    albania: Albania
     algeria: Argelia
     american_samoa: Samoa americana
+    andorra: Andorra
+    angola: Angola
     anguilla: Anguila
     antarctica: Antártida
     antigua_and_barbuda: Antigua y Barbuda
+    argentina: Argentina
+    armenia: Armenia
+    aruba: Aruba
+    australia: Australia
+    austria: Austria
     azerbaijan: Azerbaiyán
+    bahamas: Bahamas
     bahrain: Baréin
     bangladesh: Bangladés
+    barbados: Barbados
     belarus: Belarús
     belgium: Bélgica
     belize: Belice
     benin: Benín
     bermuda: Bermudas
     bhutan: Bután
+    bolivia: Bolivia
     bonaire_saint_eustatius_and_saba: Bonaire, San Eustaquio y Saba
     bosnia_and_herzegovina: Bosnia y Herzegovina
     botswana: Botsuana
@@ -2403,6 +2417,9 @@ es:
     british_indian_ocean_territory: Territorio Británico del Océano Índico
     british_virgin_islands: Islas Vírgenes Británicas
     brunei: Brunéi
+    bulgaria: Bulgaria
+    burkina_faso: Burkina Faso
+    burundi: Burundi
     cambodia: Camboya
     cameroon: Camerún
     canada: Canadá
@@ -2410,24 +2427,35 @@ es:
     cayman_islands: Islas Caimán
     central_african_republic: República Centroafricana
     central_america: América central
+    chad: Chad
+    chile: Chile
+    china: China
     christmas_island: Isla de Navidad
     clipperton_island: Isla Clipperton
     cocos_islands: Islas Cocos
+    colombia: Colombia
     commonwealth_of_the_northern_mariana_islands: Islas Marianas Del norte
     comoros: Comoras
     cook_islands: Islas Cook
+    costa_rica: Costa Rica
     cote_d_ivoire: Costa de Marfil
     croatia: Croacia
+    cuba: Cuba
     curacao: Curazao
     cyprus: Chipre
     czech_republic: República Checa
     democratic_republic_of_the_congo: República democrática del Congo
     denmark: Dinamarca
     djibouti: Yibuti
+    dominica: Dominica
     dominican_republic: República dominicana
     east_timor: Timor Oriental
+    ecuador: Ecuador
     egypt: Egipto
+    el_salvador: El Salvador
     equatorial_guinea: Guinea Ecuatorial
+    eritrea: Eritrea
+    estonia: Estonia
     ethiopia: Etiopía
     europe: Europa
     falkland_islands: Islas Malvinas
@@ -2439,50 +2467,89 @@ es:
     french_polynesia: Polinesia Francesa
     french_southern_territories: Tierras Australes Francesas
     gabon: Gabón
+    gambia: Gambia
+    georgia: Georgia
     germany: Alemania
+    ghana: Ghana
+    gibraltar: Gibraltar
     greece: Grecia
     greenland: Groenlandia
     grenada: Granada
     guadeloupe: Guadalupe
+    guam: Guam
+    guatemala: Guatemala
+    guernsey: Guernsey
+    guinea: Guinea
     guinea_bissau: Guinea-Bisáu
+    guyana: Guyana
     haiti: Haití
     heard_island_and_mcdonald_islands: Islas Heard y McDonald
+    honduras: Honduras
+    hong_kong: Hong Kong
     hungary: Hungría
     iceland: Islandia
+    india: India
+    indonesia: Indonesia
     iran: Irán
     iraq: Irak
     ireland: Irlanda
     isle_of_man: Isla de Man
+    israel: Israel
     italy: Italia
+    jamaica: Jamaica
     japan: Japón
+    jersey: Jersey
     jordan: Jordania
     kazakhstan: Kazajistán
     kenya: Kenia
+    kiribati: Kiribati
     korea: Corea
+    kosovo: Kosovo
+    kuwait: Kuwait
     kyrgyzstan: Kirguistán
+    laos: Laos
     latvia: Letonia
     lebanon: Líbano
     lesotho: Lesoto
+    liberia: Liberia
     libya: Libia
+    liechtenstein: Liechtenstein
     lithuania: Lituania
     luxembourg: Luxemburgo
+    macao: Macao
+    macedonia: Macedonia
+    madagascar: Madagascar
     malawi: Malaui
     malaysia: Malasia
     maldives: Maldivas
     mali: Malí
+    malta: Malta
     marshall_islands: Islas Marshall
     martinique: Martinica
+    mauritania: Mauritania
     mauritius: Mauricio
+    mayotte: Mayotte
     mexico: México
+    micronesia: Micronesia
     moldova: Moldavia
     monaco: Mónaco
+    mongolia: Mongolia
+    montenegro: Montenegro
+    montserrat: Montserrat
     morocco: Marruecos
+    mozambique: Mozambique
     myanmar: Birmania
+    namibia: Namibia
+    nauru: Nauru
+    nepal: Nepal
     netherlands: Países Bajos
     new_caledonia: Nueva Caledonia
     new_guinea: Nueva Guinea
     new_zealand: Nueva Zelanda
+    nicaragua: Nicaragua
     niger: Níger
+    nigeria: Nigeria
+    niue: Niue
     norfolk_island: Isla Norfolk
     north_africa: África del norte
     north_america: América del norte
@@ -2491,13 +2558,17 @@ es:
     norway: Noruega
     oman: Omán
     pakistan: Pakistán
+    palau: Palau
     palestine: Palestina
     panama: Panamá
     papua_new_guinea: Papúa Nueva Guinea
+    paraguay: Paraguay
     peru: Perú
     philippines: Filipinas
     pitcairn_islands: Islas Pitcairn
     poland: Polonia
+    portugal: Portugal
+    puerto_rico: Puerto Rico
     qatar: Catar
     republic_of_congo: República del Congo
     reunion: Reunión
@@ -2511,20 +2582,27 @@ es:
     saint_martin: San Martín
     saint_pierre_and_miquelon: San Pedro y Miquelón
     saint_vincent_and_the_grenadines: San Vicente y las Granadinas
+    samoa: Samoa
+    san_marino: San Marino
     sao_tome_and_principe: Santo Tomé y Príncipe
     saudi_arabia: Arabia Saudita
+    senegal: Senegal
+    serbia: Serbia
+    seychelles: Seychelles
     sierra_leone: Sierra Leona
     singapore: Singapur
     sint_maarten: Maarten Sint
     slovakia: Eslovaquia
     slovenia: Eslovenia
     solomon_islands: Islas Salomón
+    somalia: Somalia
     south_africa: Sudáfrica
     south_america: América del sur
     south_georgia_and_the_south_sandwich_islands: Islas Georgias del Sur y Sandwich del Sur
     south_korea: Corea del Sur
     south_sudan: Sudán del sur
     spain: España
+    sri_lanka: Sri Lanka
     sudan: Sudán
     suriname: Surinam
     svalbard_and_jan_mayen: Svalbard y Jan Mayen
@@ -2534,25 +2612,36 @@ es:
     syria: Siria
     taiwan: Taiwán
     tajikistan: Tayikistán
+    tanzania: Tanzania
     thailand: Tailandia
     togo: Alternar
+    tokelau: Tokelau
+    tonga: Tonga
     trinidad_and_tobago: Trinidad y Tobago
     tunisia: Túnez
     turkey: Turquía
     turkmenistan: Turkmenistán
     turks_and_caicos_islands: Islas Turcas y Caicos
+    tuvalu: Tuvalu
+    uganda: Uganda
     ukraine: Ucrania
     united_arab_emirates: Emiratos Árabes Unidos
     united_kingdom: Reino Unido
     united_states: Estados Unidos
     united_states_minor_outlying_islands: Islas Ultramarinas Menores de Estados Unidos
     united_states_virgin_islands: Islas Vírgenes de los Estados Unidos
+    uruguay: Uruguay
     uzbekistan: Uzbekistán
+    vanuatu: Vanuatu
     vatican_city: Ciudad de Vaticano
+    venezuela: Venezuela
+    vietnam: Vietnam
     virgin_islands: Islas Vírgenes
     wallis_and_futuna: Wallis y Futuna
     west_africa: África occidental
     western_sahara: Sáhara occidental
+    yemen: Yemen
+    zambia: Zambia
     zimbabwe: Zimbabue
   places_of_interest: Lugares de Interés
   places_merged_successfully: '¡Los lugares se combinaron satisfactoriamente!'
@@ -2669,7 +2758,7 @@ es:
   radius_value: "Radio (m): %{radius}"
   random: Al azar
   range: Área
-  range_from: 'Distribución de '
+  range_from: 'Distribución de'
   rank: Rango
   rank_position: Posición
   rank_restrictions: Clasificar las restricciones
@@ -2757,6 +2846,7 @@ es:
     one_to_many: uno-a-muchos
     not_external: no externo
     not_internal: no interno
+    error: error
   relationship_html: "Relación: %{link}"
   reload_from_observations: Volver a cargar sus observaciones
   reload_timed_out: 'El tiempo de carga expiró.  Por favor trate de nuevo en un momento.'
@@ -2797,6 +2887,7 @@ es:
   replace_boundary_with_kml: Reemplace límite con KML
   replace_parentesis: (reemplazar)
   reply: Responda
+  reptiles: reptiles
   request_failed: "Ha fallado la solicitud"
   request_timed_out: '¡La petición excedio el tiempo de espera!'
   required: obligatorio
@@ -2899,7 +2990,7 @@ es:
   second_person_possessive_plural: "Tus %{noun}"
   second_person_possessive_singular: "Tu %{noun}"
   see_something_wrong_with_taxon: '¿Vé algo malo con este taxón? Infórmelo a los curadores.'
-  seen_it?: '¿Lo has visto? '
+  seen_it?: '¿Lo has visto?'
   seen_nearby: Visto en la cercanías
   seen_one: '¿Has visto uno?'
   select: Selecciona
@@ -3033,7 +3124,9 @@ es:
   source_wikipedia: "Fuente: Wikipedia"
   source_list_: "Lista de origen"
   source_list:
+    ubio: uBio
     catalogue_of_life: Catálogo de la vida
+    inaturalist: iNaturalist
     new_zeland_organisms_register: Registro de organismos de Nueva Zelanda
     nzbrn_birds: NZBRN Aves
     nzbrn_fungi: NZBRN Hongos
@@ -3055,7 +3148,6 @@ es:
   sources_youve_added: Fuentes que has agregado
   sources_and_credits: Fuentes y Créditos
   sourcing: Poniendo la fuente
-  spam: spam
   species: Especies
   species_by_category: especies por categoría
   species_from_around_the_world: Especies de todo el mundo
@@ -3200,7 +3292,7 @@ es:
     other: "%{taxon} es un reino con %{count} observaciones"
   taxon_is_threatened_coordinates_hidden: Este taxón está amenazado, coordenadas ocultas por defecto
   taxon_is_threatened_coordinates_hidden_desc: |
-    Uno de los taxones sugeridos en las identificaciones, o uno de los taxones incluídos en cualquiera de ellos, se consideran raros y/o amenazados, así que
+    Uno de los taxones sugeridos en las identificaciones, o uno de los taxones incluídos en cualquiera de ellos, se consideran raros y/o amenazados, así que 
     la ubicación de esta observación ha sido ocultada.
   taxon_is_threatened_coordinates_obscured: Este taxón está amenzado, las coordenadas se ocultan por defecto.
   taxon_is_threatened_coordinates_obscured_desc: |
@@ -3406,7 +3498,6 @@ es:
   top_observer: Mayor observador
   top_observers: Mejores observadores
   top_species: Especie superior
-  total: total
   totals: Totales
   total_members: Total de miembros
   total_observations: Total de observaciones
@@ -3422,6 +3513,7 @@ es:
   trust_this_person_with_your_private_coordinates: Confía a esta persona con tus coordenadas ocultas
   trust_with_private_coordinates: Confiar con coordenadas ocultas
   try_adding_species_form: Trate de agregar algunas especies usando el formulario en esta página.
+  twitter: Twitter
   two_thirds: dos tercios
   type: Tipo
   type_authority: Pon el nombre de la autoridad...
@@ -3652,7 +3744,6 @@ es:
   view_all_of_your_observations_from_x: "Ver todas tus observaciones de %{x}"
   video_tutorials: Videotutoriales
   visually_similar: Similar visualmente
-  vulnerable: vulnerable
   w00t_no_ungrafted_taxa: '¡No se aceptan taxones sin relaciones taxonómicas!'
   w_photos_only: con fotos solamente
   w_sounds: con sonidos
@@ -5484,18 +5575,15 @@ es:
         strip_insignificant_zeros: true
   support:
     array:
-      last_word_connector: ', y '
-      two_words_connector: ' y '
+      last_word_connector: ', y'
+      two_words_connector: ' y'
       words_connector: ','
   time:
-    am: mañana
     formats:
       default: '%d %b %Y %H:%M:%S %Z'
       long: '%d de %B de %Y'
       short: '%d/%m/%Y'
-      observed_at: 'a las %I:%M %p %Z'
       day_month_year: "%d %b. %Y"
-    pm: tarde
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:

@@ -2,21 +2,12 @@ oc:
   x_comments:
     one: '1 comentari'
     other: '%{count} comentaris'
-  x_followers:
-    one: '1 seguidor'
-    other: '%{count} seguidors'
   x_identifications:
     one: '1 identificacion'
     other: '%{count} identificacions'
   x_identifications_:
     one: '1 identificacion'
     other: '%{count} identificacions'
-  x_lists:
-    one: '1 lista'
-    other: '%{count} listas'
-  x_journal_posts:
-    one: '1 nòta de jornal'
-    other: '%{count} nòtas de jornal'
   x_matching_taxa:
     one: '1 taxon correspondent'
     other: '%{count} taxons correspondents'
@@ -35,9 +26,6 @@ oc:
   x_observations_link_html:
     one: "<a href='%{url}'>1 observacion</a>"
     other: "<a href='%{url}'>%{count} observacions</a>"
-  x_people_agree_html:
-    one: '<span class="count">1</span> persona es d’acòrdi'
-    other: '<span class="count">%{count}</span> personas son d’acòrdi'
   x_species:
     one: '1 espècia'
     other: '%{count} espècias'
@@ -239,6 +227,7 @@ oc:
   all_taxa_in_this_guide: Autres taxons dins aqueste guida
   all_taxonomic_groups: "&laquo; Totes los gropes taxonomics"
   all_updates: Totas las mesas a jorn
+  #Option to allow any taxa on a list
   allow_any: Autorizar tot
   allowed_establish_means_values: Valors mejanas determinadas autorizadas
   allowed_html: HTML autorizat
@@ -274,7 +263,6 @@ oc:
   assessment_x: "avaloracion %{assessment}"
   assessments: avaloracions
   associations: Associacions
-  at: a
   at_time: "a %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -311,7 +299,6 @@ oc:
   batch_edit: Moditicacion del lòt
   batch_edit_taxa_for_x_html: "Lòt de modificacions de taxons per %{x}"
   batch_operations: Operacions per lòt
-  because: perque
   before_importing_photos: abans d’importar de fòtos
   bg_color: Color de fons
   birds: ausèls
@@ -339,7 +326,6 @@ oc:
   captive_cultivated: En captivitat / cultivat
   card: Carta
   casual: ocasional
-  catalogue_of_life: Catalòg de Vida
   categories: categorias
   cc_0_name: Pas de dreit d’autor (CC0)
   cc_by_name: Atribucion
@@ -427,7 +413,6 @@ oc:
   controls: Contraròtles
   coordinate_systems: Sistèmas de coordenadas
   coordinates: Coordenadas
-  coordinates_private: (coordenadas privadas)
   copy: Copiar
   copyright:
     anonymous: anonim
@@ -766,9 +751,8 @@ oc:
   locales:
     en: Anglés
     en-US: Anglés (Estats Units)
-    es-ES: Espanhòl (Espanha)
-    es-MX: Espanhòl (Mexic)
     es: Espanhòl
+    es-MX: Espanhòl (Mexic)
     eu: Basc
     fr: Francés
     ja: Japonés
@@ -909,9 +893,7 @@ oc:
   person: persona
   personal_message: Messatge personal
   per_page: "Per pagina"
-  permalink: Ligam permanent
   photo: Fòto
-  photo?: Fòto ?
   photo_deleted: Fòto suprimida
   photos_from: Fòtos de
   photos_size:
@@ -1022,8 +1004,6 @@ oc:
   plants: plantas
   position: Posicion
   possessive_user: "de %{user}"
-  #Noun, short version of a journal post
-  post: Nòta
   posted_by: Publicat per
   posts: Nòtas
   powered_by: Optimizat per
@@ -1033,7 +1013,6 @@ oc:
   prev: Prec
   previous_page: Pagina precedenta
   privacy: Politica de confidencialitat
-  privacy_policy: Politica de confidencialitat
   private: privat
   processing3p: "Tractament en cors..."
   profile: Perfil
@@ -1076,9 +1055,6 @@ oc:
     form: forma
   ray_finned_fishes: peisses amb nadarèlas raionadas
   reason: Motiu
-  received: recebut
-  recent_additions: Darrièrs apondons
-  record!: Enregistrar !
   red: roge
   redo_search_in_map_area: Refar la recèrca dins la region cartografica
   refresh: Refrescar
@@ -1086,19 +1062,15 @@ oc:
   remove: Suprimir
   remove_all_tags: Suprimir totas las etiquetas
   remove_from: Suprimir de
-  remove_from_batch: Suprimir del lòt
   removed: Suprimit
   removed!: Suprimit !
   removing: "Supression en cors…"
   replace_parentesis: (remplaçar)
-  replacing: remplaçament
   reply: Respondre
   reptiles: reptils
   research: recercar
   research_grade: recercar un nivèl
-  research_grade_expandable_html: "R<span class='full'>ecercar </span> un N<span class='full'>ivèl</span>"
   results: resultats
-  roadmap: fuèlh de rota
   role: Ròtle
   rotate_left: Virar a esquèrra
   rotate_right: Virar a dreita
@@ -1111,7 +1083,6 @@ oc:
   saving: "Enregistrament en cors…"
   saving_verb: Enregistrament
   schemes: Esquèmas
-  scientific_names: Noms scientifics
   search: Recercar
   select: Seleccionar
   select_one_or_more_photos: 'Seleccionar una o mantuna fòtos'
@@ -1119,16 +1090,12 @@ oc:
   send: mandar
   #Label for messages you've sent
   sent: Mandat
-  september: Setembre
   settings: paramètres
   show: Afichar
-  shown_publicly_as: Afichat publicament coma
   sign_in: Connexion
   sign_in_with_provider: "Connexion amb %{provider}"
   sign_out: Desconnexion
-  sign_up!: Inscrivètz-vos !
   sign_up: Inscripcion
-  sign_up_exclamation: Inscrivètz-vos !
   similar_species: Espècias similaras
   single_observation: Observacion unica
   sizes: Talhas
@@ -1152,28 +1119,20 @@ oc:
   sources: Fonts
   sourcing: Font
   spam: spam
-  spanish: Espanhòl
   species: Espècias
   start: Aviar
   states: Estats
   stats: Estatisticas
   status: Estat
   summary: Resumit
-  siutable_observations: observacions apropriadas
   taxa: Taxons
-  taxa_all_species_html: "Totas las espècias"
   terms: Condicions
-  terms_of_service: Condicions d’utilizacion
   terms_service: Condicions d’utilizacion
-  text_: tèxte
   thats_not_a_real_date: Es pas una vertadièra data !
   the_past: lo passat
-  those_are_the_basics_of: |
-    S’agís de l’essencial per l’apondon d’observacions! I a fòrça causas mai que podètz far, coma cercar e filtrar vòstras observacions o las modificar dins un lòt, mas aquelas accions se deurián passar d’explicacions.
   time_: ora
   time_ago: "i a %{time}"
   title: títol
-  to_: per
   today: Uèi
   tools: Aisinas
   total: total
@@ -1189,37 +1148,25 @@ oc:
   user_invited_you_to_join_html: "%{user} vos a convidat a vos jónher"
   user_invited_you_to_join_project: "%{user} vos a convidat a vos jónher a %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} vos a convidat a vos jónher a aqueste projècte lo %{date}"
-  user_s_lists: "Listas de %{user}"
   username: Nom d'utilizaire
   users_comment_html: "comentari de <a href='%{url}'>%{user}</a>"
   users_id: "Identificant de %{user}"
   view_all_n: "Afichar totes los %{n}"
   view_all_observations: Afichar totas las observacions
-  view_all_photos_tagged_taxon_html: 'Afichar totas las fòtos etiquetadas « %{taxon} » sus <nobr>Flickr &raquo;</nobr>'
   view_more: Veire mai
-  view_more_observations: Veire mai d'observacions
   view_more_unreviewed: "Afichar mai de pas relegits"
   view_your_dashboard: Afichar vòstre tablèu de bòrd
   view_all_of_your_observations_from_x: "Afichar totas vòstras observacions dempuèi %{x}"
-  want_to_test_a_new_version_of_this_page: Enveja de testar una novèla version d'aquesta pagina ?
-  welcome!: Benvenguda !
-  welcome_comma!: Benvenguda,
   welcome_to_inat: "Benvenguda sus %{site_name}!"
   would_you_like_to: Vos agradariá
   x_sent_you_a_new_message_on_y_html: "%{x} vos a mandat un novèl messatge sus %{y}:"
   you_can_accept_invitations: Podètz acceptar lo convit aicí
-  you_can_also_add_flickr: Tanben podètz apondre d'etiquetas Flickr pendent la modificacion d’una observacion o d’una modificacion per lòt de vòstras observacions.
-  you_can_change_your_new_passwd_after_logging_in: "Podètz modificar vòstre novèl senhal aprèp que vos sètz connectat aicí :"
   you_cant_compare_a_list_with_nothing: Podètz pas comparar una lista amb res!
   you_cant_delete_a_project_list: "Podètz pas suprimir una lista de projècte"
   you_cant_flag_that: Podètz pas senhalar que
-  you_cant_remove_other_peoples_observations: Podètz pas suprimir las observacions d’autras personas.
-  you_have_to: Vos cal
   your_content: Vòstre contengut
   your_home: Vòstre Acuèlh
   your_profile_was_successfully_updated: Vòstre perfil es estat mes a jorn corrèctament !
-  your_world!: vòstre monde !
-  youre_viewing_all_observations: Gaitatz totas las observacions
   views:
     guides:
       pdf_layouts:

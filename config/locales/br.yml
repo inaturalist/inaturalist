@@ -147,6 +147,7 @@ br:
   all_updates: An holl hizivadurioù
   all_your_observations_will_default_this_time_zone: Holl hoc'h evezhiadennoù a vo er werzhid-eur-mañ dre ziouer, nemet e termenit anezhi mod-all
   all_your_observations_will_default_to_this_time_zone: Holl hoc'h evezhiadennoù a vo er werzhid-eur-mañ dre ziouer, nemet e termenit anezhi mod-all
+  #Option to allow any taxa on a list
   allow_any: aotren n'eus forzh peseurt
   allow_project_curators_to_view_your_private_coordinates: Aotren goursellerien ar raktres da welet hoc'h evezhiadennoù prevez
   allowed_html: HTML aotreet
@@ -206,7 +207,6 @@ br:
   assessment_x: "Priziadur %{assessment}"
   assessments: priziadurioù
   associations: Kevredigezhioù
-  at: e
   at_time: "e %{time}"
   authority_list:
     iucn_red_list: Listenn ruz an UICN
@@ -237,7 +237,6 @@ br:
   batch_edit: Kemmañ lod
   batch_edit_taxa_for_x_html: "Lod kemmañ taksonoù evit %{x}"
   batch_operations: Oberiadennoù dre lod
-  because: abalamour da
   because_of: en abeg da
   before_importing_photos: a-raok enporzhiañ luc'hskeudennoù
   belives_this_is_a_comprehensive_list_of: a soñj dezhañ ez eo ur roll klok eus
@@ -362,7 +361,6 @@ br:
   controls: Kontrolloù
   coordinate_systems: Reizhiad daveennoù
   coordinates: Daveennoù
-  coordinates_private: (daveennoù prevez)
   copy: Eilañ
   copy_and_paste_this_into_your_own_html: Eilit ha pegit en hor HTML.
   copy_guide_taxon_to: Pegit levr an taksonoù war-zu...
@@ -790,9 +788,8 @@ br:
     ca: Katalaneg
     en: Saozneg
     en-US: Saozneg (Stadoù Unanet)
-    es-ES: Spagnoleg (Spagn)
-    es-MX: Spagnoleg (Mec'hiko)
     es: Spagnoleg
+    es-MX: Spagnoleg (Mec'hiko)
     eu: Euskareg
     fr: Galleg
     gl: Galizeg
@@ -947,7 +944,6 @@ br:
   paste_in_a_bunch_of_names: Pegit en ur strollad anvioù, 1 dre linenn, ha pouezit war ar bouton!
   paste_in_a_comma_separated_list: Pegañ en ur rollad broioù disrannet gant skejoù
   people: Tud
-  people_agree: A-du emañ an dud
   people_following_user: "Tud war-lerc'h %{user}"
   people_user_follows: "Tud heuliet gant %{user}"
   people_added:
@@ -958,15 +954,12 @@ br:
   person: den
   personal_message: Kemennadenn bersonel
   per_page: "Dre bajenn"
-  permalink: Peurliamm
   photo: Luc'hskeudenn
-  photo?: Luc'hskeudenn ?
   photo_attribution: "Luc'hskeudenn %{attribution}"
   photo_by_id_attribution: "Lu'hskedenn %{id}, %{attribution}"
   photo_deleted: Luc'hskeudenn dilamet
   photo_destroyed_because_it_was_deleted_from: "Luc'hskeudenn distrujet, rak dilamet eo bet eus al lec'hienn diavaez pe %{site_name} n'en deus ket gwir da welet anezhi ken"
   photo_hosting_accounts: Kontoù herberc'hiañ luc'hskeudennoù
-  photo_integration: Enframmañ luc'hskeudennoù
   photo_type: Seurt luc'hskeudenn
   photo_urls_repaired: Urloù luc'hskeudennoù dreset
   photos_or_sounds?: Luc'hskeudennoù pe sonioù ?
@@ -976,9 +969,7 @@ br:
     large: bras
     original: Orin
   photos_size_photos: "luc'hskeudennoù %{photos_size}"
-  photos_size_photo: "luc'hskeudennoù %{photos_size}"
   photos_updated: Luc'hskeudennoù hizivaet
-  picasa_identity: Identelezh Picasa
   pick_a_username: Dibabit un anv implijer
   pink: roz
   place: Lec'h
@@ -1120,9 +1111,7 @@ br:
   previous: Kent
   prev: kent
   previous_page: Pajenn gent
-  print_in_browser: Moullañ en ergerzher
   privacy: Reolennoù prevezded
-  privacy_policy: Reolennoù prevezded
   private: prevez
   project: Raktres
   recaptcha_verification_failed: Gwiriadenn reCaptcha c'hwitet

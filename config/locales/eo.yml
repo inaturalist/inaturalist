@@ -5,24 +5,12 @@ eo:
   x_faves:
     one: '1 favorato'
     other: '%{count} favoratoj'
-  x_followers:
-    one: '1 sekvanto'
-    other: '%{count} sekvantoj'
   x_identifications:
     one: '1 identigado'
     other: '%{count} identigadoj'
   x_identifications_:
     one: '1 Identigado'
     other: '%{count} Identigadoj'
-  x_ids:
-    one: '1 identigilo'
-    other: '%{count} identigiloj'
-  x_lists:
-    one: '1 listo'
-    other: '%{count} listoj'
-  x_journal_posts:
-    one: '1 ĵurnala afiŝo'
-    other: '%{count} ĵurnalaj afiŝoj'
   x_journal_posts_html:
     one: '<span class="count">1</span> ĵurnala afiŝo'
     other: '<span class="count">%{count}</span> ĵurnalaj afiŝoj'
@@ -38,15 +26,6 @@ eo:
   x_others:
     one: "1 alio"
     other: "%{count} alioj"
-  x_people_found_this_helpful:
-    one: 'Unu homo trovis ĉi tion utila'
-    other: '%{count} homoj trovis ĉi tion utila'
-  x_people_like_this:
-    one: '1 homo ŝatas tion'
-    other: '%{count} homoj ŝatas tion'
-  x_people_agree_html:
-    one: '<span class="count">1</span> homo samopinias'
-    other: '<span class="count">%{count}</span> homoj samopinias'
   x_photos:
     one: "1 foto"
     other: "%{count} fotoj"
@@ -306,7 +285,6 @@ eo:
   back_to_your_profile: Reen al via profilo
   back_to_your_projects: Reen al viaj projektoj
   be_the_first_to_fave_this_observation: Estu la unua favoranto de ĉi tiu observo!
-  because: ĉar
   because_of: pro
   bioblitz: Biofulmado
   birds: birdoj
@@ -322,7 +300,6 @@ eo:
   calendar: Kalendaro
   cancel: Nuligi
   card: Karto
-  catalogue_of_life: Katalogo de Vivo
   categories: Kategorioj
   cc_0_name: Sen Aŭtorrajtoj (CC0)
   change_cover: Ŝanĝi kovrilon
@@ -423,7 +400,6 @@ eo:
   convert: Konverti
   coordinate_systems: Koordinatsistemoj
   coordinates: Koordinatoj
-  coordinates_private: (privataj koordinatoj)
   copy: Kopii
   copyright:
     some_rights_reserved: iuj rajtoj rezervitaj
@@ -826,9 +802,8 @@ eo:
     el: greka
     en: angla
     en-US: angla (Usono)
-    es-ES: hispana (Hispanio)
-    es-MX: hispana (Meksiko)
     es: hispana
+    es-MX: hispana (Meksiko)
     et: estona
     eu: eŭska
     fi: finna
@@ -1008,9 +983,7 @@ eo:
   per_week: En Semajno
   person: Homo
   photo: Foto
-  photo?: Ĉu Foto?
   photo_attribution: "Foto %{attribution}"
-  photos_of: Fotoj de
   photos_of_taxon_html: "Fotoj de %{taxon}"
   photos_size:
     small: malgranda
@@ -1250,7 +1223,6 @@ eo:
     oman: Omano
     pakistan: Pakistano
     palau: Palaŭo
-    palestina: Palestino
     palestine: Palestino
     panama: Panamo
     papua_new_guinea: Papu-Nov-Gvineo
@@ -1345,7 +1317,6 @@ eo:
   previous_page: Antaŭa paĝo
   previous_photo: Antaŭa Foto
   print_verb: Presi
-  print_in_browser: Presi en TTT-legilo
   privacy: Privateco
   private: privata
   private_: Privata
@@ -1356,11 +1327,8 @@ eo:
   project_group_label: Grupo
   project_home: Projekta ĉefpaĝo
   project_icon: Projekta ikono
-  project_journal_posts: 'Projektaj ĵurnalaj afiŝoj'
   project_list: Listo de Projektoj
-  project_id: Identigilo de Projekto
   project_members: "Projektanoj de %{project}"
-  project_name: Nomo de projekto
   project_observations: Observoj de Projekto
   project_post: Afiŝo de Projekto
   project_requirements: Postuloj de Projekto
@@ -1373,7 +1341,6 @@ eo:
   projects_from_place: "Projektoj ĉe %{place}"
   projects_in_x: "Projektoj en %{x}"
   projects_you_admin: Projektoj Administrataj de Vi
-  projects_youve_joined: Projektoj al Kiuj Vi Aliĝis
   protozoans: protozooj
   public_domain: Publika Havaĵo
   publish: Publikigi
@@ -1418,10 +1385,7 @@ eo:
   ray_finned_fishes: aktinopterigoj
   read_more: Legi Plu
   reason: Kialo
-  reason_label: "Kialo:"
-  received: ricevita
   recent: Ĵusaj
-  recent_additions: Ĵusaj aldonoj
   recent_post: Ĵusa afiŝo
   recently_active: Ĵus Aktiva
   recently_finished: Ĵus Finita
@@ -1454,21 +1418,17 @@ eo:
   restore: Restarigi
   restoring: Restariganta...
   results: rezultoj
-  review_verb: Revizii
   reviewed: Reviziita
   role: Rolo
   row_singular_or_plural: Vico(j)
-  rule_must_be: "Regulo devas esti..."
   rules_types:
     must_be_on_list: devas esti en listo
     must_be_in: devas esti en taksono
   said: diris
-  sat: sab
   satellite: satelito
   save: Konservi
   save_all: Konservi Ĉion
   save_changes: Konservi Ŝanĝojn
-  save_colors: Konservi Kolorojn
   save_comment: Konservi komenton
   save_draft: Konservi Malneton
   save_fields: Konservi kampojn
@@ -1482,17 +1442,12 @@ eo:
   saving_verb: Konservado
   scale_colon: "Skalo:"
   schemes: Skemoj
-  scientific_names: Sciencaj nomoj
   search: Serĉi
-  search_for_new_taxa: serĉi Novajn Taksojn
   search_for_species: Serĉi Specion
   search_list: Serĉi Liston
-  search_obs: "Serĉi observojn..."
-  search_places: Serĉi Lokojn
   search_projects: Serĉi Projektojn
   search_species: Serĉi Speciojn
   search_species_: Serĉi Speciojn...
-  search_taxa: "Serĉi taksonojn..."
   search_the_map: Serĉi la mapon
   search_this_taxon: serĉi tiun taksonon
   searching: "Serĉante..."
@@ -1503,7 +1458,6 @@ eo:
   seen_one: Ĉu vidis unu?
   select: Elekti
   select_all: Elekti Ĉiujn
-  select_an_album: Elekti Albumon
   select_at_least_one: Elektu Almenaŭ Unu
   select_none: Elekti Neniun
   select_options: Elekti Opciojn
@@ -1512,28 +1466,23 @@ eo:
   selected_taxon: Elektita Taksono
   select_this_taxon: Elekti Tiun Taksonon
   send: sendi
-  send_invite: Invitit
   send_invites_to: Sendi invitojn al
   send_the_invites: Sendi la Invitojn
   sending: Sendante...
   #Label for messages you've sent
   sent: Sendita
   separate_values_with_a_pipe: Apartigu valorojn per vertikalo, ekz. "1-5|6-10|multe" aŭ "jes|ne|eble"
-  september: septembro
   settings: Agordoj
   share: Diskonigi
   share_colon: "Diskonigi:"
   show: Montri
-  show_kml: Montri KML-dosieron
   sign_in: Ensaluti
   sign_out: Elsaluti
-  sign_up!: Registriĝu!
   sign_up: Registriĝi
-  sign_up_exclamation: Registriĝu!
   similar_species: Similaj Specioj
   similar_taxa: Similaj Taksonoj
+  #Journal post formatting option
   simple: Simpla
-  sign_in_exclamation: Ensalutu!
   single_observation: Unuopa observo
   sizes: Grandoj
   skip_to_next_page: "Salti al sekva paĝo"
@@ -1542,9 +1491,6 @@ eo:
   site_name_place: "loko de %{site_name}"
   site_staff: "Skipo de %{site_name}"
   site_stats: Statistiko pri la Retejo
-  so_meta!: kiel metaa!
-  some_people: Iuj
-  some_people_that: Iuj kiuj
   some_rights_reserved: iuj rajtoj rezervitaj
   something: Io
   something_: io
@@ -1581,32 +1527,24 @@ eo:
     in_text: 'ekz. Greene, 2000'
     url: ekz. 'http://www.ucpress.edu/book.php?isbn=9780520224872'
     citation: 'ekz. Greene, Harry W. Snakes: The Evolution of Mystery in Nature (Serpentoj: La Evoluo de Misterio en Naturo). 1a eld. Eldonejo de la Universitato de Kalifornio, 1997. Presita.'
-  source_unknown: "Nekonata fonto"
   source_url: Fonta retadreso
   sources: Fontoj
   spam: Trudmesaĝo
   spammer: Trudmesaĝisto
-  spanish: hispana
   species: Specio
   species_by_category: specioj laŭ kategorio
   species_guess: konjekto pri specio
-  species_header: Specio
-  species_name: nomo de specio
   species_name_cap: Nomo de specio
   species_names: nomoj de specioj
-  species_or_lower: specio aŭ pli malaltranga
   species_search: Serĉado de Specioj
   species_taxon_name: Nomo de Specio aŭ Taksono
   species_unknown: nekonata specio
   src: Fonto
   standard: Norma
   start: Komenci
-  start_a_new_list: Krei Novan Liston
   start_a_new_project: Fondi Novan Projekton
   start_a_project: Fondi Projekton
   start_date_time: Komencaj Dato / Tempo
-  start_new_account: Krei Novan Konton
-  start_new_project: Fondi Novan Projekton
   start_one: Fondi
   start_one_now: Fondi Nun!
   start_typing_field_name: Ektajpu nomon de kampo...
@@ -1615,15 +1553,11 @@ eo:
   start_typing_someones_name: "Ektajpu ies nomon..."
   states: Ŝtatoj
   stats: Statistiko
-  stats_title: Statistiko pri Retejo
   status: Stato
-  submit: Sendi
-  submit_comment: Komenti
   submitted: Sendita
   subscribe_to_a_taxon: Aboni Taksonon
   subscribe_to_a_place: Aboni Lokon
   subscribe_to_this: Aboni ĉi tion
-  subscribe_to_this_observation: Aboni ĉi tiun observon
   subscriptions: Abonoj
   suggestions: Sugestoj
   summary: Resumo
@@ -1631,7 +1565,6 @@ eo:
   sw_lat: Latitudo SU
   sw_lon: Longitudo SU
   sync: Ĉu sinkronigi?
-  sync_with_eol: Sinkronigi kun EdV
   synonyms: Sinonimoj
   table: Tabelo
   table_of_contents: Enhavtabelo
@@ -1643,42 +1576,29 @@ eo:
   take_me_flickr!: Jes, ek al Flickr!
   taxa: Taksonoj
   taxa_info: Informo pri Taksonoj
-  taxa_all_species_html: "Ĉiuj Specioj"
   taxon: Taksono
   taxonomy: Taksonomio
-  taxon_: taksono
-  taxon_change: ŝanĝo de taksono
   taxon_id: Identigilo de Taksono
   taxon_ids: Identigiloj de Taksonoj
   taxon_map:
     data_url: Datena retadreso
   taxon_changes: Taksonaj Ŝanĝoj
   taxon_colors: Taksonaj Koloroj
-  taxon_links: Taksonaj Ligiloj
   taxon_name: Nomo de taksono
   taxon_scheme: Taksona skemo
   taxon_schemes: "Taksonaj Skemoj"
-  taxon_to_delete: Forigota taksono
-  taxon_to_keep: Ne forigota taksono
   taxon_name_was_deleted: Forigis nomon de taksono.
   taxonomic: Taksonomia
   taxonomic_groups: Taksonomiaj Grupoj
   taxonomic_order: Taksonomia Ordo
   taxonomic_status: Taksonomia stato
   taxonomic_tags_for_flickr: Taksonomiaj Etikedoj por Flickr
-  terms_of_service: Kondiĉoj de Uzado
   terms_service: Kondiĉoj de Servado
   terrain: tereno
   text: Teksto
-  text_: teksto
   thanks!: Dankon!
-  the: la
-  the_: La
-  the_list: la listo
-  the_project: la projekto
   the_world: La Mondo
   then_keybord_sequence: sekve
-  there_were_errors: Eraroj okazis.
   this: ĉi tiu
   this_bioblitz_beings_in: Ĉi tiu biofulmado komencas en
   this_is_a: Ĉi tio estas
@@ -1686,15 +1606,12 @@ eo:
   this_is_a_life_list_of_taxon_in_place: "Jen vivolisto de %{taxon} en %{place}"
   this_list_is_empty!: Tiu listo estas malplena!
   this_observation: Tiu observo
-  this_species: la specio
   this_year: Nuna Jaro
   time_: tempo
   title: titolo
   title_and_description: "Titolo & Priskribo"
   to: al
-  to_: al
   to_recipient: al
-  to_the_bat_cave: Vespertkavernen!
   today: Hodiaŭ
   tools: Iloj
   total: Sumo
@@ -1707,13 +1624,11 @@ eo:
   unknown_error: Nekonata eraro
   updating: Ĝisdatiganta...
   unpublish: Malpublikigi
-  unreview: Malrevizii
   unsubscribe: Malaboni
   upcoming_bioblitzes: Okazontaj biofulmadoj
   update: Ĝisdatigi
   upload: Alŝuti
   upload_photo: Alŝuti Foton
-  upload_photos: Alŝuti fotojn
   uploader:
     tooltips:
       remove_photo: Forigi foton
@@ -1727,21 +1642,16 @@ eo:
   users_id: "Identigilo de %{user}"
   users_profile: "Profilo de %{user}"
   users_projects: "Projektoj de %{user}"
-  valid_interrogation: Ĉu Valida?
   value: Valoro
   view: Vidi
   view_all: Vidi Ĉiujn
-  view_all_your_projects: Vidi Ĉiujn Viajn Projektojn
-  view_change: Vidi Ŝanĝon
   view_details: Vidi Detalojn
   view_flag: Vidi Flagon
   view_flags: Vidi Flagojn
   view_flags_for_x_html: "Vidi Flagojn de %{x}"
   view_lists: Vidi Listojn
   view_on: Vidi ĉe
-  view_on_amphibiaweb: Vidi ĉe AmphibiaWeb
   view_on_flickr: Vidi ĉe Flickr
-  view_on_wikipedia: Vidi ĉe Vikipedio
   view_original: "Vidi originalon"
   view_place: Vidi lokon
   view_post: Vidi afiŝon
@@ -1749,19 +1659,14 @@ eo:
   view_x: "Vidi %{x}n"
   view_your_dashboard: Vidi vian stirpanelon
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Vidi vian stirpanelon</a> por pli da ĝisdatigoj"
-  view_your_life_list: Vidi vian vivoliston
   w_photos_only: kun fotoj
   w_sounds: kun sonoj
   want_to_show_off_some_of_your_favorite_taxa: Ĉu vi volas prezenti kelkajn favoratajn taksonojn ĉi tie?
   weather: Vetero
   website: Retejo
-  welcome!: Bonvenon!
-  welcome_comma!: Bonvenon,
   welcome: bonvenon
   welcome_back: Rean Bonvenon
   welcome_back!: Rean Bonvenon!
-  welcome_comma: "Bonvenon,"
-  welcome_login: "Bonvenon, %{login}"
   welcome_to_inat: "Bonvenon al %{site_name}!"
   welcome_to_x_project: "Bonvenon al %{project}"
   what: Kiu
@@ -1771,7 +1676,6 @@ eo:
   whats_this?: Kio estas ĉi tio?
   when: Kiam
   where: Kie
-  where_did_you_see_it: Kie vi vidis ĝin?
   where_do_x_live: Kie vivas %{taxa}?
   where_does_x_live: Kie vivas %{taxa}?
   where_were_they?: Kie ili estis?
@@ -1779,7 +1683,6 @@ eo:
   white: blanka
   wikipedia_attribution_cc_by_sa_3: |
     Fonto: Vikipedio, „%{title}”, %{url}, CC BY-SA 3.0
-  wikipedia_taxobox_raquo: "Vikipedia taksonkarto &raquo;"
   with: kun
   with_errors: Kun eraroj
   worldwide: Tutmonda
@@ -1789,7 +1692,6 @@ eo:
   x_flagged: "flagis %{x}-on"
   x_journal: "Ĵurnalo de %{user}"
   x_journal_archives_for_y: "Ĵurnalo de %{user} • Arkivoj de"
-  x_journal_editing: "Ĵurnalo de %{user} • Redaktado"
   x_journal_middot: "Ĵurnalo de %{user} •"
   x_journal_new_post: "Ĵurnalo de %{user} • Nova Afiŝo"
   x_project_stats: "Statistiko pri %{project}"
@@ -1807,33 +1709,23 @@ eo:
   you_are_subscribed_to: "Vi abonis"
   you_arent_a_member_of_that_project: Vi ne estas projektano de tiu projekto.
   you_cant_flag_that: Vi ne povas flagi ĝin
-  you_dont: Vi ne
   you_faved_this: Vi favoras ĉi tion!
-  you_have_to: Vi devas
-  you_havent: Vi ne jam
   you_joined_this_project: Vi aliĝis al tiu projekto!
-  your: Via
-  your_: Via
   your_content: Via Enhavo
   your_default: via implicita
-  your_drafts: Viaj Malnetoj
   your_email_address: via retpoŝta adreso
   your_flickr_account: via Flickr-konto
   your_home: Via Hejmo
   your_id: Via Identigilo
   your_identification: Via Identigado
-  your_life_list: via vivolisto!
   your_membership: Via Aneco
-  your_new_password_is: Via nova pasvorto estas
   your_observations: Viaj Observoj
   your_projects: Viaj Projektoj
   your_google_account: via Google-konto
   your_google_account_info: Informo pri Via Google-Konto
   your_recent_projects: Viaj Lastatempaj Projektoj
   your_relationships: Viaj Rilatoj
-  your_subscriptions: Viaj abonoj
   your_tags: Viaj Etikedoj
-  your_world!: Via Mondo!
   views:
     views: 'Vidoj'
     donate:
@@ -2295,5 +2187,3 @@ eo:
   zoom_in: Enzomi
   zoom_out: Elzomi
   zoom_photo: Zomi Foton
-  zoom_to_taxon_name: "Zomi al %{taxonname}"
-  zoom_to_x: "zomi al %{x}"
