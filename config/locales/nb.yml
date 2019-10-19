@@ -922,7 +922,6 @@ nb:
   data_deficient: Datamangel
   data_quality: Datakvalitet
   data_quality_assessment: Datakvalitetsvurdering
-  data_quality_assessment_: datakvalitetsvurdering
   data_used: "Data brukt:"
   datatype: Datatype
   date_: Dato
@@ -1537,9 +1536,6 @@ nb:
   inviteonly: kun etter invitasjon
   invited_x: "%{x} invitert"
   iphone: iPhone
-  is_an_evaluation: |
-    er en vurdering av observasjonens nøyaktighet.
-    Observasjoner av forskningskvalitet kan brukes av forskere innen forskning. Stem nedenfor:
   is_not_following_anyone: følger ikke noen.
   is_now: er nå
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Er bevismaterialet nok for å bekrefte at dette er %{taxon}?
@@ -4180,7 +4176,7 @@ nb:
     views: 'Visninger'
     announcements:
       locales_desc: |
-        Klikk mens du holder cmd- eller shift-knappen for å velge flere. Å ikke velge minst en vil vise kunngjøringen for alle brukere uansett språkinnstillinger. Å velge et språk uten en region vil *ikke* nå språkinnstillinger med regioner, hvis du f.eks. velger "en" vil det ikke vises for personer som har valgt "en-US". Hvis du vil nå begge, velge begge. Hvis du vil vise en kunngjøring for alle medlemmer av en side, la dette stå tomt.
+        Klikk mens du holder cmd- eller shift-knappen for å velge flere. Å ikke velge minst en vil vise kunngjøringen for alle brukere uansett lokalisering. Å velge et språk uten en region vil *ikke* nå lokaliseringer med regioner, hvis du f.eks. velger "en" vil det ikke vises for personer som har valgt "en-US". Hvis du vil nå begge, velge begge. Hvis du vil vise en kunngjøring for alle medlemmer av en side, la dette stå tomt.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -4235,6 +4231,38 @@ nb:
           <a href="http://eol.org/" target="_blank">Encyclopedia of Life (EOL)</a> er en lagringsplass for informasjon om livet på jorden. Hos EOL kan du opprette <a href="http://eol.org/info/252" target="_blank">samlinger</a> av arter. Hvis du vil importere arter fra en EOL-samling, lim in url'en til den samlingen her.
         guide_place_desc: |
           Å knytte et sted til guiden din lar folk finne den når de søker på steder, og vil vise stedets grenser på kart på %{site_name} der hvor de vises hvis en grense er satt (f.eks. "kort"-visning, taksonsider, osv.)
+        import_tags_from_csv_help_html: |
+          <p>
+          Last opp en csv-fil med etiketter for taksa i denne guiden. Din csv-fil bør se slik ut:
+          </p>
+          <table class="table">
+          <tbody>
+          <tr>
+          <th>Navn</th>
+          <th>Farge</th>
+          <th>Antall hender</th>
+          <th></th>
+          </tr>
+          <tr>
+          <td>Homo sapiens</td>
+          <td></td>
+          <td>2</td>
+          <td>tobeint</td>
+          </tr>
+          <tr>
+          <td>Vulpes vulpes</td>
+          <td>rød|svart</td>
+          <td>0</td>
+          <td>firbeint</td>
+          </tr>
+          </tbody>
+          </table>
+          <p>
+          Første raden starter med "Navn" fulgt av etikett-predikater eller - kategorier. Hver rad etter det starter med taksonnavnet, fulgt av etiketter i samsvar med predikatene øverst i kolonnen. I dette eksempelet får <i>Homo sapiens</i> etikettene <code>tobeint</code> og <code>Antall hender=2</code>,
+          of <i>Vulpes vulpes</i> får <code>firbeint</code>,
+          <code>Farge=rød</code>, <code>Farge=svart</code>, og
+          <code>Antall hender=0</code>. Tomme felt ignoreres, og du kan legge inn flere rader per takson. Du kan også legge inn flere verdier per celle separert av en vertikal strek.
+          </p>
         replace_existing_eol_desc: Slett eksisterende innhold før importering fra EOL
         place_choose_taxon_note: |
           Velg et takson å filtrere på hvis du vil begrense ditt søk, f.eks. "planter"
