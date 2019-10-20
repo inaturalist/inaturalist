@@ -1198,7 +1198,8 @@ class User < ActiveRecord::Base
       filters: [
         { term: { non_owner_identifier_user_ids: user_id } }
       ],
-      size: 0
+      size: 0,
+      track_total_hits: true
     )
     count = (new_fields_result && new_fields_result.response) ?
       new_fields_result.response.hits.total.value : 0
