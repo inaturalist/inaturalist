@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ListsController, "show" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:lt) { ListedTaxon.make! }
   it "should include a list" do
     get :show, :format => :json, :id => lt.list_id

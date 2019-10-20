@@ -6,8 +6,7 @@ shared_examples_for "a VotesController" do
   after { disable_has_subscribers }
 
   describe "vote" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     let(:o) { Observation.make! }
     it "should default to a positive vote" do
       post :vote, format: 'json', resource_type: 'observation', resource_id: o.id

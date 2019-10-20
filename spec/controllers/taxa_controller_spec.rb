@@ -2,8 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe TaxaController do
   describe "show" do
-    before(:each) { enable_elastic_indexing([ Observation ]) }
-    after(:each) { disable_elastic_indexing([ Observation ]) }
+    elastic_models( Observation )
     it "should 404 for absurdly large ids" do
       get :show, id: "389299563_507aed5ae4_s.jpg"
       expect( response ).to be_not_found
@@ -138,8 +137,7 @@ describe TaxaController do
   end
 
   describe "autocomplete" do
-    before(:each) { enable_elastic_indexing([ Taxon ]) }
-    after(:each) { disable_elastic_indexing([ Taxon ]) }
+    elastic_models( Taxon )
     it "should choose exact matches" do
       t = Taxon.make!
       get :autocomplete, q: t.name, format: :json
@@ -148,8 +146,7 @@ describe TaxaController do
   end
   
   describe "search" do
-    before(:each) { enable_elastic_indexing([ Taxon ]) }
-    after(:each) { disable_elastic_indexing([ Taxon ]) }
+    elastic_models( Taxon )
     render_views
     it "should find a taxon by name" do
       t = Taxon.make!( name: "Predictable species", rank: Taxon::SPECIES )
@@ -164,8 +161,7 @@ describe TaxaController do
   end
 
   describe "observation_photos" do
-    before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-    after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+    elastic_models( Observation, Taxon )
 
     let(:o) { make_research_grade_observation }
     let(:p) { o.photos.first }
@@ -216,8 +212,7 @@ describe TaxaController do
   end
 
   describe "set_photos" do
-    before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-    after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+    elastic_models( Observation, Taxon )
     it "should reindex the taxon new photos even if there are existing photos" do
       sign_in User.make!
       taxon = Taxon.make!

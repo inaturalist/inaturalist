@@ -14,22 +14,31 @@ class Place < ActiveRecord::Base
   scope :load_for_index, -> { includes([ :place_geometry, { user: :flags } ]) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :id, type: "integer"
-      indexes :slug, type: "keyword"
-      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :place_type, type: "integer"
-      indexes :geometry_geojson, type: "geo_shape"
+      indexes :admin_level, type: "short"
+      indexes :ancestor_place_ids, type: "integer"
+      indexes :bbox_area, type: "float"
       indexes :bounding_box_geojson, type: "geo_shape"
-      indexes :location, type: "geo_point"
-      indexes :point_geojson, type: "geo_shape"
-      indexes :bbox_area, type: "double"
       indexes :display_name, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :display_name_autocomplete, type: "text",
         analyzer: "keyword_autocomplete_analyzer",
         search_analyzer: "keyword_analyzer"
+      indexes :geometry_geojson, type: "geo_shape"
+      indexes :id, type: "integer"
+      indexes :location, type: "geo_point"
+      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :observations_count, type: "integer"
+      indexes :place_type, type: "integer"
+      indexes :point_geojson, type: "geo_shape"
+      indexes :slug, type: "keyword"
+      indexes :universal_search_rank, type: "integer"
       indexes :user do
+        indexes :created_at, type: "date"
+        indexes :id, type: "integer"
         indexes :login, type: "keyword"
+        indexes :spam, type: "boolean"
+        indexes :suspended, type: "boolean"
       end
+      indexes :without_check_list, type: "boolean"
     end
   end
 

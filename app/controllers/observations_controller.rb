@@ -2873,11 +2873,12 @@ class ObservationsController < ApplicationController
       current_user: current_user, site: @site)
     search_params = Observation.apply_pagination_options(search_params,
       user_preferences: @prefs)
+    search_params[:track_total_hits] = true
     if perform_caching && search_params[:q].blank? && (!logged_in? || search_params[:page].to_i == 1)
       search_key = search_cache_key(search_params)
       # Get the cached filtered observations
       observations = Rails.cache.fetch(search_key, expires_in: 5.minutes, compress: true) do
-        obs = Observation.page_of_results(search_params)
+        obs = Observation.page_of_results( search_params, track_total_hits: true )
         # this is doing preloading, as is some code below, but this isn't
         # entirely redundant. If we preload now we can cache the preloaded
         # data to save extra time later on.
@@ -2885,7 +2886,7 @@ class ObservationsController < ApplicationController
         obs
       end
     else
-      observations = Observation.page_of_results(search_params)
+      observations = Observation.page_of_results( search_params, track_total_hits: true )
     end
     set_up_instance_variables(search_params)
     { params: params,

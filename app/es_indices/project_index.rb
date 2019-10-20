@@ -16,55 +16,119 @@ class Project < ActiveRecord::Base
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :icon, type: "keyword", index: false
-      indexes :title, analyzer: "ascii_snowball_analyzer"
-      indexes :title_autocomplete, analyzer: "autocomplete_analyzer",
-        search_analyzer: "standard_analyzer"
-      indexes :title_exact, type: "keyword"
+      indexes :admins do
+        indexes :id, type: "integer", index: false
+        indexes :project_id, type: "integer", index: false
+        indexes :role, type: "keyword", index: false
+        indexes :user_id, type: "integer", index: false
+      end
+      indexes :ancestor_place_ids, type: "integer"
+      indexes :associated_place_ids, type: "integer"
+      indexes :banner_color, type: "keyword", index: false
+      indexes :created_at, type: "date"
       indexes :description, analyzer: "ascii_snowball_analyzer"
-      indexes :slug, analyzer: "keyword_analyzer"
-      indexes :project_type, type: "keyword"
-      indexes :location, type: "geo_point"
+      indexes :flags do
+        indexes :comment, type: "keyword", index: false
+        indexes :created_at, type: "date", index: false
+        indexes :flag, type: "keyword", index: false
+        indexes :id, type: "integer", index: false
+        indexes :resolved, type: "boolean", index: false
+        indexes :resolver_id, type: "integer", index: false
+        indexes :updated_at, type: "date", index: false
+        indexes :user_id, type: "integer", index: false
+      end
       indexes :geojson, type: "geo_shape"
-      indexes :terms, type: "text", index: false
-      indexes :search_parameters, type: :nested do
+      indexes :header_image_contain, type: "boolean", index: false
+      indexes :header_image_file_name, type: "keyword", index: false
+      indexes :header_image_url, type: "keyword", index: false
+      indexes :hide_title, type: "boolean", index: false
+      indexes :icon, type: "keyword", index: false
+      indexes :icon_file_name, type: "keyword", index: false
+      indexes :id, type: "integer"
+      indexes :last_post_at, type: "date"
+      indexes :location, type: "geo_point"
+      indexes :observations_count, type: "integer"
+      indexes :place_id, type: "integer"
+      indexes :place_ids, type: "integer"
+      indexes :project_observation_fields do
+        indexes :id, type: "integer"
+        indexes :observation_field do
+          indexes :allowed_values, type: "keyword"
+          indexes :datatype, type: "keyword"
+          indexes :description, type: "text", analyzer: "ascii_snowball_analyzer"
+          indexes :description_autocomplete, type: "text",
+            analyzer: "autocomplete_analyzer",
+            search_analyzer: "standard_analyzer"
+          indexes :id, type: "integer"
+          indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+          indexes :name_autocomplete, type: "text",
+            analyzer: "autocomplete_analyzer",
+            search_analyzer: "standard_analyzer"
+          indexes :users_count, type: "integer"
+          indexes :values_count, type: "integer"
+        end
+        indexes :position, type: "short"
+        indexes :required, type: "boolean"
+      end
+      indexes :project_observation_rules, type: :nested do
+        indexes :id, type: "integer"
+        indexes :operand_id, type: "integer"
+        indexes :operator, type: "keyword"
+        indexes :operand_type, type: "keyword"
+      end
+      indexes :project_type, type: "keyword"
+      indexes :rule_place_ids, type: "integer"
+      indexes :rule_preferences, type: :nested do
         indexes :field, type: "keyword"
         indexes :value, type: "text"
-        indexes :value_date, type: "date", format: "dateOptionalTime"
-        indexes :value_boolean, type: "boolean"
-        indexes :value_number, type: "long"
-        indexes :value_keyword, type: "keyword"
       end
       indexes :search_parameter_fields do
         indexes :d1, type: "date", format: "dateOptionalTime"
         indexes :d2, type: "date", format: "dateOptionalTime"
         indexes :d2_date, type: "date", format: "yyyy-MM-dd"
+        indexes :introduced, type: "boolean"
+        indexes :month, type: "byte"
+        indexes :native, type: "boolean"
+        indexes :not_in_place, type: "integer"
+        indexes :not_user_id, type: "integer"
         indexes :observed_on, type: "date", format: "dateOptionalTime"
         indexes :photos, type: "boolean"
-        indexes :sounds, type: "boolean"
-        indexes :taxon_id, type: "long"
-        indexes :place_id, type: "long"
-        indexes :user_id, type: "long"
-        indexes :project_id, type: "long"
-        indexes :month, type: "long"
+        indexes :place_id, type: "integer"
+        indexes :project_id, type: "integer"
         indexes :quality_grade, type: "keyword"
+        indexes :sounds, type: "boolean"
+        indexes :taxon_id, type: "integer"
+        indexes :term_id, type: "integer"
+        indexes :term_value_id, type: "integer"
+        indexes :user_id, type: "integer"
+        indexes :without_taxon_id, type: "integer"
       end
-      indexes :project_observation_rules, type: :nested do
-        indexes :operator, type: "keyword"
-        indexes :operand_type, type: "keyword"
-      end
-      indexes :rule_preferences, type: :nested do
+      indexes :search_parameters, type: :nested do
         indexes :field, type: "keyword"
         indexes :value, type: "text"
-      end
-      indexes :flags do
-        indexes :flag, type: "keyword"
+        indexes :value_bool, type: "boolean"
+        indexes :value_date, type: "date", format: "dateOptionalTime"
+        indexes :value_keyword, type: "keyword"
+        indexes :value_number, type: "long"
       end
       indexes :site_features, type: :nested do
-        indexes :site_id
+        indexes :featured_at, type: "date"
         indexes :noteworthy, type: "boolean"
+        indexes :site_id, type: "short"
         indexes :updated_at, type: "date"
       end
+      indexes :slug, analyzer: "keyword_analyzer"
+      indexes :spam, type: "boolean"
+      indexes :subproject_ids, type: "integer"
+      indexes :terms, type: "text", index: false
+      indexes :title, analyzer: "ascii_snowball_analyzer"
+      indexes :title_autocomplete, analyzer: "autocomplete_analyzer",
+        search_analyzer: "standard_analyzer"
+      indexes :title_exact, type: "keyword"
+      indexes :universal_search_rank, type: "integer"
+      indexes :updated_at, type: "date"
+      indexes :user_id, type: "integer"
+      indexes :user_ids, type: "integer"
     end
   end
 

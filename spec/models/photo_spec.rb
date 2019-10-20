@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Photo do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let( :stable_image_url ) { "https://www.inaturalist.org/assets/logo-small.png" }
   describe "creation" do
     it "should not allow native_realname to be too big" do

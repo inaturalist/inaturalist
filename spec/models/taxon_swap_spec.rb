@@ -60,13 +60,12 @@ describe TaxonSwap, "creation" do
 end
 
 describe TaxonSwap, "destruction" do
+  elastic_models( Observation, Taxon, Identification )
   before(:each) do
-    enable_elastic_indexing( Observation, Taxon, Identification )
     prepare_swap
     enable_has_subscribers
   end
   after(:each) do
-    disable_elastic_indexing( Observation, Taxon, Identification )
     disable_has_subscribers
   end
 
@@ -203,8 +202,7 @@ describe TaxonSwap, "commit" do
   end
 
   describe "for taxa with children" do
-    before(:each) { enable_elastic_indexing( Observation, Identification ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    elastic_models( Observation, Identification )
 
     describe "with move_children" do
       before do
@@ -451,8 +449,7 @@ describe TaxonSwap, "commit" do
   end
 
   describe "when sole identifier of input taxon has opted out of taxon changes" do
-    before(:each) { enable_elastic_indexing( Observation, Identification ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    elastic_models( Observation, Identification )
 
     it "should re-evalute probable taxa" do
       o = Observation.make!
@@ -477,15 +474,12 @@ describe TaxonSwap, "commit" do
 end
 
 describe TaxonSwap, "commit_records" do
+  elastic_models( Observation, Identification )
   before(:each) do
     prepare_swap
-    enable_elastic_indexing( Observation, Identification )
     enable_has_subscribers
   end
-  after(:each) do
-    disable_elastic_indexing( Observation, Identification )
-    disable_has_subscribers
-  end
+  after { disable_has_subscribers }
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)

@@ -7,8 +7,7 @@ describe "Observation Index" do
     load_test_taxa
   end
   after( :all ) { Time.zone = @starting_time_zone }
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
 
   it "as_indexed_json should return a hash" do
     o = Observation.make!

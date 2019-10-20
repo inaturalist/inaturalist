@@ -9,8 +9,7 @@ describe "Place Index" do
     end
   end
   describe "geometry indexing" do
-    before(:each) { enable_elastic_indexing( Place ) }
-    after(:each) { disable_elastic_indexing( Place ) }
+    elastic_models( Place )
     it "should not receive a geometry with duplicate points" do
       wkt = <<-WKT
         MULTIPOLYGON(

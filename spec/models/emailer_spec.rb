@@ -3,20 +3,17 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Emailer, "updates_notification" do
   include ActionView::Helpers::TextHelper
+  elastic_models( Taxon, Observation )
   before(:all) do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
   before do
-    enable_elastic_indexing( Taxon, Observation )
     enable_has_subscribers
     @observation = Observation.make!
     @comment = without_delay { Comment.make!(:parent => @observation) }
     @user = @observation.user
   end
-  after{
-    disable_elastic_indexing( Taxon )
-    disable_has_subscribers
-  }
+  after { disable_has_subscribers }
   
   it "should work when recipient has a blank locale" do
     @user.update_attributes(:locale => "")

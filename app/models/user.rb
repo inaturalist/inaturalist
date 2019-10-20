@@ -1201,7 +1201,7 @@ class User < ActiveRecord::Base
       size: 0
     )
     count = (new_fields_result && new_fields_result.response) ?
-      new_fields_result.response.hits.total : 0
+      new_fields_result.response.hits.total.value : 0
     User.where(id: user_id).update_all(identifications_count: count)
   end
 
@@ -1213,9 +1213,10 @@ class User < ActiveRecord::Base
           { term: { "user.id": user_id } },
         ] } }
       ],
-      size: 0
+      size: 0,
+      track_total_hits: true
     )
-    count = (result && result.response) ? result.response.hits.total : 0
+    count = (result && result.response) ? result.response.hits.total.value : 0
     User.where( id: user_id ).update_all( observations_count: count )
     user.reload
     user.elastic_index!

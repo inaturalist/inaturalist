@@ -1,8 +1,7 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe ObservationsExportFlowTask do
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  elastic_models( Observation, Identification )
   describe "run" do
     before do
       # not sure why the before(:each) in spec_helper may not have run yet here
@@ -86,8 +85,7 @@ describe ObservationsExportFlowTask do
   end
 
   describe "geoprivacy" do
-    before(:each) { enable_elastic_indexing(UpdateAction) }
-    after(:each) { disable_elastic_indexing(UpdateAction) }
+    elastic_models( UpdateAction )
 
     it "should not include private coordinates you can't see" do
       o = make_private_observation(:taxon => Taxon.make!)

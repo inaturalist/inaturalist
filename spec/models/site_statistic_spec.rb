@@ -8,8 +8,7 @@ describe SiteStatistic do
     OauthApplication.make!(name: "iNaturalist iPhone App")
   end
 
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   describe "stats_generated_for_day?" do
     it "should know when stats were generated today" do

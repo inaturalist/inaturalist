@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ObservationPhoto, "creation" do  
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  elastic_models( Observation, Identification )
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
 
@@ -32,8 +31,7 @@ describe ObservationPhoto, "creation" do
 end
 
 describe ObservationPhoto, "destruction" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
 

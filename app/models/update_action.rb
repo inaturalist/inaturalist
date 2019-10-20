@@ -201,7 +201,6 @@ class UpdateAction < ActiveRecord::Base
     try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       UpdateAction.__elasticsearch__.client.update_by_query(
         index: UpdateAction.index_name,
-        type: "update_action",
         refresh: true,
         body: {
           query: {
@@ -287,7 +286,6 @@ class UpdateAction < ActiveRecord::Base
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
         UpdateAction.__elasticsearch__.client.update_by_query(
           index: UpdateAction.index_name,
-          type: "update_action",
           refresh: true,
           body: {
             query: {
@@ -323,7 +321,6 @@ class UpdateAction < ActiveRecord::Base
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
         UpdateAction.__elasticsearch__.client.update_by_query(
           index: UpdateAction.index_name,
-          type: "update_action",
           refresh: true,
           body: {
             query: {

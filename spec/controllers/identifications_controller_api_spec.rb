@@ -178,8 +178,7 @@ shared_examples_for "an IdentificationsController" do
       DatabaseCleaner.strategy = :transaction
     end
 
-    before(:each) { enable_elastic_indexing( Observation, Identification ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    elastic_models( Observation, Identification )
 
     let(:identification) { Identification.make!(:user => user) }
 
@@ -230,8 +229,7 @@ shared_examples_for "an IdentificationsController" do
 
   describe "by_login" do
     before(:all) { load_test_taxa }
-    before(:each) { enable_elastic_indexing( Observation, Identification ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    elastic_models( Observation, Identification )
     it "should return identifications by the selected user" do
       ident = Identification.make!( user: user )
       get :by_login, format: :json, login: user.login

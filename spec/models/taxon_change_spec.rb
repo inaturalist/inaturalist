@@ -2,8 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonChange, "find_batched_records_of" do
   describe "observation" do
-    before(:all) { enable_elastic_indexing( Observation ) }
-    after(:all) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     it "should only find records identified with input taxa" do
       tc = make_taxon_swap
       obs_of_input_taxon = Observation.make!( taxon: tc.input_taxon )

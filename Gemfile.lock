@@ -26,17 +26,6 @@ GIT
       rails_autolink (>= 1.0)
 
 GIT
-  remote: https://github.com/elasticsearch/elasticsearch-rails.git
-  revision: 64f31b41c073f05eac7d089aeea07c4366b7adca
-  ref: 64f31b41c073f05eac7d089aeea07c4366b7adca
-  specs:
-    elasticsearch-model (6.0.0.alpha1)
-      activesupport (> 3)
-      elasticsearch (> 1)
-      hashie
-    elasticsearch-rails (6.0.0.alpha1)
-
-GIT
   remote: https://github.com/fnando/i18n-js.git
   revision: 931c534f45006363652e5ec0b5e5120a1c108126
   specs:
@@ -317,12 +306,17 @@ GEM
     doorkeeper (5.0.2)
       railties (>= 4.2)
     dynamic_form (1.1.4)
-    elasticsearch (5.0.4)
-      elasticsearch-api (= 5.0.4)
-      elasticsearch-transport (= 5.0.4)
-    elasticsearch-api (5.0.4)
+    elasticsearch (7.3.0)
+      elasticsearch-api (= 7.3.0)
+      elasticsearch-transport (= 7.3.0)
+    elasticsearch-api (7.3.0)
       multi_json
-    elasticsearch-transport (5.0.4)
+    elasticsearch-model (7.0.0)
+      activesupport (> 3)
+      elasticsearch (> 1)
+      hashie
+    elasticsearch-rails (7.0.0)
+    elasticsearch-transport (7.3.0)
       faraday
       multi_json
     erubi (1.8.0)
@@ -705,10 +699,10 @@ DEPENDENCIES
   diffy
   doorkeeper (~> 5.0.0)
   dynamic_form
-  elasticsearch (= 5.0.4)
-  elasticsearch-api (= 5.0.4)
-  elasticsearch-model!
-  elasticsearch-rails!
+  elasticsearch
+  elasticsearch-api
+  elasticsearch-model
+  elasticsearch-rails
   exifr
   faker
   fastimage

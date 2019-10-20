@@ -21,8 +21,7 @@ describe BulkObservationFile, "import_file" do
       ]
     end
   end
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   it "should create an observation with the right species_guess" do
     bof = BulkObservationFile.new(@work_path, user.id)
@@ -113,8 +112,8 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
   end
   
   describe "with project" do
+    elastic_models( Observation )
     before do
-      enable_elastic_indexing( Observation )
       @project_user = ProjectUser.make!
       @project = @project_user.project
     end

@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe List do
-  before(:each) { enable_elastic_indexing( Observation, Place ) }
-  after(:each) { disable_elastic_indexing( Observation, Place ) }
+  elastic_models( Observation, Place )
 
   describe "updating" do
     it "should not be allowed anyone other than the owner" do

@@ -50,8 +50,7 @@ describe CheckList do
 end
 
 describe CheckList, "creation" do
-  before( :each ) { enable_elastic_indexing( Observation, Place ) }
-  after( :each ) { disable_elastic_indexing( Observation, Place ) }
+  elastic_models( Observation, Place )
   it "should populate with taxa from RG observations within place boundary" do
     obs = make_research_grade_observation( latitude: 0.5, longitude: 0.5 )
     place = make_place_with_geom
@@ -63,7 +62,9 @@ describe CheckList, "creation" do
 end
 
 describe CheckList, "refresh_with_observation" do
-  
+
+  elastic_models( Observation, Place )
+
   before( :all ) do
     DatabaseCleaner.clean_with( :truncation, except: %w[spatial_ref_sys] )
     @worker = Delayed::Worker.new( quiet: true )
@@ -71,7 +72,6 @@ describe CheckList, "refresh_with_observation" do
   end
   
   before( :each ) do
-    enable_elastic_indexing( Observation, Place )
     @place = Place.make( name: "foo to the bar" )
     @place.save_geom(
       GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt(
@@ -81,7 +81,6 @@ describe CheckList, "refresh_with_observation" do
     @check_list = @place.check_list
     @taxon = Taxon.make!( rank: Taxon::SPECIES )
   end
-  after( :each ) { disable_elastic_indexing( Observation, Place ) }
   
   it "should update last observation" do
     o = make_research_grade_observation( latitude: @place.latitude, longitude: @place.longitude )

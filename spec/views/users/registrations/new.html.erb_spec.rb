@@ -1,8 +1,7 @@
 require "spec_helper"
 
 describe "users/registrations/new" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:user) { User.new }
   before do
     # stub @observations

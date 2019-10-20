@@ -68,8 +68,8 @@ describe Observation do
   end
 
   describe "elastic_taxon_leaf_ids" do
+    elastic_models( Observation )
     before(:each) do
-      enable_elastic_indexing( Observation )
       Taxon.destroy_all
       @family = Taxon.make!(name: "Hominidae", rank: "family")
       @genus = Taxon.make!(name: "Homo", rank: "genus", parent: @family)
@@ -78,7 +78,6 @@ describe Observation do
       AncestryDenormalizer.truncate
       AncestryDenormalizer.denormalize
     end
-    after(:each) { disable_elastic_indexing( Observation ) }
 
     it "returns the leaf taxon id" do
       2.times{ Observation.make!(taxon: @family) }

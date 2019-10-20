@@ -113,8 +113,7 @@ describe TaxonMerge, "commit" do
   end
 
   describe "for taxa with children" do
-    before(:each) { enable_elastic_indexing( Observation, Identification ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    elastic_models( Observation, Identification )
     after(:each) { clean_taxon_merge }
 
     before(:each) do
@@ -228,8 +227,7 @@ describe TaxonMerge, "commit_records" do
   before(:each) do
     setup_taxon_merge
   end
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  elastic_models( Observation, Identification )
   it "should add new identifications for all inputs" do
     ident1 = Identification.make!( taxon: @input_taxon1 )
     ident2 = Identification.make!( taxon: @input_taxon2 )

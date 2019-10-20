@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonPhoto do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   describe "creation" do
     it "should be invalid if there are already the maximum amount of taxon photos" do
       t = Taxon.make!

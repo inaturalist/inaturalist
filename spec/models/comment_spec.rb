@@ -1,8 +1,7 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe Comment do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   describe "creation" do
     it "should increment a counter cache on the parent if the column exists" do
       o = Observation.make!

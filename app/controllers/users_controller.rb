@@ -134,7 +134,7 @@ class UsersController < ApplicationController
       ],
       aggregate: {
         distinct_obs_users: {
-          cardinality: { field: "observation.user.id" }
+          cardinality: { field: "observation.user_id" }
         }
       }
     )

@@ -1,8 +1,7 @@
 require "spec_helper.rb"
 
 describe Annotation do
-  before(:each) { enable_elastic_indexing( ControlledTerm ) }
-  after(:each) { disable_elastic_indexing( ControlledTerm ) }
+  elastic_models( ControlledTerm )
 
   it "validates presence of resource" do
     expect{ Annotation.make!(resource: nil) }.to raise_error(
