@@ -21,7 +21,7 @@ before_install:
   - sudo apt-get install -y postgresql-11 postgresql-client-11
   - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
   - sudo service postgresql restart 11
-  - sudo apt-get install -y libgeos-c1v5 postgresql-11-postgis-2.5 postgresql-11-postgis-2.5-scripts gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev
+  - sudo apt-get install -y postgresql-11-postgis-2.5 postgresql-11-postgis-2.5-scripts gdal-bin proj-bin libproj-dev
   - psql -U postgres -c "create extension postgis"
   - psql -U postgres -c 'create extension "uuid-ossp"'
   - sudo -u postgres createdb template_postgis
