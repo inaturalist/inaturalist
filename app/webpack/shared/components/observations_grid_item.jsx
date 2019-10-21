@@ -11,7 +11,8 @@ const ObservationsGridItem = ( {
   showMagnifier,
   linkTarget,
   splitTaxonOptions,
-  user
+  user,
+  showAllPhotosPreview
 } ) => {
   let wrapperClass = "thumbnail borderless ObservationsGridItem";
   if ( o.reviewedByCurrentUser ) {
@@ -51,7 +52,7 @@ const ObservationsGridItem = ( {
             { o.photos.length > 9 ? "+" : o.photos.length }
           </span>
         ) }
-        { o.photos && o.photos.length > 1 && (
+        { showAllPhotosPreview && o.photos && o.photos.length > 1 && (
           <div className="all-photos-preview">
             { o.photos.slice( 0, 4 ).map( p => (
               <img
@@ -90,7 +91,8 @@ ObservationsGridItem.propTypes = {
   showMagnifier: PropTypes.bool,
   linkTarget: PropTypes.string,
   splitTaxonOptions: PropTypes.object,
-  user: PropTypes.object
+  user: PropTypes.object,
+  showAllPhotosPreview: PropTypes.bool
 };
 
 ObservationsGridItem.defaultProps = {

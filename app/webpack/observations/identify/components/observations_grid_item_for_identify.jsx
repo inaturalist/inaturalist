@@ -89,6 +89,7 @@ const ObservationsGridItemForIdentify = ( {
       linkTarget="_blank"
       user={currentUser}
       splitTaxonOptions={{ noParens: true }}
+      showAllPhotosPreview
     />
   );
 };
