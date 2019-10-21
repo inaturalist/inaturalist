@@ -44,6 +44,10 @@ class AdminController < ApplicationController
 
   def deleted_users
     @deleted_users = DeletedUser.order( "id desc" ).page( params[:page] ).per_page( 100 )
+    @q = params[:q]
+    @deleted_users = @deleted_users.where(
+      "login ILIKE ? OR email ILIKE ?", "%#{@q}%", "%#{@q}%"
+    )
     respond_to do |format|
       format.html { render layout: "admin" }
     end
