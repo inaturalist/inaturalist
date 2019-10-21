@@ -282,8 +282,8 @@ GEM
     database_cleaner (1.7.0)
     dbf (4.0.1)
     debug_inspector (0.0.3)
-    delayed_job (4.1.5)
-      activesupport (>= 3.0, < 5.3)
+    delayed_job (4.1.8)
+      activesupport (>= 3.0, < 6.1)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -419,7 +419,7 @@ GEM
     mimemagic (0.3.3)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
-    minitest (5.11.3)
+    minitest (5.12.2)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -690,7 +690,7 @@ DEPENDENCIES
   dalli
   database_cleaner
   dbf
-  delayed_job (~> 4.1.5)
+  delayed_job (~> 4.1.8)
   delayed_job_active_record!
   devise
   devise-encryptable
