@@ -267,6 +267,11 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  # Obs as a JSON document for indexing in Elastic Search. If you're going to
+  # modify this, make sure you also modify the mapping above and add an explicit
+  # type for each new field. That mapping is only used for recreating the index,
+  # though, so you should also update the actual index as well (see
+  # 20151030205931_add_mappings_to_observations_index.rb for an example)
   def as_indexed_json(options={})
     preload_for_elastic_index unless options[:no_details]
     # some timezones are invalid
