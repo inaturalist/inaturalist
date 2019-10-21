@@ -185,7 +185,7 @@ pl:
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
-  about: O nas
+  about: O
   about_blocking: O blokowaniu
   about_charts: O wykresach
   about_community_taxa: O taksonach społeczności
@@ -970,7 +970,7 @@ pl:
     currentText: Dzisiaj
     prevText: Poprzednie
     nextText: Następne
-    range: Zasięg
+    range: Zakres
   date_range: Zakres dat
   date_specified: Data określona
   date_time: Data/Czas
@@ -1033,7 +1033,7 @@ pl:
   doh_something_went_wrong_error: "Ups, coś poszło nie tak: %{error}"
   done: Gotowe
   dont_have_an_account_sign_up_html: Nie masz konta? <strong>Zarejestruj się.</strong>
-  dont_send_me_email: "Nie wysyłaj mi żadnych maili!"
+  dont_send_me_email: "Nie wysyłaj mi żadnych e-maili!"
   dont_use_double_quotes: Nie używaj znaku cudzysłowu nigdzie indziej
   double_click_to_finish: (kliknij dwukrotnie, aby zakończyć)
   download: Pobierz
@@ -1558,7 +1558,7 @@ pl:
   loading_tags: "Wczytywanie tagów..."
   loading_taxa_from_your: "Wczytywanie taksonów z twoich obserwacji..."
   loading_wikipedia_description: "Wczytywanie opisu z Wikipedii..."
-  locale_description: Preferencje językowe dostosowują język i format daty.
+  locale_description: Ustawienia regionalne dostosowują język i format daty.
   locales_: Preferencje językowe
   locales:
     ar: Arabski
@@ -2356,6 +2356,7 @@ pl:
   read_more: Czytaj więcej
   read_the_full_wikipedia: Przeczytaj pełen opis na Wikipedii
   reason: Powód
+  receive_email_notifications_when_people_leave_you: Otrzymuj powiadomienia e-mail o
   refresh: Odśwież
   refreshing: odświeżanie
   remember_me: Zapamiętaj mnie
@@ -2394,6 +2395,10 @@ pl:
   saved: Zapisano
   saving: "Zapisywanie..."
   saving_verb: Zapisywanie
+  search: Szukaj
+  search_all_fields: przeszukaj wszystkie pola
+  search_by_name_or_email: Szukaj po nazwie lub adresie e-mail
+  search_by_taxon_name_or_observation_id: Szukaj po nazwie taksonu lub ID obserwacji
   search_for_species: Szukaj gatunków
   search_projects: Szukaj Projektów
   search_species: Szukaj gatunków
@@ -2414,6 +2419,7 @@ pl:
   show_keyboard_shortcuts: Pokaż skróty klawiszowe
   show_less: Pokaż mniej
   show_more: Pokaż więcej
+  show_scientific_name_first: Pokazuj najpierw nazwy naukowe
   sign_in: Zaloguj się
   sign_up_with_provider: "Zarejestruj się za pomocą %{provider}"
   sign_out: Wyloguj się
@@ -2440,6 +2446,9 @@ pl:
   source_url: Źródłowy adres URL
   sources: Źródła
   spam: Spam
+  start_typing_place_name: Zacznij wpisywać nazwę lokalizacji...
+  start_typing_taxon_name: Zacznij wpisywać nazwę taksonu...
+  start_typing_someones_name: "Zacznij wpisywać czyjąś nazwę użytkownika..."
   states: Stany
   stats: Statystyki
   stats_for_this_year_have_not_been_generated: Statystyki dla tego roku nie zostały wygenerowane.
@@ -2464,6 +2473,8 @@ pl:
     Jeden z taksonów zasugerowanych w identyfikacjach lub jeden z taksonów zawierających którykolwiek z tych taksonów jest znany jako rzadki i/lub zagrożony, dlatego miejsce tej obserwacji zostało ukryte.
   taxonomy: Taksonomia
   taxon_deleted: Takson usunięty.
+  taxonomy_settings: Ustawienia taksonomii
+  tell_everyone_a_little_about_you: Opowiedz wszystkim trochę o sobie
   tell_the_world_a_little_about_yourself: Powiedz nam coś o sobie
   tell_us_why: Powiedz nam dlaczego...
   thanks!: Dzięki!
@@ -2659,6 +2670,10 @@ pl:
       edit:
         project_addition_preferences:
           joined: Projekty do których dołączyłeś
+        search_place_help_html: |
+          Domyślna lokalizacja dla wyszukiwania obserwacji.
+        scientific_name_first_desc: |
+          Pokazuj nazwy naukowe przez nazwami zwyczajowymi.
       recent:
         about_recent_users: O
     user_parents:
@@ -2702,6 +2717,8 @@ pl:
       5: Th
       6: Fr
       7: Sa
+    formats:
+      long: '%B %d, %Y'
     month_names:
       - 
       - Styczeń
@@ -2819,9 +2836,12 @@ pl:
       not_a_number: nie jest liczbą
       not_an_integer: musi być liczbą całkowitą
       odd: musi być liczbą nieparzystą
+      record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
     template:
       body: 'Wystąpiły problemy z następującymi polami:'
   helpers:
+    defaults:
+      title: "TO JEST TYTUŁ"
     select:
       prompt: Proszę wybrać
     submit:
@@ -2854,14 +2874,33 @@ pl:
           kb: KB
           mb: MB
           tb: TB
+  support:
+    array:
+      last_word_connector: 'i '
+      two_words_connector: ' i '
+      words_connector: ', '
+  time:
+    am: przed południem
+    pm: po południu
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
+      format: '%{attribute} %{message}'
       messages:
+        less_than_or_equal_to: musi być mniejszy lub równy %{count}
+        not_a_number: nie jest liczbą
+        not_an_integer: musi być liczbą całkowitą
         odd: musi być liczbą nieparzystą
+        record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
   activerecord:
     attributes:
+      assessment:
+        description: Opis
+      assessment_section:
+        title: Tytuł
+        body: Treść
       conservation_status:
+        status: Status
         description: Opis
         url: Adres URL
         geoprivacy: Geoprywatność
@@ -2870,6 +2909,11 @@ pl:
         flag: Zgłoś
       guide:
         source_url: Źródłowy adres URL
+        published_at: Publikacja
+      listed_taxon:
+        occurrence_status_level: Stopień statusu występowania
+      observation:
+        observed_on: data obserwacji
       observation_field_value:
         value: 'wartość'
       post:
@@ -2907,7 +2951,9 @@ pl:
         email: Adres e-mail
         login: Nazwa użytkownika
         name: Nazwa
+        locale: Ustawienia regionalne
         time_zone: Strefa czasowa
+        search_place_id: Lokalizacja wyszukiwania
     errors:
       format: '%{attribute} %{message}'
       messages:
@@ -3015,15 +3061,22 @@ pl:
       messages:
         #Common error messages
         invalid_request: 'Żądanie nie zawiera wymaganego parametru, zawiera nieobsługiwaną wartość parametru lub jest w inny sposób nieprawidłowo sformułowane.'
+        invalid_redirect_uri: 'Dołączony identyfikator URI przekierowania jest nieprawidłowy.'
         unauthorized_client: 'Klient nie ma uprawnień do wykonania tego żądania przy użyciu tej metody.'
         access_denied: 'Odrzucenie żądania ze strony właściciela zasobu lub serwera autoryzacji.'
+        invalid_scope: 'Żądany zakres jest nieprawidłowy, nieznany lub nieprawidłowo sformułowany.'
         server_error: 'Serwer autoryzacji napotkał nieoczekiwany warunek uniemożliwiając wykonanie żądania.'
         temporarily_unavailable: 'Serwer autoryzacji nie jest obecnie w stanie obsłużyć żądania z powodu tymczasowego przeciążenia lub konserwacji serwera.'
+        #Configuration error messages
+        credential_flow_not_configured: 'Przepływ poświadczeń hasła właściciela zasobu nie powiódł się z powodu nieskonfigurowania ustawień Doorkeeper.configure.resource_owner_from_credentials.'
+        resource_owner_authenticator_not_configured: 'Znalezienie właściciela zasobu nie powiodło się z powodu nieskonfigurowania ustawień Doorkeeper.configure.resource_owner_authenticator.'
         #Access grant errors
         unsupported_response_type: 'Serwer autoryzacji nie obsługuje tego typu odpowiedzi.'
         #Access token errors
         invalid_client: 'Uwierzytelnianie klienta nie powiodło się z powodu nieznanego klienta, nieuwzględnienia uwierzytelniania klienta lub nieobsługiwanej metody uwierzytelniania.'
         invalid_grant: 'Udzielona autoryzacja jest nieprawidłowa, wygasła, unieważniona, nie odpowiada identyfikatorowi URI przekierowania użytemu w żądaniu autoryzacji lub została wydana innemu klientowi.'
+        #Password Access token errors
+        invalid_resource_owner: 'Podane poświadczenia właściciela zasobu są nieprawidłowe lub właściciel zasobu nie może zostać znaleziony'
     flash:
       applications:
         create:
