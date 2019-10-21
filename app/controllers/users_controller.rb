@@ -154,7 +154,7 @@ class UsersController < ApplicationController
     end
     @user.delay(priority: USER_PRIORITY,
       unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
-    sign_out(@user)
+    sign_out(@user) if current_user == @user
     flash[:notice] = "#{@user.login} has been removed from #{@site.name} " +
       "(it may take up to an hour to completely delete all associated content)"
     redirect_to root_path
