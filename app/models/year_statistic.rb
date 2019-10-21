@@ -192,27 +192,18 @@ class YearStatistic < ActiveRecord::Base
 
   def self.identifications_histogram( year, options = {} )
     interval = options[:interval] || "day"
-    es_params = {
-      size: 0,
-      filters: [
-        { terms: { "created_at_details.year": [year] } },
-        { terms: { "own_observation": [false] } },
-        { terms: { "observation.quality_grade": ["research", "needs_id"] } },
-        { terms: { "current": [true] } }
-      ],
-      inverse_filters: [
-        { exists: { field: "taxon_change_id" } }
-      ],
+    es_params = YearStatistic.identifications_es_base_params( year ).merge(
       aggregate: {
         histogram: {
           date_histogram: {
-            field: "created_at_details.date",
+
+            field: "created_at",
             interval: interval,
             format: "yyyy-MM-dd"
           }
         }
       }
-    }
+    )
     if options[:user]
       es_params[:filters] << { terms: { "user.id": [options[:user].id] } }
     end
@@ -231,21 +222,11 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def self.identification_counts_by_category( year, options = {} )
-    es_params = {
-      size: 0,
-      filters: [
-        { terms: { "created_at_details.year": [year] } },
-        { terms: { "own_observation": [false] } },
-        { terms: { "observation.quality_grade": ["research", "needs_id"] } },
-        { terms: { "current": [true] } }
-      ],
-      inverse_filters: [
-        { exists: { field: "taxon_change_id" } }
-      ],
+    es_params = YearStatistic.identifications_es_base_params( year ).merge(
       aggregate: {
         categories: { terms: { field: "category" } }
       }
-    }
+    )
     if options[:user]
       es_params[:filters] << { terms: { "user.id": [options[:user].id] } }
     end
@@ -390,9 +371,9 @@ class YearStatistic < ActiveRecord::Base
       end
     end
     return [] if ids.blank?
-      
-    JSON.
-        parse( INatAPIService.get_json( "/observations", api_params, { timeout: 30 } ) )["results"].
+    response = INatAPIService.get_json( "/observations", api_params, { timeout: 30 } )
+    json = JSON.parse( response )
+    json["results"].
         sort_by{|o| [0 - o["faves_count"].to_i, 0 - o["comments_count"].to_i] }.
         each_with_index.map do |o,i|
       if i < 10
@@ -769,7 +750,8 @@ class YearStatistic < ActiveRecord::Base
     {
       size: 0,
       filters: [
-        { terms: { "created_at_details.year": [year] } },
+        { range: { "created_at": { gte: "#{year}-01-01" } } },
+        { range: { "created_at": { lte: "#{year}-12-31" } } },
         { terms: { "own_observation": [false] } },
         { terms: { "observation.quality_grade": ["research", "needs_id"] } },
         { terms: { "current": [true] } }
