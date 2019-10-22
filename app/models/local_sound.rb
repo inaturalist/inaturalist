@@ -28,8 +28,13 @@ class LocalSound < Sound
   end
 
   def file=( data )
-    unless data.respond_to?(:path) && data.respond_to?(:original_filename)
+    unless data.respond_to?(:path)
       return self.file.assign( data )
+    end
+    filename = if data.respond_to?(:original_filename)
+      data.original_filename
+    else
+      data.path.split( File::SEPARATOR ).last
     end
     content_type = InatContentTypeDetector.new( data.path ).detect
     # For whatever reason, the file command tends to recognize mp3 files as
@@ -44,7 +49,7 @@ class LocalSound < Sound
       self.file.assign( data )
     else
       file_format = File.extname( data.path )
-      file_basename = File.basename( data.original_filename, file_format )
+      file_basename = File.basename( filename, file_format )
       dest_path = dst_path = File.join( Dir.tmpdir, "#{file_basename}.m4a" )
       # begin
       # -i specifies the input

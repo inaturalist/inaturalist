@@ -14,6 +14,6 @@ describe LocalSound, "creation" do
       user: User.make!,
       file: File.open( File.join( Rails.root, "spec/fixtures/files/pika.mp3" ) )
     )
-    expect( ls.file.content_type ).to eq "audio/mp3"
+    expect( ["audio/mp3", "audio/mpeg"]  ).to include ls.file.content_type
   end
 end

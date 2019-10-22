@@ -16,7 +16,6 @@ const soundSource = {
 };
 
 class Sound extends Component {
-
   static collect( connect, monitor ) {
     return {
       connectDragSource: connect.dragSource( ),
@@ -25,44 +24,49 @@ class Sound extends Component {
     };
   }
 
+  static durationString( durationInSeconds ) {
+    const minutes = Math.floor( ( durationInSeconds / 60 ) % 60 );
+    const hours = ( minutes / 60 ) % 60;
+    const seconds = Math.round( durationInSeconds ) % 60;
+    let duration = `${_.padStart( minutes.toString( ), 2, "0" )}:${_.padStart( `${seconds}`, 2, "0" )}`;
+    if ( hours >= 1 ) {
+      duration = `${_.padStart( `${hours}`, 2, "0" )}:${duration}`;
+    }
+    return duration;
+  }
+
   constructor( props ) {
     super( props );
     this.state = {
       paused: true,
       duration: "00:00"
     };
-  }
-
-  durationString( durationInSeconds ) {
-    var minutes = Math.floor( durationInSeconds / 60 % 60 );
-    var hours = minutes / 60 % 60;
-    var seconds = Math.round( durationInSeconds ) % 60;
-    var duration = `${_.padStart( minutes.toString( ), 2, "0")}:${_.padStart( ""+seconds, 2, "0" )}`;
-    if ( hours >= 1 ) {
-      duration = `${_.padStart( ""+hours, 2, "0" )}:${duration}`;
-    }
-    return duration;
+    this.player = React.createRef( );
   }
 
   componentDidMount() {
-    this.refs.player.addEventListener( "loadeddata", ( ) => {
-      this.setState( { duration: this.durationString( this.refs.player.duration ) } );
-    } )
-    this.refs.player.addEventListener( "timeupdate", ( ) => {
-      this.setState( { duration: this.durationString( this.refs.player.currentTime ) } );
+    const player = this.player.current;
+    if ( !player ) return;
+    player.addEventListener( "loadeddata", ( ) => {
+      this.setState( { duration: Sound.durationString( player.duration ) } );
     } );
-    this.refs.player.addEventListener( "ended", ( ) => {
+    player.addEventListener( "timeupdate", ( ) => {
+      this.setState( { duration: Sound.durationString( player.currentTime ) } );
+    } );
+    player.addEventListener( "ended", ( ) => {
       this.setState( { paused: true } );
-      this.setState( { duration: this.durationString( this.refs.player.duration ) } );
+      this.setState( { duration: Sound.durationString( player.duration ) } );
     } );
   }
 
   togglePlay() {
-    if ( this.refs.player.paused ) {
-      this.refs.player.play( );
+    const player = this.player.current;
+    if ( !player ) return;
+    if ( player.paused ) {
+      player.play( );
       this.setState( { paused: false } );
     } else {
-      this.refs.player.pause( );
+      player.pause( );
       this.setState( { paused: true } );
     }
   }
@@ -86,6 +90,9 @@ class Sound extends Component {
       className += " drag";
     }
     let source;
+    // The <source> element doesn't seem to change with new props, so we should
+    // only try and use file.preview for playback for formats that we're pretty
+    // sure will play in all browsers
     if ( file.sound ) {
       source = (
         <source
@@ -93,7 +100,7 @@ class Sound extends Component {
           type={file.sound.file_content_type}
         />
       );
-    } else if ( file.file.type !== "audio/amr" ) {
+    } else if ( file.type.match( /wav|mp3/ ) ) {
       source = <source src={file.preview} type={file.type} />;
     }
     return (
@@ -112,7 +119,7 @@ class Sound extends Component {
                   alt={paused ? "play" : "pause"}
                 />
               </button>
-              <audio ref="player" preload="none">
+              <audio ref={this.player} preload="none">
                 { source }
                 { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
               </audio>
@@ -130,15 +137,9 @@ class Sound extends Component {
 }
 
 Sound.propTypes = {
-  src: PropTypes.string,
-  obsCard: PropTypes.object,
   file: PropTypes.object,
-  onClick: PropTypes.func,
-  setState: PropTypes.func,
-  confirmRemoveFile: PropTypes.func,
   draggingProps: PropTypes.object,
-  connectDragSource: PropTypes.func,
-  connectDragPreview: PropTypes.func
+  connectDragSource: PropTypes.func
 };
 
 export default pipe(
