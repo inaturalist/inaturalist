@@ -3901,6 +3901,7 @@ fr:
   you_faved_this: Vous avez mis cela en favori !
   you_have_left_x_project: "Vous avez quitté %{project}"
   you_havent_linked_your_inaturalist_google_account: "Vous n’avez pas encore lié votre compte %{site_name} avec votre compte Google"
+  you_havent_joined_any_projects: Vous n'avez rejoint aucun projet
   you_joined_this_project: Vous avez joint ce projet!
   you_must_be_a_member_of_this_project_to_do_that: Vous devez être membre du projet pour exécuter cette action
   you_must_choose_an_observation_field: Vous devez choisir un champ d’observation
@@ -4613,6 +4614,8 @@ fr:
           non visibles par les responsables. Si vous ne voulez pas partager les
           coordonnées de cette observation avec les responsables de ce projet,
           vous devez supprimer l’observation du projet.
+        data_quality_assessment_desc_html: |
+          L'appréciation de la qualité des données est une évaluation de la précision d’une observation. Les observations de niveau recherche peuvent être utilisées par les scientifiques pour leurs recherches. Votez ci-dessous :
         disagreement_count_desc: "Nombre de taxons identifiés qui ne font pas partie des ancêtres d’un taxon"
         identification_count_desc: 'Nombre d’identifications pour un taxon distinct'
         flagged_photos_desc_html: |
@@ -5291,6 +5294,7 @@ fr:
         obs_cid_d_to_genus_desc: Créé dans les sept derniers jours et ayant un ID de communauté inférieur ou égal au niveau genre
         obs_desc: Créé depuis moins de 7 jours
         obs_id_d_desc: Créés pendant ces 7 derniers jours et ayant un ID (peuvent être des observateurs)
+        observations_1_week_moving_window: Observations (fenêtre glissante de 1 semaine)
         other_desc_html: Créés avec d'autres applications <a href="%{url}">conçut par des développeurs</a>
         recent_desc: Signé il y a 7 jours
         recent_w_0_obs: Récent avec zéro observation
