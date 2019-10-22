@@ -89,6 +89,7 @@ class IdentificationsController < ApplicationController
           mode: "max"
         }
       },
+      track_total_hits: true,
       source: ["id"]
     )
     ids = result.response.hits.hits.map do |h|
