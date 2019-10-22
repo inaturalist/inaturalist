@@ -4523,6 +4523,9 @@ nb:
       project_type: Prosjekttype
       collection: Samling
       umbrella: Paraply
+      projects_included: Inkluderte prosjekter
+      collection_and_umbrellas_do_not_support: |
+        Samlings- og paraplyprosjekter støtter ikke tilgang til skjulte koordinater for øyeblikket.
       confirm_leave:
         what_would_you_like: |
           Hva vil du gjøre med dine observasjoner i dette prosjektet?
@@ -4530,7 +4533,23 @@ nb:
           La dine observasjoner forbli i dette prosjektet
         keep_observations_desc: |
           Dine observasjoner vil forbli i dette prosjektet og kuratorene vil fortsatt kunne se de skjulte koordinatene.
+        remove_observations_label: |
+          Fjern alle dine observasjoner fra dette prosjektet
+        remove_observations_desc_html: |
+          Husk at prosjektkuratorer fortsatt vil kunne legge til dine observasjoner til prosjektet sitt med mindre du endrer dine <a href="/users/edit">kontoinnstillinger</a>.
+        revoke_observations_label: |
+          La dine observasjoner forbli i dette prosjektet men ikke tillat at kuratorene kan se de skjulte koordinatene
+        revoke_observations_desc: |
+          Hvis den eneste grunnen til at du forlater prosjektet er å sørge for at kuratorene ikke kan se dine skjulte koordinater.
       edit:
+        aggregation_pending: Avventer aggregering
+        new_place_desc_html: |
+          Prøv å se gjennom <a href="%{places_url}" target="_blank">våre eksisterende steder</a> og sjekk at du skriver navnet til stedet riktig. Hvis du virkelig ikke finner stedet du vil ha, vurder å <a href="%{new_place_url}" target="_blank">opprette et nytt sted</a>, men vennligst forsikre deg om at du ikke bare lager en duplikat av et eksisterende sted.
+        bioblitz_desc_html: |
+          <p>En bioblitz er en hendelse hvor deltakere prøver å observere så mange arter som mulig i et tidsrom. Det er en artig måte å introdusere folk til biodiversitet på, og samtidig samle verdifulle data.</p>
+        change_admin_desc: Velg en av prosjektets kuratorer som den nye admin.
+        end_time_desc: "Sluttidspunktet for din bioblitz. Må være under ett år etter starttidspunktet"
+        icon_desc: "Vil beskjæres til et firkant"
         project_assets_desc_html: |
           <p class="description">Projektressurser bare filer som hører til prosjektet, med noen spesielle regler:</p>
           <ol class="description">
@@ -4572,16 +4591,22 @@ nb:
           deres <em>fullstendige</em> epostadresse, gitt at vi har det laget.
           </p>
       new:
+        are_you_sure_you_want_to_delete: Er du sikker på at du vil slette dette prosjektet?
+        can_be_included_in_multiple: Kan være inkludert i flere paraplyprosjekter
+        click_through_to_individual_projects: Klikk videre til individuelle prosjekter
         collection_projects: Samlingsprosjekter
         collection_project_features: "Egenskaper av samlingsprosjekt:"
         data_visualizations: Data-visualiseringer
         delete_project: Slett prosjekt
         display_project_name: Vis prosjektnavn
         duplicate_project: Dupliser prosjekt
+        multiple_project_administrators: Flere prosjektadministratorer
         or_drag_and_drop: (eller dra og slipp)
         project_details: Prosjektdetaljer
         project_name: Projektnavn
         project_summary: Prosjektsammendrag
+        traditional_projects_cannot_be_copied: Tradisjonelt prosjekt kan ikke kopieres
+        umbrella_project_features: "Egenskaper for paraplyprosjekt:"
         users_can_follow_your_project: Brukere kan følge oppdateringer for ditt prosjekt via journalinnlegg
         welcome_to_projects: Velkommen til prosjekter!
         errors:
@@ -4604,6 +4629,8 @@ nb:
       curator_coordinate_access_label: |
         Ønsker du å gjøre dine private/tilslørte observasjonskoordinater synlige for prosjektkuratorene?
       show:
+        are_you_sure_you_want_to_convert: |
+          Er du sikker på at du vil konvertere dette prosjektet til et samlingsprosjekt?
         bioblitz_results_desc_html: |
           <p>
           I motsetning til vanlige prosjekter, viser bioblitz hendelsesstatistikker fra
@@ -4620,8 +4647,36 @@ nb:
           tillater det ikke at kuratorer kan se private eller tilslørte koordinater for disse
           observasjoner, eller anta at observatører har sagt seg enige i prosjektvilkårene. Hvis du er en prosjektkurator og trenger tilgang til private koordinater, trenger du at deltakerne dine samtykker til prosjektvilkårene, eller hvis du vil at observasjoner skal telles med i den kuraterte sjekklisten til prosjektet, sørg for at deltakerne blir med i prosjektet og legger til deres observasjoner slik som de ville ha gjort i et ordinært prosjekt.
           </p>
+        click_here_to_convert_this_project: |
+          Trykk her for å konvertere dette prosjektet til et samlingsprosjekt.
+        this_is_a_preview: |
+          Dette er en forhåndsvisning av hvordan prosjektet ville se ut som et samlingsprosjekt.
       updates_desc: |
         Få oppdateringer om dette prosjektet i din oversikt og i den daglige oppdateringseposten.
+    shared:
+      blocked:
+        youve_been_blocked: Du er blokkert
+        youve_been_blocked_desc: |
+          Eieren til denne ressursen har blokkert deg, noe som betyr at du ikke kan kommunisere med vedkommende. De fleste interaktive funksjoner på denne siden kommer ikke til å fungere.
+        youve_blocked: Du har blokkert denne personen
+        youve_blocked_desc: |
+          Du har blokkert eieren til denne ressursen, noe som betyr at du ikke kan kommunisere med vedkommende. De fleste interaktive funksjoner på denne siden kommer ikke til å fungere.
+      spam:
+        message_for_owner_and_curators_html: |
+          Denne registreringen har blitt markert som spam og er ikke offentlig synlig lengere. Du kan se den fordi du har opprettet den, eller fordi du er en sidekurator. Hvis du mener at dette er feil, vennligst <a href="mailto:%{email}">ta kontakt med oss</a>.
+        this_has_been_flagged_as_spam: Dette har blitt markert som spam
+      not_found:
+        sorry_that_doesnt_exist: Beklager, det finnes ikke!
+        even_our_dedicated_search_mole_couldnt: Selv vår mest dedikerte søkemuldvarp kunne ikke finne noe!
+    stats:
+      index:
+        active_desc: Har opprettet en id, obs, kommentar, eller innlegg de foregående 30 dager
+        active_users_desc: Har opprettet en id, obs, kommentar, eller innlegg de foregående 30 dager
+        obs_1_day: "Obs (1 dag)"
+        obs_1_day_desc: "Observasjoner opprettet på en enkel dag"
+        TTID: TTID
+      year:
+        include_usa: Inkluder USA
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -4649,8 +4704,14 @@ nb:
           "Life Stage=pupa": Puppe
           "Life Stage=adult": Voksen
           unannotated: Ingen merknader
+        max_photos_desc: |
+          Et takson kan kun ha %{max} bilder. Du må fjerne eksisterende bilder for å legge til flere.
+        no_trending_desc: Ingenting under dette taksonet observert i den siste måneden
         photo_chooser_modal_desc: |
           Dra bilder fra venstresiden hit, eller flytt på bilder her for å endre rekkefølgen.
+        trending_desc: Mest-observerte taksa i den siste måneden
+        trending_in_place_desc_html: Mest-observerte taksa i den siste måneden i <a href="%{url}">%{place}</a>
+        wanted_desc: Arter i dette taksonet som ikke har blitt observert ennå.
     taxon_changes:
       move_children_desc: |
         Etterkommere av input-taksonet som er slekter eller høyere blir flyttet til output'en; arter, underarter, varieteter, osv. vil bli byttet til tilsvarende taksa med det ny slekts- eller artsnavnet.
