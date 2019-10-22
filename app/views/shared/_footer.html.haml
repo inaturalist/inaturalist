@@ -79,3 +79,5 @@
             - I18n.t( "locales", locale: :en ).keys.each do |locale|
               %li
                 = link_to I18n.t( "locales.#{locale}", locale: locale ), set_locale_path( locale: locale )
+            %li.divider{ role: "separator" }
+            %li= link_to I18n.t( "help_translate!" ), "/pages/translate"
