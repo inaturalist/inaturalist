@@ -28,9 +28,9 @@ module Paperclip
             dest: File.expand_path( dst_path )
           }
         )
-      rescue Cocaine::ExitStatusError => e
+      rescue Terrapin::ExitStatusError => e
         raise Paperclip::Error, "There was an error filtering metadata for #{@basename}: #{e}" if @whiny
-      rescue Cocaine::CommandNotFoundError => e
+      rescue Terrapin::CommandNotFoundError => e
         raise Paperclip::Errors::CommandNotFoundError.new( "Could not run the `exiftool` command. Please install exiftool." )
       end
       # If there were no errors, we should have a new photo at the dst_path

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { DragSource } from "react-dnd";
 import { pipe } from "ramda";
+import _ from "lodash";
 
 const soundSource = {
   beginDrag( props ) {
@@ -67,34 +68,48 @@ class Sound extends Component {
   }
 
   render( ) {
+    const {
+      draggingProps,
+      file,
+      connectDragSource
+    } = this.props;
+    const {
+      duration,
+      paused
+    } = this.state;
     let className = "soundDrag";
-    if ( this.props.draggingProps &&
-         this.props.draggingProps.file &&
-         this.props.draggingProps.file.id === this.props.file.id ) {
+    if (
+      draggingProps
+      && draggingProps.file
+      && draggingProps.file.id === file.id
+    ) {
       className += " drag";
     }
-    const source = this.props.file.sound ? (
-      <source
-        src={ this.props.file.sound.file_url }
-        type={ this.props.file.sound.file_content_type }
-      />
-    ) : (
-      <source
-        src={ this.props.file.preview }
-      />
-    );
+    let source;
+    if ( file.sound ) {
+      source = (
+        <source
+          src={file.sound.file_url}
+          type={file.sound.file_content_type}
+        />
+      );
+    } else if ( file.file.type !== "audio/amr" ) {
+      source = <source src={file.preview} type={file.type} />;
+    }
     return (
       <div>
-        { this.props.connectDragSource(
-          <div className={ className }>
+        { connectDragSource(
+          <div className={className}>
             <div className="Sound">
               <button
+                type="button"
                 className="btn btn-link"
-                onClick={ () => this.togglePlay( )}
+                onClick={() => this.togglePlay( )}
+                disabled={_.isNil( file.sound )}
               >
                 <i
-                  className={`fa fa-5x fa-${this.state.paused ? "play" : "pause"}-circle`}
-                  alt={ this.state.paused ? "play" : "pause" }
+                  className={`fa fa-5x fa-${paused ? "play" : "pause"}-circle`}
+                  alt={paused ? "play" : "pause"}
                 />
               </button>
               <audio ref="player" preload="none">
@@ -102,8 +117,9 @@ class Sound extends Component {
                 { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
               </audio>
               <small className="text-muted">
-                { this.state.duration }<br/>
-                { this.props.file.sound ? this.props.file.sound.file_file_name : null }
+                { duration }
+                <br />
+                { file.name }
               </small>
             </div>
           </div>
