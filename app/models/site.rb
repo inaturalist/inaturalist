@@ -160,6 +160,7 @@ class Site < ActiveRecord::Base
   preference :android_app_url, :string
   preference :facebook_url, :string
   preference :twitter_url, :string
+  preference :instagram_url, :string
   preference :blog_url, :string
 
   preference :twitter_username, :string
