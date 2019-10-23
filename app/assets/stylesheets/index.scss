@@ -597,11 +597,20 @@ ul.leafylist li li:first-child {
       margin-left: 0px;
     }
   }
+  .with-store {
+    .social-media {
+      display: flex;
+      justify-content: center;
+    }
+    .social-media-link {
+      margin-left: 42px
+    }
+  }
 
   .social-media {
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
   }
   .social-media-link {
     color: transparent;
@@ -611,7 +620,6 @@ ul.leafylist li li:first-child {
     background-color: #ccc;
     border-radius: 100px;
     text-align: center;
-    margin-left: 42px
   }
 
   .social-media-link:first-child {

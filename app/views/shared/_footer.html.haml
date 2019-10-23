@@ -43,7 +43,7 @@
           %a{ href: site.terms_url }=t :terms_service
         %p
           %a{ href: site.privacy_url }=t :privacy
-      %div{ class: params[:test] == "store" ? "col-xs-3" : "col-xs-2" }
+      %div{ class: params[:test] == "store" ? "col-xs-3 with-store" : "col-xs-2" }
         - if Site.default && @site && @site.id == Site.default.id
           .one-line
             - if params[:test] == "store" && is_admin?
