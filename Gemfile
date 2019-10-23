@@ -100,12 +100,11 @@ gem "elasticsearch-model"
 gem "elasticsearch-rails"
 gem "elasticsearch"
 gem "elasticsearch-api"
-
-
 gem "rgeo"
 gem "rgeo-geojson"
 gem "rgeo-shapefile"
 gem "activerecord-postgis-adapter", git: "https://github.com/kueda/activerecord-postgis-adapter.git", branch: "activerecord42"
+gem "terrapin"
 
 group :production do
   gem "newrelic_rpm", "~> 6.2.0"
