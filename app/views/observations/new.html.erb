@@ -30,17 +30,16 @@
 <div id="pageheader" class="column span-24">
   <div class="column span-12">
     <h2>
-      <% if @project && !member_of?(@project)%>
-      <%=t :join_and %> 
-      <% end -%>
-      <%= t(:add_an_observation) %>
       <% if @project %>
-        <%=t :to %>
-        <% if @project.icon.file? -%>
-          <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
-        <% end -%>
-        <%= link_to truncate(@project.title.html_safe, :length => 25), @project %>
-      <% end -%>
+        <%- project_link = link_to( truncate(@project.title.html_safe, :length => 25), @project ) -%>
+        <% if member_of? @project %>
+          <%=t :add_an_observation_to_project_html, project: project_link %>
+        <% else %>
+          <%=t :join_and_add_an_observation_to_project_html, project: project_link %>
+        <% end %>
+      <% else %>
+        <%= t(:add_an_observation) %>
+      <% end %>
     </h2>
   </div>
   <div class="last column span-12">
