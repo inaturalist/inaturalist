@@ -166,8 +166,8 @@ en:
   # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: About Establishment Means
   about_licenses: About licenses
-  about_licensing: About licensing
   about_muting: About Muting
+  # Header for a section describing taxon names
   about_names: About Names
   about_places: About Places
   about_the_cc_licenses: About Creative Commons licenses
@@ -1086,7 +1086,7 @@ en:
   distance_traveled: "Distance traveled (m)"
   documentation_for_developers_html: Documentation for <a href="/pages/developers">developers</a>
   do_not_show_this_message_again: Do not show this message again
-  do_you_study_nematodes_worlds_foremost_expert_barnacle: |    
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Do you study nematodes? Are you the world's foremost expert on barnacle
     taxonomy? Do you just like looking at pretty flowers? Filling out your
     profile adds some personality and helps establish your credibility when
@@ -1094,6 +1094,7 @@ en:
   doesnt_have_default_photo: doesn't have a default photo yet.
   doh_something_went_wrong: D'oh, something went wrong.
   doh_something_went_wrong_error: "D'oh, something went wrong: %{error}"
+  # Button text to donate to iNaturalist
   donate: Donate
   done: Done
   dont_have_an_account_sign_up_html: Don't have an account? <strong>Sign up.</strong>
@@ -3523,6 +3524,7 @@ en:
   stop_following_user: "Stop following %{user}"
   stop_testing: Stop Testing
   stop_trusting_this_person_with_your_private_coordinates: Stop trusting this person with your hidden coordinates
+  # As in a place to purchase things. We use it as a link to a place where you can buy merchandise
   store: Store
   studies_that_used_inaturalist_data_in_year: Studies That Used iNaturalist Data in %{year}
   stuff_just_added: "Stuff you've just added..."
