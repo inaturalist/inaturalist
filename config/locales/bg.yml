@@ -314,6 +314,7 @@ bg:
   because_of: заради
   bg_color: Цвят на фона
   birds: птици
+  birthday: Рожден ден
   black: черно
   block_user: Блокиране на потребител
   blocked_users: Блокирани потребители
@@ -481,7 +482,6 @@ bg:
   data_deficient: недостатъчно данни
   data_quality: Качество на данните
   data_quality_assessment: Оценка на качеството на данните
-  data_quality_assessment_: оценка на качеството на данните
   datatype: Тип данни
   date_: Дата
   date_added: Дата на добавяне
@@ -837,18 +837,25 @@ bg:
   lexicons:
     scientific_names: Научни имена
     afrikaans: африканс
+    albanian: албански
     bengali: бенгалски
     catalan: каталонски
     cebuano: себуански
+    chinese_simplified: китайски (опростен)
+    chinese_traditional: китайски (традиционен)
     creole_french: креолски (френски)
     creole_portuguese: креолски (португалски)
+    czech: чешки
+    danish: датски
     davawenyo: даваонски
     dutch: нидерландски
     english: английски
+    estonian: естонски
     finnish: фински
     french: френски
     gela: гелански
     german: немски
+    greek: гръцки
     hawaiian: хавайски
     hebrew: иврит
     hiligaynon: илонго
@@ -927,23 +934,41 @@ bg:
     de: немски
     el: гръцки
     en: английски
+    en-UK: английски (Великобритания)
     en-US: английски (САЩ)
+    eo: есперанто
     es: испански
+    es-AR: испански (Аржентина)
     es-MX: испански (Мексико)
+    et: естонски
     eu: баски
     fi: финландски
+    fil: филипински
     fr: френски
+    fr-CA: френски (Канада)
     gl: галисийски
+    he: иврит
     id: индонезийски
     it: италиански
     ja: японски
+    ka: грузински
     ko: корейски
     lb: люксембургски
+    lt: литовски
     mk: македонски
+    nb: норвежки (букмол)
+    nl: нидерландски
+    nn: Норвежки (ниношк)
     oc: окцитански
+    pl: полски
+    pt: португалски
     pt-BR: португалски (Бразилия)
     ru: руски
+    sk: словашки
+    sq: албански
+    sv: шведски
     zh-CN: китайски (опростен)
+    zh-HK: китайски (традиционен, Хонг Конг)
     zh-TW: китайски (традиционен)
   locality_notes: Бележки за местността
   localized_species_accounts: Локализирани данни за видовете
@@ -1015,6 +1040,8 @@ bg:
       M: "1мес"
       #Short text representing 1 year in the past
       'y': "1г"
+    datetime_with_zone: "D MMM YYYY · LT z"
+    datetime_with_offset: "D MMM YYYY · LT Z"
   month: Месец
   months: Месеци
   more: Още
@@ -1049,6 +1076,8 @@ bg:
   name: Име
   name_or_slug: "Име или (част от) уебадрес"
   name_of_the_place_you: Име на мястото където сте направили наблюдението
+  name_providers:
+    ubio: uBio
   names: Имена
   names_for_taxon_html: "Имена за %{taxon}"
   native: местен
@@ -1145,6 +1174,13 @@ bg:
   observation_date: Дата
   observation_date?: Дата?
   observation_field: Поле за наблюдения
+  observation_field_type_text: Текст
+  observation_field_type_numeric: Числов
+  observation_field_type_date: Дата
+  observation_field_type_time: Час
+  observation_field_type_datetime: Дата и час
+  observation_field_type_taxon: Таксон
+  observation_field_type_dna: ДНК
   observation_fields: Полета за наблюдения
   observation_fields_are_additional: Полетата за наблюдения са допълнителни полета за данни които могат да бъдат добавени към наблюденията.
   observation_fields_by_preferences_description: |
@@ -1393,12 +1429,42 @@ bg:
   places_name:
     afghanistan: Афганистан
     africa: Африка
+    aland: Оландски острови
+    albania: Албания
+    algeria: Алжир
+    american_samoa: Американска Самоа 
+    andorra: Андора
+    angola: Ангола 
+    anguilla: Ангила
+    antarctica: Антарктика
     antigua_and_barbuda: Антигуа и Барбуда
+    argentina: Аржентина
+    armenia: Армения
+    aruba: Аруба 
     australia: Австралия
     austria: Австрия
+    azerbaijan: Азербайджан 
+    bahamas: Бахами
+    bahrain: Бахрейн 
+    bangladesh: Бангладеш
+    barbados: Барбадос 
+    belarus: Беларус
     belgium: Белгия
+    belize: Белиз
+    benin: Бенин 
+    bermuda: Бермуда
+    bhutan: Бутан
+    bolivia: Боливия
+    bonaire_saint_eustatius_and_saba: Бонер, Синт Еустациус и Саба
     bosnia_and_herzegovina: Босна и Херцеговина
+    botswana: Ботсвана 
+    bouvet_island: Буве
     brazil: Бразилия
+    british_indian_ocean_territory: Британски територии в Индийския океан
+    british_virgin_islands: Британски Вирджински острови
+    brunei: Бруней
+    bulgaria: България
+    burkina_faso: Буркина Фасо
     canada: Канада
     central_america: Централна Америка
     china: Китай
@@ -1406,15 +1472,47 @@ bg:
     denmark: Дания
     egypt: Египет
     equatorial_guinea: Екваториална Гвинея
+    ethiopia: Етиопия
     europe: Европа
+    falkland_islands: Фолкландски острови
+    faroe_islands: Фарьорски острови
+    fiji: Фиджи
+    finland: Финландия
     france: Франция
+    french_guiana: Френска Гвиана
+    french_polynesia: Френска Полинезия
+    french_southern_territories: Френски южни територии
+    gabon: Габон
+    gambia: Гамбия
+    georgia: Грузия
     germany: Германия
+    ghana: Гана
+    gibraltar: Гибралтар 
     greece: Гърция
+    greenland: Гренландия
+    grenada: Гренада
+    guadeloupe: Гваделупа
+    guam: Гуам
+    guatemala: Гватемала
+    guernsey: Гърнзи
+    guinea: Гвинея 
+    guinea_bissau: Гвинея-Бисау
+    guyana: Гаяна
+    haiti: Хаити
+    heard_island_and_mcdonald_islands: Остров Хърд и острови Макдоналд
+    honduras: Хондурас
     hong_kong: Хонконг
     hungary: Унгария
+    iceland: Исландия 
     india: Индия
+    indonesia: Индонезия 
+    iran: Иран
     iraq: Ирак
+    ireland: Ирландия
+    isle_of_man: Остров Ман
+    israel: Израел
     italy: Италия
+    jamaica: Ямайка
     japan: Япония
     korea: Корея
     martinique: Мартиника
@@ -1433,6 +1531,7 @@ bg:
     russia: Русия
     sao_tome_and_principe: Сао Томе и Принсипи
     saudi_arabia: Саудитска Арабия
+    serbia: Сърбия
     singapore: Сингапур
     south_africa: Южна Африка
     south_america: Южна Америка

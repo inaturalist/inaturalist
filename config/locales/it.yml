@@ -98,8 +98,8 @@ it:
     one: "<span class='count'>1</span> modifica del taxon aggiunti"
     other: "<span class='count'>%{count}</span> modifiche del taxon aggiunte"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} persone</strong> hanno aiutato %{user} con <strong>%{y} le ID</strong>"
-  _100_day_trends: Andamento di 100 giorni
-  _percent_ID_d: "% identificati"
+  _100_day_trends: Andamento in 100 giorni
+  _percent_ID_d: "% identificate"
   a_community_for_naturalist: Una Community per Naturalisti
   a_default_taxon_name_will_automatically_created: |
     Un taxon di default sarà creato automaticamente a partire dal nome scientifico di questa unità tassonomica. 
@@ -924,7 +924,6 @@ it:
   data_deficient: Carente di Dati
   data_quality: Qualità dei dati
   data_quality_assessment: Valutazione della qualità dei dati
-  data_quality_assessment_: Valutazione della qualità dei dati
   data_used: "Dati utilizzati:"
   datatype: Tipo di dati
   date_: Data
@@ -1538,9 +1537,6 @@ it:
   inviteonly: solo su invito
   invited_x: "%{x} invitato(i)"
   iphone: iPhone
-  is_an_evaluation: |
-    è una valutazione dell'accuratezza dell'osservazione.
-    Le osservazioni di Livello Ricerca possono essere utilizzate dagli scienziati per le ricerche. Vota qui sotto:
   is_not_following_anyone: non segue nessuno.
   is_now: è ora
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: La prova fornita è sufficiente per confermare che questo è %{taxon}?
@@ -2141,7 +2137,7 @@ it:
   obs_cid_d: Osservazioni con CID
   obs_id_d: Osservazioni con ID
   obscured: Oscurata
-  obscured_or_private: nascosto o privato
+  obscured_or_private: oscurate o private
   obscured_description: |
     Le coordinate pubbliche sono quelle di un punto casuale all'interno di 0,2 gradi di latitudine/longitudine dalla cella che contiene le coordinate reali.
   observation: Osservazione
@@ -2925,6 +2921,8 @@ it:
   projects_from_everywhere: Progetti da tutti i luoghi
   projects_from_place: "Progetti in %{place}"
   projects_in_x: "Progetti in %{x}"
+  #"admins" is equivalent to "administrates"
+  projects_user_admins: Progetti che %{user} Amministra
   projects_you_admin: Progetti che amministri
   proposed_taxa_that_contradict_the_community_id: Taxa proposti che contraddicono l'ID della Comunità
   proposed_taxa_that_support_the_community_id: Taxa proposti che supportano l'ID della Comunità
@@ -3481,9 +3479,9 @@ it:
   taxon_is_threatened_coordinates_hidden: Il taxon è minacciato, le coordinate sono nascoste in maniera predefinita
   taxon_is_threatened_coordinates_hidden_desc: |
     Uno dei taxa suggeriti nelle identificazioni, o uno dei taxa che contiene uno di questi taxa, è considerato raro e/o minacciato, sicché la localizzazione di questa osservazione è stata nascosta.
-  taxon_is_threatened_coordinates_obscured: Il taxon è minacciato, le coordinate sono nascoste in maniera predefinita
+  taxon_is_threatened_coordinates_obscured: Il taxon è minacciato, le coordinate sono oscurate in maniera predefinita
   taxon_is_threatened_coordinates_obscured_desc: |
-    Uno dei taxa suggeriti nelle identificazioni, o uno dei taxa che contiene uno di questi taxa, è considerato raro e/o minacciato, sicché l'ubicazione di questa osservazione è stata nascosta.
+    Uno dei taxa suggeriti nelle identificazioni, o uno dei taxa che contiene uno di questi taxa, è considerato raro e/o minacciato, sicché l'ubicazione di questa osservazione è stata oscurata.
   taxonomy: Tassonomia
   taxon_assessments_are: |
     Le valutazioni di un taxon sono dei documenti che stabiliscono lo stato corrente di una specie, in genere lo stato conservazionistico.
@@ -3830,6 +3828,7 @@ it:
   user_flagged_as_a_spammer_html: "%{user} l'ha contrassegnato come uno spammer"
   user_flagged_as_a_non_spammer_html: "%{user} l'ha segnato come un non-spammer"
   user_has_opted_out_of_community_id: L'utente ha deselezionato il taxon della comunità
+  user_hasnt_joined_any_projects: "%{user} non si è unito a nessun progetto"
   user_helped_x_people_with_y_ids_html: "%{user} ha aiutato strong>%{x} persone</strong> con <strong>%{y} le ID</strong>"
   user_invite_observation_to_project: '%{user} avrebbe piacere di invitare la tua osservazione "%{observation}" al project %{project}.'
   user_invited_you_to_join_html: "%{user} ti ha invitato ad unirti"
@@ -4116,6 +4115,7 @@ it:
   you_faved_this: L'hai aggiunta ai preferiti!
   you_have_left_x_project: "Hai abbandonato il progetto %{project}"
   you_havent_linked_your_inaturalist_google_account: "Non hai ancora collegato il tuo account %{site_name} a quello di Google"
+  you_havent_joined_any_projects: Non ti sei unito a nessun progetto
   you_joined_this_project: Ti sei unito al progetto!
   you_must_be_a_member_of_this_project_to_do_that: Deve essere un membro del progetto per poterlo fare
   you_must_choose_an_observation_field: Devi scegliere un campo dell'osservazione
@@ -4598,6 +4598,8 @@ it:
         cumulative_count_desc: '# di identificazioni per un singolo taxon e per tutti i suoi discendenti'
         curator_coordinate_access_disabled_desc_html: |
           Questo progetto non permette di aggiungere osservazioni con coordinate non visibili dai curatori. Se non vuoi condividere le coordinate di questa osservazione con i curatori, devi rimuoverla dal progetto.
+        data_quality_assessment_desc_html: |
+          La Valutazione della Qualità dei Dati è una valutazione dell'affidabilità dell'osservazione. Le osservazioni Livello Ricerca possono essere usate dagli scienziati per la ricerca. Dai il tuo parere qui sotto:
         disagreement_count_desc: "# di taxa identificati che non sono tra gli antenati del taxon"
         identification_count_desc: '# di identificazioni per un singolo taxon'
         flagged_photos_desc_html: |
@@ -5097,7 +5099,7 @@ it:
       index:
         active_desc: Identificazione, osservazione, commento o post creato nei precedenti 30 giorni
         active_users_desc: Identificazioni, obs, commenti o post creati nei 30 giorni precedenti
-        android_desc_html: Creato via <a href="%{url}">iNaturalist app Android</a>
+        android_desc_html: Create via <a href="%{url}">iNaturalist app Android</a>
         avg_ttcid: TTCID Media
         avg_ttid: TTID Media
         identifiers_desc: Ha aggiunto oggi un'ID ad un'osservazione di qualcun altro
@@ -5107,12 +5109,13 @@ it:
         new_users_desc: Iscritti in questo giorno
         obs_1_day: "Osservazioni (1 giorno)"
         obs_1_day_desc: "Osservazioni create in un singolo giorno"
-        obs_cid_d_desc: Create nei precedenti 7 giorni e con una ID della Comunità
+        obs_cid_d_desc: Create nei 7 giorni precedenti, con una ID della Comunità
         obs_cid_d_to_genus: Osservazioni con CID al genere
-        obs_cid_d_to_genus_desc: Create nei precedenti 7 giorni e con una ID della Comunità al genere o minore
-        obs_desc: Creato nei precedenti 7 giorni
-        obs_id_d_desc: Create nei precedenti 7 giorni e hanno un’identificazione (potrebbe essere dell’osservatore)
-        other_desc_html: Creato con un'altra applicazione <a href="%{url}">built da un programmatore</a>
+        obs_cid_d_to_genus_desc: Create nei 7 giorni precedenti, con una ID della Comunità al genere o minore
+        obs_desc: Create nei 7 giorni precedenti
+        obs_id_d_desc: Create nei 7 giorni precedenti, che hanno almeno un’identificazione (potrebbe essere dell’osservatore)
+        observations_1_week_moving_window: Osservazioni (finestra mobile di una settimana)
+        other_desc_html: Create con un'altra applicazione <a href="%{url}">costruita dai programmatori</a>
         recent_desc: Iscritti nei precedenti 7 giorni
         recent_w_0_obs: Recenti con 0 osservazioni
         recent_w_0_obs_desc: Iscritti nei 7 giorni precedenti e aggiunte 0 osservazioni
@@ -5126,7 +5129,8 @@ it:
         TTID_note: |
           Queste statistiche si riferiscono alle osservazioni create la settimana precedente, quindi non comprendono le osservazioni più vecchie di una settimana; per questo le statistiche appaiono minori rispetto a quelle calcolate al momento attuale, ma forniscono comunque un indicazione realistica di quanto velocemente la comunità identifica gli organismi in una settimana. Queste statistiche si riferiscono solo alle osservazioni corredate di foto.
         website_desc_html: |
-          Creato tramite i siti internet <a href="https://www.inaturalist.org">iNaturalist</a> o <a href="%{url}">iNaturalist Network<a/>
+          Create tramite i siti internet <a href="https://www.inaturalist.org">iNaturalist</a>
+          o quelli del <a href="%{url}">Network di iNaturalist</a>
       year:
         include_usa: Includi Stati Uniti
         growth_by_country_desc_html: |
