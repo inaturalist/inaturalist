@@ -18,11 +18,11 @@
             = t(:you_are_now_a_curator_for_project_html, project: project.title )
         - else
           - if project_user.user_id == project_user.project.user_id
-            = t(:user_is_now_the_admin_for_project_html, project: project.title )
+            = t(:user_is_now_the_admin_for_project_html, user: project_user.user.login, project: project.title )
           - elsif project_user.role == ProjectUser::MANAGER
-            = t(:user_is_now_a_manager_for_project_html, project: project.title )
+            = t(:user_is_now_a_manager_for_project_html, user: project_user.user.login, project: project.title )
           - else
-            = t(:user_is_now_a_curator_for_project_html, project: project.title )
+            = t(:user_is_now_a_curator_for_project_html, user: project_user.user.login, project: project.title )
         - unless user.description.blank? || is_me?(user, :current_user => viewing_user)
           Here's a little about
           = surround '', ': ' do
