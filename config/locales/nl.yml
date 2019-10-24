@@ -138,8 +138,8 @@ nl:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Over vestigingswijze
   about_licenses: Over licenties
-  about_licensing: Over licenties
   about_muting: Over verstommen
+  #Header for a section describing taxon names
   about_names: Over namen
   about_places: Over plaatsen
   about_the_cc_licenses: Over Creative Commons-licenties
@@ -182,6 +182,7 @@ nl:
   add_an_observation: Waarneming toevoegen
   add_an_observation?: Een waarneming toevoegen?
   add_an_observation_of: "Een waarneming toevoegen van %{taxon}"
+  add_an_observation_to_project_html: Voeg een waarneming toe aan %{project}
   add_annotations_for_x: Voeg aantekeningen voor %{x} toe
   add_annotations_for_controlled_attribute:
     sex: Voeg aantekeningen toe voor "Geslacht"
@@ -1034,6 +1035,8 @@ nl:
   doesnt_have_default_photo: heeft nog geen standaardfoto.
   doh_something_went_wrong: D'oh, er ging iets mis.
   doh_something_went_wrong_error: "Oeps, er liep iets mis: %{error}"
+  #Button text to donate to iNaturalist
+  donate: Doneren
   done: Klaar
   dont_have_an_account_sign_up_html: Heb je nog geen account?<strong>Meld je aan.</strong>
   dont_send_me_email: "Stuur me geen e-mail!"
@@ -1345,7 +1348,6 @@ nl:
   from_eol_collection: Van EOL collectie
   from_flickr_facebook_etc: Van Flickr, Facebook, etc.
   from_list: Van lijst
-  from_this: van deze
   from_photos: Van fotos
   from_place: van plaats
   from_soundcloud: Van Soundcloud
@@ -1413,6 +1415,7 @@ nl:
   help: Help
   help_confirm_observations!: Help waarnemingen bevestigen!
   help_support_inaturalist: "Help en ondersteun iNaturalist!"
+  help_translate!: Help met vertalen!
   helped_the_observer_make: heeft de waarnemer geholpen zijn of haar uiteindelijke ID te maken (ze werden dus gedaan vóór het laatste ID, en ze komen overeen)
   here_are_3_examples: Hier zijn 3 voorbeelden van gegevens in het juiste formaat
   here_are_our_top_species_suggestions: Dit zijn onze top voorstellen voor deze soort
@@ -1554,7 +1557,7 @@ nl:
     <a href="mailto:%{help_email}" class="contact">contact met ons op</a>.
     <a href="%{manage_flags_path}">Beheer meldingen</a>
   join: Lid worden
-  join_and: Wordt lid en
+  join_and_add_an_observation_to_project_html: Word lid en voeg een waarneming toe aan %{project}
   join_project: Doe mee aan dit project
   join_some_projects_and_invite_some_observations_html: "Doe mee aan enkele <a href='%{join_url}'>projecten</a> en <a href='%{invite_url}'>nodig enkele waarnemingen uit</a>"
   join_the_largest_group_of_naturalists_in_the_world: Sluit je aan bij de grootste groep naturalisten ter wereld!
@@ -3420,6 +3423,8 @@ nl:
   submitted: Verzonden
   subscribe_to_a_taxon: Op een taxon abonneren
   subscribe_to_a_place: Op een plaats abonneren
+  subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze melding"
+  subscribe_to_comments_on_this_post_html: "%{tag_start}Abonneer%{tag_end} op reacties op dit bericht"
   subscribe_to_observations_in_a_taxon: Op alle waarnemingen van een soort of groep organismen (bijv. 'schorpioenen') abonneren.
   subscribe_to_observations_in_a_place: Op alle waarnemingen die op deze plaats worden gerapporteerd abonneren. Je kunt eventueel ook een taxonfilter toevoegen (bijv. 'Paardenbloemen in Utrecht').
   subscribe_to_places_to: |
@@ -3716,7 +3721,6 @@ nl:
   title: titel
   title_and_description: "Titel & Beschrijving"
   titled_favorites_and_the_most_recent_additions: met de naam "Favorieten" en de meest recente toevoegen zullen hier verschijnen.
-  to: 'naar:'
   to_add_comments: om reacties toe te voegen
   to_add_ids: om ID's toe te voegen
   to_configure_your_widget: configureer je widget
@@ -4125,7 +4129,9 @@ nl:
     Je bent waarnemingen zonder foto's en taxonnamen aan het verzenden. Waarnemingen zonder deze informatie zijn niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.
   you_are_submitting_obs_with_no_date_or_no_location: |
     U gaat waarnemingen toevoegen zonder data of locatie. Waarnemingen zonder deze informatie zijn vaak niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.
-  you_are_subscribed_to: "Je bent geabonneerd op "
+  you_are_subscribed_to_comments_on_this_flag: Je bent geabonneerd op reacties op deze melding.
+  you_are_subscribed_to_comments_on_this_post: Je bent geabonneerd op reacties op dit bericht.
+  you_are_subscribed_to_observations_from_this_place: Je bent geabonneerd op reacties uit deze plaats.
   you_arent_a_member_of_that_project: Je bent geen lid van dat project.
   you_arent_following_that_person: "Je volgt deze persoon niet."
   you_can_accept_invitations: Je kan hier de uitnodiging aanvaarden
