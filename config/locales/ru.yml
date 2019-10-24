@@ -202,8 +202,8 @@ ru:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: О Способах Возникновения
   about_licenses: О лицензиях
-  about_licensing: О лицензировании
   about_muting: Об отключении
+  #Header for a section describing taxon names
   about_names: Об именах
   about_places: О Местах
   about_the_cc_licenses: О лицензии Creative Commons
@@ -1441,7 +1441,6 @@ ru:
   from_eol_collection: Из коллекции EOL
   from_flickr_facebook_etc: Из Flickr, Facebook и т.д.
   from_list: Из списка
-  from_this: из этого
   from_photos: Из фотографий
   from_place: Из места
   from_soundcloud: Из Soundcloud
@@ -1647,7 +1646,6 @@ ru:
     <a href="mailto:%{help_email}" class="contact">свяжитесь с нами</a>.
     <a href="%{manage_flags_path}">Управление флагами</a>
   join: Присоединиться
-  join_and: Присоединиться и
   join_project: Присоединиться к этому проекту
   join_some_projects_and_invite_some_observations_html: "Присоединиться к некоторым %{join_url} проектам и %{invite_url} пригласить к участию некоторые наблюдения"
   join_the_largest_group_of_naturalists_in_the_world: Присоединяйтесь к самой большой группе натуралистов в мире!
@@ -3479,6 +3477,8 @@ ru:
   stop_following_user: "Отменить подписку на %{user}"
   stop_testing: Завершить тестирование
   stop_trusting_this_person_with_your_private_coordinates: Перестать доверять этому человеку ваши скрытые координаты
+  #As in a place to purchase things. We use it as a link to a place where you can buy merchandise
+  store: Магазин
   studies_that_used_inaturalist_data_in_year: Исследования, в которых использовались данные iNaturalist в %{year}
   stuff_just_added: "Материал, который вы только что добавили ..."
   subject_resolved_noun_html: "%{subject} разрешил %{noun}"
@@ -3811,7 +3811,6 @@ ru:
   title: название
   title_and_description: "Заголовок и описание"
   titled_favorites_and_the_most_recent_additions: ', озаглавленный «Фавориты», и самые последние пополнения появятся в этом пространстве.'
-  to: до/чтобы
   to_add_comments: чтобы добавить комментарии
   to_add_ids: добавить идентификации
   to_configure_your_widget: сформировать ваш виджет.
@@ -4231,7 +4230,6 @@ ru:
     Наблюдения без этой информации часто невозможно идентифицировать, и по умолчанию они не будут видны в поиске наблюдений.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Вы отправляете наблюдения без дат или местоположений. Наблюдения без этой информации часто невозможно идентифицировать, и по умолчанию они не будут видны в поиске наблюдений.
-  you_are_subscribed_to: "Вы подписаны на"
   you_arent_a_member_of_that_project: Вы не являетесь участником этого проекта.
   you_arent_following_that_person: "Вы не подписаны на этого пользователя."
   you_can_accept_invitations: Вы можете принять приглашение здесь
