@@ -583,14 +583,18 @@ ul.leafylist li li:first-child {
       font-weight: bold;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-size: 9px;
+      padding-top: 9px;
       @media (min-width: 768px) {
         font-size: 9px;
       }
       @media (min-width: 992px) {
         font-size: 12px;
+        padding-top: 7px;
       }
       @media (min-width: 1200px) {
         font-size: 16px;
+        padding-top: 7px;
       }
     }
     .btn-donate:first-child {
@@ -598,12 +602,15 @@ ul.leafylist li li:first-child {
     }
   }
   .with-store {
+    .btn-donate {
+      letter-spacing: 1px;
+    }
     .social-media {
       display: flex;
       justify-content: center;
     }
     .social-media-link {
-      margin-left: 42px
+      margin-left: 15%;
     }
   }
 
@@ -612,14 +619,34 @@ ul.leafylist li li:first-child {
     display: flex;
     justify-content: space-around;
   }
+  $social-media-link-dim: 32px;
+  $social-media-link-font-size: 16px;
+  $social-media-link-dim-768: 36px;
+  $social-media-link-font-size-768: 18px;
+  $social-media-link-dim-992: 38px;
+  $social-media-link-font-size-992: 21px;
+  $social-media-link-dim-1200: 42px;
+  $social-media-link-font-size-1200: 23px;
   .social-media-link {
     color: transparent;
     display: inline-block;
-    width: 42px;
-    height: 42px;
     background-color: #ccc;
     border-radius: 100px;
     text-align: center;
+    width: $social-media-link-dim;
+    height: $social-media-link-dim;
+    @media (min-width: 768px) {
+      width: $social-media-link-dim-768;
+      height: $social-media-link-dim-768;
+    }
+    @media (min-width: 992px) {
+      width: $social-media-link-dim-992;
+      height: $social-media-link-dim-992;
+    }
+    @media (min-width: 1200px) {
+      width: $social-media-link-dim-1200;
+      height: $social-media-link-dim-1200;
+    }
   }
 
   .social-media-link:first-child {
@@ -630,20 +657,36 @@ ul.leafylist li li:first-child {
     font: normal normal normal 14px/1 FontAwesome;
     display: inline-block;
     color: white;
-    font-size: 23px;
-    line-height: 42px;
+    line-height: $social-media-link-dim + 2px;
+    font-size: $social-media-link-font-size;
+    @media (min-width: 768px) {
+      line-height: $social-media-link-dim-768 + 2px;
+      font-size: $social-media-link-font-size-768;
+    }
+    @media (min-width: 992px) {
+      line-height: $social-media-link-dim-992 + 2px;
+      font-size: $social-media-link-font-size-992;
+    }
+    @media (min-width: 1200px) {
+      line-height: $social-media-link-dim-1200 + 2px;
+      font-size: $social-media-link-font-size-1200;
+    }
   }
   .social-media-link.twitter {
     background-color: #4099ff;
   }
   .social-media-link.twitter:before {
     content: "\f099";
+    position: relative;
+    left: 1px;
   }
   .social-media-link.facebook {
     background-color: #3b5998;
   }
   .social-media-link.facebook:before {
     content: "\f09a";
+    position: relative;
+    left: -0.5px;
   }
   .social-media-link.instagram {
     background: white;
@@ -654,8 +697,21 @@ ul.leafylist li li:first-child {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     content: "\f16d";
-    font-size: 24px;
-    line-height: 42px;
+    $instagram-icon-size-bump: 2px;
+    line-height: $social-media-link-dim + $instagram-icon-size-bump;
+    font-size: $social-media-link-font-size + $instagram-icon-size-bump;
+    @media (min-width: 768px) {
+      line-height: $social-media-link-dim-768 + $instagram-icon-size-bump;
+      font-size: $social-media-link-font-size-768 + $instagram-icon-size-bump - 1;
+    }
+    @media (min-width: 992px) {
+      line-height: $social-media-link-dim-992 + $instagram-icon-size-bump - 1;
+      font-size: $social-media-link-font-size-992 + $instagram-icon-size-bump;
+    }
+    @media (min-width: 1200px) {
+      line-height: $social-media-link-dim-1200 + $instagram-icon-size-bump;
+      font-size: $social-media-link-font-size-1200 + $instagram-icon-size-bump;
+    }
   }
 }
 
