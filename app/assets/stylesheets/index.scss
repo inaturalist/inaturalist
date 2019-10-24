@@ -678,7 +678,18 @@ ul.leafylist li li:first-child {
   .social-media-link.twitter:before {
     content: "\f099";
     position: relative;
-    left: 1px;
+    top: -1px;
+    @media (min-width: 768px) {
+      top: 0px;
+    }
+    @media (min-width: 992px) {
+      top: 0px;
+      left: 1px;
+    }
+    @media (min-width: 1200px) {
+      top: 0px;
+      left: 1px;
+    }
   }
   .social-media-link.facebook {
     background-color: #3b5998;
