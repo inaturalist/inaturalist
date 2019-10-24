@@ -10,31 +10,31 @@ pl:
     many: '%{count} ulubionych'
     other: '%{count} ulubionej'
   x_flags_resolved_html:
-    one: "<span class='count'>1</span> rozwiązane zgłoszenie"
-    few: "<span class='count'>%{count}</span> rozwiązane zgłoszenia"
-    many: "<span class='count'>%{count}</span> rozwiązanych zgłoszeń"
-    other: "<span class='count'>%{count}</span> rozwiązanego zgłoszenia"
+    one: "<span class='count'>1</span> rozpatrzone zgłoszenie"
+    few: "<span class='count'>%{count}</span> rozpatrzone zgłoszenia"
+    many: "<span class='count'>%{count}</span> rozpatrzonych zgłoszeń"
+    other: "<span class='count'>%{count}</span> rozpatrzonego zgłoszenia"
   x_identifications:
-    one: '1 identyfikacja'
-    few: '%{count} identyfikacje'
-    many: '%{count} identyfikacji'
-    other: '%{count} identyfikacji'
+    one: '1 oznaczenie'
+    few: '%{count} oznaczenia'
+    many: '%{count} oznaczeń'
+    other: '%{count} oznaczenia'
   x_identifications_html:
     one: '<span class="count">1</span> identyfikacja'
     few: '<span class="count">%{count}</span> identyfikacje'
     many: '<span class="count">%{count}</span> identyfikacji'
     other: '<span class="count">%{count}</span> identyfikacji'
   x_identifications_:
-    one: '1 Identyfikacja'
-    few: '%{count} Identyfikacje'
-    many: '%{count} Identyfikacji'
-    other: '%{count} Identyfikacji'
+    one: '1 oznaczenie'
+    few: '%{count} oznaczenia'
+    many: '%{count} oznaczeń'
+    other: '%{count} oznaczenia'
   #Number of people who have added identifications
   x_identifiers_html:
-    one: '<span class="count">1</span> identyfikujący'
-    few: '<span class="count">%{count}</span> identyfikujących'
-    many: '<span class="count">%{count}</span> identyfikujących'
-    other: '<span class="count">%{count}</span> identyfikującego'
+    one: '<span class="count">1</span> oznaczający'
+    few: '<span class="count">%{count}</span> oznaczających'
+    many: '<span class="count">%{count}</span> oznaczających'
+    other: '<span class="count">%{count}</span> oznaczającego'
   x_journal_posts_html:
     one: '<span class="count">1</span> wpis w dzienniku'
     few: '<span class="count">%{count}</span> wpisy w dzienniku'
@@ -51,15 +51,15 @@ pl:
     many: '<span class="count">%{count}</span> pasujących taksonów'
     other: '<span class="count">%{count}</span> pasującego taksonu'
   x_misidentifications_of_this_species:
-    one: "1 błędna identyfikacja tego gatunku"
-    few: "%{count} błędne identyfikacje tego gatunku"
-    many: "%{count} błędnych identyfikacji tego gatunku"
-    other: "%{count} błędnej identyfikacji tego gatunku"
+    one: "1 błędne oznaczenie tego gatunku"
+    few: "%{count} błędne oznaczenia tego gatunku"
+    many: "%{count} błędnych oznaczeń tego gatunku"
+    other: "%{count} błędnego oznaczenia tego gatunku"
   x_misidentifications_of_species_in_this_rank:
-    one: "1 błędna identyfikacja gatunku w kategorii %{rank}"
-    few: "%{count} błędne identyfikacje gatunku w kategorii %{rank}"
-    many: "%{count} błędnych identyfikacji gatunku w kategorii %{rank}"
-    other: "%{count} błędnej identyfikacji gatunku w kategorii %{rank}"
+    one: "1 błędne oznaczenie gatunku w kategorii %{rank}"
+    few: "%{count} błędne oznaczenia gatunku w kategorii %{rank}"
+    many: "%{count} błędnych oznaczeń gatunku w kategorii %{rank}"
+    other: "%{count} błędnego oznaczenia gatunku w kategorii %{rank}"
   x_observations:
     one: "1 obserwacja"
     few: "%{count} obserwacje"
@@ -136,10 +136,10 @@ pl:
     many: "<span class='count'>%{count}</span> obserwacji stopnia badawczego"
     other: "<span class='count'>%{count}</span> obserwacji stopnia badawczego"
   x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> obserwacja stopnia badawczego zidentyfikowana co do gatunku lub niżej"
-    few: "<span class='count'>%{count}</span> obserwacje stopnia badawczego zidentyfikowane co do gatunku lub niżej"
-    many: "<span class='count'>%{count}</span> obserwacji stopnia badawczego zidentyfikowanych co do gatunku lub niżej"
-    other: "<span class='count'>%{count}</span> obserwacji stopnia badawczego zidentyfikowanej co do gatunku lub niżej"
+    one: "<span class='count'>1</span> obserwacja stopnia badawczego oznaczona co do gatunku lub niżej"
+    few: "<span class='count'>%{count}</span> obserwacje stopnia badawczego oznaczone co do gatunku lub niżej"
+    many: "<span class='count'>%{count}</span> obserwacji stopnia badawczego oznaczonych co do gatunku lub niżej"
+    other: "<span class='count'>%{count}</span> obserwacji stopnia badawczego oznaczonej co do gatunku lub niżej"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> takson pod opieką"
     few: "<span class='count'>%{count}</span> taksony pod opieką"
@@ -151,19 +151,19 @@ pl:
     many: "%{count} taksonów pasujących do bieżących filtrów"
     other: "%{count} taksonu pasującego do bieżących filtrów"
   x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> zmiana taksonu dodana"
-    few: "<span class='count'>%{count}</span> zmiany taksonu dodane"
-    many: "<span class='count'>%{count}</span> zmian taksonu dodanych"
-    other: "<span class='count'>%{count}</span> zmiany taksonu dodane"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} osób</strong> pomogło %{user} z <strong>%{y} identyfikacjami</strong>"
+    one: "<span class='count'>1</span> zmiana w taksonie dodana"
+    few: "<span class='count'>%{count}</span> zmiany w taksonie dodane"
+    many: "<span class='count'>%{count}</span> zmian w taksonie dodanych"
+    other: "<span class='count'>%{count}</span> zmiany w taksonie dodane"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} osób</strong> pomogło %{user} z <strong>%{y} oznaczeniami</strong>"
   _100_day_trends: Studniowe trendy
-  _percent_ID_d: "% zidentyfikowanych"
+  _percent_ID_d: "% oznaczonych"
   a_community_for_naturalist: Społeczność dla przyrodników
   a_default_taxon_name_will_automatically_created: |
     Domyślna nazwa taksonu zostanie utworzona automatycznie z nazwy naukowej tego taksonu.
     Gdy zapiszesz ten takson, będziesz mógł dodawać tutaj inne nazwy (nazwy zwyczajowe, przestarzałe nazwy naukowe, itp.).
-  a_flag_for_x: "Zgłoszenie dla %{x}"
-  a_member_of: "należy do"
+  a_flag_for_x: "zgłoszenie dla %{x}"
+  a_member_of: "Należy do"
   a_member_of_taxon_html: "należy do %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -185,20 +185,20 @@ pl:
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
-  about: O
+  about: Informacje
   about_blocking: O blokowaniu
   about_charts: O wykresach
   about_community_taxa: O taksonach społeczności
   about_complete_taxa: O kompletnych taksonach
-  about_conservation_status: O Statusie Ochrony
-  about_editing_observation_fields: O edycji notatek terenowych
+  about_conservation_status: O statusie ochronnym
+  about_editing_observation_fields: O edytowaniu pól obserwacji
   about_licenses: O licencjach
-  about_licensing: O licencjach
-  about_muting: O Wyciszaniu
+  about_muting: O wyciszaniu
+  #Header for a section describing taxon names
   about_names: O Nazwach
-  about_places: O Miejscach
-  about_the_cc_licenses: O Licencjach Creative Commons
-  about_these_licenses: O licencjach
+  about_places: O lokalizacjach
+  about_the_cc_licenses: O licencjach Creative Commons
+  about_these_licenses: O tych licencjach
   about_this_bioblitz: O tym bioblitz
   about_this_map: O Tej Mapie
   about_this_project: O tym Projekcie
@@ -649,7 +649,7 @@ pl:
   bulk_import_of_filename_is_complete: "Zbiorczy import %{filename} zakończony"
   by: przez
   by_everyone: Przez wszystkich
-  by_user: "Przez %{user}"
+  by_user: "Użytkownika %{user}"
   by_you: Przez Ciebie
   calendar: Kalendarz
   cancel: Anuluj
@@ -1233,7 +1233,7 @@ pl:
   follow_receive_updates_about_new_observations: Obserwuj (otrzymuj powiadomienia o nowych obserwacjach)
   follow_user: "Obserwuj %{user}"
   followed_projects: Obserwowane Projekty
-  followers: Obserwatorzy
+  followers: Obserwujący
   following: Obserwowane
   for: dla
   for_a_taxon: dla taksonu
@@ -1329,9 +1329,9 @@ pl:
   id: Identyfikacja
   id_withdrawn: Identyfikacja wycofana
   ids_by_taxon: Oznaczenia według taksonu
-  identify: Identyfikuj
-  identify_observations: "Identyfikuj obserwacje"
-  identify_title: "Identyfikuj"
+  identify: Oznaczaj
+  identify_observations: "Oznaczaj obserwacje"
+  identify_title: "Oznaczaj"
   identification: Identyfikacja
   identification_by_user: Identyfikacja użytkownika %{user}
   identification_deleted: Identyfikacja usunięta.
@@ -1343,7 +1343,7 @@ pl:
   computer_vision_suggestion: Sugestia na podstawie rozpoznawania obrazów
   computer_vision_suggestion_desc: |
     Rozpoznawanie obrazów to proces uczenia komputerów rozpoznawania wzorów w ilustracjach. Dostarczamy narzędzi (np. autouzupełniania czy porównywania), które używają rozpoznawania obrazów wyuczonego na bazie zdjęć społeczności, aby proponować sugestie identyfikacji. Ta etykieta informuje, że osoba dodała identyfikację korzystając z jednego z tych narzędzi.
-  identifiers: Identyfikujący
+  identifiers: Oznaczający
   ids: "Identyfikacje"
   if_this_is_a_scientific_name: Jeśli jest to nazwa naukowa, to czy jest aktualnie akceptowana?
   if_you_have_any_trouble_with_the_site_check_out: 'Jeśli masz jakieś pytania, zobacz <a href="%{help_url}">sekcję pomocy</a> lub napisz wiadomość do naszej <a href="%{feedback_url}">grupy</a>.'
@@ -1415,7 +1415,6 @@ pl:
     <a href="mailto:%{help_email}" class="contact">skontaktuj się z nami</a>.
     <a href="%{manage_flags_path}">Zarządzaj zgłoszeniami</a>
   join: Dołączyć do
-  join_and: Dołączyć i
   join_project: Dołącz do tego projektu
   join_some_projects_and_invite_some_observations_html: "Dołącz do <a href='%{join_url}'>projektów</a> i <a href='%{invite_url}'>dodaj obserwacje</a>"
   join_the_largest_group_of_naturalists_in_the_world: Dołącz do największej grupy przyrodników na świecie!
@@ -2499,9 +2498,9 @@ pl:
   today: Dzisiaj
   too_many_results: Zbyt wiele wyników
   tools: Narzędzia
-  top_identifier: Najlepszy identyfikujący
-  top_identifiers: Najlepsi identyfikujący
-  top_identifiers_of_taxon: Najlepsi identyfikujący %{taxon}
+  top_identifier: Najczęściej oznaczający
+  top_identifiers: Najczęściej oznaczający
+  top_identifiers_of_taxon: Najczęściej oznaczający %{taxon}
   top_observer: Najlepszy obserwator
   top_observers: Najlepsi obserwatorzy
   total: Razem
@@ -2583,7 +2582,6 @@ pl:
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} z %{y} ludzi (ponad 2/3) zgadza się, że to jest"
   x_site_is_a_social_network_for_naturalist: |
     %{site} to przyrodniczy portal społecznościowy! Dodawaj obserwacje roślin i zwierząt, dziel się nimi ze znajomymi i badaczami, dowiedz się więcej o świecie.
-  you_are_subscribed_to: "Subskrybujesz "
   you_arent_a_member_of_that_project: Nie jesteś członkiem tego projektu.
   you_arent_following_that_person: "Nie obserwujesz tej osoby."
   you_can_only_block_three_users: Możesz zablokować tylko trzech użytkowników
