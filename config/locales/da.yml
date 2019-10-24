@@ -107,8 +107,8 @@ da:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Om oprindelse
   about_licenses: Om licenser
-  about_licensing: Om ophavsrettigheder
   about_muting: Om slukning
+  #Header for a section describing taxon names
   about_names: Om navne
   about_places: Om steder
   about_the_cc_licenses: Om Creative Commons licenser
@@ -1262,7 +1262,6 @@ da:
   from_eol_collection: Fra EOL-samling
   from_flickr_facebook_etc: Fra Flickr, Facebook, etc.
   from_list: Fra liste
-  from_this: fra dette
   from_photos: Fra fotos
   from_place: Fra et sted
   from_soundcloud: Fra Soundcloud
@@ -1465,7 +1464,6 @@ da:
     <a href="mailto:%{help_email}" class="contact">kontakt os venligst</a>.
     <a href="%{manage_flags_path}">Manage flags</a>
   join: Tilslut
-  join_and: Tilslut og
   join_project: Bliv medlem af dette projekt
   join_some_projects_and_invite_some_observations_html: "Tilslut dig <a href='%{join_url}'>projekter</a> og <a href='%{invite_url}'>invitér nogle observationer</a>"
   join_the_largest_group_of_naturalists_in_the_world: Tilslut dig verdens største gruppe af naturelskere
@@ -3518,7 +3516,6 @@ da:
   title: titel
   title_and_description: "Titel & beskrivelse"
   titled_favorites_and_the_most_recent_additions: '"Favoritter", og de seneste tilføjelser vises i dette felt.'
-  to: til
   to_add_comments: for at tilføje kommentarer
   to_add_ids: for at tilføje IDs
   to_configure_your_widget: for at konfigurere din widget.
@@ -3915,7 +3912,6 @@ da:
   you_are_submitting_obs_with_no_date_or_no_location: |
     Du indsender observationer uden dato eller sted.
     Observationer uden disse informationer er ofte umulige at identificere, og vil ikke blive vist i observationssøgninger.
-  you_are_subscribed_to: "Du abonnerer på"
   you_arent_a_member_of_that_project: Du er ikke medlem af dette projekt.
   you_arent_following_that_person: "Du følger ikke denne person."
   you_can_accept_invitations: Du kan acceptere invitationen her
