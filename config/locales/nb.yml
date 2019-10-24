@@ -138,8 +138,8 @@ nb:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Om etableringsmåter
   about_licenses: Om lisenser
-  about_licensing: Om lisensiering
   about_muting: Om ignorering
+  #Header for a section describing taxon names
   about_names: Om navn
   about_places: Om steder
   about_the_cc_licenses: Om Creative Commons-lisenser
@@ -1343,7 +1343,6 @@ nb:
   from_eol_collection: Fra EOL-samling
   from_flickr_facebook_etc: Fra Flickr, Facebook, osv.
   from_list: Fra ei liste
-  from_this: fra dette
   from_photos: Fra bilder
   from_place: Fra sted
   from_soundcloud: Fra Soundcloud
@@ -1545,7 +1544,6 @@ nb:
   item_flagged_notice_html: |
     Dette har blitt markert som spam og er ikke synlig lenger. Du kan se det fordi du opprettet det, eller du er en sidekurator. Hvis du tror at dette er feil, vennligst <a href="mailto:%{help_email}" class="contact">ta kontakt</a>. <a href="%{manage_flags_path}">Forvalt markeringer</a>
   join: Bli med
-  join_and: Bli med og
   join_project: Bli med i dette prosjektet
   join_some_projects_and_invite_some_observations_html: "Bli med i noen <a href='%{join_url}'>prosjekter</a> og <a href='%{invite_url}'>inviter noen observasjoner</a>"
   join_the_largest_group_of_naturalists_in_the_world: Bli med i verdens største gruppe av naturalister!
@@ -3665,7 +3663,6 @@ nb:
   title: tittel
   title_and_description: "Tittel & beskrivelse"
   titled_favorites_and_the_most_recent_additions: med tittelen "favoritter" og de nyeste tillegg vil vises her.
-  to: til
   to_add_comments: for å legge til kommentarer
   to_add_ids: for å legge til id'er
   to_configure_your_widget: for å konfigurere din widget.
@@ -4073,7 +4070,6 @@ nb:
     Du legger inn observasjoner uten bilder og taksonnavn. Observasjoner uten denne informasjonen er ofte umulige å identifisere og vil standard ikke være synlige i observasjonssøk.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Du legger inn observasjoner uten datoer eller lokaliteter. Observasjoner uten denne informasjonen er ofte umulige å identifisere og vil standard ikke være synlige i observasjonssøk.
-  you_are_subscribed_to: "Du er abonnert på "
   you_arent_a_member_of_that_project: Du er ikke et medlem i det prosjektet.
   you_arent_following_that_person: "Du følger ikke den personen."
   you_can_accept_invitations: Du kan akseptere invitasjonen her
