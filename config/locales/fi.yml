@@ -104,8 +104,8 @@ fi:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Tietoja perustamisen keinoista
   about_licenses: Tietoja lisensseistä
-  about_licensing: Tietoja lisensoinnista
   about_muting: Tietoja hiljentämisestä
+  #Header for a section describing taxon names
   about_names: Tietoja nimistä
   about_places: Tietoja paikoista
   about_the_cc_licenses: Tietoja Creative Commons -lisensseistä
@@ -1159,7 +1159,6 @@ fi:
   from_eol_collection: EOL-kokoelmasta
   from_flickr_facebook_etc: Flickristä, Facebookista, yms.
   from_list: Luettelosta
-  from_this: tästä
   from_photos: Kuvista
   from_place: Paikasta
   from_soundcloud: Soundcloudista
@@ -1323,7 +1322,6 @@ fi:
     <a href="mailto:%{help_email}" class="contact"ota yhteyttä meihin</a>.
     <a href="%{manage_flags_path}">Hallitse lippuja</a>
   join: Liity
-  join_and: Liity ja
   join_project: Liity tähän projektiin
   join_some_projects_and_invite_some_observations_html: "Liity joihinkin <a href='%{join_url}'>projekteihin</a> ja <a href='%{invite_url}'>pyydä joitakin havaintoja</a>"
   join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luonnontieteilijöiden joukkoon!
