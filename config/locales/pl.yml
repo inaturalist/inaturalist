@@ -200,19 +200,19 @@ pl:
   about_the_cc_licenses: O licencjach Creative Commons
   about_these_licenses: O tych licencjach
   about_this_bioblitz: O tym bioblitz
-  about_this_map: O Tej Mapie
-  about_this_project: O tym Projekcie
+  about_this_map: O tej mapie
+  about_this_project: O tym projekcie
   about_trips_html: "<h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie \"obecności\" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>"
   about_x: "O %{x}"
   acc: 'Dokładność (m)'
   account: Konto
-  account_creation: Konto utworzone
+  account_creation: Tworzenie konta
   account_settings: Ustawienia konta
   accept: zaakceptuj
-  accept_community_identifications: Zezwalaj na identyfikacje społeczności
+  accept_community_identifications: Zezwalaj na oznaczenia społeczności
   accuracy: Dokładność
   accuracy_meters: Dokładność (metry)
-  accuracy_of_the_coordinates: 'Dokładność współrzędnych'
+  accuracy_of_the_coordinates: 'Dokładność współrzędnych w metrach. Możesz to edytować klikając na powyższy link "edytuj" lub klikając na znacznik na mapie i przeciągając uchwyty. Postaraj się, aby koło było na tyle duże, abyś miał pewność, że znajdowałeś się gdzieś w jego obrębie.'
   action: Akcja
   actions: Akcje
   active: Aktywny
@@ -224,7 +224,7 @@ pl:
   add_a_batch_of_observations: Dodaj serię obserwacji
   add_a_batch_of_taxa: Dodaj serię taksonów
   add_a_comment: Dodaj komentarz
-  add_a_field: Dodaj notatkę
+  add_a_field: Dodaj pole
   add_a_flag: Dodaj zgłoszenie
   add_a_name: Dodaj nazwę
   add_a_new_change_group: Dodaj nową grupę zmian
@@ -233,16 +233,16 @@ pl:
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
     Dodaj <a target="_blank" href="%{url}">zamianę taksonu</a> jeżeli chcesz zmienić nazwę
   add_an_assessment: Dodaj ocenę
-  add_an_identification: Dodaj identyfikację
+  add_an_identification: Dodaj oznaczenie
   add_an_observation: Dodaj obserwację
   add_an_observation?: Dodać obserwację?
   add_an_observation_of: "Dodaj obserwację %{taxon}"
   add_annotations_for_x: Dodaj adnotacje dla "%{x}"
   add_annotations_for_controlled_attribute:
-    sex: Dodaj adnotacje dla "płci"
-    plant_phenology: Dodaj adnotacje do "fenologii roślin"
-    life_stage: Dodaj adnotacje do "Stadium rozwoju"
-  add_another_flag: Zgłoś kolejne
+    sex: Dodaj adnotacje dla "Płeć"
+    plant_phenology: Dodaj adnotacje dla "Fenologia roślin"
+    life_stage: Dodaj adnotacje dla "Stadium rozwoju"
+  add_another_flag: Dodaj kolejne zgłoszenie
   add_another_photo: Dodaj kolejne zdjęcie
   add_another_section: Dodaj kolejną sekcję
   add_another_subscription: Dodaj kolejną subskrypcję
@@ -263,7 +263,7 @@ pl:
   add_id: Dodaj identyfikację
   add_new_lexicon: Dodaj nowy język
   add_new_photos_by_their_ids: Dodaj nowe zdjęcia używając ich Flickr ID (zdjęcia muszą być objęte licencją Creative Commons!)
-  add_new_place: Dodaj nowe miejsce
+  add_new_place: Dodaj nową lokalizację
   add_new_rule: Dodaj nową regułę
   add_new_source: "Dodaj nowe źródło..."
   add_new_taxon_name: Dodaj nazwę nowego taksonu
@@ -274,24 +274,24 @@ pl:
   add_observations_by_checking_off: Dodaj obserwacje poprzez odhaczenie gatunków z listy.
   add_observations_project: Dodaj obserwacje do tego projektu
   #Prompt to add a new journal post
-  add_one: Dodaj jeden!
+  add_one: Dodaj jakiś!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
-  add_one_now: Dodaj jeden teraz
+  add_one_now: Dodaj jakieś teraz
   add_photos: Dodaj zdjęcia
   add_photos_to_this_observation: Dodaj zdjęcia do tej obserwacji
   add_place: Dodaj miejsce
-  add_plant_phenology_budding_annotation: 'Dodaj adnotację "Fenologia roślin: Kiełkuje"'
+  add_plant_phenology_budding_annotation: 'Dodaj adnotację: "Fenologia roślin: Pączkuje"'
   add_plant_phenology_flowering_annotation: 'Dodaj adnotację: "Fenologia roślin: Kwitnie"'
   add_plant_phenology_fruiting_annotation: 'Dodaj adnotację: "Fenologia roślin: Owocuje"'
-  add_life_stage_adult_annotation: 'Dodaj adnotację "Stadium rozwoju: Forma dorosła"'
+  add_life_stage_adult_annotation: 'Dodaj adnotację: "Stadium rozwoju: Osobnik dorosły"'
   add_life_stage_teneral_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik teneralny"'
-  add_life_stage_subimago_annotation: 'Dodaj adnotację "Stadium rozwoju: Subimago"'
-  add_life_stage_pupa_annotation: 'Dodaj adnotację "Stadium rozwoju: Poczwarka"'
-  add_life_stage_nymph_annotation: 'Dodaj adnotację "Stadium rozwoju: Nimfa"'
-  add_life_stage_larva_annotation: 'Dodaj adnotację "Stadium rozwoju: Larwa"'
-  add_life_stage_juvenile_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik młodociany"'
-  add_life_stage_egg_annotation: 'Dodaj adnotację "Stadium rozwoju: Jajo"'
+  add_life_stage_subimago_annotation: 'Dodaj adnotację: "Stadium rozwoju: Subimago"'
+  add_life_stage_pupa_annotation: 'Dodaj adnotację: "Stadium rozwoju: Poczwarka"'
+  add_life_stage_nymph_annotation: 'Dodaj adnotację: "Stadium rozwoju: Nimfa"'
+  add_life_stage_larva_annotation: 'Dodaj adnotację: "Stadium rozwoju: Larwa"'
+  add_life_stage_juvenile_annotation: 'Dodaj adnotację: "Stadium rozwoju: Osobnik młodociany"'
+  add_life_stage_egg_annotation: 'Dodaj adnotację: "Stadium rozwoju: Jajo"'
   add_relationship: 'Dodaj powiązanie'
   add_section: Dodaj sekcję
   add_several_observations_at_once: Dodaj kilka obserwacji na raz.
