@@ -1035,8 +1035,9 @@ nl:
   doesnt_have_default_photo: heeft nog geen standaardfoto.
   doh_something_went_wrong: D'oh, er ging iets mis.
   doh_something_went_wrong_error: "Oeps, er liep iets mis: %{error}"
-  #Button text to donate to iNaturalist
-  donate: Doneren
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DONEREN
   done: Klaar
   dont_have_an_account_sign_up_html: Heb je nog geen account?<strong>Meld je aan.</strong>
   dont_send_me_email: "Stuur me geen e-mail!"
@@ -3410,6 +3411,9 @@ nl:
   stop_following_user: "Stop met %{user} te volgen"
   stop_testing: Stop testing
   stop_trusting_this_person_with_your_private_coordinates: Vertrouw deze persoon je verborgen coördinaten niet meer toe
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: WINKEL
   studies_that_used_inaturalist_data_in_year: Studies die iNaturalist-gegevens in %{year} hebben gebruikt
   stuff_just_added: "Stuff die je zojuist hebt toegevoegd ..."
   subject_resolved_noun_html: "%{subject} lost %{noun} op"
