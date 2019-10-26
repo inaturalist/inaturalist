@@ -122,6 +122,25 @@ describe TaxaController do
       delete :destroy, :id => t.id
       expect(Taxon.find_by_id(t.id)).not_to be_blank
     end
+
+    it "should not be possible if descendants are associated with taxon changes" do
+      u = make_curator
+      fam = Taxon.make!( creator: u, rank: Taxon::FAMILY )
+      gen = Taxon.make!( creator: u, rank: Taxon::GENUS, parent: fam )
+      ts = make_taxon_swap( input_taxon: gen )
+      sign_in u
+      delete :destroy, id: fam.id
+      expect( Taxon.find_by_id( fam.id ) ).not_to be_blank
+    end
+    it "should not be possible if descendants are associated with taxon change taxa" do
+      u = make_curator
+      fam = Taxon.make!( creator: u, rank: Taxon::FAMILY )
+      gen = Taxon.make!( creator: u, rank: Taxon::GENUS, parent: fam )
+      ts = make_taxon_split( input_taxon: gen )
+      sign_in u
+      delete :destroy, id: fam.id
+      expect( Taxon.find_by_id( fam.id ) ).not_to be_blank
+    end
   end
   
   describe "update" do
