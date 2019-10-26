@@ -32,10 +32,6 @@ class YearStatistic < ActiveRecord::Base
       year_statistic = year_statistic.where( "site_id IS NULL" )
     end
     year_statistic = year_statistic.first_or_create
-    accumulation = observed_species_accumulation(
-      site: options[:site],
-      verifiable: true
-    )
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, options ),
@@ -54,7 +50,10 @@ class YearStatistic < ActiveRecord::Base
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, options ),
         iconic_taxa_counts: iconic_taxa_counts( year, options ),
-        accumulation: accumulation
+        accumulation: observed_species_accumulation(
+          site: options[:site],
+          verifiable: true
+        )
       },
       growth: {
         observations: observations_histogram_by_created_month( options ),
@@ -565,15 +564,7 @@ class YearStatistic < ActiveRecord::Base
     save!
   end
 
-  # [
-  #   {
-  #     date: "2017-01-01",
-  #     accumulated_species_count: 10,
-  #     novel_species_ids: [1,2,3,4]
-  #   }
-  # ]
   def self.observed_species_accumulation( params = { } )
-    # params = { year: year }
     interval = params.delete(:interval) || "month"
     date_field = params.delete(:date_field) || "created_at"
     params[:user_id] = params[:user].id if params[:user]
@@ -587,7 +578,7 @@ class YearStatistic < ActiveRecord::Base
     end
     params[:hrank] = Taxon::SPECIES
     elastic_params = Observation.params_to_elastic_query( params )
-    histogram_buckets = Observation.elastic_search( elastic_params.merge(
+    histogram_params = elastic_params.merge(
       size: 0,
       aggs: {
         histogram: {
@@ -603,7 +594,33 @@ class YearStatistic < ActiveRecord::Base
           }
         }
       }
-    ) ).response.aggregations.histogram.buckets
+    )
+    histogram_buckets = if params[:user_id] || params[:taxon_id]
+      Observation.elastic_search( histogram_params ).response.aggregations.histogram.buckets
+    else
+      # If we're not scoping this query by something that will keep the counts
+      # reasonable, we need to break this into pieces
+      [
+        ["2008-01-01", "2014-01-01"],
+        ["2014-01-01", "2016-01-01"],
+        ["2016-01-01", "2017-01-01"],
+        ["2017-01-01", "2017-06-01"],
+        ["2017-06-01", "2018-01-01"],
+        ["2018-01-01", "2018-06-01"],
+        ["2018-06-01", "2019-01-01"],
+        ["2019-01-01", "2019-06-01"],
+        ["2019-06-01", "2019-12-31"]
+      ].inject( [] ) do |memo, range|
+        puts "range: #{range.join( " - " )}"
+        memo += Observation.elastic_search( histogram_params.merge(
+          filters: [
+            { range: { date_field => { gte: range[0] } } },
+            { range: { date_field => { lt: range[1] } } },
+          ],
+        ) ).response.aggregations.histogram.buckets
+        memo
+      end
+    end
 
     accumulation_with_all_species_ids = histogram_buckets.each_with_index.inject([]) do |memo, pair|
       bucket, i = pair
