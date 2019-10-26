@@ -255,3 +255,11 @@ def disable_has_subscribers
   disable_elastic_indexing( UpdateAction )
   CONFIG.has_subscribers = :disabled
 end
+
+def enable_user_email_domain_exists_validation
+  CONFIG.user_email_domain_exists_validation = :enabled
+end
+
+def disable_user_email_domain_exists_validation
+  CONFIG.user_email_domain_exists_validation = :disabled
+end

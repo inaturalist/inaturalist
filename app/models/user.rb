@@ -276,6 +276,7 @@ class User < ActiveRecord::Base
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
   validate :validate_email_pattern, on: :create
+  validate :validate_email_domain_exists, on: :create
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -292,10 +293,35 @@ class User < ActiveRecord::Base
     CONFIG.banned_emails.each do |banned_suffix|
       next if failed
       if self.email.match(/#{banned_suffix}$/)
-        errors.add( :email, "domain is not supported" )
+        errors.add( :email, :domain_is_not_supported )
         failed = true
       end
     end
+  end
+
+  # As noted at
+  # https://stackoverflow.com/questions/39721917/check-if-email-domain-is-valid,
+  # this approach is probably going to have some false positives... but probably
+  # not many
+  def validate_email_domain_exists
+    return true if Rails.env.test? && CONFIG.user_email_domain_exists_validation != :enabled
+    return true if self.email.blank?
+    domain = email.split( "@" )[1]
+    dns_response = begin
+      r = nil
+      Timeout::timeout( 5 ) do
+        Resolv::DNS.open do |dns|
+          r = dns.getresources( domain, Resolv::DNS::Resource::IN::MX )
+        end
+      end
+      r
+    rescue Exception => e
+      nil
+    end
+    if dns_response.blank?
+      errors.add( :email, :domain_is_not_supported )
+    end
+    true
   end
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
