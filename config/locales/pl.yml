@@ -281,30 +281,30 @@ pl:
   add_photos: Dodaj zdjęcia
   add_photos_to_this_observation: Dodaj zdjęcia do tej obserwacji
   add_place: Dodaj miejsce
-  add_plant_phenology_budding_annotation: 'Dodaj adnotację: "Fenologia roślin: Pączkuje"'
-  add_plant_phenology_flowering_annotation: 'Dodaj adnotację: "Fenologia roślin: Kwitnie"'
-  add_plant_phenology_fruiting_annotation: 'Dodaj adnotację: "Fenologia roślin: Owocuje"'
-  add_life_stage_adult_annotation: 'Dodaj adnotację: "Stadium rozwoju: Osobnik dorosły"'
+  add_plant_phenology_budding_annotation: 'Dodaj adnotację "Fenologia roślin: Pączkuje"'
+  add_plant_phenology_flowering_annotation: 'Dodaj adnotację "Fenologia roślin: Kwitnie"'
+  add_plant_phenology_fruiting_annotation: 'Dodaj adnotację "Fenologia roślin: Owocuje"'
+  add_life_stage_adult_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik dorosły"'
   add_life_stage_teneral_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik teneralny"'
-  add_life_stage_subimago_annotation: 'Dodaj adnotację: "Stadium rozwoju: Subimago"'
-  add_life_stage_pupa_annotation: 'Dodaj adnotację: "Stadium rozwoju: Poczwarka"'
-  add_life_stage_nymph_annotation: 'Dodaj adnotację: "Stadium rozwoju: Nimfa"'
-  add_life_stage_larva_annotation: 'Dodaj adnotację: "Stadium rozwoju: Larwa"'
-  add_life_stage_juvenile_annotation: 'Dodaj adnotację: "Stadium rozwoju: Osobnik młodociany"'
-  add_life_stage_egg_annotation: 'Dodaj adnotację: "Stadium rozwoju: Jajo"'
+  add_life_stage_subimago_annotation: 'Dodaj adnotację "Stadium rozwoju: Subimago"'
+  add_life_stage_pupa_annotation: 'Dodaj adnotację "Stadium rozwoju: Poczwarka"'
+  add_life_stage_nymph_annotation: 'Dodaj adnotację "Stadium rozwoju: Nimfa"'
+  add_life_stage_larva_annotation: 'Dodaj adnotację "Stadium rozwoju: Larwa"'
+  add_life_stage_juvenile_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik młodociany"'
+  add_life_stage_egg_annotation: 'Dodaj adnotację "Stadium rozwoju: Jajo"'
   add_relationship: 'Dodaj powiązanie'
   add_section: Dodaj sekcję
   add_several_observations_at_once: Dodaj kilka obserwacji na raz.
   add_sex_female_annotation: 'Dodaj adnotację "Płeć: Samica"'
   add_sex_male_annotation: 'Dodaj adnotację "Płeć: Samiec"'
-  add_some_now: Dodaj kilka teraz
+  add_some_now: Dodaj jakieś teraz
   add_tag: Dodaj tag
   add_tags: Dodaj tagi
   add_tags_to_selected_taxa: Dodaj tagi do wybranych taksonów
   add_taxa: Dodaj taksony
   add_taxon_batch_to: "Dodaj serię taksonów do %{list}"
   add_taxon_range: Dodaj zasięg taksonu
-  add_taxonomic_tags_to: "Dodaj tagi taksonu do wybranych zdjęć z Flickra &raquo;"
+  add_taxonomic_tags_to: "Dodaj tagi taksonu do wybranych zdjęć z Flickr &raquo;"
   add_to_a_scheme: Dodaj do schematu
   add_to_a_project: Dodaj do projektu
   add_to_calendar: Dodaj do kalendarza
@@ -312,11 +312,11 @@ pl:
   add_to_favorites: Dodaj do ulubionych
   add_to_list: Dodaj do listy
   add_to_project: Dodaj do projektu
-  add_to_your_life_list: Dodaj do listy życiowej!
+  add_to_your_life_list: Dodaj do swojej listy życiowej!
   add_to_your_list: Dodaj do swojej listy
   add_your_email_to_get: |
-    Dodaj adres email, aby otrzymać informację zwrotną dotyczącą swojej obserwacji.
-    Jeśli nie chcesz podawać adresu email, to wróć tu za jakiś czas!
+    Dodaj swój adres e-mail, aby otrzymywać informacje zwrotne dotyczące Twojej obserwacji.
+    Jeśli nie chcesz podawać adresu e-mail, to wróć tu za jakiś czas!
   add_your_own_observations_at: "Dodaj swoje własne obserwacje na %{site_name}"
   added: Dodano
   added!: Dodano!
@@ -344,22 +344,22 @@ pl:
   admin: Administrator
   admin_s: Administratorzy
   admin_only: Tylko dla administratorów
-  admin_tools: Narzędzia Administracyjne
-  agree: zaakceptuj
-  agree_: Zaakceptuj
-  agree?: Akceptujesz?
+  admin_tools: Narzędzia administracyjne
+  agree: zgadzam się
+  agree_: Zgadzam się
+  agree?: Zgadzasz się?
   agree_with_current_taxon: Zgadzam się z aktualnym taksonem
   agreeing: Zgoda...
   aka: vel
   all: Wszystkie
-  all_colors: "&laquo; wszystkie kolory"
+  all_colors: "&laquo; Wszystkie kolory"
   all_comments: Wszystkie komentarze
-  all_flags_must_be_resolved: Wszystkie zgłoszenia muszą być rozwiązane
+  all_flags_must_be_resolved: Wszystkie zgłoszenia muszą zostać rozstrzygnięte
   all_life: Wszelkie życie
   all_names: Wszystkie nazwy
   all_observations: Wszystkie obserwacje
   all_photos: Wszystkie zdjęcia
-  all_places: "Wszystkie miejsca"
+  all_places: "Wszystkie lokalizacje"
   all_projects: Wszystkie projekty
   all_rank_added_to_the_database:
     phylum: Wszystkie typy dodane do bazy
@@ -394,7 +394,7 @@ pl:
   all_taxa:
     rank:
       kingdom: Królestwo
-      class: Klasa
+      class: Gromada
       phylum: Typ
       species: Gatunek
       order: Rząd
@@ -418,76 +418,76 @@ pl:
       one: "1 roślina"
       few: "%{count} rośliny"
       many: "%{count} roślin"
-      other: "%{count} roślin"
+      other: "%{count} rośliny"
     x_animalia:
       one: "1 zwierzę"
       few: "%{count} zwierzęta"
       many: "%{count} zwierząt"
-      other: "%{count} zwierząt"
+      other: "%{count} zwierzęcia"
     x_mollusca:
       one: "1 mięczak"
       few: "%{count} mięczaki"
       many: "%{count} mięczaków"
-      other: "%{count} mięczaków"
+      other: "%{count} mięczaka"
     x_amphibia:
       one: "1 płaz"
       few: "%{count} płazy"
       many: "%{count} płazów"
-      other: "%{count} płazów"
+      other: "%{count} płaza"
     x_mammalia:
       one: "1 ssak"
       few: "%{count} ssaki"
       many: "%{count} ssaków"
-      other: "%{count} ssaków"
+      other: "%{count} ssaka"
     x_actinopterygii:
       one: "1 promieniopłetwy"
       few: "%{count} promieniopłetwe"
       many: "%{count} promieniopłetwych"
-      other: "%{count} promieniopłetwych"
+      other: "%{count} promieniopłetwego"
     x_reptilia:
       one: "1 gad"
       few: "%{count} gady"
       many: "%{count} gadów"
-      other: "%{count} gadów"
+      other: "%{count} gada"
     x_aves:
       one: "1 ptak"
       few: "%{count} ptaki"
       many: "%{count} ptaków"
-      other: "%{count} ptaków"
+      other: "%{count} ptaka"
     x_insecta:
       one: "1 owad"
       few: "%{count} owady"
       many: "%{count} owadów"
-      other: "%{count} owadów"
+      other: "%{count} owada"
     x_arachnida:
       one: "1 pajęczak"
       few: "%{count} pajęczaki"
       many: "%{count} pajęczaków"
-      other: "%{count} pajęczaków"
+      other: "%{count} pajęczaka"
     x_fungi:
       one: "1 grzyb"
       few: "%{count} grzyby"
       many: "%{count} grzybów"
-      other: "%{count} grzybów"
+      other: "%{count} grzyba"
     x_chromista:
       one: "1 chromista"
       few: "%{count} chromisty"
       many: "%{count} chromistów"
-      other: "%{count} chromistów"
+      other: "%{count} chromisty"
     x_protozoa:
       one: "1 pierwotniak"
       few: "%{count} pierwotniaki"
       many: "%{count} pierwotniaków"
-      other: "%{count} pierwotniaków"
+      other: "%{count} pierwotniaka"
     x_other_animals:
       one: "1 inne zwierzę"
       few: "%{count} inne zwierzęta"
       many: "%{count} innych zwierząt"
-      other: "%{count} innych zwierząt"
+      other: "%{count} innego zwierzęcia"
   all_taxa_: Wszystkie taksony
   all_taxa_in_this_guide: Wszystkie taksony w tym przewodniku
   all_taxonomic_groups: "&laquo; Wszystkie grupy taksonomiczne"
-  all_updates: Wszyskie Zmiany
+  all_updates: Wszystkie aktualizacje
   all_your_observations_will_default_this_time_zone: Wszystkie twoje obserwacje będą przypisane do tej strefy czasowej, chyba że wskażesz inaczej.
   all_your_observations_will_default_to_this_time_zone: Wszystkie twoje obserwacje będą przypisane do tej strefy czasowej, chyba że wskażesz inaczej.
   allow_project_curators_to_view_your_private_coordinates: Zezwól opiekunom projektu na dostęp do ukrytych współrzędnych
@@ -515,24 +515,25 @@ pl:
   any: dowolne
   any_: Dowolne
   apply_to_selected: Zastosuj do wybranych
-  apply_fields: Zastosuj notatki
+  apply_captive_cultivated: "Zastosuj żyje w niewoli / jest hodowany"
+  apply_fields: Zastosuj pola
   apply_darr: "Zastosuj &darr;"
-  apply_these_settings_to_all: Zastosuj ustawienia do wszystkich poniższych obserwacji.
+  apply_these_settings_to_all: Zastosuj te ustawienia do wszystkich poniższych obserwacji.
   appropriate?: Odpowiednie?
   arachnids: pajęczaki
   archives: Archiwa
   are_you_really_sure_want_delete_this_user: Czy jesteś naprawdę pewien, że chcesz usunąć tego użytkownika i cały jego wkład?
-  are_you_sure?: Na pewno?
-  are_you_sure_no_undo: Czy na pewno? Tej czynności nie można cofnąć.
+  are_you_sure?: Czy jesteś pewien?
+  are_you_sure_no_undo: Czy jesteś pewien? Tej czynności nie można cofnąć.
   are_you_sure_delete_post: Czy na pewno chcesz usunąć ten post?
   are_you_sure_delete_this_place: Czy na pewno chcesz usunąć to miejsce?
   are_you_sure_leave_this_project: Czy na pewno chcesz opuścić ten projekt?
   are_you_sure_merge_these_places: Czy na pewno chcesz połączyć te miejsca? Nie można tego cofnąć.
   are_you_sure_remove_photo: "Czy na pewno chcesz usunąć to zdjęcie?"
-  are_you_sure_remove_relationship: Czy chcesz usunąć tę znajomość? Nie będziesz dłużej obserwował tej osoby oraz cofniesz dostęp do ukrytych współrzędnych (jeśli je udostępniłeś).
+  are_you_sure_remove_relationship: Czy na pewno chcesz usunąć tę znajomość? Nie będziesz dłużej obserwował tej osoby oraz cofniesz dostęp do ukrytych współrzędnych (jeśli je udostępniłeś).
   are_you_sure_remove_taxon_from_list: "Czy na pewno chcesz usunąć ten takson z listy?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Jesteś pewien? Strona zostanie załadowana ponownie i możesz utracić niektóre zmiany.
+    Czy jesteś pewien? Strona zostanie załadowana ponownie i możesz utracić niektóre zmiany.
   are_you_sure_want_delete_taxon: "Czy na pewno chesz usunąć ten takson?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Czy jesteś pewien, że chcesz usunąć ten takson? Posiada on taksony potomne.
@@ -552,19 +553,20 @@ pl:
   are_you_sure_want_delete_this_range: Czy na pewno chcesz usunąć ten zasięg?
   are_you_sure_you_want_to_commit_this_change: Czy na pewno chcesz zapisać te zmiany? Nie można tego cofnąć.
   are_you_sure_you_want_to_delete_this: Czy na pewno chcesz to usunąć?
+  are_you_sure_you_want_to_delete_this_assessment?: Czy na pewno chcesz usunąć ocenę?
   are_you_sure_you_want_to_delete_this_photo?: Czy na pewno chcesz usunąć to zdjęcie?
   are_you_sure_you_want_to_delete_this_post: Czy na pewno chcesz usunąć ten post?
-  are_you_sure_you_want_to_delete_this_taxon_change: Czy na pewno chcesz usunąć zmianę taksonu?
+  are_you_sure_you_want_to_delete_this_taxon_change: Czy na pewno chcesz usunąć zmianę w taksonie?
   are_you_sure_you_want_to_remove_all_tags: Czy na pewno chcesz usunąć wszystkie tagi?
   are_you_sure_you_want_to_remove_curator: Czy jesteś pewien, że chcesz usunąć %{user} jako opiekuna?
   are_you_sure_you_want_to_remove_from_project: Czy na pewno chcesz usunąć %{user} z tego projektu?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Czy jesteś pewien, że chcesz usunąć te %{x} taksonów?"
   are_you_sure_you_want_to_remove_this_invitation: Czy na pewno chcesz usunąć to zaproszenie?
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Czy chcesz usunąć ten takson z checklisty w %{place}?"
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Czy na pewno chcesz usunąć ten takson z checklisty %{place}?"
   associated_observations: Powiązane obserwacje
   associated_taxa: Powiązane taksony
   attention: Uwaga
-  you_sure_delete_list: Czy na pewno chcesz usunąć tą listę?
+  you_sure_delete_list: Czy na pewno chcesz usunąć tę listę?
   you_sure_delete_taxon_from_list?: "Czy na pewno chcesz usunąć takson %{taxon} z listy?"
   asc: Rosnąco
   ascending: Rosnąco
@@ -584,7 +586,7 @@ pl:
     cites: Konwencja waszyngtońska (CITES)
   authorize: Autoryzuj
   automatic_short: Automatyczny
-  automatically_add_observations_to_this_project: Automatycznie dodaj obserwacje do tego projektu
+  automatically_add_observations_to_this_project: Automatycznie dodawaj obserwacje do tego projektu
   automatically_update_my_content_for_taxon_changes: Automatycznie aktualizuj moje obserwacje wraz ze zmianami taksonomicznymi
   back: Wstecz
   back_to_all_species: Wróć do wszystkich gatunków
@@ -595,7 +597,7 @@ pl:
   back_to_flags_html: "&laquo; Wróć do zgłoszeń"
   back_to_lists: "Wróć do list %{name}"
   back_to_observation: Wróć do obserwacji
-  back_to_observation_fields: Wróć do notatek terenowych
+  back_to_observation_fields: Wróć do pól obserwacji
   back_to_people: Wróć do użytkowników
   back_to_places: Wróć do miejsc
   back_to_possessive_user_profile: "Wróć do profilu %{possuser}"
@@ -603,13 +605,13 @@ pl:
   back_to_projects: Wróć do projektów
   back_to_suggestions: Wróć do sugestii
   back_to_taxon: "Wróć do %{defaulttaxon}"
-  back_to_taxon_changes: "Wróć do zmian taksonu"
-  back_to_viewing: "Wróć do <i>%{taxon}</i>"
+  back_to_taxon_changes: "Wróć do zmian w taksonie"
+  back_to_viewing: "Wróć do przeglądania <i>%{taxon}</i>"
   back_to_x: "Wróć do %{noun}"
   back_to_x_history: "Wróć do historii %{x}"
   back_to_x_journal: "Wróć do dziennika %{user}"
   back_to_x_blog: "Wróć do bloga %{x}"
-  back_to_your_dashboard: Wróć do strony głównej
+  back_to_your_dashboard: Wróć do swojej strony głównej
   back_to_your_lists: Wróć do swoich list
   back_to_your_journal: Wróć do swojego dziennika
   back_to_your_observations: Wróć do swoich obserwacji
@@ -629,12 +631,12 @@ pl:
   birds: ptaki
   birthday: Urodziny
   black: czarny
-  block_user: Zablokuj Użytkownika
+  block_user: Zablokuj użytkownika
   block_removed: Blokada została zdjęta
-  blocked_users: Zablokowani Użytkownicy
-  blog_widget: Widget bloga
+  blocked_users: Zablokowani użytkownicy
+  blog_widget: Widżet bloga
   blue: niebieski
-  blue_butterfly_etc: "modraszek, motyl, etc."
+  blue_butterfly_etc: "modraszek, motyl, itp."
   blue_icons_represent_political_units: "Niebieskie ikony oznaczają jednostki administracyjne, takie jak państwa, województwa, stany, prowincje i podobne, a zielone ikony oznaczają różnego rodzaju przestrzenie publiczne (parki, rezerwaty). Po przybliżeniu zobaczysz więcej szczegółów."
   body: Treść
   brief_caption: Krótki podpis
@@ -656,8 +658,8 @@ pl:
   cant_edit_or_delete_hidden_content: Nie możesz edytować ani usuwać treści ukrytych przez opiekunów strony
   cant_flag_an_object_that_doesnt_exist: Nie można zgłosić elementu, który nie istnieje
   cant_merge_a_taxon_with_itself: Nie można połączyć taksonu z samym sobą.
-  captive: Hodowany
-  captive_cultivated: Hodowany / Uprawiany
+  captive: Żyje w niewoli
+  captive_cultivated: Żyje w niewoli / Jest hodowany
   card: Karta
   casual: nieformalny
   casual_: Nieformalny
@@ -682,7 +684,7 @@ pl:
   change_descriptions:
     split: Stary takson został podzielony na kilka nowych taksonów
     swap: Zmiana nazwy 1:1
-  change_geoprivacy: 'Zmień geoprywatność'
+  change_geoprivacy: 'Zmień geo-prywatność'
   change_group: Zmień grupę
   change_icon: Zmień ikonę
   change_password: Zmień hasło
@@ -694,8 +696,6 @@ pl:
     stage: Stadium
     drop: Odrzuć
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_from: wydziel z
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podziel na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: włącz do
@@ -704,7 +704,7 @@ pl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: zastąpione przez
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: zastąpione przez
+    replace_with: zastąp
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: zastąpione przez
     dropped: odrzucone
@@ -726,19 +726,19 @@ pl:
   check_list_for_individual_taxa_that: 'Checklisty dla pojedynczych taksonów, które tu występują, np. "%{place} - lista ptaków".'
   check_lists_must_belong_to_a_place: |
     Checklista musi być przypisana do konkretnego miejsca. Aby stworzyć nową checklistę, otwórz stronę z domyślną listą utworzoną dla tego miejsca i kliknij "Stwórz nową checklistę".
-  check_list_of_species_occuring_in: Checklista występujących gatunków na obszarze
+  check_list_of_species_occuring_in: Checklista gatunków występujących w
   check_list_place: "Checklista %{place}"
   check_list_updated: Checklista uaktualniona!
   check_lists_for: "Inne checklisty dla miejsca %{place}"
   check_out_my_observations_at: Jeśli chcesz, możesz zobaczyć moje obserwacje na
-  check_out_our_blog: Sprawdź nasz Blog
-  check_out_what_the_observation: Sprawdź jak wygląda obserwacja, którą próbujesz zidentyfikować.
+  check_out_our_blog: Sprawdź nasz blog
+  check_out_what_the_observation: Sprawdź jak wygląda obserwacja, którą próbujesz oznaczyć.
   check_this_box_if_html: |
     Zaznacz tutaj, jeśli chcesz dodać licencję <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons Uznanie autorstwa - Użytek niekomercyjny</a> do przesłanej zawartości. Oznacza to, że każdy może skopiować i użyć ponownie twoich zdjęć i/lub obserwacji bez pytania cię o pozwolenie, o ile uznają twoje autorstwo i nie wykorzystają utworów w sposób komercyjny. Możesz wybrać inną licencję lub usunąć licencję później, jednak miej na uwadze, że to najlepszy rodzaj licencji do dzielenia się z naukowcami.
   checklist: Checklista
-  choose_a_field: Wybierz notatkę
+  choose_a_field: Wybierz pole
   choose_a_list_above: Wybierz listę powyżej.
   choose_a_place: Wybierz miejsce
   choose_a_taxon: Wybierz takson (opcjonalne)
@@ -772,7 +772,7 @@ pl:
   comment: komentarz
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentarz
-  comment_deleted: Komentarz skasowany
+  comment_deleted: Komentarz usunięty
   comments: Komentarze
   comments_by_me: Moje komentarze
   comments_on: Komentarze do
