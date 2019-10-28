@@ -1,128 +1,128 @@
 en:
   x_comments:
-    one: '1 comment'
+    one: '%{count} comment'
     other: '%{count} comments'
   x_faves:
-    one: '1 fave'
+    one: '%{count} fave'
     other: '%{count} faves'
   x_flags_resolved_html:
-    one: "<span class='count'>1</span> flag resolved"
+    one: "<span class='count'>%{count}</span> flag resolved"
     other: "<span class='count'>%{count}</span> flags resolved"
   x_identifications:
-    one: '1 identification'
+    one: '%{count} identification'
     other: '%{count} identifications'
   x_identifications_html:
-    zero: '<span class="count">0</span> identifications'
-    one: '<span class="count">1</span> identification'
+    zero: '<span class="count">%{count}</span> identifications'
+    one: '<span class="count">%{count}</span> identification'
     few: '<span class="count">%{count}</span> identifications'
     many: '<span class="count">%{count}</span> identifications'
     other: '<span class="count">%{count}</span> identifications'
   x_identifications_:
-    zero: '0 Identifications'
-    one: '1 Identification'
+    zero: '%{count} Identifications'
+    one: '%{count} Identification'
     few: '%{count} Identifications'
     many: '%{count} Identifications'
     other: '%{count} Identifications'
   # Number of people who have added identifications
   x_identifiers_html:
-    zero: '<span class="count">0</span> Identifiers'
-    one: '<span class="count">1</span> Identifier'
+    zero: '<span class="count">%{count}</span> Identifiers'
+    one: '<span class="count">%{count}</span> Identifier'
     few: '<span class="count">%{count}</span> Identifiers'
     many: '<span class="count">%{count}</span> Identifiers'
     other: '<span class="count">%{count}</span> Identifiers'
   # Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
-    one: 1 life list first
+    one: "%{count} life list first"
     other: "%{count} life list firsts"
   x_journal_posts_html:
-    one: '<span class="count">1</span> journal post'
+    one: '<span class="count">%{count}</span> journal post'
     other: '<span class="count">%{count}</span> journal posts'
   x_matching_taxa:
-    one: '1 matching taxon'
+    one: '%{count} matching taxon'
     other: '%{count} matching taxa'
   x_matching_taxa_html:
-    one: '<span class="count">1</span> matching taxon'
+    one: '<span class="count">%{count}</span> matching taxon'
     other: '<span class="count">%{count}</span> matching taxa'
   x_misidentifications_of_this_species:
-    one: "1 misidentification of this species"
+    one: "%{count} misidentification of this species"
     other: "%{count} misidentifications of this species"
   x_misidentifications_of_species_in_this_rank:
-    one: "1 misidentification of species in this %{rank}"
+    one: "%{count} misidentification of species in this %{rank}"
     other: "%{count} misidentifications of species in this %{rank}"
   x_observations:
-    zero: "0 observations"
-    one: "1 observation"
+    zero: "%{count} observations"
+    one: "%{count} observation"
     few: "%{count} observations"
     many: "%{count} observations"
     other: "%{count} observations"
   x_observations_:
-    zero: "0 Observations"
-    one: "1 Observation"
+    zero: "%{count} Observations"
+    one: "%{count} Observation"
     few: "%{count} Observations"
     many: "%{count} Observations"
     other: "%{count} Observations"
   x_observations_html:
-    zero: "<span class='count'>0</span> observations"
-    one: "<span class='count'>1</span> observation"
+    zero: "<span class='count'>%{count}</span> observations"
+    one: "<span class='count'>%{count}</span> observation"
     few: "<span class='count'>%{count}</span> observations"
     many: "<span class='count'>%{count}</span> observations"
     other: "<span class='count'>%{count}</span> observations"
   x_observations_link_html:
-    one: "<a href='%{url}'>1 observation</a>"
+    one: "<a href='%{url}'>%{count} observation</a>"
     other: "<a href='%{url}'>%{count} observations</a>"
   x_observations_reviewed_html:
-    one: "<span class='count'>1</span> observation reviewed"
+    one: "<span class='count'>%{count}</span> observation reviewed"
     other: "<span class='count'>%{count}</span> observations reviewed"
   x_observers_html:
-    zero: '<span class="count">0</span> Observers'
-    one: '<span class="count">1</span> Observer'
+    zero: '<span class="count">%{count}</span> Observers'
+    one: '<span class="count">%{count}</span> Observer'
     few: '<span class="count">%{count}</span> Observers'
     many: '<span class="count">%{count}</span> Observers'
     other: '<span class="count">%{count}</span> Observers'
   x_others:
-    one: "1 other"
+    one: "%{count} other"
     other: "%{count} others"
   x_photos:
-    one: "1 photo"
+    one: "%{count} photo"
     other: "%{count} photos"
   x_new_species:
-    one: "1 New Species"
+    one: "%{count} New Species"
     other: "%{count} New Species"
   x_species:
-    zero: "0 Species"
-    one: '1 Species'
+    zero: "%{count} Species"
+    one: '%{count} Species'
     few: '%{count} Species'
     many: '%{count} Species'
     other: '%{count} Species'
   x_species_html:
-    zero: "<span class='count'>0</span> species"
-    one: "<span class='count'>1</span> species"
+    zero: "<span class='count'>%{count}</span> species"
+    one: "<span class='count'>%{count}</span> species"
     few: "<span class='count'>%{count}</span> species"
     many: "<span class='count'>%{count}</span> species"
     other: "<span class='count'>%{count}</span> species"
   x_species_link_html:
-    one: "<a href='%{url}'>1 species</a>"
+    one: "<a href='%{url}'>%{count} species</a>"
     other: "<a href='%{url}'>%{count} species</a>"
   x_suggestions_filtered_by_colon:
-    one: "1 Suggestion Filtered By:"
+    one: "%{count} Suggestion Filtered By:"
     other: "%{count} Suggestions Filtered By:"
   x_taxa_observed_html:
-    one: "<span class='count'>1</span> taxon observed"
+    one: "<span class='count'>%{count}</span> taxon observed"
     other: "<span class='count'>%{count}</span> taxa observed"
   x_research_grade_observations_html:
-    one: "<span class='count'>1</span> research-grade observation"
+    one: "<span class='count'>%{count}</span> research-grade observation"
     other: "<span class='count'>%{count}</span> research-grade observations"
   x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> research-grade observation ID'd to species or lower"
+    one: "<span class='count'>%{count}</span> research-grade observation ID'd to species or lower"
     other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower"
   x_taxa_curated_html:
-    one: "<span class='count'>1</span> taxon curated"
+    one: "<span class='count'>%{count}</span> taxon curated"
     other: "<span class='count'>%{count}</span> taxa curated"
   x_taxa_matching_current_filters: 
-    one: "1 taxon matching current filters"
+    one: "%{count} taxon matching current filters"
     other: "%{count} taxa matching current filters"
   x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> taxon change added"
+    one: "<span class='count'>%{count}</span> taxon change added"
     other: "<span class='count'>%{count}</span> taxon changes added"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
   _100_day_trends: 100 Day Trends
@@ -262,7 +262,6 @@ en:
   # "one" refers to a photo
   add_one_now: Add One Now
   add_photos: Add Photos
-  add_photos_to_this_observation: Add Photos to This Observation
   add_place: Add Place
   add_plant_phenology_budding_annotation: 'Add "Plant Phenology: Budding" annotation'
   add_plant_phenology_flowering_annotation: 'Add "Plant Phenology: Flowering" annotation'
@@ -398,46 +397,46 @@ en:
     reptiles: Reptiles
     life: Life
     x_plantae: 
-      one: "1 plant"
+      one: "%{count} plant"
       other: "%{count} plants"
     x_animalia: 
-      one: "1 animal"
+      one: "%{count} animal"
       other: "%{count} animals"
     x_mollusca: 
-      one: "1 mollusk"
+      one: "%{count} mollusk"
       other: "%{count} mollusks"
     x_amphibia: 
-      one: "1 amphibian"
+      one: "%{count} amphibian"
       other: "%{count} amphibians"
     x_mammalia: 
-      one: "1 mammal"
+      one: "%{count} mammal"
       other: "%{count} mammals"
     x_actinopterygii: 
-      one: "1 ray-finned fish"
+      one: "%{count} ray-finned fish"
       other: "%{count} ray-finned fishes"
     x_reptilia: 
-      one: "1 reptile"
+      one: "%{count} reptile"
       other: "%{count} reptiles"
     x_aves: 
-      one: "1 bird"
+      one: "%{count} bird"
       other: "%{count} birds"
     x_insecta: 
-      one: "1 insect"
+      one: "%{count} insect"
       other: "%{count} insects"
     x_arachnida: 
-      one: "1 arachnid"
+      one: "%{count} arachnid"
       other: "%{count} arachnids"
     x_fungi: 
-      one: "1 fungus"
+      one: "%{count} fungus"
       other: "%{count} fungi"
     x_chromista: 
-      one: "1 chromist"
+      one: "%{count} chromist"
       other: "%{count} chromists"
     x_protozoa:
-      one: "1 protozoan"
+      one: "%{count} protozoan"
       other: "%{count} protozoa"
     x_other_animals: 
-      one: "1 other animal"
+      one: "%{count} other animal"
       other: "%{count} other animals"
   all_taxa_: All taxa
   all_taxa_in_this_guide: All taxa in this guide
@@ -461,9 +460,6 @@ en:
   ancestor_taxon: Ancestor Taxon
   and: and
   and_other_taxa: "&amp; Other Taxa"
-  and_x_more_people!: 
-    one: "and 1 more person!"
-    other: "and %{count} more people!"
   android: Android
   animals: Animals
   annotation: Annotation
@@ -771,7 +767,6 @@ en:
   choose_tags: Choose tags
   choose_taxon: Choose a taxon
   choose_what_kind_of_change_youre_creating: "Choose what kind of change you're creating."
-  choose_your_username: Choose your username
   cid_d_to_genus: CID'd to Genus
   citation: Citation
   classification: Classification
@@ -2563,7 +2558,6 @@ en:
   pi_consent_child_label: |
     I consent to allow iNaturalist to store and process limited kinds of
     personal information about my child in order to manage my child's account
-  pick_a_username: Pick a username
   pin_verb: Pin
   pink: pink
   pinned_locations_desc: |
@@ -4242,7 +4236,7 @@ en:
   x_journal_middot: "%{user}'s Journal •"
   x_journal_new_post: "%{user}'s Journal • New Post"
   x_observations_failed:
-    one: "1 observation failed"
+    one: "%{count} observation failed"
     other: "%{count} observations failed"
   x_of_y: "%{x} of %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} of %{y} people (over 2/3) agree it is"
@@ -4372,11 +4366,6 @@ en:
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
   your_activation_code_was_missing: "Your activation code was missing.  Please follow the URL from your email."
   your_browser_does_not_support_the_audio_element: Your browser does not support the audio element.
-  your_coarser_id: |
-    Your coarser ID of <span class='taxon'>%{coarser_taxon_name}</span> implies that you
-    disagree with the existing finer ID of
-    <span class='taxon'>%{finer_taxon_name}</span>. Is this what you want to do?<br><br>
-    <a href='/pages/getting+started' target='_blank'>Learn more about how identifications work &raquo;</a>
   your_comment_was_saved: Your content was saved
   your_content: Your Content
   your_contributions_to_project: "Your contributions to %{project_title}"
@@ -6137,7 +6126,7 @@ en:
           By deleting your account you will remove
         x_observations_html:
           one: |
-            <strong class="count">1 observation</strong>,
+            <strong class="count">%{count} observation</strong>,
             including the work of the
             <strong class="count">%{helpers_count} people</strong> who have
             helped you out with identifications
@@ -6148,7 +6137,7 @@ en:
             helped you out with identifications
         x_identifications_html:
           one: |
-            <strong class="count">your 1 identification</strong>
+            <strong class="count">your %{count} identification</strong>
             on another person's observation, which will potentially affect the
             data quality of that observation
           other: |
@@ -6157,7 +6146,7 @@ en:
             people</strong>, which will potentially affect the data quality of
             those observations
         x_comments_html:
-          one: <strong class="count">1 comment</strong> you've added
+          one: <strong class="count">%{count} comment</strong> you've added
           other: <strong class="count">%{count} comments</strong> you've added
         furthermore_cannot_undo_html: |
           Furthermore, <strong>this action cannot be undone.</strong> If you
@@ -6530,38 +6519,38 @@ en:
   datetime:
     distance_in_words:
       about_x_hours:
-        one: about 1 hour
+        one: about %{count} hour
         other: about %{count} hours
       about_x_months:
-        one: about 1 month
+        one: about %{count} month
         other: about %{count} months
       about_x_years:
-        one: about 1 year
+        one: about %{count} year
         other: about %{count} years
       almost_x_years:
-        one: almost 1 year
+        one: almost %{count} year
         other: almost %{count} years
       half_a_minute: half a minute
       less_than_x_minutes:
-        one: less than a minute
+        one: less than %{count} minute
         other: less than %{count} minutes
       less_than_x_seconds:
-        one: less than 1 second
+        one: less than %{count} second
         other: less than %{count} seconds
       over_x_years:
-        one: over 1 year
+        one: over %{count} year
         other: over %{count} years
       x_days:
-        one: 1 day
+        one: "%{count} day"
         other: '%{count} days'
       x_minutes:
-        one: 1 minute
+        one: "%{count} minute"
         other: '%{count} minutes'
       x_months:
-        one: 1 month
+        one: "%{count} month"
         other: '%{count} months'
       x_seconds:
-        one: 1 second
+        one: "%{count} second"
         other: '%{count} seconds'
     countdown_x_days:
       one: day
@@ -6608,18 +6597,18 @@ en:
       requires_privilege_organizer: must have 50 verifiable observations to do that
       taken: has already been taken
       too_long:
-        one: is too long (maximum is 1 character)
+        one: is too long (maximum is %{count} character)
         other: is too long (maximum is %{count} characters)
       too_short:
-        one: is too short (minimum is 1 character)
+        one: is too short (minimum is %{count} character)
         other: is too short (minimum is %{count} characters)
       wrong_length:
-        one: is the wrong length (should be 1 character)
+        one: is the wrong length (should be %{count} character)
         other: is the wrong length (should be %{count} characters)
     template:
       body: 'There were problems with the following fields:'
       header:
-        one: 1 error prohibited this %{model} from being saved
+        one: "%{count} error prohibited this %{model} from being saved"
         other: '%{count} errors prohibited this %{model} from being saved'
   helpers:
     defaults:
