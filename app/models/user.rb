@@ -306,7 +306,7 @@ class User < ActiveRecord::Base
   def validate_email_domain_exists
     return true if Rails.env.test? && CONFIG.user_email_domain_exists_validation != :enabled
     return true if self.email.blank?
-    domain = email.split( "@" )[1]
+    domain = email.split( "@" )[1].strip
     dns_response = begin
       r = nil
       Timeout::timeout( 5 ) do
@@ -315,8 +315,18 @@ class User < ActiveRecord::Base
         end
       end
       r
-    rescue Exception => e
-      nil
+    rescue Timeout::Error
+      begin
+        r = nil
+        Timeout::timeout( 5 ) do
+          Resolv::DNS.open do |dns|
+            r = dns.getresources( domain, Resolv::DNS::Resource::IN::A )
+          end
+        end
+        r
+      rescue Timeout::Error
+        r = nil
+      end
     end
     if dns_response.blank?
       errors.add( :email, :domain_is_not_supported )
