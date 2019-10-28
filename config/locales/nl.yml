@@ -4154,6 +4154,7 @@ nl:
   you_cant_flag_that: Je kunt dat niet melden
   you_cant_leave_a_project_you_created: Je kan geen project verlaten dat je zelf hebt aangemaakt.
   you_cant_rotate_photos_hostde_outside: "Je kunt foto's die buiten %{site_name} worden gehost niet roteren."
+  you_cannot_delete_taxa_involved_in_taxon_changes: Je kunt geen taxa verwijderen die onderdeel zijn van taxonwijzigingen of die taxa bevatten die onderdeel zijn van taxonwijzigingen
   you_curate_a_project_that_contains_this_observation: Je stelt een project samen dat deze waarneming bevat
   you_curate_a_project_that_contains_this_observation_desc: |
     Je kunt verborgen coördinaten zien wanneer je een project beheert dat een waarneming bevat en de waarnemer daarvan er voor heeft gekozen om de coördinaten met curatoren van dat project te delen.
@@ -6145,6 +6146,7 @@ nl:
                 moet beginnen met een letter, mag geen spaties bevatten en enkel gebruik maken van letters, cijfers, liggende streepjes en underscores
             email:
               must_look_like_an_email_address: moet eruit zien als een e-mailadres
+              domain_is_not_supported: domein wordt niet ondersteund
         user_parent:
           attributes:
             email:
