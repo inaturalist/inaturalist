@@ -1035,6 +1035,9 @@ it:
   doesnt_have_default_photo: non ha ancora una foto predefinita.
   doh_something_went_wrong: Oh, qualcosa è andato storto.
   doh_something_went_wrong_error: "Ahi, qualcosa è andato storto: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: FAI UNA DONAZIONE
   done: Fatto
   dont_have_an_account_sign_up_html: Non hai un'utenza? <strong>Registrati.</strong>
   dont_send_me_email: "Non inviarmi nessuna e-mail!"
@@ -3375,6 +3378,9 @@ it:
   stop_following_user: "Smetti di seguire %{user}"
   stop_testing: Termina il test
   stop_trusting_this_person_with_your_private_coordinates: Smetti di rivelare a questa persona le tue coordinate nascoste
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: NEGOZIO
   studies_that_used_inaturalist_data_in_year: Studi che hanno utilizzato i dati di iNaturalist nel %{year}
   stuff_just_added: "Le cose che hai appena aggiunto..."
   subject_resolved_noun_html: "%{subject} ha risolto %{noun}"
@@ -4105,6 +4111,7 @@ it:
   you_cant_flag_that: Questo non lo puoi contrassegnare!
   you_cant_leave_a_project_you_created: Non puoi lasciare un progetto che hai creato!
   you_cant_rotate_photos_hostde_outside: "Non puoi ruotare le foto ospitate al di fuori di %{site_name}."
+  you_cannot_delete_taxa_involved_in_taxon_changes: Non puoi eliminare i taxa coinvolti in modifiche di taxon o che contengono taxa coinvolti in modifiche di taxon
   you_curate_a_project_that_contains_this_observation: Tu curi un progetto che contiene questa osservazione
   you_curate_a_project_that_contains_this_observation_desc: |
     Tu puoi vedere le coordinate oscurate quando curi un progetto che contiene un osservazione e l'osservatore ha scelto di condividere le coordinate con i curatori di quel progetto.
@@ -5949,6 +5956,7 @@ it:
                 deve iniziare con una lettera, non contenere spazi e deve avere solo lettere, numeri, trattini e trattini in basso
             email:
               must_look_like_an_email_address: deve sembrare un indirizzo email
+              domain_is_not_supported: il dominio non è supportato
         user_parent:
           attributes:
             email:
