@@ -1,31 +1,4 @@
 lb:
-  x_comments:
-    one: '1 Bemierkung'
-    other: '%{count} Bemierkungen'
-  x_identifications:
-    one: '1 Identifikatioun'
-    other: '%{count} Identifikatiounen'
-  x_identifications_:
-    one: '1 Identifikatioun'
-    other: '%{count} Identifikatiounen'
-  x_observations:
-    one: "1 Observatioun"
-    other: "%{count} Observatiounen"
-  x_observations_:
-    one: "1 Observatioun"
-    other: "%{count} Observatiounen"
-  x_observations_html:
-    one: "<span class='count'>1</span> Observatioun"
-    other: "<span class='count'>%{count}</span> Observatiounen"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 Observatioun</a>"
-    other: "<a href='%{url}'>%{count} Observatiounen</a>"
-  x_others:
-    one: "1 anerer"
-    other: "%{count} anerer"
-  x_species:
-    one: '1 Aart'
-    other: '%{count} Aarten'
   _100_day_trends: Tendenz iwwer 100 Deeg
   _percent_ID_d: "% ID bestëmmt"
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
@@ -104,7 +77,6 @@ lb:
   #"one" refers to a photo
   add_one_now: Elo eng derbäisetzen
   add_photos: Fotoen derbäisetzen
-  add_photos_to_this_observation: Fotoe bei dës Observatioun derbäisetzen
   add_place: Plaz derbäisetzen
   add_plant_phenology_flowering_annotation: 'Setz d''Informatioun "Planzephänologie: Blitt" derbäi'
   add_plant_phenology_fruiting_annotation: 'Setz d''Informatioun "Planzephänologie: Dréit Friichten" derbäi'
@@ -186,30 +158,6 @@ lb:
     protozoans: Protozoen
     reptiles: Reptilien
     life: Liewen
-    x_plantae:
-      one: "Eng Planz"
-      other: "%{count} Planzen"
-    x_animalia:
-      one: "Een Déier"
-      other: "%{count} Déieren"
-    x_mammalia:
-      one: "1 Mamendéier"
-      other: "%{count} Mamendéieren"
-    x_reptilia:
-      one: "1 Reptil"
-      other: "%{count} Reptilien"
-    x_aves:
-      one: "Ee Vugel"
-      other: "%{count} Vigel"
-    x_insecta:
-      one: "Een Insekt"
-      other: "%{count} Insekten"
-    x_arachnida:
-      one: "1 Spannendéier"
-      other: "%{count} Spannendéieren"
-    x_other_animals:
-      one: "1 anert Déier"
-      other: "%{count} aner Déieren"
   all_updates: All Aktualisatiounen
   allowed_html: Erlaabten HTML
   allowed_values: Erlaabt Wäerter
@@ -342,7 +290,6 @@ lb:
   choose_from_your_lists: Aus Äre Lëschten eraussichen
   choose_rule: Eng Regel eraussichen
   choose_subjects: Sujeten eraussichen
-  choose_your_username: Sicht Äre Benotzernumm eraus
   citation: Citatioun
   classification: Klassifikatioun
   clear: eidel maachen
@@ -998,7 +945,6 @@ lb:
   photos_size_photos: "%{photos_size} Fotoen"
   photos_updated: Fotoen aktualiséiert.
   pi_consent_desc_title: Iwwer Perséinlech Informatiounen
-  pick_a_username: Sicht e Benotzernumm eraus
   pink: rosa
   place: Plaz
   place_deleted: Plaz geläscht.
