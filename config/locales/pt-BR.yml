@@ -1,91 +1,4 @@
 pt-BR:
-  x_comments:
-    one: '1 comentário'
-    other: '%{count} comentários'
-  x_faves:
-    one: '1 favorito'
-    other: '%{count} favoritos'
-  x_flags_resolved_html:
-    one: "<span class='count'>1</span> sinalizador resolvido"
-    other: "<span class='count'>%{count}</span> sinalizadores resolvidos"
-  x_identifications:
-    one: '1 identificação'
-    other: '%{count} identificações'
-  x_identifications_html:
-    one: '<span class="count">1</span> identificação'
-    other: '<span class="count">%{count}</span> identificações'
-  x_identifications_:
-    one: '1 identificação'
-    other: '%{count} Identificações'
-  x_journal_posts_html:
-    one: '<span class="count">1</span> publicação do boletim'
-    other: '<span class="count">%{count}</span> publicações do boletim'
-  x_matching_taxa:
-    one: '1 táxon correspondente'
-    other: '%{count} taxa correspondente'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> táxon correspondente'
-    other: '<span class="count">%{count}</span> taxa correspondente'
-  x_misidentifications_of_this_species:
-    one: "1 identificação incorreta desta espécie"
-    other: "%{count} identificações incorretas desta espécie"
-  x_misidentifications_of_species_in_this_rank:
-    one: "1 erro de identificação de espécies neste %{rank}"
-    other: "%{count} identificações erradas de espécies neste %{rank}"
-  x_observations:
-    one: "1 observação"
-    other: "%{count} observações"
-  x_observations_:
-    one: "1 Observação"
-    other: "%{count} Observações"
-  x_observations_html:
-    one: "<span class='count'>1</span> observações"
-    other: "<span class='count'>%{count}</span> observaçõess"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 observação</a>"
-    other: "<a href='%{url}'>%{count} observações</a>"
-  x_observations_reviewed_html:
-    one: "<span class='count'>1</span> observações revisadas"
-    other: "<span class='count'>%{count}</span> observações revisadas"
-  x_others:
-    one: "1 outra"
-    other: "%{count} outras"
-  x_photos:
-    one: "1 foto"
-    other: "%{count} fotos"
-  x_new_species:
-    one: "1 Nova Espécie"
-    other: "%{count} Novas Espécies"
-  x_species:
-    one: '1 Espécie'
-    other: '%{count} Espécies'
-  x_species_html:
-    one: "<span class='count'>1</span> espécies"
-    other: "<span class='count'>%{count}</span> espécies"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 espécie</a>"
-    other: "<a href='%{url}'>%{count} espécies</a>"
-  x_suggestions_filtered_by_colon:
-    one: "1 Sugestões Filtradas Por:"
-    other: "%{count} Sugestões Filtradas Por:"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> táxon observado"
-    other: "<span class='count'>%{count}</span> táxons observados"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> observação na categoria de pesquisa</span>"
-    other: "<span class='count'>%{count}</span> observações na categoria de pesquisa"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> observação na categoria de pesquisa identificada ao nível de espécie ou menos</span>"
-    other: "<span class='count'>%{count}</span> observações na categoria de pesquisa identificada ao nível de espécie ou menos"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> táxon verificado"
-    other: "<span class='count'>%{count}</span> táxons verificados"
-  x_taxa_matching_current_filters:
-    one: "1 táxon corresponde com filtros selecionados"
-    other: "%{count} táxons correspondem com filtros selecionados"
-  x_taxon_changes_added_html:
-    one: "1 mudança de táxon adicionada"
-    other: "%{count} mudanças de táxon adicionadas"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} pessoas</strong> ajudaram %{user} com <strong>%{y} IDs</strong>"
   _100_day_trends: Tendências de 100 dias
   a_community_for_naturalist: Uma comunidade para naturalistas
@@ -194,7 +107,6 @@ pt-BR:
   #"one" refers to a photo
   add_one_now: Adicionar Uma Agora
   add_photos: Adicione fotos
-  add_photos_to_this_observation: Adicionar fotos para esta observação
   add_place: Adicionar lugar
   add_plant_phenology_budding_annotation: 'Adicionar "Fenologia": Brotamento" anotações'
   add_plant_phenology_flowering_annotation: 'Adicionar "Fenologia": Floração" anotações'
@@ -316,45 +228,6 @@ pt-BR:
     ray_finned_fishes: Actinopterygii, grupo de peixes de barbatanas com raios.
     reptiles: Répteis
     life: Vida
-    x_plantae:
-      one: "1 planta"
-      other: "%{count} plantas"
-    x_mollusca:
-      one: "1 molusco"
-      other: "%{count} moluscos"
-    x_amphibia:
-      one: "1 anfíbio"
-      other: "%{count} anfíbios"
-    x_mammalia:
-      one: "1 mamífero"
-      other: "%{count} mamíferos"
-    x_actinopterygii:
-      one: "1 peixes de barbatanas com raios"
-      other: "%{count} peixes de barbatanas com raios"
-    x_reptilia:
-      one: "1 réptil"
-      other: "%{count} répteis"
-    x_aves:
-      one: "1 ave"
-      other: "%{count} aves"
-    x_insecta:
-      one: "1 inseto"
-      other: "%{count} insetos"
-    x_arachnida:
-      one: "1 aracnídeo"
-      other: "%{count} aracnídeos"
-    x_fungi:
-      one: "1 fungo"
-      other: "%{count} fungos"
-    x_chromista:
-      one: "1 algas pardas e parentes"
-      other: "%{count} algas pardas e parentes"
-    x_protozoa:
-      one: "1 protozoário"
-      other: "%{count} protozoários"
-    x_other_animals:
-      one: "1 outro animal"
-      other: "%{count} outros animais"
   all_taxa_: Todos os táxons
   all_taxa_in_this_guide: Todas as espécies e grupos deste guia
   all_taxonomic_groups: "&laquo; Todos os Grupos Taxonômicos"
@@ -377,9 +250,6 @@ pt-BR:
   ancestor_taxon: Táxon ancestral
   and: e
   and_other_taxa: "&amp; Outros Táxons"
-  and_x_more_people!:
-    one: "e 1 pessoa a mais"
-    other: "e %{count} pessoas a mais"
   animals: Animais
   annotation: Anotação
   annotations: Anotações
@@ -643,7 +513,6 @@ pt-BR:
   choose_tags: Selecionar marcações
   choose_taxon: Escolha um táxon
   choose_what_kind_of_change_youre_creating: "Escolha o tipo de mudança que deseja criar."
-  choose_your_username: Escolha seu nome de usuário
   cid_d_to_genus: CID do gênero
   citation: Citação
   classification: Classificação
@@ -2204,7 +2073,6 @@ pt-BR:
     Eu concordo em permitir que o iNaturalist armazene e processe tipos limitados de informações pessoais sobre mim para gerenciar minha conta
   pi_consent_child_label: |
     Eu concordo em permitir que o iNaturalist armazene e processe tipos limitados de informações pessoais sobre meu filho para gerenciar a conta do meu filho
-  pick_a_username: Escolha um nome de usuário
   pink: rosa
   pinned_locations_desc: |
     Pegue esta combinação de coordenadas, precisão, geocodificação e notas de localidade para uso posterior.
@@ -3704,9 +3572,6 @@ pt-BR:
   x_journal_archives_for_y: "Boletim Informativo de %{user} • Arquivos de"
   x_journal_middot: "Boletim Informativo de %{user} •"
   x_journal_new_post: "Boletim Informativo de %{user} • Nova Publicação"
-  x_observations_failed:
-    one: "1 falha na observação"
-    other: "%{count} falha nas observações"
   x_of_y: "%{x} de %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} de  %{y} pessoas  (mais de 2/3) concordam que é"
   x_is_the_root_of_the_tree: "%{rank} %{name} é a raiz da árvore"
@@ -3811,9 +3676,6 @@ pt-BR:
   your_account_has_been_verified: "Sua conta %{site_name} foi verificada! Por favor entre para continuar."
   your_activation_code_was_missing: "Seu código de ativação está faltando. Por favor siga o endereço de URL que está no seu e-mail."
   your_browser_does_not_support_the_audio_element: Seu navegador não suporta o elemento de áudio.
-  your_coarser_id: |
-    Sua identificação ID para um nível inferior de <span class='taxon'>%{coarser_taxon_name}</span> implica em discordar de uma identificação atual mais refinada de <span class='taxon'>%{finer_taxon_name}</span>. Tem certeza de sua decisão?<br><br>
-    <a href='/pages/getting+started' target='_blank'>Entenda um pouco melhor sobre o funcionamento das identificações de organismo &raquo;</a>
   your_comment_was_saved: Seu conteúdo está salvo.
   your_content: Seu Conteúdo
   your_contributions_to_project: "Suas contribuições para %{project_title}"
@@ -4929,17 +4791,6 @@ pt-BR:
       delete:
         by_deleting_your_account_you_will_remove: |
           Ao excluir sua conta, você removerá
-        x_observations_html:
-          one: |
-            <strong class="count">1 observação</strong>,
-            incluindo o trabalho das
-            <strong class="count">%{helpers_count} pessoas</strong> quem têm
-            ajudado você com identificações
-          other: |
-            <strong class="count">%{count} observações</strong>,
-            incluindo o trabalho das
-            <strong class="count">%{helpers_count} pessoas</strong> quem têm
-            ajudado você com identificações
         furthermore_cannot_undo_html: |
           Além disso, <strong>essa ação não pode ser desfeita.</Strong> Se você mudar de ideia mais tarde, você não está recebendo nada desse conteúdo de volta.
         still_want_to_delete_html: |
@@ -5207,40 +5058,7 @@ pt-BR:
       - Dezembro
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: cerca de 1 hora
-        other: about %{count} horas
-      about_x_months:
-        one: cerca de 1 mês
-        other: about %{count} meses
-      about_x_years:
-        one: cerca de 1 ano
-        other: about %{count} anos
-      almost_x_years:
-        one: quase 1 ano
-        other: almost %{count} anos
       half_a_minute: meio minuto
-      less_than_x_minutes:
-        one: menos de um minuto
-        other: less than %{count} minutos
-      less_than_x_seconds:
-        one: menos de 1 segundo
-        other: less than %{count} segundos
-      over_x_years:
-        one: mair de 1 ano
-        other: over %{count} anos
-      x_days:
-        one: 1 dia
-        other: '%{count} dias'
-      x_minutes:
-        one: 1 minuto
-        other: '%{count} minutos'
-      x_months:
-        one: 1 mês
-        other: '%{count} meses'
-      x_seconds:
-        one: 1 segundo
-        other: '%{count} segundos'
     countdown_x_days:
       one: dia
       other: dias
@@ -5281,20 +5099,8 @@ pt-BR:
         para os outros fazerem isso
       requires_privilege_organizer: deve ter 50 observações verificáveis para fazer isso
       taken: já está sendo utilizado
-      too_long:
-        one: é muito longo (máximo de 1 caractere)
-        other: é muito longo (máximo de %{count} caracteres)
-      too_short:
-        one: é muito curto (mínimo de 1 caractere)
-        other: é muito curto (mínimo de %{count} caracteres)
-      wrong_length:
-        one: é a medida incorreta (seve ter somente 1 caracter)
-        other: é a medida incorreta (deveria ter %{count} caracteres)
     template:
       body: 'Existem problemas com os seguintes campos:'
-      header:
-        one: 1 erro proibiu isto %{model} de ser salvo
-        other: '%{count} erros proibiram isto %{model} de ser salvo'
   helpers:
     defaults:
       title: "ESTE É UM TÍTULO"
@@ -5358,20 +5164,8 @@ pt-BR:
         requires_privilege_speech: "deve ter três observações verificáveis ou três identificações\npara os outros fazerem isso"
         requires_privilege_organizer: deve ter 50 observações verificáveis para fazer isso
         taken: já está sendo utilizado
-        too_long:
-          one: é muito longo (máximo de 1 caractere)
-          other: é muito longo (o máximo é %{count} caracteres)
-        too_short:
-          one: é muito curto (mínimo de 1 caractere)
-          other: é muito curto (mínimo é %{count} caracteres)
-        wrong_length:
-          one: é o tamanho incorreto (deve ser somente com 1 caracter)
-          other: ' é o tamanho incorreto (deve ser %{count} caracteres)'
       template:
         body: 'Ocorreram problemas com os seguintes campos:'
-        header:
-          one: um erro impediu isto %{model} se ser salvo
-          other: '%{count} alguns erros pribiram isto %{model} de ser salvo'
   activerecord:
     models:
       AssessmentSection: Seção de avaliação
@@ -5486,20 +5280,8 @@ pt-BR:
         requires_privilege_speech: "deve ter três observações verificáveis ou três identificações\npara os outros fazerem isso"
         requires_privilege_organizer: deve ter 50 observações verificáveis para fazer isso
         taken: já está sendo utilizado
-        too_long:
-          one: é muito longo (máximo de 1 caractere)
-          other: é muito longo (máximo de %{count} caracteres)
-        too_short:
-          one: é muito curto (mínimo de 1 caractere)
-          other: é muito curto (mínimo é %{count} caracteres)
-        wrong_length:
-          one: é a medida incorreta (seve ter somente 1 caracter)
-          other: é a medida incorreta (deveria ter %{count} caracteres)
       template:
         body: 'Houve problemas com os seguintes campos:'
-        header:
-          one: Um erro impediu este %{model} de ser salvo
-          other: '%{count} erros impediram este %{model} de ser salvo'
       models:
         application:
           attributes:
