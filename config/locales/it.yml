@@ -1,102 +1,4 @@
 it:
-  x_comments:
-    one: '1 commento'
-    other: '%{count} commenti'
-  x_faves:
-    one: '1 preferito'
-    other: '%{count} preferiti'
-  x_flags_resolved_html:
-    one: "<span class='count'>1</span> contrassegno risolto"
-    other: "<span class='count'>%{count}</span> contrassegni risolti"
-  x_identifications:
-    one: '1 identificazione'
-    other: '%{count} identificazioni'
-  x_identifications_html:
-    one: '<span class="count">1</span> identificazione'
-    other: '<span class="count">%{count}</span> identificazioni'
-  x_identifications_:
-    one: '1 identificazione'
-    other: '%{count} identificazioni'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    one: '<span class="count">1</span> Identificatore'
-    other: '<span class="count">%{count}</span> Identificatori'
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    one: 1 prima lista degli esseri viventi
-    other: "%{count} prime liste prime degli esseri viventi"
-  x_journal_posts_html:
-    one: '<span class="count">1</span> post del diario'
-    other: '<span class="count">%{count}</span> post del diario'
-  x_matching_taxa:
-    one: '1 taxon corrispondente'
-    other: '%{count} taxa corrispondenti'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> taxon corrispondente'
-    other: '<span class="count">%{count}</span> taxa corrispondenti'
-  x_misidentifications_of_this_species:
-    one: "1 identificazione errata di questa specie"
-    other: "%{count} identificazioni errate di questa specie"
-  x_misidentifications_of_species_in_this_rank:
-    one: "1 errore di identificazione di specie in questo %{rank}"
-    other: "%{count} errori di identificazione di specie in questo %{rank}"
-  x_observations:
-    one: "1 osservazione"
-    other: "%{count} osservazioni"
-  x_observations_:
-    one: "1 osservazione"
-    other: "%{count} osservazioni"
-  x_observations_html:
-    one: "<span class='count'>1</span> osservazione"
-    other: "<span class='count'>%{count}</span> osservazioni"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 osservazione</a>"
-    other: "<a href='%{url}'>%{count} osservazioni</a>"
-  x_observations_reviewed_html:
-    one: "<span class='count'>1</span> osservazione controllata"
-    other: "<span class='count'>%{count}</span> osservazioni controllate"
-  x_observers_html:
-    one: '<span class="count">1</span> Osservatore'
-    other: '<span class="count">%{count}</span> Osservatori'
-  x_others:
-    one: "un altro"
-    other: "%{count} altri"
-  x_photos:
-    one: "1 foto"
-    other: "%{count} foto"
-  x_new_species:
-    one: "1 nuova specie"
-    other: "%{count} nuove specie"
-  x_species:
-    one: '1 specie'
-    other: '%{count} specie'
-  x_species_html:
-    one: "<span class='count'>1</span> specie"
-    other: "<span class='count'>%{count}</span> specie"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 specie</a>"
-    other: "<a href='%{url}'>%{count} specie</a>"
-  x_suggestions_filtered_by_colon:
-    one: "1 suggerimento filtrato per:"
-    other: "%{count} suggerimenti filtrati per:"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> taxon osservato"
-    other: "<span class='count'>%{count}</span> taxa osservati"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> osservazione livello di ricerca"
-    other: "<span class='count'>%{count}</span> osservazioni livello di ricerca"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> osservazione livello di ricerca identificate al grado di specie o inferiore"
-    other: "<span class='count'>%{count}</span> osservazioni livello di ricerca identificate al grado di specie o inferiore"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> taxon curato"
-    other: "<span class='count'>%{count}</span> taxa curati"
-  x_taxa_matching_current_filters:
-    one: "1 taxon corrisponde ai filtri selezionati"
-    other: "%{count} taxa corrispondono ai filtri selezionati"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> modifica del taxon aggiunti"
-    other: "<span class='count'>%{count}</span> modifiche del taxon aggiunte"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} persone</strong> hanno aiutato %{user} con <strong>%{y} le ID</strong>"
   _100_day_trends: Andamento in 100 giorni
   _percent_ID_d: "% identificate"
@@ -226,7 +128,6 @@ it:
   #"one" refers to a photo
   add_one_now: Aggiungi una ora
   add_photos: Aggiungi foto
-  add_photos_to_this_observation: Aggiungi foto a questa osservazione
   add_place: Aggiungi luogo
   add_plant_phenology_budding_annotation: 'Aggiungi nota "Fenologia della Pianta: Germinazione"'
   add_plant_phenology_flowering_annotation: 'Aggiungi nota "Fenologia della Pianta: Fioritura"'
@@ -360,48 +261,6 @@ it:
     ray_finned_fishes: Attinopterigi
     reptiles: Rettili
     life: Forme di vita
-    x_plantae:
-      one: "1 pianta"
-      other: "%{count} piante"
-    x_animalia:
-      one: "1 animale"
-      other: "%{count} animali"
-    x_mollusca:
-      one: "1 mollusco"
-      other: "%{count} molluschi"
-    x_amphibia:
-      one: "1 anfibio"
-      other: "%{count} anfibi"
-    x_mammalia:
-      one: "1 mammifero"
-      other: "%{count} mammiferi"
-    x_actinopterygii:
-      one: "1 attinopterigio"
-      other: "%{count} attinopterigi"
-    x_reptilia:
-      one: "1 rettile"
-      other: "%{count} rettili"
-    x_aves:
-      one: "1 uccello"
-      other: "%{count} uccelli"
-    x_insecta:
-      one: "1 insetto"
-      other: "%{count} insetti"
-    x_arachnida:
-      one: "1 aracnide"
-      other: "%{count} aracnidi"
-    x_fungi:
-      one: "1 fungo"
-      other: "%{count} funghi"
-    x_chromista:
-      one: "1 cromista"
-      other: "%{count} cromisti"
-    x_protozoa:
-      one: "1 ptotozoo"
-      other: "%{count} protozoi"
-    x_other_animals:
-      one: "1 altro animale"
-      other: "%{count} altri animali"
   all_taxa_: Tutti i taxa
   all_taxa_in_this_guide: Tutti i taxa in questa guida
   all_taxonomic_groups: "&laquo; Tutti i Gruppi Tassonomici"
@@ -424,9 +283,6 @@ it:
   ancestor_taxon: Taxon Antenato
   and: e
   and_other_taxa: "&amp; Altri Taxa"
-  and_x_more_people!:
-    one: "e un'altra persona!"
-    other: "e %{count} altre persone!"
   android: Android
   animals: Animali
   annotation: Annotazione
@@ -728,7 +584,6 @@ it:
   choose_tags: Scegli le etichette
   choose_taxon: Scegli un taxon
   choose_what_kind_of_change_youre_creating: "Scegliere che tipo di modifica stai creando."
-  choose_your_username: Scegli il tuo nome utente
   cid_d_to_genus: Con CID al genere
   citation: Citazione
   classification: Classificazione
@@ -2440,7 +2295,6 @@ it:
     Io acconsento che iNaturalist conservi e processi un limitato tipo di mie informazioni personali al fine di gestire il mio account
   pi_consent_child_label: |
     Io acconsento che iNaturalist conservi e processi un limitato tipo di informazioni personali su mio figlio al fine di gestire l'account di mio figlio
-  pick_a_username: Scegli un nome utente
   pin_verb: Memorizza
   pink: rosa
   pinned_locations_desc: |
@@ -4039,9 +3893,6 @@ it:
   x_journal_archives_for_y: "Diario di %{user} • Archivi di"
   x_journal_middot: "Diario di %{user} •"
   x_journal_new_post: "Diario di %{user} • Nuovo Post"
-  x_observations_failed:
-    one: "1 osservazione fallita"
-    other: "%{count} osservazioni fallite"
   x_of_y: "%{x} di %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} di %{y} persone (oltre 2/3) concordano che è"
   x_is_the_root_of_the_tree: "%{rank}%{name} è la radice dell'albero"
@@ -4155,10 +4006,6 @@ it:
   your_account_has_been_verified: "Il tuo account %{site_name} è stato verificato! Effettua l'accesso per continuare."
   your_activation_code_was_missing: "Manca il tuo codice di attivazione. Per favore vai al link presente sulla tua email."
   your_browser_does_not_support_the_audio_element: Il tuo browser non supporta l'elemento audio.
-  your_coarser_id: |
-    La tua scelta del nome generico <span class='taxon'>%{coarser_taxon_name}</span> implica che tu non sia d'accordo con l'uso del nome più preciso
-    <span class='taxon'>%{finer_taxon_name}</span>. Vuoi confermare questa scelta?<br><br>
-    <a href='/pages/getting+started' target='_blank'>Scopri di più su come funziona il sistema dei nomi. &raquo;</a>
   your_comment_was_saved: Il tuo contenuto è stato salvato
   your_content: Il Tuo Contenuto
   your_contributions_to_project: "I tuoi contributi al progetto %{project_title}"
@@ -5275,19 +5122,6 @@ it:
       delete:
         by_deleting_your_account_you_will_remove: |
           Cancellando la tua utenza tu rimuoverai
-        x_observations_html:
-          one: |
-            <strong class="count">1 osservazione</strong>, incluso il lavoro delle <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato con le identificazioni
-          other: |
-            <strong class="count">%{count} osservazioni</strong>, incluso il lavoro delle <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato con le identificazioni
-        x_identifications_html:
-          one: |
-            <strong class="count">1 tua identificazione</strong> di osservazione di un'altra persona, che potenzialmente influisce sulla qualità dei dati di quell'osservazione
-          other: |
-            <strong class="count">%{count} delle tue identificazioni</strong> di osservazioni di <strong class="count">altre %{helpees_count} persone</strong>, che potenzialmente influisce sulla qualità dei dati di quelle osservazioni
-        x_comments_html:
-          one: <strong class="count">1 commento</strong> che tu hai aggiunto
-          other: <strong class="count">%{count} commenti</strong> che tu hai aggiunto
         furthermore_cannot_undo_html: |
           Inoltre, <strong>questa azione non può essere annullata.</strong> Se dopo cambi idea, non potrai avere indietro nessuno di questi contenuti.
         settings_and_mute_html: |
@@ -5515,40 +5349,7 @@ it:
       - Dicembre
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: circa 1 ora
-        other: circa %{count} ore
-      about_x_months:
-        one: circa 1 mese
-        other: circa %{count} mesi
-      about_x_years:
-        one: circa 1 anno
-        other: circa %{count} anni
-      almost_x_years:
-        one: almeno 1 anno
-        other: almeno %{count} anni
       half_a_minute: mezzo minuto
-      less_than_x_minutes:
-        one: meno di un minuto
-        other: meno di %{count} minuti
-      less_than_x_seconds:
-        one: meno di 1 secondo
-        other: meno di %{count} secondi
-      over_x_years:
-        one: oltre 1 anno
-        other: oltre %{count} anni
-      x_days:
-        one: 1 giorno
-        other: '%{count} giorni'
-      x_minutes:
-        one: 1 minuto
-        other: '%{count} minuti'
-      x_months:
-        one: 1 mese
-        other: '%{count} mesi'
-      x_seconds:
-        one: 1 secondo
-        other: '%{count} secondi'
     countdown_x_days:
       one: giorno
       other: giorni
@@ -5592,20 +5393,8 @@ it:
         devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
       requires_privilege_organizer: devi avere 50 osservazioni verificabili per fare questo
       taken: è già stato preso
-      too_long:
-        one: è troppo lungo (massimo 1 carattere)
-        other: è troppo lungo (massimo %{count} caratteri)
-      too_short:
-        one: è troppo corto (minimo 1 carattere)
-        other: è troppo corto (minimo %{count} caratteri)
-      wrong_length:
-        one: ha una lunghezza sbagliata (dovrebbe essere 1 carattere)
-        other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
     template:
       body: 'Ci sono problemi con i seguenti campi:'
-      header:
-        one: 1 errore ha impedito a questo %{model} di essere salvato
-        other: '%{count} errori hanno impedito a questo %{model} di essere salvato'
   helpers:
     defaults:
       title: "QUESTO E' UN TITOLO"
@@ -5696,20 +5485,8 @@ it:
         requires_privilege_speech: devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
         requires_privilege_organizer: devi avere 50 osservazioni verificabili per fare questo
         taken: è già stato utilizzato
-        too_long:
-          one: è troppo lungo (massimo 1 carattere)
-          other: è troppo lungo (massimo %{count} caratteri)
-        too_short:
-          one: è troppo corto (minimo 1 carattere)
-          other: è troppo corto (minimo %{count} caratteri)
-        wrong_length:
-          one: ha una lunghezza sbagliata (dovrebbe essere 1 carattere)
-          other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
       template:
         body: 'Ci sono stati problemi con i seguenti campi:'
-        header:
-          one: 1 errore impedisce a questo %{model} di essere salvato
-          other: '%{count} errori impediscono a questo %{model} di essere salvato'
   activerecord:
     models:
       AssessmentSection: Sezione valutazioni
@@ -5831,20 +5608,8 @@ it:
         requires_privilege_speech: devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
         requires_privilege_organizer: devi avere 50 osservazioni verificabili per fare questo
         taken: è già stato preso
-        too_long:
-          one: è troppo lungo (massimo 1 carattere)
-          other: è troppo lungo (massimo %{count} caratteri)
-        too_short:
-          one: è troppo corto (minimo 1 carattere)
-          other: è troppo corto (minimo %{count} caratteri)
-        wrong_length:
-          one: ha una lunghezza sbagliata (dovrebbe essere 1 carattere)
-          other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
       template:
         body: 'Ci sono stati problemi con i seguenti campi:'
-        header:
-          one: 1 errore impedisce di salvare questo %{model}
-          other: '%{count} errori impediscono di salvare questo %{model}'
       models:
         application:
           attributes:
