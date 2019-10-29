@@ -1,52 +1,4 @@
 oc:
-  x_comments:
-    one: '1 comentari'
-    other: '%{count} comentaris'
-  x_identifications:
-    one: '1 identificacion'
-    other: '%{count} identificacions'
-  x_identifications_:
-    one: '1 identificacion'
-    other: '%{count} identificacions'
-  x_matching_taxa:
-    one: '1 taxon correspondent'
-    other: '%{count} taxons correspondents'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> taxon correspondent'
-    other: '<span class="count">%{count}</span> taxons correspondents'
-  x_observations:
-    one: "1 observacion"
-    other: "%{count} observacions"
-  x_observations_:
-    one: "1 observacion"
-    other: "%{count} observacions"
-  x_observations_html:
-    one: "<span class='count'>1</span> observacion"
-    other: "<span class='count'>%{count}</span> observacions"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 observacion</a>"
-    other: "<a href='%{url}'>%{count} observacions</a>"
-  x_species:
-    one: '1 espècia'
-    other: '%{count} espècias'
-  x_species_html:
-    one: "<span class='count'>1</span> espècia"
-    other: "<span class='count'>%{count}</span> espècias"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 espècia</a>"
-    other: "<a href='%{url}'>%{count} espècias</a>"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> taxon observat"
-    other: "<span class='count'>%{count}</span> taxons observats"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> observacion de nivèl recèrca</span>"
-    other: "<span class='count'>%{count}</span> observacions de nivèl recèrca</span>"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> observacion de nivèl recèrca per identificar d'espècias o inferior</span>"
-    other: "<span class='count'>%{count}</span> observacions de nivèl recèrca per identificar d'espècias o inferior</span>"
-  x_taxa_matching_current_filters:
-    one: "1 taxon correspondent als filtres actuals"
-    other: "%{count} taxons correspondents als filtres actuals"
   a_community_for_naturalist: Una comunautat pels naturalistas
   a_flag_for_x: "una marca per %{x}"
   a_member_of: "Un membre de"
@@ -121,7 +73,6 @@ oc:
   #"one" refers to a photo
   add_one_now: N'apondre un ara
   add_photos: Apondre de fòtos
-  add_photos_to_this_observation: Apondre de fòtos a aquela observacion
   add_place: Apondre un luòc
   add_several_observations_at_once: Apondre mantuna observacion a l'encòp.
   add_some_now: Apondre quicòm ara
@@ -185,45 +136,6 @@ oc:
     ray_finned_fishes: Peisses amb nadarèlas raionadas
     reptiles: Reptils
     life: Vida
-    x_plantae:
-      one: "1 planta"
-      other: "%{count} plantas"
-    x_mollusca:
-      one: "1 mollusc"
-      other: "%{count} mollusques"
-    x_amphibia:
-      one: "1 anfibian"
-      other: "%{count} anfibians"
-    x_mammalia:
-      one: "1 mamifèr"
-      other: "%{count} mamifèrs"
-    x_actinopterygii:
-      one: "1 peis de nadarèlas raionadas"
-      other: "%{count} peisses de nadarèlas raionadas"
-    x_reptilia:
-      one: "1 reptil"
-      other: "%{count} reptils"
-    x_aves:
-      one: "1 ausèl"
-      other: "%{count} ausèls"
-    x_insecta:
-      one: "1 insècte"
-      other: "%{count} insèctes"
-    x_arachnida:
-      one: "1 aracnid"
-      other: "%{count} aracnids"
-    x_fungi:
-      one: "1 campairòl"
-      other: "%{count} campairòls"
-    x_chromista:
-      one: "1 alga bruna e parent"
-      other: "%{count} algas brunas e parents"
-    x_protozoa:
-      one: "1 protozoari"
-      other: "%{count} protozoaris"
-    x_other_animals:
-      one: "1 autre animal"
-      other: "%{count} autres animals"
   all_taxa_in_this_guide: Autres taxons dins aqueste guida
   all_taxonomic_groups: "&laquo; Totes los gropes taxonomics"
   all_updates: Totas las mesas a jorn
