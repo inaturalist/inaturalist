@@ -1,16 +1,4 @@
 id:
-  x_faves:
-    other: '%{count} hours'
-  x_observations_link_html:
-    other: "<a href='%{url}'>%{count} observasi</a>"
-  x_species:
-    other: '%{count} species'
-  x_species_link_html:
-    other: "<a href='%{url}'>%{count} spesies</a>"
-  x_research_grade_observations_html:
-    other: "<span class='count'>%{count}</span> research-grade observations</span>"
-  x_research_grade_observations_to_species_html:
-    other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower</span>"
   a_community_for_naturalist: Komunitas untuk Naturalis
   a_default_taxon_name_will_automatically_created: |
     Sebuah nama standar takson akan secara otomatis dibuat dari atribut nama ilmiah takson ini. Bila Anda telah menyimpan takson baru ini, Anda akan dapat menambahkan nama lain di sini (nama umum, nama ilmiah usang, dll).
@@ -86,7 +74,6 @@ id:
   #Prompt to add a new journal post
   add_one: Tambahkan satu!
   add_photos: Tambahkan foto
-  add_photos_to_this_observation: Tambahkan foto pada pengamatan ini
   add_place: Tambahkan Tempat
   add_several_observations_at_once: Tambahkan beberapa pengamatan sekaligus
   add_some_now: Tambahkan beberapa sekarang
@@ -379,7 +366,6 @@ id:
   choose_tags: Pilih tanda
   choose_taxon: Pilih taksa
   choose_what_kind_of_change_youre_creating: "Memilih jenis pengubahan yang anda buat."
-  choose_your_username: Pilih nama pengguna anda
   citation: Kutipan
   classification: Pengelompokan
   clear: kosongkan
@@ -1493,7 +1479,6 @@ id:
     original: asli
   photos_size_photos: "%{photos_size} foto"
   photos_updated: Foto diperbarui.
-  pick_a_username: Ambil nama pengguna
   pink: merah muda
   place: Tempat
   place_added_to_inat_by: "Tempat ditambahkan ke %{site_name} oleh"
