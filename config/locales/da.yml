@@ -1,91 +1,4 @@
 da:
-  x_comments:
-    one: '1 kommentar'
-    other: '%{count} kommentarer'
-  x_faves:
-    one: '1 favorit'
-    other: '%{count} favoritter'
-  x_flags_resolved_html:
-    one: "<span class='count'>1</span> markering løst"
-    other: "<span class='count'>%{count}</span> markeringer løst"
-  x_identifications:
-    one: '1 identifikation'
-    other: '%{count} identifikationer'
-  x_identifications_html:
-    one: '<span class="count">1</span> identifikation'
-    other: '<span class="count">%{count}</span> identifikationer'
-  x_identifications_:
-    one: '1 Identifikation'
-    other: '%{count} Identifikationer'
-  x_journal_posts_html:
-    one: '<span class="count">1</span> journalindlæg'
-    other: '<span class="count">%{count}</span> journalindlæg'
-  x_matching_taxa:
-    one: '1 matchende takson'
-    other: '%{count} matchende taksa'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> matchende takson'
-    other: '<span class="count">%{count}</span> matchende taksa'
-  x_misidentifications_of_this_species:
-    one: "1 fejlidentifikation af denne art"
-    other: "%{count} fejlidentifikationer af denne art"
-  x_misidentifications_of_species_in_this_rank:
-    one: "1 fejlidentifikation af arter i denne %{rank}"
-    other: "%{count} fejlidentifikationer af arter i denne %{rank}"
-  x_observations:
-    one: "1 observation"
-    other: "%{count} observationer"
-  x_observations_:
-    one: "1 Observation"
-    other: "%{count} Observationer"
-  x_observations_html:
-    one: "<span class='count'>1</span> observation"
-    other: "<span class='count'>%{count}</span> observationer"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 observation</a>"
-    other: "<a href='%{url}'>%{count} observationer</a>"
-  x_observations_reviewed_html:
-    one: "<span class='count'>1</span> observation gennemgået"
-    other: "<span class='count'>%{count}</span> observationer gennemgået"
-  x_others:
-    one: "1 anden"
-    other: "%{count} andre"
-  x_photos:
-    one: "1 foto"
-    other: "%{count} fotos"
-  x_new_species:
-    one: "1 Ny art"
-    other: "%{count} Nye arter"
-  x_species:
-    one: '1 art'
-    other: '%{count} arter'
-  x_species_html:
-    one: "<span class='count'>1</span> art"
-    other: "<span class='count'>%{count}</span> arter"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 art</a>"
-    other: "<a href='%{url}'>%{count} arter</a>"
-  x_suggestions_filtered_by_colon:
-    one: "1 forslag filtreret efter:"
-    other: "%{count} forslag filtreret efter:"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> takson observeret"
-    other: "<span class='count'>%{count}</span> taksa observeret"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> observation af forskningskvalitet</span>"
-    other: "<span class='count'>%{count}</span> observationer af forskningskvalitet</span>"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> observation af forskningskvalitet identificeret til art eller lavere</span>"
-    other: "<span class='count'>%{count}</span> observationer af forskningskvalitet identificerede til art eller lavere</span>"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> takson kurateret"
-    other: "<span class='count'>%{count}</span> taksa kurateret"
-  x_taxa_matching_current_filters:
-    one: "1 takson matcher aktuelle filtre"
-    other: "%{count} taksa matcher aktuelle filtre"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> taksonændring tilføjet"
-    other: "<span class='count'>%{count}</span> taksonændringer tilføjet"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjalp %{user} med <strong>%{y} IDs</strong>"
   _100_day_trends: 100 dage tendens
   _percent_ID_d: "% ID'et"
@@ -193,7 +106,6 @@ da:
   #"one" refers to a photo
   add_one_now: Tilføj en nu
   add_photos: Tilføj fotos
-  add_photos_to_this_observation: Tilføj fotos til denne observation
   add_place: Tilføj sted
   add_plant_phenology_budding_annotation: 'Tilføj anmærkningen "Plantefænologi: Spirende"'
   add_plant_phenology_flowering_annotation: 'Tilføj noten "Plantefænologi: Blomstrende"'
@@ -327,48 +239,6 @@ da:
     ray_finned_fishes: Strålefinnede fisk
     reptiles: Krybdyr
     life: Liv
-    x_plantae:
-      one: "1 plante"
-      other: "%{count} planter"
-    x_animalia:
-      one: "1 dyr"
-      other: "%{count} dyr"
-    x_mollusca:
-      one: "1 bløddyr"
-      other: "%{count} bløddyr"
-    x_amphibia:
-      one: "1 padde"
-      other: "%{count} padder"
-    x_mammalia:
-      one: "1 pattedyr"
-      other: "%{count} pattedyr"
-    x_actinopterygii:
-      one: "1 strålefinnede fisk"
-      other: "%{count} strålefinnede fisk"
-    x_reptilia:
-      one: "1 krybdyr"
-      other: "%{count} krybdyr"
-    x_aves:
-      one: "1 fugl"
-      other: "%{count} fugle"
-    x_insecta:
-      one: "1 insekt"
-      other: "%{count} insekter"
-    x_arachnida:
-      one: "1 spindler"
-      other: "%{count} spindlere"
-    x_fungi:
-      one: "1 svamp"
-      other: "%{count} svampe"
-    x_chromista:
-      one: "1 chromist"
-      other: "%{count} chromister"
-    x_protozoa:
-      one: "1 protozoer"
-      other: "%{count} protozoer"
-    x_other_animals:
-      one: "1 andet dyr"
-      other: "%{count} andre dyr"
   all_taxa_: Alle taksa
   all_taxa_in_this_guide: Alle taksa i denne Guide
   all_taxonomic_groups: "&laquo; Alle taksonomiske grupper"
@@ -391,9 +261,6 @@ da:
   ancestor_taxon: Stamfader Takson
   and: og
   and_other_taxa: "&amp;Andre taksa"
-  and_x_more_people!:
-    one: "og 1 person mere!"
-    other: "and %{count} personer mere!"
   android: Android
   animals: Dyr
   annotation: Anmærkning
@@ -673,7 +540,6 @@ da:
   choose_tags: Vælg tags
   choose_taxon: Vælg en takson
   choose_what_kind_of_change_youre_creating: "Vælg hvilken ændring du vil foretage."
-  choose_your_username: Vælg dit brugernavn
   cid_d_to_genus: FID'et til slægt
   citation: Citation
   classification: Klassifikation
@@ -2288,7 +2154,6 @@ da:
     Jeg accepterer, at iNaturalist får tilladelse til at gemme og behandle begrænsede former for personlig information om mig, for at administrere min konto
   pi_consent_child_label: |
     Jeg accepterer, at iNaturalist får tilladelse til at gemme og behandle begrænsede former for personlig information om mit barn, for at administrere mit barns konto
-  pick_a_username: Vælg et brugernavn
   pin_verb: Gem
   pink: lyserød
   pinned_locations_desc: |
@@ -3863,9 +3728,6 @@ da:
   x_journal_archives_for_y: "%{user}'s journal • Arkiver for"
   x_journal_middot: "%{user}'s journal •"
   x_journal_new_post: "%{user}'s journal • Nye indlæg"
-  x_observations_failed:
-    one: "1 observation fejlede"
-    other: "%{count} observationer fejlede"
   x_of_y: "%{x} af %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} af %{y} personer (over 2/3) er enig i det er"
   x_is_the_root_of_the_tree: "%{rank} %{name} er roden af træet"
@@ -3972,9 +3834,6 @@ da:
   your_account_has_been_verified: "Din %{site_name} konto er blevet bekræftet! Log venligst ind for at fortsætte."
   your_activation_code_was_missing: "Din aktiveringskode manglede. Følg webadressen fra din email."
   your_browser_does_not_support_the_audio_element: Din browser understøtter ikke lydelementet.
-  your_coarser_id: |
-    Dit løslige ID på <span class='takson'> %{coarser_taxon_name}</span> indebærer, at du er uenig med det eksisterende nøjagtigere ID af
-    <span class='takson'>%{finer_taxon_name}</span>. Er det hvad du vil gøre? <br/><br/><a href='/pages/getting+started' target='_blank'>Få flere oplysninger om, hvordan identifikationer fungerer & raquo;</a>
   your_comment_was_saved: Dit indhold blev gemt
   your_content: Dit indhold
   your_contributions_to_project: "Dine bidrag til %{project_title}"
@@ -5437,28 +5296,6 @@ da:
       delete:
         by_deleting_your_account_you_will_remove: |
           Ved at slette din konto vil du fjerne
-        x_observations_html:
-          one: |
-            <strong class="count">1 observation</strong>,
-            herunder arbejdet som
-            <strong class="count">%{helpers_count} personer</strong> har hjulpet dig med identifikationer
-          other: |
-            <strong class="count">%{count} observationer</strong>,
-            herunder arbejdet som
-            <strong class="count">%{helpers_count} personer</strong> har hjulpet dig med identifikationer
-        x_identifications_html:
-          one: |
-            <strong class="count">din 1 identifikation</strong>
-            af en anden persons observation, som potentielt kan påvirke
-            datakvaliteten af denne observation
-          other: |
-            <strong class="count">%{count} af dine egne identifikationer</strong>
-            af observationerne af <strong class = "count">%{helpees_count} andre
-            folk </strong>, som potentielt kan påvirke datakvaliteten af
-            disse observationer
-        x_comments_html:
-          one: <strong class="count">1 kommentar</strong> du har tilføjet
-          other: <strong class="count">%{count} kommentarer</strong> du har tilføjet
         furthermore_cannot_undo_html: |
           Desuden kan <strong> denne handling ikke fortrydes. </strong> Hvis du senere skifter mening, kan du ikke få noget af dette indhold tilbage.
         settings_and_mute_html: |
@@ -5725,40 +5562,7 @@ da:
       - December
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: omkring 1 time
-        other: omkring %{count} timer
-      about_x_months:
-        one: omkring 1 måned
-        other: omkring %{count} måneder
-      about_x_years:
-        one: omkring 1 år
-        other: omkring %{count} år
-      almost_x_years:
-        one: næsten 1 år
-        other: næsten %{count} år
       half_a_minute: et halvt minut
-      less_than_x_minutes:
-        one: mindre end et minut
-        other: mindre end %{count} minutter
-      less_than_x_seconds:
-        one: mindre end 1 sekund
-        other: mindre end %{count} sekunder
-      over_x_years:
-        one: over 1 år
-        other: over %{count} år
-      x_days:
-        one: 1 dag 
-        other: '%{count} dage'
-      x_minutes:
-        one: 1 minut
-        other: '%{count} minutter'
-      x_months:
-        one: 1 måned
-        other: '%{count} måneder'
-      x_seconds:
-        one: 1 sekund
-        other: '%{count} sekunder'
     countdown_x_days:
       one: dag
       other: dage
@@ -5802,20 +5606,8 @@ da:
         for at andre kan gøre det
       requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
       taken: er allerede blevet taget
-      too_long:
-        one: er for lang (maksimum er 1 tegn)
-        other: er for lang (maksimum er %{count} tegn)
-      too_short:
-        one: er for kort (minimum er 1 tegn)
-        other: er for kort (minimum er %{count} tegn)
-      wrong_length:
-        one: er forkert længde (skal være 1 tegn)
-        other: er forkert længde (skal være %{count} tegn)
     template:
       body: 'Der var problemer med følgende felter:'
-      header:
-        one: 1 fejl forhindrede denne %{model} i at blive gemt
-        other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
   helpers:
     defaults:
       title: "DETTE ER EN TITEL"
@@ -5878,20 +5670,8 @@ da:
         requires_privilege_speech: "skal have tre verificérbare observationer eller tre identifikationer\nfor at andre kan gøre det"
         requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
         taken: er allerede blevet taget
-        too_long:
-          one: er for lang (maksimum er 1 tegn)
-          other: er for lang (maksimum er %{count} tegn)
-        too_short:
-          one: er for kort (minimum er 1 tegn)
-          other: er for kort (minimum er %{count} tegn)
-        wrong_length:
-          one: er forkert længde (skal være 1 tegn)
-          other: er forkert længde (skal være %{count} tegn)
       template:
         body: 'Der var problemer med følgende felter:'
-        header:
-          one: En fejl forhindrede %{model} i at blive gemt
-          other: '%{count} fejl forhindrede %{model} i at blive gemt'
   activerecord:
     models:
       AssessmentSection: Vurdeingssektion
@@ -6006,20 +5786,8 @@ da:
         requires_privilege_speech: "skal have tre verificérbare observationer eller tre identifikationer\nfor at andre kan gøre det"
         requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
         taken: er allerede blevet taget
-        too_long:
-          one: er for lang (maksimum er 1 tegn)
-          other: er for lang (maksimum er %{count} tegn)
-        too_short:
-          one: er for kort (minimum er 1 tegn)
-          other: er for kort (minimum er %{count} tegn)
-        wrong_length:
-          one: er forkert længde (skal være 1 tegn)
-          other: er forkert længde (skal være %{count} tegn)
       template:
         body: 'Der var problemer med følgende felter:'
-        header:
-          one: En fejl forhindrede denne %{model} i at blive gemt
-          other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
       models:
         application:
           attributes:
