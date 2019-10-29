@@ -1,102 +1,4 @@
 nb:
-  x_comments:
-    one: '1 kommentar'
-    other: '%{count} kommentarer'
-  x_faves:
-    one: '1 favoritt'
-    other: '%{count} favorittpoeng'
-  x_flags_resolved_html:
-    one: "<span class='count'>1</span> markering løst"
-    other: "<span class='count'>%{count}</span> markeringer løst"
-  x_identifications:
-    one: '1 identifikasjon'
-    other: '%{count} identifikasjoner'
-  x_identifications_html:
-    one: '<span class="count">1</span> identifikasjon'
-    other: '<span class="count">%{count}</span> identifikasjoner'
-  x_identifications_:
-    one: '1 Identifikasjon'
-    other: '%{count} Identifikasjoner'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    one: '<span class="count">1</span> identifikator'
-    other: '<span class="count">%{count}</span> identifikatorer'
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    one: 1 livsliste-nyhet
-    other: "%{count} livsliste-nyheter"
-  x_journal_posts_html:
-    one: '<span class="count">1</span> journalinnlegg'
-    other: '<span class="count">%{count}</span> journalinnlegg'
-  x_matching_taxa:
-    one: '1 matchende takson'
-    other: '%{count} matchende taksa'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> overensstemmende takson'
-    other: '<span class="count">%{count}</span> overensstemmende taksa'
-  x_misidentifications_of_this_species:
-    one: "1 feilidentifikasjon av denne arten"
-    other: "%{count} feilidentifikasjoner av denne arten"
-  x_misidentifications_of_species_in_this_rank:
-    one: "1 feilidentifikasjon av arter i @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}"
-    other: "%{count} feilidentifikasjoner av arter i @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}"
-  x_observations:
-    one: "1 observasjon"
-    other: "%{count} observasjoner"
-  x_observations_:
-    one: "1 Observasjon"
-    other: "%{count} Observasjoner"
-  x_observations_html:
-    one: "<span class=\"count\">1</span> observasjon"
-    other: "<span class=\"count\">%{count}</span> observasjoner"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 observasjon</a>"
-    other: "<a href='%{url}'>%{count} observasjoner</a>"
-  x_observations_reviewed_html:
-    one: "<span class='antal'>1</span> observasjon gransket"
-    other: "<span class=\"count\">%{count}</span> observasjoner gransket"
-  x_observers_html:
-    one: '<span class="count">1</span> observatør'
-    other: '<span class="count">%{count}</span> observatører'
-  x_others:
-    one: "1 annen"
-    other: "%{count} andre"
-  x_photos:
-    one: "1 bilde"
-    other: "%{count} bilder"
-  x_new_species:
-    one: "1 ny art"
-    other: "%{count} nye arter"
-  x_species:
-    one: '1 art'
-    other: '%{count} arter'
-  x_species_html:
-    one: "<span class='count'>1</span> art"
-    other: "<span class='count'>%{count}</span> arter"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 art</a>"
-    other: "<a href='%{url}'>%{count} arter</a>"
-  x_suggestions_filtered_by_colon:
-    one: "1 forslag filtrert etter:"
-    other: "%{count} forslag filtrert etter:"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> takson observert"
-    other: "<span class='count'>%{count}</span> taksa observert"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> observasjon av forskningskvalitet"
-    other: "<span class='count'>%{count}</span> observasjoner av forskningskvalitet"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> observasjon av forskningskvalitet identifisert til art eller lavere"
-    other: "<span class='count'>%{count}</span> observasjoner av forskningskvalitet identifisert til art eller lavere"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> takson kuratert"
-    other: "<span class='count'>%{count}</span> taksa kuratert"
-  x_taxa_matching_current_filters:
-    one: "1 takson matcher aktuelle filtre"
-    other: "%{count} taksa matcher aktuelle filtre"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> taksonendring lagt til"
-    other: "<span class='count'>%{count}</span> taksonendringer lagt til"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> har hjulpet %{user} med <strong>%{y} id'er</strong>"
   _100_day_trends: 100-dagers trender
   _percent_ID_d: "% identifisert"
@@ -224,7 +126,6 @@ nb:
   #"one" refers to a photo
   add_one_now: Legg til et nå
   add_photos: Legg til bilder
-  add_photos_to_this_observation: Legg til bilder til denne observajonen
   add_place: Legg til sted
   add_plant_phenology_budding_annotation: 'Legg til merknaden "Plantefenologi: Knopper"'
   add_plant_phenology_flowering_annotation: 'Legg til merknaden "Plantefenologi: Blomstrende"'
@@ -355,48 +256,6 @@ nb:
     ray_finned_fishes: Strålefinnefisker
     reptiles: Reptiler
     life: Livet
-    x_plantae:
-      one: "1 plante"
-      other: "%{count} planter"
-    x_animalia:
-      one: "1 dyr"
-      other: "%{count} dyr"
-    x_mollusca:
-      one: "1 bløtdyr"
-      other: "%{count} bløtdyr"
-    x_amphibia:
-      one: "1 amfibie"
-      other: "%{count} amfibier"
-    x_mammalia:
-      one: "1 pattedyr"
-      other: "%{count} pattedyr"
-    x_actinopterygii:
-      one: "1 strålefinnefisk"
-      other: "%{count} strålefinnefisker"
-    x_reptilia:
-      one: "1 reptil"
-      other: "%{count} reptiler"
-    x_aves:
-      one: "1 fugl"
-      other: "%{count} fugler"
-    x_insecta:
-      one: "1 insekt"
-      other: "%{count} insekter"
-    x_arachnida:
-      one: "1 edderkoppdyr"
-      other: "%{count} edderkoppdyr"
-    x_fungi:
-      one: "1 sopp"
-      other: "%{count} sopper"
-    x_chromista:
-      one: "1 gulbrun alge"
-      other: "%{count} gulbrune alger"
-    x_protozoa:
-      one: "1 protozo"
-      other: "%{count} protozoer"
-    x_other_animals:
-      one: "1 annet dyr"
-      other: "%{count} andre dyr"
   all_taxa_: Alle taksa
   all_taxa_in_this_guide: Alle taksa i denne guiden
   all_taxonomic_groups: "&laquo; Alle taksonomiske grupper"
@@ -419,9 +278,6 @@ nb:
   ancestor_taxon: Ane-takson
   and: og
   and_other_taxa: "&amp; Andre taxa"
-  and_x_more_people!:
-    one: "og 1 person til!"
-    other: "og %{count} personer til!"
   android: Android
   animals: Dyr
   annotation: Merknad
@@ -726,7 +582,6 @@ nb:
   choose_tags: Velg etiketter
   choose_taxon: Velg et takson
   choose_what_kind_of_change_youre_creating: "Velg hvilken type endring du oppretter."
-  choose_your_username: Velg ditt brukernavn
   cid_d_to_genus: CID'et til slekt
   citation: Sitering
   classification: Klassifisering
@@ -2430,7 +2285,6 @@ nb:
     Jeg samtykker i at iNaturalist kan lagre og prosessere begrensede typer av personlig informasjon om meg for å administrere min konto
   pi_consent_child_label: |
     Jeg samtykker i at iNaturalist kan lagre og prosessere begrensede typer av personlig informasjon om mitt barn for å administrere kontoen til mitt barn
-  pick_a_username: Velg et brukernavn
   pin_verb: Sett fast
   pink: rosa
   pinned_locations_desc: |
@@ -4018,9 +3872,6 @@ nb:
   x_journal_archives_for_y: "Journalen til %{user} • Arkiv for"
   x_journal_middot: "Journalen til %{user} •"
   x_journal_new_post: "Journalen til %{user} • Nytt innlegg"
-  x_observations_failed:
-    one: "1 observasjon mislykkes"
-    other: "%{count} observasjoner mislykkes"
   x_of_y: "%{x} av %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} av %{y} personer (over 2/3) er enige i at det er"
   x_is_the_root_of_the_tree: "%{rank}%{name} er treets rot"
@@ -4130,8 +3981,6 @@ nb:
   your_account_has_been_verified: "Din konto på %{site_name} er bekreftet! Vennligst logg inn for å fortsette."
   your_activation_code_was_missing: "Din aktiveringskode manglet. Vennligst følg url'en fra din epost."
   your_browser_does_not_support_the_audio_element: Din nettleser støtter ikke audio-elementet.
-  your_coarser_id: |
-    Din grovere id <span class='taxon'>%{coarser_taxon_name}</span> impliserer at du ikke er enig i den eksisterende finere id'en <span class='taxon'>%{finer_taxon_name}</span>. Er det det du vil gjøre?<br><br><a href='/pages/getting+started' target='_blank'>Lær mer om hvordan identifisering fungerer &raquo;</a>
   your_comment_was_saved: Ditt innhold ble lagret
   your_content: Ditt innhold
   your_contributions_to_project: "Dine bidrag til %{project_title}"
@@ -4863,40 +4712,7 @@ nb:
       - desember
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: omtrent 1 time
-        other: omtrent %{count} timer
-      about_x_months:
-        one: omtrent 1 måned
-        other: omtrent %{count} måneder
-      about_x_years:
-        one: omtrent 1 år
-        other: omtrent %{count} år
-      almost_x_years:
-        one: nesten 1 år
-        other: nesten %{count} år
       half_a_minute: et halvt minutt
-      less_than_x_minutes:
-        one: under ett minutt
-        other: under %{count} minutter
-      less_than_x_seconds:
-        one: under 1 sekund
-        other: under %{count} sekunder
-      over_x_years:
-        one: over 1 år
-        other: over %{count} år
-      x_days:
-        one: 1 dag
-        other: '%{count} dager'
-      x_minutes:
-        one: 1 minutt
-        other: '%{count} minutter'
-      x_months:
-        one: 1 måned
-        other: '%{count} måneder'
-      x_seconds:
-        one: 1 sekund
-        other: '%{count} sekunder'
     countdown_x_days:
       one: dag
       other: dager
@@ -4921,9 +4737,6 @@ nb:
     messages:
       accepted: må være akseptert
       blank: kan ikke være tom
-      too_long:
-        one: er for lang (maks antall tegn er 1)
-        other: er for lang (maks antall tegn er %{count})
     template:
       body: 'Det oppstod problemer med de følgende felt:'
   helpers:
@@ -4999,16 +4812,6 @@ nb:
         accepted: må være akseptert
         blank: kan ikke være tom
         taken: er allerede opptatt
-        too_long:
-          one: er for lang (maks antall tegn er 1)
-          other: er for lang (maks antall tegn er %{count})
-        too_short:
-          one: er for kort (minimum er 1 tegn)
-          other: er for kort (minimum er %{count} tegn)
-      template:
-        header:
-          one: På grunn av en feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
-          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
   activerecord:
     models:
       AssessmentSection: Vurderingsseksjon
@@ -5118,20 +4921,8 @@ nb:
         requires_privilege_speech: må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
         requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
         taken: er allerede opptatt
-        too_long:
-          one: er for lang (maks antall tegn er 1)
-          other: er for lang (maks antall tegn er %{count})
-        too_short:
-          one: er for kort (minimum er 1 tegn)
-          other: er for kort (minimum er %{count} tegn)
-        wrong_length:
-          one: har feil lengde (skal være 1 tegn)
-          other: har feil lengde (skal være %{count} tegn)
       template:
         body: 'Det var problemer med følgende felt:'
-        header:
-          one: På grunn av 1 feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
-          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
       models:
         application:
           attributes:
