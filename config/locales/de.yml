@@ -1,91 +1,4 @@
 de:
-  x_comments:
-    one: 'Ein Kommentar'
-    other: '%{count} Kommentare'
-  x_faves:
-    one: '1 Favorit'
-    other: '%{count} Favoriten'
-  x_flags_resolved_html:
-    one: "<span class='count'>1</span> Meldung geklärt"
-    other: "<span class='count'>%{count}</span> Meldungen geklärt"
-  x_identifications:
-    one: 'Eine Bestimmung'
-    other: '%{count} Bestimmungen'
-  x_identifications_html:
-    one: '<span class="count">1</span> Bestimmung'
-    other: '<span class="count">%{count}</span> Bestimmungen'
-  x_identifications_:
-    one: 'Eine Bestimmung'
-    other: '%{count} Bestimmungen'
-  x_journal_posts_html:
-    one: '<span class="count">1</span> Journal-Beitrag'
-    other: '<span class="count">%{count}</span> Journal-Beiträge'
-  x_matching_taxa:
-    one: 'Ein zutreffendes Taxon'
-    other: '%{count} zutreffende Taxa'
-  x_matching_taxa_html:
-    one: '<span class="count">Ein</span> zutreffendes Taxon'
-    other: '<span class="count">%{count}</span> zutreffende Taxa'
-  x_misidentifications_of_this_species:
-    one: "Eine Fehlbestimmung dieser Art"
-    other: "%{count} Fehlbestimmungen dieser Art"
-  x_misidentifications_of_species_in_this_rank:
-    one: "Eine Fehlidentifizierung von Arten in diesem %{rank}"
-    other: "%{count} Fehlidentifizierungen von Arten in diesem %{rank}"
-  x_observations:
-    one: "Eine Beobachtung"
-    other: "%{count} Beobachtungen"
-  x_observations_:
-    one: "Eine Beobachtung"
-    other: "%{count} Beobachtungen"
-  x_observations_html:
-    one: "<span class='count'>Eine</span> Beobachtung"
-    other: "<span class='count'>%{count}</span> Beobachtungen"
-  x_observations_link_html:
-    one: "<a href='%{url}'>Eine Beobachtung</a>"
-    other: "<a href='%{url}'>%{count} Beobachtungen</a>"
-  x_observations_reviewed_html:
-    one: "<span class='count'>Eine</span> Beobachtung geprüft"
-    other: "<span class='count'>%{count}</span> Beobachtungen geprüft"
-  x_others:
-    one: "Eine weitere"
-    other: "%{count} weitere"
-  x_photos:
-    one: "Ein Foto"
-    other: "%{count} Fotos"
-  x_new_species:
-    one: "Eine neue Art"
-    other: "%{count} neue Arten"
-  x_species:
-    one: 'Eine Art'
-    other: '%{count} Arten'
-  x_species_html:
-    one: "<span class='count'>Eine</span> Art"
-    other: "<span class='count'>%{count}</span> Arten"
-  x_species_link_html:
-    one: "<a href='%{url}'>Eine Art</a>"
-    other: "<a href='%{url}'>%{count} Arten</a>"
-  x_suggestions_filtered_by_colon:
-    one: "Ein Vorschlag gefiltert nach:"
-    other: "%{count} Vorschläge gefiltert nach:"
-  x_taxa_observed_html:
-    one: "<span class='count'>Ein</span> Taxon beobachtet"
-    other: "<span class='count'>%{count}</span> Taxa beobachtet"
-  x_research_grade_observations_html:
-    one: "<span class='count'>Eine</span> Beobachtung mit Forschungs-Qualität</span>"
-    other: "<span class='count'>%{count}</span> Beobachtungen mit Forschungs-Qualität</span>"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>Eine</span> Beobachtung mit Forschungsqualität auf Ebene der Art oder darunter bestimmt</span>"
-    other: "<span class='count'>%{count}</span> Beobachtungen mit Forschungsqualität auf Ebene der Art oder darunter bestimmt</span>"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> Taxon kuratiert"
-    other: "<span class='count'>%{count}</span> Taxa kuratiert"
-  x_taxa_matching_current_filters:
-    one: "Ein auf die aktuellen Filter passendes Taxon"
-    other: "%{count} auf die aktuellen Filter passende Taxa"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> Taxon-Änderung gemacht"
-    other: "<span class='count'>%{count}</span> Taxon-Änderungen gemacht"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} Pesonen</strong> halfen%{user} mit <strong>%{y} IDs</strong>"
   _100_day_trends: 100-Tage-Trends
   _percent_ID_d: "% identifiziert"
@@ -194,7 +107,6 @@ de:
   #"one" refers to a photo
   add_one_now: Jetzt einen hinzufügen
   add_photos: Fotos hinzufügen
-  add_photos_to_this_observation: Fotos zu dieser Beobachtung hinzufügen
   add_place: Ort hinzufügen
   add_plant_phenology_budding_annotation: 'Vermerk "Pflanzenphänologie: Knospend" hinzufügen'
   add_plant_phenology_flowering_annotation: 'Vermerk "Pflanzenphänologie: Blühend" hinzufügen'
@@ -317,48 +229,6 @@ de:
     ray_finned_fishes: Strahlenflosser
     reptiles: Reptilien
     life: Leben
-    x_plantae:
-      one: "Eine Pflanze"
-      other: "%{count} Pflanzen"
-    x_animalia:
-      one: "Ein Tier"
-      other: "%{count} Tiere"
-    x_mollusca:
-      one: "1 Weichtier"
-      other: "%{count} Weichtiere"
-    x_amphibia:
-      one: "Eine Amphibie"
-      other: "%{count} Amphibien"
-    x_mammalia:
-      one: "Ein Säugetier"
-      other: "%{count} Säugetiere"
-    x_actinopterygii:
-      one: "Ein Strahlenflosser"
-      other: "%{count} Strahlenflosser"
-    x_reptilia:
-      one: "Ein Reptil"
-      other: "%{count} Reptilien"
-    x_aves:
-      one: "Ein Vogel"
-      other: "%{count} Vögel"
-    x_insecta:
-      one: "Ein Insekt"
-      other: "%{count} Insekten"
-    x_arachnida:
-      one: "1 Spinnentier"
-      other: "%{count} Spinnentiere"
-    x_fungi:
-      one: "Ein Pilz"
-      other: "%{count} Pilze"
-    x_chromista:
-      one: "1 Stramenopil"
-      other: "%{count} Stramenopile"
-    x_protozoa:
-      one: "1 Protozoon"
-      other: "%{count} Protozoen"
-    x_other_animals:
-      one: "Ein anderes Tier"
-      other: "%{count} andere Tiere"
   all_taxa_: Alle Taxa
   all_taxa_in_this_guide: Alle Taxa in diesem Guide
   all_taxonomic_groups: "&laquo; Alle taxonomischen Gruppen"
@@ -381,9 +251,6 @@ de:
   ancestor_taxon: Vorfahrentaxon
   and: und
   and_other_taxa: "&amp; Andere Taxa"
-  and_x_more_people!:
-    one: "und eine weitere Person!"
-    other: "und %{count} weitere Personen!"
   android: Android
   animals: Tiere
   annotation: Vermerk
@@ -642,7 +509,6 @@ de:
   choose_tags: Wähle Tags aus
   choose_taxon: Wähle ein Taxon
   choose_what_kind_of_change_youre_creating: "Wähle aus, welche Art von Änderung du vornimmst."
-  choose_your_username: Wähle deinen Benutzernamen
   citation: Zitat
   classification: Klassifikation
   clear: löschen
@@ -2084,7 +1950,6 @@ de:
   photos_updated: Fotos aktualisiert.
   pi_consent_label: |
     Ich bin damit einverstanden, dass iNaturalist begrenzte Arten von Inhalten speichert und verarbeitet persönliche Informationen über mich, um mein Konto zu verwalten
-  pick_a_username: Wähle einen Benutzernamen aus
   pin_verb: Anpinnen
   pink: rosa
   pinned_locations_desc: |
@@ -3879,10 +3744,6 @@ de:
         your_content_will_be_updated: Deine mit diesen Taxa verbundenen Inhalte werden automatisch aktualisiert.
         curators_can_see: |
           Zur Erinnerung: die Kuratoren des Projekts können die privaten und verschleierten Koordinaten von Deinen hinzugefügten Beobachtungen sehen.
-      delete:
-        x_comments_html:
-          one: Du hast <strong class="count">ein Kommenter</strong> hinzugefügt
-          other: Du hast <strong class="count">%{count} Kommentare</strong> hinzugefügt
       edit:
         blocking_desc_html: |
           <p>
@@ -4032,22 +3893,7 @@ de:
       - Dezember
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: vor ca. einer Stunde
-        other: vor ca. %{count} Stunden
       half_a_minute: Halbe Minute
-      less_than_x_minutes:
-        one: vor weniger als eine Minute
-        other: vor weniger als %{count} Minuten
-      less_than_x_seconds:
-        one: vor weniger als 1 Sekunde
-        other: vor weniger als %{count} Sekunden
-      x_days:
-        one: 1 Tag
-        other: '%{count} Tage'
-      x_minutes:
-        one: eine Minute
-        other: '%{count} Minuten'
     countdown_x_days:
       one: Tag
       other: Tage
