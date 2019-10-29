@@ -1,160 +1,4 @@
 pl:
-  x_comments:
-    one: '1 komentarz'
-    few: '%{count} komentarze'
-    many: '%{count} komentarzy'
-    other: '%{count} komentarza'
-  x_faves:
-    one: '1 ulubiona'
-    few: '%{count} ulubione'
-    many: '%{count} ulubionych'
-    other: '%{count} ulubionej'
-  x_flags_resolved_html:
-    one: "<span class='count'>1</span> rozpatrzone zgłoszenie"
-    few: "<span class='count'>%{count}</span> rozpatrzone zgłoszenia"
-    many: "<span class='count'>%{count}</span> rozpatrzonych zgłoszeń"
-    other: "<span class='count'>%{count}</span> rozpatrzonego zgłoszenia"
-  x_identifications:
-    one: '1 oznaczenie'
-    few: '%{count} oznaczenia'
-    many: '%{count} oznaczeń'
-    other: '%{count} oznaczenia'
-  x_identifications_html:
-    one: '<span class="count">1</span> identyfikacja'
-    few: '<span class="count">%{count}</span> identyfikacje'
-    many: '<span class="count">%{count}</span> identyfikacji'
-    other: '<span class="count">%{count}</span> identyfikacji'
-  x_identifications_:
-    one: '1 oznaczenie'
-    few: '%{count} oznaczenia'
-    many: '%{count} oznaczeń'
-    other: '%{count} oznaczenia'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    one: '<span class="count">1</span> oznaczający'
-    few: '<span class="count">%{count}</span> oznaczających'
-    many: '<span class="count">%{count}</span> oznaczających'
-    other: '<span class="count">%{count}</span> oznaczającego'
-  x_journal_posts_html:
-    one: '<span class="count">1</span> wpis w dzienniku'
-    few: '<span class="count">%{count}</span> wpisy w dzienniku'
-    many: '<span class="count">%{count}</span> wpisów w dzienniku'
-    other: '<span class="count">%{count}</span> wpisu w dzienniku'
-  x_matching_taxa:
-    one: '1 pasujący takson'
-    few: '%{count} pasujące taksony'
-    many: '%{count} pasujących taksonów'
-    other: '%{count} pasującego taksonu'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> pasujący takson'
-    few: '<span class="count">%{count}</span> pasujące taksony'
-    many: '<span class="count">%{count}</span> pasujących taksonów'
-    other: '<span class="count">%{count}</span> pasującego taksonu'
-  x_misidentifications_of_this_species:
-    one: "1 błędne oznaczenie tego gatunku"
-    few: "%{count} błędne oznaczenia tego gatunku"
-    many: "%{count} błędnych oznaczeń tego gatunku"
-    other: "%{count} błędnego oznaczenia tego gatunku"
-  x_misidentifications_of_species_in_this_rank:
-    one: "1 błędne oznaczenie gatunku w kategorii %{rank}"
-    few: "%{count} błędne oznaczenia gatunku w kategorii %{rank}"
-    many: "%{count} błędnych oznaczeń gatunku w kategorii %{rank}"
-    other: "%{count} błędnego oznaczenia gatunku w kategorii %{rank}"
-  x_observations:
-    one: "1 obserwacja"
-    few: "%{count} obserwacje"
-    many: "%{count} obserwacji"
-    other: "%{count} obserwacji"
-  x_observations_:
-    one: "1 obserwacja"
-    few: "%{count} obserwacje"
-    many: "%{count} obserwacji"
-    other: "%{count} obserwacji"
-  x_observations_html:
-    one: "<span class='count'>1</span> obserwacja"
-    few: "<span class='count'>%{count}</span> obserwacje"
-    many: "<span class='count'>%{count}</span> obserwacji"
-    other: "<span class='count'>%{count}</span> obserwacji"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 obserwacja</a>"
-    few: "<a href='%{url}'>%{count} obserwacje</a>"
-    many: "<a href='%{url}'>%{count} obserwacji</a>"
-    other: "<a href='%{url}'>%{count} obserwacji</a>"
-  x_observations_reviewed_html:
-    one: "<span class='count'>1</span> obserwacja przejrzana"
-    few: "<span class='count'>%{count}</span> obserwacje przejrzane"
-    many: "<span class='count'>%{count}</span> obserwacji przejrzanych"
-    other: "<span class='count'>%{count}</span> obserwacji przejrzanej"
-  x_observers_html:
-    one: '<span class="count">1</span> obserwator'
-    few: '<span class="count">%{count}</span> obserwatorów'
-    many: '<span class="count">%{count}</span> obserwatorów'
-    other: '<span class="count">%{count}</span> obserwatora'
-  x_others:
-    one: "1 inna osoba"
-    few: "%{count} inne osoby"
-    many: "%{count} innych osób"
-    other: "%{count} innej osoby"
-  x_photos:
-    one: "1 zdjęcie"
-    few: "%{count} zdjęcia"
-    many: "%{count} zdjęć"
-    other: "%{count} zdjęcia"
-  x_new_species:
-    one: "1 nowy gatunek"
-    few: "%{count} nowe gatunki"
-    many: "%{count} nowych gatunków"
-    other: "%{count} nowego gatunku"
-  x_species:
-    one: '1 gatunek'
-    few: '%{count} gatunki'
-    many: '%{count} gatunków'
-    other: '%{count} gatunku'
-  x_species_html:
-    one: "<span class='count'>1</span> gatunek"
-    few: "<span class='count'>%{count}</span> gatunki"
-    many: "<span class='count'>%{count}</span> gatunków"
-    other: "<span class='count'>%{count}</span> gatunku"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 gatunek</a>"
-    few: "<a href='%{url}'>%{count} gatunki</a>"
-    many: "<a href='%{url}'>%{count} gatunków</a>"
-    other: "<a href='%{url}'>%{count} gatunku</a>"
-  x_suggestions_filtered_by_colon:
-    one: "1 sugestia odfiltrowana na podstawie:"
-    few: "%{count} sugestie odfiltrowane na podstawie:"
-    many: "%{count} sugestii odfiltrowanych na podstawie:"
-    other: "%{count} sugestii odfiltrowanej na podstawie:"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> zaobserwowany takson"
-    few: "<span class='count'>%{count}</span> zaobserwowane taksony"
-    many: "<span class='count'>%{count}</span> zaobserwowanych taksonów"
-    other: "<span class='count'>%{count}</span> zaobserwowanego taksonu"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> obserwacja stopnia badawczego"
-    few: "<span class='count'>%{count}</span> obserwacje stopnia badawczego"
-    many: "<span class='count'>%{count}</span> obserwacji stopnia badawczego"
-    other: "<span class='count'>%{count}</span> obserwacji stopnia badawczego"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> obserwacja stopnia badawczego oznaczona co do gatunku lub niżej"
-    few: "<span class='count'>%{count}</span> obserwacje stopnia badawczego oznaczone co do gatunku lub niżej"
-    many: "<span class='count'>%{count}</span> obserwacji stopnia badawczego oznaczonych co do gatunku lub niżej"
-    other: "<span class='count'>%{count}</span> obserwacji stopnia badawczego oznaczonej co do gatunku lub niżej"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> takson pod opieką"
-    few: "<span class='count'>%{count}</span> taksony pod opieką"
-    many: "<span class='count'>%{count}</span> taksonów pod opieką"
-    other: "<span class='count'>%{count}</span> taksona pod opieką"
-  x_taxa_matching_current_filters:
-    one: "1 takson pasujący do bieżących filtrów"
-    few: "%{count} taksony pasujące do bieżących filtrów"
-    many: "%{count} taksonów pasujących do bieżących filtrów"
-    other: "%{count} taksonu pasującego do bieżących filtrów"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> zmiana w taksonie dodana"
-    few: "<span class='count'>%{count}</span> zmiany w taksonie dodane"
-    many: "<span class='count'>%{count}</span> zmian w taksonie dodanych"
-    other: "<span class='count'>%{count}</span> zmiany w taksonie dodane"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} osób</strong> pomogło %{user} z <strong>%{y} oznaczeniami</strong>"
   _100_day_trends: Studniowe trendy
   _percent_ID_d: "% oznaczonych"
@@ -196,7 +40,7 @@ pl:
   about_muting: O wyciszaniu
   #Header for a section describing taxon names
   about_names: O Nazwach
-  about_places: O lokalizacjach
+  about_places: O miejscach
   about_the_cc_licenses: O licencjach Creative Commons
   about_these_licenses: O tych licencjach
   about_this_bioblitz: O tym bioblitz
@@ -263,7 +107,7 @@ pl:
   add_id: Dodaj identyfikację
   add_new_lexicon: Dodaj nowy język
   add_new_photos_by_their_ids: Dodaj nowe zdjęcia używając ich Flickr ID (zdjęcia muszą być objęte licencją Creative Commons!)
-  add_new_place: Dodaj nową lokalizację
+  add_new_place: Dodaj nowe miejsce
   add_new_rule: Dodaj nową regułę
   add_new_source: "Dodaj nowe źródło..."
   add_new_taxon_name: Dodaj nazwę nowego taksonu
@@ -279,7 +123,6 @@ pl:
   #"one" refers to a photo
   add_one_now: Dodaj jakieś teraz
   add_photos: Dodaj zdjęcia
-  add_photos_to_this_observation: Dodaj zdjęcia do tej obserwacji
   add_place: Dodaj miejsce
   add_plant_phenology_budding_annotation: 'Dodaj adnotację "Fenologia roślin: Pączkuje"'
   add_plant_phenology_flowering_annotation: 'Dodaj adnotację "Fenologia roślin: Kwitnie"'
@@ -359,7 +202,7 @@ pl:
   all_names: Wszystkie nazwy
   all_observations: Wszystkie obserwacje
   all_photos: Wszystkie zdjęcia
-  all_places: "Wszystkie lokalizacje"
+  all_places: "Wszystkie miejsca"
   all_projects: Wszystkie projekty
   all_rank_added_to_the_database:
     phylum: Wszystkie typy dodane do bazy
@@ -414,76 +257,6 @@ pl:
     ray_finned_fishes: Promieniopłetwe
     reptiles: Gady
     life: Życie
-    x_plantae:
-      one: "1 roślina"
-      few: "%{count} rośliny"
-      many: "%{count} roślin"
-      other: "%{count} rośliny"
-    x_animalia:
-      one: "1 zwierzę"
-      few: "%{count} zwierzęta"
-      many: "%{count} zwierząt"
-      other: "%{count} zwierzęcia"
-    x_mollusca:
-      one: "1 mięczak"
-      few: "%{count} mięczaki"
-      many: "%{count} mięczaków"
-      other: "%{count} mięczaka"
-    x_amphibia:
-      one: "1 płaz"
-      few: "%{count} płazy"
-      many: "%{count} płazów"
-      other: "%{count} płaza"
-    x_mammalia:
-      one: "1 ssak"
-      few: "%{count} ssaki"
-      many: "%{count} ssaków"
-      other: "%{count} ssaka"
-    x_actinopterygii:
-      one: "1 promieniopłetwy"
-      few: "%{count} promieniopłetwe"
-      many: "%{count} promieniopłetwych"
-      other: "%{count} promieniopłetwego"
-    x_reptilia:
-      one: "1 gad"
-      few: "%{count} gady"
-      many: "%{count} gadów"
-      other: "%{count} gada"
-    x_aves:
-      one: "1 ptak"
-      few: "%{count} ptaki"
-      many: "%{count} ptaków"
-      other: "%{count} ptaka"
-    x_insecta:
-      one: "1 owad"
-      few: "%{count} owady"
-      many: "%{count} owadów"
-      other: "%{count} owada"
-    x_arachnida:
-      one: "1 pajęczak"
-      few: "%{count} pajęczaki"
-      many: "%{count} pajęczaków"
-      other: "%{count} pajęczaka"
-    x_fungi:
-      one: "1 grzyb"
-      few: "%{count} grzyby"
-      many: "%{count} grzybów"
-      other: "%{count} grzyba"
-    x_chromista:
-      one: "1 chromista"
-      few: "%{count} chromisty"
-      many: "%{count} chromistów"
-      other: "%{count} chromisty"
-    x_protozoa:
-      one: "1 pierwotniak"
-      few: "%{count} pierwotniaki"
-      many: "%{count} pierwotniaków"
-      other: "%{count} pierwotniaka"
-    x_other_animals:
-      one: "1 inne zwierzę"
-      few: "%{count} inne zwierzęta"
-      many: "%{count} innych zwierząt"
-      other: "%{count} innego zwierzęcia"
   all_taxa_: Wszystkie taksony
   all_taxa_in_this_guide: Wszystkie taksony w tym przewodniku
   all_taxonomic_groups: "&laquo; Wszystkie grupy taksonomiczne"
@@ -500,11 +273,6 @@ pl:
   amphibians: płazy
   and: i
   and_other_taxa: "&amp; Inne taksony"
-  and_x_more_people!:
-    one: "i jeszcze jedna osoba!"
-    few: "i jeszcze %{count} inne osoby!"
-    many: "i jeszcze %{count} innych osób!"
-    other: "i jeszcze %{count} innej osoby!"
   android: Android
   animals: Zwierzęta
   annotation: Adnotacja
@@ -754,7 +522,6 @@ pl:
   choose_tags: Wybierz tagi
   choose_taxon: Wybierz takson
   choose_what_kind_of_change_youre_creating: "Wybierz rodzaj wprowadzanej zmiany."
-  choose_your_username: Wybierz nazwę użytkownika
   citation: Przypis
   classification: Klasyfikacja
   clear: wyczyść
@@ -1985,7 +1752,6 @@ pl:
     small: mały
     medium: średni
     large: duży
-  pick_a_username: Wybierz nazwę użytkownika
   pink: różowy
   place: Miejsce
   placeholder: Tekst zastępczy
@@ -2733,62 +2499,7 @@ pl:
       - Grudzień
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: około 1 godziny
-        few: około %{count} godzin
-        many: około %{count} godzin
-        other: około %{count} godzin
-      about_x_months:
-        one: około 1 miesiąca
-        few: około %{count} miesięcy
-        many: około %{count} miesięcy
-        other: około %{count} miesięcy
-      about_x_years:
-        one: około 1 roku
-        few: około %{count} lat
-        many: około %{count} lat
-        other: około %{count} lat
-      almost_x_years:
-        one: prawie rok
-        few: prawie %{count} lata
-        many: prawie %{count} lat
-        other: prawie %{count} lat
       half_a_minute: pół minuty
-      less_than_x_minutes:
-        one: mniej niż minutę
-        few: mniej niż %{count} minuty
-        many: mniej niż %{count} minut
-        other: mniej niż %{count} minuty
-      less_than_x_seconds:
-        one: mniej niż sekundę
-        few: mniej niż %{count} sekundy
-        many: mniej niż %{count} sekund
-        other: mniej niż %{count} sekund
-      over_x_years:
-        one: ponad rok
-        few: ponad %{count} lata
-        many: ponad %{count} lat
-        other: ponad %{count} roku
-      x_days:
-        one: 1 dzień
-        few: '%{count} dni'
-        many: '%{count} dni'
-        other: '%{count} dni'
-      x_minutes:
-        one: 1 minuta
-        few: '%{count} minuty'
-        many: '%{count} minut'
-        other: '%{count} minut'
-      x_months:
-        one: 1 miesiąc
-        few: '%{count} miesiące'
-        many: '%{count} miesięcy'
-        other: '%{count} miesięcy'
-      x_seconds:
-        one: 1 sekunda
-        few: '%{count} sekundy'
-        many: '%{count} sekund'
-        other: '%{count} sekund'
     countdown_x_days:
       one: dzień
       few: dni
