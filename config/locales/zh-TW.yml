@@ -1,62 +1,4 @@
 zh-TW:
-  x_comments:
-    other: '%{count} 則評論'
-  x_faves:
-    other: '%{count} 個最愛'
-  x_flags_resolved_html:
-    other: "<span class='count'>%{count}</span> 個標記已解決"
-  x_identifications:
-    other: '%{count} 項鑑定'
-  x_identifications_html:
-    other: '<span class="count">%{count}</span> 項鑑定'
-  x_identifications_:
-    other: '%{count} 項鑑定'
-  x_journal_posts_html:
-    other: '<span class="count">%{count}</span> 篇日誌發佈文章'
-  x_matching_taxa:
-    other: '%{count} 個符合的分類群'
-  x_matching_taxa_html:
-    other: '<span class="count">%{count}</span>個符合的分類群'
-  x_misidentifications_of_this_species:
-    other: "%{count} 此物種有 %{count} 個錯誤鑑定"
-  x_misidentifications_of_species_in_this_rank:
-    other: "在此%{rank}有 %{count}  個鑑定錯誤"
-  x_observations:
-    other: "%{count} 項觀察記錄"
-  x_observations_:
-    other: "%{count} 項觀察記錄"
-  x_observations_html:
-    other: "<span class='count'>%{count}</span> 個觀察記錄"
-  x_observations_link_html:
-    other: "<a href='%{url}'>%{count}</a>個觀察記錄"
-  x_observations_reviewed_html:
-    other: "<span class='count'>%{count}</span> 個觀察記錄已檢閱"
-  x_others:
-    other: "%{count} 個其它"
-  x_photos:
-    other: "%{count} 張照片"
-  x_new_species:
-    other: "%{count} 個新物種"
-  x_species:
-    other: '%{count} 物種'
-  x_species_html:
-    other: "<span class='count'>%{count}</span> 物種"
-  x_species_link_html:
-    other: "<a href='%{url}'>%{count}物種"
-  x_suggestions_filtered_by_colon:
-    other: "%{count} 個建議篩選自："
-  x_taxa_observed_html:
-    other: "<span class='count'>%{count}</span> 筆已觀察的物種分類群"
-  x_research_grade_observations_html:
-    other: "<span class='count'>%{count}</span> 筆研究等級的觀察紀錄"
-  x_research_grade_observations_to_species_html:
-    other: "<span class='count'>%{count}</span> 筆被分類到「種」或種下階層的研究等級觀察紀錄"
-  x_taxa_curated_html:
-    other: "<span class='count'>%{count}</span> 個物種分類已策展"
-  x_taxa_matching_current_filters:
-    other: "%{count} 個分類群符合此篩選條件"
-  x_taxon_changes_added_html:
-    other: "已新增<span class='count'>%{count}</span> 個分類群變更"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}</strong> 個人以 <strong>%{y}</strong> 個鑑定幫助了%{user}"
   _100_day_trends: 100 天裡的趨勢
   _percent_ID_d: "% 已鑑定"
@@ -165,7 +107,6 @@ zh-TW:
   #"one" refers to a photo
   add_one_now: 現在新增一個
   add_photos: 新增相片
-  add_photos_to_this_observation: 新增相片到觀察紀錄中
   add_place: 加入地點
   add_plant_phenology_budding_annotation: '新增「植物物候：發新芽」的註解'
   add_plant_phenology_flowering_annotation: '新增「植物物候學：開花」的註解'
@@ -287,34 +228,6 @@ zh-TW:
     ray_finned_fishes: 輻鰭魚類
     reptiles: 爬蟲類
     life: 生物
-    x_plantae:
-      other: "%{count}種植物"
-    x_animalia:
-      other: "%{count}種動物"
-    x_mollusca:
-      other: "%{count}種軟體動物"
-    x_amphibia:
-      other: "%{count}種兩棲類"
-    x_mammalia:
-      other: "%{count}種哺乳類"
-    x_actinopterygii:
-      other: "%{count}種輻鰭魚類"
-    x_reptilia:
-      other: "%{count}種爬蟲類"
-    x_aves:
-      other: "%{count}種鳥類"
-    x_insecta:
-      other: "%{count}種昆蟲"
-    x_arachnida:
-      other: "%{count}種蛛形綱"
-    x_fungi:
-      other: "%{count}種真菌"
-    x_chromista:
-      other: "%{count}種色藻界"
-    x_protozoa:
-      other: "%{count}種原生動物"
-    x_other_animals:
-      other: "%{count}種其它動物"
   all_taxa_: 所有物種分類群
   all_taxa_in_this_guide: 在此指南的所有物種分類群
   all_taxonomic_groups: "&laquo;所有物種分類群組"
@@ -337,8 +250,6 @@ zh-TW:
   ancestor_taxon: 祖先分類
   and: 和
   and_other_taxa: "&amp;其它物種分類"
-  and_x_more_people!:
-    other: "以及其他 %{count} 個人！"
   animals: 動物
   annotation: 註解
   annotations: 註解
@@ -601,7 +512,6 @@ zh-TW:
   choose_tags: 選擇標籤
   choose_taxon: 挑選一個分類
   choose_what_kind_of_change_youre_creating: "選擇您所要更改的種類。"
-  choose_your_username: 挑選您的用戶名稱
   cid_d_to_genus: 已創建在屬層級的社群鑑定
   citation: 引用
   classification: 分類
@@ -2179,7 +2089,6 @@ zh-TW:
     我同意允許讓 iNaturalist 儲存、處理關於我的有限個人資訊，以便管理我的帳號。
   pi_consent_child_label: |
     我同意允許讓 iNaturalist 儲存、處理關於我兒女的有限個人資訊，以便管理我兒女的帳號
-  pick_a_username: 挑選一個用戶名稱
   pin_verb: 釘選
   pink: 粉紅色
   pinned_locations_desc: |
@@ -3723,8 +3632,6 @@ zh-TW:
   x_journal_archives_for_y: "%{user} 的日誌•歸檔用於"
   x_journal_middot: "%{user}的期刊•"
   x_journal_new_post: "%{user}的日誌•新發表"
-  x_observations_failed:
-    other: "%{count} 個觀察失敗"
   x_of_y: "%{y}中的%{x}"
   x_of_y_people_over_two_thirds_agree_it_is: "在 %{y} 人之中有 %{x} 人（超過 2/3）同意此是"
   x_is_the_root_of_the_tree: "%{rank} %{name}是樹狀的根源"
@@ -3827,9 +3734,6 @@ zh-TW:
   your_account_has_been_verified: "您的 %{site_name} 帳號已被驗證！請登入以繼續。"
   your_activation_code_was_missing: "您的啟用代碼已遺失。請按照您的電子郵件裡的 URL。"
   your_browser_does_not_support_the_audio_element: 您的瀏覽器不支援音效元素。
-  your_coarser_id: |
-    您的<span class='taxon'>%{coarser_taxon_name}</span>粗略鑑定，反應出您並不認同<span class='taxon'>%{finer_taxon_name}</span>上的較佳鑑定。您確實有想這樣做嗎？<br><br>
-    <a href='/pages/getting+started' target='_blank'>了解更多如何進行鑑定&raquo;</a>
   your_comment_was_saved: 您的內容已儲存
   your_content: 您的內容
   your_contributions_to_project: "您對於%{project_title}的貢獻"
@@ -4957,15 +4861,6 @@ zh-TW:
       delete:
         by_deleting_your_account_you_will_remove: |
           透過刪除您的帳號，您將被移除
-        x_observations_html:
-          other: |
-            <strong class="count">%{count} 個觀察</strong>，為含有
-            <strong class="count">%{helpers_count} 名人們</strong>以鑑定協助您的成果
-        x_identifications_html:
-          other: |
-            您在其他 <strong class="count">%{helpees_count} 個人</strong>的觀察裡的 <strong class="count">%{count} 個鑑定</strong>，似乎有影響到這些觀察的資料品質
-        x_comments_html:
-          other: 您添加了 <strong class="count">%{count} 則評論</strong>
         furthermore_cannot_undo_html: |
           此外，<strong>此操作不可回復。</strong>若您事後改變您的想法，您也無法取回任何內容。
         settings_and_mute_html: |
@@ -5201,29 +5096,7 @@ zh-TW:
       - 12 月
   datetime:
     distance_in_words:
-      about_x_hours:
-        other: 約 %{count} 小時
-      about_x_months:
-        other: 約 %{count} 個月
-      about_x_years:
-        other: 約 %{count} 年
-      almost_x_years:
-        other: 大約 %{count} 年
       half_a_minute: 半分鐘
-      less_than_x_minutes:
-        other: 小於 %{count} 分
-      less_than_x_seconds:
-        other: 小於 %{count} 秒
-      over_x_years:
-        other: 超過 %{count} 年
-      x_days:
-        other: '%{count} 日'
-      x_minutes:
-        other: '%{count} 分鐘'
-      x_months:
-        other: '%{count} 個月'
-      x_seconds:
-        other: '%{count} 秒'
     countdown_x_days:
       other: 天
     countdown_x_hours:
@@ -5262,16 +5135,8 @@ zh-TW:
         必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
       requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
       taken: 已被使用
-      too_long:
-        other: 太長 (最多 %{count} 個字元)
-      too_short:
-        other: 太短 (最少 %{count} 個字元)
-      wrong_length:
-        other: 長度錯誤 (應為 %{count} 個字元)
     template:
       body: '以下欄位出現了問題：'
-      header:
-        other: '%{count} 個錯誤禁止了儲存此%{model}'
   helpers:
     defaults:
       title: "這是個標題"
@@ -5337,16 +5202,8 @@ zh-TW:
         requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
         requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
         taken: 已被使用
-        too_long:
-          other: 太長 (最多 %{count} 個字元)
-        too_short:
-          other: 太短 (最少 %{count} 個字元)
-        wrong_length:
-          other: 長度錯誤 (應為 %{count} 個字元)
       template:
         body: 以下欄位出現了問題：
-        header:
-          other: '%{count} 個錯誤禁止了儲存此%{model}'
   activerecord:
     models:
       AssessmentSection: 評估段落
@@ -5464,16 +5321,8 @@ zh-TW:
         requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
         requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
         taken: 已被使用
-        too_long:
-          other: 太長（最多 %{count} 個字元）
-        too_short:
-          other: 太短（最少 %{count} 個字元）
-        wrong_length:
-          other: 長度錯誤（應為 %{count} 個字元）
       template:
         body: 以下欄位出現了問題：
-        header:
-          other: '%{count} 個錯誤禁止了儲存此%{model}'
       models:
         application:
           attributes:
