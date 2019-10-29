@@ -1,79 +1,4 @@
 fr:
-  x_comments:
-    one: '1 commentaire'
-    other: '%{count} commentaires'
-  x_faves:
-    one: '1 favori'
-    other: '%{count} favoris'
-  x_flags_resolved_html:
-    one: "<span class='count'>1</span> marque résolue"
-    other: "<span class='count'>%{count}</span> marques résolues"
-  x_identifications:
-    one: '1 identification'
-    other: '%{count} identifications'
-  x_identifications_html:
-    one: '<span class="count">1</span> identification'
-    other: '<span class="count">%{count}</span> identifications'
-  x_identifications_:
-    one: '1 identification'
-    other: '%{count} identifications'
-  x_journal_posts_html:
-    one: '<span class="count">1</span> publication du journal'
-    other: '<span class="count">%{count}</span> publications du journal'
-  x_matching_taxa:
-    one: '1 taxon correspondant'
-    other: '%{count} taxons correspondants'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> taxon correspondant'
-    other: '<span class="count">%{count}</span> taxons correspondants'
-  x_misidentifications_of_this_species:
-    one: "1 mauvaise identification de cette espèce"
-    other: "%{count} mauvaises identifications de cette espèce"
-  x_misidentifications_of_species_in_this_rank:
-    one: "1 mauvaise identification d’espèce dans ce %{rank}"
-    other: "%{count} mauvaises identifications d’espèce dans ce %{rank}"
-  x_observations_:
-    one: "1 observation"
-    other: "%{count} observations"
-  x_observations_reviewed_html:
-    one: "<span class='count'>1</span> observation revue"
-    other: "<span class='count'>%{count}</span> observations revues"
-  x_others:
-    one: "1 autre"
-    other: "%{count} autres"
-  x_new_species:
-    one: "1 nouvelle espèce"
-    other: "%{count} nouvelles espèces"
-  x_species:
-    one: '1 espèce'
-    other: '%{count} espèces'
-  x_species_html:
-    one: "<span class='count'>1</span> espèce"
-    other: "<span class='count'>%{count}</span> espèces"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 espèce</a>"
-    other: "<a href='%{url}'>%{count} espèces</a>"
-  x_suggestions_filtered_by_colon:
-    one: "1 suggestion filtrée par :"
-    other: "%{count} suggestions filtrées par :"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> taxon observé"
-    other: "<span class='count'>%{count}</span> taxons observés"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> observation de calibre recherche</span>"
-    other: "<span class='count'>%{count}</span> observations de calibre recherche</span>"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> observation de calibre recherche identifiée au rang d'espèce ou à un rang inférieur</span>"
-    other: "<span class='count'>%{count}</span> observations de calibre recherche identifiées au rang d'espèce ou à un rang inférieur</span>"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> taxon supervisé"
-    other: "<span class='count'>%{count}</span> taxons supervisés"
-  x_taxa_matching_current_filters:
-    one: "1 taxon correspondant aux filtres actuels"
-    other: "%{count} taxons correspondant aux filtres actuels"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> modification de taxon ajoutée"
-    other: "<span class='count'>%{count}</span> modifications de taxon ajoutées"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personne(s)</strong> a/ont aidé %{user} avec <strong>%{y} IDs</strong>"
   _100_day_trends: Tendances à 100 jours
   _percent_ID_d: "% ID assigné(s)"
@@ -202,7 +127,6 @@ fr:
   #"one" refers to a photo
   add_one_now: En ajouter un maintenant
   add_photos: Ajouter des photos
-  add_photos_to_this_observation: Ajouter des photos à cette observation
   add_place: Ajouter un lieu
   add_plant_phenology_budding_annotation: 'Ajouter l’annotation « Phénologie végétale : Bourgeonnement »'
   add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie de plante : Floraison »'
@@ -325,48 +249,6 @@ fr:
     ray_finned_fishes: Poissons à nageoires rayonnées
     reptiles: Reptiles
     life: Êtres vivants
-    x_plantae:
-      one: "1 plante"
-      other: "%{count} plantes"
-    x_animalia:
-      one: "1 animal"
-      other: "%{count} animaux"
-    x_mollusca:
-      one: "1 mollusque"
-      other: "%{count} mollusques"
-    x_amphibia:
-      one: "1 amphibien"
-      other: "%{count} amphibiens"
-    x_mammalia:
-      one: "1 mammifère"
-      other: "%{count} mammifères"
-    x_actinopterygii:
-      one: "1 poisson à nageoires rayonnées"
-      other: "%{count} poissons à nageoires rayonnées"
-    x_reptilia:
-      one: "1 reptile"
-      other: "%{count} reptiles"
-    x_aves:
-      one: "1 oiseau"
-      other: "%{count} oiseaux"
-    x_insecta:
-      one: "1 insecte"
-      other: "%{count} insectes"
-    x_arachnida:
-      one: "1 arachnide"
-      other: "%{count} arachnides"
-    x_fungi:
-      one: "1 champignon"
-      other: "%{count} champignons"
-    x_chromista:
-      one: "1 chromista"
-      other: "%{count} chromistas"
-    x_protozoa:
-      one: "1 protozoaire"
-      other: "%{count} protozoaires"
-    x_other_animals:
-      one: "1 autre animal"
-      other: "%{count} autres animaux"
   all_taxa_: Tous les taxons
   all_taxa_in_this_guide: Tous les taxons dans ce guide
   all_taxonomic_groups: "&laquo; Tous les groupes taxinomiques"
@@ -389,9 +271,6 @@ fr:
   ancestor_taxon: Taxon ancêtre
   and: et
   and_other_taxa: "&amp; Autres taxons"
-  and_x_more_people!:
-    one: "et une personne de plus !"
-    other: "et %{count} personnes de plus !"
   android: Androïde
   animals: Animaux
   annotation: Annotation
@@ -653,7 +532,6 @@ fr:
   choose_tags: Choisissez des étiquettes
   choose_taxon: Choisissez un taxon
   choose_what_kind_of_change_youre_creating: "Choisissez la sorte de modification que vous créez."
-  choose_your_username: Choisissez votre nom d’utilisateur
   cid_d_to_genus: CID du genre
   citation: Citation
   classification: Classification
@@ -2263,7 +2141,6 @@ fr:
   pi_consent_child_label: |
     J’accepte de permettre à iNaturalist de stocker et traiter des types restreints
     d’informations personnelles sur mon enfant, afin de gérer son compte
-  pick_a_username: Choisissez un nom d’utilisateur
   pin_verb: Épingler
   pink: rose
   pinned_locations_desc: |
@@ -3806,9 +3683,6 @@ fr:
   x_journal_archives_for_y: "Journal de %{user} • Archives de"
   x_journal_middot: "Journal de %{user} •"
   x_journal_new_post: "Journal de %{user} • Nouvelle note"
-  x_observations_failed:
-    one: "1 observation en échec"
-    other: "%{count} observations en échec"
   x_of_y: "%{x} sur %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} sur %{y} personnes (plus de 2/3) sont d’accord que c’est"
   x_is_the_root_of_the_tree: "%{rank} %{name} est la racine de l’arbre"
@@ -3926,11 +3800,6 @@ fr:
   your_account_has_been_verified: "Votre compte %{site_name} a été vérifié! Veuillez vous connecter pour continuer."
   your_activation_code_was_missing: "Votre code d’activation est manquant. Veuillez suivre l’URL de votre courriel."
   your_browser_does_not_support_the_audio_element: Votre navigateur ne prend pas en charge l’élément audio
-  your_coarser_id: |
-    Votre ID plus générale de <span class='taxon'>%{coarser_taxon_name}</span> implique que vous
-    n’êtes pas d’accord avec l’ID plus précise de
-    <span class='taxon'>%{finer_taxon_name}</span>. Est-ce bien ce que vous voulez faire ?<br><br>
-    <a href='/pages/getting+started' target='_blank'>En savoir plus sur les principes d’identification &raquo;</a>
   your_comment_was_saved: Votre contenu a été enregistré
   your_content: Votre contenu
   your_contributions_to_project: "Vos contributions à %{project_title}"
@@ -5572,30 +5441,6 @@ fr:
       delete:
         by_deleting_your_account_you_will_remove: |
           En supprimant votre compte vous supprimerez
-        x_observations_html:
-          one: |
-            <strong class="count">1 observation</strong>,
-            incluant le travail de
-            <strong class="count">%{helpers_count} personnes</strong> qui vous ont
-            aidé à l’identification
-          other: |
-            <strong class="count">%{count} observations</strong>,
-            incluant le travail de
-            <strong class="count">%{helpers_count} personnes</strong> qui vous ont
-            aidé à l’identification
-        x_identifications_html:
-          one: |
-            <strong class="count">votre première identification</strong>
-            de l’observation d’une autre personne, qui peut potetiellement affecter la
-            qualité des données de cette observation
-          other: |
-            <strong class="count">%{count} de vos propres identifications</strong>
-            par rapport aux observations des <strong class="count">%{helpees_count} autres
-            personnes</strong>, qui peuvent affecter la qualité des données
-            de ces observations
-        x_comments_html:
-          one: <strong class="count">1 commentaire</strong> que vous avez ajouté
-          other: <strong class="count">%{count} commentaires</strong> que vous avez ajoutés
         furthermore_cannot_undo_html: |
           De plus, <strong>cette action ne peut pas être annulée.</strong> Si vous
           changez d’avis plus tard, vous ne pourrez plus récupérer ce contenu.
@@ -5917,40 +5762,7 @@ fr:
       - Décembre
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: environ 1 heure
-        other: environ %{count} heures
-      about_x_months:
-        one: environ 1 mois
-        other: environ %{count} mois
-      about_x_years:
-        one: environ 1 an
-        other: environ %{count} ans
-      almost_x_years:
-        one: presque 1 an
-        other: presque %{count} ans
       half_a_minute: une demi-minute
-      less_than_x_minutes:
-        one: moins d’une minute
-        other: moins de %{count} minutes
-      less_than_x_seconds:
-        one: moins d’une seconde
-        other: moins de %{count} secondes
-      over_x_years:
-        one: plus de 1 an
-        other: plus de %{count} ans
-      x_days:
-        one: 1 jour
-        other: '%{count} jours'
-      x_minutes:
-        one: 1 minute
-        other: '%{count} minutes'
-      x_months:
-        one: 1 mois
-        other: '%{count} mois'
-      x_seconds:
-        one: 1 seconde
-        other: '%{count} secondes'
     countdown_x_days:
       one: jour
       other: jours
@@ -5995,20 +5807,8 @@ fr:
         pour d’autres, pour pouvoir faire cela
       requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
       taken: a déjà été pris
-      too_long:
-        one: est trop long (le maximum est de 1 caractère)
-        other: est trop long (le maximum est de %{count} caractères)
-      too_short:
-        one: est trop court (le minimum est de 1 caractère)
-        other: est trop court (le minimum est de %{count} caractères)
-      wrong_length:
-        one: n’a pas la bonne longueur (devrait être de 1 caractère)
-        other: n’a pas la bonne longueur (devrait être de %{count} caractères)
     template:
       body: 'Il y a eu des problèmes avec les champs suivants :'
-      header:
-        one: 1 erreur a empêché ce %{model} d’être enregistré
-        other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
   helpers:
     defaults:
       title: "CECI EST UN TITRE"
@@ -6084,20 +5884,8 @@ fr:
         requires_privilege_speech: "doit avoir trois observations vérifiables ou trois identifications\npour d’autres, pour pouvoir faire cela"
         requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
         taken: a déjà été pris
-        too_long:
-          one: est trop long (le maximum est de 1 caractère)
-          other: est trop long (le maximum est de %{count} caractères)
-        too_short:
-          one: est trop court (le minimum est de 1 caractère)
-          other: est trop court (le minimum est de %{count} caractères)
-        wrong_length:
-          one: n’a pas la bonne longueur (devrait être de 1 caractère)
-          other: n’a pas la bonne longueur (devrait être de %{count} caractères)
       template:
         body: 'Il y a des problèmes avec les champs suivants :'
-        header:
-          one: 1 erreur a empêché ce %{model} d’être enregistré
-          other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
   activerecord:
     models:
       AssessmentSection: Section d’évaluation
@@ -6205,20 +5993,8 @@ fr:
         requires_privilege_speech: "doit avoir trois observations vérifiables ou trois identifications\npour que les autres puissent faire cela"
         requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
         taken: a déjà été pris
-        too_long:
-          one: est trop long (maximum 1 caractère)
-          other: est trop long (maximum %{count} caractères)
-        too_short:
-          one: est trop court (minimum 1 caractère)
-          other: est trop court (minimum %{count} caractères)
-        wrong_length:
-          one: n’a pas la bonne longueur (devrait faire 1 caractère)
-          other: n’a pas la bonne taille (devrait faire %{count} caractères)
       template:
         body: 'Il y a des problèmes avec les champs suivants :'
-        header:
-          one: 1 erreur a empêché ce %{model} d’être enregistré
-          other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
       models:
         application:
           attributes:
