@@ -1,88 +1,4 @@
 et:
-  x_comments:
-    one: '1 kommentaar'
-    other: '%{count} kommentaari'
-  x_faves:
-    one: '1 lemmik'
-    other: '%{count} lemmikut'
-  x_flags_resolved_html:
-    one: "<span class='count'>1</span> märkus lahendatud"
-    other: "<span class='count'>%{count}</span> märkust lahendatud"
-  x_identifications:
-    one: '1 määratlus'
-    other: '%{count} määratlust'
-  x_identifications_html:
-    one: '<span class="count">1</span> määratlus'
-    other: '<span class="count">%{count}</span> määratlust'
-  x_identifications_:
-    one: '1 määratlus'
-    other: '%{count} määratlust'
-  x_journal_posts_html:
-    one: '<span class="count">1</span> päevikukanne'
-    other: '<span class="count">%{count}</span> päevikukannet'
-  x_matching_taxa:
-    one: '1 sobiv takson'
-    other: '%{count} sobivat taksonit'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> sobiv takson'
-    other: '<span class="count">%{count}</span> sobivat taksonit'
-  x_misidentifications_of_this_species:
-    one: "1 liigi valestimääratlus"
-    other: "%{count} liigi valestimääratlust"
-  x_observations:
-    one: "1 vaatlus"
-    other: "%{count} vaatlust"
-  x_observations_:
-    one: "1 vaatlus"
-    other: "%{count} vaatlust"
-  x_observations_html:
-    one: "<span class='count'>1</span> vaatlus"
-    other: "<span class='count'>%{count}</span> vaatlust"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 vaatlus</a>"
-    other: "<a href='%{url}'>%{count} vaatlust</a>"
-  x_observations_reviewed_html:
-    one: "<span class='count'>1</span> kontrollitud vaatlus"
-    other: "<span class='count'>%{count}</span> kontrollitud vaatlust"
-  x_others:
-    one: "1 muu"
-    other: "%{count} muud"
-  x_photos:
-    one: "1 foto"
-    other: "%{count} fotod"
-  x_new_species:
-    one: "1 uus liik"
-    other: "%{count} uut liiki"
-  x_species:
-    one: '1 liik'
-    other: '%{count} liiki'
-  x_species_html:
-    one: "<span class='count'>1</span> liik"
-    other: "<span class='count'>%{count}</span> liiki"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 liik</a>"
-    other: "<a href='%{url}'>%{count} liiki</a>"
-  x_suggestions_filtered_by_colon:
-    one: "1 pakkumine filriga:"
-    other: "%{count} pakkumist filtriga:"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> vaadeldud takson"
-    other: "<span class='count'>%{count}</span> vaadeldud taksonit"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> teaduskõlbulik vaatlus</span>"
-    other: "<span class='count'>%{count}</span> teaduskõlbulikku vaatlust</span>"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> teaduskõlbulik määratlus liigile või selle alamüksustele</span>"
-    other: "<span class='count'>%{count}</span> teaduskõlbulik määratlust liigile või selle alamüksustele</span>"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> kureeritud takson"
-    other: "<span class='count'>%{count}</span> kureeritud taksonit"
-  x_taxa_matching_current_filters:
-    one: "1 antud filtritele vastav takson"
-    other: "%{count} antud filtritele vastavat taksonit"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> taksonimuudatus lisatud"
-    other: "<span class='count'>%{count}</span> taksonimuudatust lisatud"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} inimest</strong> aitasid kasutajat %{user} <strong>%{y} määratlusega</strong>"
   _100_day_trends: 100 päeva trendid
   _percent_ID_d: "% määratud"
@@ -189,7 +105,6 @@ et:
   #"one" refers to a photo
   add_one_now: Lisa
   add_photos: Lisa fotod
-  add_photos_to_this_observation: Lisa selle vaatluse kohta käivad fotod
   add_place: Lisa koht
   add_plant_phenology_budding_annotation: 'Lisa märge "Taime fenoloogia: võrsuv" (Plant Phenology: Budding)'
   add_plant_phenology_flowering_annotation: 'Lisa märge "Taime fenoloogia: õitsev" (Plant Phenology: Flowering)'
@@ -312,45 +227,6 @@ et:
     ray_finned_fishes: Kiiruimsed
     reptiles: Roomajad
     life: Elu
-    x_plantae:
-      one: "1 taim"
-      other: "%{count} taime"
-    x_animalia:
-      one: "1 loom"
-      other: "%{count} looma"
-    x_amphibia:
-      one: "1 kahepaikne"
-      other: "%{count} kahepaikset"
-    x_mammalia:
-      one: "1 imetaja"
-      other: "%{count} imetajat"
-    x_actinopterygii:
-      one: "1 kiiruimne"
-      other: "%{count} kiiruimset"
-    x_reptilia:
-      one: "1 roomaja"
-      other: "%{count} roomajat"
-    x_aves:
-      one: "1 lind"
-      other: "%{count} lindu"
-    x_insecta:
-      one: "1 putukas"
-      other: "%{count} putukat"
-    x_arachnida:
-      one: "1 ämblikulaadne"
-      other: "%{count} ämblikulaadset"
-    x_fungi:
-      one: "1 seen"
-      other: "%{count} seent"
-    x_chromista:
-      one: "1 kromist"
-      other: "%{count} kromisti"
-    x_protozoa:
-      one: "1 ainurakne"
-      other: "%{count} ainurakset"
-    x_other_animals:
-      one: "1 muu loom"
-      other: "%{count} muud looma"
   all_taxa_: Kõik taksonid
   all_taxa_in_this_guide: Kõik selles juhendis sisalduvad taksonid
   all_taxonomic_groups: "&laquo; Kõik taksonite grupid"
@@ -372,9 +248,6 @@ et:
   amphibians: kahepaiksed
   and: ja
   and_other_taxa: "&amp; Muud taksonid"
-  and_x_more_people!:
-    one: "ja veel 1 isik!"
-    other: "ja veel %{count} inimest!"
   animals: Loomad
   annotation: Märge
   annotations: Märked
@@ -638,7 +511,6 @@ et:
   choose_tags: Vali märksõnad
   choose_taxon: Vali takson
   choose_what_kind_of_change_youre_creating: "Vali, mis tüüpi muutust sa teha kavatsed."
-  choose_your_username: Vali oma kasutajatunnus
   cid_d_to_genus: Kogukondlikult määratud liigid
   citation: Viide
   classification: Klassifikatsioon
@@ -2142,7 +2014,6 @@ et:
     original: algne
   photos_size_photos: "%{photos_size} fotot"
   photos_updated: Fotod värskendatud.
-  pick_a_username: Vali kasutajatunnus
   pin_verb: Säilita
   pink: roosa
   pinned_locations_desc: |
@@ -3556,9 +3427,6 @@ et:
   x_journal_archives_for_y: "Kasutaja %{user} päevik • Arhiiv"
   x_journal_middot: "Kasutaja %{user} päevik •"
   x_journal_new_post: "Kasutaja %{user} päevik • Uus sissekanne"
-  x_observations_failed:
-    one: "1 vaatlus ebaõnnestus"
-    other: "%{count} vaatlust ebaõnnestus"
   x_of_y: "%{x}/%{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x}/%{y} inimest (rohkem kui 2/3) nõustub, et tegemist on"
   x_is_the_root_of_the_tree: "%{rank} %{name} on taksonipuu juur"
@@ -3660,9 +3528,6 @@ et:
   your_account_has_been_verified: "Sinu %{site_name} konto on kinnitatud! Palun logi jätkamiseks sisse."
   your_activation_code_was_missing: "Me ei leidnud sinu aktiveerimiskoodi. Palun kasuta e-kirjas olnud linki."
   your_browser_does_not_support_the_audio_element: Sinu brauser ei toeta audio elementi.
-  your_coarser_id: |
-    Sinu taksoni <span class='taxon'>%{coarser_taxon_name}</span> ebatäpsem määratlus tähendab, et sa ei ole nõus olemasoleva täpsema määratlusega <span class='taxon'>%{finer_taxon_name}</span>. Soovid sa seda tõesti teha?<br><br>
-    <a href='/pages/getting+started' target='_blank'>Loe täpselt, kuidas määratlemine käib &raquo;</a>
   your_comment_was_saved: Sisu salvestati
   your_content: Sinu sisu
   your_contributions_to_project: "Sinu panus projekti %{project_title}"
@@ -4733,40 +4598,7 @@ et:
       - detsember
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: umbes 1 tund
-        other: umbes %{count} tundi
-      about_x_months:
-        one: umbes 1 kuu
-        other: umbes %{count} kuud
-      about_x_years:
-        one: umbes 1 aasta
-        other: umbes %{count} aastat
-      almost_x_years:
-        one: pea 1 aasta
-        other: pea %{count} aastat
       half_a_minute: pool minutit
-      less_than_x_minutes:
-        one: vähem kui minut
-        other: vähem kui %{count} minutit
-      less_than_x_seconds:
-        one: vähem kui 1 sekund
-        other: vähem kui %{count} sekundit
-      over_x_years:
-        one: üle 1 aasta
-        other: üle %{count} aasta
-      x_days:
-        one: 1 päev
-        other: '%{count} päeva'
-      x_minutes:
-        one: 1 minut
-        other: '%{count} minutit'
-      x_months:
-        one: 1 kuu
-        other: '%{count} kuud'
-      x_seconds:
-        one: 1 sekund
-        other: '%{count} sekundit'
     countdown_x_days:
       one: päev
       other: päeva
@@ -4803,20 +4635,8 @@ et:
       odd: peab olema paaritu
       record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
       taken: on juba valitud
-      too_long:
-        one: on liiga pikk (maksimum 1 tähemärk)
-        other: on liiga pikk (maksimum %{count} tähemärki)
-      too_short:
-        one: on liiga lühike (minimum 1 tähemärk)
-        other: on liiga lühike (minimum%{count} tähemärki)
-      wrong_length:
-        one: on vale pikkusega (peaks olema 1 tähemärk)
-        other: on vale pikkusega (peaks olema %{count} tähemärki)
     template:
       body: 'Järgmiste väljadega oli probleeme:'
-      header:
-        one: '1 viga ei lubanud salvestada: %{model}'
-        other: '%{count} viga ei lubanud salvestada: %{model}'
   helpers:
     defaults:
       title: "SEE ON PEALKIRI"
@@ -4881,20 +4701,8 @@ et:
         odd: peab olema paaritu
         record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
         taken: on juba valitud
-        too_long:
-          one: on liiga pikk (maksimum 1 tähemärk)
-          other: on liiga pikk (maksimum %{count} tähemärki)
-        too_short:
-          one: on liiga lühike (minimum 1 tähemärk)
-          other: on liiga lühike (minimum%{count} tähemärki)
-        wrong_length:
-          one: on vale pikkusega (peaks olema 1 tähemärk)
-          other: on vale pikkusega (peaks olema %{count} tähemärki)
       template:
         body: 'Järgnevate väljadega oli probleeme:'
-        header:
-          one: '1 viga ei lubanud salvestada: %{model}'
-          other: '%{count} viga ei lubanud salvestada: %{model}'
   activerecord:
     models:
       AssessmentSection: Hinnangu osa
