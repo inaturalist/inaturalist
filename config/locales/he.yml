@@ -120,7 +120,6 @@ he:
   #"one" refers to a photo
   add_one_now: הוסף אחד עכשיו
   add_photos: הוספת תמונות
-  add_photos_to_this_observation: הוספת תמונות לתצפית זו
   add_place: הוספת מקום
   add_plant_phenology_budding_annotation: 'הוספת תווית "פנולוגיית צומח: ניצן"'
   add_plant_phenology_flowering_annotation: 'הוספת תווית "פנולוגיית צומח: פריחה"'
@@ -516,7 +515,6 @@ he:
   choose_tags: נא לבחור תגיות
   choose_taxon: נא לבחור טקסון
   choose_what_kind_of_change_youre_creating: "בחרו את סוג השינוי שאתם יוצרים."
-  choose_your_username: נא לבחור את שם המשתמש שלך
   cid_d_to_genus: רשימות מינים
   citation: ציטוט
   classification: מיון
@@ -1820,7 +1818,6 @@ he:
     אני נותן את הסכמתי לאפשר ל iNaturalist לשמור ולעבד מידע אישי מוגבל אודותיי על מנת לנהל את חשבוני
   pi_consent_child_label: |
     אני נותן את הסכמתי לאפשר ל iNaturalist לשמור ולעבד מידע אישי מוגבל של בני/בתי אודותיי על מנת לנהל את חשבונו/ה
-  pick_a_username: בחירת שם משתמש
   pin_verb: נעץ מיקום
   pink: ורוד
   place: מקום
@@ -3203,52 +3200,7 @@ he:
       - דצמבר
   datetime:
     distance_in_words:
-      about_x_months:
-        one: בערך חודש
-        two: בערך %{count} חודשים
-        many: בערך %{count} חודשים
-        other: בערך %{count} חודשים
-      almost_x_years:
-        one: כמעט שנה
-        two: כמעט %{count} שנים
-        many: כמעט %{count} שנים
-        other: כמעט %{count} שנים
       half_a_minute: חצי דקה
-      less_than_x_minutes:
-        one: פחות מדקה
-        two: פחות מ %{count} דקות
-        many: פחות מ %{count} דקות
-        other: פחות מ %{count} דקות
-      less_than_x_seconds:
-        one: פחות משניה
-        two: פחות מ %{count} שניות
-        many: פחות מ %{count} שניות
-        other: פחות מ %{count} שניות
-      over_x_years:
-        one: יותר משנה
-        two: יותר מ %{count} שנים
-        many: יותר מ %{count} שנים
-        other: יותר מ %{count} שנים
-      x_days:
-        one: יום אחד
-        two: '%{count} ימים'
-        many: '%{count} ימים'
-        other: '%{count} ימים'
-      x_minutes:
-        one: דקה אחת
-        two: '%{count} דקות'
-        many: '%{count} דקות'
-        other: '%{count} דקות'
-      x_months:
-        one: חודש אחד
-        two: '%{count} חודשים'
-        many: '%{count} חודשים'
-        other: '%{count} חודשים'
-      x_seconds:
-        one: שניה אחת
-        two: '%{count} שניות'
-        many: '%{count} שניות'
-        other: '%{count} שניות'
     countdown_x_days:
       one: יום
       two: יומיים
@@ -3297,21 +3249,6 @@ he:
       odd: חייב להיות אי־זוגי
       record_invalid: 'אימות נכשל: %{errors}'
       taken: כבר תפוס
-      too_long:
-        one: ארוך מדי (מקסימום תו אחד)
-        two: ארוך מדי (מקסימום %{count} תווים)
-        many: ארוך מדי (מקסימום %{count} תווים)
-        other: ארוך מדי (מקסימום %{count} תווים)
-      too_short:
-        one: קצר מדי (מינימום תו אחד)
-        two: קצר מדי (מינימום %{count} תווים)
-        many: קצר מדי (מינימום %{count} תווים)
-        other: קצר מדי (מינימום %{count} תווים)
-      wrong_length:
-        one: באורך לא נכון (צריך להיות תו אחד)
-        two: באורך לא נכון (צריך להיות %{count} תווים)
-        many: באורך לא נכון (צריך להיות %{count} תווים)
-        other: באורך לא נכון (צריך להיות %{count} תווים)
     template:
       body: 'היו בעיות עם השדות הבאים:'
   helpers:
@@ -3394,18 +3331,8 @@ he:
         odd: חייב להיות אי־זוגי
         record_invalid: 'אימות נכשל: %{errors}'
         taken: כבר תפוס
-        too_short:
-          one: קצר מדי (לפחוחת תו אחד)
-          two: קצר מדי (%{count} תווים לפחות)
-          many: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
-          other: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
       template:
         body: 'היו בעיות עם השדות הבאים:'
-        header:
-          one: טעות אחת ב%{model} זה מנעה את שמירתו
-          two: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-          many: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-          other: '%{count} טעויות ב%{model} זה מנעו שמירתו'
   activerecord:
     models:
       Atlas: אטלס
