@@ -1,79 +1,4 @@
 sv:
-  x_comments:
-    one: '1 kommentar'
-    other: '%{count} kommentarer'
-  x_faves:
-    one: '1 favorit'
-    other: '%{count} favoriter'
-  x_flags_resolved_html:
-    one: "<span class='antal'>1</span> markering löst"
-    other: "<span class='antal'>%{count}</span> markeringar lösta"
-  x_identifications:
-    one: '1 identifiering'
-    other: '%{count} identifieringar'
-  x_identifications_html:
-    one: '<span class="count">1</span> identifiering'
-    other: '<span class="count">%{count}</span> identifieringar'
-  x_identifications_:
-    one: '1 Identifiering'
-    other: '%{count} Identifieringar'
-  x_journal_posts_html:
-    one: '<span class="antal">1</span> journalinlägg'
-    other: '<span class="antal">%{count}</span> journalinlägg'
-  x_matching_taxa:
-    one: '1 överensstämmande taxon'
-    other: '%{count} överensstämmande taxa'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> överensstämmande taxon'
-    other: '<span class="count">%{count}</span> överensstämmande taxa'
-  x_misidentifications_of_this_species:
-    one: "#1 fel identifikation av denna art"
-    other: "%{count} fel identifikationer av denna art"
-  x_observations_:
-    one: "1 observation"
-    other: "%{count} observationer"
-  x_observations_reviewed_html:
-    one: "<span class='antal'>1</span> observation granskad"
-    other: "<span class='antal'>%{count}</span> observationer granskade"
-  x_others:
-    one: "1 annan"
-    other: "%{count} andra"
-  x_photos:
-    one: "1 foto"
-    other: "%{count} foton"
-  x_new_species:
-    one: "1 ny art"
-    other: "%{count} ny arter"
-  x_species:
-    one: '1 art'
-    other: '%{count} arter'
-  x_species_html:
-    one: "<span class='count'>1</span> art"
-    other: "<span class='count'>%{count}</span> arter"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 art</a>"
-    other: "<a href='%{url}'>%{count} arter</a>"
-  x_suggestions_filtered_by_colon:
-    one: "1 förslag filtrerades av:"
-    other: "%{count} förslag filtrerades av:"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> observerat taxon"
-    other: "<span class='count'>%{count}</span> observerade taxa"
-  x_research_grade_observations_html:
-    one: "<span class='antal'>1</span> observation av forskningskvalitet</span>"
-    other: "<span class='antal'>%{count}</span> observationer av forskningskvalitet</span>"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='antal'>1</span> observation av forskningskvalitet identifierad till art eller lägre</span>"
-    other: "<span class='antal'>%{count}</span> observationer av forskningskvalitet identifierade till art eller lägre</span>"
-  x_taxa_curated_html:
-    one: "<span class='antal'>1</span> taxon kuraterad"
-    other: "<span class='antal'>%{count}</span> taxa kuraterad"
-  x_taxa_matching_current_filters:
-    one: "1 taxon matchar nuvarande filter"
-    other: "%{count} taxa matchar nuvarande filter"
-  x_taxon_changes_added_html:
-    one: "<span class='antal'>1</span> taxonändring tillagd"
-    other: "<span class='antal'>%{count}</span> taxonändringar tillagda"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjälpte %{user} med <strong>%{y} ID:n</strong>"
   _100_day_trends: 100 dagars trend
   _percent_ID_d: "% ID'erat"
@@ -178,7 +103,6 @@ sv:
   #"one" refers to a photo
   add_one_now: Lägg till en nu
   add_photos: Lägg till foton
-  add_photos_to_this_observation: Lägg till foton i denna observation
   add_place: Lägg till plats
   add_plant_phenology_budding_annotation: 'Lägg till notering "Växtfenologi: knoppar"'
   add_plant_phenology_flowering_annotation: 'Lägg till notering "Växtfenologi: blommar"'
@@ -297,45 +221,6 @@ sv:
     ray_finned_fishes: Strålfeniga fiskar
     reptiles: Reptiler
     life: Liv
-    x_plantae:
-      one: "1 växt"
-      other: "%{count} växter"
-    x_animalia:
-      one: "1 djur"
-      other: "%{count} djur"
-    x_mollusca:
-      one: "#1 blötdjur"
-      other: "%{count} blötdjur"
-    x_amphibia:
-      one: "1 groddjur"
-      other: "%{count} groddjur"
-    x_mammalia:
-      one: "1 däggdjur"
-      other: "%{count} däggdjur"
-    x_actinopterygii:
-      one: "#1 strålfenig fisk"
-      other: "%{count} strålfeniga fiskar"
-    x_reptilia:
-      one: "1 reptil"
-      other: "%{count} reptiler"
-    x_aves:
-      one: "1 fågel"
-      other: "%{count} fåglar"
-    x_insecta:
-      one: "1 insekt"
-      other: "%{count} insekter"
-    x_arachnida:
-      one: "1 spindel"
-      other: "%{count} spindlar"
-    x_fungi:
-      one: "1 svamp"
-      other: "%{count} svampar"
-    x_protozoa:
-      one: "#1 protozoer"
-      other: "%{count} protozoer"
-    x_other_animals:
-      one: "1 annat djur"
-      other: "%{count} andra djur"
   all_taxa_: Alla taxa
   all_taxa_in_this_guide: Alla taxa i denna guide
   all_taxonomic_groups: "&laquo; Alla taxonomiska grupper"
@@ -357,9 +242,6 @@ sv:
   amphibians: amfibier
   and: och
   and_other_taxa: "&amp;Annan taxa"
-  and_x_more_people!:
-    one: "och 1 till person!"
-    other: "och %{count} fler personer!"
   animals: Djur
   annotation: Anteckning
   annotations: Noteringar
@@ -563,7 +445,6 @@ sv:
   choose_rule: Välj en regel
   choose_subjects: Välj ämnen
   choose_tags: Välj taggar
-  choose_your_username: Välj din användarnamn
   clear_color_filters: Rensa färgfilter
   clear_search: Rensa sökning
   click_the_map: "<strong>Klicka på kartan</strong> för lägg till plats."
@@ -1624,9 +1505,6 @@ sv:
   worldwide: Världsomfattande
   would_you_prefer_to_view_common_names_used_in_place_html: Föredrar du att se vanliga namn som används i <strong>%{place}</strong>?
   x_journal: "%{user}s tidskrift"
-  x_observations_failed:
-    one: "1 observation misslyckades"
-    other: "%{count} observationer misslyckades"
   x_of_y: "%{x} av %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} av %{y} personer (över 2/3) håller med om det"
   year: År
@@ -1856,24 +1734,6 @@ sv:
   datetime:
     distance_in_words:
       half_a_minute: en halv minut
-      less_than_x_minutes:
-        one: mindre än en minut
-        other: mindre än %{count} minuter
-      over_x_years:
-        one: över 1 år
-        other: över %{count} år
-      x_days:
-        one: 1 dag
-        other: '%{count} dagar'
-      x_minutes:
-        one: 1 minut
-        other: '%{count} minuter'
-      x_months:
-        one: 1 månad
-        other: '%{count} månader'
-      x_seconds:
-        one: 1 sekund
-        other: '%{count} sekunder'
     countdown_x_days:
       one: dag
       other: dagar
@@ -1970,9 +1830,6 @@ sv:
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
         taken: har redan tagits
-        wrong_length:
-          one: har fel längd (bör vara 1 tecken)
-          other: har fel längd (bör vara %{count} tecken)
       models:
         application:
           attributes:
