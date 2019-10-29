@@ -1,91 +1,4 @@
 ca:
-  x_comments:
-    one: '1 comentari'
-    other: '%{count} comentaris'
-  x_faves:
-    one: '1 favorit'
-    other: '%{count} favorits'
-  x_flags_resolved_html:
-    one: "<span class='count'>1</span> marca resolta"
-    other: "<span class='count'>%{count}</span> marques resoltes"
-  x_identifications:
-    one: '1 identificació'
-    other: '%{count} identificacions'
-  x_identifications_html:
-    one: '<span class="count">1</span> identificació'
-    other: '<span class="count">%{count}</span> identificacions'
-  x_identifications_:
-    one: '1 identificació'
-    other: '%{count} identificacions'
-  x_journal_posts_html:
-    one: '<span class="count">1</span> article'
-    other: '<span class="count">%{count}</span> articles'
-  x_matching_taxa:
-    one: '1 tàxon coincident'
-    other: '%{count} tàxons coincidents'
-  x_matching_taxa_html:
-    one: '<span class=''count''>1</span> tàxon coincident'
-    other: '<span class=''count''>%{count}</span> tàxons coincidents'
-  x_misidentifications_of_this_species:
-    one: "1 identificació errònia d'aquesta espècie"
-    other: "%{count} identificacions errònies d'aquesta espècie"
-  x_misidentifications_of_species_in_this_rank:
-    one: "1 espècie mal identificació en aquest %{rank}"
-    other: "%{count} espècies mal identificades en aquest %{rank}"
-  x_observations:
-    one: "1 observació"
-    other: "%{count} observacions"
-  x_observations_:
-    one: "1 observació"
-    other: "%{count} observacions"
-  x_observations_html:
-    one: "<span class='count'>1</span> observació"
-    other: "<span class='count'>%{count}</span> observacions"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 observació</a>"
-    other: "<a href='%{url}'>%{count} observacions</a>"
-  x_observations_reviewed_html:
-    one: "<span class='count'>1</span> observació revisada"
-    other: "<span class='count'>%{count}</span> observacions revisades"
-  x_others:
-    one: "1 altre"
-    other: "%{count} més"
-  x_photos:
-    one: "1 foto"
-    other: "%{count} fotos"
-  x_new_species:
-    one: "1 Espècie Nova"
-    other: "%{count} Espècies Noves"
-  x_species:
-    one: '1 espècie'
-    other: '%{count} espècies'
-  x_species_html:
-    one: "<span class='count'>1</span> espècie"
-    other: "<span class='count'>%{count}</span> espècies"
-  x_species_link_html:
-    one: "<a href=\"%{url}\">1 espècie</a>"
-    other: "<a href=\"%{url}\">%{count} espècies</a>"
-  x_suggestions_filtered_by_colon:
-    one: "1 Suggeriment filtrat per:"
-    other: "%{count} Suggeriments Filtrats per:"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> tàxon observat</span>"
-    other: "<span class='count'>%{count}</span> tàxons observats</span>"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> observació amb grau de recerca</span>"
-    other: "<span class=count>%{count}</span> observacions amb grau de recerca</span>"
-  x_research_grade_observations_to_species_html:
-    one: "<span class=count>1</span> observació amb grau de recerca ha IDentificat les espècies, subespècies o varietats</span>"
-    other: "<span class=count>%{count}</span> observacions amb grau de recerca van IDentificar les espècies, subespècies o varietats</span>"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> tàxon supervisat"
-    other: "<span class='count'>%{count}</span> tàxons supervisats"
-  x_taxa_matching_current_filters:
-    one: "1 tàxon coincideix amb els filtres actuals"
-    other: "%{count} tàxons coincideixen amb els filtres actuals"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> canvi de tàxon afegit"
-    other: "<span class='count'>%{count}</span> canvis de tàxon afegits"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} Persones</strong> han ajudat %{user} amb <strong>%{y} IDs</strong>"
   _100_day_trends: Tendències de 100 dies
   _percent_ID_d: "% Identificats"
@@ -194,7 +107,6 @@ ca:
   #"one" refers to a photo
   add_one_now: Afegir-ne un ara
   add_photos: Afegiu fotos
-  add_photos_to_this_observation: Afegiu fotos a aquesta observació
   add_place: Afegiu un lloc
   add_plant_phenology_budding_annotation: 'Afegir l''anotació «Fenologia de la planta: gemmació»'
   add_plant_phenology_flowering_annotation: 'Afegiu nota "Fenologia de la planta: Floració"'
@@ -316,45 +228,6 @@ ca:
     ray_finned_fishes: Peixos ossis
     reptiles: Rèptils
     life: Vida
-    x_plantae:
-      one: "1 planta"
-      other: "%{count} plantes"
-    x_mollusca:
-      one: "1 mol·lusc"
-      other: "%{count} mol·luscs"
-    x_amphibia:
-      one: "1 amfibi"
-      other: "%{count} amfibis"
-    x_mammalia:
-      one: "1 mamífer"
-      other: "%{count} mamífers"
-    x_actinopterygii:
-      one: "1 peix ossi"
-      other: "%{count} peixos ossis"
-    x_reptilia:
-      one: "1 rèptil"
-      other: "%{count} rèptils"
-    x_aves:
-      one: "1 au"
-      other: "%{count} aus"
-    x_insecta:
-      one: "1 insecte"
-      other: "%{count} insectes"
-    x_arachnida:
-      one: "1 aràcnid"
-      other: "%{count} aràcnids"
-    x_fungi:
-      one: "1 fong"
-      other: "%{count} fongs"
-    x_chromista:
-      one: "1 alga bruna"
-      other: "%{count} algues brunes"
-    x_protozoa:
-      one: "1 protozou"
-      other: "%{count} protozous"
-    x_other_animals:
-      one: "1 altre animal"
-      other: "%{count} altres animals"
   all_taxa_: Tots els tàxons
   all_taxa_in_this_guide: Tots els tàxons en aquesta guia
   all_taxonomic_groups: "« Tots els grups taxonòmics"
@@ -377,9 +250,6 @@ ca:
   ancestor_taxon: Tàxon Ancestral
   and: i
   and_other_taxa: "& altres tàxons"
-  and_x_more_people!:
-    one: "i una persona més!"
-    other: "i %{count} persones més!"
   annotation: Anotació
   annotations: Anotacions
   announcement_was_successfully_created: L'anunci s'ha creat amb èxit.
@@ -639,7 +509,6 @@ ca:
   choose_tags: Seleccioneu etiquetes
   choose_taxon: Seleccioneu un tàxon
   choose_what_kind_of_change_youre_creating: "Escolliu el tipus de canvi que voleu introduir."
-  choose_your_username: Seleccioneu el nom d'usuari
   cid_d_to_genus: CID del gènere
   citation: Referència
   classification: Classificació
@@ -2195,7 +2064,6 @@ ca:
     Autoritzo a iNaturalist a guardar i processar determinades informacions de caràcter personal sobre mi per gestionar el meu compte
   pi_consent_child_label: |
     Autoritzo a iNaturalist a guardar i processar determinades informacions de caràcter personal sobre el meu/va fill/a per gestionar el meu compte infantil
-  pick_a_username: Trieu nom d'usuari
   pin_verb: Posar al mapa
   pink: rosa
   pinned_locations_desc: |
@@ -3666,9 +3534,6 @@ ca:
   x_journal_archives_for_y: "Diari de %{user} · Arxius de"
   x_journal_middot: "Diari de %{user} ·"
   x_journal_new_post: "Diari de %{user} · Nova entrada"
-  x_observations_failed:
-    one: "1 observació fallida"
-    other: "%{count} observacions fallides"
   x_of_y: "%{x} de %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} de %{y} persones (per sobre de 2/3) estan d'acord amb això"
   x_is_the_root_of_the_tree: "%{rank}%{name} és l'arrel de l'arbre"
@@ -3772,11 +3637,6 @@ ca:
   your_account_has_been_verified: "S’ha confirmat el vostre compte d’%{site_name}! Si us plau, ingresseu per continuar."
   your_activation_code_was_missing: "El vostre codi d'activació s'ha perdut. Si us plau, accediu a l'enllaç des del correu electrònic"
   your_browser_does_not_support_the_audio_element: El vostre navegador no admet l'element d'àudio.
-  your_coarser_id: |
-    Una IDentificació menys precisa de <span class="taxon">%{coarser_taxon_name}</span> implica que no esteu
-    d'acord amb la IDentificació detallada de
-    <span class="taxon">%{finer_taxon_name}</span>. És realment això el que voleu fer?<br><br>
-    <a href="/pages/getting+started" target="_blank">Coneix més sobre com actuen les identificacions"</a>
   your_comment_was_saved: S’ha desat el vostre contingut.
   your_content: El vostre Contingut
   your_contributions_to_project: "Les vostres aportacions al projecte %{project_title}"
@@ -4845,16 +4705,6 @@ ca:
       delete:
         by_deleting_your_account_you_will_remove: |
           Esborrant el vostre compte eliminareu
-        x_observations_html:
-          one: |
-            <strong class="count"> 1 observació </strong>, inclou el treball de <strong class = "count">%{helpers_count} persones </strong> que us han ajudat amb les identificacions 
-          other: |
-            <strong class="count">%{count} observacions </strong>, inclouen el treball de <strong class="count">%{helpers_count} persones </strong> que us han ajudat amb les identificacions
-        x_identifications_html:
-          one: |
-            <strong class="count"> la vostra identificació </strong> o la d’una altra persona, pot afectar potencialment la qualitat de les dades d’aquesta observació 
-          other: |
-             <strong class="count">%{count} de les vostres identificacions </strong> sobre les observacions de <strong class="count">%{helpees_count} persones </strong>, poden afectar la qualitat de les dades d’aquestes observacions
         furthermore_cannot_undo_html: |
           A més, <strong> aquesta acció no es pot desfer</strong>. Si canvieu d'idea més endavant, no podreu recuperar aquest contingut.
         settings_and_mute_html: |
@@ -5051,40 +4901,7 @@ ca:
       - desembre
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: al voltant d’1 hora
-        other: al voltant de %{count} hores
-      about_x_months:
-        one: al voltant d’1 mes
-        other: al voltant de %{count} mesos
-      about_x_years:
-        one: al voltant d’1 any
-        other: al voltant de %{count} anys
-      almost_x_years:
-        one: gairebé 1 any
-        other: gairebé %{count} anys
       half_a_minute: mig minut
-      less_than_x_minutes:
-        one: menys d’1 minut
-        other: menys de %{count} minuts
-      less_than_x_seconds:
-        one: menys d’1 segon
-        other: menys de %{count} segons
-      over_x_years:
-        one: més d’1 any
-        other: més de %{count} anys
-      x_days:
-        one: 1 dia
-        other: '%{count} dies'
-      x_minutes:
-        one: 1 minut
-        other: '%{count} minuts'
-      x_months:
-        one: 1 mes
-        other: '%{count} mesos'
-      x_seconds:
-        one: 1 segon
-        other: '%{count} segons'
     countdown_x_days:
       one: dia
       other: dies
@@ -5127,20 +4944,8 @@ ca:
         heu de tenir tres observacions verificables o tres identificacions d'altres per fer això
       requires_privilege_organizer: heu de tenir 50 observacions verificables per fer això
       taken: ja està en ús
-      too_long:
-        one: és massa llarg (el màxim és 1 caràcter)
-        other: és massa llarg (el màxim és %{count} caràcters)
-      too_short:
-        one: és massa curt (el mínim és 1 caràcter)
-        other: és massa curt (el mínim es %{count} caràcters)
-      wrong_length:
-        one: no té la longitud correcta (ha de tenir 1 caràcter)
-        other: no té la longitud correcta (ha de tenir %{count} caràcters)
     template:
       body: 'S''han detectat problemes en els camps següents:'
-      header:
-        one: No s’ha pogut desar aquest/a %{model} perquè s’hi ha detectat 1 error.
-        other: 'No s’ha pogut desar aquest/a %{model} perquè s’hi han detectat %{count} errors.'
   helpers:
     defaults:
       title: "AIXÒ ÉS UN TÍTOL"
@@ -5214,20 +5019,8 @@ ca:
         requires_privilege_speech: Heu de tenir tres observacions verificables o tres identificacions d'altres per fer això
         requires_privilege_organizer: heu de tenir 50 observacions verificables per fer això
         taken: ja està en ús
-        too_long:
-          one: és massa llarg (el màxim és 1 caràcter)
-          other: és massa llarg (el màxim és %{count} caràcters)
-        too_short:
-          one: és massa curt (el mínim és 1 caràcter)
-          other: és massa curt (el mínim és %{count} caràcters)
-        wrong_length:
-          one: la longitud és errònia (ha de ser d'1 caràcter)
-          other: la longitud és errònia (ha de ser de %{count} caràcters)
       template:
         body: 'Hi ha problemes amb els camps següents:'
-        header:
-          one: No s’ha pogut desar aquest %{model} perquè s’hi ha detectat 1 error.
-          other: No s’ha pogut desar aquest %{model} perquè s’hi han detectat %{count} errors.
   activerecord:
     models:
       AssessmentSection: Secció de valoració
@@ -5347,20 +5140,8 @@ ca:
         requires_privilege_speech: heu de tenir tres observacions verificable o tres identificacions d'altres per fer això
         requires_privilege_organizer: heu de tenir 50 observacions verificables per fer això
         taken: ja està en ús
-        too_long:
-          one: és massa llarg (el màxim és 1 caràcter)
-          other: és massa llarg (el màxim és %{count} caràcters)
-        too_short:
-          one: és massa curt (el mínim és 1 caràcter)
-          other: és massa curt (el mínim es %{count} caràcters)
-        wrong_length:
-          one: la longitud és errònia (ha de ser d'1 caràcter)
-          other: la longitud és errònia (ha de ser de %{count} caràcters)
       template:
         body: 'Hi ha problemes amb els camps següents:'
-        header:
-          one: No s’ha pogut desar aquest %{model} perquè s'ha detectat 1 error.
-          other: No s’ha pogut desar aquest %{model} perquè s'han detectat %{count} errors.
       models:
         application:
           attributes:
