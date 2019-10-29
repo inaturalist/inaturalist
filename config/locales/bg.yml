@@ -1,73 +1,4 @@
 bg:
-  x_comments:
-    one: 'Един коментар'
-    other: '%{count} коментара'
-  x_faves:
-    one: '1 харесване'
-    other: '%{count} харесвания'
-  x_identifications:
-    one: '1 разпознаване'
-    other: '%{count} разпознавания'
-  x_identifications_html:
-    one: '<span class="count">1</span> разпознаване'
-    other: '<span class="count">%{count}</span> разпознавания'
-  x_identifications_:
-    one: '1 Разпознаване'
-    other: '%{count} Разпознавания'
-  x_matching_taxa:
-    one: '1 съвпадащ таксон'
-    other: '%{count} съвпадащи таксона'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> съвпадащ таксон'
-    other: '<span class="count">%{count}</span> съвпадащи таксона'
-  x_observations:
-    one: "1 наблюдение"
-    other: "%{count} наблюдения"
-  x_observations_:
-    one: "1 Наблюдение"
-    other: "%{count} Наблюдения"
-  x_observations_html:
-    one: "<span class='count'>1</span> наблюдение"
-    other: "<span class='count'>%{count}</span> наблюдения"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 наблюдение</a>"
-    other: "<a href='%{url}'>%{count} наблюдения</a>"
-  x_observations_reviewed_html:
-    one: "<span class='count'>1</span> рецензирано наблюдение"
-    other: "<span class='count'>%{count}</span> рецензирани наблюдения"
-  x_photos:
-    one: "1 снимка"
-    other: "%{count} снимки"
-  x_new_species:
-    one: "1 нов вид"
-    other: "%{count} нови вида"
-  x_species:
-    one: '1 вид'
-    other: '%{count} вида'
-  x_species_html:
-    one: "<span class='count'>1</span> вид"
-    other: "<span class='count'>%{count}</span> вида"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 вид</a>"
-    other: "<a href='%{url}'>%{count} вида</a>"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> наблюдаван таксон"
-    other: "<span class='count'>%{count}</span> наблюдавани таксона"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> наблюдение от изследователски клас</span>"
-    other: "<span class='count'>%{count}</span> наблюдения от изследователски клас</span>"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> наблюдение от изследователски клас определено до вид</span>"
-    other: "<span class='count'>%{count}</span> наблюдения от изследователски клас определени до вид</span>"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> куриран таксон"
-    other: "<span class='count'>%{count}</span> курирани таксона"
-  x_taxa_matching_current_filters:
-    one: "1 таксон отговаря на текущите филтри"
-    other: "%{count} таксона отговарят на текущите филтри"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> промяна на таксон добавена"
-    other: "<span class='count'>%{count}</span> промени на таксони добавени"
   _100_day_trends: Тенденции за 100 дена
   a_community_for_naturalist: Общност за естествоизпитатели
   a_member_of: "Представител на"
@@ -135,7 +66,6 @@ bg:
   #Prompt to add a new journal post
   add_one: Добави!
   add_photos: Добавяне на снимки
-  add_photos_to_this_observation: Добави снимки към това наблюдение
   add_place: Добави място
   add_several_observations_at_once: Добавяне на няколко наблюдения наведнъж.
   add_tag: Добавяне на етикет
@@ -192,48 +122,6 @@ bg:
     ray_finned_fishes: Лъчеперки
     reptiles: Влечуги
     life: Живот
-    x_plantae:
-      one: "1 растение"
-      other: "%{count} растения"
-    x_animalia:
-      one: "1 животно"
-      other: "%{count} животни"
-    x_mollusca:
-      one: "1 мекотело"
-      other: "%{count} мекотели"
-    x_amphibia:
-      one: "1 земноводно"
-      other: "%{count} земноводни"
-    x_mammalia:
-      one: "1 бозайник"
-      other: "%{count} бозайници"
-    x_actinopterygii:
-      one: "1 лъчеперка"
-      other: "%{count} лъчеперки"
-    x_reptilia:
-      one: "1 влечуго"
-      other: "%{count} влечуги"
-    x_aves:
-      one: "1 птица"
-      other: "%{count} птици"
-    x_insecta:
-      one: "1 насекомо"
-      other: "%{count} насекоми"
-    x_arachnida:
-      one: "1 паякообразно"
-      other: "%{count} паякообразни"
-    x_fungi:
-      one: "1 гъба"
-      other: "%{count} гъби"
-    x_chromista:
-      one: "1 хромисто"
-      other: "%{count} хромисти"
-    x_protozoa:
-      one: "1 първак"
-      other: "%{count} първаци"
-    x_other_animals:
-      one: "1 друго животно"
-      other: "%{count} други животни"
   all_taxa_: Всички таксони
   all_taxa_in_this_guide: Всички таксони в това ръководство
   all_taxonomic_groups: "&laquo; Всички таксономични групи"
@@ -377,7 +265,6 @@ bg:
   choose_subjects: Избери теми
   choose_tags: Избери етикети
   choose_taxon: Избери таксон
-  choose_your_username: Изберете потребителското си име
   citation: Цитиране
   classification: Класификация
   clear: изчисти
@@ -1325,7 +1212,6 @@ bg:
     original: оригинална
   photos_size_photos: "%{photos_size} снимки"
   photos_updated: Снимките са обновени.
-  pick_a_username: Избери потрбителско име
   pink: розово
   place: Място
   place_deleted: Мястото е изтрито.
@@ -2110,9 +1996,6 @@ bg:
   your_account_has_been_activated: Вашият акаунт е активиран!
   your_activation_code_was_missing: "Липсва активационен код. Моля, използвайте препратката във Вашата електронна поща."
   your_browser_does_not_support_the_audio_element: Вашият браузър не поддържа аудио функцията.
-  your_coarser_id: |
-    Вашето по-общо ID <span class='taxon'>%{coarser_taxon_name}</span> предполага, че не сте съгласни с текущото по-конкретно ID <span class='taxon'>%{finer_taxon_name}</span>. Това ли е намерението Ви?<br><br>
-    <a href='/pages/getting+started' target='_blank'>Научете повече за процеса на разпознаване &raquo;</a>
   your_content: Вашето съдържание
   your_contributions_to_project: "Вашите приноси към %{project_title}"
   your_default_time_zone: Вашата часова зона по подразбиране
@@ -2454,40 +2337,7 @@ bg:
       - декември
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: около 1 час
-        other: около %{count} часа
-      about_x_months:
-        one: около 1 месец
-        other: около %{count} месеца
-      about_x_years:
-        one: около 1 година
-        other: около %{count} години
-      almost_x_years:
-        one: почти 1 година
-        other: почти %{count} години
       half_a_minute: половин минута
-      less_than_x_minutes:
-        one: по-малко от минута
-        other: по-малко от %{count} минути
-      less_than_x_seconds:
-        one: по-малко от секунда
-        other: по-малко от %{count} секунди
-      over_x_years:
-        one: над 1 година
-        other: над %{count} години
-      x_days:
-        one: 1 ден
-        other: '%{count} дни'
-      x_minutes:
-        one: 1 минута
-        other: '%{count} минути'
-      x_months:
-        one: 1 месец
-        other: '%{count} месеца'
-      x_seconds:
-        one: 1 секунда
-        other: '%{count} секунди'
     countdown_x_days:
       one: ден
       other: дена
@@ -2527,20 +2377,8 @@ bg:
       odd: трябва да е нечетно
       record_invalid: 'Неуспешна проверка: %{errors}'
       taken: вече е заето
-      too_long:
-        one: е прекалено дълго (макс. 1 символ)
-        other: е прекалено дълго (макс. %{count} символа)
-      too_short:
-        one: е прекалено кратко (мин. 1 символ)
-        other: е прекалено кратко (мин. %{count} символа)
-      wrong_length:
-        one: е с грешна дължина (трябва да е 1 символ)
-        other: е с грешна дължина (трябва да е %{count} символа)
     template:
       body: 'Имаше проблеми със следните полета:'
-      header:
-        one: 1 грешка попречи на запазването на %{model}
-        other: '%{count} грешки попречиха на запазването на %{model}'
   helpers:
     select:
       prompt: Моля изберете
