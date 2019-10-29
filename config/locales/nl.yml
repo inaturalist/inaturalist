@@ -1,102 +1,4 @@
 nl:
-  x_comments:
-    one: '1 reactie'
-    other: '%{count} reacties'
-  x_faves:
-    one: '1 favoriet'
-    other: '%{count} favorieten'
-  x_flags_resolved_html:
-    one: "<span class='count'>1</span> melding opgelost"
-    other: "<span class='count'>%{count}</span> meldingen opgelost"
-  x_identifications:
-    one: '1 determinatie'
-    other: '%{count} determinaties'
-  x_identifications_html:
-    one: '<span class="count">1</span> determinatie'
-    other: '<span class="count">%{count}</span> determinaties'
-  x_identifications_:
-    one: '1 determinatie'
-    other: '%{count} determinaties'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    one: '<span class="count">1</span> determineerder'
-    other: '<span class="count">%{count}</span> determineerders'
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    one: 1 levenslijst-primeur
-    other: "%{count} levenslijst-primeurs"
-  x_journal_posts_html:
-    one: '<span class="count">1</span> dagboekbericht'
-    other: '<span class="count">%{count}</span> dagboekberichten'
-  x_matching_taxa:
-    one: '1 overeenstemmend taxon'
-    other: '%{count} overeenstemmende taxa'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> overeenstemmende taxon'
-    other: '<span class="count">%{count}</span> overeenstemmende taxa'
-  x_misidentifications_of_this_species:
-    one: "1 onjuiste determinatie van deze soort"
-    other: "%{count} onjuiste determinaties van deze soort"
-  x_misidentifications_of_species_in_this_rank:
-    one: "1 onjuiste determinatie van soorten in @gender{n:dit|deze} %{rank}"
-    other: "%{count} onjuiste determinaties van soorten in @gender{n:dit|deze} %{rank}"
-  x_observations:
-    one: "1 waarneming"
-    other: "%{count} waarnemingen"
-  x_observations_:
-    one: "1 Waarneming"
-    other: "%{count} Waarnemingen"
-  x_observations_html:
-    one: "<span class='count'>1</span> waarneming"
-    other: "<span class='count'>%{count}</span> waarnemingen"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1</a> waarneming"
-    other: "<a href='%{url}'>%{count}</a> waarnemingen"
-  x_observations_reviewed_html:
-    one: "<span class='count'>1</span> waarneming gecontroleerd "
-    other: "<span class='count'>%{count}</span> waarnemingen gecontroleerd"
-  x_observers_html:
-    one: '<span class="count">1</span> waarnemer'
-    other: '<span class="count">%{count}</span> waarnemers'
-  x_others:
-    one: "1 ander persoon"
-    other: "%{count} anderen"
-  x_photos:
-    one: "1 foto"
-    other: "%{count} foto's"
-  x_new_species:
-    one: "1 nieuwe soort"
-    other: "%{count} nieuwe soorten"
-  x_species:
-    one: '1 soort'
-    other: '%{count} soorten'
-  x_species_html:
-    one: "<span class='count'>1</span> soort"
-    other: "<span class='count'>%{count}</span> soorten"
-  x_species_link_html:
-    one: "<a href='%{url}'>1</a> soort"
-    other: "<a href='%{url}'>%{count}</a> soorten"
-  x_suggestions_filtered_by_colon:
-    one: "1 voorstel gefilterd door :"
-    other: "%{count} Voorstellen gefilterd door:"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> taxon waargenomen"
-    other: "<span class='count'>%{count}</span> taxa waargenomen"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> waarneming van onderzoekskwaliteit"
-    other: "<span class='count'>%{count}</span> waarnemingen van onderzoekskwaliteit"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> waarneming van onderszoeksniveau gedetermineerd tot op soort of lager"
-    other: "<span class='count'>%{count}</span> waarnemingen van onderszoeksniveau gedetermineerd tot op soort of lager"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> taxon gecureerd"
-    other: "<span class='count'>%{count}</span> taxa gecureerd"
-  x_taxa_matching_current_filters:
-    one: "1 taxon dat overeenkomt met de huidige filters"
-    other: "%{count} taxa die overeenkomen met de huidige filters"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> taxon wijziging toegevoegd "
-    other: "<span class='count'>%{count}</span> taxon wijzigingen toegevoegd"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} mensen</strong> hielpen %{user} met <strong>%{y} determinaties</strong>"
   _100_day_trends: 100-daagse trends
   _percent_ID_d: "% gedetermineerd"
@@ -225,7 +127,6 @@ nl:
   #"one" refers to a photo
   add_one_now: Voeg er nu één toe
   add_photos: Foto's toevoegen
-  add_photos_to_this_observation: Foto's aan deze waarneming toevoegen
   add_place: Plaats toevoegen
   add_plant_phenology_budding_annotation: 'Voeg "Plantenfenologie: Knopvormend" aantekening toe'
   add_plant_phenology_flowering_annotation: 'Voeg "Plantenfenologie: Bloeiend" aantekening toe'
@@ -359,48 +260,6 @@ nl:
     ray_finned_fishes: Straalvinnigen
     reptiles: Reptielen
     life: Leven
-    x_plantae:
-      one: "1 plant"
-      other: "%{count} planten"
-    x_animalia:
-      one: "1 dier"
-      other: "%{count} dieren"
-    x_mollusca:
-      one: "1 weekdier"
-      other: "%{count} weekdieren"
-    x_amphibia:
-      one: "1 amfibie"
-      other: "%{count} amfibieën"
-    x_mammalia:
-      one: "1 zoogdier"
-      other: "%{count} zoogdieren"
-    x_actinopterygii:
-      one: "1 straalvinnige"
-      other: "%{count} straalvinnigen"
-    x_reptilia:
-      one: "1 reptiel"
-      other: "%{count} reptielen"
-    x_aves:
-      one: "1 vogel"
-      other: "%{count} vogels"
-    x_insecta:
-      one: "1 insect"
-      other: "%{count} insecten"
-    x_arachnida:
-      one: "1 spinachtige"
-      other: "%{count} spinachtigen"
-    x_fungi:
-      one: "1 schimmel"
-      other: "%{count} schimmels"
-    x_chromista:
-      one: "1 chromist"
-      other: "%{count} chromisten"
-    x_protozoa:
-      one: "1 eencellige"
-      other: "%{count} eencelligen"
-    x_other_animals:
-      one: "1 ander dier"
-      other: "%{count} andere dieren"
   all_taxa_: Alle taxa
   all_taxa_in_this_guide: Alle taxa in deze gids
   all_taxonomic_groups: "&laquo; Alle Taxonomische Groepen"
@@ -423,9 +282,6 @@ nl:
   ancestor_taxon: Voorouder-taxon
   and: en
   and_other_taxa: "&amp; Andere Taxa"
-  and_x_more_people!:
-    one: "en nog 1 persoon!"
-    other: "en %{count} meerdere personen!"
   android: Android
   animals: Dieren
   annotation: Annotatie
@@ -727,7 +583,6 @@ nl:
   choose_tags: Tags kiezen
   choose_taxon: Kies een taxon
   choose_what_kind_of_change_youre_creating: "Kies welk type wijziging je aan het maken bent."
-  choose_your_username: Kies je gebruikersnaam
   cid_d_to_genus: CID'd naar Genus
   citation: Citaat
   classification: Classificatie
@@ -2465,7 +2320,6 @@ nl:
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mij kan opslaan en verwerken om mijn account te beheren
   pi_consent_child_label: |
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mijn kind kan opslaan en verwerken om het account van mijn kind te beheren
-  pick_a_username: Kies een gebruikersnaam
   pin_verb: Vastzetten
   pink: roze
   pinned_locations_desc: |
@@ -4081,9 +3935,6 @@ nl:
   x_journal_archives_for_y: "Dagboek van %{user} • Archief voor"
   x_journal_middot: "Dagboek van %{user} •"
   x_journal_new_post: "Dagboek van %{user} • Nieuw bericht"
-  x_observations_failed:
-    one: "1 waarneming faalde"
-    other: "%{count} waarnemingen faalden"
   x_of_y: "%{x} o=van %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} van %{y} mensen (meer dan 2/3) zijn het er over eens dat hij het is"
   x_is_the_root_of_the_tree: "%{rank} %{name} is de wortel van de boom"
@@ -4198,9 +4049,6 @@ nl:
   your_account_has_been_verified: "Je %{site_name}-account is bevestigd! Log in om verder te gaan."
   your_activation_code_was_missing: "Je activatiecode ontbrak. Gebruik de URL in je e-mail."
   your_browser_does_not_support_the_audio_element: Je browser ondersteunt het audio-element niet.
-  your_coarser_id: |
-    Je grovere determinatie <span class='taxon'>%{coarser_taxon_name}</span> impliceert dat je het niet eens bent met de bestaande, fijnere determinatie <span class = 'taxon'>%{finer_taxon_name}</span>. Is dit wat je bedoelt?<br><br>
-    <a href='/pages/getting+started' target='_blank'>Meer informatie over hoe determinaties werken &raquo;</a>
   your_comment_was_saved: Je inhoud is opgeslagen
   your_content: Jouw inhoud
   your_contributions_to_project: "Jouw bijdragen aan %{project_title}"
@@ -5432,24 +5280,6 @@ nl:
       delete:
         by_deleting_your_account_you_will_remove: |
           Door je account te verwijderen, verwijder je
-        x_observations_html:
-          one: |
-            <strong class="count">1 waarneming</strong>,
-            inclusief het werk van de
-            <strong class="count">%{helpers_count} personen</strong> die je hebben geholpen met determinaties
-          other: |
-            <strong class="count">%{count} waarnemingen</strong>,
-            inclusief het werk van de
-            <strong class="count">%{helpers_count} personen</strong> die je hebben geholpen met determinaties
-        x_identifications_html:
-          one: |
-            <strong class="count">jouw enige determinatie</strong> van de waarneming van een andere persoon, die mogelijk van invloed kan zijn op de datakwaliteit van die waarneming
-          other: |
-            <strong class="count">%{count} van jouw eigen determinaties</strong> op de waarnemingen van 
-            <strong class="count">%{helpees_count} andere mensen</strong>, die mogelijk van invloed zijn op de datakwaliteit van die waarnemingen
-        x_comments_html:
-          one: <strong class="count">1 reactie</strong> van jou
-          other: <strong class="count">%{count} reacties</strong> van jou
         furthermore_cannot_undo_html: |
           Bovendien kan <strong>deze actie niet ongedaan worden gemaakt.</strong> Als je later verandert van gedachten krijg je die inhoud niet terug.
         settings_and_mute_html: |
@@ -5701,40 +5531,7 @@ nl:
       - december
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: ongeveer 1 uur
-        other: ongeveer %{count} uren
-      about_x_months:
-        one: ongeveer 1 maand
-        other: ongeveer %{count} maanden
-      about_x_years:
-        one: ongeveer 1 jaar
-        other: ongeveer %{count} jaren
-      almost_x_years:
-        one: bijna 1 jaar
-        other: bijna %{count} jaren
       half_a_minute: een halve minuut
-      less_than_x_minutes:
-        one: minder dan een minuut
-        other: minder dan %{count} minuten
-      less_than_x_seconds:
-        one: minder dan 1 seconde
-        other: minder dan %{count} seconden
-      over_x_years:
-        one: binnen 1 jaaar
-        other: binnen %{count} jaren
-      x_days:
-        one: 1 dag
-        other: '%{count} dagen'
-      x_minutes:
-        one: 1 minuut
-        other: '%{count} minuten'
-      x_months:
-        one: 1 maand
-        other: '%{count} maanden'
-      x_seconds:
-        one: 1 seconde
-        other: '%{count} seconden'
     countdown_x_days:
       one: dag
       other: dagen
@@ -5778,20 +5575,8 @@ nl:
         je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
       requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
       taken: bestaat al
-      too_long:
-        one: is te lang (maximaal 1 teken)
-        other: is te lang (maximaal %{count} tekens)
-      too_short:
-        one: is te kort (minimaal 1 teken)
-        other: is te kort (minimaal %{count} tekens)
-      wrong_length:
-        one: heeft verkeerde lengte (moet 1 karakter zijn)
-        other: "heeft verkeerde lengte (moet \n%{count} karakters zijn)"
     template:
       body: 'Er was een probleem met de volgende velden:'
-      header:
-        one: 1 fout voorkomt dat @gender{n:dit|deze} %{model} wordt opgeslagen
-        other: '%{count} fouten voorkomt dat @gender{n:dit|deze} %{model} wordt opgeslagen'
   helpers:
     defaults:
       title: "DIT IS EEN TITEL"
@@ -5882,20 +5667,8 @@ nl:
         requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
         requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
         taken: bestaat al
-        too_long:
-          one: is te lang (maximaal 1 teken)
-          other: is te lang (maximaal %{count} tekens)
-        too_short:
-          one: is te kort (minimaal 1 teken)
-          other: is te kort (minimaal %{count} tekens)
-        wrong_length:
-          one: heeft verkeerde lengte (moet 1 karakter zijn)
-          other: "heeft verkeerde lengte (moet \n%{count} karakters zijn)"
       template:
         body: 'Er was een probleem met de volgende velden:'
-        header:
-          one: Door een fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen
-          other: Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen
   activerecord:
     models:
       AssessmentSection: Beoordelingssectie
@@ -6017,20 +5790,8 @@ nl:
         requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
         requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
         taken: bestaat al
-        too_long:
-          one: is te lang (maximaal 1 teken)
-          other: is te lang (maximaal %{count} tekens)
-        too_short:
-          one: is te kort (minimaal 1 teken)
-          other: is te kort (minimaal %{count} tekens)
-        wrong_length:
-          one: heeft verkeerde lengte (moet 1 karakter zijn)
-          other: "heeft verkeerde lengte (moet \n%{count} karakters zijn)"
       template:
         body: 'Er was een probleem met de volgende velden:'
-        header:
-          one: '%{model} niet opgeslagen: 1 fout gevonden'
-          other: '%{model} niet opgeslagen: %{count} fouten gevonden'
       models:
         application:
           attributes:
