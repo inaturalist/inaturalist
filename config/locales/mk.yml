@@ -1,58 +1,4 @@
 mk:
-  x_comments:
-    one: '1 коментар'
-    other: '%{count} коментари'
-  x_identifications:
-    one: '1 назнака'
-    other: '%{count} назнаки'
-  x_matching_taxa:
-    one: '1 совпаднат таксон'
-    other: '%{count} совпаднати таксони'
-  x_matching_taxa_html:
-    one: '<span class="count">1</span> совпаднат таксон'
-    other: '<span class="count">%{count}</span> совпаднати таксони'
-  x_observations:
-    one: "1 набљудување"
-    other: "%{count} набљудувања"
-  x_observations_:
-    one: "1 набљудување"
-    other: "%{count} набљудувања"
-  x_observations_html:
-    one: "<span class='count'>1</span> набљудување"
-    other: "<span class='count'>%{count}</span> набљудувања"
-  x_observations_link_html:
-    one: "<a href='%{url}'>1 набљудување</a>"
-    other: "<a href='%{url}'>%{count} набљудувања</a>"
-  x_others:
-    one: "1 друг"
-    other: "%{count} други"
-  x_photos:
-    one: "1 слика"
-    other: "%{count} слики"
-  x_new_species:
-    one: "1 нов вид"
-    other: "%{count} нови видови"
-  x_species:
-    one: '1 вид'
-    other: '%{count} видови'
-  x_species_html:
-    one: "<span class='count'>1</span> вид"
-    other: "<span class='count'>%{count}</span> видови"
-  x_species_link_html:
-    one: "<a href='%{url}'>1 вид</a>"
-    other: "<a href='%{url}'>%{count} видови</a>"
-  x_taxa_observed_html:
-    one: "Набљудуван <span class='count'>1</span> таксон"
-    other: "<span class='count'>Набљудувани %{count}</span> таксони"
-  x_research_grade_observations_html:
-    one: "<span class='count'>1</span> набљудување од од истражен степен</span>"
-    other: "<span class='count'>%{count}</span> набљудувања од истражен степен</span>"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> препознаен вид (или пониско) од истражен степен</span>"
-    other: "<span class='count'>%{count}</span> препознаени видови (или пониско) од истражен степен</span>"
-  x_taxa_matching_current_filters:
-    one: "На тековните филтри одговара 1 таксон"
-    other: "На тековните филтри одговараат %{count} таксони"
   _100_day_trends: Трендови за 100 дена
   a_community_for_naturalist: Заедница за природници
   a_flag_for_x: "обележувач за %{x}"
@@ -124,7 +70,6 @@ mk:
   add_new_taxon_name: Додај ново таксонско име
   add_observations: Додај набљудувања
   add_photos: Додај слики
-  add_photos_to_this_observation: Додај слики во ова набљудување
   add_relationship: 'Додај однос'
   add_section: Додај поднаслов
   add_several_observations_at_once: Додајте неколку набљудувања наеднаш.
@@ -193,48 +138,6 @@ mk:
     ray_finned_fishes: Зракоперки
     reptiles: Влекачи
     life: Живот
-    x_plantae:
-      one: "1 растение"
-      other: "%{count} растенија"
-    x_animalia:
-      one: "1 животно"
-      other: "%{count} животни"
-    x_mollusca:
-      one: "1 мекотелец"
-      other: "%{count} мекотелци"
-    x_amphibia:
-      one: "1 водоземец"
-      other: "%{count} водоземци"
-    x_mammalia:
-      one: "1 цицач"
-      other: "%{count} цицачи"
-    x_actinopterygii:
-      one: "1 зракоперка"
-      other: "%{count} зракоперки"
-    x_reptilia:
-      one: "1 влекач"
-      other: "%{count} влекачи"
-    x_aves:
-      one: "1 птица"
-      other: "%{count} птици"
-    x_insecta:
-      one: "1 инсект"
-      other: "%{count} инсекти"
-    x_arachnida:
-      one: "1 пајаковиден"
-      other: "%{count} пајаковидни"
-    x_fungi:
-      one: "1 габа"
-      other: "%{count} габи"
-    x_chromista:
-      one: "1 хромист"
-      other: "%{count} хромисти"
-    x_protozoa:
-      one: "1 праживотно"
-      other: "%{count} праживотни"
-    x_other_animals:
-      one: "1 друго животно"
-      other: "%{count} други животни"
   all_taxa_: Сите таксони
   all_taxa_in_this_guide: Сите таксони во водичов
   all_taxonomic_groups: "&laquo; Сите таксономски групи"
@@ -352,7 +255,6 @@ mk:
   choose_a_taxon: Одберете таксон (незадол.)
   choose_from_your_lists: Одберете од вашите списоци
   choose_photos_for_this_taxon: Одберете слики за таксонов
-  choose_your_username: Одберете си корисничко име
   citation: Наведување
   classification: Класификација
   clear: тргни
@@ -946,7 +848,6 @@ mk:
     original: изворно
   photos_size_photos: "%{photos_size} слики"
   photos_updated: Сликите се подновени.
-  pick_a_username: Изберете корисничко име
   pink: розова
   place: Место
   place_added_to_inat_by: "Додадено место на %{site_name} од"
@@ -1537,40 +1438,7 @@ mk:
       - декември
   datetime:
     distance_in_words:
-      about_x_hours:
-        one: околу 1 час
-        other: околу %{count} часа
-      about_x_months:
-        one: околу 1 месец
-        other: околу %{count} месеци
-      about_x_years:
-        one: околу 1 година
-        other: околу %{count} години
-      almost_x_years:
-        one: речиси 1 година
-        other: речиси %{count} години
       half_a_minute: половина минута
-      less_than_x_minutes:
-        one: помалку од една минута
-        other: помалку од %{count} минути
-      less_than_x_seconds:
-        one: помалку од 1 секунда
-        other: помалку од %{count} секунди
-      over_x_years:
-        one: преку 1 година
-        other: преку %{count} години
-      x_days:
-        one: 1 ден
-        other: '%{count} дена'
-      x_minutes:
-        one: 1 минута
-        other: '%{count} минути'
-      x_months:
-        one: 1 месец
-        other: '%{count} месеци'
-      x_seconds:
-        one: 1 секунда
-        other: '%{count} секунди'
     prompts:
       day: Ден
       hour: Час
@@ -1598,20 +1466,8 @@ mk:
       odd: мора да биде непарен број
       record_invalid: 'Заверката не успеа: %{errors}'
       taken: е веќе зафатено
-      too_long:
-        one: е предолго (највеќе 1 знак)
-        other: е предолго (највеќе %{count} знаци)
-      too_short:
-        one: е прекратко (барем 1 знак)
-        other: е прекратко (барем %{count} знаци)
-      wrong_length:
-        one: има погрешна должина (треба да има 1 знак)
-        other: има погрешна должина (треба да има %{count} знаци)
     template:
       body: 'Следниве полиња се проблематични:'
-      header:
-        one: 1 грешка му попречи на зачувувањето на овој %{model}
-        other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   helpers:
     select:
       prompt: Одберете
@@ -1682,20 +1538,8 @@ mk:
         odd: мора да биде непарен број
         record_invalid: 'Заверката не успеа: %{errors}'
         taken: е веќе зафатено
-        too_long:
-          one: е предолго (највеќе 1 знак)
-          other: е предолго (највеќе %{count} знаци)
-        too_short:
-          one: е прекратко (барем 1 знак)
-          other: е прекратко (барем %{count} знаци)
-        wrong_length:
-          one: има погрешна должина (треба да има 1 знак)
-          other: има погрешна должина (треба да има %{count} знаци)
       template:
         body: 'Следниве полиња се проблематични:'
-        header:
-          one: Една грешка му попречи на зачувувањето на овој %{model}
-          other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   activerecord:
     attributes:
       assessment:
