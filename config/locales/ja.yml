@@ -1,56 +1,4 @@
 ja:
-  x_comments:
-    other: '%{count}件のコメント'
-  x_faves:
-    other: '%{count}件のお気に入り'
-  x_flags_resolved_html:
-    other: "<span class='count'>%{count}</span>件の解決済みフラグ"
-  x_identifications_html:
-    other: '<span class="count">%{count}</span>件の同定'
-  x_journal_posts_html:
-    other: '<span class="count">%{count}</span>件のジャーナル投稿'
-  x_matching_taxa:
-    other: '%{count}件の該当する分類群'
-  x_matching_taxa_html:
-    other: '<span class="count">%{count}</span>件の該当する分類群'
-  x_misidentifications_of_this_species:
-    other: "この種の鑑定に間違いが%{count}件"
-  x_misidentifications_of_species_in_this_rank:
-    other: "%この%{rank}中誤同定は%{count}件"
-  x_observations:
-    other: "%{count}件の観察記録"
-  x_observations_:
-    other: "%{count}件の観察記録"
-  x_observations_html:
-    other: "<span class='count'>%{count}</span>件の観察記録"
-  x_observations_link_html:
-    other: "<a href='%{url}'>%{count}件の観察記録</a>"
-  x_observations_reviewed_html:
-    other: "<span class='count'>%{count}</span>件の観察記録を査読"
-  x_others:
-    other: "その他%{count}件"
-  x_photos:
-    other: "%{count}枚の写真"
-  x_new_species:
-    other: "%{count}件の新種"
-  x_species:
-    other: '%{count}種'
-  x_species_html:
-    other: "<span class='count'>%{count}</span>種"
-  x_species_link_html:
-    other: "<a href='%{url}'>%{count}種</a>"
-  x_suggestions_filtered_by_colon:
-    other: "%{count}件の提案を検出:"
-  x_taxa_observed_html:
-    other: "<span class='count'>%{count}</span>件の観察済分類群"
-  x_research_grade_observations_html:
-    other: "<span class='count'>%{count}</span>件の研究用観察記録"
-  x_research_grade_observations_to_species_html:
-    other: "<span class='count'>%{count}</span>件の種もしくはそれ以下の研究用観察記録"
-  x_taxa_matching_current_filters:
-    other: "%{count}件の現在の絞込みに該当する分類群"
-  x_taxon_changes_added_html:
-    other: "<span class='count'>%{count}</span>件の分類群変更を追加"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました"
   _100_day_trends: 100日の傾向
   _percent_ID_d: "%件判定済み"
@@ -155,7 +103,6 @@ ja:
   #"one" refers to a photo
   add_one_now: 今すぐ追加
   add_photos: 写真を追加
-  add_photos_to_this_observation: この観測記録に写真を追加
   add_place: 場所を追加
   add_life_stage_adult_annotation: '“ライフステージ: 成体”の注釈を追加する'
   add_life_stage_teneral_annotation: '“ライフステージ: teneral”の注釈を追加する'
@@ -268,32 +215,6 @@ ja:
     ray_finned_fishes: 条鰭綱
     reptiles: 爬虫類
     life: 生命
-    x_plantae:
-      other: "%{count}件の植物"
-    x_animalia:
-      other: "%{count}件の動物"
-    x_mollusca:
-      other: "%{count}件の軟体動物"
-    x_mammalia:
-      other: "%{count}件の哺乳類"
-    x_actinopterygii:
-      other: "側棘鰭上目%{count}種"
-    x_reptilia:
-      other: "%{count}件の爬虫類"
-    x_aves:
-      other: "%{count}羽の鳥"
-    x_insecta:
-      other: "%{count}頭の昆虫類"
-    x_arachnida:
-      other: "%{count}匹のクモ類"
-    x_fungi:
-      other: "%{count}種の菌類"
-    x_chromista:
-      other: "クロミスタ%{count}類"
-    x_protozoa:
-      other: "%{count}件の原生動物"
-    x_other_animals:
-      other: "%{count}件のその他の動物"
   all_taxa_: すべての分類群
   all_taxa_in_this_guide: このガイド内のすべての分類群
   all_taxonomic_groups: "&laquo; すべての分類群"
@@ -313,8 +234,6 @@ ja:
   amphibians: 両生類
   and: そして
   and_other_taxa: "&amp; その他の分類群"
-  and_x_more_people!:
-    other: "他%{count}人!"
   animals: 動物
   annotation: 注釈
   annotations: 注釈
@@ -531,7 +450,6 @@ ja:
   choose_tags: タグを選択
   choose_taxon: 分類群を選択してください
   choose_what_kind_of_change_youre_creating: "変更の種類を選択してください"
-  choose_your_username: ユーザー名を入力してください
   citation: 引用
   classification: 分類
   clear: クリア
@@ -1646,7 +1564,6 @@ ja:
     original: 元サイズ
   photos_size_photos: "%{photos_size}枚の写真"
   photos_updated: 写真は更新されました
-  pick_a_username: ユーザー名
   pink: 桃
   place: 場所
   placeholder: プレースホルダー
@@ -2560,8 +2477,6 @@ ja:
   x_does_not_exist: "%{x}は存在しません"
   x_journal: "%{user}さんのジャーナル"
   x_journal_middot: "%{user}さんのジャーナル •"
-  x_observations_failed:
-    other: "%{count}件の観察失敗記録"
   x_project_journal: "%{project}の%{name}"
   x_project_stats: "%{project}の統計"
   x_site_is_a_social_network_for_naturalist: |
@@ -2615,9 +2530,6 @@ ja:
   you_sure_delete_this_observation: "この観察記録を削除して本当によろしいですか？"
   you_sure_remove_taxon_from?: "%{list}からこの分類群を削除して本当によろしいですか？"
   your_account_has_been_activated: あなたのアカウントは無事作成することができました。
-  your_coarser_id: |
-    より大まかな<span class='taxon'>%{coarser_taxon_name}</span>の同定が、下位分類の<span class='taxon'>%{finer_taxon_name}</span>の同定と一致していないようです。このまま保存してよいですか？<br><br>
-    <a href='/pages/getting+started' target='_blank'>同定の方法について、詳しい説明はこちら&raquo;</a>
   your_comment_was_saved: 内容は保存されました
   your_content: あなたのコンテンツ
   your_contributions_to_project: "%{project_title}への自分の投稿"
@@ -2886,9 +2798,6 @@ ja:
           "Life Stage=pupa": 蛹
           "Life Stage=adult": 成虫
     users:
-      delete:
-        x_comments_html:
-          other: あなたが追加した<strong class="count">コメントは%{count}件</strong>
       edit:
         blocking_desc_html: |
           <p>
@@ -3026,27 +2935,7 @@ ja:
       - 12月
   datetime:
     distance_in_words:
-      about_x_hours:
-        other: 約%{count}時間
-      about_x_months:
-        other: 約%{count}ヶ月
-      about_x_years:
-        other: 約%{count}年
-      almost_x_years:
-        other: 約%{count}年
       half_a_minute: 約30秒
-      less_than_x_seconds:
-        other: '%{count}秒以内'
-      over_x_years:
-        other: '%{count}年以上'
-      x_days:
-        other: '%{count}日'
-      x_minutes:
-        other: '%{count}分'
-      x_months:
-        other: '%{count}ヶ月'
-      x_seconds:
-        other: '%{count}秒'
     countdown_x_hours:
       other: 時間
     countdown_x_seconds:
@@ -3074,16 +2963,8 @@ ja:
       odd: 奇数でなければならない
       record_invalid: '認証は失敗しました：%{errors}'
       taken: 既に取得されています
-      too_long:
-        other: は長すぎます（最大は%{count}文字）
-      too_short:
-        other: は短すぎます（最小は%{count}文字）
-      wrong_length:
-        other: iの長さが間違いです (数字%{count}文字が正解)
     template:
       body: '次のフィールドに問題がありました：'
-      header:
-        other: '%{model}の保存を許可しなかったエラー%{count}件'
   helpers:
     select:
       prompt: 選択してください
@@ -3134,14 +3015,8 @@ ja:
         odd: 奇数でなければならない
         record_invalid: 認証は失敗しました：%{errors}
         taken: 既に取得されています
-        too_long:
-          other: は長すぎます（最大は%{count}文字）
-        too_short:
-          other: は短すぎます（最小は%{count}文字）
       template:
         body: 以下のフィールドに問題があります：
-        header:
-          other: ' %{model}の保存を許可しなかった%{count}件のエラー'
   activerecord:
     attributes:
       assessment:
@@ -3208,9 +3083,6 @@ ja:
         name_provider: 名称提供先
         source_url: ソースURL
     errors:
-      template:
-        header:
-          other: '%{model}の保管を許可しなった%{count}件のエラー'
       models:
         guide:
           attributes:
