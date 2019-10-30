@@ -1,4 +1,88 @@
 es-MX:
+  x_comments:
+    one: '1 comentario'
+    other: '%{count} comentarios'
+  x_faves:
+    one: '1 Favorito'
+    other: '%{count} Favoritos'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> advertencia resuelta"
+    other: "<span class='count'>%{count}</span> advertencias resueltas"
+  x_identifications:
+    one: 'una identificación'
+    other: '%{count} identificaciones'
+  x_identifications_html:
+    one: '<span class="count">1</span> identificación'
+    other: '<span class="count">%{count}</span> identificaciones'
+  x_identifications_:
+    one: '1 identificación'
+    other: '%{count} identificaciones'
+  x_journal_posts_html:
+    one: '<span class="count">1</span> entrada de diario'
+    other: '<span class="count">%{count}</span> entradas de diario'
+  x_matching_taxa:
+    one: '1 taxón coincide'
+    other: '%{count} taxones coinciden'
+  x_matching_taxa_html:
+    one: '<span class="count">1</span> taxón coincide'
+    other: '<span class="count">%{count}</span> taxa coincidente'
+  x_misidentifications_of_this_species:
+    one: "1 error de identificación de esta especie"
+    other: "%{count} errores de identificación de esta especie"
+  x_misidentifications_of_species_in_this_rank:
+    one: "1 identificación errónea de especies en esta %{rank}"
+    other: "%{count} identificaciones erróneas de especies en este %{rank}"
+  x_observations:
+    one: "Una observación"
+    other: "%{count} observaciones"
+  x_observations_:
+    one: "1 observación"
+    other: "%{count} observaciones"
+  x_observations_html:
+    one: "<span class='count'>1</span> observación"
+    other: "<span class='count'>%{count}</span> observaciones"
+  x_observations_link_html:
+    one: "<a href='%{url}'>1 observación</a>"
+    other: "<a href='%{url}'>%{count} observaciones</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>1</span> observación revisada"
+    other: "<span class='count'>%{count}</span> observaciones revisadas"
+  x_others:
+    one: "1 otro"
+    other: "%{count} otros"
+  x_new_species:
+    one: "1 Nueva especie"
+    other: "%{count} Nuevas especies"
+  x_species:
+    one: '1 especie'
+    other: '%{count} especies'
+  x_species_html:
+    one: "<span class='count'>1</span> especie"
+    other: "<span class='count'>%{count}</span> especies"
+  x_species_link_html:
+    one: "<a href='%{url}'>1 especie</a>"
+    other: "<a href='%{url}'>%{count} especies</a>"
+  x_suggestions_filtered_by_colon:
+    one: "1 Sugerencia Filtrada por:"
+    other: "%{count} Sugerencias Filtradas por:"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> especie o grupo observado"
+    other: "<span class='count'>%{count}</span> especies o grupos observados"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> observación con grado de investigación</span>"
+    other: "<span class='count'>%{count}</span> observaciones con grado de investigación</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> observación con grado de investigación identificada a especie o subespecie</span>"
+    other: "<span class='count'>%{count}</span> observaciones con grado de investigación identificadas a especie o subespecie</span>"
+  x_taxa_curated_html:
+    one: "<span class='count'>1</span> taxón revisado"
+    other: "<span class='count'>%{count}</span> taxones revisados"
+  x_taxa_matching_current_filters:
+    one: "1 especie o grupo con los filtros seleccionados"
+    other: "%{count} especies o grupos con los filtros seleccionados"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>1</span> cambio taxonómico agregado"
+    other: "<span class='count'>%{count}</span> cambios taxonómicos agregados"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} usuarios</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: "% identificados"
@@ -224,6 +308,42 @@ es-MX:
     protozoans: Protozoarios
     ray_finned_fishes: Peces con aletas radiadas
     life: Vida
+    x_plantae:
+      one: "1 planta"
+      other: "%{count} plantas"
+    x_mollusca:
+      one: "1 molusco"
+      other: "%{count} moluscos"
+    x_amphibia:
+      one: "1 anfibio"
+      other: "%{count} anfibios"
+    x_mammalia:
+      one: "1 mamífero"
+      other: "%{count} mamíferos"
+    x_actinopterygii:
+      one: "1 pez con aletas radiadas"
+      other: "%{count} peces con aletas radiadas"
+    x_aves:
+      one: "1 ave"
+      other: "%{count} aves"
+    x_insecta:
+      one: "1 insecto"
+      other: "%{count} insectos"
+    x_arachnida:
+      one: "1 arácnido"
+      other: "%{count} arácnidos"
+    x_fungi:
+      one: "1 hongo"
+      other: "%{count} hongos"
+    x_chromista:
+      one: "1 alga parda y parientes"
+      other: "%{count} algas pardas y parientes"
+    x_protozoa:
+      one: "1 protozoario"
+      other: "%{count} protozoarios"
+    x_other_animals:
+      one: "1 otro animal"
+      other: "%{count} otros animales"
   all_taxa_: Todos los taxones
   all_taxa_in_this_guide: Todas las especies y grupos de esta guía
   all_taxonomic_groups: "&laquo; Todos los grupos taxonómicos"
@@ -3499,6 +3619,9 @@ es-MX:
   x_journal_archives_for_y: "Diario de %{user} &middot; Archivos para"
   x_journal_middot: "Diario de %{user} &middot;"
   x_journal_new_post: "Diario de %{user} &middot; Nueva nota"
+  x_observations_failed:
+    one: "1 observación falló"
+    other: "%{count} observaciones fallaron"
   x_of_y: "%{x} de %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} of %{y} gente (más de 2/3) están de acuerdo con esto"
   x_is_the_root_of_the_tree: "%{rank} %{name} es la raíz del árbol"
@@ -4722,6 +4845,22 @@ es-MX:
       delete:
         by_deleting_your_account_you_will_remove: |
           Al borrar su cuenta se eliminarán
+        x_observations_html:
+          one: |
+            <strong class="count">1 observación</strong>,
+            incluye el trabajo de <strong class="count">%{helpers_count} personas</strong> que te han ayudado con las identificaciones de 
+          other: |
+            <strong class="count">%{count} observaciones</strong>,
+            incluyendo el trabajo de <strong class="count">%{helpers_count} peorsonas</strong> que te han ayudado con las identificaciones
+        x_identifications_html:
+          one: |
+            <strong class="count">tu identificación</strong>
+            en la observación de otra persona, que afectará potencialmente la calidad de los datos de esa observación
+          other: |
+            <strong class="count">%{count} de tus identificaciones</strong> en las observaciones de <strong class="count">%{helpees_count} otras personas</strong>, que potencialmente afectarán la calidad de los datos de esas observaciones
+        x_comments_html:
+          one: has agregado <strong class="count">1 comentario</strong>
+          other: has agregado <strong class="count">%{count} comentarios</strong>
         furthermore_cannot_undo_html: |
           Además, <strong> esta acción no se puede deshacer. </strong> Si cambia de opinión más tarde, no recuperará nada de ese contenido.
         settings_and_mute_html: |
@@ -4927,7 +5066,40 @@ es-MX:
       - diciembre
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: cerca de una hora
+        other: cerca de %{count} horas
+      about_x_months:
+        one: cerca de un mes
+        other: cerca de %{count} meses
+      about_x_years:
+        one: cerca de un año
+        other: cerca de %{count} años
+      almost_x_years:
+        one: casi un año
+        other: casi %{count} años
       half_a_minute: medio minuto
+      less_than_x_minutes:
+        one: menos de un minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de un segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: más de un año
+        other: mas de %{count} años
+      x_days:
+        one: "un día"
+        other: '%{count} días'
+      x_minutes:
+        one: "un minuto"
+        other: '%{count} minutos'
+      x_months:
+        one: "Un mes"
+        other: '%{count} meses'
+      x_seconds:
+        one: "Un segundo"
+        other: '%{count} segundos'
     countdown_x_days:
       one: día
       other: días
@@ -4964,8 +5136,20 @@ es-MX:
       odd: Debe ser número impar
       record_invalid: 'Falló la validación: %{errors}'
       taken: Ya ha sido tomado
+      too_long:
+        one: Es demasiado largo (máximo es un carácter)
+        other: Es demasiado largo (máximo es %{count} caracteres)
+      too_short:
+        one: Es demasiado corto (mínimo es un carácter)
+        other: Es demasiado corto (mínimo es %{count} carácteres)
+      wrong_length:
+        one: La longitud está equivocada (debe ser un carácter)
+        other: La longitud está equivocada (deben ser %{count} caracteres)
     template:
       body: 'Hubo problemas con los siguientes campos:'
+      header:
+        one: "Un error no permitió que este %{model} se guardara"
+        other: '%{count} errores evitaron que este %{model} se guardara:'
   helpers:
     defaults:
       title: "ESTE ES UN TÍTULO"
@@ -5019,8 +5203,20 @@ es-MX:
         odd: Debe ser número impar
         record_invalid: 'La validación falló: %{errors}'
         taken: Ya ha sido utilizado
+        too_long:
+          one: Es demasiado largo (el máximo es un carácter}
+          other: Es demasiado largo (el máximo son %{count} caracteres)
+        too_short:
+          one: Es demasiado corto (el mínimo es 1 carácter)
+          other: es demasiado corto (el mínimo son %{count} carácteres)
+        wrong_length:
+          one: La longitud está equivocada (debe ser un carácter)
+          other: La longitud está equivocada (deben ser %{count} caracteres)
       template:
         body: 'Hubo problemas con los siguientes campos:'
+        header:
+          one: Un error no permitió que este %{model} se guardara
+          other: '% {count} errores no permitieron que este %{model} se guardara'
   activerecord:
     models:
       AssessmentSection: Sección de evaluación
@@ -5136,8 +5332,20 @@ es-MX:
         odd: Debe ser número impar
         record_invalid: 'Falló la validación: %{errors}'
         taken: Ya ha sido utilizado
+        too_long:
+          one: Es demasiado largo (máximo es un carácter)
+          other: Es demasiado largo (máximo es %{count} caracteres)
+        too_short:
+          one: Demasiado corto (mínimo es un carácter)
+          other: Es demasiado corto (Mínimo es %{count} caracteres)
+        wrong_length:
+          one: La longitud está equivocada (debe ser un carácter)
+          other: La longitud está equivocada (deben ser %{count} caracteres)
       template:
         body: 'Hubo problemas con los siguientes campos:'
+        header:
+          one: Un error no permitió que este %{model} se guardara
+          other: '% {count} errores no permitieron que este %{model} se guardara'
       models:
         application:
           attributes:
