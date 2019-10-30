@@ -1,4 +1,88 @@
 fi:
+  x_comments:
+    one: '1 kommentti'
+    other: '%{count} kommenttia'
+  x_faves:
+    one: '1 suositus'
+    other: '%{count} suositusta'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> lippu ratkaistu"
+    other: "<span class='count'>%{count}</span> lippua ratkaistu"
+  x_identifications:
+    one: '1 tunnistus'
+    other: '%{count} tunnistusta'
+  x_identifications_html:
+    one: '<span class="count">1</span> tunnistus'
+    other: '<span class="count">%{count}</span> tunnistusta'
+  x_identifications_:
+    one: '1 tunnistus'
+    other: '%{count} tunnistusta'
+  x_journal_posts_html:
+    one: '<span class="count">1</span> päiväkirjamerkintä'
+    other: '<span class="count">%{count}</span> päiväkirjamerkintää'
+  x_matching_taxa:
+    one: '1 vastaava taksoni'
+    other: '%{count} vastaavaa taksonia'
+  x_matching_taxa_html:
+    one: '<span class="count">1</span> vastaava taksoni'
+    other: '<span class="count">%{count}</span> vastaavaa taksonia'
+  x_misidentifications_of_this_species:
+    one: "1 virheellinen tämän lajin tunnistus"
+    other: "%{count} virheellistä tämän lajin tunnistusta"
+  x_observations:
+    one: "1 havainto"
+    other: "%{count} havaintoa"
+  x_observations_:
+    one: "1 havainto"
+    other: "%{count} havaintoa"
+  x_observations_html:
+    one: "<span class='count'>1</span> havainto"
+    other: "<span class='count'>%{count}</span> havaintoa"
+  x_observations_link_html:
+    one: "<a href='%{url}'>1 havainto</a>"
+    other: "<a href='%{url}'>%{count} havaintoa</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>1</span> havainto tarkistettu"
+    other: "<span class='count'>%{count}</span> havaintoa tarkistettu"
+  x_others:
+    one: "1 muu"
+    other: "%{count} muuta"
+  x_photos:
+    one: "1 kuva"
+    other: "%{count} kuvaa"
+  x_new_species:
+    one: "1 uusi laji"
+    other: "%{count} uutta lajia"
+  x_species:
+    one: '1 laji'
+    other: '%{count} lajia'
+  x_species_html:
+    one: "<span class='count'>1</span> laji"
+    other: "<span class='count'>%{count}</span> lajia"
+  x_species_link_html:
+    one: "<a href='%{url}'>1 laji</a>"
+    other: "<a href='%{url}'>%{count} lajia</a>"
+  x_suggestions_filtered_by_colon:
+    one: "1 ehdotuksen suodattanut:"
+    other: "%{count} ehdotusta suodattanut:"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> taksoni havaittu"
+    other: "<span class='count'>%{count}</span> taksonia havaittu"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> tutkimusasteen havainto</span>"
+    other: "<span class='count'>%{count}</span> tutkimusasteen havaintoa</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> tutkimusasteen havainto määritetty lajin tasolle tai sitä alemmaksi</span>"
+    other: "<span class='count'>%{count}</span> tutkimusasteen havaintoa määritetty lajin tasolle tai sitä alemmaksi</span>"
+  x_taxa_curated_html:
+    one: "<span class='count'>1</span> taksoni kuratoitu"
+    other: "<span class='count'>%{count}</span> taksonia kuratoitu"
+  x_taxa_matching_current_filters:
+    one: "1 taksoni vastaa tämänhetkisiä suodattimia"
+    other: "%{count} taksonia vastaa tämänhetkisiä suodattimia"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>1</span> taksonimuutos lisätty"
+    other: "<span class='count'>%{count}</span> taksonimuutosta lisätty"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} ihmistä</strong> auttoi käyttäjää %{user} <strong>%{y} tunnisteen kanssa</strong>"
   _100_day_trends: 100 päivän kehitys
   _percent_ID_d: "% määritetty"
@@ -227,6 +311,48 @@ fi:
     ray_finned_fishes: Viuhkaeväiset
     reptiles: Matelijat
     life: Elämä
+    x_plantae:
+      one: "1 kasvi"
+      other: "%{count} kasvia"
+    x_animalia:
+      one: "1 eläin"
+      other: "%{count} eläintä"
+    x_mollusca:
+      one: "1 nilviäinen"
+      other: "%{count} nilviäistä"
+    x_amphibia:
+      one: "1 sammakkoeläin"
+      other: "%{count} sammakkoeläintä"
+    x_mammalia:
+      one: "1 nisäkäs"
+      other: "%{count} nisäkästä"
+    x_actinopterygii:
+      one: "1 viuhkaeväinen"
+      other: "%{count} viuhkaeväistä"
+    x_reptilia:
+      one: "1 matelijat"
+      other: "%{count} matelijaa"
+    x_aves:
+      one: "1 lintu"
+      other: "%{count} lintua"
+    x_insecta:
+      one: "1 hyönteinen"
+      other: "%{count} hyönteistä"
+    x_arachnida:
+      one: "1 hämähäkkieläin"
+      other: "%{count} hämähäkkieläintä"
+    x_fungi:
+      one: "1 sieni"
+      other: "%{count} sientä"
+    x_chromista:
+      one: "1 chromista eliöryhmään kuuluva"
+      other: "%{count} chromista eliöryhmään kuuluvaa"
+    x_protozoa:
+      one: "1 alkueläin"
+      other: "%{count} alkueläintä"
+    x_other_animals:
+      one: "1 muu eläinlaji"
+      other: "%{count} muuta eläinlajia"
   all_taxa_: Kaikki taksonit
   all_taxa_in_this_guide: Kaikki taksonit tässä oppaassa
   all_taxonomic_groups: "&laquo; Kaikki taksonomiset ryhmät"
@@ -2991,6 +3117,9 @@ fi:
   x_journal: "Käyttäjän %{user} päiväkirja"
   x_journal_middot: "Käyttäjän %{user} päiväkirja •"
   x_journal_new_post: "Käyttäjän %{user} päiväkirja • Uusi merkintä"
+  x_observations_failed:
+    one: "1 havainto epäonnistui"
+    other: "%{count} havaintoa epäonnistui"
   x_of_y: "%{x}/%{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} %{y}stä ihmisestä (yli 2/3) on samaa mieltä että se on"
   x_project_journal: "Projektin %{project} %{name}"
@@ -3633,7 +3762,40 @@ fi:
       - joulukuu
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: noin 1 tunti
+        other: noin %{count} tuntia
+      about_x_months:
+        one: noin 1 kuukausi
+        other: noin %{count} kuukautta
+      about_x_years:
+        one: noin 1 vuosi
+        other: noin %{count} vuotta
+      almost_x_years:
+        one: melkein 1 vuosi
+        other: melkein %{count} vuotta
       half_a_minute: puoli minuuttia
+      less_than_x_minutes:
+        one: vähemmän kuin minuutti
+        other: vähemmän kuin %{count} minuuttia
+      less_than_x_seconds:
+        one: vähemmän kuin 1 sekunti
+        other: vähemmän kuin %{count} sekuntia
+      over_x_years:
+        one: yli 1 vuosi
+        other: yli %{count} vuotta
+      x_days:
+        one: "1 päivä"
+        other: '%{count} päivää'
+      x_minutes:
+        one: "1 minuutti"
+        other: '%{count} minuuttia'
+      x_months:
+        one: "1 kuukausi"
+        other: '%{count} kuukauta'
+      x_seconds:
+        one: "1 sekunti"
+        other: '%{count} sekuntia'
     countdown_x_days:
       one: päivä
       other: päivää
@@ -3666,6 +3828,15 @@ fi:
       not_a_number: ei ole numero
       not_an_integer: täytyy olla kokonaisluku
       taken: on jo varattu
+      too_long:
+        one: on liian pitkä (maksimi on 1 merkki)
+        other: on liian pitkä (maksimi on %{count} merkkiä)
+      too_short:
+        one: on liian lyhyt (maksimi on 1 merkki)
+        other: on liian lyhyt (maksimi on %{count} merkkiä)
+      wrong_length:
+        one: on väärän pituinen (pitäisi olla 1 merkki)
+        other: on väärän pituinen (pitäisi olla %{count} merkkiä)
     template:
       body: 'Seuraavissa kentissä oli ongelmia:'
   helpers:
@@ -3730,6 +3901,12 @@ fi:
         not_an_integer: on oltava kokonaisluku
         odd: on oltava pariton
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
+        too_long:
+          one: on liian pitkä (maksimi on 1 merkki)
+          other: on liian pitkä (maksimi on %{count} merkkiä)
+        too_short:
+          one: on liian lyhyt (minimi on 1 merkki)
+          other: on liian lyhyt (minimi on %{count} merkkiä)
       template:
         body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
