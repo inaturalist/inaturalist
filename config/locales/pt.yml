@@ -1,4 +1,88 @@
 pt:
+  x_comments:
+    one: '1 comentário'
+    other: '%{count} comentários'
+  x_faves:
+    one: '1 favorito'
+    other: '%{count} favoritos'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> sinalizador resolvido"
+    other: "<span class='count'>%{count}</span> sinalizadores resolvidos"
+  x_identifications:
+    one: '1 identificação'
+    other: '%{count} identificações'
+  x_identifications_html:
+    one: '<span class="count">1</span> identificação'
+    other: '<span class="count">%{count}</span> identificações'
+  x_identifications_:
+    one: '1 identificação'
+    other: '%{count} identificações'
+  x_journal_posts_html:
+    one: '<span class="count">1</span> publicação do boletim'
+    other: '<span class="count">%{count}</span> publicações do boletim'
+  x_matching_taxa:
+    one: '1 táxon correspondente'
+    other: '%{count} táxons correspondentes'
+  x_matching_taxa_html:
+    one: '<span class="count">1</span> táxon correspondente'
+    other: '<span class="count">%{count}</span> táxons correspondentes'
+  x_misidentifications_of_this_species:
+    one: "1 identificação incorreta desta espécie"
+    other: "%{count} identificações incorretas desta espécie"
+  x_observations:
+    one: "1 observação"
+    other: "%{count} observações"
+  x_observations_:
+    one: "1 observação"
+    other: "%{count} observações"
+  x_observations_html:
+    one: "<span class='count'>1</span> observação"
+    other: "<span class='count'>%{count}</span> observações"
+  x_observations_link_html:
+    one: "<a href='%{url}'>1</a> observação"
+    other: "<a href='%{url}'>%{count}</a> observações"
+  x_observations_reviewed_html:
+    one: "<span class='count'>1</span> observação revista"
+    other: "<span class='count'>%{count}</span> observações revistas"
+  x_others:
+    one: "1 outro"
+    other: "%{count} outros"
+  x_photos:
+    one: "1 foto"
+    other: "%{count} fotos"
+  x_new_species:
+    one: "1 Nova Espécie"
+    other: "%{count} Novas Espécies"
+  x_species:
+    one: '1 Espécie'
+    other: '%{count} Espécies'
+  x_species_html:
+    one: "<span class='count'>Uma</span> espécie"
+    other: "<span class='count'>%{count}</span> espécies"
+  x_species_link_html:
+    one: "<a href='%{url}'>1</a> espécie"
+    other: "<a href='%{url}'>%{count}</a> espécies"
+  x_suggestions_filtered_by_colon:
+    one: "Uma sugestão filtrada por:"
+    other: "%{count} sugestões filtradas por:"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> táxon observado"
+    other: "<span class='count'>%{count}</span> táxons observados"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> observação com grau de pesquisa</span>"
+    other: "<span class='count'>%{count}</span> observações com grau de pesquisa</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> observação com grau de pesquisa identificada até à espécie ou até ao nível inferior</span>"
+    other: "<span class='count'>%{count}</span> observações com grau de pesquisa identificadas até à espécie ou até ao nível inferior</span>"
+  x_taxa_curated_html:
+    one: "<span class='count'>1</span> táxon verificado"
+    other: "<span class='count'>%{count}</span> táxons verificados"
+  x_taxa_matching_current_filters:
+    one: "1 táxon correspondente com os filtros selecionados"
+    other: "%{count} táxons correspondentes com os filtros selecionados"
+  x_taxon_changes_added_html:
+    one: "1 mudança de táxon adicionada"
+    other: "%{count} mudanças de táxon adicionadas"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} pessoas</strong> ajudaram %{user} com <strong>%{y} IDs</strong>"
   _100_day_trends: Tendências de 100 dias
   _percent_ID_d: "% Identificados"
@@ -221,6 +305,45 @@ pt:
     ray_finned_fishes: Peixes de barbatanas com raios
     reptiles: Répteis
     life: Vida
+    x_plantae:
+      one: "1 planta"
+      other: "%{count} plantas"
+    x_mollusca:
+      one: "1 molusco"
+      other: "%{count} moluscos"
+    x_amphibia:
+      one: "1 anfíbio"
+      other: "%{count} anfíbios"
+    x_mammalia:
+      one: "1 mamífero"
+      other: "%{count} mamíferos"
+    x_actinopterygii:
+      one: "1 peixes de barbatanas com raios"
+      other: "%{count} peixes de barbatanas com raios"
+    x_reptilia:
+      one: "1 réptil"
+      other: "%{count} répteis"
+    x_aves:
+      one: "1 ave"
+      other: "%{count} aves"
+    x_insecta:
+      one: "1 inseto"
+      other: "%{count} insetos"
+    x_arachnida:
+      one: "1 aracnídeo"
+      other: "%{count} aracnídeos"
+    x_fungi:
+      one: "1 fungo"
+      other: "%{count} fungos"
+    x_chromista:
+      one: "1 chromista"
+      other: "%{count} chromistas"
+    x_protozoa:
+      one: "1 protozoário"
+      other: "%{count} protozoários"
+    x_other_animals:
+      one: "1 outro animal"
+      other: "%{count} outros animais"
   all_taxa_: Todos os táxons
   all_taxa_in_this_guide: Todos os táxons neste guia
   all_taxonomic_groups: "&laquo; Todos os Grupos Taxonómicos"
@@ -2942,7 +3065,40 @@ pt:
       - dezembro
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: cerca de 1 hora
+        other: cerca de %{count} horas
+      about_x_months:
+        one: cerca de 1 mês
+        other: cerca de %{count} meses
+      about_x_years:
+        one: cerca de 1 ano
+        other: cerca de %{count} anos
+      almost_x_years:
+        one: quase 1 ano
+        other: quase %{count} anos
       half_a_minute: meio minuto
+      less_than_x_minutes:
+        one: menos de 1 minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: mais de 1 ano
+        other: mais de %{count} anos
+      x_days:
+        one: "1 dia"
+        other: '%{count} dias'
+      x_minutes:
+        one: "1 minuto"
+        other: '%{count} minutos'
+      x_months:
+        one: "1 mês"
+        other: '%{count} meses'
+      x_seconds:
+        one: "1 segundo"
+        other: '%{count} segundos'
     countdown_x_days:
       one: dia
       other: dias
