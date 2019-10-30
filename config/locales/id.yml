@@ -1,4 +1,10 @@
 id:
+  x_faves:
+    other: '%{count} hours'
+  x_observations_link_html:
+    other: "<a href='%{url}'>%{count} observasi</a>"
+  x_species_link_html:
+    other: "<a href='%{url}'>%{count} spesies</a>"
   a_community_for_naturalist: Komunitas untuk Naturalis
   a_default_taxon_name_will_automatically_created: |
     Sebuah nama standar takson akan secara otomatis dibuat dari atribut nama ilmiah takson ini. Bila Anda telah menyimpan takson baru ini, Anda akan dapat menambahkan nama lain di sini (nama umum, nama ilmiah usang, dll).
