@@ -46,7 +46,7 @@
         <%= o.error_message_on(:observed_on) %>
         <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
         <div class="small description">
-            <%= t :eg %> "<%= Time.now.to_s(:db) %>" <%= t :yesterday_at %>
+          <%=t :observation_observed_on_examples %>
         </div>
       </div>
       

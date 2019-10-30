@@ -1177,7 +1177,6 @@ en:
   editing_this: Editing %{elem}
   editing_x_in_y: "Editing %{x} in %{y}"
   editors: Editors
-  eg: 'e.g. '
   either: Either
   either_that_user_doesnt_exist_or: "Either that user doesn't exist or you are already following them."
   eligible_for_research_grade: Eligible for Research Grade
@@ -2282,6 +2281,9 @@ en:
     Observation fields are a bit like tags, except anyone can add them to your
     observation by default. Change this if you'd prefer that only you can do
     this, or only site curators.
+  # Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    e.g. "2019-10-29 13:12:21", "yesterday at 4pm"
   observation_removed_from_the_project: "Observation removed from the project \"%{project}\""
   observation_requirements: Observation Requirements
   observation_rules: Observation rules
@@ -2504,9 +2506,18 @@ en:
   people_following_user: "People Following %{user}"
   people_user_follows: "People %{user} Follows"
   people_added:
+    # Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    # kueda
+    # added an observation of a Human
     observation: added an %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      # Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      # kueda
+      # added an ID to an observation by loarie
       with_observation: added an <strong>ID</strong> to an %{observation_link} by %{user_link}
+      # The same as people_added.identification.with_observation, except it
+      # covers the rare situation in which we have an update for an
+      # identification but the observation has been deleted
       without_observation: added an <strong>ID</strong>
     post: made a %{post_link}
     comment:
@@ -4262,7 +4273,6 @@ en:
   yes_reject_it: Yes, reject it
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
   yesterday: Yesterday
-  yesterday_at: ', yesterday at 4pm'
   you: you
   you_: You
   you_appear_offline_try_again: |
