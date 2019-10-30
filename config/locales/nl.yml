@@ -1,4 +1,102 @@
 nl:
+  x_comments:
+    one: '1 reactie'
+    other: '%{count} reacties'
+  x_faves:
+    one: '1 favoriet'
+    other: '%{count} favorieten'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> melding opgelost"
+    other: "<span class='count'>%{count}</span> meldingen opgelost"
+  x_identifications:
+    one: '1 determinatie'
+    other: '%{count} determinaties'
+  x_identifications_html:
+    one: '<span class="count">1</span> determinatie'
+    other: '<span class="count">%{count}</span> determinaties'
+  x_identifications_:
+    one: '1 determinatie'
+    other: '%{count} determinaties'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    one: '<span class="count">1</span> determineerder'
+    other: '<span class="count">%{count}</span> determineerders'
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    one: "1 levenslijst-primeur"
+    other: "%{count} levenslijst-primeurs"
+  x_journal_posts_html:
+    one: '<span class="count">1</span> dagboekbericht'
+    other: '<span class="count">%{count}</span> dagboekberichten'
+  x_matching_taxa:
+    one: '1 overeenstemmend taxon'
+    other: '%{count} overeenstemmende taxa'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> overeenstemmend taxon'
+    other: '<span class="count">%{count}</span> overeenstemmende taxa'
+  x_misidentifications_of_this_species:
+    one: "1 onjuiste determinatie van deze soort"
+    other: "%{count} onjuiste determinaties van deze soort"
+  x_misidentifications_of_species_in_this_rank:
+    one: "1 onjuiste determinatie van soorten in @gender{n:dit|deze} %{rank}"
+    other: "%{count} onjuiste determinaties van soorten in @gender{n:dit|deze} %{rank}"
+  x_observations:
+    one: "1 waarneming"
+    other: "%{count} waarnemingen"
+  x_observations_:
+    one: "1 Waarneming"
+    other: "%{count} Waarnemingen"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> waarneming"
+    other: "<span class='count'>%{count}</span> waarnemingen"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} waarneming</a>"
+    other: "<a href='%{url}'>%{count} waarnemingen</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> waarneming gecontroleerd"
+    other: "<span class='count'>%{count}</span> waarnemingen gecontroleerd"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> waarnemer'
+    other: '<span class="count">%{count}</span> waarnemers'
+  x_others:
+    one: "%{count} ander persoon"
+    other: "%{count} anderen"
+  x_photos:
+    one: "%{count} foto"
+    other: "%{count} foto's"
+  x_new_species:
+    one: "%{count} nieuwe soort"
+    other: "%{count} nieuwe soorten"
+  x_species:
+    one: '%{count} soort'
+    other: '%{count} soorten'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> soort"
+    other: "<span class='count'>%{count}</span> soorten"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} soort</a>"
+    other: "<a href='%{url}'>%{count}</a> soorten"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} suggestie gefilterd op:"
+    other: "%{count} suggesties gefilterd op:"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> taxon waargenomen"
+    other: "<span class='count'>%{count}</span> taxa waargenomen"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> waarneming van onderzoekskwaliteit"
+    other: "<span class='count'>%{count}</span> waarnemingen van onderzoekskwaliteit"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> waarneming van onderzoekskwaliteit gedetermineerd tot op soort of lager"
+    other: "<span class='count'>%{count}</span> waarnemingen van onderzoekskwaliteit gedetermineerd tot op soort of lager"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> taxon gecureerd"
+    other: "<span class='count'>%{count}</span> taxa gecureerd"
+  x_taxa_matching_current_filters:
+    one: "%{count} taxon dat overeenkomt met de huidige filters"
+    other: "%{count} taxa die overeenkomen met de huidige filters"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> taxonwijziging toegevoegd"
+    other: "<span class='count'>%{count}</span> taxonwijzigingen toegevoegd"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} mensen</strong> hielpen %{user} met <strong>%{y} determinaties</strong>"
   _100_day_trends: 100-daagse trends
   _percent_ID_d: "% gedetermineerd"
@@ -260,6 +358,48 @@ nl:
     ray_finned_fishes: Straalvinnigen
     reptiles: Reptielen
     life: Leven
+    x_plantae:
+      one: "%{count} plant"
+      other: "%{count} planten"
+    x_animalia:
+      one: "%{count} dier"
+      other: "%{count} dieren"
+    x_mollusca:
+      one: "%{count} weekdier"
+      other: "%{count} weekdieren"
+    x_amphibia:
+      one: "%{count} amfibie"
+      other: "%{count} amfibieën"
+    x_mammalia:
+      one: "%{count} zoogdier"
+      other: "%{count} zoogdieren"
+    x_actinopterygii:
+      one: "%{count} straalvinnige"
+      other: "%{count} straalvinnigen"
+    x_reptilia:
+      one: "%{count} reptiel"
+      other: "%{count} reptielen"
+    x_aves:
+      one: "%{count} vogel"
+      other: "%{count} vogels"
+    x_insecta:
+      one: "%{count} insect"
+      other: "%{count} insecten"
+    x_arachnida:
+      one: "%{count} spinachtige"
+      other: "%{count} spinachtigen"
+    x_fungi:
+      one: "%{count} schimmel"
+      other: "%{count} schimmels"
+    x_chromista:
+      one: "%{count} chromist"
+      other: "%{count} chromisten"
+    x_protozoa:
+      one: "%{count} eencellige"
+      other: "%{count} eencelligen"
+    x_other_animals:
+      one: "%{count} ander dier"
+      other: "%{count} andere dieren"
   all_taxa_: Alle taxa
   all_taxa_in_this_guide: Alle taxa in deze gids
   all_taxonomic_groups: "&laquo; Alle Taxonomische Groepen"
@@ -3935,6 +4075,9 @@ nl:
   x_journal_archives_for_y: "Dagboek van %{user} • Archief voor"
   x_journal_middot: "Dagboek van %{user} •"
   x_journal_new_post: "Dagboek van %{user} • Nieuw bericht"
+  x_observations_failed:
+    one: "%{count} waarneming mislukt"
+    other: "%{count} waarnemingen mislukt"
   x_of_y: "%{x} o=van %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} van %{y} mensen (meer dan 2/3) zijn het er over eens dat hij het is"
   x_is_the_root_of_the_tree: "%{rank} %{name} is de wortel van de boom"
@@ -4507,7 +4650,7 @@ nl:
         place_guess: Localiteitsbeschrijving zoals ingevoerd door de waarnemer
         latitude: Openbaar zichtbaar latitude
         longitude: Openbaar zichtbaar longitude
-        positional_accuracy: "Coördineer precisie (yeah, yeah, accuracy != precision, poor choice of names)"
+        positional_accuracy: "Precisie coördinaten (jaja, nauwkeurigheid != precisie, namen zijn ongelukkig gekozen)"
         private_latitude: "Privé-breedtegraad, instellen als privé-waarneming of vervaagd"
         private_longitude: "Privé-lengtegraad, instellen als waarneming privé of onzichtbaar is"
         geoprivacy: "Of de waarnemer ervoor heeft gekozen de coördinaten te vervagen of te verbergen"
@@ -5280,6 +5423,24 @@ nl:
       delete:
         by_deleting_your_account_you_will_remove: |
           Door je account te verwijderen, verwijder je
+        x_observations_html:
+          one: |
+            <strong class="count">%{count} waarneming</strong>,
+            inclusief het werk van de
+            <strong class="count">%{helpers_count} personen</strong> die je hebben geholpen met determinaties
+          other: |
+            <strong class="count">%{count} waarnemingen</strong>,
+            inclusief het werk van de
+            <strong class="count">%{helpers_count} personen</strong> die je hebben geholpen met determinaties
+        x_identifications_html:
+          one: |
+            <strong class="count">jouw enige determinatie</strong> van de waarneming van een andere persoon, die mogelijk van invloed kan zijn op de datakwaliteit van die waarneming
+          other: |
+            <strong class="count">%{count} van jouw eigen determinaties</strong> op de waarnemingen van 
+            <strong class="count">%{helpees_count} andere mensen</strong>, die mogelijk van invloed zijn op de datakwaliteit van die waarnemingen
+        x_comments_html:
+          one: <strong class="count">%{count} reactie</strong> die je hebt toegevoegd
+          other: <strong class="count">%{count} reacties</strong> die je hebt toegevoegd
         furthermore_cannot_undo_html: |
           Bovendien kan <strong>deze actie niet ongedaan worden gemaakt.</strong> Als je later verandert van gedachten krijg je die inhoud niet terug.
         settings_and_mute_html: |
@@ -5531,7 +5692,40 @@ nl:
       - december
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: ongeveer %{count} uur
+        other: ongeveer %{count} uur
+      about_x_months:
+        one: ongeveer %{count} maand
+        other: ongeveer %{count} maanden
+      about_x_years:
+        one: ongeveer %{count} jaar
+        other: ongeveer %{count} jaar
+      almost_x_years:
+        one: bijna %{count} jaar
+        other: bijna %{count} jaar
       half_a_minute: een halve minuut
+      less_than_x_minutes:
+        one: minder dan %{count} minuut
+        other: minder dan %{count} minuten
+      less_than_x_seconds:
+        one: minder dan %{count} seconde
+        other: minder dan %{count} seconden
+      over_x_years:
+        one: meer dan %{count} jaar
+        other: meer dan %{count} jaar
+      x_days:
+        one: "%{count} dag"
+        other: '%{count} dagen'
+      x_minutes:
+        one: "%{count} minuut"
+        other: '%{count} minuten'
+      x_months:
+        one: "%{count} maand"
+        other: '%{count} maanden'
+      x_seconds:
+        one: "%{count} seconde"
+        other: '%{count} seconden'
     countdown_x_days:
       one: dag
       other: dagen
@@ -5575,8 +5769,20 @@ nl:
         je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
       requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
       taken: bestaat al
+      too_long:
+        one: is te lang (maximum is %{count} teken)
+        other: is te lang (maximum is %{count} tekens)
+      too_short:
+        one: is te kort (minimum is %{count} teken)
+        other: is te kort (minimum is %{count} tekens)
+      wrong_length:
+        one: heeft de verkeerde lengte (moet %{count} teken zijn)
+        other: heeft de verkeerde lengte (moet %{count} tekens zijn)
     template:
       body: 'Er was een probleem met de volgende velden:'
+      header:
+        one: "Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen"
+        other: 'Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen'
   helpers:
     defaults:
       title: "DIT IS EEN TITEL"
@@ -5667,8 +5873,20 @@ nl:
         requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
         requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
         taken: bestaat al
+        too_long:
+          one: is te lang (maximum is %{count} teken)
+          other: is te lang (maximum is %{count} tekens)
+        too_short:
+          one: is te kort (minimum is %{count} teken)
+          other: is te kort (minimum is %{count} tekens)
+        wrong_length:
+          one: heeft de verkeerde lengte (moet %{count} teken zijn)
+          other: heeft de verkeerde lengte (moet %{count} tekens zijn)
       template:
         body: 'Er was een probleem met de volgende velden:'
+        header:
+          one: Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen
+          other: Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen
   activerecord:
     models:
       AssessmentSection: Beoordelingssectie
@@ -5790,8 +6008,20 @@ nl:
         requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
         requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
         taken: bestaat al
+        too_long:
+          one: is te lang (maximum is %{count} teken)
+          other: is te lang (maximum is %{count} tekens)
+        too_short:
+          one: is te kort (minimum is %{count} teken)
+          other: is te kort (minimum is %{count} tekens)
+        wrong_length:
+          one: heeft de verkeerde lengte (moet %{count} teken zijn)
+          other: heeft de verkeerde lengte (moet %{count} tekens zijn)
       template:
         body: 'Er was een probleem met de volgende velden:'
+        header:
+          one: Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen
+          other: Door %{count} fouten kon dit %{model} niet worden opgeslagen
       models:
         application:
           attributes:
