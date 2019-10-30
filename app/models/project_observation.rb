@@ -9,7 +9,7 @@ class ProjectObservation < ActiveRecord::Base
   validate :observer_allows_addition?
   validate :project_allows_submitter?
   validate :observer_invited?
-  # validate :project_allows_observations?
+  validate :project_allows_observations?
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :coordinates_shareable_by_project_curators?,
@@ -182,7 +182,7 @@ class ProjectObservation < ActiveRecord::Base
 
   def project_allows_observations?
     if project && project.is_new_project?
-      errors.add :base, :project_does_not_allow_observations
+      errors.add :base, :collection_and_umbrella_projects_do_not_allow_direct_submission
     end
   end
 

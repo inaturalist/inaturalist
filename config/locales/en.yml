@@ -6858,8 +6858,8 @@ en:
         project_observation:
           attributes:
             base:
-              project_does_not_allow_observations: |
-                Project does not allow observations
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                collection and umbrella projects do not allow direct submission
             user_id:
               must_be_curator: must be a curator of this project
             observation_id:

@@ -154,6 +154,20 @@ describe ProjectObservation, "creation" do
     expect(po).to_not be_valid
   end
 
+  it "does not allow creation for collection projects" do
+    collection_project = Project.make!(project_type: "collection")
+    pu = ProjectUser.make!(project: collection_project)
+    po = ProjectObservation.make(user: pu.user, project: collection_project)
+    expect( po ).to_not be_valid
+  end
+
+  it "does not allow creation for umbrella projects" do
+    collection_project = Project.make!(project_type: "umbrella")
+    pu = ProjectUser.make!(project: collection_project)
+    po = ProjectObservation.make(user: pu.user, project: collection_project)
+    expect( po ).to_not be_valid
+  end
+
   describe "updates" do
     before { enable_has_subscribers }
     after { disable_has_subscribers }
