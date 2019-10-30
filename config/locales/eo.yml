@@ -1,4 +1,46 @@
 eo:
+  x_comments:
+    one: '1 komento'
+    other: '%{count} komentoj'
+  x_faves:
+    one: '1 favorato'
+    other: '%{count} favoratoj'
+  x_identifications:
+    one: '1 identigado'
+    other: '%{count} identigadoj'
+  x_identifications_:
+    one: '1 Identigado'
+    other: '%{count} Identigadoj'
+  x_journal_posts_html:
+    one: '<span class="count">1</span> ĵurnala afiŝo'
+    other: '<span class="count">%{count}</span> ĵurnalaj afiŝoj'
+  x_matching_taxa:
+    one: '1 kongrua taksono'
+    other: '%{count} kongruaj taksonoj'
+  x_observations:
+    one: "1 observo"
+    other: "%{count} observoj"
+  x_observations_:
+    one: "1 Observo"
+    other: "%{count} Observoj"
+  x_others:
+    one: "1 alio"
+    other: "%{count} alioj"
+  x_photos:
+    one: "1 foto"
+    other: "%{count} fotoj"
+  x_new_species:
+    one: "1 Nova Specio"
+    other: "%{count} Novaj Specioj"
+  x_species:
+    one: '1 Specio'
+    other: '%{count} Specioj'
+  x_species_html:
+    one: "<span class='count'>1</span> specio"
+    other: "<span class='count'>%{count}</span> specioj"
+  x_species_link_html:
+    one: "<a href='%{url}'>1 specio</a>"
+    other: "<a href='%{url}'>%{count} specioj</a>"
   a_community_for_naturalist: Komunumo por Naturistoj
   a_flag_for_x: "flago por %{x}"
   a_member_of: "Ano de"
@@ -158,6 +200,42 @@ eo:
     ray_finned_fishes: Aktinopterigoj
     reptiles: Reptilioj
     life: Vivo
+    x_plantae:
+      one: "1 planto"
+      other: "%{count} plantoj"
+    x_animalia:
+      one: "1 animalo"
+      other: "%{count} animaloj"
+    x_mollusca:
+      one: "1 molusko"
+      other: "%{count} moluskoj"
+    x_amphibia:
+      one: "1 amfibio"
+      other: "%{count} amfibioj"
+    x_mammalia:
+      one: "1 mamulo"
+      other: "%{count} mamuloj"
+    x_reptilia:
+      one: "1 reptilio"
+      other: "%{count} reptilioj"
+    x_aves:
+      one: "1 birdo"
+      other: "%{count} birdoj"
+    x_insecta:
+      one: "1 insekto"
+      other: "%{count} insektoj"
+    x_arachnida:
+      one: "1 araneedo"
+      other: "%{count} araneedoj"
+    x_fungi:
+      one: "1 fungo"
+      other: "%{count} fungoj"
+    x_protozoa:
+      one: "1 protozoo"
+      other: "%{count} protozooj"
+    x_other_animals:
+      one: "1 alia animalo"
+      other: "%{count} aliaj animaloj"
   all_taxa_: Ĉiuj taksonoj
   all_taxa_in_this_guide: Ĉiuj taksonoj en tiu gvidilo
   all_taxonomic_groups: "&laquo; Ĉiuj Taksonomiaj Grupoj"
@@ -1840,7 +1918,40 @@ eo:
       - decembro
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: ĉirkaŭ 1 horo
+        other: ĉirkaŭ %{count} horoj
+      about_x_months:
+        one: ĉirkaŭ 1 monato
+        other: ĉirkaŭ %{count} monatoj
+      about_x_years:
+        one: ĉirkaŭ 1 jaro
+        other: ĉirkaŭ %{count} jaroj
+      almost_x_years:
+        one: preskaŭ 1 jaro
+        other: preskaŭ %{count} jaroj
       half_a_minute: duono de minuto
+      less_than_x_minutes:
+        one: malpli ol unu minuto
+        other: malpli ol %{count} minutoj
+      less_than_x_seconds:
+        one: malpli ol 1 sekundo
+        other: malpli ol %{count} sekundoj
+      over_x_years:
+        one: pli ol 1 jaro
+        other: pli ol %{count} jaroj
+      x_days:
+        one: "1 tago"
+        other: '%{count} tagoj'
+      x_minutes:
+        one: "1 minuto"
+        other: '%{count} minutoj'
+      x_months:
+        one: "1 monato"
+        other: '%{count} monatoj'
+      x_seconds:
+        one: "1 sekundo"
+        other: '%{count} sekundoj'
     countdown_x_days:
       one: tago
       other: tagoj
