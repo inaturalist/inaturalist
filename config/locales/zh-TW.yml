@@ -5816,6 +5816,11 @@ zh-TW:
         u: "@vow"
         default: "@con"
       "@gender":
+        m: male
+        f: female
+        "n": neuter
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         assessment_section: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
