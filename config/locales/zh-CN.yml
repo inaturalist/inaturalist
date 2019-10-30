@@ -1,4 +1,56 @@
 zh-CN:
+  x_comments:
+    other: '%{count} 条评论'
+  x_faves:
+    other: '%{count} 次喜爱'
+  x_flags_resolved_html:
+    other: "<span class='count'>%{count}</span>个标记已解决"
+  x_identifications:
+    other: '%{count} 次鉴定'
+  x_identifications_html:
+    other: '<span class="count">%{count}</span> 个标识'
+  x_identifications_:
+    other: '%{count} 次鉴定'
+  x_journal_posts_html:
+    other: '<span class="count">%{count}</span>个日记帖子'
+  x_matching_taxa:
+    other: '%{count} 个匹配的分类群'
+  x_matching_taxa_html:
+    other: '<span class="count">%{count}</span> 个匹配的分类群'
+  x_misidentifications_of_this_species:
+    other: "该物种的%{count}个错误鉴定"
+  x_observations:
+    other: "%{count} 次观察"
+  x_observations_:
+    other: "%{count} 次观察"
+  x_observations_html:
+    other: "<span class='count'>%{count}</span> 次观察"
+  x_observations_link_html:
+    other: "<a href='%{url}'>%{count} 次观察</a>"
+  x_observations_reviewed_html:
+    other: "<span class='count'>%{count}</span> 次观察已复核"
+  x_others:
+    other: "%{count}个其他的"
+  x_species:
+    other: '%{count} 种物种'
+  x_species_html:
+    other: "<span class='count'>%{count}</span> 种物种"
+  x_species_link_html:
+    other: "<a href='%{url}'>%{count} 种物种</a>"
+  x_suggestions_filtered_by_colon:
+    other: "%{count}个建议过滤者："
+  x_taxa_observed_html:
+    other: "<span class='count'>%{count}</span> 个分类群已观察"
+  x_research_grade_observations_html:
+    other: "<span class='count'>%{count}</span> 个研究级观察</span>"
+  x_research_grade_observations_to_species_html:
+    other: "<span class='count'>%{count}</span> 个研究级观察ID已降级至物种或更低</span>"
+  x_taxa_curated_html:
+    other: "<span class='count'>%{count}</span>个分类单元已有馆长"
+  x_taxa_matching_current_filters:
+    other: "%{count} 个分类群匹配当前的过滤器"
+  x_taxon_changes_added_html:
+    other: "<span class='count'>%{count}</span> 个分类单元变化已增加"
   _100_day_trends: 100天动态
   a_community_for_naturalist: 一个自然爱好者的社区
   a_default_taxon_name_will_automatically_created: |
@@ -219,6 +271,34 @@ zh-CN:
     ray_finned_fishes: 条鳍鱼类
     reptiles: 爬行动物
     life: 生命
+    x_plantae:
+      other: "%{count} 个植物"
+    x_animalia:
+      other: "%{count} 只动物"
+    x_mollusca:
+      other: "%{count} 只软体动物"
+    x_amphibia:
+      other: "%{count} 只两栖动物"
+    x_mammalia:
+      other: "%{count} 只哺乳动物"
+    x_actinopterygii:
+      other: "%{count} 只鳍刺鱼"
+    x_reptilia:
+      other: "%{count} 只爬行动物"
+    x_aves:
+      other: "%{count} 种鸟类"
+    x_insecta:
+      other: "%{count} 只昆虫"
+    x_arachnida:
+      other: "%{count} 只蛛形动物"
+    x_fungi:
+      other: "%{count} 个真菌"
+    x_chromista:
+      other: "%{count} 位科学家"
+    x_protozoa:
+      other: "%{count} 只原生动物"
+    x_other_animals:
+      other: "%{count} 只其他动物"
   all_taxa_: 所有分类群
   all_taxa_in_this_guide: 该指引中所有分类
   all_taxonomic_groups: "&laquo; 所有分类组"
@@ -3197,6 +3277,8 @@ zh-CN:
   x_journal_archives_for_y: "%{user}的杂志 • 存档用于"
   x_journal_middot: "%{user}的杂志 •"
   x_journal_new_post: "%{user}的杂志 • 新刊文"
+  x_observations_failed:
+    other: "%{count} 次观察已失败"
   x_of_y: "%{y}的%{x}"
   x_of_y_people_over_two_thirds_agree_it_is: "在%{y}人中，有%{x}人（超过2/3）同意这个"
   x_project_journal: "%{project}的%{name}"
@@ -4316,7 +4398,29 @@ zh-CN:
       - 十二月
   datetime:
     distance_in_words:
+      about_x_hours:
+        other: 约 %{count} 小时
+      about_x_months:
+        other: 约 %{count} 个月
+      about_x_years:
+        other: 约 %{count} 年
+      almost_x_years:
+        other: 几乎 %{count} 年
       half_a_minute: 半分钟
+      less_than_x_minutes:
+        other: 小于 %{count} 分钟
+      less_than_x_seconds:
+        other: 小于 %{count} 秒
+      over_x_years:
+        other: '%{count} 年多'
+      x_days:
+        other: '%{count} 日'
+      x_minutes:
+        other: '%{count} 分钟'
+      x_months:
+        other: '%{count} 个月'
+      x_seconds:
+        other: '%{count} 秒'
     countdown_x_days:
       other: 日
     countdown_x_hours:
@@ -4352,8 +4456,16 @@ zh-CN:
       odd: 必须是奇数
       record_invalid: '验证失败：%{errors}'
       taken: 已被使用
+      too_long:
+        other: 太长了（最多 %{count} 个字符）
+      too_short:
+        other: 太短了（至少 %{count} 个字符）
+      wrong_length:
+        other: 长度错误（应为 %{count} 个字符）
     template:
       body: '以下字段存在问题：'
+      header:
+        other: '%{count} 个错误禁止了此 %{model} 的保存'
   helpers:
     defaults:
       title: "这是标题"
@@ -4425,8 +4537,16 @@ zh-CN:
         odd: 必须是奇数
         record_invalid: 验证失败：%{errors}
         taken: 已被使用
+        too_long:
+          other: 太长了（最多 %{count} 个字符）
+        too_short:
+          other: 太短了（至少 %{count} 个字符）
+        wrong_length:
+          other: 长度错误（应为 %{count} 个字符）
       template:
         body: 以下字段存在问题：
+        header:
+          other: '%{count} 个错误禁止了此 %{model} 的保存'
   activerecord:
     models:
       AssessmentSection: 评定章节
