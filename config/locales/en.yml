@@ -1468,6 +1468,14 @@ en:
   has_sound: Has Sound
   has_sounds: Has Sounds
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
+  header_your_observations: Your Observations
+  header_your_calendar: Your Calendar
+  header_your_favorites: Your Favorites
+  header_your_lists: Your Lists
+  header_your_journal: Your Journal
+  header_your_identifications: Your Identifications
+  header_your_projects: Your Projects
+  header_your_profile: Your Profile
   heads_up: Heads up
   heads_up_this_photo_has_been_flagged: "HEADS UP: this photo has been flagged."
   heads_up_this_photo_is_already_associated_with: "Heads up: this photo is already associated with <a target='_blank' href='%{url}'>another observation</a>"
@@ -2283,7 +2291,7 @@ en:
     this, or only site curators.
   # Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
-    e.g. "2019-10-29 13:12:21", "yesterday at 4pm"
+    e.g. 2019-10-29 13:12:21
   observation_removed_from_the_project: "Observation removed from the project \"%{project}\""
   observation_requirements: Observation Requirements
   observation_rules: Observation rules
@@ -6994,7 +7002,11 @@ en:
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         listed_taxon: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -7007,6 +7019,10 @@ en:
         place: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)

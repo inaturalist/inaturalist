@@ -445,6 +445,7 @@ namespace :inaturalist do
       /^Family/,
       /^flag_for_/,
       /^Genus/,
+      /^header_your_/,
       /^inbox$/,
       /^inviteonly$/,
       /^large$/,
