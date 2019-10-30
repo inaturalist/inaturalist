@@ -275,7 +275,7 @@ class Emailer < ActionMailer::Base
   end
 
   def set_site
-    @site ||= @user.site if @user
+    @site = @user ? @user.site : nil
     @site ||= Site.default
   end
 
