@@ -1,4 +1,28 @@
 gl:
+  x_identifications:
+    one: '1 identificación'
+    other: '%{count} identificacións'
+  x_observations:
+    one: "1 observación"
+    other: "%{count} observacións"
+  x_observations_html:
+    one: "<span class='count'>1</span> observación"
+    other: "<span class='count'>%{count}</span> observacións"
+  x_species:
+    one: '1 especie'
+    other: '%{count} especies'
+  x_species_html:
+    one: "<span class='count'>1</span> especie"
+    other: "<span class='count'>%{count}</span> especies"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> taxón observado</span>"
+    other: "<span class='count'>%{count}</span> taxóns observados</span>"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> grao de observación da investigación</span>"
+    other: "<span class=count>%{count}</span> observacións grao da investigación</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class=count>1</span> observación grao da investigación identificaron ás especies</span>"
+    other: "<span class=count>%{count}</span> observacións grao da investigación identificaron ás especies</span>"
   a_community_for_naturalist: Unha comunidade para naturalistas
   a_default_taxon_name_will_automatically_created: |
     Crearase automaticamente un nome por defecto do taxón a partir do atributo do nome científico deste taxón. Cando teñas gardado este taxón, poderás engadir outros nomes aquí (nomes comúns, nomes científicos actualizados, etc.).
@@ -118,6 +142,45 @@ gl:
     ray_finned_fishes: Peixes con aletas radiadas
     reptiles: Réptiles
     life: Vida
+    x_plantae:
+      one: "1 pranta"
+      other: "%{count} prantas"
+    x_mollusca:
+      one: "1 molusco"
+      other: "%{count} moluscos"
+    x_amphibia:
+      one: "1 anfibio"
+      other: "%{count} anfibios"
+    x_mammalia:
+      one: "1 mamífero"
+      other: "%{count} mamíferos"
+    x_actinopterygii:
+      one: "1 peixe con aletas radiadas"
+      other: "%{count} peixes con aletas radiadas"
+    x_reptilia:
+      one: "1 réptil"
+      other: "%{count} réptiles"
+    x_aves:
+      one: "1 ave"
+      other: "%{count} aves"
+    x_insecta:
+      one: "1 insecto"
+      other: "%{count} insectos"
+    x_arachnida:
+      one: "1 araña"
+      other: "%{count} arañas"
+    x_fungi:
+      one: "1 fungo"
+      other: "%{count} fungos"
+    x_chromista:
+      one: "1 alga parda e parentes"
+      other: "%{count} algas pardas e parentes"
+    x_protozoa:
+      one: "1 protozoario"
+      other: "%{count} protozoarios"
+    x_other_animals:
+      one: "1 outro animal"
+      other: "%{count} outros animais"
   all_taxonomic_groups: "&laquo; Todos os Grupos Taxonómicos"
   all_your_observations_will_default_this_time_zone: Todas as túas observacións faranse nesta zona horaria a menos que especifiques o contrario.
   all_your_observations_will_default_to_this_time_zone: Todas as túas observacións faranse nesta zona horaria a menos que especifiques o contrario.
@@ -2261,7 +2324,40 @@ gl:
       - decembro
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: ao redor de 1 hora
+        other: ao redor de %{count} horas
+      about_x_months:
+        one: ao redor de 1 mes
+        other: ao redor de %{count} meses
+      about_x_years:
+        one: ao redor de 1 ano
+        other: ao redor de %{count} anos
+      almost_x_years:
+        one: case 1 ano
+        other: case %{count} anos
       half_a_minute: medio minuto
+      less_than_x_minutes:
+        one: menos de 1 minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: máis de 1 ano
+        other: máis de %{count} anos
+      x_days:
+        one: "1 día"
+        other: '%{count} días'
+      x_minutes:
+        one: "1 minuto"
+        other: '%{count} minutos'
+      x_months:
+        one: "1 mes"
+        other: '%{count} meses'
+      x_seconds:
+        one: "1 segundo"
+        other: '%{count} segundos'
     prompts:
       day: Día
       hour: Hora
@@ -2291,6 +2387,9 @@ gl:
       taken: xa está en uso
     template:
       body: 'Atopáronse problemas nos seguintes campos:'
+      header:
+        one: "Non se puido gardar este/a %{model} porque se atopou 1 erro."
+        other: 'Non se puido gardar este/a %{model} porque se atoparon %{count} erros.'
   helpers:
     select:
       prompt: Por favor selecciona
