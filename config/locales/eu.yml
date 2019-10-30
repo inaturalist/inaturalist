@@ -1,4 +1,31 @@
 eu:
+  x_identifications:
+    one: '1 identifikazio'
+    other: '%{count} identifikazio'
+  x_observations:
+    one: "1 behaketa"
+    other: "%{count} behaketa"
+  x_observations_html:
+    one: "<span class='count'>1</span> behaketa"
+    other: "<span class='count'>%{count}</span> behaketak"
+  x_species:
+    one: '1 espezie'
+    other: '%{count} espezie'
+  x_species_html:
+    one: "<span class='count'>1</span> espezie"
+    other: "<span class='count'>%{count}</span> espezieak"
+  x_suggestions_filtered_by_colon:
+    one: "1 Iradukizuna Hautatua:"
+    other: "%{count} Iradokizunak Hautatuta:"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> behatutako taxona</span>"
+    other: "<span class='count'>%{count}</span> behatutako taxonak</span>"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> ikerketako behaketa maila</span>"
+    other: "<span class=count>%{count}</span> behaketak ikerketa maila</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class=count>1</span> behaketa ikerketa maila espezieak identifikatu zituzten</span>"
+    other: "<span class=count>%{count}</span> behaketak ikerketa maila espezieak identifikatu zituzten</span>"
   a_community_for_naturalist: Naturalistentzako komunitatea
   a_default_taxon_name_will_automatically_created: |
     Taxonaren izen zientifikoaren ezaugarrian oinarrituta taxonaren izena
@@ -167,6 +194,48 @@ eu:
     ray_finned_fishes: Arrainak hegal erradiatuekin
     reptiles: Narrastiak
     life: Bizitza
+    x_plantae:
+      one: "1 landare"
+      other: "%{count} landare"
+    x_animalia:
+      one: "1 animalia"
+      other: "%{count} animalia"
+    x_mollusca:
+      one: "1 molusku"
+      other: "%{count} molusku"
+    x_amphibia:
+      one: "1 anfibio"
+      other: "%{count} anfibio"
+    x_mammalia:
+      one: "1 ugaztun"
+      other: "%{count} ugaztun"
+    x_actinopterygii:
+      one: "1 arrain hegal erradiatuekin"
+      other: "%{count} arrain hegal erradiatuekin"
+    x_reptilia:
+      one: "1 narrasti"
+      other: "%{count} narrasti"
+    x_aves:
+      one: "1 hegazti"
+      other: "%{count} hegazti"
+    x_insecta:
+      one: "1 intsektu"
+      other: "%{count} intsektu"
+    x_arachnida:
+      one: "1 armiarma"
+      other: "%{count} armiarma"
+    x_fungi:
+      one: "1 onddo"
+      other: "%{count} onddo"
+    x_chromista:
+      one: "1 alga arre eta ahaideak"
+      other: "%{count} alga arre eta ahaide"
+    x_protozoa:
+      one: "1 protozoo"
+      other: "%{count} protozoo"
+    x_other_animals:
+      one: "beste animalia 1"
+      other: "%{count} beste animalia batzuk"
   all_taxonomic_groups: "« Talde Taxonomiko Guztiak"
   all_updates: Eguneratze guztiak
   all_your_observations_will_default_this_time_zone: Zure ohar guztiak ordu-zona honetan egingo dira, zuk kontrakoa zehaztu ezean.
@@ -2436,7 +2505,40 @@ eu:
       - abendua
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: 1 ordu inguru
+        other: '%{count} ordu inguru'
+      about_x_months:
+        one: 1 hilabete inguru
+        other: '%{count} hilabete inguru'
+      about_x_years:
+        one: 1 urte inguru
+        other: '%{count} urte inguru'
+      almost_x_years:
+        one: ia 1 urte
+        other: ia %{count} urte
       half_a_minute: minutu erdia
+      less_than_x_minutes:
+        one: 1 minutu baino gutxiago
+        other: '%{count} minutu baino gutxiago'
+      less_than_x_seconds:
+        one: 1 segundo baino gutxiago
+        other: '%{count} segundo baino gutxiago'
+      over_x_years:
+        one: 1 urte baino gehiago
+        other: '%{count} urte baino gehiago'
+      x_days:
+        one: "1 egun"
+        other: '%{count} egun'
+      x_minutes:
+        one: "1 minutu"
+        other: '%{count} minutu'
+      x_months:
+        one: "1 hilabete"
+        other: '%{count} hilabete'
+      x_seconds:
+        one: "1 segundo"
+        other: '%{count} segundo'
     prompts:
       day: Eguna
       hour: Ordua
@@ -2466,6 +2568,9 @@ eu:
       taken: dagoeneko erabileran dago
     template:
       body: 'Arazoak topatu dira eremu hauetan:'
+      header:
+        one: "Ezin izan da %{model} hau gorde, 1 errore topatu delako."
+        other: 'Ezin izan da %{model} hau gorde, %{count} errore topatu direlako.'
   helpers:
     select:
       prompt: Mesedez, hautatu
