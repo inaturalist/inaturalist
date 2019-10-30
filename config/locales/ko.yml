@@ -1,4 +1,23 @@
 ko:
+  x_comments:
+    other: '댓글 %{count} 개'
+  x_flags_resolved_html:
+    other: "플래그 <span class='count'>%{count}</span> 개가 해결됨"
+  x_identifications:
+    other: '동정 %{count} 개'
+  x_identifications_html:
+    other: '동정 <span class="count">%{count}</span> 개'
+  x_identifications_:
+    other: '동정 %{count} 개'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    other: '동정한 사용자 <span class="count">%{count}</span> 명'
+  x_photos:
+    other: "사진 %{count} 개"
+  x_new_species:
+    other: "새로운 종 %{count} 종"
+  x_species:
+    other: '%{count} 종'
   a_community_for_naturalist: 자연을 연구하는 사람들을 위한 공동체
   a_default_taxon_name_will_automatically_created: |
     학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을 저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
@@ -45,7 +64,7 @@ ko:
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
     이름을 바꾸고 싶다면 <a target="_blank" href="%{url}">taxon swap</a>을 추가하십시오
   add_an_assessment: 평가 추가하기
-  add_an_identification: 확인 추가하기
+  add_an_identification: 동정 추가하기
   add_an_observation: 관찰 추가하기
   add_an_observation?: 관찰을 추가할까요?
   add_an_observation_of: "%{taxon} 관찰을 추가하기"
@@ -84,8 +103,18 @@ ko:
   add_one: 하나 추가하기!
   add_photos: 사진 추가하기
   add_place: 장소 추가하기
+  add_life_stage_adult_annotation: '성장 단계: 성체'
+  add_life_stage_teneral_annotation: '성장 단계: 우화 직후'
+  add_life_stage_subimago_annotation: '성장 단계: 준성체'
+  add_life_stage_pupa_annotation: '성장 단계: 번데기'
+  add_life_stage_nymph_annotation: '성장 단계: 약충'
+  add_life_stage_larva_annotation: '성장 단계: 애벌레'
+  add_life_stage_juvenile_annotation: '성장 단계: 아성체'
+  add_life_stage_egg_annotation: '성장 단계: 알'
   add_relationship: '관계 추가'
   add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
+  add_sex_female_annotation: '성별: 암컷'
+  add_sex_male_annotation: '성별: 수컷'
   add_some_now: 지금 추가하기
   add_tag: 태그 추가
   add_tags: 태그 추가하기
@@ -500,6 +529,11 @@ ko:
   continue_to_site: '%{site_name}(으)로 계속하기'
   contributor_cannot_be_found: 기여자 찾을 수 없음
   contributors_to_project: "%{project}의 기여자들"
+  controlled_term_labels:
+    sex: 성별
+    male: 수컷
+    female: 암컷
+    life_stage: 성장 단계
   controls: 제어
   convert: 변환
   coordinate_systems: 좌표계
@@ -564,7 +598,7 @@ ko:
   curator: 큐레이터
   curators_changed_for_x_html: "%{x} 큐레이터 변경됨"
   curators: 큐레이터
-  curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트의 사적이거나 숨겨진 좌표와 관찰을 볼 수 있습니다.
+  curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트에서 수정된 좌표와 관찰에서 숨겨진 위치의 원래 좌표를 볼 수 있습니다.
   curator_identification: 큐레이터 확인
   current_flags: 현재 플래그
   custom_project_fields: 자체지정한 프로젝트 필드
@@ -1006,9 +1040,10 @@ ko:
   info: 정보
   input_taxon: 분류군 입력
   insects: 곤충
+  insect_life_stage: 곤충 성장 단계
   internal_server_error: 내부 서버 오류
   introduced: 도입종
-  introduced_in_place: "%{place}에서 유입됨"
+  introduced_in_place: "%{place} 에 도입됨"
   invitation: 초대장
   invite: 초대
   invite_more: 더 초대
@@ -1065,6 +1100,7 @@ ko:
   learn_more: 더 알아보기
   least_concern: 관심 대상
   leave: 떠나기
+  leave_a_comment: 댓글 달기
   let_us_walk_you_through: 이 사이트의 주요 기능들을 살펴봅시다.
   lexicons:
     scientific_names: 학명
@@ -1477,7 +1513,8 @@ ko:
   paste: 붙여넣기
   people_added:
     identification:
-      without_observation: <strong>ID</strong> 추가됨
+      with_observation: '%{user_link} 님의 %{observation_link} 에 <strong>ID</strong> 를 추가했습니다'
+      without_observation: <strong>ID</strong> 를 추가했습니다
   per_day: 매일
   per_month: 매월
   per_week: 매주
@@ -1985,6 +2022,7 @@ ko:
   stop_testing: 테스트 중지
   submitted: 제출됨
   subscriptions: 구독
+  suggest_an_identification: 동정 제안하기
   suggestions: 제안
   support_inaturalist: iNaturalist 지원
   sync: 동기화하시겠습니까?
@@ -2288,6 +2326,12 @@ ko:
         frequency:
           "Flowering Phenology=bare": 꽃 없음
           "Life Stage=egg": 알
+          "Life Stage=larva": 애벌레
+          "Life Stage=teneral": 우화 직후
+          "Life Stage=subimago": 준성체
+          "Life Stage=nymph": 약충
+          "Life Stage=pupa": 번데기
+          "Life Stage=adult": 성체
     users:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
