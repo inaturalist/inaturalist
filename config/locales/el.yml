@@ -1,4 +1,76 @@
 el:
+  x_comments:
+    one: '1 σχόλιο'
+    other: '%{count} σχόλια'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> αναφορά επιλύθηκε"
+    other: "<span class='count'>%{count}</span> αναφορές επιλύθηκαν"
+  x_identifications:
+    one: '1 αναγνώριση'
+    other: '%{count} αναγνωρίσεις'
+  x_identifications_html:
+    one: '<span class="count">1</span> αναγνώριση'
+    other: '<span class="count">%{count}</span> αναγνωρίσεις'
+  x_identifications_:
+    one: '1 Αναγνώριση'
+    other: '%{count} Αναγνωρίσεις'
+  x_journal_posts_html:
+    one: '<span class="count">1</span> ανάρτηση προσωπικού ημερολογίου'
+    other: '<span class="count">%{count}</span> αναρτήσεις προσωπικού ημερολογίου'
+  x_matching_taxa:
+    one: '1 αντίστοιχο taxon'
+    other: '%{count} αντίστοιχα taxa'
+  x_matching_taxa_html:
+    one: '<span class="count">1</span> ομόλογο taxon'
+    other: '<span class="count">%{count}</span> ομόλογα taxa'
+  x_misidentifications_of_this_species:
+    one: "1 λάθος αναγνώριση αυτού του είδους"
+    other: "%{count} λάθος αναγνωρίσεις αυτού του είδους"
+  x_observations:
+    one: "1 παρατήρηση"
+    other: "%{count} παρατηρήσεις"
+  x_observations_:
+    one: "1 Παρατήρηση"
+    other: "%{count} Παρατηρήσεις"
+  x_observations_html:
+    one: "<span class='count'>1</span> παρατήρηση"
+    other: "<span class='count'>%{count}</span> παρατηρήσεις"
+  x_observations_link_html:
+    one: "<a href='%{url}'>1 παρατήρηση</a>"
+    other: "<a href='%{url}'>%{count} παρατηρήσεις</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>1</span> παρατήρηση εξετάστηκε"
+    other: "<span class='count'>%{count}</span> παρατηρήσεις εξετάστηκαν"
+  x_others:
+    one: "1 άλλο"
+    other: "%{count} άλλα"
+  x_new_species:
+    one: "1 Νέο Είδος"
+    other: "%{count} Νέα Είδη"
+  x_species:
+    one: '1 Είδος'
+    other: '%{count} Είδη'
+  x_species_html:
+    one: "<span class='count'>1</span> είδος"
+    other: "<span class='count'>%{count}</span> είδη"
+  x_species_link_html:
+    one: "<a href='%{url}'>1 είδος</a>"
+    other: "<a href='%{url}'>%{count} είδη</a>"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> taxon παρατηρήθηκε"
+    other: "<span class='count'>%{count}</span> taxa παρατηρήθηκαν"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> παρατήρηση ερευνητικού επιπέδου</span>"
+    other: "<span class='count'>%{count}</span> παρατηρήσεις ερευνητικού επιπέδου</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> παρατήρηση ερευνητικού επιπέδου αναγνωρίστηκε σε επίπεδο είδους ή χαμηλότερα</span>"
+    other: "<span class='count'>%{count}</span> παρατηρήσεις ερευνητικού επιπέδου αναγνωρίστηκαν σε επίπεδο είδους ή χαμηλότερα</span>"
+  x_taxa_matching_current_filters:
+    one: "1 taxon αντιστοιχεί στα τρέχοντα φίλτρα"
+    other: "%{count} taxa αντιστοιχούν στα τρέχοντα φίλτρα"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>1</span> αλλαγή taxon προστέθηκε"
+    other: "<span class='count'>%{count}</span> αλλαγές taxon προστέθηκαν"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} άτομα</strong> βοήθησαν την/τον %{user} με <strong>%{y} IDs</strong>"
   _100_day_trends: Τάσεις 100 ημερών
   a_community_for_naturalist: Μια κοινότητα για φυσιοδίφες
@@ -210,6 +282,48 @@ el:
     ray_finned_fishes: Ακτινοπτερύγιοι (ψάρια)
     reptiles: Ερπετά
     life: Ζωή
+    x_plantae:
+      one: "1 φυτό"
+      other: "%{count} φυτά"
+    x_animalia:
+      one: "1 ζώο"
+      other: "%{count} ζώα"
+    x_mollusca:
+      one: "1 μαλάκιο"
+      other: "%{count} μαλάκια"
+    x_amphibia:
+      one: "1 αμφίβιο"
+      other: "%{count} αμφίβια"
+    x_mammalia:
+      one: "1 θηλαστικό"
+      other: "%{count} θηλαστικά"
+    x_actinopterygii:
+      one: "1 ακτινοπτερύγιο ψάρι"
+      other: "%{count} ακτινοπτερύγια ψάρια"
+    x_reptilia:
+      one: "1 ερπετό"
+      other: "%{count} ερπετά"
+    x_aves:
+      one: "1 πτηνό"
+      other: "%{count} πτηνά"
+    x_insecta:
+      one: "1 έντομο"
+      other: "%{count} έντομα"
+    x_arachnida:
+      one: "1 αραχνίδιο"
+      other: "%{count} αραχνίδια"
+    x_fungi:
+      one: "1 μήκυτας"
+      other: "%{count} μήκυτες"
+    x_chromista:
+      one: "1 χρωμιστό"
+      other: "%{count} χρωμιστά"
+    x_protozoa:
+      one: "1 πρωτόζωο"
+      other: "%{count} πρωτόζωα"
+    x_other_animals:
+      one: "1 άλλο ζώο"
+      other: "%{count} άλλα ζώα"
   all_taxa_: Όλα τα taxa
   all_taxa_in_this_guide: Όλα τα taxa σε αυτόν τον οδηγό
   all_taxonomic_groups: "&laquo;Όλες οι Ταξινομικές Ομάδες"
@@ -2824,7 +2938,37 @@ el:
       - Δεκέμβριος
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: περίπου 1 ώρα
+        other: περίπου %{count} ώρες
+      about_x_months:
+        one: περίπου 1 μήνας
+        other: περίπου %{count} μήνες
+      about_x_years:
+        one: περίπου 1 χρόνος
+        other: περίπου %{count} χρόνια
+      almost_x_years:
+        one: σχεδόν 1 χρόνος
+        other: σχεδόν %{count} χρόνια
       half_a_minute: μισό λεπτό
+      less_than_x_minutes:
+        one: λιγότερο από ένα λεπτό
+        other: λιγότερο από %{count} λεπτά
+      less_than_x_seconds:
+        one: λιγότερο από 1 δευτερόλεπτο
+        other: λιγότερο από %{count} δευτερόλεπτα
+      x_days:
+        one: "1 ημέρα"
+        other: '%{count} ημέρες'
+      x_minutes:
+        one: "1 λεπτό"
+        other: '%{count} λεπτά'
+      x_months:
+        one: "1 μήνας"
+        other: '%{count} μήνες'
+      x_seconds:
+        one: "1 δευτερόλεπτο"
+        other: '%{count} δευτερόλεπτα'
     countdown_x_days:
       one: ημέρα)
       other: ημέρες)
