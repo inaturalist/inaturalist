@@ -61,6 +61,7 @@ class UpdateAction < ActiveRecord::Base
     start = Time.now
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
+    batch_date = end_time.to_date.to_s
     puts "[INFO] UpdateAction.email_updates START start_time: #{start_time}, end_time: #{end_time}"
     user_ids = UpdateAction.elastic_search(
       size: 0,
@@ -79,9 +80,14 @@ class UpdateAction < ActiveRecord::Base
     ).response.aggregations.distinct_subscribers.buckets.map{ |b| b["key"] }
     puts "[INFO] UpdateAction.email_updates queing #{user_ids.size} jobs..."
     user_ids.each do |subscriber_id|
-      UpdateAction.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-        unique_hash: { "UpdateAction::email_updates_to_user": subscriber_id }).
-        email_updates_to_user(subscriber_id, start_time, end_time)
+      UpdateAction.delay(
+        priority: INTEGRITY_PRIORITY,
+        queue: "slow",
+        unique_hash: {
+          "UpdateAction::email_updates_to_user": subscriber_id,
+          date: batch_date
+        }
+      ).email_updates_to_user( subscriber_id, start_time, end_time )
     end
     puts "[INFO] UpdateAction.email_updates FINISHED start_time: #{start_time}, end_time: #{end_time} in #{Time.now - start}s"
   end
