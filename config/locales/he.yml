@@ -78,6 +78,7 @@ he:
   add_an_observation: הוספת תצפית
   add_an_observation?: להוסיף תצפית?
   add_an_observation_of: "הוספת תצפית של %{taxon}"
+  add_an_observation_to_project_html: הוספת תצפית ל%{project}
   add_annotations_for_x: הופסת תווית עבור "%{x}"
   add_annotations_for_controlled_attribute:
     sex: הוספת תווית ל"זוויג"
@@ -777,6 +778,9 @@ he:
   doesnt_have_default_photo: אין תמונת ברירת מחדל כרגע.
   doh_something_went_wrong: אופס... משהו לא הלך כמו שצריך.
   doh_something_went_wrong_error: "אופס... משהוא לא הלכך כמו שצריך: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: לתרומה
   done: בוצע
   dont_have_an_account_sign_up_html: אין לכם חשבון? <strong>להרשמה.</strong>
   dont_send_me_email: "אל תשלחו לי אימיילים!"
@@ -1048,6 +1052,7 @@ he:
   help: עזרה
   help_confirm_observations!: עזרו לאשר תצפיות!
   help_support_inaturalist: "תמיכה בiNaturalist"
+  help_translate!: עזרו לתרגם!
   here_are_3_examples: 3 דוגמאות לנתונים שמובנים היטב
   here_are_our_top_species_suggestions: הינה ההצעות הטובות ביותר שלנו
   hex_color_eg: צבע Hex, לדוגמא 65644F
@@ -1131,6 +1136,7 @@ he:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: האם הנתונים מאפשרים לאשר שזהו %{taxon}?
   is_this_place_a_duplicate: האם מקום זה קיים כבר?
   join: הצטרפות
+  join_and_add_an_observation_to_project_html: הצטרפות והוספת תצפית ל%{project}
   join_project: הצטרף לפרוייקט זה
   join_the_largest_group_of_naturalists_in_the_world: הצטרפו לקהילת חובבי הטבע הגדולה בעולם!
   join_this_project: הצטרף לפרויקט זה
@@ -2518,6 +2524,9 @@ he:
   still_needs_id?: הקהילה יכולה לאשר/לשפר זיהוי?
   stop_editing: סיום עריכה
   stop_testing: סיום בחינה
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: לחנות
   studies_that_used_inaturalist_data_in_year: מחקרים שהשתמשו בנתוני iNaturalist בשנת %{year}
   stuff_just_added: "דברים שהוספת כרגע..."
   submission_model: מודל הגשה
@@ -2725,6 +2734,7 @@ he:
   user_commented_on: "%{user} העיר על %{title}%{time} שלך"
   user_disagrees_this_is_taxon: "%{user} אינו מסכים שזה %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} אינו מסכים עם הפרטים הקטנים הקודמים"
+  user_hasnt_joined_any_projects: "%{user} טרם הצטרף/ה לאף פרויקט"
   user_helped_x_people_with_y_ids_html: "%{user} עזר/ה <strong>ל%{x} אנשים </strong> עם <strong> %{y} זיהויים</strong>"
   user_invited_you_to_join_html: "הוזמנת להצטרף על ידי %{user}"
   user_invited_you_to_join_project: "הזמנה מ%{user} להצטרף ל%{project}"
@@ -2872,6 +2882,7 @@ he:
   you_dont_have_permission_to_edit_that_project: אין לך הרשאה לערוך פרוייקט זה.
   you_dont_have_permission_to_edit_those_photos: אין לך הרשאה לערוך תמונות אלו.
   you_have_left_x_project: "עזבת את %{project}"
+  you_havent_joined_any_projects: טרם הצטרפת לאף פרויקט
   you_joined_this_project: הצטרפת לפרוייקט!
   you_must_be_a_member_of_this_project_to_do_that: רק חברי פרוייקט יכולים לעשות את זה
   you_must_choose_an_observation_field: יש לבחור שדה תצפית
@@ -2998,6 +3009,8 @@ he:
       show:
         allow_curator_coordinate_access_desc_html: |
           לאפשר למשגיחי המיזם לצפות בנקודות הציון המוסתרות עבור התצפית הזאת.
+        data_quality_assessment_desc_html: |
+          אומדן איכות הנתונים הינו הערכה של מידת הדיוק של זיהוי התצפית. תצפיות בדרגת מחקר עשויות לשמש מדענים לצורך מחקרים. הציעו את הזיהוי שלכם פה:
     photos:
       inviter:
         automatically_add_to_project: הוסף באופן אוטומטי לפרוייקט
@@ -3069,6 +3082,8 @@ he:
       not_found:
         sorry_that_doesnt_exist: אופס, זה לא קיים.
     stats:
+      index:
+        observations_1_week_moving_window: תצפיות (ממוצע של חלון נע בן שבוע)
       year:
         growth_title: צמיחה
         percent_growth_in_year: "אחוז צמיחה ב%{year}"
@@ -3200,7 +3215,52 @@ he:
       - דצמבר
   datetime:
     distance_in_words:
+      about_x_months:
+        one: בערך חודש
+        two: בערך %{count} חודשים
+        many: בערך %{count} חודשים
+        other: בערך %{count} חודשים
+      almost_x_years:
+        one: כמעט שנה
+        two: כמעט %{count} שנים
+        many: כמעט %{count} שנים
+        other: כמעט %{count} שנים
       half_a_minute: חצי דקה
+      less_than_x_minutes:
+        one: פחות מדקה
+        two: פחות מ %{count} דקות
+        many: פחות מ %{count} דקות
+        other: פחות מ %{count} דקות
+      less_than_x_seconds:
+        one: פחות משניה
+        two: פחות מ %{count} שניות
+        many: פחות מ %{count} שניות
+        other: פחות מ %{count} שניות
+      over_x_years:
+        one: יותר משנה
+        two: יותר מ %{count} שנים
+        many: יותר מ %{count} שנים
+        other: יותר מ %{count} שנים
+      x_days:
+        one: "יום אחד"
+        two: '%{count} ימים'
+        many: '%{count} ימים'
+        other: '%{count} ימים'
+      x_minutes:
+        one: "דקה אחת"
+        two: '%{count} דקות'
+        many: '%{count} דקות'
+        other: '%{count} דקות'
+      x_months:
+        one: "חודש אחד"
+        two: '%{count} חודשים'
+        many: '%{count} חודשים'
+        other: '%{count} חודשים'
+      x_seconds:
+        one: "שניה אחת"
+        two: '%{count} שניות'
+        many: '%{count} שניות'
+        other: '%{count} שניות'
     countdown_x_days:
       one: יום
       two: יומיים
@@ -3249,6 +3309,21 @@ he:
       odd: חייב להיות אי־זוגי
       record_invalid: 'אימות נכשל: %{errors}'
       taken: כבר תפוס
+      too_long:
+        one: ארוך מדי (מקסימום תו אחד)
+        two: ארוך מדי (מקסימום %{count} תווים)
+        many: ארוך מדי (מקסימום %{count} תווים)
+        other: ארוך מדי (מקסימום %{count} תווים)
+      too_short:
+        one: קצר מדי (מינימום תו אחד)
+        two: קצר מדי (מינימום %{count} תווים)
+        many: קצר מדי (מינימום %{count} תווים)
+        other: קצר מדי (מינימום %{count} תווים)
+      wrong_length:
+        one: באורך לא נכון (צריך להיות תו אחד)
+        two: באורך לא נכון (צריך להיות %{count} תווים)
+        many: באורך לא נכון (צריך להיות %{count} תווים)
+        other: באורך לא נכון (צריך להיות %{count} תווים)
     template:
       body: 'היו בעיות עם השדות הבאים:'
   helpers:
@@ -3331,8 +3406,18 @@ he:
         odd: חייב להיות אי־זוגי
         record_invalid: 'אימות נכשל: %{errors}'
         taken: כבר תפוס
+        too_short:
+          one: קצר מדי (לפחוחת תו אחד)
+          two: קצר מדי (%{count} תווים לפחות)
+          many: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
+          other: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
       template:
         body: 'היו בעיות עם השדות הבאים:'
+        header:
+          one: טעות אחת ב%{model} זה מנעה את שמירתו
+          two: '%{count} טעויות ב%{model} זה מנעו שמירתו'
+          many: '%{count} טעויות ב%{model} זה מנעו שמירתו'
+          other: '%{count} טעויות ב%{model} זה מנעו שמירתו'
   activerecord:
     models:
       Atlas: אטלס
