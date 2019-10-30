@@ -1,4 +1,25 @@
 sq:
+  x_comments:
+    one: '1 koment'
+    other: '%{count} komentet'
+  x_identifications:
+    one: '1 identifikim'
+    other: '%{count} identifikimet'
+  x_species:
+    one: '1 lloj'
+    other: '%{count} species'
+  x_species_html:
+    one: "<span class='count'>1</span> speciet"
+    other: "<span class='count'>%{count}</span> speciet"
+  x_species_link_html:
+    one: "<a href='%{url}'>1 speciet</nje>"
+    other: "<a href='%{url}'>%{count} speciet</a>"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> research-grade observation</span>"
+    other: "<span class='count'>%{count}</span> research-grade observations</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> research-grade observation ID'd to species or lower</span>"
+    other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower</span>"
   _100_day_trends: Trendet e 100 Ditëve
   a_community_for_naturalist: Një Komunitet për Natyralistët
   a_default_taxon_name_will_automatically_created: |
@@ -220,6 +241,45 @@ sq:
     ray_finned_fishes: Peshqit pendë-rreze
     reptiles: Zvarranikët
     life: Jeta
+    x_plantae:
+      one: "1 bimë"
+      other: "%{count} bimët"
+    x_animalia:
+      one: "1 kafshë"
+      other: "%{count} kafshët"
+    x_amphibia:
+      one: "1 amfib"
+      other: "%{count} amfibët"
+    x_mammalia:
+      one: "1 gjitar"
+      other: "%{count} gjitarët"
+    x_actinopterygii:
+      one: "1 peshk pendë rrezë"
+      other: "%{count} peshqit pendë rrezë"
+    x_reptilia:
+      one: "1 zvarranik"
+      other: "%{count} zvarranikët"
+    x_aves:
+      one: "1 zog"
+      other: "%{count} zogjtë"
+    x_insecta:
+      one: "1 insekt"
+      other: "%{count} insektet"
+    x_arachnida:
+      one: "1 araknid"
+      other: "%{count} araknidët"
+    x_fungi:
+      one: "1 kërpudhë"
+      other: "%{count} kërpudhat"
+    x_chromista:
+      one: "1 kromist"
+      other: "%{count} kromistët"
+    x_protozoa:
+      one: "1 protozoar"
+      other: "%{count} protozoarët"
+    x_other_animals:
+      one: "1 kafshë tjetër"
+      other: "%{count} kafshët tjera"
   all_taxa_: Të gjitha taxat
   all_taxa_in_this_guide: Të gjitha taxat në këtë udhëzues
   all_taxonomic_groups: "&laquo; Të gjitha grupet taksonomike"
