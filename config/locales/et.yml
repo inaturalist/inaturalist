@@ -1,4 +1,95 @@
 et:
+  x_comments:
+    one: '1 kommentaar'
+    other: '%{count} kommentaari'
+  x_faves:
+    one: '1 lemmik'
+    other: '%{count} lemmikut'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> märkus lahendatud"
+    other: "<span class='count'>%{count}</span> märkust lahendatud"
+  x_identifications:
+    one: '1 määratlus'
+    other: '%{count} määratlust'
+  x_identifications_html:
+    one: '<span class="count">1</span> määratlus'
+    other: '<span class="count">%{count}</span> määratlust'
+  x_identifications_:
+    one: '1 määratlus'
+    other: '%{count} määratlust'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    one: '<span class="count">1</span> määratleja'
+    other: '<span class="count">%{count}</span> määratlejat'
+  x_journal_posts_html:
+    one: '<span class="count">1</span> päevikukanne'
+    other: '<span class="count">%{count}</span> päevikukannet'
+  x_matching_taxa:
+    one: '1 sobiv takson'
+    other: '%{count} sobivat taksonit'
+  x_matching_taxa_html:
+    one: '<span class="count">1</span> sobiv takson'
+    other: '<span class="count">%{count}</span> sobivat taksonit'
+  x_misidentifications_of_this_species:
+    one: "1 liigi valestimääratlus"
+    other: "%{count} liigi valestimääratlust"
+  x_observations:
+    one: "1 vaatlus"
+    other: "%{count} vaatlust"
+  x_observations_:
+    one: "1 vaatlus"
+    other: "%{count} vaatlust"
+  x_observations_html:
+    one: "<span class='count'>1</span> vaatlus"
+    other: "<span class='count'>%{count}</span> vaatlust"
+  x_observations_link_html:
+    one: "<a href='%{url}'>1 vaatlus</a>"
+    other: "<a href='%{url}'>%{count} vaatlust</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>1</span> kontrollitud vaatlus"
+    other: "<span class='count'>%{count}</span> kontrollitud vaatlust"
+  x_observers_html:
+    one: '<span class="count">1</span> vaatleja'
+    other: '<span class="count">%{count}</span> vaatlejat'
+  x_others:
+    one: "1 muu"
+    other: "%{count} muud"
+  x_photos:
+    one: "1 foto"
+    other: "%{count} fotod"
+  x_new_species:
+    one: "1 uus liik"
+    other: "%{count} uut liiki"
+  x_species:
+    one: '1 liik'
+    other: '%{count} liiki'
+  x_species_html:
+    one: "<span class='count'>1</span> liik"
+    other: "<span class='count'>%{count}</span> liiki"
+  x_species_link_html:
+    one: "<a href='%{url}'>1 liik</a>"
+    other: "<a href='%{url}'>%{count} liiki</a>"
+  x_suggestions_filtered_by_colon:
+    one: "1 pakkumine filriga:"
+    other: "%{count} pakkumist filtriga:"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> vaadeldud takson"
+    other: "<span class='count'>%{count}</span> vaadeldud taksonit"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> teaduskõlbulik vaatlus</span>"
+    other: "<span class='count'>%{count}</span> teaduskõlbulikku vaatlust</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> teaduskõlbulik määratlus liigile või selle alamüksustele</span>"
+    other: "<span class='count'>%{count}</span> teaduskõlbulik määratlust liigile või selle alamüksustele</span>"
+  x_taxa_curated_html:
+    one: "<span class='count'>1</span> kureeritud takson"
+    other: "<span class='count'>%{count}</span> kureeritud taksonit"
+  x_taxa_matching_current_filters:
+    one: "1 antud filtritele vastav takson"
+    other: "%{count} antud filtritele vastavat taksonit"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>1</span> taksonimuudatus lisatud"
+    other: "<span class='count'>%{count}</span> taksonimuudatust lisatud"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} inimest</strong> aitasid kasutajat %{user} <strong>%{y} määratlusega</strong>"
   _100_day_trends: 100 päeva trendid
   _percent_ID_d: "% määratud"
@@ -227,6 +318,45 @@ et:
     ray_finned_fishes: Kiiruimsed
     reptiles: Roomajad
     life: Elu
+    x_plantae:
+      one: "1 taim"
+      other: "%{count} taime"
+    x_animalia:
+      one: "1 loom"
+      other: "%{count} looma"
+    x_amphibia:
+      one: "1 kahepaikne"
+      other: "%{count} kahepaikset"
+    x_mammalia:
+      one: "1 imetaja"
+      other: "%{count} imetajat"
+    x_actinopterygii:
+      one: "1 kiiruimne"
+      other: "%{count} kiiruimset"
+    x_reptilia:
+      one: "1 roomaja"
+      other: "%{count} roomajat"
+    x_aves:
+      one: "1 lind"
+      other: "%{count} lindu"
+    x_insecta:
+      one: "1 putukas"
+      other: "%{count} putukat"
+    x_arachnida:
+      one: "1 ämblikulaadne"
+      other: "%{count} ämblikulaadset"
+    x_fungi:
+      one: "1 seen"
+      other: "%{count} seent"
+    x_chromista:
+      one: "1 kromist"
+      other: "%{count} kromisti"
+    x_protozoa:
+      one: "1 ainurakne"
+      other: "%{count} ainurakset"
+    x_other_animals:
+      one: "1 muu loom"
+      other: "%{count} muud looma"
   all_taxa_: Kõik taksonid
   all_taxa_in_this_guide: Kõik selles juhendis sisalduvad taksonid
   all_taxonomic_groups: "&laquo; Kõik taksonite grupid"
@@ -248,6 +378,7 @@ et:
   amphibians: kahepaiksed
   and: ja
   and_other_taxa: "&amp; Muud taksonid"
+  android: Android
   animals: Loomad
   annotation: Märge
   annotations: Märked
@@ -323,6 +454,7 @@ et:
   attribution: Omistus
   authority_list:
     iucn_red_list: IUCNi punane nimestik
+    cites: CITES
   authorize: Luba
   authorize_permissions_from_provider: "Autoriseeri lehe %{provider} õigused"
   automatic_short: Automaatne
@@ -667,6 +799,7 @@ et:
   creative_commons_unless_otherwise_noted: "Kui teisiti pole määratletud, kehtib Creative Commons litsents."
   critically_endangered: Kriitlises hävimisohus
   css_description: See lisatakse lehele peale ülejäänud css-stiili.
+  csv: CSV
   csv_file: CSV-fail
   csv_should_not_contain_a_header_row: CSV ei tohiks sisaldada päiserida
   cumulative_ids: "Kokku määratlusi: %{count}/%{total}"
@@ -791,6 +924,9 @@ et:
   doesnt_have_default_photo: vaikimisi foto puudub.
   doh_something_went_wrong: Oi-oi, miski läks valesti.
   doh_something_went_wrong_error: "Hmm, miski läks valesti: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: ANNETA
   done: Lisa
   dont_have_an_account_sign_up_html: Ei ole kontot? <strong>Registreeru.</strong>
   dont_send_me_email: "Ära saada mulle e-kirju!"
@@ -932,6 +1068,7 @@ et:
   extinct_in_the_wild: Looduses väljasurnud
   extra_properties: Lisaomadused
   evidence_of_organism: Tõendid organismi kohta
+  facebook: Facebook
   facebook_account_information: Sinu Facebooki konto info
   facebook_account_not_linked: "Kasutaja %{user} on lõpetanud seose oma Facebooki kontoga ning seetõttu ei oma %{site_name} sellele fotole enam ligipääsuõigust."
   facebook_access_token_expired: "Ligipääs on aegunud. %{user} peab uuesti looma ühenduse oma Facebooki kontoga."
@@ -1080,6 +1217,7 @@ et:
   go_back: Tagasi
   going_to_your_observations: Lähen sinu vaatluste juurde...
   good_choice_for_sharing: Teadlastega jagamiseks hea valik
+  google: Google
   got_it!: Selge!
   got_your_data_somewhere_else?: Kas sinu andmed on kusagil mujal? Me saame aidata.
   graft: Poogi
@@ -1116,6 +1254,7 @@ et:
   help: Abi
   help_confirm_observations!: Aita vaatlusi kinnitada!
   help_support_inaturalist: "Toeta iNaturalisti"
+  help_translate!: Aita tõlkida!
   helped_the_observer_make: aitasid vaatlejat tema lõpliku määratlusega (st need tehti enne lõpliku määratlust ja kattusid sellega)
   here_are_3_examples: Siin on kolm korrektsete andmete näidist
   here_are_our_top_species_suggestions: Meie parimad liigipakumised
@@ -1231,6 +1370,7 @@ et:
   #Type of project where people can only join after they have been invited
   inviteonly: vaid kutsututele
   invited_x: "Kutsus objekti %{x}"
+  iphone: iPhone
   is_not_following_anyone: ei jälgi kedagi.
   is_now: on nüüd
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Kas on piisavalt tõendeid, et saab kinnitada määramist taksonisse %{taxon}?
@@ -1372,6 +1512,7 @@ et:
   linked_flickr_automatically: "Pea lisaks meeles, et kui sa sisened lehele %{site_name} Flickr konto abil, ühendame me automaatsel need kontod omavahel uuesti. Näib mõistlik, et kui kasutad Flickrit, soovid sa ka vajadusel importida Flickris olevaid fotosid."
   linked_flickr_description: "Ühendades lehe %{site_name} konto Flickri omaga saad lisada vaatlustele mitu fotot korraga. Kui tahad kunagi kahte kontot omavahel lahti ühendada, siis me loomulikult ei takista sind, kuid sellisel juhul ei saa sa fotosid lisada. Mõnikord võib see olla parim lahendus, näiteks kui lood uue Flickr konto ning soovid hoopis seda lehe %{site_name} kontoga ühendada."
   linked_flickr_password_html: "<strong>Me ei küsi sinult kunagi su Flickri salasõna</strong> (kuid Flickr võib seda teha: kontrolli internetiaadressit, millele see nupp sind saadab, ja veendu, et tegemist oleks Flickr.com-iga)."
+  linkedin: LinkedIn
   list: Nimekiri
   list_deleted: Loend kustutatud.
   list_saved: Nimekiri salvestatud.
@@ -1570,6 +1711,7 @@ et:
   more_journal_posts: Veel päevikukandeid
   more_observations: Veel vaatluseid
   more_photos: Veel fotosid
+  more_than_a_week_ago: Rohkem kui nädal tagasi
   most_agree: enamik nõustub
   most_browser_print_pdf: "NB: enamikus brauserites on PDF-i printimine võimalik"
   most_disagree: enamik ei nõustu
@@ -1933,6 +2075,7 @@ et:
   open: avalik
   open_: Avalik
   open_description: "Kõik näevad koordinaate kui takson pole ohustatud."
+  open_street_map: OpenStreetMap
   optional: valikuline
   optional_columns_note_for_any: "Valikulised tulbad (nb: selleks, et neid tulpasid vaatluse juures kasutada saaks, peavad nad kõik olemas olema)"
   or: või
@@ -2506,6 +2649,7 @@ et:
     one_to_many: üks-mitmele
     not_external: mitte ülem
     not_internal: mitte alam
+    error: viga
   relationship_html: "Suhe: %{link}"
   reload_from_observations: Lae vaatlustest uuesti
   reload_timed_out: 'Uuesti laadimine võttis liiga kaua. Proovi hiljem uuesti.'
@@ -2774,6 +2918,7 @@ et:
   source_wikipedia: "Allikas: Wikipedia"
   source_list_: "Allikate loend"
   source_list:
+    inaturalist: iNaturalist
     new_zeland_organisms_register: Uus-Meremaa Organismide Register
     nzbrn_birds: NZBRN linnud
     nzbrn_fungi: NZBRN seened
@@ -3145,6 +3290,7 @@ et:
   trust_this_person_with_your_private_coordinates: Usalda sellele isikule oma peidetud koordinaadid
   trust_with_private_coordinates: Usalda peidetud koordinaatidega
   try_adding_species_form: Proovi lisada sellel lehel oleva vormiga liike.
+  twitter: Twitter
   two_thirds: 2/3
   type: Tüüp
   type_authority: Tüübi allikas...
@@ -3231,6 +3377,9 @@ et:
   use_unique_file_names_for_separate_uploads: Kasuta erinevate üleslaaditavate failide puhul unikaalseid nimesid
   use_well_formed_csv: |
     Kasuta korralikult koostatus CSV-faile. See tähendab, et komasid sisaldav tekst peab olema topelt jutumärkide sees. Enamik tabeltöötlusprogramme peaks CSV-d niimodi eksportima.
+  used_x_times:
+    one: Kasutatud 1 kord
+    other: Kasutatud %{count} korda
   user: Kasutaja
   user_added_a_x: "%{user} lisas %{x}"
   user_added_a_x_to_noun_by_html: "Kasutaja %{user} lisas %{x} asjale %{noun}, mille on loonud %{by}"
@@ -3409,6 +3558,8 @@ et:
   widget: Tööriist
   widget_code: Tööriista kood
   widget_for: Tööriist
+  wikipedia_attribution_cc_by_sa_3: |
+    Allikas: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_entry: Wikipedia artikkel
   with: koos
   withdraw: Võta tagasi
@@ -3427,6 +3578,9 @@ et:
   x_journal_archives_for_y: "Kasutaja %{user} päevik • Arhiiv"
   x_journal_middot: "Kasutaja %{user} päevik •"
   x_journal_new_post: "Kasutaja %{user} päevik • Uus sissekanne"
+  x_observations_failed:
+    one: "1 vaatlus ebaõnnestus"
+    other: "%{count} vaatlust ebaõnnestus"
   x_of_y: "%{x}/%{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x}/%{y} inimest (rohkem kui 2/3) nõustub, et tegemist on"
   x_is_the_root_of_the_tree: "%{rank} %{name} on taksonipuu juur"
@@ -3500,6 +3654,7 @@ et:
   you_faved_this: Määrasid lemmikuks!
   you_have_left_x_project: "Lahkusid projektist %{project}"
   you_havent_linked_your_inaturalist_google_account: "Sa ei ole oma lehe %{site_name} kontot ja Google kontot veel ühendanud"
+  you_havent_joined_any_projects: Sa pole liitunud ühegi projektiga
   you_joined_this_project: Ühinesid projektiga!
   you_must_be_a_member_of_this_project_to_do_that: Pead selleks olema antud projekti liige
   you_must_choose_an_observation_field: Pead valima vaatlusvälja
@@ -3797,6 +3952,10 @@ et:
       show:
         project_list_desc: |
           Projekti nimekirjades on projekti kuraatorite poolt lisatud taksonid ning taksonid, mis on seotud projektile lisatud teaduskõlbulike vaatlustega.
+    messages:
+      from: Kellelt
+      to: Kellele
+      subject: Teema
     observations:
       community_id:
         agreement: Leping
@@ -4598,7 +4757,40 @@ et:
       - detsember
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: umbes 1 tund
+        other: umbes %{count} tundi
+      about_x_months:
+        one: umbes 1 kuu
+        other: umbes %{count} kuud
+      about_x_years:
+        one: umbes 1 aasta
+        other: umbes %{count} aastat
+      almost_x_years:
+        one: pea 1 aasta
+        other: pea %{count} aastat
       half_a_minute: pool minutit
+      less_than_x_minutes:
+        one: vähem kui minut
+        other: vähem kui %{count} minutit
+      less_than_x_seconds:
+        one: vähem kui 1 sekund
+        other: vähem kui %{count} sekundit
+      over_x_years:
+        one: üle 1 aasta
+        other: üle %{count} aasta
+      x_days:
+        one: "1 päev"
+        other: '%{count} päeva'
+      x_minutes:
+        one: "1 minut"
+        other: '%{count} minutit'
+      x_months:
+        one: "1 kuu"
+        other: '%{count} kuud'
+      x_seconds:
+        one: "1 sekund"
+        other: '%{count} sekundit'
     countdown_x_days:
       one: päev
       other: päeva
@@ -4635,8 +4827,20 @@ et:
       odd: peab olema paaritu
       record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
       taken: on juba valitud
+      too_long:
+        one: on liiga pikk (maksimum 1 tähemärk)
+        other: on liiga pikk (maksimum %{count} tähemärki)
+      too_short:
+        one: on liiga lühike (minimum 1 tähemärk)
+        other: on liiga lühike (minimum%{count} tähemärki)
+      wrong_length:
+        one: on vale pikkusega (peaks olema 1 tähemärk)
+        other: on vale pikkusega (peaks olema %{count} tähemärki)
     template:
       body: 'Järgmiste väljadega oli probleeme:'
+      header:
+        one: "1 viga ei lubanud salvestada: %{model}"
+        other: '%{count} viga ei lubanud salvestada: %{model}'
   helpers:
     defaults:
       title: "SEE ON PEALKIRI"
@@ -4663,6 +4867,10 @@ et:
           byte:
             one: bait
             other: baiti
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
       last_word_connector: ', ja'
@@ -4701,8 +4909,20 @@ et:
         odd: peab olema paaritu
         record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
         taken: on juba valitud
+        too_long:
+          one: on liiga pikk (maksimum 1 tähemärk)
+          other: on liiga pikk (maksimum %{count} tähemärki)
+        too_short:
+          one: on liiga lühike (minimum 1 tähemärk)
+          other: on liiga lühike (minimum%{count} tähemärki)
+        wrong_length:
+          one: on vale pikkusega (peaks olema 1 tähemärk)
+          other: on vale pikkusega (peaks olema %{count} tähemärki)
       template:
         body: 'Järgnevate väljadega oli probleeme:'
+        header:
+          one: '1 viga ei lubanud salvestada: %{model}'
+          other: '%{count} viga ei lubanud salvestada: %{model}'
   activerecord:
     models:
       AssessmentSection: Hinnangu osa
@@ -4797,6 +5017,20 @@ et:
         place_id: Koht
         preferred_observation_fields_by: Luba vaatlusvälju
     errors:
+      messages:
+        empty: ei saa olla tühi
+        equal_to: peab olema võrdne numbriga %{count}
+        even: peab olema paarisarv
+        exclusion: on reserveeritud
+        greater_than: peab olema suurem kui %{count}
+        greater_than_or_equal_to: peab olema suurem või võrdne kui %{count}
+        inclusion: pole nimekirjas
+        invalid: pole sobilik
+        less_than: peab olema väiksem kui %{count}
+        less_than_or_equal_to: peab olema väiksem või võrdne kui %{count}
+        not_an_integer: peab olema täisarv
+        odd: peab olema paaritu
+        record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
       models:
         guide:
           attributes:
@@ -4810,6 +5044,10 @@ et:
           attributes:
             base:
               api_key_in_use: "API võti importimisel või importimisjärjekorras"
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: "koordinaadid ei tohi olla 0,0"
         observation_field_value:
           attributes:
             value:
@@ -4824,6 +5062,7 @@ et:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: on muutmiseks liiga suur
               is_too_large_to_import: on impordiks liiga suur
               contains_too_many_observations: sisaldab impordiks liiga palju vaatluseid
         post:
