@@ -853,7 +853,6 @@ el:
   editing_taxon_name: Επεξεργασία ονομασίας taxon
   editing_taxon_range: Επεξεργασία κατανομής taxon
   editors: Συντάκτες
-  eg: 'π.χ.'
   either: Είτε
   either_that_user_doesnt_exist_or: "Είτε αυτός ο χρήστης δεν υπάρχει ή ήδη τον ακολουθείτε."
   eligible_for_research_grade: Επιλέξιμο για Ερευνητικό Επίπεδο
@@ -1693,6 +1692,9 @@ el:
   people_user_follows: "Πρόσωπα που ο/η %{user} ακολουθεί"
   people_added:
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: προστέθηκε ένα <strong>ID</strong> σε μια %{observation_link} από %{user_link}
   per_day: Ανά ημέρα
   per_month: Ανά μήνα
@@ -3149,9 +3151,6 @@ el:
               contains_too_many_observations: περιλαμβάνει πάρα πολλές παρατηρήσεις για εισαγωγή
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Το πρότζεκτ δεν επιτρέπει παρατηρήσεις
             user_id:
               must_be_curator: πρέπει να είστε επιμελητής αυτού του πρότζεκτ
             observation_id:
