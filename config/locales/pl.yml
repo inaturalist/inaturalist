@@ -1116,7 +1116,6 @@ pl:
   editing_this: Edycja %{elem}
   editing_x_in_y: "Edycja %{x} w %{y}"
   editors: Edytorzy
-  eg: 'np.'
   either: Lub
   either_that_user_doesnt_exist_or: "Podany użytkownik nie istnieje lub już go obserwujesz."
   email: E‐mail
@@ -2081,7 +2080,13 @@ pl:
   people_user_follows: "Osoby, które obserwuje %{user}"
   people_added:
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: dodał <strong>identyfikację</strong> do %{observation_link} użytkownika %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: dodał <strong>oznaczenie</strong>
   per_day: Dziennie
   per_month: Miesięcznie
@@ -2906,7 +2911,6 @@ pl:
   'yes': "Tak"
   yes_i_want_to_join: Tak, chcę dołączyć
   yesterday: Wczoraj
-  yesterday_at: ', wczoraj o 16:00'
   you: ty
   you_arent_a_member_of_that_project: Nie jesteś członkiem tego projektu.
   you_arent_following_that_person: "Nie obserwujesz tej osoby."
