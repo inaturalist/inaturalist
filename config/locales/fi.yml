@@ -974,7 +974,6 @@ fi:
   editing_this: Muokataan %{elem}
   editing_x_in_y: "Muokataan %{x} %{y}:ssä"
   editors: Muokkaajat
-  eg: 'esim.'
   either: Joko
   either_that_user_doesnt_exist_or: "Joko kyseistä käyttäjää ei ole olemassa, tai seuraat jo häntä."
   eligible_for_research_grade: Sovelias tutkimustasolle
@@ -1982,9 +1981,18 @@ fi:
   people_following_user: "Käyttäjän %{user} seuraajat"
   people_user_follows: "Ihmiset, joita %{user} seuraa"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: lisäsi %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: lisäsi <strong>tunnistuksen</strong> käyttäjän %{user_link} %{observation_link}on
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: lisäsi <strong>tunnistuksen</strong>
     post: tehty %{post_link}
     comment:
@@ -3140,7 +3148,6 @@ fi:
   yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi kuvani, ääneni ja havaintoni jotta tutkijat voivat käyttää tietojani.
   yes_reject_it: Kyllä, hylkää se
   yesterday: Eilen
-  yesterday_at: ', eilen klo 16:00'
   you: sinä
   you_: Sinä
   you_appear_offline_try_again: |
@@ -4038,9 +4045,6 @@ fi:
               contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Projekti ei hyväksy havaintoja
             user_id:
               must_be_curator: täytyy olla tämän projektin kuraattori
             observation_id:
