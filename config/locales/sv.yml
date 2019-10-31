@@ -772,7 +772,6 @@ sv:
     one: 'Redigerar <span class="count">1</span> observation:'
     other: 'Redigerar <span class="count">%{count}</span> observationer:'
   editing_project: Redigerar %{project}
-  eg: 't.ex.'
   either: Antingen
   email: E-post
   email_copyright: "Copyright &copy; %{x}, alla rättigheter reserverade"
@@ -1167,9 +1166,18 @@ sv:
   password: Lösenord
   people: Människor
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: lade till en %{observation_link} av @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: lagt till en <strong>ID</strong> till en %{observation_link} av %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: lade till en <strong>ID</strong>
     comment:
       with_by: kommenterat på %{comment_subject_link} av %{by_link}
@@ -1630,7 +1638,6 @@ sv:
   yellow: gul
   'yes': "Ja"
   yesterday: I går
-  yesterday_at: ', i går kl. 16:00'
   you: du
   you_: Du
   you_appear_offline_try_again: |
