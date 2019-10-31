@@ -847,7 +847,6 @@ sk:
   editing_this: Úprava %{elem}
   editing_x_in_y: "Úprava %{x} v %{y}"
   editors: Redaktori
-  eg: 'napr.'
   either: Buď
   either_that_user_doesnt_exist_or: "Tento užívateľ buď neexistuje, alebo už ho sledujete."
   eligible_for_research_grade: Vhodné pre výskumný stupeň
@@ -1912,9 +1911,18 @@ sk:
   people_following_user: "Ľudia sledujú užívateľa %{user}"
   people_user_follows: "Ľudia, ktorí sledujú užívateľa %{user}"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: pridal/a %{observation_link} @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: pridal/a <strong>ID</strong> k %{observation_link} užívateľa %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: pridal/a <strong>ID</strong>
     post: vložil/a %{post_link}
     comment:
