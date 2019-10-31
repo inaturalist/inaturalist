@@ -1897,9 +1897,13 @@ eo:
       6: ve
       7: sa
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%e-a de %B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%e %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%b-a de %B, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%e-a de %B %Y'
     month_names:
       - 
