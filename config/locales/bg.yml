@@ -1322,9 +1322,18 @@ bg:
   people_following_user: "Хора следващи %{user}"
   people_user_follows: "Хора които %{user} следва"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: добави %{observation_link} на %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: добави <strong>ID</strong> на %{observation_link} от %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: добави <strong>ID</strong>
     post: направи %{post_link}
     comment:
@@ -2203,7 +2212,6 @@ bg:
   yes_i_want_to_join: Да, искам да се присъединя
   yes_license_my_observations_so_scientists_can_use: Да, лицензирай снимките, звуците и наблюденията ми така, че учените да могат да използват данните ми!
   yesterday: Вчера
-  yesterday_at: ', вчера в 16:00 ч.'
   you_appear_offline_try_again: |
     Изглежда, че нямате мрежова връзка. Моля, опитайте отново, когато възобновите връзката с Интернет.
   you_are_now_following_x: "Вече следвате %{friend_user}."
