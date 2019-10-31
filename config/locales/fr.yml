@@ -1036,7 +1036,6 @@ fr:
   editing_this: Modification de %{elem}
   editing_x_in_y: "Modification de %{x} dans %{y}"
   editors: Contributeurs
-  eg: 'par ex.'
   either: Soit
   either_that_user_doesnt_exist_or: "Cet utilisateur n’existe pas ou vous le suivez déjà."
   eligible_for_research_grade: Éligible au niveau recherche
@@ -2212,9 +2211,18 @@ fr:
   people_following_user: "Personnes suivant %{user}"
   people_user_follows: "Personnes que %{user} suit"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: a ajouté une %{observation_link} de %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: a ajouté une <strong>identification</strong> pour une %{observation_link} de %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: a ajouté une <strong>identification</strong>
     post: a publié une %{post_link}
     comment:
@@ -3835,7 +3843,6 @@ fr:
   yes_reject_it: Oui, refusez le
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
   yesterday: Hier
-  yesterday_at: ', hier à 16 h'
   you: vous
   you_: ' Vous'
   you_appear_offline_try_again: |
@@ -6281,9 +6288,6 @@ fr:
                 dans un jour, vous pourrez publier.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Le projet n'accepte pas les observations
             user_id:
               must_be_curator: doit être un responsable de ce projet
             observation_id:
