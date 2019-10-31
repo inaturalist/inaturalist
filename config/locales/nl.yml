@@ -1118,7 +1118,6 @@ nl:
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
   editors: Redacteurs
-  eg: 'bijv.'
   either: Ofwel
   either_that_user_doesnt_exist_or: "Deze gebruiker bestaat niet of je bent hem reeds aan het volgen."
   eligible_for_research_grade: Komt in aanmerking voor onderzoekskwaliteit
@@ -2193,6 +2192,9 @@ nl:
   observation_fields_by_preferences_description: |
     Waarnemingsvelden lijken een beetje op tags, behalve dat default iedereen ze kan toevoegen
     aan je waarneming. Verander dit als je liever wilt dat alleen jij dit kan doen of alleen site-curators.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    bijv. "2019-10-29 13:12:21"
   observation_removed_from_the_project: "Waarneming verwijderd uit het project %{project}"
   observation_requirements: waarnemingsvereisten
   observation_rules: Waarnemingsregels
@@ -2413,9 +2415,18 @@ nl:
   people_following_user: "Personen die %{user} volgen"
   people_user_follows: "Personen die %{user} volgt"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: heeft een %{observation_link} van een %{taxon_link} toegevoegd
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: heeft een <strong>determinatie</strong> toegevoegd aan een %{observation_link} door %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: heeft een <strong>ID</strong> toegevoegd
     post: maakte een %{post_link}
     comment:
@@ -4101,7 +4112,6 @@ nl:
   yes_reject_it: Ja, verwerp het
   yes_show_this_in_the_box: Ja, toon dit in het grote vak bovenaan/taxa
   yesterday: Gisteren
-  yesterday_at: ', gisteren om 16 u.'
   you: Jou
   you_: Jij
   you_appear_offline_try_again: |
@@ -5526,12 +5536,12 @@ nl:
           Toon wetenschappelijke namen voor lokale namen.
         taxon_change_desc: |
           Wanneer taxa op %{site_name} worden samengevoegd of hernoemd, worden je waarnemingen, vermelde taxa, determinaties, etc. automatisch bijgewerkt naar de nieuwe taxa als de wijziging ondubbelzinnig is. Als je je afmeldt of als de wijziging niet eenduidig is (bijv. een splitsing), ontvang je een update over de wijziging met een link naar een tool die je kunt gebruiken om je inhoud handmatig bij te werken als je daarvoor kiest.
-        thanks_for_supporting_us!: Bedankt voor je support aan ons!
+        thanks_for_supporting_us!: Bedankt voor je steun aan ons!
         this_only_applies_to_traditional_projects: |
           Dit geldt alleen voor traditionele projecten. Je kunt waarnemingen niet uitsluiten
           van verzamel- of overkoepelende projecten, wat in feite opgeslagen zoekopdrachten zijn.
           Je kunt <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">hier</a> meer lezen.
-        youve_used_all_of_your_blocks: Je hebt al je blokkeringen opgebruikt. Verwijder een blokkering om een andere toe te voegen.
+        youve_used_all_of_your_blocks: Je hebt al je blokken opgebruikt. Verwijder een blok om er nog een toe te voegen.
       recent:
         about_recent_users: Over
         definitions_html: "<dl><dt>Waarschijnlijk spam</dt><dd>Gebruiker die waarschijnlijk een spammer is, wat betekent dat ze geen waarnemingen of determinaties hebben maar wel een profielbeschrijving.\n</dd><dt>Automatische spam</dt><dd>Spammer die door het systeem automatisch als spammer is gemarkeerd. \n</dd><dt>Handmatige spam</dt><dd>Spammer die handmatig door een site-curator als spammer is gemarkeerd. \n</dd><dt>Valse positieven</dt><dd>Gebruikers die zijn gemarkeerd als spammers, maar de meldingen zijn opgelost door sitecuratoren omdat het toch geen spammers waren.</dd></dl>"
@@ -6082,8 +6092,8 @@ nl:
         project_observation:
           attributes:
             base:
-              project_does_not_allow_observations: |
-                Project laat geen waarnemingen toe
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                verzamelings- en overkoepelende projecten staan geen directe toevoegingen toe
             user_id:
               must_be_curator: moet curator zijn van dit project
             observation_id:
