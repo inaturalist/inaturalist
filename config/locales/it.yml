@@ -1117,7 +1117,6 @@ it:
   editing_this: Modifica %{elem} in corso
   editing_x_in_y: "Modifica di %{x} in %{y} in corso"
   editors: Editori
-  eg: 'ad es.'
   either: Qualsiasi
   either_that_user_doesnt_exist_or: "Sia che l'utente non esista o tu li stia già seguendo."
   eligible_for_research_grade: Qualificate per il Livello ricerca
@@ -2183,6 +2182,9 @@ it:
   observation_fields_are_additional: I campi delle osservazioni sono dati aggiuntivi che possono essere aggiunti alle osservazioni.
   observation_fields_by_preferences_description: |
     I campi delle osservazioni sono un po' come i tags, se non che, in modo predefinito, chiunque può aggiungerli alle tue osservazioni. Chambia questa opzione se preferisci che sia solo tu o i curatori del sito a poter fare ciò.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    es. "2019-10-29 13:12:21"
   observation_removed_from_the_project: "Osservazione rimossa dal progetto \"%{project}\""
   observation_requirements: Requisiti dell'osservazione
   observation_rules: Regole di osservazione
@@ -2389,9 +2391,18 @@ it:
   people_following_user: "Persone stanno seguendo %{user}"
   people_user_follows: "Persone che %{user} segue"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: ha aggiunto un'%{observation_link} di @gender{m:un|f:una|n:un} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: ha aggiunto una <strong>ID</strong> ad una %{observation_link} di %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: ha aggiunto una <strong>ID</strong>
     post: ha scritto un %{post_link}
     comment:
@@ -4059,7 +4070,6 @@ it:
   yes_reject_it: Si, rifiuta
   yes_show_this_in_the_box: Si, mostralo nel grande riquadro in cima ai taxa
   yesterday: Ieri
-  yesterday_at: ', ieri alle 16'
   you: te
   you_: ' Tu'
   you_appear_offline_try_again: |
@@ -5272,9 +5282,9 @@ it:
             <strong class="count">%{count} osservazioni</strong>, incluso il lavoro delle <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato con le identificazioni
         x_identifications_html:
           one: |
-            <strong class="count">1 tua identificazione</strong> di osservazione di un'altra persona, che potenzialmente influisce sulla qualità dei dati di quell'osservazione
+            <strong class="count">%{count} tua identificazione</strong> per un'osservazione di un'altra persona, che potenzialmente influisce sulla qualità dei dati di quell'osservazione
           other: |
-            <strong class="count">%{count} delle tue identificazioni</strong> di osservazioni di <strong class="count">altre %{helpees_count} persone</strong>, che potenzialmente influisce sulla qualità dei dati di quelle osservazioni
+            <strong class="count">%{count} delle tue identificazioni</strong> per osservazioni di <strong class="count">altre %{helpees_count} persone</strong>, che potenzialmente influiscono sulla qualità dei dati di quelle osservazioni
         x_comments_html:
           one: <strong class="count">1 commento</strong> che tu hai aggiunto
           other: <strong class="count">%{count} commenti</strong> che tu hai aggiunto
@@ -5892,9 +5902,6 @@ it:
                 devi essere registrato da più di 24 ore per pubblicare. Abbiamo un sacco di spammer, e questo è un modo per contrastarli. Tu puoi comunque salvare una bozza, e se tra un giorno userai ancora il sito, potrai pubblicare.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Progetto che non permette osservazioni
             user_id:
               must_be_curator: deve essere un curatore di questo progetto
             observation_id:
