@@ -553,7 +553,6 @@ eo:
   editing_announcement: Redaktanta anoncon
   editing_project: Redaktante projekton %{project}
   editing_taxon_name: Redaktante Nomon de Taksono
-  eg: 'ekz.'
   either: Aŭ
   email: Retpoŝta adreso
   end: Fino
@@ -2144,9 +2143,6 @@ eo:
               is_too_large_to_import: estas tro granda por enportado
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Projekto ne permesas observojn
             user_id:
               must_be_curator: devas esti kuratoro de ĉi tiu projekto
         taxon_photo:
