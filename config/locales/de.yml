@@ -1007,7 +1007,6 @@ de:
   editing_this: Bearbeiten %{elem}
   editing_x_in_y: "Bearbeiten %{x} in %{y}"
   editors: Autoren
-  eg: 'z.B.'
   either: Oder
   either_that_user_doesnt_exist_or: "Entweder existiert dieser Benutzer nicht oder du folgst ihm bereits."
   eligible_for_research_grade: Geeignet für Forschungsqualität
@@ -2107,9 +2106,18 @@ de:
   people_following_user: "Personen, die %{user} folgen"
   people_user_follows: "Leute denen %{user} folgt"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: ': %{observation_link} von @vow_or_con{vow:einer|einer} %{taxon_link} hinzugefügt'
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: ': <strong>ID</strong> zu %{observation_link} von %{user_link} hinzugefügt'
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: hat eine <strong>ID</strong> hinzugefügt
     post: hat einen %{post_link} gemacht
     comment:
@@ -3475,7 +3483,6 @@ de:
   yes_license_my_observations_so_scientists_can_use: Ja, lizenziere meine Fotos, Tonaufnahmen und Beobachtungen so, dass Wissenschaftler meine Daten verwenden können.
   yes_reject_it: Ja, ablehnen!
   yesterday: Gestern
-  yesterday_at: ', gestern um 16 Uhr'
   you: dir
   you_: Du
   you_appear_offline_try_again: |
