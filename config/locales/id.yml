@@ -648,7 +648,6 @@ id:
   editing_taxon_range: Merubah rentang taksa
   editing_this: Merubah %{elem}
   editing_x_in_y: "Merubah %{x} in %{y}"
-  eg: 'misalnya'
   either: Salah satu
   either_that_user_doesnt_exist_or: "Entah pengguna yang tidak ada atau Anda sudah mengikuti mereka."
   eligible_for_research_grade: Memenuhi syarat untuk kelas Penelitian
@@ -1456,9 +1455,18 @@ id:
   people_following_user: "Para pengikut %{user}"
   people_user_follows: "Orang %{user} Ikuti"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: tambahkan %{observation_link} pada @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: tambahkan <kuat>ID</kuat> ke %{observation_link} oleh %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: tambahkan <kuat>ID</kuat>
   per_day: Per Hari
   per_month: Per Bulan
@@ -2300,7 +2308,6 @@ id:
   yes_license_my_observations_so_scientists_can_use: Ya, lisensi foto-foto saya, suara & pengamatan sehingga para ilmuwan dapat menggunakan data saya!
   yes_show_this_in_the_box: Ya, menunjukkan ini dalam kotak besar di bagian atas / taksa
   yesterday: Kemarin
-  yesterday_at: ', kemarin pada 4 pm'
   you: anda
   youre_a_site_curator_which_means: |
     Anda seorang kurator situs, yang berarti Anda sudah menawarkan diri untuk membantu kurasi data kami dan memantau konten. Jangan merasa berkewajiban
