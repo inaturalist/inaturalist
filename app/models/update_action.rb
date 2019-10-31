@@ -93,7 +93,7 @@ class UpdateAction < ActiveRecord::Base
   end
 
   def self.email_updates_to_user(subscriber, start_time, end_time)
-    Rails.logger.info "email_updates_to_user: #{subscriber}"
+    Rails.logger.debug "email_updates_to_user: #{subscriber}"
     user = subscriber
     user = User.find_by_id(subscriber.to_i) unless subscriber.is_a?(User)
     user ||= User.find_by_login(subscriber)
@@ -121,7 +121,7 @@ class UpdateAction < ActiveRecord::Base
       !user.prefers_user_observation_email_notification? && u.notification == "created_observations" ||
       !user.prefers_taxon_or_place_observation_email_notification? && u.notification == "new_observations"
     end.compact
-    Rails.logger.info "email_updates_to_user: #{subscriber}, updates: #{updates.size}"
+    Rails.logger.debug "email_updates_to_user: #{subscriber}, updates: #{updates.size}"
     return if updates.blank?
 
     UpdateAction.preload_associations(updates, [ :resource, :notifier, :resource_owner ] )
@@ -132,9 +132,9 @@ class UpdateAction < ActiveRecord::Base
     Taxon.preload_associations(ids + obs, { taxon: [ :photos, { taxon_names: :place_taxon_names } ] } )
     User.preload_associations(with_users, { user: :site })
     updates.delete_if{ |u| u.resource.nil? || u.notifier.nil? }
-    Rails.logger.info "email_updates_to_user: #{subscriber}, emailing updates: #{updates.size}"
+    Rails.logger.debug "email_updates_to_user: #{subscriber}, emailing updates: #{updates.size}"
     Emailer.updates_notification(user, updates).deliver_now
-    Rails.logger.info "email_updates_to_user: #{subscriber} finished"
+    Rails.logger.debug "email_updates_to_user: #{subscriber} finished"
   end
 
   def self.load_additional_activity_updates(updates, user_id)
