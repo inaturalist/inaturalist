@@ -996,7 +996,6 @@ es-MX:
   editing_this: Editando %{elem}
   editing_x_in_y: "Editando %{x} en %{y}"
   editors: Editores
-  eg: 'ej.'
   either: Cualquiera
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya te encuentras siguiendolo."
   eligible_for_research_grade: Elegible para grado de investigación
@@ -2135,9 +2134,18 @@ es-MX:
   people_following_user: "Personas siguiendo a %{user}"
   people_user_follows: "Personas que %{user} sigue"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: añadió un %{observation_link} de @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: añadido un <strong>identificador</strong> a una %{observation_link} de %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: añadido un <strong>identificador</strong>
     post: hizo un %{post_link}
     comment:
@@ -3645,7 +3653,6 @@ es-MX:
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Si, muestra esto en la caja  grande por arriba de /grupos (taxa)
   yesterday: Ayer
-  yesterday_at: ', ayer a las 4 pm'
   you: Ti
   you_: Tú
   you_appear_offline_try_again: |
@@ -5389,9 +5396,6 @@ es-MX:
                 debe de haberse registrado hace más de 24 horas para publicar. Tenemos gran cantidad de gente que introduce spam, y así los evitamos. De todas formas puedes guardar un borrador, y si estás usando el sitio en un día, podrás publicarlo.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                El proyecto no permite observaciones
             user_id:
               must_be_curator: debe ser un curador de este proyecto
             observation_id:
