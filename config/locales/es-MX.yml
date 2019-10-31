@@ -5053,9 +5053,13 @@ es-MX:
       6: Vi
       7: Sá
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d/%m/%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d de %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%d.%b.%Y'
     month_names:
       - 
@@ -5185,8 +5189,11 @@ es-MX:
       words_connector: ','
   time:
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%b. %d, %A %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%B %d, %A %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %b. %Y"
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
