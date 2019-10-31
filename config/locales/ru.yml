@@ -1499,6 +1499,14 @@ ru:
   has_sound: Содержит звук
   has_sounds: Со звуком
   hasnt_contributed_any_observations: не добавил никаких наблюдений к этому проекту
+  header_your_observations: Ваши наблюдения
+  header_your_calendar: Ваш календарь
+  header_your_favorites: Ваши фавориты
+  header_your_lists: Ваши списки
+  header_your_journal: Ваш журнал
+  header_your_identifications: Ваши идентификации
+  header_your_projects: Ваши проекты
+  header_your_profile: Ваш профиль
   heads_up: Осторожно
   heads_up_this_photo_has_been_flagged: "ПРЕДУПРЕЖДЕНИЕ: это фото было помечено флагом."
   heads_up_this_photo_is_already_associated_with: "Внимание: это фото уже связано с <a target='_blank' href='%{url}'>другим наблюдением</a>"
@@ -5673,12 +5681,19 @@ ru:
       6: Пт
       7: Сб
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%Y-%m-%d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%B %d, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%b %d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       compact: "%b %e"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%b %d, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_year: '%B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
       - 
@@ -5881,13 +5896,21 @@ ru:
   time:
     am: утра
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d %b %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d %B %Y %I%M%p'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d %b %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       compact: "%H:%M"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       observed_at: '%H:%M %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%d. %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %b. %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       hours: "%H:%M"
     pm: вечера
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
@@ -6252,7 +6275,11 @@ ru:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         listed_taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6265,6 +6292,10 @@ ru:
         place: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
