@@ -12,12 +12,48 @@ ko:
   #Number of people who have added identifications
   x_identifiers_html:
     other: '동정한 사용자 <span class="count">%{count}</span> 명'
+  x_journal_posts_html:
+    other: '일지 포스팅 <span class="count">%{count}</span> 개'
+  x_matching_taxa:
+    other: '일치하는 분류군 %{count} 개'
+  x_matching_taxa_html:
+    other: '<span class="count">%{count}</span> 일치하는 분류군'
+  x_misidentifications_of_this_species:
+    other: "이 종의 오동정 %{count} 개"
+  x_misidentifications_of_species_in_this_rank:
+    other: "%{rank} 에 속하는 종의 오동정 %{count} 개"
+  x_observations:
+    other: "관찰 %{count} 개"
+  x_observations_:
+    other: "관찰 %{count} 개"
+  x_observations_html:
+    other: "관찰 <span class='count'>%{count}</span> 개"
+  x_observations_link_html:
+    other: "<a href='%{url}'>관찰 %{count} 개</a>"
+  x_observations_reviewed_html:
+    other: "검토한 관찰 <span class='count'>%{count}</span> 개"
+  x_observers_html:
+    other: '관찰자 <span class="count">%{count}</span> 명'
+  x_others:
+    other: "외 %{count} 명"
   x_photos:
     other: "사진 %{count} 개"
   x_new_species:
     other: "새로운 종 %{count} 종"
   x_species:
     other: '%{count} 종'
+  x_species_html:
+    other: "<span class='count'>%{count}</span> 종"
+  x_species_link_html:
+    other: "<a href='%{url}'>%{count} 종</a>"
+  x_suggestions_filtered_by_colon:
+    other: "다음 필터에 의해서 %{count} 개가 제안됨:"
+  x_taxa_observed_html:
+    other: "<span class='count'>%{count}</span> 개의 분류군이 관찰됨"
+  x_research_grade_observations_html:
+    other: "<span class='count'>%{count}</span> 연구 자료 등급 관찰"
+  x_research_grade_observations_to_species_html:
+    other: "종 수준 이상으로 동정된 연구 자료 등급 관찰 <span class='count'>%{count}</span> 개"
   a_community_for_naturalist: 자연을 연구하는 사람들을 위한 공동체
   a_default_taxon_name_will_automatically_created: |
     학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을 저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
@@ -300,7 +336,7 @@ ko:
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
-  atom: 원지
+  atom: 아톰
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: 특성
@@ -773,10 +809,9 @@ ko:
   editing_this: '%{elem} 편집'
   editing_x_in_y: "%{y}에서 %{x} 편집"
   editors: 편집자
-  eg: '예시'
   either: 어느 쪽이든
   either_that_user_doesnt_exist_or: "사용자가 존재하지 않거나 이미 팔로잉하고 있습니다."
-  eligible_for_research_grade: 연구 평가를 받을 자격이 있다.
+  eligible_for_research_grade: 연구 자료 등급을 받을 자격이 있다.
   email: 이메일
   email_addresses_description: 쉼표로 분리된 이메일 주소, 30일에 최대 60개
   email_address_for_comments_and_other_feedback: 댓글과 다른 피드백을 위한 이메일 주소
@@ -994,8 +1029,8 @@ ko:
   icon: 아이콘
   icon_size: 아이콘 크긱
   iconic_taxon: 아이코닉 분류군
-  identify: 동정함
-  identify_title: "동정함"
+  identify: 동정하기
+  identify_title: "동정하기"
   identification: 동정
   identification_deleted: 동정 삭제됨
   identification_saved: "동정 저장됨"
@@ -1297,6 +1332,7 @@ ko:
   most_browser_print_pdf: "참고: 대부분의 브라우저는 PDF를 인쇄하는 옵션이 있습니다"
   most_observations: 가장 많은 관찰
   most_species: 대부분의 종
+  most_observed_introduced_species: 가장 많이 관찰된 도입종
   must_have_observation_field: "%{operand}을 필수로 기입해야 합니다."
   mute_user: 사용자를 알림에서 제외
   mute_removed: 알림 제외를 제거함
@@ -1513,7 +1549,13 @@ ko:
   paste: 붙여넣기
   people_added:
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: '%{user_link} 님의 %{observation_link} 에 <strong>ID</strong> 를 추가했습니다'
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: <strong>ID</strong> 를 추가했습니다
   per_day: 매일
   per_month: 매월
@@ -1928,6 +1970,7 @@ ko:
   required_: 필수
   required_field: 필수 필드
   research_: 연구
+  research_grade: 연구 자료 등급
   reset_brightness: 밝기 초기화
   reset_search_filters: 검색 필터 초기화
   restore: 복구
@@ -2046,6 +2089,7 @@ ko:
   these_observations_have_not_been_uploaded_yet: |
     아직 업로드되지 않은 관찰입니다.
   third_person_possessive_plural: "%{object_phrase}의 %{noun}"
+  this_observation_is_research_grade: 본 관찰은 연구 자료 등급 관찰입니다!
   this_observation_was_created_using: "이 관찰은 다음을 사용하여 만들어졌습니다:"
   this_photo_is_already_associated: 이 사진은 이미 관찰에 사용되었습니다.
   this_place_has_no_check_list: "이 장소에는 체크리스트가 없습니다."
@@ -2168,7 +2212,6 @@ ko:
   yellow: 노랑
   'yes': "예"
   yes_license_my_observations_so_scientists_can_use: 네, 과학자들이 내 데이터를 사용할 수 있도록 내 사진, 소리, 관찰을 라이선스하겠습니다!
-  yesterday_at: '어제 오후 4시에'
   you_: 당신
   you_are_no_longer_following_x: "더 이상 %{friend}를 팔로우하지 않습니다."
   you_are_submitting_obs_without_photos_and_names: |
@@ -2324,6 +2367,7 @@ ko:
     taxa:
       show:
         frequency:
+          research: 연구 자료 등급
           "Flowering Phenology=bare": 꽃 없음
           "Life Stage=egg": 알
           "Life Stage=larva": 애벌레
