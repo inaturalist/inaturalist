@@ -1064,7 +1064,6 @@ zh-TW:
   editing_this: 正編輯 %{elem}
   editing_x_in_y: "正編輯 %{x} 於 %{y}"
   editors: 編輯者
-  eg: '例如：'
   either: 任一
   either_that_user_doesnt_exist_or: "不存在該用戶，或著是您已有在關注。"
   eligible_for_research_grade: 符合研究等級
@@ -2299,9 +2298,18 @@ zh-TW:
   people_following_user: "關注 %{user} 的人"
   people_user_follows: "%{user} 關注的人"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: 添加一個@vow_or_con{vow:an|a} %{taxon_link}的%{observation_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: 由 %{user_link} 添加一個<strong>鑑定</strong>至%{observation_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: 已新增一個<strong>鑑定</strong>
     post: 已製作一個 %{post_link}
     comment:
@@ -3916,7 +3924,6 @@ zh-TW:
   yes_reject_it: 是的，拒絕它
   yes_show_this_in_the_box: 是的，在物種分類頂端的大框內顯示此
   yesterday: 昨天
-  yesterday_at: '，在昨天下午 4 點'
   you: 您
   you_: 您
   you_appear_offline_try_again: |
@@ -5703,9 +5710,6 @@ zh-TW:
                 必須註冊超過 24 小時才可發佈。這是我們面對到大量破壞者的將就應付方式。如果您在註冊那天裡有使用我們的網站，您仍可將內容存儲成草稿來用於發佈。
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                專案不允許觀察
             user_id:
               must_be_curator: 必須為此專案的策展人
             observation_id:
