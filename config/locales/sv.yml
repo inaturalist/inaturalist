@@ -1836,10 +1836,15 @@ sv:
       6: Fr
       7: Lö
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%-d-%m-%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%-d %B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%-d %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%-d %b %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%-d %B %Y'
     month_names:
       - 
@@ -1917,12 +1922,19 @@ sv:
       words_connector: ','
   time:
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%-d %b %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%-d %B %Y %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%-d %b %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       observed_at: '%H:%M %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%-d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%-d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       hours: "%H:%M"
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
