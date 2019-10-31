@@ -848,7 +848,6 @@ he:
   editing_this: עריכת %{elem}
   editing_x_in_y: "עריכת %{x}ב%{y}"
   editors: עורכים
-  eg: 'לדוגמא'
   either_that_user_doesnt_exist_or: "או שהמשתמש אינו קיים, או שאתם כבר עוקבים אחריו."
   eligible_for_research_grade: מתאים לדרגת מחקר
   email: דוא״ל
@@ -1640,6 +1639,9 @@ he:
   observation_field_type_dna: DNA
   observation_fields: שדות תצפית
   observation_fields_are_additional: שדות תצפית מאפשרים להוסיף נתוני שדות נוספים שיתווספו לתצפיות.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    לדוגמא "29-10-2019 13:12:21"
   observation_removed_from_the_project: "התצפית הוסרה מהפרוייקט %{project}"
   observation_requirements: דרישות לתצפית
   observation_rules: כללי התצפית
@@ -1793,6 +1795,9 @@ he:
   people_user_follows: "אנשים ש %{user} עוקב אחריהם"
   people_added:
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: הוסיפ/ה <strong>זיהוי</strong> ל%{observation_link} על ידי%{user_link}
   per_day: ליום
   per_month: לחודש
@@ -2849,7 +2854,6 @@ he:
   yes_i_want_to_join: כן, ברצוני להצטרף
   yes_license_my_observations_so_scientists_can_use: כן, החל רישוי לתמונות, קולות ותצפיות על מנת שחוקרים יוכלו להשתמש בנתונים שלי.
   yesterday: אתמול
-  yesterday_at: ', אתמול ב 4 אחה"צ'
   you_: אתה
   you_appear_offline_try_again: |
     נראה שאתם במצב לא מקוון. אנא נסו שוב כשתהיו מחוברים לאינטרנט.
@@ -3528,8 +3532,8 @@ he:
         project_observation:
           attributes:
             base:
-              project_does_not_allow_observations: |
-                לא ניתן להעלות תצפיות לפרוייקט זה
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                באוספים ופרויקטי מטריה אין אפשרות להעלאה ישירה
             observation_id:
               must_be_observed_after: |
                 שנצפה אחרי %{time}
