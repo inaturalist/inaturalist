@@ -883,7 +883,6 @@ sq:
   editing_this: Duke ndryshuar %{elem}
   editing_x_in_y: "Duke ndryshuar %{x} në %{y}"
   editors: Redaktorët
-  eg: 'p.sh.'
   either: Ose
   either_that_user_doesnt_exist_or: "Ose ky përdorues nuk ekziston ose jeni duke i ndjekur ato."
   eligible_for_research_grade: I pranueshëm për Nivel Kërkimor
@@ -1913,9 +1912,18 @@ sq:
   people_following_user: "Njerëz që ndjekin %{user}"
   people_user_follows: "Njerëz që %{user} i ndjek"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: Shtoi nje %{observation_link} te %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: Shtoi nje %{observation_link}te %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: Shtoi nje <strong>ID</strong>
     post: Beri nje %{post_link}
     comment:
@@ -2932,9 +2940,6 @@ sq:
               contains_too_many_observations: përmban shumë vëzhgime për tu importuar
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Projekti nuk lejon vëzhgime
             user_id:
               must_be_curator: duhet të jetë kurator i këtij projekti
             observation_id:
