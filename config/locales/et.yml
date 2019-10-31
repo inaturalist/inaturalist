@@ -1005,7 +1005,6 @@ et:
   editing_this: Muudan elementi %{elem}
   editing_x_in_y: "Muudan %{x}/%{y}"
   editors: Toimetajad
-  eg: 'nt'
   either: Emb-kumb
   either_that_user_doesnt_exist_or: "Kas kasutajat ei eksisteeri või sa juba jälgid teda."
   eligible_for_research_grade: Taduskõlbulikuks sobiv
@@ -2119,9 +2118,18 @@ et:
   people_following_user: "Kasutaja %{user} jälgijad"
   people_user_follows: "Kasutaja %{user} jälgitavad"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: lisas %{observation_link} taksonist %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: lisas kasutaja %{user_link} %{observation_link} <strong>määratluse</strong>
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: lisas <strong>määratluse</strong>
     post: tegi %{post_link}
     comment:
@@ -3603,7 +3611,6 @@ et:
   yes_reject_it: Jah, lükka tagasi
   yes_show_this_in_the_box: Jah, näita seda taksoni päises olevas suures kastis
   yesterday: Eile
-  yesterday_at: ', eile kell 4'
   you: sina
   you_: Sina
   you_appear_offline_try_again: |
@@ -5072,9 +5079,6 @@ et:
                 peab postitamiseks olema kasutajaks registreerunud vähemalt 24 tundi tagasi. Palju rämpspostitajad proovivad ennast kasutajaks registreerida ja see on üks moodus nendega toimetulekuks. Saad mustandi salvestada ja kui sa lehte päeva pärast ikka veel kasutad, saad ka postitada.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Projekt ei luba vaatluseid
             user_id:
               must_be_curator: peab olema selle projekti kuraator
             observation_id:
