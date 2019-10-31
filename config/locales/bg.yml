@@ -2575,8 +2575,11 @@ bg:
       6: Пт
       7: Сб
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d %B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%d %B %Y'
     month_names:
       - 
