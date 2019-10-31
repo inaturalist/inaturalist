@@ -908,7 +908,6 @@ ar:
   editing_this: تعديل %{elem}
   editing_x_in_y: "تعديل %{x} في %{y}"
   editors: المحررون
-  eg: 'على سبيل المثال'
   either: إما
   either_that_user_doesnt_exist_or: "إما أن هذا المستخدم غير موجود أو أنك تتبعه بالفعل."
   eligible_for_research_grade: مؤهل للحصول على درجة البحث
@@ -2111,9 +2110,18 @@ ar:
   people_following_user: "الأشخاص الذين يتابعون %{user}"
   people_user_follows: "أشخاص يتابعهم %{user}"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: أضاف %{observation_link} @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: أُضِيف <strong>معرف</strong> إلى %{observation_link} بواسطة %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: أُضِيف <strong>معرف</strong>
     post: صنع %{post_link}
     comment:
@@ -3752,7 +3760,6 @@ ar:
   yes_reject_it: نعم، ارفض ذلك
   yes_show_this_in_the_box: نعم، إظهار هذا في مربع كبير في الجزء العلوي من / الأصناف
   yesterday: أمس
-  yesterday_at: '، أمس في 04:00 م'
   you: أنت
   you_: أنت
   you_appear_offline_try_again: |
@@ -6213,9 +6220,6 @@ ar:
                 تستخدم الموقع في يوم واحد، فستتمكن من النشر.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                المشروع لا يسمح بالملاحظات
             user_id:
               must_be_curator: يجب أن تكون أمينا لهذا المشروع
             observation_id:
