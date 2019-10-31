@@ -1015,7 +1015,6 @@ pt-BR:
   editing_this: Modificando %{elem}
   editing_x_in_y: "Modificando %{x} em %{y}"
   editors: Editores
-  eg: 'ex:'
   either: Qualquer
   either_that_user_doesnt_exist_or: "Ou este usuário não existe ou você já está seguindo ele."
   eligible_for_research_grade: Elegível para Nível de Pesquisa
@@ -2153,9 +2152,18 @@ pt-BR:
   people_following_user: "Pessoas que Seguem %{user}"
   people_user_follows: "Pessoas %{user} Segue"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: adicionado um %{observation_link} de @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: adicionada uma <strong>identificação</strong> a uma %{observation_link} de %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: adicionada uma <strong>identificação</strong>
     post: fez uma %{post_link}
     comment:
@@ -3724,7 +3732,6 @@ pt-BR:
   yes_reject_it: Sim, rejeite
   yes_show_this_in_the_box: Sim, mostre isto na grande caixa sobre os táxons
   yesterday: Ontem
-  yesterday_at: ', ontem as 4 da tarde'
   you: você
   you_: Você
   you_appear_offline_try_again: |
@@ -5548,9 +5555,6 @@ pt-BR:
                 Deve ter feito o registro por mais de 24 horas para publicar. Nós temos muitos casos de introdução de spam, e esta foi uma maneira que encontramos para lidar com isso. Você ainda pode salvar um rascunho, e se você voltar em um dia já poderá efetivar a publicação.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                O projeto não permite observações
             user_id:
               must_be_curator: é preciso ser um administrador deste projeto
             observation_id:
