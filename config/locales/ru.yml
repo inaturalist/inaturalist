@@ -1211,7 +1211,6 @@ ru:
   editing_this: Редактирование %{elem}
   editing_x_in_y: "Редактирование %{x} в %{y}"
   editors: Редакторы
-  eg: 'например'
   either: Либо
   either_that_user_doesnt_exist_or: "Эти пользователи либо не существуют, либо вы уже на них подписаны."
   eligible_for_research_grade: Доступно для Исследовательского уровня
@@ -2280,6 +2279,9 @@ ru:
   observation_fields_are_additional: Поля наблюдения - это дополнительные поля данных, которые могут быть добавлены к наблюдениям.
   observation_fields_by_preferences_description: |
     Поля наблюдения похожи на теги, за исключением того, что любой может добавить их в ваше наблюдение по умолчанию. Измените эту настройку, если вы хотите, чтобы только вы или кураторы сайта могли это делать.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    например, "2019-10-29 13:12:21"
   observation_removed_from_the_project: "Наблюдения удалены из проекта %{project}"
   observation_requirements: Требования к наблюдению
   observation_rules: Правила наблюдения
@@ -2486,9 +2488,18 @@ ru:
   people_following_user: "Люди, подписанные на %{user}"
   people_user_follows: "Люди, на которых подписан %{user}"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: добавил %{observation_link} @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: добавил <strong>идентификацию</strong> к %{observation_link} %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: добавил <strong>идентификацию</strong>
     post: создана %{post_link}
     comment:
@@ -4206,7 +4217,6 @@ ru:
   yes_reject_it: Да, отклоните это
   yes_show_this_in_the_box: Да, покажите это в большом прямоугольнике наверху /таксона
   yesterday: Вчера
-  yesterday_at: ', вчера в 4 часа после обеда'
   you: Ваши
   you_: Вы
   you_appear_offline_try_again: |
@@ -6125,9 +6135,6 @@ ru:
                 должны быть зарегистрированы более чем 24 часа назад для публикации. У нас много спамеров, и это своего рода обходной путь борьбы с ними. Вы можете сохранить черновик, и если вы всё ещё используете сайт день спустя, вы сможете опубликовать его.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Проект не допускает наблюдений
             user_id:
               must_be_curator: должен быть куратором этого проекта
             observation_id:
