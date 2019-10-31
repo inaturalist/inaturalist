@@ -991,7 +991,6 @@ pt:
   editing_this: A editar %{elem}
   editing_x_in_y: "A editar %{x} em %{y}"
   editors: Editores
-  eg: 'exemplo.'
   either: Qualquer
   either_that_user_doesnt_exist_or: "Este utilizador não existe ou já está a seguir ele."
   eligible_for_research_grade: Elegível para Grau de Pesquisa
@@ -2044,6 +2043,9 @@ pt:
   people_user_follows: "Pessoas que %{user} segue"
   people_added:
     identification:
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: adicionou uma <strong>identificação</strong>
     comment:
       with_by: comentou em @vow_or_con{vow:an|a} %{comment_subject_link} em %{by_link}
@@ -3263,9 +3265,6 @@ pt:
               is_too_large_to_import: é demasiado grande para ser importado
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                O projeto não permite observações
             user_id:
               must_be_curator: tem de ser curador deste projeto
             observation_id:
