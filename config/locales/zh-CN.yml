@@ -916,7 +916,6 @@ zh-CN:
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
   editors: 编辑者
-  eg: '例如：'
   either: 任一
   either_that_user_doesnt_exist_or: "不存在这一用户或您已经在关注。"
   eligible_for_research_grade: 符合研究级资格
@@ -1979,9 +1978,18 @@ zh-CN:
   people_following_user: "关注 %{user} 的人"
   people_user_follows: "%{user} 关注的人"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: 已添加 @vow_or_con{vow:an|a} %{taxon_link} 的 %{observation_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: 已由%{user_link}将<strong>ID</strong>加入至一个%{observation_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: 添加了一个<strong>ID</strong>
     post: 制作了一个%{post_link}
     comment:
@@ -3300,7 +3308,6 @@ zh-CN:
   yes_reject_it: 好的，拒绝它
   yes_show_this_in_the_box: 是的，它会在/taxa顶部的大框中显示
   yesterday: 昨天
-  yesterday_at: '，昨天在下午4点'
   you: 您
   you_: 您
   you_appear_offline_try_again: |
@@ -4678,9 +4685,6 @@ zh-CN:
                 必须已经注册超过24小时才能发布。我们有大量的破坏者，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                项目不允许观察
             user_id:
               must_be_curator: 必须是此项目的馆长
             observation_id:
