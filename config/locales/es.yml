@@ -21,6 +21,10 @@ es:
   x_identifiers_html:
     one: '<span class="count">1</span> Identificador'
     other: '<span class="count">%{count}</span> Identificadores'
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    one: "%{count} primicia en la lista de vida"
+    other: "%{count} primicias en la lista de vida"
   x_journal_posts_html:
     one: '<span class="count">1</span> entrada de diario'
     other: '<span class="count">%{count}</span> entradas de diario'
@@ -1113,7 +1117,6 @@ es:
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
   editors: Editores
-  eg: 'ej. '
   either: Cualquiera
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya lo estás siguiendo."
   eligible_for_research_grade: Elegible para grado de Investigación
@@ -1647,7 +1650,7 @@ es:
   life_list: "Lista de vida de %{user}"
   life_list_updated: '¡Lista de vida actualizada!'
   life_list_updated_we_also_saved_a: '¡Lista de vida actualizada! También guardamos una observación vacía para este taxón.'
-  life_lists_automatically_fill: '¿Qué deseas enlistar?'
+  life_lists_automatically_fill: Las listas de vida se llenan automáticamente con nuevos taxones a medida que se observan, y pueden restringirse a taxones de nivel superior, ej. una lista de vida de aves en la familia de los córvidos (Corvidae).
   linear_scale_label: Lineal
   link: Vínculo
   link_or_unlink_your_facebook_account: Vincular o desvincular tu cuenta de Facebook
@@ -1782,7 +1785,7 @@ es:
   make_a_new_place: Crea un nuevo lugar
   make_a_taxon_swap_instead?: '¿Quieres hacer un intercambio de la especie o grupo?'
   make_curator: Haz curador
-  make_it_a_life_list?: '¿Hacer una lista de vida?'
+  make_it_a_life_list?: '¿Crear una lista de vida?'
   make_manager: Haz gerente
   make_sure_the_default_photo_looks_good: Asegúrate de que la foto predeterminada se vea bien en tamaño grande.
   make_this_your_default_license: "Hacer de esta tu licencia %{type} predeterminada"
@@ -2066,8 +2069,7 @@ es:
   no_species_on_this_list: '¡No hay especies en esta lista todavía!'
   no_species_on_this_list_for_owner_html: |
     Puedes empezar a añadir especies a la lista directamente, o si se
-    trata de una lista de la vida, automáticamente se actualizará con las
-    especies cuando se <a href="%{url}" class="nobr">agregan observaciones</a>.
+    trata de una lista de vida, automáticamente se actualizará con especies al <a href="%{url}" class="nobr">añadir observaciones</a>.
   no_subject_parens: "(No tema)"
   no_suggestions_available: No hay sugerencias disponibles
   no_summary_from_wikipedia: No hay resumen de Wikipedia
@@ -2156,6 +2158,9 @@ es:
   observation_fields_are_additional: Los campos de observación son campos de datos adicionales que se pueden agregar a las observaciones.
   observation_fields_by_preferences_description: |
     Los campos de observación son parecidos a las etiquetas, con la excepción de que cualquiera puede añadirlos a tu observación. Puedes cambiar esta opción si prefieres hacer los cambios solamente tú o los curadores del sitio.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    ej. "2019-10-29 13:12:21"
   observation_removed_from_the_project: "La observación fue eliminada del proyecto %{project}"
   observation_requirements: Requisitos de observación
   observation_rules: Reglas de observación
@@ -2365,9 +2370,18 @@ es:
   people_following_user: "Personas que siguen a %{user}"
   people_user_follows: "Gente %{user} Seguidores"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: añadió un %{observation_link} de @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: añadido un <strong>identificador</strong> a una %{observation_link} de %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: añadido un <strong>identificador</strong>
     post: hizo un %{post_link}
     comment:
@@ -2833,7 +2847,7 @@ es:
   preview: Vista previa
   preview_observations: Ver observaciones
   preview_of_synced_observation: "<strong>Previo</strong> de la observación.  <a href=\"%{url}\">¿Revertir?</a>"
-  preview_personal_message: "Me gustaría que te unas a %{site}, un sitio web donde podrás registrar tus observaciones de plantas y animales, llevar un control de tu lista de vida y aprender sobre el mundo natural."
+  preview_personal_message: "Me gustaría que te unieras a %{site}, un sitio web donde podrás registrar tus observaciones de plantas y animales, llevar un control de tu lista de vida y aprender sobre el mundo natural."
   preview_your_message: Vista previa de tu mensaje
   previewing: "Previzualizando..."
   previous: Anterior
@@ -4038,7 +4052,6 @@ es:
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Sí, muestra esto en la caja grande por arriba de los taxones
   yesterday: Ayer
-  yesterday_at: ', ayer a las 4pm'
   you: tu
   you_: Tú
   you_appear_offline_try_again: |
@@ -4502,8 +4515,7 @@ es:
         automatically_updates_based_on_your_observations: |
           Actualiza automáticamente basándose en tus observaciones. Todo el mundo en %{site_name} tiene una lista de vida predeterminada que contiene todas las especies que esa persona ha observado. Si eliminas una observación o cambias su identificación, las especies se eliminan. También puedes agregar manualmente los taxones para tu lista de vida como puedes hacerlo con una lista ordinaria. Las especies que agregas manualmente no se eliminan si los observas y después eliminas la observación.
         you_can_also_make_additional_life_lists: |
-          También puede crear listas adicionales de vida para grupos específicos de organismos, 
-          como una lista de la vida de las aves, o una lista de vida de algodoncillo.
+          También puedes crear listas de vida adicionales para grupos específicos de organismos, como una lista de vida de aves, o una lista de vida de algodoncillo.
         a_project_list_belongs: |
           Una lista de proyecto pertenece a un proyecto y lista todos los taxones observados 
           por los miembros de ese proyecto. Las listas de proyectos también se pueden rellenar de forma manual por el administrador de ese proyecto, y se puede utilizar para restringir las contribuciones del proyecto a los taxones que están en la lista.
@@ -4516,9 +4528,7 @@ es:
         inat_users_can_also: |
           %{site_name} usuarios también pueden agregar listas de verificación adicionales a los lugares, pero estas listas de verificación no se actualizan automáticamente. Ellos proporcionan principalmente una forma para que la gente traiga fuentes externas de datos o sólo la lista de las cosas en base a su propia experiencia.
         is_a_list_of_every_species_that_you_have_seen: |
-          Una lista de la vida es una lista de todas las especies que han visto. Todos los %{site_name}
-          usuario tiene una vida lista y estas listas se rellenan automáticamente a partir de las 
-          observaciones añadido a %{site_name}.
+          Una lista de vida es una lista con todas las especies que has visto. Todos los usuarios de %{site_name} tienen una lista de vida y estas se rellenan automáticamente a partir de las observaciones añadidas a %{site_name}.
         i_observed_a_species: "Observé una especie, ¿por qué no aparece en mi lista de vida?"
         while_the_life_list_is_automatically_populated: |
           Aun cuando la lista de vida se genera automáticamente a partir de
@@ -5550,7 +5560,7 @@ es:
           %{image} lo invita a utilizar este portal de información sobre biodiversidad, 
           en el que podrá compartir lo que observa en la naturaleza, aprender de ella e 
           intercambiar información con otros ciudadanos naturalistas.
-        connect_with_nature: Conectate con la naturaleza
+        connect_with_nature: Conéctate con la naturaleza
         explore_and_share: Explora y comparte tus observaciones del mundo natural.
         observations_to_date: 'Observaciones hasta la fecha'
         species_observed: 'Especies observadas'
@@ -5631,7 +5641,9 @@ es:
       default: '%d/%m/%Y'
       long: '%d de %B de %Y'
       short: '%d de %b'
+      compact: "%e %b"
       short_with_year: '%d.%b.%Y'
+      month_year: '%B %Y'
       month_day_year: '%d %B %Y'
     month_names:
       - 
@@ -5800,8 +5812,11 @@ es:
       default: '%d %b %Y %H:%M:%S %Z'
       long: '%d de %B de %Y'
       short: '%d/%m/%Y'
+      compact: "%H:%M"
       observed_at: 'a las %I:%M %p %Z'
+      rfc: "%d %B %Y"
       day_month_year: "%d %b. %Y"
+      hours: "%H:%M"
     pm: tarde
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -6032,9 +6047,6 @@ es:
                 debe de haberse registrado hace más de 24 horas para publicar. Tenemos gran cantidad de gente que introduce spam, y así los evitamos. De todas formas puedes guardar un borrador, y si estás usando el sitio en un día, podrás publicarlo.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                El proyecto no permite observaciones
             user_id:
               must_be_curator: debe ser un curador de este proyecto
             observation_id:
