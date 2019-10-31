@@ -800,7 +800,6 @@ ja:
   editing_taxon_range: 生息区域を編集中
   editing_this: '%{elem}を編集中'
   editing_x_in_y: "%{y}の中の%{x}を編集中"
-  eg: '例：'
   either: いずれ
   either_that_user_doesnt_exist_or: "そのユーザーは存在しないか、もしくは、もうすでにフォローしている可能性があります。"
   eligible_for_research_grade: 研究用候補
@@ -1616,7 +1615,13 @@ ja:
   people_user_follows: "%{user}がフォローしているユーザー"
   people_added:
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: が%{user_link}の%{observation_link}に<strong>ID</strong>を追加しました
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: <strong>同定</strong>を追加
     post: '%{post_link}を作成しました'
     comment:
