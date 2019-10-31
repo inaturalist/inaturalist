@@ -4694,10 +4694,15 @@ cs:
       6: pá
       7: so
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%R-%m-%d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%M %d, %R'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%m %d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%M %d, %R'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%M %d, %R'
     month_names:
       - 
