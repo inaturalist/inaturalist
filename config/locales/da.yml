@@ -1064,7 +1064,6 @@ da:
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
   editors: Redaktører
-  eg: 'f.eks.'
   either: Enten
   either_that_user_doesnt_exist_or: "Enten eksisterer den bruger ikke, eller du følger den allerede."
   eligible_for_research_grade: Kvalificeret til forskningskvalitet
@@ -2242,9 +2241,18 @@ da:
   people_following_user: "Personer, der følger %{user}"
   people_user_follows: "Personer %{user} følger"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: tilføjede en %{observation_link} af @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: tilføjede et <strong>ID</strong> til en %{observation_link} af %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: tilføjede et <strong>ID</strong>
     post: lavede en %{post_link}
     comment:
@@ -3887,7 +3895,6 @@ da:
   yes_reject_it: Ja, afvis det
   yes_show_this_in_the_box: Ja, vis dette i den store boks øverst på/taksa
   yesterday: I går
-  yesterday_at: ', i går kl. 16:00'
   you: dig
   you_: Dig
   you_appear_offline_try_again: |
@@ -6074,9 +6081,6 @@ da:
                 en masse spammere, og dette er vores måde at håndtere dem på. Du kan stadig gemme som kladde og publicere det på et senere tidspunkt.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Projektet tillader ikke observationer
             user_id:
               must_be_curator: skal være kurator for dette projekt
             observation_id:
