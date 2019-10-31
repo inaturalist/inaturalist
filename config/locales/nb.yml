@@ -3584,8 +3584,6 @@ nb:
     Fellesskapet må føle at fellesskapets takson er så vrs det kan bli basert på beviset
   the_following_observations_could: "De følgende observasjoner kunne ikke legges til %{link}"
   the_following_photos_have_been_tagged: "De følgende bilder har blitt tagget:"
-  the_identotron_is_a_tool_to: |
-    Identotron er et verktøy som hjelper deg med å identifisere observasjoner basert på sjekklistedata for %{place}. Gitt et høyere takson og et sted (f.eks. pattedyr i India), sjekker %{place} om det finnes oppføringer på sjekklister som stemmer overens med det taksonet på det stedet, litt som en dynamisk feltguide til hele planeten. De fleste sjekklister for %{place} er ikke ferdigutviklet, men hvis det finnes en som er fullstendig, dvs den inneholder <em>alle</em> medlemmer av sitt takson på det stedet, viser Identotron at det er tilfellet.
   the_name_of_the_taxon_including_space: Navnet til taksonet, inklusiv plassen til arter og infra-arter.
   the_observation_was_already_added_to_that_project: Observasjonen var allerede lagt til det prosjektet.
   the_past: fortiden
@@ -5091,12 +5089,19 @@ nb:
       6: Fr
       7: Lø
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%Y-%m-%d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d. %B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d. %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       compact: "%b %e"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%d. %b %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_year: '%B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%d. %B %Y'
     month_names:
       - 
@@ -5261,13 +5266,21 @@ nb:
   time:
     am: am
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d. %b. %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d. %B %Y %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d. %b %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       compact: "%H:%M"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       observed_at: '%H:%M %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%d. %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d. %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       hours: "%H:%M"
     pm: pm
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
