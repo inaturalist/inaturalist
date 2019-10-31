@@ -5026,10 +5026,15 @@ ca:
       6: dv
       7: ds
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d/%m/%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d de %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%d de %B del %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%d de %B de %Y'
     month_names:
       - 
@@ -5180,10 +5185,15 @@ ca:
   time:
     am: del matí
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d %b %Y %H:%M:%S %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d/%m/%Y %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %b. %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       hours: "%I:%M %p %Z"
     pm: de la tarda
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
