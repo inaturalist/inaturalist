@@ -179,22 +179,32 @@ class SiteStatistic < ActiveRecord::Base
     date_filter = { range: { created_at: { gte: at_time - 1.day, lt: at_time } } }
     iphone_app_id = OauthApplication.inaturalist_iphone_app.try(:id) || -1
     android_app_id = OauthApplication.inaturalist_android_app.try(:id) || -1
-    { web: Observation.elastic_search({
+    {
+      web: Observation.elastic_search(
         filters: [
           date_filter,
           { bool: { must_not: { exists: { field: "oauth_application_id" } } } }
-        ]}).total_entries,
-      iphone: Observation.elastic_search({
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
+      iphone: Observation.elastic_search(
         filters: [
           date_filter,
           { term: { oauth_application_id: iphone_app_id } }
-        ]}).total_entries,
-      android: Observation.elastic_search({
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
+      android: Observation.elastic_search(
         filters: [
           date_filter,
           { term: { oauth_application_id: android_app_id } }
-        ]}).total_entries,
-      other: Observation.elastic_search({
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
+      other: Observation.elastic_search(
         filters: [
           date_filter,
           {
@@ -206,7 +216,10 @@ class SiteStatistic < ActiveRecord::Base
               ] } }
             }
           }
-        ]}).total_entries
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries
     }
   end
 
@@ -215,22 +228,32 @@ class SiteStatistic < ActiveRecord::Base
     date_filter = { range: { created_at: { lte: at_time } } }
     iphone_app_id = OauthApplication.inaturalist_iphone_app.try(:id) || -1
     android_app_id = OauthApplication.inaturalist_android_app.try(:id) || -1
-    { web: Observation.elastic_search({
+    {
+      web: Observation.elastic_search(
         filters: [
           date_filter,
           { bool: { must_not: { exists: { field: "oauth_application_id" } } } }
-        ]}).total_entries,
-      iphone: Observation.elastic_search({
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
+      iphone: Observation.elastic_search(
         filters: [
           date_filter,
           { term: { oauth_application_id: iphone_app_id } }
-        ]}).total_entries,
-      android: Observation.elastic_search({
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
+      android: Observation.elastic_search(
         filters: [
           date_filter,
           { term: { oauth_application_id: android_app_id } }
-        ]}).total_entries,
-      other: Observation.elastic_search({
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
+      other: Observation.elastic_search(
         filters: [
           date_filter,
           {
@@ -242,7 +265,10 @@ class SiteStatistic < ActiveRecord::Base
               ] } }
             }
           }
-        ]}).total_entries
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries
     }
   end
 

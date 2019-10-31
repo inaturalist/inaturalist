@@ -81,6 +81,41 @@ describe Emailer, "updates_notification" do
       expect(mail.subject).to match @site.name
     end
   end
+
+  describe "with curator change" do
+    let(:project) { Project.make! }
+    def test_user_with_project_and_viewer( user, project, viewer )
+      viewer_pu = ProjectUser.make!( user: viewer, project: project)
+      pu = if user == viewer
+        viewer_pu
+      else
+        ProjectUser.make!( user: user, project: project )
+      end
+      # Test change to curator
+      pu.update_attributes( role: ProjectUser::CURATOR )
+      Delayed::Worker.new.work_off
+      mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
+      # puts "body: #{mail.body}"
+      expect( mail.body ).to match /curator/
+      # Test change to manage
+      pu.update_attributes( role: ProjectUser::MANAGER )
+      Delayed::Worker.new.work_off
+      mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
+      expect( mail.body ).to match /manager/
+      # Test change to admin
+      project.update_attributes( user: user )
+      Delayed::Worker.new.work_off
+      mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
+      expect( mail.body ).to match /admin/
+    end
+    it "should work when it's about you" do
+      u = User.make!
+      test_user_with_project_and_viewer( u, Project.make!, u )
+    end
+    it "should work when it's about someone else" do
+      test_user_with_project_and_viewer( User.make!, Project.make!, User.make! )
+    end
+  end
 end
 
 describe Emailer, "new_message" do

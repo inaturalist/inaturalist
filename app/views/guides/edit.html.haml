@@ -65,7 +65,7 @@
             #license.panel-body.collapse
               = f.select :license, Observation::LICENSE_CODES, :include_blank => t(:no_license_all_rights_reserved), :class => "col-xs-12", :label => false
               .stacked
-                %a{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#licensing"}=t :about_licensing
+                %a{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#licensing"}=t :about_licenses
           .panel.panel-default
             .panel-heading
               %a{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#mobile"}

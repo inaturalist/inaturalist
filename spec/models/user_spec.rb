@@ -131,6 +131,42 @@ describe User do
       }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
+    describe "email domain exists validation" do
+      before(:all) { enable_user_email_domain_exists_validation }
+      after(:all) { disable_user_email_domain_exists_validation }
+
+      it "should allow email domains that exist" do
+        [
+          "gmail.com",
+          "yahoo.com",
+          "hotmail.com",
+          "aol.com",
+          "mail.usf.edu",
+          "icloud.com",
+          "questagame.com",
+          "outlook.com",
+          "comcast.net",
+          "me.com",
+          "live.com",
+          "sbcglobal.net",
+          "msn.com",
+          "mac.com",
+          "att.net",
+          "cvcaroyals.org",
+          "ymail.com"
+        ].each do |domain|
+          u = User.make!( email: "someone@#{domain}" )
+          expect( u ).to be_valid
+        end
+      end
+
+      it "should disallow email domains that do not exist" do
+        expect {
+          User.make!( email: "someone@sdjgfslkjfgsjfkg.com" )
+        }.to raise_error( ActiveRecord::RecordInvalid )
+      end
+    end
+
     it "should strip html out of the name" do
       name = "Trillian"
       u = User.make!( name: "#{name}<script>foo</script>" )

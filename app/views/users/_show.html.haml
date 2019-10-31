@@ -101,6 +101,11 @@
           %p.lead
             = stripped_first_paragraph_of_text( description, "\n\n" )
           = remaining_paragraphs_of_text( description, "\n\n" )
+    - if orcid_provider = @user.has_provider_auth( "orcid" )
+      #elsewhere
+        - orcid_uri = "https://orcid.org/#{orcid_provider.provider_uid}"
+        = link_to image_tag( "ORCIDiD_iconvector.svg", class: "orcid-icon" ), orcid_uri
+        = link_to orcid_uri, orcid_uri
     %h3.page-header
       = t(:following_x_people, :count => @user.followees.count)
     - unless @followees.blank?

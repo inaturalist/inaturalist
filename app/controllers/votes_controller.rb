@@ -40,21 +40,6 @@ class VotesController < ApplicationController
     end
   end
 
-  def for
-    @users = User.
-      joins("JOIN votes ON votes.voter_type = 'User' AND votes.voter_id = users.id").
-      where("votes.votable_type = ? AND votes.votable_id = ?", @record.class.name, @record.id).
-      where("votes.vote_scope IS NULL").
-      order("users.login").
-      page(params[:page]).
-      per_page(100)
-    respond_to do |format|
-      format.html do
-        render partial: 'for'
-      end
-    end
-  end
-
   def by_login
     @votes = @selected_user.votes.where(vote_scope: nil).
       where(votable_type: "Observation").

@@ -208,8 +208,7 @@ class Project < ActiveRecord::Base
   validates_inclusion_of :map_type, in: MAP_TYPES
 
   acts_as_spammable fields: [ :title, :description ],
-                    comment_type: "item-description",
-                    automated: false
+                    comment_type: "item-description"
 
   attr_accessor :admin_attributes
 

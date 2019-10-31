@@ -445,6 +445,7 @@ namespace :inaturalist do
       /^Family/,
       /^flag_for_/,
       /^Genus/,
+      /^header_your_/,
       /^inbox$/,
       /^inviteonly$/,
       /^large$/,
@@ -463,9 +464,11 @@ namespace :inaturalist do
       /^simple$/,
       /^small$/,
       /^some_agree$/,
+      /^subscribe_to_comments_on_this_/,
       /^taxon_is_a_rank_of_.*/,
       /^taxonomic$/,
       /^user_added_a/,
+      /^you_are_subscribed_to_/,
     ]
     all_keys_in_use = (get_i18n_keys_in_js + get_i18n_keys_in_rb).uniq
 

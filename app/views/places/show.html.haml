@@ -119,8 +119,6 @@
     - else
       .readable.nocontent
         = t :this_place_has_no_check_list
-        - if @place_geometry && @place != Place.north_america
-          = render :partial => 'subscriptions/subscription', :locals => {:resource => @place }
   / end guidetab
   #observationstab
     .stacked.observationcontrols

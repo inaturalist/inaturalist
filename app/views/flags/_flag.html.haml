@@ -15,7 +15,7 @@
       %tr
         %th=t :content
         %td
-          = link_to flaggable.respond_to?( :to_plain_s ) ? flaggable.to_plain_s : t( flag.flaggable_type )
+          = link_to flaggable.respond_to?( :to_plain_s ) ? flaggable.to_plain_s : t( flag.flaggable_type ), flaggable
       %tr
         %th=t :reason
         %td= "\"#{flag.flag}\""

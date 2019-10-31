@@ -58,8 +58,11 @@ class UpdateAction < ActiveRecord::Base
 
 
   def self.email_updates
+    start = Time.now
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
+    batch_date = end_time.to_date.to_s
+    puts "[INFO] UpdateAction.email_updates START start_time: #{start_time}, end_time: #{end_time}"
     user_ids = UpdateAction.elastic_search(
       size: 0,
       filters: [
@@ -75,14 +78,22 @@ class UpdateAction < ActiveRecord::Base
         }
       }
     ).response.aggregations.distinct_subscribers.buckets.map{ |b| b["key"] }
+    puts "[INFO] UpdateAction.email_updates queing #{user_ids.size} jobs..."
     user_ids.each do |subscriber_id|
-      UpdateAction.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-        unique_hash: { "UpdateAction::email_updates_to_user": subscriber_id }).
-        email_updates_to_user(subscriber_id, start_time, end_time)
+      UpdateAction.delay(
+        priority: INTEGRITY_PRIORITY,
+        queue: "slow",
+        unique_hash: {
+          "UpdateAction::email_updates_to_user": subscriber_id,
+          date: batch_date
+        }
+      ).email_updates_to_user( subscriber_id, start_time, end_time )
     end
+    puts "[INFO] UpdateAction.email_updates FINISHED start_time: #{start_time}, end_time: #{end_time} in #{Time.now - start}s"
   end
 
   def self.email_updates_to_user(subscriber, start_time, end_time)
+    Rails.logger.info "email_updates_to_user: #{subscriber}"
     user = subscriber
     user = User.find_by_id(subscriber.to_i) unless subscriber.is_a?(User)
     user ||= User.find_by_login(subscriber)
@@ -110,6 +121,7 @@ class UpdateAction < ActiveRecord::Base
       !user.prefers_user_observation_email_notification? && u.notification == "created_observations" ||
       !user.prefers_taxon_or_place_observation_email_notification? && u.notification == "new_observations"
     end.compact
+    Rails.logger.info "email_updates_to_user: #{subscriber}, updates: #{updates.size}"
     return if updates.blank?
 
     UpdateAction.preload_associations(updates, [ :resource, :notifier, :resource_owner ] )
@@ -120,7 +132,9 @@ class UpdateAction < ActiveRecord::Base
     Taxon.preload_associations(ids + obs, { taxon: [ :photos, { taxon_names: :place_taxon_names } ] } )
     User.preload_associations(with_users, { user: :site })
     updates.delete_if{ |u| u.resource.nil? || u.notifier.nil? }
+    Rails.logger.info "email_updates_to_user: #{subscriber}, emailing updates: #{updates.size}"
     Emailer.updates_notification(user, updates).deliver_now
+    Rails.logger.info "email_updates_to_user: #{subscriber} finished"
   end
 
   def self.load_additional_activity_updates(updates, user_id)

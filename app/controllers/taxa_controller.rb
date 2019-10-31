@@ -342,8 +342,12 @@ class TaxaController < ApplicationController
 
   def destroy
     unless @taxon.deleteable_by?(current_user)
-      flash[:error] = t(:you_can_only_destroy_taxa_you_created)
-      redirect_back_or_default(@taxon)
+      flash[:error] = if @taxon.creator_id != current_user.id
+        t(:you_can_only_destroy_taxa_you_created)
+      else
+        t(:you_cannot_delete_taxa_involved_in_taxon_changes)
+      end
+      redirect_back_or_default( @taxon )
       return
     end
     @taxon.destroy
