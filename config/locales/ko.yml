@@ -1,6 +1,67 @@
 ko:
   x_comments:
-    other: '댓글 %{count}개'
+    other: '댓글 %{count} 개'
+  x_flags_resolved_html:
+    other: "플래그 <span class='count'>%{count}</span> 개가 해결됨"
+  x_identifications:
+    other: '동정 %{count} 개'
+  x_identifications_html:
+    other: '동정 <span class="count">%{count}</span> 개'
+  x_identifications_:
+    other: '동정 %{count} 개'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    other: '동정한 사용자 <span class="count">%{count}</span> 명'
+  x_journal_posts_html:
+    other: '일지 포스팅 <span class="count">%{count}</span> 개'
+  x_matching_taxa:
+    other: '일치하는 분류군 %{count} 개'
+  x_matching_taxa_html:
+    other: '<span class="count">%{count}</span> 일치하는 분류군'
+  x_misidentifications_of_this_species:
+    other: "이 종의 오동정 %{count} 개"
+  x_misidentifications_of_species_in_this_rank:
+    other: "%{rank} 에 속하는 종의 오동정 %{count} 개"
+  x_observations:
+    other: "관찰 %{count} 개"
+  x_observations_:
+    other: "관찰 %{count} 개"
+  x_observations_html:
+    other: "관찰 <span class='count'>%{count}</span> 개"
+  x_observations_link_html:
+    other: "<a href='%{url}'>관찰 %{count} 개</a>"
+  x_observations_reviewed_html:
+    other: "검토한 관찰 <span class='count'>%{count}</span> 개"
+  x_observers_html:
+    other: '관찰자 <span class="count">%{count}</span> 명'
+  x_others:
+    other: "외 %{count} 명"
+  x_photos:
+    other: "사진 %{count} 개"
+  x_new_species:
+    other: "새로운 종 %{count} 종"
+  x_species:
+    other: '%{count} 종'
+  x_species_html:
+    other: "<span class='count'>%{count}</span> 종"
+  x_species_link_html:
+    other: "<a href='%{url}'>%{count} 종</a>"
+  x_suggestions_filtered_by_colon:
+    other: "다음 필터에 의해서 %{count} 개가 제안됨:"
+  x_taxa_observed_html:
+    other: "<span class='count'>%{count}</span> 개의 분류군이 관찰됨"
+  x_research_grade_observations_html:
+    other: "<span class='count'>%{count}</span> 연구 자료 등급 관찰"
+  x_research_grade_observations_to_species_html:
+    other: "종 수준 이상으로 동정된 연구 자료 등급 관찰 <span class='count'>%{count}</span> 개"
+  x_taxa_curated_html:
+    other: "<span class='count'>%{count}</span> 개의 분류군이 큐레이션됨"
+  x_taxa_matching_current_filters:
+    other: "현재 검색 필터와 일치하는 %{count} 개의 분류군"
+  x_taxon_changes_added_html:
+    other: "분류군 변경사항 <span class='count'>%{count}</span> 개가 추가됨"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
+  _100_day_trends: 지난 100일간 동향
   a_community_for_naturalist: 자연을 연구하는 사람들을 위한 공동체
   a_default_taxon_name_will_automatically_created: |
     학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을 저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
@@ -8,23 +69,32 @@ ko:
   a_member_of: "소속:"
   a_member_of_taxon_html: "%{taxon}에 속함"
   about: 소개
-  about_charts: Charts 정보
-  about_community_taxa: 공동체 분류군에 대해
+  about_blocking: 차단에 대하여
+  about_charts: 차트에 대하여
+  about_community_taxa: 공동체 분류군에 대하여
+  about_complete_taxa: 완전한 분류군에 대하여
+  about_conservation_status: 보전 상태에 대하여
+  about_editing_observation_fields: 관찰 필드 편집에 대하여
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: 서식 상태에 대하여
   about_licenses: 라이선스 정보
-  about_licensing: 라이선스에 대해
-  about_names: 명칭 정보
-  about_places: 장소에 대해
-  about_the_cc_licenses: 크리에이티브 커먼즈 라이선스에 대해
-  about_these_licenses: 이 라이선스에 대해
-  about_this_bioblitz: 이 bioblitz 정보
-  about_this_map: 이 지도에 대해
-  about_this_project: 프로젝트 소개
+  #Header for a section describing taxon names
+  about_names: 명칭에 대하여
+  about_places: 장소에 대하여
+  about_the_cc_licenses: 크리에이티브 커먼즈 라이선스에 대하여
+  about_these_licenses: 이 라이선스들에 대하여
+  about_this_bioblitz: 이 바이오블리츠에 대하여
+  about_this_map: 이 지도에 대하여
+  about_this_project: 이 프로젝트에 대하여
   about_x: "%{x} 소개"
   acc: '정확도 (m)'
   account: 계정
+  account_creation: 계정 만들기
   account_settings: 계정 설정
   accept: 승인
-  accept_community_identifications: 공동체 식별자 승인
+  accept_community_identifications: 공동체 동정 승인
   accuracy: 정확성
   accuracy_meters: 정확도 (미터)
   accuracy_of_the_coordinates: '미터로 나타낸 좌표의 정확도. 정확도는 위의 편집 링크를 클릭하거나 지도 마커를 클릭한 후 가장자리를 드래그해서 편집할 수 있습니다. 원 안에 자신의 실제 위치가 확실히 들어가도록 설정해 주세요.'
@@ -47,7 +117,7 @@ ko:
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
     이름을 바꾸고 싶다면 <a target="_blank" href="%{url}">taxon swap</a>을 추가하십시오
   add_an_assessment: 평가 추가하기
-  add_an_identification: 확인 추가하기
+  add_an_identification: 동정 추가하기
   add_an_observation: 관찰 추가하기
   add_an_observation?: 관찰을 추가할까요?
   add_an_observation_of: "%{taxon} 관찰을 추가하기"
@@ -85,10 +155,19 @@ ko:
   #Prompt to add a new journal post
   add_one: 하나 추가하기!
   add_photos: 사진 추가하기
-  add_photos_to_this_observation: 이 관찰에 사진 추가하기
   add_place: 장소 추가하기
+  add_life_stage_adult_annotation: '성장 단계: 성체'
+  add_life_stage_teneral_annotation: '성장 단계: 우화 직후'
+  add_life_stage_subimago_annotation: '성장 단계: 준성체'
+  add_life_stage_pupa_annotation: '성장 단계: 번데기'
+  add_life_stage_nymph_annotation: '성장 단계: 약충'
+  add_life_stage_larva_annotation: '성장 단계: 애벌레'
+  add_life_stage_juvenile_annotation: '성장 단계: 아성체'
+  add_life_stage_egg_annotation: '성장 단계: 알'
   add_relationship: '관계 추가'
   add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
+  add_sex_female_annotation: '성별: 암컷'
+  add_sex_male_annotation: '성별: 수컷'
   add_some_now: 지금 추가하기
   add_tag: 태그 추가
   add_tags: 태그 추가하기
@@ -96,21 +175,29 @@ ko:
   add_taxa: 분류군 추가하기
   add_taxon_batch_to: "분류군 여러 개를 %{list}에 추가하기"
   add_taxon_range: 분류군 범위를 추가하기
-  add_taxonomic_tags_to: "선택된 플리커 사진에 분류군 태그 추가하기"
+  add_taxonomic_tags_to: "선택된 Flickr 사진에 분류군 태그 추가하기"
   add_to_a_scheme: 계획에 추가하기
-  add_to_a_project: 프로젝트에 추가
-  add_to_calendar: 일정에 추가하기
+  add_to_a_project: 프로젝트에 추가하기
+  add_to_calendar: 달력에 추가하기
   add_to_checklist: 체크리스트에 추가하기
   add_to_favorites: 즐겨찾기에 추가하기
   add_to_list: 목록에 추가하기
   add_to_project: 프로젝트에 추가하기
-  add_to_your_life_list: 내 Life 목록에 추가하기!
+  add_to_your_life_list: 내 생명 목록에 추가하기!
   add_to_your_list: 내 목록에 추가하기
   add_your_email_to_get: |
-    이메일을 추가하면 공동체가 내 관찰에 대한 피드백을 할 수 있습니다. 이메일을 추가하고 싶지 않다면 추후에 확인해 주세요!
+    이메일을 추가하면 공동체가 내 관찰에 대한 피드백을 할 수 있습니다. 이메일을 추가하고 싶지 않다면 나중에 확인해 주세요!
   add_your_own_observations_at: "%{site_name}에 내 관찰 추가하기"
   added: 추가됨
   added!: 추가되었습니다!
+  added_as_a_part_of_a_taxon_change_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">분류군 변경</a>으로 인하여 추가됨
+  added_as_a_part_of_a_taxon_merge_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">분류군 병합</a>으로 인하여 추가됨
+  added_as_a_part_of_a_taxon_split_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">분류군 분리</a>로 인하여 추가됨
+  added_as_a_part_of_a_taxon_swap_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">분류군 교체</a>로 인하여 추가됨
   added_by: 추가함
   added_by_user_on_date_html: "%{date}에 %{user}님이 추가함"
   added_on: 추가됨
@@ -118,7 +205,7 @@ ko:
     <a href="%{url}">즐겨찾기</a>에 추가됨
   adding: "추가 중..."
   additional_range: 추가적인 범위
-  additional_range_data_from_an_unknown_source: 알 수 없는 자료에서 추가적인 범위 데이터
+  additional_range_data_from_an_unknown_source: 미확인 자료에 따른 추가적인 범위 데이터
   adjust_brightness: 밝기 조정
   admin: 관리자
   admin_s: 관리자
@@ -132,8 +219,9 @@ ko:
   aka: 다른 말로
   all: 모두
   all_colors: "&laquo; 모든 색깔"
-  all_comments: 모든 의견
-  all_life: 모든 Life
+  all_comments: 모든 댓글
+  all_flags_must_be_resolved: 모든 플래그는 해결되어야 합니다
+  all_life: 모든 생명
   all_names: 모든 이름
   all_observations: 모든 관찰
   all_photos: 모든 사진
@@ -151,6 +239,7 @@ ko:
     suborder: 데이터베이스에 추가된 모든 아목
     infraorder: 데이터베이스에 추가된 모든 하목
     superfamily: 데이터베이스에 추과된 모든 상과
+    epifamily: 데이터베이스에 추가된 모든 고과(高科)
     family: 데이터베이스에 추가된 모든 과
     subfamily: 데이터베이스에 추가된 모든 아과
     supertribe: 데이터베이스에 추가된 모든 주족
@@ -159,6 +248,9 @@ ko:
     genus: 데이터베이스에 추가된 모든 속
     genushybrid: 데이터베이스에 추가된 모든 속간 잡종
     subgenus: 데이터베이스에 추가된 모든 아속
+    section: 데이터베이스에 추가된 모든 절(Section)
+    subsection: 데이터베이스에 추가된 모든 아절(Subsection)
+    complex: 데이터베이스에 추가된 모든 복합군
     species: 데이터베이스에 추가된 모든 종
     hybrid: 데이터베이스에 추가된 모든 잡종
     subspecies: 데이터베이스에 추가된 모든 아종
@@ -186,13 +278,15 @@ ko:
     protozoans: 원생동물
     ray_finned_fishes: 조기류
     reptiles: 파충류
-  all_taxa_: 모든 분류
+    life: 생명
+  all_taxa_: 모든 분류군
   all_taxa_in_this_guide: 이 가이드에 있는 모든 분류군
   all_taxonomic_groups: "&laquo; 모든 분류학적 그룹"
   all_your_observations_will_default_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.
   all_your_observations_will_default_to_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.
   #Option to allow any taxa on a list
   allow_any: 아무거나 허락
+  allow_curator_access: 큐레이터 엑세스 허용
   allow_project_curators_to_view_your_private_coordinates: 나의 숨긴 좌표를 프로젝트 큐레이터가 볼 수 있게 함
   allowed_establish_means_values: 허용한 설정 평균값
   allowed_html: 허용한 HTML
@@ -207,7 +301,8 @@ ko:
   and_other_taxa: "&amp; 다른 분류군"
   android: 안드로이드
   animals: 동물
-  annotations: 주석
+  annotation: 주석
+  annotations: 주석들
   announcement_was_successfully_created: 공지가 성공적으로 만들어졌습니다.
   announcement_was_successfully_updated: 공지가 성공적으로 업데이트되었습니다.
   announcements: 공지
@@ -274,7 +369,7 @@ ko:
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
-  atom: 원지
+  atom: 아톰
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: 특성
@@ -347,7 +442,8 @@ ko:
   by_everyone: 모두
   by_user: "%{user}님께서"
   by_you: 내가
-  calendar: 일정
+  calendar: 달력
+  calendars_only_show_x_observations_at_time: 달력은 한번에 %{x} 개의 관찰만을 보여줍니다
   cancel: 취소
   cant_flag_an_object_that_doesnt_exist: 존제하지 않는 물체에 플래그를 세울 수 없다.
   cant_merge_a_taxon_with_itself: 분류군을 자기 자신과 병합할 수 없습니다.
@@ -419,7 +515,7 @@ ko:
   check_list_place: "%{place} 체크리스트"
   check_list_updated: 체크리스트가 업데이트되었습니다!
   check_out_my_observations_at: 에서 원한다면 내 관찰을 찾아볼 수 있습니다.
-  check_out_our_blog: 블로그
+  check_out_our_blog: iNaturalist 블로그 둘러보기
   check_out_what_the_observation: 동정하고자 하는 관찰대상의 생김새를 확인합니다.
   checklist: 체크리스트
   choose_a_field: 필드 선택
@@ -437,7 +533,6 @@ ko:
   choose_tags: 태그 선택
   choose_taxon: 분류군 선택
   choose_what_kind_of_change_youre_creating: "어떤 변화를 생성할지 선택해 주세요."
-  choose_your_username: 아이디를 선택해 주세요.
   citation: 인용
   classification: 분류
   clear: 지우기
@@ -504,6 +599,11 @@ ko:
   continue_to_site: '%{site_name}(으)로 계속하기'
   contributor_cannot_be_found: 기여자 찾을 수 없음
   contributors_to_project: "%{project}의 기여자들"
+  controlled_term_labels:
+    sex: 성별
+    male: 수컷
+    female: 암컷
+    life_stage: 성장 단계
   controls: 제어
   convert: 변환
   coordinate_systems: 좌표계
@@ -562,13 +662,13 @@ ko:
   csv_file: CSV 파일
   csv_should_not_contain_a_header_row: CSV는 헤더 열을 포함하고 있으면 안 됩니다.
   curate_observations: 큐레이터 관찰
-  curate_taxa: 큐레이터 분류군
+  curate_taxa: 분류군 큐레이션하기
   curating: 큐레이팅
   curation: 큐레이션
   curator: 큐레이터
   curators_changed_for_x_html: "%{x} 큐레이터 변경됨"
   curators: 큐레이터
-  curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트의 사적이거나 숨겨진 좌표와 관찰을 볼 수 있습니다.
+  curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트에서 수정된 좌표와 관찰에서 숨겨진 위치의 원래 좌표를 볼 수 있습니다.
   curator_identification: 큐레이터 확인
   current_flags: 현재 플래그
   custom_project_fields: 자체지정한 프로젝트 필드
@@ -743,10 +843,9 @@ ko:
   editing_this: '%{elem} 편집'
   editing_x_in_y: "%{y}에서 %{x} 편집"
   editors: 편집자
-  eg: '예시'
   either: 어느 쪽이든
   either_that_user_doesnt_exist_or: "사용자가 존재하지 않거나 이미 팔로잉하고 있습니다."
-  eligible_for_research_grade: 연구 평가를 받을 자격이 있다.
+  eligible_for_research_grade: 연구 자료 등급을 받을 자격이 있다.
   email: 이메일
   email_addresses_description: 쉼표로 분리된 이메일 주소, 30일에 최대 60개
   email_address_for_comments_and_other_feedback: 댓글과 다른 피드백을 위한 이메일 주소
@@ -903,7 +1002,6 @@ ko:
   from_eol_collection: EOL 모음집으로부터
   from_flickr_facebook_etc: Flickr, Facebook 등으로부터
   from_list: 목록으로부터
-  from_this: 이것으로부터
   from_photos: 사진들로부터
   from_place: 장소로부터
   from_soundcloud: 사운드클라우드로부터
@@ -945,6 +1043,7 @@ ko:
   has_sound: 소리가 있음
   has_sounds: 소리가 있음
   hasnt_contributed_any_observations: 이 프로젝트에 관찰을 기여하지 않았습니다.
+  header_your_calendar: 내 달력
   heads_up: 주의
   heads_up_this_photo_has_been_flagged: "주의: 이 사진은 플래그되었습니다."
   heads_up_this_photo_is_already_associated_with: "주의: 이 사진은 이미 <a target='_blank' href='%{url}'>다른 관찰</a>와 연결되어 있습니다."
@@ -965,8 +1064,8 @@ ko:
   icon: 아이콘
   icon_size: 아이콘 크긱
   iconic_taxon: 아이코닉 분류군
-  identify: 동정함
-  identify_title: "동정함"
+  identify: 동정하기
+  identify_title: "동정하기"
   identification: 동정
   identification_deleted: 동정 삭제됨
   identification_saved: "동정 저장됨"
@@ -1011,9 +1110,10 @@ ko:
   info: 정보
   input_taxon: 분류군 입력
   insects: 곤충
+  insect_life_stage: 곤충 성장 단계
   internal_server_error: 내부 서버 오류
   introduced: 도입종
-  introduced_in_place: "%{place}에서 유입됨"
+  introduced_in_place: "%{place} 에 도입됨"
   invitation: 초대장
   invite: 초대
   invite_more: 더 초대
@@ -1037,7 +1137,6 @@ ko:
     <a href="mailto:%{help_email}" class="contact">저희에게 연락하십시오</a>.
     <a href="%{manage_flags_path}">표시 관리</a>
   join: 가입하기
-  join_and: 가입하고
   join_project: 이 프로젝트 가입하기
   join_this_project: 이 프로젝트 가입하기
   'joined!': 가입했습니다!
@@ -1071,6 +1170,7 @@ ko:
   learn_more: 더 알아보기
   least_concern: 관심 대상
   leave: 떠나기
+  leave_a_comment: 댓글 달기
   let_us_walk_you_through: 이 사이트의 주요 기능들을 살펴봅시다.
   lexicons:
     scientific_names: 학명
@@ -1267,6 +1367,7 @@ ko:
   most_browser_print_pdf: "참고: 대부분의 브라우저는 PDF를 인쇄하는 옵션이 있습니다"
   most_observations: 가장 많은 관찰
   most_species: 대부분의 종
+  most_observed_introduced_species: 가장 많이 관찰된 도입종
   must_have_observation_field: "%{operand}을 필수로 기입해야 합니다."
   mute_user: 사용자를 알림에서 제외
   mute_removed: 알림 제외를 제거함
@@ -1430,7 +1531,7 @@ ko:
   observations_by_user_on_date: "%{date}에 %{user}의 관찰"
   observations_by_you: "내 관찰"
   observations_by_you_on_date: "%{date}에 매 관찰"
-  observation_calendar_for: "%{year}년 %{user}의 관찰 일정"
+  observation_calendar_for: "%{year}년 %{user}의 관찰 달력"
   observation_curation: 관찰 큐레이션
   observation_date: 날짜
   observation_date?: 날짜?
@@ -1473,6 +1574,7 @@ ko:
   other: 기타
   other_lexicons: 기타 어휘 목록
   other_names: 다른 이름
+  our_blog: iNaturalist 블로그
   overview: 개요
   owner: 소유자
   parental_consent:
@@ -1483,7 +1585,14 @@ ko:
   paste: 붙여넣기
   people_added:
     identification:
-      without_observation: <strong>ID</strong> 추가됨
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: '%{user_link} 님의 %{observation_link} 에 <strong>ID</strong> 를 추가했습니다'
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: <strong>ID</strong> 를 추가했습니다
   per_day: 매일
   per_month: 매월
   per_week: 매주
@@ -1799,6 +1908,7 @@ ko:
   please_explain_why_you_want_to_unhide_this: 이것의 숨김을 해제하려는 이유를 설명해 주십시오
   please_hold_on_while_the_file: 파일이 생성될 때까지 잠시 기다려 주세요. 관찰이 많을 경우 몇 분 걸릴 수 있습니다.
   position: 위치
+  press: 보도
   previous: 이전
   prev: 이전
   previous_observation: 이전 관찰
@@ -1813,6 +1923,7 @@ ko:
   processing3p: "처리 중..."
   profile: 프로필
   project: 프로젝트
+  project_created_on: '%{date} 에 이 프로젝트를 생성하였습니다'
   project_group_label: 그룹
   project_icon: 프로젝트 아이콘
   project_list: 프로젝트 목록
@@ -1897,6 +2008,7 @@ ko:
   required_: 필수
   required_field: 필수 필드
   research_: 연구
+  research_grade: 연구 자료 등급
   reset_brightness: 밝기 초기화
   reset_search_filters: 검색 필터 초기화
   restore: 복구
@@ -1948,6 +2060,7 @@ ko:
   show_keyboard_shortcuts: 단축 키 표시
   show_less: 덜 보기
   show_more: 더 보기
+  show_off_your_recent_observations: 당신의 최근 관찰을 당신의 블로그나 웹사이트에 공유해보세요!
   show_scientific_name_first: 학명을 우선 표시
   show_total_counts: 총 개수 보기
   show_uncountable_species: 셀 수 없는 종을 표시
@@ -1991,6 +2104,7 @@ ko:
   stop_testing: 테스트 중지
   submitted: 제출됨
   subscriptions: 구독
+  suggest_an_identification: 동정 제안하기
   suggestions: 제안
   support_inaturalist: iNaturalist 지원
   sync: 동기화하시겠습니까?
@@ -2014,6 +2128,7 @@ ko:
   these_observations_have_not_been_uploaded_yet: |
     아직 업로드되지 않은 관찰입니다.
   third_person_possessive_plural: "%{object_phrase}의 %{noun}"
+  this_observation_is_research_grade: 본 관찰은 연구 자료 등급 관찰입니다!
   this_observation_was_created_using: "이 관찰은 다음을 사용하여 만들어졌습니다:"
   this_photo_is_already_associated: 이 사진은 이미 관찰에 사용되었습니다.
   this_place_has_no_check_list: "이 장소에는 체크리스트가 없습니다."
@@ -2136,12 +2251,10 @@ ko:
   yellow: 노랑
   'yes': "예"
   yes_license_my_observations_so_scientists_can_use: 네, 과학자들이 내 데이터를 사용할 수 있도록 내 사진, 소리, 관찰을 라이선스하겠습니다!
-  yesterday_at: '어제 오후 4시에'
   you_: 당신
   you_are_no_longer_following_x: "더 이상 %{friend}를 팔로우하지 않습니다."
   you_are_submitting_obs_without_photos_and_names: |
     사진과 분류군이 없는 관찰을 제출하고 있습니다. 이럴 경우 정확하게 동정하기 매우 어렵습니다.
-  you_are_subscribed_to: "다음을 구독했습니다:"
   you_arent_a_member_of_that_project: 해당 프로젝트의 회원이 아닙니다.
   you_arent_following_that_person: "그 사람을 팔로우하고 있지 않습니다."
   you_can_accept_invitations: 여기서 초대를 수락할 수 있습니다.
@@ -2268,6 +2381,8 @@ ko:
         use_this_link_to_create_html: |
           전통 프로젝트를 만들려면 <a href="%{url}">이 링크</a>를 사용하세요.
         welcome_to_projects: 프로젝트에 오신 것을 환영합니다!
+        you_can_learn_more_html: |
+          <a href="https://www.inaturalist.org/pages/managing-projects">여기서</a> 프로젝트 관리법을 알아보거나, <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">iNaturalist 블로그</a>에서 프로젝트들의 역사를 읽어보세요.
         errors:
           name_is_required: 프로젝트 이름은 필수입니다
       project_user_curator_coordinate_access_labels:
@@ -2293,8 +2408,15 @@ ko:
     taxa:
       show:
         frequency:
+          research: 연구 자료 등급
           "Flowering Phenology=bare": 꽃 없음
           "Life Stage=egg": 알
+          "Life Stage=larva": 애벌레
+          "Life Stage=teneral": 우화 직후
+          "Life Stage=subimago": 준성체
+          "Life Stage=nymph": 약충
+          "Life Stage=pupa": 번데기
+          "Life Stage=adult": 성체
     users:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
@@ -2377,7 +2499,9 @@ ko:
       6: 금
       7: 토
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%Y %b %d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_year: '%Y년 %B'
     month_names:
       - 
@@ -2441,7 +2565,9 @@ ko:
         strip_insignificant_zeros: true
   time:
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%Y년 %B %d일"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%Y년 %B %d일"
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

@@ -84,7 +84,6 @@ gl:
   #Prompt to add a new journal post
   add_one: Engadir un!
   add_photos: Engadir fotos
-  add_photos_to_this_observation: Engadir fotos a esta observación
   add_place: Engade un lugar
   add_several_observations_at_once: Engadir varias observacións dunha soa vez
   add_some_now: Engadir agora algunhas
@@ -358,7 +357,6 @@ gl:
   choose_tags: Seleccionar etiquetas
   choose_taxon: Seleccionar un taxón
   choose_what_kind_of_change_youre_creating: "Escolle a clase de cambio que queres introducir."
-  choose_your_username: Seleccionar o teu nome de usuario
   citation: Referencia
   classification: Clasificación
   clear: Limpar
@@ -562,7 +560,6 @@ gl:
   editing_taxon_name: Modificar nome do Taxón
   editing_taxon_range: Modificar rango de taxón
   editing_this: Modificando %{elem}
-  eg: 'ex.'
   either: Calquera
   either_that_user_doesnt_exist_or: "Ese usuario non existe ou xa o estás seguindo."
   email: Correo
@@ -663,7 +660,6 @@ gl:
   from: De
   from_a_place: dun lugar
   from_list: Da lista
-  from_this: desta
   from_photos: De fotos
   from_your_site_observations: "Observacións de %{site_name}"
   from_licensed_site_observations: "Observacións de %{site_name} licenza"
@@ -755,7 +751,6 @@ gl:
   is_not_following_anyone: Non estás seguindo a ninguén
   is_this_place_a_duplicate: Este lugar está duplicado?
   join: '¡Únete a'
-  join_and: Únete e
   join_project: Unirse a este proxecto
   join_some_projects_and_invite_some_observations_html: "Únete a certos <a href='%{join_url}'>proxectos</a> e <a href='%{invite_url}'>introduce algunhas observacións</a>"
   join_this_project: unirte a este proxecto.
@@ -1155,7 +1150,6 @@ gl:
   photos_or_sounds?: '¿Fotos ou sons?'
   photos_size_photos: "%{photos_size} fotos"
   photos_updated: Fotos actualizadas.
-  pick_a_username: Elixir nome de usuario
   pink: Rosa
   place: Lugar
   place_added_to_inat_by: "Lugar agregado a %{site_name} por"
@@ -1752,7 +1746,6 @@ gl:
   time_ago: "hai %{time}"
   title: Título
   titled_favorites_and_the_most_recent_additions: Os etiquetaxes "Favoritos" e as adicións máis recentes aparecerán neste espazo.
-  to: A
   to_add_comments: para engadir comentarios.
   to_add_ids: para engadir identificacións
   to_configure_your_widget: para configurar o teu widget.
@@ -1934,7 +1927,6 @@ gl:
   yes_i_want_to_join: Si, desexo unirme
   yes_license_my_observations_so_scientists_can_use: Si, crear unha licenza das miñas fotos e observacións para que os científicos poidan empregar os meus datos!
   yes_show_this_in_the_box: Si, mostra isto no recadro superior sobre os taxóns
-  yesterday_at: ', onte ás 4 da tarde'
   you: Ti
   youre_a_site_curator_which_means: |
     Es un administrador do sitio, o que significa que te ofreciches voluntario para axudar a xestionar os datos e supervisar o contido da páxina. Non te sintas obrigado con todo o que isto implica, pero se tes tempo de revisar algúns contidos de antemán, agradecémoscho. Se tes algunha dúbida, comentario ou simplemente xa non queres ser administrador, ponte en contacto connosco en
@@ -1942,7 +1934,6 @@ gl:
   you_are_now_following_x: "Estás seguindo a %{friend_user}."
   you_are_already_a_member_of_this_project: "¡Xa es un membro deste proxecto!"
   you_are_no_longer_following_x: "Xa non estás seguindo a %{friend}."
-  you_are_subscribed_to: "Estás subscrito a"
   you_arent_a_member_of_that_project: Non es un membro do proxecto.
   you_arent_following_that_person: "Non estás seguindo a esa persoa."
   you_can_accept_invitations: Podes aceptar a invitación aquí.
@@ -2312,8 +2303,11 @@ gl:
       6: Ve
       7: Sá
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d/%m/%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d de %b'
     month_names:
       - 
@@ -2354,16 +2348,16 @@ gl:
         one: máis de 1 ano
         other: máis de %{count} anos
       x_days:
-        one: 1 día
+        one: "1 día"
         other: '%{count} días'
       x_minutes:
-        one: 1 minuto
+        one: "1 minuto"
         other: '%{count} minutos'
       x_months:
-        one: 1 mes
+        one: "1 mes"
         other: '%{count} meses'
       x_seconds:
-        one: 1 segundo
+        one: "1 segundo"
         other: '%{count} segundos'
     prompts:
       day: Día
@@ -2395,7 +2389,7 @@ gl:
     template:
       body: 'Atopáronse problemas nos seguintes campos:'
       header:
-        one: Non se puido gardar este/a %{model} porque se atopou 1 erro.
+        one: "Non se puido gardar este/a %{model} porque se atopou 1 erro."
         other: 'Non se puido gardar este/a %{model} porque se atoparon %{count} erros.'
   helpers:
     select:
@@ -2438,10 +2432,15 @@ gl:
   time:
     am: Mañá
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d %b %Y %H:%M:%S %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d/%m/%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       observed_at: 'ás %I:%M %p %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %b. %Y"
     pm: Tarde
   activerecord:

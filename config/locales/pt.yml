@@ -105,8 +105,8 @@ pt:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Sobre os meios de estabelecimento
   about_licenses: Acerca das licenças
-  about_licensing: Acerca da certificação
   about_muting: Sobre Silenciar
+  #Header for a section describing taxon names
   about_names: Sobre nomes
   about_places: Sobre os Lugares
   about_the_cc_licenses: Acerca das licenças Creative Commons
@@ -186,7 +186,6 @@ pt:
   #"one" refers to a photo
   add_one_now: Adicionar Um(a) Agora
   add_photos: Adicionar fotografias
-  add_photos_to_this_observation: Adicionar fotografias a esta observação
   add_place: Adicionar lugar
   add_plant_phenology_budding_annotation: 'Adicionar anotação "Fenologia da Planta: Gemulação"'
   add_plant_phenology_flowering_annotation: 'Adicionar anotação "Fenologia da Planta: Floração"'
@@ -364,9 +363,6 @@ pt:
   amphibians: anfíbios
   and: e
   and_other_taxa: "&amp; Outros Táxons"
-  and_x_more_people!:
-    one: "e mais 1 pessoa!"
-    other: "e mais %{count} pessoas!"
   android: Android
   animals: Animais
   annotation: Anotação
@@ -652,7 +648,6 @@ pt:
   choose_tags: Escolha tags
   choose_taxon: Escolha um taxon
   choose_what_kind_of_change_youre_creating: "Escolha o tipo de mudança que deseja criar."
-  choose_your_username: Escolher o seu nome de utilizador
   cid_d_to_genus: CID do género
   citation: Citação
   classification: Classificação
@@ -996,7 +991,6 @@ pt:
   editing_this: A editar %{elem}
   editing_x_in_y: "A editar %{x} em %{y}"
   editors: Editores
-  eg: 'exemplo.'
   either: Qualquer
   either_that_user_doesnt_exist_or: "Este utilizador não existe ou já está a seguir ele."
   eligible_for_research_grade: Elegível para Grau de Pesquisa
@@ -1164,7 +1158,6 @@ pt:
   from_eol_collection: Da coleção da EOL
   from_flickr_facebook_etc: Do Flickr, Facebook, etc.
   from_list: Da lista
-  from_this: deste
   from_photos: Das fotografias
   from_place: De um local
   from_soundcloud: Do Soundcloud
@@ -1347,7 +1340,6 @@ pt:
     <a href="mailto:%{help_email}" class="contact">contacte-nos</a>.
     <a href="%{manage_flags_path}">Gerir sinalizadores</a>
   join: Participe
-  join_and: Entre e
   join_project: Entre neste projeto
   join_some_projects_and_invite_some_observations_html: "Participe de alguns <a href='%{join_url}'>projetos</a> e <a href='%{invite_url}'>introduza algumas observações</a>"
   join_the_largest_group_of_naturalists_in_the_world: Junte-se ao maior grupo de naturalistas do mundo!
@@ -2051,6 +2043,9 @@ pt:
   people_user_follows: "Pessoas que %{user} segue"
   people_added:
     identification:
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: adicionou uma <strong>identificação</strong>
     comment:
       with_by: comentou em @vow_or_con{vow:an|a} %{comment_subject_link} em %{by_link}
@@ -2083,7 +2078,6 @@ pt:
     large: grande
   photos_size_photos: "%{photos_size} fotos"
   photos_updated: Fotos atualizadas.
-  pick_a_username: Escolher um nome de utilizador
   pink: rosa
   place: Lugar
   placeholder: Carácter de preenchimento
@@ -2821,7 +2815,6 @@ pt:
   threatened: ameaçado
   time_: hora
   title: título
-  to: para
   to_recipient: para
   today: Hoje
   tools: Ferramentas
@@ -3053,10 +3046,15 @@ pt:
       6: Fr
       7: Sa
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d-%m-%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d de %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%d de %b de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%d de %B de %Y'
     month_names:
       - 
@@ -3097,16 +3095,16 @@ pt:
         one: mais de 1 ano
         other: mais de %{count} anos
       x_days:
-        one: 1 dia
+        one: "1 dia"
         other: '%{count} dias'
       x_minutes:
-        one: 1 minuto
+        one: "1 minuto"
         other: '%{count} minutos'
       x_months:
-        one: 1 mês
+        one: "1 mês"
         other: '%{count} meses'
       x_seconds:
-        one: 1 segundo
+        one: "1 segundo"
         other: '%{count} segundos'
     countdown_x_days:
       one: dia
@@ -3173,9 +3171,13 @@ pt:
       words_connector: ','
   time:
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d %b. %Y, %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y, %I:%M %p'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d %b, %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%d de %B de %Y"
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -3272,9 +3274,6 @@ pt:
               is_too_large_to_import: é demasiado grande para ser importado
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                O projeto não permite observações
             user_id:
               must_be_curator: tem de ser curador deste projeto
             observation_id:

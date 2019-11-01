@@ -51,7 +51,7 @@ eo:
   about_community_taxa: Pri komunumaj taksonoj
   about_complete_taxa: Pri Kompletaj Taksonoj
   about_licenses: Pri permesiloj
-  about_licensing: Pri permesiloj
+  #Header for a section describing taxon names
   about_names: Pri Nomoj
   about_places: Pri Lokoj
   about_the_cc_licenses: Pri permesiloj de Krea Komunaĵo
@@ -108,7 +108,6 @@ eo:
   #"one" refers to a photo
   add_one_now: Aldoni Unu Nun
   add_photos: Aldoni Fotojn
-  add_photos_to_this_observation: Aldoni Fotojn al Ĉi Tiu Observo
   add_place: Aldoni Lokon
   add_relationship: 'Aldoni rilaton'
   add_section: Aldoni Paragrafon
@@ -328,7 +327,6 @@ eo:
   choose_subjects: Elekti temojn
   choose_tags: Elekti etikedojn
   choose_taxon: Elekti taksonon
-  choose_your_username: Elekti vian uzantnomon
   citation: Citaĵo
   classification: Klasifiko
   clear: vakigi
@@ -555,7 +553,6 @@ eo:
   editing_announcement: Redaktanta anoncon
   editing_project: Redaktante projekton %{project}
   editing_taxon_name: Redaktante Nomon de Taksono
-  eg: 'ekz.'
   either: Aŭ
   email: Retpoŝta adreso
   end: Fino
@@ -708,7 +705,6 @@ eo:
   invite_your_friends: Inviti viajn amikojn
   is_now: estas nun
   join: Aliĝi
-  join_and: Aliĝi kaj
   join_project: Aliĝi al ĉi tiu projekto
   join_this_project: Aliĝi al ĉi tiu projekto
   'joined!': Aliĝis!
@@ -990,7 +986,6 @@ eo:
     medium: meza
     large: granda
     original: originala
-  pick_a_username: Elekti uzantnomon
   pin_verb: Alpingli
   pink: roza
   place: Loko
@@ -1610,7 +1605,6 @@ eo:
   time_: tempo
   title: titolo
   title_and_description: "Titolo & Priskribo"
-  to: al
   to_recipient: al
   today: Hodiaŭ
   tools: Iloj
@@ -1706,7 +1700,6 @@ eo:
   you_: Vi
   you_are_now: Vi estas nun
   you_are_already_a_member_of_this_project: "Vi jam estas projektano de ĉi tiu projekto!"
-  you_are_subscribed_to: "Vi abonis"
   you_arent_a_member_of_that_project: Vi ne estas projektano de tiu projekto.
   you_cant_flag_that: Vi ne povas flagi ĝin
   you_faved_this: Vi favoras ĉi tion!
@@ -1904,9 +1897,13 @@ eo:
       6: ve
       7: sa
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%e-a de %B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%e %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%b-a de %B, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%e-a de %B %Y'
     month_names:
       - 
@@ -1947,16 +1944,16 @@ eo:
         one: pli ol 1 jaro
         other: pli ol %{count} jaroj
       x_days:
-        one: 1 tago
+        one: "1 tago"
         other: '%{count} tagoj'
       x_minutes:
-        one: 1 minuto
+        one: "1 minuto"
         other: '%{count} minutoj'
       x_months:
-        one: 1 monato
+        one: "1 monato"
         other: '%{count} monatoj'
       x_seconds:
-        one: 1 sekundo
+        one: "1 sekundo"
         other: '%{count} sekundoj'
     countdown_x_days:
       one: tago
@@ -2150,9 +2147,6 @@ eo:
               is_too_large_to_import: estas tro granda por enportado
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Projekto ne permesas observojn
             user_id:
               must_be_curator: devas esti kuratoro de ĉi tiu projekto
         taxon_photo:

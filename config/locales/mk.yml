@@ -62,7 +62,7 @@ mk:
   about_blocking: За блокирањето
   about_community_taxa: За таксоните од заедницата
   about_licenses: За лиценците
-  about_licensing: За лиценцирањето
+  #Header for a section describing taxon names
   about_names: За имињата
   about_places: За местата
   about_the_cc_licenses: За лиценците на Криејтив комонс
@@ -124,7 +124,6 @@ mk:
   add_new_taxon_name: Додај ново таксонско име
   add_observations: Додај набљудувања
   add_photos: Додај слики
-  add_photos_to_this_observation: Додај слики во ова набљудување
   add_relationship: 'Додај однос'
   add_section: Додај поднаслов
   add_several_observations_at_once: Додајте неколку набљудувања наеднаш.
@@ -352,7 +351,6 @@ mk:
   choose_a_taxon: Одберете таксон (незадол.)
   choose_from_your_lists: Одберете од вашите списоци
   choose_photos_for_this_taxon: Одберете слики за таксонов
-  choose_your_username: Одберете си корисничко име
   citation: Наведување
   classification: Класификација
   clear: тргни
@@ -512,7 +510,6 @@ mk:
   edit_your_default_settings: "Измени ги стандардните поставки"
   edited_by_name_html: "Изменето од %{name}"
   editing_taxon_range: Уредување на Распространетост на таксонот
-  eg: 'на пр.'
   either: Или
   establishment:
     endemic: ендемски
@@ -638,7 +635,6 @@ mk:
   #Type of project where people can only join after they have been invited
   inviteonly: само со покана
   join: Приклучи се
-  join_and: Приклучи се и
   join_project: Приклучете се на проектов!
   join_this_project: Приклучи се на проектов
   'joined!': Приклучено!
@@ -947,7 +943,6 @@ mk:
     original: изворно
   photos_size_photos: "%{photos_size} слики"
   photos_updated: Сликите се подновени.
-  pick_a_username: Изберете корисничко име
   pink: розова
   place: Место
   place_added_to_inat_by: "Додадено место на %{site_name} од"
@@ -1435,7 +1430,6 @@ mk:
   'yes': "Да"
   yes_find_them!: "Да, најди ги!"
   yes_i_want_to_join: Да, сакам да се придружам
-  yesterday_at: ', вчера во 16:00 ч.'
   you: вие
   your_account_has_been_activated: Вашата сметка на е активирана.
   your_home: Ваша почетна
@@ -1518,9 +1512,13 @@ mk:
       6: пе
       7: са
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d %j %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%j %B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%j %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%j %B %Y'
     month_names:
       - 
@@ -1561,16 +1559,16 @@ mk:
         one: преку 1 година
         other: преку %{count} години
       x_days:
-        one: 1 ден
+        one: "1 ден"
         other: '%{count} дена'
       x_minutes:
-        one: 1 минута
+        one: "1 минута"
         other: '%{count} минути'
       x_months:
-        one: 1 месец
+        one: "1 месец"
         other: '%{count} месеци'
       x_seconds:
-        one: 1 секунда
+        one: "1 секунда"
         other: '%{count} секунди'
     prompts:
       day: Ден
@@ -1611,7 +1609,7 @@ mk:
     template:
       body: 'Следниве полиња се проблематични:'
       header:
-        one: 1 грешка му попречи на зачувувањето на овој %{model}
+        one: "1 грешка му попречи на зачувувањето на овој %{model}"
         other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   helpers:
     select:
@@ -1654,11 +1652,17 @@ mk:
   time:
     am: претпладне
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%j %b. %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%j %B %Y %I:%M %p'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%j %b %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       observed_at: 'во %I:%M %p %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%j %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%j %B %Y"
     pm: попладне
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository

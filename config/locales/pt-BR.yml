@@ -108,8 +108,8 @@ pt-BR:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Sobre Formas de Estabelecimento
   about_licenses: Sobre as licenças
-  about_licensing: Sobre as licenças
   about_muting: Sobre o Silenciar
+  #Header for a section describing taxon names
   about_names: Sobre Nomes
   about_places: Sobre os Lugares
   about_the_cc_licenses: Sobre as licenças Creative Commons
@@ -194,7 +194,6 @@ pt-BR:
   #"one" refers to a photo
   add_one_now: Adicionar Uma Agora
   add_photos: Adicione fotos
-  add_photos_to_this_observation: Adicionar fotos para esta observação
   add_place: Adicionar lugar
   add_plant_phenology_budding_annotation: 'Adicionar "Fenologia": Brotamento" anotações'
   add_plant_phenology_flowering_annotation: 'Adicionar "Fenologia": Floração" anotações'
@@ -377,9 +376,6 @@ pt-BR:
   ancestor_taxon: Táxon ancestral
   and: e
   and_other_taxa: "&amp; Outros Táxons"
-  and_x_more_people!:
-    one: "e 1 pessoa a mais"
-    other: "e %{count} pessoas a mais"
   animals: Animais
   annotation: Anotação
   annotations: Anotações
@@ -643,7 +639,6 @@ pt-BR:
   choose_tags: Selecionar marcações
   choose_taxon: Escolha um táxon
   choose_what_kind_of_change_youre_creating: "Escolha o tipo de mudança que deseja criar."
-  choose_your_username: Escolha seu nome de usuário
   cid_d_to_genus: CID do gênero
   citation: Citação
   classification: Classificação
@@ -1020,7 +1015,6 @@ pt-BR:
   editing_this: Modificando %{elem}
   editing_x_in_y: "Modificando %{x} em %{y}"
   editors: Editores
-  eg: 'ex:'
   either: Qualquer
   either_that_user_doesnt_exist_or: "Ou este usuário não existe ou você já está seguindo ele."
   eligible_for_research_grade: Elegível para Nível de Pesquisa
@@ -1216,7 +1210,6 @@ pt-BR:
   from_eol_collection: Da coleção da EOL
   from_flickr_facebook_etc: Do Flickr, Facebook, etc.
   from_list: Da lista
-  from_this: Deste
   from_photos: De fotos
   from_place: De um local
   from_soundcloud: Do Soundcloud
@@ -1421,7 +1414,6 @@ pt-BR:
     <a href="mailto:%{help_email}" class="contact">contact us</a>.
     <a href="%{manage_flags_path}">Manage flags</a>
   join: Faça parte
-  join_and: Faça parte e
   join_project: Entre neste projeto
   join_some_projects_and_invite_some_observations_html: "Junte-se a alguns <a href='%{join_url}'>projetos</a> e <a href='%{invite_url}'>convide alguma observações</a>"
   join_the_largest_group_of_naturalists_in_the_world: Junte-se ao maior grupo de naturalistas do mundo!
@@ -2160,9 +2152,18 @@ pt-BR:
   people_following_user: "Pessoas que Seguem %{user}"
   people_user_follows: "Pessoas %{user} Segue"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: adicionado um %{observation_link} de @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: adicionada uma <strong>identificação</strong> a uma %{observation_link} de %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: adicionada uma <strong>identificação</strong>
     post: fez uma %{post_link}
     comment:
@@ -2206,7 +2207,6 @@ pt-BR:
     Eu concordo em permitir que o iNaturalist armazene e processe tipos limitados de informações pessoais sobre mim para gerenciar minha conta
   pi_consent_child_label: |
     Eu concordo em permitir que o iNaturalist armazene e processe tipos limitados de informações pessoais sobre meu filho para gerenciar a conta do meu filho
-  pick_a_username: Escolha um nome de usuário
   pink: rosa
   pinned_locations_desc: |
     Pegue esta combinação de coordenadas, precisão, geocodificação e notas de localidade para uso posterior.
@@ -3361,7 +3361,6 @@ pt-BR:
   title: título
   title_and_description: "Titulo e Descrição"
   titled_favorites_and_the_most_recent_additions: Sua lista de "Favoritos" e registros recentes serão exibidos aqui.
-  to: para
   to_add_comments: para adicionar comentários
   to_add_ids: para adicionar IDentificações
   to_configure_your_widget: para configurar seu widget.
@@ -3733,7 +3732,6 @@ pt-BR:
   yes_reject_it: Sim, rejeite
   yes_show_this_in_the_box: Sim, mostre isto na grande caixa sobre os táxons
   yesterday: Ontem
-  yesterday_at: ', ontem as 4 da tarde'
   you: você
   you_: Você
   you_appear_offline_try_again: |
@@ -3753,7 +3751,6 @@ pt-BR:
     Você está enviando observações sem fotos e nomes de táxons. Observações sem essas informações, muitas vezes é impossível identificar e não será visível por padrão em pesquisas de observação.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Você está enviando observações sem datas ou locais. Observações sem essas informações, muitas vezes é impossível identificar e não será visível por padrão em pesquisas de observação.
-  you_are_subscribed_to: "Você está inscrito em"
   you_arent_a_member_of_that_project: Você não é um membro deste projeto.
   you_arent_following_that_person: "Você não está seguindo nenhuma pessoa."
   you_can_accept_invitations: Você pode aceitar o convite aqui
@@ -3815,9 +3812,6 @@ pt-BR:
   your_account_has_been_verified: "Sua conta %{site_name} foi verificada! Por favor entre para continuar."
   your_activation_code_was_missing: "Seu código de ativação está faltando. Por favor siga o endereço de URL que está no seu e-mail."
   your_browser_does_not_support_the_audio_element: Seu navegador não suporta o elemento de áudio.
-  your_coarser_id: |
-    Sua identificação ID para um nível inferior de <span class='taxon'>%{coarser_taxon_name}</span> implica em discordar de uma identificação atual mais refinada de <span class='taxon'>%{finer_taxon_name}</span>. Tem certeza de sua decisão?<br><br>
-    <a href='/pages/getting+started' target='_blank'>Entenda um pouco melhor sobre o funcionamento das identificações de organismo &raquo;</a>
   your_comment_was_saved: Seu conteúdo está salvo.
   your_content: Seu Conteúdo
   your_contributions_to_project: "Suas contribuições para %{project_title}"
@@ -5194,6 +5188,7 @@ pt-BR:
       6: Sx
       7: Sa
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%b %d %Y'
     month_names:
       - 
@@ -5234,16 +5229,16 @@ pt-BR:
         one: mair de 1 ano
         other: over %{count} anos
       x_days:
-        one: 1 dia
+        one: "1 dia"
         other: '%{count} dias'
       x_minutes:
-        one: 1 minuto
+        one: "1 minuto"
         other: '%{count} minutos'
       x_months:
-        one: 1 mês
+        one: "1 mês"
         other: '%{count} meses'
       x_seconds:
-        one: 1 segundo
+        one: "1 segundo"
         other: '%{count} segundos'
     countdown_x_days:
       one: dia
@@ -5297,7 +5292,7 @@ pt-BR:
     template:
       body: 'Existem problemas com os seguintes campos:'
       header:
-        one: 1 erro proibiu isto %{model} de ser salvo
+        one: "1 erro proibiu isto %{model} de ser salvo"
         other: '%{count} erros proibiram isto %{model} de ser salvo'
   helpers:
     defaults:
@@ -5561,9 +5556,6 @@ pt-BR:
                 Deve ter feito o registro por mais de 24 horas para publicar. Nós temos muitos casos de introdução de spam, e esta foi uma maneira que encontramos para lidar com isso. Você ainda pode salvar um rascunho, e se você voltar em um dia já poderá efetivar a publicação.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                O projeto não permite observações
             user_id:
               must_be_curator: é preciso ser um administrador deste projeto
             observation_id:

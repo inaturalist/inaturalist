@@ -108,8 +108,8 @@ ca:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Sobre les formes d'establiment
   about_licenses: Sobre les llicències
-  about_licensing: Quant a les llicències
   about_muting: Quant a Silenciar
+  #Header for a section describing taxon names
   about_names: Quant a els noms
   about_places: Sobre els Llocs
   about_the_cc_licenses: Sobre les llicències de Creative Commons
@@ -194,7 +194,6 @@ ca:
   #"one" refers to a photo
   add_one_now: Afegir-ne un ara
   add_photos: Afegiu fotos
-  add_photos_to_this_observation: Afegiu fotos a aquesta observació
   add_place: Afegiu un lloc
   add_plant_phenology_budding_annotation: 'Afegir l''anotació «Fenologia de la planta: gemmació»'
   add_plant_phenology_flowering_annotation: 'Afegiu nota "Fenologia de la planta: Floració"'
@@ -377,9 +376,6 @@ ca:
   ancestor_taxon: Tàxon Ancestral
   and: i
   and_other_taxa: "& altres tàxons"
-  and_x_more_people!:
-    one: "i una persona més!"
-    other: "i %{count} persones més!"
   annotation: Anotació
   annotations: Anotacions
   announcement_was_successfully_created: L'anunci s'ha creat amb èxit.
@@ -639,7 +635,6 @@ ca:
   choose_tags: Seleccioneu etiquetes
   choose_taxon: Seleccioneu un tàxon
   choose_what_kind_of_change_youre_creating: "Escolliu el tipus de canvi que voleu introduir."
-  choose_your_username: Seleccioneu el nom d'usuari
   cid_d_to_genus: CID del gènere
   citation: Referència
   classification: Classificació
@@ -1014,7 +1009,6 @@ ca:
   editing_taxon_range: Modifica rang del tàxon
   editing_this: Modificant %{elem}
   editing_x_in_y: "Editant %{x} en %{y}"
-  eg: 'ex.'
   either: Qualsevol
   either_that_user_doesnt_exist_or: "Aquest usuari no existeix o ja l'esteu seguint."
   eligible_for_research_grade: Elegible per a grau de Recerca
@@ -1209,7 +1203,6 @@ ca:
   from_eol_collection: De la col·lecció EOL
   from_flickr_facebook_etc: Des de Flickr, Facebook, etc.
   from_list: De la llista
-  from_this: d'aquesta
   from_photos: De fotos
   from_place: Del lloc
   from_soundcloud: Des de Soundcloud
@@ -1407,7 +1400,6 @@ ca:
     <a href="mailto:%{help_email}" class="contact">contacteu amb nosaltres</a>.
     <a href="%{manage_flags_path}">Gestioneu etiquetes</a>
   join: Uniu-vos a
-  join_and: Uniu-vos i
   join_project: Uniu-vos a aquest projecte
   join_some_projects_and_invite_some_observations_html: "Uniu-vos a certs <a href='%{join_url}'>projectes</a> i <a href='%{invite_url}'>compartiu algunes observacions</a>"
   join_the_largest_group_of_naturalists_in_the_world: Uniu-vos al major grup de naturalistes del món!
@@ -2152,9 +2144,18 @@ ca:
   people_following_user: "Usuaris que segueixen %{user}"
   people_user_follows: "Usuaris %{user} Seguidors"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: ha afegit una %{observation_link} de @vow_or_con{vow:un} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: ha afegit una <strong>ID</strong> a una %{observation_link} de %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: afegida una <strong>ID</strong>
     post: ha fet un %{post_link}
     comment:
@@ -2197,7 +2198,6 @@ ca:
     Autoritzo a iNaturalist a guardar i processar determinades informacions de caràcter personal sobre mi per gestionar el meu compte
   pi_consent_child_label: |
     Autoritzo a iNaturalist a guardar i processar determinades informacions de caràcter personal sobre el meu/va fill/a per gestionar el meu compte infantil
-  pick_a_username: Trieu nom d'usuari
   pin_verb: Posar al mapa
   pink: rosa
   pinned_locations_desc: |
@@ -3326,7 +3326,6 @@ ca:
   title: títol
   title_and_description: "Títol i Descripció"
   titled_favorites_and_the_most_recent_additions: etiquetats "Preferits" i les addicions més recents apareixeran en aquest espai.
-  to: a
   to_add_comments: per afegir comentaris.
   to_add_ids: per afegir ID
   to_configure_your_widget: per configurar el vostre giny.
@@ -3695,7 +3694,6 @@ ca:
   yes_reject_it: Sí, refusa'l
   yes_show_this_in_the_box: Sí, mostrar-ho al requadre superior sobre els tàxons
   yesterday: Ahir
-  yesterday_at: ', ahir a les 4 de la tarda'
   you: vós
   you_: Vostè
   you_appear_offline_try_again: |
@@ -3716,7 +3714,6 @@ ca:
     Les observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defectes a les cerques d'observacions.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Esteu enviant observacions sense data o localització. Les observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defectes a les cerques d'observacions.
-  you_are_subscribed_to: "Esteu subscrit a"
   you_arent_a_member_of_that_project: No sou un membre d'aquest projecte.
   you_arent_following_that_person: "No seguiu aquesta persona."
   you_can_accept_invitations: Podeu acceptar la invitació aquí.
@@ -3776,11 +3773,6 @@ ca:
   your_account_has_been_verified: "S’ha confirmat el vostre compte d’%{site_name}! Si us plau, ingresseu per continuar."
   your_activation_code_was_missing: "El vostre codi d'activació s'ha perdut. Si us plau, accediu a l'enllaç des del correu electrònic"
   your_browser_does_not_support_the_audio_element: El vostre navegador no admet l'element d'àudio.
-  your_coarser_id: |
-    Una IDentificació menys precisa de <span class="taxon">%{coarser_taxon_name}</span> implica que no esteu
-    d'acord amb la IDentificació detallada de
-    <span class="taxon">%{finer_taxon_name}</span>. És realment això el que voleu fer?<br><br>
-    <a href="/pages/getting+started" target="_blank">Coneix més sobre com actuen les identificacions"</a>
   your_comment_was_saved: S’ha desat el vostre contingut.
   your_content: El vostre Contingut
   your_contributions_to_project: "Les vostres aportacions al projecte %{project_title}"
@@ -4858,7 +4850,7 @@ ca:
           one: |
             <strong class="count"> la vostra identificació </strong> o la d’una altra persona, pot afectar potencialment la qualitat de les dades d’aquesta observació 
           other: |
-             <strong class="count">%{count} de les vostres identificacions </strong> sobre les observacions de <strong class="count">%{helpees_count} persones </strong>, poden afectar la qualitat de les dades d’aquestes observacions
+            <strong class="count">%{count} de les vostres identificacions </strong> sobre les observacions de <strong class="count">%{helpees_count} persones </strong>, poden afectar la qualitat de les dades d’aquestes observacions
         furthermore_cannot_undo_html: |
           A més, <strong> aquesta acció no es pot desfer</strong>. Si canvieu d'idea més endavant, no podreu recuperar aquest contingut.
         settings_and_mute_html: |
@@ -5034,10 +5026,15 @@ ca:
       6: dv
       7: ds
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d/%m/%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d de %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%d de %B del %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%d de %B de %Y'
     month_names:
       - 
@@ -5078,16 +5075,16 @@ ca:
         one: més d’1 any
         other: més de %{count} anys
       x_days:
-        one: 1 dia
+        one: "1 dia"
         other: '%{count} dies'
       x_minutes:
-        one: 1 minut
+        one: "1 minut"
         other: '%{count} minuts'
       x_months:
-        one: 1 mes
+        one: "1 mes"
         other: '%{count} mesos'
       x_seconds:
-        one: 1 segon
+        one: "1 segon"
         other: '%{count} segons'
     countdown_x_days:
       one: dia
@@ -5143,7 +5140,7 @@ ca:
     template:
       body: 'S''han detectat problemes en els camps següents:'
       header:
-        one: No s’ha pogut desar aquest/a %{model} perquè s’hi ha detectat 1 error.
+        one: "No s’ha pogut desar aquest/a %{model} perquè s’hi ha detectat 1 error."
         other: 'No s’ha pogut desar aquest/a %{model} perquè s’hi han detectat %{count} errors.'
   helpers:
     defaults:
@@ -5188,10 +5185,15 @@ ca:
   time:
     am: del matí
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d %b %Y %H:%M:%S %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d/%m/%Y %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %b. %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       hours: "%I:%M %p %Z"
     pm: de la tarda
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
@@ -5420,9 +5422,6 @@ ca:
                 ha de ser registrat transcorregudes, al menys 24 hores abans de la seva publicació. Hi ha molts spammers, i això és una forma d'evitar els seus efectes. Podeu desar un esborrany i, si transcorregut un dia, encara esteu utilitzant el lloc web, ho podreu publicar.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                El projecte no permet observacions
             user_id:
               must_be_curator: ha de ser supervisor del projecte
             observation_id:

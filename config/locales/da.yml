@@ -107,8 +107,8 @@ da:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Om oprindelse
   about_licenses: Om licenser
-  about_licensing: Om ophavsrettigheder
   about_muting: Om slukning
+  #Header for a section describing taxon names
   about_names: Om navne
   about_places: Om steder
   about_the_cc_licenses: Om Creative Commons licenser
@@ -151,6 +151,7 @@ da:
   add_an_observation: Tilføj en observation
   add_an_observation?: Tilføj en observation?
   add_an_observation_of: "Tilføj en observation af %{taxon}"
+  add_an_observation_to_project_html: Tilføj en observation til %{project}
   add_annotations_for_x: Tilføj anmærkninger for "%{x}"
   add_annotations_for_controlled_attribute:
     sex: Tilføj noter for "køn"
@@ -193,7 +194,6 @@ da:
   #"one" refers to a photo
   add_one_now: Tilføj en nu
   add_photos: Tilføj fotos
-  add_photos_to_this_observation: Tilføj fotos til denne observation
   add_place: Tilføj sted
   add_plant_phenology_budding_annotation: 'Tilføj anmærkningen "Plantefænologi: Spirende"'
   add_plant_phenology_flowering_annotation: 'Tilføj noten "Plantefænologi: Blomstrende"'
@@ -391,9 +391,6 @@ da:
   ancestor_taxon: Stamfader Takson
   and: og
   and_other_taxa: "&amp;Andre taksa"
-  and_x_more_people!:
-    one: "og 1 person mere!"
-    other: "and %{count} personer mere!"
   android: Android
   animals: Dyr
   annotation: Anmærkning
@@ -673,7 +670,6 @@ da:
   choose_tags: Vælg tags
   choose_taxon: Vælg en takson
   choose_what_kind_of_change_youre_creating: "Vælg hvilken ændring du vil foretage."
-  choose_your_username: Vælg dit brugernavn
   cid_d_to_genus: FID'et til slægt
   citation: Citation
   classification: Klassifikation
@@ -756,6 +752,7 @@ da:
   contain_all_descendants?: Indeholder denne tjekliste alle efterkommere af denne taxon, der forekommer her?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Indhold
+  content_author: Indholdsforfatter
   content_hidden: Skjult indhold
   content_hidden_by_user_on_date_because_reason_html: |
     Indhold skjult af %{user} den %{date} fordi: "%{reason}"
@@ -981,6 +978,9 @@ da:
   doesnt_have_default_photo: har endnu ikke et standardbillede.
   doh_something_went_wrong: Åh nej, noget gik galt.
   doh_something_went_wrong_error: "Øhhh, noget gik galt: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DONÈR
   done: Udført
   dont_have_an_account_sign_up_html: Har du ikke en konto?  <strong>Opret konto.</strong>
   dont_send_me_email: "Send mig ikke nogen e-mail!"
@@ -1064,7 +1064,6 @@ da:
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
   editors: Redaktører
-  eg: 'f.eks.'
   either: Enten
   either_that_user_doesnt_exist_or: "Enten eksisterer den bruger ikke, eller du følger den allerede."
   eligible_for_research_grade: Kvalificeret til forskningskvalitet
@@ -1262,7 +1261,6 @@ da:
   from_eol_collection: Fra EOL-samling
   from_flickr_facebook_etc: Fra Flickr, Facebook, etc.
   from_list: Fra liste
-  from_this: fra dette
   from_photos: Fra fotos
   from_place: Fra et sted
   from_soundcloud: Fra Soundcloud
@@ -1465,7 +1463,6 @@ da:
     <a href="mailto:%{help_email}" class="contact">kontakt os venligst</a>.
     <a href="%{manage_flags_path}">Manage flags</a>
   join: Tilslut
-  join_and: Tilslut og
   join_project: Bliv medlem af dette projekt
   join_some_projects_and_invite_some_observations_html: "Tilslut dig <a href='%{join_url}'>projekter</a> og <a href='%{invite_url}'>invitér nogle observationer</a>"
   join_the_largest_group_of_naturalists_in_the_world: Tilslut dig verdens største gruppe af naturelskere
@@ -2244,9 +2241,18 @@ da:
   people_following_user: "Personer, der følger %{user}"
   people_user_follows: "Personer %{user} følger"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: tilføjede en %{observation_link} af @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: tilføjede et <strong>ID</strong> til en %{observation_link} af %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: tilføjede et <strong>ID</strong>
     post: lavede en %{post_link}
     comment:
@@ -2290,7 +2296,6 @@ da:
     Jeg accepterer, at iNaturalist får tilladelse til at gemme og behandle begrænsede former for personlig information om mig, for at administrere min konto
   pi_consent_child_label: |
     Jeg accepterer, at iNaturalist får tilladelse til at gemme og behandle begrænsede former for personlig information om mit barn, for at administrere mit barns konto
-  pick_a_username: Vælg et brugernavn
   pin_verb: Gem
   pink: lyserød
   pinned_locations_desc: |
@@ -3518,7 +3523,6 @@ da:
   title: titel
   title_and_description: "Titel & beskrivelse"
   titled_favorites_and_the_most_recent_additions: '"Favoritter", og de seneste tilføjelser vises i dette felt.'
-  to: til
   to_add_comments: for at tilføje kommentarer
   to_add_ids: for at tilføje IDs
   to_configure_your_widget: for at konfigurere din widget.
@@ -3891,7 +3895,6 @@ da:
   yes_reject_it: Ja, afvis det
   yes_show_this_in_the_box: Ja, vis dette i den store boks øverst på/taksa
   yesterday: I går
-  yesterday_at: ', i går kl. 16:00'
   you: dig
   you_: Dig
   you_appear_offline_try_again: |
@@ -3915,7 +3918,6 @@ da:
   you_are_submitting_obs_with_no_date_or_no_location: |
     Du indsender observationer uden dato eller sted.
     Observationer uden disse informationer er ofte umulige at identificere, og vil ikke blive vist i observationssøgninger.
-  you_are_subscribed_to: "Du abonnerer på"
   you_arent_a_member_of_that_project: Du er ikke medlem af dette projekt.
   you_arent_following_that_person: "Du følger ikke denne person."
   you_can_accept_invitations: Du kan acceptere invitationen her
@@ -3976,9 +3978,6 @@ da:
   your_account_has_been_verified: "Din %{site_name} konto er blevet bekræftet! Log venligst ind for at fortsætte."
   your_activation_code_was_missing: "Din aktiveringskode manglede. Følg webadressen fra din email."
   your_browser_does_not_support_the_audio_element: Din browser understøtter ikke lydelementet.
-  your_coarser_id: |
-    Dit løslige ID på <span class='takson'> %{coarser_taxon_name}</span> indebærer, at du er uenig med det eksisterende nøjagtigere ID af
-    <span class='takson'>%{finer_taxon_name}</span>. Er det hvad du vil gøre? <br/><br/><a href='/pages/getting+started' target='_blank'>Få flere oplysninger om, hvordan identifikationer fungerer & raquo;</a>
   your_comment_was_saved: Dit indhold blev gemt
   your_content: Dit indhold
   your_contributions_to_project: "Dine bidrag til %{project_title}"
@@ -4658,12 +4657,12 @@ da:
         fordi du er side kurator. Hvis du er kurator på siden, skal du følge
         disse retningslinjer
         </p>
-        <Ol>
+        <ol>
            <li> Udfør ikke vilkårlig navneændringer (f.eks. skifte "spiser" til "nectarering") </li>
            <li> Husk at observationsfelter kan bruges til observationer af hvilken som helst takson, så prøv ikke at anvende en takson specifik terminologi </li>
            <li> Slet ikke felter, som andre personer bruger </li>
            <li> Oversæt ikke eksisterende feltnavne til forskellige sprog. Engelsk er lingua franca (fællessprog) på dette websted. Hvis du virkelig vil have et felt, der indkapsler det samme koncept, men på et andet sprog, skal du oprette et nyt observationsfelt. </li>
-        </Ol>
+        </ol>
       dna_help: |
         For at aktivere FED DNA stregkode svarende til funktionalitet, sørg for dit
         feltnavn indeholder ordene "COI", "COX1", "ITS" eller "matK"
@@ -5708,11 +5707,16 @@ da:
       6: Fr
       7: Lø
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d-%m-%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d. %B, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d. %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%d. %b, %Y'
-      month_day_year: '%d. %B, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_day_year: '%d. %B %Y'
     month_names:
       - 
       - Januar
@@ -5752,16 +5756,16 @@ da:
         one: over 1 år
         other: over %{count} år
       x_days:
-        one: 1 dag 
+        one: "1 dag "
         other: '%{count} dage'
       x_minutes:
-        one: 1 minut
+        one: "1 minut"
         other: '%{count} minutter'
       x_months:
-        one: 1 måned
+        one: "1 måned"
         other: '%{count} måneder'
       x_seconds:
-        one: 1 sekund
+        one: "1 sekund"
         other: '%{count} sekunder'
     countdown_x_days:
       one: dag
@@ -5818,7 +5822,7 @@ da:
     template:
       body: 'Der var problemer med følgende felter:'
       header:
-        one: 1 fejl forhindrede denne %{model} i at blive gemt
+        one: "1 fejl forhindrede denne %{model} i at blive gemt"
         other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
   helpers:
     defaults:
@@ -5853,10 +5857,15 @@ da:
   time:
     am: er
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d. %b, %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d. %B, %Y %I:%M %p'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d. %b %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%d. %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d. %B, %Y"
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -6082,9 +6091,6 @@ da:
                 en masse spammere, og dette er vores måde at håndtere dem på. Du kan stadig gemme som kladde og publicere det på et senere tidspunkt.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Projektet tillader ikke observationer
             user_id:
               must_be_curator: skal være kurator for dette projekt
             observation_id:

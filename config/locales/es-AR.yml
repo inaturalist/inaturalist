@@ -104,8 +104,8 @@ es-AR:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Acerca de los medios de establecimiento
   about_licenses: Acerca de las licencias
-  about_licensing: Acerca de las licencias
   about_muting: Acerca de silenciar
+  #Header for a section describing taxon names
   about_names: Acerca de los nombres
   about_places: Acerca de los Lugares
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
@@ -189,7 +189,6 @@ es-AR:
   #"one" refers to a photo
   add_one_now: Agregar una ahora
   add_photos: Agregar fotos
-  add_photos_to_this_observation: Agregar fotos a esta observación
   add_place: Agregar lugar
   add_plant_phenology_budding_annotation: 'Agregar anotación «Fenología de la planta: en botón»'
   add_plant_phenology_flowering_annotation: 'Agregar anotación «Fenología de la planta: floreciendo»'
@@ -381,9 +380,6 @@ es-AR:
   ancestor_taxon: Taxón Antepasado
   and: "y"
   and_other_taxa: "&amp; Otros taxones"
-  and_x_more_people!:
-    one: "y una persona más"
-    other: "y %{count} personas más"
   android: Android
   animals: Animales
   annotation: Anotación
@@ -660,7 +656,6 @@ es-AR:
   choose_tags: Selecciona etiquetas
   choose_taxon: Seleccionar un taxón
   choose_what_kind_of_change_youre_creating: "Selecciona que clase de cambio quieres crear."
-  choose_your_username: Elige tu nombre de usuario
   cid_d_to_genus: CID'd a género
   citation: Referencia
   classification: Clasificación
@@ -1044,7 +1039,6 @@ es-AR:
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
   editors: Editores
-  eg: 'ej.'
   either: Cualquiera
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya lo estás siguiendo."
   eligible_for_research_grade: Elegible para grado de Investigación
@@ -1243,7 +1237,6 @@ es-AR:
   from_eol_collection: De colección EOL
   from_flickr_facebook_etc: De Flickr, Facebook, etc.
   from_list: De la lista
-  from_this: de esta
   from_photos: De fotos
   from_place: De lugar
   from_soundcloud: De Soundcloud
@@ -1443,7 +1436,6 @@ es-AR:
     <a href="mailto:%{help_email}" class="contact">contáctanos </a>.
     <a href="%{manage_flags_path}">Administra advertencias</a>
   join: '¡Únete a'
-  join_and: Únase y
   join_project: Unirse a este proyecto
   join_some_projects_and_invite_some_observations_html: "Únete a ciertos <a href='%{join_url}'>proyectos</a> e <a href='%{invite_url}'>invita algunas observaciones</a>"
   join_the_largest_group_of_naturalists_in_the_world: '¡únete al grupo más grande de naturalistas del mundo!'
@@ -2206,9 +2198,18 @@ es-AR:
   people_following_user: "Personas que siguen a %{user}"
   people_user_follows: "Gente %{user} Seguidores"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: añadió un %{observation_link} de @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: añadido un <strong>identificador</strong> a una %{observation_link} de %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: añadido un <strong>identificador</strong>
     post: hizo un %{post_link}
     comment:
@@ -2252,7 +2253,6 @@ es-AR:
   pi_consent_child_label: |
     Permito a iNaturalist a almacenar y procesar ciertos tipos de
     información personal acerca de mi hijo/a para administrar la cuenta de este/a
-  pick_a_username: Elegir nombre de usuario
   pink: rosa
   pinned_locations_desc: |
     Selecciona esta combinación de notas de coordenadas, precisión, geoprivacidad y ubicación para más tarde.
@@ -3477,7 +3477,6 @@ es-AR:
   title: título
   title_and_description: "Título y Descripción"
   titled_favorites_and_the_most_recent_additions: titulada "Favoritos" y las adiciones más recientes aparecerán en este espacio.
-  to: a
   to_add_comments: para agregar comentarios.
   to_add_ids: para agregar identificaciones
   to_configure_your_widget: para configurar tu widget.
@@ -3856,7 +3855,6 @@ es-AR:
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Sí, muestra esto en la caja grande por arriba de los taxones
   yesterday: Ayer
-  yesterday_at: ', ayer a las 4pm'
   you: tu
   you_: Tú
   you_appear_offline_try_again: |
@@ -3876,7 +3874,6 @@ es-AR:
     Estás añadiendo observaciones sin foto ni un nombre de especie. La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Estás añadiendo observaciones sin fecha ni ubicación.  La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.
-  you_are_subscribed_to: "Estas suscrito a"
   you_arent_a_member_of_that_project: No eres un miembro del proyecto.
   you_arent_following_that_person: "No estas siguiendo a esa persona."
   you_can_accept_invitations: Puede aceptar la invitación aquí.
@@ -3939,9 +3936,6 @@ es-AR:
   your_account_has_been_verified: "¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor ingresa al sistema para continuar."
   your_activation_code_was_missing: "Tu código de activación se ha perdido.  Porfavor sigue el enlace desde tu correo"
   your_browser_does_not_support_the_audio_element: El navegador no parece ser compatible con el elemento <audio>.
-  your_coarser_id: |
-    La seva ID com a tàxon superior <span class='taxon'>%{coarser_taxon_name}</span> significa que esteu en desacord amb la ID de tàxon de detall <span class='taxon'>%{finer_taxon_name}</span>. Esteu d'acord??<br><br>
-    <a href='/pages/getting+started' target='_blank'>Ampreneu més sobre com actuen les identificacions &raquo;</a>
   your_comment_was_saved: Su comentario ha sido guardado.
   your_content: Su contenido
   your_contributions_to_project: "Tus contribuciones a %{project_title}"
@@ -5436,9 +5430,13 @@ es-AR:
       6: vi
       7: sá
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d/%m/%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d de %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%d.%b.%Y'
     month_names:
       - 
@@ -5479,16 +5477,16 @@ es-AR:
         one: más de 1 año
         other: más de %{count} años
       x_days:
-        one: 1 día
+        one: "1 día"
         other: '%{count} días'
       x_minutes:
-        one: 1 minuto
+        one: "1 minuto"
         other: '%{count} minutos'
       x_months:
-        one: 1 mes
+        one: "1 mes"
         other: '%{count} meses'
       x_seconds:
-        one: 1 segundo
+        one: "1 segundo"
         other: '%{count} segundos'
     countdown_x_days:
       one: día
@@ -5533,7 +5531,7 @@ es-AR:
     template:
       body: 'Se encontraron problemas con los siguientes campos:'
       header:
-        one: No se pudo guardar este/a %{model} porque se encontró 1 error
+        one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
         other: 'No se pudo guardar este/a %{model} porque se encontraron %{count} errores'
   helpers:
     defaults:
@@ -5577,9 +5575,13 @@ es-AR:
       words_connector: ','
   time:
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d %b %Y %H:%M:%S %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d de %B de %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d/%m/%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %b. %Y"
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -5804,9 +5806,6 @@ es-AR:
                 debe de haberse registrado hace más de 24 horas para publicar. Tenemos gran cantidad de gente que introduce spam, y así los evitamos. De todas formas puedes guardar un borrador, y si estás usando el sitio en un día, podrás publicarlo.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                El proyecto no permite observaciones
             user_id:
               must_be_curator: debe ser un curador de este proyecto
             observation_id:

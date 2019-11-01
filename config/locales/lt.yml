@@ -40,8 +40,8 @@ lt:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Apie įkūrimo priemones
   about_licenses: Apie licencijas
-  about_licensing: Apie licencijavimą
   about_muting: Apie nutildymą
+  #Header for a section describing taxon names
   about_names: Apie pavadinimus
   about_places: Apie vietas
   about_the_cc_licenses: Apie Creative Commons licencijas
@@ -122,7 +122,6 @@ lt:
   #"one" refers to a photo
   add_one_now: Pridėti dabar
   add_photos: Pridėti nuotraukas
-  add_photos_to_this_observation: Pridėti nuotraukas prie šio stebėjimo
   add_place: Pridėti vietovę
   add_plant_phenology_budding_annotation: 'Pridėti „Augalų fenologija: sprogsta“ papildomos informacijos'
   add_plant_phenology_flowering_annotation: 'Pridėti pastabą "Augalo fenologija: žydėjimas"'
@@ -466,7 +465,6 @@ lt:
   choose_tags: Pasirinkite žymes
   choose_taxon: Pasirinkite taksoną
   choose_what_kind_of_change_youre_creating: "Pasirinkite kokį pakeitimą atliekate."
-  choose_your_username: Pasirinkite savo vartotojo vardą
   citation: Citata
   classification: Klasifikacija
   clear: išvalyti
@@ -743,7 +741,6 @@ lt:
   editing_subscription_to_x_html: "Redaguojama %{x} prenumerata"
   editing_this: Redaguojama %{elem}
   editing_x_in_y: "Redaguojama %{x} %{y}"
-  eg: 'pvz.'
   either: Arba
   either_that_user_doesnt_exist_or: "Arba šis vartotojas neegzistuoja arba jūs jau jį sekate."
   email: El. paštas
@@ -887,7 +884,6 @@ lt:
   from_eol_collection: Iš EOL kolekcijos
   from_flickr_facebook_etc: Iš Flickr, Facebook ir t.t.
   from_list: Iš sąrašo
-  from_this: iš šio
   from_photos: Iš Nuotraukų
   from_place: Iš vietos
   from_soundcloud: Iš Soundcloud
@@ -1176,6 +1172,9 @@ lt:
   people: Žmonės
   people_added:
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: pridėjo <strong>ID</strong> prie %{observation_link}, kuris priklauso %{user_link}
   per_day: Per Dieną
   per_month: Per Mėnesį

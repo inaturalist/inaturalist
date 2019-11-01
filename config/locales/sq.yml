@@ -42,8 +42,8 @@ sq:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Për mënyrat e vendosjes
   about_licenses: Për licencat
-  about_licensing: Për licencimin
   about_muting: Për fikjen
+  #Header for a section describing taxon names
   about_names: Për emrat
   about_places: Për vendet
   about_the_cc_licenses: Për licencat e Creative Commons
@@ -124,7 +124,6 @@ sq:
   #"one" refers to a photo
   add_one_now: Shto një tani
   add_photos: Shto fotografi
-  add_photos_to_this_observation: Shto fotografi këtij vëzhgimi
   add_place: Shtoni vendin
   add_plant_phenology_budding_annotation: 'Shto shënimin "Fenologjia e Bimëve: Nxjerrja e sytheve"'
   add_plant_phenology_flowering_annotation: 'Shto shënimin "Fenologjia e Bimëve: Lulëzimi"'
@@ -300,9 +299,6 @@ sq:
   amphibians: amfibet
   and: dhe
   and_other_taxa: "&amp; Taksa të Tjera"
-  and_x_more_people!:
-    one: "dhe 1 njeri më shumë"
-    other: "%{count} më shumë njerëz"
   animals: Kafshët
   annotations: Shënime
   announcement_was_successfully_created: Njoftimi u krijua me sukses.
@@ -549,7 +545,6 @@ sq:
   choose_tags: Zgjidh etiketat
   choose_taxon: Zgjidh një taxon
   choose_what_kind_of_change_youre_creating: "Zgjidh çfarë lloj ndryshimi jeni duke krijuar."
-  choose_your_username: Zgjidh emrin tënd të përdoruesit
   cid_d_to_genus: Gjinia e CID
   citation: Citim
   classification: Klasifikim
@@ -888,7 +883,6 @@ sq:
   editing_this: Duke ndryshuar %{elem}
   editing_x_in_y: "Duke ndryshuar %{x} në %{y}"
   editors: Redaktorët
-  eg: 'p.sh.'
   either: Ose
   either_that_user_doesnt_exist_or: "Ose ky përdorues nuk ekziston ose jeni duke i ndjekur ato."
   eligible_for_research_grade: I pranueshëm për Nivel Kërkimor
@@ -1056,7 +1050,6 @@ sq:
   from_eol_collection: Nga koleksioni EOL
   from_flickr_facebook_etc: Nga Flickr, Facebook, etc.
   from_list: Nga lista
-  from_this: nga kjo
   from_photos: Nga fotot
   from_place: nga një vend
   from_soundcloud: Nga Soundcloud
@@ -1233,7 +1226,6 @@ sq:
     <a href="mailto:%{help_email}" class="contact">na kontaktoni</a>.
     <a href="%{manage_flags_path}">Menaxhoni shënimet</a>
   join: Bashkangjitu
-  join_and: Bashkangjitu dhe
   join_project: Bashkangjitju projektit
   join_some_projects_and_invite_some_observations_html: "Bashkangjitju ca <a href='%{join_url}'>projekteve</a>dhe<a href='%{invite_url}'>fto ca vëzhgime</a>"
   join_this_project: Bashkangjju ketij projekti
@@ -1920,9 +1912,18 @@ sq:
   people_following_user: "Njerëz që ndjekin %{user}"
   people_user_follows: "Njerëz që %{user} i ndjek"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: Shtoi nje %{observation_link} te %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: Shtoi nje %{observation_link}te %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: Shtoi nje <strong>ID</strong>
     post: Beri nje %{post_link}
     comment:
@@ -1956,7 +1957,6 @@ sq:
     original: origjinale
   photos_size_photos: "fotografi %{photos_size}"
   photos_updated: fotografia u përditësua.
-  pick_a_username: Perzgjidh nje emer perdoruesi
   pink: njgyre roze
   place: Vend
   placeholder: Vend-mbajtes
@@ -2940,9 +2940,6 @@ sq:
               contains_too_many_observations: përmban shumë vëzhgime për tu importuar
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Projekti nuk lejon vëzhgime
             user_id:
               must_be_curator: duhet të jetë kurator i këtij projekti
             observation_id:

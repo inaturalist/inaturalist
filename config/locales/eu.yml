@@ -39,8 +39,8 @@ eu:
   about_community_taxa: Komunitate taxoien inguruan
   about_conservation_status: Kontserbazio egoerari buruz
   about_licenses: Lizentzien inguruan
-  about_licensing: Lizentziatzearen inguruan
   about_muting: Isilarazteari buruz
+  #Header for a section describing taxon names
   about_names: Izenei buruz
   about_places: Tokiei buruz
   about_the_cc_licenses: Creative Commons-eko lizentziei buruz
@@ -114,7 +114,6 @@ eu:
   #"one" refers to a photo
   add_one_now: Gehitu bat orain
   add_photos: Argazkiak gehitu
-  add_photos_to_this_observation: Argazkiak gehitu ohar honi
   add_place: Lekua gehitu
   add_plant_phenology_flowering_annotation: 'Gehitu "Landare Fenologia: Loratzen" oharra'
   add_plant_phenology_fruiting_annotation: 'Gehitu "Landare Fenologia: Fruituak ematen" oharra'
@@ -435,7 +434,6 @@ eu:
   choose_tags: Etiketak hautatu
   choose_taxon: Taxona hautatu
   choose_what_kind_of_change_youre_creating: "Aukeratu sartu nahi duzun aldaketa mota."
-  choose_your_username: Zure erabiltzaile-izena hautatu
   citation: Erreferentzia
   classification: Sailkapena
   clear: Garbitu
@@ -699,7 +697,6 @@ eu:
   editing_taxon_name: Taxonaren izena aldatu
   editing_taxon_range: Taxonaren maila aldatu
   editing_this: '%{elem} aldatzen'
-  eg: 'adib.'
   either: Edozein
   either_that_user_doesnt_exist_or: "Erabiltzaile hori ez da existitzen edo dagoeneko jarraitzen ari zara."
   email: Posta
@@ -831,7 +828,6 @@ eu:
   from: 'hemendik:'
   from_a_place: leku batekoa
   from_list: Zerrendakoa
-  from_this: honetatik
   from_photos: Argazkiena
   from_your_site_observations: "Honi buruzko oharrak: %{site_name}"
   from_licensed_site_observations: "Honi buruzko oharrak: %{site_name} lizentzia"
@@ -963,7 +959,6 @@ eu:
   is_not_following_anyone: Ez zara inor jarraitzen ari
   is_this_place_a_duplicate: Leku hau bikoiztuta al dago?
   join: Bat egin
-  join_and: Egin bat eta
   join_project: Proiektu honekin bat egin
   join_some_projects_and_invite_some_observations_html: "Egin bat zenbait <a href='%{join_url}'>proiekturekin</a> eta <a href='%{invite_url}'>sartu zenbait ohar</a>"
   join_this_project: gehitu behar duzu.
@@ -1407,7 +1402,6 @@ eu:
     original: jatorrizkoa
   photos_size_photos: "%{photos_size} argazkiak"
   photos_updated: Eguneratutako argazkiak.
-  pick_a_username: Erabiltzaile-izena aukeratu
   pink: arrosa
   place: Tokia
   place_added_to_inat_by: "%{site_name} webgunera gehitutako lekua, honek gehitua:"
@@ -2018,7 +2012,6 @@ eu:
   time_ago: "duela %{time}"
   title: izenburua
   titled_favorites_and_the_most_recent_additions: '"Gogokoenak" etiketatutakoak eta azken eransketak eremu honetan agertuko dira.'
-  to: honi
   to_add_comments: aipamenak gehitzeko.
   to_add_ids: identifikazioak gehitzeko
   to_configure_your_widget: zure widget-a konfiguratzeko.
@@ -2211,7 +2204,6 @@ eu:
   yes_reject_it: Bai, ukatu
   yes_show_this_in_the_box: Bai, erakutsi hau taxonen gaineko laukian
   yesterday: Atzo
-  yesterday_at: ', atzo, arratsaldeko lauretan'
   you: zu
   youre_a_site_curator_which_means: |
     Guneko administratzailea zara eta datuak kudeatzen laguntzeko eta orrialdeko edukia gainbegiratzeko zure burua eskaini duzula esan nahi du horrek. Ez sentitu horrek dakarren guztiarekin behartuta, baina zenbait eduki aldez aurretik berrikusteko denbora baldin baduzu, eskertuko dizugu. Zalantzarik baldin baduzu, aipamenik baduzu edo besterik gabe, jada administratzaile izan nahi ez baduzu, jarri gurekin harremanetan hemen:
@@ -2219,7 +2211,6 @@ eu:
   you_are_now_following_x: "Honi jarraitzen ari zara: %{friend_user}."
   you_are_already_a_member_of_this_project: "Dagoeneko proiektuko kidea zara!"
   you_are_no_longer_following_x: "Dagoeneko ez zara honi jarraitzen ari: %{friend}."
-  you_are_subscribed_to: "Hemen harpidetuta zaude:"
   you_arent_a_member_of_that_project: Ez zara proiektuko kidea.
   you_arent_following_that_person: "Ez zara pertsona horri jarraitzen ari."
   you_can_accept_invitations: Gonbidapena hemen onar dezakezu.
@@ -2493,8 +2484,11 @@ eu:
       6: Ol
       7: Lr
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%Y/%m/%d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%Y(e)ko %Bk %d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%b(e)ko %d'
     month_names:
       - 
@@ -2535,16 +2529,16 @@ eu:
         one: 1 urte baino gehiago
         other: '%{count} urte baino gehiago'
       x_days:
-        one: 1 egun
+        one: "1 egun"
         other: '%{count} egun'
       x_minutes:
-        one: 1 minutu
+        one: "1 minutu"
         other: '%{count} minutu'
       x_months:
-        one: 1 hilabete
+        one: "1 hilabete"
         other: '%{count} hilabete'
       x_seconds:
-        one: 1 segundo
+        one: "1 segundo"
         other: '%{count} segundo'
     prompts:
       day: Eguna
@@ -2576,7 +2570,7 @@ eu:
     template:
       body: 'Arazoak topatu dira eremu hauetan:'
       header:
-        one: Ezin izan da %{model} hau gorde, 1 errore topatu delako.
+        one: "Ezin izan da %{model} hau gorde, 1 errore topatu delako."
         other: 'Ezin izan da %{model} hau gorde, %{count} errore topatu direlako.'
   helpers:
     select:
@@ -2624,9 +2618,13 @@ eu:
   time:
     am: goiza
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d %b %Y %H:%M:%S %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%Y(e)ko %Bk %d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%Y/%m/%d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %b. %Y"
     pm: arratsaldea
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository

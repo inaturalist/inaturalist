@@ -91,8 +91,8 @@ el:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Σχετικά με μέσα ίδρυσης
   about_licenses: Σχετικά με άδειες
-  about_licensing: Σχετικά με αδειοδότηση
   about_muting: Σχετικά με τη σίγαση
+  #Header for a section describing taxon names
   about_names: Σχετικά με τα ονόματα
   about_places: Σχετικά με τους Τόπους
   about_the_cc_licenses: Σχετικά με τις άδειες Creative Commons
@@ -170,7 +170,6 @@ el:
   #"one" refers to a photo
   add_one_now: Προσθήκη ενός τώρα
   add_photos: Προσθήκη φωτογραφιών
-  add_photos_to_this_observation: Προσθήκη Φωτογραφιών σε αυτήν την Παρατήρηση
   add_place: Προσθήκη Τόπου
   add_plant_phenology_budding_annotation: 'Προσθήκη ένδειξης "Φαινολογία Φυτού: Βλάστηση"'
   add_plant_phenology_flowering_annotation: 'Προσθήκη ένδειξης "Φαινολογία Φυτού: Ανθισμένο"'
@@ -343,9 +342,6 @@ el:
   amphibians: Αμφίβια
   and: και
   and_other_taxa: "&amp; Άλλα Taxa"
-  and_x_more_people!:
-    one: "και 1 ακόμα άτομο!"
-    other: "και %{count} ακόμα άτομα!"
   android: Ανδροειδές
   animals: Ζώα
   annotation: Ένδειξη
@@ -576,7 +572,6 @@ el:
   choose_tags: Επιλογή ετικετών
   choose_taxon: Επιλογή taxon
   choose_what_kind_of_change_youre_creating: "Επιλογή του είδους της αλλαγής που δημιουργείτε."
-  choose_your_username: Επιλογή του ονόματος χρήστη σας
   classification: Ταξινόμηση
   clear: Εκκαθάριση
   clear_color_filters: Εκκαθάριση φίλτρων χρωμάτων
@@ -858,7 +853,6 @@ el:
   editing_taxon_name: Επεξεργασία ονομασίας taxon
   editing_taxon_range: Επεξεργασία κατανομής taxon
   editors: Συντάκτες
-  eg: 'π.χ.'
   either: Είτε
   either_that_user_doesnt_exist_or: "Είτε αυτός ο χρήστης δεν υπάρχει ή ήδη τον ακολουθείτε."
   eligible_for_research_grade: Επιλέξιμο για Ερευνητικό Επίπεδο
@@ -993,7 +987,6 @@ el:
   from_eol_collection: Απο την συλλογή της EOL
   from_flickr_facebook_etc: Από το Flickr, Facebook, κτλ.
   from_list: από τη λίστα
-  from_this: από αυτό
   from_photos: από φωτογραφίες
   from_place: Από τόπο
   from_soundcloud: Από το Soundcloud
@@ -1132,7 +1125,6 @@ el:
   is_this_place_a_duplicate: Αυτός ο τόπος είναι διπλότυπος;
   it_can_now_be_used_for_research: Τώρα μπορεί να χρησιμοποιηθεί για έρευνα και να προβληθεί σε άλλες ιστοσελίδες
   join: μπείτε
-  join_and: μπείτε και
   join_project: Γίνετε μέλος σε αυτό το πρότζεκτ
   join_some_projects_and_invite_some_observations_html: "Γίνετε μέλος σε <a href='%{join_url}'>πρότζεκτ</a> και <a href='%{invite_url}'>προσκαλέστε μερικές παρατηρήσεις</a>"
   join_this_project: Γίνετε μέλος σε αυτό το πρότζεκτ
@@ -1700,6 +1692,9 @@ el:
   people_user_follows: "Πρόσωπα που ο/η %{user} ακολουθεί"
   people_added:
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: προστέθηκε ένα <strong>ID</strong> σε μια %{observation_link} από %{user_link}
   per_day: Ανά ημέρα
   per_month: Ανά μήνα
@@ -1727,7 +1722,6 @@ el:
     original: πρωτότυπο
   photos_size_photos: "%{photos_size} φωτογραφίες"
   photos_updated: Οι φωτογραφίες ενημερώθηκαν
-  pick_a_username: Επιλέξτε ένα όνομα χρήστη
   pink: Ροζ
   place: Τόπος
   place_added_to_inat_by: "Ο τόπος προστέθηκε στο %{site_name} από την/τον"
@@ -2526,7 +2520,6 @@ el:
   time_ago: "πρίν από %{time}"
   title: Τίτλος
   title_and_description: "Τίτλος και περιγραφή"
-  to: προς
   to_recipient: προς
   today: Σήμερα
   tools: Εργαλεία
@@ -2930,6 +2923,7 @@ el:
       6: Πα
       7: Σα
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d-%m-%Y'
     month_names:
       - 
@@ -2967,16 +2961,16 @@ el:
         one: λιγότερο από 1 δευτερόλεπτο
         other: λιγότερο από %{count} δευτερόλεπτα
       x_days:
-        one: 1 ημέρα
+        one: "1 ημέρα"
         other: '%{count} ημέρες'
       x_minutes:
-        one: 1 λεπτό
+        one: "1 λεπτό"
         other: '%{count} λεπτά'
       x_months:
-        one: 1 μήνας
+        one: "1 μήνας"
         other: '%{count} μήνες'
       x_seconds:
-        one: 1 δευτερόλεπτο
+        one: "1 δευτερόλεπτο"
         other: '%{count} δευτερόλεπτα'
     countdown_x_days:
       one: ημέρα)
@@ -3158,9 +3152,6 @@ el:
               contains_too_many_observations: περιλαμβάνει πάρα πολλές παρατηρήσεις για εισαγωγή
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Το πρότζεκτ δεν επιτρέπει παρατηρήσεις
             user_id:
               must_be_curator: πρέπει να είστε επιμελητής αυτού του πρότζεκτ
             observation_id:

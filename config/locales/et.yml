@@ -17,6 +17,10 @@ et:
   x_identifications_:
     one: '1 määratlus'
     other: '%{count} määratlust'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    one: '<span class="count">1</span> määratleja'
+    other: '<span class="count">%{count}</span> määratlejat'
   x_journal_posts_html:
     one: '<span class="count">1</span> päevikukanne'
     other: '<span class="count">%{count}</span> päevikukannet'
@@ -44,6 +48,9 @@ et:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> kontrollitud vaatlus"
     other: "<span class='count'>%{count}</span> kontrollitud vaatlust"
+  x_observers_html:
+    one: '<span class="count">1</span> vaatleja'
+    other: '<span class="count">%{count}</span> vaatlejat'
   x_others:
     one: "1 muu"
     other: "%{count} muud"
@@ -104,8 +111,8 @@ et:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Asustamismeetodist
   about_licenses: Litsentsidest
-  about_licensing: Litsenseerimisest
   about_muting: Väljalülitamisest
+  #Header for a section describing taxon names
   about_names: Nimedest
   about_places: Kohtadest
   about_the_cc_licenses: Creative Commons litsentsidest
@@ -189,7 +196,6 @@ et:
   #"one" refers to a photo
   add_one_now: Lisa
   add_photos: Lisa fotod
-  add_photos_to_this_observation: Lisa selle vaatluse kohta käivad fotod
   add_place: Lisa koht
   add_plant_phenology_budding_annotation: 'Lisa märge "Taime fenoloogia: võrsuv" (Plant Phenology: Budding)'
   add_plant_phenology_flowering_annotation: 'Lisa märge "Taime fenoloogia: õitsev" (Plant Phenology: Flowering)'
@@ -372,9 +378,7 @@ et:
   amphibians: kahepaiksed
   and: ja
   and_other_taxa: "&amp; Muud taksonid"
-  and_x_more_people!:
-    one: "ja veel 1 isik!"
-    other: "ja veel %{count} inimest!"
+  android: Android
   animals: Loomad
   annotation: Märge
   annotations: Märked
@@ -450,6 +454,7 @@ et:
   attribution: Omistus
   authority_list:
     iucn_red_list: IUCNi punane nimestik
+    cites: CITES
   authorize: Luba
   authorize_permissions_from_provider: "Autoriseeri lehe %{provider} õigused"
   automatic_short: Automaatne
@@ -638,7 +643,6 @@ et:
   choose_tags: Vali märksõnad
   choose_taxon: Vali takson
   choose_what_kind_of_change_youre_creating: "Vali, mis tüüpi muutust sa teha kavatsed."
-  choose_your_username: Vali oma kasutajatunnus
   cid_d_to_genus: Kogukondlikult määratud liigid
   citation: Viide
   classification: Klassifikatsioon
@@ -795,6 +799,7 @@ et:
   creative_commons_unless_otherwise_noted: "Kui teisiti pole määratletud, kehtib Creative Commons litsents."
   critically_endangered: Kriitlises hävimisohus
   css_description: See lisatakse lehele peale ülejäänud css-stiili.
+  csv: CSV
   csv_file: CSV-fail
   csv_should_not_contain_a_header_row: CSV ei tohiks sisaldada päiserida
   cumulative_ids: "Kokku määratlusi: %{count}/%{total}"
@@ -919,6 +924,9 @@ et:
   doesnt_have_default_photo: vaikimisi foto puudub.
   doh_something_went_wrong: Oi-oi, miski läks valesti.
   doh_something_went_wrong_error: "Hmm, miski läks valesti: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: ANNETA
   done: Lisa
   dont_have_an_account_sign_up_html: Ei ole kontot? <strong>Registreeru.</strong>
   dont_send_me_email: "Ära saada mulle e-kirju!"
@@ -997,7 +1005,6 @@ et:
   editing_this: Muudan elementi %{elem}
   editing_x_in_y: "Muudan %{x}/%{y}"
   editors: Toimetajad
-  eg: 'nt'
   either: Emb-kumb
   either_that_user_doesnt_exist_or: "Kas kasutajat ei eksisteeri või sa juba jälgid teda."
   eligible_for_research_grade: Taduskõlbulikuks sobiv
@@ -1060,6 +1067,7 @@ et:
   extinct_in_the_wild: Looduses väljasurnud
   extra_properties: Lisaomadused
   evidence_of_organism: Tõendid organismi kohta
+  facebook: Facebook
   facebook_account_information: Sinu Facebooki konto info
   facebook_account_not_linked: "Kasutaja %{user} on lõpetanud seose oma Facebooki kontoga ning seetõttu ei oma %{site_name} sellele fotole enam ligipääsuõigust."
   facebook_access_token_expired: "Ligipääs on aegunud. %{user} peab uuesti looma ühenduse oma Facebooki kontoga."
@@ -1178,7 +1186,6 @@ et:
   from_eol_collection: EOL-i kollektsioonist
   from_flickr_facebook_etc: Lehtedelt Flickr, Facebook, jms.
   from_list: Nimekirjadest
-  from_this: sellest
   from_photos: Fotodest
   from_place: Kohast
   from_soundcloud: SoundCloudist
@@ -1209,6 +1216,7 @@ et:
   go_back: Tagasi
   going_to_your_observations: Lähen sinu vaatluste juurde...
   good_choice_for_sharing: Teadlastega jagamiseks hea valik
+  google: Google
   got_it!: Selge!
   got_your_data_somewhere_else?: Kas sinu andmed on kusagil mujal? Me saame aidata.
   graft: Poogi
@@ -1245,6 +1253,7 @@ et:
   help: Abi
   help_confirm_observations!: Aita vaatlusi kinnitada!
   help_support_inaturalist: "Toeta iNaturalisti"
+  help_translate!: Aita tõlkida!
   helped_the_observer_make: aitasid vaatlejat tema lõpliku määratlusega (st need tehti enne lõpliku määratlust ja kattusid sellega)
   here_are_3_examples: Siin on kolm korrektsete andmete näidist
   here_are_our_top_species_suggestions: Meie parimad liigipakumised
@@ -1360,6 +1369,7 @@ et:
   #Type of project where people can only join after they have been invited
   inviteonly: vaid kutsututele
   invited_x: "Kutsus objekti %{x}"
+  iphone: iPhone
   is_not_following_anyone: ei jälgi kedagi.
   is_now: on nüüd
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Kas on piisavalt tõendeid, et saab kinnitada määramist taksonisse %{taxon}?
@@ -1370,7 +1380,6 @@ et:
     See märgiti rämpspostiks ja pole enam avalikult nähtav. Sina näed seda, kuna oled selle loonud kasutaja või lehe kuraator. Kui sa arvad, et tegu on eksitusega, võta meiega palun <a href="mailto:%{help_email}" class="contact">ühendust</a>.
     <a href="%{manage_flags_path}">Halda märkuseid</a>
   join: Liitu
-  join_and: Liitu ja
   join_project: Liitu selle projektiga
   join_some_projects_and_invite_some_observations_html: "Liitu mõne <a href='%{join_url}'>projektiga</a> ja<a href='%{invite_url}'>kutsu neisse vaatlusi</a>"
   join_the_largest_group_of_naturalists_in_the_world: Liitu maailma suurima loodusloolaste grupiga!
@@ -1502,6 +1511,7 @@ et:
   linked_flickr_automatically: "Pea lisaks meeles, et kui sa sisened lehele %{site_name} Flickr konto abil, ühendame me automaatsel need kontod omavahel uuesti. Näib mõistlik, et kui kasutad Flickrit, soovid sa ka vajadusel importida Flickris olevaid fotosid."
   linked_flickr_description: "Ühendades lehe %{site_name} konto Flickri omaga saad lisada vaatlustele mitu fotot korraga. Kui tahad kunagi kahte kontot omavahel lahti ühendada, siis me loomulikult ei takista sind, kuid sellisel juhul ei saa sa fotosid lisada. Mõnikord võib see olla parim lahendus, näiteks kui lood uue Flickr konto ning soovid hoopis seda lehe %{site_name} kontoga ühendada."
   linked_flickr_password_html: "<strong>Me ei küsi sinult kunagi su Flickri salasõna</strong> (kuid Flickr võib seda teha: kontrolli internetiaadressit, millele see nupp sind saadab, ja veendu, et tegemist oleks Flickr.com-iga)."
+  linkedin: LinkedIn
   list: Nimekiri
   list_deleted: Loend kustutatud.
   list_saved: Nimekiri salvestatud.
@@ -1700,6 +1710,7 @@ et:
   more_journal_posts: Veel päevikukandeid
   more_observations: Veel vaatluseid
   more_photos: Veel fotosid
+  more_than_a_week_ago: Rohkem kui nädal tagasi
   most_agree: enamik nõustub
   most_browser_print_pdf: "NB: enamikus brauserites on PDF-i printimine võimalik"
   most_disagree: enamik ei nõustu
@@ -2063,6 +2074,7 @@ et:
   open: avalik
   open_: Avalik
   open_description: "Kõik näevad koordinaate kui takson pole ohustatud."
+  open_street_map: OpenStreetMap
   optional: valikuline
   optional_columns_note_for_any: "Valikulised tulbad (nb: selleks, et neid tulpasid vaatluse juures kasutada saaks, peavad nad kõik olemas olema)"
   or: või
@@ -2106,9 +2118,18 @@ et:
   people_following_user: "Kasutaja %{user} jälgijad"
   people_user_follows: "Kasutaja %{user} jälgitavad"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: lisas %{observation_link} taksonist %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: lisas kasutaja %{user_link} %{observation_link} <strong>määratluse</strong>
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: lisas <strong>määratluse</strong>
     post: tegi %{post_link}
     comment:
@@ -2144,7 +2165,6 @@ et:
     original: algne
   photos_size_photos: "%{photos_size} fotot"
   photos_updated: Fotod värskendatud.
-  pick_a_username: Vali kasutajatunnus
   pin_verb: Säilita
   pink: roosa
   pinned_locations_desc: |
@@ -2637,6 +2657,7 @@ et:
     one_to_many: üks-mitmele
     not_external: mitte ülem
     not_internal: mitte alam
+    error: viga
   relationship_html: "Suhe: %{link}"
   reload_from_observations: Lae vaatlustest uuesti
   reload_timed_out: 'Uuesti laadimine võttis liiga kaua. Proovi hiljem uuesti.'
@@ -2905,6 +2926,7 @@ et:
   source_wikipedia: "Allikas: Wikipedia"
   source_list_: "Allikate loend"
   source_list:
+    inaturalist: iNaturalist
     new_zeland_organisms_register: Uus-Meremaa Organismide Register
     nzbrn_birds: NZBRN linnud
     nzbrn_fungi: NZBRN seened
@@ -3276,6 +3298,7 @@ et:
   trust_this_person_with_your_private_coordinates: Usalda sellele isikule oma peidetud koordinaadid
   trust_with_private_coordinates: Usalda peidetud koordinaatidega
   try_adding_species_form: Proovi lisada sellel lehel oleva vormiga liike.
+  twitter: Twitter
   two_thirds: 2/3
   type: Tüüp
   type_authority: Tüübi allikas...
@@ -3362,6 +3385,9 @@ et:
   use_unique_file_names_for_separate_uploads: Kasuta erinevate üleslaaditavate failide puhul unikaalseid nimesid
   use_well_formed_csv: |
     Kasuta korralikult koostatus CSV-faile. See tähendab, et komasid sisaldav tekst peab olema topelt jutumärkide sees. Enamik tabeltöötlusprogramme peaks CSV-d niimodi eksportima.
+  used_x_times:
+    one: Kasutatud 1 kord
+    other: Kasutatud %{count} korda
   user: Kasutaja
   user_added_a_x: "%{user} lisas %{x}"
   user_added_a_x_to_noun_by_html: "Kasutaja %{user} lisas %{x} asjale %{noun}, mille on loonud %{by}"
@@ -3540,6 +3566,8 @@ et:
   widget: Tööriist
   widget_code: Tööriista kood
   widget_for: Tööriist
+  wikipedia_attribution_cc_by_sa_3: |
+    Allikas: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_entry: Wikipedia artikkel
   with: koos
   withdraw: Võta tagasi
@@ -3583,7 +3611,6 @@ et:
   yes_reject_it: Jah, lükka tagasi
   yes_show_this_in_the_box: Jah, näita seda taksoni päises olevas suures kastis
   yesterday: Eile
-  yesterday_at: ', eile kell 4'
   you: sina
   you_: Sina
   you_appear_offline_try_again: |
@@ -3603,7 +3630,6 @@ et:
     Lisad vaatluseid ilma fotode ja taksoni nimedeta. Nende vaatluste täpne määratlemine saab olema väga keeruline, mistõttu pole need vaatlusotsingutes vaikimisi nähtavad.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Lisad vaatluseid ilma kuupäevade või asukohtadeta. Ilma selle infota vaatluseid on sageli võimatu määratleda ning seetõttu pole nad vaikimisi vaatlusotsingutes nähtavad.
-  you_are_subscribed_to: "Jäligd"
   you_arent_a_member_of_that_project: Sa pole selle projekti liige.
   you_arent_following_that_person: "Sa ei jälgi seda kasutajat."
   you_can_accept_invitations: Saad kutse vastu võtta siin
@@ -3635,6 +3661,7 @@ et:
   you_faved_this: Määrasid lemmikuks!
   you_have_left_x_project: "Lahkusid projektist %{project}"
   you_havent_linked_your_inaturalist_google_account: "Sa ei ole oma lehe %{site_name} kontot ja Google kontot veel ühendanud"
+  you_havent_joined_any_projects: Sa pole liitunud ühegi projektiga
   you_joined_this_project: Ühinesid projektiga!
   you_must_be_a_member_of_this_project_to_do_that: Pead selleks olema antud projekti liige
   you_must_choose_an_observation_field: Pead valima vaatlusvälja
@@ -3663,9 +3690,6 @@ et:
   your_account_has_been_verified: "Sinu %{site_name} konto on kinnitatud! Palun logi jätkamiseks sisse."
   your_activation_code_was_missing: "Me ei leidnud sinu aktiveerimiskoodi. Palun kasuta e-kirjas olnud linki."
   your_browser_does_not_support_the_audio_element: Sinu brauser ei toeta audio elementi.
-  your_coarser_id: |
-    Sinu taksoni <span class='taxon'>%{coarser_taxon_name}</span> ebatäpsem määratlus tähendab, et sa ei ole nõus olemasoleva täpsema määratlusega <span class='taxon'>%{finer_taxon_name}</span>. Soovid sa seda tõesti teha?<br><br>
-    <a href='/pages/getting+started' target='_blank'>Loe täpselt, kuidas määratlemine käib &raquo;</a>
   your_comment_was_saved: Sisu salvestati
   your_content: Sinu sisu
   your_contributions_to_project: "Sinu panus projekti %{project_title}"
@@ -3935,6 +3959,10 @@ et:
       show:
         project_list_desc: |
           Projekti nimekirjades on projekti kuraatorite poolt lisatud taksonid ning taksonid, mis on seotud projektile lisatud teaduskõlbulike vaatlustega.
+    messages:
+      from: Kellelt
+      to: Kellele
+      subject: Teema
     observations:
       community_id:
         agreement: Leping
@@ -4715,10 +4743,15 @@ et:
       6: R
       7: L
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d-%m-%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d. %B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d. %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%d. %b %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%d. %B %Y'
     month_names:
       - 
@@ -4759,16 +4792,16 @@ et:
         one: üle 1 aasta
         other: üle %{count} aasta
       x_days:
-        one: 1 päev
+        one: "1 päev"
         other: '%{count} päeva'
       x_minutes:
-        one: 1 minut
+        one: "1 minut"
         other: '%{count} minutit'
       x_months:
-        one: 1 kuu
+        one: "1 kuu"
         other: '%{count} kuud'
       x_seconds:
-        one: 1 sekund
+        one: "1 sekund"
         other: '%{count} sekundit'
     countdown_x_days:
       one: päev
@@ -4818,7 +4851,7 @@ et:
     template:
       body: 'Järgmiste väljadega oli probleeme:'
       header:
-        one: '1 viga ei lubanud salvestada: %{model}'
+        one: "1 viga ei lubanud salvestada: %{model}"
         other: '%{count} viga ei lubanud salvestada: %{model}'
   helpers:
     defaults:
@@ -4846,6 +4879,10 @@ et:
           byte:
             one: bait
             other: baiti
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
       last_word_connector: ', ja'
@@ -4854,12 +4891,19 @@ et:
   time:
     am: ennelõunat
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d. %b %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d. %B %Y %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d. %b %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       observed_at: '%H:%M %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%d. %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d. %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       hours: "%H:%M"
     pm: pealelõunat
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
@@ -4992,6 +5036,20 @@ et:
         place_id: Koht
         preferred_observation_fields_by: Luba vaatlusvälju
     errors:
+      messages:
+        empty: ei saa olla tühi
+        equal_to: peab olema võrdne numbriga %{count}
+        even: peab olema paarisarv
+        exclusion: on reserveeritud
+        greater_than: peab olema suurem kui %{count}
+        greater_than_or_equal_to: peab olema suurem või võrdne kui %{count}
+        inclusion: pole nimekirjas
+        invalid: pole sobilik
+        less_than: peab olema väiksem kui %{count}
+        less_than_or_equal_to: peab olema väiksem või võrdne kui %{count}
+        not_an_integer: peab olema täisarv
+        odd: peab olema paaritu
+        record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
       models:
         guide:
           attributes:
@@ -5005,6 +5063,10 @@ et:
           attributes:
             base:
               api_key_in_use: "API võti importimisel või importimisjärjekorras"
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: "koordinaadid ei tohi olla 0,0"
         observation_field_value:
           attributes:
             value:
@@ -5019,6 +5081,7 @@ et:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: on muutmiseks liiga suur
               is_too_large_to_import: on impordiks liiga suur
               contains_too_many_observations: sisaldab impordiks liiga palju vaatluseid
         post:
@@ -5028,9 +5091,6 @@ et:
                 peab postitamiseks olema kasutajaks registreerunud vähemalt 24 tundi tagasi. Palju rämpspostitajad proovivad ennast kasutajaks registreerida ja see on üks moodus nendega toimetulekuks. Saad mustandi salvestada ja kui sa lehte päeva pärast ikka veel kasutad, saad ka postitada.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                Projekt ei luba vaatluseid
             user_id:
               must_be_curator: peab olema selle projekti kuraator
             observation_id:

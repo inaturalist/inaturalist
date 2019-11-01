@@ -71,8 +71,8 @@ zh-CN:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: 关于确立意思
   about_licenses: 关于许可协议
-  about_licensing: 关于许可协议
   about_muting: 关于禁言
+  #Header for a section describing taxon names
   about_names: 关于名称
   about_places: 关于地点
   about_the_cc_licenses: 关于知识共享许可协议
@@ -153,7 +153,6 @@ zh-CN:
   #"one" refers to a photo
   add_one_now: 现在添加一个
   add_photos: 添加照片
-  add_photos_to_this_observation: 添加照片至此观察
   add_place: 添加地点
   add_plant_phenology_budding_annotation: '添加“植物物候学：发芽”注释'
   add_plant_phenology_flowering_annotation: '添加“植物物候学：开花”注释'
@@ -319,8 +318,6 @@ zh-CN:
   amphibians: 两栖动物
   and: 和
   and_other_taxa: "&amp; 其他分类"
-  and_x_more_people!:
-    other: "以及其他 %{count} 个人！"
   android: 安卓
   animals: 动物
   annotation: 注解
@@ -575,7 +572,6 @@ zh-CN:
   choose_tags: 选择标签
   choose_taxon: 选择一个分类单元
   choose_what_kind_of_change_youre_creating: "选择您正在创建什么类型的更新。"
-  choose_your_username: 选择您的用户名
   cid_d_to_genus: CID'd至类
   citation: 引用
   classification: 分类
@@ -920,7 +916,6 @@ zh-CN:
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
   editors: 编辑者
-  eg: '例如：'
   either: 任一
   either_that_user_doesnt_exist_or: "不存在这一用户或您已经在关注。"
   eligible_for_research_grade: 符合研究级资格
@@ -1093,7 +1088,6 @@ zh-CN:
   from_eol_collection: 来自EOL收藏
   from_flickr_facebook_etc: 来自Flickr、Facebook等
   from_list: 来自列表
-  from_this: 来自此
   from_photos: 来自照片
   from_place: 来自地方
   from_soundcloud: 来自Soundcloud
@@ -1271,7 +1265,6 @@ zh-CN:
     这已被标记为垃圾邮件，不再公开可见。你可以看到它，因为你是创建者，或者你是站点馆长。 如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。
     <a href="%{manage_flags_path}">管理标签</a>
   join: 加入
-  join_and: 加入并
   join_project: 加入这个项目
   join_some_projects_and_invite_some_observations_html: "加入一些<a href='%{join_url}'>项目</a>，并<a href='%{invite_url}'>邀请一些观察</a>"
   join_this_project: 加入这个项目
@@ -1985,9 +1978,18 @@ zh-CN:
   people_following_user: "关注 %{user} 的人"
   people_user_follows: "%{user} 关注的人"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: 已添加 @vow_or_con{vow:an|a} %{taxon_link} 的 %{observation_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: 已由%{user_link}将<strong>ID</strong>加入至一个%{observation_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: 添加了一个<strong>ID</strong>
     post: 制作了一个%{post_link}
     comment:
@@ -2022,7 +2024,6 @@ zh-CN:
     original: 原始
   photos_size_photos: "%{photos_size} 张照片"
   photos_updated: 照片已更新。
-  pick_a_username: 选择用户名
   pink: 粉色
   pinned_locations_desc: |
     将坐标、精度、地理定位和局部注释结合起来以供以后使用。
@@ -2990,7 +2991,6 @@ zh-CN:
   title: 标题
   title_and_description: "标题和描述"
   titled_favorites_and_the_most_recent_additions: 标题为“收藏夹”，最新添加的内容将出现在此空间中。
-  to: 到
   to_add_comments: 要添加评论
   to_add_ids: 要添加ID
   to_configure_your_widget: 配置您的小部件。
@@ -3308,7 +3308,6 @@ zh-CN:
   yes_reject_it: 好的，拒绝它
   yes_show_this_in_the_box: 是的，它会在/taxa顶部的大框中显示
   yesterday: 昨天
-  yesterday_at: '，昨天在下午4点'
   you: 您
   you_: 您
   you_appear_offline_try_again: |
@@ -3329,7 +3328,6 @@ zh-CN:
     这些观察将很难被准确识别。
   you_are_submitting_obs_with_no_date_or_no_location: |
     您正在提交没有日期或位置的观察。
-  you_are_subscribed_to: "您已订阅至"
   you_arent_a_member_of_that_project: 您不是那个项目的成员。
   you_arent_following_that_person: "您尚未关注那个人。"
   you_can_accept_invitations: 您可以在这里接受邀请
@@ -3386,8 +3384,6 @@ zh-CN:
   your_account_has_been_verified: "您的%{site_name}账号已通过验证！请登录以继续操作。"
   your_activation_code_was_missing: "找不到您的激活码。请使用您邮箱中的URL链接。"
   your_browser_does_not_support_the_audio_element: 您的浏览器不支持音频元素。
-  your_coarser_id: |
-    您的粗略ID<span class ='taxon'>%{coarser_taxon_name}</span>意味着您不同意<span class ='taxon'>%{finer_taxon_name}</span>的现有更精细ID。您确定要如此吗？<br><br><a href='/pages/getting+started'target='_blank'>了解有关标识如何工作的详情&raquo;</a>
   your_comment_was_saved: 您的内容已保存
   your_content: 您的内容
   your_contributions_to_project: "您对%{project_title}的贡献"
@@ -4388,10 +4384,15 @@ zh-CN:
       6: 五
       7: 六
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%Y年%B%d日'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%b%d日'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%Y %b %d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_year: '%Y年%B'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%B%d日%Y年'
     month_names:
       - 
@@ -4519,11 +4520,17 @@ zh-CN:
   time:
     am: 上午
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%Y年%b%d日 %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%Y年%d%B日 %I:%M %p'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%b%d日 %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%Y年%B%d日"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%Y年%B%d日"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       hours: "%I:%M %p"
     pm: 下午
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
@@ -4689,9 +4696,6 @@ zh-CN:
                 必须已经注册超过24小时才能发布。我们有大量的破坏者，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                项目不允许观察
             user_id:
               must_be_curator: 必须是此项目的馆长
             observation_id:

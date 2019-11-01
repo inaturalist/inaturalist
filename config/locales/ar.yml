@@ -21,8 +21,8 @@ ar:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: حول وسائل الإنشاء
   about_licenses: عن الرخصة
-  about_licensing: عن الترخيص
   about_muting: حول التجاهل
+  #Header for a section describing taxon names
   about_names: حول الأسماء
   about_places: عن الأماكن
   about_the_cc_licenses: عن رخص المشاع الإبداعي
@@ -107,7 +107,6 @@ ar:
   #"one" refers to a photo
   add_one_now: إضافة واحد الآن
   add_photos: أضف صورًا
-  add_photos_to_this_observation: إضافة صور إلى هذه الملاحظة
   add_place: أضف مكانا
   add_plant_phenology_budding_annotation: 'إضافة شرح "الفينولوجيا النباتي: التبرعم"'
   add_plant_phenology_flowering_annotation: 'إضافة شرح "الفينولوجيا النباتي: الإزهار"'
@@ -528,7 +527,6 @@ ar:
   choose_tags: اختر العلامات
   choose_taxon: اختر أصنوفة
   choose_what_kind_of_change_youre_creating: "اختر نوع التغيير الذي تنشئه."
-  choose_your_username: اختر اسم المستخدم الخاص بك
   cid_d_to_genus: CID'd إلى الجنس
   citation: اقتباس
   classification: تصنيف
@@ -910,7 +908,6 @@ ar:
   editing_this: تعديل %{elem}
   editing_x_in_y: "تعديل %{x} في %{y}"
   editors: المحررون
-  eg: 'على سبيل المثال'
   either: إما
   either_that_user_doesnt_exist_or: "إما أن هذا المستخدم غير موجود أو أنك تتبعه بالفعل."
   eligible_for_research_grade: مؤهل للحصول على درجة البحث
@@ -1109,7 +1106,6 @@ ar:
   from_eol_collection: من مجموعة موسوعة الحياة
   from_flickr_facebook_etc: من فليكر، فيسبوك، إلخ.
   from_list: من قائمة
-  from_this: من هذا
   from_photos: من الصور
   from_place: من مكان
   from_soundcloud: من ساوند كلاود
@@ -1326,7 +1322,6 @@ ar:
     <a href="mailto:%{help_email}" class="contact">الاتصال بنا</a>.
     <a href="%{manage_flags_path}">إدارة الأعلام</a>
   join: انضم
-  join_and: انضم و
   join_project: انضم إلى هذا المشروع
   join_some_projects_and_invite_some_observations_html: "انضم إلى بعض <a href='%{join_url}'>المشاريع</a> و<a href='%{invite_url}'>ادعُ بعض الملاحظات</a>"
   join_the_largest_group_of_naturalists_in_the_world: انضم إلى أكبر مجموعة من علماء الطبيعة في العالم!
@@ -2115,9 +2110,18 @@ ar:
   people_following_user: "الأشخاص الذين يتابعون %{user}"
   people_user_follows: "أشخاص يتابعهم %{user}"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation of a Human
     observation: أضاف %{observation_link} @vow_or_con{vow:an|a} %{taxon_link}
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: أُضِيف <strong>معرف</strong> إلى %{observation_link} بواسطة %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
       without_observation: أُضِيف <strong>معرف</strong>
     post: صنع %{post_link}
     comment:
@@ -2168,7 +2172,6 @@ ar:
   pi_consent_child_label: |
     أوافق على السماح لإيناتوراليست بتخزين ومعالجة أنواع محدودة من
     المعلومات الشخصية حول طفلي من أجل إدارة حساب طفلي
-  pick_a_username: اختر اسم مستخدم
   pin_verb: تثبيت
   pink: زهري
   pinned_locations_desc: |
@@ -3382,7 +3385,6 @@ ar:
   title: العنوان
   title_and_description: "العنوان والوصف"
   titled_favorites_and_the_most_recent_additions: بعنوان "المفضلة" وستظهر أحدث الإضافات في هذه المساحة.
-  to: إلى
   to_add_comments: لإضافة تعليقات
   to_add_ids: لإضافة معرفات
   to_configure_your_widget: لتكوين أداتك.
@@ -3758,7 +3760,6 @@ ar:
   yes_reject_it: نعم، ارفض ذلك
   yes_show_this_in_the_box: نعم، إظهار هذا في مربع كبير في الجزء العلوي من / الأصناف
   yesterday: أمس
-  yesterday_at: '، أمس في 04:00 م'
   you: أنت
   you_: أنت
   you_appear_offline_try_again: |
@@ -3788,7 +3789,6 @@ ar:
     أنت تقدم ملاحظات بدون تواريخ أو مواقع، غالبا 
     ما يتعذر تحديد الملاحظات بدون هذه المعلومات ولن تكون 
     مرئية افتراضيا في عمليات البحث عن الملاحظات.
-  you_are_subscribed_to: "أنت مشترك في"
   you_arent_a_member_of_that_project: أنت لست عضوا في هذا المشروع.
   you_arent_following_that_person: "أنت لا تتابع ذلك الشخص."
   you_can_accept_invitations: يمكنك قبول الدعوة هنا
@@ -3852,11 +3852,6 @@ ar:
   your_account_has_been_verified: "تم التحقق من حسابك في %{site_name}! من فضلك سجل دخولك للمتابعة."
   your_activation_code_was_missing: "رمز التنشيط مفقود; يُرجَى اتباع المسار من بريدك الإلكتروني."
   your_browser_does_not_support_the_audio_element: متصفحك لا يدعم عنصر الصوت.
-  your_coarser_id: |
-    يشير معرفك الخشن الخاص ب<span class='taxon'>%{coarser_taxon_name}</span> إلى عدم
-    موافقتك على معرف 
-    <span class='taxon'>%{finer_taxon_name}</span> الموجود، هل هذا ما تريد فعله؟<br><br>
-    <a href='/pages/getting+started' target='_blank'>اعرف المزيد من المعلومات حول كيفية عمل الهويات&raquo;</a>
   your_comment_was_saved: تم حفظ محتواك
   your_content: محتواك
   your_contributions_to_project: "مساهماتك في %{project_title}"
@@ -4662,6 +4657,7 @@ ar:
         <li>ضع في اعتبارك أن حقول الملاحظة يمكن استخدامها لملاحظات أية أصنوفة; لذا حاول عدم استخدام المصطلحات الخاصة بالأصناف</li>
         <li>لا تحذف الحقول التي يستخدمها الأشخاص</li>
         <li>لا تترجم الأسماء الحالي للحقول إلى لغات مختلفة; الإنجليزية لغة مشتركة لهذا الموقع، إذا كنت تريد حقا حقلا يجسد نفس المفهوم ولكن بلغة مختلفة، يُرجَى صنع حقل ملاحظة جديد.</li>
+        </ol>
       dna_help: |
         لتمكين وظيفة مطابقة الرمز الشريطي لـBOLD DNA  الباركود; تأكد من أن
         اسم حقلك يتضمن الكلمات "COI" أو "COX1" أو "ITS"، 
@@ -5919,9 +5915,13 @@ ar:
       6: جم
       7: سب
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%س-%ش-%ي'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%ش %ي، %س'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%ش %ي'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%ش %ي، %س'
     month_names:
       - 
@@ -6225,9 +6225,6 @@ ar:
                 تستخدم الموقع في يوم واحد، فستتمكن من النشر.
         project_observation:
           attributes:
-            base:
-              project_does_not_allow_observations: |
-                المشروع لا يسمح بالملاحظات
             user_id:
               must_be_curator: يجب أن تكون أمينا لهذا المشروع
             observation_id:

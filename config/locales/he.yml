@@ -36,8 +36,8 @@ he:
   about_conservation_status: אודות סטטוס שימור
   about_editing_observation_fields: אודות עריכה שדות תצפית
   about_licenses: אודות רישיונות
-  about_licensing: אודות רישוי
   about_muting: אודות השתקה
+  #Header for a section describing taxon names
   about_names: אודות שמות
   about_places: אודות מקומות
   about_the_cc_licenses: אודות רישיון Creative Commons
@@ -78,6 +78,7 @@ he:
   add_an_observation: הוספת תצפית
   add_an_observation?: להוסיף תצפית?
   add_an_observation_of: "הוספת תצפית של %{taxon}"
+  add_an_observation_to_project_html: הוספת תצפית ל%{project}
   add_annotations_for_x: הופסת תווית עבור "%{x}"
   add_annotations_for_controlled_attribute:
     sex: הוספת תווית ל"זוויג"
@@ -120,7 +121,6 @@ he:
   #"one" refers to a photo
   add_one_now: הוסף אחד עכשיו
   add_photos: הוספת תמונות
-  add_photos_to_this_observation: הוספת תמונות לתצפית זו
   add_place: הוספת מקום
   add_plant_phenology_budding_annotation: 'הוספת תווית "פנולוגיית צומח: ניצן"'
   add_plant_phenology_flowering_annotation: 'הוספת תווית "פנולוגיית צומח: פריחה"'
@@ -516,7 +516,6 @@ he:
   choose_tags: נא לבחור תגיות
   choose_taxon: נא לבחור טקסון
   choose_what_kind_of_change_youre_creating: "בחרו את סוג השינוי שאתם יוצרים."
-  choose_your_username: נא לבחור את שם המשתמש שלך
   cid_d_to_genus: רשימות מינים
   citation: ציטוט
   classification: מיון
@@ -779,6 +778,9 @@ he:
   doesnt_have_default_photo: אין תמונת ברירת מחדל כרגע.
   doh_something_went_wrong: אופס... משהו לא הלך כמו שצריך.
   doh_something_went_wrong_error: "אופס... משהוא לא הלכך כמו שצריך: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: לתרומה
   done: בוצע
   dont_have_an_account_sign_up_html: אין לכם חשבון? <strong>להרשמה.</strong>
   dont_send_me_email: "אל תשלחו לי אימיילים!"
@@ -846,7 +848,6 @@ he:
   editing_this: עריכת %{elem}
   editing_x_in_y: "עריכת %{x}ב%{y}"
   editors: עורכים
-  eg: 'לדוגמא'
   either_that_user_doesnt_exist_or: "או שהמשתמש אינו קיים, או שאתם כבר עוקבים אחריו."
   eligible_for_research_grade: מתאים לדרגת מחקר
   email: דוא״ל
@@ -1006,7 +1007,6 @@ he:
   from_a_place: ממקום
   from_flickr_facebook_etc: מתוך Flickr, Facebook, וכו'.
   from_list: מרשימה
-  from_this: מזה
   from_photos: מתמונות
   from_place: ממקום
   from_soundcloud: מתוך Soundcloud
@@ -1045,12 +1045,19 @@ he:
   has_already_been_flagged_by: סומן כבר על ידי
   has_id_supported_by_two_or_more: זיהוי נתמך על ידי שניים או יותר
   hasnt_contributed_any_observations: לא טרם תצפיות לפרוייקט זה.
+  header_your_observations: התצפיות שלך
+  header_your_calendar: היומן שלך
+  header_your_lists: הרשימות שלך
+  header_your_identifications: הזיהויים שלך
+  header_your_projects: הפרויקטים שלך
+  header_your_profile: הפרופיל שלך
   heads_up: שימו לב
   heads_up_this_photo_has_been_flagged: "שימו לב: תמונה זו סומנה."
   heads_up_this_photo_is_already_associated_with: "שימו לב: תצפית זו משוייכת כבר עם <a target='_blank' href='%{url}'>תצפית אחרת</a>"
   help: עזרה
   help_confirm_observations!: עזרו לאשר תצפיות!
   help_support_inaturalist: "תמיכה בiNaturalist"
+  help_translate!: עזרו לתרגם!
   here_are_3_examples: 3 דוגמאות לנתונים שמובנים היטב
   here_are_our_top_species_suggestions: הינה ההצעות הטובות ביותר שלנו
   hex_color_eg: צבע Hex, לדוגמא 65644F
@@ -1134,7 +1141,7 @@ he:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: האם הנתונים מאפשרים לאשר שזהו %{taxon}?
   is_this_place_a_duplicate: האם מקום זה קיים כבר?
   join: הצטרפות
-  join_and: הצטרפות ו
+  join_and_add_an_observation_to_project_html: הצטרפות והוספת תצפית ל%{project}
   join_project: הצטרף לפרוייקט זה
   join_the_largest_group_of_naturalists_in_the_world: הצטרפו לקהילת חובבי הטבע הגדולה בעולם!
   join_this_project: הצטרף לפרויקט זה
@@ -1638,6 +1645,9 @@ he:
   observation_field_type_dna: DNA
   observation_fields: שדות תצפית
   observation_fields_are_additional: שדות תצפית מאפשרים להוסיף נתוני שדות נוספים שיתווספו לתצפיות.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    לדוגמא "29-10-2019 13:12:21"
   observation_removed_from_the_project: "התצפית הוסרה מהפרוייקט %{project}"
   observation_requirements: דרישות לתצפית
   observation_rules: כללי התצפית
@@ -1791,6 +1801,9 @@ he:
   people_user_follows: "אנשים ש %{user} עוקב אחריהם"
   people_added:
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
       with_observation: הוסיפ/ה <strong>זיהוי</strong> ל%{observation_link} על ידי%{user_link}
   per_day: ליום
   per_month: לחודש
@@ -1822,7 +1835,6 @@ he:
     אני נותן את הסכמתי לאפשר ל iNaturalist לשמור ולעבד מידע אישי מוגבל אודותיי על מנת לנהל את חשבוני
   pi_consent_child_label: |
     אני נותן את הסכמתי לאפשר ל iNaturalist לשמור ולעבד מידע אישי מוגבל של בני/בתי אודותיי על מנת לנהל את חשבונו/ה
-  pick_a_username: בחירת שם משתמש
   pin_verb: נעץ מיקום
   pink: ורוד
   place: מקום
@@ -2523,6 +2535,9 @@ he:
   still_needs_id?: הקהילה יכולה לאשר/לשפר זיהוי?
   stop_editing: סיום עריכה
   stop_testing: סיום בחינה
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: לחנות
   studies_that_used_inaturalist_data_in_year: מחקרים שהשתמשו בנתוני iNaturalist בשנת %{year}
   stuff_just_added: "דברים שהוספת כרגע..."
   submission_model: מודל הגשה
@@ -2730,6 +2745,7 @@ he:
   user_commented_on: "%{user} העיר על %{title}%{time} שלך"
   user_disagrees_this_is_taxon: "%{user} אינו מסכים שזה %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} אינו מסכים עם הפרטים הקטנים הקודמים"
+  user_hasnt_joined_any_projects: "%{user} טרם הצטרף/ה לאף פרויקט"
   user_helped_x_people_with_y_ids_html: "%{user} עזר/ה <strong>ל%{x} אנשים </strong> עם <strong> %{y} זיהויים</strong>"
   user_invited_you_to_join_html: "הוזמנת להצטרף על ידי %{user}"
   user_invited_you_to_join_project: "הזמנה מ%{user} להצטרף ל%{project}"
@@ -2844,7 +2860,6 @@ he:
   yes_i_want_to_join: כן, ברצוני להצטרף
   yes_license_my_observations_so_scientists_can_use: כן, החל רישוי לתמונות, קולות ותצפיות על מנת שחוקרים יוכלו להשתמש בנתונים שלי.
   yesterday: אתמול
-  yesterday_at: ', אתמול ב 4 אחה"צ'
   you_: אתה
   you_appear_offline_try_again: |
     נראה שאתם במצב לא מקוון. אנא נסו שוב כשתהיו מחוברים לאינטרנט.
@@ -2877,6 +2892,7 @@ he:
   you_dont_have_permission_to_edit_that_project: אין לך הרשאה לערוך פרוייקט זה.
   you_dont_have_permission_to_edit_those_photos: אין לך הרשאה לערוך תמונות אלו.
   you_have_left_x_project: "עזבת את %{project}"
+  you_havent_joined_any_projects: טרם הצטרפת לאף פרויקט
   you_joined_this_project: הצטרפת לפרוייקט!
   you_must_be_a_member_of_this_project_to_do_that: רק חברי פרוייקט יכולים לעשות את זה
   you_must_choose_an_observation_field: יש לבחור שדה תצפית
@@ -3003,6 +3019,8 @@ he:
       show:
         allow_curator_coordinate_access_desc_html: |
           לאפשר למשגיחי המיזם לצפות בנקודות הציון המוסתרות עבור התצפית הזאת.
+        data_quality_assessment_desc_html: |
+          אומדן איכות הנתונים הינו הערכה של מידת הדיוק של זיהוי התצפית. תצפיות בדרגת מחקר עשויות לשמש מדענים לצורך מחקרים. הציעו את הזיהוי שלכם פה:
     photos:
       inviter:
         automatically_add_to_project: הוסף באופן אוטומטי לפרוייקט
@@ -3074,6 +3092,8 @@ he:
       not_found:
         sorry_that_doesnt_exist: אופס, זה לא קיים.
     stats:
+      index:
+        observations_1_week_moving_window: תצפיות (ממוצע של חלון נע בן שבוע)
       year:
         growth_title: צמיחה
         percent_growth_in_year: "אחוז צמיחה ב%{year}"
@@ -3187,7 +3207,9 @@ he:
       6: Fr
       7: Sa
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%b %d, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_year: '%B %Y'
     month_names:
       - 
@@ -3232,22 +3254,22 @@ he:
         many: יותר מ %{count} שנים
         other: יותר מ %{count} שנים
       x_days:
-        one: יום אחד
+        one: "יום אחד"
         two: '%{count} ימים'
         many: '%{count} ימים'
         other: '%{count} ימים'
       x_minutes:
-        one: דקה אחת
+        one: "דקה אחת"
         two: '%{count} דקות'
         many: '%{count} דקות'
         other: '%{count} דקות'
       x_months:
-        one: חודש אחד
+        one: "חודש אחד"
         two: '%{count} חודשים'
         many: '%{count} חודשים'
         other: '%{count} חודשים'
       x_seconds:
-        one: שניה אחת
+        one: "שניה אחת"
         two: '%{count} שניות'
         many: '%{count} שניות'
         other: '%{count} שניות'
@@ -3518,8 +3540,12 @@ he:
         project_observation:
           attributes:
             base:
-              project_does_not_allow_observations: |
-                לא ניתן להעלות תצפיות לפרוייקט זה
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                באוספים ופרויקטי מטריה אין אפשרות להעלאה ישירה
             observation_id:
               must_be_observed_after: |
                 שנצפה אחרי %{time}
@@ -3576,3 +3602,5 @@ he:
         m: זכר
         f: נקבה
         "n": ללא זוויג
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
