@@ -1402,6 +1402,14 @@ it:
   has_sound: Ha suoni
   has_sounds: Ha suoni
   hasnt_contributed_any_observations: non ha contribuito con nessuna osservazione a questo progetto.
+  header_your_observations: Le Tue Osservazioni
+  header_your_calendar: Il Tuo Calendario
+  header_your_favorites: I Tuoi Preferiti
+  header_your_lists: Le Tue Liste
+  header_your_journal: Il Tuo Diario
+  header_your_identifications: Le Tue Identificazioni
+  header_your_projects: I Tuoi Progetti
+  header_your_profile: Il Tuo Profilo
   heads_up: Avviso
   heads_up_this_photo_has_been_flagged: "AVVISO: questa foto è stata contrassegnata."
   heads_up_this_photo_is_already_associated_with: "Avviso: questa foto è già associata con un'<a target='_blank' href='%{url}'>altra osservazione</a>"
@@ -3181,8 +3189,8 @@ it:
   search_your_photos: Cerca tra le tue foto
   searching: "Ricerca in corso..."
   seasonality: Stagionalità
-  second_person_possessive_plural: "I tuoi %{noun}"
-  second_person_possessive_singular: "Il tuo %{noun}"
+  second_person_possessive_plural: "@gender{m:I tuoi|f:Le tue} %{noun}"
+  second_person_possessive_singular: "@gender{m:Il tuo|f:La tua} %{noun}"
   see_something_wrong_with_taxon: Vedi qualcosa di sbagliato riguardo questo taxon? Informa i curatori.
   seen_it?: Lo hai visto?
   seen_nearby: Visto nelle vicinanze
@@ -5917,6 +5925,13 @@ it:
                 devi essere registrato da più di 24 ore per pubblicare. Abbiamo un sacco di spammer, e questo è un modo per contrastarli. Tu puoi comunque salvare una bozza, e se tra un giorno userai ancora il sito, potrai pubblicare.
         project_observation:
           attributes:
+            base:
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                i progetti collezione ed ombrello non permettono l'aggiunta diretta
             user_id:
               must_be_curator: deve essere un curatore di questo progetto
             observation_id:
@@ -6040,7 +6055,11 @@ it:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         listed_taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6053,6 +6072,10 @@ it:
         place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
