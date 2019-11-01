@@ -177,7 +177,6 @@ class LeftMenu extends SelectionBasedComponent {
           dateTime={ this.props.observationFieldDateTime ?
             moment( this.props.observationFieldDateTime, format ).format( "x" )
             : undefined }
-          timeZone={ TIMEZONE }
           onChange={ dateString =>
             this.props.setState( { observationFieldValue: dateString } ) }
           onSelection={ dateString =>

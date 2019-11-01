@@ -4590,6 +4590,16 @@ ALTER SEQUENCE public.taxon_versions_id_seq OWNED BY public.taxon_versions.id;
 
 
 --
+-- Name: time_zone_geometries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.time_zone_geometries (
+    tzid character varying,
+    geom public.geometry(MultiPolygon)
+);
+
+
+--
 -- Name: trip_purposes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8919,6 +8929,13 @@ CREATE INDEX index_taxon_schemes_on_source_id ON public.taxon_schemes USING btre
 
 
 --
+-- Name: index_time_zone_geometries_on_geom; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_time_zone_geometries_on_geom ON public.time_zone_geometries USING gist (geom);
+
+
+--
 -- Name: index_trip_purposes_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10006,4 +10023,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190702063435');
 INSERT INTO schema_migrations (version) VALUES ('20190820224224');
 
 INSERT INTO schema_migrations (version) VALUES ('20190918161513');
+
+INSERT INTO schema_migrations (version) VALUES ('20191101004413');
 

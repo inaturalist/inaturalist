@@ -357,8 +357,8 @@ class Observation < ActiveRecord::Base
   validates_presence_of :geo_x, :if => proc {|o| o.geo_y.present? }
   validates_presence_of :geo_y, :if => proc {|o| o.geo_x.present? }
   
-  before_validation :munge_observed_on_with_chronic,
-                    :set_time_zone,
+  before_validation :set_time_zone,
+                    :munge_observed_on_with_chronic,
                     :set_time_in_time_zone,
                     :set_coordinates,
                     :nilify_positional_accuracy_if_zero
@@ -941,7 +941,7 @@ class Observation < ActiveRecord::Base
       date_string = date_string.sub( tz_moment_offset_pattern, "" )
     end
     
-    if parsed_time_zone && observed_on_string_changed?
+    if parsed_time_zone && observed_on_string_changed? && !georeferenced?
       self.time_zone = parsed_time_zone.name
       begin
         if (
@@ -1230,6 +1230,11 @@ class Observation < ActiveRecord::Base
   #
   def set_time_zone
     self.time_zone = nil if time_zone.blank?
+    if georeferenced? && coordinates_changed?
+      lat = private_latitude.blank? ? latitude : private_latitude
+      lng = private_longitude.blank? ? longitude : private_longitude
+      self.time_zone = TimeZoneGeometry.time_zone_from_lat_lng( lat, lng ).try(:name)
+    end
     self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
     self.time_zone ||= Time.zone.try(:name) unless time_observed_at.blank?
     self.time_zone ||= 'UTC'
