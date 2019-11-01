@@ -1345,6 +1345,14 @@ zh-TW:
   has_sound: 擁有聲音
   has_sounds: 擁有聲音
   hasnt_contributed_any_observations: 沒有貢獻任何觀察至此專案。
+  header_your_observations: 您的觀察記錄
+  header_your_calendar: 您的日曆
+  header_your_favorites: 您的最愛
+  header_your_lists: 您的物種名錄
+  header_your_journal: 您的日誌
+  header_your_identifications: 您的鑑定
+  header_your_projects: 您的專案
+  header_your_profile: 您的個人帳號資訊
   heads_up: 注意
   heads_up_this_photo_has_been_flagged: "注意：此照片已被標記。"
   heads_up_this_photo_is_already_associated_with: "注意：此照片已關聯於<a target='_blank' href='%{url}'>其它觀察</a>"
@@ -2105,10 +2113,20 @@ zh-TW:
   observation_date?: 日期？
   observation_field: 觀察欄位
   observation_field_details: 觀察欄位詳細內容
+  observation_field_type_text: 文字
+  observation_field_type_numeric: 數值
+  observation_field_type_date: 日期
+  observation_field_type_time: 時間
+  observation_field_type_datetime: 日期時間
+  observation_field_type_taxon: 分類群
+  observation_field_type_dna: DNA
   observation_fields: 觀察欄位
   observation_fields_are_additional: 觀察欄位即為可被添加在觀察裡的額外資料欄位。
   observation_fields_by_preferences_description: |
     觀察欄位有些類似標籤，預設上只有您可以添加至您的觀察。若您只希望您自己，或網站策展人可操作請更改它。
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    例： 2019-10-29 13:12:21
   observation_removed_from_the_project: "觀察已從專案「%{project}」裡移除"
   observation_requirements: 觀察需求
   observation_rules: 觀察規則
