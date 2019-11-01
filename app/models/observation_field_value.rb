@@ -169,7 +169,7 @@ class ObservationFieldValue < ActiveRecord::Base
         errors.add(:observation_id, :user_does_not_accept_fields_from_others )
       end
     elsif observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS
-      unless user.is_curator?
+      if !user.is_curator? && user_id != observation.user_id
         errors.add(:observation_id, :user_only_accepts_fields_from_site_curators )
       end
     end
