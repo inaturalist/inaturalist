@@ -2221,6 +2221,7 @@ en:
   not_linked_flickr: "Your %{site_name} account is not linked to your Flickr account"
   not_on_this_list: Not on this list.
   not_recorded: Not recorded
+  not_resolved: Not Resolved
   not_seeing_what_looking_for: Not Seeing What You're Looking For?
   note: Note
   notes: Notes
@@ -5194,7 +5195,11 @@ en:
           A value marked '*' means it wasn't in the top 500 for that stat.
     observation_fields:
       about_editing_observation_fields_desc_html: |
-        <p class='ui'>You can edit this observation field because you created or because you're a site curator. If you're a site curator, please follow these guidelines</p>
+        <p class='ui'>
+          You can edit this observation field because you created it or because
+          you're a site curator. If you're a site curator, please follow these
+          guidelines:
+        </p>
         <ol>
           <li>Don't make arbitrary name changes (e.g. changing "eating" to "nectaring")</li>
           <li>Keep in mind that observation fields can be used for observations of any taxon, so try not to use taxon-specific terminology</li>

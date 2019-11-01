@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import CoverImage from "../../../shared/components/cover_image";
 import _ from "lodash";
+import CoverImage from "../../../shared/components/cover_image";
 
 const LeaderItem = ( {
   noContent,
@@ -31,21 +31,22 @@ const LeaderItem = ( {
         className="btn btn-primary btn-inat btn-xs"
       >
         { linkText }
-      </a> {
-        extraLinkUrl ?
-          (
+      </a>
+      { " " }
+      {
+        extraLinkUrl
+          ? (
             <a href={extraLinkUrl} className="btn btn-default btn-inat btn-outline btn-xs">
               <span className="hidden-lg">{ extraLinkTextShort || extraLinkText }</span>
               <span className="hidden-xs hidden-sm hidden-md">{ extraLinkText }</span>
             </a>
           )
-          :
-          null
-      } {
-        valueIconClassName ? <i className={valueIconClassName} /> : extra
-      } {
-        value ? <span className="value">{ I18n.toNumber( value, { precision: 0 } ) }</span> : null
+          : null
       }
+      { " " }
+      { valueIconClassName ? <i className={valueIconClassName} /> : extra }
+      { " " }
+      { value ? <span className="value">{ I18n.toNumber( value, { precision: 0 } ) }</span> : null }
     </div>
   );
   const itemLabelContent = <div className="item-label">{ label }</div>;
@@ -55,12 +56,12 @@ const LeaderItem = ( {
       <OverlayTrigger
         placement="top"
         delayShow={1000}
-        container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-        overlay={
+        container={$( "#wrapper.bootstrap" ).get( 0 )}
+        overlay={(
           <Tooltip id={`leader-item-label-${className}`}>
             { labelTooltip }
           </Tooltip>
-        }
+        )}
       >
         { itemLabelContent }
       </OverlayTrigger>
@@ -73,19 +74,18 @@ const LeaderItem = ( {
         <div className={`img-wrapper ${imageUrl ? "photo" : "no-photo"}`}>
           <a
             href={url}
-            onClick={ e => {
+            onClick={e => {
               if ( !onClickUrl ) return true;
               if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
               onClickUrl( onClickUrlPayload );
               return false;
-            } }
+            }}
           >
             {
-              imageUrl ?
-              <CoverImage src={imageUrl} height={56} />
-              :
-              <i className={iconClassName} />
+              imageUrl
+                ? <CoverImage src={imageUrl} height={56} />
+                : <i className={iconClassName} />
             }
           </a>
         </div>
@@ -95,13 +95,13 @@ const LeaderItem = ( {
           <a
             title={name}
             href={url}
-            onClick={ e => {
+            onClick={e => {
               if ( !onClickUrl ) return true;
               if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
               onClickUrl( onClickUrlPayload );
               return false;
-            } }
+            }}
           >
             <span className=".visible-xs-inline visible-sm-inline visible-md-inline">
               { _.truncate( name, { length: 16 } ) }

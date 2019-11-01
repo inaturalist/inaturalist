@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import LeaderItem from "../components/leader_item";
 
 function mapStateToProps( state ) {
-  const last = state.observations.last;
+  const { last } = state.observations;
   const props = {
     label: I18n.t( "last_observation" ),
     labelTooltip: I18n.t( "most_recent_observation_by_date_observed" ),

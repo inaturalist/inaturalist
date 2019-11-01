@@ -4,8 +4,19 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 
 ## Crowdin
 
+### Bulgarian (`bg`)
+* [exonie](https://crowdin.com/profile/exonie)
+
+### Chinese Traditional (`zh-TW`)
+* [Lin, Cheng-Tao (mutolisp)](https://crowdin.com/profile/mutolisp)
+
+### Czech (`cs`)
+* [Petra2017](https://crowdin.com/profile/Petra2017)
+* [Petra Caltová (caltovapetra)](https://crowdin.com/profile/caltovapetra)
+
 ### Danish (`da`)
 * [Lekkim](https://crowdin.com/profile/Lekkim)
+* [cassi (boucur)](https://crowdin.com/profile/boucur)
 
 ### Dutch (`nl`)
 * [Wouter Koch (wouter.koch)](https://crowdin.com/profile/wouter.koch)
@@ -15,33 +26,60 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 ### Esperanto (`eo`)
 * [marcelhospers](https://crowdin.com/profile/marcelhospers)
 
+### Estonian (`et`)
+* [Nicolás Tamargo (reosarevok)](https://crowdin.com/profile/reosarevok)
+
 ### Finnish (`fi`)
 * [Pyscowicz](https://crowdin.com/profile/Pyscowicz)
 
 ### French (`fr`)
 * [marcelhospers](https://crowdin.com/profile/marcelhospers)
+* [ldacosta](https://crowdin.com/profile/ldacosta)
+* [Jules Seigneur (jules.seigneur77)](https://crowdin.com/profile/jules.seigneur77)
+* [Chris971](https://crowdin.com/profile/Chris971)
 
 ### German (`de`)
+* [knubbell](https://crowdin.com/profile/knubbell)
 * [marcelhospers](https://crowdin.com/profile/marcelhospers)
 * [Epsilon3-28](https://crowdin.com/profile/Epsilon3-28)
+* [Marcel Hospers (optilete)](https://crowdin.com/profile/optilete)
 * [Katarama](https://crowdin.com/profile/Katarama)
 
 ### Hebrew (`he`)
 * [dan.translate](https://crowdin.com/profile/dan.translate)
+* [ariel-shamir](https://crowdin.com/profile/ariel-shamir)
 
 ### Italian (`it`)
 * [Daniele Seglie (danieleseglie)](https://crowdin.com/profile/danieleseglie)
+
+### Korean (`ko`)
+* [Wonwoong Kim (wonwoong)](https://crowdin.com/profile/wonwoong)
+
+### Lithuanian (`lt`)
+* [Tomas P. (jktomas)](https://crowdin.com/profile/jktomas)
 
 ### Norwegian Bokmal (`nb`)
 * [Wouter Koch (wouter.koch)](https://crowdin.com/profile/wouter.koch)
 
 ### Polish (`pl`)
 * [Konrad Kałużyński (kkaluzynski)](https://crowdin.com/profile/kkaluzynski)
+* [Piteriuz](https://crowdin.com/profile/Piteriuz)
+
+### Portuguese (`pt`)
+* [ldacosta](https://crowdin.com/profile/ldacosta)
+
+### Russian (`ru`)
+* [katunchik](https://crowdin.com/profile/katunchik)
 
 ### Slovak (`sk`)
 * [Ela Baršváryová (elabarsvary)](https://crowdin.com/profile/elabarsvary)
 
-### Spanish, Argentina
+### Spanish (`es`)
+* [tytoalba](https://crowdin.com/profile/tytoalba)
+* [pdFuenteB](https://crowdin.com/profile/pdFuenteB)
+* [Marcel Hospers (optilete)](https://crowdin.com/profile/optilete)
+
+### Spanish, Argentina (`es-AR`)
 * [lroget](https://crowdin.com/profile/lroget)
 
 ### Spanish, Colombia

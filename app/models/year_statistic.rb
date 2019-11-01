@@ -391,7 +391,7 @@ class YearStatistic < ActiveRecord::Base
     es_params = YearStatistic.identifications_es_base_params( year )
     es_params[:filters] << { terms: { "user.id" => [user.id] } }
     es_params[:aggregate] = {
-      users_helped: { terms: { field: "observation.user.id", size: 40000 } },
+      users_helped: { terms: { field: "observation.user_id", size: 40000 } },
     }
     buckets = Identification.
       elastic_search( es_params ).
@@ -414,7 +414,7 @@ class YearStatistic < ActiveRecord::Base
   def self.users_who_helped( year, user )
     return unless user
     es_params = YearStatistic.identifications_es_base_params( year )
-    es_params[:filters] << { terms: { "observation.user.id" => [user.id] } }
+    es_params[:filters] << { terms: { "observation.user_id" => [user.id] } }
     es_params[:aggregate] = {
       users_helped: { terms: { field: "user.id", size: 40000 } }
     }
