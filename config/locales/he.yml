@@ -1045,6 +1045,12 @@ he:
   has_already_been_flagged_by: סומן כבר על ידי
   has_id_supported_by_two_or_more: זיהוי נתמך על ידי שניים או יותר
   hasnt_contributed_any_observations: לא טרם תצפיות לפרוייקט זה.
+  header_your_observations: התצפיות שלך
+  header_your_calendar: היומן שלך
+  header_your_lists: הרשימות שלך
+  header_your_identifications: הזיהויים שלך
+  header_your_projects: הפרויקטים שלך
+  header_your_profile: הפרופיל שלך
   heads_up: שימו לב
   heads_up_this_photo_has_been_flagged: "שימו לב: תמונה זו סומנה."
   heads_up_this_photo_is_already_associated_with: "שימו לב: תצפית זו משוייכת כבר עם <a target='_blank' href='%{url}'>תצפית אחרת</a>"
@@ -3596,3 +3602,5 @@ he:
         m: זכר
         f: נקבה
         "n": ללא זוויג
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
