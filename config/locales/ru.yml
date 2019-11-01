@@ -2224,6 +2224,7 @@ ru:
   not_linked_flickr: "Ваша учётная запись на сайте %{site_name} в настоящее время не привязана к вашей учётной записи Flickr."
   not_on_this_list: Нет в этом списке.
   not_recorded: Не указана
+  not_resolved: Не разрешено
   not_seeing_what_looking_for: Не нашли то, что искали?
   note: Примечание
   notes: Примечания
@@ -6158,6 +6159,13 @@ ru:
                 должны быть зарегистрированы более чем 24 часа назад для публикации. У нас много спамеров, и это своего рода обходной путь борьбы с ними. Вы можете сохранить черновик, и если вы всё ещё используете сайт день спустя, вы сможете опубликовать его.
         project_observation:
           attributes:
+            base:
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                коллекционные и зонтичные проекты не допускают непосредственного ввода данных
             user_id:
               must_be_curator: должен быть куратором этого проекта
             observation_id:
