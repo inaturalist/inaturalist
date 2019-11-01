@@ -263,3 +263,25 @@ end
 def disable_user_email_domain_exists_validation
   CONFIG.user_email_domain_exists_validation = :disabled
 end
+
+def load_time_zone_geometries
+  table_name = TimeZoneGeometry.table_name
+  db_config = Rails.configuration.database_configuration[Rails.env]
+  pg_string = "dbname=#{db_config["database"]} host=#{db_config["host"]}"
+  tgz_fname = "western-us-time-zones.geojson.tgz"
+  geojson_fname = "western-us-time-zones.geojson"
+  fixtures_path = File.join( Rails.root, "spec", "fixtures" )
+  system "cd #{fixtures_path} && tar xzf #{tgz_fname}"
+  system <<-BASH
+    ogr2ogr -f "PostgreSQL" PG:"#{pg_string}" \
+      #{File.join( fixtures_path, geojson_fname)} \
+      -nln #{table_name} \
+      -lco GEOMETRY_NAME=geom \
+      -overwrite
+  BASH
+  ActiveRecord::Base.connection.execute "SELECT UpdateGeometrySRID('#{table_name}', 'geom', 0)"
+end
+
+def unload_time_zone_geometries
+  TimeZoneGeometry.delete_all
+end

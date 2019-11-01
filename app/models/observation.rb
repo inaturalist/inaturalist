@@ -1238,7 +1238,13 @@ class Observation < ActiveRecord::Base
     self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
     self.time_zone ||= Time.zone.try(:name) unless time_observed_at.blank?
     self.time_zone ||= 'UTC'
-    self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
+    self.zic_time_zone = if mapped_zic = ActiveSupport::TimeZone::MAPPING[time_zone]
+      mapped_zic
+    elsif tz_object = ActiveSupport::TimeZone[time_zone].try(:tzinfo)
+      tz_object.name
+    else
+      nil
+    end
     true
   end
   
