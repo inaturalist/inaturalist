@@ -2125,6 +2125,7 @@ nb:
   not_linked_flickr: "Din konto på %{site_name} er ikke koblet til din Flickr-konto"
   not_on_this_list: Ikke på denne lista.
   not_recorded: Ikke registrert
+  not_resolved: Ikke løst
   not_seeing_what_looking_for: Ser du ikke hva du leter etter?
   note: Notat
   notes: Notater
@@ -3592,6 +3593,8 @@ nb:
     Fellesskapet må føle at fellesskapets takson er så vrs det kan bli basert på beviset
   the_following_observations_could: "De følgende observasjoner kunne ikke legges til %{link}"
   the_following_photos_have_been_tagged: "De følgende bilder har blitt tagget:"
+  the_identotron_is_a_tool_to: |
+    Identotron er et verktøy som hjelper deg med å identifisere observasjoner basert på sjekklistedata for %{place}. Gitt et høyere takson og et sted (f.eks. pattedyr i India), sjekker %{place} om det finnes oppføringer på sjekklister som stemmer overens med det taksonet på det stedet, litt som en dynamisk feltguide til hele planeten. De fleste sjekklister for %{place} er ikke ferdigutviklet, men hvis det finnes en som er fullstendig, dvs den inneholder <em>alle</em> medlemmer av sitt takson på det stedet, viser Identotron at det er tilfellet.
   the_name_of_the_taxon_including_space: Navnet til taksonet, inklusiv plassen til arter og infra-arter.
   the_observation_was_already_added_to_that_project: Observasjonen var allerede lagt til det prosjektet.
   the_past: fortiden
@@ -4593,6 +4596,58 @@ nb:
           Noen av disse bilder har blitt markert for upassende innhold eller krenkelse av opphavsrett. For detaljer se %{links}
         join_project_desc_html: |
           Å bli med i projektet vil gi prosjektets kuratorer muligheten til å se de skulte koordinatene til denne og alle andre observasjoner i prosjektet og impliserer at du samtykker til prosjektets <a href="%{url}" target="_blank">vilkår</a>.
+        quality_assessment_help_html: |
+          <p>
+          Vurderingen av datakvaliteten er et sammendrag av en observasjons nøyaktighet. Alle observasjoner starter som <strong>"uformell"</strong>, og får statusen 
+          <strong>"trenger ID"</strong> når
+          </p>
+
+          <ul>
+          <li>observasjonen <strong>har en dato</strong></li>
+          <li>observasjonen <strong>er georeferert</strong> (dvs. har lat/lon koordinater)</li>
+          <li>observasjonen <strong>har bilder eller lyder</strong></li>
+          <li>observasjonen <strong>er ikke av et menneske</strong></li>
+          </ul>
+          <p>
+          Observasjoner blir av <strong>"forskningskvalitet"</strong> når
+          </p>
+          <ul>
+          <li>
+          fellesskapet på %{site_name} <strong>er enig i en ID på artsnivå eller lavere</strong>, dvs. når over 2/3 av identifikatorer er enige i et takson
+          </li>
+          </ul>
+          <p>
+          Observasjoner går tilbake til <strong>"uformell"</strong> dersom kravene ovenfor ikke blir oppfylt eller fellesskapet er enig at
+          </p>
+          <ul>
+          <li>
+          <strong>lokaliteten ikke ser riktig ut</strong> (f.eks. aper midt i havet, flodhester i kontorbygg, osv.)
+          </li>
+          <li>
+          <strong>organismen ikke er viltlevende/forvillet</strong> (f.eks. i fangenskap eller dyrket sv mennesker eller intelligente romvesener)
+          </li>
+          <li>
+          observasjonen <strong>leverer ikke bevis av en organisme</strong>, f.eks. bilder av landskap, vannpartier, steiner, osv.
+          </li>
+          <li>
+          observasjonen 
+          the observation <strong>leverer ikke nylig (~100 år) bevis av organismen</strong> (f.eks. fossiler, men spor, avføring og døde løvblad er ok)
+          </li>
+          <li>
+          observasjonen trenger ikke en ID lengere <em>og</em> felleskapets ID er høyere enn familienivå
+          </li>
+          <li>
+          observatøren hsr valgt å ikke godta fellesskapets ID og fellesskapets ID er ikke en stamfar eller etterkommer av observatørens ID
+          </li>
+          </ul>
+          <p>
+          Og som om ikke det var komplisert nok, finnes det også tilfeller hvor systemet er med å bestemme:
+          </p>
+          <ul>
+          <li>
+          Systemet vil stemme for at observasjonen ikke er viltlevende/forvillet hvis det finnes minst 10 andre observasjoner av en slekt eller lavere i det minste stedet tilsvarende en county, stat eller land som inneholder denne observasjonen og 80% eller flere av disse observasjoner har blitt markert som ikke viltlevende/forvillet.
+          </li>
+          </ul>
         score_desc: "poengsum = totalt antall / (totalt antall + antall uenig + ane-uenigheter)"
         observation_flagged_notice_html: |
           Denne observasjonen har blitt markert som spam og er ikke lenger offentlig synlig. Du kan se det fordi du opprettet den, eller du er en sidekurator. Hvis du tror at dette er feil, vennligst <a href="mailto:%{help_email}" class="contact">ta kontakt</a>. <a href="/observations/%{observation_id}/flags">Forvalt markeringer</a>
@@ -4600,6 +4655,14 @@ nb:
         user_stats_desc: |
           Brukerstatistikker er begrenset til et maksimum av topp 500-listen av antall observasjoner eller arter, så summen som oppføres er vanligvis litt over 500, siden de to listene sannsynligvis ikke innholder de samme brukere. En verdi makert med '*' betyr at den ikke var i topp 500-listen for den statistikken.
     observation_fields:
+      about_editing_observation_fields_desc_html: |
+        <p class='ui'>Du kan redigere dette observasjonsfeltet fordi du opprettet det eller fordi du er en sidekurator. Hvis du er en sidekurator, vennligst følg disse retningslinjer</p>
+        <ol>
+        <li>Ikke gjennomfør vilkårlige navneendringer (f.eks. endre "spisende" til "nektar-spisende")</li>
+        <li>Husk at observasjonsfelt kan brukes til observasjoner av alle taksa, så prøv å unngå taksonspesifikke begrep</li>
+        <li>Ikke slett felter som folk bruker</li>
+        <li>Ikke oversett eksisterende feltnavn til andre språk. Engelsk er standardspråket på siden. Hvis du virkelig vil at et begrep representerer det samme konseptet på et annet språk, vennligst opprett en ny observasjonsfelt. </li>
+        </ol>
       dna_help: |
         For å tillate funksjonalitet for BOLD DNA barkode matching, sørg for at dine feltnavn inneholder ordene "COI", "COX1", "ITS", eller "matK," i overenstemmelse med genet dette feltet sikter mot.
       merge:
@@ -4619,6 +4682,73 @@ nb:
           Din eksport av observasjoner mislyktes. Gå til <a href="%{url}">observasjonseksport-siden</a> for en liste av dine eksporter.
       parental_consent:
         subject: Ditt barn vil gjerne bruke iNaturalist
+        content_html: |
+          <p>
+          Ditt barn bruker den edukative appen <strong>Seek av iNaturalist</strong> og vil gjerne dele data med iNaturalist platformen for forskingsdugnad. Siden registrering på iNaturalist avslører personsopplysninger kan iNaturalist ikke brukes av personer under 13 år uten tillatelse fra en foreldre eller foresatt.
+          </p>
+          <p>
+          <strong>Seek av iNaturalist</strong> kan brukes uten å opprette en konto, og ingen personsopplysninger vil deles, men ditt barn kan da ikke bidra observasjoner til iNaturalist. iNaturalist er et sosialt nettverk for forskingsdugnad hvor deltakere deler observasjoner og identifikasjoner av levende ting for å lære hverandre om nature og skape biodiversitetsdata til forskning.
+          </p>
+          <p>
+          Hvis du ønsker å tillate at ditt barn kan bruke iNaturalist, trenger vi at du gjør følgende:
+          </p>
+          <ol>
+          <li>
+          <p>
+          Opprett en konto på iNaturlaist som barnet ditt vil bruke på denne lenken:
+          <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          Etter at du har opprettet en konto for ditt barn, ber vi deg om å overføre en liten donasjon av 1 dollar til iNaturalist med ett kredittkort for å verifisere at du er en voksen. Vennligst sjekk at du bruker samme epostadressen som du har fyllt ut i feltet "Foreldre epost" under registreringen når du donerer.
+          </p>
+          </li>
+          <li>
+          <p>
+          Når vi har bearbeidet donasjonen, sender vi en epost til med beskjeden at ditt barns konto er aktivert og kan du bruke brukernavnet og passordet du opprettet på iNaturalist for å logge på i ditt barns Seek app.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist samler følgende 
+          collects the following personsopplysninger:
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong>epostadresse (privat):</strong> hver konto på iNaturalist har en epostadresse knyttet til seg som ikke offentliggjøres.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>brukernavn (offentlig, påkrevd):</strong>
+           hver konto på iNaturalist har et offentlig brukernavn og personlig identifikasjonsnummer. Brukernavnet trenger ikke å ligne på personens ekte navn, men det kan brukes for å ta kontakt med vedkommende via offentlige kommentarer og personlige meldinger.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>IP-adresse (privat, påkrevd):</strong> iNaturalist lagrer, men offentliggjør ikke, brukerens IP-adresse som kan brukes til å avlede personsopplysninger som lokalitet (med nøyaktighet på kommunenivå).
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>profilbilde (offentlig, valgfritt):</strong> kontoer på iNaturalist kan ha profilbilder som ofte er bilder av brukeren.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>observasjonslokalitet (offentlig eller privat,
+          påkrevd):</strong> observasjoner på iNaturalist inneholder lokalitetsinformasjon om hvor en observasjon ble gjort. Dette kan offentliggjøres eller holdes privat, men er offentlig som standard.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist lar brukere også dele offentlige bilder, offentlige kommentarer, og private direktemeldinger knyttet til deres konto. Det er mulig at brukere kan inkludere personsopplysninger i dette brukergenererte innhold.
+          </p>
+          <p>
+          Lær mer om iNaturalists retningslinjer for personvern <a href="%{privacy_policy_url}">her</a>.
+          </p>
       photos_missing:
         subject: Noen bilder trenger å repareres
         we_have_been_housekeeping: |
@@ -4923,6 +5053,8 @@ nb:
         complete_rank_desc_html: |
           Rang hvor dette taksonet er fullstendig, f.eks hvis denne familien inneholder alle sine slekter men ikke alle arter, settes dette til "slekt". Standardverdi er art.
       show:
+        about_conservation_status_desc: |
+          Bevaringsstatusen gir et sammendrag av risikoen for utdøing av en gruppe organismer.
         about_establishment_desc: |
           "Etableringsmåte" beskriver hvordan arten kom dit den nå forekommer. Introdusert betyr at den kom på grunn av mennesklig aktivitet, mens stedegen betyr at den kom på egen hånd. Endemiske arter forkommer kun på et bestemt sted og ikke noe annet sted.
         discoveries_desc: "Siste ny identifiseringer av arter i dette taksonet"
@@ -4946,6 +5078,8 @@ nb:
         no_trending_desc: Ingenting under dette taksonet observert i den siste måneden
         photo_chooser_modal_desc: |
           Dra bilder fra venstresiden hit, eller flytt på bilder her for å endre rekkefølgen.
+        rare_desc: Minst observerte truede taksa
+        rare_in_place_desc_html: Minst observerte truede taksa i <a href="%{url}">%{place}</a>
         trending_desc: Mest-observerte taksa i den siste måneden
         trending_in_place_desc_html: Mest-observerte taksa i den siste måneden i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i dette taksonet som ikke har blitt observert ennå.
@@ -4980,10 +5114,18 @@ nb:
           Bare en påminnelse, prosjektkuratorer kan se private og skjulte
           koordinater til observasjoner du legger til i dette prosjektet.
       delete:
+        by_deleting_your_account_you_will_remove: |
+          Ved å slette din konto fjerner du
         settings_and_mute_html: |
           Hvis denne siden genererer for mange varsler, vurder å <a href="/users/edit">redigere dine innstillinger</a> for å slå av bestemte varslinger eller å slutte å få epost fra oss. Hvis du har problemer med en bestemt person på siden, vurder å <a href="/users/edit">dempe</a> vedkommende i steden for å slette din konto.
         type_confirmation_code: Skriv %{confirmation_code}
       edit:
+        common_names_desc: |
+          Vis populærnavn. Slå av hvis du ønsker å se vitenskapelige navn. Merk at du kan styre hvilke populærnavn du ser ved å endre dine instillinger for språk og land.
+        display_monthly_supporter_status_on_my_profile: |
+          Vis status som månedlig supporter på min profil
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |
+          Hvis du ombestemmer deg kan du alltid <a href='/users/edit'>redigere dine innstillinger</a>.
         inaturalist_network_affiliation_desc_html: |
           <p>
           <a href="%{url}" target="_blank">iNaturalist-nettverket</a> er en samling av lokaliserte nettsteder som er fullstendig tilkoble det verdensomspennende iNaturalist-fellesskapet. Nettverkssider støttes av lokale
@@ -5008,6 +5150,8 @@ nb:
           none: "Ingen, bare du kan legge til dine observasjoner til prosjekter"
         prefers_coordinate_interpolation_protection_desc: |
           Når du setter geosperringen av en observasjon til "tilslørt" eller "privat" brukes det samme geosperringen på alle dine andre observasjoner fra den dagen for å gjøre det vanskelige for folk å gjette de sanne koordinate basert på observasjoner gjort rundt samme tidspunkt.
+        project_settings_desc: |
+          Husk at dette ikke gir prosjekter tilgang til å se dine skjulte koordinater eller sende seg oppdateringer. Du må bli medlem i prosjekter for å gi disse tillatelser, eller gi de en-og-en.
         same_day_geoprivacy_protection: Samme-dag geosperring
         search_place_help_html: |
           Standardsted for obsersjonssøk.
@@ -5016,25 +5160,40 @@ nb:
         taxon_change_desc: |
           Når taksa blir slått sammen eller får et nytt navn på %{site_name}, vil dine observasjoner, listede taksa, identifikasjoner, osv. bli oppdatert til det nye taksonet automatisk, hvis endringen er entydig. Hvis du velger å ikke gjøre det eller endringen er tvetydig (for eksempel en oppdeling), vil du få en oppdatering om endringen med en lenke til et verktøy for å oppdatere ditt innhold manuelt, hvis du velger å gjøre det.
         thanks_for_supporting_us!: Takk for at du støtter oss!
+        this_only_applies_to_traditional_projects: |
+          Dette er kun relevant for tradisjonelle prosjekter. Du kan ikke ekskludere observasjoner fra samlings- eller paraply-prosjekter, som i praksis er lagrede søk. Du kan lese mer <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">her</a>.
         youve_used_all_of_your_blocks: Du har brukt opp alle dine blokker. Fjern en blokk for å legge til en til.
       recent:
         about_recent_users: Om
       show:
+        take_a_chance_to_review_html: 'Ta en titt på <a href="%{link}">våre retningslinjer</a>.'
         this_user_was_banned: Denne brukeren er suspendert
     user_parents:
       confirm:
         thanks_for_creating_a_minor_account: TAKK FOR AT DU HAR OPPRETTET EN KONTO TIL EN MINDREÅRIG!
+        we_will_send_you_an_email: |
+          Vi vil sende deg en epost så snart kontoen til ditt barn har blitt aktivert.
       new:
         child_name_private: Barnets navn (privat)
         create_a_minor_account: Opprett en konto til en mindreårig
         create_minor_account: Opprett konto til en mindreårig
+        parent_name_private: Navn til foreldre eller foresatt (privat)
+        parent_email: Epost til foreldre eller foresatt (privat)
+        inaturalist_minor_account_signup: iNaturalist påmelding til mindreårige
         parent_information_private: Foreldreinformasjon (privat)
         step1_title: OPPRETT EN KONTO FOR BARNET DITT
+        step1_desc: |
+          For å tilfredsstille regler om personvern trenger vi tillatelse fra en foreldre eller foresatt for å kunne opprette en konto for noen som er under 13 år. Hvis du vil at ditt barn skal kunne bruke iNaturalist må du oppgi noe identitets- og kontaktinformasjon.
         step2_title: BEKREFT DIN IDENTITET MED ET KREDITTKORT
         step3_title: VENT PÅ BEKREFTELSES-EPOSTEN
         step3_donor_title: DITT BARNS KONTO HAR BLITT AKTIVERT
+        step3_donor_desc: |
+          Siden du er en iNaturalist supporter klarte vi å bekrefte din identitet med din eksisterende donasjon.
     welcome:
       index:
+        welcome_message_html: |
+          til %{image}, hvor du kan <strong>rapportere</strong> hva du ser i naturen, <strong>treffe</strong> andre naturelskere, og <strong>lære</strong> om den naturlige verden.
+        explore_and_share: Utforsk og dele dine observasjoner fra den naturlige verden.
         observations_to_date: 'Observasjoner hittil'
         species_observed: 'Arter observert'
         people_signed_up: 'Personer påmeldt'
@@ -5046,6 +5205,7 @@ nb:
         keep_track: Hold styr på
         create_useful_data: Generer nyttige data
         help_scientists: Hjelp forskere og forvaltere forstå hvor og når organismer forekommer.
+        find_a_project: "Finn et prosjekt med et mål som du synes er interessant, eller start ditt eget."
         learn_about_nature: Lær om naturen
         run_a_bioblitz: Hold en bioblitz
         works_on_all_your_devices: Fungerer på alle dine enheter
@@ -5299,9 +5459,22 @@ nb:
         accepted: må være akseptert
         blank: kan ikke være tom
         confirmation: kom ikke overens med passordet
+        empty: kan ikke være tom
+        equal_to: må være lik %{count}
+        even: må være partall
+        exclusion: er forbeholdt
+        greater_than: må være større enn %{count}
+        greater_than_or_equal_to: må være større enn eller lik %{count}
+        inclusion: er ikke inkludert på listen
+        invalid: er ugyldig
+        less_than: må være mindre enn %{count}
+        less_than_or_equal_to: må være mindre enn eller lik %{count}
         not_a_number: er ikke et tall
         not_an_integer: må være et helt tall
         odd: må være oddetall
+        record_invalid: 'Verifisering mislykket: %{errors}'
+        requires_privilege_speech: må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
+        requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
         taken: er allerede opptatt
         too_long:
           one: er for lang (maks antall tegn er %{count})
@@ -5309,7 +5482,11 @@ nb:
         too_short:
           one: er for kort (minimum er %{count} tegn)
           other: er for kort (minimum er %{count} tegn)
+        wrong_length:
+          one: har feil lengde (skal være %{count} tegn)
+          other: har feil lengde (skal være %{count} tegn)
       template:
+        body: 'Det var problemer med følgende felt:'
         header:
           one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
           other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
@@ -5343,6 +5520,8 @@ nb:
         occurrence_status_level: Forekomststatus-nivå
         establishment_means: Etableringsmåter
       observation:
+        geo_x: Østverdi
+        geo_y: Nordverdi
         observed_on: dato observert
       observation_field_value:
         value: 'verdi'
@@ -5353,11 +5532,16 @@ nb:
         title: Tittel
         project_icon: Prosjektikon
         project_type: Prosjekttype
+        preferred_count_by: Foretrukket antall per
+        prefers_count_from_list: Foretrekker antall fra liste
         description: Beskrivelse
         end_time: Slutttid
         terms: Vilkår
         map_type: Karttype
         zoom_level: Zoomnivå
+        preferred_membership_model: Foretrukket modell for medlemskap
+        preferred_submission_model: Foretrukket modell for registrering
+        prefers_place_boundary_visible: Vis steds grense på kart
         tracking_codes: Sporingskoder
         source_url: Kilde-URL
         start_time: Starttid
@@ -5370,6 +5554,7 @@ nb:
         latitude: Breddegrad
         longitude: Lengdegrad
         name: Navn
+        parent_id: overordnet
         place_type: Stedstype
         prefers_check_lists: Sjekklister tillatt?
         woeid: WOEID (Where On Earth IDentifier)
@@ -5381,7 +5566,9 @@ nb:
       taxon:
         name: Navn
         rank: Rang
+        parent_id: Overordnet ID
         locked: Låst
+        auto_photos: Automatiske bilder
         auto_description: Auto-beskrivelse
         wikipedia_title: Wikipedia tittel
         wikipedia_summary: Wikipedia sammendrag
@@ -5464,13 +5651,37 @@ nb:
             observed_on:
               cannot_be_greater_than_date_created: |
                 kan ikke være større enn datoen observasjonen ble lagt til på
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: "for DNA kan kun inneholde tegnene A, T, C, eller G"
+              date_format: |
+                må være i formatet ÅÅÅÅ-MM-DD for et datofelt ("%{observation_field_name}" i din observasjon av "%{observation_species_guess}")
+              time_format: |
+                må være i formatet tt:mm for et tidsfelt ("%{observation_field_name}" i din observasjon av "%{observation_species_guess}")
+            observation_id:
+              user_does_not_accept_fields_from_others: brukeren godtar ikke felt fra andre
+              user_only_accepts_fields_from_site_curators: brukeren godtar kun felt fra sidekuratorer
         place:
           attributes:
             place_geometry:
               is_too_large_to_edit: er for stor til å redigere
               is_too_large_to_import: er for stor til å importere
+              contains_too_many_observations: inneholder for mange observasjoner til import
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: |
+                må ha registrert over 24 timer siden for å publisere. Vi får en del spammere, og dette er en litt teit måte å håndtere de. Du kan fortsatt lagre et utkast, og hvis du fortsatt bruker siden en dag senere, kan du publisere.
         project_observation:
           attributes:
+            base:
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                samlings- og paraplyprosjekter tillater ikke direkte registreringer
             user_id:
               must_be_curator: må være en kurator av dette prosjektet
             observation_id:
@@ -5498,6 +5709,9 @@ nb:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 kan kun endes av en kurator for dette taksonet
+            name:
+              bad_format: |
+                kan kun inneholde standard latinske bokstaver, bindestreker, mellomrom, og ×; merk at antatte taksa og kultivarer ikke er tillatt
         taxon_name:
           attributes:
             lexicon:
@@ -5505,6 +5719,8 @@ nb:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan ikke matche det vitenskapelige navnet av en art for dette leksikonet
+              bad_format: |
+                kan kun inneholde standard latinske bokstaver, bindestreker, mellomrom, og ×; merk at antatte taksa og kultivarer ikke er tillatt
         taxon_photo:
           attributes:
             taxon:
@@ -5512,6 +5728,9 @@ nb:
                 kan ikke ha mer enn %{max} bilder
         user:
           attributes:
+            login:
+              must_begin_with_a_letter: |
+                må begynne med en bokstav, ikke inneholde mellomrom, og bruke kun bokstaver, tall, bindestreker og liggende streker
             email:
               must_look_like_an_email_address: må se ut som en e-postadresse
               domain_is_not_supported: domene støttes ikke
@@ -5521,6 +5740,32 @@ nb:
               belongs_to_an_existing_user: |
                 hører til en eksisterende bruker; hvis du har en konto fra før, vennligst logg på før du fortsetter, eller bruk en annen e-postadresse
   doorkeeper:
+    scopes:
+      write: |
+        Opprett, oppdater, og slett dine observajoner, identifikasjoner, og annet innhold på dine vegner, og ha tilgang til dine skjulte koordinater og all annen informasjon du har tilgang til på siden.
+      login: |
+        Tilgangsinformasjon relevant for pålogging, som epostadresse, brukernavn, navn, og brukerikon.
+    errors:
+      messages:
+        #Common error messages
+        invalid_request: 'Forespørselen mangler en påkrevd parameter, inkluderer en ukjent parameterverdi, eller er utformet feil på en annen måte.'
+        invalid_redirect_uri: 'Den inkluderte omredigerings-URI-en er ugyldig.'
+        unauthorized_client: 'Klienten er ikke autorisert for å utføre denne forespørselen ved bruk av denne metoden.'
+        access_denied: 'Ressurseieren eller autoriseringsserveren nektet forespørselen.'
+        invalid_scope: 'Forespurt scope er ugyldig, ukjent, eller utformet feil.'
+        server_error: 'Auteniseringsserveren traff på en ukjent betingelse som gjør at den ikke kan oppfylle forespøreselen.'
+        temporarily_unavailable: 'Auteniseringsserveren er ikke tilgjengelig for øyeblikket på grunn av en midertidig overload eller vedlikehold av serveren.'
+        #Configuration error messages
+        credential_flow_not_configured: 'Flyt av ressurseiers passordopplysninger mislykket fordi Doorkeeper.configure.resource_owner_from_credentials ikke er konfigurert.'
+        resource_owner_authenticator_not_configured: 'Henting av ressurseier mislykket fordi Doorkeeper.configure.resource_owner_authenticator ikke er konfigurert.'
+        #Access grant errors
+        unsupported_response_type: 'Auteniseringsserveren støtter ikke denne typen respons.'
+        #Access token errors
+        invalid_client: 'Autentisering av klient mislykket på grunn av ukjent klient, ingen autorisering av klient inkludert, eller autentiseringsmetode som ikke støttes.'
+        invalid_grant: 'Den oppgitte autentiseringen er ugyldig, utløpt, trukket, matcher ikke omredigerings-URI-en brukt i autentiseringsforespørselen, eller ble utgitt til en annen klient.'
+        unsupported_grant_type: 'Autentiseringstypen støttes ikke av autentiseringsserveren.'
+        #Password Access token errors
+        invalid_resource_owner: 'Den oppgitte ressurseier credentials er ikke gyldige, eller ressurseieren ble ikke funnet'
     flash:
       applications:
         create:
@@ -5560,9 +5805,15 @@ nb:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -5571,6 +5822,10 @@ nb:
         place: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
