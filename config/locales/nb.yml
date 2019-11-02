@@ -447,7 +447,7 @@ nb:
   are_you_sure_leave_this_project: Er du sikker på at du vil forlate dette prosjektet?
   are_you_sure_merge_these_places: Er du sikker på at du vil sammenføye disse steder? Dette kan ikke angres.
   are_you_sure_remove_photo: "Er du sikker på at du vil fjerne dette bildet?"
-  are_you_sure_remove_relationship: Er du sikker på at du vil fjerne denne relasjonen? Da følger du ikke denne personen lengere og trekkes eventuell tillatele til å se dine skjulte koordinater.
+  are_you_sure_remove_relationship: Er du sikker på at du vil fjerne denne relasjonen? Da følger du ikke denne personen lenger og trekkes eventuell tilgang du har gitt til dine skjulte koordinater.
   are_you_sure_remove_taxon_from_list: "Er du sikker på at du vil fjerne dette taksonet fra listen?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Er du sikker? Dette vil laste siden på nytt og du kan miste noen av dine endringer.
@@ -2290,7 +2290,7 @@ nb:
     follow_panel_body: Hvis du går inn på disse profiler og trykker på følg-knappen, blir du oppdatert når vedkommende legger ut observasjoner
     following_panel_title: Hold styr på personer, taksa, og steder
     following_panel_body: |
-      På %{site_name} kan du følge personer for å følge med på observasjonene de hsr lagt ut. Du kan også ha et abonnement på visse arter for å holde styr på nye observasjoner av disse arter, eller gjøre det samme med steder.
+      På %{site_name} kan du følge personer for å følge med på observasjonene de har lagt ut. Du kan også ha et abonnement på visse arter for å holde styr på nye observasjoner av disse arter, eller gjøre det samme med steder.
     comments_panel_title: Nysgjerrig på hva slags diskusjoner som foregår på %{site_name}?
     comments_panel_body: "<p>%{site_name} handler om å dele og diskutere observasjoner av levende vesener. Nedenfor er diskusjoner som foregår nå. (Merk: Du abonnerer deg automatisk på alle diskusjoner som du bidrar til med kommentarer eller identifikasjoner. Administrer disse oppdateringer under \"Abonnementer\" til høyre.)</p>"
     updates_by_you_panel_title: Denne fanen er en rask måte å filtrere ut kun oppdateringer på ditt innhold.
@@ -2894,7 +2894,7 @@ nb:
     one: Prosjektadmin
     other: Prosjektadmins
   project_aggregator_filter_error: |
-    Prosjekter kan ikke slå på automatisk aggregering sv observasjoner med mindre prosjektet er koblet mot et sted av begrenset omfang eller det kun tillater observasjoner av spesifikke taksa eller taksa på en liste
+    Prosjekter kan ikke slå på automatisk aggregering av observasjoner med mindre prosjektet er koblet mot et sted av begrenset omfang eller det kun tillater observasjoner av spesifikke taksa eller taksa på en liste
   project_assessments: Prosjektvurderinger
   project_assets: Projektressurser
   project_cover: Coverbilde til prosjekt
@@ -4074,7 +4074,7 @@ nb:
   you_appear_offline_try_again: |
     Du ser ut til å være offline. Vennligst prøv igjen når du er koblet til internettet.
   youre_a_site_curator_which_means: |
-    Du er en sidekurator, noe som betyr at du har meldt deg frivillig til å kuratere våre data og holde et øye på innhold. Ikke føl deg forpliktet til å håndtere alle disse saker, men hvis du har tid til å ordne opp i noen av de setter vi pris på all hjelpen vi kan få. Hvis du har noen spørsmål angående kuratering av innhold eller ikke vil være kurator lengere, vennligst ta kontakt med oss på %{email}
+    Du er en sidekurator, noe som betyr at du har meldt deg frivillig til å kuratere våre data og holde et øye på innhold. Ikke føl deg forpliktet til å håndtere alle disse saker, men hvis du har tid til å ordne opp i noen av de setter vi pris på all hjelpen vi kan få. Hvis du har noen spørsmål angående kuratering av innhold eller ikke vil være kurator lenger, vennligst ta kontakt med oss på %{email}
   you_are_over_your_invites_quota: ...du har oversteget din månedlige kvote på 60 invitasjoner
   you_are_now: Du er nå
   you_are_now_following_x: "Du følger nå %{friend_user}."
@@ -4087,7 +4087,7 @@ nb:
   you_are_not_editing_any_guides_add_one_html: |
     Du redigerer ingen guider. <a href="/guides/new">Legg til en</a>
   you_are_already_a_member_of_this_project: "Du er allerede et medlem i dette prosjektet!"
-  you_are_no_longer_following_x: "Du følger ikke %{friend} lengere."
+  you_are_no_longer_following_x: "Du følger ikke %{friend} lenger."
   you_are_setting_this_project_to_aggregate: |
     Du stiller inn dette prosjektet til å samle alle observasjoner som er i samsvar med følgende regler: %{rules} Vil du fortsette?
   you_are_submitting_obs_without_photos_and_names: |
@@ -4622,20 +4622,19 @@ nb:
           <strong>lokaliteten ikke ser riktig ut</strong> (f.eks. aper midt i havet, flodhester i kontorbygg, osv.)
           </li>
           <li>
-          <strong>organismen ikke er viltlevende/forvillet</strong> (f.eks. i fangenskap eller dyrket sv mennesker eller intelligente romvesener)
+          <strong>organismen ikke er viltlevende/forvillet</strong> (f.eks. i fangenskap eller dyrket av mennesker eller intelligente romvesener)
           </li>
           <li>
-          observasjonen <strong>leverer ikke bevis av en organisme</strong>, f.eks. bilder av landskap, vannpartier, steiner, osv.
+          observasjonen <strong>ikke leverer bevis av en organisme</strong>, f.eks. bilder av landskap, vannpartier, steiner, osv.
           </li>
           <li>
-          observasjonen 
-          the observation <strong>leverer ikke nylig (~100 år) bevis av organismen</strong> (f.eks. fossiler, men spor, avføring og døde løvblad er ok)
+          observasjonen <strong>ikke leverer nylig (~100 år) bevis av organismen</strong> (f.eks. fossiler, men spor, avføring og døde løvblad er ok)
           </li>
           <li>
-          observasjonen trenger ikke en ID lengere <em>og</em> felleskapets ID er høyere enn familienivå
+          observasjonen trenger ikke en ID lenger <em>og</em> felleskapets ID er høyere enn familienivå
           </li>
           <li>
-          observatøren hsr valgt å ikke godta fellesskapets ID og fellesskapets ID er ikke en stamfar eller etterkommer av observatørens ID
+          observatøren har valgt å ikke godta fellesskapets ID og fellesskapets ID er ikke en stamfar eller etterkommer av observatørens ID
           </li>
           </ul>
           <p>
@@ -5000,7 +4999,7 @@ nb:
           Du har blokkert eieren til denne ressursen, noe som betyr at du ikke kan kommunisere med vedkommende. De fleste interaktive funksjoner på denne siden kommer ikke til å fungere.
       spam:
         message_for_owner_and_curators_html: |
-          Denne registreringen har blitt markert som spam og er ikke offentlig synlig lengere. Du kan se den fordi du har opprettet den, eller fordi du er en sidekurator. Hvis du mener at dette er feil, vennligst <a href="mailto:%{email}">ta kontakt med oss</a>.
+          Denne registreringen har blitt markert som spam og er ikke offentlig synlig lenger. Du kan se den fordi du har opprettet den, eller fordi du er en sidekurator. Hvis du mener at dette er feil, vennligst <a href="mailto:%{email}">ta kontakt med oss</a>.
         this_has_been_flagged_as_spam: Dette har blitt markert som spam
       not_found:
         sorry_that_doesnt_exist: Beklager, det finnes ikke!
