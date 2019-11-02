@@ -986,7 +986,7 @@ es:
   delete_project: Elimina este proyecto
   delete_selected: Elimina seleccionados
   delete_taxon_and_merge_most_data_html: |
-    Eliminar <i>%{taxon}</i> y combinar la mayoría de sus datos con otro taxón. Utiliza esta herramienta para <strong>eliminar taxones duplicados</strong>. Si quieres eliminar un sinónimo desactualizado, por favor crea un intercambio de taxones. <strong>¡TEN CUIDADO!</strong> Eliminar taxones puede ser muy destructivo. Revisa la <a href="%{curator_url}">Guía de curadores</a> para más detalles.
+    Eliminar <i>%{taxon}</i> y combinar la mayoría de sus datos con otro taxón. Utiliza esta herramienta para <strong>eliminar taxones duplicados</strong>. Si deseas eliminar un sinónimo desactualizado, por favor crea un intercambio de taxones. <strong>¡TEN CUIDADO!</strong> Eliminar taxones puede ser muy destructivo. Revisa la <a href="%{curator_url}">Guía de curadores</a> para obtener más detalles.
   delete_user: Elimina usuario
   delete_your_account: Elimina tu cuenta
   deleted_synonyms: Sinónimos eliminados
@@ -1060,11 +1060,11 @@ es:
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
   drawings: Dibujos
-  duplicate_verb: Duplicado
+  duplicate_verb: Duplicar
   duration_value: "Duración: %{duration} minutos"
   each_place_displays_all_species_inat_knows: "Cada página de lugar muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puede filtrar la especie por grupo taxonómico, color, estado de conservación o búsqueda sencilla."
-  edit: Edita
-  edit_a_batch_of_observations: Edita un grupo de observaciones
+  edit: Editar
+  edit_a_batch_of_observations: Editar un grupo de observaciones
   edit_account_settings_and_profile: "Edita la cuenta y perfil"
   edit_assessment: Edita evaluación
   edit_atlas: Edita atlas
@@ -1072,31 +1072,31 @@ es:
   edit_comment: Modifica tu comentario
   edit_custom_project_fields: Modifica campos de proyecto personalizados
   edit_field: Edita el campo
-  edit_license: Modifica licencia
-  edit_multiple_dates: Edita múltiples fechas
-  edit_multiple_descriptions: Edita múltiples descripciones
+  edit_license: Modificar licencia
+  edit_multiple_dates: Editar múltiples fechas
+  edit_multiple_descriptions: Editar múltiples descripciones
   edit_multiple_locations: Edita múltiples localizaciones
-  edit_multiple_species: Edita múltiples grupos o especies
+  edit_multiple_species: Editar múltiples grupos o especies
   edit_notes: Modifica notas
-  edit_observations: Edita observaciones
+  edit_observations: Editar observaciones
   edit_photos: Modifica fotos
   edit_photos_for_observation_id: "Modifica fotos para la observación %{obs_id}"
   edit_place: Modifica lugar
   edit_project: Modifica proyecto
-  edit_remove: Edita/Elimina
+  edit_remove: Editar/Eliminar
   edit_selected: Modifica seleccionados
   edit_source: Modifica fuente
-  edit_taxa: Edita los taxa
-  edit_taxon: Edita taxón
+  edit_taxa: Editar taxones
+  edit_taxon: Editar taxón
   edit_taxon_framework: Editar marco de referencia de taxones
   edit_taxon_link: Modifica vínculo del taxón
   edit_taxon_range: Modifica área del taxón
   edit_the_observation: Modifica la observación
   edit_your_account_and_profile_html: "Modifica tu cuenta y tu perfil"
-  edit_your_default_settings: "Edita la configuración predeterminada"
-  edit_your_global_project_settings: Edita tu configuración global de proyectos
+  edit_your_default_settings: "Editar la configuración predeterminada"
+  edit_your_global_project_settings: Editar tu configuración global de proyectos
   edit_your_identification: Modifica tu identificación
-  edit_your_settings_for_this_project: Edita tu configuración para este proyecto
+  edit_your_settings_for_this_project: Editar tu configuración para este proyecto
   edited_by_name_html: "Editado por %{name}"
   edited_by_name_some_rights_reserved_html: |
     Editado por %{name}, algunos derechos reservados (%{license})
@@ -4097,8 +4097,8 @@ es:
   you_can_accept_invitations: Puede aceptar la invitación aquí.
   you_can_choose_observations_associated: Puede seleccionar observaciones para asociar con este artículo del diario.
   you_can_edit_this_default_check_list_because: |
-    Puedes editar esta página porque eres un administrador,
-    pero no debería haber la necesidad de hacer eso.
+    Puedes editar esta página porque eres administrador,
+    pero realmente no debería haber la necesidad de hacerlo.
   you_can_only_destroy_taxa_you_created: "Sólo puede destruir taxones que ha creado, y no se puede destruir taxones que se están utilizando en los cambios de taxones."
   you_can_only_block_three_users: Puedes bloquear a solo tres usuarios
   you_can_show_the_boundary_of: Puedes mostrar los límites del lugar en la página de tu proyecto solo si el lugar tiene límites.
@@ -5063,7 +5063,7 @@ es:
         an_umbrella_project_can_be_used_to: |
           Un proyecto paraguas puede comparar estadísticas de dos o más proyectos tradicionales o de colección. Los otros proyectos tienen que existir antes de que los añadas a un proyecto paraguas. Puedes incluir centenares de proyectos bajo un solo paraguas. Los proyectos paraguas no pueden contener otros proyectos paraguas.
         are_you_ready_to_duplicate: |
-          ¿Estás listo para salir de esta página para duplicar este proyecto?
+          ¿Estás preparado para salir de esta página y duplicar este proyecto? Por favor ten en cuenta que el icono del proyecto y el banner del mismo no se duplicarán, y es necesario que vuelvan a ser añadidos en el nuevo proyecto duplicado.
         are_you_sure_you_want_to_delete: '¿Estás seguro de que deseas eliminar este proyecto?'
         can_be_included_in_multiple: Puede ser incluido en múltiples proyectos paraguas
         click_through_to_individual_projects: Selecciona para los proyectos individuales
@@ -5076,7 +5076,6 @@ es:
         display_project_name: Exhibe nombre del proyecto
         do_you_need_features_from_traditional: |
           ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación a la medida, o añadir observaciones individuales que no pueden ser filtradas automáticamente?
-        duplicate_project: Proyecto duplicado
         leaderboards_among_individuals: Tabler de líderes entre <strong>@individuos</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Tablas de clasificación entre <strong>proyectos</strong>
@@ -5373,22 +5372,22 @@ es:
       form:
         new_name_guidelines_html: |
           <ul>
-          <li><p>Prueba añadir nombres que han sido utilizados en otro lugar. No inventes nombres nuevos, a menos que la especie no tenga nombre. Para más información visita <a href="http://www.naturalista.mx/pages/nombrescomunes">Nombres comunes </a></p></li>
-          <li><p>Trata de no añadir nombres duplicados, p. ej. no nombres a varios halcones como "halcones"</p></li>
-          <li><p>Para niveles más altos, intenta utilizar nombres que incluyen a todos los  descendientes, como "garzas y parientes" o "familia de los colibríes"</p></li>
+          <li><p>Intenta añadir nombres que sean utilizados en algún lugar. No inventes nombres nuevos, a menos que la especie no tenga otro nombre. Para más información visita <a href="http://www.naturalista.mx/pages/nombrescomunes">Nombres comunes </a></p></li>
+          <li><p>Trata de no añadir nombres duplicados, p. ej. no nombres a varios halcones como "halcón"</p></li>
+          <li><p>Para niveles taxonómicos más altos, intenta utilizar nombres que incluyen a todos los descendientes, como "garzas y parientes" o "familia de los colibríes"</p></li>
           <li>
           <p>
-          No añadas información que no es el nombre, p. ej. información en paréntesis de como piensas que se debe utilizar el nombre
+          No añadas información que no es el nombre, p. ej. información entre paréntesis sobre como piensas que se debería utilizar el nombre
           </p>
           </li>
           <li>
           <p>
-          Los léxicos nuevos van en inglés. No añadas traducciones a los nombres de los lenguajes como "franceses, Français" porque sería imposible localizarlos para quienes utilizan el sitio en lenguas diferentes.
+          Los léxicos nuevos van en inglés. No añadas traducciones a los nombres de los lenguajes como "franceses, Français", ya que sería imposible localizarlos para aquellos que utilizan lenguas diferentes.
           </p>
           </li>
           <li>
           <p>
-          Los nombres comunes asociados a lenguajes traducidos aparecerán como el nombre común "predeterminado" para aquella lengua (quitando el efecto de preferencias de sitio, orden de nombres, etc.).
+          Los nombres comunes asociados a lenguajes traducidos aparecerán como el nombre común "predeterminado" para esa lengua (sin contar con el efecto de preferencias de sitio, orden de nombres, etc.).
           <a class="readmore" href="/pages/translate">Aprende más sobre traducciones </a>
           </p>
           </li>
