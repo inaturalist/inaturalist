@@ -1392,7 +1392,7 @@ pl:
   computer_vision_suggestion: Sugestia na podstawie rozpoznawania obrazów
   computer_vision_suggestion_desc: |
     Rozpoznawanie obrazów to proces uczenia komputerów rozpoznawania wzorów w ilustracjach. Dostarczamy narzędzi (np. autouzupełniania czy porównywania), które używają rozpoznawania obrazów wyuczonego na bazie zdjęć społeczności, aby proponować sugestie identyfikacji. Ta etykieta informuje, że osoba dodała identyfikację korzystając z jednego z tych narzędzi.
-  identifiers: Oznaczający
+  identifiers: Oznaczających
   ids: "Identyfikacje"
   if_this_is_a_scientific_name: Jeśli jest to nazwa naukowa, to czy jest aktualnie akceptowana?
   if_you_have_any_trouble_with_the_site_check_out: 'Jeśli masz jakieś pytania, zobacz <a href="%{help_url}">sekcję pomocy</a> lub napisz wiadomość do naszej <a href="%{feedback_url}">grupy</a>.'
@@ -1943,8 +1943,8 @@ pl:
   notify_me_of_mentions: Powiadamiaj mnie o wzmiankach (np. @użytkownik)
   notify_me_about_redundant_identifications: Powiadamiaj mnie o potwierdzeniu identyfikacji
   number_of_observations: Ilość obserwacji
-  number_of_observers_value: "Ilość obserwujących: %{number}"
-  number_of_observers: "Ilość obserwujących"
+  number_of_observers_value: "Liczba obserwatorów: %{number}"
+  number_of_observers: "Liczba obserwatorów"
   obscured: Ukryta
   obscured_or_private: ukryta lub prywatna
   obscured_description: |
@@ -1997,7 +1997,7 @@ pl:
   observed: Zaobserwowano
   observed_by: Zaobserwował
   observer: Obserwator
-  observers: Obserwujący
+  observers: Obserwatorzy
   occurrence_status_levels:
     present: obecny
     common: pospolity
@@ -2008,7 +2008,7 @@ pl:
   of_observations: obserwacje
   of_species: gatunek
   of_observers: obserwatorzy
-  of_identifiers: oznaczający
+  of_identifiers: oznaczających
   of_places: miejsca
   of_this_taxon: Tego taksonu
   offensive_inappropriate: Obraźliwy / Nieodpowiedni
@@ -2505,10 +2505,10 @@ pl:
     subkingdom: Podkrólestwo
     phylum: Typ
     subphylum: Podtyp
-    superclass: Nadklasa
+    superclass: Nadgromada
     class: Klasa
-    subclass: Podklasa
-    infraclass: Infraklasa
+    subclass: Podgromada
+    infraclass: Infragromada
     superorder: Nadrząd
     order: Rząd
     suborder: Podrząd
