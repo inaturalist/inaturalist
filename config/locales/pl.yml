@@ -237,6 +237,7 @@ pl:
   add_an_observation: Dodaj obserwację
   add_an_observation?: Dodać obserwację?
   add_an_observation_of: "Dodaj obserwację %{taxon}"
+  add_an_observation_to_project_html: Dodaj obserwację do %{project}
   add_annotations_for_x: Dodaj adnotacje dla "%{x}"
   add_annotations_for_controlled_attribute:
     sex: Dodaj adnotacje dla "Płeć"
@@ -1348,6 +1349,14 @@ pl:
   has_sound: Posiada nagranie dźwiękowe
   has_sounds: Posiada nagrania dźwiękowe
   hasnt_contributed_any_observations: nie dodał obserwacji do tego projektu.
+  header_your_observations: Twoje obserwacje
+  header_your_calendar: Twój kalendarz
+  header_your_favorites: Twoje ulubione
+  header_your_lists: Twoje listy
+  header_your_journal: Twój dziennik
+  header_your_identifications: Twoje oznaczenia
+  header_your_projects: Twoje projekty
+  header_your_profile: Twój profil
   heads_up: Uwaga
   heads_up_this_photo_has_been_flagged: "UWAGA: zdjęcie zostało zgłoszone."
   heads_up_this_photo_is_already_associated_with: "Uwaga: to zdjęcie jest już powiązane z <a target='_blank' href='%{url}'>inną obserwacją</a>"
@@ -1590,6 +1599,8 @@ pl:
   list_tooltip: Pokaż listę widoków
   list_updated: Lista uaktualniona!
   list_views:
+    plain: zwykły
+    taxonomic: taksonomiczny
     photo: zdjęcie
   list_was_successfully_created: Lista została utworzona.
   lists: Listy
@@ -1676,6 +1687,8 @@ pl:
   longitude_value: "Długość: %{longitude}"
   look_up_name: "Wyszukaj nazwę"
   looks_like_no_species_in_guide: Wygląda na to, że jeszcze nie masz żadnych gatunków w przewodniku.
+  lookup: Wyszukaj
+  lowest_rank: Najniższa kategoria
   make_admin: Nadaj uprawnienia administratora
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Główna zawartość
@@ -2095,10 +2108,14 @@ pl:
   personal_message: Prywatna wiadomość
   per_page: "Na stronę"
   photo: Zdjęcie
+  photo_attribution: "Zdjęcie %{attribution}"
   photo_browser: Przeglądarka zdjęć
+  photo_by_id_attribution: "Zdjęcie %{id}, %{attribution}"
   photo_deleted: Zdjęcie usunięte
   photo_type: Typ zdjęcia
+  photos_chosen_for_this_taxon: Zdjęcia wybrane dla tego taksonu
   photos_from: Zdjęcia z
+  photos_of_taxon_html: "Zdjęcia %{taxon}"
   photos_or_sounds: Zdjęcia lub nagrania dźwiękowe
   photos_or_sounds?: Zdjęcia czy nagrania dźwiękowe?
   photos_size:
@@ -2106,6 +2123,8 @@ pl:
     medium: średni
     large: duży
     original: oryginalny
+  photos_size_photos: "%{photos_size} zdjęcia"
+  photos_updated: Zdjęcia zaktualizowane.
   pink: różowy
   place: Miejsce
   placeholder: Tekst zastępczy
@@ -2514,6 +2533,7 @@ pl:
     suborder: Podrząd
     infraorder: Infrarząd
     superfamily: Nadrodzina
+    epifamily: Epirodzina
     family: Rodzina
     subfamily: Podrodzina
     supertribe: Nadplemię
@@ -2530,6 +2550,7 @@ pl:
     form: Forma
     infrahybrid: Infrahybryda
     leaves: Liście
+  re_order_photos: "Zmień kolejność zdjęć &raquo;"
   read_more: Czytaj więcej
   read_the_full_wikipedia: Przeczytaj pełen opis na Wikipedii
   reason: Powód
@@ -2575,6 +2596,8 @@ pl:
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
   rg_observations: Obserwacje RG
+  rotate_left: Obrót w lewo
+  rotate_right: Obróć w prawo
   row_singular_or_plural: Wiersz(e)
   satellite: satelita
   save: Zapisz
@@ -2598,7 +2621,11 @@ pl:
   search_species: Szukaj gatunków
   search_species_: Szukaj gatunków...
   search_this_taxon: szukaj tego taksonu
+  search_your_photos: Przeszukaj swoje zdjęcia
   searching: "Szukanie..."
+  select_one_or_more_photos: 'Wybierz jedno lub więcej zdjęć'
+  select_photos_to_display: Wybierz zdjęcia do wyświetlenia
+  selected_photos: Wybrane zdjęcia
   selected_taxon: Wybrany takson
   select_this_taxon: Wybierz ten takson
   send_invites_to: Wyślij zaproszenie do
@@ -2615,6 +2642,7 @@ pl:
   show_keyboard_shortcuts: Pokaż skróty klawiszowe
   show_less: Pokaż mniej
   show_more: Pokaż więcej
+  show_observation_photos: pokaż zdjęcia obserwacji
   show_scientific_name_first: Pokazuj najpierw nazwy naukowe
   sign_in: Zaloguj się
   sign_in_with_provider: "Zaloguj się za pomocą %{provider}"
@@ -2624,8 +2652,10 @@ pl:
   similar_species: Podobne gatunki
   similar_taxa: Podobne taksony
   single_observation: Pojedyncza obserwacja
+  sizes: Rozmiary
   skip_to_next_page: "Przejdź do następnej strony"
   some_observations_failed_to_be_added: Nie udało się dodać niektórych Obserwacji do projektów
+  some_of_those_photos_couldnt_be_saved: "Niektóre z tych zdjęć nie mogły zostać zapisane: %{error}"
   some_rights_reserved: niektóre prawa zastrzeżone
   something: Coś
   something_: coś
@@ -2714,6 +2744,7 @@ pl:
   taxon_deleted: Takson usunięty.
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a> zaobserwowany przez
+  taxon_photos_updated: Zdjęcia taksonu zaktualizowane!
   taxon_name_was_deleted: Nazwa taksonu została usunięta.
   taxon_name_was_successfully_updated: Nazwa taksonu została pomyślnie zaktualizowana.
   taxon_was_successfully_created: Takson został pomyślnie utworzony.
@@ -2813,7 +2844,12 @@ pl:
       remove_photo: Usuń zdjęcie
       select_all: Wybierz wszystkie obserwacje
   user_added_a_x: "%{user} dodał %{x}"
+  user_added_a_x_to_noun_by_html: "%{user} dodał %{x} do %{noun} przez %{by}"
+  user_added_a_x_to_noun_html: "%{user} dodał %{x} do %{noun}"
+  user_added_an_observation_field_html: '%{user} dodał wartość dla "%{field_name}" do obserwacji przez %{owner}'
+  user_added_an_observation_html: "%{user} dodał obserwację"
   user_added_an_x: "%{user} dodał %{x}"
+  user_added_an_x_to_noun_by_html: "%{user} dodał %{x} do %{noun} przez %{by}"
   user_added_an_x_to_noun_html: "%{user} dodał %{x} do %{noun}"
   user_added_x_observations_html: "%{user} dodał %{x} obserwacji"
   user_autocomplete_placeholder: kueda, simon123, itp.
@@ -2848,6 +2884,7 @@ pl:
   view_all_members: Zobacz wszystkich użytkowników
   view_all_n: "Zobacz wszystkie %{n}"
   view_all_observations: Zobacz wszystkie obserwacje
+  view_all_photocount_photos: "Zobacz wszystkie %{photo_count} zdjęcia"
   view_assessment: Zobacz ocenę
   view_details: Zobacz szczegóły
   view_flag: Zobacz zgłoszenie
@@ -2929,6 +2966,7 @@ pl:
   your_membership: Twoje członkowstwo
   your_name_was_saved: Twoja nazwa została zapisana.
   your_observations: Twoje obserwacje
+  your_observations_couldnt_be_added_to_that_project: "Twoje obserwacje nie mogły zostać dodane do tego projektu: %{errors}"
   your_projects: Twoje Projekty
   your_google_account: Twoje konto Google
   your_google_account_info: Informacje o Twoim koncie Google
@@ -2956,6 +2994,7 @@ pl:
         what_is_an_observation?: Czym jest obserwacja?
         check_the_id_please_checkbox_when_html: |
           Zaznacz "Proszę o identyfikację", kiedy dodajesz / edytujesz obserwację - dzięki temu twoja obserwacja pojawi się w dziale <a href="%{url}">Proszę o identyfikację</a>.
+        can_i_add_photos_without_a_flickr_account?: Czy mogę dodać zdjęcia bez konta Flickr?
         what_are_tags?: Czym są tagi?
     messages:
       from: Od
@@ -2983,6 +3022,13 @@ pl:
         tag_list: Lista tagów oddzielonych przecinkami
       identify:
         review_all_tooltip: "Oznacz wszystkie obserwacje na stronie jako przejrzane"
+    emailer:
+      photos_missing:
+        subject: Niektóre zdjęcia wymagają naprawy
+    photos:
+      inviter:
+        automatically_id_the_new_obs_as: Automatycznie oznaczaj nowe obserwacje jako
+        invite_other_photographers_to_inat: "Zaproś innych fotografów do %{site_name}"
     projects:
       project_type: Typ projektu
       collection: Kolekcja
