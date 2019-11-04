@@ -215,7 +215,7 @@ class UpdateAction < ActiveRecord::Base
     try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       UpdateAction.__elasticsearch__.client.update_by_query(
         index: UpdateAction.index_name,
-        refresh: true,
+        refresh: Rails.env.test?,
         body: {
           query: {
             bool: {
@@ -300,7 +300,7 @@ class UpdateAction < ActiveRecord::Base
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
         UpdateAction.__elasticsearch__.client.update_by_query(
           index: UpdateAction.index_name,
-          refresh: true,
+          refresh: Rails.env.test?,
           body: {
             query: {
               bool: {
@@ -335,7 +335,7 @@ class UpdateAction < ActiveRecord::Base
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
         UpdateAction.__elasticsearch__.client.update_by_query(
           index: UpdateAction.index_name,
-          refresh: true,
+          refresh: Rails.env.test?,
           body: {
             query: {
               bool: {
