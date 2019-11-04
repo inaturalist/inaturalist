@@ -8929,13 +8929,6 @@ CREATE INDEX index_taxon_schemes_on_source_id ON public.taxon_schemes USING btre
 
 
 --
--- Name: index_time_zone_geometries_on_geom; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_time_zone_geometries_on_geom ON public.time_zone_geometries USING gist (geom);
-
-
---
 -- Name: index_trip_purposes_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
 --
 

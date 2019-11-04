@@ -4,6 +4,7 @@ class CreateTimeZoneGeometries < ActiveRecord::Migration
       t.string :tzid
       t.multi_polygon :geom
     end
-    add_index :time_zone_geometries, :geom, spatial: true
+    # FYI, we will generally be loading time zone boundaries using ogr2ogr,
+    # which should add a spatial index automativcally
   end
 end
