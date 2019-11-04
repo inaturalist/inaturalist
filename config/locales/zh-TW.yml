@@ -2068,6 +2068,7 @@ zh-TW:
   not_linked_flickr: "您的 %{site_name} 帳號目前已未連結至您的 Flickr 帳號"
   not_on_this_list: 未在清單裡。
   not_recorded: 未記錄
+  not_resolved: 尚未解決
   not_seeing_what_looking_for: 沒有看到您要尋找的嗎？
   note: 註解
   notes: 註解
@@ -2101,6 +2102,8 @@ zh-TW:
   observation_brief_something_from_place_on_day_at_time: "於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
+  observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
+  observation_brief_taxon_from_place: "位於 %{place} 的 %{taxon}"
   observations_by_category: "依分類區分觀察"
   observations_by_app: 依應用程式區分觀察
   observations_by_rank: 依級別區分觀察
@@ -3239,7 +3242,9 @@ zh-TW:
   source_wikipedia: "來源：維基百科"
   source_list_: "來源清單"
   source_list:
+    ubio: uBio
     catalogue_of_life: 物種目錄
+    inaturalist: iNaturalist
     new_zeland_organisms_register: 紐西蘭物種登錄
     nzbrn_birds: NZBRN 鳥類
     nzbrn_fungi: NZBRN 真菌
@@ -3300,6 +3305,9 @@ zh-TW:
   stop_following_user: "停止關注 %{user}"
   stop_testing: 停止測試
   stop_trusting_this_person_with_your_private_coordinates: 停止以您的隱藏座標來信任此人
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: 商店
   studies_that_used_inaturalist_data_in_year: 在 %{year} 使用到 iNaturalist 資料的研究
   stuff_just_added: "您剛添加的東西..."
   subject_resolved_noun_html: "%{subject}解決了%{noun}"
@@ -3312,6 +3320,8 @@ zh-TW:
   submitted: 提交
   subscribe_to_a_taxon: 訂閱一個物種分類
   subscribe_to_a_place: 訂閱一個地點
+  subscribe_to_comments_on_this_flag_html: "%{tag_start}訂閱%{tag_end} 此標記的評論"
+  subscribe_to_comments_on_this_post_html: "%{tag_start}訂閱%{tag_end} 此貼文的評論"
   subscribe_to_observations_in_a_taxon: 訂閱所有物種或生物群組的已發佈觀察（例如：「蠍子」）。
   subscribe_to_observations_in_a_place: 訂閱所有此地點的已發佈觀察。您也可添加選用的物種分類篩選（例如：「來自於德州的蠍子」）。
   subscribe_to_places_to: |
@@ -3605,6 +3615,7 @@ zh-TW:
   trust_this_person_with_your_private_coordinates: 以您的隱藏座標信任此人
   trust_with_private_coordinates: 以隱藏座標信任
   try_adding_species_form: 嘗試使用此頁面上的表單來添加一些物種。
+  twitter: Twitter
   two_thirds: 第2/3個
   type: 類型
   type_authority: 輸入權威...
@@ -3630,6 +3641,7 @@ zh-TW:
   unknown_rank: '（未知級別）'
   unfollow: 取消追蹤
   unlink_your_google_account: 取消連結您的 Google 帳號
+  unlink_your_flickr_account: "取消連結至您的 Flickr 帳號"
   unmute: 取消禁言
   updates_notification_email_subject: "%{prefix} 新的更新 %{date}"
   updates_suspension_email_subject: "%{prefix} 您的訂閱目前暫停"
@@ -3721,6 +3733,7 @@ zh-TW:
   user_flagged_as_a_spammer_html: "%{user}已被標記為濫發垃圾訊息者"
   user_flagged_as_a_non_spammer_html: "%{user}已被標記為並不是濫發垃圾訊息者"
   user_has_opted_out_of_community_id: 用戶已選擇排除社群分類群
+  user_hasnt_joined_any_projects: "%{user} 尚未加入任何專案"
   user_helped_x_people_with_y_ids_html: "%{user}以 <strong>%{y} 個鑑定</strong>幫助到了 <strong>%{x} 個人</strong>"
   user_invite_observation_to_project: '%{user} 想要徵求您的觀察「%{observation}」至 %{project} 專案。'
   user_invited_you_to_join_html: "%{user}邀請您加入"
@@ -3728,6 +3741,8 @@ zh-TW:
   user_invited_you_to_join_this_project_on_date_html: "%{user} 邀請您加入此專案於 %{date}"
   user_invited_your_x_to_a_project_html: "%{user} 邀請您%{x}一個專案"
   user_is_a_naturalist: "%{user} 是個博物學友！"
+  user_is_now_the_admin_for_project_html: |
+    <strong>%{user}</strong> 現在是 %{project} 的總管理者了
   user_is_now_a_manager_for_project_html: |
     </strong>%{user}</strong> 現在是 %{project} 的管理員了
   user_is_now_a_curator_for_project_html: |
@@ -4003,6 +4018,7 @@ zh-TW:
   you_faved_this: 您已加為最愛！
   you_have_left_x_project: "您已離開 %{project}"
   you_havent_linked_your_inaturalist_google_account: "您尚未連結您的 %{site_name} 帳號和您的 Google 帳號"
+  you_havent_joined_any_projects: 您尚未加入任一專案
   you_joined_this_project: 您加入了此專案！
   you_must_be_a_member_of_this_project_to_do_that: 您必須是此專案成員之一才能做出
   you_must_choose_an_observation_field: 您必須選擇一個觀察欄位
@@ -4435,6 +4451,8 @@ zh-TW:
       import:
         coordinate_systems_help: |
           %{site_name} 接受讓座標使用各種不同座標系統，因此當您提供座標是用在經緯度以外的系統時，我們需要了解您想使用何種座標系統以正確詮釋出。請確認您有挑選出適用於您的資料，或遙遠位置的合宜座標系統。如果您的座標來自 GPS 單位，請檢查所使用座標系統的名稱設定。註：我們不儲存自定義的座標，僅用經緯度轉換。
+        date_column_format: YYYY-MM-DD HH:MM
+        decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           位置隱私欄位必須為英文，且值必須是空白或是「obscured」或「private」
         google_photos_notice_html: |
@@ -4463,6 +4481,8 @@ zh-TW:
         cumulative_count_desc: '用於各別物種分類及其所有派生的 # 鑑定'
         curator_coordinate_access_disabled_desc_html: |
           此專案不允許帶有座標的觀察可讓專案策展人查看。如果您不想與此專案策展人分享該觀察的座標，您必須將它們從專案裡移除。
+        data_quality_assessment_desc_html: |
+          「資料品質評估」是針對某一筆觀察記錄準確性的評量方式。「研究等級」的觀察記錄有機會被科學家用於研究上。請在下方投下您的一票：
         disagreement_count_desc: "# 已鑑定物種分類群不在物種分類的祖先之中"
         identification_count_desc: '#的各別分類單元之鑑定'
         flagged_photos_desc_html: |
@@ -4990,6 +5010,7 @@ zh-TW:
         obs_cid_d_to_genus_desc: 代表在前 7 日所建立並具有在屬層級或較低階層級的社群鑑定
         obs_desc: 代表在前 7 日所建立
         obs_id_d_desc: 代表在前 7 日所建立並具有社群鑑定（可以是觀察者的）
+        observations_1_week_moving_window: 觀察記錄 (一週移動視窗法)
         other_desc_html: 代表透過其它<a href="%{url}">由開發人員建置</a>應用程式所建立
         recent_desc: 代表在前 7 日註冊
         recent_w_0_obs: 最近帶有 0 個觀察
@@ -5492,6 +5513,7 @@ zh-TW:
         strip_insignificant_zeros: false
     human:
       decimal_units:
+        format: '%n %u'
         units:
           billion: 十億
           million: 百萬
@@ -5499,12 +5521,18 @@ zh-TW:
           thousand: 千
           trillion: 萬億
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
       storage_units:
+        format: '%n %u'
         units:
           byte:
             other: 位元組
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
       last_word_connector: '，和'
@@ -5514,6 +5542,8 @@ zh-TW:
     am: 上午
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%Y/%m/%d %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%Y年%B%d日"
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%Y年%B%d日"
@@ -5521,6 +5551,7 @@ zh-TW:
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
+      format: '%{attribute} %{message}'
       messages:
         accepted: 必須被接受
         blank: 不可留空
@@ -5569,6 +5600,7 @@ zh-TW:
         description: 描述
         authority: 權威
         place_id: 地點
+        url: 網址
         geoprivacy: 位置隱私
         iucn: 等同國際自然保護聯盟瀕危物種(IUCN)紅色名錄
       flag:
@@ -5618,10 +5650,12 @@ zh-TW:
         name: 名稱
         parent_id: 父級
         place_type: 地點類型
-        prefers_check_lists: 允許的清單？
+        prefers_check_lists: 允許建立物種名錄？
+        woeid: WOEID
       source:
         title: 標題
         in_text: 在文字裡
+        url: 網址
         citation: 引用
       taxon:
         name: 名稱
@@ -5648,6 +5682,7 @@ zh-TW:
         place_id: 地點
         preferred_observation_fields_by: 允許觀察欄位來自於
     errors:
+      format: '%{attribute} %{message}'
       messages:
         accepted: 必須被接受
         blank: 不可留空
@@ -5734,6 +5769,13 @@ zh-TW:
                 必須註冊超過 24 小時才可發佈。這是我們面對到大量破壞者的將就應付方式。如果您在註冊那天裡有使用我們的網站，您仍可將內容存儲成草稿來用於發佈。
         project_observation:
           attributes:
+            base:
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                收藏專案和綜合專案並不允許直接加入觀察記錄
             user_id:
               must_be_curator: 必須為此專案的策展人
             observation_id:
@@ -5785,6 +5827,7 @@ zh-TW:
                 必須以字母為開頭，內容不可包含空格，開頭以外部份僅能使用字母、數字、連接號、底線
             email:
               must_look_like_an_email_address: 必須要看起來像電子郵件地址
+              domain_is_not_supported: 尚未支援此網域
         user_parent:
           attributes:
             email:
@@ -5856,7 +5899,11 @@ zh-TW:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         listed_taxon: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -5869,6 +5916,10 @@ zh-TW:
         place: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
