@@ -20,16 +20,31 @@
   %fieldset
     %legend=t :assets
     .row
-      .col-md-3
-        = f.file_field :logo
-        = image_tag @record.logo.url
-      .col-md-3
-        = f.file_field :logo_square
-        = image_tag @record.logo_square.url, :class => 'img-responsive'
-      .col-md-3
-        = f.file_field :logo_email_banner
-        = image_tag @record.logo_email_banner.url, :class => 'img-responsive'
-      .col-md-3
+      .col-md-4
+        = f.file_field :logo, description: "Displays in the upper left of the site header. PNG, JPG, GIF, or SVG, preferrably ~6:1 aspect ratio."
+        .well
+          = image_tag @record.logo.url
+      .col-md-4
+        = f.file_field :logo_square, description: "Used in situations where we need a brand that fits in a square or a circle (e.g. representing the site as an icon). JPG, PNG, or GIF, 1:1 ratio, ~300x300px"
+        .well
+          = image_tag @record.logo_square.url, :class => 'img-responsive'
+      .col-md-4
+        = f.file_field :favicon, description: "Displayed in address bar and tabs. PNG or ICO (preferrably PNG), 1:1, no more than 64x64px"
+        .well
+          = image_tag @record.favicon.url, :class => 'img-responsive'
+    .row
+      .col-md-4
+        = f.file_field :logo_email_banner, description: "Displays at the top of all emails sent from the site to users. JPG, PNG, or GIF, ~6:1, 600px wide"
+        .well
+          = image_tag @record.logo_email_banner.url, :class => 'img-responsive'
+      .col-md-4
+        = f.file_field :shareable_image, description: "Default image used when sharing a page on social media. Ideal ratio and dimensions vary by platform, but we recommend a 1200px square that can be center-cropped to a 2:1 ratio. If no image is specified, the external site will usually choose an image for you from the content of the page"
+        .well
+          - if @record.shareable_image?
+            = image_tag @record.shareable_image.url, :class => 'img-responsive'
+          - else
+            =t :no_content
+      .col-md-4
         = f.file_field :stylesheet
         = link_to @record.stylesheet.url, @record.stylesheet.url if @record.stylesheet?
     .row

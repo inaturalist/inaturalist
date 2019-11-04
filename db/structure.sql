@@ -3771,7 +3771,15 @@ CREATE TABLE public.sites (
     logo_email_banner_file_size integer,
     logo_email_banner_updated_at timestamp without time zone,
     domain character varying,
-    coordinate_systems_json text
+    coordinate_systems_json text,
+    favicon_file_name character varying,
+    favicon_content_type character varying,
+    favicon_file_size bigint,
+    favicon_updated_at timestamp without time zone,
+    shareable_image_file_name character varying,
+    shareable_image_content_type character varying,
+    shareable_image_file_size bigint,
+    shareable_image_updated_at timestamp without time zone
 );
 
 
@@ -10006,4 +10014,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190702063435');
 INSERT INTO schema_migrations (version) VALUES ('20190820224224');
 
 INSERT INTO schema_migrations (version) VALUES ('20190918161513');
+
+INSERT INTO schema_migrations (version) VALUES ('20191104233418');
 

@@ -13,6 +13,9 @@ $dark-gray: #333333;
 #logo {
   text-align: center;
   padding: 50px;
+  img {
+    max-height: 34px;
+  }
 }
 #bodywrapper:after {
   height: 0;

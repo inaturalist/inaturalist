@@ -90,7 +90,6 @@ class Site < ActiveRecord::Base
   validates_attachment_content_type :logo_square, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
     message: "must be JPG, PNG, or GIF"
 
-  # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
   if CONFIG.usingS3
     has_attached_file :logo_email_banner,
       storage: :s3,
@@ -109,7 +108,51 @@ class Site < ActiveRecord::Base
       url: "/attachments/sites/:id-logo_email_banner.:extension",
       default_url: "inat_email_banner.png"
   end
-  validates_attachment_content_type :logo_email_banner, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/], message: "must be JPG, PNG, or GIF"
+  validates_attachment_content_type :logo_email_banner,
+    content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
+    message: "must be JPG, PNG, or GIF"
+
+  if CONFIG.usingS3
+    has_attached_file :favicon,
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_region: CONFIG.s3_region,
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      bucket: CONFIG.s3_bucket,
+      path: "sites/:id-favicon.:extension",
+      url: ":s3_alias_url",
+      default_url: "favicon.png"
+    invalidate_cloudfront_caches :favicon, "sites/:id-favicon.*"
+  else
+    has_attached_file :favicon,
+      path: ":rails_root/public/attachments/sites/:id-favicon.:extension",
+      url: "/attachments/sites/:id-favicon.:extension",
+      default_url: "favicon.png"
+  end
+  validates_attachment_content_type :favicon,
+    content_type: [/png/i, /gif/i, "image/x-icon", "image/vnd.microsoft.icon"],
+    message: "must be PNG, GIF, or ICO"
+
+  if CONFIG.usingS3
+    has_attached_file :shareable_image,
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_region: CONFIG.s3_region,
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      bucket: CONFIG.s3_bucket,
+      path: "sites/:id-shareable_image.:extension",
+      url: ":s3_alias_url"
+    invalidate_cloudfront_caches :shareable_image, "sites/:id-shareable_image.*"
+  else
+    has_attached_file :shareable_image,
+      path: ":rails_root/public/attachments/sites/:id-shareable_image.:extension",
+      url: "/attachments/sites/:id-shareable_image.:extension"
+  end
+  validates_attachment_content_type :shareable_image,
+    content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
+    message: "must be JPG, PNG, or GIF"
       
   # CSS file to override default styles
   if CONFIG.usingS3

@@ -71,8 +71,8 @@ class StatsController < ApplicationController
       @year_statistic.shareable_image
     elsif @display_user && @display_user.icon?
       @display_user.icon.url(:large)
-    else
-      @site.logo_square.url
+    elsif @site.shareable_image?
+      @site.shareable_image.url
     end
     respond_to do |format|
       format.html { render layout: "bootstrap" }

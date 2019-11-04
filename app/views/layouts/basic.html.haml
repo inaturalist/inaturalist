@@ -4,7 +4,7 @@
     %title
       = content_for(:title) ? "#{content_for(:title)} · " : ""
       = @site.try(:name)
-    = favicon_link_tag
+    = favicon_link_tag "favicon.png"
     = csrf_meta_tag
     %meta{ http_equiv: "Content-Language", content: I18n.locale }
     - if current_user
