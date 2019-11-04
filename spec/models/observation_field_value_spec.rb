@@ -141,11 +141,15 @@ describe ObservationFieldValue, "validation" do
     let(:observer) { User.make!( prefers_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS ) }
     let(:observation) { Observation.make!( user: observer ) }
     it "should fail if the user is not a curator" do
-      ofv = ObservationFieldValue.make( observation: observation )
+      ofv = ObservationFieldValue.make( observation: observation, user: User.make! )
       expect( ofv ).not_to be_valid
     end
     it "should pass if the user is a curator" do
       ofv = ObservationFieldValue.make( observation: observation, user: make_curator )
+      expect( ofv ).to be_valid
+    end
+    it "should pass if the user is the observer" do
+      ofv = ObservationFieldValue.make( observation: observation, user: observation.user )
       expect( ofv ).to be_valid
     end
   end
