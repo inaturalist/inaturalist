@@ -226,10 +226,10 @@ class UpdateAction < ActiveRecord::Base
             }
           },
           script: {
-            inline: "
-              ctx._source.viewed_subscriber_ids.add( params.user_id );
-              ctx._source.viewed_subscriber_ids =
-                ctx._source.viewed_subscriber_ids.stream( ).distinct( ).collect( Collectors.toList( ) )",
+            source: "
+              if ( !ctx._source.viewed_subscriber_ids.contains( params.user_id ) ) {
+                ctx._source.viewed_subscriber_ids.add( params.user_id );
+              }",
             params: {
               user_id: user_id
             }
@@ -310,12 +310,12 @@ class UpdateAction < ActiveRecord::Base
               }
             },
             script: {
-              inline: "
-                for (entry in params.user_ids) {
-                  ctx._source.subscriber_ids.add( entry );
-                }
-                ctx._source.subscriber_ids =
-                  ctx._source.subscriber_ids.stream( ).distinct( ).collect( Collectors.toList( ) )",
+              source: "
+                for ( entry in params.user_ids ) {
+                  if ( !ctx._source.subscriber_ids.contains( entry ) ) {
+                    ctx._source.subscriber_ids.add( entry );
+                  }
+                }",
               params: {
                 user_ids: user_ids
               }
@@ -345,7 +345,7 @@ class UpdateAction < ActiveRecord::Base
               }
             },
             script: {
-              inline: "ctx._source.subscriber_ids.retainAll( params.user_ids )",
+              source: "ctx._source.subscriber_ids.retainAll( params.user_ids )",
               params: {
                 user_ids: user_ids
               }
