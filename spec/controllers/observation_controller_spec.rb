@@ -205,64 +205,6 @@ describe ObservationsController do
     end
   end
 
-  describe "project" do
-    render_views
-
-    describe "viewed by project curator" do
-      let(:p) { Project.make! }
-      let(:pu) { ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR) }
-      let(:u) { pu.user }
-      before do
-        sign_in u
-      end
-
-      it "should include private coordinates" do
-        po = make_project_observation(project: p, prefers_curator_coordinate_access: true)
-        expect( po ).to be_prefers_curator_coordinate_access
-        o = po.observation
-        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
-        o.reload
-        expect( o.private_latitude ).to_not be_blank
-        get :project, :id => p.id
-        expect(response.body).to be =~ /#{o.private_latitude}/
-      end
-
-      it "should not include private coordinates if observer is not a member" do
-        po = ProjectObservation.make!(project: p)
-        o = po.observation
-        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
-        o.reload
-        expect(o.private_latitude).to_not be_blank
-        get :project, :id => p.id
-        expect(response.body).not_to be =~ /#{o.private_latitude}/
-      end
-
-      it "should not include private coordinates if observer does not prefer it" do
-        po = make_project_observation(preferred_curator_coordinate_access: false)
-        o = po.observation
-        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
-        o.reload
-        expect(o.private_latitude).to_not be_blank
-        get :project, :id => p.id
-        expect(response.body).not_to be =~ /#{o.private_latitude}/
-      end
-    end
-
-    it "should not include private coordinates when viewed by a normal project member" do
-      po = make_project_observation
-      o = po.observation
-      o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
-      o.reload
-      expect(o.private_latitude).to_not be_blank
-      p = po.project
-      pu = ProjectUser.make!(:project => p)
-      u = pu.user
-      sign_in u
-      get :project, :id => p.id
-      expect(response.body).to_not be =~ /#{o.private_latitude}/
-    end
-  end
-
   describe "project_all", "page cache" do
     before do
       @project = Project.make!

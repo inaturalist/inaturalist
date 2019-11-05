@@ -1770,45 +1770,6 @@ shared_examples_for "an ObservationsController" do
     end
   end
 
-  describe "project" do
-    elastic_models( Observation )
-
-    let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
-
-    it "should allow filtering by updated_since" do
-      pu = ProjectUser.make!
-      oldo = Observation.make!(:user => pu.user)
-      old_po = ProjectObservation.make!(:observation => oldo, :project => pu.project)
-      sleep(2)
-      newo = Observation.make!(:user => pu.user)
-      new_po = ProjectObservation.make!(:observation => newo, :project => pu.project)
-      get :project, :format => :json, :id => pu.project_id, :updated_since => (newo.updated_at - 1.second).iso8601
-      json = JSON.parse(response.body)
-      expect(json.detect{|o| o['id'] == newo.id}).not_to be_blank
-      expect(json.detect{|o| o['id'] == oldo.id}).to be_blank
-    end
-
-    it "should include private coordinates when project curator coordinate access has been granted" do
-      o = Observation.make!( latitude: 1.23456, longitude: 7.890123, geoprivacy: Observation::PRIVATE )
-      po = ProjectObservation.make!( observation: o, prefers_curator_coordinate_access: true )
-      pu = ProjectUser.make!( user: user, project: po.project, role: ProjectUser::CURATOR )
-      o.reload
-      expect( o ).to be_coordinates_viewable_by( user )
-      get :project, format: :json, id: po.project_id
-      expect( response.body ).to be =~ /#{o.private_latitude}/
-      expect( response.body ).to be =~ /#{o.private_longitude}/
-    end
-
-    it "should not include private coordinates when project curator coordinate access has not been granted" do
-      o = Observation.make!( latitude: 1.23456, longitude: 7.890123, geoprivacy: Observation::PRIVATE )
-      p = Project.make!( user: user )
-      get :project, format: :json, id: p.id
-      expect(response.body).not_to be =~ /#{o.private_latitude}/
-      expect(response.body).not_to be =~ /#{o.private_longitude}/
-    end
-
-  end
-
   describe "update_fields" do
     elastic_models( Observation )
     shared_examples_for "it allows changes" do
