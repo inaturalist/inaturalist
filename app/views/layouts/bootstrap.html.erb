@@ -7,7 +7,7 @@
   <head>
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
-    <%= favicon_link_tag "favicon.png" %>
+    <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <% if responsive? %>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% else %>
