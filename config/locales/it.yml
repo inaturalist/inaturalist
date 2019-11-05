@@ -279,7 +279,7 @@ it:
     <a target="%{target}" class="%{class}" href="%{url}">scambio di taxon</a>
   added_by: Aggiunta da
   added_by_user_on_date_html: "Aggiunto da %{user} il %{date}"
-  added_on: Aggiunto il
+  added_on: Aggiunta il
   added_to_favorites_html: |
     Aggiunta ai <a href="%{url}">preferiti</a>
   adding: "Aggiunta in corso..."
@@ -899,7 +899,7 @@ it:
   csv: CSV
   csv_file: File CSV
   csv_should_not_contain_a_header_row: Il CSV non deve contenere la riga di intestazione
-  cumulative_ids: "ID comulativo: %{count} di %{total}"
+  cumulative_ids: "ID comulative: %{count} di %{total}"
   curate_observations: Organizza osservazioni
   curate_taxa: Organizza taxa
   curate_user: Gestisci utente
@@ -1822,7 +1822,7 @@ it:
   manage_all_your_subscriptions: Gestisci tutte le tue sottoscrizioni
   manage_names: Gestisci i nomi
   manage_your_projects: Gestisci i Tuoi Progetti
-  manage_your_project_invitations: Gestisci i tuoi inviti al progetto
+  manage_your_project_invitations: Gestisci i tuoi inviti ai progetti
   manage_your_relationships: Organizza le tue relazioni
   manager: Gestore
   managers: Gestori
@@ -2054,7 +2054,7 @@ it:
   no_license_all_rights_reserved: Nessuna licenza (tutti i diritti riservati)
   no_managers_set: Nessun gestore stabilito
   no_matching_article_from_x: "Nessuna articolo da %{x} corrisponde"
-  no_matching_invitations: Nessun invito corrisponde
+  no_matching_invitations: Nessun invito collegato
   no_matching_observations: Nessuna osservazione corrisponde.
   no_matching_places: Nessun luogo corrisponde
   no_matching_projects: Nessun progetto corrisponde
@@ -2911,7 +2911,7 @@ it:
   project_home: Homepage del progetto
   project_icon: Icona del progetto
   project_id_or_url_slug: ID del progetto o URL, e.g. 333 o mio-progetto
-  project_invitations: 'Inviti al progetto'
+  project_invitations: 'Inviti ai progetti'
   project_list: Lista del progetto
   project_list_defaults:
     title: "Checklist di %{owner_name}"
@@ -3386,7 +3386,7 @@ it:
   status_in_place: "%{status} in %{place}"
   stay_and_try_again: Rimani e prova ancora
   still_no_luck?: Ancora sfortunato?
-  still_needs_id?: La comunità può confermare/migliorare ID?
+  still_needs_id?: La comunità può confermare/migliorare l'ID?
   still_working_on_classifying_taxon: Stiamo ancora lavorando nella classificazione di questo taxon. Controlla più tardi
   stop_editing: Termina la modifica
   stop_following_user: "Smetti di seguire %{user}"
@@ -3405,7 +3405,7 @@ it:
   submit_observations:
     one: Invia 1 osservazione
     other: Invia %{count} osservazioni
-  submitted: Inviato
+  submitted: Inviata
   subscribe_to_a_taxon: Iscriviti a un Taxon
   subscribe_to_a_place: Iscriviti ad un Luogo
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Iscriviti%{tag_end} per aggiungere commenti relativi a questo contrassegno"
@@ -3867,7 +3867,7 @@ it:
   user_muted: Utente silenziato
   user_observed_on_on_date_in_place: |
     %{user} ne ha osservata una il %{date} in %{place}
-  user_suggested_an_id: "%{user} ha suggerito un ID"
+  user_suggested_an_id: "%{user} ha suggerito una ID"
   user_thinks_yours_is: "%{user} %{noun} che la tua osservazione %{observation} sia"
   user_trusts_you_with_their_private_coordinates: "%{user} ti ha rivelato le sue coordinate nascoste"
   user_trusts_you_with_their_private_coordinates_desc: |
@@ -5803,6 +5803,9 @@ it:
         place_type: Tipo di luogo
         prefers_check_lists: Checklist consentita?
         woeid: WOEID (Where On Earth IDentifier)
+      site:
+        logo: Logo testuale
+        logo_email_banner: Banner Email
       source:
         title: Titolo
         in_text: Nel testo
