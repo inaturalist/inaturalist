@@ -5338,14 +5338,12 @@ nl:
         charts_help_other: |
           We tonen ook seizoensgebonden grafieken voor aantekeningen bij waarnemingen. Aantekeningen zijn een nieuw systeem om metadata toe te voegen aan waarnemingen door gebruik te maken van een gecontrolleerde woordenschat van begrippen. Tot nu toe gebruiken we enkel "Levensstadium" en "Plantenfenologie" (wanneer de plant bloeit of vruchten draagt). We hebben nog geen manier om aantekeningen rechtstreeks toe te voegen, voorlopig converteren we gegevens van velden op waarnemingen naar aantekeningen. Als je niet kan wachten tot we ons aantekeningensysteem hebben gebouwd, kan je bijdragen aan de "Levensstadium" aantekeningen door een veld met één van de volgende waarden toe te voegen aan een waarneming: Volwassen, Teneral, Pop, Nimf, Larve, Ei of Juveniel. Meer specifiek zijn dus de "Levensstadium" en "Levensstadium van het insect" velden goed. Voor "Plantenfenologie" kijken we naar elk veld met het woord "fenologie" in de naam en "bloem" of "fruit" in de waarde, dus het veld "Bloeifenologie" is een goede om te gebruiken.
         charts_help_relative_observations: |
-          Het tonen van de frequentie als een relatieve eigenschap van alle waarnemingen helpt het 
-          effenen van het effect van de algehele groei van de site. Als bijvoorbeeld de site groeit naarmate we meer waarnemingen krijgen van elke afgelopen jaar krijgen we meer waarnemingen van elk individueel taxon, wat niet aangeeft dat er meer van dat taxon in de buurt is, alleen maar dat er meer mensen het taxon waarnemen. De rrelatieve eigenschap toont aan dat als er 100 waarnemingen in totaal zijn en maar
-          20 waarnemingen van dit taxon, het aandeel van dit taxon is 0,2 (20/100) is. Als het volgende jaar
-          er 2000 waarnemingen worden genoteerd en 400 waarnemingen van
-          dit taxon dan is het aandeel nog steeds 0,2 (400/2000). Dit veroorzaakt wat
-          abberaties als er maar heel weinig waarnemers in een gebied zijn of voor taxa
-          die zeer zelden worden waargenomen, maar dat geldt voor de totale tellingen
-          ook.
+          Het tonen van de frequentie als een relatief aandeel van alle waarnemingen helpt het effect van de algehele groei van de site uit te effenen. Als de site bijvoorbeeld groeit naarmate we elk jaar meer waarnemingen binnenkrijgen, krijgen we meer waarnemingen binnen van elk individueel taxon, wat niet betekent dat dat taxon vaker voorkomt, alleen maar dat er meer mensen het taxon waarnemen. Het tonen van het relatieve aandeel houdt in dat als er 100 waarnemingen in totaal zijn, waarvan 
+          20 van dit taxon, het aandeel van dit taxon 0,2 is (20/100). Als er het jaar daarop
+          2000 waarnemingen worden genoteerd, waarvan 400 van
+          dit taxon, dan is het aandeel nog steeds 0,2 (400/2000). Dit veroorzaakt wat
+          afwijkingen als er maar heel weinig waarnemers in een gebied zijn, of voor taxa
+          die zeer zelden worden waargenomen, maar datzelfde geldt voor de totale aantallen.
         complete_taxon_desc: |
           "Complete" taxa hebben al hun afstammelingen, bestaande taxa van een
           specifieke rang aanwezig in de database van de website. Wanneer een taxon al zijn soorten bevat, we kunnen bijvoorbeeld zeggen hoe veel  soorten al zijn waargenomen en welke nog niet. Bij de tellingen van
@@ -5453,10 +5451,10 @@ nl:
             <strong class="count">%{helpers_count} personen</strong> die je hebben geholpen met determinaties
         x_identifications_html:
           one: |
-            <strong class="count">jouw enige determinatie</strong> van de waarneming van een andere persoon, die mogelijk van invloed kan zijn op de datakwaliteit van die waarneming
+            <strong class="count">%{count} determinatie door jou</strong> van iemand anders' waarneming, die mogelijk van invloed kan zijn op de datakwaliteit van die waarneming
           other: |
-            <strong class="count">%{count} van jouw eigen determinaties</strong> op de waarnemingen van 
-            <strong class="count">%{helpees_count} andere mensen</strong>, die mogelijk van invloed zijn op de datakwaliteit van die waarnemingen
+            <strong class="count">%{count} van jouw eigen determinaties</strong> van de waarnemingen van 
+            <strong class="count">%{helpees_count} anderen</strong>, die mogelijk van invloed zijn op de datakwaliteit van die waarnemingen
         x_comments_html:
           one: <strong class="count">%{count} reactie</strong> die je hebt toegevoegd
           other: <strong class="count">%{count} reacties</strong> die je hebt toegevoegd
@@ -5504,7 +5502,7 @@ nl:
           Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken
           zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
         license_description_attribution_html: |
-          Licentie van beschrijvingen en afbeeldingen &copy; %{year} Creative Commons, gebruikt
+          Licentiebeschrijvingen en afbeeldingen &copy; %{year} Creative Commons, gebruikt
           onder een <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Naamsvermelding licentie</a> (zo meta!)
         monthly_supporter_desc_html: |
@@ -5990,6 +5988,9 @@ nl:
         place_type: Plaatstype
         prefers_check_lists: Controlelijsten toegestaan?
         woeid: WOEID
+      site:
+        logo: Woordmerk
+        logo_email_banner: E-mail banner
       source:
         title: Titel
         in_text: In tekst
