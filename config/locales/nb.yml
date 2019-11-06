@@ -567,7 +567,7 @@ nb:
   back_to_your_profile: Tilbake til din profil
   back_to_your_projects: Tilbake til dine prosjekter
   based_on_the_evidence_can_id_be_improved: |
-    Basert på bevismaterialet, kan fellesskapstaksonet bekreftes eller forbedres ytterlige?
+    Basert på bevismaterialet, kan fellesskapets takson bekreftes eller forbedres ytterlige?
   batch: Batch
   batch_edit: Rediger i batch
   batch_edit_taxa_for_x_html: "Rediger taksa i batch for %{x}"
@@ -723,7 +723,7 @@ nb:
   choose_tags: Velg etiketter
   choose_taxon: Velg et takson
   choose_what_kind_of_change_youre_creating: "Velg hvilken type endring du oppretter."
-  cid_d_to_genus: CID'et til slekt
+  cid_d_to_genus: FID-et til slekt
   citation: Sitering
   classification: Klassifisering
   clear: nullstill
@@ -897,7 +897,7 @@ nb:
   csv: CSV
   csv_file: CSV-fil
   csv_should_not_contain_a_header_row: CSV bør ikke inneholde en rad med overskrifter
-  cumulative_ids: "Kumulative id'er: %{count} av %{total}"
+  cumulative_ids: "Kumulative ID-er: %{count} av %{total}"
   curate_observations: Kurater observasjoner
   curate_taxa: Kurater taksa
   curate_user: Kurater bruker
@@ -1417,7 +1417,7 @@ nb:
   help_confirm_observations!: Hjelp å bekrefte observasjoner!
   help_support_inaturalist: "Hjelp med å støtte iNaturalist"
   help_translate!: Hjelp med å oversette!
-  helped_the_observer_make: gar hjulpet observatøren med å gjøre ID'en endelig (dvs. de ble gjort før den endelige IDen og de stemmer overens)
+  helped_the_observer_make: har hjulpet observatøren med å gjøre ID-en endelig (dvs. de ble gjort før den endelige ID-en og de stemmer overens)
   here_are_3_examples: Her er 3 eksempler av bra utformede data
   here_are_our_top_species_suggestions: Her er våre beste artsforslag
   hex_color_eg: Hex-farge, f.eks. 65644F
@@ -1736,8 +1736,6 @@ nb:
     de: Tysk
     el: Gresk
     en: Engelsk
-    en-UK: Engelsk (Storbritannia)
-    en-US: Engelsk (USA)
     eo: Esperanto
     es: Spansk
     es-AR: Spansk (Argentina)
@@ -1745,7 +1743,6 @@ nb:
     et: Estisk
     eu: Baskisk
     fi: Finsk
-    fil: Filippinsk
     fr: Fransk
     fr-CA: Fransk (Canada)
     gl: Galisisk
@@ -1753,14 +1750,12 @@ nb:
     id: Indonesisk
     it: Italiensk
     ja: Japansk
-    ka: Georgisk
     ko: Koreansk
     lb: Luxembourgsk
     lt: Litauisk
     mk: Makedonsk
     nb: Norsk Bokmål
     nl: Nederlandsk
-    nn: Norsk Nynorsk
     oc: Oksitansk
     pl: Polsk
     pt: Portugisisk
@@ -1770,7 +1765,6 @@ nb:
     sq: Albansk
     sv: Svensk
     zh-CN: Kinesisk (forenklet)
-    zh-HK: Kinesisk (tradisjonell, Hongkong)
     zh-TW: Kinesisk (tradisjonell)
   locality_notes: Lokalitetsnotater
   localized_species_accounts: Lokale artsoversikter
@@ -1807,7 +1801,7 @@ nb:
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Hovedinnhold
   #Stub text for the main content section when editing custom project data
-  main_content_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  main_content_description: Hovedinnhold kommer her
   make_a_new_place: Opprett et nytt sted
   make_a_taxon_swap_instead?: Lag et taksonbytte istedenfor?
   make_curator: Gjør til kurator
@@ -1971,7 +1965,7 @@ nb:
   #project detail page when editing custom project data
   nav: Nav
   #Stub text to show where the nav section of the project detail page is.
-  nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  nav_description: Prosjektnavigering kommer her.
   ne_lat: NØ bgrad.
   ne_lon: NØ lgrad.
   near_threatened: Nær truet
@@ -2139,8 +2133,8 @@ nb:
   number_of_observers: "Antall observatører"
   number_selected: "# valgt"
   obs: Obs
-  obs_cid_d: Obs FID'et
-  obs_id_d: Obs ID'et
+  obs_cid_d: Obs FID-et
+  obs_id_d: Obs ID-et
   obscured: Tilslørt
   obscured_or_private: tilslørt eller privat
   obscured_description: |
@@ -2283,7 +2277,7 @@ nb:
     observe_panel_title: La oss komme i gang ved å legge ut noen observasjoner
     observe_panel_body_p1_local: Trenger du inspirasjon? Her er noen organismer som observeres i nærheten...
     observe_panel_body_p1_global: Trenger du inspirasjon? Her er noen organismer som observeres...
-    observe_panel_body_p2: Kom deg ut, og observer et organisme. Velg noe vilt og ta et tydelig, skjermfyllende bilde. Hvis du allerede har et bilde av noe vilt, <a href="%{new_observation_path}">legg det til nå</a>. Du kan også bruke %{site_name}s mobile apper for å registrere observasjoner.
+    observe_panel_body_p2: Kom deg ut, og observer en organisme. Velg noe vilt og ta et tydelig, skjermfyllende bilde. Hvis du allerede har et bilde av noe vilt, <a href="%{new_observation_path}">legg det til nå</a>. Du kan også bruke %{site_name}s mobile apper for å registrere observasjoner.
     observe_panel_body_p3: Så snart du har delt dine observasjoner, viser denne siden oppdateringer fra fellesskapet i formen av kommentarer og identifikasjoner. Hvem vet hva du vil oppdage!
     follow_panel_title_local: Følg noen naturalister i nærheten
     follow_panel_title_global: Følg noen aktive naturalister
@@ -2298,7 +2292,7 @@ nb:
     youve_got_updates_panel_title: Du har oppdateringer!
     youve_got_updates_panel_body_p1: Forbli oppdatert med oppdateringer på følgende...
     youve_got_updates_panel_body_p2: |
-      <ul><li><strong>Ditt innhold:</strong> Aktivitet på dibe observasjoner som kommentarer, identifikasjoner eller favoritter fra %{site_name}-samfunnet. Du får også oppdateringer når noen legger til din observasjon i et prosjekt, eller annoterer det med ytterlige felt. </li><li><strong>Personer:</strong> Nye observasjoner eller journalinnlegg av personer du følger. </li><li><strong>Organismer, prosjekter og steder:</strong> Nye observasjoner av bestemte organismer eller fra steder du har abonnert deg på. Du kan også bli med u prosjektet slik at du blir oppdatert når de legger ut journalinnlegg for prosjektet.</li><li><strong>Diskusjoner du deltar i:</strong> Å legge inn kommentarer eller identifikasjoner på andres innhold abonnerer deg på ny aktivitet på det innholdet automatisk. Bruk verktøyet "Administer dine abonnementer" for å slutte å få oppdateringer.</li></ul>
+      <ul><li><strong>Ditt innhold:</strong> Aktivitet på dine observasjoner som kommentarer, identifikasjoner eller favoritter fra %{site_name}-samfunnet. Du får også oppdateringer når noen legger til din observasjon i et prosjekt, eller annoterer det med ytterlige felt. </li><li><strong>Personer:</strong> Nye observasjoner eller journalinnlegg av personer du følger. </li><li><strong>Organismer, prosjekter og steder:</strong> Nye observasjoner av bestemte organismer eller fra steder du har abonnert deg på. Du kan også bli med u prosjektet slik at du blir oppdatert når de legger ut journalinnlegg for prosjektet.</li><li><strong>Diskusjoner du deltar i:</strong> Å legge inn kommentarer eller identifikasjoner på andres innhold abonnerer deg på ny aktivitet på det innholdet automatisk. Bruk verktøyet "Administer dine abonnementer" for å slutte å få oppdateringer.</li></ul>
   one_by_one: "En-og-en"
   one_of_your_lists: "en av dine lister..."
   only_a_project_manager_can_add: Bare en prosjektmanager kan tildele prosjektkurator-status
@@ -2339,7 +2333,7 @@ nb:
   orange: oransje
   order: Sorter
   order_by: Sorter etter
-  organism_is_wild: Organisme er vill
+  organism_is_wild: Organismen er vill
   organisms: Organismer
   original: Opprinnelig
   originally_flagged_by: Opprinnelig flagget av
@@ -2401,7 +2395,7 @@ nb:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: har lagt til en <strong>id</strong> til en %{observation_link} av %{user_link}
+      with_observation: har lagt til en <strong>ID</strong> til en %{observation_link} av %{user_link}
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
@@ -2938,8 +2932,8 @@ nb:
   #"admins" is equivalent to "administrates"
   projects_user_admins: Prosjekter som %{user} administrerer
   projects_you_admin: Prosjekter som du administrerer
-  proposed_taxa_that_contradict_the_community_id: Foreslåtte taksa som motsier fellesskapets id
-  proposed_taxa_that_support_the_community_id: Foreslåtte taksa som støtter fellesskapets id
+  proposed_taxa_that_contradict_the_community_id: Foreslåtte taksa som motsier fellesskapets ID
+  proposed_taxa_that_support_the_community_id: Foreslåtte taksa som støtter fellesskapets ID
   protozoans: protozoer
   provider_authorizations: Tillatelser til tilbydere
   public_domain: Offentlig eiendom
@@ -3010,7 +3004,7 @@ nb:
   receive_email_notifications_when_people_leave_you: Få e-postvarslinger om
   receive_updates_from_this_project: Få oppdateringer om dette prosjektet
   recent: Siste
-  recent_evidence_of_organism: Nylig bevis av et organisme
+  recent_evidence_of_organism: Nylig bevis av en organisme
   recent_new_users: Siste nye brukere
   recent_observations: Siste observasjoner
   recent_observations_: Siste observasjoner
@@ -3588,9 +3582,9 @@ nb:
     Admin er personen som opprettet prosjektet. De kan gjøre alt managere og kuratorer kan gjøre, pluss å slette prosjektet.
   the_below_items_are_needed_to_achieve: |
     Elementene nedenfor trengs for å oppnå <span className="bold">forskningskvalitet:</span>
-  the_community_id_requires_at_least_two_identifications: Fellesskapets id krever minst to identifikasjoner.
+  the_community_id_requires_at_least_two_identifications: Fellesskapets ID krever minst to identifikasjoner.
   the_community_must_feel_that: |
-    Fellesskapet må føle at fellesskapets takson er så vrs det kan bli basert på beviset
+    Fellesskapet må føle at fellesskapets takson ikke kan bli bedre basert på beviset
   the_following_observations_could: "De følgende observasjoner kunne ikke legges til %{link}"
   the_following_photos_have_been_tagged: "De følgende bilder har blitt tagget:"
   the_identotron_is_a_tool_to: |
@@ -3647,9 +3641,9 @@ nb:
   this_is_a_life_list_of: Dette er en livsliste av
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dette er en livsliste av %{taxon} i %{place}"
-  this_is_more_convenient_way_find_parent: Dette er en mer praktisk måte å finne en foreldre-id på. Det er foreldre-id'en som faktisk blir lagret.
+  this_is_more_convenient_way_find_parent: Dette er en mer praktisk måte å finne en foreldre-ID på. Det er foreldre-ID-en som faktisk blir lagret.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
-    Dette er en mer praktisk måte å finne en takson-id på. Det er takson-id'en som faktisk blir lagret. Dette søket fungerer kun for aktive taksa.
+    Dette er en mer praktisk måte å finne en takson-ID på. Det er takson-ID-en som faktisk blir lagret. Dette søket fungerer kun for aktive taksa.
   this_is_taking_forever: Dette tar en evighet. Vennligst prøv igjen senere.
   this_is_the_primary_listing: Dette er den primære oppføringen
   this_is_your_observation: Dette er din observasjon
@@ -3700,13 +3694,13 @@ nb:
   too_many_taxa_to_render: |
     Denne spørringen returnerer for mange taksa for å kunne vises på en gang. Prøv å legg til flere filtre
   tools: Verktøy
-  top_contributors: Topp bidragsytere
-  top_identifier: Topp identifikator
-  top_identifiers: Topp identifikatorer
-  top_identifiers_of_taxon: Topp identifikatorer av %{taxon}
-  top_observer: Topp observatør
-  top_observers: Topp observatører
-  top_species: Topp arter
+  top_contributors: Topp-bidragsytere
+  top_identifier: Topp-identifikator
+  top_identifiers: Topp-identifikatorer
+  top_identifiers_of_taxon: Topp-identifikatorer av %{taxon}
+  top_observer: Topp-observatør
+  top_observers: Topp-observatører
+  top_species: Topp-arter
   total: Totalt
   totals: Totaler
   total_members: Samlet antall medlemmer
@@ -3861,7 +3855,7 @@ nb:
   user_muted: Bruker dempet
   user_observed_on_on_date_in_place: |
     %{user} har observert en på %{date} i %{place}
-  user_suggested_an_id: "%{user} har foreslått en id"
+  user_suggested_an_id: "%{user} har foreslått en ID"
   user_thinks_yours_is: "%{user} %{noun} din observasjon %{observation} er"
   user_trusts_you_with_their_private_coordinates: "%{user} stoler på deg med sine skjulte koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
@@ -4409,7 +4403,7 @@ nb:
         what_is_a_life_list?: Hva er en livsliste?
         just_a_simple_list: Bare en enkel liste over taksa uten bestemt adferd.
         automatically_updates_based_on_your_observations: |
-          Oppdateres automatisk basert på dine observasjoner. Alle på %{site_name} har en standard livsliste som inneholder alle arter den personen har observert. Hvis du sletter en observasjon eller endrer din id vil arten fjernes. Du kan også legge til taksa ti din livsliste manuelt, akkurat som med en vanlig liste. Arten du legger til manuelt vil ikke fjernes hvis du observerer den og så sletter den observasjonen.
+          Oppdateres automatisk basert på dine observasjoner. Alle på %{site_name} har en standard livsliste som inneholder alle arter den personen har observert. Hvis du sletter en observasjon eller endrer din ID vil arten fjernes. Du kan også legge til taksa ti din livsliste manuelt, akkurat som med en vanlig liste. Arten du legger til manuelt vil ikke fjernes hvis du observerer den og så sletter den observasjonen.
         you_can_also_make_additional_life_lists: |
           Du kan også opprette ekstra livslister for spesifikke grupper av organismer, som en livsliste over fugler, eller en livsliste over arter i soleiefamilien.
         a_project_list_belongs: |
@@ -4465,11 +4459,11 @@ nb:
         identification_count: Antall identifikasjoner
         score: Poengsum
         explanation: |
-          <p>Hvis brukere for en eller annen grunn ikke er enig i fellesskapets takson, kan de forkaste det, noe som betyr at deres id er den som brukes til å lenke det til andre observasjoner, oppdatering av livslister, osv. Det betyr også at deres observasjon kun kan oppnå forskningskvalitet når fellesskapet er enig med dem.</p><p>Fellesskapets ID vises imidlertid fortsatt, slik at alle kan se de ulike ID-er som har blitt foreslått.</p>
+          <p>Hvis brukere for en eller annen grunn ikke er enig i fellesskapets takson, kan de forkaste det, noe som betyr at deres ID er den som brukes til å lenke det til andre observasjoner, oppdatering av livslister, osv. Det betyr også at deres observasjon kun kan oppnå forskningskvalitet når fellesskapet er enig med dem.</p><p>Fellesskapets ID vises imidlertid fortsatt, slik at alle kan se de ulike ID-er som har blitt foreslått.</p>
         you_have_opted_out: Du har meldt deg ut av fellesskapets identifikasjoner
         opt_in_for_this_observation: Meld på for denne observasjonen
         your_id_does_not_match: |
-          Din id (<span class="bold">%{taxon_name}</span>) stemmer ikke overens med fellesskapets id
+          Din id (<span class="bold">%{taxon_name}</span>) stemmer ikke overens med fellesskapets ID
       copy_tip: "Legg til en ny observasjon ved å kopiere denne observasjonens dato, sted, bilder, og observasjonsfelt."
       captive_help_html: |
         Var organismen <strong>dyrket</strong> eller
@@ -4505,7 +4499,7 @@ nb:
         common_name: "Populærnavn for det observerte taksonet ifølge denne siden"
         iconic_taxon_name: Taksonomisk kategori på høyere nivå for det observerte taksonet
         taxon_id: Unik identifikator for det observerte taksonet
-        id_please: Om observatøren har bedt om id-hjelp eller ikke
+        id_please: Om observatøren har bedt om ID-hjelp eller ikke
         num_identification_agreements: Antall identifikasjoner i overenstemmelse med observatørens identifikasjon
         num_identification_disagreements: Antall identifikasjoner i konflikt med observatørens identifikasjon
         observed_on_string: Dato/tid som lagt inn av observatøren
@@ -4599,7 +4593,7 @@ nb:
         quality_assessment_help_html: |
           <p>
           Vurderingen av datakvaliteten er et sammendrag av en observasjons nøyaktighet. Alle observasjoner starter som <strong>"uformell"</strong>, og får statusen 
-          <strong>"trenger ID"</strong> når
+          <strong>"Trenger ID"</strong> når
           </p>
 
           <ul>
@@ -4609,7 +4603,7 @@ nb:
           <li>observasjonen <strong>er ikke av et menneske</strong></li>
           </ul>
           <p>
-          Observasjoner blir av <strong>"forskningskvalitet"</strong> når
+          Observasjoner blir av <strong>"Forskningskvalitet"</strong> når
           </p>
           <ul>
           <li>
