@@ -443,10 +443,6 @@ fi:
   assessments: arvioinnit
   associations: Yhdistykset
   at_time: "klo %{time}"
-  #As in the Atom Syndication Format:
-  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
-  #an Atom representation of the content shown on the current page
-  atom: Atomi
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Määrite
@@ -1477,8 +1473,6 @@ fi:
     de: Saksa
     el: Kreikka
     en: Englanti
-    en-UK: Englanti (Iso-Britannia)
-    en-US: Englanti (Yhdysvallat)
     eo: Esperanto
     es: Espanja
     es-AR: Espanja (Argentina)
@@ -1486,7 +1480,6 @@ fi:
     et: Viro
     eu: Baski
     fi: Suomi
-    fil: Filippiini
     fr: Ranska
     fr-CA: Ranska (Kanada)
     gl: Galicia
@@ -1494,14 +1487,12 @@ fi:
     id: Indonesia
     it: Italia
     ja: Japani
-    ka: Georgia
     ko: Korea
     lb: Luxemburg
     lt: Liettua
     mk: Makedonia
     nb: Kirjanorja
     nl: Hollanti
-    nn: Nykynorja
     oc: Oksitaani
     pl: Puola
     pt: Portugali
