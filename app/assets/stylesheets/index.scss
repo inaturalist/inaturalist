@@ -275,16 +275,6 @@ img.mini.usericon {
   background: image-url('silk/help.png') 0% 50% no-repeat;
 }
 
-#subnav #follow_button {
-  padding-left: 20px;
-  background: image-url('follow-icon-eee-15px.png') 0% 50% no-repeat;
-}
-
-#subnav #follow_button:hover,
-#subnav #follow_button.active {
-  background: image-url('follow-icon-nm-15px.png') 0% 50% no-repeat;
-}
-
 #subnav .message_link {background: none;padding-left:5px;}
 #subnav .message_link:hover {background: none;}
 #subnav .message_link .ui-icon {background-image: image-url('jquery-ui/ui-icons_888888_256x240.png');}
@@ -916,15 +906,6 @@ ul.leafylist li li:first-child {
 .count, .count a { color: #74AC00; }
 .good  { color: #74AC00; }
 .bad  { color: deeppink; }
-
-.feeds a {
-  background: image-url('silk/feed.png') no-repeat 0 50%;
-  padding: 2px 0px 2px 20px;
-  margin-right: 0.25em;
-}
-a.kmllink{background-image:image-url('google_earth.png');}
-a.csvlink{background-image:image-url('silk/table.png');}
-
 
 /* Modal Links */
 .modal_link,

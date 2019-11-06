@@ -84,7 +84,7 @@
   <div class="column span-7">
     <div id="observations">
       <h3>
-        <%= link_to "Recent Observations", project_observations_path(@project), :class => "navlink" %>
+        <%= link_to "Recent Observations", observations_path( project_id: @project ), :class => "navlink" %>
       </h3>
       <% if @observations.blank? -%>
         <div class="description noresults">
