@@ -195,7 +195,7 @@ it:
   add_another_subscription: Aggiungi un'altra sottoscrizione
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Aggiungi Risorsa di Progetto
-  add_batch: Aggiungi batch
+  add_batch: Aggiungi in gruppo
   add_comma_separated_tags: "Aggiungi etichette separate da virgole"
   add_comment: Aggiungi un commento
   add_conservation_status: Aggiungi stato di conservazione
@@ -1738,8 +1738,6 @@ it:
     de: Tedesco
     el: Greco
     en: Inglese
-    en-UK: Inglese (Regno Unito)
-    en-US: Inglese (Stati Uniti)
     eo: Esperanto
     es: Spagnolo
     es-AR: Spagnolo (Argentina)
@@ -1747,7 +1745,6 @@ it:
     et: Estone
     eu: Basco
     fi: Finlandese
-    fil: Filippino
     fr: Francese
     fr-CA: Francese (Canada)
     gl: Galiziano
@@ -1755,14 +1752,12 @@ it:
     id: Indonesiano
     it: Italiano
     ja: Giapponese
-    ka: Georgiano
     ko: Coreano
     lb: Lussemburghese
     lt: Lituano
     mk: Macedone
     nb: Norvegese Bokmål
     nl: Olandese
-    nn: Norvegese Nynorsk
     oc: Occitano
     pl: Polacco
     pt: Portoghese
@@ -1772,7 +1767,6 @@ it:
     sq: Albanese
     sv: Svedese
     zh-CN: Cinese (tradizionale)
-    zh-HK: Cinese (tradizionale, Hong Kong)
     zh-TW: Cinese (tradizionale)
   locality_notes: Note locali
   localized_species_accounts: Pagine delle specie
@@ -2394,7 +2388,7 @@ it:
   password: Password
   password_confirmation: 'Conferma della password'
   paste: Incolla
-  paste_in_a_bunch_of_names: Incolla in un gruppo di nomi, 1 per riga, e premi il pulsante!
+  paste_in_a_bunch_of_names: Incolla una lista di nomi, 1 per riga, e premi il pulsante!
   paste_in_a_comma_separated_list: Incolla come lista di stati separata da virgole
   people: Persone
   people_following_user: "Persone stanno seguendo %{user}"
@@ -4714,69 +4708,69 @@ it:
         subject: Tuo figlio vorrebbe usare iNaturalist
         content_html: |
           <p>
-          Tuo figlio sta utilizzando l'app di istruzione <strong>Seek di iNaturalist</strong> e vorrebbe condividere i dati con la piattaforma di citizen-science iNaturalist. Visto che pubbicare su iNaturalist rivela Dati Personali, iNaturalist non può essere usata da persone sotto i 13 anni di età senza il consenso di un genitore.
+            Tuo figlio sta utilizzando l'app educativa Seek di iNaturalist e vorrebbe condividere i dati con la piattaforma di citizen-science iNaturalist. Poiché questi dati contengono Informazioni Identificative Personali, non può essere usata da persone con età inferiore ai 13 anni senza il consenso dei genitori.
           </p>
           <p>
-          <strong>Seek di iNaturalist</strong> può essere utilizzata senza registrare un account, e senza condividere Dati Personali, ma tuo figlio non sarà in grado di contribuire con le sue osservazioni su iNaturalist. iNaturalist è un social network di citizen-science dove i partecipanti condividono osservazioni ed identificazioni di esseri viventi per conoscere la natura e fornire dati sulla biodiversità per la scienza.
+            Seek di iNaturalist può essere usata senza la creazione di un account, e nessun dato sarà condiviso, ma tuo figlio non sarà in grado di contribuire con osservazioni per iNaturalist. iNaturalist è un social network di citizen-science in cui i partecipanti condividono osservazioni e identificazioni di esseri viventi per insegnarsi vicendevolmente sulla natura e generare dati sulla biodiversità a favore della scienza.
           </p>
           <p>
-          Se dai il consenso a tuo figlio ad utilizzare iNaturalist, abbiamo bisogno che tu faccia questo:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Crea un account iNaturalist che tuo figlio userà seguendo questo link:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Dopo che avrei creato l'account per tuo figlio, ti chiederemo di fare una piccola donazione a favore di iNaturalist di 1 US $ con una carta di credito per verificare che tu sia un adulto. Quando fai la donazione, per favore assicurati di utilizzare lo stesso indirizzo email che tu hai inserito nel campo "Email del genitore" durante la registrazione.
-          </p>
-          </li>
-          <li>
-          <p>
-          Una volta processata la donazione, ti manderemo un'altra mail per notificarti che l'account di tuo figlio è stato attivato e tu potrai usare il nome utente e la password che hai creato per accedere alla app Seek di tuo figlio.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist raccoglie i seguenti Dati Personali:
+            Se dai il consenso affinché tuo figlio utilizzi iNaturalist, occorre che tu faccia i seguenti passi:
           </p>
           <ol>
-          <li>
-          <p>
-          <strong>indirizzo email (privato):</strong> ogni account iNaturalist ha un indirizzo mail associato che non è reso pubblico.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>nomeutente (pubblico, obbligatorio):</strong> ogni account iNaturalist ha un nomeutente pubblico ed un numero identificativo dell'utente.
-          Il nomeutente non deve essere simile al nome reale della persona, ma può essere utilizzato per contattare quella persona nei commenti pubblici o nei messaggi privati diretti.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>indirizzo IP (privato, obbligatorio):</strong> iNaturalist conserva ma non rende pubblico l'indirizzo IP dell'utente che può essere utilizzato per derivare Dati Personali come la posizione (con accuratezza a livello di città).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>immagine del profilo (pubblica, opzionale):</strong> gli account iNaturalist possono avere un immagine del profilo che sono spesso foto dell'utente stesso.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>posizione dell'osservazione (pubblica o privata, obbligatoria):</strong> le osservazioni di iNaturalist contengono informazioni sulla posizione di dove è stata fatta l'osservazione. Può essere resa pubblica o tenuta privata, ma è pubblica in maniera predefinita.
-          </p>
-          </li>
+           \ <li>
+              <p>
+                Creare l'account iNaturalist che tuo figlio utilizzerà seguendo il link seguente:
+                <a href="%{registration_url}">%{registration_url}</a>
+           \   </p>
+            </li>
+            <li>
+              <p>
+                Dopo aver creato l'account di tuo figlio ti chiederemo di fare una piccola donazione di 1$ americano con una carta di credito in favore di iNaturalist per verificare che tu sia un adulto. Quando fai la donazione assicurati di usare la stessa email che hai indicato come "email genitore" durante la fase di iscrizione. https://www.inaturalist.org/donate
+           \   </p>
+            </li>
+            <li>
+              <p>
+                Una volta elaborata la donazione, ti invieremo una mail di notifica informandoti che l'account di tuo figlio è stato attivato e che puoi usare il nome utente e la password iNaturalist che hai creato per loggarti sulla app Seek di tuo figlio.
+              </p>
+            </li>
           </ol>
           <p>
-          iNaturalist permette anche agli utenti di condividere immagini pubbliche, commenti, e messaggi diretti associati ai loro account.
-          E' possibile che gli utenti includano Dati Personali in questi contenuti generati dall'utente stesso.
+           \ iNaturalist raccoglie le seguenti informazioni identificative personali: 
+           </p>
+            </li>
+            <li>
+              <p>
+          indirizzo email privato: ogni profilo iNaturalist
+                è associato ad un indirizzo e-mail che non è
+                reso pubblico. 
+           </p>
+            </li>
+            <li>
+              <p>
+          nome utente (pubblico, obbligatorio): ogni profilo iNaturalist è associato ad un nome utente pubblico e ad un numero di identificazione dell'utente. Il nome utente non deve essere simile al nome reale dell'utente, ma può essere utilizzato per contattare la persona tramite commenti pubblici e messaggi diretti privati.
+           </p>
+            </li>
+           \ <li>
+              <p>
+          Indirizzo IP (privato, obbligatorio): iNaturalist memorizza ma non rende pubblico l'indirizzo IP dell'utente che può essere utilizzato per ricavare informazioni di identificazione personale come la posizione (con precisione a livello di città).
+          </p>
+            </li>
+            <li>
+              <p>
+          immagine del profilo (pubblica, facoltativa): come opzione gli account iNaturalist possono avere immagini del profilo che spesso sono immagini dell'utente.
+          </p>
+           \ </li>
+            <li>
+              <p>
+          luogo di osservazione (pubblico o privato, richiesto): le osservazioni iNaturalist contengono informazioni sulla posizione dove è stata fatta l'osservazione. La posizione può essere resa pubblica o privata, ma è pubblica per impostazione predefinita.
+          </p>
+            </li>
+            <li>
+              <p>
+          iNaturalist consente inoltre agli utenti di condividere immagini pubbliche, commenti pubblici e messaggi privati diretti ​​associati al proprio account. È possibile che gli utenti includano informazioni identificative personali in questo tipo di contenuti.
           </p>
           <p>
-          Scopri di più su Informativa sulla Privacy di iNaturalist <a href="%{privacy_policy_url}">qui</a>.
+            Scopri di più sulle Privacy Policy di iNaturalist <a href="%{privacy_policy_url}">qui</a>.
           </p>
       photos_missing:
         subject: Alcune foto necessitano di riparazione
@@ -5208,8 +5202,7 @@ it:
         charts_help_other: |
           Mostriamo anche i grafici di stagionalità per le annotazioni delle osservazioni. Le annotazioni sono un nuovo sistema per aggiungere metadati alle osservazioni usando un vocabolario controllato di termini. Per ora stiamo usando solo "Stadio Vitale" e "Fenologia della Pianta" (quando la pianta è in fiore o in frutto). Non abbiamo ancora un modo per aggiungere le annotazioni direttamente, così per ora stiamo convertendo i dati dai campi delle osservazioni alle annotazioni. Se non riesci ad aspettare che implementiamo il nostro sistema delle annotazioni, puoi contribuire alle annotazioni "Stadio Vitale" aggiungendo campi di osservazione con questi valori: Adulto, Pupa, Ninfa, Larva, Uovo, Giovane. Campi idonei sono "Stadio Vitale di insetto" o "Stadio Vitale". Per la "Fenologia della Pianta" noi cerchiamo ogni campo con la parola "fenologia" nel nome, e "fiore" o "frutto" come valore; un campo adatto è ad esempio "Fenologia della fioritura".
         charts_help_relative_observations: |
-          Mostrare la frequenza come proporzione relativa di tutte le osservazioni aiuta a mediare l’effetto della crescita globale del sito. Per esempio,
-          con la crescita del sito raccogliamo più osservazioni ogni anno che passa e di conseguenza abbiamo più osservazioni su ogni specifico taxon. Questo non dice che ci sono più individui di quel taxon ma che semplicemente ci sono più persone che l’osservano. Mostrare la proporzione relativa significa che se c’è un totale di 100 osservazioni totali, ma 20 di questo taxon, la proporzione è 0.2 (20 / 100). Se l’anno prossimo le persone osserveranno 2000 osservazioni di cui 400 osservazioni di questo taxon, la proporzione sarà sempre 0.2 (400 / 2000). Questo causa alcune aberrazioni quando ci sono troppo pochi osservatori in un’area, o per taxa che non sono molto osservati, ma lo stesso accade con i totali.
+          Mostrare la frequenza come proporzione relativa di tutte le osservazioni aiuta a mediare l’effetto della crescita globale della piattaforma. Per esempio, con la crescita della piattaforma raccogliamo sempre più osservazioni ogni anno che passa e di conseguenza abbiamo più osservazioni su ogni specifico taxon. Questo non significa che ci sono più individui di quel taxon ma che semplicemente ci sono più persone che l’osservano. Mostrare la proporzione relativa significa che se c’è un totale di 100 osservazioni totali, ma 20 di questo taxon, la proporzione è 0.2 (20 / 100). Se l’anno prossimo le persone osserveranno 2000 osservazioni di cui 400 osservazioni di questo taxon, la proporzione sarà sempre 0.2 (400 / 2000). Questo causa alcune aberrazioni quando ci sono troppo pochi osservatori in un’area, o per i taxa che non sono molto osservati, ma lo stesso accade con i totali.
         complete_taxon_desc: |
           Per i taxa "completi" sono elencati nel database del sito tutti i discendenti o tutti i taxa esistenti di uno specifico livello. Quando un taxon è completo a livello di specie, per esempio, è possibile stabilire quante specie di quel taxon sono state osservate e quante ancora lo devono ancora essere. I conteggi delle specie per i taxa "completi" a livello di specie non includono le specie "non conteggiabili" come quelle estinte o i concetti di specie inattivi, e includono solo le specie, non i taxa intraspecifici come le sottospecie o le varietà.
         discoveries_desc: "Le specie identificate più recentemente in questo taxon"
