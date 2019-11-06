@@ -98,7 +98,11 @@
   <% end -%>
   <% if @list.rank_rule != "any" -%>
     <div id="life_list_rank_rule" class="description">
-      <%=t :this_list_only_accepts_taxa_that_are %> <%= t(@list.rank_rule.gsub(/[_?]+/, ' ').strip.gsub(' ', '_'), :default => @list.rank_rule.gsub(/[_?]+/, ' ').strip).downcase %>.
+      <% if @list.rank_rule === List::RANK_RULE_SPECIES %>
+        <%=t :this_list_only_accepts_taxa_that_are_species %>
+      <% elsif @list.rank_rule === List::RANK_RULE_SPECIES_OR_LOWER %>
+        <%=t :this_list_only_accepts_taxa_that_are_species_or_lower %>
+      <% end %>
     </div>
   <% end -%>
   <% if @list.is_a?(ProjectList) -%>

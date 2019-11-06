@@ -1018,6 +1018,11 @@ en:
   date_range: Date Range
   date_specified: Date specified
   date_time: Date/Time
+  # Express a date range. d1 and d2 could be any expression of dates, so better
+  # to use the most flexible form possible here, e.g. not something like "d1 to
+  # d2" if "to" might be translated differently for different values of d1 and
+  # d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: Date Updated
   day: Day
   decrease_brightness: Decrease Brightness
@@ -2311,8 +2316,6 @@ en:
     observation, like number of individuals observed, habitat
     description, or whatever you want! Projects can also specify fields
     they'd like you to fill out.
-  observations_for: Observations for
-  observations_for_project: "Observations for %{project}"
   observations_from: Observations from %{date}
   observations_from_people_taxa_and_places_youre_following: "Observations from people, places, and taxa you're following"
   observations_from_this_place: Observations from this place
@@ -3050,6 +3053,7 @@ en:
   project_requirements: Project Requirements
   project_rules: Project Rules
   project_settings: Project settings
+  project_start_time_datetime: "Start time: %{datetime}"
   project_that_does_not_contain_these_observations: Project that does not contain these observations
   project_type_description: |
     Assessments and bioblitzes are special types of projects. Assessments are
@@ -3841,7 +3845,8 @@ en:
   this_is_your_observation_desc: You can always see the coordinates of your own observations.
   this_job_failed_to_run: This job failed to run. Please contact %{email}
   this_list_is_empty!: This list is empty!
-  this_list_only_accepts_taxa_that_are: This list only accepts taxa that are
+  this_list_only_accepts_taxa_that_are_species: This list only accepts taxa that are species
+  this_list_only_accepts_taxa_that_are_species_or_lower: This list only accepts taxa that are species or lower
   this_observation: This observation
   this_observation_is_featured_on_x_sites:
     one: This observation is featured on 1 site

@@ -18,7 +18,9 @@ class List < ActiveRecord::Base
   
   validates_presence_of :title
   
-  RANK_RULE_OPERATORS = %w(species? species_or_lower?)
+  RANK_RULE_SPECIES = "species?"
+  RANK_RULE_SPECIES_OR_LOWER = "species_or_lower?"
+  RANK_RULE_OPERATORS = [RANK_RULE_SPECIES, RANK_RULE_SPECIES_OR_LOWER]
   
   def rank_rule
     if (r = rules.detect{|r| r.operator == 'species?'}) then r.operator

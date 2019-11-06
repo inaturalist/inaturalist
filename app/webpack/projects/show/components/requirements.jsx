@@ -90,12 +90,14 @@ const Requirements = ( {
   let dateRules = I18n.t( "any" );
   if ( project.rule_d1 && project.rule_d2 ) {
     const spansYears = project.startDate.year( ) !== project.endDate.year( );
-    dateRules = `${dateToString( project.rule_d1, spansYears )} ${I18n.t( "to" )} `
-      + `${dateToString( project.rule_d2, spansYears )}`;
+    dateRules = I18n.t( "date_to_date", {
+      d1: dateToString( project.rule_d1, spansYears ),
+      d2: dateToString( project.rule_d2, spansYears )
+    } );
   } else if ( project.rule_observed_on ) {
     dateRules = dateToString( project.rule_observed_on );
   } else if ( project.rule_d1 ) {
-    dateRules = `${I18n.t( "activerecord.attributes.project.start_time" )} ${dateToString( project.rule_d1 )}`;
+    dateRules = I18n.t( "project_start_time_datetime", { datetime: dateToString( project.rule_d1 ) } );
   }
   let establishmentRules = I18n.t( "any" );
   if ( project.rule_native || project.rule_introduced ) {
