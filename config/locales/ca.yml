@@ -1574,7 +1574,6 @@ ca:
     de: Alemany
     el: Grec
     en: Anglès
-    en-US: Anglès (Estats Units)
     es: Castellà
     es-MX: Castellà (Mèxic)
     et: Estonià
@@ -4329,8 +4328,6 @@ ca:
           <a href="%{url}">pàgina d'exportació d'observacions</a> per a obtenir un llistat de les exportacions.
       parental_consent:
         subject: Als vostres fills els podria agradar utilitzar iNaturalis
-        content_html: |
-          <p> El vostre fill utilitza l'aplicació educativa "Cerca amb iNaturalist" i vol compartir dades amb la plataforma de ciència ciutadana iNaturalist. Com aquestes dades inclouen informació d’identificació personal, no poden ser utilitzades per menors de 13 anys sense el consentiment d’un dels progenitors o tutors. </p> <p> La Cerca amb iNaturalist es pot utilitzar sense crear un compte i no es compartiran dades, però el vostre fill no podrà aportar observacions a iNaturalist. [EXPLICACIÓ D'INAT] </p> <p> Si voleu donar el vostre consentiment perquè el vostre fill utilitzi iNaturalist, necessitarem que feu el següent: </p> <ol> <li> <p> Creeu un compte iNaturalist perquè l'utilitzi el vostre fill indicant que el compte serà utilitzat per una persona menor de 13 anys seguint aquest enllaç: <a href="%{registration_url}">%{registration_url}</a> </p> </li><li> <p> Feu una donació d'1$ amb una targeta de crèdit a iNaturalist per verificar que sou un adult. Assegureu-vos que utilitzeu el mateix correu electrònic que vau utilitzar per crear el compte al costat de la vostra donació: https://www.inaturalist.org/donate </p> </li> <li> <p> Un cop processem el donació, enviarem una notificació al correu electrònic del compte que s'ha activat el compte i podeu utilitzar el nom d’usuari i la contrasenya d'iNaturalist que heu creat per iniciar sessió a l’aplicació de Cerca del vostre fill. </p> </li> </ol> <p> Més informació sobre la Informació d'Identificació Personal que es comparteix a iNaturalist: ... </p> <p> Més informació sobre la Política de Privacitat d'iNaturalist <a href="%{privacy_policy_url}"> aquí </a>. </p>
       photos_missing:
         subject: Algunes fotos s'han de reparar
         we_have_been_housekeeping: |
@@ -4759,8 +4756,6 @@ ca:
           Les anotacions són un sistema nou d'afegir metadades a les observacions utilitzant un vocabulari definit de termes. Per ara només estem fent servir "Etapa Vital" i "Fenologia vegetal" (per determinar si la planta està florint o fructificant). Encara no tenim una manera d'afegir anotacions directament, pel que ara estem convertint les dades dels camps d'observació al d'anotacions.
           Si no podeu esperar que acabem el sistema d'anotacions, pots contribuir a les anotacions de "Etapa Vital" afegint al camp d'observació alguns dels valors següents: edat, ècdisi, Pupa,
           Nimfa, larva, ou, o juvenil. En particular, els camps "Etapa Vital" i  "Etapa Vital dels Insectes" són correctes. Per a la "Fenologia vegetal," busquem qualsevol camp amb la paraula "Fenologia" en el seu nom i "Flor" o "Fruit" en el valor, de manera que el camp "Floració Fenologia" és una bon nom per utilitzar.
-        charts_help_relative_observations: |
-          Mostrar les freqüències com a proporció relativa de totes les observacions ajuda a relativitzar l'efecte del creixement global del lloc. Per exemple, si el lloc està creixent perquè aconseguim més observacions cada any que passa, tenim més observacions de tots els tàxons individuals. Això no informa sobre si hi ha més individus d'aquest tàxon o si hi ha més persones que l'observen. Mostrar la proporció relativa indica que si hi ha un total de 100 observacions totals, i 20 són d'aquest tàxon, la proporció és 0,2 (20/100). Si s'observen 2,000 observacions a l'any i 400 observacions són d'aquest tàxon, la proporció és també de 0,2 (400/2.000). Això causa algunes aberracions quan hi ha molt pocs observadors en una àrea, o per taxons que no són molt observats, però el mateix succeeiria amb els recomptes totals.
         complete_taxon_desc: |
           Els taxons "Complerts" tenen tots els seus taxons fills i existent d'un rang específic a la base de dades del lloc. Quan un taxó està complet fins al nivell d'espècies, per exemple, podem dir quantes de les seves espècies han estat observades i quantes encara manquen per fer-ho. Els recomptes d'espècies en taxons "complets" fins a nivell específic no inclouen aquelles espècies "No comptables" com són les extintes o inactives, i només inclouen espècies, no als taxons infraespecífics com subespècies o varietats.
         discoveries_desc: "Espècie identificada més recentment d'aquest taxon"
