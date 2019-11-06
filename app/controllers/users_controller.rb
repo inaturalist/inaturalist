@@ -123,7 +123,7 @@ class UsersController < ApplicationController
   def delete
     @observations_count = current_user.observations_count
     @helpers_count = INatAPIService.get( "/observations/identifiers",
-      user_id: current_user.id ).total_results
+      user_id: current_user.id, per_page: 0 ).total_results
     @comments_count = current_user.comments.count
     ident_response = Identification.elastic_search(
       size: 0,
@@ -136,7 +136,8 @@ class UsersController < ApplicationController
         distinct_obs_users: {
           cardinality: { field: "observation.user_id" }
         }
-      }
+      },
+      track_total_hits: true
     )
     @identifications_count = ident_response.total_entries
     @helpees_count = ident_response.response.aggregations.distinct_obs_users.value || 0
