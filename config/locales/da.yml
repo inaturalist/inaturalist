@@ -1635,7 +1635,6 @@ da:
     de: Tysk
     el: Græsk
     en: Engelsk
-    en-US: Engelsk (USA)
     eo: Esperanto
     es: Spansk
     es-MX: Spansk (Mexico)
@@ -4695,78 +4694,6 @@ da:
           <a href="%{url}"> observationseksport siden </a> for en liste over din eksport.
       parental_consent:
         subject: Dit barn ønsker at benytte iNaturalist
-        content_html: |
-          <p>
-          Dit barn bruger <strong>Seek af iNaturalist</strong>
-          lærings-app'en og vil gerne dele data med borgervidenskabs-platformen iNaturalist. Da posteringer på iNaturalist afslører
-          personligt identificerbare oplysninger, kan iNaturalist ikke bruges af en person under 13 år uden samtykke fra en forælder.
-          </p>
-          <p>
-          <strong>Seek af iNaturalist</strong> kan bruges uden at oprette en konto, og ingen personligt identificerbare oplysninger vil blive delt,
-          men dit barn vil ikke kunne bidrage med observationer til iNaturalist. iNaturalist borgervidenskabeligt socialt netværk, hvor deltagere deler observationer og identifikationer af levende ting for at lære hinanden om naturen og skabe biodiversitetsdata for videnskaben.
-          </p>
-          <p>
-          Hvis du gerne vil give dit barn samtykke til at bruge iNaturalist,
-          har vi brug for at du gør følgende:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Opret en iNaturalist-konto, som dit barn vil bruge ved at følge dette link:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Efter du opretter dit barns konto, vil vi bede dig om at give en lille donation på 1 US dollar med et kreditkort til iNaturalist for at bekræfte, at du er voksen. Sørg venligst for at benytte samme e-mailadresse, som du indtastede i "Forælder e-mail" under oprettelse, når du laver din donation.
-          </p>
-          </li>
-          <li>
-          <p>
-          Når vi behandler donationen, vil vi sende dig endnu en e-mail for at oplyse dig om, at dit barns konto er blevet aktiveret, og at du kan bruge iNaturalist-brugernavnet og adgangskoden, du oprettede, til at logge ind på dit barns Seek-app.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist indsamler følgende personligt identificerbare oplysninger:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>e-mailadresse (privat):</strong> enhver iNaturalist-konto har en tilknyttet e-mailadresse, som ikke offentliggøres.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>brugernavn (offentligt, obligatorisk):</strong> enhver iNaturalist-konto har et offentligt brugernavn og bruger-identifikationsnummer.
-          Brugernavnet behøver ikke at ligne personens rigtige navn, men det kan bruges til at kontakte personen via offentlige kommentarer og private direkte beskeder.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP-adresse (privat, obligatorisk):</strong> iNaturalist
-          indsamler, men offentliggøre ikke brugerens IP-adresse, som kan bruges til at udlede personligt identificerbare oplysninger såsom placering (med nøjagtighed på by-niveau).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>Profilbillede (offentligt, valgfrit):</strong> iNaturalist-konti har mulighed for at have et profilbillede, som ofte er billeder af brugeren.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>observationsplacering (offentlig eller privat,
-          obligatorisk):</strong> iNaturalist-observationer inkluderer placeringsinformation om, hvor observationen blev gjort. Dette kan gøres offentlig eller forblive privat, men der er offentlig som standard.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist tillader og brugere at dele offentlige billeder, offentlige kommentarer og private direkte beskeder i forbindelse med deres konto.
-          Der er muligt, at brugere kan inkluderer personligt identificerbare oplysninger i deres brugerskabte indhold.
-          </p>
-          <p>
-          Lær mere om iNaturalist’s privatlivspolitik <a href="%{privacy_policy_url}">her</a>.
-          </p>
       photos_missing:
         subject: Nogle billeder behøver reparation
         we_have_been_housekeeping: |
@@ -5321,15 +5248,6 @@ da:
           "Insekt Livsstadie" felterne gode. For "Plantefænologi" ser vi på et hvilket som helst felt med ordet "fænologi" i sit navn og
           "blomst" eller "frugt" i værdien, så feltet "Blomstrende fænologi"
           er en god en at bruge.
-        charts_help_relative_observations: |
-          Ved at vise hyppighed som en relativ andel af alle observationer, hjælper det med at udjævne effekten af websidens samlede vækst. 
-          For eksempel, når websiden hvert år vokser efterhånden som vi får flere observationer, tilgår der flere observationer af alle taksa. Dette fortæller dig ikke noget om, hvorvidt der er flere af denne takson omkring, der kan
-          observeres blot, at der er flere mennesker, der observerer den. 
-          At vise den relative andel betyder, at hvis der er 100 observationer i alt, men
-          20 observationer af denne takson er andelen 0,2 (20/100). 
-          Hvis folk observerer 2000 observationer året efter og 400 observationer af denne takson er andelen stadig 0,2 (400/2000). 
-          Dette giver nogle afvigelser, når der er meget få observatører i et område eller for taksa,
-          der er meget sjældent observeret, men det stemmer alligevel for det samlede antal.
         complete_taxon_desc: |
           "Komplette" taksa har alle deres efterkommere, eksisterende taksa af en
           specifik rang indeholdt i sidens database. Når en takson er
