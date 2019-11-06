@@ -1424,7 +1424,6 @@ cs:
     de: Němec
     el: řečtina
     en: Angličtina
-    en-US: Angličtina (Spojené státy)
     es: Španělština
     es-MX: Španělština (Mexiko)
     et: estonský
@@ -4459,8 +4458,6 @@ cs:
           Tento graf ukazuje počet pozorování tohoto taxonu podle měsíců za posledních deset let. Opět je ovlivněn počtem pozorujících osob, ale ukáže vám neobvyklé nárůsty pozorování, a pokud je graf plochý nebo se snižuje navzdory rostoucímu počtu pozorovatelů, může to znamenat změnu množství.
         charts_help_other: |
           Také zobrazujeme grafy sezónnosti pro anotace pozorování. Anotace jsou nový systém přidávání metadat k pozorování prostřednictvím kontrolovaných termínů. Zatím používáme pouze „životní stádium“ a „rostlinnou fenologii“ (když rostlina kvete nebo plodí). Zatím nemáme žádný způsob, jak přidávat anotace přímo, takže nyní převádíme údaje z polí pozorování do anotací. Jestli se nemůžete dočkat, až vytvoříme systém anotací, můžete přispět k anotacím „životního stádia“ přidáním údajů o pozorování, které mají některou z následujících hodnot: dospělý, tenerální, kukla, nymfa, larva, vajíčko nebo mládě. Dobrá jsou tedy zejména pole „životní stádium“ a „životní stádium hmyzu“. Pokud jde o „rostlinnou fenologii“, zaměřujeme se na všechna pole s výrazem „fenologie“ v názvu a „květ“ nebo „plod“ v hodnotě, takže je vhodné použít pole „fenologie kvetení“.
-        charts_help_relative_observations: |
-          Zobrazení frekvence v relativních poměrech vzhledem ke všem pozorováním pomáhá vyhladit účinek celkového růstu místa. Pokud například lokalita roste, zatímco každý rok získáme více pozorování, budeme mít více pozorování jednotlivých taxonů, které vám nic neříkají o tom, že je jich více. Prostě existuje více lidí, kteří daný taxon sledují. Zobrazit relativní poměr znamená, že pokud existuje 100 pozorování, ale 20 pozorování tohoto taxonu, podíl je 20% (20/100). Pokud lidé v následujícím roce provedou 2000 pozorování a 400 z tohoto taxonu, zůstane tento podíl 20% (400/2000). To způsobuje určité odchylky, když je v oblasti velmi málo pozorovatelů, nebo taxony, které jsou velmi zřídka pozorovány, ale to platí i pro celkový počet pozorování.
         complete_taxon_desc: |
           „Kompletní“ taxony mají všechny své následné, existující taxony určité kategorie v databázi stránky. Když je taxon například kompletní pro daný druh, můžeme říct, kolik jeho druhů bylo pozorováno a kolik ještě má být pozorováno. Počty druhů „kompletního“ taxonu pro druh nezahrnují „nespočitatelné“ druhy, například druhy vyhynulé nebo neaktivní koncepty druhů, a zahrnují pouze druhy, ne infraspecifické taxony, jako jsou poddruhy nebo odrůdy.
         discoveries_desc: "Poslední nově identifikované druhy v tomto taxonu"
