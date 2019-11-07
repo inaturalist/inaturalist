@@ -31,6 +31,7 @@
           login: "#{ current_user.login }",             |
           prefers_scientific_name_first: #{ current_user.prefers_scientific_name_first }, |
           preferred_observations_search_map_type: "#{ current_user.preferred_observations_search_map_type }", |
+          prefers_map_tile_test: #{ current_user.prefers_map_tile_test }, |
           icon: "#{ current_user.icon.url(:thumb) }" }; |
       var TIMEZONE = "#{ Time.zone.tzinfo.name }";
       var SITE = #{ @site.to_json(                      |

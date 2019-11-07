@@ -1114,6 +1114,7 @@ protected
       :prefers_coordinate_interpolation_protection,
       :prefers_coordinate_interpolation_protection_test,
       :prefers_monthly_supporter_badge,
+      :prefers_map_tile_test,
       :search_place_id,
       :site_id,
       :test_groups,
