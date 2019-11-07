@@ -180,6 +180,7 @@ module DarwinCore
       elsif @opts[:photos].to_s == "false"
         params[:with_photos] = false
       end
+      params[:ofv_datatype] = @opts[:ofv_datatype]
       params
     end
 

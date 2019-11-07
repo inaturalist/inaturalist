@@ -899,6 +899,26 @@ class Observation < ActiveRecord::Base
       end
     end
 
+    if p[:ofv_datatype]
+      vals = p[:ofv_datatype].to_s.split( "," )
+      search_filters << {
+        nested: {
+          path: "ofvs",
+          query: {
+            bool: {
+              filter: [
+                {
+                  terms: {
+                    "ofvs.datatype" => vals
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    end
+
     if p[:ident_user_id]
       vals = p[:ident_user_id].to_s.split( "," )
       search_filters << { terms: { identifier_user_ids: vals } }

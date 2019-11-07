@@ -76,6 +76,7 @@ EOS
   opt :created_d2, "Maximum date of observation creation", type: :string
   opt :photographed_taxa, "When core is taxon, only include taxa with observation photos", type: :boolean, default: false
   opt :ala, "Add ALA requested fields", type: :boolean, default: false
+  opt :ofv_datatype, "Filter obs by datatype of observation field values", type: :string
 end
 
 if opts.debug
