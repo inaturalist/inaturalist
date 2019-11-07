@@ -966,6 +966,11 @@ it:
   date_range: Intervallo di date
   date_specified: Data specificata
   date_time: Data/Ora
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: Data aggiornamento
   day: Giorno
   decrease_brightness: Riduci luminosità
@@ -2204,8 +2209,6 @@ it:
   observations_deleted: Osservazioni eliminate.
   observations_fields_are: |
     I campi delle osservazioni sono dati aggiuntivi associati all'osservazione, come il numero di individui osservati, descrizione dell'habitat, o ciò che vuoi! Nei progetti è possibile specificare i campi che vorresti fossero compilati.
-  observations_for: Osservazioni per
-  observations_for_project: "Osservazioni per %{project}"
   observations_from: Osservazioni dal %{date}
   observations_from_people_taxa_and_places_youre_following: "Osservazioni di persone, luoghi, e taxa che stai seguendo"
   observations_from_this_place: Osservazioni per questo luogo
@@ -2919,6 +2922,7 @@ it:
   project_requirements: Requisiti del progetto
   project_rules: Regole del Progetto
   project_settings: Impostazioni del progetto
+  project_start_time_datetime: "Ora d'inizio: %{datetime}"
   project_that_does_not_contain_these_observations: Progetto che non contiene queste osservazioni
   project_type_description: |
     Valutazioni e Bioblitz sono tipologie speciali di progetto. Le valutazioni sono fatte per collaborare nella valutazione di un gruppo di specie, di solito per determinarne la loro importanza conservazionistica. I Biobliz sono eventi che hanno un inizio e fine specificata.
@@ -3656,7 +3660,8 @@ it:
   this_is_your_observation_desc: Puoi sempre vedere le coordinate delle tue osservazioni.
   this_job_failed_to_run: L'operazione è fallita. Per favore contatta %{email}
   this_list_is_empty!: Questa lista è vuota!
-  this_list_only_accepts_taxa_that_are: Questa lista accetta solo taxa che sono
+  this_list_only_accepts_taxa_that_are_species: Questa lista accetta solo taxa di rango specie
+  this_list_only_accepts_taxa_that_are_species_or_lower: Questa lista accetta solo taxa di rango specie o inferiore
   this_observation: Questa osservazione
   this_observation_is_featured_on_x_sites:
     one: Questa osservazione è messa in risalto su 1 sito web
