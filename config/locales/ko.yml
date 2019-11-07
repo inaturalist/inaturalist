@@ -1,6 +1,8 @@
 ko:
   x_comments:
     other: '댓글 %{count} 개'
+  x_faves:
+    other: '즐겨찾기 %{count} 개'
   x_flags_resolved_html:
     other: "플래그 <span class='count'>%{count}</span> 개가 해결됨"
   x_identifications:
@@ -1544,7 +1546,6 @@ ko:
   observations_by: '이 사용자의 관찰들:'
   observations_by_user: "%{user}의 관찰"
   observations_deleted: 관찰 삭제됨.
-  observations_for: '관찰:'
   observations_from: '%{date}의 관찰'
   observations_from_people_taxa_and_places_youre_following: "당신이 팔로우하고 있는 사람, 장소, 분류군의 관찰"
   observations_from_this_project: 이 프로젝트 관찰
