@@ -924,10 +924,12 @@ fr:
   descending: Descendant
   describe_purpose: Décrivez le but de ce projet.
   describe_your_interest_in_nature: Décrivez votre intérêt envers la nature!
+  description: Description
   description_from: Description de
   description_sections: Description des sections
   description_slash_tags: Description / Balises
   description_tags_more: "Description, étiquettes, &amp; Plus"
+  desription: Description
   destroy: Détruiser
   details: Détails
   deviation: Déviation
@@ -2046,8 +2048,6 @@ fr:
   observations_deleted: Observations supprimées.
   observations_fields_are: |
     Les champs de l’observation sont des données supplémentaires associées à une observation, comme le nombre d’individus observés, la description de l’habitat ou autre. Les projets peuvent aussi préciser les champs qu’ils aimeraient que vous remplissiez.
-  observations_for: Observations pour
-  observations_for_project: "Observations pour %{project}"
   observations_from: Observations depuis %{date}
   observations_from_people_taxa_and_places_youre_following: "Observations des gens, lieux et taxons que vous suivez"
   observations_from_this_place: Observations dans ce lieu
@@ -3430,7 +3430,6 @@ fr:
   this_is_your_observation_desc: Vous pouvez toujours voir les coordonnées de vos propres observations.
   this_job_failed_to_run: Cette tâche ne s’est pas exécutée. Veuillez contacter %{email}
   this_list_is_empty!: Cette liste est vide!
-  this_list_only_accepts_taxa_that_are: Cette liste n’accepte que des taxons qui sont
   this_observation: Cette observation
   this_observation_is_featured_on_x_sites:
     one: Cette observation est mise en vedette sur 1 site
@@ -3554,10 +3553,10 @@ fr:
   updated_by: Mis à jour par
   updated_daily: Mis à jour quotidiennement
   updated_photo: Photo mise à jour
-  upload: Téléverser
+  upload: Uploader
   upload_a_csv_file: Uploader le fichier CSV
   upload_a_csv_file_with_observation: |
-    Téléverser les données d’observation dans un fichier CSV. Si vos données se trouvent dans une feuille de calcul ou une base de données, c’est la meilleure méthode à adopter.
+    Uploader les données d’observation dans un fichier CSV. Si vos données se trouvent dans une feuille de calcul ou une base de données, c’est la meilleure méthode à adopter.
   upload_photo: Uploader des photos
   upload_range: Télécharger la classification
   uploaded_by: Téléversé par
@@ -4563,7 +4562,7 @@ fr:
           <a href="%{url}">Téléchargez le modèle</a>
         soundcloud_notice_html: |
           En 2018, Soundcloud a modifié son API et nous a empêché de
-          faire de nouveaux liens avec votre compte Soundcloud. S’il réactive
+          faire de nouveaux liens avec votre compte Soundcloud. Si Soundcloud réactive
           cette fonctionnalité, nous pourrons rétablir le lien avec les comptes Soundcloud. En
           attendant, vous pouvez uploader les fichiers audio directement en utilisant
           <a href="/observations/upload">Uploader</a>.
@@ -4832,7 +4831,7 @@ fr:
         complex_boundary_note_html: |
           Cette frontière est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
           <a href="%{url}">télécharger le KML</a>, le modifier dans l’application SIG de votre choix et
-          téléverser directement votre KML modifié.
+          uploader directement votre KML modifié.
         admin_level_desc: |
           Doit être établi uniquement pour les entités politiques. En terme
           d’équivalents aux É.-U., 0 = pays, 1 = état, 2 = comté, 3 = ville
