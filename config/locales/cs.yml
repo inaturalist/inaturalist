@@ -1828,8 +1828,6 @@ cs:
   observations_deleted: Pozorování byla smazána.
   observations_fields_are: |
     Pole pozorování jsou doplňující údaje související s pozorováním, například počet pozorovaných jedinců, popis prostředí nebo cokoliv chcete! Jednotlivé projekty mohou také specifikovat pole, jejichž vyplnění požadují.
-  observations_for: Pozorování pro
-  observations_for_project: "Pozorování pro %{project}"
   observations_from: Pozorování od %{date}
   observations_from_people_taxa_and_places_youre_following: "Pozorování týkající se lidí, míst a taxonů, které sledujete"
   observations_from_this_place: Pozorování z tohoto místa
@@ -3094,7 +3092,6 @@ cs:
   this_is_your_observation_desc: Vždy můžete vidět souřadnice svých vlastních pozorování
   this_job_failed_to_run: Tento úkol se nezdařil. Kontaktujte prosím %{email}
   this_list_is_empty!: Tento seznam je prázdný!
-  this_list_only_accepts_taxa_that_are: Tento seznam přijímá pouze údaje, které jsou
   this_observation: Toto pozorování
   this_observation_is_research_grade: Toto pozorování je pozorování výzkumného stupně!
   this_observation_was_created_using: "Toto pozorování bylo vytvořeno pomocí:"
@@ -4458,6 +4455,8 @@ cs:
           Tento graf ukazuje počet pozorování tohoto taxonu podle měsíců za posledních deset let. Opět je ovlivněn počtem pozorujících osob, ale ukáže vám neobvyklé nárůsty pozorování, a pokud je graf plochý nebo se snižuje navzdory rostoucímu počtu pozorovatelů, může to znamenat změnu množství.
         charts_help_other: |
           Také zobrazujeme grafy sezónnosti pro anotace pozorování. Anotace jsou nový systém přidávání metadat k pozorování prostřednictvím kontrolovaných termínů. Zatím používáme pouze „životní stádium“ a „rostlinnou fenologii“ (když rostlina kvete nebo plodí). Zatím nemáme žádný způsob, jak přidávat anotace přímo, takže nyní převádíme údaje z polí pozorování do anotací. Jestli se nemůžete dočkat, až vytvoříme systém anotací, můžete přispět k anotacím „životního stádia“ přidáním údajů o pozorování, které mají některou z následujících hodnot: dospělý, tenerální, kukla, nymfa, larva, vajíčko nebo mládě. Dobrá jsou tedy zejména pole „životní stádium“ a „životní stádium hmyzu“. Pokud jde o „rostlinnou fenologii“, zaměřujeme se na všechna pole s výrazem „fenologie“ v názvu a „květ“ nebo „plod“ v hodnotě, takže je vhodné použít pole „fenologie kvetení“.
+        charts_help_relative_observations: |
+          Zobrazení frekvence v relativních poměrech vzhledem ke všem pozorováním pomáhá vyhladit účinek celkového růstu místa. Pokud například lokalita roste, zatímco každý rok získáme více pozorování, budeme mít více pozorování jednotlivých taxonů, které vám nic neříkají o tom, že je jich více. Prostě existuje více lidí, kteří daný taxon sledují. Zobrazit relativní poměr znamená, že pokud existuje 100 pozorování, ale 20 pozorování tohoto taxonu, podíl je 20% (20/100). Pokud lidé v následujícím roce provedou 2000 pozorování a 400 z tohoto taxonu, zůstane tento podíl 20% (400/2000). To způsobuje určité odchylky, když je v oblasti velmi málo pozorovatelů, nebo taxony, které jsou velmi zřídka pozorovány, ale to platí i pro celkový počet pozorování.
         complete_taxon_desc: |
           „Kompletní“ taxony mají všechny své následné, existující taxony určité kategorie v databázi stránky. Když je taxon například kompletní pro daný druh, můžeme říct, kolik jeho druhů bylo pozorováno a kolik ještě má být pozorováno. Počty druhů „kompletního“ taxonu pro druh nezahrnují „nespočitatelné“ druhy, například druhy vyhynulé nebo neaktivní koncepty druhů, a zahrnují pouze druhy, ne infraspecifické taxony, jako jsou poddruhy nebo odrůdy.
         discoveries_desc: "Poslední nově identifikované druhy v tomto taxonu"
