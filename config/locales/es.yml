@@ -623,7 +623,7 @@ es:
   casual: casual
   casual_: Casual
   categories: Categorías
-  cc_0_description: "Esta licencia libera tu trabajo al dominio público, permite a otros copiar, modificar, distribuir y construir en base a tu trabajo, incluso con fines comerciales, sin pedirte permiso o darte reconocimiento. Esta es la licencia más abierta que se ofrece. Se recomienda para dar máxima difusión y uso de los materiales con licencia."
+  cc_0_description: "Esta licencia difunde tu trabajo al dominio público, permite a otros copiar, modificar, distribuir y construir en base a tu trabajo, incluso con fines comerciales, sin pedirte permiso o darte reconocimiento. Esta es la licencia más abierta que se ofrece. Se recomienda para dar máxima difusión y uso de los materiales con licencia."
   cc_0_name: No hay derechos de autor (CC0)
   cc_attribution_license: Licencia de atribución de Creative Commons
   cc_by_description: "Esta licencia le permite a otros distribuir, mezclar, ajustar y construir con base en tu trabajo, incluso con fines comerciales, siempre y cuando se te dé crédito de la creación original."
@@ -717,7 +717,7 @@ es:
   choose_files: Seleccionar archivos
   choose_from_your_lists: Seleccionar de tus listas
   choose_photos_for_this_taxon: Seleccionar fotos para este taxón
-  choose_photos_to_tag_from_photostream: Seleccionar fotos para etiquetar de tu photostream
+  choose_photos_to_tag_from_photostream: Selecciona fotos de tu galería para etiquetarlas
   choose_rule: Selecciona una regla
   choose_subjects: Selecciona temas
   choose_tags: Selecciona etiquetas
@@ -1250,11 +1250,25 @@ es:
   flag_as_spammer: Marca como productor de correos no deseados
   flag_as_non_spammer: Marca como productor de correos deseados
   flag_description: Marca este contenido para hacer saber a los curadores que algo no anda bien.
+  flag_for_check_list_title_html: |
+    Marca para la lista de verificación: %{title}
+  flag_for_comment_id_html: Marcar para <a href="%{url}">comentario %{id}</a>
   flag_for_curation: Advertencia para curación
+  flag_for_guide_title_html: |
+    Marca para la guía: %{title}
+  flag_for_identification_id_html: Marcar para <a href="%{url}">Identificación %{id}</a>
+  flag_for_life_list_title_html: |
+    Marca para la lista de vida: %{title}
+  flag_for_list_title_html: |
+    Marca para la lista: %{title}
+  flag_for_observation_title_html: |
+    Marca para la observación: %{title}
   flag_for_project_title_html: |
     Marca para el proyecto: %{title}
   flag_for_taxon_title_html: |
     Marca para el taxón: %{title}
+  flag_for_user_title_html: |
+    Mara para el usuario: %{title}
   flag_it!: '¡Márcalo!'
   flag_marked_as_resolved_html: '<span class="meta">Marca señalada como</span> <strong>resuelta.</strong>'
   #Label for the object that was flagged, e.g. a table header
@@ -2102,7 +2116,6 @@ es:
   not_linked_flickr: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Flickr "
   not_on_this_list: No está en esta lista.
   not_recorded: No grabado
-  not_resolved: No resuelto
   not_seeing_what_looking_for: '¿No ve lo que está buscando?'
   note: Nota
   notes: Notas
@@ -2185,8 +2198,6 @@ es:
     Los campos es información extra asociada a tu
     observación, como el número de especies observadas, descripción
     del habitad, o lo que quieras comentar.
-  observations_for: Observaciones para
-  observations_for_project: "Observaciones para %{project}"
   observations_from: Observaciones del %{date}
   observations_from_people_taxa_and_places_youre_following: "Observaciones de personas, sitios, y taxones que estás siguiendo"
   observations_from_this_place: Observaciones de este lugar
@@ -3644,7 +3655,6 @@ es:
   this_is_your_observation_desc: Siempre puedes ver las coordenadas de tus propias observaciones.
   this_job_failed_to_run: El proceso falló al ser procesado. Por favor contactanos a %{email}
   this_list_is_empty!: '¡Esta lista está vacía!'
-  this_list_only_accepts_taxa_that_are: Esta lista acepta solamente taxones que son
   this_observation: Esta observación
   this_observation_is_featured_on_x_sites:
     one: Esta observación se presenta en 1 sitio
@@ -4799,6 +4809,69 @@ es:
           <a href="%{url}">página de exportación de observaciones</a> para una lista de tus exportaciones.
       parental_consent:
         subject: A su hijo le gustaría usar iNaturalist
+        content_html: |
+          <p>
+          Su hijo está utilizando la aplicación educativa <strong> Busqueda de iNaturalist </strong> y le gustaría compartir datos con la plataforma de ciencia ciudadana iNaturalist. Debido a que publicar en iNaturalist revela información de identificación personal, iNaturalist no puede ser utilizado por personas menores de 13 años sin el consentimiento de un padre.
+          </p>
+          <p>
+          <strong> Búsqueda de iNaturalist </strong> se puede usar sin crear una cuenta, y no se compartirá ninguna información de identificación personal, pero su hijo no podrá contribuir con observaciones a iNaturalist. iNaturalist es una red social de ciencia ciudadana donde los participantes comparten observaciones e identificaciones de seres vivos para aprender mutuamente sobre la naturaleza y generar datos de biodiversidad para la ciencia.
+          </p>
+          <p>
+          Si desea dar su consentimiento para que su hijo use iNaturalist, necesitaremos que haga lo siguiente:
+          </p>
+          <ol>
+          <li>
+          <p>
+          Cree una cuenta de iNaturalist que su hijo usará siguiendo este enlace: <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          Después de crear la cuenta de su hijo, le pediremos que haga una pequeña donación de US $ 1 con una tarjeta de crédito a iNaturalist para verificar que es un adulto. Asegúrese de utilizar la misma dirección de correo electrónico que ingresó en el campo "Correo electrónico principal" durante el registro al hacer su donación.
+          </p>
+          </li>
+          <li>
+          <p>
+          Una vez que procesemos la donación, le enviaremos otro correo electrónico notificándole que la cuenta de su hijo se ha activado y puede usar el nombre de usuario y la contraseña de iNaturalist que creó para iniciar sesión en la aplicación Busqueda de su hijo.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist recopila la siguiente información de identificación personal:
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong> dirección de correo electrónico (privada): </strong> cada cuenta de iNaturalist tiene asociada una dirección de correo electrónico que no se hace pública.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong> nombre de usuario (público, obligatorio): </strong> cada cuenta de iNaturalist tiene un nombre de usuario público y un número de identificación de usuario. El nombre de usuario no tiene que ser similar al nombre real de una persona, pero se puede utilizar para contactar a la persona a través de comentarios públicos y mensajes directos privados.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong> Dirección IP (privada, requerida): </strong> iNaturalist almacena pero no hace pública la dirección IP del usuario que se puede utilizar para obtener información de identificación personal como la ubicación (con precisión a nivel de ciudad).
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong> Imagen de perfil (pública, opcional): </strong> las cuentas de iNaturalist pueden tener opcionalmente imágenes de perfil, que a menudo son imágenes del usuario.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong> Ubicación de observación (pública o privada, requerida): </strong> las observaciones de INaturaList contienen información de ubicación sobre dónde se realizó la observación. Esto puede hacerse público o mantenerse privado, pero es público de forma predeterminada.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist también permite a los usuarios compartir imágenes públicas, comentarios públicos y mensajes privados directos asociados con su cuenta. Es posible que los usuarios puedan incluir información de identificación personal en este contenido generado por el usuario.
+          </p>
+          <p>
+          Obtenga más información sobre la Política de privacidad de iNaturalist <a href="%{privacy_policy_url}"> aquí </a>
+          </p>
       photos_missing:
         subject: Algunas fotos necesitan reparación
         we_have_been_housekeeping: |
@@ -5007,6 +5080,7 @@ es:
         display_project_name: Exhibe nombre del proyecto
         do_you_need_features_from_traditional: |
           ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación a la medida, o añadir observaciones individuales que no pueden ser filtradas automáticamente?
+        duplicate_project: Proyecto duplicado
         leaderboards_among_individuals: Tabler de líderes entre <strong>@individuos</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Tablas de clasificación entre <strong>proyectos</strong>
@@ -5246,6 +5320,8 @@ es:
           También mostramos los gráficos de estacionalidad para anotar las observaciones.
           Las anotaciones son un sistema nuevo de añadir metadatos a las observaciones, utilizando un vocabulario definido de términos. Por ahora sólo estamos usando "Etapa Vital" y "Fenología vegetal" (para determinar si la planta está floreciendo o fructificando). Todavía no tenemos una manera de añadir anotaciones directamente, por lo que estamos transformando datos de los campos de observación al de anotaciones.
           Si no puedes esperar que acabamos el sistema de anotaciones, puedes contribuir a las anotaciones de "Etapa Vital" añadiendo al campo de observación algunos de los valores siguientes: edad, ecdisis, pupa, ninfa, larva, huevo, o juvenil para los campos "Etapa Vital" y "Etapa Vital de los Insectos". Para la "Fenología vegetal," buscamos cualquier campo con la palabra "Fenología" en su nombre y "Flor" o "Fruto" en el valor, por lo que el campo "Floración Fenología" puede ser buen nombre.
+        charts_help_relative_observations: |
+          El mostrar la frecuencia como proporción relativa de todas las observaciones ayuda a suavizar el efecto del crecimiento global del sitio. Por ejemplo, si el sitio está creciendo mientras conseguimos más observaciones con cada año que pasa, tenemos más observaciones de cualquier taxón individual. Esto no dices nada sobre si hay más individuos de ese taxón o si hay más personas que lo observan. Al mostrar la proporción relativa significa que si hay un total de 100 observaciones totales, pero 20 de este taxón, la proporción es 0.2 (20 / 100). Si las personas observan 2,000 observaciones el año entrante y 400 observaciones de este taxón, la proporción es todavía 0.2 (400 / 2,000). Esto causa algunas aberraciones cuando hay muy pocos observadores en una área, o para taxones que no son muy observados, pero lo mismo sucede con los conteos totales.
         complete_taxon_desc: |
           Los taxones "Completos" tienen todos sus descendientes, taxones existente taxones  de un rango específico presente en la base de datos del sitio. Cuando un taxón está completo hasta especies, por ejemplo, podemos decir cuántas de sus especies
           han sido observadas y cuántas requieren ser observadas. Los conteos para 
@@ -6146,6 +6222,8 @@ es:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         listed_taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         note: "@f"
@@ -6157,6 +6235,10 @@ es:
         place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
