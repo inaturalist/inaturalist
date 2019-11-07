@@ -2140,8 +2140,6 @@ zh-TW:
   observations_deleted: 觀察已刪除。
   observations_fields_are: |
     專案欄位是與觀察所相關資料的額外資料部份，像是個體所觀察的數目、棲息地描述，或是其它您所想要的內容！專案也可指定出希望您能夠填寫的欄位。
-  observations_for: 觀察在
-  observations_for_project: "用於 %{project} 的觀察"
   observations_from: 自 %{date} 的觀察
   observations_from_people_taxa_and_places_youre_following: "來自您正關注的人們、地點、和物種分類群的觀察"
   observations_from_this_place: 來自此地點的觀察
@@ -3543,7 +3541,6 @@ zh-TW:
   this_is_your_observation_desc: 您可以在您的觀察上查看座標。
   this_job_failed_to_run: 任務運作失敗。請聯絡 %{email}
   this_list_is_empty!: 此清單是空的！
-  this_list_only_accepts_taxa_that_are: 此列表僅接受的物種分類群為
   this_observation: 此觀察
   this_observation_is_featured_on_x_sites:
     other: 此觀察已展示在 %{count} 個網站
@@ -4569,6 +4566,74 @@ zh-TW:
           您的觀察匯出失敗。請查看您所匯出清單的<a href="%{url}">觀察匯出頁面</a>。
       parental_consent:
         subject: 您的兒女想使用 iNaturalist
+        content_html: |
+          <p>
+          您的兒女目前使用 <strong>Seek by iNaturalist</strong>
+          教育應用程式，並且想與 iNaturalist 公眾科學平台分享資料。因為發佈到 iNaturalist 會揭示出個人身份資訊，未經父母同意、且年齡低於 13 歲之個人資訊 iNaturalist 是不能使用的。
+          </p>
+          <p>
+          <strong>Seek by iNaturalist</strong> 可以不必建立帳號便可使用，並且無需分享個人身份資訊；但您的兒女會無法貢獻觀察給 iNaturalist。iNaturalist 是個參與者能夠分享觀察、鑑定生物來互相指教有關自然方面、以及產生用於科學之生物多樣性資料的公眾科學社交網路。
+          </p>
+          <p>
+          若您同意讓您的兒女使用 iNaturalist，我們需要您進行以下事項：
+          </p>
+          <ol>
+          <li>
+          <p>
+          透過以下連結建立將給您兒女使用的 iNaturalist 帳號：
+          <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          在您建立完您兒女的帳號後，我們會要求您以信用卡做出 $1 美元的小額捐款給 iNaturalist，以確認您確實為一名成人。請確認當作出捐款時，是使用您在輸入「父母電子郵件」欄位時的相同電子郵件地址。
+          </p>
+          </li>
+          <li>
+          <p>
+          一旦我們處理完捐款後，我們會發送給您另一封電子郵件來通知您兒女的帳號已啟用完成，而您可以使用您所建立的 iNaturalist 使用者名稱和密碼來登入您兒女的 Seek 應用程式。
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist 收集以下個人身份資訊：
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong>電子郵件地址（非公開）：</strong>每個 iNaturalist
+          帳號都會有一個相關的電子郵件地址，並且不會將其公開。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>使用者名稱（公開，為必要）：</strong>每個 iNaturalist 帳號都會有公開的使用者名稱與使用者是別號碼。使用者名稱不必得和個人真實名稱相似，但會用來透過公開評論和私訊來聯絡該人。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>IP 位址（非公開，為必要）：</strong>iNaturalist 會儲存使用者的 IP；但不會將其公開，這會用來獲取像是位置之類的個人識別資訊（可識別到所在都市的準確度）。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>個人檔案圖片（公開，為選用）：</strong>iNaturalist
+          的帳號可以讓使用者選擇使用能代表著他個人的圖片。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>觀察位置（公開或非公開）：</strong>iNaturalist 上的觀察會含有關於建立出該觀察所的位置資訊。這可弄成為公開或保持非公開，而預設是將其公開。
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist 允許使用者分享公開圖片、公開評論、以及關聯他們帳號的私訊。
+          在該使用者所產生的內容裡，來包含他個人的識別資訊也是可能的。
+          </p>
+          <p>
+          請點擊<a href="%{privacy_policy_url}">此</a>了解更多 iNaturalist 的隱私政策。
+          </p>
       photos_missing:
         subject: 一些照片需要回報問題
         we_have_been_housekeeping: |
@@ -5014,6 +5079,9 @@ zh-TW:
           此圖表會顯示過去十年依各月份呈現的物種分類觀察數量。這些是由人們觀察次數所形成的傾向，且會為您顯示觀察裡的不尋常尖峰點。如果觀察數量增加，但圖表是呈現平坦或下降的情況，可能是因為有著大量的變化。
         charts_help_other: |
           我們也另外顯示出用於觀察註解的季節性圖表。註解是用在替觀察添加詮釋資料的採用控制詞彙項目之新系統。就目前為止我們僅使用「生命階段」與「植物物候」（植物開花或結果時期）。我們目前沒有直接添加註解的方式，因此現在我們正試著將來自於觀察欄位的資料轉換至註解。如果您已等不及我們建置好註解系統，您可以透過添加俱有下列值之一的觀察欄位值來貢獻到「生命階段」註解：成體、初羽化、蛹、若蟲、幼蟲、卵，或亞成體。所以特別的是，「生命階段」與「昆蟲生命階段」的欄位都是可行的。對於「植物物候」，我們正查看任何欄位名稱有著字詞「物候」並帶著「開花」或是「結果」，因此「開花物候」欄位也是可使用的。
+        charts_help_relative_observations: |
+          顯示所有觀察相對比例次數可協助修正有關網站整體成長效益。例如，若網站每年因我們獲取更多的觀察而成長，我們會取得更多各物種分類的觀察，但這僅會您曉得有許多人在觀察物種分類，而不會了解告訴您有關是否有更多物種分類包含在觀察裡。顯示相對比例代表著如果總共有 100 個觀察，其中
+          20 個觀察為某個物種分類，那麼比例是 0.2（20 / 100）。若大家在隔年做出 2000 個觀察並且當中有 400 個觀察為某物種分類，那麼比例便是 0.2（400 / 2000）。而縱使是總計計數，也會導致在僅有少數觀察者的地區，或是很少有被觀察到的物種分類群產生偏差情況。
         complete_taxon_desc: |
           「完整」物種分類群擁有全部派生、目前在網站資料庫裡的現存具體物種分類群級別。例如：能代表著有多少個物種已被觀察，以及有多少個需要被觀察，就是當對於物種的物種分類完成時。對於物種是完整的「完整」物種分類群，其物種計數不包含「無法計數」物種，如已滅絕或是無作用的物種概念，而它們僅能包含物種，不能像是亞種、或變種的種下分類群。
         discoveries_desc: "此物種分類中最新被鑑定的物種"
