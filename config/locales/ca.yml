@@ -1974,8 +1974,6 @@ ca:
   observations_deleted: Les observacions s'han eliminat.
   observations_fields_are: |
     Els camps són informació extra associada a una observació, com el nombre d'espècies observades, descripció de l'hàbitat, o el que vulgueu comentar.
-  observations_for: Observacions per a
-  observations_for_project: "Observacions per a %{project}"
   observations_from: Observacions de %{date}
   observations_from_people_taxa_and_places_youre_following: "Observacions de persones, llocs, i taxa que esteu seguint"
   observations_from_this_place: Observacions d'aquest lloc
@@ -3292,7 +3290,6 @@ ca:
   this_is_your_observation_desc: Sempre podeu veure les coordenades de les vostres observacions.
   this_job_failed_to_run: Aquest treball no s'ha pogut executar. Si us plau, contacteu amb %{email}
   this_list_is_empty!: Aquesta llista està buida!
-  this_list_only_accepts_taxa_that_are: Aquesta llista només accepta tàxons que són
   this_observation: Aquesta observació
   this_observation_is_featured_on_x_sites:
     one: Aquesta observació és presentada a 1 lloc
@@ -4756,6 +4753,8 @@ ca:
           Les anotacions són un sistema nou d'afegir metadades a les observacions utilitzant un vocabulari definit de termes. Per ara només estem fent servir "Etapa Vital" i "Fenologia vegetal" (per determinar si la planta està florint o fructificant). Encara no tenim una manera d'afegir anotacions directament, pel que ara estem convertint les dades dels camps d'observació al d'anotacions.
           Si no podeu esperar que acabem el sistema d'anotacions, pots contribuir a les anotacions de "Etapa Vital" afegint al camp d'observació alguns dels valors següents: edat, ècdisi, Pupa,
           Nimfa, larva, ou, o juvenil. En particular, els camps "Etapa Vital" i  "Etapa Vital dels Insectes" són correctes. Per a la "Fenologia vegetal," busquem qualsevol camp amb la paraula "Fenologia" en el seu nom i "Flor" o "Fruit" en el valor, de manera que el camp "Floració Fenologia" és una bon nom per utilitzar.
+        charts_help_relative_observations: |
+          Mostrar les freqüències com a proporció relativa de totes les observacions ajuda a relativitzar l'efecte del creixement global del lloc. Per exemple, si el lloc està creixent perquè aconseguim més observacions cada any que passa, tenim més observacions de tots els tàxons individuals. Això no informa sobre si hi ha més individus d'aquest tàxon o si hi ha més persones que l'observen. Mostrar la proporció relativa indica que si hi ha un total de 100 observacions totals, i 20 són d'aquest tàxon, la proporció és 0,2 (20/100). Si s'observen 2,000 observacions a l'any i 400 observacions són d'aquest tàxon, la proporció és també de 0,2 (400/2.000). Això causa algunes aberracions quan hi ha molt pocs observadors en una àrea, o per taxons que no són molt observats, però el mateix succeeiria amb els recomptes totals.
         complete_taxon_desc: |
           Els taxons "Complerts" tenen tots els seus taxons fills i existent d'un rang específic a la base de dades del lloc. Quan un taxó està complet fins al nivell d'espècies, per exemple, podem dir quantes de les seves espècies han estat observades i quantes encara manquen per fer-ho. Els recomptes d'espècies en taxons "complets" fins a nivell específic no inclouen aquelles espècies "No comptables" com són les extintes o inactives, i només inclouen espècies, no als taxons infraespecífics com subespècies o varietats.
         discoveries_desc: "Espècie identificada més recentment d'aquest taxon"
