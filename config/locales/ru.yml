@@ -5530,6 +5530,10 @@ ru:
           </p>
         name_place_help_html: |
           Установить приоритет народных названий, используемых в этом месте.
+        opt_in_to_map_tile_test: Принять участие в тесте плиток карты
+        opt_in_to_map_tile_test_description: |
+          Участие в этом тесте означает, что при уменьшении масштаба вы увидите новые плитки на карте распределения с координатной сеткой. Эти сетки менее требовательны к нашим серверам, должны быстрее перерисовываться по мере роста iNaturalist и лучше показывают плотность наблюдения. Мы надеемся в конечном итоге распространить эту замену на весь сайт. Мы хотели бы услышать ваши отзывы на форуме.
+        opt_out_of_map_tile_test: Отказаться от участия в тесте плиток карты
         place_preference_changed_notice_html: |
           Предпочтительное место изменено. Если вы измените ваше мнение, вы всегда сможете <a href='/users/edit'>отредактировать ваши настройки</a>.
         project_addition_preferences:
@@ -5851,15 +5855,17 @@ ru:
   number:
     currency:
       format:
-        delimiter: '，'
+        delimiter: ' '
         format: '%u%n'
         precision: 2
+        separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: '$'
     format:
-      delimiter: ','
+      delimiter: '  '
       precision: 3
+      separator: ','
       significant: false
       strip_insignificant_zeros: false
     human:
