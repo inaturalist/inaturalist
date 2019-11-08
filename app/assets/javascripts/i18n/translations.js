@@ -497,6 +497,10 @@ I18n.translations["ar"] = {
   "hide_uncountable_species": "إخفاء الأنواع التي لا تحصى",
   "high": "مرتفع",
   "history": "التاريخ",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "أنا لا أعرف ولكن أنا متأكد من أن هذا %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -1541,6 +1545,8 @@ I18n.translations["ar"] = {
         "you_have_opted_out": "لقد ألغيت هوية المجتمع",
         "your_id_does_not_match": "معرفك (<span class=\"bold\">%{taxon_name}</span>) لا يطابق معرف المجتمع\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "هذا يستغرق بعض الوقت; تُرجَى تجربة أحد الخيارات أدناه.",
         "well_email_you": "حسنا، سنرسل إليك رسالة إلكترونية عندما تكون جاهزة."
@@ -2197,6 +2203,10 @@ I18n.translations["bg"] = {
   "has_sounds": "има звуци",
   "here_are_our_top_species_suggestions": "Ето нашите най-добри предложения за видове",
   "history": "История",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -2920,6 +2930,8 @@ I18n.translations["bg"] = {
         "algorithm_summary": "Резюме на алгоритъма",
         "disagreement": "Несъгласие"
       },
+      "compare": {
+      },
       "export": {
       },
       "identify": {
@@ -3300,6 +3312,10 @@ I18n.translations["br"] = {
   "grid": "Kael",
   "grid_tooltip": "Diskwel ar gwel er mod kael",
   "high": "uhel",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -3551,6 +3567,8 @@ I18n.translations["br"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -4154,6 +4172,10 @@ I18n.translations["ca"] = {
   "hide_uncountable_species": "Amaga les espècies incomptables",
   "high": "Alta",
   "history": "Historial",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "No ho sé segur, però segur que és%{taxon}",
   "id_categories": {
     "tooltips": {
@@ -5120,6 +5142,8 @@ I18n.translations["ca"] = {
         "you_have_opted_out": "Heu optat per acceptar les Identificacions de la Comunitat",
         "your_id_does_not_match": "La vostra identificació (%{taxon_name}) no s'ajusta a la Identificació de la comunitat\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Això està requerint una mica de temps. Si us plau, prova una de les opcions de sota.",
         "well_email_you": "D'acord, t'enviarem un correu electrònic quan estigui llest"
@@ -5909,6 +5933,10 @@ I18n.translations["cs"] = {
   "hide_uncountable_species": "Skrýt nespočitatelné druhy",
   "high": "vysoká",
   "history": "Historie",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Nevím, ale jsem si jistý/á, že toto je %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -6856,6 +6884,8 @@ I18n.translations["cs"] = {
         "you_have_opted_out": "Zvolili jste možnost nepoužívat komunitní identifikace",
         "your_id_does_not_match": "Vaše ID (<span class=\"bold\">%{taxon_name}</span>) neodpovídá komunitnímu ID\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Trvá to dlouho. Vyzkoušejte prosím jednu z níže uvedených možností.",
         "well_email_you": "Dobře, pošleme vám e-mail, až bude připravený."
@@ -7653,6 +7683,10 @@ I18n.translations["da"] = {
   "hide_uncountable_species": "Skjul arter der ikke medregnes",
   "high": "Høj",
   "history": "Historik",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Jeg ved det ikke, men jeg sikker på det er %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -8688,6 +8722,8 @@ I18n.translations["da"] = {
         "you_have_opted_out": "Du fravalgte fælleskabs identifikationerne",
         "your_id_does_not_match": "Dit ID (<span class=\"bold\">%{taxon_name}</span>) matcher ikke fællesskabs ID\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Det tager et stykke tid. Prøv venligst en af nedenstående muligheder.",
         "well_email_you": "Ok, vi sender dig en e-mail, når den er klar."
@@ -9545,6 +9581,19 @@ I18n.translations["de"] = {
   "hide_uncountable_species": "Unzählbare Arten verstecken",
   "high": "Hoch",
   "history": "Geschichte",
+  "i18n": {
+    "inflections": {
+      "@gender": {
+        "m": "Männlich",
+        "f": "Weiblich",
+        "n": "Neutrum"
+      },
+      "@vow_or_con": {
+        "vow": "Vokal",
+        "con": "Konsonant"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Ich weiß nicht, aber bin mir sicher, dass dies %{taxon} ist",
   "id_categories": {
     "tooltips": {
@@ -10496,6 +10545,8 @@ I18n.translations["de"] = {
         "identification_count": "Bestimmung Anzahl",
         "score": "Punktzahl"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Dies braucht einige Zeit. Bitte versuche eine der folgenden Optionen.",
         "well_email_you": "Ok, wir schicken Ihnen eine Email wenn es bereit ist."
@@ -11248,6 +11299,10 @@ I18n.translations["el"] = {
   "hide_uncountable_species": "Απόκρυψη μη μετρήσιμων ειδών",
   "high": "υψηλό",
   "history": "Ιστορικό",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Δεν γνωρίζω όμως είμαι βέβαιος πως είναι %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -12111,6 +12166,8 @@ I18n.translations["el"] = {
         "disagreement": "Διαφωνία",
         "explanation": "Αν για κάποιον λόγο ένας χρήστης δεν συμφωνεί με το taxon της κοινότητας,\nμπορεί να το απορρίψει, πράγμα που σημαίνει πως το δικό του ID θα είναι αυτό που\nθα χρησιμοποιείται για τη διασύνδεση με άλλες παρατηρήσεις, ενημέρωση λιστών ζωής, κλπ.\nΕπίσης σημαίνει πως η παρατήρηση του μπορεί να καταστεί ερευνητικού επιπέδου μόνον όταν\nη κοινότητα συμφωνήσει με αυτόν.\n</p>\n<p>\nΌμως, το ID της κοινότητας εξακολουθεί να εμφανίζεται, έτσι ώστε όλοι να μπορούν\nνα δουν τα διαφορετικά ID που έχουν προταθεί.\n</p>\n"
       },
+      "compare": {
+      },
       "export": {
         "well_email_you": "Ok, θα σας στείλουμε email όταν είναι έτοιμο."
       },
@@ -12855,6 +12912,77 @@ I18n.translations["en"] = {
   "hide_uncountable_species": "Hide Uncountable Species",
   "high": "High",
   "history": "History",
+  "i18n": {
+    "inflections": {
+      "@gender": {
+        "m": "male",
+        "f": "female",
+        "n": "neuter",
+        "application": "@n",
+        "assessment_section": "@n",
+        "atlas": "@n",
+        "check_list": "@n",
+        "class": "@n",
+        "complex": "@n",
+        "epifamily": "@n",
+        "family": "@n",
+        "favorite": "@n",
+        "form": "@n",
+        "genus": "@n",
+        "genushybrid": "@n",
+        "hybrid": "@n",
+        "identification": "@n",
+        "infraclass": "@n",
+        "infraorder": "@n",
+        "journal": "@n",
+        "listed_taxon": "@n",
+        "note": "@n",
+        "observation": "@n",
+        "observation_field": "@n",
+        "order": "@n",
+        "phylum": "@n",
+        "place": "@n",
+        "post": "@n",
+        "profile": "@n",
+        "project": "@n",
+        "section": "@n",
+        "species": "@n",
+        "subclass": "@n",
+        "subfamily": "@n",
+        "subgenus": "@n",
+        "suborder": "@n",
+        "subphylum": "@n",
+        "subsection": "@n",
+        "subspecies": "@n",
+        "subtribe": "@n",
+        "superclass": "@n",
+        "superfamily": "@n",
+        "superorder": "@n",
+        "supertribe": "@n",
+        "taxon": "@n",
+        "taxon_change": "@n",
+        "taxon_drop": "@n",
+        "taxon_link": "@n",
+        "taxon_merge": "@n",
+        "taxon_split": "@n",
+        "taxon_stage": "@n",
+        "taxon_swap": "@n",
+        "tribe": "@n",
+        "variety": "@n",
+        "default": "@n"
+      },
+      "@vow_or_con": {
+        "vow": "vowel",
+        "con": "consonant",
+        "a": "@vow",
+        "e": "@vow",
+        "i": "@vow",
+        "o": "@vow",
+        "u": "@vow",
+        "default": "@con"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "I don't know but I am sure this is %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -13735,6 +13863,7 @@ I18n.translations["en"] = {
   "show_uncountable_species": "Show uncountable species",
   "showing_taxa_from_everywhere": "Showing taxa from everywhere",
   "showing_taxa_from_place": "Showing taxa from %{place}",
+  "showing_x_of_y": "Showing %{x} of %{y}",
   "showing_x_of_y_listings": "Showing %{x} of %{y} listings",
   "sign_out": "Sign Out",
   "sign_up": "Sign Up",
@@ -13951,6 +14080,53 @@ I18n.translations["en"] = {
         "score": "Score",
         "you_have_opted_out": "You have opted out of community identifications",
         "your_id_does_not_match": "Your ID (<span class=\"bold\">%{taxon_name}</span>) does not match the the community ID\n"
+      },
+      "compare": {
+        "about_total_taxa": "About Total Taxa",
+        "combined": "Combined",
+        "horizontal": "Horizontal",
+        "interval": "Interval",
+        "interval_limit_warning_day": "Only showing 1 year's worth of days",
+        "interval_limit_warning_hour": "Only showing 1 week's worth of hours",
+        "interval_limit_warning_month": "Only showing 100 years worth of months",
+        "interval_limit_warning_week": "Only showing 10 years worth of weeks",
+        "interval_limit_warning_year": "Only showing 100 years worth of years",
+        "some_queries_missing_taxa": "Some queries missing taxa",
+        "some_queries_missing_taxa_desc": "We can only load 500 of the most-observed taxa per query, so if there\nare more taxa represented in the query, they will either not appear or\nshow up as \"?\" if they're present in other queries. Try narrowing your\nqueries down so they show 500 taxa or less for optimum comparisons.\n",
+        "taxa_not_observed_in_all_queries": "Taxa not observed in all queries",
+        "taxa_observed_in_all_queries": "Taxa observed in all queries",
+        "taxa_observed_in_only_one_query": "Taxa observed in only one query",
+        "total_taxa": "Total Taxa",
+        "total_taxa_desc": "This is the total number of \"leaf\" taxa represented in the query.\nSometimes you'll see more rows than this with non- zero counts because\nthere are higher level taxa added from other queries. E.g. if Query 1\nhas an observation of Homo sapiens and Query 2 has an observation of\nGenus Homo, both taxa will be present in the table, but that\nrepresents one additional  row for Genus Homo for Query 1, which\ndidn't include it in its total count b/c it only counted the species\nHomo sapiens within that genus, because that was the \"leaf\" of that\npart of its tree.\n",
+        "vertical": "Vertical",
+        "x_in_common": {
+          "zero": "%{count} in common",
+          "one": "%{count} in common",
+          "few": "%{count} in common",
+          "many": "%{count} in common",
+          "other": "%{count} in common"
+        },
+        "x_not_in_common": {
+          "zero": "%{count} not in common",
+          "one": "%{count} not in common",
+          "few": "%{count} not in common",
+          "many": "%{count} not in common",
+          "other": "%{count} not in common"
+        },
+        "x_total": {
+          "zero": "%{count} total",
+          "one": "%{count} total",
+          "few": "%{count} total",
+          "many": "%{count} total",
+          "other": "%{count} total"
+        },
+        "x_unique": {
+          "zero": "%{count} unique",
+          "one": "%{count} unique",
+          "few": "%{count} unique",
+          "many": "%{count} unique",
+          "other": "%{count} unique"
+        }
       },
       "export": {
         "taking_a_while": "This is taking a while. Please try one of the options below.",
@@ -14324,6 +14500,10 @@ I18n.translations["en-UK"] = {
   },
   "establishment": {
   },
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -14353,6 +14533,8 @@ I18n.translations["en-UK"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -14468,6 +14650,10 @@ I18n.translations["en-US"] = {
   },
   "establishment": {
   },
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -14499,6 +14685,8 @@ I18n.translations["en-US"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -14945,6 +15133,10 @@ I18n.translations["eo"] = {
   "has_sounds": "Havas Sonojn",
   "high": "Alta",
   "history": "Historio",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Mi ne certas, sed mi certas ke ĉi tiu estas %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -15567,6 +15759,8 @@ I18n.translations["eo"] = {
       "community_id": {
         "agreement": "Akordo",
         "algorithm_summary": "Resumo de Algoritmo"
+      },
+      "compare": {
       },
       "export": {
         "well_email_you": "Bone, ni retmesaĝos vin kiam ĝi estas preta."
@@ -16292,6 +16486,45 @@ I18n.translations["es"] = {
   "hide_uncountable_species": "Esconde especies incontables",
   "high": "Alta",
   "history": "Historial",
+  "i18n": {
+    "inflections": {
+      "@gender": {
+        "m": "masculino",
+        "f": "femenino",
+        "n": "neutro",
+        "application": "@f",
+        "assessment_section": "@f",
+        "atlas": "@m",
+        "check_list": "@f",
+        "identification": "@f",
+        "listed_taxon": "@m",
+        "note": "@f",
+        "observation": "@f",
+        "observation_field": "@m",
+        "place": "@m",
+        "post": "@m",
+        "species": "@f",
+        "taxon": "@m",
+        "taxon_change": "@m",
+        "taxon_drop": "@m",
+        "taxon_link": "@m",
+        "taxon_merge": "@f",
+        "taxon_split": "@m",
+        "taxon_stage": "@m",
+        "taxon_swap": "@m"
+      },
+      "@vow_or_con": {
+        "vow": "vocal",
+        "con": "consonante",
+        "a": "@vow",
+        "e": "@vow",
+        "i": "@vow",
+        "o": "@vow",
+        "u": "@vow",
+        "default": "@con"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "No lo sé, pero estoy seguro de que es %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -17386,6 +17619,8 @@ I18n.translations["es"] = {
         "you_have_opted_out": "Decidió aceptar identificaciones comunitarias",
         "your_id_does_not_match": "Tu identificación (%{taxon_name}) no se ajusta a la de la comunidad\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Esto está tomando un tiempo. Por favor, intente una de las siguientes opciones.",
         "well_email_you": "Ok, le enviaremos un mensaje cuando esté listo."
@@ -18272,6 +18507,10 @@ I18n.translations["es-AR"] = {
   "hide_uncountable_species": "Esconde especies incontables",
   "high": "Alta",
   "history": "Historial",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "No lo sé, pero estoy seguro de que es %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -19329,6 +19568,8 @@ I18n.translations["es-AR"] = {
         "you_have_opted_out": "Decidió aceptar identificaciones comunitarias",
         "your_id_does_not_match": "Tu identificación (%{taxon_name}) no se ajusta a la de la comunidad\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Esto está tomando un tiempo. Por favor, intente una de las siguientes opciones.",
         "well_email_you": "Ok, le enviaremos un mensaje cuando esté listo."
@@ -19701,6 +19942,10 @@ I18n.translations["es-ES"] = {
   },
   "establishment": {
   },
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -19732,6 +19977,8 @@ I18n.translations["es-ES"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -20321,6 +20568,10 @@ I18n.translations["es-MX"] = {
   "hide_uncountable_species": "Esconde especies incontables",
   "high": "alta",
   "history": "Historial",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "No lo sé, pero estoy seguro de que es %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -21271,6 +21522,8 @@ I18n.translations["es-MX"] = {
         "you_have_opted_out": "Decidiste aceptar identificaciones comunitarias",
         "your_id_does_not_match": "Tu ID (%{taxon_name}) no coincide con la de la comunidad\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Esto está tomando un tiempo. Por favor, intenta una de las siguientes opciones.",
         "well_email_you": "Ok, te enviaremos un mensaje cuando esté listo."
@@ -22117,6 +22370,10 @@ I18n.translations["et"] = {
   "hide_uncountable_species": "Peida loendamatud liigid",
   "high": "Kõrge",
   "history": "Ajalugu",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Ma pole kindel, kuid arvan, et see on %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -23066,6 +23323,8 @@ I18n.translations["et"] = {
         "you_have_opted_out": "Sa ei soovi kogukondlike määratlusi",
         "your_id_does_not_match": "Siinu määratlus (<span class=\"bold\">%{taxon_name}</span>) ei kattu kogukondliku määratlusega\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "See võtab natuke aega. Palun vali mõni allolevatest võimalustest.",
         "well_email_you": "Ok, me saadame sulle kirja, kui asi on valmis."
@@ -23777,6 +24036,10 @@ I18n.translations["eu"] = {
   "has_sounds": "Soinuak ditu",
   "heads_up": "Abisua",
   "history": "Historia",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
       "improving": "Komunitateak hitzartutako taxon honetako lehenengo iradokizuna. \nHonek lagundu zuen\nkomunitateko taxona hobetzen.\n",
@@ -24208,6 +24471,8 @@ I18n.translations["eu"] = {
     "observations": {
       "community_id": {
         "algorithm_summary": "Algoritmoaren laburpena"
+      },
+      "compare": {
       },
       "export": {
       },
@@ -24847,6 +25112,10 @@ I18n.translations["fi"] = {
   "hide_uncountable_species": "Piilota ei-laskettavat lajit",
   "high": "Korkea",
   "history": "Historia",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "En tiedä mutta olen varma että tämä on %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -25670,6 +25939,8 @@ I18n.translations["fi"] = {
         "score": "Pisteet",
         "your_id_does_not_match": "Tunnistuksesi (<span class=\"bold\">%{taxon_name}</span>) ei vastaa yhteisön tekemää tunnistusta\n"
       },
+      "compare": {
+      },
       "export": {
         "well_email_you": "Ok, lähetämme sinulle sähköpostia, kun se on valmis."
       },
@@ -25962,6 +26233,10 @@ I18n.translations["fil"] = {
   },
   "establishment": {
   },
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -25991,6 +26266,8 @@ I18n.translations["fil"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -26605,6 +26882,30 @@ I18n.translations["fr"] = {
   "hide_uncountable_species": "Masquer les espèces indénombrables",
   "high": "Haut",
   "history": "Historique",
+  "i18n": {
+    "inflections": {
+      "@gender": {
+        "m": "masculin",
+        "f": "féminin",
+        "n": "neutre",
+        "identification": "@f",
+        "note": "@f",
+        "observation": "@f",
+        "observation_field": "@m",
+        "place": "@m",
+        "post": "@m",
+        "species": "@f",
+        "taxon": "@m",
+        "taxon_drop": "@n",
+        "taxon_link": "@n",
+        "taxon_merge": "@n",
+        "taxon_split": "@n",
+        "taxon_stage": "@n",
+        "taxon_swap": "@n",
+        "default": "@n"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Je ne sais pas, mais je suis sûr de que c'est %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -27604,6 +27905,8 @@ I18n.translations["fr"] = {
         "you_have_opted_out": "Vous avez choisi de ne pas recevoir les identifications de la communauté",
         "your_id_does_not_match": "Votre ID (<span class=\"bold\">%{taxon_name}</span>) ne correspond pas à l'ID communautaire\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Cette action peut prendre un peu de temps. Veuillez essayer une des options ci-dessous.",
         "well_email_you": "Ok, nous vous enverrons un courriel quand ce sera prêt."
@@ -27981,6 +28284,10 @@ I18n.translations["fr-CA"] = {
   },
   "establishment": {
   },
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -28012,6 +28319,8 @@ I18n.translations["fr-CA"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -28363,6 +28672,10 @@ I18n.translations["gl"] = {
   "good_choice_for_sharing": "Boa alternativa para compartir cos científicos",
   "grid": "Cuadrícula",
   "heads_up": "Aviso",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -28737,6 +29050,8 @@ I18n.translations["gl"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -29275,6 +29590,20 @@ I18n.translations["he"] = {
   "here_are_our_top_species_suggestions": "הינה ההצעות הטובות ביותר שלנו",
   "hide_content": "הסתרת תוכן",
   "history": "היסטוריה",
+  "i18n": {
+    "inflections": {
+      "@gender": {
+        "m": "זכר",
+        "f": "נקבה",
+        "n": "ללא זוויג",
+        "favorite": "@n"
+      },
+      "@vow_or_con": {
+        "vow": "תנועה",
+        "con": "עיצור"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "לא יודע/ת אבל בטוח/ה שזה %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -30143,6 +30472,8 @@ I18n.translations["he"] = {
     "observations": {
       "community_id": {
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "זה לוקח קצת זמן. נסו את האפשרויות האחרות.",
         "well_email_you": "אוקיי, נשלח אלייך כשה יהיה מוכן."
@@ -30598,6 +30929,10 @@ I18n.translations["id"] = {
   "heads_up": "PENTING:",
   "high": "tinggi",
   "history": "Sejarah",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -31080,6 +31415,8 @@ I18n.translations["id"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
         "taking_a_while": "Ini adalah mengambil beberapa saat. Silakan coba salah satu opsi di bawah ini.",
@@ -31732,6 +32069,50 @@ I18n.translations["it"] = {
   "hide_uncountable_species": "Nascondi le specie non conteggiabili",
   "high": "Superiore",
   "history": "Cronologia",
+  "i18n": {
+    "inflections": {
+      "@gender": {
+        "m": "maschile",
+        "f": "femminile",
+        "n": "neutro",
+        "application": "@f",
+        "assessment_section": "@f",
+        "atlas": "@m",
+        "check_list": "@f",
+        "favorite": "@m",
+        "identification": "@f",
+        "journal": "@m",
+        "listed_taxon": "@m",
+        "note": "@f",
+        "observation": "@f",
+        "observation_field": "@m",
+        "place": "@m",
+        "post": "@m",
+        "profile": "@m",
+        "project": "@m",
+        "species": "@f",
+        "taxon": "@m",
+        "taxon_change": "@f",
+        "taxon_drop": "@m",
+        "taxon_link": "@m",
+        "taxon_merge": "@f",
+        "taxon_split": "@f",
+        "taxon_stage": "@m",
+        "taxon_swap": "@m",
+        "default": "@m"
+      },
+      "@vow_or_con": {
+        "vow": "vocale",
+        "con": "consonante",
+        "a": "@vow",
+        "e": "@vow",
+        "i": "@vow",
+        "o": "@vow",
+        "u": "@vow",
+        "default": "@con"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Non lo so ma sono sicuro che è %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -32828,6 +33209,8 @@ I18n.translations["it"] = {
         "you_have_opted_out": "Hai deciso di non seguire le identificazioni della community",
         "your_id_does_not_match": "La tua ID (<span class=\"bold\">%{taxon_name}</span>) non corrisponde con quella della comunità\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "L'operazione sta durando troppo. Per favore prova una delle opzioni qui sotto.",
         "well_email_you": "Ok, ti manderemo una email quando è pronto."
@@ -33173,6 +33556,10 @@ I18n.translations["iw"] = {
   },
   "establishment": {
   },
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -33206,6 +33593,8 @@ I18n.translations["iw"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -33676,6 +34065,10 @@ I18n.translations["ja"] = {
   "heads_up": "お知らせ",
   "high": "高",
   "history": "履歴",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
       "leading": "分類群は上位の群落からつながっています。この同定は正しい答えに結びつく可能性があります。\n"
@@ -34266,6 +34659,8 @@ I18n.translations["ja"] = {
         "you_have_opted_out": "コミュニティー判定の通知を解除しました",
         "your_id_does_not_match": "利用者の判定（<span class=\"bold\">%{taxon_name}</span>）はコミュニティーの判定と一致しません\n"
       },
+      "compare": {
+      },
       "export": {
         "well_email_you": "準備ができましたら電子メールでお知らせします。"
       },
@@ -34468,6 +34863,10 @@ I18n.translations["ka"] = {
   },
   "establishment": {
   },
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -34497,6 +34896,8 @@ I18n.translations["ka"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -34973,6 +35374,10 @@ I18n.translations["ko"] = {
   "hide_uncountable_species": "셀 수 없는 종을 숨기기",
   "high": "높음",
   "history": "역사",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -35629,6 +36034,8 @@ I18n.translations["ko"] = {
         "disagreement": "동의하지 않음",
         "score": "점수"
       },
+      "compare": {
+      },
       "export": {
       },
       "identify": {
@@ -36128,6 +36535,10 @@ I18n.translations["lb"] = {
   "hide_content": "Inhalt verstoppen",
   "high": "Héich",
   "history": "Geschicht",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -36573,6 +36984,8 @@ I18n.translations["lb"] = {
     "observations": {
       "community_id": {
         "agreement": "Accord"
+      },
+      "compare": {
       },
       "export": {
         "well_email_you": "Ok, mir schécken Iech eng E-Mail wann et prett ass."
@@ -37111,6 +37524,10 @@ I18n.translations["lt"] = {
   "has_sounds": "turi garsų",
   "heads_up": "Dėmesio",
   "high": "aukštas",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -37354,6 +37771,8 @@ I18n.translations["lt"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
         "taking_a_while": "Tai trunka per ilgai. Prašome pasirinkti vieną iš žemiau pateiktų variantų."
@@ -37715,6 +38134,10 @@ I18n.translations["mk"] = {
   "geoprivacy": "Геоприватност",
   "grid": "Решетка",
   "grid_tooltip": "Дај решетест поглед",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -38065,6 +38488,8 @@ I18n.translations["mk"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -38749,6 +39174,50 @@ I18n.translations["nb"] = {
   "hide_uncountable_species": "Skjul arter som ikke kan telles",
   "high": "Høy",
   "history": "Historikk",
+  "i18n": {
+    "inflections": {
+      "@gender": {
+        "m": "hannkjønn",
+        "f": "hunnkjønn",
+        "n": "intetkjønn",
+        "application": "@m",
+        "assessment_section": "@m",
+        "atlas": "@m",
+        "check_list": "@m",
+        "favorite": "@m",
+        "identification": "@m",
+        "journal": "@m",
+        "listed_taxon": "@n",
+        "note": "@n",
+        "observation": "@m",
+        "observation_field": "@n",
+        "place": "@n",
+        "post": "@n",
+        "profile": "@m",
+        "project": "@n",
+        "species": "@m",
+        "taxon": "@n",
+        "taxon_change": "@m",
+        "taxon_drop": "@m",
+        "taxon_link": "@m",
+        "taxon_merge": "@m",
+        "taxon_split": "@m",
+        "taxon_stage": "@m",
+        "taxon_swap": "@n",
+        "default": "@m"
+      },
+      "@vow_or_con": {
+        "vow": "vokal",
+        "con": "konsonant",
+        "a": "@vow",
+        "e": "@vow",
+        "i": "@vow",
+        "o": "@vow",
+        "u": "@vow",
+        "default": "@con"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Jeg vet ikke, men jeg er sikker på at dette er %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -39845,6 +40314,8 @@ I18n.translations["nb"] = {
         "you_have_opted_out": "Du har meldt deg ut av fellesskapets identifikasjoner",
         "your_id_does_not_match": "Din id (<span class=\"bold\">%{taxon_name}</span>) stemmer ikke overens med fellesskapets id\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Dette tar en stund. Vennligst prøv ett av valgene under.",
         "well_email_you": "Ok, vi sender deg en e-post når den er klar."
@@ -40734,6 +41205,50 @@ I18n.translations["nl"] = {
   "hide_uncountable_species": "Verberg ongetelde soorten",
   "high": "Hoog",
   "history": "Geschiedenis",
+  "i18n": {
+    "inflections": {
+      "@gender": {
+        "m": "mannelijk",
+        "f": "vrouwelijk",
+        "n": "onzijdig",
+        "application": "@m",
+        "assessment_section": "@m",
+        "atlas": "@m",
+        "check_list": "@m",
+        "favorite": "@m",
+        "identification": "@m",
+        "journal": "@n",
+        "listed_taxon": "@n",
+        "note": "@m",
+        "observation": "@m",
+        "observation_field": "@n",
+        "place": "@m",
+        "post": "@n",
+        "profile": "@n",
+        "project": "@n",
+        "species": "@m",
+        "taxon": "@n",
+        "taxon_change": "@m",
+        "taxon_drop": "@m",
+        "taxon_link": "@m",
+        "taxon_merge": "@m",
+        "taxon_split": "@m",
+        "taxon_stage": "@m",
+        "taxon_swap": "@m",
+        "default": "@m"
+      },
+      "@vow_or_con": {
+        "vow": "klinker",
+        "con": "medeklinker",
+        "a": "@vow",
+        "e": "@vow",
+        "i": "@vow",
+        "o": "@vow",
+        "u": "@vow",
+        "default": "@con"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Dat weet ik niet, maar ik weet zeker dat dit %{taxon} is",
   "id_categories": {
     "tooltips": {
@@ -41830,6 +42345,8 @@ I18n.translations["nl"] = {
         "you_have_opted_out": "Je hebt je afgemeld voor gemeenschapsdeterminaties",
         "your_id_does_not_match": "Je determinatie (<span class = \"bold\">%{taxon_name}</span>) komt niet overeen met het gemeenschaps-ID\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Dit duurt even. Probeer alsjeblieft een van de onderstaande opties.",
         "well_email_you": "OK, we mailen je wanneer het klaar is."
@@ -42232,6 +42749,10 @@ I18n.translations["nn"] = {
   },
   "establishment": {
   },
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -42263,6 +42784,8 @@ I18n.translations["nn"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -42606,6 +43129,10 @@ I18n.translations["oc"] = {
   "heads_up": "Avertiment",
   "high": "naut",
   "history": "Istoric",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -42925,6 +43452,8 @@ I18n.translations["oc"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -43612,6 +44141,14 @@ I18n.translations["pl"] = {
   "hide_desc": "Ukrycie zawartości usunie ją z widoku publicznego, ale ludzie wciąż będą mogli zobaczyć, że coś zostało ukryte. Opiekunowie strony i autor treści będą mogli zobaczyć ukrytą zawartość. Dotyczy to tylko treści tekstowej, więc jeśli ukryjesz zawartość identyfikacji, identyfikacja będzie wciąż widoczna, ale uwagi identyfikującego już nie. Uważaj, tego nie można odwrócić - tylko administratorzy mogą ponownie odkryć zawartość, dlatego używaj tego narzędzia z rozwagą.\n",
   "high": "Wysoki",
   "history": "Historia",
+  "i18n": {
+    "inflections": {
+      "@vow_or_con": {
+        "vow": "samogłoska",
+        "con": "spółgłoska"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Nie wiem, ale jestem pewien, że to %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -44457,6 +44994,8 @@ I18n.translations["pl"] = {
       "community_id": {
         "score": "Ocena"
       },
+      "compare": {
+      },
       "export": {
       },
       "identify": {
@@ -45225,6 +45764,10 @@ I18n.translations["pt"] = {
   "hide_uncountable_species": "Ocultar espécies incontáveis",
   "high": "Alto",
   "history": "Histórico",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Eu não sei mas tenho a certeza que é %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -45951,6 +46494,8 @@ I18n.translations["pt"] = {
     "observations": {
       "community_id": {
       },
+      "compare": {
+      },
       "export": {
       },
       "identify": {
@@ -46635,6 +47180,10 @@ I18n.translations["pt-BR"] = {
   "hide_uncountable_species": "Ocultar espécies incontáveis",
   "high": "Alta",
   "history": "Histórico",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Eu não sei mas tenho a certeza que é %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -47618,6 +48167,8 @@ I18n.translations["pt-BR"] = {
         "you_have_opted_out": "Você optou por rejeitar identificações da comunidade",
         "your_id_does_not_match": "Sua identificação (<span class=\"bold\">%{taxon_name}</span>) não combina com a identificação da comunidade\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Isto está demorando um pouco. Por favor, tente uma das opções abaixo.",
         "well_email_you": "Ok, enviaremos um e-mail quando estiver pronto."
@@ -48544,6 +49095,44 @@ I18n.translations["ru"] = {
   "hide_uncountable_species": "Не показывать неисчислимые виды",
   "high": "Высший",
   "history": "История",
+  "i18n": {
+    "inflections": {
+      "@gender": {
+        "m": "мужской",
+        "f": "женский",
+        "n": "нейтральный",
+        "application": "@n",
+        "assessment_section": "@m",
+        "atlas": "@m",
+        "check_list": "@m",
+        "favorite": "@m",
+        "identification": "@f",
+        "journal": "@m",
+        "listed_taxon": "@m",
+        "note": "@n",
+        "observation": "@n",
+        "observation_field": "@n",
+        "place": "@n",
+        "post": "@n",
+        "profile": "@m",
+        "project": "@m",
+        "species": "@m",
+        "taxon": "@m",
+        "taxon_change": "@n",
+        "taxon_drop": "@n",
+        "taxon_link": "@f",
+        "taxon_merge": "@n",
+        "taxon_split": "@n",
+        "taxon_stage": "@f",
+        "taxon_swap": "@f",
+        "default": "@m"
+      },
+      "@vow_or_con": {
+        "vow": "гласная",
+        "con": "согласная"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Я не знаю, но уверен, что это таксон %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -49654,6 +50243,8 @@ I18n.translations["ru"] = {
         "you_have_opted_out": "Вы отказались от идентификаций сообщества",
         "your_id_does_not_match": "Ваша идентификация (<span class=\"bold\">%{taxon_name}</span>) не соответствует идентификации сообществом\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "Это займет некоторое время. Пожалуйста, попробуйте один из вариантов, указанных ниже.",
         "well_email_you": "Хорошо, мы отправим Вам письмо, когда все будет готово."
@@ -50501,6 +51092,10 @@ I18n.translations["sk"] = {
   "hide_uncountable_species": "Skryť nespočítateľné druhy",
   "high": "Vysoká",
   "history": "História",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Neviem, ale som si istý/á, že toto je %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -51382,6 +51977,8 @@ I18n.translations["sk"] = {
       "community_id": {
         "your_id_does_not_match": "Vaše ID (<span class=\"bold\">%{taxon_name}</span>) nesúhlasí s komunitným ID\n"
       },
+      "compare": {
+      },
       "export": {
       },
       "identify": {
@@ -51957,6 +52554,10 @@ I18n.translations["sq"] = {
   "hide_uncountable_species": "Fsheh speciet e pallogaritshme",
   "high": "I lartë",
   "history": "Historiku",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "Nuk e dij, por jam i sigurtë se kjo është %{taxon}",
   "id_categories": {
     "tooltips": {
@@ -52595,6 +53196,8 @@ I18n.translations["sq"] = {
     "observations": {
       "community_id": {
       },
+      "compare": {
+      },
       "export": {
       },
       "identify": {
@@ -53103,6 +53706,10 @@ I18n.translations["sv"] = {
   "here_are_our_top_species_suggestions": "Här är våra populäraste förslag på arter",
   "hide_uncountable_species": "Dölj oräkneliga arter",
   "history": "Historia",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -53550,6 +54157,8 @@ I18n.translations["sv"] = {
     "observations": {
       "community_id": {
       },
+      "compare": {
+      },
       "export": {
         "well_email_you": "Ok, vi kommer att maila dig när det är klart."
       },
@@ -53796,6 +54405,10 @@ I18n.translations["tr"] = {
   },
   "establishment": {
   },
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -53827,6 +54440,8 @@ I18n.translations["tr"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -54401,6 +55016,10 @@ I18n.translations["zh-CN"] = {
   "hide_uncountable_species": "隐藏无法计数的物种",
   "high": "高",
   "history": "历史",
+  "i18n": {
+    "inflections": {
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "我不知道，但我确信这是%{taxon}",
   "id_categories": {
     "tooltips": {
@@ -55233,6 +55852,8 @@ I18n.translations["zh-CN"] = {
         "you_have_opted_out": "您已选择退出社区标识",
         "your_id_does_not_match": "您的ID（<span class=\"bold\">%{taxon_name}</span>）并不匹配社群ID\n"
       },
+      "compare": {
+      },
       "export": {
         "taking_a_while": "这需要一段时间。 请尝试以下选项之一。",
         "well_email_you": "好的，我们会在它就绪时给您发邮件。"
@@ -55565,6 +56186,10 @@ I18n.translations["zh-HK"] = {
   },
   "establishment": {
   },
+  "i18n": {
+    "inflections": {
+    }
+  },
   "id_categories": {
     "tooltips": {
     }
@@ -55596,6 +56221,8 @@ I18n.translations["zh-HK"] = {
   "views": {
     "observations": {
       "community_id": {
+      },
+      "compare": {
       },
       "export": {
       },
@@ -56200,6 +56827,46 @@ I18n.translations["zh-TW"] = {
   "hide_uncountable_species": "隱藏無法計數的物種",
   "high": "高",
   "history": "歷史",
+  "i18n": {
+    "inflections": {
+      "@gender": {
+        "m": "male",
+        "f": "female",
+        "n": "neuter",
+        "application": "@n",
+        "assessment_section": "@n",
+        "atlas": "@n",
+        "check_list": "@n",
+        "identification": "@n",
+        "listed_taxon": "@n",
+        "note": "@n",
+        "observation": "@n",
+        "observation_field": "@n",
+        "place": "@n",
+        "post": "@n",
+        "species": "@n",
+        "taxon": "@n",
+        "taxon_change": "@n",
+        "taxon_drop": "@n",
+        "taxon_link": "@n",
+        "taxon_merge": "@n",
+        "taxon_split": "@n",
+        "taxon_stage": "@n",
+        "taxon_swap": "@n",
+        "default": "@n"
+      },
+      "@vow_or_con": {
+        "vow": "vowel",
+        "con": "consonant",
+        "a": "@vow",
+        "e": "@vow",
+        "i": "@vow",
+        "o": "@vow",
+        "u": "@vow",
+        "default": "@con"
+      }
+    }
+  },
   "i_dont_know_but_i_am_sure_this_is_taxon": "我不清楚，但我確定這是%{taxon}",
   "id_categories": {
     "tooltips": {
@@ -57273,6 +57940,8 @@ I18n.translations["zh-TW"] = {
         "score": "分數",
         "you_have_opted_out": "您已選擇退出社群鑑定",
         "your_id_does_not_match": "您的鑑定(<span class=\"bold\">%{taxon_name}</span>) 與社群鑑定不符合\n"
+      },
+      "compare": {
       },
       "export": {
         "taking_a_while": "這需要花費一段時間，請嘗試以下選項之一。",

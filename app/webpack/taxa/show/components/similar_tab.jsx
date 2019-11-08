@@ -62,11 +62,11 @@ const SimilarTab = ( {
         url: `/places/${place.id}`
       };
       const misidentifiedHeader = I18n.t(
-        `other_taxa_commonly_misidentified_as_this_${_.snakeCase( rank )}_in_place_html`,
+        `other_taxa_commonly_misidentified_as_this_${_.snakeCase( taxon.rank )}_in_place_html`,
         Object.assign( {}, misidentifiedOpts, {
           default: I18n.t(
             "other_taxa_commonly_misidentified_as_this_rank_in_place_html",
-            Object.assign( {}, misidentifiedOpts, { gender: rank } )
+            Object.assign( {}, misidentifiedOpts, { gender: taxon.rank } )
           )
         } )
       );
@@ -76,7 +76,7 @@ const SimilarTab = ( {
         />
       );
     } else {
-      title = I18n.t( `other_taxa_commonly_misidentified_as_this_${rank}`, {
+      title = I18n.t( `other_taxa_commonly_misidentified_as_this_${taxon.rank}`, {
         default: I18n.t( "other_taxa_commonly_misidentified_as_this_rank", {
           rank,
           gender: _.snakeCase( rank )

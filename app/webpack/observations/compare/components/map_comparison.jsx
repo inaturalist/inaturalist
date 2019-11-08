@@ -112,21 +112,21 @@ class MapComparison extends React.Component {
             className={`btn btn-${!mapLayout || mapLayout === "combined" ? "primary" : "default"}`}
             onClick={( ) => setMapLayout( "combined" )}
           >
-            { I18n.t( "combined" ) }
+            { I18n.t( "views.observations.compare.combined" ) }
           </button>
           <button
             type="button"
             className={`btn btn-${mapLayout === "vertical" ? "primary" : "default"}`}
             onClick={( ) => setMapLayout( "vertical" )}
           >
-            { I18n.t( "vertical" ) }
+            { I18n.t( "views.observations.compare.vertical" ) }
           </button>
           <button
             type="button"
             className={`btn btn-${mapLayout === "horizontal" ? "primary" : "default"}`}
             onClick={( ) => setMapLayout( "horizontal" )}
           >
-            { I18n.t( "horizontal" ) }
+            { I18n.t( "views.observations.compare.horizontal" ) }
           </button>
         </div>
         <div className={`maps maps-${mapLayout}`}>
