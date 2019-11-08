@@ -1759,6 +1759,8 @@ fr:
   merge_observation_field_x_into: 'Fusionner le champ de l’observation « %{x} » dans…'
   merging: Fusion en cours
   merging_places: Fusion des lieux en cours
+  message_from_user_at_time: De %{user} à %{time}
+  message_from_user_on_date: De %{user} le %{date}
   misidentifications: Identifications erronées
   misleading_or_illegal_content_html: |
     Contenu trompeur ou illégal, insultes raciales ou ethniques, etc.
@@ -1977,6 +1979,7 @@ fr:
   not_linked_flickr: "Votre compte %{site_name} n’est pas lié à votre compte Flickr"
   not_on_this_list: Pas dans cette liste.
   not_recorded: Non enregistré
+  not_resolved: Non résolu
   not_seeing_what_looking_for: Vous ne voyez pas ce que vous cherchez?
   note: Note
   notes: Notes
@@ -4753,6 +4756,104 @@ fr:
           <a href="%{url}">la page d’export des observations</a> pour avoir une liste de toutes vos exportations.
       parental_consent:
         subject: Votre enfant aimerait utiliser iNaturalist
+        content_html: |
+          <p>
+          Votre enfant utilise l’application éducative <strong>Recherche par iNaturalist</strong> et
+          aimerait partager des données avec la plateforme scientifique citoyenne
+          iNaturalist. Comme publier ces données dévoile des informations permettant d’identifier
+          une personne, iNaturalist ne peut être utilisé par une personne de moins de treize ans
+          sans l’accord d’un parent.
+          </p>
+          <p>
+          <strong>Recherche par iNaturalist</strong> peut être utilisé sans créer de compte, et aucune
+          donnée d’identification personnelle ne sera partagée, mais votre enfant ne pourra pas contribuer
+          aux observations de iNaturalist. iNaturalist est un réseau scientifique citoyen où
+          les participants partagent des observations et des identifications de choses vivantes
+          pour apprendre mutuellement concernant la nature et générer des données de biodiversité pour
+          la science.
+          </p>
+          <p>
+          Si vous voulez accorder le droit à votre enfant d’utiliser iNaturalist,
+          nous avons besoin que vous fassiez ce qui suit :
+          </p>
+          <ol>
+          <li>
+          <p>
+          Créer un compte iNaturalist que votre enfant utilisera, en suivant ce lien :
+          <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          Après avoir créé le compte de votre enfant, nous vous demanderons de faire
+          un petit don nominal de 1$US avec une carte de crédit à iNaturalist
+          pour vérifier que vous êtes un adulte. Assurez-vous d’utiliser la même adresse
+          de messagerie que vous avez saisie dans le champ « courriel du parent » lors
+          de l’inscription, pour effectuer votre don.
+          </p>
+          </li>
+          <li>
+          <p>
+          Une fois le don reçu, nous vous enverrons un autre courriel vous indiquant que
+          le compte de votre enfant a été activé et que vous pouvez
+          utiliser le nom d’utilisateur et le mot de passe de iNaturalist que vous avez créés pour connecter
+          l’application Recherche de votre enfant.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist récupère les informations d’identification personnelle suivantes :
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong>adresse de messagerie (privé) :</strong> tout compte de iNaturalist
+          a une adresse de messagerie associée avec elle, qui n’est pas
+          rendue publique.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>nom d’utilisateur (public, obligatoire) :</strong> tout compte de iNaturalist
+          a un nom d’utilisateur public et un numéro d’identification de l’utilisateur.
+          Ce nom d’utilisateur n’a pas besoin d’être similaire au véritable nom de
+          la personne, mais il peut être utilisé pour contacter la personne via des commentaires
+          publics et des messages directs en privé.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>adresse IP (privé, obligatoire) :</strong> iNaturalist
+          stocke, mais ne rend pas public, l’adresse IP de l’utilisateur, qui peut
+          être utilisée pour en déduire des informations d’identification personnelle comme
+          l’emplacement (avec une précision de niveau ville).
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>image du profil (public, facultatif) :</strong> les comptes de iNaturalist
+          peuvent, en option, avoir des images de profil, qui sont souvent
+          des images de l’utilisateur.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>emplacement de l’observation (public ou privé,
+          obligatoire) :</strong> les observations de iNaturalist contiennent des informations
+          de localisation sur l’endroit où l’observation a été faite. Cela peut être
+          rendu public ou gardé privé, mais par défaut, c’est public.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist permet aussi aux utilisateurs de partager des images publiques, des commentaires
+          publics, et d’envoyer des messages privés associés à leur compte.
+          Il est possible que les utilisateurs puissent inclure des informations d’identification
+          personnelle dans ce contenu généré par l’utilisateur.
+          </p>
+          <p>
+          En savoir plus sur la politique de confidentialité de iNaturalist <a href="%{privacy_policy_url}">ici</a>.
+          </p>
       photos_missing:
         subject: Certaines photos ont besoin de réparation
         we_have_been_housekeeping: |
@@ -5351,6 +5452,20 @@ fr:
           chefchons n’importe quel champ contenant le mot « phénologie » dans son nom et
           « fleur » ou « fruit » dans la valeur ; ainsi, le champ « Phénologie de floraison »
           est un bon candidat à utiliser.
+        charts_help_relative_observations: |
+          Afficher la fréquence dans des proportions relatives par rapport à toutes les observations aide
+          à aplanir l’effet de la croissance globale du site. Par exemple,
+          si le site croît alors que nous obtenons plus d’observations pour chaque année
+          qui passe, nous aurons plus d’observations d’un taxon individuel, ce qui ne vous
+          dit rien quant au fait qu’il y a davantage de ce taxon à observer
+          alentour, simplement qu’il y a plus de personnes qui l’observent. Afficher la
+          proportion relative signifie que s’il y a un total de 100 observations mais
+          20 observations de ce taxon, la proportion est de 20% (20 / 100). Si
+          les gens font 2000 observations l’année suivante et 400 de
+          ce taxon, la proportion reste de 20% (400 / 2000). Cela provoque quelques
+          aberrations quand il y a très peu d’observateurs dans une zone, ou pour des taxons
+          qui sont très rarement observés, mais c’est également vrai du nombre total
+          d’observations.
         complete_taxon_desc: |
           Les taxons « complets » ont tous leurs taxons descendants encore en vie à un rang particulier présents dans la base de données du site. Quand un taxon est complet pour les espèces,par exemple, nous pouvons dire combien de ses espèces ont été observées et combien doivent encore l’être. Le nombre des espèces pour les taxons complets pour les espèces ne comprend pas les espèces « indénombrables » comme les espèces éteintes ou les concepts d’espèce inactifs, et incluent seulement les espèces, non les taxons de niveau spécifique inférieur, comme les sous-espèces ou les variétés.
         discoveries_desc: "Espèces nouvellement identifiées les plus récentes dans ce taxon"
@@ -6190,6 +6305,13 @@ fr:
                 dans un jour, vous pourrez publier.
         project_observation:
           attributes:
+            base:
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                les projets de collecte et les projets cadres ne permettent pas l'ajout direct d'observations
             user_id:
               must_be_curator: doit être un responsable de ce projet
             observation_id:
