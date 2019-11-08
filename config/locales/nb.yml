@@ -38,8 +38,8 @@ nb:
     one: "%{count} feilidentifikasjon av denne arten"
     other: "%{count} feilidentifikasjoner av denne arten"
   x_misidentifications_of_species_in_this_rank:
-    one: "%{count} feilidentifikasjon av arter i @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}"
-    other: "%{count} feilidentifikasjoner av arter i @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}"
+    one: "%{count} feilidentifikasjon av arter i @gender{n:dette|denne} %{rank}"
+    other: "%{count} feilidentifikasjoner av arter i @gender{n:dette|denne} %{rank}"
   x_observations:
     one: "%{count} observasjon"
     other: "%{count} observasjoner"
@@ -2360,8 +2360,8 @@ nb:
   other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Andre arter som ofte blir feilidentifisert som denne slektshybriden i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: Andre arter som ofte blir feilidentifisert som denne hybriden
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Andre arter som ofte blir feilidentifisert som denne hybriden i <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_rank: Andre arter som ofte blir feilidentifisert som @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Andre taksa som ofte blir feilidentifisert som @gender{n:dette|denne} %{rank}@gender{n:en|et} i <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Andre arter som ofte blir feilidentifisert som @gender{n:dette|denne} %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Andre taksa som ofte blir feilidentifisert som @gender{n:dette|denne} %{rank} i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_section: Andre arter som ofte blir feilidentifisert som denne seksjonen
   other_taxa_commonly_misidentified_as_this_section_in_place_html: Andre arter som ofte blir feilidentifisert som denne seksjonen i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_species: Andre arter som ofte blir feilidentifisert som denne arten
@@ -3984,7 +3984,7 @@ nb:
   welcome_to_inat: "Velkommen til %{site_name}!"
   welcome_to_guides: "Velkommen til %{site_name}-guider!"
   welcome_to_x_project: "Velkommen til %{project}"
-  were_pretty_sure_this_is_in_the_rank: Vi er ganske sikker på at dette er i %{rank}@gender{n:et|en}
+  were_pretty_sure_this_is_in_the_rank: Vi er ganske sikker på at dette er i %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Beklager, men din masseimport av %{filename} mislykkes."
   what: Hva
   what_color_was_it: Hvilken farge var den?
@@ -5342,6 +5342,10 @@ nb:
           </p>
         name_place_help_html: |
           Prioriter populærnavn brukt på dette stedet.
+        opt_in_to_map_tile_test: Meld på til kartflis-testen
+        opt_in_to_map_tile_test_description: |
+          Å melde deg på denne testen betyr at du vil se nye raster-baserte kartflis for spredningskart når du zoomer ut. Disse rastere er lettere for våre servere, bør vises raskere når iNaturalist vokser, og er bedre til å vise observasjonstetthet. Vi håper å gjøre denne erstatningen for hele siden etterhvert. Vi vil gjerne høre dine tilbakemeldinger på forumet.
+        opt_out_of_map_tile_test: Meld av fra kartflis-testen
         place_preference_changed_notice_html: |
           Stedsvalg endret. Hvis du ombestemmer deg kan du alltid <a href='/users/edit'>endre dine innstillinger</a>.
         project_addition_preferences:
@@ -5610,8 +5614,8 @@ nb:
     template:
       body: 'Det oppstod problemer med de følgende felt:'
       header:
-        one: "På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres"
-        other: 'På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres'
+        one: "På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres"
+        other: 'På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres'
   helpers:
     defaults:
       title: "DETTE ER EN TITTEL"
@@ -5722,8 +5726,8 @@ nb:
       template:
         body: 'Det var problemer med følgende felt:'
         header:
-          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
-          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
+          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres
+          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres
   activerecord:
     models:
       AssessmentSection: Vurderingsseksjon
@@ -5860,8 +5864,8 @@ nb:
       template:
         body: 'Det var problemer med følgende felt:'
         header:
-          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
-          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
+          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres
+          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres
       models:
         application:
           attributes:
