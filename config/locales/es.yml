@@ -965,6 +965,11 @@ es:
   date_range: Intervalo de fechas
   date_specified: Fecha especificada
   date_time: Fecha/hora
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: Fecha de actualización
   day: Día
   decrease_brightness: Reducir brillo
@@ -2116,6 +2121,7 @@ es:
   not_linked_flickr: "Tu cuenta de %{site_name} no está vinculada con tu cuenta de Flickr "
   not_on_this_list: No está en esta lista.
   not_recorded: No grabado
+  not_resolved: No resuelto
   not_seeing_what_looking_for: '¿No ve lo que está buscando?'
   note: Nota
   notes: Notas
@@ -2917,6 +2923,7 @@ es:
   project_requirements: Requisitos del proyecto
   project_rules: Reglas del Proyecto
   project_settings: Configuración de proyectos
+  project_start_time_datetime: "Hora de inicio: %{datetime}"
   project_that_does_not_contain_these_observations: Proyecto que no contenga estas observaciones
   project_type_description: |
     Los inventarios rápidos (maratón naturalista) son tipos especiales de proyectos. Los inventarios son una forma de colaboración sobre la evaluación de un conjunto de especies, generalmente para medir su importancia para la conservación. Los inventarios rápidos son eventos que tienen un principio y un final preestablecidos.
@@ -3655,6 +3662,8 @@ es:
   this_is_your_observation_desc: Siempre puedes ver las coordenadas de tus propias observaciones.
   this_job_failed_to_run: El proceso falló al ser procesado. Por favor contactanos a %{email}
   this_list_is_empty!: '¡Esta lista está vacía!'
+  this_list_only_accepts_taxa_that_are_species: Esta lista solo acepta taxones al nivel de especie
+  this_list_only_accepts_taxa_that_are_species_or_lower: Esta lista solo acepta taxones al nivel de especie o inferiores
   this_observation: Esta observación
   this_observation_is_featured_on_x_sites:
     one: Esta observación se presenta en 1 sitio
@@ -6219,6 +6228,8 @@ es:
         atlas: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
