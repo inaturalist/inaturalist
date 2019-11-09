@@ -2543,7 +2543,7 @@ en:
   photo_by_id_attribution: "Photo %{id}, %{attribution}"
   photo_credits: Photo Credits
   photo_deleted: Photo deleted
-  photo_destroyed_because_it_was_deleted_from: "Photo destroyed b/c it was deleted from the external site or %{site_name} no longer has permission to view it"
+  photo_destroyed_because_it_was_deleted_from: "Photo destroyed because it was deleted from the external site or %{site_name} no longer has permission to view it"
   photo_hosting_accounts: Photo hosting accounts
   photo_licensing: Photo Licensing
   photo_type: Photo type
@@ -4325,7 +4325,7 @@ en:
   you_can_accept_invitations: You can accept the invitation here
   you_can_choose_observations_associated: You can choose observations to associate with this journal post.
   you_can_edit_this_default_check_list_because: |
-    You can edit this default check list b/c you're an
+    You can edit this default check list because you're an
     admin, but there shouldn't really be a need to do so.
   you_can_only_destroy_taxa_you_created: "You can only destroy taxa you created, and you cannot destroy taxa that are being used in taxon changes."
   you_can_only_block_three_users: You can only block three users
@@ -4956,9 +4956,9 @@ en:
           has an observation of Homo sapiens and Query 2 has an observation of
           Genus Homo, both taxa will be present in the table, but that
           represents one additional  row for Genus Homo for Query 1, which
-          didn't include it in its total count b/c it only counted the species
-          Homo sapiens within that genus, because that was the "leaf" of that
-          part of its tree.
+          didn't include it in its total count because it only counted the
+          species Homo sapiens within that genus, because that was the "leaf" of
+          that part of its tree.
         # Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertical
         x_in_common:
