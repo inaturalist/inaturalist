@@ -139,7 +139,7 @@ fi:
   account_creation: Tunnuksen luominen
   account_settings: Tiliasetukset
   accept: hyväksy
-  accept_community_identifications: Hyväksy yhteisön tunnistusapu
+  accept_community_identifications: Hyväksy yhteisömääritykset
   accuracy: Tarkkuus
   accuracy_meters: Tarkkuus (metreinä)
   accuracy_of_the_coordinates: 'Koordinaattien tarkkuus metreinä. Voit muokata tätä napsauttamalla "muokkaa" - linkkiä tai klikkaamalla karttamerkintää ja vetämällä kahvoista. Yritä tehdä ympyrä tarpeeksi isoksi, jotta olet varma, että olit jossain sen sisällä.'
@@ -264,7 +264,7 @@ fi:
   admin_only: Vain ylläpidolle
   admin_tools: Hallintatyökalut
   agree: samaa mieltä
-  agree_: Hyväksy
+  agree_: Samaa mieltä
   agree?: Samaa mieltä?
   agree_with_current_taxon: Samaa mieltä nykyisen taksonin suhteen
   agreeing: Samaa mieltä...
@@ -560,7 +560,7 @@ fi:
   captive_cultivated: Tarhattu / viljelty
   card: Kortti
   casual: epämuodollinen
-  casual_: Harrastelija
+  casual_: Epämuodollinen
   categories: Luokat
   cc_0_description: "Tämä lisenssi tekee teoksestasi tekijänoikeudettoman. Muilla on oikeus kopioida, muokata, jakaa ja esittää teostasi, myös kaupallisessa tarkoituksessa, kysymättä sinulta lupaa tai mainitsematta nimeäsi käytön yhteydessä. Tämä on tarjolla olevista lisensseistä kaikkein sallivin. Suositellaan teoksille, joille toivotaan mahdollisimman suurta levitystä ja käyttöä."
   cc_0_name: Ei tekijänoikeutta (CC0)
@@ -587,7 +587,7 @@ fi:
     drop: Taksonin käsite täysin virheellinen, säilytetään historiallisia tarkoituksia varten tai kumppanin yhteensopivuuden takaamiseksi
   change_geoprivacy: 'Muuta sijainnin tietosuojaa.'
   change_group: Vaihda ryhmä
-  change_icon: Vaihda kuvake
+  change_icon: Vaihda profiilikuva
   change_password: Vaihda salasana
   change_types:
     activated_soon: aktivoituu pian
@@ -2047,7 +2047,7 @@ fi:
   other_lexicons: Muut sanastot
   other_names: Muut nimet
   other_species_commonly_misidentified_as_this_species: Lajeja, jotka usein määritetään virheellisesti täksi lajiksi
-  other_species_commonly_misidentified_as_this_species_in_place_html: Lajeja, jotka usein määritetään virheellisesti täksi lajiksi <a href="%{url}">%{place}</a>
+  other_species_commonly_misidentified_as_this_species_in_place_html: Muita lajeja, jotka usein määritetään virheellisesti täksi lajiksi paikassa <a href="%{url}">%{place}</a>
   our_blog: Blogimme
   out_of_range: Pois alueelta
   overview: Yleiskatsaus
@@ -3411,7 +3411,7 @@ fi:
   you_must_choose_an_observation_field: Sinun täytyy valita havaintokenttä
   you_must_select_at_least_one_taxon: Sinun on valittava vähintään yksi taksoni
   you_need_to_select_some_observations_first: Sinun täytyy ensin valita joitakin havaintoja.
-  you_retain_full_copyright: "Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta %{site_name}ille myönnettyjä oikeuksia käyttöehdoissamme."
+  you_retain_full_copyright: "Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä %{site_name}ille myönnettyjä oikeuksia."
   you_sure_delete_asset?: Haluatko varmasti poistaa tämän omaisuuden?
   you_sure_delete_check_list: "Haluatko varmasti poistaa tämän luettelon? Jotkut ihmiset ovat saattaneet tehdä paljon työtä sen eteen..."
   you_sure_delete_comment?: Haluatko varmasti poistaa tämän kommentin?
@@ -3445,7 +3445,7 @@ fi:
   your_pinned_locations: Kiinnitetyt sijainnit
   your_profile_was_successfully_updated: Profiilisi päivitettiin onnistuneesti!
   your_recent_projects: Viimeaikaiset projektisi
-  your_relationships: Omat suhteet
+  your_relationships: Omat kaverisuhteet
   your_tags: Omat merkinnät
   yours: Sinun
   youre_not_following_anyone: |-
