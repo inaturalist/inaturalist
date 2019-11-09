@@ -902,6 +902,7 @@ lt:
   go_back: Grįžti
   going_to_your_observations: Atidaromi jūsų stebėjimai...
   good_choice_for_sharing: Geras pasirinkimas dalintis su mokslininkais
+  google: Google
   got_it!: Aišku!
   got_your_data_somewhere_else?: Jūsų duomenys kažkur kitur?  Mes galime padėti.
   grant_role: "%{grant} %{role} vaidmenį"
@@ -923,21 +924,38 @@ lt:
   has_photos_or_sounds: Turi nuotraukų ar garsų
   has_sounds: turi garsų
   hasnt_contributed_any_observations: neprisidėjo stebėjimais prie šio projekto.
+  header_your_observations: Jūsų stebėjimai
+  header_your_calendar: Jūsų kalendorius
+  header_your_favorites: Jūsų pamėgimai
+  header_your_lists: Jūsų sąrašai
+  header_your_journal: Jūsų žurnalai
+  header_your_identifications: Jūsų identifikacijos
+  header_your_projects: Jūsų projektai
+  header_your_profile: Jūsų profilis
   heads_up: Dėmesio
   heads_up_this_photo_has_been_flagged: "DĖMESIO: ši nuotrauka buvo pažymėta."
   help: Pagalba
   help_confirm_observations!: Padėk identifikuoti stebėjimus!
   help_support_inaturalist: "Padėkite palaikyti iNaturalist"
+  help_translate!: Padėkite išversti!
   here_are_3_examples: Štai 3 gerai suformuotų duomenų pavyzdžiai
+  here_are_our_top_species_suggestions: Čia yra mūsų top rūšies pasiūlymai
   hex_color_eg: Hex spalva, pvz., 65644F
   hi: Labas,
   hi_user: "Labas, %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Paslėpti
+  hide_content: Paslėpti turinį
   high: aukštas
   highest_rank: Aukščiausias rangas
+  history: Istorija
   home: Pradžia
   however_there_were_some_issues: "Tačiau, kilo keletas problemų: %{issues}"
+  i_dont_know_but_i_am_sure_this_is_taxon: Nežinau, bet esu įsitikinęs, kad čia %{taxon}
   icon: Ikona
   icon_size: Ikonos dydis
+  id: ID
+  id_withdrawn: ID atšauktas
   ids_by_taxon: Taxon ID
   identify: Identifikuoti
   identify_observations: "Nustatyti pastabas"
@@ -951,11 +969,17 @@ lt:
   identification_withdrawn: Identifikacija atsiimta.
   identifications: Identifikacijos
   identifications_by: "Identifikacijos atliktos %{user}"
+  computer_vision_suggestion: Kompiuterinio matymo pasiūlymas
   identifiers: Identifikatoriai
   ids: "ID"
   ids_made_for_others: Identifikavimai atlikti kitiems
+  ignore: ignoruoti
+  ignore_and_continue: Ignoruoti ir tęsti
   import_observations: Importuoti stebėjimus
   import_tags_from_csv: Importuoti žymes iš CSV
+  including: įskaitant
+  increase_brightness: Padidinti ryškumą
+  in_progress: vykdoma
   in_the_past: praeityje
   in_the_past_week: praėjusioje savaitėje
   inactive: Neaktyvus
@@ -967,22 +991,57 @@ lt:
   info: Informacija
   insects: vabzdžiai
   insect_life_stage: Vabzdžio gyvenimo ciklo stadija
+  interactions: Sąveikos
+  internal_server_error: Vidinė Serverio Klaida
+  introduced: Introdukuotas
+  introduced_in_place: "Introdukuotas vietovėje: %{place}"
+  invitation: Kvietimas
+  invite: pakviesti
+  invite_more: Pakviesti daugiau
   invite_people: Pakviesti žmonių
   invite_people_to_project: "Pakviesti žmonių į %{project}"
+  invite_your_friends: Pakviesk savo draugus
+  iphone: iPhone
+  is_not_following_anyone: nieko neseka.
   is_now: dabar yra
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Ar yra pateikta pakankamai įrodymų, kad čia yra %{taxon}?
+  is_this_place_a_duplicate: Ar ši vieta yra dublikatas?
+  join: Jungtis
+  join_and_add_an_observation_to_project_html: Prisijuk ir pridėk stebėjimą į %{project}
   join_project: Prisijunkite prie šio projekto
+  join_the_largest_group_of_naturalists_in_the_world: Prisijunk prie didžiausios gamtininkų bendruomenės pasaulyje!
+  join_this_project: Prisijunkite prie šio projekto
+  'joined!': Prisijungta!
+  joined_projects: Projektai, prie kurių prisijungėte
+  joined_with_date: "Prisijungta: %{date}"
   journal: Žurnalas
   journal_post: Žurnalo įrašas
+  journal_post_deleted: Žurnalo įrašas ištrintas.
   journal_posts: Žurnalo įrašai
   jpg_png_or_gif: "JPG, PNG arba GIF"
   just_added!: Ką tik pridėta!
   keep_editing: Tęsti redagavimą
+  keyboard_shortcuts: Spartieji klavišai
+  label_colon: "%{label}:"
+  labels: Etiketės
+  location_private: Vieta yra privati
   location_unknown: Vieta nežinoma
+  language_slash_type: Kalba / Tipas
+  #Large photo size
+  large: didelė
+  last_active_with_date: "Paskutinį kartą aktyvus: %{date}"
   last_observation: Paskutinis stebėjimas
   last_year: Praeitais Metais
+  lat: Pl
   latitude: Platuma
   latitude_slash_y_coord_slash_northing: Platuma / y koordinatė
   latitude_value: "Platuma: %{latitude}"
+  #As in map layers, i.e. layers of data that might be overlayed on a map
+  layers: Sluoksniai
+  layout: Išdėstymas
+  leaderboard: Pirmaujančiųjų sarašas
+  leaderboard_for_x: "%{x} pirmaujančiųjų sarašas"
+  leaderboards: Pirmaujančiųjų sarašai
   leading: Vadovaujantis
   learn_more: Sužinokite daugiau
   leave_a_comment: Palikti komentarą
@@ -1041,7 +1100,6 @@ lt:
     de: Vokiečių
     el: Graikų
     en: Anglų
-    en-US: Anglų (Jungtinės Valstijos)
     es: Ispanų
     es-MX: Ispanų (Meksika)
     et: Estų
@@ -1143,7 +1201,6 @@ lt:
   observations_by: Stebėjimai pagal
   observations_by_user: "Stebėjimai pagal %{user}"
   observations_deleted: Stebėjimai ištrinti.
-  observations_for: Stebėjimai
   observations_from: Stebėjimai nuo %{date}
   observations_per_month: Stebėjimai / Mėnuo
   observed: Stebėta
@@ -1168,17 +1225,49 @@ lt:
   or_choose_high_level_taxa: "...arba rinkitės aukštesnio lygio taksonus"
   or_upload: Arba įkelti
   other_animals: kiti gyvūnai
+  other_names: Kiti pavadinimai
+  other_species_commonly_misidentified_as_this_species: Kitos rūšys dažnai palaikomos šia rūšimi
+  other_taxa_commonly_misidentified_as_this_complex: Kiti taksonai dažnai palaikomi šiuo kompleksu
+  other_taxa_commonly_misidentified_as_this_genus: Kiti taksonai dažnai palaikomi šia gentimi
+  other_taxa_commonly_misidentified_as_this_genushybrid: Kiti taksonai dažnai palaikomi šiuo genčių hibridu
+  other_taxa_commonly_misidentified_as_this_hybrid: Kiti taksonai dažnai palaikomi šiuo hibridu
+  other_taxa_commonly_misidentified_as_this_rank: Kiti taksonai dažnai palaikomi šiuo/šia %{rank}
+  other_taxa_commonly_misidentified_as_this_section: Kiti taksonai dažnai palaikomi šiuo skirsniu
+  other_taxa_commonly_misidentified_as_this_species: Kiti taksonai dažnai palaikomi šia rūšimi
+  other_taxa_commonly_misidentified_as_this_subsection: Kiti taksonai dažnai palaikomi šiuo poskirsniu
   our_blog: Mūsų dienoraštis
+  out_of_range: Už ribų
+  overview: Apžvalga
+  owner: Savininkas
+  parental_consent:
+    must_specify_email: Reikia el. pašto adreso
+    invalid_email: Netinkamas el. pašto adreso formatas
+  password: Slaptažodis
+  password_confirmation: 'Slaptažodis (patvirtinimas)'
+  paste: Įklijuoti
+  paste_in_a_comma_separated_list: Įklijuokite sąrašą šalių, askirtų kableliais
   people: Žmonės
+  people_following_user: "Žmonės sekantis %{user}"
+  people_user_follows: "Žmonės %{user} seka"
   people_added:
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
       with_observation: pridėjo <strong>ID</strong> prie %{observation_link}, kuris priklauso %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: pridėjo <strong>ID</strong>
+    post: sukūrė %{post_link}
   per_day: Per Dieną
   per_month: Per Mėnesį
   per_week: Per Savaitę
+  person: Asmuo
+  personal_message: Asmeninė žinutė
+  personal_message_description: Niekam nepatinka, kai jiems rašo kompiuteris! Geriau pakvieskite draugus asmeniškai!
+  per_page: "Puslapyje"
+  photo: Nuotrauka
   photo_type: Nuotraukos tipas
   photos_chosen_for_this_taxon: Nuotraukos parinktos šiam taksonui
   photos_from: Nuotraukos iš
@@ -1194,12 +1283,55 @@ lt:
     geo_planet_place_types:
       Canton: Kantonas
       Commune: Komuna
+      commune: bendruomenė
+      Continent: Žemynas
+      continent: žemynas
+      Country: Šalis
+      country: šalis
+      County: Apskritis
+      county: apskritis
       District: Rajonas
+      district: rajonas
+      Division: Skyrius
+      division: skyrius
+      Estate: Nuosavybė
+      estate: nuosavybė
+      Governorate: Gubernija
       governorate: Gubernija
+      Historical_County: Istorinė apygarda
+      historical_county: istorinė apygarda
+      Historical_State: Istorinė vieta
+      historical_state: istorinė vieta
+      Historical_Town: Istorinis miestas
+      historical_town: istorinis miestas
+      Intersection: Sankryža
+      intersection: sankryža
+      Island: Sala
+      island: sala
+      Land_Feature: Reljefo ypatybė
+      land_feature: reljefo ypatybė
       Local_Authority: Vietos Valdžios Institucija
       local_authority: Vietos Valdžios Institucija
+      Miscellaneous: Įvairūs
+      miscellaneous: įvairūs
+      Municipality: Savivaldybė
+      municipality: savivaldybė
+      Nationality: Tautybė
+      nationality: tautybė
+      Open_Space: Atvira erdvė
+      open_space: atvira erdvė
       Parish: Apylinkė
       parish: Apylinkė
+      Prefecture_City: Prefektūros miestas
+      prefecture_city: prefektūros miestas
+      Point_of_Interest: Lankytina vieta
+      point_of_interest: lankytina vieta
+      Postal_Code: Pašto kodas
+      postal_code: pašto kodas
+      Province: Provincija
+      province: provincija
+      Region: Regionas
+      region: regionas
       Republic: Respublika
       republic: Respublika
       Unknown: Nežinomas
@@ -1208,30 +1340,213 @@ lt:
   places: Vietos
   places_added_by_members_of_the_community: Vietas pridėjo bendruomenės nariai
   places_name:
+    angola: Angola
+    antarctica: Antarktida
+    antigua_and_barbuda: Antigva ir Barbadosas
+    argentina: Argentina
+    armenia: Armėnija
+    aruba: Aruba
     australia: Australija
     austria: Austrija
+    azerbaijan: Azerbaidžanas
+    bahamas: Bahamos
+    bahrain: Bahreinas
+    bangladesh: Bangladešas
+    barbados: Barbadosas
+    belarus: Baltarusija
+    belgium: Belgija
+    belize: Belizas
+    benin: Beninas
+    bermuda: Bermuda
+    bhutan: Butanas
+    bolivia: Bolivija
+    bonaire_saint_eustatius_and_saba: BES salos
+    bosnia_and_herzegovina: Bosnija ir Hercegovina
+    botswana: Botsvana
+    bouvet_island: Buvė Sala
+    brazil: Brazilija
+    british_indian_ocean_territory: Britų Indijos vandenyno žemynas
+    british_virgin_islands: Didžiosios Britanijos Mergelių salos
+    brunei: Brunėjus
+    bulgaria: Bulgarija
+    burkina_faso: Burkina Fasas
+    burundi: Burundi
+    cambodia: Kambodža
+    cameroon: Kamerūnas
+    canada: Kanada
+    cape_verde: Žaliasis Kyšulys
+    cayman_islands: Kaimanų salos
+    central_african_republic: Centrinės Afrikos Respublika
+    central_america: Centrinė Amerika
+    chad: Čadas
+    chile: Čilė
     china: Kinija
+    christmas_island: Kalėdų sala
+    clipperton_island: Klipertono sala
+    cocos_islands: Kokosų salos
     colombia: Kolumbija
+    commonwealth_of_the_northern_mariana_islands: Šiaurės Marianų Salos
+    comoros: Komorų salos
+    cook_islands: Kuko salos
+    costa_rica: Kosta Rika
+    cote_d_ivoire: Dramblio Kaulo Krantas
+    croatia: Kroatija
+    cuba: Kuba
+    curacao: Kiurasao
     denmark: Danija
     hong_kong: Honkongas
     india: Indija
+    israel: Izraelis
+    italy: Italija
+    jamaica: Jamaika
+    japan: Japonija
+    jersey: Džersis
+    jordan: Jordanija
+    kazakhstan: Kazachstanas
+    kenya: Kenija
+    kiribati: Kiribatis
     korea: Korėja
+    kosovo: Kosovas
+    kuwait: Kuveitas
+    kyrgyzstan: Kirgizija
+    laos: Laosas
+    latvia: Latvija
+    lebanon: Libanas
+    lesotho: Lesotas
+    liberia: Liberija
+    libya: Libija
+    liechtenstein: Lichtenšteinas
+    lithuania: Lietuva
+    luxembourg: Liuksemburgas
+    macao: Makao
+    macedonia: Makedonija
+    madagascar: Madagaskaras
+    malawi: Malavis
+    malaysia: Malaizija
+    maldives: Maldyvai
+    mali: Malis
+    malta: Malta
+    marshall_islands: Maršalo salos
+    martinique: Martinika
+    mauritania: Mauricijus
+    mauritius: Mauricijus
+    mayotte: Majotas
+    mexico: Meksika
+    micronesia: Mikronezija
+    moldova: Moldova
+    monaco: Monakas
+    mongolia: Mongolija
+    montenegro: Juodkalnija
+    montserrat: Montseratas
+    morocco: Marokas
+    mozambique: Mozambikas
+    myanmar: Mianmaras
+    namibia: Namibija
+    nauru: Nauru
+    nepal: Nepalas
     netherlands: Nyderlandai
+    new_caledonia: Naujoji Kaledonija
+    new_guinea: Naujoji Gvinėja
+    new_zealand: Naujoji Zelandija
     portugal: Portugalija
     singapore: Singapūras
     south_africa: Pietų Afrika
+    south_korea: Pietų Korėja
+    south_sudan: Pietų Sudanas
+    spain: Ispanija
+    sri_lanka: Šri Lanka
+    sudan: Sudanas
+    suriname: Surinamas
+    svalbard_and_jan_mayen: Svalbardas ir Janas Majenas
+    swaziland: Svazilandas
+    sweden: Švedija
     switzerland: Šveicarija
+    syria: Sirija
+    taiwan: Taivanas
+    tajikistan: Tadžikistanas
+    tanzania: Tanzanija
     thailand: Tailandas
+    togo: Togas
+    tokelau: Tokelau
+    tonga: Tonga
+    trinidad_and_tobago: Trinidadas ir Tobagas
+    tunisia: Tunisas
+    turkey: Turkija
+    turkmenistan: Turkmėnija
+    turks_and_caicos_islands: Turkso ir Caicoso salos
+    tuvalu: Tuvalu
+    uganda: Uganda
+    ukraine: Ukraina
+    united_arab_emirates: Jungtiniai Arabų Emyratai
     united_kingdom: Jungtinė Karalystė
+    united_states: Jungtinės Amerikos Valstijos
+    united_states_minor_outlying_islands: Jungtinių Amerikos Valstijų mažosios nutolusios salos
+    united_states_virgin_islands: Jungtinių Valstijų Mergelių salos
+    uruguay: Urugvajus
+    uzbekistan: Uzbekistanas
+    vanuatu: Vanuatu
+    vatican_city: Vatikanas
+    venezuela: Venesuela
+    vietnam: Vietnamas
+    virgin_islands: Mergelių Salos
+    wallis_and_futuna: Volisas ir Futūna
+    west_africa: Vakarų Afrika
+    western_sahara: Vakarų Sachara
+    yemen: Jemenas
+    zambia: Zambija
+    zimbabwe: Zimbabvė
+  places_of_interest: Lankytinos vietos
   places_merged_successfully: Vietos sujungtos sėkmingai!
+  plants: augalai
+  please_explain_why_you_want_to_hide_this: Paaiškinkite, kodėl norite tai slėpti
   press: Spauda
   privacy: Privatumas
   profile: Profilis
+  project_created_on: 'sukūrė projektą šią dieną: %{date}'
+  project_curator_id: Projekto kuratoriaus ID
+  project_curator_tools: Projekto kuratoriaus įrankiai
+  project_curators: Projekto kuratoriai
+  project_group_label: Grupė
+  project_group_description: Grupė, kuriai priklauso projektas
+  project_home: Projekto namai
+  project_icon: Projekto piktograma
+  project_invitations: 'Projekto kvietimai'
+  project_list: Projektų sąrašas
+  project_curators_added_some_of_your_observations_html: |
+    <a href="%{url}">%{project}</a> kuratoriai pridėjo kelis jūsų stebėjimus
+  project_members: "%{project} nariai"
+  project_membership_model_description: Ar jūsų projektas atviras visiems, ar tik žmonėms, kuriuos pakviečiate?
+  project_observations: Projekto stebėjimai
+  project_post: Projekto įrašai
+  project_requirements: Projekto reikalavimai
+  project_rules: Projekto taisyklės
+  project_settings: Projekto nustatymai
+  project_user_cannot_be_found: Projekto vartotojas nerastas
+  project_user_was_invalid: "Projekto vartotojas netinkamas: %{project_user}"
+  project_was_successfully_created: Projektas sukurtas sėkmingai.
+  project_was_successfully_updated: Projektas atnaujintas sėkmingai.
+  project_x_was_delete: "%{project} ištrintas (palaukite kelias minutes, kad šis projektas būtų panaikintas iš tinklalapio)"
   projects: Projektai
+  projects_from_everywhere: Projektai iš visur
   projects_from_place: "Projektai iš %{place}"
   projects_you_admin: Jūsų valdomi projektai
+  proposed_taxa_that_contradict_the_community_id: Pasiūlytas taksonas prieštarauja bendruomenės ID
+  proposed_taxa_that_support_the_community_id: Pasiūlytas taksonas pritaria bendruomenės ID
+  protozoans: pirmuonys
+  public_domain: Viešo naudojimo
+  publish: Paskelbti
+  purple: violetinė
+  quality_grade: Kokybės įvertinimas
+  quality_grade_: Kokybės įvertinimas
+  quality_grade_colon: "Kokybės įvertinimas:"
   queued: Eilėje
+  radius: Spindulys (m)
+  radius_value: "Spindulys (m): %{radius}"
   random: Atsitiktinis
+  range: Ribos
+  rank: Rangas
+  rank_position: Rangas
+  rank_restrictions: Rango apribojimai
   ranks:
     kingdom: Karalystė
     genus: Gentis
@@ -1240,17 +1555,62 @@ lt:
     species: Rūšys
   read_more: Skaityti daugiau
   real_time_discussions: Realaus Laiko Diskusijos
+  reason_you_are_flagging_this_item: Priežastis, kodėl tai pažymėjote.
+  recaptcha_verification_failed: reCAPTCHA patvirtinimas nesėkmingas
   receive_email_notifications_when_people_leave_you: Gauti el. pašto pranešimus apie
+  receive_updates_from_this_project: Gaukite šio projekto naujienas
+  recent: Naujausi
+  recent_evidence_of_organism: Pateikti neseni organizmo buvimo įrodymai
+  recent_new_users: Paskutiniai nauji vartotojai
   recent_observations: Nauji stebėjimai
+  recent_observations_: Nauji stebėjimai
+  recent_post: Naujausias įrašas
+  recent_atom_observations_by: "Naujausi stebėjimai, kuriuos įkėlė %{login} (Atom)"
+  recent_observations_by: "Naujausi stebėjimai, kuriuos įkėlė %{login}"
+  recently_active: Neseniai aktyvus
+  recently_created: Neseniai sukurti
+  recently_finished: Neseniai baigti
   recently_observed: Neseniai stebėta
+  recently_resolved: Neseniai išspręsti
+  red: raudona
   redo_search_in_map: Pakartoti paieška žemėlapyje
   redo_search_in_map_area: Pakartoti paiešką žemėlapio plote
+  refresh: Atnaujinti
+  refreshing: atnaujinama
+  regenerate_stats: Pakartotinai generuoti statistiką
+  reject?: Atmesti?
+  relative_observations: Susiję stebėjimai
+  relationship: "Ryšys"
+  relationship_x: "Ryšys: %{relationship}"
+  relationships:
+    one_to_one: vienas su vienu
+    alternate_position: alternatyvi pozicija
+    many_to_many: daug su daug
+    many_to_one: daug su vienu
+    one_to_many: vienas su daug
+    not_external: ne išorinis
+    not_internal: ne vidinis
+    error: klaida
+  relationship_html: "Ryšys: %{link}"
+  reload_from_observations: Perkrauti iš stebėjimų
+  reload_timed_out: 'Ryšys nutrūko. Bandykite vėliau.'
+  remember_me: Prisiminti mane
   remove: Pašalinti
+  remove_all_tags: Pašalinti visas žymes
+  remove_boundary: Panaikinti ribas
+  remove_comma_separated_tags: "Panaikinti kableliais arskirtas žymes"
+  remove_conservation_status: panaikinti apsaugos statusą
+  remove_from: Panaikinti iš
   remove_curator: Pašalinti kuratorių
   remove_curator_status: Panaikinti kuratoriaus statusą
   remove_from_featured: Pašalinti iš siūlomų
+  remove_from_guide: Panaikinti iš vadovo
+  remove_from_list: Pašalinti iš sąrašo
   remove_from_project: Pašalinti iš projekto
+  remove_this_section: Pašalinti šią skiltį
+  remove_photo: Panaikinti nuotrauką
   remove_place: Panaikinti vietą
+  remove_relationship: Panaikinti ryšį
   remove_tags: Pašalinti žymes
   removed: Pašalinta
   repair_external_photos: Taisyti išorines nuotraukas
@@ -1258,22 +1618,54 @@ lt:
   request_failed: "Prašymas Nepavyko"
   restore: Atkurti
   rg_observations: ID stebėjimai
+  rules_types:
+    must_be_on_list: turi būti sąraše
+    must_be_in: turi būti taksone
+    must_be_coordinates_shareable_by_project_curators: stebėtojas turi leisti projekto kuratoriams žiūrėti koordinates.
+  same_day_private: Dar vienas šio žmogaus stebėjimas šią dieną yra privatus
+  said: pasakė
+  satellite: palydovas
+  save: Saugoti
+  save_all: Saugoti viską
+  save_and_add_another: Saugoti ir pridėti kitą
+  save_and_continue: "Saugoti &amp; tęsti..."
   save_and_add_taxa: "Išsaugoti ir pradėti pridėti rūšis"
+  save_changes: Išsaugoti pakeitimus
   save_comment: Išsaugoti komentarą
+  save_draft: Išsaugoti Ruošinį
+  save_fields: Išsaugoti laukelius
+  save_flag: Išsaugoti pažymėjimą
+  save_identification: Saugoti identifikaciją
+  save_observation: Saugoti stebėjimą
   save_photos: Saugoti nuotraukas
   save_place: Išsaugoti vietą
+  saved: Išsaugota
+  saving: "Išsaugoma..."
+  saving_verb: Saugoma
+  scale_colon: "Mastelis:"
   search: Paieška
   search_by_name_or_email: Ieškoti pagal vardą arba el. pašto adresą
+  search_by_taxon_name_or_observation_id: Ieškoti pagal taksono pavadinimą arba stebėjimo ID
+  search_by_taxon_name_or_flickr_photo_id: Ieškoti pagal taksono pavadinimą arba Flickr ID
   search_for_a_location: Ieškoti vietovės
   search_for_species: Ieškoti rūšių
   search_list: Ieškoti sąrašo
   search_observations: "Ieškoti stebėjimų"
   search_projects: Ieškoti projektų
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: Ieškoti priežasčių
   search_species: Ieškoti rūšių
+  search_species_: Ieškoti rūšių...
   search_the_map: Ieškoti žemėlapyje
   search_this_taxon: ieškoti šio taksono
+  search_your_photos: Ieškoti tarp jūsų nuotraukų
   searching: "Ieškoma..."
+  seasonality: Sezoniškumas
+  see_something_wrong_with_taxon: Kažkas negerai su šiuo taksonu? Praneškite kuratoriams.
+  seen_it?: Matėte?
+  seen_nearby: Pastebėtas netoliese
   seen_one: Matėte?]
+  select: Pasirinkite
   select_all: Pasirinkti visus
   select_at_least_one: Pasirinkite bent vieną
   select_one_or_more_photos: 'Pasirinkite vieną ar daugiau nuotraukų'

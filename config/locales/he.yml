@@ -1047,7 +1047,9 @@ he:
   hasnt_contributed_any_observations: לא טרם תצפיות לפרוייקט זה.
   header_your_observations: התצפיות שלך
   header_your_calendar: היומן שלך
+  header_your_favorites: האהובים עלייך
   header_your_lists: הרשימות שלך
+  header_your_journal: הבלוג שלך
   header_your_identifications: הזיהויים שלך
   header_your_projects: הפרויקטים שלך
   header_your_profile: הפרופיל שלך
@@ -1294,8 +1296,6 @@ he:
     de: גרמנית
     el: יוונית
     en: אנגלית
-    en-UK: English (United Kingdom)
-    en-US: אנגלית (ארה"ב)
     eo: אספרנטו
     es: ספרדית
     es-AR: ספרדית (ארגנטינה)
@@ -1303,7 +1303,6 @@ he:
     et: אסטונית
     eu: באסקית
     fi: פינית
-    fil: פיליפינית
     fr: צרפתית
     fr-CA: צרפתית (קנדה)
     gl: גליציאנית
@@ -1311,14 +1310,12 @@ he:
     id: אינדונזית
     it: איטלקית
     ja: יפנית
-    ka: גאורגית
     ko: קוראנית
     lb: לוקסמבורגית
     lt: ליטאית
     mk: מקדונית
     nb: נורווגית - בוקמאל
     nl: הולנדית
-    nn: נורבגית - נינורשק
     oc: אוקיטנית
     pl: פולנית
     pt: פורטוגזית
@@ -1328,7 +1325,6 @@ he:
     sq: אלבנית
     sv: שוודית
     zh-CN: סינית (מופשטת)
-    zh-HK: סינית (מסורתית, הונג קונג)
     zh-TW: סינית (מסורתית)
   locality_notes: הערות על המקום
   location: מיקום
@@ -1594,6 +1590,7 @@ he:
   not_linked_flickr: "חשבון ה%{site_name} שלך אינו מקושר לחשבון ה Flickr שלך"
   not_on_this_list: לא ברשימה זו.
   not_recorded: לא נרשם
+  not_resolved: לא נפתר
   not_seeing_what_looking_for: לא מצאת את מה שחיפשת?
   note: הערה
   notes: הערות
@@ -1660,8 +1657,6 @@ he:
   observations_by: התצפיות של
   observations_by_user: "התצפיות של %{user}"
   observations_deleted: תצפיות נמחקו.
-  observations_for: תצפיות של
-  observations_for_project: "תצפיות בפרוייקט %{project}"
   observations_from: תצפיות מ %{date}
   observations_from_people_taxa_and_places_youre_following: "תצפיות מאנשים, מקומות וטקסונים שאתה עוקב אחריהם"
   observations_from_this_place: תצפיות ממקום זה
@@ -2653,7 +2648,6 @@ he:
   this_is_your_observation: זו התצפית שלך
   this_job_failed_to_run: לא ניתן היה להשלים את המשימה. אנא צרו קשר עם %{email}
   this_list_is_empty!: הרשימה ריקה!
-  this_list_only_accepts_taxa_that_are: לרשימה זו ניתן להוסיף רק טקסונים ש
   this_observation: תצפית זו
   this_observation_was_created_using: "תצפית זו נוצרה באמצעות:"
   this_photo_is_already_associated: תמונה זו משוייכת כבר לאחת מתצפיותך

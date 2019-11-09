@@ -1574,7 +1574,6 @@ ca:
     de: Alemany
     el: Grec
     en: Anglès
-    en-US: Anglès (Estats Units)
     es: Castellà
     es-MX: Castellà (Mèxic)
     et: Estonià
@@ -1975,8 +1974,6 @@ ca:
   observations_deleted: Les observacions s'han eliminat.
   observations_fields_are: |
     Els camps són informació extra associada a una observació, com el nombre d'espècies observades, descripció de l'hàbitat, o el que vulgueu comentar.
-  observations_for: Observacions per a
-  observations_for_project: "Observacions per a %{project}"
   observations_from: Observacions de %{date}
   observations_from_people_taxa_and_places_youre_following: "Observacions de persones, llocs, i taxa que esteu seguint"
   observations_from_this_place: Observacions d'aquest lloc
@@ -3293,7 +3290,6 @@ ca:
   this_is_your_observation_desc: Sempre podeu veure les coordenades de les vostres observacions.
   this_job_failed_to_run: Aquest treball no s'ha pogut executar. Si us plau, contacteu amb %{email}
   this_list_is_empty!: Aquesta llista està buida!
-  this_list_only_accepts_taxa_that_are: Aquesta llista només accepta tàxons que són
   this_observation: Aquesta observació
   this_observation_is_featured_on_x_sites:
     one: Aquesta observació és presentada a 1 lloc
@@ -4329,8 +4325,6 @@ ca:
           <a href="%{url}">pàgina d'exportació d'observacions</a> per a obtenir un llistat de les exportacions.
       parental_consent:
         subject: Als vostres fills els podria agradar utilitzar iNaturalis
-        content_html: |
-          <p> El vostre fill utilitza l'aplicació educativa "Cerca amb iNaturalist" i vol compartir dades amb la plataforma de ciència ciutadana iNaturalist. Com aquestes dades inclouen informació d’identificació personal, no poden ser utilitzades per menors de 13 anys sense el consentiment d’un dels progenitors o tutors. </p> <p> La Cerca amb iNaturalist es pot utilitzar sense crear un compte i no es compartiran dades, però el vostre fill no podrà aportar observacions a iNaturalist. [EXPLICACIÓ D'INAT] </p> <p> Si voleu donar el vostre consentiment perquè el vostre fill utilitzi iNaturalist, necessitarem que feu el següent: </p> <ol> <li> <p> Creeu un compte iNaturalist perquè l'utilitzi el vostre fill indicant que el compte serà utilitzat per una persona menor de 13 anys seguint aquest enllaç: <a href="%{registration_url}">%{registration_url}</a> </p> </li><li> <p> Feu una donació d'1$ amb una targeta de crèdit a iNaturalist per verificar que sou un adult. Assegureu-vos que utilitzeu el mateix correu electrònic que vau utilitzar per crear el compte al costat de la vostra donació: https://www.inaturalist.org/donate </p> </li> <li> <p> Un cop processem el donació, enviarem una notificació al correu electrònic del compte que s'ha activat el compte i podeu utilitzar el nom d’usuari i la contrasenya d'iNaturalist que heu creat per iniciar sessió a l’aplicació de Cerca del vostre fill. </p> </li> </ol> <p> Més informació sobre la Informació d'Identificació Personal que es comparteix a iNaturalist: ... </p> <p> Més informació sobre la Política de Privacitat d'iNaturalist <a href="%{privacy_policy_url}"> aquí </a>. </p>
       photos_missing:
         subject: Algunes fotos s'han de reparar
         we_have_been_housekeeping: |

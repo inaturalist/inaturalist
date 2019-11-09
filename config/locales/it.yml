@@ -195,7 +195,7 @@ it:
   add_another_subscription: Aggiungi un'altra sottoscrizione
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Aggiungi Risorsa di Progetto
-  add_batch: Aggiungi batch
+  add_batch: Aggiungi in gruppo
   add_comma_separated_tags: "Aggiungi etichette separate da virgole"
   add_comment: Aggiungi un commento
   add_conservation_status: Aggiungi stato di conservazione
@@ -279,7 +279,7 @@ it:
     <a target="%{target}" class="%{class}" href="%{url}">scambio di taxon</a>
   added_by: Aggiunta da
   added_by_user_on_date_html: "Aggiunto da %{user} il %{date}"
-  added_on: Aggiunto il
+  added_on: Aggiunta il
   added_to_favorites_html: |
     Aggiunta ai <a href="%{url}">preferiti</a>
   adding: "Aggiunta in corso..."
@@ -899,7 +899,7 @@ it:
   csv: CSV
   csv_file: File CSV
   csv_should_not_contain_a_header_row: Il CSV non deve contenere la riga di intestazione
-  cumulative_ids: "ID comulativo: %{count} di %{total}"
+  cumulative_ids: "ID comulative: %{count} di %{total}"
   curate_observations: Organizza osservazioni
   curate_taxa: Organizza taxa
   curate_user: Gestisci utente
@@ -966,6 +966,11 @@ it:
   date_range: Intervallo di date
   date_specified: Data specificata
   date_time: Data/Ora
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: Data aggiornamento
   day: Giorno
   decrease_brightness: Riduci luminosità
@@ -1710,7 +1715,7 @@ it:
   listing_lists: Elencazione liste
   listing_project_assets: Elenco delle Risorse di Progetto in corso
   listing_taxa: Elencazione taxa
-  lists: Elenchi
+  lists: Liste
   lists_by_login:
     title:
       current_user: Le tue liste
@@ -1738,8 +1743,6 @@ it:
     de: Tedesco
     el: Greco
     en: Inglese
-    en-UK: Inglese (Regno Unito)
-    en-US: Inglese (Stati Uniti)
     eo: Esperanto
     es: Spagnolo
     es-AR: Spagnolo (Argentina)
@@ -1747,7 +1750,6 @@ it:
     et: Estone
     eu: Basco
     fi: Finlandese
-    fil: Filippino
     fr: Francese
     fr-CA: Francese (Canada)
     gl: Galiziano
@@ -1755,14 +1757,12 @@ it:
     id: Indonesiano
     it: Italiano
     ja: Giapponese
-    ka: Georgiano
     ko: Coreano
     lb: Lussemburghese
     lt: Lituano
     mk: Macedone
     nb: Norvegese Bokmål
     nl: Olandese
-    nn: Norvegese Nynorsk
     oc: Occitano
     pl: Polacco
     pt: Portoghese
@@ -1772,7 +1772,6 @@ it:
     sq: Albanese
     sv: Svedese
     zh-CN: Cinese (tradizionale)
-    zh-HK: Cinese (tradizionale, Hong Kong)
     zh-TW: Cinese (tradizionale)
   locality_notes: Note locali
   localized_species_accounts: Pagine delle specie
@@ -1822,7 +1821,7 @@ it:
   manage_all_your_subscriptions: Gestisci tutte le tue sottoscrizioni
   manage_names: Gestisci i nomi
   manage_your_projects: Gestisci i Tuoi Progetti
-  manage_your_project_invitations: Gestisci i tuoi inviti al progetto
+  manage_your_project_invitations: Gestisci i tuoi inviti ai progetti
   manage_your_relationships: Organizza le tue relazioni
   manager: Gestore
   managers: Gestori
@@ -2054,7 +2053,7 @@ it:
   no_license_all_rights_reserved: Nessuna licenza (tutti i diritti riservati)
   no_managers_set: Nessun gestore stabilito
   no_matching_article_from_x: "Nessuna articolo da %{x} corrisponde"
-  no_matching_invitations: Nessun invito corrisponde
+  no_matching_invitations: Nessun invito collegato
   no_matching_observations: Nessuna osservazione corrisponde.
   no_matching_places: Nessun luogo corrisponde
   no_matching_projects: Nessun progetto corrisponde
@@ -2127,6 +2126,7 @@ it:
   not_linked_flickr: "La tua utenza %{site_name} non è collegato al tuo account Flickr"
   not_on_this_list: Non sulla lista.
   not_recorded: Non registrata
+  not_resolved: Non Risolto
   not_seeing_what_looking_for: Non Vedi Quello Che Stai Cercando?
   note: Nota
   notes: Note
@@ -2209,8 +2209,6 @@ it:
   observations_deleted: Osservazioni eliminate.
   observations_fields_are: |
     I campi delle osservazioni sono dati aggiuntivi associati all'osservazione, come il numero di individui osservati, descrizione dell'habitat, o ciò che vuoi! Nei progetti è possibile specificare i campi che vorresti fossero compilati.
-  observations_for: Osservazioni per
-  observations_for_project: "Osservazioni per %{project}"
   observations_from: Osservazioni dal %{date}
   observations_from_people_taxa_and_places_youre_following: "Osservazioni di persone, luoghi, e taxa che stai seguendo"
   observations_from_this_place: Osservazioni per questo luogo
@@ -2393,7 +2391,7 @@ it:
   password: Password
   password_confirmation: 'Conferma della password'
   paste: Incolla
-  paste_in_a_bunch_of_names: Incolla in un gruppo di nomi, 1 per riga, e premi il pulsante!
+  paste_in_a_bunch_of_names: Incolla una lista di nomi, 1 per riga, e premi il pulsante!
   paste_in_a_comma_separated_list: Incolla come lista di stati separata da virgole
   people: Persone
   people_following_user: "Persone stanno seguendo %{user}"
@@ -2910,7 +2908,7 @@ it:
   project_home: Homepage del progetto
   project_icon: Icona del progetto
   project_id_or_url_slug: ID del progetto o URL, e.g. 333 o mio-progetto
-  project_invitations: 'Inviti al progetto'
+  project_invitations: 'Inviti ai progetti'
   project_list: Lista del progetto
   project_list_defaults:
     title: "Checklist di %{owner_name}"
@@ -2924,6 +2922,7 @@ it:
   project_requirements: Requisiti del progetto
   project_rules: Regole del Progetto
   project_settings: Impostazioni del progetto
+  project_start_time_datetime: "Ora d'inizio: %{datetime}"
   project_that_does_not_contain_these_observations: Progetto che non contiene queste osservazioni
   project_type_description: |
     Valutazioni e Bioblitz sono tipologie speciali di progetto. Le valutazioni sono fatte per collaborare nella valutazione di un gruppo di specie, di solito per determinarne la loro importanza conservazionistica. I Biobliz sono eventi che hanno un inizio e fine specificata.
@@ -3385,7 +3384,7 @@ it:
   status_in_place: "%{status} in %{place}"
   stay_and_try_again: Rimani e prova ancora
   still_no_luck?: Ancora sfortunato?
-  still_needs_id?: La comunità può confermare/migliorare ID?
+  still_needs_id?: La comunità può confermare/migliorare l'ID?
   still_working_on_classifying_taxon: Stiamo ancora lavorando nella classificazione di questo taxon. Controlla più tardi
   stop_editing: Termina la modifica
   stop_following_user: "Smetti di seguire %{user}"
@@ -3404,7 +3403,7 @@ it:
   submit_observations:
     one: Invia 1 osservazione
     other: Invia %{count} osservazioni
-  submitted: Inviato
+  submitted: Inviata
   subscribe_to_a_taxon: Iscriviti a un Taxon
   subscribe_to_a_place: Iscriviti ad un Luogo
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Iscriviti%{tag_end} per aggiungere commenti relativi a questo contrassegno"
@@ -3661,7 +3660,8 @@ it:
   this_is_your_observation_desc: Puoi sempre vedere le coordinate delle tue osservazioni.
   this_job_failed_to_run: L'operazione è fallita. Per favore contatta %{email}
   this_list_is_empty!: Questa lista è vuota!
-  this_list_only_accepts_taxa_that_are: Questa lista accetta solo taxa che sono
+  this_list_only_accepts_taxa_that_are_species: Questa lista accetta solo taxa di rango specie
+  this_list_only_accepts_taxa_that_are_species_or_lower: Questa lista accetta solo taxa di rango specie o inferiore
   this_observation: Questa osservazione
   this_observation_is_featured_on_x_sites:
     one: Questa osservazione è messa in risalto su 1 sito web
@@ -3866,7 +3866,7 @@ it:
   user_muted: Utente silenziato
   user_observed_on_on_date_in_place: |
     %{user} ne ha osservata una il %{date} in %{place}
-  user_suggested_an_id: "%{user} ha suggerito un ID"
+  user_suggested_an_id: "%{user} ha suggerito una ID"
   user_thinks_yours_is: "%{user} %{noun} che la tua osservazione %{observation} sia"
   user_trusts_you_with_their_private_coordinates: "%{user} ti ha rivelato le sue coordinate nascoste"
   user_trusts_you_with_their_private_coordinates_desc: |
@@ -3912,7 +3912,7 @@ it:
   view_leaderboard_from_last_month: Visualizza la classifica dell'ultimo mese
   view_leaderboard_from_last_year: Visualizza la classifica dell'ultimo anno
   view_license: Visualizza la licenza
-  view_lists: Visualizza gli elenchi
+  view_lists: Visualizza le Liste
   view_listing: Visualizza l'elenco
   view_moderation_history: Visualizza lo storico della moderazione
   view_moderation_history_for_this_comment: Visualizza lo storico della moderazione per questo commento
@@ -4713,69 +4713,69 @@ it:
         subject: Tuo figlio vorrebbe usare iNaturalist
         content_html: |
           <p>
-          Tuo figlio sta utilizzando l'app di istruzione <strong>Seek di iNaturalist</strong> e vorrebbe condividere i dati con la piattaforma di citizen-science iNaturalist. Visto che pubbicare su iNaturalist rivela Dati Personali, iNaturalist non può essere usata da persone sotto i 13 anni di età senza il consenso di un genitore.
+            Tuo figlio sta utilizzando l'app educativa Seek di iNaturalist e vorrebbe condividere i dati con la piattaforma di citizen-science iNaturalist. Poiché questi dati contengono Informazioni Identificative Personali, non può essere usata da persone con età inferiore ai 13 anni senza il consenso dei genitori.
           </p>
           <p>
-          <strong>Seek di iNaturalist</strong> può essere utilizzata senza registrare un account, e senza condividere Dati Personali, ma tuo figlio non sarà in grado di contribuire con le sue osservazioni su iNaturalist. iNaturalist è un social network di citizen-science dove i partecipanti condividono osservazioni ed identificazioni di esseri viventi per conoscere la natura e fornire dati sulla biodiversità per la scienza.
+            Seek di iNaturalist può essere usata senza la creazione di un account, e nessun dato sarà condiviso, ma tuo figlio non sarà in grado di contribuire con osservazioni per iNaturalist. iNaturalist è un social network di citizen-science in cui i partecipanti condividono osservazioni e identificazioni di esseri viventi per insegnarsi vicendevolmente sulla natura e generare dati sulla biodiversità a favore della scienza.
           </p>
           <p>
-          Se dai il consenso a tuo figlio ad utilizzare iNaturalist, abbiamo bisogno che tu faccia questo:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Crea un account iNaturalist che tuo figlio userà seguendo questo link:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Dopo che avrei creato l'account per tuo figlio, ti chiederemo di fare una piccola donazione a favore di iNaturalist di 1 US $ con una carta di credito per verificare che tu sia un adulto. Quando fai la donazione, per favore assicurati di utilizzare lo stesso indirizzo email che tu hai inserito nel campo "Email del genitore" durante la registrazione.
-          </p>
-          </li>
-          <li>
-          <p>
-          Una volta processata la donazione, ti manderemo un'altra mail per notificarti che l'account di tuo figlio è stato attivato e tu potrai usare il nome utente e la password che hai creato per accedere alla app Seek di tuo figlio.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist raccoglie i seguenti Dati Personali:
+            Se dai il consenso affinché tuo figlio utilizzi iNaturalist, occorre che tu faccia i seguenti passi:
           </p>
           <ol>
-          <li>
-          <p>
-          <strong>indirizzo email (privato):</strong> ogni account iNaturalist ha un indirizzo mail associato che non è reso pubblico.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>nomeutente (pubblico, obbligatorio):</strong> ogni account iNaturalist ha un nomeutente pubblico ed un numero identificativo dell'utente.
-          Il nomeutente non deve essere simile al nome reale della persona, ma può essere utilizzato per contattare quella persona nei commenti pubblici o nei messaggi privati diretti.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>indirizzo IP (privato, obbligatorio):</strong> iNaturalist conserva ma non rende pubblico l'indirizzo IP dell'utente che può essere utilizzato per derivare Dati Personali come la posizione (con accuratezza a livello di città).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>immagine del profilo (pubblica, opzionale):</strong> gli account iNaturalist possono avere un immagine del profilo che sono spesso foto dell'utente stesso.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>posizione dell'osservazione (pubblica o privata, obbligatoria):</strong> le osservazioni di iNaturalist contengono informazioni sulla posizione di dove è stata fatta l'osservazione. Può essere resa pubblica o tenuta privata, ma è pubblica in maniera predefinita.
-          </p>
-          </li>
+           \ <li>
+              <p>
+                Creare l'account iNaturalist che tuo figlio utilizzerà seguendo il link seguente:
+                <a href="%{registration_url}">%{registration_url}</a>
+           \   </p>
+            </li>
+            <li>
+              <p>
+                Dopo aver creato l'account di tuo figlio ti chiederemo di fare una piccola donazione di 1$ americano con una carta di credito in favore di iNaturalist per verificare che tu sia un adulto. Quando fai la donazione assicurati di usare la stessa email che hai indicato come "email genitore" durante la fase di iscrizione. https://www.inaturalist.org/donate
+           \   </p>
+            </li>
+            <li>
+              <p>
+                Una volta elaborata la donazione, ti invieremo una mail di notifica informandoti che l'account di tuo figlio è stato attivato e che puoi usare il nome utente e la password iNaturalist che hai creato per loggarti sulla app Seek di tuo figlio.
+              </p>
+            </li>
           </ol>
           <p>
-          iNaturalist permette anche agli utenti di condividere immagini pubbliche, commenti, e messaggi diretti associati ai loro account.
-          E' possibile che gli utenti includano Dati Personali in questi contenuti generati dall'utente stesso.
+           \ iNaturalist raccoglie le seguenti informazioni identificative personali: 
+           </p>
+            </li>
+            <li>
+              <p>
+          indirizzo email privato: ogni profilo iNaturalist
+                è associato ad un indirizzo e-mail che non è
+                reso pubblico. 
+           </p>
+            </li>
+            <li>
+              <p>
+          nome utente (pubblico, obbligatorio): ogni profilo iNaturalist è associato ad un nome utente pubblico e ad un numero di identificazione dell'utente. Il nome utente non deve essere simile al nome reale dell'utente, ma può essere utilizzato per contattare la persona tramite commenti pubblici e messaggi diretti privati.
+           </p>
+            </li>
+           \ <li>
+              <p>
+          Indirizzo IP (privato, obbligatorio): iNaturalist memorizza ma non rende pubblico l'indirizzo IP dell'utente che può essere utilizzato per ricavare informazioni di identificazione personale come la posizione (con precisione a livello di città).
+          </p>
+            </li>
+            <li>
+              <p>
+          immagine del profilo (pubblica, facoltativa): come opzione gli account iNaturalist possono avere immagini del profilo che spesso sono immagini dell'utente.
+          </p>
+           \ </li>
+            <li>
+              <p>
+          luogo di osservazione (pubblico o privato, richiesto): le osservazioni iNaturalist contengono informazioni sulla posizione dove è stata fatta l'osservazione. La posizione può essere resa pubblica o privata, ma è pubblica per impostazione predefinita.
+          </p>
+            </li>
+            <li>
+              <p>
+          iNaturalist consente inoltre agli utenti di condividere immagini pubbliche, commenti pubblici e messaggi privati diretti ​​associati al proprio account. È possibile che gli utenti includano informazioni identificative personali in questo tipo di contenuti.
           </p>
           <p>
-          Scopri di più su Informativa sulla Privacy di iNaturalist <a href="%{privacy_policy_url}">qui</a>.
+            Scopri di più sulle Privacy Policy di iNaturalist <a href="%{privacy_policy_url}">qui</a>.
           </p>
       photos_missing:
         subject: Alcune foto necessitano di riparazione
@@ -5207,8 +5207,7 @@ it:
         charts_help_other: |
           Mostriamo anche i grafici di stagionalità per le annotazioni delle osservazioni. Le annotazioni sono un nuovo sistema per aggiungere metadati alle osservazioni usando un vocabolario controllato di termini. Per ora stiamo usando solo "Stadio Vitale" e "Fenologia della Pianta" (quando la pianta è in fiore o in frutto). Non abbiamo ancora un modo per aggiungere le annotazioni direttamente, così per ora stiamo convertendo i dati dai campi delle osservazioni alle annotazioni. Se non riesci ad aspettare che implementiamo il nostro sistema delle annotazioni, puoi contribuire alle annotazioni "Stadio Vitale" aggiungendo campi di osservazione con questi valori: Adulto, Pupa, Ninfa, Larva, Uovo, Giovane. Campi idonei sono "Stadio Vitale di insetto" o "Stadio Vitale". Per la "Fenologia della Pianta" noi cerchiamo ogni campo con la parola "fenologia" nel nome, e "fiore" o "frutto" come valore; un campo adatto è ad esempio "Fenologia della fioritura".
         charts_help_relative_observations: |
-          Mostrare la frequenza come proporzione relativa di tutte le osservazioni aiuta a mediare l’effetto della crescita globale del sito. Per esempio,
-          con la crescita del sito raccogliamo più osservazioni ogni anno che passa e di conseguenza abbiamo più osservazioni su ogni specifico taxon. Questo non dice che ci sono più individui di quel taxon ma che semplicemente ci sono più persone che l’osservano. Mostrare la proporzione relativa significa che se c’è un totale di 100 osservazioni totali, ma 20 di questo taxon, la proporzione è 0.2 (20 / 100). Se l’anno prossimo le persone osserveranno 2000 osservazioni di cui 400 osservazioni di questo taxon, la proporzione sarà sempre 0.2 (400 / 2000). Questo causa alcune aberrazioni quando ci sono troppo pochi osservatori in un’area, o per taxa che non sono molto osservati, ma lo stesso accade con i totali.
+          Mostrare la frequenza come proporzione relativa di tutte le osservazioni aiuta a mediare l’effetto della crescita globale della piattaforma. Per esempio, con la crescita della piattaforma raccogliamo sempre più osservazioni ogni anno che passa e di conseguenza abbiamo più osservazioni su ogni specifico taxon. Questo non significa che ci sono più individui di quel taxon ma che semplicemente ci sono più persone che l’osservano. Mostrare la proporzione relativa significa che se c’è un totale di 100 osservazioni totali, ma 20 di questo taxon, la proporzione è 0.2 (20 / 100). Se l’anno prossimo le persone osserveranno 2000 osservazioni di cui 400 osservazioni di questo taxon, la proporzione sarà sempre 0.2 (400 / 2000). Questo causa alcune aberrazioni quando ci sono troppo pochi osservatori in un’area, o per i taxa che non sono molto osservati, ma lo stesso accade con i totali.
         complete_taxon_desc: |
           Per i taxa "completi" sono elencati nel database del sito tutti i discendenti o tutti i taxa esistenti di uno specifico livello. Quando un taxon è completo a livello di specie, per esempio, è possibile stabilire quante specie di quel taxon sono state osservate e quante ancora lo devono ancora essere. I conteggi delle specie per i taxa "completi" a livello di specie non includono le specie "non conteggiabili" come quelle estinte o i concetti di specie inattivi, e includono solo le specie, non i taxa intraspecifici come le sottospecie o le varietà.
         discoveries_desc: "Le specie identificate più recentemente in questo taxon"
@@ -5353,6 +5352,10 @@ it:
           </p>
         name_place_help_html: |
           Dai priorità ai nomi comuni usati in questo luogo.
+        opt_in_to_map_tile_test: Seleziona la prova della mappa mosaico
+        opt_in_to_map_tile_test_description: |
+          Selezionando questa prova, quando ridurrai l'ingrandimento, vedrai una nuova mappa mosaico basata su griglia per le mappe di distribuzione. Queste griglie sono meno impegnative per i nostri server, dovrebbero essere più veloci da visualizzare con la crescita di iNaturalist, e dovrebbero migliorare la vista della densità di osservazioni. In caso, speriamo di applicare questa modifica a tutto il sito. Vorremmo sapere cosa ne pensi sul forum.
+        opt_out_of_map_tile_test: Deseleziona la prova della mappa mosaico
         place_preference_changed_notice_html: |
           Preferenza luogo modificato. Se cambi idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         project_addition_preferences:
@@ -5802,6 +5805,9 @@ it:
         place_type: Tipo di luogo
         prefers_check_lists: Checklist consentita?
         woeid: WOEID (Where On Earth IDentifier)
+      site:
+        logo: Logo testuale
+        logo_email_banner: Banner Email
       source:
         title: Titolo
         in_text: Nel testo

@@ -1,6 +1,8 @@
 ko:
   x_comments:
     other: '댓글 %{count} 개'
+  x_faves:
+    other: '즐겨찾기 %{count} 개'
   x_flags_resolved_html:
     other: "플래그 <span class='count'>%{count}</span> 개가 해결됨"
   x_identifications:
@@ -1255,7 +1257,6 @@ ko:
     de: 독일어
     el: 그리스어
     en: 영어
-    en-US: 영어 (미국)
     eo: 에스페란토어
     es: 스페인어
     es-MX: 스페인어 (멕시코)
@@ -1545,7 +1546,6 @@ ko:
   observations_by: '이 사용자의 관찰들:'
   observations_by_user: "%{user}의 관찰"
   observations_deleted: 관찰 삭제됨.
-  observations_for: '관찰:'
   observations_from: '%{date}의 관찰'
   observations_from_people_taxa_and_places_youre_following: "당신이 팔로우하고 있는 사람, 장소, 분류군의 관찰"
   observations_from_this_project: 이 프로젝트 관찰
@@ -1923,7 +1923,7 @@ ko:
   processing3p: "처리 중..."
   profile: 프로필
   project: 프로젝트
-  project_created_on: '%{date} 에 이 프로젝트를 생성하였습니다'
+  project_created_on: 님이 %{date} 에 이 프로젝트를 생성하였습니다
   project_group_label: 그룹
   project_icon: 프로젝트 아이콘
   project_list: 프로젝트 목록
