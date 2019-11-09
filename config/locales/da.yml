@@ -3283,6 +3283,7 @@ da:
   showing_one_to: Viser 1-
   showing_taxa_from_everywhere: "Viser taksa fra overalt"
   showing_taxa_from_place: "Viser taksa fra %{place}"
+  showing_x_of_y: Viser af %{x} af %{y}
   showing_x_of_y_listings: "Viser %{x} af %{y} lister"
   sign_in: Log ind
   sign_in_with_provider: "Log ind med %{provider}"
@@ -4694,6 +4695,47 @@ da:
         <Strong> i fangenskab </strong>? For eksempel var det i en <strong> have,
         zoo, akvarium </strong> eller en anden situation, hvor den kun var
         til stede <strong> fordi mennesket havde til hensigt at de skulle være der </strong>? Alle observationer af levende organismer er velkomne, men vi vil gerne vide når organismerne ikke er vilde / fra naturen.
+      compare:
+        about_total_taxa: "Om Taksa i alt"
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Kombinerede
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Horisontal
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Interval
+        interval_limit_warning_hour: Viser kun 1 uges værdi af timer
+        interval_limit_warning_day: Viser kun 1 års værdi af dage
+        interval_limit_warning_week: Viser kun 10 års værdi af uger
+        interval_limit_warning_month: Viser kun 100 års værdi af måneder
+        interval_limit_warning_year: Viser kun 100 års værdi af år
+        some_queries_missing_taxa: Nogle forespørgsler mangler taksa
+        some_queries_missing_taxa_desc: |
+          Kun 500 af de mest observerede taksaer kan indlæses pr. forespørgsel, så er 
+          yderligere taxa repræsenteret i forespørgslen, vises de ikke eller
+          vises blot som "?", hvis de er indeholdt i andre forespørgsler. For optimal sammenligning, så prøv at indsnævre forespørgsler til maks. 500 taksa.
+        taxa_not_observed_in_all_queries: Taksa ikke observeret i alle forespørgsler
+        taxa_observed_in_all_queries: Taksa observeret i alle forespørgsler
+        taxa_observed_in_only_one_query: Taksa kun observeret i én forespørgsler
+        total_taxa: Taksa i alt
+        total_taxa_desc: |
+          Dette er det samlede antal "blad"-taksa, som er repræsenteret i forespørgslen.
+          Undertiden ses flere rækker end disse med ikke-null antal, da højereniveau taksaer er tilføjet fra andre forespørgsler. Har Forespørgsel 1 f.eks. en observation af Homo sapiens og Forespørgsel 2 har en observation af Slægten Homo, vil begge taksaer fremgå i tabellen, men repræsenterer samtidig en ekstra række for Slægten Homo for Forespørgsel 1, som ikke medtog den i det samlede antal, da kun arten
+          Homo sapiens blev medtaget inden for denne slægt, da den udgjorde "bladet" på den
+          del af dens træ.
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Vertikal
+        x_in_common:
+          one: "%{count} til fælles"
+          other: "%{count} til fælles"
+        x_not_in_common:
+          one: "%{count} ikke til fælles"
+          other: "%{count} ikke til fælles"
+        x_total:
+          one: "%{count} i alt"
+          other: "%{count} i alt"
+        x_unique:
+          one: "%{count} unik"
+          other: "%{count} unikke"
       export:
         choose_columns_desc: Vælg de kolonner, du vil eksportere
         create_a_query_desc_html: |
@@ -6534,9 +6576,29 @@ da:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         journal: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6548,6 +6610,10 @@ da:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@m"
@@ -6556,7 +6622,33 @@ da:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n\n@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6573,6 +6665,10 @@ da:
         taxon_stage: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@m"
   wild: vild
