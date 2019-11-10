@@ -38,8 +38,8 @@ nb:
     one: "%{count} feilidentifikasjon av denne arten"
     other: "%{count} feilidentifikasjoner av denne arten"
   x_misidentifications_of_species_in_this_rank:
-    one: "%{count} feilidentifikasjon av arter i @gender{n:dette|denne} %{rank}"
-    other: "%{count} feilidentifikasjoner av arter i @gender{n:dette|denne} %{rank}"
+    one: "%{count} feilidentifikasjon av arter i @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}"
+    other: "%{count} feilidentifikasjoner av arter i @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}"
   x_observations:
     one: "%{count} observasjon"
     other: "%{count} observasjoner"
@@ -2360,8 +2360,8 @@ nb:
   other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Andre arter som ofte blir feilidentifisert som denne slektshybriden i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: Andre arter som ofte blir feilidentifisert som denne hybriden
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Andre arter som ofte blir feilidentifisert som denne hybriden i <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_rank: Andre arter som ofte blir feilidentifisert som @gender{n:dette|denne} %{rank}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Andre taksa som ofte blir feilidentifisert som @gender{n:dette|denne} %{rank} i <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Andre arter som ofte blir feilidentifisert som @gender{n:dette|denne} %{rank}@gender{f:a|n:et|en}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Andre taksa som ofte blir feilidentifisert som @gender{n:dette|denne} %{rank}@gender{n:en|et} i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_section: Andre arter som ofte blir feilidentifisert som denne seksjonen
   other_taxa_commonly_misidentified_as_this_section_in_place_html: Andre arter som ofte blir feilidentifisert som denne seksjonen i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_species: Andre arter som ofte blir feilidentifisert som denne arten
@@ -3243,6 +3243,7 @@ nb:
   showing_one_to: Viser 1 -
   showing_taxa_from_everywhere: "Viser taksa fra overalt"
   showing_taxa_from_place: "Viser taksa fra %{place}"
+  showing_x_of_y: Viser %{x} av %{y}
   showing_x_of_y_listings: "Viser %{x} av %{y} oppføringer"
   sign_in: Logg inn
   sign_in_with_provider: "Logg inn med %{provider}"
@@ -3940,7 +3941,7 @@ nb:
   view_taxon_changes: Vis taksonendringer
   view_taxon_framework_relationship: Vis taksonrammeverk-relasjon
   view_taxon_page: Vis taksonside
-  view_taxon_page_for_this_x: "Vis taksonside for @gender{n:dette|denne} %{x}"
+  view_taxon_page_for_this_x: "Vis taksonside for @gender{n:dette|denne} %{x}@gender{n:et|en}"
   view_taxononomy_details_for_taxon: "Vis taksonomiske detaljer for %{taxon}"
   view_the: "Vis %{action}&#59; %{link}"
   view_the_observation: Vis observasjonen
@@ -3984,7 +3985,7 @@ nb:
   welcome_to_inat: "Velkommen til %{site_name}!"
   welcome_to_guides: "Velkommen til %{site_name}-guider!"
   welcome_to_x_project: "Velkommen til %{project}"
-  were_pretty_sure_this_is_in_the_rank: Vi er ganske sikker på at dette er i %{rank}
+  were_pretty_sure_this_is_in_the_rank: Vi er ganske sikker på at dette er i %{rank}@gender{n:et|en}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Beklager, men din masseimport av %{filename} mislykkes."
   what: Hva
   what_color_was_it: Hvilken farge var den?
@@ -4475,6 +4476,42 @@ nb:
         <strong>i fangenskap</strong>? Var det for eksempel i en <strong>hage,
         dyrehage, et akvarium</strong> eller en anden situasjon hvor den kun var
         til stede <strong>fordi mennesker hadde bestemt at den skulle være der</strong>? Alle observasjoner av levende organismer er velkomne, men vi vil gjerne vite det når noe ikke er vill/naturalisert.
+      compare:
+        about_total_taxa: "Om taksa totalt"
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Kombinert
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Horisontal
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Intervall
+        interval_limit_warning_hour: Viser kun 1 ukes lengde i timer
+        interval_limit_warning_day: Viser kun 1 års lengde i dager
+        interval_limit_warning_week: Viser kun 10 års lengde i uker
+        interval_limit_warning_month: Viser kun 100 års lengde i måneder
+        interval_limit_warning_year: Viser kun 100 års lengde i år
+        some_queries_missing_taxa: Noen forespørsler mangler taksa
+        some_queries_missing_taxa_desc: |
+          Vi kan kun laste 500 av de mest observerte taksa per spørring, så hvis det er flere taksa representert i spørringen vil de enten ikke vises eller vises som "?" hvis de finnes i andre spørringer. Prøv å begrense dine spørringer slik at de viser 500 taksa aller færre for optimale sammenligninger.
+        taxa_not_observed_in_all_queries: Taksa ikke observert i alle spørringer
+        taxa_observed_in_all_queries: Taksa observert i alle spørringer
+        taxa_observed_in_only_one_query: Taksa observert i kun en spørring
+        total_taxa: Taksa totalt
+        total_taxa_desc: |
+          Dette er det totale antallet "endetaksa" representert i spørringen. Noen ganger vil du se flere rader enn dette med verdier fordi det er høyere taksa lagt til fra andre spørringer. F.eks. hvis spørring 1 har en observasjon sv Homo sapiens og spørring 2 har en observasjon av slekta Homo, vil begge taksa stå i tabellen, men det representerer en ekstra rad for slekta Homo for spørring 1, som ikke inkluderte den i dens totale antall fordi det kun teller arten Homo sapiens i den slekta, fordi det var endetaksonet av den delen av dets tre.
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Vertikal
+        x_in_common:
+          one: "%{count} til felles"
+          other: "%{count} til felles"
+        x_not_in_common:
+          one: "%{count} ikke til felles"
+          other: "%{count} ikke til felles"
+        x_total:
+          one: "%{count} totalt"
+          other: "%{count} totalt"
+        x_unique:
+          one: "%{count} unik"
+          other: "%{count} unike"
       export:
         choose_columns_desc: Velg kolonnene du vil eksportere
         create_a_query_desc_html: |
@@ -5614,8 +5651,8 @@ nb:
     template:
       body: 'Det oppstod problemer med de følgende felt:'
       header:
-        one: "På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres"
-        other: 'På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres'
+        one: "På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres"
+        other: 'På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres'
   helpers:
     defaults:
       title: "DETTE ER EN TITTEL"
@@ -5726,8 +5763,8 @@ nb:
       template:
         body: 'Det var problemer med følgende felt:'
         header:
-          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres
-          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres
+          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
+          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
   activerecord:
     models:
       AssessmentSection: Vurderingsseksjon
@@ -5864,8 +5901,8 @@ nb:
       template:
         body: 'Det var problemer med følgende felt:'
         header:
-          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres
-          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model} lagres
+          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
+          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
       models:
         application:
           attributes:
@@ -6051,9 +6088,29 @@ nb:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        form: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         journal: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6065,6 +6122,10 @@ nb:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@n"
@@ -6073,7 +6134,33 @@ nb:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         project: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6090,6 +6177,10 @@ nb:
         taxon_stage: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
   wild: Viltlevende
