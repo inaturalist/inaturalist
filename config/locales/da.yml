@@ -2451,7 +2451,6 @@ da:
   photo_by_id_attribution: "Foto %{id},%{attribution}"
   photo_credits: Fotokrediteringer
   photo_deleted: Foto slettet
-  photo_destroyed_because_it_was_deleted_from: "Foto ødelagt fordi det blev slettet fra det eksterne websted eller %{site_name} ikke længere har tilladelse til at se det"
   photo_hosting_accounts: 'Fotodelingtjenester:'
   photo_licensing: Fotolicens
   photo_type: Foto type
@@ -4180,9 +4179,6 @@ da:
   you_arent_following_that_person: "Du følger ikke denne person."
   you_can_accept_invitations: Du kan acceptere invitationen her
   you_can_choose_observations_associated: Du kan vælge observationer, som skal forbindes med dette journalindlæg.
-  you_can_edit_this_default_check_list_because: |
-    Du kan redigere denne standard tjekliste fordi du er en
-    administrator, men der burde ikke være et behov for at gøre det.
   you_can_only_destroy_taxa_you_created: "Du kan kun ødelægge taksa du har oprettet, og du kan ikke ødelægge taksa, der bruges i takson ændringer."
   you_can_only_block_three_users: Du kan kun blokere tre brugere
   you_can_show_the_boundary_of: Du kan vise stedets ydre grænser på din projektside. (Hvis stedet har ydre grænser).
@@ -4717,22 +4713,21 @@ da:
         taxa_observed_in_all_queries: Taksa observeret i alle forespørgsler
         taxa_observed_in_only_one_query: Taksa kun observeret i én forespørgsler
         total_taxa: Taksa i alt
-        total_taxa_desc: |
-          Dette er det samlede antal "blad"-taksa, som er repræsenteret i forespørgslen.
-          Undertiden ses flere rækker end disse med ikke-null antal, da højereniveau taksaer er tilføjet fra andre forespørgsler. Har Forespørgsel 1 f.eks. en observation af Homo sapiens og Forespørgsel 2 har en observation af Slægten Homo, vil begge taksaer fremgå i tabellen, men repræsenterer samtidig en ekstra række for Slægten Homo for Forespørgsel 1, som ikke medtog den i det samlede antal, da kun arten
-          Homo sapiens blev medtaget inden for denne slægt, da den udgjorde "bladet" på den
-          del af dens træ.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertikal
+        #Count of how many taxa several observation searches have in common
         x_in_common:
           one: "%{count} til fælles"
           other: "%{count} til fælles"
+        #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
           one: "%{count} ikke til fælles"
           other: "%{count} ikke til fælles"
+        #Count of how many taxa are present in an observation search
         x_total:
           one: "%{count} i alt"
           other: "%{count} i alt"
+        #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
           one: "%{count} unik"
           other: "%{count} unikke"
@@ -6628,7 +6623,7 @@ da:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subclass: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subfamily: "@n\n@n"
+        subfamily: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subgenus: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
