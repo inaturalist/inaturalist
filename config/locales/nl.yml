@@ -2451,7 +2451,6 @@ nl:
   photo_by_id_attribution: "Foto %{id}, %{attribution}"
   photo_credits: Foto credits
   photo_deleted: Foto verwijderd
-  photo_destroyed_because_it_was_deleted_from: "Foto vernietigd omdat het is verwijderd van de externe site of omdat\n%{site_name} geen toestemming meer heeft om het te bekijken"
   photo_hosting_accounts: Foto-hosting-accounts
   photo_licensing: Fotolicentie
   photo_type: Foto type
@@ -4153,9 +4152,6 @@ nl:
   you_arent_following_that_person: "Je volgt deze persoon niet."
   you_can_accept_invitations: Je kan hier de uitnodiging aanvaarden
   you_can_choose_observations_associated: Je kunt waarnemingen kiezen om aan dit dagboekbericht te koppelen.
-  you_can_edit_this_default_check_list_because: |
-    Je kunt deze standaard-checklist bewerken omdat je een administrator
-    bent, maar daar zou eigenlijk niet nodig moeten zijn.
   you_can_only_destroy_taxa_you_created: "Je kunt alleen taxa die je zelf hebt gemaakt vernietigen maar je kunt geen taxa vernietigen die worden gebruikt in taxonwijzingen."
   you_can_only_block_three_users: Je kan slechts drie gebruikers blokkeren
   you_can_show_the_boundary_of: Je kunt de grens van de plaats op je projectpagina weergeven als de plaats een grens heeft.
@@ -4645,19 +4641,21 @@ nl:
         taxa_observed_in_all_queries: Taxa waargenomen in alle zoekopdrachten
         taxa_observed_in_only_one_query: Taxa die zijn waargenomen in maar één zoekopdracht
         total_taxa: Taxa in totaal
-        total_taxa_desc: |
-          Dit is het totale aantal "eind"-taxa gerepresenteerd in de zoekopdracht. Soms zie je meer rijen met aantallen dan dit omdat er hogere taxa zijn toegevoegd vanuit andere zoekopdrachten. Als zoekopdracht 1 bijv. een waarneming van Homo sapiens heeft, en zoekopdracht 2 een waarneming van het geslacht Homo, staan beide taxa in de tabel, maar dat staat voor één extra rij voor het geslacht Homo voor zoekopdracht 1, die het niet in zijn totale aantal meerekent omdat het alleen de soort Homo sapiens telt uit dat geslacht, omdat dat het "uiteinde" van dat deel van de boom is.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Verticaal
+        #Count of how many taxa several observation searches have in common
         x_in_common:
           one: "%{count} gemeenschappelijk"
           other: "%{count} gemeenschappelijk"
+        #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
           one: "%{count} niet gemeenschappelijk"
           other: "%{count} niet gemeenschappelijk"
+        #Count of how many taxa are present in an observation search
         x_total:
           one: "%{count} in totaal"
           other: "%{count} in totaal"
+        #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
           one: "%{count} unieke"
           other: "%{count} unieke"
