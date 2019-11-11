@@ -57,7 +57,7 @@
         {:selected => @user.time_zone}, 
         {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
       <%-
-        locales = I18N_SUPPORTED_LOCALES.map do |l|
+        locales = I18n.t( "locales", locale: :en ).keys.map do |l|
           next if l.to_s == "iw"
           translated_label = t("locales.#{l}", locale: l, default: nil)
           viewer_label = t("locales.#{l}", default: l)
@@ -79,8 +79,8 @@
         <label><%=t :receive_email_notifications_when_people_leave_you %></label>
         <% for attr_name in User::NOTIFICATION_PREFERENCES %>
           <%= f.check_box "prefers_#{attr_name}", 
-            :label => t(attr_name.gsub(/_email_notification/, '').pluralize).mb_chars.capitalize, 
-            :label_after => true %>
+            label: t( "views.users.edit.notification_preferences_#{attr_name.gsub(/_email_notification/, "").pluralize}" ),
+            label_after: true %>
         <% end %>
       </div>
       
@@ -123,7 +123,7 @@
       </div>
 
       <a name="donors"></a>
-      <h3><%=t :monthly_supporter %></h3>
+      <h3><%=t "views.users.edit.monthly_supporter" %></h3>
       <div class="stacked">
         <%= f.check_box :prefers_monthly_supporter_badge,
           label: t( "views.users.edit.display_monthly_supporter_status_on_my_profile" ),

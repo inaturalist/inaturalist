@@ -43,7 +43,11 @@ const SpeciesComparison = ( {
             rootClose
             placement="top"
             overlay={(
-              <Popover id="about-missing-taxa" title="About Missing Taxa" className="compare-popover">
+              <Popover
+                id="about-missing-taxa"
+                title={I18n.t( "views.observations.about_missing_taxa" )}
+                className="compare-popover"
+              >
                 { I18n.t( "views.observations.compare.some_queries_missing_taxa_desc" )}
               </Popover>
             )}

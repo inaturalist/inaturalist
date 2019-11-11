@@ -1,3 +1,7 @@
+/* global _ */
+/* global google */
+/* global I18n */
+
 var Stats = { };
 
 Stats.dateForStat = function( stat ) {
@@ -123,6 +127,9 @@ Stats.load7ObsUsersSpark = function ( json ) {
 
 Stats.loadObservations = function( json ) {
   google.setOnLoadCallback(Stats.simpleChart({
+    chartOptions: {
+      legend: { position: "bottom" }
+    },
     element_id: "observations",
     series: [
       { label: I18n.t( "total" ) },
@@ -250,6 +257,9 @@ Stats.loadTTID = function( json ) {
 
 Stats.loadProjects = function( json ) {
   google.setOnLoadCallback(Stats.simpleChart({
+    chartOptions: {
+      legend: { position: "none" }
+    },
     element_id: "projects",
     series: [ { label: I18n.t( "total" ) } ],
     data: _.map( json, function( stat ) {
@@ -259,22 +269,29 @@ Stats.loadProjects = function( json ) {
 };
 
 Stats.loadCumulativeUsers = function( json ) {
-  google.setOnLoadCallback(Stats.simpleChart({
+  google.setOnLoadCallback( Stats.simpleChart( {
+    chartOptions: {
+      legend: { position: "bottom" }
+    },
     element_id: "cumulative-users",
     series: [
-      { label: "Total" },
-      { label: "Active" },
-      { label: "Curators" },
-      { label: "Admins" }
+      { label: I18n.t( "total" ) },
+      { label: I18n.t( "active" ) },
+      { label: I18n.t( "curators" ) }
     ],
-    data: _.map( json, function( stat ) {
-      return [ Stats.dateForStat( stat ), stat.data.users.count, stat.data.users.active, stat.data.users.curators, stat.data.users.admins ];
-    })
-  }));
+    data: _.map( json, function ( stat ) {
+      return [
+        Stats.dateForStat( stat ),
+        stat.data.users.count,
+        stat.data.users.active,
+        stat.data.users.curators
+      ];
+    } )
+  } ) );
 };
 
-Stats.loadUsers = function( json ) {
-  google.setOnLoadCallback(Stats.simpleChart({
+Stats.loadUsers = function ( json ) {
+  google.setOnLoadCallback( Stats.simpleChart( {
     element_id: "users",
     chartType: google.visualization.AnnotationChart,
     series: [
@@ -283,9 +300,9 @@ Stats.loadUsers = function( json ) {
       { label: I18n.t( "identifiers" ) },
       { label: I18n.t( "recent" ) },
       { label: I18n.t( "views.stats.index.recent_w_7_obs" ) },
-      { label: I18n.t( "views.stats.index.recent_w_0_obs" ) },
+      { label: I18n.t( "views.stats.index.recent_w_0_obs" ) }
     ],
-    data: _.map( json, function( stat ) {
+    data: _.map( json, function ( stat ) {
       return [
         Stats.dateForStat( stat ),
         stat.data.users.active,
@@ -295,26 +312,28 @@ Stats.loadUsers = function( json ) {
         stat.data.users.recent_7_obs,
         stat.data.users.recent_0_obs
       ];
-    })
-  }));
+    } )
+  } ) );
 };
 
-Stats.loadRanks = function( json ) {
+Stats.loadRanks = function ( json ) {
   var ranks = _.keys( json[0].data.taxa.count_by_rank ).reverse( );
-  google.setOnLoadCallback(Stats.simpleChart({
+  google.setOnLoadCallback( Stats.simpleChart( {
     element_id: "ranks",
-    series: _.map( ranks, function( rank ) {
-      return { label: I18n.t( "ranks." + rank, { defaultValue: rank } ) }
-    }),
-    data: _.map( json, function( stat ) {
-      var values = _.map( ranks, function( rank ) {
-        return _.find(stat.data.taxa.count_by_rank, function(v, k) { return k === rank });
-      });
+    series: _.map( ranks, function ( rank ) {
+      return { label: I18n.t( "ranks." + rank, { defaultValue: rank } ) };
+    } ),
+    data: _.map( json, function ( stat ) {
+      var values = _.map( ranks, function ( rank ) {
+        return _.find( stat.data.taxa.count_by_rank, function ( v, k ) { return k === rank; } );
+      } );
       values.unshift( Stats.dateForStat( stat ) );
       return values;
-    }),
-    chartOptions: { isStacked: true }
-  }));
+    } ),
+    chartOptions: {
+      isStacked: true
+    }
+  } ) );
 };
 
 Stats.loadRanksPie = function( json ) {

@@ -469,6 +469,7 @@ en:
   announcements: Announcements
   any: any
   any_: Any
+  anyone: Anyone
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
   apply_fields: Apply fields
@@ -2072,6 +2073,7 @@ en:
   needs_id_: Needs ID
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
   needs_to_be_identified: Needs to be identified
+  new: New
   new_and_noteworthy: New & Noteworthy
   new_announcement: New announcement
   new_assessment: New assessment
@@ -4927,6 +4929,7 @@ en:
         observations of living things are welcome, but we'd like to know
         when things are not wild / naturalized.
       compare:
+        about_missing_taxa: About Missing Taxa
         about_total_taxa: "About Total Taxa"
         # Label for a visualization that combines multiple series of data in a single chart
         combined: Combined
@@ -4961,24 +4964,28 @@ en:
           that part of its tree.
         # Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertical
+        # Count of how many taxa several observation searches have in common
         x_in_common:
           zero: "%{count} in common"
           one: "%{count} in common"
           few: "%{count} in common"
           many: "%{count} in common"
           other: "%{count} in common"
+        # Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
           zero: "%{count} not in common"
           one: "%{count} not in common"
           few: "%{count} not in common"
           many: "%{count} not in common"
           other: "%{count} not in common"
+        # Count of how many taxa are present in an observation search
         x_total:
           zero: "%{count} total"
           one: "%{count} total"
           few: "%{count} total"
           many: "%{count} total"
           other: "%{count} total"
+        # Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
           zero: "%{count} unique"
           one: "%{count} unique"
@@ -6330,6 +6337,7 @@ en:
           License descriptions and images &copy; %{year} Creative Commons, used
           under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution license</a> (so meta!)
+        monthly_supporter: Monthly Supporter
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
           which are received by the California Academy of Sciences (United
@@ -6354,6 +6362,26 @@ en:
           </p>
         name_place_help_html: |
           Prioritize common names used in this place.
+        # Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Comments
+        # Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identifications
+        # Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Mentions
+        # Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Messages
+        # Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Project journal posts
+        # Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: When a project adds your observations
+        # Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_curator_changes: Project curator changes
+        # Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Taxonomy changes
+        # Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Observations by people I follow
+        # Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Observations of taxa or from places that I subscribe to
         opt_in_to_map_tile_test: Opt-in to the map tile test
         opt_in_to_map_tile_test_description: |
           Opting in to this test means you will see new grid-based map tiles for distribution
