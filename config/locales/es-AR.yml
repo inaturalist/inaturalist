@@ -2271,7 +2271,6 @@ es-AR:
   photo_by_id_attribution: "Foto %{id}, %{attribution}"
   photo_credits: Créditos de las fotos
   photo_deleted: Foto borrada
-  photo_destroyed_because_it_was_deleted_from: "La foto fue destruida porque fue borrada de un sitio externo o %{site_name} no tiene permisos para mostrarla."
   photo_hosting_accounts: Cuentas de alojamiento de fotos
   photo_licensing: Licencia de la foto
   photo_type: Tipo de foto
@@ -3921,9 +3920,6 @@ es-AR:
   you_arent_following_that_person: "No estas siguiendo a esa persona."
   you_can_accept_invitations: Puede aceptar la invitación aquí.
   you_can_choose_observations_associated: Puede seleccionar observaciones para asociar con este artículo del diario.
-  you_can_edit_this_default_check_list_because: |
-    Puedes editar esta página porque eres un administrador,
-    pero no debería haber la necesidad de hacer eso.
   you_can_only_destroy_taxa_you_created: "Sólo puede destruir taxones que ha creado, y no se puede destruir taxones que se están utilizando en los cambios de taxones."
   you_can_only_block_three_users: Puedes bloquear a solo tres usuarios
   you_can_show_the_boundary_of: Puedes mostrar los límites del lugar en la página de tu proyecto solo si el lugar tiene límites.
@@ -4508,7 +4504,7 @@ es-AR:
         unreview_all_tooltip: "Quitar el estatus de revisadas a todas las observaciones de esta página"
         too_many_results_desc: |
           El número de página multiplicado por el número de resultados por página no puede superar los 10.000.
-          Intente aplicar filtros para reducir el número de resultados, o marque las observaciones como revisadas y use el botón "Ver más" en lugar de paginación
+          Intentá aplicar filtros para reducir el número de resultados, o marcá las observaciones como revisadas y usá el botón "Ver más" en lugar de paginación
       import:
         coordinate_systems_help: |
           El %{site_name} acepta coordenadas usando varios tipos distintos de sistemas de coordenadas, por lo que cuando proporcionas coordenadas en un sistema distinto a latitud / longitud, necesitamos saber qué sistema de coordenadas estás usando para que se puedan interpretar correctamente. Por favor, asegúrate de que has elegido el sistema de coordenadas correcto para tus datos o la ubicación puede terminar muy lejos de donde debe estar. Si tus coordenadas vienen de un GPS, comprueba su configuración para el nombre del sistema de coordenadas que está usando. Ten en cuenta que nosotros no almacenamos coordenadas  personalizadas, sólo las conversiones a lat/lon.
@@ -5417,7 +5413,7 @@ es-AR:
         create_useful_data: Crea datos útiles
         help_scientists: Ayuda a científicos y gestores de recursos a comprender cuándo y dónde están los organismos.
         crowdsource_identifications: Comparte identificaciones
-        connect_with_experts: Conecta con expertos que puedan identificar los organismos que observas.
+        connect_with_experts: Conectate con expertos que puedan identificar los organismos que observás.
         become_a_citizen_scientist: Conviértete en un científico ciudadano
         find_a_project: "Encuentra un proyecto con una misión que te interese, o inicia el tuyo propio."
         learn_about_nature: Aprende sobre la naturaleza
