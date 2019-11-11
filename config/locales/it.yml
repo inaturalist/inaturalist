@@ -2427,7 +2427,6 @@ it:
   photo_by_id_attribution: "Foto %{id}, di %{attribution}"
   photo_credits: Crediti delle foto
   photo_deleted: Foto cancellata
-  photo_destroyed_because_it_was_deleted_from: "Foto distrutta perché è stata eliminata dal sito esterno o perché %{site_name} non ha più il permesso di vederla"
   photo_hosting_accounts: Account di hosting per le foto
   photo_licensing: Licenza delle foto
   photo_type: Tipo di foto
@@ -3247,6 +3246,7 @@ it:
   showing_one_to: Visualizzazione 1 -
   showing_taxa_from_everywhere: "Visualizzazione dei taxa di tutto il mondo"
   showing_taxa_from_place: "Visualizzazione taxa in %{place}"
+  showing_x_of_y: Visualizzando %{x} di %{y}
   showing_x_of_y_listings: "Visualizzando %{x} di %{y} liste"
   sign_in: Accedi
   sign_in_with_provider: "Accedi con %{provider}"
@@ -4110,8 +4110,6 @@ it:
   you_arent_following_that_person: "Non stai seguendo questa persona."
   you_can_accept_invitations: Puoi accettare l'invito qui
   you_can_choose_observations_associated: Tu puoi scegliere le osservazioni da associare a questo post del diario.
-  you_can_edit_this_default_check_list_because: |
-    Tu puoi modificare questa checklist predefinita perché sei un amministratore, ma non dovrebbe esserci bisogno di farlo.
   you_can_only_destroy_taxa_you_created: "Puoi cancellare solo i taxa che hai creato, e non puoi eliminare i taxa che sono utilizzati nelle modifiche tassonomiche."
   you_can_only_block_three_users: Puoi bloccare solo tre utenti
   you_can_show_the_boundary_of: Puoi mostrare i confini del luogo sulla pagina del tuo progetto se il luogo ha i confini definiti.
@@ -4501,6 +4499,44 @@ it:
       captive_help_html: |
         L'organismo è <strong>coltivato</strong> o
         <strong>in cattività</strong>? Ad esempio, era in un <strong>giardino, zoo, aquario</strong> o in qualche situazione per cui era presente solo <strong>perché l'uomo ha fatto in modo che fosse lì</strong>? Tutte le osservazioni delle forme di vita sono ben accette, ma gradiremmo sapere quando gli organismi non sono selvatici / naturalizzati.
+      compare:
+        about_total_taxa: "Riguardo i Taxa Totali"
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Combinata
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Orizzontale
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Intervallo
+        interval_limit_warning_hour: Quando il valore è ore è visualizzata solo 1 settimana
+        interval_limit_warning_day: Quando il valore è giorni è visualizzato solo 1 anno
+        interval_limit_warning_week: Quando il valore è settimane sono visualizzati solo 10 anni
+        interval_limit_warning_month: Quando il valore è mesi sono visualizzati 100 anni
+        interval_limit_warning_year: Quando il valore è anni sono visualizzati 100 anni
+        some_queries_missing_taxa: Per alcune interrogazioni mancano dei taxa
+        some_queries_missing_taxa_desc: |
+          Possiamo caricare solo 500 dei taxa più osservati per ogni interrogazione, per cui se ci sono più taxa nell'interrogazione, questi non appariranno o saranno mostrati con un "?" se sono presenti in altre interrogazioni. Prova a restringere le tue interrogazioni in modo che mostrino solo 500 taxa o meno per un confronto ottimale.
+        taxa_not_observed_in_all_queries: Taxa non osservati in tutte le interrogazioni
+        taxa_observed_in_all_queries: Taxa osservati in tutte le interrogazioni
+        taxa_observed_in_only_one_query: Taxa osservati in una sola interrogazione
+        total_taxa: Taxa Totali
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Verticale
+        #Count of how many taxa several observation searches have in common
+        x_in_common:
+          one: "%{count} in comune"
+          other: "%{count} in comune"
+        #Count of how many taxa are not present in *all* of several observation searches
+        x_not_in_common:
+          one: "%{count} non in comune"
+          other: "%{count} non in comune"
+        #Count of how many taxa are present in an observation search
+        x_total:
+          one: "%{count} totale"
+          other: "%{count} totali"
+        #Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          one: "%{count} uniche"
+          other: "%{count} uniche"
       export:
         choose_columns_desc: Scegli le colonne da esportare
         create_a_query_desc_html: |
@@ -6061,9 +6097,29 @@ it:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        form: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         journal: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6075,6 +6131,10 @@ it:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@m"
@@ -6083,7 +6143,33 @@ it:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6100,6 +6186,10 @@ it:
         taxon_stage: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
   wild: Selvatico
