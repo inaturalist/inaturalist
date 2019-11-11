@@ -292,10 +292,12 @@ class Taxon < ActiveRecord::Base
     [IUCN_STATUS_CODES[name], value]
   }]
   
+  # Names we don't use when trying to extract a taxon from text because they
+  # usually map to the wrong thing. Also including all place names for
+  # state-level places and above that are also taoxn names, since they often get
+  # used in photo tags
   PROBLEM_NAMES = [
-    "arizona",
     "bee hive",
-    "california",
     "caterpillar",
     "caterpillars",
     "chiton",
@@ -306,17 +308,15 @@ class Taxon < ActiveRecord::Base
     "larva",
     "lichen",
     "lizard",
-    "mexico",
-    "oman",
     "pinecone",
     "pupa",
     "pupae",
     "sea",
-    "sinaloa",
-    "tanzania",
-    "virginia",
     "winged insect"
-  ]
+  ] + Taxon.select( "DISTINCT taxa.name" ).
+    joins( "JOIN places ON places.name = taxa.name" ).
+    where( "places.admin_level < 2" ).
+    pluck(:name).uniq.sort.map(&:downcase)
   
   PROTECTED_ATTRIBUTES_FOR_CURATED_TAXA = %w(
     ancestry
