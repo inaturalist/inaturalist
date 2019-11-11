@@ -56,7 +56,7 @@ class FakeView < ActionView::Base
   # Overriding this so that assets we have chosen not to be used with a digest
   # don't actually use a digest
   def asset_path( source, options = {} )
-    if source =~ /#{NonStupidDigestAssets.whitelist.join( "|" )}/
+    if source !~/^http/ && source =~ /#{NonStupidDigestAssets.whitelist.join( "|" )}/
       return "/assets/#{source}"
     end
     super( source, options )

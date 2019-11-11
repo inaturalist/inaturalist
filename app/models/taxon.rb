@@ -1627,7 +1627,7 @@ class Taxon < ActiveRecord::Base
   def taxon_range_kml_url
     return nil unless ranges = taxon_ranges_without_geom
     tr = ranges.detect{|tr| !tr.range.blank?} || ranges.first
-    tr ? FakeView.image_url( tr.kml_url ) : nil
+    tr ? tr.kml_url : nil
   end
 
   def all_names
