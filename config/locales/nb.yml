@@ -2420,7 +2420,6 @@ nb:
   photo_by_id_attribution: "Bilde %{id}, %{attribution}"
   photo_credits: Bildekrediteringer
   photo_deleted: Bilde slettet
-  photo_destroyed_because_it_was_deleted_from: "Bilde ødelagt fordi det er slettet fra den eksterne siden, eller %{site_name} har ikke til det lenger"
   photo_hosting_accounts: Bildehostingskontoer
   photo_licensing: Bildelisensiering
   photo_type: Bildetype
@@ -4103,8 +4102,6 @@ nb:
   you_arent_following_that_person: "Du følger ikke den personen."
   you_can_accept_invitations: Du kan akseptere invitasjonen her
   you_can_choose_observations_associated: Du kan velge observasjoner som skal knyttes til dette journal-innlegget.
-  you_can_edit_this_default_check_list_because: |
-    Du kan redigere denne standard sjekkliste fordi du er en admin, men det bør egentlig ikke være noe grunn til å gjøre det.
   you_can_only_destroy_taxa_you_created: "Du kan kun ødelegge taksa som du selv har opprettet, og du kan ikke ødelegge taksa som brukes i taksonendringer."
   you_can_only_block_three_users: Du kan kun blokkere tre brukere
   you_can_show_the_boundary_of: Du kan vise grensen til stedet på din prosjektside hvis dette stedet har en grense.
@@ -4496,19 +4493,21 @@ nb:
         taxa_observed_in_all_queries: Taksa observert i alle spørringer
         taxa_observed_in_only_one_query: Taksa observert i kun en spørring
         total_taxa: Taksa totalt
-        total_taxa_desc: |
-          Dette er det totale antallet "endetaksa" representert i spørringen. Noen ganger vil du se flere rader enn dette med verdier fordi det er høyere taksa lagt til fra andre spørringer. F.eks. hvis spørring 1 har en observasjon sv Homo sapiens og spørring 2 har en observasjon av slekta Homo, vil begge taksa stå i tabellen, men det representerer en ekstra rad for slekta Homo for spørring 1, som ikke inkluderte den i dens totale antall fordi det kun teller arten Homo sapiens i den slekta, fordi det var endetaksonet av den delen av dets tre.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertikal
+        #Count of how many taxa several observation searches have in common
         x_in_common:
           one: "%{count} til felles"
           other: "%{count} til felles"
+        #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
           one: "%{count} ikke til felles"
           other: "%{count} ikke til felles"
+        #Count of how many taxa are present in an observation search
         x_total:
           one: "%{count} totalt"
           other: "%{count} totalt"
+        #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
           one: "%{count} unik"
           other: "%{count} unike"
