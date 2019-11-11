@@ -5947,7 +5947,13 @@ es-AR:
           notice: 'Aplicación revocada.'
   i18n:
     inflections:
+      "@vow_or_con":
+        vow: vocal
+        con: consonante
       "@gender":
+        m: masculino
+        f: femenino
+        "n": neutro
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@f"
   wild: Silveste
