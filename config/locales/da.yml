@@ -431,6 +431,7 @@ da:
   announcements: Meddelelser
   any: alle
   any_: Alle
+  anyone: Enhver
   apply_to_selected: Tilføj til valgte
   apply_captive_cultivated: "Tilføj i fangenskab / dyrket"
   apply_fields: Tilføj felter
@@ -1992,6 +1993,7 @@ da:
   needs_id_: Behøver ID
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
   needs_to_be_identified: Behøver en identifikation
+  new: Ny
   new_and_noteworthy: Nyt og bemærkelsesværdigt
   new_announcement: Ny meddelelse
   new_assessment: Ny vurdering
@@ -2451,6 +2453,7 @@ da:
   photo_by_id_attribution: "Foto %{id},%{attribution}"
   photo_credits: Fotokrediteringer
   photo_deleted: Foto slettet
+  photo_destroyed_because_it_was_deleted_from: "Foto ødelagt fordi det blev slettet fra det eksterne websted eller %{site_name} ikke længere har tilladelse til at se det"
   photo_hosting_accounts: 'Fotodelingtjenester:'
   photo_licensing: Fotolicens
   photo_type: Foto type
@@ -4179,6 +4182,9 @@ da:
   you_arent_following_that_person: "Du følger ikke denne person."
   you_can_accept_invitations: Du kan acceptere invitationen her
   you_can_choose_observations_associated: Du kan vælge observationer, som skal forbindes med dette journalindlæg.
+  you_can_edit_this_default_check_list_because: |
+    Du kan redigere denne standard tjekliste fordi du er en
+    administrator, men der burde ikke være et behov for at gøre det.
   you_can_only_destroy_taxa_you_created: "Du kan kun ødelægge taksa du har oprettet, og du kan ikke ødelægge taksa, der bruges i takson ændringer."
   you_can_only_block_three_users: Du kan kun blokere tre brugere
   you_can_show_the_boundary_of: Du kan vise stedets ydre grænser på din projektside. (Hvis stedet har ydre grænser).
@@ -4692,6 +4698,7 @@ da:
         zoo, akvarium </strong> eller en anden situation, hvor den kun var
         til stede <strong> fordi mennesket havde til hensigt at de skulle være der </strong>? Alle observationer af levende organismer er velkomne, men vi vil gerne vide når organismerne ikke er vilde / fra naturen.
       compare:
+        about_missing_taxa: Om Manglende Taksa
         about_total_taxa: "Om Taksa i alt"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Kombinerede
@@ -4713,6 +4720,11 @@ da:
         taxa_observed_in_all_queries: Taksa observeret i alle forespørgsler
         taxa_observed_in_only_one_query: Taksa kun observeret i én forespørgsler
         total_taxa: Taksa i alt
+        total_taxa_desc: |
+          Dette er det samlede antal "blad"-taksa, som er repræsenteret i forespørgslen.
+          Undertiden ses flere rækker end disse med ikke-null antal, da højereniveau taksaer er tilføjet fra andre forespørgsler. Har Forespørgsel 1 f.eks. en observation af Homo sapiens og Forespørgsel 2 har en observation af Slægten Homo, vil begge taksaer fremgå i tabellen, men repræsenterer samtidig en ekstra række for Slægten Homo for Forespørgsel 1, som ikke medtog den i det samlede antal, da kun arten
+          Homo sapiens blev medtaget inden for denne slægt, da den udgjorde "bladet" på den
+          del af dens træ.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertikal
         #Count of how many taxa several observation searches have in common
@@ -5822,6 +5834,7 @@ da:
           biodiversitets information fra hele verden.
         license_description_attribution_html: |
           Licensbeskrivelser og billeder &copy; %{year} Creative Commons, benyttet under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-licens</a> (så meta!)
+        monthly_supporter: Månedens Supporter
         monthly_supporter_desc_html: |
           iNaturalist månedlige supporters giver månedlige bidrag, som modtages af California Academy of Sciences (United
           States IRS FIN 94-1156258) til støtte af nonprofit-driften af iNaturalist og iNaturalist-netværk sites.
@@ -5836,6 +5849,26 @@ da:
           </p>
         name_place_help_html: |
           Prioritér lokale navne brugt på dette sted.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Kommentarer
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identifikationer
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Omtaler
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Beskeder
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Projektjournalindlæg
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Når et projekt tilføjer dine observationer
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_curator_changes: Projektkuratorændringer
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Taksonomiændringer
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Observationer fra folk, jeg følger
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Observationer af taksa eller fra steder, jeg abonnerer på
         opt_in_to_map_tile_test: Tilmeld dig kortfelttesten
         opt_in_to_map_tile_test_description: |
           Tilmelder til denne test betyder, vil du se nye gitterbaserede kortfelter til distributionskort, når der zoomes ud. Disse gitre er mindre krævende for vores servere, skulle være hurtigere at gengive, efterhånden som iNaturalist vokser samt give bedre visning af obeservationstæthed.
