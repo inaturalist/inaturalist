@@ -1798,7 +1798,8 @@ es-AR:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
-    datetime_with_offset: "MMM D, AAAA · LT Z"
+    datetime_with_zone: "D MMM YYYY · LT z"
+    datetime_with_offset: "D MMM YYYY · LT Z"
   month: Mes
   months: Meses
   more: Más
