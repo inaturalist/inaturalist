@@ -432,6 +432,7 @@ it:
   announcements: Avvisi
   any: qualsiasi
   any_: Qualsiasi
+  anyone: Chiunque
   apply_to_selected: Applica ai selezionati
   apply_captive_cultivated: "Applica in cattività / coltivato"
   apply_fields: Applica campi
@@ -2131,7 +2132,7 @@ it:
   note: Nota
   notes: Note
   note_you_can_modify_the_height_attribute: "Nota: È possibile modificare l'altezza per adattarla allo spazio disponibile sulla tua pagina web."
-  notify_me_of_mentions: Notificami le citazioni (e.g. @nomeutente)
+  notify_me_of_mentions: Notificami le menzioni (e.g. @nomeutente)
   notify_me_about_redundant_identifications: Avvisami della conferma delle identificazioni
   notify_me_about_redundant_identifications_desc: |
     Ricevi le notifiche sulle identificazioni che sono in accordo con le tue. Se lo deselezioni riceverai solo le notifiche delle identificazioni che non corrispondono esattamente al taxon della tua identificazione.
@@ -2427,6 +2428,7 @@ it:
   photo_by_id_attribution: "Foto %{id}, di %{attribution}"
   photo_credits: Crediti delle foto
   photo_deleted: Foto cancellata
+  photo_destroyed_because_it_was_deleted_from: "Foto distrutta perché è stata eliminata dal sito esterno o perché %{site_name} non ha più il permesso di vederla"
   photo_hosting_accounts: Account di hosting per le foto
   photo_licensing: Licenza delle foto
   photo_type: Tipo di foto
@@ -4110,6 +4112,8 @@ it:
   you_arent_following_that_person: "Non stai seguendo questa persona."
   you_can_accept_invitations: Puoi accettare l'invito qui
   you_can_choose_observations_associated: Tu puoi scegliere le osservazioni da associare a questo post del diario.
+  you_can_edit_this_default_check_list_because: |
+    Tu puoi modificare questa checklist predefinita perché sei un amministratore, ma non dovrebbe esserci bisogno di farlo.
   you_can_only_destroy_taxa_you_created: "Puoi cancellare solo i taxa che hai creato, e non puoi eliminare i taxa che sono utilizzati nelle modifiche tassonomiche."
   you_can_only_block_three_users: Puoi bloccare solo tre utenti
   you_can_show_the_boundary_of: Puoi mostrare i confini del luogo sulla pagina del tuo progetto se il luogo ha i confini definiti.
@@ -4500,6 +4504,7 @@ it:
         L'organismo è <strong>coltivato</strong> o
         <strong>in cattività</strong>? Ad esempio, era in un <strong>giardino, zoo, aquario</strong> o in qualche situazione per cui era presente solo <strong>perché l'uomo ha fatto in modo che fosse lì</strong>? Tutte le osservazioni delle forme di vita sono ben accette, ma gradiremmo sapere quando gli organismi non sono selvatici / naturalizzati.
       compare:
+        about_missing_taxa: Riguardo ai Taxa Mancanti
         about_total_taxa: "Riguardo i Taxa Totali"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Combinata
@@ -4519,6 +4524,9 @@ it:
         taxa_observed_in_all_queries: Taxa osservati in tutte le interrogazioni
         taxa_observed_in_only_one_query: Taxa osservati in una sola interrogazione
         total_taxa: Taxa Totali
+        total_taxa_desc: |
+          Questo è il numero totale di taxa "foglia" risultanti dall'interrogazione.
+          A volte vedrai più righe con conteggi diversi da zero perché ci sono taxa di livello superiore provenienti da altre interrogazioni. Per esempio, Se l'Interrogazione 1 ha un'osservazione di Homo sapiens e l'Interrogazione 2 ha un'osservazione di Genere Homo, entrambi i taxa saranno presenti nella tabella, ma nell'Interrogazione 1 il Genere Homo costituisce una riga aggiuntiva ma non è incluso nel conteggio totale perchè l'interrogazione ha considerato solo la specie Homo sapiens all'interno di quel genere (in quanto quella costituiva la "foglia" di quella parte dell'albero).
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Verticale
         #Count of how many taxa several observation searches have in common
@@ -5375,6 +5383,7 @@ it:
         license_description_attribution_html: |
           Descrizioni ed immagini delle licenze &copy; %{year} Creative Commons, usate sotto una <a href="http://creativecommons.org/licenses/by/3.0/">licenza Attribuzione Creative
           Commons</a> (così metareferenziale!)
+        monthly_supporter: Sostenitore Mensile
         monthly_supporter_desc_html: |
           I sostenitori mensili di iNaturalist forniscono donazioni mensili automatiche che sono ricevute dalla California Academy of Sciences (IRS FIN 94-1156258 degli Stati Uniti) a sostegno dell'azione no-profit di iNaturalist e dei siti del Network di iNaturalist.
           <a href="%{url}">Fai clic qui per diventare un sostenitore mensile</a>.
@@ -5388,6 +5397,26 @@ it:
           </p>
         name_place_help_html: |
           Dai priorità ai nomi comuni usati in questo luogo.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Commenti
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identificazioni
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Menzioni
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Messaggi
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Post del diario di progetto
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Quando un progetto aggiunge le tue osservazioni
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_curator_changes: Cambi di curatore del progetto
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Modifiche tassonomiche
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Osservazioni da parte di persone che seguo
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Osservazioni di taxa o da luoghi a cui sono iscritto
         opt_in_to_map_tile_test: Seleziona la prova della mappa mosaico
         opt_in_to_map_tile_test_description: |
           Selezionando questa prova, quando ridurrai l'ingrandimento, vedrai una nuova mappa mosaico basata su griglia per le mappe di distribuzione. Queste griglie sono meno impegnative per i nostri server, dovrebbero essere più veloci da visualizzare con la crescita di iNaturalist, e dovrebbero migliorare la vista della densità di osservazioni. In caso, speriamo di applicare questa modifica a tutto il sito. Vorremmo sapere cosa ne pensi sul forum.
