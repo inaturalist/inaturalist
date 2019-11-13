@@ -1919,7 +1919,13 @@ da:
       'y': "1å"
       #Short text representing %d years in the past
       yy: "%då"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "D MMM, YYYY · LT z"
   month: Måned
   monthly_supporter_since_date_html: |
