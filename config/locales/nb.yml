@@ -1906,7 +1906,13 @@ nb:
       'y': "1å"
       #Short text representing %d years in the past
       yy: "%då"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "D MMM, YYYY · LT Z"
   month: Måned
   monthly_supporter_since_date_html: |
@@ -2414,7 +2420,7 @@ nb:
   per_week: Per uke
   person: Person
   personal_message: Personlig beskjed
-  personal_message_description: Ingen liker å få epost fra en maskin! Hvorfor ikke fortell vennene dine hvorfor du inviterer dem?
+  personal_message_description: Ingen liker å få e-post fra en maskin! Hvorfor ikke fortell vennene dine hvorfor du inviterer dem?
   per_page: "Per side"
   photo: Bilde
   photo_attribution: "Bilde %{attribution}"
@@ -3970,7 +3976,7 @@ nb:
   we_also_support: |
     Vi støtter også <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google Bilder</a>, og <a href="http://facebook.com">Facebook</a> for bildelagring.
   we_can_only_understand_csv_in: Vi kan kun forstå csv i følgende format
-  we_couldnt_find_a_user: Vi kunne ikke finne en bruker med den epostadressen.
+  we_couldnt_find_a_user: Vi kunne ikke finne en bruker med den e-postadressen.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunne ikke finne en bruker med den aktiveringskoden. Du har muligens allerede aktivert din konto, vennligst prøv å logge på."
   we_didnt_find_any_photos: Vi fant ingen bilder med søkeordene du oppga.
   we_had_a_problem_flagging_that_item: "Vi hadde et problem under markeringen av det objektet: %{flag_error}"
@@ -4160,7 +4166,7 @@ nb:
   youve_joined_the_x_project: "Du har blitt medlem i prosjektet %{project_invitation} og din observasjon har blitt lagt til"
   your_account_has_been_activated: Din konto har blitt aktivert!
   your_account_has_been_verified: "Din konto på %{site_name} er bekreftet! Vennligst logg inn for å fortsette."
-  your_activation_code_was_missing: "Din aktiveringskode manglet. Vennligst følg url'en fra din epost."
+  your_activation_code_was_missing: "Din aktiveringskode manglet. Vennligst følg url'en fra din e-post."
   your_browser_does_not_support_the_audio_element: Din nettleser støtter ikke audio-elementet.
   your_comment_was_saved: Ditt innhold ble lagret
   your_content: Ditt innhold
@@ -4536,7 +4542,7 @@ nb:
         check_back: |
           Hvis du laster denne siden på nytt om noen minutter bør din eksport vises i listen nederst på siden.
         receive_an_email_with_your_data: Få en e-post med dine data
-        receive_an_email_with_your_data_help: Du vil få en epost med din eksport som et vedlegg.
+        receive_an_email_with_your_data_help: Du vil få en e-post med din eksport som et vedlegg.
         well_email_you: "Ok, vi sender deg en e-post når den er klar."
         taking_a_while: "Dette tar en stund. Vennligst prøv ett av valgene under."
         date_range_help: "Maks og min observasjonsdatoer i ÅÅÅÅ-MM-DD format, f.eks. 2015-01-17"
@@ -4719,7 +4725,7 @@ nb:
           Vennligst sjekk stavingen for hver post. Hvis din stavelse er korrekt, søk for arten på %{search_taxa_url}. Hvis navnet ikke er i databasen til %{site_name} ennå, må du legge det til før din masse-opplasting vil fungere. Bruk boksen nederst på søkesiden for å importere nye navn. Hvis navnet finnes men brukes for flere godkjente taksa, prøv å bruke et mer eller mindre spesifikt navn som kun matcher et eneste takson.
       observations_export_notification:
         your_observations_export_is_ready_html: |
-          Din eksport av observasjoner er klar. En kopi er vedlagt i denne eposten, eller du kan <a href="%{url}">laste ned din eksport</a>.
+          Din eksport av observasjoner er klar. En kopi er vedlagt i denne e-posten, eller du kan <a href="%{url}">laste ned din eksport</a>.
         your_observations_export_failed_html: |
           Din eksport av observasjoner mislyktes. Gå til <a href="%{url}">observasjonseksport-siden</a> for en liste av dine eksporter.
       parental_consent:
@@ -4737,29 +4743,28 @@ nb:
           <ol>
           <li>
           <p>
-          Opprett en konto på iNaturlaist som barnet ditt vil bruke på denne lenken:
+          Opprett en konto på iNaturalist som barnet ditt vil bruke på denne lenken:
           <a href="%{registration_url}">%{registration_url}</a>
           </p>
           </li>
           <li>
           <p>
-          Etter at du har opprettet en konto for ditt barn, ber vi deg om å overføre en liten donasjon av 1 dollar til iNaturalist med ett kredittkort for å verifisere at du er en voksen. Vennligst sjekk at du bruker samme epostadressen som du har fyllt ut i feltet "Foreldre epost" under registreringen når du donerer.
+          Etter at du har opprettet en konto for ditt barn, ber vi deg om å overføre en liten donasjon av 1 dollar til iNaturalist med ett kredittkort for å verifisere at du er en voksen. Vennligst sjekk at du bruker samme e-postadressen som du har fyllt ut i feltet "Foreldre e-post" under registreringen når du donerer.
           </p>
           </li>
           <li>
           <p>
-          Når vi har bearbeidet donasjonen, sender vi en epost til med beskjeden at ditt barns konto er aktivert og kan du bruke brukernavnet og passordet du opprettet på iNaturalist for å logge på i ditt barns Seek app.
+          Når vi har bearbeidet donasjonen, sender vi en e-post til med beskjeden at ditt barns konto er aktivert og kan du bruke brukernavnet og passordet du opprettet på iNaturalist for å logge på i ditt barns Seek app.
           </p>
           </li>
           </ol>
           <p>
-          iNaturalist samler følgende 
-          collects the following personsopplysninger:
+          iNaturalist samler følgende personsopplysninger:
           </p>
           <ol>
           <li>
           <p>
-          <strong>epostadresse (privat):</strong> hver konto på iNaturalist har en epostadresse knyttet til seg som ikke offentliggjøres.
+          <strong>e-postadresse (privat):</strong> hver konto på iNaturalist har en e-postadresse knyttet til seg som ikke offentliggjøres.
           </p>
           </li>
           <li>
@@ -4811,10 +4816,10 @@ nb:
           </p>
           <ul>
           <li><strong>Navn til foreldre eller foresatt:</strong> %{parent_name}</li>
-          <li><strong>Epost til foreldre eller foresatt:</strong> %{parent_email}</li>
+          <li><strong>E-post til foreldre eller foresatt:</strong> %{parent_email}</li>
           <li><strong>Barnets navn:</strong> %{child_name}</li>
           <li><strong>Barnets bursdag:</strong> %{child_birthday}</li>
-          <li><strong>Epost til barnets konto:</strong> %{child_email}</li>
+          <li><strong>E-post til barnets konto:</strong> %{child_email}</li>
           <li><strong>Brukernavn til barnets konto:</strong> %{child_username}</li>
           </ul>
           <p>
@@ -4953,14 +4958,14 @@ nb:
           enkeltobservasjoner. Å invitere personer vil
           </p>
           <ol>
-          <li>Sende en epost til dem med en invitasjon til å bli med på prosjektet ditt</li>
+          <li>Sende en e-post til dem med en invitasjon til å bli med på prosjektet ditt</li>
           <li>Vise en invitasjon i oversikten deres</li>
           <li>Tillate dem å bli med på prosjektet ditt hvis det har blitt satt som kun på invitasjon</li>
           </ol>
           <p class="ui">
           Kun prosjektkuratorer kan invitere personer til å bli med på et prosjekt. Du
           burde kunne søke personer ved å bruke deres iNat brukernavn eller
-          deres <em>fullstendige</em> epostadresse, gitt at vi har det laget.
+          deres <em>fullstendige</em> e-postadresse, gitt at vi har det laget.
           </p>
       join:
         invite_only_description: |
@@ -5083,7 +5088,7 @@ nb:
         this_is_a_preview: |
           Dette er en forhåndsvisning av hvordan prosjektet ville se ut som et samlingsprosjekt.
       updates_desc: |
-        Få oppdateringer om dette prosjektet i din oversikt og i den daglige oppdateringseposten.
+        Få oppdateringer om dette prosjektet i din oversikt og i den daglige e-posten med oppdateringer.
     search:
       index:
         no_taxa_options_html: |
@@ -5326,7 +5331,7 @@ nb:
         furthermore_cannot_undo_html: |
           Også, <strong>denne handlingen kan ikke angres.</strong> Hvis du ombestemmer deg senere får du ikke noe av det innholdet tilbake.
         settings_and_mute_html: |
-          Hvis denne siden genererer for mange varsler, vurder å <a href="/users/edit">redigere dine innstillinger</a> for å slå av bestemte varslinger eller å slutte å få epost fra oss. Hvis du har problemer med en bestemt person på siden, vurder å <a href="/users/edit">dempe</a> vedkommende i steden for å slette din konto.
+          Hvis denne siden genererer for mange varsler, vurder å <a href="/users/edit">redigere dine innstillinger</a> for å slå av bestemte varslinger eller å slutte å få e-post fra oss. Hvis du har problemer med en bestemt person på siden, vurder å <a href="/users/edit">dempe</a> vedkommende i steden for å slette din konto.
         still_want_to_delete_html: |
           Hvis du fortsatt er sikker på at du vil slette din konto, skriv <code>%{confirmation_code}</code> i skjemaet nedenfor og trykk på knappen for å slette din konto og alle dine data.
         type_confirmation_code: Skriv %{confirmation_code}
@@ -5377,7 +5382,7 @@ nb:
         monthly_supporter_desc_html: |
           Månedlige iNaturalist Supportere donerer automatisk hver måned til 'California Academy of Sciences' (United
           States IRS FIN 94-1156258) for å støtte den not-for-profit driften av iNaturalist og iNaturalist nettverksider.
-          <a href="%{url}">Trykk her for å bli en Månedlig Supporter</a>. Når vi har bekreftet din støtte kan du krysse av denne boksen for å vise denne statusen på din profil. Merk: du må bruke den eksakt samme epostadressen på Donorbox som på iNaturalist for at vi kan bekrefte at du har blitt en månedlig supporter.
+          <a href="%{url}">Trykk her for å bli en Månedlig Supporter</a>. Når vi har bekreftet din støtte kan du krysse av denne boksen for å vise denne statusen på din profil. Merk: du må bruke den eksakt samme e-postadressen på Donorbox som på iNaturalist for at vi kan bekrefte at du har blitt en månedlig supporter.
         muting_desc_html: |
           <p>
           Å ignorere noen sørger for at du ikke får varslinger om ting de gjør, inkludert kommentarer på dine observasjoner, beskjeder til deg, å nevne deg, osv. Å ignorere noen hjelper deg med å overse noen uten å hindre dem fra å gjøre noe. 
@@ -5459,13 +5464,13 @@ nb:
           </p>
         thanks_for_creating_a_minor_account: TAKK FOR AT DU HAR OPPRETTET EN KONTO TIL EN MINDREÅRIG!
         we_will_send_you_an_email: |
-          Vi vil sende deg en epost så snart kontoen til ditt barn har blitt aktivert.
+          Vi vil sende deg en e-post så snart kontoen til ditt barn har blitt aktivert.
       new:
         child_name_private: Barnets navn (privat)
         create_a_minor_account: Opprett en konto til en mindreårig
         create_minor_account: Opprett konto til en mindreårig
         parent_name_private: Navn til foreldre eller foresatt (privat)
-        parent_email: Epost til foreldre eller foresatt (privat)
+        parent_email: E-post til foreldre eller foresatt (privat)
         inaturalist_minor_account_signup: iNaturalist påmelding til mindreårige
         parent_information_private: Foreldreinformasjon (privat)
         step1_title: OPPRETT EN KONTO FOR BARNET DITT
@@ -5473,10 +5478,10 @@ nb:
           For å tilfredsstille regler om personvern trenger vi tillatelse fra en foreldre eller foresatt for å kunne opprette en konto for noen som er under 13 år. Hvis du vil at ditt barn skal kunne bruke iNaturalist må du oppgi noe identitets- og kontaktinformasjon.
         step2_title: BEKREFT DIN IDENTITET MED ET KREDITTKORT
         step2_desc: |
-          For å bekrefte din identitet som voksen, trenger vi en donasjon på minst 1 amerikansk dollar til iNaturlist med et kredittkort. Dette er den minst påtrengende metoden av identitetsbekreftelse som lar oss handle i tråd med personvernslover. Vennligst sjekk at du bruker den samme epostadressen som du oppga som "epost foreldre" i det forrige steget.
-        step3_title: VENT PÅ BEKREFTELSES-EPOSTEN
+          For å bekrefte din identitet som voksen, trenger vi en donasjon på minst 1 amerikansk dollar til iNaturlist med et kredittkort. Dette er den minst påtrengende metoden av identitetsbekreftelse som lar oss handle i tråd med personvernslover. Vennligst sjekk at du bruker den samme e-postadressen som du oppga som "e-post foreldre" i det forrige steget.
+        step3_title: VENT PÅ BEKREFTELSES-E-POSTEN
         step3_desc: |
-          Så snart vi matcher eposten brukt i donasjonen til eposten du oppga som "epost foreldre" vil vi aktivere barnets konto og sende foreldren en epost med instrukser til pålogging. Dette kan ta inntil 24 timer.
+          Så snart vi matcher e-posten brukt i donasjonen til e-posten du oppga som "e-post foreldre" vil vi aktivere barnets konto og sende foreldren en e-post med instrukser til pålogging. Dette kan ta inntil 24 timer.
         step3_donor_title: DITT BARNS KONTO HAR BLITT AKTIVERT
         step3_donor_desc: |
           Siden du er en iNaturalist supporter klarte vi å bekrefte din identitet med din eksisterende donasjon.
@@ -5864,7 +5869,7 @@ nb:
         woeid: WOEID (Where On Earth IDentifier)
       site:
         logo: Ordmerke
-        logo_email_banner: Cover epost
+        logo_email_banner: Cover e-post
       source:
         title: Tittel
         in_text: I tekst
@@ -6055,7 +6060,7 @@ nb:
       write: |
         Opprett, oppdater, og slett dine observajoner, identifikasjoner, og annet innhold på dine vegner, og ha tilgang til dine skjulte koordinater og all annen informasjon du har tilgang til på siden.
       login: |
-        Tilgangsinformasjon relevant for pålogging, som epostadresse, brukernavn, navn, og brukerikon.
+        Tilgangsinformasjon relevant for pålogging, som e-postadresse, brukernavn, navn, og brukerikon.
     errors:
       messages:
         #Common error messages
