@@ -2004,6 +2004,7 @@ zh-CN:
   photo_browser: 照片浏览者
   photo_by_id_attribution: "照片 %{id}，%{attribution}"
   photo_deleted: 照片已删除
+  photo_destroyed_because_it_was_deleted_from: "图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限"
   photo_hosting_accounts: 照片托管账户
   photo_licensing: 照片许可协议
   photo_type: 照片类型
@@ -3327,6 +3328,8 @@ zh-CN:
   you_arent_following_that_person: "您尚未关注那个人。"
   you_can_accept_invitations: 您可以在这里接受邀请
   you_can_choose_observations_associated: 您可以选择与此刊物帖子相关联的观察结果。
+  you_can_edit_this_default_check_list_because: |
+    您可以编辑这个默认的检查列表，因为您是一位管理员，但真的不应该需要这样做。
   you_can_only_destroy_taxa_you_created: "您只能销毁您创建的分类群，并且不能销毁正在分类单元的修改中使用的分类群。"
   you_can_only_block_three_users: 您只可以封禁3位用户
   you_can_show_the_boundary_of: 如果地点有边界，您可以在项目页面上显示地点的边界。
