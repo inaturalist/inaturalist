@@ -1798,7 +1798,13 @@ es-AR:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
   month: Mes
   months: Meses
@@ -2272,6 +2278,7 @@ es-AR:
   photo_by_id_attribution: "Foto %{id}, %{attribution}"
   photo_credits: Créditos de las fotos
   photo_deleted: Foto borrada
+  photo_destroyed_because_it_was_deleted_from: "La foto fue destruida porque fue borrada de un sitio externo o %{site_name} no tiene permisos para mostrarla."
   photo_hosting_accounts: Cuentas de alojamiento de fotos
   photo_licensing: Licencia de la foto
   photo_type: Tipo de foto
@@ -3921,6 +3928,9 @@ es-AR:
   you_arent_following_that_person: "No estas siguiendo a esa persona."
   you_can_accept_invitations: Puede aceptar la invitación aquí.
   you_can_choose_observations_associated: Puede seleccionar observaciones para asociar con este artículo del diario.
+  you_can_edit_this_default_check_list_because: |
+    Puedes editar esta página porque eres un administrador,
+    pero no debería haber la necesidad de hacer eso.
   you_can_only_destroy_taxa_you_created: "Sólo puede destruir taxones que ha creado, y no se puede destruir taxones que se están utilizando en los cambios de taxones."
   you_can_only_block_three_users: Puedes bloquear a solo tres usuarios
   you_can_show_the_boundary_of: Puedes mostrar los límites del lugar en la página de tu proyecto solo si el lugar tiene límites.
