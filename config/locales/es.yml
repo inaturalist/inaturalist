@@ -431,6 +431,7 @@ es:
   announcements: Anuncios
   any: cualquiera
   any_: Cualquiera
+  anyone: Cualquiera
   apply_to_selected: Aplica a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
   apply_fields: Aplicar campos
@@ -1904,7 +1905,13 @@ es:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
   month: Mes
   monthly_supporter_since_date_html: |
@@ -1976,6 +1983,7 @@ es:
   needs_id_: '¡Necesita identificación!'
   needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
   needs_to_be_identified: Necesita identificarse
+  new: Nuevo
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
   new_assessment: Nueva evaluación
@@ -2424,6 +2432,7 @@ es:
   photo_by_id_attribution: "Foto %{id}, %{attribution}"
   photo_credits: Créditos de las fotos
   photo_deleted: Foto borrada
+  photo_destroyed_because_it_was_deleted_from: "La foto fue destruida porque fue borrada de un sitio externo o %{site_name} no tiene permisos para mostrarla."
   photo_hosting_accounts: Cuentas de alojamiento de fotos
   photo_licensing: Licencia de la foto
   photo_type: Tipo de foto
@@ -4109,6 +4118,9 @@ es:
   you_arent_following_that_person: "No estas siguiendo a esa persona."
   you_can_accept_invitations: Puede aceptar la invitación aquí.
   you_can_choose_observations_associated: Puede seleccionar observaciones para asociar con este artículo del diario.
+  you_can_edit_this_default_check_list_because: |
+    Puedes editar esta página porque eres administrador,
+    pero realmente no debería haber la necesidad de hacerlo.
   you_can_only_destroy_taxa_you_created: "Sólo puede destruir taxones que ha creado, y no se puede destruir taxones que se están utilizando en los cambios de taxones."
   you_can_only_block_three_users: Puedes bloquear a solo tres usuarios
   you_can_show_the_boundary_of: Puedes mostrar los límites del lugar en la página de tu proyecto solo si el lugar tiene límites.
@@ -4618,6 +4630,8 @@ es:
       captive_help_html: |
         Fue el organismo que observó <strong>cultivado</strong> o en <strong>cautiverio</strong>? Por ejemplo, estaba en <strong>un jardín, zoológico, el acuario</strong> o alguna otra situación en la que sólo estaba presente <strong>porque los seres humanos lo destinaron a estar allí</strong>? Todas las observaciones de los seres vivos son bienvenidas, pero nos gustaría saber cuando no sean silvestres/naturalizados.
       compare:
+        about_missing_taxa: Acerca de los taxones que faltan
+        about_total_taxa: "Acerca del total de taxones"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Combinadas
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
@@ -5521,6 +5535,7 @@ es:
         licensing_desc_html: |
           La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.
+        monthly_supporter: Patrocinador mensual
         monthly_supporter_desc_html: |
           Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS FIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.
           <a href="%{url}"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en NaturaLista para que podamos confirmar que se ha convertido en un seguidor mensual.
@@ -5533,6 +5548,22 @@ es:
           </p>
         name_place_help_html: |
           Priorizar los nombres vernáculos utilizados en este lugar.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Comentarios
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identificaciones
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Menciones
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Mensajes
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Cuando un proyecto incorpora tus observaciones
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Cambios taxonómicos
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Observaciones de personas a las que sigo
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Observaciones de taxones o de lugares a los que estoy suscrito
         place_preference_changed_notice_html: |
           Se modificó la preferencia de lugar. Si cambias de opinión, siempre podrás <a href='/users/edit'>editar tus preferencias</a>.
         project_addition_preferences:
