@@ -2126,6 +2126,7 @@ de:
   photo_browser: Foto Browser
   photo_by_id_attribution: "Foto %{id},%{attribution}"
   photo_deleted: Foto gelöscht
+  photo_destroyed_because_it_was_deleted_from: "Foto zerstört weil es von der externen Seite gelöscht wurde oder %{site_name} nicht mehr die Berechtigung hat, darauf zuzugreifen"
   photo_hosting_accounts: Bilderhosting-Accounts
   photo_licensing: Foto-Lizenzierung
   photo_type: Fototyp
@@ -3496,6 +3497,8 @@ de:
   you_arent_a_member_of_that_project: Du bist kein Mitglied dieses Projektes!
   you_arent_following_that_person: "Du folgst dieser Person nicht."
   you_can_accept_invitations: Du kannst die Einladung hier annehmen
+  you_can_edit_this_default_check_list_because: |
+    Du kannst diese Standard-Checkliste ändern, weil Du Admin bist, aber eigentlich sollte dafür keine Notwendigkeit bestehen.
   you_can_only_block_three_users: Du kannst nur drei Benutzer sperren
   you_cant_compare_a_list_with_nothing: Du kannst eine Liste nicht mit nichts vergleichen!
   you_cant_delete_a_project_list: "Du kannst diese Projektliste nicht löschen"
