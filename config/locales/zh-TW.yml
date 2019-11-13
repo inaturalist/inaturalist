@@ -1844,7 +1844,13 @@ zh-TW:
       'y': "一年前"
       #Short text representing %d years in the past
       yy: "%d年前"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "YYYY/MM/DD · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "YYYY/MM/DD · LT Z"
   month: 月
   monthly_supporter_since_date_html: |
@@ -2344,6 +2350,7 @@ zh-TW:
   photo_by_id_attribution: "照片 %{id}， %{attribution}"
   photo_credits: 照片出處
   photo_deleted: 照片已刪除
+  photo_destroyed_because_it_was_deleted_from: "照片已損毀，因為它被外部網站所刪除或 %{site_name} 不再有檢視它的權限"
   photo_hosting_accounts: 照片託管帳號
   photo_licensing: 照片許可
   photo_type: 相片類型
@@ -3982,6 +3989,8 @@ zh-TW:
   you_arent_following_that_person: "您沒有關注那名人。"
   you_can_accept_invitations: 您可在此接受邀請
   you_can_choose_observations_associated: 您可挑選觀察來與此日誌發佈文章做關聯。
+  you_can_edit_this_default_check_list_because: |
+    您可編輯此預設清單因為您是個管理員，但實際上不需要這麼做。
   you_can_only_destroy_taxa_you_created: "您僅能銷毀您所創建的物種分類群，另外您不能夠銷毀已被用於變更裡的物種分類群。"
   you_can_only_block_three_users: 您只可以封鎖三位使用者
   you_can_show_the_boundary_of: 若地點有邊界，您可在您的專案頁面上將地點邊界顯示出。
@@ -5263,6 +5272,10 @@ zh-TW:
         notification_preferences_project_added_your_observations: 當一個專案已添加了您的觀察
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_curator_changes: 專案策展人更動
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: 物種分類更動
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: 我追蹤的人之觀察記錄
         place_preference_changed_notice_html: |
           地點偏好設定已更改。若您改變了主意，您可以隨時<a href='/users/edit'>編輯您的設定</a>。
         project_addition_preferences:
