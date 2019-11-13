@@ -1,6 +1,6 @@
-class AddSuspendedAtToUpdateActions < ActiveRecord::Migration
+class AddSuspendedAtToSubscriptions < ActiveRecord::Migration
   def up
-    add_column :update_actions, :suspended_at, :timestamp
+    add_column :subscriptions, :suspended_at, :timestamp
 
     # Consider all UpdateActions for places and taxa to be viewed since we're
     # about to start suspending subscriptions if they have a lot of unviewed
@@ -24,6 +24,6 @@ class AddSuspendedAtToUpdateActions < ActiveRecord::Migration
   end
 
   def down
-    remove_column :update_actions, :suspended_at
+    remove_column :subscriptions, :suspended_at
   end
 end

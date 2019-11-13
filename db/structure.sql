@@ -3956,7 +3956,8 @@ CREATE TABLE public.subscriptions (
     resource_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    taxon_id integer
+    taxon_id integer,
+    suspended_at timestamp without time zone
 );
 
 
@@ -4678,8 +4679,7 @@ CREATE TABLE public.update_actions (
     notifier_id integer,
     notification character varying,
     resource_owner_id integer,
-    created_at timestamp without time zone,
-    suspended_at timestamp without time zone
+    created_at timestamp without time zone
 );
 
 

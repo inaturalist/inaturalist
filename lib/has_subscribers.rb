@@ -228,12 +228,13 @@ module HasSubscribers
           # Don't notify people who have already been notified by this
           next if users_with_unviewed_from_notifier.include?(subscription.user_id)
 
-          # Don't notify people about updates within a resource if they already have X unviewed updates about that resource
-          next if subscription.suspended?
-
           if options[:if]
             next unless options[:if].call(notifier, subscribable, subscription)
           end
+
+          # Don't notify people about updates within a resource if they already have X unviewed updates about that resource
+          next if subscription.suspended?
+
           users_to_notify[subscribable] ||= [ ]
           users_to_notify[subscribable] << subscription.user_id
         end

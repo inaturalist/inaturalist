@@ -68,7 +68,7 @@ class Subscription < ActiveRecord::Base
   # stop getting any updates about anything from CA
   def suspended?
     return false unless %w{Place Taxon}.include?( resource_type )
-    return true if suspended_at < 1.day.ago
+    return true if suspended_at && suspended_at < 1.day.ago
     unviewed_count_for_resource = UpdateAction.elastic_search(
       size: 0,
       filters: [
@@ -93,9 +93,10 @@ class Subscription < ActiveRecord::Base
     ).results.total_entries
     if unviewed_count_for_resource > 1000
       update_attribute( :suspended_at, Time.now )
-    else
-      update_attribute( :suspended_at, nil )
+      return true
     end
+    update_attribute( :suspended_at, nil )
+    false
   end
 
 end
