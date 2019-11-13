@@ -1915,7 +1915,13 @@ nl:
       'y': "1j"
       #Short text representing %d years in the past
       yy: "%dj"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
   month: Maand
   monthly_supporter_since_date_html: |
@@ -5648,7 +5654,7 @@ nl:
         create_a_minor_account: Maak een minderjarig account aan
         create_minor_account: Maak een minderjarig account aan
         parent_name_private: Naam van de ouder of wettelijke voogd (privé)
-        parent_email: Email van de ouder of wettelijke voogd (privé)
+        parent_email: E-mail van de ouder of wettelijke voogd (privé)
         inaturalist_minor_account_signup: Aanmelden Minderjarig Account voor iNaturalist
         parent_information_private: Ouderinformatie (privé)
         step1_title: MAAK EEN ACCOUNT AAN VOOR JE KIND
