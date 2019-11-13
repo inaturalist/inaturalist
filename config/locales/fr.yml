@@ -1770,6 +1770,9 @@ fr:
       future: "en %s"
       #Short text representing 1 month in the past
       M: "1min"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM YYYY · LT z"
   month: Mois
   monthly_supporter_since_date_html: |
@@ -1832,6 +1835,7 @@ fr:
   needs_id_: Nécessite un ID
   needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
   needs_to_be_identified: Doit être identifié
+  new: Nouveau
   new_and_noteworthy: Nouveau & Marquant
   new_announcement: Nouvelle annonce
   new_assessment: Nouvelle évaluation
@@ -2246,11 +2250,13 @@ fr:
   personal_message: Message personnel
   personal_message_description: Personne n’aime recevoir des courriels d’une machine! Pourquoi ne pas laisser savoir à vos amis que vous les invitez ?
   per_page: "Par page"
+  photo: Photo
   photo_attribution: "Photo de %{attribution}"
   photo_browser: Navigateur de photos
   photo_by_id_attribution: "Photo %{id}, de %{attribution}"
   photo_credits: Crédits photos
   photo_deleted: Photo supprimée
+  photo_destroyed_because_it_was_deleted_from: "Photo détruite, car elle a été supprimée sur le site externe ou %{site_name} n’a plus le droit de la voir"
   photo_hosting_accounts: Comptes d’hébergement de photos
   photo_licensing: Licence de photo
   photo_type: Type de Photo
@@ -2713,6 +2719,7 @@ fr:
   project_requirements: Besoins du projet
   project_rules: Règles du projet
   project_settings: Paramètres du projet
+  project_start_time_datetime: "Date de début : %{datetime}"
   project_that_does_not_contain_these_observations: Projet qui ne contient pas ces observations
   project_type_description: |
     Les évaluations et les bioblitz sont des types de projet spéciaux. Les évaluations servent à collaborer sur un ensemble d’évaluations d’espèces, en général pour estimer l’importance de leur conservation. Les bioblitz sont des événements qui ont un début et une fin définis.
@@ -3432,6 +3439,8 @@ fr:
   this_is_your_observation_desc: Vous pouvez toujours voir les coordonnées de vos propres observations.
   this_job_failed_to_run: Cette tâche ne s’est pas exécutée. Veuillez contacter %{email}
   this_list_is_empty!: Cette liste est vide!
+  this_list_only_accepts_taxa_that_are_species: Cette liste n'accepte que les taxons qui sont des espèces
+  this_list_only_accepts_taxa_that_are_species_or_lower: Cette liste n'accepte que les taxons de rang espèce ou inférieur
   this_observation: Cette observation
   this_observation_is_featured_on_x_sites:
     one: Cette observation est mise en vedette sur 1 site
@@ -3890,6 +3899,9 @@ fr:
   you_arent_following_that_person: "Vous ne suivez pas cette personne."
   you_can_accept_invitations: Vous pouvez accepter l’invitation ici
   you_can_choose_observations_associated: Vous pouvez choisir les observations à associer avec cette note du journal.
+  you_can_edit_this_default_check_list_because: |
+    Vous pouvez modifier cette liste de contrôle par défaut parce que vous êtes un
+    administrateur, mais il ne devrait pas être nécessaire de le faire.
   you_can_only_destroy_taxa_you_created: "Vous ne pouvez détruire que les taxons que vous avez créés, et vous ne pouvez pas détruire des taxons qui sont utilisés dans des modifications de taxon."
   you_can_only_block_three_users: Vous ne pouvez bloquer que trois utilisateurs
   you_can_show_the_boundary_of: Vous pouvez afficher la frontière du lieu sur votre page de projet s’il en a une.
@@ -4455,6 +4467,8 @@ fr:
         présent uniquement <strong>parce que des humains l’avaient voulu ainsi</strong> ? Toutes
         les observations d’êtres vivants sont les bienvenues, mais nous voulons savoir
         quand ces choses ne sont pas sauvages/acclimatées.
+      compare:
+        about_missing_taxa: À propos des taxons manquants
       export:
         choose_columns_desc: Choissez les colonnes que vous voulez exporter
         create_a_query_desc_html: |
@@ -5714,6 +5728,27 @@ fr:
           </p>
         name_place_help_html: |
           Prioriser les noms communs utilisés à cet endroit.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Commentaires
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identifications
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Messages
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Quand un projet ajoute vos observations
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Modifications taxinomiques
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Observations de personnes que je suis
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Observations de taxons ou de lieux auxquels je suis abonné
+        opt_in_to_map_tile_test: Inscription au test de tuile de carte
+        opt_in_to_map_tile_test_description: |
+          En vous inscrivant à ce test, vous verrez de nouvelles dalles cartographiques basées sur la grille pour les cartes de distribution lors du dézoomage. Ces grilles sont moins consommatrices de ressources, leur rendu devrait être
+          plus rapide au fur et à mesure que iNaturalist grandit, et mieux montrer la densité d'observation.
+          Nous prévoyons que ce remplacement sera étendu à terme à tout le site. Nous aimerions avoir votre
+          retour dans le forum.
+        opt_out_of_map_tile_test: Désinscription du test de tuile de carte
         place_preference_changed_notice_html: |
           Préférence de lieu modifiée. Si vous changez d’avis, vous pouvez toujours
           <a href='/users/edit'>modifier vos paramètres</a>.
