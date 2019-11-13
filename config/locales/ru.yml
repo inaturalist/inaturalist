@@ -2005,7 +2005,13 @@ ru:
       'y': "1г"
       #Short text representing %d years in the past
       yy: "%dг"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
   month: Месяц
   monthly_supporter_since_date_html: |
@@ -5900,10 +5906,10 @@ ru:
     template:
       body: 'Возникли некоторые проблемы со следующими полями:'
       header:
-        one: "%{count} ошибка препятствует сохранению этой %{model}"
-        few: '%{count} ошибки препятствуют сохранению этой %{model}'
-        many: '%{count} ошибок препятствуют сохранению этой %{model}'
-        other: '%{count} ошибок препятствуют сохранению этой %{model}'
+        one: "%{count} ошибка препятствует сохранению этого %{model}"
+        few: '%{count} ошибки препятствуют сохранению этого %{model}'
+        many: '%{count} ошибок препятствуют сохранению этого %{model}'
+        other: '%{count} ошибок препятствуют сохранению этого %{model}'
   helpers:
     defaults:
       title: "ЭТО ЗАГОЛОВОК"
