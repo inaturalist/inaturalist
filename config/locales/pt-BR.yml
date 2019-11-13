@@ -1718,6 +1718,9 @@ pt-BR:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "MMM D, AAAA · LT Z"
   month: Mês
   months: Meses
@@ -2179,6 +2182,7 @@ pt-BR:
   photo_by_id_attribution: "Foto %{id}, %{attribution}"
   photo_credits: Créditos fotográficos
   photo_deleted: Foto apagada
+  photo_destroyed_because_it_was_deleted_from: "A foto foi excluída do sistema por que foi apagada do site de origem ou %{site_name} você não tem mais permissão de acessá-la"
   photo_hosting_accounts: Contas de armazenamento de fotos
   photo_licensing: Licença da foto
   photo_type: Tipo de foto
@@ -3750,6 +3754,8 @@ pt-BR:
   you_arent_following_that_person: "Você não está seguindo nenhuma pessoa."
   you_can_accept_invitations: Você pode aceitar o convite aqui
   you_can_choose_observations_associated: Você pode escolher observações para associar com esta publicação do seu Boletim.
+  you_can_edit_this_default_check_list_because: |
+    Você pode editar esta lista de verificação padrão porque você é um administrador, mas isto não deveria ser algo com necessidade de ser feito.
   you_can_only_destroy_taxa_you_created: "Você só pode destruir táxons que criou, e você não pode destruir táxons que estão sendo utilizados em mudanças taxonômicas."
   you_can_only_block_three_users: Você só pode bloquear três usuários
   you_can_show_the_boundary_of: Você pode mostrar os limites do local na página do seu projeto se o local tiver limites.
