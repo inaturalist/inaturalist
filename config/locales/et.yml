@@ -1696,6 +1696,9 @@ et:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D. MMM YYYY · LT z"
   month: Kuu
   months: Kuud
@@ -2145,6 +2148,7 @@ et:
   photo_by_id_attribution: "Foto %{id}, %{attribution}"
   photo_credits: Foto andmed
   photo_deleted: Foto kustutatud
+  photo_destroyed_because_it_was_deleted_from: "Foto on hävinud, sest see kustutati algselt leheküljelt või pole lehel %{site_name} enam õigust seda näha"
   photo_hosting_accounts: Fotomajutus kontod
   photo_licensing: Foto litsenseerimine
   photo_type: Foto tüüp
@@ -3629,6 +3633,8 @@ et:
   you_arent_following_that_person: "Sa ei jälgi seda kasutajat."
   you_can_accept_invitations: Saad kutse vastu võtta siin
   you_can_choose_observations_associated: Vali soovikorral selle päevikukandega seotud vaatlused.
+  you_can_edit_this_default_check_list_because: |
+    Saad muuta vaikimisi kontrollnimekirja, sest oled administraator, kuigi selleks ei tohiks tegelikult põhjust olla.
   you_can_only_destroy_taxa_you_created: "Saad hävitada ainult enda loodud taksoneid ning ei saa hävitada taksoneid, mida kasutatakse taksonimuudatustes."
   you_can_only_block_three_users: Saad kokku blokeerida kolm kasutajat
   you_can_show_the_boundary_of: Saad enda projekti juures näidata koha piirjoont kui kohal on piirjoon.
