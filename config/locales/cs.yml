@@ -2022,6 +2022,7 @@ cs:
   photo_by_id_attribution: "Fotka %{id}, %{attribution}"
   photo_credits: Foto kredity
   photo_deleted: Fotka smazána
+  photo_destroyed_because_it_was_deleted_from: "Fotka byla zničena, protože byla smazána z externí stránky nebo %{site_name} už nemá povolení k jejímu zobrazování"
   photo_hosting_accounts: Účty s uloženými fotkami
   photo_licensing: Licence k fotce
   photo_type: Typ fotky
@@ -3490,6 +3491,8 @@ cs:
   you_arent_following_that_person: "Tuto osobu nesledujete."
   you_can_accept_invitations: Pozvání můžete přijmout zde
   you_can_choose_observations_associated: Můžete vybrat pozorování, která se spojí s tímto příspěvkem do deníku.
+  you_can_edit_this_default_check_list_because: |
+    Tento základní seznam můžete editovat, protože jste správce, nemělo by to ale být nutné.
   you_can_only_destroy_taxa_you_created: "Zničit můžete pouze taxony, které jste vytvořili, a nemůžete zničit taxony, které se používají při změnách taxonů."
   you_can_only_block_three_users: Zablokovat můžete pouze tři uživatele
   you_can_show_the_boundary_of: Hranici místa můžete zobrazit na stránce svého projektu, pokud místo má hranici.
