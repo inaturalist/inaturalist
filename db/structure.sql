@@ -4678,7 +4678,8 @@ CREATE TABLE public.update_actions (
     notifier_id integer,
     notification character varying,
     resource_owner_id integer,
-    created_at timestamp without time zone
+    created_at timestamp without time zone,
+    suspended_at timestamp without time zone
 );
 
 
@@ -10016,4 +10017,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190820224224');
 INSERT INTO schema_migrations (version) VALUES ('20190918161513');
 
 INSERT INTO schema_migrations (version) VALUES ('20191104233418');
+
+INSERT INTO schema_migrations (version) VALUES ('20191113020752');
 

@@ -219,9 +219,17 @@ module HasSubscribers
         end
 
         subscribable.update_subscriptions.with_unsuspended_users.find_each do |subscription|
+          # Don't notify people about their own content unless include_notifier was specified
           next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id && !options[:include_notifier]
+
+          # Don't notify people if they subscribed after the notifier was made/updated
           next if subscription.created_at > notifier.updated_at
+
+          # Don't notify people who have already been notified by this
           next if users_with_unviewed_from_notifier.include?(subscription.user_id)
+
+          # Don't notify people about updates within a resource if they already have X unviewed updates about that resource
+          next if subscription.suspended?
 
           if options[:if]
             next unless options[:if].call(notifier, subscribable, subscription)

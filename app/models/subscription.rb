@@ -57,4 +57,45 @@ class Subscription < ActiveRecord::Base
     ctrl.send :expire_action, FakeView.home_url( user_id: user_id, ssl: false )
   end
 
+  # Whether or not this subscription should be suspended based on how much the
+  # subscriber actually views the observations they get notified about. Has the
+  # somewhat serious flaw that place subscriptions with a taxon sort of get
+  # ignored in that the count of unviewed updates is for *all* updates for that
+  # resource for that user, not just updates for that resource for that user
+  # that were generated for a taxon preference. So if you subscribe to snakes of
+  # California and squirrels of California, and you have 600 unviewed snake
+  # updates from CA and 600 unviewed squirrel updates from CA, you will just
+  # stop getting any updates about anything from CA
+  def suspended?
+    return false unless %w{Place Taxon}.include?( resource_type )
+    return true if suspended_at < 1.day.ago
+    unviewed_count_for_resource = UpdateAction.elastic_search(
+      size: 0,
+      filters: [
+        {
+          term: {
+            resource_type: resource_type
+          }
+        },
+        {
+          term: {
+            resource_id: resource_id
+          }
+        }
+      ],
+      inverse_filters: [
+        {
+          terms: {
+            viewed_subscriber_ids: [user_id]
+          }
+        }
+      ]
+    ).results.total_entries
+    if unviewed_count_for_resource > 1000
+      update_attribute( :suspended_at, Time.now )
+    else
+      update_attribute( :suspended_at, nil )
+    end
+  end
+
 end

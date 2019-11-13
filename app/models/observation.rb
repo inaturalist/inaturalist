@@ -3235,8 +3235,12 @@ class Observation < ActiveRecord::Base
   end
 
   def user_viewed_updates(user_id)
-    obs_updates = UpdateAction.where(resource: self)
-    UpdateAction.user_viewed_updates(obs_updates, user_id)
+    obs_updates_as_resource = UpdateAction.where(resource: self)
+    obs_updates_as_notifier = UpdateAction.where(notifier: self)
+    UpdateAction.user_viewed_updates(
+      [obs_updates_as_resource.to_a, obs_updates_as_notifier.to_a].flatten,
+      user_id
+    )
   end
 
   def self.dedupe_for_user(user, options = {})

@@ -50,13 +50,13 @@ namespace :inaturalist do
   task :delete_expired_updates => :environment do
     min_id = UpdateAction.minimum(:id)
     # using an ID clause to limit the number of rows in the query
-    last_id_to_delete = UpdateAction.where(["created_at < ?", 3.months.ago]).
+    last_id_from_three_months_ago = UpdateAction.where(["created_at < ?", 3.months.ago]).
       where("id < #{ min_id + 1000000 }").maximum(:id)
-    UpdateAction.delete_and_purge("id <= #{ last_id_to_delete }")
+    UpdateAction.delete_and_purge("id <= #{ last_id_from_three_months_ago }")
     # delete anything that may be left in Elasticsearch
     try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
-        body: { query: { range: { id: { lte: last_id_to_delete } } } })
+        body: { query: { range: { id: { lte: last_id_from_three_months_ago } } } })
     end
 
     # # suspend subscriptions of users with no viewed updates
@@ -71,6 +71,34 @@ namespace :inaturalist do
     #   # suspend their subscriptions
     #   User.where(id: users_to_suspend.pluck(:id)).update_all(subscriptions_suspended_at: Time.now)
     # end
+
+    last_id_from_one_month_ago = UpdateAction.where(["created_at < ?", 1.month.ago]).
+      where("id < #{ min_id + 1000000 }").maximum(:id)
+    UpdateAction.delete_and_purge("id <= #{ last_id_from_one_month_ago } AND notifier_type = 'Observation'")
+    # delete anything that may be left in Elasticsearch
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+      Elasticsearch::Model.client.delete_by_query(
+        index: UpdateAction.index_name,
+        body: {
+          query: {
+            bool: {
+              must: [
+                {
+                  term: { notifier_type: "Observation" }
+                },
+                {
+                  range: {
+                    id: {
+                      lte: last_id_from_one_month_ago
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      )
+    end
   end
 
   desc "Delete expired S3 photos"
