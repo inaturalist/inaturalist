@@ -261,7 +261,11 @@ module ActsAsElasticModel
     def elastic_index!
       original_associations_loaded = self.association_cache.keys
       begin
-        __elasticsearch__.index_document
+        index_options = { }
+        if respond_to?(:wait_for_index_refresh) && wait_for_index_refresh
+          index_options[:refresh] = "wait_for"
+        end
+        __elasticsearch__.index_document( index_options )
         # in the test ENV, we will need to wait for changes to be applied
         self.class.__elasticsearch__.refresh_index! if Rails.env.test?
         if respond_to?(:last_indexed_at) && !destroyed?

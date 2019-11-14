@@ -64,6 +64,7 @@ class Identification < ActiveRecord::Base
   attr_accessor :skip_set_previous_observation_taxon
   attr_accessor :skip_set_disagreement
   attr_accessor :bulk_delete
+  attr_accessor :wait_for_obs_index_refresh
 
   preference :vision, :boolean, default: false
 
@@ -240,6 +241,7 @@ class Identification < ActiveRecord::Base
           observation.id, observation.user_id ] }
       ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, observation.user_id)
     end
+    observation.wait_for_index_refresh = !!wait_for_obs_index_refresh
     observation.identifications.reload
     observation.set_community_taxon(force: true)
     observation.set_taxon_geoprivacy
