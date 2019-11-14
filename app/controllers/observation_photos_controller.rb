@@ -61,6 +61,7 @@ class ObservationPhotosController < ApplicationController
     end
     
     begin
+      @observation_photo.observation.wait_for_index_refresh = true
       @observation_photo.save
     rescue PG::UniqueViolation => e
       raise e unless e.message =~ /index_observation_photos_on_uuid/
@@ -69,7 +70,6 @@ class ObservationPhotosController < ApplicationController
     
     respond_to do |format|
       format.json do
-        Observation.refresh_es_index
         if @observation_photo.valid?
           render :json => @observation_photo.to_json(:include => [:photo])
         else
