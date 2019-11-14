@@ -382,6 +382,7 @@ zh-TW:
   announcements: 公告
   any: 任何
   any_: 任何
+  anyone: 任何人
   apply_to_selected: 套用至已選
   apply_captive_cultivated: "套用圈養/栽培"
   apply_fields: 套用欄位
@@ -1843,7 +1844,13 @@ zh-TW:
       'y': "一年前"
       #Short text representing %d years in the past
       yy: "%d年前"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "YYYY/MM/DD · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "YYYY/MM/DD · LT Z"
   month: 月
   monthly_supporter_since_date_html: |
@@ -4374,6 +4381,8 @@ zh-TW:
       captive_help_html: |
         生物是屬於<strong>培育</strong>或是
         <strong>捕獲</strong>的？例如：是存在<strong>花園、動物園、魚缸</strong>或一些其它存在情況是<strong>因為人類行為意圖而在這裡</strong>？我們歡迎所有生物的觀察，不過請讓我們了解該生物是屬於野化或歸化。
+      compare:
+        about_missing_taxa: 關於找不到的分類群
       export:
         choose_columns_desc: 選擇您所想要匯出的欄位
         create_a_query_desc_html: |
@@ -5233,6 +5242,7 @@ zh-TW:
           </p>
         licensing_desc_html: |
           授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，%{site_name} 會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。
+        monthly_supporter: 每月支助者
         monthly_supporter_desc_html: |
           iNaturalist 的每月贊助者會在每一個月自動做出捐款，來支持非營利性運營的
           iNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS FIN 94-1156258）。<a href="%{url}">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。
@@ -5248,6 +5258,24 @@ zh-TW:
           </p>
         name_place_help_html: |
           在此地點優先採用通用名稱。
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: 評論
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: 鑑定
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: 提及
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: 訊息
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: 專案日誌發佈文章
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: 當一個專案已添加了您的觀察
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_curator_changes: 專案策展人更動
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: 物種分類更動
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: 我追蹤的人之觀察記錄
         place_preference_changed_notice_html: |
           地點偏好設定已更改。若您改變了主意，您可以隨時<a href='/users/edit'>編輯您的設定</a>。
         project_addition_preferences:

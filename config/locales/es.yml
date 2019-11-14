@@ -431,6 +431,7 @@ es:
   announcements: Anuncios
   any: cualquiera
   any_: Cualquiera
+  anyone: Cualquiera
   apply_to_selected: Aplica a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
   apply_fields: Aplicar campos
@@ -1730,6 +1731,7 @@ es:
   loading_taxa_from_your: "Cargando taxones de tus observaciones..."
   loading_wikipedia_description: "Cargando descripción de Wikipedia..."
   locale_description: Locale permite configurar el idioma y las preferencias de formato de fecha.
+  locales_: Locales
   locales:
     ar: Árabe
     bg: Búlgaro
@@ -1903,8 +1905,14 @@ es:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM YYYY · LT z"
-    datetime_with_offset: "MMM D, AAAA · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "D MMM YYYY · LT Z"
   month: Mes
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
@@ -1975,6 +1983,7 @@ es:
   needs_id_: '¡Necesita identificación!'
   needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
   needs_to_be_identified: Necesita identificarse
+  new: Nuevo
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
   new_assessment: Nueva evaluación
@@ -4620,6 +4629,30 @@ es:
       copy_tip: "Añadir una observación nueva copiando la fecha, el lugar, las fotos de esta observación y los campos de observación."
       captive_help_html: |
         Fue el organismo que observó <strong>cultivado</strong> o en <strong>cautiverio</strong>? Por ejemplo, estaba en <strong>un jardín, zoológico, el acuario</strong> o alguna otra situación en la que sólo estaba presente <strong>porque los seres humanos lo destinaron a estar allí</strong>? Todas las observaciones de los seres vivos son bienvenidas, pero nos gustaría saber cuando no sean silvestres/naturalizados.
+      compare:
+        about_missing_taxa: Acerca de los taxones que faltan
+        about_total_taxa: "Acerca del total de taxones"
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Combinadas
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Horizontal
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Intervalo
+        total_taxa: Total Taxones
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Vertical
+        #Count of how many taxa several observation searches have in common
+        x_in_common:
+          one: "%{count} en común"
+          other: "%{count} en común"
+        #Count of how many taxa are present in an observation search
+        x_total:
+          one: "%{count} total"
+          other: "%{count} total"
+        #Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          one: "%{count} único"
+          other: "%{count} únicos"
       export:
         choose_columns_desc: Elija las columnas que desea exportar
         create_a_query_desc_html: |
@@ -5502,6 +5535,7 @@ es:
         licensing_desc_html: |
           La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.
+        monthly_supporter: Patrocinador mensual
         monthly_supporter_desc_html: |
           Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS FIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.
           <a href="%{url}"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en NaturaLista para que podamos confirmar que se ha convertido en un seguidor mensual.
@@ -5514,6 +5548,22 @@ es:
           </p>
         name_place_help_html: |
           Priorizar los nombres vernáculos utilizados en este lugar.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Comentarios
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identificaciones
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Menciones
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Mensajes
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Cuando un proyecto incorpora tus observaciones
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Cambios taxonómicos
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Observaciones de personas a las que sigo
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Observaciones de taxones o de lugares a los que estoy suscrito
         place_preference_changed_notice_html: |
           Se modificó la preferencia de lugar. Si cambias de opinión, siempre podrás <a href='/users/edit'>editar tus preferencias</a>.
         project_addition_preferences:
@@ -6229,9 +6279,29 @@ es:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        form: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         journal: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6243,6 +6313,10 @@ es:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@m"
@@ -6251,7 +6325,33 @@ es:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6268,6 +6368,10 @@ es:
         taxon_stage: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@f"
   wild: Silveste
   will_paginate:
     previous_label: "&#8592; Previa"

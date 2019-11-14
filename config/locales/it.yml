@@ -161,7 +161,7 @@ it:
   accuracy_of_the_coordinates: 'Precisione delle coordinate in metri. È possibile modificare questa operazione facendo click sul collegamento "modifica" qui sopra o facendo click sull''indicatore di mappa e trascinando gli agganci. Prova a fare un cerchio grande abbastanza per assicurarti di essere stato da qualche parte al suo interno.'
   action: Azione
   actions: Azioni
-  active: Attivo
+  active: Attivi
   active_users: Utenti attivi
   activity: Attività
   activity_settings: Impostazioni dell'attività
@@ -432,6 +432,7 @@ it:
   announcements: Avvisi
   any: qualsiasi
   any_: Qualsiasi
+  anyone: Chiunque
   apply_to_selected: Applica ai selezionati
   apply_captive_cultivated: "Applica in cattività / coltivato"
   apply_fields: Applica campi
@@ -1906,7 +1907,13 @@ it:
       'y': "1 anno"
       #Short text representing %d years in the past
       yy: "%d anni"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
   month: Mese
   monthly_supporter_since_date_html: |
@@ -1980,6 +1987,7 @@ it:
   needs_id_: Serve ID
   needs_id_expandable_html: "<span class='full'>Serve </span>ID"
   needs_to_be_identified: Ha bisogno essere identificato
+  new: Nuovi
   new_and_noteworthy: Novità & Di Interesse
   new_announcement: Nuovo annuncio
   new_assessment: Nuova valutazione
@@ -2131,7 +2139,7 @@ it:
   note: Nota
   notes: Note
   note_you_can_modify_the_height_attribute: "Nota: È possibile modificare l'altezza per adattarla allo spazio disponibile sulla tua pagina web."
-  notify_me_of_mentions: Notificami le citazioni (e.g. @nomeutente)
+  notify_me_of_mentions: Notificami le menzioni (e.g. @nomeutente)
   notify_me_about_redundant_identifications: Avvisami della conferma delle identificazioni
   notify_me_about_redundant_identifications_desc: |
     Ricevi le notifiche sulle identificazioni che sono in accordo con le tue. Se lo deselezioni riceverai solo le notifiche delle identificazioni che non corrispondono esattamente al taxon della tua identificazione.
@@ -3247,6 +3255,7 @@ it:
   showing_one_to: Visualizzazione 1 -
   showing_taxa_from_everywhere: "Visualizzazione dei taxa di tutto il mondo"
   showing_taxa_from_place: "Visualizzazione taxa in %{place}"
+  showing_x_of_y: Visualizzando %{x} di %{y}
   showing_x_of_y_listings: "Visualizzando %{x} di %{y} liste"
   sign_in: Accedi
   sign_in_with_provider: "Accedi con %{provider}"
@@ -4501,6 +4510,48 @@ it:
       captive_help_html: |
         L'organismo è <strong>coltivato</strong> o
         <strong>in cattività</strong>? Ad esempio, era in un <strong>giardino, zoo, aquario</strong> o in qualche situazione per cui era presente solo <strong>perché l'uomo ha fatto in modo che fosse lì</strong>? Tutte le osservazioni delle forme di vita sono ben accette, ma gradiremmo sapere quando gli organismi non sono selvatici / naturalizzati.
+      compare:
+        about_missing_taxa: Riguardo ai Taxa Mancanti
+        about_total_taxa: "Riguardo i Taxa Totali"
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Combinata
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Orizzontale
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Intervallo
+        interval_limit_warning_hour: Quando il valore è ore è visualizzata solo 1 settimana
+        interval_limit_warning_day: Quando il valore è giorni è visualizzato solo 1 anno
+        interval_limit_warning_week: Quando il valore è settimane sono visualizzati solo 10 anni
+        interval_limit_warning_month: Quando il valore è mesi sono visualizzati 100 anni
+        interval_limit_warning_year: Quando il valore è anni sono visualizzati 100 anni
+        some_queries_missing_taxa: Per alcune interrogazioni mancano dei taxa
+        some_queries_missing_taxa_desc: |
+          Possiamo caricare solo 500 dei taxa più osservati per ogni interrogazione, per cui se ci sono più taxa nell'interrogazione, questi non appariranno o saranno mostrati con un "?" se sono presenti in altre interrogazioni. Prova a restringere le tue interrogazioni in modo che mostrino solo 500 taxa o meno per un confronto ottimale.
+        taxa_not_observed_in_all_queries: Taxa non osservati in tutte le interrogazioni
+        taxa_observed_in_all_queries: Taxa osservati in tutte le interrogazioni
+        taxa_observed_in_only_one_query: Taxa osservati in una sola interrogazione
+        total_taxa: Taxa Totali
+        total_taxa_desc: |
+          Questo è il numero totale di taxa "foglia" risultanti dall'interrogazione.
+          A volte vedrai più righe con conteggi diversi da zero perché ci sono taxa di livello superiore provenienti da altre interrogazioni. Per esempio, Se l'Interrogazione 1 ha un'osservazione di Homo sapiens e l'Interrogazione 2 ha un'osservazione di Genere Homo, entrambi i taxa saranno presenti nella tabella, ma nell'Interrogazione 1 il Genere Homo costituisce una riga aggiuntiva ma non è incluso nel conteggio totale perchè l'interrogazione ha considerato solo la specie Homo sapiens all'interno di quel genere (in quanto quella costituiva la "foglia" di quella parte dell'albero).
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Verticale
+        #Count of how many taxa several observation searches have in common
+        x_in_common:
+          one: "%{count} in comune"
+          other: "%{count} in comune"
+        #Count of how many taxa are not present in *all* of several observation searches
+        x_not_in_common:
+          one: "%{count} non in comune"
+          other: "%{count} non in comune"
+        #Count of how many taxa are present in an observation search
+        x_total:
+          one: "%{count} totale"
+          other: "%{count} totali"
+        #Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          one: "%{count} uniche"
+          other: "%{count} uniche"
       export:
         choose_columns_desc: Scegli le colonne da esportare
         create_a_query_desc_html: |
@@ -5339,6 +5390,7 @@ it:
         license_description_attribution_html: |
           Descrizioni ed immagini delle licenze &copy; %{year} Creative Commons, usate sotto una <a href="http://creativecommons.org/licenses/by/3.0/">licenza Attribuzione Creative
           Commons</a> (così metareferenziale!)
+        monthly_supporter: Sostenitore Mensile
         monthly_supporter_desc_html: |
           I sostenitori mensili di iNaturalist forniscono donazioni mensili automatiche che sono ricevute dalla California Academy of Sciences (IRS FIN 94-1156258 degli Stati Uniti) a sostegno dell'azione no-profit di iNaturalist e dei siti del Network di iNaturalist.
           <a href="%{url}">Fai clic qui per diventare un sostenitore mensile</a>.
@@ -5352,6 +5404,26 @@ it:
           </p>
         name_place_help_html: |
           Dai priorità ai nomi comuni usati in questo luogo.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Commenti
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identificazioni
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Menzioni
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Messaggi
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Post del diario di progetto
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Quando un progetto aggiunge le tue osservazioni
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_curator_changes: Cambi di curatore del progetto
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Modifiche tassonomiche
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Osservazioni da parte di persone che seguo
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Osservazioni di taxa o da luoghi a cui sono iscritto
         opt_in_to_map_tile_test: Seleziona la prova della mappa mosaico
         opt_in_to_map_tile_test_description: |
           Selezionando questa prova, quando ridurrai l'ingrandimento, vedrai una nuova mappa mosaico basata su griglia per le mappe di distribuzione. Queste griglie sono meno impegnative per i nostri server, dovrebbero essere più veloci da visualizzare con la crescita di iNaturalist, e dovrebbero migliorare la vista della densità di osservazioni. In caso, speriamo di applicare questa modifica a tutto il sito. Vorremmo sapere cosa ne pensi sul forum.
@@ -6061,9 +6133,29 @@ it:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        form: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         journal: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6075,6 +6167,10 @@ it:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@m"
@@ -6083,7 +6179,33 @@ it:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6100,6 +6222,10 @@ it:
         taxon_stage: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
   wild: Selvatico
