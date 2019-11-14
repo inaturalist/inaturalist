@@ -56,7 +56,7 @@ class Observation < ActiveRecord::Base
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
-    :taxon_introduced, :taxon_endemic, :taxon_native
+    :taxon_introduced, :taxon_endemic, :taxon_native, :wait_for_index_refresh
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -78,7 +78,7 @@ class Observation < ActiveRecord::Base
   # Track whether obscuration has changed over the life of this instance
   attr_accessor :obscuration_changed
   attr_accessor :skip_reassess_same_day_observations
-  
+
   def captive_flag
     @captive_flag ||= !quality_metrics.detect{|qm| 
       qm.user_id == user_id && qm.metric == QualityMetric::WILD && !qm.agree?

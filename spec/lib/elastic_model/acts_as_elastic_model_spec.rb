@@ -237,6 +237,21 @@ describe ActsAsElasticModel do
         obs.reload
         expect( obs.last_indexed_at ).to be > 1.minute.ago
       end
+
+      it "does not wait for refresh by default" do
+        obs = Observation.make!
+        expect( obs.__elasticsearch__ ).to_not receive(
+          :index_document ).with( { refresh: "wait_for" } )
+        obs.elastic_index!
+      end
+
+      it "waits for refresh if requested" do
+        obs = Observation.make!
+        obs.wait_for_index_refresh = true
+        expect( obs.__elasticsearch__ ).to receive(
+          :index_document ).with( { refresh: "wait_for" } )
+        obs.elastic_index!
+      end
     end
 
   end
