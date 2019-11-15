@@ -24,6 +24,10 @@
         = f.file_field :logo, description: "Displays in the upper left of the site header. PNG, JPG, GIF, or SVG, preferrably ~6:1 aspect ratio."
         .well
           = image_tag @record.logo.url
+        = f.file_field :logo_blog, description: "Logo for the site blog. If not set, the square logo will be used by default. PNG, JPG, GIF, or SVG, preferrably ~3:1 ratio"
+        - if @record.logo_blog?
+          .well
+            = image_tag @record.logo_blog.url
       .col-md-4
         = f.file_field :logo_square, description: "Used in situations where we need a brand that fits in a square or a circle (e.g. representing the site as an icon). JPG, PNG, or GIF, 1:1 ratio, ~300x300px"
         .well
