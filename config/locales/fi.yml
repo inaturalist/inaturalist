@@ -178,11 +178,11 @@ fi:
   add_an_observation?: Lisätäänkö havainto?
   add_an_observation_of: "Lisää havainto taksonista %{taxon}"
   add_an_observation_to_project_html: Lisää havainto projektiin %{project}
-  add_annotations_for_x: Lisää huomautus kohteelle "%{x}"
+  add_annotations_for_x: Lisää merkintä havainnolle "%{x}"
   add_annotations_for_controlled_attribute:
-    sex: Lisää huomautus kohtaan "Sukupuoli"
-    plant_phenology: Lisää huomautus kohtaan "Kasvin fenologia"
-    life_stage: Lisää huomautus kohtaan "Elinkierron vaihe"
+    sex: Lisää merkintä sukupuolesta
+    plant_phenology: Lisää merkintä kasvin fenologiasta
+    life_stage: Lisää merkintä elinvaiheesta
   add_another_flag: Lisää toinen lippu
   add_another_photo: Lisää toinen kuva
   add_another_section: Lisää toinen jakso
@@ -276,7 +276,7 @@ fi:
   agree: samaa mieltä
   agree_: Samaa mieltä
   agree?: Samaa mieltä?
-  agree_with_current_taxon: Samaa mieltä nykyisen taksonin suhteen
+  agree_with_current_taxon: Samaa mieltä tämän tunnistuksen kanssa
   agreeing: Samaa mieltä...
   aka: tunnetaan myös nimellä
   all: Kaikki
@@ -408,7 +408,7 @@ fi:
   and_other_taxa: "&amp; muut taksonit"
   android: Android
   animals: Eläimet
-  annotation: Huomautus
+  annotation: Merkintä
   annotations: Merkinnät
   announcement_was_successfully_created: Ilmoituksen laatiminen onnistui.
   announcement_was_successfully_updated: Ilmoituksen päivittäminen onnistui.
@@ -464,7 +464,7 @@ fi:
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Haluatko varmasti poistaa tämän taksonin paikan %{place} lajiluettelosta?"
   associated_observations: Liittyvät havainnot
   associated_taxa: Liittyvät taksonit
-  attention: Huomautus
+  attention: Huom
   you_sure_delete_list: Haluatko varmasti poistaa tämän luettelon?
   you_sure_delete_taxon_from_list?: "Haluatko varmasti poistaa taksonin %{taxon} luettelosta?"
   asc: Nouseva
@@ -705,7 +705,7 @@ fi:
   committing: Suoritetaan...
   community: Yhteisö
   community_curated: Yhteisön kuratoimat
-  community_guidelines: Yhteisön suuntaviivat
+  community_guidelines: Yhteisön pelisäännöt
   community_id_heading: Yhteisön taksoni
   community_id_at_species_or_lower?: Yhteisö tunnistanut lajilleen tai alemmalle tasolle?
   community_id_at_genus_level_or_lower: Yhteisö tunnistanut suvulleen tai alemmalle tasolle?
@@ -1112,9 +1112,6 @@ fi:
   feedback: Palaute
   feeds: 'Syötteet'
   failed: Epäonnistui
-  field_note: |
-    <strong>Huomautus:</strong> 
-    Jos haluat luoda kentän, tarkista onko joku muu on jo luonut sellaisen.
   fields: kentät
   fields_: Kentät
   fields_can_only_be_edited_by_the_people_who: Kenttiä voivat muokata vain henkilöt, jotka ovat luoneet ne ja sivuston kuraattorit
@@ -1260,7 +1257,7 @@ fi:
   guide_was_successfully_created: Oppaan teko onnistui.
   guide_was_successfully_published: Oppaan julkaisu onnistui.
   guide_was_successfully_updated: Oppaan päivitys onnistui.
-  guidelines: Ohjeet
+  guidelines: Pelisäännöt
   has_id_supported_by_two_or_more: Kaksi tai useampi kannattaa samaa tunnistusta
   has_one_or_more_faves: On yksi tai useampi suosittelu
   has_photo: Kuvia
@@ -1445,9 +1442,9 @@ fi:
   leaderboard_for_x: "%{x}:n tulostaulu"
   leaderboards: Tulostaulukot
   leaderboard_most:
-    species: Eniten lajeja %{time}
-    observations: Eniten havaintoja %{time}
-    identifications: Eniten tunnistuksia %{time}
+    species: Eniten lajeja, %{time}
+    observations: Eniten havaintoja, %{time}
+    identifications: Eniten tunnistuksia, %{time}
   leading: Johtava
   learn: Opi
   learn_about_the_species_live_in: Opi lajeista, jotka elävät paikassa
@@ -2045,7 +2042,7 @@ fi:
     following_panel_body: |
       %{site_name}issa voit seurata henkilöitä pitääksesi kirjaa heidän lähettämistään havainnoista. Voit myös seurata tiettyjä lajeja pitääksesi kirjaa näiden lajien uusista havainnoista, tai tee sama asia paikkojen kanssa.
     comments_panel_title: Utelias siitä, millaisia keskusteluja %{site_name}issa tapahtuu?
-    comments_panel_body: "<p>%{site_name}issa on kyse elävien asioiden havaintojen jakamisesta ja keskustelusta. Alla on tämänhetkisiä keskusteluja. (Huomautus: Sinut automaattisesti merkitään tilaajaksi keskusteluihin joihin teet kommentteja tai tunnistuksia. Hallinnoi näitä päivityksiä 'Tilaukset' osuudessa oikealla.)</p>"
+    comments_panel_body: "<p>%{site_name}issa jaetaan tietoa ja keskustellaan eliöistä. Alla on nyt käynnissä olevia keskusteluja. (Huomautus: Sinut merkitään automaattisesti tilaajaksi niihin keskusteluihin, joihin teet kommentteja tai tunnistuksia. Voit hallinnoida tätä 'Tilaukset' -osiossa oikealla.)</p>"
     updates_by_you_panel_title: Tämä välilehti on nopea tapa suodattaa vain oman sisältösi päivitykset.
     updates_by_you_panel_body: Muista, 'Kaikki päivitykset' välilehdellä saat päivityksiä et vain omasta sisällöstäsi mutta myös seuraamiesi henkilöiden sisällöstä ja taksoneista tai paikoista, joita tilaat käyttämällä Tilaustyökalua oikealla.
     youve_got_updates_panel_title: Sinulla on päivityksiä!
@@ -2889,7 +2886,7 @@ fi:
   show_observation_photos: näytä havaintojen kuvat
   show_off_your_recent_observations: Näytä viimeaikaiset havaintosi omassa blogissasi tai verkkosivustollasi!
   show_only: Näytä vain
-  show_relative_proportions_of_all_observations: Näytä kaikkien havaintojen suhteelliset mittasuhteet
+  show_relative_proportions_of_all_observations: Näytä kaikkien havaintojen suhteellinen määrä
   show_scientific_name_first: Näytä tieteelliset nimet ensin
   show_taxa_from_everywhere: "Näytä taksonit kaikkialta"
   show_taxa_from_place: "Näytä taksonit paikasta %{place}"
@@ -3138,7 +3135,7 @@ fi:
     Yhteisön on oltava sitä mieltä että sen tekemä tunnistus on niin hyvä kuin se voi olla, perustuen havainnoista tallennettuihin tietoihin
   the_following_photos_have_been_tagged: "Seuraaviin kuviin on lisätty merkinnät:"
   the_past: menneisyys
-  the_people_of_inat: "%{site_name}in väki"
+  the_people_of_inat: "%{site_name}in käyttäjät"
   the_world: Maailma
   the_world_is_full_of_interesting_places: |
     Maailma on täynnä mielenkiintoisia paikkoja, jokainen täynnä outoja ja
@@ -3154,7 +3151,7 @@ fi:
   there_were_problems_adding_that_observation_to_this_project: "Havainnon lisääminen tähän projektiin epäonnistui:"
   there_were_some_problems_saving_this_observation: Tämän havainnon tallentamisessa oli joitain ongelmia
   there_were_some_problems_saving_those_colors: "Näiden värien tallentamisessa oli joitain ongelmia: %{error}"
-  these_folks_kindly_volunteer_to: Nämä ihmiset ylläpitävät hyväntahtoisesti ja vapaaehtoisesti taksonomiaamme ja käsittelevät muita asioita.
+  these_folks_kindly_volunteer_to: Nämä ystävälliset vapaaehtoiset ylläpitävät taksonomiaamme ja käsittelevät muita asioita.
   these_observations_have_not_been_uploaded_yet: |
     Näitä havaintoja ei ole vielä tallennettu.
   they_already_have_iNat_accounts: "...heillä on jo %{site_name}-tilit"
@@ -3476,7 +3473,7 @@ fi:
     one: "1 havainto epäonnistui"
     other: "%{count} havaintoa epäonnistui"
   x_of_y: "%{x}/%{y}"
-  x_of_y_people_over_two_thirds_agree_it_is: "%{x} %{y}stä ihmisestä (yli 2/3) on samaa mieltä että se on"
+  x_of_y_people_over_two_thirds_agree_it_is: "%{y} tunnistajasta %{x} (eli yli 2/3) on samaa mieltä että se on"
   x_project_journal: "Projektin %{project} %{name}"
   x_project_stats: "Projektin %{project} tilastot"
   x_sent_you_a_new_message_on_y_html: "%{x} lähetti sivulle uuden viestin sivulla %{y}:"
@@ -3705,7 +3702,7 @@ fi:
           <strong>taksoni</strong>, <strong>paikka</strong>, <strong>käyttäjä</strong>, 
           <strong>projekti</strong>, tai <strong>hakukysely</strong>.
         query_placeholder: "Valitse alla olevat kyselyparametrit tai liitä havainnon URL-osoite"
-        taxon_extras_help_html: "Huomautus: nämä sarakkeet hidastavat vientisi luontia"
+        taxon_extras_help_html: "Huomautus: nämä sarakkeet hidastavat tiedoston luontia"
         receive_an_email_with_your_data: Vastaanota sähköpostia tiedoistasi
         well_email_you: "Ok, lähetämme sinulle sähköpostia, kun se on valmis."
         date_range_help: "Max ja min päivämäärät havaittu PP-KK-VVVV formaatissa, esim. 17-01-2015"
@@ -3875,7 +3872,7 @@ fi:
         invite_other_photographers_to_inat: "Kutsu muita valokuvaajia %{site_name}iin"
     places:
       new:
-        check_list_note: "Huomautus: erittäin suurten paikkojen lajilistat on automaattisesti estetty."
+        check_list_note: "Huom: erittäin suurille paikoille ei voi tehdä lajilistoja."
     posts:
       formatting_none_help: "Ei HTML-asetusta, käytä vain syöttämiäsi merkintöjä."
       formatting_simple_help: "Linkitä URL-osoitteet ja aseta rivinvaihdot automaattisesti."
@@ -4003,7 +4000,7 @@ fi:
           <a href="https://www.inaturalist.org/pages/managing-projects">Lue lisää projektien ylläpidosta (englanniksi)</a> tai <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">projektien historiasta blogissamme (englanniksi)</a>.
         errors:
           name_is_required: Projektin nimi on pakollinen
-          name_less_than_100_characters: Projektin nimen täytyy olla vähemmän kuin 100 merkkiä
+          name_less_than_100_characters: Projektin nimen täytyy olla lyhyempi kuin 100 merkkiä
           name_already_taken: Projektin nimi on jo varattu
           summary_is_required: Projektin yhteenvetoteksti on pakollinen.
       project_user_curator_coordinate_access_labels:
@@ -4055,8 +4052,8 @@ fi:
       spam:
         this_has_been_flagged_as_spam: Tämä on merkitty roskapostiksi
       not_found:
-        sorry_that_doesnt_exist: Pahoittelut, sitä ei ole olemassa!
-        even_our_dedicated_search_mole_couldnt: Edes omistautunut hakukontiaisemme ei löytänyt mitään!
+        sorry_that_doesnt_exist: Anteeksi, sitä ei ole olemassa!
+        even_our_dedicated_search_mole_couldnt: Edes hakukontiaisemme ei löytänyt mitään!
     stats:
       index:
         active_desc: Loi tunnistuksen, havainnon, kommentin tai viestin edeltävänä 30 päivänä
@@ -4100,6 +4097,12 @@ fi:
           <a href="%{url}">Näytä kaikki %{numStudies} tutkimusta</a>
     taxa:
       show:
+        charts_help_seasonality: |
+          Tämä kaavio näyttää taksonin havaintojen lukumäärän kuukausittain. Huomaa, että nämä ovat havaintomääriä, joihin vaikuttaa sekä se, 
+          milloin taksonia voi havaita että milloin niitä havainnoidaan. Lintu voi siis vaikuttaa hyvin aktiiviselta toukokuussa, mutta tähän saattaa olla
+          syynä se, että lintuharrastajat ovat kiinnostuneita lajista toukokuussa, mutta eivät kiinnitä siihen huomiota myöhemmin. Samoin, jos sudenkorentoja näyttää olevan enemmän kesäkuussa kuin tammikuussa, voi tämä johtua siitä, että pohjoisella pallonpuoliskolla on enemmän havainnoijia kuin eteläisellä, eikä siitä, että sudenkorennot olisivat aktiivisempia kesäkuussa. Kaavioihin kannattaa suhtautua varauksella, jos taksonista on vähän havaintoja ja/tai on suuria ristiriitoja "todennettavissa olevien" ja "tutkimustason" havaintojen lukumäärissä.
+        charts_help_history: |
+          Tämä kaavio näyttää taksonin havaintojen lukumäärän kuukausittain viimeisten kymmenen vuoden ajalta. Havaintojen lukumääriin vaikuttaa havainnoijien lukumäärä, mutta kaaviosta näkee epätavalliset piikit havainnoissa, ja jos kaavio näyttää tasaiselta tai laskevalta havainnoijien lukumäärän kasvusta huolimatta, voi tämä kertoa muutoksesta taksonin runsaudessa.
         frequency:
           research: Tutkimustaso
           verifiable: Todennettavissa
@@ -4320,10 +4323,10 @@ fi:
       half_a_minute: puoli minuuttia
       less_than_x_minutes:
         one: vähemmän kuin minuutti
-        other: vähemmän kuin %{count} minuuttia
+        other: alle %{count} minuuttia
       less_than_x_seconds:
         one: vähemmän kuin 1 sekunti
-        other: vähemmän kuin %{count} sekuntia
+        other: alle %{count} sekuntia
       over_x_years:
         one: yli 1 vuosi
         other: yli %{count} vuotta
