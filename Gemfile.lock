@@ -480,7 +480,8 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (1.6.11)
-    rack-cors (1.0.3)
+    rack-cors (1.0.5)
+      rack (>= 1.6.0)
     rack-mobile-detect (0.4.0)
       rack
     rack-openid (1.4.2)
