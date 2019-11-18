@@ -1029,7 +1029,7 @@ es-AR:
   duration_value: "Duración: %{duration} minutos"
   each_place_displays_all_species_inat_knows: "Cada página de lugar muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puede filtrar la especie por grupo taxonómico, color, estado de conservación o búsqueda sencilla."
   edit: Edita
-  edit_a_batch_of_observations: Edita un grupo de observaciones
+  edit_a_batch_of_observations: Editá un grupo de observaciones
   edit_account_settings_and_profile: "Edita la cuenta y perfil"
   edit_assessment: Edita evaluación
   edit_atlas: Edita atlas
@@ -1043,9 +1043,9 @@ es-AR:
   edit_multiple_locations: Edita múltiples localizaciones
   edit_multiple_species: Edita múltiples grupos o especies
   edit_notes: Modifica notas
-  edit_observations: Edita observaciones
+  edit_observations: Editá observaciones
   edit_photos: Modifica fotos
-  edit_photos_for_observation_id: "Modifica fotos para la observación %{obs_id}"
+  edit_photos_for_observation_id: "Modificá fotos para la observación %{obs_id}"
   edit_place: Modifica lugar
   edit_project: Modifica proyecto
   edit_remove: Edita/Elimina
@@ -1056,7 +1056,7 @@ es-AR:
   edit_taxon_framework: Editar marco de referencia de taxones
   edit_taxon_link: Modifica vínculo del taxón
   edit_taxon_range: Modifica área del taxón
-  edit_the_observation: Modifica la observación
+  edit_the_observation: Modificá la observación
   edit_your_account_and_profile_html: "Modifica tu cuenta y tu perfil"
   edit_your_default_settings: "Edita la configuración predeterminada"
   edit_your_global_project_settings: Edita tu configuración global de proyectos
@@ -1136,7 +1136,7 @@ es-AR:
   existing_flags: Advertencias existentes
   exit_full_screen: "Sal de la pantalla completa"
   examples_of_ranking_organizations: Ejemplos de organizaciones clasificatorias
-  explore: Explora
+  explore: Explorá
   export: Exporta
   export_observations: Exporta observaciones
   export_with_private_coordinates: Exporta con coordenadas privadas
@@ -1191,7 +1191,7 @@ es-AR:
   find_a_guide: Encuentra una guía
   find_a_place: Encuentra un lugar
   find_guides: Encuentra guías
-  find_new_place_to_explore: '¡Encuentra un nuevo lugar para explorar!'
+  find_new_place_to_explore: '¡Encontrá un nuevo lugar para explorar!'
   find_observations: Encuentra observaciones
   find_photos: Encuentra fotos
   find_places: Encuentra lugares
@@ -1217,6 +1217,8 @@ es-AR:
   flag_description: Marca este contenido para hacer saber a los curadores que algo no anda bien.
   flag_for_curation: Advertencia para curación
   flag_for_identification_id_html: Marcar para <a href="%{url}">Identificación %{id}</a>
+  flag_for_observation_title_html: |
+    Marca para la observación: %{title}
   flag_it!: '¡Márcalo!'
   flag_marked_as_resolved_html: '<span class="meta">Marca señalada como</span> <strong>resuelta.</strong>'
   flag_reason: "&ldquo; Estoy marcando este %{record} porque"
@@ -1341,6 +1343,7 @@ es-AR:
   has_sound: Tiene sonido
   has_sounds: Tiene sonidos
   hasnt_contributed_any_observations: no ha aportado ninguna observación a este proyecto.
+  header_your_observations: Tus observaciones
   header_your_identifications: Tus identificaciones
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto ha sido marcada."
@@ -3445,7 +3448,7 @@ es-AR:
   the_user_x_has_been_unsuspended: "El usuario %{user} ha sido removido de la lista de suspendidos"
   the_world: El mundo
   the_world_is_full_of_interesting_places: |
-    El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquina. Lugares %{site_name} te permite buscar vida de todas partes del planeta. ¡Comienza a explorar!
+    El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquina. Lugares %{site_name} te permite buscar vida de todas partes del planeta. ¡Comenzá a explorar!
   the_world_is_full_of_interesting_places_short: |
     El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquina
   then_keybord_sequence: después
@@ -4082,10 +4085,9 @@ es-AR:
           Los fondos para el desarrollo de Guías fueron proporcionados por 
           <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |
-          Las Guías ayudan a aprender acerca de la biodiversidad en todo el mundo.
+          Las Guías te ayudan a conocer la biodiversidad en todo el mundo.
           Si estás explorando el Serengeti o simplemente tu parque local
-          (que podría ser el Serengeti), las guías pueden ayudar a encontrar el
-          sentido de la impresionante diversidad de la vida en nuestro planeta.
+          (que podría ser el Serengeti), las guías pueden ayudarte a ver la impresionante diversidad de la vida en nuestro planeta.
       edit:
         add_eol_content: |
           Agrega contenido de la EOL a los taxones seleccionados como un lote. Esto puede llevar algún tiempo, así que por favor se paciente.
