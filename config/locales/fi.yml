@@ -565,7 +565,7 @@ fi:
   by: käyttäjältä
   by_everyone: Kaikkien
   by_user: "käyttäjältä %{user}"
-  by_you: Sinulta
+  by_you: Sinun
   calendar: Kalenteri
   calendars_only_show_x_observations_at_time: Kalenterit näyttävät vain %{x} havaintoa kerrallaan
   cancel: Peruuta
@@ -1295,7 +1295,7 @@ fi:
   highlights_and_stats_from_year_on_site: "Kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   history: Historia
   home: Etusivu
-  i_dont_know_but_i_am_sure_this_is_taxon: En tiedä mutta olen varma että tämä on %{taxon}
+  i_dont_know_but_i_am_sure_this_is_taxon: En tiedä, mutta olen varma että tämä kuuluu taksoniin %{taxon}
   icon: Kuvake
   icon_size: Kuvakkeen koko
   iconic_taxon: Ikoninen taksoni
@@ -1835,7 +1835,7 @@ fi:
   next_tab: Seuraava välilehti
   'no': 'Ei'
   no_assessments_have_been_added_to_this_project_yet: Tähän projektiin ei ole vielä lisätty arviointeja.
-  no_but_it_is_a_member_of_taxon: "Ei, mutta se on taksonin %{taxon} jäsen"
+  no_but_it_is_a_member_of_taxon: "Ei, mutta se on kuuluu taksoniin %{taxon}"
   no_comments_yet: Ei vielä kommentteja.
   no_countries_added_yet: Mitään maata ei vielä lisätty
   no_curators_set: Kuraattoreita ei asetettu
@@ -2040,7 +2040,7 @@ fi:
     follow_panel_body: Jos vierailet näissä profiileissa ja klikkaat seuraa-painiketta, sinulle ilmoitetaan kun he lähettävät havaintoja
     following_panel_title: Pidä kirjaa ihmisistä, taksoneista ja paikoista
     following_panel_body: |
-      %{site_name}issa voit seurata henkilöitä pitääksesi kirjaa heidän lähettämistään havainnoista. Voit myös seurata tiettyjä lajeja pitääksesi kirjaa näiden lajien uusista havainnoista, tai tee sama asia paikkojen kanssa.
+      %{site_name}issa voit seurata henkilöitä saadaksesi tietää heidän uusista havainnoistaan. Voit myös seurata lajeja ja paikkoja.
     comments_panel_title: Utelias siitä, millaisia keskusteluja %{site_name}issa tapahtuu?
     comments_panel_body: "<p>%{site_name}issa jaetaan tietoa ja keskustellaan eliöistä. Alla on nyt käynnissä olevia keskusteluja. (Huomautus: Sinut merkitään automaattisesti tilaajaksi niihin keskusteluihin, joihin teet kommentteja tai tunnistuksia. Voit hallinnoida tätä 'Tilaukset' -osiossa oikealla.)</p>"
     updates_by_you_panel_title: Tämä välilehti on nopea tapa suodattaa vain oman sisältösi päivitykset.
@@ -2099,7 +2099,7 @@ fi:
   other_names: Muut nimet
   other_species_commonly_misidentified_as_this_species: Lajeja, jotka usein määritetään virheellisesti täksi lajiksi
   other_species_commonly_misidentified_as_this_species_in_place_html: Muita lajeja, jotka usein määritetään virheellisesti täksi lajiksi paikassa <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Muita taksoneita, jotka usein määritetään virheellisesti tälle alasuvulle paikassa <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Muita taksoneita, joita usein määritetään virheellisesti kuuluvaksi tähän alasukuun paikassa <a href="%{url}">%{place}</a>
   our_blog: Blogimme
   out_of_range: Pois alueelta
   overview: Yleiskatsaus
