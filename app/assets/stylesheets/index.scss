@@ -564,20 +564,25 @@ ul.leafylist li li:first-child {
   }
   p:last-child { margin-bottom: 0; }
 
+  .links-col {
+    column-count: 2;
+    @media (min-width: 992px) {
+      column-count: 2;
+    }
+  }
+
   .one-line {
     margin-bottom: 20px;
     display: flex;
     align-items: flex-end;
     .btn-donate {
-      margin-left: 10px;
+      max-width: 158px;
+      margin: auto;
       font-weight: bold;
       overflow: hidden;
       text-overflow: ellipsis;
       font-size: 9px;
       padding-top: 9px;
-      @media (min-width: 768px) {
-        font-size: 9px;
-      }
       @media (min-width: 992px) {
         font-size: 12px;
         padding-top: 7px;
@@ -587,11 +592,29 @@ ul.leafylist li li:first-child {
         padding-top: 7px;
       }
     }
-    .btn-donate:first-child {
-      margin-left: 0px;
-    }
   }
-  .with-store {
+  .buttons-col {
+    .one-line {
+      display: block;
+    }
+    .btn-donate {
+      margin-bottom: 10px;
+      font-size: 16px;
+      padding-top: 7px;
+    }
+    &.short-text {
+      @media (min-width: 992px) {
+        .one-line {
+          display: flex;
+          align-items: flex-end;
+        }
+        .btn-donate {
+          margin-left: 10px;
+          font-size: 16px;
+          padding-top: 7px;
+        }
+      }
+    }
     .btn-donate {
       letter-spacing: 1px;
     }
@@ -625,10 +648,6 @@ ul.leafylist li li:first-child {
     text-align: center;
     width: $social-media-link-dim;
     height: $social-media-link-dim;
-    @media (min-width: 768px) {
-      width: $social-media-link-dim-768;
-      height: $social-media-link-dim-768;
-    }
     @media (min-width: 992px) {
       width: $social-media-link-dim-992;
       height: $social-media-link-dim-992;
@@ -649,10 +668,6 @@ ul.leafylist li li:first-child {
     color: white;
     line-height: $social-media-link-dim + 2px;
     font-size: $social-media-link-font-size;
-    @media (min-width: 768px) {
-      line-height: $social-media-link-dim-768 + 2px;
-      font-size: $social-media-link-font-size-768;
-    }
     @media (min-width: 992px) {
       line-height: $social-media-link-dim-992 + 2px;
       font-size: $social-media-link-font-size-992;
@@ -669,9 +684,6 @@ ul.leafylist li li:first-child {
     content: "\f099";
     position: relative;
     top: -1px;
-    @media (min-width: 768px) {
-      top: 0px;
-    }
     @media (min-width: 992px) {
       top: 0px;
       left: 1px;
@@ -701,10 +713,6 @@ ul.leafylist li li:first-child {
     $instagram-icon-size-bump: 2px;
     line-height: $social-media-link-dim + $instagram-icon-size-bump;
     font-size: $social-media-link-font-size + $instagram-icon-size-bump;
-    @media (min-width: 768px) {
-      line-height: $social-media-link-dim-768 + $instagram-icon-size-bump;
-      font-size: $social-media-link-font-size-768 + $instagram-icon-size-bump - 1;
-    }
     @media (min-width: 992px) {
       line-height: $social-media-link-dim-992 + $instagram-icon-size-bump - 1;
       font-size: $social-media-link-font-size-992 + $instagram-icon-size-bump;
