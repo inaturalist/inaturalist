@@ -73,6 +73,7 @@ gem "optimist"
 gem "patron"
 gem "pg"
 gem "preferences", git: "https://github.com/kueda/preferences.git"
+gem "rack-cors", "~> 1.0.6"
 gem "rack-google-analytics", git: "https://github.com/kueda/rack-google-analytics.git", branch: "eval-blocks-per-request"
 gem "rack-mobile-detect"
 gem "rails-observers"
@@ -133,5 +134,3 @@ group :test do
   gem "rspec-html-matchers"
   gem "webmock"
 end
-
-gem "rack-cors", "~> 1.0"
