@@ -202,7 +202,8 @@ pl:
   about_this_bioblitz: O tym bioblitz
   about_this_map: O tej mapie
   about_this_project: O tym projekcie
-  about_trips_html: "<h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie \"obecności\" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>"
+  about_trips_html: |
+    <h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie "obecności" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>
   about_x: "O %{x}"
   acc: 'Dokładność (m)'
   account: Konto
@@ -212,7 +213,8 @@ pl:
   accept_community_identifications: Zezwalaj na oznaczenia społeczności
   accuracy: Dokładność
   accuracy_meters: Dokładność (metry)
-  accuracy_of_the_coordinates: 'Dokładność współrzędnych w metrach. Możesz to edytować klikając na powyższy link "edytuj" lub klikając na znacznik na mapie i przeciągając uchwyty. Postaraj się, aby koło było na tyle duże, abyś miał pewność, że znajdowałeś się gdzieś w jego obrębie.'
+  accuracy_of_the_coordinates: |
+    Dokładność współrzędnych w metrach. Możesz to edytować klikając na powyższy link "edytuj" lub klikając na znacznik na mapie i przeciągając uchwyty. Postaraj się, aby koło było na tyle duże, abyś miał pewność, że znajdowałeś się gdzieś w jego obrębie.
   action: Akcja
   actions: Akcje
   active: Aktywny
@@ -511,6 +513,7 @@ pl:
   announcements: Ogłoszenia
   any: dowolne
   any_: Dowolne
+  anyone: Ktokolwiek
   apply_to_selected: Zastosuj do wybranych
   apply_captive_cultivated: "Zastosuj żyje w niewoli / jest hodowany"
   apply_fields: Zastosuj pola
@@ -1274,7 +1277,6 @@ pl:
   flickr_photo: Zdjęcie z Flickra
   flickr_photos: Zdjęcia z Flickra
   flickr_tags: Tagi z Flickra
-  flowering_phenology: Fenologia Kwitnienia
   follow: Obserwuj
   follow_receive_updates_about_new_observations: Obserwuj (otrzymuj powiadomienia o nowych obserwacjach)
   follow_user: "Obserwuj %{user}"
@@ -1984,14 +1986,21 @@ pl:
   observation_brief_something_from_place: "Coś z %{place}"
   observations_by_category: "Obserwacje po kategorii"
   observations_by_app: Obserwacje po aplikacji
+  observations_by_rank: Obserwacje według kategorii
   observations_by_user_on_date: "Obserwacje użytkownika %{user} z dnia %{date}"
+  observations_by_you: "Twoje obserwacje"
   observations_by_you_on_date: "Twoje obserwacje z dnia %{date}"
   observation_date: Data
   observation_date?: Data?
+  observation_field: Pole obserwacji
+  observation_field_details: Szczegóły pola obserwacji
   observation_field_type_text: Tekst
+  observation_field_type_numeric: Numeryczny
   observation_field_type_date: Data
   observation_field_type_time: Czas
+  observation_field_type_datetime: Data i godzina
   observation_field_type_taxon: Takson
+  observation_field_type_dna: DNA
   observation_fields: Pola obserwacji
   observation_fields_are_additional: Pola obserwacji są dodatkowymi polami danych, które można dodawać do obserwacji.
   #Help text to show what kind of values you can enter for the date an observation was observed
@@ -2030,6 +2039,10 @@ pl:
   observer: Obserwator
   observers: Obserwatorów
   observer_short: Obserwator
+  occurence_status_describes_how: 'Status występowania opisuje jak często lub rzadko takson jest w danym obszarze. Zobacz DarwinCore, aby uzyskać <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">więcej informacji na temat terminologii</a>.'
+  occurrence_status: Status występowania
+  occurrence_status_descriptions:
+    common: Często występuje
   occurrence_status_levels:
     present: obecny
     common: pospolity
@@ -2045,10 +2058,12 @@ pl:
   of_this_taxon: Tego taksonu
   offensive_inappropriate: Obraźliwy / Nieodpowiedni
   official_blog: Oficjalny blog
+  offline_access_enabled: Dostęp offline włączony
   old_observation_form: Stary formularz obserwacji (przestarzały)
   ok: "OK"
   on_your_life_list: na Twojej liście życia
   onboarding:
+    observe_panel_body_p1_local: Potrzebujesz inspiracji? Oto kilka organizmów obserwowanych w pobliżu...
     follow_panel_title_local: Obserwuj przyrodników z okolicy
     youve_got_updates_panel_title: Masz aktualizacje!
   one_of_your_lists: "jedna z Twoich list..."
@@ -2074,8 +2089,10 @@ pl:
   organisms: Organizmy
   original: Oryginalny
   originally_flagged_by: Pierwotnie zgłoszone przez
+  original_url_for_this_map: Oryginalny adres URL dla tej mapy
   other: Inne
   other_animals: inne zwierzęta
+  other_lexicons: Inne leksykony
   other_names: Inny nazwy
   other_species_commonly_misidentified_as_this_species: Inne gatunki często błędnie oznaczane jako ten gatunek
   other_species_commonly_misidentified_as_this_species_in_place_html: Inne gatunki często błędnie oznaczane jako ten gatunek w <a href="%{url}">%{place}</a>
@@ -2098,6 +2115,7 @@ pl:
   other_taxa_commonly_misidentified_as_this_subsection: Inne taksony często błędnie oznaczane jako ta podsekcja
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Inne taksony często błędnie oznaczane jako ta podsekcja w <a href="%{url}">%{place}</a>
   our_blog: Nasz blog
+  out_of_range: Poza zasięgiem
   output_taxon: Takson wyjściowy
   overview: Przegląd
   owner: Właściciel
@@ -2146,9 +2164,13 @@ pl:
     original: oryginalny
   photos_size_photos: "%{photos_size} zdjęcia"
   photos_updated: Zdjęcia zaktualizowane.
+  pin_verb: Przypnij
   pink: różowy
   place: Miejsce
   placeholder: Tekst zastępczy
+  place_added_to_inat_by: "Miejsce dodane do %{site_name} przez"
+  place_autocomplete_placeholder: Park Narodowy Zion, Miami, itp.
+  place_deleted: Miejsce usunięte.
   place_geo:
     geo_planet_place_types:
       Airport: Lotnisko
@@ -2216,6 +2238,10 @@ pl:
       unknown: nieznany
       Zone: Strefa
       zone: strefa
+  place_imported: Miejsce zaimportowane!
+  place_name: Nazwa miejsca
+  place_updated: Miejsce zaktualizowane!
+  placement: Umiejscowienie
   places: Miejsca
   places_name:
     afghanistan: Afganistan
@@ -2496,6 +2522,7 @@ pl:
   previous_tab: Poprzednia strona
   print_verb: Drukuj
   privacy: Prywatność
+  probably_spam: Prawdopodobnie spam
   proceed: Kontynuuj
   processing: Przetwarzanie
   processing3p: "Przetwarzanie..."
@@ -2542,6 +2569,7 @@ pl:
   radius: Promień (m)
   radius_value: "Promień (m): %{radius}"
   rank_position: Ranga
+  rank_restrictions: Ograniczenia kategorii
   ranks:
     kingdom: Królestwo
     subkingdom: Podkrólestwo
@@ -2601,6 +2629,7 @@ pl:
     many: Usunąć %{count} obserwacji?
     other: Usunąć %{count} obserwacji?
   remove_photo: Usuń zdjęcie
+  remove_place: Usuń miejsce
   remove_section: Usuń sekcję
   remove_selected: Usuń zaznaczone
   remove_tags: Usuń tagi
@@ -2616,24 +2645,36 @@ pl:
   research_grade: Stopień badawczy
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
+  restore: Przywróć
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
   rg_observations: Obserwacje RG
+  role: Rola
   rotate_left: Obrót w lewo
   rotate_right: Obróć w prawo
   row_singular_or_plural: Wiersz(e)
+  rules_and_formatting: "Reguły i formatowanie"
+  rules_for_adding_observations: Zasady dodawania obserwacji
   satellite: satelita
   save: Zapisz
   save_all: Zapisz wszystko
   save_and_add_another: Zapisz i dodaj kolejny
+  save_and_continue: "Zapisz i kontynuuj"
+  save_and_add_taxa: "Zapisz i zacznij dodawać gatunki"
   save_changes: Zapisz zmiany
   save_comment: Zapisz komentarz
   save_draft: Zapisz wersję roboczą
   save_fields: Zapisz pola
+  save_flag: Zapisz zgłoszenie
   save_observation: Zapisz obserwację
   save_photos: Zapisz zdjęcia
   saved: Zapisano
   saving: "Zapisywanie..."
+  saving_num_of_count_observations:
+    one: Zapisywanie obserwacji...
+    few: Zapisywanie %{num} z %{count} obserwacji...
+    many: Zapisywanie %{num} z %{count} obserwacji...
+    other: Zapisywanie %{num} z %{count} obserwacji...
   saving_verb: Zapisywanie
   search: Szukaj
   search_all_fields: przeszukaj wszystkie pola
@@ -2867,6 +2908,7 @@ pl:
       remove_observation: Usuń obserwację
       remove_photo: Usuń zdjęcie
       select_all: Wybierz wszystkie obserwacje
+  user: Użytkownik
   user_added_a_x: "%{user} dodał %{x}"
   user_added_a_x_to_noun_by_html: "%{user} dodał %{x} do %{noun} przez %{by}"
   user_added_a_x_to_noun_html: "%{user} dodał %{x} do %{noun}"
@@ -3092,10 +3134,6 @@ pl:
         frequency:
           research: Stopień badawczy
           verifiable: Weryfikowalne
-          "Flowering Phenology=bare": Brak kwiatów
-          "Flowering Phenology=budding": Pączkuje
-          "Flowering Phenology=flower": Kwitnie
-          "Flowering Phenology=fruit": Owocuje
           "Life Stage=egg": Jajo
           "Life Stage=larva": Larwa
           "Life Stage=teneral": Osobnik teneralny
