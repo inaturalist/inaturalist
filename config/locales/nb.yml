@@ -147,7 +147,8 @@ nb:
   about_this_bioblitz: Om denne bioblitzen
   about_this_map: Om dette kartet
   about_this_project: Om dette prosjektet
-  about_trips_html: "<h4>Turer muliggjør innsamling av data om tilstedeværelse/fravær ved å legge til kontekst til dine observasjoner</h4><p><strong>Hvorfor</strong> Data om tilstedeværelse/fravær inneholder informasjon om samlingsinnsats, noe som er nyttig or vitenskapelige analyser som distribusjonsmodellering (vanlige iNaturalist observasjoner inneholder kun informasjon om tilstedeværelse).</p><p><strong>Hvordan</strong> En tur legger til kontekst til dine obervasjoner ved å rapportere:</p><ul><li><strong>Hva</strong> du har lett etter (fokusliste)</li><li><strong>Hvor</strong> du har lett (lete-område)</li><li><strong>Når</strong> du har lett (lete-intervall)</li></ul><p>Arter på din fokusliste som du har klart å observere i ditt lete-område og -intervall blir regnet som tilstedeværelser, mens arter på din fokus-liste som du ikke har klart å observere blir regnet som fravær. Klikk på 'Lag tabell av tilstedevørelse/fravær data fra turer' for å generere en tabell av tilstedevørelse/fraværs-data for en art fra turer og tilkyttede observasjoner. <a href='%{url}'>Lær mer</a></p>"
+  about_trips_html: |
+    <h4>Turer muliggjør innsamling av data om tilstedeværelse/fravær ved å legge til kontekst til dine observasjoner</h4><p><strong>Hvorfor</strong> Data om tilstedeværelse/fravær inneholder informasjon om samlingsinnsats, noe som er nyttig or vitenskapelige analyser som distribusjonsmodellering (vanlige iNaturalist observasjoner inneholder kun informasjon om tilstedeværelse).</p><p><strong>Hvordan</strong> En tur legger til kontekst til dine obervasjoner ved å rapportere:</p><ul><li><strong>Hva</strong> du har lett etter (fokusliste)</li><li><strong>Hvor</strong> du har lett (lete-område)</li><li><strong>Når</strong> du har lett (lete-intervall)</li></ul><p>Arter på din fokusliste som du har klart å observere i ditt lete-område og -intervall blir regnet som tilstedeværelser, mens arter på din fokus-liste som du ikke har klart å observere blir regnet som fravær. Klikk på 'Lag tabell av tilstedevørelse/fravær data fra turer' for å generere en tabell av tilstedevørelse/fraværs-data for en art fra turer og tilkyttede observasjoner. <a href='%{url}'>Lær mer</a></p>
   about_x: "Om %{x}"
   acc: 'Nøy. (m)'
   account: Konto
@@ -157,7 +158,8 @@ nb:
   accept_community_identifications: Godta fellesskapets identifikasjoner
   accuracy: Nøyaktighet
   accuracy_meters: Nøyaktighet (meter)
-  accuracy_of_the_coordinates: 'Koordinatenes nøyaktighet i meter. Du kan redigere nøyaktigheden ved å trykke på "Rediger" ovenfor eller ved å trykke på kartmarkøren og endre omkretsen. Prøv å lage sirkelen såpass stor at du er sikker på at du var innenfor den et sted.'
+  accuracy_of_the_coordinates: |
+    Koordinatenes nøyaktighet i meter. Du kan redigere nøyaktigheden ved å trykke på "Rediger" ovenfor eller ved å trykke på kartmarkøren og endre omkretsen. Prøv å lage sirkelen såpass stor at du er sikker på at du var innenfor den et sted.
   action: Handling
   actions: Handlinger
   active: Aktiv
@@ -1314,7 +1316,6 @@ nb:
   flickr_style: Flickr-stil
   flickr_tagger: Flickr-etikettør
   flickr_tags: Flickr-etiketter
-  flowering_phenology: Blomstringsfenologi
   fluid_layout: Flytende visning
   fluid: flytende
   follow: Følg
@@ -5225,10 +5226,6 @@ nb:
         frequency:
           research: Forskningskvalitet
           verifiable: Verifiserbar
-          "Flowering Phenology=bare": Ingen blomster
-          "Flowering Phenology=budding": Knopper
-          "Flowering Phenology=flower": Blomstrende
-          "Flowering Phenology=fruit": Fruktbærende
           "Life Stage=egg": Egg
           "Life Stage=larva": Larve
           "Life Stage=teneral": Teneral

@@ -113,7 +113,8 @@ sv:
   accept_community_identifications: Acceptera gemenskapens identifikationer
   accuracy: Noggrannhet
   accuracy_meters: Noggrannhet (meter)
-  accuracy_of_the_coordinates: 'Koordinaternas noggrannhet i meter. Du kan redigera noggrannheten genom att trycka på "Redigera" ovanför eller genom att kicka på kartmarkören och dra den på kartan. Försök att göra cirkeln så stor att du är säker på att du var någonstans innanför den.'
+  accuracy_of_the_coordinates: |
+    Koordinaternas noggrannhet i meter. Du kan redigera noggrannheten genom att trycka på "Redigera" ovanför eller genom att kicka på kartmarkören och dra den på kartan. Försök att göra cirkeln så stor att du är säker på att du var någonstans innanför den.
   action: Åtgärd
   actions: Åtgärder
   active: Aktiv
@@ -1754,7 +1755,6 @@ sv:
       show:
         discoveries_desc: "Senast upptäckta arter i denna taxon"
         frequency:
-          "Flowering Phenology=bare": Inga blommor
           "Life Stage=egg": Ägg
           "Life Stage=adult": Vuxen
         wanted_desc: Arter i denna taxon som inte observerats än

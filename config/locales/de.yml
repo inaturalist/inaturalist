@@ -117,7 +117,8 @@ de:
   about_this_bioblitz: Über diesen Bioblitz
   about_this_map: Über diese Karte
   about_this_project: Über dieses Projekt
-  about_trips_html: "<h4>Trips ermöglichen die Erfassung von Daten über Fehlen/Vorhandensein, durch Hinzufügen von Kontext zu Ihren Beobachtungen</h4><p><strong>Warum</strong> Daten über Fehlen/Vorhandensein enthalten Informationen über den Aufwand der Erfassung, die für wissenschaftliche Analysen wie die Verteilungsmodellierung nützlich sind (normale iNaturalist Beobachtungen enthalten nur Daten über das Vorhandensein\").</p> <p><strong>How</strong> Ein Trip fügt Deinen Beobachtungen einen Kontext hinzu, durch Protokollierung von:</p> <ul> <li><strong>Was</strong> Du gesucht hast (Zielliste)</li> <li><strong>Wo</strong> Du gesucht hast (Suchgebiet)</li> <li><strong>Wann</strong>Du gesucht hast (Suchintervall)</li> </ul> </ul> <p> Arten auf Deiner Zielliste, die Du innerhalb des Suchgebietes und Intervalls beobachten konntest, werden als vorhanden interpretiert. Während Arten auf Deiner Zielliste, die Du nicht beobachten konntest, als fehlend interpretiert werden. Klicke auf 'Zusammenfassen von Fehlen-Vorhandensein von Trips', um eine Tabelle mit Daten über das Fehlen-Vorhandensein für eine Spezies aus Trips und zugehörigen Beobachtungen zu erstellen. <a href='%{url}'>Mehr erfahren</a></p>"
+  about_trips_html: |
+    <h4>Trips ermöglichen die Erfassung von Daten über Fehlen/Vorhandensein, durch Hinzufügen von Kontext zu Ihren Beobachtungen</h4><p><strong>Warum</strong> Daten über Fehlen/Vorhandensein enthalten Informationen über den Aufwand der Erfassung, die für wissenschaftliche Analysen wie die Verteilungsmodellierung nützlich sind (normale iNaturalist Beobachtungen enthalten nur Daten über das Vorhandensein").</p> <p><strong>How</strong> Ein Trip fügt Deinen Beobachtungen einen Kontext hinzu, durch Protokollierung von:</p> <ul> <li><strong>Was</strong> Du gesucht hast (Zielliste)</li> <li><strong>Wo</strong> Du gesucht hast (Suchgebiet)</li> <li><strong>Wann</strong>Du gesucht hast (Suchintervall)</li> </ul> </ul> <p> Arten auf Deiner Zielliste, die Du innerhalb des Suchgebietes und Intervalls beobachten konntest, werden als vorhanden interpretiert. Während Arten auf Deiner Zielliste, die Du nicht beobachten konntest, als fehlend interpretiert werden. Klicke auf 'Zusammenfassen von Fehlen-Vorhandensein von Trips', um eine Tabelle mit Daten über das Fehlen-Vorhandensein für eine Spezies aus Trips und zugehörigen Beobachtungen zu erstellen. <a href='%{url}'>Mehr erfahren</a></p>
   about_x: "Über %{x}"
   acc: 'Genauigkeit (m)'
   account: Benutzerkonto
@@ -127,7 +128,8 @@ de:
   accept_community_identifications: Bestimmung der Community annehmen
   accuracy: Genauigkeit
   accuracy_meters: Genauigkeit (Meter)
-  accuracy_of_the_coordinates: 'Genauigkeit der Koordinaten in Metern. Diese kannst du abändern, indem du oben auf den Link „Bearbeiten“ klickst oder indem du auf den Kartenmarker klickst und an den Greifpunkten ziehst. Versuche, den Kreis groß genug zu ziehen, damit du sicher sein kannst, dass du irgendwo darin warst.'
+  accuracy_of_the_coordinates: |
+    Genauigkeit der Koordinaten in Metern. Diese kannst du abändern, indem du oben auf den Link „Bearbeiten“ klickst oder indem du auf den Kartenmarker klickst und an den Greifpunkten ziehst. Versuche, den Kreis groß genug zu ziehen, damit du sicher sein kannst, dass du irgendwo darin warst.
   action: Aktion
   actions: Aktionen
   active: Aktiv
@@ -152,6 +154,7 @@ de:
   add_an_observation: Beobachtung hinzufügen
   add_an_observation?: Beobachtung hinzufügen?
   add_an_observation_of: "Beobachtung von %{taxon} hinzufügen"
+  add_an_observation_to_project_html: Beobachtung zu %{project} hinzufügen
   add_annotations_for_x: Vermerke für "%{x}" hinzufügen
   add_annotations_for_controlled_attribute:
     sex: Vermerke für "Geschlecht" hinzufügen
@@ -449,6 +452,10 @@ de:
   assessments: Bewertungen
   associations: Vereine
   at_time: "um %{time}"
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
+  atom: Atom
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribut
@@ -502,6 +509,7 @@ de:
   before_importing_photos: vor dem Importieren von Bildern
   belives_this_is_a_comprehensive_list_of: glaubt, dass dies eine umfassende Liste ist von
   bg_color: Hintergrundfarbe
+  bioblitz: Bioblitz
   birds: Vögel
   birthday: Geburtstag
   black: schwarz
@@ -1077,6 +1085,7 @@ de:
   failed_to_repair_photo: "Fehler bei der Reparatur des Fotos: %{errors}"
   failed_to_save_record: "Speichern fehlgeschlagen. Bitte später erneut versuchen."
   'false': 'Falsch'
+  fave: favorisieren
   faves: Favoriten
   Family: Familie
   faved_this_observation: favorisierte/n diese Beobachtung
@@ -1141,6 +1150,7 @@ de:
   flag_saved_thanks_html: Meldung gespeichert. Danke! <a href="%{url}" class="readmore">Meldung ansehen</a>
   flag_this_observation: Diese Beobachtung melden
   flag_this_photo: Dieses Foto markieren
+  flag_this_sound: Dieses Audio melden
   flagged: gemeldet
   flagged_: Gekennzeichnet
   flagged_for_curation: Zur Kuratierung gemeldet
@@ -1157,7 +1167,6 @@ de:
   flickr_photo: Flickr-Foto
   flickr_photos: Flickr-Fotos
   flickr_style: Flickr-Stil
-  flowering_phenology: Blütenphänologie
   follow: Folgen
   follow_receive_updates_about_new_observations: Folgen (über neue Beobachtungen informiert werden)
   follow_user: "Folge %{user}"
@@ -1242,6 +1251,14 @@ de:
   has_sound: Mit Audio
   has_sounds: mit Audio
   hasnt_contributed_any_observations: hat keine Beobachtungen zu diesem Projekt beigetragen.
+  header_your_observations: Deine Beobachtungen
+  header_your_calendar: Dein Kalender
+  header_your_favorites: Deine Favoriten
+  header_your_lists: Deine Listen
+  header_your_journal: Dein Journal
+  header_your_identifications: Deine Identifikationen
+  header_your_projects: Deine Projekte
+  header_your_profile: Dein Profil
   heads_up: Achtung
   heads_up_this_photo_has_been_flagged: "Achtung: dieses Foto wurde gemeldet."
   heads_up_this_photo_is_already_associated_with: "Achtung: dieses Foto ist schon mit <a target='_blank' href='%{url}'>einer anderen Beobachtung verbunden</a>"
@@ -2389,72 +2406,121 @@ de:
     jordan: Jordanien
     kazakhstan: Kasachstan
     kenya: Kenia
+    kiribati: Kiribati
+    korea: Korea
+    kosovo: Kosovo
+    kuwait: Kuwait
     kyrgyzstan: Kirgisistan
+    laos: Laos
     latvia: Lettland
     lebanon: Libanon
+    lesotho: Lesotho
+    liberia: Liberia
     libya: Libyen
+    liechtenstein: Liechtenstein
     lithuania: Litauen
     luxembourg: Luxemburg
     macao: Macau
     macedonia: Mazedonien
     madagascar: Madagaskar
+    malawi: Malawi
+    malaysia: Malaysia
     maldives: Malediven
+    mali: Mali
+    malta: Malta
     marshall_islands: Marshallinseln
+    martinique: Martinique
     mauritania: Mauretanien
+    mauritius: Mauritius
+    mayotte: Mayotte
     mexico: Mexiko
     micronesia: Mikronesien
     moldova: Republik Moldau
+    monaco: Monaco
     mongolia: Mongolei
+    montenegro: Montenegro
+    montserrat: Montserrat
     morocco: Marokko
     mozambique: Mosambik
+    myanmar: Myanmar
+    namibia: Namibia
+    nauru: Nauru
+    nepal: Nepal
     netherlands: Niederlande
     new_caledonia: Neukaledonien
     new_guinea: Neuguinea
     new_zealand: Neuseeland
+    nicaragua: Nicaragua
+    niger: Niger
+    nigeria: Nigeria
+    niue: Niue
     norfolk_island: Norfolkinsel
     north_africa: Nordafrika
     north_america: Nordamerika
     north_korea: Nordkorea
     northern_cyprus: Nordzypern
     norway: Norwegen
+    oman: Oman
+    pakistan: Pakistan
+    palau: Palau
     palestine: Palästina
+    panama: Panama
     papua_new_guinea: Papua-Neuguinea
+    paraguay: Paraguay
+    peru: Peru
     philippines: Philippinen
     pitcairn_islands: Pitcairninseln
     poland: Polen
+    portugal: Portugal
+    puerto_rico: Puerto Rico
     qatar: Katar
     republic_of_congo: Republik Kongo
     reunion: Réunion
     romania: Rumänien
     russia: Russland
     rwanda: Ruanda
+    saint_barthelemy: Saint-Barthélemy
     saint_helena: St. Helena
     saint_kitts_and_nevis: St. Kitts und Nevis
     saint_lucia: St. Lucia
     saint_martin: St. Martin
     saint_pierre_and_miquelon: Saint-Pierre und Miquelon
     saint_vincent_and_the_grenadines: St. Vincent und die Grenadinen
+    samoa: Samoa
+    san_marino: San Marino
     sao_tome_and_principe: São Tomé und Príncipe
     saudi_arabia: Saudi-Arabien
+    senegal: Senegal
     serbia: Serbien
     seychelles: Seychellen
+    sierra_leone: Sierra Leone
     singapore: Singapur
+    sint_maarten: Sint Maarten
     slovakia: Slowakei
     slovenia: Slowenien
     solomon_islands: Salomonen
+    somalia: Somalia
     south_africa: Südafrika
     south_america: Südamerika
     south_georgia_and_the_south_sandwich_islands: Südgeorgien und die Südlichen Sandwichinseln
     south_korea: Südkorea
     south_sudan: Südsudan
     spain: Spanien
+    sri_lanka: Sri Lanka
+    sudan: Sudan
+    suriname: Suriname
     svalbard_and_jan_mayen: Svalbard und Jan Mayen
     swaziland: Swasiland
     sweden: Schweden
     switzerland: Schweiz
     syria: Syrien
+    taiwan: Taiwan
     tajikistan: Tadschikistan
     tanzania: Tansania
+    thailand: Thailand
+    togo: Togo
+    tokelau: Tokelau
+    tonga: Tonga
     trinidad_and_tobago: Trinidad und Tobago
     tunisia: Tunesien
     turkey: Türkei
@@ -3566,6 +3632,7 @@ de:
   youve_linked_your_inaturalist_google_account: "Du hast Dein %{site_name}-Konto mit Deinem Google-Konto verbunden. Jetzt kannst Du Deine Google-Fotos mit %{site_name}-Beobachtungen verknüpfen."
   youve_successfully_linked_your_provider_account: "Du hast erfolgreich dein %{provider}-Konto verknüpft"
   verifiable: verifizierbar
+  verifiable_observations: Verifizierbare Beobachtungen
   views:
     views: 'Aufrufe'
     announcements:
@@ -3574,6 +3641,7 @@ de:
     devise:
       mailer:
         confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: Soll %{site_name} im Klassenzimmer verwendet werden?
           community_guidelines_html: |
             <a href="%{url}">In den Community-Richtlinien</a>  findest du Tipps, wie du iNaturalist zu einem freundlichen und einladenden Ort machen kannst.
           please_read_the_teachers_guide_html: |
@@ -3581,6 +3649,8 @@ de:
     donate:
       donate_short_desc: "Spende jetzt um Deine Unterstützung zu zeigen!"
       post_donate_social_media_text: Ich unterstütze iNaturalist weil...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Werde ein monatlicher Unterstützer von iNaturalist
     guides:
       index:
         welcome_message_html: |
@@ -4050,10 +4120,6 @@ de:
         frequency:
           research: Forschungsqualität
           verifiable: Verifizierbar
-          "Flowering Phenology=bare": Keine Blumen
-          "Flowering Phenology=budding": Knospend
-          "Flowering Phenology=flower": Blühend
-          "Flowering Phenology=fruit": Fruchttragend
           "Life Stage=egg": Ei
           "Life Stage=larva": Larve
           "Life Stage=nymph": Nymphe

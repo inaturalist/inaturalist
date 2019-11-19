@@ -38,7 +38,8 @@ cs:
   accept_community_identifications: Přijmout komunitní identifikátory
   accuracy: Přesnost
   accuracy_meters: Přesnost (v metrech)
-  accuracy_of_the_coordinates: 'Přesnost souřadnic v metrech. Můžete editovat kliknutím na odkaz „editovat“ výše nebo kliknutím na označení mapy a přetažením. Pokuste se vytvořit dostatečně velký kruh, abyste si byli jistí, že jste byli uvnitř.'
+  accuracy_of_the_coordinates: |
+    Přesnost souřadnic v metrech. Můžete editovat kliknutím na odkaz „editovat“ výše nebo kliknutím na označení mapy a přetažením. Pokuste se vytvořit dostatečně velký kruh, abyste si byli jistí, že jste byli uvnitř.
   action: Akce
   actions: Akce
   active: Aktivní
@@ -1032,7 +1033,6 @@ cs:
   flickr_style: Styl Flickru
   flickr_tagger: Autor tagů na Flickru
   flickr_tags: Tagy na Flickru
-  flowering_phenology: Fenologie kvetení
   fluid_layout: Proměnlivé rozložení
   fluid: proměnlivý
   follow: Sledovat
@@ -4463,10 +4463,6 @@ cs:
         frequency:
           research: Výzkumný stupeň
           verifiable: Ověřitelné
-          "Flowering Phenology=bare": Žádné květy
-          "Flowering Phenology=budding": Pučení
-          "Flowering Phenology=flower": Kvetení
-          "Flowering Phenology=fruit": Plození
           "Life Stage=egg": Vejce
           "Life Stage=teneral": Tenerální
           "Life Stage=nymph": Nymfa

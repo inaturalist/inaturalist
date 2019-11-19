@@ -55,7 +55,8 @@ eu:
   accept_community_identifications: Komunitatearen identifikatzaileak onaru
   accuracy: Zehaztasuna
   accuracy_meters: Zehaztasuna (metroak)
-  accuracy_of_the_coordinates: 'Koordenatuen zehaztasuna metroetan. Modificar (aldatu) estekan klikatuta edo mapan zure kokapenaren puntuan klikatuta alda ditzakezu. Saiatu zirkulua markatutako eremuko lekuren batean zeundela ziurtatzeko bezain handia egiten.'
+  accuracy_of_the_coordinates: |
+    Koordenatuen zehaztasuna metroetan. Modificar (aldatu) estekan klikatuta edo mapan zure kokapenaren puntuan klikatuta alda ditzakezu. Saiatu zirkulua markatutako eremuko lekuren batean zeundela ziurtatzeko bezain handia egiten.
   action: Ekintza
   actions: Ekintzak
   active: Aktiboa
@@ -1386,6 +1387,7 @@ eu:
   photo_attribution: "%{attribution} argazkia"
   photo_by_id_attribution: "%{id} argazkia, %{attribution}"
   photo_deleted: Argazkia ezabatuta
+  photo_destroyed_because_it_was_deleted_from: "Argazkia ezabatu egin da kanpoko webgune batetatik ezabatu zelako edo %{site_name} webguneak ez duelako erakusteko baimenik."
   photo_hosting_accounts: Argazkiak ostatatzeko kontuak
   photo_type: Argazki-mota
   photo_urls_repaired: Argazkiaren URLa konpondu egin da.

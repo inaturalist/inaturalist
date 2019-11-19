@@ -117,7 +117,8 @@ pt-BR:
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre este mapa
   about_this_project: Sobre este Projeto
-  about_trips_html: "<h4>Viagens permitem a coleção de dados de presença-ausência por adicionar contexto as suas observações</h4><p><strong>Por quê</strong> Dado de presença-ausência inclui informação sobre esforço de amostragem que é útil para analises cientificas como modelagem de distribuição (Observações cruas do iNaturalist são dados de \"somente-presença\").</p> <p><strong>Como</strong> Uma viagem adiciona contexto as suas observações por recordar:</p> <ul> <li><strong>O que</strong> você pesquisou (lista alvo)</li> <li><strong>Onde</strong> você pesquisou (área de pesquisa)</li> <li><strong>Quando</strong> você pesquisou (intervalo de pesquisa)</li> </ul> <p>Especies da lista alvo que você conseguiu observar dentro da área de pesquisa e intervalo são interpretadas como presenças. Enquanto espécies da sua lista alvo que não foi capaz de observar são interpretadas como ausências. Clique 'Tabular Dados de Presença-Ausência De Viagens' para gerar uma tabela de registros de presença-ausência para espécies de viagens e observações associadas. <a href='%{url}'>Saber mais</a></p>"
+  about_trips_html: |
+    <h4>Viagens permitem a coleção de dados de presença-ausência por adicionar contexto as suas observações</h4><p><strong>Por quê</strong> Dado de presença-ausência inclui informação sobre esforço de amostragem que é útil para analises cientificas como modelagem de distribuição (Observações cruas do iNaturalist são dados de "somente-presença").</p> <p><strong>Como</strong> Uma viagem adiciona contexto as suas observações por recordar:</p> <ul> <li><strong>O que</strong> você pesquisou (lista alvo)</li> <li><strong>Onde</strong> você pesquisou (área de pesquisa)</li> <li><strong>Quando</strong> você pesquisou (intervalo de pesquisa)</li> </ul> <p>Especies da lista alvo que você conseguiu observar dentro da área de pesquisa e intervalo são interpretadas como presenças. Enquanto espécies da sua lista alvo que não foi capaz de observar são interpretadas como ausências. Clique 'Tabular Dados de Presença-Ausência De Viagens' para gerar uma tabela de registros de presença-ausência para espécies de viagens e observações associadas. <a href='%{url}'>Saber mais</a></p>
   about_x: "Sobre %{x}"
   acc: 'Precisão exata - Acurácia (m)'
   account: Conta
@@ -127,7 +128,8 @@ pt-BR:
   accept_community_identifications: Aceito as identificações sugeridas pela comunidade
   accuracy: Precisão (Acurácia)
   accuracy_meters: Precisão (Acurácia em metros)
-  accuracy_of_the_coordinates: 'Precisão (Acurácia) das coordenadas em metros. Você pode editar este campo clicando no link acima ou clicando em um ponto no mapa e selecionando a localização. Tente criar um círculo grande o suficiente para que você esteja certo de que esteve em algum ponto dentro desta área.'
+  accuracy_of_the_coordinates: |
+    Precisão (Acurácia) das coordenadas em metros. Você pode editar este campo clicando no link acima ou clicando em um ponto no mapa e selecionando a localização. Tente criar um círculo grande o suficiente para que você esteja certo de que esteve em algum ponto dentro desta área.
   action: Ação
   actions: ações
   active: Ativo
@@ -1177,7 +1179,6 @@ pt-BR:
   flickr_style: Ao estilo Flickr
   flickr_tagger: Marcador do Flickr
   flickr_tags: Marcações do Flickr
-  flowering_phenology: Fenologia de Floração
   fluid_layout: Layout Fluído
   fluid: fluído
   follow: Seguir
@@ -4848,10 +4849,6 @@ pt-BR:
         frequency:
           research: Nível de Pesquisa
           verifiable: Verificável
-          "Flowering Phenology=bare": Sem flores
-          "Flowering Phenology=budding": Brotamento
-          "Flowering Phenology=flower": Floração
-          "Flowering Phenology=fruit": Frutificação
           "Life Stage=egg": Ovo
           "Life Stage=nymph": Ninfa
           "Life Stage=adult": Adulto

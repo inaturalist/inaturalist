@@ -1,4 +1,608 @@
 tr:
+  x_comments:
+    one: '%{count} yorum'
+    other: '%{count} yorum'
+  x_faves:
+    one: '%{count} favori'
+    other: '%{count} favori'
+  x_identifications:
+    one: '%{count} tanımlama'
+    other: '%{count} tanımlama'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> tanımlama'
+    other: '<span class="count">%{count}</span> tanımlama'
+  x_identifications_:
+    one: '%{count} Tanımlama'
+    other: '%{count} Tanımlama'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    one: '<span class="count">%{count}</span> Tanımlayıcı'
+    other: '<span class="count">%{count}</span> Tanımlayıcı'
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> yayın gönderisi'
+    other: '<span class="count">%{count}</span> yayın gönderisi'
+  x_matching_taxa:
+    one: '%{count} eşleşen sınıflandırma'
+    other: '%{count} eşleşen sınıflandırma'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> eşleşen sınıflandırma'
+    other: '<span class="count">%{count}</span> eşleşen sınıflandırma'
+  x_misidentifications_of_this_species:
+    one: "%{count} yanlış tür tanımlaması"
+    other: "%{count} yanlış tür tanımlaması"
+  x_observations:
+    one: "%{count} gözlem"
+    other: "%{count} gözlem"
+  x_observations_:
+    one: "%{count} Gözlem"
+    other: "%{count} Gözlem"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> gözlem"
+    other: "<span class='count'>%{count}</span> gözlem"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} gözlem</a>"
+    other: "<a href='%{url}'>%{count} gözlem</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> gözlem gözden geçirildi"
+    other: "<span class='count'>%{count}</span> gözlem gözden geçirildi"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Gözlemci'
+    other: '<span class="count">%{count}</span> Gözlemci'
+  x_others:
+    one: "%{count} diğer"
+    other: "%{count} diğer"
+  x_photos:
+    one: "%{count} fotoğraf"
+    other: "%{count} fotoğraf"
+  x_new_species:
+    one: "%{count} Yeni Tür"
+    other: "%{count} Yeni Tür"
+  x_species:
+    one: '%{count} Tür'
+    other: '%{count} Tür'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> tür"
+    other: "<span class='count'>%{count}</span> tür"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} tür</a>"
+    other: "<a href='%{url}'>%{count} tür</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} Önerinin Filtreme Şekli:"
+    other: "%{count} Önerinin Filtreme Şekli:"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> sınıflandırma gözlemlendi"
+    other: "<span class='count'>%{count}</span> sınıflandırma gözlemlendi"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> araştırma sınıfı gözlemi"
+    other: "<span class='count'>%{count}</span> araştırma sınıfı gözlemi"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> araştırma sınıfı gözlem tanımlaması ya da daha altı"
+    other: "<span class='count'>%{count}</span> araştırma sınıfı gözlem tanımlaması ya da daha altı"
+  x_taxa_matching_current_filters:
+    one: "%{count} sınıflandırma geçerli filtrelerle eşleşiyor"
+    other: "%{count} sınıflandırma geçerli filtrelerle eşleşiyor"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> sınıflandırma değişimi eklendi"
+    other: "<span class='count'>%{count}</span> sınıflandırma değişimi eklendi"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} insan</strong> %{user} kullanıcısına <strong> %{y} tanımlamalarında</strong> yardım etti"
+  _100_day_trends: 100 Günlük Trendler
+  a_community_for_naturalist: Doğacılar Topluluğu
+  a_default_taxon_name_will_automatically_created: |
+    Varsayılan bir sınıflandırma adı, kendiliğinden bu sınıflandırmanın bilimsel ad özelliğinden oluşturulacak. Bu yeni sınıflandırmayı kaydettikten sonra, buraya başka adlar ekleyebilirsiniz (genel adlar, eski bilimsel adlar vb.).
+  a_member_of: "Şunun bir üyesi"
+  a_member_of_taxon_html: "%{taxon} sınıfının bir üyesi"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
+  about: Hakkında
+  about_blocking: Engelleme Hakkında
+  about_charts: Grafikler Hakkında
+  about_community_taxa: Topluluk Sınıflandırması Hakkında
+  about_complete_taxa: Sınıflandırmanın Tamamı Hakkında
+  about_conservation_status: Koruma Durumu Hakkında
+  about_editing_observation_fields: Gözlem Alanlarını Düzenleme Hakkında
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Kuruluş Varlığı Hakkında
+  about_licenses: Lisanslar Hakkında
+  #Header for a section describing taxon names
+  about_names: Adlar Hakkında
+  about_places: Yerler Hakkında
+  about_the_cc_licenses: Creative Commons Lisansları Hakkında
+  about_these_licenses: Bu lisanslar hakkında
+  about_this_bioblitz: Bu bioblitz hakkında
+  about_this_map: Bu harita hakkında
+  about_this_project: Bu proje hakkında
+  about_x: "%{x} Hakkında"
+  acc: 'Doğruluk (m)'
+  account: Hesap
+  account_creation: Hesap Oluşturma
+  account_settings: Hesap Ayarları
+  accept: onay
+  accept_community_identifications: Topluluk tanımlamalarını onayla
+  accuracy: Doğruluk
+  accuracy_meters: Doğruluk (metre)
+  accuracy_of_the_coordinates: |
+    Koordinatların metre cinsinden doğruluğu. Bunu, yukarıdaki "düzenle" bağlantısını tıklayarak ya da harita işaretleyicisine tıklayarak ve işaretleri sürükleyerek düzenleyebilirsiniz. İçinde olduğunuzdan emin olmak için çevreyi yeterince büyütün.
+  action: Eylem
+  actions: Eylemler
+  active: Etkin
+  active_users: Etkin Kullanıcıalar
+  activity: Etkinlik
+  activity_settings: Etkinlik ayarları
+  add: Ekle
+  add_a_batch_of_observations: Toplu Gözlem Ekle
+  add_a_batch_of_taxa: Toplu Sınıflandırma Ekle
+  add_a_comment: Bir Yorum Ekle
+  add_a_field: Bir Alan Ekle
+  add_a_flag: İşaret Ekle
+  add_a_name: Bir Ad Ekle
+  add_a_single_observation: Tek Gözlem Ekle.
+  add_a_taxon: Bir Sınıflandırma Ekle
+  add_an_assessment: Bir Değerlendirme Ekle
+  add_an_identification: Bir Tanımlama Ekle
+  add_an_observation: Bir Gözlem Ekle
+  add_an_observation?: Gözlem Eklensin mi?
+  add_an_observation_of: "Bir %{taxon} gözlemi ekle"
+  add_an_observation_to_project_html: '%{project} projesine bir gözlem ekle'
+  add_annotations_for_x: '"%{x}" için bir açıklama ekle'
+  add_annotations_for_controlled_attribute:
+    sex: '"Cinsiyet" için Açıklama Ekle'
+    plant_phenology: '"Bitki Fenolojisi" için Açıklama Ekle'
+    life_stage: '"Yaşam Evresi" için Açıklama Ekle'
+  add_another_flag: Başka Bir İşaret Ekle
+  add_another_photo: Başka Bir Fotoğraf Ekle
+  add_another_section: Başka Bir Kısım Ekle
+  add_another_subscription: Başka Bir Abonelik Ekle
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Proje Varlığı Ekle
+  add_batch: Toplu Ekle
+  add_comma_separated_tags: "Virgülle Ayrılmış Etiket Ekle"
+  add_comment: Bir Yorum Ekle
+  add_conservation_status: Koruma Durumu Ekle
+  add_countries: Ülkeleri Ekle
+  add_custom_project_fields: Özel Proje Alanları Ekle
+  add_edit_flags: İşaret Ekle/Düzenle
+  add_editor: Düzenleyici Ekle
+  add_description: "%{description_name} Ekle"
+  add_from_your_observations: Gözlemlerinden Ekle
+  add_link: Bağlantı Ekle
+  add_higher_level_taxon: Üst Düzey Sınıflandırma Ekle (örn. "kuş")
+  add_id: Tanımlama Ekle
+  add_new_lexicon: Yeni Sözlük Ekle
+  add_new_photos_by_their_ids: Flickr Kimlikleriyle Yeni Fotoğraflar Ekle (Creative Commons olmalı!)
+  add_new_place: Yeni Bir Alan Ekle
+  add_new_rule: Yeni Bir Kural Ekle
+  add_new_source: "Yeni Kaynak Ekle..."
+  add_new_taxon_name: Yeni Bir Sınıflandırma Adı Ekle
+  add_notes_about_this_taxon: Bu yere bu sınıflandırma ile ilgili notlar ekleyin, örn. nerede ve ne zaman gerçekleştiği.
+  add_obs_from_a_link: "Şu listeden gözlem ekle: %{link}"
+  add_obs_from_a_list: Bir Listeden Gözlem Ekle
+  add_observations: Gözlem Ekle
+  add_observations_by_checking_off: Listedeki türleri işaretleyerek gözlem ekle.
+  add_observations_project: Bu Projeye Gözlem Ekle
+  #Prompt to add a new journal post
+  add_one: Bir Tane Ekle!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Şimdi Bir Tane Ekle
+  add_photos: Fotoğraf Ekle
+  add_place: Yer Ekle
+  add_plant_phenology_budding_annotation: '"Bitki Fenolojisi: Tomurcuklanma" açıklaması ekle'
+  add_plant_phenology_flowering_annotation: '"Bitki Fenolojisi: Çiçeklenme" açıklaması ekle'
+  add_plant_phenology_fruiting_annotation: '"Bitki Fenolojisi: Meyveli" açıklaması ekle'
+  add_life_stage_adult_annotation: '"Yaşam Evresi: Yetişkin" açıklaması ekle'
+  add_life_stage_teneral_annotation: '"Yaşam Evresi: Teneral" açıklaması ekle'
+  add_life_stage_subimago_annotation: '"Yaşam Evresi: Subimago" açıklaması ekle'
+  add_life_stage_pupa_annotation: '"Yaşam Evresi: Pupa" açıklaması ekle'
+  add_life_stage_nymph_annotation: '"Yaşam Evresi: Nemfi" açıklaması ekle'
+  add_life_stage_larva_annotation: '"Yaşam Evresi: Larva" açıklaması ekle'
+  add_life_stage_juvenile_annotation: '"Yaşam Evresi: Genç" açıklaması ekle'
+  add_life_stage_egg_annotation: '"Yaşam Evresi: Yumurta" açıklaması ekle'
+  add_relationship: 'İlişki ekle'
+  add_section: Kısım Ekle
+  add_several_observations_at_once: Aynı anda birkaç gözlem ekle.
+  add_sex_female_annotation: '"Cinsiyet: Dişi" açıklamasını ekle'
+  add_sex_male_annotation: '"Cinsiyet: Erkek" açıklamasını ekle'
+  add_some_now: Şimdi Bir Şey Ekle
+  add_tag: Etiket Ekle
+  add_tags: Etiket Ekle
+  add_tags_to_selected_taxa: Seçili Sınıflandırmaya Etiket Ekle
+  add_taxa: Sınıflandırma Ekle
+  add_taxon_batch_to: "%{list} Listesine Toplu Sınıflandırma Ekle"
+  add_taxon_range: Sınıflandırma Aralığı Ekle
+  add_taxonomic_tags_to: "Seçili Flickr fotoğraflarına sınıflandırma etiketleri ekleyin &raquo;"
+  add_to_a_scheme: Bir Şemaya Ekle
+  add_to_a_project: Bir Projeye Ekle
+  add_to_calendar: Takvime Ekle
+  add_to_checklist: Kontrol Listesine Ekle
+  add_to_favorites: Favorilere Ekle
+  add_to_list: Listeye Ekle
+  add_to_project: Projeye Ekle
+  add_to_your_life_list: Yaşam Listene Ekle!
+  add_to_your_list: Listene Ekle
+  add_your_email_to_get: |
+    Topluluktan gözleminiz ile ilgili geri bildirim almak için e-postanızı ekleyin.
+    Paylaşmak istemiyorsanız, lütfen en kısa sürede tekrar kontrol edin!
+  add_your_own_observations_at: "Gözlemlerini %{site_name} sayfasına ekle"
+  added: Eklendi
+  added!: Eklendi!
+  added_by: Ekleyen
+  added_by_user_on_date_html: "%{date} tarihinde %{user} tarafından eklendi"
+  added_on: Eklendiği tarih
+  added_to_favorites_html: |
+    <a href="%{url}">Favorilere</a> eklendi
+  adding: "Ekleniyor..."
+  additional_range_data_from_an_unknown_source: Bilinmeyen kaynaktan ek aralık
+  adjust_brightness: Parlaklık Ayarlama
+  admin: Yönetici
+  admin_s: Yönetici(ler)
+  admin_only: Yalnızca Yönetici
+  admin_tools: Yönetici Araçları
+  agree: onayla
+  agree_: Onayla
+  agree?: Onaylansın mı?
+  agree_with_current_taxon: Geçerli sınıflandırmayla onayla
+  agreeing: Onaylanıyor...
+  aka: diğer adıyla
+  all: Tümü
+  all_colors: "&laquo; Tüm Renkler"
+  all_comments: Tüm yorumlar
+  all_flags_must_be_resolved: Tüm işaretler çözümlenmeli
+  all_life: Tüm yaşam
+  all_names: Tüm Adlar
+  all_observations: Tüm gözlemler
+  all_photos: Tüm fotoğraflar
+  all_places: "Tüm Yerler"
+  all_projects: Tüm Projeler
+  all_rights_reserved: tük hakları saklıdır
+  all_taxa:
+    rank:
+      kingdom: Alem
+      class: Sınıf
+      phylum: Şube
+      species: Tür
+      order: Takım
+    amphibians: Yüzergezerler
+    animals: Hayvanlar
+    arachnids: Eklembacaklılar
+    birds: Kuşlar
+    chromista: Chromista
+    fungi: Mantarlar
+    fungi_including_lichens: Likenleri İçeren Mantarlar
+    insects: Böcekler
+    mammals: Memeliler
+    mollusks: Yumuşakçalar
+    other_animals: Diğer Hayvanlar
+    plants: Bitkiler
+    protozoans: Tek Hücreliler
+    ray_finned_fishes: Işınsal Yüzgeçli Balıklar
+    reptiles: Sürüngenler
+    life: Yaşam
+    x_plantae:
+      one: "%{count} bitki"
+      other: "%{count} bitki"
+    x_animalia:
+      one: "%{count} hayvan"
+      other: "%{count} hayvan"
+    x_mollusca:
+      one: "%{count} yumuşakça"
+      other: "%{count} yumuşakça"
+    x_amphibia:
+      one: "%{count} yüzergezer"
+      other: "%{count} yüzergezer"
+    x_mammalia:
+      one: "%{count} memeli"
+      other: "%{count} memeli"
+    x_actinopterygii:
+      one: "%{count} ışınsal yüzgeçli balık"
+      other: "%{count} ışınsal yüzgeçli balık"
+    x_reptilia:
+      one: "%{count} sürüngen"
+      other: "%{count} sürüngen"
+    x_aves:
+      one: "%{count} kuş"
+      other: "%{count} kuş"
+    x_insecta:
+      one: "%{count} böcek"
+      other: "%{count} böcek"
+    x_arachnida:
+      one: "%{count} eklembacaklı"
+      other: "%{count} eklembacaklı"
+    x_fungi:
+      one: "%{count} mantar"
+      other: "%{count} mantar"
+    x_chromista:
+      one: "%{count} chromist"
+      other: "%{count} chromist"
+    x_protozoa:
+      one: "%{count} tek hücreli"
+      other: "%{count} tek hücreli"
+    x_other_animals:
+      one: "%{count} diğer hayvan"
+      other: "%{count} diğer hayvan"
+  all_taxa_: Tüm sınıflandırmalar
+  all_taxa_in_this_guide: Bu rehberdeki tüm sınıflandırmalar
+  all_taxonomic_groups: "&laquo; Tüm Sınıflandırma Grupları"
+  all_updates: Tüm Güncellemeler
+  all_your_observations_will_default_this_time_zone: Tersi belirtmediğiniz sürece, tüm gözlemleriniz bu zaman diliminde varsayılan olacaktır.
+  all_your_observations_will_default_to_this_time_zone: Tersi belirtmediğiniz sürece, tüm gözlemleriniz bu zaman diliminde varsayılan olacaktır.
+  #Option to allow any taxa on a list
+  allow_any: herhangi birine izin ver
+  allowed_html: İzin verilen HTML
+  allowed_occurrence_status_values: İzin verilen oluşum durumu değerleri
+  allowed_values: İzin verilen değerler
+  almost_there_: Neredeyse Tamam...
+  alphabetical: Alfabetik
+  alphabetical_order: Alfabetik Sıra
+  already_have_an_account_log_in_html: Zaten bir hesabınız var mı? <strong>Giriş yapın.</strong>
+  amphibians: yüzergezerler
+  ancestor_taxon: Ata Sınıflandırması
+  and: ve
+  and_other_taxa: "&amp; Diğer Sınıflandırma"
+  android: Android
+  animals: Hayvanlar
+  annotation: Açıklama
+  annotations: Açıklamalar
+  announcement_was_successfully_created: Duyuru başarıyla oluşturuldu.
+  announcement_was_successfully_updated: Duyuru başarıyla güncellendi.
+  announcements: Duyurular
+  any: herhangi
+  any_: Herhangi
+  anyone: Herhangi Biri
+  apply_to_selected: Seçililere uygula
+  apply_captive_cultivated: "Kısıtlı / ekili olarak işaretle"
+  apply_fields: Alanları uygula
+  apply_geoprivacy: Coğrafi gizliliği uygula
+  apply_darr: "Uygula &darr;"
+  apply_these_settings_to_all: Bu ayarları aşağıdaki tüm gözlemlere uygula.
+  appropriate?: Uygun mu?
+  arachnids: eklembacaklılar
+  archives: Belgelikler
+  are_you_really_sure_want_delete_this_user: Bu kullanıcıyı ve içeriklerini silmek istediğinizden gerçekten, gerçekten emin misiniz?
+  are_you_sure?: Emin misiniz?
+  are_you_sure_no_undo: Emin misiniz? Bu geri alınamaz.
+  are_you_sure_delete_post: Bu gönderiyi silmek istediğinizden emin misiniz?
+  are_you_sure_delete_taxon_move_associates: "Tüm %{taxonname} (%{taxonid}) ile bağlıları taşımak ve silmek istediğinizden emin misiniz?"
+  are_you_sure_delete_this_place: Bu yeri silmek istediğinden emin misin?
+  are_you_sure_leave_this_project: Bu projeden ayrılmak istediğine emin misin?
+  are_you_sure_merge_these_places: Bu yerleri birleştirmek istediğine emin misin? Bu geri alınamaz.
+  are_you_sure_remove_photo: "Fotoğrafı kaldırmak istediğinden emin misin?"
+  are_you_sure_remove_relationship: Bu ilişkiyi kaldırmak istediğinden emin misin? Bu, bu kişiyi takibi engeller ve bu erişimi etkinleştirdiyseniz gizli koordinatlarınıza erişimi iptal eder.
+  are_you_sure_remove_taxon_from_list: "Bu sınıflandırmayı listeden kaldırmak istediğinize emin misiniz?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Emin misiniz? Bu, sayfayı yeniden yükleyecektir ve bazı değişikliklerinizi kaybedebilirsiniz.
+  are_you_sure_want_delete_taxon: "Bu sınıflandırmayı silmek istediğinden emin misin?"
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Alt sınıflara sahip bir sınıflandırmadır.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Alt sınıflara ve tanımlamalara sahip bir sınıflandırmadır.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Alt sınıflara, tanımlamalara ve gözlemlere sahip bir sınıflandırmadır.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Alt sınıflara ve listeli sınıflandırmalara sahip.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Alt sınıflara, listeli sınıflandırmalara ve tanımlamalara sahip.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Alt sınıflara, listeli sınıflandırmalara, tanımlamalara ve gözlemlere sahip.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Alt sınıflara, listeli sınıflandırmalara ve gözlemlere sahip.
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Alt sınıflara ve gözlemlere sahip.
+  are_you_sure_want_delete_taxon_identifications: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Tanımlamalara sahip.
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Tanımlamalara ve gözlemlere sahip.
+  are_you_sure_want_delete_taxon_listed_taxa: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Listeli sınıflandırmalara sahip.
+  are_you_sure_want_delete_taxon_listed_taxa_identifications: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Listeli sınıflandırmalara ve tanımlamalara sahip
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Listeli sınıflandırmalara, tanımlamalara ve gözlemlere sahip.
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Listeli sınıflandırmalara ve gözlemlere sahip.
+  are_you_sure_want_delete_taxon_observations: |
+    Bu sınıflandırmayı silmek istediğinden emin misin? Gözlemlere sahip.
+  are_you_sure_want_delete_taxon_link: Bu sınıflandırma bağlantısını silmek istediğine emin misin?
+  are_you_sure_want_delete_this_name: Bu adı silmek istediğine emin misin?
+  are_you_sure_you_want_to_commit_this_change: Bu değişikliği yapmak istediğine emin misin? Bu geri alınamaz.
+  are_you_sure_you_want_to_delete_this: Bunu silmek istediğine emin misin?
+  are_you_sure_you_want_to_delete_this_assessment?: Değerlendirmeyi silmek istediğine emin misin?
+  are_you_sure_you_want_to_delete_this_photo?: Bu fotoğrafı silmek istediğine emin misin?
+  are_you_sure_you_want_to_delete_this_post: Bu gönderiyi silmek istediğine emin misin?
+  are_you_sure_you_want_to_delete_this_taxon_change: Bu sınıflandırma değişikliğini silmek istediğine emin misin?
+  are_you_sure_you_want_to_remove_all_tags: Tüm etiketleri kaldırmak istediğine emin misin?
+  are_you_sure_you_want_to_remove_curator: '%{user} kişisini küratörlükten çıkartmak istediğine emin misin?'
+  are_you_sure_you_want_to_remove_from_project: '%{user} kişisini bu projeden çıkartmak istediğine emin misin?'
+  are_you_sure_you_want_to_remove_manager: '%{user} kişisini yöneticilikten çıkartmak istediğine emin misin?'
+  are_you_sure_you_want_to_remove_these_x_taxa?: "%{x} sınıflandırmalarını kaldırmak istediğine emin misin?"
+  are_you_sure_you_want_to_remove_this_invitation: Bu çağrıyı kaldırmak istediğine emin misin?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bu sınıflandırmayı %{place} kısmındaki kontrol listesinden kaldırmak istediğine emin misin?"
+  attention: Dikkat
+  you_sure_delete_list: Bu listeyi silmek istediğinize emin misiniz?
+  you_sure_delete_taxon_from_list?: "Bu %{taxon} sınıfını listeden kaldırmak istediğine emin misin?"
+  asc: Artan
+  ascending: Artan
+  assessment: değerlendirme
+  assessment_has_benn_completed: Değerlendirme tamamlandı
+  assessment_sections: Değerlendirme Kısımları
+  assessment_was_deleted: Değerlendirme silindi.
+  assessment_was_successfully_created: Değerlendirme başarıyla oluşturuldu.
+  assessment_was_successfully_updated: Değerlendirme başarıyla güncellendi.
+  assessment_x: "%{assessment} değerlendirmesi"
+  assessments: değerlendirmeler
+  at_time: "%{time} zamanında"
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
+  atom: Atom
+  attached_taxon: Ekli Sınıflandırma
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
+  attribute: Nitelik
+  attribution: Nitelik
+  authority_list:
+    natureserve: NatureServe
+    cites: CITES
+  authorize: Yetki ver
+  authorize_permissions_from_provider: "%{provider} tarafından izin yetkisi verme"
+  automatic_short: Kendiliğinden
+  automatically_add_observations_to_this_project: Gözlemleri bu projeye kendiliğinden ekle
+  automatically_update_my_content_for_taxon_changes: Sınıflandırma değişikliklerinde içeriğimi kendiliğinden güncelle
+  back: Geri
+  back_to_all_species: Tüm Türlere Dön
+  back_to_browsing_people: Kişi Aramaya Dön
+  back_to_calendar: "%{user} takvimine dön"
+  back_to_editing_observation: Gözlem düzenlemeye dön
+  back_to_friends: Arkadaşlara dön
+  back_to_flags_html: "&laquo; İşaretlere Dön"
+  back_to_lists: "%{name} listesine dön"
+  back_to_observation: Gözleme dön
+  back_to_observation_fields: Gözlem alanlarına dön
+  back_to_people: İnsanlara dön
+  back_to_places: Bitkilere dön
+  back_to_possessive_user_profile: "%{possuser} profiline dön"
+  back_to_post: '&laquo; Gönderilere dön'
+  back_to_projects: Projelere dön
+  back_to_suggestions: Önerilere dön
+  back_to_taxon: "%{defaulttaxon} sınıfına dön"
+  back_to_taxon_changes: "Sınıflandırma değişikliklerine dön"
+  back_to_taxon_framework_for_x: "%{taxon_name} için sınıflandırma yapısına dön"
+  back_to_viewing: "<i>%{taxon}</i> görünümüne dön"
+  back_to_x: "%{noun} dön"
+  back_to_x_assessment: "%{project} değerlendirmelerine dön"
+  back_to_x_history: "%{x} geçmişine dön"
+  back_to_x_journal: "%{user} kişisinin yayınına dön"
+  back_to_x_blog: "%{x} bloguna dön"
+  back_to_your_dashboard: Ana sayfana dön
+  back_to_your_lists: Listelerine dön
+  back_to_your_journal: Yayınına dön
+  back_to_your_observations: Gözlemlerine dön
+  back_to_your_profile: Profiline dön
+  back_to_your_projects: Projelerine dön
+  based_on_the_evidence_can_id_be_improved: |
+    Kanıtlara dayanarak, Topluluk Sınıflandırması hâlâ onaylanabilir ya da geliştirilebilir mi?
+  batch_edit: Toplu düzenleme
+  batch_edit_taxa_for_x_html: "%{x} sınıflandırmaları için toplu düzenleme"
+  batch_operations: Toplu İşlemler
+  be_the_first_to_fave_this_observation: Bu gözlemi ilk favori yapan siz olun!
+  because_of: çünkü
+  before_importing_photos: fotoğrafları içe aktarmadan önce
+  belives_this_is_a_comprehensive_list_of: bunun kapsamlı bir liste olduğuna inanıyor
+  bg_color: Arka Plan Rengi
+  bioblitz: Bioblitz
+  birds: kuşlar
+  birthday: Doğum Günü
+  black: siyah
+  block_user: Kullanıcıyı Engelle
+  block_removed: Engel kaldırıldı
+  blocked_users: Engellenen Kullanıcılar
+  blog_widget: Blog widgeti
+  blue: mavi
+  blue_butterfly_etc: "mavi, kelebek vb."
+  blue_icons_represent_political_units: "Mavi simgeler ülkeler, eyaletler, bölgeler, iller ve benzerleri gibi politik birimleri temsil ederken, yeşil simgeler değişik türdeki açık alanları (parklar, alanlar) temsil eder. Yakınlaştırırsanız daha küçük yerler göreceksiniz."
+  body: Gövde
+  breadcrumbs_description: "Bu h1 ve varsayılan harekete geçirme çağrılarının yerini alacak, bu nedenle bu proje için önemliyse onları eklemeyi ve izin verilen en uzun genişliğin 950 piksel olduğunu unutmayın"
+  brown: kahverengi
+  browse: Göz at
+  browse_all_projects: Tüm Projelere Göz At
+  browse_all_species: Tüm Türlere Göz At
+  browse_observations: Gözlemlere Göz At
+  browse_people: İnsalara Göz At
+  browse_projects: Projelere Göz At
+  browse_species_that_occur_near_this_observation: Bu gözlemin yakınında oluşan türlere göz at.
+  built_with_site_guides_html: "<a href='%{url}'>%{site_name} Rehber</a> ile yapılmış"
+  bulk_import_of_filename_is_complete: "%{filename} dosyasının toplu içe aktarması tamamlandı"
+  by_everyone: Herkes tarafından
+  by_user: "%{user} tarafından"
+  by_you: Senin tarafından
+  calendar: Takvim
+  cancel: İptal
+  cant_edit_or_delete_hidden_content: Site küratörleri tarafından gizlenmiş içeriği düzenleyemez ya da silemezsiniz
+  cant_flag_an_object_that_doesnt_exist: Var olmayan nesneyi işaretleyemezsin
+  cant_merge_a_taxon_with_itself: Bir sınıflandırmayı kendisiyle birleştiremezsin.
+  captive: Kısıtlanmış
+  captive_cultivated: Kısıtlanmış / Ekili
+  card: Kart
+  casual: sıradan
+  casual_: Sıradan
+  categories: Kategoriler
+  cc_0_description: "Bu lisans, çalışmanızı kamuya açık bir alanda yayınlar; böylece diğerleri, izin almadan ya da size bilgi vermeden ticari amaçlarla bile çalışmanızı kopyalayabilir, değiştirebilir, dağıtabilir ve uygulayabilir. Sunulan lisansların en uygunu budur. Azami yayılma ve lisanslı malzemelerin kullanımı için önerilir."
+  cc_0_name: Telif Hakkı Yok (CC0)
+  cc_attribution_license: Creative Commons Attribution lisansı
+  change_admin: Yöneticiyi Değiştir
+  change_geoprivacy: 'Coğrafi Gizliliği Değiştir'
+  change_types:
+    input_taxon_was_dropped_html: "%{input_taxon} silindi"
+    input_taxon_will_be_dropped_html: "%{input_taxon} silinecek"
+    input_taxon_will_be_activated_soon_html: "%{input_taxon} yakında etkin olacak"
+    input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon}, %{output_taxon} sınıfının yerine geçti"
+    input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon}, %{output_taxon} sınıfının yerine geçecek"
+    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}, %{output_taxon} sınıfıyla birleştirildi"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa}, %{output_taxon} sınıfıyla birleştirilecek"
+  change_your_password: Şifreni Değiştir
+  changing_the_geoprivacy: 'Coğrafi gizliliğin değişimi, diğer insanların gözlemlerinin konumları nasıl göreceğini değiştirir.'
+  check_above_for_errors: Hatalar için yukarıyı kontrol et
+  check_back_soon: Yakında kontrol et!
+  check_here_to_autoload_description: Vikipedi'den gelen kendiliğinden açıklama için burayı işaretle. "Parus" gibi bir sınıflandırmanın bilimsel adı ayrıca bilimsel olmayan bir sözcük ya da yaygın yazım hatasıysa belki işaretlemek istemeyebilirsin.
+  check_here_to_autoload_photos: Flickr'dan kendiliğinden yüklenen fotoğraflar için burayı işaretle. "Parus" gibi bir sınıflandırmanın bilimsel adı ayrıca bilimsel olmayan bir sözcük ya da yaygın yazım hatasıysa belki işaretlemek istemeyebilirsin.
+  check_list: Kontrol listesi
+  check_list_description: Kuşlar için "Aves" ya da yüzergezerler için "Yüzergezer" gibi bu listede göstermek istediğiniz daha yüksek bir sınıflandırmayı seçin. Ayarlandığında, bu liste bu sınıflandırmada olmayan sınıflara izin vermez. Örneğin, bir kuş listesi oluşturursanız, herhangi bir kurbağa ekleyemezsiniz.
+  check_list_for_individual_taxa_that: 'Burada yaşayan bireysel sınıflandırmalar için kontrol listeleri ör. "%{place} Kuşları".'
+  check_lists_must_belong_to_a_place: |
+    Kontrol listesi, alanla ilgili olmalıdır. Yeni bir kontrol listesi oluşturmak için bir yerin varsayılan kontrol listesini ziyaret edin ve 'Yeni bir kontrol listesi oluştur' bağlantısını tıklayın.
+  check_list_of_species_occuring_in: Şurada oluşan kontrol listesi
+  check_list_place: "%{place} Kontrol Listesi"
+  check_list_updated: Kontrol listesi güncellendi!
+  check_lists_for: "%{place} için Diğer Kontrol Listeleri"
+  check_out_my_observations_at: Eğer istersen, gözlemlerimi şurada kontrol edebilirsin
+  check_out_our_blog: Blogumuza Göz Atın
+  check_out_what_the_observation: Tanımlamaya çalıştığınız gözlemin neye benzediğini kontrol edin.
+  checklist: Kontrol Listesi
+  choose_a_field: Bir alan seç
+  choose_a_list_above: Yukarıdan bir liste seç.
+  choose_a_place: Bir alan seç
+  choose_a_taxon: Bir sınıflandırma seç (isteğe bağlı)
+  choose_columns: Sütun seç
+  choose_file: Dosya seç
+  choose_files: Dosyaları seç
+  choose_from_your_lists: Listenden seç
+  choose_photos_for_this_taxon: Bu sınıflandırma için fotoğraflar seç
+  choose_photos_to_tag_from_photostream: Fotoğraf akışından etiketlenecek fotoğrafları seç
+  choose_rule: Bir kural seç
+  choose_subjects: Konuları seç
+  choose_tags: Etiketleri seç
+  choose_taxon: Bir sınıflandırma seç
+  choose_what_kind_of_change_youre_creating: "Ne tür bir değişiklik yaratacağını seç."
+  classification: Sınıflandırma
+  clear: temizle
+  clear_color_filters: Renk filtrelerini temizle
+  clear_filters: Filtreleri temizle
+  clear_search: Aramayı temizle
+  click_the_map: "Bir konum eklemek için <strong>haritaya tıkla</strong>."
+  close: Kapat
+  code: Kod
+  colors: Renkler
+  columns: Sütunlar
+  combine: Birleştir
   date:
     abbr_month_names:
       - 

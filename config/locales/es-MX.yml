@@ -122,7 +122,8 @@ es-MX:
   accept_community_identifications: Aceptar identificaciones de la comunidad
   accuracy: Precisión
   accuracy_meters: Precisión (metros)
-  accuracy_of_the_coordinates: 'Precisión de las coordenadas en metros. Las puedes cambiar seleccionando el enlace a "Modificar" o seleccionando el punto de tu ubicación en el mapa. Trata de hacer el círculo lo suficientemente grande para asegurar que estabas en algún lugar del área marcada.'
+  accuracy_of_the_coordinates: |
+    Precisión de las coordenadas en metros. Las puedes cambiar seleccionando el enlace a "Modificar" o seleccionando el punto de tu ubicación en el mapa. Trata de hacer el círculo lo suficientemente grande para asegurar que estabas en algún lugar del área marcada.
   action: Acción
   actions: Acciones
   active: Activo
@@ -1159,7 +1160,6 @@ es-MX:
   flickr_style: Estilo de Flickr
   flickr_tagger: Etiquetado de Flickr
   flickr_tags: Etiquetas de Flickr
-  flowering_phenology: Fenología de la floración
   fluid_layout: Diseño fluido
   fluid: fluida
   follow: Seguir
@@ -4778,10 +4778,6 @@ es-MX:
         frequency:
           research: Grado de investigación
           verifiable: Verificable
-          "Flowering Phenology=bare": Sin flores
-          "Flowering Phenology=budding": Incipiente
-          "Flowering Phenology=flower": Floración
-          "Flowering Phenology=fruit": Fructificacón
           "Life Stage=egg": Huevo
           "Life Stage=teneral": Muda
           "Life Stage=nymph": Ninfa

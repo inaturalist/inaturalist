@@ -129,7 +129,8 @@ et:
   accept_community_identifications: Luba kogukondlikud määratlused
   accuracy: Täpsus
   accuracy_meters: Täpsus (meetrit)
-  accuracy_of_the_coordinates: 'Koordinaatide täpsus meetrites. Saad seda muuta vajutades ülal "muuda" lingile või kaardimärgisele ja lohistades selle piirjoone elemente. Proovi muuta ring piisavalt suureks, et oleksid kindel, et viibised vaatlemise ajal selle sees.'
+  accuracy_of_the_coordinates: |
+    Koordinaatide täpsus meetrites. Saad seda muuta vajutades ülal "muuda" lingile või kaardimärgisele ja lohistades selle piirjoone elemente. Proovi muuta ring piisavalt suureks, et oleksid kindel, et viibised vaatlemise ajal selle sees.
   action: Toiming
   actions: Toimingud
   active: Aktiivne
@@ -1165,7 +1166,6 @@ et:
   flickr_style: Flickr-stiil
   flickr_tagger: Flickr märksõnad
   flickr_tags: Flickr märksõnad
-  flowering_phenology: Õitsemise fenoloogia
   fluid_layout: Voolav ekraani asetus
   fluid: voolav
   follow: Jälgi
@@ -4535,10 +4535,6 @@ et:
         frequency:
           research: Teaduskõlbulik
           verifiable: Tõendatav
-          "Flowering Phenology=bare": Õisi pole
-          "Flowering Phenology=budding": Võrsuv
-          "Flowering Phenology=flower": Õitsev
-          "Flowering Phenology=fruit": Viljakandev
           "Life Stage=egg": Muna
           "Life Stage=larva": Tõuk
           "Life Stage=teneral": Valmik

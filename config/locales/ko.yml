@@ -99,7 +99,8 @@ ko:
   accept_community_identifications: 공동체 동정 승인
   accuracy: 정확성
   accuracy_meters: 정확도 (미터)
-  accuracy_of_the_coordinates: '미터로 나타낸 좌표의 정확도. 정확도는 위의 편집 링크를 클릭하거나 지도 마커를 클릭한 후 가장자리를 드래그해서 편집할 수 있습니다. 원 안에 자신의 실제 위치가 확실히 들어가도록 설정해 주세요.'
+  accuracy_of_the_coordinates: |
+    미터로 나타낸 좌표의 정확도. 정확도는 위의 편집 링크를 클릭하거나 지도 마커를 클릭한 후 가장자리를 드래그해서 편집할 수 있습니다. 원 안에 자신의 실제 위치가 확실히 들어가도록 설정해 주세요.
   actions: 동작
   active: 활성
   active_users: 활동적인 사용자
@@ -190,16 +191,16 @@ ko:
   add_your_email_to_get: |
     이메일을 추가하면 공동체가 내 관찰에 대한 피드백을 할 수 있습니다. 이메일을 추가하고 싶지 않다면 나중에 확인해 주세요!
   add_your_own_observations_at: "%{site_name}에 내 관찰 추가하기"
-  added: 추가됨
+  added: 업로드됨
   added!: 추가되었습니다!
   added_as_a_part_of_a_taxon_change_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">분류군 변경</a>으로 인하여 추가됨
+    <a target="%{target}" class="%{class}" href="%{url}">분류군 변경</a>으로 인하여 변경됨
   added_as_a_part_of_a_taxon_merge_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">분류군 병합</a>으로 인하여 추가됨
+    <a target="%{target}" class="%{class}" href="%{url}">분류군 병합</a>으로 인하여 변경됨
   added_as_a_part_of_a_taxon_split_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">분류군 분리</a>로 인하여 추가됨
+    <a target="%{target}" class="%{class}" href="%{url}">분류군 분리</a>로 인하여 변경됨
   added_as_a_part_of_a_taxon_swap_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">분류군 교체</a>로 인하여 추가됨
+    <a target="%{target}" class="%{class}" href="%{url}">분류군 교체</a>로 인하여 변경됨
   added_by: 추가함
   added_by_user_on_date_html: "%{date}에 %{user}님이 추가함"
   added_on: 추가됨
@@ -342,8 +343,8 @@ ko:
   are_you_sure_you_want_to_delete_this_post: 이 게시물을 삭제하겠습니까?
   are_you_sure_you_want_to_delete_this_taxon_change: 분류군 변동사항을 저장하겠습니까?
   are_you_sure_you_want_to_remove_all_tags: 모든 태그를 삭제하시겠습니까?
-  are_you_sure_you_want_to_remove_curator: 정말 %{user}을(를) 큐레이터에서 제거하겠습니까?
-  are_you_sure_you_want_to_remove_from_project: 정말 %{user}을(를) 이 프로젝트에서 제거하시겠습니까?
+  are_you_sure_you_want_to_remove_curator: 정말 %{user}님의 큐레이터 권한을 삭제하시겠습니까?
+  are_you_sure_you_want_to_remove_from_project: 정말 %{user}님을 이 프로젝트에서 제거하시겠습니까?
   are_you_sure_you_want_to_remove_manager: 정말 %{user}을(를) 매니저에서 제거하겠습니까?
   are_you_sure_you_want_to_remove_spammer: |
     이 사용자를 신뢰할 수 있습니까?
@@ -501,6 +502,7 @@ ko:
     replace_with: '바꾸기:'
     dropped: 포기함
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}은(는) %{output_taxon}으(로) 병합되었습니다"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} 는 %{output_taxon}과 병합될 것입니다."
   change_your_password: 비밀번호 바꾸기
   changing_the_geoprivacy: '위치보호를 변경하면 다른 사람이 사용자의 관찰 위치를 보는 방식이 변경됩니다.'
   check_above_for_errors: 오류에 대해서는 상단을 확인하십시오
@@ -682,7 +684,7 @@ ko:
   data_used: "사용된 데이터:"
   datatype: 데이터 유형
   date_: 날짜
-  date_added: 날짜 추가됨
+  date_added: 추가된 날짜
   date_created: 만든 날짜
   date_format:
     date_long:
@@ -713,7 +715,8 @@ ko:
       december: 12월
   date_is_accurate: 날짜가 정확함
   date_joined: 가입일
-  date_observed: 관찰 날짜
+  date_observed: 관찰된 날짜
+  date_observed_: 관찰된 날짜
   date_observed_on: '관찰 날짜:'
   date_picker:
     closeText: 닫기
@@ -892,6 +895,7 @@ ko:
   exclusion_filters: 제외 필터
   existing_flags: 기존 플래그
   exit_full_screen: "전체 화면에서 나가기"
+  explore: 둘러보기
   export: 내보내기
   export_observations: 관찰 내보내기
   export_with_private_coordinates: 비공개 좌표와 함께 내보내기
@@ -966,7 +970,7 @@ ko:
   flag_this_observation: 이 관찰에 플래그를 달기
   flag_this_photo: 이 사진 플래그
   flag_this_sound: 이 소리 플래그
-  flagged: 플래그됨
+  flagged: 플래그함
   flagged_for_curation: 큐레이션 대상으로 플래그되었습니다
   flagged_thing_explanation: "사용자들이 이 %{thing}을(를) 플래그한 이유는"
   flagger: 플래그한 사용자
@@ -1044,6 +1048,7 @@ ko:
   has_sounds: 소리가 있음
   hasnt_contributed_any_observations: 이 프로젝트에 관찰을 게시하지 않았습니다.
   header_your_calendar: 내 달력
+  header_your_identifications: 나의 동정
   heads_up: 주의
   heads_up_this_photo_has_been_flagged: "주의: 이 사진은 플래그되었습니다."
   heads_up_this_photo_is_already_associated_with: "주의: 이 사진은 이미 <a target='_blank' href='%{url}'>다른 관찰</a>와 연결되어 있습니다."
@@ -1210,12 +1215,12 @@ ko:
   life_list_updated_we_also_saved_a: 생물 목록을 업데이트했습니다! 이 분류군의 비어있는 관측도 저장했습니다.
   life_lists_automatically_fill: '생물 목록은 관찰함으로써 자동적으로 새로운 분류군들로 채워져가고, 상위 분류군으로 제한될 수 있습니다. 예시: 까마귀과의 새들에 대한 생물 목록.'
   link: 링크
-  link_or_unlink_your_facebook_account: 페이스북 계정을 연결하거나 연결을 끊는다
-  link_or_unlink_your_flickr_account: Flickr 계정을 연결하거나 연결을 끊는다
-  link_or_unlink_your_google_account: 구글 계정을 연결하거나 연결을 끊습니다
+  link_or_unlink_your_facebook_account: 페이스북 계정과 링크하거나 링크 취소하기
+  link_or_unlink_your_flickr_account: Flickr 계정과 링크하거나 링크 취소하기
+  link_or_unlink_your_google_account: 구글 계정과 링크하거나 링크 취소하기
   link_your_facebook_account: 페이스북 계정을 연결한다
-  link_your_flickr_account: Flickr 계정을 연결한다
-  link_your_google_account: 구글 계정을 연결합니다
+  link_your_flickr_account: Flickr 계정과 링크하기
+  link_your_google_account: 구글 계정과 링크하기
   linked_facebook: "당신의 %{site_name} 계정은 페이스북 계정과 연결되어 있습니다."
   linked_facebook_automaticaly: "그리고, %{site_name}에 페이스북 계정으로 로그인하면, 자동적으로 페이스북과 %{site_name} 계정이 연동된다는 것을 유의해주십시오. 페이스북을 사용한다면 페이스북 사진을 들여오기 더 용이하게 하기 위함입니다."
   linked_facebook_description: "%{site_name} 계정을 페이스북 계정과 연동시키면 당신의 관찰에 대한 여러 사진들을 업로드할 수 있습니다. 물론 언제든지 %{site_name} 계정과 페이스북 계정의 연동을 끊을 수 있지만, 사진을 추가하지는 못하게 됩니다. 새로운 페이스북 계정을 만들어서 %{site_name}과 연동할 수도 있습니다."
@@ -1229,7 +1234,7 @@ ko:
   list: 목록
   list_deleted: 목록 삭제됨.
   list_saved: 목록 저장됨.
-  list_tooltip: 목록 보이기
+  list_tooltip: 목록 보기
   list_updated: 목록 업데이트됨!
   list_views:
     photo: 사진
@@ -1318,12 +1323,13 @@ ko:
       checklist_places: 체크리스트 장소들
       checklist_places_description: 이 분류군이 나열된 장소들
       range: 범위
-  map_tooltip: 지도 보이기
+  map_tooltip: 지도 보기
   mark_as_reviewed: 검토한 것으로 표시
   mark_all_as_reviewed: 모두 검토한 것으로 표시
   mark_all_as_unreviewed: 모두 검토하지 않은 것으로 표시
   media_type: 미디어 유형
   medium: 보통
+  meet: 만나러 가기
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist Network</a>의 회원
   members: 회원
@@ -1340,6 +1346,8 @@ ko:
   merging: 합치는 중
   merging_places: 장소들 병합
   message: 메시지
+  message_from_user_at_time: '%{user}님에게서 %{time}에'
+  message_from_user_on_date: '%{user}님에게서 %{date}에'
   messages: 매시지
   misleading_or_illegal_content_html: |
     잘못되었거나 불법인 콘텐츠, 인종차별주의적 발언 등. "적절한"의 기준을 확인하고 싶다면 <a href="/help#inappropriate">FAQ</a>을 참고해주세요.
@@ -1365,7 +1373,9 @@ ko:
   most_browser_print_pdf: "참고: 대부분의 브라우저는 PDF를 인쇄하는 옵션이 있습니다"
   most_observations: 가장 많은 관찰
   most_species: 대부분의 종
+  most_observed_species: 가장 많이 관찰된 종
   most_observed_introduced_species: 가장 많이 관찰된 도입종
+  most_observed_threatened_species: 가장 많이 관찰된 위기종
   must_have_observation_field: "%{operand}을 필수로 기입해야 합니다."
   mute_user: 사용자를 알림에서 제외
   mute_removed: 알림 제외를 제거함
@@ -1415,6 +1425,7 @@ ko:
   new_users: 새 사용자
   newly_added: 새로 추가됨
   newly_added_species: 새로 추가된 종
+  newly_observed_species: 새롭게 관찰된 종
   newly_observed_species_this_year: 올해 새로 추가된 종
   news: 새 소식
   next: 다음
@@ -1434,7 +1445,7 @@ ko:
   no_flickr_photos_tagged: 태그된 플리커 사진이 없습니다.
   no_identifications_added:
     current_user: 다른 사람의 관찰에 동정을 추가한 것이 없습니다.
-    user: "%{user}님은 다른 사람의 관찰에 동정을 추가한 것이 없습니다."
+    user: "%{user}님은 아직 다른 사용자의 관찰에 동정을 추가하지 않았습니다."
   no_ids_have_been_suggested_yet: 제안된 ID가 아직 없습니다
   no_favorites_added:
     current_user: 즐겨찾기가 추가되지 않았습니다.
@@ -1481,6 +1492,7 @@ ko:
   no_sections_available: 사용 가능한 항목이 없습니다.
   no_sections_have_been_added_to_this_assessments_yet: 아직 이 평가에 항목을 추가하지 않았습니다.
   no_species_have_been_listed: 아직 이 장소 목록에 추가된 종이 없습니다.
+  no_species_observed: 관찰된 종이 없습니다
   no_species_on_this_list: 아직 이 목록에 종이 없습니다.
   no_species_on_this_list_for_owner_html: |
     이 목록에 직접적으로 종을 추가할 수도 있고, Life 목록일 경우 <a href="%{url}" class="nobr">관찰</a>을 추가할 때 자동으로 업데이트됩니다.
@@ -1546,7 +1558,9 @@ ko:
   observations_from: '%{date}의 관찰'
   observations_from_people_taxa_and_places_youre_following: "당신이 팔로우하고 있는 사람, 장소, 분류군의 관찰"
   observations_from_this_project: 이 프로젝트 관찰
+  observations_in_this_project_must: 이 프로젝트에 있는 관찰은 반드시 다음 기준을 충족시켜야 합니다
   observations_map: 관찰/지도
+  observations_of_relatives: 유사한 분류군의 관찰
   observations_of_taxon: "%{taxon_name} 관찰"
   observations_per_month: 관찰/월
   observations_specifying_this_field: 이 필드의 관찰
@@ -1558,8 +1572,8 @@ ko:
   official_blog: 공식 블로그
   ok: "확인"
   onboarding:
-    following_panel_title: 사람, 분류군, 장소 추적
-    youve_got_updates_panel_title: 업데이트를 받았습니다!
+    following_panel_title: 사람, 분류군, 장소에 대한 알림 받기
+    youve_got_updates_panel_title: 새 업데이트가 있습니다!
   only_letters_numbers: "문자와 숫자만 올 수 있고 공백이 없어야 하며 문자로 시작해야 합니다"
   only_show_events_that_last_less_than_2_weeks: 최근 2주 간의 일만 보여드립니다
   only_you: 나만
@@ -1568,6 +1582,11 @@ ko:
   open_street_map: 오픈스트리트맵
   optional: 선택 사항
   or: 또는
+  or_log_in_with_colon: "또는 다음으로 로그인하기:"
+  original: 원본
+  originally_flagged_by: 처음으로 플래그함
+  originally_imported_from_url_html: "원래 <a href='%{url}'>%{url}</a>에서 가져옴"
+  original_page_url_for_this_photo: "이 사진에 대한 원본 페이지 URL"
   other: 기타
   other_lexicons: 기타 어휘 목록
   other_names: 다른 이름
@@ -1580,6 +1599,7 @@ ko:
   password: 비밀번호
   password_confirmation: '비밀번호 확인'
   paste: 붙여넣기
+  people_following_user: "%{user}님을 팔로우하는 사용자"
   people_added:
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
@@ -1595,15 +1615,24 @@ ko:
   per_week: 매주
   person: 사람
   photo: 사진
+  photo_attribution: "사진 %{attribution}"
   photo_browser: 사진 탐색기
+  photo_credits: 사진 크레딧
   photo_deleted: 사진 삭제됨
+  photo_destroyed_because_it_was_deleted_from: "사진 삭제됨: 외부 사이트에서 삭제되었거나 %{site_name} 이(가) 더 이상 볼 수 있는 권한이 없음"
   photo_licensing: 사진 라이선스
+  photo_type: 사진 종류
+  photo_urls_repaired: 사진 URL이 수정됨
+  photos_chosen_for_this_taxon: 이 분류군을 위해 선택된 사진
   photos_from: 촬영 장소
+  photos_of_taxon_html: "%{taxon}의 사진"
   photos_or_sounds: 사진 또는 음원
+  photos_or_sounds?: 사진 또는 음원?
   photos_size:
     small: 작게
     medium: 보통
     large: 크게
+  photos_updated: 사진 업데이트됨
   pi_consent_desc_title: 개인 정보에 관해
   pin_verb: 저장
   pink: 핑크
@@ -1959,6 +1988,7 @@ ko:
     species: 종
     hybrid: 혼종
   ranges: 범위
+  re_order_photos: "사진 재정렬하기 &raquo;"
   read_more: 더 읽어보기
   real_time_discussions: 실시간 토론
   reason: 이유
@@ -1980,6 +2010,7 @@ ko:
     error: 오류
   relationship_html: "관계: %{link}"
   reload_from_observations: 관찰에서 다시 불러오기
+  remember_me: 아이디/암호 저장
   remove: 제거
   remove_all_tags: 모든 태그를 제거
   remove_from_list: 목록에서 제거
@@ -1999,6 +2030,8 @@ ko:
   removing: "제거 중..."
   reorder_by_taxonomy: 분류학별로 순서 바꾸기
   repair_broken_urls: 깨진 URL 해결
+  repair_doesnt_work_for_that_kind_of_photo: 이와 같은 사진 종류는 수정할 수 없습니다
+  repair_external_photos: 외부 사진 수정하기
   reply: 답변
   request_failed: "요청이 실패했습니다"
   required: 필수
@@ -2025,6 +2058,7 @@ ko:
   scale_colon: "축척:"
   search: 검색
   search_by_name_or_email: 이름이나 이메일로 찾기
+  search_by_taxon_name_or_flickr_photo_id: 분류군 이름이나 Flickr 사진 ID로 검색하기
   search_for_a_location: 위치 찾기
   search_for_species: 종 검색
   search_list: 목록 검색
@@ -2033,14 +2067,17 @@ ko:
   search_species: 종 검색
   search_species_: 종 검색...
   search_the_map: 지도 검색
+  search_your_photos: 나의 사진 찾기
   searching: "검색 중..."
   select: 선택
   select_all: 모두 선택
   select_at_least_one: 적어도 하나를 선택하십시오
+  select_one_or_more_photos: '하나 이상의 사진 선택하기'
   select_none: 선택 없음
   select_observations_to_edit: 편집할 관찰 선택하기...
   select_one_of_your_albums: 내 앨범 중 하나를 선택하십시오
   select_options: 옵션 선택
+  select_photos_to_display: 보여줄 사진을 선택하기
   selected: 삭제됨
   selected_photos: 선택된 사진들
   select_this_taxon: 이 분류군 선택
@@ -2053,11 +2090,14 @@ ko:
   settings: 설정
   share: 공유
   share_colon: "공유:"
-  show: 보이기
+  show: 보기
+  show_default_taxon_photos: 기본 분류군 사진 보기
   show_keyboard_shortcuts: 단축 키 표시
   show_less: 덜 보기
   show_more: 더 보기
+  show_observation_photos: 관찰 사진 보기
   show_off_your_recent_observations: 당신의 최근 관찰을 당신의 블로그나 웹사이트에 공유해보세요!
+  show_relative_proportions_of_all_observations: 모든 관찰의 상대적인 비율 보기
   show_scientific_name_first: 학명을 우선 표시
   show_total_counts: 월별 관찰 개수 보기
   show_uncountable_species: 셀 수 없는 종을 표시
@@ -2072,6 +2112,11 @@ ko:
   site_admin_tools: 사이트 관리자 도구
   site_site_admin: "%{site_name} 사이트 관리자"
   site_staff: "%{site_name} 직원"
+  some_of_those_photos_couldnt_be_saved: "일부 사진을 저장할 수 없습니다: %{error}"
+  sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "죄송합니다. 다음 Flickr 사진이 존재하지 않거나 당신이 볼 권한이 없습니다."
+  sorry_that_photo_provider_isnt_responding: "죄송합니다. 본 사진 제공자가 지금 응답하지 않습니다. 나중에 다시 시도해 주세요."
+  sorry_we_didnt_find_that_photo: "죄송합니다. 다음 사진을 찾지 못했습니다."
+  sorry_we_dont_have_any_metadata_for_that_photo: "죄송합니다. 관찰 속성을 설정하기 위한 메타데이터가 없습니다."
   sort_by: 정렬 기준
   sounds:
     add_sounds: 음원 추가
@@ -2113,12 +2158,14 @@ ko:
   taxa_info: 생물 분류 정보
   taxon_colors: 분류 색
   taxon_ranks: 분류 순위
-  tell_the_world_a_little_about_yourself: '​우리에게 당신에 대해 말해주세요.'
+  tell_the_world_a_little_about_yourself: 자기소개하기
   tell_us_why: 이유를 말해주세요...
+  terms_service: 서비스 약관
   text: 텍스트
   thanks!: 감사합니다!
   the_following_observations_could: "%{link}에 관찰을 추가하지 못했습니다."
   then_keybord_sequence: 다음에
+  there_was_a_problem_saving_your_identification: "당신의 동정을 저장하는데 오류가 있습니다: %{error}"
   there_were_problems_adding_that_observation_to_this_project: "이 프로젝트의 관찰을 추가하는 문제가 발생했습니다 :"
   there_were_problems_importing_that_place_geometry: |
     위치 좌표를 가져오는데 문제가 있습니다: %{error}
@@ -2135,6 +2182,7 @@ ko:
   too_many_results: 결과가 너무 많음
   total: 합계
   total_observations: 총 관찰
+  total_species_observed: 관찰된 종 전체
   translated_languages: 번역된 언어
   twitter: 트위터
   unblock: 차단 해제
@@ -2202,6 +2250,7 @@ ko:
   view_observation: 관찰 보기
   view_observations: 관찰 보기
   view_observations_by_everyone: 모두의 관찰 보기
+  view_original: "원본 보기"
   view_sample: 샘플 보기
   view_x: "%{x} 보기"
   view_your_observations: 내 관찰 보기
@@ -2263,6 +2312,7 @@ ko:
   you_need_to_select_some_observations_first: 관찰을 먼저 선택하세요.
   your_account_has_been_activated: 당신의 계정이 활성화되었습니다!
   your_browser_does_not_support_the_audio_element: 브라우저가 오디오 요소를 지원하지 않습니다.
+  your_identification: 나의 동정
   your_observations: 내 관찰
   your_observations_couldnt_be_added_to_that_project: "관찰이 프로젝트에 추가되지 못했습니다.%{errors}"
   your_projects: 내 프로젝트
@@ -2312,6 +2362,7 @@ ko:
           좌표 숨김을 선택할 경우 실제 좌표에서 %{km}km 반경 안에 있는 좌표를 무작위로 선택하여 홈페이지, 관찰 페이지, 프로젝트 페이지 등 공개 지도에 표시됩니다. 실제 좌표는 관찰한 본인의 관찰에서만 표시됩니다. 이러한 관찰을 프로젝트에 추가할 경우 프로젝트 큐레이터도 실제 좌표를 열람할 수 있게 됩니다. 좌표 숨김된 좌표는 선이 없는 원으로 표시됩니다.
         you_can_also_obscure_the_coordinates_html: |
           분류와 상관없이 좌표 숨김을 할 수 있습니다. 위의 <a href="#geoprivacy">geoprivacy</a>를 보세요.
+        i_observed_a_species: "한가지 종을 관찰했는데, 왜 나의 생물 목록에는 나타나지 않나요?"
     messages:
       from: '게시한 사용자:'
       to: 받는이
@@ -2406,7 +2457,6 @@ ko:
       show:
         frequency:
           research: 연구 자료 등급
-          "Flowering Phenology=bare": 꽃 없음
           "Life Stage=egg": 알
           "Life Stage=larva": 애벌레
           "Life Stage=teneral": 우화 직후
@@ -2441,13 +2491,22 @@ ko:
     welcome:
       index:
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.
+        observations_to_date: '개의 관찰이 게시됨'
+        species_observed: '종이 관찰됨'
+        people_signed_up: '명의 사람들이 가입함'
         how_it_works: 사용하는 법
         record_your_observations: 관찰을 기록하세요
+        share_with_fellow_naturalists: 다른 사용자들과 공유해요
+        discuss_your_findings: 당신이 관찰한 것에 대해서 토론해요
+        contribute_to_science: 과학에 기여하기
+        science_desc_html: |
+          희귀한 나비부터 평범한 풀까지, 모든 자연 관찰은 생태학에 기여할 수 있습니다. 우리는 당신의 관찰을  <a href='http://gbif.org' target='_blank'>세계생물다양성정보기구(Global Biodiversity Information Facility)</a>와 같은 과학 데이터 저장 사이트에 공유해, 과학자들이 당신의 데이터를 찾고 사용할 수 있게 합니다. 당신은 관찰하기만 하면 됩니다!
         nature_at_your_fingertips: 자연을 가까이에서 만나요
         keep_track: 자연에서 본 것을 기록해요
         record_your_encounters: |
           마주친 식물이나 동물들을 기록하고 목록을 만들어 클라우드에 보관해요.
         create_useful_data: 중요한 데이터를 수집해요
+        help_scientists: 과학자들이 언제, 그리고 어디서 생물이 출현하는지 알 수 있도록 도와요
         crowdsource_identifications: 크라우드소스를 이용한 동정
         connect_with_experts: 관찰하는 종을 식별할 수 있는 전문가와 소통을 할 수 있어요.
         become_a_citizen_scientist: 시민 참여 과학자가 되어요
@@ -2456,6 +2515,11 @@ ko:
         build_your_knowledge: 자연을 사랑하는 사람들과 대화하고 서로 도와주면서 지식을 쌓아요.
         run_a_bioblitz: 바이오블리츠를 주최해요
         hold_an_event: 사람들이 가능한 많은 종을 찾으려고 하는 이벤트를 진행해보세요.
+        works_on_all_your_devices: 모든 기기에서 사용 가능합니다
+        install_our_mobile_apps: |
+          iNaturalist 앱을 설치해서 인터넷 없이도 항상 관찰하세요
+        what_are_you_waiting_for: 더 망설일 필요 있나요?
+        join_today: 지금 가입하기
   date:
     abbr_day_names:
       - 일
