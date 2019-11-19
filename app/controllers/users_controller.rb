@@ -490,14 +490,14 @@ class UsersController < ApplicationController
         unless @discourse_data = Rails.cache.read( cache_key )
           @discourse_data = {}
           @discourse_data[:topics] = JSON.parse(
-            RestClient.get( "#{@discourse_url}/latest.json?order=created" ).body
+            RestClient.get( "#{@discourse_url}/latest.json?order=created", timeout: 5 ).body
           )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..5]
           @discourse_data[:categories] = JSON.parse(
             RestClient.get( "#{@discourse_url}/categories.json" ).body
           )["category_list"]["categories"].index_by{|c| c["id"]}
           Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
         end
-      rescue SocketError, RestClient::Exception
+      rescue SocketError, RestClient::Exception, Timeout::Error, RestClient::Exceptions::Timeout
         # No connection or other connection issue
         nil
       end

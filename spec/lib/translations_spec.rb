@@ -73,6 +73,14 @@ describe "translations" do
           expect( translation ).not_to match /<\/?\s+[^\s]+>/
         end
       end
+
+      complete_inflections_pattern = /@\w+\{[^@\{]+?\}/
+      started_inflections_pattern = /@\w+\{/
+      if translation.scan( complete_inflections_pattern ).size != translation.scan( started_inflections_pattern ).size
+        it "should not have unclosed inflections" do
+          expect( translation.scan( complete_inflections_pattern ).size ).to eq translation.scan( started_inflections_pattern ).size
+        end
+      end
     end
   end
 end
