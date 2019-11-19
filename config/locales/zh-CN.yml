@@ -88,7 +88,8 @@ zh-CN:
   accept_community_identifications: 接受来自社区的鉴定
   accuracy: 准确性
   accuracy_meters: 精确度（米）
-  accuracy_of_the_coordinates: '坐标精度以米为单位。您可以通过点击上方“编辑”链接或者点击地图标记并拖动手柄来修改坐标。试着画一个足够大的圈使您能保证自己在圈内的某个位置。'
+  accuracy_of_the_coordinates: |
+    坐标精度以米为单位。您可以通过点击上方“编辑”链接或者点击地图标记并拖动手柄来修改坐标。试着画一个足够大的圈使您能保证自己在圈内的某个位置。
   action: 操作
   actions: 操作
   active: 激活
@@ -1070,7 +1071,6 @@ zh-CN:
   flickr_style: Flickr样式
   flickr_tagger: Flickr 贴标签者
   flickr_tags: Flickr 标签
-  flowering_phenology: 开花物候学
   fluid_layout: 流动布局
   fluid: 液体
   follow: 关注
@@ -4185,10 +4185,6 @@ zh-CN:
         frequency:
           research: 研究指导
           verifiable: 可证实
-          "Flowering Phenology=bare": 没有花
-          "Flowering Phenology=budding": 发芽
-          "Flowering Phenology=flower": 开花
-          "Flowering Phenology=fruit": 医学结果
           "Life Stage=egg": 蛋
           "Life Stage=larva": 幼虫
           "Life Stage=teneral": 幼体
