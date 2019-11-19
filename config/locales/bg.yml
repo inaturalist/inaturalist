@@ -302,6 +302,8 @@ bg:
   back_to_editing_observation: Обратно към редактиране на наблюдението
   back_to_observation: Обратно към наблюдението
   back_to_people: Обратно към хората
+  back_to_possessive_user_profile: "Обратно към профила на %{possuser}"
+  back_to_projects: Обратно към проекти
   back_to_suggestions: Назад към предложенията
   back_to_x: "Обратно към %{noun}"
   back_to_x_history: "Обратно към историята на %{x}"
@@ -488,7 +490,10 @@ bg:
   create_an_account: Създай акаунт
   create_an_atlas: Създай атлас
   create_new_taxon: Създай нов таксон
+  created: Създадено
   created_by: Създадено от
+  created_by_user_on_date: Създадено от %{user} на %{date}
+  created_on: Създадено на
   creating_your_account: "Създаване на акаунт..."
   critically_endangered: критично застрашен
   csv_file: CSV файл
@@ -531,6 +536,7 @@ bg:
       november: ноември
       december: декември
   date_is_accurate: Датата е точна
+  date_joined: Дата на присъединяване
   date_observed: Дата на наблюдаване
   date_observed_: Дата на наблюдаване
   date_observed_on: дата на наблюдаване
@@ -663,7 +669,7 @@ bg:
   faved_this_observation: харесва(т) това наблюдение
   favorite_taxa: Любими таксони
   favorites: "Любими"
-  featured: препоръчани
+  featured: Препоръчани
   feedback: Обратна връзка
   field_note: |
     <strong>Забележка:</strong> Ако искате да създадете поле, проверете дали някой друг не го е създал вече за да се избегне дублирането.
@@ -673,6 +679,7 @@ bg:
   fields_merged: Полетата са обединени
   file: Файл
   file_should_be_in_the_following_format: "Файлът трябва да е в следния формат: име на таксон, описание"
+  fill_out_project_observation_fields: Попълнете полетата за наблюдения на проекта
   filter: Филтриране
   filter_by_place: Филтрирай по място
   filter_by_taxon: Филтрирай по таксон
@@ -752,6 +759,7 @@ bg:
   group: Група
   grouping: Групиране
   guides: Ръководства
+  guide_was_successfully_created: Ръководството беше успешно създадено.
   guidelines: Указания
   has_id_supported_by_two_or_more: Има разпознаване подкрепяно от двама или повече
   has_one_or_more_faves: Има едно или повече харесвания
@@ -761,6 +769,7 @@ bg:
   has_photos_or_sounds: Има снимки или звуци
   has_sound: Има звук
   has_sounds: има звуци
+  header_your_profile: Вашият профил
   help: Помощ
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
   here_are_our_top_species_suggestions: Ето нашите най-добри предложения за видове
@@ -819,9 +828,13 @@ bg:
   invite_your_friends: Покани приятелите си
   is_not_following_anyone: не следва никого.
   join: Включи се
+  join_and_add_an_observation_to_project_html: Присъединете се и добавете наблюдение към %{project}
   join_project: Включи се в проекта
   join_some_projects_and_invite_some_observations_html: "Включете се в някой <a href='%{join_url}'>проект</a> и <a href='%{invite_url}'>поканете няколко наблюдения</a>"
   join_this_project: Включи се в проекта
+  'joined!': Присъединихте се!
+  joined_projects: Проекти, в които участвате
+  joined_with_date: "Присъединяване: %{date}"
   journal: Дневник
   journal_archives_for: Архиви на дневника на
   journal_post: Публикация в дневника
@@ -833,6 +846,7 @@ bg:
   language_slash_type: Език / Тип
   #Large photo size
   large: голям
+  last_active_with_date: "Последна активност: %{date}"
   last_confirmed_observation: Последно потвърдено наблюдение
   last_observation: Последно наблюдение
   lat: г.ш.
@@ -1011,6 +1025,7 @@ bg:
   make_it_a_life_list?: Направи житейски списък?
   mammals: бозайници
   manage_all_your_subscriptions: Управление на всичките Ви абонаменти
+  manage_your_projects: Управление на проекти
   manage_your_project_invitations: Управление на Вашите покани за проекти
   manage_your_relationships: Управление на взаимоотношения
   map: Карта
@@ -1056,7 +1071,13 @@ bg:
       M: "1мес"
       #Short text representing 1 year in the past
       'y': "1г"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
   month: Месец
   months: Месеци
@@ -1105,6 +1126,7 @@ bg:
   needs_id: нуждае се от ID
   needs_id_expandable_html: "<span class='full'>Нуждае се от </span>ID"
   needs_to_be_identified: Нуждае се от разпознаване
+  new_and_noteworthy: Ново и интересно
   new_check_list: Нов видов списък
   new_check_list_for: "Създай нов видов списък за %{place} &raquo;"
   new_guide: Ново ръководство
@@ -1156,6 +1178,7 @@ bg:
   no_observations: Няма наблюдения
   no_observations_from_this_place_yet: Все още няма наблюдения от това място.
   no_observations_yet: Все още няма наблюдения
+  no_photos_of_that_size: Няма снима с такъв размер.
   no_post_yet: Все още няма публикации!
   no_project_to_admin_current_user: "Не администрирате никакви проекти"
   no_project_to_admin_login: "%{login} не администрира никакви проекти"
@@ -1177,6 +1200,8 @@ bg:
     изключите това, ще получавате известия само за разпознавания,
     които не съвпадат точно с посочения от Вас таксон.
   number_of_observations: Брой наблюдения
+  number_of_observers_value: "Брой наблюдатели: %{number}"
+  number_of_observers: "Брой наблюдатели"
   obscured: Замаскирано
   obscured_or_private: замаскирано или поверително
   observation: Наблюдение
@@ -1200,7 +1225,7 @@ bg:
   observation_field_type_taxon: Таксон
   observation_field_type_dna: ДНК
   observation_fields: Полета за наблюдения
-  observation_fields_are_additional: Полетата за наблюдения са допълнителни полета за данни които могат да бъдат добавени към наблюденията.
+  observation_fields_are_additional: Полетата за наблюдения са допълнителни полета за данни, които могат да бъдат добавяни към наблюденията.
   observation_fields_by_preferences_description: |
     Полетата за наблюдения са подобни на етикети, само че по подразбиране всеки може да ги добавя към Вашите наблюдения. Можете да промените това ако предпочитате само Вие (и кураторите) да правите това.
   observation_removed_from_the_project: "Наблюдението е премахнато от проекта %{project}"
@@ -1241,6 +1266,7 @@ bg:
   observer: Наблюдател
   observers: Наблюдатели
   observer_short: Налюдател
+  of: от
   of_observations: наблюдения
   of_species: вид
   of_observers: наблюдатели
@@ -1248,6 +1274,7 @@ bg:
   of_places: места
   of_this_taxon: От този таксон
   offensive_inappropriate: обидно / неуместно
+  official_blog: Официален блог
   offline_access_enabled: Извънмрежовият достъп е разрешен
   old_observation_form: Стар формуляр за наблюдения (неактуален)
   on_date: "на %{date}"
@@ -1678,6 +1705,9 @@ bg:
   processing3p: "Обработка..."
   profile: Профил
   project: Проект
+  project_admins:
+    one: Администратор на проекта
+    other: Администратори на проекта
   project_cover: Корица на проекта
   project_created_on: създаде този проект на %{date}
   project_group_label: Група
@@ -1697,6 +1727,8 @@ bg:
     Проектите са начин да обедините наблюденията си с тези на други хора от %{site_name}. Независимо дали искате да започнете граждански научен проект или просто да следите птиците от близкия парк заедно с други местни ентусиасти - Проектите са удобен начин да го направите.
   projects_from_place: "Проекти от %{place}"
   projects_in_x: "Проекти в %{x}"
+  #"admins" is equivalent to "administrates"
+  projects_user_admins: Проекти, които %{user} администрира
   projects_you_admin: Проекти които администрирате
   protozoans: първаци
   public_domain: Обществено достояние
@@ -2102,12 +2134,15 @@ bg:
   user_commented_on: "%{user} коментира Ваш(а/е) %{title} %{time}"
   user_disagrees_this_is_taxon: "Потребителят %{user} не е съгласен, че това е %{taxon}"
   user_faved_a_noun_by_owner: "%{user} хареса %{noun} на %{owner}"
+  user_hasnt_joined_any_projects: "%{user} не участва в никакви проекти"
   user_invite_observation_to_project: '%{user} би искал да покани Вашето наблюдение "%{observation}" към проекта %{project}.'
   user_invited_you_to_join_html: "%{user} Ви покани да се включите"
   user_invited_you_to_join_project: "%{user} Ви покани да се включите в %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} Ви покани да се включите в проекта на %{date}"
   user_invited_your_x_to_a_project_html: "%{user} покани Ваш(а/е) %{x} в проект"
   user_is_a_naturalist: "%{user} е естествоизпитател!"
+  user_is_now_the_admin_for_project_html: |
+    Вече <strong>%{user}</strong> е администратор на %{project}
   user_muted: Потребителят е заглушен
   user_suggested_an_id: "%{user} предложи ID"
   user_trusts_you_with_their_private_coordinates_desc: |
@@ -2214,12 +2249,16 @@ bg:
   you_cant_delete_a_project_list: "Не можете да изтриете проектен списък"
   you_cant_delete_observation_fields_that_people_are_using: "Не можете да изтривате полета (за наблюдения), които хората използват"
   you_cant_do_that_for_the_default_check_list_place: Не можете да правите това за подразбиращия се видов списък на място!
+  you_cant_leave_a_project_you_created: Не можете да напуснете проект, който самите Вие сте създали.
   you_curate_a_project_that_contains_this_observation_desc: |
     Можете да виждате замаскираните координати на наблюдение, когато то е част от проект който курирате и наблюдателят е решил да сподели координатите с кураторите на проекта.
+  you_havent_joined_any_projects: Не участвате в никакви проекти
   you_joined_this_project: Вие се включихте в проекта!
   you_must_be_a_member_of_this_project_to_do_that: Трябва да членувате в проекта за да направите това
+  you_must_fill_out_the_required_fields: Трябва да попълните задължителните полета
   you_must_select_at_least_one_taxon: Трябва да изберете поне един таксон
   you_retain_full_copyright: "Запазвате пълни права над своето съдържание, с изключение на правата предоставени на %{site_name} в нашите Условия за ползване."
+  youve_joined_the_x_project: "Присъединихте се към проекта %{project_invitation} и наблюдението Ви беше добавено"
   your_account_has_been_activated: Вашият акаунт е активиран!
   your_activation_code_was_missing: "Липсва активационен код. Моля, използвайте препратката във Вашата електронна поща."
   your_browser_does_not_support_the_audio_element: Вашият браузър не поддържа аудио функцията.
@@ -2409,8 +2448,18 @@ bg:
         submission_models:
           any: всеки
       new:
+        project_background_color: Цвят на фона на резюмето на проекта
+        project_background_color_help: Уверете се, че избраният цвят е достатъчно тъмен, за да може да се чете белият текст върху него.
         project_name: Име на проекта
+        project_summary: Резюме на проекта
+        project_summary_help: |
+          Добавете кратко описание на проекта. Приблизително първите 200 символа ще са видими вдясно от заглавното каре на началната страница на проекта, затова опишете най-важното в началото.
         welcome_to_projects: Добре дошли в Проекти!
+        errors:
+          summary_is_required: Необходимо е добавянето на резюме на проекта
+      project_location_privacy_notice_html: |
+        <p>Моля, имайте предвид, че кураторите на проекта ще могат да виждат всичките поверителни или замаскирани координати на Вашите наблюдения добавени в проекта, освен ако не отмените това им право. Също така, ще могат да добавят което и да е Ваше наблюдение към проекта, освен ако не промените това в <a href="/users/edit">настройките си</a>. Можете да давате или отменяте достъпа до наблюдения в проекта и поотделно.</p>
+        <p>Ако се притеснявате за поверителността на местоположението – не се присъединявайте към проекти, когато нямате доверие на кураторите им.</p>
       curator_coordinate_access_label: |
         Искате ли да направите координатите на своите поверителни/замаскирани наблюдения видими за кураторите на проекта?
       show:

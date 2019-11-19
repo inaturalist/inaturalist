@@ -105,7 +105,7 @@ ko:
   active_users: 활동적인 사용자
   activity: 활동
   activity_settings: 활동 설정
-  adapted_by_name_from_a_work_by_original: "%{original}의 연구에서 %{name}이(가) 적용"
+  adapted_by_name_from_a_work_by_original: "%{original}의 연구를 바탕으로 %{name}님이 적용함"
   add: 추가
   add_a_batch_of_observations: 관찰을 여러 개 추가하기
   add_a_batch_of_taxa: 분류군을 여러 개 추가하기
@@ -326,7 +326,7 @@ ko:
   are_you_sure_delete_taxon_move_associates: "이 %{taxonname} (%{taxonid})와(과) 관련 모든 정보를 이동하겠습니까?"
   are_you_sure_delete_this_place: 이 장소를 삭제하겠습니까?
   are_you_sure_leave_this_project: 정말 이 프로젝트를 떠나겠습니까?
-  are_you_sure_merge_these_places: 이 장소들을 합치겠습니까? 이것은 되돌릴 수 없습니다.
+  are_you_sure_merge_these_places: 이 장소들을 병합하시겠습니까? 이것은 되돌릴 수 없습니다.
   are_you_sure_remove_photo: "이 사진을 삭제하겠습니까?"
   are_you_sure_remove_taxon_from_list: "이 분류군을 목록에서 삭제하겠습니까?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
@@ -407,7 +407,7 @@ ko:
   back_to_your_dashboard: 내 대시보드로 돌아가기
   back_to_your_lists: 사용자의 목록으로 돌아가기
   back_to_your_journal: 너의 일지로 돌아가기
-  back_to_your_observations: 너의 관찰로 돌아가기
+  back_to_your_observations: 내 관찰로 돌아가기
   back_to_your_profile: 너의 프로파일로 돌아가기
   back_to_your_projects: 너의 프로젝트들로 돌아가기
   batch: 일괄
@@ -431,7 +431,6 @@ ko:
   body: 본문
   bounding_box: 경계 상자
   breadcrumbs: 빵 부스러기
-  breadcrumbs_description: "이것은 h1과 디폴트 명령들을 대체할 것이기에 이 프로젝트에 중요하다면 포함시키는 것에 유의하고 최대 가능한 폭이 950px이라는 것을 기억할 것"
   brief_caption: 간결한 캡션
   brown: 갈색
   browse: 찾아보기
@@ -448,7 +447,7 @@ ko:
   calendars_only_show_x_observations_at_time: 달력은 한번에 %{x} 개의 관찰만을 보여줍니다
   cancel: 취소
   cant_flag_an_object_that_doesnt_exist: 존제하지 않는 물체에 플래그를 세울 수 없다.
-  cant_merge_a_taxon_with_itself: 분류군을 자기 자신과 병합할 수 없습니다.
+  cant_merge_a_taxon_with_itself: 분류군은 자기 자신과 병합할 수 없습니다.
   captive_cultivated: 포획된 / 양식된
   card: 카드
   casual: 비공식적
@@ -476,7 +475,6 @@ ko:
     merge: 여러 개의 분류군을 하나의 분류군으로 통합
     swap: 1대1 이름 변경
     drop: '완전히 유효하지 않은 분류군 개념: 역사적 목적이나 파트너 호환성을 위해 유지'
-    stage: 바뀜 그룹의 일부로 배포를 위한 비활성 개념을 준비
   change_geoprivacy: '위치보호 변경'
   change_group: 그룹 바꾸기
   change_icon: 아이콘 변경
@@ -485,7 +483,7 @@ ko:
     activated_soon: 곧 활성화
     change_types: 유형 변경
     split: 분할
-    merge: 합치기
+    merge: 병합
     swap: 대체
     stage: 단계
     drop: 포기
@@ -494,9 +492,9 @@ ko:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: '다음으로 분할:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: '다음으로 합치기:'
+    merge_into: '다음으로 병합하기:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merged_into: '다음으로 합치기:'
+    merged_into: '다음으로 병합됨:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: '다음으로 교체:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -527,9 +525,9 @@ ko:
   choose_columns: 열 선택
   choose_file: 파일 선택
   choose_files: 파일 선택
-  choose_from_your_lists: 내 목록에서 선택하세요.
+  choose_from_your_lists: 나의 목록에서 선택하기
   choose_photos_for_this_taxon: 이 분류군을 위한 사진을 선택
-  choose_photos_to_tag_from_photostream: 내 사진에서 태그할 사진 선택
+  choose_photos_to_tag_from_photostream: 내 사진 목록에서 태그할 사진 선택
   choose_rule: 규칙 선택
   choose_subjects: 대상 선택
   choose_tags: 태그 선택
@@ -939,7 +937,7 @@ ko:
   find_a_guide: 가이드 찾기
   find_a_place: 장소 찾기
   find_guides: 가이드들 찾기
-  find_new_place_to_explore: 새롭게 탐험할 곳 찾기!
+  find_new_place_to_explore: 새롭게 탐험할 곳을 찾아보세요!
   find_observations: 관찰 찾기
   find_photos: 사진 찾기
   find_places: 장소들 찾기
@@ -999,7 +997,7 @@ ko:
     feature_requests: 기능 요청
     news_and_updates: 소식 및 업데이트
   frequency: 주기
-  from: 보낸이
+  from: '게시한 사용자:'
   from_a_place: 어떤 장소로부터
   from_eol_collection: EOL 모음집으로부터
   from_flickr_facebook_etc: Flickr, Facebook 등으로부터
@@ -1022,7 +1020,7 @@ ko:
   globally: 세계적으로
   go: 가기
   go_back: 돌아가기
-  going_to_your_observations: 너의 관찰들로 가기
+  going_to_your_observations: 내 관찰들로 가기
   good_choice_for_sharing: 과학자들과 공유하는 것은 좋은 선택입니다
   google: 구글
   got_it!: 알겠습니다!
@@ -1044,7 +1042,7 @@ ko:
   has_photos_or_sounds: 사진이나 음원이 있습니다
   has_sound: 소리가 있음
   has_sounds: 소리가 있음
-  hasnt_contributed_any_observations: 이 프로젝트에 관찰을 기여하지 않았습니다.
+  hasnt_contributed_any_observations: 이 프로젝트에 관찰을 게시하지 않았습니다.
   header_your_calendar: 내 달력
   heads_up: 주의
   heads_up_this_photo_has_been_flagged: "주의: 이 사진은 플래그되었습니다."
@@ -1102,7 +1100,6 @@ ko:
   in_the_past_week: 지난 한 주 동안
   inactive: 비활성
   inactive_taxon: 비활성 분류군
-  inactive_taxon_concepts_are: 비활성화된 분류군 개념들은 분류학적으로 구식이거나 분류군 변형 예정인 것들입니다. 구식인 개념들은 역사와 파트너 웹사이트와의 호환을 위해 유지되고 있습니다.
   inappropriate_content: 내용이 부적절합니까?
   inat_account_action: "%{site_name} &#58; 계정 &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name}은 이것이 이 분류군의 모든 것의 목록이라고 합니다."
@@ -1517,7 +1514,7 @@ ko:
   notify_me_of_mentions: '내 아이디 언급 시 알림 (예: @아이디)'
   notify_me_about_redundant_identifications: 동정 확인에 대해 알림
   notify_me_about_redundant_identifications_desc: |
-    내 동정과 일치하는 동정에 대해 알람 수신. 이 설정을 제외한다면 정확히 일치하지 않는 분류군에 대해서만 알림을 받게 됩니다.
+    나의 동정과 일치하는 동정에 대해서 알림 수신하기. 이 설정을 제외하면 당신의 동정과 일치하지 않는 동정에 대해서만 알림을 밭게 됩니다.
   number_of_observations: 관찰 수
   number_selected: "# 선택됨"
   obs: 관찰
@@ -1990,7 +1987,7 @@ ko:
   remove_this_section: 이 항목 제거
   remove_observations:
     other: ' %{count}개 관찰을 제거하시겠습니까?'
-  remove_photo: 사진 제거
+  remove_photo: 사진 제거하기
   remove_place: 장소 제거
   remove_range: 범위 제거
   remove_relationship: 관계 제거
@@ -2020,7 +2017,7 @@ ko:
   save_changes: 바뀜 저장
   save_comment: 댓글 저장
   save_draft: 초안 저장
-  save_photos: 사진 저장
+  save_photos: 사진 저장하기
   save_trip: 여행 저장
   saved: 저장됨
   saving: "저장 중..."
@@ -2062,7 +2059,7 @@ ko:
   show_more: 더 보기
   show_off_your_recent_observations: 당신의 최근 관찰을 당신의 블로그나 웹사이트에 공유해보세요!
   show_scientific_name_first: 학명을 우선 표시
-  show_total_counts: 총 개수 보기
+  show_total_counts: 월별 관찰 개수 보기
   show_uncountable_species: 셀 수 없는 종을 표시
   showing_x_of_y_listings: "%{y}개 목록 중 %{x}개 표시"
   sign_in: 로그인
@@ -2316,7 +2313,7 @@ ko:
         you_can_also_obscure_the_coordinates_html: |
           분류와 상관없이 좌표 숨김을 할 수 있습니다. 위의 <a href="#geoprivacy">geoprivacy</a>를 보세요.
     messages:
-      from: 보낸이
+      from: '게시한 사용자:'
       to: 받는이
       subject: 제목
       subject_body: 제목 / 본문
@@ -2444,8 +2441,8 @@ ko:
     welcome:
       index:
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.
-        how_it_works: 작동 원리
-        record_your_observations: 관찰을 기록합니다.
+        how_it_works: 사용하는 법
+        record_your_observations: 관찰을 기록하세요
         nature_at_your_fingertips: 자연을 가까이에서 만나요
         keep_track: 자연에서 본 것을 기록해요
         record_your_encounters: |
@@ -2652,7 +2649,7 @@ ko:
           attributes:
             login:
               must_begin_with_a_letter: |
-                문자로 시작해야 하고 공백을 포함할 수 없으며 문자, 숫자, 대시, 밑줄 문자만 사용해야 합니다
+                문자로 시작해야 하고 공백을 포함할 수 없으며, 문자, 숫자, 밑줄, 대시만 사용이 가능합니다.
             email:
               must_look_like_an_email_address: 이메일 주소 같아 보여야 합니다
   doorkeeper:

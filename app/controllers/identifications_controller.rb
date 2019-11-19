@@ -159,6 +159,7 @@ class IdentificationsController < ApplicationController
     respond_to do |format|
       duplicate_key_violation = false
       begin
+        @identification.wait_for_obs_index_refresh = true
         @identification.save
       rescue PG::Error, ActiveRecord::RecordNotUnique => e
         raise e unless e =~ /index_identifications_on_current/
@@ -174,7 +175,6 @@ class IdentificationsController < ApplicationController
         end
         
         format.json do
-          Observation.refresh_es_index
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
           render :json => @identification.to_json(
             :methods => [:html, :vision], 

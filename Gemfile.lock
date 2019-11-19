@@ -428,7 +428,7 @@ GEM
     net-ssh (5.1.0)
     netrc (0.11.0)
     newrelic_rpm (6.2.0.354)
-    nokogiri (1.10.4)
+    nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
@@ -480,7 +480,8 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (1.6.11)
-    rack-cors (1.0.3)
+    rack-cors (1.0.6)
+      rack (>= 1.6.0)
     rack-mobile-detect (0.4.0)
       rack
     rack-openid (1.4.2)
@@ -723,7 +724,7 @@ DEPENDENCIES
   koala
   machinist!
   newrelic_rpm (~> 6.2.0)
-  nokogiri (~> 1.10.4)
+  nokogiri (~> 1.10.5)
   non-stupid-digest-assets
   objectify-xml!
   omniauth (>= 1.9.0)
@@ -742,7 +743,7 @@ DEPENDENCIES
   pg
   preferences!
   puma
-  rack-cors (~> 1.0)
+  rack-cors (~> 1.0.6)
   rack-google-analytics!
   rack-mobile-detect
   rails (= 4.2.11.1)

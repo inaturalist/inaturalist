@@ -113,6 +113,25 @@ class Site < ActiveRecord::Base
     message: "must be JPG, PNG, or GIF"
 
   if CONFIG.usingS3
+    has_attached_file :logo_blog,
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      s3_region: CONFIG.s3_region,
+      bucket: CONFIG.s3_bucket,
+      path: "sites/:id-logo_blog.:extension",
+      url: ":s3_alias_url"
+    invalidate_cloudfront_caches :logo, "sites/:id-logo_blog.*"
+  else
+    has_attached_file :logo_blog,
+      path: ":rails_root/public/attachments/sites/:id-logo_blog.:extension",
+      url: "/attachments/sites/:id-logo_blog.:extension"
+  end
+  validates_attachment_content_type :logo_blog, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
+    message: "must be JPG, PNG, SVG, or GIF"
+
+  if CONFIG.usingS3
     has_attached_file :favicon,
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",

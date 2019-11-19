@@ -431,6 +431,7 @@ nl:
   announcements: Mededelingen
   any: alle
   any_: Alle
+  anyone: Iedereen
   apply_to_selected: Toepassen op selectie
   apply_captive_cultivated: "In gevangenschap / gecultiveerd toepassen"
   apply_fields: Velden toepassen
@@ -1914,7 +1915,13 @@ nl:
       'y': "1j"
       #Short text representing %d years in the past
       yy: "%dj"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
   month: Maand
   monthly_supporter_since_date_html: |
@@ -1988,6 +1995,7 @@ nl:
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
   needs_to_be_identified: Moet worden gedetermineerd
+  new: Nieuw
   new_and_noteworthy: Nieuw & opmerkelijk
   new_announcement: Nieuwe aankondiging
   new_assessment: Nieuwe schatting
@@ -3279,6 +3287,7 @@ nl:
   showing_one_to: Toon 1 -
   showing_taxa_from_everywhere: "Toon taxa van overal"
   showing_taxa_from_place: "Toon taxa van %{place}"
+  showing_x_of_y: '%{x} van de %{y} zichtbaar'
   showing_x_of_y_listings: "Toon %{x} van %{y} vermeldingen"
   sign_in: Aanmelden
   sign_in_with_provider: "Log in met %{provider}"
@@ -4624,6 +4633,47 @@ nl:
       captive_help_html: |
         Was het organisme <strong>gecultiveerd</strong> of
         <strong>in gevangenschap</strong>? Was het bijvoorbeeld in een <strong>tuin, dierentuin, aquarium</strong> of een andere situatie waarin het alleen aanwezig was <strong>omdat mensen het ernaartoe hebben gebracht</strong>? Alle gegevens van levende wezens zijn welkom, maar we willen graag weten wanneer de dingen niet wild / genaturaliseerd zijn.
+      compare:
+        about_missing_taxa: Over ontbrekende taxa
+        about_total_taxa: "Over taxa in totaal"
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Gecombineerd
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Horizontaal
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Interval
+        interval_limit_warning_hour: Alleen 1 week aan uren zichtbaar
+        interval_limit_warning_day: Alleen 1 jaar aan dagen zichtbaar
+        interval_limit_warning_week: Alleen 10 jaar aan weken zichtbaar
+        interval_limit_warning_month: Alleen 100 jaar aan maanden zichtbaar
+        interval_limit_warning_year: Alleen 100 jaar aan jaren zichtbaar
+        some_queries_missing_taxa: Een aantal zoekopdrachten missen taxa
+        some_queries_missing_taxa_desc: |
+          We kunnen alle de 500 meest geobserveerde taxa per zoekopdracht laden, dus als er meer taksa in de zoekopdracht zitten zijn die of niet zichtbaar, of zichtbaar als "?" als ze in andere zoekopdrachten zitten. Probeer de zoekopdrachten te verfijnen zodat ze 500 taxa of minder tonen voor optimale vergelijkingen.
+        taxa_not_observed_in_all_queries: Taxa niet waargenomen in alle zoekopdrachten
+        taxa_observed_in_all_queries: Taxa waargenomen in alle zoekopdrachten
+        taxa_observed_in_only_one_query: Taxa die zijn waargenomen in maar één zoekopdracht
+        total_taxa: Taxa in totaal
+        total_taxa_desc: |
+          Dit is het totale aantal "eind"-taxa gerepresenteerd in de zoekopdracht. Soms zie je meer rijen met aantallen dan dit omdat er hogere taxa zijn toegevoegd vanuit andere zoekopdrachten. Als zoekopdracht 1 bijv. een waarneming van Homo sapiens heeft, en zoekopdracht 2 een waarneming van het geslacht Homo, staan beide taxa in de tabel, maar dat staat voor één extra rij voor het geslacht Homo voor zoekopdracht 1, die het niet in zijn totale aantal meerekent omdat het alleen de soort Homo sapiens telt uit dat geslacht, omdat dat het "uiteinde" van dat deel van de boom is.
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Verticaal
+        #Count of how many taxa several observation searches have in common
+        x_in_common:
+          one: "%{count} gemeenschappelijk"
+          other: "%{count} gemeenschappelijk"
+        #Count of how many taxa are not present in *all* of several observation searches
+        x_not_in_common:
+          one: "%{count} niet gemeenschappelijk"
+          other: "%{count} niet gemeenschappelijk"
+        #Count of how many taxa are present in an observation search
+        x_total:
+          one: "%{count} in totaal"
+          other: "%{count} in totaal"
+        #Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          one: "%{count} unieke"
+          other: "%{count} unieke"
       export:
         choose_columns_desc: Selecteer de kolommen die je wenst te exporteren
         create_a_query_desc_html: |
@@ -5504,6 +5554,7 @@ nl:
           Licentiebeschrijvingen en afbeeldingen &copy; %{year} Creative Commons, gebruikt
           onder een <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Naamsvermelding licentie</a> (zo meta!)
+        monthly_supporter: Maandelijkse supporter
         monthly_supporter_desc_html: |
           Maandelijkse supporters van iNaturalist doneren maandelijks aan de 'California Academy of Sciences' (United States IRS FIN 94-1156258) ter ondersteuning van het not-for-profit-beheer van iNaturalist en iNaturalist-netwerksites.
           <a href="%{url}">Klik hier om een maandelijkse supporter te worden</a>.
@@ -5520,6 +5571,26 @@ nl:
           </p>
         name_place_help_html: |
           Geef prioriteit aan lokale namen die op deze plaats worden gebruikt.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Reacties
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Determinaties
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Vermeldingen
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Berichten
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Berichten in projectdagboeken
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Wanneer een project je waarnemingen toevoegt
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_curator_changes: Wijzigingen door projectcuratoren
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Taxonomische wijzigingen
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Waarnemingen door mensen die ik volg
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Waarnemingen van taxa of plaatsen waar ik me op abonneer
         opt_in_to_map_tile_test: Aanmelden voor de kaarttegel-test
         opt_in_to_map_tile_test_description: |
           Je aanmelden voor deze test betekent dat je nieuwe raster-gebaseerde kaarttegels ziet voor verspreidingskaarten als je uitzoomt. Deze rasters zijn minder zwaar voor onze servers, worden als het goed is sneller weergegeven naar mate iNaturalist groeit, en laten de dichtheid van waarnemingen beter zien. We hopen deze vervanging uiteindelijk voor de hele site door te voeren. We horen graag je feedback op het forum.
@@ -5583,7 +5654,7 @@ nl:
         create_a_minor_account: Maak een minderjarig account aan
         create_minor_account: Maak een minderjarig account aan
         parent_name_private: Naam van de ouder of wettelijke voogd (privé)
-        parent_email: Email van de ouder of wettelijke voogd (privé)
+        parent_email: E-mail van de ouder of wettelijke voogd (privé)
         inaturalist_minor_account_signup: Aanmelden Minderjarig Account voor iNaturalist
         parent_information_private: Ouderinformatie (privé)
         step1_title: MAAK EEN ACCOUNT AAN VOOR JE KIND
@@ -6250,9 +6321,29 @@ nl:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        form: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         journal: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6264,6 +6355,10 @@ nl:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@n"
@@ -6272,7 +6367,33 @@ nl:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         project: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6289,6 +6410,10 @@ nl:
         taxon_stage: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
   wild: Wild

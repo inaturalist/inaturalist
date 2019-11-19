@@ -97,6 +97,11 @@ const App = ( {
     </Row> ) : "";
   const qualityGrade = observation.quality_grade === "research" ?
     "research_grade" : observation.quality_grade;
+  let viewerTimeZone = moment.tz.guess();
+  if ( config && config.currentUser && config.currentUser.time_zone ) {
+    viewerTimeZone = config.currentUser.time_zone;
+  }
+
   return (
     <div id="ObservationShow">
       <FlashMessagesContainer
@@ -172,15 +177,23 @@ const App = ( {
                     </div>
                     <Row className="date_row">
                       <Col xs={6}>
-                        <span className="bold_label">{ I18n.t( "observed" ) }:</span>
-                        <span className="date">
+                        <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
+                        <span className="date" title={observation.time_observed_at || observation.observed_on}>
                           { formattedDateObserved }
                         </span>
                       </Col>
                       <Col xs={6}>
-                        <span className="bold_label">{ I18n.t( "submitted" ) }:</span>
-                        <span className="date">
-                          { formattedDateTimeInTimeZone( observation.created_at, observation.created_time_zone ) }
+                        <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
+                        <span className="date" title={observation.created_at}>
+                          {
+                            formattedDateTimeInTimeZone(
+                              moment.tz(
+                                observation.created_at,
+                                observation.created_time_zone
+                              ),
+                              viewerTimeZone
+                            )
+                          }
                         </span>
                       </Col>
                     </Row>

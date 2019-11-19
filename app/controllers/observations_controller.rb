@@ -1838,7 +1838,6 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @observation }
       format.json do
-        Observation.refresh_es_index
         head :no_content
       end
     end
@@ -1940,6 +1939,7 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
+    review.observation.wait_for_index_refresh = true
     review.observation.elastic_index!
   end
 

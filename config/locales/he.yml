@@ -266,6 +266,7 @@ he:
   announcements: מודעות
   any: הכול
   any_: כלשהו
+  anyone: כולם
   apply_to_selected: החלה עבור מה שנבחר
   apply_captive_cultivated: "החלת ביתי / מעובד"
   apply_fields: החלת שדות
@@ -728,6 +729,11 @@ he:
     range: טווח זמנים
   date_range: טווח תאריכים
   date_time: תאריך/שעה
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: תעריך עידכון
   day: יום
   default: ברירת המחדל
@@ -1471,6 +1477,7 @@ he:
   needs_id: צריך זיהוי
   needs_id_: צריך זיהוי
   needs_to_be_identified: יש צורך בזיהוי
+  new: חדש
   new_and_noteworthy: חדש ומעניין
   new_announcement: הודעה חדשה
   new_assessment: הערכה חדשה
@@ -2225,6 +2232,7 @@ he:
   project_requirements: דרישות הפרוייקט
   project_rules: חוקי הפרוייקט
   project_settings: הגדרות הפרוייקט
+  project_start_time_datetime: "זמן התחלה: %{datetime}"
   project_that_does_not_contain_these_observations: פרוייקט שאינו מכיל תצפיות אלו
   project_user_cannot_be_found: לא ניתן למצוא את הפרוייקט
   project_was_successfully_created: פרוייקט נוצר בהצלחה
@@ -2451,6 +2459,7 @@ he:
   show_total_counts: הצגת ספירה כוללת
   showing_taxa_from_everywhere: "הצגת טקסונים מכל המקומות"
   showing_taxa_from_place: "הצגת טקסונים מ%{place}"
+  showing_x_of_y: מראה %{x} מ %{y}
   sign_in: כניסה
   sign_in_with_provider: "כניסה באמצעות %{provider}"
   sign_up_with_provider: "הרשמה באמצעות %{provider}"
@@ -2648,6 +2657,8 @@ he:
   this_is_your_observation: זו התצפית שלך
   this_job_failed_to_run: לא ניתן היה להשלים את המשימה. אנא צרו קשר עם %{email}
   this_list_is_empty!: הרשימה ריקה!
+  this_list_only_accepts_taxa_that_are_species: לרשימה זו ניתן להזין טקסות ברמת המין בלבד
+  this_list_only_accepts_taxa_that_are_species_or_lower: לרשימה זו ניתן להזין טקסות ברמת המין או רמה טקסונומית נמוכה יותר בלבד
   this_observation: תצפית זו
   this_observation_was_created_using: "תצפית זו נוצרה באמצעות:"
   this_photo_is_already_associated: תמונה זו משוייכת כבר לאחת מתצפיותך
@@ -2994,6 +3005,41 @@ he:
           more_about_application: עוד מידע על %{application}
     observations:
       copy_tip: "הוסיפו תצפית חדשה על־ידי העתקת התאריך, המקום, התמונות והשדות של התצפית."
+      compare:
+        about_missing_taxa: אודות טקסונים חסרים
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: במשולב
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: אופקי
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: בטווח הזמן
+        total_taxa: סה"כ טקסות
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: אנכי
+        #Count of how many taxa several observation searches have in common
+        x_in_common:
+          one: "%{count} אינו משותף"
+          two: "%{count} אינם משותפים"
+          many: "%{count} אינם משותפים"
+          other: "%{count} אינם משותפים"
+        #Count of how many taxa are not present in *all* of several observation searches
+        x_not_in_common:
+          one: "%{count} אינו משותף"
+          two: "%{count} אינם מושתפים"
+          many: "%{count} אינם מושתפים"
+          other: "%{count} אינם מושתפים"
+        #Count of how many taxa are present in an observation search
+        x_total:
+          one: "%{count} סך הכל"
+          two: "%{count} סך הכל"
+          many: "%{count} סך הכל"
+          other: "%{count} סך הכל"
+        #Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          one: "%{count} יחודי"
+          two: "%{count} יחודיים"
+          many: "%{count} יחודיים"
+          other: "%{count} יחודיים"
       export:
         receive_an_email_with_your_data: לקבל מייל עם הנתונים שלך
         receive_an_email_with_your_data_help: יתקבל מייל עם נתוני הייצוא כצרופה.
@@ -3122,6 +3168,26 @@ he:
         you_must_enter_confirmation_code_in_the_form: |
           חובה להזין %{confirmation_code} בטופס על מנת למחוק את החשבון שלך
       edit:
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: הערות
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: זיהויים
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: איזכורים
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: הודעות
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: פוסטים
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: כאשר פרוייק מסויף את התצפיות שלך
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_curator_changes: שינויים של אוצרי הפרויקט
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: שינויים טקסונומיים
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: תצפיות של אנשים שאני עוקב אחריהם
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: תצפיות על טקסונים או ממקומות שאני מנוי עליהם
         project_addition_preferences:
           joined: פרוייקטים שהצטרפת אליהם
         prefers_community_taxa_desc: |

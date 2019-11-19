@@ -3779,7 +3779,11 @@ CREATE TABLE public.sites (
     shareable_image_file_name character varying,
     shareable_image_content_type character varying,
     shareable_image_file_size bigint,
-    shareable_image_updated_at timestamp without time zone
+    shareable_image_updated_at timestamp without time zone,
+    logo_blog_file_name character varying,
+    logo_blog_content_type character varying,
+    logo_blog_file_size bigint,
+    logo_blog_updated_at timestamp without time zone
 );
 
 
@@ -10016,4 +10020,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190820224224');
 INSERT INTO schema_migrations (version) VALUES ('20190918161513');
 
 INSERT INTO schema_migrations (version) VALUES ('20191104233418');
+
+INSERT INTO schema_migrations (version) VALUES ('20191115201008');
 

@@ -1718,6 +1718,9 @@ pt-BR:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
     datetime_with_offset: "MMM D, AAAA · LT Z"
   month: Mês
   months: Meses

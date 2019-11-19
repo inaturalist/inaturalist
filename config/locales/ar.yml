@@ -1645,6 +1645,9 @@ ar:
       M: "شهر واحد"
       #Short text representing 1 year in the past
       'y': "سنة واحدة"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "ي شش سسسس · LT مز"
   month: شهر
   monthly_supporter_since_date_html: |

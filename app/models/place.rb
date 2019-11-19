@@ -743,6 +743,7 @@ class Place < ActiveRecord::Base
       :nelat => shape.geometry.envelope.upper_corner.y,
       :nelng => shape.geometry.envelope.upper_corner.x
     ))
+    place.build_place_geometry( geom: shape.geometry )
     
     unless skip_woeid
       puts "[INFO] \t\tTrying to find a unique WOEID from '#{geoplanet_query || place.name}'..."

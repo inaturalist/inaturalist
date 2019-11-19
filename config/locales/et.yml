@@ -1696,6 +1696,9 @@ et:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
     datetime_with_zone: "D. MMM YYYY · LT z"
   month: Kuu
   months: Kuud

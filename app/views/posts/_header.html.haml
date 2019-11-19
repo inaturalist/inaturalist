@@ -12,11 +12,14 @@
 - elsif @parent.is_a?( Site )
   #pageheader.col-md-12
     = breadcrumbs
-    = link_to(image_tag(@site.logo_square.url(:thumb), :class => "parenticon"), @site)
-    %h2
-      = link_to @site.name, site_posts_path
-    %ul#subnav.clear
-      %li=t :official_blog
+    - if @site.logo_blog?
+      = image_tag @site.logo_blog.url
+    - else
+      = link_to(image_tag(@site.logo_square.url(:thumb), :class => "parenticon"), @site)
+      %h2
+        = link_to @site.name, site_posts_path
+      %ul#subnav.clear
+        %li=t :official_blog
     - if @site.editable_by?( current_user )
       #tools.buttonrow
         = link_to t(:new_post), new_site_post_path, id: "newpostbutton", :class => "default button"
