@@ -147,7 +147,22 @@ nl:
   about_this_bioblitz: Over deze bioblitz
   about_this_map: Over deze kaart
   about_this_project: Over dit project
-  about_trips_html: "<h4>Routes maken het verzamelen van (nul)waarnemingen mogelijk</h4>\n\n<p><strong>Waarom</strong>\nAanwezigheid/afwezigheidsgegevens bevatten informatie over steekproefinspanning die nuttig zijn voor wetenschappelijke analyses zoals distributie modellering (ruwe iNaturalist-waarnemingen zijn 'alleen-aanwezigheid'-gegevens).</p>\n\n<p><strong>Hoe</strong>\nEen route voegt context aan je waarnemingen toe door extra informatie over:</p>\n<ul> \n<li><strong>Wat</strong> je zocht (doellijst)</li> \n<li><strong>Waar</strong> je zocht (zoekgebied)</li> \n<li><strong>Wanneer</strong> je zocht (zoekinterval)</li> \n</ul>\n\n<p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Tabel maken van aan/afwezigheden op routes' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.\n<a href='%{url}'>Meer informatie</a></p>"
+  about_trips_html: |
+    <h4>Routes maken het verzamelen van (nul)waarnemingen mogelijk</h4>
+
+    <p><strong>Waarom</strong>
+    Aanwezigheid/afwezigheidsgegevens bevatten informatie over steekproefinspanning die nuttig zijn voor wetenschappelijke analyses zoals distributie modellering (ruwe iNaturalist-waarnemingen zijn 'alleen-aanwezigheid'-gegevens).</p>
+
+    <p><strong>Hoe</strong>
+    Een route voegt context aan je waarnemingen toe door extra informatie over:</p>
+    <ul> 
+    <li><strong>Wat</strong> je zocht (doellijst)</li> 
+    <li><strong>Waar</strong> je zocht (zoekgebied)</li> 
+    <li><strong>Wanneer</strong> je zocht (zoekinterval)</li> 
+    </ul>
+
+    <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Tabel maken van aan/afwezigheden op routes' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
+    <a href='%{url}'>Meer informatie</a></p>
   about_x: "Over %{x}"
   acc: 'Prec. (m)'
   account: Account
@@ -157,7 +172,8 @@ nl:
   accept_community_identifications: Gemeenschapsdeterminaties accepteren
   accuracy: Nauwkeurigheid
   accuracy_meters: Nauwkeurigheid (meters)
-  accuracy_of_the_coordinates: 'Nauwkeurigheid van de coördinaten in meters. Deze kun je bewerken door op de koppeling "bewerken" te klikken of door op de kaartmarkering te klikken en de handvatten te verslepen. Probeer de cirkel groot genoeg te maken, zodat je zeker weet dat je je daar ergens bevond.'
+  accuracy_of_the_coordinates: |
+    Nauwkeurigheid van de coördinaten in meters. Deze kun je bewerken door op de koppeling "bewerken" te klikken of door op de kaartmarkering te klikken en de handvatten te verslepen. Probeer de cirkel groot genoeg te maken, zodat je zeker weet dat je je daar ergens bevond.
   action: Handeling
   actions: Handelingen
   active: Actief
@@ -226,7 +242,11 @@ nl:
   add_one_now: Voeg er nu één toe
   add_photos: Foto's toevoegen
   add_place: Plaats toevoegen
+  add_alive_or_dead_alive_annotation: 'Voeg aantekening "Dood of levend: levend" toe'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Voeg aantekening "Dood of levend: kan niet worden vastgesteld" toe'
+  add_alive_or_dead_dead_annotation: 'Voeg aantekening "Dood of levend: dood" toe'
   add_plant_phenology_budding_annotation: 'Voeg "Plantenfenologie: Knopvormend" aantekening toe'
+  add_plant_phenology_flower_budding_annotation: 'Voeg aantekening "Plantenfenologie: bloemknoppen" toe'
   add_plant_phenology_flowering_annotation: 'Voeg "Plantenfenologie: Bloeiend" aantekening toe'
   add_plant_phenology_fruiting_annotation: 'Voeg "Plantenfenologie: Vruchtdragend" aantekening toe'
   add_life_stage_adult_annotation: 'Voeg "Levenstadium: Volwassen" aantekening toe'
@@ -827,6 +847,7 @@ nl:
     female: Vrouwelijk
     plant_phenology: Plantenfenologie
     budding: Ontluikend
+    flower_budding: Bloemknoppen
     flowering: Bloeiend
     fruiting: Vruchtdragend
     life_stage: Levensstadium
@@ -838,6 +859,17 @@ nl:
     larva: Larve
     egg: Ei
     juvenile: Juveniel
+    alive_or_dead: Dood of levend
+    alive: Levend
+    dead: Dood
+    cannot_be_determined: Kan niet worden vastgesteld
+  controlled_term_definitions:
+    alive: Organisme leeft en vertoont geen tekenen stervende te zijn
+    dead: Organisme is dood of vertoont tekenen stervende te zijn
+    flower_budding: Bloemknoppen zijn zichtbaar maar niet open
+    flowering: Bloemen zichtbaar, open, en nog vast aan de plant
+    fruiting: Vruchten zichtbaar en nog vast aan de plant
+    teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
   controls: Besturing
   convert: Converteren
   coordinate_systems: Coördinaatsystemen
@@ -1316,7 +1348,6 @@ nl:
   flickr_style: Flickr stijl
   flickr_tagger: Flicker tagger
   flickr_tags: Flickr-tags
-  flowering_phenology: Bloeifenologie
   fluid_layout: Fluid opmaak
   fluid: vloeiend
   follow: Volg
@@ -1535,6 +1566,7 @@ nl:
   input_taxon: Invoer taxon
   insects: insecten
   insect_life_stage: Levensstadium van het insect
+  instagram: Instagram
   interactions: Interacties
   internal_server_error: Er is een interne fout opgetreden
   internal_taxon_including_descendants: Intern taxon (inclusief nakomelingen)
@@ -1779,6 +1811,7 @@ nl:
     sk: Slowaaks
     sq: Albanees
     sv: Zweeds
+    tr: Turks
     zh-CN: Chinees (vereenvoudigd)
     zh-TW: Chinees (traditioneel)
   locality_notes: Localiteits aantekeningen
@@ -5401,10 +5434,12 @@ nl:
         frequency:
           research: Onderzoekskwaliteit
           verifiable: Verifieerbaar
-          "Flowering Phenology=bare": Geen bloemen
-          "Flowering Phenology=budding": Ontluikend
-          "Flowering Phenology=flower": Bloeiend
-          "Flowering Phenology=fruit": Vruchtdragend
+          "Alive or Dead=Alive": Levend
+          "Alive or Dead=Dead": Dood
+          "Plant Phenology=Budding": Knoppen
+          "Plant Phenology=Flower Budding": Bloemknoppen
+          "Plant Phenology=Flowering": Bloeiend
+          "Plant Phenology=Fruiting": Vruchtdragend
           "Life Stage=egg": Ei
           "Life Stage=larva": Larve
           "Life Stage=teneral": Net verveld
