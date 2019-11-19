@@ -32,6 +32,9 @@ fr:
   x_misidentifications_of_species_in_this_rank:
     one: "1 mauvaise identification d’espèce dans ce %{rank}"
     other: "%{count} mauvaises identifications d’espèce dans ce %{rank}"
+  x_observations:
+    one: "%{count} observation"
+    other: "%{count} observations"
   x_observations_:
     one: "1 observation"
     other: "%{count} observations"
@@ -41,6 +44,9 @@ fr:
   x_others:
     one: "1 autre"
     other: "%{count} autres"
+  x_photos:
+    one: "%{count} photo"
+    other: "%{count} photos"
   x_new_species:
     one: "1 nouvelle espèce"
     other: "%{count} nouvelles espèces"
@@ -125,7 +131,8 @@ fr:
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
-  about_trips_html: "<h4>Les voyages activent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquer sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>"
+  about_trips_html: |
+    <h4>Les voyages activent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquer sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
   about_x: "À propos de %{x}"
   acc: 'Comp. (m)'
   account: Compte
@@ -135,7 +142,12 @@ fr:
   accept_community_identifications: Accepter les identifications de la communauté
   accuracy: Précision
   accuracy_meters: Précision (mètres)
-  accuracy_of_the_coordinates: "Précision des coordonnées en mètres. Vous pouvez modifier les coordonnées\nen cliquant sur le lien «  modifiez  » ci-dessus ou en cliquant sur le\nmarqueur de la carte et en le déplacant au bon endroit. Assurez-vous que le\ncercle soit assez grand pour être certain que vous vous trouviez\nà l’intérieur."
+  accuracy_of_the_coordinates: |
+    Précision des coordonnées en mètres. Vous pouvez modifier les coordonnées
+    en cliquant sur le lien «  modifiez  » ci-dessus ou en cliquant sur le
+    marqueur de la carte et en le déplacant au bon endroit. Assurez-vous que le
+    cercle soit assez grand pour être certain que vous vous trouviez
+    à l’intérieur.
   action: Action
   actions: Actions
   active: Actif
@@ -423,6 +435,11 @@ fr:
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Êtes-vous certain
   are_you_sure_want_delete_taxon: "Êtes-vous certain de vouloir supprimer ce taxon?"
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des taxons descendants, des taxons répertoriés, des identifications et des observations.
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des identifications et des observations.
+  are_you_sure_want_delete_taxon_link: Êtes-vous sûr de vouloir supprimer ce lien de taxon ?
   are_you_sure_want_delete_this_name: Êtes-vous certain de vouloir supprimer ce nom ?
   are_you_sure_want_delete_this_range: Êtes-vous certain de vouloir supprimer cette aire de répartition ?
   are_you_sure_you_want_to_commit_this_change: Êtes-vous certain de vouloir valider cette modification ? Cette action ne pourra pas être annulée.
@@ -1208,7 +1225,6 @@ fr:
   flickr_style: Style Flickr
   flickr_tagger: Étiquetter les photos Flickr
   flickr_tags: Étiquettes Flickr
-  flowering_phenology: Phénologie de la floraison
   fluid_layout: Mise en page fluide
   fluid: fluide
   follow: Suivre
@@ -5483,10 +5499,6 @@ fr:
         frequency:
           research: Niveau de recherche
           verifiable: Vérifiable
-          "Flowering Phenology=bare": Pas de fleurs
-          "Flowering Phenology=budding": Naissant
-          "Flowering Phenology=flower": Floraison
-          "Flowering Phenology=fruit": Avec du fruit
           "Life Stage=egg": Oeuf
           "Life Stage=larva": Larve
           "Life Stage=teneral": Ténéral
