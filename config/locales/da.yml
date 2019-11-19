@@ -125,7 +125,7 @@ da:
   #to add masculine, feminine, and neuter forms of articles. I realize this is
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: "@gender{m:un|f:une|n:un(e) %{resource}"
+  activity_snipped_resource_with_indefinite_article: "@gender{m:un|f:une|n:un(e)} %{resource}"
   about: Om
   about_blocking: Om blokering
   about_charts: Om diagrammer
@@ -147,7 +147,8 @@ da:
   about_this_bioblitz: Om denne bioblitz
   about_this_map: Om dette kort
   about_this_project: Om dette projekt
-  about_trips_html: "<h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværende-fraværende kriterium ved at tilføje kontekst til dine observationer</h4><p><strong>Hvorfor</strong> Tilstedeværende-fraværende data inkluderer information om indsamlingsindsatsen, hvilket er nyttigt for videnskabelige analyser som udbredelsesmodellering (rå iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong> En tur tilføjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong> du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li> <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på din målliste, som du var i stand til at observere inden for søgeområdet og intervallet tolkes som tilstedeværende. Derimod tolkes arter som du ikke kunne observere som værende fraværende. Klik på 'Tabellér tilstedeværende-fraværende data fra tur' for at generere en tabel over tilstedeværende-fraværende registreringer for en art fra ture og tilhørende observationer. <a href='%{url}'>Lær mere</a></p>"
+  about_trips_html: |
+    <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværende-fraværende kriterium ved at tilføje kontekst til dine observationer</h4><p><strong>Hvorfor</strong> Tilstedeværende-fraværende data inkluderer information om indsamlingsindsatsen, hvilket er nyttigt for videnskabelige analyser som udbredelsesmodellering (rå iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong> En tur tilføjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong> du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li> <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på din målliste, som du var i stand til at observere inden for søgeområdet og intervallet tolkes som tilstedeværende. Derimod tolkes arter som du ikke kunne observere som værende fraværende. Klik på 'Tabellér tilstedeværende-fraværende data fra tur' for at generere en tabel over tilstedeværende-fraværende registreringer for en art fra ture og tilhørende observationer. <a href='%{url}'>Lær mere</a></p>
   about_x: "Om %{x}"
   acc: 'Nøj. (m)'
   account: Konto
@@ -157,7 +158,8 @@ da:
   accept_community_identifications: Accepter fællesskabets identifikationer
   accuracy: Nøjagtighed
   accuracy_meters: Nøjagtighed (meter)
-  accuracy_of_the_coordinates: 'Koordinaternes nøjagtighed i meter. Du kan redigere nøjagtigheden ved at trykke på "Rediger" herover eller ved at klikke på kortmarkøren og trække. Prøv at lave cirklen så stor at du er sikker på at du var et sted inden for den.'
+  accuracy_of_the_coordinates: |
+    Koordinaternes nøjagtighed i meter. Du kan redigere nøjagtigheden ved at trykke på "Rediger" herover eller ved at klikke på kortmarkøren og trække. Prøv at lave cirklen så stor at du er sikker på at du var et sted inden for den.
   action: Handling
   actions: Handlinger
   active: Aktiv
@@ -226,7 +228,11 @@ da:
   add_one_now: Tilføj en nu
   add_photos: Tilføj fotos
   add_place: Tilføj sted
-  add_plant_phenology_budding_annotation: 'Tilføj anmærkningen "Plantefænologi: Spirende"'
+  add_alive_or_dead_alive_annotation: 'Tilføj "Levende eller Død: Levende" anmærkning'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Tilføj "Levende eller Død: Kan ikke bestemmes" anmærkning'
+  add_alive_or_dead_dead_annotation: 'Tilføj "Levende eller Død: Død" anmærkning'
+  add_plant_phenology_budding_annotation: 'Tilføj "Plantefænologi: Knopbærende" anmærkning'
+  add_plant_phenology_flower_budding_annotation: 'Tilføj "Plantefænologi: Blomstknopbærende" anmærkning'
   add_plant_phenology_flowering_annotation: 'Tilføj noten "Plantefænologi: Blomstrende"'
   add_plant_phenology_fruiting_annotation: 'Tilføj anmærkningen "Plantefænologi: I frugt"'
   add_life_stage_adult_annotation: 'Tilføj noten "Livsstadie: Voksen"'
@@ -827,7 +833,8 @@ da:
     male: Hankøn
     female: Hunkøn
     plant_phenology: Plante fænologi
-    budding: Spirende
+    budding: Knopbærende
+    flower_budding: Blomstknopbærende
     flowering: Blomstrende
     fruiting: I frugt
     life_stage: Livsstadie
@@ -839,6 +846,17 @@ da:
     larva: Larve
     egg: Æg
     juvenile: Juvenil
+    alive_or_dead: Levende eller Død
+    alive: Levende
+    dead: Død
+    cannot_be_determined: Kan ikke bestemmes
+  controlled_term_definitions:
+    alive: Organisme lever og viser ingen tegn på forestående død
+    dead: Organisme død eller viser tegn på forestående død
+    flower_budding: Blomsterknopper er synlige, men ikke åbne
+    flowering: Blomster synlige, åbne og stadig fastgjort til planten
+    fruiting: Frugt synlig og stadig fastgjort til planten
+    teneral: Udvokset, der for nylig har forpubbet sig, men endnu ikke har opnået sin endelige udvokset form
   controls: Kontrolpanel
   convert: Konvertér
   coordinate_systems: Koordinatsystem
@@ -1323,7 +1341,6 @@ da:
   flickr_style: Flickr stil
   flickr_tagger: Flickr Tagger
   flickr_tags: Flickr Tags
-  flowering_phenology: Blomster fænologi
   fluid_layout: Flydende visning
   fluid: flydende
   follow: Følg
@@ -1541,6 +1558,7 @@ da:
   input_taxon: Input takson
   insects: insekter
   insect_life_stage: Insekt livsstadie
+  instagram: Instagram
   interactions: Interaktioner
   internal_server_error: Intern serverfejl
   internal_taxon_including_descendants: Intern takson (inklusiv forfædre)
@@ -1783,6 +1801,7 @@ da:
     sk: Slovakisk
     sq: Albansk
     sv: Svensk
+    tr: Tyrkisk
     zh-CN: Kinesisk (simplificeret)
     zh-TW: Kinesisk (traditionel)
   locality_notes: Lokalitetsnotater
@@ -5656,10 +5675,12 @@ da:
         frequency:
           research: Forskningskvalitet
           verifiable: Verificerbar
-          "Flowering Phenology=bare": Ingen blomster
-          "Flowering Phenology=budding": Spirende
-          "Flowering Phenology=flower": Blomstrende
-          "Flowering Phenology=fruit": I frugt
+          "Alive or Dead=Alive": Levende
+          "Alive or Dead=Dead": Død
+          "Plant Phenology=Budding": Knopskydende
+          "Plant Phenology=Flower Budding": Blomsterknopbærende
+          "Plant Phenology=Flowering": Blomsbærende
+          "Plant Phenology=Fruiting": Frugtbærende
           "Life Stage=egg": Æg
           "Life Stage=larva": Larve
           "Life Stage=teneral": Tenerel
