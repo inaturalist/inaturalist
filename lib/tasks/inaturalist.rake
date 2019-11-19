@@ -343,6 +343,7 @@ namespace :inaturalist do
       all_rank_added_to_the_database
       all_taxa
       controlled_term_labels
+      controlled_term_definitions
       establishment
     ).each do |key|
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }

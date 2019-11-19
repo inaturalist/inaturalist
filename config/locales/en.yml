@@ -282,7 +282,11 @@ en:
   add_one_now: Add One Now
   add_photos: Add Photos
   add_place: Add Place
+  add_alive_or_dead_alive_annotation: 'Add "Alive or Dead: Alive" annotation'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Add "Alive or Dead: Cannot Be Determined" annotation'
+  add_alive_or_dead_dead_annotation: 'Add "Alive or Dead: Dead" annotation'
   add_plant_phenology_budding_annotation: 'Add "Plant Phenology: Budding" annotation'
+  add_plant_phenology_flower_budding_annotation: 'Add "Plant Phenology: Flower Budding" annotation'
   add_plant_phenology_flowering_annotation: 'Add "Plant Phenology: Flowering" annotation'
   add_plant_phenology_fruiting_annotation: 'Add "Plant Phenology: Fruiting" annotation'
   add_life_stage_adult_annotation: 'Add "Life Stage: Adult" annotation'
@@ -893,6 +897,7 @@ en:
     female: Female
     plant_phenology: Plant Phenology
     budding: Budding
+    flower_budding: Flower Budding
     flowering: Flowering
     fruiting: Fruiting
     life_stage: Life Stage
@@ -904,6 +909,17 @@ en:
     larva: Larva
     egg: Egg
     juvenile: Juvenile
+    alive_or_dead: Alive or Dead
+    alive: Alive
+    dead: Dead
+    cannot_be_determined: Cannot Be Determined
+  controlled_term_definitions:
+    alive: Organism is living and shows no signs of imminent death
+    dead: Organism is dead or shows signs of imminent death
+    flower_budding: Flower buds are visible but not open
+    flowering: Flowers visible, open, and still attached to the plant
+    fruiting: Fruit visible and still attached to the plant
+    teneral: Adult that has recently pupated but has not yet achieved its final adult form
   controls: Controls
   convert: Convert
   coordinate_systems: Coordinate systems
@@ -1399,7 +1415,6 @@ en:
   flickr_style: Flickr-style
   flickr_tagger: Flickr Tagger
   flickr_tags: Flickr Tags
-  flowering_phenology: Flowering Phenology
   fluid_layout: Fluid Layout
   fluid: fluid
   follow: Follow
@@ -6119,10 +6134,12 @@ en:
         frequency:
           research: Research Grade
           verifiable: Verifiable
-          "Flowering Phenology=bare": No flowers
-          "Flowering Phenology=budding": Budding
-          "Flowering Phenology=flower": Flowering
-          "Flowering Phenology=fruit": Fruiting
+          "Alive or Dead=Alive": Alive
+          "Alive or Dead=Dead": Dead
+          "Plant Phenology=Budding": Budding
+          "Plant Phenology=Flower Budding": Flower Budding
+          "Plant Phenology=Flowering": Flowering
+          "Plant Phenology=Fruiting": Fruiting
           "Life Stage=egg": Egg
           "Life Stage=larva": Larva
           "Life Stage=teneral": Teneral

@@ -25,8 +25,8 @@ import { formattedDateTimeInTimeZone } from "../../../shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import FollowButtonContainer from "../containers/follow_button_container";
 import FavesContainer from "../containers/faves_container";
-
 import { TABS } from "../actions/current_observation_actions";
+import { annotationShortcuts } from "../keyboard_shortcuts";
 
 class ObservationModal extends React.Component {
   constructor( props, context ) {
@@ -401,19 +401,18 @@ class ObservationModal extends React.Component {
             || _.intersection( observation.taxon.ancestor_ids, v.taxon_ids ).length > 0
           ) );
         }
-        let valueKeyPosition = 0;
-        while (
-          availableValues.length !== _.uniq( availableValues.map( v =>
-            v.label[valueKeyPosition].toLowerCase( ) ) ).length
-        ) {
-          valueKeyPosition += 1;
-        }
         availableValues.forEach( v => {
-          annoShortcuts.push( {
-            attributeLabel: ct.label,
-            valueLabel: v.label,
-            keys: [ct.label[0].toLowerCase( ), v.label[valueKeyPosition].toLowerCase( )]
-          } );
+          const shortcut = _.find(
+            annotationShortcuts,
+            as => as.term === ct.label && v.label === as.value
+          );
+          if ( shortcut ) {
+            annoShortcuts.push( {
+              attributeLabel: ct.label,
+              valueLabel: v.label,
+              keys: shortcut.shortcut.split( " " )
+            } );
+          }
         } );
       } );
     }
@@ -525,7 +524,13 @@ class ObservationModal extends React.Component {
                                               { " " }
                                               <code>{ shortcut.keys[1] }</code>
                                             </td>
-                                            <td>{ I18n.t( labelKey ) }</td>
+                                            <td>
+                                              {
+                                                I18n.t( labelKey, {
+                                                  defaultValue: `Add "${shortcut.attributeLabel}: ${shortcut.valueLabel}" annotation`
+                                                } )
+                                              }
+                                            </td>
                                           </tr>
                                         );
                                       } )
