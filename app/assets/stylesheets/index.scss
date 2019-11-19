@@ -632,12 +632,8 @@ ul.leafylist li li:first-child {
     display: flex;
     justify-content: space-around;
   }
-  $social-media-link-dim: 32px;
-  $social-media-link-font-size: 16px;
-  $social-media-link-dim-768: 36px;
-  $social-media-link-font-size-768: 18px;
-  $social-media-link-dim-992: 38px;
-  $social-media-link-font-size-992: 21px;
+  $social-media-link-dim: 38px;
+  $social-media-link-font-size: 21px;
   $social-media-link-dim-1200: 42px;
   $social-media-link-font-size-1200: 23px;
   .social-media-link {
@@ -648,10 +644,6 @@ ul.leafylist li li:first-child {
     text-align: center;
     width: $social-media-link-dim;
     height: $social-media-link-dim;
-    @media (min-width: 992px) {
-      width: $social-media-link-dim-992;
-      height: $social-media-link-dim-992;
-    }
     @media (min-width: 1200px) {
       width: $social-media-link-dim-1200;
       height: $social-media-link-dim-1200;
@@ -668,10 +660,6 @@ ul.leafylist li li:first-child {
     color: white;
     line-height: $social-media-link-dim + 2px;
     font-size: $social-media-link-font-size;
-    @media (min-width: 992px) {
-      line-height: $social-media-link-dim-992 + 2px;
-      font-size: $social-media-link-font-size-992;
-    }
     @media (min-width: 1200px) {
       line-height: $social-media-link-dim-1200 + 2px;
       font-size: $social-media-link-font-size-1200;
@@ -683,11 +671,11 @@ ul.leafylist li li:first-child {
   .social-media-link.twitter:before {
     content: "\f099";
     position: relative;
-    top: -1px;
-    @media (min-width: 992px) {
+    // top: -1px;
+    // @media (min-width: 992px) {
       top: 0px;
       left: 1px;
-    }
+    // }
     @media (min-width: 1200px) {
       top: 0px;
       left: 1px;
@@ -711,12 +699,8 @@ ul.leafylist li li:first-child {
     -webkit-text-fill-color: transparent;
     content: "\f16d";
     $instagram-icon-size-bump: 2px;
-    line-height: $social-media-link-dim + $instagram-icon-size-bump;
+    line-height: $social-media-link-dim + $instagram-icon-size-bump - 1;
     font-size: $social-media-link-font-size + $instagram-icon-size-bump;
-    @media (min-width: 992px) {
-      line-height: $social-media-link-dim-992 + $instagram-icon-size-bump - 1;
-      font-size: $social-media-link-font-size-992 + $instagram-icon-size-bump;
-    }
     @media (min-width: 1200px) {
       line-height: $social-media-link-dim-1200 + $instagram-icon-size-bump;
       font-size: $social-media-link-font-size-1200 + $instagram-icon-size-bump;
