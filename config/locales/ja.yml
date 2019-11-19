@@ -90,7 +90,8 @@ ja:
   accept_community_identifications: コミュニティー判定を承諾
   accuracy: 精度
   accuracy_meters: 精度（m）
-  accuracy_of_the_coordinates: '座標の誤差、単位はメートル。画面上部の「編集」ボタンを押すか、地図のマーカを押してハンドルを押したまま引くと修正できます。円は大きめにして、自分の現在地がその中に入るようにします。'
+  accuracy_of_the_coordinates: |
+    座標の誤差、単位はメートル。画面上部の「編集」ボタンを押すか、地図のマーカを押してハンドルを押したまま引くと修正できます。円は大きめにして、自分の現在地がその中に入るようにします。
   action: 操作
   actions: 操作
   active: 活動中
@@ -2872,7 +2873,6 @@ ja:
         frequency:
           research: 研究用
           verifiable: 確認できる
-          "Flowering Phenology=bare": 花なし
           "Life Stage=egg": 卵
           "Life Stage=larva": 幼虫
           "Life Stage=teneral": 脱皮直後
