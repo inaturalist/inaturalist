@@ -493,7 +493,7 @@ class UsersController < ApplicationController
             RestClient.get( "#{@discourse_url}/latest.json?order=created", timeout: 5 ).body
           )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..5]
           @discourse_data[:categories] = JSON.parse(
-            RestClient.get( "#{@discourse_url}/categories.json" ).body
+            RestClient.get( "#{@discourse_url}/categories.json", timeout: 5 ).body
           )["category_list"]["categories"].index_by{|c| c["id"]}
           Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
         end
