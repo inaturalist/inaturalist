@@ -21,7 +21,13 @@
   .form-group.centered.bigtext
     =t :or_log_in_with_colon
   .form-group.centered.provider-authorizations
-    - %w{facebook google_oauth2 flickr twitter yahoo}.each do |provider_name|
+    :ruby
+      providers = if @site && @site.prefers_google_webmaster_dns_verified?
+        %w{facebook google_oauth2 flickr twitter yahoo}
+      else
+        %w{facebook flickr twitter yahoo}
+      end
+    - providers.each do |provider_name|
       - provider, url = ProviderAuthorization::AUTH_URLS.detect{|p,u| p == provider_name }
       - provider_label = ProviderAuthorization::PROVIDER_NAMES[provider].downcase
       - btn_label = t("sign_in_with_provider", provider: ProviderAuthorization::PROVIDER_NAMES[provider] )

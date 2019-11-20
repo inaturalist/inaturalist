@@ -258,6 +258,8 @@ class Site < ActiveRecord::Base
 
   # google webmaster tools, http://www.google.com/webmasters/tools/
   preference :google_webmaster_verification, :string
+  preference :google_webmaster_dns_verification, :string
+  preference :google_webmaster_dns_verified, :boolean
 
   # google recaptcha, https://www.google.com/recaptcha
   preference :google_recaptcha_key, :string
@@ -282,6 +284,11 @@ class Site < ActiveRecord::Base
 
   # Whether this site prefers https
   preference :ssl, :boolean
+
+  STAFF_ONLY_PREFERENCES = [
+    :google_webmaster_dns_verification,
+    :google_webmaster_dns_verified
+  ]
 
   after_save :refresh_default_site
 
