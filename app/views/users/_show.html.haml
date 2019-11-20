@@ -33,14 +33,17 @@
               - if is_admin?
                 %li
                   = link_to t(:curate_user), user_detail_admin_path( id: @user.id )
-              - if current_user.is_curator? && !is_me?(@user) && !@user.is_admin?
+              - if current_user.is_curator?
                 %li.divider{:role => "separator"}
-                - unless @user.spammer?
-                  %li
-                    = link_to t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post
-                - unless @user.known_non_spammer?
-                  %li
-                    = link_to t(:flag_as_non_spammer), set_spammer_path(@user, spammer: false), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }
+                - unless is_me?(@user) || @user.is_admin?
+                  - unless @user.spammer?
+                    %li
+                      = link_to t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post
+                  - unless @user.known_non_spammer?
+                    %li
+                      = link_to t(:flag_as_non_spammer), set_spammer_path(@user, spammer: false), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }
+                %li
+                  = link_to t(:flags_on_users_content, user: @user.login), flags_path( flagger_type: "any", resolved: "any", flags: ["spam", "copyright infringement", "inappropriate", "other"], user_id: @user.login )
   .col-sm-8{:style => "background-color:white"}
     %h1
       = @user.name.blank? ? @user.login : @user.name
