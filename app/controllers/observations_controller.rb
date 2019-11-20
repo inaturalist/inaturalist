@@ -1318,6 +1318,36 @@ class ObservationsController < ApplicationController
       format.html
     end
   end
+
+  def project
+    @project = Project.find(params[:id]) rescue nil
+    unless @project
+      flash[:error] = t(:that_project_doesnt_exist)
+      redirect_to request.env["HTTP_REFERER"] || projects_path
+      return
+    end
+    params[:projects] = @project.id
+    search_params = Observation.get_search_params(params,
+      current_user: current_user)
+    search_params = Observation.apply_pagination_options(search_params,
+      user_preferences: @prefs)
+    search_params.delete(:id)
+    @observations = Observation.page_of_results(search_params)
+    set_up_instance_variables(search_params)
+    Observation.preload_for_component(@observations, logged_in: !!current_user)
+    @project_observations = @project.project_observations.where(observation: @observations.map(&:id)).
+      includes([ { :curator_identification => [ :taxon, :user ] } ])
+
+    respond_to do |format|
+      format.json do
+        render_observations_to_json
+      end
+      format.csv do
+        pagination_headers_for(@observations)
+        render :text => ProjectObservation.to_csv(@project_observations, :user => current_user)
+      end
+    end
+  end
   
   def project_all
     @project = Project.find(params[:id]) rescue nil
