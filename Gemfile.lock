@@ -363,7 +363,7 @@ GEM
       signet (~> 0.7)
     gyoku (1.3.1)
       builder (>= 2.1.2)
-    haml (5.0.4)
+    haml (5.1.2)
       temple (>= 0.8.0)
       tilt
     hashdiff (0.3.8)
@@ -617,7 +617,7 @@ GEM
     sshkit (1.18.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    temple (0.8.0)
+    temple (0.8.2)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thin (1.7.2)
@@ -780,7 +780,7 @@ DEPENDENCIES
   yui-compressor
 
 RUBY VERSION
-   ruby 2.6.0p0
+   ruby 2.6.5p114
 
 BUNDLED WITH
    1.17.3
