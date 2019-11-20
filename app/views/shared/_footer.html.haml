@@ -115,7 +115,7 @@
     .row
       .col-xs-12
         .links.inlineblock
-          - if site.id == 1
+          - if site.id == Site.default.id
             =t :member_of_the_inaturalist_network_html, url: "/pages/network"
             &nbsp;
             |
