@@ -623,7 +623,7 @@ fi:
   cc_by_sa_name: Nimeä-JaaSamoin
   cc_used_under_a: "Creative Commons, käytetty lisenssillä"
   change_admin: Vaihda ylläpitäjä
-  change_cover: Vaihda kansi
+  change_cover: Vaihda kansikuva
   change_descriptions:
     split: Vanha taksoni jaettu osaksi useita uusia taksoneita
     merge: Useita vanhoja taksoneita yhdistetty yhdeksi uudeksi taksoniksi
@@ -846,7 +846,7 @@ fi:
   couldnt_find_a_user_matching_x_param: "Emme löytäneet käyttäjää %{id}"
   couldnt_find_that_taxon: Taksonin löytäminen ei onnistunut.
   countries: Maat
-  cover: Kansi
+  cover: Kansikuva
   create: Luo
   create_a_guide: Luo opas
   create_a_list: Luo luettelo
@@ -2693,7 +2693,7 @@ fi:
     other: Projektin ylläpitäjät
   project_assessments: Projektin arvostelut
   project_assets: Projektitiedostot
-  project_cover: Projektin kansi
+  project_cover: Projektin kansikuva
   project_created_on: loi tämän projektin %{date}
   project_curators: Projektin kuraattorit
   project_group_label: Ryhmä
@@ -3212,7 +3212,7 @@ fi:
   tell_everyone_a_little_about_you: Kerro kaikille vähän itsestäsi
   tell_the_world_a_little_about_yourself: Kerro meille itsestäsi
   tell_us_why: Kerro meille miksi...
-  terms: Termit
+  terms: Ehdot
   terms_and_rules_html: "Ehdot &amp; säännöt"
   terms_new_users: "Jos lisäät ehtoja, uusien käyttäjien on hyväksyttävä ne ennen tähän projektiin liittymistä."
   terms_service: Käyttöehdot
@@ -4057,7 +4057,7 @@ fi:
           todellakaan löydä haluamaasi paikkaa, harkitse <a href="%{new_place_url}" target="_blank">uuden paikan luomista</a>,
           mutta varmista, että et vain kopioi olemassa olevaa paikkaa.
         cover_desc: "Valinnainen kansikuva, joka tulee näkyviin projektisivusi yläreunaan. Pitää olla 950px leveä, alle 400px pitkä."
-        icon_desc: "Leikataan neliöksi"
+        icon_desc: "Rajataan neliöksi"
         it_looks_like_this_project_can_be_converted: |
           Näyttää siltä että tämä projekti voidaan muuntaa uudeksi <a href="%{url}">koontiprojektiksi</a>.
         project_assets_desc_html: |
@@ -4712,10 +4712,10 @@ fi:
         project_type: Projektin tyyppi
         description: Kuvaus
         end_time: Päättymisaika
-        terms: Termit
+        terms: Ehdot
         map_type: Kartan tyyppi
         zoom_level: Zoomaustaso
-        preferred_submission_model: Ensisijainen jättömalli
+        preferred_submission_model: Ensisijainen tallennustapa
         prefers_place_boundary_visible: Näytä paikan raja kartalla
         tracking_codes: Seurantakoodit
         source_url: Lähteen URL-osoite
