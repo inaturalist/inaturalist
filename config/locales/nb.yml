@@ -185,10 +185,10 @@ nb:
   add_an_observation?: Legg til en observasjon?
   add_an_observation_of: "Legg til en observasjon av %{taxon}"
   add_an_observation_to_project_html: Legg til en observasjon til %{project}
-  add_annotations_for_x: Legg til anmerkinger for "%{x}"
+  add_annotations_for_x: Legg til merknader for "%{x}"
   add_annotations_for_controlled_attribute:
-    sex: Legg til anmerkinger for "Kjønn"
-    plant_phenology: Legg til anmerkninger for "Plantefenologi"
+    sex: Legg til merknader for "Kjønn"
+    plant_phenology: Legg til merknader for "Plantefenologi"
     life_stage: Legg til merkander for "Livsstadium"
   add_another_flag: Legg til enda en markering
   add_another_photo: Legg til enda et bilde
@@ -228,7 +228,11 @@ nb:
   add_one_now: Legg til et nå
   add_photos: Legg til bilder
   add_place: Legg til sted
+  add_alive_or_dead_alive_annotation: 'Legg til merknad "Levende eller død: levende"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Legg til merknad "Levende eller død: kan ikke bestemmes"'
+  add_alive_or_dead_dead_annotation: 'Legg til merknad "Levende eller død: død"'
   add_plant_phenology_budding_annotation: 'Legg til merknaden "Plantefenologi: Knopper"'
+  add_plant_phenology_flower_budding_annotation: 'Legg til merknaden "Plantefenologi: blomsterknopper"'
   add_plant_phenology_flowering_annotation: 'Legg til merknaden "Plantefenologi: Blomstrende"'
   add_plant_phenology_fruiting_annotation: 'Legg til merknaden "Plantefenologi: Fruktbærende"'
   add_life_stage_adult_annotation: 'Legg til merknaden "Livsstadium: Voksen"'
@@ -827,6 +831,7 @@ nb:
     female: Hunnkjønn
     plant_phenology: Plantefenologi
     budding: Knopper
+    flower_budding: Blomsterknopper
     flowering: Blomstrende
     fruiting: Fruktbærende
     life_stage: Livsstadium
@@ -838,6 +843,17 @@ nb:
     larva: Larve
     egg: Egg
     juvenile: Juvenil
+    alive_or_dead: Levende eller død
+    alive: Levende
+    dead: Død
+    cannot_be_determined: Kan ikke bestemmes
+  controlled_term_definitions:
+    alive: Organisme lever og viser ikke tegn på en snarlig død
+    dead: Organisme er død eller viser tegn på en snarlig død
+    flower_budding: Blomsterknopper er synlige men ikke åpne
+    flowering: Blomster synlige, åpne, og fortsatt knyttet til planten
+    fruiting: Frukt synlig og fortsatt knyttet til planten
+    teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
   controls: Kontrollpanel
   convert: Konverter
   coordinate_systems: Koordinatsystemer
@@ -1531,6 +1547,7 @@ nb:
   input_taxon: Inputtakson
   insects: insekter
   insect_life_stage: Livsstadium insekt
+  instagram: Instagram
   interactions: Interaksjoner
   internal_server_error: Intern serverfeil
   internal_taxon_including_descendants: Internt takson (inkl. etterkommer-taksa)
@@ -1771,6 +1788,7 @@ nb:
     sk: Slovakisk
     sq: Albansk
     sv: Svensk
+    tr: Tyrkisk
     zh-CN: Kinesisk (forenklet)
     zh-TW: Kinesisk (tradisjonell)
   locality_notes: Lokalitetsnotater
@@ -2094,7 +2112,7 @@ nb:
   no_projects_yet: Ingen prosjekter ennå
   no_range_data_available: Ingen utbredelsesdata tilgjengelig.
   no_recent_activity: Ingen nylig aktivitet
-  no_relevant_annotations: Ingen relevante annoteringer
+  no_relevant_annotations: Ingen relevante merknader
   no_reply_yet: Ingen svar ennå
   no_results_found: Ingen resultater funnet
   no_results_for: 'Ingen resultater for '
@@ -2210,7 +2228,7 @@ nb:
   observations: Observasjoner
   observations_: observasjoner
   observations_added_by_x_html: "Observasjoner lagt til av %{x}"
-  observations_annotated_with_annotation: "Observasjoner med anmerkningen %{annotation}"
+  observations_annotated_with_annotation: "Observasjoner med merknaden %{annotation}"
   observations_by: Observasjoner av
   observations_by_user: "Observasjoner av %{user}"
   observations_deleted: Observasjoner slettet.
@@ -5226,6 +5244,12 @@ nb:
         frequency:
           research: Forskningskvalitet
           verifiable: Verifiserbar
+          "Alive or Dead=Alive": Levende
+          "Alive or Dead=Dead": Død
+          "Plant Phenology=Budding": Knopper
+          "Plant Phenology=Flower Budding": Blomsterknopper
+          "Plant Phenology=Flowering": Blomstrende
+          "Plant Phenology=Fruiting": Fruktbærende
           "Life Stage=egg": Egg
           "Life Stage=larva": Larve
           "Life Stage=teneral": Teneral
