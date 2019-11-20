@@ -67,6 +67,17 @@ class Site < ActiveRecord::Base
   end
   validates_attachment_content_type :logo, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
     message: "must be JPG, PNG, SVG, or GIF"
+  validate do |site|
+    if !site.errors.any? &&
+        site.logo.queued_for_write[:original] &&
+        site.logo.content_type.to_s !~ /svg/i
+      dimensions = Paperclip::Geometry.from_file(site.logo.queued_for_write[:original].path)
+      if dimensions.height > 70
+        errors.add(:logo, "cannot have a height larger than 70px")
+      end
+    end
+    true
+  end
 
   # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
   if CONFIG.usingS3
@@ -79,13 +90,19 @@ class Site < ActiveRecord::Base
       bucket: CONFIG.s3_bucket,
       path: "sites/:id-logo_square.:extension",
       url: ":s3_alias_url",
-      default_url: "bird.png"
+      default_url: "bird.png",
+      styles: {
+        original: { geometry: "300x300>#" }
+      }
     invalidate_cloudfront_caches :logo_square, "sites/:id-logo_square.*"
   else
     has_attached_file :logo_square,
       path: ":rails_root/public/attachments/sites/:id-logo_square.:extension",
       url: "/attachments/sites/:id-logo_square.:extension",
-      default_url: "bird.png"
+      default_url: "bird.png",
+      styles: {
+        original: { geometry: "300x300>#" }
+      }
   end
   validates_attachment_content_type :logo_square, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
     message: "must be JPG, PNG, or GIF"
@@ -100,13 +117,19 @@ class Site < ActiveRecord::Base
       bucket: CONFIG.s3_bucket,
       path: "sites/:id-logo_email_banner.:extension",
       url: ":s3_alias_url",
-      default_url: "inat_email_banner.png"
+      default_url: "inat_email_banner.png",
+      styles: {
+        original: { geometry: "600x600>" }
+      }
     invalidate_cloudfront_caches :logo_email_banner, "sites/:id-logo_email_banner.*"
   else
     has_attached_file :logo_email_banner,
       path: ":rails_root/public/attachments/sites/:id-logo_email_banner.:extension",
       url: "/attachments/sites/:id-logo_email_banner.:extension",
-      default_url: "inat_email_banner.png"
+      default_url: "inat_email_banner.png",
+      styles: {
+        original: { geometry: "600x600>" }
+      }
   end
   validates_attachment_content_type :logo_email_banner,
     content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
@@ -130,6 +153,17 @@ class Site < ActiveRecord::Base
   end
   validates_attachment_content_type :logo_blog, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
     message: "must be JPG, PNG, SVG, or GIF"
+  validate do |site|
+    if !site.errors.any? &&
+        site.logo_blog.queued_for_write[:original] &&
+        site.logo_blog.content_type.to_s !~ /svg/i
+      dimensions = Paperclip::Geometry.from_file(site.logo_blog.queued_for_write[:original].path)
+      if dimensions.height > 110 || dimensions.width > 110
+        errors.add(:logo_blog, "cannot have a height larger than 110x110px")
+      end
+    end
+    true
+  end
 
   if CONFIG.usingS3
     has_attached_file :favicon,
@@ -141,13 +175,19 @@ class Site < ActiveRecord::Base
       bucket: CONFIG.s3_bucket,
       path: "sites/:id-favicon.:extension",
       url: ":s3_alias_url",
-      default_url: "favicon.png"
+      default_url: "favicon.png",
+      styles: {
+        original: { geometry: "64x64>#" }
+      }
     invalidate_cloudfront_caches :favicon, "sites/:id-favicon.*"
   else
     has_attached_file :favicon,
       path: ":rails_root/public/attachments/sites/:id-favicon.:extension",
       url: "/attachments/sites/:id-favicon.:extension",
-      default_url: "favicon.png"
+      default_url: "favicon.png",
+      styles: {
+        original: { geometry: "64x64>#" }
+      }
   end
   validates_attachment_content_type :favicon,
     content_type: [/png/i, /gif/i, "image/x-icon", "image/vnd.microsoft.icon"],

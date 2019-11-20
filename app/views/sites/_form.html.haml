@@ -12,7 +12,7 @@
   - if @record.errors.any?
     .row
       .col-md-12
-        #error_explanation
+        #error_explanation.alert.alert-danger
           %h2= "#{pluralize(@record.errors.count, "error")} prohibited this site from being saved:"
           %ul
             - @record.errors.full_messages.each do |msg|
@@ -26,7 +26,7 @@
     %legend=t :assets
     .row
       .col-md-4
-        = f.file_field :logo, description: pref_descriptions[:logo]
+        = f.file_field :logo, description: "Displays in the upper left of the site header. PNG, JPG, GIF, or SVG, preferrably ~6:1 aspect ratio SVG. If using a PNG/JPG/GIF, the height should not be greater than 34px"
         .well
           = image_tag @record.logo.url
         = f.file_field :logo_blog, description: "Logo for the site blog. If not set, the square logo will be used by default. PNG, JPG, GIF, or SVG, preferrably ~3:1 ratio"
