@@ -625,6 +625,7 @@ class ObservationsController < ApplicationController
     
     @observations.compact.each do |o|
       o.user = current_user
+      o.wait_for_index_refresh = true
       o.save
     end
     create_project_observations
@@ -686,7 +687,6 @@ class ObservationsController < ApplicationController
           end
           render :json => json, :status => :unprocessable_entity
         else
-          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               :viewer => current_user,
