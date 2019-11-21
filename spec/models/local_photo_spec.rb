@@ -98,6 +98,14 @@ describe LocalPhoto, "to_observation" do
     expect(o.taxon).to eq(t)
   end
 
+  it "should set a taxon from a file name" do
+    p = LocalPhoto.make
+    p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia.jpg"))
+    t = Taxon.make!(:name => "Cuthona abronia")
+    o = p.to_observation
+    expect( o.taxon ).to eq t
+  end
+
   it "should not set a taxon based on an invalid name in the tags if a valid synonym exists" do
     p = LocalPhoto.make
     p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
@@ -176,7 +184,7 @@ describe LocalPhoto, "to_observation" do
     expect( o.tag_list ).to include 'tag2'
   end
 
-  it "shoudl not import branded descriptions" do
+  it "should not import branded descriptions" do
     LocalPhoto::BRANDED_DESCRIPTIONS.each do |branded_description|
       lp = LocalPhoto.make!
       lp.metadata = {
@@ -205,6 +213,7 @@ describe LocalPhoto, "to_observation" do
     expect( o.positional_accuracy ).not_to eq 0
     expect( o.positional_accuracy ).to be_nil
   end
+
 end
 
 describe LocalPhoto, "flagging" do
