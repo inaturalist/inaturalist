@@ -1181,7 +1181,7 @@ es-AR:
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
   'false': 'No'
   fave: favorito
-  faves: Preferidos
+  faves: Favoritos
   Family: Familia
   faved_this_observation: diga que le agrada este observación
   favorite_taxa: Taxones favoritos
@@ -1841,8 +1841,6 @@ es-AR:
   meet: Conoce
   member_of_the_inaturalist_network_html: |
     Miembro de la <a href="%{url}">Red iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Miembro de la red iNaturalist %{partial_inat_network_tag_html}</a> una iniciativa conjunta de %{cas_tag_html} y de %{nat_geo_tag_html}.
   members: Miembros
   membership_model: Modelo de membresía
   mentioned_you_in_noun_html: "%{user} te ha mencionado en %{noun}"
@@ -3291,7 +3289,6 @@ es-AR:
   sorry_how_about_we_try_repeat: "¡Lo sentimos ¿Por qué no tratamos de repetir tu búsqueda en algunas de nuestras bases de datos o nombres de especies? Si encontramos algo, lo guardaremos para que puedas encontrarlo la próxima vez."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Lo sentimos, alguna de esas fotos de Flickr no existen o no tienes permisos para verlas."
   sorry_that_photo_provider_isnt_responding: "Lo sentimos, esa foto de momento no esta respondiendo. Por favor inténtalo más tarde."
-  sorry_that_service_is_not_responding: "Lo sentimos, ese servicio no responde. Por favor, inténtalo de nuevo más tarde."
   sorry_there_were_problems_with_your_request: "Lo sentimos, hubo algunos problemas con tu petición: %{project_user}"
   sorry_we_didnt_find_that_photo: "Lo sentimos, la foto no se encuentra"
   sorry_we_dont_have_any_metadata_for_that_photo: "Lo sentimos, no tenemos ningún meta dato de la foto que se pueda utilizar para poner las características de la observación."
@@ -3850,7 +3847,7 @@ es-AR:
   user_commented_on: "%{user} comentó sobre tu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
-  user_faved_a_noun_by_owner: "%{user} preferido %{noun} por %{owner}"
+  user_faved_a_noun_by_owner: "%{user} marcó como favorito %{noun} por %{owner}"
   user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
   user_has_opted_out_of_community_id: El usuario ha rechazado la Taxón de la Comunidad
