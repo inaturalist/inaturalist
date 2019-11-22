@@ -625,6 +625,7 @@ class ObservationsController < ApplicationController
     
     @observations.compact.each do |o|
       o.user = current_user
+      o.wait_for_index_refresh = true
       o.save
     end
     create_project_observations
@@ -686,7 +687,6 @@ class ObservationsController < ApplicationController
           end
           render :json => json, :status => :unprocessable_entity
         else
-          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               :viewer => current_user,
@@ -812,7 +812,7 @@ class ObservationsController < ApplicationController
       observation.editing_user_id = current_user.id
 
       observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
-      
+      observation.wait_for_index_refresh = true
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
       end
@@ -869,7 +869,6 @@ class ObservationsController < ApplicationController
         format.xml  { head :ok }
         format.js { render :json => @observations }
         format.json do
-          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               viewer: current_user,
@@ -926,6 +925,7 @@ class ObservationsController < ApplicationController
   # DELETE /observations/1
   # DELETE /observations/1.xml
   def destroy
+    @observation.wait_for_index_refresh = true
     @observation.destroy
     respond_to do |format|
       format.html do
@@ -934,7 +934,6 @@ class ObservationsController < ApplicationController
       end
       format.xml  { head :ok }
       format.json do
-        Observation.refresh_es_index
         head :ok
       end
     end

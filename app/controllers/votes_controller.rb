@@ -19,23 +19,23 @@ class VotesController < ApplicationController
   end
 
   def vote
+    @record.wait_for_index_refresh = true
     @record.vote_by voter: current_user, vote: params[:vote], vote_scope: params[:scope]
     respond_to do |format|
       format.html do
         redirect_to @record
       end
-      Observation.refresh_es_index
       format.json { render json: @record.as_json(methods: [:votes]) }
     end
   end
 
   def unvote
+    @record.wait_for_index_refresh = true
     @record.unvote voter: current_user, vote: params[:vote], vote_scope: params[:scope]
     respond_to do |format|
       format.html do
         redirect_to @record
       end
-      Observation.refresh_es_index
       format.json { head :no_content }
     end
   end

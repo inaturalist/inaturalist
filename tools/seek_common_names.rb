@@ -4,7 +4,7 @@ require "optimist"
 # The official list of locales current supported by Seek can be found at:
 # https://github.com/inaturalist/SeekReactNative/blob/master/i18n.js
 
-SEEK_LOCALES = ["da", "de", "en", "es", "fr", "hi", "nl", "pt", "pt-BR", "zh"]
+SEEK_LOCALES = ["da", "de", "en", "es", "fr", "hi", "it", "nl", "pt", "pt-BR", "ru", "tr", "zh"]
 
 OPTS = Optimist::options do
     banner <<-EOS

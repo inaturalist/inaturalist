@@ -24,6 +24,8 @@ class QualityMetric < ActiveRecord::Base
   validates_inclusion_of :metric, :in => METRICS
   validates_uniqueness_of :metric, :scope => [:observation_id, :user_id]
 
+  attr_accessor :wait_for_obs_index_refresh
+
   def to_s
     "<QualityMetric #{id} metric: #{metric}, user_id: #{user_id}, agree: #{agree}>"
   end
@@ -32,6 +34,7 @@ class QualityMetric < ActiveRecord::Base
     return unless observation
     if o = Observation.find_by_id( observation_id )
       o.skip_quality_metrics = true
+      o.wait_for_index_refresh = !!wait_for_obs_index_refresh
       o.save
     end
     true
@@ -47,7 +50,6 @@ class QualityMetric < ActiveRecord::Base
   end
 
   def self.vote(user, observation, metric, agree)
-    UpdateAction.refresh_es_index
     qm = observation.quality_metrics.find_or_initialize_by( metric: metric, user_id: user.try(:id) )
     qm.update_attributes( agree: agree )
   end

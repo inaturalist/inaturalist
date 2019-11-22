@@ -868,7 +868,12 @@ class ProjectsController < ApplicationController
       error_msg = t(:the_observation_was_already_added_to_that_project)
     end
 
-    @project_observation = ProjectObservation.create(project: @project, observation: @observation, user: current_user)
+    @project_observation = ProjectObservation.create(
+      project: @project,
+      observation: @observation,
+      user: current_user,
+      wait_for_obs_index_refresh: true
+    )
     
     unless @project_observation.valid?
       error_msg = t(:there_were_problems_adding_that_observation_to_this_project) + 
@@ -906,7 +911,6 @@ class ProjectsController < ApplicationController
         redirect_back_or_default(@project)
       end
       format.json do
-        Observation.refresh_es_index
         render :json => @project_observation.to_json(:include => {
           :observation => {:include => :observation_field_values}, 
           :project => {:include => :project_observation_fields}
@@ -935,7 +939,7 @@ class ProjectsController < ApplicationController
       end
       return
     end
-    
+    @project_observation.wait_for_obs_index_refresh = true
     @project_observation.destroy
     respond_to do |format|
       format.html do
@@ -943,7 +947,6 @@ class ProjectsController < ApplicationController
         redirect_back_or_default(@project)
       end
       format.json do
-        Observation.refresh_es_index
         render :json => @project_observation
       end
     end
