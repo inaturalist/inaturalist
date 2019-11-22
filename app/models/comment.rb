@@ -44,7 +44,7 @@ class Comment < ActiveRecord::Base
 
   include ActsAsUUIDable
 
-  attr_accessor :html, :bulk_delete
+  attr_accessor :html, :bulk_delete, :wait_for_obs_index_refresh
 
   def to_s
     "<Comment #{id} user_id: #{user_id} parent_type: #{parent_type} parent_id: #{parent_id}>"
@@ -101,6 +101,9 @@ class Comment < ActiveRecord::Base
     return if @parent_indexed
     return if bulk_delete
     if parent && parent.respond_to?(:elastic_index!)
+      if parent.is_a?( Observation )
+        parent.wait_for_index_refresh = !!wait_for_obs_index_refresh
+      end
       parent.elastic_index!
       @parent_indexed = true
     end

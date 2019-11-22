@@ -78,9 +78,9 @@ class ObservationFieldValuesController < ApplicationController
         @observation_field_value.attributes = ofv_params
       end
     end
+    @observation_field_value.wait_for_obs_index_refresh = true
     respond_to do |format|
       if @observation_field_value.save
-        Observation.refresh_es_index
         format.json { render :json => @observation_field_value }
       else
         format.json do
@@ -97,8 +97,8 @@ class ObservationFieldValuesController < ApplicationController
         update_params[:uuid] = update_params[:id]
         update_params.delete(:id)
       end
+      @observation_field_value.wait_for_obs_index_refresh = true
       if @observation_field_value.update_attributes(update_params)
-        Observation.refresh_es_index
         format.json { render :json => @observation_field_value }
       else
         format.json do
@@ -117,6 +117,7 @@ class ObservationFieldValuesController < ApplicationController
       status = :forbidden
       json = "You do not have permission to do that."
     else
+      @observation_field_value.wait_for_obs_index_refresh = true
       @observation_field_value.destroy
       status = :ok
       json = nil
@@ -126,7 +127,6 @@ class ObservationFieldValuesController < ApplicationController
         render :status => :status, :text => json
       end
       format.json do 
-        Observation.refresh_es_index
         render :status => status, :json => json
       end
     end
