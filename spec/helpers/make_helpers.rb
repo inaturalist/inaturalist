@@ -6,7 +6,7 @@ module MakeHelpers
       controlled_attribute: attribute,
       controlled_value: value
     )
-    Annotation.make( options.merge(
+    Annotation.make!( options.merge(
       controlled_attribute: attribute,
       controlled_value: value  
     ) )
