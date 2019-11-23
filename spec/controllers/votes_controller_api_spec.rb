@@ -81,7 +81,7 @@ shared_examples_for "a VotesController" do
     end
 
     it "should work if the resource is an annotation" do
-      a = make_annotation( resource: o )
+      a = make_annotation!( resource: o )
       post :vote, format: :json, resource_type: "annotation", resource_id: a.id
       a.reload
       expect( a.votes.size ).to eq 1

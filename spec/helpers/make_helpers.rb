@@ -6,10 +6,15 @@ module MakeHelpers
       controlled_attribute: attribute,
       controlled_value: value
     )
-    Annotation.make!( options.merge(
+    make_method = options.delete(:create) ? :make! : :make
+    Annotation.send( make_method, options.merge(
       controlled_attribute: attribute,
       controlled_value: value  
     ) )
+  end
+
+  def make_annotation!( options = {} )
+    make_annotation( options.merge( create: true ) )
   end
 
   def make_curator(opts = {})
