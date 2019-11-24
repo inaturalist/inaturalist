@@ -1873,6 +1873,8 @@ nb:
   meet: Møt
   member_of_the_inaturalist_network_html: |
     Medlem av <a href="%{url}">iNaturalist-nettverket</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Medlem av %{partial_inat_network_tag_html}iNaturalist-nettverket</a>, et felles initiativ av %{cas_tag_html} og %{nat_geo_tag_html}.
   members: Medlemmer
   membership_model: Medlemskapsmodell
   mentioned_you_in_noun_html: "%{user} har nevnt deg i %{noun}"
@@ -3308,6 +3310,7 @@ nb:
   sorry_how_about_we_try_repeat: "Beklager! Hva med at vi prøver å gjenta ditt søk i noen andre databaser med artsnavn? Hvis vi finner noe, lagrer vi det så du kan finne det neste gang."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Beklager, et av de Flickr-bilder finnes ikke, eller du har ikke tillatelse til å se det."
   sorry_that_photo_provider_isnt_responding: "Beklager, den bildeleverandøren reagerer ikke for øyeblikket. Vennligst prøv igjen senere."
+  sorry_that_service_is_not_responding: "Beklager, den tjenesten reagerer ikke. Vennligst prøv igjen senere."
   sorry_there_were_problems_with_your_request: "Beklager, det oppstod problemer med din forespørsel: %{project_user}"
   sorry_we_didnt_find_that_photo: "Beklager, vi fant ikke det bildet."
   sorry_we_dont_have_any_metadata_for_that_photo: "Beklager, vi har ingen metadata for det bildet som vi kan bruke til å fylle ut observasjonens egenskaper."
