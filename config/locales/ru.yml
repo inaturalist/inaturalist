@@ -67,7 +67,7 @@ ru:
     many: "%{count} ошибочных идентификаций вида в этом %{rank}"
     other: "%{count} ошибочных идентификаций видов в этом %{rank}"
   x_observations:
-    one: "%{count} наблюдени"
+    one: "%{count} наблюдение"
     few: "%{count} наблюдения"
     many: "%{count} наблюдений"
     other: "%{count} наблюдений"
@@ -292,7 +292,11 @@ ru:
   add_one_now: Добавить один сейчас
   add_photos: Добавить фото
   add_place: Добавить место
+  add_alive_or_dead_alive_annotation: 'Добавить значение "Живой или мёртвый: живой"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Добавить значение "Живой или мёртвый: нельзя определить"'
+  add_alive_or_dead_dead_annotation: 'Добавить значение "Живой или мёртвый: мёртвый"'
   add_plant_phenology_budding_annotation: 'Добавить значение "Фенология растений: Бутонизация"'
+  add_plant_phenology_flower_budding_annotation: 'Добавить значение "Фенология растений: бутонизация"'
   add_plant_phenology_flowering_annotation: 'Добавить аннотацию к "Plant Phenology: Flowering"'
   add_plant_phenology_fruiting_annotation: 'Добавить значение "Фенология растений: Плодоношение"'
   add_life_stage_adult_annotation: 'Добавить значение "Стадия жизни: Взрослый"'
@@ -920,6 +924,7 @@ ru:
     female: Женский
     plant_phenology: Фенология Растений
     budding: Бутонизация
+    flower_budding: Бутонизация цветов
     flowering: Цветение
     fruiting: Плодоношение
     life_stage: Стадия жизни
@@ -931,6 +936,17 @@ ru:
     larva: Личинка
     egg: Яйцо
     juvenile: Молодой
+    alive_or_dead: Живой или Мёртвый
+    alive: Живой
+    dead: Мёртвый
+    cannot_be_determined: Нельзя определить
+  controlled_term_definitions:
+    alive: Организм жив и не проявляет признаков неизбежной смерти
+    dead: Организм жив и не проявляет признаков неизбежной смерти
+    flower_budding: Цветочные почки видны, но не распустились
+    flowering: Цветы видны, распустились и все еще прикреплены к растению
+    fruiting: Плоды видны и все еще прикреплены к растению
+    teneral: Взрослые, которые недавно окуклились, но еще не достигли своей окончательной взрослой формы
   controls: Элементы управления
   convert: Конвертировать
   coordinate_systems: Системы координат
@@ -1872,6 +1888,7 @@ ru:
     sk: Словацкий
     sq: албанский
     sv: Шведский
+    tr: Турецкий
     zh-CN: Китайский (упрощенный)
     zh-TW: Китайский (традиционный)
   locality_notes: Примечания локалитета
@@ -1956,6 +1973,8 @@ ru:
   meet: Встреча
   member_of_the_inaturalist_network_html: |
     Член <a href="%{url}">iNaturalist Network</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Член %{partial_inat_network_tag_html}iNaturalist Network,</a> совместной инициативы %{cas_tag_html} и %{nat_geo_tag_html}.
   members: Участники
   membership_model: Модель членства
   mentioned_you_in_noun_html: "%{user} упомянул вас в %{noun}"
@@ -3398,6 +3417,7 @@ ru:
   sorry_how_about_we_try_repeat: "Сожалеем! Как насчет того, чтобы мы попытались повторить ваш поиск в некоторых других базах данных, содержащих названия видов? Если мы найдем что-то, мы сохраним это, чтобы вы могли его найти в следующий раз."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "К сожалению, одно из этих фото Flickr либо не существует, либо у вас нет разрешения на его просмотр."
   sorry_that_photo_provider_isnt_responding: "К сожалению, данный поставщик фото в данный момент не отвечает. Пожалуйста, повторите попытку позже."
+  sorry_that_service_is_not_responding: "Извините, эта служба не отвечает. Повторите попытку позже."
   sorry_there_were_problems_with_your_request: "К сожалению, возникли проблемы с вашим запросом: %{project_user}"
   sorry_we_didnt_find_that_photo: "Сожалеем, мы не нашли это фото."
   sorry_we_dont_have_any_metadata_for_that_photo: "К сожалению, у нас нет никаких метаданных этого фото, которые мы можем использовать для задания свойств наблюдения."
@@ -5412,6 +5432,12 @@ ru:
         frequency:
           research: Исследовательский уровень
           verifiable: Проверяемый
+          "Alive or Dead=Alive": Живой
+          "Alive or Dead=Dead": Мёртвый
+          "Plant Phenology=Budding": Бутонизация
+          "Plant Phenology=Flower Budding": Бутонизация цветов
+          "Plant Phenology=Flowering": Цветение
+          "Plant Phenology=Fruiting": Плодоношение
           "Life Stage=egg": Яйцо
           "Life Stage=larva": Личинка
           "Life Stage=teneral": После линьки
