@@ -84,8 +84,16 @@ class Photo < ActiveRecord::Base
   def to_taxon
     return unless respond_to?(:to_taxa)
     photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true, :active => true)
-    photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES) if photo_taxa.blank?
-    photo_taxa = to_taxa if photo_taxa.blank?
+    if photo_taxa.blank?
+      photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES)
+    end
+    if photo_taxa.blank?
+      photo_taxa = if user && lexicon = TaxonName.language_for_locale( user.locale )
+        to_taxa( lexicon: lexicon )
+      else
+        to_taxa
+      end
+    end
     return if photo_taxa.blank?
     photo_taxa = photo_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first

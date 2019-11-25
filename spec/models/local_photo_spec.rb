@@ -146,6 +146,22 @@ describe LocalPhoto, "to_observation" do
     expect( o.taxon ).to eq active
   end
 
+  it "should set a taxon from a name in a language that matches the photo uploader's" do
+    p = LocalPhoto.make( user: User.make!( locale: "es-MX" ) )
+    p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "egg.jpg" ) )
+    tn = TaxonName.make!( lexicon: "Spanish", name: "egg" )
+    o = p.to_observation
+    expect( o.taxon ).to eq tn.taxon
+  end
+
+  it "should not set a taxon from a name in a language other than the photo uploader's" do
+    p = LocalPhoto.make( user: User.make!( locale: "es-MX" ) )
+    p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "egg.jpg" ) )
+    tn = TaxonName.make!( lexicon: "English", name: "egg" )
+    o = p.to_observation
+    expect( o.taxon ).not_to eq tn.taxon
+  end
+
   it "should set observation fields from machine tags" do
     of = ObservationField.make!(:name => "sex", :allowed_values => "unknown|male|female", :datatype => ObservationField::TEXT)
     lp = LocalPhoto.make!

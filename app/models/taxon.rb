@@ -1875,7 +1875,11 @@ class Taxon < ActiveRecord::Base
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags, options = {})
     scope = TaxonName.joins(:taxon)
-    scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
+    if options[:lexicon]
+      scope = scope.where(
+        lexicon: [options[:lexicon]].flatten.map{|l| [l, TaxonName.normalize_lexicon( l ) ]}.flatten
+      )
+    end
     scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
       next if tag.blank?

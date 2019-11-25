@@ -316,9 +316,11 @@ class LocalPhoto < Photo
     if options[:with_file_name] && file.file? && !file.original_filename.blank?
       # every string of letters except underscores (NOT not-words, underscores,
       # or numbers). Ignore the last since it's almost always a file extension
-      words = file.original_filename.scan(/[^\W_\d]+/)
+      # Note that I'm trying to handle unicode characters here, but there's
+      # still a high chance of encoding weirdness happening
+      words = file.original_filename.scan(/[\p{L}\p{M}\'\’]+/)
       words = words.reject do |word|
-        word.size == 1 || word =~ /^dsc|original|img|inat|dsc.?|jpe?g|png|gif|open-uri$/i
+        word.size == 1 || word =~ /^original|img|inat|dsc.?|jpe?g|png|gif|open-uri$/i
       end
       # Collect all combinations of these words from 1-word combinations up to
       # the combination that includes all words. Note that a combination
