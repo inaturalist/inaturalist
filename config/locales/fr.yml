@@ -17,6 +17,10 @@ fr:
   x_identifications_:
     one: '1 identification'
     other: '%{count} identifications'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    one: '<span class="count">%{count}</span> identificateur'
+    other: '<span class="count">%{count}</span> Identificateurs'
   x_journal_posts_html:
     one: '<span class="count">1</span> publication du journal'
     other: '<span class="count">%{count}</span> publications du journal'
@@ -216,6 +220,9 @@ fr:
   add_one_now: En ajouter un maintenant
   add_photos: Ajouter des photos
   add_place: Ajouter un lieu
+  add_alive_or_dead_alive_annotation: 'Ajouter l''annotation "Vivant ou Mort : Vivant"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Ajouter l''annotation "Vivant ou Mort : Indéterminé"'
+  add_alive_or_dead_dead_annotation: 'Ajouter l''annotation "Vivant ou Mort : Mort"'
   add_plant_phenology_budding_annotation: 'Ajouter l’annotation « Phénologie végétale : Bourgeonnement »'
   add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie de plante : Floraison »'
   add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie de plante : Fruits »'
@@ -1685,6 +1692,7 @@ fr:
     sk: Slovaque
     sq: Albanais
     sv: Suédois
+    tr: Turc
     zh-CN: chinois simplifié
     zh-TW: Chinois (traditionnel)
   locality_notes: Notes localisées
@@ -3095,6 +3103,7 @@ fr:
   sorry_how_about_we_try_repeat: "Désolé! Que diriez-vous que nous ressayions votre recherche dans d’autres bases de données de noms d’espèce? Si nous trouvons quelque chose, nous l’enregistrerons pour que vous puissiez le trouver la prochaine fois."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Désolé, une de ces photos de Flickr n’existe pas, ou vous n’avez pas le droit de la voir."
   sorry_that_photo_provider_isnt_responding: "Désolé, ce fournisseur de photos ne répond pas pour le moment. Veuillez réessayer plus tard."
+  sorry_that_service_is_not_responding: "Désolé, ce service ne répond pas. Veuillez réessayer plus tard."
   sorry_there_were_problems_with_your_request: "Désolé, il y a des problèmes avec votre requête : %{project_user}"
   sorry_we_didnt_find_that_photo: "Désolé, nous n’avons pas trouvé cette photo."
   sorry_we_dont_have_any_metadata_for_that_photo: "Désolé, nous n’avons aucune métadonnée pour cette photo afin d’établir les propriétés de l’observation."
