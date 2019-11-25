@@ -248,6 +248,7 @@ sk:
   amphibians: obojživelníci
   and: a
   and_other_taxa: "&amp; Ďalšie taxóny"
+  android: Android
   animals: Zvieratá
   annotation: Anotácia
   annotations: Anotácie
@@ -256,6 +257,7 @@ sk:
   announcements: Oznámenia
   any: ľubovoľný
   any_: Ľubovoľný
+  anyone: Ktokoľvek
   apply_to_selected: Použiť pre vybrané
   apply_captive_cultivated: "Použiť zajatý / kutlivovaný"
   apply_fields: Použiť polia
@@ -280,6 +282,8 @@ sk:
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Ste si istí? Toto znovu načíta stránku a Vy môžete stratiť nejaké Vaše zmeny.
   are_you_sure_want_delete_taxon: "Naozaj chcete odstrániť tento taxón?"
+  are_you_sure_want_delete_taxon_observations: |
+    Naozaj chcete odstrániť tento taxón? Obsahuje pozorovania.
   are_you_sure_want_delete_taxon_link: Naozaj chcete odstrániť tento link na taxón?
   are_you_sure_want_delete_this_name: Naozaj chcete odstrániť toto meno?
   are_you_sure_want_delete_this_range: Naozaj chcete odstrániť tento rozsah?
@@ -575,6 +579,8 @@ sk:
     iucn: Ekvivalentný kód v Červenom zozname IUCN
   contact_support: Kontaktujte podporu
   contain_all_descendants?: Obsahuje tento zoznam všetky následné taxóny, ktoré se tu vyskytujú?
+  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  content: Obsah
   content_hidden: Obsah skrytý
   content_hidden_by_user_on_date_because_reason_html: |
     Obsah skryl používateľ %{user} v čase %{date} pretože: "%{reason}"
@@ -691,7 +697,11 @@ sk:
       may: Máj %{day} %{year}
       june: Jún %{day} %{year}
       july: Júl %{day} %{year}
+      august: '%{day}. august %{year}'
+      september: '%{day}. september %{year}'
       october: Október %{day} %{year}
+      november: '%{day}. november %{year}'
+      december: '%{day}. december %{year}'
     month:
       january: Január
       february: Február
@@ -700,7 +710,11 @@ sk:
       may: Máj
       june: Jún
       july: Júl
+      august: August
+      september: September
       october: Október
+      november: November
+      december: December
   date_is_accurate: Dátum je presný
   date_observed: Dátum pozorovania
   date_observed_: Dátum pozorovania
@@ -851,6 +865,7 @@ sk:
   either: Buď
   either_that_user_doesnt_exist_or: "Tento užívateľ buď neexistuje, alebo už ho sledujete."
   eligible_for_research_grade: Vhodné pre výskumný stupeň
+  email: Email
   email_addresses_description: E-mailové adresy oddelené čiarkami, maximálne 60 každých 30 dní.
   email_address_for_comments_and_other_feedback: E-mailové adresy pre komentáre a inú spätnú väzbu.
   email_addresses_to_receive_invites: E-mailové adresy pre prijímanie pozvánok
@@ -2075,12 +2090,15 @@ sk:
     afghanistan: Afganistan
     africa: Afrika
     akrotiri_and_dhekelia: Akrotiri a Dekeleia
+    aland: Ålandy
     albania: Albánsko
     algeria: Alžírsko
     american_samoa: Americká Samoa
     andorra: Andora
+    angola: Angola
     antarctica: Antarktída
     antigua_and_barbuda: Antigua a Barbuda
+    argentina: Argentína
     armenia: Arménsko
     australia: Austrália
     austria: Rakúsko
@@ -2090,17 +2108,22 @@ sk:
     bangladesh: Bangladéš
     belarus: Bielorusko
     belgium: Belgicko
+    belize: Belize
+    benin: '[country name] Benin'
     bermuda: Bermmudy
     bhutan: Bhután
     bolivia: Bolívia
     bonaire_saint_eustatius_and_saba: Karibské Holandsko
     bosnia_and_herzegovina: Bosna a Hercegovina
+    botswana: Botswana
     bouvet_island: Bouvetov ostrov
     brazil: Brazília
     british_indian_ocean_territory: Britské indickooceánske územie
     british_virgin_islands: Britské Panenské ostrovy
     brunei: Brunej
     bulgaria: Bulharsko
+    burkina_faso: Burkina Faso
+    burundi: Burundi
     cambodia: Kambodža
     cameroon: Kamerun
     canada: Kanada
@@ -2122,14 +2145,20 @@ sk:
     cote_d_ivoire: Pobrežie slonoviny
     croatia: Chorvátsko
     cuba: Kuba
+    curacao: Curaçao
+    cyprus: Cyprus
     czech_republic: Česká republika
     democratic_republic_of_the_congo: Demokratická republika Kongo
     denmark: Dánsko
+    djibouti: Džibutsko
     dominica: Dominika
     dominican_republic: Dominikánska republika
     east_timor: Východný Timor
     ecuador: Ekvádor
+    egypt: Egypt
+    el_salvador: Salvádor
     equatorial_guinea: Rovníková Guinea
+    eritrea: Eritrea
     estonia: Estónsko
     ethiopia: Etiópia
     europe: Európa
@@ -2141,6 +2170,8 @@ sk:
     french_guiana: Francúzska Guyana
     french_polynesia: Francúzska Polynézia
     french_southern_territories: Francúzska južná a antarktická oblasť
+    gabon: Gabon
+    gambia: Gambia
     georgia: Gruzínsko
     germany: Nemecko
     gibraltar: Gibraltár
@@ -2164,6 +2195,7 @@ sk:
     kenya: Keňa
     korea: Kórea
     kuwait: Kuvajt
+    laos: Laos
     latvia: Lotyšsko
     lebanon: Libanon
     liberia: Libéria
