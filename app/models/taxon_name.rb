@@ -1,9 +1,9 @@
 #encoding: utf-8
 class TaxonName < ActiveRecord::Base
-  belongs_to :taxon, touch: true
+  belongs_to :taxon
   belongs_to :source
   belongs_to :creator, :class_name => 'User'
-  belongs_to :updater, :class_name => 'User'
+  has_updater
   has_many :taxon_scheme_taxa, :dependent => :destroy
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :taxon_name
   has_many :places, :through => :place_taxon_names

@@ -304,6 +304,28 @@ describe Taxon, "updating" do
       expect( t.wikipedia_summary ).to be_blank
     end
   end
+
+  it "should assign the updater if explicitly assigned" do
+    creator = make_curator
+    updater = make_curator
+    t = Taxon.make!( creator: creator, updater: creator, rank: Taxon::FAMILY )
+    expect( t.updater ).to eq creator
+    t.reload
+    t.update_attributes( rank: Taxon::GENUS, updater: updater )
+    t.reload
+    expect( t.updater ).to eq updater
+  end
+  
+  it "should nilify the updater if not explicitly assigned" do
+    creator = make_curator
+    updater = make_curator
+    t = Taxon.make!( creator: creator, updater: creator, rank: Taxon::FAMILY )
+    expect( t.updater ).to eq creator
+    t = Taxon.find_by_id( t.id )
+    t.update_attributes( rank: Taxon::GENUS )
+    t.reload
+    expect( t.updater ).to be_blank
+  end
 end
 
 describe Taxon, "destruction" do

@@ -2,7 +2,7 @@ class TaxonFramework < ActiveRecord::Base
   belongs_to :taxon, inverse_of: :taxon_framework
   belongs_to :source
   belongs_to :user
-  belongs_to :updater, class_name: "User"
+  has_updater
   has_many :taxon_framework_relationships, dependent: :destroy
   has_many :taxon_curators, inverse_of: :taxon_framework, dependent: :destroy
   

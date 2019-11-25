@@ -5,7 +5,7 @@ class ObservationFieldValue < ActiveRecord::Base
   belongs_to :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   belongs_to :user
-  belongs_to :updater, :class_name => 'User'
+  has_updater
   has_one :annotation
   
   before_validation :strip_value

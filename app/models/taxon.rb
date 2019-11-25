@@ -68,7 +68,7 @@ class Taxon < ActiveRecord::Base
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
-  belongs_to :updater, :class_name => 'User'
+  has_updater
   belongs_to :conservation_status_source, :class_name => "Source"
   belongs_to :taxon_framework_relationship, touch: true
   has_and_belongs_to_many :colors, -> { uniq }

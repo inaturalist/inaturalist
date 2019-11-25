@@ -16,7 +16,7 @@ class ListedTaxon < ActiveRecord::Base
              :foreign_key => 'last_observation_id'
   belongs_to :user # creator
   
-  belongs_to :updater, :class_name => 'User'
+  has_updater
   has_many :comments, :as => :parent, :dependent => :destroy
   
   # check list assocs
