@@ -228,7 +228,11 @@ es:
   add_one_now: Agregar una ahora
   add_photos: Agregar fotos
   add_place: Agregar lugar
+  add_alive_or_dead_alive_annotation: 'Añadir anotación "Vivo o Muerto: Vivo"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Añadir anotación "Vivo o Muerto: Indeterminado"'
+  add_alive_or_dead_dead_annotation: 'Añadir anotación "Vivo o Muerto: Muerto"'
   add_plant_phenology_budding_annotation: 'Agregar anotación «Fenología de la planta: en botón»'
+  add_plant_phenology_flower_budding_annotation: 'Agregar anotación: «Fenología de la planta: Yemas Florales»'
   add_plant_phenology_flowering_annotation: 'Agregar anotación «Fenología de la planta: floreciendo»'
   add_plant_phenology_fruiting_annotation: 'Agregar anotación "fenología de la planta: fructificando"'
   add_life_stage_adult_annotation: 'Agregar anotación "Etapa de vida: adulto"'
@@ -828,6 +832,7 @@ es:
     female: Femenino
     plant_phenology: Fenología de la planta
     budding: En germinación
+    flower_budding: Yemas Florales
     flowering: Floración
     fruiting: Fructificacón
     life_stage: Etapa de vida
@@ -839,6 +844,17 @@ es:
     larva: Larva
     egg: Huevo
     juvenile: Juvenil
+    alive_or_dead: Vivo o Muerto
+    alive: Vivo
+    dead: Muerto
+    cannot_be_determined: Indeterminado
+  controlled_term_definitions:
+    alive: El organismo está vivo y no muestra signos de muerte inminente
+    dead: El organismo está muerto o muestra signos de muerte inminente
+    flower_budding: Las yemas florales son visibles pero no están abiertas
+    flowering: Flores visibles, abiertas y todavía adheridas a la planta
+    fruiting: Fruto visible y todavía unido a la planta
+    teneral: Adulto que ha pupado recientemente pero no ha alcanzado su forma adulta final
   controls: Controles
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -1528,6 +1544,7 @@ es:
   input_taxon: Taxón de entrada
   insects: insectos
   insect_life_stage: Etapa vital del insecto
+  instagram: Instagram
   interactions: Interacciones
   internal_server_error: Error interno del servidor
   internal_taxon_including_descendants: Taxón interno (incluyendo descendientes)
@@ -1771,6 +1788,7 @@ es:
     sk: Eslovaco
     sq: Albanés
     sv: Sueco
+    tr: Turco
     zh-CN: Chino (simplificado)
     zh-TW: Chino (tradicional)
   locality_notes: Notas por localidad
@@ -3256,6 +3274,7 @@ es:
   showing_one_to: Mostrando 1 -
   showing_taxa_from_everywhere: "Mostrando taxones de todas partes"
   showing_taxa_from_place: "Mostrando taxones de %{place}"
+  showing_x_of_y: Mostrando %{x} de %{y}
   showing_x_of_y_listings: "Mostrando %{x} de %{y} listados"
   sign_in: Acceder
   sign_in_with_provider: "Ingresa con %{provider}"
@@ -5374,6 +5393,12 @@ es:
         frequency:
           research: Grado de investigación
           verifiable: Verificable
+          "Alive or Dead=Alive": Vivo
+          "Alive or Dead=Dead": Muerto
+          "Plant Phenology=Budding": Brotando
+          "Plant Phenology=Flower Budding": Con Yemas Florales
+          "Plant Phenology=Flowering": Floreciendo
+          "Plant Phenology=Fruiting": Fructificando
           "Life Stage=egg": Huevo
           "Life Stage=larva": Larva
           "Life Stage=teneral": Muda

@@ -67,7 +67,7 @@ ru:
     many: "%{count} ошибочных идентификаций вида в этом %{rank}"
     other: "%{count} ошибочных идентификаций видов в этом %{rank}"
   x_observations:
-    one: "%{count} наблюдени"
+    one: "%{count} наблюдение"
     few: "%{count} наблюдения"
     many: "%{count} наблюдений"
     other: "%{count} наблюдений"
@@ -292,7 +292,11 @@ ru:
   add_one_now: Добавить один сейчас
   add_photos: Добавить фото
   add_place: Добавить место
+  add_alive_or_dead_alive_annotation: 'Добавить значение "Живой или мёртвый: живой"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Добавить значение "Живой или мёртвый: нельзя определить"'
+  add_alive_or_dead_dead_annotation: 'Добавить значение "Живой или мёртвый: мёртвый"'
   add_plant_phenology_budding_annotation: 'Добавить значение "Фенология растений: Бутонизация"'
+  add_plant_phenology_flower_budding_annotation: 'Добавить значение "Фенология растений: бутонизация"'
   add_plant_phenology_flowering_annotation: 'Добавить аннотацию к "Plant Phenology: Flowering"'
   add_plant_phenology_fruiting_annotation: 'Добавить значение "Фенология растений: Плодоношение"'
   add_life_stage_adult_annotation: 'Добавить значение "Стадия жизни: Взрослый"'
@@ -920,6 +924,7 @@ ru:
     female: Женский
     plant_phenology: Фенология Растений
     budding: Бутонизация
+    flower_budding: Бутонизация цветов
     flowering: Цветение
     fruiting: Плодоношение
     life_stage: Стадия жизни
@@ -931,6 +936,17 @@ ru:
     larva: Личинка
     egg: Яйцо
     juvenile: Молодой
+    alive_or_dead: Живой или Мёртвый
+    alive: Живой
+    dead: Мёртвый
+    cannot_be_determined: Нельзя определить
+  controlled_term_definitions:
+    alive: Организм жив и не проявляет признаков неизбежной смерти
+    dead: Организм жив и не проявляет признаков неизбежной смерти
+    flower_budding: Цветочные почки видны, но не распустились
+    flowering: Цветы видны, распустились и все еще прикреплены к растению
+    fruiting: Плоды видны и все еще прикреплены к растению
+    teneral: Взрослые, которые недавно окуклились, но еще не достигли своей окончательной взрослой формы
   controls: Элементы управления
   convert: Конвертировать
   coordinate_systems: Системы координат
@@ -1872,6 +1888,7 @@ ru:
     sk: Словацкий
     sq: албанский
     sv: Шведский
+    tr: Турецкий
     zh-CN: Китайский (упрощенный)
     zh-TW: Китайский (традиционный)
   locality_notes: Примечания локалитета
@@ -2436,7 +2453,7 @@ ru:
   only_the_project_admin_can_delete_this_project: Только администратор проекта может удалить этот проект
   only_you: Только вы
   open: открытая
-  open_: Открыть
+  open_: Открытое
   open_description: "Любой может видеть координаты, если только таксон не находится под угрозой исчезновения."
   open_street_map: OpenStreetMap
   optional: необязательный
@@ -3568,80 +3585,80 @@ ru:
   taxon_geoprivacy: Приватность местоположения таксона
   taxon_is_a_rank: "%{taxon} - это %{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
-    one: "%{taxon} является %{rank} в %{iconic_taxon} с 1 наблюдением"
+    one: "%{taxon} это %{rank} в %{iconic_taxon} с 1 наблюдением"
     few: "%{taxon} является %{rank} в %{iconic_taxon} с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} в %{iconic_taxon} с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} в %{iconic_taxon} с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} в %{iconic_taxon} с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} в %{iconic_taxon} с %{count} наблюдениями"
   taxon_is_a_rank_of_amphibia_with_x_observations:
-    one: "%{taxon} является %{rank} амфибий с 1 наблюдением"
-    few: "%{taxon} является %{rank} амфибий с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} амфибий с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} амфибий с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} амфибий с 1 наблюдением"
+    few: "%{taxon} это %{rank} амфибий с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} амфибий с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} амфибий с %{count} наблюдениями"
   taxon_is_a_rank_of_aves_with_x_observations:
     one: "%{taxon} является %{rank} птиц с 1 наблюдением"
-    few: "%{taxon} является %{rank} птиц с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} птиц с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} птиц с %{count} наблюдениями"
+    few: "%{taxon} это %{rank} птиц с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} птиц с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} птиц с %{count} наблюдениями"
   taxon_is_a_rank_of_mammalia_with_x_observations:
-    one: "%{taxon} является %{rank} млекопитающих с 1 наблюдением"
-    few: "%{taxon} является %{rank} млекопитающих с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} млекопитающих с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} млекопитающих с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} млекопитающих с 1 наблюдением"
+    few: "%{taxon} это %{rank} млекопитающих с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} млекопитающих с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} млекопитающих с %{count} наблюдениями"
   taxon_is_a_rank_of_reptilia_with_x_observations:
-    one: "%{taxon} является %{rank} рептилий с 1 наблюдением"
-    few: "%{taxon} является %{rank} рептилий с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} рептилий с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} рептилий с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} рептилий с 1 наблюдением"
+    few: "%{taxon} это %{rank} рептилий с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} рептилий с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} рептилий с %{count} наблюдениями"
   taxon_is_a_rank_of_plantae_with_x_observations:
-    one: "%{taxon} является %{rank} растений с 1 наблюдением"
-    few: "%{taxon} является %{rank} растений с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} растений с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} растений с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} растений с 1 наблюдением"
+    few: "%{taxon} это %{rank} растений с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} растений с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} растений с %{count} наблюдениями"
   taxon_is_a_rank_of_actinopterygii_with_x_observations:
-    one: "%{taxon} является %{rank} лучепёрых рыб с 1 наблюдением"
-    few: "%{taxon} является %{rank} лучепёрых рыб с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} лучепёрых рыб с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} лучепёрых рыб с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} лучепёрых рыб с 1 наблюдением"
+    few: "%{taxon} это %{rank} лучепёрых рыб с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} лучепёрых рыб с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} лучепёрых рыб с %{count} наблюдениями"
   taxon_is_a_rank_of_animalia_with_x_observations:
-    one: "%{taxon} является %{rank} животных с 1 наблюдением"
-    few: "%{taxon} является %{rank} животных с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} животных с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} животных с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} животных с 1 наблюдением"
+    few: "%{taxon} это %{rank} животных с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} животных с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} животных с %{count} наблюдениями"
   taxon_is_a_rank_of_insecta_with_x_observations:
-    one: "%{taxon} является %{rank} насекомых с 1 наблюдением"
-    few: "%{taxon} является %{rank} насекомых с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} насекомых с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} насекомых с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} насекомых с 1 наблюдением"
+    few: "%{taxon} это %{rank} насекомых с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} насекомых с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} насекомых с %{count} наблюдениями"
   taxon_is_a_rank_of_arachnida_with_x_observations:
-    one: "%{taxon} является %{rank} паукообразных с 1 наблюдением"
-    few: "%{taxon} является %{rank} паукообразных с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} паукообразных с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} паукообразных с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} паукообразных с 1 наблюдением"
+    few: "%{taxon} это %{rank} паукообразных с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} паукообразных с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} паукообразных с %{count} наблюдениями"
   taxon_is_a_rank_of_fungi_with_x_observations:
-    one: "%{taxon} является %{rank} грибов с 1 наблюдением"
-    few: "%{taxon} является %{rank} грибов с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} грибов с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} грибов с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} грибов с 1 наблюдением"
+    few: "%{taxon} это %{rank} грибов с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} грибов с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} грибов с %{count} наблюдениями"
   taxon_is_a_rank_of_protozoa_with_x_observations:
-    one: "%{taxon} является %{rank} простейших с 1 наблюдением"
-    few: "%{taxon} является %{rank} простейших с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} простейших с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} простейших с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} простейших с 1 наблюдением"
+    few: "%{taxon} это %{rank} простейших с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} простейших с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} простейших с %{count} наблюдениями"
   taxon_is_a_rank_of_mollusca_with_x_observations:
-    one: "%{taxon} является %{rank} моллюсков с 1 наблюдением"
-    few: "%{taxon} является %{rank} моллюсков с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} моллюсков с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} моллюсков с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} моллюсков с 1 наблюдением"
+    few: "%{taxon} это %{rank} моллюсков с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} моллюсков с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} моллюсков с %{count} наблюдениями"
   taxon_is_a_rank_of_chromista_with_x_observations:
-    one: "%{taxon} является %{rank} хромист (бурые водоросли и родственные виды) с 1 наблюдением"
-    few: "%{taxon} является %{rank} хромист (бурые водоросли и родственные виды) с %{count} наблюдениями"
-    many: "%{taxon} является %{rank} хромист (бурые водоросли и родственные виды) с %{count} наблюдениями"
-    other: "%{taxon} является %{rank} хромист (бурые водоросли и родственные виды) с %{count} наблюдениями"
+    one: "%{taxon} это %{rank} хромист (бурые водоросли и родственные виды) с 1 наблюдением"
+    few: "%{taxon} это %{rank} хромист (бурые водоросли и родственные виды) с %{count} наблюдениями"
+    many: "%{taxon} это %{rank} хромист (бурые водоросли и родственные виды) с %{count} наблюдениями"
+    other: "%{taxon} это %{rank} хромист (бурые водоросли и родственные виды) с %{count} наблюдениями"
   taxon_is_kingdom_of_life_with_x_observations:
-    one: "%{taxon} является царством жизни с 1 наблюдением"
-    few: "%{taxon} является царством жизни с %{count} наблюдениями"
-    many: "%{taxon} является царством жизни с %{count} наблюдениями"
-    other: "%{taxon} является царством жизни с %{count} наблюдениями"
+    one: "%{taxon} это царство жизни с 1 наблюдением"
+    few: "%{taxon} это царство жизни с %{count} наблюдениями"
+    many: "%{taxon} это царство жизни с %{count} наблюдениями"
+    other: "%{taxon} это царство жизни с %{count} наблюдениями"
   taxon_is_threatened_coordinates_hidden: Таксон находится под угрозой, координаты скрыты по умолчанию
   taxon_is_threatened_coordinates_hidden_desc: |
     Один из таксонов, предложенных в идентификации, или один из таксонов, которые содержат любой из этих таксонов, является редким и/или находится под угрозой исчезновения, поэтому местоположение этого наблюдения было скрыто.
@@ -5415,6 +5432,12 @@ ru:
         frequency:
           research: Исследовательский уровень
           verifiable: Проверяемый
+          "Alive or Dead=Alive": Живой
+          "Alive or Dead=Dead": Мёртвый
+          "Plant Phenology=Budding": Бутонизация
+          "Plant Phenology=Flower Budding": Бутонизация цветов
+          "Plant Phenology=Flowering": Цветение
+          "Plant Phenology=Fruiting": Плодоношение
           "Life Stage=egg": Яйцо
           "Life Stage=larva": Личинка
           "Life Stage=teneral": После линьки

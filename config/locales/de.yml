@@ -17,6 +17,14 @@ de:
   x_identifications_:
     one: 'Eine Bestimmung'
     other: '%{count} Bestimmungen'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    one: '<span class="count">%{count}</span> Bestimmer'
+    other: '<span class="count">%{count}</span> Bestimmer'
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    one: "%{count} erste Lebensliste"
+    other: "%{count} erste Lebenslisten"
   x_journal_posts_html:
     one: '<span class="count">1</span> Journal-Beitrag'
     other: '<span class="count">%{count}</span> Journal-Beiträge'
@@ -47,6 +55,9 @@ de:
   x_observations_reviewed_html:
     one: "<span class='count'>Eine</span> Beobachtung geprüft"
     other: "<span class='count'>%{count}</span> Beobachtungen geprüft"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Beobachter'
+    other: '<span class="count">%{count}</span> Beobachter'
   x_others:
     one: "Eine weitere"
     other: "%{count} weitere"
@@ -3333,6 +3344,9 @@ de:
   usage_stats: Nutzungsstatistiken
   use_this_form_to_create_a_new: |
     Benutze dieses Formular, um einen neuen Entwurf einer taxonomischen Änderung zu erstellen, der einen Vorschlag für eine Aufspaltung, Zusammenführung oder einen Tausch von aktiven Taxa beschreibt, die später eingereicht werden sollen.
+  used_x_times:
+    one: 1 Mal benutzt
+    other: '%{count} Mal benutzt'
   user: Benutzer
   user_added_a_x: "%{user}: %{x} hinzugefügt"
   user_added_a_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
