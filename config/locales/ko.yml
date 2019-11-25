@@ -285,6 +285,7 @@ ko:
   all_taxa_: 모든 분류군
   all_taxa_in_this_guide: 이 가이드에 있는 모든 분류군
   all_taxonomic_groups: "&laquo; 모든 분류학적 그룹"
+  all_updates: 모든 업데이트
   all_your_observations_will_default_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.
   all_your_observations_will_default_to_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.
   #Option to allow any taxa on a list
@@ -606,6 +607,14 @@ ko:
     male: 수컷
     female: 암컷
     life_stage: 성장 단계
+    adult: 성체
+    teneral: 우화 직후
+    subimago: 준성체
+    pupa: 번데기
+    nymph: 약충
+    larva: 약충
+    egg: 알
+    juvenile: 아성체
   controls: 제어
   convert: 변환
   coordinate_systems: 좌표계
@@ -1029,6 +1038,9 @@ ko:
   google: 구글
   got_it!: 알겠습니다!
   got_your_data_somewhere_else?: 다른 곳에서 데이터를 가져왔습니까? 우리가 도울 수 있습니다.
+  grid: 격자
+  grid_layout: 격자 레이아웃
+  grid_tooltip: 격자 레이아웃 보기
   group: 그룹
   guides: 가이드
   guide_compiled_by: 가이드 엮은이는
@@ -1047,8 +1059,14 @@ ko:
   has_sound: 소리가 있음
   has_sounds: 소리가 있음
   hasnt_contributed_any_observations: 이 프로젝트에 관찰을 게시하지 않았습니다.
+  header_your_observations: 내 관찰
   header_your_calendar: 내 달력
+  header_your_favorites: 내 즐겨찾기
+  header_your_lists: 내 목록
+  header_your_journal: 나의 일지
   header_your_identifications: 나의 동정
+  header_your_projects: 나의 프로젝트
+  header_your_profile: 나의 프로필
   heads_up: 주의
   heads_up_this_photo_has_been_flagged: "주의: 이 사진은 플래그되었습니다."
   heads_up_this_photo_is_already_associated_with: "주의: 이 사진은 이미 <a target='_blank' href='%{url}'>다른 관찰</a>와 연결되어 있습니다."
@@ -1361,6 +1379,7 @@ ko:
       #Short text representing 1 month in the past
       M: "1분"
   month: 월
+  months: 월별
   more: 더 보기
   more_fields: 더 많은 친구
   more_filters: 더 많은 필터
@@ -1565,7 +1584,12 @@ ko:
   observations_per_month: 관찰/월
   observations_specifying_this_field: 이 필드의 관찰
   observations_w_field: 필드가 있는 관찰
+  observed: 관찰 날짜
+  observer: 관찰자
+  observers: 관찰자
+  observer_short: 관찰자
   of_species: 종
+  of_observers: 관찰자
   of_identifiers: 식별자
   of_places: 장소
   offensive_inappropriate: 불쾌 / 부적절
@@ -1599,7 +1623,9 @@ ko:
   password: 비밀번호
   password_confirmation: '비밀번호 확인'
   paste: 붙여넣기
+  people: 사용자들
   people_following_user: "%{user}님을 팔로우하는 사용자"
+  people_user_follows: "%{user}님이 팔로우하는 사용자"
   people_added:
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
@@ -1963,6 +1989,7 @@ ko:
   project_was_successfully_updated: 프로젝트가 성공적으로 업데이트되었습니다.
   project_x_was_delete: "%{project}는 삭제되었습니다. 몇 분 걸릴 수 있습니다."
   projects: 프로젝트
+  projects_you_admin: 관리하는 프로젝트
   public_domain: 퍼블릭 도메인
   purple: 보라
   quality_grade: 품질 등급
@@ -2134,7 +2161,10 @@ ko:
     your_soundcloud_account: SoundCloud 계정
   source_wikipedia: "출처: 위키백과"
   spam: 스팸
+  spammer: 스패머
+  species_taxon_name: 종명/분류군 이름
   specify_the_reason_youre_flagging: 이 항목을 플래그하는 이유를 기입하세요
+  start: 시작일
   start_a_new_project: 새 프로젝트 시작하기
   start_a_project: 프로젝트 시작하기
   start_date_time: 시작 날짜 / 시간
@@ -2164,6 +2194,7 @@ ko:
   text: 텍스트
   thanks!: 감사합니다!
   the_following_observations_could: "%{link}에 관찰을 추가하지 못했습니다."
+  the_world: 전 세계
   then_keybord_sequence: 다음에
   there_was_a_problem_saving_your_identification: "당신의 동정을 저장하는데 오류가 있습니다: %{error}"
   there_were_problems_adding_that_observation_to_this_project: "이 프로젝트의 관찰을 추가하는 문제가 발생했습니다 :"
@@ -2214,6 +2245,7 @@ ko:
     other: '%{count}개 중 %{num}개의 사진을 올리는 중...'
   user: 사용자
   user_added_a_x: "%{user}님이 %{x}을(를) 추가했습니다"
+  user_added_an_observation_html: "%{user}님이 관찰을 추가했습니다"
   user_added_an_x: "%{user}님이 %{x}을(를) 추가했습니다"
   user_added_x_observations_html: "%{user}는 %{x}개의 관찰을 추가했습니다."
   user_already_authenticated: 사용자는 이미 인증되었습니다
@@ -2297,6 +2329,7 @@ ko:
   yellow: 노랑
   'yes': "예"
   yes_license_my_observations_so_scientists_can_use: 네, 과학자들이 내 데이터를 사용할 수 있도록 내 사진, 소리, 관찰을 라이선스하겠습니다!
+  yesterday: 어제
   you_: 당신
   you_are_no_longer_following_x: "더 이상 %{friend}를 팔로우하지 않습니다."
   you_are_submitting_obs_without_photos_and_names: |
@@ -2312,6 +2345,7 @@ ko:
   you_need_to_select_some_observations_first: 관찰을 먼저 선택하세요.
   your_account_has_been_activated: 당신의 계정이 활성화되었습니다!
   your_browser_does_not_support_the_audio_element: 브라우저가 오디오 요소를 지원하지 않습니다.
+  your_id: 나의 동정
   your_identification: 나의 동정
   your_observations: 내 관찰
   your_observations_couldnt_be_added_to_that_project: "관찰이 프로젝트에 추가되지 못했습니다.%{errors}"
@@ -2348,6 +2382,7 @@ ko:
         우리 시스템에 상당한 부담을 주게 됩니다.
         </p>
       pdf_layouts:
+        grid: 격자
         book: 책
     help:
       index:
@@ -2402,6 +2437,9 @@ ko:
       confirm_leave:
         keep_observations_label: |
           이 프로젝트에 내 관찰을 두기
+      edit:
+        no_curators: |
+          아직 프로젝트 큐레이터가 없습니다. 관리자로 지정 가능한 사용자는 프로젝트에 가입했으며, 프로젝트 큐레이터여야 합니다.
       new:
         are_you_ready_to_duplicate: |
           이 프로젝트의 복제를 위해 이 페이지를 떠나시겠습니까?
@@ -2646,11 +2684,14 @@ ko:
       conservation_status:
         status: 상태
         description: 설명
+      observation:
+        observed_on: 관찰된 날짜
       post:
         title: 제목
         body: 본문
       project:
         description: 설명
+        start_time: 시작 시간
         last_aggregated_at: 마지막으로 묶인 관찰
       taxon:
         wikipedia_title: 위키백과 제목
