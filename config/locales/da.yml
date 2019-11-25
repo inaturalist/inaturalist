@@ -125,7 +125,7 @@ da:
   #to add masculine, feminine, and neuter forms of articles. I realize this is
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: "@gender{m:un|f:une|n:un(e)} %{resource}"
+  activity_snipped_resource_with_indefinite_article: "@gender{n:et|en} %{resource}"
   about: Om
   about_blocking: Om blokering
   about_charts: Om diagrammer
@@ -1886,6 +1886,8 @@ da:
   meet: Mød
   member_of_the_inaturalist_network_html: |
     Medlem af <a href="%{url}">iNaturalist Netværk</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Medlem af %{partial_inat_network_tag_html}iNaturalist Network</a>, et fællesinitiativ fra %{cas_tag_html} og %{nat_geo_tag_html}.
   members: Medlemmer
   membership_model: Medlemskabsmodel
   mentioned_you_in_noun_html: "%{user} nævnte dig i %{noun}"
@@ -3349,6 +3351,7 @@ da:
   sorry_how_about_we_try_repeat: "Beklager! Hvad med at vi gentager din søgning i nogle andre artsdatabaser? Hvis vi finder noget, gemmer vi det, så du kan finde det næste gang."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Beklager, et af disse Flickr-fotos findes enten ikke, eller du har ikke tilladelse til at se det."
   sorry_that_photo_provider_isnt_responding: "Beklager, fotoudbyderen svarer ikke for øjeblikket. Prøv igen senere."
+  sorry_that_service_is_not_responding: "Beklager, denne tjeneste svarer ikke. Prøv igen senere."
   sorry_there_were_problems_with_your_request: "Beklager, der var problemer med din anmodning: %{project_user}"
   sorry_we_didnt_find_that_photo: "Beklager, vi fandt ikke dette billede."
   sorry_we_dont_have_any_metadata_for_that_photo: "Beklager, vi har ingen metadata på det foto, som vi kan bruge til at indstille observations egenskaber."
