@@ -88,7 +88,7 @@ class Photo < ActiveRecord::Base
       photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES)
     end
     if photo_taxa.blank?
-      photo_taxa = if user && lexicon = TaxonName.language_for_locale( user.locale )
+      photo_taxa = if user && !user.locale.blank? && ( lexicon = TaxonName.language_for_locale( user.locale ) )
         to_taxa( lexicon: lexicon )
       else
         to_taxa

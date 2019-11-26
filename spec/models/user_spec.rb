@@ -260,12 +260,6 @@ describe User do
       end
     end
 
-    it "should set locale to nil if it is a blank string" do
-      u = User.make!
-      u.update_attributes( locale: "" )
-      expect( u.locale ).to be_nil
-    end
-
   end
 
   #
