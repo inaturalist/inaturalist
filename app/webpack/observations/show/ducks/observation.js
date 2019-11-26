@@ -3,9 +3,11 @@ import inatjs from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
 import { fetchControlledTerms, setControlledTerms } from "./controlled_terms";
-import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
+import {
+  fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
   setEarlierUserObservations, setLaterUserObservations, setNearby,
-  setMoreFromClade } from "./other_observations";
+  setMoreFromClade
+} from "./other_observations";
 import { fetchQualityMetrics, setQualityMetrics } from "./quality_metrics";
 import { fetchSubscriptions, setSubscriptions } from "./subscriptions";
 import { fetchIdentifiers, setIdentifiers } from "./identifications";
@@ -114,7 +116,7 @@ export function userIsObserver( state ) {
 export function resetStates( ) {
   return dispatch => {
     dispatch( setObservation( { } ) );
-    dispatch( setIdentifiers( [] ) );
+    dispatch( setIdentifiers( null ) );
     dispatch( setObservationPlaces( [] ) );
     dispatch( setControlledTerms( [] ) );
     dispatch( setQualityMetrics( [] ) );
@@ -194,7 +196,7 @@ export function renderObservation( observation, options = { } ) {
           originalObservation.taxon.id !== observation.taxon.id ) ) );
     dispatch( setObservation( observation ) );
     if ( taxonUpdated ) {
-      dispatch( setIdentifiers( [] ) );
+      dispatch( setIdentifiers( null ) );
       dispatch( setMoreFromClade( [] ) );
     }
     dispatch( fetchTaxonSummary( ) );
@@ -220,11 +222,6 @@ export function renderObservation( observation, options = { } ) {
       }
       if ( fetchAll || options.fetchOtherObservations || taxonUpdated ) {
         dispatch( fetchMoreFromClade( ) );
-      }
-      if ( ( fetchAll || options.fetchIdentifiers || taxonUpdated ) &&
-           observation.taxon && observation.taxon.rank_level <= 50 ) {
-        dispatch( fetchIdentifiers( {
-          taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10 } ) );
       }
       if ( fetchAll || options.fetchControlledTerms || taxonUpdated ) {
         dispatch( fetchControlledTerms( ) );
@@ -979,5 +976,18 @@ export function showNewObservation( observation, options = { } ) {
     } else {
       dispatch( fetchObservation( observation.id, { fetchAll: true } ) );
     }
+  };
+}
+
+export function fetchTaxonIdentifiers( ) {
+  return ( dispatch, getState ) => {
+    const { observation } = getState( );
+    if ( !( observation.taxon && observation.taxon.rank_level <= 50 ) ) {
+      dispatch( setIdentifiers( [] ) );
+      return;
+    }
+    dispatch( fetchIdentifiers( {
+      taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10
+    } ) );
   };
 }
