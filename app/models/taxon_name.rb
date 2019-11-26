@@ -320,6 +320,7 @@ class TaxonName < ActiveRecord::Base
       return "chinese_simplified" if locale.to_s =~ /zh.CN/i
       return language if locale.to_s =~ /^#{language_locale}/
     end
+    nil
   end
 
   def self.choose_scientific_name(taxon_names)

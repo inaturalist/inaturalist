@@ -22,9 +22,15 @@ while true
   json.each do |plan|
     num_plans += 1
     next unless donor = plan["donor"]
-    puts "Donor #{donor["id"]} (#{donor['email']})"
+    puts "Donor #{donor["id"]}"
     unless user = User.find_by_email( donor["email"] )
       puts "\tNo user"
+      next
+    end
+    if user.donorbox_plan_type == "monthly" && plan["type"] != "monthly"
+      # If the user has an existing monthly plan and this *isn't* a monthly
+      # plan, just ignore it. We want to record all donors, but it's most
+      # important to record when a user is a monthly donor or not
       next
     end
     user.donorbox_donor_id = donor["id"],

@@ -1143,6 +1143,7 @@ module ApplicationHelper
         t( :subject_committed_thing_affecting_stuff_html,
           subject: subject,
           vow_or_con: notifier_class_name[0].downcase,
+          gender: object,
           thing: object,
           stuff: commas_and( resource.input_taxa.compact.map(&:name) )
         )
