@@ -32,13 +32,14 @@
   - elsif @observation.taxon
     %meta{ name: "twitter:card", content: "summary" }
   %meta{ property: "og:determiner", content: "auto" }
-  %meta{ property: "og:url", content: observation_url(@observation) }
+  %meta{ property: "og:url", content: observation_url( @observation ) }
   %meta{ property: "og:description", content: html_attributize( @shareable_description ) }
   - if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"}
     %meta{ property: "twitter:creator:id", content: twitter_pa.provider_uid }
   - unless @observation_links.blank?
     - for ol in @observation_links
       %link{ rel: ol.rel, href: ol.href }
+  %link{ rel: "canonical", href: observation_url( @observation, host: Site.default.url ) }
   :javascript
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]).html_safe : "[]" };

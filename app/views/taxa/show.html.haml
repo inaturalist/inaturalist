@@ -35,6 +35,7 @@
     - description = "#{description} (#{attribution})"
   %meta{ name: "description", content: html_attributize( description ) }
   %meta{ property: "og:description", content: html_attributize( description ) }
+  %link{ rel: "canonical", href: taxon_url( @taxon, host: Site.default.url ) }
 #app
   #initial-loading.text-center
     = loading nil, class: "bigloading"

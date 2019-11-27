@@ -162,15 +162,31 @@ describe ObservationsController do
   end
 
   describe "show" do
+    render_views
+    let(:observation) { Observation.make! }
     it "should not include the place_guess when coordinates obscured" do
       original_place_guess = "Duluth, MN"
       o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: original_place_guess)
       get :show, id: o.id
       expect( response.body ).not_to be =~ /#{original_place_guess}/
     end
+
     it "should 404 for absurdly large ids" do
       get :show, id: "389299563_507aed5ae4_s.jpg"
       expect( response ).to be_not_found
+    end
+
+    it "renders a self-referential canonical tag" do
+      get :show, id: observation.id
+      expect( response.body ).to have_tag(
+        "link[rel=canonical][href='#{observation_url( observation, host: Site.default.url )}']" )
+    end
+
+    it "renders a canonical tag from other sites to default site" do
+      different_site = Site.make!
+      get :show, id: observation.id, inat_site_id: different_site.id
+      expect( response.body ).to have_tag(
+        "link[rel=canonical][href='#{observation_url( observation, host: Site.default.url )}']" )
     end
   end
   

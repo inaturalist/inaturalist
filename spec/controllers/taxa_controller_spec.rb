@@ -2,10 +2,25 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe TaxaController do
   describe "show" do
+    render_views
+    let(:taxon) { Taxon.make! }
     elastic_models( Observation )
     it "should 404 for absurdly large ids" do
       get :show, id: "389299563_507aed5ae4_s.jpg"
       expect( response ).to be_not_found
+    end
+
+    it "renders a self-referential canonical tag" do
+      get :show, id: taxon.id
+      expect( response.body ).to have_tag(
+        "link[rel=canonical][href='#{taxon_url( taxon, host: Site.default.url )}']" )
+    end
+
+    it "renders a canonical tag from other sites to default site" do
+      different_site = Site.make!
+      get :show, id: taxon.id, inat_site_id: different_site.id
+      expect( response.body ).to have_tag(
+        "link[rel=canonical][href='#{taxon_url( taxon, host: Site.default.url )}']" )
     end
   end
 

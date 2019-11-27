@@ -54,6 +54,23 @@ describe PlacesController do
     end
   end
 
+  describe "show" do
+    render_views
+    let(:place) { make_place_with_geom( user: user ) }
+    it "renders a self-referential canonical tag" do
+      get :show, id: place.id
+      expect( response.body ).to have_tag(
+        "link[rel=canonical][href='#{place_url( place, host: Site.default.url )}']" )
+    end
+
+    it "renders a canonical tag from other sites to default site" do
+      different_site = Site.make!
+      get :show, id: place.id, inat_site_id: different_site.id
+      expect( response.body ).to have_tag(
+        "link[rel=canonical][href='#{place_url( place, host: Site.default.url )}']" )
+    end
+  end
+
   describe "update" do
     it "updates places with geojson" do
       p = make_place_with_geom(user: user)
