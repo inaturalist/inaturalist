@@ -28,6 +28,11 @@ before_install:
   - gem install bundler
   - mkdir -p tmp/pids
   - echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
+  - nvm install 12.13.0
+  - node --version
+  - npm --version
+  - nvm --version
+  - npm ci
 
 before_script:
   - sleep 25

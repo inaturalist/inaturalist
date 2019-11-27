@@ -11,12 +11,14 @@ describe TaxaController do
     end
 
     it "renders a self-referential canonical tag" do
+      expect( INatAPIService ).to receive( "get_json" ) { { }.to_json }
       get :show, id: taxon.id
       expect( response.body ).to have_tag(
         "link[rel=canonical][href='#{taxon_url( taxon, host: Site.default.url )}']" )
     end
 
     it "renders a canonical tag from other sites to default site" do
+      expect( INatAPIService ).to receive( "get_json" ) { { }.to_json }
       different_site = Site.make!
       get :show, id: taxon.id, inat_site_id: different_site.id
       expect( response.body ).to have_tag(
