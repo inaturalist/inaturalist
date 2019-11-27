@@ -643,6 +643,10 @@ class UsersController < ApplicationController
             end
           end
 
+          if @display_user.prefers_no_site_changed?
+            session.delete(:potential_site)
+          end
+
           if params[:from_edit_after_auth].blank?
             flash[:notice] ||= t(:your_profile_was_successfully_updated)
             redirect_back_or_default(person_by_login_path(:login => current_user.login))
@@ -1111,6 +1115,7 @@ protected
       :prefers_common_names,
       :prefers_scientific_name_first,
       :prefers_no_place,
+      :prefers_no_site,
       :prefers_coordinate_interpolation_protection,
       :prefers_coordinate_interpolation_protection_test,
       :prefers_monthly_supporter_badge,

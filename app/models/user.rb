@@ -89,6 +89,7 @@ class User < ActiveRecord::Base
   preference :forum_topics_on_dashboard, :boolean, default: true
   preference :monthly_supporter_badge, :boolean, default: false
   preference :map_tile_test, :boolean, default: false
+  preference :no_site, :boolean, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
