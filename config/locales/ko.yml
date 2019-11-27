@@ -94,7 +94,7 @@ ko:
   acc: '정확도 (m)'
   account: 계정
   account_creation: 계정 만들기
-  account_settings: 계정 설정
+  account_settings: 프로필 설정
   accept: 승인
   accept_community_identifications: 공동체 동정 승인
   accuracy: 정확성
@@ -201,7 +201,7 @@ ko:
     <a target="%{target}" class="%{class}" href="%{url}">분류군 분리</a>로 인하여 변경됨
   added_as_a_part_of_a_taxon_swap_html: |
     <a target="%{target}" class="%{class}" href="%{url}">분류군 교체</a>로 인하여 변경됨
-  added_by: 추가함
+  added_by: 추가한 사용자
   added_by_user_on_date_html: "%{date}에 %{user}님이 추가함"
   added_on: 추가됨
   added_to_favorites_html: |
@@ -812,7 +812,6 @@ ko:
   drag_and_drop_some_photos_or_sounds: 사진이나 소리를 끌어서 놓으십시오
   edit: 편지
   edit_a_batch_of_observations: 관찰 모음 편집
-  edit_account_settings_and_profile: "계정 설정 편집"
   edit_assessment: 평가 편집
   edit_body: 본문 편집
   edit_comment: 내 댓글 편집
@@ -1267,7 +1266,7 @@ ko:
   loading_tags: "태그를 불러오는 중..."
   loading_taxa_from_your: "당신의 관찰에서 분류군 불러오는 중..."
   loading_wikipedia_description: "위키백과 설정 불러오는 중..."
-  locale_description: 로케일은 당신의 언어와 날짜 형식 설정을 정합니다.
+  locale_description: 사용할 언어를 선택하세요
   locales:
     ar: 아랍어
     bg: 불가리아어
@@ -2700,7 +2699,7 @@ ko:
         email: 이메일
         login: 사용자 이름
         name: 이름
-        locale: 로캘
+        locale: 언어 환경
         time_zone: 시간대
         search_place_id: 장소 검색
         place_id: 장소
