@@ -3462,7 +3462,7 @@ da:
   stuff_just_added: "Ting du lige har tilføjet ..."
   subject_resolved_noun_html: "%{subject} løst %{noun}"
   subject_affecting_stuff_html: "%{subject} påvirker %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} påførte @vow_or_con{vow:an|a} %{thing} påvirker %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} oprettede @gender{n:et|en} %{thing} der påvirker %{stuff}"
   submission_model: Registreringsmodel
   submission_model_description: Hvem kan tilføje observationer til dit projekt?
   submit_observations:
@@ -4326,25 +4326,6 @@ da:
             tips til at bruge %{site_name} med studerende.
     donate:
       donate_short_desc: "Donér nu for at vise din støtte!"
-      donate_desc_html: |
-        <p class="lead">
-           <strong> iNaturalist er et af verdens største fællesskaber, som er dedikeret til
-           udforske biodiversitet. Tak for at du er en del af det!</strong>
-        </p>
-        <p class="lead">
-           Hvis du tror på styrken i dette globale fællesskab af naturelskere,
-           som deler viden og skaber uerstattelige biodiversitets data,
-           Overvej venligst en engangs- eller en tilbagevendende donation.
-        </p>
-        <p class="lead">
-           Din donation hjælper med at støtte iNaturalist efterhånden som fællesskabet vokser, lige  fra at forbedre det visuelle på computerskærmen til at implementere nye funktioner, som understøtter vores servere og medarbejdere.
-        </p>
-        <p class="text-muted">
-           iNaturalist er et fælles initiativ fra California Academy of Sciences
-           og National Geographic Society. Alle donationer vil blive modtaget af
-           California Academy of Sciences, en 501 (c) (3) skattefritaget nonprofit
-           organisation med base i USA.
-        </p>
       post_donate_social_media_text: Jeg støtter iNaturalist fordi...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bliv en månedlig supporter af iNaturalist
