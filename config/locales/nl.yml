@@ -242,9 +242,9 @@ nl:
   add_one_now: Voeg er nu één toe
   add_photos: Foto's toevoegen
   add_place: Plaats toevoegen
-  add_alive_or_dead_alive_annotation: 'Voeg aantekening "Dood of levend: levend" toe'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Voeg aantekening "Dood of levend: kan niet worden vastgesteld" toe'
-  add_alive_or_dead_dead_annotation: 'Voeg aantekening "Dood of levend: dood" toe'
+  add_alive_or_dead_alive_annotation: 'Voeg aantekening "Levend of dood: levend" toe'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Voeg aantekening "Levend of dood: kan niet worden vastgesteld" toe'
+  add_alive_or_dead_dead_annotation: 'Voeg aantekening "Levend of dood: dood" toe'
   add_plant_phenology_budding_annotation: 'Voeg "Plantenfenologie: Knopvormend" aantekening toe'
   add_plant_phenology_flower_budding_annotation: 'Voeg aantekening "Plantenfenologie: bloemknoppen" toe'
   add_plant_phenology_flowering_annotation: 'Voeg "Plantenfenologie: Bloeiend" aantekening toe'
@@ -859,7 +859,7 @@ nl:
     larva: Larve
     egg: Ei
     juvenile: Juveniel
-    alive_or_dead: Dood of levend
+    alive_or_dead: Levend of dood
     alive: Levend
     dead: Dood
     cannot_be_determined: Kan niet worden vastgesteld
@@ -2400,6 +2400,8 @@ nl:
   optional: optioneel
   optional_columns_note_for_any: "Optionele kolommen (opmerking: als een van deze kolommen bij een waarneming moeten worden gebruikt, dan moeten ze allemaal aanwezig zijn)"
   or: of
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: OF
   or_choose_high_level_taxa: "... of kies wat taxa van een hoger niveau"
   or_if_you_dont_want_email: "Of als je gewoon helemaal geen e-mail wilt..."
@@ -3324,6 +3326,7 @@ nl:
   showing_x_of_y_listings: "Toon %{x} van %{y} vermeldingen"
   sign_in: Aanmelden
   sign_in_with_provider: "Log in met %{provider}"
+  sign_in_with_google: Inloggen met Google
   sign_up_with_provider: "Aanmelden via %{provider}"
   sign_out: Afmelden
   sign_up: Registreren
@@ -4313,6 +4316,19 @@ nl:
             tips over het gebruik van %{site_name} met studenten.
     donate:
       donate_short_desc: "Doneer nu om je steun te betuigen!"
+      donate_desc_html: |
+        <p class="lead">
+        <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
+        </p>
+        <p class="lead">
+        Als je gelooft in de kracht van deze wereldwijde gemeenschap van natuurliefhebbers die kennis delen en onvervangbare biodiversiteitsdata genereren, overweeg dan een eenmalige of vaste donatie, of zie <a
+        href="https://www.inaturalist.org/pages/giving">andere manieren om te geven</a>.
+        </p>
+        <p class="lead">
+        Met jouw donatie steun je iNaturalist en help je de gemeenschap groeien, de toepassing van geavanceerde technologie zoals Computer Vision bevorderen en het implementeren van nieuwe functies ter ondersteuning onze gebruikers, servers en personeel.
+        </p>
+        <p class="text-muted">
+        iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V.S. (Tax ID: 94-1156258).</p>
       post_donate_social_media_text: Ik ondersteun iNaturalist omdat...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van iNaturalist
@@ -4653,7 +4669,7 @@ nl:
       copy_tip: "Voeg een nieuwe waarneming toe door de datum, plaats, foto's en waarnemingsvelden van deze waarneming te kopiëren."
       captive_help_html: |
         Was het organisme <strong>gecultiveerd</strong> of
-        <strong>in gevangenschap</strong>? Was het bijvoorbeeld in een <strong>tuin, dierentuin, aquarium</strong> of een andere situatie waarin het alleen aanwezig was <strong>omdat mensen het ernaartoe hebben gebracht</strong>? Alle gegevens van levende wezens zijn welkom, maar we willen graag weten wanneer de dingen niet wild / genaturaliseerd zijn.
+        <strong>in gevangenschap</strong>? Bevond het zich bijvoorbeeld in een <strong>tuin, dierentuin, aquarium</strong> of een andere situatie waarin het alleen aanwezig was <strong>omdat mensen het daar wilden hebben</strong>? Alle waarnemingen van levende wezens zijn welkom, maar we willen graag weten wanneer dingen niet wild / genaturaliseerd zijn.
       compare:
         about_missing_taxa: Over ontbrekende taxa
         about_total_taxa: "Over taxa in totaal"
