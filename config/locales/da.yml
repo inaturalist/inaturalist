@@ -2386,6 +2386,8 @@ da:
   optional: valgfri
   optional_columns_note_for_any: "Valgfrie kolonner (Bemærk: for brug af enhver af disse kolonner, der skal bruges til en observation, skal de alle være til stede)"
   or: eller
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller vælg fra et højere taksa niveau"
   or_if_you_dont_want_email: "Eller hvis du bare ikke vil have nogen e-mail ..."
@@ -3314,6 +3316,7 @@ da:
   showing_x_of_y_listings: "Viser %{x} af %{y} lister"
   sign_in: Log ind
   sign_in_with_provider: "Log ind med %{provider}"
+  sign_in_with_google: Log ind med Google
   sign_up_with_provider: "Opret dig med %{provider}"
   sign_out: Log ud
   sign_up: Tilmeld dig
