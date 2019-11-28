@@ -2362,6 +2362,8 @@ it:
   optional: opzionale
   optional_columns_note_for_any: "Colonne facoltative (nota: affinché queste colonne possano essere utilizzate in una osservazione, esse devono essere tutte presenti)"
   or: o
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: O
   or_choose_high_level_taxa: "... o scegli da taxa di livello superiore"
   or_if_you_dont_want_email: "O se semplicemente non vuoi nessuna email..."
@@ -3278,6 +3280,7 @@ it:
   showing_x_of_y_listings: "Visualizzando %{x} di %{y} liste"
   sign_in: Accedi
   sign_in_with_provider: "Accedi con %{provider}"
+  sign_in_with_google: Accedi con Google
   sign_up_with_provider: "Registrati con %{provider}"
   sign_out: Esci
   sign_up: Registrati
@@ -4249,6 +4252,20 @@ it:
             Se così, per favore leggi la nostra <a href="%{url}">Guida per gli insegnanti</a> per suggerimenti su come usare %{site_name} con gli studenti
     donate:
       donate_short_desc: "Dona ora per mostrare il tuo supporto!"
+      donate_desc_html: |
+        <p class="lead">
+        <strong>iNaturalist è una delle comunità più grandi al mondo dedicate ad esplorare la biodiversità. Grazie per esserne parte!</strong>
+        </p>
+        <p class="lead">
+        Se credi nella forza di questa comunità globale di amanti della natura per condividere la conoscenza e generare dati di biodiversità insostituibili, per favore considera una donazione una tantum o ricorrente, oppure considera <a
+        href="https://www.inaturalist.org/pages/giving">altre modalità per contribuire</a>.
+        </p>
+        <p class="lead">
+        La tua donazione aiuta a sostenere iNaturalist mentre la comunità cresce, dall'implementazione della computer vision alle nuove caratteristiche per supportare i nostri server e il nostro staff.
+        </p>
+        <p class="text-muted">
+        iNaturalist è un'iniziativa congiunta della California Academy of Sciences e della National Geographic Society. Tutte le donazioni saranno ricevute dalla California Academy of Sciences, una organizzazione no-profit esente tasse 501(c)(3) con base negli United States of America (Tax ID: 94-1156258).
+        </p>
       post_donate_social_media_text: Io sostengo iNaturalist perché...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Diventa un sostenitore mensile di iNaturalist
