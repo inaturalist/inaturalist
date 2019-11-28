@@ -18,18 +18,4 @@
     = f.submit t(:log_in), class: "btn btn-inat btn-primary btn-lg"
   .form-group.centered
     = link_to t(:dont_have_an_account_sign_up_html), signup_path, class: "btn btn-link"
-  .form-group.centered.bigtext
-    =t :or_log_in_with_colon
-  .form-group.centered.provider-authorizations
-    :ruby
-      providers = if @site && @site.prefers_google_webmaster_dns_verified?
-        %w{facebook google_oauth2 flickr twitter yahoo}
-      else
-        %w{facebook flickr twitter yahoo}
-      end
-    - providers.each do |provider_name|
-      - provider, url = ProviderAuthorization::AUTH_URLS.detect{|p,u| p == provider_name }
-      - provider_label = ProviderAuthorization::PROVIDER_NAMES[provider].downcase
-      - btn_label = t("sign_in_with_provider", provider: ProviderAuthorization::PROVIDER_NAMES[provider] )
-      = link_to url, method: :post, class: "btn btn-circle providerlink #{provider_label}", alt: btn_label, title: btn_label do
-        %i.fa{ class: "fa-#{provider_label}" }
+  = render "users/provider_authorizations", extra: true
