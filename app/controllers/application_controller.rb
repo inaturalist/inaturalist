@@ -117,6 +117,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_preferred_site
+    return true unless flash.empty?
     return true unless current_user
     if current_user.prefers_no_site?
       session.delete(:potential_site)

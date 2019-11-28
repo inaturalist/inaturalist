@@ -617,6 +617,7 @@ class UsersController < ApplicationController
     @display_user.assign_attributes( whitelist_params ) unless whitelist_params.blank?
     place_id_changed = @display_user.place_id_changed?
     prefers_no_place_changed = @display_user.prefers_no_place_changed?
+    prefers_no_site_changed = @display_user.prefers_no_site_changed?
     if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
@@ -643,8 +644,11 @@ class UsersController < ApplicationController
             end
           end
 
-          if @display_user.prefers_no_site_changed?
+          if prefers_no_site_changed
             session.delete(:potential_site)
+            if params[:from_potential_site]
+              flash[:notice] = I18n.t( "views.users.edit.if_you_change_your_mind_you_can_always_edit_your_settings_html" )
+            end
           end
 
           if params[:from_edit_after_auth].blank?

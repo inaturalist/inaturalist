@@ -84,7 +84,7 @@
             </div>
           </div>
         </div>
-      <% elsif current_user && @site && @site != Site.default && current_user.site && current_user.site != @site %>
+      <% elsif current_user && !current_user.prefers_no_site? && @site != Site.default && current_user.site != @site %>
         <div class="bootstrap">
           <div id="full-width-notice" class="bg-warning">
             <div class="container">
