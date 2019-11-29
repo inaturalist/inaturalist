@@ -676,7 +676,7 @@ tr:
     split: Böl
     merge: Birleştir
     swap: Değiştir
-    stage: Ortam
+    stage: Aşama
     drop: Etkisizleştir
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: şundan bölündü
@@ -693,7 +693,7 @@ tr:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: şunun yerine geçti
     dropped: etkisizleştirildi
-    staged: ortam oluşturuldu
+    staged: aşama oluşturuldu
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon}, %{output_taxa} sınıfına bölündü"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon}, %{output_taxa} sınıfına bölünecek"
     input_taxon_was_dropped_html: "%{input_taxon} silindi"
