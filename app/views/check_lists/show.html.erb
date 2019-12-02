@@ -91,16 +91,18 @@
     <% if !@list.rules.empty? && (taxon = @list.rules.first.operand) && taxon.is_a?(Taxon) -%>
       <div id="life_list_taxon" class="life_list_taxon description">
         <%= taxon_image(@list.rules.first.operand) %>
-        <%= t :this_is_a %>
         <% if @list.comprehensive? -%>
           <span class="comprehensive_notice"
               data-tip="<strong><%= @list.user || @site.site_name_short %></strong> <%= t(:belives_this_is_a_comprehensive_list_of) %> <strong><%= taxon.species_or_lower? ? "<i>#{taxon.name}</i>" : taxon.name %></strong> <%= t(:in) %> <strong><%= @list.place.name %></strong>">
             <%= t :comprehensive %></span>
         <% end %>
-        <%= t(:check_list) + ' ' + t(:for) %>
-        <%= render :partial => 'shared/taxon', 
-                   :locals => { :taxon => @list.rules.first.operand,
-                                :link_url => url_for(@list.rules.first.operand) } %>
+        <%= t(:check_list_for_taxon_html, taxon: render(
+          partial: "shared/taxon",
+          locals: {
+            taxon: @list.rules.first.operand,
+            link_url: url_for( @list.rules.first.operand )
+          }
+        ) ) %>
       </div>
     <% end -%>
 
@@ -112,13 +114,14 @@
   <% if !@q.blank? -%>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
-      <%= t :for %> <strong>"<%= @q %>"</strong>
+      <%=t :label_colon, label: t(:search) %>
+      <strong>"<%= @q %>"</strong>
       <%= link_to t(:clear), url_for_params(:without => [:page, :q]) %>
     </div>
   <% elsif @filter_taxon %>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
-      <%=t :for %>
+      <%=t :label_colon, label: t(:taxon) %>
       <%= render :partial => 'shared/taxon',
                  :locals => { :taxon => @filter_taxon, :link_url => @filter_taxon } %>
       <%= link_to t(:clear), url_for_params(:without => [:page, :taxon]) %>

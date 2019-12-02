@@ -582,6 +582,7 @@ en:
   assessment_x: "%{assessment} assessment"
   assessments: assessments
   associations: Associations
+  atlas_for_taxon_html: Atlas for %{taxon}
   at_time: "at %{time}"
   # As in the Atom Syndication Format:
   # https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -755,6 +756,7 @@ en:
   check_list: Check list
   check_list_description: Choose a higher-level taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians. When set, this list won't allow taxa that are not in this taxon. For example, if you create a list of birds, you won't be able to add any frogs to it. 
   check_list_for_individual_taxa_that: 'Check lists for individual taxa that live here, e.g. "Birds of %{place}".'
+  check_list_for_taxon_html: "Check list for %{taxon}"
   check_lists_must_belong_to_a_place: |
     Check lists must belong to a place. To create a new check list, visit
     a place's default check list and click the 'Create a new check list' link.
@@ -838,8 +840,9 @@ en:
   comparing_list_to_list: "Comparing %{list1} with %{list2}"
   comparing_versions_x_and_y: "Comparing versions %{x} and %{y}"
   comparing_observations_from: "Comparing %{user} observations from %{dates}"
-  complete: Complete
   compiled_by_name: "Compiled by %{name}"
+  complete: Complete
+  complete_set_for_taxon_in_place_html: "Complete Set for %{taxon} in %{place}"
   completed: Completed
   completed_at: Completed At
   comprehensive: comprehensive
@@ -1169,8 +1172,10 @@ en:
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
   edit_assessment: Edit Assessment
   edit_atlas: Edit Atlas
+  edit_atlas_for_taxon_html: Edit Atlas for %{taxon}
   edit_body: Edit Body
   edit_comment: Edit Your Comment
+  edit_complete_set_for_taxon_in_place_html: "Edit Complete Set for %{taxon} in %{place}"
   edit_custom_project_fields: Edit Custom Project Fields
   edit_field: Edit Field
   edit_license: Edit License
@@ -1213,7 +1218,7 @@ en:
   editing_project_asset: Editing Project Asset for
   editing_subscription_to_x_html: "Editing subscription to %{x}"
   editing_taxon_link: Editing Taxon Link
-  editing_taxon_name: Editing Taxon Name
+  editing_taxon_name_for_taxon_html: Editing Taxon Name "%{name}" for %{taxon}
   editing_taxon_range: Editing Taxon Range
   editing_this: Editing %{elem}
   editing_x_in_y: "Editing %{x} in %{y}"
@@ -1295,7 +1300,7 @@ en:
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
   failed_to_save_record: "Failed to save record. Please try again later."
   'false': 'False'
-  fave: fave
+  # Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Faves
   Family: Family
   faved_this_observation: faved this observation
@@ -1426,7 +1431,6 @@ en:
   following_x_people:
     one: 'Following 1 Person'
     other: 'Following %{count} People'
-  for: for
   for_a_taxon: for a taxon
   formatting: Formatting
   forgot_your_password: Forgot your password?
@@ -2507,7 +2511,6 @@ en:
   or_all_caps: OR
   or_choose_high_level_taxa: "... or choose from some high-level taxa"
   or_if_you_dont_want_email: "Or if you just don't want any email..."
-  or_log_in_with_colon: "Or log in with:"
   or_upload: Or upload
   orange: orange
   order: Order
@@ -3452,7 +3455,6 @@ en:
   sign_in: Sign In
   sign_in_with_provider: "Log in with %{provider}"
   sign_in_with_google: Sign in with Google
-  sign_up_with_provider: "Sign up with %{provider}"
   sign_out: Sign Out
   sign_up: Sign Up
   similar_species: Similar Species
@@ -3886,7 +3888,6 @@ en:
   third_person_possessive_plural: "%{object_phrase}'s %{noun}"
   this: this
   this_bioblitz_beings_in: This bioblitz begins in
-  this_is_a: This is a
   this_is_a_cached_summary_based_on: This is a cached summary of this taxon based on its
   this_is_a_life_list_of: This is a life list of
   this_is_a_life_list_from_place_html: "This is a life list from %{place}"
@@ -4084,10 +4085,16 @@ en:
     one: Used 1 time
     other: Used %{count} times
   user: User
+  user_added_a_comment_html: "%{user} added a comment"
+  user_added_a_fave_html: "%{user} added a fave"
+  user_added_a_flag_html: "%{user} added a flag"
+  user_added_a_project_invitation_html: "%{user} added a project invitation"
   user_added_a_x: "%{user} added a %{x}"
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
   user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
+  user_added_an_identification_html: "%{user} added an identification"
   user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
+  user_added_an_observation_field_value_html: "%{user} added an observation field value"
   user_added_an_observation_html: "%{user} added an observation"
   user_added_an_x: "%{user} added an %{x}"
   user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"

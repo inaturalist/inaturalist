@@ -1,7 +1,9 @@
 <h2>
-  <%= t(:new_taxon_range) %>
   <% if @taxon_range.taxon -%>
-    <%= t :for %> <%= link_to @taxon_range.taxon.name, @taxon_range.taxon %>
+    <%=t :label_colon, label: t(:new_taxon_range) %>
+    <%= link_to @taxon_range.taxon.name, @taxon_range.taxon %>
+  <% else %>
+    <%= t(:new_taxon_range) %>
   <% end -%>
 </h2>
 

@@ -6,9 +6,7 @@
   .row
     .col-xs-12
       %h2.pull-left
-        = "Edit Atlas"
-        = t :for
-        = link_to @atlas.taxon.name, @atlas.taxon
+        =t :edit_atlas_for_taxon_html, taxon: link_to( @atlas.taxon.name, @atlas.taxon )
   = form_for( @atlas, :builder => DefaultFormBuilder, html: { multipart: true } ) do |f|
     = f.error_messages
     = render :partial => "form_fields", locals: { f: f }

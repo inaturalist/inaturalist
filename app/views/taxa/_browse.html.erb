@@ -11,7 +11,8 @@
     <%= render(:partial => "shared/page_results", :object => @taxa) unless @taxa.nil? %>
 
     <% unless @q.blank? -%>
-       <span class="description"><%= t :for %></span> <em>&ldquo;<%= @q %>&rdquo;</em>
+      <span class="description"><%= t :label_colon, label: t(:search) %></span>
+      <em>&ldquo;<%= @q %>&rdquo;</em>
     <% end -%>
     
     <% unless @places.blank? %>

@@ -118,13 +118,13 @@
   <% if !@q.blank? -%>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
-      <%=t :for %> <strong>"<%= @q %>"</strong>
+      <%=t :label_colon, label: t(:search) %>
       <%= link_to t(:clear), url_for_params(:without => [:page, :q]) %>
     </div>
   <% elsif @filter_taxon %>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
-      <%=t :for %>
+      <%=t :label_colon, label: t(:taxon) %>
       <%= render :partial => 'shared/taxon',
                  :locals => { :taxon => @filter_taxon, :link_url => @filter_taxon } %>
       <%= link_to t(:clear), url_for_params(:without => [:page, :taxon]) %>

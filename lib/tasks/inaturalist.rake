@@ -440,6 +440,8 @@ namespace :inaturalist do
       # incorrectly omitted by this
       /\./,
       /^add_life_stage_/,
+      /^add_alive_or_dead_/,
+      /^add_plant_phenology_/,
       /^admin$/,
       /^alphabetical$/,
       /^are_you_sure_want_delete_taxon/,
@@ -473,6 +475,10 @@ namespace :inaturalist do
       /^user_added_a/,
       /^you_are_subscribed_to_/,
     ]
+    model_name_patterns = Dir.glob( File.join( Rails.root, "app", "models", "*.rb" ) ).map do |path|
+      /#{File.basename( path ).split(".")[0]}/
+    end
+    patterns_to_ignore += model_name_patterns
     all_keys_in_use = (get_i18n_keys_in_js + get_i18n_keys_in_rb).uniq
 
     def traverse(obj, branch = nil, &blk)
