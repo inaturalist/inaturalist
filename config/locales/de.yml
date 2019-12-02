@@ -107,6 +107,26 @@ de:
   a_flag_for_x: "ein Merker für %{x}"
   a_member_of: "Ein Mitglied von"
   a_member_of_taxon_html: "ein Mitglied von %{taxon}"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{n:ein|f:eine|m:einer} %{resource}"
   about: Über
   about_blocking: Über Blockieren
   about_charts: Über Diagramme
@@ -203,13 +223,17 @@ de:
   add_observations_by_checking_off: Beobachtungen aus einer Arten-Checkliste hinzufügen
   add_observations_project: Beobachtungen zu diesem Projekt hinzufügen
   #Prompt to add a new journal post
-  add_one: Eins hinzufügen!
+  add_one: Einen hinzufügen!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Jetzt einen hinzufügen
   add_photos: Fotos hinzufügen
   add_place: Ort hinzufügen
+  add_alive_or_dead_alive_annotation: 'Vermerk "Lebend oder Tot: lebendig" hinzufügen'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Vermerk "Lebend oder Tot: Kann nicht bestimmt werden" hinzufügen'
+  add_alive_or_dead_dead_annotation: 'Vermerk "Lebend oder Tot: Tot" hinzufügen'
   add_plant_phenology_budding_annotation: 'Vermerk "Pflanzenphänologie: Knospend" hinzufügen'
+  add_plant_phenology_flower_budding_annotation: 'Vermerk "Pflanzenphänologie: Knospend" hinzufügen'
   add_plant_phenology_flowering_annotation: 'Vermerk "Pflanzenphänologie: Blühend" hinzufügen'
   add_plant_phenology_fruiting_annotation: 'Vermerk "Pflanzenphänologie: Fruchttragend" hinzufügen'
   add_life_stage_adult_annotation: 'Vermerk "Lebensstadium: Adult" hinzufügen'
@@ -248,6 +272,9 @@ de:
   add_your_own_observations_at: "Deine eigenen Beobachtungen zu %{site_name} hinzufügen"
   added: Hinzugefügt
   added!: Hinzugefügt!
+  added_as_a_part_of_a_taxon_change_html: |
+    Als Teil einer
+    <a target="%{target}" class="%{class}" href="%{url}">Taxonänderung hinzugefügt</a>
   added_by: Hinzugefügt von
   added_by_user_on_date_html: "Von %{user} am %{date} hinzugefügt"
   added_on: Hinzugefügt am
@@ -703,8 +730,8 @@ de:
   comparing_list_to_list: "Vergleiche %{list1} mit %{list2}"
   comparing_versions_x_and_y: "Vergleiche Versionen %{x} und %{y}"
   comparing_observations_from: "Vergleiche %{user} Beobachtungen von %{dates}"
-  complete: Vollständig
   compiled_by_name: "Zusammengestellt von %{name}"
+  complete: Vollständig
   completed: Abgeschlossen
   completed_at: Abgeschlossen um
   comprehensive: umfassend
@@ -750,6 +777,7 @@ de:
     female: Weiblich
     plant_phenology: Phänologie (Pflanze)
     budding: Knospend
+    flower_budding: Knospend
     flowering: Blühend
     fruiting: Fruchttragend
     life_stage: Altersstufe
@@ -759,6 +787,16 @@ de:
     larva: Larve
     egg: Ei
     juvenile: Juvenil
+    alive_or_dead: Lebend oder Tot
+    alive: Lebend
+    dead: Tot
+    cannot_be_determined: Nicht bestimmbar
+  controlled_term_definitions:
+    alive: Der Organismus ist lebendig und zeigt keine Anzeichen eines nahendenTodes
+    dead: Der Organismus ist tot oder zeigt Anzeichen eines nahenden Todes
+    flower_budding: Blütenknospen sind sichtbar, aber nicht geöffnet
+    flowering: Blumen sichtbar, geöffnet und noch an der Pflanze befestigt
+    fruiting: Frucht sichtbar und noch an der Pflanze befestigt
   controls: Steuerung
   convert: Konvertieren
   coordinate_systems: Koordinatensysteme
@@ -1021,7 +1059,6 @@ de:
   editing_project: '%{project} bearbeiten'
   editing_subscription_to_x_html: "Abonnements für %{x} bearbeiten"
   editing_taxon_link: Taxonlink bearbeiten
-  editing_taxon_name: Taxonnamen bearbeiten
   editing_taxon_range: Taxonbereich bearbeiten
   editing_this: Bearbeiten %{elem}
   editing_x_in_y: "Bearbeiten %{x} in %{y}"
@@ -1096,7 +1133,7 @@ de:
   failed_to_repair_photo: "Fehler bei der Reparatur des Fotos: %{errors}"
   failed_to_save_record: "Speichern fehlgeschlagen. Bitte später erneut versuchen."
   'false': 'Falsch'
-  fave: favorisieren
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriten
   Family: Familie
   faved_this_observation: favorisierte/n diese Beobachtung
@@ -1187,7 +1224,6 @@ de:
   following_x_people:
     one: 'Folgt einer Person'
     other: 'Folgt %{count} Personen'
-  for: für
   for_a_taxon: für ein Taxon
   formatting: Formatierung
   forgot_your_password: Passwort vergessen?
@@ -2086,7 +2122,6 @@ de:
   #sign in fields OR sign in with Facebook
   or_all_caps: ODER
   or_if_you_dont_want_email: "Oder wenn Sie gar keine Emails möchten ..."
-  or_log_in_with_colon: "Oder melde dich an mit:"
   or_upload: Oder hochladen
   orange: Orange
   order: Oder
@@ -2946,7 +2981,6 @@ de:
   showing_x_of_y_listings: "Zeige %{x} von %{y} Ergebnissen"
   sign_in: Anmelden
   sign_in_with_provider: "Mit %{provider} anmelden"
-  sign_up_with_provider: "Mit %{provider} anmelden"
   sign_out: Abmelden
   sign_up: Registrieren
   similar_species: Ähnliche Arten
@@ -3219,7 +3253,6 @@ de:
   third_person_possessive_plural: "%{object_phrase}'s %{noun}"
   this: dies
   this_bioblitz_beings_in: Dieser bioblitz beginnt in
-  this_is_a: Dies ist ein
   this_is_a_life_list_of: Dies ist eine Lebensliste von
   this_is_a_life_list_from_place_html: "Dies ist eine Lebensliste von %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dies ist eine Lebensliste von %{taxon} in %{place}"
@@ -4136,6 +4169,9 @@ de:
         frequency:
           research: Forschungsqualität
           verifiable: Verifizierbar
+          "Plant Phenology=Budding": Knospend
+          "Plant Phenology=Flower Budding": Knospend
+          "Plant Phenology=Fruiting": Fruchttragend
           "Life Stage=egg": Ei
           "Life Stage=larva": Larve
           "Life Stage=nymph": Nymphe
