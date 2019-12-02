@@ -617,8 +617,8 @@ zh-CN:
   comparing_list_to_list: "比较 %{list1} 与 %{list2}"
   comparing_versions_x_and_y: "比较版本 %{x} 和 %{y}"
   comparing_observations_from: "比较 %{user} 在 %{dates} 做出的观察"
-  complete: 完成
   compiled_by_name: "由 %{name} 编译"
+  complete: 完成
   completed: 已完成
   completed_at: 完成于
   comprehensive: 综合分析
@@ -912,7 +912,6 @@ zh-CN:
   editing_project_asset: 编辑项目集
   editing_subscription_to_x_html: "编辑对%{x}的订阅"
   editing_taxon_link: 正在编辑分类链接
-  editing_taxon_name: 正在编辑分类名称
   editing_taxon_range: 正在编辑分类单元范围
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
@@ -990,7 +989,7 @@ zh-CN:
   failed_to_repair_photo: "修复照片失败：%{errors}"
   failed_to_save_record: "保存记录失败。请重试。"
   'false': '假'
-  fave: 喜欢
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: 喜爱
   Family: 家庭
   faved_this_observation: 标记此观察
@@ -1078,7 +1077,6 @@ zh-CN:
   followed_projects: 关注的项目
   followers: 关注者
   following: 关注中
-  for: 用于
   for_a_taxon: 用于一个分类
   formatting: 格式化
   forgot_your_password: 忘记密码？
@@ -2944,7 +2942,6 @@ zh-CN:
   third_person_possessive_singular: "%{object_phrase} 的 %{noun}"
   this: 此
   this_bioblitz_beings_in: 此bioblitz开始于
-  this_is_a: 这是一个
   this_is_a_cached_summary_based_on: 这是此分类单元的已缓存摘要，基于它的
   this_is_a_life_list_of: 这是生命清单，其属于
   this_is_a_life_list_from_place_html: "这是来自 %{place} 的生命清单"
