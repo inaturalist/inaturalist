@@ -778,8 +778,8 @@ da:
   comparing_list_to_list: "Sammenligner %{list1} med %{list2}"
   comparing_versions_x_and_y: "Sammenligner versioner %{x} og %{y}"
   comparing_observations_from: "Sammenligner %{user} observationer fra %{dates}"
-  complete: Fuldendt
   compiled_by_name: "Samlet af %{name}"
+  complete: Fuldendt
   completed: Fuldført
   completed_at: Fuldført den
   comprehensive: omfattende
@@ -1059,6 +1059,9 @@ da:
   doesnt_have_default_photo: har endnu ikke et standardbillede.
   doh_something_went_wrong: Åh nej, noget gik galt.
   doh_something_went_wrong_error: "Øhhh, noget gik galt: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DONÉR
   done: Udført
   dont_have_an_account_sign_up_html: Har du ikke en konto?  <strong>Opret konto.</strong>
   dont_send_me_email: "Send mig ikke nogen e-mail!"
@@ -1139,7 +1142,6 @@ da:
   editing_project_asset: Redigering af projektvurderinger for
   editing_subscription_to_x_html: "Redigerer abonnement på %{x}"
   editing_taxon_link: Redigering af takson link
-  editing_taxon_name: Redigering af takson navn
   editing_taxon_range: Redigering af takson område
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
@@ -1220,7 +1222,7 @@ da:
   failed_to_repair_photo: "Kunne ikke reparere foto: %{errors}"
   failed_to_save_record: "Kunne ikke gemme registreringen. Prøv igen senere."
   'false': 'Falsk'
-  fave: favorit
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: '"Synes godt om"'
   Family: Familie
   faved_this_observation: gjorde denne observation til favorit
@@ -1349,7 +1351,6 @@ da:
   following_x_people:
     one: 'Følger 1 person'
     other: 'Følger %{count} personer'
-  for: til
   for_a_taxon: for en takson
   formatting: Formatering
   forgot_your_password: Glemt din adgangskode?
@@ -2388,7 +2389,6 @@ da:
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller vælg fra et højere taksa niveau"
   or_if_you_dont_want_email: "Eller hvis du bare ikke vil have nogen e-mail ..."
-  or_log_in_with_colon: "Eller log ind med:"
   or_upload: Eller upload
   orange: orange
   order: Orden
@@ -3314,7 +3314,6 @@ da:
   sign_in: Log ind
   sign_in_with_provider: "Log ind med %{provider}"
   sign_in_with_google: Log ind med Google
-  sign_up_with_provider: "Opret dig med %{provider}"
   sign_out: Log ud
   sign_up: Tilmeld dig
   similar_species: Lignende arter
@@ -3735,7 +3734,6 @@ da:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
-  this_is_a: Dette er en
   this_is_a_cached_summary_based_on: Dette er en cachelagret oversigt over denne takson baseret på dens
   this_is_a_life_list_of: Dette er en livsliste for
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
