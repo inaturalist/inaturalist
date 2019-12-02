@@ -147,6 +147,24 @@ fi:
   about_this_bioblitz: Tietoja tästä bioblitzistä
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
+  about_trips_html: |
+    <h4>
+    Tallennettaessa tietoja Retkenä, voi "laji havaittu" -tiedon lisäksi tallentaa myös "lajia ei havaittu" -tietoja (nollahavainto) lisäämällä sisältöä havaitoihisin.
+    </h4>
+    <p>
+    <strong>Why</strong> Havaittu-ei havaittu tiedonkeruu viestii aineiston käyttäjälle havaintotiedon kattavasta keräystavasta ja lisää tiedon käytettävyyttä etenkin tieteellisissä analyyseissä kuten eliölajien levinneisyyden mallinuksessa. (tavallisesti iNaturalist- havainnot sisältävät vain havaittu-tietoa).
+    </p>
+    <p>
+    <strong>How</strong> Retken avulla voi lisätä sisältöä havaintoosi tallennetamalla:
+    </p>
+    <ul>
+    <li><strong>Mitä</strong> olit etsimässä (lista kohdelajeista)</li>
+    <li><strong>Missä</strong> olit havainnoimassa (havaintoalue)</li>
+    <li><strong>Milloin</strong> olit havainnoimassa (havaintoaikaväli)</li>
+    </ul>
+    <p>
+    Kohdelajiluettelon lajit, jotka havaitsit keruutapahtuman yhteydessä tulkitaan havainnoiksi. Kohdelajiluettelon lajit, joita et havainnut keruutapahtuman yhteydessä, tulkitaan ei-havainnoiksi (nollahavainnoiksi). Valitse "Taulukoi havaittu-ei havaittu tieto Retkestä" panike tehdäksesi taulukon, jossa havaintojen lisäksi esitetään nollahavainnot liittyen keruutapahtumaan ja kohdelajiluetteloon. <a href='%{url}'>Lisätietoja</a>
+    </p>
   about_x: "Tietoja %{x}"
   acc: 'Tarkkuus (m)'
   account: Käyttäjätunnus
@@ -230,6 +248,7 @@ fi:
   add_alive_or_dead_cannot_be_determined_annotation: 'Lisää "elävä tai kuollut: ei voida määrittää" -merkintä'
   add_alive_or_dead_dead_annotation: 'Lisää "elävä tai kuollut: kuollut" -merkintä'
   add_plant_phenology_budding_annotation: 'Lisää "Plant Phenology: Budding" selitys'
+  add_plant_phenology_flower_budding_annotation: 'Lisää "Kasvin fenologia: Orastava kukka" merkintä'
   add_plant_phenology_flowering_annotation: 'Lisää "Plant Phenology: Flowering" selitys'
   add_plant_phenology_fruiting_annotation: 'Lisää "Plant Phenology: Fruiting" selitys'
   add_life_stage_adult_annotation: 'Lisää "Life Stage: Adult" selitys'
@@ -268,6 +287,18 @@ fi:
   add_your_own_observations_at: "Lisää omia havaintojasi %{site_name}iin"
   added: Lisätty
   added!: Lisätty!
+  added_as_a_part_of_a_taxon_change_html: |
+    Lisätty osana
+    <a target="%{target}" class="%{class}" href="%{url}">taksonin muutosta</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    Lisätty osana
+    <a target="%{target}" class="%{class}" href="%{url}">taksoneiden yhdistämistä</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    Lisätty osana
+    <a target="%{target}" class="%{class}" href="%{url}">taksonin splittausta</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    Lisätty osana
+    <a target="%{target}" class="%{class}" href="%{url}">taksoneiden swappausta</a>
   added_by: Lisännyt
   added_by_user_on_date_html: "Lisännyt %{user} %{date}"
   added_on: Lisätty
@@ -550,6 +581,7 @@ fi:
   back_to_suggestions: Takaisin ehdotuksiin
   back_to_taxon: "Takaisin %{defaulttaxon}"
   back_to_taxon_changes: "Takaisin taksonin muutoksiin"
+  back_to_taxon_framework_for_x: "Takaisin %{taxon_name} taksonomiarunkoon"
   back_to_viewing: "Takaisin katsomaan taksonia <i>%{taxon}</i>"
   back_to_x: "Takaisin %{noun}"
   back_to_x_assessment: "Takaisin projektin %{project} arviointiin"
@@ -587,6 +619,7 @@ fi:
   body: Leipäteksti
   bounding_box: Rajoituslaatikko
   breadcrumbs: Leivänmurut
+  breadcrumbs_description: "Tässä yliajetaan h1 ja oletuksena olevat toimintakehotukset (\"calls to action\"), joten lisää nämä jos ne ovat tärkeitä tälle projektille ja muista että maksimileveys on 950px"
   brief_caption: Lyhyt kuvaus
   brown: ruskea
   browse: Selaa
@@ -605,6 +638,7 @@ fi:
   calendar: Kalenteri
   calendars_only_show_x_observations_at_time: Kalenterit näyttävät vain %{x} havaintoa kerrallaan
   cancel: Peruuta
+  cant_edit_or_delete_hidden_content: Et voi muokata tai poistaa sisältöä jonka sivuston kuraattorit ovat piilottaneet
   cant_flag_an_object_that_doesnt_exist: Olematonta kohdetta ei voi liputtaa.
   cant_merge_a_taxon_with_itself: Ei voi yhdistää taksonia itsensä kanssa.
   captive: Tarhattu
@@ -725,6 +759,9 @@ fi:
   colors: Värit
   columns: Sarakkeet
   combine: Yhdistä
+  comma_separated_list_of_tracking_codes: |
+    Pilkuilla erotettu luettelo seurantakoodeista. Lisää nämä jos haluat lisätä seurantakoodin lähtettäessäsi ihmisiä uudelle havaintolomakkeelle, esim. %{root_url}observations/new?project_id=%{project_id}&tracking_code=seurantakoodisi123.
+    Voit käyttää tätä seurataksei osallistumista erilaisista lähteistä. Pääset käsiksi näihin koodeihin kun lataat projektin havaintoja itsellesi CSV-tiedostona.
   comma_separated_please: Pilkulla erotettu, kiitos
   comment: kommentti
   #Verb, generally a label on a button that allows the user to add a comment
@@ -754,8 +791,8 @@ fi:
   comparing_list_to_list: "Verrataan luetteloa %{list1} luettelosta %{list2}"
   comparing_versions_x_and_y: "Verrataan versioita %{x} ja %{y}"
   comparing_observations_from: "Verrataan käyttäjän %{user} havaintoja %{dates}"
-  complete: Valmis
   compiled_by_name: "Koostanut %{name}"
+  complete: Valmis
   completed: Valmis
   completed_at: Valmistunut
   comprehensive: kattava
@@ -778,14 +815,22 @@ fi:
   connecting_your_inat_account_to_accounts_other_sites: "Yhdistämällä %{site_name}-tilisi muiden sivustojen tileihin sallii sinun kirjautua %{site_name}iin käyttämällä pääsytietojasi näiltä sivustoilta."
   conservation_status: Uhanalaisuusluokitus
   conservation_status_descriptions:
+    place: Paikka, johon tämä status on rajattu.
     geoprivacy: Sijainnin tietosuojan oletusarvo havainnoille tässä taksonissa.
     iucn: Vastaava IUCN:n punaisen kirjan koodi
   contact_support: Ota yhteyttä käyttäjätukeen
+  contain_all_descendants?: Sisältääkö tämä pinnalista kaikki tällä paikalla esiintyvät tätä taksonia alemmat taksonit?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Sisältö
   content_author: Sisällöntuottaja
   content_hidden: Sisältö piilotettu
+  content_hidden_by_user_on_date_because_reason_html: |
+    %{user} on piilottanut sisällön %{date} koska: %{reason}
   content_type: Sisältötyyppi
+  user_hid_this_item_because_reason_html: |
+    %{user} piilotti tämän %{item}n koska: "%{reason}"
+  user_unhid_this_item_because_reason_html: |
+    %{user} poisti piilotuksen tältä %{item}lta, koska: "%{reason}"
   continue: Jatka
   continue_to_site: Jatka %{site_name}iin
   contributor_cannot_be_found: Osallistujaa ei löydy
@@ -796,6 +841,7 @@ fi:
     female: Naaras
     plant_phenology: Kasvin fenologia
     budding: Verso puhkeamassa
+    flower_budding: Kukan puhkeaminen
     flowering: Kukinta
     fruiting: Hedelmiä
     life_stage: Elinvaihe
@@ -824,6 +870,7 @@ fi:
   copy: Kopioi
   copy_and_paste_the_following_code_to: Kopioi ja liitä seuraava koodi upottaaksesi tämän arvioinnin toiseen verkkosivuun.
   copy_and_paste_this_into_your_own_html: Kopioi ja liitä tämä omaan HTML-koodiisi.
+  copy_guide_taxon_to: Kopioi oppaan taksoni...
   copyright:
     some_rights_reserved: osa oikeuksista pidätetään
     some_rights_reserved_by: "(c) %{name}, osa oikeuksista pidätetään (%{license_short})"
@@ -883,7 +930,9 @@ fi:
   curating: Kuratointi
   curation: Kuratointi
   curator: Kuraattori
+  curators_changed_for_x_html: "Kuraattorit vaihdettu kohteelle %{x}"
   curators: Kuraattorit
+  curators_can_remove_observations_from: Kuraattorit voivat poistaa havaintoja projekteista, ja heidän tunnistuksensa näytetään havainnon ohessa projektikohtaisissa näkymissä. Kuraattorit myös näkevät tähän projektiin kuuluvien yksityisten ja karkeistettujen havaintojen tarkat koordinaatit.
   curator_identification: Kuraattorin tunnistus
   current_flags: Nykyiset liput
   custom_project_fields: Mukautetut projektikentät
@@ -899,7 +948,7 @@ fi:
   datatype: Tietotyyppi
   date_: Päivämäärä
   date_added: Lisäyspäivämäärä
-  date_created: Luontipäivämäärä
+  date_created: Luontipäiväys
   date_format:
     date_long:
       january: '%{day}. tammikuuta %{year}'
@@ -937,7 +986,7 @@ fi:
     currentText: Tänään
     prevText: Edellinen
     nextText: Seuraava
-    range: Väli
+    range: Aikaväli
   date_range: Ajanjakso
   date_specified: Päivämäärä määritetty
   date_time: Päivämäärä/aika
@@ -946,7 +995,7 @@ fi:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
-  date_updated: Tiedot päivitetty
+  date_updated: Päivityspäiväys
   day: Päivä
   decrease_brightness: Vähennä kirkkautta
   default: oletus
@@ -1004,10 +1053,7 @@ fi:
   documentation_for_developers_html: Dokumentaatio <a href="/pages/developers">kehittäjille</a>
   do_not_show_this_message_again: Älä näytä tätä viestiä uudelleen
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-    Opiskeletko sukkulamadoista? Oletko maailman johtava asiantuntija takiaisten
-    taksonomiassa? Tykkäätkö vain katsella kauniita kukkia? 
-    Profiilisi täyttäminen lisää hieman persoonallisuutta ja auttaa luomaan uskottavuuttasi kun
-    autat ihmisiä tunnistuksissa.
+    Tutkitko sukkulamatoja? Oletko maailman johtava asiantuntija siimajalkaisten taksonomiassa? Vai tykkäätkö vain katsella kauniita kukkia? Profiilisi täydentäminen luo hieman persoonallisuutta ja auttaa lisäämään uskottavuuttasi, kun autat ihmisiä tunnistuksissa.
   doesnt_have_default_photo: ei ole vielä oletuskuvaa.
   doh_something_went_wrong: Pahus, jotain meni pieleen.
   doh_something_went_wrong_error: "D'oh, jotain meni vikaan: %{error}"
@@ -1086,7 +1132,6 @@ fi:
   editing_project_asset: Muokataan projektitiedostoja
   editing_subscription_to_x_html: "Muokataan tilausta kohteelle %{x}"
   editing_taxon_link: Muokataan Taksonin Linkkiä
-  editing_taxon_name: Muokataan Taksonin Nimeä
   editing_taxon_range: Muokataan taksonin aluetta
   editing_this: Muokataan %{elem}
   editing_x_in_y: "Muokataan %{x} %{y}:ssä"
@@ -1161,7 +1206,7 @@ fi:
   failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
   failed_to_save_record: "Tallennus epäonnistui. Ole hyvä ja kokeile myöhemmin uudelleen."
   'false': 'Ei'
-  fave: suositus
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Suosikit
   Family: Heimo
   faved_this_observation: merkitsi tämän havainnon suosikiksi
@@ -1184,6 +1229,7 @@ fi:
   fill_out_project_observation_fields: Täytä projektin havaintokentät
   fill_out_your_profile: täydennä profiilisi
   filter: Suodata
+  filter_by_curator_identification: Suodata kuraattorin tekemän tunnistuksen perusteella
   filter_by_place: Suodata paikan mukaan
   filter_by_taxon: Suodata taksonin mukaan
   filter_by_place_taxon_and_color: Suodata paikan, taksonin ja värin mukaan käyttämällä ohjaimia.
@@ -1258,7 +1304,6 @@ fi:
   following_x_people:
     one: 'Seurataan 1 henkilöä'
     other: 'Seurataan %{count} henkilöä'
-  for: kohteelle
   for_a_taxon: taksonille
   formatting: Muotoilu
   forgot_your_password: Unohditko salasanasi?
@@ -1328,10 +1373,10 @@ fi:
   has_one_or_more_faves: On yksi tai useampi suosittelu
   has_photo: Kuvia
   has_photos: Kuvia
-  has_photo_and_sound: On sekä kuvia että ääniä
+  has_photo_and_sound: Sekä kuvia että ääniä
   has_photos_or_sounds: Kuvia tai ääniä
-  has_sound: On ääniä
-  has_sounds: On ääniä
+  has_sound: Ääni
+  has_sounds: Ääniä
   hasnt_contributed_any_observations: ei ole avustanut yhdelläkään havainnolla tätä projektia.
   header_your_observations: Omat havainnot
   header_your_calendar: Oma kalenteri
@@ -1746,7 +1791,7 @@ fi:
       featured_observations: Suositut havainnot
       gbif_network: GBIF-verkosto
       gbif_network_description: Tietueet museoista ja muista Global Biodiversity Informatics Facilityn (GBIF) välittämistä esiintymistiedon tarjoajista
-      observations: Havaintoa
+      observations: Havainnot
       place_boundary: Paikan rajat
       checklist_places: Lajiluetteloiden paikkoja
       range: Väli
@@ -2193,7 +2238,6 @@ fi:
   or_all_caps: TAI
   or_choose_high_level_taxa: "... tai valitse joistakin korkeatasoisista taksoneista"
   or_if_you_dont_want_email: "Tai jos et vain halua mitään sähköpostia..."
-  or_log_in_with_colon: "Tai kirjadu sisään seuraavilla:"
   or_upload: Tai tallenna
   orange: oranssi
   order: Lahko
@@ -3038,7 +3082,7 @@ fi:
   showing_x_of_y_listings: "Näytetään %{x}/%{y} luettelointia"
   sign_in: Kirjaudu sisään
   sign_in_with_provider: "Kirjaudu sisään %{provider}-tilillä"
-  sign_up_with_provider: "Kirjaudu sisään %{provider}-tilillä"
+  sign_in_with_google: Kirjaudu sisään Google-tilillä
   sign_out: Kirjaudu ulos
   sign_up: Rekisteröidy
   similar_species: Samanlaiset ​​lajit
@@ -3306,7 +3350,6 @@ fi:
   they_have_been_invited: ...heidät on jo kutsuttu
   third_person_possessive_singular: "Käyttäjän %{object_phrase} %{noun}"
   this: tämä
-  this_is_a: Tämä on
   this_is_a_life_list_from_place_html: "Tämä on elämäluettelo paikasta %{place}"
   this_is_a_life_list_of_taxon_in_place: "Tämä on elämäluettelo taksonista %{taxon} paikassa %{place}"
   this_is_taking_forever: Tämä vie ikuisuuden.  Yritä myöhemmin uudelleen.
@@ -3605,7 +3648,7 @@ fi:
   who_user_helped_the_most: "Ketä %{user} auttoi eniten"
   why_the_coordinates_are_obscured: Miksi koordinaatit on karkeistettu
   with_annotation: Merkinnällä
-  without_annotation: Ilman selitystä
+  without_annotation: Ilman merkintää
   widget: Pienoisohjelma
   widget_code: Pienoisohjelmakoodi
   widget_for: Pienoisohjelma
@@ -3802,6 +3845,9 @@ fi:
         what_are_tags?: Mitä merkinnät ovat?
         tags_are_keywords_you_can_add_to_an_html: |
           Voit lisätä avainsanoja (tageja) havaintoihin tehdäksesi niistä helpommin löydettäviä. Jos esimerkiksi hauki seurasi sinua sukellusretkellä Saimaalla, voit merkitä avainsanoiksi &quot;pelottava, hauki, sukellus, loma, saimaa&quot;.
+        please_do_not_upload_pictures_you_didnt_take_html: |
+          <em>Älä lähetä kuvia, joita et ole ottanut itse</em>, ellet ole saanut kuvaajan suostumusta.
+          Tekijänoikeuksien alaisten teosten julkaiseminen ilman tekijänoikeuksien haltijan myöntämää lisenssiä on laitonta. Lähtökohteisesti kuvaajalla on teokseensa täydet tekijänoikeudet. Jos lähetät havainnostasi kuvan, jonka otti joku muu henkilö joka antoi suostumuksensa kuvan julkaisuun, lisää kuvaajan nimi havainnon kuvaukseen.
         what_is_geoprivacy?: Mikä on sijainnin tietosuoja?
         geoprivacy_is_a_setting_you_can: |
           Sijainnin tietosuoja on asetus jota voit käyttää havainnoissasi kontrolloidaksesi miten havainnon kordinaatit (leveys- ja pituusaste) esitetään. Tässä ovat vaihtoehdot:
@@ -3810,6 +3856,8 @@ fi:
         what_is_does_it_mean_for: Mitä tarkoittaa että havainto on karkeistettu?
         when_coordinates_are_obscured_it_means_that: |
           Karkeistetut koordinaatit tarkoittavat että todellisen paikan sijasta julkisesti näytetään satunnainen piste enintään %{km} km säteellä siitä (etusivulla, havaintosivulla ja projektisivuilla). Näet tarkat koordinaatit vain omista havainnoistasi (projektisivuilla ja omien havaintojesi luettelossa). Huomaa että tarkat koordinaatit näkyvät niille kuraattoreille, jotka ylläpitävät projekteja joihin olet itse lisännyt havaintojasi. Karkeistetut koordinaatit näytetään kartalla pyörellä merkillä, joissa ei ole vartta.
+        coordinates_are_obscured_for_all_taxa: |
+          Havainnon tarkat koordinaatit salataan automaattisesti kaikille taksoneille jotka on merkitty "SILMÄLLÄ PIDETTÄVIKSI" tai korkeammalle luokitukselle Kansainvälisen luonnonsuojeluliiton (IUCN) uhanalaisuusluokittelussa. Muitakin taksoneita on saatettu merkitä vaarantuneiksi muiden toimijoiden tai %{site_name} sivuston kuraattoreiden toimesta.
         you_can_also_obscure_the_coordinates_html: |
           Voit myös taksonista riippumatta hämärtää omien havaintojesi koordinaatit. Katso <a href="#geoprivacy">sijainnin tietosuoja</a> yläpuolella.
         what_is_a_life_list?: Mikä on elämäluettelo?
@@ -4198,6 +4246,13 @@ fi:
           name_less_than_100_characters: Projektin nimen täytyy olla lyhyempi kuin 100 merkkiä
           name_already_taken: Projektin nimi on jo varattu
           summary_is_required: Projektin yhteenvetoteksti on pakollinen.
+      project_location_privacy_notice_html: |
+        <p>
+        Projektin kuraattorit voivat nähdä kaikki projektiin liittämiesi havaintojen salatut tai karkeistetut paikat, ellet poista heiltä tätä oikeutta ja he voivat liittää minkä tahansa havaintosi projektiin, ellet <a href="/users/edit">muokkaa asetuksiasi</a>. Voit myös sallia tai poistaa havainnon näkymisen projektissa havaintokohtaisesti.
+        </p>
+        <p>
+        Jos olet huolissasi havaintopaikkojesi yksityisyydestä, älä liity projekteihin, ellet luota projektin kuraattoreihin.
+        </p>
       project_user_curator_coordinate_access_labels:
         observer: Kyllä, mutta vain jos itse lisään havainnon projektiin.
         any: Kyllä, ei väliä kuka lisää havainnon projektiin.
@@ -4205,6 +4260,12 @@ fi:
       show:
         are_you_sure_you_want_to_convert: |
           Haluatko varmasti muuntaa tämän projektin koontiprojektiksi?
+        bioblitz_results_desc_html: |
+          <p>
+          Toisin kuin tavalliset projektit, bioblitzit näyttävät tilastoja <em>kaikista</em> tietyn paikan ja ajanjakson havainnoista , eivätkä ainoastaan niistä havainnoista, jotka käyttäjät ovat lisänneet projektiin. Tämän ansiosta havaintoja ei tarvitse lisätä projektiin vain tilastojen päivittymistä varten. Huomaa että havaintoja ei voi ladata tai näyttää projektinäkymissä elleivät projektiryhmä ja osallistujat aktiivisesti lisää niitä projektiin, kuten tavanomaisessa projektissa.
+          </p><p>
+          Huomaa että vaikka tällainen projekti näyttää tilastoja havainnoista, joita ei ole tarkoituksellisesti lisätty projektiin, se ei salli kuraattorien nähdä yksityisiä tai karkeistettuja koordinaatteja, eikä oleta että havainnoijat olisivat hyväksyneet projektin ehdot. Jos olet projektin kuraattori ja tarvitse pääsyn yksityisiin koordinaatteihin, tai jos haluat että havainnot lasketaan mukaan projektin kuratoituun pinnalistaan, varmista että osallistujat liittyvät projektiin ja lisäävät havaintonsa siihen kuten tavalliseen projektiin.
+          </p>
         click_here_to_convert_this_project: |
           Klikkaa tästä muuntaaksesi tämän projektin kokoelmaprojektiksi.
         make_sure_you_have_read_about_the_differences: |
