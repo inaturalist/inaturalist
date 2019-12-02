@@ -71,6 +71,32 @@
             <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
           </div>
         </div>
+      <% elsif current_user && session[:potential_site] && flash.empty? %>
+        <div class="bootstrap">
+          <div id="full-width-notice" class="bg-warning">
+            <div class="container">
+              <%=t :network_affiliation_prompt_from_inat_html, site_name: session[:potential_site][:name], place: session[:potential_site][:place_name] %>
+              <span class="nobr">
+                <%= link_to t(:yes), generic_edit_user_path( anchor: "network" ), class: "btn btn-success btn-xs" %>
+                <%= link_to t(:learn_more), wiki_page_url( "network" ), class: "btn btn-default btn-xs" %>
+                <%= link_to t(:no), user_path( current_user,  user: { prefers_no_site: true }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% elsif current_user && !current_user.prefers_no_site? && @site != Site.default && current_user.site != @site %>
+        <div class="bootstrap">
+          <div id="full-width-notice" class="bg-warning">
+            <div class="container">
+              <%=t :network_affiliation_prompt_from_other_site_html, site_name: @site.name, other_site_name: current_user.site.name %>
+              <span class="nobr">
+                <%= link_to t(:yes), generic_edit_user_path( anchor: "network" ), class: "btn btn-success btn-xs" %>
+                <%= link_to t(:learn_more), wiki_page_url( "network" ), class: "btn btn-default btn-xs" %>
+                <%= link_to t(:no), user_path( current_user,  user: { prefers_no_site: true }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+              </span>
+            </div>
+          </div>
+        </div>
       <% end %>
 
       <div id="wrapper" class="bootstrap">

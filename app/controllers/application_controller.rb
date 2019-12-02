@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_ga_trackers
   before_filter :set_request_locale
   before_filter :check_preferred_place
+  before_filter :check_preferred_site
   before_filter :sign_out_spammers
 
   # /ping should skip all before filters and just render
@@ -95,7 +96,10 @@ class ApplicationController < ActionController::Base
 
   def check_preferred_place
     return true unless current_user
-    return true if current_user.prefers_no_place?
+    if current_user.prefers_no_place?
+      session.delete(:potential_place)
+      return true
+    end
     return true unless session[:potential_place].blank?
     if current_user.latitude && current_user.longitude && current_user.place.blank?
       potential_place = Place.
@@ -106,6 +110,46 @@ class ApplicationController < ActionController::Base
         session[:potential_place] = {
           id: potential_place.id,
           name: place_name == "United States" ? "the United States" : place_name
+        }
+      end
+    end
+    true
+  end
+
+  def check_preferred_site
+    return true unless flash.empty?
+    return true unless current_user
+    if current_user.prefers_no_site?
+      session.delete(:potential_site)
+      return true
+    end
+    return true unless session[:potential_place].blank?
+    if params[:test].to_s =~ /network/
+      session[:potential_site] = nil
+      n, lat, lon = params[:test].split( "|" )
+      if lat && lon
+        current_user.latitude = lat.to_f
+        current_user.longitude = lon.to_f
+      end
+    else
+      return true
+    end
+    return true unless session[:potential_site].blank?
+    return true if @site != Site.default && current_user.site == @site
+    if current_user.latitude && current_user.longitude
+      potential_place = Place.
+        containing_lat_lng( current_user.latitude, current_user.longitude ).
+        where( "places.id IN (?)", Site.where( "NOT draft" ).pluck(:place_id) ).first
+      return true unless potential_place
+      potential_site = Site.where( "NOT draft" ).where( place_id: potential_place.id ).first
+      if potential_site
+        session[:potential_site] = {
+          id: potential_site.id,
+          name: potential_site.name,
+          place_name: t(
+            "places_name.#{potential_place.name.to_s.parameterize.underscore}",
+            default: potential_place.name
+          )
         }
       end
     end
