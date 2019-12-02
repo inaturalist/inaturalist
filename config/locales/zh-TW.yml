@@ -197,7 +197,11 @@ zh-TW:
   add_one_now: 現在新增一個
   add_photos: 新增相片
   add_place: 加入地點
+  add_alive_or_dead_alive_annotation: '新增註解「活體或死亡：活體」'
+  add_alive_or_dead_cannot_be_determined_annotation: '新增註解「活體或死亡：無法判斷」'
+  add_alive_or_dead_dead_annotation: '新增註解「活體或死亡：死亡」'
   add_plant_phenology_budding_annotation: '新增「植物物候：發新芽」的註解'
+  add_plant_phenology_flower_budding_annotation: '新增註解「植物物候：花苞」'
   add_plant_phenology_flowering_annotation: '新增「植物物候學：開花」的註解'
   add_plant_phenology_fruiting_annotation: '新增「植物物候：結果」註解'
   add_life_stage_adult_annotation: '新增「生命階段：成體」的註解'
@@ -720,8 +724,8 @@ zh-TW:
   comparing_list_to_list: "比較%{list1}與%{list2}"
   comparing_versions_x_and_y: "比較版本 %{x} 和 %{y}"
   comparing_observations_from: "比較 %{user} 自 %{dates} 的觀察"
-  complete: 完成
   compiled_by_name: "編譯由%{name}"
+  complete: 完成
   completed: 已完成
   completed_at: 完成於
   comprehensive: 綜合
@@ -776,6 +780,7 @@ zh-TW:
     female: 雌性
     plant_phenology: 植物物候
     budding: 發芽
+    flower_budding: 花芽
     flowering: 開花
     fruiting: 結果
     life_stage: 生命階段
@@ -787,6 +792,12 @@ zh-TW:
     larva: 幼蟲
     egg: 卵
     juvenile: 亞成體
+    alive_or_dead: 活體或死亡
+    alive: 活體
+    dead: 死亡
+    cannot_be_determined: 無法判斷
+  controlled_term_definitions:
+    flower_budding: 花苞可見但未開展
   controls: 控制
   convert: 轉換
   coordinate_systems: 座標系統
@@ -916,6 +927,11 @@ zh-TW:
   date_range: 日期範圍
   date_specified: 日期指定
   date_time: 日期/時間
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: 日期更新
   day: 日
   decrease_brightness: 減少亮度
@@ -1062,7 +1078,6 @@ zh-TW:
   editing_project_asset: 編輯專案可用物件用於
   editing_subscription_to_x_html: "編輯對%{x}的訂閱"
   editing_taxon_link: 物種分類連結編輯中
-  editing_taxon_name: 物種分類名稱編輯中
   editing_taxon_range: 物種分類範圍編輯中
   editing_this: 正編輯 %{elem}
   editing_x_in_y: "正編輯 %{x} 於 %{y}"
@@ -1142,7 +1157,7 @@ zh-TW:
   failed_to_repair_photo: "修復照片失敗：%{errors}"
   failed_to_save_record: "無法儲存記錄。請稍後再重試。"
   'false': '否'
-  fave: 最愛
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: 最愛
   Family: 科
   faved_this_observation: 為此觀察設成最愛。
@@ -1227,6 +1242,8 @@ zh-TW:
     標記此使用者：%{title}
   flag_it!: 加上旗號標記！
   flag_marked_as_resolved_html: '<span class="meta">的旗號標記項目</span> <strong>已被解決。</strong>'
+  #Label for the object that was flagged, e.g. a table header
+  flag_object: 項目
   flag_reason: "&ldquo;我正標記此%{record}出自於"
   flag_resolution: 解決
   flag_saved: 已儲存旗號標記。
@@ -1267,7 +1284,6 @@ zh-TW:
   following: 追蹤中
   following_x_people:
     other: '關注 %{count} 個人'
-  for: 用於
   for_a_taxon: 用於一個物種分類
   formatting: 格式
   forgot_your_password: 忘記您的密碼？
@@ -1469,6 +1485,7 @@ zh-TW:
   input_taxon: 輸入物種分類
   insects: 昆蟲
   insect_life_stage: 昆蟲生命階段
+  instagram: Instagram
   interactions: 互動
   internal_server_error: 內部伺服器錯誤
   internal_taxon_including_descendants: 內部分類（包含派生）
@@ -1709,6 +1726,7 @@ zh-TW:
     sk: 斯洛伐克語
     sq: 阿爾巴尼亞
     sv: 瑞典語
+    tr: 土耳其語
     zh-CN: 簡體中文
     zh-TW: 繁體中文
   locality_notes: 位置註解
@@ -1925,6 +1943,7 @@ zh-TW:
   needs_id_: 需要鑑定
   needs_id_expandable_html: "<span class='full'>需要</span>鑑定"
   needs_to_be_identified: 需要被鑑定
+  new: 新增
   new_and_noteworthy: 新事物與關注事項
   new_announcement: 新公告
   new_assessment: 新評估
@@ -2279,7 +2298,6 @@ zh-TW:
   or_all_caps: 或
   or_choose_high_level_taxa: "...或從更高階物種分類挑選"
   or_if_you_dont_want_email: "或者是您不想要接受任何電子郵件..."
-  or_log_in_with_colon: "或登入以："
   or_upload: 或上傳
   orange: 橘色
   order: 排序
@@ -3019,6 +3037,7 @@ zh-TW:
   research_grade_short_html: "<span class='full'>研究</span><span class='full'>等級</span>"
   research_grade_observations_have: '「研究等級」觀察擁有日期、照片、座標，以及社群支持的鑑定內容。點擊來查看資料品質評估。'
   research_grade_qualification: 研究等級資格
+  reset_filters_short: 重設
   reset_brightness: 重新設定亮度
   reset_search_filters: 重新設定搜尋篩選
   resolve: 解決
@@ -3167,7 +3186,7 @@ zh-TW:
   showing_x_of_y_listings: "顯示 %{y} 個裡的 %{x} 個清單"
   sign_in: 登入
   sign_in_with_provider: "以 %{provider} 登入"
-  sign_up_with_provider: "以 %{provider} 註冊"
+  sign_in_with_google: 使用 Google 帳號登入
   sign_out: 登出
   sign_up: 註冊
   similar_species: 相似物種
@@ -3537,7 +3556,6 @@ zh-TW:
   third_person_possessive_plural: "%{object_phrase}的%{noun}"
   this: 此
   this_bioblitz_beings_in: 此 bioblitz 開始於
-  this_is_a: 這是一個
   this_is_a_cached_summary_based_on: 這是物種分類快取摘要，基於它的
   this_is_a_life_list_of: 這生物清單屬於
   this_is_a_life_list_from_place_html: "這是來自%{place}的生物列表"
