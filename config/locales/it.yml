@@ -777,8 +777,8 @@ it:
   comparing_list_to_list: "Confronto in corso di %{list1} con %{list2}"
   comparing_versions_x_and_y: "Confronto in corso tra la versione %{x} e %{y}"
   comparing_observations_from: "Confronto in corso delle osservazioni di %{user} del %{dates}"
-  complete: Completo
   compiled_by_name: "Compilato da %{name}"
+  complete: Completo
   completed: Completato
   completed_at: Completato in
   comprehensive: completa
@@ -1136,7 +1136,6 @@ it:
   editing_project_asset: Modifica in corso della risorsa del progetto per
   editing_subscription_to_x_html: "Modifica in corso dell'iscrizione a %{x}"
   editing_taxon_link: Modifica in corso del link del Taxon
-  editing_taxon_name: Modifica in corso del nome del Taxon
   editing_taxon_range: Modifica in corso dell'areale del Taxon
   editing_this: Modifica %{elem} in corso
   editing_x_in_y: "Modifica di %{x} in %{y} in corso"
@@ -1217,7 +1216,7 @@ it:
   failed_to_repair_photo: "Errore nel riparare la foto: %{errors}"
   failed_to_save_record: "Impossibile salvare l'osservazione. Per favore riprova più tardi."
   'false': 'Falso'
-  fave: preferito
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Preferiti
   Family: Famiglia
   faved_this_observation: ha aggiunto ai preferiti questa osservazione
@@ -1344,7 +1343,6 @@ it:
   following_x_people:
     one: 'Seguendo 1 Persona'
     other: 'Seguendo %{count} Persone'
-  for: di
   for_a_taxon: per un taxon
   formatting: Formattazione
   forgot_your_password: Hai dimenticato la password?
@@ -2367,7 +2365,6 @@ it:
   or_all_caps: O
   or_choose_high_level_taxa: "... o scegli da taxa di livello superiore"
   or_if_you_dont_want_email: "O se semplicemente non vuoi nessuna email..."
-  or_log_in_with_colon: "Oppure accedi con:"
   or_upload: Oppure carica
   orange: arancione
   order: Ordina
@@ -3281,7 +3278,6 @@ it:
   sign_in: Accedi
   sign_in_with_provider: "Accedi con %{provider}"
   sign_in_with_google: Accedi con Google
-  sign_up_with_provider: "Registrati con %{provider}"
   sign_out: Esci
   sign_up: Registrati
   similar_species: Specie simili
@@ -3677,7 +3673,6 @@ it:
   third_person_possessive_plural: "%{noun} di %{object_phrase}"
   this: questo
   this_bioblitz_beings_in: Questo bioblitz inizia in
-  this_is_a: Questa è una
   this_is_a_cached_summary_based_on: Questo è un riassunto in cache di questo taxon basato sul suo
   this_is_a_life_list_of: Questa è una lista degli esseri viventi di
   this_is_a_life_list_from_place_html: "Questa e una lista degli esseri viventi in %{place}"
