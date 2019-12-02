@@ -678,8 +678,8 @@ es-MX:
   comparing_list_to_list: "Comparando  %{list1} con %{list2}"
   comparing_versions_x_and_y: "Comparando las versiones %{x} y %{y}"
   comparing_observations_from: "Comparando %{user} observaciones de %{dates}"
-  complete: Completo
   compiled_by_name: "Compilado por %{name}"
+  complete: Completo
   completed: Completo
   completed_at: Completo en
   comprehensive: exhaustiva
@@ -992,7 +992,6 @@ es-MX:
   editing_project_asset: Editando el recurso del proyecto
   editing_subscription_to_x_html: "Editando la suscripción para %{x}"
   editing_taxon_link: Edita el enlace de la especie o grupo
-  editing_taxon_name: Edita el nombre de la especie o grupo
   editing_taxon_range: Edita la distribución potencial de la especie o grupo
   editing_this: Editando %{elem}
   editing_x_in_y: "Editando %{x} en %{y}"
@@ -1070,7 +1069,7 @@ es-MX:
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
   'false': 'No'
-  fave: favorito
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: favoritos
   Family: Familia
   faved_this_observation: diga que le agrada este observación
@@ -1171,7 +1170,6 @@ es-MX:
   following_x_people:
     one: 'Siguiendo 1 persona'
     other: 'Siguiendo %{count} personas'
-  for: para
   for_a_taxon: de una especie o grupo
   formatting: Formateando
   forgot_your_password: '¿Olvidaste tu contraseña?'
@@ -2095,7 +2093,6 @@ es-MX:
   or_all_caps: o
   or_choose_high_level_taxa: "... o escoge de algún grupo con nivel superior"
   or_if_you_dont_want_email: "O si no quieres ningún correo electrónico..."
-  or_log_in_with_colon: "o inicia con:"
   or_upload: O descarga el
   orange: Anaranjado
   order: Orden
@@ -2871,7 +2868,6 @@ es-MX:
   showing_x_of_y_listings: "Mostrando %{x} de %{y} listados"
   sign_in: Entra
   sign_in_with_provider: "Entra con %{provider}"
-  sign_up_with_provider: "Registrate con %{provider}"
   sign_out: Termina la sesión
   sign_up: Regístrate
   similar_species: Especies similares
@@ -3253,7 +3249,6 @@ es-MX:
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
-  this_is_a: Esta es una
   this_is_a_cached_summary_based_on: Hay un resumen guardado sobre esta especie o grupo basado en su
   this_is_a_life_list_of: Esta es la lista de vida de
   this_is_a_life_list_from_place_html: "Esta es la lista de vida de %{place}"
