@@ -868,8 +868,8 @@ ru:
   comparing_list_to_list: "Сравнение %{list1} с %{list2}"
   comparing_versions_x_and_y: "Сравнение версий %{x} и %{y}"
   comparing_observations_from: "Сравнение наблюдений %{user} за %{dates}"
-  complete: Завершено
   compiled_by_name: "составлено %{name}"
+  complete: Завершено
   completed: Завершено
   completed_at: Завершено на
   comprehensive: современный
@@ -1230,7 +1230,6 @@ ru:
   editing_project_asset: Редактирование актива проекта для
   editing_subscription_to_x_html: "Редактировать подписку на %{x}"
   editing_taxon_link: Редактировать ссылку на таксон
-  editing_taxon_name: Редактирование наименование таксона
   editing_taxon_range: Редактирование ареала таксона
   editing_this: Редактирование %{elem}
   editing_x_in_y: "Редактирование %{x} в %{y}"
@@ -1310,7 +1309,7 @@ ru:
   failed_to_repair_photo: "Не удалось восстановить фото: %{errors}"
   failed_to_save_record: "Не удалось сохранить запись. Пожалуйста, попробуйте повторить позже."
   'false': 'Нет'
-  fave: фаворит
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Фавориты
   Family: Семейство
   faved_this_observation: добавил(и) это наблюдение к фаворитам
@@ -1439,7 +1438,6 @@ ru:
     few: 'Подписан на %{count} человек'
     many: 'Подписан на %{count} человек'
     other: 'Подписан на %{count} человек'
-  for: для
   for_a_taxon: для таксона
   formatting: Форматироватие
   forgot_your_password: Забыли пароль?
@@ -2464,7 +2462,6 @@ ru:
   or_all_caps: ИЛИ
   or_choose_high_level_taxa: "... или выберите из нескольких таксонов верхнего уровня"
   or_if_you_dont_want_email: "Или если вы просто не хотите ничего получать по электронной почте..."
-  or_log_in_with_colon: "Или войдите через:"
   or_upload: или загрузить
   orange: оранжевый
   order: Упорядочить
@@ -3117,14 +3114,14 @@ ru:
     genushybrid: Genus hybrid (GeoPlanet)
     subgenus: Подрод
     section: Секция
-    subsection: Подраздел
+    subsection: Подсекция
     complex: Комплекс
     species: Вид
     hybrid: Гибрид
     subspecies: Подвид
     variety: Разновидность
     form: Форма
-    infrahybrid: инфрагибрид
+    infrahybrid: Инфрагибрид
     leaves: Листья
   ranges: Диапазоны
   ray_finned_fishes: Лучепёрые рыбы
@@ -3383,7 +3380,7 @@ ru:
   showing_x_of_y_listings: "Показывать %{x} из %{y} списков"
   sign_in: Войти
   sign_in_with_provider: "Войти через %{provider}"
-  sign_up_with_provider: "Войти через %{provider}"
+  sign_in_with_google: Войти через Google
   sign_out: Выйти
   sign_up: Регистрация
   similar_species: Аналогичные виды
@@ -3812,7 +3809,6 @@ ru:
   third_person_possessive_plural: "%{noun}%{object_phrase}"
   this: это
   this_bioblitz_beings_in: Биоблиц начинается в
-  this_is_a: Это
   this_is_a_cached_summary_based_on: Это кэшированная сводка этого таксона на основе его
   this_is_a_life_list_of: Это список жизни для
   this_is_a_life_list_from_place_html: "Это список жизни в %{place}"
