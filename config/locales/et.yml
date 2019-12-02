@@ -690,8 +690,8 @@ et:
   comparing_list_to_list: "Võrdlen nimekirja %{list1} nimekirjaga %{list2}"
   comparing_versions_x_and_y: "Võrdlen versiooni %{x} versiooniga %{y}"
   comparing_observations_from: "Võrdlen kasutaja %{user} vaatlusi kuupäevadel %{dates}"
-  complete: Valmis
   compiled_by_name: "Koostanud %{name}"
+  complete: Valmis
   completed: Lõpetatud
   completed_at: Lõpetatud
   comprehensive: täielik
@@ -1001,7 +1001,6 @@ et:
   editing_project_asset: Muudan lisasid projektil
   editing_subscription_to_x_html: "Muudan jälgimist: %{x}"
   editing_taxon_link: Muudan taksoni linki
-  editing_taxon_name: Muudan taksoni nime
   editing_taxon_range: Muudan taksoni piirkonda
   editing_this: Muudan elementi %{elem}
   editing_x_in_y: "Muudan %{x}/%{y}"
@@ -1078,7 +1077,7 @@ et:
   failed_to_repair_photo: "Foto parandamine ei õnnestunud: %{errors}"
   failed_to_save_record: "Andmete salvestamine ebaõnnestus. Proovi hiljem uuesti."
   'false': 'Väär'
-  fave: lemmik
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Lemmikud
   Family: Sugukond
   faved_this_observation: lemmikvaatlus
@@ -2083,7 +2082,6 @@ et:
   or_all_caps: VÕI
   or_choose_high_level_taxa: "... või vali mõni kõrgema taseme takson"
   or_if_you_dont_want_email: "Või kui sa ei taha e-posti..."
-  or_log_in_with_colon: "Või logige sisse koos:"
   or_upload: Või lae üles
   orange: oranž
   order: Järjestus
@@ -2853,7 +2851,6 @@ et:
   showing_x_of_y_listings: "Näitan kandeid %{x}/%{y}"
   sign_in: Logi sisse
   sign_in_with_provider: "Logi sisse %{provider} kontoga"
-  sign_up_with_provider: "Registreeri koos %{provider}"
   sign_out: Logi välja
   sign_up: Registreeru!
   similar_species: Sarnased liigid
@@ -3224,7 +3221,6 @@ et:
   third_person_possessive_singular: "Kasutaja %{object_phrase} %{noun}"
   this: see
   this_bioblitz_beings_in: Välkvaatlus algab
-  this_is_a: See on
   this_is_a_cached_summary_based_on: See on antud taksoni arhiveeritud kokkuvõte, mis põhineb selle
   this_is_a_life_list_of: 'See on failide nimekiri:'
   this_is_a_life_list_from_place_html: "See on koha %{place} elunimekiri"
