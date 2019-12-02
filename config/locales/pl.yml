@@ -1117,7 +1117,6 @@ pl:
   editing_project: Edytowanie projektu %{project}
   editing_subscription_to_x_html: "Edytowanie subskrypcji do %{x}"
   editing_taxon_link: Edytuj Łącze Taksonu
-  editing_taxon_name: Edytowanie nazwy taksonu
   editing_taxon_range: Edytowanie zasięgu taksonu
   editing_this: Edytowanie %{elem}
   editing_x_in_y: "Edytowanie %{x} w %{y}"
@@ -1186,7 +1185,7 @@ pl:
   failed_to_repair_photo: "Nie udało się naprawić zdjęcia: %{errors}"
   failed_to_save_record: "Nie udało się zapisać. Proszę spróbować ponownie później."
   'false': 'Fałsz'
-  fave: polub
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Ulubione
   Family: Rodzina
   faved_this_observation: polubił tę obserwację
@@ -1288,7 +1287,6 @@ pl:
     few: 'Obserwuje %{count} osoby'
     many: 'Obserwuje %{count} osób'
     other: 'Obserwuje %{count} osoby'
-  for: dla
   for_a_taxon: dla taksonu
   formatting: Formatowanie
   forgot_your_password: Nie pamiętasz hasła?
@@ -2083,7 +2081,6 @@ pl:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: LUB
-  or_log_in_with_colon: "Lub zaloguj się przez:"
   or_upload: Lub prześlij
   orange: pomarańczowy
   order: Kolejność
@@ -2712,7 +2709,6 @@ pl:
   show_scientific_name_first: Pokazuj najpierw nazwy naukowe
   sign_in: Zaloguj się
   sign_in_with_provider: "Zaloguj się za pomocą %{provider}"
-  sign_up_with_provider: "Zarejestruj się za pomocą %{provider}"
   sign_out: Wyloguj się
   sign_up: Zarejestruj się
   similar_species: Podobne gatunki
@@ -2846,7 +2842,6 @@ pl:
     To są elementy, które zostały zgłoszone. Komentarze, które są spamem powinny zostać usunięte, a użytkownicy, którzy go dodali - zawieszeni (idź do ich profilu i kliknij "Zawieś użytkownika", aby zapobiec ponownemu zalogowaniu). Pozostałe zgłoszone elementy powinny zostać usunięte tylko wtedy, gdy są jednoznacznie nielegalne, pełne nienawiści itd. Reakcją na nieuprzejmość, przekleństwa itp. powinien być grzeczny komentarz. Jednak gdy ktoś robi to wielokrotnie, zgłoś go do administratora strony lub %{email}
   they_have_been_invited: ...zostali już zaproszeni
   this: to
-  this_is_a: To jest
   this_is_your_observation: To jest Twoja obserwacja
   this_list_is_empty!: Ta lista jest pusta!
   this_list_only_accepts_taxa_that_are_species: Ta lista akceptuje tylko taksony będące gatunkami
