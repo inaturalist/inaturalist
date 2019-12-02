@@ -797,7 +797,6 @@ ja:
   editing_project_asset: プロジェクトアセット編集中：
   editing_subscription_to_x_html: "%{x}の購読を編集中"
   editing_taxon_link: タクソンリンクを編集中
-  editing_taxon_name: 分類群名を編集中
   editing_taxon_range: 生息区域を編集中
   editing_this: '%{elem}を編集中'
   editing_x_in_y: "%{y}の中の%{x}を編集中"
@@ -858,7 +857,7 @@ ja:
   failed_to_repair_photo: "写真の修復作業は失敗しました: %{errors}"
   failed_to_save_record: "記録の保存に失敗しました。しばらくしてからもう一度お試しください。"
   'false': '偽'
-  fave: お気に入りに追加
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: お気に入り
   Family: 科
   favorite_taxa: お気に入り分類群
@@ -2330,7 +2329,6 @@ ja:
   they_have_been_invited: ...はすでに招待を受けています
   third_person_possessive_singular: "%{object_phrase}の%{noun}"
   this: この
-  this_is_a: これは
   this_is_a_life_list_of: 次のユーザのライフリスト：
   this_is_a_life_list_from_place_html: "%{place}のライフリスト"
   this_is_a_life_list_of_taxon_in_place: "%{place}における%{taxon}のライフリスト"
