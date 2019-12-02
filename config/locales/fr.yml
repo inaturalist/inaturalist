@@ -725,8 +725,8 @@ fr:
   comparing_list_to_list: "Comparaison de %{list1} avec %{list2}"
   comparing_versions_x_and_y: "Comparaison des versions %{x} et %{y}"
   comparing_observations_from: "Comparaison des observations de %{user} du %{dates}"
-  complete: Terminer
   compiled_by_name: "Compilé par %{name}"
+  complete: Terminer
   completed: Complétée
   completed_at: Complétée à
   comprehensive: complète
@@ -1058,7 +1058,6 @@ fr:
   editing_project_asset: Modification du bien du projet pour
   editing_subscription_to_x_html: "Modification de l’abonnement à %{x}"
   editing_taxon_link: Modification du lien relatif au taxon
-  editing_taxon_name: Modification du nom de taxon
   editing_taxon_range: Modification de l’aire de répartition de taxon
   editing_this: Modification de %{elem}
   editing_x_in_y: "Modification de %{x} dans %{y}"
@@ -1139,7 +1138,7 @@ fr:
   failed_to_repair_photo: "Échec de réparation de la photo : %{errors}"
   failed_to_save_record: "Échec à la sauvegarde de l’enregistrement. Veuillez réessayer ultérieurement."
   'false': 'Non'
-  fave: favori
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoris
   Family: Famille
   faved_this_observation: mettre cette observation en favori
@@ -1243,7 +1242,6 @@ fr:
   following_x_people:
     one: '1 personne suivie'
     other: '%{count} personnes suivies'
-  for: pour
   for_a_taxon: pour un taxon
   formatting: Mise en forme
   forgot_your_password: Avez-vous oublié votre mot de passe?
@@ -1793,8 +1791,14 @@ fr:
   momentjs:
     shortRelativeTime:
       future: "en %s"
+      #Short text representing 1 minute in the past
+      m: "1 min"
+      #Short text representing %d minutes in the past
+      mm: "%d min"
       #Short text representing 1 month in the past
       M: "1min"
+      #Short text representing %d months in the past
+      MM: "%d mois"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display a time zone code and not an offset, so
     #please use z and not Z
@@ -2211,7 +2215,6 @@ fr:
   or_all_caps: OU
   or_choose_high_level_taxa: "...ou choisissez à partir de taxons de haut niveau"
   or_if_you_dont_want_email: "Ou si vous ne voulez juste pas de courriels..."
-  or_log_in_with_colon: "Ou bien se connecter avec :"
   or_upload: Ou téléverser un
   orange: orange
   order: Ordre
@@ -3071,7 +3074,6 @@ fr:
   showing_x_of_y_listings: "Affiche %{x} de %{y} listes"
   sign_in: S’identifier
   sign_in_with_provider: "Connectez-vous avec %{provider}"
-  sign_up_with_provider: "Signer avec %{provider}"
   sign_out: Déconnexion
   sign_up: Inscrivez-vous
   similar_species: Espèces proches
@@ -3452,7 +3454,6 @@ fr:
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: ce
   this_bioblitz_beings_in: Ce bioblitz commence dans
-  this_is_a: Il s’agit d’un
   this_is_a_cached_summary_based_on: Voici un résumé cahcé de ce taxon basé sur son
   this_is_a_life_list_of: Voici une liste des êtres vivants de
   this_is_a_life_list_from_place_html: "C’est une liste de vie pour %{place}"
