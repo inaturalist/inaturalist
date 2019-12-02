@@ -126,6 +126,15 @@ class ApplicationController < ActionController::Base
     return true unless session[:potential_place].blank?
     return true unless session[:potential_site].blank?
     return true if @site != Site.default && current_user.site == @site
+    if params[:test].to_s =~ /network/
+      n, lat, lon = params[:test].split( "|" )
+      if lat && lon
+        current_user.latitude = lat.to_f
+        current_user.longitude = lon.to_f
+      end
+    else
+      return true
+    end
     if current_user.latitude && current_user.longitude
       potential_place = Place.
         containing_lat_lng( current_user.latitude, current_user.longitude ).
