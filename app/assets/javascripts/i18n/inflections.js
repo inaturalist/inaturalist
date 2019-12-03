@@ -3,7 +3,7 @@
 ( function ( ) {
   I18n.t = function ( key, params ) {
     var translation = I18n.translate( key, params );
-    if ( typeof( translation ) !== "string" ) {
+    if ( typeof ( translation ) !== "string" ) {
       return translation;
     }
     var matches = ( translation || "" ).match( /@(\w+)\{(.+)\}/ );

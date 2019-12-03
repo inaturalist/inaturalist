@@ -2,8 +2,16 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import UsersPopover from "./users_popover";
+import { inatreact } from "../../../shared/util";
 
-const Faves = ( { observation, config, fave, unfave, faveText, hideOtherUsers } ) => {
+const Faves = ( {
+  observation,
+  config,
+  fave,
+  unfave,
+  faveText,
+  hideOtherUsers
+} ) => {
   const loggedIn = config && config.currentUser && config.currentUser.id;
   if ( !observation || !loggedIn ) { return ( <div /> ); }
   const userHasFavedThis = observation.faves && _.find( observation.faves, o => (
@@ -34,67 +42,63 @@ const Faves = ( { observation, config, fave, unfave, faveText, hideOtherUsers } 
       { text }
     </a>
   );
-  let message = <FaveToggle text={ faveText } />;
+  const faveToUserLink = f => (
+    <span key={`fave-${f.id}`} className="user">
+      <a href={`/people/${f.user.login}`}>{ f.user.login }</a>
+    </span>
+  );
+  let message = <FaveToggle text={faveText} />;
   if ( observation.faves && observation.faves.length > 0 ) {
     if ( ( hideOtherUsers || observation.faves.length === 1 ) && userHasFavedThis ) {
-      message = <FaveToggle text={ I18n.t( "you_faved_this" ) } />;
+      message = <FaveToggle text={I18n.t( "you_faved_this" )} />;
     } else if ( !hideOtherUsers ) {
-      const favesToShow = [];
-      const otherFaves = [];
-      let others;
-      _.each( observation.faves, ( f, index ) => {
-        if ( index < 2 ) {
-          favesToShow.push( f );
-        } else {
-          otherFaves.push( f );
-        }
-      } );
-      if ( otherFaves.length > 0 ) {
-        const text = (
-          <span className="others">
-            { I18n.t( "x_others", { count: observation.faves.length - 2 } ) }
-          </span>
-        );
-        others = (
-          <span key={ `fave-others-${observation.id}` }>
-            , { I18n.t( "and" ) } <UsersPopover
-              users={ otherFaves.map( f => ( f.user ) ) }
+      if ( observation.faves.length === 1 ) {
+        message = inatreact.t( "user_faved_this_observation", {
+          user: faveToUserLink( observation.faves[0] )
+        } );
+      } else if ( observation.faves.length === 2 ) {
+        message = inatreact.t( "user1_and_user2_faved_this_observation", {
+          user1: faveToUserLink( observation.faves[0] ),
+          user2: faveToUserLink( observation.faves[1] )
+        } );
+      } else {
+        const otherFaves = observation.faves.slice( 2 );
+        message = inatreact.t( "user1_user2_and_x_others_faved_this_observation", {
+          user1: faveToUserLink( observation.faves[0] ),
+          user2: faveToUserLink( observation.faves[1] ),
+          x_others: (
+            <UsersPopover
+              key="faves-x-others"
+              users={otherFaves.map( f => f.user )}
               keyPrefix="faves"
-              contents={ text }
+              contents={(
+                <span className="others">
+                  { I18n.t( "x_others", { count: otherFaves.length } ) }
+                </span>
+              )}
             />
-          </span>
-        );
+          )
+        } );
       }
-      message = (
-        <span>
-          { favesToShow.map( f => (
-            <span key={ `fave-${f.id}` } className="user">
-              <a href={ `/people/${f.user.login}` }>{ f.user.login }</a>
-            </span>
-          ) ) }
-          { others }&nbsp;
-          { I18n.t( "faved_this_observation" ) }
-        </span>
-      );
     }
   }
   const starIcon = (
-    <i className={ `action fa ${starIconClass}` }
-      onClick={ ( ) => {
+    <i className={`action fa ${starIconClass}`}
+      onClick={( ) => {
         if ( userHasFavedThis ) {
           unfave( observation.id );
         } else {
           fave( observation.id );
         }
-      } }
-      onMouseOver={ e => {
+      }}
+      onMouseOver={e => {
         $( e.target ).removeClass( starIconClass );
         $( e.target ).addClass( hoverStarIconClass );
-      } }
-      onMouseOut={ e => {
+      }}
+      onMouseOut={e => {
         $( e.target ).removeClass( hoverStarIconClass );
         $( e.target ).addClass( starIconClass );
-      } }
+      }}
     />
   );
   return (

@@ -133,6 +133,56 @@ const formattedDateTimeInTimeZone = ( dateTime, timeZone ) => {
   return d.format( format );
 };
 
+
+const inatreact = {
+  // Interpolate a translated string with React components as interpolation
+  // variables. I18n-js accepts interpolations but will only return a string, so
+  // if you want to have variables in that string that have complicated markup
+  // or (worse) interactive elements, you're either screwed or you're forced to
+  // patch together a bunch of smaller pieces of text in a way that makes the
+  // whole impossible to translate.
+  //
+  // This method will accept a key and interpolations like I18n.t, but it will return an array.
+  //
+  // All React components passed in as interpolations *must* have keys
+  //
+  // Non-interpolation params like defaultValue are not supported.
+  translate: ( key, interpolations = {} ) => {
+    if ( _.size( interpolations ) === 0 ) {
+      return I18n.t( key );
+    }
+    const stubInterpolations = {};
+    const reactInterpolations = {};
+    _.each( interpolations, ( v, k ) => {
+      if ( typeof ( v ) === "object" || typeof ( v ) === "function" ) {
+        stubInterpolations[k] = `{${k}}`;
+        reactInterpolations[k] = v;
+      } else {
+        stubInterpolations[k] = v;
+      }
+    } );
+    const stubTranslation = I18n.t( key, stubInterpolations );
+    let arr = [stubTranslation];
+    _.each( reactInterpolations, ( component, k ) => {
+      _.each( arr, ( piece, i ) => {
+        if ( typeof ( piece ) === "string" ) {
+          const bits = piece.split( `{${k}}` );
+          if ( bits.length === 2 ) {
+            arr[i] = [
+              bits[0],
+              component,
+              bits[1]
+            ];
+          }
+        }
+      } );
+      arr = _.flatten( arr );
+    } );
+    return _.filter( _.flatten( arr ), i => typeof ( i ) !== "string" || i.length > 0 );
+  }
+};
+inatreact.t = inatreact.translate;
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -172,5 +222,6 @@ export {
   numberWithCommas,
   addImplicitDisagreementsToActivity,
   formattedDateTimeInTimeZone,
-  COLORS
+  COLORS,
+  inatreact
 };

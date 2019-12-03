@@ -1303,7 +1303,6 @@ en:
   # Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Faves
   Family: Family
-  faved_this_observation: faved this observation
   favorite_taxa: Favorite Taxa
   favorites: "Favorites"
   feature_this_project_: "Feature This Project"
@@ -4085,6 +4084,8 @@ en:
     one: Used 1 time
     other: Used %{count} times
   user: User
+  user1_and_user2_faved_this_observation: "%{user1} and %{user2} faved this observation"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, and %{x_others} faved this observation"
   user_added_a_comment_html: "%{user} added a comment"
   user_added_a_fave_html: "%{user} added a fave"
   user_added_a_flag_html: "%{user} added a flag"
@@ -4108,8 +4109,9 @@ en:
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
+  user_faved_this_observation: "%{user} faved this observation"
   user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
+  user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
   user_has_opted_out_of_community_id: User has opted-out of Community Taxon
   user_hasnt_joined_any_projects: "%{user} hasn't joined any projects"
   user_helped_x_people_with_y_ids_html: "%{user} helped <strong>%{x} people</strong> with <strong>%{y} IDs</strong>"

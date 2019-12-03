@@ -362,7 +362,7 @@ namespace :inaturalist do
       # Ignore an existing translations file
       next if paths_to_ignore.include?( f )
       contents = IO.read( f )
-      results = contents.scan(/(I18n|shared).t\(\s*(["'])(.*?)\2/i)
+      results = contents.scan(/(I18n|shared|inatreact).t\(\s*(["'])(.*?)\2/i)
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
       end
@@ -476,7 +476,7 @@ namespace :inaturalist do
       /^you_are_subscribed_to_/,
     ]
     model_name_patterns = Dir.glob( File.join( Rails.root, "app", "models", "*.rb" ) ).map do |path|
-      /#{File.basename( path ).split(".")[0]}/
+      /^#{File.basename( path ).split(".")[0]}$/
     end
     patterns_to_ignore += model_name_patterns
     all_keys_in_use = (get_i18n_keys_in_js + get_i18n_keys_in_rb).uniq
