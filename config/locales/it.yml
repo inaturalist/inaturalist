@@ -528,6 +528,7 @@ it:
   assessment_x: "%{assessment} valutazione"
   assessments: valutazioni
   associations: Associazioni
+  atlas_for_taxon_html: Atlante per %{taxon}
   at_time: "alle ore %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -701,6 +702,7 @@ it:
   check_list: Checklist
   check_list_description: Scegli un taxon di livello superiore da mostrare in questa lista, come "Aves" per gli uccelli, o "Amphibia" per gli anfibi. Quando è selezionato,non sarà possibile inserire nella lista dei taxa che non appartengono a questo taxon. Per esempio, se si crea un elenco di uccelli, non sarà possibile aggiungere nessuna specie di rane.
   check_list_for_individual_taxa_that: 'Checklist dei i singoli taxa che vivono qui, ad esempio, "gli Uccelli di %{place}".'
+  check_list_for_taxon_html: "Checklist di %{taxon}"
   check_lists_must_belong_to_a_place: |
     Le checklist devono appartenere a un luogo. Per creare una nuova checklist, vai alla lista predefinita di un luogo e clicca su 'Crea una nuova checklist'
   check_list_of_species_occuring_in: Checklist delle specie presenti in
@@ -779,6 +781,7 @@ it:
   comparing_observations_from: "Confronto in corso delle osservazioni di %{user} del %{dates}"
   compiled_by_name: "Compilato da %{name}"
   complete: Completo
+  complete_set_for_taxon_in_place_html: "Checklist Completa di %{taxon} in %{place}"
   completed: Completato
   completed_at: Completato in
   comprehensive: completa
@@ -1092,8 +1095,10 @@ it:
   edit_account_settings_and_profile: "Modifica impostazioni utenza e profilo"
   edit_assessment: Modifica la valutazione
   edit_atlas: Modifica Atlante
+  edit_atlas_for_taxon_html: Modifica Atlante di %{taxon}
   edit_body: Modifica il corpo
   edit_comment: Modifica il tuo commento
+  edit_complete_set_for_taxon_in_place_html: "Modifica la Lista Completa di %{taxon} in %{place}"
   edit_custom_project_fields: Modifica i campi personalizzati del progetto
   edit_field: Modifica il campo
   edit_license: Modifica la licenza
@@ -1136,6 +1141,7 @@ it:
   editing_project_asset: Modifica in corso della risorsa del progetto per
   editing_subscription_to_x_html: "Modifica in corso dell'iscrizione a %{x}"
   editing_taxon_link: Modifica in corso del link del Taxon
+  editing_taxon_name_for_taxon_html: Modifica il Nome del Taxon "%{name}" di %{taxon}
   editing_taxon_range: Modifica in corso dell'areale del Taxon
   editing_this: Modifica %{elem} in corso
   editing_x_in_y: "Modifica di %{x} in %{y} in corso"
@@ -1219,7 +1225,6 @@ it:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Preferiti
   Family: Famiglia
-  faved_this_observation: ha aggiunto ai preferiti questa osservazione
   favorite_taxa: Taxa preferiti
   favorites: "Preferiti"
   feature_this_project_: "Evidenzia questo progetto"
@@ -2004,6 +2009,11 @@ it:
   needs_id_: Serve ID
   needs_id_expandable_html: "<span class='full'>Serve </span>ID"
   needs_to_be_identified: Ha bisogno essere identificato
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, parte del Network internazionale di iNaturalist, è focalizzato sulla biodiversità e sulle persone in %{place}. Vuoi spostare l'affiliazione dell'account verso %{site_name}?
+  network_affiliation_prompt_from_other_site_html: |
+    Vuoi spostare l'affiliazione dell'account da <strong>%{other_site_name}</strong> verso
+    <strong>%{site_name}</strong>?
   new: Nuovi
   new_and_noteworthy: Novità & Di Interesse
   new_announcement: Nuovo annuncio
@@ -3855,10 +3865,18 @@ it:
     one: Usato 1 volta
     other: Usato %{count} volte
   user: Utente
+  user1_and_user2_faved_this_observation: "%{user1} e %{user2} hanno messo nei preferiti questa osservazione"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, e %{x_others} hanno messo nei preferiti questa osservazione"
+  user_added_a_comment_html: "%{user} ha aggiunto un commento"
+  user_added_a_fave_html: "%{user} ha aggiunto un preferito"
+  user_added_a_flag_html: "%{user} ha aggiunto un contrassegno"
+  user_added_a_project_invitation_html: "%{user} ha aggiunto in invito di progetto"
   user_added_a_x: "%{user} ha aggiunto una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a una %{noun} di %{by}"
   user_added_a_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
+  user_added_an_identification_html: "%{user} ha aggiunto un'identificazione"
   user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}" ad un''osservazione di %{owner}'
+  user_added_an_observation_field_value_html: "%{user} ha aggiunto un valore in un campo di un'osservazione"
   user_added_an_observation_html: "%{user} ha aggiunto una osservazione"
   user_added_an_x: "%{user} ha aggiunto una %{x}"
   user_added_an_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a %{noun} di %{by}"
@@ -3872,8 +3890,9 @@ it:
   user_disagrees_this_is_taxon: "%{user} non concorda che sia %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} non è d'accordo con le identificazioni precedenti di maggior dettaglio"
   user_faved_a_noun_by_owner: "%{user} ha messo nei preferiti %{noun} di %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} l'ha contrassegnato come uno spammer"
+  user_faved_this_observation: "%{user} ha messo nei preferiti questa osservazione"
   user_flagged_as_a_non_spammer_html: "%{user} l'ha segnato come un non-spammer"
+  user_flagged_as_a_spammer_html: "%{user} l'ha contrassegnato come uno spammer"
   user_has_opted_out_of_community_id: L'utente ha deselezionato il taxon della comunità
   user_hasnt_joined_any_projects: "%{user} non si è unito a nessun progetto"
   user_helped_x_people_with_y_ids_html: "%{user} ha aiutato strong>%{x} persone</strong> con <strong>%{y} le ID</strong>"
