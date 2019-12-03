@@ -321,7 +321,13 @@ Stats.loadRanks = function ( json ) {
   google.setOnLoadCallback( Stats.simpleChart( {
     element_id: "ranks",
     series: _.map( ranks, function ( rank ) {
-      return { label: I18n.t( "ranks." + rank, { defaultValue: rank } ) };
+      return {
+        label: I18n.t( "ranks." + rank, {
+          defaultValue: I18n.t( rank, {
+            defaultValue: rank
+          } )
+        } )
+      };
     } ),
     data: _.map( json, function ( stat ) {
       var values = _.map( ranks, function ( rank ) {
