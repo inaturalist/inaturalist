@@ -444,8 +444,12 @@ fr:
   are_you_sure_want_delete_taxon: "Êtes-vous certain de vouloir supprimer ce taxon?"
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
     Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des taxons descendants, des taxons répertoriés, des identifications et des observations.
+  are_you_sure_want_delete_taxon_identifications: |
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des identifications.
   are_you_sure_want_delete_taxon_identifications_observations: |
     Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des identifications et des observations.
+  are_you_sure_want_delete_taxon_observations: |
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des observations.
   are_you_sure_want_delete_taxon_link: Êtes-vous sûr de vouloir supprimer ce lien de taxon ?
   are_you_sure_want_delete_this_name: Êtes-vous certain de vouloir supprimer ce nom ?
   are_you_sure_want_delete_this_range: Êtes-vous certain de vouloir supprimer cette aire de répartition ?
@@ -776,6 +780,7 @@ fr:
     female: Femelle
     plant_phenology: Phénologie de la plante
     budding: Bourgeonnement
+    flower_budding: Bourgeonnement floral
     flowering: Floraison
     fruiting: Fructification
     life_stage: Stade
@@ -787,6 +792,10 @@ fr:
     larva: Larve
     egg: Oeuf
     juvenile: Juvénile
+  controlled_term_definitions:
+    flower_budding: Les bourgeons floraux sont visibles mais pas ouverts
+    flowering: Fleurs visibles, ouvertes, et encore attachées à la plante
+    fruiting: Fruit visible et toujours attaché à la plante
   controls: Contrôles
   convert: Convertir
   coordinate_systems: Systèmes des coordonnées
@@ -846,6 +855,7 @@ fr:
   creative_commons_unless_otherwise_noted: "Creative Commons, sauf mention contraire."
   critically_endangered: Gravement menacée
   css_description: Sera inclus après tous les autres CSS de la page.
+  csv: CSV
   csv_file: Fichier CSV
   csv_should_not_contain_a_header_row: Le format CSV ne doit pas contenir de ligne d’entête
   cumulative_ids: "IDs cumulés : %{count} sur %{total}"
@@ -946,6 +956,7 @@ fr:
   deleting: Suppression en cours…
   deleting_verb: Suppression
   deny: Refuser
+  desc: Desc
   descending: Descendant
   describe_purpose: Décrivez le but de ce projet.
   describe_your_interest_in_nature: Décrivez votre intérêt envers la nature!
@@ -974,6 +985,11 @@ fr:
   distance_traveled: "Distance parcourue (m)"
   documentation_for_developers_html: Documentation pour <a href="/pages/developers">les développeurs</a>
   do_not_show_this_message_again: Ne plus afficher ce message
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: |
+    Vous étudiez des nématodes ? Vous êtes le meilleur expert au monde de la taxonomie de la balane
+    ? Vous aimez juste regarder de jolies fleurs ? Remplir votre profil
+    ajoute un peu de caractère et aide à établir votre crédibilité lorsque vous 
+    aidez les gens pour leurs identifications.
   doesnt_have_default_photo: n’a pas encore de photo par défaut.
   doh_something_went_wrong: Oups, quelque chose s’est mal passé.
   doh_something_went_wrong_error: "Oh, quelque chose s’est mal passé : %{error}"
@@ -1141,7 +1157,6 @@ fr:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoris
   Family: Famille
-  faved_this_observation: mettre cette observation en favori
   favorite_taxa: Taxons favoris
   favorites: "Favoris"
   feature_this_project_: "Mettre en valeur ce projet"
@@ -2594,6 +2609,8 @@ fr:
     new_caledonia: Nouvelle Calédonie
     new_guinea: Nouvelle-Guinée
     new_zealand: Nouvelle-Zélande
+    nicaragua: Nicaragua
+    niger: Niger
     nigeria: Nigéria
     norfolk_island: Île Norfolk
     north_africa: Afrique du Nord
@@ -3655,8 +3672,8 @@ fr:
   user_disagrees_this_is_taxon: "%{user} ne pense pas que ce soit %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} est en désaccord avec les identifications précédentes plus fines"
   user_faved_a_noun_by_owner: "%{user} a mis en favori %{noun} par %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} marqué comme pollueur"
   user_flagged_as_a_non_spammer_html: "%{user} marqué comme non pollueur"
+  user_flagged_as_a_spammer_html: "%{user} marqué comme pollueur"
   user_has_opted_out_of_community_id: L’utilisateur a refusé le taxon de communauté
   user_helped_x_people_with_y_ids_html: "%{user} a aidé <strong>%{x} personne(s)</strong> avec <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: '%{user} aimerait obtenir votre observation « %{observation} » dans le projet %{project}.'
@@ -5489,6 +5506,10 @@ fr:
         frequency:
           research: Niveau de recherche
           verifiable: Vérifiable
+          "Plant Phenology=Budding": Bourgeonnement
+          "Plant Phenology=Flower Budding": Bourgeonnement floral
+          "Plant Phenology=Flowering": Floraison
+          "Plant Phenology=Fruiting": Fructification
           "Life Stage=egg": Oeuf
           "Life Stage=larva": Larve
           "Life Stage=teneral": Ténéral
@@ -6211,6 +6232,8 @@ fr:
         user_id: Auteur
       place:
         display_name: Nom public
+        latitude: Latitude
+        longitude: Longitude
         name: Nom
         parent_id: Parent
         place_type: Type de lieu
