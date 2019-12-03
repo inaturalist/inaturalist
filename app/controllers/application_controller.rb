@@ -117,6 +117,10 @@ class ApplicationController < ActionController::Base
   end
 
   def check_preferred_site
+    unless params[:test].to_s =~ /network/
+      session.delete(:potential_site)
+      return true
+    end
     return true unless flash.empty?
     return true unless current_user
     if current_user.prefers_no_site?
@@ -125,7 +129,7 @@ class ApplicationController < ActionController::Base
     end
     return true unless session[:potential_place].blank?
     if params[:test].to_s =~ /network/
-      session[:potential_site] = nil
+      session.delete(:potential_site)
       n, lat, lon = params[:test].split( "|" )
       if lat && lon
         current_user.latitude = lat.to_f
