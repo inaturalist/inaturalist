@@ -539,6 +539,7 @@ tr:
   assessment_x: "%{assessment} değerlendirmesi"
   assessments: değerlendirmeler
   associations: İlişikler
+  atlas_for_taxon_html: '%{taxon} için Atlas'
   at_time: "%{time} zamanında"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -712,6 +713,7 @@ tr:
   check_list: Kontrol listesi
   check_list_description: Kuşlar için "Aves" ya da yüzergezerler için "Yüzergezer" gibi bu listede göstermek istediğiniz daha yüksek bir sınıflandırmayı seçin. Ayarlandığında, bu liste bu sınıflandırmada olmayan sınıflara izin vermez. Örneğin, bir kuş listesi oluşturursanız, herhangi bir kurbağa ekleyemezsiniz.
   check_list_for_individual_taxa_that: 'Burada yaşayan bireysel sınıflandırmalar için kontrol listeleri ör. "%{place} Kuşları".'
+  check_list_for_taxon_html: "%{taxon} için kontrol listesi"
   check_lists_must_belong_to_a_place: |
     Kontrol listesi, alanla ilgili olmalıdır. Yeni bir kontrol listesi oluşturmak için bir yerin varsayılan kontrol listesini ziyaret edin ve 'Yeni bir kontrol listesi oluştur' bağlantısını tıklayın.
   check_list_of_species_occuring_in: Şurada oluşan kontrol listesi
@@ -790,6 +792,7 @@ tr:
   comparing_observations_from: "%{user} kullanıcısının %{dates} tarihli gözlemini karşılaştırma"
   compiled_by_name: "%{name} tarafından düzenlendi"
   complete: Tamamla
+  complete_set_for_taxon_in_place_html: "%{place}'deki %{taxon} için Tam Takım"
   completed: Tamamlandı
   completed_at: Tamamlandı
   comprehensive: kapsamlı
@@ -1103,8 +1106,10 @@ tr:
   edit_account_settings_and_profile: "Hesap ayarlarını düzenle &amp; profil"
   edit_assessment: Değerlendirmeyi Düzenle
   edit_atlas: Atlas'ı Düzenle
+  edit_atlas_for_taxon_html: '%{taxon} için Atlas''ı düzenleyin'
   edit_body: Gövdeyi düzenle
   edit_comment: Yorumunu Düzenle
+  edit_complete_set_for_taxon_in_place_html: "%{place}'deki %{taxon} için Eksiksiz Takımı Düzenleyin"
   edit_custom_project_fields: Özel Proje Alanlarını Düzenle
   edit_field: Alanı Düzenle
   edit_license: Lisansı Düzenle
@@ -1147,6 +1152,7 @@ tr:
   editing_project_asset: Şunun için Proje Varlığını Düzenleme
   editing_subscription_to_x_html: "Aboneliği %{x} olarak düzenleme"
   editing_taxon_link: Sınıflandırma Bağlantısını Düzenleme
+  editing_taxon_name_for_taxon_html: '%{taxon} için Sınıflandırma İsmi "%{name}"''i Düzenleme'
   editing_taxon_range: Sınıflandırma Aralığını Düzenleme
   editing_this: '%{elem} Düzenleme'
   editing_x_in_y: "%{y} içindeki %{x} düzenleme"
@@ -1229,7 +1235,6 @@ tr:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriler
   Family: Aile
-  faved_this_observation: bu gözlem favorilere eklendi
   favorite_taxa: Sık Kullanılan Sınıflandırmalar
   favorites: "Sık Kullanılanlar"
   feature_this_project_: "Bu Projeyi Öne Çıkar"
@@ -2454,8 +2459,7 @@ tr:
       without_observation: bir <strong>Tanımlama</strong> eklendi
     post: bir %{post_link} oluşturuldu
     comment:
-      with_by: '%{by_link} vasıtasıyla @vow_or_con{vow:an|a} %{comment_subject_link} hakkında yorum yaptı'
-      without_by: '@vow_or_con{vow:an|a} %{comment_subject_link} hakkında yorum yaptı'
+      without_by: bir {vow:an|a} %{comment_subject_link} hakkında yorum yaptı
   per_day: Günlük
   per_month: Aylık
   per_week: Haftalık
@@ -3018,6 +3022,8 @@ tr:
     infraorder: İnfra Takım
     subterclass: Gizli sınıf
     parvorder: Geçiş Takımı
+    zoosection: Zoosection
+    zoosubsection: Zoosubsection
     superfamily: Üst Aile
     epifamily: Epi Aile
     family: Aile
@@ -3869,10 +3875,18 @@ tr:
     one: 1 kez kullanıldı
     other: '%{count} kez kullanıldı'
   user: Kullanıcı
+  user1_and_user2_faved_this_observation: "%{user1} ve %{user2} bu gözlemi favorilerine ekledi"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, ve %{x_others} bu gözlemi favorilerine ekledi"
+  user_added_a_comment_html: "%{user} bir yorum ekledi"
+  user_added_a_fave_html: "%{user} bir favori ekledi"
+  user_added_a_flag_html: "%{user} bir işaret ekledi"
+  user_added_a_project_invitation_html: "%{user} bir proje daveti ekledi"
   user_added_a_x: "%{user} bir %{x} ekledi"
   user_added_a_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'a bir %{x} ekledi"
   user_added_a_x_to_noun_html: "%{user}, %{noun}'a bir %{x} ekledi"
+  user_added_an_identification_html: "%{user} bir tanımlama ekledi"
   user_added_an_observation_field_html: '%{user}, %{owner} tarafından yapılan bir gözlem için "%{field_name}" değeri ekledi'
+  user_added_an_observation_field_value_html: "%{user} bir gözlem alan değeri ekledi"
   user_added_an_observation_html: "%{user} bir gözlem ekledi"
   user_added_an_x: "%{user} bir %{x} ekledi"
   user_added_an_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'a bir %{x} ekledi"
@@ -3886,8 +3900,9 @@ tr:
   user_disagrees_this_is_taxon: "%{user} bunun %{taxon} olduğunu kabul etmiyor"
   user_disagrees_with_previous_finer_identifications: "%{user} önceki iyi tanımları kabul etmiyor"
   user_faved_a_noun_by_owner: "%{user}, %{owner} tarafından yapılan %{noun}'i favori yaptı"
-  user_flagged_as_a_spammer_html: "%{user} gereksiz içerikçi olarak işaretlendi"
+  user_faved_this_observation: "%{user} bu gözlemi favorilerine ekledi"
   user_flagged_as_a_non_spammer_html: "%{user} gereksiz işaretçi değil olarak işaretlendi"
+  user_flagged_as_a_spammer_html: "%{user} gereksiz içerikçi olarak işaretlendi"
   user_has_opted_out_of_community_id: Kullanıcı, Topluluk Sınıfı'na katılmaktan vazgeçti
   user_hasnt_joined_any_projects: "%{user} bir projeye girmedi"
   user_helped_x_people_with_y_ids_html: "%{user}, <strong>%{x} insanlara</strong> <strong>%{y} tanımlamalarıyla</strong> yardım etti"
@@ -3907,6 +3922,7 @@ tr:
   user_observed_on_on_date_in_place: |
     %{user}, %{place} yerinde %{date} tarihinde gözlemledi
   user_suggested_an_id: "%{user} bir tanımlama önerdi"
+  user_thinks_yours_is: "%{user} %{noun} sizin gözleminiz %{observation}"
   user_trusts_you_with_their_private_coordinates: "%{user} size onların gizli koordinatlarıyla güveniyor"
   user_trusts_you_with_their_private_coordinates_desc: |
     Gözlemci size tüm gözlemlerin gizli koordinatlarıyla güvenmeyi seçti.
@@ -3973,6 +3989,8 @@ tr:
   view_on: Şunun üzerinden görüntüle
   view_on_flickr: Flickr'da Görüntüle
   view_original: "Orjinali görüntüle"
+  view_original_by: "%{by} vasıtasıyla %{photo} üzerinde aslını görüntüle"
+  view_original_ccD_photo: "%{owner} tarafından paylaşılan asıl CC Lisanslı fotoğrafı göster"
   view_photos_ranges_observations_more: "Fotoğrafları, tür aralıklarını, %{site_name} gözlemlerini ve daha çoğunu görüntüle! Birçok değişik kaynaktan gelen bilgileri topladık ve her bir yerdeki her bir türün hızlı bir özeti için bunları birleştirdik."
   view_place: Yeri görüntüle
   view_post: Gönderiyi görüntüle
@@ -4441,6 +4459,8 @@ tr:
         curators_are_inat_users_who_volunteer_to_html: |
           Küratörler, sınıflandırmasal verilerimizi güncel tutmaya yardımcı olmak için gönüllü olan %{site_name} kullanıcılarıdır. Bir küratör olmakla ilgileniyorsan bizimle <a href="mailto:%{help_email}">iletişime geç</a>. Küratörler ayrıca diğer kullanıcıları da küratör düzeyine yükseltebilirler. Lütfen yalnızca güvendiğiniz ve biraz sınıflandırmasal bilgiye sahip olduğunu bildiğiniz kişileri yükseltin.
         what_is_considered_inappropriate_content?: Uygunsuz içerik nedir?
+        you_know_it_when_you_see_it_html: |
+          Onu<a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio"> gördüğün zaman biliyorsun</a>, değil mi? <a href="/terms.html">Hizmet Şartlarımızın</a> 2. Bölümünü çiğneyen şeyler kesinlikle uygun değildir ve işaretlemeye ya da yöneticileri bununla ilgili bilgilendirmeye değerdir. Daha yumuşak olan kabalık biçimleri tersliktir ancak olasılıkla sileceğimiz bir şeyler değildir. Evcil hayvanların, kısıtlanmış hayvanların, insanların ve diğer organizmaların gözlemleri çoğu doğacının ilgisini çekmeyebilir (sonuçta yaşıyorlar). Organizma olmayan şeylerin gözlemleri gri bir alandır. Doğayla ilgisi olmayan şeyler, birinin öğle yemeğinde yediği gibi, işaretlemeye değerdir ve silinebilir ancak kirlilik ya da rahatsızlık belirtisi ilginç olabilir ve olasılıkla kaldırılmayacak.
         what_is_an_observation?: Bir gözlem nedir?
         an_observation_is_the_what_where_and_when_html: |
           Bir gözlem, doğadaki bir bulgunun ne, nerede ve ne zaman olduğudur. %{site_name} bu bilgileri ilişkili metin, fotoğraf ve etiketlerle birlikte eklemek için bir yer sağlar. %{site_name} tanımlanmış türler ya da kolay anlatım açıklamaları içerip içermediklerini bakmadan tüm doğa bulgularının kaydını teşvik eder. (%{site_name} adresinde aynı kertenkele, Çöl Boynuzlu Kertenkele'nin yanı sıra &quot;Ölüm Vadisi'nin Gizemli Kertenkelesi&quot; olarak da tanımlanabilir)
@@ -4508,6 +4528,8 @@ tr:
         confirmation: |
           Emin misiniz? Bu, bu yerdeki yerlere ait TÜM listelenen sınıflandırmalar 
           için kuruluş varlığını değiştirecektir. Bir çok çalışmayı bozuyor olabilirsin.
+        description_html: |
+          Bu, sınıfın <em>tüm</em> listelerinin kuruluş varlığını <a href="%{place_url}">%{place_name}</a> yerinin bütün soyunda <strong>%{establishment_means}</strong> olarak değiştirecektir. Bu aracı yalnızca küratörler kullanabilir. Kuruluş varlığının “tanıtılmış” olarak değişimi, aşağı yukarı aynı etkiye sahip olacak ancak var olan değerleri değiştirmeyecek, yalnızca boş olanları doldurunuz.
     lists:
       new:
         place_desc: |
@@ -4667,6 +4689,7 @@ tr:
         positioning_device: Koordinatları belirlemek için kullanılan cihaz
       identify:
         review_all_tooltip: "Sayfadaki tüm gözlemleri incelendi olarak işaretle"
+        you_reviewed_message: "Bu sayfadaki %{total} eşleşen gözlemden %{pageTotal} gözlemin %{reviewed} tanesini incelediniz."
         unreview_all_tooltip: "Sayfadaki tüm gözlemler için incelendi durumunu kaldır"
         too_many_results_desc: |
           Sayfa sayısı çarpı sayfa başına sonuç sayısı 10,000'i aşamaz.
@@ -4715,6 +4738,16 @@ tr:
         allow_curator_coordinate_access_desc_html: |
           Proje sorumlularının bu gözlem için gizli koordinatları görüntülemesine izin verin.
         ancestor_disagreements_desc: "sınıflandırmanın ataları arasında olan, ancak sınıflandırmalara uymayan tanımlı sınıflandırmaların # (örn \"Sanırım cinsin içerisinde ama türüne katılmıyorum\")"
+        community_taxon_desc_html: |
+          <p class="ui">
+          Topluluk sınıfı (ya da topluluk kimliği), bir gözlemde %{site_name} topluluğunun ne düşündüğünü gösteren sınıftır. Topluluk sınıfını nasıl seçtiğimizle ilgileniyorsanız, aşağıdaki algoritma ile ilgili notlara bakın ancak genel olarak, <strong>tanımlayıcıların 2/3'ünden çoğunun aynı düşüncede olduğu bir sınıf seçmeye</strong> çalışıyoruz. Bazen bu, bazılarının katılmamakta olduğu sınıfları içeren daha yüksek düzey bir sınıfı seçmek anlamına gelir (örneğin, bunun bir kral yılanı olduğunu düşünüyorsunuz ve bence çıngıraklı yılandır, bu yüzden iNat tüm yılanları içeren Serpentes alt takımını seçer). Algoritma da hafifçe karşıt düşünceyi destekler çünkü bunların çoğu zaman doğru olduğunu tespit ettik.
+          </p>
+          <p class="ui">
+          Bir araştırma sınıfı gözleminde (diğer ölçütlerin yanı sıra) bir topluluk sınıfı bulunmalıdır. Bir gözlemde yalnızca bir kimlik varsa, topluluk sınıfına sahip olamayacaktır. En az bir tanımlama ile yapılan tüm gözlemler aynı zamanda bir gözlem sınıfına sahip olacaktır. Gözlem sınıfı, gözlemleri veri ortaklarıyla paylaşırken, aynı sınıfın gözlemlerini sayfada ilişkilendirirken, yaşam listenizi güncellerken vb. kullandığımız sınıftır. Çoğu durumda, gözlem sınıfı sonunda topluluk sınıfına ayarlanacaktır ancak bazen topluluk bir tanımlamaya karar vermeden önce farklılaşabilir. Örneğin, onun bir yılan olduğunu düşünüyorsanız (Serpentes) ve ben bunun bir kral yılanı (<i>Lampropeltis</i> cinsi) olduğunu düşünüyorum, gözlem sınıfı kral yılanı olacaktır (yalnızca benim kimliğimle desteklenir) ancak topluluk sınıfı serpentes'te olacaktır (en az iki kimlikle desteklenir). Herhangi bir nedenle topluluk sınıfına katılmıyorsanız, bunu kendi gözlemlerinizle reddedebilirsiniz, bu gözlem sınıfının hiçbir zaman (kendi tanımlamanız yerine) topluluk sınıfına ayarlanmayacağı anlamına gelir. Ayrıca, gözleminiz ancak topluluk <em>sizinle</em> aynı düşüncede olduğunda araştırma sınıfı olabilir. Topluluk sınıfının toplu düşüncesini beğenmiyorsanız, <a href="/users/edit" target="_blank">ayarlarınızı düzenleyerek</a> bunlardan bütünüyle vazgeçebilirsiniz.
+          </p>
+          <p class="ui">
+          <strong>Algoritma:</strong> tanımlanan tüm sınıflar ve bunları içeren sınıflar için (örneğin <i>Homo</i> cinsi <i>Homo sapiens</i> içerir), her birini "anlaşmaların" sayısı arasındaki oran - birikmiş kimliklerin özeti üzerinden bu sınıf için birikmiş kimliklerin toplamı, 'anlaşmazlıklar' - tamamen değişik olan kimliklerin sayısı (örn. puanlanan sınıfı içermeyen sınıfların kimlikleri) ve 'soy anlaşmazlıkları' - daha iyi sınıfları kabul etmeyen daha tutucu kimliklerin sayısı - olarak puanla. 2/3'ü aşan ve en az 2 kimliği olan belirlenmiş sınıflar için en düşük düzeyli sınıfı seçin.
+          </p>
         cumulative_count_desc: 'bir sınıflandırma ve onun soyundan gelenler için tanımlamaların #'
         curator_coordinate_access_disabled_desc_html: |
           Bu proje, proje sorumlularının göremediği koordinatlarla gözlemlere izin vermiyor. 
@@ -4833,6 +4866,9 @@ tr:
         success_message: |
           %{filename} toplu içe aktarmanız başarılı oldu. Gözlemleriniz şimdi 
           işleniyor ve yakında internet sitesinde olacak.
+      bulk_import_error:
+        taxon_spelling_notice_html: |
+          Lütfen her giriş için yazım denetimi yapın. Yazımınız doğruysa, %{search_taxa_url} adresindeki türleri arayın. Ad henüz %{site_name} veri tabanında yoksa toplu yüklemenizin çalışabilmesi için önce onu eklemeniz gerekir. Yeni adları içe aktarmak için arama sayfasının altındaki kutuyu kullanın. Ad varsa ancak birden çok geçerli sınıf içinse, yalnızca tek bir sınıfla eşleşen az çok belirgin bir ad kullanmaya çalışın.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Gözlem dışa aktarımınız hazır. 
@@ -4987,6 +5023,9 @@ tr:
           Çocuğunuz daha sonra, iNaturalist.org sitesinde görülmeleri için Seek uygulamasını kullanarak,
           iNaturalist hesabına gözlemler gönderebilir.
           </p>
+      users_updates_suspended:
+        message: |
+          %{site_name}'te bir süredir etkin değilsiniz, bu yüzden aboneliklerinizi askıya aldık. Sayfa etkinliğiyle ilgili güncellemeler almayı sürdürmek için lütfen yeniden <a href="%{login_url}">hesabınıza giriş yapın</a>.
     photos:
       forbidden_notice_html: |
         Şu anda bu fotoğraflara erişim iznimiz yok. Bize ek izinler vermek için 
@@ -5028,9 +5067,13 @@ tr:
       project_type: Proje Türü
       collection: Toplama
       umbrella: Şemsiye
+      tracks_multiple_projects: birçok projeyi takip eder
       projects_included: Dahil Olan Projeler
       collection_and_umbrellas_do_not_support: |
         Toplama ve şemsiye projeleri şu anda gizli koordinatlara erişimi desteklemiyor.
+      curator_coordinate_access_desc_html: |
+        Unutmayın, <strong>proje küratörleri gözlemlerinizden herhangi birini projelerine ekleyebilirler</strong> ancak <a
+        href="/users/edit">hesap ayarlarından vazgeçmedikçe</a>. Bu projeye eklenebilecek gözlemlerinizle ilgili gizli koordinatlarınızı görüntüleyecek proje küratörlerine güveniyorsanız, bu kutuyu işaretleyin. Onlara bu izni vermemeyi seçersen hâlâ gözlem bazında gizli koordinatlara erişime izin verebilirsin.
       confirm_leave:
         what_would_you_like: |
           Bu projedeki gözlemleriniz ile ne yapmak istersiniz?
@@ -5446,6 +5489,8 @@ tr:
           <a href="https://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki bilgi.
           <br/>
           <a href="%{url}">Tüm %{numStudies} çalışmaları görüntüleyin</a>
+        sunburst_desc_html: |
+          Hiyerarşik bir "güneş" diyagramı olarak düzenlenen gözlemlenen sınıflar. Hiyerarşinin tabanı merkezdedir, "Yaşam" ile başlayıp dış kenarlardaki türlerle bitiyor. Her yayın boyutu, bu sınıfın gözlem sayısı ile orantılıdır ve renkler aşağı yukarı her zamanki "ikonik" sınıf renklerimizle aynıdır (bitkiler için yeşil, böcekler için turuncu, diğer birçok hayvan için mavi vb.), böylece çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğiniz anlamına gelir. <strong>Merkezdeki sınıfı ve onun çevresindeki alt sınıfları yerleştirmek için yaya tıklayın</strong> ya da <strong>hiyerarşiyi yukarı taşımak için merkeze tıklayın</strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -5462,6 +5507,16 @@ tr:
           içeriyorsa, ama bütün türünü içermiyorsa, bu "cins" olarak ayarlanacaktır. 
           Varsayılan türdür.
       show:
+        about_names_desc: |
+          <p>
+          Çoğu organizma kategorisinin konuşulan dillerde "genel adları" vardır. Bu adlar genellikle tanınabilir, söylenmesi kolay ve zaman içinde aynı kalır ancak birçok organizmanın değişik yerlerde hatta aynı dilde bile bu organizmalarla ilgili karışıklık olmadan iletişimini zorlaştırabilen birkaç değişik adı vardır. Bilim insanları, <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biyolojik terminoloji</a> kurallarına uyan her organizma kategorisi için tek bir "bilimsel ad" kullanarak bu sorunu çözüyorlar ancak bu adlar kimsenin konuşamadığı bir dil olan Latince'ye dayanmaktadır, bu yüzden birçok insan için genel adlar kadar akılda kalıcı değillerdir. Bilimsel adlar aynı zamanda bir organizmanın sınıflandırmasal yerleşimini yansıtabilir, böylece bilim adamları değişik organizmalar arasındaki evrimsel ilişkilerle ilgili daha doğru kuramlar geliştirdiklerinde bu adlar değişebilirler ve yine bilimsel adları bilen insanlar arasında bile iletişimdeki yararlarını azaltırlar.
+          </p>
+          <p>
+          Eski atasözü şöyle özetliyor: "Genel adlar yerden yere değişiyor ve bilimsel adlar zaman zaman değişiyor."
+          </p>
+          <p>
+          Olanaklı olan yerlerde hem genel hem de bilimsel adlar göstererek ve görüntüleyen kişinin dil ve coğrafi seçimlerine göre genel adlar seçerek bu eksiklikleri gidermeye çalışıyoruz.
+          </p>
         about_conservation_status_desc: |
           Koruma durumu, bir grup organizmanın neslinin tükenme durumunu özetlemektedir.
         about_establishment_desc: |
@@ -5490,6 +5545,12 @@ tr:
           gözlemleyen kişi sayısı tarafından önyargılıdır, ancak gözlemlerde olağandışı ani artışlar 
           gösterecektir ve artan sayıda gözlemciye rağmen düz veya azalan görünüyorsa, 
           bu bollukta bir değişiklik önerebilir.
+        charts_help_other: |
+          Ayrıca açıklamalar için mevsimsellik çizelgeleri de gösteriyoruz. Açıklamalar, kontrol edilmiş terimler sözlüğü kullanarak gözlemlere meta veri eklemek için yeni bir sistemdir. Şimdiye kadar yalnızca “Yaşam Evresi” ve “Bitki Fenolojisi”ni kullanıyoruz (bitki çiçek açarken ya da meyve verirken). Doğrudan açıklama ekleme yolumuz henüz yok, bu yüzden şimdilik verileri gözlem alanlarından açıklamalara dönüştürüyoruz. Açıklama sistemimizi oluşturmamızı bekleyemezsen, şu değerlerden herhangi birine sahip olan gözlem alanı değerlerini ekleyerek "Yaşam Evresi" açıklamalarına katkıda bulunabilirsiniz: Yetişkin, Teneral, Pupa, Nimfa, Larva, Yumurta ya da Genç. Bu nedenle özellikle "Yaşam Evresi" ve "Böcek Yaşam Evresi" alanları iyidir. "Bitki Fenolojisi" için, adında "fenoloji" sözcüğünü ve değer olarak "çiçek" ya da "meyve" olan herhangi bir alana bakıyoruz, bu yüzden "Çiçekli Fenoloji" alanını kullanmak en iyisidir.
+        charts_help_relative_observations: |
+          Sıklığı, tüm gözlemlerin ilişkili bir oranı olarak göstermek, sayfanın genel büyümesinin etkisini düzeltmeye yardımcı olur. Örneğin, her geçen yıl daha çok gözlem yaptıkça sayfa büyüyorsa, bireysel sınıflara ilişkin daha çok gözlem ediniriz; bu, gözlemlemek için bu sınıfın daha çok olup olmadığıyla ilgili hiçbir şey söylemez yalnızca bunu gözlemleyen daha çok insan olduğunu anlatır. İlişkili oranın gösterilmesi, toplam 100 gözlem varsa ancak bu sınıfın 20 gözlemi varsa, oranın 0,2 (20/100) olduğu anlamına gelir. İnsanlar gelecek yıl 2000 gözlem yaparsa ve bu sınıfın 400 gözlemi olursa, oran hâlâ 0,2'dir (400/2000). Bu, bir alanda çok az sayıda gözlemci varken ya da nadiren gözlemlenen sınıflar için bazı sapmalara neden olur ancak toplam sayımlar için de geçerlidir.
+        complete_taxon_desc: |
+          "Tam" sınıflar, sitenin veri tabanında var olan ve belirli bir sıralamaya özgü olup, soyundan gelen bütün sınıflara sahiptir. Bir sınıf, türler için tamamlandığında, örneğin, türlerinin kaç tanesinin gözlendiğini ve kaç tanesinin gözlenmesi gerektiğini söyleyebiliriz. Türlere tamamlanan "tam" sınıflar için tür sayıları, soyu tükenmiş türler ya da etkin olmayan türler kavramları gibi "sayılamayan" türler içermez ve bunlar yalnızca türleri içerir, alt türler ya da varyeteleri gibi infraspesifik sınıfları içermez.
         discoveries_desc: "Bu sınıflandırmada en yeni tanımlanan türler"
         frequency:
           research: Araştırma Sınıfı
@@ -5755,6 +5816,8 @@ tr:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Sınıflandırmaların gözlemleri veya abone olduğum yerlerden yapılan gözlemler
         opt_in_to_map_tile_test: Harita döşeme testine katılın
+        opt_in_to_map_tile_test_description: |
+          Bu teste girmeye karar vermek, görünüm uzaklaştırıldığında yayılım haritaları için yeni ızgara tabanlı harita karoları göreceğin anlamına gelir. Bu ızgaralar sunucularımızda daha az yük oluşturur, bunlar, iNaturalist büyürken daha hızlı olmalı ve gözlem yoğunluğunu daha iyi göstermelidir. Sonunda bu değişimi sayfa genelinde yapmayı umuyoruz. Forumdaki geri bildirimlerini duymak isteriz.
         opt_out_of_map_tile_test: Harita döşeme testinden çıkın
         place_preference_changed_notice_html: |
           Yer tercihi değişti. Fikrinizi değiştirirseniz, her zaman
@@ -5863,6 +5926,8 @@ tr:
           Çünkü siz bir iNaturalist bağışçısısınız, kimliğinizi doğrulamak için mevcut bağışınızı kullanabildik.
     welcome:
       index:
+        welcome_message_html: |
+          %{image}, doğada gördüğünü <strong>kaydedebileceğin</strong>, diğer doğa severlerle <strong>tanışabileceğin</strong> ve doğal dünyayı <strong>öğrenebileceğin</strong> yerdir.
         connect_with_nature: Doğa ile Bağ Kurun
         explore_and_share: Gözlemlerinizi doğal dünyadan keşfedin ve paylaşın.
         observations_to_date: 'Tarihe göre Gözlemler'
