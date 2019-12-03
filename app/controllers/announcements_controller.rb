@@ -1,7 +1,7 @@
 class AnnouncementsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :site_admin_required
-  before_filter :load_announcement, :only => [:show, :edit, :update, :destroy]
+  before_filter :site_admin_required, except: [:dismiss]
+  before_filter :load_announcement, :only => [:show, :edit, :update, :destroy, :dismiss]
   before_filter :load_sites, only: [:new, :edit, :create]
 
   layout "bootstrap"
@@ -65,6 +65,17 @@ class AnnouncementsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(announcements_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  def dismiss
+    unless @announcement.dismiss_user_ids.include?( current_user.id )
+      @announcement.dismiss_user_ids << current_user.id
+    end
+    @announcement.save!
+    respond_to do |format|
+      format.any { head :ok }
+      format.html { redirect_back_or_default( dashboard_path ) }
     end
   end
   

@@ -140,7 +140,11 @@ Rails.application.routes.draw do
   get '/wikimedia_commons/photo_fields' => 'wikimedia_commons#photo_fields'
   post '/facebook' => 'facebook#index'
   
-  resources :announcements
+  resources :announcements do
+    member do
+      put :dismiss
+    end
+  end
   get '/users/dashboard' => 'users#dashboard', :as => :dashboard
   get '/users/curation' => 'users#curation', :as => :curate_users
   get '/users/updates_count' => 'users#updates_count', :as => :updates_count

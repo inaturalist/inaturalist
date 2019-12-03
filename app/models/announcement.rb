@@ -21,6 +21,13 @@ class Announcement < ActiveRecord::Base
     self.locales = ( locales || [] ).reject(&:blank?).compact
   end
 
+  def dismissed_by?( user )
+    return false unless dismissable?
+    user_id = user.id if user.is_a?( User )
+    user_id = user_id.to_i
+    dismiss_user_ids.include?( user_id )
+  end
+
   def self.active_in_placement( placement, site )
     scope = Announcement.
       joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id").
