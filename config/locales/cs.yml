@@ -945,7 +945,6 @@ cs:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Oblíbené
   Family: čeleď
-  faved_this_observation: toto pozorování bylo přidáno k oblíbeným
   favorite_taxa: oblíbené taxony
   favorites: "Oblíbené"
   feature_this_project_: "Znaky toho projektu"
@@ -3255,8 +3254,8 @@ cs:
   user_commented_on: "Uživatel %{user} okomentoval váš %{title} %{time}"
   user_disagrees_this_is_taxon: "Uživatel %{user} nesouhlasí s tím, že toto je %{taxon}"
   user_faved_a_noun_by_owner: "Uživatel %{user} označený jako oblíbený %{noun} %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} označen jako spammer"
   user_flagged_as_a_non_spammer_html: "%{user} označen jako nespammer"
+  user_flagged_as_a_spammer_html: "%{user} označen jako spammer"
   user_has_opted_out_of_community_id: Uživatel se rozhodl nepoužít komunitní ID
   user_helped_x_people_with_y_ids_html: "%{user} pomoci <strong>%{x} lidé</strong> s <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: 'Uživatel %{user} by rád připojil vaše pozorování „%{observation}“ k projektu %{project}.'
