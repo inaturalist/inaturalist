@@ -1136,6 +1136,7 @@ es:
   editing_project_asset: Modificando activos del proyecto para
   editing_subscription_to_x_html: "Editando suscripción para %{x}"
   editing_taxon_link: Modificando vínculo del taxón
+  editing_taxon_name_for_taxon_html: Editando el nombre "%{name}" para el taxón %{taxon}
   editing_taxon_range: Modificando área del taxón
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
@@ -1218,7 +1219,6 @@ es:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritos
   Family: Familia
-  faved_this_observation: ha agregado esta observación a sus favoritos
   favorite_taxa: Taxones favoritos
   favorites: "Favoritos"
   feature_this_project_: "Presenta este proyecto"
@@ -2000,6 +2000,13 @@ es:
   needs_id_: '¡Necesita identificación!'
   needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
   needs_to_be_identified: Necesita identificarse
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, parte de la red internacional iNaturalist
+    se centra en la biodiversidad y personas en %{place}. ¿Quieres cambiar tu afiliación de tu cuenta de
+    de iNaturalist.org a %{site_name}?
+  network_affiliation_prompt_from_other_site_html: |
+    ¿Quieres cambiar tu afiliación de <strong>%{other_site_name}</strong> a
+    <strong>%{site_name}</strong>?
   new: Nuevo
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
@@ -3858,9 +3865,13 @@ es:
     one: Utilizado 1 vez
     other: Utilizado %{count} veces
   user: Usuario
+  user1_and_user2_faved_this_observation: "%{user1} y %{user2} añadieron esta observación a sus favoritos"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, y %{x_others} añadieron esta observación a sus favoritos"
+  user_added_a_comment_html: "%{user} añadió un comentario"
   user_added_a_x: "%{user} añadió una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} de %{by}"
   user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
+  user_added_an_identification_html: "%{user} añadió una identificación"
   user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}" a una observación de %{owner}'
   user_added_an_observation_html: "%{user} añadió una observación"
   user_added_an_x: "%{user} añadió un %{x}"
@@ -3875,8 +3886,9 @@ es:
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
   user_faved_a_noun_by_owner: "%{user} ha marcado como favorito %{noun} por %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
+  user_faved_this_observation: "%{user} añadió esta observación a sus favoritos"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
+  user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
   user_has_opted_out_of_community_id: El usuario ha rechazado la Taxón de la Comunidad
   user_hasnt_joined_any_projects: "%{user} no se ha unido a ningún proyecto"
   user_helped_x_people_with_y_ids_html: "%{user} ayudó a <strong>%{x} usuarios</strong> con <strong>%{y} IDs</strong>"
