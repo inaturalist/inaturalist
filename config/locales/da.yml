@@ -527,6 +527,7 @@ da:
   assessment_x: "%{assessment} vurdering"
   assessments: vurderinger
   associations: Foreninger
+  atlas_for_taxon_html: Atlas for %{taxon}
   at_time: "ved %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -700,6 +701,7 @@ da:
   check_list: Tjekliste
   check_list_description: Vælg en takson på et højere niveau som du vil vise på denne liste, som "Aves" for fugle eller "Amphibia" for padder. Når den først er indstillet, tillader denne liste ikke taksa, der ikke er i denne takson. Hvis du f.eks. opretter en liste over fugle, vil du ikke kunne tilføje nogle frøer til den.
   check_list_for_individual_taxa_that: 'Tjeklister for individuelle taksa, der lever her, f.eks. "Fugle i %{place}".'
+  check_list_for_taxon_html: "Tjekliste for %{taxon}"
   check_lists_must_belong_to_a_place: |
     Tjeklister skal tilhøre et sted. For at oprette en ny tjekliste, besøg
     stedets standardtjekliste og klik på linket "Opret en ny tjekliste".
@@ -780,6 +782,7 @@ da:
   comparing_observations_from: "Sammenligner %{user} observationer fra %{dates}"
   compiled_by_name: "Samlet af %{name}"
   complete: Fuldendt
+  complete_set_for_taxon_in_place_html: "Komplet sæt for %{taxon} i %{place}"
   completed: Fuldført
   completed_at: Fuldført den
   comprehensive: omfattende
@@ -1098,8 +1101,10 @@ da:
   edit_account_settings_and_profile: "Redigér kontoindstillinger &amp; profil"
   edit_assessment: Redigér vurdering
   edit_atlas: Redigér atlas
+  edit_atlas_for_taxon_html: Redigér Atlas for %{taxon}
   edit_body: Redigér indhold
   edit_comment: Redigér din kommentar
+  edit_complete_set_for_taxon_in_place_html: "Redigér Komplete sæt for %{taxon} i %{place}"
   edit_custom_project_fields: Redigér brugerdefinerede projektfelter
   edit_field: Redigér felt
   edit_license: Redigér licens
@@ -1142,6 +1147,7 @@ da:
   editing_project_asset: Redigering af projektvurderinger for
   editing_subscription_to_x_html: "Redigerer abonnement på %{x}"
   editing_taxon_link: Redigering af takson link
+  editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
   editing_taxon_range: Redigering af takson område
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
@@ -1225,7 +1231,6 @@ da:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: '"Synes godt om"'
   Family: Familie
-  faved_this_observation: gjorde denne observation til favorit
   favorite_taxa: favorit taksa
   favorites: "Favoritter"
   feature_this_project_: "Fremhæv dette projekt"
@@ -2016,6 +2021,13 @@ da:
   needs_id_: Behøver ID
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
   needs_to_be_identified: Behøver en identifikation
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, en del af det internationale iNaturalist
+    Network, er fokuseret på biodiversitet og folk i %{place}. Ønsker du at skifte din
+    kontotilknytning fra iNaturalist.org til %{site_name}?
+  network_affiliation_prompt_from_other_site_html: |
+    Ønsker du at skifte din tilknytning fra <strong>%{other_site_name}</strong> til
+    <strong>%{site_name}</strong>?
   new: Ny
   new_and_noteworthy: Nyt og bemærkelsesværdigt
   new_announcement: Ny meddelelse
@@ -3921,10 +3933,16 @@ da:
     one: brugt 1 gang
     other: Brugt %{count} gange
   user: Bruger
+  user_added_a_comment_html: "%{user} tilføjede en kommentar"
+  user_added_a_fave_html: "%{user} tilføjede en favorit"
+  user_added_a_flag_html: "%{user} tilføjede en flag"
+  user_added_a_project_invitation_html: "%{user} tilføjede en projektinvitation"
   user_added_a_x: "%{user} tilføjede en %{x}"
   user_added_a_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
   user_added_a_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
+  user_added_an_identification_html: "%{user} tilføjede en identifikation"
   user_added_an_observation_field_html: '%{user} tilføjede en værdi i "%{field_name}" til en observation af %{owner}'
+  user_added_an_observation_field_value_html: "%{user} tilføjede en observationsfeltværdi"
   user_added_an_observation_html: "%{user} tilføjede en observation"
   user_added_an_x: "%{user} tilføjede en %{x}"
   user_added_an_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
@@ -3938,8 +3956,8 @@ da:
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   user_faved_a_noun_by_owner: "%{user} synes godt om %{noun} af %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
+  user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
   user_has_opted_out_of_community_id: Bruger har afmeldt sig fællesskabs ID
   user_hasnt_joined_any_projects: "%{user} er ikke tilmeldt noget projekt"
   user_helped_x_people_with_y_ids_html: "%{user} hjalp <strong>%{x} personer</strong> med <strong>%{y} IDs</strong>"
