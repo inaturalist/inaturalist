@@ -776,8 +776,8 @@ es:
   comparing_list_to_list: "Comparando %{list1} con %{list2}"
   comparing_versions_x_and_y: "Comparando las versiones %{x} y %{y}"
   comparing_observations_from: "Comparando las observaciones de %{user} en %{dates}"
-  complete: Completo
   compiled_by_name: "Compilado por %{name}"
+  complete: Completo
   completed: Completado
   completed_at: Completado en
   comprehensive: completa
@@ -797,7 +797,7 @@ es:
   connecting_flickr: "Conectándose a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr de nuevo para autorizar el permiso de escritura
   connecting_to_facebook: "Conectándose a Facebook..."
-  connecting_your_inat_account_to_accounts_other_sites: "El conectar tu cuenta de %{site_name} con cuentas en otros sitios te permitirá ingresar a %{site_name} usando tus credenciales de esos sitios."
+  connecting_your_inat_account_to_accounts_other_sites: "Al conectar tu cuenta de %{site_name} con cuentas de otros sitios podrás ingresar en %{site_name} usando tus credenciales de esos sitios."
   conservation_status: Categoría de riesgo
   conservation_status_descriptions:
     status: Estatus, clasificación, etc. Si existe una abreviatura corta como E o CR, por favor úsala, de lo contrario, usa el estatus completo, ej. En peligro de extinción.
@@ -834,7 +834,7 @@ es:
     budding: En germinación
     flower_budding: Yemas Florales
     flowering: Floración
-    fruiting: Fructificacón
+    fruiting: Fructificación
     life_stage: Etapa de vida
     adult: Adulto
     teneral: Imago tierno
@@ -1136,7 +1136,7 @@ es:
   editing_project_asset: Modificando activos del proyecto para
   editing_subscription_to_x_html: "Editando suscripción para %{x}"
   editing_taxon_link: Modificando vínculo del taxón
-  editing_taxon_name: Modificando nombre del taxón
+  editing_taxon_name_for_taxon_html: Editando el nombre "%{name}" para el taxón %{taxon}
   editing_taxon_range: Modificando área del taxón
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
@@ -1216,10 +1216,9 @@ es:
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
   'false': 'No'
-  fave: favorito
-  faves: Preferidos
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: Favoritos
   Family: Familia
-  faved_this_observation: diga que le agrada este observación
   favorite_taxa: Taxones favoritos
   favorites: "Favoritos"
   feature_this_project_: "Presenta este proyecto"
@@ -1339,7 +1338,6 @@ es:
   following_x_people:
     one: 'Siguiendo 1 persona'
     other: 'Siguiendo %{count} personas'
-  for: para
   for_a_taxon: de un taxón
   formatting: Creando formato
   forgot_your_password: '¿Olvidaste tu contraseña?'
@@ -1499,7 +1497,7 @@ es:
   if_this_is_a_scientific_name: Si este es un nombre científico, ¿está aceptado actualmente?
   if_this_link_will_apply_to_descendant: Si este vínculo se aplicará a los taxones descendientes, puedes usar tus plantillas de etiquetas para llenar el nombre del taxón en la URL
   if_you_have_any_trouble_with_the_site_check_out: 'Si tienes alguna duda con el sitio, por favor revise nuestra <a href="%{help_url}">sección de ayuda</a> o escribe un mensaje a nuestro <a href="%{feedback_url}">grupo de participación</a>.'
-  if_your_project_is: Si tu proyecto es acerca de un lugar especifico, añade las coordenadas seleccionando el enlace del mapa o añadelas manualmente.
+  if_your_project_is: Si tu proyecto se refiere a un lugar especifico, añade las coordenadas apuntando el lugar en el mapa o introduciéndolas manualmente.
   ignore: Ignora
   ignore_and_continue: Ignora y continúa
   ignore_times: Ignora los tiempos
@@ -1513,7 +1511,7 @@ es:
   import_from_csv: Importa de CSV
   import_from_other_photo_sites: Importa desde otros sitios de fotos
   import_observations: Importa observaciones
-  import_observations_from_a_photo: Importa observaciones de un proveedor de fotos o de un archivo en tu computadora.
+  import_observations_from_a_photo: Importa observaciones de un proveedor de fotos o de un archivo de tu ordenador.
   import_photos: Importa fotos
   import_ranges: Importa distribuciones
   import_sections: Importa secciones
@@ -1550,7 +1548,7 @@ es:
   internal_taxon_including_descendants: Taxón interno (incluyendo descendientes)
   internal_taxon_rank: Rango de taxón interno
   introduced: Introducida
-  introduced_in_place: "Introducción en %{place}"
+  introduced_in_place: "Introducida en %{place}"
   invitation: Invitación
   invite: invitar
   invite_more: Invitar más gente
@@ -1631,7 +1629,7 @@ es:
   learn_more_raquo: "Saber más &raquo;"
   learn_what_these_licenses_mean: Aprende lo que estas licencias significan
   least_concern: Preocupación menor
-  leave: Deja
+  leave: Abandonar
   leave_a_comment: Deja un comentario
   leave_this_project: Sal de este proyecto
   leaves: hojas
@@ -2002,6 +2000,13 @@ es:
   needs_id_: '¡Necesita identificación!'
   needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
   needs_to_be_identified: Necesita identificarse
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, parte de la red internacional iNaturalist
+    se centra en la biodiversidad y personas en %{place}. ¿Quieres cambiar tu afiliación de tu cuenta de
+    de iNaturalist.org a %{site_name}?
+  network_affiliation_prompt_from_other_site_html: |
+    ¿Quieres cambiar tu afiliación de <strong>%{other_site_name}</strong> a
+    <strong>%{site_name}</strong>?
   new: Nuevo
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
@@ -2085,7 +2090,7 @@ es:
   no_members_yet: "No hay miembros todavía"
   no_messages_yet: Ningún mensaje aún
   no_misidentifications_yet: Ninguna identificación errónea
-  no_more_mail_from_site: "¿No desea recibir más correos del sitio de %{site_name}? Edita tu configuración de Correo en"
+  no_more_mail_from_site: "¿No deseas recibir más correos de %{site_name}? Edita tu configuración de correo electrónico en"
   no_more_taxa_to_load: No hay más taxones que cargar.
   no_more_results_found: No hay más resultados
   no_new_messages: No hay nuevos mensajes
@@ -2359,10 +2364,11 @@ es:
   optional: opcional
   optional_columns_note_for_any: "Columnas opcionales (nota: para cualquiera de estas columnas sean utilizadas en una observación, todas deben estar presentes)"
   or: o
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: o
   or_choose_high_level_taxa: "... o seleccione de algunos taxones de alto nivel"
   or_if_you_dont_want_email: "O si no quieres ningún correo electrónico..."
-  or_log_in_with_colon: "o inicia con:"
   or_upload: O descarga el
   orange: naranja
   order: Orden
@@ -3278,7 +3284,7 @@ es:
   showing_x_of_y_listings: "Mostrando %{x} de %{y} listados"
   sign_in: Acceder
   sign_in_with_provider: "Ingresa con %{provider}"
-  sign_up_with_provider: "Ingresa con %{provider}"
+  sign_in_with_google: Iniciar sesión con Google
   sign_out: Salir
   sign_up: Crear una cuenta
   similar_species: Especies similares
@@ -3677,7 +3683,6 @@ es:
   third_person_possessive_plural: "%{object_phrase} del  %{noun}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
-  this_is_a: Esta es una
   this_is_a_cached_summary_based_on: Este es un resumen en caché de este taxón con base en su
   this_is_a_life_list_of: Esta es una lista de vida de
   this_is_a_life_list_from_place_html: "Esta es la lista de vida de %{place}"
@@ -3767,7 +3772,7 @@ es:
   type_source_name: Nombre de la fuente
   type_source_title: "Título del tipo de fuente..."
   type_species_name: "Digitar el nombre de la especie..."
-  type_taxon_name: "Digite el nombre del taxón"
+  type_taxon_name: "Escriba el nombre del taxón"
   uicn_red_list_status: "Estado de la Lista Roja de UICN"
   umbrella_projects: Proyectos paraguas
   unblock: Desbloquear
@@ -3860,9 +3865,13 @@ es:
     one: Utilizado 1 vez
     other: Utilizado %{count} veces
   user: Usuario
+  user1_and_user2_faved_this_observation: "%{user1} y %{user2} añadieron esta observación a sus favoritos"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, y %{x_others} añadieron esta observación a sus favoritos"
+  user_added_a_comment_html: "%{user} añadió un comentario"
   user_added_a_x: "%{user} añadió una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} de %{by}"
   user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
+  user_added_an_identification_html: "%{user} añadió una identificación"
   user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}" a una observación de %{owner}'
   user_added_an_observation_html: "%{user} añadió una observación"
   user_added_an_x: "%{user} añadió un %{x}"
@@ -3876,9 +3885,10 @@ es:
   user_commented_on: "%{user} comentó sobre tu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
-  user_faved_a_noun_by_owner: "%{user} preferido %{noun} por %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
+  user_faved_a_noun_by_owner: "%{user} ha marcado como favorito %{noun} por %{owner}"
+  user_faved_this_observation: "%{user} añadió esta observación a sus favoritos"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
+  user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
   user_has_opted_out_of_community_id: El usuario ha rechazado la Taxón de la Comunidad
   user_hasnt_joined_any_projects: "%{user} no se ha unido a ningún proyecto"
   user_helped_x_people_with_y_ids_html: "%{user} ayudó a <strong>%{x} usuarios</strong> con <strong>%{y} IDs</strong>"
@@ -3920,7 +3930,7 @@ es:
   verbing_x_of_y: "%{verb} %{x} de %{y}..."
   verifiable_observations_by_observation_date: Observaciones verificables por fecha de observación
   view: Ver
-  view_all: Ve todo
+  view_all: Ver todas
   view_all_flags: Ver Todas las Marcas
   view_all_members: Ve todos los miembros
   view_all_n: "Ve todas las %{n}"
@@ -3953,7 +3963,7 @@ es:
   view_more_observations_of_x_taxon: "Ver más observaciones de %{taxon} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Ver más sin revisar"
   view_observation: Ve observación
-  view_observations: Ve observaciones
+  view_observations: Ver observaciones
   view_observation_flags: Ver marcas de observación
   view_observations_by_everyone: Ver las observaciones de todos
   view_observations_by_these_users: Ver observaciones de estos usuarios
@@ -4114,7 +4124,7 @@ es:
     Parece que no está conectado. Por favor vuelva a intentarlo cuando esté conectado a Internet.
   youre_a_site_curator_which_means: |
     Eres un curador del sitio, lo que significa que eres voluntario para ayudar a curar los datos y monitorear el contenido del mismo. Por favor no te sientas obligado con todo lo que esto implica, pero si tienes tiempo de revisar algunos contenidos de antemano lo apreciamos. Si tienes alguna duda, comentario o simplemente ya no quieres ser un curador, contáctanos en %{email}
-  you_are_over_your_invites_quota: '… ya has enviado más de 60 invitaciones este mes'
+  you_are_over_your_invites_quota: '… has superado el límite mensual de 60 invitaciones'
   you_are_now: Estas
   you_are_now_following_x: "Estas siguiendo a %{friend_user}."
   you_are_now_the_admin_for_project_html: |
@@ -4254,19 +4264,6 @@ es:
             Si es así, por favor lee nuestra<a href="%{url}">guía para profesores</a> para sugerencias en la utilización de %{site_name} con estudiantes.
     donate:
       donate_short_desc: "¡Haz una donación ahora para mostrar tu apoyo!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist Es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de ella!</strong>
-        </p>
-        <p class="lead">
-        Si tu crees en la fuerza de esta comunidad global de amantes de la naturaleza que comparte conocimiento y genera datos de biodiversidad irremplazables, por favor considera hacer una donación única o recurrente.
-        </p>
-        <p class="lead">
-        Tu donación ayuda a apoyar iNaturalist a medida que la comunidad crece, incluyendo el avance de la visión computarizada y la implantación de nuevas caraterísticas, y el apoyo a nuestros servidores y personal.
-        </p>
-        <p class="text-muted">
-        iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la Sociedad de National Geographic. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización 501(c)(3), sin ánimo de lucro, exenta de impuestos con sede en los Estados Unidos de América.
-        </p>
       post_donate_social_media_text: Apoyo iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértase en un Patrocinador Mensual de Naturalista.
@@ -5177,12 +5174,12 @@ es:
         traditional_projects_cannot_be_copied: El proyecto tradicional no se puede copiar.
         umbrella_project_features: "Características de un proyecto paraguas:"
         unique_url_for_outreach: URL único para promoción
-        users_can_follow_your_project: Los usuarios pueden seguir actualizaciones de tu  proyecto para actualizaciones vía el sitio del journal
+        users_can_follow_your_project: Los usuarios pueden seguir actualizaciones de tu proyecto a través de publicaciones en el diario
         use_this_link_to_create_html: |
           Usa <a href="%{url}">este enlace</a> para crear un proyecto tradicional.
         visual_comparison_of_data_among: Comparaciones visuales de datos entre proyectos del paraguas
         we_have_redesigned_projects: |
-          Los proyectos están diseñados para incluir automáticamente todas las observaciones que se ajusten a los lugares, taxones, usuarios, calidad y fechas que usted defina. Elija entre dos tipos principales: Proyectos de colección y Proyectos generales, que comparten las siguientes características:
+          Los proyectos están diseñados para incluir automáticamente todas las observaciones que se ajusten a los lugares, taxones, usuarios, calidad y fechas que tu definas. Elije entre dos tipos principales: proyectos de colección o proyectos paraguas, que comparten las siguientes características:
         welcome_to_projects: '¡Te damos la bienvenida a los proyectos!'
         you_can_learn_more_html: |
           Puede obtener más información sobre la gestión de proyectos.

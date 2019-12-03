@@ -553,8 +553,8 @@ cs:
   comparing_list_to_list: "Srovnání seznamů %{list1} s %{list2}"
   comparing_versions_x_and_y: "Porovnání verzí %{x} a %{y}"
   comparing_observations_from: "Porovnání pozorování uživatele %{user} z %{dates}"
-  complete: Dokončit
   compiled_by_name: "Sestavil uživatel %{name}"
+  complete: Dokončit
   completed: Dokončeno
   completed_at: Dokončeno u
   comprehensive: komplexní
@@ -864,7 +864,6 @@ cs:
   editing_project_asset: Editování položky projektu pro
   editing_subscription_to_x_html: "Editovat přihlášení k %{x}"
   editing_taxon_link: Editování odkazu na taxon
-  editing_taxon_name: Editování názvu taxonu
   editing_taxon_range: Editování rozsahu taxonu
   editing_this: Editování %{elem}
   editing_x_in_y: "Editování %{x} v %{y}"
@@ -943,10 +942,9 @@ cs:
   failed_to_repair_photo: "Oprava fotky se nezdařila: %{errors}"
   failed_to_save_record: "Nelze uložit záznam. Prosím, zkuste to znovu o chvíli později."
   'false': 'Nepravda'
-  fave: přidat k oblíbeným
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Oblíbené
   Family: čeleď
-  faved_this_observation: toto pozorování bylo přidáno k oblíbeným
   favorite_taxa: oblíbené taxony
   favorites: "Oblíbené"
   feature_this_project_: "Znaky toho projektu"
@@ -1041,7 +1039,6 @@ cs:
   followed_projects: Sledované projekty
   followers: Sledovatelé
   following: sledující
-  for: pro
   for_a_taxon: pro taxon
   formatting: Formátování
   forgot_your_password: Zapomněli jste heslo?
@@ -1950,10 +1947,11 @@ cs:
   optional: nepovinné
   optional_columns_note_for_any: "Nepovinné sloupce (poznámka: aby mohly být tyto sloupce použity pro pozorování, musí být všechny přítomné)"
   or: nebo
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: NEBO
   or_choose_high_level_taxa: "... nebo vybrat z taxonů vyšší úrovně"
   or_if_you_dont_want_email: "Nebo pokud nechcete žádné e-maily..."
-  or_log_in_with_colon: "Nebo se přihlaste pomocí:"
   or_upload: Nebo nahrát
   orange: oranžový
   order: Řadit
@@ -2753,7 +2751,6 @@ cs:
   showing_x_of_y_listings: "Zobrazeno %{x} z %{y} záznamů"
   sign_in: Přihlásit se
   sign_in_with_provider: "Přihlásit se přes %{provider}"
-  sign_up_with_provider: "Přihlásit se přes %{provider}"
   sign_out: Odhlásit se
   sign_up: Zaregistrovat se
   similar_species: Podobné druhy
@@ -3078,7 +3075,6 @@ cs:
   third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: tento
   this_bioblitz_beings_in: Tento bioblitz začíná v
-  this_is_a: Toto je
   this_is_a_cached_summary_based_on: Toto je skrytý přehled tohoto taxonu podle
   this_is_a_life_list_of: Toto je seznam života
   this_is_a_life_list_from_place_html: "Toto je seznam života z %{place}"
@@ -3258,8 +3254,8 @@ cs:
   user_commented_on: "Uživatel %{user} okomentoval váš %{title} %{time}"
   user_disagrees_this_is_taxon: "Uživatel %{user} nesouhlasí s tím, že toto je %{taxon}"
   user_faved_a_noun_by_owner: "Uživatel %{user} označený jako oblíbený %{noun} %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} označen jako spammer"
   user_flagged_as_a_non_spammer_html: "%{user} označen jako nespammer"
+  user_flagged_as_a_spammer_html: "%{user} označen jako spammer"
   user_has_opted_out_of_community_id: Uživatel se rozhodl nepoužít komunitní ID
   user_helped_x_people_with_y_ids_html: "%{user} pomoci <strong>%{x} lidé</strong> s <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: 'Uživatel %{user} by rád připojil vaše pozorování „%{observation}“ k projektu %{project}.'

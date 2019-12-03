@@ -329,6 +329,7 @@ he:
   assessment_x: "אומדן %{assessment}"
   assessments: אומדנים
   associations: שיוכים
+  atlas_for_taxon_html: אטלס %{taxon}
   at_time: "ב־%{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -493,6 +494,7 @@ he:
   check_list: רשימת מינים
   check_list_description: בחרו טקסון ברמה גבוהה יותר שברצונכם להציג ברשימה, למשל "ציפורים" עבור עופות, או "צפרדע" עבור דו־חיים. לאחר מכן, הרשימה הזו לא תקבל טקסונים שאינם שייכים לקבוצה. לדוגמה, אם תיצרו רשימה של ציפורים, לא תוכלו להוסיף אליה צפרדעים.
   check_list_for_individual_taxa_that: 'רשימות בדיקה של טקסונים ייחודים שחיים במקום הזה, למשל "עופות של %{place}".'
+  check_list_for_taxon_html: "רשימת מינים של %{taxon}"
   check_lists_must_belong_to_a_place: |
     רשימות בדיקה חייבות להיות שייכות למקום. כדי ליצור רשימת בדיקה חדשה, יש להיכנס לרשימת ברירת המחדל של המקום הרצוי ולאחר מכן ללחוץ על הקישור "יצירת רשימת בדיקה חדשה".
   check_list_of_species_occuring_in: רשימת המינים של מינים הנמצאים ב
@@ -813,6 +815,7 @@ he:
   edit_a_batch_of_observations: עריכת תצפיות מרובות
   edit_assessment: עריכת האומדן
   edit_atlas: ערוך אטלס
+  edit_atlas_for_taxon_html: לעריכת אטלס %{taxon}
   edit_body: ערוך תוכן
   edit_comment: עריכת תגובתך
   edit_custom_project_fields: עריכת שדות פרויקט מותאמים אישית
@@ -852,7 +855,6 @@ he:
   editing_project: עריכת %{project}
   editing_subscription_to_x_html: "עריכת מנוי של %{x}"
   editing_taxon_link: עריכת קישור טקסון
-  editing_taxon_name: עריכת שם טקסון
   editing_this: עריכת %{elem}
   editing_x_in_y: "עריכת %{x}ב%{y}"
   editors: עורכים
@@ -909,10 +911,9 @@ he:
   failed_to_find_your_location: לא ניתן למצוא את מיקומך
   failed_to_repair_photo: "לא ניתן היה לתקן את התמונה: %{errors}"
   failed_to_save_record: "לא ניתן היה לשמור את הרישום. נא לנסות שוב מאוחר יותר."
-  fave: מועדפים
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: מועדף
   Family: משפחה
-  faved_this_observation: תצפית זו סומנה כמועדפת
   favorite_taxa: קבוצת אורגניזמים אהובה
   favorites: "מועדפים"
   feature_this_project_: "הצגת פרוייקט זה"
@@ -996,7 +997,6 @@ he:
   follow_user: "לעקוב אחרי %{user}"
   followers: עוקבים
   following: עוקב אחרי
-  for: עבור
   for_a_taxon: עבור טקסון
   formatting: עיצוב
   forgot_your_password: שכחת את ססמתך?
@@ -1478,6 +1478,10 @@ he:
   needs_id: צריך זיהוי
   needs_id_: צריך זיהוי
   needs_to_be_identified: יש צורך בזיהוי
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, כחלק מרשת איי-נטוראליסט העולמית, מחבר בין מגוון מינים ואנשים ב %{place}. האם תרצו לשנות את שיוך החשבון שלכם מ iNaturalist.org ל %{site_name}?
+  network_affiliation_prompt_from_other_site_html: |
+    האם ברצונך לשנות את השיוך שלך מ <strong>%{other_site_name}</strong> ל <strong>%{site_name}</strong>?
   new: חדש
   new_and_noteworthy: חדש ומעניין
   new_announcement: הודעה חדשה
@@ -1767,6 +1771,8 @@ he:
   open_street_map: OpenStreetMap
   optional: אופציונלי
   or: או
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: או
   or_choose_high_level_taxa: "...או שניתן לבחור מרמה טקסונית גבוהה יותר"
   orange: כתום
@@ -2463,7 +2469,6 @@ he:
   showing_x_of_y: מראה %{x} מ %{y}
   sign_in: כניסה
   sign_in_with_provider: "כניסה באמצעות %{provider}"
-  sign_up_with_provider: "הרשמה באמצעות %{provider}"
   sign_out: התנתקות
   sign_up: הרשמה
   similar_species: מינים דומים
@@ -2649,7 +2654,6 @@ he:
   they_have_been_invited: ... כבר הוזמנו
   this: זה
   this_bioblitz_beings_in: הביובליץ מתחיל ב
-  this_is_a: זהו
   this_is_a_life_list_of: זוהי רשימת חיים של
   this_is_a_life_list_from_place_html: "זוהי רשימת חיים מ%{place}"
   this_is_a_life_list_of_taxon_in_place: "זוהי רשימת חיים של %{taxon} מ%{place}"
@@ -2741,7 +2745,12 @@ he:
   US_states: מדינות ארה"ב
   usage_stats: סטטיסטיקות שימוש
   user: משתמש
+  user1_and_user2_faved_this_observation: "%{user1} ו%{user2} אהבו תצפית זו"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, ו %{x_others} אהבו תצפית זו"
+  user_added_a_comment_html: "הערה הוספה על ידי %{user}"
+  user_added_a_flag_html: "הודעה סומנה על ידי %{user}"
   user_added_a_x: "%{user} הוסיף/ה %{x}"
+  user_added_an_observation_field_value_html: "ערך בשדה תצפית הוסף על ידי %{user}"
   user_added_an_observation_html: "%{user}העלה תצפית"
   user_added_an_x: "%{user} הוסיף/ה %{x}"
   user_added_x_observations_html: "%{user} הוסיף %{x} תצפיות"
@@ -2751,6 +2760,7 @@ he:
   user_commented_on: "%{user} העיר על %{title}%{time} שלך"
   user_disagrees_this_is_taxon: "%{user} אינו מסכים שזה %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} אינו מסכים עם הפרטים הקטנים הקודמים"
+  user_faved_this_observation: "%{user} אהב/ה תצפית זו"
   user_hasnt_joined_any_projects: "%{user} טרם הצטרף/ה לאף פרויקט"
   user_helped_x_people_with_y_ids_html: "%{user} עזר/ה <strong>ל%{x} אנשים </strong> עם <strong> %{y} זיהויים</strong>"
   user_invited_you_to_join_html: "הוזמנת להצטרף על ידי %{user}"

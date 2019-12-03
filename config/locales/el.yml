@@ -850,7 +850,6 @@ el:
   editing_project: Επεξεργασία %{project}
   editing_subscription_to_x_html: "Επεξεργασία συνδρομής σε %{x}"
   editing_taxon_link: Επεξεργασία συνδέσμου taxon
-  editing_taxon_name: Επεξεργασία ονομασίας taxon
   editing_taxon_range: Επεξεργασία κατανομής taxon
   editors: Συντάκτες
   either: Είτε
@@ -904,6 +903,7 @@ el:
   failed_to_repair_photo: "Η επισκευή της φωτογραφίας απέτυχε: %{errors}"
   failed_to_save_record: "Η αποθήκευση της εγγραφής απέτυχε. Παρακαλώ προσπαθήστε πάλι αργότερα."
   'false': 'Ψευδές'
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Αγαπημένα
   Family: Οικογένεια
   favorite_taxa: Αγαπημένα Taxa
@@ -967,7 +967,6 @@ el:
   followed_projects: Ακολουθούμενα πρότζεκτ
   followers: Ακόλουθοι
   following: Ακολουθεί
-  for: για
   for_a_taxon: για ένα taxon
   formatting: Μορφοποίηση
   forgot_your_password: Ξεχάσατε τον κωδικό σας;
@@ -1657,7 +1656,6 @@ el:
   open_description: "Ο καθένας μπορεί να δει τις συντεταγμένες εκτός και αν το taxon είναι απειλούμενο."
   optional: προαιρετικό
   or: ή
-  or_log_in_with_colon: "Η συνδεθείτε με:"
   or_upload: Ή μεταφορτώστε
   orange: Πορτοκαλί
   order: Σειρά
@@ -2348,7 +2346,6 @@ el:
   showing_taxa_from_place: "Εμφανίζοντας taxa από %{place}"
   sign_in: Συνδεθείτε
   sign_in_with_provider: "Συνδεθείτε με τον %{provider}"
-  sign_up_with_provider: "Εγγραφή με %{provider}"
   sign_out: Έξοδος
   sign_up: Εγγραφή
   similar_species: Παρόμοια είδη

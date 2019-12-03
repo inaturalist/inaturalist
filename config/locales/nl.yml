@@ -242,9 +242,9 @@ nl:
   add_one_now: Voeg er nu één toe
   add_photos: Foto's toevoegen
   add_place: Plaats toevoegen
-  add_alive_or_dead_alive_annotation: 'Voeg aantekening "Dood of levend: levend" toe'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Voeg aantekening "Dood of levend: kan niet worden vastgesteld" toe'
-  add_alive_or_dead_dead_annotation: 'Voeg aantekening "Dood of levend: dood" toe'
+  add_alive_or_dead_alive_annotation: 'Voeg aantekening "Levend of dood: levend" toe'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Voeg aantekening "Levend of dood: kan niet worden vastgesteld" toe'
+  add_alive_or_dead_dead_annotation: 'Voeg aantekening "Levend of dood: dood" toe'
   add_plant_phenology_budding_annotation: 'Voeg "Plantenfenologie: Knopvormend" aantekening toe'
   add_plant_phenology_flower_budding_annotation: 'Voeg aantekening "Plantenfenologie: bloemknoppen" toe'
   add_plant_phenology_flowering_annotation: 'Voeg "Plantenfenologie: Bloeiend" aantekening toe'
@@ -540,6 +540,7 @@ nl:
   assessment_x: "%{assessment} beoordeling"
   assessments: beoordelingen
   associations: Koppelingen
+  atlas_for_taxon_html: Atlas voor %{taxon}
   at_time: "om %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -791,8 +792,8 @@ nl:
   comparing_list_to_list: "%{list1} met %{list2} aan het vergelijken"
   comparing_versions_x_and_y: "Versies %{x} en %{y} vergelijken"
   comparing_observations_from: "Vergelijken van %{user} waarnemingen van %{dates}"
-  complete: Afgerond
   compiled_by_name: "Gecompileerd door %{name}"
+  complete: Afgerond
   completed: Voltooid
   completed_at: Voltooid op
   comprehensive: uitgebreid
@@ -859,7 +860,7 @@ nl:
     larva: Larve
     egg: Ei
     juvenile: Juveniel
-    alive_or_dead: Dood of levend
+    alive_or_dead: Levend of dood
     alive: Levend
     dead: Dood
     cannot_be_determined: Kan niet worden vastgesteld
@@ -1151,7 +1152,6 @@ nl:
   editing_project_asset: Projectbestand bewerken voor
   editing_subscription_to_x_html: "Abonnement op %{x} bewerken"
   editing_taxon_link: Taxonkoppeling bewerken
-  editing_taxon_name: Taxonnaam bewerken
   editing_taxon_range: Taxonreeks bewerken
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
@@ -1231,10 +1231,9 @@ nl:
   failed_to_repair_photo: "Foto herstellen niet geslaagd: %{errors}"
   failed_to_save_record: "Fout bij het opslaan van gegevens. Probeer het later opnieuw."
   'false': 'Onwaar'
-  fave: favoriet
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorieten
   Family: Familie
-  faved_this_observation: heeft/hebben deze waarneming aan favorieten toegevoegd
   favorite_taxa: Favoriete taxa
   favorites: "Favorieten"
   feature_this_project_: "Dit project aanbevelen"
@@ -1359,7 +1358,6 @@ nl:
   following_x_people:
     one: 'Volgt 1 Persoon'
     other: 'Volgt %{count} Personen'
-  for: voor
   for_a_taxon: voor een taxon
   formatting: Opmaak
   forgot_your_password: Je wachtwoord vergeten?
@@ -2028,6 +2026,12 @@ nl:
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
   needs_to_be_identified: Moet worden gedetermineerd
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, deel van het internationale iNaturalist
+    netwerk, is gericht op biodiversiteit en mensen in %{place}. Wilt je je account affiliatie van iNaturalist.org naar %{site_name} wijzigen?
+  network_affiliation_prompt_from_other_site_html: |
+    Wil je je affiliatie veranderen van <strong>%{other_site_name}</strong> naar
+    <strong>%{site_name}</strong>?
   new: Nieuw
   new_and_noteworthy: Nieuw & opmerkelijk
   new_announcement: Nieuwe aankondiging
@@ -2400,10 +2404,11 @@ nl:
   optional: optioneel
   optional_columns_note_for_any: "Optionele kolommen (opmerking: als een van deze kolommen bij een waarneming moeten worden gebruikt, dan moeten ze allemaal aanwezig zijn)"
   or: of
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: OF
   or_choose_high_level_taxa: "... of kies wat taxa van een hoger niveau"
   or_if_you_dont_want_email: "Of als je gewoon helemaal geen e-mail wilt..."
-  or_log_in_with_colon: "Of log in met:"
   or_upload: Of upload
   orange: oranje
   order: Sorteer
@@ -3324,7 +3329,7 @@ nl:
   showing_x_of_y_listings: "Toon %{x} van %{y} vermeldingen"
   sign_in: Aanmelden
   sign_in_with_provider: "Log in met %{provider}"
-  sign_up_with_provider: "Aanmelden via %{provider}"
+  sign_in_with_google: Inloggen met Google
   sign_out: Afmelden
   sign_up: Registreren
   similar_species: Gelijkende soorten
@@ -3730,7 +3735,6 @@ nl:
   third_person_possessive_plural: "%{noun} van %{object_phrase}"
   this: deze
   this_bioblitz_beings_in: Deze bioblitz begint over
-  this_is_a: Dit is een
   this_is_a_cached_summary_based_on: Dit is een gecachte samenvatting van dit taxon op basis van zijn
   this_is_a_life_list_of: Dit is een levenslijst van
   this_is_a_life_list_from_place_html: "Dit is een levenslijst uit %{place}"
@@ -3932,8 +3936,8 @@ nl:
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
   user_faved_a_noun_by_owner: "%{user} maakte favoriet %{noun} door %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} gemeld als een spammer"
   user_flagged_as_a_non_spammer_html: "%{user} gemarkeerd als een niet-spammer"
+  user_flagged_as_a_spammer_html: "%{user} gemeld als een spammer"
   user_has_opted_out_of_community_id: Gebruiker heeft het gemeenschapstaxon uitgezet
   user_hasnt_joined_any_projects: "%{user} neemt niet deel aan enig project"
   user_helped_x_people_with_y_ids_html: "%{user} hielpen <strong>%{x} mensen</strong> met <strong>%{y} determinaties</strong>"
@@ -4318,13 +4322,14 @@ nl:
         <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
         </p>
         <p class="lead">
-        Als je gelooft in de kracht van deze wereldwijde gemeenschap van natuurliefhebbers die kennis delen en onvervangbare biodiversiteitsdata genereren, overweeg dan een eenmalige of vaste donatie.
+        Als je gelooft in de kracht van deze wereldwijde gemeenschap van natuurliefhebbers die kennis delen en onvervangbare biodiversiteitsdata genereren, overweeg dan een eenmalige of vaste donatie, of zie <a
+        href="https://www.inaturalist.org/pages/giving">andere manieren om te geven</a>.
         </p>
         <p class="lead">
         Met jouw donatie steun je iNaturalist en help je de gemeenschap groeien, de toepassing van geavanceerde technologie zoals Computer Vision bevorderen en het implementeren van nieuwe functies ter ondersteuning onze gebruikers, servers en personeel.
         </p>
         <p class="text-muted">
-        iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'.</p>
+        iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V.S. (Tax ID: 94-1156258).</p>
       post_donate_social_media_text: Ik ondersteun iNaturalist omdat...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van iNaturalist
@@ -4665,7 +4670,7 @@ nl:
       copy_tip: "Voeg een nieuwe waarneming toe door de datum, plaats, foto's en waarnemingsvelden van deze waarneming te kopiëren."
       captive_help_html: |
         Was het organisme <strong>gecultiveerd</strong> of
-        <strong>in gevangenschap</strong>? Was het bijvoorbeeld in een <strong>tuin, dierentuin, aquarium</strong> of een andere situatie waarin het alleen aanwezig was <strong>omdat mensen het ernaartoe hebben gebracht</strong>? Alle gegevens van levende wezens zijn welkom, maar we willen graag weten wanneer de dingen niet wild / genaturaliseerd zijn.
+        <strong>in gevangenschap</strong>? Bevond het zich bijvoorbeeld in een <strong>tuin, dierentuin, aquarium</strong> of een andere situatie waarin het alleen aanwezig was <strong>omdat mensen het daar wilden hebben</strong>? Alle waarnemingen van levende wezens zijn welkom, maar we willen graag weten wanneer dingen niet wild / genaturaliseerd zijn.
       compare:
         about_missing_taxa: Over ontbrekende taxa
         about_total_taxa: "Over taxa in totaal"

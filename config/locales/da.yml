@@ -527,6 +527,7 @@ da:
   assessment_x: "%{assessment} vurdering"
   assessments: vurderinger
   associations: Foreninger
+  atlas_for_taxon_html: Atlas for %{taxon}
   at_time: "ved %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -700,6 +701,7 @@ da:
   check_list: Tjekliste
   check_list_description: Vælg en takson på et højere niveau som du vil vise på denne liste, som "Aves" for fugle eller "Amphibia" for padder. Når den først er indstillet, tillader denne liste ikke taksa, der ikke er i denne takson. Hvis du f.eks. opretter en liste over fugle, vil du ikke kunne tilføje nogle frøer til den.
   check_list_for_individual_taxa_that: 'Tjeklister for individuelle taksa, der lever her, f.eks. "Fugle i %{place}".'
+  check_list_for_taxon_html: "Tjekliste for %{taxon}"
   check_lists_must_belong_to_a_place: |
     Tjeklister skal tilhøre et sted. For at oprette en ny tjekliste, besøg
     stedets standardtjekliste og klik på linket "Opret en ny tjekliste".
@@ -778,8 +780,9 @@ da:
   comparing_list_to_list: "Sammenligner %{list1} med %{list2}"
   comparing_versions_x_and_y: "Sammenligner versioner %{x} og %{y}"
   comparing_observations_from: "Sammenligner %{user} observationer fra %{dates}"
-  complete: Fuldendt
   compiled_by_name: "Samlet af %{name}"
+  complete: Fuldendt
+  complete_set_for_taxon_in_place_html: "Komplet sæt for %{taxon} i %{place}"
   completed: Fuldført
   completed_at: Fuldført den
   comprehensive: omfattende
@@ -1061,7 +1064,7 @@ da:
   doh_something_went_wrong_error: "Øhhh, noget gik galt: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate: DONÈR
+  donate: DONÉR
   done: Udført
   dont_have_an_account_sign_up_html: Har du ikke en konto?  <strong>Opret konto.</strong>
   dont_send_me_email: "Send mig ikke nogen e-mail!"
@@ -1098,8 +1101,10 @@ da:
   edit_account_settings_and_profile: "Redigér kontoindstillinger &amp; profil"
   edit_assessment: Redigér vurdering
   edit_atlas: Redigér atlas
+  edit_atlas_for_taxon_html: Redigér Atlas for %{taxon}
   edit_body: Redigér indhold
   edit_comment: Redigér din kommentar
+  edit_complete_set_for_taxon_in_place_html: "Redigér Komplete sæt for %{taxon} i %{place}"
   edit_custom_project_fields: Redigér brugerdefinerede projektfelter
   edit_field: Redigér felt
   edit_license: Redigér licens
@@ -1142,7 +1147,7 @@ da:
   editing_project_asset: Redigering af projektvurderinger for
   editing_subscription_to_x_html: "Redigerer abonnement på %{x}"
   editing_taxon_link: Redigering af takson link
-  editing_taxon_name: Redigering af takson navn
+  editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
   editing_taxon_range: Redigering af takson område
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
@@ -1223,10 +1228,9 @@ da:
   failed_to_repair_photo: "Kunne ikke reparere foto: %{errors}"
   failed_to_save_record: "Kunne ikke gemme registreringen. Prøv igen senere."
   'false': 'Falsk'
-  fave: favorit
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: '"Synes godt om"'
   Family: Familie
-  faved_this_observation: gjorde denne observation til favorit
   favorite_taxa: favorit taksa
   favorites: "Favoritter"
   feature_this_project_: "Fremhæv dette projekt"
@@ -1352,7 +1356,6 @@ da:
   following_x_people:
     one: 'Følger 1 person'
     other: 'Følger %{count} personer'
-  for: til
   for_a_taxon: for en takson
   formatting: Formatering
   forgot_your_password: Glemt din adgangskode?
@@ -2018,6 +2021,13 @@ da:
   needs_id_: Behøver ID
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
   needs_to_be_identified: Behøver en identifikation
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, en del af det internationale iNaturalist
+    Network, er fokuseret på biodiversitet og folk i %{place}. Ønsker du at skifte din
+    kontotilknytning fra iNaturalist.org til %{site_name}?
+  network_affiliation_prompt_from_other_site_html: |
+    Ønsker du at skifte din tilknytning fra <strong>%{other_site_name}</strong> til
+    <strong>%{site_name}</strong>?
   new: Ny
   new_and_noteworthy: Nyt og bemærkelsesværdigt
   new_announcement: Ny meddelelse
@@ -2386,10 +2396,11 @@ da:
   optional: valgfri
   optional_columns_note_for_any: "Valgfrie kolonner (Bemærk: for brug af enhver af disse kolonner, der skal bruges til en observation, skal de alle være til stede)"
   or: eller
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller vælg fra et højere taksa niveau"
   or_if_you_dont_want_email: "Eller hvis du bare ikke vil have nogen e-mail ..."
-  or_log_in_with_colon: "Eller log ind med:"
   or_upload: Eller upload
   orange: orange
   order: Orden
@@ -3314,7 +3325,7 @@ da:
   showing_x_of_y_listings: "Viser %{x} af %{y} lister"
   sign_in: Log ind
   sign_in_with_provider: "Log ind med %{provider}"
-  sign_up_with_provider: "Opret dig med %{provider}"
+  sign_in_with_google: Log ind med Google
   sign_out: Log ud
   sign_up: Tilmeld dig
   similar_species: Lignende arter
@@ -3462,7 +3473,7 @@ da:
   stuff_just_added: "Ting du lige har tilføjet ..."
   subject_resolved_noun_html: "%{subject} løst %{noun}"
   subject_affecting_stuff_html: "%{subject} påvirker %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} påførte @vow_or_con{vow:an|a} %{thing} påvirker %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} oprettede @gender{n:et|en} %{thing} der påvirker %{stuff}"
   submission_model: Registreringsmodel
   submission_model_description: Hvem kan tilføje observationer til dit projekt?
   submit_observations:
@@ -3735,7 +3746,6 @@ da:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
-  this_is_a: Dette er en
   this_is_a_cached_summary_based_on: Dette er en cachelagret oversigt over denne takson baseret på dens
   this_is_a_life_list_of: Dette er en livsliste for
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
@@ -3923,10 +3933,16 @@ da:
     one: brugt 1 gang
     other: Brugt %{count} gange
   user: Bruger
+  user_added_a_comment_html: "%{user} tilføjede en kommentar"
+  user_added_a_fave_html: "%{user} tilføjede en favorit"
+  user_added_a_flag_html: "%{user} tilføjede en flag"
+  user_added_a_project_invitation_html: "%{user} tilføjede en projektinvitation"
   user_added_a_x: "%{user} tilføjede en %{x}"
   user_added_a_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
   user_added_a_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
+  user_added_an_identification_html: "%{user} tilføjede en identifikation"
   user_added_an_observation_field_html: '%{user} tilføjede en værdi i "%{field_name}" til en observation af %{owner}'
+  user_added_an_observation_field_value_html: "%{user} tilføjede en observationsfeltværdi"
   user_added_an_observation_html: "%{user} tilføjede en observation"
   user_added_an_x: "%{user} tilføjede en %{x}"
   user_added_an_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
@@ -3940,8 +3956,8 @@ da:
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   user_faved_a_noun_by_owner: "%{user} synes godt om %{noun} af %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
+  user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
   user_has_opted_out_of_community_id: Bruger har afmeldt sig fællesskabs ID
   user_hasnt_joined_any_projects: "%{user} er ikke tilmeldt noget projekt"
   user_helped_x_people_with_y_ids_html: "%{user} hjalp <strong>%{x} personer</strong> med <strong>%{y} IDs</strong>"
@@ -4326,25 +4342,6 @@ da:
             tips til at bruge %{site_name} med studerende.
     donate:
       donate_short_desc: "Donér nu for at vise din støtte!"
-      donate_desc_html: |
-        <p class="lead">
-           <strong> iNaturalist er et af verdens største fællesskaber, som er dedikeret til
-           udforske biodiversitet. Tak for at du er en del af det!</strong>
-        </p>
-        <p class="lead">
-           Hvis du tror på styrken i dette globale fællesskab af naturelskere,
-           som deler viden og skaber uerstattelige biodiversitets data,
-           Overvej venligst en engangs- eller en tilbagevendende donation.
-        </p>
-        <p class="lead">
-           Din donation hjælper med at støtte iNaturalist efterhånden som fællesskabet vokser, lige  fra at forbedre det visuelle på computerskærmen til at implementere nye funktioner, som understøtter vores servere og medarbejdere.
-        </p>
-        <p class="text-muted">
-           iNaturalist er et fælles initiativ fra California Academy of Sciences
-           og National Geographic Society. Alle donationer vil blive modtaget af
-           California Academy of Sciences, en 501 (c) (3) skattefritaget nonprofit
-           organisation med base i USA.
-        </p>
       post_donate_social_media_text: Jeg støtter iNaturalist fordi...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bliv en månedlig supporter af iNaturalist

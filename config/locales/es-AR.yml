@@ -752,8 +752,8 @@ es-AR:
   comparing_list_to_list: "Comparando %{list1} con %{list2}"
   comparing_versions_x_and_y: "Comparando las versiones %{x} y %{y}"
   comparing_observations_from: "Comparando las observaciones de %{user} en %{dates}"
-  complete: Completo
   compiled_by_name: "Compilado por %{name}"
+  complete: Completo
   completed: Completado
   completed_at: Completado en
   comprehensive: completa
@@ -1100,7 +1100,6 @@ es-AR:
   editing_project_asset: Modificando activos del proyecto para
   editing_subscription_to_x_html: "Editando suscripción para %{x}"
   editing_taxon_link: Modificando vínculo del taxón
-  editing_taxon_name: Modificando nombre del taxón
   editing_taxon_range: Modificando área del taxón
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
@@ -1180,10 +1179,9 @@ es-AR:
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
   'false': 'No'
-  fave: favorito
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritos
   Family: Familia
-  faved_this_observation: diga que le agrada este observación
   favorite_taxa: Taxones favoritos
   favorites: "Favoritos"
   feature_this_project_: "Presenta este proyecto"
@@ -1309,7 +1307,6 @@ es-AR:
   following_x_people:
     one: 'Siguiendo 1 persona'
     other: 'Siguiendo %{count} personas'
-  for: para
   for_a_taxon: de un taxón
   formatting: Creando formato
   forgot_your_password: '¿Olvidaste tu contraseña?'
@@ -2334,10 +2331,11 @@ es-AR:
   optional: opcional
   optional_columns_note_for_any: "Columnas opcionales (nota: para cualquiera de estas columnas sean utilizadas en una observación, todas deben estar presentes)"
   or: o
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: o
   or_choose_high_level_taxa: "... o seleccione de algunos taxones de alto nivel"
   or_if_you_dont_want_email: "O si no quieres ningún correo electrónico..."
-  or_log_in_with_colon: "o inicia con:"
   or_upload: O descarga el
   orange: naranja
   order: Orden
@@ -3053,7 +3051,7 @@ es-AR:
   reload_from_observations: Volver a cargar sus observaciones
   reload_timed_out: 'El tiempo de carga expiró.  Por favor trate de nuevo en un momento.'
   remarks_optional: 'Comentarios <span class="small description">(opcionales)</span>'
-  remember_me: Recuérdeme
+  remember_me: Recordarme
   remove: Quitar
   remove_all_tags: Retire todas las etiquetas
   remove_boundary: Quitar límites
@@ -3255,7 +3253,6 @@ es-AR:
   showing_x_of_y_listings: "Mostrando %{x} de %{y} listados"
   sign_in: Acceder
   sign_in_with_provider: "Ingresa con %{provider}"
-  sign_up_with_provider: "Ingresa con %{provider}"
   sign_out: Salir
   sign_up: Crear una cuenta
   similar_species: Especies similares
@@ -3651,7 +3648,6 @@ es-AR:
   third_person_possessive_plural: "%{object_phrase} del  %{noun}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
-  this_is_a: Esta es una
   this_is_a_cached_summary_based_on: Este es un resumen en caché de este taxón con base en su
   this_is_a_life_list_of: Esta es una lista de vida de
   this_is_a_life_list_from_place_html: "Esta es la lista de vida de %{place}"
@@ -3851,8 +3847,8 @@ es-AR:
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
   user_faved_a_noun_by_owner: "%{user} marcó como favorito %{noun} por %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
+  user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
   user_has_opted_out_of_community_id: El usuario ha rechazado la Taxón de la Comunidad
   user_hasnt_joined_any_projects: "%{user} no se ha unido a ningún proyecto"
   user_helped_x_people_with_y_ids_html: "%{user} ayudó a <strong>%{x} usuarios</strong> con <strong>%{y} IDs</strong>"
@@ -4232,19 +4228,6 @@ es-AR:
             Si es así, por favor lee nuestra <a href="%{url}">guía para profesores</a> para sugerencias en la utilización de %{site_name} con estudiantes.
     donate:
       donate_short_desc: "¡Haz una donación ahora para mostrar tu apoyo!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist Es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de ella!</strong>
-        </p>
-        <p class="lead">
-        Si tu crees en la fuerza de esta comunidad global de amantes de la naturaleza que comparte conocimiento y genera datos de biodiversidad irremplazables, por favor considera hacer una donación única o recurrente.
-        </p>
-        <p class="lead">
-        Tu donación ayuda a apoyar iNaturalist a medida que la comunidad crece, incluyendo el avance de la visión computarizada y la implantación de nuevas caraterísticas, y el apoyo a nuestros servidores y personal.
-        </p>
-        <p class="text-muted">
-        iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la Sociedad de National Geographic. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización 501(c)(3), sin ánimo de lucro, exenta de impuestos con sede en los Estados Unidos de América.
-        </p>
       post_donate_social_media_text: Apoyo iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértase en un Patrocinador Mensual de Naturalista.

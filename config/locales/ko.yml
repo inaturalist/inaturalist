@@ -94,7 +94,7 @@ ko:
   acc: '정확도 (m)'
   account: 계정
   account_creation: 계정 만들기
-  account_settings: 계정 설정
+  account_settings: 프로필 설정
   accept: 승인
   accept_community_identifications: 공동체 동정 승인
   accuracy: 정확성
@@ -201,7 +201,7 @@ ko:
     <a target="%{target}" class="%{class}" href="%{url}">분류군 분리</a>로 인하여 변경됨
   added_as_a_part_of_a_taxon_swap_html: |
     <a target="%{target}" class="%{class}" href="%{url}">분류군 교체</a>로 인하여 변경됨
-  added_by: 추가함
+  added_by: 추가한 사용자
   added_by_user_on_date_html: "%{date}에 %{user}님이 추가함"
   added_on: 추가됨
   added_to_favorites_html: |
@@ -812,7 +812,7 @@ ko:
   drag_and_drop_some_photos_or_sounds: 사진이나 소리를 끌어서 놓으십시오
   edit: 편지
   edit_a_batch_of_observations: 관찰 모음 편집
-  edit_account_settings_and_profile: "계정 설정 편집"
+  edit_account_settings_and_profile: "계정 및 프로필 설정"
   edit_assessment: 평가 편집
   edit_body: 본문 편집
   edit_comment: 내 댓글 편집
@@ -850,7 +850,6 @@ ko:
   editing_project_asset: 을 위한 프로젝트 자산 편집
   editing_subscription_to_x_html: "%{x}의 구독 편집"
   editing_taxon_link: 분류군 링크 편집
-  editing_taxon_name: 분류군 이름 편집
   editing_taxon_range: 분류군 범위 편집
   editing_this: '%{elem} 편집'
   editing_x_in_y: "%{y}에서 %{x} 편집"
@@ -1001,7 +1000,6 @@ ko:
   followed_projects: 팔로우한 프로젝트
   followers: 팔로어
   following: 팔로잉
-  for: 위해
   formatting: 서식 지정
   forgot_your_password: 비밀번호를 잊으셨나요?
   forum: 포럼
@@ -1073,7 +1071,7 @@ ko:
   heads_up_you_have_multiple: "주의: 당신은 동일한 랭크들에 대해 다수의 분류학상의 기작 태그가 달려 있습니다. 랭크에 따라 아래에 색으로 구분되어있습니다."
   help: 도움말
   help_confirm_observations!: 관찰을 인증하는 것을 도와주세요!
-  help_support_inaturalist: "iNaturalist 지원 돕기"
+  help_support_inaturalist: "iNaturalist 후원하기"
   here_are_3_examples: 잘 만들어진 데이터의 3가지 예시이다
   hi: 안녕하세요,
   hi_user: "%{user}님, 안녕하세요."
@@ -1267,7 +1265,7 @@ ko:
   loading_tags: "태그를 불러오는 중..."
   loading_taxa_from_your: "당신의 관찰에서 분류군 불러오는 중..."
   loading_wikipedia_description: "위키백과 설정 불러오는 중..."
-  locale_description: 로케일은 당신의 언어와 날짜 형식 설정을 정합니다.
+  locale_description: 사용할 언어를 선택하세요
   locales:
     ar: 아랍어
     bg: 불가리아어
@@ -1584,7 +1582,7 @@ ko:
   observations_per_month: 관찰/월
   observations_specifying_this_field: 이 필드의 관찰
   observations_w_field: 필드가 있는 관찰
-  observed: 관찰 날짜
+  observed: 관찰됨
   observer: 관찰자
   observers: 관찰자
   observer_short: 관찰자
@@ -1606,7 +1604,6 @@ ko:
   open_street_map: 오픈스트리트맵
   optional: 선택 사항
   or: 또는
-  or_log_in_with_colon: "또는 다음으로 로그인하기:"
   original: 원본
   originally_flagged_by: 처음으로 플래그함
   originally_imported_from_url_html: "원래 <a href='%{url}'>%{url}</a>에서 가져옴"
@@ -2009,7 +2006,7 @@ ko:
     suborder: 아목
     family: 과
     genus: 속
-    subgenus: 아종
+    subgenus: 아속
     section: 섹션
     subsection: 아섹션
     species: 종
@@ -2700,7 +2697,7 @@ ko:
         email: 이메일
         login: 사용자 이름
         name: 이름
-        locale: 로캘
+        locale: 언어 환경
         time_zone: 시간대
         search_place_id: 장소 검색
         place_id: 장소

@@ -684,8 +684,8 @@ ca:
   comparing_list_to_list: "Comparant %{list1} amb %{list2}"
   comparing_versions_x_and_y: "Comparant les versions de %{x} i %{y}"
   comparing_observations_from: "Comparació de les observacions de %{user} el %{dates}"
-  complete: Complet
   compiled_by_name: "Elaborat per %{name}"
+  complete: Complet
   completed: Completat
   completed_at: Completat a
   comprehensive: completa
@@ -1007,7 +1007,6 @@ ca:
   editing_project_asset: Modifica l'arxiu de projecte per a
   editing_subscription_to_x_html: "Editar la subscripció a %{x}"
   editing_taxon_link: Modifica enllaç del tàxon
-  editing_taxon_name: Modifica nom del tàxon
   editing_taxon_range: Modifica rang del tàxon
   editing_this: Modificant %{elem}
   editing_x_in_y: "Editant %{x} en %{y}"
@@ -1084,10 +1083,9 @@ ca:
   failed_to_repair_photo: "Ha fallat la reparació de la fotografia: %{errors}"
   failed_to_save_record: "No s'ha pogut desar el registre. Intenteu-ho de nou."
   'false': 'Fals'
-  fave: favorit
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorits
   Family: Família
-  faved_this_observation: fet favorita aquesta observació
   favorite_taxa: Tàxons preferits
   favorites: "Preferits"
   feature_this_project_: "Destacar aquest projecte"
@@ -1184,7 +1182,6 @@ ca:
   following_x_people:
     one: 'Seguint 1 Persona'
     other: 'Seguint %{count} Persones'
-  for: per a
   for_a_taxon: d'un tàxon
   formatting: Formatatge
   forgot_your_password: Heu oblidat la contrasenya?
@@ -2101,10 +2098,11 @@ ca:
   optional: opcional
   optional_columns_note_for_any: "Columnes opcionals (nota: per usar qualsevol d'aquestes columnes a una observació, totes han de ser-hi presents)"
   or: o
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: O
   or_choose_high_level_taxa: "... O seleccioneu un tàxon de rang superior"
   or_if_you_dont_want_email: "O si no voleu cap correu electrònic..."
-  or_log_in_with_colon: "O inicia ambː"
   or_upload: O descarregueu el
   orange: taronja
   order: Ordre
@@ -2899,7 +2897,6 @@ ca:
   showing_x_of_y_listings: "Mostrant %{x} de %{y} llistes"
   sign_in: Inicieu sessió
   sign_in_with_provider: "Inicieu sessió amb %{provider}"
-  sign_up_with_provider: "Registreu-vos amb %{provider}"
   sign_out: Surtiu
   sign_up: Registreu-vos
   similar_species: Espècie similar
@@ -3280,7 +3277,6 @@ ca:
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: aquest
   this_bioblitz_beings_in: Aquest bioblitz comença en
-  this_is_a: Aquesta és una
   this_is_a_cached_summary_based_on: Això és un resum de memòria cau d'aquest tàxon basat en el vostre
   this_is_a_life_list_of: Això és una llista de vida de
   this_is_a_life_list_from_place_html: "Aquesta és una llista de vida de %{place}"
@@ -3472,8 +3468,8 @@ ca:
   user_disagrees_this_is_taxon: "%{user} no creu que sigui %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} discrepa amb identificacions anteriors adequades"
   user_faved_a_noun_by_owner: "%{user} preferit %{noun} per %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} marcat com spammer"
   user_flagged_as_a_non_spammer_html: "%{user} marca com a no spammer"
+  user_flagged_as_a_spammer_html: "%{user} marcat com spammer"
   user_has_opted_out_of_community_id: L'usuari ha refusat el Tàxon de la Comunitat
   user_helped_x_people_with_y_ids_html: "%{user} ha ajudat <strong>%{x} persones</strong> amb <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: '%{user} vol compartir la vostra observació "%{observation}" al projecte %{project}.'
@@ -3826,19 +3822,6 @@ ca:
             Si és així, si us plau llegiu la nostra <a href="%{url}">Guia del Professor</a> per consells sobre com utilitzar %{site_name} amb els alumnes.
     donate:
       donate_short_desc: "Doneu ara per mostrar el vostre suport!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist és una de les majors comunitats del món dedicades a explorar la Biodiversitat. Gràcies per formar part d'ella!</strong>
-        </p>
-        <p class="lead">
-        Si creus en el potencial d'aquesta comunitat global d'amants de la natura, us agrairem feu una donació puntual o recurrent.
-        </p>
-        <p class="lead">
-        La teva donació ajuda al desenvolupament d'iNaturalist a mesura la nostra comunitat creix, a incorporar els sistemes artificials de reconeixement d'imatges, a implementar noves característiques, i al manteniment dels nostres servidors i personal.
-        </p>
-        <p class="text-muted">
-        iNaturalist és una iniciativa conjunta entre la California Academy of Sciences y la National Geographic Society. Totes les donations es reben a la California Academy of Sciences, organització 501(c)(3) establerta ala Estats Units de Nord-Amèrica, beneficiària d'una exempció de taxes.
-        </p>
       post_donate_social_media_text: Jo ajudo iNaturalist perquè...
     flags:
       show:

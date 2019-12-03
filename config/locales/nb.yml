@@ -775,8 +775,8 @@ nb:
   comparing_list_to_list: "Sammenligner %{list1} med %{list2}"
   comparing_versions_x_and_y: "Sammenligner versjon %{x} og %{y}"
   comparing_observations_from: "Sammenligner observasjoner av %{user} på %{dates}"
-  complete: Fullført
   compiled_by_name: "Sammensatt av %{name}"
+  complete: Fullført
   completed: Fullført
   completed_at: Fullført
   comprehensive: omfattende
@@ -1134,7 +1134,6 @@ nb:
   editing_project_asset: Redigere prosjektressurs for
   editing_subscription_to_x_html: "Redigerer abonnement på %{x}"
   editing_taxon_link: Redigerer taksonlenke
-  editing_taxon_name: Redigerer taksonnavn
   editing_taxon_range: Redigerer taksonutbredelse
   editing_this: Redigerer %{elem}
   editing_x_in_y: "Redigerer %{x} i %{y}"
@@ -1214,10 +1213,9 @@ nb:
   failed_to_repair_photo: "Kunne ikke reparere bilde: %{errors}"
   failed_to_save_record: "Kunne ikke lagre registreringen. Vennligst prøv igjen senere."
   'false': 'Usann'
-  fave: fav
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritter
   Family: Familie
-  faved_this_observation: gjorde denne observasjonen til favoritt
   favorite_taxa: Favoritte taksa
   favorites: "Favoritter"
   feature_this_project_: "Fremhev dette prosjektet"
@@ -1343,7 +1341,6 @@ nb:
   following_x_people:
     one: 'Følger 1 person'
     other: 'Følger %{count} personer'
-  for: for
   for_a_taxon: for et takson
   formatting: Formatering
   forgot_your_password: Glemt passordet ditt?
@@ -2355,10 +2352,11 @@ nb:
   optional: valgfritt
   optional_columns_note_for_any: "Valgfrie kolonner (merk: for at noen av disse kolonner skal brukes i en observasjon, må alle være tilstede)"
   or: eller
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller velg fra noen høyere taksa"
   or_if_you_dont_want_email: "Eller hvis du ikke ønsker noe som helst e-post..."
-  or_log_in_with_colon: "Eller logg inn med:"
   or_upload: Eller last opp
   orange: oransje
   order: Sorter
@@ -3274,7 +3272,7 @@ nb:
   showing_x_of_y_listings: "Viser %{x} av %{y} oppføringer"
   sign_in: Logg inn
   sign_in_with_provider: "Logg inn med %{provider}"
-  sign_up_with_provider: "Register med %{provider}"
+  sign_in_with_google: Logg inn med Google
   sign_out: Logg ut
   sign_up: Register
   similar_species: Lignende arter
@@ -3668,7 +3666,6 @@ nb:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitzen starter om
-  this_is_a: Dette er en
   this_is_a_cached_summary_based_on: Dette er et forhåndslagret sammendrag av dette taksonet basert på dets
   this_is_a_life_list_of: Dette er en livsliste av
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
@@ -3868,8 +3865,8 @@ nb:
   user_disagrees_this_is_taxon: "%{user} er uenig i at dette er %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig i tidligere finere identifikasjoner"
   user_faved_a_noun_by_owner: "%{user} har favorittisert %{noun} av %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} markert som spammer"
   user_flagged_as_a_non_spammer_html: "%{user} markert som ikke-spammer"
+  user_flagged_as_a_spammer_html: "%{user} markert som spammer"
   user_has_opted_out_of_community_id: Brukeren har meldt seg ut av fellesskapets takson
   user_hasnt_joined_any_projects: "%{user} er ikke med i noen prosjekter"
   user_helped_x_people_with_y_ids_html: "%{user} har hjulpet <strong>%{x} personer</strong> med <strong>%{y} ID-er</strong>"
@@ -4241,7 +4238,8 @@ nb:
     donate:
       donate_short_desc: "Donér nå for å vise din støtte!"
       donate_desc_html: |
-        <p class="lead"><strong>iNaturalist er ett av verdens største fellesskap dedikert til å utforske biodiversitet. Takk for at du er del av det!</strong></p><p class="lead">Hvis du tror på potensialet av dette verdensomspennende fellesskap av naturelskere til å dele kunnskap og generere uerstattelige data om biodiversitet, vennligst vurder en engangs- eller gjentagende donasjon.</p><p class="lead">Din donasjon hjelper med å støtte iNaturalist mens samfunnet blir større, fra å bringe computer vision og implementere ny funksjonalitet, til å støtte våre servere og ansatte. </p><p class="text-muted">iNaturalist er et felles initiativ av California Academy of Sciences og National Geographic Society.</p>
+        <p class="lead"><strong>iNaturalist er ett av verdens største fellesskap dedikert til å utforske biodiversitet. Takk for at du er del av det!</strong></p><p class="lead">Hvis du tror på potensialet av dette verdensomspennende fellesskap av naturelskere til å dele kunnskap og generere uerstattelige data om biodiversitet, vennligst vurder en engangs- eller gjentagende donasjon, eller se <a href="https://www.inaturalist.org/pages/giving">andre måter å gi</a>.</p><p class="lead">Din donasjon hjelper med å støtte iNaturalist mens samfunnet blir større, fra å bringe computer vision og implementere ny funksjonalitet, til å støtte våre servere og ansatte. </p><p class="text-muted">iNaturalist er et felles initiativ av California Academy of Sciences og National Geographic Society. Alle donasjoner mottas av California Academy of Sciences, en 501(c)(3) tax-exempt not-for-profit
+        organization i USA (Tax ID: 94-1156258).</p>
       post_donate_social_media_text: Jeg støtter iNaturalist fordi...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bli en månedlig supporter av iNaturalist

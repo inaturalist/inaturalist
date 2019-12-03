@@ -550,8 +550,8 @@ sk:
   comparing_list_to_list: "Porovnať %{list1} s %{list2}"
   comparing_versions_x_and_y: "Porovnať verzie %{x} a %{y}"
   comparing_observations_from: "Porovnať pozorovania používateľa %{user} z %{dates}"
-  complete: Dokončiť
   compiled_by_name: "Zostavil užívateľ %{name}"
+  complete: Dokončiť
   completed: Dokončené
   completed_at: Dokončené na
   comprehensive: komplexný
@@ -857,7 +857,6 @@ sk:
   editing_project_asset: Úprava položky projektu pre
   editing_subscription_to_x_html: "Úprava prihlásenia k %{x}"
   editing_taxon_link: Úprava odkazu na taxón
-  editing_taxon_name: Úprava názvu taxónu
   editing_taxon_range: Úprava rozšírenia taxónu
   editing_this: Úprava %{elem}
   editing_x_in_y: "Úprava %{x} v %{y}"
@@ -931,10 +930,9 @@ sk:
   failed_to_repair_photo: "Oprava fotky sa nepodarila: %{errors}"
   failed_to_save_record: "Nepodarilo sa uložiť záznam. Skúste to prosím znova."
   'false': 'Nepravda'
-  fave: pridať k obľúbeným
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Obľúbené
   Family: Čeľaď
-  faved_this_observation: pridať toto pozorovanie k obľúbeným
   favorite_taxa: Obľúbené taxóny
   favorites: "Obľúbené"
   feature_this_project_: "Odporučiť tento projekt"
@@ -1026,7 +1024,6 @@ sk:
   followed_projects: Sledované projekty
   followers: Sledovatelia
   following: Sledovať
-  for: pre
   for_a_taxon: pre taxón
   formatting: Formátovanie
   forgot_your_password: Zabudli ste heslo?
@@ -1880,8 +1877,9 @@ sk:
   open_: Otvorený
   optional: voliteľný
   or: alebo
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: ALEBO
-  or_log_in_with_colon: "Alebo sa prihláste cez:"
   or_upload: Alebo nahrať
   orange: oranžový
   order: Zoradiť
@@ -2672,7 +2670,6 @@ sk:
   showing_x_of_y_listings: "Zobrazenie %{x} z %{y} záznamov"
   sign_in: Prihlásiť sa
   sign_in_with_provider: "Prihlásiť sa cez %{provider}"
-  sign_up_with_provider: "Zaregistrovať sa cez %{provider}"
   sign_out: Odhlásiť sa
   sign_up: Zaregistrovať sa
   similar_species: Podobné druhy

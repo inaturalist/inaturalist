@@ -574,8 +574,8 @@ ar:
   comparing_list_to_list: "مقارنة %{list1} مع %{list2}"
   comparing_versions_x_and_y: "مقارنة الإصدارات %{x} و%{y}"
   comparing_observations_from: "مقارنة %{user} الملاحظات من %{dates}"
-  complete: اكتمال
   compiled_by_name: "تم تجميعها بواسطة %{name}"
+  complete: اكتمال
   completed: اكتمل
   completed_at: اكتمل في
   comprehensive: شامل
@@ -905,7 +905,6 @@ ar:
   editing_project_asset: تحرير أصول المشروع لـ
   editing_subscription_to_x_html: "تعديل الاشتراك في %{x}"
   editing_taxon_link: تحرير رابط أصنوفة
-  editing_taxon_name: تحرير اسم أصنوفة
   editing_taxon_range: تحرير نطاق أصنوفة
   editing_this: تعديل %{elem}
   editing_x_in_y: "تعديل %{x} في %{y}"
@@ -986,10 +985,9 @@ ar:
   failed_to_repair_photo: "فشل إصلاح الصورة: %{errors}"
   failed_to_save_record: "أخفق حفظ السجل؛ الرجاء معاودة المحاولة في وقت لاحق."
   'false': 'خطأ'
-  fave: المفضلة
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: المفضلة
   Family: فصيلة
-  faved_this_observation: علم هذه الملاحظة كمفضلة
   favorite_taxa: الأصناف المفضلة
   favorites: "المفضلة"
   feature_this_project_: "تمييز هذا المشروع"
@@ -1085,7 +1083,6 @@ ar:
   followed_projects: المشاريع المتبعة
   followers: متابعون
   following: التالي
-  for: لـ
   for_a_taxon: لأصنوفة
   formatting: الصيغة
   forgot_your_password: نسيت كلمة مرورك؟
@@ -2066,10 +2063,11 @@ ar:
   optional: اختياري
   optional_columns_note_for_any: "الأعمدة الاختيارية (ملاحظة: لاستخدام أي من هذه الأعمدة في ملاحظة; يجب أن تكون جميعها موجودة)"
   or: أو
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
   or_all_caps: أو
   or_choose_high_level_taxa: "...أو الاختيار من بعض الأصناف عالية المستوى"
   or_if_you_dont_want_email: "أو إذا كنت لا تريد أي بريد إلكتروني..."
-  or_log_in_with_colon: "أو قم بتسجيل الدخول باستخدام:"
   or_upload: أو تحميل
   orange: برتقالي
   order: الترتيب
@@ -2977,7 +2975,6 @@ ar:
   showing_x_of_y_listings: "عرض %{x} من قوائم %{y}"
   sign_in: تسجيل الدخول
   sign_in_with_provider: "تسجيل الدخول باستخدام %{provider}"
-  sign_up_with_provider: "الاشتراك باستخدام %{provider}"
   sign_out: تسجيل الخروج
   sign_up: أنشئ حسابًا
   similar_species: أنواع مماثلة
@@ -3337,7 +3334,6 @@ ar:
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: هذا
   this_bioblitz_beings_in: هذا bioblitz يبدأ في
-  this_is_a: هذا هو
   this_is_a_cached_summary_based_on: هذا ملخص مخبأ لهذه الأصنوفة على أساس
   this_is_a_life_list_of: هذه قائمة حياة
   this_is_a_life_list_from_place_html: "هذه قائمة حياة من %{place}"
@@ -3536,8 +3532,8 @@ ar:
   user_disagrees_this_is_taxon: "%{user}غير موافق على هذا %{taxon}"
   user_disagrees_with_previous_finer_identifications: "لا يوافق %{user} على التعريفات الدقيقة السابقة"
   user_faved_a_noun_by_owner: "%{user} فضل %{noun} بواسطة %{owner}"
-  user_flagged_as_a_spammer_html: "تم تعليم %{user} كمرسل رسائل غير مرغوب فيها"
   user_flagged_as_a_non_spammer_html: "تم تعليم %{user} كغير مرسل لرسائل غير مرغوب فيها"
+  user_flagged_as_a_spammer_html: "تم تعليم %{user} كمرسل رسائل غير مرغوب فيها"
   user_has_opted_out_of_community_id: لقد اختار المستخدم تعطيل أصنوفة المجتمع
   user_helped_x_people_with_y_ids_html: "%{user} ساعد <strong>%{x} من الأشخاص </strong> ب<strong>%{y} المعرفات</strong>"
   user_invite_observation_to_project: 'يريد %{user} دعوة ملاحظتك "%{observation}" إلى مشروع %{project}.'
@@ -3918,27 +3914,6 @@ ar:
             للحصول على نصائح حول استخدام %{site_name} مع الطلاب.
     donate:
       donate_short_desc: "تبرع الآن لإظهار دعمك!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>إيناتوراليست هو واحد من أكبر المجتمعات في العالم المخصصة 
-          لاستكشاف التنوع البيولوجي، نشكرك على كونك جزءً منه!</strong>
-        </p>
-        <p class="lead">
-          إذا كنت تؤمن بقوة هذا المجتمع العالمي لمحبي الطبيعة،
-          في مشاركة المعرفة وتوليد بيانات التنوع البيولوجي التي لا يمكن الاستغناء عنها، 
-          فالرجاء التفكير لمرة واحدة أو هدية متكررة. 
-        </p>
-        <p class="lead">
-          يساعد تبرعك في دعم إيناتوراليست مع نمو المجتمع، من 
-          تطوير رؤية الحاسوب وتنفيذ ميزات جديدة لدعم 
-          خوادمنا وموظفينا. 
-        </p>
-        <p class="text-muted">
-          إيناتوراليست هي مبادرة مشتركة من أكاديمية كاليفورنيا للعلوم
-          وجمعية ناشيونال جيوغرافيك، سيتم استلام جميع التبرعات من قبل 
-          أكاديمية كاليفورنيا للعلوم، وهي مؤسسة غير ربحية 501(c)(3) معفاة من الضرائب 
-          مقرها في الولايات المتحدة. 
-        </p>
       post_donate_social_media_text: أنا أدعم إيناتوراليست لأن.
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: كن داعما شهريا لإيناتوراليست
