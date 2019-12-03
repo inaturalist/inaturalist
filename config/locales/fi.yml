@@ -846,6 +846,7 @@ fi:
     fruiting: Hedelmiä
     life_stage: Elinvaihe
     adult: Aikuinen
+    teneral: Teneraali (vastakuoriutunut hyönteinen)
     subimago: Alaimago
     pupa: Kotelo
     nymph: Nymfi
@@ -1165,6 +1166,7 @@ fi:
     establishment: Vakiintuneisuus
     introduced: Tulokas
     invasive: Vieraslaji
+    managed: Hoidettu
     native: Alkuperäinen
     naturalised: Luonnonmukaistunut
   establishment_means: Perustamisen keinot
@@ -1209,7 +1211,6 @@ fi:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Suosikit
   Family: Heimo
-  faved_this_observation: merkitsi tämän havainnon suosikiksi
   favorite_taxa: Suosikkitaksonit
   favorites: "Suosikit"
   feature_this_project_: "Nosta tämä projekti esille"
@@ -1295,6 +1296,7 @@ fi:
   flickr_tagger: Flickr tunnisteidenlisääjä
   flickr_tags: Flickr-merkinnät
   fluid_layout: Virtaava asettelu
+  fluid: neste
   follow: Seuraa
   follow_receive_updates_about_new_observations: Seuraa (saat päivityksiä uusista havainnoista)
   follow_user: "Seuraa käyttäjää %{user}"
@@ -1830,6 +1832,7 @@ fi:
   mollusks: nilviäiset
   momentjs:
     shortRelativeTime:
+      future: "%s sekunnin kuluttua"
       past: "%s"
       #Short text representing 1 second in the past
       s: "1 s"
@@ -3002,6 +3005,7 @@ fi:
     other: Tallennetaan %{num} havaintoa %{count} havainnosta...
   saving_verb: Tallennetaan
   scale_colon: "Mittakaava:"
+  schemes: Suunnitelmat
   search: Hae
   search_all_fields: etsi kaikista kentistä
   search_by_name_or_email: Hae nimellä tai sähköpostilla
@@ -4337,6 +4341,7 @@ fi:
         recent_desc: Rekisteröity viimeisen 7 päivän aikana
         recent_w_0_obs_desc: Rekisteröitynyt edeltävinä 7 päivänä ja lisännyt 0 havaintoa
         recent_w_7_obs_desc: Rekisteröitynyt edeltävänä 7 päivänä ja lisännyt >= 7 havaintoa
+        TTCID: TTCID (aika yhteisömääritykseen)
         TTID_desc: Aika saada tunnistus joltakulta
         website_desc_html: |
           Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
@@ -4382,6 +4387,8 @@ fi:
         frequency:
           research: Tutkimustaso
           verifiable: Todennettavissa
+          "Alive or Dead=Alive": Elävä
+          "Alive or Dead=Dead": Kuollut
           "Life Stage=egg": Muna
           "Life Stage=larva": Toukka
           "Life Stage=subimago": Subimago
@@ -4843,6 +4850,7 @@ fi:
         parent_id: emo
         place_type: Paikan tyyppi
         prefers_check_lists: Lajilistat sallittu?
+        woeid: WOEID (Where On Earth IDentifier)
       site:
         logo: Sanamerkki
       source:
