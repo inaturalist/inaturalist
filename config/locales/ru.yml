@@ -620,6 +620,7 @@ ru:
   assessment_x: "%{assessment} оценка"
   assessments: оценки
   associations: Ассоциации
+  atlas_for_taxon_html: Атлас для %{taxon}
   at_time: "в %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -793,6 +794,7 @@ ru:
   check_list: Контрольный список
   check_list_description: Выберите таксон верхнего уровня для этого списка, такие как "Aves" для птиц или "Amphibia" для земноводных. После этого выбора в список нельзя будет включить вид не из этого таксона. Например, если вы создаёте список птиц, то лягушек в него включить будет нельзя.
   check_list_for_individual_taxa_that: 'Контрольные списки по отдельным таксонам, которые здесь обитают, например, "Птицы %{place}".'
+  check_list_for_taxon_html: "Контрольный список для %{taxon}"
   check_lists_must_belong_to_a_place: |
     Чеклисты должны принадлежать месту. Для того, чтобы создать чеклист, пройдите в чеклист этого места по умолчанию и кликните ссылку 'Create a new check list'
   check_list_of_species_occuring_in: Контрольный список видов, встречающихся
@@ -870,6 +872,7 @@ ru:
   comparing_observations_from: "Сравнение наблюдений %{user} за %{dates}"
   compiled_by_name: "составлено %{name}"
   complete: Завершено
+  complete_set_for_taxon_in_place_html: "Полный набор для %{taxon} в %{place}"
   completed: Завершено
   completed_at: Завершено на
   comprehensive: современный
@@ -1184,8 +1187,10 @@ ru:
   edit_account_settings_and_profile: "Учётная запись и профиль"
   edit_assessment: Оценка редактирования
   edit_atlas: Редактировать атлас
+  edit_atlas_for_taxon_html: Редактировать атлас для %{taxon}
   edit_body: Редактировать код
   edit_comment: Редактировать ваш комментарий
+  edit_complete_set_for_taxon_in_place_html: "Редактировать полный набор для %{taxon} в %{place}"
   edit_custom_project_fields: Редактировать пользовательские поля проекта
   edit_field: Редактировать поле
   edit_license: Редактировать лицензию
@@ -1230,6 +1235,7 @@ ru:
   editing_project_asset: Редактирование актива проекта для
   editing_subscription_to_x_html: "Редактировать подписку на %{x}"
   editing_taxon_link: Редактировать ссылку на таксон
+  editing_taxon_name_for_taxon_html: Редактирование названия таксона "%{name}" для %{taxon}
   editing_taxon_range: Редактирование ареала таксона
   editing_this: Редактирование %{elem}
   editing_x_in_y: "Редактирование %{x} в %{y}"
@@ -1312,7 +1318,6 @@ ru:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Фавориты
   Family: Семейство
-  faved_this_observation: добавил(и) это наблюдение к фаворитам
   favorite_taxa: Любимые таксоны
   favorites: "Фавориты"
   feature_this_project_: "Рекомендовать этот проект"
@@ -2102,6 +2107,12 @@ ru:
   needs_id_: Требуется идентификация
   needs_id_expandable_html: "<span class='full'>Требуется </span>ID"
   needs_to_be_identified: Нуждается в определении
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, часть сети iNaturalist
+    Network, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на %{site_name}?
+  network_affiliation_prompt_from_other_site_html: |
+    Хотите ли вы изменить свою принадлежность с <strong>%{other_site_name}</strong> на
+    <strong>%{site_name}</strong>?
   new: Новый
   new_and_noteworthy: Новые и значимые
   new_announcement: Новое объявление
@@ -3999,10 +4010,18 @@ ru:
     many: Использовано %{count} раз
     other: Использовано %{count} раз
   user: Пользователь
+  user1_and_user2_faved_this_observation: "%{user1} и %{user2} добавили это наблюдение к фаворитам"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, и %{x_others} добавили это наблюдение к фаворитам"
+  user_added_a_comment_html: "%{user} добавил комментарий"
+  user_added_a_fave_html: "%{user} добавил фаворита"
+  user_added_a_flag_html: "%{user} добавил флаг"
+  user_added_a_project_invitation_html: "%{user} добавил приглашение в проект"
   user_added_a_x: "%{user} добавил %{x}"
   user_added_a_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
   user_added_a_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
+  user_added_an_identification_html: "%{user} добавил идентификацию"
   user_added_an_observation_field_html: '%{user} добавил значение "%{field_name}" к наблюдению %{owner}'
+  user_added_an_observation_field_value_html: "%{user} добавил значение поля наблюдения"
   user_added_an_observation_html: "%{user} добавил наблюдение"
   user_added_an_x: "%{user} добавил %{x}"
   user_added_an_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
@@ -4016,8 +4035,9 @@ ru:
   user_disagrees_this_is_taxon: "%{user} не  согласен с тем, что это %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} не согласен с предыдущими более точными идентификациями"
   user_faved_a_noun_by_owner: "%{user} добавил к фаворитам %{noun} от %{owner}"
-  user_flagged_as_a_spammer_html: "%{user} помечен как спамер"
+  user_faved_this_observation: "%{user} добавил это наблюдение к фаворитам"
   user_flagged_as_a_non_spammer_html: "%{user} помечен как не спамер"
+  user_flagged_as_a_spammer_html: "%{user} помечен как спамер"
   user_has_opted_out_of_community_id: Пользователь отказался от таксона сообщества
   user_hasnt_joined_any_projects: "%{user} не присоединился ни к каким проектам"
   user_helped_x_people_with_y_ids_html: "%{user} помог <strong>%{x} людям</strong> с <strong>%{y} идентификацией</strong>"
@@ -4396,6 +4416,19 @@ ru:
             Если так, ознакомьтесь с нашим <a href="%{url}">Руководством для преподавателя</a>, чтобы получить советы по использованию %{site_name} студентами.
     donate:
       donate_short_desc: "Пожертвуйте сейчас, чтобы показать свою поддержку!"
+      donate_desc_html: |
+        <p class="lead">
+        <strong>iNaturalist - одно из крупнейших в мире сообществ, занимающихся изучением биоразнообразия. Спасибо за участие!</strong>
+        </p>
+        <p class="lead">
+        Если вы верите в способность этого глобального сообщества любителей природы делиться знаниями и генерировать незаменимые данные о биоразнообразии, пожалуйста, подумайте о одноразовом или повторяющемся взносе онлайн, или воспользуйтесь <a href="https://www.inaturalist.org/pages/giving">другими способами дарения</a>.
+        </p>
+        <p class="lead">
+        Ваши благотворительные пожертвования помогают поддерживать iNaturalist по мере роста сообщества - от совершенствования системы компьютерного зрения и внедрения новых функций до поддержки наших серверов и персонала.
+        </p>
+        <p class="text-muted">
+        iNaturalist - это объединённая инициатива Калифорнийской Академии наук и Национального Географического общества. Все пожертвования будут получены Калифорнийской академией наук, 501(c)(3) некоммерческой организацией, не облагаемой налогом, базирующейся в Соединенных Штатах Америки (Tax ID: 94-1156258).
+        </p>
       post_donate_social_media_text: Я оказываю поддержку, потому что...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станьте ежемесячным спонсором iNaturalist
