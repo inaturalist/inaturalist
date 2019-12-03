@@ -1080,7 +1080,6 @@ et:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Lemmikud
   Family: Sugukond
-  faved_this_observation: lemmikvaatlus
   favorite_taxa: Lemmiktaksonid
   favorites: "Lemmikud"
   feature_this_project_: "Tõsta projekt esile"
@@ -3402,8 +3401,8 @@ et:
   user_commented_on: "Kasutaja %{user} kommenteeris sinu %{title} (%{time})"
   user_disagrees_this_is_taxon: "Kasutaja %{user} ei nõustu, et tegmist on taksoniga %{taxon}"
   user_faved_a_noun_by_owner: "Kasutaja %{user} märkis lemmikuks kasutaja %{owner} %{noun}"
-  user_flagged_as_a_spammer_html: "Kasutaja %{user} on märgitud rämpspostitajaks"
   user_flagged_as_a_non_spammer_html: "Kasutaja %{user} on märgitud mitte-rämpspostitajaks"
+  user_flagged_as_a_spammer_html: "Kasutaja %{user} on märgitud rämpspostitajaks"
   user_has_opted_out_of_community_id: Kasutaja ei soovi kogukondliku määratlemist
   user_helped_x_people_with_y_ids_html: "Kasutaja %{user} aitas <strong>%{x} inimest %{y} määratlusega</strong>"
   user_invite_observation_to_project: 'Kasutaja %{user} soovib lisada sinu vaatlust "%{observation}" projekti %{project}'
