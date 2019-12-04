@@ -19,7 +19,8 @@ Usage:
 
 where [options] are:
 EOS
-  opt :taxonomy_csv_path, "Path to taxonomy CSV containing the taxa whose names will be exported.",
+  opt :taxonomy_csv_path,
+    "Path to taxonomy CSV containing the taxa whose names will be exported. It should have a `taxon_id` column containing taxon IDs for all relevant taxa.",
     type: :string, short: "-t"
   opt :names_per_file, "Maximum number of common names to put in each file.",
     type: :integer, short: "-n", default: 10000

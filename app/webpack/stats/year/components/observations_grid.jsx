@@ -18,7 +18,13 @@ const ObservationsGrid = ( {
     { _.map( _.chunk( observations.slice( 0, max ), columns ), ( chunk, i ) => (
       <Row key={`${identifier}-obs-chunk-${i}`}>
         { chunk.map( o => (
-          <Col xs={Math.floor( 12.0 / columns )} key={`popular-obs-${o.id}`}>
+          <Col
+            xs={Math.floor( 12.0 / columns * 4.0 )}
+            sm={Math.floor( 12.0 / columns )}
+            md={Math.floor( 12.0 / columns )}
+            lg={Math.floor( 12.0 / columns )}
+            key={`popular-obs-${o.id}`}
+          >
             <ObservationsGridItem
               observation={new inatjs.Observation( o )}
               splitTaxonOptions={{ noParens: true }}

@@ -75,7 +75,10 @@ class StatsController < ApplicationController
       @site.shareable_image.url
     end
     respond_to do |format|
-      format.html { render layout: "bootstrap" }
+      format.html do
+        @responsive = true
+        render layout: "bootstrap"
+      end
       format.json { render json: @year_statistic.data }
     end
   end

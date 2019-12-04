@@ -33,9 +33,9 @@ while true
       # important to record when a user is a monthly donor or not
       next
     end
-    user.donorbox_donor_id = donor["id"],
-    user.donorbox_plan_type = plan["type"],
-    user.donorbox_plan_status = plan["status"],
+    user.donorbox_donor_id = donor["id"]
+    user.donorbox_plan_type = plan["type"]
+    user.donorbox_plan_status = plan["status"]
     user.donorbox_plan_started_at = Date.parse( plan["started_at"] ) rescue nil
     if user.changed?
       if user.donorbox_plan_status_changed? && user.donorbox_plan_status != "active"
