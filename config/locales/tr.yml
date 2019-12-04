@@ -995,7 +995,7 @@ tr:
     currentText: Bugün
     prevText: Önceki
     nextText: Sonraki
-    range: Aralık
+    range: Tarih Aralığı
   date_range: Tarih aralığı
   date_specified: Belirtilen tarih
   date_time: Tarih/Zaman
@@ -2330,7 +2330,6 @@ tr:
     observe_panel_body_p1_global: Düşüceye mi gereksiniminiz var? İşte bazı organizmalar gözlemleniyor...
     observe_panel_body_p2: Dışarı çık ve bir organizma gözlemle. Vahşi bir şey seçin ve açık, tam kare bir fotoğrafını çekin. Zaten vahşi bir şeyin bir fotoğrafını varsa, <a href="%{new_observation_path}">şimdi ekle</a>. Gözlemleri kaydetmek için %{site_name} mobil uygulamalarını da kullanabilirsin.
     observe_panel_body_p3: Gözlemlerinizi bir kez paylaştığınızda, bu sayfa size topluluktan gelen yorumları ve tanımlamaları gösterir. Ne keşfedeceğinizi kim bilir!
-    follow_panel_title_local: Yakındaki Doğabilimcilerden Bazılarını Takip Edin
     follow_panel_title_global: Bazı Aktif Doğabilimcileri Takip Et
     follow_panel_body: Bu profilleri ziyaret edip takip butonuna tıklarsanız, gözlem bildirdiklerinde haberdar olacaksınız
     following_panel_title: İnsanları, Sınıflandırmaları, ve Yerleri Takip Edin
@@ -4126,8 +4125,6 @@ tr:
   'yes': "Evet"
   yes_find_them!: "Evet, onları bul!"
   yes_i_want_to_join: Evet, katılmak istiyorum
-  yes_license_my_childs_observations: Evet, çocuğumun fotoğraflarını, seslerini ve gözlemlerini lisansla, böylece bilim adamları verileri kullanabilir.
-  yes_license_my_observations_so_scientists_can_use: Evet, fotoğraflarımı, seslerimi ve gözlemlerimi lisansla, böylece bilim adamları verilerimi kullanabilir.
   yes_reject_it: Evet, bunu reddet
   yes_show_this_in_the_box: Evet, bunu /sınıflandırmanın üstündeki büyük kutuda göster
   yesterday: Dün
@@ -4327,7 +4324,7 @@ tr:
           <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
           tarafından kılavuzların geliştirilmesi için fonlama sağlandı
         welcome_message_html: |
-          Rehberler, tüm dünyada biyo çeşitlilik ile ilgili bilgi edinmenize yardımcı olur. İster Serengeti'yi, ister yalnız yerel parkınızı (Serengeti olabilir) keşfedin, Rehberler gezegenimizin çarpıcı yaşam çeşitliliğini anlamanıza yardımcı olabilir.
+          Rehberler, tüm dünyada biyoçeşitlilik ile ilgili bilgi edinmenize yardımcı olur. İster Serengeti'yi, ister yalnız yerel parkınızı (Serengeti olabilir) keşfedin. Rehberler gezegenimizin çarpıcı yaşam çeşitliliğini anlamanıza yardımcı olabilir.
       edit:
         add_eol_content: |
           Seçilen sınıflandırmalara toplu olarak yaşam ansiklopedisi içeriği ekleyin. 
@@ -4753,10 +4750,6 @@ tr:
           Bu proje, proje sorumlularının göremediği koordinatlarla gözlemlere izin vermiyor. 
           Bu gözlemin koordinatlarını bu projenin sorumlularıyla paylaşmak istemiyorsanız, 
           gözlemi projeden kaldırmanız gerekir.
-        data_quality_assessment_desc_html: |
-          Veri Kalitesi Değerlendirmesi, bir gözlemin doğruluğunun bir değerlendirmesidir. 
-          Araştırma Sınıfı gözlemler, bilim adamları tarafından araştırma için kullanılabilir. 
-          Oyunuzu aşağıya verin:
         disagreement_count_desc: "sınıflandırmanın ataları arasında olmayan tanımlı sınıflandırmaların #"
         identification_count_desc: 'bir sınıflandırma için tanımlamaların #'
         flagged_photos_desc_html: |
