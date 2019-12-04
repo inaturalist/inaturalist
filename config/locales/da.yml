@@ -3933,6 +3933,8 @@ da:
     one: brugt 1 gang
     other: Brugt %{count} gange
   user: Bruger
+  user1_and_user2_faved_this_observation: "%{user1} og %{user2} tilføjede denne observation som favorit"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} og %{x_others} tilføjede denne observation som favorit"
   user_added_a_comment_html: "%{user} tilføjede en kommentar"
   user_added_a_fave_html: "%{user} tilføjede en favorit"
   user_added_a_flag_html: "%{user} tilføjede en flag"
@@ -3956,6 +3958,7 @@ da:
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   user_faved_a_noun_by_owner: "%{user} synes godt om %{noun} af %{owner}"
+  user_faved_this_observation: "%{user} tilføjede denne observation som favorit"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
   user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
   user_has_opted_out_of_community_id: Bruger har afmeldt sig fællesskabs ID
