@@ -586,6 +586,7 @@ class YearStatistic < ActiveRecord::Base
     elastic_params = Observation.params_to_elastic_query( params )
     histogram_params = elastic_params.merge(
       size: 0,
+      track_total_hits: true,
       aggs: {
         histogram: {
           date_histogram: {
@@ -615,7 +616,8 @@ class YearStatistic < ActiveRecord::Base
         ["2018-01-01", "2018-06-01"],
         ["2018-06-01", "2019-01-01"],
         ["2019-01-01", "2019-06-01"],
-        ["2019-06-01", "2019-12-31"]
+        ["2019-06-01", "2019-10-01"],
+        ["2019-10-01", "2020-01-01"]
       ].inject( [] ) do |memo, range|
         puts "range: #{range.join( " - " )}"
         memo += Observation.elastic_search( histogram_params.merge(
