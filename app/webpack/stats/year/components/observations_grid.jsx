@@ -10,7 +10,7 @@ class ObservationsGrid extends React.Component {
   constructor( props ) {
     super( props );
     this.state = {
-      obsToShow: props.perPage || props.max
+      initialObsToShow: props.perPage || props.max
     };
   }
 
@@ -21,13 +21,17 @@ class ObservationsGrid extends React.Component {
       columns,
       identifier,
       dateField,
-      max,
-      perPage
+      perPage,
+      max
     } = this.props;
-    const { obsToShow } = this.state;
+    const { initialObsToShow } = this.state;
+    let obsToshow = initialObsToShow;
+    if ( !perPage && initialObsToShow < max ) {
+      obsToshow = max;
+    }
     return (
       <div className={`${identifier} ${user ? "for-user" : ""}`}>
-        { _.map( _.chunk( observations.slice( 0, obsToShow ), columns ), ( chunk, i ) => (
+        { _.map( _.chunk( observations.slice( 0, obsToshow ), columns ), ( chunk, i ) => (
           <Row key={`${identifier}-obs-chunk-${i}`}>
             { chunk.map( o => {
               const colSize = Math.floor( 12.0 / columns );
@@ -76,13 +80,13 @@ class ObservationsGrid extends React.Component {
             } ) }
           </Row>
         ) ) }
-        { observations.length > obsToShow && perPage && (
+        { observations.length > initialObsToShow && perPage && (
           <button
             type="button"
             className="btn btn-default btn-bordered center-block"
             onClick={() => {
               this.setState( {
-                obsToShow: Math.min( observations.length, obsToShow + perPage )
+                initialObsToShow: Math.min( observations.length, initialObsToShow + perPage )
               } );
             }}
           >

@@ -12,7 +12,10 @@ const Growth = ( {
   data,
   year
 } ) => {
-  const label = d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`;
+  const label = d => I18n.t( "bold_label_colon_value_html", {
+    label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+    value: I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+  } );
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
   const emptyJan = {
     date: `${year + 1}-01-01`,
