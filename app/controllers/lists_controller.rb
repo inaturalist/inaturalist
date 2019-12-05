@@ -16,7 +16,9 @@ class ListsController < ApplicationController
   before_filter :set_iconic_taxa, :only => [:show]
 
   caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
-  
+
+  requires_privilege :speech, only: [:new, :create]
+
   LIST_SORTS = %w"id title"
   LIST_ORDERS = %w"asc desc"
   

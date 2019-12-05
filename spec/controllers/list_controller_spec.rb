@@ -5,14 +5,31 @@ describe ListsController do
   describe "create" do
     it "allow creation of multiple types" do
       taxon = Taxon.make!
-      user = User.make!
+      user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
       sign_in user
-      
-      post :create, :list => {:title => "foo", :type => "LifeList"}, :taxa => [{:taxon_id => taxon.id}]
+      post :create, list: { title: "foo", type: "LifeList"}, taxa: [{ taxon_id: taxon.id}]
       expect(response).to be_redirect
       list = user.lists.last
       expect(list.rules.first.operand_id).to be(taxon.id)
       expect(list).to be_a(LifeList)
+    end
+
+    it "does not create lists for users without speech privilege" do
+      taxon = Taxon.make!
+      user = User.make!
+      sign_in user
+      expect( user.lists.count ).to eq 1
+      post :create, list: { title: "foo" }, taxa: [{ taxon_id: taxon.id}]
+      expect( user.lists.count ).to eq 1
+    end
+
+    it "creates lists for users with speech privilege" do
+      taxon = Taxon.make!
+      user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+      sign_in user
+      expect( user.lists.count ).to eq 1
+      post :create, list: { title: "foo" }, taxa: [{ taxon_id: taxon.id}]
+      expect( user.lists.count ).to eq 2
     end
   end
 
