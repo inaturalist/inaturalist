@@ -36,6 +36,7 @@ class NewSpecies extends React.Component {
     if ( user ) {
       params.user_id = user.id;
     }
+    /* global DEFAULT_SITE_ID */
     if ( site && site.id !== DEFAULT_SITE_ID ) {
       if ( site.place_id ) {
         params.place_id = site.place_id;
@@ -138,7 +139,9 @@ class NewSpecies extends React.Component {
         <h3><span>{ I18n.t( "newly_added_species" ) }</span></h3>
         <p
           className="text-muted"
-          dangerouslySetInnerHTML={{ __html: I18n.t( "views.stats.year.new_species_desc_html", { site_name: SITE.name } ) }}
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.stats.year.new_species_desc_html", { site_name: SITE.name } )
+          }}
         />
         <DateHistogram
           id="accumulation"

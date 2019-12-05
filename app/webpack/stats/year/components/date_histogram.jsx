@@ -65,7 +65,6 @@ class DateHistogram extends React.Component {
       return;
     }
     const parseTime = date => moment( date ).toDate( );
-    // const parseTime = d3.isoParse;
     const localSeries = {};
     _.forEach( series, ( s, seriesName ) => {
       localSeries[seriesName] = _.map( s.data, d => Object.assign( {}, d, {
@@ -180,7 +179,6 @@ class DateHistogram extends React.Component {
     const { series } = this.props;
     const localSeries = {};
     const parseTime = date => moment( date ).toDate( );
-    // const parseTime = d3.isoParse;
     const {
       width,
       x,
@@ -324,7 +322,10 @@ class DateHistogram extends React.Component {
         if ( currentSeries[d.seriesName] && currentSeries[d.seriesName].label ) {
           return currentSeries[d.seriesName].label( d );
         }
-        return `<strong>${dateFormatter( d.date )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`;
+        return I18n.t( "bold_label_colon_value_html", {
+          label: dateFormatter( d.date ),
+          value: I18n.toNumber( d.value, { precision: 0 } )
+        } );
       } );
     svg.call( tip );
 

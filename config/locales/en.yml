@@ -656,6 +656,8 @@ en:
   blue_butterfly_etc: "blue, butterfly, etc."
   blue_icons_represent_political_units: "Blue icons represent political units like countries, states, provinces, counties, and the like, while green icons represent different kinds of open space (parks, reserves). If you zoom in you'll see more, smaller places."
   body: Body
+  # Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Bounding Box
   breadcrumbs: Breadcrumbs
   breadcrumbs_description: "This will replace the h1 and default calls to action, so make sure to include them if they're important to this project and remember the max width allow is 950px"
@@ -2143,6 +2145,7 @@ en:
   new_message: New message
   new_observation_field: New observation field
   new_observations: New observations
+  new_observations_in_year: "New Observations In %{year}"
   new_observations_this_year: New Observations This Year
   new_observations_ellispsis: "New observations..."
   new_observations_from_place_html: "New observations from %{place}"
@@ -2165,11 +2168,12 @@ en:
   new_trip: New trip
   new_updates_in_the_last_24_hours_from: "New updates in the last 24 hours from %{site_name}"
   new_users: New Users
-  new_users_this_year: New Users This Year
+  new_users_in_year: "New Users In %{year}"
   new_users_w_7_obs: New Users w/ 7 Obs
   newly_added: Newly Added
   newly_added_species: Newly Added Species
   newly_observed_species: Newly Observed Species
+  newly_observed_species_in_year: "Newly Added Species In %{year}"
   newly_observed_species_this_year: Newly Added Species This Year
   news: News
   next: Next
@@ -6021,7 +6025,8 @@ en:
         percent_growth_in_year: "% Growth in %{year}"
         percent_of_total_growth: "% of Total Growth"
         publications_desc_html: |
-          Impact data and visualizations courtesy of
+          Click the flower charts for more information about what the numbers
+          and colors mean. Impact data and charts courtesy of
           <a href="https://www.altmetric.com">Altmetric</a>. Information
           about data usage courtesy of our friends at the
           <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.

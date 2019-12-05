@@ -40,11 +40,15 @@ const Growth = ( {
   } ) );
   obsData.push( emptyJan );
   const obsSeries = {
-    total: {
-      title: I18n.t( "running_total" ),
+    novelThisYear: {
+      title: I18n.t( "new_observations_in_year", { year } ),
       style: "bar",
-      data: obsData.map( interval => ( { date: interval.date, value: interval.total } ) ),
-      color: grayColor,
+      data: obsData.map( interval => ( {
+        date: interval.date,
+        value: interval.novel,
+        offset: interval.total - interval.novel
+      } ) ).filter( interval => interval.date >= `${year}-01-01` ),
+      color: COLORS.inatGreen,
       label
     },
     novel: {
@@ -58,15 +62,11 @@ const Growth = ( {
       color: d3color( COLORS.inatGreen ).darker( 2.0 ),
       label
     },
-    novelThisYear: {
-      title: I18n.t( "new_observations_this_year" ),
+    total: {
+      title: I18n.t( "running_total" ),
       style: "bar",
-      data: obsData.map( interval => ( {
-        date: interval.date,
-        value: interval.novel,
-        offset: interval.total - interval.novel
-      } ) ).filter( interval => interval.date >= `${year}-01-01` ),
-      color: COLORS.inatGreen,
+      data: obsData.map( interval => ( { date: interval.date, value: interval.total } ) ),
+      color: grayColor,
       label
     }
   };
@@ -83,14 +83,15 @@ const Growth = ( {
       novel_species_ids: []
     } );
     taxaSeries = {
-      total: {
-        title: I18n.t( "running_total" ),
+      novelThisYear: {
+        title: I18n.t( "newly_observed_species_in_year", { year } ),
         style: "bar",
         data: _.map( taxaData, i => ( {
           date: i.date,
-          value: i.accumulated_species_count
-        } ) ),
-        color: grayColor,
+          value: i.novel_species_ids.length,
+          offset: i.accumulated_species_count - i.novel_species_ids.length
+        } ) ).filter( interval => interval.date >= `${year}-01-01` ),
+        color: COLORS.iconic.Insecta,
         label
       },
       novel: {
@@ -104,15 +105,14 @@ const Growth = ( {
         color: d3color( COLORS.iconic.Insecta ).darker( 2.0 ),
         label
       },
-      novelThisYear: {
-        title: I18n.t( "newly_observed_species_this_year" ),
+      total: {
+        title: I18n.t( "running_total" ),
         style: "bar",
         data: _.map( taxaData, i => ( {
           date: i.date,
-          value: i.novel_species_ids.length,
-          offset: i.accumulated_species_count - i.novel_species_ids.length
-        } ) ).filter( interval => interval.date >= `${year}-01-01` ),
-        color: COLORS.iconic.Insecta,
+          value: i.accumulated_species_count
+        } ) ),
+        color: grayColor,
         label
       }
     };
@@ -136,11 +136,15 @@ const Growth = ( {
   } ) );
   userData.push( emptyJan );
   const usersSeries = {
-    total: {
-      title: I18n.t( "running_total" ),
+    novelThisYear: {
+      title: I18n.t( "new_users_in_year", { year } ),
       style: "bar",
-      data: userData.map( interval => ( { date: interval.date, value: interval.total } ) ),
-      color: grayColor,
+      data: userData.map( interval => ( {
+        date: interval.date,
+        value: interval.novel,
+        offset: interval.total - interval.novel
+      } ) ).filter( interval => interval.date >= `${year}-01-01` ),
+      color: COLORS.iconic.Animalia,
       label
     },
     novel: {
@@ -154,15 +158,11 @@ const Growth = ( {
       color: d3color( COLORS.iconic.Animalia ).darker( 2.0 ),
       label
     },
-    novelThisYear: {
-      title: I18n.t( "new_users_this_year" ),
+    total: {
+      title: I18n.t( "running_total" ),
       style: "bar",
-      data: userData.map( interval => ( {
-        date: interval.date,
-        value: interval.novel,
-        offset: interval.total - interval.novel
-      } ) ).filter( interval => interval.date >= `${year}-01-01` ),
-      color: COLORS.iconic.Animalia,
+      data: userData.map( interval => ( { date: interval.date, value: interval.total } ) ),
+      color: grayColor,
       label
     }
   };

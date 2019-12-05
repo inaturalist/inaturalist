@@ -375,14 +375,20 @@ class YearStatistic < ActiveRecord::Base
     json["results"].
         sort_by{|o| [0 - o["faves_count"].to_i, 0 - o["comments_count"].to_i] }.
         each_with_index.map do |o,i|
-      if i < 10
-        o.select{|k,v| %w(id taxon community_taxon user photos comments_count faves_count observed_on).include?( k ) }
-      elsif !o["photos"].blank?
-        {
-          "id": o["id"],
-          "photos": [o["photos"][0].select{|k,v| %w(url original_dimensions).include?( k ) }]
-        }
+      json_obs = {
+        id: o["id"]
+      }
+      if !o["photos"].blank?
+        json_obs[:photos] = [o["photos"][0].select{|k,v| %w(url original_dimensions).include?( k ) }]
       end
+      if i < 36
+        json_obs = json_obs.merge( o.select{|k,v| %w{comments_count faves_count observed_on}.include?( k ) })
+        json_obs[:user] = o["user"].select{|k,v| %{id login name icon_url}.include?( k )}
+        if o["taxon"]
+          json_obs[:taxon] = o["taxon"].select{|k,v| %{id name rank preferred_common_name}.include?( k )}
+        end
+      end
+      json_obs
     end.compact
   end
 

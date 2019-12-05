@@ -77,32 +77,38 @@ const App = ( {
         { data.publications && (
           <Publications data={data.publications} year={year} />
         ) }
-        <h2 id="sharing"><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
-        <center>
-          <div
-            className="fb-share-button"
-            data-href={window.location.toString( ).replace( /#.+/, "" )}
-            data-layout="button"
-            data-size="large"
-            data-mobile-iframe="true"
-          >
-            <a
-              className="fb-xfbml-parse-ignore"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse`}
+        <div id="sharing">
+          <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
+          <center>
+            <div
+              className="fb-share-button"
+              data-href={window.location.toString( ).replace( /#.+/, "" )}
+              data-layout="button"
+              data-size="large"
+              data-mobile-iframe="true"
             >
-              { I18n.t( "facebook" ) }
+              <a
+                // className="fb-xfbml-parse-ignore"
+                className="btn btn-primary btn-inat facebook-share-button"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse`}
+              >
+                <i className="fa fa-facebook" />
+                { I18n.t( "facebook" ) }
+              </a>
+            </div>
+            <a
+              className="btn btn-primary btn-inat twitter-share-button"
+              href={`https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
+              data-size="large"
+              rel="noopener noreferrer"
+            >
+              <i className="fa fa-twitter" />
+              { I18n.t( "twitter" ) }
             </a>
-          </div>
-          <a
-            className="twitter-share-button"
-            href={`https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
-            data-size="large"
-          >
-            { I18n.t( "twitter" ) }
-          </a>
-        </center>
+          </center>
+        </div>
       </div>
     );
   }
@@ -192,7 +198,7 @@ const App = ( {
             <div id="view-stats-buttons">
               { !currentUser || !user || ( user.id !== currentUser.id ) ? (
                 <div>
-                  <a href={`/stats/${year}/you`} className="btn btn-primary btn-bordered">
+                  <a href={`/stats/${year}/you`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-pie-chart" />
                     { " " }
                     { I18n.t( "view_your_year_stats", { year } ) }
@@ -201,7 +207,7 @@ const App = ( {
               ) : null }
               { user ? (
                 <div>
-                  <a href={`/stats/${year}`} className="btn btn-primary btn-bordered">
+                  <a href={`/stats/${year}`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-bar-chart-o" />
                     { " " }
                     { I18n.t( "view_year_stats_for_site", { year, site: site.name } ) }
@@ -213,11 +219,16 @@ const App = ( {
                   user && ( user.site_id === null || user.site_id === 1 )
                 )
               ) && (
-                <div>
+                <div className="support">
                   <a href="/donate?utm_content=year-in-review-2018" className="btn btn-default btn-bordered btn-donate">
                     <i className="fa fa-heart" />
                     { " " }
-                    { I18n.t( "support_inaturalist" ) }
+                    { I18n.t( "donate" ) }
+                  </a>
+                  <a href="https://store.inaturalist.org" className="btn btn-default btn-bordered btn-donate">
+                    <i className="fa fa-shopping-cart" />
+                    { " " }
+                    { I18n.t( "store" ) }
                   </a>
                 </div>
               ) }

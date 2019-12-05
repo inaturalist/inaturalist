@@ -54,6 +54,25 @@ $dark-gray: #333333;
     }
     font-weight: 100;
   }
+  // Bump bootstrap header margins by 10px
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  h4,
+  .h4,
+  h5,
+  .h5,
+  h6,
+  .h6 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
   text {
     fill: white;
   }
@@ -131,12 +150,32 @@ $dark-gray: #333333;
   }
 
   #sharing {
-    margin-bottom: 20px;
-  }
-
-  .twitter-share-button {
-    vertical-align: top;
-    margin-left: 20px;
+    h2 { margin-bottom: 20px; }
+    center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    a {
+      i {
+        margin-right: 5px;
+      }
+    }
+    .btn {
+      min-width: 97px;
+    }
+    .facebook-share-button {
+      background-color: $facebook-blue;
+      border-color: $facebook-blue;
+      color: white;
+    }
+    .twitter-share-button {
+      vertical-align: top;
+      margin-left: 20px;
+      background-color: $twitter-blue;
+      border-color: $twitter-blue;
+      color: white;
+    }
   }
 
   .banner {
@@ -219,6 +258,15 @@ $dark-gray: #333333;
     text-align: center;
     .btn {
       margin-bottom: 20px;
+      white-space: normal;
+    }
+    .support {
+      .btn {
+        min-width: 120px;
+      }
+      .btn:last-child {
+        margin-left: 20px;
+      }
     }
   }
 
@@ -612,7 +660,6 @@ $obs-grid-photo-size: 210px;
 }
 
 .NewSpecies {
-  $obs-grid-photo-size: 210px;
   margin-bottom: 50px;
   .ObservationsGridItem.borderless.thumbnail {
     .photo {

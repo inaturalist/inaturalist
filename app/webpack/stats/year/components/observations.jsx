@@ -21,7 +21,10 @@ const Observations = ( {
       data: _.map( data.month_histogram, ( value, date ) => ( { date, value } ) ),
       style: "bar",
       color: grayColor,
-      label: d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
+      label: d => I18n.t( "bold_label_colon_value_html", {
+        label: moment( d.date ).add( 2, "days" ).format( "MMMM" ),
+        value: I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+      } )
     };
   }
   if ( data.week_histogram ) {
@@ -30,14 +33,22 @@ const Observations = ( {
       data: _.map( data.week_histogram, ( value, date ) => ( { date, value } ) ),
       color: "rgba( 168, 204, 9, 0.2 )",
       style: "bar",
-      label: d => `<strong>${I18n.t( "week_of_date", { date: moment( d.date ).format( "LL" ) } )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
+      label: d => I18n.t( "bold_label_colon_value_html", {
+        label: I18n.t( "week_of_date", { date: moment( d.date ).format( "LL" ) } ),
+        value: I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+      } )
     };
   }
+  const dailyLabel = d => I18n.t( "bold_label_colon_value_html", {
+    label: moment( d.date ).format( "ll" ),
+    value: I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+  } );
   if ( data.day_histogram ) {
     series.day = {
       title: I18n.t( "per_day" ),
       data: _.map( data.day_histogram, ( value, date ) => ( { date, value } ) ),
-      color: "#74ac00"
+      color: "#74ac00",
+      label: dailyLabel
     };
   }
   const comparisonSeries = {};
@@ -45,7 +56,8 @@ const Observations = ( {
     comparisonSeries.this_year = {
       title: I18n.t( "this_year" ),
       data: _.map( data.day_histogram, ( value, date ) => ( { date, value } ) ),
-      color: "#74ac00"
+      color: "#74ac00",
+      label: dailyLabel
     };
     comparisonSeries.last_year = {
       title: I18n.t( "last_year" ),
@@ -55,13 +67,30 @@ const Observations = ( {
         const newDate = date.replace( lastYear, newYear );
         return { date: newDate, value };
       } ),
-      color: grayColor
+      color: grayColor,
+      label: dailyLabel
     };
   }
   let popular;
   if ( data.popular && data.popular.length > 0 ) {
+    const obsWithActivity = _.filter(
+      data.popular,
+      o => o.faves_count || o.cached_votes_total || o.comments_count
+    );
+    const maxPopular = 36;
+    const perPage = 12;
     popular = (
-      <ObservationsGrid observations={data.popular} identifier="popular" />
+      <ObservationsGrid
+        observations={
+          obsWithActivity.length < perPage
+            ? data.popular.slice( 0, maxPopular )
+            : obsWithActivity
+        }
+        max={maxPopular}
+        perPage={perPage}
+        identifier="popular"
+        moreButton
+      />
     );
   }
   moment.locale( I18n.locale );
