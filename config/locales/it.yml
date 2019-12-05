@@ -602,6 +602,8 @@ it:
   blue_butterfly_etc: "blu, farfalla, etc."
   blue_icons_represent_political_units: "Le icone blu rappresentano unità politiche come paesi, stati, province, regioni e simili, mentre le icone verdi rappresentano i diversi tipi di spazi aperti (parchi, riserve). Zoomando sarà possibile vedere più dettagli e le località minori."
   body: Corpo del messaggio
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Riquadro di ricerca
   breadcrumbs: Percorso di navigazione
   breadcrumbs_description: "Questa azione rimpiazzerà l'h1 e le istruzioni di default; assicuratevi di includerle se sono importanti per il progetto e ricordatevi che la larghezza massima autorizzata è di 950px"
@@ -2031,6 +2033,7 @@ it:
   new_message: Nuovo messaggio
   new_observation_field: Nuovo campo di osservazione
   new_observations: Nuove osservazioni
+  new_observations_in_year: "Nuove Osservazioni Nel %{year}"
   new_observations_this_year: Nuove Osservazioni Quest'Anno
   new_observations_ellispsis: "Nuove osservazioni..."
   new_observations_from_place_html: "Nuove osservazioni da %{place}"
@@ -2052,11 +2055,12 @@ it:
   new_trip: Nuovo viaggio
   new_updates_in_the_last_24_hours_from: "Nuovi aggiornamenti nelle ultime 24 ore da %{site_name}"
   new_users: Nuovi utenti
-  new_users_this_year: Nuovi Utenti Quest'Anno
+  new_users_in_year: "Nuovi Utenti Nel %{year}"
   new_users_w_7_obs: Nuovi utenti con 7 osservazioni
   newly_added: Appena Aggiunti
   newly_added_species: Specie Appena Aggiunte
   newly_observed_species: Specie Appena Osservate
+  newly_observed_species_in_year: "Specie Aggiunte Di Recente Nel %{year}"
   newly_observed_species_this_year: Specie Appena Aggiunte Quest'Anno
   news: Notizie
   next: Successivo
@@ -5254,7 +5258,7 @@ it:
         percent_growth_in_year: "% Crescita in %{year}"
         percent_of_total_growth: "% di crescita totale"
         publications_desc_html: |
-          I dati di impatto e visualizzazioni per gentile concessione di <a href="https://www.altmetric.com">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici al <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
+          Clicca sui grafici "a fiore" per ottenere più informazioni su cosa significano i numeri e i colori. I dati e i grafici di impatto per gentile concessione di <a href="https://www.altmetric.com">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici al <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
           <br/>
           <a href="%{url}">Visualizza tutti gli %{numStudies} studi</a>
         sunburst_desc_html: |
