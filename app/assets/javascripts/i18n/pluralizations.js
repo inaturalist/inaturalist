@@ -58,6 +58,15 @@
     return ["other"];
   }
 
+  // Override default to deal with English-style delimiters
+  I18n.pluralization.default = function ( count ) {
+    switch ( normalizeCount( count, "en" ) ) {
+      case 0: return ["zero", "other"];
+      case 1: return ["one"];
+      default: return ["other"];
+    }
+  };
+
   // Add pluralization rules for locales
   I18n.pluralization.ar = function ( count ) {
     var n = normalizeCount( count, "ar" ) || 0;
