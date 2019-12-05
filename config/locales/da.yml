@@ -2066,7 +2066,6 @@ da:
   new_trip: Ny tur
   new_updates_in_the_last_24_hours_from: "Nye opdateringer i de seneste 24 timer fra %{site_name}"
   new_users: Nye brugere
-  new_users_this_year: Nye brugere i år
   new_users_w_7_obs: Nye brugere m/ 7 obs
   newly_added: Nyligt tilføjet
   newly_added_species: Nyligt tilføjede arter
@@ -3933,6 +3932,8 @@ da:
     one: brugt 1 gang
     other: Brugt %{count} gange
   user: Bruger
+  user1_and_user2_faved_this_observation: "%{user1} og %{user2} tilføjede denne observation som favorit"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} og %{x_others} tilføjede denne observation som favorit"
   user_added_a_comment_html: "%{user} tilføjede en kommentar"
   user_added_a_fave_html: "%{user} tilføjede en favorit"
   user_added_a_flag_html: "%{user} tilføjede en flag"
@@ -3956,6 +3957,7 @@ da:
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   user_faved_a_noun_by_owner: "%{user} synes godt om %{noun} af %{owner}"
+  user_faved_this_observation: "%{user} tilføjede denne observation som favorit"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
   user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
   user_has_opted_out_of_community_id: Bruger har afmeldt sig fællesskabs ID
@@ -5583,13 +5585,6 @@ da:
         obs_in_year: Obs i %{year}
         percent_growth_in_year: "% Vækst i %{year}"
         percent_of_total_growth: "% af samlet vækst"
-        publications_desc_html: |
-          Indvirkningsdata og visualiseringer takker vi
-          <a href="https://www.altmetric.com"> Altmetric </a> for. Information
-          om dataanvendelse takker vi vores venner på
-          <a href="https://www.gbif.org/"> Global Biodiversity Information Facility </a> for.
-          <br/>
-          <a href="%{url}"> Se alle %{numStudies} studier</a>
         sunburst_desc_html: |
           Observeret taksa arrangeret som hierarkisk "solstråle" diagram. Basen
           af hierarkiet er i centrum, begyndende med "liv" og slutter

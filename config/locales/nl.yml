@@ -597,7 +597,7 @@ nl:
   batch_edit: Bewerk in batch
   batch_edit_taxa_for_x_html: "Bewerk taxa in batch voor %{x}"
   batch_operations: Batchbewerkingen
-  be_the_first_to_fave_this_observation: Voeg deze waarneming als eerste toe aan je favorieten!
+  be_the_first_to_fave_this_observation: Sla als eerste deze waarneming op als een favoriet!
   because_of: wegens
   before_importing_photos: vóór het importeren van foto's
   belives_this_is_a_comprehensive_list_of: vindt dat dit een uitgebreide lijst is van
@@ -614,6 +614,8 @@ nl:
   blue_butterfly_etc: "blauw, vlinder, enz."
   blue_icons_represent_political_units: "Blauwe iconen stellen politieke eenheden voor, zoals landen, staten, provincies, regio's en dergelijke. Groene iconen stellen verschillende soorten open ruimte voor (parken, reservaten). Door in te zoomen zie je meer, kleinere plaatsen."
   body: Lichaam
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Kaartuitsnede
   breadcrumbs: Broodkruimels
   breadcrumbs_description: "Dit zal de h1 en standaard calls-to-action vervangen, dus zorg ervoor dat je ze opneemt als ze belangrijk zijn voor dit project en onthoud dat de max. toegestane breedte 950px is"
@@ -714,6 +716,7 @@ nl:
   check_list: Checklist
   check_list_description: Kies een hoger niveau taxon dat je in deze lijst wilt weergeven, zoals 'Aves' voor vogels of 'Amphibia' voor amfibieën. Indien ingesteld staat deze lijst geen taxa toe die niet in dit taxon voorkomen. Als je bijvoorbeeld een lijst met vogels maakt, kun je er geen kikkers aan toevoegen.
   check_list_for_individual_taxa_that: 'Checklists voor individuele taxa die hier voorkomen, bv. "Vogels van %{place}".'
+  check_list_for_taxon_html: "Checklist voor %{taxon}"
   check_lists_must_belong_to_a_place: |
     Checklisten moeten bij een plaats horen. Ga om een nieuwe checklist te maken
     naar de standaard-checklist van een plaats en klik op de link 'Maak een nieuwe checklist'.
@@ -794,6 +797,7 @@ nl:
   comparing_observations_from: "Vergelijken van %{user} waarnemingen van %{dates}"
   compiled_by_name: "Gecompileerd door %{name}"
   complete: Afgerond
+  complete_set_for_taxon_in_place_html: "Complete set voor %{taxon} in %{place}"
   completed: Voltooid
   completed_at: Voltooid op
   comprehensive: uitgebreid
@@ -1108,8 +1112,10 @@ nl:
   edit_account_settings_and_profile: "Account instellingen &amp; profiel bewerken"
   edit_assessment: Beoordeling bewerken
   edit_atlas: Atlas bewerken
+  edit_atlas_for_taxon_html: Atlas voor %{taxon} bewerken
   edit_body: Hoofdtekst bewerken
   edit_comment: Bewerk je reactie
+  edit_complete_set_for_taxon_in_place_html: "Complete set voor %{taxon} in %{place} bewerken"
   edit_custom_project_fields: Bewerk Aangepaste projectvelden
   edit_field: Veld bewerken
   edit_license: Licentie bewerken
@@ -1152,6 +1158,7 @@ nl:
   editing_project_asset: Projectbestand bewerken voor
   editing_subscription_to_x_html: "Abonnement op %{x} bewerken"
   editing_taxon_link: Taxonkoppeling bewerken
+  editing_taxon_name_for_taxon_html: Taxonnaam "%{name}" voor %{taxon} bewerken
   editing_taxon_range: Taxonreeks bewerken
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
@@ -2049,6 +2056,7 @@ nl:
   new_message: Nieuw bericht
   new_observation_field: Nieuw waarnemingsveld
   new_observations: Nieuwe waarnemingen
+  new_observations_in_year: "Nieuwe waarnemingen in %{year}"
   new_observations_this_year: Nieuwe waarnemingen dit jaar
   new_observations_ellispsis: "Nieuwe waarnemingen"
   new_observations_from_place_html: "Nieuwe waarnemingen uit %{place}"
@@ -2070,11 +2078,12 @@ nl:
   new_trip: Nieuwe route
   new_updates_in_the_last_24_hours_from: "Nieuwe updates op %{site_name} in de afgelopen 24 uur"
   new_users: Nieuwe gebruikers
-  new_users_this_year: Nieuwe gebruikers dit jaar
+  new_users_in_year: "Nieuwe gebruikers in %{year}"
   new_users_w_7_obs: Nieuwe gebruikers met 7 wrn
   newly_added: Nieuw toegevoegd
   newly_added_species: Nieuw toegevoegde soorten
   newly_observed_species: Nieuw waargenomen soorten
+  newly_observed_species_in_year: "Nieuw toegevoegde soorten in %{year}"
   newly_observed_species_this_year: Nieuw toegevoegde soorten dit jaar
   news: Nieuws
   next: Volgende
@@ -3919,10 +3928,18 @@ nl:
     one: Eén keer gebruikt
     other: '%{count} keren gebruikt'
   user: Gebruiker
+  user1_and_user2_faved_this_observation: "%{user1} en %{user2} hebben deze waarneming opgeslagen als favoriet"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} en %{x_others} hebben deze waarneming opgeslagen als favoriet"
+  user_added_a_comment_html: "%{user} heeft een reactie toegevoegd"
+  user_added_a_fave_html: "%{user} heeft dit als favoriet opgeslagen"
+  user_added_a_flag_html: "%{user} heeft dit gemarkeerd"
+  user_added_a_project_invitation_html: "%{user} heeft een projectuitnodiging toegevoegd"
   user_added_a_x: "%{user} heeft een %{x} toegevoegd"
   user_added_a_x_to_noun_by_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
   user_added_a_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
+  user_added_an_identification_html: "%{user} heeft een determinatie toegevoegd"
   user_added_an_observation_field_html: '%{user} heeft een waarde toegevoegd voor "%{field_name}" aan een waarneming van %{owner}'
+  user_added_an_observation_field_value_html: "%{user} heeft een waarnemingsveld toegevoegd"
   user_added_an_observation_html: "%{user} heeft een waarneming toegevoegd"
   user_added_an_x: "%{user} heeft een %{x} toegevoegd"
   user_added_an_x_to_noun_by_html: "%{user} heeft %{x} toegevoegd aan %{noun} van %{by}"
@@ -3935,7 +3952,8 @@ nl:
   user_commented_on: "%{user} heeft om %{time} gereageerd op je %{title}"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
-  user_faved_a_noun_by_owner: "%{user} maakte favoriet %{noun} door %{owner}"
+  user_faved_a_noun_by_owner: "%{user} heeft %{noun} door %{owner} als favoriet opgeslagen"
+  user_faved_this_observation: "%{user} heeft deze waarneming als favoriet opgeslagen"
   user_flagged_as_a_non_spammer_html: "%{user} gemarkeerd als een niet-spammer"
   user_flagged_as_a_spammer_html: "%{user} gemeld als een spammer"
   user_has_opted_out_of_community_id: Gebruiker heeft het gemeenschapstaxon uitgezet
@@ -4224,7 +4242,7 @@ nl:
   you_dont_have_permission_to_edit_that_taxon: |
     Je hebt geen rechten om dit taxon te bewerken. Neem contact op met één van de taxoncuratoren, of meld dit taxon om wijzigingen aan te vragen.
   you_dont_have_permission_to_edit_those_photos: Je hebt geen rechten om deze foto's te bewerken.
-  you_faved_this: Je hebt dit aan je favorieten toegevoegd!
+  you_faved_this: Je hebt dit opgeslagen als favoriet!
   you_have_left_x_project: "Je hebt %{project} verlaten"
   you_havent_linked_your_inaturalist_google_account: "Je hebt je %{site_name}-account nog niet aan je Google-account gekoppeld."
   you_havent_joined_any_projects: Je neemt niet deel aan enig project
@@ -5358,11 +5376,6 @@ nl:
         obs_in_year: Wrn in %{year}
         percent_growth_in_year: "% Groei in %{year}"
         percent_of_total_growth: "% of Totaal Groei"
-        publications_desc_html: |
-          Met dank aan <a href="https://www.altmetric.com">Altmetric</a> voor de impactgegevens en visualisaties. Informatie over het gebruik van de gegevens met dank aan onze vrienden op de
-          <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
-          <br/>
-          <a href="%{url}">Toon alle %{numStudies} studies</a>
         sunburst_desc_html: |
           Waargenomen taxa gerangschikt als een hiërarchisch "sunburst"-diagram. De basis
           van de hiërarchie staat centraal, beginnend met "Leven" en eindigend

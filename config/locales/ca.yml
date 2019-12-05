@@ -1814,7 +1814,6 @@ ca:
   new_trip: Nou viatge
   new_updates_in_the_last_24_hours_from: "Noves actualitzacions a les darreres 24 hores d’%{site_name}"
   new_users: Usuaris nous
-  new_users_this_year: Nous usuaris aquest any
   new_users_w_7_obs: Usuaris nous amb 7 Obs
   newly_added: Afegit recentment
   newly_added_species: Espècies afegides recentment
@@ -4697,10 +4696,6 @@ ca:
         obs_in_year: Obs. l'any %{year}
         percent_growth_in_year: "% creixement l'any %{year}"
         percent_of_total_growth: "% de creixement total"
-        publications_desc_html: |
-          Dades d'impacte i visualitzacions cortesia de <a href="https://www.altmetric.com">Altmetric</a>. La information sibre ús de les dades cortesia dels nostres amics de <a href="https://www.gbif.org/">Global Biodiversity Information Facility </a>.
-          <br/>
-          <a href="%{url}">Veure tots els %{numStudies} estudis</a>
         sunburst_desc_html: |
           Els tàxons observats es disposen en un diagrama radial (Sunburst) jeràrquic. La base de la jerarquia és al centre, començant per "Vida" i acaba amb les espècies als extrems exteriors. La mida de cada arc és proporcional al nombre d’observacions d’aquest tàxon i els colors corresponen als colors habituals amb els quals representem els tàxons (verd per a plantes, taronja per a insectes, blau per a la majoria d’altres animals, etc.), així que si veieu molt de verd, això significa que heu observat moltes plantes. <strong> Feu clic a un arc per col·locar aquest tàxon al centre </strong> i els seus fills al seu voltant o <strong> feu clic al centre per tornar a la jerarquia </strong>.
     taxa:

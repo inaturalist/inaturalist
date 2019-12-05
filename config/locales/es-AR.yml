@@ -2009,7 +2009,6 @@ es-AR:
   new_trip: Nuevo viaje
   new_updates_in_the_last_24_hours_from: "Nuevas actualizaciones en las últimas 24 horas de %{site_name}"
   new_users: Usuarios nuevos
-  new_users_this_year: Usuarios nuevos Este año
   new_users_w_7_obs: Usuarios nuevos w/ 7 Obs
   newly_added: Añadido Recientemente
   newly_added_species: Especie Añadida recientemente
@@ -2443,7 +2442,7 @@ es-AR:
   photos_updated: Fotos actualizadas.
   pi_consent_desc_title: Sobre la Informacion Personal
   pi_consent_desc_html: |
-    Almacenamos información personal como nombres de usuario y direcciones de correo electrónico para administrar cuentas en este sitio y para cumplir con las leyes de privacidad, necesitamos que marque esta casilla para indicar que acepta este uso de información personal. Para obtener más información sobre qué información recopilamos y cómo la usamos, consulte nuestro <a href='%{privacy_url}' target='_blank'>Política de Privacidad</a> y nuestro a href='%{terms_url}' target='_blank'>Términos de Servicio</a>.
+    Almacenamos información personal como nombres de usuario y direcciones de correo electrónico para administrar cuentas en este sitio y para cumplir con las leyes de privacidad, necesitamos que marque esta casilla para indicar que acepta este uso de información personal. Para obtener más información sobre qué información recopilamos y cómo la usamos, consulte nuestro <a href='%{privacy_url}' target='_blank'>Política de Privacidad</a> y nuestro <a href='%{terms_url}' target='_blank'>Términos de Servicio</a>.
   pi_consent_label: |
     Permito a iNaturalist a almacenar y procesar ciertos tipos de
     información personal para administrar mi cuenta
@@ -5331,11 +5330,6 @@ es-AR:
         obs_in_year: Obs En %{year}
         percent_growth_in_year: "% Crecimiento en %{year}"
         percent_of_total_growth: "% del Crecimiento Total"
-        publications_desc_html: |
-          Datos de impacto y visualizaciones cortesía de <a href="https://www.altmetric.com">Altmetric</a>. Información
-          sobre uso de los datos cortesía de nuestros amigos en <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Ver todos %{numStudies} estudios</a>
         sunburst_desc_html: |
           Taxones observados dispuestos como un diagrama jerárquico de "resplandor solar". La base de la jerarquía está en el centro, comenzando con "Vida" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón "icónico" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>
     taxa:
