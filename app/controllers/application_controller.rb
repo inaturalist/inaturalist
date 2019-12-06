@@ -84,6 +84,7 @@ class ApplicationController < ActionController::Base
 
   def set_ga_trackers
     return true unless request.format.blank? || request.format.html?
+    return true if current_user && current_user.prefers_no_tracking?
     trackers = [ ]
     if Site.default && !Site.default.google_analytics_tracker_id.blank?
       trackers << [ "default", Site.default.google_analytics_tracker_id ]

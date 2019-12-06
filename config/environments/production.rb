@@ -67,9 +67,11 @@ Inaturalist::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|
-    return env['inat_ga_trackers'] if env['inat_ga_trackers']
-  }
+  config.middleware.use Rack::GoogleAnalytics,
+    anonymize_ip: true,
+    trackers: lambda { |env|
+      return env['inat_ga_trackers'] if env['inat_ga_trackers']
+    }
 
   config.log_formatter = CustomLogFormatter.new
 
