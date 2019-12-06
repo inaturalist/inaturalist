@@ -758,3 +758,68 @@ $obs-grid-photo-size: 210px;
     }
   }
 }
+
+.Streaks {
+  $streak-height: 30px;
+  .streak {
+    display: flex;
+    width: "100%";
+    margin-bottom: 5px;
+    min-height: $streak-height;
+  }
+  a,
+  a:hover {
+    color: white;
+  }
+  .user {
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    .UserImage {
+      margin-right: 10px;
+      border: 0 transparent;
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .background {
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+  .ticks {
+    .background {
+      height: 35px;
+    }
+    .tick {
+      position: absolute;
+      display: block;
+      &.alt {
+        background-color: $dark-gray;
+      }
+      text-align: center;
+      padding: 10px 0;
+    }
+    @media (max-width: 992px) {
+      .tick {
+        font-size: 8px;
+      }
+    }
+  }
+  .datum {
+    position: relative;
+    display: block;
+    background-color: $inat-green;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    .days {
+      padding: 0px 10px;
+      font-size: 10px;
+    }
+  }
+}

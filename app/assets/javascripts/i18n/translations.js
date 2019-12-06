@@ -356,6 +356,16 @@ I18n.translations["ar"] = {
   "date_time": "تاريخ/وقت",
   "date_updated": "تاريخ التحديث",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "zero": "صفر أيام",
+        "one": "يوم واحد",
+        "two": "يومان",
+        "few": "%{count} أيام",
+        "many": "%{count} يوم",
+        "other": "%{count} يوم"
+      }
+    }
   },
   "decrease_brightness": "تقليل السطوع",
   "default": "الافتراضي",
@@ -2099,6 +2109,12 @@ I18n.translations["bg"] = {
     "countdown_x_seconds": {
       "one": "сек",
       "other": "сек"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 ден",
+        "other": "%{count} дни"
+      }
     }
   },
   "default": "по подразбиране",
@@ -3265,6 +3281,8 @@ I18n.translations["br"] = {
   },
   "date_time": "Deiz/Eur",
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "default": "dre ziouer",
   "delete": "Dilemel",
@@ -4032,6 +4050,12 @@ I18n.translations["ca"] = {
     "countdown_x_seconds": {
       "one": "seg.",
       "other": "segs."
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dia",
+        "other": "%{count} dies"
+      }
     }
   },
   "decrease_brightness": "Reduïu brillantor",
@@ -5794,6 +5818,13 @@ I18n.translations["cs"] = {
   "date_time": "Datum/Čas",
   "date_updated": "Datum aktualizováno",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "24 hodinami",
+        "few": "%{count} dny",
+        "other": "%{count} dny"
+      }
+    }
   },
   "default": "výchozí",
   "delete": "Smazat",
@@ -7538,6 +7569,12 @@ I18n.translations["da"] = {
     "countdown_x_seconds": {
       "one": "sek",
       "other": "sek"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dag ",
+        "other": "%{count} dage"
+      }
     }
   },
   "decrease_brightness": "Mindsk lysstyrke",
@@ -9634,6 +9671,12 @@ I18n.translations["de"] = {
     "countdown_x_days": {
       "one": "Tag",
       "other": "Tage"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 Tag",
+        "other": "%{count} Tage"
+      }
     }
   },
   "decrease_brightness": "Helligkeit reduzieren",
@@ -11430,6 +11473,12 @@ I18n.translations["el"] = {
     "countdown_x_seconds": {
       "one": "δευτερόλεπτο",
       "other": "δευτερόλεπτα"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 ημέρα",
+        "other": "%{count} ημέρες"
+      }
     }
   },
   "default": "προεπιλογή",
@@ -13019,6 +13068,12 @@ I18n.translations["en"] = {
     "countdown_x_seconds": {
       "one": "sec",
       "other": "sec"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "%{count} day",
+        "other": "%{count} days"
+      }
     }
   },
   "decrease_brightness": "Decrease Brightness",
@@ -14512,6 +14567,7 @@ I18n.translations["en"] = {
         "percent_growth_in_year": "% Growth in %{year}",
         "percent_of_total_growth": "% of Total Growth",
         "publications_desc_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
+        "streaks": "Streaks",
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }
     },
@@ -14763,6 +14819,8 @@ I18n.translations["en-UK"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "establishment": {
   },
@@ -14915,6 +14973,12 @@ I18n.translations["en-US"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 day",
+        "other": "%{count} days"
+      }
+    }
   },
   "establishment": {
   },
@@ -15326,6 +15390,12 @@ I18n.translations["eo"] = {
     "countdown_x_seconds": {
       "one": "sekundo",
       "other": "sekundoj"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 tago",
+        "other": "%{count} tagoj"
+      }
     }
   },
   "default": "implicita",
@@ -16617,6 +16687,12 @@ I18n.translations["es"] = {
     "countdown_x_seconds": {
       "one": "s",
       "other": "s"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 día",
+        "other": "%{count} días"
+      }
     }
   },
   "decrease_brightness": "Reducir brillo",
@@ -18706,6 +18782,12 @@ I18n.translations["es-AR"] = {
     "countdown_x_seconds": {
       "one": "s",
       "other": "s"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 día",
+        "other": "%{count} días"
+      }
     }
   },
   "decrease_brightness": "Reducir brillo",
@@ -20433,6 +20515,12 @@ I18n.translations["es-ES"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 día",
+        "other": "%{count} días"
+      }
+    }
   },
   "establishment": {
   },
@@ -20918,6 +21006,12 @@ I18n.translations["es-MX"] = {
     "countdown_x_seconds": {
       "one": "s",
       "other": "s"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "un día",
+        "other": "%{count} días"
+      }
     }
   },
   "default": "Predeterminada",
@@ -22710,6 +22804,12 @@ I18n.translations["et"] = {
     "countdown_x_seconds": {
       "one": "sek",
       "other": "sek"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 päev",
+        "other": "%{count} päeva"
+      }
     }
   },
   "default": "vaikimisi",
@@ -24421,6 +24521,12 @@ I18n.translations["eu"] = {
   },
   "date_time": "Data/Ordua",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 egun",
+        "other": "%{count} egun"
+      }
+    }
   },
   "default": "Lehenetsia",
   "delete": "Ezabatu",
@@ -25482,6 +25588,12 @@ I18n.translations["fi"] = {
     "countdown_x_seconds": {
       "one": "sekunti",
       "other": "sekuntia"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 päivä",
+        "other": "%{count} päivää"
+      }
     }
   },
   "decrease_brightness": "Vähennä kirkkautta",
@@ -27034,6 +27146,8 @@ I18n.translations["fil"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "establishment": {
   },
@@ -27545,6 +27659,12 @@ I18n.translations["fr"] = {
     "countdown_x_seconds": {
       "one": "seconde",
       "other": "seconde"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 jour",
+        "other": "%{count} jours"
+      }
     }
   },
   "decrease_brightness": "Diminuer la luminosité",
@@ -29113,6 +29233,12 @@ I18n.translations["fr-CA"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 jour",
+        "other": "%{count} jours"
+      }
+    }
   },
   "establishment": {
   },
@@ -29261,6 +29387,8 @@ I18n.translations["gd"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "establishment": {
   },
@@ -29598,6 +29726,12 @@ I18n.translations["gl"] = {
   },
   "date_time": "Data/Hora",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 día",
+        "other": "%{count} días"
+      }
+    }
   },
   "default": "Predeterminada",
   "delete": "Eliminar",
@@ -30465,6 +30599,14 @@ I18n.translations["he"] = {
       "two": "שתי שניות",
       "many": "שניות",
       "other": "שניות"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "יום אחד",
+        "other": "%{count} ימים",
+        "two": "%{count} ימים",
+        "many": "%{count} ימים"
+      }
     }
   },
   "default": "ברירת המחדל",
@@ -31846,6 +31988,12 @@ I18n.translations["id"] = {
   "date_time": "Tanggal/Waktu",
   "date_updated": "Tanggal pemutakhiran",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "sehari",
+        "other": "%{count} hari"
+      }
+    }
   },
   "default": "baku",
   "delete": "Hapus",
@@ -32945,6 +33093,12 @@ I18n.translations["it"] = {
     "countdown_x_seconds": {
       "one": "sec",
       "other": "sec"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 giorno",
+        "other": "%{count} giorni"
+      }
     }
   },
   "decrease_brightness": "Riduci luminosità",
@@ -34647,6 +34801,8 @@ I18n.translations["iw"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "establishment": {
   },
@@ -35066,6 +35222,12 @@ I18n.translations["ja"] = {
     },
     "countdown_x_seconds": {
       "other": "秒"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1日",
+        "other": "%{count}日"
+      }
     }
   },
   "default": "既定",
@@ -35958,6 +36120,8 @@ I18n.translations["ka"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "establishment": {
   },
@@ -36376,6 +36540,12 @@ I18n.translations["ko"] = {
     },
     "countdown_x_seconds": {
       "other": "초"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "하루",
+        "other": "%{count}일"
+      }
     }
   },
   "decrease_brightness": "밝기 줄이기",
@@ -37599,6 +37769,12 @@ I18n.translations["lb"] = {
     "countdown_x_seconds": {
       "one": "Sek",
       "other": "Sek"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 Dag",
+        "other": "%{count} Deeg"
+      }
     }
   },
   "default": "Standard",
@@ -38557,6 +38733,13 @@ I18n.translations["lt"] = {
   "date_time": "Data/Laikas",
   "date_updated": "Data atnaujinta",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "%{count} diena",
+        "few": "%{count} dienos",
+        "other": "%{count} dienų"
+      }
+    }
   },
   "decrease_brightness": "Sumažinti ryškumą",
   "default": "bumatytasis",
@@ -39476,6 +39659,12 @@ I18n.translations["mk"] = {
   },
   "date_time": "Датум/време",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 ден",
+        "other": "%{count} дена"
+      }
+    }
   },
   "default": "по основно",
   "delete": "Избриши",
@@ -40428,6 +40617,12 @@ I18n.translations["nb"] = {
     "countdown_x_seconds": {
       "one": "sek",
       "other": "sek"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "%{count} dag",
+        "other": "%{count} dager"
+      }
     }
   },
   "decrease_brightness": "Senk lysstyrken",
@@ -42550,6 +42745,12 @@ I18n.translations["nl"] = {
     "countdown_x_seconds": {
       "one": "sec",
       "other": "sec"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "%{count} dag",
+        "other": "%{count} dagen"
+      }
     }
   },
   "decrease_brightness": "Helderheid verminderen",
@@ -44306,6 +44507,12 @@ I18n.translations["nn"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dag",
+        "other": "%{count} dagar"
+      }
+    }
   },
   "establishment": {
   },
@@ -44627,6 +44834,8 @@ I18n.translations["oc"] = {
   },
   "date_time": "Data/Ora",
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "default": "per defaut",
   "delete": "Suprimir",
@@ -45566,6 +45775,14 @@ I18n.translations["pl"] = {
       "few": "sekundy",
       "many": "sekund",
       "other": "sekundy"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "few": "%{count} dni",
+        "many": "%{count} dni",
+        "one": "1 dzień",
+        "other": "%{count} dni"
+      }
     }
   },
   "decrease_brightness": "Zmniejsz jasność",
@@ -47211,6 +47428,12 @@ I18n.translations["pt"] = {
     "countdown_x_seconds": {
       "one": "s",
       "other": "s"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dia",
+        "other": "%{count} dias"
+      }
     }
   },
   "decrease_brightness": "Reduzir a Luminosidade",
@@ -48614,6 +48837,12 @@ I18n.translations["pt-BR"] = {
     "countdown_x_seconds": {
       "one": "s",
       "other": "s"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dia",
+        "other": "%{count} dias"
+      }
     }
   },
   "decrease_brightness": "Diminuir o brilho",
@@ -50528,6 +50757,14 @@ I18n.translations["ru"] = {
       "few": "сек",
       "many": "сек",
       "other": "сек"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "few": "%{count} дня",
+        "many": "%{count} дней",
+        "one": "%{count} день",
+        "other": "%{count} дней"
+      }
     }
   },
   "decrease_brightness": "Уменьшить яркость",
@@ -52615,6 +52852,13 @@ I18n.translations["sk"] = {
   "date_time": "Dátum/čas",
   "date_updated": "Dátum aktualizovaný",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "dňom",
+        "few": "%{count} dňami",
+        "other": "%{count} dňami"
+      }
+    }
   },
   "decrease_brightness": "Znížiť jas",
   "default": "štandardne",
@@ -54105,6 +54349,12 @@ I18n.translations["sq"] = {
   "date_specified": "Data e specifikuar",
   "date_time": "Data/Ora",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 ditë",
+        "other": "%{count} ditë"
+      }
+    }
   },
   "default": "e paracaktuar",
   "delete": "Fshi",
@@ -55299,6 +55549,12 @@ I18n.translations["sv"] = {
     "countdown_x_seconds": {
       "one": "sek",
       "other": "sek"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dag",
+        "other": "%{count} dagar"
+      }
     }
   },
   "default": "standard",
@@ -56441,6 +56697,12 @@ I18n.translations["tr"] = {
     "countdown_x_seconds": {
       "one": "sn",
       "other": "sn"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "%{count} gün",
+        "other": "%{count} gün"
+      }
     }
   },
   "decrease_brightness": "Parlaklığı azalt",
@@ -58200,6 +58462,14 @@ I18n.translations["uk"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "few": "%{count} дні",
+        "many": "%{count} днів",
+        "one": "%{count} день",
+        "other": "%{count} дня"
+      }
+    }
   },
   "establishment": {
   },
@@ -58681,6 +58951,12 @@ I18n.translations["zh-CN"] = {
     },
     "countdown_x_seconds": {
       "other": "秒"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "一天",
+        "other": "%{count} 日"
+      }
     }
   },
   "default": "默认",
@@ -59979,6 +60255,12 @@ I18n.translations["zh-HK"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "一天",
+        "other": "%{count}天"
+      }
+    }
   },
   "establishment": {
   },
@@ -60484,6 +60766,12 @@ I18n.translations["zh-TW"] = {
     },
     "countdown_x_seconds": {
       "other": "秒"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "一天",
+        "other": "%{count} 日"
+      }
     }
   },
   "decrease_brightness": "減少亮度",

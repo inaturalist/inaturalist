@@ -39,7 +39,8 @@ class YearStatistic < ActiveRecord::Base
         week_histogram: observations_histogram( year, options.merge( interval: "week" ) ),
         day_histogram: observations_histogram( year, options.merge( interval: "day" ) ),
         day_last_year_histogram: observations_histogram( year - 1, options.merge( interval: "day" ) ),
-        popular: popular_observations( year, options )
+        popular: popular_observations( year, options ),
+        streaks: streaks( year, options )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, options ),
@@ -92,7 +93,8 @@ class YearStatistic < ActiveRecord::Base
         week_histogram: observations_histogram( year, user: user, interval: "week" ),
         day_histogram: observations_histogram( year, user: user, interval: "day" ),
         day_last_year_histogram: observations_histogram( year - 1, user: user, interval: "day" ),
-        popular: popular_observations( year, user: user )
+        popular: popular_observations( year, user: user ),
+        streaks: streaks( year, user: user )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, user: user ), 
@@ -768,6 +770,99 @@ class YearStatistic < ActiveRecord::Base
         memo
       end
     end
+  end
+
+  def self.streaks( year, options = {} )
+    ranges = []
+    base_query = { quality_grade: "research,needs_id" }
+    if options[:site]
+      base_query = base_query.merge( site_id: options[:site].id )
+    end
+    if options[:user]
+      ranges = [["#{year}-01-01", "#{year}-12-31"]]
+      base_query = base_query.merge( user_id: options[:user].id )
+    else
+      chunks = 10
+      interval = ( 365.0 / chunks ).floor
+      d0 = Date.parse( "#{year}-01-01" )
+      d1 = d0
+      while true
+        d2 = d1 + interval.days
+        if d2 >= ( d0 + 1.year )
+          ranges << [d1.to_s, "#{year}-12-31"]
+          break
+        end
+        ranges << [d1.to_s, d2.to_s]
+        d1 = d2 + 1.day
+      end
+    end
+    streaks = []
+    current_streaks = {}
+    previous_user_ids = []
+    ranges.each do |range|
+      puts "range: #{range}"
+      elastic_params = Observation.params_to_elastic_query( base_query.merge( d1: range[0], d2: range[1] ) )
+      histogram_buckets = Observation.elastic_search( elastic_params.merge(
+        size: 0,
+        aggs: {
+          histogram: {
+            date_histogram: {
+              field: "observed_on",
+              interval: "day",
+              format: "yyyy-MM-dd"
+            },
+            aggs: {
+              user_ids: {
+                terms: {
+                  field: "user.id",
+                  size: 30000
+                }
+              }
+            }
+          }
+        }
+      ) ).response.aggregations.histogram.buckets
+      histogram_buckets.each_with_index do |bucket, i|
+        date = bucket["key_as_string"]
+        user_ids = bucket.user_ids.buckets.map{|b| b["key"].to_i}
+        puts "\t#{date}: #{user_ids.size} users"
+        user_ids.each do |streaking_user_id|
+          current_streaks[streaking_user_id] ||= 0
+          current_streaks[streaking_user_id] += 1
+        end
+        finished_user_ids = if i >= histogram_buckets.size
+          user_ids
+        else
+          previous_user_ids - user_ids
+        end
+        finished_user_ids = finished_user_ids.select {|uid| current_streaks[uid] >= 3 }
+        finished_user_ids.each do |finished_user_id|
+          streaks << {
+            user_id: finished_user_id,
+            days: current_streaks[finished_user_id],
+            stop: date,
+            start: ( Date.parse( date ) - ( current_streaks[finished_user_id] ).days ).to_s
+          }
+          current_streaks[finished_user_id] = nil
+        end
+        previous_user_ids = user_ids
+      end
+    end
+    top_streaks = streaks.sort_by{|s| s[:days] * -1}[0..100]
+    top_streaks_user_ids = top_streaks.map{|u| u[:user_id]}
+    top_streaks_users = User.where( id: top_streaks_user_ids )
+    top_streaks = top_streaks.map do |s|
+      u = top_streaks_users.detect{|u| u.id == s[:user_id]}
+      if u.suspended?
+        nil
+      else
+        s.merge(
+          login: u.login,
+          icon_url: "#{FakeView.image_url( u.icon.url(:medium) )}".gsub( /([^\:])\/\//, '\\1/' )
+        )
+      end
+    end.compact
+    top_streaks
   end
 
   private

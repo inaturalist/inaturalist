@@ -6032,6 +6032,8 @@ en:
           <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
           <br/>
           <a href="%{url}">View all %{numStudies} studies</a>
+        # Periods where someone consistently made observations, e.g. "a 10-day streak"
+        streaks: Streaks
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
           of the hierarchy is at the center, starting with "Life" and ending
