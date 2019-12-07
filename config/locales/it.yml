@@ -5399,6 +5399,7 @@ it:
         you_must_enter_confirmation_code_in_the_form: |
           Devi digitare %{confirmation_code} nel formulario per cancellare la tua utenza
       edit:
+        about_third_party_tracking: Riguardo al tracciamento di terze parti
         blocking_desc_html: |
           <p>
           Se blocchi qualcuno gli impedisci di inviarti messaggi, commentare le tue osservazioni, identificare le tue osservazioni ed interagire con te su %{site_name}. Rimuove anche le loro osservazioni dai tuoi risultati di ricerca e le tue osservazioni dai loro. Tuttavia, non ti rende invisibile a loro. Essi possono ancora vedere le tue osservazioni e guardare il tuo profilo, ma non interagire con te.
@@ -5481,6 +5482,28 @@ it:
           %{site_name} tiene traccia di cosa tu pensi che sia ciò che hai osservato e di ciò che ne pensa la community. L'identificazione che condividiamo con i partner dei dati è l'identificazione della community, ma se non pensi che l'opinione della community debba avere priorità sulla tua, puoi deselezionare qui l'opzione. Le persone continueranno ad essere in grado di aggiungere identificazioni, ma l'opinione della community non avrà prevalenza sulla tua. Ciò significa che le tue osservazioni non raggiungeranno il Livello Ricerca a me che non sia in accordo con l'ID della community.
         prefers_coordinate_interpolation_protection_desc: |
           Quando imposti la geoprivacy di un osservazione come "oscurata" o "privata" questa impostazione si applicherà a tutte le altre tue osservazioni fatte nello stesso giorno al fine di rendere più difficile alle altre persone ipotizzare le coordinate reali basandosi sulle osservazioni fatte lì intorno nello stesso periodo.
+        prefers_no_tracking_label: Non raccogliere i dati di stabilità e utilizzo utilizzando servizi di terze parti
+        prefers_no_tracking_label_desc_we_use: |
+          Usiamo diversi servisi di terze parti per monitorare la stabilità e la diagnosi dei bug e dei problemi per il nostro software. Queste terze parti includono
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          Le informazioni che potremmo condividere con queste terze parti includono
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          Indirizzo IP (che può essere utilizzato per derivare la tua posizione a livello di città, e per tracciarti attraverso diversi siti web e servizi;
+          tieni presente che abbiamo abilitato l'<a href="https://support.google.com/analytics/answer/2763052">anonimizzazione dell'IP</a>
+          in Google Analytics e <a
+          href="https://firebase.google.com/support/privacy">Firebase
+          Crashlytics</a> non registra l'indirizzo IP per quanto ne sappiamo)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Caratteristiche del Browser, come la marca, il modello e la versione
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Dettagli del crash, come ad esempio quale specifica linea di codice ha causato un crash
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Dettagli del dispositivo, come la marca e il modello di un telefono cellulare
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Questi servizi di terze parti per noi sono di un enorme valore</strong> per mantenere la stabilità e l'utilizzabilità di iNaturalist, considerando che il nostro staff è relativamente piccolo. Per quanto riguarda i dispositivi mobili, non c'è quasi nessun altro modo in cui possiamo capire i problemi che si stanno verificando in quanto il software è in esecuzione su dispositivi che noi non controlliamo. A volte non siamo nemmeno al corrente di questi problemi finché non li vediamo nei dati forniti da questi servizi. <strong>Condividendo queste informazioni, tu ci stai aiutando te stesso e l'intera comunità di iNaturalist.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Considera che questa opzione si applica solo ai dati di analisi e crash che noi inviamo esplicitamente a queste aziende. Tutti i server iNaturalist sono forniti e ospitati da Microsoft, tutte le immagini iNaturalist sono ospitate da Amazon e quasi tutte le mappe iNaturalist sono fornite da Google, ciò significa ogni volta che guardi un'osservazione su iNaturalist, stai connettendoti a servizi forniti da queste aziende e mostrando ad esse, come minimo, il tuo indirizzo IP (nell'app per iPhone utilizziamo le mappe di Apple). iNaturalist probabilmente non esisterebbe senza i servizi forniti da queste aziende, e mentre possiamo limitare la quantità e i tipi di dati che condividi con loro durante l'utilizzo di iNat, non possiamo fermare completamente il flusso di dati.
         project_settings_desc: |
           Ricorda, questa opzione non concede il permesso ai progetti di accedere alle tue coordinate nascoste o di mandarti gli aggiornamenti. Devi unirti ai progetti per garantirgli tali autorizzazioni, oppure concedere i permessi osservazione per osservazione.
         same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
