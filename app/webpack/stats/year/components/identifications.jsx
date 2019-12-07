@@ -52,7 +52,11 @@ const Identifications = ( { data, user, currentUser, year } ) => {
     <div className="Identifications">
       <Row>
         <Col xs={12}>
-          <h3><span>{ I18n.t( "ids_made_for_others" ) }</span></h3>
+          <h3>
+            <a name="ids-for-others" href="#ids-for-others">
+              <span>{ I18n.t( "ids_made_for_others" ) }</span>
+            </a>
+          </h3>
           <DateHistogram
             series={series}
             tickFormatBottom={d => moment( d ).format( "MMM D" )}
@@ -82,7 +86,11 @@ const Identifications = ( { data, user, currentUser, year } ) => {
           <Col xs={4}>
             { data.users_helped ? (
               <div className="idents-users-helped">
-                <h3><span>{ I18n.t( "who_user_helped_the_most", { user: user.login } ) }</span></h3>
+                <h3>
+                  <a name="helped" href="#helped">
+                    <span>{ I18n.t( "who_user_helped_the_most", { user: user.login } ) }</span>
+                  </a>
+                </h3>
                 { data.users_helped.map( d => (
                   <UserWithIcon
                     user={Object.assign( {}, d.user, { icon_url: d.user.icon } )}
@@ -107,7 +115,11 @@ const Identifications = ( { data, user, currentUser, year } ) => {
             ) : null }
           </Col>
           <Col xs={4}>
-            <h3><span>{ I18n.t( "ids_by_taxon" ) }</span></h3>
+            <h3>
+              <a name="ids-by-taxon" href="#ids-by-taxon">
+                <span>{ I18n.t( "ids_by_taxon" ) }</span>
+              </a>
+            </h3>
             <PieChartForIconicTaxonCounts
               year={year}
               data={data.iconic_taxon_counts}
@@ -125,7 +137,11 @@ const Identifications = ( { data, user, currentUser, year } ) => {
           <Col xs={4}>
             { data.users_who_helped ? (
               <div className="idents-users-who-helped">
-                <h3><span>{ I18n.t( "who_helped_user_the_most", { user: user.login } ) }</span></h3>
+                <h3>
+                  <a name="helpers" href="#helpers">
+                    <span>{ I18n.t( "who_helped_user_the_most", { user: user.login } ) }</span>
+                  </a>
+                </h3>
                 { data.users_who_helped.map( d => (
                   <UserWithIcon
                     user={Object.assign( {}, d.user, { icon_url: d.user.icon } )}

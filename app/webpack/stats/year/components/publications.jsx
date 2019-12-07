@@ -52,7 +52,11 @@ const Publications = ( { data, year } ) => {
   };
   return (
     <div className="Publications">
-      <h3><span>{I18n.t( "studies_that_used_inaturalist_data_in_year", { year } )}</span></h3>
+      <h3>
+        <a name="publications" href="#publications">
+          <span>{I18n.t( "studies_that_used_inaturalist_data_in_year", { year } )}</span>
+        </a>
+      </h3>
       { _.chunk( data.results, 2 ).map( chunk => (
         <Row key={`publications-row-${chunk[0].id}`}>
           { chunk.map( pub => (

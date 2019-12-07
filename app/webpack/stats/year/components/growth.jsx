@@ -171,7 +171,10 @@ const Growth = ( {
   };
   return (
     <div className="Growth">
-      <h3><span>{ I18n.t( "views.stats.year.growth_title" ) }</span></h3>
+      <h3>
+        <a name="growth" href="#growth">
+          <span>{ I18n.t( "views.stats.year.growth_title" ) }</span>
+        </a></h3>
       <DateHistogram series={obsSeries} legendPosition="nw" margin={{ left: 60 }} />
       { taxaSeries && <DateHistogram series={taxaSeries} legendPosition="nw" margin={{ left: 60 }} /> }
       <DateHistogram series={usersSeries} legendPosition="nw" margin={{ left: 60 }} />

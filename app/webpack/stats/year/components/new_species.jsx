@@ -136,7 +136,11 @@ class NewSpecies extends React.Component {
     };
     return (
       <div className="NewSpecies">
-        <h3><span>{ I18n.t( "newly_added_species" ) }</span></h3>
+        <h3>
+          <a name="new-species" href="#new-species">
+            <span>{ I18n.t( "newly_added_species" ) }</span>
+          </a>
+        </h3>
         <p
           className="text-muted"
           dangerouslySetInnerHTML={{

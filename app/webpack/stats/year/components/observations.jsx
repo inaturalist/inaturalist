@@ -97,7 +97,11 @@ const Observations = ( {
   moment.locale( I18n.locale );
   return (
     <div className="Observations">
-      <h3><span>{ I18n.t( "verifiable_observations_by_observation_date" ) }</span></h3>
+      <h3>
+        <a name="observations" href="#observations">
+          <span>{ I18n.t( "verifiable_observations_by_observation_date" ) }</span>
+        </a>
+      </h3>
       <DateHistogram
         series={series}
         tickFormatBottom={d => moment( d ).format( "MMM D" )}
@@ -128,7 +132,11 @@ const Observations = ( {
           window.open( url, "_blank" );
         }}
       />
-      <h3><span>{ I18n.t( "observations_this_year_vs_last_year" ) }</span></h3>
+      <h3>
+        <a name="obs-vs-last-year" href="#obs-vs-last-year">
+          <span>{ I18n.t( "observations_this_year_vs_last_year" ) }</span>
+        </a>
+      </h3>
       <DateHistogram
         series={comparisonSeries}
         tickFormatBottom={d => moment( d ).format( "MMM D" )}
@@ -163,7 +171,11 @@ const Observations = ( {
         /> )
         : ( <GlobalMap year={year} site={site} /> )
       }
-      <h3><span>{ I18n.t( "most_comments_and_faves" ) }</span></h3>
+      <h3>
+        <a name="popular" href="#popular">
+          <span>{ I18n.t( "most_comments_and_faves" ) }</span>
+        </a>
+      </h3>
       { popular }
       { data.streaks && data.streaks.length > 0 && (
         <Streaks
