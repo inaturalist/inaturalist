@@ -93,8 +93,7 @@ class YearStatistic < ActiveRecord::Base
         week_histogram: observations_histogram( year, user: user, interval: "week" ),
         day_histogram: observations_histogram( year, user: user, interval: "day" ),
         day_last_year_histogram: observations_histogram( year - 1, user: user, interval: "day" ),
-        popular: popular_observations( year, user: user ),
-        streaks: streaks( year, user: user )
+        popular: popular_observations( year, user: user )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, user: user ), 

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { scaleTime } from "d3";
+import * as d3 from "d3";
 import moment from "moment";
 import UserImage from "../../../shared/components/user_image";
 import UserLink from "../../../shared/components/user_link";
@@ -10,14 +10,21 @@ const Streaks = ( {
   year,
   hideUsers
 } ) => {
-  const scale = scaleTime( )
+  const scale = d3.scaleTime( )
     .domain( [new Date( `${year}-01-01` ), new Date( `${year}-12-31` )] )
     .range( [0, 1.0] );
   const ticks = scale.ticks();
-  const tickWidth = scale( ticks[1] ) - scale( ticks[0] );
+  const tickWidth = Math.min( 1, scale( ticks[1] ) - scale( ticks[0] ) );
+  const days = data.map( d => d.days );
+  const dayScale = d3.scaleLinear( )
+    .domain( [d3.min( days ), d3.max( days )] )
+    .range( [0, 0.8] );
   return (
     <div className="Streaks">
-      <h3><span>{ I18n.t( "views.stats.year.streaks" ) }</span></h3>
+      <h3><span>{ I18n.t( "views.stats.year.observation_streaks" ) }</span></h3>
+      <p className="text-muted">
+        { I18n.t( "views.stats.year.observation_streaks_desc" ) }
+      </p>
       <div className="rows">
         <div
           className="ticks streak"
@@ -30,7 +37,7 @@ const Streaks = ( {
                 className={`tick ${i % 2 === 0 ? "alt" : ""}`}
                 key={`streaks-ticks-${tick}`}
                 style={{
-                  left: `${scale( new Date( tick ) ) * 100}%`,
+                  left: `${Math.round( Math.max( 0, scale( new Date( tick ) ) * 100 ) )}%`,
                   height: 35 * data.length + 35,
                   width: `${tickWidth * 100}%`
                 }}
@@ -43,7 +50,7 @@ const Streaks = ( {
         { data.map( streak => {
           const x1 = scale( new Date( streak.start ) );
           const x2 = scale( new Date( streak.stop ) );
-          const width = x2 - x1;
+          const width = Math.min( 1, x2 - x1 );
           const user = {
             login: streak.login,
             id: streak.user_id,
@@ -68,8 +75,9 @@ const Streaks = ( {
                   className="datum"
                   href={`/observations?user_id=${streak.login}&d1=${streak.start}&d2=${streak.stop}&place_id=any&verifiable=true`}
                   style={{
-                    left: `${x1 * 100}%`,
-                    width: `${width * 100}%`
+                    left: `${Math.max( 0, x1 * 100 )}%`,
+                    width: `${width * 100}%`,
+                    backgroundColor: d3.interpolateWarm( dayScale( streak.days ) )
                   }}
                   title={`${I18n.t( "date_to_date", { d1, d2 } )} • ${xDays}`}
                 >
@@ -91,7 +99,7 @@ Streaks.propTypes = {
   // user: PropTypes.object,
   year: PropTypes.number.isRequired,
   data: PropTypes.array.isRequired,
-  hideUsers: PropTypes.boolean
+  hideUsers: PropTypes.bool
 };
 
 export default Streaks;

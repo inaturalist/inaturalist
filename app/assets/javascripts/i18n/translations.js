@@ -14564,10 +14564,11 @@ I18n.translations["en"] = {
         "include_usa": "Include US",
         "new_species_desc_html": "Species that were added for the first time this year.\nClick on a month to view some of the new species added in that month.\nYou can also view the total species accumulation, or move the slider\nback in time to see other newly-observed species. This chart shows\nspecies from verifiable observations by the month they were uploaded\nto %{site_name} (not the month they were observed). It does not\ninclude higher or lower level taxa, so an observation identified as\nMammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.\n<i>arctos</i> will just count as <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs in %{year}",
+        "observation_streaks": "Observation Streaks",
+        "observation_streaks_desc": "An observation streak is a period where someone has made observations\nfor at least 5 days running.\n",
         "percent_growth_in_year": "% Growth in %{year}",
         "percent_of_total_growth": "% of Total Growth",
         "publications_desc_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
-        "streaks": "Streaks",
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }
     },

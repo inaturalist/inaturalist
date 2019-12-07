@@ -6033,7 +6033,10 @@ en:
           <br/>
           <a href="%{url}">View all %{numStudies} studies</a>
         # Periods where someone consistently made observations, e.g. "a 10-day streak"
-        streaks: Streaks
+        observation_streaks: Observation Streaks
+        observation_streaks_desc: |
+          An observation streak is a period where someone has made observations
+          for at least 5 days running.
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
           of the hierarchy is at the center, starting with "Life" and ending

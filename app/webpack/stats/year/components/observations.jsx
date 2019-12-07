@@ -165,11 +165,10 @@ const Observations = ( {
       }
       <h3><span>{ I18n.t( "most_comments_and_faves" ) }</span></h3>
       { popular }
-      { data.streaks && (
+      { data.streaks && data.streaks.length > 0 && (
         <Streaks
           year={year}
           data={data.streaks.slice( 0, 20 )}
-          hideUsers={!!user}
         />
       ) }
     </div>
