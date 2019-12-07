@@ -5376,6 +5376,10 @@ nl:
         obs_in_year: Wrn in %{year}
         percent_growth_in_year: "% Groei in %{year}"
         percent_of_total_growth: "% of Totaal Groei"
+        publications_desc_html: |
+          Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href="https://www.altmetric.com">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.
+          <br/>
+          <a href="%{url}">Toon alle %{numStudies} studies</a>
         sunburst_desc_html: |
           Waargenomen taxa gerangschikt als een hiërarchisch "sunburst"-diagram. De basis
           van de hiërarchie staat centraal, beginnend met "Leven" en eindigend
@@ -5570,6 +5574,7 @@ nl:
         you_must_enter_confirmation_code_in_the_form: |
           Je moet de "%{confirmation_code}" in het formulier invoeren om je account te verwijderen
       edit:
+        about_third_party_tracking: Over het volgen door derden
         blocking_desc_html: |
           <p>Door iemand te blokkeren kunnen ze je berichten niet meer zien of reageren op jouw waarnemingen, je waarnemingen determineren of andere interacties met je hebben op %{site_name}. Het verwijdert ook hun waarnemingen uit je zoekresultaten en verwijdert jouw waarnemingen uit hun zoekresultaten. Het maakt je echter niet onzichtbaar voor ze. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met je aangaan.
           </p>
@@ -5659,6 +5664,24 @@ nl:
           %{site_name} volgt wat jij denkt dat je waarnemingen zijn en wat de gemeenschap denkt dat ze zijn. De determinatie die we met gegevenspartners delen, is de determinatie van de gemeenschap, maar als je denkt dat de mening van de gemeenschap jouw eigen mening nooit mag vervangen, kunt je dat hier uitzetten. Mensen kunnen nog steeds determinaties toevoegen, maar de mening van de gemeenschap heeft geen voorkeur boven die van jou. Dit betekent dat je waarnemingen niet in aanmerking komen voor onderzoekskwaliteit tenzij je het eens bent met de gemeenschap.
         prefers_coordinate_interpolation_protection_desc: |
           Wanneer je de geoprivacy van een waarneming instelt op "verduisterd" of "privé" dan zal dezelfde geoprivacy op al je andere waarnemingen van dezelfde dag worden toegepast om het moeilijker te maken voor andere mensen om de ware coördinaten af te leiden van waarnemingen die rondom hetzelfde tijdstip zijn gemaakt.
+        prefers_no_tracking_label: Verzamel geen gegevens over stabiliteit en gebruik met behulp van diensten van derden
+        prefers_no_tracking_label_desc_we_use: |
+          We gebruiken diverse diensten van derden om stabiliteit te monitoren, en bugs en problemen in onze software op te sporen. Deze derden omvatten
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          Informatie die we kunnen delen met deze derden omvat
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          IP-adressen (die kunnen worden gebruikt om positie op stadsniveau vast te stellen, en je over verschillende websites en diensten te volgen; merk op dat we
+          <a href="https://support.google.com/analytics/answer/2763052">IP-anonimisering</a> hebben aangezet
+          in Google Analytics en <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> slaat geen IP-adressen op voor zover we weten)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Browserdetails, zoals maker, model, en versie
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Crashdetails, zoals exact welke regel code een crash heeft veroorzaakt
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Apparaatdetails, zoals merk en model van een mobiele telefoon
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Deze services van derden zijn erg waardevol voor ons</strong> bij het stabiel en bruikbaar houden van iNaturalist met ons relatief kleine aantal werknemers. Op mobiele apparaten is er nagenoeg geen andere manier om inzicht te krijgen in de problemen die zich voordoen, aangezien de software draait op apparaten waarover we geen controle hebben. Soms weten we niet eens dat zulke problemen zich voordoen voordat we ze in de data van zulke diensten zien. <strong>Door deze informatie te delen help je ons, en de gehele gemeenschap op iNaturalist.</strong>
         project_settings_desc: |
           Let op: dit geeft projecten geen toegang tot je verborgen coördinaten of om je updates te sturen. Je moet deelnemen aan projecten om hier toestemming toe te geven, of het van geval tot geval toestaan.
         same_day_geoprivacy_protection: DezelfdeDag geoprivacy protectie
