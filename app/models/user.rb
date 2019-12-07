@@ -90,6 +90,7 @@ class User < ActiveRecord::Base
   preference :monthly_supporter_badge, :boolean, default: false
   preference :map_tile_test, :boolean, default: false
   preference :no_site, :boolean, default: false
+  preference :no_tracking, :boolean, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification

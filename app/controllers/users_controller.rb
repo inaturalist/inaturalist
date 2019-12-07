@@ -576,10 +576,12 @@ class UsersController < ApplicationController
             :crypted_password, :salt, :old_preferences, :activation_code,
             :remember_token, :last_ip, :suspended_at, :suspension_reason,
             :icon_content_type, :icon_file_name, :icon_file_size,
-            :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url, :latitude, :longitude, :lat_lon_acc_admin_level
+            :icon_updated_at, :deleted_at, :remember_token_expires_at,
+            :icon_url, :latitude, :longitude, :lat_lon_acc_admin_level
           ],
           :methods => [
-            :user_icon_url, :medium_user_icon_url, :original_user_icon_url
+            :user_icon_url, :medium_user_icon_url, :original_user_icon_url,
+            :prefers_no_tracking
           ]
         )
       end
@@ -1120,6 +1122,7 @@ protected
       :prefers_scientific_name_first,
       :prefers_no_place,
       :prefers_no_site,
+      :prefers_no_tracking,
       :prefers_coordinate_interpolation_protection,
       :prefers_coordinate_interpolation_protection_test,
       :prefers_monthly_supporter_badge,
