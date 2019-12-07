@@ -66,7 +66,7 @@ const Streaks = ( {
               <div className="background">
                 <a
                   className="datum"
-                  href={`/observations?user_id=${streak.login}&d1=${streak.start}&d2=${streak.stop}`}
+                  href={`/observations?user_id=${streak.login}&d1=${streak.start}&d2=${streak.stop}&place_id=any&verifiable=true`}
                   style={{
                     left: `${x1 * 100}%`,
                     width: `${width * 100}%`

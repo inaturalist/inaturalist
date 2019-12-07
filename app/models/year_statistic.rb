@@ -773,6 +773,7 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def self.streaks( year, options = {} )
+    streak_length = 5
     ranges = []
     base_query = { quality_grade: "research,needs_id" }
     if options[:site]
@@ -799,7 +800,7 @@ class YearStatistic < ActiveRecord::Base
     streaks = []
     current_streaks = {}
     previous_user_ids = []
-    ranges.each do |range|
+    ranges.each_with_index do |range, range_i|
       puts "range: #{range}"
       elastic_params = Observation.params_to_elastic_query( base_query.merge( d1: range[0], d2: range[1] ) )
       histogram_buckets = Observation.elastic_search( elastic_params.merge(
@@ -822,27 +823,29 @@ class YearStatistic < ActiveRecord::Base
           }
         }
       ) ).response.aggregations.histogram.buckets
-      histogram_buckets.each_with_index do |bucket, i|
+      histogram_buckets.each_with_index do |bucket, bucket_i|
         date = bucket["key_as_string"]
         user_ids = bucket.user_ids.buckets.map{|b| b["key"].to_i}
-        puts "\t#{date}: #{user_ids.size} users"
         user_ids.each do |streaking_user_id|
           current_streaks[streaking_user_id] ||= 0
           current_streaks[streaking_user_id] += 1
         end
-        finished_user_ids = if i >= histogram_buckets.size
-          user_ids
+        finished_user_ids = if bucket_i == ( histogram_buckets.size - 1 ) && range_i == ( ranges.size - 1 )
+          # If this is the last day, then everyone is finished
+          ( user_ids + current_streaks.keys ).uniq
         else
           previous_user_ids - user_ids
         end
-        finished_user_ids = finished_user_ids.select {|uid| current_streaks[uid] >= 3 }
+        puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished"
         finished_user_ids.each do |finished_user_id|
-          streaks << {
-            user_id: finished_user_id,
-            days: current_streaks[finished_user_id],
-            stop: date,
-            start: ( Date.parse( date ) - ( current_streaks[finished_user_id] ).days ).to_s
-          }
+          if current_streaks[finished_user_id] && current_streaks[finished_user_id] >= streak_length
+            streaks << {
+              user_id: finished_user_id,
+              days: current_streaks[finished_user_id],
+              stop: date,
+              start: ( Date.parse( date ) - ( current_streaks[finished_user_id] ).days ).to_s
+            }
+          end
           current_streaks[finished_user_id] = nil
         end
         previous_user_ids = user_ids
