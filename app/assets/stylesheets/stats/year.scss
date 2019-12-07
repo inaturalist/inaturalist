@@ -776,12 +776,15 @@ $obs-grid-photo-size: 210px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right: 5px;
+    margin-right: 15px;
     .UserImage {
       margin-right: 10px;
       border: 0 transparent;
-      width: 30px;
-      height: 30px;
+      width: $streak-height;
+      height: $streak-height;
+    }
+    .userlink {
+      line-height: $streak-height;
     }
   }
   .background {
@@ -802,7 +805,7 @@ $obs-grid-photo-size: 210px;
       text-align: center;
       padding: 10px 0;
     }
-    @media (max-width: 992px) {
+    @media (max-width: 500px) {
       .tick {
         font-size: 8px;
       }
@@ -810,17 +813,30 @@ $obs-grid-photo-size: 210px;
   }
   .datum {
     position: relative;
-    display: block;
     background-color: $inat-green;
     display: flex;
     align-items: center;
     height: 100%;
-    overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
-    .days {
-      padding: 0px 10px;
-      font-size: 10px;
+    justify-content: space-between;
+    padding: 0px 10px;
+    font-size: 10px;
+    @media (max-width: 500px) {
+      .start,
+      .stop {
+        display: none;
+      }
+    }
+
+    .triangle {
+      position: absolute;
+      left: -1 * ($streak-height / 2 - 5);
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: $streak-height / 2 solid transparent;
+      border-bottom: $streak-height / 2 solid transparent;
+      border-right: ($streak-height / 2) - 5 solid blue;
     }
   }
 }

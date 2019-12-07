@@ -14,6 +14,8 @@
     var parsableString = pieces.join( "." );
     if ( pieces.length === 2 ) {
       parsableString = pieces[0].replace( delimiter, "" ) + "." + pieces[1];
+    } else {
+      parsableString = pieces[0].replace( delimiter, "" );
     }
     return parseFloat( parsableString );
   }

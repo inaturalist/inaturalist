@@ -6035,8 +6035,10 @@ en:
         # Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observation Streaks
         observation_streaks_desc: |
-          An observation streak is a period where someone has made observations
-          for at least 5 days running.
+          An observation streak is a period of time when someone got outside and
+          recorded new observations every single day. Here we're showing the
+          longest streaks that began this year or were in progress when these
+          stats were generated.
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
           of the hierarchy is at the center, starting with "Life" and ending

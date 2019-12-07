@@ -782,18 +782,26 @@ class YearStatistic < ActiveRecord::Base
       ranges = [["#{year}-01-01", "#{year}-12-31"]]
       base_query = base_query.merge( user_id: options[:user].id )
     else
-      chunks = 10
-      interval = ( 365.0 / chunks ).floor
-      d0 = Date.parse( "#{year}-01-01" )
-      d1 = d0
-      while true
-        d2 = d1 + interval.days
-        if d2 >= ( d0 + 1.year )
-          ranges << [d1.to_s, "#{year}-12-31"]
-          break
+      ranges = [
+        ["2008-01-01", "2013-12-31"],
+        ["2014-01-01", "2014-12-31"],
+        ["2015-01-01", "2015-12-31"],
+        ["2016-01-01", "2016-12-31"]
+      ]
+      [2017, 2018, 2019].each do |y|
+        chunks = 10
+        interval = ( 365.0 / chunks ).floor
+        d0 = Date.parse( "#{y}-01-01" )
+        d1 = d0
+        while true
+          d2 = d1 + interval.days
+          if d2 >= ( d0 + 1.year )
+            ranges << [d1.to_s, "#{y}-12-31"]
+            break
+          end
+          ranges << [d1.to_s, d2.to_s]
+          d1 = d2 + 1.day
         end
-        ranges << [d1.to_s, d2.to_s]
-        d1 = d2 + 1.day
       end
     end
     streaks = []
@@ -850,7 +858,12 @@ class YearStatistic < ActiveRecord::Base
         previous_user_ids = user_ids
       end
     end
-    top_streaks = streaks.sort_by{|s| s[:days] * -1}[0..100]
+    max_stop_date = streaks.map{|s| s[:stop]}.max
+    top_streaks = streaks.select do |s|
+      s[:stop] == max_stop_date ||
+        Date.parse( s[:start]) >= Date.parse( "#{year}-01-01" )
+    end
+    top_streaks = top_streaks.sort_by{|s| s[:days] * -1}[0..100]
     top_streaks_user_ids = top_streaks.map{|u| u[:user_id]}
     top_streaks_users = User.where( id: top_streaks_user_ids )
     top_streaks = top_streaks.map do |s|
