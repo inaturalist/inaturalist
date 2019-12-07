@@ -758,3 +758,85 @@ $obs-grid-photo-size: 210px;
     }
   }
 }
+
+.Streaks {
+  $streak-height: 30px;
+  .streak {
+    display: flex;
+    width: "100%";
+    margin-bottom: 5px;
+    min-height: $streak-height;
+  }
+  a,
+  a:hover {
+    color: white;
+  }
+  .user {
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 15px;
+    .UserImage {
+      margin-right: 10px;
+      border: 0 transparent;
+      width: $streak-height;
+      height: $streak-height;
+    }
+    .userlink {
+      line-height: $streak-height;
+    }
+  }
+  .background {
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+  .ticks {
+    .background {
+      height: 35px;
+    }
+    .tick {
+      position: absolute;
+      display: block;
+      &.alt {
+        background-color: $dark-gray;
+      }
+      text-align: center;
+      padding: 10px 0;
+    }
+    @media (max-width: 500px) {
+      .tick {
+        font-size: 8px;
+      }
+    }
+  }
+  .datum {
+    position: relative;
+    background-color: $inat-green;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    white-space: nowrap;
+    justify-content: space-between;
+    padding: 0px 10px;
+    font-size: 10px;
+    @media (max-width: 500px) {
+      .start,
+      .stop {
+        display: none;
+      }
+    }
+
+    .triangle {
+      position: absolute;
+      left: -1 * ($streak-height / 2 - 5);
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: $streak-height / 2 solid transparent;
+      border-bottom: $streak-height / 2 solid transparent;
+      border-right: ($streak-height / 2) - 5 solid blue;
+    }
+  }
+}

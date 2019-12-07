@@ -307,6 +307,7 @@ I18n.translations["ar"] = {
       "7": "سب"
     },
     "formats": {
+      "long": "%ش %ي، %س",
       "month_day_year": "%ش %ي، %س"
     },
     "month_names": [
@@ -356,6 +357,16 @@ I18n.translations["ar"] = {
   "date_time": "تاريخ/وقت",
   "date_updated": "تاريخ التحديث",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "zero": "صفر أيام",
+        "one": "يوم واحد",
+        "two": "يومان",
+        "few": "%{count} أيام",
+        "many": "%{count} يوم",
+        "other": "%{count} يوم"
+      }
+    }
   },
   "decrease_brightness": "تقليل السطوع",
   "default": "الافتراضي",
@@ -1436,6 +1447,13 @@ I18n.translations["ar"] = {
   "this_taxon_has_no_default_photo": "هذه الأصنوفة ليست لديها صورة افتراضية!",
   "this_year": "هذا العام",
   "threatened": "مهددة",
+  "time": {
+    "am": "صباحا",
+    "formats": {
+      "long": "%B %d, %Y %H:%M"
+    },
+    "pm": "مساء"
+  },
   "to_add_comments": "لإضافة تعليقات",
   "to_suggest_an_identification": "لاقتراح هوية",
   "today": "اليوم",
@@ -2036,6 +2054,7 @@ I18n.translations["bg"] = {
       "7": "Сб"
     },
     "formats": {
+      "long": "%d %B %Y",
       "month_day_year": "%d %B %Y"
     },
     "month_names": [
@@ -2099,6 +2118,12 @@ I18n.translations["bg"] = {
     "countdown_x_seconds": {
       "one": "сек",
       "other": "сек"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 ден",
+        "other": "%{count} дни"
+      }
     }
   },
   "default": "по подразбиране",
@@ -2875,6 +2900,13 @@ I18n.translations["bg"] = {
   "this_observation_was_created_using": "Това наблюдение е създадено със:",
   "this_taxon_has_no_default_photo": "Този таксон няма примерна снимка!",
   "threatened": "застрашен",
+  "time": {
+    "am": "преди обяд",
+    "formats": {
+      "long": "%d %B %Y, %H:%M"
+    },
+    "pm": "следобед"
+  },
   "today": "Днес",
   "top_identifier": "Най-добър разпознавач",
   "top_identifiers": "Най-добри разпознавачи",
@@ -3265,6 +3297,8 @@ I18n.translations["br"] = {
   },
   "date_time": "Deiz/Eur",
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "default": "dre ziouer",
   "delete": "Dilemel",
@@ -3565,6 +3599,10 @@ I18n.translations["br"] = {
   "taxon_map": {
   },
   "this_year": "Bloaz-mañ",
+  "time": {
+    "formats": {
+    }
+  },
   "uploader": {
     "errors": {
     },
@@ -3968,6 +4006,7 @@ I18n.translations["ca"] = {
       "7": "ds"
     },
     "formats": {
+      "long": "%d de %B de %Y",
       "month_day_year": "%d de %B de %Y"
     },
     "month_names": [
@@ -4032,6 +4071,12 @@ I18n.translations["ca"] = {
     "countdown_x_seconds": {
       "one": "seg.",
       "other": "segs."
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dia",
+        "other": "%{count} dies"
+      }
     }
   },
   "decrease_brightness": "Reduïu brillantor",
@@ -5035,6 +5080,14 @@ I18n.translations["ca"] = {
   "this_taxon_has_no_default_photo": "Aquest tàxon no té foto per defecte!",
   "this_year": "Aquest any",
   "threatened": "Amenaçat",
+  "time": {
+    "am": "del matí",
+    "formats": {
+      "hours": "%I:%M %p %Z",
+      "long": "%d de %B de %Y"
+    },
+    "pm": "de la tarda"
+  },
   "to_add_comments": "per afegir comentaris.",
   "to_suggest_an_identification": "per suggerir una identificació",
   "today": "Avui",
@@ -5745,6 +5798,7 @@ I18n.translations["cs"] = {
       "7": "so"
     },
     "formats": {
+      "long": "%M %d, %R",
       "month_day_year": "%M %d, %R"
     },
     "month_names": [
@@ -5794,6 +5848,13 @@ I18n.translations["cs"] = {
   "date_time": "Datum/Čas",
   "date_updated": "Datum aktualizováno",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "24 hodinami",
+        "few": "%{count} dny",
+        "other": "%{count} dny"
+      }
+    }
   },
   "default": "výchozí",
   "delete": "Smazat",
@@ -6780,6 +6841,13 @@ I18n.translations["cs"] = {
   "this_taxon_has_no_default_photo": "Tento taxon nemá žádnou základní fotku!",
   "this_year": "Tento rok",
   "threatened": "ohrožený",
+  "time": {
+    "am": "dopoledne",
+    "formats": {
+      "long": "%A %d. %B %Y %H:%M"
+    },
+    "pm": "odpoledne"
+  },
   "to_add_comments": "přidat komentáře",
   "to_suggest_an_identification": "k navržení identifikace",
   "today": "Dnes",
@@ -7473,6 +7541,8 @@ I18n.translations["da"] = {
       "7": "Lø"
     },
     "formats": {
+      "compact": "%b %e",
+      "long": "%d. %B, %Y",
       "month_day_year": "%d. %B %Y"
     },
     "month_names": [
@@ -7538,6 +7608,12 @@ I18n.translations["da"] = {
     "countdown_x_seconds": {
       "one": "sek",
       "other": "sek"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dag ",
+        "other": "%{count} dage"
+      }
     }
   },
   "decrease_brightness": "Mindsk lysstyrke",
@@ -8743,6 +8819,14 @@ I18n.translations["da"] = {
   "this_taxon_has_no_default_photo": "Denne taxon har intet standardbillede!",
   "this_year": "Dette år",
   "threatened": "truet",
+  "time": {
+    "am": "er",
+    "formats": {
+      "hours": "%H:%M %p",
+      "long": "%d. %B, %Y %I:%M %p"
+    },
+    "pm": "pm"
+  },
   "to_add_comments": "for at tilføje kommentarer",
   "to_suggest_an_identification": "at foreslå en identifikation",
   "today": "I dag",
@@ -9583,6 +9667,8 @@ I18n.translations["de"] = {
       "7": "Sa"
     },
     "formats": {
+      "compact": "%b %e",
+      "long": "%B %d, %Y"
     },
     "month_names": [
       null,
@@ -9634,6 +9720,12 @@ I18n.translations["de"] = {
     "countdown_x_days": {
       "one": "Tag",
       "other": "Tage"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 Tag",
+        "other": "%{count} Tage"
+      }
     }
   },
   "decrease_brightness": "Helligkeit reduzieren",
@@ -10697,6 +10789,14 @@ I18n.translations["de"] = {
   "this_taxon_has_no_default_photo": "Dieses Taxon hat kein Standardbild!",
   "this_year": "Dieses Jahr",
   "threatened": "bedroht",
+  "time": {
+    "am": "vormittags",
+    "formats": {
+      "hours": "%l:%M %p",
+      "long": "%B %d, %Y %I:%M %p"
+    },
+    "pm": "nachmittags"
+  },
   "to_add_comments": "um Kommentare hinzuzufügen",
   "to_suggest_an_identification": "eine Identifikation vorschlagen",
   "today": "Heute",
@@ -11367,6 +11467,7 @@ I18n.translations["el"] = {
       "7": "Σα"
     },
     "formats": {
+      "long": "%e %B %Y"
     },
     "month_names": [
       null,
@@ -11430,6 +11531,12 @@ I18n.translations["el"] = {
     "countdown_x_seconds": {
       "one": "δευτερόλεπτο",
       "other": "δευτερόλεπτα"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 ημέρα",
+        "other": "%{count} ημέρες"
+      }
     }
   },
   "default": "προεπιλογή",
@@ -12357,6 +12464,13 @@ I18n.translations["el"] = {
   "this_observation_is_research_grade": "Αυτή η παρατήρηση είναι Ερευνητικού Επιπέδου!",
   "this_year": "Αυτό το έτος",
   "threatened": "απειλούμενο",
+  "time": {
+    "am": "πμ",
+    "formats": {
+      "long": "%A %d %B %Y %H:%M:%S %Z"
+    },
+    "pm": "μμ"
+  },
   "today": "Σήμερα",
   "top_identifier": "Κορυφαίος Ταυτοποιητής",
   "top_identifiers_of_taxon": "Κορυφαίοι Ταυτοποιητές για %{taxon}",
@@ -12954,6 +13068,8 @@ I18n.translations["en"] = {
       "7": "Sa"
     },
     "formats": {
+      "compact": "%b %e",
+      "long": "%B %d, %Y",
       "month_day_year": "%B %d, %Y"
     },
     "month_names": [
@@ -13019,6 +13135,12 @@ I18n.translations["en"] = {
     "countdown_x_seconds": {
       "one": "sec",
       "other": "sec"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "%{count} day",
+        "other": "%{count} days"
+      }
     }
   },
   "decrease_brightness": "Decrease Brightness",
@@ -14227,6 +14349,14 @@ I18n.translations["en"] = {
   "this_taxon_has_no_default_photo": "This taxon has no default photo!",
   "this_year": "This Year",
   "threatened": "Threatened",
+  "time": {
+    "am": "am",
+    "formats": {
+      "hours": "%l:%M %p",
+      "long": "%B %d, %Y %I:%M %p"
+    },
+    "pm": "pm"
+  },
   "to_add_comments": "to add comments",
   "to_suggest_an_identification": "to suggest an identification",
   "today": "Today",
@@ -14509,6 +14639,8 @@ I18n.translations["en"] = {
         "include_usa": "Include US",
         "new_species_desc_html": "Species that were added for the first time this year.\nClick on a month to view some of the new species added in that month.\nYou can also view the total species accumulation, or move the slider\nback in time to see other newly-observed species. This chart shows\nspecies from verifiable observations by the month they were uploaded\nto %{site_name} (not the month they were observed). It does not\ninclude higher or lower level taxa, so an observation identified as\nMammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.\n<i>arctos</i> will just count as <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs in %{year}",
+        "observation_streaks": "Observation Streaks",
+        "observation_streaks_desc": "An observation streak is a period of time when someone got outside and\nrecorded new observations every single day. Here we're showing the\nlongest streaks that began this year or were ongoing when these stats\nwere generated.\n",
         "percent_growth_in_year": "% Growth in %{year}",
         "percent_of_total_growth": "% of Total Growth",
         "publications_desc_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
@@ -14763,6 +14895,8 @@ I18n.translations["en-UK"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "establishment": {
   },
@@ -14789,6 +14923,10 @@ I18n.translations["en-UK"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "formats": {
+    }
   },
   "uploader": {
     "errors": {
@@ -14891,6 +15029,7 @@ I18n.translations["en-US"] = {
       "Saturday"
     ],
     "formats": {
+      "long": "%B %d, %Y"
     },
     "month_names": [
       null,
@@ -14915,6 +15054,12 @@ I18n.translations["en-US"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 day",
+        "other": "%{count} days"
+      }
+    }
   },
   "establishment": {
   },
@@ -14943,6 +15088,13 @@ I18n.translations["en-US"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "am": "am",
+    "formats": {
+      "long": "%B %d, %Y %H:%M"
+    },
+    "pm": "pm"
   },
   "uploader": {
     "errors": {
@@ -15266,6 +15418,7 @@ I18n.translations["eo"] = {
       "7": "sa"
     },
     "formats": {
+      "long": "%e-a de %B %Y",
       "month_day_year": "%e-a de %B %Y"
     },
     "month_names": [
@@ -15326,6 +15479,12 @@ I18n.translations["eo"] = {
     "countdown_x_seconds": {
       "one": "sekundo",
       "other": "sekundoj"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 tago",
+        "other": "%{count} tagoj"
+      }
     }
   },
   "default": "implicita",
@@ -16001,6 +16160,13 @@ I18n.translations["eo"] = {
   "this_bioblitz_beings_in": "Ĉi tiu biofulmado komencas en",
   "this_observation": "Tiu observo",
   "this_year": "Nuna Jaro",
+  "time": {
+    "am": "atm",
+    "formats": {
+      "long": "%A %d %B %Y %H:%M"
+    },
+    "pm": "ptm"
+  },
   "today": "Hodiaŭ",
   "total": "Sumo",
   "two_thirds": "du trionoj",
@@ -16552,6 +16718,8 @@ I18n.translations["es"] = {
       "7": "sá"
     },
     "formats": {
+      "compact": "%e %b",
+      "long": "%d de %B de %Y",
       "month_day_year": "%d %B %Y"
     },
     "month_names": [
@@ -16617,6 +16785,12 @@ I18n.translations["es"] = {
     "countdown_x_seconds": {
       "one": "s",
       "other": "s"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 día",
+        "other": "%{count} días"
+      }
     }
   },
   "decrease_brightness": "Reducir brillo",
@@ -17819,6 +17993,14 @@ I18n.translations["es"] = {
   "this_taxon_has_no_default_photo": "Este taxón no tiene ninguna foto predeterminada.",
   "this_year": "Este año",
   "threatened": "Amenazada",
+  "time": {
+    "am": "mañana",
+    "formats": {
+      "hours": "%H:%M",
+      "long": "%d de %B de %Y"
+    },
+    "pm": "tarde"
+  },
   "to_add_comments": "para agregar comentarios.",
   "to_suggest_an_identification": "para sugerir una identificación",
   "today": "Hoy",
@@ -18646,6 +18828,7 @@ I18n.translations["es-AR"] = {
       "7": "sá"
     },
     "formats": {
+      "long": "%d de %B de %Y"
     },
     "month_names": [
       null,
@@ -18706,6 +18889,12 @@ I18n.translations["es-AR"] = {
     "countdown_x_seconds": {
       "one": "s",
       "other": "s"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 día",
+        "other": "%{count} días"
+      }
     }
   },
   "decrease_brightness": "Reducir brillo",
@@ -19904,6 +20093,14 @@ I18n.translations["es-AR"] = {
   "this_taxon_has_no_default_photo": "Este taxón no tiene ninguna foto predeterminada.",
   "this_year": "Este año",
   "threatened": "Amenazada",
+  "time": {
+    "am": "mañana",
+    "formats": {
+      "hours": "%l:%M %p",
+      "long": "%d de %B de %Y"
+    },
+    "pm": "pm"
+  },
   "to_add_comments": "para agregar comentarios.",
   "to_suggest_an_identification": "para sugerir una identificación",
   "today": "Hoy",
@@ -20409,6 +20606,7 @@ I18n.translations["es-ES"] = {
       "sábado"
     ],
     "formats": {
+      "long": "%-d de %B de %Y"
     },
     "month_names": [
       null,
@@ -20433,6 +20631,12 @@ I18n.translations["es-ES"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 día",
+        "other": "%{count} días"
+      }
+    }
   },
   "establishment": {
   },
@@ -20461,6 +20665,13 @@ I18n.translations["es-ES"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "am": "am",
+    "formats": {
+      "long": "%-d de %B de %Y %H:%M"
+    },
+    "pm": "pm"
   },
   "uploader": {
     "errors": {
@@ -20859,6 +21070,7 @@ I18n.translations["es-MX"] = {
       "7": "Sá"
     },
     "formats": {
+      "long": "%d de %B de %Y"
     },
     "month_names": [
       null,
@@ -20918,6 +21130,12 @@ I18n.translations["es-MX"] = {
     "countdown_x_seconds": {
       "one": "s",
       "other": "s"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "un día",
+        "other": "%{count} días"
+      }
     }
   },
   "default": "Predeterminada",
@@ -21908,6 +22126,13 @@ I18n.translations["es-MX"] = {
   "this_taxon_has_no_default_photo": "¡Esta especie o grupo no tiene foto predeterminada!",
   "this_year": "Este año",
   "threatened": "en riesgo",
+  "time": {
+    "am": "am",
+    "formats": {
+      "long": "%B %d, %A %H:%M"
+    },
+    "pm": "pm"
+  },
   "to_add_comments": "para añadir comentarios",
   "to_suggest_an_identification": "sugerir una identificación",
   "today": "Hoy",
@@ -22654,6 +22879,7 @@ I18n.translations["et"] = {
       "7": "L"
     },
     "formats": {
+      "long": "%d. %B %Y",
       "month_day_year": "%d. %B %Y"
     },
     "month_names": [
@@ -22710,6 +22936,12 @@ I18n.translations["et"] = {
     "countdown_x_seconds": {
       "one": "sek",
       "other": "sek"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 päev",
+        "other": "%{count} päeva"
+      }
     }
   },
   "default": "vaikimisi",
@@ -23705,6 +23937,14 @@ I18n.translations["et"] = {
   "this_taxon_has_no_default_photo": "Sellel taksonil puudub vaikimisi foto!",
   "this_year": "Sel aastal",
   "threatened": "Ohustatud",
+  "time": {
+    "am": "ennelõunat",
+    "formats": {
+      "hours": "%H:%M",
+      "long": "%d. %B %Y %H:%M"
+    },
+    "pm": "pealelõunat"
+  },
   "to_add_comments": "lisada kommentaare",
   "to_suggest_an_identification": "määratluse pakkumiseks",
   "today": "Täna",
@@ -24377,6 +24617,7 @@ I18n.translations["eu"] = {
       "7": "Lr"
     },
     "formats": {
+      "long": "%Y(e)ko %Bk %d"
     },
     "month_names": [
       null,
@@ -24421,6 +24662,12 @@ I18n.translations["eu"] = {
   },
   "date_time": "Data/Ordua",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 egun",
+        "other": "%{count} egun"
+      }
+    }
   },
   "default": "Lehenetsia",
   "delete": "Ezabatu",
@@ -24919,6 +25166,13 @@ I18n.translations["eu"] = {
   "this_taxon_concept_is_inactive": "espezie edo talde hau inaktibo dago",
   "this_taxon_has_no_default_photo": "Taxon honek ez du lehenetsitako argazkirik!",
   "threatened": "Mehatxatuta",
+  "time": {
+    "am": "goiza",
+    "formats": {
+      "long": "%Y(e)ko %Bk %d"
+    },
+    "pm": "arratsaldea"
+  },
   "to_add_comments": "aipamenak gehitzeko.",
   "to_suggest_an_identification": "Identifikazio bat gomendatu",
   "today": "Gaur",
@@ -25417,6 +25671,8 @@ I18n.translations["fi"] = {
       "7": "La"
     },
     "formats": {
+      "compact": "%b %e",
+      "long": "%-d. %Bta %Y",
       "month_day_year": "%-d. %Bta %Y"
     },
     "month_names": [
@@ -25482,6 +25738,12 @@ I18n.translations["fi"] = {
     "countdown_x_seconds": {
       "one": "sekunti",
       "other": "sekuntia"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 päivä",
+        "other": "%{count} päivää"
+      }
     }
   },
   "decrease_brightness": "Vähennä kirkkautta",
@@ -26596,6 +26858,14 @@ I18n.translations["fi"] = {
   "this_taxon_has_no_default_photo": "Tällä taksonilla ei ole oletuskuvaa!",
   "this_year": "Tänä vuonna",
   "threatened": "Uhanalainen",
+  "time": {
+    "am": "ap.",
+    "formats": {
+      "hours": "%H:%M",
+      "long": "%-d. %Bta %Y %H:%M"
+    },
+    "pm": "ip."
+  },
   "to_add_comments": "lisätäksesi kommentteja",
   "today": "Tänään",
   "too_many_results": "Liian monta tulosta",
@@ -27034,6 +27304,8 @@ I18n.translations["fil"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "establishment": {
   },
@@ -27060,6 +27332,10 @@ I18n.translations["fil"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "formats": {
+    }
   },
   "uploader": {
     "errors": {
@@ -27482,6 +27758,8 @@ I18n.translations["fr"] = {
       "7": "Sa"
     },
     "formats": {
+      "compact": "%b %e",
+      "long": "%e %B %Y",
       "month_day_year": "%B %d, %Y"
     },
     "month_names": [
@@ -27545,6 +27823,12 @@ I18n.translations["fr"] = {
     "countdown_x_seconds": {
       "one": "seconde",
       "other": "seconde"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 jour",
+        "other": "%{count} jours"
+      }
     }
   },
   "decrease_brightness": "Diminuer la luminosité",
@@ -28612,6 +28896,13 @@ I18n.translations["fr"] = {
   "this_taxon_has_no_default_photo": "Ce taxon n’a pas de photo par défaut!",
   "this_year": "Cette année",
   "threatened": "Menacé",
+  "time": {
+    "am": "am",
+    "formats": {
+      "long": "%A %d %B %Y %Hh%M"
+    },
+    "pm": "pm"
+  },
   "to_add_comments": "pour ajouter des commentaires",
   "to_suggest_an_identification": "pour suggérer une identification",
   "today": "Aujourd’hui",
@@ -29089,6 +29380,7 @@ I18n.translations["fr-CA"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%d %B %Y"
     },
     "month_names": [
       null,
@@ -29113,6 +29405,12 @@ I18n.translations["fr-CA"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 jour",
+        "other": "%{count} jours"
+      }
+    }
   },
   "establishment": {
   },
@@ -29141,6 +29439,13 @@ I18n.translations["fr-CA"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "am": "am",
+    "formats": {
+      "long": "%A %d %B %Y %H h %M"
+    },
+    "pm": "pm"
   },
   "uploader": {
     "errors": {
@@ -29261,6 +29566,8 @@ I18n.translations["gd"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "establishment": {
   },
@@ -29287,6 +29594,10 @@ I18n.translations["gd"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "formats": {
+    }
   },
   "uploader": {
     "errors": {
@@ -29555,6 +29866,7 @@ I18n.translations["gl"] = {
       "7": "Sá"
     },
     "formats": {
+      "long": "%d de %B de %Y"
     },
     "month_names": [
       null,
@@ -29598,6 +29910,12 @@ I18n.translations["gl"] = {
   },
   "date_time": "Data/Hora",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 día",
+        "other": "%{count} días"
+      }
+    }
   },
   "default": "Predeterminada",
   "delete": "Eliminar",
@@ -30004,6 +30322,13 @@ I18n.translations["gl"] = {
   "this_taxon_concept_is_inactive": "esta especie ou grupo está inactiva",
   "this_taxon_has_no_default_photo": "Este taxón non ten foto por defecto!",
   "threatened": "Ameazado",
+  "time": {
+    "am": "Mañá",
+    "formats": {
+      "long": "%d de %B de %Y"
+    },
+    "pm": "Tarde"
+  },
   "to_add_comments": "para engadir comentarios.",
   "today": "Hoxe",
   "total_observations": "Total de observacións",
@@ -30394,6 +30719,7 @@ I18n.translations["he"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%e ב%B, %Y"
     },
     "month_names": [
       null,
@@ -30465,6 +30791,14 @@ I18n.translations["he"] = {
       "two": "שתי שניות",
       "many": "שניות",
       "other": "שניות"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "יום אחד",
+        "other": "%{count} ימים",
+        "two": "%{count} ימים",
+        "many": "%{count} ימים"
+      }
     }
   },
   "default": "ברירת המחדל",
@@ -31390,6 +31724,13 @@ I18n.translations["he"] = {
   "this_observation": "תצפית זו",
   "this_observation_was_created_using": "תצפית זו נוצרה באמצעות:",
   "this_year": "השנה",
+  "time": {
+    "am": "לפנה\"צ",
+    "formats": {
+      "long": "%d ב%B, %Y %H:%M"
+    },
+    "pm": "אחה\"צ"
+  },
   "to_add_comments": "להוספת הערות",
   "to_suggest_an_identification": "להצעת זיהוי",
   "today": "היום",
@@ -31805,6 +32146,7 @@ I18n.translations["id"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%A, %d %B %Y"
     },
     "month_names": [
       null,
@@ -31846,6 +32188,12 @@ I18n.translations["id"] = {
   "date_time": "Tanggal/Waktu",
   "date_updated": "Tanggal pemutakhiran",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "sehari",
+        "other": "%{count} hari"
+      }
+    }
   },
   "default": "baku",
   "delete": "Hapus",
@@ -32398,6 +32746,13 @@ I18n.translations["id"] = {
   "this_taxon_concept_is_inactive": "Konsep takson ini tidak aktif",
   "this_taxon_has_no_default_photo": "Takson ini tidak memiliki foto default!",
   "threatened": "terancam",
+  "time": {
+    "am": "pagi",
+    "formats": {
+      "long": "%d %B %Y %H.%M"
+    },
+    "pm": "malam"
+  },
   "to_add_comments": "untuk menambahkan komen",
   "today": "Hari ini",
   "total": "total:",
@@ -32880,6 +33235,8 @@ I18n.translations["it"] = {
       "7": "Sa"
     },
     "formats": {
+      "compact": "%e %b",
+      "long": "%d %B, %Y",
       "month_day_year": "%d %B, %Y"
     },
     "month_names": [
@@ -32945,6 +33302,12 @@ I18n.translations["it"] = {
     "countdown_x_seconds": {
       "one": "sec",
       "other": "sec"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 giorno",
+        "other": "%{count} giorni"
+      }
     }
   },
   "decrease_brightness": "Riduci luminosità",
@@ -34150,6 +34513,14 @@ I18n.translations["it"] = {
   "this_taxon_has_no_default_photo": "Questo taxon non ha una foto predefinita!",
   "this_year": "Questo anno",
   "threatened": "Minacciata",
+  "time": {
+    "am": "am",
+    "formats": {
+      "hours": "%l:%M %p",
+      "long": "%d %B, %Y %I:%M %p"
+    },
+    "pm": "pm"
+  },
   "to_add_comments": "per aggiungere commenti",
   "to_suggest_an_identification": "per suggerire un'identificazione",
   "today": "Oggi",
@@ -34647,6 +35018,8 @@ I18n.translations["iw"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "establishment": {
   },
@@ -34677,6 +35050,10 @@ I18n.translations["iw"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "formats": {
+    }
   },
   "uploader": {
     "errors": {
@@ -35016,6 +35393,7 @@ I18n.translations["ja"] = {
       "7": "土"
     },
     "formats": {
+      "long": "%Y年%B%d日",
       "month_day_year": "%Y年%B%d日"
     },
     "month_names": [
@@ -35066,6 +35444,12 @@ I18n.translations["ja"] = {
     },
     "countdown_x_seconds": {
       "other": "秒"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1日",
+        "other": "%{count}日"
+      }
     }
   },
   "default": "既定",
@@ -35696,6 +36080,13 @@ I18n.translations["ja"] = {
   "this_taxon_concept_is_inactive": "この分類群概念は廃止されました",
   "this_taxon_has_no_default_photo": "この分類群のデファルト写真がありません",
   "threatened": "絶滅危惧種",
+  "time": {
+    "am": "午前",
+    "formats": {
+      "long": "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+    },
+    "pm": "午後"
+  },
   "to_add_comments": "すれば、コメントを投稿することができます",
   "to_suggest_an_identification": "同定を提案",
   "today": "今日",
@@ -35958,6 +36349,8 @@ I18n.translations["ka"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "establishment": {
   },
@@ -35984,6 +36377,10 @@ I18n.translations["ka"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "formats": {
+    }
   },
   "uploader": {
     "errors": {
@@ -36318,6 +36715,7 @@ I18n.translations["ko"] = {
       "7": "토"
     },
     "formats": {
+      "long": "%Y년 %m월 %d일 (%a)"
     },
     "month_names": [
       null,
@@ -36376,6 +36774,12 @@ I18n.translations["ko"] = {
     },
     "countdown_x_seconds": {
       "other": "초"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "하루",
+        "other": "%{count}일"
+      }
     }
   },
   "decrease_brightness": "밝기 줄이기",
@@ -37115,6 +37519,13 @@ I18n.translations["ko"] = {
   "this_observation_is_research_grade": "본 관찰은 연구 자료 등급 관찰입니다!",
   "this_observation_was_created_using": "이 관찰은 다음을 사용하여 만들어졌습니다:",
   "this_year": "올해",
+  "time": {
+    "am": "오전",
+    "formats": {
+      "long": "%Y년 %m월 %d일, %H시 %M분 %S초 %Z"
+    },
+    "pm": "오후"
+  },
   "too_many_results": "결과가 너무 많음",
   "total": "합계",
   "total_observations": "총 관찰",
@@ -37544,6 +37955,7 @@ I18n.translations["lb"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%e. %B %Y"
     },
     "month_names": [
       null,
@@ -37599,6 +38011,12 @@ I18n.translations["lb"] = {
     "countdown_x_seconds": {
       "one": "Sek",
       "other": "Sek"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 Dag",
+        "other": "%{count} Deeg"
+      }
     }
   },
   "default": "Standard",
@@ -38082,6 +38500,13 @@ I18n.translations["lb"] = {
   "this_is_your_observation_desc": "Dir kënnt ëmmer d'Koordinate vun Ären Observatioune gesinn.",
   "this_observation": "Dës Observatioun",
   "this_year": "Dëst Joer",
+  "time": {
+    "am": "moies",
+    "formats": {
+      "long": "%A, %d. %B %Y, %H:%M Auer"
+    },
+    "pm": "mëttes"
+  },
   "today": "Haut",
   "too_many_results": "Ze vill Resultater",
   "trends": "Tendenzen",
@@ -38510,6 +38935,7 @@ I18n.translations["lt"] = {
       "7": "Še"
     },
     "formats": {
+      "long": "%B %d, %Y"
     },
     "month_names": [
       null,
@@ -38557,6 +38983,13 @@ I18n.translations["lt"] = {
   "date_time": "Data/Laikas",
   "date_updated": "Data atnaujinta",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "%{count} diena",
+        "few": "%{count} dienos",
+        "other": "%{count} dienų"
+      }
+    }
   },
   "decrease_brightness": "Sumažinti ryškumą",
   "default": "bumatytasis",
@@ -39125,6 +39558,13 @@ I18n.translations["lt"] = {
   "taxonomy": "Taksonomija",
   "these_observations_have_not_been_uploaded_yet": "Šie stebėjimai dar nebuvo įkelti\n",
   "this_year": "Šiais Metais",
+  "time": {
+    "am": "am",
+    "formats": {
+      "long": "%B %d, %Y %H:%M"
+    },
+    "pm": "pm"
+  },
   "total_species_observed": "Iš viso rūšių stebėta",
   "type_species_name": "Įveskite rūšies pavadinimą",
   "umbrella_projects": "Skėtiniai projektai",
@@ -39432,6 +39872,7 @@ I18n.translations["mk"] = {
       "7": "са"
     },
     "formats": {
+      "long": "%j %B %Y",
       "month_day_year": "%j %B %Y"
     },
     "month_names": [
@@ -39476,6 +39917,12 @@ I18n.translations["mk"] = {
   },
   "date_time": "Датум/време",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 ден",
+        "other": "%{count} дена"
+      }
+    }
   },
   "default": "по основно",
   "delete": "Избриши",
@@ -39855,6 +40302,13 @@ I18n.translations["mk"] = {
   "terms": "Услови",
   "terrain": "теренска",
   "threatened": "Загрозен",
+  "time": {
+    "am": "претпладне",
+    "formats": {
+      "long": "%j %B %Y %I:%M %p"
+    },
+    "pm": "попладне"
+  },
   "today": "Денес",
   "total": "вкупно",
   "total_observations": "Вкупно набљудувања",
@@ -40363,6 +40817,8 @@ I18n.translations["nb"] = {
       "7": "Lø"
     },
     "formats": {
+      "compact": "%b %e",
+      "long": "%d. %B %Y",
       "month_day_year": "%d. %B %Y"
     },
     "month_names": [
@@ -40428,6 +40884,12 @@ I18n.translations["nb"] = {
     "countdown_x_seconds": {
       "one": "sek",
       "other": "sek"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "%{count} dag",
+        "other": "%{count} dager"
+      }
     }
   },
   "decrease_brightness": "Senk lysstyrken",
@@ -41633,6 +42095,14 @@ I18n.translations["nb"] = {
   "this_taxon_has_no_default_photo": "Dette taksonet har ingen standardbilde!",
   "this_year": "Dette året",
   "threatened": "Truet",
+  "time": {
+    "am": "am",
+    "formats": {
+      "hours": "%H:%M",
+      "long": "%d. %B %Y %H:%M"
+    },
+    "pm": "pm"
+  },
   "to_add_comments": "for å legge til kommentarer",
   "to_suggest_an_identification": "for å foreslå en identifikasjon",
   "today": "I dag",
@@ -42485,6 +42955,8 @@ I18n.translations["nl"] = {
       "7": "za"
     },
     "formats": {
+      "compact": "%b %e",
+      "long": "%d %B %Y",
       "month_day_year": "%d %B %Y"
     },
     "month_names": [
@@ -42550,6 +43022,12 @@ I18n.translations["nl"] = {
     "countdown_x_seconds": {
       "one": "sec",
       "other": "sec"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "%{count} dag",
+        "other": "%{count} dagen"
+      }
     }
   },
   "decrease_brightness": "Helderheid verminderen",
@@ -43755,6 +44233,14 @@ I18n.translations["nl"] = {
   "this_taxon_has_no_default_photo": "Dit taxon heeft geen standaardfoto!",
   "this_year": "Dit jaar",
   "threatened": "Bedreigd",
+  "time": {
+    "am": "am",
+    "formats": {
+      "hours": "%H:%M",
+      "long": "%d %B %Y %H:%M"
+    },
+    "pm": "pm"
+  },
   "to_add_comments": "om reacties toe te voegen",
   "to_suggest_an_identification": "om een determinatie voor te stellen",
   "today": "Vandaag",
@@ -44282,6 +44768,7 @@ I18n.translations["nn"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%e. %B %Y"
     },
     "month_names": [
       null,
@@ -44306,6 +44793,12 @@ I18n.translations["nn"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dag",
+        "other": "%{count} dagar"
+      }
+    }
   },
   "establishment": {
   },
@@ -44334,6 +44827,13 @@ I18n.translations["nn"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "am": "",
+    "formats": {
+      "long": "%A, %e. %B %Y, %H:%M"
+    },
+    "pm": ""
   },
   "uploader": {
     "errors": {
@@ -44627,6 +45127,8 @@ I18n.translations["oc"] = {
   },
   "date_time": "Data/Ora",
   "datetime": {
+    "distance_in_words": {
+    }
   },
   "default": "per defaut",
   "delete": "Suprimir",
@@ -44998,6 +45500,10 @@ I18n.translations["oc"] = {
   "taxon_map": {
   },
   "terms": "Condicions",
+  "time": {
+    "formats": {
+    }
+  },
   "today": "Uèi",
   "total": "total",
   "unreview_all": "Marcar tot coma pas relegit",
@@ -45495,6 +46001,7 @@ I18n.translations["pl"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%B %d, %Y"
     },
     "month_names": [
       null,
@@ -45566,6 +46073,14 @@ I18n.translations["pl"] = {
       "few": "sekundy",
       "many": "sekund",
       "other": "sekundy"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "few": "%{count} dni",
+        "many": "%{count} dni",
+        "one": "1 dzień",
+        "other": "%{count} dni"
+      }
     }
   },
   "decrease_brightness": "Zmniejsz jasność",
@@ -46522,6 +47037,13 @@ I18n.translations["pl"] = {
   "this_observation_was_created_using": "Ta obserwacja została wykonana przy użyciu:",
   "this_taxon_has_no_default_photo": "Ten takson nie ma domyślnego zdjęcia!",
   "threatened": "Zagrożony",
+  "time": {
+    "am": "przed południem",
+    "formats": {
+      "long": "%B %d, %Y %H:%M"
+    },
+    "pm": "po południu"
+  },
   "to_add_comments": "aby dodać komentarze",
   "to_suggest_an_identification": "aby zasugerować oznaczenie",
   "today": "Dzisiaj",
@@ -47152,6 +47674,7 @@ I18n.translations["pt"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%d de %B de %Y",
       "month_day_year": "%d de %B de %Y"
     },
     "month_names": [
@@ -47211,6 +47734,12 @@ I18n.translations["pt"] = {
     "countdown_x_seconds": {
       "one": "s",
       "other": "s"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dia",
+        "other": "%{count} dias"
+      }
     }
   },
   "decrease_brightness": "Reduzir a Luminosidade",
@@ -48029,6 +48558,13 @@ I18n.translations["pt"] = {
   "this_taxon_has_no_default_photo": "Este táxon não tem foto predefinidaǃ",
   "this_year": "Este Ano",
   "threatened": "ameaçado",
+  "time": {
+    "am": "am",
+    "formats": {
+      "long": "%d de %B de %Y, %I:%M %p"
+    },
+    "pm": "pm"
+  },
   "today": "Hoje",
   "top_identifier": "Principal Identificador",
   "top_identifiers": "Principais Identificadores",
@@ -48555,6 +49091,7 @@ I18n.translations["pt-BR"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%d de %B de %Y"
     },
     "month_names": [
       null,
@@ -48614,6 +49151,12 @@ I18n.translations["pt-BR"] = {
     "countdown_x_seconds": {
       "one": "s",
       "other": "s"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dia",
+        "other": "%{count} dias"
+      }
     }
   },
   "decrease_brightness": "Diminuir o brilho",
@@ -49634,6 +50177,13 @@ I18n.translations["pt-BR"] = {
   "this_taxon_has_no_default_photo": "Este táxon não tem foto padrão!",
   "this_year": "Este Ano",
   "threatened": "Ameaçado",
+  "time": {
+    "am": "manhã",
+    "formats": {
+      "long": "%d de %B de %Y, %H:%M"
+    },
+    "pm": "tarde"
+  },
   "to_add_comments": "para adicionar comentários",
   "to_suggest_an_identification": "para sugerir uma identificação",
   "today": "Hoje",
@@ -50455,6 +51005,8 @@ I18n.translations["ru"] = {
       "7": "Сб"
     },
     "formats": {
+      "compact": "%b %e",
+      "long": "%B %d, %Y",
       "month_day_year": "%B %d, %Y"
     },
     "month_names": [
@@ -50528,6 +51080,14 @@ I18n.translations["ru"] = {
       "few": "сек",
       "many": "сек",
       "other": "сек"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "few": "%{count} дня",
+        "many": "%{count} дней",
+        "one": "%{count} день",
+        "other": "%{count} дней"
+      }
     }
   },
   "decrease_brightness": "Уменьшить яркость",
@@ -51747,6 +52307,14 @@ I18n.translations["ru"] = {
   "this_taxon_has_no_default_photo": "У этого таксона нет фото по умолчанию!",
   "this_year": "В этом году",
   "threatened": "Под угрозой исчезновения",
+  "time": {
+    "am": "утра",
+    "formats": {
+      "hours": "%H:%M",
+      "long": "%d %B %Y %I%M%p"
+    },
+    "pm": "вечера"
+  },
   "to_add_comments": "чтобы добавить комментарии",
   "to_suggest_an_identification": "предлагать идентификацию",
   "today": "Сегодня",
@@ -52566,6 +53134,7 @@ I18n.translations["sk"] = {
       "7": "So"
     },
     "formats": {
+      "long": "%M %d, %R",
       "month_day_year": "%M %d, %R"
     },
     "month_names": [
@@ -52615,6 +53184,13 @@ I18n.translations["sk"] = {
   "date_time": "Dátum/čas",
   "date_updated": "Dátum aktualizovaný",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "dňom",
+        "few": "%{count} dňami",
+        "other": "%{count} dňami"
+      }
+    }
   },
   "decrease_brightness": "Znížiť jas",
   "default": "štandardne",
@@ -53598,6 +54174,13 @@ I18n.translations["sk"] = {
   "this_observation_was_created_using": "Toto pozorovanie bolo vytvorené pomocou:",
   "this_taxon_has_no_default_photo": "Tento taxón nemá žiadnu základnú fotku!",
   "threatened": "Ohrozený",
+  "time": {
+    "am": "dopoludnia",
+    "formats": {
+      "long": "%A %d. %B %Y %H:%M"
+    },
+    "pm": "popoludní"
+  },
   "to_add_comments": "pridať komentáre",
   "to_suggest_an_identification": "k navrhnutiu identifikácie",
   "today": "Dnes",
@@ -54058,6 +54641,7 @@ I18n.translations["sq"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%B %d, %Y"
     },
     "month_names": [
       null,
@@ -54105,6 +54689,12 @@ I18n.translations["sq"] = {
   "date_specified": "Data e specifikuar",
   "date_time": "Data/Ora",
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 ditë",
+        "other": "%{count} ditë"
+      }
+    }
   },
   "default": "e paracaktuar",
   "delete": "Fshi",
@@ -54855,6 +55445,13 @@ I18n.translations["sq"] = {
   },
   "taxon_split": "ndarje e taxon",
   "the_world": "Bota",
+  "time": {
+    "am": "pd",
+    "formats": {
+      "long": "%B %d, %Y %I:%M %p"
+    },
+    "pm": "md"
+  },
   "top_species": "Specjet Kryesore",
   "total_species_observed": "Numri total i specjeve të vëzhguara",
   "type_species_name": "Shkruaj emrin e specjeve",
@@ -55245,6 +55842,7 @@ I18n.translations["sv"] = {
       "7": "Lö"
     },
     "formats": {
+      "long": "%-d %B %Y",
       "month_day_year": "%-d %B %Y"
     },
     "month_names": [
@@ -55299,6 +55897,12 @@ I18n.translations["sv"] = {
     "countdown_x_seconds": {
       "one": "sek",
       "other": "sek"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dag",
+        "other": "%{count} dagar"
+      }
     }
   },
   "default": "standard",
@@ -55775,6 +56379,14 @@ I18n.translations["sv"] = {
   "these_observations_have_not_been_uploaded_yet": "Dessa observationer har ännu inte laddats upp.\n",
   "this_observation": "Denna observation",
   "this_year": "Detta år",
+  "time": {
+    "am": "",
+    "formats": {
+      "hours": "%H:%M",
+      "long": "%-d %B %Y %H:%M"
+    },
+    "pm": ""
+  },
   "to_suggest_an_identification": "för att föreslå en identifiering",
   "today": "Idag",
   "too_many_results": "För många resultat",
@@ -56376,6 +56988,8 @@ I18n.translations["tr"] = {
       "7": "Cmt"
     },
     "formats": {
+      "compact": "%b %e",
+      "long": "%d %B, %Y",
       "month_day_year": "%d %B, %Y"
     },
     "month_names": [
@@ -56441,6 +57055,12 @@ I18n.translations["tr"] = {
     "countdown_x_seconds": {
       "one": "sn",
       "other": "sn"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "%{count} gün",
+        "other": "%{count} gün"
+      }
     }
   },
   "decrease_brightness": "Parlaklığı azalt",
@@ -57646,6 +58266,14 @@ I18n.translations["tr"] = {
   "this_taxon_has_no_default_photo": "Bu sınıflandırmanın varsayılan fotoğrafı yok!",
   "this_year": "Bu Yıl",
   "threatened": "Tehdit Altında",
+  "time": {
+    "am": "öö",
+    "formats": {
+      "hours": "%l:%M %p",
+      "long": "%d %B, %Y %I:%M %p"
+    },
+    "pm": "ös"
+  },
   "to_add_comments": "yorum eklemek",
   "to_suggest_an_identification": "bir kimlik önerme",
   "today": "Bugün",
@@ -58176,6 +58804,7 @@ I18n.translations["uk"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%d %B %Y"
     },
     "month_names": [
       null,
@@ -58200,6 +58829,14 @@ I18n.translations["uk"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "few": "%{count} дні",
+        "many": "%{count} днів",
+        "one": "%{count} день",
+        "other": "%{count} дня"
+      }
+    }
   },
   "establishment": {
   },
@@ -58228,6 +58865,13 @@ I18n.translations["uk"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "am": "до полудня",
+    "formats": {
+      "long": "%d %B %Y, %H:%M"
+    },
+    "pm": "по полудні"
   },
   "uploader": {
     "errors": {
@@ -58622,6 +59266,7 @@ I18n.translations["zh-CN"] = {
       "7": "六"
     },
     "formats": {
+      "long": "%Y年%B%d日",
       "month_day_year": "%B%d日%Y年"
     },
     "month_names": [
@@ -58681,6 +59326,12 @@ I18n.translations["zh-CN"] = {
     },
     "countdown_x_seconds": {
       "other": "秒"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "一天",
+        "other": "%{count} 日"
+      }
     }
   },
   "default": "默认",
@@ -59556,6 +60207,14 @@ I18n.translations["zh-CN"] = {
   "this_taxon_has_no_default_photo": "此分类单元没有默认照片！",
   "this_year": "今年",
   "threatened": "受到威胁",
+  "time": {
+    "am": "上午",
+    "formats": {
+      "hours": "%I:%M %p",
+      "long": "%Y年%d%B日 %I:%M %p"
+    },
+    "pm": "下午"
+  },
   "to_add_comments": "要添加评论",
   "to_suggest_an_identification": "要建议一次鉴定",
   "today": "今天",
@@ -59955,6 +60614,7 @@ I18n.translations["zh-HK"] = {
       "7": "Sa"
     },
     "formats": {
+      "long": "%Y年%b%d日"
     },
     "month_names": [
       null,
@@ -59979,6 +60639,12 @@ I18n.translations["zh-HK"] = {
   "date_picker": {
   },
   "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "一天",
+        "other": "%{count}天"
+      }
+    }
   },
   "establishment": {
   },
@@ -60007,6 +60673,13 @@ I18n.translations["zh-HK"] = {
   "sounds": {
   },
   "taxon_map": {
+  },
+  "time": {
+    "am": "上午",
+    "formats": {
+      "long": "%Y年%b%d日 %H:%M"
+    },
+    "pm": "下午"
   },
   "uploader": {
     "errors": {
@@ -60424,6 +61097,7 @@ I18n.translations["zh-TW"] = {
       "7": "六"
     },
     "formats": {
+      "long": "%Y年%b%d日"
     },
     "month_names": [
       null,
@@ -60484,6 +61158,12 @@ I18n.translations["zh-TW"] = {
     },
     "countdown_x_seconds": {
       "other": "秒"
+    },
+    "distance_in_words": {
+      "x_days": {
+        "one": "一天",
+        "other": "%{count} 日"
+      }
     }
   },
   "decrease_brightness": "減少亮度",
@@ -61639,6 +62319,13 @@ I18n.translations["zh-TW"] = {
   "this_taxon_has_no_default_photo": "此物種分類沒有預設照片！",
   "this_year": "今年",
   "threatened": "受威脅",
+  "time": {
+    "am": "上午",
+    "formats": {
+      "long": "%Y年%b%d日 %H:%M"
+    },
+    "pm": "下午"
+  },
   "to_add_comments": "添加評論",
   "to_suggest_an_identification": "提議一個鑑定",
   "today": "今日",

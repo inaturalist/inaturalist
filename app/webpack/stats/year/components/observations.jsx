@@ -6,6 +6,7 @@ import DateHistogram from "./date_histogram";
 import TorqueMap from "../../../shared/components/torque_map";
 import GlobalMap from "./global_map";
 import ObservationsGrid from "./observations_grid";
+import Streaks from "./streaks";
 
 const Observations = ( {
   data,
@@ -164,6 +165,12 @@ const Observations = ( {
       }
       <h3><span>{ I18n.t( "most_comments_and_faves" ) }</span></h3>
       { popular }
+      { data.streaks && data.streaks.length > 0 && (
+        <Streaks
+          year={year}
+          data={data.streaks.slice( 0, 20 )}
+        />
+      ) }
     </div>
   );
 };

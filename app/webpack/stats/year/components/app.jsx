@@ -25,7 +25,9 @@ const App = ( {
   if ( !year ) {
     body = (
       <p className="alert alert-warning">
-        Not a valid year. Please choose a year between 1950 and { new Date().getYear() }.
+        Not a valid year. Please choose a year between 1950 and
+        { new Date().getYear() }
+        .
       </p>
     );
   } else if ( !data || !currentUser ) {
