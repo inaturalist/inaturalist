@@ -5706,6 +5706,7 @@ tr:
         you_must_enter_confirmation_code_in_the_form: |
           Hesabınızı silmek için forma "%{confirmation_code}" girmelisiniz
       edit:
+        about_third_party_tracking: Üçüncü tarafın izlemesi hakkında
         blocking_desc_html: |
           <p>
           Birini engellemek onların sizle mesajlaşmalarını, gözlemleriniz hakkında yorum 
@@ -5838,6 +5839,25 @@ tr:
           aynı coğrafi gizliliği, diğer insanların aynı zamanda yapılan gözlemlerine dayanarak 
           gerçek koordinatları tahmin etmelerini zorlaştırmak için, aynı günden itibaren tüm 
           diğer gözlemleriniz için de geçerli kılar.
+        prefers_no_tracking_label: Üçüncü taraf hizmetleri kullanarak stabilite ve kullanım verileri toplamayın
+        prefers_no_tracking_label_desc_we_use: |
+          Stabiliteyi izlemek ve yazılımımızdaki hataları ve sorunları bulmak için çeşitli üçüncü taraf hizmetleri kullanıyoruz. Bu üçüncü partiler şunları içerir
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          Bu üçüncü taraflarla paylaşabileceğimiz bilgiler şunları içerir
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          IP adresleri (kent düzeyinde konum belirlemek ve sizi değişik ağ sayfalarında ve hizmetlerde izlemek için kullanılabilir; Google Analytics ve <a
+          href="https://firebase.google.com/support/privacy">Firebase Crashlytics’te</a> <a href="https://support.google.com/analytics/answer/2763052">IP anonimleştirme</a> özelliğini etkinleştirdiğimizi unutmayın ve böylece IP adresini bilgimize kaydetmez)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Tarayıcı ayrıntıları; üretici, model ve sürüm gibi
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Çökme ayrıntıları, tam olarak hangi kod satırının çökmeye neden olduğu gibi
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Aygıt ayrıntıları, bir telefonun üreticisi ve modeli gibi
+        prefers_no_tracking_label_desc_value_html: |
+          iNaturalist’in nispeten küçük kadromuzla istikrarını ve kullanılabilirliğini korumamıza, <strong>bu üçüncü taraf hizmetler büyük değer katıyor</strong>. Mobil aygıtlarda, ortaya çıkan sorunları anlamamızın neredeyse hiçbir yolu yoktur çünkü yazılım kontrol etmediğimiz aygıtlarda çalışıyor. Bazen, bu hizmetlerin sağladığı verilerde bunları görene kadar bu gibi sorunların yaşandığını bile bilmiyoruz. <strong>Bu bilgiyi paylaşarak, size ve bütün iNaturalist topluluğuna hizmet etmemize yardımcı oluyorsunuz.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Bu seçeneğin yalnızca açıkça bu şirketlere gönderdiğimiz analizler ve çökme verileri için geçerli olduğunu unutmayın. Tüm iNaturalist sunucuları Microsoft tarafından sağlanmakta ve barındırılmaktadır, iNaturalist görüntüleri Amazon tarafından barındırılmaktadır ve neredeyse bütün iNaturalist haritaları Google tarafından sunulmaktadır; bunun anlamı iNaturalist'teki gözlemlere her baktığınızda, bu şirketler tarafından sağlanan hizmetlere bağlanıyor ve en azından IP adresinizi onlara gösteriyorsunuz (iPhone uygulamasında Apple'ın haritalarını kullanıyoruz). iNaturalist olasılıkla bu şirketlerin sunduğu hizmetler olmadan olmazdı ve iNat'ı kullanırken onlarla paylaştığınız veri miktarını ve türlerini sınırlayabilirken, veri akışını bütünüyle durduramayız.
         project_settings_desc: |
           Unutmayın, bu, projelere gizli koordinatlarınıza erişmesine veya size güncellemeler 
           göndermesine izin vermiyor. Bu izinleri vermek için projelere katılmanız veya 
