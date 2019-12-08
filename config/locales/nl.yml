@@ -2388,7 +2388,7 @@ nl:
   only_an_admin_can_remove_project_users: Alleen een admin kan projectgebruikers verwijderen
   only_curators_can_add_edit_scientific_names: Alleen curatoren kunnen wetenschappelijke namen toevoegen/aanpassen.
   only_curators_can_access_that_page: Alleen curatoren hebben toegang tot deze pagina.
-  only_files_with_10000_rows_at_a_time: Alleen bestanden met 10.000 rijen per keer, alsjeblieft
+  only_files_with_10000_rows_at_a_time: Alleen bestanden met minder dan 10.000 rijen per keer, alsjeblieft
   only_letters_numbers: "Alleen letters en cijfers, zonder spaties, moet beginnen met een letter"
   only_one_coordinate_system_per_file: |
     Er kan slechts één coördinatensysteem per bestand worden gebruikt, anders zal een onjuiste conversie of weergave optreden.
@@ -4355,21 +4355,12 @@ nl:
           <p class="lead">
           <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
           </p>
-          <p class="lead">
-           We willen iNaturalist gratis houden, maar het leveren van deze dienst is niet gratis.
-           Als je van iNaturalist houdt, kun je overwegen om iNaturalist maandelijks te steunen.
-           Vaste donaties dragen ertoe bij dat iNaturalist door kan gaan met het opschalen
-             van zijn infrastructuur en personeel, door voorspelbare inkomsten te genereren.
-           Je kunt er ook voor kiezen om je status als donateur weer te geven op je gebruikersprofiel.
+          <p class="lead">We willen iNaturalist gratis houden, maar het leveren van deze dienst is niet gratis. Als je van iNaturalist houdt, kun je overwegen om iNaturalist maandelijks te steunen. Vaste donaties dragen ertoe bij dat iNaturalist door kan gaan met het opschalen van zijn infrastructuur en personeel, door voorspelbare inkomsten te genereren. Je kunt er ook voor kiezen om je status als donateur weer te geven op je gebruikersprofiel.
           </p>
-          <p class="lead">
-           Je vrijwillige donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het 
-           verbeteren van Computer Vision en het implementeren van nieuwe functies
-             ter ondersteuning van onze servers en medewerkers. Als je liever een
-             eenmalige donatie wilt doen <a href="%{donate_url}">klik dan hier</a>.
+          <p class="lead">Je vrijwillige donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het verbeteren van Computer Vision en het implementeren van nieuwe functies ter ondersteuning van onze servers en medewerkers. Als je liever een eenmalige donatie wilt doen <a href="%{donate_url}">klik dan hier</a>.
           </p>
           <p class="text-muted">
-          iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'.</p>
+          iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V. S.</p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -5380,6 +5371,10 @@ nl:
           Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href="https://www.altmetric.com">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.
           <br/>
           <a href="%{url}">Toon alle %{numStudies} studies</a>
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Waarnemingsreeksen
+        observation_streaks_desc: |
+          Een waarnemingsreeks is een periode waarin er op elke aaneengesloten dag nieuwe waarnemingen worden geregistreerd. Hier tonen we de langste reeksen die dit jaar zijn begonnen of bezig waren toen deze statistieken werden gegenereerd.
         sunburst_desc_html: |
           Waargenomen taxa gerangschikt als een hiërarchisch "sunburst"-diagram. De basis
           van de hiërarchie staat centraal, beginnend met "Leven" en eindigend
@@ -5682,6 +5677,15 @@ nl:
           Apparaatdetails, zoals merk en model van een mobiele telefoon
         prefers_no_tracking_label_desc_value_html: |
           <strong>Deze services van derden zijn erg waardevol voor ons</strong> bij het stabiel en bruikbaar houden van iNaturalist met ons relatief kleine aantal werknemers. Op mobiele apparaten is er nagenoeg geen andere manier om inzicht te krijgen in de problemen die zich voordoen, aangezien de software draait op apparaten waarover we geen controle hebben. Soms weten we niet eens dat zulke problemen zich voordoen voordat we ze in de data van zulke diensten zien. <strong>Door deze informatie te delen help je ons, en de gehele gemeenschap op iNaturalist.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Deze optie is alleen van toepassing op analytische en crashgegevens die wij
+          expliciet naar deze bedrijven sturen. Alle iNaturalist servers zijn
+          geleverd en gehost door Microsoft, alle iNaturalist afbeeldingen worden gehost door
+          Amazon en bijna alle iNaturalist kaarten worden geleverd door Google. Dit
+          betekent dat wanneer je naar een waarneming op iNaturalist kijkt je bent
+          verbonden met diensten aangeboden door deze bedrijven, en zij op zijn minst beschikken over je 
+          IP-adres (de iPhone app gebruikt Apple's maps). iNaturalist zou waarschijnlijk niet bestaan zonder de
+          diensten die deze bedrijven leveren. Hoewel iNaturalist de hoeveelheid en soort gegevens kan beperken die je met hen deelt tijdens het gebruik van iNat, kunnen we de datastroom niet helemaal gestoppen.
         project_settings_desc: |
           Let op: dit geeft projecten geen toegang tot je verborgen coördinaten of om je updates te sturen. Je moet deelnemen aan projecten om hier toestemming toe te geven, of het van geval tot geval toestaan.
         same_day_geoprivacy_protection: DezelfdeDag geoprivacy protectie
