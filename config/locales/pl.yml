@@ -81,10 +81,10 @@ pl:
     many: "<a href='%{url}'>%{count} obserwacji</a>"
     other: "<a href='%{url}'>%{count} obserwacji</a>"
   x_observations_reviewed_html:
-    one: "<span class='count'>1</span> obserwacja przejrzana"
-    few: "<span class='count'>%{count}</span> obserwacje przejrzane"
-    many: "<span class='count'>%{count}</span> obserwacji przejrzanych"
-    other: "<span class='count'>%{count}</span> obserwacji przejrzanej"
+    one: "<span class='count'>%{count}</span> przejrzana obserwacja"
+    few: "<span class='count'>%{count}</span> przejrzane obserwacje"
+    many: "<span class='count'>%{count}</span> przejrzanych obserwacji"
+    other: "<span class='count'>%{count}</span> przejrzanej obserwacji"
   x_observers_html:
     one: '<span class="count">1</span> obserwator'
     few: '<span class="count">%{count}</span> obserwatorów'
@@ -940,6 +940,8 @@ pl:
   curator_identification: Identyfikacja opiekuna
   current_flags: Aktualne zgłoszenia
   custom_project_fields: Niestandardowe pola projektu
+  custom_project_was_successfully_created: Dodano dostosowania projektu
+  custom_project_was_successfully_updated: Zaktualizowano dostosowania projektu
   customize_location: Dostosuj lokalizację
   darr_apply_darr: "&darr; Zastosuj &darr;"
   dashboard: Strona główna
@@ -992,6 +994,11 @@ pl:
   date_range: Zakres dat
   date_specified: Data określona
   date_time: Data/Czas
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: Data ostatniej aktualizacji
   day: Dzień
   decrease_brightness: Zmniejsz jasność
@@ -1074,7 +1081,7 @@ pl:
   duplicate_verb: Duplikat
   edit: Edytuj
   edit_a_batch_of_observations: Edytuj serię obserwacji
-  edit_account_settings_and_profile: "Edytuj ustawienia konta &amp; profilu"
+  edit_account_settings_and_profile: "Edytuj ustawienia konta i profil"
   edit_assessment: Edytuj ocenę
   edit_atlas: Edytuj atlas
   edit_body: Edytuj treść
@@ -2576,7 +2583,7 @@ pl:
     phylum: Typ
     subphylum: Podtyp
     superclass: Nadgromada
-    class: Klasa
+    class: Gromada
     subclass: Podgromada
     infraclass: Infragromada
     superorder: Nadrząd
@@ -3589,6 +3596,6 @@ pl:
       "@vow_or_con":
         vow: samogłoska
         con: spółgłoska
-  zoom_in: Przybliż
-  zoom_out: Oddal
-  zoom_photo: Przybliż zdjęcie
+  zoom_in: Powiększ
+  zoom_out: Pomniejsz
+  zoom_photo: Powiększ zdjęcie
