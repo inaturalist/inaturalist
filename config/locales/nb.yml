@@ -523,6 +523,7 @@ nb:
   assessment_x: "%{assessment}-vurdering"
   assessments: vurderinger
   associations: Tilknytninger
+  atlas_for_taxon_html: Atlas for %{taxon}
   at_time: "kl. %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -596,6 +597,8 @@ nb:
   blue_butterfly_etc: "blå, sommerfugl, osv."
   blue_icons_represent_political_units: "Blå ikoner står for politiske enheter som land, stater, fylker, kommuner, og lignende, mens grønne ikoner står for ulike typer åpne områder (parker, reservater). Hvis du zoomer inn ser du flere, mindre steder."
   body: Innhold
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Avgrensningsboks
   breadcrumbs: Brødsmulesti
   breadcrumbs_description: "Dette vil erstatte h1'en og standardanmodninger, så sørg for at du inkluderer disse hvis de er viktige for dette prosjektet. Husk også at den tillatte bredden er maks 950 piksler"
@@ -696,6 +699,7 @@ nb:
   check_list: Sjekkliste
   check_list_description: Velg et takson på et høyere nivå som du ønsker å vise i listen, som "Aves" for fugler, eller "Amphibia" for amfibier. Hvis angitt vil denne listen ikke tillate taksa som ikke er del av dette taksonet. Hvis du oppretter en liste for fugler, for eksempel vil du ikke kunne legge til frosker i den.
   check_list_for_individual_taxa_that: 'Sjekklister for individuelle taksa som forekommer her, f.eks. "Fugler i %{place}".'
+  check_list_for_taxon_html: "Sjekkliste for %{taxon}"
   check_lists_must_belong_to_a_place: |
     Sjekklister må høre til et sted. For å opprette en ny sjekkliste, gå til et steds standard-sjekkliste og trykk på lenken "Opprett en ny sjekkliste".
   check_list_of_species_occuring_in: Sjekkliste av arter som forekommer i
@@ -777,6 +781,7 @@ nb:
   comparing_observations_from: "Sammenligner observasjoner av %{user} på %{dates}"
   compiled_by_name: "Sammensatt av %{name}"
   complete: Fullført
+  complete_set_for_taxon_in_place_html: "Fullstendig sett for %{taxon} i %{place}"
   completed: Fullført
   completed_at: Fullført
   comprehensive: omfattende
@@ -1090,8 +1095,10 @@ nb:
   edit_account_settings_and_profile: "Rediger kontoinnstillinger &amp; profil"
   edit_assessment: Rediger vurdering
   edit_atlas: Rediger atlas
+  edit_atlas_for_taxon_html: Rediger atlas for %{taxon}
   edit_body: Rediger brødtekst
   edit_comment: Rediger din kommentar
+  edit_complete_set_for_taxon_in_place_html: "Rediger fullstendig sett for %{taxon} i %{place}"
   edit_custom_project_fields: Rediger egendefinerte prosjektfelt
   edit_field: Rediger felt
   edit_license: Rediger lisens
@@ -1134,6 +1141,7 @@ nb:
   editing_project_asset: Redigere prosjektressurs for
   editing_subscription_to_x_html: "Redigerer abonnement på %{x}"
   editing_taxon_link: Redigerer taksonlenke
+  editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
   editing_taxon_range: Redigerer taksonutbredelse
   editing_this: Redigerer %{elem}
   editing_x_in_y: "Redigerer %{x} i %{y}"
@@ -2019,6 +2027,7 @@ nb:
   new_message: Ny melding
   new_observation_field: Nytt observasjonsfelt
   new_observations: Nye observasjoner
+  new_observations_in_year: "Nye observasjoner i %{year}"
   new_observations_this_year: Nye observasjoner i år
   new_observations_ellispsis: "Nye observasjoner..."
   new_observations_from_place_html: "Nye observasjoner fra %{place}"
@@ -2040,10 +2049,12 @@ nb:
   new_trip: Ny tur
   new_updates_in_the_last_24_hours_from: "Nye oppdateringer de siste 24 timene fra %{site_name}"
   new_users: Nye brukere
+  new_users_in_year: "Nye brukere i %{year}"
   new_users_w_7_obs: Ny brukere med 7 obs
   newly_added: Nye lagt til
   newly_added_species: Nye arter lagt til
   newly_observed_species: Nye arter observert
+  newly_observed_species_in_year: "Nye arter lagt til i %{year}"
   newly_observed_species_this_year: Nye arter lagt til i år
   news: Nyheter
   next: Neste
@@ -2326,7 +2337,7 @@ nb:
   only_an_admin_can_remove_project_users: Kun en admin kan fjerne prosjektbrukere
   only_curators_can_add_edit_scientific_names: Kun kuratorer kan legge til/redigere vitenskapelige navn.
   only_curators_can_access_that_page: Kun kuratorer har tilgang til den siden.
-  only_files_with_10000_rows_at_a_time: Kun filer med 10 000 rader om gangen, vær så snill
+  only_files_with_10000_rows_at_a_time: Kun filer med under 10 000 rader om gangen, vær så snill
   only_letters_numbers: "Kun bokstaver og tall, ingen mellomrom, må begynne på en bokstav"
   only_one_coordinate_system_per_file: |
     Kun ett koordinatsystem kan brukes per fil, hvis ikke vil det oppstå feil i konvertering eller visning.
@@ -3847,10 +3858,14 @@ nb:
     one: Brukt 1 gang
     other: Bruk %{count} ganger
   user: Bruker
+  user_added_a_flag_html: "%{user} har lagt til en markering"
+  user_added_a_project_invitation_html: "%{user} har lagt til en prosjektinvitasjon"
   user_added_a_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
   user_added_a_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
   user_added_a_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
+  user_added_an_identification_html: "%{user} har lagt til en identifikasjon"
   user_added_an_observation_field_html: '%{user} har lagt til en verdi for "%{field_name}" i en observasjon av %{owner}'
+  user_added_an_observation_field_value_html: "%{user} har lagt til en verdi for et observasjonsfelt"
   user_added_an_observation_html: "%{user} har lagt til en observasjon"
   user_added_an_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
   user_added_an_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
@@ -5195,6 +5210,8 @@ nb:
         obs_in_year: Obs i %{year}
         percent_growth_in_year: "% vekst i %{year}"
         percent_of_total_growth: "% av total vekst"
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Observasjonsserier
         sunburst_desc_html: |
           Observasjoner som et hierarkisk "sunburst"-diagram. Basen av hierarkien er i midten, med "livet" som start og arter ytterst på kanten. Størrelsen av hver bue er relativ til antallet av observasjoner av det taksonet, og fargene korresponderer mer eller mindre til våre vanlige farger for "ikoniske" taksa (grønn for planter, oransje for insekter, blå for de fleste andre dyr, osv.), så hvis du ser masse grønt betyr det at du har sett mange planter. <strong>Trykk på en bue for å plasere det taksonet i midten</strong> og dets etterkommere rundt det, eller <strong>trykk på midten for å gå opp i hierarkiet igjen</strong>.
     taxa:
@@ -5352,6 +5369,7 @@ nb:
         you_must_enter_confirmation_code_in_the_form: |
           Du må skrive "%{confirmation_code}" i skjemaet for å slette din konto
       edit:
+        about_third_party_tracking: Om tredjepartssporing
         blocking_desc_html: |
           <p>
           Å blokkere noen hindrer vedkommende fra å sende beskjeder til deg, kommentere på dine observasjoner, identifisere dine observasjoner, og kommunisere med deg på andre måter på %{site_name}. Det fjerner også deres observasjoner fra dine søkeresultater og fjerner dine observasjoner fra deres. Det gjør deg imidlertid ikke usynlig. De kan still finne dine observasjoner og se på din profil, de kan bare ikke ha kontakt med deg.
