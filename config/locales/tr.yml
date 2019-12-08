@@ -2361,7 +2361,7 @@ tr:
   only_an_admin_can_remove_project_users: Proje kullanıcılarını yalnızca bir yönetici kaldırabilir
   only_curators_can_add_edit_scientific_names: Yalnızca sorumlular bilimsel isimleri ekleyebilir/düzenleyebilir.
   only_curators_can_access_that_page: Bu sayfaya yalnızca sorumlular erişebilir.
-  only_files_with_10000_rows_at_a_time: Tek seferde yalnızca 10000 satır olan dosyalar, lütfen
+  only_files_with_10000_rows_at_a_time: Lütfen, yalnızca 10,000 satırdan az dosyalar
   only_letters_numbers: "Yalnızca harfler ve sayılar, boşluksuz, bir harfle başlaması gerek"
   only_one_coordinate_system_per_file: |
     Dosya başına yalnızca bir koordinat sistemi kullanılabilir, aksi takdirde yanlış dönüştürme veya görüntüleme meydana gelir.
@@ -3007,7 +3007,7 @@ tr:
   radius: Yarıçap (m)
   radius_value: "Yarıçağ (m): %{radius}"
   random: Rastgele
-  range: Aralık
+  range: Tarih Aralığı
   range_from: 'Şuradan rastgele '
   rank: Düzey
   rank_position: Düzey
@@ -5488,6 +5488,21 @@ tr:
         obs_in_year: '%{year} içinde Gözl'
         percent_growth_in_year: "%{year} içindeki büyüme %'si"
         percent_of_total_growth: "Toplam Büyüme %'si"
+        publications_desc_html: |
+          Sayıların ve renklerin ne anlama geldiği hakkında daha fazla bilgi 
+          için çiçek çizelgelerine tıklayın. <a href="https://www.altmetric.com">Altmetric</a>'in 
+          izniyle etki verileri ve çizelgeler. 
+          <a href="https://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki 
+          arkadaşlarımızın veri kullanımı nezaket bilgileri.
+          <br/>
+          <a href="%{url}">%{numStudies} çalışmanın tamamını görüntüleyin</a>
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Gözlem Serileri
+        observation_streaks_desc: |
+          Bir gözlem serisi, birinin dışarı çıktığı ve her gün yeni gözlemler 
+          kaydettiği bir zaman dilimidir. Burada, bu yıl başlayan veya bu 
+          istatistikler oluşturulduğunda devam eden en uzun serileri 
+          gösteriyoruz.
         sunburst_desc_html: |
           Hiyerarşik bir "güneş" diyagramı olarak düzenlenen gözlemlenen sınıflar. Hiyerarşinin tabanı merkezdedir, "Yaşam" ile başlayıp dış kenarlardaki türlerle bitiyor. Her yayın boyutu, bu sınıfın gözlem sayısı ile orantılıdır ve renkler aşağı yukarı her zamanki "ikonik" sınıf renklerimizle aynıdır (bitkiler için yeşil, böcekler için turuncu, diğer birçok hayvan için mavi vb.), böylece çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğiniz anlamına gelir. <strong>Merkezdeki sınıfı ve onun çevresindeki alt sınıfları yerleştirmek için yaya tıklayın</strong> ya da <strong>hiyerarşiyi yukarı taşımak için merkeze tıklayın</strong>.
     taxa:
