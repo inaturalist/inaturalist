@@ -2349,7 +2349,7 @@ it:
   only_an_admin_can_remove_project_users: Solo l'amministratore può rimuovere gli utenti dal progetto
   only_curators_can_add_edit_scientific_names: Solo i curatori possono aggiungere/modificare i nomi scientifici.
   only_curators_can_access_that_page: Solo i curatori possono accedere a quella pagina.
-  only_files_with_10000_rows_at_a_time: Solo file con 10000 righe alla volta, per favore
+  only_files_with_10000_rows_at_a_time: Solo file con meno di 10'000 righe, per favore
   only_letters_numbers: "Solo lettere e numeri, senza spazi, deve iniziare con una lettera"
   only_one_coordinate_system_per_file: |
     Per ogni file può essere utilizzato solo un sistema di coordinate, altrimenti si verificheranno problemi di visualizzazione o conversione.
@@ -5261,6 +5261,10 @@ it:
           Clicca sui grafici "a fiore" per ottenere più informazioni su cosa significano i numeri e i colori. I dati e i grafici di impatto per gentile concessione di <a href="https://www.altmetric.com">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici al <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
           <br/>
           <a href="%{url}">Visualizza tutti gli %{numStudies} studi</a>
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Sequenze di Osservazioni
+        observation_streaks_desc: |
+          Una sequenza di osservazioni è un periodo di tempo in cui qualcuno è uscito ed ha registrato nuove osservazioni ogni giorno. Qui presentiamo le sequenze più lunghe iniziate quest'anno o quelle che sono in corso mentre queste statistiche vengono generate.
         sunburst_desc_html: |
           Taxa osservati disposti secondo un diagramma gerarchico "raggi di sole". La base è al centro, inizia on "Organismo" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori "iconici" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.
           <strong>Clicca su un arco per posizionare quel taxon al centro</strong> e i suoi discendenti attorno ad esso, o <strong>clicca al centro per tornare indietro nella gerarchia</strong>.
