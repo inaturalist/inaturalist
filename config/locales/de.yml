@@ -1349,6 +1349,11 @@ de:
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
   identifications_by: "Bestimmungen von %{user}"
+  computer_vision_suggestion_desc: |
+    Computervision ist der Lehrprozess von Computern, um Muster
+    in Bildern zu erkennen. Wir stellen Werkzeuge zur Verfügung, die Computer-Vision-Modelle verwenden, die auf den Fotos der Gemeinschaft
+    geschult sind, um Empfehlungen zur Identifizierung zu geben, wie die Autvervollständigkeit und Vergleichsfunktionen. Dieses Label gibt an, wenn eine Person
+    eine Identifikation mit einem dieser Tools hinzugefügt hat.
   identifiers: Bestimmer
   identotron_for: Identotron für
   identotron_help: Identotron Hilfe
@@ -1844,6 +1849,7 @@ de:
   newly_added: Kürzlich hinzugefügt
   newly_added_species: Kürzlich hinzugefügte Arten
   newly_observed_species: Kürzlich beobachtete Arten
+  newly_observed_species_in_year: "Neu hinzugefügte Arten in %{year}"
   newly_observed_species_this_year: In diesem Jahr neu hinzugefügte Spezies
   news: Neuigkeiten
   next: Weiter
@@ -2092,6 +2098,7 @@ de:
   only_an_admin_can_remove_project_users: Nur Administratoren können Projektbenutzer entfernen.
   only_curators_can_add_edit_scientific_names: Nur Kuratoren können wissenschaftliche Namen hinzufügen oder bearbeiten.
   only_curators_can_access_that_page: Nur Kuratoren können auf diese Seite zugreifen.
+  only_files_with_10000_rows_at_a_time: Bitte nur Dateien mit 10000 Zeilen auf einmal
   only_letters_numbers: "Nur Buchstaben und Zahlen, keine Leerzeichen, muss mit einem Buchstaben beginnen."
   only_one_coordinate_system_per_file: |
     Nur ein Koordinatensystem kann pro Datei verwendet werden, sonst wird eine falsche Konvertierung oder Anzeige auftreten.
@@ -2205,8 +2212,14 @@ de:
     original: Original
   photos_size_photos: "%{photos_size} Fotos"
   photos_updated: Fotos aktualisiert.
+  pi_consent_desc_html: |
+    Wir speichern personenbezogene Daten wie Benutzernamen und E-Mail-Adressen, um Konten auf dieser Website zu verwalten. Um die Datenschutzgesetze einzuhalten, benötigen wir deine Einwilligung in diese Nutzung personenbezogener Daten, indem du dieses Kästchen ankreuzt. Um mehr darüber zu erfahren, welche Informationen wir sammeln und wie wir sie verwenden, lese bitte unsere
+    <a href='%{privacy_url}' target='_blank'>Datenschutzrichtlinie</a>
+    und unsere <a href='%{terms_url}' target='_blank'>Geschäftsbedingungen</a>.
   pi_consent_label: |
     Ich bin damit einverstanden, dass iNaturalist begrenzte Arten von Inhalten speichert und verarbeitet persönliche Informationen über mich, um mein Konto zu verwalten
+  pi_consent_child_label: |
+    Ich bin damit einverstanden, dass iNaturalist bestimmte personenbezogene Daten über mein Kind speichert und verarbeitet, um das Konto meines Kindes verwalten zu können.
   pin_verb: Anpinnen
   pink: rosa
   pinned_locations_desc: |
@@ -3102,6 +3115,9 @@ de:
   stop_following_user: "%{user} nicht mehr folgen"
   stop_testing: Testen beenden
   stop_trusting_this_person_with_your_private_coordinates: Vertrau dieser Person deine verborgenen Koordinaten nicht mehr an
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Store
   studies_that_used_inaturalist_data_in_year: Studien, die im Jahr %{year} iNaturalist-Daten verwendet haben
   stuff_just_added: "Dinge, die du gerade hinzugefügt hast...."
   subject_resolved_noun_html: "%{subject} hat %{noun} geklärt"
@@ -3233,6 +3249,7 @@ de:
   there_isnt_a_wikipedia_article_titled_x_html: |
     Es gibt keinen Wikipedia-Artikel oder keine Weiterleitung mit dem Titel'<i>%{x}</i>'. Vielleicht möchtest du ja einen <a href='http://de.wikipedia.org/wiki/%{x}'>erstellen</a>?
   there_merge_problems_with_the_merge: "Es gab Probleme mit der Zusammenführung: %{merged_errors}"
+  there_was_a_problem_saving_your_identification: "Es gab ein Problem beim Speichern Deiner Identifikation: %{error}"
   there_were_problems_adding_taxa: "Es gab Probleme beim Hinzufügen dieser Taxa: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Es gab Probleme beim Hinzufügen dieser Beobachtung zu diesem Projekt:"
   there_were_problems_importing_that_place: "Problem bei Importieren vom Ort: %{place_error}"
@@ -3380,10 +3397,16 @@ de:
     one: 1 Mal benutzt
     other: '%{count} Mal benutzt'
   user: Benutzer
+  user_added_a_comment_html: "%{user} hat einen Kommentar hinzugefügt"
+  user_added_a_fave_html: "%{user} hat einen Favoriten hinzugefügt"
+  user_added_a_flag_html: "%{user} hat etwas gemeldet"
+  user_added_a_project_invitation_html: "%{user} hat eine Projekt-Einladung hinzugefügt"
   user_added_a_x: "%{user}: %{x} hinzugefügt"
   user_added_a_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
   user_added_a_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
+  user_added_an_identification_html: "%{user} hat eine Identifikation hinzugefügt"
   user_added_an_observation_field_html: '%{user} hat einen Wert für %{field_name} zu einer Beobachtung von %{owner} hinzugefügt'
+  user_added_an_observation_field_value_html: "%{user} hat einen Beobachtungsfeldwert hinzugefügt"
   user_added_an_observation_html: "%{user} hat eine Beobachtung hinzugefügt"
   user_added_an_x: "%{user}: %{x} hinzugefügt"
   user_added_an_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
@@ -3828,6 +3851,9 @@ de:
           Projekten, zu denen du eine Beobachtung hinzugefügt hast, auch die tatsächlichen Koordinaten sehen können.
         what_is_the_quality_assessment: Was ist die Qualitätprüfung und wie können Beobachtungen Forschungsqualität erreichen?
         what_is_a_life_list?: Was ist eine Lebensliste?
+        is_a_list_of_every_species_that_you_have_seen: |
+          Eine Lebensliste ist eine Liste aller Arten, die du gesehen hast. Jeder %{site_name}-Benutzer hat eine Lebensliste
+          und diese Listen werden automatisch aus den zu %{site_name} hinzugefügten Beobachtungen befüllt.
         i_observed_a_species: "Ich habe eine Art beobachtet, warum wird die in meiner Lebensliste nicht angezeigt?"
         while_the_life_list_is_automatically_populated: |
           Während Beobachtungen automatisch in der Lebensliste landen, wird die Art nicht hinzugefügt, falls %{site_name} den von Dir benutzten Namen nicht kennt. Wir empfehlen Dir, andere Namen auszuprobieren, die wir vielleicht erkennen.
@@ -3880,6 +3906,8 @@ de:
         created_on_help: "Datum an dem die Beobachtung erstellt wurde, nicht der Beobachtung, z.B. 2015-01-17, 2015-01, 2015"
       field_descriptions:
         id: "Einziger Bestimmer dieser Art"
+        num_identification_agreements: Anzahl der Identifikationen, die mit der Identifikation des Beobachters übereinstimmen
+        num_identification_disagreements: Anzahl der Identifikationen, die mit der Identifikation des Beobachters nicht übereinstimmen
         observed_on_string: Datum/Zeit wie vom Beobachter eingegeben
         time_zone: Zeitzone der Beobachtung
         latitude: Öffentlich sichtbarer Breitengrad
@@ -3984,6 +4012,71 @@ de:
     emailer:
       parental_consent:
         subject: Dein Kind würde gerne iNaturalist benutzen
+        content_html: |
+          <p>
+          Dein Kind benutzt die <strong>Seek von iNaturalist</strong> Bildungs-App und möchte Daten mit der bürgerwissenschaftliche iNaturalist-Plattform teilen. Weil die Beiträge in iNaturalist pesonenbezogene Daten enthalten können, darf iNaturalist nicht von Personen unter 13 Jahren ohne Zustimmung eines Elternteils verwendet werden.
+          </p>
+          <p>
+          <strong>Seek by iNaturalist</strong> kann ohne ein Konto verwendet werden und es werden auch keine personenbezogenen Daten verwendet, aber dein Kind wird auch keine Beobachtungen zu iNaturalist beitragen können. iNaturalist ist ein bürgerwissenschaftliches soziales Netzwerk, in dem die Teilnehmer Beobachtungen und Identifikationen von Lebewesen austauschen, um sich gegenseitig etwas über die Natur zu beizubringen und Biodiversitätsdaten für die Wissenschaft zu generieren.
+          </p>
+          <p>
+          Wenn du deinem Kind die Erlaubnis zur Nutzung von iNaturalist erteilen möchtest, musst du Folgendes tun:
+          </p>
+          <ol>
+          <li>
+          <p>
+          Erstelle ein iNaturalist Konto, das dein Kind verwenden wird, inmdem du diesem Link folgst:
+          <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          Nachdem du das Konto deines Kindes erstellt hast, werden wir dich zur Verifizierung dass du ein Erwachsener bist um eine kleine Spende an iNaturalist von 1USD über deine Kreditkarte bitten . Bitte stelle sicher, dass du die gleiche E-Mail-Adresse verwendest, wie bei der Registrierung, wenn du die Spende tätigst.
+          </p>
+          </li>
+          <li>
+          <p>
+          Sobald wir die Spende bearbeitet haben, senden wir dir eine weitere E-Mail, die dich darüber informiert, dass das Konto deines Kindes aktiviert wurde, und du kannst den iNaturalist Benutzernamen und das Passwort, die du erstellt hast, verwenden, um dich bei der Seek-App deines Kindes anzumelden.
+          </li>
+          </ol>
+          <p>
+          iNaturalist sammelt folgende personenbezogene Daten:
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong>E-Mail-Adresse (privat): </strong> jedes iNaturalist-Konto hat eine E-Mail-Adresse zugeordnet, die nicht veröffentlicht wird.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>Benutzername (öffentlich, erforderlich):</strong> Jedes iNaturalist-Konto hat einen öffentlichen Benutzernamen und eine Benutzeridentifikationsnummer.
+          Der Benutzername muss nicht dem echten Namen einer Person ähnlich sein, aber er kann verwendet werden, um die Person über öffentliche Kommentare und private Direktnachrichten zu kontaktieren.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>IP-Adresse (privat, erforderlich):</strong> iNaturalist speichert, veröffentlicht aber nicht die IP-Adresse des Benutzers, aus der personenbezogene Daten wie Standort (mit Genauigkeit auf Stadtebene) abgeleitet werden können.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>Profilbild (öffentlich, optional):</strong> iNaturalist-Konten können optional Profilbilder haben, wofür oft Bilder des Benutzers herangezogen werden.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>Beobachtungsstandort (öffentlich oder privat, erforderlich):</strong> iNaturalist-Beobachtungen enthalten Standortinformationen darüber, wo die Beobachtung gemacht wurde. Diese können wahlweise öffentlich gemacht oder privat gehalten werden, aber standardmäßig sind diese öffentlich.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist ermöglicht es den Nutzern auch öffentliche Bilder zu teilen, öffentliche Kommentare und private direkte Nachrichten, die mit ihrem Konto verknüpft sind.
+          Es ist möglich, dass Benutzer personenbezogene Daten in diesem benutzergenerierten Inhalt mit einbeziehen.
+          </p>
+          <p>
+          Erfahre mehr über die Datenschutzerklärung von iNaturalist <a href="%{privacy_policy_url}">hier</a>.
+          </p>
       photos_missing:
         subject: Einige Fotos müssen repariert werden
     photos:
@@ -4096,6 +4189,8 @@ de:
         none: Keine.
       curator_coordinate_access_label: |
         Sollen die privaten/verschleierten Koordinaten Deiner Beobachtungen für die Projekt-Kuratoren sichtbar gemacht werden?
+      curator_coordinate_access_note: |
+        Du kannst auch die versteckten Koordinaten von Beobachtungen in diesem Projekt von Fall zu Fall teilen. Dies sind nur die Standardeinstellungen für neue Beobachtungen, die dem Projekt hinzugefügt wurden.
       show:
         bioblitz_results_desc_html: |
           <p>
@@ -4244,6 +4339,10 @@ de:
           Facility</a> (GBIF) generieren, eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.
         name_place_help_html: |
           Umgangssprachliche Namen and diesem Ort bevorzugen
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identifikationen
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Wenn ein Projekt deine Beobachtungen hinzufügt
         project_addition_preferences:
           any: Beliebige
           joined: Projekte, denen du beigetreten bist
@@ -4438,16 +4537,32 @@ de:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: ','
         format: '%u%n'
         precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: .
         significant: false
         strip_insignificant_zeros: false
         unit: '$'
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: ','
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: .
       significant: false
       strip_insignificant_zeros: false
@@ -4635,6 +4750,11 @@ de:
           attributes:
             base:
               guide_has_too_many_taxa: "Führer kann nur 500 Taxa haben"
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: |
+                kann nicht größer als das Datum sein, an dem die Beobachtung hinzugefügt wurde
         place:
           attributes:
             place_geometry:
@@ -4714,6 +4834,8 @@ de:
         m: Männlich
         f: Weiblich
         "n": Neutrum
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
   wild: wild
   will_paginate:
     next_label: "Nächste &#8594;"
