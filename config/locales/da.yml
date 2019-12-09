@@ -601,6 +601,8 @@ da:
   blue_butterfly_etc: "blå, sommerfugl, etc."
   blue_icons_represent_political_units: "Blå ikoner repræsenterer politiske steder såsom lande, stater, provinser, kommuner og lignende, mens grønne ikoner repræsenterer forskellige slags åbne områder (parker, reservater og lignende). Hvis du zoomer ind, vil du se flere, mindre steder."
   body: Indhold
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Geografisk område
   breadcrumbs: Brødkrummer
   breadcrumbs_description: "Dette vil erstatte h1 og vil som standard kræve handling, så sørg for at medtage dem, hvis de er vigtige for dette projekt, og husk det maksimale tilladte er 950px"
@@ -2045,6 +2047,7 @@ da:
   new_message: Ny besked
   new_observation_field: Nyt observationsfelt
   new_observations: Nye observationer
+  new_observations_in_year: "Nye observationer i %{year}"
   new_observations_this_year: Nye observationer dette år
   new_observations_ellispsis: "Nye observationer..."
   new_observations_from_place_html: "Nye observationer fra %{place}"
@@ -2066,10 +2069,12 @@ da:
   new_trip: Ny tur
   new_updates_in_the_last_24_hours_from: "Nye opdateringer i de seneste 24 timer fra %{site_name}"
   new_users: Nye brugere
+  new_users_in_year: "Nye brugere i %{year}"
   new_users_w_7_obs: Nye brugere m/ 7 obs
   newly_added: Nyligt tilføjet
   newly_added_species: Nyligt tilføjede arter
   newly_observed_species: Nyligt observerede arter
+  newly_observed_species_in_year: "Nyligt tilføjede arter i %{year}"
   newly_observed_species_this_year: Nyligt tilføjet arter dette år
   news: Nyheder
   next: Næste
@@ -2370,6 +2375,7 @@ da:
   only_an_admin_can_remove_project_users: Kun en administrator kan fjerne projekt brugere
   only_curators_can_add_edit_scientific_names: Kun kuratorer kan tilføje / redigere videnskabelige navne.
   only_curators_can_access_that_page: Kun kuratorer har adgang til denne side.
+  only_files_with_10000_rows_at_a_time: Kun filer med maks. 10000 rækker ad gangen, tak
   only_letters_numbers: "Kun bogstaver og tal, ingen mellemrum, skal starte med et bogstav"
   only_one_coordinate_system_per_file: |
     Kun ét koordinatsystem kan bruges pr. fil ellers vil der opstå forkert konvertering eller visning.
@@ -4343,6 +4349,20 @@ da:
             tips til at bruge %{site_name} med studerende.
     donate:
       donate_short_desc: "Donér nu for at vise din støtte!"
+      donate_desc_html: |
+        <p class="lead">
+        <strong>iNaturalist er et af verdens største fællesskaber, som er dedikeret til udforskningen af biodiversitet. Tak fordi du er en del af det!</strong>
+        </p>
+        <p class="lead">
+        Hvis du tror på dette globale fællesskab af naturelskeres evne til at dele viden og skabe uerstattelige data om biodiversitet, så overvej venligst at give et engangs- eller tilbagevendende bidrag online, eller overvej <a
+        href="https://www.inaturalist.org/pages/giving">andre måder at støtte</a>.
+        </p>
+        <p class="lead">
+        Din donation hjælper med at støtte iNaturalist, når fællesskabet vokser, med alt fra at forbedre computervision og implementering af nye funktioner til støtte af vores servere og personale.
+        </p>
+        <p class="text-muted">
+        iNaturalist er et fælles initiativ fra California Academy of Sciences og National Geographic Society. Alle donationer modtages af California Academy of Sciences, en 501(c)(3) skattefritaget non-profit-organisation med base i Amerikas Forenede Stater (Skatte-ID: 94-1156258).
+        </p>
       post_donate_social_media_text: Jeg støtter iNaturalist fordi...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bliv en månedlig supporter af iNaturalist
@@ -5522,6 +5542,7 @@ da:
         obs_1_day: "Obs (1 dag)"
         obs_1_day_desc: "Observationer oprettet på én enkelt dag"
         obs_cid_d_desc: Oprettet indenfor de seneste 7 dage og har et fælleskabs ID
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Obs FID'et til slægt
         obs_cid_d_to_genus_desc: Oprettet indenfor de seneste 7 dage og har et fælleskabs ID på eller under slægtsniveau
         obs_desc: Oprettet i de foregående 7 dage
@@ -6240,16 +6261,32 @@ da:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: ','
         format: '%u%n'
         precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: .
         significant: false
         strip_insignificant_zeros: false
         unit: '$'
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: ','
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: .
       significant: false
       strip_insignificant_zeros: false
