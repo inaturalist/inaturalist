@@ -1912,6 +1912,7 @@ zh-CN:
   only_an_admin_can_remove_project_users: 只有管理员才能删除项目用户
   only_curators_can_add_edit_scientific_names: 只有馆长可以添加/编辑科学名称。
   only_curators_can_access_that_page: 只有馆长可以访问该页面。
+  only_files_with_10000_rows_at_a_time: 一次只能处理10000行的文件，请
   only_letters_numbers: "只允许字母和数字，没有空格，必须以字母开头"
   only_one_coordinate_system_per_file: |
     每个文件只能使用一个坐标系统，否则将发生错误的转换或显示。
@@ -4121,6 +4122,7 @@ zh-CN:
         obs_1_day: "观察（1天）"
         obs_1_day_desc: "在同一天内创建的观察"
         obs_cid_d_desc: 在过去7天创建，并有一个社群ID
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: 观察CID'd至类
         obs_cid_d_to_genus_desc: 在7天前创建，并且社区ID属于或低于属级别
         obs_desc: 在过去7天创建
@@ -4477,10 +4479,18 @@ zh-CN:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: '，'
         significant: false
         strip_insignificant_zeros: false
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: '，'
       significant: false
       strip_insignificant_zeros: false
