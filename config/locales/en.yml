@@ -5958,6 +5958,7 @@ en:
         obs_1_day: "Obs (1 day)"
         obs_1_day_desc: "Observations created on a single day"
         obs_cid_d_desc: Created in prev 7 days and have a community ID
+        # Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Obs CID'd to genus
         obs_cid_d_to_genus_desc: Created in prev 7 days and have a community ID at or below genus-level
         obs_desc: Created in prev 7 days
@@ -6029,7 +6030,7 @@ en:
           and colors mean. Impact data and charts courtesy of
           <a href="https://www.altmetric.com">Altmetric</a>. Information
           about data usage courtesy of our friends at the
-          <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
+          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
           <br/>
           <a href="%{url}">View all %{numStudies} studies</a>
         # Periods where someone consistently made observations, e.g. "a 10-day streak"
@@ -6872,16 +6873,32 @@ en:
   number:
     currency:
       format:
+        # The delimiter separates parts of large integers, so if the number is
+        # "one million and two and a half dollars" this would be written as
+        # "$1,000,002.50" in English, and "," is the delimiter. This should not
+        # be the same as the separator.
         delimiter: ','
         format: '%u%n'
         precision: 2
+        # The separator separates an integer from a decimal fraction, so if the
+        # number is "one million and two and a half dollars" this would be
+        # written as "$1,000,002.50" in English, and "." is the separator. This
+        # should not be the same as the delimiter.
         separator: .
         significant: false
         strip_insignificant_zeros: false
         unit: $
     format:
+      # The delimiter separates parts of large integers, so if the number is
+      # "one million and two and a half" this would be written as
+      # "1,000,002.5" in English, and "," is the delimiter. This should not be
+      # the same as the separator.
       delimiter: ','
       precision: 3
+      # The separator separates an integer from a decimal fraction, so if the
+      # number is "one million and two and a half" this would be written as
+      # "1,000,002.5" in English, and "." is the separator. This should not be
+      # the same as the delimiter.
       separator: .
       significant: false
       strip_insignificant_zeros: false
@@ -6896,6 +6913,10 @@ en:
           trillion: Trillion
           unit: ''
       format:
+        # The delimiter separates parts of large integers, so if the number is
+        # "one million and two and a half" this would be written as
+        # "1,000,002.5" in English, and "," is the delimiter. This should not be
+        # the same as the separator.
         delimiter: ''
         precision: 3
         significant: true
