@@ -336,7 +336,7 @@ fi:
     subclass: Kaikki alaluokat lisätty tietokantaan
     infraclass: Kaikki osaluokat lisätty tietokantaan
     superorder: Kaikki ylälahkot lisätty tietokantaan
-    order: Kaikki käskyt lisätty tietokantaan
+    order: Kaikki lahkot lisätty tietokantaan
     suborder: Kaikki alalahkot lisätty tietokantaan
     infraorder: Kaikki osalahkot lisätty tietokantaan
     superfamily: Kaikki yläheimot lisätty tietokantaan
@@ -2381,8 +2381,8 @@ fi:
       county: maa
       District: Piiri
       district: piiri
-      Division: Divisio
-      division: divisioona
+      Division: Kaari
+      division: kaari
       Drainage: Salaojitus
       drainage: salaojitus
       Estate: Maatila
@@ -2434,8 +2434,8 @@ fi:
       state: osavaltio
       Street: Katu
       street: katu
-      Subdivision: Naapurusto
-      subdivision: naapurusto
+      Subdivision: Alakaari
+      subdivision: alakaari
       Suburb: Lähiö
       suburb: lähiö
       Supername: Ylänimi
@@ -2832,7 +2832,7 @@ fi:
     kingdom: Kunta
     subkingdom: Alakunta
     phylum: Pääjakso
-    subphylum: Alapääjakso
+    subphylum: Alajakso
     superclass: Yläluokka
     class: Luokka
     subclass: Alaluokka
