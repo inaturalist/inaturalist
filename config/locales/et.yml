@@ -2052,6 +2052,7 @@ et:
   only_an_admin_can_remove_project_users: Vaid administraator saab projekti kasutajaid eemaldada
   only_curators_can_add_edit_scientific_names: Ainult kuraatorid saavad teaduslikke nimetusi lisada ja muuta.
   only_curators_can_access_that_page: Ainult kuraatorid saavad seda lehte kasutada.
+  only_files_with_10000_rows_at_a_time: Failides ei tohiks sisalduda korraga üle 10000 rea
   only_letters_numbers: "Ainult tähed ja numbrid ilma tühikuteta, peab algama tähega"
   only_one_coordinate_system_per_file: |
     Ühes failis saab olla kasutusel ainult üks koordinaatide süsteem, muidu võib konverteerimine või kuvamine olla vigane.
@@ -4438,6 +4439,7 @@ et:
         obs_1_day: "Vaatlused (1 päevas)"
         obs_1_day_desc: "Ühe päeva jooksul loodud vaatlused"
         obs_cid_d_desc: Loodud viimase 7 päeva jooksul ja saanud kogukondliku määratluse
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Kogukondlik määratlus perekonnani
         obs_cid_d_to_genus_desc: Loodud viimase 7 päeva jooksul ja saanud kogukondliku määratluse vähemalt perekonnani
         obs_desc: Loodud viimasel 7 päeval
