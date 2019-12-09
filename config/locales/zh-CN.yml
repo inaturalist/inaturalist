@@ -4122,6 +4122,7 @@ zh-CN:
         obs_1_day: "观察（1天）"
         obs_1_day_desc: "在同一天内创建的观察"
         obs_cid_d_desc: 在过去7天创建，并有一个社群ID
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: 观察CID'd至类
         obs_cid_d_to_genus_desc: 在7天前创建，并且社区ID属于或低于属级别
         obs_desc: 在过去7天创建
@@ -4478,10 +4479,18 @@ zh-CN:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: '，'
         significant: false
         strip_insignificant_zeros: false
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: '，'
       significant: false
       strip_insignificant_zeros: false

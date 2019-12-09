@@ -2349,7 +2349,7 @@ it:
   only_an_admin_can_remove_project_users: Solo l'amministratore può rimuovere gli utenti dal progetto
   only_curators_can_add_edit_scientific_names: Solo i curatori possono aggiungere/modificare i nomi scientifici.
   only_curators_can_access_that_page: Solo i curatori possono accedere a quella pagina.
-  only_files_with_10000_rows_at_a_time: Solo file con 10000 righe alla volta, per favore
+  only_files_with_10000_rows_at_a_time: Solo file con meno di 10'000 righe, per favore
   only_letters_numbers: "Solo lettere e numeri, senza spazi, deve iniziare con una lettera"
   only_one_coordinate_system_per_file: |
     Per ogni file può essere utilizzato solo un sistema di coordinate, altrimenti si verificheranno problemi di visualizzazione o conversione.
@@ -5221,6 +5221,7 @@ it:
         obs_1_day: "Osservazioni (1 giorno)"
         obs_1_day_desc: "Osservazioni create in un singolo giorno"
         obs_cid_d_desc: Create nei 7 giorni precedenti, con una ID della Comunità
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Osservazioni con CID al genere
         obs_cid_d_to_genus_desc: Create nei 7 giorni precedenti, con una ID della Comunità al genere o minore
         obs_desc: Create nei 7 giorni precedenti
@@ -5261,6 +5262,10 @@ it:
           Clicca sui grafici "a fiore" per ottenere più informazioni su cosa significano i numeri e i colori. I dati e i grafici di impatto per gentile concessione di <a href="https://www.altmetric.com">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici al <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
           <br/>
           <a href="%{url}">Visualizza tutti gli %{numStudies} studi</a>
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Sequenze di Osservazioni
+        observation_streaks_desc: |
+          Una sequenza di osservazioni è un periodo di tempo in cui qualcuno è uscito ed ha registrato nuove osservazioni ogni giorno. Qui presentiamo le sequenze più lunghe iniziate quest'anno o quelle che sono in corso mentre queste statistiche vengono generate.
         sunburst_desc_html: |
           Taxa osservati disposti secondo un diagramma gerarchico "raggi di sole". La base è al centro, inizia on "Organismo" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori "iconici" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.
           <strong>Clicca su un arco per posizionare quel taxon al centro</strong> e i suoi discendenti attorno ad esso, o <strong>clicca al centro per tornare indietro nella gerarchia</strong>.
@@ -5399,6 +5404,7 @@ it:
         you_must_enter_confirmation_code_in_the_form: |
           Devi digitare %{confirmation_code} nel formulario per cancellare la tua utenza
       edit:
+        about_third_party_tracking: Riguardo al tracciamento di terze parti
         blocking_desc_html: |
           <p>
           Se blocchi qualcuno gli impedisci di inviarti messaggi, commentare le tue osservazioni, identificare le tue osservazioni ed interagire con te su %{site_name}. Rimuove anche le loro osservazioni dai tuoi risultati di ricerca e le tue osservazioni dai loro. Tuttavia, non ti rende invisibile a loro. Essi possono ancora vedere le tue osservazioni e guardare il tuo profilo, ma non interagire con te.
@@ -5481,6 +5487,28 @@ it:
           %{site_name} tiene traccia di cosa tu pensi che sia ciò che hai osservato e di ciò che ne pensa la community. L'identificazione che condividiamo con i partner dei dati è l'identificazione della community, ma se non pensi che l'opinione della community debba avere priorità sulla tua, puoi deselezionare qui l'opzione. Le persone continueranno ad essere in grado di aggiungere identificazioni, ma l'opinione della community non avrà prevalenza sulla tua. Ciò significa che le tue osservazioni non raggiungeranno il Livello Ricerca a me che non sia in accordo con l'ID della community.
         prefers_coordinate_interpolation_protection_desc: |
           Quando imposti la geoprivacy di un osservazione come "oscurata" o "privata" questa impostazione si applicherà a tutte le altre tue osservazioni fatte nello stesso giorno al fine di rendere più difficile alle altre persone ipotizzare le coordinate reali basandosi sulle osservazioni fatte lì intorno nello stesso periodo.
+        prefers_no_tracking_label: Non raccogliere i dati di stabilità e utilizzo utilizzando servizi di terze parti
+        prefers_no_tracking_label_desc_we_use: |
+          Usiamo diversi servisi di terze parti per monitorare la stabilità e la diagnosi dei bug e dei problemi per il nostro software. Queste terze parti includono
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          Le informazioni che potremmo condividere con queste terze parti includono
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          Indirizzo IP (che può essere utilizzato per derivare la tua posizione a livello di città, e per tracciarti attraverso diversi siti web e servizi;
+          tieni presente che abbiamo abilitato l'<a href="https://support.google.com/analytics/answer/2763052">anonimizzazione dell'IP</a>
+          in Google Analytics e <a
+          href="https://firebase.google.com/support/privacy">Firebase
+          Crashlytics</a> non registra l'indirizzo IP per quanto ne sappiamo)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Caratteristiche del Browser, come la marca, il modello e la versione
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Dettagli del crash, come ad esempio quale specifica linea di codice ha causato un crash
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Dettagli del dispositivo, come la marca e il modello di un telefono cellulare
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Questi servizi di terze parti per noi sono di un enorme valore</strong> per mantenere la stabilità e l'utilizzabilità di iNaturalist, considerando che il nostro staff è relativamente piccolo. Per quanto riguarda i dispositivi mobili, non c'è quasi nessun altro modo in cui possiamo capire i problemi che si stanno verificando in quanto il software è in esecuzione su dispositivi che noi non controlliamo. A volte non siamo nemmeno al corrente di questi problemi finché non li vediamo nei dati forniti da questi servizi. <strong>Condividendo queste informazioni, tu ci stai aiutando te stesso e l'intera comunità di iNaturalist.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Considera che questa opzione si applica solo ai dati di analisi e crash che noi inviamo esplicitamente a queste aziende. Tutti i server iNaturalist sono forniti e ospitati da Microsoft, tutte le immagini iNaturalist sono ospitate da Amazon e quasi tutte le mappe iNaturalist sono fornite da Google, ciò significa ogni volta che guardi un'osservazione su iNaturalist, stai connettendoti a servizi forniti da queste aziende e mostrando ad esse, come minimo, il tuo indirizzo IP (nell'app per iPhone utilizziamo le mappe di Apple). iNaturalist probabilmente non esisterebbe senza i servizi forniti da queste aziende, e mentre possiamo limitare la quantità e i tipi di dati che condividi con loro durante l'utilizzo di iNat, non possiamo fermare completamente il flusso di dati.
         project_settings_desc: |
           Ricorda, questa opzione non concede il permesso ai progetti di accedere alle tue coordinate nascoste o di mandarti gli aggiornamenti. Devi unirti ai progetti per garantirgli tali autorizzazioni, oppure concedere i permessi osservazione per osservazione.
         same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
@@ -5751,16 +5779,32 @@ it:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: '.'
         format: '%u%n'
         precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: '€'
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: '.'
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: ','
       significant: false
       strip_insignificant_zeros: false

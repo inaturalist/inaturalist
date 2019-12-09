@@ -2305,7 +2305,6 @@ es-AR:
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
   only_curators_can_add_edit_scientific_names: Solo los curadores pueden añadir/editar nombres científicos.
   only_curators_can_access_that_page: Solo los curadores pueden acceder a esa página.
-  only_files_with_10000_rows_at_a_time: Solamente archivos con 1000 filas cada vez, por favor
   only_letters_numbers: "Sólo letras y números, sin espacios, debe empezar con una letra"
   only_one_coordinate_system_per_file: |
     Sólo un sistema de coordenadas puede ser utilizado por archivo, de lo contrario se va aproducir una conversión incorrecta.
@@ -5285,6 +5284,7 @@ es-AR:
         obs_1_day: "Observación (1 día)"
         obs_1_day_desc: "Observaciones creadas en un día solo"
         obs_cid_d_desc: Creado durante los 7 previos días y tener una identificación de la comunidad
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Obs CID'd de un género
         obs_cid_d_to_genus_desc: Creado en los 7 días previos y tener una identificación de la comunidad en o debajo del nivel de género
         obs_desc: Creado en los 7 días previos
@@ -5820,16 +5820,32 @@ es-AR:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: '.'
         format: '%n %u'
         precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: '€'
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: '.'
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: ','
       significant: false
       strip_insignificant_zeros: false

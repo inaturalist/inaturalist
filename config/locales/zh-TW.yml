@@ -5012,6 +5012,7 @@ zh-TW:
         obs_1_day: "觀察（1 日）"
         obs_1_day_desc: "代表在單一日子裡所建立的觀察"
         obs_cid_d_desc: 代表在前 7 日所建立並具有社群鑑定
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: 觀察（屬層級社群鑑定）
         obs_cid_d_to_genus_desc: 代表在前 7 日所建立並具有在屬層級或較低階層級的社群鑑定
         obs_desc: 代表在前 7 日所建立
@@ -5525,6 +5526,10 @@ zh-TW:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: '，'
         significant: false
         strip_insignificant_zeros: false

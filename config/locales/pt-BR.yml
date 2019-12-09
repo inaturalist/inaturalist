@@ -2081,7 +2081,6 @@ pt-BR:
   only_an_admin_can_remove_project_users: Apenas administradores podem remover membros do projeto
   only_curators_can_add_edit_scientific_names: Somente coordenadores podem adicionar/editar nomes científicos.
   only_curators_can_access_that_page: Somente administradores podem acessar esta página.
-  only_files_with_10000_rows_at_a_time: Somente um arquivo com 10000 linhas por vez, por favor
   only_letters_numbers: "Somente letras e números, sem espaços, é preciso começar com uma letra"
   only_one_coordinate_system_per_file: |
     Somente uma coordenada pode ser inserida por arquivo, caso contrário as conversões seriam incorretas.
@@ -4709,6 +4708,7 @@ pt-BR:
         obs_1_day: "Observação (1 dia)"
         obs_1_day_desc: "Observações criadas em um único dia"
         obs_cid_d_desc: Criado durante os 7 dias anteriores e tem um ID da comunidade
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Obs CID'd de um gênero
         obs_cid_d_to_genus_desc: Criado nos 7 dias anteriores e ter uma identificação da comunidade no nível de gênero ou abaixo dele
         obs_desc: Criado nos últimos 7 dias

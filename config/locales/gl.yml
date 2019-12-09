@@ -1095,7 +1095,7 @@ gl:
   only_a_project_manager_can_add: Só un Xestor de proxecto pode outorgarlle unha clasificación a un administrador de proxecto
   only_an_admin_can_remove_project_users: Só o administrador pode eliminar usuarios do proxecto.
   only_curators_can_add_edit_scientific_names: Só os administradores poden engadir/editar nomes científicos.
-  only_files_with_10000_rows_at_a_time: Só arquivos con 10000 filas cada un, por favor.
+  only_files_with_10000_rows_at_a_time: Uniquement des fichiers de 10000 lignes à la fois, SVP
   only_letters_numbers: "Só letras e números, sen espazos"
   only_project_curators_can_do_that: Só os Administradores do Proxecto poden facer isto.
   only_receive_updates_about_this_taxon: Só recibir notificacións desta especie ou grupo
@@ -2396,14 +2396,30 @@ gl:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: '.'
         format: '%n%u'
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: '€'
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: '.'
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: ','
       significant: false
       strip_insignificant_zeros: false

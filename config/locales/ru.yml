@@ -694,6 +694,8 @@ ru:
   blue_butterfly_etc: "синий, бабочка, и т.п."
   blue_icons_represent_political_units: "Синие значки представляют собой политические единицы, такие как страны, штаты, провинции, графства и так далее, в то время как зелёные - различные типы открытых пространств (парки, заповедники). Если вы увеличите масштаб, вы увидите больше объектов меньшего размера."
   body: 'Текст:'
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Ограничительная рамка
   breadcrumbs: Панировочные сухари
   breadcrumbs_description: "Это заменит h1 и действия по умолчанию, поэтому обязательно включите их, если они важны для этого проекта, и помните, что максимальная ширина 950px"
@@ -2130,6 +2132,7 @@ ru:
   new_message: Новое сообщение
   new_observation_field: Новое поле наблюдения
   new_observations: Новые наблюдения
+  new_observations_in_year: "Новые наблюдения в %{year}"
   new_observations_this_year: Новые наблюдения этого года
   new_observations_ellispsis: "Новые наблюдения..."
   new_observations_from_place_html: "Новые наблюдения из %{place}"
@@ -2151,10 +2154,12 @@ ru:
   new_trip: Новое путешествие
   new_updates_in_the_last_24_hours_from: "Новые обновления за последние 24 часа от %{site_name}"
   new_users: Новые участники
+  new_users_in_year: "Новые пользователи в %{year}"
   new_users_w_7_obs: Новые участники с 7 набл за неделю
   newly_added: Вновь добавленные
   newly_added_species: Новые виды
   newly_observed_species: Новые наблюдаемые виды
+  newly_observed_species_in_year: "Новые виды в %{year}"
   newly_observed_species_this_year: Новые виды в этом году
   news: Новости
   next: След
@@ -5352,6 +5357,7 @@ ru:
         obs_1_day: "Набл (1 день)"
         obs_1_day_desc: "Наблюдения, созданные за один день"
         obs_cid_d_desc: Созданные в пред 7 дней и имеющие идентификацию сообществом
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Набл с CID до рода
         obs_cid_d_to_genus_desc: Созданные в пред 7 дней и имеющие идентификацию сообществом на уровне рода или ниже
         obs_desc: Созданные в пред 7 дней
@@ -5389,6 +5395,13 @@ ru:
         obs_in_year: Набл в %{year}
         percent_growth_in_year: "% роста в %{year}"
         percent_of_total_growth: "% от общего роста"
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Серии наблюдений
+        observation_streaks_desc: |
+          Серия наблюдений - это период времени, когда кто-то выходил на природу и
+          записывал новые наблюдения каждый день. Здесь показаны самые длинные
+          серии, которые начались в этом году или происходили в момент создания этой
+          статистики.
         sunburst_desc_html: |
           Наблюдаемые таксоны упорядочены в виде иерархической диаграммы Санбёрст. Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>.
     taxa:
@@ -5566,6 +5579,7 @@ ru:
         you_must_enter_confirmation_code_in_the_form: |
           Вы должны ввести %{confirmation_code} в форму, чтобы удалить вашу учётную запись
       edit:
+        about_third_party_tracking: Об отслеживании третьими сторонами
         blocking_desc_html: |
           <p>
           Блокировка кого-либо не позволяет им отправлять сообщения вам, комментировать ваши наблюдения, идентифицировать ваши наблюдения и иным образом взаимодействовать с вами на %{site_name}. Блокировка также удаляет их наблюдения из результатов вашего поиска и удаляет ваши наблюдения из результатов их поиска. Однако это не делает вас невидимым для них. Они всё ещё могут находить ваши наблюдения и просматривать ваш профиль, они просто не могут взаимодействовать с вами.
@@ -5647,6 +5661,26 @@ ru:
           %{site_name} отслеживает то, чем, вы  считаете, являются ваши наблюдения, и то, чем, сообщество считает, они являются. Идентификация, которой мы делимся с партнерами по данным, - это идентификация сообщества, но если Вы не думаете, что мнение сообщества должно когда-либо отменять ваше собственное, вы можете отказаться. Люди по-прежнему смогут добавлять идентификации, но мнение сообщества не будет предпочтительнее вашего. Это означает, что ваши наблюдения не будут иметь право на участие в исследовании, если вы не согласны с сообществом.
         prefers_coordinate_interpolation_protection_desc: |
           Когда вы устанавливаете геоприватность наблюдения как «скрытая» или «конфиденциальная», та же геоприватность будет применена ко всем другим наблюдениям за тот же день, чтобы другим людям было сложнее угадывать истинные координаты на основе наблюдений, сделанных примерно в то же время.
+        prefers_no_tracking_label: Не собирать данные о стабильности и использовании с помощью сторонних сервисов
+        prefers_no_tracking_label_desc_we_use: |
+          Мы используем различные сторонние сервисы для мониторинга стабильности и диагностики ошибок и проблем в нашем программном обеспечении. Эти третьи стороны включают
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          Информация, которой мы можем делиться с этими третьими сторонами, включает в себя
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          IP-адреса (которые можно использовать для определения местоположения с разрешением на уровне города, а также для отслеживания вас на различных веб-сайтах и службах; обратите внимание, что мы включили <a href="https://support.google.com/analytics/answer/2763052">анонимизацию IP</a> в Google Analytics, и что <a
+          href="https://firebase.google.com/support/privacy">Firebase
+          Crashlytics</a>, насколько нам известно, не регистрирует IP адрес)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Сведения о браузере, такие как производитель, название и версия
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Детали сбоя, например, какая именно строка кода вызвала сбой
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Детали устройства, такие как марка и модель мобильного телефона
+        prefers_no_tracking_label_desc_value_html: |
+          <strong> Эти сторонние сервисы представляют особую ценность </strong> для поддержания стабильности и удобства использования iNaturalist нашим относительно небольшим персоналом. На мобильных устройствах практически нет другого способа получить представление о происходящих проблемах, поскольку программное обеспечение работает на устройствах, которые мы не контролируем. Иногда мы даже не осознаем, что такие проблемы возникают, пока не увидим их в данных, которые предоставляют эти службы. <strong> Делясь этой информацией, вы помогаете нам обслуживать вас и всё сообщество iNaturalist. </strong>
+        prefers_no_tracking_label_desc_limits: |
+          Обратите внимание, что эта настройка применяется только к аналитическим данным и данным о сбоях, которые мы отправляем этим компаниям в явном виде. Все серверы iNaturalist предоставлены и размещаются в Microsoft, все изображения iNaturalist размещаются на Amazon, и почти все карты iNaturalist обслуживаются Google, что означает, что каждый раз, когда вы просматриваете наблюдение в iNaturalist, вы подключаетесь к услугам, предоставляемым этими компаниями и как минимум предоставляете им ваш IP-адрес (в приложении для iPhone мы используем карты Apple). iNaturalist, вероятно, не существовал бы без услуг, которые предоставляют эти компании, и хотя мы можем ограничить объем и виды данных, которыми вы делитесь с ними при использовании iNat, мы не можем полностью остановить поток данных.
         project_settings_desc: |
           Помните, что это не дает проектам разрешение на доступ к вашим скрытым координатам или на отправку вам обновлений. Вы должны присоединиться к проектам, чтобы предоставить эти разрешения, или предоставить их в каждом конкретном случае.
         same_day_geoprivacy_protection: Защита геоприватности того же дня
@@ -5958,16 +5992,32 @@ ru:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: ' '
         format: '%u%n'
         precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: '$'
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: '  '
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: ','
       significant: false
       strip_insignificant_zeros: false

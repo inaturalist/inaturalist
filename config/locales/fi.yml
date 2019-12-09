@@ -336,7 +336,7 @@ fi:
     subclass: Kaikki alaluokat lisätty tietokantaan
     infraclass: Kaikki osaluokat lisätty tietokantaan
     superorder: Kaikki ylälahkot lisätty tietokantaan
-    order: Kaikki käskyt lisätty tietokantaan
+    order: Kaikki lahkot lisätty tietokantaan
     suborder: Kaikki alalahkot lisätty tietokantaan
     infraorder: Kaikki osalahkot lisätty tietokantaan
     superfamily: Kaikki yläheimot lisätty tietokantaan
@@ -617,6 +617,8 @@ fi:
   blue_butterfly_etc: "sininen, perhonen, jne."
   blue_icons_represent_political_units: "Siniset kuvakkeet edustavat poliittisia yksiköitä, kuten maat, osavaltiot, maakunnat, läänit, ja vastaavat, kun taas vihreät kuvakkeet edustavat erilaisia viheralueita (puistot, suojelualueet). Jos zoomaat lähemmäksi, näet enemmän, pienempiä paikkoja."
   body: Leipäteksti
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Rajoituslaatikko
   breadcrumbs: Leivänmurut
   breadcrumbs_description: "Tässä yliajetaan h1 ja oletuksena olevat toimintakehotukset (\"calls to action\"), joten lisää nämä jos ne ovat tärkeitä tälle projektille ja muista että maksimileveys on 950px"
@@ -670,6 +672,7 @@ fi:
     merge: Useita vanhoja taksoneita yhdistetty yhdeksi uudeksi taksoniksi
     swap: yksi yhteen nimen muutos
     drop: Taksonin käsite täysin virheellinen, säilytetään historiallisia tarkoituksia varten tai kumppanin yhteensopivuuden takaamiseksi
+    stage: Luo staattinen konsepti julkaistavaksi osana muunnosryhmää
   change_geoprivacy: 'Muuta sijainnin tietosuojaa.'
   change_group: Vaihda ryhmä
   change_icon: Vaihda profiilikuva
@@ -716,6 +719,7 @@ fi:
   check_list: Lajiluettelo
   check_list_description: Valitse ylemmän tason taksoni jonka haluat näyttää tässä listassa, kuten "Aves" linnuille, tai "Amphibia" sammakkoeläimille. Kun olet tehnyt sen, tämä luettelo ei salli taksoneita jotka eivät kuulu tähän taksoniin. Esimerkiksi, jos luot listan linnuista, et voi lisätä siihen sammakoita.
   check_list_for_individual_taxa_that: 'Lajilistat yksittäisistä taksoneista, jotka elävät täällä, esim. "Paikan %{place}" linnut.'
+  check_list_for_taxon_html: "Lajiluettelo, joka kuuluu %{taxon}"
   check_lists_must_belong_to_a_place: |
     Lajilistojen on kuuluttava paikkoihin. Luodaksesi uuden lajiluettelon, mene paikan oletuslajiluetteloon ja klikkaa linkkiä  "Luo uusi lajiluettelo".
   check_list_of_species_occuring_in: Lajiluettelo lajeista jotka esiintyvät
@@ -734,6 +738,7 @@ fi:
   choose_a_list_above: Valitse luettelo yläpuolelta.
   choose_a_place: Valitse paikka
   choose_a_taxon: Valitse taksoni (valinnainen)
+  choose_cc_licensed_photos_html: 'Valitse<a href="http://creativecommons.org/">avoimen </a>-lisenssin alaiset valokuvat muilta sivustoilta tai poimi %{site_name} havainnoista. Yritä valita kuvat, joissa <em>on  kuvaavia ominaisuuksia</em> ja jotka<em>sopivat kuvakkeiksi</em>.  Järjestyksessä <em>ensimmäinen valitaan oletuksena</em>.'
   choose_columns: Valitse sarakkeet
   choose_file: Valitse tiedosto
   choose_files: Valitse tiedostot
@@ -793,6 +798,7 @@ fi:
   comparing_observations_from: "Verrataan käyttäjän %{user} havaintoja %{dates}"
   compiled_by_name: "Koostanut %{name}"
   complete: Valmis
+  complete_set_for_taxon_in_place_html: "Kaikki lajit, jotka kuuluvat taksonille %{taxon} paikassa %{place}"
   completed: Valmis
   completed_at: Valmistunut
   comprehensive: kattava
@@ -815,9 +821,15 @@ fi:
   connecting_your_inat_account_to_accounts_other_sites: "Yhdistämällä %{site_name}-tilisi muiden sivustojen tileihin sallii sinun kirjautua %{site_name}iin käyttämällä pääsytietojasi näiltä sivustoilta."
   conservation_status: Uhanalaisuusluokitus
   conservation_status_descriptions:
+    status: Esim. uhanlaisuusluokan koodi tai merkki. Jos käytettävissä on lyhyt määre, kuten E tai CR, käytä sitä, jos sellaista ei ole, kirjota koko merkitys, kuten erittäin uhanalainen tai äärimmäisen uhanalainen.
+    description: Kirjoita lyhyt kuvaus luokitteluun johtaneista syistä.
+    authority: Organisaatio, joka on laatinut luokkitelun. Voit ohittaa tämän kohdan, jos *oma organisaatiosi* tulisi merkitä luokittelun vastuutahoksi.
     place: Paikka, johon tämä status on rajattu.
+    url: URL-sivusto, jossa luokittelut on määritelty.
     geoprivacy: Sijainnin tietosuojan oletusarvo havainnoille tässä taksonissa.
     iucn: Vastaava IUCN:n punaisen kirjan koodi
+  conservation_status_geoprivacy_desc: |
+    Kaikille tämän paikan ja taksonin havainnoille on asetettu oletusarvoinen sijainnin tietosuoja
   contact_support: Ota yhteyttä käyttäjätukeen
   contain_all_descendants?: Sisältääkö tämä pinnalista kaikki tällä paikalla esiintyvät tätä taksonia alemmat taksonit?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -896,6 +908,7 @@ fi:
   copyright_info_and_more: Tekijänoikeustiedot ja muuta
   copyright_infringement: Tekijänoikeusloukkaus
   copyright_infringement_desc: Loukkaa tekijänoikeuslakia tai luotiin jonkun muun kuin havainnoijan toimesta ja on vailla nimeämistä
+  covered_by_a_taxon_framework_html: "Perustuu taksonitietokantaan %{link}"
   covered_by_a_taxon_framework_link: "taksonikehys taksonille %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: "Ei voitu vaihtaa salasanaasi: %{e}"
   couldnt_find_a_user_matching_x_param: "Emme löytäneet käyttäjää %{id}"
@@ -921,6 +934,7 @@ fi:
   creative_commons_flickr_tagged: Merkinnät lisätty Creative Commons Flickr-valokuviin
   creative_commons_unless_otherwise_noted: "Creative Commons, ellei toisin mainita."
   critically_endangered: Äärimmäisen uhanalainen
+  css_description: Tämä liitetään sivulle kaiken muun css-muotoilun jälkeen.
   csv: CSV
   csv_file: CSV-tiedosto
   csv_should_not_contain_a_header_row: CSV ei saa sisältää otsikkoriviä
@@ -1031,6 +1045,7 @@ fi:
   describe_your_interest_in_nature: Kuvaile kiinnostuksesi luontoa kohtaan!
   description: Kuvaus
   description_from: Kuvauksen lähde on
+  description_sections: Kuvausosiot
   description_slash_tags: Kuvaus / Merkinnät
   description_tags_more: "Kuvaus, merkinnät, &amp; muuta"
   desription: Kuvaus
@@ -1070,6 +1085,9 @@ fi:
   drop_it: Pudota se
   double_click_to_finish: (tuplaklikkaa lopettaaksesi)
   download: Lataa
+  download_bulk_import_template_html: |
+    <a href="%{url}">Lataa tallennuspohja,</a> jonka avulla voit käyttää toimintoa
+    <a href="/observations/import#csv_import">massalataus</a>
   download_csv: Lataa CSV
   download_csv_template: Lataa CSV-malli
   download_kml: Lataa KML
@@ -1092,6 +1110,7 @@ fi:
   edit_atlas: Muokkaa atlasta
   edit_body: Muokkaa kappaletta
   edit_comment: Muokkaa kommenttiasi
+  edit_complete_set_for_taxon_in_place_html: "Muuta tietoja kohdassa Kaikki lajit, jotka kuuluvat taksonille %{taxon} paikassa %{place}"
   edit_custom_project_fields: Muokkaa mukautettuja projektikenttiä
   edit_field: Muokkaa kenttää
   edit_license: Muokkaa lisenssiä
@@ -1170,6 +1189,8 @@ fi:
     native: Alkuperäinen
     naturalised: Luonnonmukaistunut
   establishment_means: Perustamisen keinot
+  establishment_means_describes_how: |
+    Vakiintumistapa kuvaa sitä kuinka taksoni (esim. laji) on vakiintunut alueelle. Katso DarwinCore luokittelu<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">lisätietoa terminologiasta</a>.
   event_in_progress: Tapahtuma käynnissä
   event_stats: Tapahtuman tilastot
   event_url: Tapahtuman URL
@@ -1341,7 +1362,9 @@ fi:
   generating_mobile_archive: "Luodaan mobiiliarkistoa"
   Genus: Suku
   geoprivacy: Sijainnin tietosuoja
+  geoprivacy_is_obscured: 'Sijainnin tietosuoja: karkeistettu'
   geoprivacy_is_obscured_desc: Havainnoija on karkeistanut koordinaatit.
+  geoprivacy_is_private: 'Sijainnin tietosuoja: yksityinen'
   geoprivacy_is_private_desc: Havainnoija on piilottanut koordinaatit.
   georeferenced: Paikannettu?
   get_started: Aloita
@@ -1404,6 +1427,8 @@ fi:
   #Verb, usually a button to hide an interface element
   hide: Piilota
   hide_content: Piilota sisältö
+  hide_desc: |
+    Sisällön piilottaminen aiheuttaa sen, että tiedot eivät ole julkisesti näkyvillä. Sen sijaan näkyvillä on tieto siitä, että jotakin on piilotettu. Sivuston kuraattorit ja sisällön tallentaja voivat edelleen nähdä piilotetun sisällön. Sääntöä sovelletaan lähinnä tekstuaaliseen sisältöön: esimerkiksi, jos piilotat määrityksen, määritys on edelleen näkyvillä mutta sen kommentit piilotetaan. Et voi perua tätä toimintoa. Ainoastaan sivuston ylläpito voi palauttaa piilotetun sisällön julkisesti näkyväksi, joten ole varovainen toiminnon kanssa ja käytä sitä ainoastaan arkaluontoiselle sisällölle.
   hide_running_total: Piilota kumulatiivinen yhteismäärä
   hide_uncountable_species: Piilota ei-laskettavat lajit
   high: Korkea
@@ -1946,6 +1971,7 @@ fi:
   new_message: Uusi viesti
   new_observation_field: Uusi havaintokenttä
   new_observations: Uudet havainnot
+  new_observations_in_year: "Uusia havaintoja vuonna %{year}"
   new_observations_this_year: Uudet havainnot tänä vuonna
   new_observations_ellispsis: "Uudet havainnot..."
   new_observations_from_place_html: "Uudet havainnot paikasta %{place}"
@@ -1964,10 +1990,12 @@ fi:
   new_trip: Uusi retki
   new_updates_in_the_last_24_hours_from: "Uudet päivitykset viimeisten 24 tunnin ajalta %{site_name}ista"
   new_users: Uudet käyttäjät
+  new_users_in_year: "Uusia käyttäjiä vuonna %{year}"
   new_users_w_7_obs: Uudet käyttäjät joilla 7 havaintoa
   newly_added: Äskettäin lisätyt
   newly_added_species: Äskettäin lisätyt lajit
   newly_observed_species: Äskettäin havaitut lajit
+  newly_observed_species_in_year: "Lisättyjä uusia lajeja vuonna %{year}"
   newly_observed_species_this_year: Äskettäin lisätyt lajit tänä vuonna
   news: Uutiset
   next: Seuraava
@@ -2381,8 +2409,8 @@ fi:
       county: maa
       District: Piiri
       district: piiri
-      Division: Divisio
-      division: divisioona
+      Division: Kaari
+      division: kaari
       Drainage: Salaojitus
       drainage: salaojitus
       Estate: Maatila
@@ -2434,8 +2462,8 @@ fi:
       state: osavaltio
       Street: Katu
       street: katu
-      Subdivision: Naapurusto
-      subdivision: naapurusto
+      Subdivision: Alakaari
+      subdivision: alakaari
       Suburb: Lähiö
       suburb: lähiö
       Supername: Ylänimi
@@ -2832,7 +2860,7 @@ fi:
     kingdom: Kunta
     subkingdom: Alakunta
     phylum: Pääjakso
-    subphylum: Alapääjakso
+    subphylum: Alajakso
     superclass: Yläluokka
     class: Luokka
     subclass: Alaluokka
@@ -2865,6 +2893,7 @@ fi:
   ranges: Vaihteluvälit
   ray_finned_fishes: viuhkaeväiset
   re_apply_list_rules: Hae luettelon säännöt uudelleen
+  re_order_photos: "Uudelleenjärjestä valokuvat &raquo;"
   read_more: Lue lisää
   read_our_getting_started_guide: lue aloitusoppaamme
   read_the_full_wikipedia: Lue kokonainen Wikipedia-kuvaus
@@ -2939,6 +2968,7 @@ fi:
   removed!: Poistettu!
   removed_project_user: Poista projektikäyttäjä
   removing: "Poistetaan..."
+  reorder_by_taxonomy: Järjestä uudelleen taksonomian perusteella
   replace_parentesis: (korvaa)
   reply: Vastaa
   reptiles: matelijat
@@ -2946,6 +2976,7 @@ fi:
   required: pakollinen
   required_: Pakollinen
   required_field: pakolliset kentät
+  required_columns_in_order: Vaaditut sarakkeet järjestyksessä
   research: tutkimus
   research_: Tutkimus
   research_grade: Tutkimustaso
@@ -3254,7 +3285,11 @@ fi:
   taxa_to_include: Sisällytettävät taksonit
   taxon: Taksoni
   taxon_autocomplete_placeholder: Linnut, nokkosperhonen, yms.
+  taxon_geoprivacy: Taksonin sijainnin tietosuoja
   taxon_is_a_rank: "%{taxon} on %{rank}"
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: "%{taxon} on eliökunta, josta on yksi havainto"
+    other: "%{taxon} on eliökunta, josta on %{count} havaintoa"
   taxon_is_threatened_coordinates_hidden: Taksoni on uhanalainen, koordinaatit salattu
   taxon_is_threatened_coordinates_obscured: Taksoni on uhattu ja koordinaatit on karkeistettu
   taxonomy: Taksonomia
@@ -3346,6 +3381,8 @@ fi:
   there_were_problems_adding_that_observation_to_this_project: "Havainnon lisääminen tähän projektiin epäonnistui:"
   there_were_some_problems_saving_this_observation: Tämän havainnon tallentamisessa oli joitain ongelmia
   there_were_some_problems_saving_those_colors: "Näiden värien tallentamisessa oli joitain ongelmia: %{error}"
+  these_are_items_people_on: |
+    Tässä näet tietueet, jotka sivuston käyttäjät ovat merkinneet vaativan tarkastelua. Spam-viestit tulisi poistaa ja käyttäjät, jotka ovat lisänneet niitä tulisi jäädyttää (mene heidän profiilisivulleen ja merkitse 'Jäädytä käyttäjä' oikeasta alakulmasta). Muut liputetut viestit, kuten vihapuhe, kannustaminen laittomuuksiin, jne voi myös poistaa. Sen sijaan epäystävälliset tai voimakkaasti ilmaistut viestit tulisi ilmoittaa sivuston ylläpitäjälle tai %{email}
   these_folks_kindly_volunteer_to: Nämä ystävälliset vapaaehtoiset ylläpitävät taksonomiaamme ja käsittelevät muita asioita.
   these_observations_have_not_been_uploaded_yet: |
     Näitä havaintoja ei ole vielä tallennettu.
@@ -3499,6 +3536,8 @@ fi:
   user_commented_on: "%{user} kommentoi sinun %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} on eri mieltä siitä että tämä on %{taxon}"
   user_faved_a_noun_by_owner: "%{user} merkitsi käyttäjän %{owner} %{noun} suosikiksi"
+  user_flagged_as_a_non_spammer_html: "%{user} merkitsi ettei ole spammaaja"
+  user_flagged_as_a_spammer_html: "%{user} merkitsi spaammaajaksi"
   user_has_opted_out_of_community_id: Käyttäjä on jättänyt yhteisön taksonin pois
   user_hasnt_joined_any_projects: "%{user} ei ole liittynyt mihinkään projektiin"
   user_helped_x_people_with_y_ids_html: "%{user} auttoi <strong>%{x} henkilöä</strong> <strong>%{y} tunnisteiden</strong> kanssa"
@@ -3797,6 +3836,10 @@ fi:
       post_donate_social_media_text: Tuen iNaturalistia koska...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Ryhdy iNaturalistin kuukausittaiseksi tukijaksi
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |
+          Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> merkinnät ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
     guides:
       index:
         funding_html: |
@@ -3819,6 +3862,7 @@ fi:
         grid: |
           Yksittäisten kuvien ruudukko, ei kuvauksia
       sorts:
+        default: Oppaan järjestys
         alphaname: Aakkosjärjestyksessä tieteellisten nimien mukaan
         alphadisplay: Aakkosjärjestyksessä näyttönimittäin
     help:
@@ -3905,6 +3949,9 @@ fi:
           <strong>projekti</strong>, tai <strong>hakukysely</strong>.
         query_placeholder: "Valitse alla olevat kyselyparametrit tai liitä havainnon URL-osoite"
         taxon_extras_help_html: "Huomautus: nämä sarakkeet hidastavat tiedoston luontia"
+        geo_help_html: |
+          Kaupunki, lääni, osavaltio, maa kentät koordinaattien perusteella. Analogisia hallinnollisten alueiden tasoja voi käyttää havainnoille, joihin edellä mainitut eivät sovellu.
+          Etuliitteellä private_* merkityt kentät sisällytetään ainoastaan käyttäjän omiin rajauksiin, jos olet itse käyttäjä, tai projektin rajauksiin, jos olet projektin kuraattori.
         receive_an_email_with_your_data: Vastaanota sähköpostia tiedoistasi
         well_email_you: "Ok, lähetämme sinulle sähköpostia, kun se on valmis."
         date_range_help: "Max ja min päivämäärät havaittu PP-KK-VVVV formaatissa, esim. 17-01-2015"
@@ -4009,6 +4056,8 @@ fi:
               Järjestelmä äänestää että havainto ei ole luonnonvarainen mikäli järjestelmässä on ainakin kymmenen muuta tunnistettua havaintoa (suku- tai alemmalta tasolta) havainnon lähiympäristöstä (pienimmällä maakunta- osavaltio- tai valtiotasolla) ja ainakin 80 % näistä havainnoista on merkitty ei-luonnonvaraiseksi.
             </li>
           </ul>
+        observation_flagged_notice_html: |
+          Tämä havainto on merkitty spammiksi ja ei ole enää julkisesti näkyvillä. Näet tietueen, koska olet luonut sen itse tai koska olet sivuston kuraattori. Jos pidät merkintää virheellisenä, ole hyvä ja <a href="mailto:%{help_email}" class="contact">ota yhteyttä</a>. <a href="/observations/%{observation_id}/flags">Liputusten hallinta</a>
     observation_fields:
       about_editing_observation_fields_desc_html: |
         <p class='ui'>
@@ -4020,6 +4069,9 @@ fi:
         <li>Älä poista kenttiä, joita ihmiset käyttävät</li>
         <li>Älä käännä olemassa olevia kenttiä eri kielille. Englanti on tämän sivuston vakiintunut yleiskieli. Jos välttämättä tarvitset kentän joka tarkoittaa samaa asiaa mutta eri kielellä, ole hyvä ja tee uusi havaintokenttä.</li>
         </ol>
+      merge:
+        warning_html: |
+          Ole hyvä ja kunnioita toisten käyttäjien itselleen tallentamia tietoja ja <strong>ota yhteyttä kentän alkuperäiseen luojaan ennen kenttien yhdistämistä</strong>. Tämä työkalu tuhoaa kentän, jota ollaan liittämässä ja siirtää tiedot toiseen kenttään. <strong>Toimintoa ei voi perua</strong>, joten ole tarkkaavainen.
     emailer:
       parental_consent:
         subject: Lapsesi haluaa käyttää iNaturalistia
@@ -4313,6 +4365,8 @@ fi:
         youve_blocked_desc: |
           Olet estänyt (blokannut) tämän resurssin omistajan. Tämä estää sinua viestimästä hänen kanssaan. Useimmat tämän sivun interaktiiviset toiminnot eivät ole käytettävissä.
       spam:
+        message_for_owner_and_curators_html: |
+          Tämä tietue on merkitty spammiksi ja ei ole enää julkisesti näkyvillä. Näet tietueen, koska olet luonut sen itse tai koska olet sivuston kuraattori. Jos pidät merkintää virheellisenä, ole hyvä ja <a href="mailto:%{email}">ota yhteyttä</a>.
         this_has_been_flagged_as_spam: Tämä on merkitty roskapostiksi
       not_found:
         sorry_that_doesnt_exist: Anteeksi, sitä ei ole olemassa!
@@ -4332,6 +4386,7 @@ fi:
         obs_1_day: "Havainnot (1 päivä)"
         obs_1_day_desc: "Yhden päivän aikana luodut havainnot"
         obs_cid_d_desc: Luotu viimeisen 7 päivän aikana ja sillä on yhteisön tekemä tunnistus
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Havainto yhteisötunnistettu sukutasolle
         obs_cid_d_to_genus_desc: Luotu viimeisen 7 päivän aikana ja sillä on yhteisön tekemä tunnistus suku- tai alemmalla tasolla
         obs_desc: Luotu viimeisen 7 päivän aikana
@@ -4475,6 +4530,7 @@ fi:
           %{site_name} pitää kirjaa siitä mitä mieltä sinä ja käyttäjäyhteisö on tunnistanut havaintojesi lajin. Jaamme yhteisön tekemän tunnistuksen kumppaniemme kanssa. Jos et kuitenkaan halua että yhteisön tekemä tunnistus menee omasi edelle, voit valita sen tässä (ota tällöin ruksi pois ruudusta). Muut käyttäjät voivat silti lisätä omia tunnistuksiaan havaintoihisi, mutta yhteisön mielipide ei mene omasi edelle. Tämä tarkoittaa myös että havaintojasi ei luokitella tutkimustasolle, paitsi jos olet samaa mieltä yhteisön kanssa.
         project_settings_desc: |
           Muista että tämä ei anna projekteille pääsyä havaintojesi salattuihin koordinaatteihin eikä lupaa lähettää sinulle viestejä. Jos haluat antaa näitä oikeuksia täytyy sinun joko liittyä projektiin, tai myöntää projektille pääsy yksi jokaiseen havaintoon erikseen.
+        same_day_geoprivacy_protection: Saman päivän sijainnin suojaus
         search_place_help_html: |
           Oletuspaikka havaintohauille.
         scientific_name_first_desc: |
@@ -4487,9 +4543,28 @@ fi:
         youve_used_all_of_your_blocks: Olet käyttänyt kaikki lohkosi. Poista lohko lisätäksesi toisen.
       recent:
         about_recent_users: Tietoja
+        definitions_html: <dl> <dt>Todennäköinen spammaaja</dt> <dd> Käyttäjä, joka on todennäköisesti spammeri, eli käyttäjällä ei ole havaintoja tai määrityksiä, mutta on profiilikuvaus. </dd> <dt>Auto Spam -merkintä</dt> <dd> Spaammaaja, jonka järjestelmä on automaattisesti merkinnyt spammeriksi. </dd> <dt>Manuaalinen Spam -merkintä</dt> <dd> Sivuston kuraattorin spammaajaksi merkitsemä käyttäjä. </dd> <dt>Väärä postiviinen</dt> <dd> Käyttäjä, joka on merkitty spammaajaksi, mutta sivuston kuraattorit ovat todenneet, ettei käyttäjä ole todellisuudessa spammaaja. </dd> </dl>
+        recent_users_desc_html: |
+          <p>
+          Haluamme toivottaa uudet käyttäjät tarvetulleiksi, mutta haluamme myös estää roskaviestejen (spammin) kertymistä sivustolle. 
+          Toivottavasti tämä työkalu hyödyntää meitä kaikkia. Merkitsemme automaattisesti käyttäjiä spaamaajiksi <a
+          href="https://akismet.com/">Akismet</a>, työkalun avulla. Mutta Akismet ei ole täydellinen, joten jos haluat auttaa meitä tutkimalla, ovatko uudet tilit oikeita käyttäjiä vai spammereita, arvostamme aikaasi!
+          </p>
       show:
         take_a_chance_to_review_html: 'Tutustu <a href="%{link}">pelisääntöihimme</a>.'
     user_parents:
+      confirm:
+        thanks_donor_html: |
+          <p>
+          Kiitos, että olet lahjoittanut iNaturalistille! Lahjoituksen avulla olemme pystyneet vahvistamaan henkilöllisyytesi ja asia ei vaadi sinulta lisätoimia. <strong>Lapsesi tili on nyt avattu.</strong>
+          </p>
+          <p>
+          Ole hyvä, ja kirjaudu tililläsi lapsesi Seek sovellukseen painamalla ""iNaturalist" nappia valikosta ja sitten "Kirjaudu sisään iNatrualist tilillä" näkymän alalaidasta.
+          </p>
+          <p>
+          Tämän tehtyäsi, lapsesi voi lähettää havaintoja iNaturalist tililleen Seek sovellusken avulla, ja ne näkyvät osoitteessa
+          iNaturalist.org.
+          </p>
       new:
         create_a_minor_account: Luo uusi käyttäjä
         create_minor_account: Luo alaikäinen käyttäjä
@@ -4694,16 +4769,32 @@ fi:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: '.'
         format: '%u %n'
         precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: USD
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: '.'
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: ','
       significant: false
       strip_insignificant_zeros: false
@@ -4921,6 +5012,11 @@ fi:
               is_too_large_to_edit: on liian iso muokattavaksi
               is_too_large_to_import: on liian iso tuotavaksi
               contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: |
+                täytyy olla rekisteröitynyt aiemmin kuin 24 tuntia sitten, jotta voit julkaista tietoja. Saamme paljon roskaviestejä (spam) ja tällä tavalla pyrimme estämään niiden määrää. Voit tallentaa tietosi luonnoksena, ja jos käytät vielä sivustoa vuorokauden päästä, voit julkaista ne.
         project_observation:
           attributes:
             base:

@@ -1498,6 +1498,7 @@ he:
   new_message: הודעה חדשה
   new_observation_field: שדה תצפית חדש
   new_observations: תצפיות חדשות
+  new_observations_in_year: "תצפיות חדשות ב %{year}"
   new_observations_this_year: תצפיות חדשות השנה
   new_observations_ellispsis: "תצפיות חדשות..."
   new_observations_from_place_html: "תצפיות חדשות מ%{place}"
@@ -1513,10 +1514,12 @@ he:
   new_trip: סקר חדש
   new_updates_in_the_last_24_hours_from: "עדכונים חדשים מ%{site_name} ב 24 השעות האחרונות"
   new_users: משתמשים חדשים
+  new_users_in_year: "מתצפתים חדשים ב %{year}"
   new_users_w_7_obs: משתמים חדשים עם 7 תצפיות
   newly_added: הוסף לאחרונה
   newly_added_species: מינים חדשים שנוספו
   newly_observed_species: מינים חדשים שנצפו
+  newly_observed_species_in_year: "מינים חדשים שנוספו ב %{year}"
   newly_observed_species_this_year: מינים חדשים שנוספו השנה
   news: חדשות
   next: הבא
@@ -1750,7 +1753,6 @@ he:
   only_administrators_may_access_that_page: רק לאדמיניסטורים גישה לדף זה
   only_curators_can_add_edit_scientific_names: רק אוצרים יכולים להוסיף/לערוך שמות מדעיים
   only_curators_can_access_that_page: רק לאוצרים גישה לדף זה.
-  only_files_with_10000_rows_at_a_time: רק קבצים עם 1000 שורות בכל פעם, בבקשה
   only_letters_numbers: "רק אותיות וספרות, ללא מרווחים, חייב להתחיל באות"
   only_one_coordinate_system_per_file: |
     ניתן להשתמש רק במערכת קואורדינטות אחת בקובץ, אחרת תתרחש המרה או תצוגה לא נכונה
@@ -3416,16 +3418,32 @@ he:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: ','
         format: '%u%n'
         precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: .
         significant: false
         strip_insignificant_zeros: false
         unit: '$'
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: ','
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: .
       significant: false
       strip_insignificant_zeros: false

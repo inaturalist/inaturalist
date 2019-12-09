@@ -442,8 +442,16 @@ fr:
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Êtes-vous certain
   are_you_sure_want_delete_taxon: "Êtes-vous certain de vouloir supprimer ce taxon?"
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des taxons descendants.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des taxons descendants et des identifications.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des taxons descendants, des identifications et des observations.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
     Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des taxons descendants, des taxons répertoriés, des identifications et des observations.
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des taxons descendants et des observations.
   are_you_sure_want_delete_taxon_identifications: |
     Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des identifications.
   are_you_sure_want_delete_taxon_identifications_observations: |
@@ -2199,7 +2207,6 @@ fr:
   only_an_admin_can_remove_project_users: Seul un administrateur peut supprimer des utilisateurs du projet
   only_curators_can_add_edit_scientific_names: Seuls les responsables de l’organisation peuvent ajouter/modifier les noms scientifiques.
   only_curators_can_access_that_page: Seuls les responsables de l’organisation peuvent accéder à cette page.
-  only_files_with_10000_rows_at_a_time: Uniquement des fichiers de 10000 lignes à la fois, SVP
   only_letters_numbers: "Seulement des lettres et des chiffres, sans espace, doit commencer par une lettre"
   only_one_coordinate_system_per_file: |
     Un seul système de coordonnées peut être utilisé par fichier, sinon une conversion ou un affichage erroné se produira.
@@ -5337,6 +5344,7 @@ fr:
         obs_1_day: "Observations (1 jour)"
         obs_1_day_desc: "Observations créées un jour donné"
         obs_cid_d_desc: Créé depuis les 7 derniers jours et possèdant un ID de communauté
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: CID de l’observation pour le genre
         obs_cid_d_to_genus_desc: Créé dans les sept derniers jours et ayant un ID de communauté inférieur ou égal au niveau genre
         obs_desc: Créé depuis moins de 7 jours
@@ -6093,16 +6101,32 @@ fr:
   number:
     currency:
       format:
-        delimiter: ','
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
+        delimiter: '.'
         format: '%u%n'
         precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: '$'
     format:
-      delimiter: ','
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: '.'
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: ','
       significant: false
       strip_insignificant_zeros: false

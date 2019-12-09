@@ -5249,6 +5249,7 @@ ar:
         obs_1_day: "ملاحظات (يوم واحد)"
         obs_1_day_desc: "ملاحظات التي تم إنشاؤها في يوم واحد"
         obs_cid_d_desc: تم إنشاؤها في الـ7 أيام السابقة ولديها معرف مجتمع
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: ملا CID'd إلى الجنس
         obs_cid_d_to_genus_desc: تم إنشاؤها في الـ7 أيام السابقة ولديها معرف مجتمع على مستوى جنس أو أقل
         obs_desc: تم إنشاؤها في الـ7 أيام السابقة
@@ -5948,10 +5949,18 @@ ar:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: '،'
         significant: false
         strip_insignificant_zeros: false
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: '،'
       significant: false
       strip_insignificant_zeros: false

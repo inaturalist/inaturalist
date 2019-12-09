@@ -1892,7 +1892,7 @@ nl:
   map_tooltip: Kaartweergave tonen
   mark_as_reviewed: Markeren als nagekeken
   mark_all_as_reviewed: Alles als nagekeken markeren
-  mark_all_as_unreviewed: Alles markeren als niet nagekeken
+  mark_all_as_unreviewed: Alles als niet nagekeken markeren
   matching_species_will_shown_up_here: Overeenkomende soorten worden hier weergegeven. De kaarten tonen een bereik als %{place} er één heeft voor die soort.
   maverick: Rebel
   media: Media
@@ -2388,7 +2388,7 @@ nl:
   only_an_admin_can_remove_project_users: Alleen een admin kan projectgebruikers verwijderen
   only_curators_can_add_edit_scientific_names: Alleen curatoren kunnen wetenschappelijke namen toevoegen/aanpassen.
   only_curators_can_access_that_page: Alleen curatoren hebben toegang tot deze pagina.
-  only_files_with_10000_rows_at_a_time: Alleen bestanden met 10.000 rijen per keer, alsjeblieft
+  only_files_with_10000_rows_at_a_time: Alleen bestanden met minder dan 10.000 rijen per keer, alsjeblieft
   only_letters_numbers: "Alleen letters en cijfers, zonder spaties, moet beginnen met een letter"
   only_one_coordinate_system_per_file: |
     Er kan slechts één coördinatensysteem per bestand worden gebruikt, anders zal een onjuiste conversie of weergave optreden.
@@ -4355,21 +4355,12 @@ nl:
           <p class="lead">
           <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
           </p>
-          <p class="lead">
-           We willen iNaturalist gratis houden, maar het leveren van deze dienst is niet gratis.
-           Als je van iNaturalist houdt, kun je overwegen om iNaturalist maandelijks te steunen.
-           Vaste donaties dragen ertoe bij dat iNaturalist door kan gaan met het opschalen
-             van zijn infrastructuur en personeel, door voorspelbare inkomsten te genereren.
-           Je kunt er ook voor kiezen om je status als donateur weer te geven op je gebruikersprofiel.
+          <p class="lead">We willen iNaturalist gratis houden, maar het leveren van deze dienst is niet gratis. Als je van iNaturalist houdt, kun je overwegen om iNaturalist maandelijks te steunen. Vaste donaties dragen ertoe bij dat iNaturalist door kan gaan met het opschalen van zijn infrastructuur en personeel, door voorspelbare inkomsten te genereren. Je kunt er ook voor kiezen om je status als donateur weer te geven op je gebruikersprofiel.
           </p>
-          <p class="lead">
-           Je vrijwillige donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het 
-           verbeteren van Computer Vision en het implementeren van nieuwe functies
-             ter ondersteuning van onze servers en medewerkers. Als je liever een
-             eenmalige donatie wilt doen <a href="%{donate_url}">klik dan hier</a>.
+          <p class="lead">Je vrijwillige donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het verbeteren van Computer Vision en het implementeren van nieuwe functies ter ondersteuning van onze servers en medewerkers. Als je liever een eenmalige donatie wilt doen <a href="%{donate_url}">klik dan hier</a>.
           </p>
           <p class="text-muted">
-          iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'.</p>
+          iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V. S.</p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -5331,6 +5322,7 @@ nl:
         obs_1_day: "Wrn (1 dag)"
         obs_1_day_desc: "Waarnemingen op een enkele dag gemaakt"
         obs_cid_d_desc: Gemaakt in de afgelopen 7 dagen met een gemeenschapsID
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Wrn CID'd tot op genus
         obs_cid_d_to_genus_desc: Gemaakt in de afgelopen 7 dagen met een gemeenschapsID op of beneden genus-level
         obs_desc: Gemaakt in de afgelopen 7 dagen
@@ -5376,6 +5368,14 @@ nl:
         obs_in_year: Wrn in %{year}
         percent_growth_in_year: "% Groei in %{year}"
         percent_of_total_growth: "% of Totaal Groei"
+        publications_desc_html: |
+          Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href="https://www.altmetric.com">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.
+          <br/>
+          <a href="%{url}">Toon alle %{numStudies} studies</a>
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Waarnemingsreeksen
+        observation_streaks_desc: |
+          Een waarnemingsreeks is een periode waarin er op elke aaneengesloten dag nieuwe waarnemingen worden geregistreerd. Hier tonen we de langste reeksen die dit jaar zijn begonnen of bezig waren toen deze statistieken werden gegenereerd.
         sunburst_desc_html: |
           Waargenomen taxa gerangschikt als een hiërarchisch "sunburst"-diagram. De basis
           van de hiërarchie staat centraal, beginnend met "Leven" en eindigend
@@ -5570,6 +5570,7 @@ nl:
         you_must_enter_confirmation_code_in_the_form: |
           Je moet de "%{confirmation_code}" in het formulier invoeren om je account te verwijderen
       edit:
+        about_third_party_tracking: Over het volgen door derden
         blocking_desc_html: |
           <p>Door iemand te blokkeren kunnen ze je berichten niet meer zien of reageren op jouw waarnemingen, je waarnemingen determineren of andere interacties met je hebben op %{site_name}. Het verwijdert ook hun waarnemingen uit je zoekresultaten en verwijdert jouw waarnemingen uit hun zoekresultaten. Het maakt je echter niet onzichtbaar voor ze. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met je aangaan.
           </p>
@@ -5659,6 +5660,33 @@ nl:
           %{site_name} volgt wat jij denkt dat je waarnemingen zijn en wat de gemeenschap denkt dat ze zijn. De determinatie die we met gegevenspartners delen, is de determinatie van de gemeenschap, maar als je denkt dat de mening van de gemeenschap jouw eigen mening nooit mag vervangen, kunt je dat hier uitzetten. Mensen kunnen nog steeds determinaties toevoegen, maar de mening van de gemeenschap heeft geen voorkeur boven die van jou. Dit betekent dat je waarnemingen niet in aanmerking komen voor onderzoekskwaliteit tenzij je het eens bent met de gemeenschap.
         prefers_coordinate_interpolation_protection_desc: |
           Wanneer je de geoprivacy van een waarneming instelt op "verduisterd" of "privé" dan zal dezelfde geoprivacy op al je andere waarnemingen van dezelfde dag worden toegepast om het moeilijker te maken voor andere mensen om de ware coördinaten af te leiden van waarnemingen die rondom hetzelfde tijdstip zijn gemaakt.
+        prefers_no_tracking_label: Verzamel geen gegevens over stabiliteit en gebruik met behulp van diensten van derden
+        prefers_no_tracking_label_desc_we_use: |
+          We gebruiken diverse diensten van derden om stabiliteit te monitoren, en bugs en problemen in onze software op te sporen. Deze derden omvatten
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          Informatie die we kunnen delen met deze derden omvat
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          IP-adressen (die kunnen worden gebruikt om positie op stadsniveau vast te stellen, en je over verschillende websites en diensten te volgen; merk op dat we
+          <a href="https://support.google.com/analytics/answer/2763052">IP-anonimisering</a> hebben aangezet
+          in Google Analytics en <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> slaat geen IP-adressen op voor zover we weten)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Browserdetails, zoals maker, model, en versie
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Crashdetails, zoals exact welke regel code een crash heeft veroorzaakt
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Apparaatdetails, zoals merk en model van een mobiele telefoon
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Deze services van derden zijn erg waardevol voor ons</strong> bij het stabiel en bruikbaar houden van iNaturalist met ons relatief kleine aantal werknemers. Op mobiele apparaten is er nagenoeg geen andere manier om inzicht te krijgen in de problemen die zich voordoen, aangezien de software draait op apparaten waarover we geen controle hebben. Soms weten we niet eens dat zulke problemen zich voordoen voordat we ze in de data van zulke diensten zien. <strong>Door deze informatie te delen help je ons, en de gehele gemeenschap op iNaturalist.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Deze optie is alleen van toepassing op analytische en crashgegevens die wij
+          expliciet naar deze bedrijven sturen. Alle iNaturalist servers zijn
+          geleverd en gehost door Microsoft, alle iNaturalist afbeeldingen worden gehost door
+          Amazon en bijna alle iNaturalist kaarten worden geleverd door Google. Dit
+          betekent dat wanneer je naar een waarneming op iNaturalist kijkt je bent
+          verbonden met diensten aangeboden door deze bedrijven, en zij op zijn minst beschikken over je 
+          IP-adres (de iPhone app gebruikt Apple's maps). iNaturalist zou waarschijnlijk niet bestaan zonder de
+          diensten die deze bedrijven leveren. Hoewel iNaturalist de hoeveelheid en soort gegevens kan beperken die je met hen deelt tijdens het gebruik van iNat, kunnen we de datastroom niet helemaal gestoppen.
         project_settings_desc: |
           Let op: dit geeft projecten geen toegang tot je verborgen coördinaten of om je updates te sturen. Je moet deelnemen aan projecten om hier toestemming toe te geven, of het van geval tot geval toestaan.
         same_day_geoprivacy_protection: DezelfdeDag geoprivacy protectie
@@ -5944,16 +5972,32 @@ nl:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: '.'
         format: '%u%n'
         precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: '€'
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: '.'
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: ','
       significant: false
       strip_insignificant_zeros: false
