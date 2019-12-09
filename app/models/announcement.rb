@@ -22,7 +22,7 @@ class Announcement < ActiveRecord::Base
   end
 
   def dismissed_by?( user )
-    return false unless dismissable?
+    return false unless dismissible?
     user_id = user.id if user.is_a?( User )
     user_id = user_id.to_i
     dismiss_user_ids.include?( user_id )

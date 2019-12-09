@@ -19,7 +19,7 @@
     = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
   - else
     = f.hidden_field :site_ids
-  = f.check_box :dismissable, label_after: true
+  = f.check_box :dismissible, label_after: true
   = f.select :locales, I18N_SUPPORTED_LOCALES, {}, { multiple: true, description: t( "views.announcements.locales_desc" ) }
   = f.text_area :body
   .actions.buttons

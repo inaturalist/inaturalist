@@ -327,7 +327,7 @@ CREATE TABLE public.announcements (
     updated_at timestamp without time zone,
     locales text[] DEFAULT '{}'::text[],
     dismiss_user_ids integer[] DEFAULT '{}'::integer[],
-    dismissable boolean DEFAULT false
+    dismissible boolean DEFAULT false
 );
 
 
