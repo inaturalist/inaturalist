@@ -81,6 +81,15 @@ describe "translations" do
           expect( translation.scan( complete_inflections_pattern ).size ).to eq translation.scan( started_inflections_pattern ).size
         end
       end
+
+      if key.split( "." ).last === "delimiter"
+        sep_key = key.sub( "delimiter", "separator" )
+        if sep = data[sep_key]
+          it "#{key} should not be the same as #{sep_key}" do
+            expect( sep ).not_to eq translation
+          end
+        end
+      end
     end
   end
 end
