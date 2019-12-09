@@ -2266,6 +2266,7 @@ zh-TW:
   only_an_admin_can_remove_project_users: 僅有管理員可移除專案用戶
   only_curators_can_add_edit_scientific_names: 僅有策展人可添加/編輯學名。
   only_curators_can_access_that_page: 僅有策展人能存取該頁面。
+  only_files_with_10000_rows_at_a_time: 檔案一次只能 10000 行，再麻煩了
   only_letters_numbers: "僅用英文和數字（無空白），並以英文作開頭"
   only_one_coordinate_system_per_file: |
     每個檔案僅可使用一個座標，否則會發生不正確的轉換或顯示。
@@ -5011,6 +5012,7 @@ zh-TW:
         obs_1_day: "觀察（1 日）"
         obs_1_day_desc: "代表在單一日子裡所建立的觀察"
         obs_cid_d_desc: 代表在前 7 日所建立並具有社群鑑定
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: 觀察（屬層級社群鑑定）
         obs_cid_d_to_genus_desc: 代表在前 7 日所建立並具有在屬層級或較低階層級的社群鑑定
         obs_desc: 代表在前 7 日所建立
@@ -5524,6 +5526,10 @@ zh-TW:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: '，'
         significant: false
         strip_insignificant_zeros: false
