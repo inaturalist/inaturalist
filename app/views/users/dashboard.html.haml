@@ -12,7 +12,7 @@
     - announcements.each do |announcement|
       .row
         .col-xs-12
-          = announcement.body.html_safe
+          = render "announcements/announcement", announcement: announcement
   .row
     = render partial: "shared/by_login_header_bootstrap", locals: { user: current_user }
   .row
@@ -127,7 +127,7 @@
         .upstacked
           - announcements.each do |announcement|
             - unless user_seen_announcement?( announcement )
-              = announcement.body.html_safe
+              = render "announcements/announcement", announcement: announcement
       - if @discourse_url && !@discourse_data.blank?
         #forum
           .panel.panel-default

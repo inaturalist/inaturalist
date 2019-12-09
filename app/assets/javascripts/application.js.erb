@@ -1203,6 +1203,9 @@ $(document).on('ajax:before', '.project_user_invitation .acceptlink', function()
   $(this).hide()
   $(this).siblings('.status').html(I18n.t('loading')).show().addClass('loading')
 })
+$( document ).on( "ajax:before", ".announcement .dismiss-announcement", function ( ) {
+  $( this ).parents( ".announcement" ).fadeOut( );
+} );
 
 function showJoinProjectDialog(projectId, options) {
   options = options || {}

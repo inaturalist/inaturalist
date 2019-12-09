@@ -1,0 +1,6 @@
+- unless announcement.dismissed_by?( current_user )
+  .announcement
+    = announcement.body.html_safe
+    - if announcement.dismissible? && current_user
+      = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
+        %i.fa.fa-close

@@ -15,7 +15,7 @@
 - unless announcements.blank?
   - announcements.each do |announcement|
     .announcement
-      = announcement.body.html_safe
+      = render "announcements/announcement", announcement: announcement
 - if @page
   - content_for(:extrajs) do
     = google_maps_js
