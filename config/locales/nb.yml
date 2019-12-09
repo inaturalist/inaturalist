@@ -5176,6 +5176,7 @@ nb:
         obs_1_day: "Obs (1 dag)"
         obs_1_day_desc: "Observasjoner opprettet på en enkel dag"
         obs_cid_d_desc: Opprettet i foreg. 7 dager og har en fellesskaps-ID
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Obs FID-et til slekt
         obs_cid_d_to_genus_desc: Opprettet i foreg. 7 dager og har en fellesskaps-ID på eller under slektsnivå
         obs_desc: Opprettet i foreg. 7 dager
@@ -5730,16 +5731,32 @@ nb:
   number:
     currency:
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
         delimiter: ' '
         format: '%u%n'
         precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
         separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: NOK
     format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
       delimiter: ' '
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
       separator: ','
       significant: false
       strip_insignificant_zeros: false
