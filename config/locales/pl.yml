@@ -494,14 +494,17 @@ pl:
   all_your_observations_will_default_to_this_time_zone: Wszystkie twoje obserwacje będą przypisane do tej strefy czasowej, chyba że wskażesz inaczej.
   #Option to allow any taxa on a list
   allow_any: zezwalaj na dowolne
-  allow_project_curators_to_view_your_private_coordinates: Zezwól opiekunom projektu na dostęp do ukrytych współrzędnych
+  allow_project_curators_to_view_your_private_coordinates: Zezwalaj kuratorom projektu na dostęp do ukrytych współrzędnych
+  allowed_establish_means_values: Dozwolone wartości dla sposobów ustanowienia
   allowed_html: Dozwolony HTML
+  allowed_occurrence_status_values: Dozwolone wartości dla statusu występowania
   allowed_values: Dopuszczalne wartości
   almost_there_: Już prawie...
   alphabetical: Alfabetycznie
   alphabetical_order: Kolejność alfabetyczna
   already_have_an_account_log_in_html: Masz już konto? <strong>Zaloguj się.</strong>
   amphibians: płazy
+  ancestor_taxon: Takson przodek
   and: i
   and_other_taxa: "&amp; Inne taksony"
   android: Android
@@ -559,7 +562,7 @@ pl:
   are_you_sure_you_want_to_delete_this_post: Czy na pewno chcesz usunąć ten post?
   are_you_sure_you_want_to_delete_this_taxon_change: Czy na pewno chcesz usunąć zmianę w taksonie?
   are_you_sure_you_want_to_remove_all_tags: Czy na pewno chcesz usunąć wszystkie tagi?
-  are_you_sure_you_want_to_remove_curator: Czy jesteś pewien, że chcesz usunąć %{user} jako opiekuna?
+  are_you_sure_you_want_to_remove_curator: Czy jesteś pewien, że chcesz usunąć %{user} jako kuratora?
   are_you_sure_you_want_to_remove_from_project: Czy na pewno chcesz usunąć %{user} z tego projektu?
   are_you_sure_you_want_to_remove_manager: Czy jesteś pewien, że chcesz usunąć %{user} jako menedżera?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Czy jesteś pewien, że chcesz usunąć te %{x} taksonów?"
@@ -669,7 +672,7 @@ pl:
   by_you: Przez Ciebie
   calendar: Kalendarz
   cancel: Anuluj
-  cant_edit_or_delete_hidden_content: Nie możesz edytować ani usuwać treści ukrytych przez opiekunów strony
+  cant_edit_or_delete_hidden_content: Nie możesz edytować ani usuwać treści ukrytych przez kuratorów strony
   cant_flag_an_object_that_doesnt_exist: Nie można zgłosić elementu, który nie istnieje
   cant_merge_a_taxon_with_itself: Nie można połączyć taksonu z samym sobą.
   captive: Żyje w niewoli
@@ -933,11 +936,10 @@ pl:
   curate_taxa: Napraw taksony
   curating: Naprawianie
   curation: Naprawa
-  curator: Opiekun
-  curators_changed_for_x_html: "Zmiana opiekunów projektu %{x}"
-  curators: Opiekunowie
-  curators_can_remove_observations_from: Opiekunowie mogą usuwać obserwacje z projektu, a także mogą zobaczyć współrzędne prywatnych i utajnionych obserwacji zakwalifikowanych do projektu. Identyfikacje opiekunów są pokazane obok obserwacji dostępnych na stronie projektu.
-  curator_identification: Identyfikacja opiekuna
+  curator: Kurator
+  curators_changed_for_x_html: "Zmiana kuratorów %{x}"
+  curators: Kuratorzy
+  curator_identification: Oznaczenie kuratora
   current_flags: Aktualne zgłoszenia
   custom_project_fields: Niestandardowe pola projektu
   custom_project_was_successfully_created: Dodano dostosowania projektu
@@ -1208,14 +1210,14 @@ pl:
     <strong>Uwaga:</strong> zanim dodasz kolejną notatkę terenową, upewnij się, że nie istnieje podobna.
   fields: notatki
   fields_: Notatki
-  fields_can_only_be_edited_by_the_people_who: Notatki terenowe mogą być edytowane tylko przez twórców i opiekunów strony
+  fields_can_only_be_edited_by_the_people_who: Pola mogą być edytowane tylko przez ich autorów i kuratorów strony
   fields_merged: Połączone notatki
   file: Plik
   file_should_be_in_the_following_format: "Plik powinien zawierać następującą kolejność: nazwa taksonu, opis"
   fill_out_project_observation_fields: Uzupełnij notatki związane z projektem
   fill_out_your_profile: uzupełnij swój profil
   filter: Filtr
-  filter_by_curator_identification: Filtruj po oznaczeniach opiekunów
+  filter_by_curator_identification: Filtruj po oznaczeniach kuratorów
   filter_by_place: Filtruj według miejsca
   filter_by_taxon: Filtruj po taksonach
   filter_by_place_taxon_and_color: Filtruj według miejsca, taksonu i koloru używając strzałek.
@@ -1247,7 +1249,7 @@ pl:
   flag_an_item: Zgłoś element
   flag_as_spammer: Zgłoś spamera
   flag_as_non_spammer: To nie spamer
-  flag_description: Oflaguj ten element, aby powiadomić opiekunów strony, że coś jest nie tak.
+  flag_description: Zgłoś tę zawartość, aby powiadomić kuratorów, że coś jest z nią nie tak.
   flag_for_curation: Zgłoś do naprawy
   flag_for_post_title_html: |
     Zgłoszenie dla posta: %{title}
@@ -1276,7 +1278,7 @@ pl:
   flagger: Zgłaszający
   flags: Zgłoszenia
   flags_with_count: Zgłoszenia (%{count})
-  flags_explanation: "Zgłoszenia użytkowników %{site_name}, które wymagają rozpatrzenia przez opiekunów i/lub adminów strony."
+  flags_explanation: "Użytkownicy %{site_name} zgłaszają rzeczy, które wymagają uwagi ze strony kuratorów i/lub administratorów strony."
   flags_for_x_html: Zgłoszenia %{x}
   flags_on_users_content: "Zgłoszenia dotyczące treści użytkownika %{user}"
   flickr_account_information: Informacja o Twoim koncie Flickr
@@ -1484,8 +1486,7 @@ pl:
   is_this_offensive_html: 'Czy to jest <a href="/help#inappropriate">nieodpowiednie</a>, obraźliwe lub jest spamem?'
   is_this_place_a_duplicate: Czy to miejsce jest zduplikowane?
   item_flagged_notice_html: |
-    To zostało zgłoszone jako spam i przestało być publicznie widoczne. Widzisz to, ponieważ jesteś autorem lub opiekunem strony. Jeśli uważasz, że to pomyłka, 
-    <a href="mailto:%{help_email}" class="contact">skontaktuj się z nami</a>.
+    To zostało zgłoszone jako spam i przestało być publicznie widoczne. Widzisz to, ponieważ jesteś tego autorem lub kuratorem strony. Jeśli uważasz, że to pomyłka, <a href="mailto:%{help_email}" class="contact">skontaktuj się z nami</a>.
     <a href="%{manage_flags_path}">Zarządzaj zgłoszeniami</a>
   join: Dołączyć do
   join_project: Dołącz do tego projektu
@@ -1709,7 +1710,7 @@ pl:
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Główna zawartość
   make_a_new_place: Utwórz nowe miejsce
-  make_curator: Nadaj uprawnienia opiekuna
+  make_curator: Utwórz kuratora
   make_it_a_life_list?: Utworzyć listę życiową?
   make_manager: Nadaj uprawnienia managera
   make_sure_the_default_photo_looks_good: Upewnij się, że domyślne zdjęcie wygląda dobrze w dużym rozmiarze.
@@ -1718,7 +1719,7 @@ pl:
   manage_your_projects: Zarządzanie swoimi projektami
   manager: Menedżer
   managers: Managerowie
-  managers_can_do: Menedżerzy mogą robić wszystko to co opiekuni, jak również mogą edytować ustawienia projektu i pisać wpisy do dziennika projektu.
+  managers_can_do: Menedżerzy mogą robić wszystko to co kuratorzy, jak również mogą edytować ustawienia projektu i pisać wpisy do dziennika projektu.
   managing_projects: Zarządzanie projektami
   map: Mapa
   map_legend: legenda mapy
@@ -1901,8 +1902,8 @@ pl:
   no_comments_yet: Brak komentarzy.
   no_countries_added_yet: Nie dodano krajów
   no_creative_commons_flickr_photos_tagged_x: 'Brak zdjęć z Flickra na licencji Creative Commons z tagiem "%{x}"'
-  no_curators_set: Brak ustanowionych opiekunów
-  no_curators_yet: Póki co brak opiekunów!
+  no_curators_set: Brak ustanowionych kuratorów
+  no_curators_yet: Póki co brak kuratorów!
   no_description: Brak opisu
   no_flags: Tym razem brak zgłoszeń
   no_flickr_photos_tagged: Brak otagowanych zdjęć z Flickra
@@ -1962,7 +1963,7 @@ pl:
   no_taxa_selected: Nie wybrano taksonów!
   no_wikipedia_page_for_taxon: Brak strony na Wikipedii dla tego taksonu.
   no_x_this_y: "Brak %{x} w %{y}"
-  noble_curators: "Wybitni Opiekunowie %{site}"
+  noble_curators: "Wybitni kuratorzy %{site}"
   none: Brak
   none_found: Nie znaleziono
   normal: normalne
@@ -2073,12 +2074,12 @@ pl:
     follow_panel_title_local: Obserwuj przyrodników z okolicy
     youve_got_updates_panel_title: Masz aktualizacje!
   one_of_your_lists: "jedna z Twoich list..."
-  only_a_project_manager_can_add: Tylko menedżer projektu może dodać status opiekuna projektu
+  only_a_project_manager_can_add: Tylko menedżer projektu może dodać status kuratora projektu
   only_administrators_may_access_that_page: Tylko administratorzy mogą uzyskać dostęp do tej strony
   only_an_admin_can_remove_project_users: Tylko administrator może usuwać użytkowników z projektu
-  only_curators_can_add_edit_scientific_names: Tylko opiekuni mogą dodawać/edytować nazwy naukowe.
-  only_curators_can_access_that_page: Tylko opiekuni mają dostęp do tej strony.
-  only_project_curators_can_do_that: Tylko opiekuni projektu mogą to zrobić.
+  only_curators_can_add_edit_scientific_names: Tylko kuratorzy mogą dodawać/edytować nazwy naukowe.
+  only_curators_can_access_that_page: Tylko kuratorzy mają dostęp do tej strony.
+  only_project_curators_can_do_that: Tylko kuratorzy projektu mogą to zrobić.
   only_species: tylko gatunki
   only_species_and_subspecies: tylko gatunki i podgatunki/odmiany
   only_you: Tylko Ty
@@ -2541,8 +2542,8 @@ pl:
     many: Administratorów projektu
     other: Administratora projektu
   project_cover: Okładka projektu
-  project_curator_tools: Narzędzia opiekuna projektu
-  project_curators: Opiekunowie projektu
+  project_curator_tools: Narzędzia kuratora projektu
+  project_curators: Kuratorzy projektu
   project_group_label: Grupa
   project_group_description: Grupa do której należy projekt
   project_icon: Ikona projektu
@@ -2551,7 +2552,7 @@ pl:
   project_list_defaults:
     title: "Checklista %{owner_name}"
   project_curators_added_some_of_your_observations_html: |
-    Opiekuni projektu <a href="%{url}">%{project}</a> dodali niektóre Twoje obserwacje
+    Kuratorzy projektu <a href="%{url}">%{project}</a> dodali niektóre Twoje obserwacje
   project_members: "Członkowie projektu %{project}"
   project_membership_model_description: Czy Twój projekt otwarty dla wszystkich czy tylko dla osób, które zaprosiłeś?
   project_observations: Obserwacje projektu
@@ -2623,8 +2624,8 @@ pl:
   remove: Usuń
   remove_all_tags: Usuń wszystkie tagi
   remove_from: Usuń z
-  remove_curator: Usuń opiekuna
-  remove_curator_status: Usuń status opiekuna
+  remove_curator: Usuń kuratora
+  remove_curator_status: Usuń status kuratora
   remove_from_guide: Usuń z przewodnika
   remove_from_list: Usuń z listy
   remove_from_project: Usuń z projektu
@@ -2937,7 +2938,7 @@ pl:
   user_is_now_a_manager_for_project_html: |
     <strong>%{user}</strong> jest teraz menedżerem projektu %{project}
   user_is_now_a_curator_for_project_html: |
-    <strong>%{user}</strong> jest teraz opiekunem projektu %{project}
+    <strong>%{user}</strong> jest teraz kuratorem projektu %{project}
   user_muted: Użytkownik wyciszony
   user_suggested_an_id: "%{user} zasugerował oznaczenie"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> napisał,
@@ -3062,7 +3063,7 @@ pl:
     help:
       index:
         what_is_inaturalist?: Czym jest %{site_name}?
-        what_are_admins_and_curators?: Kim są administratorzy i opiekunowie strony?
+        what_are_admins_and_curators?: Czym są administratorzy i kuratorzy?
         what_is_an_observation?: Czym jest obserwacja?
         check_the_id_please_checkbox_when_html: |
           Zaznacz "Proszę o oznaczenie", kiedy dodajesz / edytujesz obserwację - dzięki temu twoja obserwacja pojawi się w dziale <a href="%{url}">Proszę o oznaczenie</a>.
@@ -3503,27 +3504,27 @@ pl:
         project_observation:
           attributes:
             user_id:
-              must_be_curator: musi być opiekunem tego projektu
+              must_be_curator: musi być kuratorem tego projektu
         taxon:
           attributes:
             rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                może zostać zmieniona wyłącznie przez opiekuna tego taksonu
+                może zostać zmieniona wyłącznie przez kuratora tego taksonu
             rank_level:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                może zostać zmieniona wyłącznie przez opiekuna tego taksonu
+                może zostać zmieniona wyłącznie przez kuratora tego taksonu
             ancestry:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                może zostać zmieniony wyłącznie przez opiekuna tego taksonu
+                może zostać zmieniony wyłącznie przez kuratora tego taksonu
             is_active:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                może zostać zmieniony wyłącznie przez opiekuna tego taksonu
+                może zostać zmieniony wyłącznie przez kuratora tego taksonu
             complete:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                może zostać zmieniony wyłącznie przez opiekuna tego taksonu
+                może zostać zmieniony wyłącznie przez kuratora tego taksonu
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                może zostać zmieniona wyłącznie przez opiekuna tego taksonu
+                może zostać zmieniony wyłącznie przez kuratora tego taksonu
             name:
               bad_format: |
                 może zawierać wyłącznie podstawowe litery alfabetu łacińskiego, myślniki, odstępy i symbol ×; zwróć uwagę, że domniemane taksony i odmiany uprawne nie są dozwolone
