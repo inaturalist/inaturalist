@@ -1924,6 +1924,7 @@ cs:
   only_an_admin_can_remove_project_users: Uživatele projektu může odebrat pouze správce
   only_curators_can_add_edit_scientific_names: Vědecké názvy mohou přidávat/editovat pouze kurátoři.
   only_curators_can_access_that_page: K této stránce mají přístup pouze kurátoři.
+  only_files_with_10000_rows_at_a_time: Vkládejte prosím pouze soubory s maximálně 10000 řádky
   only_letters_numbers: "Pouze písmena a číslice, bez mezer, musí začínat písmenem"
   only_one_coordinate_system_per_file: |
     Pro jeden soubor lze použít pouze jeden systém souřadnic, jinak může dojít k nesprávné konverzi nebo zobrazení.
@@ -4379,6 +4380,7 @@ cs:
         obs_1_day: "Pozorování (1 den)"
         obs_1_day_desc: "Pozorování vytvořená v jeden den"
         obs_cid_d_desc: Vytvořeno za posledních 7 dní a má ID komunity
+        #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: CID pozorování pro pohlaví
         obs_cid_d_to_genus_desc: Vytvořeno za posledních 7 dní a má komunitní identitu na úrovni nebo pod úrovní rodu
         obs_desc: Vytvořeno před 7 dny
