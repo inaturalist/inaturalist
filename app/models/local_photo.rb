@@ -231,7 +231,6 @@ class LocalPhoto < Photo
     o = Observation.new(:user => user)
     o.observation_photos.build(:photo => self)
     tags = to_tags( with_title: true, with_file_name: true )
-    return o if tags.blank?
     if metadata
       if !metadata[:gps_latitude].blank? && !metadata[:gps_latitude].to_f.nan?
         o.latitude = metadata[:gps_latitude].to_f
@@ -272,7 +271,7 @@ class LocalPhoto < Photo
     end
 
     o.taxon = to_taxon
-    if o.taxon
+    if o.taxon && !tags.blank?
       tags = tags.map(&:downcase)
       o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
       o.species_guess ||= o.taxon.default_name.try(:name)
