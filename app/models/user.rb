@@ -1349,4 +1349,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.ip_address_is_often_suspended( ip )
+    return false if ip.blank?
+    count_suspended = User.where( last_ip: ip ).where( "suspended_at IS NOT NULL" ).count
+    count_active = User.where( last_ip: ip ).where( "suspended_at IS NULL" ).count
+    total = count_suspended + count_active
+    return false if total < 3
+    return count_suspended.to_f / ( count_suspended + count_active ).to_f >= 0.9
+  end
+
 end
