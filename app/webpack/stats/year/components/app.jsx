@@ -65,6 +65,7 @@ const App = ( {
           rootTaxonID={rootTaxonID}
           year={year}
           user={user}
+          site={site}
           currentUser={currentUser}
         />
         { data && data.growth && (

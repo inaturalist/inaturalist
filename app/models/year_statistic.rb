@@ -621,12 +621,12 @@ class YearStatistic < ActiveRecord::Base
         ["2019-10-01", "2020-01-01"]
       ].inject( [] ) do |memo, range|
         puts "range: #{range.join( " - " )}"
-        memo += Observation.elastic_search( histogram_params.merge(
-          filters: [
-            { range: { date_field => { gte: range[0] } } },
-            { range: { date_field => { lt: range[1] } } },
-          ],
-        ) ).response.aggregations.histogram.buckets
+        es_params = histogram_params.dup
+        es_params[:filters] += [
+          { range: { date_field => { gte: range[0] } } },
+          { range: { date_field => { lt: range[1] } } },
+        ]
+        memo += Observation.elastic_search( es_params ).response.aggregations.histogram.buckets
         memo
       end
     end
@@ -858,7 +858,7 @@ class YearStatistic < ActiveRecord::Base
         previous_user_ids = user_ids
       end
     end
-    max_stop_date = streaks.map{|s| s[:stop]}.max
+    max_stop_date = ( Date.parse( streaks.map{|s| s[:stop]}.max ) - 2.days ).to_s
     top_streaks = streaks.select do |s|
       s[:stop] == max_stop_date ||
         Date.parse( s[:start]) >= Date.parse( "#{year}-01-01" )

@@ -6,6 +6,7 @@ import TaxaSunburst from "./taxa_sunburst";
 import NewSpecies from "./new_species";
 
 const Taxa = ( {
+  site,
   user,
   data,
   rootTaxonID,
@@ -20,6 +21,7 @@ const Taxa = ( {
         user={user}
         currentUser={currentUser}
         year={year}
+        site={site}
       />
     );
   }
@@ -50,6 +52,7 @@ const Taxa = ( {
 
 Taxa.propTypes = {
   data: PropTypes.object,
+  site: PropTypes.object,
   user: PropTypes.object,
   currentUser: PropTypes.object,
   rootTaxonID: PropTypes.number,
