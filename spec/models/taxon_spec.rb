@@ -637,8 +637,24 @@ describe Taxon, "tags_to_taxa" do
 
   it "should not match problematic names" do
     Taxon::PROBLEM_NAMES.each do |name|
-      t = Taxon.make!(:name => name.capitalize)
-      expect(Taxon.tags_to_taxa([name, name.capitalize])).to be_blank
+      t = Taxon.make(:name => name.capitalize)
+      if t.valid?
+        expect( Taxon.tags_to_taxa( [name, name.capitalize] ) ).to be_blank
+      end
+    end
+  end
+
+  it "should not match scientifc names that are 2 letters or less" do
+    %w(Aa Io La).each do |name|
+      t = Taxon.make!( name: name, rank: Taxon::GENUS )
+      expect( Taxon.tags_to_taxa( [name, name.downcase ] ) ).to be_blank
+    end
+  end
+
+  it "should not match abbreviated month names" do
+    %w(Mar May Jun Nov).each do |name|
+      t = Taxon.make!( name: name, rank: Taxon::GENUS )
+      expect( Taxon.tags_to_taxa( [name, name.downcase ] ) ).to be_blank
     end
   end
 

@@ -296,6 +296,16 @@ class Taxon < ActiveRecord::Base
   # usually map to the wrong thing. Also including all place names for
   # state-level places and above that are also taoxn names, since they often get
   # used in photo tags
+  abbr_date_names = I18N_SUPPORTED_LOCALES.map{|locale|
+    [
+      I18n.t( "date.abbr_month_names", locale: locale ),
+      I18n.t( "date.abbr_day_names", locale: locale )
+    ]
+  }.flatten.select{|n| !n.blank? && n.to_f == 0}.map{|n| n.to_s.downcase }.uniq
+  place_names_that_are_taxon_names = Taxon.select( "DISTINCT taxa.name" ).
+    joins( "JOIN places ON places.name = taxa.name" ).
+    where( "places.admin_level < 2" ).
+    pluck(:name).uniq.sort.map(&:downcase)
   PROBLEM_NAMES = [
     "bee hive",
     "caterpillar",
@@ -313,10 +323,7 @@ class Taxon < ActiveRecord::Base
     "pupae",
     "sea",
     "winged insect"
-  ] + Taxon.select( "DISTINCT taxa.name" ).
-    joins( "JOIN places ON places.name = taxa.name" ).
-    where( "places.admin_level < 2" ).
-    pluck(:name).uniq.sort.map(&:downcase)
+  ] + place_names_that_are_taxon_names + abbr_date_names
   
   PROTECTED_ATTRIBUTES_FOR_CURATED_TAXA = %w(
     ancestry
@@ -1898,12 +1905,13 @@ class Taxon < ActiveRecord::Base
     taxon_names = taxon_names.select do |tn|
       names.include?(tn.name) || !tn.name.match(/^([A-Z]|\d)+$/)
     end
+    taxon_names = taxon_names.select{|tn| !tn.scientific? || tn.name.size > 2}
     taxon_names = taxon_names.compact.sort do |tn1,tn2|
       tn1_exact = names.include?(tn1.name) ? 1 : 0
       tn2_exact = names.include?(tn2.name) ? 1 : 0
       [tn2_exact, tn2.name.size] <=> [tn1_exact, tn1.name.size]
     end
-    taxon_names.map{|tn| tn.taxon}.compact
+    taxon_names.map{|tn| tn.taxon}.compact.uniq
   end
   
   def self.find_duplicates

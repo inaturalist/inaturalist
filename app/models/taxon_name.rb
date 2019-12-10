@@ -84,6 +84,7 @@ class TaxonName < ActiveRecord::Base
       def is_#{k.to_s.downcase}?
         lexicon == "#{v}"
       end
+      alias :#{k.to_s.downcase}? :is_#{k.to_s.downcase}?
     EOT
     const_set k.to_s.upcase, v
   end
@@ -140,6 +141,7 @@ class TaxonName < ActiveRecord::Base
   }.compact
 
   alias :is_scientific? :is_scientific_names?
+  alias :scientific? :is_scientific_names?
   
   def to_s
     "<TaxonName #{self.id}: #{self.name} in #{self.lexicon}>"
