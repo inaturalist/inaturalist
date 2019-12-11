@@ -7,7 +7,8 @@ import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";
 import {
   fetchSuggestions,
-  updateWithObservation as updateSuggestionsWithObservation
+  updateWithObservation as updateSuggestionsWithObservation,
+  reset as resetSuggestions
 } from "../ducks/suggestions";
 import { setControlledTermsForTaxon } from "../../show/ducks/controlled_terms";
 import { fetchQualityMetrics, setQualityMetrics } from "../../show/ducks/quality_metrics";
@@ -168,6 +169,7 @@ function fetchCurrentObservation( observation = null ) {
         return o;
       } )
       .then( finalObservation => {
+        dispatch( resetSuggestions( ) );
         dispatch( fetchDataForTab( { observation: finalObservation } ) );
       } );
   };

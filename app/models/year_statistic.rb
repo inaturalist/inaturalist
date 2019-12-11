@@ -862,7 +862,7 @@ class YearStatistic < ActiveRecord::Base
         previous_user_ids = user_ids
       end
     end
-    max_stop_date = Date.parse( streaks.map{|s| s[:stop]}.max ) - 3.days
+    max_stop_date = Date.parse( streaks.map{|s| s[:stop]}.max ) - 2.days
     top_streaks = streaks.select do |s|
       Date.parse( s[:stop] ) >= max_stop_date ||
         Date.parse( s[:start]) >= Date.parse( "#{year}-01-01" )
