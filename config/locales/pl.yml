@@ -1506,6 +1506,7 @@ pl:
   if_your_project_is: Jeśli twój projekt dotyczy konkretnego miejsca, ustaw współrzędne poprzez kliknięcie mapy lub ręczne wprowadzenie.
   ignore: ignoruj
   ignore_and_continue: Ignoruj i kontynuuj
+  ignore_times: Ignoruj czasy
   image_must_be_exactly: obraz musi mieć dokładnie 950px szerokości i najwyżej 400px wysokości
   imperiled: Zagrożony
   import: Importuj
@@ -1716,6 +1717,7 @@ pl:
   lists_by_login:
     title:
       current_user: Twoje listy
+      login: Listy wg %{login}
   load: Wczytaj
   loading: "Wczytywanie..."
   loading_flickr_photos: "Wczytywanie zdjęć z Flickra..."
@@ -1767,6 +1769,7 @@ pl:
     sk: Słowacki
     sq: Albański
     sv: Szwedzki
+    tr: Turecki
     zh-CN: Chiński (uproszczony)
     zh-TW: Chiński (tradycyjny)
   location: Lokalizacja
@@ -1979,10 +1982,12 @@ pl:
   new_trip: Nowa wycieczka
   new_updates_in_the_last_24_hours_from: "Najnowsze aktualizacje z %{site_name} (ostatnie 24 godziny)"
   new_users: Nowi użytkownicy
+  new_users_in_year: "Nowi użytkownicy w %{year}"
   new_users_w_7_obs: Nowi użytkownicy z 7 Obserwacjami
   newly_added: Nowo dodane
   newly_added_species: Nowo dodane gatunki
   newly_observed_species: Nowo zaobserwowane gatunki
+  newly_observed_species_in_year: "Nowo dodane gatunki w %{year}"
   newly_observed_species_this_year: Nowo dodane gatunki w tym roku
   news: Aktualności
   next: Następne
@@ -1991,6 +1996,7 @@ pl:
   next_photo: Następne zdjęcie
   next_tab: Następna zakładka
   'no': 'Nie'
+  no_assessments_have_been_added_to_this_project_yet: Do tego projektu nie dodano jeszcze żadnych ocen.
   no_but_it_is_a_member_of_taxon: "Nie, ale należy do taksonu %{taxon}"
   no_comments_yet: Brak komentarzy.
   no_countries_added_yet: Nie dodano krajów
@@ -2001,6 +2007,9 @@ pl:
   no_flags: Tym razem brak zgłoszeń
   no_flickr_photos_tagged: Brak otagowanych zdjęć z Flickra
   no_identifications: Brak oznaczeń
+  no_identifications_added:
+    current_user: Nie dodałeś żadnych oznaczeń do obserwacji innych użytkowników.
+    user: "%{user} nie dodał żadnych oznaczeń do obserwacji innych użytkowników."
   no_ids_have_been_suggested_yet: Nie zaproponowano jeszcze oznaczenia
   no_favorites_added:
     current_user: Nie dodałeś jeszcze niczego do ulubionych.
@@ -2055,6 +2064,7 @@ pl:
   no_summary_has_been_set: Nie ustawiono podsumowania.
   no_taxa: Brak taksonów
   no_taxa_selected: Nie wybrano taksonów!
+  no_taxonomic_changes_match_those_criteria: Żadne zmiany taksonomiczne nie spełniają tych kryteriów
   no_wikipedia_page_for_taxon: Brak strony na Wikipedii dla tego taksonu.
   no_x_this_y: "Brak %{x} w %{y}"
   noble_curators: "Wybitni kuratorzy %{site}"
@@ -3288,18 +3298,27 @@ pl:
           Domyślna lokalizacja dla wyszukiwania obserwacji.
         scientific_name_first_desc: |
           Pokazuj nazwy naukowe przez nazwami zwyczajowymi.
+        thanks_for_supporting_us!: Dziękujemy za wsparcie!
       recent:
         about_recent_users: O
+      show:
+        this_user_was_banned: Ten użytkownik został zawieszony
     user_parents:
       new:
+        parent_name_private: Imię rodzica lub opiekuna prawnego (prywatne)
         parent_email: Adres e-mail rodzica lub opiekuna prawnego (prywatny)
+        parent_information_private: Informacje o rodzicach (prywatne)
         step1_title: UTWÓRZ KONTO DLA SWOJEGO DZIECKA
+        step2_title: POTWIERDŹ SWOJĄ TOŻSAMOŚĆ KORZYSTAJĄC Z KARTY KREDYTOWEJ
+        step3_title: CZEKAJ NA E-MAIL POTWIERDZAJĄCY
         step3_donor_title: KONTO TWOJEGO DZIECKA ZOSTAŁO AKTYWOWANE
     welcome:
       index:
+        connect_with_nature: Połącz się z naturą
         how_it_works: Jak to działa
         share_with_fellow_naturalists: Podziel się ze znajomymi
         build_your_knowledge: Zdobywaj doświadczenie i wiedzę poprzez dyskusje z przyrodnikami oraz pomoc innym użytkownikom.
+        works_on_all_your_devices: Działa na wszystkich Twoich urządzeniach
         what_are_you_waiting_for: Nie czekaj!
         join_today: Dołącz już dziś
   date:
@@ -3466,6 +3485,31 @@ pl:
       submit: Zapisz %{model}
       update: Aktualizuj %{model}
   number:
+    currency:
+      format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
+        delimiter: ' '
+        format: '%n %u'
+        precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
+        separator: ','
+        significant: false
+        strip_insignificant_zeros: false
+        unit: zł
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: ' '
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         format: '%n %u'
@@ -3521,6 +3565,7 @@ pl:
         description: Opis
         url: Adres URL
         geoprivacy: Geoprywatność
+        iucn: Odpowiednik IUCN
       flag:
         reason: Powód
         flag: Zgłoś
@@ -3545,6 +3590,7 @@ pl:
         map_type: Typ mapy
         zoom_level: Poziom powiększenia
         preferred_membership_model: Preferowany model członkowstwa
+        tracking_codes: Kody śledzenia
         source_url: Źródłowy adres URL
         start_time: Czas rozpoczęcia
       place:
@@ -3699,6 +3745,7 @@ pl:
         #Access token errors
         invalid_client: 'Uwierzytelnianie klienta nie powiodło się z powodu nieznanego klienta, nieuwzględnienia uwierzytelniania klienta lub nieobsługiwanej metody uwierzytelniania.'
         invalid_grant: 'Udzielona autoryzacja jest nieprawidłowa, wygasła, unieważniona, nie odpowiada identyfikatorowi URI przekierowania użytemu w żądaniu autoryzacji lub została wydana innemu klientowi.'
+        unsupported_grant_type: 'Typ udzielania autoryzacji nie jest obsługiwany przez serwer autoryzacji.'
         #Password Access token errors
         invalid_resource_owner: 'Podane poświadczenia właściciela zasobu są nieprawidłowe lub właściciel zasobu nie może zostać znaleziony'
     flash:
@@ -3721,6 +3768,63 @@ pl:
       "@vow_or_con":
         vow: samogłoska
         con: spółgłoska
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+      "@gender":
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@f"
+        #Default gender for nouns that aren't listed here
+        default: "@m"
+  wild: Organizmy dzikie
+  will_paginate:
+    previous_label: "&#8592; Poprzednia"
+    next_label: "Następna &#8594;"
+    page_gap: "&hellip;"
   zoom_in: Powiększ
   zoom_out: Pomniejsz
   zoom_photo: Powiększ zdjęcie
