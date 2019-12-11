@@ -24,7 +24,7 @@ const ObservationsGridItem = ( {
       <a
         href={`/observations/${o.id}`}
         style={{
-          backgroundImage: o.photo( ) ? `url( '${o.photo( "medium" )}' )` : ""
+          backgroundImage: o.photo( ) ? `url( '${o.photo( "small" )}' )` : ""
         }}
         target={linkTarget}
         className={`photo ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}

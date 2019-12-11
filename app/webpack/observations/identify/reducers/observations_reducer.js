@@ -3,12 +3,14 @@ import {
   RECEIVE_OBSERVATIONS,
   UPDATE_OBSERVATION_IN_COLLECTION,
   UPDATE_ALL_LOCAL,
-  SET_REVIEWING
+  SET_REVIEWING,
+  SET_PLACES_BY_ID
 } from "../actions";
 
 const observationsReducer = ( state = {
   results: [],
-  reviewing: false
+  reviewing: false,
+  placesByID: {}
 }, action ) => {
   if ( action.type === RECEIVE_OBSERVATIONS ) {
     return Object.assign( {}, state, {
@@ -48,6 +50,12 @@ const observationsReducer = ( state = {
   if ( action.type === SET_REVIEWING ) {
     const newState = Object.assign( {}, state, {
       reviewing: action.reviewing
+    } );
+    return newState;
+  }
+  if ( action.type === SET_PLACES_BY_ID ) {
+    const newState = Object.assign( {}, state, {
+      placesByID: Object.assign( state.placesByID, action.placesByID )
     } );
     return newState;
   }
