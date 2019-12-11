@@ -1164,7 +1164,7 @@ ru:
   download: Загрузить
   download_bulk_import_template_html: |
     <a href="%{url}">Скачать шаблон</a> для использования в
-    <a href="/observations/import#csv_import">групповой загрузке</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">групповой загрузке</a>
   download_csv: Скачать как CSV
   download_csv_template: Загрузить шаблон в формате CSV
   download_kml: Загрузить в формате KML

@@ -1078,7 +1078,7 @@ da:
   download: Download
   download_bulk_import_template_html: |
     <a href="%{url}">Download skabelon</a> til brug i
-    <a href="/observations/import#csv_import">multiuploader</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">multiuploader</a>
   download_csv: Download CSV
   download_csv_template: Download CSV skabelon
   download_kml: Download KML

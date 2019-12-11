@@ -929,7 +929,7 @@ pt:
   download: Transferir
   download_bulk_import_template_html: |
     <a href="%{url}">Descarregar modelo</a> para utilizar no
-    <a href="/observations/import#csv_import">carregador múltiplo</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">carregador múltiplo</a>
   download_csv: Descarregar CSV
   download_csv_template: Transferir modelo CSV
   download_kml: Descarregar KML

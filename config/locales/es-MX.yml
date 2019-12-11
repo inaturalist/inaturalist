@@ -925,7 +925,7 @@ es-MX:
   download: Descargar
   download_bulk_import_template_html: |
     <a href="%{url}">Descarga la plantilla</a> para usarla en
-    <a href="/observations/import#csv_import">la importaci&oacute;n de observaciones</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">la importaci&oacute;n de observaciones</a>
   download_csv: Descarga CSV
   download_csv_template: Descarga plantilla CSV
   download_kml: Descarga KML

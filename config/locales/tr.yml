@@ -1083,7 +1083,7 @@ tr:
   double_click_to_finish: (bitirmek için çift tıkla)
   download: İndir
   download_bulk_import_template_html: |
-    <a href="/observations/import#csv_import">Toplu yüklemede</a> kullanmak için <a href="%{url}">şablonu indirin</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">Toplu yüklemede</a> kullanmak için <a href="%{url}">şablonu indirin</a>
   download_csv: CSV'yi İndir
   download_csv_template: CSV şablonunu indir
   download_kml: KML'yi İndir
