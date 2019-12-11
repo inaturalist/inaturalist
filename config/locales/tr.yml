@@ -5472,6 +5472,8 @@ tr:
           gözlemlerinin yüzdesi olarak gösterir, yani geçen yıl Laos'ta 10 gözlem, ancak bu yıl 20 olsaydı, 
           burada %100 büyüme olurdu ve bu geçen yıl 0 ve bu yıl 1 olsaydı, burada % sonsuz büyüme olurdu.
         growth_by_country_title: Ülkelere Göre Büyüme
+        growth_desc: |
+          "Kullanıcılar" çizelgesi yalnızca şu anda %{site_name} ile bağlı kullanıcıların iNaturalist’e katıldığı tarihleri gösterirken, "Gözlemler" ve "Sınıflar" çizelgeleri %{site_name} ile bağlantısız kişilerin katkıda bulunduğu %{site_name}'te görülebilir.
         growth_in_year_obs: "%{year} içinde büyüme (gözl)"
         growth_title: Büyüme
         new_species_desc: |
@@ -5499,11 +5501,6 @@ tr:
           <a href="%{url}">%{numStudies} çalışmanın tamamını görüntüleyin</a>
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Gözlem Serileri
-        observation_streaks_desc: |
-          Bir gözlem serisi, birinin dışarı çıktığı ve her gün yeni gözlemler 
-          kaydettiği bir zaman dilimidir. Burada, bu yıl başlayan veya bu 
-          istatistikler oluşturulduğunda devam eden en uzun serileri 
-          gösteriyoruz.
         sunburst_desc_html: |
           Hiyerarşik bir "güneş" diyagramı olarak düzenlenen gözlemlenen sınıflar. Hiyerarşinin tabanı merkezdedir, "Yaşam" ile başlayıp dış kenarlardaki türlerle bitiyor. Her yayın boyutu, bu sınıfın gözlem sayısı ile orantılıdır ve renkler aşağı yukarı her zamanki "ikonik" sınıf renklerimizle aynıdır (bitkiler için yeşil, böcekler için turuncu, diğer birçok hayvan için mavi vb.), böylece çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğiniz anlamına gelir. <strong>Merkezdeki sınıfı ve onun çevresindeki alt sınıfları yerleştirmek için yaya tıklayın</strong> ya da <strong>hiyerarşiyi yukarı taşımak için merkeze tıklayın</strong>.
     taxa:
