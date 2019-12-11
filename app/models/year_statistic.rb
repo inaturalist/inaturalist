@@ -816,7 +816,7 @@ class YearStatistic < ActiveRecord::Base
           histogram: {
             date_histogram: {
               field: "observed_on",
-              interval: "day",
+              calendar_interval: "day",
               format: "yyyy-MM-dd"
             },
             aggs: {
@@ -837,11 +837,15 @@ class YearStatistic < ActiveRecord::Base
           current_streaks[streaking_user_id] ||= 0
           current_streaks[streaking_user_id] += 1
         end
-        finished_user_ids = if bucket_i == ( histogram_buckets.size - 1 ) && range_i == ( ranges.size - 1 )
+        stop_date = nil
+        finished_user_ids = []
+        if bucket_i == ( histogram_buckets.size - 1 ) && range_i == ( ranges.size - 1 )
           # If this is the last day, then everyone is finished
-          ( user_ids + current_streaks.keys ).uniq
+          finished_user_ids = ( user_ids + current_streaks.keys ).uniq
+          stop_date = Date.parse( date )
         else
-          previous_user_ids - user_ids
+          finished_user_ids = previous_user_ids - user_ids
+          stop_date = ( Date.parse( date ) - 1.day )
         end
         puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished"
         finished_user_ids.each do |finished_user_id|
@@ -849,8 +853,8 @@ class YearStatistic < ActiveRecord::Base
             streaks << {
               user_id: finished_user_id,
               days: current_streaks[finished_user_id],
-              stop: ( Date.parse( date ) - 1.day ).to_s,
-              start: ( Date.parse( date ) - ( current_streaks[finished_user_id] ).days ).to_s
+              stop: stop_date.to_s,
+              start: ( stop_date + 1.day - ( current_streaks[finished_user_id] ).days ).to_s
             }
           end
           current_streaks[finished_user_id] = nil
@@ -858,9 +862,9 @@ class YearStatistic < ActiveRecord::Base
         previous_user_ids = user_ids
       end
     end
-    max_stop_date = ( Date.parse( streaks.map{|s| s[:stop]}.max ) - 2.days ).to_s
+    max_stop_date = Date.parse( streaks.map{|s| s[:stop]}.max ) - 3.days
     top_streaks = streaks.select do |s|
-      s[:stop] == max_stop_date ||
+      Date.parse( s[:stop] ) >= max_stop_date ||
         Date.parse( s[:start]) >= Date.parse( "#{year}-01-01" )
     end
     top_streaks = top_streaks.sort_by{|s| s[:days] * -1}[0..100]
