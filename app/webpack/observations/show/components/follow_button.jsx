@@ -3,22 +3,31 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Dropdown } from "react-bootstrap";
 
-class FollowButton extends React.Component {
-
-  followStatus( subscription ) {
+const FollowButton = ( {
+  btnClassName,
+  config,
+  fetchSubscriptions,
+  followUser,
+  observation,
+  subscribe,
+  subscriptions,
+  subscriptionsLoaded,
+  unfollowUser
+} ) => {
+  const followStatus = subscription => {
     if ( subscription ) {
-      return subscription.api_status ?
-        ( <div className="loading_spinner" /> ) : (
+      return subscription.api_status
+        ? <div className="loading_spinner" />
+        : (
           <span className="unfollow">
-            ({ I18n.t( "unfollow" ) })
-          </span> );
+            { `"${I18n.t( "unfollow" )}"` }
+          </span>
+        );
     }
     return null;
-  }
-
-  render( ) {
-    const { observation, followUser, unfollowUser,
-      subscribe, subscriptions, config, btnClassName } = this.props;
+  };
+  let dropdownMenu;
+  if ( subscriptionsLoaded ) {
     const loggedIn = config && config.currentUser;
     if ( _.isEmpty( observation ) || !loggedIn ) { return ( <div /> ); }
     let followingUser;
@@ -35,51 +44,65 @@ class FollowButton extends React.Component {
       followUserAction = followingUser ? unfollowUser : followUser;
       followObservationAction = subscribe;
     }
-    return (
-      <div className="FollowButton">
-        <span className="control-group">
-          <Dropdown
-            id="grouping-control"
+    dropdownMenu = (
+      <Dropdown.Menu className="dropdown-menu-right">
+        <li className={followUserPending ? "disabled" : ""}>
+          <a
+            href="#"
+            onClick={e => {
+              e.preventDefault( );
+              followUserAction( );
+              return false;
+            }}
           >
-            <Dropdown.Toggle className={ btnClassName }>
-              { I18n.t( "follow" ) }
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdown-menu-right">
-              <li className={ followUserPending ? "disabled" : "" }>
-                <a
-                  href="#"
-                  onClick={ e => {
-                    e.preventDefault( );
-                    followUserAction( );
-                    return false;
-                  } }
-                >
-                  { observation.user.login }
-                  { this.followStatus( followingUser ) }
-                </a>
-              </li>
-              <li
-                className={ followObservationPending ? "disabled" : "" }
-              >
-                <a
-                  href="#"
-                  onClick={ e => {
-                    e.preventDefault( );
-                    followObservationAction( );
-                    return false;
-                  } }
-                >
-                  { I18n.t( "this_observation" ) }
-                  { this.followStatus( followingObservation ) }
-                </a>
-              </li>
-            </Dropdown.Menu>
-          </Dropdown>
-        </span>
-      </div>
+            { observation.user.login }
+            { followStatus( followingUser ) }
+          </a>
+        </li>
+        <li
+          className={followObservationPending ? "disabled" : ""}
+        >
+          <a
+            href="#"
+            onClick={e => {
+              e.preventDefault( );
+              followObservationAction( );
+              return false;
+            }}
+          >
+            { I18n.t( "this_observation" ) }
+            { followStatus( followingObservation ) }
+          </a>
+        </li>
+      </Dropdown.Menu>
+    );
+  } else {
+    dropdownMenu = (
+      <Dropdown.Menu className="dropdown-menu-right">
+        <li className="disabled" />
+      </Dropdown.Menu>
     );
   }
-}
+  return (
+    <div className="FollowButton">
+      <span className="control-group">
+        <Dropdown
+          id="grouping-control"
+          onToggle={show => {
+            if ( show && !subscriptionsLoaded ) {
+              fetchSubscriptions( { observation } );
+            }
+          }}
+        >
+          <Dropdown.Toggle className={btnClassName}>
+            { I18n.t( "follow" ) }
+          </Dropdown.Toggle>
+          { dropdownMenu }
+        </Dropdown>
+      </span>
+    </div>
+  );
+};
 
 FollowButton.propTypes = {
   config: PropTypes.object,
@@ -88,7 +111,9 @@ FollowButton.propTypes = {
   followUser: PropTypes.func,
   unfollowUser: PropTypes.func,
   subscribe: PropTypes.func,
-  btnClassName: PropTypes.string
+  btnClassName: PropTypes.string,
+  subscriptionsLoaded: PropTypes.bool,
+  fetchSubscriptions: PropTypes.func
 };
 
 FollowButton.defaultProps = {

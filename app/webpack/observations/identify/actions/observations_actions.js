@@ -1,3 +1,4 @@
+import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { fetchIdentifiers } from "./identifiers_actions";
@@ -9,9 +10,34 @@ const RECEIVE_OBSERVATIONS = "receive_observations";
 const UPDATE_OBSERVATION_IN_COLLECTION = "update_observation_in_collection";
 const UPDATE_ALL_LOCAL = "update_all_local";
 const SET_REVIEWING = "identify/observations/set-reviewing";
+const SET_PLACES_BY_ID = "identify/observations/set-places-by-id";
 
 function receiveObservations( results ) {
   return Object.assign( { type: RECEIVE_OBSERVATIONS }, results );
+}
+
+function setPlacesByID( placesByID ) {
+  return { type: SET_PLACES_BY_ID, placesByID };
+}
+
+function fetchObservationPlaces( ) {
+  return function ( dispatch, getState ) {
+    const observations = getState( ).observations.results;
+    let placeIDs = _.compact( _.flattenDeep( observations.map(
+      o => [o.place_ids, o.private_place_ids]
+    ) ) );
+    const existingPlaceIDs = _.keys( getState( ).observations.placesByID )
+      .map( pid => parseInt( pid, 0 ) );
+    placeIDs = _.take(
+      _.uniq( _.without( placeIDs, ...existingPlaceIDs ) ),
+      100
+    );
+    return iNaturalistJS.places.fetch(
+      placeIDs, { per_page: 100, no_geom: true }
+    ).then( response => {
+      dispatch( setPlacesByID( _.keyBy( response.results, "id" ) ) );
+    } );
+  };
 }
 
 function fetchObservations( ) {
@@ -53,6 +79,7 @@ function fetchObservations( ) {
         } ) );
         dispatch( fetchObservationsStats( ) );
         dispatch( fetchIdentifiers( ) );
+        dispatch( fetchObservationPlaces( ) );
       } ).catch( e => {
         e.response.json( ).then( json => {
           if ( json.error.match( /window is too large/ ) ) {
@@ -146,6 +173,7 @@ export {
   UPDATE_OBSERVATION_IN_COLLECTION,
   UPDATE_ALL_LOCAL,
   SET_REVIEWING,
+  SET_PLACES_BY_ID,
   receiveObservations,
   fetchObservations,
   updateObservationInCollection,
