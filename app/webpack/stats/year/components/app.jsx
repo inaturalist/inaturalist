@@ -1,3 +1,5 @@
+/* global DEFAULT_SITE_ID */
+
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
@@ -72,6 +74,7 @@ const App = ( {
           <Growth
             data={Object.assign( {}, data.growth, { taxa: data.taxa.accumulation } )}
             year={year}
+            site={site && site.id !== DEFAULT_SITE_ID ? site : null}
           />
         ) }
         { user && currentUser && user.id === currentUser.id ? (

@@ -10,7 +10,8 @@ import CountryGrowth from "./country_growth";
 
 const Growth = ( {
   data,
-  year
+  year,
+  site
 } ) => {
   const label = d => I18n.t( "bold_label_colon_value_html", {
     label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
@@ -169,15 +170,40 @@ const Growth = ( {
       label
     }
   };
+  const obsTotalDates = obsSeries.total.data.map( d => d.date );
+  const xExtent = [obsTotalDates[0], obsTotalDates[obsTotalDates.length - 1]];
   return (
     <div className="Growth">
       <h3>
         <a name="growth" href="#growth">
           <span>{ I18n.t( "views.stats.year.growth_title" ) }</span>
-        </a></h3>
-      <DateHistogram series={obsSeries} legendPosition="nw" margin={{ left: 60 }} />
-      { taxaSeries && <DateHistogram series={taxaSeries} legendPosition="nw" margin={{ left: 60 }} /> }
-      <DateHistogram series={usersSeries} legendPosition="nw" margin={{ left: 60 }} />
+        </a>
+      </h3>
+      { site && (
+        <p className="text-muted">
+          { I18n.t( "views.stats.year.growth_desc", { site_name: site.name } ) }
+        </p>
+      ) }
+      <DateHistogram
+        series={obsSeries}
+        legendPosition="nw"
+        margin={{ left: 60 }}
+        xExtent={xExtent}
+      />
+      { taxaSeries && (
+        <DateHistogram
+          series={taxaSeries}
+          legendPosition="nw"
+          margin={{ left: 60 }}
+          xExtent={xExtent}
+        />
+      ) }
+      <DateHistogram
+        series={usersSeries}
+        legendPosition="nw"
+        margin={{ left: 60 }}
+        xExtent={xExtent}
+      />
       { data.countries && <CountryGrowth data={data.countries} year={year} /> }
     </div>
   );
@@ -185,7 +211,8 @@ const Growth = ( {
 
 Growth.propTypes = {
   data: PropTypes.object,
-  year: PropTypes.number
+  year: PropTypes.number,
+  site: PropTypes.object
 };
 
 export default Growth;

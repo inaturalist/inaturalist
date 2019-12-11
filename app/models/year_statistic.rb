@@ -849,7 +849,7 @@ class YearStatistic < ActiveRecord::Base
             streaks << {
               user_id: finished_user_id,
               days: current_streaks[finished_user_id],
-              stop: date,
+              stop: ( Date.parse( date ) - 1.day ).to_s,
               start: ( Date.parse( date ) - ( current_streaks[finished_user_id] ).days ).to_s
             }
           end

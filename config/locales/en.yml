@@ -6007,6 +6007,11 @@ en:
           20 this year, that would be 100% growth, and if there were 0 last year
           and 1 this year, that's infinity % growth.
         growth_by_country_title: Growth By Country
+        growth_desc: |
+          The "Observations" and "Taxa" charts may include data visible on
+          %{site_name} contributed by people who are not affiliated with
+          %{site_name}, while the "Users" chart only shows the dates when users
+          currently affiliated with %{site_name} joined iNaturalist.
         growth_in_year_obs: "Growth in %{year} (obs)"
         growth_title: Growth
         new_species_desc: |
