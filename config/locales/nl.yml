@@ -5351,6 +5351,8 @@ nl:
           Waar vindt er groei plaats? 
           Deze kaart en grafiek proberen de groei op te spiltsen per land, wat niet eenvoudig is omdat groei per land erg scheef verdeeld kan zijn. We laten hier standaard de V.S. weg en gebruiken een logaritmische schaal om de verschillen tussen de overige landen uit te lichten. Als een land zwart gekleurd is betekent dat dat het niet significant heeft bijgedragen aan een percentage, of dat het geen groei had dat jaar, of dat het dat jaar niet meer waarnemingen had dan het voorgaande jaar (beweeg de muis over een land om wat ​​meer details te zien.) <strong>"% van de totale groei"</strong> betekent hoeveel van de wereldwijde groei afkomstig was van een bepaald land. Als er bijv. 20 waarnemingen waren in 2018 en 10 in 2017 was dat een groei van 10 waarnemingen, en als 5 van die waarnemingen afkomstig waren uit Benin dan droeg Benin 50% bij aan de totale groei. <strong>'% groei'</strong> is het aantal waarnemingen in dat land dat jaar, uitgedrukt als percentage van het aantal waarnemingen in dat land in het voorgaande jaar. Dus als er vorig jaar in Laos 10 waarnemingen waren en dit jaar 20 dan is dat 100% groei, en als er vorig jaar 0 waren en dit jaar 1 is de groei in procenten oneindig.
         growth_by_country_title: Groei per land
+        growth_desc: |
+          De grafieken "Waarnemingen" en "Taxa" kunnen data bevatten die zichtbaar is op %{site_name} die afkomstig is van mensen zonder banden met %{site_name}, terwijl de grafiek "Gebruikers" alleen de data laten zien wanneer gebruikers die nu verbonden zijn aan %{site_name} zich voor iNaturalist hebben aangemeld.
         growth_in_year_obs: "Groei in %{year} (wrn)"
         growth_title: Groei
         new_species_desc: |
@@ -5374,8 +5376,6 @@ nl:
           <a href="%{url}">Toon alle %{numStudies} studies</a>
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Waarnemingsreeksen
-        observation_streaks_desc: |
-          Een waarnemingsreeks is een periode waarin er op elke aaneengesloten dag nieuwe waarnemingen worden geregistreerd. Hier tonen we de langste reeksen die dit jaar zijn begonnen of bezig waren toen deze statistieken werden gegenereerd.
         sunburst_desc_html: |
           Waargenomen taxa gerangschikt als een hiërarchisch "sunburst"-diagram. De basis
           van de hiërarchie staat centraal, beginnend met "Leven" en eindigend
