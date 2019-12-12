@@ -279,7 +279,7 @@
         <li>
           <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %>
           <div class="inner">
-            <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project) %>
+            <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project), :project_id => @project.id %>
           </div>
         </li>
       <% end -%>

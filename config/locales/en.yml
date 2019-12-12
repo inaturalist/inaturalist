@@ -1149,7 +1149,7 @@ en:
   download: Download
   download_bulk_import_template_html: |
     <a href="%{url}">Download template</a> for use in the
-    <a href="/observations/import#csv_import">bulk uploader</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">bulk uploader</a>
   download_csv: Download CSV
   download_csv_template: Download CSV template
   download_kml: Download KML
