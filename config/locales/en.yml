@@ -6514,9 +6514,9 @@ en:
           resolution, and to track you across different websites and services;
           note that we have enabled
           <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a>
-          in Google Analytics and <a
-          href="https://firebase.google.com/support/privacy">Firebase
-          Crashlytics</a> does not record IP address to our knowledge)
+          in Google Analytics; Firebase Crashlytics
+          <a href="<a href="https://firebase.google.com/support/privacy">
+          may store IP addresses</a> temporarily)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Browser details, like make, model, and version
         prefers_no_tracking_label_desc_info_we_share_crash_details: |

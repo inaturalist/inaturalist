@@ -169,44 +169,42 @@
           [t(:only_you), User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER]
         ], :description => t(:observation_fields_by_preferences_description) %>
 
-      <%= feature_test "no-tracking" do %>
-        <h3><%=t :privacy %></h3>
-        <%- no_tracking_desc = capture do %>
-          <%= link_to_dialog "<i class='fa fa-info-circle'></i> #{t( "views.users.edit.about_third_party_tracking" )}".html_safe, title: t( "views.users.edit.about_third_party_tracking" ), width: "80%" do %>
-            <p><%=t "views.users.edit.prefers_no_tracking_label_desc_we_use" %></p>
-            <ul>
-              <li class="readable">
-                <%=t "views.users.edit.prefers_no_tracking_label_desc_we_use_google_html" %>
-              </li>
-              <li class="readable">
-                <a href="https://newrelic.com">New Relic</a>
-              </li>
-            </ul>
-            <p><%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share" %></p>
-            <ul>
-              <li class="readable">
-                <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_ip_addresses_html" %>
-              </li>
-              <li class="readable">
-                <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_browser_details" %>
-              </li>
-              <li class="readable">
-                <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_crash_details" %>
-              </li>
-              <li class="readable">
-                <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_device_details" %>
-              </li>
-            </ul>
-            <p><%=t "views.users.edit.prefers_no_tracking_label_desc_value_html" %></p>
-            <p><%=t "views.users.edit.prefers_no_tracking_label_desc_limits" %></p>
-          <% end %>
+      <h3><%=t :privacy %></h3>
+      <%- no_tracking_desc = capture do %>
+        <%= link_to_dialog "<i class='fa fa-info-circle'></i> #{t( "views.users.edit.about_third_party_tracking" )}".html_safe, title: t( "views.users.edit.about_third_party_tracking" ), width: "80%" do %>
+          <p><%=t "views.users.edit.prefers_no_tracking_label_desc_we_use" %></p>
+          <ul>
+            <li class="readable">
+              <%=t "views.users.edit.prefers_no_tracking_label_desc_we_use_google_html" %>
+            </li>
+            <li class="readable">
+              <a href="https://newrelic.com">New Relic</a>
+            </li>
+          </ul>
+          <p><%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share" %></p>
+          <ul>
+            <li class="readable">
+              <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_ip_addresses_html" %>
+            </li>
+            <li class="readable">
+              <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_browser_details" %>
+            </li>
+            <li class="readable">
+              <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_crash_details" %>
+            </li>
+            <li class="readable">
+              <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_device_details" %>
+            </li>
+          </ul>
+          <p><%=t "views.users.edit.prefers_no_tracking_label_desc_value_html" %></p>
+          <p><%=t "views.users.edit.prefers_no_tracking_label_desc_limits" %></p>
         <% end %>
-        <%= f.check_box "prefers_no_tracking",
-          label: t( "views.users.edit.prefers_no_tracking_label" ),
-          label_after: true,
-          description: no_tracking_desc
-        %>
       <% end %>
+      <%= f.check_box "prefers_no_tracking",
+        label: t( "views.users.edit.prefers_no_tracking_label" ),
+        label_after: true,
+        description: no_tracking_desc
+      %>
       <% if current_user.prefers_coordinate_interpolation_protection_test? %>
         <%= f.check_box "prefers_coordinate_interpolation_protection", 
           label: t( "views.users.edit.same_day_geoprivacy_protection" ),
