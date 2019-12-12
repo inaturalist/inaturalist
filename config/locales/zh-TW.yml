@@ -1010,7 +1010,7 @@ zh-TW:
   download: 下載
   download_bulk_import_template_html: |
     <a href="%{url}">下載模板</a>來用於
-    <a href="/observations/import?project_id=%{project_id}#csv_import">大量上傳</a>
+    <a href="/observations/import#csv_import">大量上傳</a>
   download_csv: 下載 CSV
   download_csv_template: 下載 CSV 模板
   download_kml: 下載 KML

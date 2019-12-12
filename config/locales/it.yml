@@ -1072,7 +1072,7 @@ it:
   double_click_to_finish: (doppio clic per terminare)
   download: Scarica
   download_bulk_import_template_html: |
-    <a href="%{url}">Scarica il modello</a> da usare nell'<a href="/observations/import?project_id=%{project_id}#csv_import">importazione in blocco</a>
+    <a href="%{url}">Scarica il modello</a> da usare nell'<a href="/observations/import#csv_import">importazione in blocco</a>
   download_csv: Scarica in formato CSV
   download_csv_template: Scarica modello CSV
   download_kml: Scarica il file KML

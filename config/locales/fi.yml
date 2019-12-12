@@ -1087,7 +1087,7 @@ fi:
   download: Lataa
   download_bulk_import_template_html: |
     <a href="%{url}">Lataa tallennuspohja,</a> jonka avulla voit käyttää toimintoa
-    <a href="/observations/import?project_id=%{project_id}#csv_import">massalataus</a>
+    <a href="/observations/import#csv_import">massalataus</a>
   download_csv: Lataa CSV
   download_csv_template: Lataa CSV-malli
   download_kml: Lataa KML

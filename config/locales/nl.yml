@@ -1087,7 +1087,7 @@ nl:
   download: Downloaden
   download_bulk_import_template_html: |
     <a href="%{url}">Sjabloon downloaden</a> om in de 
-    <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-uploader</a> te gebruiken
+    <a href="/observations/import#csv_import">bulk-uploader</a> te gebruiken
   download_csv: CSV downloaden
   download_csv_template: CSV-sjabloon downloaden
   download_kml: KML downloaden
