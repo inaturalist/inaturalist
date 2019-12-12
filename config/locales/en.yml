@@ -88,6 +88,12 @@ en:
   x_new_species:
     one: "%{count} New Species"
     other: "%{count} New Species"
+  x_new_users:
+    zero: "%{count} New Users"
+    one: '%{count} New User'
+    few: '%{count} New Users'
+    many: '%{count} New Users'
+    other: '%{count} New Users'
   x_species:
     zero: "%{count} Species"
     one: '%{count} Species'
@@ -6909,6 +6915,13 @@ en:
       separator: .
       significant: false
       strip_insignificant_zeros: false
+      si:
+        # 10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        # 10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        # 10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'

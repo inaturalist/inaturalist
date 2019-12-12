@@ -766,7 +766,9 @@ I18n.translations["ar"] = {
   "number": {
     "format": {
       "delimiter": "،",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "تم اختيار #",
@@ -2407,7 +2409,9 @@ I18n.translations["bg"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "obscured": "Замаскирано",
@@ -3445,6 +3449,8 @@ I18n.translations["br"] = {
   "none": "Hini ebet",
   "number": {
     "format": {
+      "si": {
+      }
     }
   },
   "number_selected": "niv. dibabet",
@@ -4483,7 +4489,9 @@ I18n.translations["ca"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# seleccionat",
@@ -6255,7 +6263,9 @@ I18n.translations["cs"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# vybráno",
@@ -8121,7 +8131,9 @@ I18n.translations["da"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "# valgte",
@@ -9120,7 +9132,6 @@ I18n.translations["da"] = {
         "new_species_desc_html": "Arter, der blev tilføjet for første gang på %{site_name} i år.\nKlik på en måned for at se nogle af de nye arter, der er tilføjet i den pågældende måned.\nDu kan også se den samlede arts akkumulation, eller flytte skyderen\ntilbage i tiden for at se andre nyligt observerede arter. Dette diagram viser\narter fra verificerbare observationer i den måned de blev uploadet\ntil %{site_name} (ikke den måned, de blev observeret). Det inkludere ikke højere eller lavere niveau taksa, så en observation identificeret som\nMammalia tæller ikke, og en observation af <i>Canis lupus</i> ssp.\n<i>arctos</i> vil bare tælle som <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs i %{year}",
         "observation_streaks": "Observationsstræk",
-        "observation_streaks_desc": "Et observationsstræk er en periode, hvori nogen har været ude at registrerer nye observationer hver eneste dag. Her vises de længste stræk, som startede i år eller stadig var undervejs, da disse statistikker blev udarbejdet.\n",
         "percent_growth_in_year": "% Vækst i %{year}",
         "percent_of_total_growth": "% af samlet vækst",
         "sunburst_desc_html": "Observeret taksa arrangeret som hierarkisk \"solstråle\" diagram. Basen\naf hierarkiet er i centrum, begyndende med \"liv\" og slutter\nmed arter ved yderkanterne. Størrelsen af hver \"bue\" er proportional\nmed antallet af observationer af den pågældende takson og farver\nsvarer groft til vores sædvanlige \"ikoniske\" taksonfarver (grøn til planter,\norange til insekter, blå for de fleste andre dyr osv.), så hvis du er\nser meget grønt, det betyder at du har observeret mange planter.\n<strong> Klik på en \"bue\" for at placere den pågældende takson i midten </strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </strong>.\n"
@@ -10152,7 +10163,9 @@ I18n.translations["de"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "# ausgewählt",
@@ -11913,7 +11926,9 @@ I18n.translations["el"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# επιλεγμένα",
@@ -13659,7 +13674,12 @@ I18n.translations["en"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
+      }
     }
   },
   "number_selected": "# selected",
@@ -14671,7 +14691,7 @@ I18n.translations["en"] = {
         "new_species_desc_html": "Species that were added for the first time this year.\nClick on a month to view some of the new species added in that month.\nYou can also view the total species accumulation, or move the slider\nback in time to see other newly-observed species. This chart shows\nspecies from verifiable observations by the month they were uploaded\nto %{site_name} (not the month they were observed). It does not\ninclude higher or lower level taxa, so an observation identified as\nMammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.\n<i>arctos</i> will just count as <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs in %{year}",
         "observation_streaks": "Observation Streaks",
-        "observation_streaks_color_desc": "Color represents number of days on a logarithmic scale:\n",
+        "observation_streaks_color_desc": "Color represents the number of days on a logarithmic scale:\n",
         "observation_streaks_desc": "An observation streak is a period of time when someone got outside and\nrecorded new, verifiable observations every single day. Here we're\nshowing the longest streaks that began this year or were in progress\nwhen these stats were generated.\n",
         "percent_growth_in_year": "% Growth in %{year}",
         "percent_of_total_growth": "% of Total Growth",
@@ -14800,6 +14820,13 @@ I18n.translations["en"] = {
   "x_new_species": {
     "one": "%{count} New Species",
     "other": "%{count} New Species"
+  },
+  "x_new_users": {
+    "zero": "%{count} New Users",
+    "one": "%{count} New User",
+    "few": "%{count} New Users",
+    "many": "%{count} New Users",
+    "other": "%{count} New Users"
   },
   "x_observations": {
     "zero": "%{count} observations",
@@ -14948,6 +14975,8 @@ I18n.translations["en-UK"] = {
   },
   "number": {
     "format": {
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -15112,7 +15141,9 @@ I18n.translations["en-US"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -15721,7 +15752,9 @@ I18n.translations["eo"] = {
   "number": {
     "format": {
       "delimiter": " ",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "observation_date": "Dato",
@@ -17310,7 +17343,9 @@ I18n.translations["es"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# seleccionado",
@@ -18291,6 +18326,8 @@ I18n.translations["es"] = {
         "include_usa": "Incluir Estados Unidos",
         "new_species_desc_html": "Especies que fueron añadidas por primera vez en este año.\nMarca sobre un mes para ver algunas de las especies nuevas añadidas en ese mes.\nTambién puedes ver el total acumulado de la especie, o mover el cursor \nhacia atrás en el cronograma para ver otras especies observadas por primera vez. Este gráfico muestra especies a partir de observaciones verificables el mes en que fueron añadidas a %{site_name} (no el mes en que fueron observadas). No incluye nivel más alto o más bajo de taxones, de manera que una observación identificada como Mammalia no cuenta, y una observación de <i>Canis lupus</i> ssp. <i>arctos</i> contará solo como <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs En %{year}",
+        "observation_streaks": "Racha de Observaciones",
+        "observation_streaks_desc": "Una racha de observaciones es un período de tiempo en el que una persona registra observaciones a diario. Aquí mostramos las rachas más largas que comenzaron este año o bien estaban en progreso cuando se generaron estas estadísticas.\n",
         "percent_growth_in_year": "% Crecimiento en %{year}",
         "percent_of_total_growth": "% del Crecimiento Total",
         "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de \"resplandor solar\". La base de la jerarquía está en el centro, comenzando con \"Vida\" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón \"icónico\" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>\n"
@@ -19407,7 +19444,9 @@ I18n.translations["es-AR"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# seleccionado",
@@ -20690,7 +20729,9 @@ I18n.translations["es-ES"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -21560,7 +21601,9 @@ I18n.translations["es-MX"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "# seleccionado",
@@ -23376,7 +23419,9 @@ I18n.translations["et"] = {
   "number": {
     "format": {
       "delimiter": " ",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# valitud",
@@ -24932,7 +24977,9 @@ I18n.translations["eu"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "obs": "Beh.",
@@ -26008,6 +26055,7 @@ I18n.translations["fi"] = {
   "keep_editing": "Jatka muokkaamista",
   "keyboard_shortcuts": "Pikanäppäimet",
   "kml_file_size_error": "KML:n on oltava kooltaan pienempi kuin 1 MT",
+  "label_colon": "%{label}:",
   "labels": "Merkinnät",
   "language_slash_type": "Kieli / Tyyppi",
   "last_observation": "Viimeisin havainto",
@@ -26197,6 +26245,7 @@ I18n.translations["fi"] = {
   "no_license_all_rights_reserved": "Ei lisenssiä (kaikki oikeudet pidätetään)",
   "no_matching_observations": "Ei vastaavia havaintoja.",
   "no_matching_users": "Ei vastaavia käyttäjiä.",
+  "no_misidentifications_yet": "Ei vielä vääriä tunnistuksia",
   "no_more_results_found": "Enenpää tuloksia ei löytynyt",
   "no_more_taxa_to_load": "Ei enempää taksoneita ladattavissa!",
   "no_news_yet": "Ei vielä uutisia",
@@ -26220,7 +26269,9 @@ I18n.translations["fi"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# valittu",
@@ -26341,6 +26392,7 @@ I18n.translations["fi"] = {
       "Historical_Town": "Historiallinen kaupunki",
       "historical_town": "historiallinen kaupunki",
       "Intersection": "Leikkauspiste",
+      "intersection": "leikkauspiste",
       "Island": "Saari",
       "island": "saari",
       "Land_Feature": "Maamerkki",
@@ -26379,6 +26431,8 @@ I18n.translations["fi"] = {
       "state": "osavaltio",
       "Street": "Katu",
       "street": "katu",
+      "Street_Segment": "Katusegmentti",
+      "street_segment": "katusegmentti",
       "Subdivision": "Alakaari",
       "subdivision": "alakaari",
       "Suburb": "Lähiö",
@@ -26763,11 +26817,14 @@ I18n.translations["fi"] = {
   "research_grade": "Tutkimustaso",
   "research_grade_qualification": "Tutkimustason perusteet",
   "research_grade_short_html": "T<span class='full'>utkimus</span>a<span class='full'>ste</span>",
+  "reset_brightness": "Palauta kirkkaus normaaliksi",
   "reset_search_filters": "Tyhjennä hakusuodattimet",
   "restore": "Palauta",
   "review_all": "Tarkista kaikki",
   "reviewed": "Tarkistettu",
   "rg_observations": "RG havainnot",
+  "running_total": "Kumulatiivinen summa",
+  "same_day_obscured_desc": "Kun uhanalaisen lajin havainnon koordinaatit karkeistetaan, karkeistetaan myös muut havainnoitsijan samana päivänä tekemät havainnot, jotta muista samaan aikaan tehdyistä havainnoista ei voida päätellä karkeistetun havainnon sijaintia. Saman karkeistuksen voi valita myös niille havainnoille, jotka itse päättää karkeistaa.\n",
   "satellite": "satelliitti",
   "save": "Tallenna",
   "save_photos": "Tallenna valokuvat",
@@ -27001,7 +27058,11 @@ I18n.translations["fi"] = {
         "your_id_does_not_match": "Tunnistuksesi (<span class=\"bold\">%{taxon_name}</span>) ei vastaa yhteisön tekemää tunnistusta\n"
       },
       "compare": {
-        "combined": "Yhdistetty"
+        "combined": "Yhdistetty",
+        "horizontal": "Vaakasuuntainen",
+        "interval": "Väli",
+        "total_taxa": "Yhteensä taksoneja",
+        "vertical": "Pystysuuntainen"
       },
       "export": {
         "well_email_you": "Ok, lähetämme sinulle sähköpostia, kun se on valmis."
@@ -27061,7 +27122,8 @@ I18n.translations["fi"] = {
         "visual_comparison_of_data_among": "Sateenvarjoprojektiin kuuluvien projektien tiedon visuaalinen vertailu",
         "we_have_redesigned_projects": "Projektit kokoavat automaattisesti yhteen havainnot, jotka sopivat määrittelemiisi hakuehtoihin: paikkoihin, taksoneihin (lajeihin), käyttäjiin, laatuluokituksiin ja aikaan. Voit valita kahdesta projektityypistä: koontiprojektit ja sateenvarjoprojektit. Näillä on seuraavia ominaisuuksia:\n",
         "welcome_to_projects": "Tervetuloa projekteihin!",
-        "you_can_learn_more_html": "<a href=\"https://www.inaturalist.org/pages/managing-projects\">Lue lisää projektien ylläpidosta (englanniksi)</a> tai <a href=\"https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist\">projektien historiasta blogissamme (englanniksi)</a>.\n"
+        "you_can_learn_more_html": "<a href=\"https://www.inaturalist.org/pages/managing-projects\">Lue lisää projektien ylläpidosta (englanniksi)</a> tai <a href=\"https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist\">projektien historiasta blogissamme (englanniksi)</a>.\n",
+        "you_have_not_defined_any_observation_requirements": "Et ole määritellyt havaintojen vaatimuksia. Valitse ainakin yksi taksoni (esim. linnut, havupuut), paikka (esim. Suomi, Yellowstone), käyttäjät ja/tai päivämäärät, määrittääkseni havainnot, jotka haluat sisällyttää projektiin.\n"
       },
       "project_type": "Projektin tyyppi",
       "projects_included": "Sisältyvät projektit",
@@ -27096,6 +27158,7 @@ I18n.translations["fi"] = {
       },
       "year": {
         "growth_by_country_title": "Kasvu maittain",
+        "growth_desc": "\"Havainnot\" ja \"Taksoni\" taulukko voi pitää sisällään tietoa, joka liittyy paikkaan %{site_name}, jonka tiedonkeruuseen on voinut osallistua henkilöitä, joita ei ole liitetty kyseiseen paikkaan %{site_name}, mutta \"Käyttäjät\" taulukko näyttää vain päivämäärät, jolloin käyttäjät, jotka on liitetty paikkaan %{site_name} ovat liittyneet iNaturalistiin.\n",
         "growth_in_year_obs": "Kasvu vuonna %{year} (havaintoja)",
         "growth_title": "Kasvu",
         "include_usa": "Sisällytä Yhdysvallat",
@@ -27117,8 +27180,13 @@ I18n.translations["fi"] = {
           "verifiable": "Todennettavissa",
           "Alive or Dead=Alive": "Elävä",
           "Alive or Dead=Dead": "Kuollut",
+          "Plant Phenology=Budding": "Orastava",
+          "Plant Phenology=Flower Budding": "Kukka aukeamassa",
+          "Plant Phenology=Flowering": "Kukkiva",
+          "Plant Phenology=Fruiting": "Hedelmiä",
           "Life Stage=egg": "Muna",
           "Life Stage=larva": "Toukka",
+          "Life Stage=teneral": "Teneraali",
           "Life Stage=subimago": "Subimago",
           "Life Stage=nymph": "Nymfi",
           "Life Stage=pupa": "Kotelo",
@@ -27145,6 +27213,7 @@ I18n.translations["fi"] = {
   "vulnerable": "Vaarantunut",
   "wanted": "Haluttu",
   "website": "Verkkosivusto",
+  "week_of_date": "Päivän %{date} viikko",
   "whats_this?": "Mikä tämä on?",
   "white": "valkoinen",
   "who_can_see_the_coordinates": "Kuka voi nähdä koordinaatit",
@@ -27364,6 +27433,8 @@ I18n.translations["fil"] = {
   },
   "number": {
     "format": {
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -28285,7 +28356,9 @@ I18n.translations["fr"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "n° sélectionné",
@@ -29469,7 +29542,9 @@ I18n.translations["fr-CA"] = {
   "number": {
     "format": {
       "delimiter": " ",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -29625,6 +29700,8 @@ I18n.translations["gd"] = {
   },
   "number": {
     "format": {
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -30118,7 +30195,9 @@ I18n.translations["gl"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "obscured": "Difusa",
@@ -31190,7 +31269,9 @@ I18n.translations["he"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "obs": "תצפיות",
@@ -32501,7 +32582,9 @@ I18n.translations["id"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# dipilih",
@@ -33838,7 +33921,9 @@ I18n.translations["it"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# selezionati",
@@ -34831,13 +34916,14 @@ I18n.translations["it"] = {
       "year": {
         "growth_by_country_desc_html": "Dove è la crescita? Questa mappa e il grafico cercano di declinare la crescita per Nazione, cosa un po' complicata perché la crescita per Nazione può essere molto sbilanciata. Qui abbiamo deciso di omettere gli Stati Uniti e usare la scala logaritmica in maniera predefinita per accentuare le differenza tra gli altri Stati. Se una Nazione è colorata di nero significa che non contribuisce in maniera significativa, o non è cresciuta quest'anno, o non ha avuto più osservazioni quest'anno rispetto a quello precedente (muoviti sulla nazione per vedere più dettagli).  <strong>\"% di crescita totale\"</strong> significa quanto della crescita mondiale è dovuta a quella Nazione particolare, per esempio, se ci fossero state 20 osservazioni nel 2018 e 10 nel 2017, la crescita sarebbe stata di 10 osservazioni, e se 5 di quelle osservazioni fossero state in Benin, il Benin avrebbe contribuito col 50% della crescita totale. <strong>\"% di crescita\"</strong> indica il numero di osservazioni quest'anno in quella Nazione come percentuale delle osservazioni dell'anno precedente nella stessa Nazione, così se ci fossero state 10 osservazioni in Laos l'anno precedente ma 20 quest'anno, la crescita sarebbe del 100%, e se ci fossero state 0 osservazioni l'anno precedente e 1 quest'anno, risulterebbe una crescita infinita.\n",
         "growth_by_country_title": "Crescita per paese",
+        "growth_desc": "I Grafici \"Osservazioni\" e \"Taxa\" possono includere dati visibili su %{site_name} forniti da persone che non sono affiliate a %{site_name}, mentre i grafici \"Utenti\" mostrano solo le date in cui gli utenti al momento affiliati a %{site_name} si sono uniti ad iNaturalist.\n",
         "growth_in_year_obs": "Crescita in %{year} (obs)",
         "growth_title": "Crescita",
         "include_usa": "Includi Stati Uniti",
         "new_species_desc_html": "Specie che sono state aggiunte per la prima volta quest'anno. Clicca su un mese per vedere alcune delle specie aggiunte in quel mese. Puoi vedere anche il totale accumulato, oppure muovere il disco indietro nel tempo per vedere altre specie osservate recentemente. Questo grafico mostra le specie dalle osservazioni verificabili per il mese in cui queste sono state caricate su %{site_name} (non per il mese in cui sono state osservate). Non include taxa di livello superiore od inferiore, perciò una osservazione identificata come Mammifero non è conteggiata, e una osservazione di <i>Canis lupus</i> ssp.\n<i>arctos</i> sarà conteggiata come <i>Canis lupus</i>.\n",
         "obs_in_year": "Osservazioni nel %{year}",
         "observation_streaks": "Sequenze di Osservazioni",
-        "observation_streaks_desc": "Una sequenza di osservazioni è un periodo di tempo in cui qualcuno è uscito ed ha registrato nuove osservazioni ogni giorno. Qui presentiamo le sequenze più lunghe iniziate quest'anno o quelle che sono in corso mentre queste statistiche vengono generate.\n",
+        "observation_streaks_desc": "Una sequenza di osservazioni è un periodo di tempo in cui qualcuno è uscito ed ha registrato nuove osservazioni verificabili ogni giorno. Qui presentiamo le sequenze più lunghe iniziate quest'anno o quelle che sono in corso mentre queste statistiche vengono generate.\n",
         "percent_growth_in_year": "% Crescita in %{year}",
         "percent_of_total_growth": "% di crescita totale",
         "publications_desc_html": "Clicca sui grafici \"a fiore\" per ottenere più informazioni su cosa significano i numeri e i colori. I dati e i grafici di impatto per gentile concessione di <a href=\"https://www.altmetric.com\">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici al <a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Visualizza tutti gli %{numStudies} studi</a>\n",
@@ -35090,6 +35176,8 @@ I18n.translations["iw"] = {
   },
   "number": {
     "format": {
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -35776,7 +35864,9 @@ I18n.translations["ja"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "# 選択済み",
@@ -36417,6 +36507,8 @@ I18n.translations["ka"] = {
   },
   "number": {
     "format": {
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -36505,7 +36597,7 @@ I18n.translations["ko"] = {
   "add_a_name": "이름 추가하기",
   "add_an_identification": "동정 추가하기",
   "add_edit_flags": "플래그 추가/편집",
-  "add_id": "ID 추가하기",
+  "add_id": "동정 추가하기",
   "add_life_stage_adult_annotation": "성장 단계: 성체",
   "add_life_stage_egg_annotation": "성장 단계: 알",
   "add_life_stage_larva_annotation": "성장 단계: 애벌레",
@@ -37126,7 +37218,9 @@ I18n.translations["ko"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "# 선택됨",
@@ -38291,7 +38385,9 @@ I18n.translations["lb"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "# erausgesicht",
@@ -39270,7 +39366,9 @@ I18n.translations["lt"] = {
   "number": {
     "format": {
       "delimiter": " ",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "observation": "Stebėjimas",
@@ -40125,7 +40223,9 @@ I18n.translations["mk"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "obscured": "затскриено",
@@ -41424,7 +41524,9 @@ I18n.translations["nb"] = {
   "number": {
     "format": {
       "delimiter": " ",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# valgt",
@@ -43566,7 +43668,9 @@ I18n.translations["nl"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# geselecteerd",
@@ -44559,13 +44663,13 @@ I18n.translations["nl"] = {
       "year": {
         "growth_by_country_desc_html": "Waar vindt er groei plaats? \nDeze kaart en grafiek proberen de groei op te spiltsen per land, wat niet eenvoudig is omdat groei per land erg scheef verdeeld kan zijn. We laten hier standaard de V.S. weg en gebruiken een logaritmische schaal om de verschillen tussen de overige landen uit te lichten. Als een land zwart gekleurd is betekent dat dat het niet significant heeft bijgedragen aan een percentage, of dat het geen groei had dat jaar, of dat het dat jaar niet meer waarnemingen had dan het voorgaande jaar (beweeg de muis over een land om wat ​​meer details te zien.) <strong>\"% van de totale groei\"</strong> betekent hoeveel van de wereldwijde groei afkomstig was van een bepaald land. Als er bijv. 20 waarnemingen waren in 2018 en 10 in 2017 was dat een groei van 10 waarnemingen, en als 5 van die waarnemingen afkomstig waren uit Benin dan droeg Benin 50% bij aan de totale groei. <strong>'% groei'</strong> is het aantal waarnemingen in dat land dat jaar, uitgedrukt als percentage van het aantal waarnemingen in dat land in het voorgaande jaar. Dus als er vorig jaar in Laos 10 waarnemingen waren en dit jaar 20 dan is dat 100% groei, en als er vorig jaar 0 waren en dit jaar 1 is de groei in procenten oneindig.\n",
         "growth_by_country_title": "Groei per land",
+        "growth_desc": "De grafieken \"Waarnemingen\" en \"Taxa\" kunnen data bevatten die zichtbaar is op %{site_name} die afkomstig is van mensen zonder banden met %{site_name}, terwijl de grafiek \"Gebruikers\" alleen de data laten zien wanneer gebruikers die nu verbonden zijn aan %{site_name} zich voor iNaturalist hebben aangemeld.\n",
         "growth_in_year_obs": "Groei in %{year} (wrn)",
         "growth_title": "Groei",
         "include_usa": "Inclusief VS",
         "new_species_desc_html": "Soorten die dit jaar voor het eerst zijn toegevoegd.\nKlik op een maand om enkele van de nieuwe soorten te bekijken die in die maand zijn toegevoegd. Je kunt ook de totale soortaccumulatie bekijken of de schuifregelaar \nterug in de tijd verplaatsen om andere nieuw waargenomen soorten te zien. Dit schema toont\nsoorten van verifieerbare waarnemingen tegen de maand waarin ze zijn geüpload\nop %{site_name} (niet de maand waarin ze werden waargenomen). Het bevat geen\ntaxa van een hoger of lager niveau, dus een waarneming geïdentificeerd als\nMammalia telt niet en een waarneming van <i>Canis lupus</i> ssp.\n<i>arctos</i> telt slechts als <i>Canis lupus</i>.\n",
         "obs_in_year": "Wrn in %{year}",
         "observation_streaks": "Waarnemingsreeksen",
-        "observation_streaks_desc": "Een waarnemingsreeks is een periode waarin er op elke aaneengesloten dag nieuwe waarnemingen worden geregistreerd. Hier tonen we de langste reeksen die dit jaar zijn begonnen of bezig waren toen deze statistieken werden gegenereerd.\n",
         "percent_growth_in_year": "% Groei in %{year}",
         "percent_of_total_growth": "% of Totaal Groei",
         "publications_desc_html": "Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href=\"https://www.altmetric.com\">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.\n<br/>\n<a href=\"%{url}\">Toon alle %{numStudies} studies</a>\n",
@@ -44877,7 +44981,9 @@ I18n.translations["nn"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -45367,6 +45473,8 @@ I18n.translations["oc"] = {
   "not_evaluated": "pas avalorat",
   "number": {
     "format": {
+      "si": {
+      }
     }
   },
   "observation": "Observacion",
@@ -45906,7 +46014,7 @@ I18n.translations["pl"] = {
   "by_user": "Użytkownika %{user}",
   "calendar": "Kalendarz",
   "cancel": "Anuluj",
-  "captive": "Żyje w niewoli",
+  "captive": "Żyjące w niewoli",
   "captive_cultivated": "Żyje w niewoli / Jest hodowany",
   "casual": "nieformalny",
   "casual_": "Nieformalny",
@@ -46034,28 +46142,28 @@ I18n.translations["pl"] = {
   "data_used": "Użyte dane:",
   "date": {
     "abbr_day_names": [
-      "nie",
-      "pon",
-      "wto",
-      "śro",
-      "czw",
-      "pią",
-      "sob"
+      "Sun",
+      "Mon",
+      "Tue",
+      "Śr",
+      "Czw",
+      "Pt",
+      "Sob"
     ],
     "abbr_month_names": [
       null,
-      "Jan",
-      "Feb",
+      "Sty",
+      "Lut",
       "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
+      "Kwi",
+      "Maj",
+      "Cze",
+      "Lip",
+      "Sie",
+      "Wrz",
+      "Paź",
+      "Lis",
+      "Gru"
     ],
     "day_names": [
       "Niedziela",
@@ -46067,16 +46175,17 @@ I18n.translations["pl"] = {
       "Sobota"
     ],
     "day_names_min": {
-      "1": "Su",
-      "2": "Mo",
-      "3": "Tu",
-      "4": "We",
-      "5": "Th",
-      "6": "Fr",
-      "7": "Sa"
+      "1": "Nd",
+      "2": "Pn",
+      "3": "Wt",
+      "4": "Śr",
+      "5": "Czw",
+      "6": "Pt",
+      "7": "Sb"
     },
     "formats": {
-      "long": "%B %d, %Y"
+      "long": "%B %d, %Y",
+      "month_day_year": "%-d %B %Y"
     },
     "month_names": [
       null,
@@ -46203,7 +46312,7 @@ I18n.translations["pl"] = {
   "eligible_for_research_grade": "Kwalifikuje się do stopnia badawczego",
   "end": "Koniec",
   "end_date_time": "Data / Czas zakończenia",
-  "endangered": "Zagrożony",
+  "endangered": "Gatunki zagrożone",
   "endemic": "Endemiczny",
   "endemic_to_x": "Endemiczny dla %{x}",
   "establishment": {
@@ -46290,7 +46399,7 @@ I18n.translations["pl"] = {
   "has_one_or_more_faves": "Posiada jedno lub więcej polubień",
   "has_photo": "Posiada zdjęcie",
   "has_photo_and_sound": "Posiada zdjęcie i nagranie dźwiękowe",
-  "has_photos": "Posiada zdjęcia",
+  "has_photos": "Posiadające zdjęcia",
   "has_photos_or_sounds": "Posiada zdjęcie lub nagranie dźwiękowe",
   "has_sound": "Posiada nagranie dźwiękowe",
   "has_sounds": "Posiada nagrania dźwiękowe",
@@ -46302,9 +46411,70 @@ I18n.translations["pl"] = {
   "history": "Historia",
   "i18n": {
     "inflections": {
+      "@gender": {
+        "m": "mężczyzna",
+        "f": "kobieta",
+        "n": "wykastruj",
+        "application": "@f",
+        "assessment_section": "@f",
+        "atlas": "@m",
+        "check_list": "@f",
+        "class": "@f",
+        "complex": "@m",
+        "epifamily": "@f",
+        "family": "@f",
+        "favorite": "@f",
+        "form": "@m",
+        "genus": "@m",
+        "genushybrid": "@f",
+        "hybrid": "@f",
+        "identification": "@n",
+        "infraclass": "@f",
+        "infraorder": "@m",
+        "journal": "@m",
+        "listed_taxon": "@m",
+        "note": "@f",
+        "observation": "@f",
+        "observation_field": "@n",
+        "order": "@m",
+        "phylum": "@n",
+        "post": "@m",
+        "profile": "@m",
+        "project": "@m",
+        "section": "@f",
+        "species": "@m",
+        "subclass": "@f",
+        "subfamily": "@f",
+        "subgenus": "@m",
+        "suborder": "@m",
+        "subphylum": "@n",
+        "subsection": "@f",
+        "subspecies": "@m",
+        "subtribe": "@n",
+        "superclass": "@f",
+        "superfamily": "@f",
+        "superorder": "@m",
+        "supertribe": "@n",
+        "taxon": "@m",
+        "taxon_change": "@f",
+        "taxon_link": "@m",
+        "taxon_merge": "@n",
+        "taxon_split": "@n",
+        "taxon_stage": "@n",
+        "taxon_swap": "@f",
+        "tribe": "@n",
+        "variety": "@f",
+        "default": "@m"
+      },
       "@vow_or_con": {
         "vow": "samogłoska",
-        "con": "spółgłoska"
+        "con": "spółgłoska",
+        "a": "@vow",
+        "e": "@vow",
+        "i": "@vow",
+        "o": "@vow",
+        "u": "@vow",
+        "default": "@con"
       }
     }
   },
@@ -46334,7 +46504,7 @@ I18n.translations["pl"] = {
   "insect_life_stage": "Stadium rozwoju owada",
   "insects": "owady",
   "interactions": "Interakcje",
-  "introduced": "Introdukowany",
+  "introduced": "Introdukowane",
   "introduced_in_place": "Introdukowany w miejscu %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Czy podane dane są wystarczające do potwierdzenia, że jest to %{taxon}?",
@@ -46476,7 +46646,8 @@ I18n.translations["pl"] = {
       "y": "1r",
       "yy": "%dr"
     },
-    "datetime_with_zone": "D MMM YYYY · LT z"
+    "datetime_with_zone": "D MMM YYYY · LT z",
+    "datetime_with_offset": "D MMM YYYY · LT Z"
   },
   "months": "Miesiące",
   "more": "Więcej",
@@ -46506,16 +46677,18 @@ I18n.translations["pl"] = {
   "near_threatened": "Bliskie zagrożenia",
   "nearby_observations_": "Pobliskie obserwacje",
   "needs_id": "potrzebuje oznaczenia",
-  "needs_id_": "Potrzebuje oznaczenia",
+  "needs_id_": "Potrzebujące oznaczenia",
   "new_and_noteworthy": "Nowe i godne uwagi",
   "new_observation_field": "Nowa notatka terenowa",
   "new_observations": "Nowe obserwacje",
   "new_species_added_in_interval": "Nowe gatunki dodane w %{interval}",
   "new_species_added_in_interval_x_of_y": "Nowe gatunki dodane w %{interval} (Pokazano %{x} z %{y})",
   "new_users": "Nowi użytkownicy",
+  "new_users_in_year": "Nowi użytkownicy w %{year}",
   "newly_added": "Nowo dodane",
   "newly_added_species": "Nowo dodane gatunki",
   "newly_observed_species": "Nowo zaobserwowane gatunki",
+  "newly_observed_species_in_year": "Nowo dodane gatunki w %{year}",
   "news": "Aktualności",
   "next": "Następne",
   "next_observation": "Następna obserwacja",
@@ -46550,9 +46723,12 @@ I18n.translations["pl"] = {
   "number": {
     "format": {
       "delimiter": " ",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
+  "obs": "Obs",
   "obscured": "Ukryta",
   "observation": "Obserwacja",
   "observation_": "obserwacja",
@@ -46961,7 +47137,7 @@ I18n.translations["pl"] = {
   },
   "places_of_interest": "Ciekawe miejsca",
   "plants": "rośliny",
-  "popular": "Popularne",
+  "popular": "Obs. popularne",
   "potential_disagreement": "Potencjalna niezgodność",
   "preview": "Podgląd",
   "previous": "Poprzedni",
@@ -47033,7 +47209,7 @@ I18n.translations["pl"] = {
   "removing": "Usuwanie...",
   "reptiles": "gady",
   "request_failed": "Żądanie się nie powiodło",
-  "research_grade": "Stopień badawczy",
+  "research_grade": "Posiadające stopień badawczy",
   "research_grade_qualification": "Kwalifikacja do Stopnia badawczego",
   "research_grade_short_html": "S<span class='full'>topień</span>b<span class='full'>adawczy</span>",
   "restore": "Przywróć",
@@ -47063,6 +47239,7 @@ I18n.translations["pl"] = {
   "selected_photos": "Wybrane zdjęcia",
   "set_license": "Ustaw licencję",
   "share": "Udostępnij",
+  "show": "Pokaż",
   "show_keyboard_shortcuts": "Pokaż skróty klawiszowe",
   "sign_out": "Wyloguj się",
   "sign_up": "Zarejestruj się",
@@ -47130,6 +47307,7 @@ I18n.translations["pl"] = {
   "time": {
     "am": "przed południem",
     "formats": {
+      "hours": "%H:%M",
       "long": "%B %d, %Y %H:%M"
     },
     "pm": "po południu"
@@ -47180,7 +47358,7 @@ I18n.translations["pl"] = {
   "users": "Użytkownicy",
   "users_comment_html": "Komentarz <a href='%{url}'>%{user}</a>",
   "value": "Wartość",
-  "verifiable": "Weryfikowalne",
+  "verifiable": "Obs. weryfikowalne",
   "verifiable_observations": "Obserwacje weryfikowalne",
   "view": "Zobacz",
   "view_all": "Zobacz wszsytkie",
@@ -47268,6 +47446,7 @@ I18n.translations["pl"] = {
           "Life Stage=adult": "Osobnik dorosły",
           "unannotated": "Brak adnotacji"
         },
+        "max_photos_desc": "Takson może mieć maksymalnie %{max} zdjęć. Musisz usunąć\nistniejące zdjęcia, aby dodać więcej.\n",
         "trending_desc": "Najczęściej obserwowane taksony w zeszłym miesiącu",
         "trending_in_place_desc_html": "Najczęściej obserwowane taksony w zeszłym miesiącu w <a href=\"%{url}\">%{place}</a>",
         "wanted_desc": "Gatunki należące do tego taksonu, który nie zostały jeszcze zaobserwowane."
@@ -47285,6 +47464,7 @@ I18n.translations["pl"] = {
   "visually_similar": "Wizualnie podobne",
   "website": "Strona internetowa",
   "whats_this?": "Co to jest?",
+  "wild": "Organizmy dzikie",
   "with_annotation": "Z adnotacją",
   "withdraw": "Wycofaj",
   "x_comments": {
@@ -48215,7 +48395,9 @@ I18n.translations["pt"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# selecionado",
@@ -49651,7 +49833,9 @@ I18n.translations["pt-BR"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# selecionado",
@@ -50777,7 +50961,7 @@ I18n.translations["ru"] = {
     "suborder": "Все подпорядки добавленные в базу данных",
     "subphylum": "Все субфилы добавленные в базу данных",
     "subsection": "Все подсекции добавленные в базу данных",
-    "subspecies": "Все подвиды добавленные в базу данных",
+    "subspecies": "Все подвиды добавлены в базу данных",
     "subtribe": "Все субтрибы добавленные в базу данных",
     "superclass": "Все суперклассы добавленные в базу данных",
     "superfamily": "Все суперсемейства добавленные в базу данных",
@@ -51681,7 +51865,9 @@ I18n.translations["ru"] = {
   "number": {
     "format": {
       "delimiter": "  ",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# выбранный",
@@ -51710,7 +51896,7 @@ I18n.translations["ru"] = {
   "observations_without_media": "Наблюдения без медиа",
   "observed": "Дата, время наблюдения",
   "observed_on": "Дата",
-  "observers": "наблюдателей",
+  "observers": "Наблюдатели",
   "of": "из",
   "of_identifiers": "Экспертов",
   "of_observations": "наблюдения",
@@ -52210,7 +52396,7 @@ I18n.translations["ru"] = {
     "section": "Секция",
     "subsection": "Подсекция",
     "complex": "Комплекс",
-    "species": "Вид",
+    "species": "Виды",
     "hybrid": "Гибрид",
     "subspecies": "Подвид",
     "variety": "Разновидность",
@@ -52690,7 +52876,6 @@ I18n.translations["ru"] = {
         "new_species_desc_html": "Виды, которые были впервые были добавлены в этом году. Нажмите на месяц, чтобы увидеть некоторые новые виды, добавленные в этом месяце. Вы также можете просмотреть общее накопленное количество видов или переместить ползунок назад во времени, чтобы увидеть другие впервые наблюдаемые виды. Диаграмма показывает виды проверяемых наблюдений по месяцам загрузки на %{site_name} (а не по месяцам, когда они наблюдались). Она не включает таксоны более высокого или более низкого уровня, поэтому наблюдение, идентифицированное как Млекопитающее, не учитывается, а наблюдение <i>Canis lupus</i> ssp. <i>arctos</i> будет учтено как <i>Canis lupus</i>.\n",
         "obs_in_year": "Набл в %{year}",
         "observation_streaks": "Серии наблюдений",
-        "observation_streaks_desc": "Серия наблюдений - это период времени, когда кто-то выходил на природу и\nзаписывал новые наблюдения каждый день. Здесь показаны самые длинные\nсерии, которые начались в этом году или происходили в момент создания этой\nстатистики.\n",
         "percent_growth_in_year": "% роста в %{year}",
         "percent_of_total_growth": "% от общего роста",
         "sunburst_desc_html": "Наблюдаемые таксоны упорядочены в виде иерархической диаграммы Санбёрст. Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>.\n"
@@ -53675,7 +53860,9 @@ I18n.translations["sk"] = {
   "number": {
     "format": {
       "delimiter": " ",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "# vybrané",
@@ -54512,7 +54699,9 @@ I18n.translations["sl"] = {
   "number": {
     "format": {
       "delimiter": ".",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -55327,7 +55516,9 @@ I18n.translations["sq"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "#i zgjedhur",
@@ -56400,7 +56591,9 @@ I18n.translations["sv"] = {
   "number": {
     "format": {
       "delimiter": "",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "number_selected": "Antal valda",
@@ -57834,7 +58027,9 @@ I18n.translations["tr"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "# seçildi",
@@ -58827,13 +59022,13 @@ I18n.translations["tr"] = {
       "year": {
         "growth_by_country_desc_html": "Büyüme nerede gerçekleşiyor? Bu harita ve çizelge bunu ülkeye göre bölmeye çalışıyor, \nbu durum karmaşıklaşıyor çünkü ülke bazında büyüme çok dengesiz olabilir. Burada, \nAmerika Birleşik Devletleri'ni ihmal etmeyi ve diğer ülkeler arasındaki farklılıkları \nvurgulamak için varsayılan olarak bir günlük ölçeği kullanmayı seçtik.Eğer bir ülke siyah \nise bu, yüzdesine belirgin bir şekilde katkıda bulunmadığı ya da bu yıl büyüme göstermediği \nya da bu yıl geçen yıla göre daha fazla gözlem yapmadığı anlamına gelir \n(biraz daha fazla ayrıntı görmek için bir ülkenin üzerine gelin).<strong>\"toplam büyümenin\n%'si\"</strong> dünya çapında bir büyümenin ne kadarının belirli bir ülkeden geldiği anlamına\ngelir, örn. 2018'de 20, 2017'de ise 10 gözlem olsaydı, bu 10 büyüme gözlemi olurdu ve \nbu gözlemlerin 5'i Benin'den yapılmışsa, Benin toplam büyümenin% 50'sine katkıda bulunurdu.\n<strong>\"büyüme %'si\"</strong> bu yıl o ülkedeki gözlem sayısını, o ülkedeki geçen yılın \ngözlemlerinin yüzdesi olarak gösterir, yani geçen yıl Laos'ta 10 gözlem, ancak bu yıl 20 olsaydı, \nburada %100 büyüme olurdu ve bu geçen yıl 0 ve bu yıl 1 olsaydı, burada % sonsuz büyüme olurdu.\n",
         "growth_by_country_title": "Ülkelere Göre Büyüme",
+        "growth_desc": "\"Kullanıcılar\" çizelgesi yalnızca şu anda %{site_name} ile bağlı kullanıcıların iNaturalist’e katıldığı tarihleri gösterirken, \"Gözlemler\" ve \"Sınıflar\" çizelgeleri %{site_name} ile bağlantısız kişilerin katkıda bulunduğu %{site_name}'te görülebilir.\n",
         "growth_in_year_obs": "%{year} içinde büyüme (gözl)",
         "growth_title": "Büyüme",
         "include_usa": "ABD dahil",
         "new_species_desc_html": "Bu yıl ilk kez eklenen türler.\nBu ay eklenen yeni türlerin bazılarını görüntülemek için bir ay seçin.\nAyrıca, toplam tür birikimini görebilir veya yeni gözlenen diğer türleri görmek için \nkaydırma butonunu zamanda geriye hareket ettirebilirsiniz. Bu grafik, %{site_name} 'e \nyüklendikleri aya kadar doğrulanabilir gözlemlerden türleri gösterir (gözlemlendikleri ayı değil).\nDaha yüksek veya daha düşük seviyeli sınıfları içermez, bu nedenle Memeliler \nolarak tanımlanan bir gözlem sayılmaz ve <i>Canis lupus</i> alt türü <i>boz ayı</i> olan bir gözlemi\n<i>Canis lupus</i> olarak sayacaktır.\n",
         "obs_in_year": "%{year} içinde Gözl",
         "observation_streaks": "Gözlem Serileri",
-        "observation_streaks_desc": "Bir gözlem serisi, birinin dışarı çıktığı ve her gün yeni gözlemler \nkaydettiği bir zaman dilimidir. Burada, bu yıl başlayan veya bu \nistatistikler oluşturulduğunda devam eden en uzun serileri \ngösteriyoruz.\n",
         "percent_growth_in_year": "%{year} içindeki büyüme %'si",
         "percent_of_total_growth": "Toplam Büyüme %'si",
         "publications_desc_html": "Sayıların ve renklerin ne anlama geldiği hakkında daha fazla bilgi \niçin çiçek çizelgelerine tıklayın. <a href=\"https://www.altmetric.com\">Altmetric</a>'in \nizniyle etki verileri ve çizelgeler. \n<a href=\"https://www.gbif.org/\">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki \narkadaşlarımızın veri kullanımı nezaket bilgileri.\n<br/>\n<a href=\"%{url}\">%{numStudies} çalışmanın tamamını görüntüleyin</a>\n",
@@ -59147,7 +59342,9 @@ I18n.translations["uk"] = {
   "number": {
     "format": {
       "delimiter": " ",
-      "separator": ","
+      "separator": ",",
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -59997,7 +60194,9 @@ I18n.translations["zh-CN"] = {
   "number": {
     "format": {
       "delimiter": "，",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "# 已选择",
@@ -60955,7 +61154,9 @@ I18n.translations["zh-HK"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "place_geo": {
@@ -61910,7 +62111,9 @@ I18n.translations["zh-TW"] = {
   "number": {
     "format": {
       "delimiter": ",",
-      "separator": "."
+      "separator": ".",
+      "si": {
+      }
     }
   },
   "number_selected": "# 已選擇",

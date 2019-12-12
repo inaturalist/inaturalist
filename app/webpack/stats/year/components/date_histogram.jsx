@@ -49,6 +49,29 @@ class DateHistogram extends React.Component {
     return color( seriesName );
   }
 
+  // This is a kludge to deal with the fact that we're not using a modern
+  // (>= 5.0) version of d3, where we could do this by calling
+  // d3.axisLeft( y ).tickFormat( "~s" )
+  axisLeft( y ) {
+    const { tickFormatLeft } = this.props;
+    const axisLeft = d3.axisLeft( y );
+    if ( tickFormatLeft ) {
+      return axisLeft.tickFormat( tickFormatLeft );
+    }
+    return axisLeft.tickFormat( d => {
+      if ( d >= 1000000000 ) {
+        return I18n.t( "number.format.si.giga", { number: _.round( d / 1000000000, 3 ) } );
+      }
+      if ( d >= 1000000 ) {
+        return I18n.t( "number.format.si.mega", { number: _.round( d / 1000000, 3 ) } );
+      }
+      if ( d >= 1000 ) {
+        return I18n.t( "number.format.si.kilo", { number: _.round( d / 1000, 3 ) } );
+      }
+      return d;
+    } );
+  }
+
   enterSeries( newState = {} ) {
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
     const svg = d3.select( mountNode ).select( "svg" );
@@ -168,7 +191,8 @@ class DateHistogram extends React.Component {
     svg.select( ".legendOrdinal" )
       .call( legendOrdinal );
     focus.select( ".axis--y" )
-      .call( d3.axisLeft( y ) )
+      // .call( d3.axisLeft( y ).tickFormat( "s" ) )
+      .call( this.axisLeft( y ) )
       .select( ".domain" )
         .remove( );
     this.setState( { x, y } );
@@ -220,6 +244,7 @@ class DateHistogram extends React.Component {
       series,
       xExtent,
       tickFormatBottom,
+      tickFormatLeft,
       legendPosition,
       showContext,
       id,
@@ -278,7 +303,7 @@ class DateHistogram extends React.Component {
     const y = d3.scaleLinear( ).rangeRound( [height, 0] );
 
     const combinedData = _.flatten( _.values( localSeries ) );
-    if ( xExtent ) {
+    if ( xExtent && !showContext ) {
       x.domain( xExtent );
     } else {
       x.domain( d3.extent( combinedData, d => d.date ) );
@@ -313,7 +338,7 @@ class DateHistogram extends React.Component {
 
     g.append( "g" )
       .attr( "class", "axis--y" )
-      .call( d3.axisLeft( y ) )
+      .call( this.axisLeft( y ) )
       .select( ".domain" )
         .remove( );
 
@@ -432,8 +457,6 @@ class DateHistogram extends React.Component {
       //   .attr( "transform", `translate(${margin.left},${margin.top})` )
       //   .call( zoom );
       // END zoom and brush
-    } else if ( xExtent ) {
-      x.domain( xExtent );
     }
   }
 
@@ -450,6 +473,7 @@ class DateHistogram extends React.Component {
 DateHistogram.propTypes = {
   series: PropTypes.object,
   tickFormatBottom: PropTypes.func,
+  tickFormatLeft: PropTypes.func,
   onClick: PropTypes.func,
   xExtent: PropTypes.array,
   legendPosition: PropTypes.string,

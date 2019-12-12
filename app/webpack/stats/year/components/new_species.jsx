@@ -106,21 +106,6 @@ class NewSpecies extends React.Component {
       accumulated_species_count: 0,
       novel_species_ids: []
     } );
-    const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
-    if ( showAccumulation ) {
-      series.accumulated = {
-        title: I18n.t( "running_total" ),
-        data: _.map( data, i => ( {
-          date: i.date,
-          value: i.accumulated_species_count
-        } ) ),
-        style: "bar",
-        color: grayColor,
-        label: d => `<strong>${
-          moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )
-        }</strong>: ${I18n.t( "x_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )}`
-      };
-    }
     series.novel = {
       title: I18n.t( "newly_added" ),
       data: _.map( data, i => ( {
@@ -134,6 +119,20 @@ class NewSpecies extends React.Component {
         moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )
       }</strong>: ${I18n.t( "x_new_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )}`
     };
+    if ( showAccumulation ) {
+      series.accumulated = {
+        title: I18n.t( "running_total" ),
+        data: _.map( data, i => ( {
+          date: i.date,
+          value: i.accumulated_species_count
+        } ) ),
+        style: "bar",
+        color: "rgba( 40%, 40%, 40%, 0.5 )",
+        label: d => `<strong>${
+          moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )
+        }</strong>: ${I18n.t( "x_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )}`
+      };
+    }
     return (
       <div className="NewSpecies">
         <h3>

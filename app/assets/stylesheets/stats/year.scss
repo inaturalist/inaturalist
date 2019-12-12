@@ -337,6 +337,9 @@ $dark-gray: #333333;
     fill: none;
     pointer-events: all;
   }
+  rect:hover {
+    opacity: 0.8;
+  }
 }
 
 #accumulation.DateHistogram {
@@ -802,7 +805,7 @@ $obs-grid-photo-size: 210px;
     }
     .line {
       border-right: 1px solid white;
-      padding-right: 10px;
+      padding: 0 5px;
       text-align: right;
       font-size: 10px;
       white-space: nowrap;

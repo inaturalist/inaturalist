@@ -86,6 +86,10 @@ const Growth = ( {
       accumulated_species_count: 0,
       novel_species_ids: []
     } );
+    const speciesLabel = d => I18n.t( "bold_label_colon_value_html", {
+      label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+      value: I18n.t( "x_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+    } );
     taxaSeries = {
       novelThisYear: {
         title: I18n.t( "newly_observed_species_in_year", { year } ),
@@ -96,7 +100,7 @@ const Growth = ( {
           offset: i.accumulated_species_count - i.novel_species_ids.length
         } ) ).filter( interval => interval.date >= `${year}-01-01` ),
         color: COLORS.iconic.Insecta,
-        label
+        label: speciesLabel
       },
       novel: {
         title: I18n.t( "newly_observed_species" ),
@@ -107,7 +111,7 @@ const Growth = ( {
           offset: i.accumulated_species_count - i.novel_species_ids.length
         } ) ).filter( interval => interval.date < `${year}-01-01` ),
         color: d3color( COLORS.iconic.Insecta ).darker( 2.0 ),
-        label
+        label: speciesLabel
       },
       total: {
         title: I18n.t( "running_total" ),
@@ -117,7 +121,7 @@ const Growth = ( {
           value: i.accumulated_species_count
         } ) ),
         color: grayColor,
-        label
+        label: speciesLabel
       }
     };
   }
@@ -139,6 +143,10 @@ const Growth = ( {
     novel: 0
   } ) );
   userData.push( emptyJan );
+  const newUsersLabel = d => I18n.t( "bold_label_colon_value_html", {
+    label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+    value: I18n.t( "x_new_users", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+  } );
   const usersSeries = {
     novelThisYear: {
       title: I18n.t( "new_users_in_year", { year } ),
@@ -149,7 +157,7 @@ const Growth = ( {
         offset: interval.total - interval.novel
       } ) ).filter( interval => interval.date >= `${year}-01-01` ),
       color: COLORS.iconic.Animalia,
-      label
+      label: newUsersLabel
     },
     novel: {
       title: I18n.t( "new_users" ),
@@ -160,18 +168,21 @@ const Growth = ( {
         offset: interval.total - interval.novel
       } ) ).filter( interval => interval.date < `${year}-01-01` ),
       color: d3color( COLORS.iconic.Animalia ).darker( 2.0 ),
-      label
+      label: newUsersLabel
     },
     total: {
       title: I18n.t( "running_total" ),
       style: "bar",
       data: userData.map( interval => ( { date: interval.date, value: interval.total } ) ),
       color: grayColor,
-      label
+      label: newUsersLabel
     }
   };
   const obsTotalDates = obsSeries.total.data.map( d => d.date );
-  const xExtent = [new Date( obsTotalDates[0] ), new Date( obsTotalDates[obsTotalDates.length - 1] )];
+  const xExtent = [
+    new Date( obsTotalDates[0] ),
+    new Date( obsTotalDates[obsTotalDates.length - 1] )
+  ];
   return (
     <div className="Growth">
       <h3>

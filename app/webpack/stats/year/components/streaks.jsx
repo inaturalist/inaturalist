@@ -157,6 +157,7 @@ const Streaks = ( {
                   ${interpolateWarm( dayColorScale( v ) )}
                 )
               `;
+              const tickDays = I18n.t( "datetime.distance_in_words.x_days", { count: I18n.toNumber( tick, { precision: 0 } ) } );
               return (
                 <div
                   className="tick"
@@ -166,12 +167,8 @@ const Streaks = ( {
                     width: `${width * 100}%`
                   }}
                 >
-                  <div className="line">
-                    {
-                      i >= dayScaleTicks.length - 1
-                        ? I18n.t( "datetime.distance_in_words.x_days", { count: I18n.toNumber( tick, { precision: 0 } ) } )
-                        : tick
-                    }
+                  <div className="line" alt={tickDays} title={tickDays}>
+                    { i >= dayScaleTicks.length - 1 ? tickDays : tick }
                   </div>
                   <div
                     className="bar"
