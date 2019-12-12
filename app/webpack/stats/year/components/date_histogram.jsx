@@ -278,7 +278,11 @@ class DateHistogram extends React.Component {
     const y = d3.scaleLinear( ).rangeRound( [height, 0] );
 
     const combinedData = _.flatten( _.values( localSeries ) );
-    x.domain( d3.extent( combinedData, d => d.date ) );
+    if ( xExtent ) {
+      x.domain( xExtent );
+    } else {
+      x.domain( d3.extent( combinedData, d => d.date ) );
+    }
     y.domain( d3.extent( combinedData, d => d.value ) );
 
     let axisBottom = d3.axisBottom( x );
@@ -348,7 +352,7 @@ class DateHistogram extends React.Component {
       } );
     this.setState( newState );
     this.enterSeries( newState );
-    
+
     // Zoom and Brush
     if ( showContext ) {
       const x2 = d3.scaleTime( ).rangeRound( [0, width] );
@@ -428,6 +432,8 @@ class DateHistogram extends React.Component {
       //   .attr( "transform", `translate(${margin.left},${margin.top})` )
       //   .call( zoom );
       // END zoom and brush
+    } else if ( xExtent ) {
+      x.domain( xExtent );
     }
   }
 

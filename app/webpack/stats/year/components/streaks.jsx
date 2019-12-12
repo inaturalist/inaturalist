@@ -18,7 +18,9 @@ const Streaks = ( {
   const days = data.map( d => d.days );
   const dayScale = d3.scaleLog( )
     .domain( [d3.min( days ), d3.max( days )] )
-    .range( [0, 0.8] );
+    .range( [0, 1] );
+  const dayScaleTicks = dayScale.ticks( );
+  dayScaleTicks.push( d3.max( days ) );
   const d3Locale = d3.timeFormatLocale( {
     datetime: I18n.t( "time.formats.long" ),
     date: I18n.t( "date.formats.long" ),
@@ -122,6 +124,44 @@ const Streaks = ( {
             </div>
           );
         } ) }
+      </div>
+      <div className="legend">
+        <p className="text-muted">
+          { I18n.t( "views.stats.year.observation_streaks_color_desc" ) }
+        </p>
+        <div style={{ width: "100%" }}>
+          <div className="ticks" style={{ position: "relative", height: 50 }}>
+            { dayScaleTicks.map( ( tick, i ) => {
+              const v = dayScale( tick );
+              const left = i === 0 ? 0 : dayScale( dayScaleTicks[i - 1] );
+              const width = i === 0 ? v : v - dayScale( dayScaleTicks[i - 1] );
+              return (
+                <div
+                  className="tick"
+                  key={`color-tick-${tick}`}
+                  style={{
+                    left: `${left * 100}%`,
+                    width: `${width * 100}%`
+                  }}
+                >
+                  <div className="line">
+                    {
+                      i >= dayScaleTicks.length - 1
+                        ? I18n.t( "datetime.distance_in_words.x_days", { count: I18n.toNumber( tick, { precision: 0 } ) } )
+                        : tick
+                    }
+                  </div>
+                  <div
+                    className="bar"
+                    style={{
+                      backgroundImage: `linear-gradient(to right, ${d3.interpolateWarm( v - width )}, ${d3.interpolateWarm( v )})`
+                    }}
+                  />
+                </div>
+              );
+            } ) }
+          </div>
+        </div>
       </div>
     </div>
   );

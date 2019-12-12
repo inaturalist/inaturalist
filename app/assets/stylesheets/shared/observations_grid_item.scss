@@ -23,7 +23,7 @@
   margin-bottom: 30px;
   position: relative;
 }
-.ObservationsGridItem .photo {
+.ObservationsGridItem .media {
   display: block;
   width: 100%;
   min-height: 20px;
@@ -33,26 +33,26 @@
   text-align: center;
   position: relative;
 }
-.ObservationsGridItem a.photo {
+.ObservationsGridItem a.media {
   opacity: 1;
 }
-.ObservationsGridItem .photo .icon, 
-.ObservationsGridItem .photo:hover .icon,
-.ObservationsGridItem .photo:active .icon,
-.ObservationsGridItem .photo:visited .icon,
-.ObservationsGridItem .photo:link .icon {
+.ObservationsGridItem .media .icon,
+.ObservationsGridItem .media:hover .icon,
+.ObservationsGridItem .media:active .icon,
+.ObservationsGridItem .media:visited .icon,
+.ObservationsGridItem .media:link .icon {
   display: none;
 }
-.ObservationsGridItem .photo.iconic .icon,
-.ObservationsGridItem .photo.iconic .icon:hover,
-.ObservationsGridItem .photo.iconic .icon:active,
-.ObservationsGridItem .photo.iconic .icon:visited,
-.ObservationsGridItem .photo.iconic .icon:link {
+.ObservationsGridItem .media.iconic .icon,
+.ObservationsGridItem .media.iconic .icon:hover,
+.ObservationsGridItem .media.iconic .icon:active,
+.ObservationsGridItem .media.iconic .icon:visited,
+.ObservationsGridItem .media.iconic .icon:link {
   color: #eee;
   display: inline-block;
 }
-.ObservationsGridItem .photo .sound-icon { display: none; }
-.ObservationsGridItem .photo.sound .sound-icon {
+.ObservationsGridItem .media .sound-icon { display: none; }
+.ObservationsGridItem .media.sound .sound-icon {
   display: inline-block;
   color: #aaa;
   opacity: 0.8;
@@ -66,56 +66,56 @@ $flowedDim: 150px;
   margin-right: 20px;
   margin-bottom: 20px;
 }
-.flowed .ObservationsGridItem .photo {
+.flowed .ObservationsGridItem .media {
   width: $flowedDim;
   height: $flowedDim;
 }
-.gridded .ObservationsGridItem .photo {
+.gridded .ObservationsGridItem .media {
   height: 120px;
   line-height: 110px;
   font-size: 80px;
 }
 @media (min-width: 768px) {
-  .gridded .ObservationsGridItem .photo {
+  .gridded .ObservationsGridItem .media {
     height: 157.5px;
     line-height: 140px;
     font-size: 120px;
   }
 }
 @media (min-width: 992px) {
-  .gridded .ObservationsGridItem .photo {
+  .gridded .ObservationsGridItem .media {
     height: 212.5px;
     font-size: 180px;
   }
 }
 @media (min-width: 1200px) {
-  .gridded .ObservationsGridItem .photo {
+  .gridded .ObservationsGridItem .media {
     height: 262.5px;
     line-height: 240px;
     font-size: 210px;
   }
 }
 
-.bootstrap-10 .ObservationsGridItem .photo {
+.bootstrap-10 .ObservationsGridItem .media {
   height: 212px;
   line-height: 180px;
   font-size: 100px;
 }
 @media (min-width: 768px) {
-  .bootstrap-10 .ObservationsGridItem .photo {
+  .bootstrap-10 .ObservationsGridItem .media {
     height: 128px;
     line-height: 98px;
   }
 }
 @media (min-width: 992px) {
-  .bootstrap-10 .ObservationsGridItem .photo {
+  .bootstrap-10 .ObservationsGridItem .media {
     height: 172px;
     line-height: 142px;
     font-size: 150px;
   }
 }
 @media (min-width: 1200px) {
-  .bootstrap-10 .ObservationsGridItem .photo {
+  .bootstrap-10 .ObservationsGridItem .media {
     height: 212px;
     line-height: 180px;
     font-size: 150px;
@@ -205,7 +205,7 @@ $flowedDim: 150px;
   margin-left: -20px;
   margin-top: -20px;
 }
-.ObservationsGridItem .photo:hover .magnifier {
+.ObservationsGridItem .media:hover .magnifier {
   display: block;
 }
 .ObservationsGridItem {

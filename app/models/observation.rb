@@ -785,7 +785,7 @@ class Observation < ActiveRecord::Base
     end
     unless self.time_observed_at.blank? || options[:no_time]
       key += "_at_time"
-      i18n_vars[:time] = I18n.t( time_observed_at_in_zone, format: :compact )
+      i18n_vars[:time] = I18n.l( time_observed_at_in_zone, format: :compact )
     end
     unless options[:no_user]
       key += "_by_user"

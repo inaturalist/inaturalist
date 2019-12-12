@@ -171,7 +171,7 @@ const Growth = ( {
     }
   };
   const obsTotalDates = obsSeries.total.data.map( d => d.date );
-  const xExtent = [obsTotalDates[0], obsTotalDates[obsTotalDates.length - 1]];
+  const xExtent = [new Date( obsTotalDates[0] ), new Date( obsTotalDates[obsTotalDates.length - 1] )];
   return (
     <div className="Growth">
       <h3>

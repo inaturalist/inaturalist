@@ -587,7 +587,7 @@ $obs-grid-photo-size: 210px;
       white-space: nowrap;
     }
   }
-  .photo {
+  .media {
     height: $obs-grid-photo-size;
   }
   .caption {
@@ -662,7 +662,7 @@ $obs-grid-photo-size: 210px;
 .NewSpecies {
   margin-bottom: 50px;
   .ObservationsGridItem.borderless.thumbnail {
-    .photo {
+    .media {
       height: 131px;
     }
   }
@@ -792,22 +792,57 @@ $obs-grid-photo-size: 210px;
     position: relative;
     display: flex;
   }
-  .ticks {
-    .background {
-      height: 35px;
-    }
+  .legend {
+    display: flex;
     .tick {
       position: absolute;
-      display: block;
-      &.alt {
-        background-color: $dark-gray;
-      }
-      text-align: center;
-      padding: 10px 0;
+      display: flex;
+      flex-direction: column;
+      height: 50;
+    }
+    .line {
+      border-right: 1px solid white;
+      padding-right: 10px;
+      text-align: right;
+      font-size: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     @media (max-width: 500px) {
-      .tick {
+      .line {
         font-size: 8px;
+      }
+    }
+    .bar {
+      height: 15px;
+      width: 100%;
+    }
+  }
+  @media (max-width: 500px) {
+    .legend {
+      flex-direction: column;
+    }
+  }
+  .rows {
+    margin-bottom: 20px;
+    .ticks {
+      .background {
+        height: 35px;
+      }
+      .tick {
+        position: absolute;
+        display: block;
+        &.alt {
+          background-color: $dark-gray;
+        }
+        text-align: center;
+        padding: 10px 0;
+      }
+      @media (max-width: 500px) {
+        .tick {
+          font-size: 8px;
+        }
       }
     }
   }

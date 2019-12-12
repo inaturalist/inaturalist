@@ -837,31 +837,48 @@ class YearStatistic < ActiveRecord::Base
           current_streaks[streaking_user_id] ||= 0
           current_streaks[streaking_user_id] += 1
         end
-        stop_date = nil
+
+        # Finished users are all the users who were present in the previous day
+        # but not in this one. For each of these, we need to add their streaks
+        # with the stop date set to the previous day
+        stop_date = ( Date.parse( date ) - 1.day )
         finished_user_ids = []
-        if bucket_i == ( histogram_buckets.size - 1 ) && range_i == ( ranges.size - 1 )
-          # If this is the last day, then everyone is finished
-          finished_user_ids = ( user_ids + current_streaks.keys ).uniq
-          stop_date = Date.parse( date )
-        else
-          finished_user_ids = previous_user_ids - user_ids
-          stop_date = ( Date.parse( date ) - 1.day )
-        end
+        finished_user_ids = previous_user_ids - user_ids
         puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished"
-        finished_user_ids.each do |finished_user_id|
-          if current_streaks[finished_user_id] && current_streaks[finished_user_id] >= streak_length
+        finished_user_ids.each do |user_id|
+          if current_streaks[user_id] && current_streaks[user_id] >= streak_length
             streaks << {
-              user_id: finished_user_id,
-              days: current_streaks[finished_user_id],
+              user_id: user_id,
+              days: current_streaks[user_id],
               stop: stop_date.to_s,
-              start: ( stop_date + 1.day - ( current_streaks[finished_user_id] ).days ).to_s
+              start: ( stop_date + 1.day - ( current_streaks[user_id] ).days ).to_s
             }
           end
-          current_streaks[finished_user_id] = nil
+          current_streaks[user_id] = nil
         end
+
+        # If this is the final day and there are still streaks in progress, we
+        # need to add their streaks with the stop today set to *this* day
+        if bucket_i == ( histogram_buckets.size - 1 ) && range_i == ( ranges.size - 1 )
+          streaking_user_ids = current_streaks.keys
+          stop_date = Date.parse( date )
+          streaking_user_ids.each do |user_id|
+            if current_streaks[user_id] && current_streaks[user_id] >= streak_length
+              streaks << {
+                user_id: user_id,
+                days: current_streaks[user_id],
+                stop: stop_date.to_s,
+                start: ( stop_date + 1.day - ( current_streaks[user_id] ).days ).to_s
+              }
+            end
+            current_streaks[user_id] = nil
+          end
+        end
+
         previous_user_ids = user_ids
       end
     end
+    return nil if streaks.blank?
     max_stop_date = Date.parse( streaks.map{|s| s[:stop]}.max ) - 2.days
     top_streaks = streaks.select do |s|
       Date.parse( s[:stop] ) >= max_stop_date ||

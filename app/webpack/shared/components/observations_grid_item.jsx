@@ -27,7 +27,7 @@ const ObservationsGridItem = ( {
           backgroundImage: o.photo( ) ? `url( '${o.photo( "small" )}' )` : ""
         }}
         target={linkTarget}
-        className={`photo ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
+        className={`media ${o.hasPhotos( ) ? "photo" : ""} ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
         onClick={function ( e ) {
           if ( typeof ( onObservationClick ) !== "function" ) {
             return true;
