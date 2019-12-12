@@ -4106,9 +4106,9 @@ describe Observation, "and update_quality_metrics" do
 end
 
 describe Observation, "taxon_geoprivacy" do
-  it "should be set using private coordinates" do
-    p = make_place_with_geom
-    cs = ConservationStatus.make!( place: p )
+  let!(:p) { make_place_with_geom }
+  let!(:cs) { ConservationStatus.make!( place: p ) }
+  let(:o) do
     o = Observation.make!
     Observation.where( id: o.id ).update_all(
       latitude: p.latitude + 10,
@@ -4117,11 +4117,27 @@ describe Observation, "taxon_geoprivacy" do
       private_longitude: p.longitude,
     )
     o.reload
+  end
+  it "should be set using private coordinates" do
     expect( p ).to be_contains_lat_lng( o.private_latitude, o.private_longitude )
     expect( p ).not_to be_contains_lat_lng( o.latitude, o.longitude )
     i = Identification.make!( observation: o, taxon: cs.taxon )
     o.reload
     expect( o.taxon_geoprivacy ).to eq cs.geoprivacy
+  end
+
+  it "should restore taxon obscured coordinates when going from pivate to open" do
+    i = Identification.make!( observation: o, taxon: cs.taxon )
+    o.reload
+    expect( o ).not_to be_coordinates_private
+    expect( o ).to be_coordinates_obscured
+    o.update_attributes( geoprivacy: Observation::PRIVATE )
+    expect( o ).to be_coordinates_private
+    o.reload
+    o.update_attributes( geoprivacy: Observation::OPEN, latitude: o.private_latitude, longitude: o.private_longitude )
+    o.reload
+    expect( o ).not_to be_coordinates_private
+    expect( o ).to be_coordinates_obscured
   end
 end
 
