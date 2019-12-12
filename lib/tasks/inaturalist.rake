@@ -76,9 +76,6 @@ namespace :inaturalist do
   desc "Delete expired S3 photos"
   task :delete_expired_photos => :environment do
     S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
-    # Aws.config(access_key_id: S3_CONFIG["access_key_id"],
-    #   secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")
-    # bucket = Aws::S3.new.buckets[CONFIG.s3_bucket]
     client = ::Aws::S3::Client.new(
       access_key_id: S3_CONFIG["access_key_id"],
       secret_access_key: S3_CONFIG["secret_access_key"],
@@ -92,15 +89,27 @@ namespace :inaturalist do
       where("(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
         6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |p|
-      images = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ p.photo_id }/" ).contents
-      if images.any?
-        pp images
-        begin
-          client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+      begin
+        s3_objects = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ p.photo_id }/" )
+        images = s3_objects.contents
+      rescue
+        fails += 1
+        break if fails >= 5
+      end
+
+      if s3_objects && s3_objects.data && s3_objects.data.is_a?( Aws::S3::Types::ListObjectsOutput )
+        if images.any?
+          puts "deleting #{p.photo_id} from S3"
+          begin
+            client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+            p.update_attributes(removed_from_s3: true)
+          rescue
+            fails += 1
+            break if fails >= 5
+          end
+        else
           p.update_attributes(removed_from_s3: true)
-        rescue
-          fails += 1
-          break if fails >= 5
+          puts "#{p.photo_id} has no photos in S3"
         end
       end
     end
