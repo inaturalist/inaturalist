@@ -4940,6 +4940,8 @@ en:
           "introduced" will have roughly the same effect, but it won't change
           existing values, just fill in blank ones.
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Life List titles cannot be changed
       new:
         place_desc: |
           Automatically populate this list with taxa observed in this place.

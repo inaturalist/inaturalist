@@ -75,4 +75,24 @@ describe List do
       end
     end
   end
+
+  describe "is_a_users_default_lifelist?" do
+    it "lists aren't default lifelists" do
+      expect( List.make.is_a_users_default_lifelist? ).to be false
+    end
+
+    it "checklists aren't default lifelists" do
+      expect( CheckList.make!.is_a_users_default_lifelist? ).to be false
+    end
+
+    it "lifelists aren't necessarily default lifelists" do
+      expect( LifeList.make!.is_a_users_default_lifelist? ).to be false
+    end
+
+    it "users lifelists are default lifelists" do
+      u = User.make!
+      expect( u.life_list.is_a_users_default_lifelist? ).to be true
+    end
+  end
+
 end

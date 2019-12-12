@@ -1,5 +1,6 @@
 <%- optionscol ||= nil -%>
 <%- list ||= form_fields ||= @list -%>
+<%- title_edit_disabled = list.is_a_users_default_lifelist? -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css">
     .place_id_field .chooser {width:300px;}
@@ -16,7 +17,8 @@
   </script>
 <%- end -%>
 <div class="column span-12">
-  <%= f.text_field :title, :class => 'text', :label=>t(:title).humanize %>
+  <%= f.text_field :title, class: "text", label: t(:title).humanize, disabled: title_edit_disabled,
+    title: title_edit_disabled && t( "views.lists.edit.lifelist_titles_cannot_be_changed" ) %>
   <%= f.text_area :description, :label=>t(:description) %>
 </div>
 <div class="column span-12 last">

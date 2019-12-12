@@ -234,7 +234,11 @@ class List < ActiveRecord::Base
       "generate_csv_#{id}"
     end
   end
-  
+
+  def is_a_users_default_lifelist?
+    is_a?( LifeList ) && id == user.life_list_id
+  end
+
   def self.icon_preview_cache_key(list)
     list_id = list.is_a?(List) ? list.id : list
     FakeView.url_for(:controller => "lists", :action => "icon_preview", :list_id => list_id, :locale => I18n.locale)
