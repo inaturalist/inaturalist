@@ -166,3 +166,51 @@ describe ObservationFieldValue, "validation" do
     end
   end
 end
+
+describe ObservationFieldValue, "annotation_attribute_and_value" do
+  before( :all ) do
+    @alive_or_dead = ControlledTerm.make!( active: true )
+    ControlledTermLabel.make!( controlled_term: @alive_or_dead, label: "Alive or Dead" )
+    @alive = ControlledTerm.make!( is_value: true, active: true )
+    ControlledTermLabel.make!( controlled_term: @alive, label: "Alive")
+    @dead = ControlledTerm.make!( is_value: true, active: true )
+    ControlledTermLabel.make!( controlled_term: @dead, label: "Dead" )
+    @cannot_be_determined = ControlledTerm.make!( is_value: true, active: true )
+    ControlledTermLabel.make!( controlled_term: @cannot_be_determined, label: "Cannot Be Determined" )
+    @alive_or_dead.controlled_term_values.create( controlled_value: @alive )
+    @alive_or_dead.controlled_term_values.create( controlled_value: @dead )
+    @alive_or_dead.controlled_term_values.create( controlled_value: @cannot_be_determined )
+    @dead_or_alive_field = ObservationField.make!( name: "Dead or alive", allowed_values: "dead|alive|moribund|not sure" )
+  end
+
+  it "associates alive ofvs" do
+    ofv = ObservationFieldValue.make( observation_field: @dead_or_alive_field, value: "alive" )
+    attr_val = ofv.annotation_attribute_and_value
+    expect( attr_val ).not_to be_blank
+    expect( attr_val[:controlled_attribute] ).to eq @alive_or_dead
+    expect( attr_val[:controlled_value] ).to eq @alive
+  end
+
+  it "associates dead ofvs" do
+    ofv = ObservationFieldValue.make( observation_field: @dead_or_alive_field, value: "dead" )
+    attr_val = ofv.annotation_attribute_and_value
+    expect( attr_val ).not_to be_blank
+    expect( attr_val[:controlled_attribute] ).to eq @alive_or_dead
+    expect( attr_val[:controlled_value] ).to eq @dead
+  end
+
+  it "associates not sure ofvs" do
+    ofv = ObservationFieldValue.make( observation_field: @dead_or_alive_field, value: "not sure" )
+    attr_val = ofv.annotation_attribute_and_value
+    expect( attr_val ).not_to be_blank
+    expect( attr_val[:controlled_attribute] ).to eq @alive_or_dead
+    expect( attr_val[:controlled_value] ).to eq @cannot_be_determined
+  end
+
+  it "does not associate moribund ofvs" do
+    ofv = ObservationFieldValue.make( observation_field: @dead_or_alive_field, value: "moribund" )
+    attr_val = ofv.annotation_attribute_and_value
+    expect( attr_val ).to be_blank
+  end
+
+end

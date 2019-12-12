@@ -8,7 +8,12 @@ import ObservationFieldInput from "./observation_field_input";
 class ObservationFields extends React.Component {
   constructor( props ) {
     super( props );
-    const currentUser = props.config && props.config.currentUser;
+    const { config, observation } = props;
+    this.observerPrefersFieldsBy = ( observation.user.preferences
+      && observation.user.preferences.prefers_observation_fields_by )
+      ? observation.user.preferences.prefers_observation_fields_by
+      : "anyone";
+    const currentUser = config && config.currentUser;
     this.state = {
       open: currentUser ? !currentUser.prefers_hide_obs_show_observation_fields : true,
       editingFieldValue: null
@@ -19,7 +24,6 @@ class ObservationFields extends React.Component {
     const {
       observation,
       config,
-      placeholder,
       addObservationFieldValue,
       updateObservationFieldValue,
       collapsible,
@@ -38,6 +42,17 @@ class ObservationFields extends React.Component {
     ) );
     let addValueInput;
     if ( loggedIn ) {
+      let disabled = false;
+      let placeholder;
+      const viewerIsObserver = config.currentUser.id === observation.user.id;
+      const viewerIsCurator = config.currentUser.roles.indexOf( "curator" ) >= 0;
+      if ( this.observerPrefersFieldsBy === "observer" && !viewerIsObserver ) {
+        disabled = true;
+        placeholder = "Observer does not allow addition of observation fields";
+      } else if ( this.observerPrefersFieldsBy === "curators" && !viewerIsObserver && !viewerIsCurator ) {
+        disabled = true;
+        placeholder = "Observer only allows curators to add observation fields";
+      }
       addValueInput = (
         <div className="form-group">
           <ObservationFieldInput
@@ -50,6 +65,7 @@ class ObservationFields extends React.Component {
             }}
             placeholder={placeholder}
             config={config}
+            disabled={disabled}
           />
         </div>
       );
@@ -139,8 +155,7 @@ ObservationFields.propTypes = {
   removeObservationFieldValue: PropTypes.func,
   updateObservationFieldValue: PropTypes.func,
   updateSession: PropTypes.func,
-  collapsible: PropTypes.bool,
-  placeholder: PropTypes.string
+  collapsible: PropTypes.bool
 };
 
 ObservationFields.defaultProps = {
