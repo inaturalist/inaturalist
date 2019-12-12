@@ -142,10 +142,10 @@ pl:
     many: "<span class='count'>%{count}</span> obserwacji stopnia badawczego"
     other: "<span class='count'>%{count}</span> obserwacji stopnia badawczego"
   x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> obserwacja stopnia badawczego oznaczona co do gatunku lub niżej"
-    few: "<span class='count'>%{count}</span> obserwacje stopnia badawczego oznaczone co do gatunku lub niżej"
-    many: "<span class='count'>%{count}</span> obserwacji stopnia badawczego oznaczonych co do gatunku lub niżej"
-    other: "<span class='count'>%{count}</span> obserwacji stopnia badawczego oznaczonej co do gatunku lub niżej"
+    one: "<span class='count'>%{count}</span> obserwacja posiadająca stopnień badawczy oznaczona co do gatunku lub niżej"
+    few: "<span class='count'>%{count}</span> obserwacje posiadające stopnień badawczy oznaczone co do gatunku lub niżej"
+    many: "<span class='count'>%{count}</span> obserwacji posiadających stopnień badawczy oznaczonych co do gatunku lub niżej"
+    other: "<span class='count'>%{count}</span> obserwacji posiadającej stopnień badawczy oznaczonej co do gatunku lub niżej"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> takson pod opieką"
     few: "<span class='count'>%{count}</span> taksony pod opieką"
@@ -1893,6 +1893,10 @@ pl:
     #Note that this should display a time zone code and not an offset, so
     #please use z and not Z
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "D MMM YYYY · LT Z"
   month: Miesiąc
   months: Miesiące
   more: Więcej
@@ -2086,6 +2090,7 @@ pl:
   number_of_observations: Ilość obserwacji
   number_of_observers_value: "Liczba obserwatorów: %{number}"
   number_of_observers: "Liczba obserwatorów"
+  obs: Obs
   obscured: Ukryta
   obscured_or_private: ukryta lub prywatna
   obscured_description: |
@@ -2094,7 +2099,11 @@ pl:
   observation_: obserwacja
   observation_added: Dodano obserwację.
   observation_added_to_the_project: "Obserwacja dodana do projektu \"%{project}\""
+  observation_brief_something_on_day: "coś dnia %{day}"
+  observation_brief_something_by_user: "Coś przez %{user}"
   observation_brief_something_from_place: "Coś z %{place}"
+  observation_brief_something_from_place_by_user: "Coś z %{place} przez %{user}"
+  observation_brief_something_from_place_on_day: "Coś z %{place} dnia %{day}"
   observations_by_category: "Obserwacje po kategorii"
   observations_by_app: Obserwacje po aplikacji
   observations_by_rank: Obserwacje według kategorii
@@ -2822,6 +2831,7 @@ pl:
   settings: Ustawienia
   share: Udostępnij
   share_colon: "Udostępnij:"
+  show: Pokaż
   show_keyboard_shortcuts: Pokaż skróty klawiszowe
   show_less: Pokaż mniej
   show_more: Pokaż więcej
@@ -3283,6 +3293,11 @@ pl:
           "Life Stage=pupa": Poczwarka
           "Life Stage=adult": Osobnik dorosły
           unannotated: Brak adnotacji
+        max_photos_desc: |
+          Takson może mieć maksymalnie %{max} zdjęć. Musisz usunąć
+          istniejące zdjęcia, aby dodać więcej.
+        rare_desc: Najrzadziej obserwowane zagrożone taksony
+        rare_in_place_desc_html: Najrzadziej obserwowane zagrożone taksony w <a href="%{url}">%{place}</a>
         trending_desc: Najczęściej obserwowane taksony w zeszłym miesiącu
         trending_in_place_desc_html: Najczęściej obserwowane taksony w zeszłym miesiącu w <a href="%{url}">%{place}</a>
         wanted_desc: Gatunki należące do tego taksonu, który nie zostały jeszcze zaobserwowane.
@@ -3291,9 +3306,30 @@ pl:
         name_with_rank_desc: |
           Nazwa taksonu wraz z kategorią. Dla kategorii poniżej gatunku, kategoria dodawana jest po nazwie dwuczłonowej.
     users:
+      delete:
+        type_confirmation_code: Wpisz %{confirmation_code}
       edit:
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Wzmianki
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Wiadomości
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Zmiany taksonomiczne
         project_addition_preferences:
+          any: Dowolna
           joined: Projekty do których dołączyłeś
+        prefers_no_tracking_label: Nie zbieraj danych o stabilności i użytkowaniu z wykorzystaniem usług stron trzecich
+        prefers_no_tracking_label_desc_we_use: |
+          Używamy różnorodnych usług stron trzecich do monitorowania stabilności i
+          diagnozowania błędów i problemów w naszym oprogramowaniu. Te strony trzecie
+          obejmują
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Szczegóły przeglądarki, takie jak marka, model i wersja
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Szczegóły awarii, takie jak dokładnie jaki wiersz kodu spowodował awarię
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Szczegóły urządzenia, takie jak marka i model telefonu komórkowego
         search_place_help_html: |
           Domyślna lokalizacja dla wyszukiwania obserwacji.
         scientific_name_first_desc: |
@@ -3305,6 +3341,7 @@ pl:
         this_user_was_banned: Ten użytkownik został zawieszony
     user_parents:
       new:
+        child_name_private: Imię dziecka (prywatne)
         parent_name_private: Imię rodzica lub opiekuna prawnego (prywatne)
         parent_email: Adres e-mail rodzica lub opiekuna prawnego (prywatny)
         parent_information_private: Informacje o rodzicach (prywatne)
@@ -3322,20 +3359,28 @@ pl:
         what_are_you_waiting_for: Nie czekaj!
         join_today: Dołącz już dziś
   date:
+    abbr_day_names:
+      - Sun
+      - Mon
+      - Tue
+      - Śr
+      - Czw
+      - Pt
+      - Sob
     abbr_month_names:
       - 
-      - Jan
-      - Feb
+      - Sty
+      - Lut
       - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
+      - Kwi
+      - Maj
+      - Cze
+      - Lip
+      - Sie
+      - Wrz
+      - Paź
+      - Lis
+      - Gru
     day_names:
       - Niedziela
       - Poniedziałek
@@ -3345,16 +3390,26 @@ pl:
       - Piątek
       - Sobota
     day_names_min:
-      1: Su
-      2: Mo
-      3: Tu
-      4: We
-      5: Th
-      6: Fr
-      7: Sa
+      1: Nd
+      2: Pn
+      3: Wt
+      4: Śr
+      5: Czw
+      6: Pt
+      7: Sb
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%-d.%m.%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%B %d, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short: '%-d %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short_with_year: '%-d %b %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_year: '%B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_day_year: '%-d %B %Y'
     month_names:
       - 
       - Styczeń
@@ -3508,6 +3563,12 @@ pl:
       #"1,000,002.5" in English, and "," is the delimiter. This should not be
       #the same as the separator.
       delimiter: ' '
+      precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: ','
       significant: false
       strip_insignificant_zeros: false
     human:
@@ -3542,6 +3603,9 @@ pl:
       words_connector: ', '
   time:
     am: przed południem
+    formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      hours: "%H:%M"
     pm: po południu
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -3574,6 +3638,7 @@ pl:
         published_at: Publikacja
       listed_taxon:
         occurrence_status_level: Stopień statusu występowania
+        establishment_means: Sposoby ustanowienia
       observation:
         observed_on: data obserwacji
       observation_field_value:
@@ -3601,11 +3666,15 @@ pl:
         name: Nazwa
         parent_id: rodzic
         place_type: Typ miejsca
+        woeid: WOEID
       source:
         title: Tytuł
+        in_text: W tekście
         url: Adres URL
       taxon:
         name: Nazwa
+        rank: Kategoria
+        locked: Zablokowany
         auto_photos: Automatyczne zdjęcia
         auto_description: Automatyczny opis
         source_identifier: Identyfikator źródła
@@ -3617,12 +3686,12 @@ pl:
       user:
         email: Adres e-mail
         login: Nazwa użytkownika
-        name: Nazwa
+        name: Imię
         locale: Ustawienia regionalne
         time_zone: Strefa czasowa
         search_place_id: Lokalizacja wyszukiwania
         place_id: Miejsce
-        preferred_observation_fields_by: Zezwalaj na obserwacje z
+        preferred_observation_fields_by: Zezwalaj na pola obserwacji od
     errors:
       format: '%{attribute} %{message}'
       messages:
@@ -3641,6 +3710,8 @@ pl:
         not_an_integer: musi być liczbą całkowitą
         odd: musi być liczbą nieparzystą
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
+      template:
+        body: 'Wystąpiły problemy z następującymi polami:'
       models:
         application:
           attributes:
@@ -3703,6 +3774,8 @@ pl:
             lexicon:
               should_not_contain_commas_or_slashes: nie powinien zawierać przecinków ani ukośników
             name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
+                nie można dopasować nazwy naukowej gatunku dla tego leksykonu
               bad_format: |
                 może zawierać wyłącznie podstawowe litery alfabetu łacińskiego, myślniki, odstępy i symbol ×; zwróć uwagę, że domniemane taksony i odmiany uprawne nie są dozwolone
         taxon_photo:
@@ -3771,7 +3844,65 @@ pl:
         a: "@vow"
         e: "@vow"
         i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
       "@gender":
+        m: mężczyzna
+        f: kobieta
+        "n": wykastruj
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        form: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         section: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
