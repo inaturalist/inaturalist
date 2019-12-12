@@ -1,6 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as d3 from "d3";
+import {
+  scaleTime,
+  scaleLog,
+  scaleLinear,
+  min as d3min,
+  max as d3max,
+  timeFormatLocale,
+  interpolateWarm
+} from "d3";
 import moment from "moment";
 import _ from "lodash";
 import UserImage from "../../../shared/components/user_image";
@@ -11,17 +19,20 @@ const Streaks = ( {
   year,
   hideUsers
 } ) => {
-  const scale = d3.scaleTime( )
+  const scale = scaleTime( )
     .domain( [new Date( `${year}-01-01` ), new Date( `${year}-12-31` )] )
     .range( [0, 1.0] );
   const ticks = scale.ticks();
   const days = data.map( d => d.days );
-  const dayScale = d3.scaleLog( )
-    .domain( [d3.min( days ), d3.max( days )] )
+  const dayScale = scaleLog( )
+    .domain( [d3min( days ), d3max( days )] )
     .range( [0, 1] );
+  const dayColorScale = scaleLinear( )
+    .domain( [0, 1] )
+    .range( [0, 0.8] );
   const dayScaleTicks = dayScale.ticks( );
-  dayScaleTicks.push( d3.max( days ) );
-  const d3Locale = d3.timeFormatLocale( {
+  dayScaleTicks.push( d3max( days ) );
+  const d3Locale = timeFormatLocale( {
     datetime: I18n.t( "time.formats.long" ),
     date: I18n.t( "date.formats.long" ),
     time: I18n.t( "time.formats.hours" ),
@@ -106,14 +117,18 @@ const Streaks = ( {
                   style={{
                     left: `${Math.max( 0, x1 * 100 )}%`,
                     width: `${width * 100}%`,
-                    backgroundColor: d3.interpolateWarm( dayScale( streak.days ) )
+                    backgroundColor: interpolateWarm( dayColorScale( dayScale( streak.days ) ) )
                   }}
                   title={`${I18n.t( "date_to_date", { d1, d2 } )} • ${xDays}`}
                 >
                   { streakStartedBeforeYear && (
                     <span
                       className="triangle"
-                      style={{ borderRightColor: d3.interpolateWarm( dayScale( streak.days ) ) }}
+                      style={{
+                        borderRightColor: interpolateWarm(
+                          dayColorScale( dayScale( streak.days ) )
+                        )
+                      }}
                     />
                   ) }
                   { width > 0.25 && <span className="start">{ d1 }</span> }
@@ -135,6 +150,13 @@ const Streaks = ( {
               const v = dayScale( tick );
               const left = i === 0 ? 0 : dayScale( dayScaleTicks[i - 1] );
               const width = i === 0 ? v : v - dayScale( dayScaleTicks[i - 1] );
+              const cssGradient = `
+                linear-gradient(
+                  to right,
+                  ${interpolateWarm( dayColorScale( v - width ) )},
+                  ${interpolateWarm( dayColorScale( v ) )}
+                )
+              `;
               return (
                 <div
                   className="tick"
@@ -154,7 +176,7 @@ const Streaks = ( {
                   <div
                     className="bar"
                     style={{
-                      backgroundImage: `linear-gradient(to right, ${d3.interpolateWarm( v - width )}, ${d3.interpolateWarm( v )})`
+                      backgroundImage: cssGradient
                     }}
                   />
                 </div>
