@@ -112,7 +112,13 @@ class NewSpecies extends React.Component {
         date: i.date,
         value: i.novel_species_ids.length,
         novel_species_ids: i.novel_species_ids,
-        offset: showAccumulation ? i.accumulated_species_count - i.novel_species_ids.length : 0
+        offset: showAccumulation ? i.accumulated_species_count - i.novel_species_ids.length : 0,
+        highlight: (
+          focusYear
+          && focusMonth
+          && moment( i.date ).year( ) === focusYear
+          && moment( i.date ).add( 2, "days" ).month( ) + 1 === focusMonth
+        )
       } ) ),
       style: "bar",
       label: d => `<strong>${

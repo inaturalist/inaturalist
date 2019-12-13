@@ -51,6 +51,7 @@ class ObservationsGrid extends React.Component {
                   <ObservationsGridItem
                     observation={new inatjs.Observation( o )}
                     splitTaxonOptions={{ noParens: true, noInactive: true }}
+                    photoSize="medium"
                     controls={(
                       <div>
                         <span className="activity">

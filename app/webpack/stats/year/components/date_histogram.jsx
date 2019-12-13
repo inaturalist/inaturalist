@@ -75,7 +75,7 @@ class DateHistogram extends React.Component {
   enterSeries( newState = {} ) {
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
     const svg = d3.select( mountNode ).select( "svg" );
-    const { series, onClick } = this.props;
+    const { series, onClick, showContext } = this.props;
     const {
       width,
       height,
@@ -111,6 +111,10 @@ class DateHistogram extends React.Component {
     seriesGroups.exit( ).remove( );
     _.forEach( localSeries, ( seriesData, seriesName ) => {
       const seriesGroup = focus.select( `.${_.snakeCase( seriesName )}` );
+      const colorForDatum = d => {
+        const color = this.colorForSeries( seriesName );
+        return d.highlight ? d3.color( color ).brighter( 1.5 ) : color;
+      };
       if ( series[seriesName].style === "bar" ) {
         const barWidth = ( d, i ) => {
           let nextX = width;
@@ -133,6 +137,7 @@ class DateHistogram extends React.Component {
         bars
           .attr( "width", barWidth )
           .attr( "height", barHeight )
+          .attr( "fill", colorForDatum )
           .attr( "transform", d => {
             if ( d.offset ) {
               return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
@@ -150,7 +155,7 @@ class DateHistogram extends React.Component {
                 }
                 return `translate( ${x( d.date )}, ${y( d.value )} )`;
               } )
-              .attr( "fill", this.colorForSeries( seriesName ) )
+              .attr( "fill", colorForDatum )
               .on( "mouseover", tip.show )
               .on( "mouseout", tip.hide );
         bars.exit( ).remove( );
@@ -171,7 +176,7 @@ class DateHistogram extends React.Component {
             .attr( "cy", d => y( d.value ) )
             .attr( "r", 2 )
             .attr( "fill", "white" )
-            .style( "stroke", ( ) => this.colorForSeries( seriesName ) )
+            .style( "stroke", colorForDatum )
             .on( "mouseover", tip.show )
             .on( "mouseout", tip.hide );
         if ( onClick ) {
@@ -191,10 +196,23 @@ class DateHistogram extends React.Component {
     svg.select( ".legendOrdinal" )
       .call( legendOrdinal );
     focus.select( ".axis--y" )
-      // .call( d3.axisLeft( y ).tickFormat( "s" ) )
       .call( this.axisLeft( y ) )
       .select( ".domain" )
         .remove( );
+    // This doesn't quite higlight the fill color of the rects in the context
+    // if ( showContext ) {
+    //   const context = d3.select( mountNode ).selectAll( ".context" );
+    //   const contextSeriesName = _.keys( localSeries )[0];
+    //   const contextSeriesData = localSeries[contextSeriesName];
+    //   const contextBars = context.selectAll( "rect" ).data( contextSeriesData );
+    //   const colorForDatum = d => {
+    //     const color = this.colorForSeries( contextSeriesName );
+    //     return d.highlight ? d3.color( color ).brighter( 1.5 ) : color;
+    //   };
+    //   contextBars.enter( )
+    //     .append( "rect" )
+    //       .attr( "fill", colorForDatum );
+    // }
     this.setState( { x, y } );
   }
 
@@ -244,7 +262,6 @@ class DateHistogram extends React.Component {
       series,
       xExtent,
       tickFormatBottom,
-      tickFormatLeft,
       legendPosition,
       showContext,
       id,
@@ -417,6 +434,10 @@ class DateHistogram extends React.Component {
       const contextSeriesName = _.keys( localSeries )[0];
       const contextSeriesData = localSeries[contextSeriesName];
       const contextBars = context.selectAll( "rect" ).data( contextSeriesData );
+      const colorForDatum = d => {
+        const color = this.colorForSeries( contextSeriesName );
+        return d.highlight ? d3.color( color ).brighter( 1.5 ) : color;
+      };
       contextBars
         .enter( ).append( "rect" )
           .attr( "width", ( d, i ) => {
@@ -427,7 +448,7 @@ class DateHistogram extends React.Component {
             return nextX - x( d.date );
           } )
           .attr( "height", d => height2 - y2( d.value ) )
-          .attr( "fill", this.colorForSeries( contextSeriesName ) )
+          .attr( "fill", colorForDatum )
           .attr( "transform", d => {
             if ( d.offset ) {
               return `translate( ${x( d.date )}, ${y2( d.value + d.offset )} )`;

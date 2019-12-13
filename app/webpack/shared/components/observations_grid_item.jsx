@@ -12,7 +12,8 @@ const ObservationsGridItem = ( {
   linkTarget,
   splitTaxonOptions,
   user,
-  showAllPhotosPreview
+  showAllPhotosPreview,
+  photoSize
 } ) => {
   let wrapperClass = "thumbnail borderless ObservationsGridItem";
   if ( o.reviewedByCurrentUser ) {
@@ -24,7 +25,7 @@ const ObservationsGridItem = ( {
       <a
         href={`/observations/${o.id}`}
         style={{
-          backgroundImage: o.photo( ) ? `url( '${o.photo( "small" )}' )` : ""
+          backgroundImage: o.photo( ) ? `url( '${o.photo( photoSize )}' )` : ""
         }}
         target={linkTarget}
         className={`media ${o.hasPhotos( ) ? "photo" : ""} ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
@@ -92,12 +93,14 @@ ObservationsGridItem.propTypes = {
   linkTarget: PropTypes.string,
   splitTaxonOptions: PropTypes.object,
   user: PropTypes.object,
-  showAllPhotosPreview: PropTypes.bool
+  showAllPhotosPreview: PropTypes.bool,
+  photoSize: PropTypes.string
 };
 
 ObservationsGridItem.defaultProps = {
   linkTarget: "_self",
-  splitTaxonOptions: {}
+  splitTaxonOptions: {},
+  photoSize: "small"
 };
 
 export default ObservationsGridItem;

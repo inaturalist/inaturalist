@@ -1,31 +1,27 @@
 .container
   .row
     .col-xs-12
-      %p
-        %b
-          = t :placement
-          \:
-        = @announcement.placement
-      %p
-        %b
-          = t :start
-          \:
-        = @announcement.start
-      %p
-        %b
-          = t :end
-          \:
-        = @announcement.end
-      %p
-        %b
-          = t "locales_"
-          \:
-        = @announcement.locales.join(", ")
-      %p
-        %b
-          = t :body
-          \:
-      = raw @announcement.body
+      %h2
+        Announcement
+        = @announcement.id
+      %table.table.table-bordered
+        - %w(created_at updated_at placement start end site_ids locales).each do |a|
+          %tr
+            %th=t "#{a}_", default: t( a )
+            %td= @announcement.send( a )
+        %tr
+          %th=t :body
+          %td{style: "width: 100%"}= raw @announcement.body
+        - if @announcement.dismissible?
+          %tr
+            %th=t :dismissed_by
+            %td
+              = @announcement.dismiss_user_ids.size
+              users
+              - if @announcement.dismiss_user_ids.include?( current_user.id )
+                including you
+              = link_to_toggle_box "show user IDs" do
+                = @announcement.dismiss_user_ids
       = link_to t(:edit), edit_announcement_path(@announcement)
       |
       = link_to t(:back), announcements_path
