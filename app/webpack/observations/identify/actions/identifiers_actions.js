@@ -20,16 +20,20 @@ function updateIdentifiers( updates ) {
   };
 }
 
-function fetchIdentifiers( ) {
+function fetchIdentifiers( options = {
+  forUserID: null
+} ) {
   return function ( dispatch, getState ) {
     const s = getState();
-    const currentUserInIdentifiers = _.find(
-      s.identifiers.users, u => u.user_id === s.config.currentUser.id
-    );
-    if ( s.identifiers.users.length > 0 && !currentUserInIdentifiers ) {
-      // If the current user isn't in the list of identifiers, there's no reason
-      // to update that list with every new identification
-      return Promise.resolve( );
+    if ( options.forUserID ) {
+      const currentUserInIdentifiers = _.find(
+        s.identifiers.users, u => u.user_id === options.forUserID
+      );
+      if ( s.identifiers.users.length > 0 && !currentUserInIdentifiers ) {
+        // If the current user isn't in the list of identifiers, there's no reason
+        // to update that list with every new identification
+        return Promise.resolve( );
+      }
     }
     const apiParams = Object.assign( { }, paramsForSearch( s.searchParams.params ), {
       reviewed: "any",

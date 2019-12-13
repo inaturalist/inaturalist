@@ -44,7 +44,7 @@ function mapDispatchToProps( dispatch, ownProps ) {
               $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
             } );
             dispatch( fetchObservationsStats( ) );
-            dispatch( fetchIdentifiers( ) );
+            // dispatch( fetchIdentifiers( ) );
           } );
       };
       if ( options.confirmationText ) {
