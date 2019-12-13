@@ -48,10 +48,10 @@ class ObservationFields extends React.Component {
       const viewerIsCurator = config.currentUser.roles.indexOf( "curator" ) >= 0;
       if ( this.observerPrefersFieldsBy === "observer" && !viewerIsObserver ) {
         disabled = true;
-        placeholder = "Observer does not allow addition of observation fields";
+        placeholder = I18n.t( "views.observations.show.observer_does_not_allow_observation_fields" );
       } else if ( this.observerPrefersFieldsBy === "curators" && !viewerIsObserver && !viewerIsCurator ) {
         disabled = true;
-        placeholder = "Observer only allows curators to add observation fields";
+        placeholder = I18n.t( "views.observations.show.observer_only_allows_curators_to_add_fields" );
       }
       addValueInput = (
         <div className="form-group">

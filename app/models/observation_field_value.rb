@@ -218,11 +218,12 @@ class ObservationFieldValue < ActiveRecord::Base
       controlled_value = ControlledTerm.first_term_by_label( "Fruiting" )
     elsif ( observation_field.name =~ /dead or alive/i ||
             observation_field.name =~ /alive( or |\/)dead/i ||
-            observation_field.name =~ /was it alive/i )
+            observation_field.name =~ /was it alive/i ||
+            observation_field.name =~ /alive \(aor\), dead \(dor\)/i )
       value_term_label = case value.downcase
-      when "yes", "alive"
+      when "yes", "alive", "aor"
         "Alive"
-      when "no", "dead"
+      when "no", "dead", "dor"
         "Dead"
       when "maybe", "not sure", "unknown"
         "Cannot Be Determined"
