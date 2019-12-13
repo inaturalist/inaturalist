@@ -67,6 +67,9 @@ tr:
   x_new_species:
     one: "%{count} Yeni Tür"
     other: "%{count} Yeni Tür"
+  x_new_users:
+    one: '%{count} Yeni Kullanıcı'
+    other: '%{count} Yeni Kullanıcı'
   x_species:
     one: '%{count} Tür'
     other: '%{count} Tür'
@@ -1083,7 +1086,7 @@ tr:
   double_click_to_finish: (bitirmek için çift tıkla)
   download: İndir
   download_bulk_import_template_html: |
-    <a href="/observations/import#csv_import">Toplu yüklemede</a> kullanmak için <a href="%{url}">şablonu indirin</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import"><a href="/observations/import#csv_import">Toplu yüklemede</a> kullanmak için <a href="%{url}">şablonu indirin</a>
   download_csv: CSV'yi İndir
   download_csv_template: CSV şablonunu indir
   download_kml: KML'yi İndir
@@ -5501,6 +5504,8 @@ tr:
           <a href="%{url}">%{numStudies} çalışmanın tamamını görüntüleyin</a>
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Gözlem Serileri
+        observation_streaks_color_desc: |
+          Renk, bir logaritmik ölçekte günlerin sayısını gösterir:
         sunburst_desc_html: |
           Hiyerarşik bir "güneş" diyagramı olarak düzenlenen gözlemlenen sınıflar. Hiyerarşinin tabanı merkezdedir, "Yaşam" ile başlayıp dış kenarlardaki türlerle bitiyor. Her yayın boyutu, bu sınıfın gözlem sayısı ile orantılıdır ve renkler aşağı yukarı her zamanki "ikonik" sınıf renklerimizle aynıdır (bitkiler için yeşil, böcekler için turuncu, diğer birçok hayvan için mavi vb.), böylece çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğiniz anlamına gelir. <strong>Merkezdeki sınıfı ve onun çevresindeki alt sınıfları yerleştirmek için yaya tıklayın</strong> ya da <strong>hiyerarşiyi yukarı taşımak için merkeze tıklayın</strong>.
     taxa:
@@ -5858,9 +5863,6 @@ tr:
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Bu üçüncü taraflarla paylaşabileceğimiz bilgiler şunları içerir
-        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          IP adresleri (kent düzeyinde konum belirlemek ve sizi değişik ağ sayfalarında ve hizmetlerde izlemek için kullanılabilir; Google Analytics ve <a
-          href="https://firebase.google.com/support/privacy">Firebase Crashlytics’te</a> <a href="https://support.google.com/analytics/answer/2763052">IP anonimleştirme</a> özelliğini etkinleştirdiğimizi unutmayın ve böylece IP adresini bilgimize kaydetmez)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Tarayıcı ayrıntıları; üretici, model ve sürüm gibi
         prefers_no_tracking_label_desc_info_we_share_crash_details: |
@@ -6203,6 +6205,13 @@ tr:
       separator: .
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
