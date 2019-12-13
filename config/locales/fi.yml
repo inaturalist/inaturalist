@@ -818,7 +818,7 @@ fi:
   connected_accounts: Yhdistetyt tilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
   connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
-  connecting_to_facebook: "Otetaan yhteyttä Facebookiin..."
+  connecting_to_facebook: "Yhdistetään Facebookiin..."
   connecting_your_inat_account_to_accounts_other_sites: "Yhdistämällä %{site_name}-tilisi muiden sivustojen tileihin sallii sinun kirjautua %{site_name}iin käyttämällä pääsytietojasi näiltä sivustoilta."
   conservation_status: Uhanalaisuusluokitus
   conservation_status_descriptions:
@@ -1087,9 +1087,6 @@ fi:
   drop_it: Pudota se
   double_click_to_finish: (tuplaklikkaa lopettaaksesi)
   download: Lataa
-  download_bulk_import_template_html: |
-    <a href="%{url}">Lataa tallennuspohja,</a> jonka avulla voit käyttää toimintoa
-    <a href="/observations/import#csv_import">massalataus</a>
   download_csv: Lataa CSV
   download_csv_template: Lataa CSV-malli
   download_kml: Lataa KML
@@ -1226,8 +1223,8 @@ fi:
   facebook: Facebook
   facebook_account_information: Oman Facebook-tilisi tiedot
   facebook_account_not_linked: "Käyttäjällä %{user} ei ole enää linkitettyä Facebook-tiliä, joten %{site_name}lla ei ole lupaa saada tätä kuvaa."
-  facebook_access_token_expired: "Pääsyoikeus on vanhentunut. Käyttäjän %{user} täytyy uudelleenlinkittää Facebook-tilinsä."
-  facebook_needs_the_owner_of_that_photo_to: Facebook tarvitsee kyseisen kuvan omistajan uudelleenvahvistamaan yhteyden %{site_name_short}iin.
+  facebook_access_token_expired: "Pääsyoikeus on vanhentunut. Käyttäjän %{user} täytyy linkittää Facebook-tilinsä uudelleen."
+  facebook_needs_the_owner_of_that_photo_to: Facebook haluaa että kuvan omistaja vahvistaa yhteyden %{site_name_short}iin uudelleen.
   facebook_options: Facebook-asetukset
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
@@ -3682,9 +3679,8 @@ fi:
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
   we_also_support: |
-    Tuemme myös <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Kuvat -sovellusta</a>, ja <a href="http://facebook.com">Facebookia</a>
-    kuvien säilyttämisessä.
+    Kuvia voi säilyttää myös <a href="http://flickr.com">Flickrissä</a>,
+    <a href="http://photos.google.com">Google Kuvat -sovelluksessa</a>, ja <a href="http://facebook.com">Facebookissa</a>.
   we_can_only_understand_csv_in: Voimme ymmärtää CSV-tiedostoa vain seuraavassa muodossa
   we_couldnt_find_a_user: Emme löytäneet käyttäjää kyseisellä sähköpostiosoitteella.
   we_couldnt_find_a_user_with_that_activation_code: "Emme löytäneet käyttäjää tällä aktivointikoodilla. Voi olla että aktivoit jo tilisi, joten ole hyvä ja kokeile kirjautumista sisään."
@@ -3972,6 +3968,8 @@ fi:
         score: Pisteet
         your_id_does_not_match: |
           Tunnistuksesi (<span class="bold">%{taxon_name}</span>) ei vastaa yhteisön tekemää tunnistusta
+      captive_help_html: |
+        Oliko eliö <strong>vangittu</strong> tai <strong>viljelty</strong>? Oliko se esimerkiksi <strong>puutarhassa, eläintarhassa, akvaatiossa</strong> tai jotenkin muuten paikalla <strong>vain koska ihmiset halusivat sen sinne</strong>? Kaikki havainnot elävistä asioista ovat tervetulleita, mutta me haluamme tietää milloin eliö ei ole villi tai luonnonvarainen.
       compare:
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Yhdistetty
@@ -4048,57 +4046,57 @@ fi:
           </p>
 
           <ul>
-            <li>havainnolla <strong>on päivämäärä</strong></li>
-            <li>havainto <strong>on paikannettu</strong> (ts. sillä on koordinaatit)</li>
-            <li>havainnolla <strong>on kuvia ja ääntä</strong></li>
-            <li>havainto <strong>ei ole ihmisestä</strong></li>
+           <li>havainnolla <strong>on päivämäärä</strong></li>
+           <li>havainto <strong>on paikannettu</strong> (ts. sillä on koordinaatit)</li>
+           <li>havainnolla <strong>on kuva tai äänite</strong></li>
+           <li>havainto <strong>ei ole ihmisestä</strong></li>
           </ul>
           <p>
            \ Havainnot saavuttavat <strong>"tutkimustason"</strong> kun
           </p>
           <ul>
            \ <li>
-              %{site_name} <strong>yhteisö hyväksyy lajitason tai sitä alemman tunnistuksen</strong>, ts.
-              kun enemmän kuin 2/3 tunnistajista hyväksyy taksonin
-            </li>
+           %{site_name} <strong>yhteisö hyväksyy lajitason tai sitä alemman tunnistuksen</strong>, ts.
+           kun enemmän kuin 2/3 tunnistajista hyväksyy taksonin
+           </li>
           </ul>
           <p>
-            Havainnot palaavat <strong>"dokumentoimattomiksi"</strong> 
-            jos edellä mainitut ehdot eivät täyty tai yhteisö on samaa mieltä
+           Havainnot palaavat <strong>"epämuodollisiksi"</strong> 
+           jos edellä mainitut ehdot eivät täyty tai yhteisö on samaa mieltä että
           </p>
           <ul>
            \ <li>
-              <strong>sijainti ei näytä
-              oikealta</strong> (esim. apinat keskellä merta,
-              virtahepoja toimistorakennuksissa, jne.)
-            </li>
+           <strong>sijainti ei vaikuta
+           oikealta</strong> (esim. apinat keskellä merta,
+           virtahepoja toimistorakennuksissa, jne.)
+           </li>
            \ <li>
-              <strong>eliö ei ole luonnonvarainen</strong> (esim. vangittu eläin tai viljelykasvi)
-            </li>
-            <li>
-              havainto <strong>ei esitä todisteita eliöstä</strong>, esim. kuvia maisemista, vesistöistä,
-              kivistä yms.
-            </li>
-            <li>
-              havainto <strong>ei esitä tuoreita (~100 vuotta) todisteita
-              eliöstä</strong> (esim. fossiilit, jäljet, ulosteet ja kuolleet lehdet
-              ovat ok)
-            </li>
-            <li>
-              havainto ei enää tarvitse tunnistusta<em>ja</em> yhteisön tekemä tunniste on heimon yläpuolella
-            </li>
-            <li>
-              havainnoija hylkäsi yhteisön tekemän tunnistuksen ja yhteisön
-              tunnistuksen taksoni ei ole havainnoijan tunnistukseen liittyvän taksonin ylempi tai alempi taksoni
+           <strong>eliö ei ole luonnonvarainen</strong> (esim. vangittu eläin tai viljelykasvi)
+           </li>
+           <li>
+           havainto <strong>ei esitä todisteita eliöstä</strong>, esim. kuvia maisemista, vesistöistä,
+           kivistä yms.
+           </li>
+           <li>
+           havainto <strong>ei esitä tuoreita (~100 vuotta) todisteita
+           eliöstä</strong> (esim. fossiilit, jäljet, ulosteet ja kuolleet lehdet
+           ovat ok)
+           </li>
+           <li>
+           havainto ei enää tarvitse tunnistusta<em>ja</em> yhteisön tekemä tunniste on heimon yläpuolella
+           </li>
+           <li>
+           havainnoija hylkäsi yhteisön tekemän tunnistuksen ja yhteisön
+           tunnistuksen taksoni ei ole havainnoijan tunnistukseen liittyvän taksonin ylempi tai alempi taksoni
            \ </li>
           </ul>
           <p>
-            Ja jos se ei ollut tarpeeksi monimutkaista, on myös tilanteita, joissa järjestelmä äänestää:
+           Ja jos tämä ei ollut tarpeeksi monimutkaista, on myös tilanteita, joissa järjestelmä äänestää:
           </p>
           <ul>
-            <li>
-              Järjestelmä äänestää että havainto ei ole luonnonvarainen mikäli järjestelmässä on ainakin kymmenen muuta tunnistettua havaintoa (suku- tai alemmalta tasolta) havainnon lähiympäristöstä (pienimmällä maakunta- osavaltio- tai valtiotasolla) ja ainakin 80 % näistä havainnoista on merkitty ei-luonnonvaraiseksi.
-            </li>
+           <li>
+           Järjestelmä äänestää että havainto ei ole luonnonvarainen mikäli järjestelmässä on ainakin kymmenen muuta tunnistettua havaintoa (suku- tai alemmalta tasolta) havainnon lähiympäristöstä (pienimmällä maakunta- osavaltio- tai valtiotasolla) ja ainakin 80 % näistä havainnoista on merkitty ei-luonnonvaraiseksi.
+           </li>
           </ul>
         observation_flagged_notice_html: |
           Tämä havainto on merkitty spammiksi ja ei ole enää julkisesti näkyvillä. Näet tietueen, koska olet luonut sen itse tai koska olet sivuston kuraattori. Jos pidät merkintää virheellisenä, ole hyvä ja <a href="mailto:%{help_email}" class="contact">ota yhteyttä</a>. <a href="/observations/%{observation_id}/flags">Liputusten hallinta</a>
@@ -4644,20 +4642,20 @@ fi:
         discuss_your_findings: Keskustele havainnoistasi
         contribute_to_science: Tue tieteellistä tutkimustyötä
         science_desc_html: |
-          Jokainen havainto, harvinaisimmasta perhosesta takapihan yleisimpään "rikkaruohoon", voi edistää luonnon monimuotoisuutta tutkivia tieteitä. Jaamme havaintosi tieteellisten arkistojen, kuten <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a>, kanssa auttaaksemme tutkijoita löytämään ja käyttämään tietämystäsi. Sinun ei tarvitse muuta kuin havainnoida.
+          Jokainen havainto harvinaisimmasta perhosesta takapihan yleisimpään "rikkaruohoon" voi edistää luonnon monimuotoisuutta tutkivia tieteitä. Jaamme havaintosi tieteellisten arkistojen, kuten <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a>, kanssa auttaaksemme tutkijoita löytämään ja käyttämään tietämystäsi. Sinun ei tarvitse muuta kuin havainnoida.
         nature_at_your_fingertips: Luonto käden ulottuvilla
-        keep_track: Seuraa luonnon tapahtumia
+        keep_track: Pidä kirjaa
         record_your_encounters: |
-          Tallenna kohtaamisesi muiden eliöiden kanssa ja ylläpidä elämäluetteloita, kaikki pilvessä.
+          Tallenna kohtaamisesi muiden eliöiden kanssa ja ylläpidä pinnalistoja, kaikki pilvipalvelussa.
         create_useful_data: Tuota käyttökelpoista tietoa
         help_scientists: Auta tutkijoita ja resurssienhallitsijoita ymmärtämään, milloin ja missä eliöitä esiintyy.
         crowdsource_identifications: Crowdsource-tunnistukset
         connect_with_experts: Ole yhteydessä asiantuntijoihin, jotka voivat tunnistaa havaitsemasi eliölajin.
-        become_a_citizen_scientist: Ryhdy amatööritutkijaksi
-        find_a_project: "Löydä sinua kiinnostava projekti, tai aloita omasi."
+        become_a_citizen_scientist: Ryhdy kansalaistutkijaksi
+        find_a_project: "Löydä sinua kiinnostava projekti tai aloita omasi."
         learn_about_nature: Opi luonnosta
         build_your_knowledge: Rakenna tietämystäsi keskustelemalla muiden luonnontieteilijöiden kanssa ja auttamalla muita.
-        run_a_bioblitz: Järjestä BioBlitz
+        run_a_bioblitz: Järjestä Bioblitz
         hold_an_event: Järjestä tapahtuma, jossa ihmiset yrittävät havaita mahdollisimman monta lajia.
         works_on_all_your_devices: Toimii kaikissa laitteissasi
         install_our_mobile_apps: |
