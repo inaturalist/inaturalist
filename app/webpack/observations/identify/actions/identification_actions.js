@@ -49,7 +49,8 @@ function updateIdentification( ident, updates ) {
 }
 
 function agreeWithObservaiton( observation ) {
-  return function ( dispatch ) {
+  return function ( dispatch, getState ) {
+    const { config } = getState( );
     dispatch( loadingDiscussionItem( ) );
     dispatch( updateObservationInCollection( observation, { agreeLoading: true } ) );
     return dispatch(
@@ -58,7 +59,9 @@ function agreeWithObservaiton( observation ) {
       dispatch( updateObservationInCollection( observation, { agreeLoading: false } ) );
       dispatch( fetchCurrentObservation( observation ) );
       dispatch( fetchObservationsStats( ) );
-      dispatch( fetchIdentifiers( ) );
+      dispatch( fetchIdentifiers( {
+        forUserID: config && config.currentUser && config.currentUser.id
+      } ) );
     } );
   };
 }
@@ -94,7 +97,8 @@ function agreeWithCurrentObservation( ) {
 }
 
 function submitIdentificationWithConfirmation( identification, options = {} ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
+    const { config } = getState( );
     dispatch( loadingDiscussionItem( identification ) );
     const boundPostIdentification = ( ) => {
       dispatch( postIdentification( identification ) )
@@ -106,7 +110,9 @@ function submitIdentificationWithConfirmation( identification, options = {} ) {
             $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
           } );
           dispatch( fetchObservationsStats( ) );
-          dispatch( fetchIdentifiers( ) );
+          dispatch( fetchIdentifiers( {
+            forUserID: config && config.currentUser && config.currentUser.id
+          } ) );
         } );
     };
     if ( options.confirmationText ) {

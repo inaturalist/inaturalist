@@ -308,6 +308,7 @@ class Taxon < ActiveRecord::Base
     pluck(:name).uniq.sort.map(&:downcase)
   PROBLEM_NAMES = [
     "bee hive",
+    "canon",
     "caterpillar",
     "caterpillars",
     "chiton",
