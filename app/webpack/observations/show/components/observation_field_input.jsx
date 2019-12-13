@@ -358,7 +358,8 @@ class ObservationFieldInput extends React.Component {
       editing,
       required,
       hideFieldChooser,
-      placeholder
+      placeholder,
+      disabled
     } = this.props;
     let observationFieldInput;
     if ( field ) {
@@ -412,9 +413,11 @@ class ObservationFieldInput extends React.Component {
       );
     }
     const fieldChooser = hideFieldChooser ? "" : (
-      <input type="text"
-        placeholder={ placeholder }
+      <input
+        type="text"
+        placeholder={placeholder}
         className="form-control ofv-field"
+        disabled={disabled}
       /> );
     return (
       <form onSubmit={ this.submitFieldValue } className="ObservationFieldInput">
@@ -440,7 +443,8 @@ ObservationFieldInput.propTypes = {
   originalOfv: PropTypes.object,
   required: PropTypes.bool,
   placeholder: PropTypes.string,
-  config: PropTypes.object
+  config: PropTypes.object,
+  disabled: PropTypes.bool
 };
 
 ObservationFieldInput.defaultProps = {

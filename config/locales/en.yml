@@ -5329,6 +5329,8 @@ en:
           site curator. If you think this is a mistake, please
           <a href="mailto:%{help_email}" class="contact">contact us</a>.
           <a href="/observations/%{observation_id}/flags">Manage flags</a>
+        observer_does_not_allow_observation_fields: Observer does not allow additional observation fields
+        observer_only_allows_curators_to_add_fields: Observer only allows site curators to add observation fields
       user_stats:
         user_stats_desc: |
           User stats are limited to a max of the top 500 by observation count

@@ -170,6 +170,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   def self.normalize_lexicon(lexicon)
+    return nil if lexicon.blank?
     ( LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize ).strip
   end
   
