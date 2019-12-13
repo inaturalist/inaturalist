@@ -4,7 +4,7 @@ ko:
   x_faves:
     other: '즐겨찾기 %{count} 개'
   x_flags_resolved_html:
-    other: "플래그 <span class='count'>%{count}</span> 개가 해결됨"
+    other: "플래그 <span class='count'>%{count}</span>개를 해결함"
   x_identifications:
     other: '동정 %{count} 개'
   x_identifications_html:
@@ -57,11 +57,11 @@ ko:
   x_research_grade_observations_to_species_html:
     other: "종 수준 이상으로 동정된 연구 자료 등급 관찰 <span class='count'>%{count}</span> 개"
   x_taxa_curated_html:
-    other: "<span class='count'>%{count}</span> 개의 분류군이 큐레이션됨"
+    other: "분류군 <span class='count'>%{count}</span>개를 큐레이션함"
   x_taxa_matching_current_filters:
     other: "현재 검색 필터와 일치하는 %{count} 개의 분류군"
   x_taxon_changes_added_html:
-    other: "분류군 변경사항 <span class='count'>%{count}</span> 개가 추가됨"
+    other: "분류군 변경사항 <span class='count'>%{count}</span>개를 추가함"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
   _100_day_trends: 지난 100일간 동향
   a_community_for_naturalist: 자연을 연구하는 사람들을 위한 공동체
