@@ -1087,6 +1087,9 @@ fi:
   drop_it: Pudota se
   double_click_to_finish: (tuplaklikkaa lopettaaksesi)
   download: Lataa
+  download_bulk_import_template_html: |
+    <a href="%{url}">Lataa tallennuspohja,</a> jonka avulla voit käyttää 
+    <a href="/observations/import?project_id=%{project_id}#csv_import">massalatausta</a>
   download_csv: Lataa CSV
   download_csv_template: Lataa CSV-malli
   download_kml: Lataa KML
@@ -1287,7 +1290,22 @@ fi:
   flag_as_spammer: Liputa spammaajaksi
   flag_as_non_spammer: Liputa ei-spammaajaksi
   flag_description: Liputa tämä sisältö jotta kuraattorit tietävät jonkin olevan vialla.
+  flag_for_check_list_title_html: |
+    Lippu lajiluettelolle: %{title}
+  flag_for_comment_id_html: Lippu <a href="%{url}">kommentille %{id}</a>
   flag_for_curation: Liputa kuraattorin tarkastusta varten
+  flag_for_identification_id_html: Lippu <a href="%{url}">tunnistukselle %{id}</a>
+  flag_for_message_id_html: Lippu <a href="%{url}">viestille %{id}</a>
+  flag_for_observation_title_html: |
+    Lippu havainnolle: %{title}
+  flag_for_photo_id_html: Lippu <a href="%{url}">valokuvalle %{id}</a>
+  flag_for_project_title_html: |
+    Lippu projektille: %{title}
+  flag_for_sound_id_html: Lippu <a href="%{url}">äänitteelle %{id}</a>
+  flag_for_taxon_title_html: |
+    Lippu taksonille: %{title}
+  flag_for_user_title_html: |
+    Merkitse tarkistettavaksi käyttäjä: %{title}
   flag_it!: Liputa!
   flag_marked_as_resolved_html: '<span class="meta">Lippu merkitty</span> <strong>ratkaistuksi.</strong>'
   #Label for the object that was flagged, e.g. a table header
@@ -1295,6 +1313,7 @@ fi:
   flag_reason: "&ldquo;Liputan tämän: %{record}, koska"
   flag_resolution: Resoluutio
   flag_saved: Lippu tallennettu
+  flag_saved_thanks_html: Lippu tallennettu. Kiitos! <a href="%{url}" class="readmore">Katso lippua</a>
   flag_this_observation: Liputa tämä havainto.
   flag_this_photo: Liputa tämä kuva
   flag_this_sound: Liputa tämä ääni
@@ -1303,6 +1322,8 @@ fi:
   flagged_for_curation: Liputettu kuraattorin tarkastusta varten
   flagged_taxon: Liputettu taksoni
   flagged_thing_explanation: "Käyttäjät ovat liputtaneet tämän: %{thing}, koska"
+  flagging_desc: |
+    Liputus merkitsee havainnon niin että kuraattorit voivat tarkistaa sen. Ole hyvä äläkä liputa ongelmia, jotka voisit ratkaista tunnistuksilla, laatuarviolla tai ottamalla yhteyttä havainnon tekijään.
   flagger: Liputtaja
   flags: Liput
   flags_with_count: (%{count}) lippua
@@ -1467,6 +1488,8 @@ fi:
   identifications: tunnistusta
   identifications_by: "Käyttäjän %{user} tunnistukset"
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
+  computer_vision_suggestion_desc: |
+    Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
   identifiers: Tunnistajaa
   identotron: Identotron
   identotron_help: Identotron ohje
