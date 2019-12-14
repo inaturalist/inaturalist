@@ -4540,6 +4540,8 @@ tr:
         description_html: |
           Bu, sınıfın <em>tüm</em> listelerinin kuruluş varlığını <a href="%{place_url}">%{place_name}</a> yerinin bütün soyunda <strong>%{establishment_means}</strong> olarak değiştirecektir. Bu aracı yalnızca sorumlular kullanabilir. Kuruluş varlığının “tanıtılmış” olarak değişimi, aşağı yukarı aynı etkiye sahip olacak ancak var olan değerleri değiştirmeyecek, yalnızca boş olanları doldurunuz.
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Yaşam Listesi başlıkları değiştirilemez
       new:
         place_desc: |
           Bu listeyi kendiliğinden bu yerde gözlemlenen sınıflarla doldurun. Yalnızca sınırları olan yerleri seçebileceğinizi unutmayın.
@@ -4842,6 +4844,8 @@ tr:
           Bunun bir hata olduğunu düşünüyorsanız, lütfen
           <a href="mailto:%{help_email}" class="contact">bizimle iletişime geçin</a>.
           <a href="/observations/%{observation_id}/flags">İşaretleri yönetme</a>
+        observer_does_not_allow_observation_fields: Gözlemci ek gözlem alanlarına izin vermiyor
+        observer_only_allows_curators_to_add_fields: Gözlemci yalnızca sayfa sorumlularının gözlem alanları eklemesine izin verir
       user_stats:
         user_stats_desc: |
           Kullanıcı istatistikleri, gözlem sayımı veya tür sayımıyla maksimum 500 ile 
