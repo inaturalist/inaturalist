@@ -4506,6 +4506,8 @@ it:
         description_html: |
           Questa operazione cambierà l'origine del popolamento di <em>tutte</em> le liste di questo taxon per tutti i luoghi inclusi in <a href="%{place_url}">%{place_name}</a> in <strong>"%{establishment_means}"</strong>. Solo i curatori possono usare questo strumento. Modificando le media di presenza in "introdotta" avrà all'incirca lo stesso effetto, eccetto che non modificherà i valori esistenti ma compilerà quelli non presenti.
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: I titoli delle Liste degli Esseri Viventi non possono essere modificati
       new:
         place_desc: |
           Aggiorna questa lista elencando i taxa osservati in questo luogo. Ricordati che puoi scegliere solo i luoghi con confini stabiliti.
@@ -4775,6 +4777,8 @@ it:
           Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perché l'hai creata o perché sei curatore del sito. Se pensi che sia un errore, per favore
           <a href="mailto:%{help_email}" class="contact">contattaci</a>.
           <a href="/observations/%{observation_id}/flags">Gestisci contrassegni</a>
+        observer_does_not_allow_observation_fields: L'osservatore non permette campi dell'osservazione aggiuntivi
+        observer_only_allows_curators_to_add_fields: L'osservatore permette solo ai curatori del sito di aggiungere campi all'osservazione
       user_stats:
         user_stats_desc: |
           Le statistiche degli utenti sono limitate ai top 500 per numero di osservazioni e numero di specie; il totale di solito è poco superiore a 500 dal momento che le due graduatorie non contengono esattamente gli stessi utenti. Un valore marcato '*' significa che non era tra i top 500 per quella statistica.
