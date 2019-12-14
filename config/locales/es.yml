@@ -67,6 +67,9 @@ es:
   x_new_species:
     one: "1 Nueva especie"
     other: "%{count} Nuevas especies"
+  x_new_users:
+    one: '%{count} Nuevo usuario'
+    other: '%{count} Nuevos usuarios'
   x_species:
     one: '1 especie'
     other: '%{count} especies'
@@ -5344,6 +5347,8 @@ es:
         percent_of_total_growth: "% del Crecimiento Total"
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Racha de Observaciones
+        observation_streaks_color_desc: |
+          El color representa el número de días en una escala logarítmica:
         observation_streaks_desc: |
           Una racha de observaciones es un período de tiempo en el que una persona registra observaciones a diario. Aquí mostramos las rachas más largas que comenzaron este año o bien estaban en progreso cuando se generaron estas estadísticas.
         sunburst_desc_html: |
@@ -5903,6 +5908,13 @@ es:
       separator: ','
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
