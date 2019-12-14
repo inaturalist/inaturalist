@@ -5995,6 +5995,9 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        inaturalist_network: iNaturalist Network
+        inaturalist_network_desc: |
+          Check out the Year in Review for the members of the iNaturalist Network.
         include_usa: Include US
         growth_by_country_desc_html: |
           Where is growth happening? This map and chart attempt to break this
@@ -6046,6 +6049,12 @@ en:
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
           <br/>
           <a href="%{url}">View all %{numStudies} studies</a>
+        publications_desc_short_html: |
+          Click the flower charts for more information about what the numbers
+          and colors mean. Impact data and charts courtesy of
+          <a href="https://www.altmetric.com">Altmetric</a>. Information
+          about data usage courtesy of our friends at the
+          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         # Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observation Streaks
         observation_streaks_color_desc: |

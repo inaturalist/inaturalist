@@ -10,6 +10,15 @@ $background-color: #1A1A1A;
 $gray: #999999;
 $medium-gray: #666666;
 $dark-gray: #333333;
+$user-image-size: 240px;
+$user-image-overhang: 0.25 * $user-image-size / 2;
+
+$ribbon-point-width: 20px;
+$ribbon-y-offset: 12px;
+$ribbon-backfold-width: 59px;
+$ribbon-backfold-x-offset: 2em;
+$ribbon-midfold-width: 40px;
+
 #logo {
   text-align: center;
   padding: 50px;
@@ -177,12 +186,30 @@ $dark-gray: #333333;
       color: white;
     }
   }
+  .site-icon {
+    border: 5px solid white;
+    background-color: white;
+    border-radius: $user-image-size;
+    width: $user-image-size;
+    height: $user-image-size;
+    position: absolute;
+    bottom: $user-image-overhang * -1;
+    left: 50%;
+    margin-left: $user-image-size / -2;
+    overflow: hidden;
+    img {
+      width: $user-image-size * 0.8;
+      position: absolute;
+      left: 50%;
+      margin-left: ($user-image-size * 0.8) / -2;
+      top: 50%;
+      margin-top: ($user-image-size * 0.8) / -2;
+    }
+  }
 
   .banner {
-    height: 260px;
+    height: $user-image-size + $user-image-overhang;
     position: relative;
-    $user-image-size: 240px;
-    $user-image-overhang: 0.25 * $user-image-size / 2;
     margin-bottom: $user-image-overhang + 40;
     .UserImage {
       line-height: $user-image-size * 0.8;
@@ -199,27 +226,6 @@ $dark-gray: #333333;
       opacity: 1;
     }
 
-    .site-icon {
-      border: 5px solid white;
-      background-color: white;
-      border-radius: $user-image-size;
-      width: $user-image-size;
-      height: $user-image-size;
-      position: absolute;
-      bottom: $user-image-overhang * -1;
-      left: 50%;
-      margin-left: $user-image-size / -2;
-      overflow: hidden;
-      img {
-        width: $user-image-size * 0.8;
-        position: absolute;
-        left: 50%;
-        margin-left: ($user-image-size * 0.8) / -2;
-        top: 50%;
-        margin-top: ($user-image-size * 0.8) / -2;
-      }
-    }
-
     .montage {
       overflow: hidden;
       height: 260px;
@@ -231,7 +237,6 @@ $dark-gray: #333333;
         top: -1px;
         z-index: 0;
         img {
-          // height: 50px;
           opacity: 0.8;
           margin: 1px;
           flex-grow: 1;
@@ -512,7 +517,6 @@ $tip-opacity: 1;
   }
 }
 
-
 // https://css-tricks.com/snippets/css/ribbon/
 .ribbon-container {
   margin: 0 auto;
@@ -534,42 +538,42 @@ $tip-opacity: 1;
     color: white;
   }
 }
-$ribbon-border-width: 20px;
 .ribbon:before, .ribbon:after {
   content: "";
   position: absolute;
   display: block;
-  bottom: -12px;
-  border: $ribbon-border-width solid darken( $inat-green, 5% );
+  bottom: -1 * $ribbon-y-offset;
+  border: $ribbon-point-width solid darken( $inat-green, 5% );
   z-index: -1;
 }
 .ribbon:before {
-  left: -2em;
-  border-right-width: 59px;
+  left: -1 * $ribbon-backfold-x-offset;
+  border-right-width: $ribbon-backfold-width;
   border-left-color: transparent;
-  border-left-width: 12px
+  border-left-width: $ribbon-y-offset;
 }
 .ribbon:after {
-  right: -2em;
-  border-left-width: 59px;
+  right: -1 * $ribbon-backfold-x-offset;
+  border-left-width: $ribbon-backfold-width;
   border-right-color: transparent;
-  border-right-width: 12px
+  border-right-width: $ribbon-y-offset;
 }
-.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+.ribbon .ribbon-content:before,
+.ribbon .ribbon-content:after {
   content: "";
   position: absolute;
   display: block;
   border-style: solid;
   border-color: darken( $inat-green, 10% ) transparent transparent transparent;
-  bottom: -12px;
+  bottom: -1 * $ribbon-y-offset;
 }
 .ribbon .ribbon-content:before {
   left: 0;
-  border-width: 12px 0 0 40px;
+  border-width: $ribbon-y-offset 0 0 $ribbon-midfold-width;
 }
 .ribbon .ribbon-content:after {
   right: 0;
-  border-width: 12px 40px 0 0;
+  border-width: $ribbon-y-offset $ribbon-midfold-width 0 0;
 }
 
 .popular.for-user .UserImage {
@@ -875,6 +879,128 @@ $obs-grid-photo-size: 210px;
       border-top: $streak-height / 2 solid transparent;
       border-bottom: $streak-height / 2 solid transparent;
       border-right: ($streak-height / 2) - 5 solid blue;
+    }
+  }
+}
+
+#app .Sites {
+  .visible-sites {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    $site-size: 130px;
+    .site {
+      width: $site-size;
+      height: $site-size + $user-image-overhang;
+      position: relative;
+      // margin-bottom: $user-image-overhang + 40;
+      margin: 0 15px;
+      .site-icon {
+        width: $site_size;
+        height: $site_size;
+        position: relative;
+        margin-left: $site-size / -2;
+        overflow: hidden;
+        img {
+          padding: 20px;
+          width: $site-size * 0.8;
+          position: absolute;
+          margin-left: ($site-size * 0.8) / -2;
+          margin-top: ($site-size * 0.8) / -2;
+        }
+      }
+
+      $ribbon-point-width: 8px;
+      $ribbon-point-hypotenuse: 18px;
+      $ribbon-y-offset: 12px;
+      $ribbon-backfold-width: 20px; // not counting the pointy ends
+      $ribbon-backfold-x-offset: 15px; // how far the outer edge is offset from the front fold of the ribbon, including point ends
+      $ribbon-midfold-width: $ribbon-point-width + $ribbon-backfold-width - $ribbon-backfold-x-offset;
+
+      .ribbon {
+        font-size: 10px !important;
+        width: 100%;
+        margin: 0 auto;
+        box-shadow: 0 0 10px $dark-gray;
+        display: block;
+        color: white;
+      }
+      a.ribbon:hover {
+        opacity: 1;
+      }
+      .ribbon:before, .ribbon:after {
+        content: "";
+        position: absolute;
+        display: block;
+        top: -1 * $ribbon-y-offset;
+        bottom: $ribbon-y-offset;
+        border: $ribbon-point-hypotenuse solid darken( $inat-green, 5% );
+        z-index: -1;
+      }
+      .ribbon:before {
+        left: -1 * $ribbon-backfold-x-offset;
+        border-right-width: $ribbon-backfold-width;
+        border-left-color: transparent;
+        border-left-width: $ribbon-point-width;
+      }
+      .ribbon:after {
+        right: -1 * $ribbon-backfold-x-offset;
+        border-left-width: $ribbon-backfold-width;
+        border-right-color: transparent;
+        border-right-width: $ribbon-point-width;
+      }
+      .ribbon .ribbon-content:before,
+      .ribbon .ribbon-content:after {
+        content: "";
+        position: absolute;
+        display: block;
+        border-style: solid;
+        border-color: transparent darken( $inat-green, 10% ) transparent transparent;
+        top: -1 * $ribbon-y-offset;
+        bottom: $ribbon-y-offset;
+        height: $ribbon-y-offset;
+      }
+      .ribbon .ribbon-content:before {
+        left: 0;
+        border-width: $ribbon-y-offset $ribbon-midfold-width 0 0;
+      }
+      .ribbon .ribbon-content:after {
+        right: 0;
+        border-width: 0 $ribbon-midfold-width $ribbon-y-offset 0;
+        border-color: transparent transparent darken( $inat-green, 10% ) transparent;
+      }
+    }
+  }
+}
+
+.Donate {
+  .support {
+    margin: 20px 0;
+    text-align: center;
+    .btn:last-child {
+      margin-left: 20px;
+    }
+  }
+  .btn {
+    font-weight: bold !important;
+  }
+  .store {
+    display: flex;
+    text-align: center;
+    p {
+      text-align: left;
+    }
+    .btn {
+      margin: 20px auto;
+    }
+    .prompt {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .img-link {
+      width: 70%;
+      margin-left: 20px;
     }
   }
 }

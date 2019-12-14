@@ -676,6 +676,7 @@ I18n.translations["ar"] = {
   "messages": "رسائل",
   "misidentifications": "عدم تعرف",
   "misleading_or_illegal_content_html": "محتوى مضلل أو غير قانوني، أو عبارات عرقية أو إثنية، إلخ، لمزيد من المعلومات عن تعريفنا \"المناسب\"; اطلع على\n<a href=\"/help#inappropriate\">الأسئلة المتكررة</a>.\n",
+  "mobile": "المحمول",
   "mollusks": "الرخويات",
   "momentjs": {
     "shortRelativeTime": {
@@ -1469,6 +1470,7 @@ I18n.translations["ar"] = {
   "total": "إجمالي",
   "total_observations": "مجموع الملاحظات",
   "total_species_observed": "مجموع الأنواع الملحوظة",
+  "translated_languages": "اللغات المترجمة",
   "trending": "الشائع",
   "trends": "الاتجاهات",
   "trust_this_person_with_your_private_coordinates": "ثق بهذا الشخص مع إحداثياتك المخفية",
@@ -4401,6 +4403,7 @@ I18n.translations["ca"] = {
   "messages": "Missatges",
   "misidentifications": "Identificacions incorrectes",
   "misleading_or_illegal_content_html": "Contingut il·legal, enganyós, racista, xenòfob, etc. Si voleu informació sobre la nostra definició de \"inapropiat\" consulteu el\n<a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "mobile": "Mòbil",
   "mollusks": "mol·luscs",
   "momentjs": {
     "shortRelativeTime": {
@@ -5124,6 +5127,7 @@ I18n.translations["ca"] = {
   "top_species": "Principals Espècies",
   "total_observations": "Nombre total d'observacions",
   "total_species_observed": "Total d'espècies observades",
+  "translated_languages": "Idiomes traduïts",
   "trending": "Tendències",
   "trends": "Tendència",
   "trust_this_person_with_your_private_coordinates": "Compartiu amb aquestes persones les coordenades que oculteu",
@@ -6175,6 +6179,7 @@ I18n.translations["cs"] = {
   "messages": "Zprávy",
   "misidentifications": "Zprávy",
   "misleading_or_illegal_content_html": "Zavádějící nebo nelegální obsah, rasové nebo etnické napadání atd. Podrobnosti k naší definici toho, co je „vhodné“ najdete na\n<a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "mobile": "Mobilní",
   "mollusks": "měkkýši",
   "momentjs": {
     "shortRelativeTime": {
@@ -6889,6 +6894,7 @@ I18n.translations["cs"] = {
   "total": "Součet",
   "total_observations": "Celkový počet pozorování",
   "total_species_observed": "Celkový počet pozorovaných druhů",
+  "translated_languages": "Přeložené jazyky",
   "trending": "Populární",
   "trends": "Trendy",
   "trust_this_person_with_your_private_coordinates": "Důvěřovat této osobě se skrytými souřadnicemi",
@@ -8030,6 +8036,7 @@ I18n.translations["da"] = {
   "messages": "Beskeder",
   "misidentifications": "Fejlidentifikationer",
   "misleading_or_illegal_content_html": "Vildledende eller ulovligt indhold, race eller etniske nedgørelse osv. For mere om vores definition af \"passende\", se\n<a href=\"/help#inappropriate\"> FAQ </a>.\n",
+  "mobile": "Mobil",
   "mollusks": "bløddyr",
   "momentjs": {
     "shortRelativeTime": {
@@ -8874,6 +8881,7 @@ I18n.translations["da"] = {
   "total": "I alt",
   "total_observations": "Samlet antal observationer",
   "total_species_observed": "Samlet antal arter observeret",
+  "translated_languages": "Oversatte sprog",
   "trending": "Tendenser",
   "trends": "Tendenser",
   "trust_this_person_with_your_private_coordinates": "Betro denne person med dine skjulte koordinater",
@@ -10079,6 +10087,7 @@ I18n.translations["de"] = {
   "messages": "Nachrichten",
   "misidentifications": "Fehlbestimmungen",
   "misleading_or_illegal_content_html": "Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von \"angemessen\", siehe die \n<a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "mobile": "Mobil",
   "mollusks": "Mollusken",
   "momentjs": {
     "shortRelativeTime": {
@@ -10853,6 +10862,7 @@ I18n.translations["de"] = {
   "total": "Gesamt",
   "total_observations": "Beobachtungen insgesamt",
   "total_species_observed": "Insgesamt beobachtete Arten",
+  "translated_languages": "Übersetzte Sprachen",
   "trending": "Im Trend",
   "trends": "Tendenzen",
   "trust_this_person_with_your_private_coordinates": "Vertrau dieser Person deine verborgenen Koordinaten an",
@@ -11847,6 +11857,7 @@ I18n.translations["el"] = {
   "messages": "Μηνύματα",
   "misidentifications": "Λάθος αναγνωρίσεις",
   "misleading_or_illegal_content_html": "Παραπλανητικό ή παράνομο περιεχόμενο, ρατσιστικές ή εθνικιστικές επιθέσεις, κλπ. Περισσότερα για τον ορισμό μας του \"κατάλληλου\" βλέπε στις <a href=\"/help#inappropriate\">Συχνές ερωτήσεις</a>.\n",
+  "mobile": "Κινητό",
   "mollusks": "Μαλάκια",
   "momentjs": {
     "shortRelativeTime": {
@@ -12525,6 +12536,7 @@ I18n.translations["el"] = {
   "total": "Συνολικά",
   "total_observations": "Συνολικές παρατηρήσεις",
   "total_species_observed": "Σύνολο παρατηρηθέντων ειδών",
+  "translated_languages": "Μεταφρασμένες γλώσσες",
   "trends": "Τάσεις",
   "two_thirds": "2/3",
   "unknown_error": "Άγνωστο σφάλμα",
@@ -13573,6 +13585,7 @@ I18n.translations["en"] = {
   "messages": "Messages",
   "misidentifications": "Misidentifications",
   "misleading_or_illegal_content_html": "Misleading or illegal content, racial or ethnic slurs, etc. For more on\nour definition of \"appropriate,\" see the \n<a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "mobile": "Mobile",
   "mollusks": "mollusks",
   "momentjs": {
     "shortRelativeTime": {
@@ -14420,6 +14433,7 @@ I18n.translations["en"] = {
   "total": "Total",
   "total_observations": "Total observations",
   "total_species_observed": "Total Species Observed",
+  "translated_languages": "Translated Languages",
   "trending": "Trending",
   "trends": "Trends",
   "trust_this_person_with_your_private_coordinates": "Trust this person with your hidden coordinates",
@@ -14687,6 +14701,8 @@ I18n.translations["en"] = {
         "growth_desc": "The \"Observations\" and \"Taxa\" charts may include data visible on\n%{site_name} contributed by people who are not affiliated with\n%{site_name}, while the \"Users\" chart only shows the dates when users\ncurrently affiliated with %{site_name} joined iNaturalist.\n",
         "growth_in_year_obs": "Growth in %{year} (obs)",
         "growth_title": "Growth",
+        "inaturalist_network": "iNaturalist Network",
+        "inaturalist_network_desc": "Check out the Year in Review for the members of the iNaturalist Network.\n",
         "include_usa": "Include US",
         "new_species_desc_html": "Species that were added for the first time this year.\nClick on a month to view some of the new species added in that month.\nYou can also view the total species accumulation, or move the slider\nback in time to see other newly-observed species. This chart shows\nspecies from verifiable observations by the month they were uploaded\nto %{site_name} (not the month they were observed). It does not\ninclude higher or lower level taxa, so an observation identified as\nMammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.\n<i>arctos</i> will just count as <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs in %{year}",
@@ -14696,6 +14712,7 @@ I18n.translations["en"] = {
         "percent_growth_in_year": "% Growth in %{year}",
         "percent_of_total_growth": "% of Total Growth",
         "publications_desc_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
+        "publications_desc_short_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }
     },
@@ -17242,6 +17259,7 @@ I18n.translations["es"] = {
   "messages": "Mensajes",
   "misidentifications": "Identificaciones erróneas",
   "misleading_or_illegal_content_html": "Contenido ilegal o engañoso, insultos raciales o étnicos, etc.\nMás información de nuestra definición de \"contenido apropriado\" en las \n<a href=\"/help#inappropriate\">Preguntas frecuentes</a>.\n",
+  "mobile": "Móvil",
   "mollusks": "moluscos",
   "momentjs": {
     "shortRelativeTime": {
@@ -18084,6 +18102,7 @@ I18n.translations["es"] = {
   "total": "total",
   "total_observations": "Total de observaciones",
   "total_species_observed": "El total de especies observadas",
+  "translated_languages": "Lenguajes traducidos",
   "trending": "Tendencias",
   "trends": "Tendencias",
   "trust_this_person_with_your_private_coordinates": "Confía a esta persona con tus coordenadas ocultas",
@@ -19346,6 +19365,7 @@ I18n.translations["es-AR"] = {
   "messages": "Mensajes",
   "misidentifications": "Identificaciones erróneas",
   "misleading_or_illegal_content_html": "Contenido ilegal o engañoso, insultos raciales o étnicos, etc.\nMás información de nuestra definición de \"contenido apropriado\" en las \n<a href=\"/help#inappropriate\">Preguntas frecuentes</a>.\n",
+  "mobile": "Móvil",
   "mollusks": "moluscos",
   "momentjs": {
     "shortRelativeTime": {
@@ -20187,6 +20207,7 @@ I18n.translations["es-AR"] = {
   "total": "Total",
   "total_observations": "Total de observaciones",
   "total_species_observed": "El total de especies observadas",
+  "translated_languages": "Lenguajes traducidos",
   "trending": "Tendencias",
   "trends": "Tendencias",
   "trust_this_person_with_your_private_coordinates": "Confía a esta persona con tus coordenadas ocultas",
@@ -21514,6 +21535,7 @@ I18n.translations["es-MX"] = {
   "messages": "Mensajes",
   "misidentifications": "Identificaciones erróneas",
   "misleading_or_illegal_content_html": "Contenido ilegal, engañoso, racial, étnico, etc.\n",
+  "mobile": "Móvil",
   "mollusks": "Moluscos",
   "momentjs": {
     "shortRelativeTime": {
@@ -22220,6 +22242,7 @@ I18n.translations["es-MX"] = {
   "top_species": "Especies más observadas",
   "total_observations": "Total de observaciones",
   "total_species_observed": "El total de especies observadas",
+  "translated_languages": "Lenguajes traducidos",
   "trending": "Tendencias",
   "trends": "Tendencias",
   "trust_this_person_with_your_private_coordinates": "Confía a esta persona con tus coordenadas ocultas",
@@ -23327,6 +23350,7 @@ I18n.translations["et"] = {
   "messages": "Teated",
   "misidentifications": "Valed määratlused",
   "misleading_or_illegal_content_html": "Eksitav või illegaalne sisu, rassiline või rahvuslik vihakõne, jne. Meie \"sobiliku\" määratluse nägemiseks vaata <a href=\"/help#inappropriate\">KKKd</a>.\n",
+  "mobile": "Mobiil",
   "mollusks": "molluskid",
   "momentjs": {
     "shortRelativeTime": {
@@ -24034,6 +24058,7 @@ I18n.translations["et"] = {
   "total": "Kokku",
   "total_observations": "Vaatluseid kokku",
   "total_species_observed": "Kokku vaadeldud liike",
+  "translated_languages": "Tõlgitud keeled",
   "trending": "Trend",
   "trends": "Trendid",
   "trust_this_person_with_your_private_coordinates": "Usalda sellele isikule oma peidetud koordinaadid",
@@ -26172,6 +26197,7 @@ I18n.translations["fi"] = {
   "messages": "Viestit",
   "misidentifications": "Virhetunnistukset",
   "misleading_or_illegal_content_html": "Harhaanjohtavaa tai laitonta sisältöä, rodun tai kansan loukkaaminen, yms. Lisätietoa\nmääritelmästämme \"sopivasta\", katso \n<a href=\"/help#inappropriate\">UKK</a>.\n",
+  "mobile": "Mobiili",
   "mollusks": "nilviäiset",
   "momentjs": {
     "shortRelativeTime": {
@@ -26975,6 +27001,7 @@ I18n.translations["fi"] = {
   "total": "Yhteensä",
   "total_observations": "Havaintoja yhteensä",
   "total_species_observed": "Lajeja havaittu yhteensä",
+  "translated_languages": "Käännetyt kielet",
   "trending": "Nousussa",
   "trends": "Trendit",
   "twitter": "Twitter",
@@ -29027,6 +29054,7 @@ I18n.translations["fr"] = {
   "top_species": "Espèces favorites",
   "total_observations": "Total des observations",
   "total_species_observed": "Nombre total d’espèces observées",
+  "translated_languages": "Langues traduites",
   "trending": "Tendance",
   "trends": "Tendances",
   "trust_this_person_with_your_private_coordinates": "Faire confiance à cette personne avec vos coordonnées masquées",
@@ -31182,6 +31210,7 @@ I18n.translations["he"] = {
   "members": "חברים",
   "messages": "הודעות",
   "misidentifications": "זיהויים שגויים",
+  "mobile": "נייד",
   "mollusks": "רכיכות",
   "momentjs": {
     "shortRelativeTime": {
@@ -31866,6 +31895,7 @@ I18n.translations["he"] = {
   "total": "סה״כ",
   "total_observations": "סה\"כ תצפיות",
   "total_species_observed": "סה\"כ מינים שנצפו",
+  "translated_languages": "שפות מתורגמות",
   "trends": "מגמות",
   "twitter": "טוויטר",
   "two_thirds": "שני שליש",
@@ -33820,6 +33850,7 @@ I18n.translations["it"] = {
   "messages": "Messaggi",
   "misidentifications": "Identificazioni erronee",
   "misleading_or_illegal_content_html": "Contenuto ingannevole o illegale, insulto etnico o razziale, etc. Per altre informazioni sulla definizione di “appropriato”, vedi <a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "mobile": "Cellulare",
   "mollusks": "molluschi",
   "momentjs": {
     "shortRelativeTime": {
@@ -34664,6 +34695,7 @@ I18n.translations["it"] = {
   "total": "Totale",
   "total_observations": "Totale osservazioni",
   "total_species_observed": "Totale specie osservate",
+  "translated_languages": "Lingue tradotte",
   "trending": "Tendenze",
   "trends": "Tendenze",
   "trust_this_person_with_your_private_coordinates": "Rivela a questa persona le tue coordinate nascoste",
@@ -37152,6 +37184,7 @@ I18n.translations["ko"] = {
   "members": "회원",
   "messages": "매시지",
   "misleading_or_illegal_content_html": "잘못되었거나 불법인 콘텐츠, 인종차별주의적 발언 등. \"적절한\"의 기준을 확인하고 싶다면 <a href=\"/help#inappropriate\">FAQ</a>을 참고해주세요.\n",
+  "mobile": "모바일",
   "mollusks": "연체동물",
   "momentjs": {
     "shortRelativeTime": {
@@ -37669,6 +37702,7 @@ I18n.translations["ko"] = {
   "total": "합계",
   "total_observations": "총 관찰",
   "total_species_observed": "관찰된 종 전체",
+  "translated_languages": "번역된 언어",
   "twitter": "트위터",
   "unfollow": "팔로우 해제",
   "unknown_error": "알 수 없는 오류",
@@ -38324,6 +38358,7 @@ I18n.translations["lb"] = {
   "media_type": "Medientyp",
   "members": "Memberen",
   "messages": "Messagen",
+  "mobile": "Mobil",
   "momentjs": {
     "shortRelativeTime": {
       "future": "an %s",
@@ -38650,6 +38685,7 @@ I18n.translations["lb"] = {
   },
   "today": "Haut",
   "too_many_results": "Ze vill Resultater",
+  "translated_languages": "Iwwersat Sproochen",
   "trends": "Tendenzen",
   "unknown": "Onbekannt",
   "unknown_error": "Onbekannte Feeler",
@@ -41423,6 +41459,7 @@ I18n.translations["nb"] = {
   "messages": "Meldinger",
   "misidentifications": "Feilidentifikasjoner",
   "misleading_or_illegal_content_html": "Misvisende eller ulovlig innhold, rasistiske eller upassende utsagn, osv. Les\nmer om vår definisjon av \"passende\" i svarene på <a href=\"/help#inappropriate\">ofte stilte spørsmål</a>.\n",
+  "mobile": "Mobil",
   "mollusks": "bløtdyr",
   "momentjs": {
     "shortRelativeTime": {
@@ -42267,6 +42304,7 @@ I18n.translations["nb"] = {
   "total": "Totalt",
   "total_observations": "Samlet antall observasjoner",
   "total_species_observed": "Samlet antall arter observert",
+  "translated_languages": "Oversatte språk",
   "trending": "Populær",
   "trends": "Trender",
   "trust_this_person_with_your_private_coordinates": "Stol på denne personen med dine skjulte koordinater",
@@ -43567,6 +43605,7 @@ I18n.translations["nl"] = {
   "messages": "Berichten",
   "misidentifications": "Onjuiste determinaties",
   "misleading_or_illegal_content_html": "Misleidende of illegale inhoud, racistische of etnische smet, enz. Voor meer informatie over onze definitie van \"geschikt\", zie de\n<a href=\"/help#inappropriate\">Veelgestelde vragen (FAQ)</a>.\n",
+  "mobile": "Mobiel",
   "mollusks": "weekdieren",
   "momentjs": {
     "shortRelativeTime": {
@@ -44411,6 +44450,7 @@ I18n.translations["nl"] = {
   "total": "Totaal",
   "total_observations": "Totaal aantal waarnemingen",
   "total_species_observed": "Totaal aantal soorten waargenomen",
+  "translated_languages": "Vertaalde Talen",
   "trending": "Trending",
   "trends": "Trends",
   "trust_this_person_with_your_private_coordinates": "Vertrouw deze persoon je verborgen coördinaten toe",
@@ -47323,6 +47363,7 @@ I18n.translations["pl"] = {
   "top_observers": "Najlepsi obserwatorzy",
   "total": "Razem",
   "total_observations": "Obserwacji łącznie",
+  "translated_languages": "Przetłumaczone języki",
   "twitter": "Twitter",
   "two_thirds": "2/3",
   "unfollow": "Przestań obserwować",
@@ -48311,6 +48352,7 @@ I18n.translations["pt"] = {
   "messages": "Mensagens",
   "misidentifications": "Identificações incorretas",
   "misleading_or_illegal_content_html": "Conteúdo enganador ou ilegal, insultos racistas ou xenófobos, etc. Para mais informação acerca do que consideramos \"conteúdo apropriado\" ver <a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "mobile": "Móvel",
   "mollusks": "moluscos",
   "momentjs": {
     "shortRelativeTime": {
@@ -48857,6 +48899,7 @@ I18n.translations["pt"] = {
   "top_species": "Principais Espécies",
   "total_observations": "Número total de observações",
   "total_species_observed": "Número Total de Espécies Observadas",
+  "translated_languages": "Idiomas traduzidos",
   "trends": "Tendências",
   "two_thirds": "dois terços",
   "type_species_name": "Digitar o nome da espécie",
@@ -49744,6 +49787,7 @@ I18n.translations["pt-BR"] = {
   "messages": "Mensagens",
   "misidentifications": "Identificações erradas",
   "misleading_or_illegal_content_html": "Conteúdo ilegal ou falso, insultos étnicos e raciais, etc. Para mais sobre nossa definição de \"apropriado\", veja as <a href=\"/help#inappropriate\">Perguntas frequentes</a>.\n",
+  "mobile": "Móvel",
   "mollusks": "moluscos",
   "momentjs": {
     "shortRelativeTime": {
@@ -50481,6 +50525,7 @@ I18n.translations["pt-BR"] = {
   "top_species": "Top Espécies",
   "total_observations": "Total de observações",
   "total_species_observed": "Número total de espécies observadas",
+  "translated_languages": "Idiomas traduzidos",
   "trending": "Tendências",
   "trends": "Tendências",
   "trust_this_person_with_your_private_coordinates": "Confiar nessa pessoa com suas coordenadas ocultadas",
@@ -51764,6 +51809,7 @@ I18n.translations["ru"] = {
   "messages": "Сообщениях",
   "misidentifications": "Ошибочные идентификации",
   "misleading_or_illegal_content_html": "Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "mobile": "Мобильный",
   "mollusks": "Моллюски",
   "momentjs": {
     "shortRelativeTime": {
@@ -52618,6 +52664,7 @@ I18n.translations["ru"] = {
   "total": "Всего",
   "total_observations": "Итого наблюдений",
   "total_species_observed": "Итого наблюдаемых видов",
+  "translated_languages": "Переведенные языки",
   "trending": "Анализ тенденций",
   "trends": "Тенденции",
   "trust_this_person_with_your_private_coordinates": "Доверить этому человеку ваши скрытые координаты",
@@ -53771,6 +53818,7 @@ I18n.translations["sk"] = {
   "messages": "Správy",
   "misidentifications": "Nesprávne identifikácie",
   "misleading_or_illegal_content_html": "Zavádzajúci alebo nelegálny obsah, rasové alebo etnické napádanie atď. Podrobnosti k našej definíciu toho, čo je \"vhodné\" nájdete na\n<a href=\"/help#inappropriate\">FAQ</a>\n",
+  "mobile": "Mobilný",
   "mollusks": "mäkkyše",
   "momentjs": {
     "shortRelativeTime": {
@@ -54486,6 +54534,7 @@ I18n.translations["sk"] = {
   "total": "Súčet",
   "total_observations": "Celkový počet pozorovaní",
   "total_species_observed": "Celkový počet pozorovaných druhov",
+  "translated_languages": "Preložené jazyky",
   "trending": "Populárne",
   "trends": "Trendy",
   "two_thirds": "2/3",
@@ -55435,6 +55484,7 @@ I18n.translations["sq"] = {
   "messages": "Mesazhe",
   "misidentifications": "Keqindentifikimet",
   "misleading_or_illegal_content_html": "Përmbajtje mashtruese ose ilegale, sharje mbi baza racore ose etnike etj. Për më shumë mbi definicionin e \"i papërshtatshëm\", shihni te: <a href=\"/help#inappropriate\">FAQ</sq>\n",
+  "mobile": "Celular",
   "mollusks": "Molluskët",
   "momentjs": {
     "shortRelativeTime": {
@@ -56541,6 +56591,7 @@ I18n.translations["sv"] = {
   },
   "mark_all_as_reviewed": "Markera alla som granskade",
   "media_type": "Mediatyp",
+  "mobile": "Mobil",
   "momentjs": {
     "shortRelativeTime": {
       "future": "i %s",
@@ -56867,6 +56918,7 @@ I18n.translations["sv"] = {
   "to_suggest_an_identification": "för att föreslå en identifiering",
   "today": "Idag",
   "too_many_results": "För många resultat",
+  "translated_languages": "Översatta språk",
   "trending": "Trender",
   "trends": "Trender",
   "trust_this_person_with_your_private_coordinates": "Lita på denna person med dina dolda koordinater",
@@ -57926,6 +57978,7 @@ I18n.translations["tr"] = {
   "messages": "Mesajlar",
   "misidentifications": "Yanlış tanımlamalar",
   "misleading_or_illegal_content_html": "Yanıltıcı veya yasa dışı içerik, ırksal veya etnik hakaretler vb. \"Uygun\" tanımımızla ilgili daha çoğu için <a href=\"/help#inappropriate\">SSS'ye</a>bakın.\n",
+  "mobile": "Mobil",
   "mollusks": "yumuşakçalar",
   "momentjs": {
     "shortRelativeTime": {
@@ -58770,6 +58823,7 @@ I18n.translations["tr"] = {
   "total": "Toplam",
   "total_observations": "Toplam Gözlem",
   "total_species_observed": "Gözlemlenen Toplam Tür",
+  "translated_languages": "Çevrilmiş Diller",
   "trending": "Trend",
   "trends": "Trendler",
   "trust_this_person_with_your_private_coordinates": "Bu kişiye gizli koordinatlarınızla güvenin",
@@ -60113,6 +60167,7 @@ I18n.translations["zh-CN"] = {
   "messages": "消息",
   "misidentifications": "错误识别",
   "misleading_or_illegal_content_html": "误导性或非法内容，种族歧视或民族蔑称等。有关我们对“适当”的更多定义，参见<a href=\"/help#inappropriate\">常见问题</a>。\n",
+  "mobile": "移动",
   "mollusks": "软体动物",
   "momentjs": {
     "shortRelativeTime": {
@@ -60716,6 +60771,7 @@ I18n.translations["zh-CN"] = {
   "total": "总计",
   "total_observations": "总计观察",
   "total_species_observed": "总计观察物种",
+  "translated_languages": "翻译的语言",
   "trending": "趋向",
   "trends": "趋势",
   "twitter": "推特",
@@ -62013,6 +62069,7 @@ I18n.translations["zh-TW"] = {
   "messages": "訊息",
   "misidentifications": "判讀錯誤",
   "misleading_or_illegal_content_html": "誤導、不合法內容、種族或民族歧視等等其它。更多有關我們對於「適當」內容的定義，請查看\n<a href=\"/help#inappropriate\">常見問題</a>。\n",
+  "mobile": "移動",
   "mollusks": "軟體動物",
   "momentjs": {
     "shortRelativeTime": {
@@ -62832,6 +62889,7 @@ I18n.translations["zh-TW"] = {
   "total": "總計",
   "total_observations": "觀察總數",
   "total_species_observed": "觀察物種總計",
+  "translated_languages": "已翻譯語言",
   "trending": "趨勢",
   "trends": "趨勢",
   "trust_this_person_with_your_private_coordinates": "以您的隱藏座標信任此人",

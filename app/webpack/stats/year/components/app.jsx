@@ -13,12 +13,15 @@ import Identifications from "./identifications";
 import Taxa from "./taxa";
 import Publications from "./publications";
 import Growth from "./growth";
+import Sites from "./sites";
+import Donate from "./donate";
 
 const App = ( {
   year,
   user,
   currentUser,
   site,
+  sites,
   data,
   rootTaxonID
 } ) => {
@@ -83,6 +86,8 @@ const App = ( {
         { data.publications && (
           <Publications data={data.publications} year={year} />
         ) }
+        <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} />
+        <Donate year={year} />
         <div id="sharing">
           <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
           <center>
@@ -220,24 +225,6 @@ const App = ( {
                   </a>
                 </div>
               ) : null }
-              { (
-                !site || site.id === 1 || (
-                  user && ( user.site_id === null || user.site_id === 1 )
-                )
-              ) && (
-                <div className="support">
-                  <a href="/donate?utm_content=year-in-review-2018" className="btn btn-default btn-bordered btn-donate">
-                    <i className="fa fa-heart" />
-                    { " " }
-                    { I18n.t( "donate" ) }
-                  </a>
-                  <a href="https://store.inaturalist.org" className="btn btn-default btn-bordered btn-donate">
-                    <i className="fa fa-shopping-cart" />
-                    { " " }
-                    { I18n.t( "store" ) }
-                  </a>
-                </div>
-              ) }
             </div>
           </Col>
         </Row>
@@ -252,6 +239,7 @@ App.propTypes = {
   currentUser: PropTypes.object,
   data: PropTypes.object,
   site: PropTypes.object,
+  sites: PropTypes.array,
   rootTaxonID: PropTypes.number
 };
 

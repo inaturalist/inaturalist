@@ -694,7 +694,7 @@ class YearStatistic < ActiveRecord::Base
         "altmetric_score"
       )
     end
-    data["results"] = new_results.sort_by{|r| r["altmetric_score"].to_f * -1 }[0..9]
+    data["results"] = new_results.sort_by{|r| r["altmetric_score"].to_f * -1 }[0..5]
     data[:url] = "https://www.gbif.org/resource/search?#{gbif_params.to_query}"
     data
   end
