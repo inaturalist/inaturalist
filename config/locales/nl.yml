@@ -1088,6 +1088,9 @@ nl:
   drop_it: Laat los
   double_click_to_finish: (dubbelklikken om te voltooien)
   download: Downloaden
+  download_bulk_import_template_html: |
+    <a href="%{url}">Sjabloon downloaden</a> om in de 
+    <a href="/observations/import#csv_import">bulk-uploader</a> te gebruiken
   download_csv: CSV downloaden
   download_csv_template: CSV-sjabloon downloaden
   download_kml: KML downloaden
@@ -4631,6 +4634,8 @@ nl:
           dit taxon op alle plaatsen die onder <a href="%{place_url}">%{place_name}</a> vallen.
           Alleen curatoren kunnen deze tool gebruiken. Het veranderen van de vestigingswijze naar "geïntroduceerd" zal ongeveer hetzelfde effect hebben, maar het zal bestaande waardes niet veranderen, alleen lege waarden vullen.
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Titels van levenslijsten kunnen niet worden gewijzigd
       new:
         place_desc: |
           Vul deze lijst automatisch in met taxa die op deze plaats zijn waargenomen.
@@ -4883,6 +4888,8 @@ nl:
           sitecurator bent. Als je denkt dat dit een vergissing is, neem dan alsjeblieft 
           <a href="mailto:%{help_email}" class="contact">contact met ons op</a>.
           <a href="/observations/%{observation_id}/flags">Beheer meldingen</a>
+        observer_does_not_allow_observation_fields: Waarnemer staat geen extra waarnemingsvelden toe
+        observer_only_allows_curators_to_add_fields: Waarnemer staat alleen toe dat sitecuratoren waarnemingsvelden toevoegen
       user_stats:
         user_stats_desc: |
           Gebruikersstatistieken zijn beperkt tot de top 500 op basis van het aantal waarnemingen of aantal soorten, dus het totaal in de lijst is meestal iets meer dan
@@ -5376,6 +5383,10 @@ nl:
           <a href="%{url}">Toon alle %{numStudies} studies</a>
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Waarnemingsreeksen
+        observation_streaks_color_desc: |
+          De kleur geeft het aantal dagen op logaritmische schaal weer:
+        observation_streaks_desc: |
+          Een waarnemingsreeks is een periode waarin er op elke aaneengesloten dag nieuwe waarnemingen worden geregistreerd. Hier tonen we de langste reeksen die dit jaar zijn begonnen of bezig waren toen deze statistieken werden gegenereerd.
         sunburst_desc_html: |
           Waargenomen taxa gerangschikt als een hiërarchisch "sunburst"-diagram. De basis
           van de hiërarchie staat centraal, beginnend met "Leven" en eindigend
@@ -5666,6 +5677,10 @@ nl:
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informatie die we kunnen delen met deze derden omvat
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          IP-adressen (die kunnen worden gebruikt om positie op stadsniveau vast te stellen, en je over verschillende websites en diensten te volgen; merk op dat we
+          <a href="https://support.google.com/analytics/answer/2763052">IP-anonimisering</a> hebben aangezet
+          in Google Analytics en <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> slaat geen IP-adressen op voor zover we weten)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Browserdetails, zoals maker, model, en versie
         prefers_no_tracking_label_desc_info_we_share_crash_details: |
