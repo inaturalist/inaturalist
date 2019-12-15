@@ -111,6 +111,11 @@ pl:
     few: "%{count} nowe gatunki"
     many: "%{count} nowych gatunków"
     other: "%{count} nowego gatunku"
+  x_new_users:
+    one: '%{count} nowy użytkownik'
+    few: '%{count} nowi użytkownicy'
+    many: '%{count} nowych użytkowników'
+    other: '%{count} nowego użytkownika'
   x_species:
     one: '1 gatunek'
     few: '%{count} gatunki'
@@ -529,7 +534,7 @@ pl:
   announcement_was_successfully_created: Ogłoszenie zostało pomyślnie utworzone.
   announcement_was_successfully_updated: Ogłoszenie zostało pomyślnie zaktualizowane.
   announcements: Ogłoszenia
-  any: dowolne
+  any: dowolny
   any_: Dowolna
   anyone: Ktokolwiek
   apply_to_selected: Zastosuj do wybranych
@@ -585,6 +590,7 @@ pl:
     Czy jesteś pewien, że chcesz usunąć ten takson? Posiada on taksony znajdujące się na liście i obserwacje.
   are_you_sure_want_delete_taxon_observations: |
     Czy jesteś pewien, że chcesz usunąć ten takson? Posiada on obserwacje.
+  are_you_sure_want_delete_taxon_link: Czy jesteś pewien, że chcesz usunąć ten link do taksonu?
   are_you_sure_want_delete_this_name: Czy na pewno chcesz usunąć tę nazwę?
   are_you_sure_want_delete_this_range: Czy na pewno chcesz usunąć ten zasięg?
   are_you_sure_you_want_to_commit_this_change: Czy na pewno chcesz zapisać te zmiany? Nie można tego cofnąć.
@@ -741,16 +747,13 @@ pl:
     merge: Niektóre stare taksony zostały połączone w jeden nowy takson
     swap: Zmiana nazwy 1:1
   change_geoprivacy: 'Zmień geo-prywatność'
-  change_group: Zmień grupę
   change_icon: Zmień ikonę
   change_password: Zmień hasło
   change_types:
     change_types: Rodzaje zmian
-    split: Podziel
-    merge: Połącz
-    swap: Zamień
-    stage: Stadium
-    drop: Odrzuć
+    split: Podział
+    merge: Połączenie
+    swap: Zamiana
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podziel na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -812,6 +815,7 @@ pl:
   choose_tags: Wybierz tagi
   choose_taxon: Wybierz takson
   choose_what_kind_of_change_youre_creating: "Wybierz rodzaj wprowadzanej zmiany."
+  cid_d_to_genus: Oznaczone przez społeczność co do gatunku
   citation: Przypis
   classification: Klasyfikacja
   clear: wyczyść
@@ -1162,6 +1166,7 @@ pl:
   edit_source: Edytuj źródło
   edit_taxa: Edytuj taksony
   edit_taxon: Edytuj takson
+  edit_taxon_link: Edytuj link do taksonu
   edit_taxon_range: Edytuj zasięg taksonu
   edit_the_observation: Edytuj obserwację
   edit_your_account_and_profile_html: "Edytuj swoje konto i profil"
@@ -1185,11 +1190,12 @@ pl:
   editing_project: Edytowanie projektu %{project}
   editing_subscription_to_x_html: "Edytowanie subskrypcji do %{x}"
   editing_taxon_link: Edytuj Łącze Taksonu
+  editing_taxon_name_for_taxon_html: Edytowanie nazwy taksonu "%{name}" dla %{taxon}
   editing_taxon_range: Edytowanie zasięgu taksonu
   editing_this: Edytowanie %{elem}
   editing_x_in_y: "Edytowanie %{x} w %{y}"
   editors: Edytorzy
-  either: Lub
+  either: Obojętnie
   either_that_user_doesnt_exist_or: "Podany użytkownik nie istnieje lub już go obserwujesz."
   eligible_for_research_grade: Kwalifikuje się do stopnia badawczego
   email: E‐mail
@@ -1197,7 +1203,7 @@ pl:
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
   email_addresses_to_receive_invites: Adresy e-mail do odbierania zaproszeń
   email_copyright: "Chroniony prawem autorskim &copy; %{x}, wszelkie prawa zastrzeżone"
-  email_settings: Ustawienia E-maili
+  email_settings: Ustawienia powiadomień e-mail
   embed: 'Osadź'
   embed_place_widget: Osadź widget miejsca
   embed_widget_project: Osadź widget projektu na swojej stronie
@@ -1443,7 +1449,7 @@ pl:
   has_photo_and_sound: Posiada zdjęcie i nagranie dźwiękowe
   has_photos_or_sounds: Posiada zdjęcie lub nagranie dźwiękowe
   has_sound: Posiada nagranie dźwiękowe
-  has_sounds: Posiada nagrania dźwiękowe
+  has_sounds: Posiadające nagrania dźwiękowe
   hasnt_contributed_any_observations: nie dodał obserwacji do tego projektu.
   header_your_observations: Twoje obserwacje
   header_your_calendar: Twój kalendarz
@@ -1954,6 +1960,7 @@ pl:
   needs_id: potrzebuje oznaczenia
   needs_id_: Potrzebujące oznaczenia
   needs_id_expandable_html: "<span class='full'>Potrzebuje </span>identyfikacji"
+  new: Nowi
   new_and_noteworthy: Nowe i godne uwagi
   new_announcement: Nowe ogłoszenie
   new_assessment: Nowa ocena
@@ -2203,6 +2210,7 @@ pl:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: LUB
+  or_if_you_dont_want_email: "Lub gdy nie chcesz otrzymywać żadnych e-maili..."
   or_upload: Lub prześlij
   orange: pomarańczowy
   order: Kolejność
@@ -2764,7 +2772,7 @@ pl:
   request_failed: "Żądanie się nie powiodło"
   request_timed_out: Upłynął limit czasu żądania!
   required_columns_in_order: Wymagane kolumny w kolejności
-  research_grade: Posiadające stopień badawczy
+  research_grade: Stopień badawczy
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
   restore: Przywróć
@@ -2836,16 +2844,21 @@ pl:
   show_less: Pokaż mniej
   show_more: Pokaż więcej
   show_observation_photos: pokaż zdjęcia obserwacji
+  show_off_your_recent_observations: Pokaż swoje ostatnie obserwacje na swoim blogu lub stronie internetowej!
   show_scientific_name_first: Pokazuj najpierw nazwy naukowe
   sign_in: Zaloguj się
   sign_in_with_provider: "Zaloguj się za pomocą %{provider}"
+  sign_in_with_google: Zaloguj się z Google
   sign_out: Wyloguj się
   sign_up: Zarejestruj się
   similar_species: Podobne gatunki
   similar_taxa: Podobne taksony
+  #Journal post formatting option
+  simple: Proste
   single_observation: Pojedyncza obserwacja
   sizes: Rozmiary
   skip_to_next_page: "Przejdź do następnej strony"
+  site_admin_tools: Narzędzia administratora strony
   site_stats: Statystyki strony
   some_observations_failed_to_be_added: Nie udało się dodać niektórych Obserwacji do projektów
   some_of_those_photos_couldnt_be_saved: "Niektóre z tych zdjęć nie mogły zostać zapisane: %{error}"
@@ -2896,7 +2909,7 @@ pl:
   start_a_project: Rozpocznij projekt
   start_date_time: Data / Czas rozpoczęcia
   start_typing_field_name: Zacznij wpisywać nazwę pola...
-  start_typing_place_name: Zacznij wpisywać nazwę lokalizacji...
+  start_typing_place_name: Zacznij wpisywać nazwę miejsca...
   start_typing_taxon_name: Zacznij wpisywać nazwę taksonu...
   start_typing_someones_name: "Zacznij wpisywać czyjąś nazwę użytkownika..."
   states: Stany
@@ -2939,6 +2952,9 @@ pl:
     Jeden z taksonów zasugerowanych w oznaczeniach lub jeden z taksonów zawierających którykolwiek z tych taksonów jest znany jako rzadki i/lub zagrożony, dlatego miejsce tej obserwacji zostało ukryte.
   taxonomy: Taksonomia
   taxon_deleted: Takson usunięty.
+  taxon_colors: Kolory taksonu
+  taxon_curators: Kuratorzy taksonu
+  taxon_framework_deviations_with_count_html: "Odchylenia: %{count}"
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a> zaobserwowany przez
   taxon_photos_updated: Zdjęcia taksonu zaktualizowane!
@@ -2960,11 +2976,14 @@ pl:
   that_photo_doesnt_exist: To zdjęcie nie istnieje.
   that_observation_doesnt_exist: Ta obserwacja nie istnieje.
   that_observation_doesnt_have_any_photos: "Ta obserwacja nie ma żadnych zdjęć."
+  that_observation_hasnt_been_added_this_project: Ta obserwacja nie została dodana do tego projektu.
   that_observation_no_longer_exists: Ta obserwacja już nie istnieje.
   that_project_doesnt_exist: "Ten projekt nie istnieje."
   that_role_doesnt_exist: Ten rola nie istnieje
   that_was_the_last_observation_matching_the_current_filters: To była ostatnia obserwacja pasująca do bieżących filtrów.
   thats_not_a_real_date: To nie jest prawdziwa data!
+  the_admin_is_the_person_who: |
+    Administrator jest osobą, która stworzyła projekt. Może zrobić wszystko to, co mogą menedżerowie i kuratorzy, jak również usunąć projekt.
   the_community_id_requires_at_least_two_identifications: Oznaczenie społeczności wymaga co najmniej dwóch oznaczeń.
   the_following_observations_could: "Następujące obserwacje nie mogły zostać dodane do %{link}"
   the_observation_was_already_added_to_that_project: Obserwacja została już dodana do tego projektu.
@@ -2993,7 +3012,7 @@ pl:
   this_will_re_apply_all_list_rules: |
     Spowoduje to ponowne zastosowanie wszystkich reguł listy do taksonów znajdujących się na liście i zaktualizowanie wszelkich powiązanych statystyk, jak np. odrzucanie taksonów, które nie znajdują się na liście lub nie należą do wybranej kategorii. Nie doda to żadnych nowych taksonów. Może to potrwać kilka minut.
   those_observations_no_longer_exist: Te obserwacje już nie istnieją.
-  threatened: Zagrożony
+  threatened: Gatunki zagrożone
   time_: czas
   time_ago: "%{time} temu"
   title: tytuł
@@ -3018,6 +3037,8 @@ pl:
   twitter: Twitter
   two_thirds: 2/3
   type: Typ
+  type_source_name: Wpisz nazwę źródła
+  type_taxon_name: "Wpisz nazwę taksonu"
   uninvite: cofnij zaproszenie
   unique_identifier_of_this_taxon: Unikatowy identyfikator tego taksonu w źródłowej bazie danych.
   unique_observers: unikalnych obserwatorów
@@ -3271,20 +3292,59 @@ pl:
           name_is_required: Nazwa projektu jest wymagana
           name_less_than_100_characters: Nazwa projektu musi zawierać mniej niż 40 znaków
           name_already_taken: Nazwa projektu już zajęta
+          summary_is_required: Tekst podsumowania projektu jest wymagany
       project_user_curator_coordinate_access_labels:
+        observer: Tak, ale tylko jeśli sam dodam obserwację do projektu.
+        any: Tak, bez względu na to, kto dodaje obserwację do projektu.
         none: Nie.
     shared:
       blocked:
         youve_been_blocked: Zostałeś zablokowany
+      not_found:
+        even_our_dedicated_search_mole_couldnt: Nawet nasz oddany kret poszukiwacz nie mógł niczego znaleźć!
     stats:
       index:
+        active_desc: Dodali oznaczenia, obserwacje, komentarze lub posty w poprzednich 30 dniach
+        active_users_desc: Dodali oznaczenia, obserwacje, komentarze lub posty w poprzednich 30 dniach
+        android_desc_html: Dodane za pomocą <a href="%{url}">aplikacji iNaturalist na Androida</a>
         avg_ttcid: Średni TTCID
         avg_ttid: Średni TTCID
+        identifiers_desc: Dodali oznaczenie do czyjejś obserwacji tego dnia
+        iphone_desc_html: Dodane za pomocą <a href="%{url}">aplikacji iNaturalist na iPhone</a>
+        med_ttcid: Średni TTCID
+        med_ttid: Średni TTID
+        new_users_desc: Zarejestrowani tego dnia
+        #Short for "observations community-identified to genus"
+        obs_cid_d_to_genus: Obserwacje oznaczone przez społeczność co do gatunku
+        obs_cid_d_to_genus_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie społeczności na poziomie gatunku lub niżej
+        obs_desc: Dodane w poprzednich siedmiu dniach
+        obs_id_d_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie (może być obserwatora)
+        TTCID: TTCID
+        TTCID_desc: Czas do otrzymania oznaczenia od kogoś innego, które pasuje do taksonu społeczności.
+        TTID: TTID
+        TTID_desc: Czas do otrzymania oznaczenia od kogoś innego
+        website_desc_html: |
+          Dodane przez stronę <a href="https://www.inaturalist.org">iNaturalist</a> lub <a href="%{url}">iNaturalist Network</a>
+      year:
+        include_usa: Łącznie z USA
+        growth_by_country_title: Wzrost według kraju
+        growth_in_year_obs: "Wzrost w %{year} (obserwacje)"
+        growth_title: Wzrost
+        new_species_desc: |
+          Gatunki, które zostały zaobserwowane po raz pierwszy na %{site_name} w tym roku.
+          Pokazano %{x} z <a href="%{url}">%{y} gatunków</a>.
+        obs_in_year: Obserwacji w %{year}
+        observation_streaks_color_desc: |
+          Kolor reprezentuje liczbę dni w skali logarytmicznej:
     taxa:
       show:
         frequency:
           research: Stopień badawczy
           verifiable: Weryfikowalne
+          "Alive or Dead=Alive": Żywy
+          "Alive or Dead=Dead": Martwy
+          "Plant Phenology=Flowering": Kwitnie
+          "Plant Phenology=Fruiting": Owocuje
           "Life Stage=egg": Jajo
           "Life Stage=larva": Larwa
           "Life Stage=teneral": Osobnik teneralny
@@ -3310,11 +3370,25 @@ pl:
         type_confirmation_code: Wpisz %{confirmation_code}
       edit:
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_mentions: Wzmianki
+        notification_preferences_comments: Komentarzach
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_messages: Wiadomości
+        notification_preferences_identifications: Oznaczeniach
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_taxon_changes: Zmiany taksonomiczne
+        notification_preferences_mentions: Wzmiankach
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Wiadomościach
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Wpisach w dzienniku projektu
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Gdy projekt dodaje Twoje obserwacje
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_curator_changes: Zmienia się kurator projektu
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Zmianach taksonomicznych
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Obserwacjach od ludzi, których obserwuję
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Obserwacjach taksonów lub z miejsc, które subskrybuję
         project_addition_preferences:
           any: Dowolna
           joined: Projekty do których dołączyłeś
@@ -3404,6 +3478,8 @@ pl:
       long: '%B %d, %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%-d %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%e %b"
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%-d %b %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
@@ -3571,6 +3647,13 @@ pl:
       separator: ','
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
@@ -3618,6 +3701,8 @@ pl:
         odd: musi być liczbą nieparzystą
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
   activerecord:
+    models:
+      TaxonLink: Link do taksonu
     attributes:
       assessment:
         description: Opis
