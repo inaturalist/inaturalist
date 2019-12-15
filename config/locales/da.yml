@@ -5003,6 +5003,8 @@ da:
           side kurator. Hvis du mener, at dette er en fejl, så vær venlig at
           <a href="mailto:%{help_email}" class="contact"> kontakt os </a>.
           <a href="/observations/%{observation_id}/markeringer"> Administrer markeringer </a>
+        observer_does_not_allow_observation_fields: Observatør tillader ikke yderligere observationsfelter
+        observer_only_allows_curators_to_add_fields: Observatør tillader kun webstedskuratorer at tilføje observationsfelter
       user_stats:
         user_stats_desc: |
           Brugerstatistikker er begrænset til en maksimum på top 500 af antal observationer og arter, så den samlede liste er normalt lidt mere end
