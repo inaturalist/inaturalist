@@ -1,6 +1,6 @@
 <%- optionscol ||= nil -%>
 <%- list ||= form_fields ||= @list -%>
-<%- title_edit_disabled = list.is_a_users_default_lifelist? -%>
+<%- title_edit_disabled = list && list.is_a_users_default_lifelist? -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css">
     .place_id_field .chooser {width:300px;}
