@@ -800,6 +800,7 @@ fr:
     larva: Larve
     egg: Oeuf
     juvenile: Juvénile
+    cannot_be_determined: Ne peut être déterminé
   controlled_term_definitions:
     flower_budding: Les bourgeons floraux sont visibles mais pas ouverts
     flowering: Fleurs visibles, ouvertes, et encore attachées à la plante
@@ -889,6 +890,7 @@ fr:
   data_quality_assessment: Évaluation de la qualité des données
   data_used: "Données utilisées :"
   datatype: Type de données
+  date_: Date
   date_added: Date d’ajout
   date_created: Date de création
   date_format:
@@ -1013,6 +1015,9 @@ fr:
   drop_it: Le déposer
   double_click_to_finish: (double cliquez pour finir)
   download: Télécharger
+  download_bulk_import_template_html: |
+    <a href="%{url}">Télécharger le modèle</a> pour l’utiliser dans le
+    <a href="/observations/import?project_id=%{project_id}#csv_import">chargeur par lot</a>
   download_csv: Télécharger le format CSV
   download_csv_template: Télécharger le modèle "CSV"
   download_kml: Téléchargez le format KML
