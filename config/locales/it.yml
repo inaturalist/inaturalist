@@ -23,8 +23,8 @@ it:
     other: '<span class="count">%{count}</span> Identificatori'
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
-    one: "1 prima lista degli esseri viventi"
-    other: "%{count} prime liste prime degli esseri viventi"
+    one: "%{count} per la prima volta nella lista degli esseri viventi"
+    other: "%{count} per la prima volta nella lista degli esseri viventi"
   x_journal_posts_html:
     one: '<span class="count">1</span> post del diario'
     other: '<span class="count">%{count}</span> post del diario'
@@ -178,7 +178,7 @@ it:
   add_a_field: Aggiungi un campo
   add_a_flag: Aggiungi un contrassegno
   add_a_name: Aggiungi un nome
-  add_a_new_change_group: Aggiungi un nuovo gruppo di cambiamenti
+  add_a_new_change_group: Aggiungi un Nuovo Gruppo di Modifiche
   add_a_single_observation: Aggiungi una singola osservazione.
   add_a_taxon: Aggiungi un taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -660,9 +660,9 @@ it:
     merge: Diversi vecchi taxa uniti in un nuovo taxon
     swap: modifica del nome 1-a-1
     drop: Taxon completamente invalido, mantenuto per scopi storici o compatibilità con i partner
-    stage: Prepara un concetto inattivo come parte di una modifica tassonomica di un gruppo di specie.
+    stage: Prepara un concetto inattivo per il rilascio come parte di un gruppo di modifiche
   change_geoprivacy: 'Cambia la geoprivacy'
-  change_group: Cambia il gruppo
+  change_group: Gruppo di Modifiche
   change_icon: Cambia icona
   change_password: Modifica password
   change_types:
@@ -786,7 +786,7 @@ it:
   comparing_observations_from: "Confronto in corso delle osservazioni di %{user} del %{dates}"
   compiled_by_name: "Compilato da %{name}"
   complete: Completo
-  complete_set_for_taxon_in_place_html: "Checklist Completa di %{taxon} in %{place}"
+  complete_set_for_taxon_in_place_html: "Elenco Completo di %{taxon} in %{place}"
   completed: Completato
   completed_at: Completato in
   comprehensive: completa
@@ -1103,7 +1103,7 @@ it:
   edit_atlas_for_taxon_html: Modifica Atlante di %{taxon}
   edit_body: Modifica il corpo
   edit_comment: Modifica il tuo commento
-  edit_complete_set_for_taxon_in_place_html: "Modifica la Lista Completa di %{taxon} in %{place}"
+  edit_complete_set_for_taxon_in_place_html: "Modifica l'Elenco Completo di %{taxon} in %{place}"
   edit_custom_project_fields: Modifica i campi personalizzati del progetto
   edit_field: Modifica il campo
   edit_license: Modifica la licenza
@@ -2060,7 +2060,7 @@ it:
   new_users: Nuovi utenti
   new_users_in_year: "Nuovi Utenti Nel %{year}"
   new_users_w_7_obs: Nuovi utenti con 7 osservazioni
-  newly_added: Appena Aggiunti
+  newly_added: Appena Aggiunte
   newly_added_species: Specie Appena Aggiunte
   newly_observed_species: Specie Appena Osservate
   newly_observed_species_in_year: "Specie Aggiunte Di Recente Nel %{year}"
@@ -5504,6 +5504,11 @@ it:
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Le informazioni che potremmo condividere con queste terze parti includono
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          Indirizzi IP (che possono essere utilizzati per derivare la tua posizione a livello di città, e per tracciarti attraverso diversi siti web e servizi;
+          tieni presente che abbiamo abilitato l'<a href="https://support.google.com/analytics/answer/2763052">anonimizzazione dell'IP</a>
+          in Google Analytics; Firebase
+          Crashlytics <a href="https://firebase.google.com/support/privacy">può registrare l'indirizzo IP</a> temporaneamente)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Caratteristiche del Browser, come la marca, il modello e la versione
         prefers_no_tracking_label_desc_info_we_share_crash_details: |
@@ -5911,7 +5916,7 @@ it:
     models:
       AssessmentSection: Sezione valutazioni
       Atlas: Atlante
-      CompleteSet: Elenco completo
+      CompleteSet: Elenco Completo
       TaxonLink: Link del Taxon
     attributes:
       assessment:
