@@ -1418,6 +1418,7 @@ fi:
   guide_was_successfully_published: Oppaan julkaisu onnistui.
   guide_was_successfully_updated: Oppaan päivitys onnistui.
   guidelines: Pelisäännöt
+  has_already_been_flagged_by: tämän on jo liputtanut
   has_id_supported_by_two_or_more: Kaksi tai useampi kannattaa samaa tunnistusta
   has_one_or_more_faves: On yksi tai useampi suosittelu
   has_photo: Kuvia
@@ -3828,6 +3829,7 @@ fi:
   you_must_choose_an_observation_field: Sinun täytyy valita havaintokenttä
   you_must_fill_out_the_required_fields: Sinun täytyy täyttää vaaditut kentät
   you_must_select_at_least_one_taxon: Sinun on valittava vähintään yksi taksoni
+  you_must_specify_and_confirm_a_new_password: Sinun täytyy valita ja vahvistaa uusi salasanasi.
   you_need_to_select_some_observations_first: Sinun täytyy ensin valita joitakin havaintoja.
   you_retain_full_copyright: "Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä %{site_name}ille myönnettyjä oikeuksia."
   you_retain_full_copyright_over_your_content: "Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä %{site_name}ille myönnettyjä oikeuksia."
@@ -3905,6 +3907,34 @@ fi:
       edit:
         add_eol_content: |
           Lisää EOL-sisältöä valittuihin taksoneihin eränä. Tämä voi kestää jonkin aikaa, joten ole kärsivällinen.
+        import_tags_from_csv_help_html: |
+          <p>
+          Lataa CSV-tiedosto, jossa on tageja tämän oppaan lajeille. CSV-tiedoston rakenteen pitää olla seuraava:
+          </p>
+          <table class="table">
+          <tbody>
+          <tr>
+          <th>Nimi</th>
+          <th>väri</th>
+          <th>Käsien määrä</th>
+          <th></th>
+          </tr>
+          <tr>
+          <td>Homo sapiens</td>
+          <td></td>
+          <td>2</td>
+          <td>kaksijalkainen</td>
+          </tr>
+          <tr>
+          <td>Vulpes vulpes</td>
+          <td>punainen|musta</td>
+          <td>0</td>
+          <td>nelijalkainen</td>
+          </tr>
+          </tbody>
+          </table>
+          <p>
+          Ensimmäinen rivi alkaa merkinnällä "Nimi", jonka jälkeen tulevat tagit/kategoriat. Seuraavat rivit alkavat taksonin nimellä, joiden jälkeen tulevat tagit. Tässä esimerkissä <i>Homo sapiens</i> saa tagit <code>kaksijalkainen</code> ja koodin <code>Käsien määrä=2</code> ja <i>Vulpes vulpes</i> saa tagin <code>nelijalkainen</code> ja koodit <code>väri=punainen</code>, <code>väri=musta</code> ja <code>käsien määrä=0</code>. Välilöntejä ei huomioida ja voit lisätä monta riviä jokaista taksonia kohden. Voit myös lisätä useita arvoja jokaiseen soluun erottelemalla ne pystyviivalla |.</p>
       mobile_downloads_tip_html: |
         Tämä opas voidaan ladata mobiilisovellukseen offline-käyttöön.
       pdf_layouts:
@@ -3920,6 +3950,8 @@ fi:
         alphadisplay: Aakkosjärjestyksessä näyttönimittäin
     help:
       index:
+        welcome_message_html: |
+          Hei! Jos olet juusi aloittanut %{site_name}in käytön, katso <a href="%{url}">%{getting_started}</a>, joka esittelee sivuston tärkeimmät ominaisuudet. Jos sinulla on kysymysiä sivuston käytöstä. ole hyvä ja tutustu usein kysyttyihin kysymyksiin alempana. Jos kaipaat vielä neuvoja, ole hyvä ja <a href="%{feedback_url}">kirjoita kysymyksesi palauteryhmäämme</a>.
         what_is_inaturalist?: Mikä on %{site_name}?
         who_is_behind_inaturalist?: Kuka on %{site_name}in takana?
         who_is_behind_inaturalist: Ketkä ovat %{site_name}in takana?
@@ -4277,6 +4309,7 @@ fi:
           in_taxon: olla taksonissa
           observed_in_place: olla havaittu paikassa
           verifiable: olla todennettavissa
+          wild: olla villi/luonnonvarainen
         start_time_desc: "Aloitusaika bioblitzillesi. Muoto: PP-KK-VVVVThh:mm:ss±hh:mm"
         submission_models:
           any: kuka tahansa
@@ -4646,14 +4679,33 @@ fi:
           Tämän tehtyäsi, lapsesi voi lähettää havaintoja iNaturalist tililleen Seek sovellusken avulla, ja ne näkyvät osoitteessa
           iNaturalist.org.
           </p>
+        thanks_for_creating_a_minor_account: KIITOS ETTÄ LOIT ALAIKÄISEN TILIN!
+        we_will_send_you_an_email: |
+          Lähetämme sinulle sähköpostiviestin kun lapsesi tili on aktivoitu.
       new:
+        child_name_private: Lapsen nimi (yksityinen)
         create_a_minor_account: Luo uusi käyttäjä
         create_minor_account: Luo alaikäinen käyttäjä
+        parent_name_private: Vanhemman tai holhoojan nimi (yksityinen)
+        parent_email: Vanhemman tai holhoojan sähköpostiosoite (yksityinen)
+        inaturalist_minor_account_signup: Alaikäisen tilin luonti iNaturalistiin
+        parent_information_private: Tietoja vanhemmasta (yksityinen)
         step1_title: LUO KÄYTTÄJÄTUNNUS LAPSELLESI
         step1_desc: |
           Täyttääksemme tietoturvasäädösten vaatimukset, tarvitsemme alle 13 vuotiaan lapsen vanhemman tai huoltajan suostumuksen. Jos haluat sallia lapsesi käyttävän iNaturalistia, tarvitsemme sinulta henkilöllisyys- ja yhteystietoja.
+        step2_title: VAHVISTA HENKILÖLLISYYTESI LUOTTOKORTIN AVULLA
+        step2_desc: |
+          Jotta voisimme varmistaa että olet aikuinen, pyydämme nimellista yhden dollarin lahjoitusta iNaturalistille luottokorttia käyttäen. Tämä on helpoin tapa varmistaa henkilöllisyys noudatten henkilötietolakeja. Varmista että käytät samaa sähköpostiosoitetta jota käytit "vanhemman sähköposti" -kohdassa edellisessä vaiheessa.
+        step3_title: ODOTA VAHVISTUSVIESTIÄ SÄHKÖPOSTIISI
+        step3_desc: |
+          Aktivoimme lapsen tunnuksen kun olemme varmistaneet että lahjoituksen sähköpostiosoite täsmää antamaasi "vanhemman sähköpostiosoitteeseen". Lähetämme tällöin vanhemmalle viestin, jossa on kirjautumisohjeet. Tämä voi kestää 24 tuntia.
+        step3_donor_title: LAPSESI TILI ON NYT AKTIVOITU
+        step3_donor_desc: |
+          Koska olet iNaturalist-lahjoittaja, pystyimme varmistamaan henkilöllisyytesi aiemmin tekemäsi lahjoituksen perusteella.
     welcome:
       index:
+        welcome_message_html: |
+          %{image}iin, jossa voit <strong>pitää kirjaa</strong> siitä mitä olet nähnyt luonnossa, <strong>tavata</strong> muita luonnonystäviä ja <strong>oppia</strong> uutta luonnosta.
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa luontohavaintosi.
         observations_to_date: 'havaintoa tällä hetkellä'
