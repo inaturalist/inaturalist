@@ -1871,9 +1871,9 @@ es:
       gbif_network_description: Registros de los museos y de otras ocurrencia de los proveedores distribuidos por la Infraestructura Mundial de Información en Biodiversidad (GBIF)
       observations: Observaciones
       place_boundary: Límite del lugar
-      checklist_places: Lista de verificación de los lugares
+      checklist_places: Lugares en las listas de verificación
       checklist_places_description: Lugares donde este taxón ha sido enlistado
-      range: Intervalo
+      range: Área de distribución
   map_tooltip: Muestra la vista de mapa
   mark_as_reviewed: Marca como revisado
   mark_all_as_reviewed: Marca todas como revisadas
@@ -3896,11 +3896,13 @@ es:
   user_added_a_comment_html: "%{user} añadió un comentario"
   user_added_a_fave_html: "%{user} añadió un favorito"
   user_added_a_flag_html: "%{user} añadió una marca"
+  user_added_a_project_invitation_html: "%{user} añadió una invitación al proyecto"
   user_added_a_x: "%{user} añadió una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} de %{by}"
   user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
   user_added_an_identification_html: "%{user} añadió una identificación"
   user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}" a una observación de %{owner}'
+  user_added_an_observation_field_value_html: "%{user} añadió un valor en un campo de observación"
   user_added_an_observation_html: "%{user} añadió una observación"
   user_added_an_x: "%{user} añadió un %{x}"
   user_added_an_x_to_noun_by_html: "%{user} añadió una %{x} a %{noun} de %{by}"
@@ -3930,6 +3932,8 @@ es:
     <strong>%{user}</strong> es ahora administrador/a de %{project}
   user_is_now_a_manager_for_project_html: |
     <strong>%{user}</strong> es ahora manager de %{project}
+  user_is_now_a_curator_for_project_html: |
+    <strong>%{user}</strong> es ahora un curador para %{project}
   user_muted: Usuario silenciado
   user_observed_on_on_date_in_place: |
     %{user} observó uno el %{date}, en %{place}
@@ -4157,6 +4161,8 @@ es:
   you_are_now_following_x: "Estas siguiendo a %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>tú</strong> eres ahora el administrador de %{project}
+  you_are_now_a_curator_for_project_html: |
+    <strong>tú</strong> ahora eres un curador para %{project}
   you_are_now_a_manager_for_project_html: |
     <strong>tú</strong> eres ahora un administrador de %{project}
   you_are_not_editing_any_guides_add_one_html: |
@@ -4292,6 +4298,20 @@ es:
             Si es así, por favor lee nuestra<a href="%{url}">guía para profesores</a> para sugerencias en la utilización de %{site_name} con estudiantes.
     donate:
       donate_short_desc: "¡Haz una donación ahora para mostrar tu apoyo!"
+      donate_desc_html: |
+        <p class="lead">
+        <strong>iNaturalist es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de ella!</strong>
+        </p>
+        <p class="lead">
+        Si crees en la fuerza de esta comunidad global de amantes de la naturaleza que comparte conocimiento y genera datos de biodiversidad irremplazables, por favor considera hacer una donación única o recurrente, o conozca  <a
+        href="https://www.inaturalist.org/pages/giving">otras formas de donar</a>.
+        </p>
+        <p class="lead">
+        Tu donación ayuda a apoyar iNaturalist a medida que la comunidad crece, incluyendo la visión computerizada avanzada, la implantación de nuevas caraterísticas y los gastos de nuestros servidores y personal.
+        </p>
+        <p class="text-muted">
+        iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización 501(c)(3), sin ánimo de lucro, exenta de impuestos con sede en los Estados Unidos de América (Tax ID: 94-1156258).
+        </p>
       post_donate_social_media_text: Apoyo iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértase en un Patrocinador Mensual de Naturalista.
@@ -4625,6 +4645,8 @@ es:
           Esto cambiará los medios de establecimiento de <em>todos</em> los listados de este taxón en todos los descendientes de los lugares de 
           <a href="%{place_url}">%{place_name}</a> a <strong>"%{establishment_means}"</strong>. Solo los curadores pueden utilizar esta herramienta. Cambiar el medio de establecimiento a "introducido" tendrá aproximadamente el mismo efecto, pero no cambiará los valores existentes, solo rellenará los vacíos.
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Los títulos de la Lista de Vida no se pueden cambiar
       new:
         place_desc: |
           Rellena automáticamente esta lista con los taxones observados en este lugar.
