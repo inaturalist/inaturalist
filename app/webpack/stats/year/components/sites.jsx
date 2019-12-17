@@ -24,14 +24,14 @@ const Sites = ( {
           { visibleSites.map( s => (
             <div className="site" key={`site-${s.id}`}>
               <div className="site-icon">
-                <a href={`${s.url}/stats/year/${year}`}>
+                <a href={`${s.url}/stats/${year}`}>
                   <img alt={s.title} src={s.icon_url} className="img-responsive" />
                 </a>
               </div>
               <div className="ribbon-container">
                 <div className="ribbon">
                   <div className="ribbon-content">
-                    <a href={`${s.url}/stats/year/${year}`}>{ s.name }</a>
+                    <a href={`${s.url}/stats/${year}`}>{ s.name }</a>
                   </div>
                 </div>
               </div>
