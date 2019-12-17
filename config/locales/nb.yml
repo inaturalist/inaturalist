@@ -67,6 +67,9 @@ nb:
   x_new_species:
     one: "%{count} ny art"
     other: "%{count} nye arter"
+  x_new_users:
+    one: '%{count} ny bruker'
+    other: '%{count} nye brukere'
   x_species:
     one: '%{count} art'
     other: '%{count} arter'
@@ -1069,6 +1072,8 @@ nb:
   drop_it: Fjern
   double_click_to_finish: (dobbelklikk for å fullføre)
   download: Last ned
+  download_bulk_import_template_html: |
+    <a href="%{url}">Last ned mal</a> for bruk i <a href="/observations/import#csv_import">bulk-opplasteren</a>
   download_csv: Last ned CSV
   download_csv_template: Last ned CSV-mal
   download_kml: Last ned KML
@@ -2008,6 +2013,10 @@ nb:
   needs_id_: Trenger ID
   needs_id_expandable_html: "<span class='full'>Trenger </span>ID"
   needs_to_be_identified: Trenger å bli identifisert
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, del av det internasjonale iNaturalist-nettverket, har fokus på biodiversitet og folk i %{place}. Ønsker du å endre din kontotilknytning fra iNaturalist.org til %{site_name}?
+  network_affiliation_prompt_from_other_site_html: |
+    Ønsker du å endre din tilknytning fra <strong>%{other_site_name}</strong> til <strong>%{site_name}</strong>?
   new: Ny
   new_and_noteworthy: Ny og oppsiktsvekkende
   new_announcement: Ny kunngjøring
@@ -3856,6 +3865,10 @@ nb:
     one: Brukt 1 gang
     other: Bruk %{count} ganger
   user: Bruker
+  user1_and_user2_faved_this_observation: "%{user1} og %{user2} har lagt til denne observasjonen til sine favoritter"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, og %{x_others} har lagt til denne observasjonen til sine favoritter"
+  user_added_a_comment_html: "%{user} har lagt til en kommentar"
+  user_added_a_fave_html: "%{user} har lagt til en favoritt"
   user_added_a_flag_html: "%{user} har lagt til en markering"
   user_added_a_project_invitation_html: "%{user} har lagt til en prosjektinvitasjon"
   user_added_a_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
@@ -3877,6 +3890,7 @@ nb:
   user_disagrees_this_is_taxon: "%{user} er uenig i at dette er %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig i tidligere finere identifikasjoner"
   user_faved_a_noun_by_owner: "%{user} har favorittisert %{noun} av %{owner}"
+  user_faved_this_observation: "%{user} har lagt til denne observasjonen til sine favoritter"
   user_flagged_as_a_non_spammer_html: "%{user} markert som ikke-spammer"
   user_flagged_as_a_spammer_html: "%{user} markert som spammer"
   user_has_opted_out_of_community_id: Brukeren har meldt seg ut av fellesskapets takson
@@ -4468,6 +4482,8 @@ nb:
           Dette vil endre etableringsmåten til <em>alle</em> oppføringer av dette taksonet på alle underliggende steder av <a href="%{place_url}">%{place_name}</a>
           til <strong>"%{establishment_means}"</strong>. Kun kuratorer kan bruke dette verkøyet. Å endre etableringsmåten til "introdusert" vil ha omtrent samme effekt, men det vil ikke endre eksisterende verdier, bare fylle inn tomme.
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Navn på livslister kan ikke endres
       new:
         place_desc: |
           Fyll denne listen automatisk med taksa observert i dette stedet. Merk at du kun kan velge steder som har grenser.
@@ -4728,6 +4744,8 @@ nb:
         score_desc: "poengsum = totalt antall / (totalt antall + antall uenig + ane-uenigheter)"
         observation_flagged_notice_html: |
           Denne observasjonen har blitt markert som spam og er ikke lenger offentlig synlig. Du kan se det fordi du opprettet den, eller du er en sidekurator. Hvis du tror at dette er feil, vennligst <a href="mailto:%{help_email}" class="contact">ta kontakt</a>. <a href="/observations/%{observation_id}/flags">Forvalt markeringer</a>
+        observer_does_not_allow_observation_fields: Observatøren tillater ikke ytterlige observasjonsfelt
+        observer_only_allows_curators_to_add_fields: Observatøren tillater kun at sidekuratorer kan legge til observasjonsfelt
       user_stats:
         user_stats_desc: |
           Brukerstatistikker er begrenset til et maksimum av topp 500-listen av antall observasjoner eller arter, så summen som oppføres er vanligvis litt over 500, siden de to listene sannsynligvis ikke innholder de samme brukere. En verdi makert med '*' betyr at den ikke var i topp 500-listen for den statistikken.
@@ -5211,6 +5229,8 @@ nb:
         percent_of_total_growth: "% av total vekst"
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observasjonsserier
+        observation_streaks_color_desc: |
+          Farge representerer antall dager på en logaritmisk skala:
         sunburst_desc_html: |
           Observasjoner som et hierarkisk "sunburst"-diagram. Basen av hierarkien er i midten, med "livet" som start og arter ytterst på kanten. Størrelsen av hver bue er relativ til antallet av observasjoner av det taksonet, og fargene korresponderer mer eller mindre til våre vanlige farger for "ikoniske" taksa (grønn for planter, oransje for insekter, blå for de fleste andre dyr, osv.), så hvis du ser masse grønt betyr det at du har sett mange planter. <strong>Trykk på en bue for å plasere det taksonet i midten</strong> og dets etterkommere rundt det, eller <strong>trykk på midten for å gå opp i hierarkiet igjen</strong>.
     taxa:
@@ -5457,6 +5477,13 @@ nb:
           %{site_name} holder rede på hva du tror dine observasjoner er og hva felleskapet tror det er. Identifikasjonen vi deler med datapartnere er felleskapets identifikasjon, men hvis synes at felleskapets mening aldri skal overstyre din egen, kan du melde deg av her. Folk vil fortsatt kunne legge til identifikasjoner, men felleskapets mening blir ikke prioritert over din. Dette betyr at dine observasjoner ikke vil kunne nå forskingskvalitet med mindre du er enig med felleskapet.
         prefers_coordinate_interpolation_protection_desc: |
           Når du setter geosperringen av en observasjon til "tilslørt" eller "privat" brukes det samme geosperringen på alle dine andre observasjoner fra den dagen for å gjøre det vanskelige for folk å gjette de sanne koordinate basert på observasjoner gjort rundt samme tidspunkt.
+        prefers_no_tracking_label: Ikke samle data om stabilitet og bruk ved hjelp av tredjepartstjenester
+        prefers_no_tracking_label_desc_info_we_share: |
+          Informasjon som vi kan dele med disse tredjeparter omfatter
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Nettleserdetaljer, som merke, modell, og versjon
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Enhetsdetaljer, som merke og modell av en mobiltelefon
         project_settings_desc: |
           Husk at dette ikke gir prosjekter tilgang til å se dine skjulte koordinater eller sende seg oppdateringer. Du må bli medlem i prosjekter for å gi disse tillatelser, eller gi de en-og-en.
         same_day_geoprivacy_protection: Samme-dag geosperring
@@ -5758,6 +5785,13 @@ nb:
       separator: ','
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
