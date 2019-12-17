@@ -35,8 +35,8 @@ es-AR:
     one: '<span class="count">1</span> taxón que coincide'
     other: '<span class="count">%{count}</span> taxones que coinciden'
   x_misidentifications_of_this_species:
-    one: "1 identificación erronea de esta especie"
-    other: "%{count} identificaciónes erroneas de esta especie"
+    one: "%{count} identificación errónea de esta especie"
+    other: "%{count} identificaciones erróneas de esta especie"
   x_misidentifications_of_species_in_this_rank:
     one: "1 identificación errónea de especie en este %{rank}"
     other: "%{count} identificaciones erróneas de especies en este %{rank}"
@@ -86,8 +86,8 @@ es-AR:
     one: "<span class='count'>1</span> observación con grado de investigación</span>"
     other: "<span class='count'>%{count}</span> observaciones con grado de investigación</span>"
   x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> identificación de  observación con grado de investigación para especies o descendientes</span>"
-    other: "<span class='count'>%{count}</span> identificaciones de observaciones con grado de investigación de especies o descendientes</span>"
+    one: "<span class='count'>%{count}</span> identificación de observación con grado de investigación para especies o descendientes"
+    other: "<span class='count'>%{count}</span> identificaciones de observaciones con grado de investigación de especies o descendientes"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxón curado"
     other: "<span class='count'>%{count}</span> taxones curados"
@@ -1080,7 +1080,7 @@ es-AR:
   edit_your_account_and_profile_html: "Modifica tu cuenta y tu perfil"
   edit_your_default_settings: "Edita la configuración predeterminada"
   edit_your_global_project_settings: Edita tu configuración global de proyectos
-  edit_your_identification: Modifica tu identificación
+  edit_your_identification: Editá tu identificación
   edit_your_settings_for_this_project: Edita tu configuración para este proyecto
   edited_by_name_html: "Editado por %{name}"
   edited_by_name_some_rights_reserved_html: |
@@ -1198,7 +1198,7 @@ es-AR:
   fill_out_project_observation_fields: Llena los campos de observación del proyecto
   fill_out_your_profile: completa tu perfil
   filter: Filtro
-  filter_by_curator_identification: Filtra por identificación del curador
+  filter_by_curator_identification: Filtrar por identificación del curador
   filter_by_place: Filtra por lugar
   filter_by_taxon: Filtra por taxón
   filter_by_place_taxon_and_color: Filtra por lugar, color, especie o grupo usuando los controles.
@@ -1450,7 +1450,7 @@ es-AR:
   identifications_by: "Identificaciones de %{user}"
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
-    Visión de computador es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión de computador enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.
+    Visión de computadora es el proceso de enseñar a las computadoras a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión de computadora enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, coomo el auto-completar y características de comparación. Esta etiqueta indica cuando una persona añadió una identificación usando una de estas herramientas.
   identifiers: Identificadores
   identotron: Identotrón
   identotron_for: Identotrón para
@@ -2030,8 +2030,8 @@ es-AR:
   no_flickr_photos_tagged: '¡No hay fotos etiquetadas con Flickr!'
   no_identifications: Sin identificaciones
   no_identifications_added:
-    current_user: No has añadido identificaciones a ninguna observación.
-    user: "%{user} no ha añadido identificaciones a ninguna observación."
+    current_user: No añadiste identificaciones a ninguna observación.
+    user: "%{user} no añadió identificaciones a ninguna observación."
   no_ids_have_been_suggested_yet: Aún no se ha sugerido ningún ID
   no_interaction_data_available: Datos de interacción no disponibles
   no_its_as_good_as_it_can_be: No, es tan bueno como puede ser
@@ -2397,11 +2397,11 @@ es-AR:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: añadido un <strong>identificador</strong> a una %{observation_link} de %{user_link}
+      with_observation: añadió una <strong>identificación</strong> a una %{observation_link} de %{user_link}
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
-      without_observation: añadido un <strong>identificador</strong>
+      without_observation: añadió una <strong>identificación</strong>
     post: hizo un %{post_link}
     comment:
       with_by: comentó sobre @vow_or_con{vow:an|a} %{comment_subject_link} en %{by_link}
@@ -3591,7 +3591,7 @@ es-AR:
     Los elementos siguiente se necesitan para conseguir el <span classname="bold">Grado de Investigación</span>:
   the_community_id_requires_at_least_two_identifications: El id. comunitario necesita dos identificaciones por lo menos.
   the_community_must_feel_that: |
-    La comunidad tiene que sentir que la Identificación de la comunidad ID es la mejor basándose en las evidencias existentes
+    La comunidad debe sentir que el taxón elegido por la comunidad es el mejor posible basándose en las evidencias
   the_following_observations_could: "Las observaciones siguientes no se pudieron agregar a %{link}"
   the_following_photos_have_been_tagged: "Las siguientes fotos han sido etiquetadas"
   the_identotron_is_a_tool_to: |
@@ -4574,8 +4574,8 @@ es-AR:
         show_messages_from_user: Mostrar mensajes de %{user}
         show_messages_to_user: Mostrar mensajes a %{user}
         speech_privilege_notice: |
-          Podrás enviar nuevos mensajes después de haber agregado tres
-          observaciones verificables o tres identificaciones para otros. Por ahora puede leer y responder mensajes que otras personas le envían.
+          Vas a poder enviar nuevos mensajes después de haber agregado tres
+          observaciones verificables o tres identificaciones para otros usuarios. Por ahora podés leer y responder mensajes que otras personas te envíen.
     oauth:
       authorizations:
         new:
@@ -5297,7 +5297,7 @@ es-AR:
         TTCID_desc: Tiempo para recibir una identificación de alguien que sea similar al grupo señalado por la comunidad.
         TTID_desc: Tiempo para recibir una identificación de alguien más
         TTID_note: |
-          Estas estadísticas están hechos para las observaciones creadas para la semana previa, lo que significa que no incluye identificaciones añadidas después de  más de una semana, por lo que las estadísticas parecen más bajas que si se volvieran a realizar en el presente, pero de todas formas deben de proporcionar una medida decente de que tan rápido la comunidad identifica dentro de lapsos de una semana. Estas estadísticas solamente son para observaciones con fotos.
+          Estas estadísticas están hechas para las observaciones creadas para la semana previa, lo que significa que no incluye identificaciones añadidas después de más de una semana, por lo que las estadísticas parecen más bajas que si se volvieran a realizar en el presente, pero de todas formas deben de proporcionar una medida decente de que tan rápido la comunidad identifica dentro de lapsos de una semana. Estas estadísticas solamente son para observaciones con fotos.
         website_desc_html: |
           Creado vía <a href="https://www.naturalista.mx">NaturaList</a>
           o <a href="%{url}">la red iNaturalist</a>
