@@ -889,7 +889,7 @@ $obs-grid-photo-size: 210px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    $site-size: 130px;
+    $site-size: 100px;
     .site {
       width: $site-size;
       height: $site-size + $user-image-overhang;
@@ -992,6 +992,9 @@ $obs-grid-photo-size: 210px;
   }
   .store {
     display: flex;
+    @media (max-width: 500px) {
+      display: block;
+    }
     text-align: center;
     p {
       text-align: left;
@@ -1004,6 +1007,11 @@ $obs-grid-photo-size: 210px;
       flex-direction: column;
       justify-content: center;
       width: 30%;
+      @media (max-width: 500px) {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+      }
     }
     .img-link {
       width: 80%;
