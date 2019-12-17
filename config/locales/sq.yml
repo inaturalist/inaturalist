@@ -822,6 +822,9 @@ sq:
   drop_it: Hidhe
   double_click_to_finish: (kliko dy herë për të përfunduar)
   download: Shkarko
+  download_bulk_import_template_html: |
+    <a href="%{url}">Shkarko shabllonin</a> për përdorim në
+    <a href="/observations/import?project_id=%{project_id}#csv_import">bulk uploader</a>
   download_csv: Shkarko CSV
   download_csv_template: Shkarko modelin CSV
   download_kml: Shkarko KML
