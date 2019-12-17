@@ -799,6 +799,8 @@ cs:
   drop_it: Pusťte zde
   double_click_to_finish: (dvojklik pro dokončení)
   download: Stáhnout
+  download_bulk_import_template_html: |
+    <a href="%{url}">Stáhnout šablonu</a> pro použití při <a href="/observations/import?project_id=%{project_id}#csv_import">hromadném nahrávání</a>
   download_csv: Stáhnout CSV
   download_csv_template: Stáhnout šablonu CSV
   download_kml: Stáhnout KML
