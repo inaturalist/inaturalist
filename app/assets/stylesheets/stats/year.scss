@@ -884,17 +884,17 @@ $obs-grid-photo-size: 210px;
 }
 
 #app .Sites {
+  margin-bottom: 60px;
   .visible-sites {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
     $site-size: 130px;
     .site {
       width: $site-size;
       height: $site-size + $user-image-overhang;
       position: relative;
-      // margin-bottom: $user-image-overhang + 40;
-      margin: 0 15px;
+      margin: 0 30px;
       .site-icon {
         width: $site_size;
         height: $site_size;
@@ -902,7 +902,7 @@ $obs-grid-photo-size: 210px;
         margin-left: $site-size / -2;
         overflow: hidden;
         img {
-          padding: 20px;
+          padding: 5px;
           width: $site-size * 0.8;
           position: absolute;
           margin-left: ($site-size * 0.8) / -2;
