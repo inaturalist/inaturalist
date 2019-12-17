@@ -937,6 +937,9 @@ et:
   drop_it: Eemalda see
   double_click_to_finish: (lõpetamiseks tee topeltklõps)
   download: Lae alla
+  download_bulk_import_template_html: |
+    <a href="%{url}">Lae endale mall</a>, mida saad kasutada
+    <a href="/observations/import?project_id=%{project_id}#csv_import">massüleslaadimiseks</a>
   download_csv: Lae alla CSV
   download_csv_template: Lae alla CSV-mall
   download_kml: Laadia alla KML
