@@ -5227,6 +5227,10 @@ nb:
         obs_in_year: Obs i %{year}
         percent_growth_in_year: "% vekst i %{year}"
         percent_of_total_growth: "% av total vekst"
+        publications_desc_html: |
+          Påvirkningsdata og visualisering fra <a href="https://www.altmetric.com">Altmetric</a>. Informasjon om bruk av data fra våre venner hos <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
+          <br/>
+          <a href="%{url}">Vis alle %{numStudies} studier</a>
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observasjonsserier
         observation_streaks_color_desc: |
