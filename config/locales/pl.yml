@@ -747,6 +747,7 @@ pl:
     merge: Niektóre stare taksony zostały połączone w jeden nowy takson
     swap: Zmiana nazwy 1:1
   change_geoprivacy: 'Zmień geo-prywatność'
+  change_group: Zmień grupę
   change_icon: Zmień ikonę
   change_password: Zmień hasło
   change_types:
@@ -2096,6 +2097,8 @@ pl:
   note_you_can_modify_the_height_attribute: "Uwaga: Możesz modyfikować atrybut \"wysokość\", aby dopasować element do wolnej przestrzeni na swojej stronie internetowej."
   notify_me_of_mentions: Powiadamiaj mnie o wzmiankach (np. @użytkownik)
   notify_me_about_redundant_identifications: Powiadamiaj mnie o potwierdzeniu oznaczeń
+  notify_me_about_redundant_identifications_desc: |
+    Otrzymuj powiadomienia o oznaczeniach, które pasują do Twoich własnych oznaczeń. Jeżeli z tego zrezygnujesz, będziesz otrzymywać tylko powiadomienia o oznaczeniach taksonów, które nie pasują do taksonu w Twoim własnym oznaczeniu.
   number_of_observations: Ilość obserwacji
   number_of_observers_value: "Liczba obserwatorów: %{number}"
   number_of_observers: "Liczba obserwatorów"
@@ -2202,6 +2205,7 @@ pl:
   only_curators_can_add_edit_scientific_names: Tylko kuratorzy mogą dodawać/edytować nazwy naukowe.
   only_curators_can_access_that_page: Tylko kuratorzy mają dostęp do tej strony.
   only_project_curators_can_do_that: Tylko kuratorzy projektu mogą to zrobić.
+  only_receive_updates_about_this_taxon: Otrzymuj tylko aktualizacje o tym taksonie
   only_species: tylko gatunki
   only_species_and_subspecies: tylko gatunki i podgatunki/odmiany
   only_you: Tylko Ty
@@ -2778,6 +2782,7 @@ pl:
   research_grade: Stopień badawczy
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
+  reset_search_filters: Resetuj filtry wyszukiwania
   restore: Przywróć
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
@@ -2874,6 +2879,7 @@ pl:
   somewhere_on_earth: gdzieś na Ziemi
   somewhere: (Gdzieś...)
   sorry_flickr_isnt_responding_at_the_moment: "Przykro nam, Flickr nie odpowiada w danej chwili."
+  sorry_how_about_we_try_repeat: "Przykro nam! A może spróbujemy powtórzyć wyszukiwanie w innych bazach danych nazw gatunków? Jeśli coś znajdziemy, to zapiszemy to, abyś mógł znaleźć to następnym razem."
   sort: Sortuj
   sort_by: Sortuj według
   sounds:
@@ -3249,6 +3255,8 @@ pl:
     observations:
       community_id:
         score: Ocena
+      compare:
+        about_missing_taxa: O brakujących taksonach
       field_descriptions:
         id: "Unikalny identyfikator obserwacji"
         observed_on: Znormalizowana data obserwacji
