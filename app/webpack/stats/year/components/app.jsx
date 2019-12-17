@@ -15,6 +15,7 @@ import Publications from "./publications";
 import Growth from "./growth";
 import Sites from "./sites";
 import Donate from "./donate";
+import Donor from "./donor";
 
 const App = ( {
   year,
@@ -86,8 +87,8 @@ const App = ( {
         { data.publications && (
           <Publications data={data.publications} year={year} />
         ) }
-        <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} />
-        <Donate year={year} />
+        { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
+        { !user && <Donate year={year} /> }
         <div id="sharing">
           <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
           <center>
@@ -194,6 +195,9 @@ const App = ( {
       <Grid fluid={isTouchDevice}>
         <Row>
           <Col xs={12}>
+            { user && user.display_donor_since && (
+              <center><Donor year={year} user={user} /></center>
+            ) }
             <h1>
               {
                 I18n.t( "year_in_review", {

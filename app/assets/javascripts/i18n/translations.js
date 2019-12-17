@@ -676,7 +676,6 @@ I18n.translations["ar"] = {
   "messages": "رسائل",
   "misidentifications": "عدم تعرف",
   "misleading_or_illegal_content_html": "محتوى مضلل أو غير قانوني، أو عبارات عرقية أو إثنية، إلخ، لمزيد من المعلومات عن تعريفنا \"المناسب\"; اطلع على\n<a href=\"/help#inappropriate\">الأسئلة المتكررة</a>.\n",
-  "mobile": "المحمول",
   "mollusks": "الرخويات",
   "momentjs": {
     "shortRelativeTime": {
@@ -690,6 +689,7 @@ I18n.translations["ar"] = {
     },
     "datetime_with_zone": "ي شش سسسس · LT مز"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">داعم شهري</a> منذ %{date}\n",
   "months": "أشهر",
   "more": "المزيد",
   "more_filters": "المزيد من المرشحات",
@@ -1470,7 +1470,6 @@ I18n.translations["ar"] = {
   "total": "إجمالي",
   "total_observations": "مجموع الملاحظات",
   "total_species_observed": "مجموع الأنواع الملحوظة",
-  "translated_languages": "اللغات المترجمة",
   "trending": "الشائع",
   "trends": "الاتجاهات",
   "trust_this_person_with_your_private_coordinates": "ثق بهذا الشخص مع إحداثياتك المخفية",
@@ -4403,7 +4402,6 @@ I18n.translations["ca"] = {
   "messages": "Missatges",
   "misidentifications": "Identificacions incorrectes",
   "misleading_or_illegal_content_html": "Contingut il·legal, enganyós, racista, xenòfob, etc. Si voleu informació sobre la nostra definició de \"inapropiat\" consulteu el\n<a href=\"/help#inappropriate\">FAQ</a>.\n",
-  "mobile": "Mòbil",
   "mollusks": "mol·luscs",
   "momentjs": {
     "shortRelativeTime": {
@@ -5127,7 +5125,6 @@ I18n.translations["ca"] = {
   "top_species": "Principals Espècies",
   "total_observations": "Nombre total d'observacions",
   "total_species_observed": "Total d'espècies observades",
-  "translated_languages": "Idiomes traduïts",
   "trending": "Tendències",
   "trends": "Tendència",
   "trust_this_person_with_your_private_coordinates": "Compartiu amb aquestes persones les coordenades que oculteu",
@@ -6179,7 +6176,6 @@ I18n.translations["cs"] = {
   "messages": "Zprávy",
   "misidentifications": "Zprávy",
   "misleading_or_illegal_content_html": "Zavádějící nebo nelegální obsah, rasové nebo etnické napadání atd. Podrobnosti k naší definici toho, co je „vhodné“ najdete na\n<a href=\"/help#inappropriate\">FAQ</a>.\n",
-  "mobile": "Mobilní",
   "mollusks": "měkkýši",
   "momentjs": {
     "shortRelativeTime": {
@@ -6894,7 +6890,6 @@ I18n.translations["cs"] = {
   "total": "Součet",
   "total_observations": "Celkový počet pozorování",
   "total_species_observed": "Celkový počet pozorovaných druhů",
-  "translated_languages": "Přeložené jazyky",
   "trending": "Populární",
   "trends": "Trendy",
   "trust_this_person_with_your_private_coordinates": "Důvěřovat této osobě se skrytými souřadnicemi",
@@ -7578,7 +7573,8 @@ I18n.translations["da"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d. %B, %Y",
-      "month_day_year": "%d. %B %Y"
+      "month_day_year": "%d. %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -7667,7 +7663,6 @@ I18n.translations["da"] = {
   "do_not_show_this_message_again": "Vis ikke denne besked igen",
   "doh_something_went_wrong": "Åh nej, noget gik galt.",
   "doh_something_went_wrong_error": "Øhhh, noget gik galt: %{error}",
-  "donate": "DONÉR",
   "done": "Udført",
   "download": "Download",
   "drag_and_drop_some_photos_or_sounds": "Træk og slip nogle billeder eller lyde",
@@ -8036,7 +8031,6 @@ I18n.translations["da"] = {
   "messages": "Beskeder",
   "misidentifications": "Fejlidentifikationer",
   "misleading_or_illegal_content_html": "Vildledende eller ulovligt indhold, race eller etniske nedgørelse osv. For mere om vores definition af \"passende\", se\n<a href=\"/help#inappropriate\"> FAQ </a>.\n",
-  "mobile": "Mobil",
   "mollusks": "bløddyr",
   "momentjs": {
     "shortRelativeTime": {
@@ -8057,6 +8051,7 @@ I18n.translations["da"] = {
     "datetime_with_zone": "D MMM, YYYY · LT z",
     "datetime_with_offset": "D MMM, YYYY · LT z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Månedlig Supporter</a> sinden %{date}\n",
   "months": "Måneder",
   "more": "Mere",
   "more_filters": "Flere filtre",
@@ -8881,7 +8876,6 @@ I18n.translations["da"] = {
   "total": "I alt",
   "total_observations": "Samlet antal observationer",
   "total_species_observed": "Samlet antal arter observeret",
-  "translated_languages": "Oversatte sprog",
   "trending": "Tendenser",
   "trends": "Tendenser",
   "trust_this_person_with_your_private_coordinates": "Betro denne person med dine skjulte koordinater",
@@ -9714,7 +9708,8 @@ I18n.translations["de"] = {
     },
     "formats": {
       "compact": "%b %e",
-      "long": "%B %d, %Y"
+      "long": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -9790,7 +9785,6 @@ I18n.translations["de"] = {
   "do_not_show_this_message_again": "Diese Nachricht nicht erneut anzeigen",
   "doh_something_went_wrong": "Ups, etwas ist schief gelaufen.",
   "doh_something_went_wrong_error": "Etwas ist schief gelaufen: %{error}",
-  "donate": "SPENDEN",
   "done": "Fertig",
   "download": "Herunterladen",
   "drag_and_drop_some_photos_or_sounds": "Drag & Drop einige Bilder oder Audio-Dateien",
@@ -10087,7 +10081,6 @@ I18n.translations["de"] = {
   "messages": "Nachrichten",
   "misidentifications": "Fehlbestimmungen",
   "misleading_or_illegal_content_html": "Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von \"angemessen\", siehe die \n<a href=\"/help#inappropriate\">FAQ</a>.\n",
-  "mobile": "Mobil",
   "mollusks": "Mollusken",
   "momentjs": {
     "shortRelativeTime": {
@@ -10862,7 +10855,6 @@ I18n.translations["de"] = {
   "total": "Gesamt",
   "total_observations": "Beobachtungen insgesamt",
   "total_species_observed": "Insgesamt beobachtete Arten",
-  "translated_languages": "Übersetzte Sprachen",
   "trending": "Im Trend",
   "trends": "Tendenzen",
   "trust_this_person_with_your_private_coordinates": "Vertrau dieser Person deine verborgenen Koordinaten an",
@@ -11857,7 +11849,6 @@ I18n.translations["el"] = {
   "messages": "Μηνύματα",
   "misidentifications": "Λάθος αναγνωρίσεις",
   "misleading_or_illegal_content_html": "Παραπλανητικό ή παράνομο περιεχόμενο, ρατσιστικές ή εθνικιστικές επιθέσεις, κλπ. Περισσότερα για τον ορισμό μας του \"κατάλληλου\" βλέπε στις <a href=\"/help#inappropriate\">Συχνές ερωτήσεις</a>.\n",
-  "mobile": "Κινητό",
   "mollusks": "Μαλάκια",
   "momentjs": {
     "shortRelativeTime": {
@@ -12536,7 +12527,6 @@ I18n.translations["el"] = {
   "total": "Συνολικά",
   "total_observations": "Συνολικές παρατηρήσεις",
   "total_species_observed": "Σύνολο παρατηρηθέντων ειδών",
-  "translated_languages": "Μεταφρασμένες γλώσσες",
   "trends": "Τάσεις",
   "two_thirds": "2/3",
   "unknown_error": "Άγνωστο σφάλμα",
@@ -13127,7 +13117,8 @@ I18n.translations["en"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%B %d, %Y",
-      "month_day_year": "%B %d, %Y"
+      "month_day_year": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -13216,7 +13207,6 @@ I18n.translations["en"] = {
   "do_not_show_this_message_again": "Do not show this message again",
   "doh_something_went_wrong": "D'oh, something went wrong.",
   "doh_something_went_wrong_error": "D'oh, something went wrong: %{error}",
-  "donate": "DONATE",
   "done": "Done",
   "download": "Download",
   "drag_and_drop_some_photos_or_sounds": "Drag & drop some photos or sounds",
@@ -13323,6 +13313,8 @@ I18n.translations["en"] = {
   "geoprivacy_is_private": "Geoprivacy is private",
   "geoprivacy_is_private_desc": "Observer has chosen to hide the coordinates.",
   "get_started": "Get Started",
+  "give_monthly_caps": "GIVE MONTHLY",
+  "give_now_caps": "GIVE NOW",
   "globally": "Globally",
   "go": "Go",
   "go_back": "Go back",
@@ -13585,7 +13577,6 @@ I18n.translations["en"] = {
   "messages": "Messages",
   "misidentifications": "Misidentifications",
   "misleading_or_illegal_content_html": "Misleading or illegal content, racial or ethnic slurs, etc. For more on\nour definition of \"appropriate,\" see the \n<a href=\"/help#inappropriate\">FAQ</a>.\n",
-  "mobile": "Mobile",
   "mollusks": "mollusks",
   "momentjs": {
     "shortRelativeTime": {
@@ -13606,6 +13597,7 @@ I18n.translations["en"] = {
     "datetime_with_zone": "MMM D, YYYY · LT z",
     "datetime_with_offset": "MMM D, YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Monthly Supporter</a> since %{date}\n",
   "months": "Months",
   "more": "More",
   "more_filters": "More Filters",
@@ -14433,7 +14425,6 @@ I18n.translations["en"] = {
   "total": "Total",
   "total_observations": "Total observations",
   "total_species_observed": "Total Species Observed",
-  "translated_languages": "Translated Languages",
   "trending": "Trending",
   "trends": "Trends",
   "trust_this_person_with_your_private_coordinates": "Trust this person with your hidden coordinates",
@@ -14696,6 +14687,8 @@ I18n.translations["en"] = {
         "recent_w_7_obs": "Recent w/ >= 7 obs"
       },
       "year": {
+        "donate_desc_html": "Thank you for being generous with your time, attention, expertise, and\ndonations! iNaturalist is a non-for-profit joint initiative of the\nCalifornia Academy of Sciences and the National Geographic Society.\nIt’s supported by a\n<a href=\"%{team_url}\">small team</a> that\ndoes all the design and software\nengineering for web, mobile, and\n<a href=\"%{team_url}\">Seek by iNaturalist</a>, in addition to managing\nthe community support, collaborations, and integrations that keep\nthings running (and growing rapidly!). The program relies on numerous\ngrants and donations, including charitable gifts from less than 0.2%\nof contributors. We are especially grateful to Monthly Supporters\nwhose recurring gifts help us plan for the future. You can donate in\nmore than 30 currencies to support iNaturalist’s core operations.\nThank you to everyone for your part in making 2019 iNaturalist’s\nbiggest year yet!\n",
+        "donate_title": "Special Thanks to All Our Supporters",
         "growth_by_country_desc_html": "Where is growth happening? This map and chart attempt to break this\ndown by country, which turns out to be complicated because growth by\ncountry can be very imbalanced. Here we've chosen to omit the United\nStates and use a log scale by default to accentuate differences\nbetween other countries. If a country is colored black that means it\ndid not contribute signicantly to a percentage, or it had no growth\nthis year, or did not have more observations this year than last year\n(hover over a country to see a little more detail). <strong>\"% of\ntotal growth\"</strong> means how much of worldwide growth came from a\nparticular country, e.g. if there were 20 observations in 2018 and 10\nin 2017, that would be 10 observations of growth, and if 5 of those\nobservations were from Benin, then Benin contributed 50% of total\ngrowth. <strong>\"% growth\"</strong> means the number of observations\nthis year in that country as a percent of observations last year in\nthat country, so if there were 10 observations in Laos last year but\n20 this year, that would be 100% growth, and if there were 0 last year\nand 1 this year, that's infinity % growth.\n",
         "growth_by_country_title": "Growth By Country",
         "growth_desc": "The \"Observations\" and \"Taxa\" charts may include data visible on\n%{site_name} contributed by people who are not affiliated with\n%{site_name}, while the \"Users\" chart only shows the dates when users\ncurrently affiliated with %{site_name} joined iNaturalist.\n",
@@ -14713,6 +14706,7 @@ I18n.translations["en"] = {
         "percent_of_total_growth": "% of Total Growth",
         "publications_desc_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
         "publications_desc_short_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
+        "store_prompt": "Want to show your iNat pride everywhere you go? Check out the iNat\nStore!\n",
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }
     },
@@ -16802,7 +16796,8 @@ I18n.translations["es"] = {
     "formats": {
       "compact": "%e %b",
       "long": "%d de %B de %Y",
-      "month_day_year": "%d %B %Y"
+      "month_day_year": "%d %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -16891,7 +16886,6 @@ I18n.translations["es"] = {
   "do_not_show_this_message_again": "No volver a mostrar este mensaje",
   "doh_something_went_wrong": "Algo salió mal.",
   "doh_something_went_wrong_error": "Se ha producido un problema: %{error}",
-  "donate": "HACER UNA DONACIÓN",
   "done": "Hecho",
   "download": "Descarga",
   "drag_and_drop_some_photos_or_sounds": "Arrastra y suelta algunas fotos o sonidos",
@@ -17259,7 +17253,6 @@ I18n.translations["es"] = {
   "messages": "Mensajes",
   "misidentifications": "Identificaciones erróneas",
   "misleading_or_illegal_content_html": "Contenido ilegal o engañoso, insultos raciales o étnicos, etc.\nMás información de nuestra definición de \"contenido apropriado\" en las \n<a href=\"/help#inappropriate\">Preguntas frecuentes</a>.\n",
-  "mobile": "Móvil",
   "mollusks": "moluscos",
   "momentjs": {
     "shortRelativeTime": {
@@ -17280,6 +17273,7 @@ I18n.translations["es"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Patrocinador mensual</a> desde %{date}\n",
   "months": "Meses",
   "more": "Más",
   "more_filters": "Más filtros",
@@ -18102,7 +18096,6 @@ I18n.translations["es"] = {
   "total": "total",
   "total_observations": "Total de observaciones",
   "total_species_observed": "El total de especies observadas",
-  "translated_languages": "Lenguajes traducidos",
   "trending": "Tendencias",
   "trends": "Tendencias",
   "trust_this_person_with_your_private_coordinates": "Confía a esta persona con tus coordenadas ocultas",
@@ -19003,7 +18996,6 @@ I18n.translations["es-AR"] = {
   "do_not_show_this_message_again": "No volver a mostrar este mensaje",
   "doh_something_went_wrong": "Algo salió mal.",
   "doh_something_went_wrong_error": "Se ha producido un problema: %{error}",
-  "donate": "DONÁ",
   "done": "Hecho",
   "download": "Descarga",
   "drag_and_drop_some_photos_or_sounds": "Arrastra y suelta algunas fotos o sonidos",
@@ -19365,7 +19357,6 @@ I18n.translations["es-AR"] = {
   "messages": "Mensajes",
   "misidentifications": "Identificaciones erróneas",
   "misleading_or_illegal_content_html": "Contenido ilegal o engañoso, insultos raciales o étnicos, etc.\nMás información de nuestra definición de \"contenido apropriado\" en las \n<a href=\"/help#inappropriate\">Preguntas frecuentes</a>.\n",
-  "mobile": "Móvil",
   "mollusks": "moluscos",
   "momentjs": {
     "shortRelativeTime": {
@@ -19386,6 +19377,7 @@ I18n.translations["es-AR"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Patrocinador mensual</a> desde %{date}\n",
   "months": "Meses",
   "more": "Más",
   "more_filters": "Más filtros",
@@ -20207,7 +20199,6 @@ I18n.translations["es-AR"] = {
   "total": "Total",
   "total_observations": "Total de observaciones",
   "total_species_observed": "El total de especies observadas",
-  "translated_languages": "Lenguajes traducidos",
   "trending": "Tendencias",
   "trends": "Tendencias",
   "trust_this_person_with_your_private_coordinates": "Confía a esta persona con tus coordenadas ocultas",
@@ -21535,7 +21526,6 @@ I18n.translations["es-MX"] = {
   "messages": "Mensajes",
   "misidentifications": "Identificaciones erróneas",
   "misleading_or_illegal_content_html": "Contenido ilegal, engañoso, racial, étnico, etc.\n",
-  "mobile": "Móvil",
   "mollusks": "Moluscos",
   "momentjs": {
     "shortRelativeTime": {
@@ -22242,7 +22232,6 @@ I18n.translations["es-MX"] = {
   "top_species": "Especies más observadas",
   "total_observations": "Total de observaciones",
   "total_species_observed": "El total de especies observadas",
-  "translated_languages": "Lenguajes traducidos",
   "trending": "Tendencias",
   "trends": "Tendencias",
   "trust_this_person_with_your_private_coordinates": "Confía a esta persona con tus coordenadas ocultas",
@@ -23057,7 +23046,6 @@ I18n.translations["et"] = {
   "do_not_show_this_message_again": "Ära seda teadet enam näita",
   "doh_something_went_wrong": "Oi-oi, miski läks valesti.",
   "doh_something_went_wrong_error": "Hmm, miski läks valesti: %{error}",
-  "donate": "ANNETA",
   "done": "Lisa",
   "download": "Lae alla",
   "drag_and_drop_some_photos_or_sounds": "Lohista siia mõned fotod või helid",
@@ -23350,7 +23338,6 @@ I18n.translations["et"] = {
   "messages": "Teated",
   "misidentifications": "Valed määratlused",
   "misleading_or_illegal_content_html": "Eksitav või illegaalne sisu, rassiline või rahvuslik vihakõne, jne. Meie \"sobiliku\" määratluse nägemiseks vaata <a href=\"/help#inappropriate\">KKKd</a>.\n",
-  "mobile": "Mobiil",
   "mollusks": "molluskid",
   "momentjs": {
     "shortRelativeTime": {
@@ -24058,7 +24045,6 @@ I18n.translations["et"] = {
   "total": "Kokku",
   "total_observations": "Vaatluseid kokku",
   "total_species_observed": "Kokku vaadeldud liike",
-  "translated_languages": "Tõlgitud keeled",
   "trending": "Trend",
   "trends": "Trendid",
   "trust_this_person_with_your_private_coordinates": "Usalda sellele isikule oma peidetud koordinaadid",
@@ -25778,7 +25764,8 @@ I18n.translations["fi"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%-d. %Bta %Y",
-      "month_day_year": "%-d. %Bta %Y"
+      "month_day_year": "%-d. %Bta %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -25867,7 +25854,6 @@ I18n.translations["fi"] = {
   "do_not_show_this_message_again": "Älä näytä tätä viestiä uudelleen",
   "doh_something_went_wrong": "Pahus, jotain meni pieleen.",
   "doh_something_went_wrong_error": "D'oh, jotain meni vikaan: %{error}",
-  "donate": "LAHJOITA",
   "done": "Valmis",
   "download": "Lataa",
   "drag_and_drop_some_photos_or_sounds": "Vedä ja pudota joitain valokuvia tai ääniä",
@@ -26197,7 +26183,6 @@ I18n.translations["fi"] = {
   "messages": "Viestit",
   "misidentifications": "Virhetunnistukset",
   "misleading_or_illegal_content_html": "Harhaanjohtavaa tai laitonta sisältöä, rodun tai kansan loukkaaminen, yms. Lisätietoa\nmääritelmästämme \"sopivasta\", katso \n<a href=\"/help#inappropriate\">UKK</a>.\n",
-  "mobile": "Mobiili",
   "mollusks": "nilviäiset",
   "momentjs": {
     "shortRelativeTime": {
@@ -26218,6 +26203,7 @@ I18n.translations["fi"] = {
     "datetime_with_zone": "D. MMM YYYY · LT z",
     "datetime_with_offset": "D. MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Kuukausittainen tukija</a> %{date} lähtien\n",
   "months": "Kuukaudet",
   "more": "Lisää",
   "more_filters": "Lisää suodattimia",
@@ -27001,7 +26987,6 @@ I18n.translations["fi"] = {
   "total": "Yhteensä",
   "total_observations": "Havaintoja yhteensä",
   "total_species_observed": "Lajeja havaittu yhteensä",
-  "translated_languages": "Käännetyt kielet",
   "trending": "Nousussa",
   "trends": "Trendit",
   "twitter": "Twitter",
@@ -27897,7 +27882,8 @@ I18n.translations["fr"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%e %B %Y",
-      "month_day_year": "%B %d, %Y"
+      "month_day_year": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -27984,7 +27970,6 @@ I18n.translations["fr"] = {
   "do_not_show_this_message_again": "Ne plus afficher ce message",
   "doh_something_went_wrong": "Oups, quelque chose s’est mal passé.",
   "doh_something_went_wrong_error": "Oh, quelque chose s’est mal passé : %{error}",
-  "donate": "Faire un don",
   "done": "Fait",
   "download": "Télécharger",
   "drag_and_drop_some_photos_or_sounds": "Glisser et déposer quelques photos ou sons",
@@ -28307,6 +28292,7 @@ I18n.translations["fr"] = {
     },
     "datetime_with_zone": "D MMM YYYY · LT z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Soutien mensuel</a> depuis %{date}\n",
   "months": "Mois",
   "more": "Plus",
   "more_filters": "Plus de filtres",
@@ -29054,7 +29040,6 @@ I18n.translations["fr"] = {
   "top_species": "Espèces favorites",
   "total_observations": "Total des observations",
   "total_species_observed": "Nombre total d’espèces observées",
-  "translated_languages": "Langues traduites",
   "trending": "Tendance",
   "trends": "Tendances",
   "trust_this_person_with_your_private_coordinates": "Faire confiance à cette personne avec vos coordonnées masquées",
@@ -30864,7 +30849,8 @@ I18n.translations["he"] = {
       "7": "Sa"
     },
     "formats": {
-      "long": "%e ב%B, %Y"
+      "long": "%e ב%B, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -30961,7 +30947,6 @@ I18n.translations["he"] = {
   "do_not_show_this_message_again": "לא להציג את ההודעה הזאת שוב",
   "doh_something_went_wrong": "אופס... משהו לא הלך כמו שצריך.",
   "doh_something_went_wrong_error": "אופס... משהוא לא הלכך כמו שצריך: %{error}",
-  "donate": "לתרומה",
   "done": "בוצע",
   "download": "הורדה",
   "drag_and_drop_some_photos_or_sounds": "גרור ושחרר תמונות וקולות",
@@ -31210,7 +31195,6 @@ I18n.translations["he"] = {
   "members": "חברים",
   "messages": "הודעות",
   "misidentifications": "זיהויים שגויים",
-  "mobile": "נייד",
   "mollusks": "רכיכות",
   "momentjs": {
     "shortRelativeTime": {
@@ -31895,7 +31879,6 @@ I18n.translations["he"] = {
   "total": "סה״כ",
   "total_observations": "סה\"כ תצפיות",
   "total_species_observed": "סה\"כ מינים שנצפו",
-  "translated_languages": "שפות מתורגמות",
   "trends": "מגמות",
   "twitter": "טוויטר",
   "two_thirds": "שני שליש",
@@ -33392,7 +33375,8 @@ I18n.translations["it"] = {
     "formats": {
       "compact": "%e %b",
       "long": "%d %B, %Y",
-      "month_day_year": "%d %B, %Y"
+      "month_day_year": "%d %B, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -33481,7 +33465,6 @@ I18n.translations["it"] = {
   "do_not_show_this_message_again": "Non mostrare più questo messaggio",
   "doh_something_went_wrong": "Oh, qualcosa è andato storto.",
   "doh_something_went_wrong_error": "Ahi, qualcosa è andato storto: %{error}",
-  "donate": "FAI UNA DONAZIONE",
   "done": "Fatto",
   "download": "Scarica",
   "drag_and_drop_some_photos_or_sounds": "Trascina e rilascia alcune foto o suoni",
@@ -33850,7 +33833,6 @@ I18n.translations["it"] = {
   "messages": "Messaggi",
   "misidentifications": "Identificazioni erronee",
   "misleading_or_illegal_content_html": "Contenuto ingannevole o illegale, insulto etnico o razziale, etc. Per altre informazioni sulla definizione di “appropriato”, vedi <a href=\"/help#inappropriate\">FAQ</a>.\n",
-  "mobile": "Cellulare",
   "mollusks": "molluschi",
   "momentjs": {
     "shortRelativeTime": {
@@ -33871,6 +33853,7 @@ I18n.translations["it"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Sostenitore mensile</a> dal %{date}\n",
   "months": "Mesi",
   "more": "Di più",
   "more_filters": "Più filtri",
@@ -34695,7 +34678,6 @@ I18n.translations["it"] = {
   "total": "Totale",
   "total_observations": "Totale osservazioni",
   "total_species_observed": "Totale specie osservate",
-  "translated_languages": "Lingue tradotte",
   "trending": "Tendenze",
   "trends": "Tendenze",
   "trust_this_person_with_your_private_coordinates": "Rivela a questa persona le tue coordinate nascoste",
@@ -35561,7 +35543,8 @@ I18n.translations["ja"] = {
     },
     "formats": {
       "long": "%Y年%B%d日",
-      "month_day_year": "%Y年%B%d日"
+      "month_day_year": "%Y年%B%d日",
+      "month_year": "%Y年%B"
     },
     "month_names": [
       null,
@@ -36886,7 +36869,8 @@ I18n.translations["ko"] = {
       "7": "토"
     },
     "formats": {
-      "long": "%Y년 %m월 %d일 (%a)"
+      "long": "%Y년 %m월 %d일 (%a)",
+      "month_year": "%Y년 %B"
     },
     "month_names": [
       null,
@@ -37184,7 +37168,6 @@ I18n.translations["ko"] = {
   "members": "회원",
   "messages": "매시지",
   "misleading_or_illegal_content_html": "잘못되었거나 불법인 콘텐츠, 인종차별주의적 발언 등. \"적절한\"의 기준을 확인하고 싶다면 <a href=\"/help#inappropriate\">FAQ</a>을 참고해주세요.\n",
-  "mobile": "모바일",
   "mollusks": "연체동물",
   "momentjs": {
     "shortRelativeTime": {
@@ -37702,7 +37685,6 @@ I18n.translations["ko"] = {
   "total": "합계",
   "total_observations": "총 관찰",
   "total_species_observed": "관찰된 종 전체",
-  "translated_languages": "번역된 언어",
   "twitter": "트위터",
   "unfollow": "팔로우 해제",
   "unknown_error": "알 수 없는 오류",
@@ -38358,7 +38340,6 @@ I18n.translations["lb"] = {
   "media_type": "Medientyp",
   "members": "Memberen",
   "messages": "Messagen",
-  "mobile": "Mobil",
   "momentjs": {
     "shortRelativeTime": {
       "future": "an %s",
@@ -38685,7 +38666,6 @@ I18n.translations["lb"] = {
   },
   "today": "Haut",
   "too_many_results": "Ze vill Resultater",
-  "translated_languages": "Iwwersat Sproochen",
   "trends": "Tendenzen",
   "unknown": "Onbekannt",
   "unknown_error": "Onbekannte Feeler",
@@ -41001,7 +40981,8 @@ I18n.translations["nb"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d. %B %Y",
-      "month_day_year": "%d. %B %Y"
+      "month_day_year": "%d. %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -41090,7 +41071,6 @@ I18n.translations["nb"] = {
   "do_not_show_this_message_again": "Ikke vis denne beskjeden igjen",
   "doh_something_went_wrong": "Æsj, noe gikk galt.",
   "doh_something_went_wrong_error": "Æsj, noe gikk galt: %{error}",
-  "donate": "DONÉR",
   "done": "Ferdig",
   "download": "Last ned",
   "drag_and_drop_some_photos_or_sounds": "Dra og slipp noen bilder eller lyder",
@@ -41459,7 +41439,6 @@ I18n.translations["nb"] = {
   "messages": "Meldinger",
   "misidentifications": "Feilidentifikasjoner",
   "misleading_or_illegal_content_html": "Misvisende eller ulovlig innhold, rasistiske eller upassende utsagn, osv. Les\nmer om vår definisjon av \"passende\" i svarene på <a href=\"/help#inappropriate\">ofte stilte spørsmål</a>.\n",
-  "mobile": "Mobil",
   "mollusks": "bløtdyr",
   "momentjs": {
     "shortRelativeTime": {
@@ -41480,6 +41459,7 @@ I18n.translations["nb"] = {
     "datetime_with_zone": "D MMM, YYYY · LT z",
     "datetime_with_offset": "D MMM, YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Månedlig supporter</a> siden %{date}\n",
   "months": "Måneder",
   "more": "Mer",
   "more_filters": "Flere filtre",
@@ -42304,7 +42284,6 @@ I18n.translations["nb"] = {
   "total": "Totalt",
   "total_observations": "Samlet antall observasjoner",
   "total_species_observed": "Samlet antall arter observert",
-  "translated_languages": "Oversatte språk",
   "trending": "Populær",
   "trends": "Trender",
   "trust_this_person_with_your_private_coordinates": "Stol på denne personen med dine skjulte koordinater",
@@ -43147,7 +43126,8 @@ I18n.translations["nl"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d %B %Y",
-      "month_day_year": "%d %B %Y"
+      "month_day_year": "%d %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -43236,7 +43216,6 @@ I18n.translations["nl"] = {
   "do_not_show_this_message_again": "Deze boodschap niet meer tonen",
   "doh_something_went_wrong": "D'oh, er ging iets mis.",
   "doh_something_went_wrong_error": "Oeps, er liep iets mis: %{error}",
-  "donate": "DONEREN",
   "done": "Klaar",
   "download": "Downloaden",
   "drag_and_drop_some_photos_or_sounds": "Sleep hier foto's of geluiden naartoe",
@@ -43605,7 +43584,6 @@ I18n.translations["nl"] = {
   "messages": "Berichten",
   "misidentifications": "Onjuiste determinaties",
   "misleading_or_illegal_content_html": "Misleidende of illegale inhoud, racistische of etnische smet, enz. Voor meer informatie over onze definitie van \"geschikt\", zie de\n<a href=\"/help#inappropriate\">Veelgestelde vragen (FAQ)</a>.\n",
-  "mobile": "Mobiel",
   "mollusks": "weekdieren",
   "momentjs": {
     "shortRelativeTime": {
@@ -43626,6 +43604,7 @@ I18n.translations["nl"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Maandelijkse Supporter</a> sinds %{date}\n",
   "months": "Maanden",
   "more": "Meer",
   "more_filters": "Meer filters",
@@ -44450,7 +44429,6 @@ I18n.translations["nl"] = {
   "total": "Totaal",
   "total_observations": "Totaal aantal waarnemingen",
   "total_species_observed": "Totaal aantal soorten waargenomen",
-  "translated_languages": "Vertaalde Talen",
   "trending": "Trending",
   "trends": "Trends",
   "trust_this_person_with_your_private_coordinates": "Vertrouw deze persoon je verborgen coördinaten toe",
@@ -46225,7 +46203,8 @@ I18n.translations["pl"] = {
     },
     "formats": {
       "long": "%B %d, %Y",
-      "month_day_year": "%-d %B %Y"
+      "month_day_year": "%-d %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -46324,7 +46303,6 @@ I18n.translations["pl"] = {
   "do_not_show_this_message_again": "Nie pokazuj ponownie tego komunikatu",
   "doh_something_went_wrong": "Ups, coś poszło nie tak.",
   "doh_something_went_wrong_error": "Ups, coś poszło nie tak: %{error}",
-  "donate": "WESPRZYJ",
   "done": "Gotowe",
   "download": "Pobierz",
   "drag_and_drop_some_photos_or_sounds": "Przeciągnij i upuść zdjęcia lub dźwięki",
@@ -47363,7 +47341,6 @@ I18n.translations["pl"] = {
   "top_observers": "Najlepsi obserwatorzy",
   "total": "Razem",
   "total_observations": "Obserwacji łącznie",
-  "translated_languages": "Przetłumaczone języki",
   "twitter": "Twitter",
   "two_thirds": "2/3",
   "unfollow": "Przestań obserwować",
@@ -48352,7 +48329,6 @@ I18n.translations["pt"] = {
   "messages": "Mensagens",
   "misidentifications": "Identificações incorretas",
   "misleading_or_illegal_content_html": "Conteúdo enganador ou ilegal, insultos racistas ou xenófobos, etc. Para mais informação acerca do que consideramos \"conteúdo apropriado\" ver <a href=\"/help#inappropriate\">FAQ</a>.\n",
-  "mobile": "Móvel",
   "mollusks": "moluscos",
   "momentjs": {
     "shortRelativeTime": {
@@ -48899,7 +48875,6 @@ I18n.translations["pt"] = {
   "top_species": "Principais Espécies",
   "total_observations": "Número total de observações",
   "total_species_observed": "Número Total de Espécies Observadas",
-  "translated_languages": "Idiomas traduzidos",
   "trends": "Tendências",
   "two_thirds": "dois terços",
   "type_species_name": "Digitar o nome da espécie",
@@ -49787,7 +49762,6 @@ I18n.translations["pt-BR"] = {
   "messages": "Mensagens",
   "misidentifications": "Identificações erradas",
   "misleading_or_illegal_content_html": "Conteúdo ilegal ou falso, insultos étnicos e raciais, etc. Para mais sobre nossa definição de \"apropriado\", veja as <a href=\"/help#inappropriate\">Perguntas frequentes</a>.\n",
-  "mobile": "Móvel",
   "mollusks": "moluscos",
   "momentjs": {
     "shortRelativeTime": {
@@ -50525,7 +50499,6 @@ I18n.translations["pt-BR"] = {
   "top_species": "Top Espécies",
   "total_observations": "Total de observações",
   "total_species_observed": "Número total de espécies observadas",
-  "translated_languages": "Idiomas traduzidos",
   "trending": "Tendências",
   "trends": "Tendências",
   "trust_this_person_with_your_private_coordinates": "Confiar nessa pessoa com suas coordenadas ocultadas",
@@ -51337,7 +51310,8 @@ I18n.translations["ru"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%B %d, %Y",
-      "month_day_year": "%B %d, %Y"
+      "month_day_year": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -51436,7 +51410,6 @@ I18n.translations["ru"] = {
   "do_not_show_this_message_again": "Не показывать это сообщение повторно",
   "doh_something_went_wrong": "Ой, что-то пошло не так.",
   "doh_something_went_wrong_error": "Что-то пошло не так: %{error}",
-  "donate": "Поддержать",
   "done": "Готово",
   "download": "Загрузить",
   "drag_and_drop_some_photos_or_sounds": "Перетащите и отпустите несколько фото или звуков",
@@ -51809,7 +51782,6 @@ I18n.translations["ru"] = {
   "messages": "Сообщениях",
   "misidentifications": "Ошибочные идентификации",
   "misleading_or_illegal_content_html": "Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href=\"/help#inappropriate\">FAQ</a>.\n",
-  "mobile": "Мобильный",
   "mollusks": "Моллюски",
   "momentjs": {
     "shortRelativeTime": {
@@ -51830,6 +51802,7 @@ I18n.translations["ru"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Ежемесячный спонсор</a> с %{date}\n",
   "months": "Месяцы",
   "more": "Ещё",
   "more_filters": "Больше фильтров",
@@ -52664,7 +52637,6 @@ I18n.translations["ru"] = {
   "total": "Всего",
   "total_observations": "Итого наблюдений",
   "total_species_observed": "Итого наблюдаемых видов",
-  "translated_languages": "Переведенные языки",
   "trending": "Анализ тенденций",
   "trends": "Тенденции",
   "trust_this_person_with_your_private_coordinates": "Доверить этому человеку ваши скрытые координаты",
@@ -53818,7 +53790,6 @@ I18n.translations["sk"] = {
   "messages": "Správy",
   "misidentifications": "Nesprávne identifikácie",
   "misleading_or_illegal_content_html": "Zavádzajúci alebo nelegálny obsah, rasové alebo etnické napádanie atď. Podrobnosti k našej definíciu toho, čo je \"vhodné\" nájdete na\n<a href=\"/help#inappropriate\">FAQ</a>\n",
-  "mobile": "Mobilný",
   "mollusks": "mäkkyše",
   "momentjs": {
     "shortRelativeTime": {
@@ -54534,7 +54505,6 @@ I18n.translations["sk"] = {
   "total": "Súčet",
   "total_observations": "Celkový počet pozorovaní",
   "total_species_observed": "Celkový počet pozorovaných druhov",
-  "translated_languages": "Preložené jazyky",
   "trending": "Populárne",
   "trends": "Trendy",
   "two_thirds": "2/3",
@@ -55484,7 +55454,6 @@ I18n.translations["sq"] = {
   "messages": "Mesazhe",
   "misidentifications": "Keqindentifikimet",
   "misleading_or_illegal_content_html": "Përmbajtje mashtruese ose ilegale, sharje mbi baza racore ose etnike etj. Për më shumë mbi definicionin e \"i papërshtatshëm\", shihni te: <a href=\"/help#inappropriate\">FAQ</sq>\n",
-  "mobile": "Celular",
   "mollusks": "Molluskët",
   "momentjs": {
     "shortRelativeTime": {
@@ -56591,7 +56560,6 @@ I18n.translations["sv"] = {
   },
   "mark_all_as_reviewed": "Markera alla som granskade",
   "media_type": "Mediatyp",
-  "mobile": "Mobil",
   "momentjs": {
     "shortRelativeTime": {
       "future": "i %s",
@@ -56918,7 +56886,6 @@ I18n.translations["sv"] = {
   "to_suggest_an_identification": "för att föreslå en identifiering",
   "today": "Idag",
   "too_many_results": "För många resultat",
-  "translated_languages": "Översatta språk",
   "trending": "Trender",
   "trends": "Trender",
   "trust_this_person_with_your_private_coordinates": "Lita på denna person med dina dolda koordinater",
@@ -57520,7 +57487,8 @@ I18n.translations["tr"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d %B, %Y",
-      "month_day_year": "%d %B, %Y"
+      "month_day_year": "%d %B, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -57609,7 +57577,6 @@ I18n.translations["tr"] = {
   "do_not_show_this_message_again": "Bu mesajı bir daha gösterme",
   "doh_something_went_wrong": "D'oh, bir şeyler ters gitti.",
   "doh_something_went_wrong_error": "Ah, bir şeyler yanlış gitti: %{error}",
-  "donate": "BAĞIŞ YAP",
   "done": "Tamamlandı",
   "download": "İndir",
   "drag_and_drop_some_photos_or_sounds": "Bazı fotoğrafları ya da sesleri sürükleyip bırakın",
@@ -57978,7 +57945,6 @@ I18n.translations["tr"] = {
   "messages": "Mesajlar",
   "misidentifications": "Yanlış tanımlamalar",
   "misleading_or_illegal_content_html": "Yanıltıcı veya yasa dışı içerik, ırksal veya etnik hakaretler vb. \"Uygun\" tanımımızla ilgili daha çoğu için <a href=\"/help#inappropriate\">SSS'ye</a>bakın.\n",
-  "mobile": "Mobil",
   "mollusks": "yumuşakçalar",
   "momentjs": {
     "shortRelativeTime": {
@@ -57999,6 +57965,7 @@ I18n.translations["tr"] = {
     "datetime_with_zone": "D MMM YYY · LT z",
     "datetime_with_offset": "D MMM YYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "%{date} tarihinden beri <a href=\"%{url}\">Aylık Destekçi</a>\n",
   "months": "Aylar",
   "more": "Daha Fazla",
   "more_filters": "Daha Fazla Filtre Göster",
@@ -58823,7 +58790,6 @@ I18n.translations["tr"] = {
   "total": "Toplam",
   "total_observations": "Toplam Gözlem",
   "total_species_observed": "Gözlemlenen Toplam Tür",
-  "translated_languages": "Çevrilmiş Diller",
   "trending": "Trend",
   "trends": "Trendler",
   "trust_this_person_with_your_private_coordinates": "Bu kişiye gizli koordinatlarınızla güvenin",
@@ -59808,7 +59774,8 @@ I18n.translations["zh-CN"] = {
     },
     "formats": {
       "long": "%Y年%B%d日",
-      "month_day_year": "%B%d日%Y年"
+      "month_day_year": "%B%d日%Y年",
+      "month_year": "%Y年%B"
     },
     "month_names": [
       null,
@@ -60167,7 +60134,6 @@ I18n.translations["zh-CN"] = {
   "messages": "消息",
   "misidentifications": "错误识别",
   "misleading_or_illegal_content_html": "误导性或非法内容，种族歧视或民族蔑称等。有关我们对“适当”的更多定义，参见<a href=\"/help#inappropriate\">常见问题</a>。\n",
-  "mobile": "移动",
   "mollusks": "软体动物",
   "momentjs": {
     "shortRelativeTime": {
@@ -60771,7 +60737,6 @@ I18n.translations["zh-CN"] = {
   "total": "总计",
   "total_observations": "总计观察",
   "total_species_observed": "总计观察物种",
-  "translated_languages": "翻译的语言",
   "trending": "趋向",
   "trends": "趋势",
   "twitter": "推特",
@@ -61644,7 +61609,8 @@ I18n.translations["zh-TW"] = {
       "7": "六"
     },
     "formats": {
-      "long": "%Y年%b%d日"
+      "long": "%Y年%b%d日",
+      "month_year": "%Y年%B"
     },
     "month_names": [
       null,
@@ -61729,7 +61695,6 @@ I18n.translations["zh-TW"] = {
   "do_not_show_this_message_again": "不要再顯示此訊息",
   "doh_something_went_wrong": "噢噢，出現了一些問題。",
   "doh_something_went_wrong_error": "哎呀，發生了一些錯誤：%{error}",
-  "donate": "贊助",
   "done": "完成",
   "download": "下載",
   "drag_and_drop_some_photos_or_sounds": "拖拉一些照片和聲音",
@@ -62069,7 +62034,6 @@ I18n.translations["zh-TW"] = {
   "messages": "訊息",
   "misidentifications": "判讀錯誤",
   "misleading_or_illegal_content_html": "誤導、不合法內容、種族或民族歧視等等其它。更多有關我們對於「適當」內容的定義，請查看\n<a href=\"/help#inappropriate\">常見問題</a>。\n",
-  "mobile": "移動",
   "mollusks": "軟體動物",
   "momentjs": {
     "shortRelativeTime": {
@@ -62090,6 +62054,7 @@ I18n.translations["zh-TW"] = {
     "datetime_with_zone": "YYYY/MM/DD · LT z",
     "datetime_with_offset": "YYYY/MM/DD · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">每月捐款者</a> since %{date}\n",
   "months": "月",
   "more": "更多",
   "more_filters": "更多篩選",
@@ -62889,7 +62854,6 @@ I18n.translations["zh-TW"] = {
   "total": "總計",
   "total_observations": "觀察總數",
   "total_species_observed": "觀察物種總計",
-  "translated_languages": "已翻譯語言",
   "trending": "趨勢",
   "trends": "趨勢",
   "trust_this_person_with_your_private_coordinates": "以您的隱藏座標信任此人",

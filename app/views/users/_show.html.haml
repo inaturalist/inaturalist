@@ -73,11 +73,11 @@
           =t :last_active_with_date, date: l( @user.last_active, format: :short_with_year )
         - else
           =t :last_active_with_date, date: t(:unknown)
-      - if @donor_since && @user.prefers_monthly_supporter_badge?
+      - if @donor_since
         - monthly_supporters_url_for_page = monthly_supporters_url( utm_campaign: "monthly-supporter-profile", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: @user.login )
         %span.monthly-supporter
           = link_to monthly_supporters_url_for_page do
-            %i.icon-iconic-aves
+            %i.icon-logomark
           =t :monthly_supporter_since_date_html, date: l( @donor_since, format: :month_year ), url: monthly_supporters_url_for_page
 
     #description

@@ -975,10 +975,16 @@ $obs-grid-photo-size: 210px;
 
 .Donate {
   .support {
-    margin: 20px 0;
+    margin: 30px 0;
     text-align: center;
     .btn:last-child {
       margin-left: 20px;
+    }
+  }
+  p {
+    a,
+    a:hover {
+      color: $inat-green;
     }
   }
   .btn {
@@ -997,10 +1003,26 @@ $obs-grid-photo-size: 210px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      width: 30%;
     }
     .img-link {
-      width: 70%;
+      width: 80%;
       margin-left: 20px;
     }
+  }
+}
+
+.Donor {
+  font-size: 16px;
+  i {
+    color: $inat-green;
+    font-size: 27px;
+    margin-right: 5px
+  }
+  a,
+  a:hover,
+  a:active,
+  a:focus {
+    color: white;
   }
 }
