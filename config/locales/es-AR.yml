@@ -1029,6 +1029,9 @@ es-AR:
   drop_it: '¡Suéltalo!'
   double_click_to_finish: (Con doble clic termina tu forma)
   download: Descarga
+  download_bulk_import_template_html: |
+    <a href="%{url}">Descarga plantilla</a> para usar en el
+    <a href="/observations/import?project_id=%{project_id}#csv_import">cargador masivo</a>
   download_csv: Descarga CSV
   download_csv_template: Descarga plantilla CSV
   download_kml: Descarga KML
@@ -3828,6 +3831,7 @@ es-AR:
   user_added_a_x: "%{user} añadió una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} de %{by}"
   user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
+  user_added_an_identification_html: "%{user} añadió una identificación"
   user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}" a una observación de %{owner}'
   user_added_an_observation_html: "%{user} añadió una observación"
   user_added_an_x: "%{user} añadió un %{x}"
