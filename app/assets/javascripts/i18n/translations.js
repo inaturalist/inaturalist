@@ -726,6 +726,7 @@ I18n.translations["ar"] = {
     },
     "datetime_with_zone": "ي شش سسسس · LT مز"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">داعم شهري</a> منذ %{date}\n",
   "months": "أشهر",
   "more": "المزيد",
   "more_filters": "المزيد من المرشحات",
@@ -7735,7 +7736,8 @@ I18n.translations["da"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d. %B, %Y",
-      "month_day_year": "%d. %B %Y"
+      "month_day_year": "%d. %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -7824,7 +7826,6 @@ I18n.translations["da"] = {
   "do_not_show_this_message_again": "Vis ikke denne besked igen",
   "doh_something_went_wrong": "Åh nej, noget gik galt.",
   "doh_something_went_wrong_error": "Øhhh, noget gik galt: %{error}",
-  "donate": "DONÉR",
   "done": "Udført",
   "download": "Download",
   "drag_and_drop_some_photos_or_sounds": "Træk og slip nogle billeder eller lyde",
@@ -8256,6 +8257,7 @@ I18n.translations["da"] = {
     "datetime_with_zone": "D MMM, YYYY · LT z",
     "datetime_with_offset": "D MMM, YYYY · LT z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Månedlig Supporter</a> sinden %{date}\n",
   "months": "Måneder",
   "more": "Mere",
   "more_filters": "Flere filtre",
@@ -8339,6 +8341,9 @@ I18n.translations["da"] = {
       "delimiter": ",",
       "separator": ".",
       "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -9236,6 +9241,8 @@ I18n.translations["da"] = {
         "data_quality_assessment_desc_html": "Datakvalitetsevaluering er en evaluering af en observations nøjagtighed.\nObservationer af forskningsklasse kan blive brugt af forskere. Afgiv din stemme nedenfor:\n",
         "disagreement_count_desc": "Antal af identificerede taksa, der ikke er blandt en taksons stamfædre",
         "identification_count_desc": "Antal af identifikationer for en individuel takson",
+        "observer_does_not_allow_observation_fields": "Observatør tillader ikke yderligere observationsfelter",
+        "observer_only_allows_curators_to_add_fields": "Observatør tillader kun webstedskuratorer at tilføje observationsfelter",
         "quality_assessment_help_html": "<p>\nVurderingen af datakvaliteten er resultatet af en observations nøjagtighed. Alle observationer starter som <strong> \"uformel\" </strong> kvalitet og bliver<strong> \"behøver ID\" </strong> når\n</p>\n\n<ul>\n  <li>observationen <strong>har en dato</strong></li>\n \\ <li>observationen <strong>er georefereret</strong> (dvs. har bre./læn. koordinater)</li>\n  <li>observationen <strong>har foto´s eller lyde</strong></li>\n \\ <li>observationen <strong>ikke er af et menneske</strong></li>\n</ul>\n<p>\n \\ Observationen bliver <strong>\"forskningskvalitet\"</strong> når\n</p>\n<ul>\n \\ <li>\n    %{site_name} <strong>fællesskabet er enige i identifikationen på artsniveau eller lavere</strong>, dvs.\n    når flere end 2/3 af identifikatorerne er enige om en takson\n  </li>\n</ul>\n<p>\n  Observationer vil vende tilbage til <strong>\"uformel\"</strong> hvis ovenstående betingelser ikke er opfyldt eller fællesskabet ikke er enig\n</p>\n<ul>\n  <li>\n    <strong>Placeringen ser ikke nøjagtig ud</strong> (f.eks. aber midt ude på åbent hav,\n    flodheste i kontorbygninger, etc.)\n  </li>\n  <li>\n    <strong>organismen er ikke vild/fra naturen</strong> (f.eks. i fangenskab eller dyrket af mennesker\n \\   eller intelligente rumvæsener)\n  </li>\n  <li>\n    observationen <strong>viser ikke bevis for en\n    organisme</strong>, f.eks. billeder af landskab, vand,\n    klipper, etc.\n  </li>\n  <li>\n    observationen <strong>viser ikke nyere (~ 100 år) bevis for\n    organismen</strong> (f.eks. fossiler, spor, efterladenskaber, og døde blade\n    er ok)\n  </li>\n  <li>\n    observationen behøver ikke længere et ID <em>og</em> fællesskabs ID er over familie\n \\ </li>\n  <li>\n    observatøren har frasagt sig fællesskabets ID og fællesskabets \n    ID takson er ikke en stamfader eller efterkommer af den takson tilknyttet\n \\   med observatørens ID\n  </li>\n</ul>\n<p>\n  Og som om det ikke var kompliceret nok, er der også situationer, hvor systemet får en stemme:\n</p>\n<ul>\n \\ <li>\n Systemet vil stemme, at observationen ikke er vild/fra naturen hvis der er mindst 10 andre observationer af en slægt eller lavere, i det mindste amt-, stats- eller landelignende sted, som indeholder denne observation, og 80 % eller mere af disse observationer er blevet markeret som ikke værende vilde/fra naturen.\n  </li>\n</ul>\n",
         "score_desc": "score = kumulativ antal / (kumulativ antal  + uenighed antal  + stamfader uenigheder)"
       }
@@ -9333,14 +9340,18 @@ I18n.translations["da"] = {
       "year": {
         "growth_by_country_desc_html": "Hvor sker væksten? Dette kort og diagram forsøger at bryde dette\nned på landeniveau, hvilket viser sig at være kompliceret, fordi\nvæksten kan være meget ubalanceret på landeniveau. Vi har valgt at\nudelade USA og bruge en log-skala som standard for at fremhæve\nforskelle mellem andre lande. Hvis et land er farvet sort betyder det\nat det ikke har bidraget ikke signifikant, eller det ingen vækst havde\ni år, eller ikke havde flere observationer i år end sidste år (Hold\nmusen over et land for at se lidt mere detaljeret). <strong> \"% af\ntotal vækst \"</strong> betyder, hvor meget af den verdensomspændende\nvækst kom fra et bestemt land, f.eks. hvis der var 20 observationer i\n2018 og 10 i 2017 ville det være en vækst på 10 observationer, og hvis\n5 af de observationer var fra Benin, så bidrog Benin med 50% af den\nsamlede vækst. <strong> \"% vækst\" </strong> betyder antallet af\nobservationer i år i det pågældende land som en procent af\nobservationer sidste år i det land, så hvis der var 10 observationer i\nLaos sidste år, men 20 i år, ville det være 100% vækst, og hvis der\nvar 0 sidste år og 1 i år er det uendelig% vækst.\n",
         "growth_by_country_title": "Vækst efter land",
+        "growth_desc": "Observations- og Taksadiagrammerne kan inkludere data, som er synlige på %{site_name}, og er bidraget af personer uden tilknytning til %{site_name}, mens Brugerdiagrammerne kun viser de datoer, hvor brugere aktuelt tilknyttet %{site_name} blev medlemmer af iNaturalist.\n",
         "growth_in_year_obs": "Vækst i %{year} (obs)",
         "growth_title": "Vækst",
         "include_usa": "Inkludér USA",
         "new_species_desc_html": "Arter, der blev tilføjet for første gang på %{site_name} i år.\nKlik på en måned for at se nogle af de nye arter, der er tilføjet i den pågældende måned.\nDu kan også se den samlede arts akkumulation, eller flytte skyderen\ntilbage i tiden for at se andre nyligt observerede arter. Dette diagram viser\narter fra verificerbare observationer i den måned de blev uploadet\ntil %{site_name} (ikke den måned, de blev observeret). Det inkludere ikke højere eller lavere niveau taksa, så en observation identificeret som\nMammalia tæller ikke, og en observation af <i>Canis lupus</i> ssp.\n<i>arctos</i> vil bare tælle som <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs i %{year}",
         "observation_streaks": "Observationsstræk",
+        "observation_streaks_color_desc": "Farve repræsenterer antallet af dage i en logaritmisk skala:\n",
+        "observation_streaks_desc": "Et observationsstræk er en periode, hvori nogen har været ude at registrerer nye observationer hver eneste dag. Her vises de længste stræk, som startede i år eller stadig var undervejs, da disse statistikker blev udarbejdet.\n",
         "percent_growth_in_year": "% Vækst i %{year}",
         "percent_of_total_growth": "% af samlet vækst",
+        "publications_desc_html": "Klik på blomsterdiagrammerne for mere information om betydningen af numrene og farverne. Påvirkningsdata og diagrammer med tilladelse fra <a href=\"https://www.altmetric.com\">Altmetric</a>. Information om databrug med tilladelse fra vores venner ved <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n<br/>\n<a href=\"%{url}\">Se alle %{numStudies} studier</a>\n",
         "sunburst_desc_html": "Observeret taksa arrangeret som hierarkisk \"solstråle\" diagram. Basen\naf hierarkiet er i centrum, begyndende med \"liv\" og slutter\nmed arter ved yderkanterne. Størrelsen af hver \"bue\" er proportional\nmed antallet af observationer af den pågældende takson og farver\nsvarer groft til vores sædvanlige \"ikoniske\" taksonfarver (grøn til planter,\norange til insekter, blå for de fleste andre dyr osv.), så hvis du er\nser meget grønt, det betyder at du har observeret mange planter.\n<strong> Klik på en \"bue\" for at placere den pågældende takson i midten </strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </strong>.\n"
       }
     },
@@ -9456,6 +9467,10 @@ I18n.translations["da"] = {
   "x_new_species": {
     "one": "%{count} ny art",
     "other": "%{count} nye arter"
+  },
+  "x_new_users": {
+    "one": "%{count} ny bruger",
+    "other": "%{count} nye brugere"
   },
   "x_observations": {
     "one": "1 observation",
@@ -9913,7 +9928,8 @@ I18n.translations["de"] = {
     },
     "formats": {
       "compact": "%b %e",
-      "long": "%B %d, %Y"
+      "long": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -9989,7 +10005,6 @@ I18n.translations["de"] = {
   "do_not_show_this_message_again": "Diese Nachricht nicht erneut anzeigen",
   "doh_something_went_wrong": "Ups, etwas ist schief gelaufen.",
   "doh_something_went_wrong_error": "Etwas ist schief gelaufen: %{error}",
-  "donate": "SPENDEN",
   "done": "Fertig",
   "download": "Herunterladen",
   "drag_and_drop_some_photos_or_sounds": "Drag & Drop einige Bilder oder Audio-Dateien",
@@ -10120,7 +10135,58 @@ I18n.translations["de"] = {
         "m": "Männlich",
         "f": "Weiblich",
         "n": "Neutrum",
-        "observation": "@n"
+        "application": "@f",
+        "assessment_section": "@m",
+        "atlas": "@m",
+        "check_list": "@f",
+        "class": "@f",
+        "complex": "@m",
+        "epifamily": "@f",
+        "family": "@f",
+        "favorite": "@m",
+        "form": "@n",
+        "genus": "@f",
+        "genushybrid": "@n",
+        "hybrid": "@n",
+        "identification": "@f",
+        "infraclass": "@f",
+        "infraorder": "@f",
+        "journal": "@n",
+        "listed_taxon": "@n",
+        "note": "@f",
+        "observation": "@f",
+        "observation_field": "@n",
+        "order": "@f",
+        "phylum": "@m",
+        "place": "@m",
+        "post": "@m",
+        "profile": "@n",
+        "project": "@n",
+        "section": "@m",
+        "species": "@f",
+        "subclass": "@f",
+        "subfamily": "@f",
+        "subgenus": "@f",
+        "suborder": "@f",
+        "subphylum": "@m",
+        "subsection": "@f",
+        "subspecies": "@f",
+        "subtribe": "@f",
+        "superclass": "@f",
+        "superfamily": "@f",
+        "superorder": "@f",
+        "supertribe": "@f",
+        "taxon": "@n",
+        "taxon_change": "@f",
+        "taxon_drop": "@f",
+        "taxon_link": "@m",
+        "taxon_merge": "@f",
+        "taxon_split": "@f",
+        "taxon_stage": "@n",
+        "taxon_swap": "@m",
+        "tribe": "@f",
+        "variety": "@f",
+        "default": "@m"
       },
       "@vow_or_con": {
         "vow": "Vokal",
@@ -10413,6 +10479,9 @@ I18n.translations["de"] = {
       "delimiter": ",",
       "separator": ".",
       "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -10450,7 +10519,7 @@ I18n.translations["de"] = {
   "of_this_taxon": "Von diesem Taxon",
   "offensive_inappropriate": "beleidigend / unangemessen",
   "ok": "OK",
-  "old_observation_form": "Alte Beobachtungen von (überhohlt)",
+  "old_observation_form": "Altest Beobachtungsformular (veraltet)",
   "open": "offen",
   "open_": "Öffnen",
   "open_street_map": "OpenStreetMap",
@@ -11047,12 +11116,14 @@ I18n.translations["de"] = {
   "tagging": "Tagge...",
   "taxon_autocomplete_placeholder": "Vögel, Monarchen, etc.",
   "taxon_changes": "Taxon-Änderungen",
+  "taxon_drop": "Taxon-Löschung",
   "taxon_is_threatened_coordinates_hidden": "Taxon ist gefährdet, Koordinaten automatisch verborgen",
   "taxon_map": {
     "overlays": "Ebenen"
   },
   "taxon_merge": "Taxon-Zusammenführung",
   "taxon_schemes": "Taxonschemen",
+  "taxon_split": "Taxon-Aufteilung",
   "taxon_swap": "Taxon-Tausch",
   "taxonomic": "Taxonomisch",
   "taxonomic_groups": "Taxonomische Gruppen",
@@ -11192,7 +11263,10 @@ I18n.translations["de"] = {
       "show": {
         "ancestor_disagreements_desc": "# Anzahl der identifizierten Taxa, die zu den Vorfahren eines Taxons gehören, aber nicht mit dem Taxon übereinstimmen (d.h. \"Ich denke, es ist in der Gattung, aber ich bin nicht der Meinung, dass es diese Art ist\")",
         "community_taxon_desc_html": "<p class=\"ui\">\n  Das Community-Taxon (oder die Community-Identifikation) spiegelt wider, welches Taxon die %{site_name}-Community denkt, einer Beobachtung entspricht. Wenn du dich dafür interessierst, wie wir das Community-Taxon bestimmen, siehe die Hinweise zum Algorithmus unten, aber in allgemein versuchen wir, <strong>ein Taxon zu wählen, womit mehr als 2/3 der Bestimmer zustimmen </strong>. Manchmal bedeutet das, dass eines übergeordnetes Taxon ausgewählt wird, wenn es Unstimmigkeiten über die Taxa gibt (z.B. du denkst, dass es sich Königsnattern handelt und ich, dass es eine Klapperschlange ist. Also wählt iNat die Unterordnung Serpentes, die alle Schlangen enthält). eines übergeordnetes Taxon ausgewählt wird, wenn es Unstimmigkeiten über die Taxa gibt (z.B. du denkst, dass es sich Königsnattern handelt und ich, dass es eine Klapperschlange ist. Also wählt iNat die Unterordnung Serpentes, die alle Schlangen enthält). \nDer Algorithmus begünstigt auch leichte abweichende Meinungen, weil wir festgestellt haben, dass diese oft korrekt sind.\n</p>\n<p class=\"ui\">\n  Das Community-Taxon ist das Taxon, das wir verwenden, um Beobachtungen mit Datenpartnern auszutauschen, Beobachtungen desselben Taxons auf der Website zu verlinken, deine Lebensliste zu aktualisieren, etc. Wenn du aus irgendeinem Grund mit dem Community-Taxon nicht einverstanden bist, kannst du es ablehnen, was bedeutet, dass deine Bestimmung (ID) diejenige ist, die für die Verlinkung mit anderen Beobachtungen, die Aktualisierung von Lebenslisten usw. verwendet wird. Es bedeutet auch, dass deine Beobachtung nur dann Forschungsqualität erreichen kann, wenn die Community <em>dir</em> zustimmt.\n  Wenn dir die ganze Idee der Community-Taxa nicht gefällt, kannst du austreten, indem du <a href=\"/users/edit\" target=\"_blank\"> deine Einstellungen editierst.\n</p>\n<p class=\"ui\">\n  <strong>The algorithm:</strong> for all identified taxa and the taxa that contain them (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score each as the ratio between the number of cumulative IDs for that taxon over the sum of the cumulative IDs, the number of more conservative IDs added after the first ID of that taxon, and the number of IDs that are completely different (i.e. IDs of taxa that do not contain the taxon being scored). For the identified taxa that have a score over 2/3 and at least 2 identifications, choose the lowest ranked taxon.\n</p>\n",
+        "data_quality_assessment_desc_html": "Die Bewertung der Datenqualität ist eine Beurteilung der Genauigkeit einer Beobachtung. Beobachtungen mit Forschungsqualität können von Wissenschaftlern für die Forschung genutzt werden. Gib deine Stimme unten ab:\n",
         "identification_count_desc": "# von Bestimmungen einer individuellen Art",
+        "observer_does_not_allow_observation_fields": "Beobachter erlaubt keine weiteren Beobachtungsfelder",
+        "observer_only_allows_curators_to_add_fields": "Beobachter erlaubt es nur Kuratoren Beobachtungsfelder hinzuzufügen",
         "quality_assessment_help_html": "<p>\nDie Bewertung der Datenqualität ist eine Zusammenfassung der Genauigkeit einer Beobachtung. Alle Beobachtungen starten als <strong>\"Hobbyqualität\"</strong> und werden mit <strong>\"benötigt ID\"</strong> gekennzeichnet, wenn </p>\n\n<ul>\n<li>die Beobachtung <strong>ein Datum hat</strong></li>\n<li>die Beobachtung <strong>georeferenziert ist</strong> (d.h. hat Lat/Lon-Koordinaten)</li>\n<li>die Beobachtung <strong>Bilder oder Audio hat</strong></li>\n<li>die Beobachtung <strong>nicht von einem Menschen ist </strong></li>\n</ul>\n<p>\nBeobachtungen erreichen <strong>\" Forschungsqualität\"</strong> wenn\n</p>\n<ul>\n<li>\ndie %{site_name} <strong>Community der Bestimmung (ID) auf Arten-Ebeneoder niedriger zustimmt </strong>, d.h.\nwenn mehr als 2/3 der Bestimmer sich über ein Taxon einig sind\n</li>\n</ul>\n<li>\nder <strong>Standort nicht korrekt erscheint</strong > (z.B. Affen in der Mitte des Ozeans,\nNilpferde in Bürogebäuden usw.)\n</li>\n<li>\nder <strong>Organismus nicht wild/naturbelassen ist</strong> (z.B. von Menschen kultiviert oder in Gefangenschaft gehalten oder auch von intelligenten Außerirdischen)\n</li>\n<li>\ndie Beobachtung <strong>keine Hinweise auf eine\nOrganismus zeigt</strong>, z.B. Aufnahmen von Landschaft, Wasser, Steine, etc.\n</li>\n<li>\ndie Beobachtung <strong>keine aktuelle (~100 Jahre) Evidenz für den Organismus</strong > (z.B. Fossilien) vorweist. Spuren, Kot und abgestorbene Blätter sind jedoch in Ordnung)\n</li>\n<li>\ndie Beobachtung keine ID mehr benötigt <em>und</em> die Community-ID über Familie ist\n</li>\n<li>\nder Beobachter aus der \"Community-ID\" ausgetreten ist und das von der von der Community bestimmte Taxon kein Vorfahre oder Nachfahre des vom Beobachter bestimmten Taxons ist\n</li>\n</ul>\n<p>\nUnd wenn das nicht kompliziert genug war, gibt es auch Situationen, in denen das System eine Stimme bekommt:\n</p>\n<ul>\n<li>\nDas System wird entscheiden, dass die Beobachtung nicht wild/naturbelassen ist, wenn es mindestens 10 andere Beobachtungen einer Gattung oder niedriger in kleinsten gleichwertigen Ort (Bezirk, Staat, Land) gibt, welcher diese Beobachtung enthält und 80% oder mehr dieser Beobachtungen als nicht wild/naturbelassen markiert wurden.\n</li>\n</ul>\n"
       }
     },
@@ -11249,6 +11323,7 @@ I18n.translations["de"] = {
         "growth_title": "Wachstum",
         "include_usa": "USA einbeziehen",
         "new_species_desc_html": "Arten, die in diesem Jahr zum ersten Mal hinzugefügt wurden.\nKlick auf einen Monat, um einige der neuen Arten zu sehen, die in diesem Monat hinzugefügt wurden.\nDu kannst auch die gesamte Artenakkumulation anzeigen oder den Schieberegler in der Zeit zurück bewegen, um andere neu beobachtete Arten zu sehen. Dieses Diagramm zeigt Arten aus verifizierbaren Beobachtungen in dem Monat, in dem sie auf %{site_name} (nicht der Monat, in dem sie beobachtet wurden) hochgeladen wurden. Es werden nicht über- oder untergeordnete Taxa inkludiert, so dass eine Beobachtung, die als Säugetier bestimmt wurde, nicht gezählt wird, und eine Beobachtung von <i>Canis lupus</i> ssp. <i>arctos</i> wird einfach als <i>Canis lupus</i> gezählt.\n",
+        "observation_streaks_color_desc": "Die Farbe repräsentiert die Anzahl der Tage auf einer logarithmischen Skala:\n",
         "percent_growth_in_year": "% Wachstum in %{year}",
         "percent_of_total_growth": "% des Gesamtwachstums"
       }
@@ -11349,6 +11424,10 @@ I18n.translations["de"] = {
   "x_new_species": {
     "one": "Eine neue Art",
     "other": "%{count} neue Arten"
+  },
+  "x_new_users": {
+    "one": "%{count} neuer Benutzer",
+    "other": "%{count} Neueste Benutzer"
   },
   "x_observations": {
     "one": "Eine Beobachtung",
@@ -13398,7 +13477,8 @@ I18n.translations["en"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%B %d, %Y",
-      "month_day_year": "%B %d, %Y"
+      "month_day_year": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -13487,7 +13567,6 @@ I18n.translations["en"] = {
   "do_not_show_this_message_again": "Do not show this message again",
   "doh_something_went_wrong": "D'oh, something went wrong.",
   "doh_something_went_wrong_error": "D'oh, something went wrong: %{error}",
-  "donate": "DONATE",
   "done": "Done",
   "download": "Download",
   "drag_and_drop_some_photos_or_sounds": "Drag & drop some photos or sounds",
@@ -13594,6 +13673,8 @@ I18n.translations["en"] = {
   "geoprivacy_is_private": "Geoprivacy is private",
   "geoprivacy_is_private_desc": "Observer has chosen to hide the coordinates.",
   "get_started": "Get Started",
+  "give_monthly_caps": "GIVE MONTHLY",
+  "give_now_caps": "GIVE NOW",
   "globally": "Globally",
   "go": "Go",
   "go_back": "Go back",
@@ -13919,6 +14000,7 @@ I18n.translations["en"] = {
     "datetime_with_zone": "MMM D, YYYY · LT z",
     "datetime_with_offset": "MMM D, YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Monthly Supporter</a> since %{date}\n",
   "months": "Months",
   "more": "More",
   "more_filters": "More Filters",
@@ -15012,11 +15094,15 @@ I18n.translations["en"] = {
         "recent_w_7_obs": "Recent w/ >= 7 obs"
       },
       "year": {
+        "donate_desc_html": "Thank you for being generous with your time, attention, expertise, and\ndonations! iNaturalist is a not-for-profit joint initiative of the\nCalifornia Academy of Sciences and the National Geographic Society.\nIt’s supported by a\n<a href=\"%{team_url}\">small team</a> that\ndoes all the design and software\nengineering for web, mobile, and\n<a href=\"%{seek_url}\">Seek by iNaturalist</a>, in addition to managing\nthe community support, collaborations, and integrations that keep\nthings running (and growing rapidly!). The program relies on numerous\ngrants and donations, including charitable gifts from less than 0.2%\nof contributors. We are especially grateful to Monthly Supporters\nwhose recurring gifts help us plan for the future. You can donate in\nmore than 30 currencies to support iNaturalist’s core operations.\nThank you to everyone for your part in making 2019 iNaturalist’s\nbiggest year yet!\n",
+        "donate_title": "Special Thanks to All Our Supporters",
         "growth_by_country_desc_html": "Where is growth happening? This map and chart attempt to break this\ndown by country, which turns out to be complicated because growth by\ncountry can be very imbalanced. Here we've chosen to omit the United\nStates and use a log scale by default to accentuate differences\nbetween other countries. If a country is colored black that means it\ndid not contribute signicantly to a percentage, or it had no growth\nthis year, or did not have more observations this year than last year\n(hover over a country to see a little more detail). <strong>\"% of\ntotal growth\"</strong> means how much of worldwide growth came from a\nparticular country, e.g. if there were 20 observations in 2018 and 10\nin 2017, that would be 10 observations of growth, and if 5 of those\nobservations were from Benin, then Benin contributed 50% of total\ngrowth. <strong>\"% growth\"</strong> means the number of observations\nthis year in that country as a percent of observations last year in\nthat country, so if there were 10 observations in Laos last year but\n20 this year, that would be 100% growth, and if there were 0 last year\nand 1 this year, that's infinity % growth.\n",
         "growth_by_country_title": "Growth By Country",
         "growth_desc": "The \"Observations\" and \"Taxa\" charts may include data visible on\n%{site_name} contributed by people who are not affiliated with\n%{site_name}, while the \"Users\" chart only shows the dates when users\ncurrently affiliated with %{site_name} joined iNaturalist.\n",
         "growth_in_year_obs": "Growth in %{year} (obs)",
         "growth_title": "Growth",
+        "inaturalist_network": "iNaturalist Network",
+        "inaturalist_network_desc": "Check out the Year in Review for the members of the iNaturalist Network.\n",
         "include_usa": "Include US",
         "new_species_desc_html": "Species that were added for the first time this year.\nClick on a month to view some of the new species added in that month.\nYou can also view the total species accumulation, or move the slider\nback in time to see other newly-observed species. This chart shows\nspecies from verifiable observations by the month they were uploaded\nto %{site_name} (not the month they were observed). It does not\ninclude higher or lower level taxa, so an observation identified as\nMammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.\n<i>arctos</i> will just count as <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs in %{year}",
@@ -15026,6 +15112,9 @@ I18n.translations["en"] = {
         "percent_growth_in_year": "% Growth in %{year}",
         "percent_of_total_growth": "% of Total Growth",
         "publications_desc_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
+        "publications_desc_short_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
+        "stats_generated_datetime": "Stats generated on %{datetime}",
+        "store_prompt": "Want to show your iNat pride everywhere you go? Check out the iNat\nStore!\n",
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n",
         "translators_desc": "Did you know iNaturalist has been translated into %{x_languages},\nalmost entirely by %{x_people}, some of whom don't even use iNat? Here\nare all the amazing translators who have added translations this year,\nalong with the number of words they've translated for the\n%{website_link_tag}website%{link_tag_end}, our\n%{iphone_link_tag}iPhone%{link_tag_end} and\n%{android_link_tag}Android%{link_tag_end} apps, and\n%{seek_link_tag}Seek%{link_tag_end}. You can view\nall people who have contributed translations,\nincluding people from past years and folks from Translatewiki, in our\n%{view_all_web_link_tag}web%{link_tag_end} and\n%{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories.\n",
         "translators_desc_for_site": "Did you know %{site_name} has been translated almost entirely by\n%{x_people}? Here are all the amazing translators who\nhave added translations this year, along with the number of words\nthey've translated for the\n%{website_link_tag}website%{link_tag_end}, the iNaturalist\n%{iphone_link_tag}iPhone%{link_tag_end} and\n%{android_link_tag}Android%{link_tag_end} apps, and\n%{seek_link_tag}Seek%{link_tag_end}. You can view\nall people who have contributed translations in all languages,\nincluding people from past years and folks from Translatewiki, in our\n%{view_all_web_link_tag}web%{link_tag_end} and\n%{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories.\n",
@@ -16988,6 +17077,7 @@ I18n.translations["es"] = {
   "black": "negro",
   "blue": "azul",
   "blue_butterfly_etc": "azul, mariposa, etc.",
+  "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
   "bounding_box": "Contenedor",
   "brown": "marrón",
   "browse": "Examinar",
@@ -17169,7 +17259,8 @@ I18n.translations["es"] = {
     "formats": {
       "compact": "%e %b",
       "long": "%d de %B de %Y",
-      "month_day_year": "%d %B %Y"
+      "month_day_year": "%d %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -17258,7 +17349,6 @@ I18n.translations["es"] = {
   "do_not_show_this_message_again": "No volver a mostrar este mensaje",
   "doh_something_went_wrong": "Algo salió mal.",
   "doh_something_went_wrong_error": "Se ha producido un problema: %{error}",
-  "donate": "HACER UNA DONACIÓN",
   "done": "Hecho",
   "download": "Descarga",
   "drag_and_drop_some_photos_or_sounds": "Arrastra y suelta algunas fotos o sonidos",
@@ -17653,9 +17743,9 @@ I18n.translations["es"] = {
       "gbif_network_description": "Registros de los museos y de otras ocurrencia de los proveedores distribuidos por la Infraestructura Mundial de Información en Biodiversidad (GBIF)",
       "observations": "Observaciones",
       "place_boundary": "Límite del lugar",
-      "checklist_places": "Lista de verificación de los lugares",
+      "checklist_places": "Lugares en las listas de verificación",
       "checklist_places_description": "Lugares donde este taxón ha sido enlistado",
-      "range": "Intervalo"
+      "range": "Área de distribución"
     }
   },
   "mark_all_as_reviewed": "Marca todas como revisadas",
@@ -17689,6 +17779,7 @@ I18n.translations["es"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Patrocinador mensual</a> desde %{date}\n",
   "months": "Meses",
   "more": "Más",
   "more_filters": "Más filtros",
@@ -17772,6 +17863,9 @@ I18n.translations["es"] = {
       "delimiter": ".",
       "separator": ",",
       "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -18620,6 +18714,10 @@ I18n.translations["es"] = {
         "combined": "Combinadas",
         "horizontal": "Horizontal",
         "interval": "Intervalo",
+        "some_queries_missing_taxa_desc": "Solo se cargan los 500 taxones mas observados por consulta, si hay mas taxones representados en la consulta no aparecerán, o se mostrarán como \"?\" \nsi están presentes en otras consultas. Para poder comparar óptimamente Intenta reducir tus consultas para que se muestren 500 taxones o menos.\n",
+        "taxa_not_observed_in_all_queries": "Taxón no observado en todas las consultas",
+        "taxa_observed_in_all_queries": "Taxón observado en todas las consultas",
+        "taxa_observed_in_only_one_query": "Taxón observado en una sola consulta",
         "total_taxa": "Total Taxones",
         "vertical": "Vertical",
         "x_in_common": {
@@ -18755,6 +18853,7 @@ I18n.translations["es"] = {
         "new_species_desc_html": "Especies que fueron añadidas por primera vez en este año.\nMarca sobre un mes para ver algunas de las especies nuevas añadidas en ese mes.\nTambién puedes ver el total acumulado de la especie, o mover el cursor \nhacia atrás en el cronograma para ver otras especies observadas por primera vez. Este gráfico muestra especies a partir de observaciones verificables el mes en que fueron añadidas a %{site_name} (no el mes en que fueron observadas). No incluye nivel más alto o más bajo de taxones, de manera que una observación identificada como Mammalia no cuenta, y una observación de <i>Canis lupus</i> ssp. <i>arctos</i> contará solo como <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs En %{year}",
         "observation_streaks": "Racha de Observaciones",
+        "observation_streaks_color_desc": "El color representa el número de días en una escala logarítmica:\n",
         "observation_streaks_desc": "Una racha de observaciones es un período de tiempo en el que una persona registra observaciones a diario. Aquí mostramos las rachas más largas que comenzaron este año o bien estaban en progreso cuando se generaron estas estadísticas.\n",
         "percent_growth_in_year": "% Crecimiento en %{year}",
         "percent_of_total_growth": "% del Crecimiento Total",
@@ -18873,6 +18972,10 @@ I18n.translations["es"] = {
   "x_new_species": {
     "one": "1 Nueva especie",
     "other": "%{count} Nuevas especies"
+  },
+  "x_new_users": {
+    "one": "%{count} Nuevo usuario",
+    "other": "%{count} Nuevos usuarios"
   },
   "x_observations": {
     "one": "1 observación",
@@ -19214,7 +19317,7 @@ I18n.translations["es-AR"] = {
   "compare": "Comparar",
   "comprehensive_list": "Lista completa",
   "computer_vision_suggestion": "Sugerencia de la visión artificial",
-  "computer_vision_suggestion_desc": "Visión de computador es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión de computador enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.\n",
+  "computer_vision_suggestion_desc": "Visión de computadora es el proceso de enseñar a las computadoras a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión de computadora enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, coomo el auto-completar y características de comparación. Esta etiqueta indica cuando una persona añadió una identificación usando una de estas herramientas.\n",
   "confirm": "Confirmar",
   "confirmed": "confirmadas",
   "conservation_status": "Categoría de riesgo",
@@ -19412,7 +19515,6 @@ I18n.translations["es-AR"] = {
   "do_not_show_this_message_again": "No volver a mostrar este mensaje",
   "doh_something_went_wrong": "Algo salió mal.",
   "doh_something_went_wrong_error": "Se ha producido un problema: %{error}",
-  "donate": "DONÁ",
   "done": "Hecho",
   "download": "Descarga",
   "drag_and_drop_some_photos_or_sounds": "Arrastra y suelta algunas fotos o sonidos",
@@ -19836,6 +19938,7 @@ I18n.translations["es-AR"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Patrocinador mensual</a> desde %{date}\n",
   "months": "Meses",
   "more": "Más",
   "more_filters": "Más filtros",
@@ -20615,7 +20718,7 @@ I18n.translations["es-AR"] = {
   "that_was_the_last_observation_matching_the_current_filters": "Esa fue la última observación que coincidió con los actuales filtros.",
   "the_below_items_are_needed_to_achieve": "Los elementos siguiente se necesitan para conseguir el <span classname=\"bold\">Grado de Investigación</span>:\n",
   "the_community_id_requires_at_least_two_identifications": "El id. comunitario necesita dos identificaciones por lo menos.",
-  "the_community_must_feel_that": "La comunidad tiene que sentir que la Identificación de la comunidad ID es la mejor basándose en las evidencias existentes\n",
+  "the_community_must_feel_that": "La comunidad debe sentir que el taxón elegido por la comunidad es el mejor posible basándose en las evidencias\n",
   "the_world": "El mundo",
   "then_keybord_sequence": "después",
   "there_were_problems_adding_taxa": "Ocurrieron problemas al añadir esos taxones: %{errors}",
@@ -21010,8 +21113,8 @@ I18n.translations["es-AR"] = {
     "other": "%{count} identificaciones erróneas de especies en este %{rank}"
   },
   "x_misidentifications_of_this_species": {
-    "one": "1 identificación erronea de esta especie",
-    "other": "%{count} identificaciónes erroneas de esta especie"
+    "one": "%{count} identificación errónea de esta especie",
+    "other": "%{count} identificaciones erróneas de esta especie"
   },
   "x_new_species": {
     "one": "1 Nueva especie",
@@ -23541,7 +23644,6 @@ I18n.translations["et"] = {
   "do_not_show_this_message_again": "Ära seda teadet enam näita",
   "doh_something_went_wrong": "Oi-oi, miski läks valesti.",
   "doh_something_went_wrong_error": "Hmm, miski läks valesti: %{error}",
-  "donate": "ANNETA",
   "done": "Lisa",
   "download": "Lae alla",
   "drag_and_drop_some_photos_or_sounds": "Lohista siia mõned fotod või helid",
@@ -26187,6 +26289,7 @@ I18n.translations["fi"] = {
   "compare": "Vertaa",
   "comprehensive_list": "Kattava luettelo",
   "computer_vision_suggestion": "Automaattisen kuvantunnistuksen ehdotus",
+  "computer_vision_suggestion_desc": "Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.\n",
   "confirm": "Vahvista",
   "confirmed": "vahvistettu",
   "conservation_status": "Uhanalaisuusluokitus",
@@ -26312,7 +26415,8 @@ I18n.translations["fi"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%-d. %Bta %Y",
-      "month_day_year": "%-d. %Bta %Y"
+      "month_day_year": "%-d. %Bta %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -26401,7 +26505,6 @@ I18n.translations["fi"] = {
   "do_not_show_this_message_again": "Älä näytä tätä viestiä uudelleen",
   "doh_something_went_wrong": "Pahus, jotain meni pieleen.",
   "doh_something_went_wrong_error": "D'oh, jotain meni vikaan: %{error}",
-  "donate": "LAHJOITA",
   "done": "Valmis",
   "download": "Lataa",
   "drag_and_drop_some_photos_or_sounds": "Vedä ja pudota joitain valokuvia tai ääniä",
@@ -26484,6 +26587,7 @@ I18n.translations["fi"] = {
   "flag_this_photo": "Liputa tämä kuva",
   "flag_this_sound": "Liputa tämä ääni",
   "flagged_": "Liputettu",
+  "flagging_desc": "Liputus merkitsee havainnon niin että kuraattorit voivat tarkistaa sen. Ole hyvä äläkä liputa ongelmia, jotka voisit ratkaista tunnistuksilla, laatuarviolla tai ottamalla yhteyttä havainnon tekijään.\n",
   "flags_with_count": "(%{count}) lippua",
   "flickr_has_no_creative_commons": "Flickr'issä ei ole Creative Commons -lisensoituja kuvia tästä paikasta.",
   "fluid_layout": "Virtaava asettelu",
@@ -26794,6 +26898,7 @@ I18n.translations["fi"] = {
     "datetime_with_zone": "D. MMM YYYY · LT z",
     "datetime_with_offset": "D. MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Kuukausittainen tukija</a> %{date} lähtien\n",
   "months": "Kuukaudet",
   "more": "Lisää",
   "more_filters": "Lisää suodattimia",
@@ -27495,6 +27600,7 @@ I18n.translations["fi"] = {
   "species_by_category": "lajit luokan mukaan",
   "species_name_cap": "Lajin nimi",
   "species_unknown": "Tuntematon laji",
+  "specify_the_reason_youre_flagging": "Kuvaile miksi liputat tämän asian",
   "standard": "Normaali",
   "start": "Alkaa",
   "start_date_time": "Aloituspäivä / aika",
@@ -27664,6 +27770,7 @@ I18n.translations["fi"] = {
         "combined": "Yhdistetty",
         "horizontal": "Vaakasuuntainen",
         "interval": "Väli",
+        "some_queries_missing_taxa_desc": "Voimme näyttää kussakin kyselyssä vain 500 eniten havaittua taksonia, joten jos kyselyyn sisältyy enemmän taksoneita, ne eivät joko tule näkyville tai näkyvät kysymysmerkkinä \"?\", jos ne sisältyvät muihin kyselyihin. Optimaalisten vertailujen tekemiseksi yritä rajata kyselyitä tarkemmin, jotta ne sisältävät 500 taksonia tai vähemmän.\n",
         "total_taxa": "Yhteensä taksoneja",
         "vertical": "Pystysuuntainen"
       },
@@ -27675,7 +27782,9 @@ I18n.translations["fi"] = {
       "show": {
         "community_taxon_desc_html": "<p class=\"ui\">\nYhteisötunnistettu taksoni on %{site_name} yhteisön mielipide siitä, mikä taksoni havainnossa on kuvattu. \nYhteisötunnistetun taksonin määrittävän päättelykaavan yksityiskohdate on kuvattu alla, mutta perusajatuksena on, että valitsemme taksonin, josta <strong>vähintään 2/3 tunnistajista on samaa mieltä</strong>.\nJokus tämä voi olla lajia ylemmältä taksonomiselta tasolta, josta tunnistajat ovat yhtämielisiä. Esimerkiksi, jos sinä luulet, että on kyseessä on kyykäärme ja minä luulen, että kyseessä on rantakäärme, palvelu päättelee, että taksoni on todennäköisesti vähintään alalahkolta Serpentes, joka kattaa kaikki käärmeet.\nPäättelykaava suosii toisinaan eriäviä mielipiteitä, koska olemme havainneet, että eriävät mielipiteet päätyvät usein yhteisötunnistetuiksi.\n</p>\n<p class=\"ui\">\nTutkimustasoiseksi luokiteltulla havainnolla pitää olla (muun muassa) yhteisötunnistettu taksoni.\nJos havainnolla on vain yksi tunnistus, sillä ei voi olla yhteisötunnistettua taksonia. Kaikilla havainnoilla, joilla on vähintään yksi tunnistus, on havaintotaksoni. Havaintotaksoni on taksoni, jota käytämme jakaessamme havainnon eteenpäin yhteistyökumppaneille, kun liitämme havaintoja muihin havaintoihin samasta taksonista ja jota käytämme muodostaessamme pinnalistaasi, jne. Useimmiten havaintotaksoni ja yhteisötunnistettu taksoni ovat lopulta samat, mutta joskus ne poikkeavat, etenkin kun yhteisö ei vielä ole päätynyt yksimielisyyteen tunnistuksesta. Esimerkiksi, jos sinä luulet, että kyseessä on käärme (alalahko Serpentes) ja minä havaitsija luulen, että kyseessä on rantakäärme, havaintotaksoni on rantakäärme, mutta yhteisötunnistettu taksoni on Serpentes (olettaen, että sitä on ehdotettu vähintään kahdessa tunnistuksessa ja muut eivät ole ehdottaneet rantakäärmettä). Jos et ole samaa mieltä yhteisötunnistetun taksonin kanssa, voit olla käyttämättä tunnistusta omissa havaintotiedoissasi, jolloin havaintotaksoni ei ikinä tule päivittymään yhteisötunnistetuksi taksoniksi, vaan säilyy omalla tunnistuksellasi. Jos teet näin, havaintosi ei voi ikinä saavuttaa tutkimustasoa - ellei yhteisö myöhemmin ole samaa mieltä <em>sinun</em> kanssasi. Jos et pidä yhteisötaksonikäsitteestä lainkaan, voit <a href=\"/users/edit\" target=\"_blank\">muuttaa asetuksiasi</a> ja kytkeä ne kokonaan pois päältä.\n</p>\n<p class=\"ui\">\n<strong>Päättelykaava</strong>(englanniksi): For all identified taxa and the taxa that contain them (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score each as the ratio between\nthe number of ‘agreements’ - cumulative IDs for that taxon over the sum of the cumulative\nIDs, ‘disagreements’ - the number of IDs that are completely different (i.e. IDs of taxa\nthat do not contain the taxon being scored), and ‘ancestor disagreements’ - the number of\nmore conservative IDs that disagree with the finer taxon. For the identified taxa that\nhave a score over 2/3 and at least 2 identifications, choose the lowest ranked taxon.\n</p>\n",
         "data_quality_assessment_desc_html": "Laatuarvio on arvio havainnon täsmällisyydestä. Tutkimustason saavuttaneita havaintoja voidaan käyttää tieteelliseen tutkimukseen. Anna äänesi alla:\n",
-        "quality_assessment_help_html": "<p>\nTietojen laatuarvio on yhteenveto havainnon virheettömyydestä. Kaikki havainnot aloittavat <strong>\"epämuodollisina\"</strong> ja saavuttavat <strong>\"tutkimustason\"</strong> kun\n</p>\n\n<ul>\n  <li>havainnolla <strong>on päivämäärä</strong></li>\n  <li>havainto <strong>on paikannettu</strong> (ts. sillä on koordinaatit)</li>\n  <li>havainnolla <strong>on kuvia ja ääntä</strong></li>\n  <li>havainto <strong>ei ole ihmisestä</strong></li>\n</ul>\n<p>\n \\ Havainnot saavuttavat <strong>\"tutkimustason\"</strong> kun\n</p>\n<ul>\n \\ <li>\n    %{site_name} <strong>yhteisö hyväksyy lajitason tai sitä alemman tunnistuksen</strong>, ts.\n    kun enemmän kuin 2/3 tunnistajista hyväksyy taksonin\n  </li>\n</ul>\n<p>\n  Havainnot palaavat <strong>\"dokumentoimattomiksi\"</strong> \n  jos edellä mainitut ehdot eivät täyty tai yhteisö on samaa mieltä\n</p>\n<ul>\n \\ <li>\n    <strong>sijainti ei näytä\n    oikealta</strong> (esim. apinat keskellä merta,\n    virtahepoja toimistorakennuksissa, jne.)\n  </li>\n \\ <li>\n    <strong>eliö ei ole luonnonvarainen</strong> (esim. vangittu eläin tai viljelykasvi)\n  </li>\n  <li>\n    havainto <strong>ei esitä todisteita eliöstä</strong>, esim. kuvia maisemista, vesistöistä,\n    kivistä yms.\n  </li>\n  <li>\n    havainto <strong>ei esitä tuoreita (~100 vuotta) todisteita\n    eliöstä</strong> (esim. fossiilit, jäljet, ulosteet ja kuolleet lehdet\n    ovat ok)\n  </li>\n  <li>\n    havainto ei enää tarvitse tunnistusta<em>ja</em> yhteisön tekemä tunniste on heimon yläpuolella\n  </li>\n  <li>\n    havainnoija hylkäsi yhteisön tekemän tunnistuksen ja yhteisön\n    tunnistuksen taksoni ei ole havainnoijan tunnistukseen liittyvän taksonin ylempi tai alempi taksoni\n \\ </li>\n</ul>\n<p>\n  Ja jos se ei ollut tarpeeksi monimutkaista, on myös tilanteita, joissa järjestelmä äänestää:\n</p>\n<ul>\n  <li>\n    Järjestelmä äänestää että havainto ei ole luonnonvarainen mikäli järjestelmässä on ainakin kymmenen muuta tunnistettua havaintoa (suku- tai alemmalta tasolta) havainnon lähiympäristöstä (pienimmällä maakunta- osavaltio- tai valtiotasolla) ja ainakin 80 % näistä havainnoista on merkitty ei-luonnonvaraiseksi.\n  </li>\n</ul>\n"
+        "observer_does_not_allow_observation_fields": "Havainnoija ei salli uusien havaintokenttien lisäämistä",
+        "observer_only_allows_curators_to_add_fields": "Havainnoija sallii ainoastaan sivuston vastuuhenkilöiden (kuraattorien) lisäävän uusia havaintokenttiä",
+        "quality_assessment_help_html": "<p>\nTietojen laatuarvio on yhteenveto havainnon virheettömyydestä. Kaikki havainnot aloittavat <strong>\"epämuodollisina\"</strong> ja saavuttavat <strong>\"tutkimustason\"</strong> kun\n</p>\n\n<ul>\n <li>havainnolla <strong>on päivämäärä</strong></li>\n <li>havainto <strong>on paikannettu</strong> (ts. sillä on koordinaatit)</li>\n <li>havainnolla <strong>on kuva tai äänite</strong></li>\n <li>havainto <strong>ei ole ihmisestä</strong></li>\n</ul>\n<p>\n \\ Havainnot saavuttavat <strong>\"tutkimustason\"</strong> kun\n</p>\n<ul>\n \\ <li>\n %{site_name} <strong>yhteisö hyväksyy lajitason tai sitä alemman tunnistuksen</strong>, ts.\n kun enemmän kuin 2/3 tunnistajista hyväksyy taksonin\n </li>\n</ul>\n<p>\n Havainnot palaavat <strong>\"epämuodollisiksi\"</strong> \n jos edellä mainitut ehdot eivät täyty tai yhteisö on samaa mieltä että\n</p>\n<ul>\n \\ <li>\n <strong>sijainti ei vaikuta\n oikealta</strong> (esim. apinat keskellä merta,\n virtahepoja toimistorakennuksissa, jne.)\n </li>\n \\ <li>\n <strong>eliö ei ole luonnonvarainen</strong> (esim. vangittu eläin tai viljelykasvi)\n </li>\n <li>\n havainto <strong>ei esitä todisteita eliöstä</strong>, esim. kuvia maisemista, vesistöistä,\n kivistä yms.\n </li>\n <li>\n havainto <strong>ei esitä tuoreita (~100 vuotta) todisteita\n eliöstä</strong> (esim. fossiilit, jäljet, ulosteet ja kuolleet lehdet\n ovat ok)\n </li>\n <li>\n havainto ei enää tarvitse tunnistusta<em>ja</em> yhteisön tekemä tunniste on heimon yläpuolella\n </li>\n <li>\n havainnoija hylkäsi yhteisön tekemän tunnistuksen ja yhteisön\n tunnistuksen taksoni ei ole havainnoijan tunnistukseen liittyvän taksonin ylempi tai alempi taksoni\n \\ </li>\n</ul>\n<p>\n Ja jos tämä ei ollut tarpeeksi monimutkaista, on myös tilanteita, joissa järjestelmä äänestää:\n</p>\n<ul>\n <li>\n Järjestelmä äänestää että havainto ei ole luonnonvarainen mikäli järjestelmässä on ainakin kymmenen muuta tunnistettua havaintoa (suku- tai alemmalta tasolta) havainnon lähiympäristöstä (pienimmällä maakunta- osavaltio- tai valtiotasolla) ja ainakin 80 % näistä havainnoista on merkitty ei-luonnonvaraiseksi.\n </li>\n</ul>\n"
       }
     },
     "projects": {
@@ -27760,6 +27869,7 @@ I18n.translations["fi"] = {
         "obs_cid_d_to_genus": "Havainto yhteisötunnistettu sukutasolle"
       },
       "year": {
+        "growth_by_country_desc_html": "Missä kasvua tapahtuu? Tämä kartta ja taulukko koettavat kuvata kasvua maittain, mutta se on mutkikasta, koska kasvu maittain voi olla hyvin epätasapainossa. Tässä on oletusasetuksena jätetty Yhdysvallat pois ja käytetty logaritmista asteikkoa muiden maiden välisten erojen korostamiseksi. Maan musta väri tarkoittaa, että sillä ei ollut merkittävää vaikutusta prosenttiosuuteen, havaintomäärät eivät kasvaneet tänä vuonna, tai havaintoja ei ollut tänä vuonna enempää kuin viime vuonna (lisätietoja saat viemällä hiiren maan kohdalle). <strong>\"% kokonaiskasvusta\"</strong> tarkoittaa tietyn maan osuutta maailmanlaajuisesta kasvusta. Esimerkiksi jos vuonna 2018 olisi 20 havaintoa, vuonna 2017 10 havaintoa, kasvua olisi 10 havainnon verran ja jos 5 havainnosta olisi Beninistä, Beninin osuus kokonaiskasvusta olisi 50%. <strong>\"% kasvua\"</strong> tarkoittaa tämänvuotisten havaintojen määrää prosentteina viime vuotisista havainnoista kyseisessä maassa. Esimerkiksi jos Laosista on 10 havaintoa viime vuodelta, mutta 20 tältä vuodelta, kasvuprosentti olisi 100%. Ja jos havaintoja ei ollut ollenkaan viime vuonna ja tänä vuonna 1, on kasvuprosentti ääretön.\n",
         "growth_by_country_title": "Kasvu maittain",
         "growth_desc": "\"Havainnot\" ja \"Taksoni\" taulukko voi pitää sisällään tietoa, joka liittyy paikkaan %{site_name}, jonka tiedonkeruuseen on voinut osallistua henkilöitä, joita ei ole liitetty kyseiseen paikkaan %{site_name}, mutta \"Käyttäjät\" taulukko näyttää vain päivämäärät, jolloin käyttäjät, jotka on liitetty paikkaan %{site_name} ovat liittyneet iNaturalistiin.\n",
         "growth_in_year_obs": "Kasvu vuonna %{year} (havaintoja)",
@@ -27773,6 +27883,8 @@ I18n.translations["fi"] = {
     },
     "taxa": {
       "show": {
+        "about_conservation_status_desc": "Uhanalaisuusluokitus tiivistää eliöryhmän sukupuuttoriskin.\n",
+        "about_establishment_desc": "Vakiintuneisuus kuvastaa sitä, miten laji saapui nykyiselle esiintymispaikalleen. Tulokas tarkoittaa ihmisen avustuksella saapunutta ja kotoperäinen puolestaan ilman ihmisen vaikutusta saapunutta lajia. Endeeminen laji esiintyy vain tietyssä paikassa, eikä missään muualla.\n",
         "about_names_desc": "<p>\nUseimmilla eliöryhmillä on \"yleiskielisiä\" (eli kansankielisiä) nimiä eri kielillä. Nämä nimet ovat yleensä selkeitä ja vakiintuneita. Monista eliöistä kuitenkin käytetään monia erilaisia nimiä eri paikoissa ja jopa samalla kielellä. Tämä tekee keskustelusta hankalaa. Tutkijat ovar ratkaiseet tämän ongelman käyttämällä yhtä \"tieteellistä nimeä\" jokaisesta eliöryhmästä. Tieteellisten nimien käyttöä määrittelevät <a href=\"https://fi.wikipedia.org/wiki/Binominen_nimist%C3%B6\">biologisten nimistöjen säännöt</a>. Tieteelliset nimet perustuvat yleensä latinaan, joten niiden muistaminen on usein vaikeaa. Tieteelliset nimet sisältävät myös tietoa eliön luokittelusta (taksonomiasta), joten ne muuttuvat kun tutkijat selvittävät eliöiden evolutiivisia sukulaisuussuhteita. Tämä taas tekee niiden käytöstä hankalampaa, myös niitä tuntevien ihmisten välillä.\n</p>\n<p>\nVanha sanonta kuvaa tätä hyvin: \"Yleiskieliset nimet vaihtelevat paikasta paikkaan, ja tieteelliset nimet vaihtelevat ajassa.\"\n</p>\n<p>\nYritämme ratkaista näitä puutteita näyttämällä sekä yleiskieliset että tieteelliset nimet aina kun mahdollista, ja valitsemalla näytettävät yleiskieliset nimet perustuen käyttäjän valitsemaan kieleen ja maantieteelliseen paikkaan.\n</p>\n",
         "charts_help_history": "Tämä kaavio näyttää taksonin havaintojen lukumäärän kuukausittain viimeisten kymmenen vuoden ajalta. Havaintojen lukumääriin vaikuttaa havainnoijien lukumäärä, mutta kaaviosta näkee epätavalliset piikit havainnoissa, ja jos kaavio näyttää tasaiselta tai laskevalta havainnoijien lukumäärän kasvusta huolimatta, voi tämä kertoa muutoksesta taksonin runsaudessa.\n",
         "charts_help_other": "Näytämme kausivaihtelutaulukot myös havaintojen annotoinneista. Annotaatiot ovat uusi menetelmä, jolla lisätään havaintoihin metadataa säännellyn sanaston avulla. Tähän mennessä olemme käyttäneet \"Elinvaihe\" ja \"Kasvien fenologia\" (milloin kasvi kukkii tai tekee hedelmiä) -sanastoa. Meillä ei vielä ole tapaa, jolla annotoinnin voisi liittää havaintoon suoraan, vaan tällä hetkellä siirrämme havaintokenttien tietoja annotaatioiksi. Jos et malta odottaa, että saamme annotointijärjestelmämme valmiiksi, voit lisätä \"Elinvaihe\"-annotaatioita havaintoihin lisäämällä havaintokenttään jonkin seuraavista arvoista: aikuinen, \"Teneral\", kotelo, nymfi, toukka, muna tai nuori. Erityisesti \"Life Stage\"- tai \"Insect Life Stage\" -kentät ovat hyviä. Kasvien fenologian osalta etsimme kenttiä, joiden nimessä on sana \"phenology\" tai arvoina \"kukka\" tai \"hedelmä\", joten \"Flowering Phenology\"-kenttää on hyvä käyttää.\n",
@@ -27839,6 +27951,7 @@ I18n.translations["fi"] = {
     "other": "%{count} suositusta"
   },
   "x_flagged": "%{x} liputettu",
+  "x_flagged_as_flag": "%{x} liputettu merkinnällä %{flag}",
   "x_identifications": {
     "one": "1 tunnistus",
     "other": "%{count} tunnistusta"
@@ -28373,6 +28486,7 @@ I18n.translations["fr"] = {
   "controlled_term_labels": {
     "adult": "Adulte",
     "budding": "Bourgeonnement",
+    "cannot_be_determined": "Ne peut être déterminé",
     "egg": "Oeuf",
     "female": "Femelle",
     "flower_budding": "Bourgeonnement floral",
@@ -28475,7 +28589,8 @@ I18n.translations["fr"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%e %B %Y",
-      "month_day_year": "%B %d, %Y"
+      "month_day_year": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -28493,6 +28608,7 @@ I18n.translations["fr"] = {
       "Décembre"
     ]
   },
+  "date_": "Date",
   "date_added": "Date d’ajout",
   "date_format": {
     "month": {
@@ -28562,7 +28678,6 @@ I18n.translations["fr"] = {
   "do_not_show_this_message_again": "Ne plus afficher ce message",
   "doh_something_went_wrong": "Oups, quelque chose s’est mal passé.",
   "doh_something_went_wrong_error": "Oh, quelque chose s’est mal passé : %{error}",
-  "donate": "Faire un don",
   "done": "Fait",
   "download": "Télécharger",
   "drag_and_drop_some_photos_or_sounds": "Glisser et déposer quelques photos ou sons",
@@ -28925,6 +29040,7 @@ I18n.translations["fr"] = {
     },
     "datetime_with_zone": "D MMM YYYY · LT z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Soutien mensuel</a> depuis %{date}\n",
   "months": "Mois",
   "more": "Plus",
   "more_filters": "Plus de filtres",
@@ -29791,6 +29907,8 @@ I18n.translations["fr"] = {
         "data_quality_assessment_desc_html": "L'appréciation de la qualité des données est une évaluation de la précision d’une observation. Les observations de niveau recherche peuvent être utilisées par les scientifiques pour leurs recherches. Votez ci-dessous :\n",
         "disagreement_count_desc": "Nombre de taxons identifiés qui ne font pas partie des ancêtres d’un taxon",
         "identification_count_desc": "Nombre d’identifications pour un taxon distinct",
+        "observer_does_not_allow_observation_fields": "L'observateur n'autorise pas les champs d'observation supplémentaires",
+        "observer_only_allows_curators_to_add_fields": "L'observateur autorise uniquement les superviseurs du site à ajouter des champs d'observation",
         "quality_assessment_help_html": "<p>\nL’assurance qualité des données est le résumé de l’exactitude d’une observation. Toutes\nles observations démarrent à l’état de <strong>« occasionnel »</strong>, et deviennent\n<strong>« nécessite une ID »</strong> quand\n</p>\n\n<ul>\n<li>l’observation <strong>a une date</strong></li>\n<li>l’observation <strong>est géoréférencée</strong> (c.-à-d. a des coordonnées de longitude/lattitude)</li>\n<li>l’observation <strong>a des photos ou des sons</strong></li>\n<li>l’observation <strong>n’est pas d’un humain</strong></li></ul>\n<p>\nLes observations deviennent <strong>« état recherché »</strong> quand\n</p>\n<ul>\n<li>\nla <strong>communauté de %{site_name} est d’accord avec l’ID au niveau de l’espèce ou en dessous</strong>, c.-à-d.\nquand plus de 2/3 des identificateurs sont d’accord sur un taxon\n</li>\n</ul>\n<p>\nLes observations seront ramenées à <strong>« occasionnel »</strong> si les conditions ci-dessus ne sont pas respectées ou si la communauté est d’accord\n</p>\n<ul>\n<li>\nla <strong>localisation ne semble pas\nexacte</strong> (par ex. des singes au milieu de l’océan,\ndes hippopotames dans des immeubles, etc.)\n</li>\n<li>\nl’<strong>organisme n’est pas\nsauvage/naturalisé</strong> (par ex. en captivité ou cultivé par des humains\nou une espèce extraterrestre intelligente)\n</li>\n<li>\nl’observation <strong>ne montre aucune preuve d’un\norganisme</strong>, par ex. des images de paysage, de pièces d’eau,\nde rochers, etc.\n</li>\n<li>\nl’observation <strong>ne présente pas de preuve récente (~100 ans) de\nl’organisme</strong> (par ex. des fossiles, mais des traces, des excréments ou des feuilles mortes\nsont ok)\n</li>\n<li>\nl’observation ne nécessite plus d’ID <em>et</em> que l’ID de la communauté est la famille au-dessus\n</li>\n<li>\nl’observateur a refusé l’ID de la communauté et l’id de taxon\nde la communauté n’est pas un ancêtre ou un descendant du taxon associé\navec l’ID de l’observateur\n</li>\n</ul>\n<p>\nEt si ce n’est pas assez compliqué comme ça, il y a aussi des situations où le système nécessite un vote :\n</p>\n<ul>\n<li>\nLe système votera que l’observation n’est pas sauvage/naturalisée\ns’il y a au moins 10 autres observations d’un genre ou inférieur dans\nle plus petit lieu équivalent à la région, à l’état ou au pays qui\ncontient cette observation, et 80% ou plus de ces observations\nqui ont été marquées comme non sauvages/naturalisées.\n</li></ul>\n",
         "score_desc": "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords sur les ancêtres)"
       }
@@ -29887,6 +30005,7 @@ I18n.translations["fr"] = {
       "year": {
         "growth_by_country_desc_html": "Où y-a-t-il croissance ? Cette carte et ce graphe essaient de partager cette information par pays, ce qui est compliqué parce que la croissance par pays peut être très déséquilibrée. Ici nous avons choisi d'omettre les États-Unis et d'utiliser une échelle logarithmique par défaut pour accentuer les différences avec les autres pays. Si un pays apparaît en noir cela signifie qu'il n'a pas contribué significativement au pourcentage, ou qu'il n'a pas présenté de croissance cette année, ou il n'a pas eu plus d'observations cet année que l'année dernière (passer le curseur sur un pays pour avoir plus de détails). <strong>\"% de la croissance totale\"</strong> signifie la part de la croissance mondiale provenant d'un pays particulier, par exemple s'il y a 20 observations en 2018 et 10 en 2017, cela représente 10 observations de croissance, et si 5 d'entre elles concernent le Bénin, alors le Bénin a contribué à 50% du total de la croissance. <strong>\"% de croissance\"</strong> représente le pourcentage d'observations de cette année dans ce pays par rapport aux observations de l'année dernière dans ce pays, donc si il a eu 10 observations sur le Laos l'an passé et 20 cette année, cela représente une croissance de 100%, et s'il y en a eu 0 l'an passé et 1 cette année, cela représente un pourcentage de croissance infinie.\n",
         "growth_by_country_title": "Croissance par pays",
+        "growth_desc": "Les graphiques « Observations » et « Taxons » peuvent inclure des données visibles sur\n%{site_name} fournies par des personnes qui ne sont pas affiliées à\n%{site_name}, alors que le graphique \"Utilisateurs\" ne montre que les dates où les utilisateurs\nactuellement affiliés à %{site_name} ont rejoint iNaturalist.\n",
         "growth_in_year_obs": "Croissance pendant %{year} (obs)",
         "growth_title": "Croissance",
         "include_usa": "NOUS inclure",
@@ -31488,7 +31607,8 @@ I18n.translations["he"] = {
       "7": "Sa"
     },
     "formats": {
-      "long": "%e ב%B, %Y"
+      "long": "%e ב%B, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -31585,7 +31705,6 @@ I18n.translations["he"] = {
   "do_not_show_this_message_again": "לא להציג את ההודעה הזאת שוב",
   "doh_something_went_wrong": "אופס... משהו לא הלך כמו שצריך.",
   "doh_something_went_wrong_error": "אופס... משהוא לא הלכך כמו שצריך: %{error}",
-  "donate": "לתרומה",
   "done": "בוצע",
   "download": "הורדה",
   "drag_and_drop_some_photos_or_sounds": "גרור ושחרר תמונות וקולות",
@@ -32656,7 +32775,9 @@ I18n.translations["he"] = {
         "you_reviewed_message": "סקרת %{reviewed} מתוך %{pageTotal} תצפיות בדף הזה, מתוך %{total} תצפיות תואמות."
       },
       "show": {
-        "data_quality_assessment_desc_html": "אומדן איכות הנתונים הינו הערכה של מידת הדיוק של זיהוי התצפית. תצפיות בדרגת מחקר עשויות לשמש מדענים לצורך מחקרים. הציעו את הזיהוי שלכם פה:\n"
+        "data_quality_assessment_desc_html": "אומדן איכות הנתונים הינו הערכה של מידת הדיוק של זיהוי התצפית. תצפיות בדרגת מחקר עשויות לשמש מדענים לצורך מחקרים. הציעו את הזיהוי שלכם פה:\n",
+        "observer_does_not_allow_observation_fields": "הצופה אינו מאפשר הוספת שדות תצפית",
+        "observer_only_allows_curators_to_add_fields": "הצופה מאפשר לאוצרי האתר בלבד להוסיף שדות תצפית"
       }
     },
     "projects": {
@@ -32702,6 +32823,8 @@ I18n.translations["he"] = {
       },
       "year": {
         "growth_title": "צמיחה",
+        "observation_streaks": "רצף תצפיות",
+        "observation_streaks_desc": "רצף תצפיות הינו תקופת זמן שבה צופה יצא לשטח ודיווח על תצפיות חדשות וברות זיהוי בכל יום. כאן ניתן לראות את הרצפים הארוכים ביותר שהתחילו השנה, או שהיה בתהליך בעת יצירת נתונים אלו.\n",
         "percent_growth_in_year": "אחוז צמיחה ב%{year}"
       }
     },
@@ -34076,7 +34199,8 @@ I18n.translations["it"] = {
     "formats": {
       "compact": "%e %b",
       "long": "%d %B, %Y",
-      "month_day_year": "%d %B, %Y"
+      "month_day_year": "%d %B, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -34165,7 +34289,6 @@ I18n.translations["it"] = {
   "do_not_show_this_message_again": "Non mostrare più questo messaggio",
   "doh_something_went_wrong": "Oh, qualcosa è andato storto.",
   "doh_something_went_wrong_error": "Ahi, qualcosa è andato storto: %{error}",
-  "donate": "FAI UNA DONAZIONE",
   "done": "Fatto",
   "download": "Scarica",
   "drag_and_drop_some_photos_or_sounds": "Trascina e rilascia alcune foto o suoni",
@@ -34597,6 +34720,7 @@ I18n.translations["it"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Sostenitore mensile</a> dal %{date}\n",
   "months": "Mesi",
   "more": "Di più",
   "more_filters": "Più filtri",
@@ -34635,7 +34759,7 @@ I18n.translations["it"] = {
   "new_species_added_in_interval_x_of_y": "Nuove Specie Aggiunte In %{interval} (Visualizzando %{x} di %{y})",
   "new_users": "Nuovi utenti",
   "new_users_in_year": "Nuovi Utenti Nel %{year}",
-  "newly_added": "Appena Aggiunti",
+  "newly_added": "Appena Aggiunte",
   "newly_added_species": "Specie Appena Aggiunte",
   "newly_observed_species": "Specie Appena Osservate",
   "newly_observed_species_in_year": "Specie Aggiunte Di Recente Nel %{year}",
@@ -34680,6 +34804,9 @@ I18n.translations["it"] = {
       "delimiter": ".",
       "separator": ",",
       "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -35577,6 +35704,8 @@ I18n.translations["it"] = {
         "data_quality_assessment_desc_html": "La Valutazione della Qualità dei Dati è una valutazione dell'affidabilità dell'osservazione. Le osservazioni Livello Ricerca possono essere usate dagli scienziati per la ricerca. Dai il tuo parere qui sotto:\n",
         "disagreement_count_desc": "# di taxa identificati che non sono tra gli antenati del taxon",
         "identification_count_desc": "# di identificazioni per un singolo taxon",
+        "observer_does_not_allow_observation_fields": "L'osservatore non permette campi dell'osservazione aggiuntivi",
+        "observer_only_allows_curators_to_add_fields": "L'osservatore permette solo ai curatori del sito di aggiungere campi all'osservazione",
         "quality_assessment_help_html": "<p>\nLa valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>\"casuale\"</strong>, e diventano <strong>\"serve ID\"</strong> quando\n</p>\n\n<ul>\n<li>l'osservazione <strong>ha una data</strong></li>\n<li>l'osservazione <strong>è georeferenziata</strong> (ad esempio: ha le coordinate lat/lon)</li>\n<li>l'osservazione <strong>ha foto o suoni</strong></li>\n<li>l'osservazione <strong>non è di un umano</strong></li>\n</ul>\n<p>\nLe osservazioni raggiungono il <strong>\"livello ricerca\"</strong> quando\n</p>\n<ul>\n<li>\nla <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon\n</li>\n</ul>\n<p>\nLe osservazioni torneranno al livello <strong>\"casuale\"</strong> se le suddette condizioni non sono rispettate o la comunità concorda che\n</p>\n<ul>\n<li>\nla <strong>localizzazione non sembra precisa</strong> (ad esempio: scimmie in mezzo all'oceano, ippopotami in ufficio, etc.)\n</li>\n<li>\nl'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio: in cattività o coltivato dall'uomo o da specie aliene intelligenti)\n</li>\n<li>\nl'osservazione <strong>non ha prove della presenza dell'organismo</strong>, ad esempio: immagini di paesaggi, giochi d'acqua, rocce, ecc.\n</li>\n<li>\nl'osservazione <strong>non ha prove recenti (100 anni circa) dell'organismo</strong>, ad esempio, i fossili (ma invece le tracce, gli escrementi, e le foglie morte sono sufficienti)\n</li>\n<li>\nl'osservazione non ha più bisogno di ID <em>e</em> l'ID della comunità è a un livello superiore alla famiglia\n</li>\n<li>\nl'osservatore ha rifiutato l'ID della community e il taxon identificato non è antenato o discendente del taxon associato con l'ID dell'osservatore\n</li>\n</ul>\n<p>\nE come se non fosse già abbastanza complicato, ci sono anche situazioni in cui il sistema assegna un voto:\n</p>\n<ul>\n<li>\nIl sistema stabilirà che l'osservazione non è selvatica/naturalizzata se, nel luogo più piccolo che contiene questa osservazione (nazione, regione, provincia), ci sono almeno 10 altre osservazioni di un genere o taxon di rango inferiore di cui l'80% o più sono state marcate come non selvatiche/naturalizzate.\n</li>\n</ul>\n",
         "score_desc": "punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio dei non d'accordo + numero di disaccordi sugli antenati)"
       }
@@ -35681,6 +35810,7 @@ I18n.translations["it"] = {
         "new_species_desc_html": "Specie che sono state aggiunte per la prima volta quest'anno. Clicca su un mese per vedere alcune delle specie aggiunte in quel mese. Puoi vedere anche il totale accumulato, oppure muovere il disco indietro nel tempo per vedere altre specie osservate recentemente. Questo grafico mostra le specie dalle osservazioni verificabili per il mese in cui queste sono state caricate su %{site_name} (non per il mese in cui sono state osservate). Non include taxa di livello superiore od inferiore, perciò una osservazione identificata come Mammifero non è conteggiata, e una osservazione di <i>Canis lupus</i> ssp.\n<i>arctos</i> sarà conteggiata come <i>Canis lupus</i>.\n",
         "obs_in_year": "Osservazioni nel %{year}",
         "observation_streaks": "Sequenze di Osservazioni",
+        "observation_streaks_color_desc": "Il colore rappresenta il numero di giorni in scala logaritmica:\n",
         "observation_streaks_desc": "Una sequenza di osservazioni è un periodo di tempo in cui qualcuno è uscito ed ha registrato nuove osservazioni verificabili ogni giorno. Qui presentiamo le sequenze più lunghe iniziate quest'anno o quelle che sono in corso mentre queste statistiche vengono generate.\n",
         "percent_growth_in_year": "% Crescita in %{year}",
         "percent_of_total_growth": "% di crescita totale",
@@ -35800,6 +35930,10 @@ I18n.translations["it"] = {
   "x_new_species": {
     "one": "1 nuova specie",
     "other": "%{count} nuove specie"
+  },
+  "x_new_users": {
+    "one": "%{count} Nuovo Utente",
+    "other": "%{count} Nuovi Utenti"
   },
   "x_observations": {
     "one": "1 osservazione",
@@ -36289,7 +36423,8 @@ I18n.translations["ja"] = {
     },
     "formats": {
       "long": "%Y年%B%d日",
-      "month_day_year": "%Y年%B%d日"
+      "month_day_year": "%Y年%B%d日",
+      "month_year": "%Y年%B"
     },
     "month_names": [
       null,
@@ -37639,7 +37774,8 @@ I18n.translations["ko"] = {
       "7": "토"
     },
     "formats": {
-      "long": "%Y년 %m월 %d일 (%a)"
+      "long": "%Y년 %m월 %d일 (%a)",
+      "month_year": "%Y년 %B"
     },
     "month_names": [
       null,
@@ -41850,7 +41986,8 @@ I18n.translations["nb"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d. %B %Y",
-      "month_day_year": "%d. %B %Y"
+      "month_day_year": "%d. %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -41939,7 +42076,6 @@ I18n.translations["nb"] = {
   "do_not_show_this_message_again": "Ikke vis denne beskjeden igjen",
   "doh_something_went_wrong": "Æsj, noe gikk galt.",
   "doh_something_went_wrong_error": "Æsj, noe gikk galt: %{error}",
-  "donate": "DONÉR",
   "done": "Ferdig",
   "download": "Last ned",
   "drag_and_drop_some_photos_or_sounds": "Dra og slipp noen bilder eller lyder",
@@ -42371,6 +42507,7 @@ I18n.translations["nb"] = {
     "datetime_with_zone": "D MMM, YYYY · LT z",
     "datetime_with_offset": "D MMM, YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Månedlig supporter</a> siden %{date}\n",
   "months": "Måneder",
   "more": "Mer",
   "more_filters": "Flere filtre",
@@ -42454,6 +42591,9 @@ I18n.translations["nb"] = {
       "delimiter": " ",
       "separator": ",",
       "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -43239,10 +43379,13 @@ I18n.translations["nb"] = {
   },
   "use_name_as_a_placeholder": "Bruk <span class='ac-placeholder'>\"%{name}\"</span> som et midlertidig navn\n",
   "user": "Bruker",
+  "user1_and_user2_faved_this_observation": "%{user1} og %{user2} har lagt til denne observasjonen til sine favoritter",
+  "user1_user2_and_x_others_faved_this_observation": "%{user1}, %{user2}, og %{x_others} har lagt til denne observasjonen til sine favoritter",
   "user_autocomplete_placeholder": "kueda, simon123, osv.",
   "user_commented": "%{user} kommenterte",
   "user_disagrees_this_is_taxon": "%{user} er uenig i at dette er %{taxon}",
   "user_disagrees_with_previous_finer_identifications": "%{user} er uenig i tidligere finere identifikasjoner",
+  "user_faved_this_observation": "%{user} har lagt til denne observasjonen til sine favoritter",
   "user_has_opted_out_of_community_id": "Brukeren har meldt seg ut av fellesskapets takson",
   "user_helped_x_people_with_y_ids_html": "%{user} har hjulpet <strong>%{x} personer</strong> med <strong>%{y} ID-er</strong>",
   "user_suggested_an_id": "%{user} har foreslått en ID",
@@ -43348,6 +43491,8 @@ I18n.translations["nb"] = {
         "data_quality_assessment_desc_html": "Datakvalitetsvurderingen er en evaluering av observasjonens nøyaktighet.\nObservasjoner av forskningskvalitet kan brukes av forskere innen forskning. Stem nedenfor:\n",
         "disagreement_count_desc": "antall identifiserte taksa som ikke er blant taksonets aner",
         "identification_count_desc": "Antall identifikasjoner for et individuelt takson",
+        "observer_does_not_allow_observation_fields": "Observatøren tillater ikke ytterlige observasjonsfelt",
+        "observer_only_allows_curators_to_add_fields": "Observatøren tillater kun at sidekuratorer kan legge til observasjonsfelt",
         "quality_assessment_help_html": "<p>\nVurderingen av datakvaliteten er et sammendrag av en observasjons nøyaktighet. Alle observasjoner starter som <strong>\"uformell\"</strong>, og får statusen \n<strong>\"Trenger ID\"</strong> når\n</p>\n\n<ul>\n<li>observasjonen <strong>har en dato</strong></li>\n<li>observasjonen <strong>er georeferert</strong> (dvs. har lat/lon koordinater)</li>\n<li>observasjonen <strong>har bilder eller lyder</strong></li>\n<li>observasjonen <strong>er ikke av et menneske</strong></li>\n</ul>\n<p>\nObservasjoner blir av <strong>\"Forskningskvalitet\"</strong> når\n</p>\n<ul>\n<li>\nfellesskapet på %{site_name} <strong>er enig i en ID på artsnivå eller lavere</strong>, dvs. når over 2/3 av identifikatorer er enige i et takson\n</li>\n</ul>\n<p>\nObservasjoner går tilbake til <strong>\"uformell\"</strong> dersom kravene ovenfor ikke blir oppfylt eller fellesskapet er enig at\n</p>\n<ul>\n<li>\n<strong>lokaliteten ikke ser riktig ut</strong> (f.eks. aper midt i havet, flodhester i kontorbygg, osv.)\n</li>\n<li>\n<strong>organismen ikke er viltlevende/forvillet</strong> (f.eks. i fangenskap eller dyrket av mennesker eller intelligente romvesener)\n</li>\n<li>\nobservasjonen <strong>ikke leverer bevis av en organisme</strong>, f.eks. bilder av landskap, vannpartier, steiner, osv.\n</li>\n<li>\nobservasjonen <strong>ikke leverer nylig (~100 år) bevis av organismen</strong> (f.eks. fossiler, men spor, avføring og døde løvblad er ok)\n</li>\n<li>\nobservasjonen trenger ikke en ID lenger <em>og</em> felleskapets ID er høyere enn familienivå\n</li>\n<li>\nobservatøren har valgt å ikke godta fellesskapets ID og fellesskapets ID er ikke en stamfar eller etterkommer av observatørens ID\n</li>\n</ul>\n<p>\nOg som om ikke det var komplisert nok, finnes det også tilfeller hvor systemet er med å bestemme:\n</p>\n<ul>\n<li>\nSystemet vil stemme for at observasjonen ikke er viltlevende/forvillet hvis det finnes minst 10 andre observasjoner av en slekt eller lavere i det minste stedet tilsvarende en county, stat eller land som inneholder denne observasjonen og 80% eller flere av disse observasjoner har blitt markert som ikke viltlevende/forvillet.\n</li>\n</ul>\n",
         "score_desc": "poengsum = totalt antall / (totalt antall + antall uenig + ane-uenigheter)"
       }
@@ -43451,8 +43596,10 @@ I18n.translations["nb"] = {
         "new_species_desc_html": "Arter som ble lagt til for første gang dette året. Trykk på en måned for å se noen av de nye artene som ble lagt til i den måneden. Du kan også se det sammenlagte antallet, eller skyve knappen tilbake i tid for å se andre nye observasjoner av arter. Denne grafen viser arter fra verifiserbare observasjoner etter hvilken måned de ble lastet opp til %{site_name} (ikke måneden de ble observert i). Den inkluderer ikke taksa sv høyere eller lavere nivå, så en observasjon identifisert som Mammalia telles ikke, og en observasjon av <i>Canis lupus</i> ssp. <i>arctos</i> telles bare som <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs i %{year}",
         "observation_streaks": "Observasjonsserier",
+        "observation_streaks_color_desc": "Farge representerer antall dager på en logaritmisk skala:\n",
         "percent_growth_in_year": "% vekst i %{year}",
         "percent_of_total_growth": "% av total vekst",
+        "publications_desc_html": "Påvirkningsdata og visualisering fra <a href=\"https://www.altmetric.com\">Altmetric</a>. Informasjon om bruk av data fra våre venner hos <a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Vis alle %{numStudies} studier</a>\n",
         "sunburst_desc_html": "Observasjoner som et hierarkisk \"sunburst\"-diagram. Basen av hierarkien er i midten, med \"livet\" som start og arter ytterst på kanten. Størrelsen av hver bue er relativ til antallet av observasjoner av det taksonet, og fargene korresponderer mer eller mindre til våre vanlige farger for \"ikoniske\" taksa (grønn for planter, oransje for insekter, blå for de fleste andre dyr, osv.), så hvis du ser masse grønt betyr det at du har sett mange planter. <strong>Trykk på en bue for å plasere det taksonet i midten</strong> og dets etterkommere rundt det, eller <strong>trykk på midten for å gå opp i hierarkiet igjen</strong>.\n"
       }
     },
@@ -43568,6 +43715,10 @@ I18n.translations["nb"] = {
   "x_new_species": {
     "one": "%{count} ny art",
     "other": "%{count} nye arter"
+  },
+  "x_new_users": {
+    "one": "%{count} ny bruker",
+    "other": "%{count} nye brukere"
   },
   "x_observations": {
     "one": "%{count} observasjon",
@@ -44038,7 +44189,8 @@ I18n.translations["nl"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d %B %Y",
-      "month_day_year": "%d %B %Y"
+      "month_day_year": "%d %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -44127,7 +44279,6 @@ I18n.translations["nl"] = {
   "do_not_show_this_message_again": "Deze boodschap niet meer tonen",
   "doh_something_went_wrong": "D'oh, er ging iets mis.",
   "doh_something_went_wrong_error": "Oeps, er liep iets mis: %{error}",
-  "donate": "DONEREN",
   "done": "Klaar",
   "download": "Downloaden",
   "drag_and_drop_some_photos_or_sounds": "Sleep hier foto's of geluiden naartoe",
@@ -44559,6 +44710,7 @@ I18n.translations["nl"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Maandelijkse Supporter</a> sinds %{date}\n",
   "months": "Maanden",
   "more": "Meer",
   "more_filters": "Meer filters",
@@ -44642,6 +44794,9 @@ I18n.translations["nl"] = {
       "delimiter": ".",
       "separator": ",",
       "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -45539,6 +45694,8 @@ I18n.translations["nl"] = {
         "data_quality_assessment_desc_html": "De datakwaliteitsbeoordeling is een evaluatie van de nauwkeurigheid van een waarneming. Waarnemingen van onderzoekskwaliteit kunnen door wetenschappers worden gebruikt voor onderzoek. Breng hieronder je stem uit:\n",
         "disagreement_count_desc": "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon",
         "identification_count_desc": "Aantal determinaties voor een individueel taxon",
+        "observer_does_not_allow_observation_fields": "Waarnemer staat geen extra waarnemingsvelden toe",
+        "observer_only_allows_curators_to_add_fields": "Waarnemer staat alleen toe dat sitecuratoren waarnemingsvelden toevoegen",
         "quality_assessment_help_html": "<p>\nDe gegevenskwaliteit is een weergave van de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>\"onvolledig\"</strong> en worden <strong>\"ID nodig\"</strong> als\n</p>\n\n<ul>\n <li>de waarneming <strong>een datum heeft</strong></li>\n   <li>de waarneming <strong>geografische referenties heeft</strong> (heeft coördinaten)</li>\n   <li>de waarneming <strong>foto's of geluiden heeft</strong></li>\n   <li>de waarneming <strong>geen mens is</strong></li>\n</ul>\n<p>\n Waarnemingen worden <strong>\"onderzoekskwaliteit\"</strong> als\n</p>\n<ul>\n <li>de %{site_name} <strong>gemeenschap het eens is over de determinatie op soortniveau of lager</strong>, d.w.z. meer dan 2/3 van de determinaties is het eens over een taxon</li>\n</ul>\n\n<p>\nWaarnemingen worden teruggezet naar <strong>\"onvolledig\"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de gemeenschap hiermee instemt\n</p>\n<ul>\n <li>de locatie <strong>lijkt niet nauwkeurig</strong> (bijvoorbeeld apen in het midden van \n de oceaan, nijlpaarden in kantoorgebouwen, etc.)</li>\n <li>het <strong>organisme is niet wild/genaturaliseerd</strong> (bijvoorbeeld gevangen of \n gekweekt door mensen of intelligente ruimtewezens)</li>\n \\ <li>de waarneming <strong>levert geen bewijs op van een organisme </strong>, b.v. \n afbeeldingen van landschappen, waterpartijen, rotsen, etc.</li>\n \\ <li>de waarneming <strong>bevat geen recent (~100 jaar) bewijs van het organisme</strong> (bijvoorbeeld fossielen, maar sporen, poep en dode bladeren zijn oké)</li>\n <li>de waarneming heeft niet langer een naam nodig <em>en</em> de gemeenschapsID is boven de familie</li>\n <li>de waarnemer heeft zich afgemeld voor de gemeenschapsID en het gemeenschapsID-taxon is geen voorouder of afstammeling van het taxon van de waarnemer</li>\n</ul>\n<p>\n En alsof dat nof niet ingewikkeld genoeg was er zijn ook situaties waarin het systeem een stem krijgt:\n</p>\n<ul>\n <li>Het systeem zal aangeven dat de waarneming niet wild/genaturaliseerd is als er minstens 10 andere waarnemingen van een genus zijn of lager in de kleinste provincie-, staats- of land-equivalent plaats die deze waarneming bevat en 80% of meer van die waarnemingen zijn gemarkeerd als niet wild/genaturaliseerd.</li>\n</ul>\n",
         "score_desc": "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
       }
@@ -45643,6 +45800,8 @@ I18n.translations["nl"] = {
         "new_species_desc_html": "Soorten die dit jaar voor het eerst zijn toegevoegd.\nKlik op een maand om enkele van de nieuwe soorten te bekijken die in die maand zijn toegevoegd. Je kunt ook de totale soortaccumulatie bekijken of de schuifregelaar \nterug in de tijd verplaatsen om andere nieuw waargenomen soorten te zien. Dit schema toont\nsoorten van verifieerbare waarnemingen tegen de maand waarin ze zijn geüpload\nop %{site_name} (niet de maand waarin ze werden waargenomen). Het bevat geen\ntaxa van een hoger of lager niveau, dus een waarneming geïdentificeerd als\nMammalia telt niet en een waarneming van <i>Canis lupus</i> ssp.\n<i>arctos</i> telt slechts als <i>Canis lupus</i>.\n",
         "obs_in_year": "Wrn in %{year}",
         "observation_streaks": "Waarnemingsreeksen",
+        "observation_streaks_color_desc": "De kleur geeft het aantal dagen op logaritmische schaal weer:\n",
+        "observation_streaks_desc": "Een waarnemingsreeks is een periode waarin er op elke aaneengesloten dag nieuwe waarnemingen worden geregistreerd. Hier tonen we de langste reeksen die dit jaar zijn begonnen of bezig waren toen deze statistieken werden gegenereerd.\n",
         "percent_growth_in_year": "% Groei in %{year}",
         "percent_of_total_growth": "% of Totaal Groei",
         "publications_desc_html": "Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href=\"https://www.altmetric.com\">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.\n<br/>\n<a href=\"%{url}\">Toon alle %{numStudies} studies</a>\n",
@@ -45761,6 +45920,10 @@ I18n.translations["nl"] = {
   "x_new_species": {
     "one": "%{count} nieuwe soort",
     "other": "%{count} nieuwe soorten"
+  },
+  "x_new_users": {
+    "one": "%{count} nieuwe gebruiker",
+    "other": "%{count} nieuwe gebruikers"
   },
   "x_observations": {
     "one": "1 waarneming",
@@ -46779,7 +46942,7 @@ I18n.translations["pl"] = {
   "accuracy": "Dokładność",
   "accuracy_meters": "Dokładność (metry)",
   "action": "Akcja",
-  "active": "Aktywny",
+  "active": "Aktywni",
   "activity": "Aktywność",
   "add": "Dodaj",
   "add_a_comment": "Dodaj komentarz",
@@ -46973,7 +47136,7 @@ I18n.translations["pl"] = {
   "animals": "Zwierzęta",
   "annotation": "Adnotacja",
   "annotations": "Adnotacje",
-  "any": "dowolne",
+  "any": "dowolny",
   "any_": "Dowolna",
   "arachnids": "pajęczaki",
   "are_you_sure?": "Czy jesteś pewien?",
@@ -47171,8 +47334,10 @@ I18n.translations["pl"] = {
       "7": "Sb"
     },
     "formats": {
+      "compact": "%e %b",
       "long": "%B %d, %Y",
-      "month_day_year": "%-d %B %Y"
+      "month_day_year": "%-d %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -47271,7 +47436,6 @@ I18n.translations["pl"] = {
   "do_not_show_this_message_again": "Nie pokazuj ponownie tego komunikatu",
   "doh_something_went_wrong": "Ups, coś poszło nie tak.",
   "doh_something_went_wrong_error": "Ups, coś poszło nie tak: %{error}",
-  "donate": "WESPRZYJ",
   "done": "Gotowe",
   "download": "Pobierz",
   "drag_and_drop_some_photos_or_sounds": "Przeciągnij i upuść zdjęcia lub dźwięki",
@@ -47389,7 +47553,7 @@ I18n.translations["pl"] = {
   "has_photos": "Posiadające zdjęcia",
   "has_photos_or_sounds": "Posiada zdjęcie lub nagranie dźwiękowe",
   "has_sound": "Posiada nagranie dźwiękowe",
-  "has_sounds": "Posiada nagrania dźwiękowe",
+  "has_sounds": "Posiadające nagrania dźwiękowe",
   "heads_up": "Uwaga",
   "here_are_our_top_species_suggestions": "Nasze sugestie dot. gatunku",
   "hide_content": "Ukryj zawartość",
@@ -47707,6 +47871,7 @@ I18n.translations["pl"] = {
   "nearby_observations_": "Pobliskie obserwacje",
   "needs_id": "potrzebuje oznaczenia",
   "needs_id_": "Potrzebujące oznaczenia",
+  "new": "Nowi",
   "new_and_noteworthy": "Nowe i godne uwagi",
   "new_observation_field": "Nowa notatka terenowa",
   "new_observations": "Nowe obserwacje",
@@ -47754,6 +47919,9 @@ I18n.translations["pl"] = {
       "delimiter": " ",
       "separator": ",",
       "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -48238,9 +48406,10 @@ I18n.translations["pl"] = {
   "removing": "Usuwanie...",
   "reptiles": "gady",
   "request_failed": "Żądanie się nie powiodło",
-  "research_grade": "Posiadające stopień badawczy",
+  "research_grade": "Stopień badawczy",
   "research_grade_qualification": "Kwalifikacja do Stopnia badawczego",
   "research_grade_short_html": "S<span class='full'>topień</span>b<span class='full'>adawczy</span>",
+  "reset_search_filters": "Resetuj filtry wyszukiwania",
   "restore": "Przywróć",
   "review_all": "Przejrzyj wszystkie",
   "reviewed": "Przejrzane",
@@ -48274,6 +48443,7 @@ I18n.translations["pl"] = {
   "sign_up": "Zarejestruj się",
   "similar_species": "Podobne gatunki",
   "similar_taxa": "Podobne taksony",
+  "site_admin_tools": "Narzędzia administratora strony",
   "skip_to_next_page": "Przejdź do następnej strony",
   "some_observations_failed_to_be_added": "Nie udało się dodać niektórych Obserwacji do projektów",
   "some_other_reason": "Inny powód, który możesz wyjaśnić poniżej.",
@@ -48332,7 +48502,7 @@ I18n.translations["pl"] = {
   "this_observation_is_research_grade": "Ta obserwacja posiada stopień badawczy!",
   "this_observation_was_created_using": "Ta obserwacja została wykonana przy użyciu:",
   "this_taxon_has_no_default_photo": "Ten takson nie ma domyślnego zdjęcia!",
-  "threatened": "Zagrożony",
+  "threatened": "Gatunki zagrożone",
   "time": {
     "am": "przed południem",
     "formats": {
@@ -48429,7 +48599,8 @@ I18n.translations["pl"] = {
         "duplicate_project": "Duplikuj projekt",
         "errors": {
           "name_already_taken": "Nazwa projektu już zajęta",
-          "name_is_required": "Nazwa projektu jest wymagana"
+          "name_is_required": "Nazwa projektu jest wymagana",
+          "summary_is_required": "Tekst podsumowania projektu jest wymagany"
         },
         "name_placeholder": "Ptaki Chicago, Niezwykłe ważki, itp.",
         "note_you_can_delete_the_time": "(Uwaga: możesz usunąć strefę czasową i dokładny czas jeśli chcesz uwzględnić cały dzień.)\n",
@@ -48457,9 +48628,18 @@ I18n.translations["pl"] = {
     "stats": {
       "index": {
         "avg_ttcid": "Średni TTCID",
-        "avg_ttid": "Średni TTCID"
+        "avg_ttid": "Średni TTCID",
+        "med_ttcid": "Średni TTCID",
+        "med_ttid": "Średni TTID",
+        "obs_cid_d_to_genus": "Obserwacje oznaczone przez społeczność co do gatunku"
       },
       "year": {
+        "growth_by_country_title": "Wzrost według kraju",
+        "growth_in_year_obs": "Wzrost w %{year} (obserwacje)",
+        "growth_title": "Wzrost",
+        "include_usa": "Łącznie z USA",
+        "obs_in_year": "Obserwacji w %{year}",
+        "observation_streaks_color_desc": "Kolor reprezentuje liczbę dni w skali logarytmicznej:\n"
       }
     },
     "taxa": {
@@ -48467,6 +48647,10 @@ I18n.translations["pl"] = {
         "frequency": {
           "research": "Stopień badawczy",
           "verifiable": "Weryfikowalne",
+          "Alive or Dead=Alive": "Żywy",
+          "Alive or Dead=Dead": "Martwy",
+          "Plant Phenology=Flowering": "Kwitnie",
+          "Plant Phenology=Fruiting": "Owocuje",
           "Life Stage=egg": "Jajo",
           "Life Stage=larva": "Larwa",
           "Life Stage=teneral": "Osobnik teneralny",
@@ -48556,6 +48740,12 @@ I18n.translations["pl"] = {
     "few": "%{count} nowe gatunki",
     "many": "%{count} nowych gatunków",
     "other": "%{count} nowego gatunku"
+  },
+  "x_new_users": {
+    "one": "%{count} nowy użytkownik",
+    "few": "%{count} nowi użytkownicy",
+    "many": "%{count} nowych użytkowników",
+    "other": "%{count} nowego użytkownika"
   },
   "x_observations": {
     "one": "1 obserwacja",
@@ -52391,7 +52581,8 @@ I18n.translations["ru"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%B %d, %Y",
-      "month_day_year": "%B %d, %Y"
+      "month_day_year": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -52490,7 +52681,6 @@ I18n.translations["ru"] = {
   "do_not_show_this_message_again": "Не показывать это сообщение повторно",
   "doh_something_went_wrong": "Ой, что-то пошло не так.",
   "doh_something_went_wrong_error": "Что-то пошло не так: %{error}",
-  "donate": "Поддержать",
   "done": "Готово",
   "download": "Загрузить",
   "drag_and_drop_some_photos_or_sounds": "Перетащите и отпустите несколько фото или звуков",
@@ -52926,6 +53116,7 @@ I18n.translations["ru"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Ежемесячный спонсор</a> с %{date}\n",
   "months": "Месяцы",
   "more": "Ещё",
   "more_filters": "Больше фильтров",
@@ -53009,6 +53200,9 @@ I18n.translations["ru"] = {
       "delimiter": "  ",
       "separator": ",",
       "si": {
+        "giga": "%{number}Г",
+        "kilo": "%{number}к",
+        "mega": "%{number}М"
       }
     }
   },
@@ -53508,7 +53702,7 @@ I18n.translations["ru"] = {
   "rank": "Ранг",
   "rank_position": "Ранг",
   "ranks": {
-    "stateofmatter": "Состояние дел",
+    "stateofmatter": "Форма",
     "kingdom": "Царство",
     "subkingdom": "Подцарство",
     "phylum": "Тип",
@@ -53916,6 +54110,8 @@ I18n.translations["ru"] = {
         "data_quality_assessment_desc_html": "Оценка качества данных - это оценка точности наблюдения. Наблюдения исследовательского уровня могут использоваться учеными в научных целях. Проголосуйте ниже:\n",
         "disagreement_count_desc": "# идентифицированных таксонов, которые не относятся к предкам таксона",
         "identification_count_desc": "# идентификаций отдельного таксона",
+        "observer_does_not_allow_observation_fields": "Не допускается введение наблюдателем дополнительных полей наблюдения",
+        "observer_only_allows_curators_to_add_fields": "Наблюдатель лишь позволяет добавлять поля наблюдения кураторам сайта",
         "quality_assessment_help_html": "<p>\n  Оценка качества данных представляет собой итог точности наблюдений. Все наблюдения начинаются с уровня <strong>«обыкновенный»</strong> и достигают уровня <strong>«исследовательский»</strong>, когда \n</p>\n\n<ul>\n \\ <li>наблюдение <strong>имеет дату</strong></li>\n  <li>наблюдение <strong>имеет геолокацию</strong> (т.е. имеет координаты широта/долгота)</li>\n  <li>наблюдение <strong>содержит фото или звуки</strong></li>\n  <li>наблюдение <strong>не является изображением человека</strong></li>\n</ul>\n<p>\n  Наблюдения переходят на <strong>\"исследовательский\" уровень</strong> когда\n</p>\n<ul>\n  <li>\n \\   %{site_name} <strong>сообщество соглашается с идентификатором уровня вид или ниже, то есть когда более 2/3 идентифицируемых согласны с таксоном</strong>\n \\ </li>\n</ul>\n<p>\n  Наблюдения возвращаются на уровень \"обыкновенный\", если не соблюдаются вышеуказанные условия или сообщество соглашается, что \n</p>\n<ul>\n  <li>\n    <strong>местоположение не выглядит точным</strong> (например,  обезьяны среди океана, бегемоты в офисных зданиях и т.п.)\n \\ </li>\n  <li>\n    <strong>организм не является диким / натурализированным (т.е. находится в неволе /  культивируется людьми или интеллектуальными космическими  пришельцами)\n  </li>\n  <li>\n    наблюдение <strong>не свидетельствует о существовании организма</strong>, например</strong>, содержит изображения ландшафтов, водных объектов, скал и т.п.\n  </li>\n  <li>\n    наблюдение <strong>не показывает свежие (~ 100 лет) доказательства существования организма</strong> (например, окаменелости; но следы, экскременты и сухие листья - это нормально)\n \\ </li>\n  <li>\n    для наблюдения больше не требуется идентификатор <em>и</em> идентификатор сообщества выше Семейства\n  </li>\n  <li>\n    наблюдатель отказался от идентификатора сообщества, а таксон-идентификатор сообщества не является предком или потомком таксона, связанного с идентификатором наблюдателя\n \\ </li>\n</ul>\n<p>\n  И если это было недостаточно сложно, есть также ситуации, когда система голосует:\n</p>\n<ul>\n  <li>\n    Система будет голосовать за то, что наблюдение не является диким / натурализованным, если есть по крайней мере 10 других наблюдений рода или ниже наименьшем графстве, штате или стране, эквивалентном месту, которое содержит это наблюдение, и 80% или более из этих наблюдений были отмечены как не дикие/натурализованные.\n \\ </li>\n</ul>\n",
         "score_desc": "оценка = общее число / (общее число + число несогласий + число несогласий с таксонами-предками)"
       }
@@ -54013,14 +54209,18 @@ I18n.translations["ru"] = {
       "year": {
         "growth_by_country_desc_html": "Где происходит рост? На карте и графике есть попытка разбить это по странам, что оказывается сложным, поскольку рост по странам может быть очень несбалансированным. Здесь мы решили опустить США и использовать по умолчанию логарифмическую шкалу, чтобы подчеркнуть различия между другими странами. Если страна окрашена в черный цвет, это означает, что она не внесла существенного вклада в процент, или у нее не было роста в этом году, или не было больше наблюдений в этом году, чем в прошлом году (наведите курсор на страну, чтобы увидеть немного больше деталей). <strong>\"% от\nобщего роста\"</strong> означает, сколько мирового роста пришлось на конкретную страну, например, если было 20 наблюдений в 2018 году и 10 в 2017 году, то это составило бы рост 10 наблюдений, и если 5 из этих наблюдений были из Бенина, то Бенин обеспечил 50% общего роста. <strong>\"% роста\"</strong> означает число наблюдений в этом году в этой стране в процентах от наблюдений в прошлом году в этой стране, поэтому если в Лаосе было 10 наблюдений в прошлом году, а в этом году 20, это составило бы 100% роста, а если в прошлом году было 0 и 1 в этом году, то это бесконечный % роста.\n",
         "growth_by_country_title": "Рост по странам",
+        "growth_desc": "Диаграммы \"Наблюдения\" и \"Таксоны\" могут включать данные, которые видны на %{site_name} и добавлены людьми, не связанными с %{site_name}, в то время как диаграмма \"Пользователи\" охватывает только те даты, когда пользователи, связанные в данное время с %{site_name}, присоединились к iNaturalist.\n",
         "growth_in_year_obs": "Рост в %{year} (набл)",
         "growth_title": "Рост",
         "include_usa": "Включая США",
         "new_species_desc_html": "Виды, которые были впервые были добавлены в этом году. Нажмите на месяц, чтобы увидеть некоторые новые виды, добавленные в этом месяце. Вы также можете просмотреть общее накопленное количество видов или переместить ползунок назад во времени, чтобы увидеть другие впервые наблюдаемые виды. Диаграмма показывает виды проверяемых наблюдений по месяцам загрузки на %{site_name} (а не по месяцам, когда они наблюдались). Она не включает таксоны более высокого или более низкого уровня, поэтому наблюдение, идентифицированное как Млекопитающее, не учитывается, а наблюдение <i>Canis lupus</i> ssp. <i>arctos</i> будет учтено как <i>Canis lupus</i>.\n",
         "obs_in_year": "Набл в %{year}",
         "observation_streaks": "Серии наблюдений",
+        "observation_streaks_color_desc": "Цвет представляет количество дней в логарифмическом масштабе:\n",
+        "observation_streaks_desc": "Серия наблюдений - это период времени, когда кто-то выходил на природу и\nзаписывал новые наблюдения каждый день. Здесь показаны самые длинные\nсерии, которые начались в этом году или происходили в момент создания этой\nстатистики.\n",
         "percent_growth_in_year": "% роста в %{year}",
         "percent_of_total_growth": "% от общего роста",
+        "publications_desc_html": "Нажмите на диаграмму цветов, чтобы получить больше информации о значении чисел\nи цвета. Влияющие данные и диаграммы любезно предоставлены\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из <a href=\"https://www.gbif.org/\">Глобального информационного центра по биоразнообразию</a>.\n<br/>\n<a href=\"%{url}\">Просмотр всех %{numStudies} исследований</a>\n",
         "sunburst_desc_html": "Наблюдаемые таксоны упорядочены в виде иерархической диаграммы Санбёрст. Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>.\n"
       }
     },
@@ -54156,6 +54356,12 @@ I18n.translations["ru"] = {
     "few": "%{count} новых вида",
     "many": "%{count} новых видов",
     "other": "%{count} новых видов"
+  },
+  "x_new_users": {
+    "one": "%{count} новый пользователь",
+    "few": "%{count} новых пользователя",
+    "many": "%{count} новых пользователей",
+    "other": "%{count} новых пользователей"
   },
   "x_observations": {
     "one": "%{count} наблюдение",
@@ -58376,7 +58582,7 @@ I18n.translations["tr"] = {
   "added_as_a_part_of_a_taxon_change_html": "<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">sınıf değiştirmenin</a> bir parçası olarak eklendi\n",
   "added_as_a_part_of_a_taxon_merge_html": "<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">sınıf birleştirmesinin</a> bir parçası olarak eklendi\n",
   "added_as_a_part_of_a_taxon_split_html": "<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">sınıf bölmenin</a> bir parçası olarak eklendi\n",
-  "added_as_a_part_of_a_taxon_swap_html": "<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">sınıf değişiminin</a> bir parçası olarak eklendi\n",
+  "added_as_a_part_of_a_taxon_swap_html": "<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">sınıf takasının</a> bir parçası olarak eklendi\n",
   "added_by": "Ekleyen",
   "added_on": "Eklendiği tarih",
   "additional_range": "Ek aralık",
@@ -58713,7 +58919,8 @@ I18n.translations["tr"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d %B, %Y",
-      "month_day_year": "%d %B, %Y"
+      "month_day_year": "%d %B, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -58802,7 +59009,6 @@ I18n.translations["tr"] = {
   "do_not_show_this_message_again": "Bu mesajı bir daha gösterme",
   "doh_something_went_wrong": "D'oh, bir şeyler ters gitti.",
   "doh_something_went_wrong_error": "Ah, bir şeyler yanlış gitti: %{error}",
-  "donate": "BAĞIŞ YAP",
   "done": "Tamamlandı",
   "download": "İndir",
   "drag_and_drop_some_photos_or_sounds": "Bazı fotoğrafları ya da sesleri sürükleyip bırakın",
@@ -59234,6 +59440,7 @@ I18n.translations["tr"] = {
     "datetime_with_zone": "D MMM YYY · LT z",
     "datetime_with_offset": "D MMM YYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "%{date} tarihinden beri <a href=\"%{url}\">Aylık Destekçi</a>\n",
   "months": "Aylar",
   "more": "Daha Fazla",
   "more_filters": "Daha Fazla Filtre Göster",
@@ -59317,6 +59524,9 @@ I18n.translations["tr"] = {
       "delimiter": ",",
       "separator": ".",
       "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -59373,20 +59583,20 @@ I18n.translations["tr"] = {
   "other_taxa_commonly_misidentified_as_this_genus": "Bu cins olarak sıklıkla yanlış tanımlanmış diğer sınıflar",
   "other_taxa_commonly_misidentified_as_this_genus_in_place_html": "Bu cins olarak <a href=\"%{url}\">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar",
   "other_taxa_commonly_misidentified_as_this_genushybrid": "Bu yüzergezer cins olarak sıklıkla yanlış tanımlanmış diğer sınıflar",
-  "other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html": "Bu yüzergezer cins olarak <a href=\"%{url}\">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_hybrid": "Bu yüzergezer olarak sıklıkla yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_hybrid_in_place_html": "Bu yüzergezer olarak <a href=\"%{url}\">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_rank": "Genellikle bu %{rank} düzeyi olarak yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_rank_in_place_html": "Genellikle bu %{rank} düzeyi olarak <a href=\"%{url}\">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_section": "Bu seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_section_in_place_html": "Bu seksiyon olarak <a href=\"%{url}\">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_species": "Genellikle bu tür olarak yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_species_in_place_html": "Genellikle bu tür olarak <a href=\"%{url}\">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_subgenus": "Genellikle bu alt cins olarak yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_subgenus_in_place_html": "Genellikle bu alt cins olarak <a href=\"%{url}\">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_subsection": "Bu alt seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflandırmalar",
-  "other_taxa_commonly_misidentified_as_this_subsection_in_place_html": "Bu alt seksiyon olarak <a href=\"%{url}\">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflandırmalar",
-  "output_taxon": "Sınıflandırma çıkışı",
+  "other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html": "Bu yüzergezer cins olarak <a href=\"%{url}\">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_hybrid": "Bu yüzergezer olarak sıklıkla yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_hybrid_in_place_html": "Bu yüzergezer olarak <a href=\"%{url}\">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_rank": "Genellikle bu %{rank} düzeyi olarak yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_rank_in_place_html": "Genellikle bu %{rank} düzeyi olarak <a href=\"%{url}\">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_section": "Bu seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_section_in_place_html": "Bu seksiyon olarak <a href=\"%{url}\">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_species": "Genellikle bu tür olarak yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_species_in_place_html": "Genellikle bu tür olarak <a href=\"%{url}\">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_subgenus": "Genellikle bu alt cins olarak yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_subgenus_in_place_html": "Genellikle bu alt cins olarak <a href=\"%{url}\">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_subsection": "Bu alt seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflar",
+  "other_taxa_commonly_misidentified_as_this_subsection_in_place_html": "Bu alt seksiyon olarak <a href=\"%{url}\">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar",
+  "output_taxon": "Sınıf çıkışı",
   "overview": "Genel Bakış",
   "per_day": "Günlük",
   "per_month": "Aylık",
@@ -59802,8 +60012,8 @@ I18n.translations["tr"] = {
   "project_requirements": "Proje Gereksinimleri",
   "project_start_time_datetime": "Başlangıç zamanı: %{datetime}",
   "projects": "Projeler",
-  "proposed_taxa_that_contradict_the_community_id": "Topluluk tanımlamasıyla çelişen önerilmiş sınıflandırmalar",
-  "proposed_taxa_that_support_the_community_id": "Topluluk tanımlamasını destekleyen önerilmiş sınıflandırmalar",
+  "proposed_taxa_that_contradict_the_community_id": "Topluluk tanımlamasıyla çelişen önerilmiş sınıflar",
+  "proposed_taxa_that_support_the_community_id": "Topluluk tanımlamasını destekleyen önerilmiş sınıflar",
   "protozoans": "tek hücreliler",
   "public_domain": "Kamu Malı",
   "purple": "mor",
@@ -60003,9 +60213,9 @@ I18n.translations["tr"] = {
   },
   "taxon_merge": "sınıf birleştirme",
   "taxon_schemes": "Sınıf Şemaları",
-  "taxon_split": "sınıflandırma bölme",
-  "taxon_stage": "sınıflandırma aşaması",
-  "taxon_swap": "sınıflandırma değişimi",
+  "taxon_split": "sınıf bölme",
+  "taxon_stage": "sınıf aşaması",
+  "taxon_swap": "sınıf takası",
   "taxonomic": "Sınıflandırmasal",
   "taxonomic_groups": "Sınıflandırmasal Gruplar",
   "taxonomy": "Sınıflandırma",
@@ -60214,6 +60424,8 @@ I18n.translations["tr"] = {
         "data_quality_assessment_desc_html": "Veri Nitelik Değerlendirmesi, bir gözlemin doğruluğunun bir değerlendirmesidir. \nAraştırma Sınıfı gözlemler, bilim insanları tarafından araştırma için kullanılabilir. \nAşağıda oy verin:\n",
         "disagreement_count_desc": "sınıfının ataları arasında olmayan tanımlı sınıfların #",
         "identification_count_desc": "bir sınıf için tanımlamaların #",
+        "observer_does_not_allow_observation_fields": "Gözlemci ek gözlem alanlarına izin vermiyor",
+        "observer_only_allows_curators_to_add_fields": "Gözlemci yalnızca sayfa sorumlularının gözlem alanları eklemesine izin verir",
         "quality_assessment_help_html": "<p>\nVeri nitelik değerlendirmesi bir gözlemin doğruluğunun bir özetidir. Bütün \ngözlemler <strong>\"sıradan\"</strong> sınıf gibi başlar ve aşağıdakiler olduğu zaman\n<strong>tanımlama gerektirir</strong>\n</p>\n\n<ul>\n<li>gözlem <strong>bir tarihe sahip</strong></li>\n<li>gözlem <strong>coğrafi olarak kabul edilebilir</strong> (örn. enlem/boylam koordinatlarına sahip)</li>\n<li>gözlem <strong>fotoğraflara ya da seslere sahip</strong></li>\n<li>gözlem <strong>bir insanın değil</strong></li>\n</ul>\n<p>\nGözlemler aşağıdakiler olduğu zaman <strong>\"araştırma sınıfı\"</strong> olur\n</p>\n<ul>\n<li>\n%{site_name} <strong>topluluğu, tür düzeyinde ya da daha düşük düzeyde tanımlamayı kabul ettiği zaman</strong>,örn.\ntanımlayıcıların 2/3'ünden fazlası bir sınıflandırmada anlaşma sağladığı zaman\n</li>\n</ul>\n<p>\nYukarıdaki koşullar yerine getirilmezse ya da topluluk kabul ederse, gözlemler <strong>\"sıradan\"</strong> sınıfa geri döner\n</p>\n<ul>\n<li>\n<strong>konum doğru görünmüyor</strong> (örn. okyanusun ortasındaki maymunlar,\nofis binası içerisindeki su aygırları, vb.)\n</li>\n<li>\n<strong>organizma vahşi ya da doğal değil</strong> (örn. insanlar tarafından kısıtlanmış ya da ekilmiş)\n</li>\n<li>\ngözlem <strong>bir organizmanın kanıtını sunmuyor</strong>,\nörn. manzara resimleri, su özellikleri, kayalar, vb.\n</li>\n<li>\ngözlem <strong>organizmanın son kanıtını (~100 yıl) sunmuyor</strong>\n(örn. fosiller, ancak izler, dışkılar, ve ölü yapraklar kullanılabilir)\n</li>\n<li>\ngözlemin bir tanımlamaya ihtiyacı yok <em>ve</em> topluluk tanımlaması ailenin üstünde\n</li>\n<li>\ngözlemci, topluluk tanımlamasından vazgeçti ve topluluk tanımlamasının sınıflandırması gözlemcinin tanımlaması ile bağlantılı sınıflandırmanın atası veya soyundan gelmedi\n</li>\n</ul>\n<p>\nVe eğer bu yeterince karmaşık değilse, sistemin oy kullanabileceği durumlar da vardır:\n</p>\n<ul>\n<li>\nSistem, bu gözlemi içeren en küçük ilçe, eyalet ya da ülke eşdeğerindeki yerde \nen az 10 farklı cins gözlemine ya da daha düşük düzeye sahipse ve \nbunların %80 ya da daha çoğu vahşi/doğal değil şeklinde işaretlenmişse,\ngözlemi vahşi/doğal değil şeklinde oylayacaktır.\n</li>\n</ul>\n",
         "score_desc": "puan = toplam sayı / (toplam sayı + uyuşmazlık sayısı + soy uyuşmazlıkları)"
       }
@@ -60318,6 +60530,8 @@ I18n.translations["tr"] = {
         "new_species_desc_html": "Bu yıl ilk kez eklenen türler.\nBu ay eklenen yeni türlerin bazılarını görüntülemek için bir ay seçin.\nAyrıca, toplam tür birikimini görebilir veya yeni gözlenen diğer türleri görmek için \nkaydırma butonunu zamanda geriye hareket ettirebilirsiniz. Bu grafik, %{site_name} 'e \nyüklendikleri aya kadar doğrulanabilir gözlemlerden türleri gösterir (gözlemlendikleri ayı değil).\nDaha yüksek veya daha düşük seviyeli sınıfları içermez, bu nedenle Memeliler \nolarak tanımlanan bir gözlem sayılmaz ve <i>Canis lupus</i> alt türü <i>boz ayı</i> olan bir gözlemi\n<i>Canis lupus</i> olarak sayacaktır.\n",
         "obs_in_year": "%{year} içinde Gözl",
         "observation_streaks": "Gözlem Serileri",
+        "observation_streaks_color_desc": "Renk, bir logaritmik ölçekte günlerin sayısını gösterir:\n",
+        "observation_streaks_desc": "Bir gözlem serisi, birisinin dışarı çıkıp her gün yeni ve doğrulanabilir\ngözlemler kaydettiği bir zaman dilimidir. Burada, bu yıl başlayan veya bu\nistatistikler oluşturulduğunda devam eden en uzun serileri gösteriyoruz.\n",
         "percent_growth_in_year": "%{year} içindeki büyüme %'si",
         "percent_of_total_growth": "Toplam Büyüme %'si",
         "publications_desc_html": "Sayıların ve renklerin ne anlama geldiği hakkında daha fazla bilgi \niçin çiçek çizelgelerine tıklayın. <a href=\"https://www.altmetric.com\">Altmetric</a>'in \nizniyle etki verileri ve çizelgeler. \n<a href=\"https://www.gbif.org/\">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki \narkadaşlarımızın veri kullanımı nezaket bilgileri.\n<br/>\n<a href=\"%{url}\">%{numStudies} çalışmanın tamamını görüntüleyin</a>\n",
@@ -60436,6 +60650,10 @@ I18n.translations["tr"] = {
   "x_new_species": {
     "one": "%{count} Yeni Tür",
     "other": "%{count} Yeni Tür"
+  },
+  "x_new_users": {
+    "one": "%{count} Yeni Kullanıcı",
+    "other": "%{count} Yeni Kullanıcı"
   },
   "x_observations": {
     "one": "%{count} gözlem",
@@ -61045,7 +61263,8 @@ I18n.translations["zh-CN"] = {
     },
     "formats": {
       "long": "%Y年%B%d日",
-      "month_day_year": "%B%d日%Y年"
+      "month_day_year": "%B%d日%Y年",
+      "month_year": "%Y年%B"
     },
     "month_names": [
       null,
@@ -62741,6 +62960,7 @@ I18n.translations["zh-TW"] = {
   "black": "黑色",
   "blue": "藍色",
   "blue_butterfly_etc": "藍色、蝴蝶、或其它。",
+  "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
   "bounding_box": "邊框",
   "brown": "棕色",
   "browse": "瀏覽",
@@ -62778,7 +62998,7 @@ I18n.translations["zh-TW"] = {
   },
   "check_above_for_errors": "檢查上方錯誤",
   "check_back_soon": "請稍後查看！",
-  "checklist": "檢查列表",
+  "checklist": "名錄",
   "choose_a_field": "選擇欄位",
   "choose_file": "選擇檔案",
   "choose_files": "挑選檔案",
@@ -62806,7 +63026,12 @@ I18n.translations["zh-TW"] = {
   "content_hidden_by_user_on_date_because_reason_html": "內容由 %{user} 於 %{date} 做出隱藏，原因：\"%{reason}\"\n",
   "continue": "繼續",
   "controlled_term_definitions": {
-    "flower_budding": "花苞可見但未開展"
+    "alive": "還是活著的生物，而且看不出有立即死亡的徵兆",
+    "dead": "生物已經死亡或是顯示有立即死亡的徵兆",
+    "flower_budding": "花苞可見但未開展",
+    "flowering": "花朵可見，開展且仍然連在植株上",
+    "fruiting": "果實可見且仍然連在植株上",
+    "teneral": "成蟲最近剛化蛹，但是尚未變成最終型態的成蟲"
   },
   "controlled_term_labels": {
     "adult": "成體",
@@ -62915,7 +63140,8 @@ I18n.translations["zh-TW"] = {
       "7": "六"
     },
     "formats": {
-      "long": "%Y年%b%d日"
+      "long": "%Y年%b%d日",
+      "month_year": "%Y年%B"
     },
     "month_names": [
       null,
@@ -63000,7 +63226,6 @@ I18n.translations["zh-TW"] = {
   "do_not_show_this_message_again": "不要再顯示此訊息",
   "doh_something_went_wrong": "噢噢，出現了一些問題。",
   "doh_something_went_wrong_error": "哎呀，發生了一些錯誤：%{error}",
-  "donate": "贊助",
   "done": "完成",
   "download": "下載",
   "drag_and_drop_some_photos_or_sounds": "拖拉一些照片和聲音",
@@ -63141,18 +63366,43 @@ I18n.translations["zh-TW"] = {
         "assessment_section": "@n",
         "atlas": "@n",
         "check_list": "@n",
+        "class": "@n",
+        "complex": "@n",
+        "epifamily": "@n",
+        "family": "@n",
         "favorite": "@n",
+        "form": "@n",
+        "genus": "@n",
+        "genushybrid": "@n",
+        "hybrid": "@n",
         "identification": "@n",
+        "infraclass": "@n",
+        "infraorder": "@n",
         "journal": "@n",
         "listed_taxon": "@n",
         "note": "@n",
         "observation": "@n",
         "observation_field": "@n",
+        "order": "@n",
+        "phylum": "@n",
         "place": "@n",
         "post": "@n",
         "profile": "@n",
         "project": "@n",
+        "section": "@n",
         "species": "@n",
+        "subclass": "@n",
+        "subfamily": "@n",
+        "subgenus": "@n",
+        "suborder": "@n",
+        "subphylum": "@n",
+        "subsection": "@n",
+        "subspecies": "@n",
+        "subtribe": "@n",
+        "superclass": "@n",
+        "superfamily": "@n",
+        "superorder": "@n",
+        "supertribe": "@n",
         "taxon": "@n",
         "taxon_change": "@n",
         "taxon_drop": "@n",
@@ -63161,6 +63411,8 @@ I18n.translations["zh-TW"] = {
         "taxon_split": "@n",
         "taxon_stage": "@n",
         "taxon_swap": "@n",
+        "tribe": "@n",
+        "variety": "@n",
         "default": "@n"
       },
       "@vow_or_con": {
@@ -63367,7 +63619,7 @@ I18n.translations["zh-TW"] = {
       "gbif_network_description": "來自於博物館以及其它透由全球生物多樣性資訊機構（GBIF）所分派的事件提供方之記錄",
       "observations": "觀察",
       "place_boundary": "地點邊界",
-      "checklist_places": "清單地點",
+      "checklist_places": "名錄地點",
       "checklist_places_description": "此物種分類列出的地點",
       "range": "範圍"
     }
@@ -63403,6 +63655,7 @@ I18n.translations["zh-TW"] = {
     "datetime_with_zone": "YYYY/MM/DD · LT z",
     "datetime_with_offset": "YYYY/MM/DD · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">每月捐款者</a> since %{date}\n",
   "months": "月",
   "more": "更多",
   "more_filters": "更多篩選",
@@ -63436,12 +63689,15 @@ I18n.translations["zh-TW"] = {
   "new_and_noteworthy": "新事物與關注事項",
   "new_observation_field": "新觀察欄位",
   "new_observations": "新觀察",
+  "new_observations_in_year": "在 %{year} 年的新觀察",
   "new_species_added_in_interval": "在%{interval}內所添加的新物種",
   "new_species_added_in_interval_x_of_y": "在%{interval}期間所添加的新物種（顯示 %{y} 個裡的 %{x} 個）",
   "new_users": "新使用者",
+  "new_users_in_year": "在 %{year} 年的新使用者",
   "newly_added": "新的添加",
   "newly_added_species": "新進的添加物種",
   "newly_observed_species": "新進的觀察物種",
+  "newly_observed_species_in_year": "在 %{year} 年新加入的物種",
   "news": "最新消息",
   "next": "下一個",
   "next_observation": "下一個觀察",
@@ -63483,6 +63739,9 @@ I18n.translations["zh-TW"] = {
       "delimiter": ",",
       "separator": ".",
       "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -63536,8 +63795,22 @@ I18n.translations["zh-TW"] = {
   "other_species_commonly_misidentified_as_this_species_in_place_html": "在<a href=\"%{url}\">%{place}</a>常被誤認為是此物種的其它物種",
   "other_taxa_commonly_misidentified_as_this_complex": "常被誤鑑定為此複合群的其他分類群",
   "other_taxa_commonly_misidentified_as_this_complex_in_place_html": "在 <a href=\"%{url}\">%{place}</a> 常被誤鑑定為此複合群的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_genus": "常被誤認為這個屬的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_genus_in_place_html": "常在 <a href=\"%{url}\">%{place}</a> 被誤認成這個屬的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_genushybrid": "常被誤認為這個雜交屬的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html": "常在 <a href=\"%{url}\">%{place}</a> 被誤認為這個雜交屬的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_hybrid": "常被誤認為這個雜交種的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_hybrid_in_place_html": "常在 <a href=\"%{url}\">%{place}</a> 被誤認為這個雜交種的其他分類群",
   "other_taxa_commonly_misidentified_as_this_rank": "常誤認為是%{rank}的分類",
   "other_taxa_commonly_misidentified_as_this_rank_in_place_html": "其它在<a href=\"%{url}\">%{place}</a>常誤認為是%{rank}的分類",
+  "other_taxa_commonly_misidentified_as_this_section": "常被誤認為這個節(section)的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_section_in_place_html": "在 <a href=\"%{url}\">%{place}</a> 常被誤認為這個節(section)的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_species": "常被誤認為此種的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_species_in_place_html": "在 <a href=\"%{url}\">%{place}</a> 常被誤認為此種的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_subgenus": "常被誤認為此亞種的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_subgenus_in_place_html": "常在 <a href=\"%{url}\">%{place}</a> 被誤認為此亞種的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_subsection": "常被誤認為此亞節的其他分類群",
+  "other_taxa_commonly_misidentified_as_this_subsection_in_place_html": "常在 <a href=\"%{url}\">%{place}</a> 被誤認為此亞節的其他分類群",
   "output_taxon": "輸出物種分類",
   "overview": "概要",
   "per_day": "各日",
@@ -63951,6 +64224,7 @@ I18n.translations["zh-TW"] = {
     "other": "專案管理員"
   },
   "project_requirements": "專案需求",
+  "project_start_time_datetime": "開始時間：%{datetime}",
   "projects": "專案",
   "proposed_taxa_that_contradict_the_community_id": "所提出物種分類群否決社群鑑定",
   "proposed_taxa_that_support_the_community_id": "所提出物種分類群贊同社群鑑定",
@@ -64080,6 +64354,7 @@ I18n.translations["zh-TW"] = {
   "show_uncountable_species": "顯示無法計數的物種",
   "showing_taxa_from_everywhere": "進行顯示來自於任何地點的物種分類群",
   "showing_taxa_from_place": "進行顯示來自於%{place}的物種分類群",
+  "showing_x_of_y": "顯示 %{y} 的 %{x}",
   "showing_x_of_y_listings": "顯示 %{y} 個裡的 %{x} 個清單",
   "sign_out": "登出",
   "sign_up": "註冊",
@@ -64320,6 +64595,8 @@ I18n.translations["zh-TW"] = {
         "data_quality_assessment_desc_html": "「資料品質評估」是針對某一筆觀察記錄準確性的評量方式。「研究等級」的觀察記錄有機會被科學家用於研究上。請在下方投下您的一票：\n",
         "disagreement_count_desc": "# 已鑑定物種分類群不在物種分類的祖先之中",
         "identification_count_desc": "#的各別分類單元之鑑定",
+        "observer_does_not_allow_observation_fields": "觀察者不允許新增額外的觀察欄位",
+        "observer_only_allows_curators_to_add_fields": "觀察者只允許網站策展人新增觀察欄位",
         "quality_assessment_help_html": "<p>\n資料品質評估是一項觀察準確程度的摘要。所有觀察\n最初是從<strong>「粗略」</strong>等級開始，而成為<strong>「需要鑑定」</strong>的狀態是當\n</p>\n\n<ul>\n<li>觀察<strong>擁有日期</strong></li>\n<li>觀察<strong>具備地理參考</strong>（註：擁有經/緯度）</li>\n<li>觀察<strong>擁有照片或聲音</strong></li>\n<li>觀察<strong>內容不是人類</strong></li>\n</ul>\n<p>\n觀察要成為<strong>「研究等級」</strong>是當\n</p>\n<ul>\n<li>\n%{site_name} <strong>社群認同物種級別或以下級別鑑定</strong>，註：當超過三分之二鑑定人同意同一項物種分類\n</li>\n</ul>\n<p>\n觀察會被列為<strong>「粗略」</strong>，是當不符合以上條件情況或是社群認為\n</p>\n<ul>\n<li>\n<strong>位置不精準</strong>（例如：猴子位在海洋裡，或是河馬位在辦公大樓等等）\n</li>\n<li>\n<strong>不是野生/歸化的生物</strong>（例如：是被人類、或外星智慧生命給圈養或栽培）\n</li>\n<li>\n觀察內容<strong>沒有呈現出是生物的證明</strong>，例如：僅是風景、水景、岩石之類的圖片。\n</li>\n<li>\n觀察內容<strong>沒有呈現出是近代（大約一百年內）生物的證明</strong> （例如：化石，但如果是痕跡、排泄物，或枯葉是可以的）\n</li>\n<li>\n觀察已不需要鑑定<em>並且</em>社群鑑定是在科級別以上\n</li>\n<li>\n觀察者退出社群鑑定，並且社群鑑定不屬於關連到觀察者鑑定的物種分類之原型或派生\n</li>\n</ul>\n<p>\n如果不夠深入，會有系統投票的情況：\n</p>\n<ul>\n<li>\n若在最小的郡或州裡有至少十個屬級別或以下級別的其它觀察，或是與同等於國家層級地點包含著此觀察與\n80% 或以上的這些觀察，有被標記為非野生/歸化的情況，系統將會投票觀察是否非野生/歸化的生物。\n</li>\n</ul>\n",
         "score_desc": "分數 = 累積次數 /（累積次數 + 不一致次數 + 祖先不一致次數）"
       }
@@ -64441,6 +64718,12 @@ I18n.translations["zh-TW"] = {
         "frequency": {
           "research": "研究等級",
           "verifiable": "可證實",
+          "Alive or Dead=Alive": "活體",
+          "Alive or Dead=Dead": "死亡",
+          "Plant Phenology=Budding": "萌新芽",
+          "Plant Phenology=Flower Budding": "花芽",
+          "Plant Phenology=Flowering": "開花",
+          "Plant Phenology=Fruiting": "結果",
           "Life Stage=egg": "卵",
           "Life Stage=larva": "幼蟲",
           "Life Stage=teneral": "初羽化",
@@ -64523,6 +64806,9 @@ I18n.translations["zh-TW"] = {
   },
   "x_new_species": {
     "other": "%{count} 個新物種"
+  },
+  "x_new_users": {
+    "other": "%{count} 個使用者"
   },
   "x_observations": {
     "other": "%{count} 項觀察記錄"

@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+// Don't cut and paste over this @font-face section! We don't want to overwrite
+// the asset-data-url and asset-url calls
 @font-face {
   font-family: "inaturalisticons";
   src:asset-data-url("inaturalisticons.eot");
@@ -9,9 +11,9 @@
     asset-url("inaturalisticons.svg#inaturalisticons") format("svg");
   font-weight: normal;
   font-style: normal;
-
 }
 
+// Below here it's safe to cut and paste from the Fontastic export
 [data-icon]:before {
   font-family: "inaturalisticons" !important;
   content: attr(data-icon);
@@ -125,9 +127,6 @@
 .icon-icn-location-private:before {
   content: "\e020";
 }
-.icon-layers:before {
-  content: "\e021";
-}
 .icon-link:before {
   content: "\e016";
 }
@@ -161,12 +160,21 @@
 .icon-identification:before {
   content: "\e008";
 }
-.icon-sparkly-label:before {
-  content: "\e029";
-}
 .icon-people:before {
   content: "\e02a";
 }
 .icon-adjust:before {
   content: "\e02c";
+}
+.icon-layers:before {
+  content: "\e021";
+}
+.icon-sparkly-label:before {
+  content: "\e029";
+}
+.icon-binoculars:before {
+  content: "\e02b";
+}
+.icon-logomark:before {
+  content: "\e02d";
 }

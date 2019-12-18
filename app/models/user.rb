@@ -1310,6 +1310,13 @@ class User < ActiveRecord::Base
     donorbox_donor_id.to_i > 0
   end
 
+  def display_donor_since
+    return nil unless prefers_monthly_supporter_badge?
+    donorbox_plan_status == "active" &&
+      donorbox_plan_type == "monthly" &&
+      donorbox_plan_started_at
+  end
+
   # Iterates over recently created accounts of unknown spammer status, zero
   # obs or ids, and a description with a link. Attempts to run them past
   # akismet three times, which seems to catch most spammers

@@ -1495,6 +1495,8 @@ en:
   get_started: Get Started
   getting_started_guide: Getting Started Guide
   give_it_some_detail: Give it some detail!
+  give_monthly_caps: GIVE MONTHLY
+  give_now_caps: GIVE NOW
   global_names: Global Names
   globally: Globally
   go: Go
@@ -6011,6 +6013,27 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        donate_title: "Special Thanks to All Our Supporters"
+        donate_desc_html: |
+          Thank you for being generous with your time, attention, expertise, and
+          donations! iNaturalist is a not-for-profit joint initiative of the
+          California Academy of Sciences and the National Geographic Society.
+          It’s supported by a
+          <a href="%{team_url}">small team</a> that
+          does all the design and software
+          engineering for web, mobile, and
+          <a href="%{seek_url}">Seek by iNaturalist</a>, in addition to managing
+          the community support, collaborations, and integrations that keep
+          things running (and growing rapidly!). The program relies on numerous
+          grants and donations, including charitable gifts from less than 0.2%
+          of contributors. We are especially grateful to Monthly Supporters
+          whose recurring gifts help us plan for the future. You can donate in
+          more than 30 currencies to support iNaturalist’s core operations.
+          Thank you to everyone for your part in making 2019 iNaturalist’s
+          biggest year yet!
+        inaturalist_network: iNaturalist Network
+        inaturalist_network_desc: |
+          Check out the Year in Review for the members of the iNaturalist Network.
         include_usa: Include US
         growth_by_country_desc_html: |
           Where is growth happening? This map and chart attempt to break this
@@ -6062,6 +6085,12 @@ en:
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
           <br/>
           <a href="%{url}">View all %{numStudies} studies</a>
+        publications_desc_short_html: |
+          Click the flower charts for more information about what the numbers
+          and colors mean. Impact data and charts courtesy of
+          <a href="https://www.altmetric.com">Altmetric</a>. Information
+          about data usage courtesy of our friends at the
+          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         # Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observation Streaks
         observation_streaks_color_desc: |
@@ -6071,6 +6100,10 @@ en:
           recorded new, verifiable observations every single day. Here we're
           showing the longest streaks that began this year or were in progress
           when these stats were generated.
+        stats_generated_datetime: Stats generated on %{datetime}
+        store_prompt: |
+          Want to show your iNat pride everywhere you go? Check out the iNat
+          Store!
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
           of the hierarchy is at the center, starting with "Life" and ending

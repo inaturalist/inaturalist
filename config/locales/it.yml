@@ -23,8 +23,8 @@ it:
     other: '<span class="count">%{count}</span> Identificatori'
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
-    one: "1 prima lista degli esseri viventi"
-    other: "%{count} prime liste prime degli esseri viventi"
+    one: "%{count} per la prima volta nella lista degli esseri viventi"
+    other: "%{count} per la prima volta nella lista degli esseri viventi"
   x_journal_posts_html:
     one: '<span class="count">1</span> post del diario'
     other: '<span class="count">%{count}</span> post del diario'
@@ -67,6 +67,9 @@ it:
   x_new_species:
     one: "1 nuova specie"
     other: "%{count} nuove specie"
+  x_new_users:
+    one: '%{count} Nuovo Utente'
+    other: '%{count} Nuovi Utenti'
   x_species:
     one: '1 specie'
     other: '%{count} specie'
@@ -175,7 +178,7 @@ it:
   add_a_field: Aggiungi un campo
   add_a_flag: Aggiungi un contrassegno
   add_a_name: Aggiungi un nome
-  add_a_new_change_group: Aggiungi un nuovo gruppo di cambiamenti
+  add_a_new_change_group: Aggiungi un Nuovo Gruppo di Modifiche
   add_a_single_observation: Aggiungi una singola osservazione.
   add_a_taxon: Aggiungi un taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -657,9 +660,9 @@ it:
     merge: Diversi vecchi taxa uniti in un nuovo taxon
     swap: modifica del nome 1-a-1
     drop: Taxon completamente invalido, mantenuto per scopi storici o compatibilità con i partner
-    stage: Prepara un concetto inattivo come parte di una modifica tassonomica di un gruppo di specie.
+    stage: Prepara un concetto inattivo per il rilascio come parte di un gruppo di modifiche
   change_geoprivacy: 'Cambia la geoprivacy'
-  change_group: Cambia il gruppo
+  change_group: Gruppo di Modifiche
   change_icon: Cambia icona
   change_password: Modifica password
   change_types:
@@ -783,7 +786,7 @@ it:
   comparing_observations_from: "Confronto in corso delle osservazioni di %{user} del %{dates}"
   compiled_by_name: "Compilato da %{name}"
   complete: Completo
-  complete_set_for_taxon_in_place_html: "Checklist Completa di %{taxon} in %{place}"
+  complete_set_for_taxon_in_place_html: "Elenco Completo di %{taxon} in %{place}"
   completed: Completato
   completed_at: Completato in
   comprehensive: completa
@@ -1072,7 +1075,7 @@ it:
   double_click_to_finish: (doppio clic per terminare)
   download: Scarica
   download_bulk_import_template_html: |
-    <a href="%{url}">Scarica il modello</a> da usare nell'<a href="/observations/import#csv_import">importazione in blocco</a>
+    <a href="%{url}">Scarica il modello</a> da usare nell'<a href="/observations/import?project_id=%{project_id}#csv_import">importazione in blocco</a>
   download_csv: Scarica in formato CSV
   download_csv_template: Scarica modello CSV
   download_kml: Scarica il file KML
@@ -1100,7 +1103,7 @@ it:
   edit_atlas_for_taxon_html: Modifica Atlante di %{taxon}
   edit_body: Modifica il corpo
   edit_comment: Modifica il tuo commento
-  edit_complete_set_for_taxon_in_place_html: "Modifica la Lista Completa di %{taxon} in %{place}"
+  edit_complete_set_for_taxon_in_place_html: "Modifica l'Elenco Completo di %{taxon} in %{place}"
   edit_custom_project_fields: Modifica i campi personalizzati del progetto
   edit_field: Modifica il campo
   edit_license: Modifica la licenza
@@ -2057,7 +2060,7 @@ it:
   new_users: Nuovi utenti
   new_users_in_year: "Nuovi Utenti Nel %{year}"
   new_users_w_7_obs: Nuovi utenti con 7 osservazioni
-  newly_added: Appena Aggiunti
+  newly_added: Appena Aggiunte
   newly_added_species: Specie Appena Aggiunte
   newly_observed_species: Specie Appena Osservate
   newly_observed_species_in_year: "Specie Aggiunte Di Recente Nel %{year}"
@@ -4503,6 +4506,8 @@ it:
         description_html: |
           Questa operazione cambierà l'origine del popolamento di <em>tutte</em> le liste di questo taxon per tutti i luoghi inclusi in <a href="%{place_url}">%{place_name}</a> in <strong>"%{establishment_means}"</strong>. Solo i curatori possono usare questo strumento. Modificando le media di presenza in "introdotta" avrà all'incirca lo stesso effetto, eccetto che non modificherà i valori esistenti ma compilerà quelli non presenti.
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: I titoli delle Liste degli Esseri Viventi non possono essere modificati
       new:
         place_desc: |
           Aggiorna questa lista elencando i taxa osservati in questo luogo. Ricordati che puoi scegliere solo i luoghi con confini stabiliti.
@@ -4772,6 +4777,8 @@ it:
           Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perché l'hai creata o perché sei curatore del sito. Se pensi che sia un errore, per favore
           <a href="mailto:%{help_email}" class="contact">contattaci</a>.
           <a href="/observations/%{observation_id}/flags">Gestisci contrassegni</a>
+        observer_does_not_allow_observation_fields: L'osservatore non permette campi dell'osservazione aggiuntivi
+        observer_only_allows_curators_to_add_fields: L'osservatore permette solo ai curatori del sito di aggiungere campi all'osservazione
       user_stats:
         user_stats_desc: |
           Le statistiche degli utenti sono limitate ai top 500 per numero di osservazioni e numero di specie; il totale di solito è poco superiore a 500 dal momento che le due graduatorie non contengono esattamente gli stessi utenti. Un valore marcato '*' significa che non era tra i top 500 per quella statistica.
@@ -5266,6 +5273,8 @@ it:
           <a href="%{url}">Visualizza tutti gli %{numStudies} studi</a>
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Sequenze di Osservazioni
+        observation_streaks_color_desc: |
+          Il colore rappresenta il numero di giorni in scala logaritmica:
         observation_streaks_desc: |
           Una sequenza di osservazioni è un periodo di tempo in cui qualcuno è uscito ed ha registrato nuove osservazioni verificabili ogni giorno. Qui presentiamo le sequenze più lunghe iniziate quest'anno o quelle che sono in corso mentre queste statistiche vengono generate.
         sunburst_desc_html: |
@@ -5496,11 +5505,10 @@ it:
         prefers_no_tracking_label_desc_info_we_share: |
           Le informazioni che potremmo condividere con queste terze parti includono
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          Indirizzo IP (che può essere utilizzato per derivare la tua posizione a livello di città, e per tracciarti attraverso diversi siti web e servizi;
+          Indirizzi IP (che possono essere utilizzati per derivare la tua posizione a livello di città, e per tracciarti attraverso diversi siti web e servizi;
           tieni presente che abbiamo abilitato l'<a href="https://support.google.com/analytics/answer/2763052">anonimizzazione dell'IP</a>
-          in Google Analytics e <a
-          href="https://firebase.google.com/support/privacy">Firebase
-          Crashlytics</a> non registra l'indirizzo IP per quanto ne sappiamo)
+          in Google Analytics; Firebase
+          Crashlytics <a href="https://firebase.google.com/support/privacy">può registrare l'indirizzo IP</a> temporaneamente)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Caratteristiche del Browser, come la marca, il modello e la versione
         prefers_no_tracking_label_desc_info_we_share_crash_details: |
@@ -5810,6 +5818,13 @@ it:
       separator: ','
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
@@ -5901,7 +5916,7 @@ it:
     models:
       AssessmentSection: Sezione valutazioni
       Atlas: Atlante
-      CompleteSet: Elenco completo
+      CompleteSet: Elenco Completo
       TaxonLink: Link del Taxon
     attributes:
       assessment:

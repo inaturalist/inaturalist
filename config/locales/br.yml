@@ -484,7 +484,7 @@ br:
   download: Pellgargañ
   download_bulk_import_template_html: |
     <a href="%{url}">Pellgargañ ar patrom</a> evit implijout anezhañ er
-    <a href="/observations/import#csv_import">c'harger dre lod</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">c'harger dre lod</a>
   download_csv: Pellgargit ar furmad CSV
   download_csv_template: Pellgargit ar patrom "CSV"
   download_kml: Pellgargañ KML

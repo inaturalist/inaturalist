@@ -67,6 +67,9 @@ es:
   x_new_species:
     one: "1 Nueva especie"
     other: "%{count} Nuevas especies"
+  x_new_users:
+    one: '%{count} Nuevo usuario'
+    other: '%{count} Nuevos usuarios'
   x_species:
     one: '1 especie'
     other: '%{count} especies'
@@ -527,6 +530,7 @@ es:
   assessment_x: "%{assessment} evaluación"
   assessments: evaluaciones
   associations: Asociaciones
+  atlas_for_taxon_html: Atlas para %{taxon}
   at_time: "en %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -600,6 +604,8 @@ es:
   blue_butterfly_etc: "azul, mariposa, etc."
   blue_icons_represent_political_units: "Los íconos azules representan unidades políticas como países, estados, provincias, condados y afines, mientras que los íconos verdes representan diferentes tipos de espacios abiertos (parques, reservas). Si haces un acercamiento, podrás ver más lugares pequeños."
   body: Cuerpo
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Contenedor
   breadcrumbs: Rastros de navegación
   breadcrumbs_description: "Esto reemplazará el h1 y los llamados a acción por defecto, asegúrate de incluirlos si son importantes para este proyecto y recuerda que el ancho máximo permitido es de 950 px."
@@ -700,6 +706,7 @@ es:
   check_list: Lista de comprobación
   check_list_description: Selecciona un taxón de más alto nivel que desees mostrar en esta lista, como "Aves" para aves, o "Anfibios" para anfibios. Cuando termines, esta lista no permitirá taxones que no estén incluidos. Por ejemplo, si creas una lista de aves, no podrás agregarle ranas.
   check_list_for_individual_taxa_that: 'Listas de comprobación para una especie o grupo específico que habita aquí, ej. "Aves de %{place}".'
+  check_list_for_taxon_html: "Lista de comprobación para %{taxon}"
   check_lists_must_belong_to_a_place: |
     Las listas de verificación deben pertenecer a un lugar. Para crear una nueva lista de verificación, visita la lista de verificación de un lugar y selecciona el enlace "Crea una nueva lista de verificación".
   check_list_of_species_occuring_in: Lista de verificación de especies que ocurren en
@@ -778,6 +785,7 @@ es:
   comparing_observations_from: "Comparando las observaciones de %{user} en %{dates}"
   compiled_by_name: "Compilado por %{name}"
   complete: Completo
+  complete_set_for_taxon_in_place_html: "Lista completa para %{taxon} en %{place}"
   completed: Completado
   completed_at: Completado en
   comprehensive: completa
@@ -1092,8 +1100,10 @@ es:
   edit_account_settings_and_profile: "Edita la cuenta y perfil"
   edit_assessment: Edita evaluación
   edit_atlas: Edita atlas
+  edit_atlas_for_taxon_html: Editar atlas para %{taxon}
   edit_body: Edita el cuerpo
   edit_comment: Modifica tu comentario
+  edit_complete_set_for_taxon_in_place_html: "Editar lista completa para %{taxon} en %{place}"
   edit_custom_project_fields: Modifica campos de proyecto personalizados
   edit_field: Edita el campo
   edit_license: Modificar licencia
@@ -1284,10 +1294,15 @@ es:
     Marca para la lista de vida: %{title}
   flag_for_list_title_html: |
     Marca para la lista: %{title}
+  flag_for_message_id_html: Marcar <a href="%{url}">Mensaje %{id}</a>
   flag_for_observation_title_html: |
     Marca para la observación: %{title}
+  flag_for_photo_id_html: Marcar <a href="%{url}">Foto %{id}</a>
+  flag_for_post_title_html: |
+    Marcar la entrada: %{title}
   flag_for_project_title_html: |
     Marca para el proyecto: %{title}
+  flag_for_sound_id_html: Marcar <a href="%{url}">Sonido %{id}</a>
   flag_for_taxon_title_html: |
     Marca para el taxón: %{title}
   flag_for_user_title_html: |
@@ -1856,9 +1871,9 @@ es:
       gbif_network_description: Registros de los museos y de otras ocurrencia de los proveedores distribuidos por la Infraestructura Mundial de Información en Biodiversidad (GBIF)
       observations: Observaciones
       place_boundary: Límite del lugar
-      checklist_places: Lista de verificación de los lugares
+      checklist_places: Lugares en las listas de verificación
       checklist_places_description: Lugares donde este taxón ha sido enlistado
-      range: Intervalo
+      range: Área de distribución
   map_tooltip: Muestra la vista de mapa
   mark_as_reviewed: Marca como revisado
   mark_all_as_reviewed: Marca todas como revisadas
@@ -1871,6 +1886,9 @@ es:
   meet: Conoce
   member_of_the_inaturalist_network_html: |
     Miembro de la <a href="%{url}">Red iNaturalist</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Miembro de la red %{partial_inat_network_tag_html} iNaturalist</a>, una
+    iniciativa conjunta de %{cas_tag_html} y %{nat_geo_tag_html}.
   members: Miembros
   membership_model: Modelo de membresía
   mentioned_you_in_noun_html: "%{user} te ha mencionado en %{noun}"
@@ -1992,6 +2010,8 @@ es:
   #Short for "navigation," used to describe a navigational component on the
   #project detail page when editing custom project data
   nav: Nav
+  #Stub text to show where the nav section of the project detail page is.
+  nav_description: La navegación del proyecto se ve aquí.
   ne_lat: Lat. N.E.
   ne_lon: Long. N.E.
   near_threatened: Casi amenazado
@@ -2341,6 +2361,7 @@ es:
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
   only_curators_can_add_edit_scientific_names: Solo los curadores pueden añadir/editar nombres científicos.
   only_curators_can_access_that_page: Solo los curadores pueden acceder a esa página.
+  only_files_with_10000_rows_at_a_time: Solo archivos con menos de 10.000 filas, por favor
   only_letters_numbers: "Sólo letras y números, sin espacios, debe empezar con una letra"
   only_one_coordinate_system_per_file: |
     Sólo un sistema de coordenadas puede ser utilizado por archivo, de lo contrario se va aproducir una conversión incorrecta.
@@ -3211,6 +3232,8 @@ es:
   search_list: Lista de búsqueda
   search_observations: "Búsqueda de observaciones"
   search_projects: Busca proyectos
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: Buscar motivos
   search_results_for: Buscar resultados para
   search_results_for_query: 'Resultados de la búsqueda «%{query}»'
   search_remote: Búsqueda remota
@@ -3441,6 +3464,8 @@ es:
   submitted: Enviado
   subscribe_to_a_taxon: Suscribete a Especies
   subscribe_to_a_place: Subscribe a Lugares
+  subscribe_to_comments_on_this_flag_html: "%{tag_start}Suscribirse %{tag_end} a los comentarios de esta marca"
+  subscribe_to_comments_on_this_post_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre esta entrada"
   subscribe_to_observations_in_a_taxon: Suscribirse a todas las observaciones publicadas de una especie o grupo de organismos (por ejemplo, 'escorpiones').
   subscribe_to_observations_in_a_place: Suscribirse a todas las observaciones publicadas en este lugar. También puede agregar un filtro opcional especie o grupo de organismos (por ejemplo, 'escorpiones de Chiapas').
   subscribe_to_places_to: |
@@ -3869,11 +3894,15 @@ es:
   user1_and_user2_faved_this_observation: "%{user1} y %{user2} añadieron esta observación a sus favoritos"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, y %{x_others} añadieron esta observación a sus favoritos"
   user_added_a_comment_html: "%{user} añadió un comentario"
+  user_added_a_fave_html: "%{user} añadió un favorito"
+  user_added_a_flag_html: "%{user} añadió una marca"
+  user_added_a_project_invitation_html: "%{user} añadió una invitación al proyecto"
   user_added_a_x: "%{user} añadió una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} de %{by}"
   user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
   user_added_an_identification_html: "%{user} añadió una identificación"
   user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}" a una observación de %{owner}'
+  user_added_an_observation_field_value_html: "%{user} añadió un valor en un campo de observación"
   user_added_an_observation_html: "%{user} añadió una observación"
   user_added_an_x: "%{user} añadió un %{x}"
   user_added_an_x_to_noun_by_html: "%{user} añadió una %{x} a %{noun} de %{by}"
@@ -3903,6 +3932,8 @@ es:
     <strong>%{user}</strong> es ahora administrador/a de %{project}
   user_is_now_a_manager_for_project_html: |
     <strong>%{user}</strong> es ahora manager de %{project}
+  user_is_now_a_curator_for_project_html: |
+    <strong>%{user}</strong> es ahora un curador para %{project}
   user_muted: Usuario silenciado
   user_observed_on_on_date_in_place: |
     %{user} observó uno el %{date}, en %{place}
@@ -4130,6 +4161,8 @@ es:
   you_are_now_following_x: "Estas siguiendo a %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>tú</strong> eres ahora el administrador de %{project}
+  you_are_now_a_curator_for_project_html: |
+    <strong>tú</strong> ahora eres un curador para %{project}
   you_are_now_a_manager_for_project_html: |
     <strong>tú</strong> eres ahora un administrador de %{project}
   you_are_not_editing_any_guides_add_one_html: |
@@ -4265,6 +4298,20 @@ es:
             Si es así, por favor lee nuestra<a href="%{url}">guía para profesores</a> para sugerencias en la utilización de %{site_name} con estudiantes.
     donate:
       donate_short_desc: "¡Haz una donación ahora para mostrar tu apoyo!"
+      donate_desc_html: |
+        <p class="lead">
+        <strong>iNaturalist es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de ella!</strong>
+        </p>
+        <p class="lead">
+        Si crees en la fuerza de esta comunidad global de amantes de la naturaleza que comparte conocimiento y genera datos de biodiversidad irremplazables, por favor considera hacer una donación única o recurrente, o conozca  <a
+        href="https://www.inaturalist.org/pages/giving">otras formas de donar</a>.
+        </p>
+        <p class="lead">
+        Tu donación ayuda a apoyar iNaturalist a medida que la comunidad crece, incluyendo la visión computerizada avanzada, la implantación de nuevas caraterísticas y los gastos de nuestros servidores y personal.
+        </p>
+        <p class="text-muted">
+        iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización 501(c)(3), sin ánimo de lucro, exenta de impuestos con sede en los Estados Unidos de América (Tax ID: 94-1156258).
+        </p>
       post_donate_social_media_text: Apoyo iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértase en un Patrocinador Mensual de Naturalista.
@@ -4598,6 +4645,8 @@ es:
           Esto cambiará los medios de establecimiento de <em>todos</em> los listados de este taxón en todos los descendientes de los lugares de 
           <a href="%{place_url}">%{place_name}</a> a <strong>"%{establishment_means}"</strong>. Solo los curadores pueden utilizar esta herramienta. Cambiar el medio de establecimiento a "introducido" tendrá aproximadamente el mismo efecto, pero no cambiará los valores existentes, solo rellenará los vacíos.
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Los títulos de la Lista de Vida no se pueden cambiar
       new:
         place_desc: |
           Rellena automáticamente esta lista con los taxones observados en este lugar.
@@ -4656,6 +4705,12 @@ es:
         horizontal: Horizontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Intervalo
+        some_queries_missing_taxa_desc: |
+          Solo se cargan los 500 taxones mas observados por consulta, si hay mas taxones representados en la consulta no aparecerán, o se mostrarán como "?" 
+          si están presentes en otras consultas. Para poder comparar óptimamente Intenta reducir tus consultas para que se muestren 500 taxones o menos.
+        taxa_not_observed_in_all_queries: Taxón no observado en todas las consultas
+        taxa_observed_in_all_queries: Taxón observado en todas las consultas
+        taxa_observed_in_only_one_query: Taxón observado en una sola consulta
         total_taxa: Total Taxones
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertical
@@ -5347,6 +5402,8 @@ es:
         percent_of_total_growth: "% del Crecimiento Total"
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Racha de Observaciones
+        observation_streaks_color_desc: |
+          El color representa el número de días en una escala logarítmica:
         observation_streaks_desc: |
           Una racha de observaciones es un período de tiempo en el que una persona registra observaciones a diario. Aquí mostramos las rachas más largas que comenzaron este año o bien estaban en progreso cuando se generaron estas estadísticas.
         sunburst_desc_html: |
@@ -5522,6 +5579,7 @@ es:
         you_must_enter_confirmation_code_in_the_form: |
           Introduce "%{confirmation_code}"  en la aplicación para eliminar tu cuenta
       edit:
+        about_third_party_tracking: Acerca de rastreo por parte de terceros
         blocking_desc_html: |
           <p>
           El bloqueo de una persona previene que te envíe mensajes, comente tus observaciones, identifique tus observaciones, e interactúe contigo en %{site_name}. También suprime sus observaciones de tus resultados de búsqueda y remueve tus observaciones de sus resultados de búsqueda. Sin embargo, no te hace invisible. Pueden encontrar tus observaciones y ver tu perfil, solamente no pueden interactuar contigo.
@@ -5555,6 +5613,9 @@ es:
         licensing_desc_html: |
           La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.
+        license_description_attribution_html: |
+          Licencia de uso de descripciones e imágenes &copy; %{year} Creative Commons, usado
+          bajo una <a href=“https://creativecommons.org/licenses/by/3.0/deed.es“>licencia de Atribución No portada</a> (¡que autoreferencia!)
         monthly_supporter: Patrocinador mensual
         monthly_supporter_desc_html: |
           Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS FIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.
@@ -5584,6 +5645,12 @@ es:
         notification_preferences_user_observations: Observaciones de personas a las que sigo
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Observaciones de taxones o de lugares a los que estoy suscrito
+        opt_in_to_map_tile_test: Probar el experimento de mosaicos sobre el mapa
+        opt_in_to_map_tile_test_description: |
+          Al aceptar este experimento, verá los mapas de distribución en forma de mosaico al alejarse. Estas cuadrículas son menos exigentes en nuestros servidores, deberían ser más rápidos para renderizarse a medida que crece iNaturalist y mostrar mejor la densidad de observaciones.
+          Esperamos que este cambio pueda ser reemplazado en todo el stio web. Nos gustaría escuchar sus
+          comentarios en el foro.
+        opt_out_of_map_tile_test: Dejar de probar el experimento de mosaicos sobre el mapa
         place_preference_changed_notice_html: |
           Se modificó la preferencia de lugar. Si cambias de opinión, siempre podrás <a href='/users/edit'>editar tus preferencias</a>.
         project_addition_preferences:
@@ -5595,6 +5662,45 @@ es:
         prefers_coordinate_interpolation_protection_desc: |
           Cuando configuras la geoprivacidad de una observación como "oculto" o "Privado" se aplicará la misma geoprivacidad a todas las 
           observaciones del mismo día para evitar sacar conclusiones de coordenadas mediante observaciones que se hicieron alrededor del mismo tiempo.
+        prefers_no_tracking_label: No recopilar datos de estabilidad ni de uso usando servicios de terceros
+        prefers_no_tracking_label_desc_we_use: |
+          Utilizamos varios servicios de terceros para registrar la estabilidad,
+          diagnosticar errores y problemas en nuestro software. Estas terceras
+          partes incluyen a
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Crashlytics Firebase</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          La información que podríamos compartir con terceras partes incluyen
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          Direcciones IP (que pueden ser usadas para derivar ubicación en resolución a nivel de ciudad, y para rastrearle a través de diferentes sitios web y servicios; ten en cuenta que hemos habilitado la
+          <a href="https://support.google.com/analytics/answer/2763052">anonimización de IP</a>
+          en Google Analytics; Crashlytics Firebase <a href=“<a href=“https://firebase.google.com/support/privacy”> pueden almacenar direcciones IP</a> temporalmente)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Detalles del navegador, como marca, modelo y versión
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Detalles sobre fallos, como exactamente qué línea de código causó un error
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Detalles del dispositivo, como marca y modelo de un teléfono móvil
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Estos servicios de terceros proporcionan un enorme valor para
+          nosotros</strong> manteniendo la estabilidad y usabilidad de iNaturalist
+          con nuestro personal relativamente pequeño. En los dispositivos móviles, casi no hay
+          otra forma en que podamos ver los problemas que están ocurriendo, ya que
+          el software se está ejecutando en dispositivos que no controlamos. A veces
+          ni siquiera somos conscientes de que estos problemas ocurren hasta que los vemos en los
+          datos que estos servicios proporcionan. <strong>Al compartir esta información, usted
+          nos está ayudando a servirle a usted y a toda la comunidad iNaturalist.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Tenga en cuenta que esta opción solo se aplica a los datos analíticos y de errores que
+          estamos enviando explícitamente a estas empresas. Todos los servidores de iNaturalist son
+          proporcionados y alojados por Microsoft, todas las imágenes de iNaturalist están alojadas por
+          Amazon, y casi todos los mapas de iNaturalist son servidos por Google, lo que significa
+          cada vez que veas una observación en iNaturalist, estás
+          conectándote a los servicios proporcionados por estas empresas y exponiendo tu
+          dirección IP a ellas, como mínimo (en la aplicación de iPhone usamos
+          Mapas de Apple). iNaturalist probablemente no existiría sin los servicios
+          que ofrecen estas empresas, y mientras podemos limitar la cantidad
+          y los tipos de datos que compartas con ellos mientras usamos iNat, no podemos detener
+          el flujo de datos por completo.
         project_settings_desc: |
           Recuerda, esto no le da permiso a los proyectos para acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso particular.
         same_day_geoprivacy_protection: Protección de geoprivacidad del mismo día
@@ -5906,6 +6012,13 @@ es:
       separator: ','
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'

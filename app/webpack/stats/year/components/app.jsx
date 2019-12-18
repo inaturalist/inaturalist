@@ -1,4 +1,5 @@
 /* global DEFAULT_SITE_ID */
+// I18n.t( "time.formats.long" )
 
 import React from "react";
 import PropTypes from "prop-types";
@@ -13,6 +14,9 @@ import Identifications from "./identifications";
 import Taxa from "./taxa";
 import Publications from "./publications";
 import Growth from "./growth";
+import Sites from "./sites";
+import Donate from "./donate";
+import Donor from "./donor";
 import Translators from "./translators";
 
 const App = ( {
@@ -20,8 +24,10 @@ const App = ( {
   user,
   currentUser,
   site,
+  sites,
   data,
-  rootTaxonID
+  rootTaxonID,
+  updatedAt
 } ) => {
   let body = "todo";
   const inatUser = user ? new inatjs.User( user ) : null;
@@ -78,18 +84,21 @@ const App = ( {
             site={site && site.id !== DEFAULT_SITE_ID ? site : null}
           />
         ) }
-        { user && currentUser && user.id === currentUser.id ? (
-          <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
-        ) : null }
         { data.publications && (
           <Publications data={data.publications} year={year} />
         ) }
-        { data.translators && (
-          <Translators
-            data={data.translators}
-            siteName={site && site.id !== DEFAULT_SITE_ID ? site.name : null}
-          />
+        { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
+        { !user && ( !site || site.id === DEFAULT_SITE_ID ) && <Donate year={year} /> }
+        { updatedAt && (
+          <p className="updated-at text-center text-muted">
+            { I18n.t( "views.stats.year.stats_generated_datetime", {
+              datetime: I18n.localize( "time.formats.long", updatedAt )
+            } ) }
+          </p>
         ) }
+        { user && currentUser && user.id === currentUser.id ? (
+          <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
+        ) : null }
         <div id="sharing">
           <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
           <center>
@@ -145,7 +154,7 @@ const App = ( {
   ) !== null;
   return (
     <div id="YearStats">
-      <div className="banner">
+      <div className={`banner ${user ? "for-user" : ""}`}>
         <div className="montage">
           <div className="photos">
             { _.map( montageObservations, ( o, i ) => (
@@ -195,6 +204,9 @@ const App = ( {
       <Grid fluid={isTouchDevice}>
         <Row>
           <Col xs={12}>
+            { user && user.display_donor_since && (
+              <center><Donor year={year} user={user} /></center>
+            ) }
             <h1>
               {
                 I18n.t( "year_in_review", {
@@ -208,39 +220,38 @@ const App = ( {
           <Col xs={12}>
             { body }
             <div id="view-stats-buttons">
-              { !currentUser || !user || ( user.id !== currentUser.id ) ? (
+              { ( !currentUser || !user || ( user.id !== currentUser.id ) ) && (
                 <div>
                   <a href={`/stats/${year}/you`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-pie-chart" />
                     { " " }
                     { I18n.t( "view_your_year_stats", { year } ) }
                   </a>
+                  { site && site.id !== DEFAULT_SITE_ID && (
+                    <div>
+                      <a href={`/stats/${year}`} className="btn btn-primary btn-bordered btn-lg">
+                        <i className="fa fa-bar-chart-o" />
+                        { " " }
+                        { I18n.t( "view_year_stats_for_site", {
+                          year,
+                          site: "iNaturalist",
+                          vow_or_con: "i"
+                        } ) }
+                      </a>
+                    </div>
+                  ) }
                 </div>
-              ) : null }
-              { user ? (
+              ) }
+              { user && (
                 <div>
                   <a href={`/stats/${year}`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-bar-chart-o" />
                     { " " }
-                    { I18n.t( "view_year_stats_for_site", { year, site: site.name } ) }
-                  </a>
-                </div>
-              ) : null }
-              { (
-                !site || site.id === 1 || (
-                  user && ( user.site_id === null || user.site_id === 1 )
-                )
-              ) && (
-                <div className="support">
-                  <a href="/donate?utm_content=year-in-review-2018" className="btn btn-default btn-bordered btn-donate">
-                    <i className="fa fa-heart" />
-                    { " " }
-                    { I18n.t( "donate" ) }
-                  </a>
-                  <a href="https://store.inaturalist.org" className="btn btn-default btn-bordered btn-donate">
-                    <i className="fa fa-shopping-cart" />
-                    { " " }
-                    { I18n.t( "store" ) }
+                    { I18n.t( "view_year_stats_for_site", {
+                      year,
+                      site: site.name,
+                      vow_or_con: site.name[0].toLowerCase( )
+                    } ) }
                   </a>
                 </div>
               ) }
@@ -258,7 +269,9 @@ App.propTypes = {
   currentUser: PropTypes.object,
   data: PropTypes.object,
   site: PropTypes.object,
-  rootTaxonID: PropTypes.number
+  sites: PropTypes.array,
+  rootTaxonID: PropTypes.number,
+  updatedAt: PropTypes.object
 };
 
 export default App;

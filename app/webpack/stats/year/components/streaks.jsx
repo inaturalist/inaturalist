@@ -187,8 +187,6 @@ const Streaks = ( {
 };
 
 Streaks.propTypes = {
-  // site: PropTypes.object,
-  // user: PropTypes.object,
   year: PropTypes.number.isRequired,
   data: PropTypes.array.isRequired,
   hideUsers: PropTypes.bool

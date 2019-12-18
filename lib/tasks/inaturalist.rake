@@ -387,6 +387,7 @@ namespace :inaturalist do
       next if paths_to_ignore.include?( f )
       contents = IO.read( f )
       results = contents.scan(/\{\{.*?(I18n|shared).t\( ?(.)(.*?)\2.*?\}\}/i)
+      # TODO make this work for I18n.l, I18n.localize, I18n.translate
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
       end
