@@ -211,6 +211,9 @@ $ribbon-midfold-width: 40px;
     height: $user-image-size + $user-image-overhang;
     position: relative;
     margin-bottom: $user-image-overhang + 40;
+    &.for-user {
+      margin-bottom: $user-image-overhang + 60;
+    }
     .UserImage {
       line-height: $user-image-size * 0.8;
       font-size: $user-image-size * 0.8;
@@ -540,6 +543,11 @@ $tip-opacity: 1;
   margin: 10px auto 3em;
   a, a:hover, a:active {
     color: white;
+  }
+  .ribbon-content {
+    max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 .ribbon:before, .ribbon:after {

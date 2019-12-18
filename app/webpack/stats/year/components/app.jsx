@@ -83,14 +83,21 @@ const App = ( {
             site={site && site.id !== DEFAULT_SITE_ID ? site : null}
           />
         ) }
-        { user && currentUser && user.id === currentUser.id ? (
-          <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
-        ) : null }
         { data.publications && (
           <Publications data={data.publications} year={year} />
         ) }
         { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
         { !user && <Donate year={year} /> }
+        { updatedAt && (
+          <p className="updated-at text-center text-muted">
+            { I18n.t( "views.stats.year.stats_generated_datetime", {
+              datetime: I18n.localize( "time.formats.long", updatedAt )
+            } ) }
+          </p>
+        ) }
+        { user && currentUser && user.id === currentUser.id ? (
+          <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
+        ) : null }
         <div id="sharing">
           <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
           <center>
@@ -146,7 +153,7 @@ const App = ( {
   ) !== null;
   return (
     <div id="YearStats">
-      <div className="banner">
+      <div className={`banner ${user ? "for-user" : ""}`}>
         <div className="montage">
           <div className="photos">
             { _.map( montageObservations, ( o, i ) => (
@@ -212,13 +219,6 @@ const App = ( {
         <Row>
           <Col xs={12}>
             { body }
-            { updatedAt && (
-              <p className="updated-at text-center text-muted">
-                { I18n.t( "views.stats.year.stats_generated_datetime", {
-                  datetime: I18n.localize( "time.formats.long", updatedAt )
-                } ) }
-              </p>
-            ) }
             <div id="view-stats-buttons">
               { !currentUser || !user || ( user.id !== currentUser.id ) ? (
                 <div>
