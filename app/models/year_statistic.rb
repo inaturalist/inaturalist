@@ -59,7 +59,8 @@ class YearStatistic < ActiveRecord::Base
       growth: {
         observations: observations_histogram_by_created_month( options ),
         users: users_histogram_by_created_month( options )
-      }
+      },
+      translators: translators( year, options )
     }
     if options[:site].blank?
       json[:publications] = publications( year, options )
@@ -899,6 +900,79 @@ class YearStatistic < ActiveRecord::Base
       end
     end.compact
     top_streaks
+  end
+
+  def self.translators( year, options = {} )
+    return unless CONFIG.crowdin && CONFIG.crowdin.projects
+    language_locales = {}
+    locale_to_ci_code = {}
+    data = {}
+    staff_usernames = User.admins.pluck(:login) + %w(alexinat)
+    CONFIG.crowdin.projects.to_h.keys.each do |project_name|
+      project = CONFIG.crowdin.projects.send(project_name)
+      info_r = RestClient.get( "https://api.crowdin.com/api/project/#{project.identifier}/info?key=#{project.key}&json" )
+      info_j = JSON.parse( info_r )
+      translated_locales = I18n.t( "locales" ).keys.map(&:to_s)
+      languages_by_code = {}
+      info_j["languages"].each do |lang|
+        languages_by_name[lang[:name]] = lang
+        if translated_locales.include?( lang["code"] )
+          language_locales[lang["name"]] ||= lang["code"]
+          locale_to_ci_code[lang["code"]] = lang["code"]
+        elsif ( two_letter = lang["code"].split( "-" ) ) && translated_locales.include?( two_letter )
+          language_locales[lang["name"]] ||= two_letter
+          locale_to_ci_code[two_letter] = lang["code"]
+        else
+          language_locales[lang["name"]] ||= "other"
+          locale_to_ci_code[lang["code"]] ||= lang["code"]
+        end
+      end
+      export_params = {
+        key: project.key,
+        json: true,
+        format: "csv",
+        date_from: "2019-01-01+00:00",
+        date_to: "2019-12-31+23:00"
+      }
+      if options[:site] && options[:site].locale
+        export_params[:language] = locale_to_ci_code[options[:site].locale]
+      end
+      export_r = RestClient.post(
+        "https://api.crowdin.com/api/project/#{project.identifier}/reports/top-members/export",
+        export_params
+      )
+      export_j = JSON.parse( export_r )
+      if export_j["success"]
+        report_r = RestClient.get(
+          "https://api.crowdin.com/api/project/#{project.identifier}/reports/top-members/download?key=#{project.key}&hash=#{export_j["hash"]}"
+        )
+        CSV.parse( report_r, headers: true ).each do |row|
+          next unless row["Languages"]
+          next if staff_usernames.include?( row["Name"] )
+          username = row["Name"][/\((.+)\)/, 1]
+          next if staff_usernames.include?( username ) 
+          username ||= row["Name"]
+          data[username] ||= {}
+          data[username][:name] ||= row["Name"].gsub( /\(.+\)/, "" ).strip
+          data[username]["words_#{project_name}"] = row["Translated (Words)"].to_i
+          data[username]["approved_#{project_name}"] = row["Approved (Words)"].to_i
+          data[username][:locales] = (
+            ( data[username][:locales] || [] ) +
+              row["Languages"].split( ";" ).map{|l| language_locales[l.strip]}
+          ).uniq.compact.sort
+          # data[username][:locales] ||= {}
+          # data[username][:locales] = data[username][:locales].merge(
+          #   row["Languages"].split( ";" ).inject( {} ) {|lang, memo|
+          #     l = languages_by_name[lang]
+          #     memo[l[:code]] ||= {}
+          #     memo[l[:code]]
+          #     memo
+          #   }
+          # )
+        end
+      end
+    end
+    data
   end
 
   private

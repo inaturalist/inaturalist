@@ -13,6 +13,7 @@ import Identifications from "./identifications";
 import Taxa from "./taxa";
 import Publications from "./publications";
 import Growth from "./growth";
+import Translators from "./translators";
 
 const App = ( {
   year,
@@ -82,6 +83,9 @@ const App = ( {
         ) : null }
         { data.publications && (
           <Publications data={data.publications} year={year} />
+        ) }
+        { data.translators && (
+          <Translators data={data.translators} siteName={site && site.name} />
         ) }
         <div id="sharing">
           <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
@@ -184,7 +188,6 @@ const App = ( {
             </div>
           </div>
         ) }
-
       </div>
       <Grid fluid={isTouchDevice}>
         <Row>

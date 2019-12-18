@@ -354,6 +354,7 @@ namespace :inaturalist do
       controlled_term_labels
       controlled_term_definitions
       establishment
+      locales
     ).each do |key|
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
     end

@@ -82,6 +82,13 @@ en:
   x_others:
     one: "%{count} other"
     other: "%{count} others"
+  x_people:
+    zero: "%{count} people"
+    one: "%{count} person"
+    few: "%{count} people"
+    many: "%{count} people"
+    other: "%{count} people"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} photo"
     other: "%{count} photos"
@@ -130,7 +137,6 @@ en:
   x_taxon_changes_added_html:
     one: "<span class='count'>%{count}</span> taxon change added"
     other: "<span class='count'>%{count}</span> taxon changes added"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
   _100_day_trends: 100 Day Trends
   _percent_ID_d: "% ID'd"
   a_community_for_naturalist: A Community for Naturalists
@@ -3400,6 +3406,8 @@ en:
   second_person_possessive_plural: "Your %{noun}"
   second_person_possessive_singular: "Your %{noun}"
   see_something_wrong_with_taxon: See something wrong with this taxon?  Let the curators know.
+  # Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   seen_it?: Seen it?
   seen_nearby: Seen Nearby
   seen_one: Seen one?
@@ -6068,6 +6076,35 @@ en:
           <strong>Click an arc to place that taxon at the center</strong> and
           its children around it, or <strong>click the center to move back up
           the hierarchy</strong>.
+        translators_title: Translators
+        translators_desc: |
+          Did you know iNaturalist has been translated into %{x_languages},
+          almost entirely by %{x_people}, some of whom don't even use iNat? Here
+          are all the amazing translators who have added translations this year,
+          along with the number of words they've translated for the
+          %{website_link_tag}website%{link_tag_end}, our
+          %{iphone_link_tag}iPhone%{link_tag_end} and
+          %{android_link_tag}Android%{link_tag_end} apps, and
+          %{seek_link_tag}Seek%{link_tag_end}. You can view
+          all people who have contributed translations,
+          including people from past years and folks from Translatewiki, in our
+          %{view_all_web_link_tag}web%{link_tag_end} and
+          %{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories.
+        translators_desc_for_site: |
+          Did you know %{site_name} has been translated almost entirely by
+          %{x_people}? Here are all the amazing translators who
+          have added translations this year, along with the number of words
+          they've translated for the
+          %{website_link_tag}website%{link_tag_end}, the iNaturalist
+          %{iphone_link_tag}iPhone%{link_tag_end} and
+          %{android_link_tag}Android%{link_tag_end} apps, and
+          %{seek_link_tag}Seek%{link_tag_end}. You can view
+          all people who have contributed translations in all languages,
+          including people from past years and folks from Translatewiki, in our
+          %{view_all_web_link_tag}web%{link_tag_end} and
+          %{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories.
+        translators_prompt: |
+          If you want to help translate, %{link_tag}learn how%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
