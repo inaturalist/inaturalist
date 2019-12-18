@@ -1,5 +1,8 @@
 class MessagesController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :doorkeeper_authorize!,
+    only: [ :index, :create, :show, :destroy, :count ],
+    if: lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, unless: lambda { authenticated_with_oauth? }
   before_filter :load_message, :only => [:show, :destroy]
   before_filter :require_owner, :only => [:show, :destroy]
   before_filter :load_box, :only => [:show, :new, :index]
@@ -12,9 +15,9 @@ class MessagesController < ApplicationController
   def index
     @messages = case @box
     when Message::SENT
-      current_user.messages.sent.order("id desc").page(params[:page])
+      current_user.messages.sent.order( "id desc" ).page( params[:page] )
     else
-      current_user.messages.inbox.order("id desc").page(params[:page])
+      current_user.messages.inbox.order( "id desc" ).page( params[:page] )
     end
     unless params[:user_id].blank?
       @search_user = User.find_by_id( params[:user_id] )
@@ -30,10 +33,22 @@ class MessagesController < ApplicationController
       @q = params[:q].to_s[0..100]
       @messages = @messages.where( "subject ILIKE ? OR body ILIKE ?", "%#{@q}%", "%#{@q}%" )
     end
-    if params[:partial]
-      render :partial => "messages"
-    else
-      render
+    respond_to do |format|
+      format.html do
+        if params[:partial]
+          render :partial => "messages"
+        else
+          render
+        end
+      end
+      format.json do
+        render json: {
+          page: @messages.current_page,
+          per_page: @messages.per_page,
+          total_entries: @messages.total_entries,
+          results: @messages
+        }
+      end
     end
   end
 
@@ -52,6 +67,17 @@ class MessagesController < ApplicationController
     @reply_to = @thread_message.from_user == current_user ? @thread_message.to_user : @thread_message.from_user
     @flaggable_message = if m = @messages.detect{|m| m.from_user && m.from_user != current_user}
       m.from_user.messages.where(:thread_id => @message.thread_id).first
+    end
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          thread_message_id: @thread_message.id,
+          reply_to_user: @reply_to.as_indexed_json,
+          flaggable_message_id: @flaggable_message.try(:id),
+          results: @messages.as_json
+        }
+      end
     end
   end
 
@@ -82,12 +108,15 @@ class MessagesController < ApplicationController
     @message = current_user.messages.build(params[:message])
     @message.user = current_user
     @message.from_user = current_user
-    @message.save unless params[:preview]
+    unless params[:preview]
+      if @message.save
+        @message.send_message
+      end
+    end
 
     respond_to do |format|
       format.html do
         if @message.valid?
-          @message.send_message
           redirect_to @message
         else
           render :new
@@ -95,19 +124,16 @@ class MessagesController < ApplicationController
       end
       format.json do
         if params[:preview]
-          @message.html = view_context.formatted_user_text(@message.body)
+          @message.html = view_context.formatted_user_text( @message.body )
+          render json: @message.to_json( methods: [:html] )
+        elsif @message.valid?
+          render json: @message.as_json
+        else
+          render json: { errors: @message.errors }
         end
-        render :json => @message.to_json(:methods => [:html])
       end
     end
   end
-
-  # def edit
-  # end
-
-  # def update
-  #   @message.update_attributes
-  # end
 
   def destroy
     Message.where("user_id = ? AND thread_id = ?", current_user.id, @message.thread_id).each(&:destroy)
@@ -117,6 +143,7 @@ class MessagesController < ApplicationController
         flash[:notice] = msg
         redirect_to messages_url
       end
+      format.json { head :no_content }
     end
   end
 
