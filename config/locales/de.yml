@@ -67,6 +67,9 @@ de:
   x_new_species:
     one: "Eine neue Art"
     other: "%{count} neue Arten"
+  x_new_users:
+    one: '%{count} neuer Benutzer'
+    other: '%{count} Neueste Benutzer'
   x_species:
     one: 'Eine Art'
     other: '%{count} Arten'
@@ -430,6 +433,7 @@ de:
   announcements: Ankündigungen
   any: alle
   any_: Beliebige
+  anyone: Alle
   apply_to_selected: Für Ausgewählte übernehmen
   apply_captive_cultivated: "In Gefangenschaft/kultiviert anwenden"
   apply_fields: Felder übernehmen
@@ -998,8 +1002,8 @@ de:
   double_click_to_finish: (doppelklicken um abzuschließen)
   download: Herunterladen
   download_bulk_import_template_html: |
-    <a href="%{url}">Vorlage herunterladen</a> zur Nutzung im 
-    <a href="/observations/import#csv_import">Bulk Uploader</a>
+    <a href="%{url}">Vorlage herunterladen</a> zur Nutzung im
+    <a href="/observations/import?project_id=%{project_id}#csv_import">Bulk Uploader</a>
   download_csv: CSV herunterladen
   download_csv_template: CSV-Vorlage herunterladen
   download_kml: KML herunterladen
@@ -1257,6 +1261,7 @@ de:
   generate_widget: Widget generieren
   generate_your_stats: Deine Statistiken erzeugen
   generating_mobile_archive: "Mobiles Archiv wird erstellt"
+  Genus: Gattung
   geoprivacy: Geo-Privatsphäre
   geoprivacy_is_obscured_desc: Der Beobachter hat beschlossen, die Koordinaten zu verschleiern.
   geoprivacy_is_private_desc: Der Beobachter hat beschlossen, die Koordinaten zu verbergen.
@@ -1919,6 +1924,7 @@ de:
   no_results_for: 'Keine Ergebnisse für'
   no_results_matching: Keine passenden Ergebnisse für
   no_sections_available: Keine Auswahl verfügbar
+  no_sections_have_been_added_to_this_assessments_yet: Es wurden noch keine Abschnitte zu diesen Bewertungen hinzugefügt.
   no_species_have_been_listed: Für diesen Ort sind noch keine Arten gelistet!
   no_species_observed: Keine Arten beobachtet
   no_species_on_this_list: Noch keine Arten auf dieser Liste!
@@ -2061,7 +2067,7 @@ de:
   offensive_inappropriate: beleidigend / unangemessen
   official_blog: Offizieller Blog
   offline_access_enabled: Offlinezugriff ermöglichen
-  old_observation_form: Alte Beobachtungen von (überhohlt)
+  old_observation_form: Altest Beobachtungsformular (veraltet)
   ok: "OK"
   on_: "am"
   on_date: "am %{date}"
@@ -2128,7 +2134,7 @@ de:
   or_if_you_dont_want_email: "Oder wenn Sie gar keine Emails möchten ..."
   or_upload: Oder hochladen
   orange: Orange
-  order: Oder
+  order: Ordnung
   order_by: Sortieren nach
   organism_is_wild: Organismus ist wild
   organisms: Organismen
@@ -2660,6 +2666,7 @@ de:
     other: Projektadministratoren
   project_aggregator_filter_error: |
     Projekte können keine automatische Beobachtungsaggregation ermöglichen, es sei denn, das Projekt ist mit einem Ort moderater Größe verbunden oder es sind nur Beobachtungen von bestimmten Taxa oder Taxa auf einer Liste erlaubt
+  project_assessments: Projektbewertungen
   project_cover: Projektcover
   project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_id: Projektkurator-Kennung
@@ -3175,6 +3182,7 @@ de:
   taxon_change_must_be_committed_to_update_records: Die Taxon-Änderung muss eingereicht werden, um Aufzeichnungen zu aktualisieren.
   taxon_deleted: Taxon gelöscht.
   taxon_doesnt_have_a_range: Das Taxon hat keinen Bereich
+  taxon_drop: Taxon-Löschung
   taxon_id: Taxonkennung
   taxon_ids: Taxonkennungen
   taxon_map:
@@ -3195,6 +3203,7 @@ de:
   taxon_schemes: "Taxonschemen"
   taxon_search: Taxon-Suche
   taxon_search_results_for: Taxon-Suchergebnisse für
+  taxon_split: Taxon-Aufteilung
   taxon_swap: Taxon-Tausch
   taxon_name_was_deleted: Der Taxonname wurde gelöscht.
   taxon_name_was_successfully_updated: Taxon-Name wurde erfolgreich aktualisiert.
@@ -3449,6 +3458,7 @@ de:
   view_all_n: "Alle %{n} anzeigen"
   view_all_observations: Alle Beobachtungen ansehen
   view_all_photocount_photos: "Alle %{photo_count} Bilder anzeigen"
+  view_assessment: Bewertung ansehen
   view_contributions: Beiträge anzeigen
   view_details: Details anzeigen
   view_field_options: Feldoptionen anzeigen
@@ -3632,6 +3642,7 @@ de:
   you_arent_a_member_of_that_project: Du bist kein Mitglied dieses Projektes!
   you_arent_following_that_person: "Du folgst dieser Person nicht."
   you_can_accept_invitations: Du kannst die Einladung hier annehmen
+  you_can_choose_observations_associated: Du kannst Beobachtungen auswählen, die mit diesem Journalbeitrag assoziiert werden sollen.
   you_can_edit_this_default_check_list_because: |
     Du kannst diese Standard-Checkliste ändern, weil Du Admin bist, aber eigentlich sollte dafür keine Notwendigkeit bestehen.
   you_can_only_block_three_users: Du kannst nur drei Benutzer sperren
@@ -3857,6 +3868,9 @@ de:
         i_observed_a_species: "Ich habe eine Art beobachtet, warum wird die in meiner Lebensliste nicht angezeigt?"
         while_the_life_list_is_automatically_populated: |
           Während Beobachtungen automatisch in der Lebensliste landen, wird die Art nicht hinzugefügt, falls %{site_name} den von Dir benutzten Namen nicht kennt. Wir empfehlen Dir, andere Namen auszuprobieren, die wir vielleicht erkennen.
+    lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Titel der Lebenslisten können nicht geändert werden
     messages:
       from: Von
       subject_body: Thema / Körper
@@ -3949,6 +3963,8 @@ de:
           <p class="ui">
             <strong>The algorithm:</strong> for all identified taxa and the taxa that contain them (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score each as the ratio between the number of cumulative IDs for that taxon over the sum of the cumulative IDs, the number of more conservative IDs added after the first ID of that taxon, and the number of IDs that are completely different (i.e. IDs of taxa that do not contain the taxon being scored). For the identified taxa that have a score over 2/3 and at least 2 identifications, choose the lowest ranked taxon.
           </p>
+        data_quality_assessment_desc_html: |
+          Die Bewertung der Datenqualität ist eine Beurteilung der Genauigkeit einer Beobachtung. Beobachtungen mit Forschungsqualität können von Wissenschaftlern für die Forschung genutzt werden. Gib deine Stimme unten ab:
         identification_count_desc: '# von Bestimmungen einer individuellen Art'
         flagged_photos_desc_html: |
           Einige dieser Bilder wurden wegen unangemessener Inhalte oder Urheberrechtsverletzungen gemeldet. Für Details siehe %{links}
@@ -4000,6 +4016,8 @@ de:
           Das System wird entscheiden, dass die Beobachtung nicht wild/naturbelassen ist, wenn es mindestens 10 andere Beobachtungen einer Gattung oder niedriger in kleinsten gleichwertigen Ort (Bezirk, Staat, Land) gibt, welcher diese Beobachtung enthält und 80% oder mehr dieser Beobachtungen als nicht wild/naturbelassen markiert wurden.
           </li>
           </ul>
+        observer_does_not_allow_observation_fields: Beobachter erlaubt keine weiteren Beobachtungsfelder
+        observer_only_allows_curators_to_add_fields: Beobachter erlaubt es nur Kuratoren Beobachtungsfelder hinzuzufügen
     observation_fields:
       about_editing_observation_fields_desc_html: |
         <p class='ui'>Du kannst dieses Beobachtungsfeld bearbeiten, weil du es erstellt hast oder weil du ein Webseiten-Kurator bist. Wenn du ein Webseiten-Kurator bist, folge bitte diesen Richtlinien </p>.
@@ -4235,6 +4253,8 @@ de:
           Du kannst auch die gesamte Artenakkumulation anzeigen oder den Schieberegler in der Zeit zurück bewegen, um andere neu beobachtete Arten zu sehen. Dieses Diagramm zeigt Arten aus verifizierbaren Beobachtungen in dem Monat, in dem sie auf %{site_name} (nicht der Monat, in dem sie beobachtet wurden) hochgeladen wurden. Es werden nicht über- oder untergeordnete Taxa inkludiert, so dass eine Beobachtung, die als Säugetier bestimmt wurde, nicht gezählt wird, und eine Beobachtung von <i>Canis lupus</i> ssp. <i>arctos</i> wird einfach als <i>Canis lupus</i> gezählt.
         percent_growth_in_year: "% Wachstum in %{year}"
         percent_of_total_growth: "% des Gesamtwachstums"
+        observation_streaks_color_desc: |
+          Die Farbe repräsentiert die Anzahl der Tage auf einer logarithmischen Skala:
     taxa:
       show:
         about_names_desc: |
@@ -4566,6 +4586,13 @@ de:
       separator: .
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
@@ -4652,7 +4679,9 @@ de:
         body: 'Es gab Probleme mit den folgenden Feldern:'
   activerecord:
     models:
+      AssessmentSection: Bewertungsabschnitt
       Atlas: Atlas
+      TaxonLink: Taxon-Link
     attributes:
       assessment:
         description: Beschreibung
@@ -4835,7 +4864,109 @@ de:
         f: Weiblich
         "n": Neutrum
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        observation: "@n"
+        application: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@f"
+        #Default gender for nouns that aren't listed here
+        default: "@m"
   wild: wild
   will_paginate:
     next_label: "Nächste &#8594;"

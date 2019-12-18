@@ -67,6 +67,9 @@ da:
   x_new_species:
     one: "%{count} ny art"
     other: "%{count} nye arter"
+  x_new_users:
+    one: '%{count} ny bruger'
+    other: '%{count} nye brugere'
   x_species:
     one: '%{count} art'
     other: '%{count} arter'
@@ -1078,7 +1081,7 @@ da:
   download: Download
   download_bulk_import_template_html: |
     <a href="%{url}">Download skabelon</a> til brug i
-    <a href="/observations/import#csv_import">multiuploader</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">multiuploader</a>
   download_csv: Download CSV
   download_csv_template: Download CSV skabelon
   download_kml: Download KML
@@ -4688,6 +4691,8 @@ da:
           kuratorer kan bruge dette værktøj. Ændring af oprindelse til
           "indført" vil have omtrent samme effekt, men den vil ikke ændre eksisterende værdier, blot udfylde de tomme værdier.
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Livslistetitler kan ikke ændres
       new:
         place_desc: |
           Fyld automatisk denne liste med taksa observeret på dette sted.
@@ -5001,6 +5006,8 @@ da:
           side kurator. Hvis du mener, at dette er en fejl, så vær venlig at
           <a href="mailto:%{help_email}" class="contact"> kontakt os </a>.
           <a href="/observations/%{observation_id}/markeringer"> Administrer markeringer </a>
+        observer_does_not_allow_observation_fields: Observatør tillader ikke yderligere observationsfelter
+        observer_only_allows_curators_to_add_fields: Observatør tillader kun webstedskuratorer at tilføje observationsfelter
       user_stats:
         user_stats_desc: |
           Brugerstatistikker er begrænset til en maksimum på top 500 af antal observationer og arter, så den samlede liste er normalt lidt mere end
@@ -5588,6 +5595,8 @@ da:
           Laos sidste år, men 20 i år, ville det være 100% vækst, og hvis der
           var 0 sidste år og 1 i år er det uendelig% vækst.
         growth_by_country_title: Vækst efter land
+        growth_desc: |
+          Observations- og Taksadiagrammerne kan inkludere data, som er synlige på %{site_name}, og er bidraget af personer uden tilknytning til %{site_name}, mens Brugerdiagrammerne kun viser de datoer, hvor brugere aktuelt tilknyttet %{site_name} blev medlemmer af iNaturalist.
         growth_in_year_obs: "Vækst i %{year} (obs)"
         growth_title: Vækst
         new_species_desc: |
@@ -5605,8 +5614,16 @@ da:
         obs_in_year: Obs i %{year}
         percent_growth_in_year: "% Vækst i %{year}"
         percent_of_total_growth: "% af samlet vækst"
+        publications_desc_html: |
+          Klik på blomsterdiagrammerne for mere information om betydningen af numrene og farverne. Påvirkningsdata og diagrammer med tilladelse fra <a href="https://www.altmetric.com">Altmetric</a>. Information om databrug med tilladelse fra vores venner ved <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          <br/>
+          <a href="%{url}">Se alle %{numStudies} studier</a>
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observationsstræk
+        observation_streaks_color_desc: |
+          Farve repræsenterer antallet af dage i en logaritmisk skala:
+        observation_streaks_desc: |
+          Et observationsstræk er en periode, hvori nogen har været ude at registrerer nye observationer hver eneste dag. Her vises de længste stræk, som startede i år eller stadig var undervejs, da disse statistikker blev udarbejdet.
         sunburst_desc_html: |
           Observeret taksa arrangeret som hierarkisk "solstråle" diagram. Basen
           af hierarkiet er i centrum, begyndende med "liv" og slutter
@@ -6288,6 +6305,13 @@ da:
       separator: .
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'

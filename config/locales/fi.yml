@@ -818,7 +818,7 @@ fi:
   connected_accounts: Yhdistetyt tilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
   connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
-  connecting_to_facebook: "Otetaan yhteyttä Facebookiin..."
+  connecting_to_facebook: "Yhdistetään Facebookiin..."
   connecting_your_inat_account_to_accounts_other_sites: "Yhdistämällä %{site_name}-tilisi muiden sivustojen tileihin sallii sinun kirjautua %{site_name}iin käyttämällä pääsytietojasi näiltä sivustoilta."
   conservation_status: Uhanalaisuusluokitus
   conservation_status_descriptions:
@@ -1088,8 +1088,8 @@ fi:
   double_click_to_finish: (tuplaklikkaa lopettaaksesi)
   download: Lataa
   download_bulk_import_template_html: |
-    <a href="%{url}">Lataa tallennuspohja,</a> jonka avulla voit käyttää toimintoa
-    <a href="/observations/import#csv_import">massalataus</a>
+    <a href="%{url}">Lataa tallennuspohja,</a> jonka avulla voit käyttää 
+    <a href="/observations/import?project_id=%{project_id}#csv_import">massalatausta</a>
   download_csv: Lataa CSV
   download_csv_template: Lataa CSV-malli
   download_kml: Lataa KML
@@ -1226,8 +1226,8 @@ fi:
   facebook: Facebook
   facebook_account_information: Oman Facebook-tilisi tiedot
   facebook_account_not_linked: "Käyttäjällä %{user} ei ole enää linkitettyä Facebook-tiliä, joten %{site_name}lla ei ole lupaa saada tätä kuvaa."
-  facebook_access_token_expired: "Pääsyoikeus on vanhentunut. Käyttäjän %{user} täytyy uudelleenlinkittää Facebook-tilinsä."
-  facebook_needs_the_owner_of_that_photo_to: Facebook tarvitsee kyseisen kuvan omistajan uudelleenvahvistamaan yhteyden %{site_name_short}iin.
+  facebook_access_token_expired: "Pääsyoikeus on vanhentunut. Käyttäjän %{user} täytyy linkittää Facebook-tilinsä uudelleen."
+  facebook_needs_the_owner_of_that_photo_to: Facebook haluaa että kuvan omistaja vahvistaa yhteyden %{site_name_short}iin uudelleen.
   facebook_options: Facebook-asetukset
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
@@ -1290,7 +1290,31 @@ fi:
   flag_as_spammer: Liputa spammaajaksi
   flag_as_non_spammer: Liputa ei-spammaajaksi
   flag_description: Liputa tämä sisältö jotta kuraattorit tietävät jonkin olevan vialla.
+  flag_for_check_list_title_html: |
+    Lippu lajiluettelolle: %{title}
+  flag_for_comment_id_html: Lippu <a href="%{url}">kommentille %{id}</a>
   flag_for_curation: Liputa kuraattorin tarkastusta varten
+  flag_for_guide_title_html: |
+    Lippu oppaalle: %{title}
+  flag_for_identification_id_html: Lippu <a href="%{url}">tunnistukselle %{id}</a>
+  flag_for_life_list_title_html: |
+    Lippu pinnalistalle: %{title}
+  flag_for_list_title_html: |
+    Lippu luettelolle: %{title}
+  flag_for_message_id_html: Lippu <a href="%{url}">viestille %{id}</a>
+  flag_for_observation_title_html: |
+    Lippu havainnolle: %{title}
+  flag_for_photo_id_html: Lippu <a href="%{url}">valokuvalle %{id}</a>
+  flag_for_post_title_html: |
+    Lippu viestille: %{title}
+  flag_for_project_title_html: |
+    Lippu projektille: %{title}
+  flag_for_guide_section_id_html: Lippu <a href="%{url}">oppaan osiolle%{id}</a>
+  flag_for_sound_id_html: Lippu <a href="%{url}">äänitteelle %{id}</a>
+  flag_for_taxon_title_html: |
+    Lippu taksonille: %{title}
+  flag_for_user_title_html: |
+    Merkitse tarkistettavaksi käyttäjä: %{title}
   flag_it!: Liputa!
   flag_marked_as_resolved_html: '<span class="meta">Lippu merkitty</span> <strong>ratkaistuksi.</strong>'
   #Label for the object that was flagged, e.g. a table header
@@ -1298,6 +1322,7 @@ fi:
   flag_reason: "&ldquo;Liputan tämän: %{record}, koska"
   flag_resolution: Resoluutio
   flag_saved: Lippu tallennettu
+  flag_saved_thanks_html: Lippu tallennettu. Kiitos! <a href="%{url}" class="readmore">Katso lippua</a>
   flag_this_observation: Liputa tämä havainto.
   flag_this_photo: Liputa tämä kuva
   flag_this_sound: Liputa tämä ääni
@@ -1306,6 +1331,8 @@ fi:
   flagged_for_curation: Liputettu kuraattorin tarkastusta varten
   flagged_taxon: Liputettu taksoni
   flagged_thing_explanation: "Käyttäjät ovat liputtaneet tämän: %{thing}, koska"
+  flagging_desc: |
+    Liputus merkitsee havainnon niin että kuraattorit voivat tarkistaa sen. Ole hyvä äläkä liputa ongelmia, jotka voisit ratkaista tunnistuksilla, laatuarviolla tai ottamalla yhteyttä havainnon tekijään.
   flagger: Liputtaja
   flags: Liput
   flags_with_count: (%{count}) lippua
@@ -1400,6 +1427,7 @@ fi:
   guide_was_successfully_published: Oppaan julkaisu onnistui.
   guide_was_successfully_updated: Oppaan päivitys onnistui.
   guidelines: Pelisäännöt
+  has_already_been_flagged_by: tämän on jo liputtanut
   has_id_supported_by_two_or_more: Kaksi tai useampi kannattaa samaa tunnistusta
   has_one_or_more_faves: On yksi tai useampi suosittelu
   has_photo: Kuvia
@@ -1470,6 +1498,8 @@ fi:
   identifications: tunnistusta
   identifications_by: "Käyttäjän %{user} tunnistukset"
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
+  computer_vision_suggestion_desc: |
+    Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
   identifiers: Tunnistajaa
   identotron: Identotron
   identotron_help: Identotron ohje
@@ -2003,6 +2033,7 @@ fi:
   new_taxon_change: Uusi taksonimuutos
   new_taxon_link: Uusi taksonilinkki
   new_taxon_name_for: Uusi taksoninimi taksonille
+  new_taxon_range: Uusi taksonin esiintymisalue
   new_taxonomic_change: Uusi taksonominen muutos (luonnos)
   new_trip: Uusi retki
   new_updates_in_the_last_24_hours_from: "Uudet päivitykset viimeisten 24 tunnin ajalta %{site_name}ista"
@@ -2938,6 +2969,7 @@ fi:
   recent_observations_by: "Tuoreet havainnot käyttäjältä %{login}"
   recently_active: Äskettäin aktiivinen
   recently_created: Äskettäin luodut
+  recently_finished: Saatu äskettäin valmiiksi
   recently_observed: Äskettäin havaitut
   recently_resolved: Äskettäin ratkaistut
   red: punainen
@@ -3190,6 +3222,7 @@ fi:
     add_media: Lisää mediatiedosto
     add_sounds: Lisää ääniä
     before_importing_sounds: ennen äänien tuontia
+    import_from_soundcloud_description: "Valitse iNaturalist-havainnoiksi muutettavat äänet SoundCloud-käyttäjätililtäsi. Täytämme päivämäärän ja kellonajan äänen metatietojen pohjalta, ja yritämme etsiä lajinimiä avainsanoista."
     import_from_sounds: Tuo äänistä
     import_sounds: Tuo ääniä
     link_your_soundcloud_account: Linkitä SoundCloud-tilisi
@@ -3242,6 +3275,7 @@ fi:
   species_search: Lajihaku
   species_taxon_name: Laji / Taksonin nimi
   species_unknown: Tuntematon laji
+  specify_the_reason_youre_flagging: Kuvaile miksi liputat tämän asian
   src: Lähde
   standard: Normaali
   start: Alkaa
@@ -3278,6 +3312,7 @@ fi:
   submitted: Lähetetty
   subscribe_to_a_taxon: Seuraa taksonia
   subscribe_to_a_place: Seuraa paikkaa
+  subscribe_to_comments_on_this_flag_html: "%{tag_start}Tilaa%{tag_end} tämän lipun kommentit"
   subscribe_to_observations_in_a_taxon: Seuraa kaikkia lajien tai eliöryhmien havaintoja (esim. 'skorpionit')
   subscribe_to_observations_in_a_place: Seuraa kaikkia tältä paikalta tallennettuja havaintoja. Voit myös lisätä valinnaisen taksonisuodattimen (esim. 'skorpionit Texasista'
   subscribe_to_places_to: |
@@ -3325,17 +3360,24 @@ fi:
   taxon_is_threatened_coordinates_hidden: Taksoni on uhanalainen, koordinaatit salattu
   taxon_is_threatened_coordinates_obscured: Taksoni on uhattu ja koordinaatit on karkeistettu
   taxonomy: Taksonomia
+  taxon_assessments_are: |
+    Taksoniarvioinnit ovat dokumentteja, joissa arvioidaan lajin nykyistä tilannetta, yleensä uhanalaisuutta. Esimerkiksi alueellinen suojeluyhdistys voisi käyttää niitä tietojen järjestämiseen ja pyytää palautetta useiden alueen uhanlaisten lajien tilanteesta.
+  taxon_change_must_be_committed_to_update_records: Tietueiden päivittämiseksi tulee tehdä taksonimuutos
   taxon_deleted: Taksoni poistettu.
   taxon_doesnt_have_a_range: Taksonilla ei ole aluetta
   taxon_drop: taksonin poisto
   taxon_id: Taksonin tunniste
   taxon_ids: Taksonin tunnisteet
   taxon_map:
+    gbif_occurrences: GBIF havainnot
+    it_may_take_google_a_while_to: Googlella saattaa kestää hetki ladata nämä tiedot, mikäli jotain GBIF:llä on.
     data_url: Data URL
     overlays: Tasot
   taxon_changes: Taksonimuutokset
   taxon_colors: Taksonivärit
   taxon_curators: Taksonikuraattorit
+  #Count of taxa covered by the Taxon Framework that have been flagged
+  taxon_framework_flagged_covered_taxa_count_html: "Liputetut taksonit, jotka tämä framework kattaa: %{count}"
   taxon_framework_notes: Taksonikehysmerkinnät
   taxon_framework_relationship: Taksonikehyssuhde
   taxon_framework_relationships: Taksonikehyssuhteet
@@ -3396,6 +3438,8 @@ fi:
   the_community_must_feel_that: |
     Yhteisön on oltava sitä mieltä että sen tekemä tunnistus on niin hyvä kuin se voi olla, perustuen havainnoista tallennettuihin tietoihin
   the_following_photos_have_been_tagged: "Seuraaviin kuviin on lisätty merkinnät:"
+  the_identotron_is_a_tool_to: |
+    Identotron on työkalu, jonka avulla voit määrittää havaintoja %{site_name} lajiluettelon tietojen avulla. Jos annat ylemmän taksonin ja paikan (esimerkiksi nisäkkäät Intiassa), %{site_name} yrittää etsiä osumia kyseisestä paikasta, toimien ikään kuin dynaamisena kenttäoppaana, joka kattaa koko planeetan. Useimmat lajiluettelot ovat työn alla. Identotron näyttää huomatuksen kaikkien kattavien lajiluetteloiden osalta, eli luetteloista, jotka kattavat <em>kaikki</em> alueen taksonit.
   the_past: menneisyys
   the_people_of_inat: "%{site_name}in käyttäjät"
   the_world: Maailma
@@ -3554,6 +3598,7 @@ fi:
     one: Käytetty kerran
     other: Käytetty %{count} kertaa
   user: Käyttäjä
+  user_added_a_flag_html: "%{user} lisäsi lipun"
   user_added_a_x: "%{user} lisäsi %{x}n"
   user_added_a_x_to_noun_by_html: "%{user} lisäsi %{x} kohteeseen %{noun}, jonka on luonut %{by}"
   user_added_a_x_to_noun_html: "%{user} lisäsi %{x}n kohteeseen %{noun}"
@@ -3682,12 +3727,12 @@ fi:
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
   we_also_support: |
-    Tuemme myös <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Kuvat -sovellusta</a>, ja <a href="http://facebook.com">Facebookia</a>
-    kuvien säilyttämisessä.
+    Kuvia voi säilyttää myös <a href="http://flickr.com">Flickrissä</a>,
+    <a href="http://photos.google.com">Google Kuvat -sovelluksessa</a>, ja <a href="http://facebook.com">Facebookissa</a>.
   we_can_only_understand_csv_in: Voimme ymmärtää CSV-tiedostoa vain seuraavassa muodossa
   we_couldnt_find_a_user: Emme löytäneet käyttäjää kyseisellä sähköpostiosoitteella.
   we_couldnt_find_a_user_with_that_activation_code: "Emme löytäneet käyttäjää tällä aktivointikoodilla. Voi olla että aktivoit jo tilisi, joten ole hyvä ja kokeile kirjautumista sisään."
+  we_had_a_problem_flagging_that_item: "Liputus epäonnistui %{flag_error}"
   we_had_trouble_saving_comment: "Meillä oli vaikeuksia tallentaa tätä kommenttia:"
   weather: Sää
   website: Verkkosivusto
@@ -3742,6 +3787,7 @@ fi:
   x_deleted: "%{x} poistettu"
   x_does_not_exist: "\"%{x}\" ei ole olemassa"
   x_flagged: "%{x} liputettu"
+  x_flagged_as_flag: "%{x} liputettu merkinnällä %{flag}"
   x_journal: "Käyttäjän %{user} päiväkirja"
   x_journal_middot: "Käyttäjän %{user} päiväkirja •"
   x_journal_new_post: "Käyttäjän %{user} päiväkirja • Uusi merkintä"
@@ -3773,6 +3819,8 @@ fi:
   you_: Sinä
   you_appear_offline_try_again: |
     Näytät olevan offline-tilassa. Yritä uudelleen, kun olet yhteydessä Internetiin.
+  youre_a_site_curator_which_means: |
+    Olet sivuston kuraattori, mikä tarkoittaa, että olet tarjoutunut vaapaehtoiseksi avustamaan datan hallinnassa ja sisällön valvonnassa. Sinun ei tarvitse käsitellä kaikkia ongelmia, mutta hienoa, jos ehdit katsastaa niistä osan, sillä arvostamme kaikkea saamaamme apua. Jos sinulla on jotain kysyttävää sisällön kuratointiin liittyen tai et halua olla enää kuraattori, ota yhteyttä osoitteeseen %{email}
   you_are_now: Olet nyt
   you_are_now_following_x: "Seuraat nyt ystävää %{friend_user}."
   you_are_not_editing_any_guides_add_one_html: |
@@ -3785,6 +3833,7 @@ fi:
     Olet lähettämässä havaintoja ilman kuvia ja taksoninimiä. Havainnot 
     ilman näitä tietoja ovat usein mahdottomia tunnistaa eivätkä ne tule olemaan 
     näkyvillä oletusarvoisesti havaintohauissa.
+  you_are_subscribed_to_comments_on_this_flag: Olet nyt tilannut kommentit tästä lipusta.
   you_arent_a_member_of_that_project: Et ole tuon projektin jäsen.
   you_arent_following_that_person: "Et seuraa tätä henkilöä."
   you_can_accept_invitations: Voit hyväksyä kutsun täällä
@@ -3800,6 +3849,8 @@ fi:
   you_dont_have_permission_to_do_that: Sinulla ei ole oikeutta tehdä sitä.
   you_dont_have_permission_to_edit_that_observation: "Sinulla ei ole oikeutta muokata tätä havaintoa."
   you_dont_have_permission_to_edit_that_project: Sinulla ei ole oikeutta muokata tätä projektia.
+  you_dont_have_permission_to_edit_that_taxon: |
+    Sinulla ei ole oikeuksia muokata tätä taksonia. Ole hyvä ja ota yhtyettä taksonin kuraattoriin tai liputa taksoni pyytääksesi muutoksia.
   you_faved_this: Merkitsit tämän suosikiksi!
   you_have_left_x_project: "Olet lähtenyt projektista %{project}"
   you_havent_linked_your_inaturalist_google_account: "Et ole vielä linkittänyt %{site_name}-tiliäsi ja Google-tiliäsi"
@@ -3809,6 +3860,7 @@ fi:
   you_must_choose_an_observation_field: Sinun täytyy valita havaintokenttä
   you_must_fill_out_the_required_fields: Sinun täytyy täyttää vaaditut kentät
   you_must_select_at_least_one_taxon: Sinun on valittava vähintään yksi taksoni
+  you_must_specify_and_confirm_a_new_password: Sinun täytyy valita ja vahvistaa uusi salasanasi.
   you_need_to_select_some_observations_first: Sinun täytyy ensin valita joitakin havaintoja.
   you_retain_full_copyright: "Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä %{site_name}ille myönnettyjä oikeuksia."
   you_retain_full_copyright_over_your_content: "Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä %{site_name}ille myönnettyjä oikeuksia."
@@ -3843,6 +3895,7 @@ fi:
   your_observations_couldnt_be_added_to_that_project: "Havaintojasi ei voitu lisätä tähän projektiin: %{errors}"
   your_projects: Omat projektit
   your_google_account: Google-tilisi
+  your_google_account_info: Google-tilisi tiedot
   your_pinned_locations: Kiinnitetyt sijainnit
   your_profile_was_successfully_updated: Profiilisi päivitettiin onnistuneesti!
   your_recent_projects: Viimeaikaiset projektisi
@@ -3867,9 +3920,36 @@ fi:
             Jos niin, lue <a href="%{url}">Opettajan oppaamme</a> saadaksesi vinkkejä %{site_name}in käyttämisessä opiskelijoiden kanssa.
     donate:
       donate_short_desc: "Lahjoita nyt näyttääksesi tukesi!"
+      donate_desc_html: |
+        <p class="lead">
+        <strong>iNaturalist on yksi maailman suurimmista luonnon monimuotoisuuden tutkimiselle omistautuneista yhteisöistä. Kiitos kun olet osa sitä!</strong>
+        </p>
+        <p class="lead">
+        Jos uskot tämän maailmanlaajuisen luonnonystävien yhteisön voimaan jakaa tietoa ja tuottaa korvaamatonta dataa monimuotoisuudesta, harkitse kertaluonteista tai toistuvaa lahjoitusta verkossa, tai katso<a
+        href="https://www.inaturalist.org/pages/giving"> muista lahjoitustavoista</a>.
+        </p>
+        <p class="lead">
+        Lahjoituksesi auttaaa tukemaan iNaturalistia yhteisön kasvaessa aina konenäön kehittämisestä ja uusien ominaisuuksien toteuttamisesta palvelinten ja henkilökunnan tukemiseen.
+        </p>
+        <p class="text-muted">
+        iNaturalist on California Academy of Scienses:n ja National Geographic Society:n yhteinen hanke. Kaikki lahjoitukset vastaanottaa California Academy of Sciences, joka on verovapaa, tuottoa tavoittelematon järjestö ("501(c)(3)") Yhdysvalloissa (Tax ID: 94-1156258).
+        </p>
       post_donate_social_media_text: Tuen iNaturalistia koska...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Ryhdy iNaturalistin kuukausittaiseksi tukijaksi
+        desc_html: |
+          <p class="lead">
+          <strong>iNaturalist on yksi maailman suurimmista luonnon monimuotoisuuden tutkimiselle omistautuneista yhteisöistä. Kiitos kun olet osa sitä!</strong>
+          </p>
+          <p class="lead">
+          Haluamme säilyttää iNaturalistin käytön maksuttomana, mutta sen ylläpito ei ole ilmaista. Jos pidät iNaturalistista, harkitse kuukausilahjoittajaksi ryhtymistä. Toistuvat lahjoitukset tarjoavat ennustettavan tulon ja auttavat takaamaan, että iNaturalist voi jatkaa infrastruktuurinsa ja henkilökunnan määrän kasvattamista. Voit myös valita, että kuukausilahjoittajan statuksesi näytetään käyttäjäprofiilissasi.
+          </p>
+          <p class="lead">
+          Vapaaehtoiset lahjoituksesi auttavat tukemaan iNaturalistia yhteisön kasvaessa aina konenäön kehittämisestä ja uusien ominaisuuksien toteuttamisesta palvelinten ja henkilökunnan tukemiseen. Jos haluat mieluummin antaa kertaluonteisen lahjoituksen, ole hyvä ja<a href="%{donate_url}">klikkaa tästä</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist on California Academy of Scienses:n ja National Geographic Society:n yhteinen hanke. Kaikki lahjoitukset vastaanottaa California Academy of Sciences, joka on verovapaa, tuottoa tavoittelematon järjestö ("501(c)(3)") Yhdysvalloissa.
+          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -3886,8 +3966,41 @@ fi:
       edit:
         add_eol_content: |
           Lisää EOL-sisältöä valittuihin taksoneihin eränä. Tämä voi kestää jonkin aikaa, joten ole kärsivällinen.
+        import_tags_from_csv_help_html: |
+          <p>
+          Lataa CSV-tiedosto, jossa on tageja tämän oppaan lajeille. CSV-tiedoston rakenteen pitää olla seuraava:
+          </p>
+          <table class="table">
+          <tbody>
+          <tr>
+          <th>Nimi</th>
+          <th>väri</th>
+          <th>Käsien määrä</th>
+          <th></th>
+          </tr>
+          <tr>
+          <td>Homo sapiens</td>
+          <td></td>
+          <td>2</td>
+          <td>kaksijalkainen</td>
+          </tr>
+          <tr>
+          <td>Vulpes vulpes</td>
+          <td>punainen|musta</td>
+          <td>0</td>
+          <td>nelijalkainen</td>
+          </tr>
+          </tbody>
+          </table>
+          <p>
+          Ensimmäinen rivi alkaa merkinnällä "Nimi", jonka jälkeen tulevat tagit/kategoriat. Seuraavat rivit alkavat taksonin nimellä, joiden jälkeen tulevat tagit. Tässä esimerkissä <i>Homo sapiens</i> saa tagit <code>kaksijalkainen</code> ja koodin <code>Käsien määrä=2</code> ja <i>Vulpes vulpes</i> saa tagin <code>nelijalkainen</code> ja koodit <code>väri=punainen</code>, <code>väri=musta</code> ja <code>käsien määrä=0</code>. Välilöntejä ei huomioida ja voit lisätä monta riviä jokaista taksonia kohden. Voit myös lisätä useita arvoja jokaiseen soluun erottelemalla ne pystyviivalla |.</p>
       mobile_downloads_tip_html: |
         Tämä opas voidaan ladata mobiilisovellukseen offline-käyttöön.
+      mobile_downloads_help_html: |
+        <p>Tämä luo ladattavan arkistoriedoston kaikesta tähän oppaaseen liittyvästä datasta ja medioista, jotta mobiilisovelluksen käyttäjät voivat tarkastella kaikkea oppaan sisältöä ilman internet-yhteyttä. Arkistotiedoston luominen vie muutaman minuutin, mutta kun tämä on aktivoitu, arkisto päivittyy aina kun tätä opasta muutetaan.</p>
+        <p class="alert status">
+        <strong>Ethän aktivoi mobiililatausta offline-tilassa, jos et todella aio käyttää tietoja.</strong> Lataus kuormittaa järjestelmäämme huomattavasti.
+        </p>
       pdf_layouts:
         grid: ruudukko
         book: kirja
@@ -3901,9 +4014,15 @@ fi:
         alphadisplay: Aakkosjärjestyksessä näyttönimittäin
     help:
       index:
+        welcome_message_html: |
+          Hei! Jos olet juusi aloittanut %{site_name}in käytön, katso <a href="%{url}">%{getting_started}</a>, joka esittelee sivuston tärkeimmät ominaisuudet. Jos sinulla on kysymysiä sivuston käytöstä. ole hyvä ja tutustu usein kysyttyihin kysymyksiin alempana. Jos kaipaat vielä neuvoja, ole hyvä ja <a href="%{feedback_url}">kirjoita kysymyksesi palauteryhmäämme</a>.
         what_is_inaturalist?: Mikä on %{site_name}?
         who_is_behind_inaturalist?: Kuka on %{site_name}in takana?
+        inaturalist_provides_a_place_to: |
+          %{site_name} tarjoaa paikan tallentaa ja järjestellä luontohavaintoja, tavata muita luontoharrastajia ja oppia maailman luonnosta. Se kannustaa monenlaisia luontoharrastajia osallistumaan, mm. vaeltajia, metsästäjiä, lintuharrastajia, sienestäjiä, puistonvartijoita, ekologeja ja kalastajia. Yhdistämällä nämä erilaiset näkemykset ja asiantuntemuksen luonnosta, %{site_name} toivoo luovansa laajaa tietoisuutta paikallisen luonnon monimuotoisuudesta ja edistävänsä paikallisen luonnon lisätutkimusta.
         who_is_behind_inaturalist: Ketkä ovat %{site_name}in takana?
+        inaturalist_was_originally_the_masters_final_html: |
+          %{site_name} oli alkujaan Nathan Agrin, Jessica Klinen ja Ken-ichi Uedan maisteriopintojen lopputyö Kalifornian yliopisto Berkeleyssa, <a href="http://www.ischool.berkeley.edu"> School of Information</a>. Katso <a href="/about">Tietoja-sivu</a> saadaksesi lisätietoja sivustoa tällä hetkellä hallinnoivista ihmisistä.
         what_can_i_do_to_help_inaturalist?: Mitä voin tehdä auttaakseni %{site_name}ia
         you_can_help_inaturalist_by_giving_us_your_feedback_html: |
           Voit auttaa %{site_name}ia antamalla meille palautettasi: liity <a href="%{feedback_url}">palauteryhmäämme</a> 
@@ -3914,7 +4033,11 @@ fi:
         how_do_i_contact_inaturalist?: Kuinka otan yhteyttä %{site_name}iin
         what_are_admins_and_curators?: Mitä ovat ylläpitäjät ja kuraattorit?
         what_is_an_observation?: Mikä on havainto?
+        an_observation_is_the_what_where_and_when_html: |
+          Havainto on luontoon liityvän löydöksen "mitä, missä, milloin". %{site_name} tarjoaa paikan tallentaa tämän tiedon yhdessä kuvien, tekstin ja avainsanojen kanssa. %{site_name} kannustaa tallentamaan kaikki luontoon liittyvät havainnot, sisältävät ne sitten tunnistetun lajin tai yksinkertaisen, kerronnallisen kuvauksen. (%{site_name}:ssa sama lisko voidaan ilmoittaa nimellä "Desert Horned Lizard" tai kuvauksella &quot;Mystery Lizard of Death Valley&quot;)
         why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Miksei %{site_name} tunnista syöttämääni nimeä?"
+        inaturalist_has_name_information_for_mammals: |
+          %{site_name} sisältää tietoa nisäkkäiden, lintujen, matelijoiden ja sammakkoeläinten nimistä ja uusia nimiä lisätään tietokantaan jatkuvasti. Jos jotakin nimeä ei tunnisteta, kokeile vaihtoehtoisia nimiä, jotka voitaisiin tunnistaa ja lisää alkuperäinen nimi avainsana- tai kuvauskenttään.
         how_can_i_get_help_identifying_what_i_saw?: Miten voin saada apua näkemäni tunnistukseen?
         what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: Mitä tarkoittaa %{site_name}in linkittäminen Flickr-tiliini?
         inaturalist_can_link_directly_to_the_flickr_photo_service: |
@@ -3926,6 +4049,8 @@ fi:
         what_are_tags?: Mitä merkinnät ovat?
         tags_are_keywords_you_can_add_to_an_html: |
           Voit lisätä avainsanoja (tageja) havaintoihin tehdäksesi niistä helpommin löydettäviä. Jos esimerkiksi hauki seurasi sinua sukellusretkellä Saimaalla, voit merkitä avainsanoiksi &quot;pelottava, hauki, sukellus, loma, saimaa&quot;.
+        photos_attached_to_observations_should_be: |
+          Havaintoihin liitettyjen kuvien tulisi olla otettu havaitusta yksilöstä havainnon ajankohtana. Jos syötät havainnon puusta, ja menet seuraavana päivänä ottamaan siitä kuvan, ole hyvä ja lisää kuvalle uusi havainto, koska se edustaa puuta toisena ajanhetkenä.
         please_do_not_upload_pictures_you_didnt_take_html: |
           <em>Älä lähetä kuvia, joita et ole ottanut itse</em>, ellet ole saanut kuvaajan suostumusta.
           Tekijänoikeuksien alaisten teosten julkaiseminen ilman tekijänoikeuksien haltijan myöntämää lisenssiä on laitonta. Lähtökohteisesti kuvaajalla on teokseensa täydet tekijänoikeudet. Jos lähetät havainnostasi kuvan, jonka otti joku muu henkilö joka antoi suostumuksensa kuvan julkaisuun, lisää kuvaajan nimi havainnon kuvaukseen.
@@ -3944,6 +4069,8 @@ fi:
         what_is_a_life_list?: Mikä on elämäluettelo?
         a_check_list_is_html: |
           Lajiluettelo on luettelo taksoneista jotka esiintyvät tietyllä paikalla. Jokaisella paikalla on oletuslajilista. Jos paikalla tehdään uusi havainto <em>ja</em> havainto nousee tutkimustasolle, havainnon laji lisätään automaattisesti paikan lajilistalle.
+        while_the_life_list_is_automatically_populated: |
+          Pinnalistalle sisällytetään tallennetut havainnot automaattisesti, mutta lajeja, joita %{site_name} ei tunnista, ei lisätä listalle. Suosittelemme kokeilemaan vaihtoehtoisia nimiä, jotka saatettaisiin tunnistaa.
     lists:
       new:
         place_desc: |
@@ -3972,13 +4099,18 @@ fi:
         score: Pisteet
         your_id_does_not_match: |
           Tunnistuksesi (<span class="bold">%{taxon_name}</span>) ei vastaa yhteisön tekemää tunnistusta
+      captive_help_html: |
+        Oliko eliö <strong>vangittu</strong> tai <strong>viljelty</strong>? Oliko se esimerkiksi <strong>puutarhassa, eläintarhassa, akvaatiossa</strong> tai jotenkin muuten paikalla <strong>vain koska ihmiset halusivat sen sinne</strong>? Kaikki havainnot elävistä asioista ovat tervetulleita, mutta me haluamme tietää milloin eliö ei ole villi tai luonnonvarainen.
       compare:
+        about_missing_taxa: Tietoja puuttuvista taksoneista
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Yhdistetty
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Vaakasuuntainen
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Väli
+        some_queries_missing_taxa_desc: |
+          Voimme näyttää kussakin kyselyssä vain 500 eniten havaittua taksonia, joten jos kyselyyn sisältyy enemmän taksoneita, ne eivät joko tule näkyville tai näkyvät kysymysmerkkinä "?", jos ne sisältyvät muihin kyselyihin. Optimaalisten vertailujen tekemiseksi yritä rajata kyselyitä tarkemmin, jotta ne sisältävät 500 taksonia tai vähemmän.
         total_taxa: Yhteensä taksoneja
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Pystysuuntainen
@@ -4012,8 +4144,15 @@ fi:
         sound_url: URL oletusäänitteelle. Huomaa että tämä toimii vain tähän palveluun lisäytyille äänitteille, mutta ei äänitteille kolmansien osapuolten palveluissa
         tag_list: Pilkulla erotettu luettelo merkinnöistä
       import:
+        coordinate_systems_help: |
+          %{site_name} hyväksyy koordinaatit useassa eri koordinaattijärjestelmässä, joten kun annat koordinaatit jossain muussa järjestelmässä kuin leveysaste/pituusaste (latitudi/longitudi), tarvitaan tieto koordinaattijärjestelmästä koordinaattien tulkitsemiseksi oikein. Ole hyvä ja varmista, että olet valinnut oikean koordinaattijärjestelmän datallesi tai sijainti voi mennä kauaksikin oikeasta paikasta. Jos koordinaatit ovat peräisin GPS-laitteelta, tarkista laitteen asetuksista sen käyttämä koordinaattijärjestelmä. Huomaa, että emme säilytä erikoiskoordinaatteja, vain niiden konversiot leveys- ja pituusasteisiin.
         date_column_format: VVVV-KK-PP TT:MM
         decimal_degrees_format: dd,dddd
+        google_photos_notice_html: |
+          Google muutti ohjelmointirajapintaansa helmikuussa 2019 siten että emme enää pääse käsiksi Googlen kautta tuotavien valokuvien koordinaatteihin, lisenssitietoihin, tageihin tai tekstihakuun. Lisäksi Google- ja iNaturalist-tilien linkitykseen vaaditaan lisäoikeuksia, ja ennen kuin voimme pyytää käyttäjiltä näitä oikeuksia on meidän verifioitava iNaturalist Googlelle. Odotamme verifikaatiota, mutta et voi tuoda kuvia Googlesta ennen kuin tämä on tehty. Jos meidät verifioidaan, voit jälleen tuoda valokuvia Googlesta, mutta ilman edellä mainittuja tietoja. Voit lukea lisää tästä osoitteessa <a
+          href="https://developers.google.com/picasa-
+          web">https://developers.google.com/picasa-web</a>. Kuvat on toistaiseksi helpointa lisätä lataamalla ne ensin Googlesta omalle tietokoneelle ja <a
+          href="/observations/upload">sieltä iNaturalistiin</a>.
       show:
         allow_curator_coordinate_access_desc_html: |
           Salli projektin kuraattorien nähdä piilotetut koordinaatit tälle havainnolle.
@@ -4048,60 +4187,62 @@ fi:
           </p>
 
           <ul>
-            <li>havainnolla <strong>on päivämäärä</strong></li>
-            <li>havainto <strong>on paikannettu</strong> (ts. sillä on koordinaatit)</li>
-            <li>havainnolla <strong>on kuvia ja ääntä</strong></li>
-            <li>havainto <strong>ei ole ihmisestä</strong></li>
+           <li>havainnolla <strong>on päivämäärä</strong></li>
+           <li>havainto <strong>on paikannettu</strong> (ts. sillä on koordinaatit)</li>
+           <li>havainnolla <strong>on kuva tai äänite</strong></li>
+           <li>havainto <strong>ei ole ihmisestä</strong></li>
           </ul>
           <p>
            \ Havainnot saavuttavat <strong>"tutkimustason"</strong> kun
           </p>
           <ul>
            \ <li>
-              %{site_name} <strong>yhteisö hyväksyy lajitason tai sitä alemman tunnistuksen</strong>, ts.
-              kun enemmän kuin 2/3 tunnistajista hyväksyy taksonin
-            </li>
+           %{site_name} <strong>yhteisö hyväksyy lajitason tai sitä alemman tunnistuksen</strong>, ts.
+           kun enemmän kuin 2/3 tunnistajista hyväksyy taksonin
+           </li>
           </ul>
           <p>
-            Havainnot palaavat <strong>"dokumentoimattomiksi"</strong> 
-            jos edellä mainitut ehdot eivät täyty tai yhteisö on samaa mieltä
+           Havainnot palaavat <strong>"epämuodollisiksi"</strong> 
+           jos edellä mainitut ehdot eivät täyty tai yhteisö on samaa mieltä että
           </p>
           <ul>
            \ <li>
-              <strong>sijainti ei näytä
-              oikealta</strong> (esim. apinat keskellä merta,
-              virtahepoja toimistorakennuksissa, jne.)
-            </li>
+           <strong>sijainti ei vaikuta
+           oikealta</strong> (esim. apinat keskellä merta,
+           virtahepoja toimistorakennuksissa, jne.)
+           </li>
            \ <li>
-              <strong>eliö ei ole luonnonvarainen</strong> (esim. vangittu eläin tai viljelykasvi)
-            </li>
-            <li>
-              havainto <strong>ei esitä todisteita eliöstä</strong>, esim. kuvia maisemista, vesistöistä,
-              kivistä yms.
-            </li>
-            <li>
-              havainto <strong>ei esitä tuoreita (~100 vuotta) todisteita
-              eliöstä</strong> (esim. fossiilit, jäljet, ulosteet ja kuolleet lehdet
-              ovat ok)
-            </li>
-            <li>
-              havainto ei enää tarvitse tunnistusta<em>ja</em> yhteisön tekemä tunniste on heimon yläpuolella
-            </li>
-            <li>
-              havainnoija hylkäsi yhteisön tekemän tunnistuksen ja yhteisön
-              tunnistuksen taksoni ei ole havainnoijan tunnistukseen liittyvän taksonin ylempi tai alempi taksoni
+           <strong>eliö ei ole luonnonvarainen</strong> (esim. vangittu eläin tai viljelykasvi)
+           </li>
+           <li>
+           havainto <strong>ei esitä todisteita eliöstä</strong>, esim. kuvia maisemista, vesistöistä,
+           kivistä yms.
+           </li>
+           <li>
+           havainto <strong>ei esitä tuoreita (~100 vuotta) todisteita
+           eliöstä</strong> (esim. fossiilit, jäljet, ulosteet ja kuolleet lehdet
+           ovat ok)
+           </li>
+           <li>
+           havainto ei enää tarvitse tunnistusta<em>ja</em> yhteisön tekemä tunniste on heimon yläpuolella
+           </li>
+           <li>
+           havainnoija hylkäsi yhteisön tekemän tunnistuksen ja yhteisön
+           tunnistuksen taksoni ei ole havainnoijan tunnistukseen liittyvän taksonin ylempi tai alempi taksoni
            \ </li>
           </ul>
           <p>
-            Ja jos se ei ollut tarpeeksi monimutkaista, on myös tilanteita, joissa järjestelmä äänestää:
+           Ja jos tämä ei ollut tarpeeksi monimutkaista, on myös tilanteita, joissa järjestelmä äänestää:
           </p>
           <ul>
-            <li>
-              Järjestelmä äänestää että havainto ei ole luonnonvarainen mikäli järjestelmässä on ainakin kymmenen muuta tunnistettua havaintoa (suku- tai alemmalta tasolta) havainnon lähiympäristöstä (pienimmällä maakunta- osavaltio- tai valtiotasolla) ja ainakin 80 % näistä havainnoista on merkitty ei-luonnonvaraiseksi.
-            </li>
+           <li>
+           Järjestelmä äänestää että havainto ei ole luonnonvarainen mikäli järjestelmässä on ainakin kymmenen muuta tunnistettua havaintoa (suku- tai alemmalta tasolta) havainnon lähiympäristöstä (pienimmällä maakunta- osavaltio- tai valtiotasolla) ja ainakin 80 % näistä havainnoista on merkitty ei-luonnonvaraiseksi.
+           </li>
           </ul>
         observation_flagged_notice_html: |
           Tämä havainto on merkitty spammiksi ja ei ole enää julkisesti näkyvillä. Näet tietueen, koska olet luonut sen itse tai koska olet sivuston kuraattori. Jos pidät merkintää virheellisenä, ole hyvä ja <a href="mailto:%{help_email}" class="contact">ota yhteyttä</a>. <a href="/observations/%{observation_id}/flags">Liputusten hallinta</a>
+        observer_does_not_allow_observation_fields: Havainnoija ei salli uusien havaintokenttien lisäämistä
+        observer_only_allows_curators_to_add_fields: Havainnoija sallii ainoastaan sivuston vastuuhenkilöiden (kuraattorien) lisäävän uusia havaintokenttiä
     observation_fields:
       about_editing_observation_fields_desc_html: |
         <p class='ui'>
@@ -4117,6 +4258,9 @@ fi:
         warning_html: |
           Ole hyvä ja kunnioita toisten käyttäjien itselleen tallentamia tietoja ja <strong>ota yhteyttä kentän alkuperäiseen luojaan ennen kenttien yhdistämistä</strong>. Tämä työkalu tuhoaa kentän, jota ollaan liittämässä ja siirtää tiedot toiseen kenttään. <strong>Toimintoa ei voi perua</strong>, joten ole tarkkaavainen.
     emailer:
+      bulk_import_error:
+        taxon_spelling_notice_html: |
+          Ole hyvä ja tarkista jokaisen tietueen oikeinkirjoitus. Jos kaikki on oikein, etsi lajia osoitteessa %{search_taxa_url}. Jos nimeä ei vielä ole %{site_name} tietokannassa, sinun täytyy lisätä se, jotta massalataus toimii. Käytä sivuon alalaidasta löytyvää tekstikenttää tuodaksesi sisään uusia nimiä, Jos nimi löytyy, mutta on kytketty useaan validiin taksoniin, yritä käyttää tarkempia tai epätarkempia nimiä, jotka täsmäävät vain yhden taksonin kanssa.
       parental_consent:
         subject: Lapsesi haluaa käyttää iNaturalistia
         content_html: |
@@ -4199,6 +4343,26 @@ fi:
       photos_missing:
         please_address: |
           Ole hyvä ja korjaa nämä ongelmat <b>seuraavien 30 päivän aikana</b>. 30 päivän jälkeen ryhdymme poistamaan rikkinäisiä valokuvia iNaturalistista. Kaikki havaintosi säilyvät tallessa. Ne uudelleenarvioidaan kun valokuvat on poistettu. Tällöin on mahdollista että jotkin tutkimustason havainnot muuttuvat epämuodollisiksi, jos niissä ei ole enää valokuvia.
+      user_parent_confirmation:
+        subject: Lapsesi iNaturalist-käyttäjätili on aktivoitu
+        content_html: |
+          <p>
+          Kiitos iNaturalist-tilin luomisesta lapsellesi. Tili on aktivoitu. Tässä on syöttämäsi tiedot, jotka meillä on tallennettuna:
+          </p>
+          <ul>
+          <li><strong>Vanhemman tai huoltajan nimi:</strong>%{parent_name}</li>
+          <li><strong>Vanhemman tai huoltajan sähköpostiosoite:</strong>%{parent_email}</li>
+          <li><strong>Lapsen nimi:</strong>%{child_name}</li>
+          <li><strong>Lapsen syntymäaika:</strong>%{child_birthday}</li>
+          <li><strong>Lapsen käyttäjätilin sähköpostiosoite:</strong>%{child_email}</li>
+          <li><strong>Lapsen käyttäjänimi:</strong>%{child_username}</li>
+          </ul>
+          <p>
+          Ole hyvä ja kirjaudu käyttäjätilille lapsesi Seek-sovelluksesta painamalla valikon iNaturalist-nappia ja valitsemalla "Kirjaudu sisään iNaturalistilla" ruudun alareunassa.
+          </p>
+          <p>
+          Tämän jälkeen lapsesi voi ilmoittaa havaintoja iNaturalist-tililleen Seek-sovelluksen kautta ja havainnot näkyvät iNaturalis.org:ssa.
+          </p>
     photos:
       inviter:
         automatically_add_to_project: Lisää automaattisesti projektiin
@@ -4219,6 +4383,9 @@ fi:
       projects_included: Sisältyvät projektit
       collection_and_umbrellas_do_not_support: |
         Koonti- ja sateenvarjoprojektien kautta ei toistaiseksi pääse käsiksi salattuihin koordinaatteihin.
+      curator_coordinate_access_desc_html: |
+        Huomaa, että <strong>projektien kuraattorit voivat lisätä minkä tahansa havainnoistasi projektiinsa,</strong>ellet ole valinnut toisin <a
+        href="/users/edit">käyttäjätilisi asetuksissa</a>. Rastita tämä valintaruutu vain jos luotat, että projektin kuraattorit saavat tarkastella piilotettuja koordinaattejasi mille tahansa sellaiselle havainnolle, joka voitaisiin lisätä tähän projektiin. Jos jätät luvan antamatta, voit silti sallia piilotettujen koordinaattien tarkastelun kuraattoreille havainto kerrallaan.
       confirm_leave:
         what_would_you_like: |
           Mitä haluaisit tehdä havainnoillasi tässä projektissa?
@@ -4240,12 +4407,31 @@ fi:
         icon_desc: "Rajataan neliöksi"
         it_looks_like_this_project_can_be_converted: |
           Näyttää siltä että tämä projekti voidaan muuntaa uudeksi <a href="%{url}">koontiprojektiksi</a>.
+        observation_aggregation_desc_html: |
+          <p class="description">
+          Havaintojen automaattinen kooonti lisää sopivat havainnot projektiisi siinä määriteltyjen sääntöjen mukaisesti. Koska usean havainnon poistaminen projektista kerralla ei ole mahdollista, varmista, että olet valinnut haluamasi paikkaa ja taksonia koskevat säännöt oikein. Muuten projektiisi voi päätyä paljon siihen sopimattomia havaintoja, jotka joudut poistemaan yksitellen manuaalisesti.
+          </p>
+          <p class="description">
+          Koonti toimii vain, jos seuraavat ehdot täyttyvät:
+          </p>
+          <ol>
+          <li class="readable description">
+          Projektillasi on vähintään yksi 'tulee olla havaittu paikassa' -sääntö pienelle tai keskisuurelle paikalle (Texasin tai Ukrainan kokoluokkaa)
+          </li>
+          <li class="readable description">
+          TAI projektillasi on vähintään yksi 'tulee olla taksonissa' -sääntö
+          </li>
+          </ol>
         project_assets_desc_html: |
           <p class="description">Projektitiedostot ovat vain projektiisi liittyviä tiedostoja. Näillä on joitakin erityissääntöjä:</p>
           <ol class="description">
           <li>Tidostoja joiden nimi loppuu .logo.jpg, logo.png, jne. käytetään projektin logona projektisivulla, projektin kuvakkeen sijasta.</li>
           <li>KML- ja KMZ-tiedostot lisätään projektisivun kartalle.</li>
           </ol>
+        project_list_desc_html: |
+          <p class="description">
+          Voit luoda kustomoidun taksoniluettelon ja liittää sen projektiisi. Tämä voi olla hyödyllistä projektiin liitettävien havaintojen rajaamiseksi listan taksoneihin, 'taksonin tulee olla projektin listalla' -säännön avulla.
+          </p>
         rules:
           captive: olla vangittu/viljelty
           georeferenced: sisältää koordinaatit
@@ -4256,6 +4442,7 @@ fi:
           in_taxon: olla taksonissa
           observed_in_place: olla havaittu paikassa
           verifiable: olla todennettavissa
+          wild: olla villi/luonnonvarainen
         start_time_desc: "Aloitusaika bioblitzillesi. Muoto: PP-KK-VVVVThh:mm:ss±hh:mm"
         submission_models:
           any: kuka tahansa
@@ -4369,6 +4556,13 @@ fi:
           </p>
         click_here_to_convert_this_project: |
           Klikkaa tästä muuntaaksesi tämän projektin kokoelmaprojektiksi.
+        no_journal_blurb_html: |
+          <p>
+          Projektin päiväkirja on työkalu kommunikointiin projektin jäsenten kanssa. Voit käyttää sitä tiedottamiseen, prioriteettien asettamiseen tai projektin tuloksista keskustelemiseen.
+          </p>
+          <p>
+          Päästäksesi alkuun, <a href="%{url}" class="readmore">luo postaus</a>
+          </p>
         make_sure_you_have_read_about_the_differences: |
           Varmista että olet lukenut <a href="%{url}" target="_blank">koontiprojektin eroista blogikirjoituksestamme (englanniksi)</a>.
         this_is_a_preview: |
@@ -4449,6 +4643,8 @@ fi:
           tai <a href="%{url}">iNaturalist Network -verkon</a> verkkosivustojen kautta
       year:
         include_usa: Sisällytä Yhdysvallat
+        growth_by_country_desc_html: |
+          Missä kasvua tapahtuu? Tämä kartta ja taulukko koettavat kuvata kasvua maittain, mutta se on mutkikasta, koska kasvu maittain voi olla hyvin epätasapainossa. Tässä on oletusasetuksena jätetty Yhdysvallat pois ja käytetty logaritmista asteikkoa muiden maiden välisten erojen korostamiseksi. Maan musta väri tarkoittaa, että sillä ei ollut merkittävää vaikutusta prosenttiosuuteen, havaintomäärät eivät kasvaneet tänä vuonna, tai havaintoja ei ollut tänä vuonna enempää kuin viime vuonna (lisätietoja saat viemällä hiiren maan kohdalle). <strong>"% kokonaiskasvusta"</strong> tarkoittaa tietyn maan osuutta maailmanlaajuisesta kasvusta. Esimerkiksi jos vuonna 2018 olisi 20 havaintoa, vuonna 2017 10 havaintoa, kasvua olisi 10 havainnon verran ja jos 5 havainnosta olisi Beninistä, Beninin osuus kokonaiskasvusta olisi 50%. <strong>"% kasvua"</strong> tarkoittaa tämänvuotisten havaintojen määrää prosentteina viime vuotisista havainnoista kyseisessä maassa. Esimerkiksi jos Laosista on 10 havaintoa viime vuodelta, mutta 20 tältä vuodelta, kasvuprosentti olisi 100%. Ja jos havaintoja ei ollut ollenkaan viime vuonna ja tänä vuonna 1, on kasvuprosentti ääretön.
         growth_by_country_title: Kasvu maittain
         growth_desc: |
           "Havainnot" ja "Taksoni" taulukko voi pitää sisällään tietoa, joka liittyy paikkaan %{site_name}, jonka tiedonkeruuseen on voinut osallistua henkilöitä, joita ei ole liitetty kyseiseen paikkaan %{site_name}, mutta "Käyttäjät" taulukko näyttää vain päivämäärät, jolloin käyttäjät, jotka on liitetty paikkaan %{site_name} ovat liittyneet iNaturalistiin.
@@ -4471,6 +4667,12 @@ fi:
           <p>
           Yritämme ratkaista näitä puutteita näyttämällä sekä yleiskieliset että tieteelliset nimet aina kun mahdollista, ja valitsemalla näytettävät yleiskieliset nimet perustuen käyttäjän valitsemaan kieleen ja maantieteelliseen paikkaan.
           </p>
+        about_conservation_status_desc: |
+          Uhanalaisuusluokitus tiivistää eliöryhmän sukupuuttoriskin.
+        about_establishment_desc: |
+          Vakiintuneisuus kuvastaa sitä, miten laji saapui nykyiselle esiintymispaikalleen. Tulokas tarkoittaa ihmisen avustuksella saapunutta ja kotoperäinen puolestaan ilman ihmisen vaikutusta saapunutta lajia. Endeeminen laji esiintyy vain tietyssä paikassa, eikä missään muualla.
+        about_taxon_curators_desc: |
+          Nämä ihmiset hallinnoivat taksonomisen puun sitä osaa, joka sisältää tämän taksonin. Jos haluat tehdä muutoksia, liputa tämä taksoni tai ota yhteyttä johonkin näistä henkilöistä.
         charts_help_seasonality: |
           Tämä kaavio näyttää taksonin havaintojen lukumäärän kuukausittain. Huomaa, että nämä ovat havaintomääriä, joihin vaikuttaa sekä se, 
           milloin taksonia voi havaita että milloin niitä havainnoidaan. Lintu voi siis vaikuttaa hyvin aktiiviselta toukokuussa, mutta tähän saattaa olla
@@ -4501,6 +4703,8 @@ fi:
         photo_chooser_modal_desc: |
           Raahaa kuvat tänne vasemmalta, tai raahaa kuvat tänne uudelleenjärjestääksesi.
         rare_desc: Harvimmin havaitut uhanalaiset taksonit
+        site_curators_disabled_wikipedia_html: |
+          Sivuston kuraattorit ovat väliaikaisesti estäneet <a href="%{url}">tämän sisällön näyttämisen Wikipediasta</a>. Voit auttaa parantamalla sivua Wikipediassa. Voit myös liputtaa tämän taksonin tuodaksesi sen kuraattorien huomioon.
         trending_desc: Eniten havaitut taksonit viime kuussa
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
     taxon_names:
@@ -4557,6 +4761,13 @@ fi:
           States IRS FIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.
           <a href="%{url}">Ryhdy kuukausitukijaksi.</a>
           Kun olemme vahvistaneet tukesi voit laittaa ruksin tähän ruutuun ja näyttää statuksesi profiilissasi. Huom: sinun täytyy käyttää samaa sähköpostiosoitettasi Donorboxssa ja iNaturalistissa, jotta voimme vahvistaa että olet kuukausitukija.
+        muting_desc_html: |
+          <p>
+          Jonkun mykistäminen estää sinua saamasta ilmoituksia tämän tekemisistä, kuten havaintojesi kommentoimisesta, viestistä sinulle, mainitsemisestasi jne. Mykistäminen mahdollistaa jonkun jättämisen huomiotta ilman, että tekemisiä estetään.
+          </p>
+          <p>
+          Voit mykistää niin monta henkilöä kuin haluat, mutta pidä mielessä, että voit jäädä paitsi mahdollisesti tärkeistä ilmoituksista, kuten tunnistuksista, jotka muuttavat havaintosi yhteisötunnistusta.
+          </p>
         name_place_help_html: |
           Aseta etusijalle tässä paikassa käytetyt yleiskieliset nimet.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -4579,6 +4790,8 @@ fi:
         notification_preferences_user_observations: Seuraamieni käyttäjien havainnot
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Havainnot seuraamistani taksoneista tai paikoista
+        opt_in_to_map_tile_test_description: |
+          Osallistuminen tähän testiin tarkoittaa, että zoomatessasi ulospäin näet levinneisyyskartoilla uudet gridi-pohjaiset karttaruudut. Nämä ruudukot vaativat palvelimiltamme vähemmän ja niiden pitäisi olla nopeampia renderöidä iNaturalistin kasvaessa. Ne näyttävät havaintotiheyden paremmin. Tavoitteenamme on tehdä tämä vaihdos lopulta kautta koko sivuston. Kuulemme mielellämme palautteesi foorumilla.
         place_preference_changed_notice_html: |
           Paikka-asetus muutettu. Jos muutat mielesi, voit aina
           <a href='/users/edit'>muokata asetuksiasi</a>.
@@ -4588,6 +4801,10 @@ fi:
           none: "Ei mitkään, vain sinä voit lisätä havaintojasi projekteihin"
         prefers_community_taxa_desc: |
           %{site_name} pitää kirjaa siitä mitä mieltä sinä ja käyttäjäyhteisö on tunnistanut havaintojesi lajin. Jaamme yhteisön tekemän tunnistuksen kumppaniemme kanssa. Jos et kuitenkaan halua että yhteisön tekemä tunnistus menee omasi edelle, voit valita sen tässä (ota tällöin ruksi pois ruudusta). Muut käyttäjät voivat silti lisätä omia tunnistuksiaan havaintoihisi, mutta yhteisön mielipide ei mene omasi edelle. Tämä tarkoittaa myös että havaintojasi ei luokitella tutkimustasolle, paitsi jos olet samaa mieltä yhteisön kanssa.
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Nämä kolmannen osapuolen palvelut ovat meille suunnattoman arvokkaita</strong>, kun ylläpidämme iNaturalistin vakautta ja käytettävyyttä kohtalaisen pienellä henkilöstöllä. Mobiillilaitteilla ei ole melkein muuta mahdollisuutta saada ymmärrystä esiintyviin ongelmiin, koska ohjelma on käytössä laitteella jota emme hallinnoi. Joskus emme edes ole tietoisia joidenkin ongelmien esiintymisestä, ennen kuin näemme ne datassa jota nämä palvelut tuottavat.<strong>Jakamalla tämän tiedon autat meitä palvelemaan itseäsi ja koko iNaturalist-yhteisöä.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Huomaa, että tätä asetusta sovelletaan vain analytiikkadataan ja kaatumisraportteihin, joita lähetämme näille yrityksille. Kaikki iNaturalistin palvelimet tarjoaa ja niitä isännöi Microsoft, kaikkia iNaturalistin kuvia isännöi Amazon ja melkein kaikki iNaturalistin kartat tarjoaa Google. Tämä tarkoittaa, että aina kun katsot havaintoa iNaturalistissa, olet yhteydessä näiden yritysten tarjoamiin palveluihin ja paljastat niille ainakin IP-osoitteesi (uudessa iPhone-sovelluksessa käytetään Applen karttoja). iNaturalistia ei varmankaan olisi olemassa ilman palveluita, joita nämä yritykset tarjoavat. Vaikka voimme rajoittaa iNaturalistin käytöstäsi näille yrityksille jaettavan datan määrää ja laatua, emme voi estää datan kulkua kokonaan.
         project_settings_desc: |
           Muista että tämä ei anna projekteille pääsyä havaintojesi salattuihin koordinaatteihin eikä lupaa lähettää sinulle viestejä. Jos haluat antaa näitä oikeuksia täytyy sinun joko liittyä projektiin, tai myöntää projektille pääsy yksi jokaiseen havaintoon erikseen.
         same_day_geoprivacy_protection: Saman päivän sijainnin suojaus
@@ -4625,14 +4842,33 @@ fi:
           Tämän tehtyäsi, lapsesi voi lähettää havaintoja iNaturalist tililleen Seek sovellusken avulla, ja ne näkyvät osoitteessa
           iNaturalist.org.
           </p>
+        thanks_for_creating_a_minor_account: KIITOS ETTÄ LOIT ALAIKÄISEN TILIN!
+        we_will_send_you_an_email: |
+          Lähetämme sinulle sähköpostiviestin kun lapsesi tili on aktivoitu.
       new:
+        child_name_private: Lapsen nimi (yksityinen)
         create_a_minor_account: Luo uusi käyttäjä
         create_minor_account: Luo alaikäinen käyttäjä
+        parent_name_private: Vanhemman tai holhoojan nimi (yksityinen)
+        parent_email: Vanhemman tai holhoojan sähköpostiosoite (yksityinen)
+        inaturalist_minor_account_signup: Alaikäisen tilin luonti iNaturalistiin
+        parent_information_private: Tietoja vanhemmasta (yksityinen)
         step1_title: LUO KÄYTTÄJÄTUNNUS LAPSELLESI
         step1_desc: |
           Täyttääksemme tietoturvasäädösten vaatimukset, tarvitsemme alle 13 vuotiaan lapsen vanhemman tai huoltajan suostumuksen. Jos haluat sallia lapsesi käyttävän iNaturalistia, tarvitsemme sinulta henkilöllisyys- ja yhteystietoja.
+        step2_title: VAHVISTA HENKILÖLLISYYTESI LUOTTOKORTIN AVULLA
+        step2_desc: |
+          Jotta voisimme varmistaa että olet aikuinen, pyydämme nimellista yhden dollarin lahjoitusta iNaturalistille luottokorttia käyttäen. Tämä on helpoin tapa varmistaa henkilöllisyys noudatten henkilötietolakeja. Varmista että käytät samaa sähköpostiosoitetta jota käytit "vanhemman sähköposti" -kohdassa edellisessä vaiheessa.
+        step3_title: ODOTA VAHVISTUSVIESTIÄ SÄHKÖPOSTIISI
+        step3_desc: |
+          Aktivoimme lapsen tunnuksen kun olemme varmistaneet että lahjoituksen sähköpostiosoite täsmää antamaasi "vanhemman sähköpostiosoitteeseen". Lähetämme tällöin vanhemmalle viestin, jossa on kirjautumisohjeet. Tämä voi kestää 24 tuntia.
+        step3_donor_title: LAPSESI TILI ON NYT AKTIVOITU
+        step3_donor_desc: |
+          Koska olet iNaturalist-lahjoittaja, pystyimme varmistamaan henkilöllisyytesi aiemmin tekemäsi lahjoituksen perusteella.
     welcome:
       index:
+        welcome_message_html: |
+          %{image}iin, jossa voit <strong>pitää kirjaa</strong> siitä mitä olet nähnyt luonnossa, <strong>tavata</strong> muita luonnonystäviä ja <strong>oppia</strong> uutta luonnosta.
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa luontohavaintosi.
         observations_to_date: 'havaintoa tällä hetkellä'
@@ -4644,20 +4880,20 @@ fi:
         discuss_your_findings: Keskustele havainnoistasi
         contribute_to_science: Tue tieteellistä tutkimustyötä
         science_desc_html: |
-          Jokainen havainto, harvinaisimmasta perhosesta takapihan yleisimpään "rikkaruohoon", voi edistää luonnon monimuotoisuutta tutkivia tieteitä. Jaamme havaintosi tieteellisten arkistojen, kuten <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a>, kanssa auttaaksemme tutkijoita löytämään ja käyttämään tietämystäsi. Sinun ei tarvitse muuta kuin havainnoida.
+          Jokainen havainto harvinaisimmasta perhosesta takapihan yleisimpään "rikkaruohoon" voi edistää luonnon monimuotoisuutta tutkivia tieteitä. Jaamme havaintosi tieteellisten arkistojen, kuten <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a>, kanssa auttaaksemme tutkijoita löytämään ja käyttämään tietämystäsi. Sinun ei tarvitse muuta kuin havainnoida.
         nature_at_your_fingertips: Luonto käden ulottuvilla
-        keep_track: Seuraa luonnon tapahtumia
+        keep_track: Pidä kirjaa
         record_your_encounters: |
-          Tallenna kohtaamisesi muiden eliöiden kanssa ja ylläpidä elämäluetteloita, kaikki pilvessä.
+          Tallenna kohtaamisesi muiden eliöiden kanssa ja ylläpidä pinnalistoja, kaikki pilvipalvelussa.
         create_useful_data: Tuota käyttökelpoista tietoa
         help_scientists: Auta tutkijoita ja resurssienhallitsijoita ymmärtämään, milloin ja missä eliöitä esiintyy.
         crowdsource_identifications: Crowdsource-tunnistukset
         connect_with_experts: Ole yhteydessä asiantuntijoihin, jotka voivat tunnistaa havaitsemasi eliölajin.
-        become_a_citizen_scientist: Ryhdy amatööritutkijaksi
-        find_a_project: "Löydä sinua kiinnostava projekti, tai aloita omasi."
+        become_a_citizen_scientist: Ryhdy kansalaistutkijaksi
+        find_a_project: "Löydä sinua kiinnostava projekti tai aloita omasi."
         learn_about_nature: Opi luonnosta
         build_your_knowledge: Rakenna tietämystäsi keskustelemalla muiden luonnontieteilijöiden kanssa ja auttamalla muita.
-        run_a_bioblitz: Järjestä BioBlitz
+        run_a_bioblitz: Järjestä Bioblitz
         hold_an_event: Järjestä tapahtuma, jossa ihmiset yrittävät havaita mahdollisimman monta lajia.
         works_on_all_your_devices: Toimii kaikissa laitteissasi
         install_our_mobile_apps: |
@@ -4953,6 +5189,7 @@ fi:
         place_id: Paikka
         url: URL-osoite
         geoprivacy: Sijainnin tietosuoja
+        iucn: IUCN vastine
       flag:
         reason: Syy
         flag: Lippu
@@ -5030,6 +5267,7 @@ fi:
         preferred_observation_fields_by: Salli havaintokentät
     errors:
       messages:
+        accepted: tulee olla hyväksytty
         blank: ei voi olla tyhjä
         empty: ei voi olla tyhjä
         even: pitää olla parillinen

@@ -67,6 +67,9 @@ tr:
   x_new_species:
     one: "%{count} Yeni Tür"
     other: "%{count} Yeni Tür"
+  x_new_users:
+    one: '%{count} Yeni Kullanıcı'
+    other: '%{count} Yeni Kullanıcı'
   x_species:
     one: '%{count} Tür'
     other: '%{count} Tür'
@@ -194,7 +197,7 @@ tr:
   add_a_single_observation: Tek Gözlem Ekle.
   add_a_taxon: Bir Sınıf Ekle
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-    Eğer adı değiştirmek istersen <a target="_blank" href="%{url}">sınıf değişimi</a> ekle
+    Eğer adı değiştirmek istersen <a target="_blank" href="%{url}">sınıf takası</a> ekle
   add_an_assessment: Bir Değerlendirme Ekle
   add_an_identification: Bir Tanımlama Ekle
   add_an_observation: Bir Gözlem Ekle
@@ -294,7 +297,7 @@ tr:
   added_as_a_part_of_a_taxon_split_html: |
     <a target="%{target}" class="%{class}" href="%{url}">sınıf bölmenin</a> bir parçası olarak eklendi
   added_as_a_part_of_a_taxon_swap_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">sınıf değişiminin</a> bir parçası olarak eklendi
+    <a target="%{target}" class="%{class}" href="%{url}">sınıf takasının</a> bir parçası olarak eklendi
   added_by: Ekleyen
   added_by_user_on_date_html: "%{date} tarihinde %{user} tarafından eklendi"
   added_on: Eklendiği tarih
@@ -1027,7 +1030,7 @@ tr:
   delete_project: Bu projeyi sil
   delete_selected: Seçileni sil
   delete_taxon_and_merge_most_data_html: |
-    <i>%{taxon}</i> sınıfını silin ve verilerinin çoğunu başka bir sınıfla birleştirin. <strong>Kopyalanan sınıfları kaldırmak</strong> için bu aracı kullanın. Eski bir eş anlamlıyı kaldırmak istiyorsanız, lütfen bir sınıf değişimi oluşturun. <strong>DİKKATLİ OL!</strong> Sınıfları silmek oldukça zararlı olabilir. Daha çok bilgi için <a href="%{curator_url}">Sorumlu Rehberini</a> incele.
+    <i>%{taxon}</i> sınıfını silin ve verilerinin çoğunu başka bir sınıfla birleştirin. <strong>Kopyalanan sınıfları kaldırmak</strong> için bu aracı kullanın. Eski bir eş anlamlıyı kaldırmak istiyorsanız, lütfen bir sınıf takası oluşturun. <strong>DİKKATLİ OL!</strong> Sınıfları silmek oldukça zararlı olabilir. Daha çok bilgi için <a href="%{curator_url}">Sorumlu Rehberini</a> incele.
   delete_user: Kullanıcıyı sil
   delete_your_account: Hesabını sil
   deleted_synonyms: Silinmiş eş anlamlılar
@@ -1083,7 +1086,7 @@ tr:
   double_click_to_finish: (bitirmek için çift tıkla)
   download: İndir
   download_bulk_import_template_html: |
-    <a href="/observations/import#csv_import">Toplu yüklemede</a> kullanmak için <a href="%{url}">şablonu indirin</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import"><a href="/observations/import#csv_import">Toplu yüklemede</a> kullanmak için <a href="%{url}">şablonu indirin</a>
   download_csv: CSV'yi İndir
   download_csv_template: CSV şablonunu indir
   download_kml: KML'yi İndir
@@ -1846,7 +1849,7 @@ tr:
   #Stub text for the main content section when editing custom project data
   main_content_description: Temel içerik buraya
   make_a_new_place: Yeni bir yer oluştur
-  make_a_taxon_swap_instead?: Bunun yerine bir sınıf değişimi yapılsın mı?
+  make_a_taxon_swap_instead?: Bunun yerine bir Sınıf Takası yapılsın mı?
   make_curator: Sorumlu yap
   make_it_a_life_list?: Bir yaşam listesi yapılsın mı?
   make_manager: Yönetici yap
@@ -2416,24 +2419,24 @@ tr:
   other_taxa_commonly_misidentified_as_this_genus: Bu cins olarak sıklıkla yanlış tanımlanmış diğer sınıflar
   other_taxa_commonly_misidentified_as_this_genus_in_place_html: Bu cins olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar
   other_taxa_commonly_misidentified_as_this_genushybrid: Bu yüzergezer cins olarak sıklıkla yanlış tanımlanmış diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Bu yüzergezer cins olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_hybrid: Bu yüzergezer olarak sıklıkla yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Bu yüzergezer olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_rank: Genellikle bu %{rank} düzeyi olarak yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Genellikle bu %{rank} düzeyi olarak <a href="%{url}">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_section: Bu seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_section_in_place_html: Bu seksiyon olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_species: Genellikle bu tür olarak yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_species_in_place_html: Genellikle bu tür olarak <a href="%{url}">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_subgenus: Genellikle bu alt cins olarak yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Genellikle bu alt cins olarak <a href="%{url}">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_subsection: Bu alt seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflandırmalar
-  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Bu alt seksiyon olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflandırmalar
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Bu yüzergezer cins olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_hybrid: Bu yüzergezer olarak sıklıkla yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Bu yüzergezer olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_rank: Genellikle bu %{rank} düzeyi olarak yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Genellikle bu %{rank} düzeyi olarak <a href="%{url}">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_section: Bu seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: Bu seksiyon olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_species: Genellikle bu tür olarak yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: Genellikle bu tür olarak <a href="%{url}">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_subgenus: Genellikle bu alt cins olarak yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Genellikle bu alt cins olarak <a href="%{url}">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_subsection: Bu alt seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Bu alt seksiyon olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar
   our_blog: Blogumuz
   out_of_range: Kapsam dışı
-  output_taxon: Sınıflandırma çıkışı
+  output_taxon: Sınıf çıkışı
   overview: Genel Bakış
-  overlapping_downstream_taxon_frameworks_html: "Üst üste gelen alt sınıf Sınıflandırma Yapıları: %{count}"
+  overlapping_downstream_taxon_frameworks_html: "Üst üste gelen alt sınıf Sınıf Yapıları: %{count}"
   owner: Sahip
   parent: Üst sınıf
   parent_name: Üst sınıf adı
@@ -2946,7 +2949,7 @@ tr:
     one: Proje yöneticisi
     other: Proje yöneticileri
   project_aggregator_filter_error: |
-    Projeler, orta büyüklükteki bir yerle ilişkilendirilmedikçe ya da yalnızca belirli sınıflandırma ya da sınıflandırmaların bir listede gözlenebilmesine izin vermedikçe, kendiliğinden gözlem yığınlamasını etkinleştiremez
+    Projeler, orta büyüklükteki bir yerle ilişkilendirilmedikçe ya da yalnızca belirli sınıf ya da sınıfların bir listede gözlenebilmesine izin vermedikçe, kendiliğinden gözlem yığınlamasını etkinleştiremez
   project_assessments: Proje Değerlendirmeleri
   project_assets: Proje Varlıkları
   project_cover: Proje kapağı
@@ -2992,8 +2995,8 @@ tr:
   #"admins" is equivalent to "administrates"
   projects_user_admins: '%{user} Yönettiği Projeler'
   projects_you_admin: Yönettiğiniz Projeler
-  proposed_taxa_that_contradict_the_community_id: Topluluk tanımlamasıyla çelişen önerilmiş sınıflandırmalar
-  proposed_taxa_that_support_the_community_id: Topluluk tanımlamasını destekleyen önerilmiş sınıflandırmalar
+  proposed_taxa_that_contradict_the_community_id: Topluluk tanımlamasıyla çelişen önerilmiş sınıflar
+  proposed_taxa_that_support_the_community_id: Topluluk tanımlamasını destekleyen önerilmiş sınıflar
   protozoans: tek hücreliler
   provider_authorizations: Sağlayıcı Yetkileri
   public_domain: Kamu Malı
@@ -3178,7 +3181,7 @@ tr:
     must_be_identified: tanımlanmalı
     must_be_on_list: listede olmalı
     must_be_observed_in_place: bir yerde gözlemlenmiş olmalı
-    must_be_in: bir sınıflandırmada olmalı
+    must_be_in: bir sınıfta olmalı
     must_be_coordinates_shareable_by_project_curators: gözlemci, proje sorumlularının koordinatları görmesine izin vermelidir.
   running_total: Toplam Bulunan
   same_day_obscured: Bu kişinin, bu gün başka bir gözlemi gizlendi
@@ -3594,18 +3597,18 @@ tr:
   taxon_range: Sınıf aralığı
   taxon_range_created_notice: Sınıf aralığı başarıyla oluşturuldu. Lütfen haritalarda görünmesi için birkaç dakika bekleyin.
   taxon_range_updated_notice: Sınıf aralığı başarıyla oluşturuldu. Lütfen değişikliklerin haritalarda görünmesi için bir kaç dakika izin verin.
-  taxon_ranks: Sınıflandırma Düzeyleri
+  taxon_ranks: Sınıf Düzeyleri
   taxon_removed_from_list: Sınıf listeden kaldırıldı.
   taxon_scheme: Sınıf şeması
   taxon_schemes: "Sınıf Şemaları"
   taxon_search: Sınıf Arama
-  taxon_search_results_for: Şunun için Sınıflandırma Arama sonuçları
-  taxon_split: sınıflandırma bölme
+  taxon_search_results_for: Şunun için Sınıf Araması sonuçları
+  taxon_split: sınıf bölme
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
-  taxon_stage: sınıflandırma aşaması
-  taxon_swap: sınıflandırma değişimi
-  taxon_swap_only_has_one_input: değişim için yalnızca bir girişe izin verilir
-  taxon_swap_has_inputs_and_outputs: değişim hem girişlere hem de çıkışlara sahip olmalıdır
+  taxon_stage: sınıf aşaması
+  taxon_swap: sınıf takası
+  taxon_swap_only_has_one_input: takas için yalnızca bir girişe izin verilir
+  taxon_swap_has_inputs_and_outputs: takas hem girişlere hem de çıkışlara sahip olmalıdır
   taxon_name_was_deleted: Sınıf ismi silindi.
   taxon_name_was_successfully_updated: Sınıf ismi başarıyla güncellendi.
   taxon_was_successfully_created: Sınıf başarıyla oluşturuldu.
@@ -3871,7 +3874,7 @@ tr:
   use_name_as_a_placeholder: |
     Yer imi olarak <span class='ac-placeholder'>%{name}</span> kullanın
   use_this_form_to_create_a_new: |
-    Bu formu, daha sonra işlenecek olan etkin sınıflara önerilen bir bölünmeyi, birleştirmeyi ya da değişimi yapmayı tanımlayan yeni bir taslak sınıflandırmasal değişiklik oluşturmak için kullanın.
+    Bu formu, daha sonra işlenecek olan etkin sınıflara önerilen bir bölünmeyi, birleştirmeyi ya da takası yapmayı tanımlayan yeni bir taslak sınıflandırmasal değişikliği oluşturmak için kullanın.
   use_this_if_the_url_needs_genus_species_separated: |
     Bu URL'yi, cins ve türlerin belirli bir şekilde ayrılması gerekiyorsa kullanın. Sınıf bir tür ya da infra tür değilse, [GENUS] ve [SPECIES] arasındaki her şey sınıf adıyla değiştirilir, bu nedenle dikkatli kullanın.
   use_unique_file_names_for_separate_uploads: Ayrı yüklemeler için özgün dosya isimleri kullanın
@@ -4537,6 +4540,8 @@ tr:
         description_html: |
           Bu, sınıfın <em>tüm</em> listelerinin kuruluş varlığını <a href="%{place_url}">%{place_name}</a> yerinin bütün soyunda <strong>%{establishment_means}</strong> olarak değiştirecektir. Bu aracı yalnızca sorumlular kullanabilir. Kuruluş varlığının “tanıtılmış” olarak değişimi, aşağı yukarı aynı etkiye sahip olacak ancak var olan değerleri değiştirmeyecek, yalnızca boş olanları doldurunuz.
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Yaşam Listesi başlıkları değiştirilemez
       new:
         place_desc: |
           Bu listeyi kendiliğinden bu yerde gözlemlenen sınıflarla doldurun. Yalnızca sınırları olan yerleri seçebileceğinizi unutmayın.
@@ -4839,6 +4844,8 @@ tr:
           Bunun bir hata olduğunu düşünüyorsanız, lütfen
           <a href="mailto:%{help_email}" class="contact">bizimle iletişime geçin</a>.
           <a href="/observations/%{observation_id}/flags">İşaretleri yönetme</a>
+        observer_does_not_allow_observation_fields: Gözlemci ek gözlem alanlarına izin vermiyor
+        observer_only_allows_curators_to_add_fields: Gözlemci yalnızca sayfa sorumlularının gözlem alanları eklemesine izin verir
       user_stats:
         user_stats_desc: |
           Kullanıcı istatistikleri, gözlem sayımı veya tür sayımıyla maksimum 500 ile 
@@ -5501,6 +5508,12 @@ tr:
           <a href="%{url}">%{numStudies} çalışmanın tamamını görüntüleyin</a>
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Gözlem Serileri
+        observation_streaks_color_desc: |
+          Renk, bir logaritmik ölçekte günlerin sayısını gösterir:
+        observation_streaks_desc: |
+          Bir gözlem serisi, birisinin dışarı çıkıp her gün yeni ve doğrulanabilir
+          gözlemler kaydettiği bir zaman dilimidir. Burada, bu yıl başlayan veya bu
+          istatistikler oluşturulduğunda devam eden en uzun serileri gösteriyoruz.
         sunburst_desc_html: |
           Hiyerarşik bir "güneş" diyagramı olarak düzenlenen gözlemlenen sınıflar. Hiyerarşinin tabanı merkezdedir, "Yaşam" ile başlayıp dış kenarlardaki türlerle bitiyor. Her yayın boyutu, bu sınıfın gözlem sayısı ile orantılıdır ve renkler aşağı yukarı her zamanki "ikonik" sınıf renklerimizle aynıdır (bitkiler için yeşil, böcekler için turuncu, diğer birçok hayvan için mavi vb.), böylece çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğiniz anlamına gelir. <strong>Merkezdeki sınıfı ve onun çevresindeki alt sınıfları yerleştirmek için yaya tıklayın</strong> ya da <strong>hiyerarşiyi yukarı taşımak için merkeze tıklayın</strong>.
     taxa:
@@ -5859,8 +5872,13 @@ tr:
         prefers_no_tracking_label_desc_info_we_share: |
           Bu üçüncü taraflarla paylaşabileceğimiz bilgiler şunları içerir
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          IP adresleri (kent düzeyinde konum belirlemek ve sizi değişik ağ sayfalarında ve hizmetlerde izlemek için kullanılabilir; Google Analytics ve <a
-          href="https://firebase.google.com/support/privacy">Firebase Crashlytics’te</a> <a href="https://support.google.com/analytics/answer/2763052">IP anonimleştirme</a> özelliğini etkinleştirdiğimizi unutmayın ve böylece IP adresini bilgimize kaydetmez)
+          IP adresleri (şehir düzeyinde konum tespitinde ve sizi farklı web siteleri
+          ve hizmetler arasında takip etmek için kullanılabilir;
+          Google Analytics için
+          <a href="https://support.google.com/analytics/answer/2763052">IP anonimleştirmeyi</a>
+          etkinleştirdiğimizi göz önünde bulundurun; Firebase Crashlytics geçici olarak
+          <a href="<a href="https://firebase.google.com/support/privacy">
+          IP adreslerini saklayabilir</a>)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Tarayıcı ayrıntıları; üretici, model ve sürüm gibi
         prefers_no_tracking_label_desc_info_we_share_crash_details: |
@@ -6203,6 +6221,13 @@ tr:
       separator: .
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
@@ -6294,7 +6319,7 @@ tr:
     models:
       AssessmentSection: Değerlendirme Bölümü
       Atlas: Atlas
-      CompleteSet: Eksiksiz Takım
+      CompleteSet: Eksiksiz Küme
       TaxonLink: Sınıf Bağlantısı
     attributes:
       assessment:

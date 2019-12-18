@@ -45,6 +45,8 @@ zh-TW:
     other: "%{count} 張照片"
   x_new_species:
     other: "%{count} 個新物種"
+  x_new_users:
+    other: '%{count} 個使用者'
   x_species:
     other: '%{count} 物種'
   x_species_html:
@@ -228,7 +230,7 @@ zh-TW:
   add_to_a_scheme: 添加至綱要
   add_to_a_project: 新增至專案
   add_to_calendar: 加入行事曆
-  add_to_checklist: 加入清單
+  add_to_checklist: 加入名錄
   add_to_favorites: 加入個人最愛
   add_to_list: 新增至清單中
   add_to_project: 新增至專案
@@ -461,7 +463,7 @@ zh-TW:
     任何在他們內容裡的垃圾訊息標籤將會被清除。
   are_you_sure_you_want_to_remove_these_x_taxa?: "您確定要刪除這些共 %{x} 個物種分類嗎？"
   are_you_sure_you_want_to_remove_this_invitation: 您確定要刪除此邀請？
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您確定要從%{place}的清單移除此物種分類？"
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您確定要從%{place}的名錄移除此分類群？"
   associated_observations: 相關觀察
   associated_taxa: 相關物種分類
   attention: 注意
@@ -478,6 +480,7 @@ zh-TW:
   assessment_x: "%{assessment} 評估"
   assessments: 評估
   associations: 關聯
+  atlas_for_taxon_html: '%{taxon} 的地圖集'
   at_time: "在%{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -551,6 +554,8 @@ zh-TW:
   blue_butterfly_etc: "藍色、蝴蝶、或其它。"
   blue_icons_represent_political_units: "藍色圖示代表國家、州、省、縣等諸類的政治單位，綠色圖示代表各種開放空間（公園、保育區）。如果您放大便可看到更多較小的地點。"
   body: 正文
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: 邊框
   breadcrumbs: 麵包屑導航
   breadcrumbs_description: "這將會取代掉 h1 並預設成起作用，因此如果它們對於專案相當重要，請確認有包含到，另外請記住所允許的最大寬度是 950 像素"
@@ -651,6 +656,7 @@ zh-TW:
   check_list: 核對清單
   check_list_description: 請挑選您想要顯示在此清單的更高層級物種分類，像是將「鳥綱」用於鳥；「兩棲綱」用於兩棲動物。當設定好後，此清單將不允許不在此物種分類的物種分類群。例如您創建了鳥類清單後，您不能將青蛙類加在該清單裡。
   check_list_for_individual_taxa_that: '於此地棲息的單一物種分類群清單，例如：「%{place}的鳥類」。'
+  check_list_for_taxon_html: "%{taxon} 的名錄"
   check_lists_must_belong_to_a_place: |
     清單必須屬於某一地點。要創建一個新清單，請查看該地點的預設清單並點擊「創建新清單」連結。
   check_list_of_species_occuring_in: 物種清單出現在
@@ -662,7 +668,7 @@ zh-TW:
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
   check_this_box_if_html: |
     如果您想套用<a href='https://creativecommons.org/licenses/by-nc/4.0/deed.zh_TW' target='_blank'>創用 CC 姓名標示-非商業性許可版權</a>到上傳的內容，請勾選此框。這代表任何人只要有將您給表彰出，並且不使用在商業用途上，都能夠不需先詢問允許，便能複製和重複使用您的照片以及/或是觀察。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
-  checklist: 檢查列表
+  checklist: 名錄
   choose_a_field: 選擇欄位
   choose_a_list_above: 選擇一個在上方的清單。
   choose_a_place: 挑選一個地點
@@ -726,6 +732,7 @@ zh-TW:
   comparing_observations_from: "比較 %{user} 自 %{dates} 的觀察"
   compiled_by_name: "編譯由%{name}"
   complete: 完成
+  complete_set_for_taxon_in_place_html: "在 %{place} %{taxon}的完整名錄集"
   completed: 已完成
   completed_at: 完成於
   comprehensive: 綜合
@@ -797,7 +804,12 @@ zh-TW:
     dead: 死亡
     cannot_be_determined: 無法判斷
   controlled_term_definitions:
+    alive: 還是活著的生物，而且看不出有立即死亡的徵兆
+    dead: 生物已經死亡或是顯示有立即死亡的徵兆
     flower_budding: 花苞可見但未開展
+    flowering: 花朵可見，開展且仍然連在植株上
+    fruiting: 果實可見且仍然連在植株上
+    teneral: 成蟲最近剛化蛹，但是尚未變成最終型態的成蟲
   controls: 控制
   convert: 轉換
   coordinate_systems: 座標系統
@@ -1035,8 +1047,10 @@ zh-TW:
   edit_account_settings_and_profile: "編輯帳號設定&amp;個人檔案"
   edit_assessment: 編輯評估
   edit_atlas: 編輯地圖集
+  edit_atlas_for_taxon_html: 編輯 %{taxon} 的地圖集
   edit_body: 編輯正文
   edit_comment: 編輯您的評論
+  edit_complete_set_for_taxon_in_place_html: "編輯 %{taxon} 在 %{place} 的完整名錄集"
   edit_custom_project_fields: 編輯自訂專案欄位
   edit_field: 編輯欄位
   edit_license: 編輯許可協議
@@ -1078,6 +1092,7 @@ zh-TW:
   editing_project_asset: 編輯專案可用物件用於
   editing_subscription_to_x_html: "編輯對%{x}的訂閱"
   editing_taxon_link: 物種分類連結編輯中
+  editing_taxon_name_for_taxon_html: 修改 %{taxon} 的分類群名稱「%{name}」
   editing_taxon_range: 物種分類範圍編輯中
   editing_this: 正編輯 %{elem}
   editing_x_in_y: "正編輯 %{x} 於 %{y}"
@@ -1429,6 +1444,7 @@ zh-TW:
   computer_vision_suggestion_desc: |
     電腦視覺是一種教導電腦識別圖片方面形態的程序。我們所提供的工具，使用了以社群照片所培訓出的電腦視覺模組來提供鑑定建議，像是自動完成與比較的功能。此標籤代表著有人是使用這些工具其一來添加鑑定。
   identifiers: 鑑定者
+  identotron: 鑑定器
   identotron_for: Identotron 用於
   identotron_help: Identotron 說明
   ids: "鑑定"
@@ -1795,7 +1811,7 @@ zh-TW:
       gbif_network_description: 來自於博物館以及其它透由全球生物多樣性資訊機構（GBIF）所分派的事件提供方之記錄
       observations: 觀察
       place_boundary: 地點邊界
-      checklist_places: 清單地點
+      checklist_places: 名錄地點
       checklist_places_description: 此物種分類列出的地點
       range: 範圍
   map_tooltip: 顯示地圖檢視
@@ -1822,7 +1838,7 @@ zh-TW:
   mentioned_you_in_an_x_on_noun_by_html: "%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您"
   merge: 合併
   merge_it_with_another_place: 與其它地點合併此
-  merge_two_places_together: 將兩個地點合併為一。所有在清單上的物種，以及地理資料將會合併。
+  merge_two_places_together: 將兩個地點合併為一。所有在名錄上的物種，以及地理資料將會合併。
   merge_observation_field_x_into: '合併觀察欄位「%{x}」至...'
   merging: 合併中
   merging_places: 合併地點
@@ -1942,6 +1958,10 @@ zh-TW:
   needs_id_: 需要鑑定
   needs_id_expandable_html: "<span class='full'>需要</span>鑑定"
   needs_to_be_identified: 需要被鑑定
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>，iNaturalist 國際附屬網路的一部分，是聚焦於 %{place} 的生物多樣性和大眾。您想要把您的帳號相關資訊從 iNaturalist.org 更改成 %{site_name} 嗎？
+  network_affiliation_prompt_from_other_site_html: |
+    您想要該把您的附屬網路從 <strong>%{other_site_name}</strong> 更改為 <strong>%{site_name}</strong> 嗎？
   new: 新增
   new_and_noteworthy: 新事物與關注事項
   new_announcement: 新公告
@@ -1959,6 +1979,7 @@ zh-TW:
   new_message: 新訊息
   new_observation_field: 新觀察欄位
   new_observations: 新觀察
+  new_observations_in_year: "在 %{year} 年的新觀察"
   new_observations_this_year: 此年度的新觀察
   new_observations_ellispsis: "新觀察..."
   new_observations_from_place_html: "來自於%{place}的新觀察"
@@ -1980,10 +2001,12 @@ zh-TW:
   new_trip: 新行程
   new_updates_in_the_last_24_hours_from: "來自於 %{site_name} 在最近 24 小時內新的更新"
   new_users: 新使用者
+  new_users_in_year: "在 %{year} 年的新使用者"
   new_users_w_7_obs: 具有 7 個觀察的新使用者
   newly_added: 新的添加
   newly_added_species: 新進的添加物種
   newly_observed_species: 新進的觀察物種
+  newly_observed_species_in_year: "在 %{year} 年新加入的物種"
   newly_observed_species_this_year: 此年度的新添加物種
   news: 最新消息
   next: 下一個
@@ -2123,6 +2146,11 @@ zh-TW:
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
   observation_brief_taxon_from_place: "位於 %{place} 的 %{taxon}"
+  observation_brief_taxon_from_place_by_user: "由 %{user} 在 %{place} 所記錄的 %{taxon}"
+  observation_brief_taxon_from_place_on_day: "於 %{day} 在 %{place} 所記錄的 %{taxon} "
+  observation_brief_taxon_from_place_on_day_by_user: "由 %{user} 於 %{day} 在 %{place} 所記錄的 %{taxon}"
+  observation_brief_taxon_from_place_on_day_at_time: "%{day} %{time} 在 %{place} 所記錄的 %{taxon}"
+  observation_brief_taxon_from_place_on_day_at_time_by_user: "由 %{user} 於 %{day} %{time} 在 %{place} 所記錄的 %{taxon}"
   observations_by_category: "依分類區分觀察"
   observations_by_app: 依應用程式區分觀察
   observations_by_rank: 依級別區分觀察
@@ -2318,8 +2346,22 @@ zh-TW:
   other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>常被誤認為是此物種的其它物種
   other_taxa_commonly_misidentified_as_this_complex: 常被誤鑑定為此複合群的其他分類群
   other_taxa_commonly_misidentified_as_this_complex_in_place_html: 在 <a href="%{url}">%{place}</a> 常被誤鑑定為此複合群的其他分類群
+  other_taxa_commonly_misidentified_as_this_genus: 常被誤認為這個屬的其他分類群
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: 常在 <a href="%{url}">%{place}</a> 被誤認成這個屬的其他分類群
+  other_taxa_commonly_misidentified_as_this_genushybrid: 常被誤認為這個雜交屬的其他分類群
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: 常在 <a href="%{url}">%{place}</a> 被誤認為這個雜交屬的其他分類群
+  other_taxa_commonly_misidentified_as_this_hybrid: 常被誤認為這個雜交種的其他分類群
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: 常在 <a href="%{url}">%{place}</a> 被誤認為這個雜交種的其他分類群
   other_taxa_commonly_misidentified_as_this_rank: 常誤認為是%{rank}的分類
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: 其它在<a href="%{url}">%{place}</a>常誤認為是%{rank}的分類
+  other_taxa_commonly_misidentified_as_this_section: 常被誤認為這個節(section)的其他分類群
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: 在 <a href="%{url}">%{place}</a> 常被誤認為這個節(section)的其他分類群
+  other_taxa_commonly_misidentified_as_this_species: 常被誤認為此種的其他分類群
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: 在 <a href="%{url}">%{place}</a> 常被誤認為此種的其他分類群
+  other_taxa_commonly_misidentified_as_this_subgenus: 常被誤認為此亞種的其他分類群
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 常在 <a href="%{url}">%{place}</a> 被誤認為此亞種的其他分類群
+  other_taxa_commonly_misidentified_as_this_subsection: 常被誤認為此亞節的其他分類群
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: 常在 <a href="%{url}">%{place}</a> 被誤認為此亞節的其他分類群
   our_blog: 我們的部落格
   out_of_range: 超出範圍
   output_taxon: 輸出物種分類
@@ -2862,6 +2904,7 @@ zh-TW:
   project_requirements: 專案需求
   project_rules: 專案規則
   project_settings: 專案設定
+  project_start_time_datetime: "開始時間：%{datetime}"
   project_that_does_not_contain_these_observations: 專案沒有包含這些觀察
   project_type_description: |
     評估與 bioblitz 是專案裡的特殊類別。評估用於在協作物種集合上，通常用來衡量保育的重要性。Bioblitz 則是擁有特定起始和結束的事件活動。
@@ -2877,6 +2920,8 @@ zh-TW:
   projects_from_everywhere: 來自各處的專案
   projects_from_place: "來自於%{place}的專案"
   projects_in_x: "在%{x}的專案"
+  #"admins" is equivalent to "administrates"
+  projects_user_admins: 專案的管理者 %{user}
   projects_you_admin: 您管理的專案
   proposed_taxa_that_contradict_the_community_id: 所提出物種分類群否決社群鑑定
   proposed_taxa_that_support_the_community_id: 所提出物種分類群贊同社群鑑定
@@ -3111,6 +3156,8 @@ zh-TW:
   search_list: 搜尋清單
   search_observations: "搜尋觀察"
   search_projects: 搜尋專案
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: 搜尋理由
   search_results_for: 搜尋結果用於
   search_results_for_query: '「%{query}」的搜尋結果'
   search_remote: 搜尋遠端
@@ -3181,6 +3228,7 @@ zh-TW:
   showing_one_to: 顯示 1 -
   showing_taxa_from_everywhere: "進行顯示來自於任何地點的物種分類群"
   showing_taxa_from_place: "進行顯示來自於%{place}的物種分類群"
+  showing_x_of_y: 顯示 %{y} 的 %{x}
   showing_x_of_y_listings: "顯示 %{y} 個裡的 %{x} 個清單"
   sign_in: 登入
   sign_in_with_provider: "以 %{provider} 登入"
@@ -3272,8 +3320,8 @@ zh-TW:
     nzbrn_mammals: NZBRN 哺乳類
     nzbrn_plants: NZBRN 植物
     nzbrn_other: NZBRN 其它
-    catalogue_of_life_2012_annual_checklist: '物種目錄：2012 年度清單'
-    catalogue_of_life_2013_annual_checklist: '物種目錄：2013 年度清單'
+    catalogue_of_life_2012_annual_checklist: '物種目錄：2012 年度名錄'
+    catalogue_of_life_2013_annual_checklist: '物種目錄：2013 年度名錄'
   source_eg:
     title: '例如：蛇類：The Evolution of Mystery in Nature'
     in_text: '例如：Greene、2000'
@@ -3437,6 +3485,7 @@ zh-TW:
   taxon_changes: 物種分類更改
   taxon_colors: 物種分類色彩
   taxon_curators: 物種分類策展人
+  taxon_framework_complete: "完成：是"
   taxon_framework_notes: 物種分類框架備註
   taxon_framework_relationship: 物種分類群框架關聯
   taxon_framework_relationship_number: "物種分類框架關聯 %{number}"
@@ -3586,8 +3635,8 @@ zh-TW:
   this_user_has_been_suspended: 此用戶已被停用
   this_user_has_been_suspended_message: |
     如果這是您的帳號且您認為是有問題的，請<a href="mailto:%{email}">聯絡我們</a>。
-  this_will_add_listed_taxa: 這將會從觀察來添加已列出物種分類群。因為會花費一段時間，所以請謹慎使用並儘量用在小清單上
-  this_will_refresh_listed_taxa: 這將會在此清單上重新整理已列出物種分類群。因為會花費一段時間，所以請謹慎使用並儘量用在小清單上
+  this_will_add_listed_taxa: 這將會從觀察來添加已列出物種分類群。因為會花費一段時間，所以請謹慎地使用並儘量用在小型的名錄上
+  this_will_refresh_listed_taxa: 這將會在此名錄上重新整理已列出的物種分類群。因為會花費一段時間，所以請謹慎地使用並儘量用在小型的名錄上
   this_will_re_apply_all_list_rules: |
     這將會重新套用所有清單規則至已列出物種分類群並更新所關聯的統計狀態，例如：不在列出物種分類裡或不在所選級別的所被拒絕物種分類群。這不會添加任何新的物種分類群，並且會花上幾分鐘處理。
   this_will_try_to_add_tags_to_your_flickr: 這將會嘗試添加標籤至您的 Flickr 照片，要繼續嗎？
@@ -3730,6 +3779,8 @@ zh-TW:
   used_x_times:
     other: 使用過 %{count} 次
   user: 使用者
+  user_added_a_fave_html: "%{user} 添加為最愛"
+  user_added_a_flag_html: "%{user} 添加一個標記"
   user_added_a_x: "%{user}添加一個%{x}"
   user_added_a_x_to_noun_by_html: "%{user}添加一個%{x}至由%{by}的%{noun}"
   user_added_a_x_to_noun_html: "%{user}添加一個%{x}至%{noun}"
@@ -4550,6 +4601,8 @@ zh-TW:
         score_desc: "分數 = 累積次數 /（累積次數 + 不一致次數 + 祖先不一致次數）"
         observation_flagged_notice_html: |
           此觀察已被標記為垃圾訊息並不再對外公開。若您還能看見該觀察是因為您是它的創建者、或是網站的策展人。如果您認為這是個誤會，請<a href="mailto:%{help_email}" class="contact">聯絡我們</a>。<a href="/observations/%{observation_id}/flags">管理標籤</a>
+        observer_does_not_allow_observation_fields: 觀察者不允許新增額外的觀察欄位
+        observer_only_allows_curators_to_add_fields: 觀察者只允許網站策展人新增觀察欄位
       user_stats:
         user_stats_desc: |
           用戶統計被限制依觀察計數，或物種計數的最多前 500 個，因此所列出總數通常會略多於 500，這是因為兩份清單不一定包含相同用戶。被標註為「*」代表著這並沒有出現在前 500 個裡。
@@ -5100,6 +5153,12 @@ zh-TW:
         frequency:
           research: 研究等級
           verifiable: 可證實
+          "Alive or Dead=Alive": 活體
+          "Alive or Dead=Dead": 死亡
+          "Plant Phenology=Budding": 萌新芽
+          "Plant Phenology=Flower Budding": 花芽
+          "Plant Phenology=Flowering": 開花
+          "Plant Phenology=Fruiting": 結果
           "Life Stage=egg": 卵
           "Life Stage=larva": 幼蟲
           "Life Stage=teneral": 初羽化
@@ -5197,6 +5256,7 @@ zh-TW:
         you_must_enter_confirmation_code_in_the_form: |
           您必須在表單輸入「%{confirmation_code}」來刪除您的帳號
       edit:
+        about_third_party_tracking: 關於第三方的追蹤
         blocking_desc_html: |
           <p>
             封鎖某人可以防止他們傳送訊息給您，對您的觀察做出評論或鑑定，
@@ -5285,6 +5345,9 @@ zh-TW:
           %{site_name} 追蹤您對於您的觀察之想法以及社群方面想法。我們與資料合作者所分享的鑑定為社群鑑定，若您認為社群看法不應駕馭您所擁有事物，您可以選擇排除。這樣一來其他人雖仍可添加鑑定，但社群看法將不會偏好您的內容。此代表著您的觀察內容沒有機會被列為研究等級，除非您願意同意社群。
         prefers_coordinate_interpolation_protection_desc: |
           當您設定觀察的位置隱私成「obscured」或「private」時，將會對您在同一天的所有其它觀察套用相同的位置隱私，這會讓其他人較難從同一時間所做出的觀察來猜測出真實座標。
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google 分析</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          我們可能會和這些第三方分享的資訊包含
         project_settings_desc: |
           請記住，這並沒有給予專案能存取您的隱藏座標，或寄發給您更新內容的權限。您必須要加入專案才能授予權限，或依各個情況授予它們權限。
         same_day_geoprivacy_protection: 同日位置隱私保護
@@ -5424,6 +5487,8 @@ zh-TW:
       7: 六
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%Y-%m-%d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%Y %b %d'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_year: '%Y年%B'
@@ -5531,8 +5596,36 @@ zh-TW:
         #"$1,000,002.50" in English, and "," is the delimiter. This should not
         #be the same as the separator.
         delimiter: '，'
+        precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
+        separator: .
         significant: false
         strip_insignificant_zeros: false
+        unit: '$'
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: ','
+      precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
@@ -5674,6 +5767,8 @@ zh-TW:
         place_type: 地點類型
         prefers_check_lists: 允許建立物種名錄？
         woeid: WOEID
+      site:
+        logo_email_banner: Email 橫幅
       source:
         title: 標題
         in_text: 在文字裡
@@ -5921,9 +6016,29 @@ zh-TW:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         journal: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -5935,6 +6050,10 @@ zh-TW:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@n"
@@ -5943,7 +6062,33 @@ zh-TW:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         project: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -5960,6 +6105,10 @@ zh-TW:
         taxon_stage: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
   wild: 野生
