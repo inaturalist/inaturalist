@@ -890,6 +890,7 @@ $obs-grid-photo-size: 210px;
     margin-right: 5px;
   }
   .table {
+    border: 0 transparent;
     font-size: smaller;
     line-height: 12px;
     th {
@@ -913,20 +914,16 @@ $obs-grid-photo-size: 210px;
     padding: 5px;
   }
   .number {
-    // text-align: right;
     width: 15%;
+    white-space: nowrap;
     .bar {
-      // font-size: smaller;
       color: white;
       padding: 3px 0px;
       display: inline-block;
     }
   }
-  .badges {
-    line-height: 25px;
-  }
-  .badge {
-    margin-bottom: 5px;
+  td.badges {
+    line-height: 25px !important;
   }
   .badge,
   .bar {

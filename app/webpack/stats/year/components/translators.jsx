@@ -25,7 +25,7 @@ class Translators extends React.Component {
       sortBy
     } = this.state;
     let numToShow = initialNumToShow;
-    const dataWithTotals = _.map( data, ( d, username ) => Object.assign( {}, d, {
+    const dataWithTotals = _.map( data.users, ( d, username ) => Object.assign( {}, d, {
       username,
       web: d.words_web || 0,
       mobile: d.words_mobile || 0,
@@ -37,7 +37,7 @@ class Translators extends React.Component {
     }
     const sortedData = _.sortBy( dataWithTotals, u => u[sortBy] * ( sort === "asc" ? 1 : -1 ) );
     const dataToShow = sortedData.slice( 0, numToShow );
-    const locales = _.uniq( _.flatten( _.map( data, d => d.locales ) ) );
+    const languageNames = _.keys( data.languages );
     const maxVal = d3max( _.map( dataWithTotals, d => d.total ) );
     const scale = scaleLinear( )
       .domain( [0, maxVal] )
@@ -68,7 +68,7 @@ class Translators extends React.Component {
               } )
               : I18n.t( "views.stats.year.translators_desc", {
                 x_languages: I18n.t( "x_languages", {
-                  count: I18n.toNumber( locales.length, { precision: 0 } )
+                  count: I18n.toNumber( languageNames.length, { precision: 0 } )
                 } ),
                 x_people: I18n.t( "x_people", {
                   count: I18n.toNumber( _.size( dataWithTotals ), { precision: 0 } )
@@ -162,11 +162,14 @@ class Translators extends React.Component {
                   </div>
                 </td>
                 <td className="badges">
-                  { d.locales.map( l => (
-                    <span className="badge" key={`langauge-${l}`}>
-                      { l === "other"
-                        ? I18n.t( "other" )
-                        : I18n.t( `locales.${l}`, { defaultValue: l } )
+                  { d.languages.map( lang => data.languages[lang] ).map( l => (
+                    <span
+                      className="badge"
+                      key={`langauge-${l.code}`}
+                    >
+                      { l.locale
+                        ? I18n.t( `locales.${l.locale}`, { defaultValue: l.name } )
+                        : l.name
                       }
                     </span>
                   ) ) }

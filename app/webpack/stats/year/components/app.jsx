@@ -85,7 +85,10 @@ const App = ( {
           <Publications data={data.publications} year={year} />
         ) }
         { data.translators && (
-          <Translators data={data.translators} siteName={site && site.name} />
+          <Translators
+            data={data.translators}
+            siteName={site && site.id !== DEFAULT_SITE_ID ? site.name : null}
+          />
         ) }
         <div id="sharing">
           <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>

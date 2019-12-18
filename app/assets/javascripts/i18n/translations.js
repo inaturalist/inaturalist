@@ -15139,6 +15139,13 @@ I18n.translations["en"] = {
     "many": "<span class=\"count\">%{count}</span> Identifiers",
     "other": "<span class=\"count\">%{count}</span> Identifiers"
   },
+  "x_languages": {
+    "zero": "%{count} languages",
+    "one": "%{count} language",
+    "few": "%{count} languages",
+    "many": "%{count} languages",
+    "other": "%{count} languages"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">%{count}</span> matching taxon",
     "other": "<span class=\"count\">%{count}</span> matching taxa"

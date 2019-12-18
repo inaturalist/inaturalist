@@ -30,6 +30,12 @@ en:
     few: '<span class="count">%{count}</span> Identifiers'
     many: '<span class="count">%{count}</span> Identifiers'
     other: '<span class="count">%{count}</span> Identifiers'
+  x_languages:
+    zero: "%{count} languages"
+    one: "%{count} language"
+    few: "%{count} languages"
+    many: "%{count} languages"
+    other: "%{count} languages"
   # Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: "%{count} life list first"

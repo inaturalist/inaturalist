@@ -904,9 +904,8 @@ class YearStatistic < ActiveRecord::Base
 
   def self.translators( year, options = {} )
     return unless CONFIG.crowdin && CONFIG.crowdin.projects
-    language_locales = {}
     locale_to_ci_code = {}
-    data = {}
+    data = { languages: {}, users: {} }
     staff_usernames = User.admins.pluck(:login) + %w(alexinat)
     CONFIG.crowdin.projects.to_h.keys.each do |project_name|
       project = CONFIG.crowdin.projects.send(project_name)
@@ -915,16 +914,17 @@ class YearStatistic < ActiveRecord::Base
       translated_locales = I18n.t( "locales" ).keys.map(&:to_s)
       languages_by_code = {}
       info_j["languages"].each do |lang|
-        languages_by_name[lang[:name]] = lang
-        if translated_locales.include?( lang["code"] )
-          language_locales[lang["name"]] ||= lang["code"]
-          locale_to_ci_code[lang["code"]] = lang["code"]
-        elsif ( two_letter = lang["code"].split( "-" ) ) && translated_locales.include?( two_letter )
-          language_locales[lang["name"]] ||= two_letter
-          locale_to_ci_code[two_letter] = lang["code"]
-        else
-          language_locales[lang["name"]] ||= "other"
-          locale_to_ci_code[lang["code"]] ||= lang["code"]
+        unless data[:languages][lang[:name]]
+          data[:languages][lang["name"]] = {}
+          data[:languages][lang["name"]]["name"] = lang["name"]
+          data[:languages][lang["name"]]["code"] = lang["code"]
+          if translated_locales.include?( lang["code"] )
+            data[:languages][lang["name"]][:locale] = lang["code"]
+            locale_to_ci_code[lang["code"]] = lang["code"]
+          elsif ( two_letter = lang["code"].split( "-" )[0] ) && translated_locales.include?( two_letter )
+            data[:languages][lang["name"]][:locale] = two_letter
+            locale_to_ci_code[two_letter] = lang["code"]
+          end
         end
       end
       export_params = {
@@ -951,24 +951,14 @@ class YearStatistic < ActiveRecord::Base
           next if staff_usernames.include?( row["Name"] )
           username = row["Name"][/\((.+)\)/, 1]
           next if staff_usernames.include?( username ) 
+          languages = row["Languages"].split( ";" ).map(&:strip).select{|l| l !~ /English/}
+          next if languages.blank?
           username ||= row["Name"]
-          data[username] ||= {}
-          data[username][:name] ||= row["Name"].gsub( /\(.+\)/, "" ).strip
-          data[username]["words_#{project_name}"] = row["Translated (Words)"].to_i
-          data[username]["approved_#{project_name}"] = row["Approved (Words)"].to_i
-          data[username][:locales] = (
-            ( data[username][:locales] || [] ) +
-              row["Languages"].split( ";" ).map{|l| language_locales[l.strip]}
-          ).uniq.compact.sort
-          # data[username][:locales] ||= {}
-          # data[username][:locales] = data[username][:locales].merge(
-          #   row["Languages"].split( ";" ).inject( {} ) {|lang, memo|
-          #     l = languages_by_name[lang]
-          #     memo[l[:code]] ||= {}
-          #     memo[l[:code]]
-          #     memo
-          #   }
-          # )
+          data[:users][username] ||= {}
+          data[:users][username][:name] ||= row["Name"].gsub( /\(.+\)/, "" ).strip
+          data[:users][username]["words_#{project_name}"] = row["Translated (Words)"].to_i
+          data[:users][username]["approved_#{project_name}"] = row["Approved (Words)"].to_i
+          data[:users][username][:languages] = languages
         end
       end
     end
