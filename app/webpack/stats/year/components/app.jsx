@@ -87,7 +87,7 @@ const App = ( {
           <Publications data={data.publications} year={year} />
         ) }
         { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
-        { !user && <Donate year={year} /> }
+        { !user && ( !site || site.id === DEFAULT_SITE_ID ) && <Donate year={year} /> }
         { updatedAt && (
           <p className="updated-at text-center text-muted">
             { I18n.t( "views.stats.year.stats_generated_datetime", {
@@ -220,24 +220,41 @@ const App = ( {
           <Col xs={12}>
             { body }
             <div id="view-stats-buttons">
-              { !currentUser || !user || ( user.id !== currentUser.id ) ? (
+              { ( !currentUser || !user || ( user.id !== currentUser.id ) ) && (
                 <div>
                   <a href={`/stats/${year}/you`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-pie-chart" />
                     { " " }
                     { I18n.t( "view_your_year_stats", { year } ) }
                   </a>
+                  { site && site.id !== DEFAULT_SITE_ID && (
+                    <div>
+                      <a href={`/stats/${year}`} className="btn btn-primary btn-bordered btn-lg">
+                        <i className="fa fa-bar-chart-o" />
+                        { " " }
+                        { I18n.t( "view_year_stats_for_site", {
+                          year,
+                          site: "iNaturalist",
+                          vow_or_con: "i"
+                        } ) }
+                      </a>
+                    </div>
+                  ) }
                 </div>
-              ) : null }
-              { user ? (
+              ) }
+              { user && (
                 <div>
                   <a href={`/stats/${year}`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-bar-chart-o" />
                     { " " }
-                    { I18n.t( "view_year_stats_for_site", { year, site: site.name } ) }
+                    { I18n.t( "view_year_stats_for_site", {
+                      year,
+                      site: site.name,
+                      vow_or_con: site.name[0].toLowerCase( )
+                    } ) }
                   </a>
                 </div>
-              ) : null }
+              ) }
             </div>
           </Col>
         </Row>
