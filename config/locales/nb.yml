@@ -1396,6 +1396,8 @@ nb:
   get_started: Kom i gang
   getting_started_guide: Kom i gang-guide
   give_it_some_detail: Gi det litt detaljer!
+  give_monthly_caps: GI MÅNEDLIG
+  give_now_caps: GI NÅ
   global_names: Globale navn
   globally: Globalt
   go: Gå
@@ -5214,6 +5216,7 @@ nb:
         website_desc_html: |
           Laget med <a href="https://www.inaturalist.org">iNaturalist </a> eller nettsider i <a href="%{url}">iNaturalist-nettverket</a>
       year:
+        inaturalist_network: iNaturalist-nettverk
         include_usa: Inkluder USA
         growth_by_country_desc_html: |
           Hvor finner vekst sted? Dette kartet og grafen forsøker å bryte dette ned per land, noe som viser seg å være komplisert siden vekst per land kan være veldig ubalansert. Her har vi valgt som standard å utelate USA og bruke en logaritmisk skala for å fremheve forskjellene mellom de andre land. Hvis et land er farget svart betyr det at det ikke bidro vesentlig til en prosentandel eller at det ikke hadde vekst dette året, eller at det ikke hadde flere observasjoner dette året enn året før (hold musepekeren over et land for å se litt flere detaljer). <strong>"% av total vekst"</strong> betyr hvor mye av global vekst kom fra et bestemt land, hvis det f.eks. var 20 observasjoner i 2018 og 10 i 2017, vil det være en vekst på 10 observasjoner, og hvis 5 av disse er fra Benin, så har Benin bidratt med 50 % av den totale veksten. <strong>"% vekst "</strong> betyr antall observasjoner dette året i det landet som en prosentandel av observasjoner i det landet året før, så hvis det var 10 observasjoner i Laos i fjor men 20 i år, tilsvarer det 100 % vekst, og hvis det var 0 i fjor og 1 i år, er det uendelig % vekst.
@@ -5235,6 +5238,9 @@ nb:
         observation_streaks: Observasjonsserier
         observation_streaks_color_desc: |
           Farge representerer antall dager på en logaritmisk skala:
+        stats_generated_datetime: Statistikker generert på %{datetime}
+        store_prompt: |
+          Vil du vise din stolthet over iNat hvor enn du går? Sjekk iNat butikken!
         sunburst_desc_html: |
           Observasjoner som et hierarkisk "sunburst"-diagram. Basen av hierarkien er i midten, med "livet" som start og arter ytterst på kanten. Størrelsen av hver bue er relativ til antallet av observasjoner av det taksonet, og fargene korresponderer mer eller mindre til våre vanlige farger for "ikoniske" taksa (grønn for planter, oransje for insekter, blå for de fleste andre dyr, osv.), så hvis du ser masse grønt betyr det at du har sett mange planter. <strong>Trykk på en bue for å plasere det taksonet i midten</strong> og dets etterkommere rundt det, eller <strong>trykk på midten for å gå opp i hierarkiet igjen</strong>.
     taxa:

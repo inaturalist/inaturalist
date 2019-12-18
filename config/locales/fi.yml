@@ -4708,6 +4708,26 @@ fi:
         trending_desc: Eniten havaitut taksonit viime kuussa
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
     taxon_names:
+      form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Yritä lisätä nimiä, joita on käytetty muualla. Ole hyvä äläkä keksi uusia nimiä.</p></li>
+          <li><p>Älä lisää duplikaattinimiä, esim. älä nimeä useita haukkoja nimellä "haukka"</p></li>
+          <li><p>Korkeammille taksoneille käytä nimiä, jotka sopivat kaikille alataksoneille, esim. haikaralinnut</p></li>
+          <li>
+          <p>
+          Älä lisää nimiin muuta tietoa, esim. suluissa miten nimeä pitäisi käyttää
+          </p>
+          </li>
+          <li>
+          <p>
+          Uudet nimistöt pitäisi tehdä englanniksi, Ole hyvä äläkä lisää käännettyjä nimiä, kuten "Ranska, Français", koska silloin nimien näyttäminen olisi vaikeaa tai mahdotonta erikielisille käyttäjille.
+          </p>
+          </li>
+          <li>
+          <p>
+          Yleiskieliset nimet, jotka liittyvät käännettyihin kieliin näytetään oletuksena tälle kielelle (jättäen huomiotta paikan ja nimien järjestyksen asetuksen jne.). <a class="readmore" href="/pages/translate">Lue lisää käännöksistä</a>
+          </p></li></ul>
       taxon:
         about_html: |
           Taksonilla voi olla useita yleiskielisiä nimiä. Tuemme yhtä, globaalisti ensisijaista nimeä, joka voidaan vaihtaa täällä vetämällä nimi luettelon ylimmäiseksi. Voit myös määritellä ensisijaisen nimen eri paikoille muokkaamalla nimeä ja lisäämällä sille paikan, mutta tee tämä vain, jos eri paikoilla on ristiriitaisia nimiä.
