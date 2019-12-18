@@ -102,7 +102,6 @@ ko:
   accuracy_of_the_coordinates: |
     미터로 나타낸 좌표의 정확도. 정확도는 위의 편집 링크를 클릭하거나 지도 마커를 클릭한 후 가장자리를 드래그해서 편집할 수 있습니다. 원 안에 자신의 실제 위치가 확실히 들어가도록 설정해 주세요.
   actions: 동작
-  active: 활성
   active_users: 활동적인 사용자
   activity: 활동
   activity_settings: 활동 설정
@@ -256,7 +255,7 @@ ko:
     complex: 데이터베이스에 추가된 모든 복합군
     species: 데이터베이스에 추가된 모든 종
     hybrid: 데이터베이스에 추가된 모든 잡종
-    subspecies: 데이터베이스에 추가된 모든 아종
+    subspecies: 모든 아종이 데이터베이스에 추가됨
     variety: 데이터베이스에 추가된 모든 품종
   all_rights_reserved: 모든 권리는 저작권자에게 있습니다.
   all_taxa:
@@ -289,7 +288,7 @@ ko:
   all_your_observations_will_default_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.
   all_your_observations_will_default_to_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.
   #Option to allow any taxa on a list
-  allow_any: 아무거나 허락
+  allow_any: 제한 없음
   allow_curator_access: 큐레이터 엑세스 허용
   allow_project_curators_to_view_your_private_coordinates: 나의 숨긴 좌표를 프로젝트 큐레이터가 볼 수 있게 함
   allowed_establish_means_values: 허용한 설정 평균값
@@ -407,11 +406,11 @@ ko:
   back_to_x_journal: "%{user}의 일지로 돌아가기"
   back_to_x_blog: "%{x}의 블로그로 돌아가기"
   back_to_your_dashboard: 내 대시보드로 돌아가기
-  back_to_your_lists: 사용자의 목록으로 돌아가기
+  back_to_your_lists: 내 목록으로 돌아가기
   back_to_your_journal: 너의 일지로 돌아가기
   back_to_your_observations: 내 관찰로 돌아가기
-  back_to_your_profile: 너의 프로파일로 돌아가기
-  back_to_your_projects: 너의 프로젝트들로 돌아가기
+  back_to_your_profile: 내 프로필로 돌아가기
+  back_to_your_projects: 내 프로젝트로 돌아가기
   batch: 일괄
   batch_edit: 일괄 편집
   batch_edit_taxa_for_x_html: "%{x}로 분류군 일괄 편집"
@@ -669,7 +668,7 @@ ko:
   creating_your_account: "계정 만드는 중..."
   creative_commons_flickr_tagged: 크리에이티브 커먼트 Flickr 사진 태그됨
   creative_commons_unless_otherwise_noted: "별도의 언급이 없으면 크리에이티브 커먼즈입니다."
-  critically_endangered: 멸종위기
+  critically_endangered: 절멸 위급(CR)
   csv_file: CSV 파일
   csv_should_not_contain_a_header_row: CSV는 헤더 열을 포함하고 있으면 안 됩니다.
   curate_observations: 큐레이터 관찰
@@ -687,13 +686,13 @@ ko:
   custom_project_was_successfully_updated: 자체지정 프로젝트가 성공적으로 업데이트되었습니다.
   darr_apply_darr: "&darr; 적용 &darr;"
   dashboard: 대시보드
-  data_deficient: 데이터 부족
+  data_deficient: 정보부족(DD)
   data_quality: 데이터 품질
   data_quality_assessment: 데이터 품질 평가
   data_used: "사용된 데이터:"
   datatype: 데이터 유형
   date_: 날짜
-  date_added: 추가된 날짜
+  date_added: 추가한 날짜
   date_created: 만든 날짜
   date_format:
     date_long:
@@ -871,7 +870,7 @@ ko:
   enable_offline_access_for_mobile: 모바일 오프라인 접근 허용
   end: 종료
   end_date_time: 끝 날짜 / 시간
-  endangered: 멸종 위기
+  endangered: 절멸위기(EN)
   endemic: 고유종
   endemic_to_x: "%{x}의 토착종"
   eol_collection_url: "EOL 모음 URL"
@@ -908,8 +907,8 @@ ko:
   export_observations: 관찰 내보내기
   export_with_private_coordinates: 비공개 좌표와 함께 내보내기
   exporting: "내보내는 중..."
-  extinct: 멸종
-  extinct_in_the_wild: 야생에서 멸종
+  extinct: 절멸(EX)
+  extinct_in_the_wild: 야생절멸(EW)
   extra_properties: 추가 특징들
   facebook: 페이스북
   facebook_account_information: 페이스북 계정 정보
@@ -1229,7 +1228,7 @@ ko:
   life_list: "%{user}의 생물 목록"
   life_list_updated: 생물 목록을 업데이트했습니다!
   life_list_updated_we_also_saved_a: 생물 목록을 업데이트했습니다! 이 분류군의 비어있는 관측도 저장했습니다.
-  life_lists_automatically_fill: '생물 목록은 관찰함으로써 자동적으로 새로운 분류군들로 채워져가고, 상위 분류군으로 제한될 수 있습니다. 예시: 까마귀과의 새들에 대한 생물 목록.'
+  life_lists_automatically_fill: 생물 목록은 관찰을 추가하면 자동으로 채워집니다. 하지만 특정 경우 생물 목록은 상위 분류군으로 제한될 수 있습니다 [ex) '개구리과' 생물 목록, '까마귀과' 생물 목록 등]
   link: 링크
   link_or_unlink_your_facebook_account: 페이스북 계정과 링크하거나 링크 취소하기
   link_or_unlink_your_flickr_account: Flickr 계정과 링크하거나 링크 취소하기
@@ -1405,7 +1404,7 @@ ko:
   names: 이름
   ne_lat: NE 위도
   ne_lon: NE 경도
-  near_threatened: 취약 근접
+  near_threatened: 준위협(NT)
   needs_id: 동정이 필요합니다.
   needs_id_: ID가 필요합니다
   needs_to_be_identified: 동정 필요
@@ -1529,7 +1528,7 @@ ko:
   none_found: 찾을 수 없음
   normal: 보통
   not_completed: 미완성
-  not_evaluated: 평가되지 않음
+  not_evaluated: 미평가(NE)
   not_findig_what_you_want: 찾으려는 것이 아닙니까?
   not_finding_place_you_want?: 원하는 장소가 아닙니까?
   not_found: 찾을 수 없음
@@ -1994,8 +1993,8 @@ ko:
   quality_grade_colon: "품질 등급:"
   query: 쿼리
   range: 범위
-  rank: 순위
-  rank_position: 순위
+  rank: 분류학적 위치
+  rank_position: 분류학적 위치
   ranks:
     kingdom: 계
     subkingdom: 아계
@@ -2117,7 +2116,7 @@ ko:
   show_keyboard_shortcuts: 단축 키 표시
   show_less: 덜 보기
   show_more: 더 보기
-  show_observation_photos: 관찰 사진 보기
+  show_observation_photos: 내가 관찰한 사진 보기
   show_off_your_recent_observations: 당신의 최근 관찰을 당신의 블로그나 웹사이트에 공유해보세요!
   show_relative_proportions_of_all_observations: 모든 관찰의 상대적인 비율 보기
   show_scientific_name_first: 학명을 우선 표시
@@ -2182,7 +2181,7 @@ ko:
   take_me_flickr!: 네, Flickr로 연결해주세요!
   taxa_info: 생물 분류 정보
   taxon_colors: 분류 색
-  taxon_ranks: 분류 순위
+  taxon_ranks: 분류학적 위치
   tell_the_world_a_little_about_yourself: 자기소개하기
   tell_us_why: 이유를 말해주세요...
   terms_service: 서비스 약관
@@ -2282,7 +2281,7 @@ ko:
   view_x: "%{x} 보기"
   view_your_observations: 내 관찰 보기
   video_tutorials: 동영상 강좌
-  vulnerable: 취약
+  vulnerable: 취약(VU)
   we_also_support: |
     <a href="http://flickr.com">플리커</a>, 
     <a href="http://photos.google.com">구글 포토</a>, 
@@ -2483,7 +2482,7 @@ ko:
       index:
         avg_ttcid: 평균 TTCID
         avg_ttid: 평균 TTID
-        new_users_desc: 오늘 가입함
+        new_users_desc: 이 날짜에 가입했음
       year:
         include_usa: 미국 포함
     taxa:
