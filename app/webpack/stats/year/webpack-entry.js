@@ -17,6 +17,7 @@ render(
     sites={SITES}
     data={YEAR_DATA}
     rootTaxonID={ROOT_TAXON_ID}
+    updatedAt={YEAR_STATISTIC_UPDATED_AT}
   />,
   document.getElementById( "app" )
 );

@@ -1,4 +1,5 @@
 /* global DEFAULT_SITE_ID */
+// I18n.t( "time.formats.long" )
 
 import React from "react";
 import PropTypes from "prop-types";
@@ -24,7 +25,8 @@ const App = ( {
   site,
   sites,
   data,
-  rootTaxonID
+  rootTaxonID,
+  updatedAt
 } ) => {
   let body = "todo";
   const inatUser = user ? new inatjs.User( user ) : null;
@@ -210,6 +212,13 @@ const App = ( {
         <Row>
           <Col xs={12}>
             { body }
+            { updatedAt && (
+              <p className="updated-at text-center text-muted">
+                { I18n.t( "views.stats.year.stats_generated_datetime", {
+                  datetime: I18n.localize( "time.formats.long", updatedAt )
+                } ) }
+              </p>
+            ) }
             <div id="view-stats-buttons">
               { !currentUser || !user || ( user.id !== currentUser.id ) ? (
                 <div>
@@ -244,7 +253,8 @@ App.propTypes = {
   data: PropTypes.object,
   site: PropTypes.object,
   sites: PropTypes.array,
-  rootTaxonID: PropTypes.number
+  rootTaxonID: PropTypes.number,
+  updatedAt: PropTypes.object
 };
 
 export default App;
