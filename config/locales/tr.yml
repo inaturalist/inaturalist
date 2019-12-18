@@ -797,7 +797,6 @@ tr:
   comparing_observations_from: "%{user} kullanıcısının %{dates} tarihli gözlemini karşılaştırma"
   compiled_by_name: "%{name} tarafından düzenlendi"
   complete: Tamamla
-  complete_set_for_taxon_in_place_html: "%{place}'deki %{taxon} için Tam Takım"
   completed: Tamamlandı
   completed_at: Tamamlandı
   comprehensive: kapsamlı
@@ -1114,7 +1113,6 @@ tr:
   edit_atlas_for_taxon_html: '%{taxon} için Atlas''ı düzenleyin'
   edit_body: Gövdeyi düzenle
   edit_comment: Yorumunu Düzenle
-  edit_complete_set_for_taxon_in_place_html: "%{place}'deki %{taxon} için Eksiksiz Takımı Düzenleyin"
   edit_custom_project_fields: Özel Proje Alanlarını Düzenle
   edit_field: Alanı Düzenle
   edit_license: Lisansı Düzenle
@@ -1409,6 +1407,8 @@ tr:
   get_started: Başla
   getting_started_guide: Başlangıç Rehberi
   give_it_some_detail: Biraz ayrıntı ver!
+  give_monthly_caps: AYLIK ÖDE
+  give_now_caps: ŞİMDİ ÖDE
   global_names: Küresel Adlar
   globally: Küresel
   go: Git
@@ -5463,6 +5463,12 @@ tr:
           <a href="https://www.inaturalist.org">iNaturalist</a> veya 
           <a href="%{url}">iNaturalist Ağı</a> internet siteleri üzerinden oluşturuldu
       year:
+        donate_title: "Tüm Destekçilerimize Özel Teşekkürler"
+        donate_desc_html: |
+          Zamanınız, ilginiz, uzmanlığınız ve bağışlarınızla cömert olduğunuz için teşekkür ederiz! iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Society'nin kâr amacı gütmeyen ortak bir girişimidir. Bu girişim; topluluk desteği, işbirliği ve işleri yürüten (ve hızla büyüyen) bütünleşmelerin yanı sıra iNaturalist tarafından genel ağ, mobil ve <a href="%{seek_url}">Seek</a> için tüm tasarım ve yazılım mühendisliğini yapan <a href="%{team_url}">küçük bir ekip</a> tarafından desteklenmektedir. Program, katkıda bulunanların %0.2'sinden azıyla hayırsever armağanları da içermek üzere çok sayıda yardım ve bağışa dayanıyor. Özellikle sürekli armağanlar yollayarak geleceği tasarlamamıza yardımcı olan Aylık Destekçilere minnettarız. iNaturalist’in temel işlemlerini desteklemek için 30’dan çok para biriminde bağış yapabilirsiniz. 2019 iNaturalist'i en büyük yıl yapmadaki katkıları için herkese teşekkür ederiz!
+        inaturalist_network: iNaturalist Ağı
+        inaturalist_network_desc: |
+          iNaturalist Ağı üyeleri için İnceleme Yılı’na göz atın.
         include_usa: ABD dahil
         growth_by_country_desc_html: |
           Büyüme nerede gerçekleşiyor? Bu harita ve çizelge bunu ülkeye göre bölmeye çalışıyor, 
@@ -5506,6 +5512,8 @@ tr:
           arkadaşlarımızın veri kullanımı nezaket bilgileri.
           <br/>
           <a href="%{url}">%{numStudies} çalışmanın tamamını görüntüleyin</a>
+        publications_desc_short_html: |
+          <a href="https://www.altmetric.com">Altmetric</a>'in izniyle etki verileri ve çizelgeler. <a href="https://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi'ndeki</a> arkadaşlarımızın veri kullanımı nezaket bilgileri.
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Gözlem Serileri
         observation_streaks_color_desc: |
@@ -5514,6 +5522,9 @@ tr:
           Bir gözlem serisi, birisinin dışarı çıkıp her gün yeni ve doğrulanabilir
           gözlemler kaydettiği bir zaman dilimidir. Burada, bu yıl başlayan veya bu
           istatistikler oluşturulduğunda devam eden en uzun serileri gösteriyoruz.
+        stats_generated_datetime: İstatistikler %{datetime} tarihinde oluşturuldu
+        store_prompt: |
+          Gittiğin her yerde iNat'tan duyduğun gururu göstermek ister misin? iNat Mağazası'na Göz At!
         sunburst_desc_html: |
           Hiyerarşik bir "güneş" diyagramı olarak düzenlenen gözlemlenen sınıflar. Hiyerarşinin tabanı merkezdedir, "Yaşam" ile başlayıp dış kenarlardaki türlerle bitiyor. Her yayın boyutu, bu sınıfın gözlem sayısı ile orantılıdır ve renkler aşağı yukarı her zamanki "ikonik" sınıf renklerimizle aynıdır (bitkiler için yeşil, böcekler için turuncu, diğer birçok hayvan için mavi vb.), böylece çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğiniz anlamına gelir. <strong>Merkezdeki sınıfı ve onun çevresindeki alt sınıfları yerleştirmek için yaya tıklayın</strong> ya da <strong>hiyerarşiyi yukarı taşımak için merkeze tıklayın</strong>.
     taxa:
