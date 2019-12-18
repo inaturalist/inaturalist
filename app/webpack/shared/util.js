@@ -183,6 +183,8 @@ const inatreact = {
 };
 inatreact.t = inatreact.translate;
 
+const stripTags = text => text.replace( /<.+?>/g, "" );
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -223,5 +225,6 @@ export {
   addImplicitDisagreementsToActivity,
   formattedDateTimeInTimeZone,
   COLORS,
-  inatreact
+  inatreact,
+  stripTags
 };

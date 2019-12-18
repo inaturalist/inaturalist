@@ -681,6 +681,7 @@ I18n.translations["ar"] = {
     },
     "datetime_with_zone": "ي شش سسسس · LT مز"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">داعم شهري</a> منذ %{date}\n",
   "months": "أشهر",
   "more": "المزيد",
   "more_filters": "المزيد من المرشحات",
@@ -7538,7 +7539,8 @@ I18n.translations["da"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d. %B, %Y",
-      "month_day_year": "%d. %B %Y"
+      "month_day_year": "%d. %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -7627,7 +7629,6 @@ I18n.translations["da"] = {
   "do_not_show_this_message_again": "Vis ikke denne besked igen",
   "doh_something_went_wrong": "Åh nej, noget gik galt.",
   "doh_something_went_wrong_error": "Øhhh, noget gik galt: %{error}",
-  "donate": "DONÉR",
   "done": "Udført",
   "download": "Download",
   "drag_and_drop_some_photos_or_sounds": "Træk og slip nogle billeder eller lyde",
@@ -8016,6 +8017,7 @@ I18n.translations["da"] = {
     "datetime_with_zone": "D MMM, YYYY · LT z",
     "datetime_with_offset": "D MMM, YYYY · LT z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Månedlig Supporter</a> sinden %{date}\n",
   "months": "Måneder",
   "more": "Mere",
   "more_filters": "Flere filtre",
@@ -9662,7 +9664,8 @@ I18n.translations["de"] = {
     },
     "formats": {
       "compact": "%b %e",
-      "long": "%B %d, %Y"
+      "long": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -9738,7 +9741,6 @@ I18n.translations["de"] = {
   "do_not_show_this_message_again": "Diese Nachricht nicht erneut anzeigen",
   "doh_something_went_wrong": "Ups, etwas ist schief gelaufen.",
   "doh_something_went_wrong_error": "Etwas ist schief gelaufen: %{error}",
-  "donate": "SPENDEN",
   "done": "Fertig",
   "download": "Herunterladen",
   "drag_and_drop_some_photos_or_sounds": "Drag & Drop einige Bilder oder Audio-Dateien",
@@ -13053,7 +13055,8 @@ I18n.translations["en"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%B %d, %Y",
-      "month_day_year": "%B %d, %Y"
+      "month_day_year": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -13142,7 +13145,6 @@ I18n.translations["en"] = {
   "do_not_show_this_message_again": "Do not show this message again",
   "doh_something_went_wrong": "D'oh, something went wrong.",
   "doh_something_went_wrong_error": "D'oh, something went wrong: %{error}",
-  "donate": "DONATE",
   "done": "Done",
   "download": "Download",
   "drag_and_drop_some_photos_or_sounds": "Drag & drop some photos or sounds",
@@ -13249,6 +13251,8 @@ I18n.translations["en"] = {
   "geoprivacy_is_private": "Geoprivacy is private",
   "geoprivacy_is_private_desc": "Observer has chosen to hide the coordinates.",
   "get_started": "Get Started",
+  "give_monthly_caps": "GIVE MONTHLY",
+  "give_now_caps": "GIVE NOW",
   "globally": "Globally",
   "go": "Go",
   "go_back": "Go back",
@@ -13531,6 +13535,7 @@ I18n.translations["en"] = {
     "datetime_with_zone": "MMM D, YYYY · LT z",
     "datetime_with_offset": "MMM D, YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Monthly Supporter</a> since %{date}\n",
   "months": "Months",
   "more": "More",
   "more_filters": "More Filters",
@@ -14622,11 +14627,15 @@ I18n.translations["en"] = {
         "recent_w_7_obs": "Recent w/ >= 7 obs"
       },
       "year": {
+        "donate_desc_html": "Thank you for being generous with your time, attention, expertise, and\ndonations! iNaturalist is a not-for-profit joint initiative of the\nCalifornia Academy of Sciences and the National Geographic Society.\nIt’s supported by a\n<a href=\"%{team_url}\">small team</a> that\ndoes all the design and software\nengineering for web, mobile, and\n<a href=\"%{seek_url}\">Seek by iNaturalist</a>, in addition to managing\nthe community support, collaborations, and integrations that keep\nthings running (and growing rapidly!). The program relies on numerous\ngrants and donations, including charitable gifts from less than 0.2%\nof contributors. We are especially grateful to Monthly Supporters\nwhose recurring gifts help us plan for the future. You can donate in\nmore than 30 currencies to support iNaturalist’s core operations.\nThank you to everyone for your part in making 2019 iNaturalist’s\nbiggest year yet!\n",
+        "donate_title": "Special Thanks to All Our Supporters",
         "growth_by_country_desc_html": "Where is growth happening? This map and chart attempt to break this\ndown by country, which turns out to be complicated because growth by\ncountry can be very imbalanced. Here we've chosen to omit the United\nStates and use a log scale by default to accentuate differences\nbetween other countries. If a country is colored black that means it\ndid not contribute signicantly to a percentage, or it had no growth\nthis year, or did not have more observations this year than last year\n(hover over a country to see a little more detail). <strong>\"% of\ntotal growth\"</strong> means how much of worldwide growth came from a\nparticular country, e.g. if there were 20 observations in 2018 and 10\nin 2017, that would be 10 observations of growth, and if 5 of those\nobservations were from Benin, then Benin contributed 50% of total\ngrowth. <strong>\"% growth\"</strong> means the number of observations\nthis year in that country as a percent of observations last year in\nthat country, so if there were 10 observations in Laos last year but\n20 this year, that would be 100% growth, and if there were 0 last year\nand 1 this year, that's infinity % growth.\n",
         "growth_by_country_title": "Growth By Country",
         "growth_desc": "The \"Observations\" and \"Taxa\" charts may include data visible on\n%{site_name} contributed by people who are not affiliated with\n%{site_name}, while the \"Users\" chart only shows the dates when users\ncurrently affiliated with %{site_name} joined iNaturalist.\n",
         "growth_in_year_obs": "Growth in %{year} (obs)",
         "growth_title": "Growth",
+        "inaturalist_network": "iNaturalist Network",
+        "inaturalist_network_desc": "Check out the Year in Review for the members of the iNaturalist Network.\n",
         "include_usa": "Include US",
         "new_species_desc_html": "Species that were added for the first time this year.\nClick on a month to view some of the new species added in that month.\nYou can also view the total species accumulation, or move the slider\nback in time to see other newly-observed species. This chart shows\nspecies from verifiable observations by the month they were uploaded\nto %{site_name} (not the month they were observed). It does not\ninclude higher or lower level taxa, so an observation identified as\nMammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.\n<i>arctos</i> will just count as <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs in %{year}",
@@ -14636,6 +14645,9 @@ I18n.translations["en"] = {
         "percent_growth_in_year": "% Growth in %{year}",
         "percent_of_total_growth": "% of Total Growth",
         "publications_desc_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
+        "publications_desc_short_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
+        "stats_generated_datetime": "Stats generated on %{datetime}",
+        "store_prompt": "Want to show your iNat pride everywhere you go? Check out the iNat\nStore!\n",
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }
     },
@@ -16715,7 +16727,8 @@ I18n.translations["es"] = {
     "formats": {
       "compact": "%e %b",
       "long": "%d de %B de %Y",
-      "month_day_year": "%d %B %Y"
+      "month_day_year": "%d %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -16804,7 +16817,6 @@ I18n.translations["es"] = {
   "do_not_show_this_message_again": "No volver a mostrar este mensaje",
   "doh_something_went_wrong": "Algo salió mal.",
   "doh_something_went_wrong_error": "Se ha producido un problema: %{error}",
-  "donate": "HACER UNA DONACIÓN",
   "done": "Hecho",
   "download": "Descarga",
   "drag_and_drop_some_photos_or_sounds": "Arrastra y suelta algunas fotos o sonidos",
@@ -17192,6 +17204,7 @@ I18n.translations["es"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Patrocinador mensual</a> desde %{date}\n",
   "months": "Meses",
   "more": "Más",
   "more_filters": "Más filtros",
@@ -18906,7 +18919,6 @@ I18n.translations["es-AR"] = {
   "do_not_show_this_message_again": "No volver a mostrar este mensaje",
   "doh_something_went_wrong": "Algo salió mal.",
   "doh_something_went_wrong_error": "Se ha producido un problema: %{error}",
-  "donate": "DONÁ",
   "done": "Hecho",
   "download": "Descarga",
   "drag_and_drop_some_photos_or_sounds": "Arrastra y suelta algunas fotos o sonidos",
@@ -19288,6 +19300,7 @@ I18n.translations["es-AR"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Patrocinador mensual</a> desde %{date}\n",
   "months": "Meses",
   "more": "Más",
   "more_filters": "Más filtros",
@@ -22940,7 +22953,6 @@ I18n.translations["et"] = {
   "do_not_show_this_message_again": "Ära seda teadet enam näita",
   "doh_something_went_wrong": "Oi-oi, miski läks valesti.",
   "doh_something_went_wrong_error": "Hmm, miski läks valesti: %{error}",
-  "donate": "ANNETA",
   "done": "Lisa",
   "download": "Lae alla",
   "drag_and_drop_some_photos_or_sounds": "Lohista siia mõned fotod või helid",
@@ -25641,7 +25653,8 @@ I18n.translations["fi"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%-d. %Bta %Y",
-      "month_day_year": "%-d. %Bta %Y"
+      "month_day_year": "%-d. %Bta %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -25730,7 +25743,6 @@ I18n.translations["fi"] = {
   "do_not_show_this_message_again": "Älä näytä tätä viestiä uudelleen",
   "doh_something_went_wrong": "Pahus, jotain meni pieleen.",
   "doh_something_went_wrong_error": "D'oh, jotain meni vikaan: %{error}",
-  "donate": "LAHJOITA",
   "done": "Valmis",
   "download": "Lataa",
   "drag_and_drop_some_photos_or_sounds": "Vedä ja pudota joitain valokuvia tai ääniä",
@@ -26080,6 +26092,7 @@ I18n.translations["fi"] = {
     "datetime_with_zone": "D. MMM YYYY · LT z",
     "datetime_with_offset": "D. MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Kuukausittainen tukija</a> %{date} lähtien\n",
   "months": "Kuukaudet",
   "more": "Lisää",
   "more_filters": "Lisää suodattimia",
@@ -27748,7 +27761,8 @@ I18n.translations["fr"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%e %B %Y",
-      "month_day_year": "%B %d, %Y"
+      "month_day_year": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -27835,7 +27849,6 @@ I18n.translations["fr"] = {
   "do_not_show_this_message_again": "Ne plus afficher ce message",
   "doh_something_went_wrong": "Oups, quelque chose s’est mal passé.",
   "doh_something_went_wrong_error": "Oh, quelque chose s’est mal passé : %{error}",
-  "donate": "Faire un don",
   "done": "Fait",
   "download": "Télécharger",
   "drag_and_drop_some_photos_or_sounds": "Glisser et déposer quelques photos ou sons",
@@ -28158,6 +28171,7 @@ I18n.translations["fr"] = {
     },
     "datetime_with_zone": "D MMM YYYY · LT z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Soutien mensuel</a> depuis %{date}\n",
   "months": "Mois",
   "more": "Plus",
   "more_filters": "Plus de filtres",
@@ -30706,7 +30720,8 @@ I18n.translations["he"] = {
       "7": "Sa"
     },
     "formats": {
-      "long": "%e ב%B, %Y"
+      "long": "%e ב%B, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -30803,7 +30818,6 @@ I18n.translations["he"] = {
   "do_not_show_this_message_again": "לא להציג את ההודעה הזאת שוב",
   "doh_something_went_wrong": "אופס... משהו לא הלך כמו שצריך.",
   "doh_something_went_wrong_error": "אופס... משהוא לא הלכך כמו שצריך: %{error}",
-  "donate": "לתרומה",
   "done": "בוצע",
   "download": "הורדה",
   "drag_and_drop_some_photos_or_sounds": "גרור ושחרר תמונות וקולות",
@@ -33222,7 +33236,8 @@ I18n.translations["it"] = {
     "formats": {
       "compact": "%e %b",
       "long": "%d %B, %Y",
-      "month_day_year": "%d %B, %Y"
+      "month_day_year": "%d %B, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -33311,7 +33326,6 @@ I18n.translations["it"] = {
   "do_not_show_this_message_again": "Non mostrare più questo messaggio",
   "doh_something_went_wrong": "Oh, qualcosa è andato storto.",
   "doh_something_went_wrong_error": "Ahi, qualcosa è andato storto: %{error}",
-  "donate": "FAI UNA DONAZIONE",
   "done": "Fatto",
   "download": "Scarica",
   "drag_and_drop_some_photos_or_sounds": "Trascina e rilascia alcune foto o suoni",
@@ -33700,6 +33714,7 @@ I18n.translations["it"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Sostenitore mensile</a> dal %{date}\n",
   "months": "Mesi",
   "more": "Di più",
   "more_filters": "Più filtri",
@@ -35383,7 +35398,8 @@ I18n.translations["ja"] = {
     },
     "formats": {
       "long": "%Y年%B%d日",
-      "month_day_year": "%Y年%B%d日"
+      "month_day_year": "%Y年%B%d日",
+      "month_year": "%Y年%B"
     },
     "month_names": [
       null,
@@ -36702,7 +36718,8 @@ I18n.translations["ko"] = {
       "7": "토"
     },
     "formats": {
-      "long": "%Y년 %m월 %d일 (%a)"
+      "long": "%Y년 %m월 %d일 (%a)",
+      "month_year": "%Y년 %B"
     },
     "month_names": [
       null,
@@ -40787,7 +40804,8 @@ I18n.translations["nb"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d. %B %Y",
-      "month_day_year": "%d. %B %Y"
+      "month_day_year": "%d. %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -40876,7 +40894,6 @@ I18n.translations["nb"] = {
   "do_not_show_this_message_again": "Ikke vis denne beskjeden igjen",
   "doh_something_went_wrong": "Æsj, noe gikk galt.",
   "doh_something_went_wrong_error": "Æsj, noe gikk galt: %{error}",
-  "donate": "DONÉR",
   "done": "Ferdig",
   "download": "Last ned",
   "drag_and_drop_some_photos_or_sounds": "Dra og slipp noen bilder eller lyder",
@@ -41265,6 +41282,7 @@ I18n.translations["nb"] = {
     "datetime_with_zone": "D MMM, YYYY · LT z",
     "datetime_with_offset": "D MMM, YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Månedlig supporter</a> siden %{date}\n",
   "months": "Måneder",
   "more": "Mer",
   "more_filters": "Flere filtre",
@@ -42921,7 +42939,8 @@ I18n.translations["nl"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d %B %Y",
-      "month_day_year": "%d %B %Y"
+      "month_day_year": "%d %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -43010,7 +43029,6 @@ I18n.translations["nl"] = {
   "do_not_show_this_message_again": "Deze boodschap niet meer tonen",
   "doh_something_went_wrong": "D'oh, er ging iets mis.",
   "doh_something_went_wrong_error": "Oeps, er liep iets mis: %{error}",
-  "donate": "DONEREN",
   "done": "Klaar",
   "download": "Downloaden",
   "drag_and_drop_some_photos_or_sounds": "Sleep hier foto's of geluiden naartoe",
@@ -43399,6 +43417,7 @@ I18n.translations["nl"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Maandelijkse Supporter</a> sinds %{date}\n",
   "months": "Maanden",
   "more": "Meer",
   "more_filters": "Meer filters",
@@ -45987,7 +46006,8 @@ I18n.translations["pl"] = {
     },
     "formats": {
       "long": "%B %d, %Y",
-      "month_day_year": "%-d %B %Y"
+      "month_day_year": "%-d %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -46086,7 +46106,6 @@ I18n.translations["pl"] = {
   "do_not_show_this_message_again": "Nie pokazuj ponownie tego komunikatu",
   "doh_something_went_wrong": "Ups, coś poszło nie tak.",
   "doh_something_went_wrong_error": "Ups, coś poszło nie tak: %{error}",
-  "donate": "WESPRZYJ",
   "done": "Gotowe",
   "download": "Pobierz",
   "drag_and_drop_some_photos_or_sounds": "Przeciągnij i upuść zdjęcia lub dźwięki",
@@ -51068,7 +51087,8 @@ I18n.translations["ru"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%B %d, %Y",
-      "month_day_year": "%B %d, %Y"
+      "month_day_year": "%B %d, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -51167,7 +51187,6 @@ I18n.translations["ru"] = {
   "do_not_show_this_message_again": "Не показывать это сообщение повторно",
   "doh_something_went_wrong": "Ой, что-то пошло не так.",
   "doh_something_went_wrong_error": "Что-то пошло не так: %{error}",
-  "donate": "Поддержать",
   "done": "Готово",
   "download": "Загрузить",
   "drag_and_drop_some_photos_or_sounds": "Перетащите и отпустите несколько фото или звуков",
@@ -51560,6 +51579,7 @@ I18n.translations["ru"] = {
     "datetime_with_zone": "D MMM YYYY · LT z",
     "datetime_with_offset": "D MMM YYYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Ежемесячный спонсор</a> с %{date}\n",
   "months": "Месяцы",
   "more": "Ещё",
   "more_filters": "Больше фильтров",
@@ -57210,7 +57230,8 @@ I18n.translations["tr"] = {
     "formats": {
       "compact": "%b %e",
       "long": "%d %B, %Y",
-      "month_day_year": "%d %B, %Y"
+      "month_day_year": "%d %B, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -57299,7 +57320,6 @@ I18n.translations["tr"] = {
   "do_not_show_this_message_again": "Bu mesajı bir daha gösterme",
   "doh_something_went_wrong": "D'oh, bir şeyler ters gitti.",
   "doh_something_went_wrong_error": "Ah, bir şeyler yanlış gitti: %{error}",
-  "donate": "BAĞIŞ YAP",
   "done": "Tamamlandı",
   "download": "İndir",
   "drag_and_drop_some_photos_or_sounds": "Bazı fotoğrafları ya da sesleri sürükleyip bırakın",
@@ -57688,6 +57708,7 @@ I18n.translations["tr"] = {
     "datetime_with_zone": "D MMM YYY · LT z",
     "datetime_with_offset": "D MMM YYY · LT Z"
   },
+  "monthly_supporter_since_date_html": "%{date} tarihinden beri <a href=\"%{url}\">Aylık Destekçi</a>\n",
   "months": "Aylar",
   "more": "Daha Fazla",
   "more_filters": "Daha Fazla Filtre Göster",
@@ -59488,7 +59509,8 @@ I18n.translations["zh-CN"] = {
     },
     "formats": {
       "long": "%Y年%B%d日",
-      "month_day_year": "%B%d日%Y年"
+      "month_day_year": "%B%d日%Y年",
+      "month_year": "%Y年%B"
     },
     "month_names": [
       null,
@@ -61312,7 +61334,8 @@ I18n.translations["zh-TW"] = {
       "7": "六"
     },
     "formats": {
-      "long": "%Y年%b%d日"
+      "long": "%Y年%b%d日",
+      "month_year": "%Y年%B"
     },
     "month_names": [
       null,
@@ -61397,7 +61420,6 @@ I18n.translations["zh-TW"] = {
   "do_not_show_this_message_again": "不要再顯示此訊息",
   "doh_something_went_wrong": "噢噢，出現了一些問題。",
   "doh_something_went_wrong_error": "哎呀，發生了一些錯誤：%{error}",
-  "donate": "贊助",
   "done": "完成",
   "download": "下載",
   "drag_and_drop_some_photos_or_sounds": "拖拉一些照片和聲音",
@@ -61757,6 +61779,7 @@ I18n.translations["zh-TW"] = {
     "datetime_with_zone": "YYYY/MM/DD · LT z",
     "datetime_with_offset": "YYYY/MM/DD · LT Z"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">每月捐款者</a> since %{date}\n",
   "months": "月",
   "more": "更多",
   "more_filters": "更多篩選",

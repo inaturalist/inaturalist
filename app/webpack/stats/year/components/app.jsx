@@ -1,4 +1,5 @@
 /* global DEFAULT_SITE_ID */
+// I18n.t( "time.formats.long" )
 
 import React from "react";
 import PropTypes from "prop-types";
@@ -13,14 +14,19 @@ import Identifications from "./identifications";
 import Taxa from "./taxa";
 import Publications from "./publications";
 import Growth from "./growth";
+import Sites from "./sites";
+import Donate from "./donate";
+import Donor from "./donor";
 
 const App = ( {
   year,
   user,
   currentUser,
   site,
+  sites,
   data,
-  rootTaxonID
+  rootTaxonID,
+  updatedAt
 } ) => {
   let body = "todo";
   const inatUser = user ? new inatjs.User( user ) : null;
@@ -83,6 +89,8 @@ const App = ( {
         { data.publications && (
           <Publications data={data.publications} year={year} />
         ) }
+        { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
+        { !user && <Donate year={year} /> }
         <div id="sharing">
           <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
           <center>
@@ -189,6 +197,9 @@ const App = ( {
       <Grid fluid={isTouchDevice}>
         <Row>
           <Col xs={12}>
+            { user && user.display_donor_since && (
+              <center><Donor year={year} user={user} /></center>
+            ) }
             <h1>
               {
                 I18n.t( "year_in_review", {
@@ -201,6 +212,13 @@ const App = ( {
         <Row>
           <Col xs={12}>
             { body }
+            { updatedAt && (
+              <p className="updated-at text-center text-muted">
+                { I18n.t( "views.stats.year.stats_generated_datetime", {
+                  datetime: I18n.localize( "time.formats.long", updatedAt )
+                } ) }
+              </p>
+            ) }
             <div id="view-stats-buttons">
               { !currentUser || !user || ( user.id !== currentUser.id ) ? (
                 <div>
@@ -220,24 +238,6 @@ const App = ( {
                   </a>
                 </div>
               ) : null }
-              { (
-                !site || site.id === 1 || (
-                  user && ( user.site_id === null || user.site_id === 1 )
-                )
-              ) && (
-                <div className="support">
-                  <a href="/donate?utm_content=year-in-review-2018" className="btn btn-default btn-bordered btn-donate">
-                    <i className="fa fa-heart" />
-                    { " " }
-                    { I18n.t( "donate" ) }
-                  </a>
-                  <a href="https://store.inaturalist.org" className="btn btn-default btn-bordered btn-donate">
-                    <i className="fa fa-shopping-cart" />
-                    { " " }
-                    { I18n.t( "store" ) }
-                  </a>
-                </div>
-              ) }
             </div>
           </Col>
         </Row>
@@ -252,7 +252,9 @@ App.propTypes = {
   currentUser: PropTypes.object,
   data: PropTypes.object,
   site: PropTypes.object,
-  rootTaxonID: PropTypes.number
+  sites: PropTypes.array,
+  rootTaxonID: PropTypes.number,
+  updatedAt: PropTypes.object
 };
 
 export default App;
