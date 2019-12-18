@@ -21,12 +21,14 @@ const Donate = ( { year } ) => (
         href={`/monthly-supporters?utm_campaign=${year}-year-in-review&utm_medium=web&utm_content=button&utm_term=monthly`}
         className="btn btn-default btn-primary btn-bordered btn-donate"
       >
+        <i className="fa fa-calendar" />
         { I18n.t( "give_monthly_caps" ) }
       </a>
       <a
         href={`/donate?utm_content=utm_campaign=${year}-year-in-review&utm_medium=web&utm_content=button&utm_term=now`}
         className="btn btn-default btn-primary btn-bordered btn-donate"
       >
+        <i className="fa fa-heart" />
         { I18n.t( "give_now_caps" ) }
       </a>
     </div>
@@ -35,8 +37,9 @@ const Donate = ( { year } ) => (
         <p>{I18n.t( "views.stats.year.store_prompt" )}</p>
         <a
           href="https://store.inaturalist.org"
-          className="btn btn-default btn-donate btn-primary btn-bordered"
+          className="btn btn-default btn-donate btn-bordered"
         >
+          <i className="fa fa-shopping-cart" />
           { I18n.t( "store" ) }
         </a>
       </div>

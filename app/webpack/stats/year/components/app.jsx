@@ -30,6 +30,7 @@ const App = ( {
 } ) => {
   let body = "todo";
   const inatUser = user ? new inatjs.User( user ) : null;
+  const defaultSite = _.find( sites, s => s.id === DEFAULT_SITE_ID );
   if ( !year ) {
     body = (
       <p className="alert alert-warning">
@@ -227,14 +228,17 @@ const App = ( {
                     { " " }
                     { I18n.t( "view_your_year_stats", { year } ) }
                   </a>
-                  { site && site.id !== DEFAULT_SITE_ID && (
+                  { site && defaultSite && site.id !== defaultSite.id && (
                     <div>
-                      <a href={`/stats/${year}`} className="btn btn-primary btn-bordered btn-lg">
+                      <a
+                        href={`${defaultSite.url}/stats/${year}`}
+                        className="btn btn-primary btn-bordered btn-lg"
+                      >
                         <i className="fa fa-bar-chart-o" />
                         { " " }
                         { I18n.t( "view_year_stats_for_site", {
                           year,
-                          site: "iNaturalist",
+                          site: defaultSite.name,
                           vow_or_con: "i"
                         } ) }
                       </a>
