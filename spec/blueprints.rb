@@ -538,6 +538,11 @@ UserBlock.blueprint do
   blocked_user { User.make! }
 end
 
+UserMute.blueprint do
+  user { User.make! }
+  muted_user { User.make! }
+end
+
 UserParent.blueprint do
   email { Faker::Internet.email }
   name { Faker::Name.name }
