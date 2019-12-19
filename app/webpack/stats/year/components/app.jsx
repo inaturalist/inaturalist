@@ -87,12 +87,18 @@ const App = ( {
         { data.publications && (
           <Publications data={data.publications} year={year} />
         ) }
-        { window.location.search && window.location.search.indexOf( "test=translators" ) >= 0 && data.translators && (
-          <Translators
-            data={data.translators}
-            siteName={site && site.id !== DEFAULT_SITE_ID ? site.name : null}
-          />
-        ) }
+        {
+          window.location.search
+          && window.location.search.indexOf( "test=translators" ) >= 0
+          && data.translators
+          && ( !site || site.id === DEFAULT_SITE_ID || !_.isEmpty( site.locale ) )
+          && (
+            <Translators
+              data={data.translators}
+              siteName={site && site.id !== DEFAULT_SITE_ID ? site.name : null}
+            />
+          )
+        }
         { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
         { !user && ( !site || site.id === DEFAULT_SITE_ID ) && <Donate year={year} /> }
         { updatedAt && (
