@@ -2970,6 +2970,7 @@ pl:
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a> zaobserwowany przez
   taxon_photos_updated: Zdjęcia taksonu zaktualizowane!
+  taxon_ranks: Kategorie taksonomiczne
   taxon_name_was_deleted: Nazwa taksonu została usunięta.
   taxon_name_was_successfully_updated: Nazwa taksonu została pomyślnie zaktualizowana.
   taxon_was_successfully_created: Takson został pomyślnie utworzony.
@@ -3340,6 +3341,7 @@ pl:
         website_desc_html: |
           Dodane przez stronę <a href="https://www.inaturalist.org">iNaturalist</a> lub <a href="%{url}">iNaturalist Network</a>
       year:
+        inaturalist_network: Sieć iNaturalist
         include_usa: Łącznie z USA
         growth_by_country_title: Wzrost według kraju
         growth_in_year_obs: "Wzrost w %{year} (obserwacje)"
