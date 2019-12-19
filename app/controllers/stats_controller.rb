@@ -1,8 +1,12 @@
 class StatsController < ApplicationController
-
   before_filter :set_time_zone_to_utc
   before_filter :load_params, except: [:year, :generate_year]
-  before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats, :generate_year]
+  before_action :doorkeeper_authorize!,
+    only: [ :generate_year ],
+    if: lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!,
+    only: [:cnc2017_taxa, :cnc2017_stats, :generate_year],
+    unless: lambda { authenticated_with_oauth? }
   before_filter :allow_external_iframes, only: [:wed_bioblitz]
 
   caches_action :summary, expires_in: 1.hour
