@@ -51,8 +51,6 @@ class IdentificationsController < ApplicationController
       api_response.total_results) do |pager|
       pager.replace(ids)
     end
-
-
     counts_response = INatAPIService.identifications_categories(search_params)
     @counts = Hash[counts_response.results.map{ |r| [ r["category"], r["count"] ] }]
     respond_to do |format|

@@ -1046,3 +1046,55 @@ $obs-grid-photo-size: 210px;
     color: white;
   }
 }
+
+.Translators {
+  a,
+  a:active,
+  a:focus,
+  a:hover {
+    color: $inat-green;
+  }
+  .badge {
+    margin-right: 5px;
+  }
+  .table {
+    border: 0 transparent;
+    font-size: smaller;
+    line-height: 12px;
+    th {
+      button,
+      button:hover,
+      button:active,
+      button:focus {
+        color: white;
+        padding: 0;
+        background: transparent;
+        border: 0 transparent;
+      }
+      i {
+        margin-left: 5px;
+      }
+    }
+  }
+  .table > tbody > tr > td {
+    border-top: 1px solid #333;
+    vertical-align: middle;
+    padding: 5px;
+  }
+  .number {
+    width: 15%;
+    white-space: nowrap;
+    .bar {
+      color: white;
+      padding: 3px 0px;
+      display: inline-block;
+    }
+  }
+  td.badges {
+    line-height: 25px !important;
+  }
+  .badge,
+  .bar {
+    background-color: $dark-gray;
+  }
+}
