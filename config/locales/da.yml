@@ -1406,6 +1406,8 @@ da:
   get_started: Kom igang
   getting_started_guide: Kom godt i gang
   give_it_some_detail: Giv det nogle detaljer!
+  give_monthly_caps: GIV MÅNEDLIGT
+  give_now_caps: GIV NU
   global_names: Globale navne
   globally: Globalt
   go: Start
@@ -1544,7 +1546,7 @@ da:
   improving: Forbedring
   in_n: "i %{n}"
   in_place_x: i %{place}
-  inaturalist_network_affiliation: iNaturalist Network tilknytning
+  inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
   inbox: Indbakke
   including: inklusiv
@@ -1873,7 +1875,7 @@ da:
   maps:
     overlays:
       all_observations: Alle observationer
-      every_publicly_visible_observation: Alle offentligt synlige observationer oprettet i iNaturalist netværket
+      every_publicly_visible_observation: Alle offentligt synlige observationer oprettet i iNaturalis Network
       featured_observations: Udvalgte observationer
       gbif_network: GBIF netværk
       gbif_network_description: Registreringer fra museer og andre udbydere distribueret af Global Biodiversity Informatics Facility
@@ -1893,7 +1895,7 @@ da:
   medium: mellem
   meet: Mød
   member_of_the_inaturalist_network_html: |
-    Medlem af <a href="%{url}">iNaturalist Netværk</a>
+    Medlem af <a href="%{url}">iNaturalist Network</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Medlem af %{partial_inat_network_tag_html}iNaturalist Network</a>, et fællesinitiativ fra %{cas_tag_html} og %{nat_geo_tag_html}.
   members: Medlemmer
@@ -5573,8 +5575,28 @@ da:
           fotos.
         website_desc_html: |
           Oprettet via <a href="https://www.inaturalist.org">iNaturalist</a>
-          eller<a href="%{url}">iNaturalist Network</a> hjemmesider
+          eller<a href="%{url}">iNaturalist Network</a>-websteder
       year:
+        donate_title: "En særlig tak til alle vores støtter"
+        donate_desc_html: |
+          Tak fordi du er generøs med din tid, opmærksomhed, ekspertise og
+          donationer! iNaturalist er et non-profit fællesinitiativ fra Californiad
+          Academy of Sciences og National Geographic Society..
+          Det støttes af et
+          <a href="%{team_url}">lille team</a>, som
+          foretager al design- og software-
+          udvikling til web, mobil og
+          <a href="%{seek_url}">Seek fra iNaturalist</a>, samt administrerer fællesskabssupporten, samarbejder og integrationer, som holder
+          tingene kørende (og hastigt voksende!). Programmet er afhængigt af
+          talrige tilskud og donationer inkl. velgørende gaver fra færre end 0,2%
+          af bidragsydere. Vi er særligt taknemmelige for Månedlige Supportere,
+          hvis tilbagevendende gaver hjælper os med fremtidig planlægning. Du
+          kan donere i flere end 30 valutaer for at støtte iNaturalists kerne-
+          funktioner. Tak til alle for jeres andel i at gøre 2019 til iNaturalists
+          største år indtil nu!
+        inaturalist_network: iNaturalist Network
+        inaturalist_network_desc: |
+          Tjek Året i tilbageblik for medlemmerne af iNaturalist Network.
         include_usa: Inkludér USA
         growth_by_country_desc_html: |
           Hvor sker væksten? Dette kort og diagram forsøger at bryde dette
@@ -5618,12 +5640,21 @@ da:
           Klik på blomsterdiagrammerne for mere information om betydningen af numrene og farverne. Påvirkningsdata og diagrammer med tilladelse fra <a href="https://www.altmetric.com">Altmetric</a>. Information om databrug med tilladelse fra vores venner ved <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
           <br/>
           <a href="%{url}">Se alle %{numStudies} studier</a>
+        publications_desc_short_html: |
+          Klik på blomsterdiagrammerne for mere information om betydning
+          af numre og farver. Indvirkningsdata og diagrammer med
+          tilladelse fra <a href="https://www.altmetric.com">Altmetric</a>.
+          Information om databrug med tilladelse fra vores venner fra
+          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observationsstræk
         observation_streaks_color_desc: |
           Farve repræsenterer antallet af dage i en logaritmisk skala:
         observation_streaks_desc: |
           Et observationsstræk er en periode, hvori nogen har været ude at registrerer nye observationer hver eneste dag. Her vises de længste stræk, som startede i år eller stadig var undervejs, da disse statistikker blev udarbejdet.
+        stats_generated_datetime: Statistikker genereret %{datetime}
+        store_prompt: |
+          Vil gerne bryste dig af dit iNat-medlemskab? Så tjek iNat-butikken!
         sunburst_desc_html: |
           Observeret taksa arrangeret som hierarkisk "solstråle" diagram. Basen
           af hierarkiet er i centrum, begyndende med "liv" og slutter
