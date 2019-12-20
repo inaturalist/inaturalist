@@ -45,7 +45,7 @@ class MessagesController < ApplicationController
         render json: {
           page: @messages.current_page,
           per_page: @messages.per_page,
-          total_entries: @messages.total_entries,
+          total_results: @messages.total_entries,
           results: @messages
         }
       end
@@ -72,8 +72,11 @@ class MessagesController < ApplicationController
       format.html
       format.json do
         render json: {
+          page: 1,
+          per_page: @messages.count,
+          total_results: @messages.count,
           thread_message_id: @thread_message.id,
-          reply_to_user: @reply_to.as_indexed_json,
+          reply_to_user_id: @reply_to.id,
           flaggable_message_id: @flaggable_message.try(:id),
           results: @messages.as_json
         }
@@ -136,14 +139,22 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    Message.where("user_id = ? AND thread_id = ?", current_user.id, @message.thread_id).each(&:destroy)
-    msg = "Message deleted"
-    respond_to do |format|
-      format.html do
-        flash[:notice] = msg
-        redirect_to messages_url
+    thread_messages = Message.where(
+      "user_id = ? AND thread_id = ?",
+      current_user.id, @message.thread_id
+    )
+    if thread_messages.blank?
+      return render_404
+    else
+      thread_messages.destroy_all
+      msg = t(:message_deleted)
+      respond_to do |format|
+        format.html do
+          flash[:notice] = msg
+          redirect_to messages_url
+        end
+        format.json { head :no_content }
       end
-      format.json { head :no_content }
     end
   end
 
