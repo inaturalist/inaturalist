@@ -54,6 +54,7 @@ ca:
   x_others:
     one: "1 altre"
     other: "%{count} més"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} Persones</strong> han ajudat %{user} amb <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 foto"
     other: "%{count} fotos"
@@ -90,7 +91,6 @@ ca:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> canvi de tàxon afegit"
     other: "<span class='count'>%{count}</span> canvis de tàxon afegits"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} Persones</strong> han ajudat %{user} amb <strong>%{y} IDs</strong>"
   _100_day_trends: Tendències de 100 dies
   _percent_ID_d: "% Identificats"
   a_community_for_naturalist: Una comunitat per a naturalistes
