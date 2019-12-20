@@ -50,15 +50,6 @@ const Publications = ( { data, year } ) => {
       </Row>
     );
   };
-  let shortDesc = I18n.t( "views.stats.year.publications_desc_short_html", { numStudies: data.count } );
-  const shortDescEn = I18n.t( "views.stats.year.publications_desc_short_html", {
-    numStudies: data.count,
-    locale: "en"
-  } );
-  if ( I18n.locale !== "en" && shortDesc === shortDescEn ) {
-    shortDesc = null;
-  }
-  const desc = I18n.t( "views.stats.year.publications_desc_html", { numStudies: data.count } );
   return (
     <div className="Publications">
       <h3>
@@ -66,14 +57,12 @@ const Publications = ( { data, year } ) => {
           <span>{I18n.t( "studies_that_used_inaturalist_data_in_year", { year } )}</span>
         </a>
       </h3>
-      { shortDesc && (
-        <p
-          className="text-muted"
-          dangerouslySetInnerHTML={{
-            __html: shortDesc
-          }}
-        />
-      ) }
+      <p
+        className="text-muted"
+        dangerouslySetInnerHTML={{
+          __html: I18n.t( "views.stats.year.publications_desc_short_html", { numStudies: data.count } )
+        }}
+      />
       { _.chunk( data.results, 2 ).map( chunk => (
         <Row key={`publications-row-${chunk[0].id}`}>
           { chunk.map( pub => (
@@ -89,21 +78,11 @@ const Publications = ( { data, year } ) => {
       ) ) }
       <div className="row">
         <div className="xs-col-12">
-          { !shortDesc && (
-            <p
-              className="lead text-center"
-              dangerouslySetInnerHTML={{
-                __html: desc
-              }}
-            />
-          ) }
-          { shortDesc && (
-            <center>
-              <a href={data.url} className="btn btn-default btn-bordered inlineblock">
-                { I18n.t( "view_all" ) }
-              </a>
-            </center>
-          ) }
+          <center>
+            <a href={data.url} className="btn btn-default btn-bordered inlineblock">
+              { I18n.t( "view_all" ) }
+            </a>
+          </center>
         </div>
       </div>
     </div>

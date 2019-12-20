@@ -7932,6 +7932,8 @@ I18n.translations["da"] = {
   "geoprivacy_is_private": "Geofortrolighed er fortrolig",
   "geoprivacy_is_private_desc": "Observatør har valgt at skjule koordinaterne.",
   "get_started": "Kom igang",
+  "give_monthly_caps": "GIV MÅNEDLIGT",
+  "give_now_caps": "GIV NU",
   "globally": "Globalt",
   "go": "Start",
   "go_back": "Gå tilbage",
@@ -8215,7 +8217,7 @@ I18n.translations["da"] = {
   "maps": {
     "overlays": {
       "all_observations": "Alle observationer",
-      "every_publicly_visible_observation": "Alle offentligt synlige observationer oprettet i iNaturalist netværket",
+      "every_publicly_visible_observation": "Alle offentligt synlige observationer oprettet i iNaturalis Network",
       "featured_observations": "Udvalgte observationer",
       "gbif_network": "GBIF netværk",
       "gbif_network_description": "Registreringer fra museer og andre udbydere distribueret af Global Biodiversity Informatics Facility",
@@ -9338,11 +9340,15 @@ I18n.translations["da"] = {
         "recent_w_7_obs": "Nylige m/> 7 obs"
       },
       "year": {
+        "donate_desc_html": "Tak fordi du er generøs med din tid, opmærksomhed, ekspertise og\ndonationer! iNaturalist er et non-profit fællesinitiativ fra Californiad\nAcademy of Sciences og National Geographic Society..\nDet støttes af et\n<a href=\"%{team_url}\">lille team</a>, som\nforetager al design- og software-\nudvikling til web, mobil og\n<a href=\"%{seek_url}\">Seek fra iNaturalist</a>, samt administrerer fællesskabssupporten, samarbejder og integrationer, som holder\ntingene kørende (og hastigt voksende!). Programmet er afhængigt af\ntalrige tilskud og donationer inkl. velgørende gaver fra færre end 0,2%\naf bidragsydere. Vi er særligt taknemmelige for Månedlige Supportere,\nhvis tilbagevendende gaver hjælper os med fremtidig planlægning. Du\nkan donere i flere end 30 valutaer for at støtte iNaturalists kerne-\nfunktioner. Tak til alle for jeres andel i at gøre 2019 til iNaturalists\nstørste år indtil nu!\n",
+        "donate_title": "En særlig tak til alle vores støtter",
         "growth_by_country_desc_html": "Hvor sker væksten? Dette kort og diagram forsøger at bryde dette\nned på landeniveau, hvilket viser sig at være kompliceret, fordi\nvæksten kan være meget ubalanceret på landeniveau. Vi har valgt at\nudelade USA og bruge en log-skala som standard for at fremhæve\nforskelle mellem andre lande. Hvis et land er farvet sort betyder det\nat det ikke har bidraget ikke signifikant, eller det ingen vækst havde\ni år, eller ikke havde flere observationer i år end sidste år (Hold\nmusen over et land for at se lidt mere detaljeret). <strong> \"% af\ntotal vækst \"</strong> betyder, hvor meget af den verdensomspændende\nvækst kom fra et bestemt land, f.eks. hvis der var 20 observationer i\n2018 og 10 i 2017 ville det være en vækst på 10 observationer, og hvis\n5 af de observationer var fra Benin, så bidrog Benin med 50% af den\nsamlede vækst. <strong> \"% vækst\" </strong> betyder antallet af\nobservationer i år i det pågældende land som en procent af\nobservationer sidste år i det land, så hvis der var 10 observationer i\nLaos sidste år, men 20 i år, ville det være 100% vækst, og hvis der\nvar 0 sidste år og 1 i år er det uendelig% vækst.\n",
         "growth_by_country_title": "Vækst efter land",
         "growth_desc": "Observations- og Taksadiagrammerne kan inkludere data, som er synlige på %{site_name}, og er bidraget af personer uden tilknytning til %{site_name}, mens Brugerdiagrammerne kun viser de datoer, hvor brugere aktuelt tilknyttet %{site_name} blev medlemmer af iNaturalist.\n",
         "growth_in_year_obs": "Vækst i %{year} (obs)",
         "growth_title": "Vækst",
+        "inaturalist_network": "iNaturalist Network",
+        "inaturalist_network_desc": "Tjek Året i tilbageblik for medlemmerne af iNaturalist Network.\n",
         "include_usa": "Inkludér USA",
         "new_species_desc_html": "Arter, der blev tilføjet for første gang på %{site_name} i år.\nKlik på en måned for at se nogle af de nye arter, der er tilføjet i den pågældende måned.\nDu kan også se den samlede arts akkumulation, eller flytte skyderen\ntilbage i tiden for at se andre nyligt observerede arter. Dette diagram viser\narter fra verificerbare observationer i den måned de blev uploadet\ntil %{site_name} (ikke den måned, de blev observeret). Det inkludere ikke højere eller lavere niveau taksa, så en observation identificeret som\nMammalia tæller ikke, og en observation af <i>Canis lupus</i> ssp.\n<i>arctos</i> vil bare tælle som <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs i %{year}",
@@ -9351,7 +9357,9 @@ I18n.translations["da"] = {
         "observation_streaks_desc": "Et observationsstræk er en periode, hvori nogen har været ude at registrerer nye observationer hver eneste dag. Her vises de længste stræk, som startede i år eller stadig var undervejs, da disse statistikker blev udarbejdet.\n",
         "percent_growth_in_year": "% Vækst i %{year}",
         "percent_of_total_growth": "% af samlet vækst",
-        "publications_desc_html": "Klik på blomsterdiagrammerne for mere information om betydningen af numrene og farverne. Påvirkningsdata og diagrammer med tilladelse fra <a href=\"https://www.altmetric.com\">Altmetric</a>. Information om databrug med tilladelse fra vores venner ved <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n<br/>\n<a href=\"%{url}\">Se alle %{numStudies} studier</a>\n",
+        "publications_desc_short_html": "Klik på blomsterdiagrammerne for mere information om betydning\naf numre og farver. Indvirkningsdata og diagrammer med\ntilladelse fra <a href=\"https://www.altmetric.com\">Altmetric</a>.\nInformation om databrug med tilladelse fra vores venner fra\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
+        "stats_generated_datetime": "Statistikker genereret %{datetime}",
+        "store_prompt": "Vil gerne bryste dig af dit iNat-medlemskab? Så tjek iNat-butikken!\n",
         "sunburst_desc_html": "Observeret taksa arrangeret som hierarkisk \"solstråle\" diagram. Basen\naf hierarkiet er i centrum, begyndende med \"liv\" og slutter\nmed arter ved yderkanterne. Størrelsen af hver \"bue\" er proportional\nmed antallet af observationer af den pågældende takson og farver\nsvarer groft til vores sædvanlige \"ikoniske\" taksonfarver (grøn til planter,\norange til insekter, blå for de fleste andre dyr osv.), så hvis du er\nser meget grønt, det betyder at du har observeret mange planter.\n<strong> Klik på en \"bue\" for at placere den pågældende takson i midten </strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </strong>.\n"
       }
     },
@@ -15111,7 +15119,6 @@ I18n.translations["en"] = {
         "observation_streaks_desc": "An observation streak is a period of time when someone got outside and\nrecorded new, verifiable observations every single day. Here we're\nshowing the longest streaks that began this year or were in progress\nwhen these stats were generated.\n",
         "percent_growth_in_year": "% Growth in %{year}",
         "percent_of_total_growth": "% of Total Growth",
-        "publications_desc_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
         "publications_desc_short_html": "Click the flower charts for more information about what the numbers\nand colors mean. Impact data and charts courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
         "stats_generated_datetime": "Stats generated on %{datetime}",
         "store_prompt": "Want to show your iNat pride everywhere you go? Check out the iNat\nStore!\n",
@@ -17455,6 +17462,8 @@ I18n.translations["es"] = {
   "geoprivacy_is_private": "Geoprivacidad es privada",
   "geoprivacy_is_private_desc": "El observador ha escogido ocultar las coordenadas.",
   "get_started": "Comienza",
+  "give_monthly_caps": "DONAR MENSUALMENTE",
+  "give_now_caps": "DONAR AHORA",
   "globally": "Globalmente",
   "go": "Busca",
   "go_back": "Regresa",
@@ -17871,6 +17880,8 @@ I18n.translations["es"] = {
   },
   "number_selected": "# seleccionado",
   "obs": "Obs",
+  "obs_cid_d": "Obs. identificadas por la comunidad",
+  "obs_id_d": "Obs. identificadas",
   "obscured": "Difusa",
   "observation": "Observación",
   "observation_": "observación",
@@ -18845,10 +18856,14 @@ I18n.translations["es"] = {
         "recent_w_7_obs": "Reciente w/ >= 7 observaciones"
       },
       "year": {
+        "donate_desc_html": "¡Gracias por ser tan generoso con su tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sin ánimo de lucro de la Academia de Ciencias de California y la Sociedad Geográfica Nacional.\nEs sostenido por un equipo <a href=\"%{team_url}\">pequeño</a> que realiza todo el diseño y ingeniería de software para web, móvil, y <a href=\"%{seek_url}\">Búsqueda de iNaturalist</a>, además de administrar el apoyo de la comunidad, colaboraciones e integraciones que mantienen el proyecto en funcionamiento (¡y creciendo rápidamente!). El programa se basa en numerosas donaciones, incluyendo donaciones de beneficencia de menos del 0.2% de los colaboradores. Agradecemos especialmente a los Donadores Mensuales, cuyos regalos recurrentes nos ayudan a planear para el futuro. Puedes donar en más de 30 monedas para apoyar las operaciones centrales de iNaturalist.\n¡Gracias a todos por hacer del 2019 el año más grande de iNaturalist hasta la fecha!\n",
+        "donate_title": "Gracias a todos nuestros colaboradores",
         "growth_by_country_desc_html": "¿Dónde está hay crecimiento? Este mapa y gráfico intentan segmentar esta información por país, lo cual resulta complicado porque el crecimiento por\npaís puede ser muy desequilidrado. Hemos optado por omitir a los Estados Unidos y utilizar una escala de registro por defecto para acentuar diferencias\nentre países. Si un país aparece en negro esto significa que no contribuyó significativamente a un porcentaje, o que no se presentó ningún crecimiento\neste año, o no ha tenido más observaciones este año que el año pasado\n(pasa el cursor sobre un país para ver un poco más de detalle). <strong>\"% del crecimiento total\"<strong> significa cuánto del crecimiento mundial provino de un país particular, por ejemplo si hubo 20 observaciones en 2018 y 10\nen 2017, eso serían 10 observaciones de crecimiento, y si 5 de ellas\nse dieron en Benín, quiere decir que Benín contribuyó 50% del total\ndel crecimiento. <strong>\"% del crecimiento\"<strong> significa el número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, eso sería un crecimiento del 100%, y si hubo 0 el año\npasado y 1 este año, eso sería un % de crecimiento infinito.\n",
         "growth_by_country_title": "Crecimiento por país",
         "growth_in_year_obs": "Crecimiento en %{year} (obs)",
         "growth_title": "Crecimiento",
+        "inaturalist_network": "Red de iNaturalist",
+        "inaturalist_network_desc": "Echa un vistazo a la Revisión del Año para miembros de la Red de iNaturalist.\n",
         "include_usa": "Incluir Estados Unidos",
         "new_species_desc_html": "Especies que fueron añadidas por primera vez en este año.\nMarca sobre un mes para ver algunas de las especies nuevas añadidas en ese mes.\nTambién puedes ver el total acumulado de la especie, o mover el cursor \nhacia atrás en el cronograma para ver otras especies observadas por primera vez. Este gráfico muestra especies a partir de observaciones verificables el mes en que fueron añadidas a %{site_name} (no el mes en que fueron observadas). No incluye nivel más alto o más bajo de taxones, de manera que una observación identificada como Mammalia no cuenta, y una observación de <i>Canis lupus</i> ssp. <i>arctos</i> contará solo como <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs En %{year}",
@@ -18857,6 +18872,9 @@ I18n.translations["es"] = {
         "observation_streaks_desc": "Una racha de observaciones es un período de tiempo en el que una persona registra observaciones a diario. Aquí mostramos las rachas más largas que comenzaron este año o bien estaban en progreso cuando se generaron estas estadísticas.\n",
         "percent_growth_in_year": "% Crecimiento en %{year}",
         "percent_of_total_growth": "% del Crecimiento Total",
+        "publications_desc_short_html": "Haz click en los gráficos para acceder a la información sobre el significado de los números y de los colores. Datos de impacto y visualizaciones cortesía de <a href=\"https://www.altmetric.com\">Altmetric</a>. Información\nsobre uso de los datos cortesía de nuestros amigos en <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
+        "stats_generated_datetime": "Estadísticas generadas el %{datetime}",
+        "store_prompt": "¿Quieres mostrar tu orgullo de iNat dondequiera que vayas? ¡Échale un vistazo la tienda de iNat!\n",
         "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de \"resplandor solar\". La base de la jerarquía está en el centro, comenzando con \"Vida\" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón \"icónico\" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>\n"
       }
     },
@@ -34395,6 +34413,8 @@ I18n.translations["it"] = {
   "geoprivacy_is_private": "La geoprivacy è privata",
   "geoprivacy_is_private_desc": "L'osservatore ha scelto di nascondere le coordinate.",
   "get_started": "Inizia",
+  "give_monthly_caps": "DONA MENSILMENTE",
+  "give_now_caps": "DONA ORA",
   "globally": "A livello globale",
   "go": "Vai",
   "go_back": "Indietro",
@@ -35801,11 +35821,15 @@ I18n.translations["it"] = {
         "recent_w_7_obs": "Recenti con >= 7 osservazioni"
       },
       "year": {
+        "donate_desc_html": "Grazie per il tuo tempo, la tua attenzione, la tua competenza e le tue donazioni! iNaturalist è un'iniziativa no profit congiunta della California Academy of Sciences e della National Geographic Society. È supportato da un <a href=\"%{team_url}\">piccolo team</a> che si occupa del design e dell'ingenieria software per il web, per l'app mobile e per l'app <a href=\"%{seek_url}\">Seek by iNaturalist</a>, oltre che della gestione del supporto alla comunità, delle collaborazioni e delle integrazioni che mantengono le cose in funzione (e che crescono rapidamente!). Il programma conta su numerose sovvenzioni e donazioni, compresa la beneficenza da parte di meno dello 0,2% dei collaboratori. Siamo particolarmente grati ai sostenitori mensili, le cui donazioni ricorrenti ci aiutano a fare progetti per il futuro. Puoi fare una donazione in più di 30 valute per sostenere le operazioni base di iNaturalist.\nGrazie a tutti per aver reso il 2019 il miglior anno iNaturalist di sempre!\n",
+        "donate_title": "Un Ringraziamento Speciale a Tutti i Nostri Sostenitori",
         "growth_by_country_desc_html": "Dove è la crescita? Questa mappa e il grafico cercano di declinare la crescita per Nazione, cosa un po' complicata perché la crescita per Nazione può essere molto sbilanciata. Qui abbiamo deciso di omettere gli Stati Uniti e usare la scala logaritmica in maniera predefinita per accentuare le differenza tra gli altri Stati. Se una Nazione è colorata di nero significa che non contribuisce in maniera significativa, o non è cresciuta quest'anno, o non ha avuto più osservazioni quest'anno rispetto a quello precedente (muoviti sulla nazione per vedere più dettagli).  <strong>\"% di crescita totale\"</strong> significa quanto della crescita mondiale è dovuta a quella Nazione particolare, per esempio, se ci fossero state 20 osservazioni nel 2018 e 10 nel 2017, la crescita sarebbe stata di 10 osservazioni, e se 5 di quelle osservazioni fossero state in Benin, il Benin avrebbe contribuito col 50% della crescita totale. <strong>\"% di crescita\"</strong> indica il numero di osservazioni quest'anno in quella Nazione come percentuale delle osservazioni dell'anno precedente nella stessa Nazione, così se ci fossero state 10 osservazioni in Laos l'anno precedente ma 20 quest'anno, la crescita sarebbe del 100%, e se ci fossero state 0 osservazioni l'anno precedente e 1 quest'anno, risulterebbe una crescita infinita.\n",
         "growth_by_country_title": "Crescita per paese",
         "growth_desc": "I Grafici \"Osservazioni\" e \"Taxa\" possono includere dati visibili su %{site_name} forniti da persone che non sono affiliate a %{site_name}, mentre i grafici \"Utenti\" mostrano solo le date in cui gli utenti al momento affiliati a %{site_name} si sono uniti ad iNaturalist.\n",
         "growth_in_year_obs": "Crescita in %{year} (obs)",
         "growth_title": "Crescita",
+        "inaturalist_network": "Il Network di iNaturalist",
+        "inaturalist_network_desc": "Guarda il Bilanco dell'Anno per i membri del Network iNaturalist.\n",
         "include_usa": "Includi Stati Uniti",
         "new_species_desc_html": "Specie che sono state aggiunte per la prima volta quest'anno. Clicca su un mese per vedere alcune delle specie aggiunte in quel mese. Puoi vedere anche il totale accumulato, oppure muovere il disco indietro nel tempo per vedere altre specie osservate recentemente. Questo grafico mostra le specie dalle osservazioni verificabili per il mese in cui queste sono state caricate su %{site_name} (non per il mese in cui sono state osservate). Non include taxa di livello superiore od inferiore, perciò una osservazione identificata come Mammifero non è conteggiata, e una osservazione di <i>Canis lupus</i> ssp.\n<i>arctos</i> sarà conteggiata come <i>Canis lupus</i>.\n",
         "obs_in_year": "Osservazioni nel %{year}",
@@ -35814,7 +35838,9 @@ I18n.translations["it"] = {
         "observation_streaks_desc": "Una sequenza di osservazioni è un periodo di tempo in cui qualcuno è uscito ed ha registrato nuove osservazioni verificabili ogni giorno. Qui presentiamo le sequenze più lunghe iniziate quest'anno o quelle che sono in corso mentre queste statistiche vengono generate.\n",
         "percent_growth_in_year": "% Crescita in %{year}",
         "percent_of_total_growth": "% di crescita totale",
-        "publications_desc_html": "Clicca sui grafici \"a fiore\" per ottenere più informazioni su cosa significano i numeri e i colori. I dati e i grafici di impatto per gentile concessione di <a href=\"https://www.altmetric.com\">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici al <a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Visualizza tutti gli %{numStudies} studi</a>\n",
+        "publications_desc_short_html": "Clicca sui grafici \"a fiore\" per maggiori informazioni sul significato di numeri e colori. I dati di impatto per gentile concessione di <a href=\"https://www.altmetric.com\">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici del <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
+        "stats_generated_datetime": "Statistiche generate il %{datetime}",
+        "store_prompt": "Vuoi dimostrare il tuo orgoglio iNat ovunque tu vada? Dai un'occhiata al Negozio iNat!\n",
         "sunburst_desc_html": "Taxa osservati disposti secondo un diagramma gerarchico \"raggi di sole\". La base è al centro, inizia on \"Organismo\" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori \"iconici\" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.\n<strong>Clicca su un arco per posizionare quel taxon al centro</strong> e i suoi discendenti attorno ad esso, o <strong>clicca al centro per tornare indietro nella gerarchia</strong>.\n"
       }
     },
@@ -37509,7 +37535,6 @@ I18n.translations["ko"] = {
   "account_creation": "계정 만들기",
   "accuracy": "정확성",
   "accuracy_meters": "정확도 (미터)",
-  "active": "활성",
   "activity": "활동",
   "add": "추가",
   "add_a_comment": "댓글 추가",
@@ -37568,7 +37593,7 @@ I18n.translations["ko"] = {
     "suborder": "데이터베이스에 추가된 모든 아목",
     "subphylum": "데이터베이스에 추가된 모든 아문",
     "subsection": "데이터베이스에 추가된 모든 아절(Subsection)",
-    "subspecies": "데이터베이스에 추가된 모든 아종",
+    "subspecies": "모든 아종이 데이터베이스에 추가됨",
     "subtribe": "데이터베이스에 추과된 모든 아족",
     "superclass": "데이터베이스에 추가된 모든 상강",
     "superfamily": "데이터베이스에 추과된 모든 상과",
@@ -37721,12 +37746,12 @@ I18n.translations["ko"] = {
   "copyright_infringement_desc": "저작권법 위반 혹은 관찰자 외의 사람이 만든 후 저작권을 표시하지 않음",
   "created_by": "작성자:",
   "created_on": "작성일:",
-  "critically_endangered": "멸종위기",
+  "critically_endangered": "절멸 위급(CR)",
   "curation": "큐레이션",
   "curators": "큐레이터",
   "current_flags": "현재 플래그",
   "dashboard": "대시보드",
-  "data_deficient": "데이터 부족",
+  "data_deficient": "정보부족(DD)",
   "data_quality": "데이터 품질",
   "data_quality_assessment": "데이터 품질 평가",
   "data_used": "사용된 데이터:",
@@ -37794,7 +37819,7 @@ I18n.translations["ko"] = {
     ]
   },
   "date_": "날짜",
-  "date_added": "추가된 날짜",
+  "date_added": "추가한 날짜",
   "date_format": {
     "month": {
       "january": "1월",
@@ -37875,7 +37900,7 @@ I18n.translations["ko"] = {
   "eligible_for_research_grade": "연구 자료 등급을 받을 자격이 있다.",
   "end": "종료",
   "end_date_time": "끝 날짜 / 시간",
-  "endangered": "멸종 위기",
+  "endangered": "절멸위기(EN)",
   "endemic": "고유종",
   "endemic_to_x": "%{x}의 토착종",
   "establishment": {
@@ -37897,8 +37922,8 @@ I18n.translations["ko"] = {
   "exit_full_screen": "전체 화면에서 나가기",
   "export_observations": "관찰 내보내기",
   "exporting": "내보내는 중...",
-  "extinct": "멸종",
-  "extinct_in_the_wild": "야생에서 멸종",
+  "extinct": "절멸(EX)",
+  "extinct_in_the_wild": "야생절멸(EW)",
   "facebook": "페이스북",
   "failed_to_find_your_location": "당신의 위치를 찾는데 실패하였습니다.",
   "failed_to_save_record": "기록을 저장하는데 실패했습니다. 나중에 다시 시도해주십시오.",
@@ -38126,7 +38151,7 @@ I18n.translations["ko"] = {
   "most_species": "대부분의 종",
   "name": "이름",
   "names": "이름",
-  "near_threatened": "취약 근접",
+  "near_threatened": "준위협(NT)",
   "needs_id": "동정이 필요합니다.",
   "needs_id_": "ID가 필요합니다",
   "new_and_noteworthy": "새롭고 주목할 만한 사항",
@@ -38164,7 +38189,7 @@ I18n.translations["ko"] = {
   "no_summary_from_wikipedia": "위키백과에 요약이 없습니다.",
   "none": "없음",
   "none_found": "찾을 수 없음",
-  "not_evaluated": "평가되지 않음",
+  "not_evaluated": "미평가(NE)",
   "not_recorded": "기록되지 않음",
   "number": {
     "format": {
@@ -38523,8 +38548,8 @@ I18n.translations["ko"] = {
   "purple": "보라",
   "quality_grade": "품질 등급",
   "quality_grade_": "품질 등급",
-  "rank": "순위",
-  "rank_position": "순위",
+  "rank": "분류학적 위치",
+  "rank_position": "분류학적 위치",
   "ranks": {
     "kingdom": "계",
     "subkingdom": "아계",
@@ -38752,7 +38777,7 @@ I18n.translations["ko"] = {
       }
     }
   },
-  "vulnerable": "취약",
+  "vulnerable": "취약(VU)",
   "website": "웹사이트",
   "whats_this?": "이것은 무엇입니까?",
   "white": "흰색",
@@ -42182,6 +42207,8 @@ I18n.translations["nb"] = {
   "geoprivacy_is_private": "Geosperring er privat",
   "geoprivacy_is_private_desc": "Observatøren har valgt å skjule koordinatene.",
   "get_started": "Kom i gang",
+  "give_monthly_caps": "GI MÅNEDLIG",
+  "give_now_caps": "GI NÅ",
   "globally": "Globalt",
   "go": "Gå",
   "go_back": "Gå tilbake",
@@ -43592,6 +43619,7 @@ I18n.translations["nb"] = {
         "growth_by_country_title": "Vekst per land",
         "growth_in_year_obs": "Vekst i %{year} (obs)",
         "growth_title": "Vekst",
+        "inaturalist_network": "iNaturalist-nettverk",
         "include_usa": "Inkluder USA",
         "new_species_desc_html": "Arter som ble lagt til for første gang dette året. Trykk på en måned for å se noen av de nye artene som ble lagt til i den måneden. Du kan også se det sammenlagte antallet, eller skyve knappen tilbake i tid for å se andre nye observasjoner av arter. Denne grafen viser arter fra verifiserbare observasjoner etter hvilken måned de ble lastet opp til %{site_name} (ikke måneden de ble observert i). Den inkluderer ikke taksa sv høyere eller lavere nivå, så en observasjon identifisert som Mammalia telles ikke, og en observasjon av <i>Canis lupus</i> ssp. <i>arctos</i> telles bare som <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs i %{year}",
@@ -43599,7 +43627,8 @@ I18n.translations["nb"] = {
         "observation_streaks_color_desc": "Farge representerer antall dager på en logaritmisk skala:\n",
         "percent_growth_in_year": "% vekst i %{year}",
         "percent_of_total_growth": "% av total vekst",
-        "publications_desc_html": "Påvirkningsdata og visualisering fra <a href=\"https://www.altmetric.com\">Altmetric</a>. Informasjon om bruk av data fra våre venner hos <a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Vis alle %{numStudies} studier</a>\n",
+        "stats_generated_datetime": "Statistikker generert på %{datetime}",
+        "store_prompt": "Vil du vise din stolthet over iNat hvor enn du går? Sjekk iNat butikken!\n",
         "sunburst_desc_html": "Observasjoner som et hierarkisk \"sunburst\"-diagram. Basen av hierarkien er i midten, med \"livet\" som start og arter ytterst på kanten. Størrelsen av hver bue er relativ til antallet av observasjoner av det taksonet, og fargene korresponderer mer eller mindre til våre vanlige farger for \"ikoniske\" taksa (grønn for planter, oransje for insekter, blå for de fleste andre dyr, osv.), så hvis du ser masse grønt betyr det at du har sett mange planter. <strong>Trykk på en bue for å plasere det taksonet i midten</strong> og dets etterkommere rundt det, eller <strong>trykk på midten for å gå opp i hierarkiet igjen</strong>.\n"
       }
     },
@@ -44385,6 +44414,8 @@ I18n.translations["nl"] = {
   "geoprivacy_is_private": "Afscherming voor geo is persoonlijk",
   "geoprivacy_is_private_desc": "Waarnemer heeft ervoor gekozen om de coördinaten te verbergen.",
   "get_started": "Aan de slag",
+  "give_monthly_caps": "GEEF MAANDELIJKS",
+  "give_now_caps": "GEEF NU",
   "globally": "Wereldwijd",
   "go": "Ok",
   "go_back": "Ga terug",
@@ -45791,11 +45822,13 @@ I18n.translations["nl"] = {
         "recent_w_7_obs": "Recent met >= 7 wrn"
       },
       "year": {
+        "donate_title": "Speciale dank aan al onze supporters",
         "growth_by_country_desc_html": "Waar vindt er groei plaats? \nDeze kaart en grafiek proberen de groei op te spiltsen per land, wat niet eenvoudig is omdat groei per land erg scheef verdeeld kan zijn. We laten hier standaard de V.S. weg en gebruiken een logaritmische schaal om de verschillen tussen de overige landen uit te lichten. Als een land zwart gekleurd is betekent dat dat het niet significant heeft bijgedragen aan een percentage, of dat het geen groei had dat jaar, of dat het dat jaar niet meer waarnemingen had dan het voorgaande jaar (beweeg de muis over een land om wat ​​meer details te zien.) <strong>\"% van de totale groei\"</strong> betekent hoeveel van de wereldwijde groei afkomstig was van een bepaald land. Als er bijv. 20 waarnemingen waren in 2018 en 10 in 2017 was dat een groei van 10 waarnemingen, en als 5 van die waarnemingen afkomstig waren uit Benin dan droeg Benin 50% bij aan de totale groei. <strong>'% groei'</strong> is het aantal waarnemingen in dat land dat jaar, uitgedrukt als percentage van het aantal waarnemingen in dat land in het voorgaande jaar. Dus als er vorig jaar in Laos 10 waarnemingen waren en dit jaar 20 dan is dat 100% groei, en als er vorig jaar 0 waren en dit jaar 1 is de groei in procenten oneindig.\n",
         "growth_by_country_title": "Groei per land",
         "growth_desc": "De grafieken \"Waarnemingen\" en \"Taxa\" kunnen data bevatten die zichtbaar is op %{site_name} die afkomstig is van mensen zonder banden met %{site_name}, terwijl de grafiek \"Gebruikers\" alleen de data laten zien wanneer gebruikers die nu verbonden zijn aan %{site_name} zich voor iNaturalist hebben aangemeld.\n",
         "growth_in_year_obs": "Groei in %{year} (wrn)",
         "growth_title": "Groei",
+        "inaturalist_network": "iNaturalist netwerk",
         "include_usa": "Inclusief VS",
         "new_species_desc_html": "Soorten die dit jaar voor het eerst zijn toegevoegd.\nKlik op een maand om enkele van de nieuwe soorten te bekijken die in die maand zijn toegevoegd. Je kunt ook de totale soortaccumulatie bekijken of de schuifregelaar \nterug in de tijd verplaatsen om andere nieuw waargenomen soorten te zien. Dit schema toont\nsoorten van verifieerbare waarnemingen tegen de maand waarin ze zijn geüpload\nop %{site_name} (niet de maand waarin ze werden waargenomen). Het bevat geen\ntaxa van een hoger of lager niveau, dus een waarneming geïdentificeerd als\nMammalia telt niet en een waarneming van <i>Canis lupus</i> ssp.\n<i>arctos</i> telt slechts als <i>Canis lupus</i>.\n",
         "obs_in_year": "Wrn in %{year}",
@@ -45804,7 +45837,8 @@ I18n.translations["nl"] = {
         "observation_streaks_desc": "Een waarnemingsreeks is een periode waarin er op elke aaneengesloten dag nieuwe waarnemingen worden geregistreerd. Hier tonen we de langste reeksen die dit jaar zijn begonnen of bezig waren toen deze statistieken werden gegenereerd.\n",
         "percent_growth_in_year": "% Groei in %{year}",
         "percent_of_total_growth": "% of Totaal Groei",
-        "publications_desc_html": "Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href=\"https://www.altmetric.com\">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.\n<br/>\n<a href=\"%{url}\">Toon alle %{numStudies} studies</a>\n",
+        "stats_generated_datetime": "Statistieken gegenereerd op %{datetime}",
+        "store_prompt": "Wil je je iNat trots overal laten zien? Check de iNat winkel!\n",
         "sunburst_desc_html": "Waargenomen taxa gerangschikt als een hiërarchisch \"sunburst\"-diagram. De basis\nvan de hiërarchie staat centraal, beginnend met \"Leven\" en eindigend\nmet soorten aan de buitenranden. De grootte van elke boog is evenredig\nnaar het aantal waarnemingen van dat taxon en de kleuren \nkomen ongeveer overeen met onze gebruikelijke \"iconische\" taxonkleuren (groen voor planten,\noranje voor insecten, blauw voor de meeste andere dieren, enz.), dus als je\nveel groen ziet, betekent dit dat je veel planten hebt waargenomen.\n<strong>Klik op een boog om dat taxon in het midden te plaatsen</strong> en\nde onderliggende taxa eromheen of <strong>klik op het midden om terug omhoog te gaan in \nde hiërarchie</strong>.\n"
       }
     },
@@ -48637,6 +48671,7 @@ I18n.translations["pl"] = {
         "growth_by_country_title": "Wzrost według kraju",
         "growth_in_year_obs": "Wzrost w %{year} (obserwacje)",
         "growth_title": "Wzrost",
+        "inaturalist_network": "Sieć iNaturalist",
         "include_usa": "Łącznie z USA",
         "obs_in_year": "Obserwacji w %{year}",
         "observation_streaks_color_desc": "Kolor reprezentuje liczbę dni w skali logarytmicznej:\n"
@@ -54220,7 +54255,6 @@ I18n.translations["ru"] = {
         "observation_streaks_desc": "Серия наблюдений - это период времени, когда кто-то выходил на природу и\nзаписывал новые наблюдения каждый день. Здесь показаны самые длинные\nсерии, которые начались в этом году или происходили в момент создания этой\nстатистики.\n",
         "percent_growth_in_year": "% роста в %{year}",
         "percent_of_total_growth": "% от общего роста",
-        "publications_desc_html": "Нажмите на диаграмму цветов, чтобы получить больше информации о значении чисел\nи цвета. Влияющие данные и диаграммы любезно предоставлены\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из <a href=\"https://www.gbif.org/\">Глобального информационного центра по биоразнообразию</a>.\n<br/>\n<a href=\"%{url}\">Просмотр всех %{numStudies} исследований</a>\n",
         "sunburst_desc_html": "Наблюдаемые таксоны упорядочены в виде иерархической диаграммы Санбёрст. Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>.\n"
       }
     },
@@ -59115,6 +59149,8 @@ I18n.translations["tr"] = {
   "geoprivacy_is_private": "Coğrafli gizlilik özel",
   "geoprivacy_is_private_desc": "Gözlemci koordinatları gizlemeyi seçti.",
   "get_started": "Başla",
+  "give_monthly_caps": "AYLIK ÖDE",
+  "give_now_caps": "ŞİMDİ ÖDE",
   "globally": "Küresel",
   "go": "Git",
   "go_back": "Geri git",
@@ -60521,11 +60557,15 @@ I18n.translations["tr"] = {
         "recent_w_7_obs": "Son h/ >= 7 gözl"
       },
       "year": {
+        "donate_desc_html": "Zamanınız, ilginiz, uzmanlığınız ve bağışlarınızla cömert olduğunuz için teşekkür ederiz! iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Society'nin kâr amacı gütmeyen ortak bir girişimidir. Bu girişim; topluluk desteği, işbirliği ve işleri yürüten (ve hızla büyüyen) bütünleşmelerin yanı sıra iNaturalist tarafından genel ağ, mobil ve <a href=\"%{seek_url}\">Seek</a> için tüm tasarım ve yazılım mühendisliğini yapan <a href=\"%{team_url}\">küçük bir ekip</a> tarafından desteklenmektedir. Program, katkıda bulunanların %0.2'sinden azıyla hayırsever armağanları da içermek üzere çok sayıda yardım ve bağışa dayanıyor. Özellikle sürekli armağanlar yollayarak geleceği tasarlamamıza yardımcı olan Aylık Destekçilere minnettarız. iNaturalist’in temel işlemlerini desteklemek için 30’dan çok para biriminde bağış yapabilirsiniz. 2019 iNaturalist'i en büyük yıl yapmadaki katkıları için herkese teşekkür ederiz!\n",
+        "donate_title": "Tüm Destekçilerimize Özel Teşekkürler",
         "growth_by_country_desc_html": "Büyüme nerede gerçekleşiyor? Bu harita ve çizelge bunu ülkeye göre bölmeye çalışıyor, \nbu durum karmaşıklaşıyor çünkü ülke bazında büyüme çok dengesiz olabilir. Burada, \nAmerika Birleşik Devletleri'ni ihmal etmeyi ve diğer ülkeler arasındaki farklılıkları \nvurgulamak için varsayılan olarak bir günlük ölçeği kullanmayı seçtik.Eğer bir ülke siyah \nise bu, yüzdesine belirgin bir şekilde katkıda bulunmadığı ya da bu yıl büyüme göstermediği \nya da bu yıl geçen yıla göre daha fazla gözlem yapmadığı anlamına gelir \n(biraz daha fazla ayrıntı görmek için bir ülkenin üzerine gelin).<strong>\"toplam büyümenin\n%'si\"</strong> dünya çapında bir büyümenin ne kadarının belirli bir ülkeden geldiği anlamına\ngelir, örn. 2018'de 20, 2017'de ise 10 gözlem olsaydı, bu 10 büyüme gözlemi olurdu ve \nbu gözlemlerin 5'i Benin'den yapılmışsa, Benin toplam büyümenin% 50'sine katkıda bulunurdu.\n<strong>\"büyüme %'si\"</strong> bu yıl o ülkedeki gözlem sayısını, o ülkedeki geçen yılın \ngözlemlerinin yüzdesi olarak gösterir, yani geçen yıl Laos'ta 10 gözlem, ancak bu yıl 20 olsaydı, \nburada %100 büyüme olurdu ve bu geçen yıl 0 ve bu yıl 1 olsaydı, burada % sonsuz büyüme olurdu.\n",
         "growth_by_country_title": "Ülkelere Göre Büyüme",
         "growth_desc": "\"Kullanıcılar\" çizelgesi yalnızca şu anda %{site_name} ile bağlı kullanıcıların iNaturalist’e katıldığı tarihleri gösterirken, \"Gözlemler\" ve \"Sınıflar\" çizelgeleri %{site_name} ile bağlantısız kişilerin katkıda bulunduğu %{site_name}'te görülebilir.\n",
         "growth_in_year_obs": "%{year} içinde büyüme (gözl)",
         "growth_title": "Büyüme",
+        "inaturalist_network": "iNaturalist Ağı",
+        "inaturalist_network_desc": "iNaturalist Ağı üyeleri için İnceleme Yılı’na göz atın.\n",
         "include_usa": "ABD dahil",
         "new_species_desc_html": "Bu yıl ilk kez eklenen türler.\nBu ay eklenen yeni türlerin bazılarını görüntülemek için bir ay seçin.\nAyrıca, toplam tür birikimini görebilir veya yeni gözlenen diğer türleri görmek için \nkaydırma butonunu zamanda geriye hareket ettirebilirsiniz. Bu grafik, %{site_name} 'e \nyüklendikleri aya kadar doğrulanabilir gözlemlerden türleri gösterir (gözlemlendikleri ayı değil).\nDaha yüksek veya daha düşük seviyeli sınıfları içermez, bu nedenle Memeliler \nolarak tanımlanan bir gözlem sayılmaz ve <i>Canis lupus</i> alt türü <i>boz ayı</i> olan bir gözlemi\n<i>Canis lupus</i> olarak sayacaktır.\n",
         "obs_in_year": "%{year} içinde Gözl",
@@ -60534,7 +60574,9 @@ I18n.translations["tr"] = {
         "observation_streaks_desc": "Bir gözlem serisi, birisinin dışarı çıkıp her gün yeni ve doğrulanabilir\ngözlemler kaydettiği bir zaman dilimidir. Burada, bu yıl başlayan veya bu\nistatistikler oluşturulduğunda devam eden en uzun serileri gösteriyoruz.\n",
         "percent_growth_in_year": "%{year} içindeki büyüme %'si",
         "percent_of_total_growth": "Toplam Büyüme %'si",
-        "publications_desc_html": "Sayıların ve renklerin ne anlama geldiği hakkında daha fazla bilgi \niçin çiçek çizelgelerine tıklayın. <a href=\"https://www.altmetric.com\">Altmetric</a>'in \nizniyle etki verileri ve çizelgeler. \n<a href=\"https://www.gbif.org/\">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki \narkadaşlarımızın veri kullanımı nezaket bilgileri.\n<br/>\n<a href=\"%{url}\">%{numStudies} çalışmanın tamamını görüntüleyin</a>\n",
+        "publications_desc_short_html": "<a href=\"https://www.altmetric.com\">Altmetric</a>'in izniyle etki verileri ve çizelgeler. <a href=\"https://www.gbif.org/\">Küresel Biyoçeşitlilik Danışma Tesisi'ndeki</a> arkadaşlarımızın veri kullanımı nezaket bilgileri.\n",
+        "stats_generated_datetime": "İstatistikler %{datetime} tarihinde oluşturuldu",
+        "store_prompt": "Gittiğin her yerde iNat'tan duyduğun gururu göstermek ister misin? iNat Mağazası'na Göz At!\n",
         "sunburst_desc_html": "Hiyerarşik bir \"güneş\" diyagramı olarak düzenlenen gözlemlenen sınıflar. Hiyerarşinin tabanı merkezdedir, \"Yaşam\" ile başlayıp dış kenarlardaki türlerle bitiyor. Her yayın boyutu, bu sınıfın gözlem sayısı ile orantılıdır ve renkler aşağı yukarı her zamanki \"ikonik\" sınıf renklerimizle aynıdır (bitkiler için yeşil, böcekler için turuncu, diğer birçok hayvan için mavi vb.), böylece çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğiniz anlamına gelir. <strong>Merkezdeki sınıfı ve onun çevresindeki alt sınıfları yerleştirmek için yaya tıklayın</strong> ya da <strong>hiyerarşiyi yukarı taşımak için merkeze tıklayın</strong>.\n"
       }
     },

@@ -89,9 +89,7 @@ const App = ( {
           <Publications data={data.publications} year={year} />
         ) }
         {
-          window.location.search
-          && window.location.search.indexOf( "test=translators" ) >= 0
-          && data.translators
+          data.translators
           && ( !site || site.id === DEFAULT_SITE_ID || !_.isEmpty( site.locale ) )
           && (
             <Translators
