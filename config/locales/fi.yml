@@ -61,6 +61,7 @@ fi:
   x_others:
     one: "1 muu"
     other: "%{count} muuta"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} ihmistä</strong> auttoi käyttäjää %{user} <strong>%{y} tunnisteen kanssa</strong>"
   x_photos:
     one: "1 kuva"
     other: "%{count} kuvaa"
@@ -97,7 +98,6 @@ fi:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> taksonimuutos lisätty"
     other: "<span class='count'>%{count}</span> taksonimuutosta lisätty"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} ihmistä</strong> auttoi käyttäjää %{user} <strong>%{y} tunnisteen kanssa</strong>"
   _100_day_trends: 100 päivän kehitys
   _percent_ID_d: "% määritetty"
   a_community_for_naturalist: Luonnontieteilijöiden yhteisö
