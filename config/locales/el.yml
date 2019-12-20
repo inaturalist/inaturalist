@@ -44,6 +44,7 @@ el:
   x_others:
     one: "1 άλλο"
     other: "%{count} άλλα"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} άτομα</strong> βοήθησαν την/τον %{user} με <strong>%{y} IDs</strong>"
   x_new_species:
     one: "1 Νέο Είδος"
     other: "%{count} Νέα Είδη"
@@ -71,7 +72,6 @@ el:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> αλλαγή taxon προστέθηκε"
     other: "<span class='count'>%{count}</span> αλλαγές taxon προστέθηκαν"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} άτομα</strong> βοήθησαν την/τον %{user} με <strong>%{y} IDs</strong>"
   _100_day_trends: Τάσεις 100 ημερών
   a_community_for_naturalist: Μια κοινότητα για φυσιοδίφες
   a_default_taxon_name_will_automatically_created: |
