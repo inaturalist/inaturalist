@@ -63,6 +63,9 @@ class StatsController < ApplicationController
     if !params[:login].blank? && !@display_user
       return render_404
     end
+    if @display_user && !current_user && !@display_user.locale.blank?
+      I18n.locale = @display_user.locale
+    end
     @year_statistic = if @display_user
       YearStatistic.where( "user_id = ? AND year = ?", @display_user, @year ).first
     elsif Site.default.try(:id) == @site.id
