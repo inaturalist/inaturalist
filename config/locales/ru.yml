@@ -35,6 +35,11 @@ ru:
     few: '<span class="count">%{count}</span> эксперта'
     many: '<span class="count">%{count}</span> экспертов'
     other: '<span class="count">%{count}</span> экспертов'
+  x_languages:
+    one: "%{count} язык"
+    few: "%{count} языка"
+    many: "%{count} языков"
+    other: "%{count} языков"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: "Впервые %{count} в списке Жизни"
@@ -101,6 +106,12 @@ ru:
     few: "%{count} других"
     many: "%{count} других"
     other: "%{count} других"
+  x_people:
+    one: "%{count} человек"
+    few: "%{count} человека"
+    many: "%{count} человек"
+    other: "%{count} человек"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} человек</strong> оказавшие помощь %{user} с <strong>%{y} идентификацией</strong>"
   x_photos:
     one: "%{count} фото"
     few: "%{count} фото"
@@ -166,7 +177,6 @@ ru:
     few: "<span class='count'>%{count}</span> добавленных таксона"
     many: "<span class='count'>%{count}</span> добавленных таксонов"
     other: "<span class='count'>%{count}</span> добавленных таксонов"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} человек</strong> оказавшие помощь %{user} с <strong>%{y} идентификацией</strong>"
   _100_day_trends: 100-дневный тренд
   _percent_ID_d: "% идентифицированных"
   a_community_for_naturalist: Сообщество натуралистов
@@ -235,7 +245,7 @@ ru:
   active_users: Активные участники
   activity: Активность
   activity_settings: Настройки активности
-  adapted_by_name_from_a_work_by_original: "Адапритовано названием %{name} из работы %{original}"
+  adapted_by_name_from_a_work_by_original: "Адаптировано %{name}, оригинальный источник %{original}"
   add: Добавить
   add_a_batch_of_observations: Добавить несколько наблюдений
   add_a_batch_of_taxa: Добавить несколько таксонов
@@ -1496,6 +1506,8 @@ ru:
   get_started: Начать
   getting_started_guide: Руководство по началу работы
   give_it_some_detail: Предоставьте некоторые подробности!
+  give_monthly_caps: ВНОСИТЬ ЕЖЕМЕСЯЧНО
+  give_now_caps: ВНЕСТИ СЕЙЧАС
   global_names: Глобальные имена
   globally: Глобально
   go: Найти
@@ -3308,7 +3320,7 @@ ru:
     many: Сохранение %{num} из %{count} наблюдений...
     other: Сохранение %{num} из %{count} наблюдений...
   saving_verb: Сохраняется
-  scale_colon: "Масштаб:"
+  scale_colon: "Шкала:"
   schemes: Схемы
   schemes_including: Схемы, включающие
   search: Поиск
@@ -3340,6 +3352,8 @@ ru:
   second_person_possessive_plural: "Ваше %{noun}"
   second_person_possessive_singular: "Ваше %{noun}"
   see_something_wrong_with_taxon: Что-то не так с этим таксоном? Сообщите кураторам.
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   seen_it?: Видели ли вы это?
   seen_nearby: Увиденные поблизости
   seen_one: Видели такое?
@@ -5389,6 +5403,14 @@ ru:
           Создано с помощью веб-сайтов <a href="https://www.inaturalist.org">iNaturalist</a>
           или <a href="%{url}">сети веб-сайтов iNaturalist</a>
       year:
+        donate_title: "Особая благодарность всем нашим спонсорам"
+        donate_desc_html: |
+          Спасибо за то, что дарите нам ваше время, внимание, опыт и пожертвования! iNaturalist - это некоммерческая совместная инициатива Калифорнийской академии наук и Национального географического общества.
+          Она поддерживается <a href="%{team_url}">небольшой командой</a>, которая занимается всем дизайном и разработкой программного обеспечения для веб-сайта, мобильных устройств и <a href="%{seek_url}">Seek by iNaturalist</a> в дополнение к управлению поддержкой сообщества, сотрудничеством и интеграцией, которые поддерживают работу (и дают быстрый рост!). Программа опирается на многочисленные гранты и пожертвования, включая благотворительные подарки от менее чем 0,2% участников. Мы особенно благодарны Ежемесячным Спонсорам, чьи постоянные взносы помогают нам планировать будущее. Вы можете сделать пожертвования в более чем 30 валютах для поддержки основных операций iNaturalist.
+          Спасибо всем вам за участие в создании самого крутого года iNaturalist 2019!
+        inaturalist_network: сеть iNaturalist
+        inaturalist_network_desc: |
+          Загляните в раздел «Обзор года» для участников сети iNaturalist.
         include_usa: Включая США
         growth_by_country_desc_html: |
           Где происходит рост? На карте и графике есть попытка разбить это по странам, что оказывается сложным, поскольку рост по странам может быть очень несбалансированным. Здесь мы решили опустить США и использовать по умолчанию логарифмическую шкалу, чтобы подчеркнуть различия между другими странами. Если страна окрашена в черный цвет, это означает, что она не внесла существенного вклада в процент, или у нее не было роста в этом году, или не было больше наблюдений в этом году, чем в прошлом году (наведите курсор на страну, чтобы увидеть немного больше деталей). <strong>"% от
@@ -5412,6 +5434,10 @@ ru:
           <a href="https://www.altmetric.com">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из <a href="https://www.gbif.org/">Глобального информационного центра по биоразнообразию</a>.
           <br/>
           <a href="%{url}">Просмотр всех %{numStudies} исследований</a>
+        publications_desc_short_html: |
+          Нажмите на цветовую диаграмму, чтобы получить больше информации о значении чисел
+          и цвета. Влияющие данные и диаграммы любезно предоставлены
+          <a href="https://www.altmetric.com">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из <a href="https://www.gbif.org/">Глобального информационного центра по биоразнообразию</a>.
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Серии наблюдений
         observation_streaks_color_desc: |
@@ -5421,8 +5447,31 @@ ru:
           записывал новые наблюдения каждый день. Здесь показаны самые длинные
           серии, которые начались в этом году или происходили в момент создания этой
           статистики.
+        stats_generated_datetime: Статистика сгенерирована на %{datetime}
+        store_prompt: |
+          Хотите показать как вы гордитесь iNat везде, куда бы вы ни пошли? Посетите магазин iNat
+          Store!
         sunburst_desc_html: |
           Наблюдаемые таксоны упорядочены в виде иерархической диаграммы Санбёрст. Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>.
+        translators_title: Переводчики
+        translators_desc: |
+          Знаете ли вы, что iNaturalist был переведён на %{x_languages},
+          почти полностью силами %{x_people}, некоторые из которых даже не используют iNat? Вот замечательные переводчики, которые добавили переводы в этом году,
+          вместе с количеством слов, которые они перевели для
+          %{website_link_tag}веб-сайта%{link_tag_end}, наших приложений для 
+          %{iphone_link_tag}iPhone%{link_tag_end} и
+          %{android_link_tag}Android%{link_tag_end} и 
+          %{seek_link_tag}Seek%{link_tag_end}. Вы можете видеть всех тех, кто внёс вклад в переводы, включая переводчиков прошлых лет из Translatewiki, в наших репозиториях исходного кода 
+          %{view_all_web_link_tag}web%{link_tag_end} и %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_for_site: |
+          Знаете ли вы, что %{site_name} был переведён почти полностью силами %{x_people}? Вот замечательные переводчики, которые добавили переводы в этом году,
+          вместе с количеством слов, которые они перевели для
+          %{website_link_tag}веб-сайта%{link_tag_end}, приложений iNaturalist для 
+          %{iphone_link_tag}iPhone%{link_tag_end} и 
+          %{android_link_tag}Android%{link_tag_end} и 
+          %{seek_link_tag}Seek%{link_tag_end}. Вы можете видеть всех тех, кто внёс вклад в переводы со всех языков, включая переводчиков прошлых лет из Translatewiki, в наших репозиториях исходного кода %{view_all_web_link_tag}web%{link_tag_end} и %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_prompt: |
+          Если вы хотите помочь с переводом, %{link_tag}узнайте, как это сделать%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |

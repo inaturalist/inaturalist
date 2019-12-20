@@ -21,6 +21,9 @@ da:
   x_identifiers_html:
     one: '<span class="count">%{count}</span> Identifikator'
     other: '<span class="count">%{count}</span> Identifikatorer'
+  x_languages:
+    one: "%{count} sprog"
+    other: "%{count} sprog"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: "%{count} livsliste første"
@@ -61,6 +64,10 @@ da:
   x_others:
     one: "%{count} anden"
     other: "%{count} andre"
+  x_people:
+    one: "%{count} person"
+    other: "%{count} personer"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjalp %{user} med <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} foto"
     other: "%{count} fotos"
@@ -100,7 +107,6 @@ da:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> taksonændring tilføjet"
     other: "<span class='count'>%{count}</span> taksonændringer tilføjet"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjalp %{user} med <strong>%{y} IDs</strong>"
   _100_day_trends: 100 dage tendens
   _percent_ID_d: "% ID'et"
   a_community_for_naturalist: Et fællesskab for naturelskere
@@ -3274,6 +3280,8 @@ da:
   second_person_possessive_plural: "Din %{noun}"
   second_person_possessive_singular: "Din %{noun}"
   see_something_wrong_with_taxon: Ser du noget galt med denne taxon? Giv kuratorerne besked.
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   seen_it?: Set den?
   seen_nearby: Set i nærheden
   seen_one: Set en?
@@ -5580,8 +5588,8 @@ da:
         donate_title: "En særlig tak til alle vores støtter"
         donate_desc_html: |
           Tak fordi du er generøs med din tid, opmærksomhed, ekspertise og
-          donationer! iNaturalist er et non-profit fællesinitiativ fra Californiad
-          Academy of Sciences og National Geographic Society..
+          donationer! iNaturalist er et non-profit fællesinitiativ fra California
+          Academy of Sciences og National Geographic Society.
           Det støttes af et
           <a href="%{team_url}">lille team</a>, som
           foretager al design- og software-
@@ -5589,11 +5597,11 @@ da:
           <a href="%{seek_url}">Seek fra iNaturalist</a>, samt administrerer fællesskabssupporten, samarbejder og integrationer, som holder
           tingene kørende (og hastigt voksende!). Programmet er afhængigt af
           talrige tilskud og donationer inkl. velgørende gaver fra færre end 0,2%
-          af bidragsydere. Vi er særligt taknemmelige for Månedlige Supportere,
-          hvis tilbagevendende gaver hjælper os med fremtidig planlægning. Du
-          kan donere i flere end 30 valutaer for at støtte iNaturalists kerne-
-          funktioner. Tak til alle for jeres andel i at gøre 2019 til iNaturalists
-          største år indtil nu!
+          af bidragsydere. Vi er særligt taknemmelige overfor Månedlige
+          Supportere, hvis tilbagevendende gaver hjælper os med fremtidig
+          planlægning. Du kan donere i flere end 30 valutaer for at støtte
+          iNaturalists kernefunktioner. Tak til alle for jeres andel i at gøre 2019 til 
+          Naturalists største år indtil nu!
         inaturalist_network: iNaturalist Network
         inaturalist_network_desc: |
           Tjek Året i tilbageblik for medlemmerne af iNaturalist Network.
@@ -5664,6 +5672,34 @@ da:
           orange til insekter, blå for de fleste andre dyr osv.), så hvis du er
           ser meget grønt, det betyder at du har observeret mange planter.
           <strong> Klik på en "bue" for at placere den pågældende takson i midten </strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </strong>.
+        translators_title: Oversættere
+        translators_desc: |
+          Vidste du, at iNaturalist er blevet oversat til %{x_languages} næsten
+          udelukkende af %{x_people}, hvoraf nogle endda ikke bruger iNat? Her
+          er alle de fantastiske oversættere, som har bidraget i år, samt det
+          antal ord, de har oversat til
+          %{website_link_tag}webstedet%{link_tag_end}, vores
+          %{iphone_link_tag}iPhone-%{link_tag_end} og
+          %{android_link_tag}Android-%{link_tag_end}apps og
+          %{seek_link_tag}Seek%{link_tag_end}. Du kan se
+          alle personer, som har bidraget med oversættelser,
+          herunder personer fra tidligere år og fra Translatewiki, i vores
+          %{view_all_web_link_tag}web-%{link_tag_end} og
+          %{view_all_mobile_link_tag}mobil-%{link_tag_end}kodedepoter.
+        translators_desc_for_site: |
+          Vidste du, at %{site_name} er blevet oversat næsten udelukkende
+          af %{x_people}? Her er alle de fantastiske oversættere,
+          som har bidraget i år, samt det antal ord, de har oversat, til
+          %{website_link_tag}webstedet%{link_tag_end}, iNaturalist
+          %{iphone_link_tag}iPhone-%{link_tag_end} og
+          %{android_link_tag}Android-%{link_tag_end}appsene og
+          %{seek_link_tag}Seek%{link_tag_end}. Du kan se
+          alle personer, som har bidraget med oversættelser på alle sprog,
+          herunder personer fra tidligere år og fra Translatewiki, i vores
+          %{view_all_web_link_tag}web-%{link_tag_end} og
+          %{view_all_mobile_link_tag}mobil-%{link_tag_end}kodedepoter.
+        translators_prompt: |
+          Vil du hjælpe med at oversætte, %{link_tag}så tjek info hér%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |

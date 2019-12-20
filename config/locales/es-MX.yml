@@ -50,6 +50,7 @@ es-MX:
   x_others:
     one: "1 otro"
     other: "%{count} otros"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} usuarios</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   x_new_species:
     one: "1 Nueva especie"
     other: "%{count} Nuevas especies"
@@ -83,7 +84,6 @@ es-MX:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> cambio taxonómico agregado"
     other: "<span class='count'>%{count}</span> cambios taxonómicos agregados"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} usuarios</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: "% identificados"
   a_community_for_naturalist: Una comunidad para naturalistas

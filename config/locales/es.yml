@@ -21,6 +21,9 @@ es:
   x_identifiers_html:
     one: '<span class="count">1</span> Identificador'
     other: '<span class="count">%{count}</span> Identificadores'
+  x_languages:
+    one: "%{count} idioma"
+    other: "%{count} idiomas"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: "%{count} primicia en la lista de vida"
@@ -61,6 +64,10 @@ es:
   x_others:
     one: "1 otro"
     other: "%{count} otros"
+  x_people:
+    one: "%{count} persona"
+    other: "%{count} personas"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} personas</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 imagen"
     other: "%{count} imágenes"
@@ -100,7 +107,6 @@ es:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> cambio de taxón agregado"
     other: "<span class='count'>%{count}</span> cambios de taxón agregados</span>"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} personas</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: "% identificados"
   a_community_for_naturalist: Una Comunidad para Naturalistas
@@ -3252,6 +3258,8 @@ es:
   second_person_possessive_plural: "Tus %{noun}"
   second_person_possessive_singular: "Tu %{noun}"
   see_something_wrong_with_taxon: '¿Vé algo malo con este taxón? Infórmelo a los curadores.'
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   seen_it?: '¿Lo has visto? '
   seen_nearby: Visto en la cercanías
   seen_one: '¿Has visto uno?'
@@ -4882,6 +4890,8 @@ es:
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.
           <a href="/observations/%{observation_id}/flags">Administrar de advertencias</a>
+        observer_does_not_allow_observation_fields: El observador no permite campos de observación adicionales
+        observer_only_allows_curators_to_add_fields: El observador sólo permite a los curadores del sitio añadir campos de observación
       user_stats:
         user_stats_desc: |
           Las estadísticas de usuarios están limitadas a un máximo de los 500 primeros usando el conteo de observaciones o el conteo de especies, por eso la lista total generalmente tendrá más de 500, ya que los dos conteos probablemente no incluirán a los mismos usuarios. Un valor marcadas con " * " significa que no estaba en los primeros 500 para esa  estadística.
@@ -5393,12 +5403,16 @@ es:
           país puede ser muy desequilidrado. Hemos optado por omitir a los Estados Unidos y utilizar una escala de registro por defecto para acentuar diferencias
           entre países. Si un país aparece en negro esto significa que no contribuyó significativamente a un porcentaje, o que no se presentó ningún crecimiento
           este año, o no ha tenido más observaciones este año que el año pasado
-          (pasa el cursor sobre un país para ver un poco más de detalle). <strong>"% del crecimiento total"<strong> significa cuánto del crecimiento mundial provino de un país particular, por ejemplo si hubo 20 observaciones en 2018 y 10
+          (pasa el cursor sobre un país para ver un poco más de detalle). <strong>"% del crecimiento total"</strong> significa cuánto del crecimiento mundial provino de un país particular, por ejemplo si hubo 20 observaciones en 2018 y 10
           en 2017, eso serían 10 observaciones de crecimiento, y si 5 de ellas
           se dieron en Benín, quiere decir que Benín contribuyó 50% del total
-          del crecimiento. <strong>"% del crecimiento"<strong> significa el número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, eso sería un crecimiento del 100%, y si hubo 0 el año
+          del crecimiento. <strong>"% del crecimiento"</strong> significa el número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, eso sería un crecimiento del 100%, y si hubo 0 el año
           pasado y 1 este año, eso sería un % de crecimiento infinito.
         growth_by_country_title: Crecimiento por país
+        growth_desc: |
+          Los gráficos "Observaciones" y "Taxones" pueden incluir datos visibles en
+          %{site_name} aportados por personas que no están afiliadas con
+          %{site_name}, mientras que el gráfico "Usuarios" sólo muestra las fechas cuando los usuarios actualmente afiliados con %{site_name} se unieron a iNaturalist.
         growth_in_year_obs: "Crecimiento en %{year} (obs)"
         growth_title: Crecimiento
         new_species_desc: |
@@ -5426,6 +5440,18 @@ es:
           ¿Quieres mostrar tu orgullo de iNat dondequiera que vayas? ¡Échale un vistazo la tienda de iNat!
         sunburst_desc_html: |
           Taxones observados dispuestos como un diagrama jerárquico de "resplandor solar". La base de la jerarquía está en el centro, comenzando con "Vida" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón "icónico" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>
+        translators_title: Traductores
+        translators_desc: |
+          ¿Sabías que iNaturalist ha sido traducido a %{x_languages},
+          casi por completo por %{x_people}, algunos de los cuales ni siquiera usan iNat? Aquí están todos los increíbles traductores que han aportado traducciones este año, junto con el número de palabras que han traducido para el %{website_link_tag}sitio web%{link_tag_end}, nuestras aplicaciones para %{iphone_link_tag}iPhone%{link_tag_end} y %{android_link_tag}Android%{link_tag_end} y %{seek_link_tag} Seek%{link_tag_end}. Puedes ver todas las personas que han contribuido con las traducciones, incluidas las de los años anteriores y personas de Translatewiki, en nuestros repositorios de código para
+          %{view_all_web_link_tag}web%{link_tag_end} y
+          %{view_all_mobile_link_tag}para móviles%{link_tag_end}.
+        translators_desc_for_site: |
+          ¿Sabías que %{site_name} ha sido traducido casi por completo por %{x_people}? Aquí están todos los increíbles traductores que han aportado traducciones este año, junto con el número de palabras que han traducido para el %{website_link_tag}sitio web%{link_tag_end}, nuestras aplicaciones para %{iphone_link_tag}iPhone%{link_tag_end} y %{android_link_tag}Android%{link_tag_end} y %{seek_link_tag} Seek%{link_tag_end}. Puedes ver todas las personas que han contribuido con las traducciones, incluidas las de los años anteriores y personas de Translatewiki, en nuestros repositorios de código para
+          %{view_all_web_link_tag}web%{link_tag_end} y
+          %{view_all_mobile_link_tag}para móviles%{link_tag_end}.
+        translators_prompt: |
+          Si quieres ayudar a traducir, %{link_tag}aprende cómo%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |

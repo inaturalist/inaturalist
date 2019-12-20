@@ -41,6 +41,7 @@ zh-TW:
     other: '<span class="count">%{count}</span> 個觀察者'
   x_others:
     other: "%{count} 個其它"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x}</strong> 個人以 <strong>%{y}</strong> 個鑑定幫助了%{user}"
   x_photos:
     other: "%{count} 張照片"
   x_new_species:
@@ -67,7 +68,6 @@ zh-TW:
     other: "%{count} 個分類群符合此篩選條件"
   x_taxon_changes_added_html:
     other: "已新增<span class='count'>%{count}</span> 個分類群變更"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x}</strong> 個人以 <strong>%{y}</strong> 個鑑定幫助了%{user}"
   _100_day_trends: 100 天裡的趨勢
   _percent_ID_d: "% 已鑑定"
   a_community_for_naturalist: 一個博物學友的社群

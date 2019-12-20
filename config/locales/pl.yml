@@ -35,6 +35,11 @@ pl:
     few: '<span class="count">%{count}</span> oznaczających'
     many: '<span class="count">%{count}</span> oznaczających'
     other: '<span class="count">%{count}</span> oznaczającego'
+  x_languages:
+    one: "%{count} język"
+    few: "%{count} języki"
+    many: "%{count} języków"
+    other: "%{count} języka"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: "%{count} pierwsza obserwacja na liście życia"
@@ -101,6 +106,12 @@ pl:
     few: "%{count} inne osoby"
     many: "%{count} innych osób"
     other: "%{count} innej osoby"
+  x_people:
+    one: "%{count} osoba"
+    few: "%{count} osoby"
+    many: "%{count} osób"
+    other: "%{count} osoby"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} osób</strong> pomogło %{user} z <strong>%{y} oznaczeniami</strong>"
   x_photos:
     one: "1 zdjęcie"
     few: "%{count} zdjęcia"
@@ -166,7 +177,6 @@ pl:
     few: "<span class='count'>%{count}</span> zmiany w taksonie dodane"
     many: "<span class='count'>%{count}</span> zmian w taksonie dodanych"
     other: "<span class='count'>%{count}</span> zmiany w taksonie dodane"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} osób</strong> pomogło %{user} z <strong>%{y} oznaczeniami</strong>"
   _100_day_trends: Studniowe trendy
   _percent_ID_d: "% oznaczonych"
   a_community_for_naturalist: Społeczność dla przyrodników
@@ -747,7 +757,7 @@ pl:
     merge: Niektóre stare taksony zostały połączone w jeden nowy takson
     swap: Zmiana nazwy 1:1
   change_geoprivacy: 'Zmień geo-prywatność'
-  change_group: Zmień grupę
+  change_group: Grupa zmian
   change_icon: Zmień ikonę
   change_password: Zmień hasło
   change_types:
@@ -2825,6 +2835,8 @@ pl:
   search_this_taxon: szukaj tego taksonu
   search_your_photos: Przeszukaj swoje zdjęcia
   searching: "Szukanie..."
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   select: Wybierz
   select_all: Wybierz wszystkie
   select_one_or_more_photos: 'Wybierz jedno lub więcej zdjęć'
@@ -3352,6 +3364,7 @@ pl:
         obs_in_year: Obserwacji w %{year}
         observation_streaks_color_desc: |
           Kolor reprezentuje liczbę dni w skali logarytmicznej:
+        translators_title: Tłumacze
     taxa:
       show:
         frequency:

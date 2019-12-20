@@ -21,6 +21,9 @@ nb:
   x_identifiers_html:
     one: '<span class="count">%{count}</span> identifikator'
     other: '<span class="count">%{count}</span> identifikatorer'
+  x_languages:
+    one: "%{count} språk"
+    other: "%{count} språk"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: "%{count} livsliste-nyhet"
@@ -61,6 +64,10 @@ nb:
   x_others:
     one: "%{count} annen"
     other: "%{count} andre"
+  x_people:
+    one: "%{count} person"
+    other: "%{count} personer"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> har hjulpet %{user} med <strong>%{y} ID-er</strong>"
   x_photos:
     one: "%{count} bilde"
     other: "%{count} bilder"
@@ -100,7 +107,6 @@ nb:
   x_taxon_changes_added_html:
     one: "<span class='count'>%{count}</span> taksonendring lagt til"
     other: "<span class='count'>%{count}</span> taksonendringer lagt til"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> har hjulpet %{user} med <strong>%{y} ID-er</strong>"
   _100_day_trends: 100-dagers trender
   _percent_ID_d: "% identifisert"
   a_community_for_naturalist: Et fellesskap for naturalister
@@ -3231,6 +3237,8 @@ nb:
   second_person_possessive_plural: "@gender{n:Ditt|Din} %{noun}"
   second_person_possessive_singular: "@gender{n:Ditt|Din} %{noun}"
   see_something_wrong_with_taxon: Er det noe som ikke stemmer med dette taksonet? Si fra til kuratorne.
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   seen_it?: Sett?
   seen_nearby: Sett i nærheten
   seen_one: Sett en?
@@ -5216,11 +5224,18 @@ nb:
         website_desc_html: |
           Laget med <a href="https://www.inaturalist.org">iNaturalist </a> eller nettsider i <a href="%{url}">iNaturalist-nettverket</a>
       year:
+        donate_title: "Særlig takk til alle våre støttere"
+        donate_desc_html: |
+          Takk for at du er generøs med din tid, oppmerksomhet, ekspertise, og donasjoner! iNaturalist er et non-profit felles initiativ av California Academy of Sciences og National Geographic Society. Det støttes av et <a href="%{team_url}">lite team</a> som gjør all design og koding for nettet, mobil, og <a href="%{seek_url}">Seek av iNaturalist</a>, i tillegg til å administrere støtte til fellesskapet, og integreringer som holder ting i drift (og stadig vekst!) Programmet er avhengig av flere tilskudd og donasjoner, hvorunder frivillige gaver fra under 0,2% av bidragsytere. Vi er særlig takknemlig til våre månedlige givere, hvems gjentagende gaver hjelper oss i å planlegge for fremtiden. Du kan donere i over 30 valuta for å støtte kjerneoppgavene til iNaturalist. Takk til alle for ditt bidrag i å gjøre 2019 til det største året for iNaturalist hittil!
         inaturalist_network: iNaturalist-nettverk
+        inaturalist_network_desc: |
+          Sjekk årsoversiktet for medlemmer av iNaturalist-nettverket.
         include_usa: Inkluder USA
         growth_by_country_desc_html: |
           Hvor finner vekst sted? Dette kartet og grafen forsøker å bryte dette ned per land, noe som viser seg å være komplisert siden vekst per land kan være veldig ubalansert. Her har vi valgt som standard å utelate USA og bruke en logaritmisk skala for å fremheve forskjellene mellom de andre land. Hvis et land er farget svart betyr det at det ikke bidro vesentlig til en prosentandel eller at det ikke hadde vekst dette året, eller at det ikke hadde flere observasjoner dette året enn året før (hold musepekeren over et land for å se litt flere detaljer). <strong>"% av total vekst"</strong> betyr hvor mye av global vekst kom fra et bestemt land, hvis det f.eks. var 20 observasjoner i 2018 og 10 i 2017, vil det være en vekst på 10 observasjoner, og hvis 5 av disse er fra Benin, så har Benin bidratt med 50 % av den totale veksten. <strong>"% vekst "</strong> betyr antall observasjoner dette året i det landet som en prosentandel av observasjoner i det landet året før, så hvis det var 10 observasjoner i Laos i fjor men 20 i år, tilsvarer det 100 % vekst, og hvis det var 0 i fjor og 1 i år, er det uendelig % vekst.
         growth_by_country_title: Vekst per land
+        growth_desc: |
+          Grafene "Observasjoner" og "Taksa" kan inneholde data som er synlige på %{site_name} som er levert av folk som ikke er tilknyttet %{site_name}, mens grafen "Brukere" kun viser datoer når brukere som nå har en tilknytning til %{site_name} ble med på iNaturalist.
         growth_in_year_obs: "Vekst i %{year} (obs)"
         growth_title: Vekst
         new_species_desc: |
@@ -5234,15 +5249,26 @@ nb:
           Påvirkningsdata og visualisering fra <a href="https://www.altmetric.com">Altmetric</a>. Informasjon om bruk av data fra våre venner hos <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
           <br/>
           <a href="%{url}">Vis alle %{numStudies} studier</a>
+        publications_desc_short_html: |
+          Trykk på blomstergrafene for mer informasjon om hva tallene og fargene betyr. Påvirkningsdata og visualisering fra <a href="https://www.altmetric.com">Altmetric</a>. Informasjon om bruk av data fra våre venner hos <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observasjonsserier
         observation_streaks_color_desc: |
           Farge representerer antall dager på en logaritmisk skala:
+        observation_streaks_desc: |
+          En observasjonsserie er en tidsperiode hvor noen kom seg ut og registrerte nye, verifiserbare observasjoner hver eneste dag. Her viser vi den lengste serien som begynnte i år eller var i gang når disse statistikker ble generert.
         stats_generated_datetime: Statistikker generert på %{datetime}
         store_prompt: |
           Vil du vise din stolthet over iNat hvor enn du går? Sjekk iNat butikken!
         sunburst_desc_html: |
           Observasjoner som et hierarkisk "sunburst"-diagram. Basen av hierarkien er i midten, med "livet" som start og arter ytterst på kanten. Størrelsen av hver bue er relativ til antallet av observasjoner av det taksonet, og fargene korresponderer mer eller mindre til våre vanlige farger for "ikoniske" taksa (grønn for planter, oransje for insekter, blå for de fleste andre dyr, osv.), så hvis du ser masse grønt betyr det at du har sett mange planter. <strong>Trykk på en bue for å plasere det taksonet i midten</strong> og dets etterkommere rundt det, eller <strong>trykk på midten for å gå opp i hierarkiet igjen</strong>.
+        translators_title: Oversettere
+        translators_desc: |
+          Visste du at iNaturalist har blitt oversatt til %{x_languages}, nesten fullstendig av %{x_people}, som i noen tilfeller ikke bruker iNat engang? Her er alle fantastiske oversettere som har lagt til oversettelser i år, med antall ord de har oversatt for %{website_link_tag}nettsiden%{link_tag_end}, våre apps for %{iphone_link_tag}iPhone%{link_tag_end} og %{android_link_tag}Android%{link_tag_end}, og %{seek_link_tag}Seek%{link_tag_end}. Du kan se alle personer som har bidratt med oversettelser, inklusiv folk fra tildligere år og folka fra Translatewiki, i våre %{view_all_web_link_tag}web%{link_tag_end} og %{view_all_mobile_link_tag}mobile%{link_tag_end} kode-repositories.
+        translators_desc_for_site: |
+          Visste du at %{site_name} har blitt oversatt nesten fullstendig av %{x_people}? Her er alle fantastiske oversettere som har lagt til oversettelser i år, med antall ord de har oversatt for %{website_link_tag}nettsiden%{link_tag_end}, iNaturalist appene for %{iphone_link_tag}iPhone%{link_tag_end} og %{android_link_tag}Android%{link_tag_end}, og %{seek_link_tag}Seek%{link_tag_end}. Du kan se alle personer som har bidratt med oversettelser, inklusiv folk fra tildligere år og folka fra Translatewiki, i våre %{view_all_web_link_tag}web%{link_tag_end} og %{view_all_mobile_link_tag}mobile%{link_tag_end} kode-repositories.
+        translators_prompt: |
+          Hvis du vil hjelpe med å oversette, %{link_tag}lær hvordan%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -5488,12 +5514,26 @@ nb:
         prefers_coordinate_interpolation_protection_desc: |
           Når du setter geosperringen av en observasjon til "tilslørt" eller "privat" brukes det samme geosperringen på alle dine andre observasjoner fra den dagen for å gjøre det vanskelige for folk å gjette de sanne koordinate basert på observasjoner gjort rundt samme tidspunkt.
         prefers_no_tracking_label: Ikke samle data om stabilitet og bruk ved hjelp av tredjepartstjenester
+        prefers_no_tracking_label_desc_we_use: |
+          Vi bruker en rekke tredjepartstjenester for å overvåke stabilitet og spore bugs og problemer i vår programmvare. Disse tredjeparter inkluderer
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informasjon som vi kan dele med disse tredjeparter omfatter
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          IP adresser (som kan brukes til å avlede lokalitet på by-nivå, og følge deg over ulike nettsider og tjenester; merk at vi har slått på <a href="https://support.google.com/analytics/answer/2763052">IP anonymisering</a>
+          i Google Analytics; Firebase Crashlytics
+          <a href="<a href="https://firebase.google.com/support/privacy">
+          kan lagre IP adresser</a> midlertidig)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Nettleserdetaljer, som merke, modell, og versjon
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Kræsj-detaljer, som nøyaktig hvilken kodelinje det var som var årsaken til kræsjen
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Enhetsdetaljer, som merke og modell av en mobiltelefon
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Disse tredjepartstjenester har enorm verdi for oss</strong> i å vedlikeholde stabiliteten og brukbarheten av iNaturalist med vår relativ liten stab. På mobile enheter finnes det nesten ingen andre måte å ha innsikt i problemene som forekommer, siden programvaren kjører på enheter vi ikke har kontroll over. Noen ganger er vi ikke engang bevisste på slike problemer før vi ser de i dataene disse tjenester gir oss. <strong>Ved å dele denne informasjonen, hjelper du oss i å betjene deg og hele iNaturalist-fellesskapet.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Merk at dette valget kun gjelder analyser og kræsj-data som vi eksplisitt sender til disse bedrifter. Alle servere til iNaturalist leveres og hostes av Microsoft, alle bilder på iNaturalist hostes av Amazon, og nesten alle kart på iNaturalist leveres av Google, noe som betyr at du kobler deg opp mot tjenester av disse bedrifter hver gang du ser på en observasjon, og dermed i hvert fall avslører din IP-adresse til de (på iPhone bruker vi kart fra Apple). iNaturalist ville nok ikke finnes uten tjenestene disse bedrifter tilbyr, og mens vi kan begrense hvor mye og hvilke typer data du deler med de mens du bruker iNaturalist, kan vi ikke stoppe dataflyten helt.
         project_settings_desc: |
           Husk at dette ikke gir prosjekter tilgang til å se dine skjulte koordinater eller sende seg oppdateringer. Du må bli medlem i prosjekter for å gi disse tillatelser, eller gi de en-og-en.
         same_day_geoprivacy_protection: Samme-dag geosperring
