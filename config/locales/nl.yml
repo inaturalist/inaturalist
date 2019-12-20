@@ -21,6 +21,9 @@ nl:
   x_identifiers_html:
     one: '<span class="count">1</span> determineerder'
     other: '<span class="count">%{count}</span> determineerders'
+  x_languages:
+    one: "%{count} taal"
+    other: "%{count} talen"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: "1 levenslijst-primeur"
@@ -61,6 +64,10 @@ nl:
   x_others:
     one: "%{count} ander persoon"
     other: "%{count} anderen"
+  x_people:
+    one: "%{count} persoon"
+    other: "%{count} mensen"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} mensen</strong> hielpen %{user} met <strong>%{y} determinaties</strong>"
   x_photos:
     one: "%{count} foto"
     other: "%{count} foto's"
@@ -100,7 +107,6 @@ nl:
   x_taxon_changes_added_html:
     one: "<span class='count'>%{count}</span> taxonwijziging toegevoegd"
     other: "<span class='count'>%{count}</span> taxonwijzigingen toegevoegd"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} mensen</strong> hielpen %{user} met <strong>%{y} determinaties</strong>"
   _100_day_trends: 100-daagse trends
   _percent_ID_d: "% gedetermineerd"
   a_community_for_naturalist: Een gemeenschap voor naturalisten
@@ -3282,6 +3288,8 @@ nl:
   second_person_possessive_plural: "Jullie %{noun}"
   second_person_possessive_singular: "Jouw %{noun}"
   see_something_wrong_with_taxon: Is er iets mis met dit taxon? Laat het de curators weten.
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   seen_it?: Gezien?
   seen_nearby: In de omgeving gezien
   seen_one: Eentje gezien?
@@ -5356,7 +5364,12 @@ nl:
           of <a href="%{url}">iNaturalist Network</a> websites
       year:
         donate_title: "Speciale dank aan al onze supporters"
+        donate_desc_html: |
+          Bedankt dat je vrijgevig bent met je tijd, aandacht, expertise, en donaties! iNaturalist is een gezamenlijk initiatief zonder winstoogmerk van de California Academy of Sciences en de National Geographic Society. Het wordt ondersteund door een <a href="%{team_url}">klein team</a> dat al het ontwerp en programmeerwerk doet voor web, mobiel, en
+          <a href="%{seek_url}">Seek van iNaturalist</a>, plus het beheren van ondersteuning aan de gemeenschap, samenwerkingen, en integraties die de zaken draaiende houden (en snel laten groeien!). Het programma is afhankelijk van meerdere beurzen en donaties, waaronder vrijwillige bijdragen van nog geen 0,2% van onze deelnemers. We zijn vooral onze maandelijkse donateurs dankbaar, wiens regelmatige giften ons helpen te plannen voor de toekomst. Je kunt in meer dan 30 valuta doneren om de kerntaken van iNaturalist te ondersteunen. Iedereen bedankt voor je aandeel in 2019 het grootste jaar voor iNaturalist tot nu toe maken!
         inaturalist_network: iNaturalist netwerk
+        inaturalist_network_desc: |
+          Bekijk het jaaroverzicht voor leden van het iNaturalist-netwerk.
         include_usa: Inclusief VS
         growth_by_country_desc_html: |
           Waar vindt er groei plaats? 
@@ -5385,6 +5398,8 @@ nl:
           Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href="https://www.altmetric.com">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.
           <br/>
           <a href="%{url}">Toon alle %{numStudies} studies</a>
+        publications_desc_short_html: |
+          Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href="https://www.altmetric.com">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Waarnemingsreeksen
         observation_streaks_color_desc: |
@@ -5405,6 +5420,19 @@ nl:
           <strong>Klik op een boog om dat taxon in het midden te plaatsen</strong> en
           de onderliggende taxa eromheen of <strong>klik op het midden om terug omhoog te gaan in 
           de hiërarchie</strong>.
+        translators_title: Vertalers
+        translators_desc: |
+          Wist je dat iNaturalist bijna volledig is vertaald in %{x_languages} door %{x_people}, waarvan sommigen iNat niet eens gebruiken? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, onze apps voor %{iphone_link_tag}iPhone%{link_tag_end} en
+          %{android_link_tag}Android%{link_tag_end}, en %{seek_link_tag}Seek%{link_tag_end}. Je kunt alle mensen bekijken die in alle talen hebben bijgedragen met vertalingen, waaronder mensen van eerdere jaren en mensen van Translatewiki, in onze
+          %{view_all_web_link_tag}web-%{link_tag_end} en
+          %{view_all_mobile_link_tag}mobiele%{link_tag_end} code repositories.
+        translators_desc_for_site: |
+          Wist je dat %{site_name} bijna volledig is vertaald door %{x_people}? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, de iNaturalist apps voor %{iphone_link_tag}iPhone%{link_tag_end} en
+          %{android_link_tag}Android%{link_tag_end}, en %{seek_link_tag}Seek%{link_tag_end}. Je kunt alle mensen bekijken die in alle talen hebben bijgedragen met vertalingen, waaronder mensen van eerdere jaren en mensen van Translatewiki, in onze
+          %{view_all_web_link_tag}web-%{link_tag_end} en
+          %{view_all_mobile_link_tag}mobiele%{link_tag_end} code repositories.
+        translators_prompt: |
+          Als je wil helpen met vertalen, %{link_tag}leer hier hoe%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
