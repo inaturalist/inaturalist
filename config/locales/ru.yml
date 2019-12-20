@@ -101,6 +101,7 @@ ru:
     few: "%{count} других"
     many: "%{count} других"
     other: "%{count} других"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} человек</strong> оказавшие помощь %{user} с <strong>%{y} идентификацией</strong>"
   x_photos:
     one: "%{count} фото"
     few: "%{count} фото"
@@ -166,7 +167,6 @@ ru:
     few: "<span class='count'>%{count}</span> добавленных таксона"
     many: "<span class='count'>%{count}</span> добавленных таксонов"
     other: "<span class='count'>%{count}</span> добавленных таксонов"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} человек</strong> оказавшие помощь %{user} с <strong>%{y} идентификацией</strong>"
   _100_day_trends: 100-дневный тренд
   _percent_ID_d: "% идентифицированных"
   a_community_for_naturalist: Сообщество натуралистов
@@ -235,7 +235,7 @@ ru:
   active_users: Активные участники
   activity: Активность
   activity_settings: Настройки активности
-  adapted_by_name_from_a_work_by_original: "Адапритовано названием %{name} из работы %{original}"
+  adapted_by_name_from_a_work_by_original: "Адаптировано %{name}, оригинальный источник %{original}"
   add: Добавить
   add_a_batch_of_observations: Добавить несколько наблюдений
   add_a_batch_of_taxa: Добавить несколько таксонов
@@ -3308,7 +3308,7 @@ ru:
     many: Сохранение %{num} из %{count} наблюдений...
     other: Сохранение %{num} из %{count} наблюдений...
   saving_verb: Сохраняется
-  scale_colon: "Масштаб:"
+  scale_colon: "Шкала:"
   schemes: Схемы
   schemes_including: Схемы, включающие
   search: Поиск
