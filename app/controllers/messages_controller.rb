@@ -75,7 +75,7 @@ class MessagesController < ApplicationController
           page: 1,
           per_page: @messages.count,
           total_results: @messages.count,
-          thread_message_id: @thread_message.id,
+          thread_id: @thread_message.id,
           reply_to_user_id: @reply_to.id,
           flaggable_message_id: @flaggable_message.try(:id),
           results: @messages.as_json

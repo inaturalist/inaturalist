@@ -103,6 +103,8 @@ CSV.open( @out_path, "wb" ) do |csv|
     user_count += 1
     user_filter = { term: { "user.id" => user.id } }
     num_identifications = Identification.elastic_search(
+      size: 0,
+      track_total_hits: true,
       filters: [
         user_filter,
         { term: { own_observation: false } }
@@ -146,6 +148,7 @@ CSV.open( @out_path, "wb" ) do |csv|
     end
     obs_results = Observation.elastic_search(
       size: 0,
+      track_total_hits: true,
       filters: [
         user_filter
       ],
