@@ -54,6 +54,7 @@ et:
   x_others:
     one: "1 muu"
     other: "%{count} muud"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} inimest</strong> aitasid kasutajat %{user} <strong>%{y} määratlusega</strong>"
   x_photos:
     one: "1 foto"
     other: "%{count} fotod"
@@ -90,7 +91,6 @@ et:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> taksonimuudatus lisatud"
     other: "<span class='count'>%{count}</span> taksonimuudatust lisatud"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} inimest</strong> aitasid kasutajat %{user} <strong>%{y} määratlusega</strong>"
   _100_day_trends: 100 päeva trendid
   _percent_ID_d: "% määratud"
   a_community_for_naturalist: Loodusloolaste kogukond
