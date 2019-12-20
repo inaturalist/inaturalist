@@ -38,6 +38,7 @@ ko:
     other: '관찰자 <span class="count">%{count}</span> 명'
   x_others:
     other: "외 %{count} 명"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
   x_photos:
     other: "사진 %{count} 개"
   x_new_species:
@@ -62,7 +63,6 @@ ko:
     other: "현재 검색 필터와 일치하는 %{count} 개의 분류군"
   x_taxon_changes_added_html:
     other: "분류군 변경사항 <span class='count'>%{count}</span>개를 추가함"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
   _100_day_trends: 지난 100일간 동향
   a_community_for_naturalist: 자연을 연구하는 사람들을 위한 공동체
   a_default_taxon_name_will_automatically_created: |
@@ -312,7 +312,7 @@ ko:
   any: 모두
   any_: 모두
   apply_to_selected: 선택에 적용
-  apply_captive_cultivated: "사육/재배종 적용"
+  apply_captive_cultivated: "포획됨 / 사육됨 적용"
   apply_fields: 필드 적용
   apply_geoprivacy: 위치보호 적용
   apply_darr: "적용 &darr;"
@@ -449,7 +449,7 @@ ko:
   cancel: 취소
   cant_flag_an_object_that_doesnt_exist: 존제하지 않는 물체에 플래그를 세울 수 없다.
   cant_merge_a_taxon_with_itself: 분류군은 자기 자신과 병합할 수 없습니다.
-  captive_cultivated: 포획된 / 양식된
+  captive_cultivated: 포획됨 / 사육됨
   card: 카드
   casual: 비공식적
   categories: 분류
@@ -1993,8 +1993,8 @@ ko:
   quality_grade_colon: "품질 등급:"
   query: 쿼리
   range: 범위
-  rank: 분류학적 위치
-  rank_position: 분류학적 위치
+  rank: 순위
+  rank_position: 순위
   ranks:
     kingdom: 계
     subkingdom: 아계
