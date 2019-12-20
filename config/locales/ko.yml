@@ -102,6 +102,7 @@ ko:
   accuracy_of_the_coordinates: |
     미터로 나타낸 좌표의 정확도. 정확도는 위의 편집 링크를 클릭하거나 지도 마커를 클릭한 후 가장자리를 드래그해서 편집할 수 있습니다. 원 안에 자신의 실제 위치가 확실히 들어가도록 설정해 주세요.
   actions: 동작
+  active: 활성
   active_users: 활동적인 사용자
   activity: 활동
   activity_settings: 활동 설정
@@ -449,6 +450,7 @@ ko:
   cancel: 취소
   cant_flag_an_object_that_doesnt_exist: 존제하지 않는 물체에 플래그를 세울 수 없다.
   cant_merge_a_taxon_with_itself: 분류군은 자기 자신과 병합할 수 없습니다.
+  captive: 사육됨
   captive_cultivated: 포획됨 / 사육됨
   card: 카드
   casual: 비공식적
@@ -920,6 +922,8 @@ ko:
   failed_to_repair_photo: "사진을 수리하는데 실패했습니다. %{errors}"
   failed_to_save_record: "기록을 저장하는데 실패했습니다. 나중에 다시 시도해주십시오."
   'false': '거짓'
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: 즐겨찾기
   Family: 과
   favorite_taxa: 좋아하는 분류군
   favorites: "즐겨찾기"
@@ -1317,6 +1321,7 @@ ko:
   lookup: 검색
   low: 낮음
   make_admin: 관리자 만들기
+  make_it_a_life_list?: 생물 목록으로 만드시겠습니까?
   manage_all_your_subscriptions: 모든 구독 정보 관리
   manage_names: 이름 관리
   manage_your_projects: 내 프로젝트 관리
@@ -1399,6 +1404,7 @@ ko:
   n_ago: "%{n}전"
   name: 이름
   name_entered: 이름 입력됨
+  name_or_slug: "이름"
   name_providers:
     col: 생명체 카탈로그
   names: 이름
@@ -1554,6 +1560,7 @@ ko:
   observation_added: 관찰 추가함
   observation_added_to_the_project: "%{project}에 관찰 추가됨"
   observation_aggregation: 관찰 집합
+  observations_by_rank: 분류군 수준에 따른 관찰
   observations_by_user_on_date: "%{date}에 %{user}의 관찰"
   observations_by_you: "내 관찰"
   observations_by_you_on_date: "%{date}에 매 관찰"
@@ -1596,20 +1603,30 @@ ko:
     following_panel_title: 사람, 분류군, 장소에 대한 알림 받기
     youve_got_updates_panel_title: 새 업데이트가 있습니다!
   only_letters_numbers: "문자와 숫자만 올 수 있고 공백이 없어야 하며 문자로 시작해야 합니다"
+  only_show_active_taxa: 활성 분류군만 보기
   only_show_events_that_last_less_than_2_weeks: 최근 2주 간의 일만 보여드립니다
+  only_show_for_species_subspecies_varieties_etc: 종, 아종, 변종 만 보기
+  only_species: 종(Species)만 추가
+  only_species_and_subspecies: 종(Species), 아종(Subspecies), 변종(Varieties)만 추가
   only_you: 나만
   open: 열기
   open_: 열기
   open_street_map: 오픈스트리트맵
   optional: 선택 사항
   or: 또는
+  order: 목
   original: 원본
   originally_flagged_by: 처음으로 플래그함
   originally_imported_from_url_html: "원래 <a href='%{url}'>%{url}</a>에서 가져옴"
   original_page_url_for_this_photo: "이 사진에 대한 원본 페이지 URL"
+  organism_appears_captive_cultivated: 관찰된 생물이 포획 / 사육되었음
   other: 기타
   other_lexicons: 기타 어휘 목록
   other_names: 다른 이름
+  other_species_commonly_misidentified_as_this_species: 이 종으로 자주 오동정되는 종들
+  other_species_commonly_misidentified_as_this_species_in_place_html: <a href="%{url}">%{place}</a>에서 이 종으로 자주 오동정되는 종들
+  other_taxa_commonly_misidentified_as_this_species: 이 종으로 자주 오동정되는 분류군들
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: <a href="%{url}">%{place}</a>에서 이 종으로 자주 오동정되는 분류군들
   our_blog: iNaturalist 블로그
   overview: 개요
   owner: 소유자
@@ -1995,19 +2012,27 @@ ko:
   range: 범위
   rank: 순위
   rank_position: 순위
+  rank_restrictions: 분류군 추가 제한
   ranks:
     kingdom: 계
     subkingdom: 아계
     phylum: 문
+    subphylum: 아문
+    superclass: 상강
     subclass: 아강
     infraclass: 하강
     superorder: 상목
+    order: 목
     suborder: 아목
+    infraorder: 하목
+    parvorder: 소목
     family: 과
+    subfamily: 아과
     genus: 속
     subgenus: 아속
     species: 종
     hybrid: 혼종
+    subspecies: 아종
   ranges: 범위
   re_order_photos: "사진 재정렬하기 &raquo;"
   read_more: 더 읽어보기
@@ -2018,6 +2043,7 @@ ko:
   recent_new_users: 최근 신규 사용자
   recent_observations: 최근 관찰
   recent_atom_observations_by: "%{login}의 최근 관찰 (Atom)"
+  recently_active: 최근에 활동함
   recently_created: 최근 생성함
   recently_finished: 최근에 완료됨
   recently_resolved: 최근 해결됨
@@ -2034,6 +2060,7 @@ ko:
   remember_me: 아이디/암호 저장
   remove: 제거
   remove_all_tags: 모든 태그를 제거
+  remove_curator_status: 큐레이터 권한 제거하기
   remove_from_list: 목록에서 제거
   remove_from_project: 프로젝트에서 제거
   remove_this_section: 이 항목 제거
@@ -2133,6 +2160,7 @@ ko:
   site_admin_tools: 사이트 관리자 도구
   site_site_admin: "%{site_name} 사이트 관리자"
   site_staff: "%{site_name} 직원"
+  site_stats: 사이트 통계
   some_of_those_photos_couldnt_be_saved: "일부 사진을 저장할 수 없습니다: %{error}"
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "죄송합니다. 다음 Flickr 사진이 존재하지 않거나 당신이 볼 권한이 없습니다."
   sorry_that_photo_provider_isnt_responding: "죄송합니다. 본 사진 제공자가 지금 응답하지 않습니다. 나중에 다시 시도해 주세요."
@@ -2156,6 +2184,9 @@ ko:
   source_wikipedia: "출처: 위키백과"
   spam: 스팸
   spammer: 스패머
+  species: 종
+  species_name_cap: 종명
+  species_names: 종명
   species_taxon_name: 종명/분류군 이름
   specify_the_reason_youre_flagging: 이 항목을 플래그하는 이유를 기입하세요
   start: 시작일
@@ -2182,6 +2213,7 @@ ko:
   taxa_info: 생물 분류 정보
   taxon_colors: 분류 색
   taxon_ranks: 분류학적 위치
+  taxonomic_order: 분류 체계
   tell_the_world_a_little_about_yourself: 자기소개하기
   tell_us_why: 이유를 말해주세요...
   terms_service: 서비스 약관
@@ -2203,6 +2235,7 @@ ko:
   this_place_has_no_check_list: "이 장소에는 체크리스트가 없습니다."
   this_user_has_been_suspended: 이 사용자는 일시 중지되었습니다
   this_year: 올해
+  threatened: 위기종
   title: 제목
   too_many_results: 결과가 너무 많음
   total: 합계
@@ -2268,6 +2301,7 @@ ko:
   view_details: 자세한 내용 보기
   view_flag: 플래그 보기
   view_flags: 플래그 보기
+  view_journal: 일지 보기
   view_license: 라이선스 보기
   view_lists: 목록 보기
   view_more: 더 보기
@@ -2282,6 +2316,8 @@ ko:
   view_your_observations: 내 관찰 보기
   video_tutorials: 동영상 강좌
   vulnerable: 취약(VU)
+  want_to_show_off_some_of_your_favorite_taxa: 당신이 좋아하는 분류군들을 여기 표시하고 싶으세요? "
+  was_it_captive_cultivated?: "포획되거나 사육되었습니까?"
   we_also_support: |
     <a href="http://flickr.com">플리커</a>, 
     <a href="http://photos.google.com">구글 포토</a>, 
@@ -2378,6 +2414,7 @@ ko:
       pdf_layouts:
         grid: 격자
         book: 책
+        journal: 일지
     help:
       index:
         what_is_considered_inappropriate_content?: 무엇이 부적절한 내용으로 간주됩니까?
@@ -2410,6 +2447,8 @@ ko:
         algorithm_summary: 알고리즘 요약
         disagreement: 동의하지 않음
         score: 점수
+      captive_help_html: |
+        관찰할 생물이 <strong>포획 </strong>되거나 <strong>사육 </strong>되었습니까? 예를 들어 <strong>공원, 동물원, 수족관 </strong> 등 인간에 의해서 인위적으로 지역에 서식하고 있는 것입니까? iNaturalist는 <strong>야생 상태 </strong>의 생물 관찰만을 허용하고 있습니다.
       identify:
         you_reviewed_message: "이 페이지에서 일치하는 %{total}개의 관찰 중 이 페이지에서 %{pageTotal}개의 관찰 중 %{reviewed}개를 리뷰했습니다."
         unreview_all_tooltip: "페이지 내 모든 관찰자 검토상태 삭제하기"
@@ -2505,6 +2544,7 @@ ko:
           장소 설정이 변경되었습니다. 마음이 바뀌면 언제든지
           <a href='/users/edit'>설정을 수정</a>할 수 있습니다.
         project_addition_preferences:
+          joined: 내가 가입한 프로젝트
           none: "없음, 프로젝트에 관찰만 추가할 수 있습니다"
         scientific_name_first_desc: |
           보통 명사 앞에 학명을 표시합니다.
