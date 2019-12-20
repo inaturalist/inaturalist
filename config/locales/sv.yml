@@ -38,6 +38,7 @@ sv:
   x_others:
     one: "1 annan"
     other: "%{count} andra"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjälpte %{user} med <strong>%{y} ID:n</strong>"
   x_photos:
     one: "1 foto"
     other: "%{count} foton"
@@ -74,7 +75,6 @@ sv:
   x_taxon_changes_added_html:
     one: "<span class='antal'>1</span> taxonändring tillagd"
     other: "<span class='antal'>%{count}</span> taxonändringar tillagda"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjälpte %{user} med <strong>%{y} ID:n</strong>"
   _100_day_trends: 100 dagars trend
   _percent_ID_d: "% ID'erat"
   a_community_for_naturalist: En gemenskap för naturälskare
