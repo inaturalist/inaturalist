@@ -21,6 +21,9 @@ tr:
   x_identifiers_html:
     one: '<span class="count">%{count}</span> Tanımlayıcı'
     other: '<span class="count">%{count}</span> Tanımlayıcı'
+  x_languages:
+    one: "%{count} dil"
+    other: "%{count} dil"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: "%{count} yaşam listesinde ilk"
@@ -61,6 +64,10 @@ tr:
   x_others:
     one: "%{count} diğer"
     other: "%{count} diğer"
+  x_people:
+    one: "%{count} kişi"
+    other: "%{count} kişi"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} insan</strong> %{user} kullanıcısına <strong> %{y} tanımlamalarında</strong> yardım etti"
   x_photos:
     one: "%{count} fotoğraf"
     other: "%{count} fotoğraf"
@@ -100,7 +107,6 @@ tr:
   x_taxon_changes_added_html:
     one: "<span class='count'>%{count}</span> sınıf değişimi eklendi"
     other: "<span class='count'>%{count}</span> sınıf değişimi eklendi"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} insan</strong> %{user} kullanıcısına <strong> %{y} tanımlamalarında</strong> yardım etti"
   _100_day_trends: 100 Günlük Trendler
   _percent_ID_d: "% tanımlama"
   a_community_for_naturalist: Doğa Bilimciler Topluluğu
@@ -3246,6 +3252,8 @@ tr:
   second_person_possessive_plural: "Senin %{noun}"
   second_person_possessive_singular: "Senin %{noun}"
   see_something_wrong_with_taxon: Bu sınıfla bir sorun mu var? Sorumlulara haber verin.
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   seen_it?: Gördün mü?
   seen_nearby: Yakınlarda Görüldü
   seen_one: Gördün mü?
@@ -5527,6 +5535,9 @@ tr:
           Gittiğin her yerde iNat'tan duyduğun gururu göstermek ister misin? iNat Mağazası'na Göz At!
         sunburst_desc_html: |
           Hiyerarşik bir "güneş" diyagramı olarak düzenlenen gözlemlenen sınıflar. Hiyerarşinin tabanı merkezdedir, "Yaşam" ile başlayıp dış kenarlardaki türlerle bitiyor. Her yayın boyutu, bu sınıfın gözlem sayısı ile orantılıdır ve renkler aşağı yukarı her zamanki "ikonik" sınıf renklerimizle aynıdır (bitkiler için yeşil, böcekler için turuncu, diğer birçok hayvan için mavi vb.), böylece çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğiniz anlamına gelir. <strong>Merkezdeki sınıfı ve onun çevresindeki alt sınıfları yerleştirmek için yaya tıklayın</strong> ya da <strong>hiyerarşiyi yukarı taşımak için merkeze tıklayın</strong>.
+        translators_title: Çevirmenler
+        translators_prompt: |
+          Çeviriye yardım etmek istiyorsanız, %{link_tag}nasıl yapıldığını öğrenin%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
