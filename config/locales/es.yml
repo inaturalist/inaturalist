@@ -21,6 +21,9 @@ es:
   x_identifiers_html:
     one: '<span class="count">1</span> Identificador'
     other: '<span class="count">%{count}</span> Identificadores'
+  x_languages:
+    one: "%{count} idioma"
+    other: "%{count} idiomas"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     one: "%{count} primicia en la lista de vida"
@@ -61,6 +64,10 @@ es:
   x_others:
     one: "1 otro"
     other: "%{count} otros"
+  x_people:
+    one: "%{count} persona"
+    other: "%{count} personas"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} personas</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 imagen"
     other: "%{count} imágenes"
@@ -100,7 +107,6 @@ es:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> cambio de taxón agregado"
     other: "<span class='count'>%{count}</span> cambios de taxón agregados</span>"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} personas</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: "% identificados"
   a_community_for_naturalist: Una Comunidad para Naturalistas
@@ -3252,6 +3258,8 @@ es:
   second_person_possessive_plural: "Tus %{noun}"
   second_person_possessive_singular: "Tu %{noun}"
   see_something_wrong_with_taxon: '¿Vé algo malo con este taxón? Infórmelo a los curadores.'
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   seen_it?: '¿Lo has visto? '
   seen_nearby: Visto en la cercanías
   seen_one: '¿Has visto uno?'
@@ -5426,6 +5434,16 @@ es:
           ¿Quieres mostrar tu orgullo de iNat dondequiera que vayas? ¡Échale un vistazo la tienda de iNat!
         sunburst_desc_html: |
           Taxones observados dispuestos como un diagrama jerárquico de "resplandor solar". La base de la jerarquía está en el centro, comenzando con "Vida" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón "icónico" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>
+        translators_title: Traductores
+        translators_desc: |
+          ¿Sabías que iNaturalist ha sido traducido a %{x_languages},
+          casi por completo por %{x_people}, algunos de los cuales ni siquiera usan iNat? Aquí están todos los increíbles traductores que han aportado traducciones este año, junto con el número de palabras que han traducido para el %{website_link_tag}sitio web%{link_tag_end}, nuestras aplicaciones para %{iphone_link_tag}iPhone%{link_tag_end} y %{android_link_tag}Android%{link_tag_end} y %{seek_link_tag} Seek%{link_tag_end}. Puedes ver todas las personas que han contribuido con las traducciones, incluidas las de los años anteriores y personas de Translatewiki, en nuestros repositorios de código para
+          %{view_all_web_link_tag}web%{link_tag_end} y
+          %{view_all_mobile_link_tag}para móviles%{link_tag_end}.
+        translators_desc_for_site: |
+          ¿Sabías que %{site_name} ha sido traducido casi por completo por %{x_people}? Aquí están todos los increíbles traductores que han aportado traducciones este año, junto con el número de palabras que han traducido para el %{website_link_tag}sitio web%{link_tag_end}, nuestras aplicaciones para %{iphone_link_tag}iPhone%{link_tag_end} y %{android_link_tag}Android%{link_tag_end} y %{seek_link_tag} Seek%{link_tag_end}. Puedes ver todas las personas que han contribuido con las traducciones, incluidas las de los años anteriores y personas de Translatewiki, en nuestros repositorios de código para
+          %{view_all_web_link_tag}web%{link_tag_end} y
+          %{view_all_mobile_link_tag}para móviles%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
