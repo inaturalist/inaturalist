@@ -231,7 +231,7 @@ lt:
       kingdom: Karalystė
       class: Klasė
       phylum: Skyrius
-      species: Rūšis
+      species: Rūšys
       order: Būrys
     amphibians: Varliagyviai
     animals: Gyvūnai
@@ -1228,6 +1228,7 @@ lt:
   make_a_new_place: Sukurti naują vietą
   manage_your_projects: Tvarkyti savo projektus
   managing_projects: Projektų tvarkymas
+  map: Žemėlapis
   map_legend: žemėlapio legenda
   maps:
     overlays:
@@ -1297,6 +1298,8 @@ lt:
   not_linked_facebook: "Jūsų %{site_name} paskyra nėra susieta su jūsų Facebook paskyra"
   not_linked_flickr: "Jūsų %{site_name} paskyra nėra susieta su jūsų Flickr paskyra"
   number_of_observations: Stebėjimų skaičius
+  number_of_observers_value: "Stebėtojų skaičius: %{number}"
+  number_of_observers: "Stebėtojų skaičius"
   obscured_or_private: paslėptas arba privatus
   observation: Stebėjimas
   observation_added: Stebėjimas pridėtas.
@@ -1311,11 +1314,13 @@ lt:
   observations_per_month: Stebėjimai / Mėnuo
   observed: Stebėta
   observed_on: Stebėta
+  observers: Stebėtojai
   of_observations: stebėjimai
   of_species: rūšys
+  of_observers: stebėtojai
   of_places: vietos
   onboarding:
-    observe_panel_title: Pradėkime Paskelbdami Pastabas
+    observe_panel_title: Pradėkime įkeldami keletą stebėjimų
     observe_panel_body_p1_local: Reikia įkvėpimo? Štai kokie organizmai buvo stebėti netoliese...
     observe_panel_body_p1_global: Reikia įkvėpimo? Štai kai kurie stebimi organizmai...
     observe_panel_body_p3: Kai pasidalinsite savo pastabomis šis puslapis rodys naujienas iš bendruomenės komentarų ir identifikacijų forma. Kas žino ką atrasite!
@@ -1800,7 +1805,7 @@ lt:
     sound_has_been_flagged: Šis garsas buvo pažymėtas.
   source_eg:
     citation: 'pvz.: Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
-  species: Rūšis
+  species: Rūšys
   species_guess: rūšies spėjimas
   species_name_cap: Rūšies pavadinimas
   species_names: rūšies pavadinimas
@@ -1842,6 +1847,7 @@ lt:
   these_observations_have_not_been_uploaded_yet: |
     Šie stebėjimai dar nebuvo įkelti
   this_year: Šiais Metais
+  top_observers: Top stebėtojai
   totals: iš viso
   total_species_observed: Iš viso rūšių stebėta
   type_species_name: "Įveskite rūšies pavadinimą"
@@ -1855,12 +1861,12 @@ lt:
   uploader:
     tooltips:
       add: Pridėti pastabą(-s)
-      combine: Sujungti pasirinktas pastabas
+      combine: Sujungti pasirinktus stebėjimus
       photo_failed: Nepavyko įkelti nuotraukos
-      remove: Pašalinti pasirinktas pastabas
+      remove: Pašalinti pasirinktus stebėjimus
       remove_observation: Pašalinti stebėjimą
       remove_photo: Pašalinti nuotrauką
-      select_all: Pasirinkti visas pastabas
+      select_all: Pasirinkti visus stebėjimus
       upload_failed: Įkėlimas nepavyko
   user_added_a_flag_html: "%{user} pridėjo žymę"
   user_added_a_x: "%{user} pridėjo %{x}"
@@ -1968,10 +1974,9 @@ lt:
   you_: Jūs
   you_are_now: Jūs dabar esate
   you_are_submitting_obs_without_photos_and_names: |
-    Jūs siunčiate pastabas, kurios yra be nuotraukų ir taksonų pavadinimų.
-    Šias pastabas bus sunku tinkamai identifikuoti.
+    Jūs pateikiate stebėjimus, kurie yra be nuotraukų ir taksonų pavadinimų. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.
   you_are_submitting_obs_with_no_date_or_no_location: |
-    Jūs siunčiate pastabas be datų ir vietų.
+    Jūs pateikiate stebėjimus, kurie yra be datos ir vietos. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.
   you_are_subscribed_to_comments_on_this_flag: Jūs užsiprenumeravote šios žymės komentarus.
   you_cant_flag_that: Jūs negalite to žymėti
   you_sure_delete_flag?: Ar tikrai norite ištrinti šią žymę?
@@ -2217,6 +2222,7 @@ lt:
   i18n:
     inflections:
       "@vow_or_con":
+        vow: balsis
         con: priebalsis
         a: "@vow"
         e: "@vow"
