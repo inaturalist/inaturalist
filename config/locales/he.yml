@@ -1,4 +1,9 @@
 he:
+  x_languages:
+    one: "%{count} שפה"
+    two: "%{count} שפות"
+    many: "%{count} שפות"
+    other: "%{count} שפות"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} אנשים</strong> עזרו ל%{user} עם <strong>%{y} זיהויים</strong>"
   _100_day_trends: מגמת 100 הימים
   _percent_ID_d: "אחוז מזוהה"
@@ -1030,6 +1035,8 @@ he:
   georeferenced: ממוקם במרחב?
   get_started: התחל
   getting_started_guide: מדריך התחלה
+  give_monthly_caps: לתרומה חודשית
+  give_now_caps: תירמו עכשיו
   globally: עולמי
   go_back: חזרה
   going_to_your_observations: מעבר לתצפיות שלך...
@@ -1401,6 +1408,7 @@ he:
   merging: מיזוג
   merging_places: ממזג מקומות
   message: הודעה
+  message_deleted: ההודעה נמחקה
   message_from_user_at_time: מ%{user} ב%{time}
   message_from_user_on_date: מ%{user} ב%{date}
   messages: הודעות
@@ -2427,6 +2435,8 @@ he:
   second_person_possessive_plural: "ה %{noun} שלך"
   second_person_possessive_singular: "ה %{noun} שלך"
   see_something_wrong_with_taxon: משהו לא נכון עם הטקסון הזה? עדכנו את האוצרים.
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: חיפוש
   seen_it?: ראית את זה?
   seen_nearby: חיפוש בקרבת מקום
   seen_one: ראית אחד?
@@ -3150,12 +3160,17 @@ he:
       index:
         observations_1_week_moving_window: תצפיות (ממוצע של חלון נע בן שבוע)
       year:
+        donate_title: "תודה מיוחדת לכל התומכים בנו"
         growth_title: צמיחה
         percent_growth_in_year: "אחוז צמיחה ב%{year}"
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: רצף תצפיות
         observation_streaks_desc: |
           רצף תצפיות הינו תקופת זמן שבה צופה יצא לשטח ודיווח על תצפיות חדשות וברות זיהוי בכל יום. כאן ניתן לראות את הרצפים הארוכים ביותר שהתחילו השנה, או שהיה בתהליך בעת יצירת נתונים אלו.
+        stats_generated_datetime: הנתונים עובדו ב %{datetime}
+        translators_title: מתרגמים
+        translators_prompt: |
+          במידה וברצונך לעזור ולתרגם, %{link_tag} כאן ניתן ללמוד איך%{link_tag_end}.
     taxa:
       show:
         frequency:
