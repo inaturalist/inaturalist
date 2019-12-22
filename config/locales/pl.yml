@@ -552,6 +552,7 @@ pl:
   apply_fields: Zastosuj pola
   apply_geoprivacy: Zatwierdź prywatność lokalizacji
   apply_darr: "Zastosuj &darr;"
+  apply_establishment_means_to_descendant_places: "Zastosuj sposoby ustanowienia do lokalizacji potomnych"
   apply_these_settings_to_all: Zastosuj te ustawienia do wszystkich poniższych obserwacji.
   appropriate?: Odpowiednie?
   arachnids: pajęczaki
@@ -1516,7 +1517,7 @@ pl:
   computer_vision_suggestion: Sugestia na podstawie rozpoznawania obrazów
   computer_vision_suggestion_desc: |
     Rozpoznawanie obrazów to proces uczenia komputerów rozpoznawania wzorów w ilustracjach. Dostarczamy narzędzi (np. autouzupełniania czy porównywania), które używają rozpoznawania obrazów wyuczonego na bazie zdjęć społeczności, aby proponować sugestie identyfikacji. Ta etykieta informuje, że osoba dodała identyfikację korzystając z jednego z tych narzędzi.
-  identifiers: Oznaczających
+  identifiers: Oznaczający
   identotron: Identotron
   identotron_for: Identotron dla
   ids: "Oznaczenia"
@@ -1971,7 +1972,7 @@ pl:
   near_threatened: Bliskie zagrożenia
   nearby_observations_: Pobliskie obserwacje
   needs_id: potrzebuje oznaczenia
-  needs_id_: Potrzebujące oznaczenia
+  needs_id_: Potrzebuje oznaczenia
   needs_id_expandable_html: "<span class='full'>Potrzebuje </span>identyfikacji"
   new: Nowi
   new_and_noteworthy: Nowe i godne uwagi
@@ -2113,6 +2114,8 @@ pl:
   number_of_observers_value: "Liczba obserwatorów: %{number}"
   number_of_observers: "Liczba obserwatorów"
   obs: Obs
+  obs_cid_d: Obserwacje oznaczone przez społeczność
+  obs_id_d: Obserwacje oznaczone
   obscured: Ukryta
   obscured_or_private: ukryta lub prywatna
   obscured_description: |
@@ -2155,7 +2158,7 @@ pl:
     Możesz wybrać reguły określające, które obserwacje mają być dodawane do projektu (np. ograniczenie co do konkretnego miejsca lub taksonu). Jeśli chcesz wybrać więcej reguł z określonego typu, to obserwacje zostaną dodane, jeśli choć jedna z reguł będzie spełniona. Na przykład gdy ustanowisz zasadę "musi być Płazem" i "musi być Gadem", to do projektu zakwalifikują się obserwacje płazów LUB gadów.
   observation_was_deleted: Obserwacja została usunięta.
   observation_without_media: Obserwacja bez multimediów
-  observations: Obserwacji
+  observations: Obserwacje
   observations_: obserwacje
   observations_added_by_x_html: "Obserwacje dodane przez %{x}"
   observations_annotated_with_annotation: "Obserwacje z adnotacją %{annotation}"
@@ -2179,7 +2182,7 @@ pl:
   observed: Zaobserwowano
   observed_by: Zaobserwował
   observer: Obserwator
-  observers: Obserwatorów
+  observers: Obserwatorzy
   observer_short: Obserwator
   occurence_status_describes_how: 'Status występowania opisuje jak często lub rzadko takson jest w danym obszarze. Zobacz DarwinCore, aby uzyskać <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">więcej informacji na temat terminologii</a>.'
   occurrence_status: Status występowania
@@ -2920,7 +2923,7 @@ pl:
   source_url: Źródłowy adres URL
   sources: Źródła
   spam: Spam
-  species: Gatunków
+  species: Gatunki
   species_by_category: gatunki według kategorii
   species_from_around_the_world: Gatunki z całego świata
   species_name_cap: Nazwa gatunku
@@ -3341,11 +3344,15 @@ pl:
         med_ttcid: Średni TTCID
         med_ttid: Średni TTID
         new_users_desc: Zarejestrowani tego dnia
+        obs_1_day: "Obserwacje (1 dzień)"
+        obs_1_day_desc: "Obserwacje dodane jednego dnia"
+        obs_cid_d_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie społeczności
         #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Obserwacje oznaczone przez społeczność co do gatunku
-        obs_cid_d_to_genus_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie społeczności na poziomie gatunku lub niżej
+        obs_cid_d_to_genus_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie społeczności na poziomie gatunku lub niższym
         obs_desc: Dodane w poprzednich siedmiu dniach
         obs_id_d_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie (może być obserwatora)
+        other_desc_html: Dodane za pomocą innych aplikacji <a href="%{url}">stworzonych przez programistów</a>
         TTCID: TTCID
         TTCID_desc: Czas do otrzymania oznaczenia od kogoś innego, które pasuje do taksonu społeczności.
         TTID: TTID
@@ -3385,6 +3392,7 @@ pl:
         max_photos_desc: |
           Takson może mieć maksymalnie %{max} zdjęć. Musisz usunąć
           istniejące zdjęcia, aby dodać więcej.
+        no_trending_desc: Nic poniżej tego taksonu nie zaobserwowano w ostatnim miesiącu
         rare_desc: Najrzadziej obserwowane zagrożone taksony
         rare_in_place_desc_html: Najrzadziej obserwowane zagrożone taksony w <a href="%{url}">%{place}</a>
         trending_desc: Najczęściej obserwowane taksony w zeszłym miesiącu
@@ -3395,9 +3403,23 @@ pl:
         name_with_rank_desc: |
           Nazwa taksonu wraz z kategorią. Dla kategorii poniżej gatunku, kategoria dodawana jest po nazwie dwuczłonowej.
     users:
+      dashboard:
+        new_project_admin_html: |
+          Zastanawiasz się, dlaczego jesteś teraz administratorem tego projektu? Poprzedni właściciel albo wyznaczył Cię jako nowego administratora albo usunął swoje konto i %{site_name} Cię wyznaczyło, ponieważ jesteś menedżerem projektu lub kuratorem strony. Jeśli nie chcesz być administratorem projektu, skontaktuj się z <a href="mailto:%{help_email}">%{help_email}</a>
       delete:
+        by_deleting_your_account_you_will_remove: |
+          Usuwając swoje konto usuniesz
+        furthermore_cannot_undo_html: |
+          Ponadto, <strong>tej akcji nie można cofnąć.</strong> Jeśli później zmienisz zdanie, nie odzyskasz tej zawartości.
+        settings_and_mute_html: |
+          Jeśli ta strona generuje zbyt wiele powiadomień, rozważ <a href="/users/edit">edycję ustawień</a>, aby zrezygnować z niektórych powiadomień lub przestać otrzymywać od nas e-maile. Jeśli masz problemy z konkretną osobą na stronie, rozważ <a href="/users/edit">wyciszenie jej</a> zamiast usunięcia swojego konta.
+        still_want_to_delete_html: |
+          Jeśli nadal jesteś pewien, że chcesz usunąć swoje konto, wprowadź <code>%{confirmation_code}</code> w poniższym formularzu i kliknij przycisk, aby usunąć swoje konto i wszystkie swoje dane.
         type_confirmation_code: Wpisz %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: |
+          Musisz wprowadzić "%{confirmation_code}" w formularzu, aby usunąć swoje konto
       edit:
+        about_third_party_tracking: O śledzeniu przez strony trzecie
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Komentarzach
         #Checkbox label for user preference about what to receive in the daily email update
@@ -3440,6 +3462,11 @@ pl:
         thanks_for_supporting_us!: Dziękujemy za wsparcie!
       recent:
         about_recent_users: O
+        definitions_html: <dl> <dt>Prawdopodobnie spam</dt> <dd> Użytkownik, który jest prawdopodobnie spamerem, co oznacza, że nie posiada żadnych obserwacji ani oznaczeń, ale posiada opis profilu. </dd> <dt>Automatyczny spam</dt> <dd> Spamer, który został automatycznie oznaczony jako spamer przez system. </dd> <dt>Ręczny spam</dt> <dd> Spamer, który został ręcznie oznaczony jako spamer przez kuratora strony. </dd> <dt>False Positives</dt> <dd> Użytkownicy, którzy zostali oznaczeni jako spamerzy, ale zgłoszenia zostały rozstrzygnięte przez kuratorów, ponieważ użytkownicy w rzeczywistości nie byli spamerami. </dd> </dl>
+        recent_users_desc_html: |
+          <p>
+          Chcemy powitać nowych użytkowników, ale chcemy również walczyć ze spamerami. Mamy nadzieję, że to narzędzie pomoże w obu przypadkach. Automatycznie oznaczamy wielu użytkowników jako spamerów używając <a href="https://akismet.com/">Akismet</a>, ale Akismet nie jest idealny, więc jeśli chcesz poświęcić kilka minut na oznaczanie nowych kont jako spamerów lub nie spamerów, to by nam to pomogło.
+          </p>
       show:
         this_user_was_banned: Ten użytkownik został zawieszony
     user_parents:
@@ -3716,6 +3743,20 @@ pl:
   time:
     am: przed południem
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%-d %b %Y %-H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%-d %B %Y %-H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short: '%-d %b %-H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%-H:%M"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      observed_at: '%-H:%M %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      rfc: "%-d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      day_month_year: "%-d %B %Y"
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       hours: "%H:%M"
     pm: po południu
