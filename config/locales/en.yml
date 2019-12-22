@@ -357,7 +357,7 @@ en:
     <a target="%{target}" class="%{class}" href="%{url}">taxon swap</a>
   added_by: Added by
   added_by_user_on_date_html: "Added by %{user} on %{date}"
-  added_on: Added on
+  added_on_datetime: "Added on %{datetime}"
   added_to_favorites_html: |
     Added to <a href="%{url}">favorites</a>
   adding: "Adding..."
@@ -678,6 +678,10 @@ en:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Bounding Box
   breadcrumbs: Breadcrumbs
+  # This is a description of the "head" property of Custom Project Fields, i.e.
+  # the customizable content that will replace top section of the project detail
+  # page where the project title and a button to add an observation are usually
+  # shown
   breadcrumbs_description: "This will replace the h1 and default calls to action, so make sure to include them if they're important to this project and remember the max width allow is 950px"
   brief_caption: Brief caption
   brown: brown
@@ -985,7 +989,6 @@ en:
   cover: Cover
   create: Create
   create_a_guide: Create a Guide
-  create_a_list: Create a List
   create_a_new_field: Create a New Field
   create_a_new_place: Create a New Place
   create_a_new_taxon: Create a New Taxon
@@ -2167,7 +2170,6 @@ en:
   new_observation_field: New observation field
   new_observations: New observations
   new_observations_in_year: "New Observations In %{year}"
-  new_observations_this_year: New Observations This Year
   new_observations_ellispsis: "New observations..."
   new_observations_from_place_html: "New observations from %{place}"
   new_observations_may_take_up_to:
@@ -2195,7 +2197,6 @@ en:
   newly_added_species: Newly Added Species
   newly_observed_species: Newly Observed Species
   newly_observed_species_in_year: "Newly Added Species In %{year}"
-  newly_observed_species_this_year: Newly Added Species This Year
   news: News
   next: Next
   next_observation: Next Observation
@@ -2372,6 +2373,7 @@ en:
   # Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     e.g. 2019-10-29 13:12:21
+  observed_on_datetime: Observed on %{datetime}
   observation_removed_from_the_project: "Observation removed from the project \"%{project}\""
   observation_requirements: Observation Requirements
   observation_rules: Observation rules
@@ -3966,7 +3968,6 @@ en:
   time_ago: "%{time} ago"
   title: title
   title_and_description: "Title & Description"
-  titled_favorites_and_the_most_recent_additions: titled "Favorites" and the most recent additions will appear in this space.
   to_add_comments: to add comments
   to_add_ids: to add IDs
   to_configure_your_widget: to configure your widget.
@@ -4259,7 +4260,6 @@ en:
   w_photos_only: w/ photos
   w_sounds: w/ sounds
   wait_file_generation:  Please hold on while the file is generated.  It can take a couple minutes for large lists.
-  want_to_show_off_some_of_your_favorite_taxa: Want to show off some of your favorite taxa here?
   wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
   we_also_support: |
@@ -6692,6 +6692,10 @@ en:
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
         this_user_was_banned: This user was suspended
+        favorites_list_prompt_html: |
+          Want to show off some of your favorite taxa? %{link_start_tag}Create a
+          list%{link_end_tag} titled "Favorites" and the most recent additions
+          will appear in this space.
     user_parents:
       confirm:
         thanks_donor_html: |

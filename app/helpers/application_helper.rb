@@ -1165,7 +1165,8 @@ module ApplicationHelper
       key = "user_added_"
       opts = {
         user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
-        x: notifier_class_name
+        x: notifier_class_name,
+        gender: notifier_class_name
       }
       key += notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'
       key += '_x_to'

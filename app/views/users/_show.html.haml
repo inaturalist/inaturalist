@@ -142,6 +142,4 @@
           = link_to t(:view_all), @favorites_list, :class => "btn btn-sm btn-default"
     - if @favorites_list.blank? && is_me?(@selected_user)
       .well{:style => "text-align: center;"}
-        = t(:want_to_show_off_some_of_your_favorite_taxa)
-        = link_to t(:create_a_list), new_list_path(:title => t(:favorites))
-        = t(:titled_favorites_and_the_most_recent_additions)
+        =t "views.users.show.favorites_list_prompt_html", link_start_tag: "<a href='#{new_list_path(:title => t(:favorites))}'>".html_safe, link_end_tag: "</a>".html_safe

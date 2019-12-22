@@ -6,7 +6,7 @@
 <div class="identificationcol last column span-10">
   <%- extra = capture do -%>
     <div class="small description">
-     <%= t(:added_on).capitalize %> <%= l(identification.created_at.to_date, :format => :month_day_year) %>.
+     <%=t :added_on_datetime, datetime: l( identification.created_at.to_date, format: :month_day_year ) %>.
      <div class="ident-category">
        <%=t identification.category, default: identification.category %>
      </div>

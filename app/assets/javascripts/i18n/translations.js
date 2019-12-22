@@ -43,7 +43,6 @@ I18n.translations["ar"] = {
   "added": "تمت إضافته",
   "added!": "تمت إضافته!",
   "added_by": "أُضيفت بواسطة",
-  "added_on": "تمت الإضافة في",
   "additional_range": "نطاق إضافي",
   "additional_range_data_from_an_unknown_source": "بيانات نطاق إضافية من مصدر غير معروف",
   "adjust_brightness": "ضبط السطوع",
@@ -1849,7 +1848,6 @@ I18n.translations["bg"] = {
   "added": "Добавено",
   "added!": "Добавено!",
   "added_by": "Добавено от",
-  "added_on": "Добавено на",
   "agree": "съгласен съм",
   "agree_": "Съгласен",
   "agree_with_current_taxon": "Съгласен съм с текущия таксон",
@@ -3226,7 +3224,6 @@ I18n.translations["br"] = {
   "added": "Ouzhpennet",
   "added!": "Ouzhpennet!",
   "added_by": "Ouzhpennet gant",
-  "added_on": "Ouzhpennet d'an",
   "additional_range": "Lijorenn ouzhpenn",
   "additional_range_data_from_an_unknown_source": "Pajennad roadennoù ouzhpenn adalek un tarzh dianav",
   "agree": "Degemer",
@@ -3801,7 +3798,6 @@ I18n.translations["ca"] = {
   "added": "Afegit",
   "added!": "Afegit!",
   "added_by": "Afegit per",
-  "added_on": "Afegit el",
   "additional_range": "Distribució addicional",
   "additional_range_data_from_an_unknown_source": "Dades addicionals de distribució des de font desconeguda",
   "adjust_brightness": "Ajusteu brillantor",
@@ -5700,7 +5696,6 @@ I18n.translations["cs"] = {
   "added": "Přidáno",
   "added!": "Přidáno!",
   "added_by": "Přidáno uživatelem",
-  "added_on": "Přidáno na",
   "additional_range": "Přídavný rozsah",
   "additional_range_data_from_an_unknown_source": "Přídavný rozsah dat z neznámého zdroje",
   "adjust_brightness": "Upravit jas",
@@ -7319,6 +7314,12 @@ I18n.translations["cs"] = {
   "worldwide": "Celosvětové",
   "x_flagged": "%{x} označeno",
   "x_flagged_as_flag": "%{x} označeno jako %{flag}",
+  "x_languages": {
+    "one": "%{count} jazyk",
+    "few": "%{count} jazyků",
+    "many": "%{count} jazyků",
+    "other": "%{count} jazyků"
+  },
   "x_of_y": "%{x} z %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} z %{y} lidí (více než 2/3) souhlasí, že ano",
   "x_people_helped_user_with_y_ids_html": "<strong>%{x}people</strong> helped %{user}with<strong>%{y}IDs</strong>",
@@ -7401,7 +7402,6 @@ I18n.translations["da"] = {
   "added_as_a_part_of_a_taxon_split_html": "Tilføjet som del af en \n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">takson-opdeling</a>\n",
   "added_as_a_part_of_a_taxon_swap_html": "Tilføjet som del af en\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">takson-udskiftning</a>\n",
   "added_by": "Tilføjet af",
-  "added_on": "Tilføjet den",
   "additional_range": "Yderligere område",
   "additional_range_data_from_an_unknown_source": "Yderligere område data fra en ukendt kilde",
   "adjust_brightness": "Justér lysstyrke",
@@ -8939,6 +8939,7 @@ I18n.translations["da"] = {
   "search_remote": "Søg fjernt",
   "search_species_": "Søg i arter...",
   "seasonality": "Sæsonudsving",
+  "seek": "Seek",
   "seen_nearby": "Set i nærheden",
   "select": "Vælg",
   "select_all": "Vælg alle",
@@ -9340,7 +9341,7 @@ I18n.translations["da"] = {
         "recent_w_7_obs": "Nylige m/> 7 obs"
       },
       "year": {
-        "donate_desc_html": "Tak fordi du er generøs med din tid, opmærksomhed, ekspertise og\ndonationer! iNaturalist er et non-profit fællesinitiativ fra Californiad\nAcademy of Sciences og National Geographic Society..\nDet støttes af et\n<a href=\"%{team_url}\">lille team</a>, som\nforetager al design- og software-\nudvikling til web, mobil og\n<a href=\"%{seek_url}\">Seek fra iNaturalist</a>, samt administrerer fællesskabssupporten, samarbejder og integrationer, som holder\ntingene kørende (og hastigt voksende!). Programmet er afhængigt af\ntalrige tilskud og donationer inkl. velgørende gaver fra færre end 0,2%\naf bidragsydere. Vi er særligt taknemmelige for Månedlige Supportere,\nhvis tilbagevendende gaver hjælper os med fremtidig planlægning. Du\nkan donere i flere end 30 valutaer for at støtte iNaturalists kerne-\nfunktioner. Tak til alle for jeres andel i at gøre 2019 til iNaturalists\nstørste år indtil nu!\n",
+        "donate_desc_html": "Tak fordi du er generøs med din tid, opmærksomhed, ekspertise og\ndonationer! iNaturalist er et non-profit fællesinitiativ fra California\nAcademy of Sciences og National Geographic Society.\nDet støttes af et\n<a href=\"%{team_url}\">lille team</a>, som\nforetager al design- og software-\nudvikling til web, mobil og\n<a href=\"%{seek_url}\">Seek fra iNaturalist</a>, samt administrerer fællesskabssupporten, samarbejder og integrationer, som holder\ntingene kørende (og hastigt voksende!). Programmet er afhængigt af\ntalrige tilskud og donationer inkl. velgørende gaver fra færre end 0,2%\naf bidragsydere. Vi er særligt taknemmelige overfor Månedlige\nSupportere, hvis tilbagevendende gaver hjælper os med fremtidig\nplanlægning. Du kan donere i flere end 30 valutaer for at støtte\niNaturalists kernefunktioner. Tak til alle for jeres andel i at gøre 2019 til \nNaturalists største år indtil nu!\n",
         "donate_title": "En særlig tak til alle vores støtter",
         "growth_by_country_desc_html": "Hvor sker væksten? Dette kort og diagram forsøger at bryde dette\nned på landeniveau, hvilket viser sig at være kompliceret, fordi\nvæksten kan være meget ubalanceret på landeniveau. Vi har valgt at\nudelade USA og bruge en log-skala som standard for at fremhæve\nforskelle mellem andre lande. Hvis et land er farvet sort betyder det\nat det ikke har bidraget ikke signifikant, eller det ingen vækst havde\ni år, eller ikke havde flere observationer i år end sidste år (Hold\nmusen over et land for at se lidt mere detaljeret). <strong> \"% af\ntotal vækst \"</strong> betyder, hvor meget af den verdensomspændende\nvækst kom fra et bestemt land, f.eks. hvis der var 20 observationer i\n2018 og 10 i 2017 ville det være en vækst på 10 observationer, og hvis\n5 af de observationer var fra Benin, så bidrog Benin med 50% af den\nsamlede vækst. <strong> \"% vækst\" </strong> betyder antallet af\nobservationer i år i det pågældende land som en procent af\nobservationer sidste år i det land, så hvis der var 10 observationer i\nLaos sidste år, men 20 i år, ville det være 100% vækst, og hvis der\nvar 0 sidste år og 1 i år er det uendelig% vækst.\n",
         "growth_by_country_title": "Vækst efter land",
@@ -9360,7 +9361,11 @@ I18n.translations["da"] = {
         "publications_desc_short_html": "Klik på blomsterdiagrammerne for mere information om betydning\naf numre og farver. Indvirkningsdata og diagrammer med\ntilladelse fra <a href=\"https://www.altmetric.com\">Altmetric</a>.\nInformation om databrug med tilladelse fra vores venner fra\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
         "stats_generated_datetime": "Statistikker genereret %{datetime}",
         "store_prompt": "Vil gerne bryste dig af dit iNat-medlemskab? Så tjek iNat-butikken!\n",
-        "sunburst_desc_html": "Observeret taksa arrangeret som hierarkisk \"solstråle\" diagram. Basen\naf hierarkiet er i centrum, begyndende med \"liv\" og slutter\nmed arter ved yderkanterne. Størrelsen af hver \"bue\" er proportional\nmed antallet af observationer af den pågældende takson og farver\nsvarer groft til vores sædvanlige \"ikoniske\" taksonfarver (grøn til planter,\norange til insekter, blå for de fleste andre dyr osv.), så hvis du er\nser meget grønt, det betyder at du har observeret mange planter.\n<strong> Klik på en \"bue\" for at placere den pågældende takson i midten </strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </strong>.\n"
+        "sunburst_desc_html": "Observeret taksa arrangeret som hierarkisk \"solstråle\" diagram. Basen\naf hierarkiet er i centrum, begyndende med \"liv\" og slutter\nmed arter ved yderkanterne. Størrelsen af hver \"bue\" er proportional\nmed antallet af observationer af den pågældende takson og farver\nsvarer groft til vores sædvanlige \"ikoniske\" taksonfarver (grøn til planter,\norange til insekter, blå for de fleste andre dyr osv.), så hvis du er\nser meget grønt, det betyder at du har observeret mange planter.\n<strong> Klik på en \"bue\" for at placere den pågældende takson i midten </strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </strong>.\n",
+        "translators_desc": "Vidste du, at iNaturalist er blevet oversat til %{x_languages} næsten\nudelukkende af %{x_people}, hvoraf nogle endda ikke bruger iNat? Her\ner alle de fantastiske oversættere, som har bidraget i år, samt det\nantal ord, de har oversat til\n%{website_link_tag}webstedet%{link_tag_end}, vores\n%{iphone_link_tag}iPhone-%{link_tag_end} og\n%{android_link_tag}Android-%{link_tag_end}apps og\n%{seek_link_tag}Seek%{link_tag_end}. Du kan se\nalle personer, som har bidraget med oversættelser,\nherunder personer fra tidligere år og fra Translatewiki, i vores\n%{view_all_web_link_tag}web-%{link_tag_end} og\n%{view_all_mobile_link_tag}mobil-%{link_tag_end}kodedepoter.\n",
+        "translators_desc_for_site": "Vidste du, at %{site_name} er blevet oversat næsten udelukkende\naf %{x_people}? Her er alle de fantastiske oversættere,\nsom har bidraget i år, samt det antal ord, de har oversat, til\n%{website_link_tag}webstedet%{link_tag_end}, iNaturalist\n%{iphone_link_tag}iPhone-%{link_tag_end} og\n%{android_link_tag}Android-%{link_tag_end}appsene og\n%{seek_link_tag}Seek%{link_tag_end}. Du kan se\nalle personer, som har bidraget med oversættelser på alle sprog,\nherunder personer fra tidligere år og fra Translatewiki, i vores\n%{view_all_web_link_tag}web-%{link_tag_end} og\n%{view_all_mobile_link_tag}mobil-%{link_tag_end}kodedepoter.\n",
+        "translators_prompt": "Vil du hjælpe med at oversætte, %{link_tag}så tjek info hér%{link_tag_end}.\n",
+        "translators_title": "Oversættere"
       }
     },
     "taxa": {
@@ -9460,6 +9465,10 @@ I18n.translations["da"] = {
     "one": "<span class=\"count\">%{count}</span> Identifikator",
     "other": "<span class=\"count\">%{count}</span> Identifikatorer"
   },
+  "x_languages": {
+    "one": "%{count} sprog",
+    "other": "%{count} sprog"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span> matchende takson",
     "other": "<span class=\"count\">%{count}</span> matchende taksa"
@@ -9513,6 +9522,10 @@ I18n.translations["da"] = {
   "x_others": {
     "one": "%{count} anden",
     "other": "%{count} andre"
+  },
+  "x_people": {
+    "one": "%{count} person",
+    "other": "%{count} personer"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} personer</strong> hjalp %{user} med <strong>%{y} IDs</strong>",
   "x_photos": {
@@ -9611,7 +9624,6 @@ I18n.translations["de"] = {
   "added!": "Hinzugefügt!",
   "added_as_a_part_of_a_taxon_change_html": "Als Teil einer\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">Taxonänderung hinzugefügt</a>\n",
   "added_by": "Hinzugefügt von",
-  "added_on": "Hinzugefügt am",
   "additional_range": "Zusätzlicher Bereich",
   "additional_range_data_from_an_unknown_source": "Zusätzliche Bereichsdaten von einer unbekannten Quelle",
   "adjust_brightness": "Helligkeit anpassen",
@@ -11056,6 +11068,7 @@ I18n.translations["de"] = {
   "search_remote": "Externe Suche",
   "search_species_": "Art suchen...",
   "seasonality": "Saisonalität",
+  "seek": "Seek",
   "seen_nearby": "In der Nähe gesehen",
   "select": "Auswählen",
   "select_all": "Alles auswählen",
@@ -11333,7 +11346,11 @@ I18n.translations["de"] = {
         "new_species_desc_html": "Arten, die in diesem Jahr zum ersten Mal hinzugefügt wurden.\nKlick auf einen Monat, um einige der neuen Arten zu sehen, die in diesem Monat hinzugefügt wurden.\nDu kannst auch die gesamte Artenakkumulation anzeigen oder den Schieberegler in der Zeit zurück bewegen, um andere neu beobachtete Arten zu sehen. Dieses Diagramm zeigt Arten aus verifizierbaren Beobachtungen in dem Monat, in dem sie auf %{site_name} (nicht der Monat, in dem sie beobachtet wurden) hochgeladen wurden. Es werden nicht über- oder untergeordnete Taxa inkludiert, so dass eine Beobachtung, die als Säugetier bestimmt wurde, nicht gezählt wird, und eine Beobachtung von <i>Canis lupus</i> ssp. <i>arctos</i> wird einfach als <i>Canis lupus</i> gezählt.\n",
         "observation_streaks_color_desc": "Die Farbe repräsentiert die Anzahl der Tage auf einer logarithmischen Skala:\n",
         "percent_growth_in_year": "% Wachstum in %{year}",
-        "percent_of_total_growth": "% des Gesamtwachstums"
+        "percent_of_total_growth": "% des Gesamtwachstums",
+        "translators_desc": "Wusstest du, dass iNaturalist in %{x_languages} übersetzt wurde und fast ausschließlich von %{x_people}, von denen einige nicht einmal iNat benutzen? Hier sind all die erstaunlichen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet mit der Anzahl der von Ihnen übersetzten Wörter für die\n%{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end} und %{android_link_tag}Android%{link_tag_end} Apps, und %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories %{view_all_web_link_tag}web%{link_tag_end} und %{view_all_mobile_link_tag}mobile%{link_tag_end} ansehen.\n",
+        "translators_desc_for_site": "Wusstest du, dass %{site_name} fast ausschließlich von %{x_people} übersetzt wurde? Hier sind all die erstaunlichen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet mit der Anzahl der von Ihnen übersetzten Wörter für die\n%{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end} und %{android_link_tag}Android%{link_tag_end} Apps, und %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen in allen Sprachen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories %{view_all_web_link_tag}web%{link_tag_end} und %{view_all_mobile_link_tag}mobile%{link_tag_end} ansehen.\n",
+        "translators_prompt": "Wenn du beim Übersetzen helfen möchtest, %{link_tag}lerne hier wie%{link_tag_end}.\n",
+        "translators_title": "Übersetzer"
       }
     },
     "taxa": {
@@ -11560,7 +11577,6 @@ I18n.translations["el"] = {
   "added": "Προστέθηκε",
   "added!": "Προστέθηκε!",
   "added_by": "Προστέθηκε από",
-  "added_on": "Προστέθηκε σε",
   "additional_range": "Πρόσθετο εύρος",
   "additional_range_data_from_an_unknown_source": "Πρόσθετα στοιχεία εύρους κατανομής από μια άγνωστη πηγή",
   "admin_s": "Διαχειριστής (-ές)",
@@ -13150,7 +13166,7 @@ I18n.translations["en"] = {
   "added_as_a_part_of_a_taxon_split_html": "Added as part of a\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">taxon split</a>\n",
   "added_as_a_part_of_a_taxon_swap_html": "Added as part of a\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">taxon swap</a>\n",
   "added_by": "Added by",
-  "added_on": "Added on",
+  "added_on_datetime": "Added on %{datetime}",
   "additional_range": "Additional range",
   "additional_range_data_from_an_unknown_source": "Additional range data from an unknown source",
   "adjust_brightness": "Adjust Brightness",
@@ -14124,6 +14140,7 @@ I18n.translations["en"] = {
   "observations_without_media": "Observations w/o Media",
   "observed": "Observed",
   "observed_on": "Observed on",
+  "observed_on_datetime": "Observed on %{datetime}",
   "observers": "Observers",
   "of": "of",
   "of_identifiers": "identifiers",
@@ -16931,7 +16948,6 @@ I18n.translations["es"] = {
   "added_as_a_part_of_a_taxon_split_html": "Añadido como parte de un cambio de taxón\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\"></a>\n",
   "added_as_a_part_of_a_taxon_swap_html": "Añadido como parte de un cambio de taxón\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\"></a>\n",
   "added_by": "Añadido por",
-  "added_on": "Añadido el",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
   "adjust_brightness": "Ajustar brillo",
@@ -18468,6 +18484,7 @@ I18n.translations["es"] = {
   "search_remote": "Búsqueda remota",
   "search_species_": "Busca especie…",
   "seasonality": "Estacionalidad",
+  "seek": "Seek",
   "seen_nearby": "Visto en la cercanías",
   "select": "Selecciona",
   "select_all": "Selecciona todo",
@@ -18761,6 +18778,8 @@ I18n.translations["es"] = {
         "data_quality_assessment_desc_html": "La Evaluación de la Calidad de Datos es una evaluación del rigor de una observación. Las observaciones con Grado de Investigación pueden ser utilizadas por los científicos para sus investigaciones. Puedes realizar la evaluación a continuación:\n",
         "disagreement_count_desc": "nº de taxones identificados que no están entre los ancestros de un taxón",
         "identification_count_desc": "# de identificaciones para un taxón individual",
+        "observer_does_not_allow_observation_fields": "El observador no permite campos de observación adicionales",
+        "observer_only_allows_curators_to_add_fields": "El observador sólo permite a los curadores del sitio añadir campos de observación",
         "quality_assessment_help_html": "<p>\nLa evaluación de la calidad de los datos es un resumen de la exactitud de una observación. Todas las observaciones comienzan con el grado de <strong>\"casual\"</strong> y se marcan como <strong>\"necesita ID\"</strong> cuando:</p>\n<ul><li>la observación tiene una fecha</li>\n<li>la observación <strong>está georeferenciada</strong> (es decir, tiene coordenadas Latitud/Longitud)</li>\n<li>la observación se acompaña de fotos o sonidos</li></ul>\n<p>Las observaciones alcanzan el grado de <strong>\"investigación\"</strong> cuando\n</p>\n<ul>\n<li>la comunidad %{site_name}<strong> está de acuerdo con la identificación del observador</strong>, donde \"de acuerdo\" significa que es exactamente el mismo taxón o es un taxón hijo del identificado por el observador. Por ejemplo, si Scott dice que es un mamífero y Ken-ichi dice que es un <em>Homo sapiens</em>, entonces Ken-ichi está de acuerdo con Scott.</li>\n</ul>\n\n<p>Las observaciones volverán al grado \"casual\" si no se cumplen las condiciones anteriores o</p>\n<ul>\n<li>a comunidad acuerda que la <strong>ubicación no parece ser acertada</strong> (es decir, monos en medio del océano, hipopótamos en edificios, etc.)</li>\n<li>la comunidad acuerda que el <strong>organismo no es silvestre/naturalizado</strong> (es decir, cautivo o cultivado por humanos o alienígenas espaciales inteligentes)</li>\n<li>la comunidad considera que la observación ya no necesita una ID <em>y</em> la ID de la comunidad ha quedado por encima del nivel de familias</li>\n</ul>\n<p>\nY por si esto no fuera suficientemente complicado, en algunos casos el sistema puede modifica la calificación si:\n</p>\n<ul>\n<li>\nEl sistema considera que la observación no és de un individuo silvestre/naturalizado si hay, al menos otras 10 observaciones del mismo género o inferior en un territorio menor (municipio o provincia) que contienen esta observación y el 80% o más de éstas se han marcado como <strong>no</stron> silvestre/naturalizado.\n</li>\n</ul>\n",
         "score_desc": "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
       }
@@ -18858,8 +18877,9 @@ I18n.translations["es"] = {
       "year": {
         "donate_desc_html": "¡Gracias por ser tan generoso con su tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sin ánimo de lucro de la Academia de Ciencias de California y la Sociedad Geográfica Nacional.\nEs sostenido por un equipo <a href=\"%{team_url}\">pequeño</a> que realiza todo el diseño y ingeniería de software para web, móvil, y <a href=\"%{seek_url}\">Búsqueda de iNaturalist</a>, además de administrar el apoyo de la comunidad, colaboraciones e integraciones que mantienen el proyecto en funcionamiento (¡y creciendo rápidamente!). El programa se basa en numerosas donaciones, incluyendo donaciones de beneficencia de menos del 0.2% de los colaboradores. Agradecemos especialmente a los Donadores Mensuales, cuyos regalos recurrentes nos ayudan a planear para el futuro. Puedes donar en más de 30 monedas para apoyar las operaciones centrales de iNaturalist.\n¡Gracias a todos por hacer del 2019 el año más grande de iNaturalist hasta la fecha!\n",
         "donate_title": "Gracias a todos nuestros colaboradores",
-        "growth_by_country_desc_html": "¿Dónde está hay crecimiento? Este mapa y gráfico intentan segmentar esta información por país, lo cual resulta complicado porque el crecimiento por\npaís puede ser muy desequilidrado. Hemos optado por omitir a los Estados Unidos y utilizar una escala de registro por defecto para acentuar diferencias\nentre países. Si un país aparece en negro esto significa que no contribuyó significativamente a un porcentaje, o que no se presentó ningún crecimiento\neste año, o no ha tenido más observaciones este año que el año pasado\n(pasa el cursor sobre un país para ver un poco más de detalle). <strong>\"% del crecimiento total\"<strong> significa cuánto del crecimiento mundial provino de un país particular, por ejemplo si hubo 20 observaciones en 2018 y 10\nen 2017, eso serían 10 observaciones de crecimiento, y si 5 de ellas\nse dieron en Benín, quiere decir que Benín contribuyó 50% del total\ndel crecimiento. <strong>\"% del crecimiento\"<strong> significa el número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, eso sería un crecimiento del 100%, y si hubo 0 el año\npasado y 1 este año, eso sería un % de crecimiento infinito.\n",
+        "growth_by_country_desc_html": "¿Dónde está hay crecimiento? Este mapa y gráfico intentan segmentar esta información por país, lo cual resulta complicado porque el crecimiento por\npaís puede ser muy desequilidrado. Hemos optado por omitir a los Estados Unidos y utilizar una escala de registro por defecto para acentuar diferencias\nentre países. Si un país aparece en negro esto significa que no contribuyó significativamente a un porcentaje, o que no se presentó ningún crecimiento\neste año, o no ha tenido más observaciones este año que el año pasado\n(pasa el cursor sobre un país para ver un poco más de detalle). <strong>\"% del crecimiento total\"</strong> significa cuánto del crecimiento mundial provino de un país particular, por ejemplo si hubo 20 observaciones en 2018 y 10\nen 2017, eso serían 10 observaciones de crecimiento, y si 5 de ellas\nse dieron en Benín, quiere decir que Benín contribuyó 50% del total\ndel crecimiento. <strong>\"% del crecimiento\"</strong> significa el número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, eso sería un crecimiento del 100%, y si hubo 0 el año\npasado y 1 este año, eso sería un % de crecimiento infinito.\n",
         "growth_by_country_title": "Crecimiento por país",
+        "growth_desc": "Los gráficos \"Observaciones\" y \"Taxones\" pueden incluir datos visibles en\n%{site_name} aportados por personas que no están afiliadas con\n%{site_name}, mientras que el gráfico \"Usuarios\" sólo muestra las fechas cuando los usuarios actualmente afiliados con %{site_name} se unieron a iNaturalist.\n",
         "growth_in_year_obs": "Crecimiento en %{year} (obs)",
         "growth_title": "Crecimiento",
         "inaturalist_network": "Red de iNaturalist",
@@ -18875,7 +18895,11 @@ I18n.translations["es"] = {
         "publications_desc_short_html": "Haz click en los gráficos para acceder a la información sobre el significado de los números y de los colores. Datos de impacto y visualizaciones cortesía de <a href=\"https://www.altmetric.com\">Altmetric</a>. Información\nsobre uso de los datos cortesía de nuestros amigos en <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
         "stats_generated_datetime": "Estadísticas generadas el %{datetime}",
         "store_prompt": "¿Quieres mostrar tu orgullo de iNat dondequiera que vayas? ¡Échale un vistazo la tienda de iNat!\n",
-        "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de \"resplandor solar\". La base de la jerarquía está en el centro, comenzando con \"Vida\" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón \"icónico\" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>\n"
+        "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de \"resplandor solar\". La base de la jerarquía está en el centro, comenzando con \"Vida\" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón \"icónico\" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>\n",
+        "translators_desc": "¿Sabías que iNaturalist ha sido traducido a %{x_languages},\ncasi por completo por %{x_people}, algunos de los cuales ni siquiera usan iNat? Aquí están todos los increíbles traductores que han aportado traducciones este año, junto con el número de palabras que han traducido para el %{website_link_tag}sitio web%{link_tag_end}, nuestras aplicaciones para %{iphone_link_tag}iPhone%{link_tag_end} y %{android_link_tag}Android%{link_tag_end} y %{seek_link_tag} Seek%{link_tag_end}. Puedes ver todas las personas que han contribuido con las traducciones, incluidas las de los años anteriores y personas de Translatewiki, en nuestros repositorios de código para\n%{view_all_web_link_tag}web%{link_tag_end} y\n%{view_all_mobile_link_tag}para móviles%{link_tag_end}.\n",
+        "translators_desc_for_site": "¿Sabías que %{site_name} ha sido traducido casi por completo por %{x_people}? Aquí están todos los increíbles traductores que han aportado traducciones este año, junto con el número de palabras que han traducido para el %{website_link_tag}sitio web%{link_tag_end}, nuestras aplicaciones para %{iphone_link_tag}iPhone%{link_tag_end} y %{android_link_tag}Android%{link_tag_end} y %{seek_link_tag} Seek%{link_tag_end}. Puedes ver todas las personas que han contribuido con las traducciones, incluidas las de los años anteriores y personas de Translatewiki, en nuestros repositorios de código para\n%{view_all_web_link_tag}web%{link_tag_end} y\n%{view_all_mobile_link_tag}para móviles%{link_tag_end}.\n",
+        "translators_prompt": "Si quieres ayudar a traducir, %{link_tag}aprende cómo%{link_tag_end}.\n",
+        "translators_title": "Traductores"
       }
     },
     "taxa": {
@@ -18975,6 +18999,10 @@ I18n.translations["es"] = {
     "one": "<span class=\"count\">1</span> Identificador",
     "other": "<span class=\"count\">%{count}</span> Identificadores"
   },
+  "x_languages": {
+    "one": "%{count} idioma",
+    "other": "%{count} idiomas"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span> taxón que coincide",
     "other": "<span class=\"count\">%{count}</span> taxones que coinciden"
@@ -19028,6 +19056,10 @@ I18n.translations["es"] = {
   "x_others": {
     "one": "1 otro",
     "other": "%{count} otros"
+  },
+  "x_people": {
+    "one": "%{count} persona",
+    "other": "%{count} personas"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} personas</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>",
   "x_photos": {
@@ -19127,7 +19159,6 @@ I18n.translations["es-AR"] = {
   "added_as_a_part_of_a_taxon_split_html": "Añadido como parte de un cambio de taxón\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\"></a>\n",
   "added_as_a_part_of_a_taxon_swap_html": "Añadido como parte de un cambio de taxón\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\"></a>\n",
   "added_by": "Añadido por",
-  "added_on": "Añadido el",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
   "adjust_brightness": "Ajustar brillo",
@@ -21438,7 +21469,6 @@ I18n.translations["es-MX"] = {
   "added": "añadido",
   "added!": "¡Añadido!",
   "added_by": "Añadido por",
-  "added_on": "añadido en",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
   "admin_s": "Administrador(es)",
@@ -23270,7 +23300,6 @@ I18n.translations["et"] = {
   "added": "Lisatud",
   "added!": "Lisatud!",
   "added_by": "Lisanud",
-  "added_on": "Lisatud",
   "additional_range": "Lisapiirkond",
   "additional_range_data_from_an_unknown_source": "Tundmatust allikast pärinevad vahemiku andmed",
   "adjust_brightness": "Muuda heledust",
@@ -25123,7 +25152,6 @@ I18n.translations["eu"] = {
   "added": "Egun honetan gehitua:",
   "added!": "Gehituta!",
   "added_by": "Honek gehitua:",
-  "added_on": "Egun honetan gehitua:",
   "additional_range": "Banaketa osagarria",
   "additional_range_data_from_an_unknown_source": "D\"Iturri ezezaguneko banaketa osagarriaren datuak\"",
   "admin_s": "Administratzailea(k)",
@@ -26098,7 +26126,6 @@ I18n.translations["fi"] = {
   "added_as_a_part_of_a_taxon_split_html": "Lisätty osana\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">taksonin splittausta</a>\n",
   "added_as_a_part_of_a_taxon_swap_html": "Lisätty osana\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">taksoneiden swappausta</a>\n",
   "added_by": "Lisännyt",
-  "added_on": "Lisätty",
   "additional_range": "Lisäalue",
   "additional_range_data_from_an_unknown_source": "Lisäalueen tietoja tuntemattomattomasta lähteestä",
   "adjust_brightness": "Säädä kirkkautta",
@@ -26627,6 +26654,8 @@ I18n.translations["fi"] = {
   "geoprivacy_is_private": "Sijainnin tietosuoja: yksityinen",
   "geoprivacy_is_private_desc": "Havainnoija on piilottanut koordinaatit.",
   "get_started": "Aloita",
+  "give_monthly_caps": "LAHJOITA KUUKAUSITTAIN",
+  "give_now_caps": "LAHJOITA NYT",
   "globally": "Maailmanlaajuisesti",
   "go": "Siirry",
   "go_back": "Mene takaisin",
@@ -27568,6 +27597,7 @@ I18n.translations["fi"] = {
   "search_for_a_location": "Hae sijaintia",
   "search_species_": "Hae lajeja...",
   "seasonality": "Kausivaihtelu",
+  "seek": "Etsi",
   "seen_nearby": "Nähty lähellä",
   "select": "Valitse",
   "select_all": "Valitse kaikki",
@@ -27793,6 +27823,7 @@ I18n.translations["fi"] = {
         "vertical": "Pystysuuntainen"
       },
       "export": {
+        "taking_a_while": "Tässä kestää hetki. Kokeile jotain alla olevista vaihtoehdoista.",
         "well_email_you": "Ok, lähetämme sinulle sähköpostia, kun se on valmis."
       },
       "identify": {
@@ -27810,6 +27841,7 @@ I18n.translations["fi"] = {
       "new": {
         "a_project_allows_you_to_gather": "Koontiprojektin avulla voit kerätä ja visualisoida havaintoja käyttämällä iNaturalistin hakutyökaluja. Projektiin sisällytetään automaattisesti kaikki havainnot, jotka täyttävät projektin kriteerit.\n",
         "an_umbrella_project_can_be_used_to": "Sateenvarjoprojektia voidaan käyttää kahden tai useamman koonti- tai perinteisen projektin tilastojen vertailemiseen. Muiden projektien pitää olla olemassa ennen kun voit lisätä ne sateenvarjoprojektiin. Voit sisällyttää satoja hankkeita yhden sateenvarjon alla. Sateenvarjoprojektit eivät voi sisältää muita sateenvarjoprojekteja.\n",
+        "are_you_sure_you_want_to_delete": "Haluatko varmasti poistaa tämän projektin?",
         "can_be_included_in_multiple": "Voidaan sisällyttää useisiin sateenvarjoprojekteihin",
         "click_through_to_individual_projects": "Pääsy yksittäisiin projekteihin",
         "collection_project_features": "Koontiprojektin ominaisuudet:",
@@ -27895,8 +27927,13 @@ I18n.translations["fi"] = {
         "include_usa": "Sisällytä Yhdysvallat",
         "new_species_desc_html": "Lajit, jotka lisättiin ensimmäistä kertaa tänä vuonna. Klikkaa kuukautta nähdäksesi joitakin siinä kuussa listättyjä lajeja, Voit myös tarkastella kokonaiskertymää, tai liikuttaa liukukytkintä ajassa taaksepäin nähdäksesi muita hiljattain havaittuja lajeja. Tämä kaavio näyttää lajit varmistettavissa olevista havainnoista sen kuukauden mukaan, jolloin ne kirjattiin %{site_name}iin (eikä sen kuukauden mukaan, jolloin ne havaittiin). Se ei näytä lajia ylemmän tai alemman tason taksoneita, joten esim. nisäkkääksi (Mammalia) tunnistettuja havaintoja ei oteta siinä huomioon, ja havainto <i>Canis lupus</i> ssp. <i>arctosista</i> lasketaan vain <i>Canis lupukseksi</i>.\n",
         "obs_in_year": "Havainnot vuonna %{year}",
+        "observation_streaks_color_desc": "Väri kuvastaa päivien lukumäärää logaritmisella asteikolla:\n",
         "percent_growth_in_year": "% kasvua vuonna %{year}",
-        "percent_of_total_growth": "% kokonaiskasvusta"
+        "percent_of_total_growth": "% kokonaiskasvusta",
+        "translators_desc": "Tiesitkö, että iNaturalistin %{x_languages} on käännetty lähes kokonaisuudessaan sellaisten %{x_people} toimesta, jotka eivät välttämättä edes käytä palvelua. Tässä on luettelo kaikista mahtavista kääntäjistä, jotka ovat tehneet käänöksiä tänä vuonna mukaanlukien käännettyjen sanojen lukumäärä. Käännökset on tehty %{website_link_tag} verkkosivuilla %{link_tag_end}, meidän%{iphone_link_tag}iPhone%{link_tag_end} ja %{android_link_tag}Android%{link_tag_end} sovelluksissa, ja %{seek_link_tag}hakupalvelussa%{link_tag_end}. Voit myös saada tietoa kaikista kielenkääntämistä tukeneista henkilöistä aiemmiltakin vuosilta ja Transwikin henkilöistä meidän %{view_all_web_link_tag}verkkopalvelun%{link_tag_end} ja%{view_all_mobile_link_tag}mobiilipalvelun%{link_tag_end} koodi repositorioissa.\n",
+        "translators_desc_for_site": "Tiesitkö, että %{site_name} on käännetty melkein kokonaan\n%{x_people} toimesta? Tässä on luettelo kaikista mahtavista kääntäjistä, jotka ovat tehneet käännöksiä tänä vuonna, mukaanlukien käännettyjen sanojen lukumäärä. Käännökset on tehty %{website_link_tag} verkkosivuilla %{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} ja %{android_link_tag}Android%{link_tag_end} -sovelluksissa, ja %{seek_link_tag}hakupalvelussa%{link_tag_end}. Voit myös nähdä kaikki käännöksiin osallistuneet henkilöt kaikilla kielillä, mukaanlukien henkilöt aiemmilta vuosilta ja Transwikistä, meidän %{view_all_web_link_tag}verkkopalvelun%{link_tag_end} ja%{view_all_mobile_link_tag}mobiilipalvelun%{link_tag_end} koodirepositorioissa.\n",
+        "translators_prompt": "Jos haluat auttaa käännöstyössä, %{link_tag}lue lisää miten%{link_tag_end}.\n",
+        "translators_title": "Kääntäjät"
       }
     },
     "taxa": {
@@ -27927,6 +27964,7 @@ I18n.translations["fi"] = {
           "unannotated": "Ei annotaatiota"
         },
         "photo_chooser_modal_desc": "Raahaa kuvat tänne vasemmalta, tai raahaa kuvat tänne uudelleenjärjestääksesi.\n",
+        "photo_chooser_modal_explanation": "Huomaa, että taksonisivulla näkyy kuvia tästä taksonista ja sen jälkeläisistä. Tälle taksonille valitut kuvat näkyvät tosin ensimmäisinä. Ensimmäistä kuvaa käytetään taksonin oletuskuvana kaikkialla sivustolla.\n",
         "trending_desc": "Eniten havaitut taksonit viime kuussa",
         "trending_in_place_desc_html": "Eniten havaitut taksonit viime kuussa paikassa <a href=\"%{url}\">%{place}</a>"
       }
@@ -27986,6 +28024,10 @@ I18n.translations["fi"] = {
     "one": "<span class=\"count\">%{count}</span> tunnistaja",
     "other": "<span class=\"count\">%{count}</span> tunnistajaa"
   },
+  "x_languages": {
+    "one": "%{count} kieli",
+    "other": "%{count} kielet"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span> vastaava taksoni",
     "other": "<span class=\"count\">%{count}</span> vastaavaa taksonia"
@@ -28035,6 +28077,10 @@ I18n.translations["fi"] = {
   "x_others": {
     "one": "1 muu",
     "other": "%{count} muuta"
+  },
+  "x_people": {
+    "one": "%{count} henkilö",
+    "other": "%{count} henkilöt"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} ihmistä</strong> auttoi käyttäjää %{user} <strong>%{y} tunnisteen kanssa</strong>",
   "x_photos": {
@@ -28282,7 +28328,6 @@ I18n.translations["fr"] = {
   "added": "Ajouté",
   "added!": "Ajouté !",
   "added_by": "Ajouté par",
-  "added_on": "Ajouté le",
   "additional_range": "Aire de répartition supplémentaire",
   "additional_range_data_from_an_unknown_source": "Données supplémentaires sur l’aire de répartition d’une source inconnue",
   "adjust_brightness": "Ajuster la luminosité",
@@ -30571,7 +30616,6 @@ I18n.translations["gl"] = {
   "added": "Engadido o",
   "added!": "¡Engadido!",
   "added_by": "Engadido por",
-  "added_on": "Engadido o",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fonte descoñecida",
   "agree": "de acordo",
@@ -31378,7 +31422,6 @@ I18n.translations["he"] = {
   "added": "נוסף",
   "added!": "נוסף!",
   "added_by": "נוסף על־ידי",
-  "added_on": "נוסף ב",
   "additional_range": "מגוון נוסף",
   "additional_range_data_from_an_unknown_source": "מגוון נתונים נוסף ממקור שאינו ידוע",
   "adjust_brightness": "התאמת בהירות",
@@ -32938,7 +32981,6 @@ I18n.translations["id"] = {
   "added": "Ditambahkan",
   "added!": "Ditambahkan!",
   "added_by": "Ditambahkan oleh",
-  "added_on": "Ditambahkan",
   "additional_range": "Tambahan rentang",
   "additional_range_data_from_an_unknown_source": "Berbagai data tambahan dari sumber yang tidak diketahui",
   "agree": "Setuju",
@@ -33882,7 +33924,6 @@ I18n.translations["it"] = {
   "added_as_a_part_of_a_taxon_split_html": "Aggiunto come parte di una\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">divisione di taxon</a>\n",
   "added_as_a_part_of_a_taxon_swap_html": "Aggiunto come parte di uno\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">scambio di taxon</a>\n",
   "added_by": "Aggiunta da",
-  "added_on": "Aggiunta il",
   "additional_range": "Areale aggiuntivo",
   "additional_range_data_from_an_unknown_source": "Ulteriori dati di distribuzione da fonte sconosciuta",
   "adjust_brightness": "Regola luminosità",
@@ -35420,6 +35461,7 @@ I18n.translations["it"] = {
   "search_remote": "Cerca In Remoto",
   "search_species_": "Cerca Specie...",
   "seasonality": "Stagionalità",
+  "seek": "Seek",
   "seen_nearby": "Visto nelle vicinanze",
   "select": "Seleziona",
   "select_all": "Seleziona tutto",
@@ -35841,7 +35883,11 @@ I18n.translations["it"] = {
         "publications_desc_short_html": "Clicca sui grafici \"a fiore\" per maggiori informazioni sul significato di numeri e colori. I dati di impatto per gentile concessione di <a href=\"https://www.altmetric.com\">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici del <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
         "stats_generated_datetime": "Statistiche generate il %{datetime}",
         "store_prompt": "Vuoi dimostrare il tuo orgoglio iNat ovunque tu vada? Dai un'occhiata al Negozio iNat!\n",
-        "sunburst_desc_html": "Taxa osservati disposti secondo un diagramma gerarchico \"raggi di sole\". La base è al centro, inizia on \"Organismo\" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori \"iconici\" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.\n<strong>Clicca su un arco per posizionare quel taxon al centro</strong> e i suoi discendenti attorno ad esso, o <strong>clicca al centro per tornare indietro nella gerarchia</strong>.\n"
+        "sunburst_desc_html": "Taxa osservati disposti secondo un diagramma gerarchico \"raggi di sole\". La base è al centro, inizia on \"Organismo\" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori \"iconici\" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.\n<strong>Clicca su un arco per posizionare quel taxon al centro</strong> e i suoi discendenti attorno ad esso, o <strong>clicca al centro per tornare indietro nella gerarchia</strong>.\n",
+        "translators_desc": "Sapevi che iNaturalist è stato tradotto in %{x_languages},\nquasi interamente da %{x_people}, alcune delle quali addirittura non usano iNat? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno,\ncon il numero di parolo che hanno tradotto per\n%{website_link_tag}il sito web%{link_tag_end}, le nostre app\n%{iphone_link_tag}iPhone%{link_tag_end} e\n%{android_link_tag}Android%{link_tag_end}, e\n%{seek_link_tag}Seek%{link_tag_end}. Puoi vedere\ntutte le persone che hanno contribuito alle traduzioni,\ncomprese quelle degli anni passati e quelle di Translatewiki, nei nostri repository di codice \ndelle versioni %{view_all_web_link_tag}web%{link_tag_end} e\n%{view_all_mobile_link_tag}mobile%{link_tag_end}.\n",
+        "translators_desc_for_site": "Sapevi che %{site_name} è stato tradotto quasi interamente da\n%{x_people}? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno,\ncon il numero di parolo che hanno tradotto per\n%{website_link_tag}il sito web%{link_tag_end}, le nostre app\n%{iphone_link_tag}iPhone%{link_tag_end} e\n%{android_link_tag}Android%{link_tag_end}, e\n%{seek_link_tag}Seek%{link_tag_end}. Puoi vedere\ntutte le persone che hanno contribuito alle traduzioni,\ncomprese quelle degli anni passati e quelle di Translatewiki, nei nostri repository di codice \ndelle versioni %{view_all_web_link_tag}web%{link_tag_end} e\n%{view_all_mobile_link_tag}mobile%{link_tag_end}.\n",
+        "translators_prompt": "Se vuoi aiutarci nella traduzione, %{link_tag}scopri come%{link_tag_end}.\n",
+        "translators_title": "Traduttori"
       }
     },
     "taxa": {
@@ -35941,6 +35987,10 @@ I18n.translations["it"] = {
     "one": "<span class=\"count\">1</span> Identificatore",
     "other": "<span class=\"count\">%{count}</span> Identificatori"
   },
+  "x_languages": {
+    "one": "%{count} lingua",
+    "other": "%{count} lingue"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span> taxon corrispondente",
     "other": "<span class=\"count\">%{count}</span> taxa corrispondenti"
@@ -35994,6 +36044,10 @@ I18n.translations["it"] = {
   "x_others": {
     "one": "un altro",
     "other": "%{count} altri"
+  },
+  "x_people": {
+    "one": "%{count} persona",
+    "other": "%{count} persone"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} persone</strong> hanno aiutato %{user} con <strong>%{y} le ID</strong>",
   "x_photos": {
@@ -36205,7 +36259,6 @@ I18n.translations["ja"] = {
   "added": "追加されました",
   "added!": "追加されました！",
   "added_by": "追加者:",
-  "added_on": "追加日付",
   "additional_range": "追加の分布範囲",
   "additional_range_data_from_an_unknown_source": "追加の分布範囲の提供先は不明",
   "adjust_brightness": "明るさを調節",
@@ -37535,6 +37588,7 @@ I18n.translations["ko"] = {
   "account_creation": "계정 만들기",
   "accuracy": "정확성",
   "accuracy_meters": "정확도 (미터)",
+  "active": "활성",
   "activity": "활동",
   "add": "추가",
   "add_a_comment": "댓글 추가",
@@ -37562,7 +37616,6 @@ I18n.translations["ko"] = {
   "added_as_a_part_of_a_taxon_split_html": "<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">분류군 분리</a>로 인하여 변경됨\n",
   "added_as_a_part_of_a_taxon_swap_html": "<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">분류군 교체</a>로 인하여 변경됨\n",
   "added_by": "추가한 사용자",
-  "added_on": "추가됨",
   "additional_range": "추가적인 범위",
   "additional_range_data_from_an_unknown_source": "미확인 자료에 따른 추가적인 범위 데이터",
   "adjust_brightness": "밝기 조정",
@@ -37662,7 +37715,8 @@ I18n.translations["ko"] = {
   "by_user": "%{user}님께서",
   "calendar": "달력",
   "cancel": "취소",
-  "captive_cultivated": "포획된 / 양식된",
+  "captive": "사육됨",
+  "captive_cultivated": "포획됨 / 사육됨",
   "casual": "비공식적",
   "categories": "분류",
   "cc_0_description": "이 라이선스는 작품을 퍼블릭 도메인에 공개함으로써 허락을 구하거나 원작자를 표시하지 않고도 다른 사람들이 상업적인 목적을 포함하여 작품을 복사, 변경, 배포, 공연할 수 있습니다. 이것은 제공되는 라이선스들 가운데 가장 포괄적입니다. 최대한의 보급 및 라이선스된 자료의 이용에 권장됩니다.",
@@ -37927,6 +37981,7 @@ I18n.translations["ko"] = {
   "facebook": "페이스북",
   "failed_to_find_your_location": "당신의 위치를 찾는데 실패하였습니다.",
   "failed_to_save_record": "기록을 저장하는데 실패했습니다. 나중에 다시 시도해주십시오.",
+  "faves": "즐겨찾기",
   "favorites": "즐겨찾기",
   "fields_": "필드",
   "fill_out_project_observation_fields": "프로젝트 관찰 필드를 기입하십시오",
@@ -38150,6 +38205,7 @@ I18n.translations["ko"] = {
   "most_observed_threatened_species": "가장 많이 관찰된 위기종",
   "most_species": "대부분의 종",
   "name": "이름",
+  "name_or_slug": "이름",
   "names": "이름",
   "near_threatened": "준위협(NT)",
   "needs_id": "동정이 필요합니다.",
@@ -38224,7 +38280,12 @@ I18n.translations["ko"] = {
   "open_": "열기",
   "open_street_map": "오픈스트리트맵",
   "or": "또는",
+  "organism_appears_captive_cultivated": "관찰된 생물이 포획 / 사육되었음",
   "other": "기타",
+  "other_species_commonly_misidentified_as_this_species": "이 종으로 자주 오동정되는 종들",
+  "other_species_commonly_misidentified_as_this_species_in_place_html": "<a href=\"%{url}\">%{place}</a>에서 이 종으로 자주 오동정되는 종들",
+  "other_taxa_commonly_misidentified_as_this_species": "이 종으로 자주 오동정되는 분류군들",
+  "other_taxa_commonly_misidentified_as_this_species_in_place_html": "<a href=\"%{url}\">%{place}</a>에서 이 종으로 자주 오동정되는 분류군들",
   "overview": "개요",
   "per_day": "매일",
   "per_month": "매월",
@@ -38548,21 +38609,28 @@ I18n.translations["ko"] = {
   "purple": "보라",
   "quality_grade": "품질 등급",
   "quality_grade_": "품질 등급",
-  "rank": "분류학적 위치",
-  "rank_position": "분류학적 위치",
+  "rank": "순위",
+  "rank_position": "순위",
   "ranks": {
     "kingdom": "계",
     "subkingdom": "아계",
     "phylum": "문",
+    "subphylum": "아문",
+    "superclass": "상강",
     "subclass": "아강",
     "infraclass": "하강",
     "superorder": "상목",
+    "order": "목",
     "suborder": "아목",
+    "infraorder": "하목",
+    "parvorder": "소목",
     "family": "과",
+    "subfamily": "아과",
     "genus": "속",
     "subgenus": "아속",
     "species": "종",
-    "hybrid": "혼종"
+    "hybrid": "혼종",
+    "subspecies": "아종"
   },
   "read_more": "더 읽어보기",
   "remove": "제거",
@@ -38615,6 +38683,8 @@ I18n.translations["ko"] = {
   },
   "source_wikipedia": "출처: 위키백과",
   "spam": "스팸",
+  "species": "종",
+  "species_name_cap": "종명",
   "specify_the_reason_youre_flagging": "이 항목을 플래그하는 이유를 기입하세요",
   "start": "시작일",
   "start_date_time": "시작 날짜 / 시간",
@@ -38634,6 +38704,7 @@ I18n.translations["ko"] = {
   "this_observation_is_research_grade": "본 관찰은 연구 자료 등급 관찰입니다!",
   "this_observation_was_created_using": "이 관찰은 다음을 사용하여 만들어졌습니다:",
   "this_year": "올해",
+  "threatened": "위기종",
   "time": {
     "am": "오전",
     "formats": {
@@ -38898,7 +38969,6 @@ I18n.translations["lb"] = {
   "added": "Derbäigesat",
   "added!": "Derbäigesat!",
   "added_by": "Derbäigesat vum",
-  "added_on": "Derbäigesat de(n)",
   "additional_range": "Zousätzleche Beräich",
   "admin_s": "Administrateur(en)",
   "agree": "zoustëmmen",
@@ -39847,6 +39917,8 @@ I18n.translations["lt"] = {
   "add_a_comment": "Pridėti komentarą",
   "add_a_field": "Pridėti lauką",
   "add_a_name": "Pridėti pavadinimą",
+  "add_alive_or_dead_alive_annotation": "Pridėti pastabą: „Gyvas ar miręs: Gyvas“",
+  "add_alive_or_dead_dead_annotation": "Pridėti pastabą: „Gyvas ar miręs; miręs“",
   "add_an_identification": "Pridėti identifikaciją",
   "add_annotations_for_x": "Pridėti papildomos informacijos apie \"%{x}\"",
   "add_edit_flags": "Pridėti/Redaguoti žymes",
@@ -39857,7 +39929,7 @@ I18n.translations["lt"] = {
   "add_life_stage_pupa_annotation": "Pridėti „Amžiaus tarpsnis: Lėliukė“ papildomą informaciją",
   "add_link": "Pridėti Nuorodą",
   "add_one_now": "Pridėti dabar",
-  "add_plant_phenology_flowering_annotation": "Pridėti pastabą \"Augalo fenologija: žydėjimas\"",
+  "add_plant_phenology_flowering_annotation": "Pridėti „Augalų fenologija: žydi“ pastabą",
   "add_plant_phenology_fruiting_annotation": "Pridėti pastabą \"Augalo fenologija: vaisių vedimas\"",
   "add_sex_female_annotation": "Pridėti \"Lytis: patelė\" pastabą",
   "add_sex_male_annotation": "Pridėti \"Lytis: patinėlis\" pastabą",
@@ -39869,7 +39941,6 @@ I18n.translations["lt"] = {
   "added": "Pridėta",
   "added!": "Pridėta!",
   "added_by": "Pridėjo",
-  "added_on": "Pridėta",
   "additional_range": "Papildomas asortimentas",
   "additional_range_data_from_an_unknown_source": "Papildomi asortimento duomenys iš nežinomo šaltinio",
   "adjust_brightness": "Sureguliuoti ryškumą",
@@ -39879,6 +39950,7 @@ I18n.translations["lt"] = {
   "agree_with_current_taxon": "Pritarti esamam taksonui",
   "aka": "dar žinomas kaip",
   "all": "Visi",
+  "all_flags_must_be_resolved": "Visi pažymėjimai turi būti išspręsti",
   "all_rank_added_to_the_database": {
     "class": "Visos klasės pridėtos į duomenų bazę",
     "complex": "Visi kompleksai pridėti į duoemenų bazę",
@@ -40005,9 +40077,14 @@ I18n.translations["lt"] = {
   },
   "controlled_term_labels": {
     "adult": "Subrendęs",
+    "alive": "Gyvas",
+    "alive_or_dead": "Gyvas ar miręs",
     "budding": "Sprogsta",
+    "cannot_be_determined": "Negali būti nustatyta",
+    "dead": "Miręs",
     "egg": "Kiaušinis",
     "female": "Mot.",
+    "flower_budding": "Su sprogstančiais žiedais",
     "flowering": "Žydintis",
     "fruiting": "Su vaisiais",
     "juvenile": "Jaunas",
@@ -40018,6 +40095,7 @@ I18n.translations["lt"] = {
     "plant_phenology": "Augalo fenologija",
     "pupa": "Lėliukė",
     "sex": "Lytis",
+    "subimago": "Subimago",
     "teneral": "Išsinėręs"
   },
   "convert": "Konvertuoti",
@@ -40036,6 +40114,7 @@ I18n.translations["lt"] = {
   },
   "copyright_info": "Autorinių teisių informacija",
   "copyright_info_and_more": "Autorinių teisių informacija ir daugiau",
+  "copyright_infringement": "Autorinių teisių pažeidimas",
   "created_by": "Sukūrė",
   "created_on": "Sukurta",
   "curation": "Kuravimas",
@@ -40814,6 +40893,9 @@ I18n.translations["lt"] = {
     },
     "taxa": {
       "show": {
+        "frequency": {
+          "unannotated": "Be papildomos informacijos"
+        }
       }
     },
     "users": {
@@ -40832,7 +40914,10 @@ I18n.translations["lt"] = {
   "who_user_helped_the_most": "Kam %{user} Daugiausiai Padėjo",
   "why_the_coordinates_are_obscured": "Kodėl koordinatės užslėptos",
   "wild": "Laukinis",
+  "with_annotation": "Su papildoma informacija",
   "withdraw": "Atsiimti",
+  "without_annotation": "Su papildoma informacija",
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>",
   "year_in_review": "%{year} Metų Apžvalga",
   "you_": "Jūs",
   "you_are_submitting_obs_with_no_date_or_no_location": "Jūs siunčiate pastabas be datų ir vietų.\n",
@@ -40868,7 +40953,6 @@ I18n.translations["mk"] = {
   "added": "Додадено",
   "added!": "Додадено!",
   "added_by": "Додадено од",
-  "added_on": "Додадено на",
   "additional_range": "Дополнителна распространетост",
   "admin_s": "Администратор(и)",
   "agree": "се согласувам",
@@ -41676,7 +41760,6 @@ I18n.translations["nb"] = {
   "added_as_a_part_of_a_taxon_split_html": "Lagt til som del av en <a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">taksonoppdeling</a>\n",
   "added_as_a_part_of_a_taxon_swap_html": "Lagt til som del av et <a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">taksonbytte</a>\n",
   "added_by": "Lagt til av",
-  "added_on": "Lagt til på",
   "additional_range": "Ytterlig område",
   "additional_range_data_from_an_unknown_source": "Ytterlige utbredelsesdata fra en ukjent kilde",
   "adjust_brightness": "Tilpass lysstyrke",
@@ -43214,6 +43297,7 @@ I18n.translations["nb"] = {
   "search_remote": "Søk på avstand",
   "search_species_": "Søk art...",
   "seasonality": "Innflytelse av sesong",
+  "seek": "Seek",
   "seen_nearby": "Sett i nærheten",
   "select": "Velg",
   "select_all": "Velg alle",
@@ -43615,21 +43699,31 @@ I18n.translations["nb"] = {
         "recent_w_7_obs": "Nylig m/ >= 7 obs"
       },
       "year": {
+        "donate_desc_html": "Takk for at du er generøs med din tid, oppmerksomhet, ekspertise, og donasjoner! iNaturalist er et non-profit felles initiativ av California Academy of Sciences og National Geographic Society. Det støttes av et <a href=\"%{team_url}\">lite team</a> som gjør all design og koding for nettet, mobil, og <a href=\"%{seek_url}\">Seek av iNaturalist</a>, i tillegg til å administrere støtte til fellesskapet, og integreringer som holder ting i drift (og stadig vekst!) Programmet er avhengig av flere tilskudd og donasjoner, hvorunder frivillige gaver fra under 0,2% av bidragsytere. Vi er særlig takknemlig til våre månedlige givere, hvems gjentagende gaver hjelper oss i å planlegge for fremtiden. Du kan donere i over 30 valuta for å støtte kjerneoppgavene til iNaturalist. Takk til alle for ditt bidrag i å gjøre 2019 til det største året for iNaturalist hittil!\n",
+        "donate_title": "Særlig takk til alle våre støttere",
         "growth_by_country_desc_html": "Hvor finner vekst sted? Dette kartet og grafen forsøker å bryte dette ned per land, noe som viser seg å være komplisert siden vekst per land kan være veldig ubalansert. Her har vi valgt som standard å utelate USA og bruke en logaritmisk skala for å fremheve forskjellene mellom de andre land. Hvis et land er farget svart betyr det at det ikke bidro vesentlig til en prosentandel eller at det ikke hadde vekst dette året, eller at det ikke hadde flere observasjoner dette året enn året før (hold musepekeren over et land for å se litt flere detaljer). <strong>\"% av total vekst\"</strong> betyr hvor mye av global vekst kom fra et bestemt land, hvis det f.eks. var 20 observasjoner i 2018 og 10 i 2017, vil det være en vekst på 10 observasjoner, og hvis 5 av disse er fra Benin, så har Benin bidratt med 50 % av den totale veksten. <strong>\"% vekst \"</strong> betyr antall observasjoner dette året i det landet som en prosentandel av observasjoner i det landet året før, så hvis det var 10 observasjoner i Laos i fjor men 20 i år, tilsvarer det 100 % vekst, og hvis det var 0 i fjor og 1 i år, er det uendelig % vekst.\n",
         "growth_by_country_title": "Vekst per land",
+        "growth_desc": "Grafene \"Observasjoner\" og \"Taksa\" kan inneholde data som er synlige på %{site_name} som er levert av folk som ikke er tilknyttet %{site_name}, mens grafen \"Brukere\" kun viser datoer når brukere som nå har en tilknytning til %{site_name} ble med på iNaturalist.\n",
         "growth_in_year_obs": "Vekst i %{year} (obs)",
         "growth_title": "Vekst",
         "inaturalist_network": "iNaturalist-nettverk",
+        "inaturalist_network_desc": "Sjekk årsoversiktet for medlemmer av iNaturalist-nettverket.\n",
         "include_usa": "Inkluder USA",
         "new_species_desc_html": "Arter som ble lagt til for første gang dette året. Trykk på en måned for å se noen av de nye artene som ble lagt til i den måneden. Du kan også se det sammenlagte antallet, eller skyve knappen tilbake i tid for å se andre nye observasjoner av arter. Denne grafen viser arter fra verifiserbare observasjoner etter hvilken måned de ble lastet opp til %{site_name} (ikke måneden de ble observert i). Den inkluderer ikke taksa sv høyere eller lavere nivå, så en observasjon identifisert som Mammalia telles ikke, og en observasjon av <i>Canis lupus</i> ssp. <i>arctos</i> telles bare som <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs i %{year}",
         "observation_streaks": "Observasjonsserier",
         "observation_streaks_color_desc": "Farge representerer antall dager på en logaritmisk skala:\n",
+        "observation_streaks_desc": "En observasjonsserie er en tidsperiode hvor noen kom seg ut og registrerte nye, verifiserbare observasjoner hver eneste dag. Her viser vi den lengste serien som begynnte i år eller var i gang når disse statistikker ble generert.\n",
         "percent_growth_in_year": "% vekst i %{year}",
         "percent_of_total_growth": "% av total vekst",
+        "publications_desc_short_html": "Trykk på blomstergrafene for mer informasjon om hva tallene og fargene betyr. Påvirkningsdata og visualisering fra <a href=\"https://www.altmetric.com\">Altmetric</a>. Informasjon om bruk av data fra våre venner hos <a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n",
         "stats_generated_datetime": "Statistikker generert på %{datetime}",
         "store_prompt": "Vil du vise din stolthet over iNat hvor enn du går? Sjekk iNat butikken!\n",
-        "sunburst_desc_html": "Observasjoner som et hierarkisk \"sunburst\"-diagram. Basen av hierarkien er i midten, med \"livet\" som start og arter ytterst på kanten. Størrelsen av hver bue er relativ til antallet av observasjoner av det taksonet, og fargene korresponderer mer eller mindre til våre vanlige farger for \"ikoniske\" taksa (grønn for planter, oransje for insekter, blå for de fleste andre dyr, osv.), så hvis du ser masse grønt betyr det at du har sett mange planter. <strong>Trykk på en bue for å plasere det taksonet i midten</strong> og dets etterkommere rundt det, eller <strong>trykk på midten for å gå opp i hierarkiet igjen</strong>.\n"
+        "sunburst_desc_html": "Observasjoner som et hierarkisk \"sunburst\"-diagram. Basen av hierarkien er i midten, med \"livet\" som start og arter ytterst på kanten. Størrelsen av hver bue er relativ til antallet av observasjoner av det taksonet, og fargene korresponderer mer eller mindre til våre vanlige farger for \"ikoniske\" taksa (grønn for planter, oransje for insekter, blå for de fleste andre dyr, osv.), så hvis du ser masse grønt betyr det at du har sett mange planter. <strong>Trykk på en bue for å plasere det taksonet i midten</strong> og dets etterkommere rundt det, eller <strong>trykk på midten for å gå opp i hierarkiet igjen</strong>.\n",
+        "translators_desc": "Visste du at iNaturalist har blitt oversatt til %{x_languages}, nesten fullstendig av %{x_people}, som i noen tilfeller ikke bruker iNat engang? Her er alle fantastiske oversettere som har lagt til oversettelser i år, med antall ord de har oversatt for %{website_link_tag}nettsiden%{link_tag_end}, våre apps for %{iphone_link_tag}iPhone%{link_tag_end} og %{android_link_tag}Android%{link_tag_end}, og %{seek_link_tag}Seek%{link_tag_end}. Du kan se alle personer som har bidratt med oversettelser, inklusiv folk fra tildligere år og folka fra Translatewiki, i våre %{view_all_web_link_tag}web%{link_tag_end} og %{view_all_mobile_link_tag}mobile%{link_tag_end} kode-repositories.\n",
+        "translators_desc_for_site": "Visste du at %{site_name} har blitt oversatt nesten fullstendig av %{x_people}? Her er alle fantastiske oversettere som har lagt til oversettelser i år, med antall ord de har oversatt for %{website_link_tag}nettsiden%{link_tag_end}, iNaturalist appene for %{iphone_link_tag}iPhone%{link_tag_end} og %{android_link_tag}Android%{link_tag_end}, og %{seek_link_tag}Seek%{link_tag_end}. Du kan se alle personer som har bidratt med oversettelser, inklusiv folk fra tildligere år og folka fra Translatewiki, i våre %{view_all_web_link_tag}web%{link_tag_end} og %{view_all_mobile_link_tag}mobile%{link_tag_end} kode-repositories.\n",
+        "translators_prompt": "Hvis du vil hjelpe med å oversette, %{link_tag}lær hvordan%{link_tag_end}.\n",
+        "translators_title": "Oversettere"
       }
     },
     "taxa": {
@@ -43729,6 +43823,10 @@ I18n.translations["nb"] = {
     "one": "<span class=\"count\">%{count}</span> identifikator",
     "other": "<span class=\"count\">%{count}</span> identifikatorer"
   },
+  "x_languages": {
+    "one": "%{count} språk",
+    "other": "%{count} språk"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">%{count}</span> matchende takson",
     "other": "<span class=\"count\">%{count}</span> matchende taksa"
@@ -43782,6 +43880,10 @@ I18n.translations["nb"] = {
   "x_others": {
     "one": "%{count} annen",
     "other": "%{count} andre"
+  },
+  "x_people": {
+    "one": "%{count} person",
+    "other": "%{count} personer"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} personer</strong> har hjulpet %{user} med <strong>%{y} ID-er</strong>",
   "x_photos": {
@@ -43883,7 +43985,6 @@ I18n.translations["nl"] = {
   "added_as_a_part_of_a_taxon_split_html": "Toegevoegd als onderdeel van een\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">taxonsplitsing</a>\n",
   "added_as_a_part_of_a_taxon_swap_html": "Toegevoegd als onderdeel van een\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">taxonwissel</a>\n",
   "added_by": "Toegevoegd door",
-  "added_on": "Toegevoegd op",
   "additional_range": "Bijkomende omvang",
   "additional_range_data_from_an_unknown_source": "Bijkomende range data van een onbekende bron",
   "adjust_brightness": "Helderheid aanpassen",
@@ -45421,6 +45522,7 @@ I18n.translations["nl"] = {
   "search_remote": "Zoek op afstand",
   "search_species_": "Zoek soort...",
   "seasonality": "Seizoensinvloeden",
+  "seek": "Seek",
   "seen_nearby": "In de omgeving gezien",
   "select": "Selecteer",
   "select_all": "Alles selecteren",
@@ -45822,6 +45924,7 @@ I18n.translations["nl"] = {
         "recent_w_7_obs": "Recent met >= 7 wrn"
       },
       "year": {
+        "donate_desc_html": "Bedankt dat je vrijgevig bent met je tijd, aandacht, expertise, en donaties! iNaturalist is een gezamenlijk initiatief zonder winstoogmerk van de California Academy of Sciences en de National Geographic Society. Het wordt ondersteund door een <a href=\"%{team_url}\">klein team</a> dat al het ontwerp en programmeerwerk doet voor web, mobiel, en\n<a href=\"%{seek_url}\">Seek van iNaturalist</a>, plus het beheren van ondersteuning aan de gemeenschap, samenwerkingen, en integraties die de zaken draaiende houden (en snel laten groeien!). Het programma is afhankelijk van meerdere beurzen en donaties, waaronder vrijwillige bijdragen van nog geen 0,2% van onze deelnemers. We zijn vooral onze maandelijkse donateurs dankbaar, wiens regelmatige giften ons helpen te plannen voor de toekomst. Je kunt in meer dan 30 valuta doneren om de kerntaken van iNaturalist te ondersteunen. Iedereen bedankt voor je aandeel in 2019 het grootste jaar voor iNaturalist tot nu toe maken!\n",
         "donate_title": "Speciale dank aan al onze supporters",
         "growth_by_country_desc_html": "Waar vindt er groei plaats? \nDeze kaart en grafiek proberen de groei op te spiltsen per land, wat niet eenvoudig is omdat groei per land erg scheef verdeeld kan zijn. We laten hier standaard de V.S. weg en gebruiken een logaritmische schaal om de verschillen tussen de overige landen uit te lichten. Als een land zwart gekleurd is betekent dat dat het niet significant heeft bijgedragen aan een percentage, of dat het geen groei had dat jaar, of dat het dat jaar niet meer waarnemingen had dan het voorgaande jaar (beweeg de muis over een land om wat ​​meer details te zien.) <strong>\"% van de totale groei\"</strong> betekent hoeveel van de wereldwijde groei afkomstig was van een bepaald land. Als er bijv. 20 waarnemingen waren in 2018 en 10 in 2017 was dat een groei van 10 waarnemingen, en als 5 van die waarnemingen afkomstig waren uit Benin dan droeg Benin 50% bij aan de totale groei. <strong>'% groei'</strong> is het aantal waarnemingen in dat land dat jaar, uitgedrukt als percentage van het aantal waarnemingen in dat land in het voorgaande jaar. Dus als er vorig jaar in Laos 10 waarnemingen waren en dit jaar 20 dan is dat 100% groei, en als er vorig jaar 0 waren en dit jaar 1 is de groei in procenten oneindig.\n",
         "growth_by_country_title": "Groei per land",
@@ -45829,6 +45932,7 @@ I18n.translations["nl"] = {
         "growth_in_year_obs": "Groei in %{year} (wrn)",
         "growth_title": "Groei",
         "inaturalist_network": "iNaturalist netwerk",
+        "inaturalist_network_desc": "Bekijk het jaaroverzicht voor leden van het iNaturalist-netwerk.\n",
         "include_usa": "Inclusief VS",
         "new_species_desc_html": "Soorten die dit jaar voor het eerst zijn toegevoegd.\nKlik op een maand om enkele van de nieuwe soorten te bekijken die in die maand zijn toegevoegd. Je kunt ook de totale soortaccumulatie bekijken of de schuifregelaar \nterug in de tijd verplaatsen om andere nieuw waargenomen soorten te zien. Dit schema toont\nsoorten van verifieerbare waarnemingen tegen de maand waarin ze zijn geüpload\nop %{site_name} (niet de maand waarin ze werden waargenomen). Het bevat geen\ntaxa van een hoger of lager niveau, dus een waarneming geïdentificeerd als\nMammalia telt niet en een waarneming van <i>Canis lupus</i> ssp.\n<i>arctos</i> telt slechts als <i>Canis lupus</i>.\n",
         "obs_in_year": "Wrn in %{year}",
@@ -45837,9 +45941,14 @@ I18n.translations["nl"] = {
         "observation_streaks_desc": "Een waarnemingsreeks is een periode waarin er op elke aaneengesloten dag nieuwe waarnemingen worden geregistreerd. Hier tonen we de langste reeksen die dit jaar zijn begonnen of bezig waren toen deze statistieken werden gegenereerd.\n",
         "percent_growth_in_year": "% Groei in %{year}",
         "percent_of_total_growth": "% of Totaal Groei",
+        "publications_desc_short_html": "Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href=\"https://www.altmetric.com\">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.\n",
         "stats_generated_datetime": "Statistieken gegenereerd op %{datetime}",
         "store_prompt": "Wil je je iNat trots overal laten zien? Check de iNat winkel!\n",
-        "sunburst_desc_html": "Waargenomen taxa gerangschikt als een hiërarchisch \"sunburst\"-diagram. De basis\nvan de hiërarchie staat centraal, beginnend met \"Leven\" en eindigend\nmet soorten aan de buitenranden. De grootte van elke boog is evenredig\nnaar het aantal waarnemingen van dat taxon en de kleuren \nkomen ongeveer overeen met onze gebruikelijke \"iconische\" taxonkleuren (groen voor planten,\noranje voor insecten, blauw voor de meeste andere dieren, enz.), dus als je\nveel groen ziet, betekent dit dat je veel planten hebt waargenomen.\n<strong>Klik op een boog om dat taxon in het midden te plaatsen</strong> en\nde onderliggende taxa eromheen of <strong>klik op het midden om terug omhoog te gaan in \nde hiërarchie</strong>.\n"
+        "sunburst_desc_html": "Waargenomen taxa gerangschikt als een hiërarchisch \"sunburst\"-diagram. De basis\nvan de hiërarchie staat centraal, beginnend met \"Leven\" en eindigend\nmet soorten aan de buitenranden. De grootte van elke boog is evenredig\nnaar het aantal waarnemingen van dat taxon en de kleuren \nkomen ongeveer overeen met onze gebruikelijke \"iconische\" taxonkleuren (groen voor planten,\noranje voor insecten, blauw voor de meeste andere dieren, enz.), dus als je\nveel groen ziet, betekent dit dat je veel planten hebt waargenomen.\n<strong>Klik op een boog om dat taxon in het midden te plaatsen</strong> en\nde onderliggende taxa eromheen of <strong>klik op het midden om terug omhoog te gaan in \nde hiërarchie</strong>.\n",
+        "translators_desc": "Wist je dat iNaturalist bijna volledig is vertaald in %{x_languages} door %{x_people}, waarvan sommigen iNat niet eens gebruiken? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, onze apps voor %{iphone_link_tag}iPhone%{link_tag_end} en\n%{android_link_tag}Android%{link_tag_end}, en %{seek_link_tag}Seek%{link_tag_end}. Je kunt alle mensen bekijken die in alle talen hebben bijgedragen met vertalingen, waaronder mensen van eerdere jaren en mensen van Translatewiki, in onze\n%{view_all_web_link_tag}web-%{link_tag_end} en\n%{view_all_mobile_link_tag}mobiele%{link_tag_end} code repositories.\n",
+        "translators_desc_for_site": "Wist je dat %{site_name} bijna volledig is vertaald door %{x_people}? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, de iNaturalist apps voor %{iphone_link_tag}iPhone%{link_tag_end} en\n%{android_link_tag}Android%{link_tag_end}, en %{seek_link_tag}Seek%{link_tag_end}. Je kunt alle mensen bekijken die in alle talen hebben bijgedragen met vertalingen, waaronder mensen van eerdere jaren en mensen van Translatewiki, in onze\n%{view_all_web_link_tag}web-%{link_tag_end} en\n%{view_all_mobile_link_tag}mobiele%{link_tag_end} code repositories.\n",
+        "translators_prompt": "Als je wil helpen met vertalen, %{link_tag}leer hier hoe%{link_tag_end}.\n",
+        "translators_title": "Vertalers"
       }
     },
     "taxa": {
@@ -45939,6 +46048,10 @@ I18n.translations["nl"] = {
     "one": "<span class=\"count\">1</span> determineerder",
     "other": "<span class=\"count\">%{count}</span> determineerders"
   },
+  "x_languages": {
+    "one": "%{count} taal",
+    "other": "%{count} talen"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">%{count}</span> overeenstemmend taxon",
     "other": "<span class=\"count\">%{count}</span> overeenstemmende taxa"
@@ -45992,6 +46105,10 @@ I18n.translations["nl"] = {
   "x_others": {
     "one": "%{count} ander persoon",
     "other": "%{count} anderen"
+  },
+  "x_people": {
+    "one": "%{count} persoon",
+    "other": "%{count} mensen"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} mensen</strong> hielpen %{user} met <strong>%{y} determinaties</strong>",
   "x_photos": {
@@ -46254,7 +46371,6 @@ I18n.translations["oc"] = {
   "added": "Apondut",
   "added!": "Apondut !",
   "added_by": "Apondut per",
-  "added_on": "Apondut lo",
   "additional_range": "Plaja suplementària",
   "agree": "acceptar",
   "agree_": "Acceptar",
@@ -47010,7 +47126,6 @@ I18n.translations["pl"] = {
   "added_as_a_part_of_a_taxon_split_html": "Dodano jako część\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">podzielenia taksonu</a>\n",
   "added_as_a_part_of_a_taxon_swap_html": "Dodano jako część\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">zamiany taksonów</a>\n",
   "added_by": "Dodane przez",
-  "added_on": "Dodane",
   "additional_range": "Dodatkowy zasięg",
   "additional_range_data_from_an_unknown_source": "Dodatkowe dane zasięgu z nieznanego źródła",
   "adjust_brightness": "Dostosuj jasność",
@@ -48463,6 +48578,7 @@ I18n.translations["pl"] = {
   "search": "Szukaj",
   "search_by_taxon_name_or_observation_id": "Szukaj po nazwie taksonu lub ID obserwacji",
   "search_species_": "Szukaj gatunków...",
+  "seek": "Seek",
   "select": "Wybierz",
   "select_all": "Wybierz wszystkie",
   "select_observations_to_edit": "Wybierz obserwacje do edycji...",
@@ -48674,7 +48790,8 @@ I18n.translations["pl"] = {
         "inaturalist_network": "Sieć iNaturalist",
         "include_usa": "Łącznie z USA",
         "obs_in_year": "Obserwacji w %{year}",
-        "observation_streaks_color_desc": "Kolor reprezentuje liczbę dni w skali logarytmicznej:\n"
+        "observation_streaks_color_desc": "Kolor reprezentuje liczbę dni w skali logarytmicznej:\n",
+        "translators_title": "Tłumacze"
       }
     },
     "taxa": {
@@ -48752,6 +48869,12 @@ I18n.translations["pl"] = {
     "many": "<span class=\"count\">%{count}</span> oznaczających",
     "other": "<span class=\"count\">%{count}</span> oznaczającego"
   },
+  "x_languages": {
+    "one": "%{count} język",
+    "few": "%{count} języki",
+    "many": "%{count} języków",
+    "other": "%{count} języka"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span> pasujący takson",
     "few": "<span class=\"count\">%{count}</span> pasujące taksony",
@@ -48824,6 +48947,12 @@ I18n.translations["pl"] = {
     "few": "%{count} inne osoby",
     "many": "%{count} innych osób",
     "other": "%{count} innej osoby"
+  },
+  "x_people": {
+    "one": "%{count} osoba",
+    "few": "%{count} osoby",
+    "many": "%{count} osób",
+    "other": "%{count} osoby"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} osób</strong> pomogło %{user} z <strong>%{y} oznaczeniami</strong>",
   "x_photos": {
@@ -48911,7 +49040,6 @@ I18n.translations["pt"] = {
   "added": "Adicionado",
   "added!": "Adicionado!",
   "added_by": "Adicionado por",
-  "added_on": "Adicionado a",
   "additional_range": "Área de distribuição adicional",
   "additional_range_data_from_an_unknown_source": "Dados de distribuição adicional de fonte desconhecida",
   "admin_s": "Administrador(es)",
@@ -50354,7 +50482,6 @@ I18n.translations["pt-BR"] = {
   "added": "Adicionado",
   "added!": "Adicionado!",
   "added_by": "Adicionado por",
-  "added_on": "Adicionado em",
   "additional_range": "Distribuição adicional",
   "additional_range_data_from_an_unknown_source": "Distribuição adicional para fontes desconhecidas",
   "adjust_brightness": "Ajustar o brilho",
@@ -52253,7 +52380,6 @@ I18n.translations["ru"] = {
   "added_as_a_part_of_a_taxon_split_html": "Добавлено как часть\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">разделения таксона</a>\n",
   "added_as_a_part_of_a_taxon_swap_html": "Добавлено как часть\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">замены таксона</a>\n",
   "added_by": "Добавлено",
-  "added_on": "Добавил",
   "additional_range": "Дополнительный ареал",
   "additional_range_data_from_an_unknown_source": "Данные дополнительного диапазона из неизвестного источника",
   "adjust_brightness": "Регулировать яркость",
@@ -52826,6 +52952,8 @@ I18n.translations["ru"] = {
   "geoprivacy_is_private": "Информация о местоположении является конфиденциальной",
   "geoprivacy_is_private_desc": "Наблюдатель решил скрыть координаты.",
   "get_started": "Начать",
+  "give_monthly_caps": "ВНОСИТЬ ЕЖЕМЕСЯЧНО",
+  "give_now_caps": "ВНЕСТИ СЕЙЧАС",
   "globally": "Глобально",
   "go": "Найти",
   "go_back": "Назад",
@@ -53828,7 +53956,7 @@ I18n.translations["ru"] = {
     "other": "Сохранение %{num} из %{count} наблюдений..."
   },
   "saving_verb": "Сохраняется",
-  "scale_colon": "Масштаб:",
+  "scale_colon": "Шкала:",
   "search": "Поиск",
   "search_by_taxon_name_or_flickr_photo_id": "Поиск по имени таксона или идентификатору фото на Фликр",
   "search_by_taxon_name_or_observation_id": "Поиск по наименованию таксона или идентификатору наблюдения",
@@ -53837,6 +53965,7 @@ I18n.translations["ru"] = {
   "search_remote": "Удалённый поиск",
   "search_species_": "Поиск видов...",
   "seasonality": "Сезонность",
+  "seek": "Seek",
   "seen_nearby": "Увиденные поблизости",
   "select": "Выбрать",
   "select_all": "Выбрать все",
@@ -54242,11 +54371,15 @@ I18n.translations["ru"] = {
         "recent_w_7_obs": "Недавние с набл>= 7"
       },
       "year": {
+        "donate_desc_html": "Спасибо за то, что дарите нам ваше время, внимание, опыт и пожертвования! iNaturalist - это некоммерческая совместная инициатива Калифорнийской академии наук и Национального географического общества.\nОна поддерживается <a href=\"%{team_url}\">небольшой командой</a>, которая занимается всем дизайном и разработкой программного обеспечения для веб-сайта, мобильных устройств и <a href=\"%{seek_url}\">Seek by iNaturalist</a> в дополнение к управлению поддержкой сообщества, сотрудничеством и интеграцией, которые поддерживают работу (и дают быстрый рост!). Программа опирается на многочисленные гранты и пожертвования, включая благотворительные подарки от менее чем 0,2% участников. Мы особенно благодарны Ежемесячным Спонсорам, чьи постоянные взносы помогают нам планировать будущее. Вы можете сделать пожертвования в более чем 30 валютах для поддержки основных операций iNaturalist.\nСпасибо всем вам за участие в создании самого крутого года iNaturalist 2019!\n",
+        "donate_title": "Особая благодарность всем нашим спонсорам",
         "growth_by_country_desc_html": "Где происходит рост? На карте и графике есть попытка разбить это по странам, что оказывается сложным, поскольку рост по странам может быть очень несбалансированным. Здесь мы решили опустить США и использовать по умолчанию логарифмическую шкалу, чтобы подчеркнуть различия между другими странами. Если страна окрашена в черный цвет, это означает, что она не внесла существенного вклада в процент, или у нее не было роста в этом году, или не было больше наблюдений в этом году, чем в прошлом году (наведите курсор на страну, чтобы увидеть немного больше деталей). <strong>\"% от\nобщего роста\"</strong> означает, сколько мирового роста пришлось на конкретную страну, например, если было 20 наблюдений в 2018 году и 10 в 2017 году, то это составило бы рост 10 наблюдений, и если 5 из этих наблюдений были из Бенина, то Бенин обеспечил 50% общего роста. <strong>\"% роста\"</strong> означает число наблюдений в этом году в этой стране в процентах от наблюдений в прошлом году в этой стране, поэтому если в Лаосе было 10 наблюдений в прошлом году, а в этом году 20, это составило бы 100% роста, а если в прошлом году было 0 и 1 в этом году, то это бесконечный % роста.\n",
         "growth_by_country_title": "Рост по странам",
         "growth_desc": "Диаграммы \"Наблюдения\" и \"Таксоны\" могут включать данные, которые видны на %{site_name} и добавлены людьми, не связанными с %{site_name}, в то время как диаграмма \"Пользователи\" охватывает только те даты, когда пользователи, связанные в данное время с %{site_name}, присоединились к iNaturalist.\n",
         "growth_in_year_obs": "Рост в %{year} (набл)",
         "growth_title": "Рост",
+        "inaturalist_network": "сеть iNaturalist",
+        "inaturalist_network_desc": "Загляните в раздел «Обзор года» для участников сети iNaturalist.\n",
         "include_usa": "Включая США",
         "new_species_desc_html": "Виды, которые были впервые были добавлены в этом году. Нажмите на месяц, чтобы увидеть некоторые новые виды, добавленные в этом месяце. Вы также можете просмотреть общее накопленное количество видов или переместить ползунок назад во времени, чтобы увидеть другие впервые наблюдаемые виды. Диаграмма показывает виды проверяемых наблюдений по месяцам загрузки на %{site_name} (а не по месяцам, когда они наблюдались). Она не включает таксоны более высокого или более низкого уровня, поэтому наблюдение, идентифицированное как Млекопитающее, не учитывается, а наблюдение <i>Canis lupus</i> ssp. <i>arctos</i> будет учтено как <i>Canis lupus</i>.\n",
         "obs_in_year": "Набл в %{year}",
@@ -54255,7 +54388,14 @@ I18n.translations["ru"] = {
         "observation_streaks_desc": "Серия наблюдений - это период времени, когда кто-то выходил на природу и\nзаписывал новые наблюдения каждый день. Здесь показаны самые длинные\nсерии, которые начались в этом году или происходили в момент создания этой\nстатистики.\n",
         "percent_growth_in_year": "% роста в %{year}",
         "percent_of_total_growth": "% от общего роста",
-        "sunburst_desc_html": "Наблюдаемые таксоны упорядочены в виде иерархической диаграммы Санбёрст. Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>.\n"
+        "publications_desc_short_html": "Нажмите на цветовую диаграмму, чтобы получить больше информации о значении чисел\nи цвета. Влияющие данные и диаграммы любезно предоставлены\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из <a href=\"https://www.gbif.org/\">Глобального информационного центра по биоразнообразию</a>.\n",
+        "stats_generated_datetime": "Статистика сгенерирована на %{datetime}",
+        "store_prompt": "Хотите показать как вы гордитесь iNat везде, куда бы вы ни пошли? Посетите магазин iNat\nStore!\n",
+        "sunburst_desc_html": "Наблюдаемые таксоны упорядочены в виде иерархической диаграммы Санбёрст. Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>.\n",
+        "translators_desc": "Знаете ли вы, что iNaturalist был переведён на %{x_languages},\nпочти полностью силами %{x_people}, некоторые из которых даже не используют iNat? Вот замечательные переводчики, которые добавили переводы в этом году,\nвместе с количеством слов, которые они перевели для\n%{website_link_tag}веб-сайта%{link_tag_end}, наших приложений для \n%{iphone_link_tag}iPhone%{link_tag_end} и\n%{android_link_tag}Android%{link_tag_end} и \n%{seek_link_tag}Seek%{link_tag_end}. Вы можете видеть всех тех, кто внёс вклад в переводы, включая переводчиков прошлых лет из Translatewiki, в наших репозиториях исходного кода \n%{view_all_web_link_tag}web%{link_tag_end} и %{view_all_mobile_link_tag}mobile%{link_tag_end}.\n",
+        "translators_desc_for_site": "Знаете ли вы, что %{site_name} был переведён почти полностью силами %{x_people}? Вот замечательные переводчики, которые добавили переводы в этом году,\nвместе с количеством слов, которые они перевели для\n%{website_link_tag}веб-сайта%{link_tag_end}, приложений iNaturalist для \n%{iphone_link_tag}iPhone%{link_tag_end} и \n%{android_link_tag}Android%{link_tag_end} и \n%{seek_link_tag}Seek%{link_tag_end}. Вы можете видеть всех тех, кто внёс вклад в переводы со всех языков, включая переводчиков прошлых лет из Translatewiki, в наших репозиториях исходного кода %{view_all_web_link_tag}web%{link_tag_end} и %{view_all_mobile_link_tag}mobile%{link_tag_end}.\n",
+        "translators_prompt": "Если вы хотите помочь с переводом, %{link_tag}узнайте, как это сделать%{link_tag_end}.\n",
+        "translators_title": "Переводчики"
       }
     },
     "taxa": {
@@ -54367,6 +54507,12 @@ I18n.translations["ru"] = {
     "many": "<span class=\"count\">%{count}</span> экспертов",
     "other": "<span class=\"count\">%{count}</span> экспертов"
   },
+  "x_languages": {
+    "one": "%{count} язык",
+    "few": "%{count} языка",
+    "many": "%{count} языков",
+    "other": "%{count} языков"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">%{count}</span> соответствующий таксон",
     "few": "<span class=\"count\">%{count}</span> соответствующих таксона",
@@ -54446,6 +54592,12 @@ I18n.translations["ru"] = {
     "few": "%{count} других",
     "many": "%{count} других",
     "other": "%{count} других"
+  },
+  "x_people": {
+    "one": "%{count} человек",
+    "few": "%{count} человека",
+    "many": "%{count} человек",
+    "other": "%{count} человек"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} человек</strong> оказавшие помощь %{user} с <strong>%{y} идентификацией</strong>",
   "x_photos": {
@@ -54551,7 +54703,6 @@ I18n.translations["sk"] = {
   "added": "Pridané",
   "added!": "Pridané!",
   "added_by": "Pridané užívateľom",
-  "added_on": "Pridané na",
   "additional_range": "Prídavný rozsah",
   "additional_range_data_from_an_unknown_source": "Prídavný rozsah dát z neznámeho zdroja",
   "adjust_brightness": "Nastavenie jasu",
@@ -56235,7 +56386,6 @@ I18n.translations["sq"] = {
   "added": "Shtuar",
   "added!": "Shtuar!",
   "added_by": "Shtuar nga",
-  "added_on": "Shtuar më",
   "additional_range": "Shtrirje shtesë",
   "additional_range_data_from_an_unknown_source": "Të dhëna seri shtesë nga një burim i panjohur",
   "admin_s": "Administrator(ët)",
@@ -57510,7 +57660,6 @@ I18n.translations["sv"] = {
   "added": "Lades till",
   "added!": "Lades till!",
   "added_by": "Lades till av",
-  "added_on": "Lades till den",
   "additional_range": "Utökat urval",
   "additional_range_data_from_an_unknown_source": "Utökat urval från en okänd källa",
   "admin_s": "Administratör(er)",
@@ -58618,7 +58767,6 @@ I18n.translations["tr"] = {
   "added_as_a_part_of_a_taxon_split_html": "<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">sınıf bölmenin</a> bir parçası olarak eklendi\n",
   "added_as_a_part_of_a_taxon_swap_html": "<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">sınıf takasının</a> bir parçası olarak eklendi\n",
   "added_by": "Ekleyen",
-  "added_on": "Eklendiği tarih",
   "additional_range": "Ek aralık",
   "additional_range_data_from_an_unknown_source": "Bilinmeyen kaynaktan ek aralık",
   "adjust_brightness": "Parlaklık Ayarlama",
@@ -60156,6 +60304,7 @@ I18n.translations["tr"] = {
   "search_remote": "Uzaktan Ara",
   "search_species_": "Türleri Ara...",
   "seasonality": "Mevsimsellik",
+  "seek": "Seek",
   "seen_nearby": "Yakınlarda Görüldü",
   "select": "Seç",
   "select_all": "Tümünü Seç",
@@ -60577,7 +60726,11 @@ I18n.translations["tr"] = {
         "publications_desc_short_html": "<a href=\"https://www.altmetric.com\">Altmetric</a>'in izniyle etki verileri ve çizelgeler. <a href=\"https://www.gbif.org/\">Küresel Biyoçeşitlilik Danışma Tesisi'ndeki</a> arkadaşlarımızın veri kullanımı nezaket bilgileri.\n",
         "stats_generated_datetime": "İstatistikler %{datetime} tarihinde oluşturuldu",
         "store_prompt": "Gittiğin her yerde iNat'tan duyduğun gururu göstermek ister misin? iNat Mağazası'na Göz At!\n",
-        "sunburst_desc_html": "Hiyerarşik bir \"güneş\" diyagramı olarak düzenlenen gözlemlenen sınıflar. Hiyerarşinin tabanı merkezdedir, \"Yaşam\" ile başlayıp dış kenarlardaki türlerle bitiyor. Her yayın boyutu, bu sınıfın gözlem sayısı ile orantılıdır ve renkler aşağı yukarı her zamanki \"ikonik\" sınıf renklerimizle aynıdır (bitkiler için yeşil, böcekler için turuncu, diğer birçok hayvan için mavi vb.), böylece çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğiniz anlamına gelir. <strong>Merkezdeki sınıfı ve onun çevresindeki alt sınıfları yerleştirmek için yaya tıklayın</strong> ya da <strong>hiyerarşiyi yukarı taşımak için merkeze tıklayın</strong>.\n"
+        "sunburst_desc_html": "Hiyerarşik bir \"güneş\" diyagramı olarak düzenlenen gözlemlenen sınıflar. Hiyerarşinin tabanı merkezdedir, \"Yaşam\" ile başlayıp dış kenarlardaki türlerle bitiyor. Her yayın boyutu, bu sınıfın gözlem sayısı ile orantılıdır ve renkler aşağı yukarı her zamanki \"ikonik\" sınıf renklerimizle aynıdır (bitkiler için yeşil, böcekler için turuncu, diğer birçok hayvan için mavi vb.), böylece çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğiniz anlamına gelir. <strong>Merkezdeki sınıfı ve onun çevresindeki alt sınıfları yerleştirmek için yaya tıklayın</strong> ya da <strong>hiyerarşiyi yukarı taşımak için merkeze tıklayın</strong>.\n",
+        "translators_desc": "iNaturalist'in, bazıları iNat bile kullanmayan neredeyse tamamen\n%{x_people} tarafından, %{x_languages}'e çevrildiğini biliyor muydunuz?\n%{website_link_tag}Web sitesi%{link_tag_end},\n%{iphone_link_tag}iPhone%{link_tag_end} ve\n%{android_link_tag}Android%{link_tag_end} uygulamalarımız ve\n%{seek_link_tag}Seek%{link_tag_end} için çevirdikleri kelime\nsayılarıyla birlikte, işte bu yıl çeviri ekleyen tüm harika çevirmenlerimiz.\n%{view_all_web_link_tag}Web%{link_tag_end} ve\n%{view_all_mobile_link_tag}mobil%{link_tag_end} kod depolarımızda,\ngeçmiş yıllardan kişiler ve Translatewiki'den gelenler de dahil\nolmak üzere çevirilere katkıda bulunan tüm kişileri görüntüleyebilirsiniz.\n",
+        "translators_desc_for_site": "%{site_name}'in neredeyse tamamen %{x_people} tarafından\nçevrildiğini biliyor muydunuz?\n%{website_link_tag}Web sitesi%{link_tag_end}, iNaturalist\n%{iphone_link_tag}iPhone%{link_tag_end} ve\n%{android_link_tag}Android%{link_tag_end} uygulamaları ve\n%{seek_link_tag}Seek%{link_tag_end} için çevirdikleri kelime\nsayılarıyla birlikte, işte bu yıl çeviri ekleyen tüm harika çevirmenlerimiz.\n%{view_all_web_link_tag}Web%{link_tag_end} ve\n%{view_all_mobile_link_tag}mobil%{link_tag_end} kod depolarımızda,\ngeçmiş yıllardan kişiler ve Translatewiki'den gelenler de dahil olmak\nüzere tüm dillerde çevirilere katkıda bulunan tüm kişileri görüntüleyebilirsiniz.\n",
+        "translators_prompt": "Çeviriye yardım etmek istiyorsanız, %{link_tag}nasıl yapıldığını öğrenin%{link_tag_end}.\n",
+        "translators_title": "Çevirmenler"
       }
     },
     "taxa": {
@@ -60677,6 +60830,10 @@ I18n.translations["tr"] = {
     "one": "<span class=\"count\">%{count}</span> Tanımlayıcı",
     "other": "<span class=\"count\">%{count}</span> Tanımlayıcı"
   },
+  "x_languages": {
+    "one": "%{count} dil",
+    "other": "%{count} dil"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">%{count}</span> eşleşen sınıf",
     "other": "<span class=\"count\">%{count}</span> eşleşen sınıf"
@@ -60730,6 +60887,10 @@ I18n.translations["tr"] = {
   "x_others": {
     "one": "%{count} diğer",
     "other": "%{count} diğer"
+  },
+  "x_people": {
+    "one": "%{count} kişi",
+    "other": "%{count} kişi"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} insan</strong> %{user} kullanıcısına <strong> %{y} tanımlamalarında</strong> yardım etti",
   "x_photos": {
@@ -61007,7 +61168,6 @@ I18n.translations["zh-CN"] = {
   "added": "已添加",
   "added!": "已添加！",
   "added_by": "添加自",
-  "added_on": "添加在",
   "additional_range": "额外范围",
   "additional_range_data_from_an_unknown_source": "来自未知来源的额外范围数据",
   "admin_s": "管理员",
@@ -62863,7 +63023,6 @@ I18n.translations["zh-TW"] = {
   "added_as_a_part_of_a_taxon_split_html": "由一筆<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">分類群分割</a>所新增的部份\n",
   "added_as_a_part_of_a_taxon_swap_html": "由一筆<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">分類群置換</a>所新增的部份\n",
   "added_by": "新增自",
-  "added_on": "已添加在",
   "additional_range": "額外範圍",
   "additional_range_data_from_an_unknown_source": "來自不知名來源的額外範圍資料",
   "adjust_brightness": "調整亮度",
