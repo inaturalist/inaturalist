@@ -1808,6 +1808,8 @@ lt:
   who_helped_user_the_most: "Kas Daugiausiai Padėjo %{user}"
   who_user_helped_the_most: "Kam %{user} Daugiausiai Padėjo"
   why_the_coordinates_are_obscured: Kodėl koordinatės užslėptos
+  with_annotation: Su papildoma informacija
+  without_annotation: Su papildoma informacija
   withdraw: Atsiimti
   would_you_prefer_to_view_common_names_used_in_place_html: Ar norėtumėte peržiūrėti bendrinius pavadinimus, naudojamus <strong>%{place}</strong>?
   year_in_review: "%{year} Metų Apžvalga"
@@ -1861,6 +1863,10 @@ lt:
         none: Ne.
       updates_desc: |
         Gaukite naujienas apie šį projektą jūsų valdymo skyde ir kasdieniniame naujienlaiškyje.
+    taxa:
+      show:
+        frequency:
+          unannotated: Be papildomos informacijos
     users:
       dashboard:
         new_project_admin_html: |
