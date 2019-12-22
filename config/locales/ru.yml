@@ -221,13 +221,13 @@ ru:
   #Header for a section describing taxon names
   about_names: Об именах
   about_places: О Местах
-  about_the_cc_licenses: О лицензии Creative Commons
+  about_the_cc_licenses: О лицензиях Creative Commons
   about_these_licenses: Об этих лицензиях
   about_this_bioblitz: Об этом биоблице
   about_this_map: Об этой Карте
   about_this_project: Об этом Проекте
   about_trips_html: |
-    <h4>Поездки позволяют собирать данные присутствия-отсутствия, добавляя контекст к вашим наблюдениям</h4><p><strong>Почему</strong> Данные о присутствии-отсутствии включают информацию об попытках отбора проб, которая полезна для научного анализа, такого как моделирование распределения (необработанные наблюдения iNaturalist являются данными «только присутствия»).</p> <p><strong>Как</strong> Поездка добавляет контекст к вашим наблюдениям путем записи:</p> <ul> <li><strong>Что</strong> Вы искали (целевой список)</li> <li><strong>Where</strong> вы искали (область поиска)</li> <li><strong>Когда</strong> вы искали (интервал поиска)</li> </ul> <p>Виды в вашем целевом списке, которые вы смогли наблюдать в области поиска и интервале, интерпретируются как присутствие. В то время как виды в вашем целевом списке, которые вы не смогли наблюдать, интерпретируются как отсутствие. Нажмите "Табулировать данные о присутствии-отсутствии из поездок", чтобы создать таблицу записей об присутствии-отсутствии для вида из поездок и связанных наблюдений. <a href='%{url}'>Подробнее</a></p>
+    <h4>Поездки позволяют собирать данные присутствия-отсутствия, добавляя контекст к вашим наблюдениям</h4><p><strong>Почему</strong> Данные о присутствии-отсутствии включают информацию об попытках отбора проб, которая полезна для научного анализа, такого как моделирование распределения (необработанные наблюдения iNaturalist являются данными «только присутствия»).</p> <p><strong>Как</strong> Поездка добавляет контекст к вашим наблюдениям путем записи:</p> <ul> <li><strong>Что</strong> Вы искали (целевой список)</li> <li><strong>Где</strong> вы искали (область поиска)</li> <li><strong>Когда</strong> вы искали (интервал поиска)</li> </ul> <p>Виды в вашем целевом списке, которые вы смогли наблюдать в области поиска и интервале, интерпретируются как присутствие. В то время как виды в вашем целевом списке, которые вы не смогли наблюдать, интерпретируются как отсутствие. Нажмите "Свести в таблицу данные о присутствии-отсутствии из поездок", чтобы создать таблицу записей об присутствии-отсутствии видов из поездок и связанных наблюдений. <a href='%{url}'>Подробнее</a></p>
   about_x: "О %{x}"
   acc: 'Точность (м)'
   account: Учётная запись
@@ -238,11 +238,11 @@ ru:
   accuracy: Точность
   accuracy_meters: Точность (м)
   accuracy_of_the_coordinates: |
-    Точность определения координат в метрах. Вы можете изменить это значение, щелкнув по "редактировать" выше или нажав на маркер карты и перетащив его иконки. Постарайтесь сделать круг достаточно большим - настолько, чтобы он точно включал место, где вы были.
+    Точность определения координат в метрах. Вы можете изменить это значение, нажав на ссылку "редактировать" выше или щёлкнув на маркеры карты, перетащить их. Постарайтесь сделать круг достаточно большим - настолько, чтобы он точно включал место, где вы были.
   action: Действие
   actions: Действия
   active: Активные
-  active_users: Активные участники
+  active_users: Активные пользователи
   activity: Активность
   activity_settings: Настройки активности
   adapted_by_name_from_a_work_by_original: "Адаптировано %{name}, оригинальный источник %{original}"
@@ -252,15 +252,15 @@ ru:
   add_a_comment: Добавить комментарий
   add_a_field: Добавить поле
   add_a_flag: Добавить флаг
-  add_a_name: Добавьте имя
+  add_a_name: Добавить имя
   add_a_new_change_group: Добавить новую группу изменений
   add_a_single_observation: Добавить одиночное наблюдение.
   add_a_taxon: Добавить таксон
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-    Добавьте <a target="_blank" href="%{url}">замена таксона</a> если вы хотите изменить наименование
-  add_an_assessment: Добавьте оценку
+    Добавьте <a target="_blank" href="%{url}">замену таксона</a> если вы хотите изменить наименование
+  add_an_assessment: Добавить оценку
   add_an_identification: Добавить идентификацию
-  add_an_observation: Добавьте наблюдение
+  add_an_observation: Добавить наблюдение
   add_an_observation?: Добавить наблюдение?
   add_an_observation_of: "Добавить наблюдение %{taxon}"
   add_an_observation_to_project_html: Добавить наблюдение к %{project}
@@ -270,12 +270,12 @@ ru:
     plant_phenology: Добавить значения для "Фенологии растений"
     life_stage: Добавить значения для "Стадия жизни"
   add_another_flag: Добавить ещё один флаг
-  add_another_photo: Добавьте ещё фото
+  add_another_photo: Добавить ещё фото
   add_another_section: Добавить ещё один раздел
-  add_another_subscription: Добавить другую подписку
+  add_another_subscription: Добавить еще одну подписку
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Добавить актив
-  add_batch: Добавить пакетное пополнение
+  add_batch: Добавить пакетную загрузку
   add_comma_separated_tags: "Добавить теги, разделённые запятыми"
   add_comment: Добавить комментарий
   add_conservation_status: Добавить природоохранный статус
@@ -286,7 +286,7 @@ ru:
   add_description: "Добавить %{description_name}"
   add_from_your_observations: Добавить из своих наблюдений
   add_link: Добавить ссылку
-  add_higher_level_taxon: Добавить таксон высшего уровня (например "птицы")
+  add_higher_level_taxon: Добавить таксон высшего уровня (например, "птицы")
   add_id: Добавить идентификатор
   add_new_lexicon: Добавить новый язык
   add_new_photos_by_their_ids: Добавить новые фото по идентификаторам Flickr (фото должны иметь лицензию Creative Commons!)
@@ -304,7 +304,7 @@ ru:
   add_one: Добавьте одно!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
-  add_one_now: Добавить один сейчас
+  add_one_now: Добавить сейчас
   add_photos: Добавить фото
   add_place: Добавить место
   add_alive_or_dead_alive_annotation: 'Добавить значение "Живой или мёртвый: живой"'
@@ -312,7 +312,7 @@ ru:
   add_alive_or_dead_dead_annotation: 'Добавить значение "Живой или мёртвый: мёртвый"'
   add_plant_phenology_budding_annotation: 'Добавить значение "Фенология растений: Бутонизация"'
   add_plant_phenology_flower_budding_annotation: 'Добавить значение "Фенология растений: бутонизация"'
-  add_plant_phenology_flowering_annotation: 'Добавить аннотацию к "Plant Phenology: Flowering"'
+  add_plant_phenology_flowering_annotation: 'Добавить значение "Фенология растений: Цветение"'
   add_plant_phenology_fruiting_annotation: 'Добавить значение "Фенология растений: Плодоношение"'
   add_life_stage_adult_annotation: 'Добавить значение "Стадия жизни: Взрослый"'
   add_life_stage_teneral_annotation: 'Добавить значение "Стадия жизни: после линьки"'
@@ -331,7 +331,7 @@ ru:
   add_tag: Добавить тег
   add_tags: Добавить теги
   add_tags_to_selected_taxa: Добавить теги к выбранным таксонам
-  add_taxa: Добавить таксон
+  add_taxa: Добавить таксоны
   add_taxon_batch_to: "Добавить несколько Таксонов к %{list}"
   add_taxon_range: Добавить ареал таксона
   add_taxonomic_tags_to: "Добавьте таксономические теги к выбранным фото Flickr &raquo;"
@@ -342,11 +342,11 @@ ru:
   add_to_favorites: Добавить к фаворитам
   add_to_list: Добавить в список
   add_to_project: Добавить в проект
-  add_to_your_life_list: Добавьте в свой список жизни!
+  add_to_your_life_list: Добавить в ваш список жизни!
   add_to_your_list: Добавить в ваш список
   add_your_email_to_get: |
-    Добавьте свой адрес электронной почты, чтобы получить отзывы о своем наблюдении от сообщества.
-    Если вы не хотите делиться адресом, пожалуйста, вернитесь в ближайшее время для проверки!
+    Добавьте свой адрес электронной почты, чтобы получить отзывы о вашем наблюдении от сообщества.
+    Если вы не хотите делиться адресом, пожалуйста, вернитесь за новостями в ближайшее время!
   add_your_own_observations_at: "Добавить ваши собственные наблюдения на %{site_name}"
   added: Добавлено
   added!: Добавлено!
@@ -362,13 +362,13 @@ ru:
   added_as_a_part_of_a_taxon_swap_html: |
     Добавлено как часть
     <a target="%{target}" class="%{class}" href="%{url}">замены таксона</a>
-  added_by: Добавлено
-  added_by_user_on_date_html: "Добавленно %{user} в %{date}"
+  added_by: Добавлено 
+  added_by_user_on_date_html: "Добавлено %{user} %{date}"
   added_on: Добавил
   added_to_favorites_html: |
     Добавлено в <a href="%{url}">фавориты</a>
   adding: "Добавление..."
-  additional_range: Дополнительный ареал
+  additional_range: Дополнительный диапазон
   additional_range_data_from_an_unknown_source: Данные дополнительного диапазона из неизвестного источника
   adjust_brightness: Регулировать яркость
   admin: Администратор
@@ -378,17 +378,17 @@ ru:
   agree: согласен
   agree_: Согласен
   agree?: Согласны?
-  agree_with_current_taxon: Согласиться в текущим таксоном
+  agree_with_current_taxon: Согласен с текущим таксоном
   agreeing: Соглашаемся...
   aka: ака
   all: Все
   all_colors: "&laquo; Все цвета"
   all_comments: Все комментарии
-  all_flags_must_be_resolved: Все флажки должны быть отмечены
+  all_flags_must_be_resolved: Все флаги должны быть разрешены
   all_life: Вся жизнь
   all_names: Все Имена
   all_observations: Все наблюдения
-  all_photos: Все фотографии
+  all_photos: Все фото
   all_places: "Все Места"
   all_projects: Все Проекты
   all_rank_added_to_the_database:
@@ -2184,7 +2184,7 @@ ru:
   next_observation: Следующее наблюдение
   next_page: Следующая страница
   next_photo: Следующее фото
-  next_tab: Новая вкладка
+  next_tab: Следующая вкладка
   'no': 'Нет'
   no_assessments_have_been_added_to_this_project_yet: Никакие оценки ещё не были добавлены в этот проект.
   no_but_it_is_a_member_of_taxon: "Нет, но это член %{taxon}"
