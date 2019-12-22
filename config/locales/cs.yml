@@ -1,4 +1,9 @@
 cs:
+  x_languages:
+    one: "%{count} jazyk"
+    few: "%{count} jazyků"
+    many: "%{count} jazyků"
+    other: "%{count} jazyků"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}people</strong> helped %{user}with<strong>%{y}IDs</strong>"
   _100_day_trends: 100 denní trend
   _percent_ID_d: "% identifikováno"
