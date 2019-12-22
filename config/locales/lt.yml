@@ -1,4 +1,5 @@
 lt:
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>"
   _100_day_trends: 100 dienų tendencijos
   _percent_ID_d: "% su ID"
   a_community_for_naturalist: Gamtininkų bendruomenė
@@ -84,6 +85,7 @@ lt:
   add_an_observation: Pridėti stebėjimą
   add_an_observation?: Pridėti stebėjimą?
   add_an_observation_of: "Pridėti %{taxon} stebėjimą"
+  add_an_observation_to_project_html: Pridėti Stebėjima prie %{project}
   add_annotations_for_x: Pridėti papildomos informacijos apie "%{x}"
   add_annotations_for_controlled_attribute:
     sex: Pridėti papildomos informacijos apie „lytį“
@@ -93,6 +95,8 @@ lt:
   add_another_photo: Pridėti dar vieną nuotrauką
   add_another_section: Pridėti dar vieną skyrių
   add_another_subscription: Pridėti dar vieną prenumeratą
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Pridėti Projekto Priedų
   add_batch: Pridėti grupę
   add_comma_separated_tags: "Pridėti kableliais arskirtas žymes"
   add_comment: Pridėti komentarą
@@ -107,6 +111,7 @@ lt:
   add_higher_level_taxon: Pridėti aukštesnio lygio taksoną (pvz. "paukščiai")
   add_id: Pridėti ID
   add_new_lexicon: Pridėti naują žodyną
+  add_new_photos_by_their_ids: Pridėti naujų nuotraukų pagal jų Flickr Id (būtinas Creative Commons!)
   add_new_place: Pridėti naują vietą
   add_new_rule: Pridėti naują taisyklę
   add_new_source: "Pridėti naują šaltinį..."
@@ -124,8 +129,12 @@ lt:
   add_one_now: Pridėti dabar
   add_photos: Pridėti nuotraukas
   add_place: Pridėti vietovę
-  add_plant_phenology_budding_annotation: 'Pridėti „Augalų fenologija: sprogsta“ papildomos informacijos'
-  add_plant_phenology_flowering_annotation: 'Pridėti pastabą "Augalo fenologija: žydėjimas"'
+  add_alive_or_dead_alive_annotation: 'Pridėti pastabą: „Gyvas ar miręs: Gyvas“'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Pridėti pastabą: „Gyvas ar miręs; negalima nustatyti“'
+  add_alive_or_dead_dead_annotation: 'Pridėti pastabą: „Gyvas ar miręs; miręs“'
+  add_plant_phenology_budding_annotation: 'Pridėti „Augalų fenologija: sprogsta“ pastabą'
+  add_plant_phenology_flower_budding_annotation: 'Pridėti „Augalų fenologija: sprogsta žiedai“ pastabą'
+  add_plant_phenology_flowering_annotation: 'Pridėti „Augalų fenologija: žydi“ pastabą'
   add_plant_phenology_fruiting_annotation: 'Pridėti pastabą "Augalo fenologija: vaisių vedimas"'
   add_life_stage_adult_annotation: 'Pridėti „Amžiaus tarpsnis: Suaugęs“ papildomą informaciją'
   add_life_stage_teneral_annotation: 'Pridėti „Amžiaus tarpsnis: išsinėręs“ papildomą informaciją'
@@ -185,6 +194,7 @@ lt:
   all: Visi
   all_colors: "&laquo; Visos spalvos"
   all_comments: Visi komentarai
+  all_flags_must_be_resolved: Visi pažymėjimai turi būti išspręsti
   all_life: Visa gyvybė
   all_names: Visi vardai
   all_observations: Visi stebėjimai
@@ -269,10 +279,12 @@ lt:
   announcements: Skelbimai
   any: bet kuris
   any_: Bet kuris
+  anyone: Betkuris
   apply_to_selected: Taikyti pasirinktiems
+  apply_captive_cultivated: "Pritaikyti naminius/kultivuojamus"
   apply_fields: Taikyti laukus
   apply_geoprivacy: Taikyti geoprivatumą
-  apply_darr: "Taikyti ↓"
+  apply_darr: "Taikyti &darr;"
   apply_these_settings_to_all: Taikyti šias nuostatas visiems žemiau esantiems stebėjimams
   appropriate?: Tinkamas?
   arachnids: voragyviai
@@ -528,16 +540,22 @@ lt:
     female: Mot.
     plant_phenology: Augalo fenologija
     budding: Sprogsta
+    flower_budding: Su sprogstančiais žiedais
     flowering: Žydintis
     fruiting: Su vaisiais
     life_stage: Gyvenimo stadija
     adult: Subrendęs
     teneral: Išsinėręs
+    subimago: Subimago
     pupa: Lėliukė
     nymph: Nimfa
     larva: Lerva
     egg: Kiaušinis
     juvenile: Jaunas
+    alive_or_dead: Gyvas ar miręs
+    alive: Gyvas
+    dead: Miręs
+    cannot_be_determined: Negali būti nustatyta
   controls: Valdikliai
   convert: Konvertuoti
   coordinate_systems: Koordinačių sistemos
@@ -558,6 +576,7 @@ lt:
   copyright_holder: Autorystės teisių savininkas
   copyright_info: Autorinių teisių informacija
   copyright_info_and_more: Autorinių teisių informacija ir daugiau
+  copyright_infringement: Autorinių teisių pažeidimas
   couldnt_change_your_password: "Negalima pakeisti jūsų slaptažodžio: %{e}"
   couldnt_find_a_user_matching_x_param: "Nepavyko rasti vartotojo atitinkančio %{id}"
   couldnt_find_that_taxon: Taksonas nerastas
@@ -1789,6 +1808,8 @@ lt:
   who_helped_user_the_most: "Kas Daugiausiai Padėjo %{user}"
   who_user_helped_the_most: "Kam %{user} Daugiausiai Padėjo"
   why_the_coordinates_are_obscured: Kodėl koordinatės užslėptos
+  with_annotation: Su papildoma informacija
+  without_annotation: Su papildoma informacija
   withdraw: Atsiimti
   would_you_prefer_to_view_common_names_used_in_place_html: Ar norėtumėte peržiūrėti bendrinius pavadinimus, naudojamus <strong>%{place}</strong>?
   year_in_review: "%{year} Metų Apžvalga"
@@ -1842,6 +1863,10 @@ lt:
         none: Ne.
       updates_desc: |
         Gaukite naujienas apie šį projektą jūsų valdymo skyde ir kasdieniniame naujienlaiškyje.
+    taxa:
+      show:
+        frequency:
+          unannotated: Be papildomos informacijos
     users:
       dashboard:
         new_project_admin_html: |

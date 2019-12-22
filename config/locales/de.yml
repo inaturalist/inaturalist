@@ -1740,6 +1740,7 @@ de:
   merging: Verbinden
   merging_places: Orte verbinden
   message: Nachricht
+  message_deleted: Nachricht gelöscht
   messages: Nachrichten
   misidentifications: Fehlbestimmungen
   misleading_or_illegal_content_html: |
@@ -2944,6 +2945,8 @@ de:
   second_person_possessive_plural: "Deine %{noun}"
   second_person_possessive_singular: "Dein %{noun}"
   see_something_wrong_with_taxon: Stimmt etwas nicht mit diesem Taxon?  Lass es die Kuratoren wissen.
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   seen_it?: Gesehen?
   seen_nearby: In der Nähe gesehen
   seen_one: Ein Exemplar gesehen?
@@ -4255,6 +4258,15 @@ de:
         percent_of_total_growth: "% des Gesamtwachstums"
         observation_streaks_color_desc: |
           Die Farbe repräsentiert die Anzahl der Tage auf einer logarithmischen Skala:
+        translators_title: Übersetzer
+        translators_desc: |
+          Wusstest du, dass iNaturalist in %{x_languages} übersetzt wurde und fast ausschließlich von %{x_people}, von denen einige nicht einmal iNat benutzen? Hier sind all die erstaunlichen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet mit der Anzahl der von Ihnen übersetzten Wörter für die
+          %{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end} und %{android_link_tag}Android%{link_tag_end} Apps, und %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories %{view_all_web_link_tag}web%{link_tag_end} und %{view_all_mobile_link_tag}mobile%{link_tag_end} ansehen.
+        translators_desc_for_site: |
+          Wusstest du, dass %{site_name} fast ausschließlich von %{x_people} übersetzt wurde? Hier sind all die erstaunlichen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet mit der Anzahl der von Ihnen übersetzten Wörter für die
+          %{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end} und %{android_link_tag}Android%{link_tag_end} Apps, und %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen in allen Sprachen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories %{view_all_web_link_tag}web%{link_tag_end} und %{view_all_mobile_link_tag}mobile%{link_tag_end} ansehen.
+        translators_prompt: |
+          Wenn du beim Übersetzen helfen möchtest, %{link_tag}lerne hier wie%{link_tag_end}.
     taxa:
       show:
         about_names_desc: |
