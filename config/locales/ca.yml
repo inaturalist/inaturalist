@@ -275,7 +275,6 @@ ca:
   added!: Afegit!
   added_by: Afegit per
   added_by_user_on_date_html: "Afegit per %{user} el %{date}"
-  added_on: Afegit el
   added_to_favorites_html: |
     Afegit <a href="%{url}">als preferits</a>
   adding: "Afegint..."
@@ -566,6 +565,10 @@ ca:
   bold_label_colon_value_html: "<strong>%{label}</strong>%{value}"
   bounding_box: Contenidor
   breadcrumbs: Rastres de navegació
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Això reemplaçarà l'h1 i la configuració per defecte de l'acció; assegureu-vos d'incloure-hi totes les opcions importants per a aquest projecte i recordeu que l'amplada màxima permesa és de 950 px."
   brief_caption: Breu llegenda
   brown: marró
@@ -859,7 +862,6 @@ ca:
   cover: Coberta
   create: Crea
   create_a_guide: Crea una guia
-  create_a_list: Crea una llista
   create_a_new_field: Crea un nou camp
   create_a_new_place: Crea un nou lloc
   create_a_new_taxon: Crea un nou tàxon
@@ -1916,7 +1918,6 @@ ca:
   new_message: Nou missatge
   new_observation_field: Nou camp d'observació
   new_observations: Noves observacions
-  new_observations_this_year: Nova observació aquest any
   new_observations_ellispsis: "Noves observacions..."
   new_observations_from_place_html: "Noves observacions a %{place}"
   new_observations_may_take_up_to: Les noves observacions poden trigar al voltant de %{widget_expiration} minuts a aparèixer en el giny.
@@ -1941,7 +1942,6 @@ ca:
   newly_added: Afegit recentment
   newly_added_species: Espècies afegides recentment
   newly_observed_species: Espècies observades recentment
-  newly_observed_species_this_year: Espècies afegides recentment aquest any
   news: Notícies
   next: Següent
   next_observation: Propera observació
@@ -3454,7 +3454,6 @@ ca:
   time_ago: "fa %{time}"
   title: títol
   title_and_description: "Títol i Descripció"
-  titled_favorites_and_the_most_recent_additions: etiquetats "Preferits" i les addicions més recents apareixeran en aquest espai.
   to_add_comments: per afegir comentaris.
   to_add_ids: per afegir ID
   to_configure_your_widget: per configurar el vostre giny.
@@ -3714,7 +3713,6 @@ ca:
   w_photos_only: amb fotos
   w_sounds: amb sons
   wait_file_generation: Espereu mentre es genera l'arxiu. El procés pot trigar uns minuts per a les llistes grans.
-  want_to_show_off_some_of_your_favorite_taxa: Voleu incorporar alguns dels vostres tàxons preferits aquí?
   wanted: Requerit
   was_it_captive_cultivated?: "Estava captiva/conreada?"
   we_also_support: |
