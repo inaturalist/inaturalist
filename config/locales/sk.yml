@@ -147,7 +147,6 @@ sk:
   added!: Pridané!
   added_by: Pridané užívateľom
   added_by_user_on_date_html: "Pridal užívateľ %{user} dňa %{date}"
-  added_on: Pridané na
   added_to_favorites_html: |
     Pridané do <a href="%{url}">obľúbených</a>
   adding: "Pridávanie..."
@@ -386,6 +385,10 @@ sk:
   body: Telo
   bounding_box: Ohraničenie
   breadcrumbs: Strúhanka
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Toto nahradí h1 a základné nastavenie výziev, preto ich pridajte, ak sú pre tento projekt dôležité, a nezabudnite, že maximálna povolená veľkosť je 950px"
   brief_caption: Stručný opis
   brown: hnedá
@@ -644,7 +647,6 @@ sk:
   cover: Obal
   create: Vytvoriť
   create_a_guide: Vytvoriť sprievodcu
-  create_a_list: Vytvorte zoznam
   create_a_new_field: Vytvoriť nové pole
   create_a_new_place: Vytvoriť nové miesto
   create_a_new_taxon: Vytvoriť nový taxón
@@ -1606,7 +1608,6 @@ sk:
   new_message: Nová správa
   new_observation_field: Nové pole pozorovania
   new_observations: Nové pozorovania
-  new_observations_this_year: Nové pozorovania v tomto roku
   new_observations_ellispsis: "Nové pozorovania..."
   new_observations_from_place_html: "Nové pozorovania z %{place}"
   new_observations_may_take_up_to: Zobrazenie nových pozorovaní vo widgete môže trvať až %{widget_expiration} minút.
@@ -1631,7 +1632,6 @@ sk:
   newly_added: Novo pridané
   newly_added_species: Novo pridané druhy
   newly_observed_species: Novo pozorované druhy
-  newly_observed_species_this_year: Novo pridané druhy v tomto roku
   news: Novinky
   next: Ďalej
   next_observation: Ďalšie pozorovanie
@@ -2936,7 +2936,6 @@ sk:
   time_ago: "pred %{time}"
   title: názov
   title_and_description: "Názov a opis"
-  titled_favorites_and_the_most_recent_additions: s názvom „Obľúbené “ a na tomto mieste sa objaví novo pridané.
   to_add_comments: pridať komentáre
   to_add_ids: pridať ID
   to_configure_your_widget: ku konfigurácii vášho widgetu.
@@ -3059,7 +3058,6 @@ sk:
   view_your_year_stats: "Zobraziť vašu štatistiku za rok %{year}"
   view_yours: Zobraziť váš
   view_all_of_your_observations_from_x: "Zobraziť všetky vaše pozorovania z %{x}"
-  want_to_show_off_some_of_your_favorite_taxa: Chcete tu ukázať niektoré svoje obľúbené taxóny?
   we_had_a_problem_flagging_that_item: "Máme problém s označením tejto položky:%{flag_error}"
   welcome: vitajte
   welcome_back!: Vitajte späť!
