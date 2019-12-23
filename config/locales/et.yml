@@ -239,7 +239,6 @@ et:
   added!: Lisatud!
   added_by: Lisanud
   added_by_user_on_date_html: "Lisanud %{user} kuupäeval %{date}"
-  added_on: Lisatud
   added_to_favorites_html: |
     Lisatud <a href="%{url}">lemmikute</a> hulka
   adding: "Lisan..."
@@ -516,6 +515,10 @@ et:
   body: Tekst
   bounding_box: Piirkast
   breadcrumbs: Hierarhia
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "See asendab pealkirja h1 ja vaikimisi üleskutse, nii et kui nende sisu on projekti jaoks olulised, lisa ka need ning pea meeles, et maksimaalne laius on 950 pikslit."
   brief_caption: Lühikokkuvõte
   brown: pruun
@@ -782,7 +785,6 @@ et:
   cover: Kaanepilt
   create: Loo
   create_a_guide: Loo juhend
-  create_a_list: Loo nimekiri
   create_a_new_field: Loo uus väli
   create_a_new_place: Loo uus koht
   create_a_new_taxon: Loo uus takson
@@ -1780,7 +1782,6 @@ et:
   new_message: Uus sõnum
   new_observation_field: Uus vaatlusväli
   new_observations: Uued vaatlused
-  new_observations_this_year: Uusi vaatlusi sellel aastal
   new_observations_ellispsis: "Uued vaatlused..."
   new_observations_from_place_html: "Uued vaatlused kohas %{place}"
   new_observations_may_take_up_to: Uute vaatluste lisandumine tööriista võib võtta kuni %{widget_expiration} minutit
@@ -1805,7 +1806,6 @@ et:
   newly_added: Äsjalisatud
   newly_added_species: Uued liigid
   newly_observed_species: Äsjavaadeldud liigid
-  newly_observed_species_this_year: Uusi liike sellel aastal
   news: Uudised
   next: Edasi
   next_observation: Järgmine vaatlus
@@ -3264,7 +3264,6 @@ et:
   time_ago: "%{time} tagasi"
   title: pealkiri
   title_and_description: "Pealkiri ja kirjeldus"
-  titled_favorites_and_the_most_recent_additions: nimega "Favorites" ning siia ilmuvad kõige uuemad lisandused.
   to_add_comments: lisada kommentaare
   to_add_ids: lisada määratlusi
   to_configure_your_widget: tööriista häälestamiseks.
@@ -3502,7 +3501,6 @@ et:
   w_photos_only: fotodega
   w_sounds: helidega
   wait_file_generation: Palun oota hetk, kuni faili luuakse. Suurte nimekirjade puhul võib see võta paar minutit.
-  want_to_show_off_some_of_your_favorite_taxa: Soovid näidata siin mõningaid oma lemmiktaksoneid?
   wanted: Otsime
   was_it_captive_cultivated?: "Oli see vangistatud / kultiveeritud?"
   we_also_support: |
