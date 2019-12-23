@@ -294,7 +294,6 @@ it:
     <a target="%{target}" class="%{class}" href="%{url}">scambio di taxon</a>
   added_by: Aggiunta da
   added_by_user_on_date_html: "Aggiunto da %{user} il %{date}"
-  added_on: Aggiunta il
   added_to_favorites_html: |
     Aggiunta ai <a href="%{url}">preferiti</a>
   adding: "Aggiunta in corso..."
@@ -615,6 +614,10 @@ it:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Riquadro di ricerca
   breadcrumbs: Percorso di navigazione
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Questa azione rimpiazzerà l'h1 e le istruzioni di default; assicuratevi di includerle se sono importanti per il progetto e ricordatevi che la larghezza massima autorizzata è di 950px"
   brief_caption: Breve didascalia
   brown: marrone
@@ -911,7 +914,6 @@ it:
   cover: Copertina
   create: Crea
   create_a_guide: Crea una guida
-  create_a_list: Crea una lista
   create_a_new_field: Crea un nuovo campo
   create_a_new_place: Crea un nuovo luogo
   create_a_new_taxon: Crea un nuovo taxon
@@ -2046,7 +2048,6 @@ it:
   new_observation_field: Nuovo campo di osservazione
   new_observations: Nuove osservazioni
   new_observations_in_year: "Nuove Osservazioni Nel %{year}"
-  new_observations_this_year: Nuove Osservazioni Quest'Anno
   new_observations_ellispsis: "Nuove osservazioni..."
   new_observations_from_place_html: "Nuove osservazioni da %{place}"
   new_observations_may_take_up_to: Le nuove osservazioni posso impiegare fino a %{widget_expiration} minuti prima di apparire nel widget.
@@ -2073,7 +2074,6 @@ it:
   newly_added_species: Specie Appena Aggiunte
   newly_observed_species: Specie Appena Osservate
   newly_observed_species_in_year: "Specie Aggiunte Di Recente Nel %{year}"
-  newly_observed_species_this_year: Specie Appena Aggiunte Quest'Anno
   news: Notizie
   next: Successivo
   next_observation: Prossima osservazione
@@ -3748,7 +3748,6 @@ it:
   time_ago: "%{time} fa"
   title: titolo
   title_and_description: "Titolo & Descrizione"
-  titled_favorites_and_the_most_recent_additions: intitolata "Preferiti" e le aggiunte più recenti appariranno in questo spazio.
   to_add_comments: per aggiungere commenti
   to_add_ids: per aggiungere ID
   to_configure_your_widget: per configurare il tuo widget.
@@ -4030,7 +4029,6 @@ it:
   w_photos_only: con foto
   w_sounds: con suoni
   wait_file_generation: Per favore attendi la creazione del file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
-  want_to_show_off_some_of_your_favorite_taxa: Vuoi mostrare qui alcuni dei tuoi taxa preferiti?
   wanted: Ricercate
   was_it_captive_cultivated?: "Era in cattività / coltivato?"
   we_also_support: |
