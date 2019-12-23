@@ -364,7 +364,7 @@ ru:
     <a target="%{target}" class="%{class}" href="%{url}">замены таксона</a>
   added_by: Добавлено 
   added_by_user_on_date_html: "Добавлено %{user} %{date}"
-  added_on: Добавил
+  added_on_datetime: "Добавлено %{datetime}"
   added_to_favorites_html: |
     Добавлено в <a href="%{url}">фавориты</a>
   adding: "Добавление..."
@@ -392,26 +392,26 @@ ru:
   all_places: "Все Места"
   all_projects: Все Проекты
   all_rank_added_to_the_database:
-    phylum: Все филы добавленные в базу данных
-    subphylum: Все субфилы добавленные в базу данных
-    superclass: Все суперклассы добавленные в базу данных
-    class: Все классы добавленные в базу данных
-    subclass: Все подклассы добавленные в базу данных
-    infraclass: Все инфраклассы добавленные в базу данных
-    superorder: Все надпорядки добавленные в базу данных
-    order: Все порядки добавленные в базу данных
-    suborder: Все подпорядки добавленные в базу данных
-    infraorder: Все инфраклассы добавленные в базу данных
-    superfamily: Все суперсемейства добавленные в базу данных
-    epifamily: Все эписемейства добавленные в базу данных
-    family: Все семейства добавленные в базу данных
-    subfamily: Все субсемейства добавленные в базу данных
-    supertribe: Все супертрибы добавленные в базу данных
-    tribe: Все трибы добавленные в базу данных
-    subtribe: Все субтрибы добавленные в базу данных
-    genus: Все рода добавленные в базу данных
-    genushybrid: Все родовые гибриды добавленные в базу данных
-    subgenus: Все подроды добавленные в базу данных
+    phylum: Все типы добавлены в базу данных
+    subphylum: Все подтипы добавлены в базу данных
+    superclass: Все суперклассы добавлены в базу данных
+    class: Все классы добавлены в базу данных
+    subclass: Все подклассы добавлены в базу данных
+    infraclass: Все инфраклассы добавлены в базу данных
+    superorder: Все надотряды добавлены в базу данных
+    order: Все отряды добавлены в базу данных
+    suborder: Все подотряды добавлены в базу данных
+    infraorder: Все инфраотряды добавлены в базу данных
+    superfamily: Все надсемейства добавлены в базу данных
+    epifamily: Все эписемейства добавлены в базу данных
+    family: Все семейства добавлены в базу данных
+    subfamily: Все подсемейства добавлены в базу данных
+    supertribe: Все супертрибы добавлены в базу данных
+    tribe: Все трибы добавлены в базу данных
+    subtribe: Все подтрибы добавлены в базу данных
+    genus: Все роды добавлены в базу данных
+    genushybrid: Все родовые гибриды добавлены в базу данных
+    subgenus: Все подроды добавлены в базу данных
     section: Все секции добавленные в базу данных
     subsection: Все подсекции добавленные в базу данных
     complex: Все комплексы добавленные в базу данных
@@ -713,6 +713,10 @@ ru:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Ограничительная рамка
   breadcrumbs: Панировочные сухари
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Это заменит h1 и действия по умолчанию, поэтому обязательно включите их, если они важны для этого проекта, и помните, что максимальная ширина 950px"
   brief_caption: Краткий заголовок
   brown: коричневый
@@ -1008,7 +1012,6 @@ ru:
   cover: Обложка
   create: Создать
   create_a_guide: Создать руководство
-  create_a_list: Создайте список
   create_a_new_field: Создать новое поле
   create_a_new_place: Создать новое место
   create_a_new_taxon: Создать новый таксон
@@ -2151,7 +2154,6 @@ ru:
   new_observation_field: Новое поле наблюдения
   new_observations: Новые наблюдения
   new_observations_in_year: "Новые наблюдения в %{year}"
-  new_observations_this_year: Новые наблюдения этого года
   new_observations_ellispsis: "Новые наблюдения..."
   new_observations_from_place_html: "Новые наблюдения из %{place}"
   new_observations_may_take_up_to: Может пройти до %{widget_expiration} минут, прежде чем новые наблюдения появятся в виджете.
@@ -2178,7 +2180,6 @@ ru:
   newly_added_species: Новые виды
   newly_observed_species: Новые наблюдаемые виды
   newly_observed_species_in_year: "Новые виды в %{year}"
-  newly_observed_species_this_year: Новые виды в этом году
   news: Новости
   next: След
   next_observation: Следующее наблюдение
@@ -2348,6 +2349,7 @@ ru:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     например, "2019-10-29 13:12:21"
+  observed_on_datetime: Наблюдалось %{datetime}
   observation_removed_from_the_project: "Наблюдения удалены из проекта %{project}"
   observation_requirements: Требования к наблюдению
   observation_rules: Правила наблюдения
@@ -3893,7 +3895,6 @@ ru:
   time_ago: "%{time} назад"
   title: название
   title_and_description: "Заголовок и описание"
-  titled_favorites_and_the_most_recent_additions: ', озаглавленный «Фавориты», и самые последние пополнения появятся в этом пространстве.'
   to_add_comments: чтобы добавить комментарии
   to_add_ids: добавить идентификации
   to_configure_your_widget: сформировать ваш виджет.
@@ -4181,7 +4182,6 @@ ru:
   w_photos_only: с фото
   w_sounds: со звуком
   wait_file_generation: Пожалуйста, подождите, пока файл будет сгенерирован. Для больших списков это может занять несколько минут.
-  want_to_show_off_some_of_your_favorite_taxa: Хотите, покажем здесь некоторые из ваших любимых таксонов?
   wanted: Разыскиваемые
   was_it_captive_cultivated?: "Было ли оно в неволе / культивируемое?"
   we_also_support: |
@@ -5775,6 +5775,8 @@ ru:
       show:
         take_a_chance_to_review_html: 'Воспользуйтесь возможностью просмотреть <a href="%{link}">наши рекомендации</a>.'
         this_user_was_banned: Этот пользователь был заблокирован
+        favorites_list_prompt_html: |
+          Хотите показать некоторые из ваших любимых таксонов? %{link_start_tag}Создайте список%{link_end_tag} под названием "Фавориты", и последние дополнения появятся в этом разделе.
     user_parents:
       confirm:
         thanks_donor_html: |
