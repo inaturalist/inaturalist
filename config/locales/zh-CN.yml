@@ -195,7 +195,6 @@ zh-CN:
   added!: 已添加！
   added_by: 添加自
   added_by_user_on_date_html: "由%{user}加入于%{date}"
-  added_on: 添加在
   added_to_favorites_html: |
     已添加至<a href="%{url}">收藏夹</a>
   adding: "正在添加……"
@@ -452,6 +451,10 @@ zh-CN:
   body: 身体
   bounding_box: 边界框
   breadcrumbs: 面包屑
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "这将取代h1和默认调用行为，因此如果它们对此项目很重要，请确保包含它们，并记住最大宽度允许值为950px"
   brief_caption: 简要描述
   brown: 棕色
@@ -708,7 +711,6 @@ zh-CN:
   cover: 封面
   create: 创建
   create_a_guide: 创建指导
-  create_a_list: 创建列表
   create_a_new_field: 创建一个新字段
   create_a_new_place: 创建一个新地点
   create_a_new_taxon: 创建一个新分类单元
@@ -2982,7 +2984,6 @@ zh-CN:
   time_ago: "%{time}前"
   title: 标题
   title_and_description: "标题和描述"
-  titled_favorites_and_the_most_recent_additions: 标题为“收藏夹”，最新添加的内容将出现在此空间中。
   to_add_comments: 要添加评论
   to_add_ids: 要添加ID
   to_configure_your_widget: 配置您的小部件。
@@ -3208,7 +3209,6 @@ zh-CN:
   w_photos_only: w/ 照片
   w_sounds: w/ 声音
   wait_file_generation: 请等待文件生成。较大的列表可能需要几分钟。
-  want_to_show_off_some_of_your_favorite_taxa: 想在这里展示一些您最喜欢的分类群吗？
   wanted: 希望的
   was_it_captive_cultivated?: "被俘虏/培养了吗？"
   we_also_support: |
