@@ -169,7 +169,7 @@ he:
   added!: נוסף!
   added_by: נוסף על־ידי
   added_by_user_on_date_html: "נוסף על־ידי %{user} בתאריך %{date}"
-  added_on: נוסף ב
+  added_on_datetime: "הוסף בתאריך %{datetime}"
   added_to_favorites_html: |
     נוסף ל<a href="%{url}">מועדפים</a>
   adding: "מוסיף..."
@@ -662,7 +662,6 @@ he:
   countries: מדינות
   create: יצירה
   create_a_guide: יצירת מגדיר
-  create_a_list: יצירת רשימה
   create_a_new_field: יצירת שדה חדש
   create_a_new_place: יצירת מיקום חדש
   create_a_new_taxon: יצירת טקסון חדש
@@ -1507,7 +1506,6 @@ he:
   new_observation_field: שדה תצפית חדש
   new_observations: תצפיות חדשות
   new_observations_in_year: "תצפיות חדשות ב %{year}"
-  new_observations_this_year: תצפיות חדשות השנה
   new_observations_ellispsis: "תצפיות חדשות..."
   new_observations_from_place_html: "תצפיות חדשות מ%{place}"
   new_observations_of_x_html: "תצפיות חדשות של %{x}"
@@ -1528,7 +1526,6 @@ he:
   newly_added_species: מינים חדשים שנוספו
   newly_observed_species: מינים חדשים שנצפו
   newly_observed_species_in_year: "מינים חדשים שנוספו ב %{year}"
-  newly_observed_species_this_year: מינים חדשים שנוספו השנה
   news: חדשות
   next: הבא
   next_observation: תצפית הבאה
@@ -1667,6 +1664,7 @@ he:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     לדוגמא "29-10-2019 13:12:21"
+  observed_on_datetime: נצפה ב %{datetime}
   observation_removed_from_the_project: "התצפית הוסרה מהפרוייקט %{project}"
   observation_requirements: דרישות לתצפית
   observation_rules: כללי התצפית
