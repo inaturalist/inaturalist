@@ -105,7 +105,6 @@ id:
   added: Ditambahkan
   added!: Ditambahkan!
   added_by: Ditambahkan oleh
-  added_on: Ditambahkan
   adding: "Menambahkan..."
   additional_range: Tambahan rentang
   additional_range_data_from_an_unknown_source: Berbagai data tambahan dari sumber yang tidak diketahui
@@ -273,6 +272,10 @@ id:
   body: Isi pesan
   bounding_box: melewati kotak
   breadcrumbs: Tepung roti
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Ini akan menggantikan H1 dan standar panggilan untuk bertindak, jadi pastikan untuk menyertakan mereka jika mereka penting untuk proyek ini dan ingat lebar max memungkinkan adalah 950px"
   brief_caption: keterangan singkat
   brown: Coklat
@@ -473,7 +476,6 @@ id:
   cover: Sampul
   create: Buat
   create_a_guide: Membuat panduan
-  create_a_list: Mmbuat daftar
   create_a_new_field: Membuat halaman baru
   create_a_new_place: Membuat lokasi baru
   create_a_new_taxon: Membuat taksa baru
@@ -2142,7 +2144,6 @@ id:
   time_ago: "%{time} yang lalu"
   title: judul
   title_and_description: "Judul & Deskripsi"
-  titled_favorites_and_the_most_recent_additions: Judul "Favorit" dan tambahan yang paling terbaru akan muncul dalam ruang ini.
   to_add_comments: untuk menambahkan komen
   to_add_ids: untuk menambahkan ID
   to_configure_your_widget: untuk mengkonfigurasi widget Anda.
@@ -2257,7 +2258,6 @@ id:
   view_all_of_your_observations_from_x: "Lihat semua dari pengamatan anda dari %{x}"
   vulnerable: rentan
   wait_file_generation: Silahkan tunggu sementara file yang dihasilkan. Ini dapat mengambil beberapa menit untuk daftar besar.
-  want_to_show_off_some_of_your_favorite_taxa: Ingin menunjukkan beberapa dari taksa favorit anda disini?
   was_it_captive_cultivated?: "Apakah itu captive / dibudidayakan?"
   we_also_support: |
     Kami juga mendukung <a href="http://flickr.com"> Flickr </a>, <a href="http://picasaweb.google.com"> Picasa </a>, dan <a href="http://facebook.com"> Facebook </a> untuk hosting gambar.
