@@ -228,7 +228,6 @@ pt:
   added!: Adicionado!
   added_by: Adicionado por
   added_by_user_on_date_html: "Adicionado(s) por %{user} em %{date}"
-  added_on: Adicionado a
   added_to_favorites_html: |
     Adicionado a <a href="%{url}">favoritos</a>
   adding: "A adicionar..."
@@ -529,6 +528,10 @@ pt:
   body: Corpo
   bounding_box: Retângulo Envolvente
   breadcrumbs: Rastos de navegação
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Isto irá substituir o h1 e as ações padrão, portanto certifique-se que são importantes para este projeto e lembre-se que a largura máxima é 950px"
   brief_caption: Breve legenda
   brown: castanho
@@ -777,7 +780,6 @@ pt:
   cover: Capa
   create: Criar
   create_a_guide: Criar um guia
-  create_a_list: Criar uma lista
   create_a_new_field: Criar um novo campo
   create_a_new_place: Criar um novo lugar
   create_a_new_taxon: Criar um novo táxon
@@ -1715,7 +1717,6 @@ pt:
   new_message: Nova mensagem
   new_observation_field: Novo campo de observação
   new_observations: Novas observações
-  new_observations_this_year: Novas Observações Este Ano
   new_observations_ellispsis: "Novas observações..."
   new_observations_from_place_html: "Novas observações em %{place}"
   new_observations_may_take_up_to: As novas observações podem demorar até %{widget_expiration} minutos  a aparecer no dispositivo.
