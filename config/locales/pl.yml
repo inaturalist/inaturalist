@@ -365,7 +365,6 @@ pl:
     <a target="%{target}" class="%{class}" href="%{url}">zamiany taksonów</a>
   added_by: Dodane przez
   added_by_user_on_date_html: "Dodane %{date} przez %{user}"
-  added_on: Dodane
   added_to_favorites_html: |
     Dodane do <a href="%{url}">ulubionych</a>
   adding: "Dodawanie..."
@@ -982,7 +981,6 @@ pl:
   cover: Okładka
   create: Utwórz
   create_a_guide: Stwórz przewodnik
-  create_a_list: Utwórz listę
   create_a_new_field: Stwórz nową notatkę
   create_a_new_place: Stwórz nowe miejsce
   create_a_new_taxon: Utwórz nowy takson
@@ -1989,7 +1987,6 @@ pl:
   new_message: Nowa wiadomość
   new_observation_field: Nowa notatka terenowa
   new_observations: Nowe obserwacje
-  new_observations_this_year: Nowe Obserwacje w tym roku
   new_observations_ellispsis: "Nowe obserwacje..."
   new_observations_from_place_html: "Nowe obserwacje z miejsca %{place}"
   new_observations_may_take_up_to: Pojawienie się nowych obserwacji w widgecie może zająć do %{widget_expiration} minut.
@@ -2013,7 +2010,6 @@ pl:
   newly_added_species: Nowo dodane gatunki
   newly_observed_species: Nowo zaobserwowane gatunki
   newly_observed_species_in_year: "Nowo dodane gatunki w %{year}"
-  newly_observed_species_this_year: Nowo dodane gatunki w tym roku
   news: Aktualności
   next: Następne
   next_observation: Następna obserwacja
@@ -3330,7 +3326,17 @@ pl:
     shared:
       blocked:
         youve_been_blocked: Zostałeś zablokowany
+        youve_blocked: Zablokowałeś tę osobę
+        youve_blocked_desc: |
+          Zablokowałeś właściciela tego zasobu, co uniemożliwia Ci
+          komunikowanie się z nim. Większość interaktywnych funkcji na tej stronie
+          nie zadziała.
+      spam:
+        message_for_owner_and_curators_html: |
+          To zostało zgłoszone jako spam i przestało być publicznie widoczne. Widzisz to, ponieważ jesteś tego autorem lub kuratorem strony. Jeśli uważasz, że to pomyłka, <a href="mailto:%{email}">skontaktuj się z nami</a>.
+        this_has_been_flagged_as_spam: To zostało zgłoszone jako spam
       not_found:
+        sorry_that_doesnt_exist: Przepraszamy, to nie istnieje!
         even_our_dedicated_search_mole_couldnt: Nawet nasz oddany kret poszukiwacz nie mógł niczego znaleźć!
     stats:
       index:
@@ -3353,6 +3359,9 @@ pl:
         obs_desc: Dodane w poprzednich siedmiu dniach
         obs_id_d_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie (może być obserwatora)
         other_desc_html: Dodane za pomocą innych aplikacji <a href="%{url}">stworzonych przez programistów</a>
+        recent_desc: Zarejestrowani w poprzednich siedmiu dniach
+        recent_w_0_obs: Najnowsi bez obserwacji
+        recent_w_7_obs: Najnowsi z dodanymi co najmniej siedmioma obserwacjami
         TTCID: TTCID
         TTCID_desc: Czas do otrzymania oznaczenia od kogoś innego, które pasuje do taksonu społeczności.
         TTID: TTID
@@ -3393,6 +3402,8 @@ pl:
           Takson może mieć maksymalnie %{max} zdjęć. Musisz usunąć
           istniejące zdjęcia, aby dodać więcej.
         no_trending_desc: Nic poniżej tego taksonu nie zaobserwowano w ostatnim miesiącu
+        photo_chooser_modal_desc: |
+          Przeciągnij tutaj zdjęcia z lewej strony lub przeciągnij tutaj zdjęcia, aby zmienić kolejność.
         rare_desc: Najrzadziej obserwowane zagrożone taksony
         rare_in_place_desc_html: Najrzadziej obserwowane zagrożone taksony w <a href="%{url}">%{place}</a>
         trending_desc: Najczęściej obserwowane taksony w zeszłym miesiącu
@@ -3455,11 +3466,16 @@ pl:
           Szczegóły awarii, takie jak dokładnie jaki wiersz kodu spowodował awarię
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Szczegóły urządzenia, takie jak marka i model telefonu komórkowego
+        project_settings_desc: |
+          Pamiętaj, że nie daje to projektom uprawnień do dostępu do twoich ukrytych współrzędnych lub wysyłania aktualizacji. Musisz dołączyć do projektów, aby przyznać te uprawnienia, lub przyznać je indywidualnie dla każdego przypadku.
         search_place_help_html: |
           Domyślna lokalizacja dla wyszukiwania obserwacji.
         scientific_name_first_desc: |
           Pokazuj nazwy naukowe przez nazwami zwyczajowymi.
+        taxon_change_desc: |
+          Gdy taksony na %{site_name} są scalane lub zmieniane są ich nazwy, Twoje obserwacje, taksony znajdujące się na listach, oznaczenia itp. zostaną automatycznie zaktualizowane do nowych taksonów, jeśli zmiana ta jest jednoznaczna. Jeśli zrezygnujesz z otrzymywania powiadomień o zmianach w taksonie lub zmiana jest niejednoznaczna (np. podział), otrzymasz aktualizację dotyczącą zmiany razem z linkiem do narzędzia, którego możesz użyć do ręcznej aktualizacji swojej zawartości.
         thanks_for_supporting_us!: Dziękujemy za wsparcie!
+        youve_used_all_of_your_blocks: Wykorzystałeś wszystkie swoje blokady. Usuń blokadę, aby dodać inną.
       recent:
         about_recent_users: O
         definitions_html: <dl> <dt>Prawdopodobnie spam</dt> <dd> Użytkownik, który jest prawdopodobnie spamerem, co oznacza, że nie posiada żadnych obserwacji ani oznaczeń, ale posiada opis profilu. </dd> <dt>Automatyczny spam</dt> <dd> Spamer, który został automatycznie oznaczony jako spamer przez system. </dd> <dt>Ręczny spam</dt> <dd> Spamer, który został ręcznie oznaczony jako spamer przez kuratora strony. </dd> <dt>False Positives</dt> <dd> Użytkownicy, którzy zostali oznaczeni jako spamerzy, ale zgłoszenia zostały rozstrzygnięte przez kuratorów, ponieważ użytkownicy w rzeczywistości nie byli spamerami. </dd> </dl>
@@ -3765,6 +3781,7 @@ pl:
     errors:
       format: '%{attribute} %{message}'
       messages:
+        accepted: musi zostać zaakceptowane
         less_than_or_equal_to: musi być mniejszy lub równy %{count}
         not_a_number: nie jest liczbą
         not_an_integer: musi być liczbą całkowitą
