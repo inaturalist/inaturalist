@@ -293,7 +293,7 @@ da:
     <a target="%{target}" class="%{class}" href="%{url}">takson-udskiftning</a>
   added_by: Tilføjet af
   added_by_user_on_date_html: "Tilføjet af %{user} den %{date}"
-  added_on: Tilføjet den
+  added_on_datetime: "Tilføjet %{datetime}"
   added_to_favorites_html: |
     Tilføjet til <a href="%{url}">favoritter</a>
   adding: "Tilføjer..."
@@ -614,6 +614,10 @@ da:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Geografisk område
   breadcrumbs: Brødkrummer
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Dette vil erstatte h1 og vil som standard kræve handling, så sørg for at medtage dem, hvis de er vigtige for dette projekt, og husk det maksimale tilladte er 950px"
   brief_caption: Kort billedtekst
   brown: brun
@@ -912,7 +916,6 @@ da:
   cover: Bannerbillede
   create: Oprette
   create_a_guide: Opret en Guide
-  create_a_list: Oprette en liste
   create_a_new_field: Opret et nyt felt
   create_a_new_place: Opret et nyt sted
   create_a_new_taxon: Opret en ny takson
@@ -2060,7 +2063,6 @@ da:
   new_observation_field: Nyt observationsfelt
   new_observations: Nye observationer
   new_observations_in_year: "Nye observationer i %{year}"
-  new_observations_this_year: Nye observationer dette år
   new_observations_ellispsis: "Nye observationer..."
   new_observations_from_place_html: "Nye observationer fra %{place}"
   new_observations_may_take_up_to: Nye observationer kan tage op til %{widget_expiration} minutter før de er synlige i din widget.
@@ -2087,7 +2089,6 @@ da:
   newly_added_species: Nyligt tilføjede arter
   newly_observed_species: Nyligt observerede arter
   newly_observed_species_in_year: "Nyligt tilføjede arter i %{year}"
-  newly_observed_species_this_year: Nyligt tilføjet arter dette år
   news: Nyheder
   next: Næste
   next_observation: Næste observation
@@ -2260,6 +2261,7 @@ da:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     f.eks. 2019-10-29 13:12:21
+  observed_on_datetime: Observeret %{datetime}
   observation_removed_from_the_project: "Observation fjernet fra projektet %{project}"
   observation_requirements: Krav til observationer
   observation_rules: Observationsregler
@@ -3812,7 +3814,6 @@ da:
   time_ago: "%{time} siden"
   title: titel
   title_and_description: "Titel & beskrivelse"
-  titled_favorites_and_the_most_recent_additions: '"Favoritter", og de seneste tilføjelser vises i dette felt.'
   to_add_comments: for at tilføje kommentarer
   to_add_ids: for at tilføje IDs
   to_configure_your_widget: for at konfigurere din widget.
@@ -4098,7 +4099,6 @@ da:
   w_photos_only: m/ foto´s
   w_sounds: m/ lyde
   wait_file_generation: Vent venligst, mens filen genereres. Det kan tage et par minutter for store lister.
-  want_to_show_off_some_of_your_favorite_taxa: Vil du vise nogle af dine yndlings taksa her?
   wanted: Ønsket
   was_it_captive_cultivated?: "Var det i fangenskab / dyrket?"
   we_also_support: |
@@ -6092,6 +6092,10 @@ da:
       show:
         take_a_chance_to_review_html: 'Benyt chancen til at gennemse <a href="%{link}">vores retningslinjer</a>'
         this_user_was_banned: Denne bruger er blevet suspenderet
+        favorites_list_prompt_html: |
+          Vil du vise nogle af dine favorittaksa? %{link_start_tag}Opret en
+          liste%{link_end_tag} kaldet "Favoritter" og de seneste tilføjelser
+          vil fremgå dér.
     user_parents:
       confirm:
         thanks_donor_html: |
