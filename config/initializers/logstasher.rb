@@ -146,6 +146,20 @@ module Logstasher
     end
   end
 
+  def self.write_custom_log(message, custom={})
+    return if Rails.env.test?
+    Logstasher.replace_known_types!(custom)
+    begin
+      Logstasher.write_hash( custom.merge({
+        "@timestamp": Time.now,
+        subtype: "Custom",
+        error_message: message
+      }))
+    rescue Exception => e
+      Rails.logger.error "[ERROR] Logstasher.write_custom_log failed: #{e}"
+    end
+  end
+
   def self.delayed_job(job, custom={})
     return if Rails.env.test?
     begin
