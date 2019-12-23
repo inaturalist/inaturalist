@@ -260,7 +260,6 @@ es-AR:
     <a target="%{target}" class="%{class}" href="%{url}"></a>
   added_by: Añadido por
   added_by_user_on_date_html: "Añadido por %{user} el %{date}"
-  added_on: Añadido el
   added_to_favorites_html: |
     Agregado a <a href="%{url}">favoritos</a>
   adding: "Añadiendo..."
@@ -578,6 +577,10 @@ es-AR:
   body: Cuerpo
   bounding_box: Contenedor
   breadcrumbs: Rastros de navegación
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Esto reemplazará el h1 y los llamados a acción por defecto, asegúrate de incluirlos si son importantes para este proyecto y recuerda que el ancho máximo permitido es de 950 px."
   brief_caption: Leyenda breve
   brown: marrón
@@ -860,7 +863,6 @@ es-AR:
   cover: Portada
   create: Crea
   create_a_guide: Crea una guía
-  create_a_list: Crea una lista
   create_a_new_field: Crea un nuevo campo
   create_a_new_place: Crea un lugar nuevo
   create_a_new_taxon: Crea una nueva especie o grupo
@@ -1988,7 +1990,6 @@ es-AR:
   new_message: Nuevo mensaje
   new_observation_field: Nuevo campo de observación
   new_observations: Nuevas observaciones
-  new_observations_this_year: Observaciones nuevas Este año
   new_observations_ellispsis: "Nuevas observaciones..."
   new_observations_from_place_html: "Nuevas observaciones del %{place}"
   new_observations_may_take_up_to: Las nuevas observaciones pueden tardar alrededor de %{widget_expiration} minutos en aparecer en el widget.
@@ -2013,7 +2014,6 @@ es-AR:
   newly_added: Añadido Recientemente
   newly_added_species: Especie Añadida recientemente
   newly_observed_species: Especie Observada recientemente
-  newly_observed_species_this_year: Especie Añadida recientemente Este año
   news: Noticias
   next: Siguiente
   next_observation: Siguiente observación
@@ -3692,7 +3692,6 @@ es-AR:
   time_ago: "hace %{time}"
   title: título
   title_and_description: "Título y Descripción"
-  titled_favorites_and_the_most_recent_additions: titulada "Favoritos" y las adiciones más recientes aparecerán en este espacio.
   to_add_comments: para agregar comentarios.
   to_add_ids: para agregar identificaciones
   to_configure_your_widget: para configurar tu widget.
@@ -3967,7 +3966,6 @@ es-AR:
   w_photos_only: con fotos solamente
   w_sounds: con sonidos
   wait_file_generation: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
-  want_to_show_off_some_of_your_favorite_taxa: '¿Deseas mostrar algunos de tus taxones favoritos aquí?'
   wanted: Requerido
   was_it_captive_cultivated?: "¿Fue cautiva / cultivado?"
   we_also_support: |
