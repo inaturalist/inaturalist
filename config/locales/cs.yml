@@ -152,7 +152,6 @@ cs:
   added!: Přidáno!
   added_by: Přidáno uživatelem
   added_by_user_on_date_html: "Přidáno uživatelem %{user} dne %{date}"
-  added_on: Přidáno na
   added_to_favorites_html: |
     Přidáno k <a href="%{url}">oblíbeným</a>
   adding: "Přidávání..."
@@ -388,6 +387,10 @@ cs:
   body: Tělo
   bounding_box: Ohraničení
   breadcrumbs: Strouhanka
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Toto nahradí h1 a základní nastavení výzev, proto je přidejte, pokud jsou pro tento projekt důležité, a nezapomeňte, že maximální povolená velikost je 950px"
   brief_caption: Stručný titulek
   brown: hnědá
@@ -647,7 +650,6 @@ cs:
   cover: Obal
   create: Vytvořit
   create_a_guide: Vytvořit průvodce
-  create_a_list: Vytvořit seznam
   create_a_new_field: Vytvořit nové pole
   create_a_new_place: Vytvořit nové místo
   create_a_new_taxon: Vytvořit nový taxon
@@ -1643,7 +1645,6 @@ cs:
   new_message: Nová zpráva
   new_observation_field: Nové pole pozorování
   new_observations: Nová pozorování
-  new_observations_this_year: Nová pozorování v tomto roce
   new_observations_ellispsis: "Nová pozorování..."
   new_observations_from_place_html: "Nová pozorování z %{place}"
   new_observations_may_take_up_to: Zobrazení nových pozorování ve widgetu může trvat až %{widget_expiration} minut.
@@ -1668,7 +1669,6 @@ cs:
   newly_added: Nově přidáno
   newly_added_species: Nově přidané druhy
   newly_observed_species: Nově pozorované druhy
-  newly_observed_species_this_year: Nově přidané druhy v tomto roce
   news: Novinky
   next: Další
   next_observation: Další pozorování
@@ -3121,7 +3121,6 @@ cs:
   time_ago: "před %{time}"
   title: název
   title_and_description: "Název a popis"
-  titled_favorites_and_the_most_recent_additions: s názvem „Oblíbené“ a na tomto místě se objeví nově přidané.
   to_add_comments: přidat komentáře
   to_add_ids: přidat ID
   to_configure_your_widget: ke konfiguraci vašeho widgetu.
@@ -3368,7 +3367,6 @@ cs:
   w_photos_only: s fotkami
   w_sounds: se zvuky
   wait_file_generation: Počkejte prosím, než se soubor vygeneruje. U velkých seznamů to může trvat několik minut.
-  want_to_show_off_some_of_your_favorite_taxa: Chcete tady ukázat některé své oblíbené taxony?
   wanted: Hledaný
   was_it_captive_cultivated?: "Byl v zajetí / pěstovaný?"
   we_also_support: |
