@@ -165,7 +165,6 @@ sq:
   added!: Shtuar!
   added_by: Shtuar nga
   added_by_user_on_date_html: "Shtuar nga %{user} më %{date}"
-  added_on: Shtuar më
   added_to_favorites_html: |
     Shtuar te <a href="%{url}">favorites</a>
   adding: "Duke shtuar..."
@@ -425,6 +424,10 @@ sq:
   body: Trupi i mesazhit
   bounding_box: Kutia e kufizimit
   breadcrumbs: Thërrime buke
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Kjo do të zëvendësojë h1 dhe thirrjet automatike për veprim, prandaj sigurohuni që t'i përfshini ato nëse janë të rëndësishme për këtë projekt dhe mos harroni që gjerësia maksimale e lejuar është 950px"
   brief_caption: Titull i shkurtër
   brown: bojë kafe
@@ -677,7 +680,6 @@ sq:
   cover: Mbulim
   create: Krijo
   create_a_guide: Krijo një udhëzues
-  create_a_list: Krijo një listë
   create_a_new_field: Krijo një fushë të re
   create_a_new_place: Krijo një vend të ri
   create_a_new_taxon: Krijo një taxon të ri
