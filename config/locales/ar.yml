@@ -150,7 +150,6 @@ ar:
   added!: تمت إضافته!
   added_by: أُضيفت بواسطة
   added_by_user_on_date_html: "تمت الإضافة بواسطة %{user} في %{date}"
-  added_on: تمت الإضافة في
   added_to_favorites_html: |
     تمت الإضافة إلى <a href="%{url}">المفضلة</a>
   adding: "تجري الإضافة..."
@@ -395,6 +394,10 @@ ar:
   body: جسم
   bounding_box: صندوق الربط
   breadcrumbs: ممر التصفح
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "سيحل هذا محل h1 والعبارات التي تحث المستخدم على اتخاذ إجراء; لذا تأكد من تضمينها إذا كانت مهمة لهذا المشروع وتذكر أن الحد الأقصى المسموح به للعرض هو 950 بكسل"
   brief_caption: شرح موجز
   brown: بني
@@ -677,7 +680,6 @@ ar:
   cover: غلاف
   create: إنشاء
   create_a_guide: إنشاء دليل
-  create_a_list: إنشاء قائمة
   create_a_new_field: إنشاء حقل جديد
   create_a_new_place: إنشاء مكان جديد
   create_a_new_taxon: إنشاء أصنوفة جديدة
@@ -1732,7 +1734,6 @@ ar:
   new_message: رسالة جديدة
   new_observation_field: حقل ملاحظة جديد
   new_observations: ملاحظات جديدة
-  new_observations_this_year: ملاحظات جديدة هذا العام
   new_observations_ellispsis: "ملاحظات جديدة..."
   new_observations_from_place_html: "ملاحظات جديدة من %{place}"
   new_observations_may_take_up_to: قد تستغرق الملاحظات الجديدة ما يصل إلى %{widget_expiration} دقائق لتظهر في الأداة.
@@ -1757,7 +1758,6 @@ ar:
   newly_added: مضاف حديثا
   newly_added_species: الأنواع المضافة حديثا
   newly_observed_species: الأنواع الملاحظة حديثا
-  newly_observed_species_this_year: الأنواع المضافة حديثا هذا العام
   news: الأخبار
   next: التالي
   next_observation: الملاحظة التالية
@@ -3379,7 +3379,6 @@ ar:
   time_ago: "قبل %{time}"
   title: العنوان
   title_and_description: "العنوان والوصف"
-  titled_favorites_and_the_most_recent_additions: بعنوان "المفضلة" وستظهر أحدث الإضافات في هذه المساحة.
   to_add_comments: لإضافة تعليقات
   to_add_ids: لإضافة معرفات
   to_configure_your_widget: لتكوين أداتك.
@@ -3646,7 +3645,6 @@ ar:
   w_photos_only: بصور
   w_sounds: بأصوات
   wait_file_generation: يُرجَى الاستمرار في حين يتم إنشاء الملف، قد يستغرق الأمر بضع دقائق للقوائم الكبيرة.
-  want_to_show_off_some_of_your_favorite_taxa: تريد إظهار بعض من أصنافك المفضلة هنا؟
   wanted: مطلوب
   was_it_captive_cultivated?: "هل كان أسير / مزروع؟"
   we_also_support: |
