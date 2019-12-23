@@ -9059,6 +9059,13 @@ CREATE INDEX index_users_on_journal_posts_count ON public.users USING btree (jou
 
 
 --
+-- Name: index_users_on_last_ip; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_last_ip ON public.users USING btree (last_ip);
+
+
+--
 -- Name: index_users_on_life_list_taxa_count; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10026,4 +10033,6 @@ INSERT INTO schema_migrations (version) VALUES ('20191104233418');
 INSERT INTO schema_migrations (version) VALUES ('20191115201008');
 
 INSERT INTO schema_migrations (version) VALUES ('20191203201511');
+
+INSERT INTO schema_migrations (version) VALUES ('20191210173400');
 

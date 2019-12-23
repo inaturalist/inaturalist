@@ -1230,6 +1230,51 @@ describe User do
     end
   end
 
+  describe "ip_address_is_often_suspended" do
+    let( :ip ) { "127.0.0.1" }
+    it "nils are OK" do
+      expect( User.ip_address_is_often_suspended( nil ) ).to be false
+    end
+
+    it "uknown IPs are OK" do
+      expect( User.where( last_ip: ip ).count ).to be 0
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "unsuspended IPs are OK" do
+      # 0 suspended, 10 active: 0% suspended, returns false
+      10.times{ User.make!( last_ip: ip ) }
+      expect( User.where( last_ip: ip ).count ).to be 10
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "less than two total occurrences is OK" do
+      # 2 suspended, 0 active: 100% suspended, but less than 3 total, returns false
+      2.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "three or more suspended accounts is not OK" do
+      # 3 suspended, 0 active: 100% suspended, returns false
+      3.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      expect( User.ip_address_is_often_suspended( ip ) ).to be true
+    end
+
+    it "under 90% suspended is OK" do
+      # 3 suspended, 1 active: 75% suspended, returns false
+      3.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      User.make!( last_ip: ip )
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "returns true when over 90% of accounts are suspended" do
+      # 9 suspended, 1 active: 90% suspended, returns true
+      9.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      User.make!( last_ip: ip )
+      expect( User.ip_address_is_often_suspended( ip ) ).to be true
+    end
+  end
+
   protected
   def create_user(options = {})
     opts = {

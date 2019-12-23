@@ -45,6 +45,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
 
+    if User.ip_address_is_often_suspended( requestor_ip )
+      errors ||= []
+      errors << I18n.t( :there_was_a_problem_creating_this_account )
+      resource.errors.add( :recaptcha, I18n.t( :there_was_a_problem_creating_this_account ) )
+      Logstasher.write_custom_log(
+        "User create failed: #{requestor_ip}", request: request, session: session, user: resource )
+    end
+
     # If for some reason a user is already signed in, don't allow them to make
     # another user
     if current_user && current_user.id != Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
