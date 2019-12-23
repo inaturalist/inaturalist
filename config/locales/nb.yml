@@ -290,7 +290,7 @@ nb:
     Lagt til som del av et <a target="%{target}" class="%{class}" href="%{url}">taksonbytte</a>
   added_by: Lagt til av
   added_by_user_on_date_html: "Lagt til av %{user} på %{date}"
-  added_on: Lagt til på
+  added_on_datetime: "Lagt til på %{datetime}"
   added_to_favorites_html: |
     Lagt til i <a href="%{url}">favoritter</a>
   adding: "Legger til..."
@@ -610,6 +610,10 @@ nb:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Avgrensningsboks
   breadcrumbs: Brødsmulesti
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Dette vil erstatte h1'en og standardanmodninger, så sørg for at du inkluderer disse hvis de er viktige for dette prosjektet. Husk også at den tillatte bredden er maks 950 piksler"
   brief_caption: Kort bildetekst
   brown: brun
@@ -909,7 +913,6 @@ nb:
   cover: Coverbilde
   create: Opprett
   create_a_guide: Opprett en guide
-  create_a_list: Opprett en liste
   create_a_new_field: Opprett et nytt felt
   create_a_new_place: Opprett et nytt sted
   create_a_new_taxon: Opprett et nytt takson
@@ -2044,7 +2047,6 @@ nb:
   new_observation_field: Nytt observasjonsfelt
   new_observations: Nye observasjoner
   new_observations_in_year: "Nye observasjoner i %{year}"
-  new_observations_this_year: Nye observasjoner i år
   new_observations_ellispsis: "Nye observasjoner..."
   new_observations_from_place_html: "Nye observasjoner fra %{place}"
   new_observations_may_take_up_to: Det kan ta inntil %{widget_expiration} minutter før nye observasjoner blir synlige i widgeten.
@@ -2071,7 +2073,6 @@ nb:
   newly_added_species: Nye arter lagt til
   newly_observed_species: Nye arter observert
   newly_observed_species_in_year: "Nye arter lagt til i %{year}"
-  newly_observed_species_this_year: Nye arter lagt til i år
   news: Nyheter
   next: Neste
   next_observation: Neste observasjon
@@ -2241,6 +2242,7 @@ nb:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     f.eks. "2019-10-29 13:12:21"
+  observed_on_datetime: Observert på %{datetime}
   observation_removed_from_the_project: "Observasjon fjernet fra prosjektet \"%{project}\""
   observation_requirements: Observasjonskrav
   observation_rules: Observasjonsregler
@@ -3741,7 +3743,6 @@ nb:
   time_ago: "for %{time} siden"
   title: tittel
   title_and_description: "Tittel & beskrivelse"
-  titled_favorites_and_the_most_recent_additions: med tittelen "favoritter" og de nyeste tillegg vil vises her.
   to_add_comments: for å legge til kommentarer
   to_add_ids: for å legge til ID-er
   to_configure_your_widget: for å konfigurere din widget.
@@ -4023,7 +4024,6 @@ nb:
   w_photos_only: med bilder
   w_sounds: med lyder
   wait_file_generation: Vennligst vent mens denne filen genereres. Det kan ta noen minutter for store lister.
-  want_to_show_off_some_of_your_favorite_taxa: Vil du vise frem noen av dine favoritte taksa her?
   wanted: Ønskes
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
   we_also_support: |
@@ -5559,6 +5559,8 @@ nb:
       show:
         take_a_chance_to_review_html: 'Ta en titt på <a href="%{link}">våre retningslinjer</a>.'
         this_user_was_banned: Denne brukeren er suspendert
+        favorites_list_prompt_html: |
+          Vil du vise frem noen av dine favorittaksa? %{link_start_tag}Opprett ei liste%{link_end_tag} med tittelen "Favoritter" og de nyeste som ble lagt til vil vises her.
     user_parents:
       confirm:
         thanks_donor_html: |
