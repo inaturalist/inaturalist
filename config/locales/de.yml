@@ -1269,6 +1269,8 @@ de:
   get_started: Anfangen
   getting_started_guide: Anleitung für den Einstieg
   give_it_some_detail: Bitte detaillieren!
+  give_monthly_caps: MONATLICH SPENDEN
+  give_now_caps: JETZT SPENDEN
   global_names: Globale Namen
   globally: Global
   go: Los
@@ -1326,6 +1328,7 @@ de:
   hide_content: Inhalt ausblenden
   hide_desc: |
     Das Verstecken von Inhalten macht sie für die Öffentlichkeit unsichtbar, aber die Leute werden immer noch in der Lage sein zu erkennen, dass etwas verborgen ist, und Kuratoren und der Autor des Inhalts wird weiterhin in der Lage sein, den versteckten Inhalt zu sehen. Im Allgemeinen ist dies gilt nur für schriftliche Inhalte, z.B. wenn Sie den Inhalt eines Artikels ausblenden. Identifizierungen sind noch sichtbar, aber Bemerkungen sind nicht sichtbar. Sie können dies nicht rückgängig machen, und nur das Personal der Website kann es wieder einblenden. Also sei vorsichtig und verwende dies nur für sehr anstößige Inhalte.
+  hide_running_total: Gesamtzahl ausblenden
   hide_uncountable_species: Unzählbare Arten verstecken
   high: Hoch
   highest_rank: Höchster Rang
@@ -1758,6 +1761,8 @@ de:
       h: "1 h"
       #Short text representing 1 day in the past
       d: "1 d"
+      #Short text representing %d days in the past
+      dd: "%dT"
   month: Monat
   months: Monate
   more: Mehr
@@ -1832,6 +1837,7 @@ de:
   new_message: Neue Nachricht
   new_observation_field: Neues Beobachtungsfeld
   new_observations: Neue Beobachtungen
+  new_observations_in_year: "Neue Beobachtungen in %{year}"
   new_observations_this_year: Neue Beobachtungen in diesem Jahr
   new_observations_ellispsis: "Neue Beobachtungen..."
   new_observations_from_place_html: "Neue Beobachtungen aus %{place}"
@@ -1851,6 +1857,7 @@ de:
   new_trip: Neuer Trip
   new_updates_in_the_last_24_hours_from: "Neue Aktualisierungen in den letzten 24 Std. von %{site_name}"
   new_users: Neue Benutzer
+  new_users_in_year: "Neue Benutzer in %{year}"
   new_users_w_7_obs: Neue Benutzer mit 7 Beobachtungen
   newly_added: Kürzlich hinzugefügt
   newly_added_species: Kürzlich hinzugefügte Arten
@@ -2890,6 +2897,7 @@ de:
     must_be_observed_in_place: muss beim Ort beobachtet werden
     must_be_in: muss in Taxon sein
     must_be_coordinates_shareable_by_project_curators: Der Beobachter muss den Projektkuratoren erlauben, die Koordinaten einzusehen.
+  running_total: Gesamtzahl
   same_day_private: Eine weitere Beobachtung dieser Person an diesem Tag ist privat
   said: sagte
   satellite: Satellit
@@ -2991,6 +2999,7 @@ de:
   show_observation_photos: Beobachtungsfotos zeigen
   show_off_your_recent_observations: Zeige Deine neuesten Beobachtungen auf Deinem Blog oder Deiner Webseite!
   show_only: Nur anzeigen
+  show_running_total: Gesamtzahl anzeigen
   show_scientific_name_first: Wissenschaftliche Namen bevorzugen
   show_taxa_from_both: (Taxa von beiden Listen anzeigen)
   show_taxa_from_everywhere: "Taxa von überall anzeigen"
@@ -3614,6 +3623,7 @@ de:
   x_wrote_a_new_post_html: "%{x} hat einen neuen Eintrag geschrieben"
   x_wrote_y_new_posts_html: "%{x} hat %{y} neue Beiträge geschrieben"
   year: Jahr
+  year_in_review: "Jahresrückblick auf %{year}"
   year_month: Jahr/Monat
   yellow: gelb
   'yes': "Ja"
@@ -3909,6 +3919,9 @@ de:
       captive_help_html: |
         War der Organismus <strong>kultiviert</strong> oder
         <strong>in Gefangenschaft</strong>? Zum Beispiel, war er in einem <strong>Garten, Zoo, Aquarium</strong> oder in einer anderen Situation, in der es nur präsent war <strong>weil ihn die Menschen dort vorgesehen haben</strong>? Alle Beobachtungen von Lebewesen sind willkommen, aber wir möchten wissen, wenn etwas nicht wild oder naturbelassen ist.
+      compare:
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Zeitintervall
       export:
         choose_columns_desc: Wähle die Spalte die du exportieren willst
         ident_by_user_desc_html: |
@@ -4246,6 +4259,12 @@ de:
         TTCID: TTCID
         TTID: TTID
       year:
+        donate_title: "Besonderer Dank an alle unsere Unterstützer"
+        donate_desc_html: |
+          Vielen Dank für deine Großzügigkeit mit deiner Zeit, Aufmerksamkeit, Kompetenz und Spenden! iNaturalist ist eine gemeinnützige Gemeinschaftsinitiative der California Academy of Sciences und der National Geographic Society. Sie wird von einem internationalen <a href="%{team_url}">kleinem Team</a> betrieben, das das ganze Design und die Softwareentwicklung für Web, Mobile und <a href="%{seek_url}">Seek von iNaturalist</a> macht, zusätzlich zur Organisation von gemeinschaftlicher Unterstützungen, Kollaborationen und Integrationen, die die Dinge laufen lassen (und sich schnell weiterentwickeln!). Das Programm stützt sich auf zahlreiche Zuschüsse und Spenden, einschließlich der karitativen Beiträge von weniger als 0,2% der Spender. Besonders dankbar sind wir den monatlichen Unterstützern deren wiederkehrende Gaben uns helfen, für die Zukunft zu planen. Du kannst in mehr als 30 Währungen spenden, um die Kernaktivitäten von iNaturalist zu unterstützen. Vielen Dank an alle, die dazu beigetragen haben, dass 2019 das bisher größte Jahr überhaupt für iNaturalis war!
+        inaturalist_network: iNaturalist-Netzwerk
+        inaturalist_network_desc: |
+          Schau dir den Jahresrückblick für die Mitglieder des iNaturalist-Netzwerks an.
         include_usa: USA einbeziehen
         growth_by_country_title: Wachstum nach Land
         growth_in_year_obs: "Wachstum in %{year} (obs)"
@@ -4256,8 +4275,21 @@ de:
           Du kannst auch die gesamte Artenakkumulation anzeigen oder den Schieberegler in der Zeit zurück bewegen, um andere neu beobachtete Arten zu sehen. Dieses Diagramm zeigt Arten aus verifizierbaren Beobachtungen in dem Monat, in dem sie auf %{site_name} (nicht der Monat, in dem sie beobachtet wurden) hochgeladen wurden. Es werden nicht über- oder untergeordnete Taxa inkludiert, so dass eine Beobachtung, die als Säugetier bestimmt wurde, nicht gezählt wird, und eine Beobachtung von <i>Canis lupus</i> ssp. <i>arctos</i> wird einfach als <i>Canis lupus</i> gezählt.
         percent_growth_in_year: "% Wachstum in %{year}"
         percent_of_total_growth: "% des Gesamtwachstums"
+        publications_desc_html: |
+          Für weitere Informationen über die Bedeutung der Zahlen und Farben klicke auf die Blumendiagramme. Impact-Daten und Diagramme mit freundlicher Genehmigung von <a href="https://www.altmetric.com">Altmetric</a>. Informationen zur Datennutzung mit freundlicher Genehmigung unserer Freunde der <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          <br/>
+          <a href="%{url}">Alle %{numStudies} Studien anzeigen</a>
+        publications_desc_short_html: |
+          Für weitere Informationen über die Bedeutung der Zahlen und Farben klicke auf die Blumendiagramme. Impact-Daten und Diagramme mit freundlicher Genehmigung von <a href="https://www.altmetric.com">Altmetric</a>. Informationen zur Datennutzung mit freundlicher Genehmigung unserer Freunde der <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Beobachtungssträhnen
         observation_streaks_color_desc: |
           Die Farbe repräsentiert die Anzahl der Tage auf einer logarithmischen Skala:
+        observation_streaks_desc: |
+          Eine Beobachtungssträhne ist ein Zeitraum, in dem jemand nach draußen gegangen ist und jeden Tag neue, verifizierbare Beobachtungen aufgenommen hat. Hier zeigen wir die längsten solche Strähnen, die in diesem Jahr begannen oder im Gange waren, als diese Statistiken erstellt wurden.
+        stats_generated_datetime: Statistiken generiert am %{datetime}
+        store_prompt: |
+          Willst du deinen iNat-Stolz überall zeigen, wohin du gehst? Dann schau dir den iNat Store an!
         translators_title: Übersetzer
         translators_desc: |
           Wusstest du, dass iNaturalist in %{x_languages} übersetzt wurde und fast ausschließlich von %{x_people}, von denen einige nicht einmal iNat benutzen? Hier sind all die erstaunlichen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet mit der Anzahl der von Ihnen übersetzten Wörter für die

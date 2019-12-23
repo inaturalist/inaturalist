@@ -21,6 +21,9 @@ ca:
   x_identifiers_html:
     one: '<span class="count">%{count}</span> identificador'
     other: '<span class="count">%{count}</span> identificadors'
+  x_languages:
+    one: "%{count} idioma"
+    other: "%{count} idiomes"
   x_journal_posts_html:
     one: '<span class="count">1</span> article'
     other: '<span class="count">%{count}</span> articles'
@@ -51,9 +54,15 @@ ca:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observació revisada"
     other: "<span class='count'>%{count}</span> observacions revisades"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Observador'
+    other: '<span class="count">%{count}</span> Observadors'
   x_others:
     one: "1 altre"
     other: "%{count} més"
+  x_people:
+    one: "%{count} persona"
+    other: "%{count} persones"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} Persones</strong> han ajudat %{user} amb <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 foto"
@@ -61,6 +70,9 @@ ca:
   x_new_species:
     one: "1 Espècie Nova"
     other: "%{count} Espècies Noves"
+  x_new_users:
+    one: '%{count} Nou Usuari'
+    other: '%{count} Nous Usuaris'
   x_species:
     one: '1 espècie'
     other: '%{count} espècies'
@@ -100,6 +112,26 @@ ca:
   a_flag_for_x: "una marca de %{x}"
   a_member_of: "Un membre de"
   a_member_of_taxon_html: "un tipus de %{taxon}"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{m:un|f:una|n:un} %{resource}"
   about: Quant a
   about_blocking: Quant al Bloqueig
   about_charts: Quant als gràfics
@@ -158,6 +190,7 @@ ca:
   add_an_observation: Afegiu una observació
   add_an_observation?: Afegir una observació?
   add_an_observation_of: "Afegiu una observació de %{taxon}"
+  add_an_observation_to_project_html: Afegir una observació a %{project}
   add_annotations_for_x: Afegiu observacions de "%{x}"
   add_annotations_for_controlled_attribute:
     sex: Afegiu anotacions sobre "Sexe"
@@ -455,6 +488,7 @@ ca:
   assessment_x: "%{assessment} valoracions"
   assessments: valoracions
   associations: Associacions
+  atlas_for_taxon_html: Atles de %{taxon}
   at_time: "a %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -467,6 +501,8 @@ ca:
   attribution: Reconeixement
   authority_list:
     iucn_red_list: Llista vermella d'UICN
+    natureserve: NatureServe
+    cites: CITES
   authorize: Autoritzeu
   authorize_permissions_from_provider: "Autoritza permisos de %{provider}"
   automatic_short: Automàtic
@@ -514,6 +550,7 @@ ca:
   before_importing_photos: abans d'importar fotos.
   belives_this_is_a_comprehensive_list_of: creu que aquesta és una llista exhaustiva de
   bg_color: Color BG
+  bioblitz: Bioblitz
   birds: aus
   birthday: Aniversari
   black: negre
@@ -525,6 +562,8 @@ ca:
   blue_butterfly_etc: "blau, papallona, etc."
   blue_icons_represent_political_units: "Les icones blaves representen unitats polítiques com ara països o estats i entitats afins, i les icones verdes representen diferents tipus d'espais oberts, parcs i reserves. Si us hi apropeu, podreu veure llocs més petits."
   body: Cos
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}</strong>%{value}"
   bounding_box: Contenidor
   breadcrumbs: Rastres de navegació
   breadcrumbs_description: "Això reemplaçarà l'h1 i la configuració per defecte de l'acció; assegureu-vos d'incloure-hi totes les opcions importants per a aquest projecte i recordeu que l'amplada màxima permesa és de 950 px."
@@ -552,6 +591,8 @@ ca:
   captive: Captiu
   captive_cultivated: En captivitat / Cultivat
   card: Targeta
+  casual: ocasional
+  casual_: Ocasional
   categories: categories
   cc_0_description: "Aquesta llicència allibera la seva obra a domini públic, de manera que els altres poden copiar, modificar, distribuir i dur a terme el seu treball, fins i tot amb finalitat comercial, sense demanar permís, o donar-li crèdit. Aquesta és la llicència més lliure de les que s'ofereixen. Recomanat per a una màxima difusió i ús de la llicència de materials."
   cc_0_name: Sense drets d'autor (CC0)
@@ -623,6 +664,7 @@ ca:
   check_list: llista de comprovació de
   check_list_description: Seleccioneu un tàxon d'un rang superior si voleu que aparegui en aquesta llista, com ara "Aus" per a aus, o "Amphibia" per a amfibis. Quan acabeu, aquesta llista no admetrà tàxons que no hi estiguin inclosos. Per exemple, si creeu una llista d'aus, no podreu afegir-hi granotes.
   check_list_for_individual_taxa_that: 'Llistes de comprovació per a una espècie o grup específic que habita aquí, p. ex. Aus de %{place}.'
+  check_list_for_taxon_html: "Llista de comprovació de %{taxon}"
   check_lists_must_belong_to_a_place: |
     Les llistes de comprovació han de fer referència a un lloc. Per crear una nova llista de comprovació, visiteu una llista de comprovació d'un lloc per defecte i feu clic en l'enllaç "Crear una nova llista de comprovació'.
   check_list_of_species_occuring_in: Llista de comprovació d'espècies que existeixen a
@@ -702,6 +744,7 @@ ca:
   comparing_observations_from: "Comparació de les observacions de %{user} el %{dates}"
   compiled_by_name: "Elaborat per %{name}"
   complete: Complet
+  complete_set_for_taxon_in_place_html: "Llista completa de %{taxon} a %{place}"
   completed: Completat
   completed_at: Completat a
   comprehensive: completa
@@ -756,14 +799,25 @@ ca:
     female: Femella
     plant_phenology: Fenologia de la planta
     budding: Gemmació
+    flower_budding: Gemmes florals
     flowering: Floració
     fruiting: Fructificació
     life_stage: Etapa biològica
+    adult: Adult
     teneral: Imago tendre
+    subimago: Subimago
+    pupa: Pupa
     nymph: Nimfa
+    larva: Larva
     egg: Ou
     juvenile: Juvenil
+    alive_or_dead: Viu o Mort
+    alive: Viu
+    dead: Mort
     cannot_be_determined: No se’n pot determinar
+  controlled_term_definitions:
+    flower_budding: Es veuen les flors però no s'han obert
+    teneral: Adult que ja pupat recentment però no ha assolit encara la seva forma adulta definitiva
   controls: Controls
   convert: Convertiu
   coordinate_systems: Sistemes de coordenades
@@ -880,6 +934,7 @@ ca:
       november: Novembre
       december: Desembre
   date_is_accurate: La data és correcta
+  date_joined: Data quan es va unir
   date_observed: Data d'observació
   date_observed_: Data de l'observació
   date_observed_on: data en què es va observar
@@ -892,6 +947,11 @@ ca:
   date_range: Interval de dates
   date_specified: Data especificada
   date_time: Data/Hora
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: Data d’actualització
   day: Dia
   decrease_brightness: Reduïu brillantor
@@ -955,6 +1015,9 @@ ca:
   doesnt_have_default_photo: encara no teniu una foto per defecte.
   doh_something_went_wrong: Alguna cosa no ha anat bé.
   doh_something_went_wrong_error: "Oh, alguna cosa ha anat malament: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DONAR
   done: Fet
   dont_have_an_account_sign_up_html: No teniu un compte?<strong>Registreu-vos</strong>
   dont_send_me_email: "No m'envieu cap correu electrònic!"
@@ -1035,6 +1098,7 @@ ca:
   editing_taxon_range: Modifica rang del tàxon
   editing_this: Modificant %{elem}
   editing_x_in_y: "Editant %{x} en %{y}"
+  editors: Editors
   either: Qualsevol
   either_that_user_doesnt_exist_or: "Aquest usuari no existeix o ja l'esteu seguint."
   eligible_for_research_grade: Elegible per a grau de Recerca
@@ -1056,6 +1120,7 @@ ca:
   endangered: En perill
   endemic: Endèmica
   endemic_to_x: "Endèmica de %{x}"
+  eol: EOL
   eol_collection_url: "URL de la col·lecció EOL"
   error_updating_photo: "Error pujant la foto: %{photo_errors}"
   establishment:
@@ -1099,6 +1164,7 @@ ca:
   extinct_in_the_wild: Extingit en estat silvestre
   extra_properties: Propietats extres
   evidence_of_organism: Evidència d'organisme
+  facebook: Facebook
   facebook_account_information: Informació del vostre compte de Facebook
   facebook_account_not_linked: "L'usuari %{user} no té un enllaç a un compte de facebook, per tant %{site_name} no té permís per accedir a aquesta foto."
   facebook_access_token_expired: "L'accés ha caducat. %{user} ha de tornar a enllaçar amb el seu compte de Facebook."
@@ -1168,6 +1234,8 @@ ca:
   flag_for_curation: Marca per revisió.
   flag_it!: Marca’l!
   flag_marked_as_resolved_html: '<span class=meta>Marca com a</span> <strong>resolt.</strong>'
+  #Label for the object that was flagged, e.g. a table header
+  flag_object: Objecte
   flag_reason: "\"Marco aquest %{record} perquè"
   flag_saved: Advertència desada.
   flag_saved_thanks_html: Marca desada. Gràcies! <a href="%{url}" class="readmore">Veure la marca</a>
@@ -1306,6 +1374,8 @@ ca:
   hex_color_eg: Color en hexadecimal, ex. 65644F
   hi: Hola.
   hi_user: "Hola %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Amaga
   hide_content: Amaga Contingut
   hide_desc: |
     Amagant el contingut eviteu que el públic ho vegi, però poden saber que s'ha amagat alguna cosa i els conservadors i l'autor del contingut encara poden veure el contingut amagat. Normalment, això únicament afecta el contingut escrit, p.e. si amagueu el contingut d'una identificació, la identificació encara és visible però les marques de l'identificador s'amaguen. No podeu desfer això, únicament els responsables del lloc poden fer que es torni a veure, per tant sigueu curosos, i useu-lo únicament per continguts molt objectivables.
@@ -1321,6 +1391,7 @@ ca:
   icon: Icona
   icon_size: Mida de la icona
   iconic_taxon: Icona del Tàxon
+  id: ID
   id_categories:
     tooltips:
       leading: |
@@ -1348,8 +1419,10 @@ ca:
   computer_vision_suggestion_desc: |
     El Reconeixement Visual Artificial és el procés pel qual ordinadors ensinistrats per a reconèixer patrons a les imatges. Proporcionem eines que utilitzen models de visió artificial obtinguts a partir d'imatges de la comunitat d'usuaris per oferir suggeriments d'identificació com l'auto-completat i la comparació de característiques. Aquesta etiqueta indica que una persona ha afegit una identificació emprant una d'aquestes eines.
   identifiers: Identificadors
+  identotron: Identotron
   identotron_for: Identotron per a
   identotron_help: Ajuda amb l'identotron
+  ids: "IDs"
   ids_made_for_others: ID fetes per altres usuaris
   if_for_some_reason_a_user_doesnt_agree: |
     Si per algun motiu no esteu d'acord amb el tàxon de la comunitat, el podeu refusar, el que significa que la seva Identificació és utilitzada per enllaçar a altres observacions, actualitzant llistes de vida, etc. També significa que la vostra observació només podrà ser de grau de recerca si la comunitat està d'acord amb vostè.
@@ -1402,6 +1475,7 @@ ca:
   input_taxon: Introduir tàxon
   insects: Insectes
   insect_life_stage: Etapa vital de l'insecte
+  instagram: Instagram
   interactions: Interaccions
   internal_server_error: S'ha produït un error intern del servidor
   internal_taxon_including_descendants: Tàxon intern (inclosos els inferiors)
@@ -1419,6 +1493,7 @@ ca:
   #Type of project where people can only join after they have been invited
   inviteonly: només convidats
   invited_x: "Convidat %{x}"
+  iphone: iPhone
   is_not_following_anyone: no segueix ningú
   is_now: és ara
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Aquesta evidència és suficient per confirmar que és %{taxon}?
@@ -1431,6 +1506,7 @@ ca:
     <a href="mailto:%{help_email}" class="contact">contacteu amb nosaltres</a>.
     <a href="%{manage_flags_path}">Gestioneu etiquetes</a>
   join: Uniu-vos a
+  join_and_add_an_observation_to_project_html: Unir-se i afegir una observació a %{project}
   join_project: Uniu-vos a aquest projecte
   join_some_projects_and_invite_some_observations_html: "Uniu-vos a certs <a href='%{join_url}'>projectes</a> i <a href='%{invite_url}'>compartiu algunes observacions</a>"
   join_the_largest_group_of_naturalists_in_the_world: Uniu-vos al major grup de naturalistes del món!
@@ -1449,7 +1525,9 @@ ca:
   just_added!: S'hi acaba d'afegir!
   keep_editing: Continueu editant
   keyboard_shortcuts: Dreceres de teclat
+  kml: KML
   kml_file_size_error: "L'arxiu KML ha de ser de menys de 1 MB"
+  label_colon: "%{label}:"
   labels: Etiquetes
   label_to_group_a_batch_of_taxon_changes: Nom de l'etiqueta per agrupar un lot de canvis als tàxons
   location_private: Ubicació Privada
@@ -1462,6 +1540,7 @@ ca:
   last_observation: Darrera observació
   last_seen: Vist per última vegada
   last_year: Darrer any
+  lat: Lat
   latitude: Latitud
   latitude_in_decimals: 'Latitud en graus amb decimals, p. ex. 38.123'
   latitude_slash_y_coord_slash_northing: Latitud / coord. Y / nord
@@ -1561,6 +1640,7 @@ ca:
   linked_flickr_automatically: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Flickr, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Flickr. Sembla raonable que, si utilitzeu Flickr voldreu ser capaços d'importar fotos de Flickr, no és així?"
   linked_flickr_description: "Vincular el vostre compte d’%{site_name} amb el compte de Flickr us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Flickr en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Flickr i el voleu vincular amb %{site_name}."
   linked_flickr_password_html: "<strong>Mai no us demanarem la contrasenya de Flickr</strong> (però Flickr podria demanar-vos-la; verifiqueu que l’adreça on us redirigeix el botó és flickr.com)."
+  linkedin: LinkedIn
   list: Llista
   list_deleted: Llista eliminada.
   list_saved: Llista desada.
@@ -1605,27 +1685,35 @@ ca:
     de: Alemany
     el: Grec
     en: Anglès
+    eo: Esperanto
     es: Castellà
+    es-AR: Espanyol (Argentina)
     es-MX: Castellà (Mèxic)
     et: Estonià
     eu: Basc
     fi: Finlandès
     fr: Francès
+    fr-CA: Francès (Canadà)
     gl: Gallec
+    he: Hebreu
     id: Indonesi
     it: Italià
     ja: Japonès
     ko: Coreà
     lb: Luxemburguès
+    lt: Lituà
     mk: Macedònic
+    nb: Noruec (Bokmål)
     nl: Holandès
     oc: Occità
     pl: Polonès
+    pt: Portuguès
     pt-BR: Portuguès (Brasil)
     ru: Rus
     sk: Eslovac
     sq: Albanès
     sv: Suec
+    tr: Turc
     zh-CN: Xinès (simplificat)
     zh-TW: Xinès (tradicional)
   locality_notes: Notes locals
@@ -1797,6 +1885,7 @@ ca:
   name_of_the_place_you: Nom del lloc on vau realitzar l'observació
   name_providers:
     col: Catàleg de la vida
+    ubio: uBio
   names: Noms
   names_for_taxon_html: "Noms per a %{taxon}"
   native: nativa
@@ -1810,6 +1899,7 @@ ca:
   needs_id_: Necessita ID
   needs_id_expandable_html: "<span class='full'>Necessita</span>ID"
   needs_to_be_identified: Ha de ser identificat
+  new: Nou
   new_and_noteworthy: Nou i Notable
   new_announcement: Nou anunci
   new_assessment: Valoració nova
