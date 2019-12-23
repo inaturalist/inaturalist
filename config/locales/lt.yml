@@ -174,7 +174,6 @@ lt:
   added!: Pridėta!
   added_by: Pridėjo
   added_by_user_on_date_html: "Pridėjo %{user}, %{date}"
-  added_on: Pridėta
   added_to_favorites_html: |
     Pridėta į <a href="%{url}">mėgstamiausius</a>
   adding: "Pridedama..."
@@ -425,7 +424,7 @@ lt:
   cant_edit_or_delete_hidden_content: Jūs negalite redaguoti ar ištrinti turinio, kuris buvo paslėptas puslapio kuratorių
   cant_flag_an_object_that_doesnt_exist: Negalima pažymėti objekto, kuris neegzistuoja
   cant_merge_a_taxon_with_itself: Negalima apjungti taksono su savimi.
-  captive: Nelaisvėje
+  captive: Naminis
   captive_cultivated: Naminis / kultivuojamas
   card: Kortelė
   casual: netinkamas
@@ -593,7 +592,6 @@ lt:
   cover: Viršelis
   create: Kurti
   create_a_guide: Kurti gidą
-  create_a_list: Kurti sąrašą
   create_a_new_field: Kurti naują lauką
   create_a_new_place: Kurti naują vietą
   create_a_new_taxon: Sukurti naują taksoną
@@ -661,6 +659,8 @@ lt:
     currentText: Šiandien
     prevText: Ankstesnis
     nextText: Kitas
+    range: Periodas
+  date_range: Periodas
   date_specified: Data nurodyta
   date_time: Data/Laikas
   date_updated: Data atnaujinta
@@ -1012,7 +1012,7 @@ lt:
   has_one_or_more_faves: Turi vieną ar daugiau patinka
   has_photos: turi nuotraukų
   has_photos_or_sounds: Turi nuotraukų ar garsų
-  has_sounds: turi garsų
+  has_sounds: Turi garsų
   hasnt_contributed_any_observations: neprisidėjo stebėjimais prie šio projekto.
   header_your_observations: Jūsų stebėjimai
   header_your_calendar: Jūsų kalendorius
@@ -1224,6 +1224,7 @@ lt:
   longitude: Ilguma
   longitude_slash_x_coord_slash_easting: Ilguma / x koordinatė
   longitude_value: "Ilguma: %{longitude}"
+  low: Žemas
   make_admin: Padaryti administratoriumi
   make_a_new_place: Sukurti naują vietą
   manage_your_projects: Tvarkyti savo projektus
@@ -1235,9 +1236,19 @@ lt:
       all_observations: Visi stebėjimai
       observations: Stebėjimai
   maverick: Prieštaraujantis
+  media: Nuotrauka
+  media_type: Medijos tipas
   mentioned_you_in_a_x_on_noun_html: "%{user} paminėjo jus %{x} %{noun}"
   misleading_or_illegal_content_html: |
     Klaidinantis arba nelegalus turinys, rasiniai ar etniniai diskriminaciniai žodžiai ir t.t. Daugiau informacijos apie leistiną kalbą: <a href="/help#inappropriate">FAQ</a>.
+  momentjs:
+    shortRelativeTime:
+      #Short text representing 1 month in the past
+      M: "1mėn"
+      #Short text representing %d months in the past
+      MM: "%dmėn"
+  month: Mėnuo
+  months: Mėnesiai
   more: Daugiau
   more_filters: Daugiau filtrų
   more_import_options: Daugiau įkėlimo variantų
@@ -1253,6 +1264,7 @@ lt:
   most_observed_introduced_species: Dažniausiai stebimos introdukuotos rūšys
   multiple: keli
   multiple_select_option: '-- kelis --'
+  n_ago: "prieš %{n}"
   name: Pavadinimas
   nearby_observations_: Stebėjimai netoliese
   needs_id: reikia ID
@@ -1294,6 +1306,7 @@ lt:
   no_taxa: Nėra taksonų
   no_taxa_selected: Jokie taksonai nepasirinkti!
   non_human?: Ne žmogus?
+  none: Nė vienas
   not_finding_place_you_want?: Nerandate norimos vietos?
   not_linked_facebook: "Jūsų %{site_name} paskyra nėra susieta su jūsų Facebook paskyra"
   not_linked_flickr: "Jūsų %{site_name} paskyra nėra susieta su jūsų Flickr paskyra"
@@ -1307,11 +1320,13 @@ lt:
   observation_curation: Stebėjimo kuravimas
   observation_without_media: Stebėjimas be nuotraukų/garsų
   observations: Stebėjimai
+  observations_: stebėjimai
   observations_by: Stebėjimai pagal
   observations_by_user: "Stebėjimai pagal %{user}"
   observations_deleted: Stebėjimai ištrinti.
   observations_from: Stebėjimai nuo %{date}
   observations_per_month: Stebėjimai / Mėnuo
+  observations_without_media: Stebėjimai be medijos
   observed: Stebėta
   observed_on: Stebėta
   observers: Stebėtojai
@@ -1611,6 +1626,7 @@ lt:
   places_merged_successfully: Vietos sujungtos sėkmingai!
   plants: augalai
   please_explain_why_you_want_to_hide_this: Paaiškinkite, kodėl norite tai slėpti
+  popular: Populiarus
   press: Spauda
   privacy: Privatumas
   profile: Profilis
@@ -1728,6 +1744,7 @@ lt:
   repair_external_photos: Taisyti išorines nuotraukas
   replace_boundary_with_kml: Pakeisti ribas su KML
   request_failed: "Prašymas Nepavyko"
+  research_grade: Identifikuotas
   resolve_this_flag: Išspręsti šią žymę
   restore: Atkurti
   rg_observations: ID stebėjimai
@@ -1800,6 +1817,7 @@ lt:
   duplicate_observation_flag_warning: |
     Dėl dublikatų prašome ne žymėti, o prašyti stebėtojo ištaisyti klaidą, nes tinklalapio kuratoriai negali panaikinti stebėjimų.
   sounds:
+    add_media: Pridėti mediją
     no_photos_sounds: Nėra nuotraukų ar garsų
     select_one_or_more_sounds: Pasirinkite vieną ar daugiau garsų
     sound_has_been_flagged: Šis garsas buvo pažymėtas.
@@ -1847,12 +1865,14 @@ lt:
   these_observations_have_not_been_uploaded_yet: |
     Šie stebėjimai dar nebuvo įkelti
   this_year: Šiais Metais
+  time_ago: "prieš %{time}"
   top_observers: Top stebėtojai
   totals: iš viso
   total_species_observed: Iš viso rūšių stebėta
   type_species_name: "Įveskite rūšies pavadinimą"
   umbrella_projects: Skėtiniai projektai
   unknown: Nežinoma
+  unfollow: Nebesekti
   update_observations: Atnaujinti stebėjimus
   update_photos: Atnaujinti nuotraukas
   update_search: Atnaujinti paiešką
@@ -1868,6 +1888,7 @@ lt:
       remove_photo: Pašalinti nuotrauką
       select_all: Pasirinkti visus stebėjimus
       upload_failed: Įkėlimas nepavyko
+  user: Vartotojas
   user_added_a_flag_html: "%{user} pridėjo žymę"
   user_added_a_x: "%{user} pridėjo %{x}"
   user_added_an_x: "%{user} pridėjo %{x}"
@@ -1970,6 +1991,7 @@ lt:
   would_you_prefer_to_view_common_names_used_in_place_html: Ar norėtumėte peržiūrėti bendrinius pavadinimus, naudojamus <strong>%{place}</strong>?
   x_flagged: "%{x} pažymėtas"
   x_flagged_as_flag: "%{x} pažymėtas kaip %{flag}"
+  year: Metai
   year_in_review: "%{year} Metų Apžvalga"
   you_: Jūs
   you_are_now: Jūs dabar esate
@@ -1988,6 +2010,8 @@ lt:
   your_pinned_locations: Jūsų išsaugotos vietos
   your_profile_was_successfully_updated: Jūsų profilis buvo sėkmingai atnaujintas!
   your_recent_projects: Jūsų nauji projektai
+  verifiable: Identifikuotinas
+  verifiable_observations: Identifikuotini stebėjimai
   views:
     donate:
       donate_desc_html: |
@@ -2004,6 +2028,7 @@ lt:
         <p class="text-muted">
         iNaturalist yra Kalifornijos Mokslų Akademijos ir Nacionalinės Geografijos Bendruomenės bendra iniciatyva. Visos aukos skiriamos Kalifornijos Mokslų Akademijai, neapmokestinamai, pelno nesiekiančiai organizacijai, įsikūrusiai Jungtinėse Amerikos Valstijose (Tax ID: 94-1156258).
         </p>
+      post_donate_social_media_text: Aš remiu iNaturalist nes...
       monthly_supporters:
         desc_html: |
           <p class="lead">
@@ -2035,6 +2060,9 @@ lt:
       community_id:
         your_id_does_not_match: |
           Jūsų ID (<span class="bold">%{taxon_name}</span>) nesutampa su bendruomenės ID
+      compare:
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Intervalas
       export:
         taking_a_while: "Tai trunka per ilgai. Prašome pasirinkti vieną iš žemiau pateiktų variantų."
       field_descriptions:
@@ -2057,6 +2085,8 @@ lt:
           Nėra projekto kuratorių. Jei norite paskirti naują asmenį
           administratoriumi, jie privalo pirmą prisijungti prie šio projekto ir jūs privalote juos padaryti
           kuratoriais.
+        rules:
+          has_media: Turi medijos (nuotraukų arba garsų)
       new:
         show_projects_as_flags: Žemėlapyje projektus žymėti vėliavomis
         welcome_to_projects: Sveiki atvykę į projektus!
@@ -2072,6 +2102,9 @@ lt:
     taxa:
       show:
         frequency:
+          research: Identifikuotas
+          verifiable: Identifikuotinas
+          "Life Stage=subimago": Subimago
           unannotated: Be papildomos informacijos
     users:
       dashboard:
@@ -2167,6 +2200,10 @@ lt:
       - Spalis
       - Lapkritis
       - Gruodis
+  datetime:
+    prompts:
+      month: Mėnuo
+      year: Metai
   number:
     human:
       format:
