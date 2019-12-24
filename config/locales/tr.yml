@@ -3691,6 +3691,8 @@ tr:
   there_isnt_a_wikipedia_article_titled_x_html: |
     '%{x}' başlıklı bir Vikipedi makalesi ya da yönlendirmesi yok. Belki sem <a href='http://en.wikipedia.org/wiki/%{x}'>bir tane yapmak</a> istersin?
   there_merge_problems_with_the_merge: "Birleştirme ile ilgili sorunlar oluştu: %{merged_errors}"
+  there_was_a_problem_creating_this_account: |
+    Bu hesap oluşturulurken bir sorun oluştu. Bu sorun sürerse lütfen bize ulaşın
   there_was_a_problem_saving_your_identification: "Tanımlamanızı kaydederken bir sorun oluştu: %{error}"
   there_were_problems_adding_taxa: "Bu sınıfları eklerken sorunlar oluştu: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Gözlem, projeye eklenirken sorunlar oluştu: "
