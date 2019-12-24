@@ -230,7 +230,7 @@ ko:
   all_places: "모든 장소"
   all_projects: 모든 프로젝트
   all_rank_added_to_the_database:
-    phylum: 데이터베이스에 추가된 모든 종족
+    phylum: 데이터베이스에 추가된 모든 문
     subphylum: 데이터베이스에 추가된 모든 아문
     superclass: 데이터베이스에 추가된 모든 상강
     class: 데이터베이스에 추가된 모든 강
@@ -255,7 +255,7 @@ ko:
     complex: 데이터베이스에 추가된 모든 복합군
     species: 데이터베이스에 추가된 모든 종
     hybrid: 데이터베이스에 추가된 모든 잡종
-    subspecies: 모든 아종이 데이터베이스에 추가됨
+    subspecies: 모든 하위 분류군이 데이터베이스에 추가됨
     variety: 데이터베이스에 추가된 모든 품종
   all_rights_reserved: 모든 권리는 저작권자에게 있습니다.
   all_taxa:
@@ -853,7 +853,7 @@ ko:
   editing_this: '%{elem} 편집'
   editing_x_in_y: "%{y}에서 %{x} 편집"
   editors: 편집자
-  either: 어느 쪽이든
+  either: 모두
   either_that_user_doesnt_exist_or: "사용자가 존재하지 않거나 이미 팔로잉하고 있습니다."
   eligible_for_research_grade: 연구 자료 등급을 받을 자격이 있다.
   email: 이메일
@@ -1085,7 +1085,7 @@ ko:
   however_there_were_some_issues: "하지만, 몇 가지 문제가 있었습니다: %{issues}"
   icon: 아이콘
   icon_size: 아이콘 크긱
-  iconic_taxon: 아이코닉 분류군
+  iconic_taxon: 특정 분류군
   identify: 동정하기
   identify_title: "동정하기"
   identification: 동정
@@ -1224,6 +1224,7 @@ ko:
     swedish: svenska
     tagalog: tagalog
     turkish: Türk
+  less: 줄이기
   license: 라이선스
   licensing_your_content_gives_others_legal: "콘텐츠를 라이선스하면 다른 사람들이 라이선스 규칙을 지키는 한 합법적으로 해당 콘텐츠를 이용할 수 있습니다. %{site_name}은 당신의 크리에이티브 커먼즈 라이선스가 된 콘텐츠를 데이터 파트너와 공유합니다."
   life: 생명
@@ -2010,25 +2011,26 @@ ko:
   rank_position: 순위
   rank_restrictions: 분류군 추가 제한
   ranks:
-    kingdom: 계
-    subkingdom: 아계
+    subkingdom: Subkingdom
     phylum: 문
-    subphylum: 아문
+    subphylum: Subphylum
     superclass: 상강
-    subclass: 아강
-    infraclass: 하강
+    class: Class
+    subclass: Subclass
+    infraclass: Infraclass
     superorder: 상목
-    order: 목
+    order: Order
     suborder: 아목
     infraorder: 하목
     parvorder: 소목
-    family: 과
-    subfamily: 아과
-    genus: 속
+    epifamily: Epifamily
+    family: Family
+    subfamily: Subfamily
+    genus: Genus
     subgenus: 아속
     species: 종
     hybrid: 혼종
-    subspecies: 아종
+    subspecies: Subspecies
   ranges: 범위
   re_order_photos: "사진 재정렬하기 &raquo;"
   read_more: 더 읽어보기
@@ -2207,8 +2209,10 @@ ko:
   take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
   taxa_info: 생물 분류 정보
+  taxon: 분류군
   taxon_colors: 분류 색
   taxon_ranks: 분류학적 위치
+  taxon_name_was_deleted: 분류군 이름이 삭제되었습니다.
   taxonomic_order: 분류 체계
   tell_the_world_a_little_about_yourself: 자기소개하기
   tell_us_why: 이유를 말해주세요...
@@ -2310,7 +2314,7 @@ ko:
   view_sample: 샘플 보기
   view_x: "%{x} 보기"
   view_your_observations: 내 관찰 보기
-  video_tutorials: 동영상 강좌
+  video_tutorials: 동영상 튜토리얼
   vulnerable: 취약(VU)
   was_it_captive_cultivated?: "포획되거나 사육되었습니까?"
   we_also_support: |
@@ -2386,7 +2390,7 @@ ko:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: 교실에서 %{site_name}을(를) 사용할 예정이십니까?
     donate:
-      donate_short_desc: "지원을 표하려면 지금 기부하세요!"
+      donate_short_desc: "지금 기부해서 iNaturalist를 지원해주세요!"
     guides:
       edit:
         add_rank_tags_help_html: |
