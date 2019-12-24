@@ -294,6 +294,7 @@ it:
     <a target="%{target}" class="%{class}" href="%{url}">scambio di taxon</a>
   added_by: Aggiunta da
   added_by_user_on_date_html: "Aggiunto da %{user} il %{date}"
+  added_on_datetime: "Aggiunta il %{datetime}"
   added_to_favorites_html: |
     Aggiunta ai <a href="%{url}">preferiti</a>
   adding: "Aggiunta in corso..."
@@ -2244,6 +2245,7 @@ it:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     es. "2019-10-29 13:12:21"
+  observed_on_datetime: Osservata il %{datetime}
   observation_removed_from_the_project: "Osservazione rimossa dal progetto \"%{project}\""
   observation_requirements: Requisiti dell'osservazione
   observation_rules: Regole di osservazione
@@ -3677,6 +3679,8 @@ it:
   there_isnt_a_wikipedia_article_titled_x_html: |
     Non c'è un articolo Wikipedia o una pagina re-indirizzata intitolata '%{x}'. Forse vorresti <a href='http://en.wikipedia.org/wiki/%{x}'>crearne una</a>?
   there_merge_problems_with_the_merge: "Ci sono problemi nell'unione: %{merged_errors}"
+  there_was_a_problem_creating_this_account: |
+    Si è verificato un problema durante la creazione di questo account. Ti preghiamo di contattarci se il problema persiste
   there_was_a_problem_saving_your_identification: "Si è verificato un problema nel salvataggio della tua identificazione: %{error}"
   there_were_problems_adding_taxa: "Ci sono stati problemi nell'aggiunta di questi taxa: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Ci sono stati problemi nell'aggiungere l'osservazione a questo progetto:"
@@ -5590,6 +5594,10 @@ it:
       show:
         take_a_chance_to_review_html: 'Prova a revisionare le <a href="%{link}">nostre linee guida</a>.'
         this_user_was_banned: Questo utente è stato sospeso
+        favorites_list_prompt_html: |
+          Vuoi mostrare alcuni dei tuoi taxa preferiti? %{link_start_tag}Crea una
+          lista%{link_end_tag} intitolata "Preferiti" e le aggiunte più recenti
+          appariranno in questo spazio.
     user_parents:
       confirm:
         thanks_donor_html: |
