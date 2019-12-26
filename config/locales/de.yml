@@ -3268,6 +3268,8 @@ de:
   there_isnt_a_wikipedia_article_titled_x_html: |
     Es gibt keinen Wikipedia-Artikel oder keine Weiterleitung mit dem Titel'<i>%{x}</i>'. Vielleicht möchtest du ja einen <a href='http://de.wikipedia.org/wiki/%{x}'>erstellen</a>?
   there_merge_problems_with_the_merge: "Es gab Probleme mit der Zusammenführung: %{merged_errors}"
+  there_was_a_problem_creating_this_account: |
+    Es trat ein Problem beim Erstellen dieses Kontos auf. Bitte kontaktiere uns, wenn dieses Problem weiterhin besteht
   there_was_a_problem_saving_your_identification: "Es gab ein Problem beim Speichern Deiner Identifikation: %{error}"
   there_were_problems_adding_taxa: "Es gab Probleme beim Hinzufügen dieser Taxa: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Es gab Probleme beim Hinzufügen dieser Beobachtung zu diesem Projekt:"
@@ -3438,6 +3440,7 @@ de:
   user_disagrees_this_is_taxon: "%{user} ist nicht der Meinung, dass es sich um %{taxon} handelt"
   user_faved_a_noun_by_owner: "%{user} hat %{noun} von %{owner} favorisiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
+  user_helped_x_people_with_y_ids_html: "%{user} hat <strong>%{x} Personen</strong> mit <strong>%{y} IDs</strong> geholfen"
   user_invited_you_to_join_project: "%{user} hat Dich eingeladen, bei %{project} mitzumachen"
   user_invited_you_to_join_this_project_on_date_html: "%{user} hat Dich eingeladen, diesem Projekt am %{date} beizutreten"
   user_is_a_naturalist: "%{user} ist ein Naturalist!"
