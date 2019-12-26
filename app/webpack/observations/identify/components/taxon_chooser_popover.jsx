@@ -8,6 +8,7 @@ import _ from "lodash";
 import inatjs from "inaturalistjs";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
+import { objectToComparable } from "../../../shared/util";
 
 class TaxonChooserPopover extends React.Component {
   constructor( props ) {
@@ -23,7 +24,13 @@ class TaxonChooserPopover extends React.Component {
   }
 
   componentWillReceiveProps( newProps ) {
-    this.setTaxaFromProps( newProps );
+    const propsEqual = _.isEqual(
+      _.filter( this.props, v => !_.isFunction( v ) ),
+      _.filter( newProps, v => !_.isFunction( v ) )
+    );
+    if ( !propsEqual ) {
+      this.setTaxaFromProps( newProps );
+    }
   }
 
   setTaxaFromProps( props ) {
