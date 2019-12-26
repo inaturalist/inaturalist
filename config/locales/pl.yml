@@ -898,6 +898,8 @@ pl:
     url: URL do strony opisującej ten status.
     geoprivacy: Domyślne ustawienia geoprywatności dla obserwacji tego taksonu
     iucn: Równorzędna kategoria z Czerwonej księgi gatunków zagrożonych
+  conservation_status_geoprivacy_desc: |
+    Domyślne ustawienia geoprywatności dla wszystkich obserwacji tego taksonu w tej lokalizacji
   contact_support: Skontaktuj się z pomocą
   contain_all_descendants?: Czy ta checklista zawiera wszystkie taksony o niższej randze, które występują na tym terenie?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -2750,6 +2752,7 @@ pl:
   re_order_photos: "Zmień kolejność zdjęć &raquo;"
   read_more: Czytaj więcej
   read_the_full_wikipedia: Przeczytaj pełen opis na Wikipedii
+  real_time_discussions: Dyskusje w czasie rzeczywistym
   reason: Powód
   receive_email_notifications_when_people_leave_you: Otrzymuj powiadomienia e-mail o
   recent: Najnowsze
@@ -2837,8 +2840,10 @@ pl:
   search_this_taxon: szukaj tego taksonu
   search_your_photos: Przeszukaj swoje zdjęcia
   searching: "Szukanie..."
+  seasonality: Sezonowość
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
+  seen_nearby: Widziany w pobliżu
   select: Wybierz
   select_all: Wybierz wszystkie
   select_one_or_more_photos: 'Wybierz jedno lub więcej zdjęć'
@@ -3179,6 +3184,7 @@ pl:
   user_commented: "%{user} skomentował"
   user_disagrees_this_is_taxon: "%{user} nie zgadza się, że jest to %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nie zgadza się z poprzednimi dokładniejszymi oznaczeniami"
+  user_faved_a_noun_by_owner: "%{user} dodał do ulubionych %{noun} przez %{owner}"
   user_faved_this_observation: "%{user} dodał tę obserwację do ulubionych"
   user_flagged_as_a_spammer_html: "%{user} zgłoszony jako spamer"
   user_hasnt_joined_any_projects: "%{user} nie dołączył do żadnego projektu"
@@ -3249,7 +3255,7 @@ pl:
   view_your_observations: Zobacz swoje obserwacje
   view_yours: Zobacz swoje
   view_all_of_your_observations_from_x: "Zobacz wszystkie swoje obserwacje z %{x}"
-  visually_similar: Wizualnie podobne
+  visually_similar: Wizualnie podobny
   vulnerable: Zagrożony
   w_photos_only: ze zdjęciami
   w_sounds: z nagraniami dźwiękowymi
@@ -3319,6 +3325,7 @@ pl:
   'yes': "Tak"
   yes_find_them!: "Tak, znajdź je!"
   yes_i_want_to_join: Tak, chcę dołączyć
+  yes_license_my_childs_observations: Tak, licencjonuj zdjęcia, nagrania dźwiękowe i obserwacje mojego dziecka, aby naukowcy mogli korzystać z tych danych.
   yes_license_my_observations_so_scientists_can_use: Tak, licencjonuj moje zdjęcia, nagrania dźwiękowe i obserwacje, aby naukowcy mogli korzystać z tych danych.
   yesterday: Wczoraj
   you: ty
@@ -3352,6 +3359,7 @@ pl:
   you_cant_rotate_photos_hostde_outside: "Nie możesz obracać zdjęć hostowanych poza %{site_name}."
   you_didnt_select_any_observations: Nie wybrałeś żadnych obserwacji.
   you_didnt_select_any_photos_to_tag: Nie wybrałeś żadnych zdjęć do otagowania!
+  you_faved_this: Dodałeś to do ulubionych!
   you_have_left_x_project: "Opuściłeś %{project}"
   you_havent_linked_your_inaturalist_google_account: "Nie połączyłeś jeszcze swojego konta %{site_name} z kontem Google"
   you_havent_joined_any_projects: Nie dołączyłeś do żadnych projektów
