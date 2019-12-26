@@ -300,6 +300,7 @@ ko:
   alphabetical_order: 알파벳순 정렬
   already_have_an_account_log_in_html: 계정이 이미 있으십니까? <strong>로그인하세요.</strong>
   amphibians: 양서류
+  ancestor_taxon: 조상 분류군
   and: 그리고
   and_other_taxa: "&amp; 다른 분류군"
   android: 안드로이드
@@ -792,6 +793,9 @@ ko:
   doesnt_have_default_photo: 기본 사진이 없습니다.
   doh_something_went_wrong: 문제가 생겼습니다.
   doh_something_went_wrong_error: "무언가 잘못되었습니다: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: 기부하기
   done: 완료
   dont_have_an_account_sign_up_html: 계정이 없으십니까? <strong>가입하세요.</strong>
   dont_send_me_email: "메일 수신 거부"
@@ -2011,6 +2015,7 @@ ko:
   rank_position: 순위
   rank_restrictions: 분류군 추가 제한
   ranks:
+    kingdom: Kingdom
     subkingdom: Subkingdom
     phylum: 문
     subphylum: Subphylum
@@ -2022,7 +2027,9 @@ ko:
     order: Order
     suborder: 아목
     infraorder: 하목
+    subterclass: Subterclass
     parvorder: 소목
+    superfamily: Superfamily
     epifamily: Epifamily
     family: Family
     subfamily: Subfamily
@@ -2197,6 +2204,9 @@ ko:
   stop_editing: 그만 편집하기
   stop_following_user: "%{user}를 그만 팔로우하기"
   stop_testing: 테스트 중지
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: 스토어
   submitted: 업로드 날짜
   subscriptions: 구독
   suggest_an_identification: 동정 제안하기
@@ -2210,6 +2220,8 @@ ko:
   take_me_flickr!: 네, Flickr로 연결해주세요!
   taxa_info: 생물 분류 정보
   taxon: 분류군
+  taxonomy: 분류
+  taxon_deleted: 분류군이 삭제되었습니다.
   taxon_colors: 분류 색
   taxon_ranks: 분류학적 위치
   taxon_name_was_deleted: 분류군 이름이 삭제되었습니다.
@@ -2503,6 +2515,7 @@ ko:
           <a href="https://www.inaturalist.org/pages/managing-projects">여기서</a> 프로젝트 관리법을 알아보거나, <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">iNaturalist 블로그</a>에서 프로젝트들의 역사를 읽어보세요.
         errors:
           name_is_required: 프로젝트 이름은 필수입니다
+          name_less_than_100_characters: 프로젝트 이름은 100글자 이내여야 합니다.
       project_user_curator_coordinate_access_labels:
         none: 없음.
     shared:
@@ -2650,6 +2663,11 @@ ko:
       - 11월
       - 12월
   datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        other: '%{count}분 이하'
+      less_than_x_seconds:
+        other: '%{count} 초 이하'
     countdown_x_days:
       other: 일
     countdown_x_hours:
