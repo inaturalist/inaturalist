@@ -149,7 +149,6 @@ eu:
   added: 'Egun honetan gehitua:'
   added!: Gehituta!
   added_by: 'Honek gehitua:'
-  added_on: 'Egun honetan gehitua:'
   added_to_favorites_html: |
     <a href="%{url}">Gustukoetara</a> gehitua
   adding: "Gehitzen..."
@@ -342,6 +341,10 @@ eu:
   blue_icons_represent_political_units: "Ikono urdinek unitate politikoak adierazten dituzte, hala nola herrialdeak, estatuak eta antzekoak eta ikono berdeek, berriz, hainbat motatako eremu irekiak adierazten dituzte, parkeak eta erreserbak, kasu. Hurbiltzen bazara, leku txikiagoak ikusi ahal izango dituzu."
   body: Gorputza
   breadcrumbs: Nabigazioko aztarnak
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Horrek h1 eta ekintzako lehenetsitako doikuntzak ordezkatuko ditu; ziurtatu proiektu honetarako garrantzitsuak direnak gehitu dituzula."
   brown: marroia
   browse: Taxonomian nabigatu
@@ -534,7 +537,6 @@ eu:
   couldnt_find_that_taxon: Espeziea edo taldea ez da topatu.
   countries: Herrialdeak
   create: Sortu
-  create_a_list: Zerrenda sortu
   create_a_new_field: Eremu berria sortu
   create_a_new_place: Leku berria sortu
   create_a_new_taxon: Espezie edo talde berria sortu
@@ -2004,7 +2006,6 @@ eu:
   time_: ordua
   time_ago: "duela %{time}"
   title: izenburua
-  titled_favorites_and_the_most_recent_additions: '"Gogokoenak" etiketatutakoak eta azken eransketak eremu honetan agertuko dira.'
   to_add_comments: aipamenak gehitzeko.
   to_add_ids: identifikazioak gehitzeko
   to_configure_your_widget: zure widget-a konfiguratzeko.
@@ -2133,7 +2134,6 @@ eu:
   w_photos_only: argazkiekin soilik
   w_sounds: soinuekin
   wait_file_generation: Itxaron fitxategia sortu bitartean. Agian minutu batzuk beharko ditu zerrenda handietarako.
-  want_to_show_off_some_of_your_favorite_taxa: Zure taxon gogokoenetako batzuk hemen gehitu nahi dituzu?
   was_it_captive_cultivated?: "Gatibu/hezia izan da?"
   we_also_support: |
     Zure irudietarako <a href="http://flickr.com">Flickr</a>, <a

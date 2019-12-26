@@ -307,7 +307,6 @@ fi:
     <a target="%{target}" class="%{class}" href="%{url}">taksoneiden swappausta</a>
   added_by: Lisännyt
   added_by_user_on_date_html: "Lisännyt %{user} %{date}"
-  added_on: Lisätty
   added_to_favorites_html: |
     Lisätty <a href="%{url}">suosikkeihin</a>
   adding: "Lisätään..."
@@ -628,6 +627,10 @@ fi:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Rajoituslaatikko
   breadcrumbs: Leivänmurut
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Tässä yliajetaan h1 ja oletuksena olevat toimintakehotukset (\"calls to action\"), joten lisää nämä jos ne ovat tärkeitä tälle projektille ja muista että maksimileveys on 950px"
   brief_caption: Lyhyt kuvaus
   brown: ruskea
@@ -924,7 +927,6 @@ fi:
   cover: Kansikuva
   create: Luo
   create_a_guide: Luo opas
-  create_a_list: Luo luettelo
   create_a_new_field: Luo uusi kenttä
   create_a_new_place: Luo uusi paikka
   create_a_new_taxon: Luo uusi taksoni
@@ -2027,7 +2029,6 @@ fi:
   new_observation_field: Uusi havaintokenttä
   new_observations: Uudet havainnot
   new_observations_in_year: "Uusia havaintoja vuonna %{year}"
-  new_observations_this_year: Uudet havainnot tänä vuonna
   new_observations_ellispsis: "Uudet havainnot..."
   new_observations_from_place_html: "Uudet havainnot paikasta %{place}"
   new_observations_may_take_up_to: Uusien havaintojen ilmestyminen pienoisohjelmaan voi kestää %{widget_expiration} minuuttia.
@@ -2052,7 +2053,6 @@ fi:
   newly_added_species: Äskettäin lisätyt lajit
   newly_observed_species: Äskettäin havaitut lajit
   newly_observed_species_in_year: "Lisättyjä uusia lajeja vuonna %{year}"
-  newly_observed_species_this_year: Äskettäin lisätyt lajit tänä vuonna
   news: Uutiset
   next: Seuraava
   next_observation: Seuraava havainto
@@ -3514,7 +3514,6 @@ fi:
   time_ago: "%{time} sitten"
   title: otsikko
   title_and_description: "Otsikko & kuvaus"
-  titled_favorites_and_the_most_recent_additions: nimeltään "Suosikit" ja viimeisimmät lisäykset ilmestyvät tähän paikkaan.
   to_add_comments: lisätäksesi kommentteja
   to_add_ids: lisätäksesi tunnistuksia
   to_configure_your_widget: määrittääksesi pienoisohjelmasi.
@@ -3745,7 +3744,6 @@ fi:
   w_photos_only: kuvia
   w_sounds: ääniä
   wait_file_generation: Ole hyvä ja odota kun tiedostoa muodostetaan. Tämä voi kestää muutaman minuutin, jos luettelo on suuri.
-  want_to_show_off_some_of_your_favorite_taxa: Haluatko esitellä joitakin lempitaksoneitasi täällä?
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
   we_also_support: |

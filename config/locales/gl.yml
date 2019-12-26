@@ -102,7 +102,6 @@ gl:
   added: Engadido o
   added!: '¡Engadido!'
   added_by: Engadido por
-  added_on: Engadido o
   adding: "Engadindo..."
   additional_range: Distribución adicional
   additional_range_data_from_an_unknown_source: Datos de distribución adicional de fonte descoñecida
@@ -273,6 +272,10 @@ gl:
   blue_icons_represent_political_units: "As iconas azuis representan unidades políticas como países, estados e outros afíns, mentres que as iconas verdes representan diferentes tipos de espazos abertos parques e reservas. Se te aproximas, poderás ver lugares máis pequenos."
   body: Corpo
   breadcrumbs: Rastros de navegación
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Isto substituirá o h1 e os axustes por defecto da acción; asegúrate de incluír os que sexan importantes para este proxecto."
   brown: marrón
   browse: Navega pola taxonomía
@@ -431,7 +434,6 @@ gl:
   couldnt_find_that_taxon: Non se atopou a especie ou grupo.
   countries: Países
   create: Crear
-  create_a_list: Crear unha lista
   create_a_new_field: Crear un novo campo
   create_a_new_place: Crear un Lugar novo
   create_a_new_taxon: Crea unha nova especie ou grupo
@@ -1740,7 +1742,6 @@ gl:
   time_: Hora
   time_ago: "hai %{time}"
   title: Título
-  titled_favorites_and_the_most_recent_additions: Os etiquetaxes "Favoritos" e as adicións máis recentes aparecerán neste espazo.
   to_add_comments: para engadir comentarios.
   to_add_ids: para engadir identificacións
   to_configure_your_widget: para configurar o teu widget.
@@ -1860,7 +1861,6 @@ gl:
   w_photos_only: con fotos soamente
   w_sounds: cos sons
   wait_file_generation: Espera mentres se xera o arquivo. Pode tardar uns minutos para as listas grandes.
-  want_to_show_off_some_of_your_favorite_taxa: Desexas incorporar algúns dos teus taxóns favoritos aquí?
   was_it_captive_cultivated?: "Era cativa/cultivada?"
   we_also_support: |
     Tamén temos conexión con Flickr <a href="http://flickr.com"></a>,

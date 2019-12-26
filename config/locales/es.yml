@@ -293,7 +293,7 @@ es:
     <a target="%{target}" class="%{class}" href="%{url}"></a>
   added_by: Añadido por
   added_by_user_on_date_html: "Añadido por %{user} el %{date}"
-  added_on: Añadido el
+  added_on_datetime: "Añadido el %{datetime}"
   added_to_favorites_html: |
     Agregado a <a href="%{url}">favoritos</a>
   adding: "Añadiendo..."
@@ -614,6 +614,10 @@ es:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Contenedor
   breadcrumbs: Rastros de navegación
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Esto reemplazará el h1 y los llamados a acción por defecto, asegúrate de incluirlos si son importantes para este proyecto y recuerda que el ancho máximo permitido es de 950 px."
   brief_caption: Leyenda breve
   brown: marrón
@@ -910,7 +914,6 @@ es:
   cover: Portada
   create: Crea
   create_a_guide: Crea una guía
-  create_a_list: Crea una lista
   create_a_new_field: Crea un nuevo campo
   create_a_new_place: Crea un lugar nuevo
   create_a_new_taxon: Crea una nueva especie o grupo
@@ -2054,7 +2057,6 @@ es:
   new_observation_field: Nuevo campo de observación
   new_observations: Nuevas observaciones
   new_observations_in_year: "Nuevas observaciones de %{year}"
-  new_observations_this_year: Observaciones nuevas Este año
   new_observations_ellispsis: "Nuevas observaciones..."
   new_observations_from_place_html: "Nuevas observaciones del %{place}"
   new_observations_may_take_up_to: Las nuevas observaciones pueden tardar alrededor de %{widget_expiration} minutos en aparecer en el widget.
@@ -2081,7 +2083,6 @@ es:
   newly_added_species: Especie Añadida recientemente
   newly_observed_species: Especie Observada recientemente
   newly_observed_species_in_year: "Nuevas especies añadidas en %{year}"
-  newly_observed_species_this_year: Especie Añadida recientemente Este año
   news: Noticias
   next: Siguiente
   next_observation: Siguiente observación
@@ -2252,6 +2253,7 @@ es:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     ej. "2019-10-29 13:12:21"
+  observed_on_datetime: Observado el %{datetime}
   observation_removed_from_the_project: "La observación fue eliminada del proyecto %{project}"
   observation_requirements: Requisitos de observación
   observation_rules: Reglas de observación
@@ -3698,6 +3700,8 @@ es:
   there_isnt_a_wikipedia_article_titled_x_html: |
     No existe un artículo o redirección en Wikipedia con el nombre '%{x}'. ¿Quisieras <a href='http://en.wikipedia.org/wiki/%{x}'>crear</a> uno?
   there_merge_problems_with_the_merge: "Existen problemas al tratar de combinar los lugares: %{merged_errors}"
+  there_was_a_problem_creating_this_account: |
+    Hubo un problema al crear esta cuenta. Por favor contáctanos si este problema persiste
   there_was_a_problem_saving_your_identification: "Hubo un problema al salvar tu identificación: %{error}"
   there_were_problems_adding_taxa: "Ocurrieron problemas al añadir esos taxones: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Hubo problemas agregando esa observación a este proyecto:"
@@ -3768,7 +3772,6 @@ es:
   time_ago: "hace %{time}"
   title: título
   title_and_description: "Título y Descripción"
-  titled_favorites_and_the_most_recent_additions: titulada "Favoritos" y las adiciones más recientes aparecerán en este espacio.
   to_add_comments: para agregar comentarios.
   to_add_ids: para agregar identificaciones
   to_configure_your_widget: para configurar tu widget.
@@ -4051,7 +4054,6 @@ es:
   w_photos_only: con fotos solamente
   w_sounds: con sonidos
   wait_file_generation: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
-  want_to_show_off_some_of_your_favorite_taxa: '¿Deseas mostrar algunos de tus taxones favoritos aquí?'
   wanted: Requerido
   was_it_captive_cultivated?: "¿Fue cautiva / cultivado?"
   we_also_support: |
@@ -5775,6 +5777,10 @@ es:
       show:
         take_a_chance_to_review_html: 'Aprovecha a revisar <a href="%{link}">nuestras directrices</a>.'
         this_user_was_banned: Este usuario fue suspendido
+        favorites_list_prompt_html: |
+          ¿Quieres mostrar algunos de tus taxones favoritos? %{link_start_tag}Crea una
+          lista%{link_end_tag} titulada "Favoritos" y las adiciones más recientes
+          aparecerán en este espacio.
     user_parents:
       confirm:
         thanks_donor_html: |

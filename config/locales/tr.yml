@@ -306,7 +306,7 @@ tr:
     <a target="%{target}" class="%{class}" href="%{url}">sınıf takasının</a> bir parçası olarak eklendi
   added_by: Ekleyen
   added_by_user_on_date_html: "%{date} tarihinde %{user} tarafından eklendi"
-  added_on: Eklendiği tarih
+  added_on_datetime: "%{datetime} tarihinde eklendi"
   added_to_favorites_html: |
     <a href="%{url}">Favorilere</a> eklendi
   adding: "Ekleniyor..."
@@ -626,6 +626,10 @@ tr:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Sınır Alanı
   breadcrumbs: Gezinme ipuçları
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Bu h1 ve varsayılan harekete geçirme çağrılarının yerini alacak, bu nedenle bu proje için önemliyse onları eklemeyi ve izin verilen en uzun genişliğin 950 piksel olduğunu unutmayın"
   brief_caption: Kısa altyazı
   brown: kahverengi
@@ -922,7 +926,6 @@ tr:
   cover: Kapak
   create: Oluştur
   create_a_guide: Bir Rehber Oluştur
-  create_a_list: Bir Liste Oluştur
   create_a_new_field: Yeni Bir Alan Oluştur
   create_a_new_place: Yeni Bir Yer Oluştur
   create_a_new_taxon: Yeni Bir Sınıf Oluştur
@@ -1654,7 +1657,7 @@ tr:
     species: '%{time} zamanındaki çoğu tür'
     observations: '%{time} zamanındaki çoğu gözlem'
     identifications: '%{time} zamanındaki çoğu tanımlama'
-  leading: Önde
+  leading: Öncü
   learn: Öğren
   learn_about_the_species_live_in: Yaşayan türler ile ilgili bilgi edin
   learn_more: Daha Çok Bilgi
@@ -1895,7 +1898,7 @@ tr:
   mark_all_as_reviewed: Tümünü İncelendi Olarak İşaretle
   mark_all_as_unreviewed: Tümünü İncelenmemiş Olarak İşaretle
   matching_species_will_shown_up_here: Eşleşen türler burada görünecek. Eğer %{place} bu tür için bir tane sahipse haritalar bir aralık gösterecek.
-  maverick: Maverick
+  maverick: Aykırı
   media: Medya
   media_type: Medya Türü
   medium: orta
@@ -2059,7 +2062,6 @@ tr:
   new_observation_field: Yeni gözlem alanı
   new_observations: Yeni gözlemler
   new_observations_in_year: "%{year} Yılındaki Yeni Gözlemler"
-  new_observations_this_year: Bu Yılın Yeni Gözlemleri
   new_observations_ellispsis: "Yeni gözlemler..."
   new_observations_from_place_html: "%{place}'den yeni gözlemler"
   new_observations_may_take_up_to: Yeni gözlemlerin, widget'te görünmesi %{widget_expiration} dakika kadar sürebilir.
@@ -2086,7 +2088,6 @@ tr:
   newly_added_species: Yeni Eklenmiş Türler
   newly_observed_species: Yeni Gözlenen Türler
   newly_observed_species_in_year: "%{year} Yılında Yeni Eklenen Türler"
-  newly_observed_species_this_year: Bu Yıl Yeni Eklenmiş Türler
   news: Haberler
   next: Sonraki
   next_observation: Sonraki Gözlem
@@ -2256,6 +2257,7 @@ tr:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     örn. 29-10-2019 13:12:21
+  observed_on_datetime: '%{datetime} tarihinde gözlemlendi'
   observation_removed_from_the_project: "Gözlem, \"%{project}\" projesinden kaldırıldı"
   observation_requirements: Gözlem Gereksinimleri
   observation_rules: Gözlem Kuralları
@@ -3689,6 +3691,8 @@ tr:
   there_isnt_a_wikipedia_article_titled_x_html: |
     '%{x}' başlıklı bir Vikipedi makalesi ya da yönlendirmesi yok. Belki sem <a href='http://en.wikipedia.org/wiki/%{x}'>bir tane yapmak</a> istersin?
   there_merge_problems_with_the_merge: "Birleştirme ile ilgili sorunlar oluştu: %{merged_errors}"
+  there_was_a_problem_creating_this_account: |
+    Bu hesap oluşturulurken bir sorun oluştu. Bu sorun sürerse lütfen bize ulaşın
   there_was_a_problem_saving_your_identification: "Tanımlamanızı kaydederken bir sorun oluştu: %{error}"
   there_were_problems_adding_taxa: "Bu sınıfları eklerken sorunlar oluştu: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Gözlem, projeye eklenirken sorunlar oluştu: "
@@ -3760,7 +3764,6 @@ tr:
   time_ago: "%{time} önce"
   title: başlık
   title_and_description: "Başlık & Açıklama"
-  titled_favorites_and_the_most_recent_additions: '"Favoriler" ve en son eklenenler bu alanda görünecek.'
   to_add_comments: yorum eklemek
   to_add_ids: tanımlamaları ekleme
   to_configure_your_widget: widget'inizi yapılandırma.
@@ -4042,7 +4045,6 @@ tr:
   w_photos_only: fotoğraflarla
   w_sounds: seslerle
   wait_file_generation: Dosya oluşturulurken lütfen bekleyin. Büyük listeler için birkaç dakika sürebilir.
-  want_to_show_off_some_of_your_favorite_taxa: En sevdiğiniz sınıflardan bazılarını burada göstermek ister misiniz?
   wanted: Gerekli
   was_it_captive_cultivated?: "Kısıtlanmış ya da ekili miydi?"
   we_also_support: |
@@ -5975,6 +5977,8 @@ tr:
       show:
         take_a_chance_to_review_html: '<a href="%{link}">Rehberimizi</a> incelemeyi deneyin.'
         this_user_was_banned: Bu kullanıcı askıya alındı
+        favorites_list_prompt_html: |
+          En sevdiğiniz sınıfların bazılarını göstermek ister misiniz? "Favoriler" başlıklı %{link_start_tag}bir liste oluştur%{link_end_tag} ve böylece en son eklenenler bu alanda görünecektir.
     user_parents:
       confirm:
         thanks_donor_html: |

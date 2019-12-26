@@ -251,7 +251,6 @@ zh-TW:
     由一筆<a target="%{target}" class="%{class}" href="%{url}">分類群置換</a>所新增的部份
   added_by: 新增自
   added_by_user_on_date_html: "由 %{user} 於 %{date} 所新增"
-  added_on: 已添加在
   added_to_favorites_html: |
     已加入至<a href="%{url}">最愛</a>
   adding: "正在新增……"
@@ -558,6 +557,10 @@ zh-TW:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: 邊框
   breadcrumbs: 麵包屑導航
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "這將會取代掉 h1 並預設成起作用，因此如果它們對於專案相當重要，請確認有包含到，另外請記住所允許的最大寬度是 950 像素"
   brief_caption: 簡要說明
   brown: 棕色
@@ -851,7 +854,6 @@ zh-TW:
   cover: 封面
   create: 建立
   create_a_guide: 建立一個指南
-  create_a_list: 建立一個清單
   create_a_new_field: 創建一個新欄位
   create_a_new_place: 建立一個新地點
   create_a_new_taxon: 創建一個新物種分類
@@ -1980,7 +1982,6 @@ zh-TW:
   new_observation_field: 新觀察欄位
   new_observations: 新觀察
   new_observations_in_year: "在 %{year} 年的新觀察"
-  new_observations_this_year: 此年度的新觀察
   new_observations_ellispsis: "新觀察..."
   new_observations_from_place_html: "來自於%{place}的新觀察"
   new_observations_may_take_up_to: 新的觀察可能需要 %{widget_expiration} 分鐘才能出現在小工具裡。
@@ -2007,7 +2008,6 @@ zh-TW:
   newly_added_species: 新進的添加物種
   newly_observed_species: 新進的觀察物種
   newly_observed_species_in_year: "在 %{year} 年新加入的物種"
-  newly_observed_species_this_year: 此年度的新添加物種
   news: 最新消息
   next: 下一個
   next_observation: 下一個觀察
@@ -3647,7 +3647,6 @@ zh-TW:
   time_ago: "%{time} 前"
   title: 標題
   title_and_description: "標題與描述"
-  titled_favorites_and_the_most_recent_additions: 且標題可以是「個人最愛」，而最新添加內容將會出現在此空間裡。
   to_add_comments: 添加評論
   to_add_ids: 添加鑑定
   to_configure_your_widget: 來設置您的小工具。
@@ -3919,7 +3918,6 @@ zh-TW:
   w_photos_only: 帶有照片
   w_sounds: 帶有聲音
   wait_file_generation: 請等待檔案產生。較大的清單可能會花費數分鐘。
-  want_to_show_off_some_of_your_favorite_taxa: 要在此秀出您的最愛物種分類群裡一些內容嗎？
   wanted: 徵求
   was_it_captive_cultivated?: "是被圈養/栽培？"
   we_also_support: |

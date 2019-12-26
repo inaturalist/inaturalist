@@ -203,7 +203,6 @@ ko:
     <a target="%{target}" class="%{class}" href="%{url}">분류군 교체</a>로 인하여 변경됨
   added_by: 추가한 사용자
   added_by_user_on_date_html: "%{date}에 %{user}님이 추가함"
-  added_on: 추가됨
   added_to_favorites_html: |
     <a href="%{url}">즐겨찾기</a>에 추가됨
   adding: "추가 중..."
@@ -231,7 +230,7 @@ ko:
   all_places: "모든 장소"
   all_projects: 모든 프로젝트
   all_rank_added_to_the_database:
-    phylum: 데이터베이스에 추가된 모든 종족
+    phylum: 데이터베이스에 추가된 모든 문
     subphylum: 데이터베이스에 추가된 모든 아문
     superclass: 데이터베이스에 추가된 모든 상강
     class: 데이터베이스에 추가된 모든 강
@@ -256,7 +255,7 @@ ko:
     complex: 데이터베이스에 추가된 모든 복합군
     species: 데이터베이스에 추가된 모든 종
     hybrid: 데이터베이스에 추가된 모든 잡종
-    subspecies: 모든 아종이 데이터베이스에 추가됨
+    subspecies: 모든 하위 분류군이 데이터베이스에 추가됨
     variety: 데이터베이스에 추가된 모든 품종
   all_rights_reserved: 모든 권리는 저작권자에게 있습니다.
   all_taxa:
@@ -301,6 +300,7 @@ ko:
   alphabetical_order: 알파벳순 정렬
   already_have_an_account_log_in_html: 계정이 이미 있으십니까? <strong>로그인하세요.</strong>
   amphibians: 양서류
+  ancestor_taxon: 조상 분류군
   and: 그리고
   and_other_taxa: "&amp; 다른 분류군"
   android: 안드로이드
@@ -655,7 +655,6 @@ ko:
   cover: 겉표지
   create: 만들기
   create_a_guide: 가이드 만들기
-  create_a_list: 목록 만들기
   create_a_new_field: 새로운 필드 생성
   create_a_new_place: 새로운 장소 생성
   create_a_new_taxon: 새로운 분류군 생성
@@ -794,6 +793,9 @@ ko:
   doesnt_have_default_photo: 기본 사진이 없습니다.
   doh_something_went_wrong: 문제가 생겼습니다.
   doh_something_went_wrong_error: "무언가 잘못되었습니다: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: 기부하기
   done: 완료
   dont_have_an_account_sign_up_html: 계정이 없으십니까? <strong>가입하세요.</strong>
   dont_send_me_email: "메일 수신 거부"
@@ -855,7 +857,7 @@ ko:
   editing_this: '%{elem} 편집'
   editing_x_in_y: "%{y}에서 %{x} 편집"
   editors: 편집자
-  either: 어느 쪽이든
+  either: 모두
   either_that_user_doesnt_exist_or: "사용자가 존재하지 않거나 이미 팔로잉하고 있습니다."
   eligible_for_research_grade: 연구 자료 등급을 받을 자격이 있다.
   email: 이메일
@@ -1087,7 +1089,7 @@ ko:
   however_there_were_some_issues: "하지만, 몇 가지 문제가 있었습니다: %{issues}"
   icon: 아이콘
   icon_size: 아이콘 크긱
-  iconic_taxon: 아이코닉 분류군
+  iconic_taxon: 특정 분류군
   identify: 동정하기
   identify_title: "동정하기"
   identification: 동정
@@ -1226,6 +1228,7 @@ ko:
     swedish: svenska
     tagalog: tagalog
     turkish: Türk
+  less: 줄이기
   license: 라이선스
   licensing_your_content_gives_others_legal: "콘텐츠를 라이선스하면 다른 사람들이 라이선스 규칙을 지키는 한 합법적으로 해당 콘텐츠를 이용할 수 있습니다. %{site_name}은 당신의 크리에이티브 커먼즈 라이선스가 된 콘텐츠를 데이터 파트너와 공유합니다."
   life: 생명
@@ -1448,7 +1451,6 @@ ko:
   newly_added: 새로 추가됨
   newly_added_species: 새로 추가된 종
   newly_observed_species: 새롭게 관찰된 종
-  newly_observed_species_this_year: 올해 새로 추가된 종
   news: 새 소식
   next: 다음
   next_observation: 다음 관찰
@@ -1614,7 +1616,6 @@ ko:
   open_street_map: 오픈스트리트맵
   optional: 선택 사항
   or: 또는
-  order: 목
   original: 원본
   originally_flagged_by: 처음으로 플래그함
   originally_imported_from_url_html: "원래 <a href='%{url}'>%{url}</a>에서 가져옴"
@@ -2014,25 +2015,29 @@ ko:
   rank_position: 순위
   rank_restrictions: 분류군 추가 제한
   ranks:
-    kingdom: 계
-    subkingdom: 아계
+    kingdom: Kingdom
+    subkingdom: Subkingdom
     phylum: 문
-    subphylum: 아문
+    subphylum: Subphylum
     superclass: 상강
-    subclass: 아강
-    infraclass: 하강
+    class: Class
+    subclass: Subclass
+    infraclass: Infraclass
     superorder: 상목
-    order: 목
+    order: Order
     suborder: 아목
     infraorder: 하목
+    subterclass: Subterclass
     parvorder: 소목
-    family: 과
-    subfamily: 아과
-    genus: 속
+    superfamily: Superfamily
+    epifamily: Epifamily
+    family: Family
+    subfamily: Subfamily
+    genus: Genus
     subgenus: 아속
     species: 종
     hybrid: 혼종
-    subspecies: 아종
+    subspecies: Subspecies
   ranges: 범위
   re_order_photos: "사진 재정렬하기 &raquo;"
   read_more: 더 읽어보기
@@ -2199,6 +2204,9 @@ ko:
   stop_editing: 그만 편집하기
   stop_following_user: "%{user}를 그만 팔로우하기"
   stop_testing: 테스트 중지
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: 스토어
   submitted: 업로드 날짜
   subscriptions: 구독
   suggest_an_identification: 동정 제안하기
@@ -2211,8 +2219,12 @@ ko:
   take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
   taxa_info: 생물 분류 정보
+  taxon: 분류군
+  taxonomy: 분류
+  taxon_deleted: 분류군이 삭제되었습니다.
   taxon_colors: 분류 색
   taxon_ranks: 분류학적 위치
+  taxon_name_was_deleted: 분류군 이름이 삭제되었습니다.
   taxonomic_order: 분류 체계
   tell_the_world_a_little_about_yourself: 자기소개하기
   tell_us_why: 이유를 말해주세요...
@@ -2314,9 +2326,8 @@ ko:
   view_sample: 샘플 보기
   view_x: "%{x} 보기"
   view_your_observations: 내 관찰 보기
-  video_tutorials: 동영상 강좌
+  video_tutorials: 동영상 튜토리얼
   vulnerable: 취약(VU)
-  want_to_show_off_some_of_your_favorite_taxa: 당신이 좋아하는 분류군들을 여기 표시하고 싶으세요? "
   was_it_captive_cultivated?: "포획되거나 사육되었습니까?"
   we_also_support: |
     <a href="http://flickr.com">플리커</a>, 
@@ -2391,7 +2402,7 @@ ko:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: 교실에서 %{site_name}을(를) 사용할 예정이십니까?
     donate:
-      donate_short_desc: "지원을 표하려면 지금 기부하세요!"
+      donate_short_desc: "지금 기부해서 iNaturalist를 지원해주세요!"
     guides:
       edit:
         add_rank_tags_help_html: |
@@ -2504,6 +2515,7 @@ ko:
           <a href="https://www.inaturalist.org/pages/managing-projects">여기서</a> 프로젝트 관리법을 알아보거나, <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">iNaturalist 블로그</a>에서 프로젝트들의 역사를 읽어보세요.
         errors:
           name_is_required: 프로젝트 이름은 필수입니다
+          name_less_than_100_characters: 프로젝트 이름은 100글자 이내여야 합니다.
       project_user_curator_coordinate_access_labels:
         none: 없음.
     shared:
@@ -2651,6 +2663,11 @@ ko:
       - 11월
       - 12월
   datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        other: '%{count}분 이하'
+      less_than_x_seconds:
+        other: '%{count} 초 이하'
     countdown_x_days:
       other: 일
     countdown_x_hours:

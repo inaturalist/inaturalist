@@ -307,7 +307,7 @@ nl:
     <a target="%{target}" class="%{class}" href="%{url}">taxonwissel</a>
   added_by: Toegevoegd door
   added_by_user_on_date_html: "Toegevoegd door %{user} op %{date}"
-  added_on: Toegevoegd op
+  added_on_datetime: "Toegevoegd op %{datetime}"
   added_to_favorites_html: |
     Toegevoegd aan <a href="%{url}">favorieten</a>
   adding: "Bezig met toevoegen..."
@@ -627,6 +627,10 @@ nl:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Kaartuitsnede
   breadcrumbs: Broodkruimels
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
   breadcrumbs_description: "Dit zal de h1 en standaard calls-to-action vervangen, dus zorg ervoor dat je ze opneemt als ze belangrijk zijn voor dit project en onthoud dat de max. toegestane breedte 950px is"
   brief_caption: Kort onderschrift
   brown: bruin
@@ -925,7 +929,6 @@ nl:
   cover: Omslag
   create: Aanmaken
   create_a_guide: Maak een gids aan
-  create_a_list: Lijst aanmaken
   create_a_new_field: Nieuw veld aanmaken
   create_a_new_place: Een nieuwe plaats aanmaken
   create_a_new_taxon: Een nieuw taxon aanmaken
@@ -1996,7 +1999,7 @@ nl:
   most_recent_observation_by_date_observed: Meest recente verifieerbare waarneming op datum van waaneming
   most_species: Meeste soorten
   most_observed_species: Meest waargenomen soorten
-  most_observed_introduced_species: Meest waargenomen voorgestelde soorten
+  most_observed_introduced_species: Meest waargenomen geïntroduceerde soorten
   most_observed_threatened_species: Meest waargenomen bedreigde soorten
   move_input_children_to_output?: Verplaats de kinderen naar de export?
   multiple: meerdere
@@ -2069,7 +2072,6 @@ nl:
   new_observation_field: Nieuw waarnemingsveld
   new_observations: Nieuwe waarnemingen
   new_observations_in_year: "Nieuwe waarnemingen in %{year}"
-  new_observations_this_year: Nieuwe waarnemingen dit jaar
   new_observations_ellispsis: "Nieuwe waarnemingen"
   new_observations_from_place_html: "Nieuwe waarnemingen uit %{place}"
   new_observations_may_take_up_to: Het kan tot %{widget_expiration} minuten duren tot nieuwe waarnemingen in de widget verschijnen.
@@ -2096,7 +2098,6 @@ nl:
   newly_added_species: Nieuw toegevoegde soorten
   newly_observed_species: Nieuw waargenomen soorten
   newly_observed_species_in_year: "Nieuw toegevoegde soorten in %{year}"
-  newly_observed_species_this_year: Nieuw toegevoegde soorten dit jaar
   news: Nieuws
   next: Volgende
   next_observation: Volgende waarneming
@@ -2269,6 +2270,7 @@ nl:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     bijv. "2019-10-29 13:12:21"
+  observed_on_datetime: Waargenomen op %{datetime}
   observation_removed_from_the_project: "Waarneming verwijderd uit het project %{project}"
   observation_requirements: waarnemingsvereisten
   observation_rules: Waarnemingsregels
@@ -3731,6 +3733,8 @@ nl:
   there_isnt_a_wikipedia_article_titled_x_html: |
     Er is geen Wikipedia-artikel of doorverwijspagina met de titel '%{x}'. Misschien zou je er eentje <a href='http://nl.wikipedia.org/wiki/%{x}'>aan willen maken</a>?
   there_merge_problems_with_the_merge: "Er waren problemen met de samenvoeging: %{merged_errors}"
+  there_was_a_problem_creating_this_account: |
+    Er was een probleem bij het aanmaken van dit account. Neem contact met ons op als dit probleem zich blijft voordoen
   there_was_a_problem_saving_your_identification: "Er was een probleem bij het opslaan van je determinatie: %{error}"
   there_were_problems_adding_taxa: "Er waren problemen bij het toevoegen van deze taxa: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Er liep iets mis met het toevoegen van die waarneming aan dit project:"
@@ -3806,7 +3810,6 @@ nl:
   time_ago: "%{time} geleden"
   title: titel
   title_and_description: "Titel & Beschrijving"
-  titled_favorites_and_the_most_recent_additions: met de naam "Favorieten" en de meest recente toevoegen zullen hier verschijnen.
   to_add_comments: om reacties toe te voegen
   to_add_ids: om ID's toe te voegen
   to_configure_your_widget: configureer je widget
@@ -4089,7 +4092,6 @@ nl:
   w_photos_only: Met foto's
   w_sounds: Met geluiden
   wait_file_generation: Even geduld, het bestand wordt aangemaakt. Voor lange lijsten kan dit enkele minuten in beslag nemen.
-  want_to_show_off_some_of_your_favorite_taxa: Wil je hier enkele van je favoriete taxa tonen?
   wanted: Gezocht
   was_it_captive_cultivated?: "Was het in gevangenschap/gecultiveerd?"
   we_also_support: |
@@ -5762,6 +5764,10 @@ nl:
       show:
         take_a_chance_to_review_html: 'Werp eens een blik op <a href="%{link}">onze richtlijnen</a>.'
         this_user_was_banned: Deze gebruiker werd geschorst
+        favorites_list_prompt_html: |
+          Wil je met je favoriete taxa pronken? %{link_start_tag}Maak een
+          lijst%{link_end_tag} met de titel "Favorieten" en de meest recente toevoegingen
+          verschijnen hier.
     user_parents:
       confirm:
         thanks_donor_html: |

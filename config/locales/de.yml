@@ -280,7 +280,7 @@ de:
     <a target="%{target}" class="%{class}" href="%{url}">Taxonänderung hinzugefügt</a>
   added_by: Hinzugefügt von
   added_by_user_on_date_html: "Von %{user} am %{date} hinzugefügt"
-  added_on: Hinzugefügt am
+  added_on_datetime: "Hinzugefügt am %{datetime}"
   added_to_favorites_html: |
     Zu <a href="%{url}">Favoriten</a> hinzugefügt
   adding: "Füge hinzu…"
@@ -839,7 +839,6 @@ de:
   cover: Bedeckung
   create: Erstellen
   create_a_guide: Erzeuge einen Guide
-  create_a_list: Erstelle eine Liste
   create_a_new_field: Ein neues Feld erstellen
   create_a_new_place: Einen neuen Ort erstellen
   create_a_new_taxon: Ein neues Taxon erstellen
@@ -1838,7 +1837,6 @@ de:
   new_observation_field: Neues Beobachtungsfeld
   new_observations: Neue Beobachtungen
   new_observations_in_year: "Neue Beobachtungen in %{year}"
-  new_observations_this_year: Neue Beobachtungen in diesem Jahr
   new_observations_ellispsis: "Neue Beobachtungen..."
   new_observations_from_place_html: "Neue Beobachtungen aus %{place}"
   new_observations_may_take_up_to: Es kann bis zu %{widget_expiration} Minuten dauern, bis neue Beobachtungen im Widget erscheinen.
@@ -1863,7 +1861,6 @@ de:
   newly_added_species: Kürzlich hinzugefügte Arten
   newly_observed_species: Kürzlich beobachtete Arten
   newly_observed_species_in_year: "Neu hinzugefügte Arten in %{year}"
-  newly_observed_species_this_year: In diesem Jahr neu hinzugefügte Spezies
   news: Neuigkeiten
   next: Weiter
   next_observation: Nächste Beobachtung
@@ -2000,6 +1997,7 @@ de:
   observation_fields_are_additional: Beobachtungsfelder sind zusätzliche Datenfelder, die zu Beobachtungen hinzugefügt werden können.
   observation_fields_by_preferences_description: |
     Beobachtungsfelder sind ein bisschen wie Tags, außer, dass jeder sie standardmäßig zu deiner Beobachtung hinzufügen kann. Ändere dies, wenn du es bevorzugst, dass nur du oder die Website-Kuratoren dies tun können.
+  observed_on_datetime: Beobachtet am %{datetime}
   observation_removed_from_the_project: "Die Beobachtung wurde aus dem Projekt \"%{project}\" entfernt."
   observation_requirements: Beobachtungsvoraussetzungen
   observation_rules: Beobachtungsregeln
@@ -3270,6 +3268,8 @@ de:
   there_isnt_a_wikipedia_article_titled_x_html: |
     Es gibt keinen Wikipedia-Artikel oder keine Weiterleitung mit dem Titel'<i>%{x}</i>'. Vielleicht möchtest du ja einen <a href='http://de.wikipedia.org/wiki/%{x}'>erstellen</a>?
   there_merge_problems_with_the_merge: "Es gab Probleme mit der Zusammenführung: %{merged_errors}"
+  there_was_a_problem_creating_this_account: |
+    Es trat ein Problem beim Erstellen dieses Kontos auf. Bitte kontaktiere uns, wenn dieses Problem weiterhin besteht
   there_was_a_problem_saving_your_identification: "Es gab ein Problem beim Speichern Deiner Identifikation: %{error}"
   there_were_problems_adding_taxa: "Es gab Probleme beim Hinzufügen dieser Taxa: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Es gab Probleme beim Hinzufügen dieser Beobachtung zu diesem Projekt:"
@@ -3317,7 +3317,6 @@ de:
   time_ago: "%{time} her"
   title: Titel
   title_and_description: "Titel & Beschreibung"
-  titled_favorites_and_the_most_recent_additions: mit dem Titel "Favoriten" und die neuesten Beiträge erscheinen in diesem Bereich.
   to_add_comments: um Kommentare hinzuzufügen
   to_add_ids: um Kennungen hinzuzufügen
   to_recipient: an
@@ -3441,6 +3440,7 @@ de:
   user_disagrees_this_is_taxon: "%{user} ist nicht der Meinung, dass es sich um %{taxon} handelt"
   user_faved_a_noun_by_owner: "%{user} hat %{noun} von %{owner} favorisiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
+  user_helped_x_people_with_y_ids_html: "%{user} hat <strong>%{x} Personen</strong> mit <strong>%{y} IDs</strong> geholfen"
   user_invited_you_to_join_project: "%{user} hat Dich eingeladen, bei %{project} mitzumachen"
   user_invited_you_to_join_this_project_on_date_html: "%{user} hat Dich eingeladen, diesem Projekt am %{date} beizutreten"
   user_is_a_naturalist: "%{user} ist ein Naturalist!"
@@ -3531,7 +3531,6 @@ de:
   w_photos_only: w/ Fotos
   w_sounds: w/ Sounds
   wait_file_generation: Bitte um Geduld während die Datei erzeugt wird. Bei großen Listen kann es ein paar Minuten dauern.
-  want_to_show_off_some_of_your_favorite_taxa: Willst du hier ein paar deiner Lieblings-Taxa zeigen?
   wanted: Gesucht
   was_it_captive_cultivated?: "War es in Gefangenschaft o. kultiviert?"
   we_also_support: |
@@ -4431,6 +4430,10 @@ de:
       show:
         take_a_chance_to_review_html: 'Nütze die Gelegenheit, <a href="%{link}">unsere Richtlinien</a> durchzusehen.'
         this_user_was_banned: Dieser Benutzer wurde gesperrt
+        favorites_list_prompt_html: |
+          Möchtest du einige deiner bevorzugten Taxen vorzeigen? %{link_start_tag}Erstelle eine
+          Liste%{link_end_tag} mit dem Titel "Favoriten" und die zuletzt hinzugefügten
+          werden dann in diesem Bereich erscheinen.
     user_parents:
       new:
         child_name_private: Name des Kindes (privat)
