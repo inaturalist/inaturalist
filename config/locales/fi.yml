@@ -307,6 +307,7 @@ fi:
     <a target="%{target}" class="%{class}" href="%{url}">taksoneiden swappausta</a>
   added_by: Lisännyt
   added_by_user_on_date_html: "Lisännyt %{user} %{date}"
+  added_on_datetime: "Lisätty %{datetime}"
   added_to_favorites_html: |
     Lisätty <a href="%{url}">suosikkeihin</a>
   adding: "Lisätään..."
@@ -1898,6 +1899,7 @@ fi:
   merging: Yhdistäminen
   merging_places: Yhdistä Paikkoja
   message: Viesti
+  message_deleted: Viesti poistettu
   message_from_user_at_time: Käyttäjältä %{user} %{time}
   message_from_user_on_date: Käyttäjältä %{user} %{date}
   messages: Viestit
@@ -2212,6 +2214,7 @@ fi:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     esim. 2019-10-29 13:12:21
+  observed_on_datetime: Havaittu %{datetime}
   observation_removed_from_the_project: "Havainnot poistettu projektista \"%{project}\""
   observation_requirements: Havaintojen vaatimukset
   observation_rules: Havainnointisäännöt
@@ -3476,6 +3479,8 @@ fi:
   there_is_no_wikipedia_page_matching: Vastaavaa Wikipedia-sivua ei löytynyt
   there_isnt_a_wikipedia_article_titled_x_html: |
     Wikipedia-artikkelia tai uudelleenohjausta '%{x}' ei ole.  Ehkä haluaisit <a href='http://fi.wikipedia.org/wiki/%{x}'>luoda sellaisen</a>?
+  there_was_a_problem_creating_this_account: |
+    Tilin luomisessa esiintyi ongelma. Ota meihin yhteyttä jos tilanne ei korjaannu
   there_were_problems_adding_that_observation_to_this_project: "Havainnon lisääminen tähän projektiin epäonnistui:"
   there_were_some_problems_saving_this_observation: Tämän havainnon tallentamisessa oli joitain ongelmia
   there_were_some_problems_saving_those_colors: "Näiden värien tallentamisessa oli joitain ongelmia: %{error}"
@@ -3525,7 +3530,7 @@ fi:
   top_identifier: Parhain tunnistaja
   top_identifiers: Parhaimmat tunnistajat
   top_identifiers_of_taxon: Taksonin %{taxon} parhaimmat tunnistajat
-  top_observer: Parhain tunnistaja
+  top_observer: Paras havainnoija
   top_observers: Ylimmät havainnoijat
   top_species: Kaikkein edustavimmat lajit
   total: Yhteensä
