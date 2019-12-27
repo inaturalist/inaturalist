@@ -16,8 +16,8 @@ pl:
     other: "<span class='count'>%{count}</span> rozpatrzonego zgłoszenia"
   x_identifications:
     one: '1 oznaczenie'
-    few: '%{count} identyfikacje'
-    many: '%{count} identyfikacji'
+    few: '%{count} oznaczenia'
+    many: '%{count} oznaczeń'
     other: '%{count} oznaczenia'
   x_identifications_html:
     one: '<span class="count">1</span> oznaczenie'
@@ -764,14 +764,14 @@ pl:
   change_types:
     change_types: Rodzaje zmian
     split: Podział
-    merge: Połączenie
+    merge: Scalenie
     swap: Zamiana
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podziel na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: włącz do
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merged_into: włączone do
+    merged_into: scalone w
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: zastąpione przez
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -786,8 +786,8 @@ pl:
     input_taxon_will_be_activated_soon_html: "takson %{input_taxon} zostanie niedługo aktywowany"
     input_taxon_was_replaced_by_output_taxon_html: "takson %{input_taxon} został zastąpiony przez takson %{output_taxon}"
     input_taxon_will_be_replaced_by_output_taxon_html: "takson %{input_taxon} zostanie zastąpiony przez takson %{output_taxon}"
-    input_taxa_were_merged_into_output_taxon_html: "taksony %{input_taxa} zostały włączone do taksonu %{output_taxon}"
-    input_taxa_will_be_merged_into_output_taxon_html: "taksony %{input_taxa} zostaną włączone do taksonu %{output_taxon}"
+    input_taxa_were_merged_into_output_taxon_html: "taksony %{input_taxa} zostały scalone w %{output_taxon}"
+    input_taxa_will_be_merged_into_output_taxon_html: "taksony %{input_taxa} zostaną scalone w %{output_taxon}"
   change_your_password: Zmień hasło
   changing_the_geoprivacy: 'Zmiana geo-prywatności zmienia to jak inni widzą lokalizację Twojej obserwacji.'
   check_back_soon: Sprawdź ponownie wkrótce!
@@ -1292,7 +1292,7 @@ pl:
   fields: notatki
   fields_: Notatki
   fields_can_only_be_edited_by_the_people_who: Pola mogą być edytowane tylko przez ich autorów i kuratorów strony
-  fields_merged: Połączone notatki
+  fields_merged: Scalone pola
   file: Plik
   file_should_be_in_the_following_format: "Plik powinien zawierać następującą kolejność: nazwa taksonu, opis"
   fill_out_project_observation_fields: Uzupełnij notatki związane z projektem
@@ -1362,7 +1362,7 @@ pl:
   #Label for the object that was flagged, e.g. a table header
   flag_object: Przedmiot
   flag_reason: "&ldquo;Zgłaszam %{record}, ponieważ"
-  flag_resolution: Postanowienie
+  flag_resolution: Decyzja
   flag_saved: Zgłoszenie zapisane
   flag_saved_thanks_html: Zgłoszenie zapisane. Dziękujemy! <a href="%{url}" class="readmore">Zobacz zgłoszenie</a>
   flag_this_observation: Zgłoś obserwację
@@ -1458,7 +1458,7 @@ pl:
   guide_was_successfully_updated: Przewodnik został pomyślnie zaktualizowany.
   has_already_been_flagged_by: zostało już zgłoszone przez
   has_id_supported_by_two_or_more: Oznaczenie podtrzymane przez dwóch lub więcej użytkowników
-  has_one_or_more_faves: Posiada jedno lub więcej polubień
+  has_one_or_more_faves: Posiada jedno lub więcej dodań do ulubionych
   has_photo: Posiada zdjęcie
   has_photos: Posiadające zdjęcia
   has_photo_and_sound: Posiada zdjęcie i nagranie dźwiękowe
@@ -1871,7 +1871,7 @@ pl:
   mentioned_you_in_an_x_on_noun_html: "%{user} wspomniał o tobie w %{x} w elemencie %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} wspomniał o tobie w %{x} w elemencie %{noun} użytkownika %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} wspomniał o tobie w %{x} w elemencie %{noun} użytkownika %{by}"
-  merge: Połącz
+  merge: Scal
   merge_two_places_together: Scal dwie lokalizacje w jedną. Wszystkie gatunki z checklist zostaną połączone, tak samo jak wszelkie informacje geograficzne.
   merge_observation_field_x_into: 'Połącz notatki terenowe "%{x}" w...'
   merging: Łączenie
@@ -1893,15 +1893,15 @@ pl:
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
-      mm: "%dm m"
+      mm: "%dmin"
       #Short text representing 1 hour in the past
       h: "1 h"
       #Short text representing %d hours in the past
-      hh: "%d h"
+      hh: "%dh"
       #Short text representing 1 day in the past
       d: "1 d"
       #Short text representing %d days in the past
-      dd: "%d d"
+      dd: "%dd"
       #Short text representing 1 month in the past
       M: "1msc"
       #Short text representing %d months in the past
@@ -1909,7 +1909,7 @@ pl:
       #Short text representing 1 year in the past
       'y': "1r"
       #Short text representing %d years in the past
-      yy: "%dr"
+      yy: "%dl"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display a time zone code and not an offset, so
     #please use z and not Z
@@ -1934,7 +1934,7 @@ pl:
   most_agree: większość się zgadza
   most_browser_print_pdf: "Uwaga: większość przeglądarek ma opcję zapisywania do pliku PDF"
   most_disagree: większość się nie zgadza
-  most_comments_and_faves: Najwięcej komentarzy i polubień
+  most_comments_and_faves: Najwięcej komentarzy i dodań do ulubionych
   most_observations: Najwięcej obserwacji
   most_recent_observation_by_date_observed: Najnowsza weryfikowalna obserwacja według daty obserwacji
   most_species: Najwięcej gatunków
@@ -1974,7 +1974,7 @@ pl:
   nearby_observations_: Pobliskie obserwacje
   needs_id: potrzebuje oznaczenia
   needs_id_: Potrzebuje oznaczenia
-  needs_id_expandable_html: "<span class='full'>Potrzebuje </span>identyfikacji"
+  needs_id_expandable_html: "<span class='full'>Potrzebuje </span>oznaczenia"
   new: Nowi
   new_and_noteworthy: Nowe i godne uwagi
   new_announcement: Nowe ogłoszenie
@@ -3188,7 +3188,7 @@ pl:
   user_faved_this_observation: "%{user} dodał tę obserwację do ulubionych"
   user_flagged_as_a_spammer_html: "%{user} zgłoszony jako spamer"
   user_hasnt_joined_any_projects: "%{user} nie dołączył do żadnego projektu"
-  user_helped_x_people_with_y_ids_html: "%{user} pomógł <strong>%{x} ludziom</strong> z <strong>%{y} oznaczeniami</strong>"
+  user_helped_x_people_with_y_ids_html: "%{user} pomógł <strong>%{x} osobom</strong> z <strong>%{y} oznaczeniami</strong>"
   user_is_a_naturalist: "%{user} jest przyrodnikiem!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> jest teraz administratorem projektu %{project}
