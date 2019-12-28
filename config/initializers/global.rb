@@ -78,6 +78,14 @@ class String
     end
   end
 
+  def all_latin_chars?
+    chars.detect{|c| c.bytes.size > 1}.blank?
+  end
+
+  def non_latin_chars?
+    !all_latin_chars?
+  end
+
 end
 
 # Restrict some queries to characters, numbers, and simple punctuation, as

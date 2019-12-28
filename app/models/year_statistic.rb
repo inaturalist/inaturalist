@@ -547,11 +547,14 @@ class YearStatistic < ActiveRecord::Base
     rescue
       nil
     end
+    medium_font_path = "Lato-Regular" if owner.non_latin_chars?
+    light_font_path = "Lato-Light" if title.non_latin_chars?
     if obs_count.to_i > 0
       locale = user.locale if user
       locale ||= site.locale if site
       locale ||= I18n.locale
       obs_text = I18n.t( "x_observations", count: FakeView.number_with_delimiter( obs_count, locale: locale ), locale: locale ).mb_chars.upcase
+      medium_font_path = "Lato-Regular" if obs_text.non_latin_chars?
       system <<-BASH
         convert #{montage_with_icon_path} \
           -fill white -font #{medium_font_path} -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
