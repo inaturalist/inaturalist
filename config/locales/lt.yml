@@ -586,6 +586,7 @@ lt:
   connecting_your_inat_account_to_accounts_other_sites: "Sujungus jūsų %{site_name} paskyrą su kitų tinklalapių paskyromis leis jums prisijungti prie %{site_name} naudojantis kitų tinklalapių įgaliojimais."
   conservation_status: Apsaugos statusas
   conservation_status_descriptions:
+    status: 'Statuso kodas, rangas ir t. t. Jeigu sutrumpinimai, kaip E ar CR egzistuoja, naudokite juos. Kitu atveju naudokite pilną statusą, pvz.: nykstantis arba grėsmingai nykstantis.'
     description: Trumpas aprašymas, kodėl tai buvo įtraukta į sąrašą.
     url: Puslapio, apibūdinančio šią būseną, URL.
     geoprivacy: Numatytasis vietos privatumas šio taksono stebėjimams
@@ -696,6 +697,7 @@ lt:
   curators: Kuratoriai
   curator_identification: Kuratorius identifikavimas
   current_flags: Dabartinės žymės
+  customize_location: Pasirinkti vietą
   darr_apply_darr: "&darr; Taikyti &darr;"
   dashboard: Valdymo skydas
   data_deficient: Trūksta duomenų
@@ -772,6 +774,8 @@ lt:
   delete_photo: Ištrinti nuotrauką
   delete_project: Ištrinti šį projektą
   delete_selected: Ištrinti Pasirinktus
+  delete_taxon_and_merge_most_data_html: |
+    Ištrinti <i>%{taxon}</i> ir perkelti daugumą informacijos į kitą taksoną. Naudokite šį įrankį <strong>naikinant pasikartojančius taksonus</strong>. Jeigu norite ištrinti pasenusį sinonimą, prašome naudoti taksono sukeitimo įrankį. <strong>BŪKITE ATSARGŪS!</strong> Taksonų naikinimas gali padaryti daug žalos. Skaitykite <a href="%{curator_url}">Kuratorių gidą</a>, kad sužinotumėte daugiau.
   delete_user: Ištrinti vartotoją
   delete_your_account: Ištrinti savo paskyrą
   deleted_synonyms: Ištrinti sinonimus
@@ -812,6 +816,7 @@ lt:
   #short as possible
   donate: AUKOTI
   done: Baigta
+  dont_have_an_account_sign_up_html: Neturite paskyros? <strong>Užsiregistruokite.</strong>
   dont_send_me_email: "Nesiųsti man el. laiškų!"
   dont_use_double_quotes: Daugiau niekur nenaudoti dvigubų kabučių
   #Prompt shown when you are dragging a file somewhere and should release it to
@@ -819,6 +824,8 @@ lt:
   drop_it: Mesti
   double_click_to_finish: (dukart spustelėkite, kad baigtumėte)
   download: Atsisiųsti
+  download_bulk_import_template_html: |
+    <a href="%{url}">Atsisiųskite šabloną</a> <a href="/observations/import?project_id=%{project_id}#csv_import"> masinio įkėlėjo</a> naudojimui
   download_csv: Atsisiųsti CSV
   download_csv_template: Atsisiųsti CSV šabloną
   download_kml: Atsisiųsti KML
@@ -830,10 +837,13 @@ lt:
   drawings: Brėžiniai
   duplicate_verb: Dublikatas
   duration_value: "Trukmė: %{duration} minutės"
+  each_place_displays_all_species_inat_knows: "Kiekvienas vietos puslapis parodo visas rūšis, kurias %{site_name} žino toje vietoje, įskaitant informaciją apie jų gausumą, apsaugos statusą ir tai, kas buvo pirmasis %{site_name} vartotojas, stebėjęs tas rūšis. Jūs galite filtruoti rūšis pagal taksonominę grupę, spalvą, apsaugos statusą arba naudotis paprasta paieška."
   edit: Redaguoti
+  edit_a_batch_of_observations: Redaguoti grupę stebėjimų
   edit_account_settings_and_profile: "Redaguoti paskyros nustatymus ir profilį"
   edit_assessment: Redaguoti įvertinimą
   edit_atlas: Redaguoti atlasą
+  edit_atlas_for_taxon_html: Redaguoti taksono %{taxon} atlasą
   edit_body: Redaguoti turinį
   edit_comment: Redaguoti savo komentarą
   edit_custom_project_fields: Redaguoti pritaikytus projekto laukus
@@ -863,6 +873,8 @@ lt:
   edit_your_identification: Redaguoti savo identifikaciją
   edit_your_settings_for_this_project: Redaguoti savo nustatymus šiam projektui
   edited_by_name_html: "Redagavo %{name}"
+  edited_by_name_some_rights_reserved_html: |
+    Redagavo %{name}, kai kurios teisės saugomos (%{license})
   editing: Redaguojama
   editing_announcement: Redagavimo skelbimas
   editing_custom_project_fields_for: Redaguojama pritaikyti projekto laukai
