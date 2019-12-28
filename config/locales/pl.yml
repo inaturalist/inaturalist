@@ -766,6 +766,7 @@ pl:
     split: Podział
     merge: Scalenie
     swap: Zamiana
+    stage: Przygotowanie
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podziel na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -3246,7 +3247,6 @@ pl:
   view_taxon_changes: Zobacz zmiany taksonu
   view_taxon_page: Zobacz stronę taksonu
   view_taxon_page_for_this_x: "Zobacz stronę taksonu dla tego %{x}"
-  view_taxononomy_details_for_taxon: "Zobacz szczegóły taksonomii dla %{taxon}"
   view_the_observation: Zobacz obserwację
   view_user_observations: "Zobacz obserwacje %{user}"
   view_x: "Zobacz %{x}"
