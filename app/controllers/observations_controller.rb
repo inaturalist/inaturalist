@@ -284,7 +284,6 @@ class ObservationsController < ApplicationController
         @project_invitations = @observation.project_invitations.limit(100).to_a
         @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
       end
-      @coordinates_viewable = @observation.coordinates_viewable_by?(current_user)
     end
     respond_to do |format|
       format.html do
@@ -292,7 +291,7 @@ class ObservationsController < ApplicationController
           return render(partial: "cached_component",
             object: @observation, layout: false)
         end
-        
+        @coordinates_viewable = @observation.coordinates_viewable_by?( current_user )
         user_viewed_updates(delay: true) if logged_in?
         @observer_provider_authorizations = @observation.user.provider_authorizations
         @shareable_image_url = FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )

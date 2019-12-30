@@ -188,6 +188,31 @@ describe ObservationsController do
       expect( response.body ).to have_tag(
         "link[rel=canonical][href='#{observation_url( observation, host: Site.default.url )}']" )
     end
+
+    describe "opengraph description" do
+      it "should include not be blank if there's a taxon, date, and place_guess" do
+        o = make_research_grade_candidate_observation( taxon: Taxon.make!, place_guess: "this rad pad" )
+        expect( o.taxon ).not_to be_blank
+        expect( o.observed_on ).not_to be_blank
+        expect( o.place_guess ).not_to be_blank
+        desc = o.to_plain_s
+        expect( desc ).not_to be =~ /something/i
+        get :show, id: o.id
+        html = Nokogiri::HTML( response.body )
+        og_desc = html.at( "meta[property='og:description']" )
+        expect( og_desc[:content] ).to match /#{desc}/
+      end
+
+      it "should include the taxon's common name if there's a taxon but no species_guess" do
+        t = TaxonName.make!( lexicon: "English" ).taxon
+        o = make_research_grade_candidate_observation( taxon: t )
+        get :show, id: o.id
+        html = Nokogiri::HTML( response.body )
+        og_desc = html.at( "meta[property='og:description']" )
+        expect( o.taxon.common_name ).not_to be_blank
+        expect( og_desc[:content] ).to match /#{o.taxon.common_name.name}/
+      end
+    end
   end
   
   describe "import_photos" do
