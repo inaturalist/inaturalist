@@ -3208,6 +3208,7 @@ pl:
   users_projects: "Projekty użytkownika %{user}"
   value: Wartość
   values: Wartości
+  verifiable_observations_by_observation_date: Obserwacje weryfikowalne według daty obserwacji
   view: Zobacz
   view_all: Zobacz wszsytkie
   view_all_flags: Zobacz wszystkie zgłoszenia
@@ -3565,6 +3566,8 @@ pl:
         new_species_desc: |
           Gatunki, które zostały zaobserwowane po raz pierwszy na %{site_name} w tym roku.
           Pokazano %{x} z <a href="%{url}">%{y} gatunków</a>.
+        new_species_desc_html: |
+          Gatunki, które zostały dodane po raz pierwszy w tym roku. Kliknij na miesiąc, aby zobaczyć niektóre z nowych gatunków dodanych w tym miesiącu. Możesz również zobaczyć całkowite nagromadzenie gatunków lub przesunąć suwak do tyłu w czasie, aby zobaczyć inne nowo zaobserwowane gatunki. Ten wykres pokazuje gatunki z obserwacji weryfikowalnych według miesiąca, w którym zostały przesłane na %{site_name} (nie miesiąca, w którym zostały zaobserwowane). Nie zawiera taksonów wyższego lub niższego poziomu, a więc obserwacja oznaczona jako Mammalia się nie liczy, a obserwacja <i>Canis lupus</i> ssp. <i>arktos</i> będzie się po prostu liczyła jako <i>Canis lupus</i>.
         obs_in_year: Obserwacji w %{year}
         observation_streaks_color_desc: |
           Kolor reprezentuje liczbę dni w skali logarytmicznej:
