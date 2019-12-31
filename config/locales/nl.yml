@@ -2228,6 +2228,7 @@ nl:
   observation_added_to_the_project: "Waarneming aan het project %{project} toegevoegd"
   observation_aggregation: Waarneming aggregation
   observation_brief_something_on_day: "iets op %{day}"
+  observation_brief_something_on_day_by_user: "Iets op %{day} door %{user}"
   observation_brief_something_by_user: "Iets door %{user}"
   observation_brief_something_from_place: "Iets uit %{place}"
   observation_brief_something_from_place_by_user: "Iets uit %{place} door %{user}"
@@ -2236,6 +2237,7 @@ nl:
   observation_brief_something_from_place_on_day_at_time: "Iets uit %{place} op %{day} om %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Iets uit %{place} op %{day} om %{time} door %{user}"
   observation_brief_taxon_on_day: "%{taxon} op %{day}"
+  observation_brief_taxon_on_day_by_user: "%{taxon} op %{day} door %{user}"
   observation_brief_taxon_by_user: "%{taxon} door %{user}"
   observation_brief_taxon_from_place: "%{taxon} uit %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} uit %{place} door %{user}"
@@ -4072,6 +4074,7 @@ nl:
   view_taxon_framework_relationship: Bekijk de taxonkader-relatie
   view_taxon_page: Taxonpagina weergeven
   view_taxon_page_for_this_x: "Taxonpagine voor @gender{n:dit|deze} %{x} weergeven"
+  view_taxononomy_details_for_taxon: "Bekijk taxonomiedetails voor %{taxon}"
   view_the: "De %{action}&#59; %{link} weergeven"
   view_the_observation: Bekijk de waarneming
   view_user_observations: "Waarnemingen van %{user} weergeven"
