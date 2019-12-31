@@ -770,7 +770,7 @@ ru:
     drop: Концепция таксона полностью недействительна, поддерживается в исторических целях или для совместимости
     stage: Подготовьте неактивную концепцию для выпуска как часть изменяемой группы
   change_geoprivacy: 'Изменить настройку приватности местоположения'
-  change_group: Изменить группу
+  change_group: Группа изменений
   change_icon: Сменить иконку
   change_password: Изменить пароль
   change_types:
@@ -2308,6 +2308,7 @@ ru:
   observation_added_to_the_project: "Наблюдение добавлено к проекту %{project}"
   observation_aggregation: Агрегация наблюдений
   observation_brief_something_on_day: "некоторые за %{day}"
+  observation_brief_something_on_day_by_user: "Некоторые за %{day} от %{user}"
   observation_brief_something_by_user: "Некоторые от %{user}"
   observation_brief_something_from_place: "Некоторые из %{place}"
   observation_brief_something_from_place_by_user: "Некоторые из %{place} от %{user}"
@@ -2316,6 +2317,7 @@ ru:
   observation_brief_something_from_place_on_day_at_time: "Некоторые из %{place} за %{day} в %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Некоторые из %{place} за %{day} в %{time} от %{user}"
   observation_brief_taxon_on_day: "%{taxon} за %{day}"
+  observation_brief_taxon_on_day_by_user: "%{taxon} %{day} от %{user}"
   observation_brief_taxon_by_user: "%{taxon} %{user}"
   observation_brief_taxon_from_place: "%{taxon} из %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} %{user} из %{place}"

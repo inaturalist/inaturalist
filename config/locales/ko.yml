@@ -1357,7 +1357,7 @@ ko:
     <a href="%{url}">iNaturalist Network</a>의 회원
   members: 회원
   mentioned_you_in_noun_html: "%{user}님이 %{noun}에서 나를 언급했습니다."
-  mentioned_you_in_noun_by_html: "%{user}님이 %{noun}에서 나를 %{by}(으)로 언급했습니다."
+  mentioned_you_in_noun_by_html: "%{user}님이 나를 %{by}님의 %{noun}에서 언급했습니다."
   mentioned_you_in_a_x_on_noun_html: "%{user}님이 %{noun}의 %{x}에서 나를 언급했습니다."
   mentioned_you_in_an_x_on_noun_html: "%{user}님이 %{noun}의 %{x}에서 나를 언급했습니다."
   mentioned_you_in_a_x_on_noun_by_html: "%{user}님이 %{noun}의 %{x}에서 %{by}(으)로 나를 언급했습니다."
@@ -1611,8 +1611,8 @@ ko:
   only_species: 종(Species)만 추가
   only_species_and_subspecies: 종(Species), 아종(Subspecies), 변종(Varieties)만 추가
   only_you: 나만
-  open: 열기
-  open_: 열기
+  open: 공개
+  open_: 공개
   open_street_map: 오픈스트리트맵
   optional: 선택 사항
   or: 또는

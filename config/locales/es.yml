@@ -1311,6 +1311,7 @@ es:
     Marcar la entrada: %{title}
   flag_for_project_title_html: |
     Marca para el proyecto: %{title}
+  flag_for_guide_section_id_html: Marcar para <a href="%{url}">Sección de la Guía%{id}</a>
   flag_for_sound_id_html: Marcar <a href="%{url}">Sonido %{id}</a>
   flag_for_taxon_title_html: |
     Marca para el taxón: %{title}
@@ -2212,6 +2213,7 @@ es:
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   observation_aggregation: Agregado de observación
   observation_brief_something_on_day: "algo el %{day}"
+  observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo desde %{place} de %{user}"
@@ -2220,6 +2222,7 @@ es:
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
+  observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} desde %{place} de %{user}"
@@ -4720,6 +4723,12 @@ es:
         horizontal: Horizontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Intervalo
+        interval_limit_warning_hour: Solo se muestran los valores horarios de 1 semana
+        interval_limit_warning_day: Solo se muestran los valores diarios de 1 año
+        interval_limit_warning_week: Solo se muestran los valores semanales de 10 años
+        interval_limit_warning_month: Solo se muestran los valores mensuales de 100 años
+        interval_limit_warning_year: Solo se muestran los valores anuales de 100 años
+        some_queries_missing_taxa: En algunas consultas faltan taxones
         some_queries_missing_taxa_desc: |
           Solo se cargan los 500 taxones mas observados por consulta, si hay mas taxones representados en la consulta no aparecerán, o se mostrarán como "?" 
           si están presentes en otras consultas. Para poder comparar óptimamente Intenta reducir tus consultas para que se muestren 500 taxones o menos.
@@ -4727,12 +4736,19 @@ es:
         taxa_observed_in_all_queries: Taxón observado en todas las consultas
         taxa_observed_in_only_one_query: Taxón observado en una sola consulta
         total_taxa: Total Taxones
+        total_taxa_desc: |
+          Este es el número total de taxones "hijo" representados a la consulta.
+          A veces verás más filas con recuentos diferentes a cero porque hay taxones de nivel superior añadidos desde otras consultas. P. ej. si la Consulta 1 tiene una observación de Homo sapiens y la Consulta 2 tiene una observación de Género Homo, ambos taxones estarán presentes en la tabla, pero el que representa una fila  adicional para el Género Homo de la Consulta 1, no se incluye en el recuento total porque solo cuenta con la especie Homo sapiens dentro del género, al ser un "hijo" de aquella parte de su árbol.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertical
         #Count of how many taxa several observation searches have in common
         x_in_common:
           one: "%{count} en común"
           other: "%{count} en común"
+        #Count of how many taxa are not present in *all* of several observation searches
+        x_not_in_common:
+          one: "%{count} no en común"
+          other: "%{count} no en común"
         #Count of how many taxa are present in an observation search
         x_total:
           one: "%{count} total"
@@ -5429,6 +5445,10 @@ es:
         obs_in_year: Obs En %{year}
         percent_growth_in_year: "% Crecimiento en %{year}"
         percent_of_total_growth: "% del Crecimiento Total"
+        publications_desc_html: |
+          Haga clic en la gráfica de pétalos para obtener más información sobre lo que significan los números y colores. Los datos de impacto y gráficos son cortesía de <a href="https://www.altmetric.com">Altmetric</a>. La información sobre el uso de datos es cortesía de nuestros amigos del <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          <br/>
+          <a href="%{url}">Ver los %{numStudies} estudios</a>
         publications_desc_short_html: |
           Haz click en los gráficos para acceder a la información sobre el significado de los números y de los colores. Datos de impacto y visualizaciones cortesía de <a href="https://www.altmetric.com">Altmetric</a>. Información
           sobre uso de los datos cortesía de nuestros amigos en <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
@@ -5685,7 +5705,11 @@ es:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Mensajes
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Notas de diario del proyecto
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Cuando un proyecto incorpora tus observaciones
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_curator_changes: Cambios del curador del proyecto
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Cambios taxonómicos
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6575,6 +6599,8 @@ es:
         tribe: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         variety: "@f"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
   wild: Silveste
   will_paginate:
     previous_label: "&#8592; Previa"
