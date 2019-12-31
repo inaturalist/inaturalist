@@ -110,6 +110,26 @@ de:
   a_flag_for_x: "ein Merker für %{x}"
   a_member_of: "Ein Mitglied von"
   a_member_of_taxon_html: "ein Mitglied von %{taxon}"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{n:einem|f:einer|m:einem|einer} %{resource}"
   about: Über
   about_blocking: Über Blockieren
   about_charts: Über Diagramme
@@ -1955,6 +1975,8 @@ de:
   observation_: Beobachtung
   observation_added: Beobachtung hinzugefügt.
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
+  observation_brief_something_on_day_by_user: "Etwas am%{day} von %{user}"
+  observation_brief_taxon_on_day_by_user: "%{taxon} am %{day} von %{user}"
   observations_by_category: "Beobachtungen nach Kategorie"
   observations_by_app: Beobachtungen nach App
   observations_by_rank: Beobachtungen nach Rang
