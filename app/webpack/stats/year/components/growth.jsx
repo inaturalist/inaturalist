@@ -175,7 +175,10 @@ const Growth = ( {
       style: "bar",
       data: userData.map( interval => ( { date: interval.date, value: interval.total } ) ),
       color: grayColor,
-      label: newUsersLabel
+      label: d => I18n.t( "bold_label_colon_value_html", {
+        label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+        value: I18n.t( "x_people", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+      } )
     }
   };
   const obsTotalDates = obsSeries.total.data.map( d => d.date );

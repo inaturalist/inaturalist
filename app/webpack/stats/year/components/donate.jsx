@@ -25,7 +25,7 @@ const Donate = ( { year } ) => (
         { I18n.t( "give_monthly_caps" ) }
       </a>
       <a
-        href={`/donate?utm_content=utm_campaign=${year}-year-in-review&utm_medium=web&utm_content=button&utm_term=now`}
+        href={`/donate?utm_campaign=${year}-year-in-review&utm_medium=web&utm_content=button&utm_term=now`}
         className="btn btn-default btn-primary btn-bordered btn-donate"
       >
         <i className="fa fa-heart" />
