@@ -767,6 +767,7 @@ pl:
     merge: Scalenie
     swap: Zamiana
     stage: Przygotowanie
+    drop: Dezaktywacja
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podziel na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -842,6 +843,9 @@ pl:
   colors: Kolory
   columns: Kolumny
   combine: Połącz
+  comma_separated_list_of_tracking_codes: |
+    Lista kodów śledzenia oddzielonych przecinkami. Dodaj je, jeśli chcesz dodać kod śledzenia podczas wysyłania osób do nowego formularza obserwacji, np. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
+    Możesz tego użyć do śledzenia uczestnictwa z różnych źródeł. Możesz uzyskać dostęp do tych kodów podczas pobierania obserwacji projektu jako pliku CSV.
   comma_separated_please: Oddziel przecinkami, proszę
   comment: komentarz
   #Verb, generally a label on a button that allows the user to add a comment
@@ -854,6 +858,7 @@ pl:
   commercial_solicitation: Nachalny marketing, linki donikąd, itp.
   commit: Przychodzące
   committed: Wykonane
+  committed_on: Wykonano dnia %{date}
   community: Społeczność
   community_curated: Pod opieką społeczności
   community_guidelines: Standardy społeczności
@@ -1385,6 +1390,7 @@ pl:
   flickr_needs_to_confirm: "Flickr oczekuje potwierdzenia połączenia konta z %{site_name}."
   flickr_photo: Zdjęcie z Flickra
   flickr_photos: Zdjęcia z Flickra
+  flickr_tagger: Tagger Flickr
   flickr_tags: Tagi z Flickra
   follow: Obserwuj
   follow_receive_updates_about_new_observations: Obserwuj (otrzymuj powiadomienia o nowych obserwacjach)
@@ -1412,6 +1418,7 @@ pl:
   frequency: Częstotliwość
   from: Od
   from_a_place: z miejsca
+  from_eol_collection: Z kolekcji EOL
   from_flickr_facebook_etc: Z Flickra, Facebooka itd.
   from_list: Z listy
   from_photos: Ze zdjęć
@@ -1425,12 +1432,14 @@ pl:
     few: grzyby
     many: grzybów
     other: grzyba
+  gbif_occurrences: Wystąpienia GBIF
   generate_taxonomic_tags_for_flickr: Wygeneruj taksonomiczne tagi do twoich zdjęć z Flickra.
   generate_widget: Wygeneruj Widget
   generate_your_stats: Wygeneruj swoje statystyki
   generating_mobile_archive: "Generowanie moblinego archiwum"
   Genus: Rodzaj
   geoprivacy: Geoprywatność
+  geoprivacy_is_obscured: Geoprywatność jest ukryta
   geoprivacy_is_obscured_desc: Obserwator utajnił współrzędne.
   geoprivacy_is_private: Geoprywatność jest prywatna
   geoprivacy_is_private_desc: Obserwator ukrył współrzędne.
@@ -1878,6 +1887,7 @@ pl:
   merging: Łączenie
   merging_places: Scalanie lokalizacji
   message: Wiadomość
+  message_deleted: Wiadomość usunięta
   message_from_user_at_time: Od %{user} o %{time}
   message_from_user_on_date: Od %{user} dnia %{date}
   messages: Wiadomości
@@ -1991,6 +2001,7 @@ pl:
   new_message: Nowa wiadomość
   new_observation_field: Nowa notatka terenowa
   new_observations: Nowe obserwacje
+  new_observations_in_year: "Nowe obserwacje w %{year}"
   new_observations_ellispsis: "Nowe obserwacje..."
   new_observations_from_place_html: "Nowe obserwacje z miejsca %{place}"
   new_observations_may_take_up_to: Pojawienie się nowych obserwacji w widgecie może zająć do %{widget_expiration} minut.
@@ -2002,6 +2013,7 @@ pl:
   new_species_added_in_interval: Nowe gatunki dodane w %{interval}
   new_species_added_in_interval_x_of_y: Nowe gatunki dodane w %{interval} (Pokazano %{x} z %{y})
   new_taxon_change: Nowa zmiana taksonu
+  new_taxon_link: Nowy link do taksonu
   new_taxon_name_for: Nowa nazwa taksonu dla
   new_taxon_range: Nowy zasięg taksonu
   new_taxonomic_change: Nowa zmiana taksonomiczna (Szkic)
@@ -2036,6 +2048,7 @@ pl:
     current_user: Nie dodałeś żadnych oznaczeń do obserwacji innych użytkowników.
     user: "%{user} nie dodał żadnych oznaczeń do obserwacji innych użytkowników."
   no_ids_have_been_suggested_yet: Nie zaproponowano jeszcze oznaczenia
+  no_its_as_good_as_it_can_be: Nie, jest tak dobrze jak może być
   no_favorites_added:
     current_user: Nie dodałeś jeszcze niczego do ulubionych.
     user: "%{user} nie dodał jeszcze niczego do ulubionych."
@@ -2052,6 +2065,7 @@ pl:
   no_messages_yet: Brak wiadomości
   no_misidentifications_yet: Brak błędnych oznaczeń
   no_more_mail_from_site: "Nie chcesz otrzymywać maili od %{site_name}?  Edytuj ustawienia maili na"
+  no_more_taxa_to_load: Nie ma więcej taksonów do wczytania!
   no_more_results_found: Nie znaleziono więcej wyników
   no_new_messages: Brak nowych wiadomości
   no_news_yet: Brak aktualności
@@ -2079,6 +2093,7 @@ pl:
   no_results_for: 'Brak wyników dla'
   no_results_matching: Brak wyników pasujących do
   no_sections_available: Brak dostępnych sekcji.
+  no_sections_have_been_added_to_this_assessments_yet: Do tej oceny nie dodano jeszcze żadnych sekcji.
   no_species_observed: Brak zaobserwowanych gatunków
   no_species_on_this_list: Póki co brak gatunków na liście!
   no_species_on_this_list_for_owner_html: |
@@ -2102,6 +2117,7 @@ pl:
   not_linked_facebook: "Twoje konto %{site_name} nie jest połączone z kontem na Facebooku"
   not_linked_flickr: "Twoje konto %{site_name} nie jest połączone z kontem na Flickrze"
   not_on_this_list: Nie na tej liście.
+  not_resolved: Nie rozstrzygnięto
   not_seeing_what_looking_for: Nie znalazłeś tego, czego szukałeś?
   note: Uwaga
   notes: Notatki
@@ -2129,12 +2145,17 @@ pl:
   observation_brief_something_from_place: "Coś z %{place}"
   observation_brief_something_from_place_by_user: "Coś z %{place} przez %{user}"
   observation_brief_something_from_place_on_day: "Coś z %{place} dnia %{day}"
+  observation_brief_something_from_place_on_day_by_user: "Coś z %{place} dnia %{day} przez %{user}"
+  observation_brief_something_from_place_on_day_at_time: "Coś z %{place} dnia %{day} o %{time}"
+  observation_brief_something_from_place_on_day_at_time_by_user: "Coś z %{place} dnia %{day} o %{time} przez %{user}"
+  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} z %{place} dnia %{day} o %{time} przez %{user}"
   observations_by_category: "Obserwacje po kategorii"
   observations_by_app: Obserwacje dodane za pomocą aplikacji
   observations_by_rank: Obserwacje według kategorii
   observations_by_user_on_date: "Obserwacje użytkownika %{user} z dnia %{date}"
   observations_by_you: "Twoje obserwacje"
   observations_by_you_on_date: "Twoje obserwacje z dnia %{date}"
+  observation_calendar_for: "Kalendarz obserwacji dla %{user} w %{year}"
   observation_date: Data
   observation_date?: Data?
   observation_field: Pole obserwacji
@@ -2151,6 +2172,7 @@ pl:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     np. 2019-10-29 13:12:21
+  observed_on_datetime: Zaobserwowano %{datetime}
   observation_removed_from_the_project: "Obserwacja usunięta z projektu \"%{project}\""
   observation_requirements: Wymagania obserwacji
   observation_rules: Zasady obserwacji
@@ -2179,8 +2201,11 @@ pl:
   observations_saved: Obserwacja/e zapisane!
   observations_this_year_vs_last_year: Obserwacje tegoroczne vs. zeszłoroczne
   observations_total: Obserwacji łącznie
+  observations_widget: Widżet obserwacji
+  observations_without_media: Obserwacje bez mediów
   observed: Zaobserwowano
   observed_by: Zaobserwował
+  observed_on: Zaobserwowano
   observer: Obserwator
   observers: Obserwatorzy
   observer_short: Obserwator
@@ -2195,6 +2220,7 @@ pl:
     irregular: nieregularny
     doubtful: wątpliwy
     absent: nieobecny
+  of: z
   of_observations: obserwacje
   of_species: gatunek
   of_observers: obserwatorzy
@@ -2206,6 +2232,7 @@ pl:
   offline_access_enabled: Dostęp offline włączony
   old_observation_form: Stary formularz obserwacji (przestarzały)
   ok: "OK"
+  on_date: "o %{date}"
   on_your_life_list: na Twojej liście życia
   onboarding:
     observe_panel_body_p1_local: Potrzebujesz inspiracji? Oto kilka organizmów obserwowanych w pobliżu...
@@ -2224,6 +2251,8 @@ pl:
   only_you: Tylko Ty
   open: otwarty
   open_: Otwórz
+  open_description: "Każdy może zobaczyć współrzędne, chyba że takson jest zagrożony."
+  open_street_map: OpenStreetMap
   optional: opcjonalne
   or: lub
   #Usually used to separate buttons or functional areas of the interface, e.g.
@@ -2300,6 +2329,7 @@ pl:
   photo_by_id_attribution: "Zdjęcie %{id}, %{attribution}"
   photo_deleted: Zdjęcie usunięte
   photo_type: Typ zdjęcia
+  photo_urls_repaired: Adresy URL zdjęć naprawione
   photos_chosen_for_this_taxon: Zdjęcia wybrane dla tego taksonu
   photos_from: Zdjęcia z
   photos_of_taxon_html: "Zdjęcia %{taxon}"
@@ -2364,6 +2394,8 @@ pl:
       Parish: Parafia
       parish: parafia
       Point_of_Interest: Ciekawe miejsce
+      Postal_Code: Kod pocztowy
+      postal_code: kod pocztowy
       Province: Województwo
       province: Dzielnica
       Republic: Republika
@@ -2732,6 +2764,8 @@ pl:
     order: Rząd
     suborder: Podrząd
     infraorder: Infrarząd
+    zoosection: Zoosekcja
+    zoosubsection: Zoopodsekcja
     superfamily: Nadrodzina
     epifamily: Epirodzina
     family: Rodzina
@@ -2742,6 +2776,7 @@ pl:
     genus: Rodzaj
     subgenus: Podrodzaj
     section: Sekcja
+    subsection: Podsekcja
     complex: Kompleks
     species: Gatunek
     hybrid: Hybryda
@@ -2755,8 +2790,12 @@ pl:
   read_the_full_wikipedia: Przeczytaj pełen opis na Wikipedii
   real_time_discussions: Dyskusje w czasie rzeczywistym
   reason: Powód
+  recaptcha_verification_failed: Weryfikacja reCAPTCHA nie powiodła się
   receive_email_notifications_when_people_leave_you: Otrzymuj powiadomienia e-mail o
   recent: Najnowsze
+  recent_observations_by: "Ostatnie obserwacje wg %{login}"
+  recently_active: Ostatnio aktywni
+  recently_resolved: Ostatnio rozstrzygnięte
   red: czerwony
   refresh: Odśwież
   refreshing: odświeżanie
@@ -2798,6 +2837,9 @@ pl:
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
   reset_search_filters: Resetuj filtry wyszukiwania
+  resolved: Rozstrzygnięto
+  resolved_by: Rozstrzygnięte przez
+  resolved_by_user_on_date_html: Rozstrzygnięte przez %{user} dnia %{date}
   restore: Przywróć
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
@@ -2957,6 +2999,7 @@ pl:
   store: SKLEP
   studies_that_used_inaturalist_data_in_year: Prace, które wykorzystywały dane z iNaturalist w roku %{year}
   stuff_just_added: "Rzeczy, które właśnie dodałeś..."
+  subject_resolved_noun_html: "%{subject} rozstrzygnął %{noun}"
   submission_model_description: Kto może dodawać obserwacje do Twojego projektu?
   submit_observations:
     one: Prześlij 1 obserwację
@@ -3020,6 +3063,7 @@ pl:
   tell_us_why: Powiedz nam dlaczego...
   terms_service: Warunki użytkowania
   thanks!: Dzięki!
+  thanks_from_all_of_us_here_at: Podziękowania od nas wszystkich tutaj w
   that_photo_doesnt_exist: To zdjęcie nie istnieje.
   that_observation_doesnt_exist: Ta obserwacja nie istnieje.
   that_observation_doesnt_have_any_photos: "Ta obserwacja nie ma żadnych zdjęć."
@@ -3321,6 +3365,7 @@ pl:
   x_wrote_a_new_post_html: "%{x} napisał nowy post"
   x_wrote_y_new_posts_html: "%{x} napisał %{y} nowych postów"
   year: Rok
+  year_in_review: "Rok w przeglądzie %{year}"
   year_month: rok/miesiąc
   year_on_site: "Rok na %{site} %{year}"
   yellow: żółty
@@ -3574,6 +3619,9 @@ pl:
         translators_title: Tłumacze
     taxa:
       show:
+        charts_help_seasonality: |
+          Ten wykres pokazuje liczbę obserwacji tego taksonu pogrupowanych według miesiąca. Należy pamiętać, że są to liczne obserwacje, a więc ma na nie wpływ zarówno to, kiedy organizm może zostać obserwowany, jak i to, kiedy ludzie go faktycznie obserwują. Tak więc ptak może wydawać się bardzo aktywny w maju, ale może to również wynikać z większej liczby osób obserwujących ptaki w maju, którzy zazwyczaj ignorują ten gatunek w późniejszych miesiącach. Podobnie, jeśli widzisz więcej ważek w czerwcu niż w styczniu, to prawdopodobnie dlatego, że mamy więcej ludzi obserwujących na półkuli północnej niż na półkuli południowej, a nie dlatego, że ważki są bardziej aktywne w czerwcu, zatem sprawdź mapę podczas rozpatrywania tych wykresów. Jest to zawsze dobry pomysł, aby być sceptycznym wobec tych wykresów gdy liczba obserwacji jest niska i/lub są duże rozbieżności pomiędzy liczbą obserwacji 
+          "weryfikowalnych" a posiadających "stopień badawczy".
         frequency:
           research: Stopień badawczy
           verifiable: Weryfikowalne
@@ -4298,6 +4346,8 @@ pl:
         taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_change: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_link: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
