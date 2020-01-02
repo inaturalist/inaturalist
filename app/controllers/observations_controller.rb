@@ -296,7 +296,7 @@ class ObservationsController < ApplicationController
         @observer_provider_authorizations = @observation.user.provider_authorizations
         @shareable_image_url = FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
         if op = @observation.observation_photos.sort_by{|op| op.position.to_i || op.id }.first
-          @shareable_image_url = FakeView.image_url( op.photo.best_url(:original) )
+          @shareable_image_url = FakeView.image_url( op.photo.best_url(:large) )
         end
         @shareable_title = if @observation.taxon
           if comname = FakeView.common_taxon_name( @observation.taxon, user: current_user, site: @site ).try(:name)

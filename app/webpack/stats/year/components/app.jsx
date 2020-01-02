@@ -153,7 +153,11 @@ const App = ( {
     && data.observations.popular.length > 0
   ) {
     montageObservations = _.filter(
-      data.observations.popular, o => ( o.photos && o.photos.length > 0 )
+      data.observations.popular, o => (
+        o.photos
+        && o.photos.length > 0
+        && _.filter( o.photos, p => p.original_dimensions ).length > 0
+      )
     );
     while ( montageObservations.length < 150 ) {
       montageObservations = montageObservations.concat( montageObservations );
