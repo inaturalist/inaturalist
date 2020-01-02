@@ -39,7 +39,7 @@ const ArticlesTab = ( {
         <Col xs={3} xsOffset={1}>
           <h2>{ I18n.t( "more_info_title" ) }</h2>
           <ul className="list-group iconified-list-group">
-            { _.sortBy( links, l => l.taxon_link.site_title ).map( link => {
+            { _.sortBy( links, l => _.lowerCase( l.taxon_link.site_title ) ).map( link => {
               const host = link.url.split( "/" )[2];
               return (
                 <li

@@ -387,6 +387,7 @@ class Suggestions extends React.Component {
                     gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
                     observations={[observation]}
                     gestureHandling="auto"
+                    reloadKey={`taxondetail-${detailTaxon.id}`}
                     taxonLayers={[{
                       taxon: detailTaxon,
                       observationLayers: [

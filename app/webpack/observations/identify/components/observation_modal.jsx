@@ -142,7 +142,7 @@ class ObservationModal extends React.Component {
           clickable={!blind}
           latitude={obsForMap.latitude}
           longitude={obsForMap.longitude}
-          zoomLevel={5}
+          zoomLevel={obsForMap.map_scale || 5}
           mapTypeControl
           mapTypeControlOptions={{
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,

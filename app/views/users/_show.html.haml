@@ -70,7 +70,8 @@
       %span.date
         %i.fa.fa-clock-o
         - if @user.last_active
-          =t :last_active_with_date, date: l( @user.last_active, format: :short_with_year )
+          - last_active_date = ( @user.last_active < @user.created_at.to_date ) ? @user.created_at.to_date : @user.last_active;
+          =t :last_active_with_date, date: l( last_active_date, format: :short_with_year )
         - else
           =t :last_active_with_date, date: t(:unknown)
       - if @donor_since
