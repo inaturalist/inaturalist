@@ -1718,6 +1718,6 @@ $(document).ready(function() {
   $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter');
   $('.bootstrap .button').addClass('btn btn-default').removeClass('button');
 })
-if (typeof($.fn.button) != 'undefined' && typeof($.fn.button.noConflict) != 'undefined') { 
+if ($ && $.fn && typeof($.fn.button) != 'undefined' && typeof($.fn.button.noConflict) != 'undefined') {
   var bootstrapButton = $.fn.button.noConflict();
 }

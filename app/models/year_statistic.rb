@@ -114,6 +114,9 @@ class YearStatistic < ActiveRecord::Base
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
         accumulation: accumulation
+      },
+      growth: {
+        observations: observations_histogram_by_created_month( user: user ),
       }
     }
     year_statistic.update_attributes( data: json )
@@ -648,7 +651,8 @@ class YearStatistic < ActiveRecord::Base
       memo << {
         date: bucket["key_as_string"],
         accumulated_species_ids: accumulated_species_ids + novel_species_ids,
-        novel_species_ids: novel_species_ids
+        novel_species_ids: novel_species_ids,
+        species_ids: interval_species_ids
       }
       memo
     end
@@ -656,7 +660,8 @@ class YearStatistic < ActiveRecord::Base
       {
         date: interval[:date],
         accumulated_species_count: interval[:accumulated_species_ids].size,
-        novel_species_ids: interval[:novel_species_ids]
+        novel_species_ids: interval[:novel_species_ids],
+        species_count: interval[:species_ids].size
       }
     end
   end
@@ -713,6 +718,9 @@ class YearStatistic < ActiveRecord::Base
       else
         filters << { terms: { site_id: [site.id] } }
       end
+    end
+    if site = options[:user]
+      filters << { term: { "user.id" => options[:user].id } }
     end
     es_params = {
       size: 0,
