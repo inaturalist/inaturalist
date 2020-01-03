@@ -14,6 +14,7 @@ import Identifications from "./identifications";
 import Taxa from "./taxa";
 import Publications from "./publications";
 import Growth from "./growth";
+import Compare from "./compare";
 import Sites from "./sites";
 import Donate from "./donate";
 import Donor from "./donor";
@@ -83,6 +84,9 @@ const App = ( {
             year={year}
             site={site && site.id !== DEFAULT_SITE_ID ? site : null}
           />
+        ) }
+        { window.location.search.match( /test=compare/ ) && data && data.taxa && data.taxa.accumulation && (
+          <Compare data={data} year={year} />
         ) }
         { data.publications && (
           <Publications data={data.publications} year={year} />

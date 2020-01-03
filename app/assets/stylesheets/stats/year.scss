@@ -1046,3 +1046,114 @@ $obs-grid-photo-size: 210px;
     color: white;
   }
 }
+
+.Compare {
+  .legend {
+    margin-bottom: 20px;
+    .legend-item {
+      display: inline-block;
+      margin-right: 15px;
+    }
+    .legend-mark {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5px;
+      &.this-year {
+        width: 20px;
+        height: 5px;
+        background-color: $inat-green;
+      }
+      &.last-year {
+        width: 3px;
+        height: 15px;
+        background-color: #ccc;
+      }
+    }
+  }
+}
+
+.BulletGraph {
+  $dim: 40px;
+  $bullet-color: #444;
+  $bullet-font-size: 9px;
+  .high {
+    position: relative;
+    height: $dim;
+    background-color: $bullet-color;
+    .medium,
+    .low,
+    .performance,
+    .comparison {
+      position: absolute;
+      left: 0;
+      overflow: hidden;
+    }
+    .qual-label {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: $bullet-font-size;
+      line-height: $bullet-font-size;
+      opacity: 0.2;
+    }
+    .qual-label-extra {
+      position: absolute;
+      bottom: 4px;
+      right: 5px;
+      font-size: $bullet-font-size;
+      line-height: $bullet-font-size;
+      opacity: 0.2;
+    }
+    .medium {
+      height: $dim;
+      background-color: darken($bullet-color, 5%);
+    }
+    .low {
+      height: $dim;
+      background-color: darken($bullet-color, 10%);
+    }
+    .performance {
+      background-color: $inat-green;
+      height: 5px;
+      top: 50%;
+      margin-top: -2.5px;
+    }
+    .comparison {
+      border-right: 3px solid #ccc;
+      height: 12px;
+      top: 50%;
+      margin-top: -6px;
+    }
+  }
+  .ticks {
+    width: 100%;
+    position: relative;
+    height: 15px;
+    .tick {
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-right: 1px solid $bullet-color;
+      height: 5px;
+      font-size: $bullet-font-size;
+      line-height: $bullet-font-size;
+      color: $bullet-color;
+      text-align: right;
+      height: 15px;
+      padding: 5px 3px 0 0;
+      &.zero {
+        padding-right: 0;
+        span {
+          position: relative;
+          right: -5px;
+          top: 0;
+        }
+      }
+    }
+    @media (max-width: 500px) {
+      .tick.odd {
+        display: none;
+      }
+    }
+  }
+}
