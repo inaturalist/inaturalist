@@ -244,8 +244,9 @@ body>div>.popover[role="tooltip"].popover-error {
         padding: 5px 12px;
         border-radius: 20px;
         font-weight: 500;
-        .fa {
+        .btn-nostyle {
           margin-left: 5px;
+          margin-right: 0px;
           opacity: 0.3;
           cursor: pointer;
           &:hover {
@@ -264,7 +265,7 @@ body>div>.popover[role="tooltip"].popover-error {
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    & > .fa {
+    & > button {
       float: right;
       margin-left: 6px;
       cursor: pointer;

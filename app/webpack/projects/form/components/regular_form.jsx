@@ -39,7 +39,6 @@ class RegularForm extends React.Component {
       + _.size( project.notPlaceRules ) + _.size( project.notUserRules );
     const chosenTerm = project.rule_term_id
       ? allControlledTerms.find( t => t.id === _.toInteger( project.rule_term_id ) ) : null;
-    const qualityEmpty = _.isEmpty( project.rule_quality_grade );
     return (
       <div id="RegularForm" className="Form">
         <Grid>

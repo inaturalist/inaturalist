@@ -5,6 +5,11 @@ import { Overlay, Popover } from "react-bootstrap";
 import ProjectAutocomplete from "../../../observations/identify/components/project_autocomplete";
 
 class ProjectSelector extends React.Component {
+  constructor( props, context ) {
+    super( props, context );
+    this.projectAutocomplete = React.createRef( );
+  }
+
   render( ) {
     const {
       project,
@@ -30,11 +35,11 @@ class ProjectSelector extends React.Component {
           <div className="input-group">
             <span className="input-group-addon fa fa-briefcase" />
             <ProjectAutocomplete
-              ref="ua"
+              ref={this.projectAutocomplete}
               key={_.map( project[rulesAttribute], r => r.project.id ).join( "," )}
               afterSelect={e => {
                 addProjectRule( rule, "Project", e.item );
-                this.refs.ua.inputElement( ).val( "" );
+                this.projectAutocomplete.current.inputElement( ).val( "" );
               }}
               notIDs={_.map( project[rulesAttribute], r => r.project.id )}
               notTypes={notTypes}
@@ -46,7 +51,7 @@ class ProjectSelector extends React.Component {
             <Overlay
               show
               placement="top"
-              target={( ) => this.refs.ua}
+              target={( ) => this.projectAutocomplete.current}
             >
               <Popover
                 id="popover-title"
@@ -63,10 +68,13 @@ class ProjectSelector extends React.Component {
               <div className="badge-div" key={`project_rule_${projectRule.project.id}`}>
                 <span className="badge">
                   { projectRule.project.title }
-                  <i
-                    className="fa fa-times-circle-o"
+                  <button
+                    type="button"
+                    className="btn btn-nostyle"
                     onClick={( ) => removeProjectRule( projectRule )}
-                  />
+                  >
+                    <i className="fa fa-times-circle-o" />
+                  </button>
                 </span>
               </div>
             ) ) }

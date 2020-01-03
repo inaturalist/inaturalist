@@ -4,6 +4,11 @@ import PropTypes from "prop-types";
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
 class PlaceSelector extends React.Component {
+  constructor( props, context ) {
+    super( props, context );
+    this.placeAutocomplete = React.createRef( );
+  }
+
   render( ) {
     const {
       config,
@@ -12,36 +17,40 @@ class PlaceSelector extends React.Component {
       removeProjectRule,
       inverse
     } = this.props;
-    const label = inverse ?
-      I18n.t( "exclude_x", { x: I18n.t( "places" ) } ) : I18n.t( "places" );
+    const label = inverse
+      ? I18n.t( "exclude_x", { x: I18n.t( "places" ) } )
+      : I18n.t( "places" );
     const rule = inverse ? "not_observed_in_place?" : "observed_in_place?";
     const rulesAttribute = inverse ? "notPlaceRules" : "placeRules";
     return (
       <div className="PlaceSelector">
         <label>{ label }</label>
         <div className="input-group">
-          <span className="input-group-addon fa fa-globe"></span>
+          <span className="input-group-addon fa fa-globe" />
           <PlaceAutocomplete
-            ref="pa"
-            afterSelect={ e => {
+            ref={this.placeAutocomplete}
+            afterSelect={e => {
               addProjectRule( rule, "Place", e.item );
-              this.refs.pa.inputElement( ).val( "" );
-            } }
+              this.placeAutocomplete.current.inputElement( ).val( "" );
+            }}
             bootstrapClear
-            config={ config }
-            placeholder={ I18n.t( "place_autocomplete_placeholder" ) }
+            config={config}
+            placeholder={I18n.t( "place_autocomplete_placeholder" )}
           />
         </div>
         { !_.isEmpty( project[rulesAttribute] ) && (
           <div className="icon-previews">
             { _.map( project[rulesAttribute], placeRule => (
-              <div className="badge-div" key={ `place_rule_${placeRule.place.id}` }>
+              <div className="badge-div" key={`place_rule_${placeRule.place.id}`}>
                 <span className="badge">
                   { placeRule.place.display_name }
-                  <i
-                    className="fa fa-times-circle-o"
-                    onClick={ ( ) => removeProjectRule( placeRule ) }
-                  />
+                  <button
+                    type="button"
+                    className="btn btn-nostyle"
+                    onClick={( ) => removeProjectRule( placeRule )}
+                  >
+                    <i className="fa fa-times-circle-o" />
+                  </button>
                 </span>
               </div>
             ) ) }

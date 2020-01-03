@@ -4,6 +4,11 @@ import PropTypes from "prop-types";
 import UserAutocomplete from "../../../observations/identify/components/user_autocomplete";
 
 class UserSelector extends React.Component {
+  constructor( props, context ) {
+    super( props, context );
+    this.userAutocomplete = React.createRef( );
+  }
+
   render( ) {
     const {
       config,
@@ -12,37 +17,42 @@ class UserSelector extends React.Component {
       removeProjectRule,
       inverse
     } = this.props;
-    const label = inverse ?
-      I18n.t( "exclude_x", { x: I18n.t( "users" ) } ) : I18n.t( "users" );
+    const label = inverse
+      ? I18n.t( "exclude_x", { x: I18n.t( "users" ) } )
+      : I18n.t( "users" );
     const rule = inverse ? "not_observed_by_user?" : "observed_by_user?";
     const rulesAttribute = inverse ? "notUserRules" : "userRules";
     return (
       <div className="UserSelector">
         <label>{ label }</label>
         <div className="input-group">
-          <span className="input-group-addon fa fa-briefcase"></span>
+          <span className="input-group-addon fa fa-briefcase" />
           <UserAutocomplete
-            ref="ua"
-            afterSelect={ e => {
+            ref={this.userAutocomplete}
+            afterSelect={e => {
               e.item.id = e.item.user_id;
               addProjectRule( rule, "User", e.item );
-              this.refs.ua.inputElement( ).val( "" );
-            } }
+              this.userAutocomplete.current.inputElement( ).val( "" );
+            }}
             bootstrapClear
-            config={ config }
-            placeholder={ I18n.t( "user_autocomplete_placeholder" ) }
+            config={config}
+            placeholder={I18n.t( "user_autocomplete_placeholder" )}
           />
         </div>
         { !_.isEmpty( project[rulesAttribute] ) && (
           <div className="icon-previews">
             { _.map( project[rulesAttribute], userRule => (
-              <div className="badge-div" key={ `user_rule_${userRule.user.id}` }>
+              <div className="badge-div" key={`user_rule_${userRule.user.id}`}>
                 <span className="badge">
                   { userRule.user.login }
-                  <i
-                    className="fa fa-times-circle-o"
-                    onClick={ ( ) => removeProjectRule( userRule ) }
-                  />
+                  <button
+                    type="button"
+                    className="btn btn-nostyle"
+                    onClick={( ) => removeProjectRule( userRule )}
+                  >
+                    <i className="fa fa-times-circle-o" />
+                  </button>
+
                 </span>
               </div>
             ) ) }

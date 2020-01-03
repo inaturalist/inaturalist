@@ -11,6 +11,15 @@ $( document ).bind( "drop dragover", e => {
 } );
 
 class SharedForm extends React.Component {
+  constructor( props, context ) {
+    super( props, context );
+    this.titleInput = React.createRef( );
+    this.iconDropzone = React.createRef( );
+    this.bannerDropzone = React.createRef( );
+    this.descriptionInput = React.createRef( );
+    this.bgColorInput = React.createRef( );
+  }
+
   render( ) {
     const {
       project,
@@ -31,8 +40,9 @@ class SharedForm extends React.Component {
                 { I18n.t( "views.projects.new.project_details" ) }
                 { project.id && (
                   <button
+                    type="button"
                     className="btn-white delete"
-                    onClick={ deleteProject }
+                    onClick={deleteProject}
                   >
                     <i className="fa fa-trash" />
                     { I18n.t( "views.projects.new.delete_project" ) }
@@ -40,8 +50,9 @@ class SharedForm extends React.Component {
                 ) }
                 { project.id && (
                   <button
+                    type="button"
                     className="btn-white"
-                    onClick={ duplicateProject }
+                    onClick={duplicateProject}
                   >
                     <i className="fa fa-clone" />
                     { I18n.t( "views.projects.new.duplicate_project" ) }
@@ -52,24 +63,25 @@ class SharedForm extends React.Component {
           </Row>
           <Row className="first-row">
             <Col xs={4}>
-              <div className={ `form-group ${project.errors.title && "has-error"}` }>
+              <div className={`form-group ${project.errors.title && "has-error"}`}>
                 <label htmlFor="project-title">
-                  { I18n.t( "views.projects.new.project_name" ) } *
+                  { I18n.t( "views.projects.new.project_name" ) }
+                  { " * " }
                 </label>
                 <input
                   type="text"
                   className="form-control"
                   name="project-title"
-                  ref="title"
-                  placeholder={ I18n.t( "views.projects.new.name_placeholder" ) }
-                  defaultValue={ project.title }
-                  onChange={ e => setTitle( e.target.value ) }
+                  ref={this.titleInput}
+                  placeholder={I18n.t( "views.projects.new.name_placeholder" )}
+                  defaultValue={project.title}
+                  onChange={e => setTitle( e.target.value )}
                 />
                 { project.errors.title && (
                   <Overlay
                     show
                     placement="top"
-                    target={ ( ) => this.refs.title }
+                    target={( ) => this.titleInput.current}
                   >
                     <Popover
                       id="popover-title"
@@ -83,8 +95,8 @@ class SharedForm extends React.Component {
               <input
                 type="checkbox"
                 id="project-display-name"
-                defaultChecked={ !project.hide_title }
-                onChange={ e => updateProject( { hide_title: !e.target.checked } ) }
+                defaultChecked={!project.hide_title}
+                onChange={e => updateProject( { hide_title: !e.target.checked } )}
               />
               <label className="inline" htmlFor="project-display-name">
                 { I18n.t( "views.projects.new.display_project_name" ) }
@@ -92,13 +104,13 @@ class SharedForm extends React.Component {
             </Col>
             <Col xs={4}>
               <Dropzone
-                ref="iconDropzone"
+                ref={this.iconDropzone}
                 className="dropzone"
-                onDrop={ droppedFiles => onFileDrop( droppedFiles, "droppedIcon" ) }
+                onDrop={droppedFiles => onFileDrop( droppedFiles, "droppedIcon" )}
                 activeClassName="hover"
                 disableClick
-                accept={ "image/png,image/jpeg,image/gif" }
-                multiple={ false }
+                accept="image/png,image/jpeg,image/gif"
+                multiple={false}
               >
                 <div className="icon-cell icon">
                   <label>{ I18n.t( "views.projects.new.project_icon" ) }</label>
@@ -106,8 +118,10 @@ class SharedForm extends React.Component {
                     { I18n.t( "views.projects.new.project_icon_help" ) }
                   </div>
                   <div>
-                    <button className="btn-white"
-                      onClick={ ( ) => this.refs.iconDropzone.open( ) }
+                    <button
+                      type="button"
+                      className="btn-white"
+                      onClick={( ) => this.iconDropzone.current.open( )}
                     >
                       <i className="fa fa-upload" />
                       { I18n.t( "choose_file" ) }
@@ -118,16 +132,20 @@ class SharedForm extends React.Component {
                     <div className="icon-previews icon-preview">
                       <div
                         className="icon"
-                        style={ { backgroundImage: `url( '${project.iconURL( )}' )` } }
+                        style={{ backgroundImage: `url( '${project.iconURL( )}' )` }}
                       />
                       { project.droppedIcon ? project.droppedIcon.name : project.icon_file_name }
-                      <i
-                        className="fa fa-times-circle"
-                        onClick={ ( ) => updateProject( project.customIcon( ) ?
-                          { iconDeleted: true, droppedIcon: null } :
-                          { droppedIcon: null }
-                        ) }
-                      />
+                      <button
+                        type="button"
+                        className="btn btn-nostyle"
+                        onClick={( ) => updateProject(
+                          project.customIcon( )
+                            ? { iconDeleted: true, droppedIcon: null }
+                            : { droppedIcon: null }
+                        )}
+                      >
+                        <i className="fa fa-times-circle" />
+                      </button>
                     </div>
                   ) }
                 </div>
@@ -135,13 +153,13 @@ class SharedForm extends React.Component {
             </Col>
             <Col xs={4}>
               <Dropzone
-                ref="bannerDropzone"
+                ref={this.bannerDropzone}
                 className="dropzone"
-                onDrop={ droppedFiles => onFileDrop( droppedFiles, "droppedBanner" ) }
+                onDrop={droppedFiles => onFileDrop( droppedFiles, "droppedBanner" )}
                 activeClassName="hover"
                 disableClick
-                accept={ "image/*" }
-                multiple={ false }
+                accept="image/*"
+                multiple={false}
               >
                 <div className="icon-cell banner">
                   <label>{ I18n.t( "views.projects.new.project_banner" ) }</label>
@@ -149,8 +167,10 @@ class SharedForm extends React.Component {
                     { I18n.t( "views.projects.new.project_banner_help" ) }
                   </div>
                   <div>
-                    <button className="btn-white"
-                      onClick={ ( ) => this.refs.bannerDropzone.open( ) }
+                    <button
+                      type="button"
+                      className="btn-white"
+                      onClick={( ) => this.bannerDropzone.current.open( )}
                     >
                       <i className="fa fa-upload" />
                       { I18n.t( "choose_file" ) }
@@ -162,26 +182,33 @@ class SharedForm extends React.Component {
                       <div className="icon-previews icon-preview">
                         <div
                           className="banner"
-                          style={ {
+                          style={{
                             backgroundImage: `url( '${project.bannerURL( )}' )`,
                             backgroundSize: project.header_image_contain ? "contain" : "cover"
-                          } }
+                          }}
                         />
-                        { project.droppedBanner ?
-                            project.droppedBanner.name : project.header_image_file_name }
-                        <i
-                          className="fa fa-times-circle"
-                          onClick={ ( ) => updateProject( project.customBanner( ) ?
-                            { bannerDeleted: true, droppedBanner: null } :
-                            { droppedBanner: null }
-                          ) }
-                        />
+                        {
+                          project.droppedBanner
+                            ? project.droppedBanner.name
+                            : project.header_image_file_name
+                        }
+                        <button
+                          type="button"
+                          className="btn btn-nostyle"
+                          onClick={( ) => updateProject(
+                            project.customBanner( )
+                              ? { bannerDeleted: true, droppedBanner: null }
+                              : { droppedBanner: null }
+                          )}
+                        >
+                          <i className="fa fa-times-circle" />
+                        </button>
                       </div>
                       <input
                         type="checkbox"
                         id="project-header-contain"
-                        defaultChecked={ project.header_image_contain }
-                        onChange={ e => updateProject( { header_image_contain: e.target.checked } ) }
+                        defaultChecked={project.header_image_contain}
+                        onChange={e => updateProject( { header_image_contain: e.target.checked } )}
                       />
                       <label className="inline" htmlFor="project-header-contain">
                         { I18n.t( "views.projects.new.contain_entire_image_without_cropping" ) }
@@ -194,26 +221,27 @@ class SharedForm extends React.Component {
           </Row>
           <Row className="styles-row">
             <Col xs={8}>
-              <div className={ `form-group ${project.errors.description && "has-error"}` }>
+              <div className={`form-group ${project.errors.description && "has-error"}`}>
                 <label htmlFor="project-description">
-                  { I18n.t( "views.projects.new.project_summary" ) } *
+                  { I18n.t( "views.projects.new.project_summary" ) }
+                  { " *" }
                 </label>
                 <div className="help-text">
                   { I18n.t( "views.projects.new.project_summary_help" ) }
                 </div>
                 <textarea
                   id="project-description"
-                  ref="description"
+                  ref={this.descriptionInput}
                   className="form-control"
-                  placeholder={ I18n.t( "views.projects.new.project_summary_placeholder" ) }
-                  onChange={ e => setDescription( e.target.value ) }
-                  value={ project.description || "" }
+                  placeholder={I18n.t( "views.projects.new.project_summary_placeholder" )}
+                  onChange={e => setDescription( e.target.value )}
+                  value={project.description || ""}
                 />
                 { project.errors.description && (
                   <Overlay
                     show
                     placement="top"
-                    target={ ( ) => this.refs.description }
+                    target={( ) => this.descriptionInput.current}
                   >
                     <Popover
                       id="popover-description"
@@ -238,36 +266,36 @@ class SharedForm extends React.Component {
                   rootClose
                   placement="top"
                   animation={false}
-                  container={ this }
-                  overlay={ (
+                  container={this}
+                  overlay={(
                     <Popover id="color-picker-popover" className="color-picker">
                       <ChromePicker
                         disableAlpha
-                        color={ bgColor }
-                        onChange={ color => {
+                        color={bgColor}
+                        onChange={color => {
                           updateProject( { banner_color: color.hex } );
-                          $( this.refs["bgcolor-input"] ).val( color.hex );
-                        } }
+                          $( this.bgColorInput.current ).val( color.hex );
+                        }}
                       />
                     </Popover>
-                  ) }
+                  )}
                 >
                   <div className="input-group-addon color">
-                    <div className="color-preview" style={ { background: bgColor } } />
+                    <div className="color-preview" style={{ background: bgColor }} />
                   </div>
                 </OverlayTrigger>
                 <input
                   type="text"
-                  ref="bgcolor-input"
+                  ref={this.bgColorInput}
                   className="form-control"
-                  defaultValue={ bgColor }
-                  onChange={ e => updateProject( { banner_color: e.target.value } ) }
+                  defaultValue={bgColor}
+                  onChange={e => updateProject( { banner_color: e.target.value } )}
                 />
               </div>
             </Col>
           </Row>
           <Row className="separator-row">
-            <Col xs={ 12 }>
+            <Col xs={12}>
               <div className="separator" />
             </Col>
           </Row>
@@ -294,8 +322,7 @@ class SharedForm extends React.Component {
                     onChange={( ) => updateProject( { project_type: "umbrella" } )}
                   />
                   { I18n.t( "views.projects.umbrella" ) }
-                  { " " }
-                  ({ I18n.t( "views.projects.tracks_multiple_projects" ) })
+                  { ` (${I18n.t( "views.projects.tracks_multiple_projects" )})` }
                 </label>
               </Col>
             </Row>
