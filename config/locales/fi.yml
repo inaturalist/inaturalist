@@ -2256,6 +2256,7 @@ fi:
   observations_widget: Havaintojen pienoisohjelma
   observations_with_this_field: Havainnot tällä kentällä
   observations_with_this_field_and_value: Havainnot tällä kentällä ja arvolla
+  observations_without_media: Havainnot ilman mediasisältöä
   observed: Havaittu
   observed_by: Havainnut
   observed_on: Havaittu
@@ -2326,6 +2327,8 @@ fi:
   only_curators_can_add_edit_scientific_names: Vain kuraattorit voivat lisätä/muokata tieteellisiä nimiä.
   only_curators_can_access_that_page: Vain kuraattoreilla on pääsy kyseiselle sivulle.
   only_letters_numbers: "Vain kirjaimia ja numeroita, ei välejä, täytyy alkaa kirjaimella"
+  only_one_coordinate_system_per_file: |
+    Yhdessä tiedostossa voi käyttää vain yhtä koordinaattijärjestelmää, muutoin koordinaatit muunnetaan tai näytetään virheellisesti.
   only_project_curators_can_do_that: Vain projektin kuraattorit voivat tehdä sen.
   only_receive_updates_about_this_taxon: Vastaanota päivityksiä vain tästä taksonista
   only_show_active_taxa: Näytä vain aktiiviset taksonit
@@ -2510,6 +2513,8 @@ fi:
       island: saari
       Land_Feature: Maamerkki
       land_feature: maamerkki
+      Local_Administrative_Area: Paikallinen hallinnollinen alue
+      local_administrative_area: paikallinen hallinnollinen alue
       Local_Authority: Paikallinen viranomainen
       local_authority: paikallisviranomainen
       Miscellaneous: Sekalainen
@@ -2844,6 +2849,8 @@ fi:
   please_add_a_citation_for_this_change: Lisää viite muutokselle.
   please_add_this_to_x_html: "Lisää tämä projektiin %{x}"
   please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta
+  please_complete_the_following_to_add_project: |
+    Täydennä seuraavat tiedot lisätäksesi tämän havainnon projektiin:
   please_confirm_your_inat_username: "Ole hyvä ja vahvista %{site_name} käyttäjänimesi"
   please_explain_why_you_want_to_hide_this: Selvennä, miksi haluat piilottaa tämän
   please_explain_why_you_want_to_unhide_this: Selvennä, miksi haluat poistaa piilotuksen
@@ -3546,6 +3553,7 @@ fi:
   to_add_ids: lisätäksesi tunnistuksia
   to_configure_your_widget: määrittääksesi pienoisohjelmasi.
   to_recipient: vastaanottaja
+  to_suggest_an_identification: ehdottaaksesi tunnistusta
   today: Tänään
   too_many_results: Liian monta tulosta
   tools: Työkalut
