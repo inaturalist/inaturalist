@@ -1361,8 +1361,8 @@ es:
   followers: Seguidores
   following: Siguiendo
   following_x_people:
-    one: 'Siguiendo 1 persona'
-    other: 'Siguiendo %{count} personas'
+    one: 'Siguiendo a 1 persona'
+    other: 'Siguiendo a %{count} personas'
   for_a_taxon: de un taxón
   formatting: Creando formato
   forgot_your_password: '¿Olvidaste tu contraseña?'
@@ -1489,7 +1489,7 @@ es:
   id_categories:
     tooltips:
       leading: |
-        El taxón desciende del taxón taxon. Esta identificación te podría acercar a la respuesta correcta.
+        Este taxón es descendiente del taxón determinado por la comunidad. Esta identificación te podría acercar a la respuesta correcta.
       improving: |
         Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón comunitario.
       maverick: |
@@ -1583,7 +1583,7 @@ es:
   invite_people_to_project: "Invitar gente al %{project}"
   invite_someone_to: "¡Invita a alguien a %{name}!"
   invite_your_friends: Invita a tus amigos
-  invite_your_friends_description: "¡Ayude a que %{site_name} sea una comunidad más grande y mejor invitando a sus amigos!"
+  invite_your_friends_description: "¡Ayuda a que %{site_name} sea una comunidad más grande y mejor invitando a tus amigos!"
   #Type of project where people can only join after they have been invited
   inviteonly: por invitación solamente
   invited_x: "Invitado %{x}"
@@ -2357,7 +2357,7 @@ es:
     following_panel_title: Sigue la pista de Personas, Taxones, y Sitios
     following_panel_body: |
       En %{site_name} puedes seguir personas para seguir la pista de las observaciones que han estado publicando. También puedes suscribirte a ciertos especies para seguir sus nuevas observaciones, o hacerlo con lugares.
-    comments_panel_title: Curioso qué tipo de discusiones están ocurriendo en %{site_name}?
+    comments_panel_title: '¿Tienes curiosidad por saber que discusiones están ocurriendo en %{site_name}?'
     comments_panel_body: "<p>%{site_name} está dedicado a compartir y discutir observaciones de seres vivos. Éstas son algunas conversaciones que tienen lugar en este momento...</p><p>Nota: Quedará suscrito automáticamente a cualquier discusión a la que contribuya con comentarios o identificaciones. Puede utilizar la herramienta de administración de suscripciones a la derecha de dejar de recibir actualizaciones.</p>"
     updates_by_you_panel_title: Esta ficha es una forma rápida para filtrar sólo las actualizaciones de tu contenido.
     updates_by_you_panel_body: Recuerda, en la pestaña 'Todas las actualizaciones' recibirás actualizaciones no sólo en tu propio contenido, sino también en el contenido de la gente te sigue y los taxones o lugares en los que estés suscrito usando la herramienta de suscripciones a la derecha.
@@ -2371,7 +2371,7 @@ es:
       <li><strong>Debates en los que has participado:</strong> al comentar o añadir identificaciones al contenido de otros te subscribes automáticamente a su contenido y recibirás información sobre cualquier actividad nueva en este contenido. El uso de 'Gestionar mis suscripciones" permite dejar de recibir actualizaciones.</li>
       </ul>
   one_by_one: "Uno por uno"
-  one_of_your_lists: "una de sus listas..."
+  one_of_your_lists: "una de tus listas..."
   only_a_project_manager_can_add: Solo un gerente del proyecto puede dar una clasificación de curador de proyecto
   only_administrators_may_access_that_page: Solo los administradores pueden acceder a esa página
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
@@ -2487,7 +2487,7 @@ es:
   per_week: Por semana
   person: Persona
   personal_message: Mensaje personal
-  personal_message_description: '¡A nadie le gusta recibir correos desde una máquina¿Por qué no le deja saber a sus amigos por qué les está invitando?'
+  personal_message_description: '¡A nadie le gusta recibir correos de una máquina! ¿Por qué no explicas a tus amigos por qué les estás invitando?'
   per_page: "Registros por página"
   photo: Foto
   photo_attribution: "Foto %{attribution}"
@@ -3258,7 +3258,7 @@ es:
   search_the_map: Busca en el mapa
   search_this_taxon: buscar este taxón
   search_ubio_raquo: "Búsqueda en uBio &raquo;"
-  search_your_photos: Buscar sus fotos
+  search_your_photos: Busca tus fotos
   searching: "Buscando..."
   seasonality: Estacionalidad
   second_person_possessive_plural: "Tus %{noun}"
@@ -3309,7 +3309,7 @@ es:
   show_less: Muestra menos
   show_more: Muestra más
   show_observation_photos: Muestra las fotos de las observaciones
-  show_off_your_recent_observations: '¡Presume tus observaciones en tu propio blog o sitio web!'
+  show_off_your_recent_observations: '¡Presume de tus observaciones en tu propio blog o sitio web!'
   show_only: Mostrar solamente
   show_relative_proportions_of_all_observations: Enseña proporciones relativas de todas las observaciones
   show_running_total: Mostrar Total Acumulado
@@ -3480,8 +3480,8 @@ es:
     one: Enviar 1 observación
     other: Enviar %{count} observaciones
   submitted: Enviado
-  subscribe_to_a_taxon: Suscribete a Especies
-  subscribe_to_a_place: Subscribe a Lugares
+  subscribe_to_a_taxon: Suscríbete a un taxón
+  subscribe_to_a_place: Suscríbete a un lugar
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Suscribirse %{tag_end} a los comentarios de esta marca"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre esta entrada"
   subscribe_to_observations_in_a_taxon: Suscribirse a todas las observaciones publicadas de una especie o grupo de organismos (por ejemplo, 'escorpiones').
@@ -3767,7 +3767,7 @@ es:
   this_will_refresh_listed_taxa: Esto actualizará los taxones incluidos en esta lista. Esto puede tomar un tiempo así que por favor utilícelo con moderación y con pequeñas listas de comprobación
   this_will_re_apply_all_list_rules: |
     Esto aplicará nuevamente todas las reglas de la lista a los taxones, por ejemplo rechazar taxones que no están dentro del taxón de la lista de vida o dentro del rango seleccionado. No agregará ningún taxón. Esto podría tardar unos minutos.
-  this_will_try_to_add_tags_to_your_flickr: Esto tratará de agregar etiquetas a sus fotos de fotos. ¿Desea continuar?
+  this_will_try_to_add_tags_to_your_flickr: Esto tratará de agregar etiquetas a tus fotos de Flickr. ¿Deseas continuar?
   this_year: Este año
   those_observations_no_longer_exist: Esas observaciones ya no existen.
   threatened: Amenazada
@@ -3957,7 +3957,7 @@ es:
   user_observed_on_on_date_in_place: |
     %{user} observó uno el %{date}, en %{place}
   user_suggested_an_id: "%{user} sugirió una identificación"
-  user_thinks_yours_is: "%{user} %{noun} su observación %{observation} es"
+  user_thinks_yours_is: "%{user} %{noun} tu observación %{observation} es"
   user_trusts_you_with_their_private_coordinates: "\n%{user} confía en ti con sus coordenadas ocultas"
   user_trusts_you_with_their_private_coordinates_desc: |
     El observador ha elegido confiarle las coordenadas ocultas de todas sus observaciones.
@@ -4256,26 +4256,26 @@ es:
   you_unlinked_your_provider_account: "Has desvinculado tu cuenta de %{provider}"
   youll_need_to_link: Deberá vincular
   youve_joined_the_x_project: "Te has unido al proyecto %{project_invitation} y tus observaciones fueron añadidas"
-  your_account_has_been_activated: Su cuenta ha sido activada.
+  your_account_has_been_activated: Tu cuenta ha sido activada
   your_account_has_been_verified: "¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor ingresa al sistema para continuar."
   your_activation_code_was_missing: "Tu código de activación se ha perdido.  Porfavor sigue el enlace desde tu correo"
-  your_browser_does_not_support_the_audio_element: El navegador no parece ser compatible con el elemento <audio>.
+  your_browser_does_not_support_the_audio_element: Tu navegador no parece ser compatible con el elemento <audio>.
   your_comment_was_saved: Su comentario ha sido guardado.
-  your_content: Su contenido
+  your_content: Tu contenido
   your_contributions_to_project: "Tus contribuciones a %{project_title}"
   your_default: tu valor predeterminado
   your_default_time_zone: Tu huso horario predeterminado
   your_email_address: Tu dirección de correo electrónico
-  your_flickr_account: su cuenta de Flickr
-  your_flickr_photos_have_been_tagged: '¡Sus fotos de Flickr han sido etiquetadas!'
-  your_hard_drive: Su disco duro
-  your_home: Tu página de inicio
-  your_id: Su identificación
-  your_identification: Su identificación
+  your_flickr_account: tu cuenta de Flickr
+  your_flickr_photos_have_been_tagged: '¡Tus fotos de Flickr han sido etiquetadas!'
+  your_hard_drive: tu disco duro
+  your_home: Su página de inicio
+  your_id: Tu identificación
+  your_identification: Tu identificación
   your_membership: Tu membresía
-  your_name_was_saved: El nombre fue guardado.
+  your_name_was_saved: Tu nombre se ha guardado.
   your_observations: Tus observaciones
-  your_observations_couldnt_be_added_to_that_project: "Tus observaciones no pueden ser añadidas a este proyecto: %{errors}"
+  your_observations_couldnt_be_added_to_that_project: "Tus observaciones no se pudieron añadir a este proyecto: %{errors}"
   your_photos_have_been_tagged: '¡Tus fotos han sido etiquetadas!'
   your_projects: Tus proyectos
   your_google_account: tu cuenta de Google
@@ -4285,7 +4285,7 @@ es:
   your_recent_projects: Tus proyectos recientes
   your_relationships: Tus relaciones
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} necesita que autorice más permisos de %{provider} que proceden:"
-  your_tags: Sus etiquetas
+  your_tags: Tus etiquetas
   yours: Tuyos
   youre_not_following_anyone: |-
     No sigues a nadie. Seguir a otros naturalistas te permitirá llevar un control de sus observaciones más recientes. Averigua lo que la gente está <a href="%{observations_path}">observando</a> y haz nuevos <a href="%{people_path}">conocidos</a>.
@@ -4620,15 +4620,14 @@ es:
           coordenadas verdaderas. Las coordenadas obscuras siempre serán mostradas
           con una marca circular sin raíces en mapas y retroalimentación geoespacial.
         coordinates_are_obscured_for_all_taxa: |
-          Las coordinadas son obscurecidas automáticamente para toda la información 
-          taxonómica que se encuentre "CERCA DE AMENAZA" o peor, de acuerdo a la
-          lista roja de la IUCN.  Alguna información taxonómica puede ser considerada
-          en peligro para otras autoridades de conservación, y alguna puede ser 
-          simplemente marcada como en peligro por los curadores de %{site_name} si ellos 
-          creen que necesita ser protegida.
+          Las coordenadas son difuminadas automáticamente para todos los 
+          taxones que se consideren "CASI AMENAZADOS (NT)" o peor, según la
+          lista roja de la IUCN. Algunos taxones pueden ser considerados
+          en peligro por otras autoridades de conservación y otros pueden ser 
+          simplemente marcados como en peligro por los curadores de %{site_name} si ellos creen que necesitan ser protegidos.
         you_can_also_obscure_the_coordinates_html: |
-          También puedes obscurecer las coordenadas de tus propias observaciones
-          sin importar la información taxonómica.  Ver <a href="#geoprivacy">geoprivacidada</a>.
+          También puedes difuminar las coordenadas de tus propias observaciones
+          sin importar la información taxonómica.  Ver <a href="#geoprivacy">geoprivacidad</a>.
         what_is_the_quality_assessment: '¿Cuál es la valoración de calidad y como se pueden calificar las observaciones para obtener el grado de "investigación"?'
         what_is_a_life_list?: '¿Qué es una lista de vida?'
         just_a_simple_list: Sólo una simple lista de taxones con ningún comportamiento especial.
@@ -4686,7 +4685,7 @@ es:
     oauth:
       authorizations:
         new:
-          authorize_application_to_use_your_account?: '¿Autoriza a la %{application} para usar su cuenta?'
+          authorize_application_to_use_your_account?: '¿Autorizas a %{application} para usar tu cuenta?'
           this_application_will_be_able_to_colon: "Esta aplicación podrá:"
           more_about_application: Más sobre %{application}
     observations:
@@ -4710,7 +4709,7 @@ es:
         you_have_opted_out: Decidió aceptar identificaciones comunitarias
         opt_in_for_this_observation: Optar por esta observación
         your_id_does_not_match: |
-          Tu identificación (%{taxon_name}) no se ajusta a la de la comunidad
+          Tu identificación (<span class="bold">%{taxon_name}</span>) no coincide con la de la comunidad
       copy_tip: "Añadir una observación nueva copiando la fecha, el lugar, las fotos de esta observación y los campos de observación."
       captive_help_html: |
         Fue el organismo que observó <strong>cultivado</strong> o en <strong>cautiverio</strong>? Por ejemplo, estaba en <strong>un jardín, zoológico, el acuario</strong> o alguna otra situación en la que sólo estaba presente <strong>porque los seres humanos lo destinaron a estar allí</strong>? Todas las observaciones de los seres vivos son bienvenidas, pero nos gustaría saber cuando no sean silvestres/naturalizados.
@@ -4782,7 +4781,7 @@ es:
         check_back: |
           Si vuelves a cargar esta página dentro de unos minutos tu exportación
           debe aparecer en la lista en la parte inferior de la página.
-        receive_an_email_with_your_data: Recibir un email con sus datos
+        receive_an_email_with_your_data: Recibir un email con tus datos
         receive_an_email_with_your_data_help: Recibirás un correo electrónico con tu exportación como un archivo adjunto.
         well_email_you: "Ok, le enviaremos un mensaje cuando esté listo."
         taking_a_while: "Esto está tomando un tiempo. Por favor, intente una de las siguientes opciones."
@@ -4951,7 +4950,7 @@ es:
           Comprueba la ortografía de cada entrada. Si tu ortografía es correcta, busca la especie en %{search_taxa_url}. Si el nombre aún no está en la base de datos de %{site_name}, deberás agregarlo antes para que funcione la subida masiva. Utiliza el cuadro en la parte inferior de la página de búsqueda para importar los nuevos nombres. Si el nombre está presente pero aplica a varios taxones válidos, intenta usar uno menos específico que corresponda solo a un único taxon.
       observations_export_notification:
         your_observations_export_is_ready_html: |
-          Tus observaciones de exportación están listas. Hay una copia  adjunta a este correo, o puedes <a href="%{url}">descargar tu exportación</a>.
+          Tu exportación de observaciones está lista. Hay una copia adjunta en este mensaje de correo o puedes <a href="%{url}">descargar tu exportación</a>.
         your_observations_export_failed_html: |
           Error al exportar tus observaciones. Visita la
           <a href="%{url}">página de exportación de observaciones</a> para una lista de tus exportaciones.
@@ -5603,7 +5602,7 @@ es:
           está cambiando.
         your_content_will_be_updated: Tu contenido relacionado con estos taxones se actualizará automáticamente.
         you_may_want_to_update: Tienes algunos contenidos relacionados con estos taxones que es posible que desees actualizar.
-        cannot_update_your_content: "%{site_name} no puede actualizar su contenido de forma automática para que este cambio."
+        cannot_update_your_content: "%{site_name} no puede actualizar tu contenido de forma automática para este cambio."
         new_project_admin_html: |
           ¿Te preguntas por qué eres administrador de este proyecto? El
           propietario anterior probablemente eliminó su cuenta, por lo que %{site_name} le asignado porque eres gestor de un proyecto o un curador del sitio. Si no quieres ser el administrador del proyecto, por favor ponte en contacto con
@@ -5613,7 +5612,7 @@ es:
           coordenadas de las observaciones que se agregan a este proyecto.
       delete:
         by_deleting_your_account_you_will_remove: |
-          Al borrar su cuenta se eliminarán
+          Al borrar tu cuenta se eliminarán
         x_observations_html:
           one: |
             <strong class="count">1 observación</strong>,

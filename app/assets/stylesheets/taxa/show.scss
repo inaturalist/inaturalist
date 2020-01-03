@@ -850,6 +850,7 @@ $nav-btn-dim: 40px;
 }
 .TaxonThumbnail .badge.with-tip {
   cursor: pointer;
+  z-index: 1;
 }
 
 .TaxonThumbnail {

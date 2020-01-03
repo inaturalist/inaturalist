@@ -1241,6 +1241,7 @@ lt:
   import_tags_from_csv: Importuoti žymes iš CSV
   importing: "Importuojama..."
   improving: Patobulintas
+  inaturalist_network_affiliation: Pasirinkite iNaturalist tinklo priskyrimą
   #Label for messages you've received
   inbox: Žinutės
   including: įskaitant
@@ -1345,23 +1346,33 @@ lt:
   lexicon: Leksikonas
   lexicons:
     scientific_names: Moksliniai pavadinimai
+    albanian: Albanų
+    bengali: Bengalų
+    catalan: Katalonų
     chinese_simplified: Kinų (supaprastinta)
     chinese_traditional: Kinų (tradicinė)
     czech: Čekų
     danish: Danų
+    dutch: Olandų
     english: Anglų
     estonian: Estų
     finnish: Suomių
     french: Prancūzų
     german: Vokiečių
     greek: Graikų
+    hawaiian: Havajiečių
     hebrew: Hebrajų
     icelandic: Islandiečių
     italian: Italų
     japanese: Japonų
+    korean: Korėjiečių
     lithuanian: Lietuvių
+    luxembourgish: Liuksemburgiečių
+    maltese: Maltiečių
+    maori: Maorių
     norwegian: Norvegų
     portuguese: Portugalų
+    romanian: Rumunų
     russian: Rusų
     spanish: Ispanų
     swedish: Švedų
@@ -1452,9 +1463,13 @@ lt:
     ko: Korėjiečių
     lt: Lietuvių
     pl: Lenkų
+    pt: Portugalų
     pt-BR: Portugalų (Brazilija)
     ru: Rusų
+    sk: Slovakų
+    sq: Albanų
     sv: Švedų
+    tr: Turkų
     zh-CN: Kinų (supaprastinta)
     zh-TW: Kinų (tradicinė)
   locality_notes: Vietos užrašai
@@ -1462,11 +1477,14 @@ lt:
   location_is_public: Vieta yra vieša
   location_is_obscured: Vieta yra paslėpta
   location_is_private: Vieta yra privati
+  log_in: Prisijungti
   longitude: Ilguma
   longitude_slash_x_coord_slash_easting: Ilguma / x koordinatė
   longitude_value: "Ilguma: %{longitude}"
   low: Žemas
   make_admin: Padaryti administratoriumi
+  #Header for main content section of the project detail page when editing custom project data.
+  main_content: Pagrindinis turinys
   make_a_new_place: Sukurti naują vietą
   make_it_a_life_list?: Padaryti tai gyvenimo sąrašu?
   mammals: žinduoliai
@@ -1579,8 +1597,11 @@ lt:
   most_observed_threatened_species: Dažniausiai stebimos nykstančios rūšys
   multiple: keli
   multiple_select_option: '-- kelis --'
+  mute_user: Užtildyti vartotoją
   n_ago: "prieš %{n}"
   name: Pavadinimas
+  name_providers:
+    ubio: uBio
   names: Pavadinimai
   names_for_taxon_html: "%{taxon} pavadinimai"
   near_threatened: Beveik nykstantis
