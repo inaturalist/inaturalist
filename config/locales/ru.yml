@@ -624,7 +624,7 @@ ru:
   attention: Внимание
   you_sure_delete_list: Вы уверены, что хотите удалить этот список?
   you_sure_delete_taxon_from_list?: "Вы уверены, что хотите удалить %{taxon} из списка?"
-  asc: возр
+  asc: Возр
   ascending: Возрастанию
   assessment: оценка
   assessment_has_benn_completed: Оценка завершена
@@ -887,7 +887,7 @@ ru:
   community_supported_id: Таксон, поддержанный сообществом?
   compare: Сравнить
   compare_with: Сравнить с
-  comparing: сравнивая
+  comparing: сравнение
   comparing_list_to_list: "Сравнение %{list1} с %{list2}"
   comparing_versions_x_and_y: "Сравнение версий %{x} и %{y}"
   comparing_observations_from: "Сравнение наблюдений %{user} за %{dates}"
@@ -903,8 +903,8 @@ ru:
   configure: Задать
   configure_a_widget_to_show: Настройте виджет, чтобы показывать наблюдения %{site_name} на вашем веб-сайте или в вашем блоге. Возможно, вам придется включить встроенный CSS в секцию <code>&lt;head&gt;</code> вашего HTML. Не стесняйтесь перезаписывать CSS.
   confirm: Подтвердить
-  confirm_membership: Подтвердить участие
-  confirm_new_password: Подтверждение пароля
+  confirm_membership: Подтвердить членство
+  confirm_new_password: Подтвердить новый пароль
   confirm_now: Подтвердить сейчас
   confirm_your_info: Подтвердите вашу информацию
   confirmed: подтверждено
@@ -917,7 +917,7 @@ ru:
   conservation_status: Природоохранный статус
   conservation_status_descriptions:
     status: Код состояния, ранг и т.д. Если существует короткий код типа E или CR, используйте его, но если нет, используйте полный статус, например, находящийся под угрозой исчезновения или находящийся на грани исчезновения.
-    description: Краткое описание того, почему это было перечислено.
+    description: Краткое описание того, почему это было указано.
     authority: Организация, которая объявила этот статус. Вы можете пропустить это, если *вы* хотите быть указаны в качестве автора.
     place: Место, в котором этот статус ограничен.
     url: URL страницы с описанием этого статуса.
@@ -925,7 +925,7 @@ ru:
     iucn: Эквивалент кода в Красном списке МСОП
   conservation_status_geoprivacy_desc: |
     Настройки по умолчанию приватности местоположения применены ко всем наблюдениям таксона в этом месте
-  contact_support: Служба поддержки
+  contact_support: Обратитесь в службу поддержки
   contain_all_descendants?: Содержит ли этот контрольный список всех потомков этого таксона, которые здесь встречаются?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Контент
@@ -953,7 +953,7 @@ ru:
     fruiting: Плодоношение
     life_stage: Стадия жизни
     adult: Взрослый
-    teneral: Общие
+    teneral: После линьки
     subimago: Субимаго
     pupa: Куколка
     nymph: Нимфа
@@ -984,10 +984,10 @@ ru:
     some_rights_reserved_by: "(с) %{name}, некоторые права защищены (%{license_short})"
     all_rights_reserved: "(с) %{name}, все права защищены"
     no_known_copyright_restrictions: "%{name}, нет известных ограничений авторского права (%{license_name})"
-    no_known_copyright_restrictions_text: "нет ограничений копирайтом"
-    no_rights_reserved: нет правообладания
-    no_rights_reserved_by: "%{name}, нет правообладания (%{license_name})"
-    anonymous: неизвестные
+    no_known_copyright_restrictions_text: "нет известных ограничений авторских прав"
+    no_rights_reserved: никакие права не защищены
+    no_rights_reserved_by: "%{name}, никакие права не защищены (%{license_name})"
+    anonymous: анонимное
     public_domain: общественное достояние
     copyright: авторские права
     no_copyright: нет авторских прав (СС0)
@@ -1021,8 +1021,8 @@ ru:
   create_new_taxon: Создать новый таксон
   create_observations: Создать наблюдения
   created: Создано
-  created_by: Создан
-  created_by_user_on_date: Создан %{user} %{date}
+  created_by: Создано 
+  created_by_user_on_date: Создано %{user} %{date}
   created_on: Создано в
   creating_your_account: "Создаётся ваша учётная запись..."
   creative_commons_flickr_tagged: Фото с Flickr с лицензией Creative Commons
@@ -1031,7 +1031,7 @@ ru:
   css_description: Это будет включено после всех других CSS на странице.
   csv: CSV (формат comma separated values - значения, разделённые запятыми)
   csv_file: файл в формате CSV
-  csv_should_not_contain_a_header_row: Файл CSV должен содержать строку заголовка
+  csv_should_not_contain_a_header_row: Файл CSV не должен содержать строку заголовка
   cumulative_ids: "Общее число идентификаций: %{count} из %{total}"
   curate_observations: Курировать наблюдения
   curate_taxa: Курировать таксоны
@@ -1039,7 +1039,7 @@ ru:
   curating: Курирование
   curation: Курирование
   curator: Куратор
-  curators_changed_for_x_html: "Кураторы изменили %{x}"
+  curators_changed_for_x_html: "Кураторы изменены для %{x}"
   curators: Кураторы
   curators_can_remove_observations_from: Кураторы могут удалять наблюдения из проекта, и их идентификации отображаются в наблюдениях в проектных представлениях. Кураторы также могут видеть истинные координаты конфиденциальных и скрытых наблюдений-вкладов в этот проект.
   curator_identification: Идентификация, сделанная куратором
@@ -1118,7 +1118,7 @@ ru:
   definitions: Определения
   delete: Удалить
   delete_all: Удалить всё
-  delete_conversation: Удалить разговор
+  delete_conversation: Удалить переписку
   delete_cover?: удалить обложку?
   delete_icon?: Удалить иконку?
   delete_photo: Удалить фото
@@ -1129,20 +1129,20 @@ ru:
   delete_user: Удалить пользователя
   delete_your_account: Удалить вашу учётную запись
   deleted_synonyms: Удалённые синонимы
-  deleted_user: удаленный пользователь
-  deleted_vote: Удаленный комментарий
+  deleted_user: удалённый пользователь
+  deleted_vote: Удаленный голос
   deleting: Удаление...
   deleting_verb: Удаление
   deny: Отклонить
-  desc: убыванию
+  desc: Убыв
   descending: Убыванию
   describe_purpose: Опишите цель проекта
   describe_your_interest_in_nature: Опишите ваш интерес к природе!
   description: Описание
   description_from: Описание из
-  description_sections: Секции Описания
+  description_sections: Разделы описания
   description_slash_tags: Описание / Теги
-  description_tags_more: "Описание, Теги и Другое"
+  description_tags_more: "Описание, Теги, &amp; Другое"
   desription: Описание
   destroy: Уничтожить
   details: Подробности
@@ -1158,13 +1158,13 @@ ru:
   disable: Отключить
   disagree_: Не согласен
   disconnect_provider: "Отключить %{provider}"
-  display_link_to_checklist: Показать ссылку на список проектов со страницы проекта
+  display_link_to_checklist: Показывать ссылку на список проектов на странице проекта
   distance_traveled_value: "Пройденное расстояние: %{distance} м"
   distance_traveled: "Пройденное расстояние (м)"
   documentation_for_developers_html: Документация для <a href="/pages/developers">разработчиков</a>
-  do_not_show_this_message_again: Не показывать это сообщение повторно
+  do_not_show_this_message_again: Больше не показывать это сообщение
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-    Вы изучаете нематоды? Вы самый главный специалист в мире по таксономии ракушек? Вам просто нравится смотреть на красивые цветы? Заполнение вашего профиля добавляет некоторую индивидуальность и помогает укрепить ваш авторитет, когда вы помогаете людям с идентификацией.
+    Вы изучаете нематоды? Вы самый главный специалист в мире по таксономии ракушек? Вам просто нравится смотреть на красивые цветы? Заполнение вашего профиля добавляет некоторую индивидуальность и помогает укрепить ваш авторитет, когда вы помогаете людям с идентификациями.
   doesnt_have_default_photo: отсутствует фото по умолчанию.
   doh_something_went_wrong: Ой, что-то пошло не так.
   doh_something_went_wrong_error: "Что-то пошло не так: %{error}"
@@ -1178,8 +1178,8 @@ ru:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Отбросьте его
-  double_click_to_finish: (дважды щелкните, чтобы закончить)
-  download: Загрузить
+  double_click_to_finish: (дважды щелкните, чтобы завершить)
+  download: Выгрузка
   download_bulk_import_template_html: |
     <a href="%{url}">Скачать шаблон</a> для использования в
     <a href="/observations/import#csv_import">групповой загрузке</a>
@@ -1201,7 +1201,7 @@ ru:
   drawings: Рисунки
   duplicate_verb: Задвоить
   duration_value: "Длительность: %{duration} мин"
-  each_place_displays_all_species_inat_knows: "Страница каждого места отображает все виды %{site_name}, известные в этом месте, в том числе информацию об их численности, статусе, охранном статусе и о том, кто первым наблюдал этот вид на данном месте на %{site_name}. Вы можете фильтровать виды по таксономическим группам, цвету, охранному статусу, или осуществить обычный поиск."
+  each_place_displays_all_species_inat_knows: "Страница каждого места отображает все виды %{site_name}, известные в этом месте, в том числе информацию об их численности, статусе, природоохранном статусе и о том, кто первым наблюдал этот вид в данном месте на %{site_name}. Вы можете фильтровать виды по таксономическим группам, цвету, природоохранному статусу или осуществить обычный поиск."
   edit: Редактировать
   edit_a_batch_of_observations: Редактировать несколько наблюдений
   edit_account_settings_and_profile: "Учётная запись и профиль"
@@ -1218,7 +1218,7 @@ ru:
   edit_multiple_descriptions: Редактировать множественные описания
   edit_multiple_locations: Редактировать множественные местоположения
   edit_multiple_species: Редактировать несколько видов
-  edit_notes: Редактировать заметки
+  edit_notes: Редактировать примечания
   edit_observations: Редактировать наблюдения
   edit_photos: Редактировать фото
   edit_photos_for_observation_id: "Редактировать фото наблюдения %{obs_id}"
@@ -1238,7 +1238,7 @@ ru:
   edit_your_global_project_settings: Редактировать глобальные параметры вашего проекта
   edit_your_identification: Редактировать вашу идентификацию
   edit_your_settings_for_this_project: Редактировать ваши настройки данного проекта
-  edited_by_name_html: "Редактор %{name}"
+  edited_by_name_html: "Отредактировано %{name}"
   edited_by_name_some_rights_reserved_html: |
     Отредактировано %{name}, некоторые права защищены (%{license})
   editing: Редактирование
@@ -1253,8 +1253,8 @@ ru:
     other: 'Редактировать <span class="count">%{count}</span> наблюдений:'
   editing_project: Редактирование %{project}
   editing_project_asset: Редактирование актива проекта для
-  editing_subscription_to_x_html: "Редактировать подписку на %{x}"
-  editing_taxon_link: Редактировать ссылку на таксон
+  editing_subscription_to_x_html: "Редактирование подписки на %{x}"
+  editing_taxon_link: Редактирование ссылки на таксон
   editing_taxon_name_for_taxon_html: Редактирование названия таксона "%{name}" для %{taxon}
   editing_taxon_range: Редактирование ареала таксона
   editing_this: Редактирование %{elem}
@@ -1272,9 +1272,9 @@ ru:
   embed: 'Вставить на страницу'
   embed_place_widget: Встраиваемый виджет для места
   embed_this_assessment: Вставить эту оценку
-  embed_widget_project: Встроить на вашем сайте виджет для этого проекта
+  embed_widget_project: Вставить виджет для этого проекта на ваш сайт
   enable_offline_access: Разрешить доступ офлайн
-  enable_offline_access_for_mobile: Разрешить доступ офлайт с мобильного телефона
+  enable_offline_access_for_mobile: Разрешить доступ офлайн с мобильного телефона
   encompassing_places: Охваченные места
   end: Конец
   end_date_time: Дата/время окончания
@@ -1295,8 +1295,8 @@ ru:
   establishment_means: Способ возникновения
   establishment_means_describes_how: |
     Способ возникновения описывает, каким образом таксон появился в данной местности. Смотрите спецификацию DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> для получения большей информации о терминологии</a>.
-  event_in_progress: Событие в прогрессе
-  event_stats: Статистика Событий
+  event_in_progress: Событие в ходе выполнения
+  event_stats: Статистика События
   event_url: URL события
   events_only: Только события
   every_species_seen_by: Каждый вид увиденный
@@ -1306,7 +1306,7 @@ ru:
   everywhere: Повсюду
   exact: Точно
   exact_date: Точная дата
-  exact_location: Точное местонахождение
+  exact_location: Точное местоположение
   exact_rank: Точный ранг
   except: за исключением
   exclude_x: Исключить %{x}
@@ -1316,9 +1316,9 @@ ru:
   examples_of_ranking_organizations: Примеры рейтинговых организаций
   explore: Исследуйте
   export: Экспорт
-  export_observations: Экспортные наблюдения
-  export_with_private_coordinates: Экспортировать со скрытыми координатами
-  exporting: "Экспорт..."
+  export_observations: Экспорт наблюдений
+  export_with_private_coordinates: Экспорт со скрытыми координатами
+  exporting: "Экспортируется..."
   external_taxon_including_children: Внешний таксон (включая потомков)
   external_taxon_rank: Ранг внешнего таксона
   extinct: вымерший
@@ -1329,7 +1329,7 @@ ru:
   facebook_account_information: Информация о вашей учётной записи Facebook
   facebook_account_not_linked: "У %{user} больше нет привязанной учётной записи Facebook, поэтому %{site_name} не имеет прав доступа к этому фото."
   facebook_access_token_expired: "Срок действия токена доступа истёк. %{user} должен вновь связать свою учётную запись с Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook требует, чтобы владелец этого фото подтвердить свою привязку к %{site_name_short}
+  facebook_needs_the_owner_of_that_photo_to: Facebook требует, чтобы владелец этого фото подтвердил свою привязку к %{site_name_short}.
   facebook_options: Настройки Facebook
   failed_to_find_your_location: Не удаётся найти ваше местоположение.
   failed_to_repair_photo: "Не удалось восстановить фото: %{errors}"
@@ -4653,7 +4653,7 @@ ru:
           Обратите внимание, что кураторы отдельных проектов всегда могут  видеть координаты, независимо от настроек приватности местоположения, так что если вас беспокоит вопрос, кто имеет доступ к координатам, вы должны быть уверены, что доверяете кураторам проектов, в которых вы участвуете.
         what_is_does_it_mean_for: Что означает, что наблюдение должно быть скрыто?
         when_coordinates_are_obscured_it_means_that: |
-          Если координаты скрыты, это означает, что случайная точка в %{km}KM от истинных координат показана публично (т.е. на главной странице, на странице наблюдения и на странице проекта), в то время как истинные координаты видны только при просмотре своих собственных наблюдений (т.е. на индивидуальных страницах проекта и в списке ваших собственных наблюдений). Обратите внимание, что кураторы тех проектов, к которым вы добавили наблюдение, также могут видеть истинные координаты. Скрытые координаты всегда должны быть обозначены круговым маркером без стержней на картах и и в геопространственных источниках.
+          Если координаты скрыты, это означает, что публично показана случайная точка в %{km}KM от истинных координат (т.е. на главной странице, на странице наблюдения и на странице проекта), в то время как истинные координаты видны только при просмотре своих собственных наблюдений (т.е. на индивидуальных страницах проекта и в списке ваших собственных наблюдений). Обратите внимание, что кураторы тех проектов, к которым вы добавили наблюдение, также могут видеть истинные координаты. Скрытые координаты всегда должны быть обозначены круговым маркером без стержней на картах и и в геопространственных источниках.
         coordinates_are_obscured_for_all_taxa: |
           Координаты автоматически скрываются для всех таксонов, которые «БЛИЗКИ К ИСЧЕЗНОВЕНИЮ» или имеют более худший статус в соответствии с Красным списком МСОП. Некоторые таксоны могут быть
           объявлены находящимися под угрозой другими природоохранными органами, а некоторые могут быть просто отмечены как находящиеся под угрозой кураторами сайта %{site_name}, если они считают, что они нуждаются в защите.
