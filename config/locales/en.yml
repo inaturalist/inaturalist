@@ -660,7 +660,6 @@ en:
   be_the_first_to_fave_this_observation: Be the first to fave this observation!
   because_of: because of
   before_importing_photos: before importing photos
-  belives_this_is_a_comprehensive_list_of: believes this is a comprehensive list of
   bg_color: BG Color
   bioblitz: Bioblitz
   birds: birds
@@ -865,12 +864,17 @@ en:
   comparing_versions_x_and_y: "Comparing versions %{x} and %{y}"
   comparing_observations_from: "Comparing %{user} observations from %{dates}"
   compiled_by_name: "Compiled by %{name}"
+  # Adjective, e.g. "this Taxon Framework is complete"
   complete: Complete
   complete_set_for_taxon_in_place_html: "Complete Set for %{taxon} in %{place}"
   completed: Completed
   completed_at: Completed At
-  comprehensive: comprehensive
+  # As in whether or not a check list is comprehensive, i.e. it contains all the
+  # species in the taxon and place it purports to
   comprehensive?: Comprehensive?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Comprehensive</span>
+    check list for %{taxon}
   comprehensive_list: Comprehensive list
   concept_status: Concept Status
   configure: Configure
@@ -4135,6 +4139,10 @@ en:
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_already_authenticated: User is already authenticated
   user_autocomplete_placeholder: kueda, simon123, etc.
+  # Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  # not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} believes this is a comprehensive list of %{taxon} in %{place}
   user_blocked: User blocked
   user_commented: "%{user} commented"
   user_commented_on: "%{user} commented on your %{title} %{time}"
