@@ -541,7 +541,6 @@ fr:
   be_the_first_to_fave_this_observation: Soyez le premier à mettre cette observation en favori !
   because_of: en raison de
   before_importing_photos: avant d’importer des photos
-  belives_this_is_a_comprehensive_list_of: pense que c’est une liste complète de
   bg_color: Couleur de fond
   bioblitz: Bioblitz
   birds: oiseaux
@@ -741,10 +740,12 @@ fr:
   comparing_versions_x_and_y: "Comparaison des versions %{x} et %{y}"
   comparing_observations_from: "Comparaison des observations de %{user} du %{dates}"
   compiled_by_name: "Compilé par %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Terminer
   completed: Complétée
   completed_at: Complétée à
-  comprehensive: complète
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Complète?
   comprehensive_list: Liste complète
   concept_status: État du concept
