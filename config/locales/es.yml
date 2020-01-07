@@ -3844,7 +3844,6 @@ es:
   unpublish: Despublicar
   unreview_all: Marcar todos como no revisados
   unsubscribe: Quitar suscripción
-  unsubscribe_from_this: Quitar suscripción de este
   unsuspend_user: Reactivar usuario
   upcoming_bioblitzes: Próximos maratones naturalistas
   update: Actualizar
@@ -5716,12 +5715,6 @@ es:
         notification_preferences_user_observations: Observaciones de personas a las que sigo
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Observaciones de taxones o de lugares a los que estoy suscrito
-        opt_in_to_map_tile_test: Probar el experimento de mosaicos sobre el mapa
-        opt_in_to_map_tile_test_description: |
-          Al aceptar este experimento, verá los mapas de distribución en forma de mosaico al alejarse. Estas cuadrículas son menos exigentes en nuestros servidores, deberían ser más rápidos para renderizarse a medida que crece iNaturalist y mostrar mejor la densidad de observaciones.
-          Esperamos que este cambio pueda ser reemplazado en todo el stio web. Nos gustaría escuchar sus
-          comentarios en el foro.
-        opt_out_of_map_tile_test: Dejar de probar el experimento de mosaicos sobre el mapa
         place_preference_changed_notice_html: |
           Se modificó la preferencia de lugar. Si cambias de opinión, siempre podrás <a href='/users/edit'>editar tus preferencias</a>.
         project_addition_preferences:
