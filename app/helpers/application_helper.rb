@@ -1017,10 +1017,13 @@ module ApplicationHelper
     class_name_key = update.resource.class.to_s.underscore
     class_name = class_name_key.humanize.downcase
 
+    resource_txt = t( "activerecord.models.#{class_name_key.camelcase}",
+      default: t( class_name_key, default: class_name_key )
+    ).downcase
     resource_link = if options[:skip_links]
-      t(class_name_key, :default => class_name_key).downcase
+      resource_txt
     else
-      link_to(t(class_name_key, :default => class_name_key).downcase, url_for_resource_with_host(resource))
+      link_to( resource_txt, url_for_resource_with_host( resource ) )
     end
 
     if notifier.is_a?(Comment) || notifier.is_a?(Identification) || update.notification == "mention"

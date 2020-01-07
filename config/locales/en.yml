@@ -4045,7 +4045,6 @@ en:
   unpublish: Unpublish
   unreview_all: Unreview All
   unsubscribe: Unsubscribe
-  unsubscribe_from_this: Unsubscribe from this
   unsuspend_user: Unsuspend user
   upcoming_bioblitzes: Upcoming bioblitzes
   update: Update
@@ -7080,6 +7079,8 @@ en:
       AssessmentSection: Assessment Section
       Atlas: Atlas
       CompleteSet: Complete Set
+      # Noun
+      Flag: Flag
       TaxonLink: Taxon Link
     attributes:
       assessment:
@@ -7381,6 +7382,8 @@ en:
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@n"
@@ -7388,6 +7391,8 @@ en:
         family: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         form: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
