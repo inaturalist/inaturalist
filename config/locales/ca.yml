@@ -800,6 +800,9 @@ ca:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Voleu completar-ho?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Llista Completa</span>
+    de %{taxon}
   comprehensive_list: Llista completa
   concept_status: Concepte de la situació
   configure: Configura
@@ -3828,7 +3831,6 @@ ca:
   unpublish: No publiquis
   unreview_all: Marcar-los tots com no revisats
   unsubscribe: Elimineu subscripció
-  unsubscribe_from_this: Elimineu subscripció d'aquest
   unsuspend_user: Reactiva usuari
   upcoming_bioblitzes: Propers bioblitzes
   update: Actualitza
@@ -3913,6 +3915,10 @@ ca:
   user_added_x_observations_html: "%{user} ha afegit %{x} observacions"
   user_already_authenticated: L'usuari ja es va autenticar
   user_autocomplete_placeholder: kueda, simon123, etc.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} considera que aquesta és la llista completa de %{taxon} a %{place}
   user_blocked: Usuari blocat
   user_commented: "%{user} ha comentat"
   user_commented_on: "%{user} ha comentat el teu %{title} %{time}"
@@ -5559,10 +5565,6 @@ ca:
         notification_preferences_user_observations: Observacions de persones a les quals segueixo
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Observacions de tàxons o llocs als quals estic subscrit
-        opt_in_to_map_tile_test: Veure la prova de mapa de mosaics
-        opt_in_to_map_tile_test_description: |
-          Quan opteu per aquesta prova veureu els nous mapes amb mosaics en allunyar-vos. Aquestes graelles són menys exigents amb els nostres servidors i podrien mostrar la informació més ràpidament a mesura creix iNaturalist, mostrant millor la densitat d'observacions. Eventualment, esperem reemplaçar-ho a tota la nostra web. Esperem els vostres comentaris al fòrum.
-        opt_out_of_map_tile_test: Sortir de la prova de mapa de mosaics
         place_preference_changed_notice_html: |
           Preferències sobre el lloc canviades. Si canvieu d'opinió sempre podreu <a href='/users/edit'>editar la vostra congfiguració</a>.
         project_addition_preferences:
