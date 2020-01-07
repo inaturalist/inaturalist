@@ -5,6 +5,11 @@ cs:
     many: "%{count} jazyků"
     other: "%{count} jazyků"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}people</strong> helped %{user}with<strong>%{y}IDs</strong>"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> kurátorský taxon"
+    few: "<span class='count'>%{count}</span> kurátorských taxonů"
+    many: "<span class='count'>%{count}</span> kurátorských taxonů"
+    other: "<span class='count'>%{count}</span> kurátorský taxon"
   _100_day_trends: 100 denní trend
   _percent_ID_d: "% identifikováno"
   a_community_for_naturalist: Komunita naturalistů
@@ -3185,7 +3190,6 @@ cs:
   unpublish: Zrušit zveřejnění
   unreview_all: Označit všechny za nezkontrolované
   unsubscribe: Zrušit odebírání
-  unsubscribe_from_this: Zrušit odebírání tématu
   unsuspend_user: Zrušit vyloučení uživatele
   upcoming_bioblitzes: Nadcházející bioblitzy
   update: Aktualizovat
