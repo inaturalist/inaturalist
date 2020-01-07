@@ -692,7 +692,6 @@ pl:
   be_the_first_to_fave_this_observation: Polub tę obserwację jako pierwszy!
   because_of: z powodu
   before_importing_photos: przed zaimportowaniem zdjęć
-  belives_this_is_a_comprehensive_list_of: uważa, że to jest kompleksowa lista
   bg_color: Kolor tła
   bioblitz: Bioblitz
   birds: ptaki
@@ -875,10 +874,12 @@ pl:
   comparing_versions_x_and_y: "Porównanie wersji %{x} z %{y}"
   comparing_observations_from: "Porównanie obserwacji użytkownika %{user} z %{dates}"
   compiled_by_name: "Sporządzony przez %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Kompletny
   complete_set_for_taxon_in_place_html: "Kompletny zbiór dla %{taxon} w %{place}"
   completed: Zakończone
-  comprehensive: kompleksowy
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Kompleksowy?
   comprehensive_list: Kompleksowa lista
   configure: Konfiguruj
