@@ -306,8 +306,8 @@ it:
   admin_only: Solo-Amministratore
   admin_tools: Strumenti Di Amministrazione
   agree: d'accordo
-  agree_: Accetto
-  agree?: Concordi?
+  agree_: D'accordo
+  agree?: D’accordo?
   agree_with_current_taxon: D'accordo con il taxon corrente
   agreeing: Accordo in corso...
   aka: o
@@ -597,7 +597,6 @@ it:
   be_the_first_to_fave_this_observation: Aggiungi per primo questa osservazione ai preferiti!
   because_of: perché
   before_importing_photos: prima di importare le foto
-  belives_this_is_a_comprehensive_list_of: pensa che questa è una lista esaustiva di
   bg_color: Colore di sfondo
   bioblitz: Bioblitz
   birds: uccelli
@@ -795,12 +794,16 @@ it:
   comparing_versions_x_and_y: "Confronto in corso tra la versione %{x} e %{y}"
   comparing_observations_from: "Confronto in corso delle osservazioni di %{user} del %{dates}"
   compiled_by_name: "Compilato da %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Completo
   complete_set_for_taxon_in_place_html: "Elenco Completo di %{taxon} in %{place}"
   completed: Completato
   completed_at: Completato in
-  comprehensive: completa
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Completa?
+  comprehensive_check_list_for_taxon_html: |
+    Checklist <span class="comprehensive_notice" data-tip="%{tip}">onnicomprensiva</span> per %{taxon}
   comprehensive_list: Elenco completo
   concept_status: Stato del concetto
   configure: Configura
@@ -3907,6 +3910,10 @@ it:
   user_added_x_observations_html: "%{user} ha aggiunto %{x} osservazioni"
   user_already_authenticated: L'utente è già autenticato
   user_autocomplete_placeholder: kueda, simon123, etc.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} pensa che questa sia una lista onnicomprensiva per %{taxon} in %{place}
   user_blocked: Utente bloccato
   user_commented: "%{user} ha commentato"
   user_commented_on: "%{user} ha commentato la tua %{title} alle ore %{time}"
