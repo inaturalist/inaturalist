@@ -486,7 +486,6 @@ es-MX:
   be_the_first_to_fave_this_observation: Se el primero en decir que le agrada esta observación.
   because_of: debido a
   before_importing_photos: Antes de importar las fotos
-  belives_this_is_a_comprehensive_list_of: cree que esta es una lista exhaustiva de
   bg_color: Color del fondo
   bioblitz: Maratón naturalista
   birds: Aves
@@ -682,10 +681,12 @@ es-MX:
   comparing_versions_x_and_y: "Comparando las versiones %{x} y %{y}"
   comparing_observations_from: "Comparando %{user} observaciones de %{dates}"
   compiled_by_name: "Compilado por %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Completo
   completed: Completo
   completed_at: Completo en
-  comprehensive: exhaustiva
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: '¿Es exhaustiva?'
   comprehensive_list: Lista exhaustiva
   concept_status: Estado del concepto
