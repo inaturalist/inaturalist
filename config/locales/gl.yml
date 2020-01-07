@@ -263,7 +263,6 @@ gl:
   batch_edit_taxa_for_x_html: "Edición de datos por lote para %{x}"
   batch_operations: Operacións de grupos
   before_importing_photos: Antes de importar fotos.
-  belives_this_is_a_comprehensive_list_of: cre que esta é unha lista exhaustiva de
   bg_color: Cor BG
   birds: Aves
   black: negro
@@ -391,7 +390,8 @@ gl:
   comparing_list_to_list: "Comparando %{list1} con %{list2}"
   comparing_observations_from: "Comparación das observacións de %{user} en %{dates}"
   completed: Completado
-  comprehensive: Completa
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: '¿Completa?'
   comprehensive_list: Lista completa
   concept_status: Concepto da situación
