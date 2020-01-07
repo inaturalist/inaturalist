@@ -372,7 +372,6 @@ cs:
   be_the_first_to_fave_this_observation: Buďte první, komu se toto pozorování líbí!
   because_of: kvůli
   before_importing_photos: před importováním fotek
-  belives_this_is_a_comprehensive_list_of: je přesvědčen/a, že toto je úplný seznam
   bg_color: Barva pozadí
   birds: ptáci
   birthday: Narozeniny
@@ -562,10 +561,12 @@ cs:
   comparing_versions_x_and_y: "Porovnání verzí %{x} a %{y}"
   comparing_observations_from: "Porovnání pozorování uživatele %{user} z %{dates}"
   compiled_by_name: "Sestavil uživatel %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Dokončit
   completed: Dokončeno
   completed_at: Dokončeno u
-  comprehensive: komplexní
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Kompletní?
   comprehensive_list: Kompletní seznam
   concept_status: Status konceptu
