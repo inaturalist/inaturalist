@@ -417,7 +417,6 @@ ko:
   batch_edit_taxa_for_x_html: "%{x}로 분류군 일괄 편집"
   batch_operations: 일괄 운영
   before_importing_photos: 사진을 불러오기 전에
-  belives_this_is_a_comprehensive_list_of: 포괄적인 목록으로 여겨집니다.
   bg_color: 배경 색
   bioblitz: 바이오블릿츠
   birds: 조류
@@ -572,7 +571,8 @@ ko:
   compiled_by_name: "%{name}에 의해서 편집"
   completed: 완료
   completed_at: 완료
-  comprehensive: 포괄적인
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: 포괄적?
   comprehensive_list: 포괄적 목록
   concept_status: 컨셉 상태
