@@ -596,7 +596,6 @@ da:
   be_the_first_to_fave_this_observation: Vær den første til at gøre denne observation til favorit
   because_of: på grund af
   before_importing_photos: før import af fotos
-  belives_this_is_a_comprehensive_list_of: mener, at dette er en omfattende liste over
   bg_color: Baggrundsfarve
   bioblitz: Bioblitz
   birds: fugle
@@ -796,12 +795,17 @@ da:
   comparing_versions_x_and_y: "Sammenligner versioner %{x} og %{y}"
   comparing_observations_from: "Sammenligner %{user} observationer fra %{dates}"
   compiled_by_name: "Samlet af %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Fuldendt
   complete_set_for_taxon_in_place_html: "Komplet sæt for %{taxon} i %{place}"
   completed: Fuldført
   completed_at: Fuldført den
-  comprehensive: omfattende
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: omfattende?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Omfattende</span>
+    tjekliste for %{taxon}
   comprehensive_list: omfattende liste
   concept_status: Koncept status
   configure: Konfigurér
@@ -3975,6 +3979,10 @@ da:
   user_added_x_observations_html: "%{user} tilføjede %{x} observationer"
   user_already_authenticated: Brugeren er allerede godkendt
   user_autocomplete_placeholder: kueda, simon123, osv.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} mener, at dette er en omfattende liste over %{taxon} på %{place}
   user_blocked: Bruger blokeret
   user_commented: "%{user} kommenterede"
   user_commented_on: "%{user} kommenterede på din %{title} %{time}"
