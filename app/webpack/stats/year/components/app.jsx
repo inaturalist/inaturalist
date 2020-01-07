@@ -1,3 +1,6 @@
+/* global DEFAULT_SITE_ID */
+// I18n.t( "time.formats.long" )
+
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
@@ -11,21 +14,31 @@ import Identifications from "./identifications";
 import Taxa from "./taxa";
 import Publications from "./publications";
 import Growth from "./growth";
+import Compare from "./compare";
+import Sites from "./sites";
+import Donate from "./donate";
+import Donor from "./donor";
+import Translators from "./translators";
 
 const App = ( {
   year,
   user,
   currentUser,
   site,
+  sites,
   data,
-  rootTaxonID
+  rootTaxonID,
+  updatedAt
 } ) => {
   let body = "todo";
   const inatUser = user ? new inatjs.User( user ) : null;
+  const defaultSite = _.find( sites, s => s.id === DEFAULT_SITE_ID );
   if ( !year ) {
     body = (
       <p className="alert alert-warning">
-        Not a valid year. Please choose a year between 1950 and { new Date().getYear() }.
+        Not a valid year. Please choose a year between 1950 and
+        { new Date().getYear() }
+        .
       </p>
     );
   } else if ( !data || !currentUser ) {
@@ -63,46 +76,76 @@ const App = ( {
           rootTaxonID={rootTaxonID}
           year={year}
           user={user}
+          site={site}
           currentUser={currentUser}
         />
         { data && data.growth && (
           <Growth
             data={Object.assign( {}, data.growth, { taxa: data.taxa.accumulation } )}
             year={year}
+            site={site && site.id !== DEFAULT_SITE_ID ? site : null}
           />
+        ) }
+        { window.location.search.match( /test=compare/ ) && data && data.taxa && data.taxa.accumulation && (
+          <Compare data={data} year={year} />
+        ) }
+        { data.publications && (
+          <Publications data={data.publications} year={year} />
+        ) }
+        {
+          data.translators
+          && ( !site || site.id === DEFAULT_SITE_ID || !_.isEmpty( site.locale ) )
+          && (
+            <Translators
+              data={data.translators}
+              siteName={site && site.id !== DEFAULT_SITE_ID ? site.name : null}
+            />
+          )
+        }
+        { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
+        { !user && ( !site || site.id === DEFAULT_SITE_ID ) && <Donate year={year} /> }
+        { updatedAt && (
+          <p className="updated-at text-center text-muted">
+            { I18n.t( "views.stats.year.stats_generated_datetime", {
+              datetime: I18n.localize( "time.formats.long", updatedAt )
+            } ) }
+          </p>
         ) }
         { user && currentUser && user.id === currentUser.id ? (
           <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
         ) : null }
-        { data.publications && (
-          <Publications data={data.publications} year={year} />
-        ) }
-        <h2 id="sharing"><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
-        <center>
-          <div
-            className="fb-share-button"
-            data-href={window.location.toString( ).replace( /#.+/, "" )}
-            data-layout="button"
-            data-size="large"
-            data-mobile-iframe="true"
-          >
-            <a
-              className="fb-xfbml-parse-ignore"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse`}
+        <div id="sharing">
+          <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
+          <center>
+            <div
+              className="fb-share-button"
+              data-href={window.location.toString( ).replace( /#.+/, "" )}
+              data-layout="button"
+              data-size="large"
+              data-mobile-iframe="true"
             >
-              { I18n.t( "facebook" ) }
+              <a
+                // className="fb-xfbml-parse-ignore"
+                className="btn btn-primary btn-inat facebook-share-button"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse`}
+              >
+                <i className="fa fa-facebook" />
+                { I18n.t( "facebook" ) }
+              </a>
+            </div>
+            <a
+              className="btn btn-primary btn-inat twitter-share-button"
+              href={`https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
+              data-size="large"
+              rel="noopener noreferrer"
+            >
+              <i className="fa fa-twitter" />
+              { I18n.t( "twitter" ) }
             </a>
-          </div>
-          <a
-            className="twitter-share-button"
-            href={`https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
-            data-size="large"
-          >
-            { I18n.t( "twitter" ) }
-          </a>
-        </center>
+          </center>
+        </div>
       </div>
     );
   }
@@ -114,7 +157,11 @@ const App = ( {
     && data.observations.popular.length > 0
   ) {
     montageObservations = _.filter(
-      data.observations.popular, o => ( o.photos && o.photos.length > 0 )
+      data.observations.popular, o => (
+        o.photos
+        && o.photos.length > 0
+        && _.filter( o.photos, p => p.original_dimensions ).length > 0
+      )
     );
     while ( montageObservations.length < 150 ) {
       montageObservations = montageObservations.concat( montageObservations );
@@ -126,7 +173,7 @@ const App = ( {
   ) !== null;
   return (
     <div id="YearStats">
-      <div className="banner">
+      <div className={`banner ${user ? "for-user" : ""}`}>
         <div className="montage">
           <div className="photos">
             { _.map( montageObservations, ( o, i ) => (
@@ -172,11 +219,13 @@ const App = ( {
             </div>
           </div>
         ) }
-
       </div>
       <Grid fluid={isTouchDevice}>
         <Row>
           <Col xs={12}>
+            { user && user.display_donor_since && (
+              <center><Donor year={year} user={user} /></center>
+            ) }
             <h1>
               {
                 I18n.t( "year_in_review", {
@@ -190,34 +239,41 @@ const App = ( {
           <Col xs={12}>
             { body }
             <div id="view-stats-buttons">
-              { !currentUser || !user || ( user.id !== currentUser.id ) ? (
+              { ( !currentUser || !user || ( user.id !== currentUser.id ) ) && (
                 <div>
-                  <a href={`/stats/${year}/you`} className="btn btn-primary btn-bordered">
+                  <a href={`/stats/${year}/you`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-pie-chart" />
                     { " " }
                     { I18n.t( "view_your_year_stats", { year } ) }
                   </a>
+                  { site && defaultSite && site.id !== defaultSite.id && (
+                    <div>
+                      <a
+                        href={`${defaultSite.url}/stats/${year}`}
+                        className="btn btn-primary btn-bordered btn-lg"
+                      >
+                        <i className="fa fa-bar-chart-o" />
+                        { " " }
+                        { I18n.t( "view_year_stats_for_site", {
+                          year,
+                          site: defaultSite.name,
+                          vow_or_con: "i"
+                        } ) }
+                      </a>
+                    </div>
+                  ) }
                 </div>
-              ) : null }
-              { user ? (
+              ) }
+              { user && (
                 <div>
-                  <a href={`/stats/${year}`} className="btn btn-primary btn-bordered">
+                  <a href={`/stats/${year}`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-bar-chart-o" />
                     { " " }
-                    { I18n.t( "view_year_stats_for_site", { year, site: site.name } ) }
-                  </a>
-                </div>
-              ) : null }
-              { (
-                !site || site.id === 1 || (
-                  user && ( user.site_id === null || user.site_id === 1 )
-                )
-              ) && (
-                <div>
-                  <a href="/donate?utm_content=year-in-review-2018" className="btn btn-default btn-bordered btn-donate">
-                    <i className="fa fa-heart" />
-                    { " " }
-                    { I18n.t( "support_inaturalist" ) }
+                    { I18n.t( "view_year_stats_for_site", {
+                      year,
+                      site: site.name,
+                      vow_or_con: site.name[0].toLowerCase( )
+                    } ) }
                   </a>
                 </div>
               ) }
@@ -235,7 +291,9 @@ App.propTypes = {
   currentUser: PropTypes.object,
   data: PropTypes.object,
   site: PropTypes.object,
-  rootTaxonID: PropTypes.number
+  sites: PropTypes.array,
+  rootTaxonID: PropTypes.number,
+  updatedAt: PropTypes.object
 };
 
 export default App;

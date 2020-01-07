@@ -1,13 +1,18 @@
 <%-
   model_name ||= controller.class.to_s.underscore.humanize.split.first
   title ||= if is_me?(@selected_user)
-    if ![ 'Journal', 'Profile' ].include?(model_name)
-        t(:second_person_possessive_singular, :noun => t(model_name.downcase).downcase)
+    if model_name == "Journal"
+      t( "header_your_journal", default: false ) || t(:second_person_possessive_singular, :noun => t(:journal), gender: "journal" )
+    elsif model_name == "Profile"
+      t( "header_your_profile", default: false ) || t(:second_person_possessive_singular, :noun => t(:profile), gender: "profile" )
     else
-      t(:second_person_possessive_singular_, :noun => t(model_name.downcase).downcase)
+      t( "header_your_#{model_name.pluralize.underscore}", default: false ) || t(:second_person_possessive_singular,
+        noun: t(model_name.downcase.underscore),
+        gender: model_name.underscore.singularize
+      )
     end
   else
-    t(:third_person_possessive_singular, :noun => t(model_name.downcase).titleize, :object_phrase => @login)
+    t(:third_person_possessive_singular, :noun => t(model_name.downcase).titleize, :object_phrase => @login, gender: model_name.underscore.singularize )
   end
   before ||= nil
   after ||= nil

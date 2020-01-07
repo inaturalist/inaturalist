@@ -15,9 +15,9 @@ class Site < ActiveRecord::Base
 
   # Email addresses
   preference :email_admin, :string
-  preference :email_noreply, :string
-  preference :email_help, :string
-  preference :email_info, :string
+  preference :email_noreply, :string, default: CONFIG.noreply_email
+  preference :email_help, :string, default: CONFIG.help_email
+  preference :email_info, :string, default: CONFIG.help_email
 
   preference :contact_first_name, :string
   preference :contact_last_name, :string
@@ -67,6 +67,17 @@ class Site < ActiveRecord::Base
   end
   validates_attachment_content_type :logo, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
     message: "must be JPG, PNG, SVG, or GIF"
+  validate do |site|
+    if !site.errors.any? &&
+        site.logo.queued_for_write[:original] &&
+        site.logo.content_type.to_s !~ /svg/i
+      dimensions = Paperclip::Geometry.from_file(site.logo.queued_for_write[:original].path)
+      if dimensions.height > 70
+        errors.add(:logo, "cannot have a height larger than 70px")
+      end
+    end
+    true
+  end
 
   # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
   if CONFIG.usingS3
@@ -79,18 +90,23 @@ class Site < ActiveRecord::Base
       bucket: CONFIG.s3_bucket,
       path: "sites/:id-logo_square.:extension",
       url: ":s3_alias_url",
-      default_url: "bird.png"
+      default_url: "bird.png",
+      styles: {
+        original: { geometry: "300x300>#" }
+      }
     invalidate_cloudfront_caches :logo_square, "sites/:id-logo_square.*"
   else
     has_attached_file :logo_square,
       path: ":rails_root/public/attachments/sites/:id-logo_square.:extension",
       url: "/attachments/sites/:id-logo_square.:extension",
-      default_url: "bird.png"
+      default_url: "bird.png",
+      styles: {
+        original: { geometry: "300x300>#" }
+      }
   end
   validates_attachment_content_type :logo_square, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
     message: "must be JPG, PNG, or GIF"
 
-  # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
   if CONFIG.usingS3
     has_attached_file :logo_email_banner,
       storage: :s3,
@@ -101,15 +117,101 @@ class Site < ActiveRecord::Base
       bucket: CONFIG.s3_bucket,
       path: "sites/:id-logo_email_banner.:extension",
       url: ":s3_alias_url",
-      default_url: "inat_email_banner.png"
+      default_url: "inat_email_banner.png",
+      styles: {
+        original: { geometry: "600x600>" }
+      }
     invalidate_cloudfront_caches :logo_email_banner, "sites/:id-logo_email_banner.*"
   else
     has_attached_file :logo_email_banner,
       path: ":rails_root/public/attachments/sites/:id-logo_email_banner.:extension",
       url: "/attachments/sites/:id-logo_email_banner.:extension",
-      default_url: "inat_email_banner.png"
+      default_url: "inat_email_banner.png",
+      styles: {
+        original: { geometry: "600x600>" }
+      }
   end
-  validates_attachment_content_type :logo_email_banner, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/], message: "must be JPG, PNG, or GIF"
+  validates_attachment_content_type :logo_email_banner,
+    content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
+    message: "must be JPG, PNG, or GIF"
+
+  if CONFIG.usingS3
+    has_attached_file :logo_blog,
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      s3_region: CONFIG.s3_region,
+      bucket: CONFIG.s3_bucket,
+      path: "sites/:id-logo_blog.:extension",
+      url: ":s3_alias_url"
+    invalidate_cloudfront_caches :logo, "sites/:id-logo_blog.*"
+  else
+    has_attached_file :logo_blog,
+      path: ":rails_root/public/attachments/sites/:id-logo_blog.:extension",
+      url: "/attachments/sites/:id-logo_blog.:extension"
+  end
+  validates_attachment_content_type :logo_blog, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
+    message: "must be JPG, PNG, SVG, or GIF"
+  validate do |site|
+    if !site.errors.any? &&
+        site.logo_blog.queued_for_write[:original] &&
+        site.logo_blog.content_type.to_s !~ /svg/i
+      dimensions = Paperclip::Geometry.from_file(site.logo_blog.queued_for_write[:original].path)
+      if dimensions.height > 110 || dimensions.width > 110
+        errors.add(:logo_blog, "cannot have a height larger than 110x110px")
+      end
+    end
+    true
+  end
+
+  if CONFIG.usingS3
+    has_attached_file :favicon,
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_region: CONFIG.s3_region,
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      bucket: CONFIG.s3_bucket,
+      path: "sites/:id-favicon.:extension",
+      url: ":s3_alias_url",
+      default_url: "favicon.png",
+      styles: {
+        original: { geometry: "64x64>#" }
+      }
+    invalidate_cloudfront_caches :favicon, "sites/:id-favicon.*"
+  else
+    has_attached_file :favicon,
+      path: ":rails_root/public/attachments/sites/:id-favicon.:extension",
+      url: "/attachments/sites/:id-favicon.:extension",
+      default_url: "favicon.png",
+      styles: {
+        original: { geometry: "64x64>#" }
+      }
+  end
+  validates_attachment_content_type :favicon,
+    content_type: [/png/i, /gif/i, "image/x-icon", "image/vnd.microsoft.icon"],
+    message: "must be PNG, GIF, or ICO"
+
+  if CONFIG.usingS3
+    has_attached_file :shareable_image,
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_region: CONFIG.s3_region,
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      bucket: CONFIG.s3_bucket,
+      path: "sites/:id-shareable_image.:extension",
+      url: ":s3_alias_url"
+    invalidate_cloudfront_caches :shareable_image, "sites/:id-shareable_image.*"
+  else
+    has_attached_file :shareable_image,
+      path: ":rails_root/public/attachments/sites/:id-shareable_image.:extension",
+      url: "/attachments/sites/:id-shareable_image.:extension"
+  end
+  validates_attachment_content_type :shareable_image,
+    content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
+    message: "must be JPG, PNG, or GIF"
       
   # CSS file to override default styles
   if CONFIG.usingS3
@@ -160,6 +262,7 @@ class Site < ActiveRecord::Base
   preference :android_app_url, :string
   preference :facebook_url, :string
   preference :twitter_url, :string
+  preference :instagram_url, :string
   preference :blog_url, :string
 
   preference :twitter_username, :string
@@ -195,6 +298,8 @@ class Site < ActiveRecord::Base
 
   # google webmaster tools, http://www.google.com/webmasters/tools/
   preference :google_webmaster_verification, :string
+  preference :google_webmaster_dns_verification, :string
+  preference :google_webmaster_dns_verified, :boolean
 
   # google recaptcha, https://www.google.com/recaptcha
   preference :google_recaptcha_key, :string
@@ -219,6 +324,11 @@ class Site < ActiveRecord::Base
 
   # Whether this site prefers https
   preference :ssl, :boolean
+
+  STAFF_ONLY_PREFERENCES = [
+    :google_webmaster_dns_verification,
+    :google_webmaster_dns_verified
+  ]
 
   after_save :refresh_default_site
 

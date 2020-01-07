@@ -41,7 +41,7 @@ Atlas.blueprint do
 end
 
 CheckList.blueprint do
-  place { Place.make! }
+  place { make_place_with_geom }
 end
 
 Color.blueprint do
@@ -56,7 +56,7 @@ end
 
 CompleteSet.blueprint do
   taxon { Taxon.make! }
-  place { Place.make! }
+  place { make_place_with_geom }
   user { User.make! }
   is_active { true }
 end
@@ -88,7 +88,7 @@ end
 
 ExplodedAtlasPlace.blueprint do
   atlas { Atlas.make! }
-  place { Place.make! }
+  place { make_place_with_geom }
 end
 
 Flag.blueprint do
@@ -276,7 +276,7 @@ Place.blueprint do
 end
 
 PlaceTaxonName.blueprint do
-  place { Place.make! }
+  place { make_place_with_geom }
   taxon_name { TaxonName.make! }
 end
 
@@ -536,6 +536,11 @@ end
 UserBlock.blueprint do
   user { User.make! }
   blocked_user { User.make! }
+end
+
+UserMute.blueprint do
+  user { User.make! }
+  muted_user { User.make! }
 end
 
 UserParent.blueprint do

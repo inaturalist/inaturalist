@@ -325,7 +325,9 @@ CREATE TABLE public.announcements (
     body text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    locales text[] DEFAULT '{}'::text[]
+    locales text[] DEFAULT '{}'::text[],
+    dismiss_user_ids integer[] DEFAULT '{}'::integer[],
+    dismissible boolean DEFAULT false
 );
 
 
@@ -3771,7 +3773,19 @@ CREATE TABLE public.sites (
     logo_email_banner_file_size integer,
     logo_email_banner_updated_at timestamp without time zone,
     domain character varying,
-    coordinate_systems_json text
+    coordinate_systems_json text,
+    favicon_file_name character varying,
+    favicon_content_type character varying,
+    favicon_file_size bigint,
+    favicon_updated_at timestamp without time zone,
+    shareable_image_file_name character varying,
+    shareable_image_content_type character varying,
+    shareable_image_file_size bigint,
+    shareable_image_updated_at timestamp without time zone,
+    logo_blog_file_name character varying,
+    logo_blog_content_type character varying,
+    logo_blog_file_size bigint,
+    logo_blog_updated_at timestamp without time zone
 );
 
 
@@ -4046,7 +4060,6 @@ CREATE TABLE public.taxa (
     rank character varying(255),
     source_identifier character varying(255),
     source_url character varying(255),
-    parent_id integer,
     source_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -4887,7 +4900,10 @@ CREATE TABLE public.users (
     suspended_by_user_id integer,
     birthday date,
     pi_consent_at timestamp without time zone,
-    donorbox_donor_id integer
+    donorbox_donor_id integer,
+    donorbox_plan_type character varying,
+    donorbox_plan_status character varying,
+    donorbox_plan_started_at date
 );
 
 
@@ -8728,13 +8744,6 @@ CREATE INDEX index_taxa_on_observations_count ON public.taxa USING btree (observ
 
 
 --
--- Name: index_taxa_on_parent_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_taxa_on_parent_id ON public.taxa USING btree (parent_id);
-
-
---
 -- Name: index_taxa_on_rank_level; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9029,6 +9038,13 @@ CREATE INDEX index_users_on_curator_sponsor_id ON public.users USING btree (cura
 
 
 --
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_email ON public.users USING btree (email);
+
+
+--
 -- Name: index_users_on_identifications_count; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9043,6 +9059,13 @@ CREATE INDEX index_users_on_journal_posts_count ON public.users USING btree (jou
 
 
 --
+-- Name: index_users_on_last_ip; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_last_ip ON public.users USING btree (last_ip);
+
+
+--
 -- Name: index_users_on_life_list_taxa_count; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9054,6 +9077,13 @@ CREATE INDEX index_users_on_life_list_taxa_count ON public.users USING btree (li
 --
 
 CREATE UNIQUE INDEX index_users_on_login ON public.users USING btree (login);
+
+
+--
+-- Name: index_users_on_lower_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_lower_email ON public.users USING btree (lower((email)::text));
 
 
 --
@@ -9968,6 +9998,8 @@ INSERT INTO schema_migrations (version) VALUES ('20181110004422');
 
 INSERT INTO schema_migrations (version) VALUES ('20181120235404');
 
+INSERT INTO schema_migrations (version) VALUES ('20181203171209');
+
 INSERT INTO schema_migrations (version) VALUES ('20190104024910');
 
 INSERT INTO schema_migrations (version) VALUES ('20190215195613');
@@ -9991,4 +10023,16 @@ INSERT INTO schema_migrations (version) VALUES ('20190528222836');
 INSERT INTO schema_migrations (version) VALUES ('20190604231553');
 
 INSERT INTO schema_migrations (version) VALUES ('20190702063435');
+
+INSERT INTO schema_migrations (version) VALUES ('20190820224224');
+
+INSERT INTO schema_migrations (version) VALUES ('20190918161513');
+
+INSERT INTO schema_migrations (version) VALUES ('20191104233418');
+
+INSERT INTO schema_migrations (version) VALUES ('20191115201008');
+
+INSERT INTO schema_migrations (version) VALUES ('20191203201511');
+
+INSERT INTO schema_migrations (version) VALUES ('20191210173400');
 

@@ -241,7 +241,11 @@ class TaxaSunburst extends React.Component {
   render( ) {
     return (
       <div className="TaxaSunburst">
-        <h3><span>{ I18n.t( "views.welcome.index.species_observed" ) }</span></h3>
+        <h3>
+          <a name="species-observed" href="#species-observed">
+            <span>{ I18n.t( "views.welcome.index.species_observed" ) }</span>
+          </a>
+        </h3>
         <p
           className="text-muted"
           dangerouslySetInnerHTML={{ __html: I18n.t( "views.stats.year.sunburst_desc_html" ) }}

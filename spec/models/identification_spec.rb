@@ -6,8 +6,7 @@ describe Identification, "creation" do
   after(:all)  { DatabaseCleaner.strategy = :transaction }
 
   before(:all) { User.destroy_all }
-  before(:each) { enable_elastic_indexing( Observation, Taxon, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon, Identification ) }
+  elastic_models( Observation, Taxon, Identification )
 
   it "should have a taxon" do 
     @id = Identification.make!
@@ -415,8 +414,7 @@ describe Identification, "creation" do
 end
 
 describe Identification, "updating" do
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  elastic_models( Observation, Identification )
 
   it "should not change current status of other identifications" do
     i1 = Identification.make!
@@ -455,8 +453,7 @@ describe Identification, "updating" do
 end
 
 describe Identification, "deletion" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon, Identification ) }
+  elastic_models( Observation, Taxon, Identification )
 
   before(:all) do
     # some identification deletion callbacks need to happen after the transaction is complete
@@ -720,8 +717,7 @@ describe Identification, "deletion" do
 end
 
 describe Identification, "captive" do
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  elastic_models( Observation, Identification )
 
   it "should vote yes on the wild quality metric if 1" do
     i = Identification.make!(:captive_flag => "1")
@@ -754,8 +750,7 @@ describe Identification, "captive" do
 end
 
 describe Identification do
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  elastic_models( Observation, Identification )
 
   describe "mentions" do
     before { enable_has_subscribers }
@@ -794,8 +789,7 @@ end
 describe Identification, "category" do
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  elastic_models( Observation, Identification )
   let( :o ) { Observation.make! }
   let(:parent) { Taxon.make!( rank: Taxon::GENUS ) }
   let(:child) { Taxon.make!( rank: Taxon::SPECIES, parent: parent ) }
@@ -1022,8 +1016,7 @@ describe Identification, "category" do
 end
 
 describe Identification, "disagreement" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   before { load_test_taxa } # Not sure why but these don't seem to pass if I do before(:all)
   it "should be nil by default" do
     expect( Identification.make! ).not_to be_disagreement
@@ -1071,8 +1064,7 @@ end
 describe Identification, "set_previous_observation_taxon" do
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   it "should choose the observation taxon by default" do
     o = Observation.make!( taxon: Taxon.make!(:species) )
     t = Taxon.make!(:species)
@@ -1137,8 +1129,7 @@ describe Identification, "set_previous_observation_taxon" do
 end
 
 describe Identification, "update_disagreement_identifications_for_taxon" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:f) { Taxon.make!( rank: Taxon::FAMILY ) }
   let(:g1) { Taxon.make!( rank: Taxon::GENUS, parent: f ) }
   let(:g2) { Taxon.make!( rank: Taxon::GENUS, parent: f ) }

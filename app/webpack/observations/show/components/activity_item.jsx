@@ -51,11 +51,11 @@ const ActivityItem = ( {
   let contents;
   let header;
   let className;
-  if ( !config.showHidden && item.hidden && !isID ) {
+  if ( item.hidden && !isID && ( !canSeeHidden || !config.showHidden ) ) {
     return (
       <div className="ActivityItem">
         <div className="icon">
-          <UserImage user={null} />
+          <UserImage user={viewerIsActor ? item.user : null} />
         </div>
         <Panel className="moderator-hidden">
           <Panel.Heading>
@@ -171,7 +171,7 @@ const ActivityItem = ( {
           ) }
         </div>
       );
-    } else {
+    } else if ( !item.hidden || canSeeHidden ) {
       idBody = item.body && ( <UserText text={item.body} className="id_body" /> );
     }
     contents = (
@@ -195,7 +195,7 @@ const ActivityItem = ( {
         { idBody }
       </div>
     );
-  } else {
+  } else if ( !item.hidden || canSeeHidden ) {
     header = I18n.t( "user_commented", { user: ReactDOMServer.renderToString( userLink ) } );
     contents = ( <UserText text={item.body} /> );
   }
@@ -374,20 +374,34 @@ const ActivityItem = ( {
   }
   let taxonChange;
   if ( item.taxon_change ) {
-    const type = _.snakeCase( item.taxon_change.type );
+    const taxonChangeLinkAttrs = {
+      url: `/taxon_changes/${item.taxon_change.id}`,
+      target: linkTarget,
+      class: "linky"
+    };
+    let taxonChangeLink;
+    switch ( item.taxon_change.type ) {
+      case "TaxonSwap":
+        taxonChangeLink = I18n.t( "added_as_a_part_of_a_taxon_swap_html", taxonChangeLinkAttrs );
+        break;
+      case "TaxonSplit":
+        taxonChangeLink = I18n.t( "added_as_a_part_of_a_taxon_split_html", taxonChangeLinkAttrs );
+        break;
+      case "TaxonMerge":
+        taxonChangeLink = I18n.t( "added_as_a_part_of_a_taxon_merge_html", taxonChangeLinkAttrs );
+        break;
+      default:
+        taxonChangeLink = I18n.t( "added_as_a_part_of_a_taxon_change_html", taxonChangeLinkAttrs );
+    }
     taxonChange = (
       <div className="taxon-change">
         <i className="fa fa-refresh" />
         { " " }
-        { I18n.t( "this_id_was_added_due_to_a" ) }
-        { " " }
-        <a
-          href={`/taxon_changes/${item.taxon_change.id}`}
-          target={linkTarget}
-          className="linky"
-        >
-          { I18n.t( type ) }
-        </a>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: taxonChangeLink
+          }}
+        />
       </div>
     );
   }
@@ -433,7 +447,9 @@ const ActivityItem = ( {
   return (
     <div id={elementID} className={`ActivityItem ${className} ${byClass}`}>
       <div className="icon">
-        <UserImage user={item.user} linkTarget={linkTarget} />
+        { ( !item.hidden || canSeeHidden || viewerIsActor ) && (
+          <UserImage user={item.user} linkTarget={linkTarget} />
+        ) }
       </div>
       <Panel className={panelClass}>
         <Panel.Heading>

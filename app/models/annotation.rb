@@ -34,7 +34,7 @@ class Annotation < ActiveRecord::Base
   after_save :index_observation
   after_destroy :index_observation, :touch_resource
 
-  attr_accessor :skip_indexing, :bulk_delete
+  attr_accessor :skip_indexing, :bulk_delete, :wait_for_obs_index_refresh
 
   def resource_is_an_observation
     if !resource.is_a?(Observation)
@@ -156,7 +156,8 @@ class Annotation < ActiveRecord::Base
 
   def index_observation
     if resource.is_a?(Observation) && !skip_indexing && !bulk_delete
-      Observation.elastic_index!(ids: [resource.id])
+      Observation.elastic_index!(ids: [resource.id],
+        wait_for_index_refresh: wait_for_obs_index_refresh)
     end
     true
   end

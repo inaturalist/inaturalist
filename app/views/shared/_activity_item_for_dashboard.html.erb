@@ -39,17 +39,17 @@
         <span style="font-weight:normal; color:gray">
           <%- title = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
           <%- if item.is_a? Identification %>
-            <%= t(:user_added_an_x, :user => title, :x => t(:identification)).html_safe %>
+            <%=t :user_added_an_identification_html, user: title %>
           <% elsif item.is_a? ProjectInvitation %>
-            <%= t(:user_added_a_x, :user => title, :x => t(:project_invitation)).html_safe %>
+            <%=t :user_added_a_project_invitation_html, user: title %>
           <% elsif item.is_a? Flag %>
-            <%= t(:user_added_a_x, :user => title, :x => t(:flag)).html_safe %>
+            <%=t :user_added_a_flag_html, user: title %>
           <% elsif item.is_a? ObservationFieldValue %>
-            <%= t(:user_added_an_x, :user => title, :x => t(:observation_field_value)).html_safe %>
+            <%=t :user_added_an_observation_field_value_html, user: title %>
           <% elsif item.is_a? ActsAsVotable::Vote %>
-            <%= t(:user_added_a_x, :user => title, :x => t(:fave)).html_safe %>
+            <%=t :user_added_a_fave_html, user: title %>
           <% else %>
-            <%= t(:user_added_a_x, :user => title, :x => t(:comment)).html_safe %>
+            <%=t :user_added_a_comment_html, user: title %>
           <%- end -%>
         </span>
       </h2>

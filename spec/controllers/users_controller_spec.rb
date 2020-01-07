@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe UsersController, "dashboard" do
-  before(:each) { enable_elastic_indexing(Observation) }
-  after(:each) { disable_elastic_indexing(Observation) }
+  elastic_models( Observation )
   it "should be accessible when signed in" do
     user = User.make!
     sign_in user
@@ -58,8 +57,7 @@ end
 
 describe UsersController, "delete" do
   let(:user) { User.make! }
-  before(:each) { enable_elastic_indexing(Observation) }
-  after(:each) { disable_elastic_indexing(Observation) }
+  elastic_models( Observation )
 
   it "destroys in a delayed job" do
     sign_in user
@@ -112,8 +110,7 @@ describe UsersController, "search" do
 end
 
 describe UsersController, "set_spammer" do
-  before(:each) { enable_elastic_indexing(Observation) }
-  after(:each) { disable_elastic_indexing(Observation) }
+  elastic_models( Observation )
 
   describe "non-curators" do
     it "cannot access it" do

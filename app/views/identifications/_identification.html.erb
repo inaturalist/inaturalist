@@ -26,9 +26,9 @@
       <span class="user">
         <% if user -%>
           <% if is_me?(user) %>
-            <strong><%=t(:your).singularize %></strong> <%= t :id %>:
+            <%=t :label_colon, label: t(:your_id) %>
           <% else %>
-            <%= link_to(t(:user_s_id, :user => user.login, :id => t(:id)), person_path(user)) %>:
+            <%=t( :label_colon, label: link_to( t(:users_id, user: user.login), person_path( user ) ).html_safe ).html_safe %>
           <% end %>
         <% elsif usertext %>
           <%= usertext %>
@@ -71,7 +71,15 @@
 
     <% if tc = identification.taxon_change -%>
       <span class="small meta nobr">
-        <%= t :added_as_a_part_of %> <%= link_to tc.class.name.underscore.humanize.downcase, taxon_change_path(tc) -%>
+        <% if tc.is_a? TaxonSwap %>
+          <%= t :added_as_a_part_of_a_taxon_swap_html, target: "_self", url: taxon_change_path(tc), class: "taxon_change_link" %>
+        <% elsif tc.is_a? TaxonMerge %>
+          <%= t :added_as_a_part_of_a_taxon_merge_html, target: "_self", url: taxon_change_path(tc), class: "taxon_change_link" %>
+        <% elsif tc.is_a? TaxonSplit %>
+          <%= t :added_as_a_part_of_a_taxon_split_html, target: "_self", url: taxon_change_path(tc), class: "taxon_change_link" %>
+        <% else %>
+          <%= t :added_as_a_part_of_a_taxon_change_html, target: "_self", rl: taxon_change_path(tc), class: "taxon_change_link" %>
+        <% end %>
       </span>
     <% end -%>
 

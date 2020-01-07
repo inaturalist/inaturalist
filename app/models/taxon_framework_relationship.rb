@@ -4,7 +4,7 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   attr_accessor :current_user
   
   belongs_to :user
-  belongs_to :updater, class_name: "User"
+  has_updater
   belongs_to :taxon_framework
   has_many :external_taxa, dependent: :destroy
   has_many :taxa, before_add: :check_if_covered, dependent: :nullify

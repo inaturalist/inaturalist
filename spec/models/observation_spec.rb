@@ -6,8 +6,7 @@ describe Observation do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
 
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
 
   describe "creation" do
 
@@ -45,6 +44,12 @@ describe Observation do
       @observation.observed_on_string = '2011-12-23T11:52:06-0500'
       @observation.save
       expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 11
+    end
+
+    it "should parse time from strings like 2011-12-23 11:52:06 -05" do
+      @observation.observed_on_string = "2011-12-23 11:52:06 -05"
+      @observation.save
+      expect( @observation.time_observed_at.in_time_zone( @observation.time_zone ).hour ).to eq 11
     end
   
     it "should parse time from strings like 2011-12-23T11:52:06.123" do
@@ -578,10 +583,6 @@ describe Observation do
       expect( o ).not_to be_valid
       expect( o.errors[:longitude] ).not_to be_blank
     end
-    it "should not allow latitude of 0 AND longitude of 0" do
-      o = Observation.make( latitude: 0, longitude: 0 )
-      expect( o ).not_to be_valid
-    end
 
   end
 
@@ -679,18 +680,20 @@ describe Observation do
       end
 
       it "should not allow dates that are greater than created_at due to chronic's weird time parsing" do
-        d = Chronic.parse( "2019-03-04 3pm" )
-        observed_on_string = "3 whatever"
-        o = Observation.make!( created_at: d, observed_on_string: d.to_s, time_zone: "Pacific Time (US & Canada)" )
-        Observation.where( id: o.id ).update_all( observed_on_string: observed_on_string )
-        o.reload
-        expect( o.observed_on_string ).to eq observed_on_string
-        expect( o.created_at.to_date ).to eq d.to_date
-        expect( o.observed_on ).to eq d.to_date
-        observed_on = o.observed_on
-        o.update_attributes( updated_at: Time.now )
-        o.reload
-        expect( o.observed_on.to_s ).to eq observed_on.to_s
+        Time.use_zone "UTC" do
+          d = Chronic.parse( "2019-03-04 3pm" )
+          observed_on_string = "3 whatever"
+          o = Observation.make!( created_at: d, observed_on_string: d.to_s )
+          Observation.where( id: o.id ).update_all( observed_on_string: observed_on_string )
+          o.reload
+          expect( o.observed_on_string ).to eq observed_on_string
+          expect( o.created_at.to_date ).to eq d.to_date
+          expect( o.observed_on ).to eq d.to_date
+          observed_on = o.observed_on
+          o.update_attributes( updated_at: Time.now )
+          o.reload
+          expect( o.observed_on.to_s ).to eq observed_on.to_s
+        end
       end
     end
   
@@ -1713,9 +1716,11 @@ describe Observation do
   
     it "should not make a guess for problematic names" do
       Taxon::PROBLEM_NAMES.each do |name|
-        t = Taxon.make!(:name => name.capitalize)
-        o = Observation.make!(:species_guess => name)
-        expect(o.taxon_id).not_to eq t.id
+        t = Taxon.make( name: name.capitalize )
+        if t.save
+          o = Observation.make!(:species_guess => name)
+          expect(o.taxon_id).not_to eq t.id
+        end
       end
     end
   
@@ -2290,6 +2295,17 @@ describe Observation do
       expect(o.latitude).to be_blank
     end
 
+    it "should reset public_positional_accuracy" do
+      o = Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED, positional_accuracy: 5 )
+      expect( o.public_positional_accuracy ).not_to eq o.positional_accuracy
+      # unobscure_coordinates should be impossible if geoprivacy gets set
+      o.geoprivacy = nil
+      o.unobscure_coordinates
+      # public_positional_accuracy only gets reset after saving
+      o.save
+      expect( o.public_positional_accuracy ).to eq o.positional_accuracy
+    end
+
   end
 
   describe "geoprivacy" do
@@ -2705,8 +2721,7 @@ describe Observation do
   end
 
   describe "update_stats_for_observations_of" do
-    before(:each) { enable_elastic_indexing(Identification) }
-    after(:each) { disable_elastic_indexing(Identification) }
+    elastic_models( Identification )
 
     it "should work" do
       parent = Taxon.make!(rank: Taxon::GENUS)
@@ -3950,8 +3965,7 @@ describe Observation do
 end
 
 describe Observation, "probably_captive?" do
-  before(:all) { enable_elastic_indexing( Observation ) }
-  after(:all) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
   let( :place ) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
   def make_captive_obs
@@ -4092,9 +4106,9 @@ describe Observation, "and update_quality_metrics" do
 end
 
 describe Observation, "taxon_geoprivacy" do
-  it "should be set using private coordinates" do
-    p = make_place_with_geom
-    cs = ConservationStatus.make!( place: p )
+  let!(:p) { make_place_with_geom }
+  let!(:cs) { ConservationStatus.make!( place: p ) }
+  let(:o) do
     o = Observation.make!
     Observation.where( id: o.id ).update_all(
       latitude: p.latitude + 10,
@@ -4103,17 +4117,32 @@ describe Observation, "taxon_geoprivacy" do
       private_longitude: p.longitude,
     )
     o.reload
+  end
+  it "should be set using private coordinates" do
     expect( p ).to be_contains_lat_lng( o.private_latitude, o.private_longitude )
     expect( p ).not_to be_contains_lat_lng( o.latitude, o.longitude )
     i = Identification.make!( observation: o, taxon: cs.taxon )
     o.reload
     expect( o.taxon_geoprivacy ).to eq cs.geoprivacy
   end
+
+  it "should restore taxon obscured coordinates when going from pivate to open" do
+    i = Identification.make!( observation: o, taxon: cs.taxon )
+    o.reload
+    expect( o ).not_to be_coordinates_private
+    expect( o ).to be_coordinates_obscured
+    o.update_attributes( geoprivacy: Observation::PRIVATE )
+    expect( o ).to be_coordinates_private
+    o.reload
+    o.update_attributes( geoprivacy: Observation::OPEN, latitude: o.private_latitude, longitude: o.private_longitude )
+    o.reload
+    expect( o ).not_to be_coordinates_private
+    expect( o ).to be_coordinates_obscured
+  end
 end
 
 describe Observation, "prefers_auto_obscuration" do
-  before(:all) { enable_elastic_indexing( Observation ) }
-  after(:all) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   describe "when false" do
     let(:o) do
       Observation.make!(
@@ -4149,8 +4178,7 @@ describe Observation, "prefers_auto_obscuration" do
 end
 
 describe Observation, "set_observations_taxa_for_user" do
-  before(:all) { enable_elastic_indexing( Observation ) }
-  after(:all) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:user) { User.make! }
   let(:family1) { Taxon.make!( rank: Taxon::FAMILY, name: "Familyone" ) }
   let(:genus1) { Taxon.make!( rank: Taxon::GENUS, name: "Genusone", parent: family1 ) }

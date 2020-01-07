@@ -22,7 +22,6 @@ class CommunityIDPopover extends React.Component {
           <SplitTaxon
             taxon={taxon}
             url={ `/taxa/${taxon.id}` }
-            forceRank
             user={ this.props.config.currentUser }
           />
           { !lastTaxon && this.renderTaxonomy( taxa, false ) }

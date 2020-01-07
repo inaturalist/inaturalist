@@ -3,8 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 shared_examples_for "ObservationsController basics" do
 
   describe "create" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     it "should create" do
       expect {
         post :create, :format => :json, :observation => {:species_guess => "foo"}
@@ -61,8 +60,7 @@ end
 shared_examples_for "an ObservationsController" do
 
   describe "create" do
-    before(:each) { enable_elastic_indexing( Observation, Identification ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    elastic_models( Observation, Identification )
 
     it "should create with an existing photo ID" do
       p = LocalPhoto.make!( user: user )
@@ -268,6 +266,10 @@ shared_examples_for "an ObservationsController" do
       end
     end
 
+    it "should not allow observations where latitude AND longitude are 0" do
+      post :create, format: :json, observation: { latitude: 0, longitude: 0 }
+      expect( response.status ).to eq 422
+    end
   end
 
   describe "destroy" do
@@ -279,8 +281,7 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "show" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
 
     it "should provide private coordinates for user's observation" do
       o = Observation.make!(:user => user, :latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
@@ -820,11 +821,18 @@ shared_examples_for "an ObservationsController" do
         expect( obs.latitude ).not_to eq obs.private_latitude
       end
     end
+
+    it "should not allow observations where latitude AND longitude are 0" do
+      o = Observation.make!( user: user )
+      post :update, id: o.id, format: :json, observation: { latitude: 0, longitude: 0 }
+      expect( response.status ).to eq 422
+      o.reload
+      expect( o.latitude ).not_to eq 0
+    end
   end
 
   describe "by_login" do
-    before(:each) { enable_elastic_indexing([ Observation ]) }
-    after(:each) { disable_elastic_indexing([ Observation ]) }
+    elastic_models( Observation )
 
     it "should get user's observations" do
       3.times { Observation.make!(:user => user) }
@@ -925,8 +933,7 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "index" do
-    before(:each) { enable_elastic_indexing( Observation, Place, Taxon ) }
-    after(:each) { disable_elastic_indexing( Observation, Place, Taxon ) }
+    elastic_models( Observation, Place, Taxon )
 
     it "should allow search" do
       expect {
@@ -1673,8 +1680,7 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "taxon_stats" do
-    before(:each) { enable_elastic_indexing( Observation, Place ) }
-    after(:each) { disable_elastic_indexing( Observation, Place ) }
+    elastic_models( Observation, Place )
     before do
       @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
       get :taxon_stats, :format => :json, :on => "2013-07-20"
@@ -1695,8 +1701,7 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "user_stats" do
-    before(:each) { enable_elastic_indexing( Observation, Place ) }
-    after(:each) { disable_elastic_indexing( Observation, Place ) }
+    elastic_models( Observation, Place )
     before do
       @o = Observation.make!(
         observed_on_string: "2013-07-20",
@@ -1765,49 +1770,8 @@ shared_examples_for "an ObservationsController" do
     end
   end
 
-  describe "project" do
-    before(:each) { enable_elastic_indexing([ Observation ]) }
-    after(:each) { disable_elastic_indexing([ Observation ]) }
-
-    let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
-
-    it "should allow filtering by updated_since" do
-      pu = ProjectUser.make!
-      oldo = Observation.make!(:user => pu.user)
-      old_po = ProjectObservation.make!(:observation => oldo, :project => pu.project)
-      sleep(2)
-      newo = Observation.make!(:user => pu.user)
-      new_po = ProjectObservation.make!(:observation => newo, :project => pu.project)
-      get :project, :format => :json, :id => pu.project_id, :updated_since => (newo.updated_at - 1.second).iso8601
-      json = JSON.parse(response.body)
-      expect(json.detect{|o| o['id'] == newo.id}).not_to be_blank
-      expect(json.detect{|o| o['id'] == oldo.id}).to be_blank
-    end
-
-    it "should include private coordinates when project curator coordinate access has been granted" do
-      o = Observation.make!( latitude: 1.23456, longitude: 7.890123, geoprivacy: Observation::PRIVATE )
-      po = ProjectObservation.make!( observation: o, prefers_curator_coordinate_access: true )
-      pu = ProjectUser.make!( user: user, project: po.project, role: ProjectUser::CURATOR )
-      o.reload
-      expect( o ).to be_coordinates_viewable_by( user )
-      get :project, format: :json, id: po.project_id
-      expect( response.body ).to be =~ /#{o.private_latitude}/
-      expect( response.body ).to be =~ /#{o.private_longitude}/
-    end
-
-    it "should not include private coordinates when project curator coordinate access has not been granted" do
-      o = Observation.make!( latitude: 1.23456, longitude: 7.890123, geoprivacy: Observation::PRIVATE )
-      p = Project.make!( user: user )
-      get :project, format: :json, id: p.id
-      expect(response.body).not_to be =~ /#{o.private_latitude}/
-      expect(response.body).not_to be =~ /#{o.private_longitude}/
-    end
-
-  end
-
   describe "update_fields" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     shared_examples_for "it allows changes" do
       it "should allow ofv creation" do
         put :update_fields, format: :json, id: o.id, observation: {
@@ -1973,8 +1937,7 @@ describe ObservationsController, "oauth authentication" do
 end
 
 describe ObservationsController, "oauth authentication with param" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   let(:user) { User.make! }
   
@@ -2016,8 +1979,7 @@ end
 
 describe ObservationsController, "without authentication" do
   describe "index" do
-    before(:each) { enable_elastic_indexing([ Observation ]) }
-    after(:each) { disable_elastic_indexing([ Observation ]) }
+    elastic_models( Observation )
     it "should require sign in for page 100 or more" do
       get :index, :format => :json, :page => 10
       expect(response).to be_success

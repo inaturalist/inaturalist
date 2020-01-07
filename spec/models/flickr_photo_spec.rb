@@ -24,19 +24,19 @@ describe FlickrPhoto, "creation" do
 end
 
 describe FlickrPhoto, "updating" do
+  elastic_models( Observation )
+
   before(:each) do
     setup_flickr_stuff
   end
 
   it "should be valid if flickr identity blank but past observations exist" do
     pending_flickr_setup do
-      enable_elastic_indexing( Observation )
       o = Observation.make!(:user => @user)
       o.photos << @cc_flickr_photo
       @user.flickr_identity.destroy
       @cc_flickr_photo.reload
       expect(@cc_flickr_photo).to be_valid
-      disable_elastic_indexing( Observation )
     end
   end
 end

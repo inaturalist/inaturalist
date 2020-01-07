@@ -1,15 +1,12 @@
 - content_for(:title) do
-  = t(:editing_taxon_name)
-  "#{@taxon_name.name}" #{t :for} #{default_taxon_name @taxon}
+  =t :editing_taxon_name_for_taxon_html, name: @taxon_name.name, taxon: default_taxon_name( @taxon )
 .container
   .row
     #pageheader.col-md-12
       %span.breadcrumbs
         = link_to t(:back_to_taxon, :defaulttaxon => "#{default_taxon_name(@taxon)}"), @taxon, :class => 'back crumb'
       %h2
-        = t(:editing_taxon_name)
-        "#{@taxon_name.name}" #{t :for}
-        \#{render :partial => "shared/taxon", :object => @taxon, :locals => { :link_url => url_for(@taxon) }}
+        =t :editing_taxon_name_for_taxon_html, name: @taxon_name.name, taxon: render( "shared/taxon", object: @taxon, link_url: url_for( @taxon ) )
   = render :partial => 'form'
   - if @taxon_name.creator
     .row.meta

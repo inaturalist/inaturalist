@@ -95,8 +95,7 @@ end
 
 describe TaxonSplit, "commit_records" do
   before(:each) { prepare_split }
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  elastic_models( Observation, Identification )
 
   describe "for identification disagreements" do
     before do
@@ -335,14 +334,14 @@ describe TaxonSplit, "commit_records" do
           expect( lt.taxon ).to eq @split.output_taxa[0]
         end
         it "should change the taxon if the place descends from a non-overlapping presence place" do
-          descendant_place = Place.make!( parent: presence_place1 )
+          descendant_place = make_place_with_geom( parent: presence_place1 )
           lt = descendant_place.check_list.add_taxon( @split.input_taxon )
           @split.commit_records
           lt.reload
           expect( lt.taxon ).to eq @split.output_taxa[0]
         end
         it "should not change the taxon if the place is an ancestor of a non-overlapping presence place" do
-          ancestor_place = Place.make!
+          ancestor_place = make_place_with_geom
           presence_place1.update_attributes( parent: ancestor_place )
           lt = ancestor_place.check_list.add_taxon( @split.input_taxon )
           @split.commit_records

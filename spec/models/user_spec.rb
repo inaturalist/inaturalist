@@ -131,6 +131,42 @@ describe User do
       }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
+    describe "email domain exists validation" do
+      before(:all) { enable_user_email_domain_exists_validation }
+      after(:all) { disable_user_email_domain_exists_validation }
+
+      it "should allow email domains that exist" do
+        [
+          "gmail.com",
+          "yahoo.com",
+          "hotmail.com",
+          "aol.com",
+          "mail.usf.edu",
+          "icloud.com",
+          "questagame.com",
+          "outlook.com",
+          "comcast.net",
+          "me.com",
+          "live.com",
+          "sbcglobal.net",
+          "msn.com",
+          "mac.com",
+          "att.net",
+          "cvcaroyals.org",
+          "ymail.com"
+        ].each do |domain|
+          u = User.make!( email: "someone@#{domain}" )
+          expect( u ).to be_valid
+        end
+      end
+
+      it "should disallow email domains that do not exist" do
+        expect {
+          User.make!( email: "someone@sdjgfslkjfgsjfkg.com" )
+        }.to raise_error( ActiveRecord::RecordInvalid )
+      end
+    end
+
     it "should strip html out of the name" do
       name = "Trillian"
       u = User.make!( name: "#{name}<script>foo</script>" )
@@ -140,8 +176,7 @@ describe User do
   end
 
   describe "update" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
 
     it "should strip html out of the name" do
       u = User.make!
@@ -399,8 +434,7 @@ describe User do
   end
   
   describe "deletion" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     
     before do
       @user = User.make!
@@ -472,8 +506,7 @@ describe User do
 
   describe "sane_destroy" do
 
-    before(:all) { enable_elastic_indexing( Observation ) }
-    after(:all) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     
     let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
 
@@ -692,8 +725,7 @@ describe User do
   end
   
   describe "licenses" do
-    before(:each) { enable_elastic_indexing([ Observation ]) }
-    after(:each) { disable_elastic_indexing([ Observation ]) }
+    elastic_models( Observation )
 
     it "should update existing observations if requested" do
       u = User.make!
@@ -726,8 +758,7 @@ describe User do
   describe "merge" do
     before(:all) { DatabaseCleaner.strategy = :truncation }
     after(:all)  { DatabaseCleaner.strategy = :transaction }
-    before(:all) { enable_elastic_indexing( Observation, Identification) }
-    after(:all) { disable_elastic_indexing( Observation, Identification) }
+    elastic_models( Observation, Identification )
     
     let(:keeper) { User.make! }
     let(:reject) { User.make! }
@@ -875,9 +906,9 @@ describe User do
   describe "community taxa preference" do
     before(:all) { DatabaseCleaner.strategy = :truncation }
     after(:all)  { DatabaseCleaner.strategy = :transaction }
+    elastic_models( Identification )
 
     it "should not remove community taxa when set to false" do
-      enable_elastic_indexing( Identification )
       o = Observation.make!
       i1 = Identification.make!(:observation => o)
       i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
@@ -887,7 +918,6 @@ describe User do
       Delayed::Worker.new.work_off
       o.reload
       expect(o.taxon).to be_blank
-      disable_elastic_indexing( Identification )
     end
 
     it "should set observation taxa to owner's ident when set to false" do
@@ -974,14 +1004,9 @@ describe User do
   end
 
   describe "mentions" do
-    before do
-      enable_elastic_indexing( Observation )
-      enable_has_subscribers
-    end
-    after do
-      disable_elastic_indexing( Observation )
-      disable_has_subscribers
-    end
+    elastic_models( Observation )
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
 
     it "can prefer to not get mentions" do
       u = User.make!
@@ -1012,14 +1037,9 @@ describe User do
   end
 
   describe "prefers_redundant_identification_notifications" do
-    before do
-      enable_elastic_indexing( Observation )
-      enable_has_subscribers
-    end
-    after do
-      disable_elastic_indexing( Observation )
-      disable_has_subscribers
-    end
+    elastic_models( Observation )
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
 
     let(:u) { User.make! }
     let(:genus) { Taxon.make!(rank: Taxon::GENUS) }
@@ -1076,8 +1096,7 @@ describe User do
   end
 
   describe "when flagged as spam" do
-    before(:each) { enable_elastic_indexing( Observation, Identification, Project ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification, Project ) }
+    elastic_models( Observation, Identification, Project )
 
     let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
     let(:flagger) { User.make! }
@@ -1196,8 +1215,7 @@ describe User do
     end
 
     describe "forget" do
-      before(:each) { enable_elastic_indexing( Observation ) }
-      after(:each) { disable_elastic_indexing( Observation ) }
+      elastic_models( Observation )
       it "changes user_id in flags to -1" do
         f = Flag.make!
         other_f = Flag.make!
@@ -1209,6 +1227,51 @@ describe User do
         other_f.reload
         expect( other_f.user_id ).to be > 0
       end
+    end
+  end
+
+  describe "ip_address_is_often_suspended" do
+    let( :ip ) { "127.0.0.1" }
+    it "nils are OK" do
+      expect( User.ip_address_is_often_suspended( nil ) ).to be false
+    end
+
+    it "uknown IPs are OK" do
+      expect( User.where( last_ip: ip ).count ).to be 0
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "unsuspended IPs are OK" do
+      # 0 suspended, 10 active: 0% suspended, returns false
+      10.times{ User.make!( last_ip: ip ) }
+      expect( User.where( last_ip: ip ).count ).to be 10
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "less than two total occurrences is OK" do
+      # 2 suspended, 0 active: 100% suspended, but less than 3 total, returns false
+      2.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "three or more suspended accounts is not OK" do
+      # 3 suspended, 0 active: 100% suspended, returns false
+      3.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      expect( User.ip_address_is_often_suspended( ip ) ).to be true
+    end
+
+    it "under 90% suspended is OK" do
+      # 3 suspended, 1 active: 75% suspended, returns false
+      3.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      User.make!( last_ip: ip )
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "returns true when over 90% of accounts are suspended" do
+      # 9 suspended, 1 active: 90% suspended, returns true
+      9.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      User.make!( last_ip: ip )
+      expect( User.ip_address_is_often_suspended( ip ) ).to be true
     end
   end
 

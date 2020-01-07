@@ -67,9 +67,9 @@
               %label=t :reason
               .form-group
                 - [Flag::SPAM, Flag::COPYRIGHT_INFRINGEMENT, Flag::INAPPROPRIATE, "other"].each do |f|
-                  %label.chekcbox
+                  %label
                     %input{ type: "checkbox", name: "flags[]", value: f, checked: @flag_types.include?( f ) }
-                    =t f
+                    =t f.parameterize.underscore
               .form-group
                 %input.form-control{ type: "search", name: "reason_query", value: @reason_query, placeholder: t(:search_reasons, default: "Search Reasons") }
             .col-xs-3
@@ -87,7 +87,7 @@
           .row
             .col-xs-12
               = submit_tag t(:filter), class: "btn btn-primary"
-              = link_to t(:reset), url_for, class: "btn btn-link"
+              = link_to t(:reset_filters_short), url_for, class: "btn btn-link"
               = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :flagger_type, :flagger_name, :flagger_id, :resolved, :resolver_name, :resolver_user_id, :taxon_name, :taxon_id, :reason_query, :page] )
   .row
     .col-xs-12
@@ -101,7 +101,7 @@
             %th.reason=t :reason
             %th=t :comments
             %th=t :actions
-            %th.resolution=t :resolution
+            %th.resolution=t :flag_resolution
         %tbody
           - for flag in @flags
             - flaggable = flag.flaggable
@@ -112,7 +112,7 @@
                 - if flag.user
                   = link_to_user(flag.user) {|| char_wrap( flag.user.login, 20 )}
                   .small.text-muted
-                    = link_to t(:view_all), url_for_params( flagger_type: "user", flagger_user_id: flag.user.id, without: [:flagger_type, :flagger_user_id] )
+                    = link_to t(:view_all), url_for_params( flagger_type: "user", flagger_user_id: flag.user.id, without: [:flagger_type, :flagger_user_id, :user_id] )
                 - elsif flag.user_id == 0
                   = @site.site_name_short
                 - else

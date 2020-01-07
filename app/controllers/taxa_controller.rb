@@ -342,8 +342,12 @@ class TaxaController < ApplicationController
 
   def destroy
     unless @taxon.deleteable_by?(current_user)
-      flash[:error] = t(:you_can_only_destroy_taxa_you_created)
-      redirect_back_or_default(@taxon)
+      flash[:error] = if @taxon.creator_id != current_user.id
+        t(:you_can_only_destroy_taxa_you_created)
+      else
+        t(:you_cannot_delete_taxa_involved_in_taxon_changes)
+      end
+      redirect_back_or_default( @taxon )
       return
     end
     @taxon.destroy
@@ -764,13 +768,27 @@ class TaxaController < ApplicationController
     else
       filters = [ { exists: { field: "photos_count" } } ]
       unless params[:q].blank?
-        filters << {
+        searched_taxa = Observation.matching_taxon_ids( params[:q] )
+        taxon_search_filter = !searched_taxa.empty? && { terms: { "taxon.id" => searched_taxa } }
+        match_filter = {
           multi_match: {
             query: params[:q],
             operator: "and",
-            fields: [ :description, "taxon.names_*", "user.login", "field_values.value" ]
+            fields: [ :description, "user.login", "field_values.value" ]
           }
         }
+        if match_filter && taxon_search_filter
+          filters << {
+            bool: {
+              should: [
+                match_filter,
+                taxon_search_filter
+              ]
+            }
+          }
+        else
+          filters << match_filter
+        end
       end
       unless quality_grades.blank?
         filters << {
@@ -1018,9 +1036,9 @@ class TaxaController < ApplicationController
     @describers = if @site.taxon_describers
       @site.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
     elsif @taxon.iconic_taxon_name == "Amphibia" && @taxon.species_or_lower?
-      [TaxonDescribers::Wikipedia, TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol]
+      [TaxonDescribers::Wikipedia, TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol, TaxonDescribers::Inaturalist]
     else
-      [TaxonDescribers::Wikipedia, TaxonDescribers::Eol]
+      [TaxonDescribers::Wikipedia, TaxonDescribers::Eol, TaxonDescribers::Inaturalist]
     end
     # Perform caching here as opposed to caches_action so we can set request headers appropriately
     key = "views/taxa/#{@taxon.id}/description?#{request.query_parameters.merge( locale: I18n.locale ).to_a.join{|k,v| "#{k}=#{v}"}}"
@@ -1054,17 +1072,17 @@ class TaxaController < ApplicationController
       end
       if @describer
         @describer_url = @describer.page_url( @taxon )
-        response.headers["X-Describer-Name"] = @describer.name.split( "::" ).last
+        response.headers["X-Describer-Name"] = @describer.describer_name || @describer.name.split( "::" ).last
         response.headers["X-Describer-URL"] = @describer_url
       end
       if !@description.blank? && !logged_in?
         Rails.cache.write( key, @description, expires_in: 1.day )
-        Rails.cache.write( "#{key}-describer", @describer.name.split( "::" ).last, expires_in: 1.day )
+        Rails.cache.write( "#{key}-describer", @describer.describer_name || @describer.name.split( "::" ).last, expires_in: 1.day )
       end
     # If we have cached content and a cached describer name, set the response headers
     elsif !@description.blank? && ( @describer = TaxonDescribers.get_describer( Rails.cache.read( "#{key}-describer" ) ) )
       @describer_url = @describer.page_url( @taxon )
-      response.headers["X-Describer-Name"] = @describer.name.split( "::" ).last
+      response.headers["X-Describer-Name"] = @describer.describer_name || @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end
     respond_to do |format|
@@ -1569,8 +1587,7 @@ class TaxaController < ApplicationController
       if e.message =~ /Insufficient permissions/ || e.message =~ /signature_invalid/
         auth_url = auth_url_for('flickr', :scope => 'write')
         flash[:error] = ("#{@site.site_name_short} can't add tags to your photos until " +
-          "Flickr knows you've given us permission.  " + 
-          "<a href=\"#{auth_url}\">Click here to authorize #{@site.site_name_short} to add tags</a>.").html_safe
+          "Flickr knows you've given us permission.").html_safe
       else
         flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
       end
@@ -1639,7 +1656,7 @@ class TaxaController < ApplicationController
     @provider_authorization = current_user.provider_authorizations.where(provider_name: "flickr").first
     if @provider_authorization.blank? || @provider_authorization.scope != 'write'
       session[:return_to] = request.get? ? request.fullpath : request.env['HTTP_REFERER']
-      redirect_to auth_url_for('flickr', :scope => 'write')
+      redirect_to url_for( controller: :flickr, action: :options, scope: "write" )
       return false
     end
   end

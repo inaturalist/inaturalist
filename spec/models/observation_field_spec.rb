@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ObservationField do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   describe "creation" do
     it "should stip allowd values" do

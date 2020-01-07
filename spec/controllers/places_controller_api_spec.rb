@@ -1,17 +1,16 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PlacesController, "index" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   it "should return places" do
-    p = Place.make!
+    p = make_place_with_geom
     get :index, :format => :json
     expect(response.body).to be =~ /#{p.name}/
   end
 
   it "should return places where taxa occur" do
-    p = Place.make!
+    p = make_place_with_geom
     t = Taxon.make!
     lt = p.check_list.add_taxon(t)
     get :index, :format => :json, :taxon => t.name
@@ -19,8 +18,8 @@ describe PlacesController, "index" do
   end
 
   it "should not return places where taxa do not occur" do
-    p1 = Place.make!
-    p2 = Place.make!
+    p1 = make_place_with_geom
+    p2 = make_place_with_geom
     t = Taxon.make!
     lt = p1.check_list.add_taxon(t)
     get :index, :format => :json, :taxon => t.name
@@ -29,9 +28,9 @@ describe PlacesController, "index" do
 
   it "should return places where taxa occur with establishment means" do
     t = Taxon.make!
-    native_place = Place.make!
+    native_place = make_place_with_geom
     native_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::NATIVE)
-    introduced_place = Place.make!
+    introduced_place = make_place_with_geom
     introduced_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::INTRODUCED)
     get :index, :format => :json, :taxon => t.name, :establishment_means => ListedTaxon::NATIVE
     expect(response.body).to be =~ /#{native_place.name}/
@@ -39,7 +38,7 @@ describe PlacesController, "index" do
   end
 
   it "should include endemics in searches for native" do
-    p = Place.make!
+    p = make_place_with_geom
     t = Taxon.make!
     lt = p.check_list.add_taxon(t, :establishment_means => ListedTaxon::ENDEMIC)
     get :index, :format => :json, :taxon => t.name, :establishment_means => ListedTaxon::NATIVE
@@ -57,7 +56,7 @@ describe PlacesController, "index" do
   end
 
   it "should not return places without geometries intersecting lat/lon" do
-    p1 = Place.make!
+    p1 = make_place_with_geom
     p2 = make_place_with_geom(:wkt => "MULTIPOLYGON(((0.25 0.25,0.25 1.25,1.25 1.25,1.25 0.25,0.25 0.25)))")
     get :index, :format => :json, :latitude => -0.5, :longitude => -0.5
     expect(response.body).not_to be =~ /#{p1.name}/
@@ -68,11 +67,12 @@ describe PlacesController, "index" do
 end
 
 describe PlacesController, "search" do
-  before { enable_elastic_indexing(Place) }
-  after { disable_elastic_indexing(Place) }
+  elastic_models( Place )
   it "should filter by with_geom" do
     with_geom = make_place_with_geom
-    without_geom = Place.make!(name: with_geom.name)
+    without_geom = make_place_with_geom(name: with_geom.name)
+    without_geom.place_geometry.destroy
+    Place.elastic_index! ids: [with_geom.id, without_geom.id]
     get :search, format: :json, with_geom: true, q: with_geom.name
     json = JSON.parse(response.body)
     expect( json.select{|p| p['id'] == with_geom.id}.size ).to eq 1
@@ -86,10 +86,9 @@ end
 
 
 describe PlacesController, "autocomplete" do
-  before { enable_elastic_indexing(Place) }
-  after { disable_elastic_indexing(Place) }
+  elastic_models( Place )
   it "be able to find places with short words and diacritics" do
-    place = Place.make!(name: "Área de Protección de Flora y Fauna Laguna de Términos")
+    place = make_place_with_geom(name: "Área de Protección de Flora y Fauna Laguna de Términos")
     get :autocomplete, format: :json, q: "Área"
     expect( JSON.parse(response.body).first["id"] ).to eq place.id
     get :autocomplete, format: :json, q: "Área de"
@@ -102,15 +101,17 @@ describe PlacesController, "autocomplete" do
 
   it "should filter by with_geom" do
     p1 = make_place_with_geom
-    p2 = Place.make!( name: p1.name )
+    p2 = make_place_with_geom( name: p1.name )
+    p1.place_geometry.destroy
     Delayed::Worker.new.work_off
+    Place.elastic_index! ids: [p1.id, p2.id]
     json = get :autocomplete, format: :json, q: p1.name, with_geom: true
     json = JSON.parse( response.body )
     expect( json.size ).to eq 1
   end
   it "should filter by with_checklist" do
-    p1 = Place.make!( prefers_check_lists: false )
-    p2 = Place.make!( name: p1.name )
+    p1 = make_place_with_geom( prefers_check_lists: false )
+    p2 = make_place_with_geom( name: p1.name )
     Delayed::Worker.new.work_off
     p1.reload
     p2.reload

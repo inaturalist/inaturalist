@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "an ObservationPhotosController" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   describe "create" do
     let(:file) { fixture_file_upload('files/cuthona_abronia-tagged.jpg', 'image/jpeg') }
@@ -40,8 +39,7 @@ shared_examples_for "an ObservationPhotosController" do
     end
 
     describe "observation" do
-      before(:each) { enable_elastic_indexing( Identification ) }
-      after(:each) { disable_elastic_indexing( Identification ) }
+      elastic_models( Identification )
       before(:all) { DatabaseCleaner.strategy = :truncation }
       after(:all)  { DatabaseCleaner.strategy = :transaction }
 

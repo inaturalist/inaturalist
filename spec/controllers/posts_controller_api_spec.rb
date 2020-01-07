@@ -155,8 +155,7 @@ shared_examples_for "a PostsController" do
 end
 
 describe PostsController, "oauth authentication" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
@@ -166,15 +165,13 @@ describe PostsController, "oauth authentication" do
 end
 
 describe PostsController, "devise authentication" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   before { http_login(user) }
   it_behaves_like "a PostsController"
 end
 
 describe PostsController, "without authentication" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   describe "for_user" do
     it "should return site posts" do
       post = Post.make!( parent: Site.default )

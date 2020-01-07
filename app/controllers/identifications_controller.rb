@@ -51,8 +51,6 @@ class IdentificationsController < ApplicationController
       api_response.total_results) do |pager|
       pager.replace(ids)
     end
-
-
     counts_response = INatAPIService.identifications_categories(search_params)
     @counts = Hash[counts_response.results.map{ |r| [ r["category"], r["count"] ] }]
     respond_to do |format|
@@ -89,6 +87,7 @@ class IdentificationsController < ApplicationController
           mode: "max"
         }
       },
+      track_total_hits: true,
       source: ["id"]
     )
     ids = result.response.hits.hits.map do |h|
@@ -102,26 +101,13 @@ class IdentificationsController < ApplicationController
     )
     # turn the instances into a WillPaginate Collection
     @identifications = WillPaginate::Collection.create(params[:page], limited_per_page,
-      result.response.hits.total) do |pager|
+      result.response.hits.total.value) do |pager|
       pager.replace(instances.to_a)
     end
     respond_to do |format|
       format.html do
         @identifications_by_obs_id = @identifications.index_by(&:observation_id)
         @observations = @identifications.collect(&:observation)
-        @other_ids = Identification.where(observation_id: @observations).where("user_id != ?", @selected_user).
-          includes(:observation, :taxon)
-        @other_id_stats = {}
-        @other_ids.group_by(&:observation).each do |obs, ids|
-          user_ident = @identifications_by_obs_id[obs.id]
-          agreements = ids.select do |ident|
-            ident.in_agreement_with?(user_ident)
-          end
-          @other_id_stats[obs.id] = {
-            :num_agreements => agreements.size,
-            :num_disagreements => ids.size - agreements.size
-          }
-        end
       end
       format.json do
         pagination_headers_for( @identifications )
@@ -171,6 +157,7 @@ class IdentificationsController < ApplicationController
     respond_to do |format|
       duplicate_key_violation = false
       begin
+        @identification.wait_for_obs_index_refresh = true
         @identification.save
       rescue PG::Error, ActiveRecord::RecordNotUnique => e
         raise e unless e =~ /index_identifications_on_current/
@@ -186,7 +173,6 @@ class IdentificationsController < ApplicationController
         end
         
         format.json do
-          Observation.refresh_es_index
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
           render :json => @identification.to_json(
             :methods => [:html, :vision], 
@@ -219,9 +205,6 @@ class IdentificationsController < ApplicationController
   def update
     @identification.assign_attributes( params[:identification] )
     if @identification.body_changed? && @identification.hidden?
-      puts "@identification.body_changed?: #{@identification.body_changed?}"
-      puts "@identification.body_was:      #{@identification.body_was}"
-      puts "@identification.body:          #{@identification.body}"
       respond_to do |format|
         msg = t(:cant_edit_or_delete_hidden_content)
         format.html do
@@ -234,6 +217,7 @@ class IdentificationsController < ApplicationController
       end
       return
     end
+    @identification.wait_for_obs_index_refresh = true
     if @identification.save
       msg = t(:identification_updated)
       respond_to do |format|
@@ -242,7 +226,6 @@ class IdentificationsController < ApplicationController
           redirect_to @identification.observation
         end
         format.json do
-          Observation.refresh_es_index
           render :json => @identification
         end
       end
@@ -264,6 +247,7 @@ class IdentificationsController < ApplicationController
   # DELETE identification_url
   def destroy
     observation = @identification.observation
+    @identification.wait_for_obs_index_refresh = true
     if params[:delete]
       if @identification.hidden?
         respond_to do |format|
@@ -292,11 +276,9 @@ class IdentificationsController < ApplicationController
         redirect_to observation
       end
       format.js do
-        Observation.refresh_es_index
         render :status => :ok, :json => nil
       end
       format.json do
-        Observation.refresh_es_index
         render :status => :ok, :json => nil
       end
     end

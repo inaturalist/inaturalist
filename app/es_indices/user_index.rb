@@ -6,14 +6,26 @@ class User < ActiveRecord::Base
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
+      indexes :activity_count, type: "integer"
+      indexes :created_at, type: "date"
       indexes :icon, type: "keyword", index: false
+      indexes :id, type: "integer"
+      indexes :identifications_count, type: "integer"
+      indexes :journal_posts_count, type: "integer"
       indexes :login, analyzer: "ascii_snowball_analyzer"
       indexes :login_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
+      indexes :login_exact, type: "keyword"
       indexes :name, analyzer: "ascii_snowball_analyzer"
       indexes :name_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
+      indexes :observations_count, type: "integer"
       indexes :orcid, type: "keyword"
+      indexes :roles, type: "keyword"
+      indexes :site_id, type: "short"
+      indexes :spam, type: "boolean"
+      indexes :suspended, type: "boolean"
+      indexes :universal_search_rank, type: "integer"
     end
   end
 

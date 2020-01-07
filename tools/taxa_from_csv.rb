@@ -29,7 +29,7 @@ Examples:
   
   # Import common names from a pre-existing source, attributing a specific user,
   # without adding taxa
-  be rails r ~/taxa_from_csv.rb -d -c --skip-check-lists -s 16299 -u 1 -p 7016 --lexicon-first ~/names.csv > ~/names.log
+  be rails r tools/taxa_from_csv.rb -d -c --skip-check-lists -s 16299 -u 1 -p 7016 --lexicon-first ~/names.csv > ~/names.log
 
 where [options] are:
 EOS
@@ -40,6 +40,7 @@ EOS
   opt :user_id, "User ID of user who is adding these names", type: :integer, short: "-u"
   opt :source_id, "Source ID of source to use for these names these names", type: :integer, short: "-s"
   opt :lexicon_first, "Allow file to be of format sciname, lexicon, comname", type: :boolean
+  opt :lexicon, "Lexicon that will override the lexicon in the file", type: :string, short: "-l"
 end
 
 start = Time.now
@@ -51,22 +52,28 @@ unless csv_path && File.exist?(csv_path)
   Optimist::die "CSV does not exist: #{csv_path}"
 end
 
-if opts.place_id && @place = Place.find( opts.place_id )
-  puts "Found place: #{@place}"
-else
-  Optimist::die "Couldn't find place: #{OPTS.place_id}"
+if !opts.place_id.blank?
+  if @place = Place.find( opts.place_id )
+    puts "Found place: #{@place}"
+  else
+    Optimist::die "Couldn't find place: #{OPTS.place_id}"
+  end
 end
 
-if opts.user_id && @user = User.find( opts.user_id )
-  puts "Found user: #{@user}"
-else
-  Optimist::die "Couldn't find user: #{OPTS.user_id}"
+if !opts.user_id.blank?
+  if @user = User.find( opts.user_id )
+    puts "Found user: #{@user}"
+  else
+    Optimist::die "Couldn't find user: #{OPTS.user_id}"
+  end
 end
 
-if opts.source_id && @source = Source.find( opts.source_id )
-  puts "Found source: #{@source}"
-else
-  Optimist::DIE "Couldn't find source: #{OPTS.source_id}"
+if !opts.source_id.blank?
+  if @source = Source.find( opts.source_id )
+    puts "Found source: #{@source}"
+  else
+    Optimist::DIE "Couldn't find source: #{OPTS.source_id}"
+  end
 end
 
 @errors = []
@@ -88,6 +95,7 @@ def save_common_names(taxon, common_names)
     name = name.split(/[,;]/).first.strip
     next if @encountered_names[name]
     @encountered_names[name] = true
+    lexicon = OPTS.lexicon || lexicon
     if tn = taxon.taxon_names.where( name: name, lexicon: lexicon ).first
       @names_existing += 1
     else

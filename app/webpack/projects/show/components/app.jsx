@@ -121,7 +121,7 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
   } else if ( project.rule_d1 && project.rule_d2 && project.startDate && project.endDate ) {
     const start = project.startDate.format( "MMM D, YYYY" );
     const end = project.endDate.format( "MMM D, YYYY" );
-    eventDates = `${start} - ${end}`;
+    eventDates = I18n.t( "date_to_date", { d1: start, d2: end } );
   }
   const headerDates = eventDates ? (
     <div className="header-dates">

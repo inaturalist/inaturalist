@@ -21,17 +21,12 @@ class FacebookController < ApplicationController
       []
     end
   rescue Koala::Facebook::APIError => e
-    if e.message =~ /OAuthException/
-      redirect_to ProviderAuthorization::AUTH_URLS['facebook']
-    else
-      Rails.logger.error "[Error #{Time.now}] Facebook connection failed, error ##{e.type} (#{e}):  #{e.message}"
-      Airbrake.notify(e, :request => request, :session => session) # testing
-      Logstasher.write_exception(e, request: request, session: session, user: current_user)
-      flash[:error] = "Ack! Something went horribly wrong, like a giant " +
-                       "squid ate your Facebook info.  You can contact us at " +
-                       "#{@site.email_help} if you still can't get this " +
-                       "working.  Error: #{e.message}"
-    end
+    Rails.logger.error "[Error #{Time.now}] Facebook connection failed, error ##{e.type} (#{e}):  #{e.message}"
+    Logstasher.write_exception(e, request: request, session: session, user: current_user)
+    flash[:error] = "Ack! Something went horribly wrong, like a giant " +
+                     "squid ate your Facebook info.  You can contact us at " +
+                     "#{@site.email_help} if you still can't get this " +
+                     "working.  Error: #{e.message}"
   end
 
   def photo_fields

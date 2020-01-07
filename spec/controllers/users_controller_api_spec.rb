@@ -2,14 +2,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "a signed in UsersController" do
   before(:all) { User.destroy_all }
-  before(:each) do
-    enable_elastic_indexing( Observation )
-    enable_has_subscribers
-  end
-  after(:each) do
-    disable_elastic_indexing( Observation )
-    disable_has_subscribers
-  end
+  elastic_models( Observation )
+  before { enable_has_subscribers }
+  after {  disable_has_subscribers }
   let(:user) { User.make! }
   it "should show email for edit" do
     get :edit, :format => :json

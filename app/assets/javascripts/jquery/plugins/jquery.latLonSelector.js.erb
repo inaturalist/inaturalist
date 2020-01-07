@@ -47,7 +47,7 @@
     var clear = $('<a href="#">'+I18n.t('clear')+'</a>').css({'margin-right': '1em'});
     $(clear).click(function(e) {
       var input = getCurrentInput();
-      $.fn.latLonSelector.updateFormLatLon('', '');
+      $.fn.latLonSelector.updateFormLatLon( null, null );
       $(input).val('');
       var scaleField = findFormField(input, 'map_scale');
       if (typeof scaleField != 'undefined') {

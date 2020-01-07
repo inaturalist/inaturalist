@@ -3,6 +3,9 @@
 
 #header {
   margin-bottom: 0;
+  .signedout {
+    display: none;
+  }
 }
 
 #imgcol {
@@ -153,7 +156,6 @@
   }
   .log-in .bigtext {
     font-size: 20px;
-    margin-top: 57px;
   }
 
   .btn-inat {
@@ -164,6 +166,15 @@
     }
   }
 
+  .provider-authorizations {
+    margin-bottom: 30px;
+    .extra {
+      display: flex;
+      justify-content: space-around;
+      margin: 30px auto;
+      width: 80%;
+    }
+  }
   .providerlink {
     font-weight: bold;
     color: white;
@@ -198,9 +209,36 @@
 
   .providerlink.btn-primary {
     width: 100%;
+    margin-bottom: 15px;
     border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    border: 0 transparent;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
     i {
       margin-right: 10px;
+      font-size: 25px;
+      line-height: 25px;
+    }
+    img {
+      width: 25px;
+      height: 25px;
+      margin-right: 10px;
+    }
+    &.google {
+      background-color: white;
+      color: rgba(0,0,0,0.54);
+    }
+    &.facebook {
+      i {
+        margin-left: 4px;
+      }
+    }
+    .btntext {
+      width: 100%;
     }
   }
   .providerlink.btn-circle {
@@ -226,17 +264,5 @@
         font-size: 18px;
       }
     }
-  }
-
-  .provider-authorizations {
-    margin-bottom: 30px;
-    span {
-      position: relative;
-      top: 2px;
-    }
-  }
-  .log-in .provider-authorizations {
-    display: flex;
-    justify-content: space-between;
   }
 }

@@ -19,7 +19,10 @@ const Identifications = ( { data, user, currentUser, year } ) => {
       data: _.map( data.month_histogram, ( value, date ) => ( { date, value } ) ),
       style: "bar",
       color: grayColor,
-      label: d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
+      label: d => I18n.t( "bold_label_colon_value_html", {
+        label: moment( d.date ).add( 2, "days" ).format( "MMMM" ),
+        value: I18n.t( "x_identifications", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+      } )
     };
   }
   if ( data.week_histogram ) {
@@ -28,21 +31,32 @@ const Identifications = ( { data, user, currentUser, year } ) => {
       data: _.map( data.week_histogram, ( value, date ) => ( { date, value } ) ),
       color: "rgba( 168, 204, 9, 0.2 )",
       style: "bar",
-      label: d => `<strong>${I18n.t( "week_of_date", { date: moment( d.date ).format( "LL" ) } )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
+      label: d => I18n.t( "bold_label_colon_value_html", {
+        label: I18n.t( "week_of_date", { date: moment( d.date ).format( "LL" ) } ),
+        value: I18n.t( "x_identifications", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+      } )
     };
   }
   if ( data.day_histogram ) {
     series.day = {
       title: I18n.t( "per_day" ),
       data: _.map( data.day_histogram, ( value, date ) => ( { date, value } ) ),
-      color: "#74ac00"
+      color: "#74ac00",
+      label: d => I18n.t( "bold_label_colon_value_html", {
+        label: moment( d.date ).format( "ll" ),
+        value: I18n.t( "x_identifications", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+      } )
     };
   }
   return (
     <div className="Identifications">
       <Row>
         <Col xs={12}>
-          <h3><span>{ I18n.t( "ids_made_for_others" ) }</span></h3>
+          <h3>
+            <a name="ids-for-others" href="#ids-for-others">
+              <span>{ I18n.t( "ids_made_for_others" ) }</span>
+            </a>
+          </h3>
           <DateHistogram
             series={series}
             tickFormatBottom={d => moment( d ).format( "MMM D" )}
@@ -72,7 +86,11 @@ const Identifications = ( { data, user, currentUser, year } ) => {
           <Col xs={4}>
             { data.users_helped ? (
               <div className="idents-users-helped">
-                <h3><span>{ I18n.t( "who_user_helped_the_most", { user: user.login } ) }</span></h3>
+                <h3>
+                  <a name="helped" href="#helped">
+                    <span>{ I18n.t( "who_user_helped_the_most", { user: user.login } ) }</span>
+                  </a>
+                </h3>
                 { data.users_helped.map( d => (
                   <UserWithIcon
                     user={Object.assign( {}, d.user, { icon_url: d.user.icon } )}
@@ -97,7 +115,11 @@ const Identifications = ( { data, user, currentUser, year } ) => {
             ) : null }
           </Col>
           <Col xs={4}>
-            <h3><span>{ I18n.t( "ids_by_taxon" ) }</span></h3>
+            <h3>
+              <a name="ids-by-taxon" href="#ids-by-taxon">
+                <span>{ I18n.t( "ids_by_taxon" ) }</span>
+              </a>
+            </h3>
             <PieChartForIconicTaxonCounts
               year={year}
               data={data.iconic_taxon_counts}
@@ -115,7 +137,11 @@ const Identifications = ( { data, user, currentUser, year } ) => {
           <Col xs={4}>
             { data.users_who_helped ? (
               <div className="idents-users-who-helped">
-                <h3><span>{ I18n.t( "who_helped_user_the_most", { user: user.login } ) }</span></h3>
+                <h3>
+                  <a name="helpers" href="#helpers">
+                    <span>{ I18n.t( "who_helped_user_the_most", { user: user.login } ) }</span>
+                  </a>
+                </h3>
                 { data.users_who_helped.map( d => (
                   <UserWithIcon
                     user={Object.assign( {}, d.user, { icon_url: d.user.icon } )}

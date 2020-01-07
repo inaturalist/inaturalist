@@ -6,6 +6,7 @@ class AnnotationsController < ApplicationController
   def create
     p = annotation_params(params[:annotation])
     @annotation = Annotation.new(p)
+    @annotation.wait_for_obs_index_refresh = true
     if !@annotation.save
       flash[:error] = @annotation.errors.full_messages.to_sentence
     end
@@ -17,7 +18,6 @@ class AnnotationsController < ApplicationController
         if @annotation.errors.any?
           head :bad_request
         else
-          Observation.refresh_es_index
           render :json => @annotation.as_json
         end
       end
@@ -25,13 +25,13 @@ class AnnotationsController < ApplicationController
   end
 
   def destroy
+    @annotation.wait_for_obs_index_refresh = true
     @annotation.destroy
     respond_to do |format|
       format.html do
         redirect_to @annotation.resource
       end
       format.json do
-        Observation.refresh_es_index
         head :ok
       end
     end

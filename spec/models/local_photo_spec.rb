@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe LocalPhoto, "creation" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   describe "creation" do
     it "should set the native page url" do
       p = LocalPhoto.make!
@@ -89,8 +88,7 @@ describe LocalPhoto, "creation" do
 end
 
 describe LocalPhoto, "to_observation" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   it "should set a taxon from tags" do
     p = LocalPhoto.make
     p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
@@ -98,6 +96,14 @@ describe LocalPhoto, "to_observation" do
     p.extract_metadata
     o = p.to_observation
     expect(o.taxon).to eq(t)
+  end
+
+  it "should set a taxon from a file name" do
+    p = LocalPhoto.make
+    p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia.jpg"))
+    t = Taxon.make!(:name => "Cuthona abronia")
+    o = p.to_observation
+    expect( o.taxon ).to eq t
   end
 
   it "should not set a taxon based on an invalid name in the tags if a valid synonym exists" do
@@ -140,6 +146,22 @@ describe LocalPhoto, "to_observation" do
     expect( o.taxon ).to eq active
   end
 
+  it "should set a taxon from a name in a language that matches the photo uploader's" do
+    p = LocalPhoto.make( user: User.make!( locale: "es-MX" ) )
+    p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "egg.jpg" ) )
+    tn = TaxonName.make!( lexicon: "Spanish", name: "egg" )
+    o = p.to_observation
+    expect( o.taxon ).to eq tn.taxon
+  end
+
+  it "should not set a taxon from a name in a language other than the photo uploader's" do
+    p = LocalPhoto.make( user: User.make!( locale: "es-MX" ) )
+    p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "egg.jpg" ) )
+    tn = TaxonName.make!( lexicon: "English", name: "egg" )
+    o = p.to_observation
+    expect( o.taxon ).not_to eq tn.taxon
+  end
+
   it "should set observation fields from machine tags" do
     of = ObservationField.make!(:name => "sex", :allowed_values => "unknown|male|female", :datatype => ObservationField::TEXT)
     lp = LocalPhoto.make!
@@ -178,7 +200,7 @@ describe LocalPhoto, "to_observation" do
     expect( o.tag_list ).to include 'tag2'
   end
 
-  it "shoudl not import branded descriptions" do
+  it "should not import branded descriptions" do
     LocalPhoto::BRANDED_DESCRIPTIONS.each do |branded_description|
       lp = LocalPhoto.make!
       lp.metadata = {
@@ -207,11 +229,11 @@ describe LocalPhoto, "to_observation" do
     expect( o.positional_accuracy ).not_to eq 0
     expect( o.positional_accuracy ).to be_nil
   end
+
 end
 
 describe LocalPhoto, "flagging" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:lp) { LocalPhoto.make! }
   it "should change the URLs for copyright infringement" do
     Flag.make!(:flaggable => lp, :flag => Flag::COPYRIGHT_INFRINGEMENT)

@@ -178,8 +178,7 @@ shared_examples_for "an IdentificationsController" do
       DatabaseCleaner.strategy = :transaction
     end
 
-    before(:each) { enable_elastic_indexing( Observation, Identification ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    elastic_models( Observation, Identification )
 
     let(:identification) { Identification.make!(:user => user) }
 
@@ -230,8 +229,7 @@ shared_examples_for "an IdentificationsController" do
 
   describe "by_login" do
     before(:all) { load_test_taxa }
-    before(:each) { enable_elastic_indexing( Observation, Identification ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    elastic_models( Observation, Identification )
     it "should return identifications by the selected user" do
       ident = Identification.make!( user: user )
       get :by_login, format: :json, login: user.login
@@ -280,7 +278,7 @@ shared_examples_for "an IdentificationsController" do
     end
     it "should include place-specific taxon name" do
       ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
-      place = Place.make!
+      place = make_place_with_geom
       tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS[:ENGLISH] )
       ptn = PlaceTaxonName.make!( taxon_name: tn, place: place )
       user.update_attributes( place: place, locale: "en" )

@@ -14,7 +14,6 @@ const App = ( { taxon, config } ) => {
   const taxonHTML = renderToString(
     <SplitTaxon
       taxon={taxon}
-      forceRank={taxon.rank_level > 10 && !taxon.preferred_common_name}
       user={config.currentUser}
     />
   );

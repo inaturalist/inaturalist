@@ -319,6 +319,19 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    if params[:copy_project_id]
+      @copy_project = Project.find( params[:copy_project_id] ) rescue nil
+      if @copy_project
+        if @copy_project.is_new_project?
+          projects_response = INatAPIService.project( params[:copy_project_id], { rule_details: true, ttl: -1 } )
+          unless projects_response.blank?
+            @copy_project_json = projects_response.results[0]
+          end
+        else
+          flash.now[:notice] = I18n.t( "views.projects.new.traditional_projects_cannot_be_copied" )
+        end
+      end
+    end
     render layout: "bootstrap"
   end
 
@@ -452,7 +465,14 @@ class ProjectsController < ApplicationController
   
   def members
     @project_users = @project.project_users.joins(:user).
-      paginate(:page => params[:page]).order("users.login ASC")
+      paginate(:page => params[:page])
+    @order_by = params[:order_by] || "login"
+    @order = %w(asc desc).include?( params[:order] ) ? params[:order] : "asc"
+    if params[:order_by] == "created_at"
+      @project_users = @project_users.order( "project_users.id #{@order}" )
+    else
+      @project_users = @project_users.order( "users.login #{@order}" )
+    end
     respond_to do |format|
       format.html do
         @admin = @project.user
@@ -848,7 +868,12 @@ class ProjectsController < ApplicationController
       error_msg = t(:the_observation_was_already_added_to_that_project)
     end
 
-    @project_observation = ProjectObservation.create(project: @project, observation: @observation, user: current_user)
+    @project_observation = ProjectObservation.create(
+      project: @project,
+      observation: @observation,
+      user: current_user,
+      wait_for_obs_index_refresh: true
+    )
     
     unless @project_observation.valid?
       error_msg = t(:there_were_problems_adding_that_observation_to_this_project) + 
@@ -886,7 +911,6 @@ class ProjectsController < ApplicationController
         redirect_back_or_default(@project)
       end
       format.json do
-        Observation.refresh_es_index
         render :json => @project_observation.to_json(:include => {
           :observation => {:include => :observation_field_values}, 
           :project => {:include => :project_observation_fields}
@@ -915,7 +939,7 @@ class ProjectsController < ApplicationController
       end
       return
     end
-    
+    @project_observation.wait_for_obs_index_refresh = true
     @project_observation.destroy
     respond_to do |format|
       format.html do
@@ -923,7 +947,6 @@ class ProjectsController < ApplicationController
         redirect_back_or_default(@project)
       end
       format.json do
-        Observation.refresh_es_index
         render :json => @project_observation
       end
     end

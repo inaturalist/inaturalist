@@ -121,7 +121,7 @@ module DarwinCore
           when "SimpleMultimedia"
             extensions << {
               row_type: "http://rs.gbif.org/terms/1.0/Multimedia",
-              file_location: "images.csv",
+              file_location: "media.csv",
               terms: DarwinCore::SimpleMultimedia::TERMS
             }
           when "ObservationFields"
@@ -180,6 +180,7 @@ module DarwinCore
       elsif @opts[:photos].to_s == "false"
         params[:with_photos] = false
       end
+      params[:ofv_datatype] = @opts[:ofv_datatype]
       params
     end
 
@@ -320,18 +321,15 @@ module DarwinCore
 
     def make_simple_multimedia_data
       headers = DarwinCore::SimpleMultimedia::TERM_NAMES
-      fname = "images.csv"
+      fname = "media.csv"
       tmp_path = File.join(@work_path, fname)
       
       params = observations_params
-      unless @opts[:photo_licenses].include?( "ignore")
-        if @opts[:photo_licenses] && !@opts[:photo_licenses].include?( "any" )
-          params[:photo_license] = @opts[:photo_licenses].map(&:downcase)
-        end
-        params[:photo_license] ||= 'any'
-      end
-      params[:has] = [params[:has], 'photos'].flatten.compact
-      preloads = [{observation_photos: {photo: :user}}]
+      media_licenses = @opts[:photo_licenses].map(&:downcase)
+      preloads = [
+        { observation_photos: { photo: :user } },
+        { observation_sounds: { sound: :user } }
+      ]
 
       start_time = @generate_started_at || Time.now
       
@@ -339,14 +337,37 @@ module DarwinCore
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(params, preloads, label: 'make_simple_multimedia_data') do |observation|
-            observation.observation_photos.sort_by{|op| op.position || op.id }.each do |op|
-              # If ES is out of sync with the DB, the photo might no longer exist
-              next if op.nil?
-              next if op.created_at.nil?
-              next if op.photo.nil?
-              next unless op.created_at <= start_time
-              DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
-              csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
+            next if observation.observation_photos.blank? && observation.observation_sounds.blank?
+            begin
+              observation.observation_photos.sort_by{|op| op.position || op.id }.each do |op|
+                # If ES is out of sync with the DB, the photo might no longer exist
+                next if op.nil?
+                next if op.created_at.nil?
+                next if op.photo.nil?
+                next unless op.created_at <= start_time
+                if !media_licenses.include?( "ignore" )
+                  next if op.photo.all_rights_reserved?
+                  next unless media_licenses.include?( op.photo.license_code.to_s.downcase )
+                end
+                DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
+                csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
+              end
+              observation.observation_sounds.sort_by(&:id).each do |os|
+                next if os.nil?
+                next if os.created_at.nil?
+                next if os.sound.nil?
+                next unless os.sound.is_a?( LocalSound ) # Soundcloud sounds don't come with stable file URLs we can share
+                next unless os.created_at <= start_time
+                if !media_licenses.include?( "ignore" )
+                  next if os.sound.all_rights_reserved?
+                  next unless media_licenses.include?( os.sound.license_code.to_s.downcase )
+                end
+                DarwinCore::SimpleMultimedia.adapt( os.sound, observation: observation, core: @opts[:core] )
+                csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| os.sound.send(method || field)}
+              end
+            rescue => e
+              logger.error "make_simple_multimedia_data failed on observation #{observation.id}"
+              raise e
             end
           end
         end

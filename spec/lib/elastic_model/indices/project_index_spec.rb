@@ -34,8 +34,8 @@ describe "Project Index" do
 
   describe "associated_place_ids" do
     let(:project) { Project.make! }
-    let(:country) { Place.make!( admin_level: Place::COUNTRY_LEVEL ) }
-    let(:state) { Place.make!( admin_level: Place::STATE_LEVEL, parent: country ) }
+    let(:country) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
+    let(:state) { make_place_with_geom( admin_level: Place::STATE_LEVEL, parent: country ) }
     it "should include the project's place_id" do
       project.update_attributes( place: country )
       expect( project.as_indexed_json[:associated_place_ids] ).to include country.id

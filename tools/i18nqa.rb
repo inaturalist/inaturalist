@@ -17,24 +17,36 @@ EOS
   opt :locale, "Only check this locale", type: :string, short: "-l"
   opt :search, "Filter keys by this substring", type: :string, short: "-s"
   opt :something, "something", type: :string
-  opt :level, "Show only this error level.", type: :string
+  opt :level,
+    "Show only this error level. Set to all to show warnings and errors",
+    type: :string, default: "error"
 end
 
 @levels = %w(error warning)
 if OPTS.level
   if @levels.include?( OPTS.level )
     @levels = [OPTS.level]
-  else
-    Optimist::die :level, "must be `error` or `warning`"
+  elsif OPTS.level != "all"
+    Optimist::die :level, "must be `error`, `warning`, or `all`"
   end
 end
 
 def traverse( obj, key = nil, &blk )
   case obj
   when Hash
-    obj.each {|k,v| traverse( v, [key, k].compact.join( "." ), &blk ) }
+    # Kind of a lame hack to detect situations when translatewiki has translated
+    # an array as a hash with numbered keys. They generally don't translate
+    # position 0, so if the first key is a number greater than zero, we assume
+    # it's one of those arrays here.
+    if obj.keys.first.to_s.to_i > 0
+      blk.call( obj, key )
+    else
+      obj.each {|k,v| traverse( v, [key, k].compact.join( "." ), &blk ) }
+    end
+  # Note that dealing with arrays here is generally unecessary. If it's really
+  # an array, we just call the blk on it like we do with any other object
   # when Array
-  #   obj.each {|v| traverse(v, &blk) }
+  #   obj.each_with_index {|v,i| traverse( v, "#{[key, i].compact.join( "." )}", &blk ) }
   else
     blk.call( obj, key )
   end
@@ -47,6 +59,7 @@ Dir.glob( "config/locales/*.yml" ).each do |path|
   next if path =~ /qqq.yml/
   next if OPTS.locale && path !~ /#{OPTS.locale}.yml/ && path !~ /en.yml/
   traverse( YAML.load_file( path ) ) do |translation, key|
+    # puts "translation: #{translation}, key: #{key}"
     data[key] = translation
     key_counts[key.split( "." )[1]] = key_counts[key.split( "." )[1]].to_i + 1
   end
@@ -83,9 +96,15 @@ data.each do |key, translation|
   end
   next unless data[en_key]
   if data[en_key].is_a?( Array )
-    if data[en_key].size > translation.size && @levels.include?( "warning" )
+    # For some reason, translatewiki tends to translate yaml arrays as yaml
+    # hashes with numbered keys. Our arrays often begin with a blank for
+    # position 0, and translatewiki tends not to include that in their hash, so
+    # ignore that in the count
+    en_array_size = data[en_key].size
+    en_array_size -= 1 if data[en_key][0].blank?
+    if en_array_size > translation.size && @levels.include?( "error" )
       problems[key] = problems[key] || []
-      problems[key] << "WARNING: Missing #{data[en_key].size - translation.size} items"
+      problems[key] << "**ERROR:** Missing #{en_array_size - translation.size} items"
     end
     next
   elsif !data[en_key].is_a?( String )
@@ -112,21 +131,21 @@ data.each do |key, translation|
     end
   end
 
-  if key =~ /#{locale}\..+\.one$/
-    other_key = key.sub( /\.one$/ , ".other" )
-    if !data[other_key] && @levels.include?( "error" )
-      problems[other_key] = problems[other_key] || []
-      problems[other_key] << "**ERROR:** Missing part of a plural key"
-    end
-  end
-
-  if key =~ /#{locale}\..+\.other$/
-    one_key = key.sub( /\.other$/ , ".one" )
-    if !data[one_key] && @levels.include?( "error" )
-      problems[one_key] = problems[one_key] || []
-      problems[one_key] << "**ERROR:** Missing part of a plural key"
-    end
-  end
+  # These should not be necessary now that we're using the rails-i18n gem
+  # if key =~ /#{locale}\..+\.one$/
+  #   other_key = key.sub( /\.one$/ , ".other" )
+  #   if !data[other_key] && @levels.include?( "error" )
+  #     problems[other_key] = problems[other_key] || []
+  #     problems[other_key] << "**ERROR:** Missing part of a plural key"
+  #   end
+  # end
+  # if key =~ /#{locale}\..+\.other$/
+  #   one_key = key.sub( /\.other$/ , ".one" )
+  #   if !data[one_key] && @levels.include?( "error" )
+  #     problems[one_key] = problems[one_key] || []
+  #     problems[one_key] << "**ERROR:** Missing part of a plural key"
+  #   end
+  # end
 
   # https://stackoverflow.com/a/3314572
   if @levels.include?( "error" ) && translation =~ /<\/?\s+[^\s]+>/

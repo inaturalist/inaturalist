@@ -40,7 +40,11 @@ module DarwinCore
       end
 
       def dwc_type
-        "StillImage"
+        if is_a?( Photo )
+          "StillImage"
+        else
+          "Sound"
+        end
       end
 
       def format
@@ -50,14 +54,25 @@ module DarwinCore
       # Note that this is *supposed* to be a URL to locate the resource, *not* a
       # unique identifier for the image
       def identifier
-        best_url( "original" )
+        if is_a?( Photo )
+          best_url( "original" )
+        elsif is_a?( LocalSound )
+          FakeView.uri_join( Site.default.url, file.url )
+        end
       end
 
       def references
-        native_page_url
+        if !native_page_url.blank?
+          native_page_url
+        elsif respond_to?( :observations ) && observations.first
+          FakeView.observation_url( observations.first )
+        end
       end
 
       def created
+        if is_a?( Sound )
+          return created_at.iso8601
+        end
         if metadata && metadata[:date_time_original]
           t = Time.parse(metadata[:date_time_original]).iso8601 rescue nil
           t ||= metadata[:date_time_original].iso8601 rescue nil
@@ -72,10 +87,10 @@ module DarwinCore
       end
 
       def publisher
-        if is_a?(LocalPhoto)
+        if is_a?( LocalPhoto ) || is_a?( LocalSound )
           "iNaturalist"
         else
-          self.class.name.sub(/Photo$/, '').underscore.titleize
+          self.class.name.sub(/(Photo|Sound)$/, '').underscore.titleize
         end
       end
 

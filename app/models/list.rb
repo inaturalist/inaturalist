@@ -18,7 +18,9 @@ class List < ActiveRecord::Base
   
   validates_presence_of :title
   
-  RANK_RULE_OPERATORS = %w(species? species_or_lower?)
+  RANK_RULE_SPECIES = "species?"
+  RANK_RULE_SPECIES_OR_LOWER = "species_or_lower?"
+  RANK_RULE_OPERATORS = [RANK_RULE_SPECIES, RANK_RULE_SPECIES_OR_LOWER]
   
   def rank_rule
     if (r = rules.detect{|r| r.operator == 'species?'}) then r.operator
@@ -232,7 +234,11 @@ class List < ActiveRecord::Base
       "generate_csv_#{id}"
     end
   end
-  
+
+  def is_a_users_default_lifelist?
+    is_a?( LifeList ) && id == user.life_list_id
+  end
+
   def self.icon_preview_cache_key(list)
     list_id = list.is_a?(List) ? list.id : list
     FakeView.url_for(:controller => "lists", :action => "icon_preview", :list_id => list_id, :locale => I18n.locale)

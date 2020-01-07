@@ -2,10 +2,10 @@ import _ from "lodash";
 import React from "react";
 
 const urlForTaxon = t => (
-  t ? `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}` : null
+  t ? `/taxa/${t.id}-${t.name.replace( /\W/g, "-" )}` : null
 );
 const urlForTaxonPhotos = ( t, params ) => {
-  let url = `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}/browse_photos`;
+  let url = `/taxa/${t.id}-${t.name.replace( /\W/g, "-" )}/browse_photos`;
   if ( params ) {
     url += `?${_.map( params, ( v, k ) => `${k}=${v}` ).join( "&" )}`;
   }

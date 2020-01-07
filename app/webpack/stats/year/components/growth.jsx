@@ -10,9 +10,13 @@ import CountryGrowth from "./country_growth";
 
 const Growth = ( {
   data,
-  year
+  year,
+  site
 } ) => {
-  const label = d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`;
+  const label = d => I18n.t( "bold_label_colon_value_html", {
+    label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+    value: I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+  } );
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
   const emptyJan = {
     date: `${year + 1}-01-01`,
@@ -40,11 +44,15 @@ const Growth = ( {
   } ) );
   obsData.push( emptyJan );
   const obsSeries = {
-    total: {
-      title: I18n.t( "running_total" ),
+    novelThisYear: {
+      title: I18n.t( "new_observations_in_year", { year } ),
       style: "bar",
-      data: obsData.map( interval => ( { date: interval.date, value: interval.total } ) ),
-      color: grayColor,
+      data: obsData.map( interval => ( {
+        date: interval.date,
+        value: interval.novel,
+        offset: interval.total - interval.novel
+      } ) ).filter( interval => interval.date >= `${year}-01-01` ),
+      color: COLORS.inatGreen,
       label
     },
     novel: {
@@ -58,15 +66,11 @@ const Growth = ( {
       color: d3color( COLORS.inatGreen ).darker( 2.0 ),
       label
     },
-    novelThisYear: {
-      title: I18n.t( "new_observations_this_year" ),
+    total: {
+      title: I18n.t( "running_total" ),
       style: "bar",
-      data: obsData.map( interval => ( {
-        date: interval.date,
-        value: interval.novel,
-        offset: interval.total - interval.novel
-      } ) ).filter( interval => interval.date >= `${year}-01-01` ),
-      color: COLORS.inatGreen,
+      data: obsData.map( interval => ( { date: interval.date, value: interval.total } ) ),
+      color: grayColor,
       label
     }
   };
@@ -82,16 +86,21 @@ const Growth = ( {
       accumulated_species_count: 0,
       novel_species_ids: []
     } );
+    const speciesLabel = d => I18n.t( "bold_label_colon_value_html", {
+      label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+      value: I18n.t( "x_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+    } );
     taxaSeries = {
-      total: {
-        title: I18n.t( "running_total" ),
+      novelThisYear: {
+        title: I18n.t( "newly_observed_species_in_year", { year } ),
         style: "bar",
         data: _.map( taxaData, i => ( {
           date: i.date,
-          value: i.accumulated_species_count
-        } ) ),
-        color: grayColor,
-        label
+          value: i.novel_species_ids.length,
+          offset: i.accumulated_species_count - i.novel_species_ids.length
+        } ) ).filter( interval => interval.date >= `${year}-01-01` ),
+        color: COLORS.iconic.Insecta,
+        label: speciesLabel
       },
       novel: {
         title: I18n.t( "newly_observed_species" ),
@@ -102,76 +111,121 @@ const Growth = ( {
           offset: i.accumulated_species_count - i.novel_species_ids.length
         } ) ).filter( interval => interval.date < `${year}-01-01` ),
         color: d3color( COLORS.iconic.Insecta ).darker( 2.0 ),
-        label
+        label: speciesLabel
       },
-      novelThisYear: {
-        title: I18n.t( "newly_observed_species_this_year" ),
+      total: {
+        title: I18n.t( "running_total" ),
         style: "bar",
         data: _.map( taxaData, i => ( {
           date: i.date,
-          value: i.novel_species_ids.length,
-          offset: i.accumulated_species_count - i.novel_species_ids.length
-        } ) ).filter( interval => interval.date >= `${year}-01-01` ),
-        color: COLORS.iconic.Insecta,
-        label
+          value: i.accumulated_species_count
+        } ) ),
+        color: grayColor,
+        label: speciesLabel
       }
     };
   }
-  runningTotal = 0;
-  const sortedUserData = _.map(
-    _.sortBy( _.map( data.users, ( value, date ) => ( { date, value } ) ), i => i.date ),
-    i => {
-      runningTotal += i.value;
-      return {
-        date: i.date,
-        total: runningTotal,
-        novel: i.value
-      };
-    }
-  );
-  const userData = histogramWithoutGaps( sortedUserData, { endDate }, ( date, prev ) => ( {
-    date,
-    total: prev ? prev.total : 0,
-    novel: 0
-  } ) );
-  userData.push( emptyJan );
-  const usersSeries = {
-    total: {
-      title: I18n.t( "running_total" ),
-      style: "bar",
-      data: userData.map( interval => ( { date: interval.date, value: interval.total } ) ),
-      color: grayColor,
-      label
-    },
-    novel: {
-      title: I18n.t( "new_users" ),
-      style: "bar",
-      data: userData.map( interval => ( {
-        date: interval.date,
-        value: interval.novel,
-        offset: interval.total - interval.novel
-      } ) ).filter( interval => interval.date < `${year}-01-01` ),
-      color: d3color( COLORS.iconic.Animalia ).darker( 2.0 ),
-      label
-    },
-    novelThisYear: {
-      title: I18n.t( "new_users_this_year" ),
-      style: "bar",
-      data: userData.map( interval => ( {
-        date: interval.date,
-        value: interval.novel,
-        offset: interval.total - interval.novel
-      } ) ).filter( interval => interval.date >= `${year}-01-01` ),
-      color: COLORS.iconic.Animalia,
-      label
-    }
-  };
+
+  let usersSeries;
+  if ( data.users ) {
+    runningTotal = 0;
+    const sortedUserData = _.map(
+      _.sortBy( _.map( data.users, ( value, date ) => ( { date, value } ) ), i => i.date ),
+      i => {
+        runningTotal += i.value;
+        return {
+          date: i.date,
+          total: runningTotal,
+          novel: i.value
+        };
+      }
+    );
+    const userData = histogramWithoutGaps( sortedUserData, { endDate }, ( date, prev ) => ( {
+      date,
+      total: prev ? prev.total : 0,
+      novel: 0
+    } ) );
+    userData.push( emptyJan );
+    const newUsersLabel = d => I18n.t( "bold_label_colon_value_html", {
+      label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+      value: I18n.t( "x_new_users", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+    } );
+
+    usersSeries = {
+      novelThisYear: {
+        title: I18n.t( "new_users_in_year", { year } ),
+        style: "bar",
+        data: userData.map( interval => ( {
+          date: interval.date,
+          value: interval.novel,
+          offset: interval.total - interval.novel
+        } ) ).filter( interval => interval.date >= `${year}-01-01` ),
+        color: COLORS.iconic.Animalia,
+        label: newUsersLabel
+      },
+      novel: {
+        title: I18n.t( "new_users" ),
+        style: "bar",
+        data: userData.map( interval => ( {
+          date: interval.date,
+          value: interval.novel,
+          offset: interval.total - interval.novel
+        } ) ).filter( interval => interval.date < `${year}-01-01` ),
+        color: d3color( COLORS.iconic.Animalia ).darker( 2.0 ),
+        label: newUsersLabel
+      },
+      total: {
+        title: I18n.t( "running_total" ),
+        style: "bar",
+        data: userData.map( interval => ( { date: interval.date, value: interval.total } ) ),
+        color: grayColor,
+        label: d => I18n.t( "bold_label_colon_value_html", {
+          label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+          value: I18n.t( "x_people", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+        } )
+      }
+    };
+  }
+
+  const obsTotalDates = obsSeries.total.data.map( d => d.date );
+  const xExtent = [
+    new Date( obsTotalDates[0] ),
+    new Date( obsTotalDates[obsTotalDates.length - 1] )
+  ];
   return (
     <div className="Growth">
-      <h3><span>{ I18n.t( "views.stats.year.growth_title" ) }</span></h3>
-      <DateHistogram series={obsSeries} legendPosition="nw" margin={{ left: 60 }} />
-      { taxaSeries && <DateHistogram series={taxaSeries} legendPosition="nw" margin={{ left: 60 }} /> }
-      <DateHistogram series={usersSeries} legendPosition="nw" margin={{ left: 60 }} />
+      <h3>
+        <a name="growth" href="#growth">
+          <span>{ I18n.t( "views.stats.year.growth_title" ) }</span>
+        </a>
+      </h3>
+      { site && (
+        <p className="text-muted">
+          { I18n.t( "views.stats.year.growth_desc", { site_name: site.name } ) }
+        </p>
+      ) }
+      <DateHistogram
+        series={obsSeries}
+        legendPosition="nw"
+        margin={{ left: 60 }}
+        xExtent={xExtent}
+      />
+      { taxaSeries && (
+        <DateHistogram
+          series={taxaSeries}
+          legendPosition="nw"
+          margin={{ left: 60 }}
+          xExtent={xExtent}
+        />
+      ) }
+      { usersSeries && (
+        <DateHistogram
+          series={usersSeries}
+          legendPosition="nw"
+          margin={{ left: 60 }}
+          xExtent={xExtent}
+        />
+      ) }
       { data.countries && <CountryGrowth data={data.countries} year={year} /> }
     </div>
   );
@@ -179,7 +233,8 @@ const Growth = ( {
 
 Growth.propTypes = {
   data: PropTypes.object,
-  year: PropTypes.number
+  year: PropTypes.number,
+  site: PropTypes.object
 };
 
 export default Growth;

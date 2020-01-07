@@ -5,12 +5,10 @@
         = link_to t(:sites), sites_path
       %li.active= @record.name
     .col-md-4
-      .meta.small.stacked{:style => "text-transform: uppercase;"}= t(:logo_square)
-      = image_tag @record.logo_square.url, class: "img-responsive stacked"
-      .meta.small.stacked{:style => "text-transform: uppercase;"}= t('logo.logo')
-      = image_tag @record.logo.url, class: "img-responsive stacked"
-      .meta.small.stacked{:style => "text-transform: uppercase;"}= t(:logo_email_banner)
-      = image_tag @record.logo_email_banner.url, class: "img-responsive"
+      - %w{logo_square logo favicon logo_email_banner shareable_image logo_blog}.each do |attc|
+        - if @record.send("#{attc}?")
+          .meta.small.stacked{:style => "text-transform: uppercase;"}= attc.humanize
+          = image_tag @record.send(attc.to_sym).url, class: "img-responsive stacked"
     .col-md-8
       %h2= @record.name
       - if is_admin? || current_user.is_site_admin_of?(@record)

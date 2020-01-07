@@ -42,7 +42,6 @@ set :rvm_ruby_string, 'default'
 set :rvm_type, :system
 
 require './config/boot'
-require 'airbrake/capistrano'
 require "rvm/capistrano"
 
 set :bundle_flags,    "--deployment"

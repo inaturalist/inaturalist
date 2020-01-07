@@ -13,37 +13,16 @@
     var YEAR_DATA = #{ @year_statistic.try(:data).to_json.html_safe };
     var YEAR = #{ @year };
     var DISPLAY_USER = #{ @display_user ? 
-      @display_user.as_indexed_json.merge( icon_url: @display_user.medium_user_icon_url ).to_json.html_safe
+      @display_user.as_indexed_json.merge( icon_url: @display_user.medium_user_icon_url, display_donor_since: @display_user.display_donor_since ).to_json.html_safe
       :
       "null"
     };
-    var YEAR_SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json.html_safe };
+    var YEAR_SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url, :place_id], methods: [:locale] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json.html_safe };
+    var SITES = #{ Site.where( "NOT draft" ).to_a.map{|s| s.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: FakeView.asset_url( s.logo_square.url ), logo_url: FakeView.asset_url( s.logo.url ) ) }.to_json.html_safe };
     var DEFAULT_SITE_ID = #{ Site.default.id };
     var WORLD_ATLAS_50M_JSON_URL = "#{image_url( "50m.json" )}";
     var WORLD_ATLAS_50M_TSV_URL = "#{image_url( "50m.tsv" )}";
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=#{CONFIG.facebook.app_id}';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-
-      return t;
-    }(document, "script", "twitter-wjs"));
+    var YEAR_STATISTIC_UPDATED_AT = #{@year_statistic ? "new Date( '#{@year_statistic.updated_at.iso8601.html_safe}' )".html_safe : "null"};
   :javascript
     $( document ).ready( function() {
       if ( typeof( Object.assign ) !== 'function' ) {
@@ -59,7 +38,12 @@
   = stylesheet_link_tag "stats/year"
   = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css"
 - content_for :extrahead do
-  - if @shareable_image_url
+  - if ( ys = @year_statistic ) && ys.year == 2019 && ys.site.blank? && ys.user.blank?
+    %meta{ name: "og:image", property: "og:image", content: "https://static.inaturalist.org/misc/yir2019-shareable-v3.png" }
+    %meta{ name: "og:image", property: "og:image:width", content: "1044" }
+    %meta{ name: "og:image", property: "og:image:height", content: "548" }
+    %meta{ name: "twitter:image", property: "twitter:image", content: "https://static.inaturalist.org/misc/yir2019-shareable-v3.png" }
+  - elsif @shareable_image_url
     %meta{ name: "og:image", property: "og:image", content: image_url( @shareable_image_url ) }
     %meta{ name: "twitter:image", property: "twitter:image", content: image_url( @shareable_image_url ) }
   - if @year_statistic && @year_statistic.shareable_image?

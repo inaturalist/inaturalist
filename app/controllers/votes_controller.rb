@@ -19,39 +19,34 @@ class VotesController < ApplicationController
   end
 
   def vote
+    if @record.respond_to?(:wait_for_index_refresh)
+      @record.wait_for_index_refresh = true
+    end
+    if @record.respond_to?(:wait_for_obs_index_refresh)
+      @record.wait_for_obs_index_refresh = true
+    end
     @record.vote_by voter: current_user, vote: params[:vote], vote_scope: params[:scope]
     respond_to do |format|
       format.html do
         redirect_to @record
       end
-      Observation.refresh_es_index
       format.json { render json: @record.as_json(methods: [:votes]) }
     end
   end
 
   def unvote
+    if @record.respond_to?(:wait_for_index_refresh)
+      @record.wait_for_index_refresh = true
+    end
+    if @record.respond_to?(:wait_for_obs_index_refresh)
+      @record.wait_for_obs_index_refresh = true
+    end
     @record.unvote voter: current_user, vote: params[:vote], vote_scope: params[:scope]
     respond_to do |format|
       format.html do
         redirect_to @record
       end
-      Observation.refresh_es_index
       format.json { head :no_content }
-    end
-  end
-
-  def for
-    @users = User.
-      joins("JOIN votes ON votes.voter_type = 'User' AND votes.voter_id = users.id").
-      where("votes.votable_type = ? AND votes.votable_id = ?", @record.class.name, @record.id).
-      where("votes.vote_scope IS NULL").
-      order("users.login").
-      page(params[:page]).
-      per_page(100)
-    respond_to do |format|
-      format.html do
-        render partial: 'for'
-      end
     end
   end
 

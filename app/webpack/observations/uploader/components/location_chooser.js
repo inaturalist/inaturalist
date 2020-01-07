@@ -285,7 +285,7 @@ class LocationChooser extends SelectionBasedComponent {
             bsStyle="primary"
             disabled={!canSave}
           >
-            { I18n.t( "update_observations" ) }
+            { this.props.submitText || I18n.t( "update_observations" ) }
           </Button>
         </Modal.Footer>
       </Modal>
@@ -304,6 +304,7 @@ LocationChooser.propTypes = {
   updateObsCard: PropTypes.func,
   updateSelectedObsCards: PropTypes.func,
   updateSingleObsCard: PropTypes.bool,
+  submitText: PropTypes.string,
   lat: PropTypes.any,
   lng: PropTypes.any,
   radius: PropTypes.any,

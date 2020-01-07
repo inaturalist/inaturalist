@@ -3,7 +3,7 @@ class Place < ActiveRecord::Base
 
   include ActsAsElasticModel
 
-  has_ancestry
+  has_ancestry orphan_strategy: :adopt
 
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
@@ -23,7 +23,7 @@ class Place < ActiveRecord::Base
   # do not destroy observations_places. That will happen
   # in update_observations_places, from a callback in place_geometry
   has_many :observations_places
-  has_one :place_geometry, :dependent => :destroy
+  has_one :place_geometry, dependent: :destroy, inverse_of: :place
   has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
   before_save :calculate_bbox_area, :set_display_name
@@ -46,6 +46,7 @@ class Place < ActiveRecord::Base
   validate :validate_parent_is_not_self
   validate :validate_name_does_not_start_with_a_number
   validate :custom_errors
+  validates :place_geometry, presence: true, on: :create
   
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -742,6 +743,7 @@ class Place < ActiveRecord::Base
       :nelat => shape.geometry.envelope.upper_corner.y,
       :nelng => shape.geometry.envelope.upper_corner.x
     ))
+    place.build_place_geometry( geom: shape.geometry )
     
     unless skip_woeid
       puts "[INFO] \t\tTrying to find a unique WOEID from '#{geoplanet_query || place.name}'..."

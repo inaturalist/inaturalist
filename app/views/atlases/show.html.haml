@@ -19,9 +19,7 @@
           Warning: there are observations not represented by this atlas
           = link_to t( :view ), observations_path( @observations_not_in_atlas_places_params )
       %h2.pull-left
-        = "Atlas"
-        = t :for
-        = render partial: "shared/taxon", locals: { taxon: @atlas.taxon, named_ancestor: true, link_url: @atlas.taxon }
+        =t :atlas_for_taxon_html, taxon: render( "shared/taxon", taxon: @atlas.taxon, named_ancestor: true, link_url: @atlas.taxon )
       - if current_user.is_curator?
         .pull-right= link_to t( :edit ), edit_atlas_path( @atlas )
   .row.cf#top

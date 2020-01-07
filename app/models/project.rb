@@ -89,7 +89,7 @@ class Project < ActiveRecord::Base
   preference :banner_contain, :boolean, default: false
   preference :hide_title, :boolean, default: false
   preference :hide_umbrella_map_flags, :boolean, default: false
-  preference :rule_quality_grade, :string
+  preference :rule_quality_grade, :string, default: "research,needs_id"
   preference :rule_photos, :boolean
   preference :rule_sounds, :boolean
   preference :rule_observed_on, :string
@@ -208,8 +208,7 @@ class Project < ActiveRecord::Base
   validates_inclusion_of :map_type, in: MAP_TYPES
 
   acts_as_spammable fields: [ :title, :description ],
-                    comment_type: "item-description",
-                    automated: false
+                    comment_type: "item-description"
 
   attr_accessor :admin_attributes
 
@@ -508,7 +507,7 @@ class Project < ActiveRecord::Base
           rule_value = rule_value.split( "," ).map( &:strip )
           rule_value.map!( &:to_i ) if is_int
         end
-        params[ rule.sub( "rule_", "" ) ] = rule_value
+        params[ rule.sub( "rule_", "" ).to_sym ] = rule_value
       end
     end
     without_taxon_ids = without_taxon_ids.compact.uniq

@@ -6,25 +6,37 @@ class ControlledTerm < ActiveRecord::Base
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
+      indexes :blocking, type: "boolean"
+      indexes :excepted_taxon_ids, type: "integer"
       indexes :id, type: "integer"
-      indexes :uuid, type: "keyword"
-      indexes :ontology_uri, type: "keyword", index: false
-      indexes :uri, type: "keyword", index: false
+      indexes :is_value, type: "boolean"
       indexes :labels do
         indexes :definition, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :id, type: "integer"
         indexes :label, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :locale, type: "keyword"
+        indexes :valid_within_clade, type: "integer"
       end
+      indexes :multivalues, type: "boolean"
+      indexes :ontology_uri, type: "keyword", index: false
+      indexes :taxon_ids, type: "integer"
+      indexes :uri, type: "keyword", index: false
+      indexes :uuid, type: "keyword"
       indexes :values do
+        indexes :blocking, type: "boolean"
+        indexes :excepted_taxon_ids, type: "integer"
         indexes :id, type: "integer"
-        indexes :uuid, type: "keyword"
-        indexes :ontology_uri, type: "keyword", index: false
-        indexes :uri, type: "keyword", index: false
         indexes :labels do
           indexes :definition, type: "text", analyzer: "ascii_snowball_analyzer"
+          indexes :id, type: "integer"
           indexes :label, type: "text", analyzer: "ascii_snowball_analyzer"
           indexes :locale, type: "keyword"
+          indexes :valid_within_clade, type: "integer"
         end
+        indexes :ontology_uri, type: "keyword", index: false
+        indexes :taxon_ids, type: "integer"
+        indexes :uuid, type: "keyword"
+        indexes :uri, type: "keyword", index: false
       end
     end
   end

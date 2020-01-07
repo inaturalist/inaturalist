@@ -8,8 +8,7 @@ describe PicasaPhoto do
       end
     end
 
-    before(:each) { enable_elastic_indexing( Observation, Place ) }
-    after(:each) { disable_elastic_indexing( Observation, Place ) }
+    elastic_models( Observation, Place )
     
     it "should set description" do
       photo = PicasaPhoto.new_from_api_response( @fixture )

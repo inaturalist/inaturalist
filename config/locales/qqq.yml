@@ -32,6 +32,7 @@
 # Author: Siebrand
 # Author: SimondR
 # Author: Sudachi
+# Author: Verdy p
 # Author: Walter Klosse
 # Author: Woytecr
 # Author: 아라
@@ -154,6 +155,9 @@ qqq:
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
+  android: |-
+    It's assumed that this indicates the wellknown OS name (and brand) for mobile computing devices and home appliances, with a capital (left untranslated in most markets).
+    And not a generic translatable term for an humanoid-shaped robot.
   animals: '{{Identical|Animal}}'
   annotations: '{{Identical|Annotation}}'
   announcements: '{{Identical|Announcement}}'
@@ -188,7 +192,10 @@ qqq:
   at_time: |-
     where time is a time
     {{Identical|At}}
-  atom: '{{Identical|Atom}}'
+  atom: |-
+    This is assumed to be the name and brand of the Internet toolkit for news feeds, generally left untranslated in most markets.
+    Not the generic term for the smallest physical stable group of elementary particles of matter.
+    {{Identical|Atom}}
   attribute: '{{Identical|Attribute}}'
   authority_list:
     cites: Convención sobre el Comercio Internacional de Especies Amenazadas de Fauna
@@ -234,15 +241,14 @@ qqq:
   captive: '{{Identical|Captive}}'
   card: '{{Identical|Card}}'
   case_plural: https://www.inaturalist.org/identifications/<your name> It is used
-    to make meervoud from a singe person, but unfortunately this does not work in
-    all languagues
+    to append a plural mark to a single person name, but unfortunately this does not
+    work in all languages
   casual: |-
-    The data quality assessment is a summary of an observation's accuracy. All observations start as "casual" grade, and become "needs ID" when
-
-    the observation has a date /
-    the observation is georeferenced (i.e. has lat/lon coordinates) /
-    the observation has photos or sounds /
-    the observation isn't of a human
+    The data quality assessment is a summary of an observation's accuracy. All observations start as "casual" grade, and become "needs ID" when:
+    * the observation has a date,
+    * the observation is georeferenced (i.e. has lat/lon coordinates),
+    * the observation has photos or sounds, or
+    * the observation isn't of a human.
   catalogue_of_life: The Catalogue of Life is the most comprehensive and authoritative
     global index of species currently available.
   categories: '{{Identical|Category}}'
@@ -515,9 +521,16 @@ qqq:
   if_you_already_have_an_account: where article is a or an and site_name is the name
     of the site
   ignore: '{{Identical|Ignore}}'
+  ignore_times: |-
+    '''FIXME''': Not sure about the intended meaning of "times": do we want to ignore timestamps/datetime ranges present in the submitted data/metadata ? Or do we want to ignore the number of occurences of something ?
+    No clear context, translation may be wrong and already disagree between the two interpretations.
+    Please document this message for its intended use !
   import: '{{Identical|Import}}'
   importing: '{{Identical|Importing}}'
   improving: '{{Identical|Improving}}'
+  in_n: '''''''FIXME'''''': what is meant in %{n} : a place name, a time, a group
+    of things, a taxon ? Without it, the translation of "in" is ambiguous, possibly
+    wrong.'
   in_place_x: |-
     Used in a vertical treatment like "Photo by\nAbdul\nin place X", so if that
     doesn't make sense syntactically, omitting the "in" would be fine, making
@@ -648,14 +661,16 @@ qqq:
   licensing: '{{Identical|Licensing}}'
   licensing_your_content: Info about licensing content where site_name is the name
     of the site
-  licensing_your_content_gives_others_legal: where site_name is the name of the site
+  licensing_your_content_gives_others_legal: |-
+    where site_name is the name of the site.
+
+    '''FIXME:''' The end of sentence, assuming this is followed by a partner name and nothing else after it, is grammatically incorrect in several languages.  As well the final "the" is untranslatable out of context, and should be avoided. This is a "patchwork" message (only suitable for English and never tested to be really translatable correctly), which should be fixed by including a placeholder for the data partner name(s), like there's one for the site name. For now we need to remove "the" and formulate the sentence as if it was a colon, separating the partner name from the introduction sentence.
   life: '{{Identical|Life}}'
   life!: '{{Identical|Life}}'
   life_list: where user is the name of a user
   life_list_firsts: 'ATTENTION : there is an important space constraint here : 2-3
     words max (the text appears in a bullet)'
   link: '{{Identical|Link}}'
-  link_your_flickr_account_with_inat: where site_name is the name of the site
   link_your_flickr_account_with_inat_so: where site_name is the name of the site
   linked_facebook: where site_name is the name of the site
   linked_facebook_automaticaly: where site_name is the name of the site
@@ -681,6 +696,7 @@ qqq:
     fr: '{{Identical|French}}'
     it: '{{Identical|Italian}}'
     ko: '{{Identical|Korean}}'
+    sk: 'In Vlaams anders gespeld: https://nl.wikipedia.org/wiki/Slowaaks'
   localized_species_accounts: Check http://www.inaturalist.org/places for context
   location: '{{Identical|Location}}'
   location_: '{{Identical|Location}}'
@@ -725,6 +741,11 @@ qqq:
       future: '{{Identical|In}}'
     datetime_with_zone: momentjs formatting string for a date with a time and a time
       zone. See https://momentjs.com/docs/#/displaying/ for formatting rules.
+    datetime_with_offset: momentjs formatting string for a date with a time and a
+      time zone offset. For some time zones, momentjs cannot print a time zone abbreviation
+      like GMT or PDT, so it will instead print a weird offset like "-05". In these
+      cases, we try to use datetime_with_offset instead of datetime_with_zone. See
+      https://momentjs.com/docs/#/displaying/ for formatting rules.
   mon: Abbreviation for Monday, a day of the week.
   month: '{{Identical|Month}}'
   months: '{{Identical|Month}}'
@@ -793,7 +814,7 @@ qqq:
   observations_by_user_on_date: where user is the name of a user and date is a date
   observations_by_you_on_date: where date is a date
   observation_calendar_for: where user is the name of a user and year is a year such
-    as 2018
+    as 2019
   observation_date: '{{Identical|Date}}'
   observation_date?: '{{Identical|Date}}'
   observation_removed_from_the_project: where project is the name of a project
@@ -856,10 +877,6 @@ qqq:
     {{Identical|Photo}}
   photo?: '{{Identical|Photo}}'
   photo_attribution: where attribution is the author's name
-  photo_by: |-
-    Used as a header above a user's name, as in "Photo by\nAbdul", so if
-    that doesn't make sense syntactically, something that works as a header
-    would be appropriate, like just "Photo"
   photo_by_id_attribution: where id is an identifier and attribution is the author's
     name
   photo_destroyed_because_it_was_deleted_from: where site_name is the site name
@@ -1034,10 +1051,12 @@ qqq:
   sat: Abbreviation for Saturday, a day of the week.
   save: '{{Identical|Save}}'
   search: '{{Identical|Search}}'
+  second_person_possessive_plural: |-
+    where noun is a resource like an observation
+    used in "Your Observations", "Your Lists", "Your Identifications" and "Your Projects"
   second_person_possessive_singular: |-
     where noun is a resource like an observation
     used in "Your Observations", "Your Lists", "Your Identifications" and "Your Projects"
-  second_person_possessive_singular_: where noun is a resource like an observation
   select: '{{Identical|Select}}'
   select_all: '{{Identical|Select all}}'
   select_photos_from_your_photo_stream: where site_name is the name of a site
@@ -1163,6 +1182,9 @@ qqq:
     translate both `one` and `other` or users of this language will experience crashes.
   taxonomy: '{{Identical|Taxonomy}}'
   taxon_: '{{Identical|Taxon}}'
+  taxon_observed_by_html: |-
+    Header usually followed by a user's name, e.g. "Bear observed by Svetlana"
+    where "Svetlana" is generally on a new line
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes
     here].
   taxonomy_details_for: https://www.inaturalist.org/taxa/797944/taxonomy_details
@@ -1516,8 +1538,8 @@ qqq:
           an email address
       edit:
         licensing_desc_html: where site_name is the site name
-        taxon_change_desc: where site_name is the site name
         prefers_community_taxa_desc: where site_name is the site name
+        taxon_change_desc: where site_name is the site name
       show:
         take_a_chance_to_review_html: where link is a URL to the website help page
     welcome:

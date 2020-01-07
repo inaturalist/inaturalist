@@ -843,9 +843,14 @@ $nav-btn-dim: 40px;
   position: absolute;
   top: 5px;
   right: 5px;
+  color: white;
+}
+.TaxonThumbnail .badge a {
+  color: white;
 }
 .TaxonThumbnail .badge.with-tip {
   cursor: pointer;
+  z-index: 1;
 }
 
 .TaxonThumbnail {
@@ -873,6 +878,9 @@ $nav-btn-dim: 40px;
   .outdated .sciname,
   .outdated .comname {
     text-decoration: line-through;
+  }
+  i.fa {
+    color: $text-grey;
   }
 }
 

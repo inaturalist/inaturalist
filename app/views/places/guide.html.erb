@@ -26,8 +26,6 @@
   <%= will_paginate @taxa, :renderer => INatLinkRenderer %>
 <% else %>
   <div class="readable nocontent">
-    This place has no check list, so there is no guide<% if @place_geometry %>, but you can still
-    <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
-    <% end %>
+    <%=t :this_place_has_no_check_list %>
   </div>
 <% end -%>

@@ -9,7 +9,7 @@
     .name-row {
       display: inline-block;
     }
-    li.tabular {
+    li.tabular.has-children {
       .row-content {
         display: table-row;
         padding: 3px 0px 5px 5px;
@@ -21,8 +21,16 @@
         display: table-cell;
         padding: 3px 5px 5px 5px;
       }
-      li.current .row-content > * {
+      li.current.has-children .row-content > * {
         border-bottom: 1px solid #efefef;
+      }
+      li.current.has-children li:last-child {
+        .row-content > * {
+          border-bottom: 0 none;
+        }
+      }
+      .label-obs-count {
+        white-space: nowrap;
       }
     }
     .label-complete {
@@ -84,8 +92,9 @@
         color: #23527c;
       }
     }
-    li.current > .row-content > .SplitTaxon {
-      font-weight: 800;
+    li.current > .row-content .SplitTaxon,
+    li.current > .row-content .SplitTaxon a {
+      font-weight: 700 !important;
     }
     .SplitTaxon.has-com-name .secondary-name,
     i {

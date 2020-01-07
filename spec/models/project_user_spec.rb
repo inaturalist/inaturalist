@@ -57,8 +57,7 @@ describe ProjectUser, "creation" do
 end
 
 describe ProjectUser do
-  before(:each) { enable_elastic_indexing(Observation, Taxon, Identification) }
-  after(:each) { disable_elastic_indexing(Observation, Taxon, Identification) }
+  elastic_models( Observation, Taxon, Identification )
 
   describe "updating curator_coordinate_access" do
     before(:all) { DatabaseCleaner.strategy = :truncation }

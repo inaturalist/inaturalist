@@ -275,16 +275,6 @@ img.mini.usericon {
   background: image-url('silk/help.png') 0% 50% no-repeat;
 }
 
-#subnav #follow_button {
-  padding-left: 20px;
-  background: image-url('follow-icon-eee-15px.png') 0% 50% no-repeat;
-}
-
-#subnav #follow_button:hover,
-#subnav #follow_button.active {
-  background: image-url('follow-icon-nm-15px.png') 0% 50% no-repeat;
-}
-
 #subnav .message_link {background: none;padding-left:5px;}
 #subnav .message_link:hover {background: none;}
 #subnav .message_link .ui-icon {background-image: image-url('jquery-ui/ui-icons_888888_256x240.png');}
@@ -574,57 +564,147 @@ ul.leafylist li li:first-child {
   }
   p:last-child { margin-bottom: 0; }
 
-  .btn-donate {
-    margin-bottom: 20px;
-    font-weight: bold;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    @media (min-width: 768px) {
-      font-size: 9px;
-    }
+  .links-col {
+    column-count: 2;
     @media (min-width: 992px) {
-      font-size: 12px;
+      column-count: 2;
     }
-    @media (min-width: 1200px) {
+  }
+
+  .one-line {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-end;
+    .btn-donate {
+      max-width: 158px;
+      margin: auto;
+      font-weight: bold;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 9px;
+      padding-top: 9px;
+      @media (min-width: 992px) {
+        font-size: 12px;
+        padding-top: 7px;
+      }
+      @media (min-width: 1200px) {
+        font-size: 16px;
+        padding-top: 7px;
+      }
+    }
+  }
+  .buttons-col {
+    .one-line {
+      display: block;
+    }
+    .btn-donate {
+      margin-bottom: 10px;
       font-size: 16px;
+      padding-top: 7px;
+    }
+    &.short-text {
+      @media (min-width: 992px) {
+        .one-line {
+          display: flex;
+          align-items: flex-end;
+        }
+        .btn-donate {
+          margin-left: 10px;
+          font-size: 16px;
+          padding-top: 7px;
+        }
+      }
+    }
+    .btn-donate {
+      letter-spacing: 1px;
+    }
+    .social-media {
+      display: flex;
+      justify-content: center;
+    }
+    .social-media-link {
+      margin-left: 15%;
     }
   }
 
   .social-media {
     text-align: center;
+    display: flex;
+    justify-content: space-around;
   }
+  $social-media-link-dim: 38px;
+  $social-media-link-font-size: 21px;
+  $social-media-link-dim-1200: 42px;
+  $social-media-link-font-size-1200: 23px;
   .social-media-link {
     color: transparent;
     display: inline-block;
-    width: 42px;
-    height: 42px;
     background-color: #ccc;
     border-radius: 100px;
     text-align: center;
-    margin: 0 10px;
+    width: $social-media-link-dim;
+    height: $social-media-link-dim;
+    @media (min-width: 1200px) {
+      width: $social-media-link-dim-1200;
+      height: $social-media-link-dim-1200;
+    }
   }
 
   .social-media-link:first-child {
     margin-bottom: 20px;
+    margin-left: 0px;
   }
   .social-media-link:before {
     font: normal normal normal 14px/1 FontAwesome;
     display: inline-block;
     color: white;
-    font-size: 23px;
-    line-height: 42px;
+    line-height: $social-media-link-dim + 2px;
+    font-size: $social-media-link-font-size;
+    @media (min-width: 1200px) {
+      line-height: $social-media-link-dim-1200 + 2px;
+      font-size: $social-media-link-font-size-1200;
+    }
   }
   .social-media-link.twitter {
     background-color: #4099ff;
   }
   .social-media-link.twitter:before {
     content: "\f099";
+    position: relative;
+    // top: -1px;
+    // @media (min-width: 992px) {
+      top: 0px;
+      left: 1px;
+    // }
+    @media (min-width: 1200px) {
+      top: 0px;
+      left: 1px;
+    }
   }
   .social-media-link.facebook {
     background-color: #3b5998;
   }
   .social-media-link.facebook:before {
     content: "\f09a";
+    position: relative;
+    left: -0.5px;
+  }
+  .social-media-link.instagram {
+    background: white;
+  }
+  .social-media-link.instagram:before {
+    // https://codepen.io/thomasrye/pen/VaRoYv
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    content: "\f16d";
+    $instagram-icon-size-bump: 2px;
+    line-height: $social-media-link-dim + $instagram-icon-size-bump - 1;
+    font-size: $social-media-link-font-size + $instagram-icon-size-bump;
+    @media (min-width: 1200px) {
+      line-height: $social-media-link-dim-1200 + $instagram-icon-size-bump;
+      font-size: $social-media-link-font-size-1200 + $instagram-icon-size-bump;
+    }
   }
 }
 
@@ -818,15 +898,6 @@ ul.leafylist li li:first-child {
 .count, .count a { color: #74AC00; }
 .good  { color: #74AC00; }
 .bad  { color: deeppink; }
-
-.feeds a {
-  background: image-url('silk/feed.png') no-repeat 0 50%;
-  padding: 2px 0px 2px 20px;
-  margin-right: 0.25em;
-}
-a.kmllink{background-image:image-url('google_earth.png');}
-a.csvlink{background-image:image-url('silk/table.png');}
-
 
 /* Modal Links */
 .modal_link,
@@ -2258,4 +2329,23 @@ $header-line-height: 34px;
 }
 #header #initiative-branding {
   line-height: 0;
+}
+
+.announcement {
+  position: relative;
+  .dismiss-announcement-link {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: $text-grey;
+    color: white;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 20px;
+    padding: 0;
+    border: 0 transparent;
+  }
 }

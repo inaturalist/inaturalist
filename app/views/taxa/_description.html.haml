@@ -29,3 +29,88 @@
         =t :no_matching_article_from_x, :x => @describer.describer_name
   - else
     =raw @description
+  - if params[:wiki_prompt] && !@taxon.rank.blank? && !%w(stateofmatter parvorder zoosection zoosubsection supertribe subtribe genushybrid subgenus section subsection complex).include?( @taxon.rank ) && I18n.locale.to_s =~ /^en/ && ( @description.blank? || @describer == TaxonDescribers::Inaturalist )
+    %hr
+    .alert.alert-warning.upstacked
+      %p
+        Help the world out and
+        = link_to "create this page on Wikipedia!", "https://#{I18n.locale.to_s.split( "-" )[0]}.wikipedia.org/w/index.php?title=#{@taxon.name}&action=edit"
+      %p Here's a template to get you started:
+      :ruby
+        stub = if @taxon.iconic_taxon
+          "#{Taxon::ICONIC_TAXON_NAMES[@taxon.iconic_taxon_name].split( " " ).last.singularize}-stub"
+        else
+          "biology-stub"
+        end
+        translated_rank = if @taxon.rank.blank?
+          I18n.t( :rank, default: "rank" ).downcase
+        else
+          I18n.t( "ranks.#{@taxon.rank}", default: @taxon.rank ).downcase
+        end
+        image = nil
+        if taxon_photo = @taxon.taxon_photos.sort_by{|tp| tp.position || tp.id}.detect{|tp| tp.photo.is_a?( WikimediaCommonsPhoto ) }
+          image = taxon_photo.photo.native_photo_id
+        end
+        structure = <<-WIKI
+          #{I18n.t(:taxon_is_a_rank, taxon: @taxon.name, rank: translated_rank )}.
+          ==Description==
+        WIKI
+        if @taxon.species?
+          structure += <<-WIKI
+            ==Range==
+            ==Habitat==
+            ==Ecology==
+          WIKI
+        end
+        structure += <<-WIKI
+          ==Etymology==
+          ==Taxonomy==
+          ==References==
+        {{Reflist}}
+        WIKI
+        box = <<-WIKI
+          {{automatic taxobox
+          | taxon = #{@taxon.name}
+          | rank = #{@taxon.rank}
+          | parent = #{@taxon.parent ? ( @taxon.parent.wikipedia_title.blank? ? @taxon.parent.name : @taxon.parent.wikipedia_title ) : "" }
+          }}
+        WIKI
+        if @taxon.species?
+          box = <<-WIKI
+            {{Speciesbox
+            | parent = #{@taxon.genus.name}
+            #{"| image = #{image}" if image}
+            }}
+          WIKI
+        end
+        wikitext = if @taxon.rank_level && @taxon.rank_level < Taxon::SPECIES_LEVEL
+          <<-WIKI
+            #REDIRECT [[#{@taxon.species.name}]]
+          WIKI
+        else
+          <<-WIKI
+            #{box}
+            #{structure}
+            {{#{stub}}}
+          WIKI
+        end
+      %pre.code
+        = wikitext.gsub( /^\s+/, "" )
+      %ul
+        %li
+          Learn more about
+          %a{ href: "https://en.wikipedia.org/wiki/Template:Speciesbox" }
+            Speciesbox
+        %li
+          Learn more about
+          %a{ href: "https://en.wikipedia.org/wiki/Template:Automatic_taxobox" }
+            Automatic taxobox
+        %li
+          Learn more about
+          %a{ href: "https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Stub_sorting/Stub_types#Biological_sciences" }
+            stubs
+        %li
+          Remember to
+          %strong cite your sources!
+
+

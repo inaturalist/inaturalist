@@ -17,7 +17,7 @@ class Observation < ActiveRecord::Base
   earns_privilege UserPrivilege::COORDINATE_ACCESS
   
   # Why aren't we using after_save? Because we need this to run before the
-  # after_create created by notifiesi_subscribers_of :public_places runs
+  # after_create created by notifies_subscribers_of :public_places runs
   after_create :update_observations_places
   after_update :update_observations_places
   
@@ -56,7 +56,7 @@ class Observation < ActiveRecord::Base
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
-    :taxon_introduced, :taxon_endemic, :taxon_native
+    :taxon_introduced, :taxon_endemic, :taxon_native, :wait_for_index_refresh
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -78,7 +78,7 @@ class Observation < ActiveRecord::Base
   # Track whether obscuration has changed over the life of this instance
   attr_accessor :obscuration_changed
   attr_accessor :skip_reassess_same_day_observations
-  
+
   def captive_flag
     @captive_flag ||= !quality_metrics.detect{|qm| 
       qm.user_id == user_id && qm.metric == QualityMetric::WILD && !qm.agree?
@@ -316,8 +316,8 @@ class Observation < ActiveRecord::Base
 
   validates :latitude, numericality: {
     allow_blank: true,
-    less_than_or_equal_to: 90,
-    greater_than_or_equal_to: -90
+    less_than: 90,
+    greater_than: -90
   }
   validates :longitude, numericality: {
     allow_blank: true,
@@ -752,19 +752,55 @@ class Observation < ActiveRecord::Base
   end
   
   def to_plain_s(options = {})
-    s = self.species_guess.blank? ? I18n.t(:something) : self.species_guess
-    if options[:verb]
-      s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
+    # I18n.t( :observation_brief_something_on_day )
+    # I18n.t( :observation_brief_something_on_day_by_user )
+    # I18n.t( :observation_brief_something_by_user )
+    # I18n.t( :observation_brief_something_from_place )
+    # I18n.t( :observation_brief_something_from_place_by_user )
+    # I18n.t( :observation_brief_something_from_place_on_day )
+    # I18n.t( :observation_brief_something_from_place_on_day_by_user )
+    # I18n.t( :observation_brief_something_from_place_on_day_at_time )
+    # I18n.t( :observation_brief_something_from_place_on_day_at_time_by_user )
+    # I18n.t( :observation_brief_taxon_on_day )
+    # I18n.t( :observation_brief_taxon_on_day_by_user )
+    # I18n.t( :observation_brief_taxon_by_user )
+    # I18n.t( :observation_brief_taxon_from_place )
+    # I18n.t( :observation_brief_taxon_from_place_by_user )
+    # I18n.t( :observation_brief_taxon_from_place_on_day )
+    # I18n.t( :observation_brief_taxon_from_place_on_day_by_user )
+    # I18n.t( :observation_brief_taxon_from_place_on_day_at_time )
+    # I18n.t( :observation_brief_taxon_from_place_on_day_at_time_by_user )
+    i18n_vars = {}
+    key = if !species_guess.blank? && species_guess.to_s !~ /#{I18n.t(:something)}/
+      i18n_vars[:taxon] = species_guess
+      "taxon"
+    elsif taxon
+      i18n_vars[:taxon] = common_name( locale: I18n.locale )
+      i18n_vars[:taxon] ||= taxon.name
+      "taxon"
+    else
+      "something"
     end
     unless self.place_guess.blank? || options[:no_place_guess] || coordinates_obscured?
-      s += " #{I18n.t(:from, :default => 'from').downcase} #{self.place_guess}"
+      key += "_from_place"
+      i18n_vars[:place] = place_guess
     end
-    s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
+    unless self.observed_on.blank?
+      key += "_on_day"
+      i18n_vars[:day] = I18n.l( self.observed_on, format: :long )
+    end
     unless self.time_observed_at.blank? || options[:no_time]
-      s += " #{I18n.t(:at)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
+      key += "_at_time"
+      i18n_vars[:time] = I18n.l( time_observed_at_in_zone, format: :compact )
     end
-    s += " #{I18n.t(:by).downcase} #{user.try_methods(:name, :login)}" unless options[:no_user]
-    s.gsub(/\s+/, ' ')
+    unless options[:no_user]
+      key += "_by_user"
+      i18n_vars[:user] = user.try_methods(:name, :login)
+    end
+    if key != "something"
+      key = "observation_brief_#{key}"
+    end
+    I18n.t( key, i18n_vars.merge( default: I18n.t( :something ) ) )
   end
   
   def time_observed_at_utc
@@ -855,6 +891,7 @@ class Observation < ActiveRecord::Base
     tz_offset_pattern = /([+-]\d{4})$/ # contains -0800
     tz_js_offset_pattern = /(GMT)?([+-]\d{4})/ # contains GMT-0800
     tz_colon_offset_pattern = /(GMT|HSP)([+-]\d+:\d+)/ # contains (GMT-08:00)
+    tz_moment_offset_pattern = /\s([+-]\d{2})$/ # contains -08, +05, etc.
     tz_failed_abbrev_pattern = /\(#{tz_colon_offset_pattern}\)/
     
     if date_string =~ /#{tz_js_offset_pattern} #{tz_failed_abbrev_pattern}/
@@ -905,6 +942,9 @@ class Observation < ActiveRecord::Base
         ( negpos = offset.to_i > 0 ? 1 : -1 ) &&
         ( parsed_time_zone = ActiveSupport::TimeZone[negpos * t.hour+t.min/60.0] )
       date_string = date_string.sub(/#{tz_colon_offset_pattern}|#{tz_failed_abbrev_pattern}/, '')
+    elsif ( offset = date_string[tz_moment_offset_pattern, 1] ) &&
+        ( parsed_time_zone = ActiveSupport::TimeZone[offset.to_i] )
+      date_string = date_string.sub( tz_moment_offset_pattern, "" )
     end
     
     if parsed_time_zone && observed_on_string_changed?
@@ -1501,7 +1541,7 @@ class Observation < ActiveRecord::Base
     if (
       ( latitude == private_latitude || longitude == private_longitude ) &&
       !( private_latitude_changed? || private_longitude_changed? ) &&
-      !geoprivacy_changed_from_private_to_obscured
+      !geoprivacy_changed_from_private_to_obscured && latitude_was && longitude_was
     )
       self.latitude, self.longitude = [latitude_was, longitude_was]
       set_geom_from_latlon
@@ -1921,6 +1961,7 @@ class Observation < ActiveRecord::Base
   end
 
   def must_not_be_on_null_island
+    return true if editing_user_id != user_id
     lat = latitude || private_latitude
     lng = longitude || private_longitude
     return true if lat.nil? || lng.nil?
@@ -2166,17 +2207,10 @@ class Observation < ActiveRecord::Base
   end
 
   def update_quality_metrics
-    Rails.logger.debug "[DEBUG] update_quality_metrics"
     return true if skip_quality_metrics
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
-    # elsif captive_flag.noish? && force_quality_metrics
-    #   Rails.logger.debug "captive_flag: #{captive_flag}"
-    #   Rails.logger.debug "captive_flag.noish?: #{captive_flag.noish?}"
-    #   QualityMetric.vote( user, self, QualityMetric::WILD, true )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
-      Rails.logger.debug "existing: #{qm}, captive_flag: #{captive_flag}"
-      Rails.logger.debug "existing: #{qm}, captive_flag.noish?: #{captive_flag.noish?}"
       qm.update_attributes( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
@@ -2298,33 +2332,40 @@ class Observation < ActiveRecord::Base
   def self.update_stats_for_observations_of( taxon )
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    result = Identification.elastic_search(
-      filters: [ { bool: { should: [
-        { term: { "taxon.ancestor_ids": taxon.id } },
-        { term: { "observation.taxon.ancestor_ids": taxon.id } },
-      ]}}],
-      size: 0,
-      aggregate: {
-        obs: {
-          terms: { field: "observation.id", size: 3000000 }
-        }
-      }
-    )
-    obs_ids = result.response.aggregations.obs.buckets.map{ |b| b[:key] }
-    obs_ids.in_groups_of(1000) do |batch_ids|
-      Observation.includes(:taxon, { identifications: :taxon }, :flags,
-        { photos: :flags }, :quality_metrics, :sounds, :votes_for).where(id: batch_ids).find_each do |o|
+    search_params = {
+      ident_taxon_id: taxon.id,
+      order_by: "id",
+      order: "asc",
+      per_page: 1000
+    }
+    results_remaining = true
+    batch_start_id = 0
+    while results_remaining
+      puts batch_start_id
+      observations = Observation.page_of_results( search_params.merge( id_above: batch_start_id ) )
+      if observations.blank? || observations.total_entries == 0
+        results_remaining = false
+        break
+      end
+      Observation.preload_associations(observations, [
+        :taxon, :flags, :quality_metrics, :sounds, :votes_for,
+        { identifications: :taxon },
+        { photos: :flags }
+      ])
+      changed_ids = []
+      observations.each do |o|
         o.set_community_taxon
         o.update_stats(skip_save: true)
         if o.changed?
           o.skip_indexing = true
           o.save
+          changed_ids << o.id
           Identification.update_categories_for_observation( o )
         end
       end
-      Observation.elastic_index!(ids: batch_ids)
+      Observation.elastic_index!(ids: changed_ids)
+      batch_start_id = observations.last.id
     end
-    Rails.logger.info "[INFO #{Time.now}] Finished Observation.update_stats_for_observations_of(#{taxon})"
   end
   
   def self.random_neighbor_lat_lon(lat, lon)
@@ -2466,7 +2507,8 @@ class Observation < ActiveRecord::Base
 
   def self.places_without_obscuration_protection
     return [] if Rails.env.test?
-    Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
+    @@places_without_obscuration_protection ||=
+      Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
       [
         19126, # City Nature Challenge 2018
         29625  # City Nature Challenge 2019
@@ -2915,7 +2957,8 @@ class Observation < ActiveRecord::Base
   end
 
   def update_public_positional_accuracy
-    update_column(:public_positional_accuracy, calculate_public_positional_accuracy)
+    self.public_positional_accuracy = calculate_public_positional_accuracy
+    update_column(:public_positional_accuracy, public_positional_accuracy)
   end
 
   def calculate_public_positional_accuracy
@@ -2932,6 +2975,7 @@ class Observation < ActiveRecord::Base
 
   def update_mappable
     update_column(:mappable, calculate_mappable)
+    true
   end
 
   def calculate_mappable
@@ -3245,10 +3289,6 @@ class Observation < ActiveRecord::Base
 
   def self.index_observations_for_user(user_id)
     Observation.elastic_index!( scope: Observation.by( user_id ) )
-  end
-
-  def self.refresh_es_index
-    Observation.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
 end

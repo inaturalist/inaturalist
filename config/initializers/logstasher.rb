@@ -7,7 +7,7 @@ module Logstasher
     "HTTP_X_FORWARDED_FOR", "HTTP_X_FORWARDED_PROTO", "ORIGINAL_FULLPATH",
     "HTTP_ACCEPT_LANGUAGE", "HTTP_REFERER", "REMOTE_ADDR", "REQUEST_METHOD",
     "SERVER_ADDR", "CONTENT_LENGTH", "HTTP_ORIGIN", "HTTP_AUTHORIZATION",
-    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE", "HTTP_X_COUNTRY_CODE" ]
+    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE", "HTTP_X_COUNTRY_CODE", "HTTP_DNT" ]
 
   IP_PARAMS = [
     "HTTP_X_CLUSTER_CLIENT_IP", "HTTP_X_FORWARDED_FOR", "REMOTE_ADDR",
@@ -143,6 +143,20 @@ module Logstasher
       }))
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_exception failed: #{e}"
+    end
+  end
+
+  def self.write_custom_log(message, custom={})
+    return if Rails.env.test?
+    Logstasher.replace_known_types!(custom)
+    begin
+      Logstasher.write_hash( custom.merge({
+        "@timestamp": Time.now,
+        subtype: "Custom",
+        error_message: message
+      }))
+    rescue Exception => e
+      Rails.logger.error "[ERROR] Logstasher.write_custom_log failed: #{e}"
     end
   end
 

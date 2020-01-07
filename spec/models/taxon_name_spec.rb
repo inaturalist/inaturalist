@@ -167,8 +167,8 @@ describe TaxonName, "choose_common_name" do
   end
 
   it "should choose a locale-specific place-specific name" do
-    california = Place.make!
-    oregon = Place.make!
+    california = make_place_with_geom
+    oregon = make_place_with_geom
     tn_en = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
     tn_ca = TaxonName.make!(:name => "California bay laurel", :lexicon => "English", :taxon => t)
     ptn_ca = PlaceTaxonName.make!(:taxon_name => tn_ca, :place => california)
@@ -181,21 +181,21 @@ describe TaxonName, "choose_common_name" do
   end
 
   it "should pick a locale-specific place-specific name for a parent of the requested place" do
-    california = Place.make!
-    oregon = Place.make!
+    california = make_place_with_geom
+    oregon = make_place_with_geom
     tn_en = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
     tn_ca = TaxonName.make!(:name => "California bay laurel", :lexicon => "English", :taxon => t)
     ptn_ca = PlaceTaxonName.make!(:taxon_name => tn_ca, :place => california)
     t.reload
-    p = Place.make!(:parent => california, :name => "Alameda County")
+    p = make_place_with_geom(:parent => california, :name => "Alameda County")
     expect(p.self_and_ancestor_ids).to include(california.id)
     expect(TaxonName.choose_common_name(t.taxon_names, :place => p)).to eq tn_ca
     expect(TaxonName.choose_common_name(t.taxon_names)).to eq tn_en
   end
 
   it "should pick names based on the site's place" do
-    california = Place.make!
-    oregon = Place.make!
+    california = make_place_with_geom
+    oregon = make_place_with_geom
     tn_en = TaxonName.make!(name: "bay tree", lexicon: "English", taxon: t)
     tn_es = TaxonName.make!(name: "Laurel de California", lexicon: "Spanish", taxon: t)
     tn_or = TaxonName.make!(name: "Oregon myrtle", lexicon: "English", taxon: t)
@@ -206,7 +206,7 @@ describe TaxonName, "choose_common_name" do
   end
 
   it "should favor a locale within a place" do
-    p = Place.make!
+    p = make_place_with_geom
     tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
     tn_es = TaxonName.make!( name: "Laurel de California", lexicon: "Spanish", taxon: t )
     ptn_tn_en = PlaceTaxonName.make!( taxon_name: tn_en, place: p, position: 1 )
@@ -216,8 +216,8 @@ describe TaxonName, "choose_common_name" do
   end
 
   it "should not pick a name if it doesn't match the locale even if it matches an ancestor place" do
-    ancestor_place = Place.make!
-    place = Place.make!( parent: ancestor_place )
+    ancestor_place = make_place_with_geom
+    place = make_place_with_geom( parent: ancestor_place )
     tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
     tn_es = TaxonName.make!( name: "Laurel de California", lexicon: "Spanish", taxon: t )
     ptn_tn_en = PlaceTaxonName.make!( taxon_name: tn_en, place: ancestor_place, position: 1 )
@@ -227,7 +227,7 @@ describe TaxonName, "choose_common_name" do
   end
 
   it "should pick a name if it doesn't match the locale if it exactly matches a place" do
-    place = Place.make!
+    place = make_place_with_geom
     tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
     ptn_tn_en = PlaceTaxonName.make!( taxon_name: tn_en, place: place, position: 1 )
     t.reload

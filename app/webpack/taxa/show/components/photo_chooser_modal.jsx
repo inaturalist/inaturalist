@@ -65,7 +65,7 @@ class PhotoChooserModal extends React.Component {
 
   fetchPhotos( props, options = {} ) {
     const { provider } = this.state;
-    this.setState( { loading: true } );
+    this.setState( { loading: true, isLastPage: false } );
     const chosenProvider = options.provider || provider || "inat";
     this.setState( { page: options.page || 1, photos: [] } );
     switch ( chosenProvider ) {
@@ -101,6 +101,7 @@ class PhotoChooserModal extends React.Component {
       queryParams.search_on = "taxon_page_obs_photos";
     }
     inatjs.observations.search( queryParams ).then( response => {
+      const isLastPage = ( response.page * response.per_page ) >= response.total_results;
       const obsPhotos = _.compact( _.flatten( _.map( response.results, "photos" ) ) );
       const photos = _.map( obsPhotos, p => Object.assign( {}, p, {
         small_url: p.url.replace( "square", "small" ),
@@ -108,6 +109,7 @@ class PhotoChooserModal extends React.Component {
       } ) );
       this.setState( {
         loading: false,
+        isLastPage,
         photos: _.uniqBy( photos, photo => photo.chooserID )
       } );
     } ).catch( ( ) => {
@@ -237,7 +239,8 @@ class PhotoChooserModal extends React.Component {
       photos,
       loading,
       chosen,
-      submitting
+      submitting,
+      isLastPage
     } = this.state;
     let searchPlaceholder = I18n.t( "type_species_name" );
     if ( provider === "inat" ) {
@@ -255,7 +258,7 @@ class PhotoChooserModal extends React.Component {
           { I18n.t( "prev" ) }
         </Button>
         <Button
-          disabled={photos.length < 24}
+          disabled={photos.length < 24 || isLastPage}
           onClick={( ) => this.fetchNextPhotos( )}
           title={I18n.t( "next" )}
         >
@@ -320,7 +323,7 @@ class PhotoChooserModal extends React.Component {
                       <option value="wikimedia_commons">Wikimedia Commons</option>
                     </select>
                   </div>
-                  { photos.length > 0 && prevNextButtons }
+                  { ( photos.length > 0 || page > 1 ) && prevNextButtons }
                 </form>
                 <div className="photos">
                   { photos.map( photo => (

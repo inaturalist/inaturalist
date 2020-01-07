@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ObservationsController do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   describe "create" do
     let(:user) { User.make! }
     before do
@@ -163,15 +162,56 @@ describe ObservationsController do
   end
 
   describe "show" do
+    render_views
+    let(:observation) { Observation.make! }
     it "should not include the place_guess when coordinates obscured" do
       original_place_guess = "Duluth, MN"
       o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: original_place_guess)
       get :show, id: o.id
       expect( response.body ).not_to be =~ /#{original_place_guess}/
     end
+
     it "should 404 for absurdly large ids" do
       get :show, id: "389299563_507aed5ae4_s.jpg"
       expect( response ).to be_not_found
+    end
+
+    it "renders a self-referential canonical tag" do
+      get :show, id: observation.id
+      expect( response.body ).to have_tag(
+        "link[rel=canonical][href='#{observation_url( observation, host: Site.default.url )}']" )
+    end
+
+    it "renders a canonical tag from other sites to default site" do
+      different_site = Site.make!
+      get :show, id: observation.id, inat_site_id: different_site.id
+      expect( response.body ).to have_tag(
+        "link[rel=canonical][href='#{observation_url( observation, host: Site.default.url )}']" )
+    end
+
+    describe "opengraph description" do
+      it "should include not be blank if there's a taxon, date, and place_guess" do
+        o = make_research_grade_candidate_observation( taxon: Taxon.make!, place_guess: "this rad pad" )
+        expect( o.taxon ).not_to be_blank
+        expect( o.observed_on ).not_to be_blank
+        expect( o.place_guess ).not_to be_blank
+        desc = o.to_plain_s
+        expect( desc ).not_to be =~ /something/i
+        get :show, id: o.id
+        html = Nokogiri::HTML( response.body )
+        og_desc = html.at( "meta[property='og:description']" )
+        expect( og_desc[:content] ).to match /#{desc}/
+      end
+
+      it "should include the taxon's common name if there's a taxon but no species_guess" do
+        t = TaxonName.make!( lexicon: "English" ).taxon
+        o = make_research_grade_candidate_observation( taxon: t )
+        get :show, id: o.id
+        html = Nokogiri::HTML( response.body )
+        og_desc = html.at( "meta[property='og:description']" )
+        expect( o.taxon.common_name ).not_to be_blank
+        expect( og_desc[:content] ).to match /#{o.taxon.common_name.name}/
+      end
     end
   end
   
@@ -203,64 +243,6 @@ describe ObservationsController do
       expect(response).to be_private_page_cached
       post :create, :observation => {:species_guess => "foo"}
       expect(observations_by_login_all_path(@user.login, :format => :csv)).to_not be_private_page_cached
-    end
-  end
-
-  describe "project" do
-    render_views
-
-    describe "viewed by project curator" do
-      let(:p) { Project.make! }
-      let(:pu) { ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR) }
-      let(:u) { pu.user }
-      before do
-        sign_in u
-      end
-
-      it "should include private coordinates" do
-        po = make_project_observation(project: p, prefers_curator_coordinate_access: true)
-        expect( po ).to be_prefers_curator_coordinate_access
-        o = po.observation
-        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
-        o.reload
-        expect( o.private_latitude ).to_not be_blank
-        get :project, :id => p.id
-        expect(response.body).to be =~ /#{o.private_latitude}/
-      end
-
-      it "should not include private coordinates if observer is not a member" do
-        po = ProjectObservation.make!(project: p)
-        o = po.observation
-        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
-        o.reload
-        expect(o.private_latitude).to_not be_blank
-        get :project, :id => p.id
-        expect(response.body).not_to be =~ /#{o.private_latitude}/
-      end
-
-      it "should not include private coordinates if observer does not prefer it" do
-        po = make_project_observation(preferred_curator_coordinate_access: false)
-        o = po.observation
-        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
-        o.reload
-        expect(o.private_latitude).to_not be_blank
-        get :project, :id => p.id
-        expect(response.body).not_to be =~ /#{o.private_latitude}/
-      end
-    end
-
-    it "should not include private coordinates when viewed by a normal project member" do
-      po = make_project_observation
-      o = po.observation
-      o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
-      o.reload
-      expect(o.private_latitude).to_not be_blank
-      p = po.project
-      pu = ProjectUser.make!(:project => p)
-      u = pu.user
-      sign_in u
-      get :project, :id => p.id
-      expect(response.body).to_not be =~ /#{o.private_latitude}/
     end
   end
 

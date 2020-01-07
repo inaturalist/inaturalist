@@ -4,9 +4,9 @@
       %meta{content: verification.strip, name: "google-site-verification"}
   %meta{content: "website", property: "og:type"}
   %meta{content: @site.name, property: "og:title"}
-  - if @site
-    %meta{content: image_url(@site.logo_square.url), property: "og:image"}
-    %meta{content: image_url(@site.logo_square.url), property: "twitter:image"}
+  - if @site && @site.shareable_image?
+    %meta{content: image_url(@site.shareable_image.url), property: "og:image"}
+    %meta{content: image_url(@site.shareable_image.url), property: "twitter:image"}
   %meta{content: root_url, property: "og:url"}
   %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site.name), property: "og:description"}
 - content_for(:title) do
@@ -15,7 +15,7 @@
 - unless announcements.blank?
   - announcements.each do |announcement|
     .announcement
-      = announcement.body.html_safe
+      = render "announcements/announcement", announcement: announcement
 - if @page
   - content_for(:extrajs) do
     = google_maps_js

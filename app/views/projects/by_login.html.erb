@@ -17,7 +17,7 @@
 <div class="column span-16">
   <div id="started" class="projects clear">
     <% if @projects.blank? -%>
-        <%= is_me? ? t(:you_havent) : t(:x_hasnt, :login => "#{@login}") %> <%= t(:joined_any_projects) %>
+        <%= is_me? ? t(:you_havent_joined_any_projects) : t(:user_hasnt_joined_any_projects, user: @login ) %>
     <% else %>
       <% @project_users.each_with_index do |project_user, i| %>
         <%= render :partial => 'project', :object => project_user.project, :locals => {
@@ -35,7 +35,9 @@
     <%= link_to t(:manage_your_project_invitations), project_invitations_path, :class => "button stacked invitations_button" %>
   <% end -%>
   <div id="started" class="projects clear box">
-    <h3> <%= t(:projects) %> <%= is_me? ? t(:you_admin) : t(:x_admin, :login => "#{@login}") %></h3>
+    <h3>
+      <%= is_me? ? t(:projects_you_admin) : t(:projects_user_admins, user: @login ) %>
+    </h3>
     <% if @started.blank? -%>
       <p class="meta noresults">
         <%= is_me? ? t(:no_project_to_admin_current_user) : t(:no_project_to_admin_login, login: @login.to_s) %>

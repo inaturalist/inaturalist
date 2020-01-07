@@ -126,10 +126,12 @@
                   <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
                   <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
                     <dl>
-                      <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
-                        <dt><%= privacy || "open" %></dt>
-                        <dd><%= description %></dd>
-                      <% end %>
+                      <dt><%= t(:open) %></dt>
+                      <dd><%= t(:open_description) %></dd>
+                      <dt><%= t(:obscured) %></dt>
+                      <dd><%= t(:obscured_description) %></dd>
+                      <dt><%= t(:private) %></dt>
+                      <dd><%= t(:private_description) %></dd>
                     </dl>
                   </div>
                 </div>
@@ -168,12 +170,6 @@
                 :checked => true,
                 :local_photos => @default_photo_identity.blank?
               } %>
-            </div>
-            <div class="compactfieldcontent" style="display: none">
-              <span><%=t :we_currently_support_flickr_for_image_hosting %></span>
-              <%= link_to t(:linked_flickr_hotwo, :site_name => @site.name),
-                          auth_url_for('flickr'),
-                          :target => "_blank" %>
             </div>
           </div>
         </div>

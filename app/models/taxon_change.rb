@@ -190,6 +190,7 @@ class TaxonChange < ActiveRecord::Base
   # possible / desired by its owner, or generate an update for the owner notifying them of 
   # the change
   def commit_records( options = {} )
+    # unless draft?
     unless valid?
       msg = "Failed to commit records for #{self}: #{errors.full_messages.to_sentence}"
       # Rails.logger.error "[ERROR #{Time.now}] #{msg}"
@@ -460,6 +461,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def index_taxon
+    # unless draft?
     Taxon.elastic_index!( ids: [input_taxa.map(&:id), output_taxa.map(&:id)].flatten.compact )
     true
   end

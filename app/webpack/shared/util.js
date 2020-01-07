@@ -1,5 +1,6 @@
 import baseFetch from "cross-fetch";
 import _ from "lodash";
+import moment from "moment-timezone";
 
 // Light wrapper around fetch to ensure credentials are always passed through
 const fetch = ( url, options = {} ) =>
@@ -76,7 +77,11 @@ function isBlank( val ) {
 
 function numberWithCommas( num ) {
   if ( !num && num !== 0 ) { return ""; }
-  return I18n.toNumber( num, { precision: 0 } );
+  return I18n.toNumber( num, {
+    precision: 0,
+    separator: I18n.t( "number.format.separator" ),
+    delimiter: I18n.t( "number.format.delimiter" )
+  } );
 }
 
 // "legacy disagreement" might be a better term here. Basically this is
@@ -116,6 +121,70 @@ const addImplicitDisagreementsToActivity = activity => {
   } );
 };
 
+const formattedDateTimeInTimeZone = ( dateTime, timeZone ) => {
+  const d = moment.tz( dateTime, timeZone );
+  let format = I18n.t( "momentjs.datetime_with_zone" );
+  // For some time zones, moment cannot output something nice like PDT and
+  // instead does something like -08. In this situations, we print a full offset
+  // like -08:00 instead
+  if ( parseInt( d.format( "z" ), 0 ) && parseInt( d.format( "z" ), 0 ) !== 0 ) {
+    format = I18n.t( "momentjs.datetime_with_offset" );
+  }
+  return d.format( format );
+};
+
+
+const inatreact = {
+  // Interpolate a translated string with React components as interpolation
+  // variables. I18n-js accepts interpolations but will only return a string, so
+  // if you want to have variables in that string that have complicated markup
+  // or (worse) interactive elements, you're either screwed or you're forced to
+  // patch together a bunch of smaller pieces of text in a way that makes the
+  // whole impossible to translate.
+  //
+  // This method will accept a key and interpolations like I18n.t, but it will return an array.
+  //
+  // All React components passed in as interpolations *must* have keys
+  //
+  // Non-interpolation params like defaultValue are not supported.
+  translate: ( key, interpolations = {} ) => {
+    if ( _.size( interpolations ) === 0 ) {
+      return I18n.t( key );
+    }
+    const stubInterpolations = {};
+    const reactInterpolations = {};
+    _.each( interpolations, ( v, k ) => {
+      if ( typeof ( v ) === "object" || typeof ( v ) === "function" ) {
+        stubInterpolations[k] = `{${k}}`;
+        reactInterpolations[k] = v;
+      } else {
+        stubInterpolations[k] = v;
+      }
+    } );
+    const stubTranslation = I18n.t( key, stubInterpolations );
+    let arr = [stubTranslation];
+    _.each( reactInterpolations, ( component, k ) => {
+      _.each( arr, ( piece, i ) => {
+        if ( typeof ( piece ) === "string" ) {
+          const bits = piece.split( `{${k}}` );
+          if ( bits.length === 2 ) {
+            arr[i] = [
+              bits[0],
+              component,
+              bits[1]
+            ];
+          }
+        }
+      } );
+      arr = _.flatten( arr );
+    } );
+    return _.filter( _.flatten( arr ), i => typeof ( i ) !== "string" || i.length > 0 );
+  }
+};
+inatreact.t = inatreact.translate;
+
+const stripTags = text => text.replace( /<.+?>/g, "" );
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -154,5 +223,8 @@ export {
   isBlank,
   numberWithCommas,
   addImplicitDisagreementsToActivity,
-  COLORS
+  formattedDateTimeInTimeZone,
+  COLORS,
+  inatreact,
+  stripTags
 };

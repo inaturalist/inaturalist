@@ -98,13 +98,20 @@ class Annotations extends React.Component {
     const valueLabel = I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}`, {
       defaultValue: value.label
     } );
+    const termDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( term.label )}`, {
+      defaultValue: false
+    } );
+    const valueDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( value.label )}`, {
+      defaultValue: valueLabel
+    } );
     const termPopover = (
       <Popover
         id={`annotation-popover-${a.uuid}`}
         className="AnnotationPopover"
       >
         <div className="contents">
-          <div className="view">{ I18n.t( "view" ) }:</div>
+          { termDefinition && <p>{ termDefinition }</p> }
+          <div className="view">{ I18n.t( "label_colon", { label: I18n.t( "view" ) } ) }</div>
           <div className="search">
             <a href={`/observations?term_id=${attr.id}&term_value_id=${value.id}`}>
               <i className="fa fa-arrow-circle-o-right" />
@@ -140,7 +147,9 @@ class Annotations extends React.Component {
         </td>
         <td className="value">
           <UserImage user={a.user} />
-          { valueLabel }
+          <span title={valueDefinition}>
+            { valueLabel }
+          </span>
           { action }
         </td>
         <td className="agree">
@@ -149,7 +158,11 @@ class Annotations extends React.Component {
               <i className="fa fa-check" />
             ) : null }
           </span>
-          { this.loggedIn && <i className={`fa ${agreeClass}`} onClick={voteAction} /> }
+          { this.loggedIn && (
+            <button type="button" className="btn btn-nostyle" onClick={voteAction}>
+              <i className={`fa ${agreeClass}`} />
+            </button>
+          ) }
           <span className="count">{ votesForCount }</span>
           { !this.loggedIn && <span className="fa" /> }
         </td>
@@ -251,7 +264,7 @@ class Annotations extends React.Component {
           className="AnnotationPopover"
         >
           <div className="contents">
-            <div className="view">{ I18n.t( "view" ) }:</div>
+            <div className="view">{ I18n.t( "label_colon", { label: I18n.t( "view" ) } ) }</div>
             <div className="search">
               <a href={`/observations?term_id=${ct.id}`}>
                 <i className="fa fa-arrow-circle-o-right" />
@@ -299,6 +312,11 @@ class Annotations extends React.Component {
                       <MenuItem
                         key={`term-${v.id}`}
                         eventKey={index}
+                        title={
+                          I18n.t( `controlled_term_definitions.${_.snakeCase( v.label )}`, {
+                            defaultValue: v.label
+                          } )
+                        }
                       >
                         {
                           I18n.t( `controlled_term_labels.${_.snakeCase( v.label )}`, {

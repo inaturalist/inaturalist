@@ -14,113 +14,264 @@ class Observation < ActiveRecord::Base
     :photos,
     { sounds: :user },
     { identifications: [ :stored_preferences, :taxon ] }, :project_observations,
-    { taxon: [ :taxon_names, :conservation_statuses ] },
+    { taxon: [ :conservation_statuses ] },
     { observation_field_values: :observation_field },
-    { comments: [ { user: :flags }, :flags ] } ) }
+    { comments: [ { user: :flags }, :flags, :moderator_actions ] } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :id, type: "integer"
-      indexes :uuid, type: "keyword"
-      indexes :identifier_user_ids, type: "integer"
-      indexes :ident_taxon_ids, type: "integer"
-      indexes :non_owner_identifier_user_ids, type: "integer"
-      indexes :identification_categories, type: "keyword"
-      indexes :photo_licenses, type: "keyword"
-      indexes :sound_licenses, type: "keyword"
-      indexes :taxon do
-        indexes :ancestry, type: "keyword"
-        indexes :min_species_ancestry, type: "keyword"
-        indexes :rank, type: "keyword"
-        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-        indexes :statuses, type: :nested do
-          indexes :authority, type: "keyword"
-          indexes :status, type: "keyword"
-          indexes :geoprivacy, type: "keyword"
+      indexes :annotations, type: :nested do
+        indexes :concatenated_attr_val, type: "keyword"
+        indexes :controlled_attribute_id, type: "short"
+        indexes :controlled_value_id, type: "short"
+        indexes :resource_type, type: "keyword"
+        indexes :uuid, type: "keyword"
+        indexes :user_id, type: "keyword"
+        indexes :vote_score, type: "byte"
+        indexes :votes do
+          indexes :created_at, type: "date", index: false
+          indexes :id, type: "integer", index: false
+          indexes :user_id, type: "integer", index: false
+          indexes :vote_flag, type: "boolean", index: false
         end
       end
-      indexes :ofvs, type: :nested do
-        indexes :uuid, type: "keyword"
-        indexes :name, type: "keyword"
-        indexes :name_ci, type: "text", analyzer: "keyword_analyzer"
-        indexes :value, type: "keyword"
-        indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
-        indexes :datatype, type: "keyword"
-        indexes :taxon_id, type: "integer"
-      end
-      indexes :annotations, type: :nested do
-        indexes :uuid, type: "keyword"
-        indexes :resource_type, type: "keyword"
-        indexes :concatenated_attr_val, type: "keyword"
-      end
+      indexes :cached_votes_total, type: "short"
+      indexes :captive, type: "boolean"
       indexes :comments do
-        indexes :uuid, type: "keyword"
         indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
-        indexes :user do
-          indexes :login, type: "keyword"
+        indexes :created_at, type: "date", index: false
+        indexes :created_at_details do
+          indexes :date, type: "date", index: false
+          indexes :day, type: "byte", index: false
+          indexes :hour, type: "byte", index: false
+          indexes :month, type: "byte", index: false
+          indexes :week, type: "byte", index: false
+          indexes :year, type: "short", index: false
         end
         indexes :flags do
-          indexes :flag, type: "keyword"
+          indexes :comment, type: "keyword", index: false
+          indexes :created_at, type: "date", index: false
+          indexes :flag, type: "keyword", index: false
+          indexes :id, type: "integer", index: false
+          indexes :resolved, type: "boolean", index: false
+          indexes :resolver_id, type: "integer", index: false
+          indexes :updated_at, type: "date", index: false
+          indexes :user_id, type: "integer", index: false
         end
+        indexes :hidden, type: "boolean"
+        indexes :id, type: "integer"
+        indexes :moderator_actions do
+          indexes :action, type: "keyword", index: false
+          indexes :created_at, type: "date"
+          indexes :created_at_details do
+            indexes :date, type: "date", index: false
+            indexes :day, type: "byte", index: false
+            indexes :hour, type: "byte", index: false
+            indexes :month, type: "byte", index: false
+            indexes :week, type: "byte", index: false
+            indexes :year, type: "short", index: false
+          end
+          indexes :id, type: "integer"
+          indexes :reason, type: "text", analyzer: "ascii_snowball_analyzer", index: false
+          indexes :user do
+            indexes :created_at, type: "date"
+            indexes :id, type: "integer"
+            indexes :login, type: "keyword"
+            indexes :spam, type: "boolean"
+            indexes :suspended, type: "boolean"
+          end
+        end
+        indexes :user do
+          indexes :created_at, type: "date"
+          indexes :id, type: "integer"
+          indexes :login, type: "keyword"
+          indexes :spam, type: "boolean"
+          indexes :suspended, type: "boolean"
+        end
+        indexes :uuid, type: "keyword"
       end
+      indexes :comments_count, type: "short"
+      indexes :community_taxon_id, type: "integer"
+      indexes :context_geoprivacy, type: "keyword"
+      indexes :context_taxon_geoprivacy, type: "keyword"
+      indexes :context_user_geoprivacy, type: "keyword"
+      indexes :created_at, type: "date"
+      indexes :created_at_details do
+        indexes :date, type: "date"
+        indexes :day, type: "byte"
+        indexes :hour, type: "byte"
+        indexes :month, type: "byte"
+        indexes :week, type: "byte"
+        indexes :year, type: "short"
+      end
+      indexes :created_time_zone, type: "keyword", index: false
+      indexes :description, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :faves_count, type: "short"
       indexes :flags do
-        indexes :flag, type: "keyword"
+        indexes :comment, type: "keyword", index: false
+        indexes :created_at, type: "date", index: false
+        indexes :flag, type: "keyword", index: false
+        indexes :id, type: "integer", index: false
+        indexes :resolved, type: "boolean", index: false
+        indexes :resolver_id, type: "integer", index: false
+        indexes :updated_at, type: "date", index: false
+        indexes :user_id, type: "integer", index: false
       end
-      indexes :user do
-        indexes :login, type: "keyword"
+      indexes :geojson, type: "geo_shape"
+      indexes :geoprivacy, type: "keyword"
+      indexes :id, type: "integer"
+      indexes :id_please, type: "boolean"
+      indexes :ident_taxon_ids, type: "integer"
+      indexes :identification_categories, type: "keyword"
+      indexes :identifications_count, type: "short"
+      indexes :identifications_most_agree, type: "boolean"
+      indexes :identifications_most_disagree, type: "boolean"
+      indexes :identifications_some_agree, type: "boolean"
+      indexes :identifier_user_ids, type: "integer"
+      indexes :license_code, type: "keyword"
+      indexes :location, type: "geo_point"
+      indexes :map_scale, type: "byte"
+      indexes :mappable, type: "boolean"
+      indexes :non_owner_identifier_user_ids, type: "integer"
+      indexes :num_identification_agreements, type: "short"
+      indexes :num_identification_disagreements, type: "short"
+      indexes :oauth_application_id, type: "short"
+      indexes :obscured, type: "boolean"
+      indexes :observed_on, type: "date", format: "dateOptionalTime"
+      indexes :observed_on_details do
+        indexes :date, type: "date"
+        indexes :day, type: "byte"
+        indexes :hour, type: "byte"
+        indexes :month, type: "byte"
+        indexes :week, type: "byte"
+        indexes :year, type: "short"
       end
-      indexes :votes, type: :nested do
-        indexes :vote_scope, type: "keyword"
+      indexes :observed_on_string, type: "text"
+      indexes :observed_time_zone, type: "keyword", index: false
+      indexes :ofvs, type: :nested do
+        indexes :datatype, type: "keyword"
+        indexes :field_id, type: "integer"
+        indexes :id, type: "integer"
+        indexes :name, type: "keyword"
+        indexes :name_ci, type: "text", analyzer: "keyword_analyzer"
+        indexes :taxon_id, type: "integer"
+        indexes :user_id, type: "integer"
+        indexes :uuid, type: "keyword"
+        indexes :value, type: "keyword"
+        indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
       end
-      indexes :sounds do
-        indexes :attribution, type: "keyword", index: false
-        indexes :native_sound_id, type: "keyword"
-        indexes :license_code, type: "keyword"
+      indexes :out_of_range, type: "boolean"
+      indexes :outlinks do
+        indexes :source, type: "keyword"
+        indexes :url, type: "keyword"
       end
+      indexes :owners_identification_from_vision, type: "boolean"
+      indexes :photo_licenses, type: "keyword"
+      indexes :photos_count, type: "short"
+      indexes :place_guess, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :place_ids, type: "integer"
+      indexes :positional_accuracy, type: "integer"
       indexes :preferences do
         indexes :name, type: "keyword", index: false
         indexes :value, type: "keyword", index: false
       end
-      indexes :quality_metrics do
-        indexes :metric, type: "keyword", index: false
-      end
-      indexes :description, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :tags, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :place_guess, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :species_guess, type: "keyword"
-      indexes :license_code, type: "keyword"
-      indexes :observed_on, type: "date", format: "dateOptionalTime"
-      indexes :observed_on_string, type: "text"
-      indexes :location, type: "geo_point"
-      indexes :private_location, type: "geo_point"
-      indexes :geojson, type: "geo_shape"
       indexes :private_geojson, type: "geo_shape"
-      indexes :created_time_zone, type: "keyword", index: false
-      indexes :geoprivacy, type: "keyword"
-      indexes :taxon_geoprivacy, type: "keyword"
-      indexes :context_geoprivacy, type: "keyword"
-      indexes :context_user_geoprivacy, type: "keyword"
-      indexes :context_taxon_geoprivacy, type: "keyword"
-      indexes :observed_time_zone, type: "keyword", index: false
+      indexes :private_location, type: "geo_point"
+      indexes :private_place_guess, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :private_place_ids, type: "integer"
+      indexes :project_ids, type: "integer"
+      indexes :project_ids_with_curator_id, type: "integer"
+      indexes :project_ids_without_curator_id, type: "integer"
+      indexes :public_positional_accuracy, type: "integer"
       indexes :quality_grade, type: "keyword"
+      indexes :quality_metrics do
+        indexes :agree, type: "boolean"
+        indexes :id, type: "integer"
+        indexes :metric, type: "keyword", index: false
+        indexes :user_id, type: "integer"
+      end
+      indexes :reviewed_by, type: "integer"
+      indexes :site_id, type: "integer"
+      indexes :sound_licenses, type: "keyword"
+      indexes :sounds do
+        indexes :attribution, type: "keyword", index: false
+        indexes :file_content_type, type: "keyword", index: false
+        indexes :file_url, type: "keyword", index: false
+        indexes :flags do
+          indexes :comment, type: "keyword", index: false
+          indexes :created_at, type: "date", index: false
+          indexes :flag, type: "keyword", index: false
+          indexes :id, type: "integer", index: false
+          indexes :resolved, type: "boolean", index: false
+          indexes :resolver_id, type: "integer", index: false
+          indexes :updated_at, type: "date", index: false
+          indexes :user_id, type: "integer", index: false
+        end
+        indexes :id, type: "integer"
+        indexes :license_code, type: "keyword"
+        indexes :native_sound_id, type: "keyword", index: false
+        indexes :play_local, type: "boolean"
+        indexes :secret_token, type: "keyword", index: false
+        indexes :subtype, type: "keyword"
+      end
+      indexes :sounds_count, type: "short"
+      indexes :spam, type: "boolean"
+      indexes :species_guess, type: "keyword"
+      indexes :tags, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :taxon do
+        indexes :ancestor_ids, type: "integer"
+        indexes :ancestry, type: "keyword"
+        indexes :endemic, type: "boolean"
+        indexes :extinct, type: "boolean"
+        indexes :iconic_taxon_id, type: "integer"
+        indexes :id, type: "integer"
+        indexes :introduced, type: "boolean"
+        indexes :is_active, type: "boolean"
+        indexes :min_species_ancestry, type: "keyword"
+        indexes :min_species_taxon_id, type: "integer"
+        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :native, type: "boolean"
+        indexes :parent_id, type: "integer"
+        indexes :rank, type: "keyword"
+        indexes :rank_level, type: "scaled_float", scaling_factor: 100
+        indexes :statuses, type: :nested do
+          indexes :authority, type: "keyword"
+          indexes :geoprivacy, type: "keyword"
+          indexes :iucn, type: "byte"
+          indexes :place_id, type: "integer"
+          indexes :source_id, type: "short"
+          indexes :status, type: "keyword"
+          indexes :status_name, type: "keyword"
+        end
+        indexes :threatened, type: "boolean"
+      end
+      indexes :taxon_geoprivacy, type: "keyword"
+      indexes :time_observed_at, type: "date"
       indexes :time_zone_offset, type: "keyword", index: false
+      indexes :updated_at, type: "date"
       indexes :uri, type: "keyword", index: false
-      indexes :identifications, type: :nested do
+      indexes :user do
+        indexes :created_at, type: "date"
+        indexes :id, type: "integer"
+        indexes :login, type: "keyword"
+        indexes :spam, type: "boolean"
+        indexes :suspended, type: "boolean"
+      end
+      indexes :uuid, type: "keyword"
+      indexes :votes, type: :nested do
+        indexes :created_at, type: "date"
+        indexes :id, type: "integer"
+        indexes :user_id, type: "integer"
+        indexes :vote_flag, type: "boolean"
+        indexes :vote_scope, type: "keyword"
       end
     end
-    mapping dynamic_templates: [
-      {
-        names_locales: {
-          path_match: "taxon.names_*",
-          match_mapping_type: "string",
-          mapping: {
-            type: "text",
-            analyzer: "ascii_snowball_analyzer"
-          }
-        }
-      }
-    ]
   end
 
+  # Obs as a JSON document for indexing in Elastic Search. If you're going to
+  # modify this, make sure you also modify the mapping above and add an explicit
+  # type for each new field. That mapping is only used for recreating the index,
+  # though, so you should also update the actual index as well (see
+  # 20151030205931_add_mappings_to_observations_index.rb for an example)
   def as_indexed_json(options={})
     preload_for_elastic_index unless options[:no_details]
     # some timezones are invalid
@@ -128,7 +279,6 @@ class Observation < ActiveRecord::Base
     t = taxon
     json = {
       id: id,
-      uuid: uuid,
       site_id: site_id,
       created_at: created,
       created_at_details: ElasticModel.date_details(created),
@@ -136,18 +286,23 @@ class Observation < ActiveRecord::Base
       observed_on_details: ElasticModel.date_details(datetime),
       time_observed_at: time_observed_at_in_zone,
       place_ids: (indexed_place_ids || public_places.map(&:id)).compact.uniq,
-      private_place_ids: (indexed_private_place_ids || places.map(&:id)).compact.uniq,
       quality_grade: quality_grade,
-      captive: captive,
-      user: user ? user.as_indexed_json(no_details: true) : nil,
       taxon: t ? t.as_indexed_json(for_observation: true,
         no_details: options[:no_details],
         for_identification: options[:for_identification]) : nil
     }
 
+
     current_ids = identifications.select(&:current?)
-    unless options[:no_details]
+    if options[:no_details]
       json.merge!({
+        user_id: user.id
+      })
+    else
+      json.merge!({
+        uuid: uuid,
+        user: user ? user.as_indexed_json(no_details: true) : nil,
+        captive: captive,
         created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
         updated_at: updated_at.in_time_zone(timezone_object || "UTC"),
         observed_time_zone: timezone_object.blank? ? nil : timezone_object.tzinfo.name,
@@ -242,8 +397,9 @@ class Observation < ActiveRecord::Base
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
+    return if batch_ids_string.blank?
     # fetch all place_ids store them in `indexed_place_ids`
-    if !batch_ids_string.blank? && ( options.blank? || options[:places] )
+    if options.blank? || options[:places]
       connection.execute("
         SELECT observation_id, place_id
         FROM observations_places
@@ -276,7 +432,9 @@ class Observation < ActiveRecord::Base
           end
         end
       end
+    end
 
+    if options.blank?
       taxon_establishment_places = { }
       taxon_ids = observations.map(&:taxon_id).compact.uniq
       uniq_obs_place_ids = observations.map{ |o|o.indexed_private_places.map(&:path_ids) }.flatten.compact.uniq.join(',')
@@ -741,6 +899,26 @@ class Observation < ActiveRecord::Base
       end
     end
 
+    if p[:ofv_datatype]
+      vals = p[:ofv_datatype].to_s.split( "," )
+      search_filters << {
+        nested: {
+          path: "ofvs",
+          query: {
+            bool: {
+              filter: [
+                {
+                  terms: {
+                    "ofvs.datatype" => vals
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    end
+
     if p[:ident_user_id]
       vals = p[:ident_user_id].to_s.split( "," )
       search_filters << { terms: { identifier_user_ids: vals } }
@@ -820,7 +998,8 @@ class Observation < ActiveRecord::Base
       per_page: p[:per_page] || 30,
       page: p[:page],
       sort: sort,
-      extra_preloads: extra_preloads }
+      extra_preloads: extra_preloads,
+      track_total_hits: !!p[:track_total_hits] }
   end
 
   private

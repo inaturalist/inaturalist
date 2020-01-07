@@ -10,8 +10,7 @@ shared_examples_for "a ProjectObservationsController" do
   end
 
   describe "create" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     it "should work" do
       expect(project.users).to include(user)
       expect {
@@ -148,8 +147,7 @@ shared_examples_for "a ProjectObservationsController" do
   end
 
   describe "update" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     it "should not allow setting preferences if updater is not the observer" do
       po = ProjectObservation.make!( project: project )
       expect( po ).not_to be_prefers_curator_coordinate_access
@@ -160,8 +158,7 @@ shared_examples_for "a ProjectObservationsController" do
   end
 
   describe "destroy" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     it "should work for the observer" do
       po = ProjectObservation.make!(observation: observation, project: project, user: observation.user)
       delete :destroy, :format => :json, :id => po.id

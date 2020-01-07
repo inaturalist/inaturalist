@@ -24,7 +24,7 @@
   .alert
     .alert-warning
       = t(:flickr_needs_to_confirm, :site_name => @site.preferred_site_name_short)
-      = link_to t(:confirm_now), ProviderAuthorization::AUTH_URLS['Flickr'], :class => "readmore"
+      = link_to t(:confirm_now), ProviderAuthorization::AUTH_URLS['Flickr'], :class => "readmore", method: :post
 - elsif @timeout
   .alert
     .alert-warning

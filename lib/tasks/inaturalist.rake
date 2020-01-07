@@ -76,9 +76,6 @@ namespace :inaturalist do
   desc "Delete expired S3 photos"
   task :delete_expired_photos => :environment do
     S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
-    # Aws.config(access_key_id: S3_CONFIG["access_key_id"],
-    #   secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")
-    # bucket = Aws::S3.new.buckets[CONFIG.s3_bucket]
     client = ::Aws::S3::Client.new(
       access_key_id: S3_CONFIG["access_key_id"],
       secret_access_key: S3_CONFIG["secret_access_key"],
@@ -92,15 +89,27 @@ namespace :inaturalist do
       where("(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
         6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |p|
-      images = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ p.photo_id }/" ).contents
-      if images.any?
-        pp images
-        begin
-          client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+      begin
+        s3_objects = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ p.photo_id }/" )
+        images = s3_objects.contents
+      rescue
+        fails += 1
+        break if fails >= 5
+      end
+
+      if s3_objects && s3_objects.data && s3_objects.data.is_a?( Aws::S3::Types::ListObjectsOutput )
+        if images.any?
+          puts "deleting #{p.photo_id} from S3"
+          begin
+            client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+            p.update_attributes(removed_from_s3: true)
+          rescue
+            fails += 1
+            break if fails >= 5
+          end
+        else
           p.update_attributes(removed_from_s3: true)
-        rescue
-          fails += 1
-          break if fails >= 5
+          puts "#{p.photo_id} has no photos in S3"
         end
       end
     end
@@ -202,9 +211,32 @@ namespace :inaturalist do
     Rake::Task["inaturalist:delete_expired_sounds"].invoke
   end
 
-  desc "Find all javascript i18n keys and print a new translations.js"
-  task :generate_translations_js => :environment do
-    output_path = "app/assets/javascripts/i18n/translations.js"
+  def get_i18n_keys_in_rb
+    all_keys = []
+    scanner_proc = Proc.new do |f|
+      # Ignore non-files
+      next unless File.file?( f )
+      # Ignore images and php scripts
+      next unless f =~ /\.(rb|erb|haml)$/
+      # Ignore an existing translations file
+      # next if paths_to_ignore.include?( f )
+      contents = IO.read( f )
+      results = contents.scan(/(I18n\.)?t[\(\s]*([\:"'])([A-z_\.\d\?\!]+)/i)
+      unless results.empty?
+        all_keys += results.map{ |r| r[2].chomp(".") }
+      end
+    end
+    Dir.glob(Rails.root.join("app/controllers/**/*")).each(&scanner_proc)
+    Dir.glob(Rails.root.join("app/views/**/*")).each(&scanner_proc)
+    Dir.glob(Rails.root.join("app/models/**/*")).each(&scanner_proc)
+    Dir.glob(Rails.root.join("app/helpers/**/*")).each(&scanner_proc)
+    Dir.glob(Rails.root.join("lib/**/*")).each(&scanner_proc)
+    all_keys
+  end
+
+  # Returns all keys in dot notation, e.g. views.observations.show.some_text
+  def get_i18n_keys_in_js( options = {} )
+    paths_to_ignore = ["app/assets/javascripts/i18n/translations.js"]
     # various keys from models, or from JS dynamic calls
     all_keys = [
       "added!",
@@ -258,6 +290,26 @@ namespace :inaturalist do
       "number_selected",
       "observation_date",
       "orange",
+      "other_species_commonly_misidentified_as_this_species",
+      "other_species_commonly_misidentified_as_this_species_in_place_html",
+      "other_taxa_commonly_misidentified_as_this_complex",
+      "other_taxa_commonly_misidentified_as_this_complex_in_place_html",
+      "other_taxa_commonly_misidentified_as_this_genus",
+      "other_taxa_commonly_misidentified_as_this_genus_in_place_html",
+      "other_taxa_commonly_misidentified_as_this_genushybrid",
+      "other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html",
+      "other_taxa_commonly_misidentified_as_this_hybrid",
+      "other_taxa_commonly_misidentified_as_this_hybrid_in_place_html",
+      "other_taxa_commonly_misidentified_as_this_rank",
+      "other_taxa_commonly_misidentified_as_this_rank_in_place_html",
+      "other_taxa_commonly_misidentified_as_this_section",
+      "other_taxa_commonly_misidentified_as_this_section_in_place_html",
+      "other_taxa_commonly_misidentified_as_this_species",
+      "other_taxa_commonly_misidentified_as_this_species_in_place_html",
+      "other_taxa_commonly_misidentified_as_this_subgenus",
+      "other_taxa_commonly_misidentified_as_this_subgenus_in_place_html",
+      "other_taxa_commonly_misidentified_as_this_subsection",
+      "other_taxa_commonly_misidentified_as_this_subsection_in_place_html",
       "output_taxon",
       "pink",
       "place_geo.geo_planet_place_types",
@@ -292,13 +344,17 @@ namespace :inaturalist do
       "white",
       "vulnerable",
       "yellow",
-      "you_are_setting_this_project_to_aggregate"
+      "you_are_setting_this_project_to_aggregate",
+      "i18n.inflections.@gender",
+      "i18n.inflections.@vow_or_con"
     ]
     %w(
       all_rank_added_to_the_database
       all_taxa
       controlled_term_labels
+      controlled_term_definitions
       establishment
+      locales
     ).each do |key|
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
     end
@@ -314,11 +370,11 @@ namespace :inaturalist do
       # Ignore generated webpack outputs
       next if f =~ /\-webpack.js$/
       # Ignore an existing translations file
-      next if f == output_path
+      next if paths_to_ignore.include?( f )
       contents = IO.read( f )
-      results = contents.scan(/(I18n|shared).t\(\s*(["'])(.*?)\2/i)
+      results = contents.scan(/(I18n|shared|inatreact).t\(\s*(["'])(.*?)\2/i)
       unless results.empty?
-        all_keys += results.map{ |r| r[2].chomp(".") }
+        all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
       end
     end
     Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each(&scanner_proc)
@@ -328,24 +384,33 @@ namespace :inaturalist do
     Dir.glob(Rails.root.join("app/views/**/*")).each do |f|
       next unless File.file?( f )
       next if f =~ /\.(gif|png|php)$/
-      next if f == output_path
+      next if paths_to_ignore.include?( f )
       contents = IO.read( f )
       results = contents.scan(/\{\{.*?(I18n|shared).t\( ?(.)(.*?)\2.*?\}\}/i)
+      # TODO make this work for I18n.l, I18n.localize, I18n.translate
       unless results.empty?
-        all_keys += results.map{ |r| r[2].chomp(".") }
+        all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
       end
     end
 
     # remnant from a dynamic JS call for colors
     all_keys.delete("lts[i].valu")
+    all_keys
+  end
+
+  desc "Find all javascript i18n keys and print a new translations.js"
+  task :generate_translations_js => :environment do
+    output_path = "app/assets/javascripts/i18n/translations.js"
+    all_keys = get_i18n_keys_in_js.uniq.sort
 
     # load translations
     all_translations = { }
     I18n.backend.send(:init_translations)
-    I18n.backend.send(:translations).keys.each do |locale|
+    I18N_SUPPORTED_LOCALES.each do |locale|
+      locale = locale.to_sym
       next if locale === :qqq
       all_translations[ locale ] = { }
-      all_keys.uniq.sort.each do |key_string|
+      all_keys.each do |key_string|
         split_keys = key_string.split(".").select{|k| k !~ /\#\{/ }.map(&:to_sym)
         split_keys.inject(all_translations[ locale ]) do |h, key|
           if key == split_keys.last
@@ -366,10 +431,95 @@ namespace :inaturalist do
     # output what should be the new contents of app/assets/javascripts/i18n/translations.js
     File.open(output_path, "w") do |file|
       file.puts "I18n.translations || (I18n.translations = {});"
-      all_translations.sort.each do |locale, translastions|
-        file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translastions ) };"
+      all_translations.sort.each do |locale, translations|
+        file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translations ) };"
       end
     end
+  end
+
+  desc <<-EOT
+    Print a list of i18n keys in en.yml that don't seem to be used in our JS or
+    Ruby code. This will yield some false positives for keys that get
+    dynamically constructed in code, so be sure to double check on things before
+    deleting.
+  EOT
+  task :potentially_unused_i18n_keys => :environment do
+    patterns_to_ignore = [
+      # Keys scoped with dots tend to come from third parties like momentjs or
+      # are intended to be dynamically generated, so I'm ignoring them here.
+      # There are almost certainly some view-specific keys that will get
+      # incorrectly omitted by this
+      /\./,
+      /^add_life_stage_/,
+      /^add_alive_or_dead_/,
+      /^add_plant_phenology_/,
+      /^admin$/,
+      /^alphabetical$/,
+      /^are_you_sure_want_delete_taxon/,
+      /^cc_/,
+      /^curator$/,
+      /^Family/,
+      /^flag_for_/,
+      /^Genus/,
+      /^header_your_/,
+      /^inbox$/,
+      /^inviteonly$/,
+      /^large$/,
+      /^listed_taxa$/,
+      /^manager$/,
+      /^medium$/,
+      /^mentioned_you_in_/,
+      /^message_from_user_/,
+      /^most_agree$/,
+      /^most_disagree$/,
+      /^observation_field_type_/,
+      /^open$/,
+      /^other_taxa_commonly_misidentified_as_this_/,
+      /^original$/,
+      /^sent$/,
+      /^simple$/,
+      /^small$/,
+      /^some_agree$/,
+      /^subscribe_to_comments_on_this_/,
+      /^taxon_is_a_rank_of_.*/,
+      /^taxonomic$/,
+      /^user_added_a/,
+      /^you_are_subscribed_to_/,
+    ]
+    model_name_patterns = Dir.glob( File.join( Rails.root, "app", "models", "*.rb" ) ).map do |path|
+      /^#{File.basename( path ).split(".")[0]}$/
+    end
+    patterns_to_ignore += model_name_patterns
+    all_keys_in_use = (get_i18n_keys_in_js + get_i18n_keys_in_rb).uniq
+
+    def traverse(obj, branch = nil, &blk)
+      if obj.is_a?( Hash )
+        obj.each do |k,v|
+          if v.is_a?( Hash )
+            if v.keys.include?( :one ) || v.keys.include?( "one" )
+              blk.call( k, branch )
+            else
+              traverse(v, [branch, k].flatten.compact.join( "." ), &blk)
+            end
+          else
+            blk.call( k, branch )
+          end
+        end
+      else
+        blk.call( obj, branch )
+      end
+    end
+
+    all_keys = []
+    traverse( YAML.load_file( File.join( Rails.root, "config", "locales", "en.yml" ) ) ) do |str, branch|
+      key = "#{branch}.#{str}".sub( /^en\./, "" )
+      next if patterns_to_ignore.detect{|p| key =~ p }
+      all_keys << key
+    end
+    ( all_keys - all_keys_in_use ).sort.each do |key|
+      puts key
+    end
+
   end
 
   desc "Fetch missing image dimensions"

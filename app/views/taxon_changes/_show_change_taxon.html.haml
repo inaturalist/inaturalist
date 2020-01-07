@@ -38,7 +38,7 @@
         - elsif taxon_change.source
           = taxon_change.source.title
         = surround "(", ")" do
-          = link_to_dialog t(:citation), title: "#{t(:citation)} #{t(:for)} #{taxon_change.class.name.underscore.titleize} #{taxon_change.id}" do
+          = link_to_dialog t(:citation), title: "#{t(:label_colon, label: t(:citation) )} #{t taxon_change.class.name.underscore} #{taxon_change.id}" do
             = citation_for taxon_change.source
       - else
         = t(:unknown).downcase
@@ -74,9 +74,9 @@
         - case taxon_change.class.name when "TaxonSplit"
           = t("change_types.split_into")
         - when "TaxonMerge"
-          = t("change_types.merge_into")
+          = t("change_types.merged_into")
         - when "TaxonSwap"
-          = t("change_types.replace_with")
+          = t("change_types.replaced_with")
         - when "TaxonDrop"
           = t("change_types.dropped")
         - when "TaxonDrop"

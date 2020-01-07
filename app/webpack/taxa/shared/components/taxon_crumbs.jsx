@@ -108,7 +108,6 @@ class TaxonCrumbs extends React.Component {
                     <SplitTaxon
                       taxon={t}
                       url={urlForTaxon( t )}
-                      forceRank
                       onClick={ e => this.clickedTaxonLink( e, t ) }
                       user={ config.currentUser }
                     />

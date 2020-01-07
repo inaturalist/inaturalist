@@ -10,14 +10,4 @@
     = f.submit t(:create_an_account), class: "btn btn-inat btn-primary btn-lg", disabled: @site.using_recaptcha?
   .form-group.centered
     = link_to t(:already_have_an_account_log_in_html), login_path, class: "btn btn-link"
-  .form-group.centered.bigtext
-    =t :or_all_caps
-  .form-group.centered.provider-authorizations
-    - %w{facebook google_oauth2}.each do |provider_name|
-      - provider, url = ProviderAuthorization::AUTH_URLS.detect{|p,u| p == provider_name }
-      - provider_label = ProviderAuthorization::PROVIDER_NAMES[provider].downcase
-      - btn_label = t("sign_up_with_provider", provider: ProviderAuthorization::PROVIDER_NAMES[provider] )
-      .stacked
-        = link_to url, class: "btn btn-primary btn-lg providerlink #{provider_label}" do
-          %i.fa{ class: "fa-#{provider_label}" }
-          %span= btn_label
+  = render "users/provider_authorizations"

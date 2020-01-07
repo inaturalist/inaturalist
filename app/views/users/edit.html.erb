@@ -57,7 +57,7 @@
         {:selected => @user.time_zone}, 
         {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
       <%-
-        locales = I18N_SUPPORTED_LOCALES.map do |l|
+        locales = I18n.t( "locales", locale: :en ).keys.map do |l|
           next if l.to_s == "iw"
           translated_label = t("locales.#{l}", locale: l, default: nil)
           viewer_label = t("locales.#{l}", default: l)
@@ -79,8 +79,8 @@
         <label><%=t :receive_email_notifications_when_people_leave_you %></label>
         <% for attr_name in User::NOTIFICATION_PREFERENCES %>
           <%= f.check_box "prefers_#{attr_name}", 
-            :label => t(attr_name.gsub(/_email_notification/, '').pluralize).mb_chars.capitalize, 
-            :label_after => true %>
+            label: t( "views.users.edit.notification_preferences_#{attr_name.gsub(/_email_notification/, "").pluralize}" ),
+            label_after: true %>
         <% end %>
       </div>
       
@@ -121,6 +121,19 @@
           <%= raw t('views.users.edit.this_only_applies_to_traditional_projects') %>
         </div>
       </div>
+
+      <a name="donors"></a>
+      <h3><%=t "views.users.edit.monthly_supporter" %></h3>
+      <div class="stacked">
+        <%= f.check_box :prefers_monthly_supporter_badge,
+          label: t( "views.users.edit.display_monthly_supporter_status_on_my_profile" ),
+          description: @monthly_supporter ?
+            t( "views.users.edit.thanks_for_supporting_us!" ) :
+            t( "views.users.edit.monthly_supporter_desc_html", url: monthly_supporters_url( utm_campaign: "monthly-supporter", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: "account-settings" ) ),
+          label_after: true,
+          disabled: !@monthly_supporter
+        %>
+      </div>
     </div>
 
     <div class="last column span-9 stacked">
@@ -156,8 +169,43 @@
           [t(:only_you), User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER]
         ], :description => t(:observation_fields_by_preferences_description) %>
 
+      <h3><%=t :privacy %></h3>
+      <%- no_tracking_desc = capture do %>
+        <%= link_to_dialog "<i class='fa fa-info-circle'></i> #{t( "views.users.edit.about_third_party_tracking" )}".html_safe, title: t( "views.users.edit.about_third_party_tracking" ), width: "80%" do %>
+          <p><%=t "views.users.edit.prefers_no_tracking_label_desc_we_use" %></p>
+          <ul>
+            <li class="readable">
+              <%=t "views.users.edit.prefers_no_tracking_label_desc_we_use_google_html" %>
+            </li>
+            <li class="readable">
+              <a href="https://newrelic.com">New Relic</a>
+            </li>
+          </ul>
+          <p><%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share" %></p>
+          <ul>
+            <li class="readable">
+              <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_ip_addresses_html" %>
+            </li>
+            <li class="readable">
+              <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_browser_details" %>
+            </li>
+            <li class="readable">
+              <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_crash_details" %>
+            </li>
+            <li class="readable">
+              <%=t "views.users.edit.prefers_no_tracking_label_desc_info_we_share_device_details" %>
+            </li>
+          </ul>
+          <p><%=t "views.users.edit.prefers_no_tracking_label_desc_value_html" %></p>
+          <p><%=t "views.users.edit.prefers_no_tracking_label_desc_limits" %></p>
+        <% end %>
+      <% end %>
+      <%= f.check_box "prefers_no_tracking",
+        label: t( "views.users.edit.prefers_no_tracking_label" ),
+        label_after: true,
+        description: no_tracking_desc
+      %>
       <% if current_user.prefers_coordinate_interpolation_protection_test? %>
-        <h3><%=t :privacy %></h3>
         <%= f.check_box "prefers_coordinate_interpolation_protection", 
           label: t( "views.users.edit.same_day_geoprivacy_protection" ),
           label_after: true,
@@ -212,7 +260,7 @@
         </div>
         
         <div class="last column span-18">
-          <%= link_to_function "<span class='helptip'></span> #{t(:about_these_licenses)}".html_safe,
+          <%= link_to_function "<i class='fa fa-info-circle'></i> #{t(:about_these_licenses)}".html_safe,
             "$('#aboutlicenses').dialog({width:'auto', modal:true, title: '#{t(:about_the_cc_licenses)}'})" %>
           <div id="aboutlicenses" class="dialog" style="display:none">
             <div class="column span-18 verticalmiddle">
@@ -232,17 +280,15 @@
           </div>
           
           <p class="ui description">
-            <%= t(:license_descriptions_and_images) %>
-            &copy; <%= Date.today.year %> <%= t(:cc_used_under_a) %> <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons &mdash; Attribution 3.0 Unported
-              &mdash; CC BY 3.0"><%= t(:cc_attribution_license) %></a>
-            (<%= t :so_meta! %>)
+            <%=t "views.users.edit.license_description_attribution_html", year: Date.today.year %>
           </p>
         </div>
       </div>
     </div>
 
     <%- if @sites.size > 1 %>
-      <div class="column span-18 stacked">
+      <a name="network"></a>
+      <div id="network" class="column span-18 stacked">
         <%= separator %>
         <h3><%= t :inaturalist_network_affiliation %></h3>
         <p>
@@ -286,7 +332,8 @@
         <% elsif provider != "soundcloud" %>
           <li class="clear">
             <%= link_to t(:connect_to_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
-              auth_url_for(provider), 
+              auth_url_for(provider),
+              method: :post,
               :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} button" %>
           </li>
         <% end %>

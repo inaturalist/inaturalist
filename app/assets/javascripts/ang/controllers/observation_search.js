@@ -554,7 +554,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       // this is an initial search, and not the default no-params search,
       // and we have bounds of the results, so focus the map on the results
       if( response.data.total_bounds &&
-          options.browserStateOnly &&
+          ( options.browserStateOnly || !$scope.mapLayersInitialized ) &&
           !_.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale ) ) {
         var bounds = response.data.total_bounds;
         var swlat = bounds.swlat;
@@ -712,6 +712,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.removeSelectedPlace = function( ) {
     $scope.selectedPlace = null;
+    $scope.selectedPlaceLayer = null;
     $scope.hideRedoSearch = false;
     $scope.mapBounds = null;
     $scope.mapBoundsIcon = null;
@@ -1211,6 +1212,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.$parent.params.nelng = ne.lng( );
     $scope.$parent.params.nelat = ne.lat( );
     $scope.$parent.selectedPlace = null;
+    $scope.$parent.selectedPlaceLayer = null;
   };
   $rootScope.$on( "searchForNearbyPlaces", function( event, options, callback ) {
     $scope.searchForNearbyPlaces( options, callback );
@@ -1414,7 +1416,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       title: "Observations",
       mapStyle: "colored_heatmap",
       observationLayers: [ layerParams ],
-      infoWindowCallback: $scope.infoWindowCallback
+      infoWindowCallback: $scope.infoWindowCallback,
+      style: ( $scope.currentUser && $scope.currentUser.prefers_map_tile_test ) ? "geotilegrid" : null
     });
     // fully remove any existing data layer
     if( $scope.selectedPlaceLayer ) { $scope.selectedPlaceLayer.setMap( null ); }
@@ -1475,7 +1478,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         map: $scope.map
       });
     }
-    $scope.mapLayersInitialized = true;
+    $scope.$parent.mapLayersInitialized = true;
     if( align ) {
       var timeout = $scope.$parent.delayedAlign ? 20 : 1;
       setTimeout( function( ) {

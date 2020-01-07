@@ -34,7 +34,8 @@ class PhotoPreview extends React.Component {
   }
 
   showPhoto( photoId ) {
-    const newTaxonPhoto = this.state.taxonPhotos.find( p => p.photo.id === photoId );
+    const { taxonPhotos } = this.state;
+    const newTaxonPhoto = taxonPhotos.find( p => p.photo.id === photoId );
     if ( newTaxonPhoto ) {
       this.setState( {
         current: newTaxonPhoto
@@ -43,13 +44,23 @@ class PhotoPreview extends React.Component {
   }
 
   render( ) {
-    const layout = this.props.layout;
+    const {
+      layout,
+      showTaxonPhotoModal,
+      showPhotoChooserModal,
+      taxon,
+      config,
+      showNewTaxon
+    } = this.props;
+    const {
+      taxonPhotos,
+      current
+    } = this.state;
     const thumbnailHeight = layout === "gallery" ? 98 : 196.5;
     let currentPhoto;
     let bgImage;
     let currentPhotoHeight = 590;
-    const showTaxonPhotoModal = this.props.showTaxonPhotoModal;
-    if ( this.state.taxonPhotos.length === 0 ) {
+    if ( taxonPhotos.length === 0 ) {
       return (
         <div className="PhotoPreview no-content text-center text-muted">
           <div>
@@ -57,8 +68,9 @@ class PhotoPreview extends React.Component {
               { I18n.t( "this_taxon_has_no_default_photo" ) }
             </h3>
             <button
+              type="button"
               className="btn btn-primary"
-              onClick={ ( ) => this.props.showPhotoChooserModal( ) }
+              onClick={( ) => showPhotoChooserModal( )}
             >
               { I18n.t( "add_one_now" ) }
             </button>
@@ -66,8 +78,8 @@ class PhotoPreview extends React.Component {
         </div>
       );
     }
-    if ( this.state.current && layout === "gallery" ) {
-      const photo = this.state.current.photo;
+    if ( current && layout === "gallery" ) {
+      const { photo } = current;
       const dims = photo.dimensions( );
       let ratio = 1;
       if ( dims && dims.height ) {
@@ -83,25 +95,23 @@ class PhotoPreview extends React.Component {
           <div
             className="photo-bg"
             style={{
-              backgroundImage: `url('${this.state.current.photo.photoUrl( "small" )}')`
+              backgroundImage: `url('${current.photo.photoUrl( "small" )}')`
             }}
-          >
-          </div>
+          />
         );
       }
       currentPhoto = (
         <TaxonPhoto
-          taxon={this.props.taxon}
+          taxon={taxon}
           photo={photo}
           size="large"
           showTaxonPhotoModal={showTaxonPhotoModal}
           height={currentPhotoHeight}
           backgroundSize={backgroundSize}
-          config={ this.props.config }
+          config={config}
         />
       );
     }
-    const taxonPhotos = this.state.taxonPhotos;
     if ( taxonPhotos.length === 1 ) {
       taxonPhotos.pop( );
     }
@@ -110,7 +120,7 @@ class PhotoPreview extends React.Component {
         { bgImage }
         { currentPhoto }
         <ul className="plain others">
-          { this.state.taxonPhotos.map( tp => {
+          { taxonPhotos.map( tp => {
             let content;
             if ( layout === "grid" ) {
               content = (
@@ -121,43 +131,44 @@ class PhotoPreview extends React.Component {
                   showTaxonPhotoModal={showTaxonPhotoModal}
                   className="photoItem"
                   showTaxon
-                  linkTaxon={ tp.taxon.id !== this.props.taxon.id }
-                  onClickTaxon={ taxon => this.props.showNewTaxon( taxon ) }
-                  config={ this.props.config }
+                  linkTaxon={tp.taxon.id !== taxon.id}
+                  onClickTaxon={newTaxon => showNewTaxon( newTaxon )}
+                  config={config}
                 />
               );
             } else {
               content = (
                 <a
                   className="photoItem"
-                  href=""
-                  onClick={ e => {
+                  href={tp.photo.photoUrl()}
+                  onClick={e => {
                     e.preventDefault( );
                     this.showPhoto( tp.photo.id );
                     return false;
-                  } }
+                  }}
                 >
                   <CoverImage
-                    src={ tp.photo.photoUrl( "small" ) }
-                    low={ tp.photo.photoUrl( "small" ) }
+                    src={tp.photo.photoUrl( "small" )}
+                    low={tp.photo.photoUrl( "small" )}
                     height={thumbnailHeight}
                   />
                 </a>
               );
             }
             return (
-              <li key={ `taxon-photo-${tp.taxon.id}-${tp.photo.id}` }>
+              <li key={`taxon-photo-${tp.taxon.id}-${tp.photo.id}`}>
                 { content }
               </li>
             );
           } ) }
           <li className="viewmore">
-            <a href={urlForTaxonPhotos( this.props.taxon )}
+            <a
+              href={urlForTaxonPhotos( taxon )}
               style={{ height: layout === "grid" ? `${thumbnailHeight}px` : "inherit" }}
             >
               <span className="inner">
                 <span>{ I18n.t( "view_more" )}</span>
-                <i className="fa fa-arrow-circle-right"></i>
+                <i className="fa fa-arrow-circle-right" />
               </span>
             </a>
           </li>

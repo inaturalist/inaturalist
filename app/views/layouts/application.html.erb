@@ -11,7 +11,7 @@
       <meta name="authenticators" content="<%= @provider_authorizations.map{|pa| pa.provider}.join(',') %>">
     <% end -%>
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
-    <%= favicon_link_tag %>
+    <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <%= stylesheet_link_tag 'blueprint_bundle' %>
     <%= render :partial => 'shared/common_stylesheets'%>
     <%= stylesheet_link_tag "blueprint-inat" %>
@@ -41,7 +41,8 @@
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
-          preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>"
+          preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
+          prefers_map_tile_test: <%= current_user.prefers_map_tile_test %>
         };
       <% end -%>
     </script>
@@ -66,8 +67,8 @@
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
-    <% if @site && @shareable_image_url.blank? %>
-      <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
+    <% if @site && @shareable_image_url.blank? && @site.shareable_image? %>
+      <meta property="og:image" content="<%= image_url @site.shareable_image.url %>"/>
     <% end %>
   </head>
 <body class="browser">

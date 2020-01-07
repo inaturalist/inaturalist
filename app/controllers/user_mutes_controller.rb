@@ -27,7 +27,7 @@ class UserMutesController < ApplicationController
     end
     respond_to do |format|
       format.html do
-        flash[:notice] = I18n.t( :block_removed )
+        flash[:notice] = I18n.t( :mute_removed )
         redirect_to( generic_edit_user_path )
       end
     end

@@ -6,6 +6,7 @@ import TaxaSunburst from "./taxa_sunburst";
 import NewSpecies from "./new_species";
 
 const Taxa = ( {
+  site,
   user,
   data,
   rootTaxonID,
@@ -20,6 +21,7 @@ const Taxa = ( {
         user={user}
         currentUser={currentUser}
         year={year}
+        site={site}
       />
     );
   }
@@ -33,7 +35,7 @@ const Taxa = ( {
           labelForDatum={d => (
             ReactDOMServer.renderToString(
               <div>
-                <SplitTaxon taxon={d.data} noInactive forceRank user={currentUser} />
+                <SplitTaxon taxon={d.data} noInactive user={currentUser} />
                 <div className="text-muted small">
                   { I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } ) }
                 </div>
@@ -50,6 +52,7 @@ const Taxa = ( {
 
 Taxa.propTypes = {
   data: PropTypes.object,
+  site: PropTypes.object,
   user: PropTypes.object,
   currentUser: PropTypes.object,
   rootTaxonID: PropTypes.number,

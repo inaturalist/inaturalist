@@ -29,10 +29,10 @@ export default function reducer(
   },
   action
 ) {
-  let newState = Object.assign( {}, state );
+  const newState = Object.assign( {}, state );
   switch ( action.type ) {
     case RESET:
-      newState = {};
+      // Reset suggestions, just use the default state
       break;
     case START_LOADING:
       newState.loading = true;
@@ -190,6 +190,10 @@ export function updateWithObservation( observation ) {
 
 function sanitizeQuery( query ) {
   return _.pick( query, ["place_id", "taxon_id", "source", "order_by", "featured_observation_id"] );
+}
+
+export function reset( ) {
+  return { type: RESET };
 }
 
 export function fetchSuggestions( query ) {

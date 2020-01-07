@@ -64,4 +64,25 @@ h1 {
   .date {
     margin-right: 20px;
   }
+  .monthly-supporter,
+  .monthly-supporter a {
+    color: $inat-green;
+    white-space: nowrap;
+    i {
+      color: $inat-green;
+      position: relative;
+      top: -1px;
+      font-size: 20px;
+    }
+  }
+
+}
+#elsewhere {
+  .orcid-icon {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: -1px;
+    margin-right: 2px;
+  }
 }

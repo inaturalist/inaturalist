@@ -102,8 +102,9 @@ module ActsAsElasticModel
         if self.respond_to?(:load_for_index)
           scope = scope.load_for_index
         end
+        wait_for_index_refresh = options.delete(:wait_for_index_refresh)
         scope.find_in_batches(options) do |batch|
-          bulk_index(batch)
+          bulk_index(batch, wait_for_index_refresh: wait_for_index_refresh)
         end
         __elasticsearch__.refresh_index! if Rails.env.test?
       end
@@ -231,7 +232,8 @@ module ActsAsElasticModel
           __elasticsearch__.client.bulk({
             index: __elasticsearch__.index_name,
             type: __elasticsearch__.document_type,
-            body: prepare_for_index(batch, options)
+            body: prepare_for_index(batch, options),
+            refresh: options[:wait_for_index_refresh] ? "wait_for" : false
           })
           if batch && batch.length > 0 && batch.first.respond_to?(:last_indexed_at)
             where(id: batch).update_all(last_indexed_at: Time.now)
@@ -261,7 +263,11 @@ module ActsAsElasticModel
     def elastic_index!
       original_associations_loaded = self.association_cache.keys
       begin
-        __elasticsearch__.index_document
+        index_options = { }
+        if respond_to?(:wait_for_index_refresh) && wait_for_index_refresh
+          index_options[:refresh] = "wait_for"
+        end
+        __elasticsearch__.index_document( index_options )
         # in the test ENV, we will need to wait for changes to be applied
         self.class.__elasticsearch__.refresh_index! if Rails.env.test?
         if respond_to?(:last_indexed_at) && !destroyed?

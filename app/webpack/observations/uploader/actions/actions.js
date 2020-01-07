@@ -310,7 +310,7 @@ const actions = class actions {
       _.each( s.dragDropZone.obsCards, c => {
         if (
           !failed
-          && ( !c.files.length || c.files.length === 0 )
+          && _.size( c.files ) === 0
           && !c.taxon_id
           && !c.species_guess
         ) {
@@ -611,7 +611,7 @@ const actions = class actions {
           showResizeTip = true;
           showModal = true;
         }
-        if ( file.type && !file.type.match( /gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp/i ) ) {
+        if ( file.type && !file.type.match( /gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp|amr/i ) ) {
           errors[file.name].push(
             I18n.t( "uploader.errors.unsupported_file_type" )
           );

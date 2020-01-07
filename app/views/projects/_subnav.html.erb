@@ -3,7 +3,7 @@
     <%= link_to t(:project_home), project_path(@display_project.slug), :class => "#{'active' if current_page?(:controller => "users", :action => "dashboard")}" %>
   </li>
   <li>
-    <%= link_to t(:project_observations), project_observations_path(@display_project),
+    <%= link_to t(:project_observations), observations_path( project_id: @display_project ),
       :id => "observations_link", 
       :class => "#{'active' if current_page?(:controller => :observations, :action => :by_login)}" %>
   </li>

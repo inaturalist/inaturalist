@@ -11,7 +11,9 @@ const ObservationsGridItem = ( {
   showMagnifier,
   linkTarget,
   splitTaxonOptions,
-  user
+  user,
+  showAllPhotosPreview,
+  photoSize
 } ) => {
   let wrapperClass = "thumbnail borderless ObservationsGridItem";
   if ( o.reviewedByCurrentUser ) {
@@ -23,10 +25,10 @@ const ObservationsGridItem = ( {
       <a
         href={`/observations/${o.id}`}
         style={{
-          backgroundImage: o.photo( ) ? `url( '${o.photo( "medium" )}' )` : ""
+          backgroundImage: o.photo( ) ? `url( '${o.photo( photoSize )}' )` : ""
         }}
         target={linkTarget}
-        className={`photo ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
+        className={`media ${o.hasPhotos( ) ? "photo" : ""} ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
         onClick={function ( e ) {
           if ( typeof ( onObservationClick ) !== "function" ) {
             return true;
@@ -51,7 +53,7 @@ const ObservationsGridItem = ( {
             { o.photos.length > 9 ? "+" : o.photos.length }
           </span>
         ) }
-        { o.photos && o.photos.length > 1 && (
+        { showAllPhotosPreview && o.photos && o.photos.length > 1 && (
           <div className="all-photos-preview">
             { o.photos.slice( 0, 4 ).map( p => (
               <img
@@ -90,12 +92,15 @@ ObservationsGridItem.propTypes = {
   showMagnifier: PropTypes.bool,
   linkTarget: PropTypes.string,
   splitTaxonOptions: PropTypes.object,
-  user: PropTypes.object
+  user: PropTypes.object,
+  showAllPhotosPreview: PropTypes.bool,
+  photoSize: PropTypes.string
 };
 
 ObservationsGridItem.defaultProps = {
   linkTarget: "_self",
-  splitTaxonOptions: {}
+  splitTaxonOptions: {},
+  photoSize: "small"
 };
 
 export default ObservationsGridItem;

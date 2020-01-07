@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { bind } from "mousetrap";
 import {
   addComment,
@@ -15,7 +16,7 @@ import {
   showPrevTab,
   showNextTab,
   toggleKeyboardShortcuts
-} from "./actions/";
+} from "./actions";
 
 const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
   bind( shortcut, ( ) => {
@@ -24,7 +25,100 @@ const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
   }, options.eventType );
 };
 
-const setupKeyboardShortcuts = ( dispatch ) => {
+// Works for now but it's brittle, and will be confusing for locales other
+// than English. It might be wiser to move this logic to an action or a
+// reducer when the controlled terms get set
+const annotationShortcuts = [
+  // Life Stage
+  {
+    shortcut: "l a",
+    term: "Life Stage",
+    value: "Adult"
+  },
+  {
+    shortcut: "l j",
+    term: "Life Stage",
+    value: "Juvenile"
+  },
+  {
+    shortcut: "l t",
+    term: "Life Stage",
+    value: "Teneral"
+  },
+  {
+    shortcut: "l p",
+    term: "Life Stage",
+    value: "Pupa"
+  },
+  {
+    shortcut: "l n",
+    term: "Life Stage",
+    value: "Nymph"
+  },
+  {
+    shortcut: "l l",
+    term: "Life Stage",
+    value: "Larva"
+  },
+  {
+    shortcut: "l s",
+    term: "Life Stage",
+    value: "Subimago"
+  },
+  {
+    shortcut: "l e",
+    term: "Life Stage",
+    value: "Egg"
+  },
+
+  // Plant Phenology
+  {
+    shortcut: "p u",
+    term: "Plant Phenology",
+    value: "Flower Budding"
+  },
+  {
+    shortcut: "p l",
+    term: "Plant Phenology",
+    value: "Flowering"
+  },
+  {
+    shortcut: "p r",
+    term: "Plant Phenology",
+    value: "Fruiting"
+  },
+
+  // Sex
+  {
+    shortcut: "s f",
+    term: "Sex",
+    value: "Female"
+  },
+  {
+    shortcut: "s m",
+    term: "Sex",
+    value: "Male"
+  },
+
+  // Alive or Dead
+  {
+    shortcut: "a a",
+    term: "Alive or Dead",
+    value: "Alive"
+  },
+  {
+    shortcut: "a d",
+    term: "Alive or Dead",
+    value: "Dead"
+  },
+  {
+    shortcut: "a c",
+    term: "Alive or Dead",
+    value: "Cannot Be Determined"
+  }
+];
+
+const setupKeyboardShortcuts = dispatch => {
   bindShortcut( "right", showNextObservation, dispatch, { eventType: "keyup" } );
   bindShortcut( "left", showPrevObservation, dispatch, { eventType: "keyup" } );
   bindShortcut( "i", addIdentification, dispatch );
@@ -38,36 +132,14 @@ const setupKeyboardShortcuts = ( dispatch ) => {
   bindShortcut( ["command+right", "alt+right"], showNextPhoto, dispatch );
   bindShortcut( "shift+left", showPrevTab, dispatch );
   bindShortcut( "shift+right", showNextTab, dispatch );
-  // Works for now but it's brittle, and will be confusing for locales other
-  // than English. It might be wiser to move this logic to an action or a
-  // reducer when the controlled terms get set
-  ["Adult", "Teneral", "Pupa", "Nymph", "Larva", "Subimago", "Egg", "Juvenile"].forEach( v => {
-    bind( `l ${v[0].toLowerCase( )}`, ( ) => {
-      dispatch( addAnnotationFromKeyboard( "Life Stage", v ) );
+  _.forEach( annotationShortcuts, as => {
+    bind( as.shortcut, ( ) => {
+      dispatch( addAnnotationFromKeyboard( as.term, as.value ) );
       return false;
     } );
-  } );
-  bind( "p u", ( ) => {
-    dispatch( addAnnotationFromKeyboard( "Plant Phenology", "Budding" ) );
-    return false;
-  } );
-  bind( "p l", ( ) => {
-    dispatch( addAnnotationFromKeyboard( "Plant Phenology", "Flowering" ) );
-    return false;
-  } );
-  bind( "p r", ( ) => {
-    dispatch( addAnnotationFromKeyboard( "Plant Phenology", "Fruiting" ) );
-    return false;
-  } );
-  bind( "s f", ( ) => {
-    dispatch( addAnnotationFromKeyboard( "Sex", "Female" ) );
-    return false;
-  } );
-  bind( "s m", ( ) => {
-    dispatch( addAnnotationFromKeyboard( "Sex", "Male" ) );
-    return false;
   } );
   bindShortcut( "?", toggleKeyboardShortcuts, dispatch );
 };
 
 export default setupKeyboardShortcuts;
+export { annotationShortcuts };

@@ -41,7 +41,7 @@
     "ramda": "^0.20.1",
     "rc-pagination": "^1.17.3",
     "react": "^16.6.0",
-    "react-bootstrap": "0.32.1",
+    "react-bootstrap": "^0.33.1",
     "react-bootstrap-datetimepicker": "github:inaturalist/react-bootstrap-datetimepicker",
     "react-color": "^2.14.1",
     "react-dnd": "^5.0.0",
@@ -75,7 +75,8 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "webpack": "^4.35.3",
+    "eslint-utils": ">=1.4.1",
+    "webpack": "^4.41.2",
     "webpack-stream": "^5.2.1"
   },
   "repository": {

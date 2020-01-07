@@ -4,7 +4,9 @@ require "optimist"
 # The official list of locales current supported by Seek can be found at:
 # https://github.com/inaturalist/SeekReactNative/blob/master/i18n.js
 
-SEEK_LOCALES = ["da", "de", "en", "es", "fr", "hi", "nl", "pt", "pt-BR", "zh"]
+SEEK_LOCALES = [
+  "da", "de", "en", "es", "fr", "hi", "it", "ja", "nl", "pt", "pt-BR", "ru", "tr", "zh"
+]
 
 OPTS = Optimist::options do
     banner <<-EOS
@@ -19,7 +21,9 @@ Usage:
 
 where [options] are:
 EOS
-  opt :taxonomy_csv_path, "Path to taxonomy CSV containing the taxa whose names will be exported.",
+  # taxonomy_csv_path should be the taxonomy.csv file included in the deployed "slim" vision model
+  opt :taxonomy_csv_path,
+    "Path to taxonomy CSV containing the taxa whose names will be exported. It should have a `taxon_id` column containing taxon IDs for all relevant taxa.",
     type: :string, short: "-t"
   opt :names_per_file, "Maximum number of common names to put in each file.",
     type: :integer, short: "-n", default: 10000

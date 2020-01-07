@@ -27,9 +27,8 @@ class Taxon < ActiveRecord::Base
   include ActsAsElasticModel
 
   acts_as_flaggable
-  has_ancestry
+  has_ancestry orphan_strategy: :adopt
 
-  has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :taxon_changes
   has_many :taxon_change_taxa, inverse_of: :taxon
@@ -69,7 +68,7 @@ class Taxon < ActiveRecord::Base
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
-  belongs_to :updater, :class_name => 'User'
+  has_updater
   belongs_to :conservation_status_source, :class_name => "Source"
   belongs_to :taxon_framework_relationship, touch: true
   has_and_belongs_to_many :colors, -> { uniq }
@@ -87,8 +86,8 @@ class Taxon < ActiveRecord::Base
 
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
-              :capitalize_name,
               :strip_name,
+              :capitalize_name,
               :remove_wikipedia_summary_unless_auto_description,
               :ensure_parent_ancestry_in_ancestry
   after_create :denormalize_ancestry
@@ -97,9 +96,7 @@ class Taxon < ActiveRecord::Base
              :handle_after_move,
              :update_taxon_framework_relationship
   after_destroy :update_taxon_framework_relationship
-             
-
-  after_commit :index_observations
+  after_save :index_observations
 
   validates_presence_of :name, :rank, :rank_level
   validates_uniqueness_of :name, 
@@ -295,10 +292,23 @@ class Taxon < ActiveRecord::Base
     [IUCN_STATUS_CODES[name], value]
   }]
   
+  # Names we don't use when trying to extract a taxon from text because they
+  # usually map to the wrong thing. Also including all place names for
+  # state-level places and above that are also taoxn names, since they often get
+  # used in photo tags
+  abbr_date_names = I18N_SUPPORTED_LOCALES.map{|locale|
+    [
+      I18n.t( "date.abbr_month_names", locale: locale ),
+      I18n.t( "date.abbr_day_names", locale: locale )
+    ]
+  }.flatten.select{|n| !n.blank? && n.to_f == 0}.map{|n| n.to_s.downcase }.uniq
+  place_names_that_are_taxon_names = Taxon.select( "DISTINCT taxa.name" ).
+    joins( "JOIN places ON places.name = taxa.name" ).
+    where( "places.admin_level < 2" ).
+    pluck(:name).uniq.sort.map(&:downcase)
   PROBLEM_NAMES = [
-    "arizona",
     "bee hive",
-    "california",
+    "canon",
     "caterpillar",
     "caterpillars",
     "chiton",
@@ -309,15 +319,12 @@ class Taxon < ActiveRecord::Base
     "larva",
     "lichen",
     "lizard",
-    "mexico",
-    "oman",
     "pinecone",
+    "pupa",
+    "pupae",
     "sea",
-    "sinaloa",
-    "tanzania",
-    "virginia",
     "winged insect"
-  ]
+  ] + place_names_that_are_taxon_names + abbr_date_names
   
   PROTECTED_ATTRIBUTES_FOR_CURATED_TAXA = %w(
     ancestry
@@ -605,13 +612,29 @@ class Taxon < ActiveRecord::Base
   end
   
   def capitalize_name
-    self.name = if genus? && name =~ /^(x|×)\s+?(.+)/
-      match, x, genus_name = name.match(/^(x|×)\s+?(.+)/).to_a
+    self.name = Taxon.capitalize_scientific_name( name, rank )
+    true
+  end
+
+  def self.capitalize_scientific_name( name, rank )
+    if rank.blank?
+      name.capitalize
+    elsif [GENUS, GENUSHYBRID].include?( rank ) && name =~ /^(x|×)\s+?(.+)/
+      full_name, x, genus_name = name.match(/^(x|×)\s+?(.+)/).to_a
       "#{x} #{genus_name.capitalize}"
+    elsif [GENUS, GENUSHYBRID].include?( rank ) && name =~ /^\w+\s+(x|×)\s+\w+$/
+      full_name, name1, x, name2 = name.match( /^(\w+)\s+(x|×)\s+(\w+)/ ).to_a
+      "#{name1.capitalize} #{x} #{name2.capitalize}"
+    elsif rank == HYBRID && name =~ /(x|×)\s+\w+\s+\w+/
+      full_name, name1, x, name2 = name.match( /^(.+)\s+(x|×)\s+(.+)/ ).to_a
+      if name1 && name2
+        "#{name1.capitalize} #{x} #{name2.capitalize}"
+      else
+        name.capitalize
+      end
     else
       name.capitalize
     end
-    true
   end
 
   def strip_name
@@ -1612,7 +1635,7 @@ class Taxon < ActiveRecord::Base
   def taxon_range_kml_url
     return nil unless ranges = taxon_ranges_without_geom
     tr = ranges.detect{|tr| !tr.range.blank?} || ranges.first
-    tr ? FakeView.image_url( tr.kml_url ) : nil
+    tr ? tr.kml_url : nil
   end
 
   def all_names
@@ -1666,6 +1689,8 @@ class Taxon < ActiveRecord::Base
   def deleteable_by?(user)
     return true if user.is_admin?
     return false if taxon_changes.exists? || taxon_change_taxa.exists?
+    return false if TaxonChange.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
+    return false if TaxonChangeTaxon.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
     creator_id == user.id
   end
 
@@ -1858,7 +1883,11 @@ class Taxon < ActiveRecord::Base
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags, options = {})
     scope = TaxonName.joins(:taxon)
-    scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
+    if options[:lexicon]
+      scope = scope.where(
+        lexicon: [options[:lexicon]].flatten.map{|l| [l, TaxonName.normalize_lexicon( l ) ]}.flatten
+      )
+    end
     scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
       next if tag.blank?
@@ -1877,12 +1906,13 @@ class Taxon < ActiveRecord::Base
     taxon_names = taxon_names.select do |tn|
       names.include?(tn.name) || !tn.name.match(/^([A-Z]|\d)+$/)
     end
+    taxon_names = taxon_names.select{|tn| !tn.scientific? || tn.name.size > 2}
     taxon_names = taxon_names.compact.sort do |tn1,tn2|
       tn1_exact = names.include?(tn1.name) ? 1 : 0
       tn2_exact = names.include?(tn2.name) ? 1 : 0
       [tn2_exact, tn2.name.size] <=> [tn1_exact, tn1.name.size]
     end
-    taxon_names.map{|tn| tn.taxon}.compact
+    taxon_names.map{|tn| tn.taxon}.compact.uniq
   end
   
   def self.find_duplicates
@@ -2097,7 +2127,10 @@ class Taxon < ActiveRecord::Base
       batch.each do |t|
         Taxon.where(id: t.id).update_all(observations_count:
           Observation.elastic_search(
-            filters: [ { term: { "taxon.ancestor_ids" => t.id } } ], size: 0).total_entries)
+            filters: [ { term: { "taxon.ancestor_ids" => t.id } } ],
+            size: 0,
+            track_total_hits: true
+          ).total_entries)
         taxon_ids << t.id
       end
       Taxon.elastic_index!( ids: taxon_ids )

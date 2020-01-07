@@ -161,9 +161,15 @@ body>div>.popover[role="tooltip"].popover-error {
 
 .Form {
   h1 {
-    button.delete {
+    button {
       float: right;
       font-size: 14px;
+      margin-left: 8px;
+      .fa {
+        color: $inat-green;
+      }
+    }
+    button.delete {
       .fa {
         color: $fail-red;
       }
@@ -238,8 +244,9 @@ body>div>.popover[role="tooltip"].popover-error {
         padding: 5px 12px;
         border-radius: 20px;
         font-weight: 500;
-        .fa {
+        .btn-nostyle {
           margin-left: 5px;
+          margin-right: 0px;
           opacity: 0.3;
           cursor: pointer;
           &:hover {
@@ -258,7 +265,7 @@ body>div>.popover[role="tooltip"].popover-error {
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    & > .fa {
+    & > button {
       float: right;
       margin-left: 6px;
       cursor: pointer;
@@ -461,7 +468,7 @@ body>div>.popover[role="tooltip"].popover-error {
 }
 
 .admins-row {
-  .UserAutocomplete input {
+  .UserAutocomplete {
     max-width: 250px;
   }
 }

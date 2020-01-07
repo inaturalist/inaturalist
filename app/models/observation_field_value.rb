@@ -5,7 +5,7 @@ class ObservationFieldValue < ActiveRecord::Base
   belongs_to :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   belongs_to :user
-  belongs_to :updater, :class_name => 'User'
+  has_updater
   has_one :annotation
   
   before_validation :strip_value
@@ -169,7 +169,7 @@ class ObservationFieldValue < ActiveRecord::Base
         errors.add(:observation_id, :user_does_not_accept_fields_from_others )
       end
     elsif observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS
-      unless user.is_curator?
+      if !user.is_curator? && user_id != observation.user_id
         errors.add(:observation_id, :user_only_accepts_fields_from_site_curators )
       end
     end
@@ -185,6 +185,7 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def index_observation
+    observation.wait_for_index_refresh = !!wait_for_obs_index_refresh
     observation.try( :elastic_index! )
   end
 
@@ -209,12 +210,30 @@ class ObservationFieldValue < ActiveRecord::Base
       controlled_value = ControlledTerm.first_term_by_label(stripped_value)
     elsif ( observation_field.name =~ /phenology/i && value =~ /^flower(s|ing)?$/i ) ||
           ( observation_field.name == "Plant flowering" && value == "Yes" )
-      controlled_attribute = ControlledTerm.first_term_by_label("Plant Phenology")
-      controlled_value = ControlledTerm.first_term_by_label("Flowering")
+      controlled_attribute = ControlledTerm.first_term_by_label( "Plant Phenology" )
+      controlled_value = ControlledTerm.first_term_by_label( "Flowering" )
     elsif observation_field.name =~ /phenology/i && value =~ /fruit(s|ing)?$/i &&
           value !~ /[0-9]/
-      controlled_attribute = ControlledTerm.first_term_by_label("Plant Phenology")
-      controlled_value = ControlledTerm.first_term_by_label("Fruiting")
+      controlled_attribute = ControlledTerm.first_term_by_label( "Plant Phenology" )
+      controlled_value = ControlledTerm.first_term_by_label( "Fruiting" )
+    elsif ( observation_field.name =~ /dead or alive/i ||
+            observation_field.name =~ /alive( or |\/)dead/i ||
+            observation_field.name =~ /was it alive/i ||
+            observation_field.name =~ /alive \(aor\), dead \(dor\)/i )
+      value_term_label = case value.downcase
+      when "yes", "alive", "aor"
+        "Alive"
+      when "no", "dead", "dor"
+        "Dead"
+      when "maybe", "not sure", "unknown"
+        "Cannot Be Determined"
+      end
+      return unless value_term_label
+      controlled_attribute = ControlledTerm.first_term_by_label( "Alive or Dead" )
+      controlled_value = ControlledTerm.first_term_by_label( value_term_label )
+    elsif observation_field.name.downcase == "roadkill" && value == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Alive or Dead" )
+      controlled_value = ControlledTerm.first_term_by_label( "Dead" )
     end
     return unless controlled_attribute && controlled_value
     { controlled_attribute: controlled_attribute,

@@ -68,7 +68,7 @@ class LocalPhoto < Photo
   # LocalPhotos with subtypes are former remote photos, and subtype
   # is the former subclass. Those subclasses don't validate :user
   validates_presence_of :user, unless: :subtype
-  validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
+  validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
     :message => "must be JPG, PNG, or GIF"
 
   attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation
@@ -230,66 +230,74 @@ class LocalPhoto < Photo
   def to_observation(options = {})
     o = Observation.new(:user => user)
     o.observation_photos.build(:photo => self)
-    return o unless metadata
-    if !metadata[:gps_latitude].blank? && !metadata[:gps_latitude].to_f.nan?
-      o.latitude = metadata[:gps_latitude].to_f
-      if metadata[:gps_latitude_ref].to_s == 'S' && o.latitude > 0
-        o.latitude = o.latitude * -1
-      end
-    end
-    if !metadata[:gps_longitude].blank? && !metadata[:gps_longitude].to_f.nan?
-      o.longitude = metadata[:gps_longitude].to_f
-      if metadata[:gps_longitude_ref].to_s == 'W' && o.longitude > 0
-        o.longitude = o.longitude * -1
-      end
-    end
-    if !metadata[:gps_h_positioning_error].blank? && !metadata[:gps_h_positioning_error].to_f.nan?
-      o.positional_accuracy = metadata[:gps_h_positioning_error].to_i
-    end
-    if (o.latitude && o.latitude.abs > 90) || (o.longitude && o.longitude.abs > 180)
-      o.latitude = nil
-      o.longitude = nil
-    end
-    if o.georeferenced?
-      o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
-    end
-    if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
-      o.set_time_zone
-      o.time_observed_at = capture_time
-      o.set_time_in_time_zone
-      if o.time_observed_at
-        o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
-        o.observed_on = o.time_observed_at.to_date
-      end
-    end
-    unless metadata[:dc].blank?
-      o.taxon = to_taxon
-      if o.taxon
-        tags = to_tags(with_title: true).map(&:downcase)
-        o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
-        o.species_guess ||= o.taxon.default_name.try(:name)
-      elsif !metadata[:dc][:title].blank?
-        o.species_guess = metadata[:dc][:title].to_sentence.strip
-      end
-      if o.species_guess.blank?
-        o.species_guess = nil
-      end
-      candidate_description = nil
-      unless metadata[:dc][:description].blank?
-        candidate_description = [metadata[:dc][:description]].flatten.to_sentence.strip
-      end
-      if candidate_description.blank? && metadata[:image_description]
-        if metadata[:image_description].is_a?(Array)
-          candidate_description = metadata[:image_description].to_sentence
-        elsif metadata[:image_description].is_a?(String)
-          candidate_description = metadata[:image_description]
+    tags = to_tags( with_title: true, with_file_name: true )
+    if metadata
+      if !metadata[:gps_latitude].blank? && !metadata[:gps_latitude].to_f.nan?
+        o.latitude = metadata[:gps_latitude].to_f
+        if metadata[:gps_latitude_ref].to_s == 'S' && o.latitude > 0
+          o.latitude = o.latitude * -1
         end
       end
-      if candidate_description
-        candidate_description = candidate_description.strip
-        o.description = candidate_description unless BRANDED_DESCRIPTIONS.include?( candidate_description )
+      if !metadata[:gps_longitude].blank? && !metadata[:gps_longitude].to_f.nan?
+        o.longitude = metadata[:gps_longitude].to_f
+        if metadata[:gps_longitude_ref].to_s == 'W' && o.longitude > 0
+          o.longitude = o.longitude * -1
+        end
       end
+      begin
+        if !metadata[:gps_h_positioning_error].blank? && !metadata[:gps_h_positioning_error].to_f.nan?
+          o.positional_accuracy = metadata[:gps_h_positioning_error].to_i
+        end
+      rescue FloatDomainError
+        # Apparently GPS Horizontal Positioning Error can be infinity.
+        # Let's just ignore photos of the entire Universe
+      end
+      if (o.latitude && o.latitude.abs > 90) || (o.longitude && o.longitude.abs > 180)
+        o.latitude = nil
+        o.longitude = nil
+      end
+      if o.georeferenced?
+        o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
+      end
+      if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
+        o.set_time_zone
+        o.time_observed_at = capture_time
+        o.set_time_in_time_zone
+        if o.time_observed_at
+          o.observed_on_string = o.time_observed_at.in_time_zone( o.time_zone || user.time_zone ).strftime("%Y-%m-%d %H:%M:%S")
+          o.observed_on = o.time_observed_at.to_date
+        end
+      end
+    end
 
+    o.taxon = to_taxon
+    if o.taxon && !tags.blank?
+      tags = tags.map(&:downcase)
+      o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
+      o.species_guess ||= o.taxon.default_name.try(:name)
+    elsif metadata && metadata[:dc] && !metadata[:dc][:title].blank?
+      o.species_guess = metadata[:dc][:title].to_sentence.strip
+    end
+    if o.species_guess.blank?
+      o.species_guess = nil
+    end
+    candidate_description = nil
+    if metadata && metadata[:dc] && !metadata[:dc][:description].blank?
+      candidate_description = [metadata[:dc][:description]].flatten.to_sentence.strip
+    end
+    if candidate_description.blank? && metadata && metadata[:image_description]
+      if metadata[:image_description].is_a?(Array)
+        candidate_description = metadata[:image_description].to_sentence
+      elsif metadata[:image_description].is_a?(String)
+        candidate_description = metadata[:image_description]
+      end
+    end
+    if candidate_description
+      candidate_description = candidate_description.strip
+      o.description = candidate_description unless BRANDED_DESCRIPTIONS.include?( candidate_description )
+    end
+
+    if metadata
       o.build_observation_fields_from_tags(to_tags)
       o.tag_list = to_tags
     end
@@ -297,15 +305,34 @@ class LocalPhoto < Photo
   end
 
   def to_tags(options = {})
-    return [] if metadata.blank? || metadata[:dc].blank?
-    @tags ||= [metadata[:dc][:subject]].flatten.reject(&:blank?).map(&:strip)
-    tags = @tags
-    tags += [metadata[:dc][:title]].flatten.reject(&:blank?).map(&:strip) if options[:with_title] && !metadata[:dc][:title].blank?
+    tags = []
+    if !metadata.blank? && !metadata[:dc].blank?
+      tags += [metadata[:dc][:subject]].flatten.reject(&:blank?).map(&:strip)
+      if options[:with_title] && !metadata[:dc][:title].blank?
+        tags += [metadata[:dc][:title]].flatten.reject(&:blank?).map(&:strip)
+      end
+    end
+    if options[:with_file_name] && file.file? && !file.original_filename.blank?
+      # every string of letters except underscores (NOT not-words, underscores,
+      # or numbers). Ignore the last since it's almost always a file extension
+      # Note that I'm trying to handle unicode characters here, but there's
+      # still a high chance of encoding weirdness happening
+      words = file.original_filename.scan(/[\p{L}\p{M}\'\’]+/)
+      words = words.reject do |word|
+        word.size == 1 || word =~ /^original|img|inat|dsc.?|jpe?g|png|gif|open-uri$/i
+      end
+      # Collect all combinations of these words from 1-word combinations up to
+      # the combination that includes all words. Note that a combination
+      # preserves order, unlike permutations
+      tags += ( 1..words.size ).map {|i|
+        words.combination( i ).to_a.map{|c| c.join( " " ) }
+      }.flatten
+    end
     tags
   end
 
   def to_taxa(options = {})
-    tags = to_tags(with_title: true)
+    tags = to_tags( with_title: true, with_file_name: true )
     return [] if tags.blank?
     Taxon.tags_to_taxa(tags, options).compact
   end

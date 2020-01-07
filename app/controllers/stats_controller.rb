@@ -1,8 +1,12 @@
 class StatsController < ApplicationController
-
   before_filter :set_time_zone_to_utc
   before_filter :load_params, except: [:year, :generate_year]
-  before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats, :generate_year]
+  before_action :doorkeeper_authorize!,
+    only: [ :generate_year ],
+    if: lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!,
+    only: [:cnc2017_taxa, :cnc2017_stats, :generate_year],
+    unless: lambda { authenticated_with_oauth? }
   before_filter :allow_external_iframes, only: [:wed_bioblitz]
 
   caches_action :summary, expires_in: 1.hour
@@ -59,6 +63,9 @@ class StatsController < ApplicationController
     if !params[:login].blank? && !@display_user
       return render_404
     end
+    if @display_user && !current_user && !@display_user.locale.blank?
+      I18n.locale = @display_user.locale
+    end
     @year_statistic = if @display_user
       YearStatistic.where( "user_id = ? AND year = ?", @display_user, @year ).first
     elsif Site.default.try(:id) == @site.id
@@ -71,11 +78,14 @@ class StatsController < ApplicationController
       @year_statistic.shareable_image
     elsif @display_user && @display_user.icon?
       @display_user.icon.url(:large)
-    else
-      @site.logo_square.url
+    elsif @site.shareable_image?
+      @site.shareable_image.url
     end
     respond_to do |format|
-      format.html { render layout: "bootstrap" }
+      format.html do
+        @responsive = true
+        render layout: "bootstrap"
+      end
       format.json { render json: @year_statistic.data }
     end
   end

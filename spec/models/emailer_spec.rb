@@ -3,30 +3,20 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Emailer, "updates_notification" do
   include ActionView::Helpers::TextHelper
+  elastic_models( Taxon, Observation )
   before(:all) do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
   before do
-    enable_elastic_indexing( Taxon, Observation )
     enable_has_subscribers
     @observation = Observation.make!
     @comment = without_delay { Comment.make!(:parent => @observation) }
     @user = @observation.user
   end
-  after{
-    disable_elastic_indexing( Taxon )
-    disable_has_subscribers
-  }
-  
-  it "should work when recipient has a blank locale" do
-    @user.update_attributes(:locale => "")
-    expect( UpdateAction.unviewed_by_user_from_query(@user.id, notifier: @comment) ).to eq true
-    mail = Emailer.updates_notification(@user, @user.recent_notifications)
-    expect(mail.body).not_to be_blank
-  end
+  after { disable_has_subscribers }
 
   it "should use common names for a user's place" do
-    p = Place.make!
+    p = make_place_with_geom
     t = Taxon.make!
     tn_default = TaxonName.make!( taxon: t, lexicon: TaxonName::LEXICONS[:ENGLISH], name: "Default Name" )
     tn_local = TaxonName.make!( taxon: t, lexicon: TaxonName::LEXICONS[:ENGLISH], name: "Localized Name" )
@@ -72,16 +62,44 @@ describe Emailer, "updates_notification" do
       expect(mail.body).to match @site.url
     end
 
-    it "should default to the user's site locale if the user has no locale" do
-      @user.update_attributes(:locale => "")
-      mail = Emailer.updates_notification(@user, @user.recent_notifications)
-      expect(mail.body).to match /Nuevas actualizaciones/
-    end
-
     it "should include site name in subject" do
-      @user.update_attributes(:locale => "")
       mail = Emailer.updates_notification(@user, @user.recent_notifications)
       expect(mail.subject).to match @site.name
+    end
+  end
+
+  describe "with curator change" do
+    let(:project) { Project.make! }
+    def test_user_with_project_and_viewer( user, project, viewer )
+      viewer_pu = ProjectUser.make!( user: viewer, project: project)
+      pu = if user == viewer
+        viewer_pu
+      else
+        ProjectUser.make!( user: user, project: project )
+      end
+      # Test change to curator
+      pu.update_attributes( role: ProjectUser::CURATOR )
+      Delayed::Worker.new.work_off
+      mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
+      # puts "body: #{mail.body}"
+      expect( mail.body ).to match /curator/
+      # Test change to manage
+      pu.update_attributes( role: ProjectUser::MANAGER )
+      Delayed::Worker.new.work_off
+      mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
+      expect( mail.body ).to match /manager/
+      # Test change to admin
+      project.update_attributes( user: user )
+      Delayed::Worker.new.work_off
+      mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
+      expect( mail.body ).to match /admin/
+    end
+    it "should work when it's about you" do
+      u = User.make!
+      test_user_with_project_and_viewer( u, Project.make!, u )
+    end
+    it "should work when it's about someone else" do
+      test_user_with_project_and_viewer( User.make!, Project.make!, User.make! )
     end
   end
 end

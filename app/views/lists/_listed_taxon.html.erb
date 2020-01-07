@@ -87,7 +87,7 @@
           <% if list.is_a?(CheckList) -%>
             <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_url(:place_id => list.place_id, :taxon_id => primary_listed_taxon.taxon_id) %></span>
           <% elsif list.is_a?(ProjectList) %>
-            <span class="button"><%= link_to "(" + t(:view_all) + ")", project_observations_url(list.project_id, :taxon_id => primary_listed_taxon.taxon_id) %></span>
+            <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_url( project_id: list.project_id, taxon_id: primary_listed_taxon.taxon_id ) %></span>
           <% elsif list.user %>
             <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_by_login_url(list.user.login, :taxon_id => primary_listed_taxon.taxon_id) %></span>
           <% end -%>

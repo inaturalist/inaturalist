@@ -4,8 +4,7 @@ describe ListedTaxaController, "create" do
   render_views
   let(:user) { User.make! }
   let(:list) { List.make!(:user => user) }
-  before(:each) { enable_elastic_indexing([ Observation, Taxon, Place ]) }
-  after(:each) { disable_elastic_indexing([ Observation, Taxon, Place ]) }
+  elastic_models( Observation, Taxon, Place )
   before do
     http_login(user)
   end
@@ -17,9 +16,9 @@ describe ListedTaxaController, "create" do
   end
 
   describe "establishment means propagation" do
-    let(:parent) { Place.make! }
-    let(:place) { Place.make!(:parent => parent) }
-    let(:child) { Place.make!(:parent => place) }
+    let(:parent) { make_place_with_geom }
+    let(:place) { make_place_with_geom(:parent => parent) }
+    let(:child) { make_place_with_geom(:parent => place) }
     let(:taxon) { Taxon.make! }
     let(:parent_listed_taxon) { parent.check_list.add_taxon(taxon) }
     let(:place_listed_taxon) { place.check_list.add_taxon(taxon) }
@@ -53,9 +52,9 @@ end
 
 describe ListedTaxaController, "update" do
   describe "establishment means propagation" do
-    let(:parent) { Place.make! }
-    let(:place) { Place.make!(:parent => parent) }
-    let(:child) { Place.make!(:parent => place) }
+    let(:parent) { make_place_with_geom }
+    let(:place) { make_place_with_geom(:parent => parent) }
+    let(:child) { make_place_with_geom(:parent => place) }
     let(:taxon) { Taxon.make! }
     let(:parent_listed_taxon) { parent.check_list.add_taxon(taxon) }
     let(:place_listed_taxon) { place.check_list.add_taxon(taxon) }
@@ -86,7 +85,7 @@ end
 describe ListedTaxaController, "destroy" do
   it "should destroy" do
     taxon = Taxon.make!
-    place = Place.make!
+    place = make_place_with_geom
     check_list = List.find(place.check_list_id)
     @user = User.make!
     check_listed_taxon = check_list.add_taxon(taxon, options = {user_id: @user.id})    
@@ -98,7 +97,7 @@ describe ListedTaxaController, "destroy" do
   it "should log listed_taxon_alterations if listed_taxa has_atlas_or_complete_set? on destroy" do
     taxon = Taxon.make!
     AncestryDenormalizer.denormalize
-    atlas_place = Place.make!(admin_level: 0)
+    atlas_place = make_place_with_geom(admin_level: 0)
     atlas_place_check_list = List.find(atlas_place.check_list_id)
     @user = User.make!
     check_listed_taxon = atlas_place_check_list.add_taxon(taxon, options = {user_id: @user.id})

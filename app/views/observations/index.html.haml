@@ -32,7 +32,7 @@
                   {{ numFiltersSet }}
             .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
           .form-inline.pull-right.primary-filters
-            %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name", value: params[:taxon_name] }
+            %input.form-control{ placeholder: t(:species), name: "taxon_name", value: params[:taxon_name] }
             %input{ type: "hidden", name: "taxon_id" }
             %span#place-name-input
               :ruby
@@ -44,10 +44,10 @@
     .container.container-fixed
       .row
         .col-xs-4
-          %span.geo.ng-cloak{ "ng-if": "!selectedPlace && !params.swlng && !params.lng", "ng-click": "changeView('observations', 'map')",
+          %span.geo.ng-cloak{ "ng-if": "!( selectedPlace && selectedPlace.name ) && !params.swlng && !params.lng", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             {{ shared.t('the_world') }}
-          %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace", "ng-click": "changeView('observations', 'map')",
+          %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace && selectedPlace.name", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             = "{{ selectedPlace.name | characters:35 }}"
             %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedPlace( )" }

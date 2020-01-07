@@ -107,7 +107,11 @@ class GlobalMap extends React.Component {
   render( ) {
     return (
       <div className="TorqueMap">
-        <h3><span>{ I18n.t( "map" ) }</span></h3>
+        <h3>
+          <a name="map" href="#map">
+            <span>{ I18n.t( "map" ) }</span>
+          </a>
+        </h3>
         <div className="map" />
       </div>
     );

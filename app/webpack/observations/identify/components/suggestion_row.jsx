@@ -103,6 +103,7 @@ const SuggestionRow = ( {
             gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
             observations={[observation]}
             gestureHandling="auto"
+            reloadKey={`map-for-${observation.id}-${taxon.id}`}
             taxonLayers={[{
               taxon,
               observationLayers: [

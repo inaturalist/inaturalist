@@ -87,6 +87,10 @@ class User < ActiveRecord::Base
   preference :coordinate_interpolation_protection, default: false
   preference :coordinate_interpolation_protection_test, default: false
   preference :forum_topics_on_dashboard, :boolean, default: true
+  preference :monthly_supporter_badge, :boolean, default: false
+  preference :map_tile_test, :boolean, default: false
+  preference :no_site, :boolean, default: false
+  preference :no_tracking, :boolean, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
@@ -226,7 +230,7 @@ class User < ActiveRecord::Base
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
   before_save :set_pi_consent_at
-  before_create :set_locale
+  before_save :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
   after_save :update_sound_licenses
@@ -275,6 +279,7 @@ class User < ActiveRecord::Base
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
   validate :validate_email_pattern, on: :create
+  validate :validate_email_domain_exists, on: :create
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -291,10 +296,45 @@ class User < ActiveRecord::Base
     CONFIG.banned_emails.each do |banned_suffix|
       next if failed
       if self.email.match(/#{banned_suffix}$/)
-        errors.add( :email, "domain is not supported" )
+        errors.add( :email, :domain_is_not_supported )
         failed = true
       end
     end
+  end
+
+  # As noted at
+  # https://stackoverflow.com/questions/39721917/check-if-email-domain-is-valid,
+  # this approach is probably going to have some false positives... but probably
+  # not many
+  def validate_email_domain_exists
+    return true if Rails.env.test? && CONFIG.user_email_domain_exists_validation != :enabled
+    return true if self.email.blank?
+    domain = email.split( "@" )[1].strip
+    dns_response = begin
+      r = nil
+      Timeout::timeout( 5 ) do
+        Resolv::DNS.open do |dns|
+          r = dns.getresources( domain, Resolv::DNS::Resource::IN::MX )
+        end
+      end
+      r
+    rescue Timeout::Error
+      begin
+        r = nil
+        Timeout::timeout( 5 ) do
+          Resolv::DNS.open do |dns|
+            r = dns.getresources( domain, Resolv::DNS::Resource::IN::A )
+          end
+        end
+        r
+      rescue Timeout::Error
+        r = nil
+      end
+    end
+    if dns_response.blank?
+      errors.add( :email, :domain_is_not_supported )
+    end
+    true
   end
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
@@ -571,7 +611,7 @@ class User < ActiveRecord::Base
   end
 
   def set_locale
-    self.locale ||= I18n.locale
+    self.locale = I18n.locale if locale.blank?
     true
   end
 
@@ -1197,10 +1237,11 @@ class User < ActiveRecord::Base
       filters: [
         { term: { non_owner_identifier_user_ids: user_id } }
       ],
-      size: 0
+      size: 0,
+      track_total_hits: true
     )
     count = (new_fields_result && new_fields_result.response) ?
-      new_fields_result.response.hits.total : 0
+      new_fields_result.response.hits.total.value : 0
     User.where(id: user_id).update_all(identifications_count: count)
   end
 
@@ -1212,9 +1253,10 @@ class User < ActiveRecord::Base
           { term: { "user.id": user_id } },
         ] } }
       ],
-      size: 0
+      size: 0,
+      track_total_hits: true
     )
-    count = (result && result.response) ? result.response.hits.total : 0
+    count = (result && result.response) ? result.response.hits.total.value : 0
     User.where( id: user_id ).update_all( observations_count: count )
     user.reload
     user.elastic_index!
@@ -1268,6 +1310,13 @@ class User < ActiveRecord::Base
     donorbox_donor_id.to_i > 0
   end
 
+  def display_donor_since
+    return nil unless prefers_monthly_supporter_badge?
+    donorbox_plan_status == "active" &&
+      donorbox_plan_type == "monthly" &&
+      donorbox_plan_started_at
+  end
+
   # Iterates over recently created accounts of unknown spammer status, zero
   # obs or ids, and a description with a link. Attempts to run them past
   # akismet three times, which seems to catch most spammers
@@ -1305,6 +1354,15 @@ class User < ActiveRecord::Base
         sleep 10
       end
     end
+  end
+
+  def self.ip_address_is_often_suspended( ip )
+    return false if ip.blank?
+    count_suspended = User.where( last_ip: ip ).where( "suspended_at IS NOT NULL" ).count
+    count_active = User.where( last_ip: ip ).where( "suspended_at IS NULL" ).count
+    total = count_suspended + count_active
+    return false if total < 3
+    return count_suspended.to_f / ( count_suspended + count_active ).to_f >= 0.9
   end
 
 end

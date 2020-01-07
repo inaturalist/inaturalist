@@ -91,8 +91,16 @@ const DroppedFile = class DroppedFile {
             .replace( /(\d{4}):(\d{2}):(\d{2})/, "$1/$2/$3" );
           /* global TIMEZONE */
           // assume the date is in the timezone of their user account
-          metadata.date = moment.tz( dt, "YYYY/MM/DD HH:mm:ss", TIMEZONE )
-            .format( "YYYY/MM/DD h:mm A z" );
+          if (
+            parseInt( moment( ).tz( TIMEZONE ).format( "z" ), 0 )
+            && parseInt( moment( ).tz( TIMEZONE ).format( "z" ), 0 ) !== 0
+          ) {
+            metadata.date = moment.tz( dt, "YYYY/MM/DD HH:mm:ss", TIMEZONE )
+              .format( "YYYY/MM/DD h:mm A ZZ" );
+          } else {
+            metadata.date = moment.tz( dt, "YYYY/MM/DD HH:mm:ss", TIMEZONE )
+              .format( "YYYY/MM/DD h:mm A z" );
+          }
           metadata.selected_date = metadata.date;
         }
         if ( Math.abs( metadata.latitude ) > 90 || Math.abs( metadata.longitude ) > 180 ) {

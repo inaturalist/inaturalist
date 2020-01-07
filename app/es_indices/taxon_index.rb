@@ -16,58 +16,126 @@ class Taxon < ActiveRecord::Base
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
+      indexes :ancestor_ids, type: "integer"
       indexes :ancestry, type: "keyword"
-      indexes :min_species_ancestry, type: "keyword"
-      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :rank, type: "keyword"
-      indexes :wikipedia_url, type: "keyword", index: false
-      indexes :taxon_photos do
-        indexes :license_code, type: "keyword"
-        indexes :photo do
-          indexes :attribution, type: "keyword", index: false
-          indexes :license_code, type: "keyword"
-          indexes :original_url, type: "keyword", index: false
-          indexes :large_url, type: "keyword", index: false
-          indexes :medium_url, type: "keyword", index: false
-          indexes :small_url, type: "keyword", index: false
-          indexes :square_url, type: "keyword", index: false
-          indexes :url, type: "keyword", index: false
-          indexes :native_page_url, type: "keyword", index: false
-          indexes :native_photo_id, type: "keyword", index: false
-          indexes :type, type: "keyword"
-        end
-      end
+      indexes :atlas_id, type: "integer"
       indexes :colors do
-        indexes :value, type: "keyword"
+        indexes :id, type: "byte", index: false
+        indexes :value, type: "keyword", index: false
       end
+      indexes :complete_rank, type: "keyword"
+      indexes :complete_species_count, type: "integer"
+      indexes :created_at, type: "date"
+      indexes :current_synonymous_taxon_ids, type: "integer"
       indexes :default_photo do
         indexes :attribution, type: "keyword", index: false
-        indexes :license_code, type: "keyword"
+        indexes :flags do
+          indexes :comment, type: "keyword", index: false
+          indexes :created_at, type: "date", index: false
+          indexes :flag, type: "keyword", index: false
+          indexes :id, type: "integer", index: false
+          indexes :resolved, type: "boolean", index: false
+          indexes :resolver_id, type: "integer", index: false
+          indexes :updated_at, type: "date", index: false
+          indexes :user_id, type: "integer", index: false
+        end
+        indexes :id, type: "integer"
+        indexes :license_code, type: "keyword", index: false
         indexes :medium_url, type: "keyword", index: false
+        indexes :original_dimensions do
+          indexes :height, type: "short", index: false
+          indexes :width, type: "short", index: false
+        end
         indexes :square_url, type: "keyword", index: false
         indexes :url, type: "keyword", index: false
       end
-      indexes :listed_taxa do
-        indexes :establishment_means, type: "keyword"
+      indexes :extinct, type: "boolean"
+      indexes :flag_counts do
+        indexes :resolved, type: "short", index: false
+        indexes :unresolved, type: "short", index: false
       end
+      indexes :iconic_taxon_id, type: "integer"
+      indexes :id, type: "integer"
+      indexes :is_active, type: "boolean"
+      indexes :listed_taxa do
+        indexes :establishment_means, type: "keyword", index: false
+        indexes :id, type: "integer", index: false
+        indexes :occurrence_status_level, type: "byte", index: false
+        indexes :place_id, type: "integer", index: false
+        indexes :user_id, type: "integer", index: false
+      end
+      indexes :min_species_ancestry, type: "keyword"
+      indexes :min_species_taxon_id, type: "integer"
+      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :names, type: :nested do
-        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :exact, type: "keyword"
+        indexes :exact_ci, type: "text", analyzer: "keyword_analyzer"
+        indexes :is_valid, type: "boolean"
         indexes :locale, type: "keyword"
-        # NOTE: don't forget to install the proper analyzers in Elasticsearch
-        # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
-        indexes :name_ja, type: "text", analyzer: "kuromoji"
+        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :name_autocomplete, type: "text",
           analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
         indexes :name_autocomplete_ja, type: "text", analyzer: "autocomplete_analyzer_ja"
-        indexes :exact, type: "keyword"
-        indexes :exact_ci, type: "text", analyzer: "keyword_analyzer"
+        # NOTE: don't forget to install the proper analyzers in Elasticsearch
+        # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
+        indexes :name_ja, type: "text", analyzer: "kuromoji"
+        indexes :place_taxon_names do
+          indexes :place_id, type: "integer"
+          indexes :position, type: "short"
+        end
+        indexes :position, type: "short"
       end
+      indexes :observations_count, type: "integer"
+      indexes :parent_id, type: "integer"
+      indexes :place_ids, type: "integer"
+      indexes :rank, type: "keyword"
+      indexes :rank_level, type: "scaled_float", scaling_factor: 100
       indexes :statuses do
         indexes :authority, type: "keyword"
         indexes :geoprivacy, type: "keyword"
+        indexes :iucn, type: "byte"
+        indexes :place_id, type: "integer"
+        indexes :source_id, type: "short"
         indexes :status, type: "keyword"
+        indexes :status_name, type: "keyword"
       end
+      indexes :taxon_changes_count, type: "byte"
+      indexes :taxon_photos do
+        indexes :license_code, type: "keyword", index: false
+        indexes :photo do
+          indexes :attribution, type: "keyword", index: false
+          indexes :flags do
+            indexes :comment, type: "keyword", index: false
+            indexes :created_at, type: "date", index: false
+            indexes :flag, type: "keyword", index: false
+            indexes :id, type: "integer", index: false
+            indexes :resolved, type: "boolean", index: false
+            indexes :resolver_id, type: "integer", index: false
+            indexes :updated_at, type: "date", index: false
+            indexes :user_id, type: "integer", index: false
+          end
+          indexes :id, type: "integer"
+          indexes :large_url, type: "keyword", index: false
+          indexes :license_code, type: "keyword", index: false
+          indexes :medium_url, type: "keyword", index: false
+          indexes :native_page_url, type: "keyword", index: false
+          indexes :native_photo_id, type: "keyword", index: false
+          indexes :original_dimensions do
+            indexes :height, type: "short", index: false
+            indexes :width, type: "short", index: false
+          end
+          indexes :original_url, type: "keyword", index: false
+          indexes :small_url, type: "keyword", index: false
+          indexes :square_url, type: "keyword", index: false
+          indexes :url, type: "keyword", index: false
+          indexes :type, type: "keyword", index: false
+        end
+        indexes :taxon_id, type: "integer", index: false
+      end
+      indexes :taxon_schemes_count, type: "byte"
+      indexes :universal_search_rank, type: "integer"
+      indexes :wikipedia_url, type: "keyword", index: false
     end
   end
 
@@ -78,13 +146,13 @@ class Taxon < ActiveRecord::Base
     end
     json = {
       id: id,
-      name: name,
       rank: rank,
       rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
-      parent_id: parent_id,
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
-      is_active: is_active
+      is_active: is_active,
+      min_species_taxon_id: (rank_level && rank_level < RANK_LEVELS["species"]) ?
+        parent_id : id
     }
     # min_species_* below means don't consider any ranks more specific than species.
     # If the taxon is a subspecies, its min_species_ancestry stops at species
@@ -96,26 +164,18 @@ class Taxon < ActiveRecord::Base
       if Taxon::LIFE
         json[:ancestor_ids].delete(Taxon::LIFE.id)
       end
-      json[:ancestry] = json[:ancestor_ids].join(",")
       json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
-        json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
-      unless options[:for_observation]
-        json[:min_species_ancestors] = json[:min_species_ancestry].split(",").
-          map{ |aid| { id: aid.to_i } }
-      end
+        json[:ancestor_ids][0...-1].join(",") : json[:ancestor_ids].join(",")
     else
+      json[:name] = name
+      json[:parent_id] = parent_id
       json[:ancestry] = json[:ancestor_ids].join(",")
       json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
         json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
     end
-    json[:min_species_taxon_id] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
-      parent_id : id
     # indexing originating Observations, not via another model
     unless options[:no_details]
-      if options[:for_observation]
-        mapped = taxon_names.to_a.group_by{ |tn| "names_#{tn.locale_for_lexicon}" }
-        mapped.each{ |k,v| json[k] = v.map(&:name) }
-      else
+      unless options[:for_observation]
         json[:names] = taxon_names.
           sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
           map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }

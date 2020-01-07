@@ -1,33 +1,11 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { OverlayTrigger, Popover } from "react-bootstrap";
 import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 import UsersPopover from "./users_popover";
 /* global SITE */
 
 class QualityMetrics extends React.Component {
-  static popover( ) {
-    return (
-      <Popover
-        className="DataQualityOverlay PopoverWithHeader"
-        id="popover-data-quality"
-      >
-        <div className="header">
-          { I18n.t( "data_quality_assessment" ) }
-        </div>
-        <div
-          className="contents"
-          dangerouslySetInnerHTML={{
-            __html: I18n.t( "views.observations.show.quality_assessment_help_html", {
-              site_name: SITE.short_name
-            } )
-          }}
-        />
-      </Popover>
-    );
-  }
-
   constructor( ) {
     super( );
     this.voteCellsForMetric = this.voteCellsForMetric.bind( this );
@@ -258,30 +236,12 @@ class QualityMetrics extends React.Component {
           <div>
             <div className="grade">
               { I18n.t( "label_colon", { label: I18n.t( "quality_grade_" ) } ) }
-              <span className={ `quality_grade ${observation.quality_grade} ` }>
+              <span className={`quality_grade ${observation.quality_grade} `}>
                 { _.upperFirst( I18n.t( observation.quality_grade ) ) }
               </span>
             </div>
             <div className="text">
-              { I18n.t( "the_" ) }
-              { " " }
-              <OverlayTrigger
-                trigger="click"
-                rootClose
-                placement="top"
-                containerPadding={20}
-                overlay={
-                  QualityMetrics.popover( )
-                }
-                className="cool"
-              >
-                <span className="popover-data-quality-link">
-                  { I18n.t( "data_quality_assessment_" ) }
-                  <i className="fa fa-info-circle" />
-                </span>
-              </OverlayTrigger>
-              { " " }
-              { I18n.t( "is_an_evaluation" ) }
+              { I18n.t( "views.observations.show.data_quality_assessment_desc_html" ) }
             </div>
           </div>
         ) }

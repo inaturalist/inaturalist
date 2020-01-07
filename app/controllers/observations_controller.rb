@@ -289,7 +289,6 @@ class ObservationsController < ApplicationController
         @project_invitations = @observation.project_invitations.limit(100).to_a
         @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
       end
-      @coordinates_viewable = @observation.coordinates_viewable_by?(current_user)
     end
     respond_to do |format|
       format.html do
@@ -297,12 +296,12 @@ class ObservationsController < ApplicationController
           return render(partial: "cached_component",
             object: @observation, layout: false)
         end
-        
+        @coordinates_viewable = @observation.coordinates_viewable_by?( current_user )
         user_viewed_updates(delay: true) if logged_in?
         @observer_provider_authorizations = @observation.user.provider_authorizations
         @shareable_image_url = FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
         if op = @observation.observation_photos.sort_by{|op| op.position.to_i || op.id }.first
-          @shareable_image_url = FakeView.image_url( op.photo.best_url(:original) )
+          @shareable_image_url = FakeView.image_url( op.photo.best_url(:large) )
         end
         @shareable_title = if @observation.taxon
           if comname = FakeView.common_taxon_name( @observation.taxon, user: current_user, site: @site ).try(:name)
@@ -442,7 +441,7 @@ class ObservationsController < ApplicationController
         sync_facebook_photo
       rescue Koala::Facebook::APIError => e
         raise e unless e.message =~ /OAuthException/
-        redirect_to ProviderAuthorization::AUTH_URLS['facebook']
+        redirect_to url_for( controller: "facebook", action: "options" )
         return
       end
     end
@@ -509,7 +508,7 @@ class ObservationsController < ApplicationController
         sync_facebook_photo
       rescue Koala::Facebook::APIError => e
         raise e unless e.message =~ /OAuthException/
-        redirect_to ProviderAuthorization::AUTH_URLS['facebook']
+        redirect_to url_for( controller: "facebook", action: "options" )
         return
       end
     end
@@ -630,6 +629,7 @@ class ObservationsController < ApplicationController
     
     @observations.compact.each do |o|
       o.user = current_user
+      o.wait_for_index_refresh = true
       o.save
     end
     create_project_observations
@@ -691,7 +691,6 @@ class ObservationsController < ApplicationController
           end
           render :json => json, :status => :unprocessable_entity
         else
-          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               :viewer => current_user,
@@ -817,7 +816,7 @@ class ObservationsController < ApplicationController
       observation.editing_user_id = current_user.id
 
       observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
-      
+      observation.wait_for_index_refresh = true
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
       end
@@ -874,7 +873,6 @@ class ObservationsController < ApplicationController
         format.xml  { head :ok }
         format.js { render :json => @observations }
         format.json do
-          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               viewer: current_user,
@@ -931,6 +929,7 @@ class ObservationsController < ApplicationController
   # DELETE /observations/1
   # DELETE /observations/1.xml
   def destroy
+    @observation.wait_for_index_refresh = true
     @observation.destroy
     respond_to do |format|
       format.html do
@@ -939,7 +938,6 @@ class ObservationsController < ApplicationController
       end
       format.xml  { head :ok }
       format.json do
-        Observation.refresh_es_index
         head :ok
       end
     end
@@ -1323,7 +1321,7 @@ class ObservationsController < ApplicationController
       format.html
     end
   end
-  
+
   def project
     @project = Project.find(params[:id]) rescue nil
     unless @project
@@ -1331,9 +1329,7 @@ class ObservationsController < ApplicationController
       redirect_to request.env["HTTP_REFERER"] || projects_path
       return
     end
-    
     params[:projects] = @project.id
-
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     search_params = Observation.apply_pagination_options(search_params,
@@ -1342,51 +1338,16 @@ class ObservationsController < ApplicationController
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
-    
     @project_observations = @project.project_observations.where(observation: @observations.map(&:id)).
       includes([ { :curator_identification => [ :taxon, :user ] } ])
-    @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
-    
-    @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
-    
+
     respond_to do |format|
-      format.html do
-        prepare_map(search_params)
-        if (partial = params[:partial]) && PARTIALS.include?(partial)
-          return render_observations_partial(partial)
-        end
-      end
       format.json do
         render_observations_to_json
-      end
-      format.atom do
-        @updated_at = Observation.last.updated_at
-        render :action => "index"
       end
       format.csv do
         pagination_headers_for(@observations)
         render :text => ProjectObservation.to_csv(@project_observations, :user => current_user)
-      end
-      format.kml do
-        render_observations_to_kml(
-          :snippet => "#{@project.title.html_safe} Observations", 
-          :description => "Observations feed for the #{@site.name} project '#{@project.title.html_safe}'",
-          :name => "#{@project.title.html_safe} Observations"
-        )
-      end
-      format.widget do
-        if params[:markup_only] == 'true'
-          render :js => render_to_string(:partial => "widget.html.erb", :locals => {
-            :show_user => true, 
-            :target => params[:target], 
-            :default_image => params[:default_image], 
-            :silence => params[:silence]
-          })
-        else
-          render :js => render_to_string(:partial => "widget.js.erb", :locals => {
-            :show_user => true
-          })
-        end
       end
     end
   end
@@ -1910,7 +1871,6 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @observation }
       format.json do
-        Observation.refresh_es_index
         head :no_content
       end
     end
@@ -2012,6 +1972,7 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
+    review.observation.wait_for_index_refresh = true
     review.observation.elastic_index!
   end
 
@@ -2258,7 +2219,6 @@ class ObservationsController < ApplicationController
     rescue Timeout::Error => e
       flash.now[:error] = t(:sorry_flickr_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
-      Airbrake.notify(e, :request => request, :session => session)
       Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
@@ -2303,7 +2263,6 @@ class ObservationsController < ApplicationController
     rescue Timeout::Error => e
       flash.now[:error] = t(:sorry_picasa_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
-      Airbrake.notify(e, :request => request, :session => session)
       Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
@@ -2856,6 +2815,7 @@ class ObservationsController < ApplicationController
     if map_params[:user]
       map_params[:user_id] = map_params.delete(:user)
     end
+    map_params[:precision_offset] = params[:precision_offset]
     map_params.select do |k,v|
       ! [ :utf8, :controller, :action, :page, :per_page,
           :preferences, :color, :_query_params_set,
@@ -2879,11 +2839,12 @@ class ObservationsController < ApplicationController
       current_user: current_user, site: @site)
     search_params = Observation.apply_pagination_options(search_params,
       user_preferences: @prefs)
+    search_params[:track_total_hits] = true
     if perform_caching && search_params[:q].blank? && (!logged_in? || search_params[:page].to_i == 1)
       search_key = search_cache_key(search_params)
       # Get the cached filtered observations
       observations = Rails.cache.fetch(search_key, expires_in: 5.minutes, compress: true) do
-        obs = Observation.page_of_results(search_params)
+        obs = Observation.page_of_results( search_params, track_total_hits: true )
         # this is doing preloading, as is some code below, but this isn't
         # entirely redundant. If we preload now we can cache the preloaded
         # data to save extra time later on.
@@ -2891,7 +2852,7 @@ class ObservationsController < ApplicationController
         obs
       end
     else
-      observations = Observation.page_of_results(search_params)
+      observations = Observation.page_of_results( search_params, track_total_hits: true )
     end
     set_up_instance_variables(search_params)
     { params: params,

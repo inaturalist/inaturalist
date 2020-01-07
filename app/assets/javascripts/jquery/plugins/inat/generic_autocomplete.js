@@ -57,6 +57,7 @@ genericAutocomplete.renderMenu = function ( ul, items ) {
 };
 
 genericAutocomplete.stripTags = function ( txt ) {
+  if ( !txt ) { return txt; }
   return txt.replace( /<\w+>(.+)<\/\w+>/g, "$1" );
 };
 
@@ -75,9 +76,13 @@ $.fn.genericAutocomplete = function ( acOptions ) {
   // search is strangely the event when the (x) is clicked in the
   // text field search box. We want to restore all defaults
   field.on( "search", function ( ) {
-    field.val( "" );
-    field.trigger( "resetSelection" );
-    return false;
+    // the React implementations use a custom style, not the default browser
+    // search clear. So skip this so as to not interfere with actual searches
+    if ( !options.react ) {
+      field.val( "" );
+      field.trigger( "resetSelection" );
+      return false;
+    }
   } );
 
   field.select = function ( e, ui ) {
@@ -260,6 +265,7 @@ $.fn.genericAutocomplete = function ( acOptions ) {
     }
     if ( options.afterUnselect ) { options.afterUnselect( id ); }
     field.selection = null;
+    field.selectedItem = null;
   } );
   field.bind( "resetAll", function ( ) {
     field.trigger( "resetSelection" );

@@ -1,12 +1,23 @@
 import inatjs from "inaturalistjs";
 
 const SET_SUBSCRIPTIONS = "obs-show/subscriptions/SET_SUBSCRIPTIONS";
+const RESET_SUBSCRIPTIONS = "obs-show/subscriptions/RESET_SUBSCRIPTIONS";
 
-export default function reducer( state = [], action ) {
+export default function reducer( state = {
+  subscriptions: [],
+  loaded: false
+}, action ) {
   switch ( action.type ) {
     case SET_SUBSCRIPTIONS:
-      return action.subscriptions;
+      state.subscriptions = action.subscriptions;
+      state.loaded = true;
+      break;
+    case RESET_SUBSCRIPTIONS:
+      state.subscriptions = [];
+      state.loaded = false;
+      break;
     default:
+      // Do nothing
   }
   return state;
 }
@@ -16,6 +27,10 @@ export function setSubscriptions( subscriptions ) {
     type: SET_SUBSCRIPTIONS,
     subscriptions
   };
+}
+
+export function resetSubscriptions( ) {
+  return { type: RESET_SUBSCRIPTIONS };
 }
 
 export function fetchSubscriptions( options = {} ) {

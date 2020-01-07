@@ -60,13 +60,12 @@ describe TaxonSwap, "creation" do
 end
 
 describe TaxonSwap, "destruction" do
+  elastic_models( Observation, Taxon, Identification )
   before(:each) do
-    enable_elastic_indexing( Observation, Taxon, Identification )
     prepare_swap
     enable_has_subscribers
   end
   after(:each) do
-    disable_elastic_indexing( Observation, Taxon, Identification )
     disable_has_subscribers
   end
 
@@ -122,6 +121,16 @@ describe TaxonSwap, "commit" do
     @swap.commit
     @output_taxon.reload
     expect(@output_taxon.taxon_names.detect{|tn| tn.name == name}).not_to be_blank
+  end
+
+  it "should not associate users with the duplicate taxon names" do
+    name = "Bunny foo foo"
+    @input_taxon.taxon_names.create( name: name, lexicon: TaxonName::ENGLISH, creator: User.make! )
+    expect( @output_taxon.taxon_names.detect{|tn| tn.name == name} ).to be_blank
+    @swap.commit
+    @output_taxon.reload
+    new_name = @output_taxon.taxon_names.detect{|tn| tn.name == name}
+    expect( new_name.creator ).to be_blank
   end
 
   it "should mark the duplicate of the input taxon's sciname as invalid" do
@@ -193,8 +202,7 @@ describe TaxonSwap, "commit" do
   end
 
   describe "for taxa with children" do
-    before(:each) { enable_elastic_indexing( Observation, Identification ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    elastic_models( Observation, Identification )
 
     describe "with move_children" do
       before do
@@ -395,7 +403,7 @@ describe TaxonSwap, "commit" do
     @output_taxon.reload
     expect {
       @swap.commit
-    }.not_to raise_error TaxonChange::PermissionError
+    }.not_to raise_error # TaxonChange::PermissionError
   end
   
   it "should raise an error if input taxon has active children" do
@@ -441,8 +449,7 @@ describe TaxonSwap, "commit" do
   end
 
   describe "when sole identifier of input taxon has opted out of taxon changes" do
-    before(:each) { enable_elastic_indexing( Observation, Identification ) }
-    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    elastic_models( Observation, Identification )
 
     it "should re-evalute probable taxa" do
       o = Observation.make!
@@ -467,15 +474,12 @@ describe TaxonSwap, "commit" do
 end
 
 describe TaxonSwap, "commit_records" do
+  elastic_models( Observation, Identification )
   before(:each) do
     prepare_swap
-    enable_elastic_indexing( Observation, Identification )
     enable_has_subscribers
   end
-  after(:each) do
-    disable_elastic_indexing( Observation, Identification )
-    disable_has_subscribers
-  end
+  after { disable_has_subscribers }
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)
@@ -535,7 +539,7 @@ describe TaxonSwap, "commit_records" do
   it "should log listed taxa if taxon changed" do
     AncestryDenormalizer.denormalize
     @user = User.make!
-    atlas_place = Place.make!(admin_level: 0)
+    atlas_place = make_place_with_geom(admin_level: 0)
     atlas = Atlas.make!(user: @user, taxon: @input_taxon, is_active: false)
     atlas_place_check_list = List.find(atlas_place.check_list_id)
     check_listed_taxon = atlas_place_check_list.add_taxon(@input_taxon, options = {user_id: @user.id})

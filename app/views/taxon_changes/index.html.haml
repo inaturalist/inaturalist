@@ -17,11 +17,11 @@
   - @title = capture do
     = t(:taxonomic_changes).titleize
     - if @taxon
-      = t :for
+      = t :label_colon, label: t(:taxon)
       %i= link_to @taxon.name, taxon_path(@taxon), "data-taxon-id" => @taxon.id
       (#{@taxon.is_active ? t(:active) : t(:inactive)})"
     - if @ancestor_taxon
-      = t :on
+      = t :label_colon, label: t(:ancestor_taxon)
       %i= link_to @ancestor_taxon.name, taxon_path(@ancestor_taxon), "data-taxon-id" => @ancestor_taxon.id
       (#{@ancestor_taxon.is_active ? t(:active) : t(:inactive)})"
   = strip_tags(@title)

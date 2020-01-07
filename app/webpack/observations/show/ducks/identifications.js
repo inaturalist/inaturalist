@@ -1,11 +1,17 @@
 import inatjs from "inaturalistjs";
 
-const SET_IDENTIFIERS = "obs-show/identifications/identifiers";
+const SET_IDENTIFIERS = "obs-show/identifications/SET_IDENTIFIERS";
+const SET_LAST_FETCH_TIME = "obs-show/identifications/SET_LAST_FETCH_TIME";
 
-export default function reducer( state = { identifiers: [] }, action ) {
+export default function reducer( state = {
+  identifiers: null,
+  lastFetchTime: null
+}, action ) {
   switch ( action.type ) {
     case SET_IDENTIFIERS:
       return Object.assign( { }, state, { identifiers: action.identifiers } );
+    case SET_LAST_FETCH_TIME:
+      return Object.assign( { }, state, { lastFetchTime: action.lastFetchTime } );
     default:
   }
   return state;
@@ -18,10 +24,22 @@ export function setIdentifiers( identifiers ) {
   };
 }
 
+export function setLastFetchTime( lastFetchTime ) {
+  return {
+    type: SET_LAST_FETCH_TIME,
+    lastFetchTime
+  };
+}
+
 export function fetchIdentifiers( params ) {
-  return ( dispatch ) => (
+  return ( dispatch, getState ) => {
+    const time = Date.now( );
+    dispatch( setLastFetchTime( time ) );
     inatjs.identifications.identifiers( params ).then( response => {
-      dispatch( setIdentifiers( response.results ) );
-    } ).catch( e => { } )
-  );
+      const { identifications } = getState( );
+      if ( time === identifications.lastFetchTime ) {
+        dispatch( setIdentifiers( response.results ) );
+      }
+    } ).catch( e => { } );
+  };
 }

@@ -306,7 +306,14 @@ class GuidesController < ApplicationController
     create_default_guide_taxa
     respond_to do |format|
       if @guide.update_attributes(guide_params)
-        format.html { redirect_to @guide, notice: t("Guide was successfully #{params[:publish] ? 'published' : 'updated'}".downcase.gsub(' ','_')) }
+        format.html do
+          notice = if params[:publish]
+            t( :guide_was_successfully_published )
+          else
+            t( :guide_was_successfully_updated )
+          end
+          redirect_to @guide, notice: notice
+        end
         format.json { head :no_content }
       else
         format.html do

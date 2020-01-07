@@ -13,8 +13,7 @@ shared_examples_for "an ObservationSoundsController" do
 end
 
 describe ObservationSoundsController, "oauth authentication" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:user) { User.make! }
   let(:token) { double :acceptable? => true, accessible?: true, resource_owner_id: user.id }
   let(:observation) { Observation.make!( user: user ) }
@@ -26,8 +25,7 @@ describe ObservationSoundsController, "oauth authentication" do
 end
 
 describe ObservationSoundsController, "devise authentication" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:user) { User.make! }
   let(:observation) { Observation.make!( user: user ) }
   before do

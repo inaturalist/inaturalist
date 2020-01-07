@@ -28,10 +28,10 @@ const mapDispatchToProps = dispatch => ( {
   updateObsCard: ( obsCard, updates ) => {
     dispatch( actions.updateObsCard( obsCard, updates ) );
   },
-  updateSelectedObsCards: ( updates ) => {
+  updateSelectedObsCards: updates => {
     dispatch( actions.updateSelectedObsCards( updates ) );
   },
-  removeObsCard: ( obsCard ) => {
+  removeObsCard: obsCard => {
     dispatch( actions.removeObsCard( obsCard ) );
   },
   removeSelected: ( ) => {
@@ -46,40 +46,40 @@ const mapDispatchToProps = dispatch => ( {
   createBlankObsCard: ( ) => {
     dispatch( actions.createBlankObsCard( ) );
   },
-  selectObsCards: ( ids ) => {
+  selectObsCards: ids => {
     dispatch( actions.selectObsCards( ids ) );
   },
   mergeObsCards: ( obsCards, targetCard ) => {
     dispatch( actions.mergeObsCards( obsCards, targetCard ) );
   },
-  setState: ( attrs ) => {
+  setState: attrs => {
     dispatch( actions.setState( attrs ) );
   },
-  updateState: ( attrs ) => {
+  updateState: attrs => {
     dispatch( actions.updateState( attrs ) );
   },
   confirmRemoveSelected: ( ) => {
     dispatch( actions.confirmRemoveSelected( ) );
   },
-  confirmRemoveObsCard: ( obsCard ) => {
+  confirmRemoveObsCard: obsCard => {
     dispatch( actions.confirmRemoveObsCard( obsCard ) );
   },
   movePhoto: ( photo, toObsCard ) => {
     dispatch( actions.movePhoto( photo, toObsCard ) );
   },
-  newCardFromMedia: ( media ) => {
+  newCardFromMedia: media => {
     dispatch( actions.newCardFromMedia( media ) );
   },
   combineSelected: ( ) => {
     dispatch( actions.combineSelected( ) );
   },
-  confirmRemoveFile: ( file ) => {
+  confirmRemoveFile: file => {
     dispatch( actions.confirmRemoveFile( file ) );
   },
-  appendToSelectedObsCards: ( updates ) => {
+  appendToSelectedObsCards: updates => {
     dispatch( actions.appendToSelectedObsCards( updates ) );
   },
-  removeFromSelectedObsCards: ( updates ) => {
+  removeFromSelectedObsCards: updates => {
     dispatch( actions.removeFromSelectedObsCards( updates ) );
   },
   saveLocation: params => {

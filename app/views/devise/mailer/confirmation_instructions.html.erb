@@ -3,9 +3,6 @@
 <%-
   @user = @resource
   site = @resource.site || @site || Site.default
-  logo_url = site.logo.url
-  logo_square_url = site.logo_square.url
-  site_url = site.url
   site_name = site.name
   help_url = if site.help_url.to_s =~ /http/
     site.help_url

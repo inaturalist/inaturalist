@@ -2,11 +2,27 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe TaxaController do
   describe "show" do
-    before(:each) { enable_elastic_indexing([ Observation ]) }
-    after(:each) { disable_elastic_indexing([ Observation ]) }
+    render_views
+    let(:taxon) { Taxon.make! }
+    elastic_models( Observation )
     it "should 404 for absurdly large ids" do
       get :show, id: "389299563_507aed5ae4_s.jpg"
       expect( response ).to be_not_found
+    end
+
+    it "renders a self-referential canonical tag" do
+      expect( INatAPIService ).to receive( "get_json" ) { { }.to_json }
+      get :show, id: taxon.id
+      expect( response.body ).to have_tag(
+        "link[rel=canonical][href='#{taxon_url( taxon, host: Site.default.url )}']" )
+    end
+
+    it "renders a canonical tag from other sites to default site" do
+      expect( INatAPIService ).to receive( "get_json" ) { { }.to_json }
+      different_site = Site.make!
+      get :show, id: taxon.id, inat_site_id: different_site.id
+      expect( response.body ).to have_tag(
+        "link[rel=canonical][href='#{taxon_url( taxon, host: Site.default.url )}']" )
     end
   end
 
@@ -123,6 +139,25 @@ describe TaxaController do
       delete :destroy, :id => t.id
       expect(Taxon.find_by_id(t.id)).not_to be_blank
     end
+
+    it "should not be possible if descendants are associated with taxon changes" do
+      u = make_curator
+      fam = Taxon.make!( creator: u, rank: Taxon::FAMILY )
+      gen = Taxon.make!( creator: u, rank: Taxon::GENUS, parent: fam )
+      ts = make_taxon_swap( input_taxon: gen )
+      sign_in u
+      delete :destroy, id: fam.id
+      expect( Taxon.find_by_id( fam.id ) ).not_to be_blank
+    end
+    it "should not be possible if descendants are associated with taxon change taxa" do
+      u = make_curator
+      fam = Taxon.make!( creator: u, rank: Taxon::FAMILY )
+      gen = Taxon.make!( creator: u, rank: Taxon::GENUS, parent: fam )
+      ts = make_taxon_split( input_taxon: gen )
+      sign_in u
+      delete :destroy, id: fam.id
+      expect( Taxon.find_by_id( fam.id ) ).not_to be_blank
+    end
   end
   
   describe "update" do
@@ -138,8 +173,7 @@ describe TaxaController do
   end
 
   describe "autocomplete" do
-    before(:each) { enable_elastic_indexing([ Taxon ]) }
-    after(:each) { disable_elastic_indexing([ Taxon ]) }
+    elastic_models( Taxon )
     it "should choose exact matches" do
       t = Taxon.make!
       get :autocomplete, q: t.name, format: :json
@@ -148,8 +182,7 @@ describe TaxaController do
   end
   
   describe "search" do
-    before(:each) { enable_elastic_indexing([ Taxon ]) }
-    after(:each) { disable_elastic_indexing([ Taxon ]) }
+    elastic_models( Taxon )
     render_views
     it "should find a taxon by name" do
       t = Taxon.make!( name: "Predictable species", rank: Taxon::SPECIES )
@@ -164,8 +197,7 @@ describe TaxaController do
   end
 
   describe "observation_photos" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation, Taxon )
 
     let(:o) { make_research_grade_observation }
     let(:p) { o.photos.first }
@@ -216,8 +248,7 @@ describe TaxaController do
   end
 
   describe "set_photos" do
-    before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-    after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+    elastic_models( Observation, Taxon )
     it "should reindex the taxon new photos even if there are existing photos" do
       sign_in User.make!
       taxon = Taxon.make!

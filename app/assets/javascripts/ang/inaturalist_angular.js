@@ -39,6 +39,10 @@ function( $http, $rootScope, $filter ) {
     return I18n.t( k, options );
   };
 
+  var l = function( format, value ) {
+    return I18n.l( format, moment( value ) );
+  };
+
   var taxonStatusTitle = function( taxon ) {
     if( !taxon.conservation_status ) { return; }
     var title = $filter( "capitalize" )( taxon.conservationStatus( ), "title" );
@@ -125,6 +129,7 @@ function( $http, $rootScope, $filter ) {
     basicGet: basicGet,
     numberWithCommas: numberWithCommas,
     t: t,
+    l: l,
     taxonStatusTitle: taxonStatusTitle,
     taxonMeansTitle: taxonMeansTitle,
     backgroundIf: backgroundIf,

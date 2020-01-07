@@ -61,6 +61,7 @@ class ObservationPhotosController < ApplicationController
     end
     
     begin
+      @observation_photo.observation.wait_for_index_refresh = true
       @observation_photo.save
     rescue PG::UniqueViolation => e
       raise e unless e.message =~ /index_observation_photos_on_uuid/
@@ -69,12 +70,10 @@ class ObservationPhotosController < ApplicationController
     
     respond_to do |format|
       format.json do
-        Observation.refresh_es_index
         if @observation_photo.valid?
           render :json => @observation_photo.to_json(:include => [:photo])
         else
           msg = "Failed to create observation photo: #{@observation_photo.errors.full_messages.to_sentence}"
-          # Airbrake.notify(Exception.new(msg), :request => request, :session => session)
           Logstasher.write_exception(Exception.new(msg), request: request, session: session, user: current_user)
           Rails.logger.error "[ERROR #{Time.now}] #{msg}"
           status = :unprocessable_entity
@@ -102,8 +101,8 @@ class ObservationPhotosController < ApplicationController
     end
     respond_to do |format|
       if @observation_photo.update_attributes(params[:observation_photo])
+        @observation_photo.observation.wait_for_index_refresh = true
         @observation_photo.observation.elastic_index!
-        Observation.refresh_es_index
         format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
       else
         Rails.logger.error "[ERROR #{Time.now}] Failed to update observation photo: #{@observation_photo.errors.full_messages.to_sentence}"

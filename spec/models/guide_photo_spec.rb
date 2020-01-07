@@ -2,8 +2,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe GuidePhoto, "creation" do
-  before(:all) { enable_elastic_indexing( Observation ) }
-  after(:all) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   it "should validate the length of a description" do
     gs = GuidePhoto.make(:description => "foo")
     expect(gs).to be_valid

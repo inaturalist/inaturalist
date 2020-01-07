@@ -46,10 +46,10 @@
       <geographicCoverage>
         <geographicDescription>Bounding Box</geographicDescription>
         <boundingCoordinates>
-          <westBoundingCoordinate><%= @extent.lower_corner.x %></westBoundingCoordinate>
-          <eastBoundingCoordinate><%= @extent.upper_corner.x %></eastBoundingCoordinate>
-          <northBoundingCoordinate><%= @extent.upper_corner.y %></northBoundingCoordinate>
-          <southBoundingCoordinate><%= @extent.lower_corner.y %></southBoundingCoordinate>
+          <westBoundingCoordinate><%= [@extent.lower_corner.x, -180].max %></westBoundingCoordinate>
+          <eastBoundingCoordinate><%= [@extent.upper_corner.x, 180].min %></eastBoundingCoordinate>
+          <northBoundingCoordinate><%= [@extent.upper_corner.y, 90].min %></northBoundingCoordinate>
+          <southBoundingCoordinate><%= [@extent.lower_corner.y, -90].max %></southBoundingCoordinate>
         </boundingCoordinates>
       </geographicCoverage>
       <% end %>
@@ -127,7 +127,7 @@
         <!-- level to which the metadata document applies; default for GBIF is "dataset";  "series" is the other common level -->
         <hierarchyLevel> dataset </hierarchyLevel>
         <!-- URL of the logo associated with a resource -->
-        <resourceLogoUrl>http://www.inaturalist.org/assets/logo-small.gif</resourceLogoUrl>
+        <resourceLogoUrl><%= FakeView.asset_url( Site.default.logo.url, host: Site.default.url ) %></resourceLogoUrl>
       </gbif>
     </metadata>
   </additionalMetadata>

@@ -1,9 +1,9 @@
 #encoding: utf-8
 class TaxonName < ActiveRecord::Base
-  belongs_to :taxon, touch: true
+  belongs_to :taxon
   belongs_to :source
   belongs_to :creator, :class_name => 'User'
-  belongs_to :updater, :class_name => 'User'
+  has_updater
   has_many :taxon_scheme_taxa, :dependent => :destroy
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :taxon_name
   has_many :places, :through => :place_taxon_names
@@ -18,9 +18,10 @@ class TaxonName < ActiveRecord::Base
   NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
   validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
-  before_validation do |tn|
-    tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
-  end
+  # before_validation do |tn|
+  #   tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
+  # end
+  before_validation :capitalize_scientific_name
   before_create {|name| name.position = name.taxon.taxon_names.size}
   before_save :set_is_valid
   after_create {|name| name.taxon.set_scientific_taxon_name}
@@ -58,6 +59,7 @@ class TaxonName < ActiveRecord::Base
     :ITALIAN             =>  'Italian',
     :JAPANESE            =>  'Japanese',
     :KOREAN              =>  'Korean',
+    :LITHUANIAN          =>  'Lithuanian',
     :MALTESE             =>  'Maltese',
     :MAORI               =>  'Maori',
     :MISIMA_PANEATI      =>  'Misima-paneati',
@@ -82,6 +84,7 @@ class TaxonName < ActiveRecord::Base
       def is_#{k.to_s.downcase}?
         lexicon == "#{v}"
       end
+      alias :#{k.to_s.downcase}? :is_#{k.to_s.downcase}?
     EOT
     const_set k.to_s.upcase, v
   end
@@ -101,21 +104,26 @@ class TaxonName < ActiveRecord::Base
     "english"               => "en",
     "esperanto"             => "eo",
     "estonian"              => "et",
+    "filipino"              => "fil",
     "finnish"               => "fi",
     "french"                => "fr",
     "galician"              => "gl",
+    "georgian"              => "ka",
     "german"                => "de",
     "greek"                 => "el",
     "hawaiian"              => "haw",
-    "hebrew"                => "iw",
+    "hebrew"                => "he",
     "indonesian"            => "id",
     "italian"               => "it",
     "japanese"              => "ja",
     "korean"                => "ko",
+    "lithuanian"            => "lt",
     "luxembourgish"         => "lb",
     "macedonian"            => "mk",
     "maori"                 => "mi",
     "maya"                  => "myn",
+    "norwegian"             => "nb",
+    "norwegian_bokmal"      => "nb",
     "occitan"               => "oc",
     "polish"                => "pl",
     "portuguese"            => "pt",
@@ -123,7 +131,8 @@ class TaxonName < ActiveRecord::Base
     "scientific_names"      => "sci",
     "slovak"                => "sk",
     "spanish"               => "es",
-    "swedish"               => "sv"
+    "swedish"               => "sv",
+    "turkish"               => "tr"
   }
   LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
 
@@ -132,6 +141,7 @@ class TaxonName < ActiveRecord::Base
   }.compact
 
   alias :is_scientific? :is_scientific_names?
+  alias :scientific? :is_scientific_names?
   
   def to_s
     "<TaxonName #{self.id}: #{self.name} in #{self.lexicon}>"
@@ -146,6 +156,12 @@ class TaxonName < ActiveRecord::Base
     self.name.gsub!(/<.*?>/, '')
     true
   end
+
+  def capitalize_scientific_name
+    return true unless lexicon == LEXICONS[:SCIENTIFIC_NAMES]
+    self.name = Taxon.capitalize_scientific_name( name, taxon.try(:rank) )
+    true
+  end
   
   def remove_rank_from_name
     return unless self.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
@@ -154,6 +170,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   def self.normalize_lexicon(lexicon)
+    return nil if lexicon.blank?
     ( LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize ).strip
   end
   
@@ -306,6 +323,7 @@ class TaxonName < ActiveRecord::Base
       return "chinese_simplified" if locale.to_s =~ /zh.CN/i
       return language if locale.to_s =~ /^#{language_locale}/
     end
+    nil
   end
 
   def self.choose_scientific_name(taxon_names)

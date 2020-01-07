@@ -11,6 +11,7 @@ import {
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
+import { formattedDateTimeInTimeZone } from "../../../shared/util";
 import UserWithIcon from "./user_with_icon";
 import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
 import ConservationStatusBadge from "./conservation_status_badge";
@@ -79,8 +80,9 @@ const App = ( {
   const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
   let formattedDateObserved;
   if ( observation.time_observed_at ) {
-    formattedDateObserved = moment.tz( observation.time_observed_at,
-      observation.observed_time_zone ).format( I18n.t( "momentjs.datetime_with_zone" ) );
+    formattedDateObserved = formattedDateTimeInTimeZone(
+      observation.time_observed_at, observation.observed_time_zone
+    );
   } else if ( observation.observed_on ) {
     formattedDateObserved = moment( observation.observed_on ).format( "ll" );
   } else {
@@ -95,6 +97,11 @@ const App = ( {
     </Row> ) : "";
   const qualityGrade = observation.quality_grade === "research" ?
     "research_grade" : observation.quality_grade;
+  let viewerTimeZone = moment.tz.guess();
+  if ( config && config.currentUser && config.currentUser.time_zone ) {
+    viewerTimeZone = config.currentUser.time_zone;
+  }
+
   return (
     <div id="ObservationShow">
       <FlashMessagesContainer
@@ -170,16 +177,23 @@ const App = ( {
                     </div>
                     <Row className="date_row">
                       <Col xs={6}>
-                        <span className="bold_label">{ I18n.t( "observed" ) }:</span>
-                        <span className="date">
+                        <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
+                        <span className="date" title={observation.time_observed_at || observation.observed_on}>
                           { formattedDateObserved }
                         </span>
                       </Col>
                       <Col xs={6}>
-                        <span className="bold_label">{ I18n.t( "submitted" ) }:</span>
-                        <span className="date">
-                          { moment.tz( observation.created_at,
-                            observation.created_time_zone ).format( I18n.t( "momentjs.datetime_with_zone" ) ) }
+                        <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
+                        <span className="date" title={observation.created_at}>
+                          {
+                            formattedDateTimeInTimeZone(
+                              moment.tz(
+                                observation.created_at,
+                                observation.created_time_zone
+                              ),
+                              viewerTimeZone
+                            )
+                          }
                         </span>
                       </Col>
                     </Row>

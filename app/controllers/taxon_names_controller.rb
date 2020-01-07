@@ -64,7 +64,11 @@ class TaxonNamesController < ApplicationController
   end
   
   def new
-    @taxon_name = TaxonName.new(:taxon => @taxon, :is_valid => true)
+    @taxon_name = TaxonName.new(
+      taxon: @taxon,
+      is_valid: true,
+      lexicon: TaxonName.normalize_lexicon( TaxonName.language_for_locale( current_user.locale ) )
+    )
   end
   
   def create

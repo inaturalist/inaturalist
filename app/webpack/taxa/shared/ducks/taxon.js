@@ -255,13 +255,17 @@ export function fetchTaxon( taxon, options = { } ) {
 export function fetchDescription( ) {
   return ( dispatch, getState ) => {
     const { taxon } = getState( ).taxon;
-    fetch( `/taxa/${taxon.id}/description` ).then(
+    let url = `/taxa/${taxon.id}/description`;
+    if ( I18n.locale.match( /^en/ ) ) {
+      url += "?wiki_prompt=true";
+    }
+    fetch( url ).then(
       response => {
         const source = response.headers.get( "X-Describer-Name" );
-        const url = response.headers.get( "X-Describer-URL" );
+        const describerUrl = response.headers.get( "X-Describer-URL" );
         response.text( ).then( body => {
           if ( body && body.length > 0 ) {
-            dispatch( setDescription( source, url, body ) );
+            dispatch( setDescription( source, describerUrl, body ) );
           }
         } );
       },
@@ -356,13 +360,15 @@ export function fetchRare( ) {
 
 export function fetchRecent( ) {
   return ( dispatch, getState ) => {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+    const state = getState( );
+    const params = Object.assign( { }, defaultObservationParams( state ), {
       quality_grade: "needs_id,research",
       rank: "species",
       category: "improving,leading",
       per_page: 12
     } );
-    inatjs.identifications.recent_taxa( params ).then(
+    const endpoint = inatjs.identifications.recent_taxa;
+    endpoint( params ).then(
       response => dispatch( setRecent( response ) ),
       error => {
         console.log( "[DEBUG] error: ", error );
@@ -388,10 +394,16 @@ export function fetchWanted( ) {
 
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
-    const { taxon } = getState( ).taxon;
-    inatjs.identifications.similar_species( defaultObservationParams( getState( ) ) ).then(
+    const state = getState( );
+    const { taxon } = state.taxon;
+    const endpoint = inatjs.identifications.similar_species;
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      verifiable: "any"
+    } );
+    endpoint( params ).then(
       response => {
-        const withoutAncestors = response.results.filter( r => taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
+        const withoutAncestors = response.results
+          .filter( r => taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
         const commonlyMisidentified = withoutAncestors.filter( r => ( r.count > 1 ) );
         if ( commonlyMisidentified.length === 0 ) {
           dispatch( setSimilar( withoutAncestors ) );

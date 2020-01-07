@@ -3,14 +3,13 @@ require "spec_helper"
 describe "Place Index" do
   describe "as_indexed_json" do
     it "should return a hash" do
-      p = Place.make!
+      p = make_place_with_geom
       json = p.as_indexed_json
       expect( json ).to be_a Hash
     end
   end
   describe "geometry indexing" do
-    before(:each) { enable_elastic_indexing( Place ) }
-    after(:each) { disable_elastic_indexing( Place ) }
+    elastic_models( Place )
     it "should not receive a geometry with duplicate points" do
       wkt = <<-WKT
         MULTIPOLYGON(

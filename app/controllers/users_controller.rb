@@ -123,7 +123,7 @@ class UsersController < ApplicationController
   def delete
     @observations_count = current_user.observations_count
     @helpers_count = INatAPIService.get( "/observations/identifiers",
-      user_id: current_user.id ).total_results
+      user_id: current_user.id, per_page: 0 ).total_results
     @comments_count = current_user.comments.count
     ident_response = Identification.elastic_search(
       size: 0,
@@ -134,9 +134,10 @@ class UsersController < ApplicationController
       ],
       aggregate: {
         distinct_obs_users: {
-          cardinality: { field: "observation.user.id" }
+          cardinality: { field: "observation.user_id" }
         }
-      }
+      },
+      track_total_hits: true
     )
     @identifications_count = ident_response.total_entries
     @helpees_count = ident_response.response.aggregations.distinct_obs_users.value || 0
@@ -154,7 +155,7 @@ class UsersController < ApplicationController
     end
     @user.delay(priority: USER_PRIORITY,
       unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
-    sign_out(@user)
+    sign_out(@user) if current_user == @user
     flash[:notice] = "#{@user.login} has been removed from #{@site.name} " +
       "(it may take up to an hour to completely delete all associated content)"
     redirect_to root_path
@@ -341,6 +342,7 @@ class UsersController < ApplicationController
             ).first.try(&:created_at)
           ].compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
         end
+        @donor_since = @selected_user.display_donor_since ? @selected_user.display_donor_since.to_date : nil
         render layout: "bootstrap"
       end
       opts = User.default_json_options
@@ -486,14 +488,14 @@ class UsersController < ApplicationController
         unless @discourse_data = Rails.cache.read( cache_key )
           @discourse_data = {}
           @discourse_data[:topics] = JSON.parse(
-            RestClient.get( "#{@discourse_url}/latest.json?order=created" ).body
+            RestClient.get( "#{@discourse_url}/latest.json?order=created", timeout: 5 ).body
           )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..5]
           @discourse_data[:categories] = JSON.parse(
-            RestClient.get( "#{@discourse_url}/categories.json" ).body
+            RestClient.get( "#{@discourse_url}/categories.json", timeout: 5 ).body
           )["category_list"]["categories"].index_by{|c| c["id"]}
           Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
         end
-      rescue SocketError, RestClient::Exception
+      rescue SocketError, RestClient::Exception, Timeout::Error, RestClient::Exceptions::Timeout
         # No connection or other connection issue
         nil
       end
@@ -562,17 +564,22 @@ class UsersController < ApplicationController
   
   def edit
     respond_to do |format|
-      format.html
+      format.html do
+        @monthly_supporter = @user.donorbox_plan_status == "active" &&
+          @user.donorbox_plan_type == "monthly"
+      end
       format.json do
         render :json => @user.to_json(
           :except => [
             :crypted_password, :salt, :old_preferences, :activation_code,
             :remember_token, :last_ip, :suspended_at, :suspension_reason,
             :icon_content_type, :icon_file_name, :icon_file_size,
-            :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url, :latitude, :longitude, :lat_lon_acc_admin_level
+            :icon_updated_at, :deleted_at, :remember_token_expires_at,
+            :icon_url, :latitude, :longitude, :lat_lon_acc_admin_level
           ],
           :methods => [
-            :user_icon_url, :medium_user_icon_url, :original_user_icon_url
+            :user_icon_url, :medium_user_icon_url, :original_user_icon_url,
+            :prefers_no_tracking
           ]
         )
       end
@@ -610,6 +617,7 @@ class UsersController < ApplicationController
     @display_user.assign_attributes( whitelist_params ) unless whitelist_params.blank?
     place_id_changed = @display_user.place_id_changed?
     prefers_no_place_changed = @display_user.prefers_no_place_changed?
+    prefers_no_site_changed = @display_user.prefers_no_site_changed?
     if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
@@ -632,6 +640,13 @@ class UsersController < ApplicationController
           elsif prefers_no_place_changed
             session.delete(:potential_place)
             if params[:from_potential_place]
+              flash[:notice] = I18n.t( "views.users.edit.if_you_change_your_mind_you_can_always_edit_your_settings_html" )
+            end
+          end
+
+          if prefers_no_site_changed
+            session.delete(:potential_site)
+            if params[:from_potential_site]
               flash[:notice] = I18n.t( "views.users.edit.if_you_change_your_mind_you_can_always_edit_your_settings_html" )
             end
           end
@@ -1104,8 +1119,12 @@ protected
       :prefers_common_names,
       :prefers_scientific_name_first,
       :prefers_no_place,
+      :prefers_no_site,
+      :prefers_no_tracking,
       :prefers_coordinate_interpolation_protection,
       :prefers_coordinate_interpolation_protection_test,
+      :prefers_monthly_supporter_badge,
+      :prefers_map_tile_test,
       :search_place_id,
       :site_id,
       :test_groups,

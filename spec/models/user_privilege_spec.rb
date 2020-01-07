@@ -2,8 +2,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe UserPrivilege do
-  before(:all) { enable_elastic_indexing( Observation ) }
-  after(:all) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   let(:user) { User.make! }
 

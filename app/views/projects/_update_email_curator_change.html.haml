@@ -5,21 +5,24 @@
     :ruby
       project_user = update.notifier
       user = project_user.user
-      role = if project_user.user_id == project_user.project.user_id
-        "#{t :the} <strong>#{t :admin}</strong>".html_safe
-      elsif t(project_user.role.to_s, :default => "curator") =~ /^[aeiou]/
-        "#{t :an} <strong>#{t project_user.role}</strong>".downcase.html_safe
-      else
-        "#{t :a} <strong>#{t project_user.role}</strong>".downcase.html_safe
-      end
     %tr
       %td{:valign => "top"}
         = user_image(user, :size => "thumb", :width => 32, :height => 32)
       %td
-        - if is_me?(user, :current_user => viewing_user)
-          = t(:you_are_now_role_for_project_html, :role => role, :project => project.title)
+        - if is_me?( user, current_user: viewing_user )
+          - if project_user.user_id == project_user.project.user_id
+            = t(:you_are_now_the_admin_for_project_html, project: project.title )
+          - elsif project_user.role == ProjectUser::MANAGER
+            = t(:you_are_now_a_manager_for_project_html, project: project.title )
+          - else
+            = t(:you_are_now_a_curator_for_project_html, project: project.title )
         - else
-          = t(:user_is_now_role_for_project_html, :user => user.login, :role => role, :project => project.title)
+          - if project_user.user_id == project_user.project.user_id
+            = t(:user_is_now_the_admin_for_project_html, user: project_user.user.login, project: project.title )
+          - elsif project_user.role == ProjectUser::MANAGER
+            = t(:user_is_now_a_manager_for_project_html, user: project_user.user.login, project: project.title )
+          - else
+            = t(:user_is_now_a_curator_for_project_html, user: project_user.user.login, project: project.title )
         - unless user.description.blank? || is_me?(user, :current_user => viewing_user)
           Here's a little about
           = surround '', ': ' do

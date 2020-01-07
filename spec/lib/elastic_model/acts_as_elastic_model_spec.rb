@@ -2,8 +2,7 @@ require "spec_helper"
 
 describe ActsAsElasticModel do
 
-  before(:each) { enable_elastic_indexing([ Observation, Taxon, Identification ]) }
-  after(:each) { disable_elastic_indexing([ Observation, Taxon, Identification ]) }
+  elastic_models( Observation, Taxon, Identification )
 
   describe "callbacks" do
     it "properly indexes the document on create" do
@@ -37,49 +36,49 @@ describe ActsAsElasticModel do
     describe "elastic_search" do
       it "searches for bool: { } as a wildcard query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { constant_score: { query: { bool: { } } } } }).and_return(true)
+          { query: { constant_score: { filter: { bool: { } } } } }).and_return(true)
         Observation.elastic_search( )
       end
 
       it "adds matches to the query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { constant_score: { query: { bool: {
+          { query: { constant_score: { filter: { bool: {
             must: [ { match: { id: 5 } } ] } } } } }).and_return(true)
         Observation.elastic_search(where: { id: 5 })
       end
 
       it "adds terms matches to the query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { constant_score: { query: { bool: {
+          { query: { constant_score: { filter: { bool: {
             must: [ { terms: { id: [ 1, 3 ] } } ] } } } } }).and_return(true)
         Observation.elastic_search(where: { id: [ 1, 3] })
       end
 
       it "adds envelope filters" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { constant_score: { query: { bool: { must: [
+          { query: { constant_score: { filter: { bool: { must: [
             { geo_shape: { geojson: { shape: {
-              type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}}]}}}}}).and_return(true)
+              type: "envelope", coordinates: [[-180, 88], [180, -90]]}}}}]}}}}}).and_return(true)
         Observation.elastic_search(filters: [ { envelope: { geojson: { nelat: 88 }}}])
       end
 
       it "adds sorts to the query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { constant_score: { query: { bool: { } } } },
+          { query: { constant_score: { filter: { bool: { } } } },
             sort: { score: :desc } }).and_return(true)
         Observation.elastic_search(sort: { score: :desc })
       end
 
       it "allows certain fields to be specified" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { constant_score: { query: { bool: { } } } },
+          { query: { constant_score: { filter: { bool: { } } } },
             _source: [ "id", "description" ] }).and_return(true)
         Observation.elastic_search(source: [ "id", "description" ])
       end
 
       it "adds aggregations to the query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { constant_score: { query: { bool: { } } } },
+          { query: { constant_score: { filter: { bool: { } } } },
             aggs: { colors: { terms: {
               field: :"colors.id", size: 10 } } } }).and_return(true)
         Observation.elastic_search(aggregate: { colors: { "colors.id": 10 } } )
@@ -237,6 +236,21 @@ describe ActsAsElasticModel do
         obs.elastic_index!
         obs.reload
         expect( obs.last_indexed_at ).to be > 1.minute.ago
+      end
+
+      it "does not wait for refresh by default" do
+        obs = Observation.make!
+        expect( obs.__elasticsearch__ ).to_not receive(
+          :index_document ).with( { refresh: "wait_for" } )
+        obs.elastic_index!
+      end
+
+      it "waits for refresh if requested" do
+        obs = Observation.make!
+        obs.wait_for_index_refresh = true
+        expect( obs.__elasticsearch__ ).to receive(
+          :index_document ).with( { refresh: "wait_for" } )
+        obs.elastic_index!
       end
     end
 

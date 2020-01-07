@@ -279,7 +279,7 @@
         <li>
           <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %>
           <div class="inner">
-            <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project) %>
+            <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project), :project_id => @project.id %>
           </div>
         </li>
       <% end -%>
@@ -287,7 +287,7 @@
     <li>
       <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_observations)}".html_safe, export_observations_path(projects: [@project]), :class => "navlink" %>
       <div class="inner feeds">
-        <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
+        <%= link_to("Atom", observations_path( project_id: @project, format: "atom" ), :class => 'atomlink', :rel => "nofollow") %> /
         <%= link_to("CSV",  export_observations_path('projects[]' => @project),  :class => 'csvlink', :rel => "nofollow") %>
       </div>
     </li>
@@ -318,7 +318,7 @@
       </li>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:filter_by_curator_identification)}".html_safe,
-          project_observations_url( @project, pcid: true ), class: "navlink" %>
+          observations_url( project_id: @project.slug, pcid: true ), class: "navlink" %>
       </li>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t( :identify_observations )}".html_safe,
@@ -390,12 +390,6 @@
       <%=raw @custom_project.side %>
     </div>
   <% end -%>
-  
-  <div id="fblike" class="stacked">
-    <script src="//connect.facebook.net/<%= t(:fblocale) %>/all.js#xfbml=1"></script>
-    <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
-  </div>
-  
   
   <%= link_to image_tag(@project.user.icon.url(:mini), :style => "vertical-align:middle;"),
     observations_by_login_path(@project.user.login), :alt => @project.user.login %>

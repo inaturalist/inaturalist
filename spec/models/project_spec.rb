@@ -137,7 +137,7 @@ describe Project do
 
     it "should delete associated rules" do
       project = Project.make!
-      rule = project.project_observation_rules.build( operator: "observed_in_place?", operand: Place.make! )
+      rule = project.project_observation_rules.build( operator: "observed_in_place?", operand: make_place_with_geom )
       rule.save!
       project.destroy
       expect( Rule.find_by_id( rule.id ) ).to be_blank
@@ -274,8 +274,7 @@ describe Project do
   end
 
   describe "generate_csv" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     it "should include curator_coordinate_access" do
       path = File.join(Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}")
       po = make_project_observation
@@ -325,8 +324,7 @@ describe Project do
   end
 
   describe "queue_project_aggregations class method" do
-    before(:each) { enable_elastic_indexing(Observation, Place) }
-    after(:each) { disable_elastic_indexing(Observation, Place) }
+    elastic_models( Observation, Place )
     it "should touch projects that prefer aggregation" do
       p = Project.make!(prefers_aggregation: true, place: make_place_with_geom, trusted: true)
       Delayed::Job.destroy_all
@@ -347,8 +345,7 @@ describe Project do
   end
 
   describe "aggregate_observations" do
-    before(:each) { enable_elastic_indexing(Observation, Place) }
-    after(:each) { disable_elastic_indexing(Observation, Place) }
+    elastic_models( Observation, Place )
     let(:project) { Project.make!(prefers_aggregation: true, place: make_place_with_geom) }
     it "should add observations matching the project observation scope" do
       project.update_attributes(place: make_place_with_geom, trusted: true)
@@ -423,7 +420,7 @@ describe Project do
     it "adds observations whose users updated their project addition preference since last_aggregated_at" do
       project.update_attributes(place: make_place_with_geom, trusted: true)
       o1 = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
-      o2 = Observation.make!(latitude: 90, longitude: 90)
+      o2 = Observation.make!(latitude: 89, longitude: 89)
       project.aggregate_observations
       expect( project.observations.count ).to eq 1
       o2.update_attributes(latitude: project.place.latitude, longitude: project.place.longitude)
@@ -589,8 +586,8 @@ describe Project do
   end
 
   describe "update_counts" do
+    elastic_models( Observation )
     before :each do
-      enable_elastic_indexing(Observation)
       @p = Project.make!(preferred_submission_model: Project::SUBMISSION_BY_ANYONE)
       @pu = ProjectUser.make!(project: @p)
       taxon = Taxon.make!(rank: "species")
@@ -604,7 +601,6 @@ describe Project do
           observation: Observation.make!(taxon: taxon, user: @pu.user))
       end
     end
-    after(:each) { disable_elastic_indexing(Observation) }
 
     it "should update counts for all project_users in a project" do
       expect( @pu.observations_count ).to eq 0
@@ -647,8 +643,8 @@ describe Project do
 
     it "includes multiple place ids" do
       p = Project.make!
-      place1 = Place.make!
-      place2 = Place.make!
+      place1 = make_place_with_geom
+      place2 = make_place_with_geom
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
       expect( p.observations_url_params[:place_id].sort ).to eq [place1.id, place2.id].sort
@@ -656,8 +652,8 @@ describe Project do
 
     it "can concatenate place ids" do
       p = Project.make!
-      place1 = Place.make!
-      place2 = Place.make!
+      place1 = make_place_with_geom
+      place2 = make_place_with_geom
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
       expect( p.observations_url_params(concat_ids: true)[:place_id] ).to eq [place1.id, place2.id].sort.join(",")

@@ -1,6 +1,8 @@
 //= require iso8601
 //= require i18n
 //= require i18n/translations
+//= require i18n/pluralizations
+//= require i18n/inflections
 //= require jquery/plugins/jquery.qtip2.min
 //= require jquery/plugins/jquery.multiselect
 //= require jquery/plugins/jquery.ui.autocomplete.html.js
@@ -26,4 +28,3 @@
 //= require jquery/plugins/inat/datepicker
 //= require jquery.textcomplete
 //= require_tree ./ang/models
-

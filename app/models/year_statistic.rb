@@ -32,10 +32,6 @@ class YearStatistic < ActiveRecord::Base
       year_statistic = year_statistic.where( "site_id IS NULL" )
     end
     year_statistic = year_statistic.first_or_create
-    accumulation = observed_species_accumulation(
-      site: options[:site],
-      verifiable: true
-    )
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, options ),
@@ -43,7 +39,8 @@ class YearStatistic < ActiveRecord::Base
         week_histogram: observations_histogram( year, options.merge( interval: "week" ) ),
         day_histogram: observations_histogram( year, options.merge( interval: "day" ) ),
         day_last_year_histogram: observations_histogram( year - 1, options.merge( interval: "day" ) ),
-        popular: popular_observations( year, options )
+        popular: popular_observations( year, options ),
+        streaks: streaks( year, options )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, options ),
@@ -54,12 +51,16 @@ class YearStatistic < ActiveRecord::Base
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, options ),
         iconic_taxa_counts: iconic_taxa_counts( year, options ),
-        accumulation: accumulation
+        accumulation: observed_species_accumulation(
+          site: options[:site],
+          verifiable: true
+        )
       },
       growth: {
         observations: observations_histogram_by_created_month( options ),
         users: users_histogram_by_created_month( options )
-      }
+      },
+      translators: translators( year, options )
     }
     if options[:site].blank?
       json[:publications] = publications( year, options )
@@ -113,6 +114,9 @@ class YearStatistic < ActiveRecord::Base
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
         accumulation: accumulation
+      },
+      growth: {
+        observations: observations_histogram_by_created_month( user: user ),
       }
     }
     year_statistic.update_attributes( data: json )
@@ -192,27 +196,18 @@ class YearStatistic < ActiveRecord::Base
 
   def self.identifications_histogram( year, options = {} )
     interval = options[:interval] || "day"
-    es_params = {
-      size: 0,
-      filters: [
-        { terms: { "created_at_details.year": [year] } },
-        { terms: { "own_observation": [false] } },
-        { terms: { "observation.quality_grade": ["research", "needs_id"] } },
-        { terms: { "current": [true] } }
-      ],
-      inverse_filters: [
-        { exists: { field: "taxon_change_id" } }
-      ],
+    es_params = YearStatistic.identifications_es_base_params( year ).merge(
       aggregate: {
         histogram: {
           date_histogram: {
-            field: "created_at_details.date",
+
+            field: "created_at",
             interval: interval,
             format: "yyyy-MM-dd"
           }
         }
       }
-    }
+    )
     if options[:user]
       es_params[:filters] << { terms: { "user.id": [options[:user].id] } }
     end
@@ -231,21 +226,11 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def self.identification_counts_by_category( year, options = {} )
-    es_params = {
-      size: 0,
-      filters: [
-        { terms: { "created_at_details.year": [year] } },
-        { terms: { "own_observation": [false] } },
-        { terms: { "observation.quality_grade": ["research", "needs_id"] } },
-        { terms: { "current": [true] } }
-      ],
-      inverse_filters: [
-        { exists: { field: "taxon_change_id" } }
-      ],
+    es_params = YearStatistic.identifications_es_base_params( year ).merge(
       aggregate: {
         categories: { terms: { field: "category" } }
       }
-    }
+    )
     if options[:user]
       es_params[:filters] << { terms: { "user.id": [options[:user].id] } }
     end
@@ -390,19 +375,25 @@ class YearStatistic < ActiveRecord::Base
       end
     end
     return [] if ids.blank?
-      
-    JSON.
-        parse( INatAPIService.get_json( "/observations", api_params, { timeout: 30 } ) )["results"].
+    response = INatAPIService.get_json( "/observations", api_params, { timeout: 30 } )
+    json = JSON.parse( response )
+    json["results"].
         sort_by{|o| [0 - o["faves_count"].to_i, 0 - o["comments_count"].to_i] }.
         each_with_index.map do |o,i|
-      if i < 10
-        o.select{|k,v| %w(id taxon community_taxon user photos comments_count faves_count observed_on).include?( k ) }
-      elsif !o["photos"].blank?
-        {
-          "id": o["id"],
-          "photos": [o["photos"][0].select{|k,v| %w(url original_dimensions).include?( k ) }]
-        }
+      json_obs = {
+        id: o["id"]
+      }
+      if !o["photos"].blank?
+        json_obs[:photos] = [o["photos"][0].select{|k,v| %w(url original_dimensions).include?( k ) }]
       end
+      if i < 36
+        json_obs = json_obs.merge( o.select{|k,v| %w{comments_count faves_count observed_on}.include?( k ) })
+        json_obs[:user] = o["user"].select{|k,v| %{id login name icon_url}.include?( k )}
+        if o["taxon"]
+          json_obs[:taxon] = o["taxon"].select{|k,v| %{id name rank preferred_common_name}.include?( k )}
+        end
+      end
+      json_obs
     end.compact
   end
 
@@ -411,7 +402,7 @@ class YearStatistic < ActiveRecord::Base
     es_params = YearStatistic.identifications_es_base_params( year )
     es_params[:filters] << { terms: { "user.id" => [user.id] } }
     es_params[:aggregate] = {
-      users_helped: { terms: { field: "observation.user.id", size: 40000 } },
+      users_helped: { terms: { field: "observation.user_id", size: 40000 } },
     }
     buckets = Identification.
       elastic_search( es_params ).
@@ -434,7 +425,7 @@ class YearStatistic < ActiveRecord::Base
   def self.users_who_helped( year, user )
     return unless user
     es_params = YearStatistic.identifications_es_base_params( year )
-    es_params[:filters] << { terms: { "observation.user.id" => [user.id] } }
+    es_params[:filters] << { terms: { "observation.user_id" => [user.id] } }
     es_params[:aggregate] = {
       users_helped: { terms: { field: "user.id", size: 40000 } }
     }
@@ -559,11 +550,14 @@ class YearStatistic < ActiveRecord::Base
     rescue
       nil
     end
+    medium_font_path = "Lato-Regular" if owner.non_latin_chars?
+    light_font_path = "Lato-Light" if title.non_latin_chars?
     if obs_count.to_i > 0
       locale = user.locale if user
       locale ||= site.locale if site
       locale ||= I18n.locale
       obs_text = I18n.t( "x_observations", count: FakeView.number_with_delimiter( obs_count, locale: locale ), locale: locale ).mb_chars.upcase
+      medium_font_path = "Lato-Regular" if obs_text.non_latin_chars?
       system <<-BASH
         convert #{montage_with_icon_path} \
           -fill white -font #{medium_font_path} -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
@@ -584,15 +578,7 @@ class YearStatistic < ActiveRecord::Base
     save!
   end
 
-  # [
-  #   {
-  #     date: "2017-01-01",
-  #     accumulated_species_count: 10,
-  #     novel_species_ids: [1,2,3,4]
-  #   }
-  # ]
   def self.observed_species_accumulation( params = { } )
-    # params = { year: year }
     interval = params.delete(:interval) || "month"
     date_field = params.delete(:date_field) || "created_at"
     params[:user_id] = params[:user].id if params[:user]
@@ -606,8 +592,9 @@ class YearStatistic < ActiveRecord::Base
     end
     params[:hrank] = Taxon::SPECIES
     elastic_params = Observation.params_to_elastic_query( params )
-    histogram_buckets = Observation.elastic_search( elastic_params.merge(
+    histogram_params = elastic_params.merge(
       size: 0,
+      track_total_hits: true,
       aggs: {
         histogram: {
           date_histogram: {
@@ -622,7 +609,34 @@ class YearStatistic < ActiveRecord::Base
           }
         }
       }
-    ) ).response.aggregations.histogram.buckets
+    )
+    histogram_buckets = if params[:user_id] || params[:taxon_id]
+      Observation.elastic_search( histogram_params ).response.aggregations.histogram.buckets
+    else
+      # If we're not scoping this query by something that will keep the counts
+      # reasonable, we need to break this into pieces
+      [
+        ["2008-01-01", "2014-01-01"],
+        ["2014-01-01", "2016-01-01"],
+        ["2016-01-01", "2017-01-01"],
+        ["2017-01-01", "2017-06-01"],
+        ["2017-06-01", "2018-01-01"],
+        ["2018-01-01", "2018-06-01"],
+        ["2018-06-01", "2019-01-01"],
+        ["2019-01-01", "2019-06-01"],
+        ["2019-06-01", "2019-10-01"],
+        ["2019-10-01", "2020-01-01"]
+      ].inject( [] ) do |memo, range|
+        puts "range: #{range.join( " - " )}"
+        es_params = histogram_params.dup
+        es_params[:filters] += [
+          { range: { date_field => { gte: range[0] } } },
+          { range: { date_field => { lt: range[1] } } },
+        ]
+        memo += Observation.elastic_search( es_params ).response.aggregations.histogram.buckets
+        memo
+      end
+    end
 
     accumulation_with_all_species_ids = histogram_buckets.each_with_index.inject([]) do |memo, pair|
       bucket, i = pair
@@ -637,7 +651,8 @@ class YearStatistic < ActiveRecord::Base
       memo << {
         date: bucket["key_as_string"],
         accumulated_species_ids: accumulated_species_ids + novel_species_ids,
-        novel_species_ids: novel_species_ids
+        novel_species_ids: novel_species_ids,
+        species_ids: interval_species_ids
       }
       memo
     end
@@ -645,7 +660,8 @@ class YearStatistic < ActiveRecord::Base
       {
         date: interval[:date],
         accumulated_species_count: interval[:accumulated_species_ids].size,
-        novel_species_ids: interval[:novel_species_ids]
+        novel_species_ids: interval[:novel_species_ids],
+        species_count: interval[:species_ids].size
       }
     end
   end
@@ -687,7 +703,7 @@ class YearStatistic < ActiveRecord::Base
         "altmetric_score"
       )
     end
-    data["results"] = new_results.sort_by{|r| r["altmetric_score"].to_f * -1 }[0..9]
+    data["results"] = new_results.sort_by{|r| r["altmetric_score"].to_f * -1 }[0..5]
     data[:url] = "https://www.gbif.org/resource/search?#{gbif_params.to_query}"
     data
   end
@@ -702,6 +718,9 @@ class YearStatistic < ActiveRecord::Base
       else
         filters << { terms: { site_id: [site.id] } }
       end
+    end
+    if site = options[:user]
+      filters << { term: { "user.id" => options[:user].id } }
     end
     es_params = {
       size: 0,
@@ -764,12 +783,206 @@ class YearStatistic < ActiveRecord::Base
     end
   end
 
+  def self.streaks( year, options = {} )
+    streak_length = 5
+    ranges = []
+    base_query = { quality_grade: "research,needs_id" }
+    if options[:site]
+      base_query = base_query.merge( site_id: options[:site].id )
+    end
+    if options[:user]
+      ranges = [["#{year}-01-01", "#{year}-12-31"]]
+      base_query = base_query.merge( user_id: options[:user].id )
+    else
+      ranges = [
+        ["2008-01-01", "2013-12-31"],
+        ["2014-01-01", "2014-12-31"],
+        ["2015-01-01", "2015-12-31"],
+        ["2016-01-01", "2016-12-31"]
+      ]
+      [2017, 2018, 2019].each do |y|
+        chunks = 10
+        interval = ( 365.0 / chunks ).floor
+        d0 = Date.parse( "#{y}-01-01" )
+        d1 = d0
+        while true
+          d2 = d1 + interval.days
+          if d2 >= ( d0 + 1.year )
+            ranges << [d1.to_s, "#{y}-12-31"]
+            break
+          end
+          ranges << [d1.to_s, d2.to_s]
+          d1 = d2 + 1.day
+        end
+      end
+    end
+    streaks = []
+    current_streaks = {}
+    previous_user_ids = []
+    ranges.each_with_index do |range, range_i|
+      puts "range: #{range}"
+      elastic_params = Observation.params_to_elastic_query( base_query.merge( d1: range[0], d2: range[1] ) )
+      histogram_buckets = Observation.elastic_search( elastic_params.merge(
+        size: 0,
+        aggs: {
+          histogram: {
+            date_histogram: {
+              field: "observed_on",
+              calendar_interval: "day",
+              format: "yyyy-MM-dd"
+            },
+            aggs: {
+              user_ids: {
+                terms: {
+                  field: "user.id",
+                  size: 30000
+                }
+              }
+            }
+          }
+        }
+      ) ).response.aggregations.histogram.buckets
+      histogram_buckets.each_with_index do |bucket, bucket_i|
+        date = bucket["key_as_string"]
+        user_ids = bucket.user_ids.buckets.map{|b| b["key"].to_i}
+        user_ids.each do |streaking_user_id|
+          current_streaks[streaking_user_id] ||= 0
+          current_streaks[streaking_user_id] += 1
+        end
+
+        # Finished users are all the users who were present in the previous day
+        # but not in this one. For each of these, we need to add their streaks
+        # with the stop date set to the previous day
+        stop_date = ( Date.parse( date ) - 1.day )
+        finished_user_ids = []
+        finished_user_ids = previous_user_ids - user_ids
+        puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished"
+        finished_user_ids.each do |user_id|
+          if current_streaks[user_id] && current_streaks[user_id] >= streak_length
+            streaks << {
+              user_id: user_id,
+              days: current_streaks[user_id],
+              stop: stop_date.to_s,
+              start: ( stop_date + 1.day - ( current_streaks[user_id] ).days ).to_s
+            }
+          end
+          current_streaks[user_id] = nil
+        end
+
+        # If this is the final day and there are still streaks in progress, we
+        # need to add their streaks with the stop today set to *this* day
+        if bucket_i == ( histogram_buckets.size - 1 ) && range_i == ( ranges.size - 1 )
+          streaking_user_ids = current_streaks.keys
+          stop_date = Date.parse( date )
+          streaking_user_ids.each do |user_id|
+            if current_streaks[user_id] && current_streaks[user_id] >= streak_length
+              streaks << {
+                user_id: user_id,
+                days: current_streaks[user_id],
+                stop: stop_date.to_s,
+                start: ( stop_date + 1.day - ( current_streaks[user_id] ).days ).to_s
+              }
+            end
+            current_streaks[user_id] = nil
+          end
+        end
+
+        previous_user_ids = user_ids
+      end
+    end
+    return nil if streaks.blank?
+    max_stop_date = Date.parse( streaks.map{|s| s[:stop]}.max ) - 2.days
+    top_streaks = streaks.select do |s|
+      Date.parse( s[:stop] ) >= max_stop_date ||
+        Date.parse( s[:start]) >= Date.parse( "#{year}-01-01" )
+    end
+    top_streaks = top_streaks.sort_by{|s| s[:days] * -1}[0..100]
+    top_streaks_user_ids = top_streaks.map{|u| u[:user_id]}
+    top_streaks_users = User.where( id: top_streaks_user_ids )
+    top_streaks = top_streaks.map do |s|
+      u = top_streaks_users.detect{|u| u.id == s[:user_id]}
+      if u.suspended?
+        nil
+      else
+        s.merge(
+          login: u.login,
+          icon_url: "#{FakeView.image_url( u.icon.url(:medium) )}".gsub( /([^\:])\/\//, '\\1/' )
+        )
+      end
+    end.compact
+    top_streaks
+  end
+
+  def self.translators( year, options = {} )
+    return unless CONFIG.crowdin && CONFIG.crowdin.projects
+    locale_to_ci_code = {}
+    data = { languages: {}, users: {} }
+    staff_usernames = User.admins.pluck(:login) + %w(alexinat)
+    CONFIG.crowdin.projects.to_h.keys.each do |project_name|
+      project = CONFIG.crowdin.projects.send(project_name)
+      info_r = RestClient.get( "https://api.crowdin.com/api/project/#{project.identifier}/info?key=#{project.key}&json" )
+      info_j = JSON.parse( info_r )
+      translated_locales = I18n.t( "locales" ).keys.map(&:to_s)
+      languages_by_code = {}
+      info_j["languages"].each do |lang|
+        unless data[:languages][lang[:name]]
+          data[:languages][lang["name"]] = {}
+          data[:languages][lang["name"]]["name"] = lang["name"]
+          data[:languages][lang["name"]]["code"] = lang["code"]
+          if translated_locales.include?( lang["code"] )
+            data[:languages][lang["name"]][:locale] = lang["code"]
+            locale_to_ci_code[lang["code"]] = lang["code"]
+          elsif ( two_letter = lang["code"].split( "-" )[0] ) && translated_locales.include?( two_letter )
+            data[:languages][lang["name"]][:locale] = two_letter
+            locale_to_ci_code[two_letter] = lang["code"]
+          end
+        end
+      end
+      export_params = {
+        key: project.key,
+        json: true,
+        format: "csv",
+        date_from: "2019-01-01+00:00",
+        date_to: "2019-12-31+23:00"
+      }
+      if options[:site] && options[:site].locale
+        export_params[:language] = locale_to_ci_code[options[:site].locale]
+      end
+      export_r = RestClient.post(
+        "https://api.crowdin.com/api/project/#{project.identifier}/reports/top-members/export",
+        export_params
+      )
+      export_j = JSON.parse( export_r )
+      if export_j["success"]
+        report_r = RestClient.get(
+          "https://api.crowdin.com/api/project/#{project.identifier}/reports/top-members/download?key=#{project.key}&hash=#{export_j["hash"]}"
+        )
+        CSV.parse( report_r, headers: true ).each do |row|
+          next unless row["Languages"]
+          next if staff_usernames.include?( row["Name"] )
+          username = row["Name"][/\((.+)\)/, 1]
+          next if staff_usernames.include?( username ) 
+          languages = row["Languages"].split( ";" ).map(&:strip).select{|l| l !~ /English/}
+          next if languages.blank?
+          username ||= row["Name"]
+          data[:users][username] ||= {}
+          data[:users][username][:name] ||= row["Name"].gsub( /\(.+\)/, "" ).strip
+          data[:users][username]["words_#{project_name}"] = row["Translated (Words)"].to_i
+          data[:users][username]["approved_#{project_name}"] = row["Approved (Words)"].to_i
+          data[:users][username][:languages] = languages
+        end
+      end
+    end
+    data
+  end
+
   private
   def self.identifications_es_base_params( year )
     {
       size: 0,
       filters: [
-        { terms: { "created_at_details.year": [year] } },
+        { range: { "created_at": { gte: "#{year}-01-01" } } },
+        { range: { "created_at": { lte: "#{year}-12-31" } } },
         { terms: { "own_observation": [false] } },
         { terms: { "observation.quality_grade": ["research", "needs_id"] } },
         { terms: { "current": [true] } }

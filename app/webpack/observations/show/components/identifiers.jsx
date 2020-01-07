@@ -9,18 +9,59 @@ class Identifiers extends React.Component {
     super( props );
     const currentUser = props.config && props.config.currentUser;
     this.state = {
-      open: currentUser ? !currentUser.prefers_hide_obs_show_identifiers : true
+      open: currentUser ? !currentUser.prefers_hide_obs_show_identifiers : false
     };
+  }
+
+  componentDidMount( ) {
+    this.loadIdentifiers( );
+  }
+
+  componentDidUpdate( ) {
+    this.loadIdentifiers( );
+  }
+
+  loadIdentifiers( ) {
+    const { identifiers, fetchTaxonIdentifiers } = this.props;
+    if ( identifiers === null && this.state.open ) {
+      fetchTaxonIdentifiers( );
+    }
   }
 
   render( ) {
     const { observation, identifiers, config } = this.props;
-    if ( !observation || !observation.taxon || _.isEmpty( identifiers ) ) { return ( <span /> ); }
+    if ( !observation || !observation.taxon ) { return ( <span /> ); }
+    if ( !observation || !observation.taxon || observation.taxon.rank_level > 50 ) {
+      return ( <span /> );
+    }
     const loggedIn = config && config.currentUser;
     const taxon = observation.taxon;
     let singleName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name ) || taxon.name;
     if ( config && config.currentUser && config.currentUser.prefers_scientific_name_first ) {
       singleName = taxon.name;
+    }
+    let panelContents;
+    if ( identifiers === null ) {
+      panelContents = ( <div className="loading_spinner" /> );
+    } else if ( _.isEmpty( identifiers ) ) {
+      panelContents = ( I18n.t( "none_found" ) );
+    } else {
+      panelContents = identifiers.map( i => (
+        <div className="identifier" key={`identifier-${i.user.id}`}>
+          <div className="UserWithIcon">
+            <div className="icon">
+              <UserImage user={i.user} />
+            </div>
+            <div className="title">
+              <a href={`/people/${i.user.login}`}>{ i.user.login }</a>
+            </div>
+            <div className="subtitle">
+              <i className="icon-identification" />
+              { i.count }
+            </div>
+          </div>
+        </div>
+      ) );
     }
     return (
       <div className="Identifiers collapsible-section">
@@ -39,22 +80,7 @@ class Identifiers extends React.Component {
         </h4>
         <Panel expanded={ this.state.open } onToggle={ () => {} }>
           <Panel.Collapse>
-            { identifiers.map( i => (
-              <div className="identifier" key={ `identifier-${i.user.id}` }>
-                <div className="UserWithIcon">
-                  <div className="icon">
-                    <UserImage user={ i.user } />
-                  </div>
-                  <div className="title">
-                    <a href={ `/people/${i.user.login}` }>{ i.user.login }</a>
-                  </div>
-                  <div className="subtitle">
-                    <i className="icon-identification" />
-                    { i.count }
-                  </div>
-                </div>
-              </div>
-            ) ) }
+            { panelContents }
           </Panel.Collapse>
         </Panel>
       </div>
@@ -66,7 +92,8 @@ Identifiers.propTypes = {
   config: PropTypes.object,
   observation: PropTypes.object,
   identifiers: PropTypes.array,
-  updateSession: PropTypes.func
+  updateSession: PropTypes.func,
+  fetchTaxonIdentifiers: PropTypes.func
 };
 
 export default Identifiers;

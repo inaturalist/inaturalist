@@ -1,11 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ProjectObservation, "creation" do
+  elastic_models( Observation, Place )
   before(:each) do
-    enable_elastic_indexing( Observation, Place )
     setup_project_and_user
   end
-  after(:each) { disable_elastic_indexing( Observation, Place ) }
   it "should queue a DJ job for the list" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
@@ -155,6 +154,20 @@ describe ProjectObservation, "creation" do
     expect(po).to_not be_valid
   end
 
+  it "does not allow creation for collection projects" do
+    collection_project = Project.make!(project_type: "collection")
+    pu = ProjectUser.make!(project: collection_project)
+    po = ProjectObservation.make(user: pu.user, project: collection_project)
+    expect( po ).to_not be_valid
+  end
+
+  it "does not allow creation for umbrella projects" do
+    collection_project = Project.make!(project_type: "umbrella")
+    pu = ProjectUser.make!(project: collection_project)
+    po = ProjectObservation.make(user: pu.user, project: collection_project)
+    expect( po ).to_not be_valid
+  end
+
   describe "updates" do
     before { enable_has_subscribers }
     after { disable_has_subscribers }
@@ -199,15 +212,14 @@ describe ProjectObservation, "creation" do
 end
 
 describe ProjectObservation, "destruction" do
+  elastic_models( Observation, Place )
   before(:each) do
-    enable_elastic_indexing(Observation, Place)
     setup_project_and_user
     @project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     Delayed::Job.destroy_all
     enable_has_subscribers
   end
   after(:each) {
-    disable_elastic_indexing(Observation, Place)
     disable_has_subscribers
   }
 
@@ -247,7 +259,7 @@ describe ProjectObservation, "observed_in_place_bounding_box?" do
   
   it "should work" do
     setup_project_and_user
-    place = Place.make!(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
+    place = make_place_with_geom(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
     @observation.update_attributes(:latitude => 0.5, :longitude => 0.5)
     project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     expect(project_observation).to be_observed_in_bounding_box_of(place)
@@ -257,7 +269,7 @@ end
 
 describe ProjectObservation, "observed_in_place" do
   it "should use private coordinates" do
-    place = Place.make!(:name => "Berkeley")
+    place = make_place_with_geom(:name => "Berkeley")
     place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
     
     project_observation = make_project_observation
@@ -341,8 +353,7 @@ end
 
 describe ProjectObservation, "has_a_photo?" do
   let(:p) { Project.make! }
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
   it "should be true if photo present" do
@@ -361,8 +372,7 @@ end
 
 describe ProjectObservation, "has_a_sound?" do
   let(:p) { Project.make! }
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   it "should be true if sound present" do
     os = ObservationSound.make!
     o = os.observation
@@ -381,8 +391,7 @@ end
 
 describe ProjectObservation, "has_media?" do
   let(:p) { Project.make! }
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
   it "should be true if photo present" do
@@ -599,13 +608,17 @@ describe ProjectObservation, "elastic indexing" do
   #
   before(:all) do
     DatabaseCleaner.strategy = :truncation
-    Observation.__elasticsearch__.create_index!
-    Identification.__elasticsearch__.create_index!
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
+      Observation.__elasticsearch__.client.delete_by_query(
+        index: Observation.index_name, body: { query: { match_all: { } } })
+    end
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
+      Identification.__elasticsearch__.client.delete_by_query(
+        index: Identification.index_name, body: { query: { match_all: { } } })
+    end
   end
   after(:all) do
     DatabaseCleaner.strategy = :transaction
-    Observation.__elasticsearch__.delete_index!
-    Identification.__elasticsearch__.delete_index!
   end
 
   it "should update projects for observations" do

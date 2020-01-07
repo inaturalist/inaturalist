@@ -4,7 +4,7 @@
     %title
       = content_for(:title) ? "#{content_for(:title)} · " : ""
       = @site.try(:name)
-    = favicon_link_tag
+    = favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png"
     = csrf_meta_tag
     %meta{ http_equiv: "Content-Language", content: I18n.locale }
     - if current_user
@@ -31,6 +31,7 @@
           login: "#{ current_user.login }",             |
           prefers_scientific_name_first: #{ current_user.prefers_scientific_name_first }, |
           preferred_observations_search_map_type: "#{ current_user.preferred_observations_search_map_type }", |
+          prefers_map_tile_test: #{ current_user.prefers_map_tile_test }, |
           icon: "#{ current_user.icon.url(:thumb) }" }; |
       var TIMEZONE = "#{ Time.zone.tzinfo.name }";
       var SITE = #{ @site.to_json(                      |

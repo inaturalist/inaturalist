@@ -37,11 +37,6 @@ base: &base
         # https://developer.apps.yahoo.com/wsregapp/
         app_id: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09
 
-    airbrake:
-        # https://airbrake.io/
-        # disable: false
-        api_key: 09af09af09af09af09af09af09af09af09af09af
-
     tile_servers:
         # EXPERIMENTAL: These endpoints should return map tiles when hit with
         # requests like /{Z}/{X}/{Y}.png.
@@ -94,8 +89,13 @@ base: &base
         secret: 09af09af09af09af09af09af09af09af
 
     google:
+        # This should be a Google API key that can use Google maps
         # https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
         browser_api_key: 09af09af09af09af09af09af09af09af
+        # client_id and secret should come from a Google OAuth 2.0 client ID
+        # https://console.developers.google.com/apis/credentials
+        client_id: 09af09af09af09af09af09af09af09af
+        secret: 09af09af09af09af09af09af09af09af
 
     metadata_provider:
 

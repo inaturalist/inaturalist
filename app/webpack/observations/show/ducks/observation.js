@@ -3,11 +3,13 @@ import inatjs from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
 import { fetchControlledTerms, setControlledTerms } from "./controlled_terms";
-import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
+import {
+  fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
   setEarlierUserObservations, setLaterUserObservations, setNearby,
-  setMoreFromClade } from "./other_observations";
+  setMoreFromClade
+} from "./other_observations";
 import { fetchQualityMetrics, setQualityMetrics } from "./quality_metrics";
-import { fetchSubscriptions, setSubscriptions } from "./subscriptions";
+import { fetchSubscriptions, resetSubscriptions, setSubscriptions } from "./subscriptions";
 import { fetchIdentifiers, setIdentifiers } from "./identifications";
 import { setFlaggingModalState } from "./flagging_modal";
 import { setConfirmModalState, handleAPIError } from "./confirm_modal";
@@ -114,7 +116,7 @@ export function userIsObserver( state ) {
 export function resetStates( ) {
   return dispatch => {
     dispatch( setObservation( { } ) );
-    dispatch( setIdentifiers( [] ) );
+    dispatch( setIdentifiers( null ) );
     dispatch( setObservationPlaces( [] ) );
     dispatch( setControlledTerms( [] ) );
     dispatch( setQualityMetrics( [] ) );
@@ -194,7 +196,7 @@ export function renderObservation( observation, options = { } ) {
           originalObservation.taxon.id !== observation.taxon.id ) ) );
     dispatch( setObservation( observation ) );
     if ( taxonUpdated ) {
-      dispatch( setIdentifiers( [] ) );
+      dispatch( setIdentifiers( null ) );
       dispatch( setMoreFromClade( [] ) );
     }
     dispatch( fetchTaxonSummary( ) );
@@ -202,7 +204,7 @@ export function renderObservation( observation, options = { } ) {
     if ( fetchAll || options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
     if ( fetchAll || options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
     if ( hasObsAndLoggedIn( s ) && ( fetchAll || options.fetchSubscriptions ) ) {
-      dispatch( fetchSubscriptions( ) );
+      dispatch( resetSubscriptions( ) );
     }
     if ( fetchAll || options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
     if ( fetchAll || options.replaceState ) {
@@ -220,11 +222,6 @@ export function renderObservation( observation, options = { } ) {
       }
       if ( fetchAll || options.fetchOtherObservations || taxonUpdated ) {
         dispatch( fetchMoreFromClade( ) );
-      }
-      if ( ( fetchAll || options.fetchIdentifiers || taxonUpdated ) &&
-           observation.taxon && observation.taxon.rank_level <= 50 ) {
-        dispatch( fetchIdentifiers( {
-          taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10 } ) );
       }
       if ( fetchAll || options.fetchControlledTerms || taxonUpdated ) {
         dispatch( fetchControlledTerms( ) );
@@ -287,6 +284,7 @@ export function callAPI( method, payload, options = { } ) {
     if ( !options.callback ) {
       opts.actionTime = getActionTime( );
     }
+    console.log( "[DEBUG] callAPI, method: ", method, ", payload: ", payload );
     method( payload ).then( ( ) => {
       dispatch( afterAPICall( opts ) );
     } ).catch( e => {
@@ -604,7 +602,7 @@ export function followUser( ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     if ( userIsObserver( state ) ) { return; }
-    const newSubscriptions = state.subscriptions.concat( [{
+    const newSubscriptions = state.subscriptions.subscriptions.concat( [{
       resource_type: "User",
       resource_id: state.observation.user.id,
       user_id: state.config.currentUser.id,
@@ -612,6 +610,7 @@ export function followUser( ) {
     }] );
     dispatch( setSubscriptions( newSubscriptions ) );
     const payload = { id: state.config.currentUser.id, friend_id: state.observation.user.id };
+    console.log( "[DEBUG] payload: ", payload );
     dispatch( callAPI( inatjs.users.update, payload, { callback: ( ) => {
       dispatch( fetchSubscriptions( ) );
     } } ) );
@@ -633,6 +632,7 @@ export function unfollowUser( ) {
       id: state.config.currentUser.id,
       remove_friend_id: state.observation.user.id
     };
+    console.log( "[DEBUG] payload: ", payload );
     dispatch( callAPI( inatjs.users.update, payload, { callback: ( ) => {
       dispatch( fetchSubscriptions( ) );
     } } ) );
@@ -653,7 +653,7 @@ export function subscribe( ) {
       ) );
       dispatch( setSubscriptions( newSubscriptions ) );
     } else {
-      const newSubscriptions = state.subscriptions.concat( [{
+      const newSubscriptions = state.subscriptions.subscriptions.concat( [{
         resource_type: "Observation",
         resource_id: state.observation.id,
         user_id: state.config.currentUser.id,
@@ -979,5 +979,18 @@ export function showNewObservation( observation, options = { } ) {
     } else {
       dispatch( fetchObservation( observation.id, { fetchAll: true } ) );
     }
+  };
+}
+
+export function fetchTaxonIdentifiers( ) {
+  return ( dispatch, getState ) => {
+    const { observation } = getState( );
+    if ( !( observation.taxon && observation.taxon.rank_level <= 50 ) ) {
+      dispatch( setIdentifiers( [] ) );
+      return;
+    }
+    dispatch( fetchIdentifiers( {
+      taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10
+    } ) );
   };
 }

@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Taxon do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
 
   before(:all) do
     load_test_taxa
@@ -38,8 +37,7 @@ describe Taxon do
 end
 
 describe Taxon, "creation" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   
   it "should set an iconic taxon if this taxon was grafted" do
     load_test_taxa
@@ -71,11 +69,38 @@ describe Taxon, "creation" do
     expect(taxon.name).to eq 'Balderdash'
   end
 
-  it "should capitalize hybrid genera correclty" do
-    taxon = Taxon.make!(name: "× chitalpa", rank: "genus")
+  it "should capitalize genushybrids with leading x correclty" do
+    taxon = Taxon.make!( name: "× chitalpa", rank: Taxon::GENUSHYBRID )
     expect( taxon.name ).to eq "× Chitalpa"
-    taxon = Taxon.make!(name: "× Chitalpa", rank: "genus")
+    taxon = Taxon.make!( name: "× Chitalpa", rank: Taxon::GENUSHYBRID )
     expect( taxon.name ).to eq "× Chitalpa"
+  end
+
+  it "should capitalize Foo x Bar style genushybrids correctly" do
+    taxon = Taxon.make!( name: "foo × bar", rank: Taxon::GENUSHYBRID )
+    expect( taxon.name ).to eq "Foo × Bar"
+    taxon = Taxon.make!( name: "Foo × Bar", rank: Taxon::GENUSHYBRID )
+    expect( taxon.name ).to eq "Foo × Bar"
+  end
+
+  it "should capitalize hybrid species in genushybrids correctly" do
+    taxon = Taxon.make!( name: "Foo bar × Baz roq", rank: Taxon::HYBRID )
+    expect( taxon.name ).to eq "Foo bar × Baz roq"
+  end
+
+  it "should not fail on poorly-formatted hybrid names" do
+    [
+      "Carex × leutzii pseudofulva",
+      "Calystegia sepium roseata × c tuguriorum"
+    ].each do |name|
+      taxon = Taxon.make!( name: name, rank: Taxon::HYBRID )
+      expect( taxon ).to be_valid
+    end
+  end
+
+  it "should capitalize hybrid names of the form Genus species1 x species2" do
+    taxon = Taxon.make!( name: "genusone speciesone × speciestwo", rank: Taxon::HYBRID )
+    expect( taxon.name ).to eq "Genusone speciesone × speciestwo"
   end
   
   it "should set the rank_level based on the rank" do
@@ -181,8 +206,7 @@ describe Taxon, "creation" do
 end
 
 describe Taxon, "updating" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   
   it "should update the ancestry col of all associated listed_taxa"
   
@@ -280,11 +304,32 @@ describe Taxon, "updating" do
       expect( t.wikipedia_summary ).to be_blank
     end
   end
+
+  it "should assign the updater if explicitly assigned" do
+    creator = make_curator
+    updater = make_curator
+    t = Taxon.make!( creator: creator, updater: creator, rank: Taxon::FAMILY )
+    expect( t.updater ).to eq creator
+    t.reload
+    t.update_attributes( rank: Taxon::GENUS, updater: updater )
+    t.reload
+    expect( t.updater ).to eq updater
+  end
+  
+  it "should nilify the updater if not explicitly assigned" do
+    creator = make_curator
+    updater = make_curator
+    t = Taxon.make!( creator: creator, updater: creator, rank: Taxon::FAMILY )
+    expect( t.updater ).to eq creator
+    t = Taxon.find_by_id( t.id )
+    t.update_attributes( rank: Taxon::GENUS )
+    t.reload
+    expect( t.updater ).to be_blank
+  end
 end
 
 describe Taxon, "destruction" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   
   it "should work" do
     Taxon.make!.destroy
@@ -301,8 +346,7 @@ describe Taxon, "destruction" do
 end
 
 describe Taxon, "orphan descendant destruction" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   before(:each) do
     load_test_taxa
   end
@@ -376,8 +420,7 @@ describe "Updating iconic taxon" do
 end
 
 describe Taxon, "set_iconic_taxon_for_observations_of" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   before(:each) do
     load_test_taxa
   end
@@ -594,8 +637,24 @@ describe Taxon, "tags_to_taxa" do
 
   it "should not match problematic names" do
     Taxon::PROBLEM_NAMES.each do |name|
-      t = Taxon.make!(:name => name.capitalize)
-      expect(Taxon.tags_to_taxa([name, name.capitalize])).to be_blank
+      t = Taxon.make(:name => name.capitalize)
+      if t.valid?
+        expect( Taxon.tags_to_taxa( [name, name.capitalize] ) ).to be_blank
+      end
+    end
+  end
+
+  it "should not match scientifc names that are 2 letters or less" do
+    %w(Aa Io La).each do |name|
+      t = Taxon.make!( name: name, rank: Taxon::GENUS )
+      expect( Taxon.tags_to_taxa( [name, name.downcase ] ) ).to be_blank
+    end
+  end
+
+  it "should not match abbreviated month names" do
+    %w(Mar May Jun Nov).each do |name|
+      t = Taxon.make!( name: name, rank: Taxon::GENUS )
+      expect( Taxon.tags_to_taxa( [name, name.downcase ] ) ).to be_blank
     end
   end
 
@@ -603,8 +662,7 @@ end
 
 describe Taxon, "merging" do
 
-  before(:all) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:all) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   before(:all) { load_test_taxa }
   before(:each) do
     # load_test_taxa
@@ -836,8 +894,7 @@ end
 
 describe Taxon, "moving" do
 
-  before(:all) { enable_elastic_indexing( Observation, Taxon, Identification ) }
-  after(:all) { disable_elastic_indexing( Observation, Taxon, Identification ) }
+  elastic_models( Observation, Taxon, Identification )
   
   before(:all) do
     load_test_taxa
@@ -1027,8 +1084,7 @@ end
 
 
 describe Taxon, "grafting" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   before(:each) do
     load_test_taxa
     @graftee = Taxon.make!(:rank => "species")
@@ -1078,8 +1134,7 @@ describe Taxon, "grafting" do
   end
 
   describe "indexing" do
-    before(:each) { enable_elastic_indexing( Identification ) }
-    after(:each) { disable_elastic_indexing( Identification ) }
+    elastic_models( Identification )
     before(:all) { DatabaseCleaner.strategy = :truncation }
     after(:all)  { DatabaseCleaner.strategy = :transaction }
 
@@ -1169,8 +1224,7 @@ describe Taxon, "update_life_lists" do
 end
 
 describe Taxon, "threatened?" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   it "should work for a place"
   it "should work for lat/lon" do
     p = make_place_with_geom
@@ -1182,8 +1236,7 @@ describe Taxon, "threatened?" do
 end
 
 describe Taxon, "geoprivacy" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   it "should choose the maximum privacy relevant to the location" do
     t = Taxon.make!(:rank => Taxon::SPECIES)
     p = make_place_with_geom
@@ -1205,7 +1258,7 @@ describe Taxon, "max_geoprivacy" do
   let(:t1) { Taxon.make!(rank: Taxon::SPECIES) }
   let(:t2) { Taxon.make!(rank: Taxon::SPECIES) }
   let(:taxon_ids) { [t1.id, t2.id] }
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
+  elastic_models( Observation, Identification )
   it "should be private if one of the taxa has a private global status" do
     cs_global = ConservationStatus.make!( taxon: t1, geoprivacy: Observation::PRIVATE )
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
@@ -1637,8 +1690,7 @@ describe "current_synonymous_taxon" do
 end
 
 describe Taxon, "set_photo_from_observations" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   it "does not throw an error if observation photo positions are nil" do
     t = Taxon.make!( rank: "species" )
     o = make_research_grade_observation( taxon: t )

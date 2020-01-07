@@ -15,9 +15,10 @@
   - if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank?
     %meta{:content => CONFIG.facebook.admin_ids.join(','), :property => "fb:admins"}
   %meta{:content => "#{t(:learn_about_the_species_live_in) + "#{@place.display_name}"}!", :name => "description", :property => "og:description"}
-  %meta{:content => ( @shareable_image_url = @site.logo_square.url ), :property => "og:image"}
+  - if @site && @site.shareable_image?
+    %meta{ content: ( @shareable_image_url = @site.shareable_image.url ), property: "og:image" }
   %meta{:content => @shareable_image_url, :property => "twitter:image"}
--
+  %link{ rel: "canonical", href: place_url( @place, host: Site.default.url ) }
 - content_for(:extrajs) do
   = google_maps_js
   :javascript
@@ -119,8 +120,6 @@
     - else
       .readable.nocontent
         = t :this_place_has_no_check_list
-        - if @place_geometry && @place != Place.north_america
-          = render :partial => 'subscriptions/subscription', :locals => {:resource => @place }
   / end guidetab
   #observationstab
     .stacked.observationcontrols

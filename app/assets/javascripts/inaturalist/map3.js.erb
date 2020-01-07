@@ -1092,6 +1092,9 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt( 0 );
   var tileservers = elasticsearchTileservers( );
+  if ( CURRENT_USER && CURRENT_USER.prefers_map_tile_test ) {
+    options.style = "geotilegrid";
+  }
   var options = options || { },
       gridTileSuffix = "/" + (options.mapStyle || "colored_heatmap" ) +
         "/{z}/{x}/{y}.png",
@@ -1102,9 +1105,9 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // using a less generic name for the elasticmaps param to not show
   // an observation on a tile, because we have a Google marker for it
-  // if( options.observation_id && typeof options.observation_id == "number" ) {
-  //   options.featured_observation_id = options.observation_id;
-  // }
+  if( options.observation_id && typeof options.observation_id == "number" ) {
+    options.featured_observation_id = options.observation_id;
+  }
   // these are the parameters that will be sent to the node API
   var paramKeys = [
     "acc",
@@ -1134,11 +1137,15 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "iconic_taxa",
     "iconic_taxa",
     "ident_taxon_id",
+    "ident_taxon_id_exclusive",
     "ident_user_id",
     "identifications",
     "identified",
     "introduced",
     "lat",
+    "line_color",
+    "line_opacity",
+    "line_width",
     "list_id",
     "lng",
     "lrank",
@@ -1158,6 +1165,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "photos",
     "place_id",
     "popular",
+    "precision",
+    "precision_offset",
     "project_id",
     "project_ids",
     "projects[]",
@@ -1170,6 +1179,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "search_on",
     "skip_top_hits",
     "sounds",
+    "style",
     "swlat",
     "swlng",
     "taxon_geoprivacy",
@@ -1188,6 +1198,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "verifiable",
     "viewer_id",
     "viewer_id",
+    "width",
     "without_taxon_id",
     "without_term_value_id",
     "year"
