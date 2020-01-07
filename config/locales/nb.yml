@@ -3819,7 +3819,6 @@ nb:
   unpublish: Avpubliser
   unreview_all: Fjern revisjon for alle
   unsubscribe: Meld av
-  unsubscribe_from_this: Avslutt abonnent på dette
   unsuspend_user: Opphev suspenderingen til bruker
   upcoming_bioblitzes: Kommende bioblitzer
   update: Oppdater
@@ -5512,10 +5511,6 @@ nb:
         notification_preferences_user_observations: Observasjoner av personer som jeg følger
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Observasjoner av taksa eller steder som jeg abonnerer meg på
-        opt_in_to_map_tile_test: Meld på til kartflis-testen
-        opt_in_to_map_tile_test_description: |
-          Å melde deg på denne testen betyr at du vil se nye raster-baserte kartflis for spredningskart når du zoomer ut. Disse rastere er lettere for våre servere, bør vises raskere når iNaturalist vokser, og er bedre til å vise observasjonstetthet. Vi håper å gjøre denne erstatningen for hele siden etterhvert. Vi vil gjerne høre dine tilbakemeldinger på forumet.
-        opt_out_of_map_tile_test: Meld av fra kartflis-testen
         place_preference_changed_notice_html: |
           Stedsvalg endret. Hvis du ombestemmer deg kan du alltid <a href='/users/edit'>endre dine innstillinger</a>.
         project_addition_preferences:
@@ -5949,6 +5944,8 @@ nb:
       AssessmentSection: Vurderingsseksjon
       Atlas: Atlas
       CompleteSet: Fullstendig sett
+      #Noun
+      Flag: Markering
       TaxonLink: Taksonlenke
     attributes:
       assessment:
