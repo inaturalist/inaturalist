@@ -7,6 +7,12 @@ class UserPrivilege < ActiveRecord::Base
   ORGANIZER = "organizer"
   COORDINATE_ACCESS = "coordinate_access"
 
+  PRIVILEGES = [
+    SPEECH,
+    ORGANIZER,
+    COORDINATE_ACCESS
+  ]
+
   # The earned_#{privilege}? methods are intended to calculate whether the user
   # has *currently* earned a privilege. They might have it without currently
   # earning it if they earned it in the past. The actual entry in the
@@ -58,12 +64,12 @@ class UserPrivilege < ActiveRecord::Base
     end
   end
 
-  def restore!( options: {} )
+  def restore!( options = {} )
     update_attributes( revoked_at: nil )
   end
 
-  def revoke!( options: {} )
-    update_attributes(
+  def revoke!( options = {} )
+    update_attributes!(
       revoked_at: Time.now,
       revoke_user: options[:revoke_user],
       revoke_reason: options[:revoke_reason]

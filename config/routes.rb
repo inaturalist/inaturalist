@@ -510,6 +510,10 @@ Rails.application.routes.draw do
       get :users
       get "users/:id" => "admin#user_detail", as: :user_detail
       get :deleted_users
+      put :grant_user_privilege
+      put :revoke_user_privilege
+      put :restore_user_privilege
+      put :reset_user_privilege
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       member do
@@ -523,6 +527,9 @@ Rails.application.routes.draw do
       end
     end
   end
+  get 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
+  delete 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content"
+  put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
 
   resources :site_admins, only: [:create, :destroy] do
     collection do
@@ -549,9 +556,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
-  delete 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content"
-  put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
   resources :taxon_ranges, :except => [:show]
   
   resources :atlases do
