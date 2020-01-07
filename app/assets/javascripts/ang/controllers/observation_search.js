@@ -1417,7 +1417,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       mapStyle: "colored_heatmap",
       observationLayers: [ layerParams ],
       infoWindowCallback: $scope.infoWindowCallback,
-      style: ( $scope.currentUser && $scope.currentUser.prefers_map_tile_test ) ? "geotilegrid" : null
+      style: "geotilegrid"
     });
     // fully remove any existing data layer
     if( $scope.selectedPlaceLayer ) { $scope.selectedPlaceLayer.setMap( null ); }
