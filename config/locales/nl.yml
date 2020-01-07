@@ -609,7 +609,6 @@ nl:
   be_the_first_to_fave_this_observation: Sla als eerste deze waarneming op als een favoriet!
   because_of: wegens
   before_importing_photos: vóór het importeren van foto's
-  belives_this_is_a_comprehensive_list_of: vindt dat dit een uitgebreide lijst is van
   bg_color: Achtergrondkleur
   bioblitz: Bioblitz
   birds: vogels
@@ -809,13 +808,18 @@ nl:
   comparing_versions_x_and_y: "Versies %{x} en %{y} vergelijken"
   comparing_observations_from: "Vergelijken van %{user} waarnemingen van %{dates}"
   compiled_by_name: "Gecompileerd door %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Afgerond
   complete_set_for_taxon_in_place_html: "Complete set voor %{taxon} in %{place}"
   completed: Voltooid
   completed_at: Voltooid op
-  comprehensive: uitgebreid
-  comprehensive?: Uitgebreid?
-  comprehensive_list: Uitgebreide lijst
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
+  comprehensive?: Volledig?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Volledige</span>
+    checklist voor %{taxon}
+  comprehensive_list: Volledige lijst
   concept_status: Conceptstatus
   configure: Instellen
   configure_a_widget_to_show: Stel een widget in om de  %{site_name} waarnemingen te tonen op je website of blog. Het kan zijn dat je de  CSS moet opnemen in de  <code>&lt;head&gt;</code> van je HTML. Voel je vrij de CSS te herschrijven.
@@ -1536,7 +1540,7 @@ nl:
   ids_made_for_others: ID's voor anderen gedaan
   if_for_some_reason_a_user_doesnt_agree: |
     Als je niet akkoord gaat met het gemeenschapstaxon kun je het verwerpen. Jouw determinatie wordt dan gebruikt bij het koppelen aan andere waarnemingen, het bijwerken van levenslijsten, etc. Je waarneming kan alleen van onderzoekskwaliteit worden wanneer de gemeenschap het met je eens is.
-  if_matches_come_from_a_comprehensive_list: Als gevonden items uit een uitgebreide lijst komen, wordt hier een groene balk weergegeven.
+  if_matches_come_from_a_comprehensive_list: Als gevonden items van een volledige lijst komen, wordt hier een groene balk weergegeven.
   if_this_is_a_scientific_name: Als dit een wetenschappelijk naam betreft, is hij momenteel aanvaard?
   if_this_link_will_apply_to_descendant: Als deze link van toepassing is op onderliggende taxa kun je sjabloontags gebruiken om de taxonnaam in de URL in te vullen
   if_you_have_any_trouble_with_the_site_check_out: 'Mocht je vragen hebben, ga dan even naar onze <a href="%{help_url}">help sectie</a> of plaats een bericht in onze <a href="%{feedback_url}">feedbackgroep</a>.'
@@ -3966,6 +3970,10 @@ nl:
   user_added_x_observations_html: "%{user} heeft %{x} waarnemingen toegevoegd"
   user_already_authenticated: Gebruiker is al geverifieerd
   user_autocomplete_placeholder: kueda, simon123, enz.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} denkt dat dit een volledige lijst is van %{taxon} in %{place}
   user_blocked: Gebruiker geblokkeerd
   user_commented: "%{user} reageerde"
   user_commented_on: "%{user} heeft om %{time} gereageerd op je %{title}"
