@@ -1,21 +1,4 @@
 - site = @site || CONFIG
-- if controller.controller_name == "users" && action_name == "edit"
-  .bootstrap
-    .container
-      .row
-        .col-xs-12
-          .box.text-center.upstacked.alert.alert-warning
-            - if current_user.prefers_map_tile_test?
-              = form_for current_user do |f|
-                = f.hidden_field :prefers_map_tile_test, value: false
-                = f.submit I18n.t( "views.users.edit.opt_out_of_map_tile_test" ), class: "btn btn-warning"
-            - else
-              = form_for current_user do |f|
-                = f.hidden_field :prefers_map_tile_test, value: true
-                = f.submit I18n.t( "views.users.edit.opt_in_to_map_tile_test" ), class: "btn btn-success"
-            %p
-              = I18n.t( "views.users.edit.opt_in_to_map_tile_test_description" )
-
 - if is_admin? && controller.controller_name == "users" && action_name == "edit"
   .bootstrap
     .container

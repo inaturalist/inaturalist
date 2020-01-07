@@ -1092,9 +1092,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt( 0 );
   var tileservers = elasticsearchTileservers( );
-  if ( CURRENT_USER && CURRENT_USER.prefers_map_tile_test ) {
-    options.style = "geotilegrid";
-  }
+  options.style = "geotilegrid";
   var options = options || { },
       gridTileSuffix = "/" + (options.mapStyle || "colored_heatmap" ) +
         "/{z}/{x}/{y}.png",

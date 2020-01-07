@@ -41,8 +41,7 @@
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
-          preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
-          prefers_map_tile_test: <%= current_user.prefers_map_tile_test %>
+          preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>"
         };
       <% end -%>
     </script>
