@@ -695,7 +695,6 @@ ru:
   be_the_first_to_fave_this_observation: Будьте первым, кто добавил это наблюдение в фавориты!
   because_of: поскольку
   before_importing_photos: прежде чем импортировать фото
-  belives_this_is_a_comprehensive_list_of: считает, что это полный список
   bg_color: Цвет фона
   bioblitz: Биоблиц
   birds: птицы
@@ -892,12 +891,14 @@ ru:
   comparing_versions_x_and_y: "Сравнение версий %{x} и %{y}"
   comparing_observations_from: "Сравнение наблюдений %{user} за %{dates}"
   compiled_by_name: "составлено %{name}"
-  complete: Завершено
+  #Adjective, e.g. "this Taxon Framework is complete"
+  complete: Полный
   complete_set_for_taxon_in_place_html: "Полный набор для %{taxon} в %{place}"
   completed: Завершено
   completed_at: Завершено на
-  comprehensive: современный
-  comprehensive?: современный?
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
+  comprehensive?: Полный?
   comprehensive_list: Полный список
   concept_status: Статус концепции
   configure: Задать
@@ -1186,7 +1187,7 @@ ru:
   download_csv: Скачать как CSV
   download_csv_template: Загрузить шаблон в формате CSV
   download_kml: Загрузить в формате KML
-  downstream_coverage_rank: Ранг охвата вниз
+  downstream_coverage_rank: Уровень охвата в нисходящем направлении
   downstream_coverage_colon_rank: "Охват вниз: ранг %{rank}"
   downstream_deviations: Отклонения в направлении вниз
   downstream_deviations_for_taxon: "Отклонения в направлении вниз для %{taxon}"
@@ -1357,11 +1358,11 @@ ru:
   fill_out_project_observation_fields: Заполнить поля наблюдения проекта
   fill_out_your_profile: заполните ваш профиль
   filter: Фильтр
-  filter_by_curator_identification: Фильтровать по определению куратором
+  filter_by_curator_identification: Фильтр по идентифиции, сделанной куратором
   filter_by_place: Фильтр по месту
   filter_by_taxon: Фильтр по таксону
-  filter_by_place_taxon_and_color: Фильтр по месту наблюдения таксона и цвету с использованием элементов управления.
-  filter_list_by_this_taxon: Фильтровать список этим таксоном
+  filter_by_place_taxon_and_color: Фильтр по месту, таксону и цвету с использованием элементов управления.
+  filter_list_by_this_taxon: Фильтр списка по этому таксону
   filtering: Фильтрация
   filters: Фильтры
   find: Поиск
@@ -1374,14 +1375,14 @@ ru:
   find_places: Найти места
   find_some_people_to_follow: "Найдите людей, на которых вы хотите подписаться"
   find_species: Найти виды
-  find_suitable_observations: Найти подходящее описание
+  find_suitable_observations: Найти подходящие наблюдения
   find_unsuitable_observations: Найти неподходящие наблюдения
-  find_your_current_location: Найдите ваше текущее местоположение
+  find_your_current_location: Найти ваше текущее местоположение
   finished: Завершено
   finished_with_page: Страница закончилась
-  first_confirmed_inat_observation: "Впервые наблюдение подтверждено в %{site_name}"
+  first_confirmed_inat_observation: "Первое подтверждённое наблюдение на %{site_name}"
   first_connect_your_provider_account_to_your_site: "Прежде всего, привяжите аккаунт вашего %{provider} к %{site_name}"
-  first_inat_observation: "Первое наблюдение в %{site_name}"
+  first_inat_observation: "Первое наблюдение на %{site_name}"
   first_observation: Первое наблюдение
   first_observation_by_date_added: Первое наблюдение по дате добавления
   first_observer: 1-й наблюдатель
@@ -1391,11 +1392,11 @@ ru:
   flag_an_item: Отметить пункт
   flag_as_spammer: Пометить как спамера
   flag_as_non_spammer: Пометить как не спамера
-  flag_description: Пометьте этот контент, чтобы дать знать кураторам, что с ним что-то не так.
+  flag_description: Пометить этот контент, чтобы дать знать кураторам, что с ним что-то не так.
   flag_for_check_list_title_html: |
     Флаг для чек-листа: %{title}
   flag_for_comment_id_html: Флаг для <a href="%{url}">комментария %{id}</a>
-  flag_for_curation: Флаг для куратора
+  flag_for_curation: Флаг для курирования
   flag_for_guide_title_html: |
     Флаг для Руководства: %{title}
   flag_for_identification_id_html: Flag for <a href="%{url}">идентификации %{id}</a>
@@ -1421,21 +1422,21 @@ ru:
   flag_marked_as_resolved_html: '<span class="meta">Флаг помечен как</span> <strong>разрешённый.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Объект
-  flag_reason: "&ldquo;Я пометил этот %{record} потому что"
+  flag_reason: "&ldquo;Я пометил эту %{record}, потому что"
   flag_resolution: Разрешение
   flag_saved: Флаг сохранён
   flag_saved_thanks_html: Флаг сохранён. Спасибо! <a href="%{url}" class="readmore">Посмотреть флаг</a>
   flag_this_observation: Пометить это наблюдение
   flag_this_photo: Пометить это фото
-  flag_this_sound: Отметить это аудио флажком
+  flag_this_sound: Пометить это аудио
   flagged: помечено
   flagged_: Помечено
   flagged_for_curation: Помечено для курирования
   flagged_taxon: Помеченный флагом таксон
   flagged_thing_explanation: "Пользователи пометили флагом этот %{thing}, потому что"
   flagging_desc: |
-    Флаги привлекают внимание добровольцев-кураторов сайта. Пожалуйста, не помечайте проблемы, которые вы можете решить с помощью идентификаций, оценки качества данных или в общении с человеком, который создал контент.
-  flagger: Флажок
+    Флаги привлекают внимание добровольцев-кураторов сайта. Пожалуйста, не помечайте проблемы, которые вы можете решить с помощью идентификаций, оценки качества данных или через общение с человеком, который создал контент.
+  flagger: Флаг разрешал
   flags: Флаги
   flags_with_count: Флаги %{count}
   flags_explanation: "Пользователи %{site_name} помечают флагом то, что требует внимания кураторов и/или администраторов сайта."
@@ -1464,7 +1465,7 @@ ru:
     many: 'Подписан на %{count} человек'
     other: 'Подписан на %{count} человек'
   for_a_taxon: для таксона
-  formatting: Форматироватие
+  formatting: Форматирование
   forgot_your_password: Забыли пароль?
   forum: Форум
   forum_categories:
@@ -1477,7 +1478,7 @@ ru:
     tutorials: Руководства
   forum_desc: |
     Форум - это место для обсуждения самого iNat, включая помощь и поддержку, пожелания, отчеты об ошибках, объявления и многое другое.
-  frequency: Частота
+  frequency: Частота наблюдения
   from: Из
   from_a_place: в месте
   from_eol_collection: Из коллекции EOL
@@ -1487,7 +1488,7 @@ ru:
   from_place: Из места
   from_soundcloud: Из Soundcloud
   from_your_site_observations: "Из наблюдений %{site_name}"
-  from_licensed_site_observations: "Из лицензированных %{site_name} наблюдений"
+  from_licensed_site_observations: "Из лицензированных наблюдений %{site_name}"
   full_screen: Полный экран
   fungi:
     one: гриб
@@ -1520,24 +1521,24 @@ ru:
   google: Google
   got_it!: Понятно!
   got_your_data_somewhere_else?: Ваши данные где-то ещё? Мы можем помочь.
-  graft: Прививка
+  graft: Привязка
   grafting_attemps_to_insert_this_taxon: Привязка пытается вставить этот таксон в наше таксономическое дерево, найти существующий родительский таксон или создать все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону более высокого уровня.
   grant_role: "%{grant} %{role} роль"
   grid: Плитка
   grid_layout: Разметка по сетке
-  grid_tooltip: Показать в виде грида
+  grid_tooltip: Показать в виде сетки
   group: Группа
   grouping: Группировка
   guides: Руководства
   guide_compiled_by: Руководство составлено
   guide_deleted: Руководство удалено
-  guide_will_be_deleted: Руководство будет удалено. Это может занять некоторое время для больших руководств.
-  guide_taxon: Таксон руководства
+  guide_will_be_deleted: Руководство будет удалено. Это может занять некоторое время, если руководство большое.
+  guide_taxon: Руководство по таксону
   guide_was_successfully_created: Руководство было успешно создано.
   guide_was_successfully_published: Руководство было успешно опубликовано.
   guide_was_successfully_updated: Руководство было успешно обновлено.
-  guidelines: Руководства
-  has_already_been_flagged_by: был уже отмечен
+  guidelines: Рекомендации
+  has_already_been_flagged_by: был уже отмечен 
   has_id_supported_by_two_or_more: Поддержка идентификации двумя или более участниками
   has_one_or_more_faves: Имеет один или больше фаворитов
   has_photo: С фото
@@ -1555,7 +1556,7 @@ ru:
   header_your_identifications: Ваши идентификации
   header_your_projects: Ваши проекты
   header_your_profile: Ваш профиль
-  heads_up: Осторожно
+  heads_up: Внимание
   heads_up_this_photo_has_been_flagged: "ПРЕДУПРЕЖДЕНИЕ: это фото было помечено флагом."
   heads_up_this_photo_is_already_associated_with: "Внимание: это фото уже связано с <a target='_blank' href='%{url}'>другим наблюдением</a>"
   heads_up_you_have_multiple: "Внимание: у вас множество машинных таксономических тегов для идентичных классов. Ниже они кодируются цветом в зависимости от класса."
@@ -1563,8 +1564,8 @@ ru:
   help_confirm_observations!: Помогите подтвердить наблюдения!
   help_support_inaturalist: "Помогите поддержать iNaturalist"
   help_translate!: Помогите с переводом!
-  helped_the_observer_make: помогли наблюдателю сделать окончатльное определение (т.е. первичные определения соответствуют окончательному)
-  here_are_3_examples: Три примера хорошо сформированных данных
+  helped_the_observer_make: помогли наблюдателю сделать окончательную идентификацию (т.е. были сделаны до окончательной идентификации и соответствовали ей)
+  here_are_3_examples: Вот 3 примера правильно сформированных данных
   here_are_our_top_species_suggestions: Вот наши лучшие предложения видов
   hex_color_eg: Цвет в 16-ти разрядном представлении, например 6564FF
   hi: Привет,
@@ -1573,13 +1574,13 @@ ru:
   hide: Скрыть
   hide_content: Скрыть контент
   hide_desc: |
-    Скрытие контента удалит его из публичного просмотра, но люди все равно смогут увидеть, что что-то было скрыто, а кураторы сайта и автор контента все равно смогут увидеть скрытый контент. Как правило, это относится только к письменному содержимому, например, если вы скрываете содержимое идентификации, идентификация все еще видна, но примечания к идентификации скрыты. Вы не можете отменить это, и только сотрудники сайта могут отобразить контент после его скрытия, поэтому будьте осторожны и используйте это только для очень нежелательного контента.
+    Скрытие контента уберёт его из публичного просмотра, но люди все равно смогут увидеть, что что-то было скрыто, а кураторы сайта и автор контента все равно смогут увидеть скрытый контент. Как правило, это относится только к письменному содержимому, например, если вы скрываете содержимое идентификации, сама идентификация все же видна, но примечания к ней скрыты. Вы не можете отменить это, и только сотрудники сайта могут отобразить контент после его скрытия, поэтому будьте осторожны и используйте это только для очень нежелательного контента.
   hide_running_total: Скрыть текущий итог
   hide_uncountable_species: Не показывать неисчислимые виды
   high: Высший
   highest_rank: Высший ранг
   highlights_and_stats_from_year_on_site: "Основные моменты и статистика за %{year} на %{site}"
-  history: История
+  history: Хронология
   home: Главная
   however_there_were_some_issues: "Однако были некоторые проблемы: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Я не знаю, но уверен, что это таксон %{taxon}
@@ -1602,26 +1603,26 @@ ru:
   identify_observations_by_these_users: Идентифицируйте наблюдения этих пользователей
   identify_title: "Идентифицируйте"
   identification: идентификация
-  identification_by_user: Определение %{user}
-  identification_deleted: Определение удалено.
+  identification_by_user: Идентификация %{user}
+  identification_deleted: Идентификация удалена.
   identification_saved: "Идентификация сохранена!"
   identification_updated: Идентификация обновлена!
   identification_user_short: Идент. пользователя
   identification_withdrawn: Идентификация отозвана.
   identifications: Идентификации
   identifications_by: "Идентификации %{user}"
-  computer_vision_suggestion: Предложение системы компьютерного распознавания
+  computer_vision_suggestion: Предложение системы компьютерного зрения
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
   identifiers: Эксперты
   identotron: Идентотрон
-  identotron_for: Identotron для
-  identotron_help: Помощь по Identotron'у
+  identotron_for: Идентотрон для
+  identotron_help: Помощь по Идентотрону
   ids: "Идентификации"
   ids_made_for_others: Идентификации, сделанные для других
   if_for_some_reason_a_user_doesnt_agree: |
     Если по какой-то причине вы не согласны с таксоном сообщества, вы можете отклонить его, что означает, что ваш ID используется для ссылки на другие наблюдения, обновления списков жизни и т.д. Это также означает, что ваше наблюдение может перейти на  исследовательский уровень только тогда, когда сообщество соглашается с вами.
-  if_matches_come_from_a_comprehensive_list: Если совпадения взяты из исчерпывающего списка, здесь отобразится зеленая полоса.
+  if_matches_come_from_a_comprehensive_list: Если совпадения взяты из полного списка, здесь отобразится зеленая полоса.
   if_this_is_a_scientific_name: Если это научное название, является ли оно в настоящее время общепринятым?
   if_this_link_will_apply_to_descendant: Если применить эту ссылку к вложенным таксонам, можно использовать теги шаблона для вставки наименования таксона в URL
   if_you_have_any_trouble_with_the_site_check_out: 'Если у вас есть вопросы, пожалуйста зайдите сюда <a href="%{help_url}">help section</a> or post a message to our <a href="%{feedback_url}">feedback group</a>.'
@@ -3311,7 +3312,7 @@ ru:
   save_draft: Сохранить Черновик
   save_fields: Сохранить поля
   save_flag: Сохранить флаг
-  save_guide_taxon: Сохранить путеводитель
+  save_guide_taxon: Сохранить руководство по таксону
   save_identification: Сохранить идентификацию
   save_observation: Сохранить наблюдение
   save_photos: Сохранить фото
@@ -3798,7 +3799,7 @@ ru:
   the_following_observations_could: "Следующие наблюдения невозможно добавить к %{link}"
   the_following_photos_have_been_tagged: "У следующих фото были проставлены теги:"
   the_identotron_is_a_tool_to: |
-    Identotron - это средство, которое помогает вам идентифицировать наблюдения на основе контрольных списков %{site_name}.  При заданном более высоком уровне таксона и месте (например, млекопитающие Индии), %{site_name} будет искать в контрольных списках записи, соответствующие наличию данного таксона в данном месте, это нечто вроде динамического полевого руководства по всей планете. Большинство контрольных списков находятся в стадии разработки, но если есть полный список, т. е. в нем перечислены <em>все</em> представители этого таксона в данном месте, Identotron выдаст уведомление.
+    Идентотрон - это средство, которое помогает вам идентифицировать наблюдения на основе контрольных списков %{site_name}.  При заданном более высоком уровне таксона и месте (например, млекопитающие Индии), %{site_name} будет искать в контрольных списках записи, соответствующие наличию данного таксона в данном месте, это нечто вроде динамического полевого руководства по всей планете. Большинство контрольных списков находятся в стадии разработки, но если есть полный список, т. е. в нем перечислены <em>все</em> представители этого таксона в данном месте, Идентотрон выдаст уведомление.
   the_name_of_the_taxon_including_space: Наименование таксона, включая место для вида и подвида.
   the_observation_was_already_added_to_that_project: Наблюдение уже добавлено к этому проекту.
   the_past: прошлое
