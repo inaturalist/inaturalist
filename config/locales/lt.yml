@@ -430,7 +430,6 @@ lt:
   be_the_first_to_fave_this_observation: Pirmasis pamėk šį stebėjimą!
   because_of: nes
   before_importing_photos: prieš importuodami nuotraukas
-  belives_this_is_a_comprehensive_list_of: mano, kad tai yra išsamus sąrašas, kuriame surašyti
   bg_color: Fono Spalva
   bioblitz: Bioblitz
   birds: paukščiai
@@ -565,11 +564,13 @@ lt:
   comparing_list_to_list: "Lyginama %{list1} su %{list2}"
   comparing_versions_x_and_y: "Lyginama versijas %{x} ir %{y}"
   compiled_by_name: "Sudarė %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Atlikta
   complete_set_for_taxon_in_place_html: "Užbaigtas taksono: %{taxon} rinkinys vietovėje: %{place}"
   completed: Baigtas
   completed_at: Baigta
-  comprehensive: išsamus
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Išsamus?
   comprehensive_list: Išsamus sąrašas
   concept_status: Koncepcijos Būsena
