@@ -539,7 +539,6 @@ zh-TW:
   be_the_first_to_fave_this_observation: 成為最先將此觀察列為最愛的人吧！
   because_of: 因為
   before_importing_photos: 在匯入照片前
-  belives_this_is_a_comprehensive_list_of: 相信這是綜合清單有關於
   bg_color: 背景顏色
   bioblitz: 生物速查
   birds: 鳥類
@@ -734,11 +733,13 @@ zh-TW:
   comparing_versions_x_and_y: "比較版本 %{x} 和 %{y}"
   comparing_observations_from: "比較 %{user} 自 %{dates} 的觀察"
   compiled_by_name: "編譯由%{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: 完成
   complete_set_for_taxon_in_place_html: "在 %{place} %{taxon}的完整名錄集"
   completed: 已完成
   completed_at: 完成於
-  comprehensive: 綜合
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: 綜合？
   comprehensive_list: 綜合清單
   concept_status: 概念狀態
