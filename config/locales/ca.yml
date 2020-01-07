@@ -594,7 +594,6 @@ ca:
   be_the_first_to_fave_this_observation: Sigueu el primer en fer aquesta observació favorita!
   because_of: a causa de
   before_importing_photos: abans d'importar fotos.
-  belives_this_is_a_comprehensive_list_of: creu que aquesta és una llista exhaustiva de
   bg_color: Color BG
   bioblitz: Bioblitz
   birds: aus
@@ -793,11 +792,13 @@ ca:
   comparing_versions_x_and_y: "Comparant les versions de %{x} i %{y}"
   comparing_observations_from: "Comparació de les observacions de %{user} el %{dates}"
   compiled_by_name: "Elaborat per %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Complet
   complete_set_for_taxon_in_place_html: "Llista completa de %{taxon} a %{place}"
   completed: Completat
   completed_at: Completat a
-  comprehensive: completa
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Voleu completar-ho?
   comprehensive_list: Llista completa
   concept_status: Concepte de la situació
