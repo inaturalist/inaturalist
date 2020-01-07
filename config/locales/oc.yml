@@ -395,7 +395,8 @@ oc:
   compiled_by_name: "Regropat per %{name}"
   completed: Acabat
   completed_at: Completat a
-  comprehensive: complet
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Complet ?
   comprehensive_list: Lista completa
   concept_status: Estat del concèpte
