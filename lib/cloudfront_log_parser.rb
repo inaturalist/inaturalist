@@ -15,7 +15,7 @@ class CloudfrontLogParser
   def convert_cloudfront_logs_to_logstash_format
     return unless @s3_client
     contents = @s3_client.list_objects( bucket: LOG_BUCKET_NAME ).contents
-    all_but_latest_log = contents.sort_by(&:last_modified)[0...-1]
+    all_but_latest_log = contents.sort_by( &:last_modified )
     all_but_latest_log.each do |log_object|
       download_cloudfront_log( log_object )
     end
