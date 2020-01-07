@@ -592,7 +592,6 @@ nb:
   be_the_first_to_fave_this_observation: Vær den første som gjør denne observasjonen til en favoritt!
   because_of: på grunn av
   before_importing_photos: før bildeimport
-  belives_this_is_a_comprehensive_list_of: tror at dette er en fullstendig liste av
   bg_color: Bakgrunnsfarge
   bioblitz: Bioblitz
   birds: fugler
@@ -793,13 +792,18 @@ nb:
   comparing_versions_x_and_y: "Sammenligner versjon %{x} og %{y}"
   comparing_observations_from: "Sammenligner observasjoner av %{user} på %{dates}"
   compiled_by_name: "Sammensatt av %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Fullført
   complete_set_for_taxon_in_place_html: "Fullstendig sett for %{taxon} i %{place}"
   completed: Fullført
   completed_at: Fullført
-  comprehensive: omfattende
-  comprehensive?: Omfattende?
-  comprehensive_list: Omfattende liste
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
+  comprehensive?: Fullstendig?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Fullstendig</span>
+    sjekkliste for %{taxon}
+  comprehensive_list: Fullstendig liste
   concept_status: Konseptstatus
   configure: Konfigurer
   configure_a_widget_to_show: Konfigurer en widget for å vise observasjoner fra %{site_name} på ditt nettsted eller blogg. Du må kanskje inkludere css'en i <code>&lt;head&gt;</code> delen av din html. Det er bare å skrive om css'en hvis du vil.
@@ -1517,7 +1521,7 @@ nb:
   ids_made_for_others: ID-er gjort for andre
   if_for_some_reason_a_user_doesnt_agree: |
     Hvis du for en eller annen grunn ikke er enig i taksonet til fellesskapet, kan du avvise det, som betyr at din identifikasjon er den som brukes for lenking til andre observasjoner, oppdatere livslister, osv. Det innebærer også at din observasjon kun kan bli av forskningskvalitet hvis fellesskapet er enig med deg.
-  if_matches_come_from_a_comprehensive_list: Hvis treff kommer fra en utfyllende liste vises det en grønn bar her.
+  if_matches_come_from_a_comprehensive_list: Hvis treff kommer fra en fullstendig liste vises det en grønn bar her.
   if_this_is_a_scientific_name: Hvis dette er et vitenskapelig navn, er det akseptert nå?
   if_this_link_will_apply_to_descendant: Hvis denne lenken skal gjelde for underliggende taksa, kan du bruke mal-etiketter for å fylle ut taksonnavnet i url'en
   if_you_have_any_trouble_with_the_site_check_out: 'Hvis du har noen spørsmål, vennligst sjekk vår <a href="%{help_url}">hjelpseksjon</a> eller skriv en melding i vår <a href="%{feedback_url}">tilbakemeldingsgruppe</a>.'
@@ -2035,7 +2039,7 @@ nb:
   new_assessment: Ny vurdering
   new_check_list: Ny sjekkliste
   new_check_list_for: "Opprett en ny sjekkliste for %{place} &raquo;"
-  new_check_list_record: "Hvis du vil markere denne listen som omfattende, opprett den, legg til taksa, og så rediger den, da har du muligheten til å markere den som omfattende her."
+  new_check_list_record: "Hvis du vil markere denne listen som fullstendig, opprett den, legg til taksa, og så rediger den, da vil du ha muligheten til å markere den som fullstendig her."
   new_comment_on_a_parent_by_user_link: Ny kommentar på @gender{m:en|f:ei|n:et} %{parent} av %{user_link}
   new_flag_for: Ny markering for
   new_guide: Ny guide
@@ -3900,6 +3904,10 @@ nb:
   user_added_x_observations_html: "%{user} har lagt til %{x} observasjoner"
   user_already_authenticated: Brukeren er allerede autentisert
   user_autocomplete_placeholder: kueda, simon123, osv.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} tror at dette er en fullstendig liste over %{taxon} i %{place}
   user_blocked: Bruker blokkert
   user_commented: "%{user} kommenterte"
   user_commented_on: "%{user} har kommentert på @gender{n:ditt|din} %{title} %{time}"
