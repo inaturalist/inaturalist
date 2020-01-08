@@ -899,6 +899,9 @@ ru:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Полный?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Полный</span>
+    контрольный список для %{taxon}
   comprehensive_list: Полный список
   concept_status: Статус концепции
   configure: Задать
@@ -1625,10 +1628,10 @@ ru:
   if_matches_come_from_a_comprehensive_list: Если совпадения взяты из полного списка, здесь отобразится зеленая полоса.
   if_this_is_a_scientific_name: Если это научное название, является ли оно в настоящее время общепринятым?
   if_this_link_will_apply_to_descendant: Если применить эту ссылку к вложенным таксонам, можно использовать теги шаблона для вставки наименования таксона в URL
-  if_you_have_any_trouble_with_the_site_check_out: 'Если у вас есть вопросы, пожалуйста зайдите сюда <a href="%{help_url}">help section</a> or post a message to our <a href="%{feedback_url}">feedback group</a>.'
+  if_you_have_any_trouble_with_the_site_check_out: 'Если у вас есть вопросы, пожалуйста зайдите сюда <a href="%{help_url}">раздел помощи</a> или напишите сообщение в нашу <a href="%{feedback_url}">группу обратной связи</a>.'
   if_your_project_is: Если ваш проект связан с определенным местом, задайте координаты на карте или введите их вручную.
   ignore: игнорировать
-  ignore_and_continue: Пропустите и продолжайте
+  ignore_and_continue: Игнорировать и продолжить
   ignore_times: Пропустите время
   image_must_be_exactly: изображение должно быть ровно 950 пикселей в ширину и не более 400 пикселей в высоту
   imperiled: Под угрозой
@@ -1637,14 +1640,14 @@ ru:
   import_as_an_observation: Импортировать как наблюдение
   import_as_another_observation: Импортировать как ещё одно наблюдение?
   import_date_time_location_taxonomic: "Импортировать дату, время, место, описание и таксономическую информацию из этого фото."
-  import_from_csv: Импорт CSV
+  import_from_csv: Импорт из CSV
   import_from_other_photo_sites: Импортировать с других фотосайтов
   import_observations: Импорт Наблюдений
-  import_observations_from_a_photo: Импорт наблюдений от поставщика фото или файла на вашем компьютере.
+  import_observations_from_a_photo: Импорт наблюдений от поставщика фото или из файла на вашем компьютере.
   import_photos: Импортировать фото
   import_ranges: Импорт диапазонов
-  import_sections: Импортировать разделы
-  import_tags_from_csv: Импорт тегов формата CSV
+  import_sections: Импорт разделов
+  import_tags_from_csv: Импорт тегов из CSV
   importing: "Импортирование …"
   improving: Улучшение
   in_n: "в %{n}"
@@ -1668,7 +1671,7 @@ ru:
   inaturalist_places: "%{site_name} Места"
   inaturalist_places_are_way_record_what_lives_where: "Места %{site_name} - это способ записи того, кто где обитает. Если вы ищете конкретный вид, вы будете знать, где искать. Каждое место имеет контрольный список для записи всех видов, которые там встречаются, поэтому они также могут быть полезны для поиска того, что вы нашли на отдельных участках."
   info: Информация
-  input_taxon: Введите таксон
+  input_taxon: Входной таксон
   insects: насекомые
   insect_life_stage: Стадия жизни насекомого
   instagram: Инстаграм
@@ -1684,7 +1687,7 @@ ru:
   invite_people: Пригласить людей
   invite_people_to_project: "Пригласить людей в %{project}"
   invite_someone_to: "Пригласите кого-нибудь в %{name}!"
-  invite_your_friends: Пригласить друзей
+  invite_your_friends: Пригласить своих друзей
   invite_your_friends_description: "Помогите сделать %{site_name} больше и лучше, пригласив друзей присоединиться!"
   #Type of project where people can only join after they have been invited
   inviteonly: только по приглашению
@@ -1695,9 +1698,9 @@ ru:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Достаточно ли доказательств, подтверждающих, что это %{taxon}?
   is_this_offensive_html: 'Является ли это <a href="/help#inappropriate">неприемлемым</a>, спамом или оскорбительным?'
   is_this_place_a_duplicate: Не является ли это место задвоенным?
-  it_can_now_be_used_for_research: Теперь оно может использоваться в исследованиях и на других веб-сайтах.
+  it_can_now_be_used_for_research: Теперь оно может использоваться в исследованиях и быть представлено на других веб-сайтах
   item_flagged_notice_html: |
-    Это помечено как спам и больше не является общедоступным. Вы можете видеть это, потому что вы создали это или вы куратор сайта. Если вы считаете, что это ошибка, пожалуйста,
+    Это помечено как спам и больше не является общедоступным. Вы можете видеть это, потому что вы это создали или же вы куратор сайта. Если вы считаете, что это ошибка, пожалуйста,
     <a href="mailto:%{help_email}" class="contact">свяжитесь с нами</a>.
     <a href="%{manage_flags_path}">Управление флагами</a>
   join: Присоединиться
@@ -1711,9 +1714,9 @@ ru:
   joined_with_date: "Регистрация: %{date}"
   journal: Журнал
   journal_archives_for: Архивы журнала для
-  journal_post: Сообщение журнала
+  journal_post: Сообщение в журнале
   journal_post_deleted: Сообщение в журнале удалено.
-  journal_posts: Сообщения журнала
+  journal_posts: Сообщения в журнале
   jpg_png_or_gif: "JPG, PNG или GIF"
   jump_to_letter: Переход к письму
   just_a_reminder: Напоминаем, что вы, возможно, дали кураторам проекта разрешение на просмотр скрытых координат ваших наблюдений в этом проекте.
@@ -1735,10 +1738,10 @@ ru:
   last_observation: Последнее наблюдение
   last_seen: Последнее наблюдение
   last_year: За последний год
-  lat: Широта
+  lat: Шир
   latitude: Широта
-  latitude_in_decimals: 'Долгота в десятичных градусах, например, 38.123'
-  latitude_slash_y_coord_slash_northing: Широта / y координата / ничего
+  latitude_in_decimals: 'Широта в десятичных градусах, например, 38.123'
+  latitude_slash_y_coord_slash_northing: Широта / y координата / северная
   latitude_value: "Широта: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Слои
@@ -1755,7 +1758,7 @@ ru:
   learn_about_the_species_live_in: Узнать о видах, которые обитают в
   learn_more: Узнать больше
   learn_more_raquo: "Узнать больше &raquo;"
-  learn_what_these_licenses_mean: Прочитать о том, что означают эти лицензии
+  learn_what_these_licenses_mean: Узнайте, что означают эти лицензии
   least_concern: Под наименьшей угрозой
   leave: Уйти
   leave_a_comment: Оставить комментарий
@@ -1763,7 +1766,7 @@ ru:
   leaves: листья
   legacy_authentication_notice_html: |
     Похоже, вы используете пароль более старой версии этого веб-сайта.
-    Не забывайте <a href="%{url}"> изменить свой пароль </a> для новой версии.
+    Не забудьте <a href="%{url}"> изменить свой пароль </a> для новой версии.
   let_us_walk_you_through: Давайте рассмотрим основные функции этого сайта.
   lexicon: Язык
   lexicons:
@@ -1772,7 +1775,7 @@ ru:
     albanian: албанский
     bengali: Бенгальский
     catalan: Каталонский
-    cebuano: Себуано
+    cebuano: Себуанский
     chinese_simplified: Китайский (упрощенный)
     chinese_traditional: Китайский (традиционный)
     creole_french: Креольский (Французский)
@@ -1823,21 +1826,21 @@ ru:
   life_list: "Список жизни %{user}"
   life_list_updated: Список жизни обновлён!
   life_list_updated_we_also_saved_a: Список жизни обновлён! Мы также сохранили пустое наблюдение этого таксона.
-  life_lists_automatically_fill: Списки жизни автоматически заполняются новыми таксонами по мере ваших наблюдений, и их можно ограничить родительскими таксонами более высокого уровня, например, список птиц в семье ворон (Corvidae).
+  life_lists_automatically_fill: Списки жизни автоматически заполняются новыми таксонами по мере роста ваших наблюдений, и их можно ограничить родительскими таксонами более высокого уровня, например, список птиц в семье ворон (Corvidae).
   linear_scale_label: Линейная
   link: Ссылка
   link_or_unlink_your_facebook_account: Привязать или отвязать свою учётную запись Facebook
   link_or_unlink_your_flickr_account: Привязать или отвязать свою учётную запись Flickr
   link_or_unlink_your_google_account: Привязать или отвязать свою учётную запись Google
-  link_your_facebook_account: Привяжите вашу учётную запись Facebook
+  link_your_facebook_account: Привязать вашу учётную запись Facebook
   link_your_flickr_account: Привязать свою учётную запись Flickr
-  link_your_google_account: Привяжите ваш Google аккаунт
+  link_your_google_account: Привязать свою учётную запись Google
   linked_facebook: "Ваша учётная запись %{site_name} на данный момент связана с учётной записью Facebook."
   linked_facebook_automaticaly: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Facebook, мы автоматически перепривяжем ваши учетные записи %{site_name} и Facebook. Кажется разумным, что если вы используете Facebook, вы захотите иметь возможность импортировать фото из Facebook, верно?"
   linked_facebook_description: "Привязка вашей учётной записи %{site_name} к учётной записи Facebook дает возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Facebook не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Facebook, которую хотите привязать к %{site_name}."
-  linked_facebook_howto: "Чтобы связаться с Facebook с %{site_name}, нажмите на ссылку справа и войдите в  Facebook.com."
-  linked_facebook_password: "Мы никогда не будем запрашивать ваш пароль Facebook (однако Facebook может это сделать, проверьте URL, на который вас отправляет кнопка,и убедитесь, что это Facebook.com). Мы также не будем изменять ваши данные Facebook, если только вы не захотите, чтобы мы это сделали."
-  linked_flickr: "Ваша учётная запись на сайте %{site_name} в настоящее время связана с вашей  учётной Flickr."
+  linked_facebook_howto: "Чтобы связать Facebook с %{site_name}, нажмите на ссылку справа и войдите в Facebook.com."
+  linked_facebook_password: "Мы никогда не будем запрашивать ваш пароль Facebook (однако Facebook может это сделать, проверьте URL, на который вас отправляет кнопка, и убедитесь, что это Facebook.com). Мы также не будем изменять ваши данные Facebook, если только вы не захотите, чтобы мы это сделали."
+  linked_flickr: "Ваша учётная запись на сайте %{site_name} в настоящее время связана с вашей учётной записью Flickr."
   linked_flickr_automatically: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Flickr, мы автоматически перепривяжем ваши учетные записи %{site_name} и Flickr. Кажется разумным, что если вы используете Flickr, вы захотите иметь возможность импортировать фото из Flickr, верно?"
   linked_flickr_description: "Привязка вашей учётной записи %{site_name} к учётной записи Flickr даёт возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Flickr не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Flickr, которую хотите привязать к %{site_name}."
   linked_flickr_password_html: "<strong>Мы никогда не запрашиваем у вас пароль Flickr</strong>  (но Flickr может это сделать, проверьте ссылку, на которую направляет вас кнопка, и убедитесь, что это Flickr.com)."
@@ -1873,7 +1876,7 @@ ru:
   loading_suggestions: Загрузка предложений...
   loading_tags: "Загрузка тегов..."
   loading_taxa_from_your: "Загрузка таксонов из ваших наблюдений..."
-  loading_wikipedia_description: "Загрузка описания с Википедии..."
+  loading_wikipedia_description: "Загрузка описания из Википедии..."
   locale_description: Локализация задает предпочтительные настройки вашего языка и формата даты.
   locales_: Локализации
   locales:
@@ -1895,7 +1898,7 @@ ru:
     fi: Финский
     fr: Французский
     fr-CA: Французский (Канада)
-    gl: галицийский
+    gl: Галисийский
     he: Иврит
     id: индонезийский
     it: Итальянский
@@ -1905,7 +1908,7 @@ ru:
     lt: Литовский
     mk: Македонский
     nb: Норвежский (букмол)
-    nl: нидерландский
+    nl: Голландский
     oc: Окситанский
     pl: Польский
     pt: Португальский
@@ -1926,7 +1929,7 @@ ru:
   location_is_obscured: Местоположение скрыто
   location_is_private: Местоположение является конфиденциальным
   location_specified: Указано местоположение
-  locked_taxa_will_not_allow_new: Заблокированные таксоны не позволят добавить к ним новые таксоны-потомки. Так, если вы заблокировали Amphibia, а кто-то попытался импортировать <i>Rana catesbeiana</i> от внешнего поставщика имён, новый таксон будет создан, но он не может быть классифицирован как амфибия. Если это произойдёт, вновь добавленные таксоны должны быть отмечены флажком для куратора. В реальности это должно быть использовано только для таксонов, для которых, как мы считаем, уже есть все потомки. Куратор может переопределить это, отредактировав таксоны и введя родительские идентификаторы напрямую, но, пожалуйста, подумайте вместо этого о слиянии новых таксонов с существующими.
+  locked_taxa_will_not_allow_new: Заблокированные таксоны не позволяют добавлять к ним новые таксоны-потомки. Так, если вы заблокировали Земноводных, а кто-то попытался импортировать <i>Rana catesbeiana</i> от внешнего поставщика имён, новый таксон будет создан, но он не может быть классифицирован как земноводное. Если это произойдёт, вновь добавленные таксоны должны быть отмечены флажком для куратора. В реальности это должно быть использовано только для таксонов, для которых, как мы считаем, уже есть все потомки. Куратор может переопределить это, отредактировав таксоны и введя родительские идентификаторы напрямую, но, пожалуйста, подумайте вместо этого о слиянии новых таксонов с существующими.
   log_in: Вход
   log_scale_label: Логарифмическая
   login_slash_username: Логин / имя пользователя
@@ -1936,10 +1939,10 @@ ru:
     transparent_png: прозрачный PNG
     white_text_transparent_png: белый текст прозрачный PNG
     none: нет
-  long: 'Долгота:'
+  long: Долг
   longitude: Долгота
   longitude_in_decimal: 'Долгота в десятичных градусах, например -122.123'
-  longitude_slash_x_coord_slash_easting: Долгота / координата X / восточное направление
+  longitude_slash_x_coord_slash_easting: Долгота / координата X / восточная
   longitude_value: "Долгота: %{longitude}"
   look_up_name: "Найдите имя"
   looks_like_neither_have!: Похоже, ни у кого нет таксонов!
@@ -1950,7 +1953,7 @@ ru:
   make_admin: Сделать администратором
   mail_disclaimer: "%{site_name} не позволит своим пользователям отправлять вам дополнительные приглашения через нашего приглашающего. Просьба сообщить о нарушении в %{site}"
   #Header for main content section of the project detail page when editing custom project data.
-  main_content: Главное содержание
+  main_content: Основной контент
   #Stub text for the main content section when editing custom project data
   main_content_description: Основной контент размещается здесь
   make_a_new_place: Создать новое место
@@ -1959,7 +1962,7 @@ ru:
   make_it_a_life_list?: Создать из этого список жизни?
   make_manager: Сделать менеджером
   make_sure_the_default_photo_looks_good: Убедитесь, что фото по умолчанию хорошо смотрится в большом размере.
-  make_this_your_default_license: "Применить вашу дефолтную %{type} лицензию"
+  make_this_your_default_license: "Сделать это вашей лицензией по умолчанию %{type}"
   make_this_the_primary_listing: "Создать этот первичный список"
   mammals: млекопитающие
   manage_all_your_subscriptions: Управление всеми вашими подписками
@@ -1978,25 +1981,25 @@ ru:
   maps:
     overlays:
       all_observations: Все наблюдения
-      every_publicly_visible_observation: Каждое публично открытое наблюдение, созданное в сети iNaturalist
+      every_publicly_visible_observation: Каждое публично видимое наблюдение, созданное в сети iNaturalist
       featured_observations: Рекомендуемые наблюдения
       gbif_network: сеть GBIF
       gbif_network_description: Записи из музеев и других источников находок, поставляемые Глобальным информационным ресурсом по биоразнообразию GBIF
       observations: Наблюдения
-      place_boundary: Границы участка
+      place_boundary: Границы места
       checklist_places: Места с контрольными списками
-      checklist_places_description: Места где таксон был отмечен
+      checklist_places_description: Места, где был отмечен таксон
       range: Диапазон
   map_tooltip: Показать карту
   mark_as_reviewed: Отметить как проверенное
   mark_all_as_reviewed: Отметить все как проверенные
   mark_all_as_unreviewed: Отметить все как непроверенные
-  matching_species_will_shown_up_here: Удовлетворяющие условиям виды будут здесь отображены. На карте будет показан ареал, если %{place} содержит один из видов.
+  matching_species_will_shown_up_here: Здесь будут отображены удовлетворяющие условиям виды. На карте будет показан ареал, если %{place} содержит один из видов.
   maverick: Независимое мнение
   media: Медиафайл
-  media_type: Тип медиа
-  medium: среда
-  meet: Встреча
+  media_type: Тип медиафайла
+  medium: средний
+  meet: Встретить
   member_of_the_inaturalist_network_html: |
     Член <a href="%{url}">iNaturalist Network</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
@@ -2005,7 +2008,7 @@ ru:
   membership_model: Модель членства
   mentioned_you_in_noun_html: "%{user} упомянул вас в %{noun}"
   mentioned_you_in_noun_by_html: "%{user} упомянул вас в %{noun} %{by}"
-  mentioned_you_in_a_x_on_noun_html: "%{user} упомянул вас в %{x} на %{noun}"
+  mentioned_you_in_a_x_on_noun_html: "%{user} упомянул вас в %{x} в %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} упомянул вас в %{x} на %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} упомянул вас в %{x} на %{noun} %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} упомянул вас в %{x} %{noun} %{by}"
@@ -4058,6 +4061,10 @@ ru:
   user_added_x_observations_html: "%{user} добавил %{x} наблюдений"
   user_already_authenticated: Пользователь уже прошел проверку подлинности
   user_autocomplete_placeholder: kueda, simon123, и др.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} считает, что это полный список %{taxon} в %{place}
   user_blocked: Участник заблокирован
   user_commented: "%{user} прокомментировал"
   user_commented_on: "%{user} прокомментировал ваш %{title} %{time}"
@@ -6201,6 +6208,8 @@ ru:
       AssessmentSection: Раздел оценки
       Atlas: Атлас
       CompleteSet: Полный набор
+      #Noun
+      Flag: Флаг
       TaxonLink: Ссылка на таксон
     attributes:
       assessment:
@@ -6529,6 +6538,8 @@ ru:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@n"
@@ -6536,6 +6547,8 @@ ru:
         family: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
