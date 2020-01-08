@@ -3919,6 +3919,10 @@ tr:
   user_added_x_observations_html: "%{user} %{x} gözlem ekledi"
   user_already_authenticated: Kullanıcı zaten doğrulandı
   user_autocomplete_placeholder: kueda, simon123, vb.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user}, bunun %{place}'deki %{taxon}'ın kapsamlı bir listesi olduğuna inanıyor
   user_blocked: Kullanıcı engellendi
   user_commented: "%{user} yorum yaptı"
   user_commented_on: "%{user}, %{time} zamanında %{title} başlığınıza yorum yaptı"
