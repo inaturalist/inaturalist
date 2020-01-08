@@ -741,6 +741,9 @@ de:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Umfassend?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Umfassende</span>
+    Checkliste für %{taxon}
   comprehensive_list: Umfassende Liste
   concept_status: Konzeptzustand
   configure: Einrichten
@@ -1976,7 +1979,7 @@ de:
   observation_: Beobachtung
   observation_added: Beobachtung hinzugefügt.
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
-  observation_brief_something_on_day_by_user: "Etwas am%{day} von %{user}"
+  observation_brief_something_on_day_by_user: "Etwas am %{day} von %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} am %{day} von %{user}"
   observations_by_category: "Beobachtungen nach Kategorie"
   observations_by_app: Beobachtungen nach App
@@ -3436,6 +3439,10 @@ de:
   user_added_x_observations_html: "%{user} hat %{x} Beobachtungen hinzugefügt"
   user_already_authenticated: Der Benutzer ist bereits authentifiziert
   user_autocomplete_placeholder: kueda, simon123, etc.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} glaubt, dass dies eine umfassende Liste von %{taxon} in %{place} ist
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
   user_commented_on: "%{user} hat dein %{title} %{time} kommentiert"
@@ -4730,6 +4737,8 @@ de:
     models:
       AssessmentSection: Bewertungsabschnitt
       Atlas: Atlas
+      #Noun
+      Flag: Meldung
       TaxonLink: Taxon-Link
     attributes:
       assessment:
@@ -4923,6 +4932,8 @@ de:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@f"
@@ -4930,6 +4941,8 @@ de:
         family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
