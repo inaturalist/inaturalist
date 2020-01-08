@@ -41,3 +41,14 @@ zh-HK:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    models:
+      #Noun
+      Flag: 標記
+  i18n:
+    inflections:
+      "@gender":
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
