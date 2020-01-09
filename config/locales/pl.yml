@@ -4028,6 +4028,8 @@ pl:
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
   activerecord:
     models:
+      #Noun
+      Flag: Zgłoszenie
       TaxonLink: Link do taksonu
     attributes:
       assessment:
