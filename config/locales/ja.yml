@@ -567,7 +567,8 @@ ja:
   compiled_by_name: "編集者：%{name}"
   completed: 完了
   completed_at: 完了
-  comprehensive: 完全
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: 完全？
   comprehensive_list: 包括リスト
   configure: 設定する
@@ -2391,7 +2392,6 @@ ja:
   unprocessable: 処理不可
   unpublish: 未公開
   unsubscribe: 購読解除
-  unsubscribe_from_this: 購読停止
   unsuspend_user: ユーザー利用停止を解除
   upcoming_bioblitzes: 開催予定のバイオビリッツ（観察会）
   update: 更新

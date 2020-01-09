@@ -14,6 +14,8 @@ zh-TW:
   #Number of people who have added identifications
   x_identifiers_html:
     other: '<span class="count">%{count}</span> 個鑑定者'
+  x_languages:
+    other: "%{count} 種語言"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     other: "%{count} 種生涯首見記錄"
@@ -41,6 +43,8 @@ zh-TW:
     other: '<span class="count">%{count}</span> 個觀察者'
   x_others:
     other: "%{count} 個其它"
+  x_people:
+    other: "%{count} 個人"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}</strong> 個人以 <strong>%{y}</strong> 個鑑定幫助了%{user}"
   x_photos:
     other: "%{count} 張照片"
@@ -251,6 +255,7 @@ zh-TW:
     由一筆<a target="%{target}" class="%{class}" href="%{url}">分類群置換</a>所新增的部份
   added_by: 新增自
   added_by_user_on_date_html: "由 %{user} 於 %{date} 所新增"
+  added_on_datetime: "在 %{datetime} 加入"
   added_to_favorites_html: |
     已加入至<a href="%{url}">最愛</a>
   adding: "正在新增……"
@@ -539,7 +544,6 @@ zh-TW:
   be_the_first_to_fave_this_observation: 成為最先將此觀察列為最愛的人吧！
   because_of: 因為
   before_importing_photos: 在匯入照片前
-  belives_this_is_a_comprehensive_list_of: 相信這是綜合清單有關於
   bg_color: 背景顏色
   bioblitz: 生物速查
   birds: 鳥類
@@ -734,12 +738,16 @@ zh-TW:
   comparing_versions_x_and_y: "比較版本 %{x} 和 %{y}"
   comparing_observations_from: "比較 %{user} 自 %{dates} 的觀察"
   compiled_by_name: "編譯由%{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: 完成
   complete_set_for_taxon_in_place_html: "在 %{place} %{taxon}的完整名錄集"
   completed: 已完成
   completed_at: 完成於
-  comprehensive: 綜合
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: 綜合？
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">完整的</span> %{taxon} 名錄
   comprehensive_list: 綜合清單
   concept_status: 概念狀態
   configure: 設置
@@ -1343,6 +1351,8 @@ zh-TW:
   get_started: 入門
   getting_started_guide: 入門指南
   give_it_some_detail: 為它提供一些詳細內容！
+  give_monthly_caps: 每月捐款
+  give_now_caps: 現在捐款
   global_names: 全域名稱
   globally: 全球
   go: 前往
@@ -1845,6 +1855,7 @@ zh-TW:
   merging: 合併中
   merging_places: 合併地點
   message: 訊息
+  message_deleted: 訊息已刪除
   message_from_user_at_time: 由 %{user} 在 %{time}
   message_from_user_on_date: 由 %{user} 於 %{date}
   messages: 訊息
@@ -2136,6 +2147,7 @@ zh-TW:
   observation_added_to_the_project: "觀察已添加至專案「%{project}」"
   observation_aggregation: 觀察聚集
   observation_brief_something_on_day: "在 %{day} 的某種生物"
+  observation_brief_something_on_day_by_user: "由使用者 %{user} 在 %{day} 所記錄的"
   observation_brief_something_by_user: "由使用者 %{user} 所記錄的"
   observation_brief_something_from_place: "在 %{place} 所記錄的"
   observation_brief_something_from_place_by_user: "由使用者 %{user} 在 %{place} 所記錄的"
@@ -2144,6 +2156,7 @@ zh-TW:
   observation_brief_something_from_place_on_day_at_time: "於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
+  observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
   observation_brief_taxon_from_place: "位於 %{place} 的 %{taxon}"
   observation_brief_taxon_from_place_by_user: "由 %{user} 在 %{place} 所記錄的 %{taxon}"
@@ -2177,6 +2190,7 @@ zh-TW:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     例： 2019-10-29 13:12:21
+  observed_on_datetime: 在 %{datetime} 所觀察的
   observation_removed_from_the_project: "觀察已從專案「%{project}」裡移除"
   observation_requirements: 觀察需求
   observation_rules: 觀察規則
@@ -3172,6 +3186,8 @@ zh-TW:
   second_person_possessive_plural: "您的 %{noun}"
   second_person_possessive_singular: "您的 %{noun}"
   see_something_wrong_with_taxon: 在此物種分類發現到問題了嗎？請讓策展人知悉。
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: 探索(Seek)
   seen_it?: 看到它了嗎？
   seen_nearby: 已看過附近
   seen_one: 有看到某個生物嗎？
@@ -3579,6 +3595,8 @@ zh-TW:
   there_isnt_a_wikipedia_article_titled_x_html: |
     維基百科沒有名為「%{x}」的條目或重定向。您也許想<a href='http://zh.wikipedia.org/wiki/%{x}'>創建一條</a>？
   there_merge_problems_with_the_merge: "有合併問題：%{merged_errors}"
+  there_was_a_problem_creating_this_account: |
+    建立這個帳號的過程中發生了問題，如果問題持續發生，請聯絡我們。
   there_was_a_problem_saving_your_identification: "儲存您的鑑定時出現錯誤：%{error}"
   there_were_problems_adding_taxa: "添加這些物種分類出現問題：%{errors}"
   there_were_problems_adding_that_observation_to_this_project: "添加觀察至此專案時出現問題："
@@ -3715,7 +3733,6 @@ zh-TW:
   unpublish: 未發佈
   unreview_all: 取消全部檢閱
   unsubscribe: 取消訂閱
-  unsubscribe_from_this: 取消訂閱此
   unsuspend_user: 取消暫停用戶
   upcoming_bioblitzes: 即將到來的 bioblitz
   update: 更新
@@ -3778,6 +3795,7 @@ zh-TW:
   used_x_times:
     other: 使用過 %{count} 次
   user: 使用者
+  user_added_a_comment_html: "%{user} 新增了一個評論"
   user_added_a_fave_html: "%{user} 添加為最愛"
   user_added_a_flag_html: "%{user} 添加一個標記"
   user_added_a_x: "%{user}添加一個%{x}"
@@ -5701,6 +5719,8 @@ zh-TW:
       AssessmentSection: 評估段落
       Atlas: 地圖集
       CompleteSet: 全集
+      #Noun
+      Flag: 標記
       TaxonLink: 物種分類連結
     attributes:
       assessment:
@@ -6016,6 +6036,8 @@ zh-TW:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@n"
@@ -6023,6 +6045,8 @@ zh-TW:
         family: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)

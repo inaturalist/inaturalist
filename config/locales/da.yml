@@ -596,7 +596,6 @@ da:
   be_the_first_to_fave_this_observation: Vær den første til at gøre denne observation til favorit
   because_of: på grund af
   before_importing_photos: før import af fotos
-  belives_this_is_a_comprehensive_list_of: mener, at dette er en omfattende liste over
   bg_color: Baggrundsfarve
   bioblitz: Bioblitz
   birds: fugle
@@ -796,12 +795,17 @@ da:
   comparing_versions_x_and_y: "Sammenligner versioner %{x} og %{y}"
   comparing_observations_from: "Sammenligner %{user} observationer fra %{dates}"
   compiled_by_name: "Samlet af %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Fuldendt
   complete_set_for_taxon_in_place_html: "Komplet sæt for %{taxon} i %{place}"
   completed: Fuldført
   completed_at: Fuldført den
-  comprehensive: omfattende
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: omfattende?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Omfattende</span>
+    tjekliste for %{taxon}
   comprehensive_list: omfattende liste
   concept_status: Koncept status
   configure: Konfigurér
@@ -3886,7 +3890,6 @@ da:
   unpublish: Afpublicer
   unreview_all: Fjern gennemgang for alle
   unsubscribe: Afmeld abonnement
-  unsubscribe_from_this: Afmeld abonnement fra denne
   unsuspend_user: Bruger ikke længere suspenderet
   upcoming_bioblitzes: Kommende bioblitzer
   update: Opdatér
@@ -3975,6 +3978,10 @@ da:
   user_added_x_observations_html: "%{user} tilføjede %{x} observationer"
   user_already_authenticated: Brugeren er allerede godkendt
   user_autocomplete_placeholder: kueda, simon123, osv.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} mener, at dette er en omfattende liste over %{taxon} på %{place}
   user_blocked: Bruger blokeret
   user_commented: "%{user} kommenterede"
   user_commented_on: "%{user} kommenterede på din %{title} %{time}"
@@ -6000,11 +6007,6 @@ da:
         notification_preferences_user_observations: Observationer fra folk, jeg følger
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Observationer af taksa eller fra steder, jeg abonnerer på
-        opt_in_to_map_tile_test: Tilmeld dig kortfelttesten
-        opt_in_to_map_tile_test_description: |
-          Tilmelder til denne test betyder, vil du se nye gitterbaserede kortfelter til distributionskort, når der zoomes ud. Disse gitre er mindre krævende for vores servere, skulle være hurtigere at gengive, efterhånden som iNaturalist vokser samt give bedre visning af obeservationstæthed.
-          Vi håber, at denne udskiftning til sidst kan ske på alle websteder. Vi vil gerne høre din feedback i forummet.
-        opt_out_of_map_tile_test: Afmeld kortfelttesten
         place_preference_changed_notice_html: |
           Sted præference ændret. Hvis du skifter mening, kan du altid
           <a href='/users/edit'> redigere dine indstillinger </a>.
@@ -6480,6 +6482,8 @@ da:
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
       CompleteSet: Fuldt sæt
+      #Noun
+      Flag: Markering
       TaxonLink: Takson link
     attributes:
       assessment:
@@ -6806,6 +6810,8 @@ da:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@n"
@@ -6813,6 +6819,8 @@ da:
         family: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)

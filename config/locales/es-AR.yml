@@ -561,7 +561,6 @@ es-AR:
   be_the_first_to_fave_this_observation: '¡Se el primero en agregar esta observación a favoritos!'
   because_of: debido a
   before_importing_photos: antes de importar fotos
-  belives_this_is_a_comprehensive_list_of: considera que ésta es una lista exhaustiva de
   bg_color: Color de fondo
   bioblitz: Maratón naturalista
   birds: aves
@@ -756,10 +755,12 @@ es-AR:
   comparing_versions_x_and_y: "Comparando las versiones %{x} y %{y}"
   comparing_observations_from: "Comparando las observaciones de %{user} en %{dates}"
   compiled_by_name: "Compilado por %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Completo
   completed: Completado
   completed_at: Completado en
-  comprehensive: completa
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: '¿Completa?'
   comprehensive_list: Lista completa
   concept_status: Concepto de la situación
@@ -3760,7 +3761,6 @@ es-AR:
   unpublish: Despublicar
   unreview_all: Marcar todos como no revisados
   unsubscribe: Quitar suscripción
-  unsubscribe_from_this: Quitar suscripción de este
   unsuspend_user: Reactivar usuario
   upcoming_bioblitzes: Próximos maratones naturalistas
   update: Actualizar

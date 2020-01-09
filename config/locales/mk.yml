@@ -376,7 +376,8 @@ mk:
   comparing_versions_x_and_y: "Споредба на верзиите %{x} и %{y}"
   comparing_observations_from: "Споредба на набљудувањата на %{user} од %{dates}"
   compiled_by_name: "Составено од %{name}"
-  comprehensive: сеопфатен
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Сеопфатен?
   comprehensive_list: Сеопфатен список
   configure: Нагоди
@@ -1318,7 +1319,6 @@ mk:
   updating: Подновувам...
   unpublish: Отповикај објава
   unsubscribe: Отпиши ме
-  unsubscribe_from_this: Отпиши ме од ова
   unsuspend_user: Повторно прими го корисникот
   update: Поднови
   updated: Подновено

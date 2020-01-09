@@ -378,7 +378,6 @@ ar:
   be_the_first_to_fave_this_observation: كن أول من يفضل هذه الملاحظة!
   because_of: بسبب
   before_importing_photos: قبل استيراد الصور
-  belives_this_is_a_comprehensive_list_of: يعتقد أن هذه قائمة شاملة بـ
   bg_color: لون الخلفية
   bioblitz: بيوبليتز
   birds: طيور
@@ -578,10 +577,12 @@ ar:
   comparing_versions_x_and_y: "مقارنة الإصدارات %{x} و%{y}"
   comparing_observations_from: "مقارنة %{user} الملاحظات من %{dates}"
   compiled_by_name: "تم تجميعها بواسطة %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: اكتمال
   completed: اكتمل
   completed_at: اكتمل في
-  comprehensive: شامل
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: شامل؟
   comprehensive_list: قائمة شاملة
   concept_status: حالة المفهوم
@@ -3447,7 +3448,6 @@ ar:
   unpublish: إلغاء النشر
   unreview_all: إلغاء مراجعة الكل
   unsubscribe: ألغِ الاشتراك
-  unsubscribe_from_this: إلغاء الاشتراك من هذا
   unsuspend_user: إلغاء تعليق المستخدم
   upcoming_bioblitzes: البيوميتات القادمة
   update: تحديث

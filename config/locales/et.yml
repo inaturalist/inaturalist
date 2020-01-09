@@ -21,6 +21,9 @@ et:
   x_identifiers_html:
     one: '<span class="count">1</span> määratleja'
     other: '<span class="count">%{count}</span> määratlejat'
+  x_languages:
+    one: "%{count} keel"
+    other: "%{count} keelt"
   x_journal_posts_html:
     one: '<span class="count">1</span> päevikukanne'
     other: '<span class="count">%{count}</span> päevikukannet'
@@ -54,6 +57,9 @@ et:
   x_others:
     one: "1 muu"
     other: "%{count} muud"
+  x_people:
+    one: "%{count} inimene"
+    other: "%{count} inimest"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} inimest</strong> aitasid kasutajat %{user} <strong>%{y} määratlusega</strong>"
   x_photos:
     one: "1 foto"
@@ -61,6 +67,9 @@ et:
   x_new_species:
     one: "1 uus liik"
     other: "%{count} uut liiki"
+  x_new_users:
+    one: '%{count} uus liik'
+    other: '%{count} uut kasutajat'
   x_species:
     one: '1 liik'
     other: '%{count} liiki'
@@ -99,6 +108,26 @@ et:
   a_flag_for_x: "märkus %{x} kohta"
   a_member_of: "Kuulub:"
   a_member_of_taxon_html: "taksoni %{taxon} liige"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Info
   about_blocking: Blokeerimisest
   about_charts: Graafikutest
@@ -499,7 +528,6 @@ et:
   be_the_first_to_fave_this_observation: Nimeta esimesena see vaatlus enda lemmikuks!
   because_of: sest
   before_importing_photos: enne fotode importi
-  belives_this_is_a_comprehensive_list_of: usub, et tegu on täieliku nimekirjaga
   bg_color: Taustavärv
   bioblitz: Välkvaatlus
   birds: linnud
@@ -694,10 +722,12 @@ et:
   comparing_versions_x_and_y: "Võrdlen versiooni %{x} versiooniga %{y}"
   comparing_observations_from: "Võrdlen kasutaja %{user} vaatlusi kuupäevadel %{dates}"
   compiled_by_name: "Koostanud %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Valmis
   completed: Lõpetatud
   completed_at: Lõpetatud
-  comprehensive: täielik
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: On see täielik?
   comprehensive_list: Täielik nimekiri
   concept_status: Mõiste staatus
@@ -745,6 +775,11 @@ et:
     larva: Tõuk
     egg: Muna
     juvenile: Nooruk
+    alive_or_dead: Elus või surnud
+    alive: Elus
+  controlled_term_definitions:
+    alive: Organism on elus ja puuduvad peatse surma märgid
+    dead: Organism on surnud või on naha peatse surma märgid
   controls: Juhthoovad
   convert: Teisenda
   coordinate_systems: Koordinaatidesüsteemid
@@ -3323,7 +3358,6 @@ et:
   unpublish: Tühista avaldamine
   unreview_all: Tühista kõigi hinnang
   unsubscribe: Lõpeta jälgimine
-  unsubscribe_from_this: Lõpeta selle jälgimine
   unsuspend_user: Aktiveeri kasutajakonto
   upcoming_bioblitzes: Tulevased välkvaatlused
   update: Täienda
@@ -4513,6 +4547,8 @@ et:
         frequency:
           research: Teaduskõlbulik
           verifiable: Tõendatav
+          "Alive or Dead=Alive": Elus
+          "Alive or Dead=Dead": Surnud
           "Life Stage=egg": Muna
           "Life Stage=larva": Tõuk
           "Life Stage=teneral": Valmik
@@ -5105,6 +5141,16 @@ et:
                 peab algama tähega, ei tohi sisalda tühikuid ning võib kasutada ainult tähti, numbreid, kriipse ja alljooni
             email:
               must_look_like_an_email_address: peab nägema välja nagu e-posti aadress
+  i18n:
+    inflections:
+      "@gender":
+        m: meessoost
+        f: naissoost
+        "n": kesksoost
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
   wild: Metsik
   will_paginate:
     previous_label: "&#8592; eelmine"

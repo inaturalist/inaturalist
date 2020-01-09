@@ -608,7 +608,6 @@ tr:
   be_the_first_to_fave_this_observation: Bu gözlemi ilk favori yapan siz olun!
   because_of: çünkü
   before_importing_photos: fotoğrafları içe aktarmadan önce
-  belives_this_is_a_comprehensive_list_of: bunun kapsamlı bir liste olduğuna inanıyor
   bg_color: Arka Plan Rengi
   bioblitz: Bioblitz
   birds: kuşlar
@@ -806,11 +805,13 @@ tr:
   comparing_versions_x_and_y: "%{x} ve %{y} sürümlerini karşılaştırma"
   comparing_observations_from: "%{user} kullanıcısının %{dates} tarihli gözlemini karşılaştırma"
   compiled_by_name: "%{name} tarafından düzenlendi"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Tamamla
   complete_set_for_taxon_in_place_html: "%{place}'deki %{taxon} için Eksiksiz Küme"
   completed: Tamamlandı
   completed_at: Tamamlandı
-  comprehensive: kapsamlı
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Kapsamlı mı?
   comprehensive_list: Kapsamlı liste
   concept_status: Konsept Durumu
@@ -3834,7 +3835,6 @@ tr:
   unpublish: Yayından Kaldır
   unreview_all: Tümünü Görüntülenmemiş Yap
   unsubscribe: Abonelikten ayrıl
-  unsubscribe_from_this: Şu Abonelikten Çık
   unsuspend_user: Kullanıcıyı Askıdan Çıkar
   upcoming_bioblitzes: Yaklaşan bioblitzler
   update: Güncelle
@@ -3919,6 +3919,10 @@ tr:
   user_added_x_observations_html: "%{user} %{x} gözlem ekledi"
   user_already_authenticated: Kullanıcı zaten doğrulandı
   user_autocomplete_placeholder: kueda, simon123, vb.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user}, bunun %{place}'deki %{taxon}'ın kapsamlı bir listesi olduğuna inanıyor
   user_blocked: Kullanıcı engellendi
   user_commented: "%{user} yorum yaptı"
   user_commented_on: "%{user}, %{time} zamanında %{title} başlığınıza yorum yaptı"
@@ -5895,10 +5899,6 @@ tr:
         notification_preferences_user_observations: Takip ettiğim insanlar tarafından yapılan gözlemler
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Sınıfların gözlemleri veya abone olduğum yerlerden yapılan gözlemler
-        opt_in_to_map_tile_test: Harita döşeme testine katılın
-        opt_in_to_map_tile_test_description: |
-          Bu teste girmeye karar vermek, görünüm uzaklaştırıldığında yayılım haritaları için yeni ızgara tabanlı harita karoları göreceğin anlamına gelir. Bu ızgaralar sunucularımızda daha az yük oluşturur, bunlar, iNaturalist büyürken daha hızlı olmalı ve gözlem yoğunluğunu daha iyi göstermelidir. Sonunda bu değişimi sayfa genelinde yapmayı umuyoruz. Forumdaki geri bildirimlerini duymak isteriz.
-        opt_out_of_map_tile_test: Harita döşeme testinden çıkın
         place_preference_changed_notice_html: |
           Yer tercihi değişti. Fikrinizi değiştirirseniz, her zaman
           <a href='/users/edit'>ayarlarınızı düzenleyebilirsiniz</a>.

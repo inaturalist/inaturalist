@@ -500,7 +500,6 @@ pt-BR:
   be_the_first_to_fave_this_observation: Seja o primeiro a adicionar esta observação aos favoritos!
   because_of: por causa de
   before_importing_photos: antes de importar fotos
-  belives_this_is_a_comprehensive_list_of: acredita que esta é uma lista compreensiva de
   bg_color: Cor BG
   birds: aves
   birthday: Aniversário
@@ -691,10 +690,12 @@ pt-BR:
   comparing_versions_x_and_y: "Comparando as versões %{x} e %{y}"
   comparing_observations_from: "Comparando %{user} observações de %{dates}"
   compiled_by_name: "Compilada por %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Completo
   completed: Concluído
   completed_at: Concluído em
-  comprehensive: Completa
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Completa?
   comprehensive_list: Lista completa
   concept_status: Conceito de Status
@@ -3419,7 +3420,6 @@ pt-BR:
   unpublish: Não publicado
   unreview_all: Marcar todos como não revisados
   unsubscribe: Cancelar inscrição
-  unsubscribe_from_this: Cancelar assinatura de
   unsuspend_user: Reativar usuário
   upcoming_bioblitzes: Próximas bioblitz
   update: Atualizar

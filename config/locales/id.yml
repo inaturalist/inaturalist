@@ -262,7 +262,6 @@ id:
   batch_operations: Beberapa operasi
   because_of: karena
   before_importing_photos: sebelum memasukkan foto
-  belives_this_is_a_comprehensive_list_of: percaya bahwa ini adalah daftar lengkap dalam
   bg_color: Warna latar
   birds: Burung
   black: Hitam
@@ -414,7 +413,8 @@ id:
   compiled_by_name: "Disusun oleh %{name}"
   completed: Selesai!
   completed_at: Diselesaikan pada
-  comprehensive: Komprehensif
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Komprehensif?
   comprehensive_list: Daftar komprehensif
   concept_status: Status konsep
@@ -2179,7 +2179,6 @@ id:
   unprocessable: Tidak diproses
   unpublish: Tidak dipublis
   unsubscribe: Berhenti berlangganan
-  unsubscribe_from_this: Hentikan langganan dari ini
   unsuspend_user: menangguhkan pengguna
   upcoming_bioblitzes: Bioblitzes yang akan datang
   update: Perbarui

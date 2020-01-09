@@ -613,7 +613,6 @@ fi:
   be_the_first_to_fave_this_observation: Ole ensimmäinen tätä suositteleva!
   because_of: koska
   before_importing_photos: ennen kuvien tuontia
-  belives_this_is_a_comprehensive_list_of: uskoo tämän olevan kokonaisvaltainen luettelo
   bg_color: Taustaväri
   bioblitz: Bioblitz
   birds: linnut
@@ -811,11 +810,13 @@ fi:
   comparing_versions_x_and_y: "Verrataan versioita %{x} ja %{y}"
   comparing_observations_from: "Verrataan käyttäjän %{user} havaintoja %{dates}"
   compiled_by_name: "Koostanut %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Valmis
   complete_set_for_taxon_in_place_html: "Kaikki lajit, jotka kuuluvat taksonille %{taxon} paikassa %{place}"
   completed: Valmis
   completed_at: Valmistunut
-  comprehensive: kattava
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Kattava?
   comprehensive_list: Kattava luettelo
   concept_status: Konseptin tila
@@ -1859,6 +1860,7 @@ fi:
   manage_your_relationships: Hallitse suhteitasi
   manager: Manageri
   managers: Managerit
+  managers_can_do: Managerit voivat tehdä kaiken mitä kuraattoritkin, kuten myös muokata projektin asetuksia ja kirjoittaa projektin päiväkirjajulkaisuja.
   managing_projects: Projektien hallinta
   map: Kartta
   map_legend: karttamerkkien selitteet
@@ -2084,6 +2086,7 @@ fi:
     current_user: Et ole vielä lisännyt suosikkeja.
     user: "%{user} ei ole lisännyt suosikkeja."
   no_license_all_rights_reserved: Ei lisenssiä (kaikki oikeudet pidätetään)
+  no_managers_set: Managereita ei asetettu
   no_matching_invitations: Ei vastaavia kutsuja
   no_matching_observations: Ei vastaavia havaintoja.
   no_matching_places: Ei vastaavia paikkoja
@@ -3089,6 +3092,7 @@ fi:
   resolve_this_flag: Ratkaise tämä lippu
   resolved: Ratkaistu
   resolved_by: Ratkaissut
+  resolved_by_user_on_date_html: Ratkaissut %{user} %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sanoi,</span> "%{x}"'
   restore: Palauta
   restoring: Palauttaa...
@@ -3219,6 +3223,7 @@ fi:
   showing_one_to: Näytetään 1 -
   showing_taxa_from_everywhere: "Näytetään taksonit kaikkialta"
   showing_taxa_from_place: "Näytetään taksonit paikasta %{place}"
+  showing_x_of_y: Näytetään %{x}/%{y}
   showing_x_of_y_listings: "Näytetään %{x}/%{y} luettelointia"
   sign_in: Kirjaudu sisään
   sign_in_with_provider: "Kirjaudu sisään %{provider}-tilillä"
@@ -3295,6 +3300,7 @@ fi:
     inaturalist: iNaturalist
     nzbrn_birds: NZBRN Linnut
     nzbrn_fungi: NZBRN Sienet
+    nzbrn_herpetofauna: NZBRN-herpetofauna
     nzbrn_invertebrates: NZBRN Selkärangattomat
     nzbrn_mammals: NZBRN Nisäkkäät
     nzbrn_plants: NZBRN kasvit
@@ -3374,6 +3380,7 @@ fi:
   subscriptions_arent_available_for: Tilaukset eivät ole käytettävissä rajattomissa paikoissa.
   successfully_changed_your_password: Salasana vaihdettu onnistuneesti.
   suggest_an_identification: Ehdota tunnistusta
+  suggest_or_require_that: Ehdota tai vaadi, että osallistujat täyttävät nämä kentät projektiisi lisäämilleen havainnoille.
   suggestions: Ehdotukset
   summary: Yhteenveto
   supporting: Tukeminen
@@ -3605,7 +3612,6 @@ fi:
   unprocessable: Ei voida prosessoida
   unpublish: Julkaisematon
   unsubscribe: Peruuta tilaus
-  unsubscribe_from_this: Peruuta tilaus tältä
   unsuspend_user: Jäädytetty käyttäjä
   upcoming_bioblitzes: Tulevat bioblitzit
   update: Päivitä
@@ -3655,6 +3661,9 @@ fi:
     one: Käytetty kerran
     other: Käytetty %{count} kertaa
   user: Käyttäjä
+  user1_and_user2_faved_this_observation: "%{user1} ja %{user2} merkitsivät tämän havainnon suosikikseen"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, ja %{x_others} merkitsivät tämän havainnon suosikikseen"
+  user_added_a_fave_html: "%{user} lisäsi suosikiksi"
   user_added_a_flag_html: "%{user} lisäsi lipun"
   user_added_a_x: "%{user} lisäsi %{x}n"
   user_added_a_x_to_noun_by_html: "%{user} lisäsi %{x} kohteeseen %{noun}, jonka on luonut %{by}"
@@ -3671,6 +3680,7 @@ fi:
   user_commented_on: "%{user} kommentoi sinun %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} on eri mieltä siitä että tämä on %{taxon}"
   user_faved_a_noun_by_owner: "%{user} merkitsi käyttäjän %{owner} %{noun} suosikiksi"
+  user_faved_this_observation: "%{user} merkitsi tämän havainnon suosikiksi"
   user_flagged_as_a_non_spammer_html: "%{user} merkitsi ettei ole spammaaja"
   user_flagged_as_a_spammer_html: "%{user} merkitsi spaammaajaksi"
   user_has_opted_out_of_community_id: Käyttäjä on jättänyt yhteisön taksonin pois
@@ -3896,6 +3906,8 @@ fi:
   you_arent_following_that_person: "Et seuraa tätä henkilöä."
   you_can_accept_invitations: Voit hyväksyä kutsun täällä
   you_can_choose_observations_associated: Voit valita havaintoja liittääksesi ne tähän päiväkirjamerkintään.
+  you_can_edit_this_default_check_list_because: |
+    Voit editoida tätä oletusluetteloa, koska olet ylläpitäjä. Mutta tarvetta editoinnille ei oikeastaan pitäisi olla.
   you_can_only_destroy_taxa_you_created: "Voit poistaa vain itse luomiasi taksoneita, etkä voi poistaa taksoneita, joita käytetään taksonimuutoksissa."
   you_can_only_block_three_users: Voit estää vain kolme käyttäjää
   you_can_show_the_boundary_of: Voit näyttää paikan rajan projektisivullasi jos paikalla on raja.
@@ -4449,6 +4461,7 @@ fi:
     places:
       new:
         check_list_note: "Huom: erittäin suurille paikoille ei voi tehdä lajilistoja."
+        map_instruction: Käytä polygonityökalua paikan rajojen piirtämiseen.
     posts:
       formatting_none_help: "Ei HTML-asetusta, käytä vain syöttämiäsi merkintöjä."
       formatting_simple_help: "Linkitä URL-osoitteet ja aseta rivinvaihdot automaattisesti."
@@ -4468,8 +4481,12 @@ fi:
           Mitä haluaisit tehdä havainnoillasi tässä projektissa?
         keep_observations_label: |
           Jätä havaintosi tässä projektissa
+        project_requires_curator_coordinate_access_desc: |
+          Tähän projektiin ei voi tallentaa havaintoja, joiden koordinaatit eivät näy kuraattoreille. Jos et halua jakaa havaintojesi koordinaatteja tämän projektin kuraattoreille, poista havaintosi projektista.
         remove_observations_label: |
           Poista kaikki omat havainnot tästä projektista
+        revoke_observations_desc: |
+          Jos ainut syy lähtöösi on estää projektin kuraattoreita näkemästä piilotettuja koordinaattejasi.
       edit:
         new_place_desc_html: |
           Yritä katsella 
@@ -4480,10 +4497,13 @@ fi:
           <p>
           Bioblitz on tapahtuma, jossa osallistujat yrittävät havaita mahdollismman monta lajia tietyn ajan sisällä. Tämä on hauska tapa saada ihmisiä kiinnostumaan luonnosta ja samalla kerätä havaintotietoa.
           </p>
+        change_admin_desc: Valitse yksi projektin kuraattoreista uudeksi ylläpitäjäksi.
         cover_desc: "Valinnainen kansikuva, joka tulee näkyviin projektisivusi yläreunaan. Pitää olla 950px leveä, alle 400px pitkä."
         icon_desc: "Rajataan neliöksi"
         it_looks_like_this_project_can_be_converted: |
           Näyttää siltä että tämä projekti voidaan muuntaa uudeksi <a href="%{url}">koontiprojektiksi</a>.
+        no_curators: |
+          Projektilla ei ole kuraattoreita. Jos haluat nimittää uuden henkilön ylläpitäjäksi, henkilön pitää ensin liittyä tähän projektiin ja sinun tulee nimittää hänet kuraattoriksi.
         observation_aggregation_desc_html: |
           <p class="description">
           Havaintojen automaattinen kooonti lisää sopivat havainnot projektiisi siinä määriteltyjen sääntöjen mukaisesti. Koska usean havainnon poistaminen projektista kerralla ei ole mahdollista, varmista, että olet valinnut haluamasi paikkaa ja taksonia koskevat säännöt oikein. Muuten projektiisi voi päätyä paljon siihen sopimattomia havaintoja, jotka joudut poistemaan yksitellen manuaalisesti.
@@ -4578,6 +4598,8 @@ fi:
         note_you_can_delete_the_time: |
           (Huomaa, että voit poistaa aikavyöhykkeen ja tarkat kellonajat jos haluat sisällyttää kokonaisia päiviä.)
         or_drag_and_drop: (tai vedä ja pudota)
+        please_specify_the_requirements: |
+          Ole hyvä ja määrittele vaatimukset tähän projektiin lisättäville havainnoille.
         please_specify_the_requirements_html: |
           Määrittele millä ehdoilla havaintoja lisätään tähän projektiin. Voit määritellä useita taksoneita (lajeja), paikkoja, käyttäjiä tai laatutasoja jotka sisällytetään projektiin, tai jättää kentän tyhjäksi jos sinulla ei ole sille tarvetta. Katso <a href="%{url}">jokaisen kentän selitteet (englanniksi)</a>.
         project_background_color: Projektin yhteenvedon taustaväri
@@ -4626,6 +4648,8 @@ fi:
         observer: Kyllä, mutta vain jos itse lisään havainnon projektiin.
         any: Kyllä, ei väliä kuka lisää havainnon projektiin.
         none: Ei mitään.
+      curator_coordinate_access_label: |
+        Haluatko laittaa yksityiset/karkeistetut koordinaattisi projektin kuraattorien nähtäville?
       show:
         are_you_sure_you_want_to_convert: |
           Haluatko varmasti muuntaa tämän projektin koontiprojektiksi?
@@ -4712,10 +4736,12 @@ fi:
         obs_cid_d_to_genus_desc: Luotu viimeisen 7 päivän aikana ja sillä on yhteisön tekemä tunnistus suku- tai alemmalla tasolla
         obs_desc: Luotu viimeisen 7 päivän aikana
         obs_id_d_desc: Luotu viimeisen 7 päivän aikana ja sillä on tunnistus (voi olla havainnoijan)
+        observations_1_week_moving_window: Havainnot (1 viikon siirtyvä aikaikkuna)
         other_desc_html: Luotu muiden <a href="%{url}">kehittäjien rakentamien</a> sovellusten kautta
         recent_desc: Rekisteröity viimeisen 7 päivän aikana
         recent_w_0_obs_desc: Rekisteröitynyt edeltävinä 7 päivänä ja lisännyt 0 havaintoa
         recent_w_7_obs_desc: Rekisteröitynyt edeltävänä 7 päivänä ja lisännyt >= 7 havaintoa
+        time_to_id_desc: Aika tunnistukseen (tunteina, 1 viikon siirtyvä aikaikkuna)
         TTCID: TTCID (aika yhteisömääritykseen)
         TTID: Aika tunnistukseen
         TTID_desc: Aika saada tunnistus joltakulta
@@ -4723,6 +4749,7 @@ fi:
           Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
           tai <a href="%{url}">iNaturalist Network -verkon</a> verkkosivustojen kautta
       year:
+        inaturalist_network: iNaturalist Network -verkko
         include_usa: Sisällytä Yhdysvallat
         growth_by_country_desc_html: |
           Missä kasvua tapahtuu? Tämä kartta ja taulukko koettavat kuvata kasvua maittain, mutta se on mutkikasta, koska kasvu maittain voi olla hyvin epätasapainossa. Tässä on oletusasetuksena jätetty Yhdysvallat pois ja käytetty logaritmista asteikkoa muiden maiden välisten erojen korostamiseksi. Maan musta väri tarkoittaa, että sillä ei ollut merkittävää vaikutusta prosenttiosuuteen, havaintomäärät eivät kasvaneet tänä vuonna, tai havaintoja ei ollut tänä vuonna enempää kuin viime vuonna (lisätietoja saat viemällä hiiren maan kohdalle). <strong>"% kokonaiskasvusta"</strong> tarkoittaa tietyn maan osuutta maailmanlaajuisesta kasvusta. Esimerkiksi jos vuonna 2018 olisi 20 havaintoa, vuonna 2017 10 havaintoa, kasvua olisi 10 havainnon verran ja jos 5 havainnosta olisi Beninistä, Beninin osuus kokonaiskasvusta olisi 50%. <strong>"% kasvua"</strong> tarkoittaa tämänvuotisten havaintojen määrää prosentteina viime vuotisista havainnoista kyseisessä maassa. Esimerkiksi jos Laosista on 10 havaintoa viime vuodelta, mutta 20 tältä vuodelta, kasvuprosentti olisi 100%. Ja jos havaintoja ei ollut ollenkaan viime vuonna ja tänä vuonna 1, on kasvuprosentti ääretön.
@@ -4800,6 +4827,7 @@ fi:
           Sivuston kuraattorit ovat väliaikaisesti estäneet <a href="%{url}">tämän sisällön näyttämisen Wikipediasta</a>. Voit auttaa parantamalla sivua Wikipediassa. Voit myös liputtaa tämän taksonin tuodaksesi sen kuraattorien huomioon.
         trending_desc: Eniten havaitut taksonit viime kuussa
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
+        wanted_desc: Tähän taksoniin kuuluvat lajit, joita ei ole vielä havaittu.
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -4826,6 +4854,9 @@ fi:
           Taksonilla voi olla useita yleiskielisiä nimiä. Tuemme yhtä, globaalisti ensisijaista nimeä, joka voidaan vaihtaa täällä vetämällä nimi luettelon ylimmäiseksi. Voit myös määritellä ensisijaisen nimen eri paikoille muokkaamalla nimeä ja lisäämällä sille paikan, mutta tee tämä vain, jos eri paikoilla on ristiriitaisia nimiä.
     users:
       dashboard:
+        your_content_will_be_updated: Näihin taksoneihin liittyvä sisältösi päivitetään automaattisesti.
+        new_project_admin_html: |
+          Mietitkö miksi olet nyt tämän projektin ylläpitäjä? Edellinen projektin omistaja joko nimitti sinut ylläpitäjäksi tai poisti tilinsä, ja %{site_name} nimitti sinut, koska olet projektin manageri tai sivuston kuraattori. Jos et halua olla projektin ylläpitäjä, otathan yhteyttä <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
           Muistutus: projektin kuraattorit näkevät projektiin lisäämiesi havaintojen yksityiset ja salatut koordinaatit.
       delete:
@@ -4903,8 +4934,6 @@ fi:
         notification_preferences_user_observations: Seuraamieni käyttäjien havainnot
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Havainnot seuraamistani taksoneista tai paikoista
-        opt_in_to_map_tile_test_description: |
-          Osallistuminen tähän testiin tarkoittaa, että zoomatessasi ulospäin näet levinneisyyskartoilla uudet gridi-pohjaiset karttaruudut. Nämä ruudukot vaativat palvelimiltamme vähemmän ja niiden pitäisi olla nopeampia renderöidä iNaturalistin kasvaessa. Ne näyttävät havaintotiheyden paremmin. Tavoitteenamme on tehdä tämä vaihdos lopulta kautta koko sivuston. Kuulemme mielellämme palautteesi foorumilla.
         place_preference_changed_notice_html: |
           Paikka-asetus muutettu. Jos muutat mielesi, voit aina
           <a href='/users/edit'>muokata asetuksiasi</a>.
@@ -5161,6 +5190,7 @@ fi:
       not_a_number: ei ole numero
       not_an_integer: täytyy olla kokonaisluku
       odd: on oltava pariton
+      requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
       taken: on jo varattu
       too_long:
         one: on liian pitkä (maksimi on 1 merkki)
@@ -5284,6 +5314,7 @@ fi:
         not_an_integer: on oltava kokonaisluku
         odd: on oltava pariton
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
+        requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
         too_long:
           one: on liian pitkä (maksimi on 1 merkki)
           other: on liian pitkä (maksimi on %{count} merkkiä)
@@ -5397,6 +5428,7 @@ fi:
         exclusion: on varattu
         greater_than: oltava suurempi kuin %{count}
         greater_than_or_equal_to: oltava suurempi tai yhtäsuuri kuin %{count}
+        inclusion: ei sisälly luetteloon
         invalid: on virheellinen
         less_than: oltava vähemmän kuin %{count}
         less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
@@ -5405,6 +5437,7 @@ fi:
         odd: on oltava pariton
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
         requires_privilege_speech: sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
+        requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
         taken: on jo varattu
       template:
         body: 'Ongelmia seuraavissa kentissä:'
@@ -5508,6 +5541,9 @@ fi:
               belongs_to_an_existing_user: |
                 kuuluu olemassaolevalle käyttäjälle. Jos sinulla on käyttäjätunnus, ole hyvä ja kirjaudu sisään ennen kuin jatkat, tai käytä toista sähköpostiosoitetta
   doorkeeper:
+    scopes:
+      write: |
+        Luoda, päivittää ja poistaa havaintojasi, tunnistuksiasi ja muuta sisältöä puolestasi ja päästä näkemään piilotetut koordinaattisi ja kaiken muun tiedon, johon sinulla on sivustolla pääsy.
     flash:
       applications:
         create:

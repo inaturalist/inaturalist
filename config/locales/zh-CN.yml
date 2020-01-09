@@ -437,7 +437,6 @@ zh-CN:
   be_the_first_to_fave_this_observation: 成为第一个发表这一观察的人！
   because_of: 因为
   before_importing_photos: 在导入照片前
-  belives_this_is_a_comprehensive_list_of: 相信这是该事物的综合列表：
   bg_color: 背景颜色
   birds: 鸟
   black: 黑色
@@ -621,10 +620,12 @@ zh-CN:
   comparing_versions_x_and_y: "比较版本 %{x} 和 %{y}"
   comparing_observations_from: "比较 %{user} 在 %{dates} 做出的观察"
   compiled_by_name: "由 %{name} 编译"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: 完成
   completed: 已完成
   completed_at: 完成于
-  comprehensive: 综合分析
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: 综合分析？
   comprehensive_list: 综合分析列表
   concept_status: 概念状态
@@ -3042,7 +3043,6 @@ zh-CN:
   unpublish: 取消发布
   unreview_all: 取消复核全部
   unsubscribe: 取消订阅
-  unsubscribe_from_this: 退订此
   unsuspend_user: 停用用户
   upcoming_bioblitzes: 即将到来的bioblitzes
   update: 更新

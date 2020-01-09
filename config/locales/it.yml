@@ -306,8 +306,8 @@ it:
   admin_only: Solo-Amministratore
   admin_tools: Strumenti Di Amministrazione
   agree: d'accordo
-  agree_: Accetto
-  agree?: Concordi?
+  agree_: D'accordo
+  agree?: D’accordo?
   agree_with_current_taxon: D'accordo con il taxon corrente
   agreeing: Accordo in corso...
   aka: o
@@ -597,7 +597,6 @@ it:
   be_the_first_to_fave_this_observation: Aggiungi per primo questa osservazione ai preferiti!
   because_of: perché
   before_importing_photos: prima di importare le foto
-  belives_this_is_a_comprehensive_list_of: pensa che questa è una lista esaustiva di
   bg_color: Colore di sfondo
   bioblitz: Bioblitz
   birds: uccelli
@@ -766,7 +765,7 @@ it:
     Elenco separato da virgole dei codici di tracciamento. Aggiungili se desideri accodare un codice di tracciamento quando indirizzi le persone verso un nuovo formulario per l'aggiunta di osservazioni al progetto, e.g. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Questo serve a tenere traccia della partecipazione da fonti diverse. Puoi accedere a questi codici durante il download delle osservazioni del progetto in formato CSV.
   comma_separated_please: Separati da virgola
-  comment: nota
+  comment: commento
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Commenta
   comment_deleted: Commento cancellato
@@ -795,12 +794,16 @@ it:
   comparing_versions_x_and_y: "Confronto in corso tra la versione %{x} e %{y}"
   comparing_observations_from: "Confronto in corso delle osservazioni di %{user} del %{dates}"
   compiled_by_name: "Compilato da %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Completo
   complete_set_for_taxon_in_place_html: "Elenco Completo di %{taxon} in %{place}"
   completed: Completato
   completed_at: Completato in
-  comprehensive: completa
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Completa?
+  comprehensive_check_list_for_taxon_html: |
+    Checklist <span class="comprehensive_notice" data-tip="%{tip}">onnicomprensiva</span> per %{taxon}
   comprehensive_list: Elenco completo
   concept_status: Stato del concetto
   configure: Configura
@@ -3822,7 +3825,6 @@ it:
   unpublish: Togli dai pubblicati
   unreview_all: Rimuovi tutte le revisioni
   unsubscribe: Cancella iscrizione
-  unsubscribe_from_this: Cancella la tua iscrizione da questo
   unsuspend_user: Riammetti utente
   upcoming_bioblitzes: Prossime blioblitz
   update: Aggiorna
@@ -3907,6 +3909,10 @@ it:
   user_added_x_observations_html: "%{user} ha aggiunto %{x} osservazioni"
   user_already_authenticated: L'utente è già autenticato
   user_autocomplete_placeholder: kueda, simon123, etc.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} pensa che questa sia una lista onnicomprensiva per %{taxon} in %{place}
   user_blocked: Utente bloccato
   user_commented: "%{user} ha commentato"
   user_commented_on: "%{user} ha commentato la tua %{title} alle ore %{time}"
@@ -5538,10 +5544,6 @@ it:
         notification_preferences_user_observations: Osservazioni da parte di persone che seguo
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Osservazioni di taxa o da luoghi a cui sono iscritto
-        opt_in_to_map_tile_test: Seleziona la prova della mappa mosaico
-        opt_in_to_map_tile_test_description: |
-          Selezionando questa prova, quando ridurrai l'ingrandimento, vedrai una nuova mappa mosaico basata su griglia per le mappe di distribuzione. Queste griglie sono meno impegnative per i nostri server, dovrebbero essere più veloci da visualizzare con la crescita di iNaturalist, e dovrebbero migliorare la vista della densità di osservazioni. In caso, speriamo di applicare questa modifica a tutto il sito. Vorremmo sapere cosa ne pensi sul forum.
-        opt_out_of_map_tile_test: Deseleziona la prova della mappa mosaico
         place_preference_changed_notice_html: |
           Preferenza luogo modificato. Se cambi idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         project_addition_preferences:
@@ -5975,6 +5977,8 @@ it:
       AssessmentSection: Sezione valutazioni
       Atlas: Atlante
       CompleteSet: Elenco Completo
+      #Noun
+      Flag: Contrassegno
       TaxonLink: Link del Taxon
     attributes:
       assessment:
@@ -6297,6 +6301,8 @@ it:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@f"
@@ -6304,6 +6310,8 @@ it:
         family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)

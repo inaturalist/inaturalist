@@ -541,7 +541,6 @@ fr:
   be_the_first_to_fave_this_observation: Soyez le premier à mettre cette observation en favori !
   because_of: en raison de
   before_importing_photos: avant d’importer des photos
-  belives_this_is_a_comprehensive_list_of: pense que c’est une liste complète de
   bg_color: Couleur de fond
   bioblitz: Bioblitz
   birds: oiseaux
@@ -741,10 +740,12 @@ fr:
   comparing_versions_x_and_y: "Comparaison des versions %{x} et %{y}"
   comparing_observations_from: "Comparaison des observations de %{user} du %{dates}"
   compiled_by_name: "Compilé par %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Terminer
   completed: Complétée
   completed_at: Complétée à
-  comprehensive: complète
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Complète?
   comprehensive_list: Liste complète
   concept_status: État du concept
@@ -3592,7 +3593,6 @@ fr:
   unpublish: Dépublier
   unreview_all: Marquer tout comme non relu
   unsubscribe: Désabonnez-vous
-  unsubscribe_from_this: Désabonnez-vous
   unsuspend_user: Mettre fin à la suspension de l’utilisateur
   upcoming_bioblitzes: Bioblitz à venir
   update: Mettre à jour
@@ -5773,13 +5773,6 @@ fr:
         notification_preferences_user_observations: Observations de personnes que je suis
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Observations de taxons ou de lieux auxquels je suis abonné
-        opt_in_to_map_tile_test: Inscription au test de tuile de carte
-        opt_in_to_map_tile_test_description: |
-          En vous inscrivant à ce test, vous verrez de nouvelles dalles cartographiques basées sur la grille pour les cartes de distribution lors du dézoomage. Ces grilles sont moins consommatrices de ressources, leur rendu devrait être
-          plus rapide au fur et à mesure que iNaturalist grandit, et mieux montrer la densité d'observation.
-          Nous prévoyons que ce remplacement sera étendu à terme à tout le site. Nous aimerions avoir votre
-          retour dans le forum.
-        opt_out_of_map_tile_test: Désinscription du test de tuile de carte
         place_preference_changed_notice_html: |
           Préférence de lieu modifiée. Si vous changez d’avis, vous pouvez toujours
           <a href='/users/edit'>modifier vos paramètres</a>.
