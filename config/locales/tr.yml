@@ -813,6 +813,8 @@ tr:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Kapsamlı mı?
+  comprehensive_check_list_for_taxon_html: |
+    %{taxon} için <span class="comprehensive_notice" data-tip="%{tip}">kapsamlı</span> kontrol listesi
   comprehensive_list: Kapsamlı liste
   concept_status: Konsept Durumu
   configure: Yapılandır
@@ -4351,6 +4353,8 @@ tr:
           Lütfen <code>gereksiz konu</code> ve <code>telif hakkı ihlali</code> işaretlerini yalnızca içerik gereksiz değilse ya da bir telif hakkı ihlali değilse çözün.
     guides:
       index:
+        deprecated_banner: |
+          Ocak 2019'dan başlayarak Rehberler özelliğinin "olduğu gibi" sunulduğunu unutmayın; onu silme tasarımız olmasa da, daha çok geliştirmeyi de tasarlamıyoruz.
         funding_html: |
           <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
           tarafından rehberlerin geliştirilmesi için fonlama sağlandı
@@ -6375,6 +6379,8 @@ tr:
       AssessmentSection: Değerlendirme Bölümü
       Atlas: Atlas
       CompleteSet: Eksiksiz Küme
+      #Noun
+      Flag: İşaret
       TaxonLink: Sınıf Bağlantısı
     attributes:
       assessment:
@@ -6697,6 +6703,8 @@ tr:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@n"
@@ -6704,6 +6712,8 @@ tr:
         family: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
