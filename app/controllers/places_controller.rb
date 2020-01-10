@@ -44,11 +44,11 @@ class PlacesController < ApplicationController
       format.html do
         place = @site.place
         key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
-        place_ids = Rails.cache.fetch(key, :expires_in => 15.minutes) do
+        place_ids = Rails.cache.fetch(key, expires_in: 15.minutes) do
           places = if place
             place.children.select('id').order("RANDOM()").limit(50)
           else
-            Place.where("place_type = ?", Place::COUNTRY_LEVEL).select(:id).
+            Place.where( "admin_level IS NOT NULL" ).select(:id).
               order("RANDOM()").limit(50)
           end
           places.map{|p| p.id}
