@@ -316,8 +316,8 @@ class PhotoChooserModal extends React.Component {
                       className="form-control"
                       onChange={e => this.setProvider( e.target.value )}
                     >
-                      <option value="inat">{ I18n.t( "observations" ) }</option>
                       <option value="inat-rg">{ I18n.t( "rg_observations" ) }</option>
+                      <option value="inat">{ I18n.t( "observations" ) }</option>
                       <option value="flickr">Flickr</option>
                       <option value="eol">EOL</option>
                       <option value="wikimedia_commons">Wikimedia Commons</option>
