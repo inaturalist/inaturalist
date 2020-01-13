@@ -134,6 +134,12 @@ en:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> research-grade observation ID'd to species or lower"
     other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower"
+  x_sounds:
+    zero: "%{count} sounds"
+    one: "%{count} sound"
+    few: "%{count} sounds"
+    many: "%{count} sounds"
+    other: "%{count} sounds"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taxon curated"
     other: "<span class='count'>%{count}</span> taxa curated"
@@ -2644,7 +2650,6 @@ en:
       medium: medium
       large: large
       original: original
-  photos_size_photos: "%{photos_size} photos"
   photos_updated: Photos updated.
   pi_consent_desc_title: About Personal Information
   pi_consent_desc_html: |
@@ -3554,8 +3559,6 @@ en:
     sound_has_been_flagged: This sound has been flagged.
     soundcloud_replied_with_an_error: SoundCloud replied with an error.  Please try again later.
     sounds: Sounds
-    sounds_size_sound: "%{sounds_size} Sound"
-    sounds_size_sounds: "%{sounds_size} Sounds"
     view_all_soundcount_sounds: "View all %{sound_count} sounds"
     we_didnt_find_any_sounds: Sorry! We couldn't get any sounds from your SoundCloud account. 
     you_need_to_link_your_soundcloud_account: You need to link your SoundCloud account to add sounds.
