@@ -114,7 +114,9 @@ const ObsCard = class ObsCard {
         positional_accuracy: this.accuracy,
         geoprivacy: this.geoprivacy,
         place_guess: this.locality_notes,
-        observation_field_values_attributes: this.observation_field_values,
+        observation_field_values_attributes: _.pick(
+          this.observation_field_values, ["value", "observation_field_id"]
+        ),
         tag_list: this.tags.join( "," ),
         captive_flag: this.captive,
         uuid: this.uuid
