@@ -1336,7 +1336,7 @@ lt:
     observations: Daugiausiai stebėjimų per %{time}
     identifications: Daugiausiai identifikacijų per %{time}
   leading: Vedantis
-  learn: Sužinokite
+  learn: Sužinoti
   learn_about_the_species_live_in: Sužinokite apie rūšis, kurios gyvena
   learn_more: Sužinokite daugiau
   learn_more_raquo: "Sužinokite daugiau &raquo;"
@@ -1551,7 +1551,7 @@ lt:
   media: Nuotrauka
   media_type: Medijos tipas
   medium: vidutinis
-  meet: Susitikti
+  meet: Susipažinti
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist tinklo</a> narys
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
@@ -2308,6 +2308,7 @@ lt:
   places_of_interest: Lankytinos vietos
   places_merged_successfully: Vietos sujungtos sėkmingai!
   plants: augalai
+  please_confirm_your_inat_username: "Prašome patvirtinti savo %{site_name} vartotojo vardą"
   please_explain_why_you_want_to_hide_this: Paaiškinkite, kodėl norite tai slėpti
   popular: Populiarus
   press: Spauda
@@ -2549,22 +2550,41 @@ lt:
   select_options: Pažymėkite pasirinkimus
   send_the_invites: Siųsti kvietimus
   share: Dalintis
+  show: Rodyti
+  show_active_and_inactive_taxa: Rodyti aktyvius ir neaktyvius taksonus
+  show_common_names: Rodyti lietuviškus pavadinimus
+  show_hidden_content: Rodyti paslėptą turinį
+  show_keyboard_shortcuts: Rodyti spračiuosius klavišus
   show_less: Rodyti mažiau
   show_more: Rodyti daugiau
   show_observation_photos: rodyti stebėjimo nuotraukas
   show_off_your_recent_observations: Parodykite savo naujausius stebėjimus savo tinklaraštyje ar tinklalapyje!
+  show_only: Rodyti tik
+  show_scientific_name_first: Pirmiausia rodyti mokslinius pavadinimus
+  show_taxa_from_both: (rodyti taksonus iš abiejų sąrašų)
+  show_taxa_from_everywhere: "Rodyti taksonus iš visur"
   show_taxa_from_place: "Rodyti taksonus iš %{place}"
   showing_taxa_from_everywhere: "Rodyti taksonus iš visur"
   showing_taxa_from_place: "Rodomi taksonai iš %{place}"
+  sign_in: Prisijungti
+  sign_in_with_provider: "Prisijunkite su %{provider} paskyra"
+  sign_in_with_google: Prisijungti su Google paskyra
   sign_out: Atsijungti
+  sign_up: Registruotis
   similar_species: Panašios rūšys
   similar_taxa: Panašūs taksonai
   #Journal post formatting option
   simple: Paprastas
+  single_observation: Vienas stebėjimas
   site_stats: Statistika
   some_observations_failed_to_be_added: Kai kurių stebėjimų nepavyko pridėti prie projektų
   duplicate_observation_flag_warning: |
     Dėl dublikatų prašome ne žymėti, o prašyti stebėtojo ištaisyti klaidą, nes tinklalapio kuratoriai negali panaikinti stebėjimų.
+  some_rights_reserved: kai kurios teisės saugomos
+  something: Kažkas
+  something_: kažkas
+  somewhere_on_earth: kažkur Žemėje
+  somewhere: (Kažkur...)
   sounds:
     add_media: Pridėti mediją
     before_importing_sounds: prieš importuodami garsus
@@ -2635,7 +2655,7 @@ lt:
   taxon_framework_taxon: Taksono struktūros taksonas
   taxon_name: Taksono pavadinimas
   taxon_observed_by_html: |
-    <a href="%{url}">%{taxon}</a> pastebėjo
+    <a href="%{url}">%{taxon}</a> stebėjo
   taxon_observed_by_user: "%{taxon} stebėjo %{user}"
   taxon_photos_updated: Taksono nuotraukos atnaujintos!
   taxon_range: Taksono arealas
@@ -2646,6 +2666,7 @@ lt:
   taxonomy_details: Taksonomijos informacija
   taxonomy_details_info: 'Taksonomijos informacijos puslapyje, naudojantis taksono struktūra, aprašyta, ką mes turime omenyje, kai kalbame apie šį taksoną. <a href="/pages/taxon_frameworks">Skaityti daugiau</a>.'
   tell_everyone_a_little_about_you: Trumpai save visiems pristatykite
+  terrain: reljefas
   that_project_doesnt_exist: "Šis projektas neegzistuoja."
   the_observation_was_already_added_to_that_project: Šis stebėjimas jau buvo pridėtas prie šio projekto.
   there_was_a_problem_creating_this_account: |
@@ -2699,7 +2720,9 @@ lt:
   user_flagged_as_a_non_spammer_html: "%{user} pažymėtas kaip ne šiukšlintojas"
   user_flagged_as_a_spammer_html: "%{user} pažymėtas kaip šiukšlintojas"
   user_suggested_an_id: "%{user} pasiūlė ID"
+  username: Vartotojo vardas
   username_or_email: Vartotojo vardas arba el. paštas
+  username_or_user_id: Vartotojo vardas arba vartotojo ID
   users_id: "%{user} ID"
   users_identification_short_html: "<a href='%{url}'>%{user}</a> ID"
   users_latest_observations_on_site: "%{user} paskutiniai stebėjimai %{site}"
@@ -2928,6 +2951,7 @@ lt:
         latitude: Viešai matoma platuma
         longitude: Viešai matoma ilguma
         out_of_range: Ar šis stebėjimas yra žinomose taksono arealo ribose
+        user_login: Stebėtojo vartotojo vardas
       import:
         geoprivacy_must_be_in_english: |
           Vietos privatumo stulpelis turi būti anglų kalba, o langeliai turi būti su vertėmis „paslėptas“, „privatus“ arba palikti tušti
@@ -3053,13 +3077,17 @@ lt:
         about_recent_users: Apie
     welcome:
       index:
+        connect_with_nature: Prisijunk prie gamtos
         explore_and_share: Tyrinėkite ir dalinkitės savo stebėjimais iš gamtos pasaulio.
-        species_observed: 'Stebima rūšis'
+        observations_to_date: 'Stebėjimų'
+        species_observed: 'Stebėta rūšių'
         people_signed_up: 'Užsiregistravę žmonės'
         how_it_works: Kaip tai veikia
-        record_your_observations: Įrašyti savo stebėjimus
-        discuss_your_findings: Aptarti savo rezultatus
-        contribute_to_science: Prisidėti prie mokslo
+        record_your_observations: Užfiksuokite savo stebėjimus
+        share_with_fellow_naturalists: Pasidalinkite su kitais gamtininkais
+        discuss_your_findings: Aptarkite savo radinius
+        contribute_to_science: Prisidėkite prie mokslo
+        nature_at_your_fingertips: Ranka pasiekiama gamta
         create_useful_data: Sukurti naudingus duomenis
         learn_about_nature: Pažinkite gamtą
         run_a_bioblitz: Paleisti „Bioblitz“
@@ -3119,6 +3147,8 @@ lt:
       - Lapkritis
       - Gruodis
   datetime:
+    distance_in_words:
+      half_a_minute: pusė minutės
     prompts:
       month: Mėnuo
       year: Metai
@@ -3161,6 +3191,7 @@ lt:
         source_identifier: Šaltinio identifikuotojas
       user:
         email: El. paštas
+        login: Vartotojo vardas
         name: Pavadinimas
         search_place_id: Ieškoti vietos
         place_id: Vieta
