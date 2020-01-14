@@ -19,14 +19,18 @@ es:
     other: '%{count} identificaciones'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">1</span> Identificador'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identificadores'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomas"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} primicia en la lista de vida"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} primicias en la lista de vida"
   x_journal_posts_html:
     one: '<span class="count">1</span> entrada de diario'
@@ -2511,7 +2515,6 @@ es:
     medium: medio
     large: grande
     original: original
-  photos_size_photos: "%{photos_size} fotos"
   photos_updated: Fotos actualizadas.
   pi_consent_desc_title: Sobre la Informacion Personal
   pi_consent_desc_html: |
@@ -3065,8 +3068,10 @@ es:
     section: Sección
     subsection: Subsección
     complex: Complejo
+    #Singular
     species: Especie
     hybrid: Híbrido
+    #Singular
     subspecies: Subespecie
     variety: variedad
     form: forma
@@ -3393,8 +3398,6 @@ es:
     sound_has_been_flagged: Este sonido ha sido marcado
     soundcloud_replied_with_an_error: SoundCloud respondió con un error. Por favor, inténtalo de nuevo más tarde.
     sounds: Sonidos
-    sounds_size_sound: "%Duración del sonido: {sounds_size}"
-    sounds_size_sounds: "%Peso del sonido: {sounds_size}"
     view_all_soundcount_sounds: "Ver los %{sound_count} sonidos"
     we_didnt_find_any_sounds: Lo sentimos, no pudimos encontrar ningún sonido de tu cuenta de SoundCloud.
     you_need_to_link_your_soundcloud_account: Necesitas enlazar tu cuenta de SoundCloud para poder subir sonidos.
@@ -3431,6 +3434,7 @@ es:
   sourcing: Poniendo la fuente
   spam: spam
   spammer: Generador de spam
+  #Plural
   species: Especies
   species_by_category: especies por categoría
   species_from_around_the_world: Especies de todo el mundo
@@ -4355,6 +4359,9 @@ es:
           contravención de los derechos de autor, respectivamente.
     guides:
       index:
+        deprecated_banner: |
+          Ten en cuenta que a partir de enero de 2019, la función Guías se muestra
+          "tal cual". Aunque no tenemos planes para eliminarla, tampoco tenemos previsto desarrollarla más.
         funding_html: |
           Los fondos para el desarrollo de Guías fueron proporcionados por 
           <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
@@ -4744,19 +4751,27 @@ es:
         vertical: Vertical
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} en común"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} en común"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} no en común"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} no en común"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} total"
+          #Count of how many taxa are present in an observation search
           other: "%{count} total"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} único"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} únicos"
       export:
         choose_columns_desc: Elija las columnas que desea exportar
