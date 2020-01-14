@@ -43,6 +43,8 @@ class CalendarsController < ApplicationController
         next unless @taxa_by_iconic_taxon_id[iconic_taxon.id]
         [iconic_taxon.id, @taxa_by_iconic_taxon_id[iconic_taxon.id].size]
       end.compact
+      @life_list_firsts = @selected_user.taxa_unobserved_before_date( Date.parse( @date ), @taxa ).
+        sort_by( &:ancestry )
     else
       iconic_counts_conditions = Observation.conditions_for_date("observations.observed_on", @date)
       iconic_counts_conditions[0] += " AND observations.user_id = ?"
@@ -51,10 +53,7 @@ class CalendarsController < ApplicationController
         where(iconic_counts_conditions).
         group("taxa.iconic_taxon_id").count
     end
-    
-    @life_list_firsts = @selected_user.life_list.listed_taxa.where(first_observation_id: @observations).
-      sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
-    
+
     unless @observations.blank?
       @place_name_counts = {}
       @places = Set.new

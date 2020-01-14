@@ -1275,6 +1275,29 @@ describe User do
     end
   end
 
+  describe "taxa_unobserved_before_date" do
+    elastic_models( Observation )
+    let( :user ) { User.make! }
+    it "returns an empty array by default" do
+      expect( user.taxa_unobserved_before_date( Date.today ) ).to eq []
+    end
+
+    it "returns taxa not observed by the user" do
+      taxon = Taxon.make!
+      expect( user.taxa_unobserved_before_date( Date.today, [taxon] ) ).to eq [taxon]
+    end
+
+    it "does not return taxa previously observed by the user" do
+      taxon = Taxon.make!
+      obs = Observation.make!(
+        user: user,
+        taxon: taxon,
+        observed_on_string: Date.yesterday.to_s
+      )
+      expect( user.taxa_unobserved_before_date( Date.today, [taxon] ) ).to eq []
+    end
+  end
+
   protected
   def create_user(options = {})
     opts = {
