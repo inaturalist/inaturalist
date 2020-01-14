@@ -19,7 +19,9 @@ et:
     other: '%{count} määratlust'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">1</span> määratleja'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> määratlejat'
   x_languages:
     one: "%{count} keel"
@@ -2193,7 +2195,6 @@ et:
     medium: keskmine
     large: suur
     original: algne
-  photos_size_photos: "%{photos_size} fotot"
   photos_updated: Fotod värskendatud.
   pin_verb: Säilita
   pink: roosa
@@ -2634,8 +2635,10 @@ et:
     subgenus: Alamperekond
     section: Sektsioon
     subsection: Alamsektsioon
+    #Singular
     species: Liik
     hybrid: Hübriid
+    #Singular
     subspecies: Alamliik
     variety: Teisend
     form: Vorm
@@ -2944,8 +2947,6 @@ et:
     sound: Heli
     soundcloud_replied_with_an_error: SoundCloud saatis veateate. Palun proovi hiljem uuesti.
     sounds: Helid
-    sounds_size_sound: "%{sounds_size} heli"
-    sounds_size_sounds: "%{sounds_size} heli"
     view_all_soundcount_sounds: "Vaata kõik %{sound_count} heli"
     we_didnt_find_any_sounds: Vabandust! Me ei saanud sinu SoundCloud kontolt ühtegi heli.
     you_need_to_link_your_soundcloud_account: Helide lisamiseks pead seostama SoundCloud konto.
@@ -2980,6 +2981,7 @@ et:
   sourcing: Allikad
   spam: Rämpspost
   spammer: Rämpspostitaja
+  #Plural
   species: Liigid
   species_by_category: liigid kategooriate kaupa
   species_from_around_the_world: Liigid kõikjalt maailmast
