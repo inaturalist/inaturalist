@@ -1144,7 +1144,6 @@ gl:
   photo_hosting_accounts: Contas de almacenamento de fotos
   photo_urls_repaired: A URL da foto foi reparada.
   photos_or_sounds?: '¿Fotos ou sons?'
-  photos_size_photos: "%{photos_size} fotos"
   photos_updated: Fotos actualizadas.
   pink: Rosa
   place: Lugar
@@ -1360,8 +1359,10 @@ gl:
     subtribe: Subtribo
     genus: Xénero
     genushybrid: Xénero híbrido
+    #Singular
     species: Especies
     hybrid: Híbrido
+    #Singular
     subspecies: Subespecies
     variety: Variedade
     form: Forma
@@ -1547,8 +1548,6 @@ gl:
     selected_sounds: Sons seleccionados
     sound: Son
     sounds: Sons
-    sounds_size_sound: "%Duración do son: {sounds_size}"
-    sounds_size_sounds: "%Peso do son: {sounds_size}"
     view_all_soundcount_sounds: "Ver os %{sound_count} sons"
     we_didnt_find_any_sounds: Sentímolo, non puidemos atopar ningún son da túa conta de SoundCloud.
     you_need_to_link_your_soundcloud_account: Necesitas enlazar a túa conta de SoundCloud para poder subir sons.
@@ -1576,6 +1575,7 @@ gl:
   sources_youve_added: Fontes que ti engadiches
   sourcing: Poñendo a fonte
   spam: Correo lixo
+  #Plural
   species: Especies
   species_from_around_the_world: Especies de todo o mundo
   species_guess: Estimación especial
