@@ -2294,8 +2294,10 @@ he:
     genushybrid: מין היברידי
     subgenus: תת סוג
     section: תחום
+    #Singular
     species: מין
     hybrid: בן-כלאיים
+    #Singular
     subspecies: תת מין
     variety: זן
     form: טופס
@@ -2515,7 +2517,6 @@ he:
     sound: קול
     soundcloud_replied_with_an_error: SoundCloud השיב עם שגיאה. נסו מאוחר יותר שנית.
     sounds: קולות
-    sounds_size_sounds: "%{sounds_size} קולות"
     view_all_soundcount_sounds: "צפייה בכל %{sound_count} הקולות"
     your_soundcloud_account: חשבון הSoundCloud שלך
   source: מקור
@@ -2528,6 +2529,7 @@ he:
   sources_youve_added: מקורות שהוספת
   sources_and_credits: מקורות וקרדיטים
   spam: ספאם
+  #Plural
   species: מינים
   species_by_category: מינים לפי קטגוריה
   species_from_around_the_world: מינים מסביב העולם
@@ -3038,27 +3040,43 @@ he:
         vertical: אנכי
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} אינו משותף"
+          #Count of how many taxa several observation searches have in common
           two: "%{count} אינם משותפים"
+          #Count of how many taxa several observation searches have in common
           many: "%{count} אינם משותפים"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} אינם משותפים"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} אינו משותף"
+          #Count of how many taxa are not present in *all* of several observation searches
           two: "%{count} אינם מושתפים"
+          #Count of how many taxa are not present in *all* of several observation searches
           many: "%{count} אינם מושתפים"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} אינם מושתפים"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} סך הכל"
+          #Count of how many taxa are present in an observation search
           two: "%{count} סך הכל"
+          #Count of how many taxa are present in an observation search
           many: "%{count} סך הכל"
+          #Count of how many taxa are present in an observation search
           other: "%{count} סך הכל"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} יחודי"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           two: "%{count} יחודיים"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           many: "%{count} יחודיים"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} יחודיים"
       export:
         receive_an_email_with_your_data: לקבל מייל עם הנתונים שלך
