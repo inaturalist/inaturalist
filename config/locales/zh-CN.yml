@@ -2016,7 +2016,6 @@ zh-CN:
     medium: 中
     large: 大
     original: 原始
-  photos_size_photos: "%{photos_size} 张照片"
   photos_updated: 照片已更新。
   pink: 粉色
   pinned_locations_desc: |
@@ -2380,8 +2379,10 @@ zh-CN:
     subgenus: 亚属
     section: 节
     subsection: 亚组
+    #Singular
     species: 种
     hybrid: 杂种
+    #Singular
     subspecies: 亚种
     variety: 变种
     form: 型
@@ -2672,8 +2673,6 @@ zh-CN:
     sound: 声音
     soundcloud_replied_with_an_error: SoundCloud回答遇到错误。请稍后再试。
     sounds: 声音
-    sounds_size_sound: "%{sounds_size} 段声音"
-    sounds_size_sounds: "%{sounds_size} 段声音"
     view_all_soundcount_sounds: "查看所有 %{sound_count} 声音"
     we_didnt_find_any_sounds: 抱歉！我们没有从您的SoundCloud账户中找到任何声音文件。
     you_need_to_link_your_soundcloud_account: 您需要关联至您的SoundCloud账户来添加声音。
@@ -2706,6 +2705,7 @@ zh-CN:
   sources_and_credits: 来源与信誉
   sourcing: 提供消息
   spam: 垃圾邮件
+  #Plural
   species: 物种
   species_by_category: 按分类排序物种
   species_from_around_the_world: 来自全世界的物种
