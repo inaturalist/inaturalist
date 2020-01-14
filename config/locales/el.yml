@@ -1706,7 +1706,6 @@ el:
     medium: μέσο
     large: μεγάλο
     original: πρωτότυπο
-  photos_size_photos: "%{photos_size} φωτογραφίες"
   photos_updated: Οι φωτογραφίες ενημερώθηκαν
   pink: Ροζ
   place: Τόπος
@@ -2158,8 +2157,10 @@ el:
     subgenus: Υπογένος
     section: τμήμα
     subsection: υποτμήμα
+    #Singular
     species: Είδος
     hybrid: Υβρίδιο
+    #Singular
     subspecies: Υποείδος
     variety: Ποικιλία
     form: Μορφή
@@ -2375,8 +2376,6 @@ el:
     sound: Ήχος
     soundcloud_replied_with_an_error: Το SoundCloud απάντησε με σφάλμα. Παρακαλούμε προσπαθήστε πάλι αργότερα.
     sounds: Ήχοι
-    sounds_size_sound: "%{sounds_size} ήχος"
-    sounds_size_sounds: "%{sounds_size} Ήχοι"
     view_all_soundcount_sounds: "Προβολή όλων των %{sound_count} ήχων"
     your_soundcloud_account: ο λογαριασμός σας στο SoundCloud
   source: Πηγή
@@ -2392,6 +2391,7 @@ el:
   sources_youve_added: Πηγές που έχετε προσθέσει
   sourcing: Πηγές
   spam: Σπαμ
+  #Plural
   species: Είδη
   species_by_category: είδη ανά κατηγορία
   species_from_around_the_world: Είδη από όλο το κόσμο
