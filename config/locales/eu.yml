@@ -1394,7 +1394,6 @@ eu:
     medium: ertaina
     large: handia
     original: jatorrizkoa
-  photos_size_photos: "%{photos_size} argazkiak"
   photos_updated: Eguneratutako argazkiak.
   pink: arrosa
   place: Tokia
@@ -1614,8 +1613,10 @@ eu:
     subtribe: Azpitribua
     genus: Generoa
     genushybrid: Genero hibridoa
+    #Singular
     species: Espezieak
     hybrid: Hibridoa
+    #Singular
     subspecies: Azpiespezieak
     variety: Aldaera
     form: Forma
@@ -1813,8 +1814,6 @@ eu:
     selected_sounds: Hautatutako soinuak
     sound: Soinua
     sounds: Soinuak
-    sounds_size_sound: "%Hotsaren iraupena: {sounds_size}"
-    sounds_size_sounds: "%Hotsaren pisua: {sounds_size}"
     view_all_soundcount_sounds: "%{sound_count} hotsak ikusi"
     we_didnt_find_any_sounds: Sentitzen dugu, ezin izan dugu zure SoundCloud kontuko soinurik topatu.
     you_need_to_link_your_soundcloud_account: Zure SoundCloud kontua lotu behar duzu soinuak igo ahal izateko.
@@ -1843,6 +1842,7 @@ eu:
   sources: Iturriak
   sources_youve_added: Zuk gehitutako iturriak
   sourcing: Iturria jartzen
+  #Plural
   species: Espezieak
   species_from_around_the_world: Mundu guztiko espezieak
   species_guess: Balioespen berezia
