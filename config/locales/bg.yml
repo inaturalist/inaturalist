@@ -1376,7 +1376,6 @@ bg:
     medium: средна
     large: голяма
     original: оригинална
-  photos_size_photos: "%{photos_size} снимки"
   photos_updated: Снимките са обновени.
   pink: розово
   place: Място
@@ -1759,8 +1758,10 @@ bg:
     subgenus: Подрод
     section: Секция
     subsection: Подсекция
+    #Singular
     species: Вид
     hybrid: Хибрид
+    #Singular
     subspecies: Подвид
     variety: Вариетет
     form: Форма
@@ -1937,8 +1938,6 @@ bg:
     select_one_or_more_sounds: Изберете един или повече звуци
     sound: Звук
     sounds: Звуци
-    sounds_size_sound: "%{sounds_size} звук"
-    sounds_size_sounds: "%{sounds_size} звуци"
     view_all_soundcount_sounds: "Виж всичките %{sound_count} звука"
     you_need_to_link_your_soundcloud_account: Трябва да свържете Вашия SoundCloud акаунт за да добавяте звуци.
   source: Източник
@@ -1954,6 +1953,7 @@ bg:
   sources: Източници
   spam: Спам
   spammer: Спамър
+  #Plural
   species: Видове
   species_by_category: видове по категории
   species_from_around_the_world: Видове от целия свят
