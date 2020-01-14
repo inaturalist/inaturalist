@@ -2191,7 +2191,6 @@ pt-BR:
     small: pequeno
     medium: médio
     large: grande
-  photos_size_photos: "%{photos_size} fotos"
   photos_updated: Fotos atualizadas.
   pi_consent_desc_title: Sobre informações pessoais
   pi_consent_desc_html: |
@@ -2672,8 +2671,10 @@ pt-BR:
     section: Seção
     subsection: Subseção
     complex: Complexo
+    #Singular
     species: Espécies
     hybrid: Híbrido
+    #Singular
     subspecies: Subespécies
     variety: Variedade
     form: Formulário
@@ -2993,8 +2994,6 @@ pt-BR:
     sound_has_been_flagged: Este som foi sinalizado.
     soundcloud_replied_with_an_error: Houve um erro com a sua conexão ao SoundCloud. Por favor tente novamente.
     sounds: Sons
-    sounds_size_sound: "%{sounds_size} Som"
-    sounds_size_sounds: "%{sounds_size} Sons"
     view_all_soundcount_sounds: "Exibir todos %{sound_count} sons"
     we_didnt_find_any_sounds: Desculpe! Não foi possível acessar os sons da sua conta do SoundCloud.
     you_need_to_link_your_soundcloud_account: É preciso conectar sua conta do SoundCloud para adicionar sons.
@@ -3026,6 +3025,7 @@ pt-BR:
   sources_youve_added: Fontes que você adicionou
   sources_and_credits: Fontes e Créditos
   sourcing: Buscando fonte
+  #Plural
   species: Espécies
   species_by_category: espécies por categoria
   species_from_around_the_world: Espécies de todo o mundo
