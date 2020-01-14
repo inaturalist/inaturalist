@@ -937,7 +937,6 @@ mk:
     medium: средна
     large: голема
     original: изворно
-  photos_size_photos: "%{photos_size} слики"
   photos_updated: Сликите се подновени.
   pink: розова
   place: Место
@@ -1119,8 +1118,10 @@ mk:
     subtribe: потплеме
     genus: род
     genushybrid: родов хибрид
+    #Singular
     species: вид
     hybrid: хибрид
+    #Singular
     subspecies: подвид
     variety: разновидност
     form: облик
@@ -1222,8 +1223,6 @@ mk:
     selected_sounds: Избрани звуци
     sound: Звук
     sounds: Звуци
-    sounds_size_sound: "%{sounds_size} звук"
-    sounds_size_sounds: "%{sounds_size} звуци"
     view_all_soundcount_sounds: "Погл. сите %{sound_count} звуци"
   source: Извор
   source_: 'Извор:'
@@ -1245,6 +1244,7 @@ mk:
   sources_and_credits: Извори и приписи
   sourcing: Извори
   spam: спам
+  #Plural
   species: Видови
   species_from_around_the_world: Видови од целиот свет
   species_search: Пребарување на видови
