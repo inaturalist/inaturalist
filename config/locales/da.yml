@@ -19,14 +19,18 @@ da:
     other: '%{count} Identifikationer'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> Identifikator'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identifikatorer'
   x_languages:
     one: "%{count} sprog"
     other: "%{count} sprog"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} livsliste første"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} livsliste førsteindførsler"
   x_journal_posts_html:
     one: '<span class="count">1</span> journalindlæg'
@@ -98,6 +102,9 @@ da:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> observation af forskningskvalitet identificeret til art eller lavere</span>"
     other: "<span class='count'>%{count}</span> observationer af forskningskvalitet identificerede til art eller lavere</span>"
+  x_sounds:
+    one: "%{count} lyd"
+    other: "%{count} lyde"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> takson kurateret"
     other: "<span class='count'>%{count}</span> taksa kurateret"
@@ -2525,7 +2532,6 @@ da:
     medium: mellem
     large: stor
     original: original
-  photos_size_photos: "%{photos_size} fotos"
   photos_updated: Foto´s opdateret
   pi_consent_desc_title: Om personlig information
   pi_consent_desc_html: |
@@ -3080,8 +3086,10 @@ da:
     section: Sektion
     subsection: Undersektion
     complex: Kompleks
+    #Singular
     species: Arter
     hybrid: Hybrid
+    #Singular
     subspecies: Underarter
     variety: Varietet
     form: form
@@ -3415,8 +3423,6 @@ da:
     sound_has_been_flagged: Denne lyd er blevet markeret.
     soundcloud_replied_with_an_error: SoundCloud svarede med en fejl. Prøv igen senere.
     sounds: Lyde
-    sounds_size_sound: "%{sounds_size} Lyd"
-    sounds_size_sounds: "%{sounds_size} Lyde"
     view_all_soundcount_sounds: "Se alle %{sound_count} lyde"
     we_didnt_find_any_sounds: Beklager! Vi kunne ikke hente nogen lyde fra din SoundCloud konto.
     you_need_to_link_your_soundcloud_account: Du skal tilknytte din SoundCloud konto for at tilføje lyde.
@@ -3453,6 +3459,7 @@ da:
   sourcing: Oprindelse
   spam: spam
   spammer: Spammer
+  #Plural
   species: Arter
   species_by_category: arter efter kategori
   species_from_around_the_world: Arter fra hele verden
@@ -4796,19 +4803,27 @@ da:
         vertical: Vertikal
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} til fælles"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} til fælles"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} ikke til fælles"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} ikke til fælles"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} i alt"
+          #Count of how many taxa are present in an observation search
           other: "%{count} i alt"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} unik"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} unikke"
       export:
         choose_columns_desc: Vælg de kolonner, du vil eksportere
