@@ -31,9 +31,13 @@ pl:
     other: '%{count} oznaczenia'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">1</span> oznaczający'
+    #Number of people who have added identifications
     few: '<span class="count">%{count}</span> oznaczających'
+    #Number of people who have added identifications
     many: '<span class="count">%{count}</span> oznaczających'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> oznaczającego'
   x_languages:
     one: "%{count} język"
@@ -42,9 +46,13 @@ pl:
     other: "%{count} języka"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} pierwsza obserwacja na liście życia"
+    #Count of number of taxa that represent the first addition to a life list
     few: "%{count} pierwsze obserwacje na liście życia"
+    #Count of number of taxa that represent the first addition to a life list
     many: "%{count} pierwszych obserwacji na liście życia"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} pierwszej obserwacji na liście życia"
   x_journal_posts_html:
     one: '<span class="count">1</span> wpis w dzienniku'
@@ -2338,7 +2346,6 @@ pl:
     medium: średni
     large: duży
     original: oryginalny
-  photos_size_photos: "%{photos_size} zdjęcia"
   photos_updated: Zdjęcia zaktualizowane.
   pin_verb: Przypnij
   pink: różowy
@@ -2776,8 +2783,10 @@ pl:
     section: Sekcja
     subsection: Podsekcja
     complex: Kompleks
+    #Singular
     species: Gatunek
     hybrid: Hybryda
+    #Singular
     subspecies: Podgatunek
     variety: Odmiana
     form: Forma
@@ -2968,6 +2977,7 @@ pl:
   source_url: Źródłowy adres URL
   sources: Źródła
   spam: Spam
+  #Plural
   species: Gatunki
   species_by_category: gatunki według kategorii
   species_from_around_the_world: Gatunki z całego świata
