@@ -915,6 +915,7 @@ lt:
   enable_offline_access_for_mobile: Įgalinti prieigą neprisijungus mobiliesiems
   encompassing_places: Apimamos vietos
   end: Baigti
+  end_date_time: Pabaigos data / laikas
   endangered: Nykstantis
   endemic: Endeminis
   endemic_to_x: "Endeminis vietovėje: %{x}"
@@ -927,6 +928,7 @@ lt:
     invasive: Invazinis
     managed: Kontroliuojamas
     native: Vietinis
+    naturalised: Natūralizavęsis
   establishment_means: Įsikūrimo būdas
   event_in_progress: Renginys vyksta
   event_stats: Renginio Statistika
@@ -1940,7 +1942,6 @@ lt:
     medium: vidutinės
     large: didelės
     original: originalaus dydžio
-  photos_size_photos: "%{photos_size} nuotraukos"
   photos_updated: Nuotraukos atnaujintos.
   pi_consent_desc_title: Apie asmeninę informaciją
   pin_verb: Žymė
@@ -2248,6 +2249,9 @@ lt:
     romania: Rumunija
     russia: Rusija
     rwanda: Ruanda
+    saint_barthelemy: Švento Baltramiejaus sala
+    saint_helena: Šv. Elenos sala
+    saint_kitts_and_nevis: Sent Kitsas ir Nevis
     saint_martin: Šv. Martyno sala
     saint_pierre_and_miquelon: Sen Pjeras ir Mikelonas
     saint_vincent_and_the_grenadines: Sent Vinsentas ir Grenadinai
@@ -2260,6 +2264,9 @@ lt:
     seychelles: Seišeliai
     sierra_leone: Siera Leonė
     singapore: Singapūras
+    slovenia: Slovėnija
+    solomon_islands: Saliamono salos
+    somalia: Somalis
     south_africa: Pietų Afrika
     south_korea: Pietų Korėja
     south_sudan: Pietų Sudanas
@@ -2394,8 +2401,10 @@ lt:
     section: grupė
     subsection: pogrupis
     complex: Kompleksas
+    #Singular
     species: Rūšys
     hybrid: Hibridas
+    #Singular
     subspecies: Porūšis
     variety: Varietetas
     form: Forma
@@ -2536,6 +2545,8 @@ lt:
   search_your_photos: Ieškoti tarp jūsų nuotraukų
   searching: "Ieškoma..."
   seasonality: Sezoniškumas
+  second_person_possessive_plural: "Jūsų %{noun}"
+  second_person_possessive_singular: "Jūsų %{noun}"
   see_something_wrong_with_taxon: Kažkas negerai su šiuo taksonu? Praneškite kuratoriams.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -2546,8 +2557,14 @@ lt:
   select_all: Pasirinkti visus
   select_at_least_one: Pasirinkite bent vieną
   select_one_or_more_photos: 'Pasirinkite vieną ar daugiau nuotraukų'
+  select_none: Nieko nepažymėti
   select_observations_to_edit: Pasirinkite, kuriuos stebėjimus redaguoti...
+  select_one_of_friends_albums: Pasirinkti vieną iš %{friend} albumų
+  select_one_of_your_albums: Pasirinkti vieną iš jūsų albumų
   select_options: Pažymėkite pasirinkimus
+  select_photos_from_your_photo_stream: |
+    Pasirinkite nuotraukas iš išorinio nuotraukų dalinimosi puslapio, skirtas paversti %{site_name} stebėjimais. Mes užpildysime datą, laiką ir vietovę iš nuotraukų metaduomenų ir bandysime aptikti rūšių pavadinimus žymose.
+  select_photos_to_display: Pasirinkti nuotraukas rodymui
   send_the_invites: Siųsti kvietimus
   share: Dalintis
   show: Rodyti
@@ -2578,34 +2595,53 @@ lt:
   single_observation: Vienas stebėjimas
   site_stats: Statistika
   some_observations_failed_to_be_added: Kai kurių stebėjimų nepavyko pridėti prie projektų
+  some_observations_failed_to_save: Kai kurių stebėjimų nepavyko išsaugoti
+  some_of_those_photos_couldnt_be_saved: "Kai kurios nuotraukos nebuvo išsaugotos: %{error}"
+  some_other_reason: Kita priežastis, kurią galite paaiškinti žemiau.
   duplicate_observation_flag_warning: |
     Dėl dublikatų prašome ne žymėti, o prašyti stebėtojo ištaisyti klaidą, nes tinklalapio kuratoriai negali panaikinti stebėjimų.
   some_rights_reserved: kai kurios teisės saugomos
   something: Kažkas
   something_: kažkas
+  something_went_wrong_adding: Kažkas nepavyko bandant pridėti šią rūšį prie jūsų sąrašo
+  something_went_wrong_deleting_the_taxon_name: "Kažkas nepavyko bandant ištrinti taksono pavadinimą „%{taxon_name}“!"
   somewhere_on_earth: kažkur Žemėje
   somewhere: (Kažkur...)
+  sorry_flickr_isnt_responding_at_the_moment: "Atsiprašome, šiuo metu Flickr neatsako."
+  sort: Rūšiuoti
+  sort_by: Rūšiuoti pagal
+  sorting_by: Rūšiuojama pagal
   sounds:
     add_media: Pridėti mediją
+    add_sounds: Pridėti garsų
     before_importing_sounds: prieš importuodami garsus
     import_from_soundcloud_description: "Pasirinkite garsus iš jūsų SoundCloud paskyros, skirtus paversti iNaturalist stebėjimais. Mes užpildysime datą ir laiką iš jūsų garsų metaduomenų ir bandysime aptikti rūšių pavadinimus žymose."
     import_from_sounds: Importuoti iš garsų
     import_sounds: Importuoti garsus
+    link_your_soundcloud_account: Susiekite savo SoundCloud paskyrą
     no_photos_sounds: Nėra nuotraukų ar garsų
+    photos_sounds: Nuotraukos / garsai
     select_one_or_more_sounds: Pasirinkite vieną ar daugiau garsų
+    selected_sounds: Pasirinkti garsai
+    sound: Garsas
     sound_has_been_flagged: Šis garsas buvo pažymėtas.
+    sounds: Garsai
+    view_all_soundcount_sounds: "Žiurėti visus %{sound_count} garsus"
   source: Šaltinis
   source_: 'Šaltinis:'
   source_wikipedia: "Šaltinis: Vikipedija"
   source_list_: "Šaltinių sąrašas"
   source_list:
     ubio: uBio
+    catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
+    new_zeland_organisms_register: New Zealand Organisms Register
   source_eg:
     citation: 'pvz.: Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
   source_url: Šaltinio URL
   sources: Šaltiniai
   sources_youve_added: Šaltiniai, kuriuos pridėjote
+  #Plural
   species: Rūšys
   species_guess: rūšies spėjimas
   species_name_cap: Rūšies pavadinimas
@@ -2624,13 +2660,23 @@ lt:
   stats_for_this_year_have_not_been_generated: Šių metų statistika nebuvo sugeneruota.
   status: Statusas
   still_needs_id?: Vis dar reikia ID?
+  stop_following_user: "Nebesekti %{user}"
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: PARDUOTUVĖ
+  submission_model_description: Kas gali pridėti stebėjimų prie jūsų projekto?
   submitted: Pateikta
   subscribe_to_a_taxon: Prenumeruoti Taksoną
   subscribe_to_a_place: Prenumeruoti Vietą
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Užsiprenumeruokite%{tag_end} šios žymės komentarus"
+  subscribe_to_this: Prenumeruoti tai
   subscriptions: Prenumeratos
+  successfully_changed_your_password: Slaptažodis sėkmingai pakeistas.
+  suggest_an_identification: Pasiūlyti identifikaciją
+  suggestions: Pasiūlymai
   supporting: Pritariantis
   support_inaturalist: Paremkite iNaturalist
+  synonyms: Sinonimai
   tags: Žymės
   taxa: Taksonai
   taxa_info: Taksonų informacija
