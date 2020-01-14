@@ -19,7 +19,9 @@ fr:
     other: '%{count} identifications'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> identificateur'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identificateurs'
   x_journal_posts_html:
     one: '<span class="count">1</span> publication du journal'
@@ -2322,7 +2324,6 @@ fr:
     medium: moyenne
     large: grande
     original: d’origine
-  photos_size_photos: "photos de %{photos_size}"
   photos_updated: Photos à jour.
   pi_consent_desc_title: Au sujet des informations personnelles
   pi_consent_desc_html: |
@@ -2835,8 +2836,10 @@ fr:
     subgenus: Sous-genre
     subsection: Sous-section
     complex: Complexe
+    #Singular
     species: Espèce
     hybrid: Hybride
+    #Singular
     subspecies: Sous-espèces
     variety: Variété
     form: Forme
@@ -3160,8 +3163,6 @@ fr:
     sound_has_been_flagged: Ce son a été marqué.
     soundcloud_replied_with_an_error: SoundCloud affiche une erreur. Veuillez réessayer plus tard.
     sounds: Sons
-    sounds_size_sound: "Son de %{sounds_size}"
-    sounds_size_sounds: "Sons de %{sounds_size}"
     view_all_soundcount_sounds: "Afficher tous les sons %{sound_count}"
     we_didnt_find_any_sounds: Désolé! Nous ne pouvons obtenir aucun son à partir de votre compte SoundCloud.
     you_need_to_link_your_soundcloud_account: Vous devez lier votre compte SoundCloud pour ajouter des sons.
@@ -3193,6 +3194,7 @@ fr:
   sourcing: Source
   spam: Pourriel
   spammer: Pollueur
+  #Plural
   species: Espèces
   species_by_category: espèces par catégorie
   species_from_around_the_world: Espèces du monde entier
