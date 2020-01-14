@@ -19,14 +19,18 @@ tr:
     other: '%{count} Tanımlama'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> Tanımlayıcı'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Tanımlayıcı'
   x_languages:
     one: "%{count} dil"
     other: "%{count} dil"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} yaşam listesinde ilk"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} yaşam listesinde ilk"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> yayın gönderisi'
@@ -98,6 +102,9 @@ tr:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> araştırma sınıfı gözlem tanımlaması ya da daha altı"
     other: "<span class='count'>%{count}</span> araştırma sınıfı gözlem tanımlaması ya da daha altı"
+  x_sounds:
+    one: "%{count} ses"
+    other: "%{count} ses"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> sınıf düzenlendi"
     other: "<span class='count'>%{count}</span> sınıf düzenlendi"
@@ -2510,7 +2517,6 @@ tr:
     medium: orta
     large: büyük
     original: orjinal
-  photos_size_photos: "%{photos_size} fotoğrafları"
   photos_updated: Fotoğraflar güncellendi.
   pi_consent_desc_title: Kişisel Bilgiler Hakkında
   pi_consent_desc_html: |
@@ -3059,8 +3065,10 @@ tr:
     section: Seksiyon
     subsection: Alt Seksiyon
     complex: Kompleks
+    #Singular
     species: Türler
     hybrid: Yüzergezer
+    #Singular
     subspecies: Alt Tür
     variety: Varyete
     form: Form
@@ -3387,8 +3395,6 @@ tr:
     sound_has_been_flagged: Bu ses işaretlendi.
     soundcloud_replied_with_an_error: SoundCloud bir hata ile cevap verdi. Lütfen daha sonra tekrar deneyin.
     sounds: Sesler
-    sounds_size_sound: "%{sounds_size} Ses"
-    sounds_size_sounds: "%{sounds_size} Ses"
     view_all_soundcount_sounds: "Tüm %{sound_count} sesleri göster"
     we_didnt_find_any_sounds: Üzgünüm! SoundCloud hesabınızdan hiç ses alamadık.
     you_need_to_link_your_soundcloud_account: Sesleri eklemek için SoundCloud hesabınızı bağlamanız gerekir.
@@ -3425,6 +3431,7 @@ tr:
   sourcing: Kaynak Belirtme
   spam: Gereksiz
   spammer: Gereksiz İleti Oluşturan
+  #Plural
   species: Türler
   species_by_category: kategoriye göre türler
   species_from_around_the_world: Tüm dünyadan türler
@@ -4643,19 +4650,27 @@ tr:
         vertical: Dikey
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} benzer"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} benzer"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} benzer olmayan"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} benzer olmayan"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} toplam"
+          #Count of how many taxa are present in an observation search
           other: "%{count} toplam"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} benzersiz"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} benzersiz"
       export:
         choose_columns_desc: Dışa aktarmak istediğiniz sütunları seçin
