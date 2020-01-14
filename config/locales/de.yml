@@ -19,11 +19,15 @@ de:
     other: '%{count} Bestimmungen'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> Bestimmer'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Bestimmer'
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} erste Lebensliste"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} erste Lebenslisten"
   x_journal_posts_html:
     one: '<span class="count">1</span> Journal-Beitrag'
@@ -2225,7 +2229,6 @@ de:
     medium: mittel
     large: groß
     original: Original
-  photos_size_photos: "%{photos_size} Fotos"
   photos_updated: Fotos aktualisiert.
   pi_consent_desc_html: |
     Wir speichern personenbezogene Daten wie Benutzernamen und E-Mail-Adressen, um Konten auf dieser Website zu verwalten. Um die Datenschutzgesetze einzuhalten, benötigen wir deine Einwilligung in diese Nutzung personenbezogener Daten, indem du dieses Kästchen ankreuzt. Um mehr darüber zu erfahren, welche Informationen wir sammeln und wie wir sie verwenden, lese bitte unsere
@@ -2762,8 +2765,10 @@ de:
     section: Sektion
     subsection: Untersektion
     complex: Komplex
+    #Singular
     species: Art
     hybrid: Hybrid
+    #Singular
     subspecies: Unterart
     variety: Varietät
     form: Form
@@ -3074,8 +3079,6 @@ de:
     sound: Audio
     soundcloud_replied_with_an_error: SoundCloud antwortete mit einem Fehler.  Bitte versuche es später noch einmal.
     sounds: Audio
-    sounds_size_sound: "%{sounds_size} Audio"
-    sounds_size_sounds: "%{sounds_size} Audio"
     view_all_soundcount_sounds: "Alle %{sound_count} Audios aufrufen"
     we_didnt_find_any_sounds: Sorry! Wir konnten keine Audio-Dateien von deinem SoundCloud-Account einspielen.
     you_need_to_link_your_soundcloud_account: Du musst dein SoundCloud-Konto verlinken, um Audio-Dateien hinzuzufügen.
@@ -3104,6 +3107,7 @@ de:
   sources_youve_added: Von dir hinzugefügte Quellen
   sources_and_credits: Quellen und Bildnachweise
   sourcing: Beschaffung
+  #Plural
   species: Arten
   species_by_category: Arten nach Kategorie
   species_from_around_the_world: Arten aus aller Welt
