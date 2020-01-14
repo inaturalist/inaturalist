@@ -19,11 +19,15 @@ es-AR:
     other: '%{count} identificaciones'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> Identificador'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identificadores'
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} observado por primera vez"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} observados por primera vez"
   x_journal_posts_html:
     one: '<span class="count">1</span> entrada de diario'
@@ -2435,7 +2439,6 @@ es-AR:
     medium: medio
     large: grande
     original: original
-  photos_size_photos: "%{photos_size} fotos"
   photos_updated: Fotos actualizadas.
   pi_consent_desc_title: Sobre la Informacion Personal
   pi_consent_desc_html: |
@@ -2989,8 +2992,10 @@ es-AR:
     section: Sección
     subsection: Subsección
     complex: Complejo
+    #Singular
     species: Especie
     hybrid: Híbrido
+    #Singular
     subspecies: Subespecie
     variety: variedad
     form: forma
@@ -3314,8 +3319,6 @@ es-AR:
     sound_has_been_flagged: Este sonido ha sido marcado
     soundcloud_replied_with_an_error: SoundCloud respondió con un error. Por favor, inténtalo de nuevo más tarde.
     sounds: Sonidos
-    sounds_size_sound: "%Duración del sonido: {sounds_size}"
-    sounds_size_sounds: "%Peso del sonido: {sounds_size}"
     view_all_soundcount_sounds: "Ver los %{sound_count} sonidos"
     we_didnt_find_any_sounds: Lo sentimos, no pudimos encontrar ningún sonido de tu cuenta de SoundCloud.
     you_need_to_link_your_soundcloud_account: Necesitas enlazar tu cuenta de SoundCloud para poder subir sonidos.
@@ -3352,6 +3355,7 @@ es-AR:
   sourcing: Poniendo la fuente
   spam: Spam
   spammer: Generador de spam
+  #Plural
   species: Especies
   species_by_category: especies por categoría
   species_from_around_the_world: Especies de todo el mundo
@@ -4642,19 +4646,27 @@ es-AR:
         vertical: Vertical
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} en común"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} en común"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} no en común"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} no en común"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} total"
+          #Count of how many taxa are present in an observation search
           other: "%{count} totales"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} único"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} únicos"
       export:
         choose_columns_desc: Elija las columnas que desea exportar
