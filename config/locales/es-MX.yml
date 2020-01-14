@@ -2169,7 +2169,6 @@ es-MX:
     small: chica
     medium: mediana
     large: larga
-  photos_size_photos: "%{photos_size} fotos"
   photos_updated: Fotos actualizadas.
   pin_verb: Anclar
   pink: Rosa
@@ -2611,8 +2610,10 @@ es-MX:
     section: Sección
     subsection: Subsección
     complex: Complejo
+    #Singular
     species: Especies
     hybrid: Híbrido
+    #Singular
     subspecies: Subespecies
     variety: Variedad
     form: Forma
@@ -2925,8 +2926,6 @@ es-MX:
     sound: Sonido
     soundcloud_replied_with_an_error: SoundCloud respondió con un error.  Por favor, inténtalo de nuveo más tarde.
     sounds: Sonidos
-    sounds_size_sound: "%Duración del sonido: {sounds_size}"
-    sounds_size_sounds: "Peso del sonido: %{sounds_size}"
     view_all_soundcount_sounds: "Ver los %{sound_count} sonidos"
     we_didnt_find_any_sounds: Lo sentimos, no pudimos encontrar ningún sonido de tu cuenta de SoundCloud.
     you_need_to_link_your_soundcloud_account: Necesitas enlazar tu cuenta de SoundCloud para poder subir sonidos.
@@ -2959,6 +2958,7 @@ es-MX:
   sources_and_credits: Fuentes y créditos
   sourcing: Poniendo la fuente
   spam: spam
+  #Plural
   species: Especies
   species_by_category: especies por categoría
   species_from_around_the_world: Especies de todo el mundo
