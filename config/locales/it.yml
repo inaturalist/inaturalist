@@ -19,14 +19,18 @@ it:
     other: '%{count} identificazioni'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">1</span> Identificatore'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identificatori'
   x_languages:
     one: "%{count} lingua"
     other: "%{count} lingue"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} per la prima volta nella lista degli esseri viventi"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} per la prima volta nella lista degli esseri viventi"
   x_journal_posts_html:
     one: '<span class="count">1</span> post del diario'
@@ -98,6 +102,9 @@ it:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> osservazione livello di ricerca identificate al grado di specie o inferiore"
     other: "<span class='count'>%{count}</span> osservazioni livello di ricerca identificate al grado di specie o inferiore"
+  x_sounds:
+    one: "%{count} suoni"
+    other: "%{count} suoni"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxon curato"
     other: "<span class='count'>%{count}</span> taxa curati"
@@ -2498,7 +2505,6 @@ it:
     medium: media
     large: grande
     original: originale
-  photos_size_photos: "Foto di %{photos_size}"
   photos_updated: Foto aggiornate.
   pi_consent_desc_title: Riguardo le Informazioni Personali
   pi_consent_desc_html: |
@@ -3047,8 +3053,10 @@ it:
     section: Sezione
     subsection: Sottosezione
     complex: Complesso
+    #Singular
     species: Specie
     hybrid: Ibrido
+    #Singular
     subspecies: Sottospecie
     variety: Varietà
     form: Forma
@@ -3375,8 +3383,6 @@ it:
     sound_has_been_flagged: Questo suono è stato contrassegnato
     soundcloud_replied_with_an_error: SoundCloud ha risposto con un messaggio di errore. Si prega di riprovare più tardi.
     sounds: Suoni
-    sounds_size_sound: "Suono di %{sounds_size}"
-    sounds_size_sounds: "Suoni di %{sounds_size}"
     view_all_soundcount_sounds: "Visualizza tutti i %{sound_count} suoni"
     we_didnt_find_any_sounds: Spiacenti! Non riusciamo ad ottenere nessun suono dall'account SoundCloud.
     you_need_to_link_your_soundcloud_account: Devi collegare il tuo account SoundCloud per aggiungere dei suoni.
@@ -3413,6 +3419,7 @@ it:
   sourcing: Preparazione fonte
   spam: Spam
   spammer: Spammer
+  #Plural
   species: Specie
   species_by_category: specie per categoria
   species_from_around_the_world: Specie da tutto il mondo
@@ -4602,19 +4609,27 @@ it:
         vertical: Verticale
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} in comune"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} in comune"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} non in comune"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} non in comune"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} totale"
+          #Count of how many taxa are present in an observation search
           other: "%{count} totali"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} uniche"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} uniche"
       export:
         choose_columns_desc: Scegli le colonne da esportare
