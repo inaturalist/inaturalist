@@ -54,10 +54,10 @@ class GlobalMap extends React.Component {
       color: "#ffee91"
     } );
     const thisYear = L.tileLayer(
-      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( thisYearOptions )}`
+      `${apiURL}/grid/{z}/{x}/{y}.png?${$.param( thisYearOptions )}`
     ).addTo( map );
     const lastYear = L.tileLayer(
-      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( lastYearOptions )}`
+      `${apiURL}/grid/{z}/{x}/{y}.png?${$.param( lastYearOptions )}`
     ).addTo( map );
     L.control.layers( { },
       {

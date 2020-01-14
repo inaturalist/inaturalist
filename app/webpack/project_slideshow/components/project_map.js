@@ -31,7 +31,7 @@ class ProjectMap extends Component {
     } );
 
     const inat = L.tileLayer(
-      `${TILESERVER}/colored_heatmap/{z}/{x}/{y}.png?` +
+      `${TILESERVER}/grid/{z}/{x}/{y}.png?` +
       `project_id=${this.props.project.id}&color=white&ttl=600` );
     this.map.addLayer( inat );
 

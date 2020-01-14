@@ -1935,7 +1935,7 @@ class ObservationsController < ApplicationController
     @elastic_params = valid_map_params
     @default_color = params[:color] || (@taxa.empty? ? "heatmap" : nil)
     @map_style = (( params[:color] || @taxa.any? ) &&
-                    params[:color] != "heatmap" ) ? "colored_heatmap" : "heatmap"
+                    params[:color] != "heatmap" ) ? "grid" : "heatmap"
     @map_type = ( params[:type] == "map" ) ? "MAP" : "SATELLITE"
     @default_color = params[:heatmap_colors] if @map_style == "heatmap"
     @about_url = @site.map_about_url.blank? ? view_context.wiki_page_url('help', anchor: 'mapsymbols') : @site.map_about_url
