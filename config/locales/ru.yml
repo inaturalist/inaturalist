@@ -31,9 +31,13 @@ ru:
     other: '%{count} идентификаций'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span>эксперт'
+    #Number of people who have added identifications
     few: '<span class="count">%{count}</span> эксперта'
+    #Number of people who have added identifications
     many: '<span class="count">%{count}</span> экспертов'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> экспертов'
   x_languages:
     one: "%{count} язык"
@@ -42,9 +46,13 @@ ru:
     other: "%{count} языков"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "Впервые %{count} в списке Жизни"
+    #Count of number of taxa that represent the first addition to a life list
     few: "Впервые %{count} в списке Жизни"
+    #Count of number of taxa that represent the first addition to a life list
     many: "Впервые %{count} в списке Жизни"
+    #Count of number of taxa that represent the first addition to a life list
     other: "Впервые %{count} в списке Жизни"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> сообщение в журнале'
@@ -2603,7 +2611,6 @@ ru:
     medium: средний
     large: большой
     original: исходный размер
-  photos_size_photos: "%{photos_size} фото"
   photos_updated: Фото обновлены.
   pi_consent_desc_title: О личной информации
   pi_consent_desc_html: |
@@ -3154,8 +3161,10 @@ ru:
     section: Секция
     subsection: Подсекция
     complex: Комплекс
+    #Singular
     species: Виды
     hybrid: Гибрид
+    #Singular
     subspecies: Подвид
     variety: Разновидность
     form: Форма
@@ -3486,8 +3495,6 @@ ru:
     sound_has_been_flagged: Это аудио было отмечено флажком
     soundcloud_replied_with_an_error: Ответ от SoundCloud выдал ошибку. Пожалуйста, повторите попытку позже.
     sounds: Звуки
-    sounds_size_sound: "%{sounds_size} звука"
-    sounds_size_sounds: "%{sounds_size} звуков"
     view_all_soundcount_sounds: "Просмотреть все %{sound_count} звуков"
     we_didnt_find_any_sounds: Сожалеем! Мы не смогли получить никакие звуки из вашей учётной записи SoundCloud.
     you_need_to_link_your_soundcloud_account: Вам нужно привязать свой аккаунт SoundCloud, чтобы добавлять звуки.
@@ -3524,6 +3531,7 @@ ru:
   sourcing: Задание источников
   spam: Спам
   spammer: Спамер
+  #Plural
   species: Вид
   species_by_category: виды по категориям
   species_from_around_the_world: Виды со всего мира
@@ -4765,16 +4773,24 @@ ru:
         vertical: Вертикально
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "всего %{count}"
+          #Count of how many taxa are present in an observation search
           few: "всего %{count}"
+          #Count of how many taxa are present in an observation search
           many: "всего %{count}"
+          #Count of how many taxa are present in an observation search
           other: "всего %{count}"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
-          one: "%{count} уникальный"
-          few: "%{count} уникальных"
-          many: "%{count} уникальных"
-          other: "%{count} уникальных"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          one: "уникальных %{count}"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          few: "уникальных %{count}"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          many: "уникальных %{count}"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          other: "уникальных %{count}"
       export:
         choose_columns_desc: Выберите столбцы, которые требуется экспортировать
         create_a_query_desc_html: |
