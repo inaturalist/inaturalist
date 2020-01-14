@@ -19,14 +19,18 @@ nl:
     other: '%{count} determinaties'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">1</span> determineerder'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> determineerders'
   x_languages:
     one: "%{count} taal"
     other: "%{count} talen"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "1 levenslijst-primeur"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} levenslijst-primeurs"
   x_journal_posts_html:
     one: '<span class="count">1</span> dagboekbericht'
@@ -98,6 +102,9 @@ nl:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> waarneming van onderzoekskwaliteit gedetermineerd tot op soort of lager"
     other: "<span class='count'>%{count}</span> waarnemingen van onderzoekskwaliteit gedetermineerd tot op soort of lager"
+  x_sounds:
+    one: "%{count} geluid"
+    other: "%{count} geluiden"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taxon gecureerd"
     other: "<span class='count'>%{count}</span> taxa gecureerd"
@@ -2538,7 +2545,6 @@ nl:
     medium: medium
     large: groot
     original: origineel
-  photos_size_photos: "%{photos_size} foto's"
   photos_updated: Foto's bijgewerkt.
   pi_consent_desc_title: Persoonlijke gegevens
   pi_consent_desc_html: |
@@ -3094,8 +3100,10 @@ nl:
     section: Sectie
     subsection: Subsectie
     complex: Complex
+    #Singular
     species: Soort
     hybrid: Hybride
+    #Singular
     subspecies: Ondersoort
     variety: Variëteit
     form: Vorm
@@ -3424,8 +3432,6 @@ nl:
     sound_has_been_flagged: Dit geluid is gemeld.
     soundcloud_replied_with_an_error: SoundCloud geeft een foutmelding. Probeer het later opnieuw.
     sounds: Geluiden
-    sounds_size_sound: "%{sounds_size} Geluid"
-    sounds_size_sounds: "%{sounds_size} Geluiden"
     view_all_soundcount_sounds: "Bekijk alle %{sound_count} geluiden"
     we_didnt_find_any_sounds: Sorry! We konden geen geluiden uit je SoundCloud-account krijgen.
     you_need_to_link_your_soundcloud_account: Verbind je SoundCloud-account om geluiden toe te voegen.
@@ -3462,6 +3468,7 @@ nl:
   sourcing: Herkomst
   spam: Spam
   spammer: Spammer
+  #Plural
   species: Soorten
   species_by_category: soorten per categorie
   species_from_around_the_world: Soorten van over de hele wereld
@@ -4731,19 +4738,27 @@ nl:
         vertical: Verticaal
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} gemeenschappelijk"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} gemeenschappelijk"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} niet gemeenschappelijk"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} niet gemeenschappelijk"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} in totaal"
+          #Count of how many taxa are present in an observation search
           other: "%{count} in totaal"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} unieke"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} unieke"
       export:
         choose_columns_desc: Selecteer de kolommen die je wenst te exporteren
