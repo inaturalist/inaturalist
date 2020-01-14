@@ -1,10 +1,170 @@
 cs:
+  x_comments:
+    one: '%{count} komentář'
+    few: '%{count} komentáře'
+    many: '%{count} komentáře'
+    other: '%{count} komentáře'
+  x_faves:
+    one: '%{count} oblíbený'
+    few: '%{count} oblíbené'
+    many: '%{count} oblíbených'
+    other: '%{count} oblíbené'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> vyřešeno"
+    few: "<span class='count'>%{count}</span> vyřešených"
+    many: "<span class='count'>%{count}</span> vyřešených"
+    other: "<span class='count'>%{count}</span> vyřešeny"
+  x_identifications:
+    one: '%{count} identifikace'
+    few: '%{count} identifikací'
+    many: '%{count} identifikací'
+    other: '%{count} identifikací'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> identifikace'
+    few: '<span class="count">%{count}</span> identifikací'
+    many: '<span class="count">%{count}</span> identifikací'
+    other: '<span class="count">%{count}</span> identifikací'
+  x_identifications_:
+    one: '%{count} identifikace'
+    few: '%{count} Identifikací'
+    many: '%{count} Identifikací'
+    other: '%{count} Identifikací'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Identifikátor'
+    #Number of people who have added identifications
+    few: '<span class="count">%{count}</span> Identifikátory'
+    #Number of people who have added identifications
+    many: '<span class="count">%{count}</span> Identifikátory'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Identifikátory'
   x_languages:
     one: "%{count} jazyk"
     few: "%{count} jazyků"
     many: "%{count} jazyků"
     other: "%{count} jazyků"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "Nejprve %{count} seznam životů"
+    #Count of number of taxa that represent the first addition to a life list
+    few: "Nejprve %{count} seznam životů"
+    #Count of number of taxa that represent the first addition to a life list
+    many: "Nejprve %{count} seznam životů"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "Nejprve %{count} seznam životů"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> příspěvek'
+    few: '<span class="count">%{count}</span> příspěvky'
+    many: '<span class="count">%{count}</span> příspěvky'
+    other: '<span class="count">%{count}</span> příspěvky'
+  x_matching_taxa:
+    one: '%{count} odpovídající taxon'
+    few: '%{count} odpovídající taxony'
+    many: '%{count} odpovídající taxony'
+    other: '%{count} odpovídající taxony'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> odpovídající taxon'
+    few: '<span class="count">%{count}</span> odpovídající taxony'
+    many: '<span class="count">%{count}</span> odpovídající taxony'
+    other: '<span class="count">%{count}</span> odpovídající taxony'
+  x_misidentifications_of_this_species:
+    one: "%{count} chybná identifikace tohoto druhu"
+    few: "%{count} chybné identifikace tohoto druhu"
+    many: "%{count} chybné identifikace tohoto druhu"
+    other: "%{count} chybné identifikace tohoto druhu"
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} nesprávná identifikace druhů v tomto %{rank}"
+    few: "%{count} nesprávné identifikace druhů v tomto %{rank}"
+    many: "%{count} nesprávné identifikace druhů v tomto %{rank}"
+    other: "%{count} nesprávné identifikace druhů v tomto %{rank}"
+  x_observations:
+    one: "%{count} pozorování"
+    few: "%{count} pozorování"
+    many: "%{count} pozorování"
+    other: "%{count} pozorování"
+  x_observations_:
+    one: "%{count} Pozorování"
+    few: "%{count} Pozorování"
+    many: "%{count} Pozorování"
+    other: "%{count} Pozorování"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> pozorování"
+    few: "<span class='count'>%{count}</span> pozorování"
+    many: "<span class='count'>%{count}</span> pozorování"
+    other: "<span class='count'>%{count}</span> pozorování"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} pozorování</a>"
+    few: "<a href='%{url}'>%{count} pozorování</a>"
+    many: "<a href='%{url}'>%{count} pozorování</a>"
+    other: "<a href='%{url}'>%{count} pozorování</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> pozorování bylo zkontrolováno"
+    few: "<span class='count'>%{count}</span> pozorování byla zkontrolována"
+    many: "<span class='count'>%{count}</span> pozorování byla zkontrolována"
+    other: "<span class='count'>%{count}</span> pozorování byla zkontrolována"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Pozorovatel'
+    few: '<span class="count">%{count}</span> Pozorovatelé'
+    many: '<span class="count">%{count}</span> Pozorovatelé'
+    other: '<span class="count">%{count}</span> Pozorovatelé'
+  x_others:
+    one: "%{count} další"
+    few: "%{count} další"
+    many: "%{count} další"
+    other: "%{count} další"
+  x_people:
+    one: "%{count} člověk"
+    few: "%{count} lidí"
+    many: "%{count} lidí"
+    other: "%{count} lidé"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}people</strong> helped %{user}with<strong>%{y}IDs</strong>"
+  x_photos:
+    one: "1 fotografie"
+    few: "%{count} fotek"
+    many: "%{count} fotek"
+    other: "%{count} fotek"
+  x_new_species:
+    one: "1 nový druh"
+    few: "%{count} Nové druhy"
+    many: "%{count} Nové druhy"
+    other: "%{count} Nové druhy"
+  x_new_users:
+    one: '%{count} nový uživatel'
+    few: '%{count} noví uživatelé'
+    many: '%{count} noví uživatelé'
+    other: '%{count} noví uživatelé'
+  x_species:
+    one: '1 druh'
+    few: '%{count} druhy'
+    many: '%{count} druhy'
+    other: '%{count} druhy'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> druh"
+    few: "<span class='count'>%{count}</span> druhů"
+    many: "<span class='count'>%{count}</span> druhů"
+    other: "<span class='count'>%{count}</span> druhy"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} druh</a>"
+    few: "<a href='%{url}'>%{count} druhů</a>"
+    many: "<a href='%{url}'>%{count} druhů</a>"
+    other: "<a href='%{url}'>%{count} druhy</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} návrh fitrován podle:"
+    few: "%{count} návrhů fitrováno podle:"
+    many: "%{count} návrhů fitrováno podle:"
+    other: "%{count} návrhy fitrovány podle:"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> pozorovaný taxon"
+    few: "<span class='count'>%{count}</span> pozorovaných taxonů"
+    many: "<span class='count'>%{count}</span> pozorovaných taxonů"
+    other: "<span class='count'>%{count}</span> pozorované taxony"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> pozorování na úrovni výzkumného stupně"
+    few: "<span class='count'>%{count}</span> pozorování na úrovni výzkumného stupně"
+    many: "<span class='count'>%{count}</span> pozorování na úrovni výzkumného stupně"
+    other: "<span class='count'>%{count}</span> pozorování na úrovni výzkumného stupně"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> kurátorský taxon"
     few: "<span class='count'>%{count}</span> kurátorských taxonů"
@@ -2042,7 +2202,6 @@ cs:
     medium: střední
     large: velká
     original: původní
-  photos_size_photos: "%{photos_size} fotky"
   photos_updated: Fotky byly aktualizovány.
   pin_verb: Připnout
   pink: růžový
@@ -2511,8 +2670,10 @@ cs:
     section: sekce
     subsection: pododdíl
     complex: Dokončit
+    #Singular
     species: druh
     hybrid: kříženec
+    #Singular
     subspecies: poddruh
     variety: odrůda
     form: forma
@@ -2822,8 +2983,6 @@ cs:
     sound: Zvuk
     soundcloud_replied_with_an_error: SoundCloud odpověděl chybou. Zkuste to prosím znovu později.
     sounds: Zvuky
-    sounds_size_sound: "%{sounds_size} Zvuk"
-    sounds_size_sounds: "%{sounds_size} Zvuky"
     view_all_soundcount_sounds: "Zobrazit všechny %{sound_count} zvuky"
     we_didnt_find_any_sounds: Omlouváme se! Nezískali jsme žádné zvuky z vašeho účtu na SoundCloud.
     you_need_to_link_your_soundcloud_account: Abyste mohli přidávat zvuky, musíte si propojit svůj účet na SoundCloud.
@@ -2856,6 +3015,7 @@ cs:
   sources_youve_added: Zdroje, které jste přidali
   sources_and_credits: Zdroje a autorství
   sourcing: Zajištění zdrojů
+  #Plural
   species: Druhy
   species_by_category: druhy podle kategorie
   species_from_around_the_world: Druhy z celého světa
