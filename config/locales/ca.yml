@@ -19,14 +19,18 @@ ca:
     other: '%{count} identificacions'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> identificador'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> identificadors'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomes"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} novetat a la llista de vida"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} novetats a la llista de vida"
   x_journal_posts_html:
     one: '<span class="count">1</span> article'
@@ -2502,7 +2506,6 @@ ca:
     medium: mitjà
     large: gran
     original: original
-  photos_size_photos: "fotos de %{photos_size}"
   photos_updated: Fotos actualitzades.
   pi_consent_desc_title: Quant a la informació personal
   pi_consent_desc_html: |
@@ -3051,8 +3054,10 @@ ca:
     section: Secció
     subsection: Subsecció
     complex: Complexe
+    #Singular
     species: Espècie
     hybrid: Híbrid
+    #Singular
     subspecies: Subespècie
     variety: Varietat
     form: Forma
@@ -3379,8 +3384,6 @@ ca:
     sound_has_been_flagged: Aquest só ha estat marcat.
     soundcloud_replied_with_an_error: SoundCloud ha respost amb un missatge d'error. Si us plau, proveu-lo més tard.
     sounds: Sons
-    sounds_size_sound: "Durada del so: %{sounds_size}"
-    sounds_size_sounds: "Durada del so: %{sounds_size}"
     view_all_soundcount_sounds: "Visualitza els %{sound_count} sons"
     we_didnt_find_any_sounds: Ho sentim, no hem pogut trobar cap só del vostre compte de SoundCloud.
     you_need_to_link_your_soundcloud_account: Heu d’enllaçar el vostre compte de SoundCloud per poder pujar sons.
@@ -3417,6 +3420,7 @@ ca:
   sourcing: Posant la font
   spam: Contingut brossa
   spammer: Spammer
+  #Plural
   species: Espècies
   species_by_category: espècies per categoria
   species_from_around_the_world: Espècies de tot el món
@@ -4634,19 +4638,27 @@ ca:
         vertical: Vertical
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} en comú"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} en comú"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} no en comú"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} no en comú"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} total"
+          #Count of how many taxa are present in an observation search
           other: "%{count} total"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} únic"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} únics"
       export:
         choose_columns_desc: Escolliu les columnes que voleu exportar
