@@ -25,10 +25,15 @@ en:
     other: '%{count} Identifications'
   # Number of people who have added identifications
   x_identifiers_html:
+    # Number of people who have added identifications
     zero: '<span class="count">%{count}</span> Identifiers'
+    # Number of people who have added identifications
     one: '<span class="count">%{count}</span> Identifier'
+    # Number of people who have added identifications
     few: '<span class="count">%{count}</span> Identifiers'
+    # Number of people who have added identifications
     many: '<span class="count">%{count}</span> Identifiers'
+    # Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identifiers'
   x_languages:
     zero: "%{count} languages"
@@ -38,7 +43,15 @@ en:
     other: "%{count} languages"
   # Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    # Count of number of taxa that represent the first addition to a life list
+    zero: "%{count} life list firsts"
+    # Count of number of taxa that represent the first addition to a life list
     one: "%{count} life list first"
+    # Count of number of taxa that represent the first addition to a life list
+    few: "%{count} life list firsts"
+    # Count of number of taxa that represent the first addition to a life list
+    many: "%{count} life list firsts"
+    # Count of number of taxa that represent the first addition to a life list
     other: "%{count} life list firsts"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> journal post'
@@ -5073,31 +5086,51 @@ en:
         vertical: Vertical
         # Count of how many taxa several observation searches have in common
         x_in_common:
+          # Count of how many taxa several observation searches have in common
           zero: "%{count} in common"
+          # Count of how many taxa several observation searches have in common
           one: "%{count} in common"
+          # Count of how many taxa several observation searches have in common
           few: "%{count} in common"
+          # Count of how many taxa several observation searches have in common
           many: "%{count} in common"
+          # Count of how many taxa several observation searches have in common
           other: "%{count} in common"
         # Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          # Count of how many taxa are not present in *all* of several observation searches
           zero: "%{count} not in common"
+          # Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} not in common"
+          # Count of how many taxa are not present in *all* of several observation searches
           few: "%{count} not in common"
+          # Count of how many taxa are not present in *all* of several observation searches
           many: "%{count} not in common"
+          # Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} not in common"
         # Count of how many taxa are present in an observation search
         x_total:
+          # Count of how many taxa are present in an observation search
           zero: "%{count} total"
+          # Count of how many taxa are present in an observation search
           one: "%{count} total"
+          # Count of how many taxa are present in an observation search
           few: "%{count} total"
+          # Count of how many taxa are present in an observation search
           many: "%{count} total"
+          # Count of how many taxa are present in an observation search
           other: "%{count} total"
         # Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          # Count of how many taxa in several observation searches are present in only one of those searches
           zero: "%{count} unique"
+          # Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} unique"
+          # Count of how many taxa in several observation searches are present in only one of those searches
           few: "%{count} unique"
+          # Count of how many taxa in several observation searches are present in only one of those searches
           many: "%{count} unique"
+          # Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} unique"
       export:
         choose_columns_desc: Choose the columns you want to export
