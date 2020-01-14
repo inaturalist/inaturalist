@@ -19,14 +19,18 @@ fi:
     other: '%{count} tunnistusta'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> tunnistaja'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> tunnistajaa'
   x_languages:
     one: "%{count} kieli"
     other: "%{count} kielet"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} uusi taksoni sinulle"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} uutta taksonia sinulle"
   x_journal_posts_html:
     one: '<span class="count">1</span> päiväkirjamerkintä'
@@ -2451,7 +2455,6 @@ fi:
     medium: keskikokoinen
     large: suuri
     original: alkuperäinen
-  photos_size_photos: "%{photos_size} kuvaa"
   photos_updated: Kuvat päivitetty.
   pi_consent_desc_title: Henkilötiedoista
   pi_consent_desc_html: |
@@ -2978,8 +2981,10 @@ fi:
     section: Osa
     subsection: Momentti
     complex: Kompleksi
+    #Singular
     species: Laji
     hybrid: Risteymä
+    #Singular
     subspecies: Alalaji
     variety: Muunnos
     form: Muoto
@@ -3282,8 +3287,6 @@ fi:
     sound: Ääni
     sound_has_been_flagged: Tämä ääni on merkitty.
     sounds: Äänet
-    sounds_size_sound: "%{sounds_size} ääni"
-    sounds_size_sounds: "%{sounds_size} ääntä"
     view_all_soundcount_sounds: "Näytä kaikki %{sound_count} ääntä"
     you_need_to_link_your_soundcloud_account: Sinun täytyy linkittää SoundCloud-tilisi lisätäksesi ääniä.
     your_soundcloud_account: oma SoundCloud-tili
@@ -3316,6 +3319,7 @@ fi:
   sources_and_credits: Lähteet ja tekijät
   spam: Roskaposti
   spammer: Roskapostittaja
+  #Plural
   species: Lajit
   species_by_category: lajit luokan mukaan
   species_from_around_the_world: Lajeja ympäri maailmaa
