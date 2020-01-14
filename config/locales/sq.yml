@@ -1947,7 +1947,6 @@ sq:
     medium: e mesme
     large: e madhe
     original: origjinale
-  photos_size_photos: "fotografi %{photos_size}"
   photos_updated: fotografia u përditësua.
   pink: njgyre roze
   place: Vend
@@ -2252,8 +2251,10 @@ sq:
     subgenus: nën-gjinia
     section: seksioni
     subsection: nën-seksioni
+    #Singular
     species: specjet
     hybrid: hibrid
+    #Singular
     subspecies: nën-speciet
     variety: llojllojshmëria
     form: forma
@@ -2526,8 +2527,6 @@ sq:
     sound: Tingull
     soundcloud_replied_with_an_error: SoundCloud  u përgjigj me një gabim. Ju lutem provoni përsëri më vonë.
     sounds: Tingujt
-    sounds_size_sound: "%{sounds_size} Tingull"
-    sounds_size_sounds: "%{sounds_size} Tinguj"
     view_all_soundcount_sounds: "Shih të gjithë %{sound_count} tingujt"
     we_didnt_find_any_sounds: Na vjen keq! Nuk arritëm të marrim ndonjë nga tingujt prej llogarisë suaj në SoundCloud.
     you_need_to_link_your_soundcloud_account: Ju duhet të lidheni me llogarinë tuaj në SoundCloud në mënyrë që të shtoni tingujt.
@@ -2543,6 +2542,7 @@ sq:
   sources: Burimet
   sources_youve_added: Burimet që i keni shtuar
   sources_and_credits: Burimet dhe atributet
+  #Plural
   species: Specjet
   species_by_category: specjet sipas kategorisë
   species_from_around_the_world: Specjet nga e gjithë bota
