@@ -36,7 +36,6 @@ class Identification < ActiveRecord::Base
   after_commit :update_categories,
                  :update_observation,
                  :update_user_counter_cache,
-                 :set_post_commit,
                  :skip_observation_indexing,
                unless: Proc.new { |i| i.observation.destroyed? }
   
