@@ -28,11 +28,6 @@
                         :default => default_taxon_name(it, :use_iconic_taxon_display_name => true)), it, :class => "taxon #{it.name}") %>
       <%- end.join(', ') -%>
     <% end %>
-    
-    <% unless @colors.blank? %>
-      <span class="description">| </span>
-      <%= @colors.map{|c| content_tag(:span, t(c.value, :default=>c.value), :class => "color #{c.value}")}.join(', ').html_safe %>
-    <% end %>
   </div>
   
   <div class="inter loading status" style="float: right; display: none; margin-left: 10px">
@@ -84,43 +79,6 @@
     </div>
   <% end %>
 
-  <% unless @faceted_colors.blank? && @colors.blank? -%>
-    <div id="colors_facet" class="facet">
-      <strong>
-        <% if @colors.blank? -%>
-          <%= link_to_toggle t(:colors), "#colors", :class => 'open' %>
-        <% else %>
-          <%= link_to t(:all_colors).html_safe, url_for_params(:without => [:colors, :page]), :rel => "nofollow" %>
-        <% end -%>
-      </strong>
-      <div id="colors">
-        <% for color in @faceted_colors %>
-          <%- selected = @color_ids && @color_ids.include?(color.id) -%>
-          <div class="<%= color.value %> facet_value<%= ' selected' if selected %>">
-            <% if selected %>
-              <% if @color_ids.size > 1 -%>
-                <%= link_to('&times;'.html_safe, 
-                  url_for_params(
-                    :colors => @color_ids.reject {|cid| cid == color.id}.join(','),
-                    :without => :page
-                  ), 
-                  :rel => "nofollow", 
-                  :class => 'right description') %>
-              <% else %>
-                <%= link_to('&times;'.html_safe, url_for_params(:without => [:colors, :page]), :rel => "nofollow", :class => 'right description') %>
-              <% end -%>
-            <% elsif @color_ids %>
-              <%= link_to "+", url_for_params(:colors => (@color_ids + [color.id]).uniq.join(','), :without => :page), :rel => "nofollow", :class => 'right' %>
-            <% end %>
-            <%= link_to "&nbsp;".html_safe, url_for_params(:colors => color.id, :without => :page), :rel => "nofollow", :class => 'icon' %>
-            <%= link_to t(color.value, :default=>color.value), url_for_params(:colors => color.id, :without => :page), :rel => "nofollow" %>
-            (<span class="count"><%= number_with_delimiter @facets[:colors][color.id] %></span>)
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end -%>
-  
   <% unless @faceted_places.blank? && @places.blank? -%>
     <div id="places_facet" class="facet">
       <strong>
@@ -213,19 +171,6 @@
                 url_for_params(:taxon_id => iconic_taxon.id), 
                 :rel => "nofollow",
                 :class => "taxon #{iconic_taxon.name}" %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-    <div class="last column span-5">
-      <div class="facet">
-        <h3><%= t(:what_color_was_it) %></h3>
-        <ul id="colors_facet">
-          <% for color in @all_colors %>
-            <li class="facet_value <%= color.value %>">
-              <%= link_to "&nbsp;".html_safe, url_for_params(:colors => color.id), :rel => "nofollow", :class => 'icon' %>
-              <%= link_to t(color.value, :default=>color.value), url_for_params(:colors => color.id), :rel => "nofollow" %>
             </li>
           <% end %>
         </ul>

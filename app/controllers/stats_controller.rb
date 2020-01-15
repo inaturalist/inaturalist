@@ -86,7 +86,13 @@ class StatsController < ApplicationController
         @responsive = true
         render layout: "bootstrap"
       end
-      format.json { render json: @year_statistic.data }
+      format.json {
+        if @year_statistic.blank?
+          render_404
+          return
+        end
+        render json: @year_statistic.data
+      }
     end
   end
 

@@ -359,8 +359,8 @@ class TaxaController < ApplicationController
 ## Custom actions ############################################################
   
   # /taxa/browse?q=bird
-  # /taxa/browse?q=bird&places=1,2&colors=4,5
-  # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton&colors=blue,black
+  # /taxa/browse?q=bird&places=1,2
+  # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton
   def search
     @q = params[:q].to_s.sanitize_encoding
 
@@ -387,10 +387,6 @@ class TaxaController < ApplicationController
       @place_ids = [@site_place.id]
       @places = [@site_place]
     end
-    if params[:colors] && @color_ids = params[:colors].split(',')
-      @color_ids = @color_ids.map(&:to_i)
-      @colors = Color.find(@color_ids)
-    end
 
     page = params[:page] ? params[:page].to_i : 1
     user_per_page = params[:per_page] ? params[:per_page].to_i : 24
@@ -412,12 +408,10 @@ class TaxaController < ApplicationController
     filters << { term: { is_active: true } } if @is_active === true
     filters << { term: { is_active: false } } if @is_active === false
     filters << { terms: { iconic_taxon_id: @iconic_taxa_ids } } if @iconic_taxa_ids
-    filters << { terms: { "colors.id": @color_ids } } if @color_ids
     filters << { terms: { place_ids: @place_ids } } if @place_ids
     filters << { term: { ancestor_ids: @taxon.id } } if @taxon
     search_options = { sort: { observations_count: "desc" },
       aggregate: {
-        color: { "colors.id": 12 },
         iconic_taxon_id: { "iconic_taxon_id": 12 },
         place: { "places.id": 12 }
       } }
@@ -444,11 +438,6 @@ class TaxaController < ApplicationController
       @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
     end
 
-    if @facets[:colors] = Hash[search_result.response.aggregations.color.buckets.map{ |b| [ b["key"], b["doc_count"] ]}]
-      @faceted_colors = Color.where(id: @facets[:colors].keys)
-      @faceted_colors_by_id = @faceted_colors.index_by(&:id)
-    end
-
     if !@places.blank? && @facets[:places] = Hash[search_result.response.aggregations.place.buckets.map{ |b| [ b["key"], b["doc_count"] ]}]
       place_ids_to_load = [@facets[:places].keys, @place_ids].flatten
       @faceted_places = Place.where("id in (?)", place_ids_to_load).order("name ASC")
@@ -457,7 +446,6 @@ class TaxaController < ApplicationController
       end
       @faceted_places_by_id = @faceted_places.index_by(&:id)
     end
-    
     begin
       @taxa.blank?
     rescue
@@ -477,12 +465,15 @@ class TaxaController < ApplicationController
       end
     end
 
-    if page == 1 &&
-        !@taxa.detect{|t| t.name.downcase == params[:q].to_s.downcase} && 
-        (exact_taxon =
-          Taxon.where("lower(name) = ?", params[:q].to_s.downcase).
-            where(is_active: true).first)
-      @taxa.unshift exact_taxon
+    if page == 1 && !@taxa.detect{ |t| t.name.downcase == params[:q].to_s.downcase }
+      exact_taxon_scope = Taxon.where("lower(name) = ?", params[:q].to_s.downcase).
+        where(is_active: true)
+      if @iconic_taxa_ids
+        exact_taxon_scope = exact_taxon_scope.where( iconic_taxon_id: @iconic_taxa_ids )
+      end
+      if exact_taxon = exact_taxon_scope.first
+        @taxa.unshift exact_taxon
+      end
     end
 
     if page == 1 && per_page != user_per_page
@@ -500,7 +491,6 @@ class TaxaController < ApplicationController
         
         if @taxa.blank?
           @all_iconic_taxa = Taxon::ICONIC_TAXA
-          @all_colors = Color.all
         end
         
         partial_path = if params[:partial] == "taxon" 
