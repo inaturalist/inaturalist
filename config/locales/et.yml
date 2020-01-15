@@ -19,7 +19,9 @@ et:
     other: '%{count} määratlust'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">1</span> määratleja'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> määratlejat'
   x_languages:
     one: "%{count} keel"
@@ -539,7 +541,6 @@ et:
   blog_widget: Blogipidamise tööriist
   blue: sinine
   blue_butterfly_etc: "sinine, sajajalgne, jne"
-  blue_icons_represent_political_units: "Sinised ikoonid tähistavad poliitilisi üksuseid nagu riigid, osariigid, provintsid, maakonnad, jne ning rohelised ikoonid tähistavad erinevaid looduslikke kohti (pargid, kaitsealad). Kaarti suurendades näed ka väikeseimaid kohti."
   body: Tekst
   bounding_box: Piirkast
   breadcrumbs: Hierarhia
@@ -683,7 +684,6 @@ et:
   clear_filters: Eemalda filtrid
   clear_search: Tühjenda otsing
   click_the_map: "Koha lisamiseks <strong>vajuta kaardile</strong>."
-  click_the_map_to_jump_new_place: Vajuta kaardile, et vaadata järgmist kohta
   close: Sulge
   code: Kood
   colors: Värvid
@@ -1384,7 +1384,6 @@ et:
   inat_believes_this_is_a_complete_listing: "%{site_name} usub, et tegemist on selle koha täielikut taksonite nimekirjaga."
   inat_user_profile: "%{site_name}: kasutaja %{user} profiil"
   inaturalist_places: "%{site_name} kohad"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name} kohad on mõeldud selleks, et talletada infot selle kohta, mis elab kus. Kui otsid kindlat liiki, siis tead, kust seda otsida. Igal kohal on kontrollnimekiri, mis sisaldab seal olevaid liike. Seega on neist abi leidmaks asju, mida oled mingis konkreetses kohas kohanud."
   info: Teave
   input_taxon: Sisendtakson
   insects: putukad
@@ -2196,7 +2195,6 @@ et:
     medium: keskmine
     large: suur
     original: algne
-  photos_size_photos: "%{photos_size} fotot"
   photos_updated: Fotod värskendatud.
   pin_verb: Säilita
   pink: roosa
@@ -2637,8 +2635,10 @@ et:
     subgenus: Alamperekond
     section: Sektsioon
     subsection: Alamsektsioon
+    #Singular
     species: Liik
     hybrid: Hübriid
+    #Singular
     subspecies: Alamliik
     variety: Teisend
     form: Vorm
@@ -2947,8 +2947,6 @@ et:
     sound: Heli
     soundcloud_replied_with_an_error: SoundCloud saatis veateate. Palun proovi hiljem uuesti.
     sounds: Helid
-    sounds_size_sound: "%{sounds_size} heli"
-    sounds_size_sounds: "%{sounds_size} heli"
     view_all_soundcount_sounds: "Vaata kõik %{sound_count} heli"
     we_didnt_find_any_sounds: Vabandust! Me ei saanud sinu SoundCloud kontolt ühtegi heli.
     you_need_to_link_your_soundcloud_account: Helide lisamiseks pead seostama SoundCloud konto.
@@ -2983,6 +2981,7 @@ et:
   sourcing: Allikad
   spam: Rämpspost
   spammer: Rämpspostitaja
+  #Plural
   species: Liigid
   species_by_category: liigid kategooriate kaupa
   species_from_around_the_world: Liigid kõikjalt maailmast
@@ -3222,8 +3221,6 @@ et:
   the_world: Maailm
   the_world_is_full_of_interesting_places: |
     Maailm on täis huvitavaid kohti, mis kõik on omakorda täis imelikke ja imelisi eluvorme. Mõned neist on teisel pool maakera, mõned siinsamas kodutänavas! Lehel %{site_name} olevad kohad aitavad sul leida elutegevust tervel planeedil. Alusta avastamist!
-  the_world_is_full_of_interesting_places_short: |
-    Maailm on täis huvitavaid kohti, mis kõik on omakorda täis imelikke ja imelisi eluvorme. Mõned neist on teisel pool maakera, mõned siinsamas kodutänavas!
   then_keybord_sequence: siis
   there_are_x_synonyms_html:
     one: "<span class='count'>1</span> sününüüm</span>"

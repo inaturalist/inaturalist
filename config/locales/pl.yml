@@ -31,9 +31,13 @@ pl:
     other: '%{count} oznaczenia'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">1</span> oznaczający'
+    #Number of people who have added identifications
     few: '<span class="count">%{count}</span> oznaczających'
+    #Number of people who have added identifications
     many: '<span class="count">%{count}</span> oznaczających'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> oznaczającego'
   x_languages:
     one: "%{count} język"
@@ -42,9 +46,13 @@ pl:
     other: "%{count} języka"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} pierwsza obserwacja na liście życia"
+    #Count of number of taxa that represent the first addition to a life list
     few: "%{count} pierwsze obserwacje na liście życia"
+    #Count of number of taxa that represent the first addition to a life list
     many: "%{count} pierwszych obserwacji na liście życia"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} pierwszej obserwacji na liście życia"
   x_journal_posts_html:
     one: '<span class="count">1</span> wpis w dzienniku'
@@ -703,7 +711,6 @@ pl:
   blog_widget: Widżet bloga
   blue: niebieski
   blue_butterfly_etc: "modraszek, motyl, itp."
-  blue_icons_represent_political_units: "Niebieskie ikony oznaczają jednostki administracyjne, takie jak państwa, województwa, stany, prowincje i podobne, a zielone ikony oznaczają różnego rodzaju przestrzenie publiczne (parki, rezerwaty). Po przybliżeniu zobaczysz więcej szczegółów."
   body: Treść
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
@@ -836,7 +843,6 @@ pl:
   clear_filters: Wyczyść filtry
   clear_search: Wyczyść wyszukiwania
   click_the_map: "<strong>Kliknij mapę</strong>, aby dodać miejsce."
-  click_the_map_to_jump_new_place: Kliknij mapę, aby przeskoczyć do następnego miejsca
   close: Zamknij
   code: Kod
   colors: Kolory
@@ -1572,7 +1578,6 @@ pl:
   inat_user_profile: "%{site_name}: Profil użytkownika %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} to wspólna inicjatywa California Academy of Sciences i National Geographic Society."
   inaturalist_places: "Lokalizacje %{site_name}"
-  inaturalist_places_are_way_record_what_lives_where: "Miejsca na %{site_name} to sposób na rejestrowanie co gdzie żyje. Jeśli szukasz konkretnego gatunku, będziesz wiedzieć gdzie można go znaleźć. Każde miejsce posiada checklistę, która zapisuje wszystkie gatunki występujące na danym terenie - może to być pomocne przy identyfikowaniu organizmów znalezionych w konkretnym miejscu."
   info: Informacje
   input_taxon: Takson wejściowy
   insects: owady
@@ -2341,7 +2346,6 @@ pl:
     medium: średni
     large: duży
     original: oryginalny
-  photos_size_photos: "%{photos_size} zdjęcia"
   photos_updated: Zdjęcia zaktualizowane.
   pin_verb: Przypnij
   pink: różowy
@@ -2779,8 +2783,10 @@ pl:
     section: Sekcja
     subsection: Podsekcja
     complex: Kompleks
+    #Singular
     species: Gatunek
     hybrid: Hybryda
+    #Singular
     subspecies: Podgatunek
     variety: Odmiana
     form: Forma
@@ -2971,6 +2977,7 @@ pl:
   source_url: Źródłowy adres URL
   sources: Źródła
   spam: Spam
+  #Plural
   species: Gatunki
   species_by_category: gatunki według kategorii
   species_from_around_the_world: Gatunki z całego świata
@@ -4028,6 +4035,8 @@ pl:
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
   activerecord:
     models:
+      #Noun
+      Flag: Zgłoszenie
       TaxonLink: Link do taksonu
     attributes:
       assessment:

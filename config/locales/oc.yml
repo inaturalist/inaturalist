@@ -1041,8 +1041,10 @@ oc:
     subtribe: sostribú
     genus: genre
     genushybrid: genre ibrid
+    #Singular
     species: espècias
     hybrid: ibrid
+    #Singular
     subspecies: sosespècias
     variety: varietat
     form: forma
@@ -1102,8 +1104,6 @@ oc:
     sound: Son
     soundcloud_replied_with_an_error: SoundCloud aficha una error. Reensajatz pus tard.
     sounds: Sons
-    sounds_size_sound: "Son %{sounds_size}"
-    sounds_size_sounds: "Sons %{sounds_size}"
   source: Font
   source_: 'Font :'
   source_list:
@@ -1112,6 +1112,7 @@ oc:
   sources: Fonts
   sourcing: Font
   spam: spam
+  #Plural
   species: Espècias
   start: Aviar
   states: Estats

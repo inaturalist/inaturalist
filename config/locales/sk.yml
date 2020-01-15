@@ -380,7 +380,6 @@ sk:
   blog_widget: Zásuvný modul pre blog
   blue: modrá
   blue_butterfly_etc: "modrý, motýľ atď."
-  blue_icons_represent_political_units: "Modré ikony označujú správnej jednotky, napríklad štáty, provincie, okresy a podobne, zatiaľ čo zelené ikony označujú rôzne druhy otvorených priestorov (parky, rezervácie). Keď sa priblížite, uvidíte viac menších miest."
   body: Telo
   bounding_box: Ohraničenie
   breadcrumbs: Strúhanka
@@ -518,7 +517,6 @@ sk:
   clear_filters: Zrušiť filtre
   clear_search: Zrušiť vyhľadávanie
   click_the_map: "<strong>Kliknite na mapu</strong> a pridajte miesto."
-  click_the_map_to_jump_new_place: Kliknite na mapu a preskočte na nové miesto
   close: Zatvoriť
   code: Kód
   colors: Farby
@@ -1965,7 +1963,6 @@ sk:
     medium: stredný
     large: veľký
     original: pôvodný
-  photos_size_photos: "%{photos_size} fotky"
   photos_updated: Fotky boli aktualizované.
   pi_consent_desc_title: O osobných údajoch
   pin_verb: Pripnúť
@@ -2435,8 +2432,10 @@ sk:
     section: Sekcia
     subsection: Podsekcia
     complex: Dokončiť
+    #Singular
     species: Druh
     hybrid: Kríženec
+    #Singular
     subspecies: Poddruh
     variety: Varieta
     form: Forma
@@ -2724,8 +2723,6 @@ sk:
     sound_has_been_flagged: Tento zvuk bol označený.
     soundcloud_replied_with_an_error: SoundCloud odpovedal chybou. Skúste to prosím znovu neskôr.
     sounds: Zvuky
-    sounds_size_sound: "%{sounds_size} Zvuk"
-    sounds_size_sounds: "%{sounds_size} Zvuky"
     view_all_soundcount_sounds: "Zobraziť všetky %{sound_count} zvuky"
     we_didnt_find_any_sounds: Prepáčte! Nezískali sme žiadne zvuky z vášho účtu na SoundCloud.
     you_need_to_link_your_soundcloud_account: Aby ste mohli pridávať zvuky, musíte si prepojiť svoj účet na SoundCloud.
@@ -2756,6 +2753,7 @@ sk:
   sources_youve_added: Zdroje, ktoré ste pridali
   sources_and_credits: Zdroje a autorstvo
   sourcing: Zaistenie zdrojov
+  #Plural
   species: Druhy
   species_by_category: druhy podľa kategórie
   species_from_around_the_world: Druhy z celého sveta

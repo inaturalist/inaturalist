@@ -441,7 +441,6 @@ lt:
   blog_widget: Tinklaraščio valdiklis
   blue: mėlyna
   blue_butterfly_etc: "mėlyna, drugelis, t.t."
-  blue_icons_represent_political_units: "Mėlynos ikonos vaizduoja politinius darinius, tokius kaip valstybės, valstijos, provincijos, apskritys ir panašiai, o žalios ikonos vaizduoja skirtingas atviras erdves (parkai, rezervai). Jei padidinsite žemėlapį pamatysite daugiau, mažesnių vietų."
   body: Tekstas
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
@@ -533,7 +532,6 @@ lt:
   clear_filters: Valyti filtrus
   clear_search: Valyti paiešką
   click_the_map: "<strong>Paspauskite ant žemėlapio</strong>, kad pridėtumėte vietą."
-  click_the_map_to_jump_new_place: Paspauskite ant žemėlapio, kad pereitumėte į naują vietą
   close: Uždaryti
   code: Kodas
   colors: Spalvos
@@ -763,7 +761,7 @@ lt:
   date_updated: Data atnaujinta
   day: Diena
   decrease_brightness: Sumažinti ryškumą
-  default: bumatytasis
+  default: numatytas
   default_invite_comment: "Puiki nuotrauka!  Turėtumėte tai įkelti į %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Numatytoji stebėjimo licenzija
   default_photo_license: Numatytoji nuotraukos licencija
@@ -917,6 +915,7 @@ lt:
   enable_offline_access_for_mobile: Įgalinti prieigą neprisijungus mobiliesiems
   encompassing_places: Apimamos vietos
   end: Baigti
+  end_date_time: Pabaigos data / laikas
   endangered: Nykstantis
   endemic: Endeminis
   endemic_to_x: "Endeminis vietovėje: %{x}"
@@ -929,6 +928,7 @@ lt:
     invasive: Invazinis
     managed: Kontroliuojamas
     native: Vietinis
+    naturalised: Natūralizavęsis
   establishment_means: Įsikūrimo būdas
   event_in_progress: Renginys vyksta
   event_stats: Renginio Statistika
@@ -1016,7 +1016,7 @@ lt:
   first_observer: Pirmas stebėtojas
   #Verb form, as in "Flag this item"
   flag: Pažymėti
-  flag_as_inappropriate: Žymėti, kaip neleidžiamą
+  flag_as_inappropriate: Žymėti kaip nederamą
   flag_an_item: Žymėti elementą
   flag_as_spammer: Žymėti kaip šlamštą
   flag_as_non_spammer: Žymėti kaip ne šlamštą
@@ -1254,13 +1254,12 @@ lt:
   in_the_past_week: praėjusioje savaitėje
   inactive: Neaktyvus
   inactive_taxon: Neaktyvus taksonas
-  inappropriate_content: Netinkamas turinys?
+  inappropriate_content: Nederamas turinys?
   inat_account_action: "%{site_name} &#58; Vartotojas &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} mano, jog tai yra pilnas šio taksono sąrašas šioje vietoje."
   inat_user_profile: "%{site_name}: %{user} profilis"
   inaturalist_is_a_joint_initiative: "%{site_name} yra bendra California Academy of Sciences ir National Geographic Society iniciatyva."
   inaturalist_places: "%{site_name} vietos"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name} Vietos yra būdas užfiksuoti, kas kur gyvena. Jeigu ieškote tam tikros rūšies, žinosite, kur ją surasti. Kiekviena vieta turi visų ten aptiktų rūšių sąrašą, tai gali būti naudinga norint pasižiūrėti, ką suradote tam tikrose vietose."
   info: Informacija
   insects: vabzdžiai
   insect_life_stage: Vabzdžio gyvenimo ciklo stadija
@@ -1339,7 +1338,7 @@ lt:
     observations: Daugiausiai stebėjimų per %{time}
     identifications: Daugiausiai identifikacijų per %{time}
   leading: Vedantis
-  learn: Sužinokite
+  learn: Sužinoti
   learn_about_the_species_live_in: Sužinokite apie rūšis, kurios gyvena
   learn_more: Sužinokite daugiau
   learn_more_raquo: "Sužinokite daugiau &raquo;"
@@ -1492,6 +1491,7 @@ lt:
     zh-CN: Kinų (supaprastinta)
     zh-TW: Kinų (tradicinė)
   locality_notes: Vietos užrašai
+  localized_species_accounts: Lakalizuotos rūšių paskyros
   location: Vieta
   location_is_accurate: Vieta tiksli
   location_is_exact: vieta yra labai tiksli
@@ -1554,7 +1554,7 @@ lt:
   media: Nuotrauka
   media_type: Medijos tipas
   medium: vidutinis
-  meet: Susitikti
+  meet: Susipažinti
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist tinklo</a> narys
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
@@ -1751,18 +1751,41 @@ lt:
   no_results_found: Rezultatų nerasta
   no_results_for: 'Jokių rezultatų '
   no_results_matching: Atitinkančių rezultatų nerasta
+  no_subject_parens: "(Nėra temos)"
+  no_suggestions_available: Nėra pasiūlymų
+  no_summary_from_wikipedia: Nėra aprašymo iš Vikipedijos
+  no_summary_has_been_set: Joks aprašymas nebuvo išsiųstas.
   no_taxa: Nėra taksonų
   no_taxa_selected: Jokie taksonai nepasirinkti!
   no_taxon_framework_relationships: nėra taksono struktūros ryšių
+  no_wikipedia_page_for_taxon: Šis taksonas neturi Vikipedijos straipsnio.
+  noble_curators: "%{site} geraširdžiai kuratoriai"
   non_human?: Ne žmogus?
   none: Nė vienas
+  none_found: Nieko nerasta
+  normal: normalus
+  not_completed: Nebaigta
   not_covered_by_any_taxon_frameworks: Neapima jokia taksonų struktūra
+  not_evaluated: neįvertinta
+  not_findig_what_you_want: Nerandate, ko norite?
   not_finding_place_you_want?: Nerandate norimos vietos?
+  not_found: Nerasta
   not_linked_facebook: "Jūsų %{site_name} paskyra nėra susieta su jūsų Facebook paskyra"
   not_linked_flickr: "Jūsų %{site_name} paskyra nėra susieta su jūsų Flickr paskyra"
+  not_on_this_list: Ne šiame sąraše.
+  not_recorded: Neįrašyta
+  not_resolved: Neišspręsta
+  not_seeing_what_looking_for: Nerandate to, ko ieškote?
+  note: Pastaba
+  notes: Pastabos
+  notify_me_about_redundant_identifications: Praneškite, kai patvirtinamos identifikacijos
   number_of_observations: Stebėjimų skaičius
   number_of_observers_value: "Stebėtojų skaičius: %{number}"
   number_of_observers: "Stebėtojų skaičius"
+  number_selected: "# pasirinkta"
+  obs: Stb
+  obs_cid_d: Stb BID
+  obs_id_d: Stb ID
   obscured_or_private: paslėptas arba privatus
   observation: Stebėjimas
   observation_: stebėjimas
@@ -1798,16 +1821,29 @@ lt:
   observations_saved: Stebėjimas(-ai) išsaugotas(-i)!
   observations_this_year_vs_last_year: Stebėjimai šiais metais palyginus su praėjusiais
   observations_total: Iš viso stebėjimų
+  observations_w: Stebėjimai su
+  observations_was_successfully_updated: Stebėjimas(-ai) buvo sėkmingai atnaujintas(-i).
   observations_widget: Stebėjimų valdiklis
   observations_without_media: Stebėjimai be medijos
   observed: Stebėta
+  observed_by: Stebėjo
   observed_on: Stebėta
+  observer: Stebėtojas
   observers: Stebėtojai
+  observer_short: Stebėtojas
+  occurrence_status_descriptions:
+    absent: Neaptinkamas šioje vietoje
   of_observations: stebėjimai
   of_species: rūšys
   of_observers: stebėtojai
+  of_identifiers: identifikuotojai
   of_places: vietos
+  of_this_taxon: Šio taksono
+  offensive_inappropriate: Įžeidžiantis / Netinkamas
   official_blog: Oficialus tinklaraštis
+  offline_access_enabled: Prieiga neprisijungus įgalinta
+  old_observation_form: Sena stebėjimo forma (nebenaudojama)
+  ok: "Gerai"
   onboarding:
     observe_panel_title: Pradėkime įkeldami keletą stebėjimų
     observe_panel_body_p1_local: Reikia įkvėpimo? Štai kokie organizmai buvo stebėti netoliese...
@@ -1821,22 +1857,44 @@ lt:
   only_show_active_taxa: Rodyti tik aktyvius taksonus
   only_show_taxa_fom_this_list: "Rodyti taksonus tik iš šio sąrašo"
   only_species: tik rūšys
+  open_description: "Visi gali matyti koordinates, nebent taksonui gresia išnykimas."
   optional: neprivaloma
   or: arba
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
+  or_all_caps: ARBA
   or_choose_high_level_taxa: "...arba rinkitės aukštesnio lygio taksonus"
+  or_if_you_dont_want_email: "Arba jeigu tiesiog nenorite el. laiškų..."
   or_upload: Arba įkelti
+  order_by: Rikiuoti pagal
+  organism_is_wild: Organizmas yra laukinis
+  organisms: Organizmai
+  original: Originalas
   originally_flagged_by: Pirmasis pažymėjo
   originally_imported_from_url_html: "Pradžioje importuota iš <a href='%{url}'>%{url}</a>"
+  original_page_url_for_this_photo: "Originalus šios nuotraukos puslapio URL."
+  original_url_for_this_map: Originalus šio žemėlapio URL
+  organism_appears_captive_cultivated: Organizmas yra naminis / kultivuojamas
+  other: Kita
   other_animals: kiti gyvūnai
+  other_lexicons: Kiti leksikonai
   other_names: Kiti pavadinimai
   other_species_commonly_misidentified_as_this_species: Kitos rūšys, dažnai palaikomos šia rūšimi
+  other_species_commonly_misidentified_as_this_species_in_place_html: 'Kitos rūšys dažnai palaikomos šia rūšimi vietovėje: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_complex: Kiti taksonai dažnai palaikomi šiuo kompleksu
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: 'Kiti taksonai dažnai palaikomi šiuo kompleksu vietovėje: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_genus: Kiti taksonai dažnai palaikomi šia gentimi
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: 'Kiti taksonai dažnai palaikomi šia gentimi vietovėje: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_genushybrid: Kiti taksonai dažnai palaikomi šiuo genčių hibridu
   other_taxa_commonly_misidentified_as_this_hybrid: Kiti taksonai dažnai palaikomi šiuo hibridu
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: 'Kiti taksonai dažnai palaikomi šiuo hibridu vietovėje: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_rank: Kiti taksonai dažnai palaikomi šiuo/šia %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: 'Kiti taksonai dažnai palaikomi %{rank} vietovėje: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_section: Kiti taksonai dažnai palaikomi šiuo skirsniu
   other_taxa_commonly_misidentified_as_this_species: Kiti taksonai dažnai palaikomi šia rūšimi
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: 'Kiti taksonai dažnai palaikomi šia rūšimi vietovėje: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_subgenus: Kiti taksonai dažnai palaikomi šia pogentimi
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 'Kiti taksonai dažnai palaikomi šia pogentimi vietovėje: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_subsection: Kiti taksonai dažnai palaikomi šiuo poskirsniu
   our_blog: Mūsų tinklaraštis
   out_of_range: Už ribų
@@ -1871,19 +1929,35 @@ lt:
   personal_message_description: Niekam nepatinka, kai jiems rašo kompiuteris! Geriau pakvieskite draugus asmeniškai!
   per_page: "Puslapyje"
   photo: Nuotrauka
+  photo_deleted: Nuotrauka ištrinta
+  photo_destroyed_because_it_was_deleted_from: "Nuotrauka sunaikinta, nes ji buvo ištrinta iš išorinio tinklalapio arba %{site_name} nebeturi leidimo jos rodyti"
   photo_type: Nuotraukos tipas
+  photo_urls_repaired: Nuotraukos URL sutaisyti
   photos_chosen_for_this_taxon: Nuotraukos parinktos šiam taksonui
   photos_from: Nuotraukos iš
   photos_of_taxon_html: "%{taxon} nuotraukos"
   photos_or_sounds: Nuotraukos arba garsai
   photos_or_sounds?: Nuotraukos ar garsai?
+  photos_size:
+    small: mažos
+    medium: vidutinės
+    large: didelės
+    original: originalaus dydžio
   photos_updated: Nuotraukos atnaujintos.
+  pi_consent_desc_title: Apie asmeninę informaciją
   pin_verb: Žymė
   place: Vieta
+  placeholder: Užpildas
   place_added_to_inat_by: "Vietą įkėlė į %{site_name}"
   place_deleted: Vieta ištrinta.
   place_geo:
     geo_planet_place_types:
+      Aggregate: Agregatas
+      aggregate: agregatas
+      Airport: Oro uostas
+      airport: oro uostas
+      Building: Pastatas
+      building: pastatas
       Canton: Kantonas
       Commune: Komuna
       commune: bendruomenė
@@ -1897,6 +1971,8 @@ lt:
       district: rajonas
       Division: Skyrius
       division: skyrius
+      Drainage: Drenažas
+      drainage: drenažas
       Estate: Nuosavybė
       estate: nuosavybė
       Governorate: Gubernija
@@ -1913,6 +1989,8 @@ lt:
       island: sala
       Land_Feature: Reljefo ypatybė
       land_feature: reljefo ypatybė
+      Local_Administrative_Area: Lokalus administracinis vienetas
+      local_administrative_area: lokalus administracinis vienetas
       Local_Authority: Vietos Valdžios Institucija
       local_authority: Vietos Valdžios Institucija
       Miscellaneous: Įvairūs
@@ -1921,6 +1999,8 @@ lt:
       municipality: savivaldybė
       Nationality: Tautybė
       nationality: tautybė
+      Nearby_Intersection: Artima sankryža
+      nearby_intersection: artima sankryža
       Open_Space: Atvira erdvė
       open_space: atvira erdvė
       Parish: Apylinkė
@@ -1937,14 +2017,54 @@ lt:
       region: regionas
       Republic: Respublika
       republic: Respublika
+      Shire: Grafystė
+      shire: grafystė
+      Sports_Team: Sporto komanda
+      sports_team: sporto komanda
+      State: Valstija
+      state: valstija
+      Street: Gatvė
+      street: gatvė
+      Street_Segment: Gatvės segmentas
+      street_segment: gatvės segmentas
+      Subdivision: Poskyris
+      subdivision: poskyris
+      Suburb: Priemiestis
+      suburb: priemiestis
+      Supername: Šalių grupė
+      supername: šalių grupė
+      Territory: Teritorija
+      territory: teritorija
+      Time_Zone: Laiko juosta
+      time_zone: time Zone
+      Town: Miestas
+      town: miestas
+      Undefined: Neapibrėžta
+      undefined: neapibrėžta
       Unknown: Nežinomas
       unknown: Nežinomas
+      Zone: Zona
+      zone: zona
   place_imported: Vieta importuota!
+  place_must_have_a_boundary_defined: Vieta turi turėti apibrėžtą ribą.
   place_name: Vietos pavadinimas
+  place_notes: Vietos užrašai
+  place_updated: Vieta atnaujinta!
+  placement: Išdėstymas
   places: Vietos
   places_added_by_members_of_the_community: Vietas pridėjo bendruomenės nariai
+  places_maintained_by_site_admins: Vietas valdo tinklalapio administratoriai
   places_name:
+    afghanistan: Afganistanas
+    africa: Afrika
+    akrotiri_and_dhekelia: Akrotiris ir Dekelija
+    aland: Alandai
+    albania: Albanija
+    algeria: Alžyras
+    american_samoa: Amerikos Samoa
+    andorra: Andora
     angola: Angola
+    anguilla: Angilija
     antarctica: Antarktida
     antigua_and_barbuda: Antigva ir Barbadosas
     argentina: Argentina
@@ -1997,9 +2117,58 @@ lt:
     croatia: Kroatija
     cuba: Kuba
     curacao: Kiurasao
+    cyprus: Kipras
+    czech_republic: Čekijos Respublika
+    democratic_republic_of_the_congo: Kongo Demokratinė Respublika
     denmark: Danija
+    djibouti: Džibutis
+    dominica: Dominika
+    dominican_republic: Dominikos Respublika
+    east_timor: Rytų Timoras
+    ecuador: Ekvadoras
+    egypt: Egiptas
+    el_salvador: Salvadoras
+    equatorial_guinea: Pusiaujo Gvinėja
+    eritrea: Eritrėja
+    estonia: Estija
+    ethiopia: Etiopija
+    europe: Europa
+    falkland_islands: Folklando (Malvinų) salos
+    faroe_islands: Farerų salos
+    fiji: Fidžis
+    finland: Suomija
+    france: Prancūzija
+    french_guiana: Prancūzijos Gviana
+    french_polynesia: Prancūzijos Polinezija
+    french_southern_territories: Prancūzijos Pietų Sritys
+    gabon: Gabonas
+    gambia: Gambija
+    georgia: Gruzija
+    germany: Vokietija
+    ghana: Gana
+    gibraltar: Gibraltaras
+    greece: Graikija
+    greenland: Grenlandija
+    grenada: Grenada
+    guadeloupe: Gvadelupa
+    guam: Guamas
+    guatemala: Gvatemala
+    guernsey: Gernsis
+    guinea: Gvinėja
+    guinea_bissau: Bisau Gvinėja
+    guyana: Gajana
+    haiti: Haitis
+    heard_island_and_mcdonald_islands: Herdo ir Makdonaldo Salos
+    honduras: Hondūras
     hong_kong: Honkongas
+    hungary: Vengrija
+    iceland: Islandija
     india: Indija
+    indonesia: Indonezija
+    iran: Iranas
+    iraq: Irakas
+    ireland: Airija
+    isle_of_man: Meno Sala
     israel: Izraelis
     italy: Italija
     jamaica: Jamaika
@@ -2052,9 +2221,57 @@ lt:
     new_caledonia: Naujoji Kaledonija
     new_guinea: Naujoji Gvinėja
     new_zealand: Naujoji Zelandija
+    nicaragua: Nikaragva
+    niger: Nigeris
+    nigeria: Nigerija
+    niue: Niujė
+    norfolk_island: Norfolko sala
+    north_africa: Šiaurės Afrika
+    north_america: Šiaurės Amerika
+    north_korea: Šiaurės Korėja
+    northern_cyprus: Šiaurės Kipras
+    norway: Norvegija
+    oman: Omanas
+    pakistan: Pakistanas
+    palau: Palau
+    palestine: Palestina
+    panama: Panama
+    papua_new_guinea: Papua Naujoji Gvinėja
+    paraguay: Paragvajus
+    peru: Peru
+    philippines: Filipinai
+    pitcairn_islands: Pitkerno salos
+    poland: Lenkija
     portugal: Portugalija
+    puerto_rico: Puerto Rikas
+    qatar: Kataras
+    republic_of_congo: Kongo Respublika
+    reunion: Reunjonas
+    romania: Rumunija
+    russia: Rusija
+    rwanda: Ruanda
+    saint_barthelemy: Švento Baltramiejaus sala
+    saint_helena: Šv. Elenos sala
+    saint_kitts_and_nevis: Sent Kitsas ir Nevis
+    saint_martin: Šv. Martyno sala
+    saint_pierre_and_miquelon: Sen Pjeras ir Mikelonas
+    saint_vincent_and_the_grenadines: Sent Vinsentas ir Grenadinai
+    samoa: Samoa
+    san_marino: San Marinas
+    sao_tome_and_principe: San Tomė ir Prinsipė
+    saudi_arabia: Saudo Arabija
+    senegal: Senegalas
+    serbia: Serbija
+    seychelles: Seišeliai
+    sierra_leone: Siera Leonė
     singapore: Singapūras
+    slovakia: Slovakija
+    slovenia: Slovėnija
+    solomon_islands: Saliamono salos
+    somalia: Somalis
     south_africa: Pietų Afrika
+    south_america: Pietų Amerika
+    south_georgia_and_the_south_sandwich_islands: Pietų Džordžija ir Pietų Sandvičo salos
     south_korea: Pietų Korėja
     south_sudan: Pietų Sudanas
     spain: Ispanija
@@ -2102,10 +2319,36 @@ lt:
   places_of_interest: Lankytinos vietos
   places_merged_successfully: Vietos sujungtos sėkmingai!
   plants: augalai
+  please_add_a_citation_for_this_change: Prašome pridėti citatą prie šio pakeitimo.
+  please_confirm_your_inat_username: "Prašome patvirtinti savo %{site_name} vartotojo vardą"
   please_explain_why_you_want_to_hide_this: Paaiškinkite, kodėl norite tai slėpti
+  please_explain_why_you_want_to_unhide_this: Paaiškinkite, kodėl nebenorite to slėpti
+  please_fix_your_csv_and_try_again: Prašome sutaisyti savo CSV ir bandyti dar kartą.
   popular: Populiarus
+  position: Pozicija
+  possessive_user: "%{user}"
+  post_published: Įrašas paskelbtas!
+  posted_by: Paskelbė
+  posts: Įrašai
+  potential_disagreement: Galimas nesutarimas
   press: Spauda
+  preview: Peržiūra
+  preview_observations: Žiūrėti stebėjimus
+  preview_your_message: Peržiūrėti savo žinutę
+  previous: Ankstesnis
+  prev: Ankst
+  previous_observation: Ankstesnis stebėjimas
+  previous_page: Anstesnis puslapis
+  previous_photo: Ankstesnė nuotrauka
+  previous_tab: Ankstesnis skirtukas
+  print_verb: Spausdinti
   privacy: Privatumas
+  private: privatu
+  private_: Privatu
+  probably_spam: Tikriausiai šlamštas
+  proceed: Tęsti
+  processing: Apdorojama
+  processing3p: "Apdorojama..."
   profile: Profilis
   project: Projektas
   project_created_on: 'sukūrė projektą šią dieną: %{date}'
@@ -2127,6 +2370,8 @@ lt:
   project_requirements: Projekto reikalavimai
   project_rules: Projekto taisyklės
   project_settings: Projekto nustatymai
+  project_start_time_datetime: "Pradžios laikas: %{datetime}"
+  project_that_does_not_contain_these_observations: Projektas, kuriame nėra šių stebėjimų
   project_user_cannot_be_found: Projekto vartotojas nerastas
   project_user_was_invalid: "Projekto vartotojas netinkamas: %{project_user}"
   project_was_successfully_created: Projektas sukurtas sėkmingai.
@@ -2146,6 +2391,7 @@ lt:
   quality_grade_: Kokybės įvertinimas
   quality_grade_colon: "Kokybės įvertinimas:"
   queued: Eilėje
+  query: Užklausa
   radius: Spindulys (m)
   radius_value: "Spindulys (m): %{radius}"
   random: Atsitiktinis
@@ -2175,12 +2421,15 @@ lt:
     section: grupė
     subsection: pogrupis
     complex: Kompleksas
+    #Singular
     species: Rūšys
     hybrid: Hibridas
+    #Singular
     subspecies: Porūšis
     variety: Varietetas
     form: Forma
   ray_finned_fishes: stipinpelekės žuvys
+  re_order_photos: "Pertvarkyti nuotraukas &raquo;"
   read_more: Skaityti daugiau
   read_the_full_wikipedia: Skaityti pilną Vikipedijos aprašymą
   real_time_discussions: Realaus Laiko Diskusijos
@@ -2242,17 +2491,37 @@ lt:
   remove_photo: Panaikinti nuotrauką
   remove_place: Panaikinti vietą
   remove_relationship: Panaikinti ryšį
+  remove_selected: Pašalinti tai, kas pasirinkta
   remove_tags: Pašalinti žymes
   removed: Pašalinta
+  removed!: Pašalinta!
+  repair_doesnt_work_for_that_kind_of_photo: Šio tipo nuotraukų sutaisyti negalima
   repair_external_photos: Taisyti išorines nuotraukas
   replace_boundary_with_kml: Pakeisti ribas su KML
+  replace_parentesis: (pakeisti)
+  reply: Atsakyti
   reptiles: ropliai
   request_failed: "Prašymas Nepavyko"
+  request_timed_out: Užklausos laikas pasibaigė!
+  required: privalomas
+  required_: Privalomas
+  required_field: privalomas laukas
+  required_columns_in_order: Privalomi stulpeliai iš eilės
   research_grade: Identifikuotas
   research_grade_observations_have: '"Identifikuoti" stebėjimai turi datą, nuotrauką, koordinates ir bendruomenės patvirtintą ID. Paspauskite, kad pamatytumėte duomenų kokybės įvertinimą.'
+  reset_filters_short: Atstatyti
+  reset_brightness: Atstatyti ryškumą
+  reset_search_filters: Atstatyti paieškos filtrus
+  resolve: Išspręsti
   resolve_this_flag: Išspręsti šią žymę
+  resolved: Išspręsta
+  resolved_by: 'Išsprendė:'
+  resolved_by_user_on_date_html: Išsprendė %{user}, %{date}
   restore: Atkurti
   rg_observations: ID stebėjimai
+  rotate_left: Sukti į kairę
+  rotate_right: Pasukti į dešinę
+  row_singular_or_plural: Eilė(-s)
   rules_for_adding_observations: Stebėjimų įkėlimo taisyklės
   rules_types:
     must_be_on_list: turi būti sąraše
@@ -2298,6 +2567,8 @@ lt:
   search_your_photos: Ieškoti tarp jūsų nuotraukų
   searching: "Ieškoma..."
   seasonality: Sezoniškumas
+  second_person_possessive_plural: "Jūsų %{noun}"
+  second_person_possessive_singular: "Jūsų %{noun}"
   see_something_wrong_with_taxon: Kažkas negerai su šiuo taksonu? Praneškite kuratoriams.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -2308,48 +2579,110 @@ lt:
   select_all: Pasirinkti visus
   select_at_least_one: Pasirinkite bent vieną
   select_one_or_more_photos: 'Pasirinkite vieną ar daugiau nuotraukų'
+  select_none: Nieko nepažymėti
   select_observations_to_edit: Pasirinkite, kuriuos stebėjimus redaguoti...
+  select_one_of_friends_albums: Pasirinkti vieną iš %{friend} albumų
+  select_one_of_your_albums: Pasirinkti vieną iš jūsų albumų
   select_options: Pažymėkite pasirinkimus
+  select_photos_from_your_photo_stream: |
+    Pasirinkite nuotraukas iš išorinio nuotraukų dalinimosi puslapio, skirtas paversti %{site_name} stebėjimais. Mes užpildysime datą, laiką ir vietovę iš nuotraukų metaduomenų ir bandysime aptikti rūšių pavadinimus žymose.
+  select_photos_to_display: Pasirinkti nuotraukas rodymui
+  selected_photos: Pasirinktos nuotraukos
+  selected_taxon: Pasirinktas taksonas
+  select_this_taxon: Rinktis šį taksoną
+  send: siųsti
+  send_invites_to: Siųsti kvietimus
+  send_me_reset_password_instructions: Atsiųskite man slaptažodžio atstatymo instrukciją
   send_the_invites: Siųsti kvietimus
+  sending: Siunčiama...
+  #Label for messages you've sent
+  sent: Išsiųsta
+  settings: Nustatymai
   share: Dalintis
+  share_colon: "Dalintis:"
+  show: Rodyti
+  show_active_and_inactive_taxa: Rodyti aktyvius ir neaktyvius taksonus
+  show_common_names: Rodyti lietuviškus pavadinimus
+  show_default_taxon_photos: rodyti numatytas taksono nuotraukas
+  show_hidden_content: Rodyti paslėptą turinį
+  show_keyboard_shortcuts: Rodyti spračiuosius klavišus
   show_less: Rodyti mažiau
   show_more: Rodyti daugiau
   show_observation_photos: rodyti stebėjimo nuotraukas
   show_off_your_recent_observations: Parodykite savo naujausius stebėjimus savo tinklaraštyje ar tinklalapyje!
+  show_only: Rodyti tik
+  show_scientific_name_first: Pirmiausia rodyti mokslinius pavadinimus
+  show_taxa_from_both: (rodyti taksonus iš abiejų sąrašų)
+  show_taxa_from_everywhere: "Rodyti taksonus iš visur"
   show_taxa_from_place: "Rodyti taksonus iš %{place}"
   showing_taxa_from_everywhere: "Rodyti taksonus iš visur"
   showing_taxa_from_place: "Rodomi taksonai iš %{place}"
+  sign_in: Prisijungti
+  sign_in_with_provider: "Prisijunkite su %{provider} paskyra"
+  sign_in_with_google: Prisijungti su Google paskyra
   sign_out: Atsijungti
+  sign_up: Registruotis
   similar_species: Panašios rūšys
   similar_taxa: Panašūs taksonai
   #Journal post formatting option
   simple: Paprastas
+  single_observation: Vienas stebėjimas
+  sizes: Dydžiai
+  small: mažas
   site_stats: Statistika
+  some_agree: kai kurie sutinka
   some_observations_failed_to_be_added: Kai kurių stebėjimų nepavyko pridėti prie projektų
+  some_observations_failed_to_save: Kai kurių stebėjimų nepavyko išsaugoti
+  some_of_those_photos_couldnt_be_saved: "Kai kurios nuotraukos nebuvo išsaugotos: %{error}"
+  some_other_reason: Kita priežastis, kurią galite paaiškinti žemiau.
   duplicate_observation_flag_warning: |
     Dėl dublikatų prašome ne žymėti, o prašyti stebėtojo ištaisyti klaidą, nes tinklalapio kuratoriai negali panaikinti stebėjimų.
+  some_rights_reserved: kai kurios teisės saugomos
+  something: Kažkas
+  something_: kažkas
+  something_went_wrong_adding: Kažkas nepavyko bandant pridėti šią rūšį prie jūsų sąrašo
+  something_went_wrong_deleting_the_taxon_name: "Kažkas nepavyko bandant ištrinti taksono pavadinimą „%{taxon_name}“!"
+  somewhere_on_earth: kažkur Žemėje
+  somewhere: (Kažkur...)
+  sorry_flickr_isnt_responding_at_the_moment: "Atsiprašome, šiuo metu Flickr neatsako."
+  sort: Rūšiuoti
+  sort_by: Rūšiuoti pagal
+  sorting_by: Rūšiuojama pagal
   sounds:
     add_media: Pridėti mediją
+    add_sounds: Pridėti garsų
     before_importing_sounds: prieš importuodami garsus
     import_from_soundcloud_description: "Pasirinkite garsus iš jūsų SoundCloud paskyros, skirtus paversti iNaturalist stebėjimais. Mes užpildysime datą ir laiką iš jūsų garsų metaduomenų ir bandysime aptikti rūšių pavadinimus žymose."
     import_from_sounds: Importuoti iš garsų
     import_sounds: Importuoti garsus
+    link_your_soundcloud_account: Susiekite savo SoundCloud paskyrą
+    listen: Klausyti
     no_photos_sounds: Nėra nuotraukų ar garsų
+    photos_sounds: Nuotraukos / garsai
     select_one_or_more_sounds: Pasirinkite vieną ar daugiau garsų
+    selected_sounds: Pasirinkti garsai
+    sound: Garsas
     sound_has_been_flagged: Šis garsas buvo pažymėtas.
+    sounds: Garsai
+    view_all_soundcount_sounds: "Žiurėti visus %{sound_count} garsus"
   source: Šaltinis
   source_: 'Šaltinis:'
   source_wikipedia: "Šaltinis: Vikipedija"
   source_list_: "Šaltinių sąrašas"
   source_list:
     ubio: uBio
+    catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
+    new_zeland_organisms_register: New Zealand Organisms Register
   source_eg:
     citation: 'pvz.: Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
   source_url: Šaltinio URL
   sources: Šaltiniai
   sources_youve_added: Šaltiniai, kuriuos pridėjote
+  spam: Šlamštas
+  #Plural
   species: Rūšys
+  species_from_around_the_world: Rūšys iš viso pasaulio
   species_guess: rūšies spėjimas
   species_name_cap: Rūšies pavadinimas
   species_names: rūšies pavadinimas
@@ -2358,23 +2691,51 @@ lt:
   species_unknown: Rūšis nežinoma
   specify_the_reason_youre_flagging: Paaiškinkite, kodėl pažymėjote šį objektą
   standard: Standartinės
+  start: Pradžia
   start_a_new_project: Pradėti naują projektą
   start_a_project: Pradėti projektą
+  start_date_time: Pradžios data / laikas
+  start_one: Pradėti
+  start_one_now: Pradėti dabar!
   start_typing_field_name: Įveskite lauko pavadinimą...
   start_typing_place_name: Įveskite vietovės pavadinimą...
   start_typing_taxon_name: Įveskite taksono pavadinimą...
   start_typing_someones_name: "Įveskite kieno nors vardą..."
+  stats: Statistika
   stats_for_this_year_have_not_been_generated: Šių metų statistika nebuvo sugeneruota.
   status: Statusas
+  stay_and_try_again: Pasilikite ir bandykite dar kartą
+  still_no_luck?: Vis dar nepavyko?
   still_needs_id?: Vis dar reikia ID?
+  stop_editing: Nutraukti redagavimą
+  stop_following_user: "Nebesekti %{user}"
+  stop_testing: Nutraukti testavimą
+  stop_trusting_this_person_with_your_private_coordinates: Nebepatikėkite šiam žmogui paslėptų koordinačių
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: PARDUOTUVĖ
+  submission_model_description: Kas gali pridėti stebėjimų prie jūsų projekto?
   submitted: Pateikta
   subscribe_to_a_taxon: Prenumeruoti Taksoną
   subscribe_to_a_place: Prenumeruoti Vietą
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Užsiprenumeruokite%{tag_end} šios žymės komentarus"
+  subscribe_to_this: Prenumeruoti tai
   subscriptions: Prenumeratos
+  successfully_changed_your_password: Slaptažodis sėkmingai pakeistas.
+  suggest_an_identification: Pasiūlyti identifikaciją
+  suggestions: Pasiūlymai
   supporting: Pritariantis
   support_inaturalist: Paremkite iNaturalist
+  sync: Sinchr.?
+  synonyms: Sinonimai
+  table: Lentelė
+  table_of_contents: Turinys
+  #Noun, as in "add a tag to this observation"
+  tag: žymė
+  tagging: 'Žymima...'
   tags: Žymės
+  take_me_facebook: Taip, perkelkite mane į Facebook!
+  take_me_flickr!: Taip, perkelkite mane į Flickr!
   taxa: Taksonai
   taxa_info: Taksonų informacija
   taxa_needing_curation: Taksonams reikia kuravimo
@@ -2382,10 +2743,14 @@ lt:
   taxa_to_include: Įtraukti taksonus
   taxon: Taksonas
   taxon_autocomplete_placeholder: Paukščiai, spungė ir t.t.
+  taxon_geoprivacy: Taksono vietos privatumas
   taxonomy: Taksonomija
+  taxon_deleted: Taksonas ištrintas.
   taxon_doesnt_have_a_range: Taksona neturi arealo
   taxon_id: Taksono ID
   taxon_ids: Taksono ID
+  taxon_map:
+    data_url: Duomenų URL
   taxon_framework_complete: "Užbaigtas: taip"
   taxon_framework_deviations_with_count_html: "Nukrypimai: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
@@ -2398,7 +2763,7 @@ lt:
   taxon_framework_taxon: Taksono struktūros taksonas
   taxon_name: Taksono pavadinimas
   taxon_observed_by_html: |
-    <a href="%{url}">%{taxon}</a> pastebėjo
+    <a href="%{url}">%{taxon}</a> stebėjo
   taxon_observed_by_user: "%{taxon} stebėjo %{user}"
   taxon_photos_updated: Taksono nuotraukos atnaujintos!
   taxon_range: Taksono arealas
@@ -2406,23 +2771,69 @@ lt:
   taxon_range_updated_notice: Taksono arealas buvo sėkmingai atnaujintas. Po kelių minučių pakeitimai atsiras žemėlapyje.
   taxon_removed_from_list: Taksonas pašalintas iš sąrašo.
   taxon_search: Taksono paieška
+  taxon_name_was_deleted: Taksono pavadinimas buvo ištrintas.
+  taxon_name_was_successfully_updated: Taksono pavadinimas buvo sėkmingai atnaujintas.
+  taxon_was_successfully_created: Taksonas buvo sėkmingai sukurtas.
+  taxon_was_successfully_updated: Taksonas buvo sėkmingai atnaujintas.
+  taxonomic: Taksonominis
+  taxonomic_changes: Taksonominiai pakeitimai
+  taxonomic_groups: Taksonominės grupės
+  taxonomic_order: Taksonominė tvarka
   taxonomy_details: Taksonomijos informacija
+  taxonomy_details_for: Taksonominės detalės
   taxonomy_details_info: 'Taksonomijos informacijos puslapyje, naudojantis taksono struktūra, aprašyta, ką mes turime omenyje, kai kalbame apie šį taksoną. <a href="/pages/taxon_frameworks">Skaityti daugiau</a>.'
+  taxonomy_settings: Taksonomijos nustatymai
+  teachers_guide: Mokytojo vadovas
   tell_everyone_a_little_about_you: Trumpai save visiems pristatykite
+  tell_the_world_a_little_about_yourself: Papasakokite apie save
+  tell_us_why: Kodėl taip manote...
+  terms: Sąlygos
+  terms_and_rules_html: "Sąlygos &amp; taisykles"
+  terms_new_users: "Jeigu pridedate sąlygas, nauji vartotojai turi su jomis sutikti, kad galėtų prisijungti prie projekto."
+  terms_service: Paslaugų teikimo sąlygos
+  terrain: reljefas
+  text: Tekstas
+  thanks!: Ačiū!
+  that_photo_doesnt_exist: Ši nuotrauka neegzistuoja.
+  that_observation_doesnt_exist: Šis stebėjimas neegzistuoja.
+  that_observation_doesnt_have_any_photos: "Šis stebėjimas neturi nuotraukų."
+  that_observation_no_longer_exists: Šis stebėjimas nebeegzistuoja.
   that_project_doesnt_exist: "Šis projektas neegzistuoja."
+  the_below_items_are_needed_to_achieve: |
+    Reikalavimai, kad stebėjimas būtų laikomas <span className="bold">identifikuotu:</span>
+  the_community_id_requires_at_least_two_identifications: Bendruomenės ID reikia bent dviejų identifikacijų.
   the_observation_was_already_added_to_that_project: Šis stebėjimas jau buvo pridėtas prie šio projekto.
   there_was_a_problem_creating_this_account: |
     Iškilo problema kuriant šią paskyrą. Prašome susisiekti su mumis jeigu problema pasikartos
+  there_were_problems_adding_taxa: "Nepavyko pridėti šių taksonų: %{errors}"
+  there_were_problems_adding_that_observation_to_this_project: "Nepavyko pridėti šio stebėjimo į šį projektą: "
   there_were_problems_importing_that_place: "Nepavyko importuoti vietos: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
     Nepavyko importuoti vietos geometrijos: %{error}
+  there_were_some_problems_saving_this_observation: Kažkas nepavyko išsaugojant šį stebėjimą
+  there_were_some_problems_with_fields: "Iškilo problemų su šiais laukeliais:"
   theres_something_wrong_with_taxon_framework_relationship: Kažkas negerai - mes negalime nustatyti ryšių tarp vidinių ir išorinių taksonų
   these_observations_have_not_been_uploaded_yet: |
     Šie stebėjimai dar nebuvo įkelti
+  they_have_been_invited: ...jie jau buvo pakviesti
+  this: šis
+  this_is_taking_forever: Tai trunka per ilgai. Prašome bandyti vėliau.
+  this_is_your_observation: Čia yra jūsų stebėjimas
+  this_is_your_observation_desc: Jūs visada galite matyti savo stebėjimų koordinates.
+  this_list_is_empty!: Šis sąrašas yra tuščias!
+  this_list_only_accepts_taxa_that_are_species: Šis sąrašas priima tik rūšies lygmens taksonus
+  this_observation: Šis stebėjimas
+  this_observation_is_research_grade: Šis stebėjimas yra identifikuotas!
+  this_observation_was_created_using: "Šis stebėjimas buvo sukurtas naudojant:"
+  this_taxon_has_no_default_photo: Taksonas neturi numatytos nuotraukos!
   this_taxon_name_was_originally_imported: "Šis taksono pavadinimas buvo importuotas iš išorinio šaltinio:"
   this_taxon_was_originally_imported_from: "Šis taksonas pirmiausia buvo importuotas iš išorinio pavadinimų teikėjo:"
+  this_user_has_been_suspended: Šis vartotojas buvo sustabdytas
   this_year: Šiais Metais
+  time_: laikas
   time_ago: "prieš %{time}"
+  title: pavadinimas
+  title_and_description: "Pavadinimas ir aprašymas"
   to_configure_your_widget: configuruoti jūsų valdiklį.
   top_identifier: Top identifikuotojas
   top_identifiers: Top identifikuotojai
@@ -2434,15 +2845,28 @@ lt:
   total_observations: Visi stebėjimai
   total_species_observed: Iš viso rūšių stebėta
   'true': 'Taip'
+  twitter: Twitter
+  type_place_name: Įveskite vietos pavadinimą
   type_source_name: Įveskite šaltinio pavadinimą
   type_source_title: "Įveskite šaltinio pavadinimą"
   type_species_name: "Įveskite rūšies pavadinimą"
+  type_taxon_name: "Įveskite taksono pavadinimą"
   umbrella_projects: Skėtiniai projektai
+  unblock: Atblokuoti
+  unclassified: Neklasifikuotas
+  unhide_content: Nebeslėpti turinio
+  uninvite: nebekviesti
   unknown: Nežinoma
+  unknown_error: Nežinoma klaida
   unfollow: Nebesekti
+  unmute: Įjungti garsą
+  updating: Atnaujinama...
+  unsubscribe: Atšaukti prenumeratą
   update_observations: Atnaujinti stebėjimus
   update_photos: Atnaujinti nuotraukas
   update_search: Atnaujinti paiešką
+  updated: Atnaujinta
+  updated_by: Atnaujino
   upload: Įkelti
   uploaded_by: Įkėlė
   uploader:
@@ -2462,7 +2886,10 @@ lt:
   user_flagged_as_a_non_spammer_html: "%{user} pažymėtas kaip ne šiukšlintojas"
   user_flagged_as_a_spammer_html: "%{user} pažymėtas kaip šiukšlintojas"
   user_suggested_an_id: "%{user} pasiūlė ID"
+  username: Vartotojo vardas
   username_or_email: Vartotojo vardas arba el. paštas
+  username_or_user_id: Vartotojo vardas arba vartotojo ID
+  users: Vartotojai
   users_id: "%{user} ID"
   users_identification_short_html: "<a href='%{url}'>%{user}</a> ID"
   users_latest_observations_on_site: "%{user} paskutiniai stebėjimai %{site}"
@@ -2547,12 +2974,29 @@ lt:
   we_had_a_problem_flagging_that_item: "Mums nepavyko pažymėti šio objekto: %{flag_error}"
   we_have_no_conservation_status_for_this_taxon: Mes neturime šio taksono apsaugos statuso informacijos
   we_have_no_establishment_data_for_this_taxon: "Mes neturime informacijos apie šio taksono įsikūrimo būdą"
+  weather: Orai
+  website: Tinklalapis
   week_of_date: "%{date} Savaitė"
+  welcome: sveiki
   welcome_back: Sveiki sugrįžę
+  welcome_back!: Sveiki sugrįžę!
   welcome_to_inat: "Sveiki atvykę į %{site_name}!"
   welcome_to_x_project: "Sveiki atvykę į %{project}"
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Atsiprašome, tačiau grupinis %{filename} importas nepavyko."
+  what_color_was_it: Kokios tai buvo spalvos?
+  what_did_you_see: Ką pamatėte?
+  what_did_you_see?: <em>Ką</em> pamatėte?
+  what_do_you_think: Ką manote?
+  what_to_keep: Ką palikti
+  whats_this?: Kas tai?
+  when: Kada
+  when_did_you_see_it?: Kada tai pamatėte?
+  when_did_you_see_them?: <em>Kada</em> juos pamatėte?
+  where: Kur
+  where_do_x_live: Kur gyvena %{taxa}?
+  where_does_x_live: Kur gyvena %{taxa}?
   where_were_they?: Kur jie?
+  where_were_you?: Kur buvote?
   white: balta
   who_can_see_the_coordinates_projects: Šių projektų kuratoriai
   who_helped_user_the_most: "Kas Daugiausiai Padėjo %{user}"
@@ -2566,12 +3010,21 @@ lt:
   wikipedia_attribution_cc_by_sa_3: |
     Šaltinis: Vikipedija, „%{title}“, %{url}, CC BY-SA 3.0
   withdraw: Atsiimti
+  with_errors: Su klaidomis
+  worldwide: Visame pasaulyje
   would_you_prefer_to_view_common_names_used_in_place_html: Ar norėtumėte peržiūrėti bendrinius pavadinimus, naudojamus <strong>%{place}</strong>?
   x_blog: "%{x} tinklaraštis"
   x_flagged: "%{x} pažymėtas"
   x_flagged_as_flag: "%{x} pažymėtas kaip %{flag}"
   year: Metai
   year_in_review: "%{year} Metų Apžvalga"
+  year_on_site: "%{site} %{year} metų apžvalga"
+  yellow: geltona
+  'yes': "Taip"
+  yes_find_them!: "Taip, suraskite juos!"
+  yes_i_want_to_join: Taip, aš noriu prisijungti
+  yesterday: Vakar
+  you: jūs
   you_: Jūs
   you_are_now: Jūs dabar esate
   you_are_submitting_obs_without_photos_and_names: |
@@ -2691,6 +3144,7 @@ lt:
         latitude: Viešai matoma platuma
         longitude: Viešai matoma ilguma
         out_of_range: Ar šis stebėjimas yra žinomose taksono arealo ribose
+        user_login: Stebėtojo vartotojo vardas
       import:
         geoprivacy_must_be_in_english: |
           Vietos privatumo stulpelis turi būti anglų kalba, o langeliai turi būti su vertėmis „paslėptas“, „privatus“ arba palikti tušti
@@ -2705,6 +3159,7 @@ lt:
           Jūsų grupinis %{filename} importas buvo sėkmingas. Jūsų stebėjimai dabar yra apdorojami ir greitai bus tinklalapyje.
     places:
       new:
+        check_list_note: "Dėmesio: kontroliniai sąrašas automatiškai išjungiami labai didelės vietoms."
         coordinates_desc: Jeigu nepiešiate ribų arba įkeliate KML, būtina nurodyti koordinates.
         map_instruction: Poligono įrankiu nupieškite vietos ribas.
     projects:
@@ -2814,20 +3269,33 @@ lt:
           Tai galioja tik tradiciniams projektams. Jūs negalite išmesti stebėjimų iš grupinių ar skėtinių projektų, nes jie iš esmės yra išsaugoti paieškos rezultatai. <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">Čia</a> galite paskaityti daugiau.
       recent:
         about_recent_users: Apie
+    user_parents:
+      new:
+        step1_title: SUKURKITE PASKYRĄ SAVO VAIKUI
+        step3_donor_title: JŪSŲ VAIKO PASKYRA AKTYVUOTA
     welcome:
       index:
+        connect_with_nature: Prisijunk prie gamtos
         explore_and_share: Tyrinėkite ir dalinkitės savo stebėjimais iš gamtos pasaulio.
-        species_observed: 'Stebima rūšis'
+        observations_to_date: 'Stebėjimų'
+        species_observed: 'Stebėta rūšių'
         people_signed_up: 'Užsiregistravę žmonės'
         how_it_works: Kaip tai veikia
-        record_your_observations: Įrašyti savo stebėjimus
-        discuss_your_findings: Aptarti savo rezultatus
-        contribute_to_science: Prisidėti prie mokslo
+        record_your_observations: Užfiksuokite savo stebėjimus
+        share_with_fellow_naturalists: Pasidalinkite su kitais gamtininkais
+        discuss_your_findings: Aptarkite savo radinius
+        contribute_to_science: Prisidėkite prie mokslo
+        nature_at_your_fingertips: Ranka pasiekiama gamta
         create_useful_data: Sukurti naudingus duomenis
         learn_about_nature: Pažinkite gamtą
         run_a_bioblitz: Paleisti „Bioblitz“
+        works_on_all_your_devices: Veikia visuose jūsų įrenginiuose
+        install_our_mobile_apps: |
+          Įdiekite mūsų mobiliąją programėlę, kad visada galėtumėte fiksuoti 
+          stebėjimus, net neturint mobiliojo ryšio ar wifi.
         who_uses_site_name: "Kas naudoja %{site_name}?"
-        join_today: Prisijungti šiandien
+        what_are_you_waiting_for: Ko dar lauki?
+        join_today: Prisijunk šiandien
   date:
     abbr_day_names:
       - Sek
@@ -2882,6 +3350,8 @@ lt:
       - Lapkritis
       - Gruodis
   datetime:
+    distance_in_words:
+      half_a_minute: pusė minutės
     prompts:
       month: Mėnuo
       year: Metai
@@ -2913,7 +3383,9 @@ lt:
         latitude: Platuma
         longitude: Ilguma
         name: Pavadinimas
+        parent_id: Kur ji yra?
         place_type: Vietos tipas
+        prefers_check_lists: Leidžiamas kontrolinis sąrašas?
       taxon:
         name: Pavadinimas
         source_identifier: Šaltinio identifikuotojas
@@ -2924,6 +3396,7 @@ lt:
         source_identifier: Šaltinio identifikuotojas
       user:
         email: El. paštas
+        login: Vartotojo vardas
         name: Pavadinimas
         search_place_id: Ieškoti vietos
         place_id: Vieta

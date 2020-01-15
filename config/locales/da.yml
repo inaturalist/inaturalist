@@ -19,14 +19,18 @@ da:
     other: '%{count} Identifikationer'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> Identifikator'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identifikatorer'
   x_languages:
     one: "%{count} sprog"
     other: "%{count} sprog"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} livsliste første"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} livsliste førsteindførsler"
   x_journal_posts_html:
     one: '<span class="count">1</span> journalindlæg'
@@ -98,6 +102,9 @@ da:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> observation af forskningskvalitet identificeret til art eller lavere</span>"
     other: "<span class='count'>%{count}</span> observationer af forskningskvalitet identificerede til art eller lavere</span>"
+  x_sounds:
+    one: "%{count} lyd"
+    other: "%{count} lyde"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> takson kurateret"
     other: "<span class='count'>%{count}</span> taksa kurateret"
@@ -607,7 +614,6 @@ da:
   blog_widget: Blog-widget
   blue: blå
   blue_butterfly_etc: "blå, sommerfugl, etc."
-  blue_icons_represent_political_units: "Blå ikoner repræsenterer politiske steder såsom lande, stater, provinser, kommuner og lignende, mens grønne ikoner repræsenterer forskellige slags åbne områder (parker, reservater og lignende). Hvis du zoomer ind, vil du se flere, mindre steder."
   body: Indhold
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
@@ -756,7 +762,6 @@ da:
   clear_filters: Ryd filtre
   clear_search: Ryd søgning
   click_the_map: "<strong>Klik på kortet</strong> for at tilføje et sted."
-  click_the_map_to_jump_new_place: Klik på kortet for at udforske et nyt sted
   close: Luk
   code: Kode
   colors: Farver
@@ -1576,7 +1581,6 @@ da:
   inat_user_profile: "%{site_name}: %{user}'s profil"
   inaturalist_is_a_joint_initiative: "%{site_name} er et fælles initiativ fra California Academy of Sciences og National Geographic Society."
   inaturalist_places: "%{site_name} steder"
-  inaturalist_places_are_way_record_what_lives_where: "Med %{site_name} steder kan du registrere, hvad der bor hvor. Hvis du leder efter en bestemt art, så ved du hvor du skal lede. Hvert sted har en tjekliste, som indeholder alle de arter der findes der, og tjeklisterne kan også være nyttige hvis du vil slå arter op som du har fundet specifikke steder."
   info: Info
   input_taxon: Input takson
   insects: insekter
@@ -2528,7 +2532,6 @@ da:
     medium: mellem
     large: stor
     original: original
-  photos_size_photos: "%{photos_size} fotos"
   photos_updated: Foto´s opdateret
   pi_consent_desc_title: Om personlig information
   pi_consent_desc_html: |
@@ -3083,8 +3086,10 @@ da:
     section: Sektion
     subsection: Undersektion
     complex: Kompleks
+    #Singular
     species: Arter
     hybrid: Hybrid
+    #Singular
     subspecies: Underarter
     variety: Varietet
     form: form
@@ -3418,8 +3423,6 @@ da:
     sound_has_been_flagged: Denne lyd er blevet markeret.
     soundcloud_replied_with_an_error: SoundCloud svarede med en fejl. Prøv igen senere.
     sounds: Lyde
-    sounds_size_sound: "%{sounds_size} Lyd"
-    sounds_size_sounds: "%{sounds_size} Lyde"
     view_all_soundcount_sounds: "Se alle %{sound_count} lyde"
     we_didnt_find_any_sounds: Beklager! Vi kunne ikke hente nogen lyde fra din SoundCloud konto.
     you_need_to_link_your_soundcloud_account: Du skal tilknytte din SoundCloud konto for at tilføje lyde.
@@ -3456,6 +3459,7 @@ da:
   sourcing: Oprindelse
   spam: spam
   spammer: Spammer
+  #Plural
   species: Arter
   species_by_category: arter efter kategori
   species_from_around_the_world: Arter fra hele verden
@@ -3729,10 +3733,6 @@ da:
     Verden er fuld af interessante steder, og hvert sted er fyldt med mærkelige og
     vidunderlige livsformer. Nogle er omme på den anden side af jorden, mens
     andre er lige nede af gaden! Med %{site_name} steder får du mulighed for at browse livet fra hele verden. Begynd at udforske!
-  the_world_is_full_of_interesting_places_short: |
-    Verden er fuld af interessante steder, og hvert sted er fyldt med mærkelige og
-    vidunderlige livsformer. Nogle er omme på den anden side af jorden, mens
-    andre er lige nede af gaden!
   then_keybord_sequence: derefter
   there_are_x_synonyms_html:
     one: "Der er <span class='count'>1</span> synonym</span>"
@@ -4413,6 +4413,10 @@ da:
           ophavsret.
     guides:
       index:
+        deprecated_banner: |
+          Bemærk, at funktionen Guider fra januar 2019 leveres "som den er og
+          forefindes". Selvom den ikke er planlægges slettet, er der dog heller
+          ingen planer om at videreudvikle den.
         funding_html: |
           Støtte til udvikling af "Guider" blev sponseret af
           <a href="http://eol.org"> <img src = "https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"> </a>
@@ -4799,19 +4803,27 @@ da:
         vertical: Vertikal
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} til fælles"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} til fælles"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} ikke til fælles"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} ikke til fælles"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} i alt"
+          #Count of how many taxa are present in an observation search
           other: "%{count} i alt"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} unik"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} unikke"
       export:
         choose_columns_desc: Vælg de kolonner, du vil eksportere

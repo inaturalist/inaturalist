@@ -510,7 +510,6 @@ pt-BR:
   blog_widget: Blog Widget
   blue: azul
   blue_butterfly_etc: "azul, borboleta, etc."
-  blue_icons_represent_political_units: "Ícones azuis representam unidades políticas como países, estados, cidades e ainda, os ícones verdes representam diferentes tipos de espaços abertos (parques, reservas). Se você der zoom e aproximar, irá ver outros lugares pequenos."
   body: Mensagem
   bounding_box: Quadro Delimitador
   breadcrumbs: Rastros de navegação
@@ -651,7 +650,6 @@ pt-BR:
   clear_filters: Limpar filtros
   clear_search: Limpe a pesquisa
   click_the_map: "<strong>Clique no mapa</strong> para adicionar uma localização."
-  click_the_map_to_jump_new_place: Clique no mapa para ir para um novo lugar
   close: Fechar
   code: Código
   colors: Cores
@@ -1382,7 +1380,6 @@ pt-BR:
   inat_user_profile: "%{site_name}: Perfil de %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society."
   inaturalist_places: "%{site_name} Lugares"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name} Lugares são uma maneira de registrar o que vive aonde. Se você está procurando por uma espécie em particular, você saberá onde procurar. Todo lugar tem uma lista de verificação que registra todas as espécies que ocorrem lá, então elas também podem ser úteis para procurar organismos que você encontrou em determinados locais."
   info: Informação
   input_taxon: Táxon de entrada
   insects: insetos
@@ -2194,7 +2191,6 @@ pt-BR:
     small: pequeno
     medium: médio
     large: grande
-  photos_size_photos: "%{photos_size} fotos"
   photos_updated: Fotos atualizadas.
   pi_consent_desc_title: Sobre informações pessoais
   pi_consent_desc_html: |
@@ -2675,8 +2671,10 @@ pt-BR:
     section: Seção
     subsection: Subseção
     complex: Complexo
+    #Singular
     species: Espécies
     hybrid: Híbrido
+    #Singular
     subspecies: Subespécies
     variety: Variedade
     form: Formulário
@@ -2996,8 +2994,6 @@ pt-BR:
     sound_has_been_flagged: Este som foi sinalizado.
     soundcloud_replied_with_an_error: Houve um erro com a sua conexão ao SoundCloud. Por favor tente novamente.
     sounds: Sons
-    sounds_size_sound: "%{sounds_size} Som"
-    sounds_size_sounds: "%{sounds_size} Sons"
     view_all_soundcount_sounds: "Exibir todos %{sound_count} sons"
     we_didnt_find_any_sounds: Desculpe! Não foi possível acessar os sons da sua conta do SoundCloud.
     you_need_to_link_your_soundcloud_account: É preciso conectar sua conta do SoundCloud para adicionar sons.
@@ -3029,6 +3025,7 @@ pt-BR:
   sources_youve_added: Fontes que você adicionou
   sources_and_credits: Fontes e Créditos
   sourcing: Buscando fonte
+  #Plural
   species: Espécies
   species_by_category: espécies por categoria
   species_from_around_the_world: Espécies de todo o mundo
@@ -3276,8 +3273,6 @@ pt-BR:
   the_world: O Mundo
   the_world_is_full_of_interesting_places: |
     O mundo está cheio de lugares interessantes, cada um repleto com as mais estranhas e maravilhosas formas de vida. Algumas estão do outro lado do mundo, enquanto outras estão exatamente na mesma rua onde você mora! Os Lugares de %{site_name} permite que você procure vida em todo o planeta. Comece agora a explorar!
-  the_world_is_full_of_interesting_places_short: |
-    O mundo está cheio de lugares interessantes, cada um repleto com as mais estranhas e maravilhosas formas de vida. Algumas delas estão do outro lado do mundo, enquanto isso muitas encontram-se na mesma rua que você está agora!
   then_keybord_sequence: então
   there_are_x_synonyms_html:
     one: "Existe um <span class='count'>1</span> synonym</span>"

@@ -446,7 +446,6 @@ zh-CN:
   blog_widget: 博客小部件
   blue: 蓝色
   blue_butterfly_etc: "蓝色、蝴蝶等"
-  blue_icons_represent_political_units: "蓝色图标表示国家、州、省、县等政治实体，绿色图标表示各种公共空间（公园、保护区等）。如果您进行放大，您可以看到更多范围较小的地点。"
   body: 身体
   bounding_box: 边界框
   breadcrumbs: 面包屑
@@ -582,7 +581,6 @@ zh-CN:
   clear_color_filters: 清除颜色过滤器
   clear_search: 清空搜索
   click_the_map: "<strong>点击地图</strong>以增加一个地点。"
-  click_the_map_to_jump_new_place: 点击地图切换到新地点
   close: 关闭
   code: 代码
   colors: 颜色
@@ -1235,7 +1233,6 @@ zh-CN:
   inat_believes_this_is_a_complete_listing: "%{site_name}相信这是此地区内，这种分类单元的完整列表。"
   inat_user_profile: "%{site_name}：%{user}的详细资料"
   inaturalist_places: "%{site_name} 地点"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name}地点是记录生物在哪里的一种方式。如果你正在寻找一个特定的物种，你会知道去哪里找寻。每个地点都有一个清单，记录所有在那里被发现的物种，因此它们也可以用于查找你在特定地点发现的生物。"
   info: 信息
   input_taxon: 输入分类单元
   insects: 昆虫
@@ -2019,7 +2016,6 @@ zh-CN:
     medium: 中
     large: 大
     original: 原始
-  photos_size_photos: "%{photos_size} 张照片"
   photos_updated: 照片已更新。
   pink: 粉色
   pinned_locations_desc: |
@@ -2383,8 +2379,10 @@ zh-CN:
     subgenus: 亚属
     section: 节
     subsection: 亚组
+    #Singular
     species: 种
     hybrid: 杂种
+    #Singular
     subspecies: 亚种
     variety: 变种
     form: 型
@@ -2675,8 +2673,6 @@ zh-CN:
     sound: 声音
     soundcloud_replied_with_an_error: SoundCloud回答遇到错误。请稍后再试。
     sounds: 声音
-    sounds_size_sound: "%{sounds_size} 段声音"
-    sounds_size_sounds: "%{sounds_size} 段声音"
     view_all_soundcount_sounds: "查看所有 %{sound_count} 声音"
     we_didnt_find_any_sounds: 抱歉！我们没有从您的SoundCloud账户中找到任何声音文件。
     you_need_to_link_your_soundcloud_account: 您需要关联至您的SoundCloud账户来添加声音。
@@ -2709,6 +2705,7 @@ zh-CN:
   sources_and_credits: 来源与信誉
   sourcing: 提供消息
   spam: 垃圾邮件
+  #Plural
   species: 物种
   species_by_category: 按分类排序物种
   species_from_around_the_world: 来自全世界的物种
@@ -2914,8 +2911,6 @@ zh-CN:
   the_world: 世界
   the_world_is_full_of_interesting_places: |
     这个世界充满了有趣的地点，每一个地点都又充满了特别而奇妙的生命形态。有些生物在世界的另一侧，而有些就在街边！%{site_name} 让您浏览整个星球上的生物！开始探索吧！
-  the_world_is_full_of_interesting_places_short: |
-    这个世界充满了有趣的地点，每个地点也充满了怪异而精彩的生命形态。有些生物在世界的另一侧，而有些就在街边！
   then_keybord_sequence: 然后
   there_are_x_synonyms_html:
     other: "有 <span class='count'>%{count}</span> 个同义词</span>"

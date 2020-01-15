@@ -31,9 +31,13 @@ ru:
     other: '%{count} идентификаций'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span>эксперт'
+    #Number of people who have added identifications
     few: '<span class="count">%{count}</span> эксперта'
+    #Number of people who have added identifications
     many: '<span class="count">%{count}</span> экспертов'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> экспертов'
   x_languages:
     one: "%{count} язык"
@@ -42,9 +46,13 @@ ru:
     other: "%{count} языков"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "Впервые %{count} в списке Жизни"
+    #Count of number of taxa that represent the first addition to a life list
     few: "Впервые %{count} в списке Жизни"
+    #Count of number of taxa that represent the first addition to a life list
     many: "Впервые %{count} в списке Жизни"
+    #Count of number of taxa that represent the first addition to a life list
     other: "Впервые %{count} в списке Жизни"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> сообщение в журнале'
@@ -706,7 +714,6 @@ ru:
   blog_widget: Виджет блога
   blue: синий
   blue_butterfly_etc: "синий, бабочка, и т.п."
-  blue_icons_represent_political_units: "Синие значки представляют собой политические единицы, такие как страны, штаты, провинции, графства и так далее, в то время как зелёные - различные типы открытых пространств (парки, заповедники). Если вы увеличите масштаб, вы увидите больше объектов меньшего размера."
   body: 'Текст:'
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
@@ -852,7 +859,6 @@ ru:
   clear_filters: Очистить фильтры
   clear_search: Очистить поиск
   click_the_map: "<strong>Кликните на карте</strong> чтобы добавить местоположение."
-  click_the_map_to_jump_new_place: Кликните на карте, чтобы перейти на новое место
   close: Закрыть
   code: Код
   colors: Цвета
@@ -1669,7 +1675,6 @@ ru:
   inat_user_profile: "%{site_name}: Профиль %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} является совместной инициативой Калифорнийской академии наук и Национального географического общества."
   inaturalist_places: "%{site_name} Места"
-  inaturalist_places_are_way_record_what_lives_where: "Места %{site_name} - это способ записи того, кто где обитает. Если вы ищете конкретный вид, вы будете знать, где искать. Каждое место имеет контрольный список для записи всех видов, которые там встречаются, поэтому они также могут быть полезны для поиска того, что вы нашли на отдельных участках."
   info: Информация
   input_taxon: Входной таксон
   insects: насекомые
@@ -2022,7 +2027,7 @@ ru:
   message_deleted: Сообщение удалено
   message_from_user_at_time: От %{user} в %{time}
   message_from_user_on_date: От %{user} %{date}
-  messages: Сообщениях
+  messages: Сообщения
   misidentifications: Ошибочные идентификации
   misleading_or_illegal_content_html: |
     Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href="/help#inappropriate">FAQ</a>.
@@ -2041,7 +2046,7 @@ ru:
       #Short text representing 1 hour in the past
       h: "1ч"
       #Short text representing %d hours in the past
-      hh: "%dчас"
+      hh: "%dч"
       #Short text representing 1 day in the past
       d: "1д"
       #Short text representing %d days in the past
@@ -2072,7 +2077,7 @@ ru:
   more_from_x: Больше от %{x}
   more_import_options: Другие возможности импорта
   more_info: Подробнее
-  more_info_title: Больше Информации
+  more_info_title: Подробнее
   more_journal_posts: Больше сообщений журнала
   more_observations: Больше наблюдений
   more_photos: Больше фото
@@ -2080,7 +2085,7 @@ ru:
   most_agree: большинство согласно
   most_browser_print_pdf: "Примечание: Большинство браузеров имеют возможность печати в PDF"
   most_disagree: большинство не согласно
-  most_comments_and_faves: Больше всего Комментариев и Фаворитов
+  most_comments_and_faves: Больше всего комментариев и фаворитов
   most_observations: Больше всего наблюдений
   most_recent_observation_by_date_observed: Самые новые проверяемые наблюдения по дате наблюдения
   most_species: Больше всего видов
@@ -2093,15 +2098,15 @@ ru:
   multiple_taxa_for_taxon_change: "Несколько таксонов (ввод для замены/слияния, вывод для разделения)"
   multiple_taxon_ids_separated_by_commas: 'Множественные идентификации таксона, разделённые запятыми, например, 123,654'
   must_be_observed_after: |
-    должен быть отмечен после %{operand}
+    должен наблюдаться после %{operand}
   must_be_observed_before: |
-    должен быть отмечен перед %{operand}
-  must_be_observed_in: должен быть отмечен в
+    должен наблюдаться перед %{operand}
+  must_be_observed_in: должен наблюдаться в
   must_be_less_than_x_MB: "Должен быть меньше %{x} Мб"
   must_have_observation_field: "должен иметь заполненное поле наблюдения %{operand}"
   must_have_x: "должен иметь %{x}"
   mute_user: Отключить пользователя
-  mute_removed: Отключение звука удалено
+  mute_removed: Отключение удалено
   muted_users: Отключенные Пользователи
   n_ago: "%{n} назад"
   n_people_agrees: "%{amount} людей согласны"
@@ -2110,10 +2115,10 @@ ru:
   n_person_disagrees: "%{amount} человек не согласны"
   name: Имя
   name_entered: Имя введено
-  name_or_slug: "Имя или URL-адрес, например. мой-проект"
-  name_of_the_place_you: Название места где вы сделали наблюдение
+  name_or_slug: "Имя или URL-адрес, например, мой-проект"
+  name_of_the_place_you: Название места, где вы сделали наблюдение
   name_providers:
-    col: Каталог Живого
+    col: Каталог Жизни
     ubio: uBio
     nzor: Регистр организмов Новой Зеландии
   names: Имена
@@ -2133,19 +2138,19 @@ ru:
   needs_id: требуется идентификация
   needs_id_: Требуется идентификация
   needs_id_expandable_html: "<span class='full'>Требуется </span>ID"
-  needs_to_be_identified: Нуждается в определении
+  needs_to_be_identified: Нуждается в идентификации
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, часть сети iNaturalist
     Network, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
     Хотите ли вы изменить свою принадлежность с <strong>%{other_site_name}</strong> на
     <strong>%{site_name}</strong>?
-  new: Новый
+  new: Новые
   new_and_noteworthy: Новые и значимые
   new_announcement: Новое объявление
   new_assessment: Новая оценка
   new_check_list: Новый контрольный список
-  new_check_list_for: "Создайте новый чеклист для %{place} &raquo;"
+  new_check_list_for: "Создайте новый контрольный список для %{place} &raquo;"
   new_check_list_record: "Если вы хотите пометить этот список как полный, создайте его, добавьте таксоны, а затем отредактируйте его, и у вас будет возможность пометить его здесь как полный."
   new_comment_on_a_parent_by_user_link: Новый комментарий к @vow_or_con{vow:an|a} %{parent} %{user_link}
   new_flag_for: Новый флаг для
@@ -2168,8 +2173,8 @@ ru:
   new_project_asset: Новые активы проекта
   new_project_asset_for: Новый актив проекта для
   new_source: Новый Источник
-  new_species_added_in_interval: Новые наблюдения, добавленные в %{interval}
-  new_species_added_in_interval_x_of_y: Новые наблюдения, добавленные в %{interval} (показывающие %{x} из %{y})
+  new_species_added_in_interval: Новые виды, добавленные в %{interval}
+  new_species_added_in_interval_x_of_y: Новые виды, добавленные за %{interval} (показаны %{x} из %{y})
   new_taxon_change: Новое изменение таксона
   new_taxon_link: Новая ссылка на таксон
   new_taxon_name_for: Новое наименование таксона для
@@ -2180,21 +2185,21 @@ ru:
   new_users: Новые участники
   new_users_in_year: "Новые пользователи в %{year}"
   new_users_w_7_obs: Новые участники с 7 набл за неделю
-  newly_added: Вновь добавленные
-  newly_added_species: Новые виды
-  newly_observed_species: Новые наблюдаемые виды
+  newly_added: Недавно добавленные
+  newly_added_species: Недавно добавленные виды
+  newly_observed_species: Новые недавно наблюдаемые виды
   newly_observed_species_in_year: "Новые виды в %{year}"
   news: Новости
-  next: След
+  next: Далее
   next_observation: Следующее наблюдение
   next_page: Следующая страница
   next_photo: Следующее фото
   next_tab: Следующая вкладка
   'no': 'Нет'
-  no_assessments_have_been_added_to_this_project_yet: Никакие оценки ещё не были добавлены в этот проект.
+  no_assessments_have_been_added_to_this_project_yet: Никакие оценки ещё не были добавлены к этому проекту.
   no_but_it_is_a_member_of_taxon: "Нет, но это член %{taxon}"
   no_comments_yet: Пока нет комментариев.
-  no_countries_added_yet: Пока стран не добавлено.
+  no_countries_added_yet: Пока страны не добавлены
   no_creative_commons_flickr_photos_tagged_x: 'Не найдены фото с Flickr с лицензией Creative Commons с тегом %{x}'
   no_curators_set: Кураторы не назначены
   no_curators_yet: Пока нет кураторов!
@@ -2203,10 +2208,10 @@ ru:
   no_flickr_photos_tagged: Не найдены фото Flickr с тегами!
   no_identifications: Нет идентификаций
   no_identifications_added:
-    current_user: Вы не добавили идентификаций ни к каким наблюдениям.
+    current_user: Вы не добавили идентификации ни к каким наблюдениям.
     user: "%{user} не добавил идентификаций ни к каким наблюдениям."
   no_ids_have_been_suggested_yet: Никаких идентификаций пока не предложено
-  no_interaction_data_available: Нет доступных взаимосвязаных данных
+  no_interaction_data_available: Данные о взаимодействии отсутствуют
   no_its_as_good_as_it_can_be: Нет, это хорошо, насколько возможно
   no_favorites_added:
     current_user: Вы ещё не добавляли ничего к фаворитам.
@@ -2217,52 +2222,52 @@ ru:
   no_matching_invitations: Нет соответствующих приглашений
   no_matching_observations: Нет соответствующих наблюдений.
   no_matching_places: Нет соответствующих мест
-  no_matching_projects: Соответствующие проекты не найдены
+  no_matching_projects: Нет соответствующих проектов
   no_matching_species: Нет соответствующих видов.
   no_matching_users: Нет соответствующих пользователей.
   no_members_yet: "Пока нет участников."
-  no_messages_yet: Пока ещё нет сообщений
+  no_messages_yet: Пока нет сообщений
   no_misidentifications_yet: Ошибочные идентификации пока не обнаружены
-  no_more_mail_from_site: "Не хотите получать письма от %{site_name}? Измените настройки вашей  электронной почты в"
+  no_more_mail_from_site: "Не хотите получать письма от %{site_name}? Измените настройки вашей  электронной почты в "
   no_more_taxa_to_load: Больше нет таксонов для загрузки!
   no_more_results_found: Больше ничего не найдено
   no_new_messages: Нет новых сообщений
   no_news_yet: Пока нет новостей
   no_observations: Нет наблюдений
-  no_observations_from_this_place_yet: Пока ещё нет наблюдений в этом месте.
+  no_observations_from_this_place_yet: Пока нет наблюдений в этом месте.
   no_observations_matching_those_ids: Нет наблюдений, соответствующих этим идентификациям.
-  no_observations_submitted: "Не отправлены никакие наблюдения!"
-  no_observations_yet: Пока ещё нет наблюдений
+  no_observations_submitted: "Не представлены никакие наблюдения!"
+  no_observations_yet: Пока нет наблюдений
   no_one_has_added_any: Никто не добавил примечаний к этому месту
   no_one_has_been_invited_yet: Никто не был ещё приглашён
-  no_one_posted_anything_yet: Никто ничего ещё не постил!
+  no_one_posted_anything_yet: Никто ничего ещё не написал!
   no_photo: Нет фото
   no_photos: Нет фото
   no_photos_of_that_size: Нет фото такого размера.
   no_places_available: Нет доступных мест
-  no_post_yet: Пока ещё нет сообщений!
+  no_post_yet: Пока нет сообщений!
   no_project_selected: Нет выбранных проектов
   no_project_to_admin_current_user: "Вы не администрируете никакой проект"
   no_project_to_admin_login: "%{login} не администрирует никакой проект"
   no_projects_yet: Ещё нет проектов
   no_range_data_available: Нет данных об ареале.
-  no_recent_activity: Нет недавней активности.
+  no_recent_activity: За последнее время нет активности
   no_relevant_annotations: Нет подходящих значений.
-  no_reply_yet: Нет ещё ответа
+  no_reply_yet: Ответа пока нет
   no_results_found: Ничего не найдено
   no_results_for: 'Нет результатов для'
   no_results_matching: Нет результатов, соответствующих
   no_sections_available: Нет доступных секций.
-  no_sections_have_been_added_to_this_assessments_yet: К этим оценкам пока не добавлено никаких разделов.
-  no_species_have_been_listed: Ни одного вида не было ещё перечислено в этом месте!
+  no_sections_have_been_added_to_this_assessments_yet: К этим оценкам пока не добавлены никакие разделы.
+  no_species_have_been_listed: Ни одного вида ещё не было указано для этого места!
   no_species_observed: Ни одного вида не наблюдали
   no_species_on_this_list: Ни одного вида нет ещё в этом списке!
   no_species_on_this_list_for_owner_html: |
-    Вы можете начать добавлять виды в этот список напрямую, или, если это список жизни, он будет автоматически пополняться видами, когда вы <a href="%{url}" class="nobr">добавляете наблюдения</a>.
+    Вы можете начать добавлять виды в этот список напрямую, или, если это список жизни, он будет автоматически пополняться видами, когда вы <a href="%{url}" class="nobr">будете добавлять наблюдения</a>.
   no_subject_parens: "(без темы)"
   no_suggestions_available: Нет предложений
   no_summary_from_wikipedia: Нет резюме в Википедии
-  no_summary_has_been_set: Ни одного резюме не было создено.
+  no_summary_has_been_set: Ни одного резюме не было создано.
   no_taxa: Нет таксонов
   no_taxa_listed: Нет перечисленных таксонов
   no_taxa_selected: Не выбраны таксоны!
@@ -2280,10 +2285,10 @@ ru:
   not_covered_by_any_taxon_frameworks: Не охвачен никакой основой таксонов
   not_evaluated: не оцененный
   not_findig_what_you_want: Не нашли то, что искали?
-  not_finding_place_you_want?: Не нашлось место, которое вы искали?
+  not_finding_place_you_want?: Не нашли место, которое искали?
   not_found: Не найдено
   not_linked_facebook: "Ваша учётная запись %{site_name} не связана с учётной записью Facebook."
-  not_linked_flickr: "Ваша учётная запись на сайте %{site_name} в настоящее время не привязана к вашей учётной записи Flickr."
+  not_linked_flickr: "Ваша учётная запись на сайте %{site_name} не привязана к вашей учётной записи Flickr"
   not_on_this_list: Нет в этом списке.
   not_recorded: Не указана
   not_resolved: Не разрешено
@@ -2316,25 +2321,25 @@ ru:
   observation_brief_something_by_user: "Некоторые от %{user}"
   observation_brief_something_from_place: "Некоторые из %{place}"
   observation_brief_something_from_place_by_user: "Некоторые из %{place} от %{user}"
-  observation_brief_something_from_place_on_day: "Некоторые из %{place} от %{day}"
+  observation_brief_something_from_place_on_day: "Некоторые из %{place} за %{day}"
   observation_brief_something_from_place_on_day_by_user: "Некоторые из %{place} за %{day} от %{user}"
   observation_brief_something_from_place_on_day_at_time: "Некоторые из %{place} за %{day} в %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Некоторые из %{place} за %{day} в %{time} от %{user}"
   observation_brief_taxon_on_day: "%{taxon} за %{day}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} от %{user}"
-  observation_brief_taxon_by_user: "%{taxon} %{user}"
+  observation_brief_taxon_by_user: "%{taxon} от %{user}"
   observation_brief_taxon_from_place: "%{taxon} из %{place}"
-  observation_brief_taxon_from_place_by_user: "%{taxon} %{user} из %{place}"
+  observation_brief_taxon_from_place_by_user: "%{taxon} из %{place} от %{user}"
   observation_brief_taxon_from_place_on_day: "%{taxon} из %{place} за %{day}"
-  observation_brief_taxon_from_place_on_day_by_user: "%{taxon} %{user} из %{place} за %{day}"
+  observation_brief_taxon_from_place_on_day_by_user: "%{taxon} из %{place} за %{day} от %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} из %{place} за %{day} в %{time}"
-  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} %{user} из %{place} за %{day} в %{time}"
+  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} из %{place} за %{day} в %{time} от %{user}"
   observations_by_category: "Наблюдения по категориям"
   observations_by_app: Наблюдения по приложениям
   observations_by_rank: Наблюдения по рангу
   observations_by_user_on_date: "Наблюдения %{user} за %{date}"
   observations_by_you: "Ваши наблюдения"
-  observations_by_you_on_date: "Ваши наблюдения на %{date}"
+  observations_by_you_on_date: "Ваши наблюдения за %{date}"
   observation_calendar_for: "Календарь наблюдений %{user} в %{year}"
   observation_curation: Курирование наблюдений
   observation_date: Дата
@@ -2355,7 +2360,7 @@ ru:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     например, "2019-10-29 13:12:21"
-  observed_on_datetime: Наблюдалось %{datetime}
+  observed_on_datetime: Наблюдали %{datetime}
   observation_removed_from_the_project: "Наблюдения удалены из проекта %{project}"
   observation_requirements: Требования к наблюдению
   observation_rules: Правила наблюдения
@@ -2367,22 +2372,22 @@ ru:
   observations_: наблюдения
   observations_added_by_x_html: "Наблюдения, добавленные %{x}"
   observations_annotated_with_annotation: "Наблюдения, снабженные %{annotation}"
-  observations_by: Наблюдения
+  observations_by: Наблюдения 
   observations_by_user: "Наблюдения %{user}"
   observations_deleted: Наблюдения удалены.
   observations_fields_are: |
     Поля наблюдения - это дополнительные элементы данных, связанных с наблюдением, такие как, например, число наблюдаемых объектов, описание мест обитания или любые другие сведения. Проект позволяет также создавать поля, которые вы хотели бы заполнить.
-  observations_from: Наблюдения от %{date}
-  observations_from_people_taxa_and_places_youre_following: "Наблюдения от людей, из мест и за таксонами, на которые вы подписаны"
+  observations_from: Наблюдения за %{date}
+  observations_from_people_taxa_and_places_youre_following: "Наблюдения от людей, из мест и таксонов, на которые вы подписаны"
   observations_from_this_place: Наблюдения в этом месте
   observations_from_this_project: Наблюдения из этого проекта
   observations_in_this_project_must: Наблюдения в этом проекте должны соответствовать следующим критериям
   observations_map: Наблюдения / Карта
-  observation_must_dotdotdot: Наблюдения должны...
+  observation_must_dotdotdot: Наблюдение должно...
   observations_near_a_place_are: |
     Наблюдения «возле» места находятся внутри прямоугольника, нарисованного вокруг границы места, что может привести к некоторым неточным результатам для мест, которые не похожи на прямоугольники. Это связано с ограничением нашей базы данных, над которым мы работаем.
   observations_needing_curation: Наблюдения, требующие внимания куратора
-  observations_observed_this_month: Наблюдения, <em>зарегистрированные</em> в этом месяце, а не опубликованные в этом месяце. Выходите на улицу!
+  observations_observed_this_month: Наблюдения, <em>сделанные</em> в этом месяце, не опубликованные в этом месяце. Выходите на улицу!
   observations_of_relatives: Наблюдения близких видов
   observations_of_taxon: "Наблюдения %{taxon_name}"
   observations_per_month: Наблюдений / месяц
@@ -2395,7 +2400,7 @@ ru:
   observations_this_year_vs_last_year: Наблюдения текущего года по сравнению с прошлым годом
   observations_total: Итого наблюдений
   observations_w: Наблюдения с/
-  observations_w_field: Наблюдения с полями
+  observations_w_field: Наблюдения с/ полем
   observations_was_successfully_updated: Наблюдение(я) успешно обновлены.
   observations_widget: Виджет наблюдений
   observations_with_this_field: Наблюдения с таким полем
@@ -2474,7 +2479,7 @@ ru:
   only_curators_can_add_edit_scientific_names: Только кураторы могут добавлять/редактировать научные названия.
   only_curators_can_access_that_page: Только кураторы могут получить доступ к этой странице.
   only_files_with_10000_rows_at_a_time: Только файлы, содержащие 10000 строк, за один раз, пожалуйста
-  only_letters_numbers: "Необходимо только буквы и цифры, без пробелов, начинаться с буквы"
+  only_letters_numbers: "Только буквы и цифры, без пробелов, должно начинаться с буквы"
   only_one_coordinate_system_per_file: |
     Для каждого файла можно использовать только одну систему координат, иначе произойдет некорректное преобразование или отображение.
   only_project_curators_can_do_that: Это может сделать только куратор проекта
@@ -2513,7 +2518,7 @@ ru:
   originally_flagged_by: Первоначально помеченный
   originally_imported_from_url_html: "Первоначально импортированный из <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "URL исходной страницы этого фото."
-  original_rights_holder: Первоначальный правообладатель
+  original_rights_holder: Оригинальный правообладатель
   original_url_for_this_map: Оригинальная ссылка для этой карты
   organism_appears_captive_cultivated: Организм выглядит как находящийся в неволе / Культивируемый
   other: Другое
@@ -2531,8 +2536,8 @@ ru:
   other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Другие таксоны, которые обычно ошибочно идентифицируются как этот родовой гибрид, в <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: Другие таксоны, которые обычно ошибочно идентифицируются как этот гибрид
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Другие таксоны, которые обычно ошибочно идентифицируются как этот гибрид, в <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_rank: Другие таксоны обычно ошибочно идентифицируются как этот %{rank}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Другие таксоны часто ошибочно идентифицируются как этот %{rank} в <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Другие таксоны, которые обычно ошибочно идентифицируются как этот %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Другие таксоны, которые ошибочно идентифицируются как этот %{rank} в <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_section: Другие таксоны, которые обычно ошибочно идентифицируются как эта секция
   other_taxa_commonly_misidentified_as_this_section_in_place_html: Другие таксоны, которые обычно ошибочно идентифицируются как эта секция, в <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_species: Другие таксоны, которые обычно ошибочно идентифицируются как этот вид
@@ -2596,21 +2601,20 @@ ru:
   photo_licensing: Лицензия фото
   photo_type: Тип фото
   photo_urls_repaired: URL фото восстановлены
-  photos_chosen_for_this_taxon: Фотографии, выбранные для этого таксона
+  photos_chosen_for_this_taxon: Фото, выбранные для этого таксона
   photos_from: Фото из
-  photos_of_taxon_html: "Фотографии %{taxon}"
-  photos_or_sounds: Фотографии или звуки
+  photos_of_taxon_html: "Фото %{taxon}"
+  photos_or_sounds: Фото или звуки
   photos_or_sounds?: Фото или звуки?
   photos_size:
     small: маленький
     medium: средний
     large: большой
     original: исходный размер
-  photos_size_photos: "%{photos_size} фото"
   photos_updated: Фото обновлены.
   pi_consent_desc_title: О личной информации
   pi_consent_desc_html: |
-    Мы храним личную информацию, такую как имена пользователей и адреса электронной почты, чтобы управлять учётными записями на этом сайте и соблюдать законы о конфиденциальности; вы должны установить этот флажок, чтобы указать, что вы согласны на использование личной информации. Чтобы узнать больше о том, какую информацию мы собираем и как мы ее используем, пожалуйста, просмотрите нашу <a href='%{privacy_url}' target='_blank'>Политику конфиденциальности</a>
+    Мы храним личную информацию, такую как имена пользователей и адреса электронной почты, и чтобы управлять учётными записями на этом сайте и соблюдать законы о конфиденциальности; вы должны установить этот флажок, чтобы указать, что вы согласны на использование личной информации. Чтобы узнать больше о том, какую информацию мы собираем и как мы ее используем, пожалуйста, просмотрите нашу <a href='%{privacy_url}' target='_blank'>Политику конфиденциальности</a>
     и наши <a href='%{terms_url}' target='_blank'>Условия предоставления услуг</a>.
   pi_consent_label: |
     Я разрешаю iNaturalist хранить и обрабатывать ограниченные виды личной информации обо мне для управления моей учетной записью
@@ -2630,7 +2634,7 @@ ru:
       Aggregate: Агрегировать
       aggregate: агрегированный
       Airport: Аэропорт
-      airport: Аэропорт
+      airport: аэропорт
       Building: Здание
       building: здание
       Canton: Кантон
@@ -2643,8 +2647,8 @@ ru:
       continent: континент
       Country: Страна
       country: страна
-      County: Страна
-      county: регион
+      County: Округ
+      county: округ
       District: Район
       district: район
       Division: Участок
@@ -2677,7 +2681,7 @@ ru:
       municipality: муниципалитет
       Nationality: Гражданство
       nationality: гражданство
-      Nearby_Building: Соседнее Здание
+      Nearby_Building: Близлежащее здание
       nearby_building: близлежащее здание
       Nearby_Intersection: Ближайший перекрёсток
       nearby_intersection: ближайший перекрёсток
@@ -2689,7 +2693,7 @@ ru:
       prefecture_city: город-центр префектуры
       Point_of_Interest: Достопримечательность
       point_of_interest: достопримечательность
-      Postal_Code: Почтовый Индекс
+      Postal_Code: Почтовый индекс
       postal_code: почтовый индекс
       Province: Провинция
       province: провинция
@@ -2705,7 +2709,7 @@ ru:
       state: штат
       Street: Улица
       street: улица
-      Street_Segment: Участок Улицы
+      Street_Segment: Участок улицы
       street_segment: участок улицы
       Subdivision: Подразделение
       subdivision: подразделение
@@ -2731,7 +2735,7 @@ ru:
   place_name: Название места
   place_notes: Примечания для места
   place_too_big_for_check_list: |
-    Это место слишком большое для контрольного списка. Вычисление статистики контрольного списка довольно дорого, поэтому мы не допускаем их для очень больших мест, если только они не были добавлены администраторами сайта. Однако это место по-прежнему можно использовать для границ проекта и запросов наблюдений.
+    Это место слишком велико для контрольного списка. Расчёты статистики контрольного списка довольно дороги, поэтому мы не допускаем их для очень больших мест, если только они не были добавлены администраторами сайта. Однако это место по-прежнему можно использовать для границ проекта и запросов наблюдений.
   place_updated: Место обновлено!
   placement: Размещение
   places: Места
@@ -3010,10 +3014,10 @@ ru:
   please_allow_a_few_weeks_for_external_sites: Пожалуйста, подождите несколько недель, чтобы внешние сайты синхронизировали изменения с этим наблюдением
   please_complete_the_following_to_add_project: |
     Чтобы добавить это наблюдение в проект, выполните следующие действия:
-  please_confirm_your_inat_username: "Подтвердите имя пользователя на %{site_name}"
+  please_confirm_your_inat_username: "Пожалуйста, подтвердите имя пользователя на %{site_name}"
   please_explain_why_you_want_to_hide_this: Пожалуйста, объясните, почему вы хотите это скрыть
   please_explain_why_you_want_to_unhide_this: Пожалуйста, объясните, почему вы хотите это открыть
-  please_fix_your_csv_and_try_again: Исправьте свой CSV-файл и повторите попытку.
+  please_fix_your_csv_and_try_again: Пожалуйста, исправьте свой CSV-файл и повторите попытку.
   please_hold_on_while_the_file: Пожалуйста, подождите, пока файл будет сгенерирован. Это может занять пару минут, если у вас много наблюдений.
   please_hold_on_while_the_file_is_generated: Пожалуйста, подождите, пока файл будет сгенерирован. Для больших списков это может занять несколько минут.
   popular: Популярные
@@ -3025,7 +3029,7 @@ ru:
   posted_by: Сообщение
   posted_on: Опубликовано в
   posts: Сообщения
-  potential_disagreement: Возможное Несогласие
+  potential_disagreement: Возможное несогласие
   powered_by: При поддержке
   powered_by_inaturalist_open_source_software_html: 'Работает на <a href="https://github.com/inaturalist/inaturalist" target="_new" >ПО iNaturalist с открытым исходным кодом</a>'
   present: присутствует
@@ -3033,7 +3037,7 @@ ru:
   preview: Предварительный просмотр
   preview_observations: Просмотр наблюдений
   preview_of_synced_observation: "<strong>Предварительный просмотр</strong> синхронизированного наблюдения. <a href=\"%{url}\">Отменить?</a>"
-  preview_personal_message: "Я хотел бы, чтобы вы присоединились ко мне на сайте %{site}, где вы можете регистрировать свои наблюдения за растениями и животными, отслеживать свой список жизни и узнавать о мире природы!"
+  preview_personal_message: "Я хотел бы, чтобы вы присоединились ко мне на сайте %{site}, где вы сможете регистрировать свои наблюдения растений и животных, отслеживать свой список жизни и узнавать о мире природы!"
   preview_your_message: Просмотреть ваше сообщение
   previewing: "Предварительный просмотр..."
   previous: Предыдущее
@@ -3053,7 +3057,7 @@ ru:
   processing3p: "Обработка…"
   profile: Профиль
   profile_visibility_desc: |
-    В целях защиты от спама в %{site_name}, профили пользователей становятся общедоступными только после того, как пользователь предоставил несколько наблюдений исследовательского уровня.
+    В целях защиты от спама в %{site_name} профили пользователей становятся общедоступными только после того, как пользователь предоставил несколько наблюдений исследовательского уровня.
   project: Проект
   project_admins:
     one: Администратор проекта
@@ -3061,12 +3065,12 @@ ru:
     many: Администраторов проекта
     other: Администраторы проекта
   project_aggregator_filter_error: |
-    Проекты не могут включить автоматическую агрегацию наблюдений, если только проект не связан с местом ограниченного размера или не разрешает наблюдения только определенных таксонов или таксонов из списка
+    Проекты не могут включать автоматическую агрегацию наблюдений, если только проект не связан с местом ограниченного размера или не разрешает наблюдения только определенных таксонов или таксонов из списка
   project_assessments: Оценки проекта
   project_assets: Активы проекта
   project_cover: Начальная страница проекта
   project_created_on: создал этот проект %{date}
-  project_curator_id: Идентификатор куратора проекта
+  project_curator_id: Идентификация куратора проекта
   project_curator_tools: Инструментарий куратора проекта
   project_curators: Кураторы проекта
   project_group_label: Группа
@@ -3157,8 +3161,10 @@ ru:
     section: Секция
     subsection: Подсекция
     complex: Комплекс
+    #Singular
     species: Виды
     hybrid: Гибрид
+    #Singular
     subspecies: Подвид
     variety: Разновидность
     form: Форма
@@ -3489,8 +3495,6 @@ ru:
     sound_has_been_flagged: Это аудио было отмечено флажком
     soundcloud_replied_with_an_error: Ответ от SoundCloud выдал ошибку. Пожалуйста, повторите попытку позже.
     sounds: Звуки
-    sounds_size_sound: "%{sounds_size} звука"
-    sounds_size_sounds: "%{sounds_size} звуков"
     view_all_soundcount_sounds: "Просмотреть все %{sound_count} звуков"
     we_didnt_find_any_sounds: Сожалеем! Мы не смогли получить никакие звуки из вашей учётной записи SoundCloud.
     you_need_to_link_your_soundcloud_account: Вам нужно привязать свой аккаунт SoundCloud, чтобы добавлять звуки.
@@ -3527,6 +3531,7 @@ ru:
   sourcing: Задание источников
   spam: Спам
   spammer: Спамер
+  #Plural
   species: Вид
   species_by_category: виды по категориям
   species_from_around_the_world: Виды со всего мира
@@ -3816,8 +3821,6 @@ ru:
   the_world: Весь мир
   the_world_is_full_of_interesting_places: |
     Мир полон интересных мест, наполненных странными и удивительными  формами жизни. Некоторые из них находятся на другой стороне планеты, а другие - если просто идти вниз по улице! %{site_name} Места дадут вам возможность просматривать жизнь на всей планете. Приступайте!
-  the_world_is_full_of_interesting_places_short: |
-    Мир полон интересных мест, каждое из которых наполнено странными и прекрасными жизненными формами. Некоторые из них находятся на другой стороне земли, а другие просто на улице!
   then_keybord_sequence: затем
   there_are_x_synonyms_html:
     one: "Существует <span class='count'>1</span> синоним</span>"
@@ -3963,7 +3966,7 @@ ru:
   unfollow: Отменить подписку
   unlink_your_google_account: Отвязать ваш аккаунт Google
   unlink_your_flickr_account: "Отвязать свою учётную запись Flickr"
-  unmute: Включить звук
+  unmute: Отмена отключения
   updates_notification_email_subject: "%{prefix} Новые обновления %{date}"
   updates_suspension_email_subject: "%{prefix} Ваши подписки приостановлены"
   updating: Обновление...
@@ -4487,6 +4490,8 @@ ru:
           infringement</code>, только если содержимое не является спамом или нарушением авторских прав, соответственно.
     guides:
       index:
+        deprecated_banner: |
+          Обратите внимание, что по состоянию на январь 2019 года функционал «Руководства» представлен «как есть»; хотя у нас нет никаких планов по его удалению, мы не планируем его дальнейшее развитие.
         funding_html: |
           Финансирование разработки руководств было обеспечено <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |
@@ -4768,16 +4773,24 @@ ru:
         vertical: Вертикально
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "всего %{count}"
+          #Count of how many taxa are present in an observation search
           few: "всего %{count}"
+          #Count of how many taxa are present in an observation search
           many: "всего %{count}"
+          #Count of how many taxa are present in an observation search
           other: "всего %{count}"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
-          one: "%{count} уникальный"
-          few: "%{count} уникальных"
-          many: "%{count} уникальных"
-          other: "%{count} уникальных"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          one: "уникальных %{count}"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          few: "уникальных %{count}"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          many: "уникальных %{count}"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          other: "уникальных %{count}"
       export:
         choose_columns_desc: Выберите столбцы, которые требуется экспортировать
         create_a_query_desc_html: |
@@ -5422,7 +5435,7 @@ ru:
           Спасибо всем вам за участие в создании самого крутого года iNaturalist 2019!
         inaturalist_network: сеть iNaturalist
         inaturalist_network_desc: |
-          Загляните в раздел «Обзор года» для участников сети iNaturalist.
+          Загляните в «Обзоры года» участников сети iNaturalist.
         include_usa: Включая США
         growth_by_country_desc_html: |
           Где происходит рост? На карте и графике есть попытка разбить это по странам, что оказывается сложным, поскольку рост по странам может быть очень несбалансированным. Здесь мы решили опустить США и использовать по умолчанию логарифмическую шкалу, чтобы подчеркнуть различия между другими странами. Если страна окрашена в черный цвет, это означает, что она не внесла существенного вклада в процент, или у нее не было роста в этом году, или не было больше наблюдений в этом году, чем в прошлом году (наведите курсор на страну, чтобы увидеть немного больше деталей). <strong>"% от

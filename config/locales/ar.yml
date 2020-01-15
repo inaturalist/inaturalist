@@ -389,7 +389,6 @@ ar:
   blog_widget: أداة المدونة
   blue: أزرق
   blue_butterfly_etc: "أزرق، فراشة، إلخ."
-  blue_icons_represent_political_units: "تمثل الرموز الزرقاء وحدات سياسية مثل الدول والولايات والمقاطعات والأقاليم وما شابه ذلك، بينما تمثل الرموز الخضراء أنواعا مختلفة من المساحات المفتوحة (المتنزهات، المحميات)، إذا قمت بالتكبير ستشاهد المزيد من الأماكن الأصغر حجما."
   body: جسم
   bounding_box: صندوق الربط
   breadcrumbs: ممر التصفح
@@ -539,7 +538,6 @@ ar:
   clear_filters: مسح المرشحات
   clear_search: مسح البحث
   click_the_map: "<strong>انقر على الخريطة</strong> لإضافة موقع."
-  click_the_map_to_jump_new_place: انقر على الخريطة للانتقال إلى مكان جديد
   close: إغلاق
   code: كود
   colors: ألوان
@@ -1287,7 +1285,6 @@ ar:
   inat_user_profile: "%{site_name}: الملف الشخصي لـ%{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} هي مبادرة مشتركة بين أكاديمية كاليفورنيا للعلوم والجمعية الجغرافية الوطنية."
   inaturalist_places: "أماكن %{site_name}"
-  inaturalist_places_are_way_record_what_lives_where: "أماكن %{site_name} هي وسيلة لتسجيل ما يعيش فيه، إذا كنت تبحث عن نوع معين، عليك أن تعرف أين تبحث، كل مكان لديه قائمة فصح لتسجيل جميع الأنواع التي تحدث هناك، حتى أنها يمكن أن تكون مفيدة أيضا للبحث عن الأشياء الموجودة في مواقع معينة."
   info: معلومات
   input_taxon: إدخال الأصنوفة
   insects: حشرات
@@ -2154,7 +2151,6 @@ ar:
     medium: متوسطة
     large: كبيرة
     original: أصلية
-  photos_size_photos: "%{photos_size} صورة"
   photos_updated: تم تحديث الصور.
   pi_consent_desc_title: حول المعلومات الشخصية
   pi_consent_desc_html: |
@@ -2715,8 +2711,10 @@ ar:
     section: قسم
     subsection: قسيم
     complex: مركب
+    #Singular
     species: نوع
     hybrid: هجين
+    #Singular
     subspecies: نويع
     variety: ضرب
     form: شكل
@@ -3041,8 +3039,6 @@ ar:
     sound_has_been_flagged: تم تعليم هذا الصوت.
     soundcloud_replied_with_an_error: رد ساوند كلاود بوجود خطأ; الرجاء معاودة المحاولة في وقت لاحق.
     sounds: أصوات
-    sounds_size_sound: "%{sounds_size} صوت"
-    sounds_size_sounds: "%{sounds_size} صوت"
     view_all_soundcount_sounds: "عرض جميع الأصوات الـ%{sound_count}"
     we_didnt_find_any_sounds: عذرا! لم نتمكن من الحصول على أية أصوات من حساب ساوند كلاود الخاص بك.
     you_need_to_link_your_soundcloud_account: تحتاج إلى ربط حساب ساوند كلاود الخاص بك لإضافة أصوات.
@@ -3079,6 +3075,7 @@ ar:
   sourcing: إمداد مصادر
   spam: سخام
   spammer: مرسلو البريد المزعج
+  #Plural
   species: نوع
   species_by_category: الأنواع حسب التصنيف
   species_from_around_the_world: الأنواع من جميع أنحاء العالم
@@ -3292,10 +3289,6 @@ ar:
     بأشكال حياة غريبة ورائعة، بعضها على الجانب الآخر من العالم، في حين أن 
     البعض الآخر في الشارع فقط! %{site_name} تتيح لك الأماكن تصفح الحياة 
     من جميع أنحاء الكوكب، ابدأ الاستكشاف!
-  the_world_is_full_of_interesting_places_short: |
-    العالم مليء بأماكن مثيرة للاهتمام،
-    بأشكال حياة غريبة ورائعة، بعضها على الجانب الآخر من العالم، في حين أن 
-    البعض الآخر في الشارع فقط!
   then_keybord_sequence: ثم
   there_is_no_wikipedia_page_matching: لا توجد صفحة ويكيبيديا مطابقة
   there_isnt_a_wikipedia_article_titled_x_html: |

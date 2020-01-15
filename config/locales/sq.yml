@@ -419,7 +419,6 @@ sq:
   blog_widget: Vegla e blogut
   blue: kaltër
   blue_butterfly_etc: "kaltër, flutur, etj."
-  blue_icons_represent_political_units: "Ikonat e kaltra përfaqësojnë njësi politike si vende, shtete, krahina, qarqe dhe të ngjashme, ndërsa ikonat e gjelbra përfaqësojnë lloje të ndryshme të hapësirave (parqe, rezervate). Nëse zmadhoni, do të shihni më shumë vende të vogla."
   body: Trupi i mesazhit
   bounding_box: Kutia e kufizimit
   breadcrumbs: Thërrime buke
@@ -555,7 +554,6 @@ sq:
   clear_color_filters: Pastro filtrat e ngjyrave
   clear_search: Fshi kërkimin
   click_the_map: "<strong>Kliko në hartë</strong> për të shtuar një vendndodhje."
-  click_the_map_to_jump_new_place: Kliko në hartë për të kërcyer në një vend të ri
   close: Mbylle
   code: Kodi
   colors: Ngjyrat
@@ -1194,7 +1192,6 @@ sq:
   inat_believes_this_is_a_complete_listing: "%{site_name} beson që kjo është lista e plotë e këtij taxon-i në këtë vend."
   inat_user_profile: "%{site_name}: profili i %{user}"
   inaturalist_places: "%{site_name} Vendet"
-  inaturalist_places_are_way_record_what_lives_where: "Vendet në %{site_name} mundësojnë dokumentimin e krijesave që gjallojnë në vende të ndryshme. Nëse kërkoni një specie të veçantë, e dini ku të kërkoni. Secili vend ka një listë që dokumenton të gjitha speciet që ndodhen aty, çka ju ndihmon të hulumtoni rreth krijesave që mund të gjeni në vende të caktuara."
   info: Informacion
   input_taxon: Fut taxon
   insects: Insektet
@@ -1950,7 +1947,6 @@ sq:
     medium: e mesme
     large: e madhe
     original: origjinale
-  photos_size_photos: "fotografi %{photos_size}"
   photos_updated: fotografia u përditësua.
   pink: njgyre roze
   place: Vend
@@ -2255,8 +2251,10 @@ sq:
     subgenus: nën-gjinia
     section: seksioni
     subsection: nën-seksioni
+    #Singular
     species: specjet
     hybrid: hibrid
+    #Singular
     subspecies: nën-speciet
     variety: llojllojshmëria
     form: forma
@@ -2529,8 +2527,6 @@ sq:
     sound: Tingull
     soundcloud_replied_with_an_error: SoundCloud  u përgjigj me një gabim. Ju lutem provoni përsëri më vonë.
     sounds: Tingujt
-    sounds_size_sound: "%{sounds_size} Tingull"
-    sounds_size_sounds: "%{sounds_size} Tinguj"
     view_all_soundcount_sounds: "Shih të gjithë %{sound_count} tingujt"
     we_didnt_find_any_sounds: Na vjen keq! Nuk arritëm të marrim ndonjë nga tingujt prej llogarisë suaj në SoundCloud.
     you_need_to_link_your_soundcloud_account: Ju duhet të lidheni me llogarinë tuaj në SoundCloud në mënyrë që të shtoni tingujt.
@@ -2546,6 +2542,7 @@ sq:
   sources: Burimet
   sources_youve_added: Burimet që i keni shtuar
   sources_and_credits: Burimet dhe atributet
+  #Plural
   species: Specjet
   species_by_category: specjet sipas kategorisë
   species_from_around_the_world: Specjet nga e gjithë bota

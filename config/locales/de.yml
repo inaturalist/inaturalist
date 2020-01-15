@@ -19,11 +19,15 @@ de:
     other: '%{count} Bestimmungen'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> Bestimmer'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Bestimmer'
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} erste Lebensliste"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} erste Lebenslisten"
   x_journal_posts_html:
     one: '<span class="count">1</span> Journal-Beitrag'
@@ -560,7 +564,6 @@ de:
   blog_widget: Blog Widget
   blue: blau
   blue_butterfly_etc: "blau, Schmetterling, usw."
-  blue_icons_represent_political_units: "Blaue Symbole stellen politische Einheiten, wie Staaten, Bundesländer, Provinzen, Kreise und ähnliches dar, wohingegen grüne Symbole verschiedene Arten offenen Geländes (Parks, Reservate) darstellen. Zoome hinein und Du siehst mehr und kleinere Orte."
   body: Körper
   bounding_box: Rahmen
   breadcrumbs: Brotkrumen
@@ -695,7 +698,6 @@ de:
   clear_filters: Filter aufheben
   clear_search: Suche löschen
   click_the_map: "<strong>Klicke auf die Karte</strong> um ein Ort hinzuzufügen."
-  click_the_map_to_jump_new_place: Klicke auf die Karte, um zu einem neuen Ort zu wechseln
   close: Schließen
   code: Schlüssel
   colors: Farben
@@ -1414,7 +1416,6 @@ de:
   inat_user_profile: "%{site_name}:%{user}s Profil"
   inaturalist_is_a_joint_initiative: "%{site_name} ist eine gemeinsame Initiative der California Academy of Sciences und der National Geographic Society."
   inaturalist_places: "%{site_name} Orte"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name} Orte sind eine Möglichkeit zu erfassen, was wo lebt. Wenn du nach einer bestimmten Art suchst, weißt du, wo du suchen musst. Jeder Ort hat eine Checkliste, um alle dort vorkommenden Arten aufzuzeichnen, sodass sie auch nützlich sein können, um Dinge nachzuschlagen, die du an bestimmten Stellen gefunden hast."
   info: Info
   input_taxon: Taxon eingeben
   insects: Insekten
@@ -2228,7 +2229,6 @@ de:
     medium: mittel
     large: groß
     original: Original
-  photos_size_photos: "%{photos_size} Fotos"
   photos_updated: Fotos aktualisiert.
   pi_consent_desc_html: |
     Wir speichern personenbezogene Daten wie Benutzernamen und E-Mail-Adressen, um Konten auf dieser Website zu verwalten. Um die Datenschutzgesetze einzuhalten, benötigen wir deine Einwilligung in diese Nutzung personenbezogener Daten, indem du dieses Kästchen ankreuzt. Um mehr darüber zu erfahren, welche Informationen wir sammeln und wie wir sie verwenden, lese bitte unsere
@@ -2765,8 +2765,10 @@ de:
     section: Sektion
     subsection: Untersektion
     complex: Komplex
+    #Singular
     species: Art
     hybrid: Hybrid
+    #Singular
     subspecies: Unterart
     variety: Varietät
     form: Form
@@ -3077,8 +3079,6 @@ de:
     sound: Audio
     soundcloud_replied_with_an_error: SoundCloud antwortete mit einem Fehler.  Bitte versuche es später noch einmal.
     sounds: Audio
-    sounds_size_sound: "%{sounds_size} Audio"
-    sounds_size_sounds: "%{sounds_size} Audio"
     view_all_soundcount_sounds: "Alle %{sound_count} Audios aufrufen"
     we_didnt_find_any_sounds: Sorry! Wir konnten keine Audio-Dateien von deinem SoundCloud-Account einspielen.
     you_need_to_link_your_soundcloud_account: Du musst dein SoundCloud-Konto verlinken, um Audio-Dateien hinzuzufügen.
@@ -3107,6 +3107,7 @@ de:
   sources_youve_added: Von dir hinzugefügte Quellen
   sources_and_credits: Quellen und Bildnachweise
   sourcing: Beschaffung
+  #Plural
   species: Arten
   species_by_category: Arten nach Kategorie
   species_from_around_the_world: Arten aus aller Welt
@@ -3267,8 +3268,6 @@ de:
   the_world: Die Welt
   the_world_is_full_of_interesting_places: |
     Die Welt ist voller interessanter Orte, die alle voller seltsamer und wunderbarer Lebensformen sind. Einige sind auf der anderen Seite der Welt, während andere nur am Ende der Straße sind! %{site_name}-Orte erlauben es dir, das Leben rund um den Planeten zu erkunden.  Fang an zu erforschen!
-  the_world_is_full_of_interesting_places_short: |
-    Die Welt ist voller interessanter Orte, die alle voller seltsamer und wunderbarer Lebensformen sind. Einige sind auf der anderen Seite der Welt, während andere nur am Ende der Straße sind!
   then_keybord_sequence: dann
   there_is_no_wikipedia_page_matching: Es gibt keinen passenden Wikipedia-Eintrag
   there_isnt_a_wikipedia_article_titled_x_html: |
