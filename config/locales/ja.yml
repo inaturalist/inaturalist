@@ -5,8 +5,22 @@ ja:
     other: '%{count}件のお気に入り'
   x_flags_resolved_html:
     other: "<span class='count'>%{count}</span>件の解決済みフラグ"
+  x_identifications:
+    other: '%{count} 同定'
   x_identifications_html:
     other: '<span class="count">%{count}</span>件の同定'
+  x_identifications_:
+    other: '%{count} 同定'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> 同定者'
+  x_languages:
+    other: "%{count} 言語"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} ライフリスト初"
   x_journal_posts_html:
     other: '<span class="count">%{count}</span>件のジャーナル投稿'
   x_matching_taxa:
@@ -27,6 +41,8 @@ ja:
     other: "<a href='%{url}'>%{count}件の観察記録</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span>件の観察記録を査読"
+  x_observers_html:
+    other: '<span class="count">%{count}</span> 観察者'
   x_others:
     other: "その他%{count}件"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました"
@@ -34,6 +50,8 @@ ja:
     other: "%{count}枚の写真"
   x_new_species:
     other: "%{count}件の新種"
+  x_new_users:
+    other: '%{count} 新規ユーザー'
   x_species:
     other: '%{count}種'
   x_species_html:
@@ -48,6 +66,10 @@ ja:
     other: "<span class='count'>%{count}</span>件の研究用観察記録"
   x_research_grade_observations_to_species_html:
     other: "<span class='count'>%{count}</span>件の種もしくはそれ以下の研究用観察記録"
+  x_sounds:
+    other: "%{count} 音声"
+  x_taxa_curated_html:
+    other: "<span class='count'>%{count}</span> 管理下の分類群"
   x_taxa_matching_current_filters:
     other: "%{count}件の現在の絞込みに該当する分類群"
   x_taxon_changes_added_html:
@@ -110,11 +132,14 @@ ja:
   add_a_new_change_group: 新規変更グループを追加
   add_a_single_observation: 1件の観測記録を追加。
   add_a_taxon: 分類群を追加
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    名前を変更したい場合は、<a target="_blank" href="%{url}">分類群の入れ替え</a>を追加します。
   add_an_assessment: 評定を追加
   add_an_identification: 同定を追加
   add_an_observation: 観察記録の追加
   add_an_observation?: 観察記録を追加しますか？
   add_an_observation_of: "%{taxon}の観察記録を追加"
+  add_an_observation_to_project_html: 観察記録を%{project} に追加
   add_annotations_for_x: '「%{x}」の注釈を追加'
   add_annotations_for_controlled_attribute:
     sex: '「性別」の注釈を追加'
@@ -158,6 +183,13 @@ ja:
   add_one_now: 今すぐ追加
   add_photos: 写真を追加
   add_place: 場所を追加
+  add_alive_or_dead_alive_annotation: '"生死：生きている"の注釈を追加する'
+  add_alive_or_dead_cannot_be_determined_annotation: '"生死：判別できない"の注釈を追加する'
+  add_alive_or_dead_dead_annotation: '"生死：死んでいる"の注釈を追加する'
+  add_plant_phenology_budding_annotation: '"植物季節学：つぼみ"の注釈を追加する'
+  add_plant_phenology_flower_budding_annotation: '"植物季節学：つぼみ"の注釈を追加する'
+  add_plant_phenology_flowering_annotation: '"植物季節学：開花"の注釈を追加する'
+  add_plant_phenology_fruiting_annotation: '"植物季節学：結実"の注釈を追加する'
   add_life_stage_adult_annotation: '“ライフステージ: 成体”の注釈を追加する'
   add_life_stage_teneral_annotation: '“ライフステージ: teneral”の注釈を追加する'
   add_life_stage_subimago_annotation: '“ライフステージ: 亜成虫”の注釈を追加する'
@@ -191,6 +223,17 @@ ja:
   add_your_own_observations_at: "自分が観察したものを%{site_name}に追加しましょう"
   added: 追加されました
   added!: 追加されました！
+  added_as_a_part_of_a_taxon_change_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">分類群の変更</a>の一部として追加されました
+  added_as_a_part_of_a_taxon_merge_html: |
+    追加先：
+    <a target="%{target}" class="%{class}" href="%{url}">分類群の統合</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    追加先：
+    <a target="%{target}" class="%{class}" href="%{url}">分類群の分割</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    追加先：
+    <a target="%{target}" class="%{class}" href="%{url}">分類群の入れ替え</a>
   added_by: '追加者:'
   added_by_user_on_date_html: "%{date}に%{user}によって追加されました"
   added_to_favorites_html: |
@@ -277,6 +320,8 @@ ja:
       other: "%{count}件の動物"
     x_mollusca:
       other: "%{count}件の軟体動物"
+    x_amphibia:
+      other: "%{count} 両生類"
     x_mammalia:
       other: "%{count}件の哺乳類"
     x_actinopterygii:
@@ -311,6 +356,7 @@ ja:
   allowed_html: 使用可能なHTML
   allowed_occurrence_status_values: 使用可能な分布状況の値
   allowed_values: 許可される値
+  almost_there_: もう少しです
   alphabetical: アルファベット順
   alphabetical_order: アルファベット順
   already_have_an_account_log_in_html: アカウントは登録済みですか？ <strong>ログインしてください。</strong>
@@ -423,6 +469,7 @@ ja:
   attribution: 帰属
   authority_list:
     iucn_red_list: IUCNレッドリスト
+  authorize: 承認
   authorize_permissions_from_provider: "%{provider}の権限を承認"
   automatic_short: 自動
   automatically_add_observations_to_this_project: このプロジェクトに観察記録を自動的に追加する
@@ -433,6 +480,7 @@ ja:
   back_to_calendar: "%{user}カレンダーに戻る"
   back_to_editing_observation: 観測記録の編集に戻る
   back_to_friends: 友人に戻る
+  back_to_flags_html: "&laquo; フラグに戻る"
   back_to_lists: "%{name}リストに戻る"
   back_to_observation: 観測記録に戻る
   back_to_observation_fields: 観測記録フィールドに戻る
@@ -441,6 +489,7 @@ ja:
   back_to_possessive_user_profile: "%{possuser}のプロフィールに戻る"
   back_to_post: '&laquo; 投稿に戻る'
   back_to_projects: プロジェクト一覧に戻る
+  back_to_suggestions: 提案に戻る
   back_to_taxon: "%{defaulttaxon}に戻る"
   back_to_taxon_changes: "分類群変更履歴へ戻る"
   back_to_viewing: "<i>%{taxon}</i>に戻る"
@@ -475,6 +524,8 @@ ja:
   blue: 青
   blue_butterfly_etc: "青, チョウチョウ, など"
   body: 本文
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: 境界ボックス
   breadcrumbs: パンくずリスト
   brief_caption: 短い説明
@@ -493,6 +544,7 @@ ja:
   by_user: "%{user}による"
   by_you: 自分の
   calendar: カレンダー
+  calendars_only_show_x_observations_at_time: カレンダーは一度に%{x} 個の観察記録のみを表示します
   cancel: キャンセル
   cant_edit_or_delete_hidden_content: サイト管理者によって非表示にされているコンテンツを編集または削除することはできません。
   cant_flag_an_object_that_doesnt_exist: 存在しないオブジェクトはフラグ付けできません
@@ -535,6 +587,7 @@ ja:
     merge: 統合
     swap: 差し替え
     stage: 段階
+    drop: 削除
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: 次から分割する
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -544,10 +597,15 @@ ja:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: 次に統合された
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_by: 置き換えられた
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: '置換用:'
     staged: 段階的な
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon}は%{output_taxa}に分割されました"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon}を%{output_taxa}に分割します"
+    input_taxon_was_dropped_html: "%{input_taxon} は削除されました"
+    input_taxon_will_be_dropped_html: "%{input_taxon} は削除されます"
+    input_taxon_will_be_activated_soon_html: "%{input_taxon} はまもなく有効になります"
     input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon}は%{output_taxon}と置き換えられました"
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon}は%{output_taxon}に置き換えられます"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}は%{output_taxon}に統合されました"
@@ -560,6 +618,7 @@ ja:
   check_list: チェックリスト
   check_list_description: このリストに表示する上位の分類群を選択します。たとえば、鳥類の場合は「Aves」、両生類の場合は「Amphibia」などです。このリストを設定すると、この分類群に含まれない分類群は許可されません。たとえば、鳥のリストを作成した場合、カエルを追加することはできません。
   check_list_for_individual_taxa_that: 'この地域で棲息する分類群のチェックリスト（例：「%{place}の鳥類」）'
+  check_list_for_taxon_html: "%{taxon} のチェックリスト"
   check_lists_must_belong_to_a_place: |
     チェックリストは場所に所属しなければなりません。新規チェックリストを作るには、場所のデフォルトチェックリストから、「新規チェックリストを作成」のリンクをクリックしてください。
   check_list_of_species_occuring_in: 種チェックリスト：
@@ -639,6 +698,7 @@ ja:
   comprehensive?: 完全？
   comprehensive_list: 包括リスト
   configure: 設定する
+  configure_a_widget_to_show: Webサイトまたはブログに%{site_name} の観察記録を表示するようウィジェットを設定します。埋め込まれたCSSをHTMLの<code>&lt;head&gt;</code>に含める必要があるかもしれません。CSSを自由に編集してください。
   confirm: 確認
   confirm_membership: 会員の確認
   confirm_new_password: パスワード再入力
@@ -650,6 +710,7 @@ ja:
   connecting_flickr: "Flickrに接続中..."
   connect_to_flickr_again_to_authorize_write_permissions: Flickrに再接続して書き込み権限を承認してください
   connecting_to_facebook: "Facebookに接続中..."
+  connecting_your_inat_account_to_accounts_other_sites: "%{site_name} アカウントを他のサイトのアカウントに連携すると、それらのサイトの認証情報を使用して%{site_name} にログインできます。"
   conservation_status: 保全状況
   conservation_status_descriptions:
     description: 記載理由
@@ -662,8 +723,15 @@ ja:
   content: 内容
   content_author: コンテンツの作成者
   content_hidden: コンテンツ非表示
+  content_hidden_by_user_on_date_because_reason_html: |
+    %{date} に%{user} がコンテンツを非表示にしました。理由："%{reason} "
   content_type: コンテンツの種類
+  user_hid_this_item_because_reason_html: |
+    %{user} は%{item} を非表示にしました。理由："%{reason} "
+  user_unhid_this_item_because_reason_html: |
+    %{user} は%{item} を表示しました。理由："%{reason} "
   continue: 続行
+  continue_to_site: '%{site_name} に進む'
   contributor_cannot_be_found: 提供者が見つかりません
   contributors_to_project: "%{project}への貢献者"
   controlled_term_labels:
@@ -685,6 +753,15 @@ ja:
     egg: 卵
     juvenile: 幼体
     alive_or_dead: 生死
+    alive: 生存
+    dead: 死亡
+    cannot_be_determined: 判別不能
+  controlled_term_definitions:
+    alive: 生物は生きており、差し迫った死の兆候はない
+    dead: 生物は死んでいるか、瀕死である
+    flower_budding: 花芽は見えるが開いていない
+    flowering: 花が開いていて植物に付いている
+    fruiting: 植物に果実が付いている
   controls: 設定
   coordinate_systems: 座標システム
   coordinates: 緯度経度
@@ -780,6 +857,7 @@ ja:
       october: 10月
       november: 11月
       december: 12月
+  date_is_accurate: 正確な日付
   date_joined: 追加日
   date_observed: 観測された日付
   date_observed_: 観測日
@@ -793,6 +871,11 @@ ja:
   date_range: 期間
   date_specified: 指定日
   date_time: 日付と時刻
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} - %{d2}"
   date_updated: 更新日
   day: 日
   decrease_brightness: 輝度を下げる
@@ -960,6 +1043,7 @@ ja:
   extinct: 絶命
   extinct_in_the_wild: 野生絶滅
   extra_properties: その他のプロパティー
+  facebook: Facebook
   facebook_account_information: あなたのFacebookアカウント情報
   facebook_account_not_linked: "%{user}のFacebookアカウントとのリンクが解除されたため、%{site_name}に写真のアクセス権限がありません。"
   facebook_options: Facebook設定
