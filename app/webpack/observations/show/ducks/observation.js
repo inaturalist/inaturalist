@@ -199,8 +199,10 @@ export function renderObservation( observation, options = { } ) {
       dispatch( setIdentifiers( null ) );
       dispatch( setMoreFromClade( [] ) );
     }
-    dispatch( fetchTaxonSummary( ) );
-    dispatch( fetchCommunityTaxonSummary( ) );
+    if ( taxonUpdated || fetchAll ) {
+      dispatch( fetchTaxonSummary( ) );
+      dispatch( fetchCommunityTaxonSummary( ) );
+    }
     if ( fetchAll || options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
     if ( fetchAll || options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
     if ( hasObsAndLoggedIn( s ) && ( fetchAll || options.fetchSubscriptions ) ) {
