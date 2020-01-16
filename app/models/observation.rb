@@ -3203,6 +3203,7 @@ class Observation < ActiveRecord::Base
   end
 
   def reindex_identifications
+    return true if skip_indexing
     Identification.elastic_index!( ids: identification_ids )
   end
 
