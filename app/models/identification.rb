@@ -214,6 +214,10 @@ class Identification < ActiveRecord::Base
   end
 
   def update_observation_if_test_env
+    # this model uses an after_commit callback for method update_observation to keep
+    # the obs ES index in sync. But in the test env when running specs there are no
+    # commits with the transactional db cleaning strategy. Use this method to run
+    # update_observation for specs
     update_observation if Rails.env.test?
   end
 
