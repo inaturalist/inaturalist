@@ -2645,9 +2645,18 @@ lt:
   somewhere_on_earth: kažkur Žemėje
   somewhere: (Kažkur...)
   sorry_flickr_isnt_responding_at_the_moment: "Atsiprašome, šiuo metu Flickr neatsako."
+  sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Atsiprašome, viena iš Flickr nuotraukų arba neegzistuoja, arba jūs neturite leidimo jos matyti."
+  sorry_that_photo_provider_isnt_responding: "Atsiprašome, šis nuotraukos teikėjas šiuo metu neatsako. Prašome bandyti vėliau."
+  sorry_that_service_is_not_responding: "Atsiprašome, ši paslauga neatsako. Prašome bandyti vėliau."
+  sorry_there_were_problems_with_your_request: "Atsiprašome, iškilo problemų su jūsų prašymu: %{project_user}"
+  sorry_we_didnt_find_that_photo: "Atsiprašome, šios nuotraukos neradome."
+  sorry_x_is_not_responding: "Atsiprašome, %{x} neatsako. Prašome bandyti vėliau."
+  sorry_you_can_only_add_1000_at_a_time: "Atsiprašome, vienu metu galite pridėti tik 1000."
+  sorry_you_cant_delete_your_own_life_list: "Atsiprašome, galite ištrinti tik savo gyvenimo sąrašą."
   sort: Rūšiuoti
   sort_by: Rūšiuoti pagal
   sorting_by: Rūšiuojama pagal
+  soundcloud_needs_to_confirm: "SoundCloud reikia patvirtinimo, kad jūs norite savo paskyrą prijungti prie %{site_name}."
   sounds:
     add_media: Pridėti mediją
     add_sounds: Pridėti garsų
@@ -2663,8 +2672,12 @@ lt:
     selected_sounds: Pasirinkti garsai
     sound: Garsas
     sound_has_been_flagged: Šis garsas buvo pažymėtas.
+    soundcloud_replied_with_an_error: SoundCloud atsakė su klaida. Prašome bandyti vėliau.
     sounds: Garsai
     view_all_soundcount_sounds: "Žiurėti visus %{sound_count} garsus"
+    we_didnt_find_any_sounds: Atsiprašome! Mums nepavyko gauti jokių garsų iš jūsų SoundCloud paskyros.
+    you_need_to_link_your_soundcloud_account: Jums reikia susieti SoundCloud paskyrą, kad galėtumėte pridėti garsų.
+    your_soundcloud_account: jūsų SoundCloud paskyra
   source: Šaltinis
   source_: 'Šaltinis:'
   source_wikipedia: "Šaltinis: Vikipedija"
@@ -2674,14 +2687,26 @@ lt:
     catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
     new_zeland_organisms_register: New Zealand Organisms Register
+    nzbrn_birds: NZBRN paukščiai
+    nzbrn_fungi: NZBRN grybai
+    nzbrn_herpetofauna: NZBRN herpetofauna
+    nzbrn_invertebrates: NZBRN bestuburiai
+    nzbrn_mammals: NZBRN žinduoliai
+    nzbrn_plants: NZBRN augalai
+    nzbrn_other: NZBRN kiti
   source_eg:
+    title: 'pvz.: Snakes: The Evolution of Mystery in Nature'
+    in_text: 'pvz.: Greene, 2000'
+    url: 'pvz.: „http://www.ucpress.edu/book.php?isbn=9780520224872“'
     citation: 'pvz.: Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
   source_url: Šaltinio URL
   sources: Šaltiniai
   sources_youve_added: Šaltiniai, kuriuos pridėjote
+  sources_and_credits: Šaltiniai ir kūrėjų sąrašas
   spam: Šlamštas
   #Plural
   species: Rūšys
+  species_by_category: rūšys pagal kategoriją
   species_from_around_the_world: Rūšys iš viso pasaulio
   species_guess: rūšies spėjimas
   species_name_cap: Rūšies pavadinimas
@@ -2707,25 +2732,37 @@ lt:
   stay_and_try_again: Pasilikite ir bandykite dar kartą
   still_no_luck?: Vis dar nepavyko?
   still_needs_id?: Vis dar reikia ID?
+  still_working_on_classifying_taxon: Vis dar bandome suklasifikuoti šį taksoną. Sugrįžkite vėliau
   stop_editing: Nutraukti redagavimą
   stop_following_user: "Nebesekti %{user}"
   stop_testing: Nutraukti testavimą
-  stop_trusting_this_person_with_your_private_coordinates: Nebepatikėkite šiam žmogui paslėptų koordinačių
+  stop_trusting_this_person_with_your_private_coordinates: Nebepatikėti šiam žmogui paslėptų koordinačių
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: PARDUOTUVĖ
+  studies_that_used_inaturalist_data_in_year: Tyrimai, kurie %{year} metais naudojo iNaturalist duomenis
+  stuff_just_added: "Tai, ką ką tik pridėjote..."
   submission_model_description: Kas gali pridėti stebėjimų prie jūsų projekto?
   submitted: Pateikta
   subscribe_to_a_taxon: Prenumeruoti Taksoną
   subscribe_to_a_place: Prenumeruoti Vietą
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Užsiprenumeruokite%{tag_end} šios žymės komentarus"
+  subscribe_to_comments_on_this_post_html: "%{tag_start}Užsiprenumeruokite%{tag_end} šio įrašo komentarus"
+  subscribe_to_observations_in_a_taxon: 'Užsiprenumeruokite visus tam tikros rūšies ar organizmų grupės (pvz.: „skorpionai“) stebėjimus.'
+  subscribe_to_observations_in_a_place: 'Užsiprenumeruokite visus stebėjimus, stebėtus šioje vietoje. Jūs taip pat galite pridėti papildomą filtrą (pvz.: „skorpionai Teksase“).'
   subscribe_to_this: Prenumeruoti tai
+  subscribe_to_x_from_this_y_html: |
+    <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Užsiprenumeruokite</a> %{x} iš šio %{y}.
   subscriptions: Prenumeratos
+  subscriptions_arent_available_for: Negalima prenumeruoti vietos, jeigu ji neturi ribų.
   successfully_changed_your_password: Slaptažodis sėkmingai pakeistas.
   suggest_an_identification: Pasiūlyti identifikaciją
   suggestions: Pasiūlymai
   supporting: Pritariantis
   support_inaturalist: Paremkite iNaturalist
+  suspend_user: Sustabdyti vartotoją
+  sw_lat: PV Pl.
+  sw_lon: PV Pl.
   sync: Sinchr.?
   synonyms: Sinonimai
   table: Lentelė
@@ -2744,6 +2781,7 @@ lt:
   taxon: Taksonas
   taxon_autocomplete_placeholder: Paukščiai, spungė ir t.t.
   taxon_geoprivacy: Taksono vietos privatumas
+  taxon_is_a_rank: "%{taxon} yra %{rank}"
   taxonomy: Taksonomija
   taxon_deleted: Taksonas ištrintas.
   taxon_doesnt_have_a_range: Taksona neturi arealo
@@ -2751,6 +2789,9 @@ lt:
   taxon_ids: Taksono ID
   taxon_map:
     data_url: Duomenų URL
+  taxon_changes: Taksono pakeitimai
+  taxon_colors: Taksono spalvos
+  taxon_curators: Taksono kuratoriai
   taxon_framework_complete: "Užbaigtas: taip"
   taxon_framework_deviations_with_count_html: "Nukrypimai: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
@@ -2799,10 +2840,18 @@ lt:
   that_observation_doesnt_have_any_photos: "Šis stebėjimas neturi nuotraukų."
   that_observation_no_longer_exists: Šis stebėjimas nebeegzistuoja.
   that_project_doesnt_exist: "Šis projektas neegzistuoja."
+  thats_not_a_real_date: Tokios datos nėra!
   the_below_items_are_needed_to_achieve: |
     Reikalavimai, kad stebėjimas būtų laikomas <span className="bold">identifikuotu:</span>
   the_community_id_requires_at_least_two_identifications: Bendruomenės ID reikia bent dviejų identifikacijų.
   the_observation_was_already_added_to_that_project: Šis stebėjimas jau buvo pridėtas prie šio projekto.
+  the_past: praeitis
+  the_people_of_inat: "%{site_name} žmonės"
+  the_species_listed_below_were_not_found_in_the_site_database: |
+    Rūšys, išvardintos žemiau, nebuvo rastos %{site_name} duomenų bazėje.
+  the_user_x_has_been_suspended: "Vartotojas %{user} buvo sustabdytas"
+  the_world: Pasaulis
+  then_keybord_sequence: tada
   there_was_a_problem_creating_this_account: |
     Iškilo problema kuriant šią paskyrą. Prašome susisiekti su mumis jeigu problema pasikartos
   there_were_problems_adding_taxa: "Nepavyko pridėti šių taksonų: %{errors}"
@@ -2830,21 +2879,37 @@ lt:
   this_taxon_was_originally_imported_from: "Šis taksonas pirmiausia buvo importuotas iš išorinio pavadinimų teikėjo:"
   this_user_has_been_suspended: Šis vartotojas buvo sustabdytas
   this_year: Šiais Metais
+  those_observations_no_longer_exist: Šie stebėjimai nebeegzistuoja.
+  threatened: Esantis pavojuje
   time_: laikas
   time_ago: "prieš %{time}"
   title: pavadinimas
   title_and_description: "Pavadinimas ir aprašymas"
+  to_add_comments: pridėti komentarų
+  to_add_ids: pridėti ID
   to_configure_your_widget: configuruoti jūsų valdiklį.
+  tools: Įrankiai
+  top_contributors: Daugiausiai prisidėję
   top_identifier: Top identifikuotojas
   top_identifiers: Top identifikuotojai
   top_identifiers_of_taxon: 'Top identifikuotojai taksono: %{taxon}'
   top_observer: Top stebėtojas
   top_observers: Top stebėtojai
   top_species: Top rūšys
+  total: Iš viso
   totals: iš viso
+  total_members: Iš viso narių
   total_observations: Visi stebėjimai
   total_species_observed: Iš viso rūšių stebėta
+  total_unique_observers: Iš viso skirtingų stebėtojų
+  translated_languages: Išverstos kalbos
   'true': 'Taip'
+  trending: Populiariausia
+  trends: Tendencijos
+  trusted: Patikimas
+  trusted_project?: Patikimas projektas?
+  trust_this_person_with_your_private_coordinates: Patikėti šiam žmogui paslėptas koordinates
+  trust_with_private_coordinates: Patikėti paslėptas koordinates
   twitter: Twitter
   type_place_name: Įveskite vietos pavadinimą
   type_source_name: Įveskite šaltinio pavadinimą
@@ -2880,12 +2945,50 @@ lt:
       select_all: Pasirinkti visus stebėjimus
       upload_failed: Įkėlimas nepavyko
   user: Vartotojas
+  user1_and_user2_faved_this_observation: "%{user1} ir %{user2} pamėgo šį stebėjimą"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} ir %{x_others} pamėgo šį stebėjimą"
+  user_added_a_comment_html: "%{user} pridėjo komentarą"
+  user_added_a_fave_html: "%{user} pamėgo"
   user_added_a_flag_html: "%{user} pridėjo žymę"
+  user_added_a_project_invitation_html: "%{user} pridėjo projekto kvietimą"
   user_added_a_x: "%{user} pridėjo %{x}"
+  user_added_an_identification_html: "%{user} pridėjo identifikaciją"
+  user_added_an_observation_html: "%{user} pridėjo stebėjimą"
   user_added_an_x: "%{user} pridėjo %{x}"
+  user_added_x_observations_html: "%{user} pridėjo %{x} stebėjimus(-ų)"
+  user_already_authenticated: Vartotojas jau autentifikuotas
+  user_autocomplete_placeholder: kueda, simon123 ir t. t.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} mano, jog tai yra išsamus %{taxon} sąrašas vietovėje: %{place}
+  user_blocked: Vartotojas užblokuotas
+  user_commented: "%{user} paliko komentarą"
+  user_commented_on: "%{user} paliko komentarą %{title} %{time}"
+  user_disagrees_this_is_taxon: "%{user} nesutinka, kai tai %{taxon}"
+  user_disagrees_with_previous_finer_identifications: "%{user} nesutinka su ankstesnėmis smulkesnėmis identifikacijomis"
+  user_faved_a_noun_by_owner: "%{user} pamėgo %{noun}, kurį sukūrė %{owner}"
+  user_faved_this_observation: "%{user} pamėgo šį stebėjimą"
   user_flagged_as_a_non_spammer_html: "%{user} pažymėtas kaip ne šiukšlintojas"
   user_flagged_as_a_spammer_html: "%{user} pažymėtas kaip šiukšlintojas"
+  user_hasnt_joined_any_projects: "%{user} neprisijungė prie jokių projektų"
+  user_invited_you_to_join_html: "%{user} pakvietė jus prisijungti"
+  user_invited_you_to_join_project: "%{user} pakvietė jus prisijungti prie %{project}"
+  user_invited_you_to_join_this_project_on_date_html: "%{user} %{date} pakvietė jus prisijungti prie šio projekto"
+  user_invited_your_x_to_a_project_html: "%{user} pakvietė jūsų %{x} į projektą"
+  user_is_a_naturalist: "%{user} yra gamtininkas!"
+  user_is_now_the_admin_for_project_html: |
+    <strong>%{user}</strong> dabar yra %{project} administratorius
+  user_is_now_a_manager_for_project_html: |
+    <strong>%{user}</strong> dabar yra %{project} valdytojas
+  user_is_now_a_curator_for_project_html: |
+    <strong>%{user}</strong> dabar yra %{project} kuratorius
+  user_muted: Vartotojas užtildytas
+  user_observed_on_on_date_in_place: |
+    %{user} stebėjo vieną %{date} vietovėje: %{place}
   user_suggested_an_id: "%{user} pasiūlė ID"
+  user_thinks_yours_is: "%{user} %{noun} jūsų stebėjimas %{observation} yra"
+  user_trusts_you_with_their_private_coordinates: "%{user} patiki jums savo paslėptas koordinates"
   username: Vartotojo vardas
   username_or_email: Vartotojo vardas arba el. paštas
   username_or_user_id: Vartotojo vardas arba vartotojo ID
@@ -3177,6 +3280,7 @@ lt:
       new:
         delete_project: Ištrinti projektą
         display_project_name: Rodyti projekto pavadinimą
+        name_placeholder: Lietuvos paukščiai, Nuostabūs laumžirgiai ir t. t.
         show_projects_as_flags: Žemėlapyje projektus žymėti vėliavomis
         welcome_to_projects: Sveiki atvykę į projektus!
         you_can_learn_more_html: |
@@ -3189,6 +3293,8 @@ lt:
       updates_desc: |
         Gaukite naujienas apie šį projektą jūsų valdymo skyde ir kasdieniniame naujienlaiškyje.
     shared:
+      blocked:
+        youve_been_blocked: Buvote užblokuotas
       spam:
         message_for_owner_and_curators_html: |
           Šis įrašas buvo pažymėtas kaip šlamštas ir nebėra viešai matomas. Jūs tai galite matyti, nes sukūrėte tai, arba esate tinklalapio kuratorius. Jeigu manote, kai tai yra klaida, prašome <a href="mailto:%{email}">susisiekite su mumis</a>.
@@ -3353,6 +3459,7 @@ lt:
     distance_in_words:
       half_a_minute: pusė minutės
     prompts:
+      minute: min.
       month: Mėnuo
       year: Metai
   number:
