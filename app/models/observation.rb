@@ -771,10 +771,7 @@ class Observation < ActiveRecord::Base
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time_by_user )
     i18n_vars = {}
-    key = if !species_guess.blank? && species_guess.to_s !~ /#{I18n.t(:something)}/
-      i18n_vars[:taxon] = species_guess
-      "taxon"
-    elsif taxon
+    key = if taxon
       i18n_vars[:taxon] = common_name( locale: I18n.locale )
       i18n_vars[:taxon] ||= taxon.name
       "taxon"
