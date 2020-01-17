@@ -1202,7 +1202,7 @@ fi:
   establishment:
     endemic: Endeeminen
     establishment: Vakiintuneisuus
-    introduced: Tulokas
+    introduced: Vieraslaji
     invasive: Vieraslaji
     managed: Hoidettu
     native: Alkuperäinen
@@ -1428,7 +1428,7 @@ fi:
   google: Google
   got_it!: Selvä!
   got_your_data_somewhere_else?: Ovatko sinun tietosi jossain muualla? Me voimme auttaa.
-  graft: Varte
+  graft: Liitos
   grant_role: "%{grant} %{role} roolin"
   grid: Ruudukko
   grid_layout: Ruudukkoasettelu
@@ -1512,7 +1512,7 @@ fi:
   identification_updated: Tunnistus päivitetty!
   identification_user_short: Tunnist. käyttäjä
   identification_withdrawn: Tunnistus peruutettu.
-  identifications: tunnistusta
+  identifications: Tunnistukset
   identifications_by: "Käyttäjän %{user} tunnistukset"
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
@@ -1572,8 +1572,8 @@ fi:
   internal_server_error: Sisäinen palvelinvirhe
   internal_taxon_including_descendants: Sisäinen taksoni (mukaan lukien alemmat taksonit)
   internal_taxon_rank: Sisäinen taksonin taso
-  introduced: Esitelty
-  introduced_in_place: "Esitelty paikassa %{place}"
+  introduced: Vieraslaji
+  introduced_in_place: "Vieraslaji paikassa %{place}"
   invitation: Kutsu
   invite: kutsu
   invite_more: kutsu lisää
@@ -3595,7 +3595,7 @@ fi:
   umbrella_projects: Sateenvarjoprojektit
   unblock: Poista esto
   unclassified: Luokittelematon
-  ungrafted_taxa: Varttamaton taksoni
+  ungrafted_taxa: Liittämätön taksoni
   unhide_content: Peru sisällön piilottaminen
   uninvite: poista kutsu
   unique_observers: uniikit havainnoijat
@@ -3785,7 +3785,7 @@ fi:
   video_tutorials: Video-opastukset
   visually_similar: Visuaalisesti samanlainen
   vulnerable: Vaarantunut
-  w00t_no_ungrafted_taxa: Hups! Ei oksastamattomia taksoneita!
+  w00t_no_ungrafted_taxa: Hups! Ei liittämättömiä taksoneita!
   w_photos_only: kuvia
   w_sounds: ääniä
   wait_file_generation: Ole hyvä ja odota kun tiedostoa muodostetaan. Tämä voi kestää muutaman minuutin, jos luettelo on suuri.
@@ -5327,6 +5327,8 @@ fi:
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
       CompleteSet: Täydellinen sarja
+      #Noun
+      Flag: Lippu
       TaxonLink: Taksonilinkki
     attributes:
       assessment:
