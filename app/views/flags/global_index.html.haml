@@ -20,6 +20,8 @@
     }
     td.actions { min-width: 150px; }
     .reason, .resolution { max-width: 300px; overflow: hidden; }
+    .table img { max-width: 100%; }
+    .table blockquote { font-size: 14px; }
 .container
   .row
     .col-xs-12
@@ -122,15 +124,20 @@
                   = link_to_user( flag.flaggable_user ) {|| char_wrap( flag.flaggable_user.login, 20 )}
                   .small.text-muted
                     = link_to t(:view_all), url_for_params( user_id: flag.flaggable_user.login, without: [:user_id] )
-              %td= flaggable_class.name.humanize
+              %td= flag.flaggable_type.humanize
               %td
-                = link_to(flaggable.to_plain_s, flaggable) if flaggable.respond_to?(:to_plain_s)
-                - if !flaggable.is_a?( Message ) && flaggable.respond_to?( :body ) || flaggable.respond_to?( :description )
-                  = truncate_with_more( formatted_user_text( flaggable.try_methods(:body, :description) ), length: 200 )
-                - if flaggable.respond_to?(:user) && flaggable.user
-                  .small
-                    = link_to_user flaggable.user, class: "text-muted" do
-                      = t(:added_by_user_on_date_html, user: flaggable.user.login, date: l( flaggable.created_at) )
+                - if flaggable
+                  = link_to(flaggable.to_plain_s, flaggable) if flaggable.respond_to?(:to_plain_s)
+                  - if !flaggable.is_a?( Message ) && flaggable.respond_to?( :body ) || flaggable.respond_to?( :description )
+                    %blockquote= truncate_with_more( formatted_user_text( flaggable.try_methods(:body, :description) ), length: 200 )
+                  - if flaggable.respond_to?(:user) && flaggable.user
+                    .small
+                      = link_to_user flaggable.user, class: "text-muted" do
+                        = t(:added_by_user_on_date_html, user: flaggable.user.login, date: l( flaggable.created_at) )
+                - else
+                  =t "deleted_#{flag.flaggable_type}"
+                  - if flag.flaggable_content_viewable_by?( current_user )
+                    %blockquote= formatted_user_text( flag.flaggable_content )
               %td.reason=formatted_user_text flag.flag
               %td
                 - if flag.comments.count > 0
