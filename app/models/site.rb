@@ -375,7 +375,7 @@ class Site < ActiveRecord::Base
   end
 
   def editable_by?(user)
-    user && user.is_admin?
+    user && ( user.is_admin? || user.is_site_admin_of?( self ) )
   end
 
   def icon_url
