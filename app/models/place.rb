@@ -847,6 +847,24 @@ class Place < ActiveRecord::Base
     box.blank? ? nil : box
   end
 
+  # Note that swlng etc accommodate bounding boxes that cross the dateline,
+  # while using ST_Envelope( geom ) does not
+  def bounding_box_geojson
+    return nil unless bounding_box
+    {
+      type: "Polygon",
+      coordinates: [
+        [
+          [swlng.to_f, swlat.to_f],
+          [swlng.to_f, nelat.to_f],
+          [nelng.to_f, nelat.to_f],
+          [nelng.to_f, swlat.to_f],
+          [swlng.to_f, swlat.to_f]
+        ]
+      ]
+    }
+  end
+
   def bounds
     return @bounds if @bounds
     result = PlaceGeometry.where(place_id: id).select("
