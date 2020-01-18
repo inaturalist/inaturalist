@@ -47,7 +47,7 @@ lt:
   about_places: Apie vietas
   about_the_cc_licenses: Apie Creative Commons licencijas
   about_these_licenses: Apie šias licencijas
-  about_this_bioblitz: Apie šį bioblitz
+  about_this_bioblitz: Apie šį bioblicą
   about_this_map: Apie šį žemėlapį
   about_this_project: Apie šį projektą
   about_x: "Apie %{x}"
@@ -431,7 +431,7 @@ lt:
   because_of: nes
   before_importing_photos: prieš importuodami nuotraukas
   bg_color: Fono Spalva
-  bioblitz: Bioblitz
+  bioblitz: Bioblicas
   birds: paukščiai
   birthday: Gimtadienis
   black: juoda
@@ -1949,6 +1949,7 @@ lt:
   place: Vieta
   placeholder: Užpildas
   place_added_to_inat_by: "Vietą įkėlė į %{site_name}"
+  place_autocomplete_placeholder: Zion National Park, Miami ir t. t.
   place_deleted: Vieta ištrinta.
   place_geo:
     geo_planet_place_types:
@@ -2509,6 +2510,7 @@ lt:
   required_columns_in_order: Privalomi stulpeliai iš eilės
   research_grade: Identifikuotas
   research_grade_observations_have: '"Identifikuoti" stebėjimai turi datą, nuotrauką, koordinates ir bendruomenės patvirtintą ID. Paspauskite, kad pamatytumėte duomenų kokybės įvertinimą.'
+  research_grade_qualification: Identifikuoto stebėjimo reikalavimai
   reset_filters_short: Atstatyti
   reset_brightness: Atstatyti ryškumą
   reset_search_filters: Atstatyti paieškos filtrus
@@ -2820,6 +2822,7 @@ lt:
   taxonomic_changes: Taksonominiai pakeitimai
   taxonomic_groups: Taksonominės grupės
   taxonomic_order: Taksonominė tvarka
+  taxonomic_status: Taksonominė būsena
   taxonomy_details: Taksonomijos informacija
   taxonomy_details_for: Taksonominės detalės
   taxonomy_details_info: 'Taksonomijos informacijos puslapyje, naudojantis taksono struktūra, aprašyta, ką mes turime omenyje, kai kalbame apie šį taksoną. <a href="/pages/taxon_frameworks">Skaityti daugiau</a>.'
@@ -2841,43 +2844,77 @@ lt:
   that_observation_no_longer_exists: Šis stebėjimas nebeegzistuoja.
   that_project_doesnt_exist: "Šis projektas neegzistuoja."
   thats_not_a_real_date: Tokios datos nėra!
+  the_admin_is_the_person_who: |
+    Administratorius yra žmogus, kuris sukūrė projektą. Jis gali daryti tą patį, ką gali valdytojai ir kuratoriai, bei ištrinti projektą.
   the_below_items_are_needed_to_achieve: |
     Reikalavimai, kad stebėjimas būtų laikomas <span className="bold">identifikuotu:</span>
   the_community_id_requires_at_least_two_identifications: Bendruomenės ID reikia bent dviejų identifikacijų.
+  the_community_must_feel_that: |
+    Bendruomenė turi manyti, kad bendruomenės taksonas yra geriausias, koks gali būti nustatytas iš pateiktų įrodymų
+  the_following_observations_could: "Šie stebėjimai negalėjo būti įdėti į %{link}"
+  the_following_photos_have_been_tagged: "Šios nuotraukos buvo pažymėtos:"
   the_observation_was_already_added_to_that_project: Šis stebėjimas jau buvo pridėtas prie šio projekto.
   the_past: praeitis
   the_people_of_inat: "%{site_name} žmonės"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Rūšys, išvardintos žemiau, nebuvo rastos %{site_name} duomenų bazėje.
   the_user_x_has_been_suspended: "Vartotojas %{user} buvo sustabdytas"
+  the_user_x_has_been_unsuspended: "Vartotojas %{user} jau nebesustabdytas"
   the_world: Pasaulis
+  the_world_is_full_of_interesting_places: |
+    Pasaulis kupinas įdomių vietų, kuriose pilna keistų ir nuostabių gyvybės formų. Kai kurios yra kitoje pasaulio pusėje, o kai kurios čia pat! %{site_name} Vietos leidžia jums naršyti gyvybės radinius iš visos planetos. Pradėkite tyrinėti!
   then_keybord_sequence: tada
+  there_is_no_wikipedia_page_matching: Nėra tokio Vikipedijos straipsnio
+  there_isnt_a_wikipedia_article_titled_x_html: |
+    Vikipedijos straipsnio pavadinimu „%{x}“ nėra. Galbūt norėtumėte jį <a href='http://en.wikipedia.org/wiki/%{x}'>sukurti</a>?
   there_was_a_problem_creating_this_account: |
     Iškilo problema kuriant šią paskyrą. Prašome susisiekti su mumis jeigu problema pasikartos
+  there_was_a_problem_saving_your_identification: "Nepavyko išsaugoti jūsų identifikacijos: %{error}"
   there_were_problems_adding_taxa: "Nepavyko pridėti šių taksonų: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Nepavyko pridėti šio stebėjimo į šį projektą: "
   there_were_problems_importing_that_place: "Nepavyko importuoti vietos: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
     Nepavyko importuoti vietos geometrijos: %{error}
   there_were_some_problems_saving_this_observation: Kažkas nepavyko išsaugojant šį stebėjimą
+  there_were_some_problems_saving_those_colors: "Nepavyko išsaugoti šių spalvų: %{error}"
   there_were_some_problems_with_fields: "Iškilo problemų su šiais laukeliais:"
+  there_were_some_problems_with_these_files: "Iškilo problemų su šiais failais:"
   theres_something_wrong_with_taxon_framework_relationship: Kažkas negerai - mes negalime nustatyti ryšių tarp vidinių ir išorinių taksonų
+  these_folks_kindly_volunteer_to: Šie žmonės be atlygio prižiūri mūsų taksonomiją ir sprendžia kitas problemas.
   these_observations_have_not_been_uploaded_yet: |
     Šie stebėjimai dar nebuvo įkelti
+  they_already_have_iNat_accounts: "...jie jau turi %{site_name} paskyras"
   they_have_been_invited: ...jie jau buvo pakviesti
+  third_person_possessive_singular: "%{object_phrase} %{noun}"
+  third_person_possessive_plural: "%{object_phrase} %{noun}"
   this: šis
+  this_bioblitz_beings_in: Šis bioblicas prasidės
+  this_is_a_life_list_of: Tai yra gyvenimo sąrašas
+  this_is_a_life_list_from_place_html: "Tai yra gyvenimo sąrašas iš %{place}"
+  this_is_a_life_list_of_taxon_in_place: "Tai yra %{taxon} gyvenimo sąrašas iš %{place}"
+  this_is_a_more_convenient_way_to_find_a_taxon_id: |
+    Tai patogesnis būdas rasti taksono ID. Tai taksono ID, kuris iš tikrųjų yra išsaugojamas. Ši paieška veikia tik su aktyviais taksonais.
   this_is_taking_forever: Tai trunka per ilgai. Prašome bandyti vėliau.
   this_is_your_observation: Čia yra jūsų stebėjimas
   this_is_your_observation_desc: Jūs visada galite matyti savo stebėjimų koordinates.
   this_list_is_empty!: Šis sąrašas yra tuščias!
   this_list_only_accepts_taxa_that_are_species: Šis sąrašas priima tik rūšies lygmens taksonus
+  this_list_only_accepts_taxa_that_are_species_or_lower: Šis sąrašas priima tik rūšies ar žemesnio lygmens taksonus
   this_observation: Šis stebėjimas
   this_observation_is_research_grade: Šis stebėjimas yra identifikuotas!
   this_observation_was_created_using: "Šis stebėjimas buvo sukurtas naudojant:"
+  this_photo_is_already_associated: Ši nuotrauka jau yra naudojama viename jūsų stebėjime.
+  this_place_has_no_check_list: "Ši vieta neturi kontrolinio sąrašo."
   this_taxon_has_no_default_photo: Taksonas neturi numatytos nuotraukos!
+  this_taxon_is_inactive_this_means: |
+    Šis taksonas yra <strong>neaktyvus</strong>. Tai reiškia, kad %{site_name} kuratoriai pakeitė
+    jį nauju, taksonomiškai teisingu taksonu.
   this_taxon_name_was_originally_imported: "Šis taksono pavadinimas buvo importuotas iš išorinio šaltinio:"
   this_taxon_was_originally_imported_from: "Šis taksonas pirmiausia buvo importuotas iš išorinio pavadinimų teikėjo:"
   this_user_has_been_suspended: Šis vartotojas buvo sustabdytas
+  this_user_has_been_suspended_message: |
+    Jeigu tai yra jūsų paskyra ir manote, kad tai buvo padaryta per klaidą, prašome <a href="mailto:%{email}">susisiekti su mumis</a>.
+  this_will_try_to_add_tags_to_your_flickr: Tai bandys pridėti žymes prie jūsų Flickr nuotraukų. Tęsti?
   this_year: Šiais Metais
   those_observations_no_longer_exist: Šie stebėjimai nebeegzistuoja.
   threatened: Esantis pavojuje
@@ -2888,6 +2925,9 @@ lt:
   to_add_comments: pridėti komentarų
   to_add_ids: pridėti ID
   to_configure_your_widget: configuruoti jūsų valdiklį.
+  to_suggest_an_identification: pasiūlyti identifikaciją
+  today: Šiandien
+  too_many_results: Per daug rezultatų
   tools: Įrankiai
   top_contributors: Daugiausiai prisidėję
   top_identifier: Top identifikuotojas
@@ -2911,6 +2951,7 @@ lt:
   trust_this_person_with_your_private_coordinates: Patikėti šiam žmogui paslėptas koordinates
   trust_with_private_coordinates: Patikėti paslėptas koordinates
   twitter: Twitter
+  two_thirds: 2/3
   type_place_name: Įveskite vietos pavadinimą
   type_source_name: Įveskite šaltinio pavadinimą
   type_source_title: "Įveskite šaltinio pavadinimą"
@@ -2927,14 +2968,24 @@ lt:
   unmute: Įjungti garsą
   updating: Atnaujinama...
   unsubscribe: Atšaukti prenumeratą
+  upcoming_bioblitzes: Artėjantys bioblicai
   update_observations: Atnaujinti stebėjimus
   update_photos: Atnaujinti nuotraukas
   update_search: Atnaujinti paiešką
   updated: Atnaujinta
   updated_by: Atnaujino
+  updated_daily: Atnaujinama kasdien
+  updated_photo: Atnaujinta nuotrauka
   upload: Įkelti
+  upload_a_csv_file: Įkelti CSV failą
+  upload_a_csv_file_with_observation: |
+    Įkelti CSV failą su stebėjimo duomenimis. Jeigu jūsų duomenys yra skaičiuoklėje ar duomenų bazėje, tai tikriausiai yra geriausias būdas tai padaryti.
+  upload_photo: Įkelti nuotrauką
   uploaded_by: Įkėlė
   uploader:
+    errors:
+      file_too_big: Failas turi būti mažesnis nei %{megabytes} MB
+      unsupported_file_type: Failo tipas nepalaikomas. Mes priimame JPG, PNG, GIF, WAV, AAC, MP3 ir MP4 (tik garsas)
     tooltips:
       add: Pridėti pastabą(-s)
       combine: Sujungti pasirinktus stebėjimus
@@ -2944,6 +2995,10 @@ lt:
       remove_photo: Pašalinti nuotrauką
       select_all: Pasirinkti visus stebėjimus
       upload_failed: Įkėlimas nepavyko
+  US_states: JAV valstijos
+  usage_stats: Naudojimo statistika
+  use_name_as_a_placeholder: |
+    Naudoti <span class='ac-placeholder'>„%{name}“</span> kaip užpildą
   user: Vartotojas
   user1_and_user2_faved_this_observation: "%{user1} ir %{user2} pamėgo šį stebėjimą"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} ir %{x_others} pamėgo šį stebėjimą"
@@ -2989,10 +3044,16 @@ lt:
   user_suggested_an_id: "%{user} pasiūlė ID"
   user_thinks_yours_is: "%{user} %{noun} jūsų stebėjimas %{observation} yra"
   user_trusts_you_with_their_private_coordinates: "%{user} patiki jums savo paslėptas koordinates"
+  user_trusts_you_with_their_private_coordinates_desc: |
+    Stebėtojas patiki jums visų savo stebėjimų paslėptas koordinates.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> parašė,
   username: Vartotojo vardas
   username_or_email: Vartotojo vardas arba el. paštas
   username_or_user_id: Vartotojo vardas arba vartotojo ID
   users: Vartotojai
+  users_comment_html: "<a href='%{url}'>%{user}</a> komentaras"
+  users_contributions_to_project_html: <a href="%{url}">%{login}</a> indėlis projekte %{project_title}
+  users_highlights_and_stats_from_year_on_site: "Svarbiausi %{user} %{site} momentai ir statistika iš %{year} metų"
   users_id: "%{user} ID"
   users_identification_short_html: "<a href='%{url}'>%{user}</a> ID"
   users_latest_observations_on_site: "%{user} paskutiniai stebėjimai %{site}"
@@ -3003,6 +3064,7 @@ lt:
   value: Reikšmė
   values: Reikšmės
   verbing_x_of_y: "%{verb}%{x} iš %{y}..."
+  verifiable_observations_by_observation_date: Identifikuotini stebėjimai pagal stebėjimo datą
   view: Rodyti
   view_all: Rodyti viską
   view_all_flags: Rodyti visus pažymėjimus
@@ -3060,6 +3122,7 @@ lt:
   view_the: "Rodyti %{action}&#59; %{link}"
   view_the_observation: Rodyti stebėjimą
   view_user_observations: "Rodyti vartotojo %{user} stebėjimus"
+  view_x: "Žiūrėti %{x}"
   view_year_stats_for_site: "Žiūrėti %{year} %{site} Statistiką"
   view_your_dashboard: Žiūrėti jūsų valdymo skydą
   view_your_inbox: Žiūrėti žinutes
@@ -3067,14 +3130,24 @@ lt:
   view_your_year_stats: "Žiūrėti Savo %{year} Statistiką"
   view_yours: Rodyti jūsų
   view_all_of_your_observations_from_x: "Žiūrėti visus %{x} stebėjimus"
+  video_tutorials: Video pamokos
   visually_similar: Vizualiai panašus
   vulnerable: Pažeidžiamas
   w_photos_only: su nuotraukomis
+  w_sounds: su garsais
+  wait_file_generation: Prašome palaukti, kol bus sukurtas failas. Ilgiems sąrašams tai gali užtrukti kelias minutes.
+  wanted: Ieškomas
+  was_it_captive_cultivated?: "Ar tai buvo naminis / kultivuojamas?"
   we_also_support: |
     Mes taip pat palaikome vaizdų talpinimą <a href="http://flickr.com">Flickr</a>,
     <a href="http://picasaweb.google.com">Picasa</a>, ir
     <a href="http://facebook.com">Facebook</a>.
+  we_can_only_understand_csv_in: Mes galime suprasti CSV tik jeigu jo formatas toks
+  we_couldnt_find_a_user: Mes neradome vartotojo su tokiu el. pašto adresu.
+  we_couldnt_find_a_user_with_that_activation_code: "Mes neradome vartotojo su tokiu aktyvacijos kodu. Galbūt jūs jau aktyvavote savo paskyrą. Pabandykite prisijungti."
+  we_didnt_find_any_photos: Mes neradome jokių nuotraukų, kurios atitiktų jūsų pateiktas paieškos sąlygas.
   we_had_a_problem_flagging_that_item: "Mums nepavyko pažymėti šio objekto: %{flag_error}"
+  we_had_trouble_saving_comment: "Mums nepavyko išsaugoti šio komentaro:"
   we_have_no_conservation_status_for_this_taxon: Mes neturime šio taksono apsaugos statuso informacijos
   we_have_no_establishment_data_for_this_taxon: "Mes neturime informacijos apie šio taksono įsikūrimo būdą"
   weather: Orai
@@ -3119,8 +3192,15 @@ lt:
   x_blog: "%{x} tinklaraštis"
   x_flagged: "%{x} pažymėtas"
   x_flagged_as_flag: "%{x} pažymėtas kaip %{flag}"
+  x_project_stats: "%{project} statistika"
+  x_site_is_a_social_network_for_naturalist: |
+    %{site} yra socialinis tinklas skirtas gamtininkams! Fiksuokite savo augalų ir gyvūnų stebėjimus,
+    dalinkitės jais su draugais ir tyrėjais, sužinokite daugiau apie gamtą.
+  x_wrote_a_new_post_html: "%{x} parašė naują įrašą"
+  x_wrote_y_new_posts_html: "%{x} parašė %{y} naujus(-ų) irašus(-ų)"
   year: Metai
   year_in_review: "%{year} Metų Apžvalga"
+  year_month: metais/mėnuo
   year_on_site: "%{site} %{year} metų apžvalga"
   yellow: geltona
   'yes': "Taip"
@@ -3136,6 +3216,8 @@ lt:
     Jūs pateikiate stebėjimus, kurie yra be datos ir vietos. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.
   you_are_subscribed_to_comments_on_this_flag: Jūs užsiprenumeravote šios žymės komentarus.
   you_cant_flag_that: Jūs negalite to žymėti
+  you_faved_this: Jūs tai pamėgote!
+  you_have_left_x_project: "Jūs palikote %{project}"
   you_joined_this_project: Prisijungėte prie šio projekto!
   you_sure_delete_flag?: Ar tikrai norite ištrinti šią žymę?
   you_sure_delete_project?: Ar tikrai norite ištrinti šį projektą?
@@ -3234,11 +3316,20 @@ lt:
           more_about_application: Daugiau apie %{application}
     observations:
       community_id:
+        agreement: Susitarimas
+        disagreement: Nesutarimas
+        disagreement_count: Nesutarimų skaičius
+        identification_count: Identifikacijų skaičius
+        score: Rezultatas
         your_id_does_not_match: |
           Jūsų ID (<span class="bold">%{taxon_name}</span>) nesutampa su bendruomenės ID
       compare:
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Horizontalus
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Intervalas
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Vertikalus
       export:
         receive_an_email_with_your_data: Gaukite el. laiška su jūsų duomenimis
         well_email_you: "Gerai, mes atsiųsime jums el. laiška, kai bus paruošta."
@@ -3260,28 +3351,41 @@ lt:
       bulk_import_success:
         success_message: |
           Jūsų grupinis %{filename} importas buvo sėkmingas. Jūsų stebėjimai dabar yra apdorojami ir greitai bus tinklalapyje.
+    photos:
+      inviter:
+        dont_forget_the_invite_link_placeholder: "nepamirškite {{INVITE_LINK}} užpildo"
     places:
       new:
-        check_list_note: "Dėmesio: kontroliniai sąrašas automatiškai išjungiami labai didelės vietoms."
+        check_list_note: "Dėmesio: kontroliniai sąrašai automatiškai išjungiami labai didelėms vietoms."
         coordinates_desc: Jeigu nepiešiate ribų arba įkeliate KML, būtina nurodyti koordinates.
         map_instruction: Poligono įrankiu nupieškite vietos ribas.
     projects:
       tracks_multiple_projects: seka daug projektų
       edit:
+        bioblitz_desc_html: |
+          <p>
+          Bioblicas yra renginys, kuriame dalyviai bando surasti kiek galima daugiau rūšių per tam tikrą laiko tarpą. Tai smagus būdas žmones supažindinti su biologine įvairove ir tuo pačiu surinkti naudingų duomenų.
+          </p>
         change_admin_desc: Pasirinkite vieną iš projekto kuratorių, kuris bus naujas administratorius.
+        end_time_desc: "Bioblico pabaiga. Ji turi būti ne vėliau nei po metų nuo pradžios"
         no_curators: |
           Nėra projekto kuratorių. Jei norite paskirti naują asmenį
           administratoriumi, jie privalo pirmą prisijungti prie šio projekto ir jūs privalote juos padaryti
           kuratoriais.
         rules:
           has_media: Turi medijos (nuotraukų arba garsų)
+        start_time_desc: "Bioblico pradžia. Formatas: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           curators: projekto kuratoriai
       new:
         delete_project: Ištrinti projektą
         display_project_name: Rodyti projekto pavadinimą
+        leaderboards_among_projects_and_bioblitzes: |
+          Geriausiųjų <strong>projektuose</strong> sąrašai
         name_placeholder: Lietuvos paukščiai, Nuostabūs laumžirgiai ir t. t.
+        project_summary_placeholder: Tyrinėkite paukščius Vingio parke...
         show_projects_as_flags: Žemėlapyje projektus žymėti vėliavomis
+        start_and_end_times_for_bioblitzes: Pradžios ir pabaigos datos/laikai (skirta bioblico tipo renginiams)
         welcome_to_projects: Sveiki atvykę į projektus!
         you_can_learn_more_html: |
           Apie projektų valdymą daugiau sužinoti galite <a href="https://www.inaturalist.org/pages/managing-projects">čia</a> arba galite paskaityti apie mūsų projektų istoriją <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">mūsų tinklaraštyje</a>.
@@ -3394,7 +3498,7 @@ lt:
         nature_at_your_fingertips: Ranka pasiekiama gamta
         create_useful_data: Sukurti naudingus duomenis
         learn_about_nature: Pažinkite gamtą
-        run_a_bioblitz: Paleisti „Bioblitz“
+        run_a_bioblitz: Paleisti bioblicą
         works_on_all_your_devices: Veikia visuose jūsų įrenginiuose
         install_our_mobile_apps: |
           Įdiekite mūsų mobiliąją programėlę, kad visada galėtumėte fiksuoti 
