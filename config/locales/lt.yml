@@ -279,13 +279,13 @@ lt:
   announcement_was_successfully_created: Skelbimas buvo sėkmingai sukurtas.
   announcement_was_successfully_updated: Skelbimas buvo sėkmingai atnaujintas.
   announcements: Skelbimai
-  any: bet kuris
+  any: nesvarbu
   any_: Bet kuris
   anyone: Betkuris
   apply_to_selected: Taikyti pasirinktiems
   apply_captive_cultivated: "Pritaikyti naminius/kultivuojamus"
   apply_fields: Taikyti laukus
-  apply_geoprivacy: Taikyti geoprivatumą
+  apply_geoprivacy: Taikyti vietos privatumą
   apply_darr: "Taikyti &darr;"
   apply_these_settings_to_all: Taikyti šias nuostatas visiems žemiau esantiems stebėjimams
   appropriate?: Tinkamas?
@@ -375,7 +375,7 @@ lt:
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
-  atom: Atomas
+  atom: Atom
   attached_taxon: Susietas taksonas
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -440,7 +440,7 @@ lt:
   blocked_users: Blokuoti naudotojai
   blog_widget: Tinklaraščio valdiklis
   blue: mėlyna
-  blue_butterfly_etc: "mėlyna, drugelis, t.t."
+  blue_butterfly_etc: "mėlyna, drugelis ir t. t."
   body: Tekstas
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
@@ -480,7 +480,7 @@ lt:
   change_descriptions:
     split: Senas taksonas, padalintas į keletą naujų taksonų
     merge: Keletas senų taksonų apjungti į vieną naują taksoną
-  change_geoprivacy: 'Pakeisti geoprivatumą'
+  change_geoprivacy: 'Pakeisti vietos privatumą'
   change_group: Keisti grupę
   change_icon: Keisti ikoną
   change_password: Keisti Slaptažodį
@@ -498,7 +498,7 @@ lt:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} buvo sujungtas į %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} bus sujungtas į %{output_taxon}"
   change_your_password: Keisti Savo Slaptažodį
-  changing_the_geoprivacy: 'Geoprivatumo pakeitimas lemia kaip kiti žmonės mato jūsų stebėjimo vietą.'
+  changing_the_geoprivacy: 'Vietos privatumo pakeitimas lemia, kaip kiti žmonės mato jūsų stebėjimo vietą.'
   check_above_for_errors: Patikrinkite, ar nėra klaidų
   check_back_soon: Patikrinkite netrukus!
   check_list: Kontrolinis sąrašas
@@ -515,7 +515,7 @@ lt:
   choose_a_list_above: Pasirinkite sąrašą viršuje.
   choose_a_place: Pasirinkite vietą
   choose_a_taxon: Pasirinkite taksoną (nebūtinas)
-  choose_file: Pasirinkti failą
+  choose_file: Pasirinkite failą
   choose_files: Pasirinkite failus
   choose_from_your_lists: Pasirinkite iš savo sąrašų
   choose_photos_for_this_taxon: Parinkite nuotraukas šiam taksonui
@@ -747,7 +747,7 @@ lt:
   date_picker:
     closeText: Uždaryti
     currentText: Šiandien
-    prevText: Ankstesnis
+    prevText: Ankst.
     nextText: Kitas
     range: Periodas
   date_range: Periodas
@@ -814,6 +814,7 @@ lt:
   display_link_to_checklist: Rodyti nuorodą į projekto sąrašą iš projekto puslapio
   distance_traveled_value: "Nukeliautas atstumas: %{distance}m"
   distance_traveled: "Nukeliautas atstumas (m)"
+  documentation_for_developers_html: Dokumentacija <a href="/pages/developers">programuotojams</a>
   do_not_show_this_message_again: Daugiau neberodyti šio pranešimo
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Tyrinėjate apvaliasias kirmeles? Esate geriausias pasaulyje ūsakojų taksonomijos ekspertas? Tiesiog mėgstate žiūrėti į gražias gėles? Papildoma informacija paskyroje suteikia asmenybės ir padeda žmonėms įvertinti jūsų identifikacijų patikimumą.
@@ -888,6 +889,7 @@ lt:
   editing: Redaguojama
   editing_announcement: Redagavimo skelbimas
   editing_custom_project_fields_for: Redaguojama pritaikyti projekto laukai
+  editing_observation_field: Redaguojamas stebėjimo laukas
   editing_observation_id: "Redaguojamas stebėjimas %{obs_id}"
   editing_project: Redaguojama %{project}
   editing_project_asset: Redaguojama Projekto Atributą
@@ -914,7 +916,7 @@ lt:
   enable_offline_access: Įgalinti prieigą neprisijungus
   enable_offline_access_for_mobile: Įgalinti prieigą neprisijungus mobiliesiems
   encompassing_places: Apimamos vietos
-  end: Baigti
+  end: Pabaiga
   end_date_time: Pabaigos data / laikas
   endangered: Nykstantis
   endemic: Endeminis
@@ -1150,7 +1152,7 @@ lt:
   has_id_supported_by_two_or_more: Identifikacijai pritaria du ar daugiau vartotojų
   has_one_or_more_faves: Turi vieną ar daugiau patinka
   has_photo: Turi nuotraukų
-  has_photos: turi nuotraukų
+  has_photos: Turi nuotraukų
   has_photo_and_sound: Turi nuotraukų ir garsų
   has_photos_or_sounds: Turi nuotraukų ar garsų
   has_sound: Turi garsų
@@ -1182,7 +1184,7 @@ lt:
   hide_desc: |
     Paslėptas turinys bus nematomas viešai, tačiau žmonės vis tiek matys, kad kažkas buvo paslėpta, o tinklalapio kuratoriai ir turinio autoriai ir toliau galės matyti tai, kas paslėpta. Dažniausiai tai galioja tik rašytiniam turiniui, pvz.: jeigu paslėpiate identifikacijos turinį, pati identifikacija ir toliau matoma, tačiau identifikuotojo pastabos būna paslėptos. Paslėptą turini vėl matomu gali padaryti tik tinklalapio personalas, jūs to padaryti negalite, todėl būkite atsargūs ir slėpkite tik tikrai nepageidautiną turinį.
   hide_uncountable_species: Paslėpti nepriskaičiuojamas rūšis
-  high: aukštas
+  high: Aukštas
   highest_rank: Aukščiausias rangas
   highlights_and_stats_from_year_on_site: "Svarbiausi %{site} momentai ir statistika iš %{year} metų"
   history: Istorija
@@ -1654,6 +1656,7 @@ lt:
   n_person_disagrees: "%{amount} žmogus nesutinka"
   name: Pavadinimas
   name_entered: Vardas įvestas
+  name_or_slug: "Pavadinimas arba URL slug, pvz.: mano-projektas"
   name_of_the_place_you: Vietovės pavadinimas, kurioje atlikote stebėjimą
   name_providers:
     col: Catalogue of Life
@@ -1798,14 +1801,19 @@ lt:
   observation_curation: Stebėjimo kuravimas
   observation_field: Stebėjimo laukas
   observation_field_details: Stebėjimo lauko informacija
+  observation_field_type_text: Tekstas
   observation_fields: Stebėjimo laukai
+  observation_fields_are_additional: Stebėjimo laukai yra papildomų duomenų laukai, kurie gali būti pridėti prie stebėjimo.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    pvz.: 2019-10-29 13:12:21
   observation_was_deleted: Stebėjimas buvo ištrintas.
   observation_without_media: Stebėjimas be nuotraukų/garsų
   observations: Stebėjimai
   observations_: stebėjimai
   observations_added_by_x_html: "Stebėjimai, kuriuos įkėlė %{x}"
-  observations_by: Stebėjimai pagal
-  observations_by_user: "Stebėjimai pagal %{user}"
+  observations_by: Stebėjimai
+  observations_by_user: "%{user} stebėjimai"
   observations_deleted: Stebėjimai ištrinti.
   observations_from: Stebėjimai nuo %{date}
   observations_from_people_taxa_and_places_youre_following: "Stebėjimai iš žmonių, vietų ir taksonų, kuriuos sekate"
@@ -1857,6 +1865,7 @@ lt:
   only_show_active_taxa: Rodyti tik aktyvius taksonus
   only_show_taxa_fom_this_list: "Rodyti taksonus tik iš šio sąrašo"
   only_species: tik rūšys
+  only_you: Tik jūs
   open_description: "Visi gali matyti koordinates, nebent taksonui gresia išnykimas."
   optional: neprivaloma
   or: arba
@@ -1929,8 +1938,10 @@ lt:
   personal_message_description: Niekam nepatinka, kai jiems rašo kompiuteris! Geriau pakvieskite draugus asmeniškai!
   per_page: "Puslapyje"
   photo: Nuotrauka
+  photo_browser: Nuotraukų naršyklė
   photo_deleted: Nuotrauka ištrinta
   photo_destroyed_because_it_was_deleted_from: "Nuotrauka sunaikinta, nes ji buvo ištrinta iš išorinio tinklalapio arba %{site_name} nebeturi leidimo jos rodyti"
+  photo_licensing: Nuotraukos licenzija
   photo_type: Nuotraukos tipas
   photo_urls_repaired: Nuotraukos URL sutaisyti
   photos_chosen_for_this_taxon: Nuotraukos parinktos šiam taksonui
@@ -1946,6 +1957,7 @@ lt:
   photos_updated: Nuotraukos atnaujintos.
   pi_consent_desc_title: Apie asmeninę informaciją
   pin_verb: Žymė
+  pink: rožinė
   place: Vieta
   placeholder: Užpildas
   place_added_to_inat_by: "Vietą įkėlė į %{site_name}"
@@ -2000,6 +2012,8 @@ lt:
       municipality: savivaldybė
       Nationality: Tautybė
       nationality: tautybė
+      Nearby_Building: Pastatas netoliese
+      nearby_building: pastatas netoliese
       Nearby_Intersection: Artima sankryža
       nearby_intersection: artima sankryža
       Open_Space: Atvira erdvė
@@ -2321,6 +2335,7 @@ lt:
   places_merged_successfully: Vietos sujungtos sėkmingai!
   plants: augalai
   please_add_a_citation_for_this_change: Prašome pridėti citatą prie šio pakeitimo.
+  please_allow_a_few_weeks_for_external_sites: Prašome išoriniams tinklalapiams duoti kelias savaites sinchronizuoti šio stebėjimo pakeitimus
   please_confirm_your_inat_username: "Prašome patvirtinti savo %{site_name} vartotojo vardą"
   please_explain_why_you_want_to_hide_this: Paaiškinkite, kodėl norite tai slėpti
   please_explain_why_you_want_to_unhide_this: Paaiškinkite, kodėl nebenorite to slėpti
@@ -2335,9 +2350,12 @@ lt:
   press: Spauda
   preview: Peržiūra
   preview_observations: Žiūrėti stebėjimus
+  preview_of_synced_observation: "Sinchronizuoto stebėjimo <strong>Peržiūra</strong>. <a href=\"%{url}\">Anuliuoti?</a>"
+  preview_personal_message: "Noriu, kad prie manes prisijungtum tinklalapyje %{site}, kuriame gali registruoti savo augalų ir gyvūnų stebėjimus bei sužinoti daugiau apie gamtą!"
   preview_your_message: Peržiūrėti savo žinutę
+  previewing: "Peržiūrima..."
   previous: Ankstesnis
-  prev: Ankst
+  prev: Ankst.
   previous_observation: Ankstesnis stebėjimas
   previous_page: Anstesnis puslapis
   previous_photo: Ankstesnė nuotrauka
@@ -2352,6 +2370,7 @@ lt:
   processing3p: "Apdorojama..."
   profile: Profilis
   project: Projektas
+  project_cover: Projekto viršelis
   project_created_on: 'sukūrė projektą šią dieną: %{date}'
   project_curator_id: Projekto kuratoriaus ID
   project_curator_tools: Projekto kuratoriaus įrankiai
@@ -2362,6 +2381,9 @@ lt:
   project_icon: Projekto piktograma
   project_invitations: 'Projekto kvietimai'
   project_list: Projektų sąrašas
+  project_list_defaults:
+    title: "%{owner_name} kontrolinis sąrašas"
+    description: Rūšių sąrašas priklausantis %{owner_name}
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> kuratoriai pridėjo kelis jūsų stebėjimus
   project_members: "%{project} nariai"
@@ -2381,6 +2403,9 @@ lt:
   projects: Projektai
   projects_from_everywhere: Projektai iš visur
   projects_from_place: "Projektai iš %{place}"
+  projects_in_x: "Projektai vietovėje: %{x}"
+  #"admins" is equivalent to "administrates"
+  projects_user_admins: Projektai, kuriuos administruoja %{user}
   projects_you_admin: Jūsų valdomi projektai
   proposed_taxa_that_contradict_the_community_id: Pasiūlytas taksonas prieštarauja bendruomenės ID
   proposed_taxa_that_support_the_community_id: Pasiūlytas taksonas pritaria bendruomenės ID
@@ -2419,8 +2444,6 @@ lt:
     tribe: Triba
     genus: Gentis
     subgenus: Pogentė
-    section: grupė
-    subsection: pogrupis
     complex: Kompleksas
     #Singular
     species: Rūšys
@@ -2489,6 +2512,7 @@ lt:
   remove_from_list: Pašalinti iš sąrašo
   remove_from_project: Pašalinti iš projekto
   remove_this_section: Pašalinti šią skiltį
+  remove_manager: Pašalinti valdytoją
   remove_photo: Panaikinti nuotrauką
   remove_place: Panaikinti vietą
   remove_relationship: Panaikinti ryšį
@@ -2496,6 +2520,10 @@ lt:
   remove_tags: Pašalinti žymes
   removed: Pašalinta
   removed!: Pašalinta!
+  removed_project_user: Pašalintas projekto vartotojas
+  removing: "Šalinama..."
+  reorder_by_taxonomy: Surikuoti pagal taksonomiją
+  repair_broken_urls: Sutaisyti neveikiantį URL
   repair_doesnt_work_for_that_kind_of_photo: Šio tipo nuotraukų sutaisyti negalima
   repair_external_photos: Taisyti išorines nuotraukas
   replace_boundary_with_kml: Pakeisti ribas su KML
@@ -2509,6 +2537,7 @@ lt:
   required_field: privalomas laukas
   required_columns_in_order: Privalomi stulpeliai iš eilės
   research_grade: Identifikuotas
+  research_grade_short_html: "I<span class='full'>dentifikuotas</span><span class='full'></span>"
   research_grade_observations_have: '"Identifikuoti" stebėjimai turi datą, nuotrauką, koordinates ir bendruomenės patvirtintą ID. Paspauskite, kad pamatytumėte duomenų kokybės įvertinimą.'
   research_grade_qualification: Identifikuoto stebėjimo reikalavimai
   reset_filters_short: Atstatyti
@@ -2519,14 +2548,25 @@ lt:
   resolved: Išspręsta
   resolved_by: 'Išsprendė:'
   resolved_by_user_on_date_html: Išsprendė %{user}, %{date}
+  resolver_said_x_html: '<span class="meta">%{resolver} pasakė,</span> „%{x}“'
   restore: Atkurti
+  restoring: Atkuriama...
+  results: rezultatai
+  review_all: Peržiūrėti viską
+  reviewed: Peržiūrėtas
   rg_observations: ID stebėjimai
+  role: Vaidmuo
   rotate_left: Sukti į kairę
   rotate_right: Pasukti į dešinę
   row_singular_or_plural: Eilė(-s)
+  rules_and_formatting: "Taisyklės ir formatavimas"
   rules_for_adding_observations: Stebėjimų įkėlimo taisyklės
+  rules_for_becoming_a_member: Nario tapimo taisyklės
+  rules_for_becoming_memner: Nario tapimo taisyklės
   rules_types:
+    must_be_identified: turi būti identifikuotas
     must_be_on_list: turi būti sąraše
+    must_be_observed_in_place: turi būti stebėtas vietoje
     must_be_in: turi būti taksone
     must_be_coordinates_shareable_by_project_curators: stebėtojas turi leisti projekto kuratoriams žiūrėti koordinates.
   same_day_private: Dar vienas šio žmogaus stebėjimas šią dieną yra privatus
@@ -2550,6 +2590,7 @@ lt:
   saving: "Išsaugoma..."
   saving_verb: Saugoma
   scale_colon: "Mastelis:"
+  schemes: Schemos
   search: Paieška
   search_by_name_or_email: Ieškoti pagal vardą arba el. pašto adresą
   search_by_taxon_name_or_observation_id: Ieškoti pagal taksono pavadinimą arba stebėjimo ID
@@ -2602,6 +2643,7 @@ lt:
   settings: Nustatymai
   share: Dalintis
   share_colon: "Dalintis:"
+  short_code_for_this_place: 'Šios vietos trumpinys. Pvz.: „LT“ vietoje „Lietuva“'
   show: Rodyti
   show_active_and_inactive_taxa: Rodyti aktyvius ir neaktyvius taksonus
   show_common_names: Rodyti lietuviškus pavadinimus
@@ -2617,6 +2659,7 @@ lt:
   show_taxa_from_both: (rodyti taksonus iš abiejų sąrašų)
   show_taxa_from_everywhere: "Rodyti taksonus iš visur"
   show_taxa_from_place: "Rodyti taksonus iš %{place}"
+  show_uncountable_species: Rodyti nepriskaičiuojamas rūšis
   showing_taxa_from_everywhere: "Rodyti taksonus iš visur"
   showing_taxa_from_place: "Rodomi taksonai iš %{place}"
   sign_in: Prisijungti
@@ -2630,8 +2673,14 @@ lt:
   simple: Paprastas
   single_observation: Vienas stebėjimas
   sizes: Dydžiai
+  skip_to_next_page: "Pereiti į kitą puslapį"
   small: mažas
+  site_admin_tools: Tinklalapio admin. įrankiai
+  site_name_place: "%{site_name} vieta"
+  site_site_admin: "%{site_name} tinklalapio administratorius"
+  site_staff: "%{site_name} personalas"
   site_stats: Statistika
+  site_taxon_page: "%{site_name} taksono puslapis"
   some_agree: kai kurie sutinka
   some_observations_failed_to_be_added: Kai kurių stebėjimų nepavyko pridėti prie projektų
   some_observations_failed_to_save: Kai kurių stebėjimų nepavyko išsaugoti
@@ -2706,6 +2755,7 @@ lt:
   sources_youve_added: Šaltiniai, kuriuos pridėjote
   sources_and_credits: Šaltiniai ir kūrėjų sąrašas
   spam: Šlamštas
+  spammer: Šiukšlintojas
   #Plural
   species: Rūšys
   species_by_category: rūšys pagal kategoriją
@@ -2744,6 +2794,8 @@ lt:
   store: PARDUOTUVĖ
   studies_that_used_inaturalist_data_in_year: Tyrimai, kurie %{year} metais naudojo iNaturalist duomenis
   stuff_just_added: "Tai, ką ką tik pridėjote..."
+  subject_resolved_noun_html: "%{subject} išsprendė %{noun}"
+  subject_affecting_stuff_html: "%{subject} paveikiantis %{stuff}"
   submission_model_description: Kas gali pridėti stebėjimų prie jūsų projekto?
   submitted: Pateikta
   subscribe_to_a_taxon: Prenumeruoti Taksoną
@@ -2760,12 +2812,14 @@ lt:
   successfully_changed_your_password: Slaptažodis sėkmingai pakeistas.
   suggest_an_identification: Pasiūlyti identifikaciją
   suggestions: Pasiūlymai
+  summary: Santrauka
   supporting: Pritariantis
   support_inaturalist: Paremkite iNaturalist
   suspend_user: Sustabdyti vartotoją
   sw_lat: PV Pl.
   sw_lon: PV Pl.
   sync: Sinchr.?
+  sync_obs_with_photo_metadata: "Sinchr. steb. su nuotraukos metaduomenimis?"
   synonyms: Sinonimai
   table: Lentelė
   table_of_contents: Turinys
@@ -2964,11 +3018,13 @@ lt:
   uninvite: nebekviesti
   unknown: Nežinoma
   unknown_error: Nežinoma klaida
+  unknown_rank: '(Nežinomas rangas)'
   unfollow: Nebesekti
   unmute: Įjungti garsą
   updating: Atnaujinama...
   unsubscribe: Atšaukti prenumeratą
   upcoming_bioblitzes: Artėjantys bioblicai
+  update: Atnaujinti
   update_observations: Atnaujinti stebėjimus
   update_photos: Atnaujinti nuotraukas
   update_search: Atnaujinti paiešką
@@ -3069,7 +3125,7 @@ lt:
   view_all: Rodyti viską
   view_all_flags: Rodyti visus pažymėjimus
   view_all_members: Rodyti visus narius
-  view_all_n: "Rodyti visus %{n}"
+  view_all_n: "Rodyti viską: %{n}"
   view_all_observations: Peržiūrėti visus stebėjimus
   view_all_photocount_photos: "Rodyti visas %{photo_count} nuotraukas"
   view_assessment: Redaguoti įvertinimą
@@ -3223,6 +3279,7 @@ lt:
   you_sure_delete_project?: Ar tikrai norite ištrinti šį projektą?
   your_account_has_been_activated: Jūsų paskyra buvo aktyvuota!
   your_content: Jūsų Turinys
+  your_hard_drive: jūsų kietasis diskas
   your_observations: Jūsų stebėjimai
   your_projects: Jūsų projektai
   your_google_account: jūsų Google paskyra
@@ -3307,9 +3364,18 @@ lt:
         default: Vadovų tvarka
     help:
       index:
+        can_i_add_photos_without_a_flickr_account?: Ar galiu pridėti nuotraukų be Flickr paskyros?
+        we_also_support_google_html: 'Mes taip pat palaikome Google Photos: <a href="%{url}">Konfiguruoti Google paskyrą &raquo;</a>'
+        what_are_tags?: Kas yra žymės?
         can_i_include_my_observations_on_my_blog?: Ar galiu įtraukti savo %{site_name} stebėjimus į savo asmeninį tinklalapį ar tinklaraštį?
         sure_check_out_our_widget_html: |
           Žinoma. Išbandykite mūsų <a href="%{url}" title="Observations Widget">stebėjimų valdiklį</a>.
+        what_is_geoprivacy?: Kas yra vietos privatumas?
+        what_is_a_life_list?: Kas yra gyvenimo sąrašas?
+    messages:
+      index:
+        show_messages_from_user: Rodyti žinutes nuo %{user}
+        show_messages_to_user: Rodyti žinutes vartotojui %{user}
     oauth:
       authorizations:
         new:
@@ -3328,6 +3394,7 @@ lt:
         horizontal: Horizontalus
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Intervalas
+        total_taxa: Iš viso taksonų
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertikalus
       export:
@@ -3339,6 +3406,7 @@ lt:
         longitude: Viešai matoma ilguma
         out_of_range: Ar šis stebėjimas yra žinomose taksono arealo ribose
         user_login: Stebėtojo vartotojo vardas
+        tag_list: Kableliais atskirtų žymių sąrašas
       import:
         geoprivacy_must_be_in_english: |
           Vietos privatumo stulpelis turi būti anglų kalba, o langeliai turi būti su vertėmis „paslėptas“, „privatus“ arba palikti tušti
@@ -3351,15 +3419,23 @@ lt:
       bulk_import_success:
         success_message: |
           Jūsų grupinis %{filename} importas buvo sėkmingas. Jūsų stebėjimai dabar yra apdorojami ir greitai bus tinklalapyje.
+      parental_consent:
+        subject: Jūsų vaikas norėtų naudotis iNaturalist
+      photos_missing:
+        subject: Kai kurias nuotraukas reikia sutaisyti
     photos:
       inviter:
+        automatically_add_to_project: Automatiškai pridėti į projektą
         dont_forget_the_invite_link_placeholder: "nepamirškite {{INVITE_LINK}} užpildo"
+        invite_other_photographers_to_inat: "Pakviesti kitus fotografus į %{site_name}"
     places:
       new:
         check_list_note: "Dėmesio: kontroliniai sąrašai automatiškai išjungiami labai didelėms vietoms."
         coordinates_desc: Jeigu nepiešiate ribų arba įkeliate KML, būtina nurodyti koordinates.
         map_instruction: Poligono įrankiu nupieškite vietos ribas.
     projects:
+      project_type: Projekto tipas
+      umbrella: Skėtinis
       tracks_multiple_projects: seka daug projektų
       edit:
         bioblitz_desc_html: |
@@ -3373,9 +3449,19 @@ lt:
           administratoriumi, jie privalo pirmą prisijungti prie šio projekto ir jūs privalote juos padaryti
           kuratoriais.
         rules:
+          captive: būti naminis/kultivuojamas
+          georeferenced: turi koordinates
+          has_a_photo: turi nuotrauką
+          has_a_sound: turi garsą
           has_media: Turi medijos (nuotraukų arba garsų)
+          identified: būti identifikuotas
+          observed_in_place: būti stebėtas vietoje
+          on_list: priklausyti taksonui projekto sąraše
+          verifiable: būti identifikuotinas
+          wild: būti laukinis/sulaukėjęs
         start_time_desc: "Bioblico pradžia. Formatas: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
+          any: bet kas
           curators: projekto kuratoriai
       new:
         delete_project: Ištrinti projektą
@@ -3383,6 +3469,7 @@ lt:
         leaderboards_among_projects_and_bioblitzes: |
           Geriausiųjų <strong>projektuose</strong> sąrašai
         name_placeholder: Lietuvos paukščiai, Nuostabūs laumžirgiai ir t. t.
+        project_name: Projekto pavadinimas
         project_summary_placeholder: Tyrinėkite paukščius Vingio parke...
         show_projects_as_flags: Žemėlapyje projektus žymėti vėliavomis
         start_and_end_times_for_bioblitzes: Pradžios ir pabaigos datos/laikai (skirta bioblico tipo renginiams)
@@ -3413,6 +3500,9 @@ lt:
         frequency:
           research: Identifikuotas
           verifiable: Identifikuotinas
+          "Alive or Dead=Alive": Gyvas
+          "Alive or Dead=Dead": Miręs
+          "Plant Phenology=Budding": Sprogsta
           "Plant Phenology=Flower Budding": Su sprogstančiais žiedais
           "Plant Phenology=Flowering": Žydi
           "Life Stage=subimago": Subimago
@@ -3571,9 +3661,53 @@ lt:
       format:
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+        units:
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+  support:
+    array:
+      last_word_connector: ', ir '
+      two_words_connector: ' ir '
+      words_connector: ', '
+  time:
+    am: ryto
+    pm: vakaro
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: turi būti patvirtinta
+        blank: negali būti tuščia
+        empty: negali būti tuščia
+        equal_to: turi būti lygu %{count}
+        even: turi būti lyginis
+        exclusion: yra užimta
+        greater_than: turi būti daugiau už %{count}
+        greater_than_or_equal_to: turi būti daugiau arba lygu %{count}
+        inclusion: neįtraukta į sąrašą
+        invalid: yra neteisinga
+        less_than: turi būti mažiau už %{count}
+        less_than_or_equal_to: turi būti mažiau arba lygu %{count}
+        not_a_number: yra ne skaičius
+        odd: turi būti nelyginis
+        record_invalid: 'Patvirtinimas nepavyko: %{errors}'
+        taken: jau užimtas
+      template:
+        body: 'Buvo problemų su šiais laukeliais:'
   activerecord:
     attributes:
+      assessment:
+        description: Aprašymas
+      assessment_section:
+        title: Pavadinimas
       conservation_status:
+        status: Būsena
+        description: Aprašymas
         place_id: Vieta
         url: URL
         geoprivacy: Vietos privatumas
@@ -3582,14 +3716,30 @@ lt:
         flag: Žymė
       guide:
         source_url: Šaltinio URL
+        published_at: Publikacija
       listed_taxon:
         establishment_means: Įsikūrimo būdas
       observation:
         observed_on: stebėjimo data
+      observation_field_value:
+        value: 'reikšmė'
+      post:
+        title: Pavadinimas
       project:
+        title: Pavadinimas
+        project_icon: Projekto piktograma
+        project_type: Projekto tipas
+        description: Aprašymas
+        end_time: Pabaigos laikas
+        event_url: Renginio registracijos URL
+        terms: Sąlygos
         map_type: Žemėlapio tipas
+        zoom_level: Didinimo lygis
+        tracking_codes: Sekimo kodai
         source_url: Šaltinio URL
+        start_time: Pradžios laikas
       place:
+        code: Kodas
         display_name: Rodyti pavadinimą
         latitude: Platuma
         longitude: Ilguma
@@ -3597,8 +3747,19 @@ lt:
         parent_id: Kur ji yra?
         place_type: Vietos tipas
         prefers_check_lists: Leidžiamas kontrolinis sąrašas?
+      source:
+        title: Pavadinimas
+        in_text: Tekste
+        url: URL
+        citation: Citata
       taxon:
         name: Pavadinimas
+        rank: Rangas
+        locked: Užrakintas
+        auto_photos: Automatinės nuotraukos
+        auto_description: Automatinis aprašymas
+        wikipedia_title: Wikipedijos antraštė
+        wikipedia_summary: Vikipedijos santrauka
         source_identifier: Šaltinio identifikuotojas
         source_url: Šaltinio URL
       taxon_name:
@@ -3609,9 +3770,16 @@ lt:
         email: El. paštas
         login: Vartotojo vardas
         name: Pavadinimas
+        locale: Lokalė
+        time_zone: Laiko juosta
         search_place_id: Ieškoti vietos
         place_id: Vieta
+        preferred_observation_fields_by: Leisi stebėjimo laukus iš
     errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: turi būti patvirtinta
+        blank: negali būti tuščia
       models:
         flag:
           attributes:
@@ -3761,6 +3929,10 @@ lt:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@m"
   wild: Laukinis
+  will_paginate:
+    previous_label: "&#8592; Ankst."
+    next_label: "Kitas &#8594;"
+    page_gap: "&hellip;"
   zoom_in: Artinti
   zoom_out: Tolinti
   zoom_photo: Padidinti nuotrauką
