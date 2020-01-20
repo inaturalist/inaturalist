@@ -562,7 +562,7 @@ ko:
   community_guidelines: 공동체 지침
   community_id_heading: 공동체 ID
   compare: 비교하기
-  compare_with: 와 비교하다
+  compare_with: '다음과 비교:'
   comparing: 비교 중
   comparing_list_to_list: "%{list1}와 %{list2}를 비교"
   comparing_versions_x_and_y: "%{x}와 %{y} 버전 비교"
@@ -2460,7 +2460,7 @@ ko:
       captive_help_html: |
         관찰할 생물이 <strong>포획 </strong>되거나 <strong>사육 </strong>되었습니까? 예를 들어 <strong>공원, 동물원, 수족관 </strong> 등 인간에 의해서 인위적으로 지역에 서식하고 있는 것입니까? iNaturalist는 <strong>야생 상태 </strong>의 생물 관찰만을 허용하고 있습니다.
       identify:
-        you_reviewed_message: "이 페이지에서 일치하는 %{total}개의 관찰 중 이 페이지에서 %{pageTotal}개의 관찰 중 %{reviewed}개를 리뷰했습니다."
+        you_reviewed_message: "검색된 %{total}개의 관찰 중, 이 페이지에서 %{pageTotal}개의 관찰 중에서 %{reviewed}개를 검토했습니다."
         unreview_all_tooltip: "페이지 내 모든 관찰자 검토상태 삭제하기"
       show:
         flagged_photos_desc_html: |
