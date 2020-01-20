@@ -3359,6 +3359,8 @@ lt:
       eolupdate_notice: |
         Būkite kantrūs, turinio iš EOL importas gali užtrukti kelias minutes.
       pdf_layouts:
+        grid: tinklelis
+        book: knyga
         journal: žurnalas
       sorts:
         default: Vadovų tvarka
@@ -3505,7 +3507,14 @@ lt:
           "Plant Phenology=Budding": Sprogsta
           "Plant Phenology=Flower Budding": Su sprogstančiais žiedais
           "Plant Phenology=Flowering": Žydi
+          "Plant Phenology=Fruiting": Dera
+          "Life Stage=egg": Kiaušinis
+          "Life Stage=larva": Lerva
+          "Life Stage=teneral": Išsinėręs
           "Life Stage=subimago": Subimago
+          "Life Stage=nymph": Nimfa
+          "Life Stage=pupa": Lėliukė
+          "Life Stage=adult": Suaugęs
           unannotated: Be papildomos informacijos
     taxon_names:
       form:
@@ -3555,10 +3564,21 @@ lt:
           <p>
           Galite nutildyti kiek tik norite žmonių, bet atminkite, kad galite praleisti kažką svarbaus, pavyzdžiui jūsų stebėjimo identifikacijas, kurios pakeičia bendruomenės ID.
           </p>
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Komentarai
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identifikacijos
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Paminėjimai
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Žinutės
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Projekto žurnalo įrašai
         place_preference_changed_notice_html: |
           Vietos pageidavimas pakeistas. Jei apsigalvosite visada galite
           <a href='/users/edit'>keisti savo nustatymus</a>.
         project_addition_preferences:
+          any: Nesvarbu
           joined: Projektai, prie kurių prisijungėte
         search_place_help_html: |
           Numatytoji vieta stebėjimo paieškoms.
@@ -3571,7 +3591,14 @@ lt:
         about_recent_users: Apie
     user_parents:
       new:
+        child_name_private: Vaiko vardas (privati informacija)
+        create_a_minor_account: Kurti nepilnamečio paskyrą
+        create_minor_account: Kurti nepilnamečio paskyrą
+        inaturalist_minor_account_signup: iNaturalist nepilnamečio paskyros registracija
+        parent_information_private: Tėvo informacija (privati)
         step1_title: SUKURKITE PASKYRĄ SAVO VAIKUI
+        step2_title: PATVIRTINKITE TAPATYBĘ SU KREDITINE KORTELE
+        step3_title: PALAUKITE PATVIRTINIMO EL. LAIŠKO
         step3_donor_title: JŪSŲ VAIKO PASKYRA AKTYVUOTA
     welcome:
       index:
@@ -3587,8 +3614,13 @@ lt:
         contribute_to_science: Prisidėkite prie mokslo
         nature_at_your_fingertips: Ranka pasiekiama gamta
         create_useful_data: Sukurti naudingus duomenis
+        connect_with_experts: Prisijunk prie ekspertų, kurie gali identifikuoti tavo pastebėtus organizmus.
+        become_a_citizen_scientist: Tapk piliečiu mokslininku
+        find_a_project: "Rask projektą, kurio misija tave domina. Arba sukurk savo projektą."
         learn_about_nature: Pažinkite gamtą
+        build_your_knowledge: Kaupk žinias kalbėdamas su kitais gamtininkais ir padėdamas kitiems.
         run_a_bioblitz: Paleisti bioblicą
+        hold_an_event: Surenk renginį, kuriame žmonės bando surasti kiek galima daugiau rūšių.
         works_on_all_your_devices: Veikia visuose jūsų įrenginiuose
         install_our_mobile_apps: |
           Įdiekite mūsų mobiliąją programėlę, kad visada galėtumėte fiksuoti 
@@ -3596,6 +3628,9 @@ lt:
         who_uses_site_name: "Kas naudoja %{site_name}?"
         what_are_you_waiting_for: Ko dar lauki?
         join_today: Prisijunk šiandien
+    wiki_pages:
+      form:
+        save_and_edit_to_add_attachments: Išsaugokite ir redaguokite, kad pridėtumėte priedų
   date:
     abbr_day_names:
       - Sek
@@ -3607,11 +3642,11 @@ lt:
       - Šeš
     abbr_month_names:
       - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
+      - Sau
+      - Vas
+      - Kov
+      - Bal
+      - Geg
       - Jun
       - Jul
       - Aug
@@ -3653,10 +3688,51 @@ lt:
     distance_in_words:
       half_a_minute: pusė minutės
     prompts:
+      day: Diena
+      hour: Valanda
       minute: min.
       month: Mėnuo
+      second: Sekundės
       year: Metai
+  errors:
+    format: '%{attribute} %{message}'
+    messages:
+      accepted: turi būti patvirtinta
+      blank: negali būti tuščia
+      confirmation: nesutapo su slaptažodžiu
+      empty: negali būti tuščia
+      equal_to: turi būti lygu %{count}
+      even: turi būti lyginis
+      exclusion: yra užimta
+      greater_than: turi būti daugiau už %{count}
+      greater_than_or_equal_to: turi būti daugiau arba lygu %{count}
+      inclusion: neįtraukta į sąrašą
+      invalid: yra neteisinga
+      less_than: turi būti mažiau už %{count}
+      less_than_or_equal_to: turi būti mažiau arba lygu %{count}
+      not_a_number: yra ne skaičius
+      not_an_integer: turi būti sveikas skaičius
+      odd: turi būti nelyginis
+      record_invalid: 'Patvirtinimas nepavyko: %{errors}'
+      taken: jau užimtas
+    template:
+      body: 'Buvo problemų su šiais laukeliais:'
+  helpers:
+    defaults:
+      title: "TAI YRA PAVADINIMAS"
+    select:
+      prompt: Prašome pasirinkti
   number:
+    currency:
+      format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
+        delimiter: ' '
+        format: '%u%n'
+        significant: false
+        strip_insignificant_zeros: false
     human:
       format:
         significant: true
@@ -3700,6 +3776,8 @@ lt:
       template:
         body: 'Buvo problemų su šiais laukeliais:'
   activerecord:
+    models:
+      TaxonLink: Taksono nuoroda
     attributes:
       assessment:
         description: Aprašymas
