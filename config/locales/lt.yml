@@ -1,5 +1,10 @@
 lt:
   x_people_helped_user_with_y_ids_html: "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> identifikuotas stebėjimas"
+    few: "<span class='count'>%{count}</span>"
+    many: "<span class='count'>%{count}</span>"
+    other: "<span class='count'>%{count}</span> identifikuoti(-ų) stebėjimai(-ų)"
   _100_day_trends: 100 dienų tendencijos
   _percent_ID_d: "% su ID"
   a_community_for_naturalist: Gamtininkų bendruomenė
@@ -1018,7 +1023,7 @@ lt:
   first_observer: Pirmas stebėtojas
   #Verb form, as in "Flag this item"
   flag: Pažymėti
-  flag_as_inappropriate: Žymėti kaip nederamą
+  flag_as_inappropriate: Žymėti kaip nepriimtiną
   flag_an_item: Žymėti elementą
   flag_as_spammer: Žymėti kaip šlamštą
   flag_as_non_spammer: Žymėti kaip ne šlamštą
@@ -1256,7 +1261,7 @@ lt:
   in_the_past_week: praėjusioje savaitėje
   inactive: Neaktyvus
   inactive_taxon: Neaktyvus taksonas
-  inappropriate_content: Nederamas turinys?
+  inappropriate_content: Nepriimtinas turinys?
   inat_account_action: "%{site_name} &#58; Vartotojas &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} mano, jog tai yra pilnas šio taksono sąrašas šioje vietoje."
   inat_user_profile: "%{site_name}: %{user} profilis"
@@ -1285,7 +1290,7 @@ lt:
   is_not_following_anyone: nieko neseka.
   is_now: dabar yra
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Ar yra pateikta pakankamai įrodymų, kad čia yra %{taxon}?
-  is_this_offensive_html: 'Ar tai <a href="/help#inappropriate">neleistina</a>, šlamštas arba įžeidžiantis turinys?'
+  is_this_offensive_html: 'Ar tai <a href="/help#inappropriate"> yra nepriimtina</a>, šlamštas arba įžeidžiantis turinys?'
   is_this_place_a_duplicate: Ar ši vieta yra dublikatas?
   it_can_now_be_used_for_research: Tai dabar gali būti naudojama moksliniams tyrimams ir rodoma kituose tinklalapiuose
   item_flagged_notice_html: |
@@ -1406,9 +1411,9 @@ lt:
   life_lists_automatically_fill: 'Gyvenimo sąrašas automatiškai pasipildo naujais taksonai, kai įkeliate jų stebėjimus. Jis gali būti apribotas kokiu nors taksonu, pvz.: varninių šeimos (Corvidae) gyvenimo sąrašas.'
   linear_scale_label: Linijinis
   link: Nuoroda
-  link_or_unlink_your_facebook_account: Susiekite arba atsiekite jūsų Facebook paskyrą
-  link_or_unlink_your_flickr_account: Susiekite arba atsiekite jūsų Flickr paskyrą
-  link_or_unlink_your_google_account: Susiekite arba atsiekite jūsų Google paskyrą
+  link_or_unlink_your_facebook_account: Susiekite arba atsiekite savo Facebook paskyrą
+  link_or_unlink_your_flickr_account: Susiekite arba atsiekite savo Flickr paskyrą
+  link_or_unlink_your_google_account: Susiekite arba atsiekite savo Google paskyrą
   link_your_facebook_account: Susiekite savo Facebook paskyrą
   link_your_flickr_account: Susiekite savo Flickr paskyrą
   link_your_google_account: Susiekite savo Google paskyrą
@@ -1581,7 +1586,9 @@ lt:
   messages: Żinutės
   misidentifications: Klaidingos identifikacijos
   misleading_or_illegal_content_html: |
-    Klaidinantis arba nelegalus turinys, rasiniai ar etniniai diskriminaciniai žodžiai ir t.t. Daugiau informacijos apie leistiną kalbą: <a href="/help#inappropriate">FAQ</a>.
+    Klaidinantis arba nelegalus turinys, rasiniai ar etniniai diskriminaciniai žodžiai ir t. t. 
+    Daugiau informacijos apie „nepriimtiną“ kalbą: 
+    <a href="/help#inappropriate">DUI</a>.
   mobile: Mobilus
   mollusks: moliuskai
   momentjs:
@@ -1847,7 +1854,7 @@ lt:
   of_identifiers: identifikuotojai
   of_places: vietos
   of_this_taxon: Šio taksono
-  offensive_inappropriate: Įžeidžiantis / Netinkamas
+  offensive_inappropriate: Įžeidžiantis / Nepriimtinas
   official_blog: Oficialus tinklaraštis
   offline_access_enabled: Prieiga neprisijungus įgalinta
   old_observation_form: Sena stebėjimo forma (nebenaudojama)
@@ -3020,6 +3027,8 @@ lt:
   unknown_error: Nežinoma klaida
   unknown_rank: '(Nežinomas rangas)'
   unfollow: Nebesekti
+  unlink_your_google_account: Atsieti savo Google paskyrą
+  unlink_your_flickr_account: "Atsieti savo Flickr paskyrą"
   unmute: Įjungti garsą
   updating: Atnaujinama...
   unsubscribe: Atšaukti prenumeratą
@@ -3275,14 +3284,33 @@ lt:
   you_faved_this: Jūs tai pamėgote!
   you_have_left_x_project: "Jūs palikote %{project}"
   you_joined_this_project: Prisijungėte prie šio projekto!
+  you_need_to_select_some_observations_first: Pirma turite pasirinkti stebėjimus.
+  you_sure_delete_check_list: "Ar tikrai norite tai ištrinti? Gali būti, jog žmonės į tai įdėjo daug darbo..."
+  you_sure_delete_comment?: Ar tikrai norite ištrinti šį komentarą?
   you_sure_delete_flag?: Ar tikrai norite ištrinti šią žymę?
   you_sure_delete_project?: Ar tikrai norite ištrinti šį projektą?
+  you_sure_delete_this_observation: "Ar tikrai norite ištrinti šį stebėjimą?"
+  you_sure_remove_taxon_from?: "Ar tikrai norite ištrinti šį taksoną iš %{list}?"
+  you_unlinked_your_provider_account: "Jūs atsiejote savo %{provider} paskyrą"
+  youve_joined_the_x_project: "Jūs prisijungėte prie %{project_invitation} projekto ir jūsų stebėjimas buvo pridėtas"
   your_account_has_been_activated: Jūsų paskyra buvo aktyvuota!
   your_content: Jūsų Turinys
+  your_default_time_zone: Jūsų numatytoji laiko juosta
+  your_email_address: Jūsų el. pašto adresas
+  your_flickr_account: jūsų Flickr paskyra
+  your_flickr_photos_have_been_tagged: Jūsų Flickr nuotraukos buvo pažymėtos!
   your_hard_drive: jūsų kietasis diskas
+  your_home: Jūsų namai
+  your_id: Jūsų ID
+  your_identification: Jūsų identifikacija
+  your_membership: Jūsų narystė
+  your_name_was_saved: Jūsų vardas išsaugotas.
   your_observations: Jūsų stebėjimai
+  your_observations_couldnt_be_added_to_that_project: "Jūsų stebėjimai negalėjo būti pridėti prie šio projekto: %{errors}"
+  your_photos_have_been_tagged: Jūsų nuotraukos buvo pažymėtos!
   your_projects: Jūsų projektai
   your_google_account: jūsų Google paskyra
+  your_google_account_info: Jūsų Google paskyros informacija
   your_pinned_locations: Jūsų išsaugotos vietos
   your_profile_was_successfully_updated: Jūsų profilis buvo sėkmingai atnaujintas!
   your_recent_projects: Jūsų nauji projektai
@@ -3364,8 +3392,32 @@ lt:
         journal: žurnalas
       sorts:
         default: Vadovų tvarka
+        alphaname: Abėcėlės tvarka, pagal mokslinį pavadinimą
+        alphadisplay: Abėcėlės tvarka, pagal rodomą pavadinimą
     help:
       index:
+        what_is_inaturalist?: Kas yra %{site_name}?
+        who_is_behind_inaturalist?: Kas kuria %{site_name}?
+        what_technologies_does_the_project_use?: Kokias technologijas ir duomenų šaltinius naudoja šis projektas?
+        who_is_behind_inaturalist: Kas kuria %{site_name}?
+        what_can_i_do_to_help_inaturalist?: Kaip galiu padėti %{site_name}
+        how_do_i_contact_inaturalist?: Kaip man susisiekti su %{site_name}
+        you_can_contact_us_at_html: 'Su mumis galite susisiekti el. pašto adresu <a href="mailto:%{help_email}">%{help_email}</a>'
+        what_are_admins_and_curators?: Kas yra administratoriai ir kuratoriai?
+        inat_admins_are_the_people_who: |
+          %{site_name} administratoriai yra žmonės, kurie valdo tinklalapį. Jie turi
+          tiesiogines prieigas prie kodo ir duomenų bazės. Tinklalapyje jie gali 
+          keisti viską.
+        curators_are_inat_users_who_volunteer_to_html: |
+          Kuratoriai - tai %{site_name} vartotojai, kurie savanoriauja, kad mūsų taksonominė
+          informacija nepasentų. Jeigu norite tapti kuratoriumi, prašome
+          <a href="mailto:%{help_email}">susisiekti su mumis</a>. Kuratoriai taip pat gali
+          kitus vartotojus padaryti kuratoriais. Prašome kuratoriaus statusą suteikti tik tiems 
+          žmonėms, kuriais pasitikite ir kurie turi bent šiek tiek taksonominių žinių.
+        what_is_considered_inappropriate_content?: Kas laikoma nepriimtinu turiniu?
+        what_is_an_observation?: Kas yra stebėjimas?
+        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Kodėl %{site_name} neatpažįsta pavadinimo, kurį įvedžiau?"
+        how_can_i_get_help_identifying_what_i_saw?: Kaip galiu sulaukti pagalbos su mano radinio identifikacija?
         can_i_add_photos_without_a_flickr_account?: Ar galiu pridėti nuotraukų be Flickr paskyros?
         we_also_support_google_html: 'Mes taip pat palaikome Google Photos: <a href="%{url}">Konfiguruoti Google paskyrą &raquo;</a>'
         what_are_tags?: Kas yra žymės?
@@ -3414,7 +3466,8 @@ lt:
           Vietos privatumo stulpelis turi būti anglų kalba, o langeliai turi būti su vertėmis „paslėptas“, „privatus“ arba palikti tušti
       show:
         flagged_photos_desc_html: |
-          Kai kurios nuotraukos buvo pažymėtos kaip neleistinas turinys arba autorinių teisių pažeidimas. Daugiau informacijos %{links}
+          Kai kurios nuotraukos buvo pažymėtos kaip nepriimtinas turinys arba
+          autorinių teisių pažeidimas. Daugiau informacijos %{links}
         observation_flagged_notice_html: |
           Šis stebėjimas buvo pažymėtas kaip šlamštas ir nebėra viešai matomas. Jūs jį galite matyti, nes jį sukūrėte, arba esate tinklalapio kuratorius. Jeigu manote, kai tai yra klaida, prašome <a href="mailto:%{help_email}" class="contact">susisiekite su mumis</a>. <a href="/observations/%{observation_id}/flags">Valdykite žymes</a>
     emailer:
