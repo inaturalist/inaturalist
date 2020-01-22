@@ -1,4 +1,5 @@
 class Flag < ActiveRecord::Base
+  include ActsAsUUIDable
   SPAM = "spam"
   INAPPROPRIATE = "inappropriate"
   COPYRIGHT_INFRINGEMENT = "copyright infringement"

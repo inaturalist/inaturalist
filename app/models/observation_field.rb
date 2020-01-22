@@ -1,6 +1,7 @@
 class ObservationField < ActiveRecord::Base
 
   include ActsAsElasticModel
+  include ActsAsUUIDable
 
   belongs_to :user
   has_many :observation_field_values, :dependent => :destroy
