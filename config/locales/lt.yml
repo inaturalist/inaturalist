@@ -2788,6 +2788,8 @@ lt:
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Šių metų statistika nebuvo sugeneruota.
   status: Statusas
+  status_globally: "%{status} visame pasaulyje"
+  status_in_place: "%{status} %{place}"
   stay_and_try_again: Pasilikite ir bandykite dar kartą
   still_no_luck?: Vis dar nepavyko?
   still_needs_id?: Vis dar reikia ID?
@@ -3138,6 +3140,7 @@ lt:
   view_all_observations: Peržiūrėti visus stebėjimus
   view_all_photocount_photos: "Rodyti visas %{photo_count} nuotraukas"
   view_assessment: Redaguoti įvertinimą
+  view_check_list_page: Žiūrėti kontrolinio sąrašo puslapį
   view_contributions: Žiūrėti įnašus
   view_details: Rodyti išsamiau
   view_field_options: Rodyti Srities Nustatymus
@@ -3222,8 +3225,11 @@ lt:
   welcome_back: Sveiki sugrįžę
   welcome_back!: Sveiki sugrįžę!
   welcome_to_inat: "Sveiki atvykę į %{site_name}!"
+  welcome_to_guides: "Sveiki atvykę į %{site_name} vadovus!"
   welcome_to_x_project: "Sveiki atvykę į %{project}"
+  were_pretty_sure_this_is_in_the_rank: Mes įsitikinę, kad šis organizmas priklauso %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Atsiprašome, tačiau grupinis %{filename} importas nepavyko."
+  what: Kas
   what_color_was_it: Kokios tai buvo spalvos?
   what_did_you_see: Ką pamatėte?
   what_did_you_see?: <em>Ką</em> pamatėte?
@@ -3239,7 +3245,12 @@ lt:
   where_were_they?: Kur jie?
   where_were_you?: Kur buvote?
   white: balta
+  why_you_can_see_the_coordinates: Kodėl galite matyti koordinates
+  who_can_add_observations_to_this_project?: Kas gali pridėti stebėjimų prie šio projekto?
+  who_can_see_the_coordinates: Kas gali matyti koordinates
+  who_can_see_the_coordinates_observer: Žmogus, kuris sukūrė stebėjimą
   who_can_see_the_coordinates_projects: Šių projektų kuratoriai
+  who_can_see_the_coordinates_trusted: Žmonės, kuriems stebėtojas patiki paslėptas koordinates
   who_helped_user_the_most: "Kas Daugiausiai Padėjo %{user}"
   who_user_helped_the_most: "Kam %{user} Daugiausiai Padėjo"
   why_the_coordinates_are_obscured: Kodėl koordinatės užslėptos
@@ -3250,11 +3261,16 @@ lt:
   widget_for: Valdiklis skirtas
   wikipedia_attribution_cc_by_sa_3: |
     Šaltinis: Vikipedija, „%{title}“, %{url}, CC BY-SA 3.0
+  wikipedia_entry: Vikipedijos straipsnis
+  with: su
   withdraw: Atsiimti
   with_errors: Su klaidomis
   worldwide: Visame pasaulyje
+  would_you_like_to: Ar norėtumėte
   would_you_prefer_to_view_common_names_used_in_place_html: Ar norėtumėte peržiūrėti bendrinius pavadinimus, naudojamus <strong>%{place}</strong>?
   x_blog: "%{x} tinklaraštis"
+  x_deleted: "%{x} ištrintas"
+  x_does_not_exist: "„%{x}“ neegzistuoja"
   x_flagged: "%{x} pažymėtas"
   x_flagged_as_flag: "%{x} pažymėtas kaip %{flag}"
   x_project_stats: "%{project} statistika"
@@ -3271,16 +3287,32 @@ lt:
   'yes': "Taip"
   yes_find_them!: "Taip, suraskite juos!"
   yes_i_want_to_join: Taip, aš noriu prisijungti
+  yes_reject_it: Taip, atstatykite
   yesterday: Vakar
   you: jūs
   you_: Jūs
   you_are_now: Jūs dabar esate
+  you_are_now_following_x: "Jūs dabar sekate %{friend_user}."
+  you_are_already_a_member_of_this_project: "Jūs jau esate šio projekto narys!"
+  you_are_no_longer_following_x: "Jūs nebesekate %{friend}."
   you_are_submitting_obs_without_photos_and_names: |
     Jūs pateikiate stebėjimus, kurie yra be nuotraukų ir taksonų pavadinimų. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Jūs pateikiate stebėjimus, kurie yra be datos ir vietos. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.
   you_are_subscribed_to_comments_on_this_flag: Jūs užsiprenumeravote šios žymės komentarus.
+  you_are_subscribed_to_comments_on_this_post: Jūs užsiprenumeravote šio įrašo komentarus.
+  you_are_subscribed_to_observations_from_this_place: Jūs užsiprenumeravote šios vietos komentarus.
+  you_arent_a_member_of_that_project: Jūs nesate šio projekto narys.
+  you_arent_following_that_person: "Jūs nesekate šio žmogaus."
+  you_can_accept_invitations: Priimti kvietimą galite čia
+  you_can_choose_observations_associated: Galite pasirinkti, kurie stebėjimai bus susieti su šiuo žurnalo įrašu.
+  you_can_only_block_three_users: Jūs galite užblokuoti tik tris vartotojus
+  you_cant_compare_a_list_with_nothing: Negalite sąrašo lyginti su niekuo!
+  you_cant_delete_a_project_list: "Jūs negalite ištrinti projekto sąrašo"
   you_cant_flag_that: Jūs negalite to žymėti
+  you_cant_leave_a_project_you_created: Negalite palikti projekto, kurį patys sukūrėte.
+  you_cant_rotate_photos_hostde_outside: "Negalite pasukti nuotraukos, kuri patalpinta %{site_name}."
+  you_curate_a_project_that_contains_this_observation: Jūs kuruojate projektą, kuriame patalpintas šis stebėjimas
   you_faved_this: Jūs tai pamėgote!
   you_have_left_x_project: "Jūs palikote %{project}"
   you_joined_this_project: Prisijungėte prie šio projekto!
