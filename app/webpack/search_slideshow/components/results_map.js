@@ -32,7 +32,7 @@ class ResultsMap extends Component {
 
     /* global TILESERVER */
     const inat = L.tileLayer(
-      `${TILESERVER}/colored_heatmap/{z}/{x}/{y}.png?` +
+      `${TILESERVER}/grid/{z}/{x}/{y}.png?` +
       `${$.param( this.props.searchParams )}&${$.param( tileParams )}`, { noWrap: true } );
     this.map.addLayer( inat );
 

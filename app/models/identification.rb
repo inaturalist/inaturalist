@@ -25,18 +25,18 @@ class Identification < ActiveRecord::Base
               :update_other_identifications
               
   before_create :set_disagreement
-  after_create :update_observation,
+  after_create :update_observation_if_test_env,
                :create_observation_review,
-               :update_obs_stats, 
+               :update_obs_stats,
                :update_curator_identification,
                :update_quality_metrics
-  after_update :update_obs_stats, 
+  after_update :update_obs_stats,
                :update_curator_identification,
                :update_quality_metrics
-  after_commit :skip_observation_indexing,
-                 :update_categories,
+  after_commit :update_categories,
                  :update_observation,
                  :update_user_counter_cache,
+                 :skip_observation_indexing,
                unless: Proc.new { |i| i.observation.destroyed? }
   
   # Rails 3.x runs after_commit callbacks in reverse order from after_destroy.
@@ -160,13 +160,6 @@ class Identification < ActiveRecord::Base
       Identification.where("observation_id = ? AND user_id = ?", observation_id, user_id)
     end
     scope.update_all( current: false )
-    begin
-      Identification.elastic_index!( scope: scope )
-    rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
-      # Saves us having to load this index in a million places for tests, but
-      # might cause some testing problems if we're testing indexing...
-      raise e unless Rails.env.test?
-    end
     true
   end
 
@@ -219,7 +212,15 @@ class Identification < ActiveRecord::Base
 
     true
   end
-  
+
+  def update_observation_if_test_env
+    # this model uses an after_commit callback for method update_observation to keep
+    # the obs ES index in sync. But in the test env when running specs there are no
+    # commits with the transactional db cleaning strategy. Use this method to run
+    # update_observation for specs
+    update_observation if Rails.env.test?
+  end
+
   # Update the observation
   def update_observation
     return true unless observation
@@ -451,6 +452,7 @@ class Identification < ActiveRecord::Base
     unless options[:skip_indexing]
       Identification.elastic_index!( ids: idents.map(&:id) )
       o.reload
+      o.wait_for_index_refresh = !!options[:wait_for_obs_index_refresh]
       o.elastic_index!
     end
   end
@@ -460,7 +462,9 @@ class Identification < ActiveRecord::Base
     if skip_observation
       Identification.delay.update_categories_for_observation( observation_id )
     else
-      Identification.update_categories_for_observation( observation )
+      Identification.update_categories_for_observation( observation, {
+        wait_for_obs_index_refresh: wait_for_obs_index_refresh
+      } )
     end
     true
   end

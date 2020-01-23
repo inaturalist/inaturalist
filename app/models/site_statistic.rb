@@ -60,21 +60,22 @@ class SiteStatistic < ActiveRecord::Base
 
   def self.users_stats(at_time = Time.now)
     at_time = at_time.utc
-    { count: User.where("created_at <= ?", at_time).count,
-      curators: User.where("created_at <= ?", at_time).curators.count,
-      admins: User.where("created_at <= ?", at_time).admins.count,
+    users_scope = User.where( "(spammer IS NULL or NOT spammer)" )
+    { count: users_scope.where("created_at <= ?", at_time).count,
+      curators: users_scope.where("created_at <= ?", at_time).curators.count,
+      admins: users_scope.where("created_at <= ?", at_time).admins.count,
       active: User.active_ids(at_time).count,
-      last_7_days: User.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
-      today: User.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count,
+      last_7_days: users_scope.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
+      today: users_scope.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count,
       identifiers: Identification.joins(:observation).
         where("identifications.created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
         where("identifications.user_id != observations.user_id").
         count("DISTINCT identifications.user_id"),
-      recent_7_obs: User.
+      recent_7_obs: users_scope.
         where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).
         where("observations_count >= 7").
         count,
-      recent_0_obs: User.
+      recent_0_obs: users_scope.
         where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).
         where("observations_count = 0").
         count

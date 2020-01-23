@@ -160,9 +160,8 @@
         <div class="last class column span-4">
           <div class="lilun">
             <div class="stacked">
-              <% for lt in @life_list_firsts[0..5] %>
+              <% for taxon in @life_list_firsts[0..5] %>
                 <%- 
-                  taxon = @taxa.detect{|t| t.id == lt.taxon_id} || lt.taxon
                   iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] if taxon
                   iconic_taxon_name = (iconic_taxon.try(:name) || "unknown").downcase
                 -%>
@@ -181,17 +180,16 @@
               <div id="life_list_first_dialog" class="dialog" style="display:none">
                 <table>
                   <tr>
-                    <% @life_list_firsts.in_groups(3) do |listed_taxa| %>
+                    <% @life_list_firsts.in_groups(3) do |taxa| %>
                       <td>
-                        <% for lt in listed_taxa.compact %>
+                        <% for taxon in taxa.compact %>
                           <%- 
-                            taxon = @taxa.detect{|t| t.id == lt.taxon_id} || lt.taxon
                             iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] if taxon
                             iconic_taxon_name = (iconic_taxon.try(:name) || "unknown").downcase
                           -%>
                           <div class="nobr">
                             <span class="iconic_taxon_sprite selected <%= iconic_taxon_name %>"></span>
-                            <%= render :partial => "shared/taxon", :object => taxon, :locals => {:link_url => url_for_taxon(taxon)} %>
+                            <%= render :partial => "shared/taxon", :object => taxon, :locals => {:link_url => taxon_url(taxon)} %>
                           </div>
                         <% end %>
                       </td>

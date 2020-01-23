@@ -19,14 +19,18 @@ ca:
     other: '%{count} identificacions'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> identificador'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> identificadors'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomes"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} novetat a la llista de vida"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} novetats a la llista de vida"
   x_journal_posts_html:
     one: '<span class="count">1</span> article'
@@ -605,7 +609,6 @@ ca:
   blog_widget: Giny del blog
   blue: blau
   blue_butterfly_etc: "blau, papallona, etc."
-  blue_icons_represent_political_units: "Les icones blaves representen unitats polítiques com ara països o estats i entitats afins, i les icones verdes representen diferents tipus d'espais oberts, parcs i reserves. Si us hi apropeu, podreu veure llocs més petits."
   body: Cos
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}</strong>%{value}"
@@ -751,7 +754,6 @@ ca:
   clear_filters: Netegeu filtres
   clear_search: Esborra la cerca
   click_the_map: "<strong>Feu clic al mapa</strong> per afegir-hi una localització."
-  click_the_map_to_jump_new_place: Feu clic al mapa per moure-us a un lloc nou
   close: Tanca
   code: Codi HTML
   colors: Colors
@@ -1564,7 +1566,6 @@ ca:
   inat_user_profile: "%{site_name}:  perfil de %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} és una iniciativa conjunta de la California Academy of Sciences i National Geographic Society.."
   inaturalist_places: "Llocs %{site_name}"
-  inaturalist_places_are_way_record_what_lives_where: "Llocs d'%{site_name} és una forma de registrar on viu cada espècie. Si busqueu una espècie en particular, sabreu on trobar-la. Cada lloc té una llista de comprovació per registrar totes les espècies que s’hi troben, de manera que també és útil per buscar dades que vau trobar en llocs concrets."
   info: Informació
   input_taxon: Introduir tàxon
   insects: Insectes
@@ -2505,7 +2506,6 @@ ca:
     medium: mitjà
     large: gran
     original: original
-  photos_size_photos: "fotos de %{photos_size}"
   photos_updated: Fotos actualitzades.
   pi_consent_desc_title: Quant a la informació personal
   pi_consent_desc_html: |
@@ -3054,8 +3054,10 @@ ca:
     section: Secció
     subsection: Subsecció
     complex: Complexe
+    #Singular
     species: Espècie
     hybrid: Híbrid
+    #Singular
     subspecies: Subespècie
     variety: Varietat
     form: Forma
@@ -3382,8 +3384,6 @@ ca:
     sound_has_been_flagged: Aquest só ha estat marcat.
     soundcloud_replied_with_an_error: SoundCloud ha respost amb un missatge d'error. Si us plau, proveu-lo més tard.
     sounds: Sons
-    sounds_size_sound: "Durada del so: %{sounds_size}"
-    sounds_size_sounds: "Durada del so: %{sounds_size}"
     view_all_soundcount_sounds: "Visualitza els %{sound_count} sons"
     we_didnt_find_any_sounds: Ho sentim, no hem pogut trobar cap só del vostre compte de SoundCloud.
     you_need_to_link_your_soundcloud_account: Heu d’enllaçar el vostre compte de SoundCloud per poder pujar sons.
@@ -3420,6 +3420,7 @@ ca:
   sourcing: Posant la font
   spam: Contingut brossa
   spammer: Spammer
+  #Plural
   species: Espècies
   species_by_category: espècies per categoria
   species_from_around_the_world: Espècies de tot el món
@@ -3679,8 +3680,6 @@ ca:
   the_world: El Món
   the_world_is_full_of_interesting_places: |
     El món està ple de llocs interessants, cadascun amb les seves formes de vida rares i meravelloses. Algunes es troben a l'altre costat del món, i d’altres són molt a la vora. Llocs de %{site_name} us permet buscar vida en qualsevol racó del planeta. Comenceu a explorar!
-  the_world_is_full_of_interesting_places_short: |
-    El món està ple de llocs interessants, cadascun amb les seves formes de vida rares i meravelloses. Algunes es troben a l'altre costat del món, i d’altres són molt a la vora
   then_keybord_sequence: llavors
   there_are_x_synonyms_html:
     one: "Hi ha <span class=\"count\">1</span> sinònim</span>"
@@ -4335,6 +4334,8 @@ ca:
           Si us plau, retireu les marques  per <code>spam</code> i <code>d'incompliment de copyright</code> únicament si els contingut no és spam o no hi ha cap incompliment del copyright, respectivament.
     guides:
       index:
+        deprecated_banner: |
+          Noteu que des del gener de 2019, la funció Guies es mostra "tal qual"; encara no tenim plans per eliminar-les ni s'està proposant desenvolupar-les més.
         funding_html: |
           El finançament per al desenvolupament de les Guies ha estat proporcionat per <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |
@@ -4637,19 +4638,27 @@ ca:
         vertical: Vertical
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} en comú"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} en comú"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} no en comú"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} no en comú"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} total"
+          #Count of how many taxa are present in an observation search
           other: "%{count} total"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} únic"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} únics"
       export:
         choose_columns_desc: Escolliu les columnes que voleu exportar
@@ -6001,6 +6010,8 @@ ca:
       AssessmentSection: Secció de valoració
       Atlas: Atles
       CompleteSet: Conjunt complet
+      #Noun
+      Flag: Marca
       TaxonLink: Enllaç al Tàxon
     attributes:
       assessment:
@@ -6313,109 +6324,113 @@ ca:
         f: femení
         "n": castrar
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        application: "@n"
+        application: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        assessment_section: "@n"
+        assessment_section: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        atlas: "@n"
+        atlas: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        check_list: "@n"
+        check_list: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        class: "@n"
+        class: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        complex: "@n"
+        comment: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        epifamily: "@n"
+        complex: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        family: "@n"
+        epifamily: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        favorite: "@n"
+        family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        form: "@n"
+        favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        genus: "@n"
+        flag: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        genushybrid: "@n"
+        form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        hybrid: "@n"
+        genus: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        identification: "@n"
+        genushybrid: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        infraclass: "@n"
+        hybrid: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        infraorder: "@n"
+        identification: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        journal: "@n"
+        infraclass: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        listed_taxon: "@n"
+        infraorder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        note: "@n"
+        journal: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        observation: "@n"
+        listed_taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        observation_field: "@n"
+        note: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        order: "@n"
+        observation: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        phylum: "@n"
+        observation_field: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        place: "@n"
+        order: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        post: "@n"
+        phylum: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        profile: "@n"
+        place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        project: "@n"
+        post: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        section: "@n"
+        profile: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        species: "@n"
+        project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subclass: "@n"
+        section: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subfamily: "@n"
+        species: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subgenus: "@n"
+        subclass: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        suborder: "@n"
+        subfamily: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subphylum: "@n"
+        subgenus: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subsection: "@n"
+        suborder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subspecies: "@n"
+        subphylum: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subtribe: "@n"
+        subsection: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        superclass: "@n"
+        subspecies: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        superfamily: "@n"
+        subtribe: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        superorder: "@n"
+        superclass: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        supertribe: "@n"
+        superfamily: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon: "@n"
+        superorder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon_change: "@n"
+        supertribe: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon_drop: "@n"
+        taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon_link: "@n"
+        taxon_change: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon_merge: "@n"
+        taxon_drop: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon_split: "@n"
+        taxon_link: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon_stage: "@n"
+        taxon_merge: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon_swap: "@n"
+        taxon_split: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        tribe: "@n"
+        taxon_stage: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        variety: "@n"
+        taxon_swap: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@f"
         #Default gender for nouns that aren't listed here
-        default: "@n"
+        default: "@m"
   wild: Salvatge
   will_paginate:
     previous_label: "← Anterior"

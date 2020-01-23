@@ -1094,7 +1094,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   var tileservers = elasticsearchTileservers( );
   options.style = "geotilegrid";
   var options = options || { },
-      gridTileSuffix = "/" + (options.mapStyle || "colored_heatmap" ) +
+      gridTileSuffix = "/" + (options.mapStyle || "grid" ) +
         "/{z}/{x}/{y}.png",
       pointTileSuffix = "/points/{z}/{x}/{y}.png",
       gridmaxzoom = options.gridmaxzoom || 9;

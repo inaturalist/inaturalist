@@ -337,7 +337,6 @@ eu:
   blocked_users: Blokeatutako Erabiltzaileak
   blog_widget: Blogeko widget-a
   blue: urdina
-  blue_icons_represent_political_units: "Ikono urdinek unitate politikoak adierazten dituzte, hala nola herrialdeak, estatuak eta antzekoak eta ikono berdeek, berriz, hainbat motatako eremu irekiak adierazten dituzte, parkeak eta erreserbak, kasu. Hurbiltzen bazara, leku txikiagoak ikusi ahal izango dituzu."
   body: Gorputza
   breadcrumbs: Nabigazioko aztarnak
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -443,7 +442,6 @@ eu:
   clear_color_filters: Kolore-iragazkiak ezabatu
   clear_search: Bilaketa ezabatu
   click_the_map: "<strong>Mapan klikatu</strong> kokapena gehitzeko."
-  click_the_map_to_jump_new_place: Mapan klikatu beste leku batetara mugitzeko
   close: Itxi
   code: HTML kodea
   colors: Koloreak
@@ -947,7 +945,6 @@ eu:
   inat_believes_this_is_a_complete_listing: "%{site_name} leku honetan taxonaren zerrenda osoa dela uste du."
   inat_user_profile: "%{site_name}:  honen profila: %{user}"
   inaturalist_places: "%{site_name} lekuak"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name} lekuak bakoitza non bizi den erregistratzeko modua da. Espezie jakin baten bila bazabiltza, non topatu jakingo duzu. Leku bakoitzak egiaztapen-zerrenda bat du bertan dauden espezie guztiak erregistratzeko, horrela, baliagarria izan daiteke leku jakinetan topatu dituzun gauzak bilatzeko ere."
   info: Informazioa
   insects: intsektuak
   introduced: sartu zuen
@@ -1397,7 +1394,6 @@ eu:
     medium: ertaina
     large: handia
     original: jatorrizkoa
-  photos_size_photos: "%{photos_size} argazkiak"
   photos_updated: Eguneratutako argazkiak.
   pink: arrosa
   place: Tokia
@@ -1617,8 +1613,10 @@ eu:
     subtribe: Azpitribua
     genus: Generoa
     genushybrid: Genero hibridoa
+    #Singular
     species: Espezieak
     hybrid: Hibridoa
+    #Singular
     subspecies: Azpiespezieak
     variety: Aldaera
     form: Forma
@@ -1816,8 +1814,6 @@ eu:
     selected_sounds: Hautatutako soinuak
     sound: Soinua
     sounds: Soinuak
-    sounds_size_sound: "%Hotsaren iraupena: {sounds_size}"
-    sounds_size_sounds: "%Hotsaren pisua: {sounds_size}"
     view_all_soundcount_sounds: "%{sound_count} hotsak ikusi"
     we_didnt_find_any_sounds: Sentitzen dugu, ezin izan dugu zure SoundCloud kontuko soinurik topatu.
     you_need_to_link_your_soundcloud_account: Zure SoundCloud kontua lotu behar duzu soinuak igo ahal izateko.
@@ -1846,6 +1842,7 @@ eu:
   sources: Iturriak
   sources_youve_added: Zuk gehitutako iturriak
   sourcing: Iturria jartzen
+  #Plural
   species: Espezieak
   species_from_around_the_world: Mundu guztiko espezieak
   species_guess: Balioespen berezia
@@ -1959,8 +1956,6 @@ eu:
   the_world: Mundua
   the_world_is_full_of_interesting_places: |
     Mundua leku interesgarriz beteta dago; horietako bakoitzak bizitza-forma arraro eta zoragarriak ditu. Batzuk munduaren beste puntan daude eta beste batzuk, berriz, bertan. %{site_name} lekuak planetako edozein txokotan bizia topatzeko aukera emango dizu. Hasi arakatzen!
-  the_world_is_full_of_interesting_places_short: |
-    Mundua leku interesgarriz beteta dago; horietako bakoitzak bizitza-forma arraro eta zoragarriak ditu. Batzuk munduaren beste puntan daude eta beste batzuk, berriz, bertan daude.
   then_keybord_sequence: gero
   there_is_no_wikipedia_page_matching: Wikipedia-n ez dago bat datorren orrialderik
   there_isnt_a_wikipedia_article_titled_x_html: |

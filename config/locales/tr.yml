@@ -19,14 +19,18 @@ tr:
     other: '%{count} Tanımlama'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> Tanımlayıcı'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Tanımlayıcı'
   x_languages:
     one: "%{count} dil"
     other: "%{count} dil"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} yaşam listesinde ilk"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} yaşam listesinde ilk"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> yayın gönderisi'
@@ -98,6 +102,9 @@ tr:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> araştırma sınıfı gözlem tanımlaması ya da daha altı"
     other: "<span class='count'>%{count}</span> araştırma sınıfı gözlem tanımlaması ya da daha altı"
+  x_sounds:
+    one: "%{count} ses"
+    other: "%{count} ses"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> sınıf düzenlendi"
     other: "<span class='count'>%{count}</span> sınıf düzenlendi"
@@ -619,7 +626,6 @@ tr:
   blog_widget: Blog widgeti
   blue: mavi
   blue_butterfly_etc: "mavi, kelebek vb."
-  blue_icons_represent_political_units: "Mavi simgeler ülkeler, eyaletler, bölgeler, iller ve benzerleri gibi politik birimleri temsil ederken, yeşil simgeler değişik türdeki açık alanları (parklar, alanlar) temsil eder. Yakınlaştırırsanız daha küçük yerler göreceksiniz."
   body: Gövde
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
@@ -766,7 +772,6 @@ tr:
   clear_filters: Filtreleri temizle
   clear_search: Aramayı temizle
   click_the_map: "Bir konum eklemek için <strong>haritaya tıkla</strong>."
-  click_the_map_to_jump_new_place: Yeni bir yere geçmek için haritaya tıklayın
   close: Kapat
   code: Kod
   colors: Renkler
@@ -813,6 +818,8 @@ tr:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Kapsamlı mı?
+  comprehensive_check_list_for_taxon_html: |
+    %{taxon} için <span class="comprehensive_notice" data-tip="%{tip}">kapsamlı</span> kontrol listesi
   comprehensive_list: Kapsamlı liste
   concept_status: Konsept Durumu
   configure: Yapılandır
@@ -1575,7 +1582,6 @@ tr:
   inat_user_profile: "%{site_name}: %{user} Profili"
   inaturalist_is_a_joint_initiative: "%{site_name} Kaliforniya Bilimler Akademisi ve National Geographic Society'nin ortak bir girişimidir."
   inaturalist_places: "%{site_name} Yerler"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name} Yerleri nerede ne yaşadığını kaydetmenin bir yoludur. Belirli bir türü arıyorsanız, nerede arama yapacağınızı bileceksiniz. Her bir yer, orada olan biten tüm türleri kaydeden bir kontrol listesine sahiptir, bu nedenle belirli noktalarda bulduğunuz şeyleri aramak için de yararlı olabilirler."
   info: Bilgi
   input_taxon: Sınıf girişi
   insects: böcekler
@@ -2511,7 +2517,6 @@ tr:
     medium: orta
     large: büyük
     original: orjinal
-  photos_size_photos: "%{photos_size} fotoğrafları"
   photos_updated: Fotoğraflar güncellendi.
   pi_consent_desc_title: Kişisel Bilgiler Hakkında
   pi_consent_desc_html: |
@@ -3060,8 +3065,10 @@ tr:
     section: Seksiyon
     subsection: Alt Seksiyon
     complex: Kompleks
+    #Singular
     species: Türler
     hybrid: Yüzergezer
+    #Singular
     subspecies: Alt Tür
     variety: Varyete
     form: Form
@@ -3388,8 +3395,6 @@ tr:
     sound_has_been_flagged: Bu ses işaretlendi.
     soundcloud_replied_with_an_error: SoundCloud bir hata ile cevap verdi. Lütfen daha sonra tekrar deneyin.
     sounds: Sesler
-    sounds_size_sound: "%{sounds_size} Ses"
-    sounds_size_sounds: "%{sounds_size} Ses"
     view_all_soundcount_sounds: "Tüm %{sound_count} sesleri göster"
     we_didnt_find_any_sounds: Üzgünüm! SoundCloud hesabınızdan hiç ses alamadık.
     you_need_to_link_your_soundcloud_account: Sesleri eklemek için SoundCloud hesabınızı bağlamanız gerekir.
@@ -3426,6 +3431,7 @@ tr:
   sourcing: Kaynak Belirtme
   spam: Gereksiz
   spammer: Gereksiz İleti Oluşturan
+  #Plural
   species: Türler
   species_by_category: kategoriye göre türler
   species_from_around_the_world: Tüm dünyadan türler
@@ -3684,8 +3690,6 @@ tr:
   the_world: Dünya
   the_world_is_full_of_interesting_places: |
     Dünya, her biri garip ve harika yaşam biçimleriyle dolu ilginç yerlerle doludur. Bazıları dünyanın diğer ucundayken bazıları ise caddede! %{site_name} Yerleri gezegenin etrafındaki yaşama göz atmana izin verir. Keşfetmeye başla!
-  the_world_is_full_of_interesting_places_short: |
-    Dünya, her biri garip ve harika yaşam biçimleriyle dolu ilginç yerlerle doludur. Bazıları dünyanın diğer ucundayken bazıları ise caddede!
   then_keybord_sequence: sonra
   there_are_x_synonyms_html:
     one: "<span class='count'>1</span> eş anlamlı</span> var"
@@ -4351,6 +4355,8 @@ tr:
           Lütfen <code>gereksiz konu</code> ve <code>telif hakkı ihlali</code> işaretlerini yalnızca içerik gereksiz değilse ya da bir telif hakkı ihlali değilse çözün.
     guides:
       index:
+        deprecated_banner: |
+          Ocak 2019'dan başlayarak Rehberler özelliğinin "olduğu gibi" sunulduğunu unutmayın; onu silme tasarımız olmasa da, daha çok geliştirmeyi de tasarlamıyoruz.
         funding_html: |
           <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
           tarafından rehberlerin geliştirilmesi için fonlama sağlandı
@@ -4644,19 +4650,27 @@ tr:
         vertical: Dikey
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} benzer"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} benzer"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} benzer olmayan"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} benzer olmayan"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} toplam"
+          #Count of how many taxa are present in an observation search
           other: "%{count} toplam"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} benzersiz"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} benzersiz"
       export:
         choose_columns_desc: Dışa aktarmak istediğiniz sütunları seçin
@@ -6375,6 +6389,8 @@ tr:
       AssessmentSection: Değerlendirme Bölümü
       Atlas: Atlas
       CompleteSet: Eksiksiz Küme
+      #Noun
+      Flag: İşaret
       TaxonLink: Sınıf Bağlantısı
     attributes:
       assessment:
@@ -6697,6 +6713,8 @@ tr:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@n"
@@ -6704,6 +6722,8 @@ tr:
         family: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)

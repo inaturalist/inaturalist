@@ -467,7 +467,6 @@ el:
   blog_widget: Widget ιστολογίου
   blue: μπλε
   blue_butterfly_etc: "μπλε, πεταλούδα, κτλ."
-  blue_icons_represent_political_units: "Τα μπλε εικονίδια αντιπροσωπεύουν πολιτικές μονάδες όπως χώρες, πολιτείες, επαρχίες, κομητείες και τα σχετικά, ενώ τα πράσινα εικονίδια αντιπροσωπεύουν διάφορα είδη ανοιχτού χώρου (πάρκα, αποθέματα). Εάν μεγενθύνετε θα δείτε περισσότερους, μικρότερους τόπους."
   body: Κυρίως σώμα
   brief_caption: Σύντομη λεζάντα
   brown: καφέ
@@ -577,7 +576,6 @@ el:
   clear_filters: Εκκαθάριση φίλτρων
   clear_search: Εκκαθάριση αναζήτησης
   click_the_map: "<strong>Κλικ στον χάρτη</strong> για προσθήκη τοποθεσίας."
-  click_the_map_to_jump_new_place: Κλικ στον χάρτη για μεταπήδηση σε νέο τόπο
   close: Κλείσιμο
   code: Κωδικός
   colors: Χρώματα
@@ -1101,7 +1099,6 @@ el:
   inat_believes_this_is_a_complete_listing: "Το %{site_name} πιστεύει πως αυτή είναι μια πλήρης καταγραφή αυτού του taxon σε αυτόν τον τόπο."
   inat_user_profile: "%{site_name}: Προφίλ του/της %{user}"
   inaturalist_places: "Τόποι του %{site_name}"
-  inaturalist_places_are_way_record_what_lives_where: "Οι τόποι του %{site_name} είναι ένας τρόπος για την καταγραφή του τί ζει πού. Αν ψάχνετε για ένα συγκεκριμένο είδος, θα ξέρετε πού να ψάξετε. Κάθε τόπος έχει μια λίστα ελέγχου στην οποία καταγράφονται όλα τα είδη που εμφανίζονται εκεί, έτσι μπορεί να είναι επίσης χρήσιμοι για να ψάξετε για κάτι που έχετε βρει σε ένα συγκεκριμένο σημείο."
   info: Πληροφορίες
   insects: Έντομα
   insect_life_stage: Στάδιο ζωής εντόμου
@@ -1709,7 +1706,6 @@ el:
     medium: μέσο
     large: μεγάλο
     original: πρωτότυπο
-  photos_size_photos: "%{photos_size} φωτογραφίες"
   photos_updated: Οι φωτογραφίες ενημερώθηκαν
   pink: Ροζ
   place: Τόπος
@@ -2161,8 +2157,10 @@ el:
     subgenus: Υπογένος
     section: τμήμα
     subsection: υποτμήμα
+    #Singular
     species: Είδος
     hybrid: Υβρίδιο
+    #Singular
     subspecies: Υποείδος
     variety: Ποικιλία
     form: Μορφή
@@ -2378,8 +2376,6 @@ el:
     sound: Ήχος
     soundcloud_replied_with_an_error: Το SoundCloud απάντησε με σφάλμα. Παρακαλούμε προσπαθήστε πάλι αργότερα.
     sounds: Ήχοι
-    sounds_size_sound: "%{sounds_size} ήχος"
-    sounds_size_sounds: "%{sounds_size} Ήχοι"
     view_all_soundcount_sounds: "Προβολή όλων των %{sound_count} ήχων"
     your_soundcloud_account: ο λογαριασμός σας στο SoundCloud
   source: Πηγή
@@ -2395,6 +2391,7 @@ el:
   sources_youve_added: Πηγές που έχετε προσθέσει
   sourcing: Πηγές
   spam: Σπαμ
+  #Plural
   species: Είδη
   species_by_category: είδη ανά κατηγορία
   species_from_around_the_world: Είδη από όλο το κόσμο

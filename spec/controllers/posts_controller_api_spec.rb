@@ -164,12 +164,6 @@ describe PostsController, "oauth authentication" do
   it_behaves_like "a PostsController"
 end
 
-describe PostsController, "devise authentication" do
-  elastic_models( Observation )
-  before { http_login(user) }
-  it_behaves_like "a PostsController"
-end
-
 describe PostsController, "without authentication" do
   elastic_models( Observation )
   describe "for_user" do

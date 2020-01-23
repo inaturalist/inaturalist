@@ -19,14 +19,18 @@ it:
     other: '%{count} identificazioni'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">1</span> Identificatore'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identificatori'
   x_languages:
     one: "%{count} lingua"
     other: "%{count} lingue"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} per la prima volta nella lista degli esseri viventi"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} per la prima volta nella lista degli esseri viventi"
   x_journal_posts_html:
     one: '<span class="count">1</span> post del diario'
@@ -98,6 +102,9 @@ it:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> osservazione livello di ricerca identificate al grado di specie o inferiore"
     other: "<span class='count'>%{count}</span> osservazioni livello di ricerca identificate al grado di specie o inferiore"
+  x_sounds:
+    one: "%{count} suoni"
+    other: "%{count} suoni"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxon curato"
     other: "<span class='count'>%{count}</span> taxa curati"
@@ -608,7 +615,6 @@ it:
   blog_widget: Widget del Blog
   blue: blu
   blue_butterfly_etc: "blu, farfalla, etc."
-  blue_icons_represent_political_units: "Le icone blu rappresentano unità politiche come paesi, stati, province, regioni e simili, mentre le icone verdi rappresentano i diversi tipi di spazi aperti (parchi, riserve). Zoomando sarà possibile vedere più dettagli e le località minori."
   body: Corpo del messaggio
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
@@ -755,7 +761,6 @@ it:
   clear_filters: Cancella filtri
   clear_search: Cancella la ricerca
   click_the_map: "<strong>Clicca sulla mappa</strong> per aggiungere una posizione."
-  click_the_map_to_jump_new_place: Fai clic sulla cartina per spostarti
   close: Chiudi
   code: Codice
   colors: Colori
@@ -1565,7 +1570,6 @@ it:
   inat_user_profile: "%{site_name}: Profilo di %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} è un'iziativa congiunta della California Academy of Sciences e della National Geographic Society."
   inaturalist_places: "Luoghi di %{site_name}"
-  inaturalist_places_are_way_record_what_lives_where: "I Luoghi di %{site_name} sono un modo di registrare cosa vive dove. Se stai cercando una specie particolare, saprai dove cercare. Ogni luogo ha una checklist che elenca le specie presenti, cosi possono essere utili per cercare quello che avete trovato in un posto particolare."
   info: Info
   input_taxon: Inserisci un taxon
   insects: insetti
@@ -2501,7 +2505,6 @@ it:
     medium: media
     large: grande
     original: originale
-  photos_size_photos: "Foto di %{photos_size}"
   photos_updated: Foto aggiornate.
   pi_consent_desc_title: Riguardo le Informazioni Personali
   pi_consent_desc_html: |
@@ -3050,8 +3053,10 @@ it:
     section: Sezione
     subsection: Sottosezione
     complex: Complesso
+    #Singular
     species: Specie
     hybrid: Ibrido
+    #Singular
     subspecies: Sottospecie
     variety: Varietà
     form: Forma
@@ -3378,8 +3383,6 @@ it:
     sound_has_been_flagged: Questo suono è stato contrassegnato
     soundcloud_replied_with_an_error: SoundCloud ha risposto con un messaggio di errore. Si prega di riprovare più tardi.
     sounds: Suoni
-    sounds_size_sound: "Suono di %{sounds_size}"
-    sounds_size_sounds: "Suoni di %{sounds_size}"
     view_all_soundcount_sounds: "Visualizza tutti i %{sound_count} suoni"
     we_didnt_find_any_sounds: Spiacenti! Non riusciamo ad ottenere nessun suono dall'account SoundCloud.
     you_need_to_link_your_soundcloud_account: Devi collegare il tuo account SoundCloud per aggiungere dei suoni.
@@ -3416,6 +3419,7 @@ it:
   sourcing: Preparazione fonte
   spam: Spam
   spammer: Spammer
+  #Plural
   species: Specie
   species_by_category: specie per categoria
   species_from_around_the_world: Specie da tutto il mondo
@@ -3674,8 +3678,6 @@ it:
   the_world: Il mondo
   the_world_is_full_of_interesting_places: |
     Il mondo è pieno di posti interessanti, ognuno pieno di forme di vita strane e meravigliose. Alcune sono all'altro capo del mondo, altre appena sotto casa! I luoghi di %{site_name} ti permettono di esplorare le forme di vita di tutto il globo. Inizia ad esplorare!
-  the_world_is_full_of_interesting_places_short: |
-    Il mondo è pieno di posti interessanti, ognuno pieno di forme di vita strane e meravigliose. Alcune sono all'altro capo del mondo, altre appena sotto casa!
   then_keybord_sequence: poi
   there_are_x_synonyms_html:
     one: "C'è <span class='count'>1</span> sinonimo</span>"
@@ -4330,6 +4332,8 @@ it:
           Per favore risolvi i contrassegni <code>spam</code> e <code> violazione del copyright</code> solo se il contenuto non è spam o violazione del copyright, rispettivamente.
     guides:
       index:
+        deprecated_banner: |
+          Per favore, considera che a partire da Gennaio 2019, la funzione Guide è presentata "così com'è"; anche se non pensiamo di eliminarla, non abbiamo intenzione di svilupparla ulteriormente.
         funding_html: |
           I finanziamenti per lo sviluppo delle Guide sono forniti da <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |
@@ -4605,19 +4609,27 @@ it:
         vertical: Verticale
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} in comune"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} in comune"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} non in comune"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} non in comune"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} totale"
+          #Count of how many taxa are present in an observation search
           other: "%{count} totali"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} uniche"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} uniche"
       export:
         choose_columns_desc: Scegli le colonne da esportare

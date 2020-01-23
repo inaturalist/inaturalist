@@ -103,7 +103,7 @@ describe PostsController, "creation" do
   describe "for sites" do
     let( :site ) { Site.make! }
     it "should work for a site admin" do
-      user = make_admin
+      user = SiteAdmin.make!( site: site ).user
       sign_in user
       expect {
         post :create, post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: site.id }

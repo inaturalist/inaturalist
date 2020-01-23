@@ -24,8 +24,10 @@ describe UsersHelper do
     it "should use the login as title with no :title_method specified" do
       expect( link_to_user( user ) ).to have_tag( "a[title='#{user.login}']" )
     end
-    it "should use the name as link title with :content_method => :name" do
-      expect( link_to_user( user , title_method: :name ) ).to have_tag( "a[title='#{user.name}']" )
+    it "should use the name as link title with :title_method => :name" do
+      # The test matcher gets confused with the name has an apostrophe, even though the HTML is fine
+      user.update_attributes( name: "Balthazar Brogdonovich" )
+      expect( link_to_user( user , title_method: :name ) ).to have_tag( "a", with: { title: user.name } )
     end
     it "should have nickname as a class by default" do
       expect( link_to_user( user ) ).to have_tag( "a.nickname" )

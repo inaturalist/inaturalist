@@ -160,7 +160,8 @@ namespace :inaturalist do
         joins("left join taxon_photos tp on (photos.id=tp.photo_id)").
         joins("left join guide_photos gp on (photos.id=gp.photo_id)").
         where("op.id IS NULL and tp.id IS NULL and gp.id IS NULL").
-        where("photos.id BETWEEN ? AND ?", index, index + batch_size)
+        where("photos.id BETWEEN ? AND ?", index, index + batch_size).
+        where("photos.created_at <= ?", 1.week.ago)
       photos.each do |p|
         # set the orphan attribute on Photo, which will set the same on DeletedPhoto
         begin
@@ -188,7 +189,8 @@ namespace :inaturalist do
     while index <= last_id
       sounds = Sound.joins("left join observation_sounds os on (sounds.id=os.sound_id)").
         where("os.id IS NULL").
-        where("sounds.id BETWEEN ? AND ?", index, index + batch_size)
+        where("sounds.id BETWEEN ? AND ?", index, index + batch_size).
+        where("sounds.created_at <= ?", 1.week.ago)
       sounds.each do |s|
         # set the orphan attribute on sound, which will set the same on Deletedsound
         s.orphan = true

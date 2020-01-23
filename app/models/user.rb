@@ -1318,6 +1318,34 @@ class User < ActiveRecord::Base
       donorbox_plan_started_at
   end
 
+  # given an array of taxa, return the taxa and ancestors that were not observed
+  # before the given date. Note that this method does not check if the taxa were observed
+  # by this user on this date
+  def taxa_unobserved_before_date( date, taxa = [] )
+    return [] if taxa.empty?
+    taxa_plus_ancestor_ids = ( taxa.map( &:id ) + taxa.map( &:ancestor_ids ).flatten ).uniq
+    taxon_counts = Observation.elastic_search(
+      size: 0,
+      filters: [
+        { term: { "user.id": id } },
+        { terms: { "taxon.ancestor_ids": taxa_plus_ancestor_ids } },
+        { range: { "observed_on_details.date": { lt: date.to_s } } }
+      ],
+      aggregate: {
+        distinct_taxa: {
+          terms: {
+            field: "taxon.ancestor_ids",
+            include: taxa_plus_ancestor_ids,
+            size: taxa_plus_ancestor_ids.length
+          }
+        }
+      }
+    ).response.aggregations rescue nil
+    return [] if taxon_counts.blank?
+    previous_observed_taxon_ids = taxon_counts.distinct_taxa.buckets.map{ |b| b["key"] }
+    Taxon.where( id: taxa_plus_ancestor_ids - previous_observed_taxon_ids )
+  end
+
   # Iterates over recently created accounts of unknown spammer status, zero
   # obs or ids, and a description with a link. Attempts to run them past
   # akismet three times, which seems to catch most spammers

@@ -19,14 +19,18 @@ nl:
     other: '%{count} determinaties'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">1</span> determineerder'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> determineerders'
   x_languages:
     one: "%{count} taal"
     other: "%{count} talen"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "1 levenslijst-primeur"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} levenslijst-primeurs"
   x_journal_posts_html:
     one: '<span class="count">1</span> dagboekbericht'
@@ -98,6 +102,9 @@ nl:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> waarneming van onderzoekskwaliteit gedetermineerd tot op soort of lager"
     other: "<span class='count'>%{count}</span> waarnemingen van onderzoekskwaliteit gedetermineerd tot op soort of lager"
+  x_sounds:
+    one: "%{count} geluid"
+    other: "%{count} geluiden"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taxon gecureerd"
     other: "<span class='count'>%{count}</span> taxa gecureerd"
@@ -620,7 +627,6 @@ nl:
   blog_widget: Blogwidget
   blue: blauw
   blue_butterfly_etc: "blauw, vlinder, enz."
-  blue_icons_represent_political_units: "Blauwe iconen stellen politieke eenheden voor, zoals landen, staten, provincies, regio's en dergelijke. Groene iconen stellen verschillende soorten open ruimte voor (parken, reservaten). Door in te zoomen zie je meer, kleinere plaatsen."
   body: Lichaam
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
@@ -768,7 +774,6 @@ nl:
   clear_filters: Filters wissen
   clear_search: Zoekopdracht wissen
   click_the_map: "<strong>Klik op de kaart</strong> om een locatie toe te voegen."
-  click_the_map_to_jump_new_place: Klik op de kaart om naar een nieuwe plaats te gaan
   close: Sluiten
   code: Code
   colors: Kleuren
@@ -1584,7 +1589,6 @@ nl:
   inat_user_profile: "%{site_name}: Profiel van %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} is een gezamelijk initiatief van de 'California Academy of Sciences' en 'National Geographic Society'."
   inaturalist_places: "%{site_name} Plaatsen"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name}-plaatsen zijn een manier om vast te leggen wat waar leeft. Als je op zoek bent naar een bepaalde soort, weet je zo waar je kunt zoeken. Elke plaats heeft een checklist die alle soorten bijhoudt die daar voorkomen, dus ze kunnen ook nuttig zijn om dingen op te zoeken die je op bepaalde plekken hebt gevonden."
   info: Informatie
   input_taxon: Invoer taxon
   insects: insecten
@@ -2541,7 +2545,6 @@ nl:
     medium: medium
     large: groot
     original: origineel
-  photos_size_photos: "%{photos_size} foto's"
   photos_updated: Foto's bijgewerkt.
   pi_consent_desc_title: Persoonlijke gegevens
   pi_consent_desc_html: |
@@ -3097,8 +3100,10 @@ nl:
     section: Sectie
     subsection: Subsectie
     complex: Complex
+    #Singular
     species: Soort
     hybrid: Hybride
+    #Singular
     subspecies: Ondersoort
     variety: Variëteit
     form: Vorm
@@ -3427,8 +3432,6 @@ nl:
     sound_has_been_flagged: Dit geluid is gemeld.
     soundcloud_replied_with_an_error: SoundCloud geeft een foutmelding. Probeer het later opnieuw.
     sounds: Geluiden
-    sounds_size_sound: "%{sounds_size} Geluid"
-    sounds_size_sounds: "%{sounds_size} Geluiden"
     view_all_soundcount_sounds: "Bekijk alle %{sound_count} geluiden"
     we_didnt_find_any_sounds: Sorry! We konden geen geluiden uit je SoundCloud-account krijgen.
     you_need_to_link_your_soundcloud_account: Verbind je SoundCloud-account om geluiden toe te voegen.
@@ -3465,6 +3468,7 @@ nl:
   sourcing: Herkomst
   spam: Spam
   spammer: Spammer
+  #Plural
   species: Soorten
   species_by_category: soorten per categorie
   species_from_around_the_world: Soorten van over de hele wereld
@@ -3729,8 +3733,6 @@ nl:
   the_world_is_full_of_interesting_places: |
     De wereld zit vol met interessante plaatsen, elk gevuld met merkwaardige en
     prachtige levensvormen. Sommigen aan de andere kant van de wereld, anderen gewoon om de hoek! %{site_name}-plaatsen laten je door het leven van over de hele wereld bladeren. Begin met ontdekken!
-  the_world_is_full_of_interesting_places_short: |
-    De wereld zit vol met interessante plaatsen, elk met de meest bizarre en prachtige levensvormen. Sommige bevinden zich aan de andere kant van de wereld, terwijl anderen gewoon in jouw straat leven!
   then_keybord_sequence: dan
   there_are_x_synonyms_html:
     one: "Er is <span class='count'>1</span> synoniem</span>"
@@ -4392,6 +4394,8 @@ nl:
           Verwijder de meldingen over <code>spam</code> en <code>schending van auteursrechten</code> alleen als de inhoud geen spam is of geen auteursrechten schendt.
     guides:
       index:
+        deprecated_banner: |
+          Houd er rekening mee dat de functionaliteit voor gidsen vanaf januari 2019 worden gepresenteerd "zoals het is"; hoewel we geen plannen hebben om het te verwijderen, zijn we niet van plan om het verder te ontwikkelen.
         funding_html: |
           Financiering voor de ontwikkeling van gidsen is verstrekt door
           <a href="http://eol.org"><img src="https://eol.org/assets/large_logo-61d6036612463aa36f3a2561bf2e258d133eb693a737a7169af0efb2b31d5454.png"></a>
@@ -4734,19 +4738,27 @@ nl:
         vertical: Verticaal
         #Count of how many taxa several observation searches have in common
         x_in_common:
+          #Count of how many taxa several observation searches have in common
           one: "%{count} gemeenschappelijk"
+          #Count of how many taxa several observation searches have in common
           other: "%{count} gemeenschappelijk"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} niet gemeenschappelijk"
+          #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} niet gemeenschappelijk"
         #Count of how many taxa are present in an observation search
         x_total:
+          #Count of how many taxa are present in an observation search
           one: "%{count} in totaal"
+          #Count of how many taxa are present in an observation search
           other: "%{count} in totaal"
         #Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} unieke"
+          #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} unieke"
       export:
         choose_columns_desc: Selecteer de kolommen die je wenst te exporteren
