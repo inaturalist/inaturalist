@@ -13,7 +13,7 @@
           - else
             = @site.site_name_short
       %tr
-        %th=t :content
+        %th=t :flag_object
         %td
           = link_to flaggable.respond_to?( :to_plain_s ) ? flaggable.to_plain_s : t( flag.flaggable_type ), flaggable
       %tr

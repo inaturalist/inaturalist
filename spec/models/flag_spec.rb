@@ -29,6 +29,25 @@ describe Flag, "creation" do
     expect( f2 ).to be_valid
     expect( f2.errors[:user_id] ).to be_blank
   end
+
+  it "should set the flaggable content for an observation to the description" do
+    o = Observation.make!( description: "some bad stuff" )
+    f = Flag.make!( flaggable: o )
+    expect( f.flaggable_content ).to eq o.description
+  end
+
+  [Post, Comment, Identification].each do |model|
+    it "should set the flaggable content for a #{model.name} to the body" do
+      r = if model == Post
+        u = User.make!
+        model.make!( parent: u, user: u, body: "some bad stuff" )
+      else
+        model.make!( body: "some bad stuff" )
+      end
+      f = Flag.make!( flaggable: r )
+      expect( f.flaggable_content ).to eq r.body
+    end
+  end
 end
 
 describe Flag, "update" do

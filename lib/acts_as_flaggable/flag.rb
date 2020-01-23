@@ -33,6 +33,7 @@ class Flag < ActiveRecord::Base
 
   before_save :set_resolved_at
   before_create :set_flaggable_user_id
+  before_create :set_flaggable_content
 
   after_create :notify_flaggable_on_create
   after_update :notify_flaggable_on_update
@@ -122,7 +123,9 @@ class Flag < ActiveRecord::Base
   end
   
   def flagged_object
-    eval("#{flaggable_type}.find(#{flaggable_id})")
+    if klass = Object.const_get( flaggable_type )
+      klass.find_by_id( flaggable_id )
+    end
   end
 
   def set_resolved_at
@@ -154,5 +157,18 @@ class Flag < ActiveRecord::Base
       self.flaggable_user_id = u.id
     end
     true
+  end
+
+  def set_flaggable_content
+    return true unless flaggable
+    self.flaggable_content = flaggable.try_methods(:body, :description)
+    true
+  end
+
+  def flaggable_content_viewable_by_current_user?( user )
+    if flaggable_type == "Message"
+      return false unless user && user.is_admin?
+    end
+    !flaggable_content.blank? && user && user.is_curator?
   end
 end
