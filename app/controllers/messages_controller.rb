@@ -68,6 +68,9 @@ class MessagesController < ApplicationController
     @flaggable_message = if m = @messages.detect{|m| m.from_user && m.from_user != current_user}
       m.from_user.messages.where(:thread_id => @message.thread_id).first
     end
+    if @flaggable_message && @flaggable_message.flagged?
+      @flag = @flaggable_message.flags.detect{|f| f.user_id == current_user.id }
+    end
     respond_to do |format|
       format.html
       format.json do

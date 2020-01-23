@@ -1254,7 +1254,8 @@ CREATE TABLE public.flags (
     resolved boolean DEFAULT false,
     updated_at timestamp without time zone,
     resolved_at timestamp without time zone,
-    flaggable_user_id integer
+    flaggable_user_id integer,
+    flaggable_content text
 );
 
 
@@ -10035,4 +10036,6 @@ INSERT INTO schema_migrations (version) VALUES ('20191115201008');
 INSERT INTO schema_migrations (version) VALUES ('20191203201511');
 
 INSERT INTO schema_migrations (version) VALUES ('20191210173400');
+
+INSERT INTO schema_migrations (version) VALUES ('20200117011717');
 

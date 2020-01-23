@@ -1402,10 +1402,13 @@ en:
   flag_an_item: Flag An Item
   flag_as_spammer: Flag As Spammer
   flag_as_non_spammer: Flag As Non-spammer
+  # Label for the date/time when a flag was created
+  flag_created: Flag Created
   flag_description: Flag this content to let the curators know something is wrong with it.
   flag_for_check_list_title_html: |
     Flag for Check List: %{title}
   flag_for_comment_id_html: Flag for <a href="%{url}">Comment %{id}</a>
+  flag_for_comment_id_deleted: Flag for Comment %{id} (deleted)
   flag_for_curation: Flag for Curation
   flag_for_guide_title_html: |
     Flag for Guide: %{title}
@@ -4619,6 +4622,10 @@ en:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          The flaggable content is the primary text attribute of the flagged
+          object at the time the flag was created. Only curators and staff can
+          see this. Only staff can see this for messages.
         flags_that_should_not_be_resolved_desc_html: |
           Please resolve <code>spam</code> and <code>copyright
           infringement</code> flags only if the content is not spam or not an
@@ -5006,6 +5013,11 @@ en:
           You'll be able to send new messages after you've added three
           verifiable observations or three identifications for others. For now
           you can read and reply to message other people send you.
+      show:
+        flag_notice_html: |
+          You flagged this conversation on %{date}. The flag will persist even
+          if you delete your copy of this conversation, so it is safe to do so
+          if you no longer want to see this.
     oauth:
       authorizations:
         new:
