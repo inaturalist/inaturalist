@@ -60,7 +60,7 @@ class SiteStatistic < ActiveRecord::Base
 
   def self.users_stats(at_time = Time.now)
     at_time = at_time.utc
-    users_scope = User.where( "NOT spammer" )
+    users_scope = User.where( "(spammer IS NULL or NOT spammer)" )
     { count: users_scope.where("created_at <= ?", at_time).count,
       curators: users_scope.where("created_at <= ?", at_time).curators.count,
       admins: users_scope.where("created_at <= ?", at_time).admins.count,
