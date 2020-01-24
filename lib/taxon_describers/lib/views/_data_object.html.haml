@@ -1,5 +1,5 @@
 :ruby
-  subject = (data_object.at('title') || data_object.at('subject')).content.split('#').last.underscore.humanize
+  subject = (data_object.at('title') || data_object.at('subject')).content.split('#').last.to_s.underscore.humanize
   citation = data_object.at('bibliographicCitation')
   citations = []
   citations << citation.content if citation
