@@ -13,6 +13,17 @@
       %h2= @record.name
       - if is_admin? || current_user.is_site_admin_of?(@record)
         = link_to t(:edit), edit_site_path(@record), :class => "btn btn-default"
+      %table.table.table-bordered.upstacked
+        %tr
+          %td=t :date_added
+          %td=l @record.created_at, format: :long
+        - unless @record.site_admins.blank?
+          %tr
+            %td=t :site_admins
+            %td
+              %ul.unstacked{ style: "padding-left: 1em" }
+                - for sa in @record.site_admins
+                  %li= link_to_user sa.user
       - for grp, prefs in @pref_groups
         - prefs = prefs.select{|p| !@record.preferences[p.name].blank?}
         - next if prefs.blank?
