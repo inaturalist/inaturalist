@@ -3060,7 +3060,7 @@ CREATE TABLE public.places (
     slug character varying(255),
     source_id integer,
     admin_level integer,
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid uuid
 );
 
 
@@ -8362,13 +8362,6 @@ CREATE INDEX index_places_on_user_id ON public.places USING btree (user_id);
 
 
 --
--- Name: index_places_on_uuid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_places_on_uuid ON public.places USING btree (uuid);
-
-
---
 -- Name: index_posts_on_place_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10091,4 +10084,6 @@ INSERT INTO schema_migrations (version) VALUES ('20191210173400');
 INSERT INTO schema_migrations (version) VALUES ('20200116234248');
 
 INSERT INTO schema_migrations (version) VALUES ('20200117011717');
+
+INSERT INTO schema_migrations (version) VALUES ('20200122231601');
 
