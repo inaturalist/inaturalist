@@ -273,7 +273,9 @@ nl:
   add_life_stage_larva_annotation: 'Voeg "Levenstadium: Larve" aantekening toe'
   add_life_stage_juvenile_annotation: 'Voeg "Levenstadium: Juveniel" aantekening toe'
   add_life_stage_egg_annotation: 'Voeg "Levenstadium: Ei" aantekening toe'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Relatie toevoegen'
+  #As in a Guide Section
   add_section: Voeg een Sectie toe
   add_several_observations_at_once: Voeg meerdere waarnemingen tegelijk toe.
   add_sex_female_annotation: 'Annotatie "Geslacht: vrouwelijk" toevoegen'
@@ -2235,6 +2237,7 @@ nl:
   observation_added: Waarneming toegevoegd.
   observation_added_to_the_project: "Waarneming aan het project %{project} toegevoegd"
   observation_aggregation: Waarneming aggregation
+  observation_brief_something_on_day: "Iets op %{day}"
   observation_brief_something_on_day_by_user: "Iets op %{day} door %{user}"
   observation_brief_something_by_user: "Iets door %{user}"
   observation_brief_something_from_place: "Iets uit %{place}"
