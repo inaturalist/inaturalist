@@ -275,7 +275,9 @@ tr:
   add_life_stage_larva_annotation: '"Yaşam Evresi: Larva" açıklaması ekle'
   add_life_stage_juvenile_annotation: '"Yaşam Evresi: Genç" açıklaması ekle'
   add_life_stage_egg_annotation: '"Yaşam Evresi: Yumurta" açıklaması ekle'
+  #As in a Taxon Framework Relationship
   add_relationship: 'İlişki ekle'
+  #As in a Guide Section
   add_section: Kısım Ekle
   add_several_observations_at_once: Aynı anda birkaç gözlem ekle.
   add_sex_female_annotation: '"Cinsiyet: Dişi" açıklamasını ekle'
@@ -1311,10 +1313,13 @@ tr:
   flag_an_item: Bir içeriği işaretle
   flag_as_spammer: Gereksiz iletici olarak işaretle
   flag_as_non_spammer: Gereksiz iletici olmayan olarak işaretle
+  #Label for the date/time when a flag was created
+  flag_created: İşaret Oluşumu
   flag_description: Sorumluların bir sorun olduğunu bilmesi için bu içeriği işaretle.
   flag_for_check_list_title_html: |
     Şu Kontrol Listesi için İşaretle: %{title}
   flag_for_comment_id_html: <a href="%{url}">Yorum %{id}</a> için işaretle
+  flag_for_comment_id_deleted: '%{id} Yorumu için İşaret (silindi)'
   flag_for_curation: Yönetme için işaretle
   flag_for_guide_title_html: |
     Şu rehber için işaretle: %{title}
@@ -1490,7 +1495,7 @@ tr:
   hide: Gizle
   hide_content: İçeriği Gizle
   hide_desc: |
-    İçeriği gizleme, onu genel görünümden kaldıracak ancak insanlar bir şeyin gizli olduğunu görmeyi sürdürecek, site sorumluları ve içeriğin sahibi gizli içeriği görebilecek. Genel olarak, bu yalnızca yazılı içerik için geçerlidir, örn. bir tanımlamanın içeriğini gizlerseniz, tanımlama hala görünür durumdadır ancak tanımlayıcının yorumları gizlenir. Bunu geri alamazsınız ve yalnızca site çalışanları içeriği gizlendikten sonra gösterebilir, bu yüzden dikkatli olun ve bunu yalnızca sakıncalı içerikler için kullanın.
+    İçeriği gizleme, onu genel görünümden kaldıracak ancak insanlar bir şeyin gizli olduğunu görmeyi sürdürecek, site sorumluları ve içeriğin sahibi gizli içeriği görebilecek. Genel olarak, bu yalnızca yazılı içerik için geçerlidir, örn. bir tanımlamanın içeriğini gizlerseniz, tanımlama hala görünür durumdadır ancak tanımlayıcının yorumları gizlenir. Bunu geri alamazsınız ve yalnızca site yetkilileri içeriği gizlendikten sonra gösterebilir, bu yüzden dikkatli olun ve bunu yalnızca sakıncalı içerikler için kullanın.
   hide_running_total: Toplam Bulunanı Gizle
   hide_uncountable_species: Sayılamayan Türleri Gizle
   high: Yüksek
@@ -2222,6 +2227,7 @@ tr:
   observation_added: Gözlem eklendi.
   observation_added_to_the_project: "\"%{project}\" projesine gözlem eklendi"
   observation_aggregation: Gözlem yığınlama
+  observation_brief_something_on_day: "%{day} gününden bir şeyler"
   observation_brief_something_on_day_by_user: "%{day} gününde %{user} kullanıcısından bir şeyler"
   observation_brief_something_by_user: "%{user} kullanıcısından bir şeyler"
   observation_brief_something_from_place: "%{place} yerinden bir şeyler"
@@ -2396,8 +2402,8 @@ tr:
   only_showing_taxa_from: yalnızca bu listeden sınıflar gösteriliyor
   only_species: yalnızca türler
   only_species_and_subspecies: yalnızca türler ve alt türler/çeşitler
-  only_staff_can_edit_large_places: Yalnızca site görevlileri çok büyük yerleri düzenleyebilir
-  only_staff_can_edit_standard_places: Yalnızca site görevlileri, standart hiyerarşideki yerleri düzenleyebilir
+  only_staff_can_edit_large_places: Yalnızca site yetkilileri çok büyük yerleri düzenleyebilir
+  only_staff_can_edit_standard_places: Yalnızca site yetkilileri, standart hiyerarşideki yerleri düzenleyebilir
   only_the_owner_of_this_list_can_do_that: Bunu yalnızca bu listenin sahibi yapabilir. Kötü olma.
   only_the_project_admin_can_delete_this_project: Bu projeyi yalnızca proje yöneticisi silebilir.
   only_you: Yalnızca siz
@@ -4350,6 +4356,8 @@ tr:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          İşaretlenebilir içerik, bunun oluşturulduğu sırada işaretli nesnenin birincil metin özelliğidir. Yalnızca sorumlular ve yetkililer bunu görür. İletiler için bunu yalnızca yetkililer görür.
         flags_that_should_not_be_resolved_desc_html: |
           Lütfen <code>gereksiz konu</code> ve <code>telif hakkı ihlali</code> işaretlerini yalnızca içerik gereksiz değilse ya da bir telif hakkı ihlali değilse çözün.
     guides:
@@ -4582,6 +4590,9 @@ tr:
         show_messages_to_user: Mesajları %{user}'a göster
         speech_privilege_notice: |
           Doğrulanabilir üç gözlem ya da başkaları için üç kimlik bilgisi ekledikten sonra yeni iletiler gönderebileceksiniz. Şimdilik başkalarının size gönderdiği iletileri okuyabilir ve yanıtlayabilirsiniz.
+      show:
+        flag_notice_html: |
+          Bu ileti dizisini %{date} tarihinde işaretlediniz. Bu ileti dizisinin kopyasını silseniz bile işaret devam eder, bu nedenle artık bunu görmek istemiyorsanız bunu yapmak güvenlidir.
     oauth:
       authorizations:
         new:
