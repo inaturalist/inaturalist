@@ -260,7 +260,9 @@ it:
   add_life_stage_larva_annotation: 'Aggiungi nota "Stadio vitale: Larva"'
   add_life_stage_juvenile_annotation: 'Aggiungi nota "Stadio vitale: Giovane"'
   add_life_stage_egg_annotation: 'Aggiungi nota "Stadio vitale: Uovo"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Aggiungi una relazione'
+  #As in a Guide Section
   add_section: Aggiungi sezione
   add_several_observations_at_once: Aggiungere più osservazioni in una sola volta.
   add_sex_female_annotation: 'Aggiungi nota "Sesso: Femmina"'
@@ -1300,10 +1302,13 @@ it:
   flag_an_item: Contrassegna un elemento
   flag_as_spammer: Segna come spammer
   flag_as_non_spammer: Contrassegna come non-spam
+  #Label for the date/time when a flag was created
+  flag_created: Contrassegno Creato
   flag_description: Contrassegna il contenuto per segnalare ai curatori che c'è qualcosa che non va al riguardo.
   flag_for_check_list_title_html: |
     Contrassegno per la Checklist: %{title}
   flag_for_comment_id_html: Contrassegno per il <a href="%{url}">Commento %{id}</a>
+  flag_for_comment_id_deleted: Contrassegno per il Commento %{id} (cancellato)
   flag_for_curation: Contrassegna per il controllo
   flag_for_guide_title_html: |
     Contrassegno per la Guida: %{title}
@@ -4328,6 +4333,8 @@ it:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          Il contenuto contrassegnabile è il l'attributo di testo principale dell'oggetto contrassegnato nel momento in cui il contrassegno è stato creato. Solo i curatori e lo staff lo possono vedere. Solo lo staff lo può vedere per i messaggi.
         flags_that_should_not_be_resolved_desc_html: |
           Per favore risolvi i contrassegni <code>spam</code> e <code> violazione del copyright</code> solo se il contenuto non è spam o violazione del copyright, rispettivamente.
     guides:
@@ -4549,6 +4556,9 @@ it:
         show_messages_to_user: Mostra messaggi a %{user}
         speech_privilege_notice: |
           Sarai in grado di mandare nuovi messaggi dopo che avrai aggiunto tre osservazioni verificabili o tre identificazioni per altri. Per ora puoi leggere e rispondere ai messaggi che ti mandano altre persone.
+      show:
+        flag_notice_html: |
+          Hai contrassegnato questa conversazione il %{date}. Il contrassegno persisterà anche se cancelli la tua copia di questa conversazione, quindi puoi farlo tranquillamente se non vuoi più vederlo.
     oauth:
       authorizations:
         new:
