@@ -1,5 +1,11 @@
 class Flag < ActiveRecord::Base
-  include ActsAsUUIDable
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
   SPAM = "spam"
   INAPPROPRIATE = "inappropriate"
   COPYRIGHT_INFRINGEMENT = "copyright infringement"

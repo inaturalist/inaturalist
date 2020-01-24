@@ -1,7 +1,13 @@
 class User < ActiveRecord::Base
   include ActsAsSpammable::User
   include ActsAsElasticModel
-  include ActsAsUUIDable
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
 
   acts_as_voter
   acts_as_spammable fields: [ :description ],

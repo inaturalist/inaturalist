@@ -2,7 +2,13 @@
 class Place < ActiveRecord::Base
 
   include ActsAsElasticModel
-  include ActsAsUUIDable
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
 
   has_ancestry orphan_strategy: :adopt
 
