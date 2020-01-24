@@ -44,7 +44,7 @@ class CalendarsController < ApplicationController
         [iconic_taxon.id, @taxa_by_iconic_taxon_id[iconic_taxon.id].size]
       end.compact
       @life_list_firsts = @selected_user.taxa_unobserved_before_date( Date.parse( @date ), @taxa ).
-        sort_by( &:ancestry )
+        sort_by{|t| t.ancestry || "" }
     else
       iconic_counts_conditions = Observation.conditions_for_date("observations.observed_on", @date)
       iconic_counts_conditions[0] += " AND observations.user_id = ?"
