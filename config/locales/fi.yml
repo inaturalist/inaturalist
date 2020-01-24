@@ -272,7 +272,9 @@ fi:
   add_life_stage_larva_annotation: 'Lisää "Life Stage: Larva" selitys'
   add_life_stage_juvenile_annotation: 'Lisää "Life Stage: Juvenile" selitys'
   add_life_stage_egg_annotation: 'Lisää "Life Stage: Egg" selitys'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Lisää suhde'
+  #As in a Guide Section
   add_section: Lisää osa
   add_several_observations_at_once: Lisää useita havaintoja kerralla.
   add_sex_female_annotation: 'Lisää merkintä "Sukupuoli: Naaras"'
@@ -2179,6 +2181,7 @@ fi:
   observation_: havainto
   observation_added: Havainto lisätty
   observation_added_to_the_project: "Havainto lisätty projektiin \"%{project}\""
+  observation_brief_something_on_day: "Jotain päivänä %{day}"
   observation_brief_something_on_day_by_user: "Jotain %{day} käyttäjältä %{user}"
   observation_brief_something_by_user: "Jotain käyttäjältä %{user}"
   observation_brief_something_from_place: "Jotain paikasta %{place}"
