@@ -3106,7 +3106,7 @@ CREATE TABLE public.posts (
     radius integer,
     distance double precision,
     number integer,
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid uuid
 );
 
 
@@ -8373,13 +8373,6 @@ CREATE INDEX index_posts_on_place_id ON public.posts USING btree (place_id);
 --
 
 CREATE INDEX index_posts_on_published_at ON public.posts USING btree (published_at);
-
-
---
--- Name: index_posts_on_uuid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_posts_on_uuid ON public.posts USING btree (uuid);
 
 
 --
