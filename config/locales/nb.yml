@@ -256,7 +256,9 @@ nb:
   add_life_stage_larva_annotation: 'Legg til merknaden "Livsstadium: Larve"'
   add_life_stage_juvenile_annotation: 'Legg til merknaden "Livsstadium: Juvenil"'
   add_life_stage_egg_annotation: 'Legg til merknaden "Livsstadium: Egg"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Legg til relasjon'
+  #As in a Guide Section
   add_section: Legg til seksjon
   add_several_observations_at_once: Legg til flere observasjoner på en gang.
   add_sex_female_annotation: 'Legg til merknaden "Kjønn: Hunkjønn"'
@@ -2205,6 +2207,7 @@ nb:
   observation_added: Observasjon lagt til.
   observation_added_to_the_project: "Observasjon lagt til i prosjektet \"%{project}\""
   observation_aggregation: Observasjonsaggregering
+  observation_brief_something_on_day: "Noe på %{day}"
   observation_brief_something_on_day_by_user: "Noe på %{day} av %{user}"
   observation_brief_something_by_user: "Noe av %{user}"
   observation_brief_something_from_place: "Noe fra %{place}"
