@@ -256,7 +256,9 @@ es:
   add_life_stage_larva_annotation: 'Agregar anotación "Etapa de vida: larva"'
   add_life_stage_juvenile_annotation: 'Agregar anotación "Etapa de vida: juvenil"'
   add_life_stage_egg_annotation: 'Agregar anotación "Etapa de vida: huevo"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Agregar relación'
+  #As in a Guide Section
   add_section: Agregar sección
   add_several_observations_at_once: Agregar varias observaciones al mismo tiempo.
   add_sex_female_annotation: 'Agregar anotación "Género: femenino"'
@@ -2217,6 +2219,7 @@ es:
   observation_added: Observation added
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   observation_aggregation: Agregado de observación
+  observation_brief_something_on_day: "Algo el %{day}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
