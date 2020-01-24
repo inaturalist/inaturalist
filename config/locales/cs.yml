@@ -288,7 +288,9 @@ cs:
   add_life_stage_larva_annotation: 'Přidat anotaci „Stádium života: larva“'
   add_life_stage_juvenile_annotation: 'Přidat anotaci „Stádium života: mládě“'
   add_life_stage_egg_annotation: 'Přidat anotaci „Stádium života: vejce“'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Přidat vztah'
+  #As in a Guide Section
   add_section: Přidat sekci
   add_several_observations_at_once: Vložit několik pozorování naráz.
   add_sex_female_annotation: 'Přidat anotaci „Pohlaví: ženské“'
@@ -1958,6 +1960,8 @@ cs:
   observation_added: Pozorování přidáno.
   observation_added_to_the_project: "Pozorování přidáno k projektu \"%{project}\""
   observation_aggregation: Seskupení pozorování
+  observation_brief_something_on_day: "Něco na %{day}"
+  observation_brief_something_on_day_by_user: "Něco na %{day} od %{user}"
   observations_by_category: "Pozorování podle kategorie"
   observations_by_app: Pozorování podle aplikace
   observations_by_rank: Pozoování podle pořadí
