@@ -257,7 +257,9 @@ ca:
   add_life_stage_larva_annotation: 'Afegiu nota "Estat del Cicle biològic: Larva"'
   add_life_stage_juvenile_annotation: 'Afegir l''anotació «Etapa de la vida: juvenil»'
   add_life_stage_egg_annotation: 'Afegiu nota "Estat del Cicle biològic: Ou"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Afegeix una relació'
+  #As in a Guide Section
   add_section: Afegiu Secció
   add_several_observations_at_once: Afegiu diverses observacions a la vegada.
   add_sex_female_annotation: 'Afegiu nota "Sexe: Femella"'
@@ -2209,6 +2211,7 @@ ca:
   observation_added: Observació afegida
   observation_added_to_the_project: "Observació afegida al projecte %{project}"
   observation_aggregation: Agregació d'observació
+  observation_brief_something_on_day: "Quelcom el %{day}"
   observation_brief_something_on_day_by_user: "Alguna cosa el %{day} per %{user}"
   observation_brief_something_by_user: "Quelcom de %{user}"
   observation_brief_something_from_place: "Quelcom a %{place}"
