@@ -171,7 +171,7 @@ class Flag < ActiveRecord::Base
     true
   end
 
-  def flaggable_content_viewable_by_current_user?( user )
+  def flaggable_content_viewable_by?( user )
     if flaggable_type == "Message"
       return false unless user && user.is_admin?
     end
