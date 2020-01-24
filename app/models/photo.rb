@@ -12,6 +12,7 @@ class Photo < ActiveRecord::Base
   serialize :metadata
 
   include Shared::LicenseModule
+  include ActsAsUUIDable
   
   before_save :set_license, :trim_fields
   after_save :update_default_license,

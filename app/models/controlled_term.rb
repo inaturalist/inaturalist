@@ -2,6 +2,7 @@
 class ControlledTerm < ActiveRecord::Base
 
   include ActsAsElasticModel
+  include ActsAsUUIDable
 
   has_many :controlled_term_values, foreign_key: :controlled_attribute_id,
     class_name: "ControlledTermValue", dependent: :destroy

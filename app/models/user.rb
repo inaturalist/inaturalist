@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include ActsAsSpammable::User
   include ActsAsElasticModel
+  include ActsAsUUIDable
 
   acts_as_voter
   acts_as_spammable fields: [ :description ],

@@ -7,6 +7,7 @@ class Sound < ActiveRecord::Base
 
   include Shared::LicenseModule
   acts_as_flaggable
+  include ActsAsUUIDable
 
   attr_accessor :orphan
   

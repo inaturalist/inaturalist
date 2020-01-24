@@ -25,7 +25,7 @@ class Taxon < ActiveRecord::Base
   attr_accessor :current_user
 
   include ActsAsElasticModel
-
+  include ActsAsUUIDable
   acts_as_flaggable
   has_ancestry orphan_strategy: :adopt
 

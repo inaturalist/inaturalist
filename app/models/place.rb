@@ -2,6 +2,7 @@
 class Place < ActiveRecord::Base
 
   include ActsAsElasticModel
+  include ActsAsUUIDable
 
   has_ancestry orphan_strategy: :adopt
 

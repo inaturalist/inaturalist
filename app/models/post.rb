@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   acts_as_spammable :fields => [ :title, :body ],
                     :comment_type => "blog-post"
+  include ActsAsUUIDable
 
   has_subscribers to: {
     comments: { notification: "activity", include_owner: true }
