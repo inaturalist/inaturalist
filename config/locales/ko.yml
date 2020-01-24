@@ -168,6 +168,7 @@ ko:
   add_life_stage_larva_annotation: '성장 단계: 애벌레'
   add_life_stage_juvenile_annotation: '성장 단계: 아성체'
   add_life_stage_egg_annotation: '성장 단계: 알'
+  #As in a Taxon Framework Relationship
   add_relationship: '관계 추가'
   add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
   add_sex_female_annotation: '성별: 암컷'
@@ -1563,7 +1564,7 @@ ko:
   observations_by_rank: 분류군 수준에 따른 관찰
   observations_by_user_on_date: "%{date}에 %{user}의 관찰"
   observations_by_you: "내 관찰"
-  observations_by_you_on_date: "%{date}에 매 관찰"
+  observations_by_you_on_date: "%{date} 의 관찰"
   observation_calendar_for: "%{year}년 %{user}의 관찰 달력"
   observation_curation: 관찰 큐레이션
   observation_date: 날짜
@@ -2305,7 +2306,7 @@ ko:
   view: 보기
   view_all: 모두 보기
   view_all_members: 모든 회원 보기
-  view_all_n: "모든 %{n} 보기"
+  view_all_n: "모든 %{n}개 보기"
   view_all_observations: 모든 관찰 보기
   view_check_list_page: 체크리스트 문서 보기
   view_contributions: 기여 보기
