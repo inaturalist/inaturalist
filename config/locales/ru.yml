@@ -11,9 +11,9 @@ ru:
     other: '%{count} фаворита'
   x_flags_resolved_html:
     one: "<span class='count'>%{count}</span> флаг разрешен"
-    few: "<span class='count'>%{count}</span>флагов разрешено"
-    many: "<span class='count'>%{count}</span>флагов разрешены"
-    other: "<span class='count'>%{count}</span>флагов разрешены"
+    few: "<span class='count'>%{count}</span> флага разрешено"
+    many: "<span class='count'>%{count}</span> флагов разрешены"
+    other: "<span class='count'>%{count}</span> флагов разрешены"
   x_identifications:
     one: '%{count} идентификация'
     few: '%{count} идентификации'
@@ -3467,13 +3467,13 @@ ru:
   sorry_how_about_we_try_repeat: "Сожалеем! Как насчет того, чтобы мы попытались повторить ваш поиск в некоторых других базах данных, содержащих названия видов? Если мы найдем что-то, мы сохраним это, чтобы вы могли его найти в следующий раз."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "К сожалению, одно из этих фото Flickr либо не существует, либо у вас нет разрешения на его просмотр."
   sorry_that_photo_provider_isnt_responding: "К сожалению, данный поставщик фото в данный момент не отвечает. Пожалуйста, повторите попытку позже."
-  sorry_that_service_is_not_responding: "Извините, эта служба не отвечает. Повторите попытку позже."
+  sorry_that_service_is_not_responding: "К сожалению, эта служба не отвечает. Повторите попытку позже."
   sorry_there_were_problems_with_your_request: "К сожалению, возникли проблемы с вашим запросом: %{project_user}"
   sorry_we_didnt_find_that_photo: "Сожалеем, мы не нашли это фото."
   sorry_we_dont_have_any_metadata_for_that_photo: "К сожалению, у нас нет никаких метаданных этого фото, которые мы можем использовать для задания свойств наблюдения."
-  sorry_x_is_not_responding: "Извините, %{x} не отвечает. Повторите попытку позже."
-  sorry_you_can_only_add_1000_at_a_time: "Извините, вы можете добавить только 1000 одновременно."
-  sorry_you_cant_delete_your_own_life_list: "Извините, Вы не можете удалить ваш собственный список жизни."
+  sorry_x_is_not_responding: "Сожалеем, %{x} не отвечает. Повторите попытку позже."
+  sorry_you_can_only_add_1000_at_a_time: "К сожалению, вы можете добавить только 1000 за один раз."
+  sorry_you_cant_delete_your_own_life_list: "К сожалению, вы не можете удалить свой собственный список жизни."
   sorry_you_need_to_be_signed_in_and: Сожалеем, вы должны войти в свою учётную запись и иметь привязанную к ней учётную запись Flickr, чтобы размещать теги непосредственно на Flickr.
   sort: Сортировать
   sort_by: Сортировать по
@@ -3493,7 +3493,7 @@ ru:
     request_timed_out: Время ожидания запроса к SoundCloud истекло. Пожалуйста, повторите попытку позже.
     select_one_or_more_sounds: Выберите один или несколько звуков
     selected_sounds: Выбранные звуки
-    sound: Звуки
+    sound: Звук
     sound_has_been_flagged: Это аудио было отмечено флажком
     soundcloud_replied_with_an_error: Ответ от SoundCloud выдал ошибку. Пожалуйста, повторите попытку позже.
     sounds: Звуки
@@ -3516,7 +3516,7 @@ ru:
     nzbrn_invertebrates: Беспозвоночные NZBRN
     nzbrn_mammals: Млекопитающие NZBRN
     nzbrn_plants: Растения NZBRN
-    nzbrn_other: Другие NZBRN
+    nzbrn_other: Другие организмы NZBRN
     catalogue_of_life_2012_annual_checklist: 'Каталог жизни: Ежегодный контрольный список 2012'
     catalogue_of_life_2013_annual_checklist: 'Каталог жизни: Ежегодный контрольный список 2013'
   source_eg:
@@ -3538,8 +3538,8 @@ ru:
   species_by_category: виды по категориям
   species_from_around_the_world: Виды со всего мира
   species_guess: подсказка для вида
-  species_name_cap: название вида
-  species_names: Название вида
+  species_name_cap: Название вида
+  species_names: названия видов
   species_search: Поиск видов
   species_taxon_name: Вид/Наименование таксона
   species_unknown: Вид неизвестен
@@ -3568,7 +3568,7 @@ ru:
   still_working_on_classifying_taxon: Работа над классификацией этого таксона всё ещё идёт. Проверьте позднее
   stop_editing: Завершить редактирование
   stop_following_user: "Отменить подписку на %{user}"
-  stop_testing: Завершить тестирование
+  stop_testing: Остановить тестирование
   stop_trusting_this_person_with_your_private_coordinates: Перестать доверять этому человеку ваши скрытые координаты
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
