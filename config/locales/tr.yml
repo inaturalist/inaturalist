@@ -2228,6 +2228,8 @@ tr:
   observation_added_to_the_project: "\"%{project}\" projesine gözlem eklendi"
   observation_aggregation: Gözlem yığınlama
   observation_brief_something_on_day: "%{day} gününden bir şeyler"
+  observation_brief_something_on_day_at_time: "%{day} tarihi %{time} zamanından bir şeyler"
+  observation_brief_something_on_day_at_time_by_user: "%{user} kullanıcısı tarafından %{time} zamanında ve %{day} gününde bir şeyler"
   observation_brief_something_on_day_by_user: "%{day} gününde %{user} kullanıcısından bir şeyler"
   observation_brief_something_by_user: "%{user} kullanıcısından bir şeyler"
   observation_brief_something_from_place: "%{place} yerinden bir şeyler"
@@ -2237,6 +2239,8 @@ tr:
   observation_brief_something_from_place_on_day_at_time: "%{time} zamanında ve %{day} gününde %{place} yerinden bir şeyler"
   observation_brief_something_from_place_on_day_at_time_by_user: "%{user} kullanıcısı tarafından %{time} zamanında ve %{day} gününde %{place} yerinden bir şeyler"
   observation_brief_taxon_on_day: "%{day} gününden %{taxon}"
+  observation_brief_taxon_on_day_at_time: "%{day} gününde %{time} zamanında %{taxon}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{user} tarafından %{time} zamanında %{day} gününde %{taxon}"
   observation_brief_taxon_on_day_by_user: "%{day} gününde %{user} tarafından %{taxon}"
   observation_brief_taxon_by_user: "%{user} tarafından %{taxon}"
   observation_brief_taxon_from_place: "%{place} yerinden %{taxon}"
@@ -3346,6 +3350,8 @@ tr:
   skip_to_next_page: "Sonraki sayfaya atla"
   small: küçük
   site_admin_tools: Sayfa yöneticisi araçları
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Site Yöneticileri
   site_name_place: "%{site_name} yeri"
   site_observations_export_from_date: "%{date} tarihinde dışarı aktarılan %{site_name} gözlemleri"
   site_site_admin: "%{site_name} Sayfa Yöneticisi"
