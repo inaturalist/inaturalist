@@ -1309,10 +1309,13 @@ da:
   flag_an_item: Markér et objekt
   flag_as_spammer: Markér som spammer
   flag_as_non_spammer: Markér som ikke spammer
+  #Label for the date/time when a flag was created
+  flag_created: Flag oprettet
   flag_description: Markér dette indhold så kuratorer ved at der er noget galt med det.
   flag_for_check_list_title_html: |
     Markér til Tjekliste: %{title}
   flag_for_comment_id_html: Markér til <a href="%{url}">Kommentar %{id}</a>
+  flag_for_comment_id_deleted: Flag til kommentar %{id} (slettet)
   flag_for_curation: Markér for kuration
   flag_for_guide_title_html: |
     Markér til Guide: %{title}
@@ -2230,6 +2233,8 @@ da:
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
   observation_aggregation: Observationssammenlægning
   observation_brief_something_on_day: "Noget den %{day}"
+  observation_brief_something_on_day_at_time: "Noget %{day} kl. %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Noget %{day} kl. %{time} af %{user}"
   observation_brief_something_on_day_by_user: "Noget fra %{day} af %{user}"
   observation_brief_something_by_user: "Noget af %{user}"
   observation_brief_something_from_place: "Noget fra %{place}"
@@ -2239,6 +2244,8 @@ da:
   observation_brief_something_from_place_on_day_at_time: "Noget fra %{place} den %{day} klokken %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Noget fra %{place} den %{day} klokken %{time} af %{user}"
   observation_brief_taxon_on_day: "%{taxon} %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} %{day} kl. %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} kl. %{time} af %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} fra %{day} af %{user}"
   observation_brief_taxon_by_user: "%{taxon} af %{user}"
   observation_brief_taxon_from_place: "%{taxon} fra %{place}"
@@ -3370,6 +3377,8 @@ da:
   skip_to_next_page: "Spring til næste side"
   small: lille
   site_admin_tools: Side admin værktøjer
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Webstedsadmins
   site_name_place: "%{site_name} sted"
   site_observations_export_from_date: "%{site_name} observations eksport fra %{date}"
   site_site_admin: "%{site_name}Side admin"
@@ -4409,6 +4418,10 @@ da:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          Det flagbare indhold er den primære tekstattribut for det objekts, der blev markeret
+          på det tidspunkt, hvor flaget blev oprettet. Kun kuratorer og medarbejdere kan
+          se dette. Kun medarbejdere kan se dette for beskeder.
         flags_that_should_not_be_resolved_desc_html: |
           Løs venligst <code>spam</code> og <code>krænkelse af ophavsret</code>
           markér kun hvis indholdet ikke er spam eller ikke er en krænkelse af
@@ -4739,6 +4752,10 @@ da:
         speech_privilege_notice: |
           Du kan sende nye beskeder, når du har tilføjet tre
           verificerbare observationer eller tre identifikationer for andre. I øjeblikket kan du læse og svare på beskeder, andre personer sender dig.
+      show:
+        flag_notice_html: |
+          Du satte d. %{date} et flag for denne samtale. Flaget forbliver sat, selv hvis du sletter din kopi af denne samtale, så det er sikkert at gøre det,
+          hvis du ikke længere vil se dette.
     oauth:
       authorizations:
         new:
