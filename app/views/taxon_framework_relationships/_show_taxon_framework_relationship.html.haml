@@ -1,6 +1,14 @@
+- content_for :extrahead do
+  = stylesheet_link_tag "taxon_framework_relationships/taxon_framework_relationships"
+  = javascript_include_tag "https://d3js.org/d3.v4.min.js"
+  = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"
+  = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery.ba-bbq/1.2.1/jquery.ba-bbq.min.js"
+  = javascript_include_tag "taxon_framework_relationships/taxon_framework_relationships.js"
+  
 :ruby
   taxon_framework_relationship ||= show_taxon_framework_relationship[:taxon_framework_relationship]
   taxon ||= show_taxon_framework_relationship[:taxon]
+= content_tag 'div', '', id: 'data', data: { data: taxon_framework_relationship.as_json }
 - content_for( :extracss ) do
   :css
     .padding {
@@ -8,15 +16,30 @@
     }
 %p.padding{ :class => ( taxon_framework_relationship.relationship == "match" ? 'bg-success' : 'bg-warning' ) }
   = t :relationship_x, relationship: ( taxon_framework_relationship.relationship == "match" ? t( "relationships.match" ).capitalize : t( :deviation ).capitalize )
+.it
 %table.table.table-bordered
   %thead
     %tr
-      %th= taxon_framework_relationship.taxon_framework.source.title
-      %th 
       %th= @site.name
+      %th 
+      %th= taxon_framework_relationship.taxon_framework.source.title
   %tbody
     - ( 0..( [taxon_framework_relationship.taxa.count, taxon_framework_relationship.external_taxa.count].max-1 ) ).each do |i|
       %tr
+        - if taxon_framework_relationship.taxa[i]
+          %td
+            = link_to |
+            t( "ranks.#{ taxon_framework_relationship.taxa[i].rank }" ).capitalize + " " + |
+            taxon_framework_relationship.taxa[i].name + " (#{ t(:parent).downcase }: " + |
+            t( "ranks.#{ taxon_framework_relationship.taxa[i].parent.rank }" ).capitalize + " " + |
+            taxon_framework_relationship.taxa[i].parent.name + ")", |
+            taxon_path( taxon_framework_relationship.taxa[i] ) |
+        - else
+          %td
+        - if i==0
+          %td= t( "relationships.#{ taxon_framework_relationship.relationship }" ).capitalize
+        - else
+          %td
         - if taxon_framework_relationship.external_taxa[i]
           - rank_name = ( Taxon::RANKS.include? taxon_framework_relationship.external_taxa[i].rank ) ? |
           t( "ranks.#{ taxon_framework_relationship.external_taxa[i].rank }" ).capitalize : |
@@ -36,19 +59,5 @@
               = rank_name + " " + taxon_framework_relationship.external_taxa[i].name + |
               " (#{ t(:parent).downcase }: " + parent_rank_name + " " + |
               taxon_framework_relationship.external_taxa[i].parent_name + ")" |
-        - else
-          %td
-        - if i==0
-          %td= t( "relationships.#{ taxon_framework_relationship.relationship }" ).capitalize
-        - else
-          %td
-        - if taxon_framework_relationship.taxa[i]
-          %td
-            = link_to |
-            t( "ranks.#{ taxon_framework_relationship.taxa[i].rank }" ).capitalize + " " + |
-            taxon_framework_relationship.taxa[i].name + " (#{ t(:parent).downcase }: " + |
-            t( "ranks.#{ taxon_framework_relationship.taxa[i].parent.rank }" ).capitalize + " " + |
-            taxon_framework_relationship.taxa[i].parent.name + ")", |
-            taxon_path( taxon_framework_relationship.taxa[i] ) |
         - else
           %td
