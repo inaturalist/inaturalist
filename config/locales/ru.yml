@@ -3834,13 +3834,13 @@ ru:
   there_was_a_problem_saving_your_identification: "Возникла проблема с сохранением вашей идентификации: %{error}"
   there_were_problems_adding_taxa: "Возникли проблемы при создании этих таксонов: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Возникли проблемы при добавлении данного наблюдения к этому проекту:"
-  there_were_problems_importing_that_place: "Возникла проблема при импорте этого места: %{place_error}"
+  there_were_problems_importing_that_place: "Возникли проблемы при импорте этого места: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
     Возникли проблемы при импорте геометрии этого места: %{error}
   there_were_some_problems_saving_this_observation: Возникли некоторые проблемы при сохранении этого наблюдения
   there_were_some_problems_saving_those_colors: "Возникли некоторые проблемы при сохранении этих цветов: %{error}"
   there_were_some_problems_with_fields: "Возникли некоторые проблемы со следующими полями:"
-  there_were_some_problems_with_these_files: "Возникли некоторые проблемы со этими файлами:"
+  there_were_some_problems_with_these_files: "Возникли некоторые проблемы с этими файлами:"
   theres_something_wrong_with_taxon_framework_relationship: Здесь что-то не так - мы не можем определить связь между внутренними и внешними таксонами
   these_are_items_people_on: |
     Это элементы, которые люди на сайте отметили для курирования. Спам-комментарии должны быть удалены, а пользователи, которые добавляют спам, должны быть приостановлены (перейдите на страницу своего профиля и нажмите "приостановить пользователя" в правом нижнем углу, чтобы предотвратить их вход в систему). Другие отмеченные флагом элементы удаляются, только если они явно ненавистные, незаконные и т.д. На грубость, оскорбительные высказывания и т.п. следует реагировать вежливым комментарием. О повторных правонарушителях следует сообщить администратору сайта или на %{email}
@@ -3857,8 +3857,8 @@ ru:
   this_bioblitz_beings_in: Биоблиц начинается в
   this_is_a_cached_summary_based_on: Это кэшированная сводка этого таксона на основе его
   this_is_a_life_list_of: Это список жизни для
-  this_is_a_life_list_from_place_html: "Это список жизни в %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Это список жизни %{taxon} в %{place}"
+  this_is_a_life_list_from_place_html: "Это список жизни для %{place}"
+  this_is_a_life_list_of_taxon_in_place: "Это список жизни %{taxon} для %{place}"
   this_is_more_convenient_way_find_parent: Это более удобный способ найти родительский идентификатор. Фактически сохраняется именно родительский идентификатор.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Это более удобный способ найти идентификатор таксона. Это идентификатор таксона, который фактически сохраняется. Этот поиск работает только для активных таксонов.
@@ -3908,7 +3908,7 @@ ru:
   to_add_ids: добавить идентификации
   to_configure_your_widget: сформировать ваш виджет.
   to_recipient: для
-  to_suggest_an_identification: предлагать идентификацию
+  to_suggest_an_identification: предложить идентификацию
   today: Сегодня
   too_many_results: Слишком много результатов
   too_many_taxa_to_render: |
@@ -3920,7 +3920,7 @@ ru:
   top_identifiers_of_taxon: Лучшие Эксперты по %{taxon}
   top_observer: Лучший Наблюдатель
   top_observers: Лучшие наблюдатели
-  top_species: Топ Видов
+  top_species: Больше всего видов
   total: Всего
   totals: Всего
   total_members: Общее число членов
@@ -3992,7 +3992,7 @@ ru:
     other: "Обновить %{count} выбранных таксонов"
   update_your_content: Обновить ваш контент
   update_with_eol_content: Обновить, используя контент EOL
-  update_with_site_content: "Обновить содержимое %{site_name}"
+  update_with_site_content: "Обновить, используя контент %{site_name}"
   updated: Обновлено
   updated_by: Обновлено
   updated_daily: Обновляется ежедневно
