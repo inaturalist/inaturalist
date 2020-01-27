@@ -1753,6 +1753,8 @@ lt:
   no_messages_yet: Dar nėra žinučių
   no_misidentifications_yet: Dar nėra klaidingų identifikacijų
   no_more_taxa_to_load: Nebėra neįkeltų taksonų!
+  no_more_results_found: Daugiau rezultatų nerasta
+  no_new_messages: Nėra naujų pranešimų
   no_news_yet: Dar nėra naujienų
   no_observations: Nėra stebėjimų
   no_observations_from_this_place_yet: Šioje vietoje dar nėra stebėjimų.
@@ -2634,6 +2636,8 @@ lt:
   search_projects: Ieškoti projektų
   #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
   search_reasons: Ieškoti priežasčių
+  search_results_for: Paieškos rezultatai
+  search_results_for_query: 'Paieškos rezultatai „%{query}“'
   search_species: Ieškoti rūšių
   search_species_: Ieškoti rūšių...
   search_the_map: Ieškoti žemėlapyje
@@ -2661,6 +2665,7 @@ lt:
   select_photos_from_your_photo_stream: |
     Pasirinkite nuotraukas iš išorinio nuotraukų dalinimosi puslapio, skirtas paversti %{site_name} stebėjimais. Mes užpildysime datą, laiką ir vietovę iš nuotraukų metaduomenų ir bandysime aptikti rūšių pavadinimus žymose.
   select_photos_to_display: Pasirinkti nuotraukas rodymui
+  selected: pasirinkta
   selected_photos: Pasirinktos nuotraukos
   selected_taxon: Pasirinktas taksonas
   select_this_taxon: Rinktis šį taksoną
@@ -2671,6 +2676,7 @@ lt:
   sending: Siunčiama...
   #Label for messages you've sent
   sent: Išsiųsta
+  set_license: Nustatyti licenziją
   settings: Nustatymai
   share: Dalintis
   share_colon: "Dalintis:"
@@ -2925,11 +2931,14 @@ lt:
   terrain: reljefas
   text: Tekstas
   thanks!: Ačiū!
+  thanks_from_all_of_us_here_at: Padėka nuo mūsų visų iš
   that_photo_doesnt_exist: Ši nuotrauka neegzistuoja.
   that_observation_doesnt_exist: Šis stebėjimas neegzistuoja.
   that_observation_doesnt_have_any_photos: "Šis stebėjimas neturi nuotraukų."
+  that_observation_hasnt_been_added_this_project: Šis stebėjimas nebuvo pridėtas prie projekto.
   that_observation_no_longer_exists: Šis stebėjimas nebeegzistuoja.
   that_project_doesnt_exist: "Šis projektas neegzistuoja."
+  that_was_the_last_observation_matching_the_current_filters: Tai buvo paskutinis stebėjimas, kuris atitinka pasirinktus filtrus.
   thats_not_a_real_date: Tokios datos nėra!
   the_admin_is_the_person_who: |
     Administratorius yra žmogus, kuris sukūrė projektą. Jis gali daryti tą patį, ką gali valdytojai ir kuratoriai, bei ištrinti projektą.
@@ -3052,6 +3061,7 @@ lt:
   unclassified: Neklasifikuotas
   unhide_content: Nebeslėpti turinio
   uninvite: nebekviesti
+  unique_observers: skirtingi stebėtojai
   unknown: Nežinoma
   unknown_error: Nežinoma klaida
   unknown_rank: '(Nežinomas rangas)'
@@ -3059,6 +3069,8 @@ lt:
   unlink_your_google_account: Atsieti savo Google paskyrą
   unlink_your_flickr_account: "Atsieti savo Flickr paskyrą"
   unmute: Įjungti garsą
+  updates_notification_email_subject: "%{prefix} Atnaujinimai %{date}"
+  updates_suspension_email_subject: "%{prefix} Jūsų prenumeratos pristabdytos"
   updating: Atnaujinama...
   unsubscribe: Atšaukti prenumeratą
   upcoming_bioblitzes: Artėjantys bioblicai
