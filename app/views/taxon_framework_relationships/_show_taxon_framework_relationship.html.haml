@@ -7,6 +7,8 @@
   
 :ruby
   taxon_framework_relationship ||= show_taxon_framework_relationship[:taxon_framework_relationship]
+  taxon_framework_relationship_taxa = taxon_framework_relationship.taxa.sort{ |a, b| [b.rank_level, a.name] <=> [a.rank_level, b.name] }
+  taxon_framework_relationship_external_taxa = taxon_framework_relationship.external_taxa.sort{ |a, b| [Taxon::RANK_LEVELS[b.rank], a.name] <=> [Taxon::RANK_LEVELS[a.rank], b.name] }
   taxon ||= show_taxon_framework_relationship[:taxon]
 = content_tag 'div', '', id: 'data', data: { data: taxon_framework_relationship.as_json }
 - content_for( :extracss ) do
@@ -26,38 +28,38 @@
   %tbody
     - ( 0..( [taxon_framework_relationship.taxa.count, taxon_framework_relationship.external_taxa.count].max-1 ) ).each do |i|
       %tr
-        - if taxon_framework_relationship.taxa[i]
+        - if taxon_framework_relationship_taxa[i]
           %td
             = link_to |
-            t( "ranks.#{ taxon_framework_relationship.taxa[i].rank }" ).capitalize + " " + |
-            taxon_framework_relationship.taxa[i].name + " (#{ t(:parent).downcase }: " + |
-            t( "ranks.#{ taxon_framework_relationship.taxa[i].parent.rank }" ).capitalize + " " + |
-            taxon_framework_relationship.taxa[i].parent.name + ")", |
-            taxon_path( taxon_framework_relationship.taxa[i] ) |
+            t( "ranks.#{ taxon_framework_relationship_taxa[i].rank }" ).capitalize + " " + |
+            taxon_framework_relationship_taxa[i].name + " (#{ t(:parent).downcase }: " + |
+            t( "ranks.#{ taxon_framework_relationship_taxa[i].parent.rank }" ).capitalize + " " + |
+            taxon_framework_relationship_taxa[i].parent.name + ")", |
+            taxon_path( taxon_framework_relationship_taxa[i] ) |
         - else
           %td
         - if i==0
           %td= t( "relationships.#{ taxon_framework_relationship.relationship }" ).capitalize
         - else
           %td
-        - if taxon_framework_relationship.external_taxa[i]
-          - rank_name = ( Taxon::RANKS.include? taxon_framework_relationship.external_taxa[i].rank ) ? |
-          t( "ranks.#{ taxon_framework_relationship.external_taxa[i].rank }" ).capitalize : |
-          taxon_framework_relationship.external_taxa[i].rank |
-          - if taxon_framework_relationship.external_taxa[i]
-            - parent_rank_name = ( Taxon::RANKS.include? taxon_framework_relationship.external_taxa[i].parent_rank ) ? |
-            t( "ranks.#{ taxon_framework_relationship.external_taxa[i].parent_rank }" ).capitalize : |
-            taxon_framework_relationship.external_taxa[i].parent_rank |
-          - if taxon_framework_relationship.external_taxa[i].url
+        - if taxon_framework_relationship_external_taxa[i]
+          - rank_name = ( Taxon::RANKS.include? taxon_framework_relationship_external_taxa[i].rank ) ? |
+          t( "ranks.#{ taxon_framework_relationship_external_taxa[i].rank }" ).capitalize : |
+          taxon_framework_relationship_external_taxa[i].rank |
+          - if taxon_framework_relationship_external_taxa[i]
+            - parent_rank_name = ( Taxon::RANKS.include? taxon_framework_relationship_external_taxa[i].parent_rank ) ? |
+            t( "ranks.#{ taxon_framework_relationship_external_taxa[i].parent_rank }" ).capitalize : |
+            taxon_framework_relationship_external_taxa[i].parent_rank |
+          - if taxon_framework_relationship_external_taxa[i].url
             %td
               = link_to |
-                rank_name + " " + taxon_framework_relationship.external_taxa[i].name + |
+                rank_name + " " + taxon_framework_relationship_external_taxa[i].name + |
                 " (#{ t(:parent).downcase }: " + parent_rank_name + " " + |
-                taxon_framework_relationship.external_taxa[i].parent_name + ")", taxon_framework_relationship.external_taxa[i].url |
+                taxon_framework_relationship_external_taxa[i].parent_name + ")", taxon_framework_relationship_external_taxa[i].url |
           - else
             %td
-              = rank_name + " " + taxon_framework_relationship.external_taxa[i].name + |
+              = rank_name + " " + taxon_framework_relationship_external_taxa[i].name + |
               " (#{ t(:parent).downcase }: " + parent_rank_name + " " + |
-              taxon_framework_relationship.external_taxa[i].parent_name + ")" |
+              taxon_framework_relationship_external_taxa[i].parent_name + ")" |
         - else
           %td
