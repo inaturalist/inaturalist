@@ -10,7 +10,14 @@
   taxon_framework_relationship_taxa = taxon_framework_relationship.taxa.sort{ |a, b| [b.rank_level, a.name] <=> [a.rank_level, b.name] }
   taxon_framework_relationship_external_taxa = taxon_framework_relationship.external_taxa.sort{ |a, b| [Taxon::RANK_LEVELS[b.rank], a.name] <=> [Taxon::RANK_LEVELS[a.rank], b.name] }
   taxon ||= show_taxon_framework_relationship[:taxon]
-= content_tag 'div', '', id: 'data', data: { data: taxon_framework_relationship.as_json }
+
+= content_tag 'div', '', id: "data_#{taxon_framework_relationship.id}", data: { tfrid: taxon_framework_relationship.id, data: taxon_framework_relationship.as_json }
+:javascript
+  $( function () {
+   var data = $( "#data_#{ taxon_framework_relationship.id }" );
+   tfrD3Vis( data.data( "data" ), data.data( "tfrid" ) );
+  } );
+  
 - content_for( :extracss ) do
   :css
     .padding {
@@ -18,7 +25,7 @@
     }
 %p.padding{ :class => ( taxon_framework_relationship.relationship == "match" ? 'bg-success' : 'bg-warning' ) }
   = t :relationship_x, relationship: ( taxon_framework_relationship.relationship == "match" ? t( "relationships.match" ).capitalize : t( :deviation ).capitalize )
-.it
+%div{ :class => "tfr_#{taxon_framework_relationship.id}" }
 %table.table.table-bordered
   %thead
     %tr

@@ -1,6 +1,5 @@
 /* global d3 */
-$( function ( ) {
-  var data = $( "#data" ).data( "data" );
+function tfrD3Vis( data, tfrId ) {
   var stratify = d3.stratify()
     .id( function ( d ) { return d.name; } )
     .parentId( function ( d ) { return d.parent; } );
@@ -75,7 +74,7 @@ $( function ( ) {
   var offset2 = ( width / 2 + 75 );
   var height = Math.max( ( numRows * 12 ), 200 ) - margin.top - margin.bottom;
 
-  var svg = d3.select( "div.it" ).append( "svg" )
+  var svg = d3.select( "div.tfr_" + tfrId ).append( "svg" )
     .attr( "viewBox", "0 0 " + ( width + margin.left + margin.right ) + " " + ( height + margin.top + margin.bottom ) )
     .attr( "preserveAspectRatio", "xMinYMin meet" );
 
@@ -189,4 +188,4 @@ $( function ( ) {
     .attr( "x", function ( d ) { return d.children ? -8 : 8; } )
     .style( "text-anchor", function ( d ) { return d.children ? "end" : "start"; } )
     .text( function ( d ) { return truncate( formatName( d ), 17 ); } );
-} );
+}
