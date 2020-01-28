@@ -61,7 +61,7 @@ describe UsersController, "delete" do
 
   it "destroys in a delayed job" do
     sign_in user
-    delete :destroy, id: user.id
+    delete :destroy, id: user.id, confirmation: user.login, confirmation_code: user.login
     expect( Delayed::Job.where("handler LIKE '%sane_destroy%'").count ).to eq 1
     expect( Delayed::Job.where("unique_hash = '{:\"User::sane_destroy\"=>#{user.id}}'").
       count ).to eq 1
@@ -69,7 +69,7 @@ describe UsersController, "delete" do
 
   it "should be possible for the user" do
     sign_in user
-    without_delay { delete :destroy, :id => user.id }
+    without_delay { delete :destroy, id: user.id, confirmation: user.login, confirmation_code: user.login }
     expect(response).to be_redirect
     expect(User.find_by_id(user.id)).to be_blank
   end

@@ -12,9 +12,11 @@ class OauthApplication < Doorkeeper::Application
     path: "oauth_applications/:id-:style.:extension",
     url: ":s3_alias_url"
   invalidate_cloudfront_caches :image, "oauth_applications/:id-*"
+
+  before_create :set_scopes
+
   validates_attachment_content_type :image, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
-
   validate :redirect_uri_has_no_params
 
   def redirect_uri_has_no_params
@@ -29,6 +31,11 @@ class OauthApplication < Doorkeeper::Application
 
   def self.inaturalist_iphone_app
     @@inaturalist_iphone_app ||= OauthApplication.where(name: "iNaturalist iPhone App").first
+  end
+
+  def set_scopes
+    self.scopes = Doorkeeper.configuration.default_scopes if self.scopes.blank?
+    true
   end
 
 end

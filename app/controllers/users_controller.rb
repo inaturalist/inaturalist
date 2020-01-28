@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   before_action -> { doorkeeper_authorize! :write },
     only: [ :create, :update, :dashboard, :new_updates, :api_token ],
     if: lambda { authenticate_with_oauth? }
+  before_action -> { doorkeeper_authorize! :account_delete },
+    only: [ :destroy ],
+    if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships,
@@ -149,16 +152,30 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    if params[:confirmation] && params[:confirmation] != params[:confirmation_code]
-      flash[:error] = t( "views.users.delete.you_must_enter_confirmation_code_in_the_form", confirmation_code: params[:confirmation_code] )
-      return redirect_to :back
+    if params[:confirmation].blank? || params[:confirmation_code].blank? || ( params[:confirmation] && params[:confirmation] != params[:confirmation_code] )
+      msg = t( "views.users.delete.you_must_enter_confirmation_code_in_the_form", confirmation_code: params[:confirmation_code] )
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to delete_users_path
+        end
+        format.json do
+          render json: { error: msg }, status: :unprocessable_entity
+        end
+      end
+      return
     end
     @user.delay(priority: USER_PRIORITY,
       unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
     sign_out(@user) if current_user == @user
-    flash[:notice] = "#{@user.login} has been removed from #{@site.name} " +
-      "(it may take up to an hour to completely delete all associated content)"
-    redirect_to root_path
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "#{@user.login} has been removed from #{@site.name} " +
+          "(it may take up to an hour to completely delete all associated content)"
+        redirect_to root_path
+      end
+      format.json { render head: :no_content, layout: false, text: nil }
+    end
   end
 
   def set_spammer
@@ -960,8 +977,15 @@ protected
   end
   
   def ensure_user_is_current_user_or_admin
-    unless current_user.has_role? :admin
-      redirect_to edit_user_path(current_user, :id => current_user.login) if @user.id != current_user.id
+    if !current_user.has_role?( :admin ) && @user.id != current_user.id
+      respond_to do |format|
+        format.html do
+          redirect_to edit_user_path(current_user, :id => current_user.login)
+        end
+        format.json do
+          render status: :unprocessable_entity, json: { error: t(:you_dont_have_permission_to_do_that) }
+        end
+      end
     end
   end
   

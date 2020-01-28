@@ -44,8 +44,7 @@ Doorkeeper.configure do
 
   # Define access token scopes for your provider
   # For more information go to https://github.com/applicake/doorkeeper/wiki/Using-Scopes
-  default_scopes  :write, :login
-  optional_scopes :write, :login
+  default_scopes  :write, :login # note that select apps also have an account_delete scope that allows account deletion
 
   # Change the way client credentials are retrieved from the request object.
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
