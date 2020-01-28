@@ -168,6 +168,7 @@ ko:
   add_life_stage_larva_annotation: '성장 단계: 애벌레'
   add_life_stage_juvenile_annotation: '성장 단계: 아성체'
   add_life_stage_egg_annotation: '성장 단계: 알'
+  #As in a Taxon Framework Relationship
   add_relationship: '관계 추가'
   add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
   add_sex_female_annotation: '성별: 암컷'
@@ -562,7 +563,7 @@ ko:
   community_guidelines: 공동체 지침
   community_id_heading: 공동체 ID
   compare: 비교하기
-  compare_with: 와 비교하다
+  compare_with: '다음과 비교:'
   comparing: 비교 중
   comparing_list_to_list: "%{list1}와 %{list2}를 비교"
   comparing_versions_x_and_y: "%{x}와 %{y} 버전 비교"
@@ -1323,7 +1324,7 @@ ko:
   low: 낮음
   make_admin: 관리자 만들기
   make_it_a_life_list?: 생물 목록으로 만드시겠습니까?
-  manage_all_your_subscriptions: 모든 구독 정보 관리
+  manage_all_your_subscriptions: 알림 관리
   manage_names: 이름 관리
   manage_your_projects: 내 프로젝트 관리
   manage_your_project_invitations: 프로젝트 초대 관리
@@ -1563,7 +1564,7 @@ ko:
   observations_by_rank: 분류군 수준에 따른 관찰
   observations_by_user_on_date: "%{date}에 %{user}의 관찰"
   observations_by_you: "내 관찰"
-  observations_by_you_on_date: "%{date}에 매 관찰"
+  observations_by_you_on_date: "%{date} 의 관찰"
   observation_calendar_for: "%{year}년 %{user}의 관찰 달력"
   observation_curation: 관찰 큐레이션
   observation_date: 날짜
@@ -1602,6 +1603,13 @@ ko:
   onboarding:
     following_panel_title: 사람, 분류군, 장소에 대한 알림 받기
     youve_got_updates_panel_title: 새 업데이트가 있습니다!
+    youve_got_updates_panel_body_p2: |
+      <ul>
+      <li><strong>내 콘텐츠:</strong> 내 관찰에 대한 %{site_name} 공동체의 댓글, 동정, 관찰 필드 추가, 프로젝트에 관찰 추가 등의 활동이 알림으로 표시됩니다.</li>
+      <li><strong>사용자들:</strong> 팔로우한 사용자들의 새로운 관찰, 일지 등이 표시됩니다.</li>
+      <li><strong>분류군, 프로젝트, 장소:</strong> 팔로우한 분류군, 장소에 대한 새로운 관찰이 표시됩니다. 프로젝트에 가입할 경우 프로젝트 일지에 대한 알림도 표시됩니다. </li>
+      <li><strong>관여한 토론:</strong> 다른 사람의 관찰에 댓글 및 동정을 추가하면 자동적으로 그 관찰에 팔로우됩니다. '알림 관리' 항목을 통해 알림 수신 여부를 수정할 수 있습니다.</li>
+      </ul>
   only_letters_numbers: "문자와 숫자만 올 수 있고 공백이 없어야 하며 문자로 시작해야 합니다"
   only_show_active_taxa: 활성 분류군만 보기
   only_show_events_that_last_less_than_2_weeks: 최근 2주 간의 일만 보여드립니다
@@ -2015,7 +2023,7 @@ ko:
   ranks:
     kingdom: Kingdom
     subkingdom: Subkingdom
-    phylum: 문
+    phylum: Phylum
     subphylum: Subphylum
     superclass: 상강
     class: Class
@@ -2023,8 +2031,8 @@ ko:
     infraclass: Infraclass
     superorder: 상목
     order: Order
-    suborder: 아목
-    infraorder: 하목
+    suborder: Suborder
+    infraorder: Infraorder
     subterclass: Subterclass
     parvorder: 소목
     superfamily: Superfamily
@@ -2034,7 +2042,7 @@ ko:
     genus: Genus
     subgenus: 아속
     #Singular
-    species: 종
+    species: Species
     hybrid: 혼종
     #Singular
     subspecies: Subspecies
@@ -2176,7 +2184,6 @@ ko:
     add_sounds: 음원 추가
     before_importing_sounds: 음원을 불러오기 전에
     import_sounds: 음원 불러오기
-    link_your_soundcloud_account: SoundCloud 계정 연결하기
     listen: 듣기
     no_photos_sounds: 사진이나 음원이 없습니다.
     photos_sounds: 사진 / 음원
@@ -2207,7 +2214,13 @@ ko:
   #can buy merchandise. Please try to keep translations as short as possible
   store: 스토어
   submitted: 업로드 날짜
-  subscriptions: 구독
+  subscribe_to_a_taxon: 분류군 알림 받기
+  subscribe_to_a_place: 장소 알림 받기
+  subscribe_to_observations_in_a_taxon: '특정 분류군에 대한 모든 관찰에 대한 알림을 받기 (예시: ''메뚜기과'', ''흰나비속'')'
+  subscribe_to_observations_in_a_place: '특정 장소에 대한 모든 관찰에 대한 알림을 받기 (예시: ''과천시'', ''경기도'')'
+  subscribe_to_places_to: |
+    장소에 대한 알림을 설정해서 그 장소의 새로운 관찰에 대한 알림을 받아보세요. 팔로우하는 사용자들과 댓글 또한 알림 설정을 통하여 관리되기 때문에, 알림을 설정한 항목을 확인하거나 알림을 취소하고 싶을 때는 아래의 '알림 관리' 항목을 클릭하세요. 또한, iNaturalist의 대부분 항목에 대한 알림을 취소할 수 있습니다.
+  subscriptions: 알림 받기
   suggest_an_identification: 동정 제안하기
   suggestions: 제안
   support_inaturalist: iNaturalist 지원
@@ -2259,7 +2272,7 @@ ko:
   unfollow: 팔로우 해제
   unlink_your_google_account: 구글 계정의 연결을 끊습니다
   unmute: 알림 제외를 해제
-  unsubscribe: 구독 해지
+  unsubscribe: 알림 해제
   update: 갱신
   update_observations: 관찰 업데이트
   update_photos: 사진 갱신
@@ -2283,9 +2296,11 @@ ko:
     other: '%{count}개 중 %{num}개의 사진을 올리는 중...'
   user: 사용자
   user_added_a_x: "%{user}님이 %{x}을(를) 추가했습니다"
-  user_added_an_observation_html: "%{user}님이 관찰을 추가했습니다"
+  user_added_a_x_to_noun_by_html: "%{user} 님이 %{by} 의 %{noun} 에 %{x} 를 추가했습니다."
+  user_added_an_observation_html: "%{user} 님이 관찰을 추가했습니다."
   user_added_an_x: "%{user}님이 %{x}을(를) 추가했습니다"
-  user_added_x_observations_html: "%{user}는 %{x}개의 관찰을 추가했습니다."
+  user_added_an_x_to_noun_by_html: "%{user} 님이 %{by} 의 %{noun} 에 %{x} 를 추가했습니다."
+  user_added_x_observations_html: "%{user} 님이 %{x}개의 관찰을 추가했습니다."
   user_already_authenticated: 사용자는 이미 인증되었습니다
   user_autocomplete_placeholder: kueda, simon123 등.
   user_blocked: 사용자가 차단됨
@@ -2305,7 +2320,7 @@ ko:
   view: 보기
   view_all: 모두 보기
   view_all_members: 모든 회원 보기
-  view_all_n: "모든 %{n} 보기"
+  view_all_n: "모든 %{n}개 보기"
   view_all_observations: 모든 관찰 보기
   view_check_list_page: 체크리스트 문서 보기
   view_contributions: 기여 보기
@@ -2370,7 +2385,10 @@ ko:
   'yes': "예"
   yes_license_my_observations_so_scientists_can_use: 네, 과학자들이 내 데이터를 사용할 수 있도록 내 사진, 소리, 관찰을 라이선스하겠습니다!
   yesterday: 어제
-  you_: 당신
+  you: 내
+  you_: 내
+  youre_a_site_curator_which_means: |
+    당신은 사이트 큐레이터입니다. 사이트 큐레이터는 iNaturalist의 데이터를 정리하고 컨텐츠를 관리하는 역할입니다. 강제적으로 할 필요는 전혀 없지만, 시간이 날 때 데이터를 정리하는 데 도움을 주시면, 어떠한 기여라도 환영입니다. iNaturalist의 콘텐츠를 관리하는 데 질문이 있거나, 큐레이터를 그만두고 싶다면 %{email} 로 연락해 주세요.
   you_are_no_longer_following_x: "더 이상 %{friend}를 팔로우하지 않습니다."
   you_are_submitting_obs_without_photos_and_names: |
     사진과 분류군이 없는 관찰을 제출하고 있습니다. 이럴 경우 정확하게 동정하기 매우 어렵습니다.
@@ -2385,6 +2403,7 @@ ko:
   you_need_to_select_some_observations_first: 관찰을 먼저 선택하세요.
   your_account_has_been_activated: 당신의 계정이 활성화되었습니다!
   your_browser_does_not_support_the_audio_element: 브라우저가 오디오 요소를 지원하지 않습니다.
+  your_content: 내 콘텐츠
   your_id: 나의 동정
   your_identification: 나의 동정
   your_observations: 내 관찰
@@ -2425,20 +2444,6 @@ ko:
         grid: 격자
         book: 책
         journal: 일지
-    help:
-      index:
-        what_is_considered_inappropriate_content?: 무엇이 부적절한 내용으로 간주됩니까?
-        we_also_support_google_html: '구글 포토도 지원합니다: <a href="%{url}">구글 계정 구성하기 &raquo;</a>'
-        we_also_support_uploading_photos: |
-          %{site_name}에 직접 사진들을 업로드하는 것을 지원하지만 다소 느릴 수 있으므로 한 번에 하나의 업로드만 허용합니다. 플리커나 구글을 이미 사용하고 계시다면 이것들을 사용하는 것이 더 빠릅니다.
-        geoprivacy_is_a_setting_you_can: |
-          위치보호는 관찰에 대한 공간 좌표(위도와 경도)의 표시 방식을
-          설정합니다. 옵션은 다음과 같습니다:
-        when_coordinates_are_obscured_it_means_that: |
-          좌표 숨김을 선택할 경우 실제 좌표에서 %{km}km 반경 안에 있는 좌표를 무작위로 선택하여 홈페이지, 관찰 페이지, 프로젝트 페이지 등 공개 지도에 표시됩니다. 실제 좌표는 관찰한 본인의 관찰에서만 표시됩니다. 이러한 관찰을 프로젝트에 추가할 경우 프로젝트 큐레이터도 실제 좌표를 열람할 수 있게 됩니다. 좌표 숨김된 좌표는 선이 없는 원으로 표시됩니다.
-        you_can_also_obscure_the_coordinates_html: |
-          분류와 상관없이 좌표 숨김을 할 수 있습니다. 위의 <a href="#geoprivacy">geoprivacy</a>를 보세요.
-        i_observed_a_species: "한가지 종을 관찰했는데, 왜 나의 생물 목록에는 나타나지 않나요?"
     messages:
       from: '게시한 사용자:'
       to: 받는이
@@ -2460,7 +2465,7 @@ ko:
       captive_help_html: |
         관찰할 생물이 <strong>포획 </strong>되거나 <strong>사육 </strong>되었습니까? 예를 들어 <strong>공원, 동물원, 수족관 </strong> 등 인간에 의해서 인위적으로 지역에 서식하고 있는 것입니까? iNaturalist는 <strong>야생 상태 </strong>의 생물 관찰만을 허용하고 있습니다.
       identify:
-        you_reviewed_message: "이 페이지에서 일치하는 %{total}개의 관찰 중 이 페이지에서 %{pageTotal}개의 관찰 중 %{reviewed}개를 리뷰했습니다."
+        you_reviewed_message: "검색된 %{total}개의 관찰 중, 이 페이지에서 %{pageTotal}개의 관찰 중에서 %{reviewed}개를 검토했습니다."
         unreview_all_tooltip: "페이지 내 모든 관찰자 검토상태 삭제하기"
       show:
         flagged_photos_desc_html: |

@@ -115,7 +115,9 @@ lb:
   add_life_stage_larva_annotation: 'Setzt d''Informatioun "Liewensstadium: Larv" derbäi'
   add_life_stage_juvenile_annotation: 'Setzt d''Informatioun "Liewensstadium: jonkt Déier" derbäi'
   add_life_stage_egg_annotation: 'Setzt d''Informatioun "Liewensstadium: Ee" derbäi'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Eng Relatioun derbäisetzen'
+  #As in a Guide Section
   add_section: Abschnitt derbäisetzen
   add_several_observations_at_once: E puer Observatiounen op eemol derbäisetzen.
   add_sex_female_annotation: 'Setzt d''Informatioun "Geschlecht: weiblech" derbäi'
@@ -1450,13 +1452,6 @@ lb:
     guides:
       pdf_layouts:
         book: Buch
-    help:
-      index:
-        what_is_inaturalist?: Wat ass %{site_name}?
-        who_is_behind_inaturalist?: Wien ass hannert %{site_name}?
-        who_is_behind_inaturalist: Wien ass hannert %{site_name}?
-        what_is_an_observation?: Wat ass eng Observatioun?
-        can_i_include_my_observations_on_my_blog?: Kann ech meng %{site_name} Observatiounen op mäi Blog oder meng Websäit bäisetzen?
     messages:
       from: Vum
       to: Fir

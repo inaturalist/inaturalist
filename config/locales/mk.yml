@@ -125,7 +125,9 @@ mk:
   add_new_taxon_name: Додај ново таксонско име
   add_observations: Додај набљудувања
   add_photos: Додај слики
+  #As in a Taxon Framework Relationship
   add_relationship: 'Додај однос'
+  #As in a Guide Section
   add_section: Додај поднаслов
   add_several_observations_at_once: Додајте неколку набљудувања наеднаш.
   add_some_now: Додајте некого сега
@@ -1223,7 +1225,6 @@ mk:
     selected_sounds: Избрани звуци
     sound: Звук
     sounds: Звуци
-    view_all_soundcount_sounds: "Погл. сите %{sound_count} звуци"
   source: Извор
   source_: 'Извор:'
   source_list:
@@ -1450,16 +1451,6 @@ mk:
       pdf_layout_notes:
         grid: |
           Решетка од поединечни слики, без описи
-    help:
-      index:
-        who_is_behind_inaturalist: Кој стои зад %{site_name}?
-        curators_are_inat_users_who_volunteer_to_html: |
-          Кустосите се корисници на %{site_name} кои доброволно ги одржуваат нашите таксономски податоци. Ако сте заинтересирани да станете кустос, 
-          <a href="mailto:%{help_email}">обратете ни се</a>. Секој кустос може да унапредува други, доделувајќи им кустоски статус. Би ве замолиле да ги унапредувате само оние на кои им верувате и кои имаат извесни таксономски познавања.
-        check_the_id_please_checkbox_when_html: |
-          Штиклирајте го кутивчето „Препознајте“ кога додавате / менувате ваше
-          набљудување и набљудувањето ќе се појави во
-          „<a href="%{url}">Препознајте</a>“.
     projects:
       edit:
         start_time_desc: "Почетно време на вашиот биоблиц"

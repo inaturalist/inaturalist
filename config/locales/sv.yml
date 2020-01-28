@@ -191,7 +191,9 @@ sv:
   add_life_stage_larva_annotation: 'Lägg till notering "Livsstadium: larv"'
   add_life_stage_juvenile_annotation: 'Lägg till notering "Livsstadium: ungdom"'
   add_life_stage_egg_annotation: 'Lägg till notering "Livsstadium: ägg"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Lägg till en relation'
+  #As in a Guide Section
   add_section: Lägg till avsnitt
   add_several_observations_at_once: Lägg till flera observationer på en gång.
   add_sex_female_annotation: 'Bifoga notering "Kön: Hona"'
@@ -1679,16 +1681,6 @@ sv:
         Denna guide kan laddas ned till mobilappen för att kunna användas offline.
       pdf_layouts:
         book: bok
-    help:
-      index:
-        what_is_inaturalist?: Vad är %{site_name}?
-        who_is_behind_inaturalist?: Vem är bakom %{site_name}?
-        who_is_behind_inaturalist: Vem är bakom %{site_name}?
-        what_is_an_observation?: Vad är en observation?
-        we_also_support_uploading_photos: |
-          Vi stöder att ladda upp foton direkt till %{site_name}, men det kan vara lite 
-          långsamt, så vi kan bara tillåta en uppladdning åt gången. Flickr eller Google
-          är förmodligen snabbare om du redan använder dessa tjänster.
     oauth:
       authorizations:
         new:

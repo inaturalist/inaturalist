@@ -251,7 +251,9 @@ de:
   add_life_stage_larva_annotation: 'Vermerk "Lebensstadium: Larve" hinzufügen'
   add_life_stage_juvenile_annotation: 'Vermerk "Lebensstadium: Jungtier" hinzufügen'
   add_life_stage_egg_annotation: 'Vermerk "Lebensstadium: Ei" hinzufügen'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Beziehung hinzufügen'
+  #As in a Guide Section
   add_section: Abschnitt hinzufügen
   add_several_observations_at_once: Mehrere Beobachtungen gleichzeitig hinzufügen.
   add_sex_female_annotation: 'Vermerk "Geschlecht: Weiblich" hinzufügen'
@@ -3069,7 +3071,6 @@ de:
     import_from_soundcloud_description: "Wähle Sounds aus deinem SoundCloud-Account, um sie in iNaturalist-Beobachtungen umzuwandeln. Wir übernehmen das Datum und die Uhrzeit aus den Metadaten einer Audio-Datei und versuchen, die Namen der Arten aus den Tags herauszufinden."
     import_from_sounds: Audio importieren
     import_sounds: Audio importieren
-    link_your_soundcloud_account: Deinen SoundCloud-Account verlkinken
     listen: Anhören
     no_photos_sounds: Keine Bilder oder Audio
     photos_sounds: Bilder / Audio
@@ -3079,9 +3080,6 @@ de:
     sound: Audio
     soundcloud_replied_with_an_error: SoundCloud antwortete mit einem Fehler.  Bitte versuche es später noch einmal.
     sounds: Audio
-    view_all_soundcount_sounds: "Alle %{sound_count} Audios aufrufen"
-    we_didnt_find_any_sounds: Sorry! Wir konnten keine Audio-Dateien von deinem SoundCloud-Account einspielen.
-    you_need_to_link_your_soundcloud_account: Du musst dein SoundCloud-Konto verlinken, um Audio-Dateien hinzuzufügen.
     your_soundcloud_account: dein SoundCloud-Account
   source: Quelle
   source_: 'Quelle:'
@@ -3832,62 +3830,6 @@ de:
         reuse_desc: |
           Du kannst dieses Taxon in einen anderen Guide kopieren. Wenn du einer von den
           Editoren dieses Guides bist, sollte es alles kopieren, aber wenn du es nicht bist, wird es nur den lizenzierten Inhalt kopieren.
-    help:
-      index:
-        welcome_message_html: |
-          Howdy. Wenn Du ganz neu bei %{site_name} bist, schau Dir unsere <a href="%{url}">%{getting_started}</a>-Anleitung an, um einige Funktionen der Seite kennenzulernen. Wenn Du eine Frage zur Seite hast, schau bitte in die nachstehenden FAQs. Suchst Du dann immer noch nach Antworten, <a href="%{feedback_url}">stell Deine Frage unserer Feedback-Gruppe</a>.
-        what_is_inaturalist?: Was ist %{site_name}?
-        who_is_behind_inaturalist?: Wer verbirgt sich hinter %{site_name}?
-        what_technologies_does_the_project_use?: Welche Technologien und Datenquellen verwendet das Projekt?
-        who_is_behind_inaturalist: Wer verbirgt sich hinter %{site_name}?
-        what_can_i_do_to_help_inaturalist?: Wie kann ich %{site_name} helfen
-        how_do_i_contact_inaturalist?: Wie kontaktiere ich %{site_name}
-        you_can_contact_us_at_html: 'Sie können uns kontaktieren unter <a href="mailto:%{help_email}">%{help_email}</a>'
-        what_are_admins_and_curators?: Was sind Administratoren und Kuratoren?
-        what_is_considered_inappropriate_content?: Was wird als unangemessener Inhalt betrachtet?
-        what_is_an_observation?: Was ist eine Beobachtung?
-        an_observation_is_the_what_where_and_when_html: |
-          Eine Beobachtung ist das Was, Wo und Wann eines Fundes in der Natur. 
-          %{site_name} bietet einen Ort, an dem diese Informationen zusammen mit dem zugehörigen Text, Bildern und Tags hinzugefügt werden können. %{site_name} ermutigt zur Erfassung aller Naturfunde, unabhängig davon, ob sie identifizierte Arten oder einfache narrative Beschreibungen enthalten. 
-          (In %{site_name} kann die gleiche Eidechse sowohl als Wüstenhorneidechse als auch als &quot;Mysteriöse Eidechse des Death Valley&quot; bezeichnet werden.)
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Wieso erkennt %{site_name} den von mir eingegebenen Namen nicht?"
-        inaturalist_has_name_information_for_mammals: |
-          %{site_name} enthält Namensinformationen für Säugetiere, Vögel, Reptilien,
-          und Amphibien und fügt immer wieder neue Artenbezeichnungen in unsere
-          Datenbank. Wenn wir einen bestimmten Namen nicht erkennen, versuch alternative Namen, die wir möglicherweise kennen und füge den Originalnamen zu den Tags oder Beschreibungsfeldern hinzu.
-        how_can_i_get_help_identifying_what_i_saw?: Wie bekomme ich Hilfe bei der Bestimmung dessen, was ich gesehen habe?
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: Was bedeutet es %{site_name} mit meinem Flickr Konto zu verbinden?
-        can_i_add_photos_without_a_flickr_account?: Kann ich ohne Flickr-Konto Fotos hinzufügen?
-        we_also_support_google_html: 'Wir unterstützen auch Google Photos:  <a href="%{url}">Richte Dein Google-Konto ein &raquo;</a>'
-        what_are_tags?: Was sind Tags?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Tags sind Schlüsselwörter, die du zu einer Beobachtung hinzufügen kannst, um sie leichter zu finden. 
-          Zum Beispiel, wenn dir ein Barrakuda auf einer Tauchreise in Turks und Caicos gefolgt ist, kannst du die Beobachtung &quot;scary, barracuda, scuba diving, vacation, turks and caicos&quot; taggen.
-        can_i_include_my_observations_on_my_blog?: Kann ich meine %{site_name}-Beobachtungen auf meine Website oder meinen Blog stellen?
-        sure_check_out_our_widget_html: |
-          Klar, schau Dir unser <a href="%{url}" title="Observations Widget">Beobachtungs-Widget</a> an.
-        what_kind_of_photos_should_i_attach: Was für Fotos sollte ich Beobachtungen hinzufügen? Kann ich Fotos verwenden, die ich nicht selbst gemacht habe?
-        photos_attached_to_observations_should_be: |
-          Beobachtungsbilder sollten das beobachtete Individuum zum Zeitpunkt der Beobachtung zeigen. Wenn du die Beobachtung eines Baums erfasst und am nächsten Tag hingehst um ein Bild zu machen, erfasse bitte eine neue Beobachtung für dieses Bild, weil es den Baum zu einem anderen Zeitpunkt zeigt.
-        please_do_not_upload_pictures_you_didnt_take_html: |
-          Bitte <em>keine Bilder hochladen, die Du nicht gemacht hast</em>, es sei denn, Du hast die Genehmigung des Fotografen. Werke mit Urheberrecht ohne Lizenz des Urhebers zu veröffentlichen ist illegal, und alle Fotografen haben standardmäßig alle Rechte an ihren Werken. Wenn das Foto etwas zeigt, was Du beobachtet hast, jemand anders hat das Foto gemacht und Dir die Genehmigung erteilt, das Bild zu veröffentlichen, solltest Du auch den Namen des Fotografen in der Beschreibung vermerken.
-        what_is_geoprivacy?: Was ist Geo-Privatsphäre?
-        note_that_curators_of: |
-          Beachte, dass Kuratoren von Projekten unabhängig von Deinen Geo-Privatsphäre-Einstellungen immer die Koordinaten sehen können; wenn Du Dir also Sorgen darum machst, wer alles Zugang zu den Koordinaten hat, solltest Du Dir sicher sein, dass Du den Kuratoren der Projekte, bei denen Du mitmachst, vertraust.
-        what_is_does_it_mean_for: Was bedeutet es, eine Beobachtung zu verschleiern?
-        when_coordinates_are_obscured_it_means_that: |
-          Wenn Koordinaten verschleiert sind, bedeutet das, dass ein zufälliger Punkt innerhalb von
-          %{km}KM der wahren Koordinaten öffentlich angezeigt wird (z.B. auf der Startseite, der Beobachtungsseite und der 
-          Projektseiten), während die wahren Koordinaten nur dann sichtbar sind, wenn die eigenen Beobachtungen angesehen werden (z.B. bei den eigenen Projektseiten und in der Liste der eigenen Beobachtungen). Beachte, dass Kuratoren von
-          Projekten, zu denen du eine Beobachtung hinzugefügt hast, auch die tatsächlichen Koordinaten sehen können.
-        what_is_the_quality_assessment: Was ist die Qualitätprüfung und wie können Beobachtungen Forschungsqualität erreichen?
-        what_is_a_life_list?: Was ist eine Lebensliste?
-        is_a_list_of_every_species_that_you_have_seen: |
-          Eine Lebensliste ist eine Liste aller Arten, die du gesehen hast. Jeder %{site_name}-Benutzer hat eine Lebensliste
-          und diese Listen werden automatisch aus den zu %{site_name} hinzugefügten Beobachtungen befüllt.
-        i_observed_a_species: "Ich habe eine Art beobachtet, warum wird die in meiner Lebensliste nicht angezeigt?"
-        while_the_life_list_is_automatically_populated: |
-          Während Beobachtungen automatisch in der Lebensliste landen, wird die Art nicht hinzugefügt, falls %{site_name} den von Dir benutzten Namen nicht kennt. Wir empfehlen Dir, andere Namen auszuprobieren, die wir vielleicht erkennen.
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Titel der Lebenslisten können nicht geändert werden

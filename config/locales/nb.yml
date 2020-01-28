@@ -102,6 +102,9 @@ nb:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> observasjon av forskningskvalitet identifisert til art eller lavere"
     other: "<span class='count'>%{count}</span> observasjoner av forskningskvalitet identifisert til art eller lavere"
+  x_sounds:
+    one: "%{count} lyd"
+    other: "%{count} lyder"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> takson kuratert"
     other: "<span class='count'>%{count}</span> taksa kuratert"
@@ -256,7 +259,9 @@ nb:
   add_life_stage_larva_annotation: 'Legg til merknaden "Livsstadium: Larve"'
   add_life_stage_juvenile_annotation: 'Legg til merknaden "Livsstadium: Juvenil"'
   add_life_stage_egg_annotation: 'Legg til merknaden "Livsstadium: Egg"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Legg til relasjon'
+  #As in a Guide Section
   add_section: Legg til seksjon
   add_several_observations_at_once: Legg til flere observasjoner på en gang.
   add_sex_female_annotation: 'Legg til merknaden "Kjønn: Hunkjønn"'
@@ -795,7 +800,7 @@ nb:
   comparing_observations_from: "Sammenligner observasjoner av %{user} på %{dates}"
   compiled_by_name: "Sammensatt av %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
-  complete: Fullført
+  complete: Fullstendig
   complete_set_for_taxon_in_place_html: "Fullstendig sett for %{taxon} i %{place}"
   completed: Fullført
   completed_at: Fullført
@@ -1295,10 +1300,13 @@ nb:
   flag_an_item: Marker et objekt
   flag_as_spammer: Marker som spammer
   flag_as_non_spammer: Marker som ikke-spammer
+  #Label for the date/time when a flag was created
+  flag_created: Markering opprettet
   flag_description: Marker dette innholdet for å gi beskjed til kuratorene at noe er galt med det.
   flag_for_check_list_title_html: |
     Markering for sjekkliste: %{title}
   flag_for_comment_id_html: Markering for <a href="%{url}">kommentar %{id}</a>
+  flag_for_comment_id_deleted: Markering for kommentar %{id} (slettet)
   flag_for_curation: Marker for kuratering
   flag_for_guide_title_html: |
     Markering for guide: %{title}
@@ -2205,7 +2213,9 @@ nb:
   observation_added: Observasjon lagt til.
   observation_added_to_the_project: "Observasjon lagt til i prosjektet \"%{project}\""
   observation_aggregation: Observasjonsaggregering
-  observation_brief_something_on_day: "noe på %{day}"
+  observation_brief_something_on_day: "Noe på %{day}"
+  observation_brief_something_on_day_at_time: "Noe på %{day}, %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Noe på %{day}, %{time} av %{user}"
   observation_brief_something_on_day_by_user: "Noe på %{day} av %{user}"
   observation_brief_something_by_user: "Noe av %{user}"
   observation_brief_something_from_place: "Noe fra %{place}"
@@ -2215,6 +2225,8 @@ nb:
   observation_brief_something_from_place_on_day_at_time: "Noe fra %{place} på %{day} klokken %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Noe fra %{place} på %{day} klokken %{time} av %{user}"
   observation_brief_taxon_on_day: "%{taxon} på %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} på %{day}, %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} på %{day}, %{time} av %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} på %{day} av %{user}"
   observation_brief_taxon_by_user: "%{taxon} av %{user}"
   observation_brief_taxon_from_place: "%{taxon} fra %{place}"
@@ -3322,6 +3334,8 @@ nb:
   skip_to_next_page: "Hopp til neste side"
   small: liten
   site_admin_tools: Verktøy sideadministrasjon
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Sideadmins
   site_name_place: "%{site_name}-sted"
   site_observations_export_from_date: "eksport av %{site_name}-observasjoner fra %{date}"
   site_site_admin: "%{site_name} sideadmin"
@@ -3365,7 +3379,6 @@ nb:
     import_from_soundcloud_description: "Velg lyder fra SoundCloud for å konvertere de til observasjoner på iNaturalist. Vi fyller ut dato og tid ut fra lydens metadata, og prøver å finne artsnavn i taggene."
     import_from_sounds: Importer fra lyder
     import_sounds: Importer lyder
-    link_your_soundcloud_account: Tilknytt din SoundCloud-konto
     listen: Hør
     no_photos_sounds: Ingen bilder eller lyd
     photos_sounds: Bilder / lyder
@@ -3376,9 +3389,6 @@ nb:
     sound_has_been_flagged: Denne lyden har blitt markert.
     soundcloud_replied_with_an_error: SoundCloud ga tilbake en feilmelding. Vennligst prøv igjen senere.
     sounds: Lyder
-    view_all_soundcount_sounds: "Vis alle %{sound_count} lyder"
-    we_didnt_find_any_sounds: Beklager! Vi kunne ikke hente noen lyder fra din SoundCloud-konto.
-    you_need_to_link_your_soundcloud_account: Du må koble din SoundCloud-konto for å legge til lyder.
     your_soundcloud_account: din SoundCloud-konto
   source: Kilde
   source_: 'Kilde:'
@@ -4298,6 +4308,8 @@ nb:
           Din frivillige donasjoner hjelper å støtte iNaturalist mens fellesskapet vokser, fra å bringe computer vision og implementere ny funksjonalitet, til å støtte våre servere og ansatte. Hvis du foretrekker å donere et engangsbeløp, vennligst <a href="%{donate_url}">trykk her</a>.</p><p class="text-muted">iNaturalist er et felles initiativ av California Academy of Sciences og National Geographic Society.</p>
     flags:
       show:
+        flaggable_content_desc: |
+          Det markerbare innholdet er det primære tekst-atributtet til det markerte objektet da markeringen ble opprettet. Kun kuratorer og staben kan se dette. For meldinger kan kun staben se dette.
         flags_that_should_not_be_resolved_desc_html: |
           Vennligst løs markeringer om <code>spam</code> og <code>krenkelse av opphavsrett</code> kun hvis innholdet ikke er spam eller krenkelse av opphavsrett.
     guides:
@@ -4408,95 +4420,6 @@ nb:
       show:
         reuse_desc: |
           Du kan kopiere dette taksonet til en annen guide. Hvis du er en av redaktørene av denne guiden bør alt kopieres, men hvis ikke kopieres kun det lisensierte innholdet.
-    help:
-      index:
-        welcome_message_html: |
-          Heisann. Hvis du nettopp har startet med %{site_name}, sjekk ut vår <a href="%{url}">%{getting_started}</a>-guide for å gå gjennom noe av sidenes funksjonalitet. Hvis du har et spørsmål om siden, vennligst se våre ofte stilte spørsmål nedenfor. Hvis du fortsatt leter etter svar, vennligst <a href="%{feedback_url}">legg ut spørsmålet ditt i vår tilbakemeldingsgruppe</a>.
-        what_is_inaturalist?: Hva er %{site_name}?
-        who_is_behind_inaturalist?: Hvem står bak %{site_name}?
-        what_technologies_does_the_project_use?: Hvilke teknologier og datakilder bruker prosjektet?
-        inaturalist_provides_a_place_to: |
-          %{site_name} er et sted hvor man rapporterer og organiserer funn i naturen, treffer andre naturentusiaster, og lære om den naturlige verden. Det fremmer deltakelse av en rekke naturentusiaster, deriblant men ikke utelukkende turgåere, jegere, ornitologer, strandsankere, soppsankere, parkoppsyn, økologer, og fiskere. Ved å koble disse ulike synsvinkler og ekspertiser av den naturlige verden, %{site_name} har som mål å opprette en bred felles bevissthet av lokal biodiversitet og fremme videre utforskning av lokale områder.
-        who_is_behind_inaturalist: Hvem står bak %{site_name}?
-        inaturalist_was_originally_the_masters_final_html: |
-          %{site_name} var opprinnelig et masterprosjekt av Nathan Agrin, Jessica Kline, og Ken-ichi Ueda på UC Berkeleys <a href="http://www.ischool.berkeley.edu">School of Information</a>. Sjekk ut <a href="/about">siden om prosjektet</a> for mer informasjon om hvem som vedlikeholder siden nå.
-        what_can_i_do_to_help_inaturalist?: Hva kan jeg gjøre for å hjelpe %{site_name}
-        you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-          Du kan hjelpe %{site_name} ved å gi oss dine tilbakemeldinger: bli med i vår
-          <a href="%{feedback_url}">tilbakemeldingsgruppe</a>
-          for å rapportere feil og be om ny funksjonalitet. Du kan også hjelpe %{site_name} ved å legge inn dine observasjoner og hjelpe andre medlemmer av fellesskapet med å identifisere deres uidentifiserte observasjoner. Hvis du kan å kode og vil hjelpe med å jobbe på noe funksjonalitet, 
-          <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master - GitHub">fork oss på GitHub</a>!
-        how_do_i_contact_inaturalist?: Hvordan tar jeg kontakt med %{site_name}
-        you_can_contact_us_at_html: 'Du kan ta kontakt med oss på <a href="mailto:%{help_email}">%{help_email}</a>'
-        what_are_admins_and_curators?: Hva er admins og kuratorer?
-        inat_admins_are_the_people_who: |
-          %{site_name} admins er folka som drifter siden. De har direkte tilgang til den underliggende koden og databasen, og de kan endre alt på siden.
-        curators_are_inat_users_who_volunteer_to_html: |
-          Kuratorer er brukere på %{site_name} som har melder seg frivillig til å holde vår taksonomi oppdatert. Hvis du er interessert i å bli en kurator, vennligst <a href="mailto:%{help_email}">ta kontakt med oss</a>. Kuratorer kan også promovere andre brukere til kuratorstatus. Vennligst kun promover personer som du stoler på og du vet har noe taksonomisk kunnskap.
-        what_is_considered_inappropriate_content?: Hva regnes som upassende innhold?
-        you_know_it_when_you_see_it_html: |
-          Du <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">vet det når du ser det</a>, sant? Saker som er brudd på seksjon 2 av våre <a href="/terms.html">tjenestevilkår</a> er definitivt upassende og verdt å markere eller informere våre admins om på en annen måte. Mildere former av uhøflighet er beklagelig, men sannsynligvis ikke noe vi kommer til å slette. Observasjoner av husdyr, dyr i fangenskap, mennesker, og andre organismer de fleste naturalister ikke vil være så interessert i er greit (de lever tross alt). Observasjoner av saker som ikke er organismer er en gråsone. Saker som tydelig ikke har noe med naturen å gjøre, slik som hva noen spiste til lunsj, er verdt å markere og kan slettes, men bevis av forurensning eller forstyrrelser kan være interessant, og blir sannsynligvis ikke fjernet.
-        what_is_an_observation?: Hva er en observasjon?
-        an_observation_is_the_what_where_and_when_html: |
-          En observasjon er hva, hvor, og når et funn i naturen ble gjort.
-          %{site_name} er et sted der denne informasjonen kan plasseres sammen med tilhørende tekster, bilder, og etiketter. %{site_name} oppmuntrer til rapportering av alle funn i naturen, om de handler om identifiserte arter eller enkle beskrivende tekster.
-          (På %{site_name} kan den samme fisken beskrives både som gråsteinbit og som &quot;Mystisk fisk fra Trøndelag&quot;)
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Hvorfor kjenner ikke %{site_name} igjen navnet jeg har fylt inn?"
-        inaturalist_has_name_information_for_mammals: |
-          %{site_name} har informasjon om pattedyr, fugler, reptiler, og amfibier, og legger til nye navn i vår database fortløpende. Hvis vi ikke kjenner igjen et bestemt navn, prøv å bruk alternative navn som vi kanskje kjenner igjen og legg til det opprinnelige navnet som etikett eller i beskrivelsene.
-        how_can_i_get_help_identifying_what_i_saw?: Hvordan kan jeg få hjelp med å identifisere hva jeg har sett?
-        check_the_id_please_checkbox_when_html: |
-          Kryss av boksen "ID ønskes" når du legger til / redigerer din observasjon så dukker din observasjon opp i 
-          <a href="%{url}">ID ønskes</a>.
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: Hva betyr det å koble %{site_name} til min Flickr-konto?
-        inaturalist_can_link_directly_to_the_flickr_photo_service: |
-          %{site_name} kan lenkes direkte til bildetjenesten Flickr slik at du kan legge til dine Flickr-bilder til dine observasjoner. Når du godtar oppkobling av din Flickr-konto, kobler du bare to kontoer; vi har ikke tilgang til din passord på Flickr og du gir ikke opp din opphavsrett of gir oss heller ikke muligheten til å bruke noen av dine bilder på måter som du ikke ønsker.
-        can_i_add_photos_without_a_flickr_account?: Kan jeg legge til bilder uten en konto på Flickr?
-        we_also_support_google_html: 'Vi støtter også Google Bilder: <a href="%{url}">Konfigurer din Google-konto &raquo;</a>'
-        we_also_support_uploading_photos: |
-          Vi støtter også opplasting av bilder direkte til %{site_name}, men det kan være litt tregt, så vu tillater kun en opplasting om gangen. Å bruker Flickr eller Google er sannsynligvis raskere hvis du allerede bruker disse tjenester.
-        what_are_tags?: Hva er etiketter?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Etiketter er nøkkelord som du kan legge til dine observasjoner for å gjøre dem enklere å finne.
-          Hvis du for eksempel blir fulgt av en barracuda mens du er på dykketur ved Turks- og Caicosøyene, kan du tagge observasjonen med &quot;skummelt, barracuda, dykking, ferie, Turks- og Caicosøyene&quot;.
-        can_i_include_my_observations_on_my_blog?: Kan jeg inkludere mine observasjoner på %{site_name} på min egen nettside eller blogg?
-        sure_check_out_our_widget_html: |
-          Så klart, sjekk vår <a href="%{url}" title="Observations Widget">observasjons-widget</a>.
-        what_kind_of_photos_should_i_attach: Hvilke typer bilder bør jeg legge ved i observasjoner? Kan jeg legge ved bilder som jeg ikke har tatt?
-        photos_attached_to_observations_should_be: |
-          Bilder knyttet til observasjoner bør være av individet observert på observasjonens tidspunkt. Hvis du rapporterer en observasjon av et tre, og går tilbake dagen etter for å ta et bilde, vennligst legg til en ny observasjon for det bildet, siden bildet representerer treet på et annet tidspunkt.
-        please_do_not_upload_pictures_you_didnt_take_html: |
-          Vennligst <em>ikke last opp bilder som du ikke har tatt</em> med mindre du har fått tillatelse av fotografen. Det er ulovlig å publisere verk som er beskyttet av opphavsrett uten noe form for lisens fra opphavspersonen, og alle fotografer har standard full opphavsrett på sine bilder. Hvis bildet er av saken du observerte, og noen andre har tatt det og du har fått deres tillatelse til å publisere det, bør du også nevne vedkommende som fotograf i observasjonens beskrivelse.
-        what_is_geoprivacy?: Hva er geosperring?
-        geoprivacy_is_a_setting_you_can: |
-          Geosperring er en innstilling som du kan bruke på dine observasjoner som styrer hvordan stedskoordinatene (lengdegrad og breddegrad) vises. Her er valgmulighetene:
-        note_that_curators_of: |
-          Merk at kuratorer av individuelle prosjekter alltid kan se koordinatene uavhengig a dine geosperrings-innstillinger, så hvis du er bekymret for hvem som har tilgang til koordinatene må du forsikre deg om at du stoler på kuratorene i prosjekter som du deltar i.
-        what_is_does_it_mean_for: Hva betyr det når en observasjon er tilslørt?
-        when_coordinates_are_obscured_it_means_that: |
-          Når koordinater tilsløres betyr det at et vilkårig punkt innen %{km} km av de egentlige koordinatene blir vist offentlig (som på hjemmesiden, observasjonssiden, og prosjektsider), mens de sanne koordinatene kun er synlige hvis du viser dine egne observasjoner (som på de individuelle prosjektsidene og i listen over dine egne observasjoner). Merk at kuratorer av prosjektene som du har delt observasjonen med også kan se de sanne koordinatene. På kart og geo-strømmer skal tilsørte koordinater alltid representeres av runde markeringer uten stilker.
-        coordinates_are_obscured_for_all_taxa: |
-          Koordinater blir tilslørt automatisk for alle taksa som er "NÆR TRUET" eller verre ifølge IUCN-rødlista. Noen taksa kan være satt som truet av andre bevaringsinstanser, og noen kan bare være markert som truet av sidekuratorer på %{site_name} hvis de mener at det bør beskyttes.
-        you_can_also_obscure_the_coordinates_html: |
-          Du kan også tilsløre koordinatene til dine egne observasjoner uansett hvilket takson det er. Se <a href="#geoprivacy">geosperring</a> ovenfor.
-        what_is_the_quality_assessment: Hva er kvalitetsvurderingen og hvordan kvalifiseres observasjoner for å bli "forskingskvalitet"?
-        what_is_a_life_list?: Hva er en livsliste?
-        just_a_simple_list: Bare en enkel liste over taksa uten bestemt adferd.
-        automatically_updates_based_on_your_observations: |
-          Oppdateres automatisk basert på dine observasjoner. Alle på %{site_name} har en standard livsliste som inneholder alle arter den personen har observert. Hvis du sletter en observasjon eller endrer din ID vil arten fjernes. Du kan også legge til taksa ti din livsliste manuelt, akkurat som med en vanlig liste. Arten du legger til manuelt vil ikke fjernes hvis du observerer den og så sletter den observasjonen.
-        you_can_also_make_additional_life_lists: |
-          Du kan også opprette ekstra livslister for spesifikke grupper av organismer, som en livsliste over fugler, eller en livsliste over arter i soleiefamilien.
-        a_project_list_belongs: |
-          En prosjektliste hører til et prosjekt og er en liste over alle taksa som har blitt observert av prosjektets medlemmer. Prosjektlister kan også fylles manuelt av prosjektets admin, og kan brukes for å begrense bidrag til prosjektet til taksa på listen.
-        a_check_list_is_html: |
-          En sjekkliste er en liste over taksa som forekommer på et sted. Alle steder har en standard sjekkliste, og når en observasjon blir gjort innen stedets grenser <em>og</em> den har oppnådd forskningskvalitet, blir den observerte arten lagt til stedets sjekkliste automatisk.
-        inat_users_can_also: |
-          Brukere på %{site_name} kan også legge til ytterlige sjekklister til steder, men disse sjekklister oppdateres ikke automatisk. De er først og fremst en måte for folk å ta inn eksterne datakilder eller bare oppføre saker basert på sin egen erfaring.
-        is_a_list_of_every_species_that_you_have_seen: |
-          En livsliste er en liste over alle arter du har sett. Alle brukere på %{site_name} har en livsliste og disse lister fylles automatisk fra observasjonene lagt til på %{site_name}.
-        i_observed_a_species: "Jeg har observert en art, hvorfor dukker den ikke opp i min livsliste?"
-        while_the_life_list_is_automatically_populated: |
-          Mens livslisten automatisk blir fyllt ut fra observasjoner som legges til, blir arten ikke lagt til denne listen hvis %{site_name} ikke kjenner igjen navnet du bruker. Vi anbefaler å bruke alternative navn som vi kanskje kjenner igjen.
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -4523,6 +4446,9 @@ nb:
         show_messages_to_user: Vis beskjeder til %{user}
         speech_privilege_notice: |
           Du vil kunne sende nye beskjeder etter at du har lagt til tre verifiserbare obserbasjoner eller tre identifikasjoner for andre. For øyeblikket kan du lese og svare på beskjeder andre har sendt til deg.
+      show:
+        flag_notice_html: |
+          Du har markert denne samtalen på %{date}. Markeringen vil være der selv hvis du sletter din kopi av denne samtalen, så det er trygt å gjøre det hvis du ikke ønsker å se dette mere.
     oauth:
       authorizations:
         new:

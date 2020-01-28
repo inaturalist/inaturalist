@@ -272,7 +272,9 @@ fi:
   add_life_stage_larva_annotation: 'Lisää "Life Stage: Larva" selitys'
   add_life_stage_juvenile_annotation: 'Lisää "Life Stage: Juvenile" selitys'
   add_life_stage_egg_annotation: 'Lisää "Life Stage: Egg" selitys'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Lisää suhde'
+  #As in a Guide Section
   add_section: Lisää osa
   add_several_observations_at_once: Lisää useita havaintoja kerralla.
   add_sex_female_annotation: 'Lisää merkintä "Sukupuoli: Naaras"'
@@ -1202,7 +1204,7 @@ fi:
   establishment:
     endemic: Endeeminen
     establishment: Vakiintuneisuus
-    introduced: Tulokas
+    introduced: Vieraslaji
     invasive: Vieraslaji
     managed: Hoidettu
     native: Alkuperäinen
@@ -1428,7 +1430,7 @@ fi:
   google: Google
   got_it!: Selvä!
   got_your_data_somewhere_else?: Ovatko sinun tietosi jossain muualla? Me voimme auttaa.
-  graft: Varte
+  graft: Liitos
   grant_role: "%{grant} %{role} roolin"
   grid: Ruudukko
   grid_layout: Ruudukkoasettelu
@@ -1512,7 +1514,7 @@ fi:
   identification_updated: Tunnistus päivitetty!
   identification_user_short: Tunnist. käyttäjä
   identification_withdrawn: Tunnistus peruutettu.
-  identifications: tunnistusta
+  identifications: Tunnistukset
   identifications_by: "Käyttäjän %{user} tunnistukset"
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
@@ -1572,8 +1574,8 @@ fi:
   internal_server_error: Sisäinen palvelinvirhe
   internal_taxon_including_descendants: Sisäinen taksoni (mukaan lukien alemmat taksonit)
   internal_taxon_rank: Sisäinen taksonin taso
-  introduced: Esitelty
-  introduced_in_place: "Esitelty paikassa %{place}"
+  introduced: Vieraslaji
+  introduced_in_place: "Vieraslaji paikassa %{place}"
   invitation: Kutsu
   invite: kutsu
   invite_more: kutsu lisää
@@ -2179,7 +2181,7 @@ fi:
   observation_: havainto
   observation_added: Havainto lisätty
   observation_added_to_the_project: "Havainto lisätty projektiin \"%{project}\""
-  observation_brief_something_on_day: "jotain päivänä %{day}"
+  observation_brief_something_on_day: "Jotain päivänä %{day}"
   observation_brief_something_on_day_by_user: "Jotain %{day} käyttäjältä %{user}"
   observation_brief_something_by_user: "Jotain käyttäjältä %{user}"
   observation_brief_something_from_place: "Jotain paikasta %{place}"
@@ -3278,7 +3280,6 @@ fi:
     import_from_soundcloud_description: "Valitse iNaturalist-havainnoiksi muutettavat äänet SoundCloud-käyttäjätililtäsi. Täytämme päivämäärän ja kellonajan äänen metatietojen pohjalta, ja yritämme etsiä lajinimiä avainsanoista."
     import_from_sounds: Tuo äänistä
     import_sounds: Tuo ääniä
-    link_your_soundcloud_account: Linkitä SoundCloud-tilisi
     listen: Kuuntele
     no_photos_sounds: Ei kuvia tai ääniä
     photos_sounds: Kuvat / Äänet
@@ -3287,8 +3288,6 @@ fi:
     sound: Ääni
     sound_has_been_flagged: Tämä ääni on merkitty.
     sounds: Äänet
-    view_all_soundcount_sounds: "Näytä kaikki %{sound_count} ääntä"
-    you_need_to_link_your_soundcloud_account: Sinun täytyy linkittää SoundCloud-tilisi lisätäksesi ääniä.
     your_soundcloud_account: oma SoundCloud-tili
   source: Lähde
   source_: 'Lähde:'
@@ -3595,7 +3594,7 @@ fi:
   umbrella_projects: Sateenvarjoprojektit
   unblock: Poista esto
   unclassified: Luokittelematon
-  ungrafted_taxa: Varttamaton taksoni
+  ungrafted_taxa: Liittämätön taksoni
   unhide_content: Peru sisällön piilottaminen
   uninvite: poista kutsu
   unique_observers: uniikit havainnoijat
@@ -3785,7 +3784,7 @@ fi:
   video_tutorials: Video-opastukset
   visually_similar: Visuaalisesti samanlainen
   vulnerable: Vaarantunut
-  w00t_no_ungrafted_taxa: Hups! Ei oksastamattomia taksoneita!
+  w00t_no_ungrafted_taxa: Hups! Ei liittämättömiä taksoneita!
   w_photos_only: kuvia
   w_sounds: ääniä
   wait_file_generation: Ole hyvä ja odota kun tiedostoa muodostetaan. Tämä voi kestää muutaman minuutin, jos luettelo on suuri.
@@ -4084,67 +4083,6 @@ fi:
         default: Oppaan järjestys
         alphaname: Aakkosjärjestyksessä tieteellisten nimien mukaan
         alphadisplay: Aakkosjärjestyksessä näyttönimittäin
-    help:
-      index:
-        welcome_message_html: |
-          Hei! Jos olet juusi aloittanut %{site_name}in käytön, katso <a href="%{url}">%{getting_started}</a>, joka esittelee sivuston tärkeimmät ominaisuudet. Jos sinulla on kysymysiä sivuston käytöstä. ole hyvä ja tutustu usein kysyttyihin kysymyksiin alempana. Jos kaipaat vielä neuvoja, ole hyvä ja <a href="%{feedback_url}">kirjoita kysymyksesi palauteryhmäämme</a>.
-        what_is_inaturalist?: Mikä on %{site_name}?
-        who_is_behind_inaturalist?: Kuka on %{site_name}in takana?
-        inaturalist_provides_a_place_to: |
-          %{site_name} tarjoaa paikan tallentaa ja järjestellä luontohavaintoja, tavata muita luontoharrastajia ja oppia maailman luonnosta. Se kannustaa monenlaisia luontoharrastajia osallistumaan, mm. vaeltajia, metsästäjiä, lintuharrastajia, sienestäjiä, puistonvartijoita, ekologeja ja kalastajia. Yhdistämällä nämä erilaiset näkemykset ja asiantuntemuksen luonnosta, %{site_name} toivoo luovansa laajaa tietoisuutta paikallisen luonnon monimuotoisuudesta ja edistävänsä paikallisen luonnon lisätutkimusta.
-        who_is_behind_inaturalist: Ketkä ovat %{site_name}in takana?
-        inaturalist_was_originally_the_masters_final_html: |
-          %{site_name} oli alkujaan Nathan Agrin, Jessica Klinen ja Ken-ichi Uedan maisteriopintojen lopputyö Kalifornian yliopisto Berkeleyssa, <a href="http://www.ischool.berkeley.edu"> School of Information</a>. Katso <a href="/about">Tietoja-sivu</a> saadaksesi lisätietoja sivustoa tällä hetkellä hallinnoivista ihmisistä.
-        what_can_i_do_to_help_inaturalist?: Mitä voin tehdä auttaakseni %{site_name}ia
-        you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-          Voit auttaa %{site_name}ia antamalla meille palautettasi: liity <a href="%{feedback_url}">palauteryhmäämme</a> 
-          ilmoittaaksesi virheistä ja pyytääksesi uusia
-          ominaisuuksia. Voit myös auttaa %{site_name}ia lisäämällä havaintoja ja auttamalla muita yhteisön jäseniä tunnistamaan heidän
-          tunnistamatttomia havaintoja. Jos osaat koodata ja haluat auttaa työstämään joitakin ominaisuuksia,
-          <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master - GitHub">forkkaa meitä GitHubissa</a>!
-        how_do_i_contact_inaturalist?: Kuinka otan yhteyttä %{site_name}iin
-        what_are_admins_and_curators?: Mitä ovat ylläpitäjät ja kuraattorit?
-        what_is_considered_inappropriate_content?: Mitä pidetään epäasiallisena sisältönä?
-        what_is_an_observation?: Mikä on havainto?
-        an_observation_is_the_what_where_and_when_html: |
-          Havainto on luontoon liityvän löydöksen "mitä, missä, milloin". %{site_name} tarjoaa paikan tallentaa tämän tiedon yhdessä kuvien, tekstin ja avainsanojen kanssa. %{site_name} kannustaa tallentamaan kaikki luontoon liittyvät havainnot, sisältävät ne sitten tunnistetun lajin tai yksinkertaisen, kerronnallisen kuvauksen. (%{site_name}:ssa sama lisko voidaan ilmoittaa nimellä "Desert Horned Lizard" tai kuvauksella &quot;Mystery Lizard of Death Valley&quot;)
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Miksei %{site_name} tunnista syöttämääni nimeä?"
-        inaturalist_has_name_information_for_mammals: |
-          %{site_name} sisältää tietoa nisäkkäiden, lintujen, matelijoiden ja sammakkoeläinten nimistä ja uusia nimiä lisätään tietokantaan jatkuvasti. Jos jotakin nimeä ei tunnisteta, kokeile vaihtoehtoisia nimiä, jotka voitaisiin tunnistaa ja lisää alkuperäinen nimi avainsana- tai kuvauskenttään.
-        how_can_i_get_help_identifying_what_i_saw?: Miten voin saada apua näkemäni tunnistukseen?
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: Mitä tarkoittaa %{site_name}in linkittäminen Flickr-tiliini?
-        inaturalist_can_link_directly_to_the_flickr_photo_service: |
-          %{site_name} voi linkittää suoraan Flickr-kuvapalveluun niin että voit lisätä havaintoihisi kuvia omalta Flickr-tililtäsi. Jos hyväksyt että Flickr-tilisi linkitetään, tarkoittaa tämä vain että nämä kaksi tiliä linkitetään keskenään. Emme pääse käsiksi Flickr-salasanaasi, et luovuta tekijäoikeuksiasi, etkä anna meille mahdollisuutta käyttää kuviasi tavoilla jota et halua.
-        can_i_add_photos_without_a_flickr_account?: Voinko lisätä kuvia ilman Flickr-tiliä?
-        we_also_support_google_html: 'Me tuemme myös Google Kuvat -palvelua: <a href="%{url}">Määritä Google-tilisi &raquo;</a>'
-        we_also_support_uploading_photos: |
-          Me tuemme myös suoraa kuvien tallennusta %{site_name}iin, mutta se voi olla hieman hidasta, joten hyväksymme vain yhden tallennuksen kerrallaan. Flickr:in tai Googlen käyttäminen on todennäköisesti nopeampaa, jos käytät jo näitä palveluja.
-        what_are_tags?: Mitä merkinnät ovat?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Voit lisätä avainsanoja (tageja) havaintoihin tehdäksesi niistä helpommin löydettäviä. Jos esimerkiksi hauki seurasi sinua sukellusretkellä Saimaalla, voit merkitä avainsanoiksi &quot;pelottava, hauki, sukellus, loma, saimaa&quot;.
-        what_kind_of_photos_should_i_attach: Millaisia kuvia minun kannattaisi liittää havaintoihin? Voinko liittää kuvia, joita en itse ottanut?
-        photos_attached_to_observations_should_be: |
-          Havaintoihin liitettyjen kuvien tulisi olla otettu havaitusta yksilöstä havainnon ajankohtana. Jos syötät havainnon puusta, ja menet seuraavana päivänä ottamaan siitä kuvan, ole hyvä ja lisää kuvalle uusi havainto, koska se edustaa puuta toisena ajanhetkenä.
-        please_do_not_upload_pictures_you_didnt_take_html: |
-          <em>Älä lähetä kuvia, joita et ole ottanut itse</em>, ellet ole saanut kuvaajan suostumusta.
-          Tekijänoikeuksien alaisten teosten julkaiseminen ilman tekijänoikeuksien haltijan myöntämää lisenssiä on laitonta. Lähtökohteisesti kuvaajalla on teokseensa täydet tekijänoikeudet. Jos lähetät havainnostasi kuvan, jonka otti joku muu henkilö joka antoi suostumuksensa kuvan julkaisuun, lisää kuvaajan nimi havainnon kuvaukseen.
-        what_is_geoprivacy?: Mikä on sijainnin tietosuoja?
-        geoprivacy_is_a_setting_you_can: |
-          Sijainnin tietosuoja on asetus jota voit käyttää havainnoissasi kontrolloidaksesi miten havainnon kordinaatit (leveys- ja pituusaste) esitetään. Tässä ovat vaihtoehdot:
-        note_that_curators_of: |
-          Huomaa että yksittäisten projektien kuraattorit voivat aina nähdä koordinaatit, riippumatta sijainnin tietosuojan asetuksista. Joten jos olet huolissasi siitä kuka näkee koordinaatit, varmistu että voit luottaa niiden projektien kuraattoreihin, joihin osallistut.
-        what_is_does_it_mean_for: Mitä tarkoittaa että havainto on karkeistettu?
-        when_coordinates_are_obscured_it_means_that: |
-          Karkeistetut koordinaatit tarkoittavat että todellisen paikan sijasta julkisesti näytetään satunnainen piste enintään %{km} km säteellä siitä (etusivulla, havaintosivulla ja projektisivuilla). Näet tarkat koordinaatit vain omista havainnoistasi (projektisivuilla ja omien havaintojesi luettelossa). Huomaa että tarkat koordinaatit näkyvät niille kuraattoreille, jotka ylläpitävät projekteja joihin olet itse lisännyt havaintojasi. Karkeistetut koordinaatit näytetään kartalla pyörellä merkillä, joissa ei ole vartta.
-        coordinates_are_obscured_for_all_taxa: |
-          Havainnon tarkat koordinaatit salataan automaattisesti kaikille taksoneille jotka on merkitty "SILMÄLLÄ PIDETTÄVIKSI" tai korkeammalle luokitukselle Kansainvälisen luonnonsuojeluliiton (IUCN) uhanalaisuusluokittelussa. Muitakin taksoneita on saatettu merkitä vaarantuneiksi muiden toimijoiden tai %{site_name} sivuston kuraattoreiden toimesta.
-        you_can_also_obscure_the_coordinates_html: |
-          Voit myös taksonista riippumatta hämärtää omien havaintojesi koordinaatit. Katso <a href="#geoprivacy">sijainnin tietosuoja</a> yläpuolella.
-        what_is_a_life_list?: Mikä on elämäluettelo?
-        a_check_list_is_html: |
-          Lajiluettelo on luettelo taksoneista jotka esiintyvät tietyllä paikalla. Jokaisella paikalla on oletuslajilista. Jos paikalla tehdään uusi havainto <em>ja</em> havainto nousee tutkimustasolle, havainnon laji lisätään automaattisesti paikan lajilistalle.
-        while_the_life_list_is_automatically_populated: |
-          Pinnalistalle sisällytetään tallennetut havainnot automaattisesti, mutta lajeja, joita %{site_name} ei tunnista, ei lisätä listalle. Suosittelemme kokeilemaan vaihtoehtoisia nimiä, jotka saatettaisiin tunnistaa.
     lists:
       new:
         place_desc: |
@@ -5327,6 +5265,8 @@ fi:
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
       CompleteSet: Täydellinen sarja
+      #Noun
+      Flag: Lippu
       TaxonLink: Taksonilinkki
     attributes:
       assessment:

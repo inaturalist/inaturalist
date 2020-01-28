@@ -166,6 +166,7 @@ zh-CN:
   add_life_stage_larva_annotation: '添加“生活期：幼虫”注解'
   add_life_stage_juvenile_annotation: '添加“生命阶段：青少年”注释'
   add_life_stage_egg_annotation: '为“生命阶段：卵”添加注释'
+  #As in a Guide Section
   add_section: 添加章节
   add_several_observations_at_once: 马上添加几个观察。
   add_sex_female_annotation: '添加“性别：女”注释'
@@ -2663,7 +2664,6 @@ zh-CN:
     import_from_soundcloud_description: "从您的SoundCloud帐户中选择声音来转换为iNaturalist观察结果。我们将从声音的元数据中填写日期和时间，并尝试从标签中查找物种名称。"
     import_from_sounds: 从声音导入
     import_sounds: 导入声音
-    link_your_soundcloud_account: 关联至您的SoundCloud账户
     listen: 听
     no_photos_sounds: 没有照片或声音
     photos_sounds: 照片 / 声音
@@ -2673,9 +2673,6 @@ zh-CN:
     sound: 声音
     soundcloud_replied_with_an_error: SoundCloud回答遇到错误。请稍后再试。
     sounds: 声音
-    view_all_soundcount_sounds: "查看所有 %{sound_count} 声音"
-    we_didnt_find_any_sounds: 抱歉！我们没有从您的SoundCloud账户中找到任何声音文件。
-    you_need_to_link_your_soundcloud_account: 您需要关联至您的SoundCloud账户来添加声音。
     your_soundcloud_account: 您的SoundCloud账户
   source: 来源
   source_: '来源：'
@@ -3525,89 +3522,6 @@ zh-CN:
       show:
         reuse_desc: |
           您可以复制此分类至其他指南。如果您是此指南的编辑者之一，它应该复制任何东西，但如果您不是，那么它将只复制获授权的内容。
-    help:
-      index:
-        welcome_message_html: |
-          您好。如果您刚开始入门%{site_name}，请浏览我们的<a href="%{url}">%{getting_started}</a>指南以指引网站的一些功能。如果您有关于网站的问题，请详见下面的常见问题。如果您仍在查找答案，请<a href="%{feedback_url}">将您的问题发布至我们的反馈组</a>。
-        what_is_inaturalist?: 什么是%{site_name}？
-        who_is_behind_inaturalist?: 谁是%{site_name}背后的支持者？
-        what_technologies_does_the_project_use?: 该项目使用了哪些技术和数据源？
-        inaturalist_provides_a_place_to: |
-          %{site_name}提供了一个记录和组织自然发现，与其他自然爱好者会面并了解自然世界的地方。它鼓励各类自然爱好者的参与，包括但不限于徒步旅行者，猎人，观鸟人，海滩漫步者，蘑菇采集者，公园护林员，生态学家和渔民。通过连接自然界的这些不同的观念和专业知识，%{site_name}希望创建一个广泛的对当地生物多样性进行认识的社区，并促进对当地环境的进一步探索。
-        who_is_behind_inaturalist: 谁是%{site_name}背后的支持者？
-        inaturalist_was_originally_the_masters_final_html: |
-          %{site_name}最初是加州大学伯克利分校的<a href="http://www.ischool.berkeley.edu">学校信息</a>上贴出的Nathan Agrin、Jessica Kline和Ken-ichi Ueda的硕士毕业设计。
-          查阅<a href="/about">关于页面</a>以了解当前管理网站的人的更多信息。
-        what_can_i_do_to_help_inaturalist?: 我能做什么帮助%{site_name}
-        you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-          您可以通过告诉我们您的反馈帮助 %{site_name}：加入我们的<a href="%{feedback_url}">反馈组</a>以报告错误并请求新的功能。您也可以通过添加您的观察帮助 %{site_name} 并帮助其他社群成员识别它们未经鉴别的观察。如果您知道如何编码并希望帮助我们提供一些功能，<a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master - GitHub">在GitHub上fork我们</a>！
-        how_do_i_contact_inaturalist?: 我该如何联系%{site_name}
-        you_can_contact_us_at_html: '您可通过<a href="mailto:%{help_email}">%{help_email}</a>联系我们'
-        what_are_admins_and_curators?: 什么是管理员和馆长？
-        inat_admins_are_the_people_who: |
-          %{site_name}管理员是运行该网站的人员。他们可以直接访问底层代码和数据库，也可以更改站点上的任何内容。
-        curators_are_inat_users_who_volunteer_to_html: |
-          馆长是%{site_name}的用户，他们自愿帮助保持我们的分类数据最新。如果您有兴趣成为馆长，请<a href="mailto:%{help_email}">与我们联系</a>。馆长还可以使其他用户获得馆长身份。请您仅仅推举您信任的人，并且他应当了解一些分类学知识。
-        what_is_considered_inappropriate_content?: 什么是不恰当的内容？
-        you_know_it_when_you_see_it_html: |
-          <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">当您看见它时</a>您就知道它，不是么？违反我们<a href="/terms.html">使用条款</a>第二节的东西肯定不被接受，并会被标记，或通知管理员。温和的物理形式会令人遗憾，但或许我们不会删除。宠物、圈养动物、人和其他多数自然法学派可能不感兴趣的生物体观察可被接受（毕竟它们还活着）。非生物体事物的观察是一个灰色地带。明显与自然无关的事物，例如有人吃午饭，会被特别标记并可能被删除，但污染或骚扰的证据可能会感兴趣，并可能不会被移除。
-        what_is_an_observation?: 什么是一项观察？
-        an_observation_is_the_what_where_and_when_html: |
-          观察记录了您在自然界中发现的东西是什么、在哪里、在何时发现。%{site_name}提供了一个地方以供添加此类信息以及相关的文本，照片和标记的地理位置。%{site_name}鼓励您记录所有的自然发现，无论是按特征分类为物种还是简单的叙述描述。（在%{site_name}中，同一只蜥蜴可被描述为沙漠角蜥蜴或是&quot;死亡之谷的神秘蜥蜴&quot;）
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "为什么%{site_name}不能识别我输入的名称？"
-        inaturalist_has_name_information_for_mammals: |
-          %{site_name} 有用于哺乳类、鸟类、爬行类和两栖动物的名称信息，并持续添加新的物种名称至我们的数据库。如果我们不承认某一特定名称，尝试其他我们可能承认的名称，并添加原始名称至标签或描述字段。
-        how_can_i_get_help_identifying_what_i_saw?: 我如何帮助您识别我看见的东西？
-        check_the_id_please_checkbox_when_html: |
-          在添加/编辑观察时，请选中“ID Please”复选框，您的观察结果将显示在<a href="%{url}">ID Please</a>中。
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: 将%{site_name}链接到我的Flickr帐户是什么意思？
-        inaturalist_can_link_directly_to_the_flickr_photo_service: |
-          %{site_name}可以直接链接到Flickr照片服务，以便您可以将Flickr照片添加到您的观察中。当您同意链接您的Flickr帐户时，您只需链接两个帐户即可；我们无法访问您的Flickr密码，您也不会因此失去您的版权，我们也不能以您不允许的方式使用您的任何照片。
-        can_i_add_photos_without_a_flickr_account?: 我可以不用Flickr账户就添加图片么？
-        we_also_support_google_html: '我们也支持Google照片：<a href="%{url}">配置您的Google账户&raquo;</a>'
-        we_also_support_uploading_photos: |
-          我们也支持直接上传照片至 %{site_name}，但它可能有点慢，所以我们每次只允许上传一个照片。如果您已经使用这些设备的话，使用Flickr或Google可能会更快。
-        what_are_tags?: 标签在哪？
-        tags_are_keywords_you_can_add_to_an_html: |
-          标签是您可以添加到观察中的关键字，以便于查找。例如，如果梭子鱼在您在Turks and Caicos群岛进行水肺潜水之旅时一路尾随，您可能会将观察结果标记为&quot;可怕，梭鱼，水肺潜水，度假，Turks and Caicos群岛&quot;。
-        can_i_include_my_observations_on_my_blog?: 我可以在我自己的博客网站上包含我的 %{site_name} 观察么？
-        sure_check_out_our_widget_html: |
-          当然，请查看我们的<a href="%{url}" title="Observations Widget">观察小工具</a>。
-        what_kind_of_photos_should_i_attach: 我应该在观察中附上什么样的照片？我可以附上不是我拍的照片吗？
-        photos_attached_to_observations_should_be: |
-          附加于观察的照片应该是在观察期间独自观察到的图片。如果您记录了一棵树的观察，一天后回到这里拍了一张照片，请为此照片添加一个新的观察，因为它代表了一棵树的不同时间点。
-        please_do_not_upload_pictures_you_didnt_take_html: |
-          请<em>不要上传不是您制作的图片</em>，除非您从摄影师手中获得了权限。在未获得作者授权的情况下发布受版权保护作品是非法的，并且所有摄影师默认均拥有对他们照片的完整版权。如果照片指的是您观察的东西，有人将其拍下并且您已获得其发布授权，您应该同样在观察描述中注释摄影师的姓名。
-        what_is_geoprivacy?: 什么是位置隐私？
-        geoprivacy_is_a_setting_you_can: |
-          位置隐私是您可以应用于您观察上的设置，它会控制空间坐标（经纬度）显示的方式。有以下选项：
-        note_that_curators_of: |
-          注意无论您的位置隐私设置如何，个别项目的监护人都总是可以查看坐标，因此如果您关心谁拥有访问坐标的权限，您应该确保您信任您参与的项目的监护人。
-        what_is_does_it_mean_for: 观察被隐藏是什么意思？
-        when_coordinates_are_obscured_it_means_that: |
-          当坐标被隐藏时，意味着将只会公开显示真实坐标的%{km}KM内的随机地点（例如在主页，观察页面和项目页面上），而真正的坐标仅在您自己查看观察时可以看见（例如在个人项目页面和您自己的观察清单中）。请注意，您将观察添加进的项目的馆长也可以看到真实的坐标。隐藏的坐标应始终使用圆形标记进行符号化，而无需在地图和地理空间Feed中使用。
-        coordinates_are_obscured_for_all_taxa: |
-          根据世界自然保护联盟红色名录，对于“接近受到威胁”或更严重的所有类群，坐标会自动被隐藏。根据其他保护当局的说法，某些类群可能会被宣布为受到威胁，有些可能只是被%{site_name}网站馆长标记为受到威胁，如果他们认为它值得保护的话。
-        you_can_also_obscure_the_coordinates_html: |
-          您也可以掩盖您自己观察的坐标，无论分类单元是什么。参见上方的<a href="#geoprivacy">位置隐私</a>。
-        what_is_the_quality_assessment: 什么是质量评估以及观察如何有资格达到“研究”级别？
-        what_is_a_life_list?: 什么是声明清单？
-        just_a_simple_list: 只是一个简单的分类群清单，没有特殊行为。
-        automatically_updates_based_on_your_observations: |
-          根据您的观察结果自动更新。%{site_name}上的每个人都有一个默认的生物清单，其中包含此人观察到的每个物种。如果您删除观察或更改您的ID，物种将被删除。您也可以像普通清单一样手动将分类群添加到生物清单中。如果您在观察它们后删除观察，则手动添加的物种将不会被移除。
-        you_can_also_make_additional_life_lists: |
-          您还可以为特定的生物种群制作额外的生物清单，例如鸟类的生物清单或乳草属植物的生物清单。
-        a_project_list_belongs: |
-          项目清单属于项目，并列出该项目成员观察到的所有分类群。项目清单也可以由该项目的管理员手动填充，并可用于限制项目对清单中的分类群的贡献。
-        a_check_list_is_html: |
-          检查清单是在某个地点出现过的分类群的清单。每个地点都有一个默认的检查清单，每当在地点边界内进行观察<em>并且</em>此观察已经达到研究级别时，观察到的物种将自动添加到地点的检查清单中。
-        inat_users_can_also: |
-          %{site_name}用户也可以添加额外的检查表至地点，但这些检查表不会更新。他们主要为人提供一种方式，以引入外部的数据来源，或只是列出基于他们自己经历的东西。
-        is_a_list_of_every_species_that_you_have_seen: |
-          生物清单是您所见过的每个物种的清单。每个%{site_name}用户都有一个生物清单，这些清单会自动从您添加到%{site_name}的观察中得到填充。
-        i_observed_a_species: "我观察了一个物种，为什么它没有出现在我的生物清单中？"
-        while_the_life_list_is_automatically_populated: |
-          虽然生物清单会根据添加的观察来自动填充，但如果%{site_name}无法识别您使用的名称，则不会将物种添加到此清单中。我们建议您尝试我们可能识别的替代名称。
     listed_taxa:
       establishment_field:
         confirmation: |

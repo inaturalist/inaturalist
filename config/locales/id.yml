@@ -1944,7 +1944,6 @@ id:
     import_from_soundcloud_description: "Pilih suara dari akun SoundCloud untuk diubah menjadi pengamatan iNaturalist. Kami akan mengisi tanggal dan waktu dari metadata suara, dan mencoba untuk mencari nama spesies dari tag."
     import_from_sounds: Masukkan dari suara
     import_sounds: Masukkan Suara
-    link_your_soundcloud_account: Tautan akun SoundCloud Anda
     listen: Dengarkan
     no_photos_sounds: Tidak ada foto dan suara
     photos_sounds: Foto / Suara
@@ -1954,9 +1953,6 @@ id:
     sound: Suara
     soundcloud_replied_with_an_error: SoundCloud menjawab dengan kesalahan. Silakan coba lagi nanti.
     sounds: Suara
-    view_all_soundcount_sounds: "Lihat semua %{sound_count} Suara"
-    we_didnt_find_any_sounds: Maaf! Kami tidak bisa mendapatkan suara apapun dari akun SoundCloud Anda.
-    you_need_to_link_your_soundcloud_account: Anda harus menautkan akun SoundCloud Anda untuk menambahkan suara.
     your_soundcloud_account: Akun SoundCloud Anda
   source: Sumber
   source_: 'Sumber:'
@@ -2416,37 +2412,6 @@ id:
       show:
         reuse_desc: |
           Anda dapat menyalin takson ini ke panduan lain. Jika Anda adalah salah satu editor ini memandu harus menyalin segala sesuatu, tetapi jika Anda tidak, itu hanya akan menyalin isi konten berlisensi.
-    help:
-      index:
-        what_technologies_does_the_project_use?: sumber apa teknologi dan data yang proyek digunakan?
-        what_are_admins_and_curators?: Apa admin dan kurator?
-        what_is_considered_inappropriate_content?: Apa yang dianggap konten yang tidak pantas?
-        what_is_an_observation?: Apa pengamatan itu?
-        how_can_i_get_help_identifying_what_i_saw?: Bagaimana saya bisa mendapatkan bantuan mengidentifikasi apa yang saya lihat?
-        can_i_add_photos_without_a_flickr_account?: Dapatkan saya menambahkan foto tanpa memiliki akun Flickr?
-        what_are_tags?: Apakah tag itu?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Tag adalah kata kunci yang Anda dapat menambahkan untuk pengamatan untuk membuat mereka lebih mudah untuk menemukan.
-          Misalnya, jika Barakuda mengikuti Anda di perjalanan menyelam scuba di Turks dan Caicos,
-          Anda mungkin tag pengamatan & quot; menakutkan, barracuda, scuba diving, liburan, Turks dan Caicos & quot ;.
-        what_kind_of_photos_should_i_attach: Apa jenis foto yang harus saya lampirkan untuk pengamatan? Dapatkah saya melampirkan foto saya tidak mengambil?
-        photos_attached_to_observations_should_be: |
-          Foto melekat pengamatan harus dari individu yang diamati pada saat pengamatan. Jika Anda merekam sebuah pengamatan dari pohon, kemudian kembali sehari kemudian untuk mengambil gambar, tambahkan baru observasi untuk gambar, karena mewakili pohon di titik berbeda dalam waktu.
-        what_is_geoprivacy?: Apakah geoprivasi?
-        geoprivacy_is_a_setting_you_can: |
-          Geo Privasi adalah pengaturan yang dapat membuat pengamatan Anda yang mengontrol bagaimana koordinat spasial (lintang dan bujur) yang ditampilkan. Berikut adalah pilihan:
-        note_that_curators_of: |
-          Perhatikan bahwa kurator masing-masing proyek dapat selalu melihat koordinat terlepas dari pengaturan privasi Anda, jadi jika Anda prihatin tentang siapa yang memiliki akses ke koordinat Anda harus yakin
-          Anda percaya kurator proyek di mana Anda berpartisipasi.
-        what_is_does_it_mean_for: Apa artinya bagi pengamatan akan dikaburkan?
-        what_is_the_quality_assessment: Apa penilaian kualitas dan bagaimana pengamatan memenuhi syarat untuk menjadi "penelitian" kelas?
-        what_is_a_life_list?: Apakah daftar hidup itu?
-        just_a_simple_list: Hanya daftar sederhana taksa tanpa perilaku khusus.
-        you_can_also_make_additional_life_lists: |
-          Anda juga dapat membuat daftar hidup tambahan untuk kelompok tertentu organisme, seperti daftar kehidupan burung, atau daftar kehidupan milkweeds.
-        a_project_list_belongs: |
-          Sebuah daftar proyek milik proyek dan daftar semua taksa yang diamati oleh anggota proyek itu. daftar proyek juga dapat dihuni secara manual oleh admin dari proyek itu, dan dapat digunakan untuk membatasi kontribusi proyek untuk taksa yang ada di daftar.
-        i_observed_a_species: "Saya mengamati spesies, mengapa tidak muncul dalam daftar hidup saya?"
     listed_taxa:
       establishment_field:
         confirmation: |

@@ -110,7 +110,9 @@ eo:
   add_one_now: Aldoni Unu Nun
   add_photos: Aldoni Fotojn
   add_place: Aldoni Lokon
+  #As in a Taxon Framework Relationship
   add_relationship: 'Aldoni rilaton'
+  #As in a Guide Section
   add_section: Aldoni Paragrafon
   add_some_now: Aldoni Kelkajn Nun
   add_tag: Aldoni Etikedon
@@ -1730,12 +1732,6 @@ eo:
         grid: krado
         book: libro
         journal: ĵurnalo
-    help:
-      index:
-        what_is_inaturalist?: Kio estas %{site_name}?
-        what_are_tags?: Kio estas etikedoj?
-        what_is_geoprivacy?: Kio estas geografia privateco?
-        what_is_a_life_list?: Kio estas vivolisto?
     messages:
       from: De
       to: Al

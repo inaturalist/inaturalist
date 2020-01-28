@@ -1540,7 +1540,6 @@ gl:
     import_from_soundcloud_description: "Selecciona sons da túa conta de SoundCloud para poñelos como observacións. O noso equipo completará os datos coa data e hora dos metadatos, e trataremos de procurar o nome nas etiquetas."
     import_from_sounds: Importa dos sons
     import_sounds: Importa sons
-    link_your_soundcloud_account: Enlaza a túa conta de SoundCloud
     listen: Escoita
     no_photos_sounds: Non hai fotos nin sons
     photos_sounds: Fotos / Sons
@@ -1548,9 +1547,6 @@ gl:
     selected_sounds: Sons seleccionados
     sound: Son
     sounds: Sons
-    view_all_soundcount_sounds: "Ver os %{sound_count} sons"
-    we_didnt_find_any_sounds: Sentímolo, non puidemos atopar ningún son da túa conta de SoundCloud.
-    you_need_to_link_your_soundcloud_account: Necesitas enlazar a túa conta de SoundCloud para poder subir sons.
     your_soundcloud_account: a túa conta de SoundCloud
   source: Fonte
   source_list:
@@ -1987,189 +1983,6 @@ gl:
           quizais, facilitar que o software malicioso poida afectar as persoas
           que visualizan a páxina. Se non sabes exactamente o que é un
           anaco de código, por favor, non o engadas.
-    help:
-      index:
-        welcome_message_html: |
-          Ola! Se estás empezando a empregar %{site_name}, convidámoste a revisar
-          nuestra guía en: <a href="%{url}">%{getting_started}</a> para que coñezas algunhas das características
-          e funcións da nosa páxina. Se tes algunha dúbida, por favor fai clic en
-          Preguntas Frecuentes.
-        what_is_inaturalist?: Que é %{site_name}?
-        who_is_behind_inaturalist?: Quen está detrás de %{site_name}?
-        what_technologies_does_the_project_use?: En que tecnoloxías e fontes de información se basea o proxecto?
-        inaturalist_provides_a_place_to: |
-          %{site_name} é un lugar onde podes gardar e organizar os teus achados naturais,
-          coñecer a outros entusiastas da natureza e aprender máis sobre o mundo natural.
-          Anima a participación dunha ampla variedade de entusiastas da natureza,
-          incluíndo (pero non exclusivamente) a ecoloxistas, cazadores, ornitólogos, excursionistas,
-          recolledores de fungos, pescadores e conservadores de parques. Ao conectar todas estas distintas
-          percepcións e habilidades relacionadas co mundo natural, %{site_name} espera crear unha
-          extensa conciencia nas comunidades sobre a biodiversidade local e promover unha
-          maior exploración da contorna local.
-        inaturalist_was_originally_the_masters_final_html: |
-          %{site_name} foi creado orixinalmente como o proxecto final de máster
-          de Nathan Agrin, Jessica Kline, e Ken-ichi Ueda na Universidade de
-          California en Berkeley <a href="http://www.ischool.berkeley.edu"> Escola de información</a>.
-          Bótalle unha ollada a Acerca <a href="/about">da páxina</a> para obter máis información sobre as
-          persoas que actualmente administran o sitio.
-        what_can_i_do_to_help_inaturalist?: Que podo facer para axudar a %{site_name}?
-        you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-          Podes axudar a %{site_name} ofrecéndonos a túa opinión e comentarios;
-          uníndote ao noso <a href="%{feedback_url}"> grupo de realimentación</a>
-          e inscribíndote para recibir estudos de usos, informes e solicitar novas funcións.
-          Tamén podes axudar a %{site_name} engadindo as túas observacións e axudando
-          aos demais membros da comunidade a identificar as súas observacións.
-          Se sabes codificar e queres axudar a mellorar certas funcións,
-          <a href="http://github.com/inaturalist/inaturalist" title="inaturalists
-          inaturalist at master - GitHub">fai unha bifurcación do proxecto en GitHub!</a>
-        how_do_i_contact_inaturalist?: '¿Como podo poñerme en contacto con %{site_name}?'
-        you_can_contact_us_at_html: 'Podes contactarnos en <a href="mailto:%{help_email}" >%{help_email}</a>'
-        what_are_admins_and_curators?: Que son os administradores?
-        inat_admins_are_the_people_who: |
-          %{site_name} admins son aqueles que dirixen o sitio. Teñen acceso directo ao
-          código subxacente da páxina, á base de datos e poden cambiar
-          calquera elemento do sitio.
-        curators_are_inat_users_who_volunteer_to_html: |
-          Os administradores son usuarios de %{site_name} que voluntariamente nos axudan a
-          manter a nosa información taxonómica actualizada. Se estás interesado
-          en converterte en administrador, por favor <a href="mailto: %{help_email}">
-          ponte en contacto connosco</a>. Os administradores tamén poden ascender a outros usuarios
-          á categoría de administradores. Por favor, ascende só a persoas nas
-          que confíes e que saibas que realmente teñen coñecementos taxonómicos.
-        what_is_considered_inappropriate_content?: Que se considera contido inapropiado?
-        you_know_it_when_you_see_it_html: |
-          <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">Sábelo en canto o ves</a>,
-          verdade? Os aspectos que incumpran a sección 2 dos nosos Termos e Condicións definitivamente non son axeitados e merecen ser marcados ou notificados aos correspondentes administradores. As formas máis sutís de grosería tamén son inoportunas e están mal vistas,
-          pero probablemente non as borraremos. Observacións sobre mascotas, animais
-          cativos, humanos e outros organismos nos que outros naturalistas probablemente
-          non estean interesados tamén se aceptan (despois de todo son seres vivos).
-          Observacións sobre cousas que non son organismos son difíciles de definir e
-          ata o momento de velos non se poderá tomar unha decisión acerca diso. Os feitos
-          que claramente non teñan nada que ver coa natureza, como o xantar
-          de alguén, merecen ser marcados e poden ser borrados, con todo, as evidencias
-          de contaminación ou de disturbios poden ser interesantes e probablemente non se
-          borren.
-        what_is_an_observation?: Que é unha observación?
-        an_observation_is_the_what_where_and_when_html: |
-          Unha observación, que é? onde? e cando? dun descubrimento na natureza.
-          %{site_name} ofrece un espazo para engadir esta información xunto con texto, fotos e
-          etiquetas asociadas. %{site_name} anima a tomar nota de todos os descubrimentos na natureza, xa se trate de especies identificadas ou narracións descritivas máis simples.
-          (En %{site_name} a mesma lagarta pode ser descrita como "Lagarta cornuda do deserto" ou como "Lagarta misteriosa do Val da Morte").
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Por que %{site_name} non recoñece o nome que tecleei?"
-        inaturalist_has_name_information_for_mammals: |
-          %{site_name} ten información de nomes para mamíferos, paxaros, réptiles
-          e anfibios, ademais continuamente engadimos novos nomes á nosa base de datos. Se non recoñecemos un nome en particular, tenta nomes alternativos que
-          poidamos recoñecer e engade o nome orixinal ás etiquetas ou espazos
-          descritivos.
-        how_can_i_get_help_identifying_what_i_saw?: '¿Como podo recibir axuda para identificar o que vin?'
-        check_the_id_please_checkbox_when_html: |
-          Marca a recadro que di "ID por favor" cando engadas/edites as túas observacións e
-          a túa observación aparecerá en
-          <a href=%{url} title=ID por favor>ID por favor</a>.
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: Que significa vincular %{site_name} coa miña conta de Flickr?
-        inaturalist_can_link_directly_to_the_flickr_photo_service: |
-          %{site_name} pódese enlazar directamente co servizo de fotos Flickr
-          para que poidas agregar as túas fotos de Flickr ás túas observacións. Cando
-          aceptas enlazar a túa conta Flickr, simplemente estás enlazando dúas contas;
-          isto non nos permite acceder á túa conta en Flickr nin temos o teu contrasinal;
-          tampouco che pedimos os dereitos de autor nin nos estás cedendo o dereito
-          de empregar ningunha das túas fotos en algo que non queiras.
-        can_i_add_photos_without_a_flickr_account?: Podo agregar fotos sen ter conta de Flickr?
-        we_also_support_uploading_photos: |
-          Tamén podes subir as túas fotos directamente a %{site_name}, pero pode resultar un pouco lento,
-          así que soamente permitimos subir unha foto á vez. Empregar Flickr ou Picasa é
-          probablemente moito máis rápido se xa empregas os seus servizos.
-        what_are_tags?: Que son as etiquetas?
-        tags_are_keywords_you_can_add_to_an_html: |
-          As etiquetas son palabras clave que podes engadir ás túas observacións para facelas máis fáciles de atopar. Por exemplo, se unha barracuda te seguiu
-          nunha viaxe de mergullo en Puntarenas, podes etiquetar a observación como
-          "barracuda, de medo, mergullo, vacacións, Puntarenas".
-        can_i_include_my_observations_on_my_blog?: Podo incluír as miñas observacións de %{site_name} na miña páxina web ou blog?
-        sure_check_out_our_widget_html: |
-          Por suposto, revisa o noso <a href=\"%{url}\" title=\"Widget de observacións\">Widget de observacións</a>.
-        what_kind_of_photos_should_i_attach: Que tipo de fotos debo adxuntar ás observacións? Podo engadir fotos que eu non fixen?
-        photos_attached_to_observations_should_be: |
-          As fotos que achegues ás túas observacións deberían ser do individuo
-          que observaches no momento que foi visto. Se gravas a observación dunha
-          árbore, e volves ao día seguinte a facerlle unha foto, por favor engade unha
-          nova observación para a foto, porque representa á árbore nun momento
-          diferente o da túa entrada anterior.
-        please_do_not_upload_pictures_you_didnt_take_html: |
-          Por favor <em>non subas fotos que non fagas ti mesmo</em>, a menos que teñas
-          autorización de quen a tomou. É ilegal publicar traballos con dereitos
-          de autor sen ter algún tipo de permiso do artista ou dono da fotografía,
-          e todos os fotógrafos teñen dereitos de autor por defecto sobre as súas fotografías.
-          Se a foto é de algo que ti observaches e outra persoa fíxoa, pero tes o seu
-          permiso para publicala, debes anotar tamén o nome do fotógrafo ou fotógrafa
-          na descrición da observación.
-        what_is_geoprivacy?: Que é a xeoprivacidade?
-        geoprivacy_is_a_setting_you_can: |
-          A xeoprivacidade é un axuste que podes agregar ás túas observacións
-          que controla o xeito no que as coordenadas espaciais (latitude e
-          lonxitude) se expoñen. Estas son as opcións:
-        note_that_curators_of: |
-          Ten en conta que os administradores de proxectos individuais sempre ven
-          as túas coordenadas, sen importar os teus axustes de xeoprivacidade, polo que se te
-          preocupas por quen ten as túas coordenadas, debes asegurarte de confiar
-          nos administradores cos que participas nos proxectos.
-        what_is_does_it_mean_for: Que significa que unha observación se oculte?
-        when_coordinates_are_obscured_it_means_that: |
-          Cando as coordenadas están ocultas significa que se mostra publicamente un punto ao azar dentro dos
-          10 km á redonda das túas coordenadas reais
-          (por exemplo, na páxina de inicio, a páxina de observacións, e páxinas
-          de proxectos), mentres que as túas coordenadas reais soamente son visibles cando
-          estás vendo as túas propias observacións (por exemplo, no proxecto
-          individual e a lista das túas propias observacións). Ten en conta que os
-          administradores que engadiches ás túas observacións tamén poden ver as túas
-          verdadeiras coordenadas. As coordenadas ocultas sempre se mostrarán
-          cunha marca circular sen raíces en mapas e retroalimentación xeoespacial.
-        coordinates_are_obscured_for_all_taxa: |
-          As coordenadas ocúltanse automaticamente para toda a información
-          taxonómica que se atope EN RISCO DE AMEAZA ou peor, de acordo coa
-          lista vermella da IUCN. Algunha información taxonómica pode ser considerada
-          en perigo por outras autoridades de conservación, e algunha pode ser
-          marcada simplemente como en perigo polos administradores de %{site_name} se eles
-          cren que necesita ser protexida.
-        you_can_also_obscure_the_coordinates_html: |
-          Tamén podes ocultar as coordenadas das túas propias observacións
-          sen importar a información taxonómica. Ver <a href="#geoprivacy">xeoprivacidade</a>.
-        what_is_the_quality_assessment: '¿Cal é a valoración de calidade e como se poden cualificar as observacións para obter o grao de "investigación"?'
-        what_is_a_life_list?: Que é unha lista de vida?
-        just_a_simple_list: Só unha simple lista de taxóns sen ningún comportamento especial.
-        automatically_updates_based_on_your_observations: |
-          Actualízase automaticamente baseándose nas túas observacións. Todo o mundo en %{site_name}
-          ten unha lista de vida predeterminada que contén todas as especies que observou esa persoa. Se eliminas unha observación ou cambias a súa identificación, a
-          especie elimínase. Tamén podes engadir manualmente os taxóns para a súa
-          lista de vida como ti podes cunha lista común. As especies que
-          engadas manualmente non se eliminan se as observas a continuación de ter eliminado
-          a observación.
-        you_can_also_make_additional_life_lists: |
-          Tamén podes crear listas adicionais de vida para grupos específicos de organismos,
-          como unha lista da vida das aves, ou unha lista de vida da asclepia.
-        a_project_list_belongs: |
-          Unha lista de proxecto vincula un proxecto cunha lista de todos os taxóns observados
-          polos membros dese proxecto. As listas de proxectos tamén poden ser redactadas de forma
-          manual polo administrador dese proxecto, e pódense empregar para restrinxir as
-          contribucións do proxecto aos taxóns que están na lista.
-        a_check_list_is_html: |
-          Unha lista de verificación é unha lista dos taxóns que se atopan nun lugar.
-          Cada lugar ten unha lista de control por defecto, e sempre que a observación se realice
-          dentro dos límites do lugar <em>e</em> que teña alcanzado o estado de grao de
-          investigación, as especies observadas engadiranse automaticamente á lista de
-          verificación do lugar.
-        inat_users_can_also: |
-          %{site_name} Os usuarios tamén poden agregar listas de verificación adicionais aos lugares, aínda que ditas listas non se actualizan automaticamente. Principalmente
-          proporcionan un medio para que a xente poida achegar fontes externas de datos ou
-          só unha lista baseada na súa propia experiencia.
-        is_a_list_of_every_species_that_you_have_seen: |
-          Unha lista da vida é unha lista de todas as especies que viron. Todos os usuarios %{site_name}
-          teñen unha lista de vida e estas listas complétanse automaticamente a partir das
-          observacións engadidas a %{site_name}.
-        i_observed_a_species: "Observei unha especie, por que non aparece na miña lista de vida?"
-        while_the_life_list_is_automatically_populated: |
-          Aínda que a lista de vida se xera automaticamente a partir de
-          observacións engadidas, as especies non se engadirán a esta
-          lista se %{site_name} non recoñece o nome que empregaches. Recomendámosche tentar empregar nomes alternativos que poidamos recoñecer.
     observations:
       copy_tip: "Engadir unha nova observación copiando a data desta observación, o lugar, as fotos e os campos de observación."
       captive_help_html: |
