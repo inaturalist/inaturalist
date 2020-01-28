@@ -149,10 +149,11 @@ class ProviderOauthController < ApplicationController
       limit(1).
       first
     if client.trusted?
+      scopes = ( client.scopes.try(:to_a) || [] ) - params[:scopes].to_s.split( /\s/ ).compact.uniq
       access_token ||= Doorkeeper::AccessToken.create!(
         application_id: client.id,
         resource_owner_id: user.id,
-        scopes: Doorkeeper.configuration.default_scopes.to_s
+        scopes: scopes
       )
     end
     access_token
@@ -227,10 +228,11 @@ class ProviderOauthController < ApplicationController
       limit(1).
       first
     if client.trusted?
+      scopes = ( client.scopes.try(:to_a) || [] ) - params[:scopes].to_s.split( /\s/ ).compact.uniq
       access_token ||= Doorkeeper::AccessToken.create!(
         application_id: client.id,
         resource_owner_id: user.id,
-        scopes: Doorkeeper.configuration.default_scopes.to_s
+        scopes: scopes
       )
     end
     access_token
