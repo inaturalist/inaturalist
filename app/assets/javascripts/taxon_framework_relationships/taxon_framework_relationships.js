@@ -6,6 +6,9 @@ function tfrD3Vis( data, tfrId ) {
     .parentId( function ( d ) { return d.parent; } );
 
   function formatName( d ) {
+    if ( d.id == null ) {
+      return null;
+    }
     var splitString = d.id.split( " " );
     var firstWord = splitString.shift();
     if ( d.data.rank === "species" ) {
@@ -23,6 +26,9 @@ function tfrD3Vis( data, tfrId ) {
   }
 
   function truncate( d, cutoff ) {
+    if ( d == null ) {
+      return null;
+    }
     var returnValue = d;
     if ( d.length > cutoff ) {
       returnValue = d.substring( 0, ( cutoff - 3 ) ) + "...";

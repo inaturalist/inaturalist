@@ -110,9 +110,9 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
       self.relationship = "many_to_one"
     elsif external_taxa_count > 1 && taxa_count == 1
       self.relationship = "one_to_many"
-    elsif external_taxa_count == 0 && taxa_count == 1
+    elsif external_taxa_count == 0 && taxa_count >= 1
       self.relationship = "not_external"
-    elsif external_taxa_count == 1 && taxa_count == 0
+    elsif external_taxa_count >= 1 && taxa_count == 0
       self.relationship = "not_internal"
     else
       self.relationship = "error"
