@@ -1,4 +1,5 @@
 /* global d3 */
+/* eslint no-unused-vars: 0 */
 function tfrD3Vis( data, tfrId ) {
   var stratify = d3.stratify()
     .id( function ( d ) { return d.name; } )
@@ -9,12 +10,12 @@ function tfrD3Vis( data, tfrId ) {
     var firstWord = splitString.shift();
     if ( d.data.rank === "species" ) {
       splitString.unshift( firstWord[0] + "." );
-      splitString.join( " " );
+      splitString = splitString.join( " " );
     } else if ( d.data.rank === "subspecies" ) {
       var secondWord = splitString.shift();
       splitString.unshift( secondWord[0] + "." );
       splitString.unshift( firstWord[0] + "." );
-      splitString.join( " " );
+      splitString = splitString.join( " " );
     } else {
       splitString = d.id;
     }
