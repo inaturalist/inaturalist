@@ -99,12 +99,6 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
          external_taxa.first.parent_rank.downcase == taxa.first.parent.rank
         self.relationship = "match"
       elsif external_taxa.first.name == taxa.first.name && 
-        external_taxa.first.rank == taxa.first.rank &&
-        taxa.first.ancestors.map{|a| { name: a.name, rank: a.rank } }.
-          select{ |a| a[:name] == external_taxa.first.parent_name && a[:rank] == external_taxa.first.parent_rank.downcase }.
-          count > 0
-        self.relationship = "match"
-      elsif external_taxa.first.name == taxa.first.name && 
          external_taxa.first.rank == taxa.first.rank
         self.relationship = "alternate_position"
       else
@@ -112,18 +106,39 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
       end
     elsif external_taxa_count > 1 && taxa_count > 1
       self.relationship = "many_to_many"
-    elsif external_taxa_count > 1 && taxa_count == 1
-      self.relationship = "many_to_one"
     elsif external_taxa_count == 1 && taxa_count > 1
+      self.relationship = "many_to_one"
+    elsif external_taxa_count > 1 && taxa_count == 1
       self.relationship = "one_to_many"
-    elsif external_taxa_count == 0 && taxa_count == 1
+    elsif external_taxa_count == 0 && taxa_count >= 1
       self.relationship = "not_external"
-    elsif external_taxa_count == 1 && taxa_count == 0
+    elsif external_taxa_count >= 1 && taxa_count == 0
       self.relationship = "not_internal"
     else
       self.relationship = "error"
     end
     true
+  end
+  
+  def as_json
+    internal_taxa = self.internal_taxa.map{|it| 
+        {name: it.name, rank: it.rank, parent: it.parent.name, url: it.id}
+      }
+      internal_taxa.unshift(
+        {name: (internal_taxa.map{|it| it[:parent]}.uniq - internal_taxa.map{|it| it[:name]}.uniq)[0]}
+      )
+    
+      external_taxa = self.external_taxa.map{|et| 
+        {name: et.name, rank: et.rank, parent: et.parent_name, url: et.url}
+      }
+      external_taxa.unshift(
+        {name: (external_taxa.map{|et| et[:parent]}.uniq - external_taxa.map{|et| et[:name]}.uniq)[0]}
+      )
+    
+      {
+        internal_taxa: internal_taxa,
+        external_taxa: external_taxa
+      }
   end
   
 end
