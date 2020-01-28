@@ -320,6 +320,7 @@ class Taxon < ActiveRecord::Base
     "chiton",
     "cicada",
     "creeper",
+    "eos",
     "gall",
     "hong kong",
     "larva",
