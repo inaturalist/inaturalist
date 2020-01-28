@@ -31,24 +31,21 @@ module ElasticModel
   KEYWORD_AUTOCOMPLETE_ANALYZER = {
     keyword_autocomplete_analyzer: {
       tokenizer: "keyword",
-      filter: [ "lowercase", "asciifolding", "stop", "edge_ngram_filter" ],
-      char_filter: [ "inat_char_filter" ]
+      filter: [ "lowercase", "asciifolding", "stop", "edge_ngram_filter" ]
     }
   }
   # basic search analyzer that allows sub-matches
   STANDARD_ANALYZER = {
     standard_analyzer: {
       tokenizer: "standard",
-      filter: [ "lowercase", "asciifolding" ],
-      char_filter: [ "inat_char_filter" ]
+      filter: [ "lowercase", "asciifolding" ]
     }
   }
   # basic search analyzer with no sub-matches
   KEYWORD_ANALYZER = {
     keyword_analyzer: {
       tokenizer: "keyword",
-      filter: [ "lowercase", "asciifolding" ],
-      char_filter: [ "inat_char_filter" ]
+      filter: [ "lowercase", "asciifolding" ]
     }
   }
   # for autocomplete analyzers. Needs at least 2 letters (e.g. `P` doesn't find `Park`)
@@ -76,7 +73,8 @@ module ElasticModel
         type: "mapping",
         mappings: [
           # map ʻokina to nothing so searches for ʻokina, 'okina, and okina would all return the same things
-          "ʻ => "
+          "ʻ => ",
+          "× => x"
         ]
       }
     }
