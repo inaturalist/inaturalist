@@ -1317,10 +1317,13 @@ nl:
   flag_an_item: Een item melden
   flag_as_spammer: Meld als spammer
   flag_as_non_spammer: Meld als niet-spammer
+  #Label for the date/time when a flag was created
+  flag_created: Melding aangemaakt
   flag_description: Meld deze inhoud zodat de curatoren weten dat er iets mis mee is.
   flag_for_check_list_title_html: |
     Melding voor checklist: %{title}
   flag_for_comment_id_html: Melding voor <a href="%{url}">reactie %{id}</a>
+  flag_for_comment_id_deleted: Melding voor reactie %{id} (verwijderd)
   flag_for_curation: Melden voor curatie
   flag_for_guide_title_html: |
     Melding voor gids: %{title}
@@ -3383,6 +3386,8 @@ nl:
   skip_to_next_page: "Ga verder naar volgende pagina"
   small: klein
   site_admin_tools: Hulpmiddelen siteadministratie
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Siteadministratoren
   site_name_place: "%{site_name} plaats"
   site_observations_export_from_date: "Export van %{site_name}-waarnemingen van %{date}"
   site_site_admin: "%{site_name} siteadministrator"
@@ -4392,6 +4397,8 @@ nl:
           iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V. S.</p>
     flags:
       show:
+        flaggable_content_desc: |
+          De inhoud die gemeld kan worden is het primaire tekst-attribuut van het gemelde object op het moment dat de melding werd gemaakt. Aleen curatoren en medewerkers kunnen dit zien. Bij berichten kunnen alleen medewerkers dit zien.
         flags_that_should_not_be_resolved_desc_html: |
           Verwijder de meldingen over <code>spam</code> en <code>schending van auteursrechten</code> alleen als de inhoud geen spam is of geen auteursrechten schendt.
     guides:
@@ -4515,143 +4522,6 @@ nl:
       show:
         reuse_desc: |
           Je kunt dit taxon kopiëren naar een andere gids. Als je een van de redacteurs van deze gids bent, zou dit alles moeten kopiëren, maar als je dat niet bent zal het alleen de gelicentieerde inhoud kopiëren.
-    help:
-      index:
-        welcome_message_html: |
-          Hallo daar. Als je net bent begonnen met %{site_name}, bekijk dan eens de <a href="%{url}">%{getting_started}</a>-gids om een aantal mogelijkheden van deze site te doorlopen. Als je een vraag over de site hebt, kijk dan in de veelgestelde vragen hieronder. Als je daarna nog steeds op zoek bent naar antwoorden, <a href="%{feedback_url}">plaats dan je vraag in onze feedbackgroep</a>.
-        what_is_inaturalist?: Wat is %{site_name}?
-        who_is_behind_inaturalist?: Wie zit er achter %{site_name}?
-        what_technologies_does_the_project_use?: Welke technologieën en databronnen gebruikt het project?
-        inaturalist_provides_a_place_to: |
-          %{site_name} biedt een plek om natuurbevindingen vast te leggen en te organiseren,
-          andere natuurliefhebbers te ontmoeten en meer te leren over de natuur. Het
-          moedigt de deelname aan van een grote verscheidenheid aan natuurliefhebbers, waaronder, maar niet beperkt tot wandelaars, jagers, vogelaars, strandjutters, paddenstoelenplukkers, parkwachters, ecologen,
-          en vissers. Door deze verschillende invalshoeken en expertises van de natuur met met elkaar te verbinden, hoopt %{site_name} een uitgebreid gemeenschapsbewustzijn van lokale biodiversiteit te creëren en verdere verkenning van lokale omgeving te bevorderen.
-        who_is_behind_inaturalist: Wie zit er achter %{site_name}?
-        inaturalist_was_originally_the_masters_final_html: |
-          %{site_name} was oorspronkelijk het afstudeerproject van Nathan Agrin,
-          Jessica Kline en Ken-ichi Ueda bij UC Berkeley's
-          <a href="http://www.ischool.berkeley.edu">School of Information</a>.
-          Bekijk de <a href="/about"> pagina </a> voor meer informatie over de mensen die de site momenteel beheren.
-        what_can_i_do_to_help_inaturalist?: Wat kan ik doen om %{site_name} te helpen?
-        you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-          Je kunt %{site_name} helpen door ons je feedback te geven: doe mee met onze <a href="%{feedback_url}">feedbackgroep</a> om bugs te melden en om nieuwe functionaliteit te vragen. Je kunt %{site_name} ook helpen door je waarnemingen toe te voegen en andere leden van de gemeenschap helpen om hun niet-gedetermineerde waarnemingen te determineren. Als je kunt programmeren en aan nieuwe functionaliteit wilt werken,
-          <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master-GitHub">fork ons op GitHub</a>!
-        how_do_i_contact_inaturalist?: Hoe neem ik contact op met %{site_name}
-        you_can_contact_us_at_html: 'Je kunt contact met ons opnemen via <a href="mailto:%{help_email}">%{help_email}</a>'
-        what_are_admins_and_curators?: Wat zijn administratoren en curatoren?
-        inat_admins_are_the_people_who: |
-          %{site_name}-administratoren zijn mensen die de site runnen. Ze hebben directe toegang tot de onderliggende code en de database, en ze kunnen alles op de site wijzigen.
-        curators_are_inat_users_who_volunteer_to_html: |
-          Curatoren zijn gebruiker van %{site_name} die vrijwillig onze taxonomische gegevens bijwerken. Als je curator zou willen worden, neem dan alsjeblieft
-          <a href="mailto:%{help_email}">contact met ons op</a>. Curatoren kunnen ook andere gebruikers tot curator promoveren. Promoveer alleen mensen die je vertrouwt en waarvan je weet dat ze bepaalde taxonomische kennis hebben.
-        what_is_considered_inappropriate_content?: Wat wordt beschouwd als ongepaste inhoud?
-        you_know_it_when_you_see_it_html: |
-          Je <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">herkent het wel als je het ziet</a>, toch? 
-          Dingen die in strijd zijn met sectie 2 van onze <a href="/terms.html">servicevoorwaarden</a>
-          zijn absoluut ongepast en het waard om te melden of anderszins onder de aandacht van de
-          administratoren te brengen. Mildere vormen van onbeleefdheid zijn betreurenswaardig,
-          maar waarschijnlijk niet iets dat we zullen verwijderen. Waarnemingen van huisdieren,
-          dieren in gevangenschap, mensen en andere organismen die de meeste naturalisten
-          misschien niet interessant vinden zijn OK (ze leven immers). Waarnemingen van dingen die
-          geen organismen zijn vormen een grijs gebied. Voorwerpen die duidelijk niets met de natuur
-          te maken hebben, zoals iemands lunch, zijn het melden waard en kunnen verwijderd
-          worden,  maar bewijs van vervuiling of verstoring kan interessant zijn en zal waarschijnlijk
-          niet worden verwijderd.
-        what_is_an_observation?: Wat is een waarneming?
-        an_observation_is_the_what_where_and_when_html: |
-          Een waarneming is het wat, waar en wanneer van een bevinding in de natuur.
-          %{site_name} biedt een plaats om deze informatie samen met bijbehorende tekst, foto's en tags toe te voegen. %{site_name} moedigt het opslaan van alle natuurbevindingen aan,
-          ongeacht of ze kenmerkende soorten of eenvoudige beschrijvingen bevatten.
-          (In %{site_name} kan dezelfde hagedis zowel beschreven worden als een  &quot;Desert Horned Lizard &quot; als &quot;Mystery Lizard of Death Valley&quot;)
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Waarom herkent %{site_name} de naam niet die ik ingegeven heb."
-        inaturalist_has_name_information_for_mammals: |
-          %{site_name} bevat de namen van o.a. zoogdieren, vogels, reptielen,
-          en amfibieën en blijft voortdurend nieuwe soortnamen toevoegen aan onze
-          database. Als we een bepaalde naam niet herkennen, probeer dan
-          alternatieve namen die we mogelijk herkennen en voeg de originele naam toe aan de tags of beschrijvingsvelden.
-        how_can_i_get_help_identifying_what_i_saw?: Hoe kan ik hulp krijgen bij het determineren van wat ik heb gezien?
-        check_the_id_please_checkbox_when_html: |
-          Vink de checkbox "ID gewenst" aan bij het toevoegen/bewerken van je waarneming en je waarneming zal verschijnen in
-          <a href="%{url}">ID gewenst</a>.
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: Wat betekent het om %{site_name} te koppelen aan mijn Flickr-account?
-        inaturalist_can_link_directly_to_the_flickr_photo_service: |
-          %{site_name} kan rechtstreeks naar de Flickr-fotoservice linken
-          zodat je je Flickr-foto's aan je waarnemingen kunt toevoegen. Wanneer
-          je ermee akkoord gaat om je Flickr-account te linken, dan koppel je gewoon
-          twee accounts; we hebben geen toegang tot je Flickr-wachtwoord en
-          je verzaakt je copyright niet en geeft ons ook niet de mogelijkheid
-          om je foto's te gebruiken op manieren die je niet wilt.
-        can_i_add_photos_without_a_flickr_account?: Kan ik foto's toevoegen zonder Flickr-account?
-        we_also_support_google_html: 'We ondersteunen ook Google Foto''s: <a href="%{url}">Configureer je Google-account &raquo;</a>'
-        we_also_support_uploading_photos: |
-          We ondersteunen ook het rechtstreeks uploaden van foto's naar %{site_name}, maar dat kan een beetje traag zijn, dus we staan slechts één upload tegelijk toe. Het gebruik van Flickr of Google is waarschijnlijk sneller als je die diensten al gebruikt.
-        what_are_tags?: Wat zijn labels?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Labels zijn trefwoorden die je kunt toevoegen aan een waarneming om ze makkelijker vindbaar te maken. Als je bijvoorbeeld door een barracuda bent gevolgd tijdens het duiken bij de Turks- en Caicoseilanden, kun je aan de waarneming de labels &quot;eng, barracuda, duiken, vakantie, Turks- en Caicoseilanden&quot; toevoegen.
-        can_i_include_my_observations_on_my_blog?: Kan ik mijn %{site_name}-waarnemingen op mijn eigen website of blog opnemen?
-        sure_check_out_our_widget_html: |
-          Natuurlijk, bekijk onze <a href="%{url}" title="Waarnemingen Widget">Waarnemingen Widget</a>.
-        what_kind_of_photos_should_i_attach: Welke foto's moet ik aan mijn waarnemingen toevoegen? Kan ik foto's bijvoegen die ikzelf niet gemaakt heb?
-        photos_attached_to_observations_should_be: |
-          Aan waarnemingen verbonden foto's moeten van het waargenomen organisme zijn
-          op het moment van de waarneming. Als je een boom invoert en een dag later teruggaat om een foto te maken, maak dan een nieuwe waarneming aan voor die foto, omdat de foto de boom op een ander tijdstip weergeeft.
-        please_do_not_upload_pictures_you_didnt_take_html: |
-          <em>Upload alsjeblieft geen afbeeldingen die je niet zelf hebt gemaakt</em> tenzij je toestemming hebt van de fotograaf. Het is illegaal om auteursrechtelijk beschermde werken te publiceren zonder enige vorm van licentie verleend door de maker van het werk. Alle fotografen hebben standaard volledige auteursrechten op hun foto's. Als het een foto is van datgene je hebt waargenomen, en de foto door iemand anders is genomen en je toestemming hebt gekregen om het te publiceren, moet je ook de naam van de fotograag in de beschrijving van de waarneming vermelden.
-        what_is_geoprivacy?: Wat is geoprivacy?
-        geoprivacy_is_a_setting_you_can: |
-          Geoprivacy is een instelling die je op je waarnemingen kunt zetten dat
-          bepaalt hoe de ruimtelijke coördinaten (breedte- en lengtegraad) worden
-          weergegeven. Dit zijn de opties:
-        note_that_curators_of: |
-          Merk op dat curatoren van individuele projecten altijd de
-          coördinaten zien ongeacht je geoprivacy-instelling, dus als je bezorgd bent over wie toegang heeft tot de coördinaten moet je zeker weten dat je de curatoren vertrouwt van de projecten waaraan je deelneemt.
-        what_is_does_it_mean_for: Wat betekent het wanneer een waarneming versluierd is?
-        when_coordinates_are_obscured_it_means_that: |
-          Wanneer coördinaten worden vervaagd, betekent dit dat een willekeurig punt binnen %{km} km van de werkelijke coördinaten wordt getoond (dat wil zeggen op de startpagina, de pagina met waarnemingen en projectpagina's), terwijl de echte coördinaten alleen zichtbaar zijn als je je eigen waarnemingen bekijkt (zoals op de individuele projectpagina's en de lijst met je eigen waarnemingen). Denk eraan dat ook de curatoren van de projecten waaraan je een waarneming hebt toegevoegd de echte coördinaten kunnen zien. Op kaarten en geografische feeds horen vervaagde coördinaten altijd te worden weergegeven als cirkels zonder steeltje.
-        coordinates_are_obscured_for_all_taxa: |
-          Coördinaten worden automatisch verborgen voor alle taxa die "NEAR
-          THREATENED" zijn of slechter volgens de Rode Lijst van IUCN. Sommige taxa zijn mogelijk
-          bedreigd verklaard volgens andere instandhoudingsautoriteiten en
-          kunnen eenvoudig worden gemarkeerd als bedreigd door %{site_name} site-curatoren als ze
-          geloven dat ze bescherming verdienen.
-        you_can_also_obscure_the_coordinates_html: |
-          Je kan de coördinaten van je eigen waarnemingen altijd versluieren ongeacht het taxon. Raadpleeg <a href="#geoprivacy">geoprivacy</a> hierboven.
-        what_is_the_quality_assessment: Wat is de kwaliteitsbeoordeling en hoe komen waarnemingen in aanmerking om een "onderzoekskwaliteit" te worden?
-        what_is_a_life_list?: Wat is een levenslijst?
-        just_a_simple_list: Gewoon een simpele lijst met taxa zonder speciaal gedrag.
-        automatically_updates_based_on_your_observations: |
-          Automatisch nieuws op basis van je waarnemingen. Iedereen op %{site_name}
-          heeft een standaard levenslijst die alle soorten van die persoon bevat
-          die diegene heeft waargenomen. Als je een waarneming verwijdert of je ID wijzigt, zullen de
-          soorten worden verwijderd. Je kunt ook handmatig taxa toevoegen aan je
-          levenslijst, net zoals je dat kunt met een gewone lijst. De soorten die je
-          handmatig toevoegt worden niet verwijderd als je ze waarneemt en vervolgens
-          de waarneming verwijdert.
-        you_can_also_make_additional_life_lists: |
-          Je kunt ook extra levenslijsten maken voor specifieke groepen van
-          organismen, zoals een levenslijst van vogels, of een levenslijst van Zijdeplanten.
-        a_project_list_belongs: |
-          Een projectlijst hoort bij een project en somt alle taxa op
-          die zijn waargenomen door leden van dat project. Projectlijsten kunnen ook 
-          handmatig ingevuld zijn door de administrator van dat project en kunnen worden gebruikt
-          om de projectbijdragen te beperken tot taxa die op de lijst staan.
-        a_check_list_is_html: |
-          Een checklist is een lijst met taxa die op een plaats voorkomen. Elke
-          plaats heeft een default check list en wanneer een waarneming wordt
-          gedaan binnen de grenzen van de plaats <em>en</em> research-grade
-          status is bereikt wordt de waargenomen soort automatisch toegevoegd
-          aan de checklist van de plaats.
-        inat_users_can_also: |
-          Gebruikers van %{site_name} kunnen ook extra controlelijsten toevoegen aan plaatsen maar
-          deze checklists worden niet automatisch bijgewerkt. Ze bieden voornamelijk
-          een manier voor mensen om externe bronnen van gegevens binnen te halen of
-          maken gewoon checklists op basis van hun eigen ervaring.
-        is_a_list_of_every_species_that_you_have_seen: |
-          Een levenslijst is een lijst met alle soorten die je hebt gezien. Elke %{site_name}-gebruiker heeft een levenslijst en deze lijsten worden automatisch ingevuld met de waarnemingen die zijn toegevoegd aan %{site_name}.
-        i_observed_a_species: "Ik heb een soort waargenomen, waarom verschijnt hij niet in mijn levenslijst?"
-        while_the_life_list_is_automatically_populated: |
-          Hoewel de levenslijst automatisch wordt aangevuld op basis van toegevoegde waarnemingen, wordt de soort niet aan deze lijst toegevoegd als %{site_name} de naam die je gebruikt niet herkent. We raden aan om andere namen te proberen, die we mogelijk wel herkennen.
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -4682,6 +4552,9 @@ nl:
         show_messages_to_user: Toon berichten aan %{user}
         speech_privilege_notice: |
           Je kunt nieuwe berichten verzenden nadat je drie verifieerbare waarnemingen hebt toegevoegd of drie determinaties voor anderen hebt gedaan. Voorlopig kun je alleen berichten lezen en antwoorden op wat andere mensen je sturen.
+      show:
+        flag_notice_html: |
+          Je hebt dit gesprek gemeld op %{date}. De melding blijft bestaan, zelfs als je jouw kopie van dit gesprek verwijdert, dus het is veilig om dat te doen als je dit niet meer wilt zien.
     oauth:
       authorizations:
         new:
