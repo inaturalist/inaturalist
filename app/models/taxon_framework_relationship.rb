@@ -124,19 +124,19 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
     internal_taxa = self.internal_taxa.map{ |it| 
         { name: it.name, rank: it.rank, parent_name: it.parent.name, parent_rank: it.parent.rank, url: it.id }
     }
-    it_root = ( internal_taxa.map{ |it| it[:parent_name] + "_" + it[:parent_rank] }.uniq - internal_taxa.map{ |it| it[:name] + "_" + it[:rank] }.uniq )[0]
-    internal_taxa.unshift(
-      { name: it_root.split( "_" )[0], rank: it_root.split( "_" )[1] }
-    )
-    
+    if it_root = ( internal_taxa.map{ |it| it[:parent_name] + "_" + it[:parent_rank] }.uniq - internal_taxa.map{ |it| it[:name] + "_" + it[:rank] }.uniq )[0]
+      internal_taxa.unshift( { name: it_root.split( "_" )[0], rank: it_root.split( "_" )[1] } )
+    else
+      internal_taxa.unshift( { name: nil, rank: nil } )
+    end
     external_taxa = self.external_taxa.map{ |et| 
       { name: et.name, rank: et.rank, parent_name: et.parent_name, parent_rank: et.parent_rank, url: et.url }
     }
-    et_root = ( external_taxa.map{ |et| et[:parent_name] + "_" + et[:parent_rank] }.uniq - external_taxa.map{ |et| et[:name] + "_" + et[:rank] }.uniq)[0]
-    external_taxa.unshift(
-      { name:  et_root.split( "_" )[0], rank: et_root.split( "_" )[1] }
-    )
-    
+    if et_root = ( external_taxa.map{ |et| et[:parent_name] + "_" + et[:parent_rank] }.uniq - external_taxa.map{ |et| et[:name] + "_" + et[:rank] }.uniq)[0]
+      external_taxa.unshift( { name:  et_root.split( "_" )[0], rank: et_root.split( "_" )[1] } )
+    else
+      external_taxa.unshift( { name: nil, rank: nil } )
+    end
     {
       internal_taxa: internal_taxa,
       external_taxa: external_taxa
