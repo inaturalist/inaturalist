@@ -2,14 +2,16 @@
 /* eslint no-unused-vars: 0 */
 function tfrD3Vis( data, tfrId ) {
   var stratify = d3.stratify()
-    .id( function ( d ) { return d.name; } )
-    .parentId( function ( d ) { return d.parent; } );
+    .id( function ( d ) { return ( d.name + "_" + d.rank ); } )
+    .parentId( function ( d ) { return ( d.parent_name == null ? null : ( d.parent_name + "_" + d.parent_rank ) ); } );
 
   function formatName( d ) {
     if ( d.id == null ) {
       return null;
     }
-    var splitString = d.id.split( " " );
+    var rankSplit = d.id.split( "_" );
+    var rank = rankSplit[1];
+    var splitString = rankSplit[0].split( " " );
     var firstWord = splitString.shift();
     if ( d.data.rank === "species" ) {
       splitString.unshift( firstWord[0] + "." );
@@ -20,7 +22,7 @@ function tfrD3Vis( data, tfrId ) {
       splitString.unshift( firstWord[0] + "." );
       splitString = splitString.join( " " );
     } else {
-      splitString = d.id;
+      splitString = rankSplit[0];
     }
     return splitString;
   }

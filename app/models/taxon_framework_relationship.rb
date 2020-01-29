@@ -121,24 +121,26 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   end
   
   def as_json
-    internal_taxa = self.internal_taxa.map{|it| 
-        {name: it.name, rank: it.rank, parent: it.parent.name, url: it.id}
-      }
-      internal_taxa.unshift(
-        {name: (internal_taxa.map{|it| it[:parent]}.uniq - internal_taxa.map{|it| it[:name]}.uniq)[0]}
-      )
+    internal_taxa = self.internal_taxa.map{ |it| 
+        { name: it.name, rank: it.rank, parent_name: it.parent.name, parent_rank: it.parent.rank, url: it.id }
+    }
+    it_root = ( internal_taxa.map{ |it| it[:parent_name] + "_" + it[:parent_rank] }.uniq - internal_taxa.map{ |it| it[:name] + "_" + it[:rank] }.uniq )[0]
+    internal_taxa.unshift(
+      { name: it_root.split( "_" )[0], rank: it_root.split( "_" )[1] }
+    )
     
-      external_taxa = self.external_taxa.map{|et| 
-        {name: et.name, rank: et.rank, parent: et.parent_name, url: et.url}
-      }
-      external_taxa.unshift(
-        {name: (external_taxa.map{|et| et[:parent]}.uniq - external_taxa.map{|et| et[:name]}.uniq)[0]}
-      )
+    external_taxa = self.external_taxa.map{ |et| 
+      { name: et.name, rank: et.rank, parent_name: et.parent_name, parent_rank: et.parent_rank, url: et.url }
+    }
+    et_root = ( external_taxa.map{ |et| et[:parent_name] + "_" + et[:parent_rank] }.uniq - external_taxa.map{ |et| et[:name] + "_" + et[:rank] }.uniq)[0]
+    external_taxa.unshift(
+      { name:  et_root.split( "_" )[0], rank: et_root.split( "_" )[1] }
+    )
     
-      {
-        internal_taxa: internal_taxa,
-        external_taxa: external_taxa
-      }
+    {
+      internal_taxa: internal_taxa,
+      external_taxa: external_taxa
+    }
   end
   
 end
