@@ -6308,10 +6308,9 @@ nl:
   doorkeeper:
     scopes:
       write: |
-        Je waarnemingen, determinaties en andere inhoud voor je aanmaken, bewerken en verwijderen, en je verborgen coördinaten en alle andere informatie waar je toegang toe hebt op deze site inzien.
-      login: |
-        Toegangsinformatie relevant om in te loggen, zoals e-mailadres, gebruikersnaam,
-        naam en avatar.
+        Je waarnemingen, determinaties en andere inhoud namens jou aanmaken, bewerken en verwijderen, en je verborgen coördinaten en alle andere informatie waar je toegang toe hebt op deze site inzien.
+      account_delete: |
+        Je account namens jou verwijderen.
     errors:
       messages:
         #Common error messages
