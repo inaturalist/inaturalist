@@ -6138,7 +6138,9 @@ nb:
       write: |
         Opprett, oppdater, og slett dine observajoner, identifikasjoner, og annet innhold på dine vegner, og ha tilgang til dine skjulte koordinater og all annen informasjon du har tilgang til på siden.
       login: |
-        Tilgangsinformasjon relevant for pålogging, som e-postadresse, brukernavn, navn, og brukerikon.
+        Tilgangsinformasjon relevant for pålogging i en tredjepartstjeneste, som e-postadresse, brukernavn, navn, og brukerikon knyttet til kontoen din der.
+      account_delete: |
+        Slette din konto på dine vegner.
     errors:
       messages:
         #Common error messages
