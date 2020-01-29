@@ -1587,18 +1587,29 @@ ja:
   momentjs:
     shortRelativeTime:
       future: "%sに"
+      past: "%s"
       #Short text representing 1 second in the past
       s: "1秒"
       #Short text representing 1 minute in the past
       m: "1分"
+      #Short text representing %d minutes in the past
+      mm: "%d 分前"
       #Short text representing 1 hour in the past
       h: "1時間"
+      #Short text representing %d hours in the past
+      hh: "%d 時間前"
       #Short text representing 1 day in the past
       d: "1日"
+      #Short text representing %d days in the past
+      dd: "%d 日前"
       #Short text representing 1 month in the past
       M: "1分"
+      #Short text representing %d months in the past
+      MM: "%d か月前"
       #Short text representing 1 year in the past
       'y': "1年"
+      #Short text representing %d years in the past
+      yy: "%d 年前"
   month: 月
   months: ヶ月
   more: 続き
@@ -2394,6 +2405,7 @@ ja:
   show_observation_photos: 観測記録の写真を表示
   show_off_your_recent_observations: 最近の観察記録を自分のブログまたホームページで紹介しよう！
   show_only: '表示限定:'
+  show_relative_proportions_of_all_observations: 全観察記録の相対比率を表示する
   show_taxa_from_everywhere: "すべての場所からの分類群を表示"
   show_taxa_from_place: "%{place}からの分類群を表示"
   showing_taxa_from_everywhere: "すべての場所からの分類群を表示中"
