@@ -4065,6 +4065,9 @@ lt:
               belongs_to_an_existing_user: |
                 priklauso jau esančiam vartotojui; jeigu turite paskyrą, prisijunkite prieš tęsdami arba naudokite kitą el. pašto adresą
   doorkeeper:
+    scopes:
+      account_delete: |
+        Jūsų vardu ištrinti jūsų paskyrą.
     errors:
       messages:
         #Access grant errors
