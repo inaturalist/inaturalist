@@ -114,7 +114,7 @@ module ApplicationHelper
   end
   
   def is_admin?
-    logged_in? && current_user.is_admin?
+    respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user.is_admin?
   end
 
   def is_site_admin?
@@ -1189,7 +1189,7 @@ module ApplicationHelper
     end
     if update.resource_owner && update.resource_owner != notifier_user
       if is_admin?
-        if current_user && current_user == update.resource_owner
+        if respond_to?(:current_user) && current_user == update.resource_owner
           key += '_by_you'
         else
           key += '_by_user'
