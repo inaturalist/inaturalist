@@ -393,7 +393,6 @@ pl:
   agreeing: Zgoda...
   aka: vel
   all: Wszystkie
-  all_colors: "&laquo; Wszystkie kolory"
   all_comments: Wszystkie komentarze
   all_flags_must_be_resolved: Wszystkie zgłoszenia muszą zostać rozstrzygnięte
   all_life: Wszelkie życie
@@ -2304,7 +2303,9 @@ pl:
   output_taxon: Takson wyjściowy
   overview: Przegląd
   owner: Właściciel
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Rodzic
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nazwa rodzica
   parental_consent:
     must_specify_email: Musisz podać adres e-mail
@@ -3324,7 +3325,6 @@ pl:
   welcome_to_x_project: "Witamy w %{project}"
   were_pretty_sure_this_is_in_the_rank: Jesteśmy pewni, że należy to do %{rank}
   what: Co
-  what_color_was_it: Jakiego było koloru?
   what_did_you_see: Co zaobserwowałeś?
   what_did_you_see?: <em>Co</em> zaobserwowałeś?
   what_do_you_think: Co myślisz?
