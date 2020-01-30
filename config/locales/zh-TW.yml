@@ -277,7 +277,6 @@ zh-TW:
   agreeing: 同意中...
   aka: 也稱作
   all: 所有
-  all_colors: "&laquo; 所有顏色"
   all_comments: 所有評論
   all_flags_must_be_resolved: 所有標記需要被解決
   all_life: 所有生物
@@ -2382,7 +2381,9 @@ zh-TW:
   output_taxon: 輸出物種分類
   overview: 概要
   owner: 擁有者
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: 父級
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: 父名稱
   parental_consent:
     must_specify_email: 您必須指定電子郵件地址
@@ -3959,7 +3960,6 @@ zh-TW:
   were_pretty_sure_this_is_in_the_rank: 我們認為應是在 %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "很抱歉，您的%{filename}大量匯入失敗。"
   what: 什麼
-  what_color_was_it: 它的顏色是什麼
   what_did_you_see: 您看到了什麼？
   what_did_you_see?: 您看到了<em>什麼</em>？
   what_do_you_think: 您在想什麼？
