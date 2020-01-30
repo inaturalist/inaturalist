@@ -333,7 +333,6 @@ tr:
   agreeing: Onaylanıyor...
   aka: diğer adıyla
   all: Tümü
-  all_colors: "&laquo; Tüm Renkler"
   all_comments: Tüm yorumlar
   all_flags_must_be_resolved: Tüm işaretler çözümlenmeli
   all_life: Tüm yaşam
@@ -2467,7 +2466,9 @@ tr:
   overview: Genel Bakış
   overlapping_downstream_taxon_frameworks_html: "Üst üste gelen alt sınıf Sınıf Yapıları: %{count}"
   owner: Sahip
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Üst sınıf
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Üst sınıf adı
   parental_consent:
     must_specify_email: Bir e-posta adresi belirtmelisiniz
@@ -4090,7 +4091,6 @@ tr:
   were_pretty_sure_this_is_in_the_rank: Bunun %{rank} içinde olduğundan oldukça eminiz
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Üzgünüz, %{filename} toplu içe aktarma işlemin başarısız oldu."
   what: Ne
-  what_color_was_it: Ne renkti?
   what_did_you_see: Ne gördünüz?
   what_did_you_see?: <em>Ne</em> gördün?
   what_do_you_think: Ne düşünüyorsun?
