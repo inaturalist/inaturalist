@@ -169,7 +169,6 @@ ar:
   agreeing: يوافق...
   aka: مثلاً
   all: جميع
-  all_colors: "&laquo; جميع الالوان"
   all_comments: كل التعليقات
   all_flags_must_be_resolved: يجب حل جميع الأعلام
   all_life: كل الحياة
@@ -2094,7 +2093,9 @@ ar:
   output_taxon: إخراج الأصنوفة
   overview: نظرة عامة
   owner: المالك
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: الأصل
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: اسم الوالدين
   parental_consent:
     must_specify_email: يجب عليك تحديد عنوان بريد إلكتروني
@@ -3663,7 +3664,6 @@ ar:
   were_pretty_sure_this_is_in_the_rank: نحن متأكدون من أن هذا في %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "عذرا، أخفق الاستيراد الضخم ل%{filename}."
   what: ماذا
-  what_color_was_it: ماذا كانن اللون؟
   what_did_you_see: ماذا رأيت؟
   what_did_you_see?: <em>ماذا</em> رأيت؟
   what_do_you_think: ما رأيك؟
