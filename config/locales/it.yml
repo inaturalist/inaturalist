@@ -321,7 +321,6 @@ it:
   agreeing: Accordo in corso...
   aka: o
   all: Tutto
-  all_colors: "&laquo; Tutti i colori"
   all_comments: Tutti i commenti
   all_flags_must_be_resolved: Tutte le segnalazioni devo essere risolte
   all_life: Tutti gli esseri viventi
@@ -2455,7 +2454,9 @@ it:
   overview: Panoramica
   overlapping_downstream_taxon_frameworks_html: "Sovrapposizione di Quadri di Taxon a valle: %{count}"
   owner: Proprietario
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Di Categoria superiore
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nome di categoria superiore
   parental_consent:
     must_specify_email: Devi specificare un indirizzo email
@@ -4078,7 +4079,6 @@ it:
   were_pretty_sure_this_is_in_the_rank: Siamo abbastanza sicuri che è in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ci dispiace ma la tua importazione in blocco di %{filename} è fallita."
   what: Che
-  what_color_was_it: Di che colore era?
   what_did_you_see: Cosa hai visto?
   what_did_you_see?: <em>Cosa</em> hai visto?
   what_do_you_think: Cosa ne pensi?
@@ -6173,6 +6173,10 @@ it:
     scopes:
       write: |
         Creare, aggiornare, e cancellare le tue osservazioni, identificazioni, e altri contenuti che ti appartengono, ed accedere alle tue coordinate nascoste e ad ogni altra informazione a cui tu puoi accedere la sito.
+      login: |
+        Accedere a informazioni rilevanti per l'accesso a servizi di terze parti, come l'email, il nome utente, e l'icona utente qui associate al tuo account.
+      account_delete: |
+        Eliminare il tuo account per tuo conto.
     errors:
       messages:
         #Common error messages
