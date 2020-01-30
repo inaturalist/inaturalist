@@ -304,7 +304,6 @@ de:
   agreeing: Zustimmung …
   aka: auch bekannt als
   all: Alle
-  all_colors: "&laquo; Alle Farben"
   all_comments: Alle Kommentare
   all_flags_must_be_resolved: Alle Meldungen müssen geklärt sein
   all_life: Alle Lebensformen
@@ -2174,7 +2173,9 @@ de:
   output_taxon: Taxon ausgeben
   overview: Übersicht
   owner: Besitzer
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Elternteil
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Eltern-Name
   parental_consent:
     must_specify_email: Du musst eine E-Mail-Adresse angeben
@@ -3563,7 +3564,6 @@ de:
   were_pretty_sure_this_is_in_the_rank: Wir sind ziemlich sicher, es ist in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Es tut uns leid aber der Batch-Import von %{filename} ist fehlgeschlagen."
   what: Was
-  what_color_was_it: Welche Farbe hatte es?
   what_did_you_see: Was hast du gesehen?
   what_did_you_see?: <em>Was</em> hast du gesehen?
   what_do_you_think: Was glaubst du?
