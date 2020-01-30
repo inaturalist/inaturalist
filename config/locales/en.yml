@@ -2041,10 +2041,16 @@ en:
   membership_model: Membership Model
   mentioned_you_in_noun_html: "%{user} mentioned you in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} mentioned you in %{noun} by %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} mentioned you in %{noun} by %{user}"
+  mentioned_you_in_noun_by_you_html: "%{user} mentioned you in %{noun} by you"
   mentioned_you_in_a_x_on_noun_html: "%{user} mentioned you in a %{x} on %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} mentioned you in an %{x} on %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} mentioned you in a %{x} on %{noun} by %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} mentioned you in a %{x} on %{noun} by %{user}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} mentioned you in a %{x} on %{noun} by you"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} mentioned you in an %{x} on %{noun} by %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} mentioned you in an %{x} on %{noun} by %{user}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} mentioned you in an %{x} on %{noun} by you"
   merge: Merge
   merge_it_with_another_place: Merge it with another place
   merge_two_places_together: Merge two places together. All species on the checklists will be merged, as well as any geographic data.
@@ -4146,6 +4152,8 @@ en:
   user_added_a_project_invitation_html: "%{user} added a project invitation"
   user_added_a_x: "%{user} added a %{x}"
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} added a %{x} to %{noun} by %{user}"
+  user_added_a_x_to_noun_by_you_html: "%{user} added a %{x} to %{noun} by you"
   user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
   user_added_an_identification_html: "%{user} added an identification"
   user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
@@ -4153,6 +4161,8 @@ en:
   user_added_an_observation_html: "%{user} added an observation"
   user_added_an_x: "%{user} added an %{x}"
   user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} added an %{x} to %{noun} by %{user}"
+  user_added_an_x_to_noun_by_you_html: "%{user} added an %{x} to %{noun} by you"
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_already_authenticated: User is already authenticated

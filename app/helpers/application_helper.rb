@@ -1188,8 +1188,17 @@ module ApplicationHelper
       opts[:noun] = options[:noun]
     end
     if update.resource_owner && update.resource_owner != notifier_user
-      key += '_by'
-      opts[:by] = you_or_login(update.resource_owner, :capitalize_it => false)
+      if is_admin?
+        if current_user && current_user == update.resource_owner
+          key += '_by_you'
+        else
+          key += '_by_user'
+          opts[:user] = update.resource_owner.login
+        end
+      else
+        key += '_by'
+        opts[:by] = you_or_login(update.resource_owner, :capitalize_it => false)
+      end
     end
     key += '_html'
 
