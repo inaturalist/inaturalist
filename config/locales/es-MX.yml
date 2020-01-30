@@ -249,7 +249,6 @@ es-MX:
   agreeing: De acuerdo...
   aka: Alias
   all: Todo
-  all_colors: "&laquo; Todos los colores"
   all_comments: Todos los comentarios
   all_flags_must_be_resolved: Se deben resolver todas las advertencias
   all_life: Toda la vida
@@ -2116,7 +2115,9 @@ es-MX:
   output_taxon: Taxón de salida
   overview: Visión general
   owner: Propietario
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Padre
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nombre de la clase o especie padre
   password: Contraseña
   password_confirmation: 'Confirma tu contraseña'
@@ -3559,7 +3560,6 @@ es-MX:
   were_pretty_sure_this_is_in_the_rank: Estamos bastante seguros de que está en el %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Lo sentimos, pero tu importación masiva de %{filename} ha fallado."
   what: Qué
-  what_color_was_it: '¿De qué color era?'
   what_did_you_see: '¿Qué viste?'
   what_did_you_see?: <em>¿Qué</em> viste?
   what_do_you_think: '¿Que piensas?'
