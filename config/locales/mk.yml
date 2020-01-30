@@ -163,7 +163,6 @@ mk:
   agreeing: Поднесувам согласност...
   aka: наречен и
   all: Сите
-  all_colors: "&laquo; Сите бои"
   all_comments: Сите коментари
   all_life: Сет живот
   all_names: Сите имиња
@@ -918,7 +917,9 @@ mk:
   out_of_range: Вон опсег
   output_taxon: Излезен таксон
   owner: Сопственик
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Матично
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Матично име
   password: Лозинка
   password_confirmation: 'Потврда на лозинката'
