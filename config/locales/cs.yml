@@ -336,7 +336,6 @@ cs:
   agreeing: Souhlasím...
   aka: alias
   all: Vše
-  all_colors: "&laquo; Všechny barvy"
   all_comments: Všechny komentáře
   all_flags_must_be_resolved: Všechny prapory musí být rozmístěny
   all_life: Veškerý život
@@ -2150,7 +2149,9 @@ cs:
   output_taxon: Výstupní taxon
   overview: Přehled
   owner: Vlastník
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Nadřazený
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nadřazený název
   password: Heslo
   password_confirmation: 'Potvrzení hesla'
@@ -3554,7 +3555,6 @@ cs:
   were_pretty_sure_this_is_in_the_rank: Jsme si celkem jistí, že toto je v %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Omlouváme se, ale váš hromadný import z %{filename} se nezdařil."
   what: Co
-  what_color_was_it: Jakou to mělo barvu?
   what_did_you_see: Co jste viděli?
   what_did_you_see?: <em>Co</em> jste viděli?
   what_do_you_think: Co si myslíte?
