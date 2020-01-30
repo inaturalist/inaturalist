@@ -289,7 +289,6 @@ et:
   agreeing: Kinnitan...
   aka: tuntud ka nimega
   all: Kõik
-  all_colors: "&laquo; Kõik värvid"
   all_comments: Kõik kommentaarid
   all_flags_must_be_resolved: Kõik märkused peavad olema lahendatud
   all_life: Kogu elusloodus
@@ -2141,7 +2140,9 @@ et:
   output_taxon: Väljundtakson
   overview: Ülevaade
   owner: Omanik
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Ülemtakson
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Ülemtaksoni nimi
   password: Salasõna
   password_confirmation: 'Salasõna kordus'
@@ -3557,7 +3558,6 @@ et:
   were_pretty_sure_this_is_in_the_rank: Oleme päris kindlad, et see on kategoorias %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Meil on kahju, kuid faili %{filename} massimport kukkus läbi."
   what: Mis
-  what_color_was_it: Mis värvi see oli?
   what_did_you_see: Mida sa nägid?
   what_did_you_see?: <em>Mida</em> sa nägid?
   what_do_you_think: Mida sina arvad?
