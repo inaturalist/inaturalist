@@ -116,7 +116,6 @@ id:
   agreeing: menyetujui...
   aka: alias
   all: Semua
-  all_colors: "& laquo; Semua Warna"
   all_comments: Semua komentar
   all_life: Semua kehidupan
   all_names: Semua nama
@@ -1437,7 +1436,9 @@ id:
   output_taxon: Keluaran takson
   overview: Ikhtisar
   owner: 'Pemilik:'
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Induk
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nama induk
   password: Kata sandi
   password_confirmation: 'Konfirmasi kata sandi'
@@ -2261,7 +2262,6 @@ id:
   welcome: Selamat datang
   welcome_back: Selamat datang kemabli
   what: Apa
-  what_color_was_it: Warna apakah itu?
   what_did_you_see: Apa yang dilihat?
   what_did_you_see?: <em>Apa</em> yang dilihat?
   what_do_you_think: Apa yang anda pikirkan?
