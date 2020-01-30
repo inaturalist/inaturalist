@@ -334,7 +334,6 @@ fi:
   agreeing: Samaa mieltä...
   aka: tunnetaan myös nimellä
   all: Kaikki
-  all_colors: "&laquo; Kaikki värit"
   all_comments: Kaikki kommentit
   all_flags_must_be_resolved: Kaikki liput on ratkaistava
   all_life: Kaikki elämänmuodot
@@ -2399,7 +2398,9 @@ fi:
   out_of_range: Pois alueelta
   overview: Yleiskatsaus
   owner: Omistaja
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Ylempi taksoni
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Ylemmän taksonin nimi
   parental_consent:
     must_specify_email: Sinun on annettava sähköpostiosoitteesi
@@ -3808,7 +3809,6 @@ fi:
   welcome_to_guides: "Tervetuloa %{site_name} oppaisiin!"
   welcome_to_x_project: "Tervetuloa projektiin %{project}"
   what: Mitä
-  what_color_was_it: Mikä väri se oli?
   what_did_you_see: Mitä näet?
   what_did_you_see?: <em>Mitä</em> näet?
   what_do_you_think: Mitä luulet?
