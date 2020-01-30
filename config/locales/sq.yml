@@ -181,7 +181,6 @@ sq:
   agreeing: Duke u pajtuar...
   aka: pseudonimi
   all: Të gjitha
-  all_colors: "&laquo; Të gjitha ngjyrat"
   all_comments: Të gjitha komentet
   all_flags_must_be_resolved: Të gjitha shënimet duhet të zgjidhen
   all_life: Gjithë jetën
@@ -1894,7 +1893,9 @@ sq:
   output_taxon: Taxoni i nxjerrë
   overview: Pamje e përgjithshme
   owner: Pronar
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Prindi
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Emri i prindit
   password: Fjalëkalimi
   password_confirmation: 'Konfirmim i fjalëkalimit'
