@@ -315,7 +315,6 @@ ca:
   agreeing: Acceptant...
   aka: alies
   all: Tots
-  all_colors: "&laquo; Tots els colors"
   all_comments: Tots els comentaris
   all_flags_must_be_resolved: Cal completar totes les etiquetes
   all_life: Tota la vida
@@ -2449,7 +2448,9 @@ ca:
   overview: Vista general
   overlapping_downstream_taxon_frameworks_html: "Superposició dels marcs taxonòmics descendents: %{count}"
   owner: Propietari
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Pare
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nom de la classe o espècie pare
   parental_consent:
     must_specify_email: Heu d'especificar una adreça de correu electrònic
@@ -4071,7 +4072,6 @@ ca:
   were_pretty_sure_this_is_in_the_rank: Estem prou segurs que aquest està en el lloc %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ho sentim, però la vostra importació massiva des de %{filename} ha fallat."
   what: Què
-  what_color_was_it: De quin color era?
   what_did_you_see: Què vau veure?
   what_did_you_see?: <em>Què</em> vau veure?
   what_do_you_think: Què en penseu?
