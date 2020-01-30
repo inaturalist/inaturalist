@@ -255,7 +255,6 @@ ja:
   agreeing: 賛成中...
   aka: 別名
   all: すべて
-  all_colors: "&laquo; すべての色"
   all_comments: すべてのコメント
   all_flags_must_be_resolved: すべてのフラグを解決する必要があります
   all_life: すべての生き物
@@ -1919,7 +1918,9 @@ ja:
   out_of_range: 分布・生息区域外
   output_taxon: 出力分類群
   owner: 所有者
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: 親
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: 親名称
   password: パスワード
   password_confirmation: 'パスワード確認'
@@ -2837,7 +2838,6 @@ ja:
   welcome_to_guides: "%{site_name}のガイドへようこそ！"
   welcome_to_x_project: "%{project}へようこそ"
   were_sorry_but_your_bulk_import_of_filename_has_failed: "申し訳ありません。%{filename}の一括インポートが失敗しました。"
-  what_color_was_it: どんな色をしていましたか？
   what_did_you_see: 何を見ましたか？
   what_did_you_see?: <em>何を</em>見ましたか？
   what_do_you_think: どう思いますか？
