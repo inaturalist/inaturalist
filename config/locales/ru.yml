@@ -392,7 +392,6 @@ ru:
   agreeing: Соглашаемся...
   aka: ака
   all: Все
-  all_colors: "&laquo; Все цвета"
   all_comments: Все комментарии
   all_flags_must_be_resolved: Все флаги должны быть разрешены
   all_life: Вся жизнь
@@ -2554,7 +2553,9 @@ ru:
   overview: Обзор
   overlapping_downstream_taxon_frameworks_html: "Перекрытие основ таксона в направлении вниз: %{count}"
   owner: Владелец
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Родитель
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Название родительского таксона
   parental_consent:
     must_specify_email: Вы должны задать адрес электронной почты
@@ -4221,7 +4222,6 @@ ru:
   were_pretty_sure_this_is_in_the_rank: Мы почти уверены, что это относится к %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Извините, но ваш массовый импорт %{filename} не удался."
   what: Что
-  what_color_was_it: Какого это было цвета?
   what_did_you_see: Что вы видели?
   what_did_you_see?: <em>Что</em> вы видели?
   what_do_you_think: Как вы думаете?
