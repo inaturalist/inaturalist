@@ -1,4 +1,9 @@
 lt:
+  x_comments:
+    one: '%{count} komentaras'
+    few: '%{count} komentarai(-ų)'
+    many: '%{count} komentarai(-ų)'
+    other: '%{count} komentarai(-ų)'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>"
   x_research_grade_observations_html:
     one: "<span class='count'>%{count}</span> identifikuotas stebėjimas"
@@ -179,7 +184,6 @@ lt:
   agreeing: Sutinkama...
   aka: dar žinomas kaip
   all: Visi
-  all_colors: "&laquo; Visos spalvos"
   all_comments: Visi komentarai
   all_flags_must_be_resolved: Visos žymės turi būti išspręstos
   all_life: Visa gyvybė
@@ -2828,7 +2832,7 @@ lt:
   stop_trusting_this_person_with_your_private_coordinates: Nebepatikėti šiam žmogui paslėptų koordinačių
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: PARDUOTUVĖ
+  store: PIRKTI
   studies_that_used_inaturalist_data_in_year: Tyrimai, kurie %{year} metais naudojo iNaturalist duomenis
   stuff_just_added: "Tai, ką ką tik pridėjote..."
   subject_resolved_noun_html: "%{subject} išsprendė %{noun}"
@@ -3269,7 +3273,6 @@ lt:
   were_pretty_sure_this_is_in_the_rank: Mes įsitikinę, kad šis organizmas priklauso %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Atsiprašome, tačiau grupinis %{filename} importas nepavyko."
   what: Kas
-  what_color_was_it: Kokios tai buvo spalvos?
   what_did_you_see: Ką pamatėte?
   what_did_you_see?: <em>Ką</em> pamatėte?
   what_do_you_think: Ką manote?
