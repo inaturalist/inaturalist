@@ -166,7 +166,6 @@ sk:
   agreeing: Súhlasím...
   aka: alias
   all: Všetko
-  all_colors: "&laquo; Všetky farby"
   all_comments: Všetky komentáre
   all_flags_must_be_resolved: Všetky značky musia byť vyriešené
   all_life: Všetok život
@@ -1907,7 +1906,9 @@ sk:
   output_taxon: Výstupný taxón
   overview: Prehľad
   owner: Vlastník
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Nadradený
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Názov nadradeného
   parental_consent:
     must_specify_email: Musíte uviesť emailovú adresu
