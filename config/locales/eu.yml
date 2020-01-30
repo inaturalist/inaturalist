@@ -164,7 +164,6 @@ eu:
   agreeing: Prozesuan...
   aka: 'Honela ezagutzen da:'
   all: Guztiak
-  all_colors: "« Kolore guztiak"
   all_comments: Ohar guztiak
   all_life: Bizitza osoa
   all_names: Izen guztiak
@@ -1366,7 +1365,9 @@ eu:
   our_blog: Gure bloga
   out_of_range: Mailatik kanpo
   owner: Jabea
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Nagusia
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Klase- edo espezie-nagusiaren izena
   password: Pasahitza
   password_confirmation: 'Baieztatu zure pasahitza'
@@ -2142,7 +2143,6 @@ eu:
   welcome_to_inat: "Ongi etorri %{site_name}-(e)ra!"
   welcome_to_x_project: "Ongi etorri %{project} proiektura"
   what: Zer
-  what_color_was_it: Zein koloretakoa zen?
   what_did_you_see: Zer ikusi zenuen?
   what_did_you_see?: <em>Zer</em> ikusi zenuen?
   what_do_you_think: Zer iruditzen zaizu
