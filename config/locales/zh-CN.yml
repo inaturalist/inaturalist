@@ -211,7 +211,6 @@ zh-CN:
   agreeing: 正在同意……
   aka: 也就是
   all: 全部
-  all_colors: "&laquo; 所有颜色"
   all_comments: 所有评论
   all_flags_must_be_resolved: 所有标记必须解决
   all_life: 一生
@@ -1962,7 +1961,9 @@ zh-CN:
   output_taxon: 输出分类单元
   overview: 概述
   owner: 所有者
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: 父
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: 父名称
   password: 密码
   password_confirmation: '密码确认'
@@ -3226,7 +3227,6 @@ zh-CN:
   were_pretty_sure_this_is_in_the_rank: 我们很确定这个的排名是在%{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "我们很抱歉，但您的 %{filename} 的大量导入工作已失败。"
   what: 什么
-  what_color_was_it: 它的颜色是什么？
   what_did_you_see: 您看见了什么？
   what_did_you_see?: 您在<em>哪里</em>看见的？
   what_do_you_think: 您在想什么？
