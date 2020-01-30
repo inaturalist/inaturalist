@@ -317,7 +317,6 @@ nb:
   agreeing: Sier seg enig...
   aka: alias
   all: Alle
-  all_colors: "&laquo; Alle farger"
   all_comments: Alle kommentarer
   all_flags_must_be_resolved: Alle markeringer må være løst
   all_life: Alt liv
@@ -2448,7 +2447,9 @@ nb:
   overview: Oversikt
   overlapping_downstream_taxon_frameworks_html: "Overlappende underliggende taksonrammeverk: %{count}"
   owner: Eier
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Overordnet
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Overordnets navn
   parental_consent:
     must_specify_email: Du må oppgi en e-postadresse
@@ -4069,7 +4070,6 @@ nb:
   were_pretty_sure_this_is_in_the_rank: Vi er ganske sikker på at dette er i %{rank}@gender{n:et|en}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Beklager, men din masseimport av %{filename} mislykkes."
   what: Hva
-  what_color_was_it: Hvilken farge var den?
   what_did_you_see: Hva så du?
   what_did_you_see?: <em>Hva</em> så du?
   what_do_you_think: Hva tror du?
