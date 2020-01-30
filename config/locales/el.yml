@@ -226,7 +226,6 @@ el:
   agreeing: Συμφώνηση σε εξέλιξη...
   aka: ή
   all: Όλα
-  all_colors: "&laquo; Όλα τα χρώματα"
   all_comments: Όλα τα σχόλια
   all_flags_must_be_resolved: Όλες οι αναφορές πρέπει να επιλυθούν
   all_life: Όλη η ζωή
@@ -1670,7 +1669,9 @@ el:
   out_of_range: Εκτός εύρους
   overview: Επισκόπηση
   owner: Ιδιοκτήτης
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Γονέας
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Όνομα γονέα
   password: Κωδικός πρόσβασης
   password_confirmation: 'Επιβεβαίωση κωδικού'
