@@ -239,6 +239,7 @@ class ProviderOauthController < ApplicationController
   def scopes_from_params( params, client )
     allowed_scopes = client.scopes.try(:to_a) || []
     requested_scopes = params[:scopes].to_s.split( /\s/ ).compact.uniq
-    allowed_scopes & requested_scopes
+    scopes = ( allowed_scopes & requested_scopes ).join( " " )
+    scopes.blank? ? nil : scopes
   end
 end
