@@ -1911,10 +1911,13 @@ it:
   membership_model: Modello di adesione
   mentioned_you_in_noun_html: "%{user} ti ha menzionato in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} ti ha menzionato in %{noun} di %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} ti ha menzionato in %{noun} di te"
   mentioned_you_in_a_x_on_noun_html: "%{user} ti ha menzionato in una %{x} su %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} ti ha menzionato in una %{x} su %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} ti ha menzionato in una %{x} su %{noun} di %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di te"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} ti ha menzionato in una %{x} su %{noun} di %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di te"
   merge: Unisci
   merge_it_with_another_place: Unisci con un altro luogo
   merge_two_places_together: Unisci insieme due luoghi. Tutte le specie sulla checklist saranno unite, nonché tutti i dati geografici.
@@ -3908,6 +3911,8 @@ it:
   user_added_a_project_invitation_html: "%{user} ha aggiunto in invito di progetto"
   user_added_a_x: "%{user} ha aggiunto una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a una %{noun} di %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{user}"
+  user_added_a_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
   user_added_a_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha aggiunto un'identificazione"
   user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}" ad un''osservazione di %{owner}'
@@ -3915,6 +3920,8 @@ it:
   user_added_an_observation_html: "%{user} ha aggiunto una osservazione"
   user_added_an_x: "%{user} ha aggiunto una %{x}"
   user_added_an_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a %{noun} di %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{user}"
+  user_added_an_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
   user_added_an_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha aggiunto %{x} osservazioni"
   user_already_authenticated: L'utente è già autenticato
