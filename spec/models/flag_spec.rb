@@ -96,4 +96,5 @@ describe Flag, "destruction" do
     f.destroy
     expect( u.subscriptions.detect{|s| s.resource_type == "Flag" && s.resource_id == f.id}).to be_blank
   end
+
 end
