@@ -1193,7 +1193,7 @@ module ApplicationHelper
           key += '_by_you'
         else
           key += '_by_user'
-          opts[:user] = update.resource_owner.login
+          opts[:by] = update.resource_owner.login
         end
       else
         key += '_by'
