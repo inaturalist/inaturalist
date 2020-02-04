@@ -1920,6 +1920,20 @@ shared_examples_for "an ObservationsController" do
       end
     end
   end
+
+  describe "project" do
+    elastic_models( Observation )
+    let(:project_observation) { make_project_observation }
+    before { expect( project_observation.project.observations.count ).to eq 1 }
+    # There are some Rails API consumers, but IMO, worth deprecating when we deprecate the Rails API as a public-facing API
+    it "should return JSON" do
+      get :project, id: project_observation.project_id, format: "json"
+      expect( response ).to be_success
+      json = JSON.parse( response.body )
+      json_obs = json[0]
+      expect( json_obs["id"] ).to eq project_observation.observation_id
+    end
+  end
 end
 
 describe ObservationsController, "oauth authentication" do
