@@ -306,8 +306,6 @@ da:
   added_to_favorites_html: |
     Tilføjet til <a href="%{url}">favoritter</a>
   adding: "Tilføjer..."
-  additional_range: Yderligere område
-  additional_range_data_from_an_unknown_source: Yderligere område data fra en ukendt kilde
   adjust_brightness: Justér lysstyrke
   admin: Administrator
   admin_s: Administrator(er)
@@ -759,7 +757,6 @@ da:
   citation: Citation
   classification: Klassifikation
   clear: ryd
-  clear_color_filters: Ryd farvefiltre
   clear_filters: Ryd filtre
   clear_search: Ryd søgning
   click_the_map: "<strong>Klik på kortet</strong> for at tilføje et sted."
@@ -1923,6 +1920,8 @@ da:
   membership_model: Medlemskabsmodel
   mentioned_you_in_noun_html: "%{user} nævnte dig i %{noun}"
   mentioned_you_in_noun_by_html: "%{user} nævnte dig i %{noun} af %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} nævnte dig i %{noun} af %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} nævnte dig i %{noun} af dig"
   mentioned_you_in_a_x_on_noun_html: "%{user} nævnte dig i en %{x} på %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user}  nævnte dig i en %{x} på %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} nævnte dig i en %{x} på %{noun} af %{by}"
@@ -3061,7 +3060,6 @@ da:
   radius_value: "Radius (m):%{radius}"
   random: Tilfældig
   range: Område
-  range_from: 'Område fra'
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangrestriktioner
@@ -3182,7 +3180,6 @@ da:
   remove_selected: Fjern valgte
   remove_tags: Fjern tags
   removed: Fjernet
-  removed!: Fjernet!
   removed_project_user: Fjernet projektbruger
   removing: "Fjerner..."
   reorder_by_taxonomy: Sortér efter taksonomi
