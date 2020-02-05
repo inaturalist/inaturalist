@@ -303,8 +303,6 @@ nb:
   added_to_favorites_html: |
     Lagt til i <a href="%{url}">favoritter</a>
   adding: "Legger til..."
-  additional_range: Ytterlig område
-  additional_range_data_from_an_unknown_source: Ytterlige utbredelsesdata fra en ukjent kilde
   adjust_brightness: Tilpass lysstyrke
   admin: Administrator
   admin_s: Administrator(er)
@@ -757,7 +755,6 @@ nb:
   citation: Sitering
   classification: Klassifisering
   clear: nullstill
-  clear_color_filters: Nullstill fargefiltre
   clear_filters: Nullstill filtre
   clear_search: Nullstill søk
   click_the_map: "<strong>Trykk på kartet</strong> for å legge til en lokalitet."
@@ -1910,6 +1907,8 @@ nb:
   membership_model: Medlemskapsmodell
   mentioned_you_in_noun_html: "%{user} har nevnt deg i %{noun}"
   mentioned_you_in_noun_by_html: "%{user} har nevnt deg i %{noun} av %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} har nevnt deg i %{noun} av %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} har nevnt deg i %{noun} av deg"
   mentioned_you_in_a_x_on_noun_html: "%{user} har nevnt deg i en %{x} på %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} har nevnt deg i en %{x} på %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} har nevnt deg i en %{x} på %{noun} av %{by}"
@@ -3024,7 +3023,6 @@ nb:
   radius_value: "Radius (m): %{radius}"
   random: Tilfeldig
   range: Intervall
-  range_from: 'Intervall fra '
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangrestriksjoner
@@ -3145,7 +3143,6 @@ nb:
   remove_selected: Fjern valgte
   remove_tags: Fjern etiketter
   removed: Fjernet
-  removed!: Fjernet!
   removed_project_user: Prosjektbruker fjernet
   removing: "Fjerner..."
   reorder_by_taxonomy: Sorter etter taksonomi
