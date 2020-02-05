@@ -319,8 +319,6 @@ tr:
   added_to_favorites_html: |
     <a href="%{url}">Favorilere</a> eklendi
   adding: "Ekleniyor..."
-  additional_range: Ek aralık
-  additional_range_data_from_an_unknown_source: Bilinmeyen kaynaktan ek aralık
   adjust_brightness: Parlaklık Ayarlama
   admin: Yönetici
   admin_s: Yönetici(ler)
@@ -769,7 +767,6 @@ tr:
   citation: Alıntı
   classification: Sınıflama
   clear: temizle
-  clear_color_filters: Renk filtrelerini temizle
   clear_filters: Filtreleri temizle
   clear_search: Aramayı temizle
   click_the_map: "Bir konum eklemek için <strong>haritaya tıkla</strong>."
@@ -3040,7 +3037,6 @@ tr:
   radius_value: "Yarıçağ (m): %{radius}"
   random: Rastgele
   range: Tarih Aralığı
-  range_from: 'Şuradan rastgele '
   rank: Düzey
   rank_position: Düzey
   rank_restrictions: Düzey kısıtlamaları
@@ -3161,7 +3157,6 @@ tr:
   remove_selected: Seçileni kaldır
   remove_tags: Etiketleri kaldır
   removed: Kaldırıldı
-  removed!: Kaldırıldı!
   removed_project_user: Kaldırılan proje kullanıcısı
   removing: "Kaldırılıyor..."
   reorder_by_taxonomy: Sınıflandırmaya göre yeniden düzenle
@@ -6572,6 +6567,8 @@ tr:
     scopes:
       write: |
         Gözlemlerinizi, tanımlarınızı ve sizin adınıza diğer içerikleri oluşturun, güncelleyin ve silin, ve gizli koordinatlarınıza ve sitede erişebileceğiniz diğer bilgilere erişin.
+      login: |
+        E-posta adresi, kullanıcı adı, isim, ve kullanıcı simgesi gibi oturum açmakla ilgili bilgilere erişin.
       account_delete: |
         Hesabınızı sizin adınıza silin.
     errors:
