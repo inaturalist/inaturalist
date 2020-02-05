@@ -320,8 +320,6 @@ nl:
   added_to_favorites_html: |
     Toegevoegd aan <a href="%{url}">favorieten</a>
   adding: "Bezig met toevoegen..."
-  additional_range: Bijkomende omvang
-  additional_range_data_from_an_unknown_source: Bijkomende range data van een onbekende bron
   adjust_brightness: Helderheid aanpassen
   admin: Administrator
   admin_s: Administrator(en)
@@ -771,7 +769,6 @@ nl:
   citation: Citaat
   classification: Classificatie
   clear: wissen
-  clear_color_filters: Verwijder kleur filters
   clear_filters: Filters wissen
   clear_search: Zoekopdracht wissen
   click_the_map: "<strong>Klik op de kaart</strong> om een locatie toe te voegen."
@@ -1933,12 +1930,15 @@ nl:
   membership_model: Lidmaatschapsmodel
   mentioned_you_in_noun_html: "%{user} heeft je genoemd in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} heeft je genoemd in %{noun} van %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} heeft je genoemd in %{noun} van %{by}"
   mentioned_you_in_noun_by_you_html: "%{user} heeft je genoemd in %{noun} van jou"
   mentioned_you_in_a_x_on_noun_html: "%{user} heeft je genoemd in een %{x} op %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} heeft je genoemd in een %{x} op %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} heeft je genoemd in een %{x} op %{noun} van %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} heeft je genoemd in een %{x} op %{noun} van %{by}"
   mentioned_you_in_a_x_on_noun_by_you_html: "%{user} heeft je genoemd in een %{x} op %{noun} van jou"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} heeft je genoemd in een %{x} op %{noun} van %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} heeft je genoemd in een %{x} op %{noun} van %{by}"
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} heeft je genoemd in een %{x} op %{noun} van jou"
   merge: Samenvoegen
   merge_it_with_another_place: Samenvoegen met een andere plaats
@@ -2500,7 +2500,7 @@ nl:
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Bovenliggende
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
-  parent_name: Oudernaam
+  parent_name: Naam bovenliggend item
   parental_consent:
     must_specify_email: Je moet een e-mailadres invullen
     invalid_email: Ongeldige e-mailopmaak.
@@ -3078,7 +3078,6 @@ nl:
   radius_value: "Straal (m): %{radius}"
   random: Willekeurig
   range: Bereik
-  range_from: 'Reeks van'
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbeperkingen
@@ -3199,7 +3198,6 @@ nl:
   remove_selected: Selectie verwijderen
   remove_tags: Labels verwijderen
   removed: Verwijderd
-  removed!: Verwijderd
   removed_project_user: Projectgebruiker verwijderd
   removing: "Bezig met verwijderen..."
   reorder_by_taxonomy: Herschik volgens taxonomie
@@ -3971,7 +3969,7 @@ nl:
   user_added_a_project_invitation_html: "%{user} heeft een projectuitnodiging toegevoegd"
   user_added_a_x: "%{user} heeft een %{x} toegevoegd"
   user_added_a_x_to_noun_by_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
-  user_added_a_x_to_noun_by_user_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{user}"
+  user_added_a_x_to_noun_by_user_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
   user_added_a_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
   user_added_a_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
   user_added_an_identification_html: "%{user} heeft een determinatie toegevoegd"
@@ -3980,7 +3978,7 @@ nl:
   user_added_an_observation_html: "%{user} heeft een waarneming toegevoegd"
   user_added_an_x: "%{user} heeft een %{x} toegevoegd"
   user_added_an_x_to_noun_by_html: "%{user} heeft %{x} toegevoegd aan %{noun} van %{by}"
-  user_added_an_x_to_noun_by_user_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{user}"
+  user_added_an_x_to_noun_by_user_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
   user_added_an_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
   user_added_an_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
   user_added_x_observations_html: "%{user} heeft %{x} waarnemingen toegevoegd"
