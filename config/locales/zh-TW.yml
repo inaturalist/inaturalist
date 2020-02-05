@@ -68,6 +68,8 @@ zh-TW:
     other: "<span class='count'>%{count}</span> 筆研究等級的觀察紀錄"
   x_research_grade_observations_to_species_html:
     other: "<span class='count'>%{count}</span> 筆被分類到「種」或種下階層的研究等級觀察紀錄"
+  x_sounds:
+    other: "%{count} 聲音"
   x_taxa_curated_html:
     other: "<span class='count'>%{count}</span> 個物種分類已策展"
   x_taxa_matching_current_filters:
@@ -263,8 +265,6 @@ zh-TW:
   added_to_favorites_html: |
     已加入至<a href="%{url}">最愛</a>
   adding: "正在新增……"
-  additional_range: 額外範圍
-  additional_range_data_from_an_unknown_source: 來自不知名來源的額外範圍資料
   adjust_brightness: 調整亮度
   admin: 管理員
   admin_s: 管理員
@@ -698,7 +698,6 @@ zh-TW:
   citation: 引用
   classification: 分類
   clear: 清除
-  clear_color_filters: 清除色彩篩選
   clear_filters: 清除篩選
   clear_search: 清除搜尋
   click_the_map: "<strong>點擊地圖</strong>來添加一個位置。"
@@ -1239,6 +1238,8 @@ zh-TW:
   flag_an_item: 標記一個項目
   flag_as_spammer: 標記為濫發垃圾訊息者
   flag_as_non_spammer: 標記為非濫發垃圾訊息者
+  #Label for the date/time when a flag was created
+  flag_created: 標記已建立
   flag_description: 為此內容加上旗號標記，讓管理員知道當中存在誤差。
   flag_for_check_list_title_html: |
     標記此物種名錄：%{title}
@@ -2954,7 +2955,6 @@ zh-TW:
   radius_value: "半徑（m）： %{radius}"
   random: 隨機
   range: 範圍
-  range_from: '範圍來自'
   rank: 分類位階
   rank_position: 級別
   rank_restrictions: 級別限制
@@ -3074,7 +3074,6 @@ zh-TW:
   remove_selected: 移除已選
   remove_tags: 移除標籤
   removed: 已移除
-  removed!: 已移除！
   removed_project_user: 已移除的專案用戶
   removing: "正在移除..."
   reorder_by_taxonomy: 依分類法重新排序
@@ -3797,6 +3796,7 @@ zh-TW:
   user_added_a_x: "%{user}添加一個%{x}"
   user_added_a_x_to_noun_by_html: "%{user}添加一個%{x}至由%{by}的%{noun}"
   user_added_a_x_to_noun_html: "%{user}添加一個%{x}至%{noun}"
+  user_added_an_identification_html: "%{user} 添加了一個鑑定"
   user_added_an_observation_field_html: '%{user} 已在由 %{owner} 所做出觀察裡添加用於欄位「%{field_name}」的內容'
   user_added_an_observation_html: "%{user} 添加一個觀察"
   user_added_an_x: "%{user}添加一個%{x}"
@@ -4366,6 +4366,9 @@ zh-TW:
         <strong>捕獲</strong>的？例如：是存在<strong>花園、動物園、魚缸</strong>或一些其它存在情況是<strong>因為人類行為意圖而在這裡</strong>？我們歡迎所有生物的觀察，不過請讓我們了解該生物是屬於野化或歸化。
       compare:
         about_missing_taxa: 關於找不到的分類群
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: 合併
+        some_queries_missing_taxa: 有些查詢缺少分類群資料
       export:
         choose_columns_desc: 選擇您所想要匯出的欄位
         create_a_query_desc_html: |
@@ -5014,6 +5017,7 @@ zh-TW:
           代表透過 <a href="https://www.inaturalist.org">iNaturalist</a>
           或 <a href="%{url}">iNaturalist 網路</a>網站建立
       year:
+        inaturalist_network: iNaturalist 成員網路
         include_usa: 包含美國
         growth_by_country_desc_html: |
           成長是在哪裡發生的呢？成長的結果會複雜難懂，是因為按國家來區分成長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有成長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。 <strong>"% 總成長"</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 個觀察、2017 有 10 個觀察，這代表成長了 10 個觀察，假如當中有 5 個觀察是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>"% 成長"</strong>代表某國家此年度觀察數量與去年觀察數量增加的百分比，假如寮國去年有 10 個觀察而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。
@@ -5882,6 +5886,8 @@ zh-TW:
     scopes:
       write: |
         創建、更新，和刪除您的觀察、鑑定、代表您本身的內容，以及存取您的隱藏座標與您可在網站上取用的資訊。
+      login: |
+        存取與登入相關的資訊，像是電子郵件、使用者名、名稱、以及使用者圖示。
     errors:
       messages:
         #Common error messages
