@@ -115,14 +115,5 @@
         </td>
       <% end %>
     </tr>
-    
-    <tr>
-      <th><%= t(:colors) %></th>
-      <% for taxon in [@keeper, @taxon] %>
-        <td>
-          <%= taxon.colors.blank? ? "&nbsp;" : taxon.colors.map(&:value).join(', ') %>
-        </td>
-      <% end %>
-    </tr>
   </table>
 <% end -%>

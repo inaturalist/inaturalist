@@ -389,15 +389,6 @@ class Taxon < ActiveRecord::Base
     select("DISTINCT ON (taxa.id) taxa.*")
   }
   
-  scope :colored, lambda {|colors|
-    colors = [colors] unless colors.is_a?(Array)
-    if colors.first.to_i == 0
-      joins(:colors).where("colors.value IN (?)", colors)
-    else
-      joins(:colors).where("colors.id IN (?)", colors)
-    end
-  }
-  
   scope :has_photos, -> { joins(:taxon_photos).where("taxon_photos.id IS NOT NULL") }
   scope :among, lambda {|ids| where("taxa.id IN (?)", ids)}
   
