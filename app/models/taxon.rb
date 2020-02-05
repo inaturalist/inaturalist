@@ -23,6 +23,7 @@ class Taxon < ActiveRecord::Base
 
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
+  attr_accessor :skip_observation_indexing
 
   include ActsAsElasticModel
   # include ActsAsUUIDable
@@ -557,6 +558,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def index_observations
+    return if skip_observation_indexing
     Observation.elastic_index!(scope: observations.select(:id), delay: true)
   end
 
