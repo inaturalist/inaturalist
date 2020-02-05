@@ -242,8 +242,6 @@ pt-BR:
   added_to_favorites_html: |
     Adicionado a <a href="%{url}">favoritos</a>
   adding: "Adicionando..."
-  additional_range: Distribuição adicional
-  additional_range_data_from_an_unknown_source: Distribuição adicional para fontes desconhecidas
   adjust_brightness: Ajustar o brilho
   admin: Administrador
   admin_s: Administrador(es)
@@ -647,7 +645,6 @@ pt-BR:
   citation: Citação
   classification: Classificação
   clear: limpar
-  clear_color_filters: Limpe os filtros de cor
   clear_filters: Limpar filtros
   clear_search: Limpe a pesquisa
   click_the_map: "<strong>Clique no mapa</strong> para adicionar uma localização."
@@ -2641,7 +2638,6 @@ pt-BR:
   radius_value: "Raio (m): %{radius}"
   random: Aleatório
   range: Área de Distribuição
-  range_from: 'Distribuição de'
   rank: Classificação
   rank_position: Classificação
   rank_restrictions: Restrição para classificação
@@ -2760,7 +2756,6 @@ pt-BR:
   remove_selected: Remova selecionado
   remove_tags: Remova marcações
   removed: Removido
-  removed!: Removido!
   removed_project_user: Usuário removido do projeto
   removing: "Removendo..."
   reorder_by_taxonomy: Reordenar por taxonomia
@@ -5482,6 +5477,8 @@ pt-BR:
         Crie, atualize e exclua suas observações, identificações e outros
         conteúdo em seu nome e acessar suas coordenadas ocultas e qualquer
         outras informações que você pode acessar no site.
+      login: |
+        Acessar informações relevantes para entrar, como endereço de e-mail, nome de usuário, nome e ícone do usuário.
     errors:
       messages:
         #Common error messages
