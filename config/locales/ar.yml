@@ -155,8 +155,6 @@ ar:
   added_to_favorites_html: |
     تمت الإضافة إلى <a href="%{url}">المفضلة</a>
   adding: "تجري الإضافة..."
-  additional_range: نطاق إضافي
-  additional_range_data_from_an_unknown_source: بيانات نطاق إضافية من مصدر غير معروف
   adjust_brightness: ضبط السطوع
   admin: إداري
   admin_s: إداري(ون)
@@ -535,7 +533,6 @@ ar:
   citation: اقتباس
   classification: تصنيف
   clear: مسح
-  clear_color_filters: مسح مرشحات الألوان
   clear_filters: مسح المرشحات
   clear_search: مسح البحث
   click_the_map: "<strong>انقر على الخريطة</strong> لإضافة موقع."
@@ -2679,7 +2676,6 @@ ar:
   radius_value: "نصف القطر (م): %{radius}"
   random: عشوائي
   range: النطاق
-  range_from: 'مجموعة من'
   rank: المرتبة
   rank_position: المرتبة
   rank_restrictions: قيود المرتبة
@@ -2797,7 +2793,6 @@ ar:
   remove_selected: إزالة المختار
   remove_tags: إزالة العلامات
   removed: تمت إزالته
-  removed!: تمت إزالته!
   removed_project_user: تمت إزالة مستخدم المشروع
   removing: "تجري الإزالة..."
   reorder_by_taxonomy: إعادة ترتيب حسب التصنيف
@@ -6061,6 +6056,9 @@ ar:
         إنشاء وتحديث وحذف الملاحظات ، والتعريفات، والمحتويات 
         الأخرى نيابة عنك، والوصول إلى الإحداثيات المخفية وأية 
         معلومات أخرى يمكنك الوصول إليها على الموقع.
+      login: |
+        الوصول إلى معلومات ذات صلة بتسجيل الدخول، مثل عنوان البريد الإلكتروني، واسم
+        المستخدم، وأيقونة المستخدم.
     errors:
       messages:
         #Common error messages
