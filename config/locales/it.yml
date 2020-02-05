@@ -307,8 +307,6 @@ it:
   added_to_favorites_html: |
     Aggiunta ai <a href="%{url}">preferiti</a>
   adding: "Aggiunta in corso..."
-  additional_range: Areale aggiuntivo
-  additional_range_data_from_an_unknown_source: Ulteriori dati di distribuzione da fonte sconosciuta
   adjust_brightness: Regola luminosità
   admin: Amministratore
   admin_s: Amministratore(i)
@@ -758,7 +756,6 @@ it:
   citation: Citazione
   classification: Classificazione
   clear: pulisci
-  clear_color_filters: Rimuovi i filtri dei colori
   clear_filters: Cancella filtri
   clear_search: Cancella la ricerca
   click_the_map: "<strong>Clicca sulla mappa</strong> per aggiungere una posizione."
@@ -1911,12 +1908,15 @@ it:
   membership_model: Modello di adesione
   mentioned_you_in_noun_html: "%{user} ti ha menzionato in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} ti ha menzionato in %{noun} di %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} ti ha menzionato in %{noun} di %{by}"
   mentioned_you_in_noun_by_you_html: "%{user} ti ha menzionato in %{noun} di te"
   mentioned_you_in_a_x_on_noun_html: "%{user} ti ha menzionato in una %{x} su %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} ti ha menzionato in una %{x} su %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} ti ha menzionato in una %{x} su %{noun} di %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di %{by}"
   mentioned_you_in_a_x_on_noun_by_you_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di te"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} ti ha menzionato in una %{x} su %{noun} di %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di %{by}"
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di te"
   merge: Unisci
   merge_it_with_another_place: Unisci con un altro luogo
@@ -3031,7 +3031,6 @@ it:
   radius_value: "Raggio (m): %{radius}"
   random: Casuale
   range: Intervallo
-  range_from: 'Areale da'
   rank: Rango
   rank_position: Rango
   rank_restrictions: Restrizioni del rango
@@ -3152,7 +3151,6 @@ it:
   remove_selected: Rimuovi i selezionati
   remove_tags: Rimuovi i tag
   removed: Rimosso
-  removed!: Rimosso!
   removed_project_user: Utente del progetto rimosso
   removing: "Rimozione in corso..."
   reorder_by_taxonomy: Riordina per tassonomia
@@ -3911,7 +3909,7 @@ it:
   user_added_a_project_invitation_html: "%{user} ha aggiunto in invito di progetto"
   user_added_a_x: "%{user} ha aggiunto una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a una %{noun} di %{by}"
-  user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{user}"
+  user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
   user_added_a_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
   user_added_a_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha aggiunto un'identificazione"
@@ -3920,7 +3918,7 @@ it:
   user_added_an_observation_html: "%{user} ha aggiunto una osservazione"
   user_added_an_x: "%{user} ha aggiunto una %{x}"
   user_added_an_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a %{noun} di %{by}"
-  user_added_an_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{user}"
+  user_added_an_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
   user_added_an_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
   user_added_an_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha aggiunto %{x} osservazioni"
