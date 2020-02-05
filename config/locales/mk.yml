@@ -151,7 +151,6 @@ mk:
   added_to_favorites_html: |
     Додадено во <a href="%{url}">омилени</a>
   adding: "Додавам..."
-  additional_range: Дополнителна распространетост
   admin: Админ
   admin_s: Администратор(и)
   admin_only: Само за администратори
@@ -163,7 +162,6 @@ mk:
   agreeing: Поднесувам согласност...
   aka: наречен и
   all: Сите
-  all_colors: "&laquo; Сите бои"
   all_comments: Сите коментари
   all_life: Сет живот
   all_names: Сите имиња
@@ -356,7 +354,6 @@ mk:
   citation: Наведување
   classification: Класификација
   clear: тргни
-  clear_color_filters: Тргни ги филтрите за бои
   clear_search: Исчисти го пребарувањето
   click_the_map: "<strong>Стиснете на картата</strong> за да додадете местоположба."
   code: Код
@@ -918,7 +915,9 @@ mk:
   out_of_range: Вон опсег
   output_taxon: Излезен таксон
   owner: Сопственик
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Матично
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Матично име
   password: Лозинка
   password_confirmation: 'Потврда на лозинката'

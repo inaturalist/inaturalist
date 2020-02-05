@@ -301,8 +301,6 @@ ca:
   added_to_favorites_html: |
     Afegit <a href="%{url}">als preferits</a>
   adding: "Afegint..."
-  additional_range: Distribució addicional
-  additional_range_data_from_an_unknown_source: Dades addicionals de distribució des de font desconeguda
   adjust_brightness: Ajusteu brillantor
   admin: administrador
   admin_s: Administrador/s
@@ -315,7 +313,6 @@ ca:
   agreeing: Acceptant...
   aka: alies
   all: Tots
-  all_colors: "&laquo; Tots els colors"
   all_comments: Tots els comentaris
   all_flags_must_be_resolved: Cal completar totes les etiquetes
   all_life: Tota la vida
@@ -752,7 +749,6 @@ ca:
   citation: Referència
   classification: Classificació
   clear: Neteja
-  clear_color_filters: Esborra els filtres de color
   clear_filters: Netegeu filtres
   clear_search: Esborra la cerca
   click_the_map: "<strong>Feu clic al mapa</strong> per afegir-hi una localització."
@@ -1907,9 +1903,12 @@ ca:
   membership_model: Model d'adhesió
   mentioned_you_in_noun_html: "%{user} us ha esmentat a %{noun}"
   mentioned_you_in_noun_by_html: "%{user} us ha esmentat a %{noun} de %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} us ha esmentat a %{noun} de %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} us ha esmentat a %{noun} vostre"
   mentioned_you_in_a_x_on_noun_html: "%{user} us ha esmentat en un %{x} a %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} us ha esmentat en un %{x} a %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} us ha esmentat a una %{x} en %{noun} de %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} us ha esmentat a un %{x} en %{noun} de %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} us ha esmentat a una %{x} en %{noun} de %{by}"
   merge: Combina
   merge_it_with_another_place: Combina amb un altre lloc
@@ -2449,7 +2448,9 @@ ca:
   overview: Vista general
   overlapping_downstream_taxon_frameworks_html: "Superposició dels marcs taxonòmics descendents: %{count}"
   owner: Propietari
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Pare
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nom de la classe o espècie pare
   parental_consent:
     must_specify_email: Heu d'especificar una adreça de correu electrònic
@@ -3021,7 +3022,6 @@ ca:
   radius_value: "Radi (m): %{radius}"
   random: A l’atzar
   range: Interval
-  range_from: 'Distribució de'
   rank: Rang
   rank_position: Classificació
   rank_restrictions: Classifica les restriccions
@@ -3142,7 +3142,6 @@ ca:
   remove_selected: Eliminar els elements seleccionats
   remove_tags: Eliminar etiquetes
   removed: eliminat
-  removed!: Eliminat!
   removed_project_user: Usuari eliminat del projecte
   removing: "Eliminant..."
   reorder_by_taxonomy: Reordenar per taxonomia
@@ -4071,7 +4070,6 @@ ca:
   were_pretty_sure_this_is_in_the_rank: Estem prou segurs que aquest està en el lloc %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ho sentim, però la vostra importació massiva des de %{filename} ha fallat."
   what: Què
-  what_color_was_it: De quin color era?
   what_did_you_see: Què vau veure?
   what_did_you_see?: <em>Què</em> vau veure?
   what_do_you_think: Què en penseu?

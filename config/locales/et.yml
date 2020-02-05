@@ -275,8 +275,6 @@ et:
   added_to_favorites_html: |
     Lisatud <a href="%{url}">lemmikute</a> hulka
   adding: "Lisan..."
-  additional_range: Lisapiirkond
-  additional_range_data_from_an_unknown_source: Tundmatust allikast pärinevad vahemiku andmed
   adjust_brightness: Muuda heledust
   admin: Administraator
   admin_s: Admin(id)
@@ -289,7 +287,6 @@ et:
   agreeing: Kinnitan...
   aka: tuntud ka nimega
   all: Kõik
-  all_colors: "&laquo; Kõik värvid"
   all_comments: Kõik kommentaarid
   all_flags_must_be_resolved: Kõik märkused peavad olema lahendatud
   all_life: Kogu elusloodus
@@ -682,7 +679,6 @@ et:
   citation: Viide
   classification: Klassifikatsioon
   clear: tühjenda
-  clear_color_filters: Tühjenda värvifiltrid
   clear_filters: Eemalda filtrid
   clear_search: Tühjenda otsing
   click_the_map: "Koha lisamiseks <strong>vajuta kaardile</strong>."
@@ -2141,7 +2137,9 @@ et:
   output_taxon: Väljundtakson
   overview: Ülevaade
   owner: Omanik
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Ülemtakson
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Ülemtaksoni nimi
   password: Salasõna
   password_confirmation: 'Salasõna kordus'
@@ -2603,7 +2601,6 @@ et:
   query: Päring
   random: Juhuslik
   range: Piirkond
-  range_from: 'Piirkond'
   rank: Kategooria
   rank_position: Tase
   rank_restrictions: Kategooria piirangud
@@ -2723,7 +2720,6 @@ et:
   remove_selected: Eemalda valitud
   remove_tags: Eemalda märksõnad
   removed: Eemaldatud
-  removed!: Eemaldatud!
   removed_project_user: Projekti kasutaja eemaldatud
   removing: "Eemaldan..."
   reorder_by_taxonomy: Järjest taksonoomiate järgi
@@ -3557,7 +3553,6 @@ et:
   were_pretty_sure_this_is_in_the_rank: Oleme päris kindlad, et see on kategoorias %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Meil on kahju, kuid faili %{filename} massimport kukkus läbi."
   what: Mis
-  what_color_was_it: Mis värvi see oli?
   what_did_you_see: Mida sa nägid?
   what_did_you_see?: <em>Mida</em> sa nägid?
   what_do_you_think: Mida sina arvad?

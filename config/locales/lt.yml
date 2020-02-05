@@ -1,4 +1,9 @@
 lt:
+  x_comments:
+    one: '%{count} komentaras'
+    few: '%{count} komentarai(-ų)'
+    many: '%{count} komentarai(-ų)'
+    other: '%{count} komentarai(-ų)'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>"
   x_research_grade_observations_html:
     one: "<span class='count'>%{count}</span> identifikuotas stebėjimas"
@@ -165,8 +170,6 @@ lt:
   added_to_favorites_html: |
     Pridėta į <a href="%{url}">mėgstamiausius</a>
   adding: "Pridedama..."
-  additional_range: Papildomas asortimentas
-  additional_range_data_from_an_unknown_source: Papildomi asortimento duomenys iš nežinomo šaltinio
   adjust_brightness: Sureguliuoti ryškumą
   admin: Administratorius
   admin_s: Administratorius(-iai)
@@ -179,7 +182,6 @@ lt:
   agreeing: Sutinkama...
   aka: dar žinomas kaip
   all: Visi
-  all_colors: "&laquo; Visos spalvos"
   all_comments: Visi komentarai
   all_flags_must_be_resolved: Visos žymės turi būti išspręstos
   all_life: Visa gyvybė
@@ -524,7 +526,6 @@ lt:
   citation: Citata
   classification: Klasifikacija
   clear: išvalyti
-  clear_color_filters: Valyti spalvos filtrus
   clear_filters: Valyti filtrus
   clear_search: Valyti paiešką
   click_the_map: "<strong>Paspauskite ant žemėlapio</strong>, kad pridėtumėte vietą."
@@ -701,6 +702,7 @@ lt:
   curators: Kuratoriai
   curator_identification: Kuratorius identifikavimas
   current_flags: Dabartinės žymės
+  custom_project_fields: Sukurti projekto laukai
   customize_location: Pasirinkti vietą
   darr_apply_darr: "&darr; Taikyti &darr;"
   dashboard: Valdymo skydas
@@ -987,6 +989,7 @@ lt:
   fields_merged: Laukai sujungti
   file: Failas
   file_should_be_in_the_following_format: "Failas turi būti tokio formato: taksono pavadinimas, aprašymas"
+  fill_out_project_observation_fields: Užpildyti projekto stebėjimo laukus
   fill_out_your_profile: užbaigti savo profilį
   filter: Filtras
   filter_by_curator_identification: Filtruoti pagal kuratoriaus identifikavimą
@@ -2552,7 +2555,6 @@ lt:
   remove_selected: Pašalinti tai, kas pasirinkta
   remove_tags: Pašalinti žymes
   removed: Pašalinta
-  removed!: Pašalinta!
   removed_project_user: Pašalintas projekto vartotojas
   removing: "Šalinama..."
   reorder_by_taxonomy: Surikuoti pagal taksonomiją
@@ -2828,7 +2830,7 @@ lt:
   stop_trusting_this_person_with_your_private_coordinates: Nebepatikėti šiam žmogui paslėptų koordinačių
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: PARDUOTUVĖ
+  store: PIRKTI
   studies_that_used_inaturalist_data_in_year: Tyrimai, kurie %{year} metais naudojo iNaturalist duomenis
   stuff_just_added: "Tai, ką ką tik pridėjote..."
   subject_resolved_noun_html: "%{subject} išsprendė %{noun}"
@@ -3269,7 +3271,6 @@ lt:
   were_pretty_sure_this_is_in_the_rank: Mes įsitikinę, kad šis organizmas priklauso %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Atsiprašome, tačiau grupinis %{filename} importas nepavyko."
   what: Kas
-  what_color_was_it: Kokios tai buvo spalvos?
   what_did_you_see: Ką pamatėte?
   what_did_you_see?: <em>Ką</em> pamatėte?
   what_do_you_think: Ką manote?
@@ -4065,6 +4066,9 @@ lt:
               belongs_to_an_existing_user: |
                 priklauso jau esančiam vartotojui; jeigu turite paskyrą, prisijunkite prieš tęsdami arba naudokite kitą el. pašto adresą
   doorkeeper:
+    scopes:
+      account_delete: |
+        Jūsų vardu ištrinti jūsų paskyrą.
     errors:
       messages:
         #Access grant errors

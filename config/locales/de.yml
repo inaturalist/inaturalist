@@ -96,6 +96,9 @@ de:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>Eine</span> Beobachtung mit Forschungsqualität auf Ebene der Art oder darunter bestimmt</span>"
     other: "<span class='count'>%{count}</span> Beobachtungen mit Forschungsqualität auf Ebene der Art oder darunter bestimmt</span>"
+  x_sounds:
+    one: "%{count} Ton"
+    other: "%{count} Töne"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> Taxon kuratiert"
     other: "<span class='count'>%{count}</span> Taxa kuratiert"
@@ -290,8 +293,6 @@ de:
   added_to_favorites_html: |
     Zu <a href="%{url}">Favoriten</a> hinzugefügt
   adding: "Füge hinzu…"
-  additional_range: Zusätzlicher Bereich
-  additional_range_data_from_an_unknown_source: Zusätzliche Bereichsdaten von einer unbekannten Quelle
   adjust_brightness: Helligkeit anpassen
   admin: Administrator
   admin_s: Admin(s)
@@ -304,7 +305,6 @@ de:
   agreeing: Zustimmung …
   aka: auch bekannt als
   all: Alle
-  all_colors: "&laquo; Alle Farben"
   all_comments: Alle Kommentare
   all_flags_must_be_resolved: Alle Meldungen müssen geklärt sein
   all_life: Alle Lebensformen
@@ -696,7 +696,6 @@ de:
   citation: Zitat
   classification: Klassifikation
   clear: löschen
-  clear_color_filters: Farbfilter löschen
   clear_filters: Filter aufheben
   clear_search: Suche löschen
   click_the_map: "<strong>Klicke auf die Karte</strong> um ein Ort hinzuzufügen."
@@ -1196,7 +1195,10 @@ de:
   flag_an_item: Objekt melden
   flag_as_spammer: Als Spammer markieren
   flag_as_non_spammer: Als Nicht-Spammer markieren
+  #Label for the date/time when a flag was created
+  flag_created: Meldung berichtet
   flag_description: Melde diesen Inhalt um Kuratoren wissen zu lassen, dass etwas nicht stimmt.
+  flag_for_comment_id_deleted: Meldung für Kommentar %{id} (gelöscht)
   flag_for_curation: Zur Kuratierung melden
   flag_it!: Markieren!
   flag_marked_as_resolved_html: '<span class="meta">Meldung als</span> <strong>geklärt.</strong><span class="meta">gekennzeichnet</span>.'
@@ -1738,6 +1740,7 @@ de:
   membership_model: Mitgliedersmodell
   mentioned_you_in_noun_html: "%{user} erwähnte dich in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} erwähnte dich in %{noun} von %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} erwähnte dich in %{noun} von %{by}"
   mentioned_you_in_a_x_on_noun_html: "%{user} erwähnte dich in einem %{x} über %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} erwähnte dich in einem %{x} am %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} erwähnte dich in einem %{x} über %{noun} von %{by}"
@@ -1982,7 +1985,11 @@ de:
   observation_: Beobachtung
   observation_added: Beobachtung hinzugefügt.
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
+  observation_brief_something_on_day_at_time: "Etwas am %{day} um %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Etwas am %{day} um %{time} von %{user}"
   observation_brief_something_on_day_by_user: "Etwas am %{day} von %{user}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} am %{day} um %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} am %{day} um %{time} von %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} am %{day} von %{user}"
   observations_by_category: "Beobachtungen nach Kategorie"
   observations_by_app: Beobachtungen nach App
@@ -2092,6 +2099,7 @@ de:
     observe_panel_title: Fangen wir an und posten ein paar Beobachtungen
     observe_panel_body_p1_local: Brauchen Sie Inspiration? Hier sind ein paar Organismen die in der Gegend beobachtet wurden...
     observe_panel_body_p1_global: Brauchst du Inspiration? Hier sind ein paar Organismen die beobachtet wurden...
+    observe_panel_body_p2: Gehe nach draußen und beobachte ein einzelnes Lebewesen (Tier, Pflanze, Pilz...). Such Dir dafür einen wilden Organismus und mache ein klares, gut erkennbares Bild. Wenn Du bereits ein Foto von etwas Wildem hast, <a href="%{new_observation_path}">füge es jetzt hinzu</a>. Du kannst auch die mobilen Apps von %{site_name} verwenden, um Beobachtungen zu dokumentieren.
     observe_panel_body_p3: Sobald Du Deine Beobachtungen geteilt hast, zeigt Dir diese Seite Updates aus der Community in Form von Kommentaren und Identifikationen. Wer weiß was Du entdecken wirst!
     follow_panel_title_local: Naturalisten in der Umgebung folgen
     follow_panel_title_global: Aktiven Naturalisten folgen
@@ -2174,7 +2182,9 @@ de:
   output_taxon: Taxon ausgeben
   overview: Übersicht
   owner: Besitzer
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Elternteil
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Eltern-Name
   parental_consent:
     must_specify_email: Du musst eine E-Mail-Adresse angeben
@@ -2733,7 +2743,6 @@ de:
   radius_value: "Radius (m): %{radius}"
   random: Zufällig
   range: Bereich
-  range_from: 'Bereich von'
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbeschränkungen
@@ -2852,7 +2861,6 @@ de:
   remove_selected: Ausgewählte entfernen
   remove_tags: Tags entfernen
   removed: Entfernet
-  removed!: Entfernet!
   removed_project_user: Projektbenutzer entfernen
   removing: "Entferne…"
   reorder_by_taxonomy: Neuordnen nach Taxonomie
@@ -3007,6 +3015,7 @@ de:
   show_observation_photos: Beobachtungsfotos zeigen
   show_off_your_recent_observations: Zeige Deine neuesten Beobachtungen auf Deinem Blog oder Deiner Webseite!
   show_only: Nur anzeigen
+  show_relative_proportions_of_all_observations: Relativen Anteil aller Beobachtungen anzeigen
   show_running_total: Gesamtzahl anzeigen
   show_scientific_name_first: Wissenschaftliche Namen bevorzugen
   show_taxa_from_both: (Taxa von beiden Listen anzeigen)
@@ -3028,6 +3037,8 @@ de:
   sizes: Größe
   skip_to_next_page: "Zur nächsten Seite springen"
   small: klein
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Seiten-Administratoren
   site_name_place: "%{site_name} Orte"
   site_observations_export_from_date: "%{site_name}-Beobachtungsexport vom %{date}"
   site_site_admin: "%{site_name}-Websiteadministrator"
@@ -3563,7 +3574,6 @@ de:
   were_pretty_sure_this_is_in_the_rank: Wir sind ziemlich sicher, es ist in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Es tut uns leid aber der Batch-Import von %{filename} ist fehlgeschlagen."
   what: Was
-  what_color_was_it: Welche Farbe hatte es?
   what_did_you_see: Was hast du gesehen?
   what_did_you_see?: <em>Was</em> hast du gesehen?
   what_do_you_think: Was glaubst du?
@@ -3749,8 +3759,14 @@ de:
       post_donate_social_media_text: Ich unterstütze iNaturalist weil...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Werde ein monatlicher Unterstützer von iNaturalist
+    flags:
+      show:
+        flaggable_content_desc: |
+          Der gemeldete Inhalt ist das primäre Textattribut des gemeldeten Objekts zum Zeitpunkt der Erstellung der Meldung. Nur Kuratoren und Mitarbeiter können dies sehen. Nur Mitarbeiter können dies bei Nachrichten sehen.
     guides:
       index:
+        deprecated_banner: |
+          Bitte beachte, dass ab Jänner 2019 die Guides-Funktion so wie ist verbleibt. Obwohl wir nicht vorhaben, die Guides zu löschen, planen wir auch nicht diese weiter zu entwickeln.
         welcome_message_html: |
           Guides helfen dir, mehr über die biologische Vielfalt auf der ganzen Welt zu erfahren.
           Ob du die Serengeti oder nur deinen örtlichen Park (der vielleicht die Serengeti ist) erkundest, Guides können dir helfen, die erstaunliche Vielfalt unseres Planeten zu verstehen.
@@ -3840,6 +3856,9 @@ de:
         show_messages_to_user: Zeige Nachrichten an %{user}
         speech_privilege_notice: |
           Du kannst neue Nachrichten senden, nachdem Du drei überprüfbare Beobachtungen oder drei Identifikationen für andere hinzugefügt hast. Im Moment kannst Du die Nachrichten lesen und beantworten, die andere Leute Dir schicken.
+      show:
+        flag_notice_html: |
+          Du hast diese Konversation am %{date} gemeldet. Die Meldung bleibt auch dann bestehen, wenn du deine Kopie dieser Unterhaltung löschst, also ist es sicher, dies zu tun, wenn du sie nicht mehr sehen willst.
     oauth:
       authorizations:
         new:
@@ -4269,6 +4288,8 @@ de:
           Wir zeigen auch Tabellen zur Saisonbedingtheit für Beobachtungsvermerke.
           Vermerke sind ein neues System, um Metadaten unter Verwendung eines kontrollierten Begriffsvokabulars zu Beobachtungen hinzuzufügen. Bis jetzt verwenden wir ausschließlich "Lebensstadium" und "Pflanzenphänologie" (wenn die Pflanze blüht oder Früchte trägt). Wir haben noch keine Möglichkeit, Vermerke direkt hinzuzufügen, daher konvertieren wir zunächst nur Daten von Beobachtungsfeldern in Vermerke. 
           Wenn du nicht abwarten kannst, bis wir unser Vermerksystem fertiggestellt haben, kannst du zu den "Lebensstadium"-Vermerken beitragen, indem du Beobachtungsfeldwerte mit folgenden Werten einträgst: Ausgewachsen, frisch geschlüpft, Puppe, Nymphe, Larve, Ei oder Jungtier. Also sind insbesondere die Felder "Lebensstadium" und "Insekten-Lebensstadium" gut. Für "Pflanzenphänologie" sehen wir uns jedes Feld mit dem Wort "Phänologie" im Namen und "Blüte" oder "Frucht" als Wert an, das Feld "Blütenphänologie" ist also zur Nutzung geeignet.
+        charts_help_relative_observations: |
+          Die Anzeige der Häufigkeit als relativer Anteil aller Beobachtungen hilft die Auswirkungen des Gesamtwachstums des Standorts zu mildern. Zum Beispiel, wenn die Website wächst, da wir mit jedem verstrichenen Jahr immer mehr Beobachtungen erhalten und von einzelnen Taxen, was nicht bedeutet, dass es noch mehr von diesem Taxon gibt, sondern nur dass es mehr Leute gibt, die es beobachtet haben. Das Anzeigen des relativen Anteils bedeutet, dass, wenn es insgesamt 100 Beobachtungen gibt, aber 20 Beobachtungen dieses Taxons, dass das Verhältnis dann 0,2 (20 / 100) beträgt. Wenn Menschen 2000 Beobachtungen im nächsten Jahr melden und 400 Beobachtungen von diesem Taxon, dann beträgt der Anteil immer noch 0,2 (400 / 2000). Dies verursacht einige Aberrationen, wenn es nur sehr wenige Beobachter in einem Gebiet gibt, oder für Taxa die sehr selten beobachtet werden, aber das gilt ebenso für die Gesamtzahlen.
         complete_taxon_desc: |
           Bei "vollständigen" Taxa sind alle bestehenden, untergeordneten Taxa unter einem bestimmten Rang in der Datenbank vorhanden. Ist ein Taxon beispielsweise bis zur Ebene der Art vollständig, können wir sagen, wie viele dieser Arten beobachtet wurden und wie viele noch beobachtet werden müssen. Die Anzahl Arten für "vollständige" Taxa bis zur Art beinhaltet keine "unzählbaren", wie ausgestorbene oder veraltete Arten; außerdem werden keine Taxa unterhalb der Art, wie Unterarten oder Varietäten, berücksichtigt.
         frequency:
@@ -4834,6 +4855,9 @@ de:
             email:
               domain_is_not_supported: Domain wird nicht unterstützt
   doorkeeper:
+    scopes:
+      account_delete: |
+        Dein Konto in Deinem Namen zu löschen.
     errors:
       messages:
         #Access token errors

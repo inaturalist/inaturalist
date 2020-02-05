@@ -306,8 +306,6 @@ da:
   added_to_favorites_html: |
     Tilføjet til <a href="%{url}">favoritter</a>
   adding: "Tilføjer..."
-  additional_range: Yderligere område
-  additional_range_data_from_an_unknown_source: Yderligere område data fra en ukendt kilde
   adjust_brightness: Justér lysstyrke
   admin: Administrator
   admin_s: Administrator(er)
@@ -320,7 +318,6 @@ da:
   agreeing: Er enig...
   aka: også kendt som
   all: Alle
-  all_colors: "&laquo; Alle farver"
   all_comments: Alle kommentarer
   all_flags_must_be_resolved: Alle markeringer skal være løst
   all_life: Alt liv
@@ -760,7 +757,6 @@ da:
   citation: Citation
   classification: Klassifikation
   clear: ryd
-  clear_color_filters: Ryd farvefiltre
   clear_filters: Ryd filtre
   clear_search: Ryd søgning
   click_the_map: "<strong>Klik på kortet</strong> for at tilføje et sted."
@@ -1924,6 +1920,8 @@ da:
   membership_model: Medlemskabsmodel
   mentioned_you_in_noun_html: "%{user} nævnte dig i %{noun}"
   mentioned_you_in_noun_by_html: "%{user} nævnte dig i %{noun} af %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} nævnte dig i %{noun} af %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} nævnte dig i %{noun} af dig"
   mentioned_you_in_a_x_on_noun_html: "%{user} nævnte dig i en %{x} på %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user}  nævnte dig i en %{x} på %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} nævnte dig i en %{x} på %{noun} af %{by}"
@@ -2482,7 +2480,9 @@ da:
   overview: Overblik
   overlapping_downstream_taxon_frameworks_html: "Overlappende downstream Taxon Frameworks: %{count}"
   owner: Ejer
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Overordnet
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Overordnets navn
   parental_consent:
     must_specify_email: Du skal angive en e-mail adresse
@@ -3060,7 +3060,6 @@ da:
   radius_value: "Radius (m):%{radius}"
   random: Tilfældig
   range: Område
-  range_from: 'Område fra'
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangrestriktioner
@@ -3181,7 +3180,6 @@ da:
   remove_selected: Fjern valgte
   remove_tags: Fjern tags
   removed: Fjernet
-  removed!: Fjernet!
   removed_project_user: Fjernet projektbruger
   removing: "Fjerner..."
   reorder_by_taxonomy: Sortér efter taksonomi
@@ -4145,7 +4143,6 @@ da:
   were_pretty_sure_this_is_in_the_rank: Vi er ret sikre på, at dette er i %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklager, men din multiimport af %{filename} har fejlet."
   what: Hvad
-  what_color_was_it: Hvilken farve var det?
   what_did_you_see: Hvad observerede du?
   what_did_you_see?: <em>Hvad</em> så du?
   what_do_you_think: Hvad synes du?
@@ -6626,8 +6623,10 @@ da:
       write: |
         Opret, opdater og slet dine observationer, identifikationer og andet indhold på dine vegne, og få adgang til dine skjulte koordinater og alle andre oplysninger, du kan tilgå på hjemmesiden.
       login: |
-        Tilgå information, der er relevant for at logge ind såsom e-mail-adresse, brugernavn,
-        navn og brugerikon
+        Adganginformation vedr. indlogning på en tredjepartstjeneste såsom e-mailadresse, brugernavn,
+        navn og brugerikon tilknyttet din konto her.
+      account_delete: |
+        Slet din egen konto.
     errors:
       messages:
         #Common error messages

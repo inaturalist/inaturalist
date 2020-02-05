@@ -320,8 +320,6 @@ nl:
   added_to_favorites_html: |
     Toegevoegd aan <a href="%{url}">favorieten</a>
   adding: "Bezig met toevoegen..."
-  additional_range: Bijkomende omvang
-  additional_range_data_from_an_unknown_source: Bijkomende range data van een onbekende bron
   adjust_brightness: Helderheid aanpassen
   admin: Administrator
   admin_s: Administrator(en)
@@ -334,7 +332,6 @@ nl:
   agreeing: Bevestig...
   aka: ook bekend als
   all: Alle
-  all_colors: "&laquo; Alle kleuren"
   all_comments: Alle reacties
   all_flags_must_be_resolved: Alle meldingen moeten worden opgelost
   all_life: Alle leven
@@ -772,7 +769,6 @@ nl:
   citation: Citaat
   classification: Classificatie
   clear: wissen
-  clear_color_filters: Verwijder kleur filters
   clear_filters: Filters wissen
   clear_search: Zoekopdracht wissen
   click_the_map: "<strong>Klik op de kaart</strong> om een locatie toe te voegen."
@@ -1934,10 +1930,16 @@ nl:
   membership_model: Lidmaatschapsmodel
   mentioned_you_in_noun_html: "%{user} heeft je genoemd in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} heeft je genoemd in %{noun} van %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} heeft je genoemd in %{noun} van %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} heeft je genoemd in %{noun} van jou"
   mentioned_you_in_a_x_on_noun_html: "%{user} heeft je genoemd in een %{x} op %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} heeft je genoemd in een %{x} op %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} heeft je genoemd in een %{x} op %{noun} van %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} heeft je genoemd in een %{x} op %{noun} van %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} heeft je genoemd in een %{x} op %{noun} van jou"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} heeft je genoemd in een %{x} op %{noun} van %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} heeft je genoemd in een %{x} op %{noun} van %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} heeft je genoemd in een %{x} op %{noun} van jou"
   merge: Samenvoegen
   merge_it_with_another_place: Samenvoegen met een andere plaats
   merge_two_places_together: Voeg twee plaatsen samen. Alle soorten van de checklists zullen samengevoegd worden, samen met alle geografische gegevens.
@@ -2495,8 +2497,10 @@ nl:
   overview: Overzicht
   overlapping_downstream_taxon_frameworks_html: "Overlappende onderliggende taxonkaders: %{count}"
   owner: Eigenaar
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Bovenliggende
-  parent_name: Oudernaam
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  parent_name: Naam bovenliggend item
   parental_consent:
     must_specify_email: Je moet een e-mailadres invullen
     invalid_email: Ongeldige e-mailopmaak.
@@ -3074,7 +3078,6 @@ nl:
   radius_value: "Straal (m): %{radius}"
   random: Willekeurig
   range: Bereik
-  range_from: 'Reeks van'
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbeperkingen
@@ -3195,7 +3198,6 @@ nl:
   remove_selected: Selectie verwijderen
   remove_tags: Labels verwijderen
   removed: Verwijderd
-  removed!: Verwijderd
   removed_project_user: Projectgebruiker verwijderd
   removing: "Bezig met verwijderen..."
   reorder_by_taxonomy: Herschik volgens taxonomie
@@ -3967,6 +3969,8 @@ nl:
   user_added_a_project_invitation_html: "%{user} heeft een projectuitnodiging toegevoegd"
   user_added_a_x: "%{user} heeft een %{x} toegevoegd"
   user_added_a_x_to_noun_by_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
   user_added_a_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
   user_added_an_identification_html: "%{user} heeft een determinatie toegevoegd"
   user_added_an_observation_field_html: '%{user} heeft een waarde toegevoegd voor "%{field_name}" aan een waarneming van %{owner}'
@@ -3974,6 +3978,8 @@ nl:
   user_added_an_observation_html: "%{user} heeft een waarneming toegevoegd"
   user_added_an_x: "%{user} heeft een %{x} toegevoegd"
   user_added_an_x_to_noun_by_html: "%{user} heeft %{x} toegevoegd aan %{noun} van %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
   user_added_an_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
   user_added_x_observations_html: "%{user} heeft %{x} waarnemingen toegevoegd"
   user_already_authenticated: Gebruiker is al geverifieerd
@@ -4137,7 +4143,6 @@ nl:
   were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in @gender{n:het|de} %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Het spijt ons, maar je bulkimport van %{filename} is mislukt."
   what: Wat
-  what_color_was_it: Welke kleur had het?
   what_did_you_see: Wat heb je gezien?
   what_did_you_see?: <em>Wat</em> zag je?
   what_do_you_think: Wat denk je?
@@ -5672,7 +5677,7 @@ nl:
           <p>
           Je kind kan dan waarnemingen invoeren op zijn iNaturalist-account met behulp van de Seek-app, zodat ze zichtbaar zijn iNaturalist.org.
           </p>
-        thanks_for_creating_a_minor_account: BEDANKT VOOR HET MAKEN VAN EEN ACCOUNT VOOR EEN MINDERJARIGE!
+        thanks_for_creating_a_minor_account: BEDANKT VOOR HET AAMAKEN VAN EEN MINDERJARIGEN-ACCOUNT!
         we_will_send_you_an_email: |
           We sturen je een e-mail zodra het account van je kind is geactiveerd.
       new:
@@ -6107,7 +6112,7 @@ nl:
         latitude: Breedtegraad
         longitude: Lengtegraad
         name: Naam
-        parent_id: ouder
+        parent_id: overkoepelend
         place_type: Plaatstype
         prefers_check_lists: Controlelijsten toegestaan?
         woeid: WOEID
@@ -6122,7 +6127,7 @@ nl:
       taxon:
         name: Naam
         rank: Rang
-        parent_id: Ouder-ID
+        parent_id: Bovenliggend ID
         locked: Gesloten
         auto_photos: Auto fotos
         auto_description: Auto Beschrijving
@@ -6308,10 +6313,12 @@ nl:
   doorkeeper:
     scopes:
       write: |
-        Je waarnemingen, determinaties en andere inhoud voor je aanmaken, bewerken en verwijderen, en je verborgen coördinaten en alle andere informatie waar je toegang toe hebt op deze site inzien.
+        Je waarnemingen, determinaties en andere inhoud namens jou aanmaken, bewerken en verwijderen, en je verborgen coördinaten en alle andere informatie waar je toegang toe hebt op deze site inzien.
       login: |
-        Toegangsinformatie relevant om in te loggen, zoals e-mailadres, gebruikersnaam,
-        naam en avatar.
+        Toegangsinformatie relevant bij het inloggen bij diensten door derden, zoals e-mailadres, gebruikersnaam,
+        naam en avatar gekoppeld aan je account daar.
+      account_delete: |
+        Je account namens jou verwijderen.
     errors:
       messages:
         #Common error messages

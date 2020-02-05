@@ -152,8 +152,6 @@ sk:
   added_to_favorites_html: |
     Pridané do <a href="%{url}">obľúbených</a>
   adding: "Pridávanie..."
-  additional_range: Prídavný rozsah
-  additional_range_data_from_an_unknown_source: Prídavný rozsah dát z neznámeho zdroja
   adjust_brightness: Nastavenie jasu
   admin: Administrátor
   admin_s: Administrátori
@@ -166,7 +164,6 @@ sk:
   agreeing: Súhlasím...
   aka: alias
   all: Všetko
-  all_colors: "&laquo; Všetky farby"
   all_comments: Všetky komentáre
   all_flags_must_be_resolved: Všetky značky musia byť vyriešené
   all_life: Všetok život
@@ -515,7 +512,6 @@ sk:
   citation: Citácia
   classification: Klasifikácia
   clear: vymazať
-  clear_color_filters: Zrušiť farebné filtre
   clear_filters: Zrušiť filtre
   clear_search: Zrušiť vyhľadávanie
   click_the_map: "<strong>Kliknite na mapu</strong> a pridajte miesto."
@@ -1907,7 +1903,9 @@ sk:
   output_taxon: Výstupný taxón
   overview: Prehľad
   owner: Vlastník
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Nadradený
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Názov nadradeného
   parental_consent:
     must_specify_email: Musíte uviesť emailovú adresu
@@ -2400,7 +2398,6 @@ sk:
   radius_value: "Polomer (m): %{radius}"
   random: Náhodný
   range: Rozsah
-  range_from: 'Rozsah od'
   rank: Klasifikácia
   rank_position: Klasifikácia
   rank_restrictions: Obmedzenia klasifikácie
@@ -2516,7 +2513,6 @@ sk:
   remove_selected: Odstrániť označené
   remove_tags: Odstrániť tagy
   removed: Odstránené
-  removed!: Odstránené!
   removed_project_user: Odstránený projektový užívateľ
   removing: "Odstraňovanie..."
   reorder_by_taxonomy: Znovu usporiadať podľa taxonómie

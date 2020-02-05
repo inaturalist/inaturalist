@@ -5,6 +5,11 @@ he:
     many: "%{count} שפות"
     other: "%{count} שפות"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} אנשים</strong> עזרו ל%{user} עם <strong>%{y} זיהויים</strong>"
+  x_sounds:
+    one: "%{count} צליל"
+    two: "%{count} צלילים"
+    many: "%{count} צלילים"
+    other: "%{count} צלילים"
   _100_day_trends: מגמת 100 הימים
   _percent_ID_d: "אחוז מזוהה"
   a_community_for_naturalist: קהילה של אוהבי טבע
@@ -140,6 +145,8 @@ he:
   add_life_stage_larva_annotation: 'הוספת תווית "שלב חיים: זחל"'
   add_life_stage_juvenile_annotation: 'הוספת תווית "שלב חיים: צעיר"'
   add_life_stage_egg_annotation: 'הוספת תווית "שלב חיים: ביצה"'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'הוסיף מערכת היחסים'
   #As in a Guide Section
   add_section: הוסף בחירה
   add_several_observations_at_once: הוספת מספר תצפיות בפעולה אחת.
@@ -174,8 +181,6 @@ he:
   added_to_favorites_html: |
     נוסף ל<a href="%{url}">מועדפים</a>
   adding: "מוסיף..."
-  additional_range: מגוון נוסף
-  additional_range_data_from_an_unknown_source: מגוון נתונים נוסף ממקור שאינו ידוע
   adjust_brightness: התאמת בהירות
   admin: מנהל
   admin_s: מנהל(ים)
@@ -188,7 +193,6 @@ he:
   agreeing: מסכים...
   aka: כינוי
   all: הכול
-  all_colors: "&laquo; כל הצבעים"
   all_comments: כל התגובות
   all_life: כל החיים
   all_names: כל השמות
@@ -298,6 +302,8 @@ he:
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     אתם בטוחים? זה יטען מחדש את הדף, ואתם עלולים לאבד חלק מהשינויים שלכם.
   are_you_sure_want_delete_taxon: "האם ברצונך למחוק טקסון זה באופן סופי?"
+  are_you_sure_want_delete_taxon_identifications: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? קיימים זיהויום עבורו.
   are_you_sure_want_delete_taxon_observations: |
     האם את/ה בטוח/ה שברצונך למחוק טקסון זה? קיימות תצפיות עבורו.
   are_you_sure_want_delete_taxon_link: האם ברצונך למחוק את הקישור של הטקסון הזה?
@@ -529,7 +535,6 @@ he:
   citation: ציטוט
   classification: מיון
   clear: ניקוי
-  clear_color_filters: ניקוי מסנני צבע
   clear_filters: נקה פילטרים
   clear_search: ניקוי החיפוש
   click_the_map: "<strong>יש ללחוץ על המפה</strong> כדי להוסיף מיקום."
@@ -2356,7 +2361,6 @@ he:
   remove_selected: הסרת נבחרים
   remove_tags: הסרת תגיות
   removed: הוסר
-  removed!: הוסר!
   removed_project_user: הסרת משתמש פרוייקט
   removing: "מתבצעת הסרה..."
   reorder_by_taxonomy: סדר מחדש לפי טקסונומיה
@@ -2847,7 +2851,6 @@ he:
   welcome_to_inat: "ברוכים הבאים ל%{site_name}!"
   welcome_to_guides: "ברוכים הבאים למגדירי %{site_name}!"
   welcome_to_x_project: "ברוכים הבאים ל%{project}"
-  what_color_was_it: איזה צבע זה היה?
   what_did_you_see: מה ראית?
   what_do_you_think: מה דעתך?
   what_to_keep: לשמירה

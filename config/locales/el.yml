@@ -213,8 +213,6 @@ el:
   added_to_favorites_html: |
     Προστέθηκε στα <a href="%{url}">αγαπημένα</a>
   adding: "Προσθήκη..."
-  additional_range: Πρόσθετο εύρος
-  additional_range_data_from_an_unknown_source: Πρόσθετα στοιχεία εύρους κατανομής από μια άγνωστη πηγή
   admin: Διαχείριση
   admin_s: Διαχειριστής (-ές)
   admin_only: Μόνο για διαχειριστές
@@ -226,7 +224,6 @@ el:
   agreeing: Συμφώνηση σε εξέλιξη...
   aka: ή
   all: Όλα
-  all_colors: "&laquo; Όλα τα χρώματα"
   all_comments: Όλα τα σχόλια
   all_flags_must_be_resolved: Όλες οι αναφορές πρέπει να επιλυθούν
   all_life: Όλη η ζωή
@@ -574,7 +571,6 @@ el:
   choose_what_kind_of_change_youre_creating: "Επιλογή του είδους της αλλαγής που δημιουργείτε."
   classification: Ταξινόμηση
   clear: Εκκαθάριση
-  clear_color_filters: Εκκαθάριση φίλτρων χρωμάτων
   clear_filters: Εκκαθάριση φίλτρων
   clear_search: Εκκαθάριση αναζήτησης
   click_the_map: "<strong>Κλικ στον χάρτη</strong> για προσθήκη τοποθεσίας."
@@ -1670,7 +1666,9 @@ el:
   out_of_range: Εκτός εύρους
   overview: Επισκόπηση
   owner: Ιδιοκτήτης
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Γονέας
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Όνομα γονέα
   password: Κωδικός πρόσβασης
   password_confirmation: 'Επιβεβαίωση κωδικού'
@@ -2222,7 +2220,6 @@ el:
   remove_selected: Αφαίρεση επιλεγμένων
   remove_tags: Αφαίρεση ετικετών
   removed: Έχει αφαιρεθεί
-  removed!: Αφαιρέθηκε!
   replace_parentesis: (αντικατάσταση)
   reply: Απάντηση
   reptiles: Ερπετά

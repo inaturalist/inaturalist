@@ -307,8 +307,6 @@ it:
   added_to_favorites_html: |
     Aggiunta ai <a href="%{url}">preferiti</a>
   adding: "Aggiunta in corso..."
-  additional_range: Areale aggiuntivo
-  additional_range_data_from_an_unknown_source: Ulteriori dati di distribuzione da fonte sconosciuta
   adjust_brightness: Regola luminosità
   admin: Amministratore
   admin_s: Amministratore(i)
@@ -321,7 +319,6 @@ it:
   agreeing: Accordo in corso...
   aka: o
   all: Tutto
-  all_colors: "&laquo; Tutti i colori"
   all_comments: Tutti i commenti
   all_flags_must_be_resolved: Tutte le segnalazioni devo essere risolte
   all_life: Tutti gli esseri viventi
@@ -759,7 +756,6 @@ it:
   citation: Citazione
   classification: Classificazione
   clear: pulisci
-  clear_color_filters: Rimuovi i filtri dei colori
   clear_filters: Cancella filtri
   clear_search: Cancella la ricerca
   click_the_map: "<strong>Clicca sulla mappa</strong> per aggiungere una posizione."
@@ -1912,10 +1908,16 @@ it:
   membership_model: Modello di adesione
   mentioned_you_in_noun_html: "%{user} ti ha menzionato in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} ti ha menzionato in %{noun} di %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} ti ha menzionato in %{noun} di %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} ti ha menzionato in %{noun} di te"
   mentioned_you_in_a_x_on_noun_html: "%{user} ti ha menzionato in una %{x} su %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} ti ha menzionato in una %{x} su %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} ti ha menzionato in una %{x} su %{noun} di %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di te"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} ti ha menzionato in una %{x} su %{noun} di %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di te"
   merge: Unisci
   merge_it_with_another_place: Unisci con un altro luogo
   merge_two_places_together: Unisci insieme due luoghi. Tutte le specie sulla checklist saranno unite, nonché tutti i dati geografici.
@@ -2455,7 +2457,9 @@ it:
   overview: Panoramica
   overlapping_downstream_taxon_frameworks_html: "Sovrapposizione di Quadri di Taxon a valle: %{count}"
   owner: Proprietario
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Di Categoria superiore
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nome di categoria superiore
   parental_consent:
     must_specify_email: Devi specificare un indirizzo email
@@ -3027,7 +3031,6 @@ it:
   radius_value: "Raggio (m): %{radius}"
   random: Casuale
   range: Intervallo
-  range_from: 'Areale da'
   rank: Rango
   rank_position: Rango
   rank_restrictions: Restrizioni del rango
@@ -3148,7 +3151,6 @@ it:
   remove_selected: Rimuovi i selezionati
   remove_tags: Rimuovi i tag
   removed: Rimosso
-  removed!: Rimosso!
   removed_project_user: Utente del progetto rimosso
   removing: "Rimozione in corso..."
   reorder_by_taxonomy: Riordina per tassonomia
@@ -3907,6 +3909,8 @@ it:
   user_added_a_project_invitation_html: "%{user} ha aggiunto in invito di progetto"
   user_added_a_x: "%{user} ha aggiunto una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a una %{noun} di %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
   user_added_a_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha aggiunto un'identificazione"
   user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}" ad un''osservazione di %{owner}'
@@ -3914,6 +3918,8 @@ it:
   user_added_an_observation_html: "%{user} ha aggiunto una osservazione"
   user_added_an_x: "%{user} ha aggiunto una %{x}"
   user_added_an_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a %{noun} di %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
   user_added_an_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha aggiunto %{x} osservazioni"
   user_already_authenticated: L'utente è già autenticato
@@ -4078,7 +4084,6 @@ it:
   were_pretty_sure_this_is_in_the_rank: Siamo abbastanza sicuri che è in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ci dispiace ma la tua importazione in blocco di %{filename} è fallita."
   what: Che
-  what_color_was_it: Di che colore era?
   what_did_you_see: Cosa hai visto?
   what_did_you_see?: <em>Cosa</em> hai visto?
   what_do_you_think: Cosa ne pensi?
@@ -6174,7 +6179,9 @@ it:
       write: |
         Creare, aggiornare, e cancellare le tue osservazioni, identificazioni, e altri contenuti che ti appartengono, ed accedere alle tue coordinate nascoste e ad ogni altra informazione a cui tu puoi accedere la sito.
       login: |
-        Accedere a informazioni rilevanti per l'accesso, come l'email, il nome utente,e l'icona utente
+        Accedere a informazioni rilevanti per l'accesso a servizi di terze parti, come l'email, il nome utente, e l'icona utente qui associate al tuo account.
+      account_delete: |
+        Eliminare il tuo account per tuo conto.
     errors:
       messages:
         #Common error messages

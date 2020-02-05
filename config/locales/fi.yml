@@ -102,6 +102,9 @@ fi:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> tutkimusasteen havainto määritetty lajin tasolle tai sitä alemmaksi</span>"
     other: "<span class='count'>%{count}</span> tutkimustason havaintoa tunnistettu lajilleen tai sitä tarkemmin"
+  x_sounds:
+    one: "%{count} äänite"
+    other: "%{count} äänitettä"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taksoni kuratoitu"
     other: "<span class='count'>%{count}</span> taksonia kuratoitu"
@@ -320,8 +323,6 @@ fi:
   added_to_favorites_html: |
     Lisätty <a href="%{url}">suosikkeihin</a>
   adding: "Lisätään..."
-  additional_range: Lisäalue
-  additional_range_data_from_an_unknown_source: Lisäalueen tietoja tuntemattomattomasta lähteestä
   adjust_brightness: Säädä kirkkautta
   admin: Ylläpitäjä
   admin_s: Ylläpitäjä(t)
@@ -334,7 +335,6 @@ fi:
   agreeing: Samaa mieltä...
   aka: tunnetaan myös nimellä
   all: Kaikki
-  all_colors: "&laquo; Kaikki värit"
   all_comments: Kaikki kommentit
   all_flags_must_be_resolved: Kaikki liput on ratkaistava
   all_life: Kaikki elämänmuodot
@@ -772,7 +772,6 @@ fi:
   citation: Viittaus
   classification: Luokitus
   clear: tyhjennä
-  clear_color_filters: Tyhjennä kaikki värisuodattimet
   clear_filters: Tyhjennä suodattimet
   clear_search: Tyhjennä haku
   click_the_map: "<strong>Klikkaa karttaa</strong> lisätäksesi sijainnin."
@@ -1306,10 +1305,13 @@ fi:
   flag_an_item: Liputa kohde
   flag_as_spammer: Liputa spammaajaksi
   flag_as_non_spammer: Liputa ei-spammaajaksi
+  #Label for the date/time when a flag was created
+  flag_created: Huomautus (lippu) luotu
   flag_description: Liputa tämä sisältö jotta kuraattorit tietävät jonkin olevan vialla.
   flag_for_check_list_title_html: |
     Lippu lajiluettelolle: %{title}
   flag_for_comment_id_html: Lippu <a href="%{url}">kommentille %{id}</a>
+  flag_for_comment_id_deleted: "Flag for Comment (deleted)\nHuomautus (lippu) kommentointia varten %{id} (poistettu)"
   flag_for_curation: Liputa kuraattorin tarkastusta varten
   flag_for_guide_title_html: |
     Lippu oppaalle: %{title}
@@ -1896,6 +1898,8 @@ fi:
   membership_model: Jäsenyysmalli
   mentioned_you_in_noun_html: "%{user} mainitsi sinut kohteessa %{noun}"
   mentioned_you_in_noun_by_html: "%{user} mainitsi sinut kohteessa %{noun} käyttäjältä %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} mainitsi sinut kohteessa %{noun} käyttäjältä %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} mainitsi sinut kohteessasi %{noun}"
   mentioned_you_in_a_x_on_noun_html: "%{user} mainitsi sinut kohteessa %{x} %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} mainitsi sinut kohteessa %{x} %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} mainitsi sinut käyttäjän %{by} kohteessa %{x} %{noun}"
@@ -2182,6 +2186,8 @@ fi:
   observation_added: Havainto lisätty
   observation_added_to_the_project: "Havainto lisätty projektiin \"%{project}\""
   observation_brief_something_on_day: "Jotain päivänä %{day}"
+  observation_brief_something_on_day_at_time: "Jotakin %{day} päivänä %{time} aikaan"
+  observation_brief_something_on_day_at_time_by_user: "Jotakin %{day} päivänä %{time} aikaan henkilöltä %{user}"
   observation_brief_something_on_day_by_user: "Jotain %{day} käyttäjältä %{user}"
   observation_brief_something_by_user: "Jotain käyttäjältä %{user}"
   observation_brief_something_from_place: "Jotain paikasta %{place}"
@@ -2191,6 +2197,8 @@ fi:
   observation_brief_something_from_place_on_day_at_time: "Jotain paikasta %{place} päivänä %{day} aikana %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Jotain paikasta %{place} päivänä %{day} aikana %{time} käyttäjältä %{user}"
   observation_brief_taxon_on_day: "%{taxon} %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} %{day} päivänä %{time} aikaan"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} päivänä %{time} aikaan henkilöltä %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} käyttäjältä %{user}"
   observation_brief_taxon_by_user: "%{taxon} käyttäjältä %{user}"
   observation_brief_taxon_from_place: "%{taxon} paikasta %{place}"
@@ -2399,7 +2407,9 @@ fi:
   out_of_range: Pois alueelta
   overview: Yleiskatsaus
   owner: Omistaja
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Ylempi taksoni
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Ylemmän taksonin nimi
   parental_consent:
     must_specify_email: Sinun on annettava sähköpostiosoitteesi
@@ -2953,7 +2963,6 @@ fi:
   radius_value: "Säde (m): %{radius}"
   random: Satunnainen
   range: Väli
-  range_from: 'Etäisyys'
   rank: Sija
   rank_position: Sija
   ranks:
@@ -3068,7 +3077,6 @@ fi:
   remove_selected: Poista valitut
   remove_tags: Poista merkinnät
   removed: Poistettu
-  removed!: Poistettu!
   removed_project_user: Poista projektikäyttäjä
   removing: "Poistetaan..."
   reorder_by_taxonomy: Järjestä uudelleen taksonomian perusteella
@@ -3243,6 +3251,8 @@ fi:
   skip_to_next_page: "Siirry seuraavalle sivulle"
   small: pieni
   site_admin_tools: Sivuston ylläpitotyökalut
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Palvelun ylläpitäjät
   site_name_place: "%{site_name} paikka"
   site_observations_export_from_date: "%{site_name} havaintojen vienti päivästä %{date}"
   site_site_admin: "%{site_name} sivuston ylläpitäjä"
@@ -3808,7 +3818,6 @@ fi:
   welcome_to_guides: "Tervetuloa %{site_name} oppaisiin!"
   welcome_to_x_project: "Tervetuloa projektiin %{project}"
   what: Mitä
-  what_color_was_it: Mikä väri se oli?
   what_did_you_see: Mitä näet?
   what_did_you_see?: <em>Mitä</em> näet?
   what_do_you_think: Mitä luulet?
@@ -4021,6 +4030,8 @@ fi:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          Huomautus (liputus) voi liittyä vain liputetun kohteen luontiaikaiseen alkuperäiseen sisältöön. Vain kuraattorit ja henkilöstö voivat nähdä näitä tietoja. Vain henkilökunta näkee huomatukset jotka koskevat viestejä.
         flags_that_should_not_be_resolved_desc_html: |
           Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> merkinnät ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
     guides:
@@ -4095,6 +4106,9 @@ fi:
       to: Johonkin/jollekin/määränpää
       subject: Otsikko
       subject_body: Aihe / Sisältö
+      show:
+        flag_notice_html: |
+          Olet tehnyt huomautuksen (liputtanut) tähän keskusteluun päivämäärällä %{date}. Huomautus (lippu) säilyy järjestelmässä vaikka poistaisin oman kopion tästä keskustelusta, joten voit turvallisesti poistaa sen omasta näkymästäsi, jos haluat.
     oauth:
       authorizations:
         new:
@@ -5483,6 +5497,8 @@ fi:
     scopes:
       write: |
         Luoda, päivittää ja poistaa havaintojasi, tunnistuksiasi ja muuta sisältöä puolestasi ja päästä näkemään piilotetut koordinaattisi ja kaiken muun tiedon, johon sinulla on sivustolla pääsy.
+      account_delete: |
+        Poistaa käyttäjätilini puolestani.
     flash:
       applications:
         create:

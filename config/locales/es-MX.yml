@@ -236,8 +236,6 @@ es-MX:
   added_to_favorites_html: |
     Agregado a <a href="%{url}">favoritos</a>
   adding: "Añadiendo..."
-  additional_range: Distribución adicional
-  additional_range_data_from_an_unknown_source: Datos de distribución adicional de fuente desconocida
   admin: Administrador
   admin_s: Administrador(es)
   admin_only: Solamente administrador
@@ -249,7 +247,6 @@ es-MX:
   agreeing: De acuerdo...
   aka: Alias
   all: Todo
-  all_colors: "&laquo; Todos los colores"
   all_comments: Todos los comentarios
   all_flags_must_be_resolved: Se deben resolver todas las advertencias
   all_life: Toda la vida
@@ -637,7 +634,6 @@ es-MX:
   citation: Referencia
   classification: Clasificación
   clear: Limpiar
-  clear_color_filters: Quita los filtros de colores
   clear_filters: Elimina los filtros
   clear_search: Limpia la búsqueda
   click_the_map: "<strong>Selecciona el mapa </strong>para añadir una localización."
@@ -2116,7 +2112,9 @@ es-MX:
   output_taxon: Taxón de salida
   overview: Visión general
   owner: Propietario
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Padre
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nombre de la clase o especie padre
   password: Contraseña
   password_confirmation: 'Confirma tu contraseña'
@@ -2577,7 +2575,6 @@ es-MX:
   radius_value: "Radio (m): %{radius}"
   random: Al azar
   range: Distribución
-  range_from: 'Distribución de'
   rank: Categoria taxonómica
   rank_position: Posición
   rank_restrictions: Restrinciones de rango
@@ -2697,7 +2694,6 @@ es-MX:
   remove_selected: Elimina los seleccionados
   remove_tags: Quita las etiquetas
   removed: eliminado
-  removed!: '¡Eliminado!'
   removed_project_user: Usuario eliminado del proyecto
   removing: "Quitando..."
   reorder_by_taxonomy: Reordena por taxonomía
@@ -3559,7 +3555,6 @@ es-MX:
   were_pretty_sure_this_is_in_the_rank: Estamos bastante seguros de que está en el %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Lo sentimos, pero tu importación masiva de %{filename} ha fallado."
   what: Qué
-  what_color_was_it: '¿De qué color era?'
   what_did_you_see: '¿Qué viste?'
   what_did_you_see?: <em>¿Qué</em> viste?
   what_do_you_think: '¿Que piensas?'
@@ -5256,8 +5251,6 @@ es-MX:
     scopes:
       write: |
         Crear, actualizar y eliminar sus observaciones, identificaciones, y otro contenido en tu nombre, y acceder sus coordenadas privadas y cualquier otra información  disponible en el sitio.
-      login: |
-        Información relevante para acceder, como dirección de correo electrónico, nombre de usuario e icono de usuario.
     errors:
       messages:
         #Common error messages

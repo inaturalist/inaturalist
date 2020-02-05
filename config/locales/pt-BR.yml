@@ -242,8 +242,6 @@ pt-BR:
   added_to_favorites_html: |
     Adicionado a <a href="%{url}">favoritos</a>
   adding: "Adicionando..."
-  additional_range: Distribuição adicional
-  additional_range_data_from_an_unknown_source: Distribuição adicional para fontes desconhecidas
   adjust_brightness: Ajustar o brilho
   admin: Administrador
   admin_s: Administrador(es)
@@ -256,7 +254,6 @@ pt-BR:
   agreeing: Concordando...
   aka: também conhecido como
   all: Todas
-  all_colors: "&laquo; Todas as Cores"
   all_comments: Todos comentários
   all_flags_must_be_resolved: Todos os destaques devem ser identificados
   all_life: toda vida
@@ -648,7 +645,6 @@ pt-BR:
   citation: Citação
   classification: Classificação
   clear: limpar
-  clear_color_filters: Limpe os filtros de cor
   clear_filters: Limpar filtros
   clear_search: Limpe a pesquisa
   click_the_map: "<strong>Clique no mapa</strong> para adicionar uma localização."
@@ -2135,7 +2131,9 @@ pt-BR:
   output_taxon: Taxón de saída
   overview: Visão geral
   owner: Proprietário
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Pai
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nome da espécie pai
   parental_consent:
     must_specify_email: Você deve especificar um endereço de e-mail
@@ -2640,7 +2638,6 @@ pt-BR:
   radius_value: "Raio (m): %{radius}"
   random: Aleatório
   range: Área de Distribuição
-  range_from: 'Distribuição de'
   rank: Classificação
   rank_position: Classificação
   rank_restrictions: Restrição para classificação
@@ -2759,7 +2756,6 @@ pt-BR:
   remove_selected: Remova selecionado
   remove_tags: Remova marcações
   removed: Removido
-  removed!: Removido!
   removed_project_user: Usuário removido do projeto
   removing: "Removendo..."
   reorder_by_taxonomy: Reordenar por taxonomia
@@ -3636,7 +3632,6 @@ pt-BR:
   were_pretty_sure_this_is_in_the_rank: Temos certeza que isso é no %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Pedimos desculpas mas a importação em massa de %{filename} falhou."
   what: Qual
-  what_color_was_it: Qual era a cor?
   what_did_you_see: Oque você viu?
   what_did_you_see?: <em>O que</em> você viu?
   what_do_you_think: O que você acha?

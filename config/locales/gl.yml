@@ -103,8 +103,6 @@ gl:
   added!: '¡Engadido!'
   added_by: Engadido por
   adding: "Engadindo..."
-  additional_range: Distribución adicional
-  additional_range_data_from_an_unknown_source: Datos de distribución adicional de fonte descoñecida
   admin: Administrador
   admin_tools: Ferramentas Administrativas
   agree: de acordo
@@ -112,7 +110,6 @@ gl:
   agreeing: En proceso...
   aka: Coñecido como
   all: Todos
-  all_colors: "&laquo; Todas as cores"
   all_comments: Todos os comentarios
   all_life: Toda a vida
   all_names: Todos os nomes
@@ -362,7 +359,6 @@ gl:
   citation: Referencia
   classification: Clasificación
   clear: Limpar
-  clear_color_filters: Borrar os filtros de cor
   clear_search: Borrar a procura
   click_the_map: "<strong>Preme no mapa</strong> para agregar unha localización."
   code: Código HTML
@@ -1122,7 +1118,9 @@ gl:
   other_animals: outros animais
   out_of_range: Fóra do rango
   owner: Propietario
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Pai
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nome da clase ou especie pai
   password: Contrasinal
   password_confirmation: 'Confirma o teu contrasinal'
@@ -1338,7 +1336,6 @@ gl:
   quality_grade: Grao de calidade
   quality_grade_colon: "Grao de calidade:"
   range: Rango
-  range_from: 'Distribución de'
   rank: Rango
   rank_restrictions: Clasificar as restricións
   ranks:
@@ -1398,7 +1395,6 @@ gl:
   remove_from_project: Quitar del proyecto
   remove_manager: Quitar xestor
   removed: Eliminado
-  removed!: '¡Eliminado!'
   removed_project_user: Usuario eliminado do proxecto
   removing: "Eliminando..."
   repair_doesnt_work_for_that_kind_of_photo: Reparar non funciona para este tipo de foto.
@@ -1870,7 +1866,6 @@ gl:
   welcome_to_inat: "Benvido a %{site_name}!"
   welcome_to_x_project: "Benvido ao proxecto %{project}"
   what: Que
-  what_color_was_it: De que cor era?
   what_did_you_see: Que viches?
   what_did_you_see?: <em>Que</em> viches?
   what_do_you_think: Que che parece?

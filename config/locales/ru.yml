@@ -170,6 +170,11 @@ ru:
     few: "<span class='count'>%{count}</span> наблюдения исследовательского уровня, идентифицированных до вида или ниже"
     many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
     other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
+  x_sounds:
+    one: "%{count} звук"
+    few: "%{count} звука"
+    many: "%{count} звуков"
+    other: "%{count} звуков"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> курируемый таксон"
     few: "<span class='count'>%{count}</span> курируемых таксона"
@@ -378,8 +383,6 @@ ru:
   added_to_favorites_html: |
     Добавлено в <a href="%{url}">фавориты</a>
   adding: "Добавление..."
-  additional_range: Дополнительный диапазон
-  additional_range_data_from_an_unknown_source: Данные дополнительного диапазона из неизвестного источника
   adjust_brightness: Регулировать яркость
   admin: Администратор
   admin_s: Администратор(ы)
@@ -392,7 +395,6 @@ ru:
   agreeing: Соглашаемся...
   aka: ака
   all: Все
-  all_colors: "&laquo; Все цвета"
   all_comments: Все комментарии
   all_flags_must_be_resolved: Все флаги должны быть разрешены
   all_life: Вся жизнь
@@ -857,7 +859,6 @@ ru:
   citation: Цитата
   classification: Классификация
   clear: очистить
-  clear_color_filters: Очистить цветовые фильтры
   clear_filters: Очистить фильтры
   clear_search: Очистить поиск
   click_the_map: "<strong>Кликните на карте</strong> чтобы добавить местоположение."
@@ -1403,10 +1404,13 @@ ru:
   flag_an_item: Отметить пункт
   flag_as_spammer: Пометить как спамера
   flag_as_non_spammer: Пометить как не спамера
+  #Label for the date/time when a flag was created
+  flag_created: Флаг создан
   flag_description: Пометить этот контент, чтобы дать знать кураторам, что с ним что-то не так.
   flag_for_check_list_title_html: |
     Флаг для чек-листа: %{title}
   flag_for_comment_id_html: Флаг для <a href="%{url}">комментария %{id}</a>
+  flag_for_comment_id_deleted: Флаг комментария %{id} (удален)
   flag_for_curation: Флаг для курирования
   flag_for_guide_title_html: |
     Флаг для Руководства: %{title}
@@ -2015,10 +2019,16 @@ ru:
   membership_model: Модель членства
   mentioned_you_in_noun_html: "%{user} упомянул вас в %{noun}"
   mentioned_you_in_noun_by_html: "%{user} упомянул вас в %{noun} %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} упомянул вас в %{noun} %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} упомянул вас в вашем %{noun}"
   mentioned_you_in_a_x_on_noun_html: "%{user} упомянул вас в %{x} в %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} упомянул вас в %{x} на %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} упомянул вас в %{x} на %{noun} %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} упомянул вас в %{x} в %{noun} %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} упомянул вас в %{x} в вашем %{noun}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} упомянул вас в %{x} %{noun} %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} упомянул вас в %{x} в %{noun} %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} упомянул вас в %{x} в вашем %{noun}"
   merge: Объединить
   merge_it_with_another_place: Объединить с другим местом
   merge_two_places_together: Объединить два места в одно. Все виды из контрольных списков и географические данные будут объединены.
@@ -2319,6 +2329,8 @@ ru:
   observation_added_to_the_project: "Наблюдение добавлено к проекту %{project}"
   observation_aggregation: Агрегация наблюдений
   observation_brief_something_on_day: "Некоторые за %{day}"
+  observation_brief_something_on_day_at_time: "Некоторые за %{day} в %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Некоторые от %{user} за %{day} в %{time}"
   observation_brief_something_on_day_by_user: "Некоторые за %{day} от %{user}"
   observation_brief_something_by_user: "Некоторые от %{user}"
   observation_brief_something_from_place: "Некоторые из %{place}"
@@ -2328,6 +2340,8 @@ ru:
   observation_brief_something_from_place_on_day_at_time: "Некоторые из %{place} за %{day} в %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Некоторые из %{place} за %{day} в %{time} от %{user}"
   observation_brief_taxon_on_day: "%{taxon} за %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} за %{day} в %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} от %{user} за %{day} в %{time}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} от %{user}"
   observation_brief_taxon_by_user: "%{taxon} от %{user}"
   observation_brief_taxon_from_place: "%{taxon} из %{place}"
@@ -2554,7 +2568,9 @@ ru:
   overview: Обзор
   overlapping_downstream_taxon_frameworks_html: "Перекрытие основ таксона в направлении вниз: %{count}"
   owner: Владелец
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Родитель
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Название родительского таксона
   parental_consent:
     must_specify_email: Вы должны задать адрес электронной почты
@@ -3128,7 +3144,6 @@ ru:
   radius_value: "Радиус (м): %{radius}"
   random: Случайный
   range: Диапазон
-  range_from: 'Диапазон от'
   rank: Ранг
   rank_position: Ранг
   rank_restrictions: Ограничения ранга
@@ -3251,7 +3266,6 @@ ru:
   remove_selected: Удалить выбранное
   remove_tags: Удалить теги
   removed: Удалено
-  removed!: Удалено!
   removed_project_user: Участник проекта удалён
   removing: "Удаление..."
   reorder_by_taxonomy: Упорядочить согласно таксономии
@@ -3443,6 +3457,8 @@ ru:
   skip_to_next_page: "Перейти на следующую страницу"
   small: маленький
   site_admin_tools: Инструменты администрирования сайта
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Администраторы сайта
   site_name_place: "%{site_name} место"
   site_observations_export_from_date: "экспорт наблюдений %{site_name} с %{date}"
   site_site_admin: "Администратор сайта %{site_name}"
@@ -4051,6 +4067,8 @@ ru:
   user_added_a_project_invitation_html: "%{user} добавил приглашение в проект"
   user_added_a_x: "%{user} добавил %{x}"
   user_added_a_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} добавил %{x} к %{noun} %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} добавил %{x} к вашему %{noun}"
   user_added_a_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
   user_added_an_identification_html: "%{user} добавил идентификацию"
   user_added_an_observation_field_html: '%{user} добавил значение "%{field_name}" к наблюдению %{owner}'
@@ -4058,6 +4076,8 @@ ru:
   user_added_an_observation_html: "%{user} добавил наблюдение"
   user_added_an_x: "%{user} добавил %{x}"
   user_added_an_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} добавил %{x} к %{noun} %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} добавил %{x} к вашему %{noun}"
   user_added_an_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
   user_added_x_observations_html: "%{user} добавил %{x} наблюдений"
   user_already_authenticated: Пользователь уже прошел проверку подлинности
@@ -4221,7 +4241,6 @@ ru:
   were_pretty_sure_this_is_in_the_rank: Мы почти уверены, что это относится к %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Извините, но ваш массовый импорт %{filename} не удался."
   what: Что
-  what_color_was_it: Какого это было цвета?
   what_did_you_see: Что вы видели?
   what_did_you_see?: <em>Что</em> вы видели?
   what_do_you_think: Как вы думаете?
@@ -4483,6 +4502,8 @@ ru:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          Помечаемый флагом контент является основным текстовым атрибутом помеченного объекта во время создания флага. Его видят только кураторы и сотрудники. Только сотрудники могут видеть это для создания сообщений.
         flags_that_should_not_be_resolved_desc_html: |
           Пожалуйста, снимайте флаги <code>spam</code> и <code>copyright
           infringement</code>, только если содержимое не является спамом или нарушением авторских прав, соответственно.
@@ -4624,6 +4645,9 @@ ru:
         show_messages_to_user: Показать сообщения пользователю %{user}
         speech_privilege_notice: |
           Вы сможете отправлять новые сообщения после добавления трёх проверяемых наблюдений или трёх идентификаций наблюдений других людей. До тех пор вы можете читать и отвечать на сообщения, которые вам отправляют другие люди.
+      show:
+        flag_notice_html: |
+          Вы отметили этот разговор %{date}. Флаг будет сохраняться даже в том случае, если вы удалите копию этого разговора, так что можно это сделать без опасений, если вы больше не хотите его видеть.
     oauth:
       authorizations:
         new:
@@ -4680,6 +4704,26 @@ ru:
           Это общее количество "листовых" таксонов, представленных в запросе. Иногда вы увидите больше строк, чем "листовых" таксонов, при ненулевом количестве, потому что присутствуют таксоны более высокого уровня, добавленные из других запросов. Например, если Запрос 1 содержит наблюдение Homo sapiens, а Запрос 2 содержит наблюдение рода Homo, оба таксона будут присутствовать в таблице, и будет присутствовать одна дополнительная строка для рода Homo из Запроса 1, которая не включается в общее количество, поскольку учитывается только  вид Homo sapiens из этого рода, потому что это "лист" этой части его дерева.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Вертикально
+        #Count of how many taxa several observation searches have in common
+        x_in_common:
+          #Count of how many taxa several observation searches have in common
+          one: "совпадают %{count}"
+          #Count of how many taxa several observation searches have in common
+          few: "%{count} общего"
+          #Count of how many taxa several observation searches have in common
+          many: "%{count} общих"
+          #Count of how many taxa several observation searches have in common
+          other: "%{count} общий"
+        #Count of how many taxa are not present in *all* of several observation searches
+        x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
+          one: "не совпадают %{count}"
+          #Count of how many taxa are not present in *all* of several observation searches
+          few: "%{count} не общего"
+          #Count of how many taxa are not present in *all* of several observation searches
+          many: "%{count} не общих"
+          #Count of how many taxa are not present in *all* of several observation searches
+          other: "%{count} не общий"
         #Count of how many taxa are present in an observation search
         x_total:
           #Count of how many taxa are present in an observation search
@@ -6396,8 +6440,8 @@ ru:
     scopes:
       write: |
         Создавать, обновлять и удалять ваши наблюдения, идентификации и другой контент от вашего имени, а также получать доступ к скрытым координатам и любой другой информации, доступ к которой вы можете получить на сайте.
-      login: |
-        Доступ к информации, относящейся к входу в систему, такой как адрес электронной почты, имя пользователя, имя и иконка пользователя
+      account_delete: |
+        Удалить свою учетную запись от вашего имени.
     errors:
       messages:
         #Common error messages

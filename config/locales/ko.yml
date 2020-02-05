@@ -160,6 +160,9 @@ ko:
   add_one: 하나 추가하기!
   add_photos: 사진 추가하기
   add_place: 장소 추가하기
+  add_alive_or_dead_alive_annotation: '생존 여부: 살아있음'
+  add_alive_or_dead_cannot_be_determined_annotation: '생존 여부: 확인할 수 없음'
+  add_alive_or_dead_dead_annotation: '생존 여부: 죽음'
   add_life_stage_adult_annotation: '성장 단계: 성체'
   add_life_stage_teneral_annotation: '성장 단계: 우화 직후'
   add_life_stage_subimago_annotation: '성장 단계: 준성체'
@@ -208,8 +211,6 @@ ko:
   added_to_favorites_html: |
     <a href="%{url}">즐겨찾기</a>에 추가됨
   adding: "추가 중..."
-  additional_range: 추가적인 범위
-  additional_range_data_from_an_unknown_source: 미확인 자료에 따른 추가적인 범위 데이터
   adjust_brightness: 밝기 조정
   admin: 관리자
   admin_s: 관리자
@@ -222,7 +223,6 @@ ko:
   agreeing: 동의 중...
   aka: 다른 말로
   all: 모두
-  all_colors: "&laquo; 모든 색깔"
   all_comments: 모든 댓글
   all_flags_must_be_resolved: 모든 플래그는 해결되어야 합니다
   all_life: 모든 생명
@@ -443,7 +443,6 @@ ko:
   browse_projects: 프로젝트 검색
   browse_species_that_occur_near_this_observation: 이 관찰 주변에서 서식하는 종 검색
   by_everyone: 모두
-  by_user: "%{user}님께서"
   by_you: 내가
   calendar: 달력
   calendars_only_show_x_observations_at_time: 달력은 한번에 %{x} 개의 관찰만을 보여줍니다
@@ -540,7 +539,6 @@ ko:
   citation: 인용
   classification: 분류
   clear: 지우기
-  clear_color_filters: 컬러 필터 지우기
   clear_filters: 필터 지움
   clear_search: 검색 지우기
   click_the_map: "<strong>지도를 클릭하여</strong> 장소를 추가하세요."
@@ -616,6 +614,7 @@ ko:
     larva: 약충
     egg: 알
     juvenile: 아성체
+    alive_or_dead: 생존 여부
   controls: 제어
   convert: 변환
   coordinate_systems: 좌표계
@@ -1058,7 +1057,7 @@ ko:
   has_photo: 사진이 있음
   has_photos: 사진이 있음
   has_photo_and_sound: 사진과 소리가 모두 있음
-  has_photos_or_sounds: 사진이나 음원이 있습니다
+  has_photos_or_sounds: 사진이나 음원이 있음
   has_sound: 소리가 있음
   has_sounds: 소리가 있음
   hasnt_contributed_any_observations: 이 프로젝트에 관찰을 게시하지 않았습니다.
@@ -1622,6 +1621,7 @@ ko:
   open_street_map: 오픈스트리트맵
   optional: 선택 사항
   or: 또는
+  organism_is_wild: 야생에서 관찰된 생물임
   original: 원본
   originally_flagged_by: 처음으로 플래그함
   originally_imported_from_url_html: "원래 <a href='%{url}'>%{url}</a>에서 가져옴"
@@ -2086,7 +2086,6 @@ ko:
   remove_selected: 선택한 것을 제거
   remove_tags: 태그 제거
   removed: 제거되었습니다
-  removed!: 제거되었습니다!
   removed_project_user: 제거된 프로젝트 사용자
   removing: "제거 중..."
   reorder_by_taxonomy: 분류학별로 순서 바꾸기
@@ -2165,6 +2164,7 @@ ko:
   showing_x_of_y_listings: "%{y}개 목록 중 %{x}개 표시"
   sign_in: 로그인
   sign_in_with_provider: "%{provider}(으)로 로그인"
+  sign_in_with_google: Google 계정으로 로그인
   sign_out: 로그아웃
   sign_up: 가입하기
   similar_species: 비슷한 종
@@ -2185,7 +2185,7 @@ ko:
     before_importing_sounds: 음원을 불러오기 전에
     import_sounds: 음원 불러오기
     listen: 듣기
-    no_photos_sounds: 사진이나 음원이 없습니다.
+    no_photos_sounds: 사진이나 음원이 없음
     photos_sounds: 사진 / 음원
     request_timed_out: SoundCloud로의 요청이 타임아웃되었습니다. 나중에 다시 시도 해주세요.
     select_one_or_more_sounds: 하나 이상의 음원을 선택하세요
@@ -2296,10 +2296,12 @@ ko:
     other: '%{count}개 중 %{num}개의 사진을 올리는 중...'
   user: 사용자
   user_added_a_x: "%{user}님이 %{x}을(를) 추가했습니다"
-  user_added_a_x_to_noun_by_html: "%{user} 님이 %{by} 의 %{noun} 에 %{x} 를 추가했습니다."
+  user_added_a_x_to_noun_by_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  user_added_a_x_to_noun_html: "%{user}님이 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_an_observation_html: "%{user} 님이 관찰을 추가했습니다."
   user_added_an_x: "%{user}님이 %{x}을(를) 추가했습니다"
-  user_added_an_x_to_noun_by_html: "%{user} 님이 %{by} 의 %{noun} 에 %{x} 를 추가했습니다."
+  user_added_an_x_to_noun_by_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  user_added_an_x_to_noun_html: "%{user}님이 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_x_observations_html: "%{user} 님이 %{x}개의 관찰을 추가했습니다."
   user_already_authenticated: 사용자는 이미 인증되었습니다
   user_autocomplete_placeholder: kueda, simon123 등.
@@ -2359,7 +2361,6 @@ ko:
   welcome_to_inat: "%{site_name}에 오신 것을 환영합니다!"
   welcome_to_guides: "%{site_name} 가이드에 오신 것을 환영합니다!"
   welcome_to_x_project: "%{project}에 오신 것을 환영합니다."
-  what_color_was_it: 무슨 색깔 인가요?
   what_were_you_looking_for?: "찾으시는 것이 무엇이었습니까? (대상 목록)"
   whats_this?: 이것은 무엇입니까?
   when: 날짜
@@ -2385,8 +2386,10 @@ ko:
   'yes': "예"
   yes_license_my_observations_so_scientists_can_use: 네, 과학자들이 내 데이터를 사용할 수 있도록 내 사진, 소리, 관찰을 라이선스하겠습니다!
   yesterday: 어제
-  you: 내
-  you_: 내
+  you: 나
+  you_: 나
+  you_appear_offline_try_again: |
+    오프라인 상태입니다. 인터넷에 연결된 후에 다시 시도해 주세요.
   youre_a_site_curator_which_means: |
     당신은 사이트 큐레이터입니다. 사이트 큐레이터는 iNaturalist의 데이터를 정리하고 컨텐츠를 관리하는 역할입니다. 강제적으로 할 필요는 전혀 없지만, 시간이 날 때 데이터를 정리하는 데 도움을 주시면, 어떠한 기여라도 환영입니다. iNaturalist의 콘텐츠를 관리하는 데 질문이 있거나, 큐레이터를 그만두고 싶다면 %{email} 로 연락해 주세요.
   you_are_no_longer_following_x: "더 이상 %{friend}를 팔로우하지 않습니다."
@@ -2544,6 +2547,8 @@ ko:
       show:
         frequency:
           research: 연구 자료 등급
+          "Alive or Dead=Alive": 살아있음
+          "Alive or Dead=Dead": 죽음
           "Life Stage=egg": 알
           "Life Stage=larva": 애벌레
           "Life Stage=teneral": 우화 직후

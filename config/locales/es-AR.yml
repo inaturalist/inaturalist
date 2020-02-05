@@ -269,8 +269,6 @@ es-AR:
   added_to_favorites_html: |
     Agregado a <a href="%{url}">favoritos</a>
   adding: "Añadiendo..."
-  additional_range: Distribución adicional
-  additional_range_data_from_an_unknown_source: Datos de distribución adicional de fuente desconocida
   adjust_brightness: Ajustar brillo
   admin: Administrador
   admin_s: Administrador(es)
@@ -283,7 +281,6 @@ es-AR:
   agreeing: Aceptando...
   aka: alias
   all: Todos
-  all_colors: "&laquo; Todos los colores"
   all_comments: Todos los comentarios
   all_flags_must_be_resolved: Se deben solucionar todos los indicadores
   all_life: Toda la vida
@@ -717,7 +714,6 @@ es-AR:
   citation: Referencia
   classification: Clasificación
   clear: eliminar
-  clear_color_filters: Eliminar los filtros de color
   clear_filters: Eliminar los filtros
   clear_search: Eliminar búsqueda
   click_the_map: "<strong>Marca en el mapa</strong> para agregar una ubicación."
@@ -2382,7 +2378,9 @@ es-AR:
   overview: Visión de conjunto
   overlapping_downstream_taxon_frameworks_html: "Superposición de los marcos de referencia de taxones descendentes: %{count}"
   owner: Propietario
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Padre
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nombre de la clase o especie padre
   parental_consent:
     must_specify_email: Debe especificarse la cuenta de correo electrónico
@@ -2959,7 +2957,6 @@ es-AR:
   radius_value: "Radio (m): %{radius}"
   random: Al azar
   range: Área
-  range_from: 'Distribución de'
   rank: Rango
   rank_position: Posición
   rank_restrictions: Clasificar las restricciones
@@ -3080,7 +3077,6 @@ es-AR:
   remove_selected: Eliminar los elementos seleccionados
   remove_tags: Quite las etiquetas
   removed: eliminado
-  removed!: '¡Eliminado!'
   removed_project_user: Usuario eliminado del proyecto
   removing: "Eliminando..."
   reorder_by_taxonomy: Reordenar por taxonomía
@@ -3991,7 +3987,6 @@ es-AR:
   were_pretty_sure_this_is_in_the_rank: Estamos bastante seguros de que está en el %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Lo sentimos, pero tu importación masiva de %{filename} ha fallado."
   what: Qué
-  what_color_was_it: '¿De qué color era?'
   what_did_you_see: '¿Qué viste?'
   what_did_you_see?: <em>¿Qué</em> viste?
   what_do_you_think: '¿Qué le parece?'
@@ -6028,8 +6023,6 @@ es-AR:
     scopes:
       write: |
         Crear, actualizar y eliminar sus observaciones, identificaciones, y otro contenido en vuestro nombre, y acceder sus coordenadas privadas y cualquier otra información  disponible en el sitio.
-      login: |
-        Información relevante para acceder, como dirección de correo electrónico, nombre de usuario e icono de usuario.
     errors:
       messages:
         #Common error messages

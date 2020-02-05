@@ -155,8 +155,6 @@ ar:
   added_to_favorites_html: |
     تمت الإضافة إلى <a href="%{url}">المفضلة</a>
   adding: "تجري الإضافة..."
-  additional_range: نطاق إضافي
-  additional_range_data_from_an_unknown_source: بيانات نطاق إضافية من مصدر غير معروف
   adjust_brightness: ضبط السطوع
   admin: إداري
   admin_s: إداري(ون)
@@ -169,7 +167,6 @@ ar:
   agreeing: يوافق...
   aka: مثلاً
   all: جميع
-  all_colors: "&laquo; جميع الالوان"
   all_comments: كل التعليقات
   all_flags_must_be_resolved: يجب حل جميع الأعلام
   all_life: كل الحياة
@@ -536,7 +533,6 @@ ar:
   citation: اقتباس
   classification: تصنيف
   clear: مسح
-  clear_color_filters: مسح مرشحات الألوان
   clear_filters: مسح المرشحات
   clear_search: مسح البحث
   click_the_map: "<strong>انقر على الخريطة</strong> لإضافة موقع."
@@ -2094,7 +2090,9 @@ ar:
   output_taxon: إخراج الأصنوفة
   overview: نظرة عامة
   owner: المالك
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: الأصل
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: اسم الوالدين
   parental_consent:
     must_specify_email: يجب عليك تحديد عنوان بريد إلكتروني
@@ -2678,7 +2676,6 @@ ar:
   radius_value: "نصف القطر (م): %{radius}"
   random: عشوائي
   range: النطاق
-  range_from: 'مجموعة من'
   rank: المرتبة
   rank_position: المرتبة
   rank_restrictions: قيود المرتبة
@@ -2796,7 +2793,6 @@ ar:
   remove_selected: إزالة المختار
   remove_tags: إزالة العلامات
   removed: تمت إزالته
-  removed!: تمت إزالته!
   removed_project_user: تمت إزالة مستخدم المشروع
   removing: "تجري الإزالة..."
   reorder_by_taxonomy: إعادة ترتيب حسب التصنيف
@@ -3663,7 +3659,6 @@ ar:
   were_pretty_sure_this_is_in_the_rank: نحن متأكدون من أن هذا في %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "عذرا، أخفق الاستيراد الضخم ل%{filename}."
   what: ماذا
-  what_color_was_it: ماذا كانن اللون؟
   what_did_you_see: ماذا رأيت؟
   what_did_you_see?: <em>ماذا</em> رأيت؟
   what_do_you_think: ما رأيك؟
@@ -6062,7 +6057,7 @@ ar:
         الأخرى نيابة عنك، والوصول إلى الإحداثيات المخفية وأية 
         معلومات أخرى يمكنك الوصول إليها على الموقع.
       login: |
-        الوصول إلى معلومات ذات صلة بتسجيل الدخول، مثل عنوان البريد الإلكتروني، واسم 
+        الوصول إلى معلومات ذات صلة بتسجيل الدخول، مثل عنوان البريد الإلكتروني، واسم
         المستخدم، وأيقونة المستخدم.
     errors:
       messages:
