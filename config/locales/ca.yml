@@ -301,8 +301,6 @@ ca:
   added_to_favorites_html: |
     Afegit <a href="%{url}">als preferits</a>
   adding: "Afegint..."
-  additional_range: Distribució addicional
-  additional_range_data_from_an_unknown_source: Dades addicionals de distribució des de font desconeguda
   adjust_brightness: Ajusteu brillantor
   admin: administrador
   admin_s: Administrador/s
@@ -751,7 +749,6 @@ ca:
   citation: Referència
   classification: Classificació
   clear: Neteja
-  clear_color_filters: Esborra els filtres de color
   clear_filters: Netegeu filtres
   clear_search: Esborra la cerca
   click_the_map: "<strong>Feu clic al mapa</strong> per afegir-hi una localització."
@@ -1906,9 +1903,12 @@ ca:
   membership_model: Model d'adhesió
   mentioned_you_in_noun_html: "%{user} us ha esmentat a %{noun}"
   mentioned_you_in_noun_by_html: "%{user} us ha esmentat a %{noun} de %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} us ha esmentat a %{noun} de %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} us ha esmentat a %{noun} vostre"
   mentioned_you_in_a_x_on_noun_html: "%{user} us ha esmentat en un %{x} a %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} us ha esmentat en un %{x} a %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} us ha esmentat a una %{x} en %{noun} de %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} us ha esmentat a un %{x} en %{noun} de %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} us ha esmentat a una %{x} en %{noun} de %{by}"
   merge: Combina
   merge_it_with_another_place: Combina amb un altre lloc
@@ -3022,7 +3022,6 @@ ca:
   radius_value: "Radi (m): %{radius}"
   random: A l’atzar
   range: Interval
-  range_from: 'Distribució de'
   rank: Rang
   rank_position: Classificació
   rank_restrictions: Classifica les restriccions
@@ -3143,7 +3142,6 @@ ca:
   remove_selected: Eliminar els elements seleccionats
   remove_tags: Eliminar etiquetes
   removed: eliminat
-  removed!: Eliminat!
   removed_project_user: Usuari eliminat del projecte
   removing: "Eliminant..."
   reorder_by_taxonomy: Reordenar per taxonomia
@@ -6169,6 +6167,8 @@ ca:
     scopes:
       write: |
         Creeu, actualitzeu, i elimineu les vostres observacions, identificacions, i altre contingut en el vostre nom, i accediu a les vostres coordenades ocultes i qualsevol altra informació d'aquest lloc a la qual pugueu accedir.
+      login: |
+        Accediu a informació rellevant per entrar, com l'adreça de correu electrònic, el nom d'usuari, el nom, i la icona d'usuari
     errors:
       messages:
         #Common error messages
