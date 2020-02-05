@@ -17,6 +17,15 @@ sv:
   x_identifications_:
     one: '1 Identifiering'
     other: '%{count} Identifieringar'
+  x_languages:
+    one: "%{count} språk"
+    other: "%{count} språk"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} första i artlistan"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} första i artlistan"
   x_journal_posts_html:
     one: '<span class="antal">1</span> journalinlägg'
     other: '<span class="antal">%{count}</span> journalinlägg'
@@ -225,8 +234,6 @@ sv:
   added_to_favorites_html: |
     Lades till i <a href="%{url}">favoriter</a>
   adding: "Lägger till..."
-  additional_range: Utökat urval
-  additional_range_data_from_an_unknown_source: Utökat urval från en okänd källa
   admin: Administratör
   admin_s: Administratör(er)
   admin_only: Endast admin.
@@ -560,7 +567,6 @@ sv:
   choose_rule: Välj en regel
   choose_subjects: Välj ämnen
   choose_tags: Välj taggar
-  clear_color_filters: Rensa färgfilter
   clear_search: Rensa sökning
   click_the_map: "<strong>Klicka på kartan</strong> för lägg till plats."
   close: Stäng
