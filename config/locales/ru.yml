@@ -4047,12 +4047,12 @@ ru:
   use_name_as_a_placeholder: |
     Используйте <span class='ac-placeholder'>"%{name}"</span> в качестве заполнителя
   use_this_form_to_create_a_new: |
-    Эта форма используется для создания нового проекта таксономического изменения, описывающего предлагаемые разделение, слияние или замену на активные таксоны, которые впоследствии будут реализованы.
+    Используйте эту форму для создания нового проекта таксономического изменения, описывающего предлагаемые разделение, слияние или замену на активные таксоны, которые впоследствии будут реализованы.
   use_this_if_the_url_needs_genus_species_separated: |
-    Используйте это, если URL-адрес должен иметь род и вид, разделенные определенным образом. Если таксон-это не вид или подвид, всё между [РОД] и [ВИД] будет заменено на наименование таксона, так что используйте с осторожностью.
-  use_unique_file_names_for_separate_uploads: Используйте уникальные имена файлов для отдельных выгрузок.
+    Используйте это, если URL-адрес должен иметь род и вид, разделенные определенным образом. Если таксон - это не вид или подвид, всё между [GENUS] и [SPECIES] будет заменено на наименование таксона, так что используйте с осторожностью.
+  use_unique_file_names_for_separate_uploads: Используйте уникальные имена файлов для отдельных загрузок
   use_well_formed_csv: |
-    Используйте правильно сформированный файл в формате CSV. Это означает, что текст с запятыми должен быть заключен в двойные кавычки. Большинство приложений электронных таблиц должны экспортировать файлы CSV в этом формате.
+    Используйте правильно сформированный файл CSV. Это означает, что текст с запятыми должен быть заключен в двойные кавычки. Большинство приложений электронных таблиц должны экспортировать файлы CSV в этом формате.
   used_x_times:
     one: Использовано 1 раз
     few: Использовано %{count} раза
@@ -4062,7 +4062,7 @@ ru:
   user1_and_user2_faved_this_observation: "%{user1} и %{user2} добавили это наблюдение к фаворитам"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, и %{x_others} добавили это наблюдение к фаворитам"
   user_added_a_comment_html: "%{user} добавил комментарий"
-  user_added_a_fave_html: "%{user} добавил фаворита"
+  user_added_a_fave_html: "%{user} добавил к фаворитам"
   user_added_a_flag_html: "%{user} добавил флаг"
   user_added_a_project_invitation_html: "%{user} добавил приглашение в проект"
   user_added_a_x: "%{user} добавил %{x}"
@@ -4086,7 +4086,7 @@ ru:
   #not the place. Gender for all variables is not known..
   user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
     %{user} считает, что это полный список %{taxon} в %{place}
-  user_blocked: Участник заблокирован
+  user_blocked: Пользователь заблокирован
   user_commented: "%{user} прокомментировал"
   user_commented_on: "%{user} прокомментировал ваш %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} не  согласен с тем, что это %{taxon}"
@@ -4146,8 +4146,8 @@ ru:
   view_all_photocount_photos: "Посмотреть все %{photo_count} фото"
   view_assessment: Просмотр оценки
   view_check_list_page: Просмотреть страницу контрольного списка
-  view_contributions: Просмотреть вклад
-  view_details: Просмотреть подробности
+  view_contributions: Посмотреть вклад
+  view_details: Посмотреть подробности
   view_field_options: Просмотр параметров поля
   view_flag: Просмотр флага
   view_flags: Посмотреть флаги
@@ -4189,7 +4189,7 @@ ru:
   view_projects_from_place: "Посмотреть проекты для %{place}"
   view_sample: Посмотреть образец
   view_stats: Посмотреть статистику
-  view_taxon_change: Просмотреть изменение таксона
+  view_taxon_change: Посмотреть изменение таксона
   view_taxon_changes: Просмотреть изменения таксона
   view_taxon_framework_relationship: Посмотреть связь основы таксона
   view_taxon_page: Посмотреть страницу таксона
@@ -4200,7 +4200,7 @@ ru:
   view_user_observations: "Посмотреть наблюдения %{user}"
   view_x: "Посмотреть %{x}"
   view_year_stats_for_site: "Просмотр статистики %{year} для %{site}"
-  view_your_dashboard: Посмотреть свою панель мониторинга
+  view_your_dashboard: Посмотреть вашу панель мониторинга
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Посмотреть вашу панель мониторинга</a> на предмет обновлений"
   view_your_inbox: Просмотр входящих сообщений
   view_your_observations: Посмотреть ваши наблюдения
@@ -4208,7 +4208,7 @@ ru:
   view_yours: Посмотреть ваши
   view_all_of_your_observations_from_x: "Посмотреть все ваши наблюдения из %{x}"
   video_tutorials: Видеопособия
-  visually_similar: Визуально Похожие
+  visually_similar: Визуально похожие
   vulnerable: Уязвимый
   w00t_no_ungrafted_taxa: w00t!  Нет привитых таксонов!
   w_photos_only: с фото
@@ -4219,7 +4219,7 @@ ru:
   we_also_support: |
     Мы также поддерживаем <a href="http://flickr.com">Flickr</a>,
     <a href="http://photos.google.com">Google Photos</a>, и
-    <a href="http://facebook.com">Facebook</a> для размещения фотографий.
+    <a href="http://facebook.com">Facebook</a> как хостинги изображений.
   we_can_only_understand_csv_in: Мы можем понимать CSV только в следующем формате
   we_couldnt_find_a_user: Мы не смогли найти пользователя с этим адресом электронной почты.
   we_couldnt_find_a_user_with_that_activation_code: "Мы не смогли найти пользователя с этим кодом активации. Возможно, вы уже активировали свою учётную запись, пожалуйста, попробуйте войти."
@@ -4252,8 +4252,8 @@ ru:
   when_did_you_see_it?: Когда вы это видели?
   when_did_you_see_them?: <em>Когда</em> вы это видели?
   where: Где
-  where_do_x_live: Где обитают %{taxa}
-  where_does_x_live: Где обитают %{taxa}
+  where_do_x_live: Где обитают %{taxa}?
+  where_does_x_live: Где обитают %{taxa}?
   where_were_they?: Где они находились?
   where_were_you?: Где вы были?
   which_projects_can_add_your_observations?: Какие традиционные проекты могут воспользоваться вашими наблюдениями?
@@ -4295,7 +4295,7 @@ ru:
   x_flagged_as_flag: "%{x} помечен как %{flag}"
   x_journal: "Журнал %{user}"
   x_journal_archives_for_y: "Журнал • Архивы %{user}"
-  x_journal_middot: "Journal %{user}•"
+  x_journal_middot: "Журнал %{user}•"
   x_journal_new_post: "Журнал %{user} • Новое сообщение"
   x_observations_failed:
     one: "Не удалось создать %{count} наблюдение"
@@ -4309,8 +4309,7 @@ ru:
   x_project_stats: "Статистика %{project}"
   x_sent_you_a_new_message_on_y_html: "%{x} послал вам новое сообщение на %{y}:"
   x_site_is_a_social_network_for_naturalist: |
-    %{site} - социальная сеть для натуралистов! Регистрируйте свои наблюдения за растениями и животными,
-    делитесь ими с друзьями и исследователями и узнавайте о мире природы.
+    %{site} - социальная сеть для натуралистов! Регистрируйте свои наблюдения за растениями и животными, делитесь ими с друзьями и исследователями и узнавайте о мире природы.
   x_wrote_a_new_post_html: "%{x} написал новое сообщение"
   x_wrote_y_new_posts_html: "%{x} написал %{y} новых сообщений"
   year: Год
@@ -4360,15 +4359,15 @@ ru:
   you_can_accept_invitations: Вы можете принять приглашение здесь
   you_can_choose_observations_associated: Вы можете выбрать наблюдения, связанные с этом сообщением журнала.
   you_can_edit_this_default_check_list_because: |
-    Вы можете изменить этот контрольный список по умолчанию,если вы являетесь администратором, но на самом деле не должно быть необходимости этого делать.
+    Вы можете изменить этот контрольный список по умолчанию, если вы являетесь администратором, но на самом деле такой необходимости быть не должно.
   you_can_only_destroy_taxa_you_created: "Вы можете уничтожить только те таксоны, которые создали вы, но вы не можете уничтожить таксоны, которые используются в изменениях таксонов."
-  you_can_only_block_three_users: Вы можете заблокировать только трех участников
+  you_can_only_block_three_users: Вы можете заблокировать только трех пользователей
   you_can_show_the_boundary_of: Вы можете показать границу места на странице вашего проекта, если место имеет границы.
   you_can_sign_free_at: "Вы можете бесплатно зарегистрировать аккаунт на %{site_name}"
   you_cant_compare_a_list_with_nothing: Вы не можете сравнивать список с ничем!
   you_cant_delete_a_project_list: "Вы не можете удалить список проекта"
-  you_cant_delete_observation_fields_that_people_are_using: "Вы не можете удалить поля наблюдения, которые люди используют."
-  you_cant_do_that_for_the_default_check_list_place: Вы не можете сделать этого для контрольного списка по умолчанию данного места!
+  you_cant_delete_observation_fields_that_people_are_using: "Вы не можете удалить поля наблюдения, которые используют люди"
+  you_cant_do_that_for_the_default_check_list_place: Вы не можете сделать это с контрольным списком по умолчанию для данного места!
   you_cant_flag_that: Вы не можете помечать это
   you_cant_leave_a_project_you_created: Вы не можете покинуть созданный вами проект.
   you_cant_rotate_photos_hostde_outside: "Вы не можете повернуть фото, размещённые за пределами %{site_name}."
@@ -4396,8 +4395,8 @@ ru:
   you_must_select_a_place_to_merge_with: Вы должны выбрать место, чтобы присоединить его.
   you_must_select_at_least_one_taxon: Вы должны выбрать хотя бы один таксон
   you_must_select_dates_to_compare: Вы должны выбрать даты для сравнения
-  you_must_specify_and_confirm_a_new_password: Необходимо указать и подтвердить новый пароль.
-  you_need_to_have_linked_flickr_account: Вам нужно иметь привязанную учётную запись Flickr, чтобы добавить теги к вашим фото.
+  you_must_specify_and_confirm_a_new_password: Необходимо задать и подтвердить новый пароль.
+  you_need_to_have_linked_flickr_account: Вам нужно иметь привязанную учётную запись Flickr, чтобы добавлять теги к вашим фото.
   you_need_to_select_some_observations_first: Сначала нужно выбрать несколько наблюдений
   you_retain_full_copyright: "Вы сохраняете полное авторское право на свой контент, кроме тех прав, которые предоставляются %{site_name} в наших Условиях использования."
   you_retain_full_copyright_over_your_content: "Вы сохраняете полное авторское право на свой контент, кроме тех прав, которые предоставляются %{site_name} в наших Условиях использования."
@@ -4409,7 +4408,7 @@ ru:
   you_sure_delete_project?: Вы уверены, что хотите удалить этот проект?
   you_sure_delete_this_observation: "Вы уверены, что хотите удалить это наблюдение?"
   you_sure_remove_taxon_from?: "Вы уверены что хотите удалить этот таксон из %{list}?"
-  you_unlinked_your_provider_account: "Вы разорвали связь с учётной записью %{provider}"
+  you_unlinked_your_provider_account: "Вы отвязали свою учётную запись %{provider}"
   youll_need_to_link: Вы должны привязать
   youve_joined_the_x_project: "Вы присоединились к проекту %{project_invitation}, и ваше наблюдение было добавлено"
   your_account_has_been_activated: Ваш аккаунт был активирован!
@@ -4428,7 +4427,7 @@ ru:
   your_home: Ваша домашняя страница
   your_id: Ваша идентификация
   your_identification: Ваша Идентификация
-  your_membership: Ваш вклад
+  your_membership: Ваше членство
   your_name_was_saved: Ваше имя было сохранено.
   your_observations: Ваши наблюдения
   your_observations_couldnt_be_added_to_that_project: "Ваши наблюдения не могут быть добавлены к этому проекту: %{errors}"
@@ -4444,8 +4443,8 @@ ru:
   your_tags: Ваши теги
   yours: Ваш(и)
   youre_not_following_anyone: |-
-    Вы ни на кого не подписаны. Подписка на других натуралистов \ позволит вам легко быть в курсе их последних наблюдений. Поищите, что 
-    <a href="%{observations_path}">наблюдают</a> люди и завяжите новые  
+    Вы ни на кого не подписаны. Подписка на других натуралистов позволит вам легко быть в курсе их последних наблюдений. Поищите, что 
+    <a href="%{observations_path}">наблюдают</a> люди и завяжите новые 
     <a href="%{people_path}">знакомства</a>.
   youve_linked_your_inaturalist_google_account: "Вы связали свою учётную запись %{site_name} и свою учётную запись Google. Это позволит вам ассоциировать ваши фото Google с вашими наблюдениями %{site_name}."
   youve_seen_it_want_to: "Вы видели это! Хотите"
@@ -4484,7 +4483,7 @@ ru:
         <p class="text-muted">
         iNaturalist - это объединённая инициатива Калифорнийской Академии наук и Национального Географического общества. Все пожертвования будут получены Калифорнийской академией наук, 501(c)(3) некоммерческой организацией, не облагаемой налогом, базирующейся в Соединенных Штатах Америки (Tax ID: 94-1156258).
         </p>
-      post_donate_social_media_text: Я оказываю поддержку, потому что...
+      post_donate_social_media_text: Я оказываю поддержку iNaturalist, потому что...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станьте ежемесячным спонсором iNaturalist
         desc_html: |
