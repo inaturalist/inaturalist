@@ -44,10 +44,10 @@ EOS
   opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations, User",
     type: :strings, short: "-x"
   opt :metadata, "
-    Path to metadata template. Default: observations/gbif.eml.erb. \"skip\" will skip EML file generation.
-  ".strip.gsub( /\s+/m, " " ), type: :string, short: "-m", default: "observations/gbif.eml.erb"
-  opt :descriptor, "Path to descriptor template. Default: observations/gbif.descriptor.builder",
-    type: :string, short: "-r", default: "observations/gbif.descriptor.builder"
+    Path to metadata template. Default: observations/dwc.eml.erb. \"skip\" will skip EML file generation.
+  ".strip.gsub( /\s+/m, " " ), type: :string, short: "-m", default: "observations/dwc.eml.erb"
+  opt :descriptor, "Path to descriptor template. Default: observations/dwc.descriptor.builder",
+    type: :string, short: "-r", default: "observations/dwc.descriptor.builder"
   opt :quality, "
     Quality grade of observation output.  This will also filter EolMedia
     exports. Options: research, casual, verifiable, any.
