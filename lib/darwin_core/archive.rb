@@ -9,7 +9,7 @@ module DarwinCore
       @opts = opts
       @opts[:path] ||= "dwca.zip"
       @opts[:core] ||= "occurrence"
-      @opts[:metadata] ||= File.join(Rails.root, "app", "views", "observations", "gbif.eml.erb")
+      @opts[:metadata] ||= File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
       @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "gbif.descriptor.builder")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC0", "CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
@@ -167,7 +167,7 @@ module DarwinCore
 
     def observations_params
       params = {}
-      params[:license] = @opts[:licenses] unless @opts[:licenses].include?( "ignore" )
+      params[:license] = [@opts[:licenses]].flatten.compact.join( "," ) unless @opts[:licenses].include?( "ignore" )
       params[:place_id] = @place.id if @place
       params[:taxon_id] = @taxon.id if @taxon
       params[:projects] = [@project.id] if @project
