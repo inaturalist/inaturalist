@@ -6,9 +6,9 @@
   elsif @object.respond_to?( :title ) || @object.respond_to?( :name )
     t( "flag_for_#{@object.class.name.underscore}_title_html", title: link_to( @object.try_methods(:title, :name), @object ) )
   elsif @object
-    t( "flag_for_#{@flag.flaggable_type}_id_html", id: @flag.flaggable_id, url: url_for(@object) )
+    t( "flag_for_#{@flag.flaggable_type.to_s.downcase}_id_html", id: @flag.flaggable_id, url: url_for(@object) )
   else
-    t( "flag_for_#{@flag.flaggable_type}_id_deleted", id: @flag.flaggable_id )
+    t( "flag_for_#{@flag.flaggable_type.to_s.downcase}_id_deleted", id: @flag.flaggable_id )
   end
 - content_for(:title) do
   = strip_tags @title

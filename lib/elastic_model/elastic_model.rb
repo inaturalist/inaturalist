@@ -5,7 +5,8 @@ module ElasticModel
   ASCII_SNOWBALL_ANALYZER = {
     ascii_snowball_analyzer: {
       tokenizer: "standard",
-      filter: [ "lowercase", "asciifolding", "stop", "snowball" ]
+      filter: [ "lowercase", "asciifolding", "stop", "snowball" ],
+      char_filter: [ "inat_char_filter" ]
     }
   }
   # basic autocomplete analyzer. Avoids diacritic variations, will find
@@ -13,7 +14,8 @@ module ElasticModel
   AUTOCOMPLETE_ANALYZER = {
     autocomplete_analyzer: {
       tokenizer: "standard",
-      filter: [ "lowercase", "asciifolding", "edge_ngram_filter" ]
+      filter: [ "lowercase", "asciifolding", "edge_ngram_filter" ],
+      char_filter: [ "inat_char_filter" ]
     }
   }
   # autocomplete analyzer for Japanese strings
@@ -65,7 +67,17 @@ module ElasticModel
       STANDARD_ANALYZER,
       KEYWORD_ANALYZER
     ].reduce(&:merge),
-    filter: EDGE_NGRAM_FILTER
+    filter: EDGE_NGRAM_FILTER,
+    char_filter: {
+      inat_char_filter: {
+        type: "mapping",
+        mappings: [
+          # map ʻokina to nothing so searches for ʻokina, 'okina, and okina would all return the same things
+          "ʻ => ",
+          "× => x"
+        ]
+      }
+    }
   }
 
   def self.search_criteria(options={})

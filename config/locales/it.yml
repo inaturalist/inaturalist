@@ -260,7 +260,9 @@ it:
   add_life_stage_larva_annotation: 'Aggiungi nota "Stadio vitale: Larva"'
   add_life_stage_juvenile_annotation: 'Aggiungi nota "Stadio vitale: Giovane"'
   add_life_stage_egg_annotation: 'Aggiungi nota "Stadio vitale: Uovo"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Aggiungi una relazione'
+  #As in a Guide Section
   add_section: Aggiungi sezione
   add_several_observations_at_once: Aggiungere più osservazioni in una sola volta.
   add_sex_female_annotation: 'Aggiungi nota "Sesso: Femmina"'
@@ -305,8 +307,6 @@ it:
   added_to_favorites_html: |
     Aggiunta ai <a href="%{url}">preferiti</a>
   adding: "Aggiunta in corso..."
-  additional_range: Areale aggiuntivo
-  additional_range_data_from_an_unknown_source: Ulteriori dati di distribuzione da fonte sconosciuta
   adjust_brightness: Regola luminosità
   admin: Amministratore
   admin_s: Amministratore(i)
@@ -319,7 +319,6 @@ it:
   agreeing: Accordo in corso...
   aka: o
   all: Tutto
-  all_colors: "&laquo; Tutti i colori"
   all_comments: Tutti i commenti
   all_flags_must_be_resolved: Tutte le segnalazioni devo essere risolte
   all_life: Tutti gli esseri viventi
@@ -757,7 +756,6 @@ it:
   citation: Citazione
   classification: Classificazione
   clear: pulisci
-  clear_color_filters: Rimuovi i filtri dei colori
   clear_filters: Cancella filtri
   clear_search: Cancella la ricerca
   click_the_map: "<strong>Clicca sulla mappa</strong> per aggiungere una posizione."
@@ -1081,7 +1079,7 @@ it:
   doh_something_went_wrong_error: "Ahi, qualcosa è andato storto: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate: FAI UNA DONAZIONE
+  donate: DONA
   done: Fatto
   dont_have_an_account_sign_up_html: Non hai un'utenza? <strong>Registrati.</strong>
   dont_send_me_email: "Non inviarmi nessuna e-mail!"
@@ -1300,10 +1298,13 @@ it:
   flag_an_item: Contrassegna un elemento
   flag_as_spammer: Segna come spammer
   flag_as_non_spammer: Contrassegna come non-spam
+  #Label for the date/time when a flag was created
+  flag_created: Contrassegno Creato
   flag_description: Contrassegna il contenuto per segnalare ai curatori che c'è qualcosa che non va al riguardo.
   flag_for_check_list_title_html: |
     Contrassegno per la Checklist: %{title}
   flag_for_comment_id_html: Contrassegno per il <a href="%{url}">Commento %{id}</a>
+  flag_for_comment_id_deleted: Contrassegno per il Commento %{id} (cancellato)
   flag_for_curation: Contrassegna per il controllo
   flag_for_guide_title_html: |
     Contrassegno per la Guida: %{title}
@@ -1907,10 +1908,16 @@ it:
   membership_model: Modello di adesione
   mentioned_you_in_noun_html: "%{user} ti ha menzionato in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} ti ha menzionato in %{noun} di %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} ti ha menzionato in %{noun} di %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} ti ha menzionato in %{noun} di te"
   mentioned_you_in_a_x_on_noun_html: "%{user} ti ha menzionato in una %{x} su %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} ti ha menzionato in una %{x} su %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} ti ha menzionato in una %{x} su %{noun} di %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di te"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} ti ha menzionato in una %{x} su %{noun} di %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} ti ha menzionato in un/una %{x} in %{noun} di te"
   merge: Unisci
   merge_it_with_another_place: Unisci con un altro luogo
   merge_two_places_together: Unisci insieme due luoghi. Tutte le specie sulla checklist saranno unite, nonché tutti i dati geografici.
@@ -2210,7 +2217,9 @@ it:
   observation_added: Osservazione aggiunta.
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
   observation_aggregation: Aggregazione di osservazioni
-  observation_brief_something_on_day: "qualcosa il %{day}"
+  observation_brief_something_on_day: "Qualcosa il %{day}"
+  observation_brief_something_on_day_at_time: "Qualcosa il %{day} alle %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Qualcosa il %{day} alle %{time} da %{user}"
   observation_brief_something_on_day_by_user: "Qualcosa il %{day} da %{user}"
   observation_brief_something_by_user: "Qualcosa da %{user}"
   observation_brief_something_from_place: "Qualcosa in %{place}"
@@ -2220,6 +2229,8 @@ it:
   observation_brief_something_from_place_on_day_at_time: "Qualcosa in %{place} il %{day} alle %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Qualcosa in %{place} il %{day} alle %{time} da %{user}"
   observation_brief_taxon_on_day: "%{taxon} il %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} il %{day} alle %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} il %{day} alle %{time} da %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} il %{day} da %{user}"
   observation_brief_taxon_by_user: "%{taxon} da %{user}"
   observation_brief_taxon_from_place: "%{taxon} in %{place}"
@@ -2446,7 +2457,9 @@ it:
   overview: Panoramica
   overlapping_downstream_taxon_frameworks_html: "Sovrapposizione di Quadri di Taxon a valle: %{count}"
   owner: Proprietario
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Di Categoria superiore
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nome di categoria superiore
   parental_consent:
     must_specify_email: Devi specificare un indirizzo email
@@ -3018,7 +3031,6 @@ it:
   radius_value: "Raggio (m): %{radius}"
   random: Casuale
   range: Intervallo
-  range_from: 'Areale da'
   rank: Rango
   rank_position: Rango
   rank_restrictions: Restrizioni del rango
@@ -3139,7 +3151,6 @@ it:
   remove_selected: Rimuovi i selezionati
   remove_tags: Rimuovi i tag
   removed: Rimosso
-  removed!: Rimosso!
   removed_project_user: Utente del progetto rimosso
   removing: "Rimozione in corso..."
   reorder_by_taxonomy: Riordina per tassonomia
@@ -3329,6 +3340,8 @@ it:
   skip_to_next_page: "Passa alla pagina successiva"
   small: piccola
   site_admin_tools: Strumenti amministratore del sito
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Amministratori del Sito
   site_name_place: "Luogo di %{site_name}"
   site_observations_export_from_date: "osservazioni di %{site_name} esportate dal %{date}"
   site_site_admin: "Amministratore del sito %{site_name}"
@@ -3372,7 +3385,6 @@ it:
     import_from_soundcloud_description: "Seleziona i suoni dal tuo account SoundCloud per convertirli in osservazioni iNaturalist. Cercheremo di compilare i campi data e orario dai metadati del suono e cercheremo il nome della specie tra i tag."
     import_from_sounds: Importa da file audio
     import_sounds: Importa Suoni
-    link_your_soundcloud_account: Collega il tuo account SoundCloud
     listen: Ascolta
     no_photos_sounds: Nessuna foto o suoni
     photos_sounds: Foto / Suoni
@@ -3383,9 +3395,6 @@ it:
     sound_has_been_flagged: Questo suono è stato contrassegnato
     soundcloud_replied_with_an_error: SoundCloud ha risposto con un messaggio di errore. Si prega di riprovare più tardi.
     sounds: Suoni
-    view_all_soundcount_sounds: "Visualizza tutti i %{sound_count} suoni"
-    we_didnt_find_any_sounds: Spiacenti! Non riusciamo ad ottenere nessun suono dall'account SoundCloud.
-    you_need_to_link_your_soundcloud_account: Devi collegare il tuo account SoundCloud per aggiungere dei suoni.
     your_soundcloud_account: il tuo account SoundCloud
   source: Fonte
   source_: 'Fonte:'
@@ -3900,6 +3909,8 @@ it:
   user_added_a_project_invitation_html: "%{user} ha aggiunto in invito di progetto"
   user_added_a_x: "%{user} ha aggiunto una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a una %{noun} di %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
   user_added_a_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha aggiunto un'identificazione"
   user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}" ad un''osservazione di %{owner}'
@@ -3907,6 +3918,8 @@ it:
   user_added_an_observation_html: "%{user} ha aggiunto una osservazione"
   user_added_an_x: "%{user} ha aggiunto una %{x}"
   user_added_an_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a %{noun} di %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
   user_added_an_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha aggiunto %{x} osservazioni"
   user_already_authenticated: L'utente è già autenticato
@@ -4071,7 +4084,6 @@ it:
   were_pretty_sure_this_is_in_the_rank: Siamo abbastanza sicuri che è in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ci dispiace ma la tua importazione in blocco di %{filename} è fallita."
   what: Che
-  what_color_was_it: Di che colore era?
   what_did_you_see: Cosa hai visto?
   what_did_you_see?: <em>Cosa</em> hai visto?
   what_do_you_think: Cosa ne pensi?
@@ -4328,6 +4340,8 @@ it:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          Il contenuto contrassegnabile è il l'attributo di testo principale dell'oggetto contrassegnato nel momento in cui il contrassegno è stato creato. Solo i curatori e lo staff lo possono vedere. Solo lo staff lo può vedere per i messaggi.
         flags_that_should_not_be_resolved_desc_html: |
           Per favore risolvi i contrassegni <code>spam</code> e <code> violazione del copyright</code> solo se il contenuto non è spam o violazione del copyright, rispettivamente.
     guides:
@@ -4436,94 +4450,6 @@ it:
       show:
         reuse_desc: |
           Puoi copiare questo taxon in un'altra guida. Se sei uno degli editor della guida la copia sarà completa, altrimenti verranno copiati solo i contenuti con licenza.
-    help:
-      index:
-        welcome_message_html: |
-          Ciao! se hai appena iniziato su %{site_name}, controlla la nostra guida <a href="%{url}">%{getting_started}</a> per esplorare alcune delle caratteristiche del nostro sito. Se hai domande, per favore consulta le nostre FAQ qui sotto. Se hai bisogno di altre risposte, per favore <a href="%{feedback_url}">posta la tua domanda sul nostro gruppo di Feedback</a>.
-        what_is_inaturalist?: Cos'è %{site_name}?
-        who_is_behind_inaturalist?: Chi c'è dietro %{site_name}?
-        what_technologies_does_the_project_use?: Che tecnologia e fonte di dati usa il nostro progetto?
-        inaturalist_provides_a_place_to: |
-          %{site_name} permette di registrare ed organizzare le osservazioni delle forme di vita, incontrare altri appassionati di natura, ed imparare a conoscere il mondo naturale. %{site_name} incoraggia la partecipazione di un ampia gamma di appassionati, compresi, ma non solo, escursionisti, cacciatori, birdwatcher, cercatori di funghi, guardiaparco, ecologisti e pescatori. Attraverso il collegamento di queste diverse percezioni e competenze, %{site_name} spera di aumentare la consapevolezza ed incentivare le ricerche sulla biodiversità locale.
-        who_is_behind_inaturalist: Chi c'è dietro a %{site_name}?
-        inaturalist_was_originally_the_masters_final_html: |
-          %{site_name} era il progetto finale di Master di Nathan Agrin, Jessica Kline, e Ken-ichi Ueda alla <a href="http://www.ischool.berkeley.edu">School of Information</a> di Berkeley.
-          Controlla <a href="/about">la pagina 'Informazioni su'</a> per più informazioni sulle persone che attualmente gestiscono il sito.
-        what_can_i_do_to_help_inaturalist?: Cosa posso fare per aiutare %{site_name}
-        you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-          Puoi aiutare %{site_name} dandoci il tuo parere: unisciti al nostro <a href="%{feedback_url}">gruppo di Feedback</a> 
-          per segnalare errori e la richiesta di nuove funzioni. Puoi anche aiutare %{site_name}, aggiungendo le tue osservazioni
-          e identificando le osservazioni degli altri membri della comunità. Se usare il codice e vuoi aiutare a lavorare su alcune funzioni <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master - GitHub">lavora con noi su GitHub</a>!
-        how_do_i_contact_inaturalist?: Come faccio a contattare %{site_name}
-        you_can_contact_us_at_html: 'Puoi contattarci a questo indirizzo: <a href="mailto:%{help_email}">%{help_email}</a>'
-        what_are_admins_and_curators?: Chi sono gli amministratori e i curatori?
-        inat_admins_are_the_people_who: |
-          Gli amministratori %{site_name} sono le persone che amministrano il sito. Hanno accesso diretto al codice e al database, e possono modificare ogni cosa sul sito.
-        curators_are_inat_users_who_volunteer_to_html: |
-          I curatori sono utenti %{site_name} che volontariamente ci aiutano a mantenere i nostri dati tassonomici aggiornati. Se sei interessato a diventare curatore per favore <a href="mailto:%{help_email}">contattaci</a>. I curatori possono a loro volta promuovere altri utenti al ruolo di curatore. Per favore assegna il ruolo di curatore solo alle persone di cui ti fidi e che possiedono conoscenze tassonomiche.
-        what_is_considered_inappropriate_content?: Che cosa è considerato un contenuto inappropriato?
-        you_know_it_when_you_see_it_html: |
-          Tu <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">lo sai quando lo vedi</a>, giusto? Il materiale che vìola la sezione 2 dei nostri <a href="/terms.html">Termini di Servizio</a> è sicuramente inappropriato e degno di essere contrassegnato o notificato all'amministratore. Forme più leggere di volgarità sono sgradite, ma probabilmente non saranno cancellate. Osservazioni di animali domestici, animali in cattività, umani, o altri organismi che la maggior parte dei naturalisti non trova interessanti, sono comunque accettati (sono forme di vita, dopotutto). Le osservazioni di cose che non sono organismi sono un'area grigia. Ciò che chiaramente non ha a che fare con la natura, come ad esempio cosa ha avuto per pranzo, sono da contrassegnare e da cancellare; le prove di inquinamento o disturbo potrebbero essere interessanti, e quindi potrebbero non essere rimosse.
-        what_is_an_observation?: Cos'è un'osservazione?
-        an_observation_is_the_what_where_and_when_html: |
-          Un osservazione è il "Cosa, Dove e Quando" di un ritrovamento in natura.
-          %{site_name} fornisce un luogo dove aggiungere questa informazione insieme ad un testo, foto ed etichette. %{site_name} incoraggia l'inserimento di tutti i ritrovamenti in natura, sia si tratti di specie identificate sia di descrizioni testuali. (Su %{site_name} la stessa lucertola può essere descritta sia come un Ramarro occidentale sia come &quot;Misteriosa lucertola verde&quot;)
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Perché %{site_name} non riconosce il nome inserito?"
-        inaturalist_has_name_information_for_mammals: |
-          %{site_name} possiede i nomi di mammiferi, uccelli, rettili ed anfibi, e continua ad aggiungere i nomi delle specie nel suo database. Se un nome particolare non viene riconosciuto, cerca nomi alternativi e aggiungi il nome originale tra le etichette o nei campi di descrizione.
-        how_can_i_get_help_identifying_what_i_saw?: Come ottengo aiuto nell'identificare cosa ho visto?
-        check_the_id_please_checkbox_when_html: |
-          Controlla la casella "ID per favore" quando aggiungi / modifichi la tua osservazione, in questo modo apparirà nella sezione <a href="%{url}">ID per favore</a>.
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: Cosa comporta collegare %{site_name} al mio account Flickr?
-        inaturalist_can_link_directly_to_the_flickr_photo_service: |
-          %{site_name} può collegarsi direttamente al servizio di foto Flickr in modo che tu possa aggiungere direttamente le tue foto Flickr alle tue osservazioni. Quando acconsenti a collegare il tuo account Flickr, stai semplicemente collegando due account; non avremo accesso alla tua password Flickr e non stai perdendo il tuo copyright, né ci stai dando la possibilità di utilizzare le tue foto in modalità da te non volute.
-        can_i_add_photos_without_a_flickr_account?: Posso aggiungere foto senza un account Flickr?
-        we_also_support_google_html: 'Supportiamo anche Google: <a href="%{url}">Configura il tuo account Google &raquo;</a>'
-        we_also_support_uploading_photos: |
-          Supportiamo anche il caricamento diretto su %{site_name}, ma può essere un po' lento, perciò permettiamo un solo caricamento alla volta. Con Flickr o Google, se già utilizzi questi servizi, il caricamento sarà probabilmente più rapido.
-        what_are_tags?: Cosa sono le etichette?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Le etichette sono parole chiave che è possibile aggiungere un'osservazione per renderle più facili da trovare. 
-          Per esempio, se un barracuda ti ha inseguito durante un viaggio di immersioni subacquee nell'arcipelago Turks e Caicos, 
-          potresti etichettare la tua osservazione &quot;paura, barracuda, immersioni subacquee, vacanze, turks e caicos&quot;.
-        can_i_include_my_observations_on_my_blog?: Posso includere le mie osservazioni %{site_name} sul mio blog o sito web?
-        sure_check_out_our_widget_html: |
-          Certo, controlla il nostro <a href="%{url}" title="Observations Widget">Widget delle osservazioni</a>.
-        what_kind_of_photos_should_i_attach: Che tipo di foto posso allegare alle osservazioni? Posso allegare foto non scattate da me?
-        photos_attached_to_observations_should_be: |
-          Le foto allegate alle osservazioni dovrebbero essere quelle dell'individuo osservato al momento dell'osservazione. Se tu carichi l'osservazione di una pianta, e poi torni a vederla successivamente, per favore aggiungi una seconda osservazione per la foto scattata la seconda volta, perché essa rappresenta la pianta in un momento differente.
-        please_do_not_upload_pictures_you_didnt_take_html: |
-          Per piacere <em>non caricare foto che non hai scattato tu</em>, a meno che non abbia ottenuto il permesso dal fotografo. E' illegale pubblicare materiale sotto copyright senza una licenza fornita da chi l'ha creato, e i fotografi hanno un copyright completo sulle loro foro in maniera predefinita. Se la foro riguarda ciò che hai visto e qualcun altro ha scattato la foto concedendoti il permesso di pubblicarla, dovresti annotare il nome del fotografo nella descrizione dell'osservazione.
-        what_is_geoprivacy?: Che cos'è la geoprivacy?
-        geoprivacy_is_a_setting_you_can: |
-          La geoprivacy è un'impostazione delle tue osservazioni che controlla come le coordinate spaziali (latitudine e longitudine) sono visualizzate. Ecco le opzioni:
-        note_that_curators_of: |
-          Ricorda che i curatori di un progetto possono vedere le coordinate indipendentemente dall'impostazione di geoprivacy scelta; se sei preoccupato riguardo chi può avere accesso alle coordinate, assicurati di fidarti dei curatori dei progetti a cui ti unisci.
-        what_is_does_it_mean_for: Cosa significa per un osservazione essere 'oscurata'?
-        when_coordinates_are_obscured_it_means_that: |
-          Quando le coordinate sono oscurate significa che pubblicamente (e.g., sulla home page, sulla pagina dell'osservazione e sulla pagina del progetto) è mostrato un punto casuale entro %{km} Km dalle coordinate reali; le vere coordinate sono visibili solo quando tu stai vedendo la tua osservazione (e.g. sulla pagina del progetto individuale e nell'elenco delle osservazioni). Ricordati che anche i curatori dei progetti ai quali ai aggiunto l'osservazione possono vedere le vere coordinate. Le coordinate oscurate sono simboleggiate sulla mappa e nei feed geospaziali da un cerchio senza stelo.
-        coordinates_are_obscured_for_all_taxa: |
-          Le coordinate sono oscurate automaticamente per tutti i taxa "Near Threatened" o con livello di minaccia superiore, con riferimento alla Lista Rossa IUCN. Alcuni taxa possono essere dichiarati 'minacciati' da altri enti conservazionistici, altri semplicemente possono essere segnati come 'minacciati' dai curatori di %{site_name} lo ritengono necessario.
-        you_can_also_obscure_the_coordinates_html: |
-          Puoi oscurare le coordinate delle tue osservazioni indipendentemente dal taxon. Controlla la sezione <a href="#geoprivacy">geoprivacy</a> qui sopra.
-        what_is_the_quality_assessment: Che cos'è la valutazione della qualità del dato e come le osservazioni raggiungono il livello "ricercatore"?
-        what_is_a_life_list?: Che cos'è una Lista degli Esseri Viventi?
-        just_a_simple_list: Semplicemente una lista di taxa senza comportamenti speciali.
-        automatically_updates_based_on_your_observations: |
-          Si aggiorna automaticamente in base alle tue osservazioni. Ognuno su %{site_name} ha una lista degli Esseri Viventi predefinita che elenca tutte le specie viste. Se cancelli un'osservazione o una ID, la specie sarà rimossa. Puoi anche aggiungere manualmente dei taxa come per le altre liste. Le specie che aggiungi manualmente non saranno rimosse anche se cancelli l'osservazione dopo averle osservate.
-        you_can_also_make_additional_life_lists: |
-          Puoi creare anche liste degli esseri viventi per gruppi specifici, come una lista per gli uccelli, od una lista per le ueforbie.
-        a_project_list_belongs: |
-          Una lista del progetto appartiene al progetto ed elenca tutti i taxa osservati dai membri del progetto. La lista del progetto può anche essere implementata manualmente dagli amministratori del progetto, e può essere usata per impedire l'aggiunta delle osservazioni dei taxa che non sono presenti sulla lista stessa.
-        a_check_list_is_html: |
-          Una checklist è un elenco dei taxa presenti in un luogo. Ogni luogo ha una checklist predefinita; quando un'osservazione cade all'interno dei confini del luogo <em>e</em> raggiunge il livello 'ricerca', la specie osservata sarà automaticamente aggiunta alla checklist.
-        inat_users_can_also: |
-          Gli utenti %{site_name} possono anche aggiungere checklist addizionali ai luoghi, ma queste non saranno aggiornate automaticamente. Queste servono principalmente ad includere fonti di dati esterne o elencare organismi in base alle proprie esperienze.
-        is_a_list_of_every_species_that_you_have_seen: |
-          Una lista degli esseri viventi è un elenco di tutte le specie che hai osservato. Ogni utente %{site_name} ha una lista degli esseri viventi; queste liste sono aggiornate automaticamente in base alle osservazioni aggiunte su %{site_name}.
-        i_observed_a_species: "Ho osservato una specie, perché non compare nella mia lista degli esseri viventi?"
-        while_the_life_list_is_automatically_populated: |
-          Quando la lista degli esseri viventi si aggiorna automaticamente in base alle osservazioni aggiunte, la specie non comparirà se %{site_name} non riconosce il nome che hai usato. Raccomandiamo di provare nomi alternativi.
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -4549,6 +4475,9 @@ it:
         show_messages_to_user: Mostra messaggi a %{user}
         speech_privilege_notice: |
           Sarai in grado di mandare nuovi messaggi dopo che avrai aggiunto tre osservazioni verificabili o tre identificazioni per altri. Per ora puoi leggere e rispondere ai messaggi che ti mandano altre persone.
+      show:
+        flag_notice_html: |
+          Hai contrassegnato questa conversazione il %{date}. Il contrassegno persisterà anche se cancelli la tua copia di questa conversazione, quindi puoi farlo tranquillamente se non vuoi più vederlo.
     oauth:
       authorizations:
         new:
@@ -6250,7 +6179,9 @@ it:
       write: |
         Creare, aggiornare, e cancellare le tue osservazioni, identificazioni, e altri contenuti che ti appartengono, ed accedere alle tue coordinate nascoste e ad ogni altra informazione a cui tu puoi accedere la sito.
       login: |
-        Accedere a informazioni rilevanti per l'accesso, come l'email, il nome utente,e l'icona utente
+        Accedere a informazioni rilevanti per l'accesso a servizi di terze parti, come l'email, il nome utente, e l'icona utente qui associate al tuo account.
+      account_delete: |
+        Eliminare il tuo account per tuo conto.
     errors:
       messages:
         #Common error messages

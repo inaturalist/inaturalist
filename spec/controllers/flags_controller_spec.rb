@@ -40,6 +40,21 @@ describe FlagsController do
       post :update, id: flag.id, flag: { comment: "whatever" }
       expect(flash[:error]).to eq "You don't have permission to do that."
     end
+
+    it "should succeed when resolving a flag on a deleted observation" do
+      o = Observation.make!
+      flag = Flag.make!( flaggable: o )
+      o.destroy
+      http_login curator
+      post :update, id: flag.id, flag: {
+        comment: "it's fine, everything's fine, totally fine",
+        resolver_id: curator.id,
+        resolved: true
+      }
+      expect( response ).to be_redirect
+      flag.reload
+      expect( flag ).to be_resolved
+    end
   end
 
   describe "destroy" do

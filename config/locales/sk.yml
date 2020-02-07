@@ -118,7 +118,9 @@ sk:
   add_life_stage_larva_annotation: 'Pridať anotáciu „Štádium života: larva“'
   add_life_stage_juvenile_annotation: 'Pridať anotáciu „Štádium života: mláďa“'
   add_life_stage_egg_annotation: 'Pridať anotáciu „Štádium života: vajíčko“'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Pridať vzťah'
+  #As in a Guide Section
   add_section: Pridať sekciu
   add_several_observations_at_once: Vložiť niekoľko pozorovaní naraz.
   add_sex_female_annotation: 'Pridať anotáciu „Pohlavie: samica“'
@@ -150,8 +152,6 @@ sk:
   added_to_favorites_html: |
     Pridané do <a href="%{url}">obľúbených</a>
   adding: "Pridávanie..."
-  additional_range: Prídavný rozsah
-  additional_range_data_from_an_unknown_source: Prídavný rozsah dát z neznámeho zdroja
   adjust_brightness: Nastavenie jasu
   admin: Administrátor
   admin_s: Administrátori
@@ -164,7 +164,6 @@ sk:
   agreeing: Súhlasím...
   aka: alias
   all: Všetko
-  all_colors: "&laquo; Všetky farby"
   all_comments: Všetky komentáre
   all_flags_must_be_resolved: Všetky značky musia byť vyriešené
   all_life: Všetok život
@@ -513,7 +512,6 @@ sk:
   citation: Citácia
   classification: Klasifikácia
   clear: vymazať
-  clear_color_filters: Zrušiť farebné filtre
   clear_filters: Zrušiť filtre
   clear_search: Zrušiť vyhľadávanie
   click_the_map: "<strong>Kliknite na mapu</strong> a pridajte miesto."
@@ -1905,7 +1903,9 @@ sk:
   output_taxon: Výstupný taxón
   overview: Prehľad
   owner: Vlastník
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Nadradený
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Názov nadradeného
   parental_consent:
     must_specify_email: Musíte uviesť emailovú adresu
@@ -2398,7 +2398,6 @@ sk:
   radius_value: "Polomer (m): %{radius}"
   random: Náhodný
   range: Rozsah
-  range_from: 'Rozsah od'
   rank: Klasifikácia
   rank_position: Klasifikácia
   rank_restrictions: Obmedzenia klasifikácie
@@ -2514,7 +2513,6 @@ sk:
   remove_selected: Odstrániť označené
   remove_tags: Odstrániť tagy
   removed: Odstránené
-  removed!: Odstránené!
   removed_project_user: Odstránený projektový užívateľ
   removing: "Odstraňovanie..."
   reorder_by_taxonomy: Znovu usporiadať podľa taxonómie
@@ -2713,7 +2711,6 @@ sk:
     before_importing_sounds: pred importovaním zvukov
     import_from_sounds: Importovať zo zvukov
     import_sounds: Importovať zvuky
-    link_your_soundcloud_account: Prepojiť váš účet na SoundCloud
     listen: Počúvať
     no_photos_sounds: Žiadne fotky alebo zvuky
     photos_sounds: Fotky / zvuky
@@ -2723,9 +2720,6 @@ sk:
     sound_has_been_flagged: Tento zvuk bol označený.
     soundcloud_replied_with_an_error: SoundCloud odpovedal chybou. Skúste to prosím znovu neskôr.
     sounds: Zvuky
-    view_all_soundcount_sounds: "Zobraziť všetky %{sound_count} zvuky"
-    we_didnt_find_any_sounds: Prepáčte! Nezískali sme žiadne zvuky z vášho účtu na SoundCloud.
-    you_need_to_link_your_soundcloud_account: Aby ste mohli pridávať zvuky, musíte si prepojiť svoj účet na SoundCloud.
     your_soundcloud_account: váš účet na SoundCloud
   source: Zdroj
   source_: 'Zdroj:'
@@ -3100,11 +3094,6 @@ sk:
           community_guidelines_html: |
             <a href="%{url}">Pozrite si Pokyny pre komunitu</a> pre tipy
             ako udržať iNaturalist priateľským a príjemným miestom.
-    help:
-      index:
-        what_is_a_life_list?: Čo je zoznam života?
-        automatically_updates_based_on_your_observations: |
-          Automaticky sa aktualizuje na základe vašich pozorovaní. Všetci na %{site_name} majú základný zoznam života, ktorý obsahuje všetky druhy, ktoré daný človek pozoroval. Ak zmažete pozorovanie alebo si zmeníte ID, druhy budú odstránené. Na zoznam života si môžete aj manuálne pridávať taxóny rovnako ako na normálny zoznam. Druhy, ktoré pridáte manuálne, nebudú zmazané, ak ich budete pozorovať a potom pozorovanie zmažete.
     messages:
       subject: Predmet
     oauth:

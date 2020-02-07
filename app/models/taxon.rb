@@ -23,6 +23,7 @@ class Taxon < ActiveRecord::Base
 
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
+  attr_accessor :skip_observation_indexing
 
   include ActsAsElasticModel
   # include ActsAsUUIDable
@@ -320,6 +321,7 @@ class Taxon < ActiveRecord::Base
     "chiton",
     "cicada",
     "creeper",
+    "eos",
     "gall",
     "hong kong",
     "larva",
@@ -386,15 +388,6 @@ class Taxon < ActiveRecord::Base
     joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
     where("ST_Contains(place_geometries.geom, observations.geom)").
     select("DISTINCT ON (taxa.id) taxa.*")
-  }
-  
-  scope :colored, lambda {|colors|
-    colors = [colors] unless colors.is_a?(Array)
-    if colors.first.to_i == 0
-      joins(:colors).where("colors.value IN (?)", colors)
-    else
-      joins(:colors).where("colors.id IN (?)", colors)
-    end
   }
   
   scope :has_photos, -> { joins(:taxon_photos).where("taxon_photos.id IS NOT NULL") }
@@ -565,6 +558,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def index_observations
+    return if skip_observation_indexing
     Observation.elastic_index!(scope: observations.select(:id), delay: true)
   end
 

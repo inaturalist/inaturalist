@@ -253,7 +253,6 @@ namespace :inaturalist do
       "browse",
       "casual",
       "checklist",
-      "colors",
       "copyright",
       "data_quality",
       "date.formats.month_day_year",

@@ -5,6 +5,11 @@ he:
     many: "%{count} שפות"
     other: "%{count} שפות"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} אנשים</strong> עזרו ל%{user} עם <strong>%{y} זיהויים</strong>"
+  x_sounds:
+    one: "%{count} צליל"
+    two: "%{count} צלילים"
+    many: "%{count} צלילים"
+    other: "%{count} צלילים"
   _100_day_trends: מגמת 100 הימים
   _percent_ID_d: "אחוז מזוהה"
   a_community_for_naturalist: קהילה של אוהבי טבע
@@ -140,6 +145,9 @@ he:
   add_life_stage_larva_annotation: 'הוספת תווית "שלב חיים: זחל"'
   add_life_stage_juvenile_annotation: 'הוספת תווית "שלב חיים: צעיר"'
   add_life_stage_egg_annotation: 'הוספת תווית "שלב חיים: ביצה"'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'הוסיף מערכת היחסים'
+  #As in a Guide Section
   add_section: הוסף בחירה
   add_several_observations_at_once: הוספת מספר תצפיות בפעולה אחת.
   add_sex_female_annotation: 'הוספת תווית "זוויג: נקבה"'
@@ -173,8 +181,6 @@ he:
   added_to_favorites_html: |
     נוסף ל<a href="%{url}">מועדפים</a>
   adding: "מוסיף..."
-  additional_range: מגוון נוסף
-  additional_range_data_from_an_unknown_source: מגוון נתונים נוסף ממקור שאינו ידוע
   adjust_brightness: התאמת בהירות
   admin: מנהל
   admin_s: מנהל(ים)
@@ -187,7 +193,6 @@ he:
   agreeing: מסכים...
   aka: כינוי
   all: הכול
-  all_colors: "&laquo; כל הצבעים"
   all_comments: כל התגובות
   all_life: כל החיים
   all_names: כל השמות
@@ -297,6 +302,8 @@ he:
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     אתם בטוחים? זה יטען מחדש את הדף, ואתם עלולים לאבד חלק מהשינויים שלכם.
   are_you_sure_want_delete_taxon: "האם ברצונך למחוק טקסון זה באופן סופי?"
+  are_you_sure_want_delete_taxon_identifications: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? קיימים זיהויום עבורו.
   are_you_sure_want_delete_taxon_observations: |
     האם את/ה בטוח/ה שברצונך למחוק טקסון זה? קיימות תצפיות עבורו.
   are_you_sure_want_delete_taxon_link: האם ברצונך למחוק את הקישור של הטקסון הזה?
@@ -528,7 +535,6 @@ he:
   citation: ציטוט
   classification: מיון
   clear: ניקוי
-  clear_color_filters: ניקוי מסנני צבע
   clear_filters: נקה פילטרים
   clear_search: ניקוי החיפוש
   click_the_map: "<strong>יש ללחוץ על המפה</strong> כדי להוסיף מיקום."
@@ -2355,7 +2361,6 @@ he:
   remove_selected: הסרת נבחרים
   remove_tags: הסרת תגיות
   removed: הוסר
-  removed!: הוסר!
   removed_project_user: הסרת משתמש פרוייקט
   removing: "מתבצעת הסרה..."
   reorder_by_taxonomy: סדר מחדש לפי טקסונומיה
@@ -2509,7 +2514,6 @@ he:
     add_sounds: הוספת קולות
     before_importing_sounds: לפני יבוא קולות
     import_sounds: ייבוא קולות
-    link_your_soundcloud_account: חיבור חשבון SoundCloud
     no_photos_sounds: ללא תמונות או קולות
     photos_sounds: תמונות/קולות
     select_one_or_more_sounds: בחירת קול אחד או יותר
@@ -2517,7 +2521,6 @@ he:
     sound: קול
     soundcloud_replied_with_an_error: SoundCloud השיב עם שגיאה. נסו מאוחר יותר שנית.
     sounds: קולות
-    view_all_soundcount_sounds: "צפייה בכל %{sound_count} הקולות"
     your_soundcloud_account: חשבון הSoundCloud שלך
   source: מקור
   source_: 'מקור:'
@@ -2848,7 +2851,6 @@ he:
   welcome_to_inat: "ברוכים הבאים ל%{site_name}!"
   welcome_to_guides: "ברוכים הבאים למגדירי %{site_name}!"
   welcome_to_x_project: "ברוכים הבאים ל%{project}"
-  what_color_was_it: איזה צבע זה היה?
   what_did_you_see: מה ראית?
   what_do_you_think: מה דעתך?
   what_to_keep: לשמירה
@@ -2989,31 +2991,6 @@ he:
         book: ספר
       sorts:
         alphaname: שמות המינים בסדר אלף-ביתי
-    help:
-      index:
-        what_is_inaturalist?: מהו %{site_name}?
-        who_is_behind_inaturalist?: מה מסתתר מאחורי %{site_name}?
-        who_is_behind_inaturalist: מה מסתתר מאחורי %{site_name}?
-        what_can_i_do_to_help_inaturalist?: מה ניתן לעשות על מנת לעזור ל%{site_name}
-        how_do_i_contact_inaturalist?: איך יוצרים קשר עם %{site_name}
-        what_is_considered_inappropriate_content?: מה נחשב לתוכן לא הולם?
-        what_is_an_observation?: מהי תצפית?
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "למה %{site_name} לא מזהה את השם שהזנתי?"
-        how_can_i_get_help_identifying_what_i_saw?: איך ניתן לקבל עזרה בזיהוי מה שראיתי?
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: מה המשמעות של קישור %{site_name} לחשבון ה Flickr שלי?
-        can_i_add_photos_without_a_flickr_account?: האם ניתן להוסיף תמונות ללא חשבון Flickr?
-        what_are_tags?: מהן תגיות?
-        what_is_a_life_list?: מה זה רשימת חיים?
-        just_a_simple_list: רשימה טקסונים פשוטה ללא תכונות מיוחדות.
-        automatically_updates_based_on_your_observations: |
-          הרשימה מתעדכנת באופן אוטומטי בהתבסס על התצפיות שלך. לכל אחד ב%{site_name} נוצרת רשימת חיים שמכילה את כל המינים שהמשתמש צפה בהם. במידה ותימחק תצפית או ששם המשתמש שלך ישתנה המין יימחק מהרשימה. ניתן להוסיף ידנית מינים לרשימת החיים, כפי שניתן להוסיף לרשימה רגילה. מינים שהוספו ידנית לא ימחקו במידה והעלית תצפית שאחר כך נמחקה.
-        you_can_also_make_additional_life_lists: |
-          ניתן לייצר רשימת חיים עבור קבוצות ספציפיות של מינים, כגון רשימת חיים של ציפורים, או רשימת חיים של פרוקי רגליים.
-        a_project_list_belongs: |
-          רשימת פרויקט משוייכת לפרויקט, ובה מופיעים כל הטקסונים שנצפו על ידי השותפים בפרויקט. ניתן לאכלס רשימות פרויקט באופן ידני על ידי האדמיניסטרטורים של הפרויקט, וכן ניתן באמצעות רשימות אלו להגביל את הדיווחים לטקסונים שברשימה.
-        is_a_list_of_every_species_that_you_have_seen: |
-          רשימת חיים היא רשימת כל המינים שצפית בהם. לכל משתמש %{site_name} נוצרת רשימת חיים והיא מאוכלסת באופן אוטומטי בתצפיות שהועלו ל%{site_name}.
-        i_observed_a_species: "ראיתי מין, למה הוא לא מופיע ברשימת החיים שלי?"
     messages:
       from: מ
       to: אל

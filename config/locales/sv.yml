@@ -17,6 +17,15 @@ sv:
   x_identifications_:
     one: '1 Identifiering'
     other: '%{count} Identifieringar'
+  x_languages:
+    one: "%{count} språk"
+    other: "%{count} språk"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} första i artlistan"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} första i artlistan"
   x_journal_posts_html:
     one: '<span class="antal">1</span> journalinlägg'
     other: '<span class="antal">%{count}</span> journalinlägg'
@@ -191,7 +200,9 @@ sv:
   add_life_stage_larva_annotation: 'Lägg till notering "Livsstadium: larv"'
   add_life_stage_juvenile_annotation: 'Lägg till notering "Livsstadium: ungdom"'
   add_life_stage_egg_annotation: 'Lägg till notering "Livsstadium: ägg"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Lägg till en relation'
+  #As in a Guide Section
   add_section: Lägg till avsnitt
   add_several_observations_at_once: Lägg till flera observationer på en gång.
   add_sex_female_annotation: 'Bifoga notering "Kön: Hona"'
@@ -223,8 +234,6 @@ sv:
   added_to_favorites_html: |
     Lades till i <a href="%{url}">favoriter</a>
   adding: "Lägger till..."
-  additional_range: Utökat urval
-  additional_range_data_from_an_unknown_source: Utökat urval från en okänd källa
   admin: Administratör
   admin_s: Administratör(er)
   admin_only: Endast admin.
@@ -236,7 +245,6 @@ sv:
   agreeing: Samtycker...
   aka: även känt som
   all: Alla
-  all_colors: "&laquo; Alla färger"
   all_comments: Alla kommentarer
   all_flags_must_be_resolved: Alla markeringar måste vara avklarade
   all_life: Allt liv
@@ -559,7 +567,6 @@ sv:
   choose_rule: Välj en regel
   choose_subjects: Välj ämnen
   choose_tags: Välj taggar
-  clear_color_filters: Rensa färgfilter
   clear_search: Rensa sökning
   click_the_map: "<strong>Klicka på kartan</strong> för lägg till plats."
   close: Stäng
@@ -1679,16 +1686,6 @@ sv:
         Denna guide kan laddas ned till mobilappen för att kunna användas offline.
       pdf_layouts:
         book: bok
-    help:
-      index:
-        what_is_inaturalist?: Vad är %{site_name}?
-        who_is_behind_inaturalist?: Vem är bakom %{site_name}?
-        who_is_behind_inaturalist: Vem är bakom %{site_name}?
-        what_is_an_observation?: Vad är en observation?
-        we_also_support_uploading_photos: |
-          Vi stöder att ladda upp foton direkt till %{site_name}, men det kan vara lite 
-          långsamt, så vi kan bara tillåta en uppladdning åt gången. Flickr eller Google
-          är förmodligen snabbare om du redan använder dessa tjänster.
     oauth:
       authorizations:
         new:

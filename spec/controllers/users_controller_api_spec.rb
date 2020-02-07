@@ -4,8 +4,8 @@ shared_examples_for "a signed in UsersController" do
   before(:all) { User.destroy_all }
   elastic_models( Observation )
   before { enable_has_subscribers }
-  after {  disable_has_subscribers }
-  let(:user) { User.make! }
+  after { disable_has_subscribers }
+
   it "should show email for edit" do
     get :edit, :format => :json
     expect(response).to be_success
@@ -202,10 +202,23 @@ shared_examples_for "a signed in UsersController" do
     end
   end
 
+  describe "destroy" do
+    it "should not delete the current user with the default scopes" do
+      delete :destroy, format: :json, id: user.id, confirmation: user.login, confirmation_code: user.login
+      Delayed::Worker.new.work_off
+      expect( User.find_by_id( user.id ) ).not_to be_blank
+    end
+  end
+
 end
 
 describe UsersController, "oauth authentication" do
-  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
+  let(:user) { User.make! }
+  let(:token) { Doorkeeper::AccessToken.create!(
+    application: OauthApplication.make!,
+    resource_owner_id: user.id,
+    scopes: Doorkeeper.configuration.default_scopes
+  ) }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
@@ -296,6 +309,14 @@ describe UsersController, "without authentication" do
     end
   end
 
+  describe "destroy" do
+    it "should return a 401" do
+      user = User.make!
+      delete :destroy, format: :json, id: user.id
+      expect( response ).to be_unauthorized
+    end
+  end
+
 end
 
 describe UsersController, "oauth authentication with login scope" do
@@ -322,6 +343,53 @@ describe UsersController, "oauth authentication with login scope" do
       put :update, format: :json, id: user.id, user: { name: "#{user.name} this is a new name" }
       user.reload
       expect( user.name ).to eq old_name
+    end
+  end
+end
+
+describe UsersController, "oauth authentication with the account_delete scope" do
+  let(:user) { User.make! }
+  let(:token) { Doorkeeper::AccessToken.create!(
+    application: OauthApplication.make!,
+    scopes: "account_delete",
+    resource_owner_id: user.id
+  ) }
+  before do
+    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
+    allow( controller ).to receive(:doorkeeper_token) { token }
+  end
+
+  describe "destroy" do
+    it "should delete the current user" do
+      delete :destroy, format: :json, id: user.id, confirmation: user.login, confirmation_code: user.login
+      Delayed::Worker.new.work_off
+      expect( User.find_by_id( user.id ) ).to be_blank
+    end
+
+    it "should fail if confirmation missing" do
+      delete :destroy, format: :json, id: user.id, conformation_code: user.login
+      Delayed::Worker.new.work_off
+      expect( User.find_by_id( user.id ) ).not_to be_blank
+    end
+
+    it "should fail if confirmation_code missing" do
+      delete :destroy, format: :json, id: user.id, conformation: user.login
+      Delayed::Worker.new.work_off
+      expect( User.find_by_id( user.id ) ).not_to be_blank
+    end
+
+    it "should fail if confirmation does not match the confirmation_code" do
+      delete :destroy, format: :json, id: user.id, conformation: user.login, confirmation_code: "sdlkgnsldkg"
+      Delayed::Worker.new.work_off
+      expect( User.find_by_id( user.id ) ).not_to be_blank
+    end
+
+    it "should not work for another user" do
+      other_user = User.make!
+      delete :destroy, format: :json, id: other_user.id, confirmation: other_user.login, confirmation_code: other_user.login
+      expect( response.code.to_i ).to be >= 400
+      Delayed::Worker.new.work_off
+      expect( User.find_by_id( user.id ) ).not_to be_blank
     end
   end
 end

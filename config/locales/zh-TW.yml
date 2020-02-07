@@ -68,6 +68,8 @@ zh-TW:
     other: "<span class='count'>%{count}</span> 筆研究等級的觀察紀錄"
   x_research_grade_observations_to_species_html:
     other: "<span class='count'>%{count}</span> 筆被分類到「種」或種下階層的研究等級觀察紀錄"
+  x_sounds:
+    other: "%{count} 聲音"
   x_taxa_curated_html:
     other: "<span class='count'>%{count}</span> 個物種分類已策展"
   x_taxa_matching_current_filters:
@@ -220,7 +222,9 @@ zh-TW:
   add_life_stage_larva_annotation: '新增「生命階段：幼蟲」註解'
   add_life_stage_juvenile_annotation: '新增「生命階段：亞成體」的註解'
   add_life_stage_egg_annotation: '新增「生命階段：卵」註解'
+  #As in a Taxon Framework Relationship
   add_relationship: '添加關聯'
+  #As in a Guide Section
   add_section: 新增章節
   add_several_observations_at_once: 一次增加多筆觀察紀錄。
   add_sex_female_annotation: '新增「性别：雌」的註解'
@@ -261,8 +265,6 @@ zh-TW:
   added_to_favorites_html: |
     已加入至<a href="%{url}">最愛</a>
   adding: "正在新增……"
-  additional_range: 額外範圍
-  additional_range_data_from_an_unknown_source: 來自不知名來源的額外範圍資料
   adjust_brightness: 調整亮度
   admin: 管理員
   admin_s: 管理員
@@ -275,7 +277,6 @@ zh-TW:
   agreeing: 同意中...
   aka: 也稱作
   all: 所有
-  all_colors: "&laquo; 所有顏色"
   all_comments: 所有評論
   all_flags_must_be_resolved: 所有標記需要被解決
   all_life: 所有生物
@@ -697,7 +698,6 @@ zh-TW:
   citation: 引用
   classification: 分類
   clear: 清除
-  clear_color_filters: 清除色彩篩選
   clear_filters: 清除篩選
   clear_search: 清除搜尋
   click_the_map: "<strong>點擊地圖</strong>來添加一個位置。"
@@ -1238,6 +1238,8 @@ zh-TW:
   flag_an_item: 標記一個項目
   flag_as_spammer: 標記為濫發垃圾訊息者
   flag_as_non_spammer: 標記為非濫發垃圾訊息者
+  #Label for the date/time when a flag was created
+  flag_created: 標記已建立
   flag_description: 為此內容加上旗號標記，讓管理員知道當中存在誤差。
   flag_for_check_list_title_html: |
     標記此物種名錄：%{title}
@@ -1836,9 +1838,9 @@ zh-TW:
   medium: 中
   meet: 會見
   member_of_the_inaturalist_network_html: |
-    <a href="%{url}">iNaturalist Network</a> 的成員
+    <a href="%{url}">iNaturalist 網路</a> 的成員
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    %{partial_inat_network_tag_html}iNaturalist 附屬網路</a>之成員，由 %{cas_tag_html} 及 %{nat_geo_tag_html} 合作的共同計畫。
+    %{partial_inat_network_tag_html}iNaturalist 網路</a>之成員，由 %{cas_tag_html} 及 %{nat_geo_tag_html} 合作的共同計畫。
   members: 成員
   membership_model: 成員模組
   mentioned_you_in_noun_html: "%{user} 在 %{noun} 提到了您"
@@ -2380,7 +2382,9 @@ zh-TW:
   output_taxon: 輸出物種分類
   overview: 概要
   owner: 擁有者
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: 父級
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: 父名稱
   parental_consent:
     must_specify_email: 您必須指定電子郵件地址
@@ -2951,7 +2955,6 @@ zh-TW:
   radius_value: "半徑（m）： %{radius}"
   random: 隨機
   range: 範圍
-  range_from: '範圍來自'
   rank: 分類位階
   rank_position: 級別
   rank_restrictions: 級別限制
@@ -3071,7 +3074,6 @@ zh-TW:
   remove_selected: 移除已選
   remove_tags: 移除標籤
   removed: 已移除
-  removed!: 已移除！
   removed_project_user: 已移除的專案用戶
   removing: "正在移除..."
   reorder_by_taxonomy: 依分類法重新排序
@@ -3303,7 +3305,6 @@ zh-TW:
     import_from_soundcloud_description: "從您的 SoundCloud 帳號來選擇出聲音轉換至 iNaturalist 觀察。我們將會從該聲音的詮釋資料來填寫日期和時間，並嘗試從標籤裡查找物種名稱。"
     import_from_sounds: 從聲音匯入
     import_sounds: 匯入聲音
-    link_your_soundcloud_account: 連結您的 SoundCloud 帳號
     listen: 傾聽
     no_photos_sounds: 沒有照片和聲音
     photos_sounds: 照片/聲音
@@ -3314,9 +3315,6 @@ zh-TW:
     sound_has_been_flagged: 此聲音已被標記
     soundcloud_replied_with_an_error: SoundCloud 回覆時出現錯誤。請稍後再重試。
     sounds: 聲音
-    view_all_soundcount_sounds: "檢視所有 %{sound_count} 個聲音"
-    we_didnt_find_any_sounds: 很抱歉！我們沒有從您的 SoundCloud 帳號取得到任何聲音。
-    you_need_to_link_your_soundcloud_account: 您需要連結您的 SoundCloud 帳號以添加聲音。
     your_soundcloud_account: 您的 SoundCloud 帳號
   source: 來源
   source_: '來源：'
@@ -3798,6 +3796,7 @@ zh-TW:
   user_added_a_x: "%{user}添加一個%{x}"
   user_added_a_x_to_noun_by_html: "%{user}添加一個%{x}至由%{by}的%{noun}"
   user_added_a_x_to_noun_html: "%{user}添加一個%{x}至%{noun}"
+  user_added_an_identification_html: "%{user} 添加了一個鑑定"
   user_added_an_observation_field_html: '%{user} 已在由 %{owner} 所做出觀察裡添加用於欄位「%{field_name}」的內容'
   user_added_an_observation_html: "%{user} 添加一個觀察"
   user_added_an_x: "%{user}添加一個%{x}"
@@ -3961,7 +3960,6 @@ zh-TW:
   were_pretty_sure_this_is_in_the_rank: 我們認為應是在 %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "很抱歉，您的%{filename}大量匯入失敗。"
   what: 什麼
-  what_color_was_it: 它的顏色是什麼
   what_did_you_see: 您看到了什麼？
   what_did_you_see?: 您看到了<em>什麼</em>？
   what_do_you_think: 您在想什麼？
@@ -4308,91 +4306,6 @@ zh-TW:
       show:
         reuse_desc: |
           您可以複製此物種分類至其它指南。若您是此指南的編者之一則可複製任何內容，若不是則僅能複製具授權的內容。
-    help:
-      index:
-        welcome_message_html: |
-          嗨。如果您剛開始使用 %{site_name}，請查看我們的<a href="%{url}">%{getting_started}</a>指南來觀看網站功能。如果您有關於網站方面的問題，請詳見下方的常見問題。若您還是有不了解的地方，請<a href="%{feedback_url}">發佈問題到我們的意見回饋群組</a>。
-        what_is_inaturalist?: 什麼是 %{site_name}？
-        who_is_behind_inaturalist?: 誰在 %{site_name} 之下？
-        what_technologies_does_the_project_use?: 專案用了什麼技術和資料來源？
-        inaturalist_provides_a_place_to: |
-          %{site_name} 提供了用來記錄所見自然生物、與其他自然愛好者交流，以及學習大自然的平台。它促進了自然愛好者各種參與方式，不限於徒步旅行者、獵人、獵鳥者、海灘拾荒者、蘑菇採尋者、公園護林員、生態學家以及漁夫。透過連結各種不同視點與專業自然知識，%{site_name} 期望創造出當地生物多樣性的廣泛社群意識，以及促進當地環境的進一步探索。
-        who_is_behind_inaturalist: 誰在 %{site_name} 之下？
-        inaturalist_was_originally_the_masters_final_html: |
-          %{site_name} 最初是 Nathan Agrin、Jessica Kline，與 Ken-ichi Ueda 在加州大學柏克萊分校之<a href="http://www.ischool.berkeley.edu">學院訊息</a>上的碩士畢業專題。請查看<a href="/about">關於頁面</a>來獲得更多目前管理此網站的人員訊息。
-        what_can_i_do_to_help_inaturalist?: 我能為 %{site_name} 協助什麼
-        you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-          您可以透過給予我們您的意見回饋來協助 %{site_name}：請加入我們的<a href="%{feedback_url}">意見回饋群組</a> 來回報程式錯誤以及請求新功能。您也可以透過添加您的觀察、或幫助我們的社羣成員鑑定他們的未鑑定觀察來協助 %{site_name}。如果您了解如何進行程式編碼，並且想要協助開發一些新功能，請在 <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master - GitHub">GitHub</a> 上 fork 我們的專案！
-        how_do_i_contact_inaturalist?: 我要如何聯繫 %{site_name}
-        you_can_contact_us_at_html: '您可以透過 <a href="mailto:%{help_email}">%{help_email}</a> 聯絡我們'
-        what_are_admins_and_curators?: 什麼是管理和策展人？
-        inat_admins_are_the_people_who: |
-          %{site_name} 管理員是運作此網站的人員。他們可直接存取底層代碼以及資料庫，並且可更改網站上的任何事物。
-        curators_are_inat_users_who_volunteer_to_html: |
-          策展人是 %{site_name} 上自願協助替我們保持分類資料相關更新的用戶。若您有興趣成為一位策展人，請<a href="mailto:%{help_email}">聯絡我們</a>。策展人也可替其他用戶推薦為策展人。請記住僅推薦您可信賴、並擁有相關分類方面部份知識的人員。
-        what_is_considered_inappropriate_content?: 什麼會被認定是不適當內容？
-        you_know_it_when_you_see_it_html: |
-          <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">當您一點進去看，您就會了解這代表什麼意思了</a>，是吧？我們的<a href="/terms.html">服務條款</a>第二章節中有關違反項目裡，明確定義出不適當且應標記下來、或需通知給管理員知悉的內容。得用較溫和形式的粗魯方法來處理雖令人遺憾，但有可能不是會被我們刪除的事物。觀察寵物、捕獲動物、人類、以及其它博物學家可能找不到生物方面的興趣是沒問題的（畢竟這些都是活生生的東西）。但在不屬於生物方面的觀察則屬於灰色地帶。一些明確表示出與大自然無關的內容，例如像是與某人吃一頓午餐，就會被標記下給刪除掉。但如果是有關擾亂或汙染自然的證明則可能有用，有機會不會被刪除。
-        what_is_an_observation?: 什麼是觀察？
-        an_observation_is_the_what_where_and_when_html: |
-          觀察是個有關在自然所見事物方面的何種、何處、何時之訊息內容。%{site_name} 提供將地點添加相聞文字訊息、照片，以及標籤。%{site_name} 鼓勵您記錄在自然裡所見全部事物，不論是否有識別出物種或僅有簡易描述。（在 %{site_name} 裡同種蜥蜴可以描述成
-          沙漠角蜥或是&quot;死亡谷神秘蜥蜴&quot;）
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "為什麼 %{site_name} 不識別我所輸入的名稱？"
-        inaturalist_has_name_information_for_mammals: |
-          %{site_name} 擁有用於哺乳類、鳥類、爬蟲類，和兩棲類等相關名稱訊息，並且會持續添加新物種名稱至我們的資料庫。如果我們未承認某個特定名稱，嘗試使用其它可能會讓我們承認的別名，並請一同添加原名至標籤或描述欄位裡。
-        how_can_i_get_help_identifying_what_i_saw?: 我要如何對我所見的東西協助鑑定？
-        check_the_id_please_checkbox_when_html: |
-          當添加/編輯您的觀察時勾選「需要鑑定」勾選框；您的觀察將會出現於<a href="%{url}">需要鑑定</a>。
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: 連結 %{site_name} 至我的 Flickr 帳號代表著什麼意義？
-        inaturalist_can_link_directly_to_the_flickr_photo_service: |
-          %{site_name} 能直接連結至 Flickr 照片服務，因此您可添加您的 Flickr 照片至您的觀察。當您同意連結您的 Flickr 帳號時，僅會將兩邊的帳號作連結，我們並不會去存取您在 Flickr 上的密碼，並且不會去除您所使用的版權，以及不會授予我們用您不願意的方式來使用您的照片。
-        can_i_add_photos_without_a_flickr_account?: 我可以不必透過使用 Flickr 帳號來添加照片嗎？
-        we_also_support_google_html: '我們也支援 Google 照片：<a href="%{url}">設置您的 Google 帳號 &raquo;</a>'
-        we_also_support_uploading_photos: |
-          我們也支援直接上傳照片至 %{site_name}，但處理時間會較久，因此我們只允許每次上傳一張照片。若您已使用過 Flickr 或 Google 這些服務的話，使用它們會可能是較快的方法。
-        what_are_tags?: 什麼是標籤？
-        tags_are_keywords_you_can_add_to_an_html: |
-          標籤是可讓您添加至觀察裡，來使觀察更容易被查找的關鍵字。例如：如果您在土克凱可群島一旁的海洋裡進行水肺潛水時，有條梭魚尾隨著您。您可將此觀察標記為 &quot;驚人，梭魚，水肺潛水，假期，土克凱可群島&quot;。
-        can_i_include_my_observations_on_my_blog?: 我的 %{site_name} 觀察內容可以加在自己個人的網站或部落格裡頭嗎？
-        sure_check_out_our_widget_html: |
-          沒錯，請瞧瞧我們的<a href="%{url}" title="Observations Widget">觀察小工具</a>。
-        what_kind_of_photos_should_i_attach: 我應該附加哪種照片到觀察裡？我可以附加不是我拍攝的照片嗎？
-        photos_attached_to_observations_should_be: |
-          附加到觀察的照片，應要能代表著在觀察時段裡的各別觀察。如果您記錄了一個關於樹的觀察，但在過了一天才對那棵樹拍攝照片的情況下，請重新替該張照片添加一個新觀察，因為若不這樣做會呈現出錯誤的對應時間點。
-        please_do_not_upload_pictures_you_didnt_take_html: |
-          請<em>不要上傳不是您拍攝的圖片</em>，除非您獲得來自攝影者的許可。在未經作品創建者許可之下發佈版權作品是非法行為，且默認下所有攝影師都擁有他們所拍攝照片的完整版權。如果照片內容與您的觀察項目有關聯，而且您也獲得拍攝一方的許可來做發佈，請您在觀察描述裡註明攝影師的名稱。
-        what_is_geoprivacy?: 什麼是位置隱私？
-        geoprivacy_is_a_setting_you_can: |
-          位置隱私是個可用於您觀察上的設定，它能控制空間座標（經度與緯度）如何顯示。這裡有相關選項：
-        note_that_curators_of: |
-          註：無論您如何設定位置隱私，各專案策展人仍可查看其座標。因此若您在乎是誰存取了您的座標內容，您應得確定您自己可信任所參與專案的策展人。
-        what_is_does_it_mean_for: 觀察變為隱蔽代表著什麼含意？
-        when_coordinates_are_obscured_it_means_that: |
-          當座標為隱蔽時，代表著採用相距於實際座標 %{km} 公里的隨機標點來公開顯示（註：在首頁上、觀察頁面，或專案頁面上），實際座標僅在您檢視您個人的觀察顯示出（註：在各專案頁面與包含您個人觀察清單上）。請注意專案策展人可以查看您所添加觀察的實際座標。遮蔽座標在地圖以及地理空間訊息來源上，應以不帶接線的圓圈標記符號形式。
-        coordinates_are_obscured_for_all_taxa: |
-          根據 IUCN 紅色名錄，所有屬於「接近受威脅」或者更糟情況的物種分類群，
-          部份根據其他法定機構宣布受威脅，與及部份被 %{site_name} 網站策展人
-          認定值得保護的物種分類群，其存在位置座標將會被遮閉。
-        you_can_also_obscure_the_coordinates_html: |
-          您也可以遮蔽您所擁有觀察的座標，無論是屬於何種物種分類。請參見上方的<a href="#geoprivacy">位置隱私</a>。
-        what_is_the_quality_assessment: 什麼是品質評估以及如何讓觀察品質成為有「研究」的等級？
-        what_is_a_life_list?: 甚麼是生物清單呢?
-        just_a_simple_list: 純為簡單的物種分類群列表而無特別功能。
-        automatically_updates_based_on_your_observations: |
-          根據您的觀察記錄自動更新。每位用戶在 %{site_name} 都有一個如設的生物清單以包含每個你觀察過的物種。如果您刪除一個觀察記錄或改變您的物種鑒定，該物種將會被移動或清除。您也能跟普通清單一樣，把物種分類群手動添加到您的生物清單中。就算當您觀察及刪除該記錄，您手動添加到清單中的物種將不會被刪除。
-        you_can_also_make_additional_life_lists: |
-          您也可為指定的生命體組別製作一份生物清單，例如鳥類的生物清單，或乳草屬植物的生物清單等。
-        a_project_list_belongs: |
-          專案清單隸屬於某一專案，並列出由專案成員們所觀察出的物種分類群。專案清單也可由該專案管理員來手動加入內容，也可對於在清單上物種分類群的專案貢獻做出限制。
-        a_check_list_is_html: |
-          核對清單是物種分類群發生在地點上的清單。每一地點都有預設的清單，而每當地點邊界上有觀察產生<em>以及</em>達到研究等級狀態時，所觀察物種將會自動添加到地點的清單。
-        inat_users_can_also: |
-          %{site_name} 用戶可添加額外清單至地點，但這些清單並不會自動更新。它們主要提供讓人們引進外部資源資料、或僅列出基於他們個人所體驗事物的方法。
-        is_a_list_of_every_species_that_you_have_seen: |
-          生物清單是您看過的所有物種清單，每一個 %{site_name} 的用戶都會擁有一個生物清單，新增 %{site_name} 的觀察記錄會自動遷移入這些清單中。
-        i_observed_a_species: "我觀察過的一個物種, 為何沒顯示在我的生物清單中?"
-        while_the_life_list_is_automatically_populated: |
-          當生物清單從所添加的觀察來作自動填入時，若 %{site_name} 無法識別出您所使用的名稱，物種將不會被加入至清單。我們推薦採用可讓我們識別出的其它別名。
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -4453,6 +4366,9 @@ zh-TW:
         <strong>捕獲</strong>的？例如：是存在<strong>花園、動物園、魚缸</strong>或一些其它存在情況是<strong>因為人類行為意圖而在這裡</strong>？我們歡迎所有生物的觀察，不過請讓我們了解該生物是屬於野化或歸化。
       compare:
         about_missing_taxa: 關於找不到的分類群
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: 合併
+        some_queries_missing_taxa: 有些查詢缺少分類群資料
       export:
         choose_columns_desc: 選擇您所想要匯出的欄位
         create_a_query_desc_html: |
@@ -5101,6 +5017,7 @@ zh-TW:
           代表透過 <a href="https://www.inaturalist.org">iNaturalist</a>
           或 <a href="%{url}">iNaturalist 網路</a>網站建立
       year:
+        inaturalist_network: iNaturalist 成員網路
         include_usa: 包含美國
         growth_by_country_desc_html: |
           成長是在哪裡發生的呢？成長的結果會複雜難懂，是因為按國家來區分成長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有成長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。 <strong>"% 總成長"</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 個觀察、2017 有 10 個觀察，這代表成長了 10 個觀察，假如當中有 5 個觀察是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>"% 成長"</strong>代表某國家此年度觀察數量與去年觀察數量增加的百分比，假如寮國去年有 10 個觀察而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。

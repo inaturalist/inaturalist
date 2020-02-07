@@ -146,7 +146,6 @@ oc:
   added_to_favorites_html: |
     Apondut als <a href="%{url}">favorits</a>
   adding: "Apondon en cors…"
-  additional_range: Plaja suplementària
   admin_tools: Aisinas d’administracion
   agree: acceptar
   agree_: Acceptar
@@ -154,7 +153,6 @@ oc:
   agreeing: Acceptacion en cors…
   aka: aliàs
   all: Totes
-  all_colors: "&laquo; Totas las colors"
   all_comments: Totes los comentaris
   all_life: Tota la vida
   all_names: Totes los noms
@@ -375,7 +373,6 @@ oc:
   citation: Citacion
   classification: Classificacion
   clear: escafar
-  clear_color_filters: Escafar los filtres de color
   clear_search: Escafar la recèrca
   code: Còdi
   columns: Colomnas
@@ -878,6 +875,7 @@ oc:
   other: autre
   other_animals: autres animals
   owner: Proprietari
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nom del parent
   password: Senhal
   password_confirmation: 'Confirmacion del senhal'
@@ -1021,7 +1019,6 @@ oc:
   quality_grade: Gras de qualitat
   quality_grade_colon: "Gras de qualitat :"
   range: Interval
-  range_from: 'Distribucion de'
   rank: Reng
   ranks:
     kingdom: règne
@@ -1058,7 +1055,6 @@ oc:
   remove_all_tags: Suprimir totas las etiquetas
   remove_from: Suprimir de
   removed: Suprimit
-  removed!: Suprimit !
   removing: "Supression en cors…"
   replace_parentesis: (remplaçar)
   reply: Respondre
@@ -1167,11 +1163,6 @@ oc:
         grid: grasilha
         book: libre
         journal: jornal
-    help:
-      index:
-        you_can_also_obscure_the_coordinates_html: |
-          Tanben podètz amagar las coordenadas de vòstras pròprias observacions,
-          qual que siá l’estat del taxon. Consultatz <a href="#geoprivacy">la geoconfidencialitat</a> çaisús.
     observations:
       export:
         receive_an_email_with_your_data: Recebre un corrièr electronic amb vòstras donadas

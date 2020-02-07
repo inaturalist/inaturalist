@@ -137,6 +137,7 @@ sq:
   add_life_stage_larva_annotation: 'Shto shënimin "Faza e Jetës: Larva"'
   add_life_stage_juvenile_annotation: 'Shto shënimin "Faza e Jetës: I ri"'
   add_life_stage_egg_annotation: 'Shto shënimin "Faza e Jetës: Vezë"'
+  #As in a Guide Section
   add_section: Shto seksion
   add_several_observations_at_once: Shto disa vëzhgime përnjëherë.
   add_sex_female_annotation: 'Shto shënimin "Gjinia: Femër"'
@@ -168,8 +169,6 @@ sq:
   added_to_favorites_html: |
     Shtuar te <a href="%{url}">favorites</a>
   adding: "Duke shtuar..."
-  additional_range: Shtrirje shtesë
-  additional_range_data_from_an_unknown_source: Të dhëna seri shtesë nga një burim i panjohur
   admin: Administrator
   admin_s: Administrator(ët)
   admin_tools: Veglat e administrimit
@@ -180,7 +179,6 @@ sq:
   agreeing: Duke u pajtuar...
   aka: pseudonimi
   all: Të gjitha
-  all_colors: "&laquo; Të gjitha ngjyrat"
   all_comments: Të gjitha komentet
   all_flags_must_be_resolved: Të gjitha shënimet duhet të zgjidhen
   all_life: Gjithë jetën
@@ -551,7 +549,6 @@ sq:
   citation: Citim
   classification: Klasifikim
   clear: fshije
-  clear_color_filters: Pastro filtrat e ngjyrave
   clear_search: Fshi kërkimin
   click_the_map: "<strong>Kliko në hartë</strong> për të shtuar një vendndodhje."
   close: Mbylle
@@ -1893,7 +1890,9 @@ sq:
   output_taxon: Taxoni i nxjerrë
   overview: Pamje e përgjithshme
   owner: Pronar
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Prindi
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Emri i prindit
   password: Fjalëkalimi
   password_confirmation: 'Konfirmim i fjalëkalimit'
@@ -2225,7 +2224,6 @@ sq:
   queued: I rradhitur
   query: Pyetje
   range: Rangu
-  range_from: 'Rangu nga'
   rank: Renditja
   rank_position: Renditja
   rank_restrictions: Radhit kufizimit
@@ -2320,7 +2318,6 @@ sq:
   remove_selected: Largo të përzgjedhurat
   remove_tags: Largo etiketat
   removed: U largua
-  removed!: U largua!
   removed_project_user: Përdoruesi i projektit u largua
   removing: "Duke e larguar ..."
   reorder_by_taxonomy: Renditja sipas taksonomisë
@@ -2517,7 +2514,6 @@ sq:
     import_from_soundcloud_description: "Zgjidh tinguj nfa llogaria juaj në SoundCloud që ti konvertoni në iNaturalist vëzhgime. Ne do ti plotësojmë fatën dhe kohën nga të dhënat përshkruese të tingullit dhe do të kërkojmë për emrin e specjes nga etiketimet."
     import_from_sounds: Importo nga tingujt
     import_sounds: Importo tinguj
-    link_your_soundcloud_account: Lidhe llogarinë tuaj SoundCloud
     listen: Dëgjo
     no_photos_sounds: Pa foto apo tinguj
     photos_sounds: Foto / Tinguj
@@ -2527,9 +2523,6 @@ sq:
     sound: Tingull
     soundcloud_replied_with_an_error: SoundCloud  u përgjigj me një gabim. Ju lutem provoni përsëri më vonë.
     sounds: Tingujt
-    view_all_soundcount_sounds: "Shih të gjithë %{sound_count} tingujt"
-    we_didnt_find_any_sounds: Na vjen keq! Nuk arritëm të marrim ndonjë nga tingujt prej llogarisë suaj në SoundCloud.
-    you_need_to_link_your_soundcloud_account: Ju duhet të lidheni me llogarinë tuaj në SoundCloud në mënyrë që të shtoni tingujt.
     your_soundcloud_account: Llogaria juaj SoundCloud
   source: Burimi
   source_: 'Burimi:'

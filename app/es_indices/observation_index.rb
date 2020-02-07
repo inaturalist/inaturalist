@@ -651,16 +651,23 @@ class Observation < ActiveRecord::Base
       search_filters << { exists: { field: "license_code" } }
     elsif p[:license] == "none"
       inverse_filters << { exists: { field: "license_code" } }
-    elsif p[:license]
+    elsif p[:license].is_a?( String )
       search_filters << { terms: { license_code:
-        [ p[:license] ].flatten.map{ |l| l.downcase } } }
+        [ p[:license].to_s.split( "," ) ].flatten.compact.map{ |l| l.downcase } } }
+    elsif p[:license].is_a?( Array )
+      search_filters << { terms: { license_code:
+        [ p[:license] ].flatten.compact.map{ |l| l.downcase } } }
     end
     if p[:photo_license] == "any"
       search_filters << { exists: { field: "photo_licenses" } }
     elsif p[:photo_license] == "none"
       inverse_filters << { exists: { field: "photo_licenses" } }
     elsif p[:photo_license]
-      licenses = [ p[:photo_license] ].flatten.map{ |l| l.downcase }
+      licenses = if p[:photo_license].is_a?( String )
+        [ p[:photo_license].to_s.split( "," ) ].flatten.compact.map{ |l| l.downcase }
+      else
+        [ p[:photo_license] ].flatten.compact.map{ |l| l.downcase }
+      end
       search_filters << { terms: { "photo_licenses" => licenses } }
     end
     if p[:sound_license] == "any"

@@ -125,7 +125,9 @@ mk:
   add_new_taxon_name: Додај ново таксонско име
   add_observations: Додај набљудувања
   add_photos: Додај слики
+  #As in a Taxon Framework Relationship
   add_relationship: 'Додај однос'
+  #As in a Guide Section
   add_section: Додај поднаслов
   add_several_observations_at_once: Додајте неколку набљудувања наеднаш.
   add_some_now: Додајте некого сега
@@ -149,7 +151,6 @@ mk:
   added_to_favorites_html: |
     Додадено во <a href="%{url}">омилени</a>
   adding: "Додавам..."
-  additional_range: Дополнителна распространетост
   admin: Админ
   admin_s: Администратор(и)
   admin_only: Само за администратори
@@ -161,7 +162,6 @@ mk:
   agreeing: Поднесувам согласност...
   aka: наречен и
   all: Сите
-  all_colors: "&laquo; Сите бои"
   all_comments: Сите коментари
   all_life: Сет живот
   all_names: Сите имиња
@@ -354,7 +354,6 @@ mk:
   citation: Наведување
   classification: Класификација
   clear: тргни
-  clear_color_filters: Тргни ги филтрите за бои
   clear_search: Исчисти го пребарувањето
   click_the_map: "<strong>Стиснете на картата</strong> за да додадете местоположба."
   code: Код
@@ -916,7 +915,9 @@ mk:
   out_of_range: Вон опсег
   output_taxon: Излезен таксон
   owner: Сопственик
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Матично
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Матично име
   password: Лозинка
   password_confirmation: 'Потврда на лозинката'
@@ -1223,7 +1224,6 @@ mk:
     selected_sounds: Избрани звуци
     sound: Звук
     sounds: Звуци
-    view_all_soundcount_sounds: "Погл. сите %{sound_count} звуци"
   source: Извор
   source_: 'Извор:'
   source_list:
@@ -1450,16 +1450,6 @@ mk:
       pdf_layout_notes:
         grid: |
           Решетка од поединечни слики, без описи
-    help:
-      index:
-        who_is_behind_inaturalist: Кој стои зад %{site_name}?
-        curators_are_inat_users_who_volunteer_to_html: |
-          Кустосите се корисници на %{site_name} кои доброволно ги одржуваат нашите таксономски податоци. Ако сте заинтересирани да станете кустос, 
-          <a href="mailto:%{help_email}">обратете ни се</a>. Секој кустос може да унапредува други, доделувајќи им кустоски статус. Би ве замолиле да ги унапредувате само оние на кои им верувате и кои имаат извесни таксономски познавања.
-        check_the_id_please_checkbox_when_html: |
-          Штиклирајте го кутивчето „Препознајте“ кога додавате / менувате ваше
-          набљудување и набљудувањето ќе се појави во
-          „<a href="%{url}">Препознајте</a>“.
     projects:
       edit:
         start_time_desc: "Почетно време на вашиот биоблиц"

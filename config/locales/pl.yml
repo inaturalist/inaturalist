@@ -331,7 +331,9 @@ pl:
   add_life_stage_larva_annotation: 'Dodaj adnotację "Stadium rozwoju: Larwa"'
   add_life_stage_juvenile_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik młodociany"'
   add_life_stage_egg_annotation: 'Dodaj adnotację "Stadium rozwoju: Jajo"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Dodaj powiązanie'
+  #As in a Guide Section
   add_section: Dodaj sekcję
   add_several_observations_at_once: Dodaj kilka obserwacji na raz.
   add_sex_female_annotation: 'Dodaj adnotację "Płeć: Samica"'
@@ -377,8 +379,6 @@ pl:
   added_to_favorites_html: |
     Dodane do <a href="%{url}">ulubionych</a>
   adding: "Dodawanie..."
-  additional_range: Dodatkowy zasięg
-  additional_range_data_from_an_unknown_source: Dodatkowe dane zasięgu z nieznanego źródła
   adjust_brightness: Dostosuj jasność
   admin: Administrator
   admin_s: Administratorzy
@@ -391,7 +391,6 @@ pl:
   agreeing: Zgoda...
   aka: vel
   all: Wszystkie
-  all_colors: "&laquo; Wszystkie kolory"
   all_comments: Wszystkie komentarze
   all_flags_must_be_resolved: Wszystkie zgłoszenia muszą zostać rozstrzygnięte
   all_life: Wszelkie życie
@@ -839,7 +838,6 @@ pl:
   citation: Przypis
   classification: Klasyfikacja
   clear: wyczyść
-  clear_color_filters: Wyczyść filtry kolorów
   clear_filters: Wyczyść filtry
   clear_search: Wyczyść wyszukiwania
   click_the_map: "<strong>Kliknij mapę</strong>, aby dodać miejsce."
@@ -2146,7 +2144,7 @@ pl:
   observation_: obserwacja
   observation_added: Dodano obserwację.
   observation_added_to_the_project: "Obserwacja dodana do projektu \"%{project}\""
-  observation_brief_something_on_day: "coś dnia %{day}"
+  observation_brief_something_on_day: "Coś dnia %{day}"
   observation_brief_something_by_user: "Coś przez %{user}"
   observation_brief_something_from_place: "Coś z %{place}"
   observation_brief_something_from_place_by_user: "Coś z %{place} przez %{user}"
@@ -2302,7 +2300,9 @@ pl:
   output_taxon: Takson wyjściowy
   overview: Przegląd
   owner: Właściciel
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Rodzic
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nazwa rodzica
   parental_consent:
     must_specify_email: Musisz podać adres e-mail
@@ -2832,7 +2832,6 @@ pl:
   remove_selected: Usuń zaznaczone
   remove_tags: Usuń tagi
   removed: Usunięto
-  removed!: Usunięto!
   removing: "Usuwanie..."
   replace_parentesis: (zamień)
   reply: Odpowiedz
@@ -3322,7 +3321,6 @@ pl:
   welcome_to_x_project: "Witamy w %{project}"
   were_pretty_sure_this_is_in_the_rank: Jesteśmy pewni, że należy to do %{rank}
   what: Co
-  what_color_was_it: Jakiego było koloru?
   what_did_you_see: Co zaobserwowałeś?
   what_did_you_see?: <em>Co</em> zaobserwowałeś?
   what_do_you_think: Co myślisz?
@@ -3484,15 +3482,6 @@ pl:
       sorts:
         alphaname: Alfabetycznie według nazwy naukowej
         alphadisplay: Alfabetycznie według nazwy wyświetlanej
-    help:
-      index:
-        what_is_inaturalist?: Czym jest %{site_name}?
-        what_are_admins_and_curators?: Czym są administratorzy i kuratorzy?
-        what_is_an_observation?: Czym jest obserwacja?
-        check_the_id_please_checkbox_when_html: |
-          Zaznacz "Proszę o oznaczenie", kiedy dodajesz / edytujesz obserwację - dzięki temu twoja obserwacja pojawi się w dziale <a href="%{url}">Proszę o oznaczenie</a>.
-        can_i_add_photos_without_a_flickr_account?: Czy mogę dodać zdjęcia bez konta Flickr?
-        what_are_tags?: Czym są tagi?
     messages:
       from: Od
       to: Do

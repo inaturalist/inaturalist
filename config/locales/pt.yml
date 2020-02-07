@@ -199,7 +199,9 @@ pt:
   add_life_stage_larva_annotation: 'Adicionar anotação "Fase da Vida: Larva"'
   add_life_stage_juvenile_annotation: 'Adicionar anotação "Fase da Vida: Juvenil"'
   add_life_stage_egg_annotation: 'Adicionar anotação "Fase da Vida: Ovo"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Adicionar relação'
+  #As in a Guide Section
   add_section: Adicionar secção
   add_several_observations_at_once: Adicionar diversas observações de uma só vez.
   add_sex_female_annotation: 'Adicionar anotação "Género: Fêmea"'
@@ -231,8 +233,6 @@ pt:
   added_to_favorites_html: |
     Adicionado a <a href="%{url}">favoritos</a>
   adding: "A adicionar..."
-  additional_range: Área de distribuição adicional
-  additional_range_data_from_an_unknown_source: Dados de distribuição adicional de fonte desconhecida
   admin: Administrador
   admin_s: Administrador(es)
   admin_only: Apenas administradores
@@ -244,7 +244,6 @@ pt:
   agreeing: A concordar...
   aka: também conhecido como
   all: Todos(as)
-  all_colors: "&laquo; Todas as Cores"
   all_comments: Todos os comentários
   all_flags_must_be_resolved: Todos os sinalizadores devem ser resolvidos
   all_life: Toda a vida
@@ -654,7 +653,6 @@ pt:
   citation: Citação
   classification: Classificação
   clear: limpar
-  clear_color_filters: Limpar os filtros de cor
   clear_search: Limpar a pesquisa
   click_the_map: "<strong>Clique no mapa</strong> para adicionar uma localização."
   close: Fechar
@@ -2020,7 +2018,9 @@ pt:
   output_taxon: Táxon resultante
   overview: Visão geral
   owner: Proprietário
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Ancestral
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nome do ancestral
   password: Palavra-passe
   password_confirmation: 'Confirmação da palavra-passe'
@@ -2472,7 +2472,6 @@ pt:
   remove_selected: Remover o selecionado
   remove_tags: Remover as etiquetas
   removed: Removido
-  removed!: Removido!
   removed_project_user: Utilizador do projeto removido
   removing: "A remover..."
   reorder_by_taxonomy: Reordenar por taxonomia
@@ -2666,7 +2665,6 @@ pt:
     import_from_soundcloud_description: "Selecione sons da sua conta SoundCloud para os converter em observações do iNaturalist. Nós preenchemos a data e a hora a partir dos metadados e tentaremos procurar os nomes das espécies a partir das etiquetas."
     import_from_sounds: Importar de sons
     import_sounds: Importar Sons
-    link_your_soundcloud_account: Ligue a sua conta SoundCloud
     listen: Ouça
     no_photos_sounds: Nenhuma foto ou som
     photos_sounds: Fotos / Sons
@@ -2676,9 +2674,6 @@ pt:
     sound: Som
     soundcloud_replied_with_an_error: O SoundCloud respondeu com um erro. Por favor tente mais tarde.
     sounds: Sons
-    view_all_soundcount_sounds: "Ver todos os %{sound_count} sons"
-    we_didnt_find_any_sounds: Lamentamosǃ Não conseguimos obter nenhum som a partir da sua conta SoundCloud.
-    you_need_to_link_your_soundcloud_account: Precisa de ligar à sua conta SoundCloud para adicionar sons.
     your_soundcloud_account: sua conta do SoundCloud
   source: Fonte
   source_: 'Fonte:'

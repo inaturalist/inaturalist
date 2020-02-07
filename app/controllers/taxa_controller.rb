@@ -978,6 +978,8 @@ class TaxaController < ApplicationController
       taxon_photo.skip_taxon_indexing = true
       taxon_photo
     end
+    # no need to index the taxon's observations if only photos are being changed
+    @taxon.skip_observation_indexing = true
     if @taxon.save
       @taxon.reload
       @taxon.elastic_index!

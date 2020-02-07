@@ -638,14 +638,34 @@ class Identification < ActiveRecord::Base
         ident.update_attributes( disagreement: false )
       end
     }
-    Identification.
-        includes( :taxon ).
-        where( "disagreement" ).
-        joins( taxon: :taxon_ancestors ).
-        where( "taxon_ancestors.ancestor_taxon_id = ?", taxon ).
-        find_each( &block )
+    batch_size = 200
+    batch_start_id = 0
+    results_remaining = true
+    while results_remaining
+      begin
+        ident_response = Identification.elastic_search(
+          size: batch_size,
+          filters: [
+            { term: { "taxon.ancestor_ids": taxon.id } },
+            { term: { disagreement: true } },
+            { range: { id: { gt: batch_start_id } } }
+          ],
+          sort: { id: :asc },
+          source: [:id]
+        )
+        if !ident_response.response || ident_response.response.hits.total.value < batch_size
+          results_remaining = false
+        end
+        ids = ident_response.response.hits.hits.map{ |h| h._source.id }
+        Identification.
+          where( id: ids ).
+          includes( :taxon ).
+          find_each( &block )
+        batch_start_id = ids.last
+      rescue
+        results_remaining = false
+      end
+    end
   end
-  
-  # /Static #################################################################
-  
+
 end
