@@ -230,7 +230,7 @@ class TaxaController < ApplicationController
           where( "taxa.id = ? AND taxon_framework_id = ?", @taxon, @upstream_taxon_framework ).first
         unless @taxon_framework
           if @taxon_framework_relationship
-            @downstream_deviations_counts = @taxon_framework_relationship.internal_taxa.map{|it| {internal_taxon: it, count: TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @upstream_taxon_framework.id ).internal_taxon(it).uniq.count - 1 } }
+            @downstream_deviations_counts = @taxon_framework_relationship.internal_taxa.map{|it| {internal_taxon: it, count: TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match' AND relationship != 'alternate_position'", @upstream_taxon_framework.id ).internal_taxon(it).uniq.count - 1 } }
           end
           @downstream_flagged_taxa = @upstream_taxon_framework.get_flagged_taxa({taxon: @taxon})
           @downstream_flagged_taxa_count = @upstream_taxon_framework.get_flagged_taxa_count({taxon: @taxon})
@@ -246,7 +246,7 @@ class TaxaController < ApplicationController
         @flagged_taxa = @taxon_framework.get_flagged_taxa
         @flagged_taxa_count = @taxon_framework.get_flagged_taxa_count
         if @taxon_framework.source_id
-          @deviations_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id ).count
+          @deviations_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match' AND relationship != 'alternate_position'", @taxon_framework.id ).count
           @relationship_unknown_count = @taxon_framework.get_internal_taxa_covered_by_taxon_framework.where(taxon_framework_relationship_id: nil).count
         end
       end

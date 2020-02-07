@@ -115,4 +115,15 @@
             = render partial: "show_taxon_framework_relationship", object: { taxon_framework_relationship: taxon_framework_relationship }
             - if taxon_framework_relationship.description
               %p= formatted_user_text stripped_first_paragraph_of_text( taxon_framework_relationship.description,"\n" ), tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+            .pull-right
+              - if taxon_framework_relationship && taxon_framework_relationship.updater
+                = t(:updated_by)
+                = link_to taxon_framework_relationship.updater.login, @taxon_framework.updater
+                = t :on_day
+                = l(taxon_framework_relationship.updated_at.to_date, :format => :long)
+              - elsif taxon_framework_relationship && taxon_framework_relationship.user
+                = t(:created_by, gender: 'taxon')
+                = link_to taxon_framework_relationship.user.login,taxon_framework_relationship.user
+                = t :on_day
+                = l(taxon_framework_relationship.created_at.to_date, :format => :long)
       = will_paginate @taxon_framework_relationships

@@ -23,8 +23,8 @@
     .padding {
         padding: 5px;
     }
-%p.padding{ :class => ( taxon_framework_relationship.relationship == "match" ? 'bg-success' : 'bg-warning' ) }
-  = t :relationship_x, relationship: ( taxon_framework_relationship.relationship == "match" ? t( "relationships.match" ).capitalize : t( :deviation ).capitalize )
+%p.padding{ :class => ( ( taxon_framework_relationship.relationship == "match" || taxon_framework_relationship.relationship == "alternate_position" ) ? 'bg-success' : 'bg-warning' ) }
+  = t :relationship_x, relationship: ( ( taxon_framework_relationship.relationship == "match" || taxon_framework_relationship.relationship == "alternate_position" ) ? t( "relationships.#{taxon_framework_relationship.relationship}" ).capitalize : t( :deviation ).capitalize )
 %div{ :class => "tfr_#{taxon_framework_relationship.id}" }
 %table.table.table-bordered
   %thead

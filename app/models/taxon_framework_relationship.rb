@@ -20,8 +20,8 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   
   RELATIONSHIPS = [
     "match",
-    "one_to_one",
     "alternate_position",
+    "one_to_one",
     "many_to_many",
     "many_to_one",
     "one_to_many",
