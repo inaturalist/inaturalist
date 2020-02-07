@@ -42,8 +42,9 @@ class TaxonSplit < TaxonChange
     record_place_ids = if record.respond_to?( :place ) && record.place
       record.place.self_and_ancestor_ids
     elsif record.is_a?( Observation ) || record.respond_to?( :observation )
-      o = record.is_a?( Observation ) ? record : record.observation
-      o.observations_places.map(&:place_id)
+      if o = record.is_a?( Observation ) ? record : record.observation
+        o.observations_places.map(&:place_id)
+      end
     end
     if record_place_ids.blank?
       return output_ancestor
