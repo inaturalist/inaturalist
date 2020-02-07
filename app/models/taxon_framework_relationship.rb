@@ -137,6 +137,16 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
     else
       external_taxa.unshift( { name: nil, rank: nil } )
     end
+    if external_taxa.count == 1 && external_taxa[0][:name].nil? && external_taxa[0][:rank].nil?
+      if it_root
+        external_taxa[0] = { name: it_root.split( "_" )[0], rank: it_root.split( "_" )[1] }
+      end
+    end
+    if internal_taxa.count == 1 && internal_taxa[0][:name].nil? && internal_taxa[0][:rank].nil?
+      if et_root
+        internal_taxa[0] = { name:  et_root.split( "_" )[0], rank: et_root.split( "_" )[1] }
+      end
+    end
     {
       internal_taxa: internal_taxa,
       external_taxa: external_taxa

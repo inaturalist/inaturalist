@@ -118,7 +118,7 @@
             .pull-right
               - if taxon_framework_relationship && taxon_framework_relationship.updater
                 = t(:updated_by)
-                = link_to taxon_framework_relationship.updater.login, @taxon_framework.updater
+                = link_to taxon_framework_relationship.updater.login, taxon_framework_relationship.updater
                 = t :on_day
                 = l(taxon_framework_relationship.updated_at.to_date, :format => :long)
               - elsif taxon_framework_relationship && taxon_framework_relationship.user
