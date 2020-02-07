@@ -10,7 +10,7 @@ module DarwinCore
       @opts[:path] ||= "dwca.zip"
       @opts[:core] ||= "occurrence"
       @opts[:metadata] ||= File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
-      @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "gbif.descriptor.builder")
+      @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "dwc.descriptor.builder")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC0", "CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
       @opts[:licenses] ||= ["any"]
