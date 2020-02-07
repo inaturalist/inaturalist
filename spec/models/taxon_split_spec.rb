@@ -138,6 +138,18 @@ describe TaxonSplit, "commit_records" do
   describe "with unatlased taxa" do
     describe "identifications" do
       let(:observation) { Observation.make!( taxon: @split.input_taxon ) }
+      it "should not fail when identification has no identification" do
+        ancestor = Taxon.make!( rank: Taxon::ORDER )
+        ident = observation.identifications.first
+        ident.update_attributes(observation_id: nil, skip_set_previous_observation_taxon: true)
+        expect( ident.observation_id ).to be_nil
+        @split.output_taxa.each{ |t| t.update_attributes( parent: ancestor ) }
+        @split.reload
+        @split.commit_records
+        ident.reload
+        expect( ident ).to be_current
+      end
+
       it "should be replaced with the nearest common ancestor of all output taxa if there is ambiguity" do
         ancestor = Taxon.make!( rank: Taxon::ORDER )
         ident = observation.identifications.first
