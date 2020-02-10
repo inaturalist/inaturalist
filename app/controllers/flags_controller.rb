@@ -177,9 +177,9 @@ class FlagsController < ApplicationController
     if resolver_id = params[:flag].delete("resolver_id")
       params[:flag]["resolver"] = User.find(resolver_id)
     end
-    if @flag.flaggable_type == "Observation"
+    if @flag.flaggable && @flag.flaggable_type == "Observation"
       @flag.flaggable.wait_for_index_refresh = true
-    elsif @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
+    elsif @flag.flaggable && @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
       @flag.flaggable.wait_for_obs_index_refresh = true
     end
     respond_to do |format|
@@ -200,9 +200,9 @@ class FlagsController < ApplicationController
   
   def destroy
     @object = @flag.flaggable
-    if @flag.flaggable_type == "Observation"
+    if @flag.flaggable && @flag.flaggable_type == "Observation"
       @flag.flaggable.wait_for_index_refresh = true
-    elsif @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
+    elsif @flag.flaggable && @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
       @flag.flaggable.wait_for_obs_index_refresh = true
     end
     @flag.destroy

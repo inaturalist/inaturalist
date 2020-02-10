@@ -30,7 +30,7 @@ class Annotation < ActiveRecord::Base
   validates_uniqueness_of :controlled_value_id,
     scope: [:resource_type, :resource_id, :controlled_attribute_id]
 
-  after_create :index_observation, :touch_resource
+  after_create :touch_resource
   after_save :index_observation
   after_destroy :index_observation, :touch_resource
 

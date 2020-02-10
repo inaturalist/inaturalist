@@ -1,27 +1,102 @@
 id:
+  x_comments:
+    other: '%{count} komentar'
   x_faves:
     other: '%{count} hours'
+  x_identifications:
+    other: '%{count} identifikasi'
+  x_identifications_html:
+    other: '<span class="count">%{count}</span> identifikasi'
+  x_identifications_:
+    other: '%{count} identifikasi'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Pengidentifikasi'
+  x_languages:
+    other: "%{count} bahasa"
+  x_journal_posts_html:
+    other: '<span class="count">%{count}</span> postingan jurnal'
+  x_matching_taxa:
+    other: '%{count} takson cocok'
+  x_matching_taxa_html:
+    other: '<span class="count">%{count}</span> takson cocok'
+  x_misidentifications_of_this_species:
+    other: "%{count} misidentifikasi spesies ini"
+  x_misidentifications_of_species_in_this_rank:
+    other: "%{count} kesalahan identifikasi spesies ini pada tingkat %{rank}"
+  x_observations:
+    other: "%{count} pengamatan"
+  x_observations_:
+    other: "%{count} Pengamatan"
+  x_observations_html:
+    other: "<span class='count'>%{count}</span> pengamatan"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} observasi</a>"
+  x_observations_reviewed_html:
+    other: "<span class='count'>%{count}</span> pengamatan telah ditinjau"
+  x_observers_html:
+    other: '<span class="count">%{count}</span> Pengamat'
+  x_others:
+    other: "%{count} lainnya"
+  x_people:
+    other: "%{count} orang"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} orang</strong> telah membantu %{user} dengan <strong>%{y} ID</strong>"
+  x_photos:
+    other: "%{count} foto"
+  x_new_species:
+    other: "%{count} Spesies Baru"
+  x_new_users:
+    other: '%{count} Pengguna Baru'
+  x_species:
+    other: '%{count} Spesies'
+  x_species_html:
+    other: "<span class='count'>%{count}</span> spesies"
   x_species_link_html:
     other: "<a href='%{url}'>%{count} spesies</a>"
+  x_suggestions_filtered_by_colon:
+    other: "%{count} Saran Difilter Berdasarkan:"
+  x_taxa_observed_html:
+    other: "<span class='count'>%{count}</span> takson teramati"
+  x_research_grade_observations_html:
+    other: "<span class='count'>%{count}</span> pengamatan research-grade"
+  x_research_grade_observations_to_species_html:
+    other: "<span class='count'>%{count}</span> pengamatan research-grade teridentifikasi ke tingkat spesies atau lebih rendah"
+  x_sounds:
+    other: "%{count} suara"
+  x_taxa_curated_html:
+    other: "<span class='count'>%{count}</span> takson dikuratori"
+  x_taxa_matching_current_filters:
+    other: "%{count} takson sesuai dengan filter"
+  x_taxon_changes_added_html:
+    other: "<span class='count'>%{count}</span> perubahan takson ditambah"
+  _100_day_trends: Tren 100 hari
+  _percent_ID_d: "% Identifikasi"
   a_community_for_naturalist: Komunitas untuk Naturalis
   a_default_taxon_name_will_automatically_created: |
     Sebuah nama standar takson akan secara otomatis dibuat dari atribut nama ilmiah takson ini. Bila Anda telah menyimpan takson baru ini, Anda akan dapat menambahkan nama lain di sini (nama umum, nama ilmiah usang, dll).
+  a_member_of: "Anggota dari"
   a_member_of_taxon_html: "anggota dari %{taxon}"
   about: Tentang
+  about_blocking: Tentang pemblokiran
   about_charts: Tentang Grafik
   about_community_taxa: Tentang komunitas taksa
+  about_complete_taxa: Tentang Taksa Lengkap
   about_conservation_status: Tentang Status Konservasi
+  about_editing_observation_fields: Tentang Mengedit Bidang Pengamatan
   about_licenses: Tentang Lisensi
   #Header for a section describing taxon names
   about_names: Tentang Nama
   about_places: Tentang tempat
   about_the_cc_licenses: Tentang lisensi Creative Commons
   about_these_licenses: Tentang lisensi ini
+  about_this_bioblitz: Tentang bioblitz ini
   about_this_map: Tentang peta ini
   about_this_project: Tentang proyek ini
+  about_x: "Tentang %{x}"
   account: Akun
+  account_creation: Pembentukan Akun
+  account_settings: Pengaturan Akun
   accept: Terima
   accept_community_identifications: Menerima identifikasi dari komunitas
   accuracy: akurasi
@@ -34,6 +109,7 @@ id:
   active_users: Pengguna yang Aktif
   activity: Aktifitas
   activity_settings: Pengaturan aktivitas
+  adapted_by_name_from_a_work_by_original: "Diadaptasi oleh %{name} dari sebuah karya oleh %{original}"
   add: Tambahkan
   add_a_batch_of_observations: Menambahkan sejumlah observasi
   add_a_batch_of_taxa: Menambahkan sejumlah taksa
@@ -44,12 +120,19 @@ id:
   add_a_new_change_group: Tambahkan Grup Perubahan Baru
   add_a_single_observation: Tambahkan Observasi Tunggal
   add_a_taxon: Tambahkan Takson
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    Buat suatu <a target="_blank" href="%{url}">perubahan taksa</a> jika anda ingin merubah namanya
   add_an_assessment: menambahkan penilaian
   add_an_identification: menambahkan identifikasi
   add_an_observation: menambahkan observasi
   add_an_observation?: menambahkan observasi?
   add_an_observation_of: "Add an observation of %{taxon}"
+  add_an_observation_to_project_html: Tambah suatu pengamatan ke %{project}
   add_annotations_for_x: Add annotations for "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Tambah Catatan untuk "Kelamin"
+    plant_phenology: Tambah Catatan untuk "Fenologi Tumbuhan"
+    life_stage: Tambah catatan untuk "Fase Hidup"
   add_another_flag: menambahkan penanda lain
   add_another_photo: Menambahkan foto lain
   add_another_section: menambahkan bagian lain
@@ -62,6 +145,8 @@ id:
   add_conservation_status: menambahkan status konservasi
   add_countries: Tambahkan Negara
   add_custom_project_fields: Menambahkan kolom proyek kustom
+  add_editor: Tambah Editor
+  add_description: "Tambah %{description_name}"
   add_from_your_observations: Tambahkan dari pengamatan Anda
   add_link: Tambahkan pranala
   add_higher_level_taxon: Tambahkan takson-tingkat yang lebih tinggi (misalnya "burung")
@@ -80,8 +165,26 @@ id:
   add_observations_project: Tambahkan pengamatan untuk proyek ini
   #Prompt to add a new journal post
   add_one: Tambahkan satu!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Tambah Satu Sekarang
   add_photos: Tambahkan foto
   add_place: Tambahkan Tempat
+  add_alive_or_dead_alive_annotation: 'Tambah catatan "Hidup atau Mati: Hidup"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Tambah catatan "Hidup atau Mati: Tidak Dapat Ditentukan"'
+  add_alive_or_dead_dead_annotation: 'Tambah catatan "Hidup atau Mati: Mati"'
+  add_plant_phenology_budding_annotation: 'Tambah catatan "Fenologi Tumbuhan: Bertunas"'
+  add_plant_phenology_flower_budding_annotation: 'Tambah catatan "Fenologi Tumbuhan: Bunga Berkuncup"'
+  add_plant_phenology_flowering_annotation: 'Tambah catatan "Fenologi Tumbuhan: Berbunga"'
+  add_plant_phenology_fruiting_annotation: 'Tambah catatan "Fenologi Tumbuhan: Berbuah"'
+  add_life_stage_adult_annotation: 'Tambah catatan "Fase Hidup: Dewasa"'
+  add_life_stage_teneral_annotation: 'Tambah catatan "Fase Hidup: teneral"'
+  add_life_stage_subimago_annotation: 'Tambah catatan "Fase Hidup: subimago"'
+  add_life_stage_pupa_annotation: 'Tambah catatan "Fase Hidup: Pupa"'
+  add_life_stage_nymph_annotation: 'Tambah catatan "Fase Hidup: Nimfa"'
+  add_life_stage_larva_annotation: 'Tambah catatan "Fase Hidup: Larva"'
+  add_life_stage_juvenile_annotation: 'Tambah catatan "Fase Hidup: Juvenil"'
+  add_life_stage_egg_annotation: 'Tambah catatan "Fase Hidup: Telur"'
   add_several_observations_at_once: Tambahkan beberapa pengamatan sekaligus
   add_some_now: Tambahkan beberapa sekarang
   add_tag: Tambah Penanda
@@ -106,8 +209,6 @@ id:
   added!: Ditambahkan!
   added_by: Ditambahkan oleh
   adding: "Menambahkan..."
-  additional_range: Tambahan rentang
-  additional_range_data_from_an_unknown_source: Berbagai data tambahan dari sumber yang tidak diketahui
   admin_tools: Peralatan Pengurus
   agree: Setuju
   agree_: Setuju
@@ -116,7 +217,6 @@ id:
   agreeing: menyetujui...
   aka: alias
   all: Semua
-  all_colors: "& laquo; Semua Warna"
   all_comments: Semua komentar
   all_life: Semua kehidupan
   all_names: Semua nama
@@ -262,13 +362,11 @@ id:
   batch_operations: Beberapa operasi
   because_of: karena
   before_importing_photos: sebelum memasukkan foto
-  belives_this_is_a_comprehensive_list_of: percaya bahwa ini adalah daftar lengkap dalam
   bg_color: Warna latar
   birds: Burung
   black: Hitam
   blue: Biru
   blue_butterfly_etc: "Biru, Kupu-kupu, dll."
-  blue_icons_represent_political_units: "Ikon biru mewakili unit politik seperti negara, negara bagian, propinsi, negara, dan sejenisnya, sementara ikon hijau mewakili berbagai jenis ruang terbuka (taman, cadangan). Jika Anda memperbesar Anda akan melihat lebih banyak, tempat yang lebih kecil."
   body: Isi pesan
   bounding_box: melewati kotak
   breadcrumbs: Tepung roti
@@ -379,11 +477,9 @@ id:
   citation: Kutipan
   classification: Pengelompokan
   clear: kosongkan
-  clear_color_filters: Bersihkan filter warna
   clear_filters: Hapus penyaring
   clear_search: Bersihkan pencarian
   click_the_map: "<strong>Click the map</strong> untuk memasukkan lokasi"
-  click_the_map_to_jump_new_place: Klik peta untuk berpindah ke tempat baru
   close: Tutup
   code: Kode
   colors: Warna
@@ -414,7 +510,8 @@ id:
   compiled_by_name: "Disusun oleh %{name}"
   completed: Selesai!
   completed_at: Diselesaikan pada
-  comprehensive: Komprehensif
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Komprehensif?
   comprehensive_list: Daftar komprehensif
   concept_status: Status konsep
@@ -1439,7 +1536,9 @@ id:
   output_taxon: Keluaran takson
   overview: Ikhtisar
   owner: 'Pemilik:'
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Induk
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nama induk
   password: Kata sandi
   password_confirmation: 'Konfirmasi kata sandi'
@@ -1486,7 +1585,6 @@ id:
     medium: sedang
     large: besar
     original: asli
-  photos_size_photos: "%{photos_size} foto"
   photos_updated: Foto diperbarui.
   pink: merah muda
   place: Tempat
@@ -1706,7 +1804,6 @@ id:
   quality_grade_colon: "Tingkat kualitas:"
   queued: Antrian
   range: Rentang
-  range_from: 'Rentang dari'
   rank: Peringkat
   rank_position: Peringkat
   rank_restrictions: Pembatasan peringkat
@@ -1730,8 +1827,10 @@ id:
     subtribe: subtribe
     genus: genus
     genushybrid: genushybrid
+    #Singular
     species: spesies
     hybrid: hybrid
+    #Singular
     subspecies: sub spesies
     variety: varietas
     form: bentuk
@@ -1781,7 +1880,6 @@ id:
   remove_selected: Hapus yang telah dipilih
   remove_tags: Hapus penanda
   removed: Dihapus
-  removed!: Dihapus!
   removed_project_user: Hapus pengguna proyek
   removing: "Menghapus..."
   reorder_by_taxonomy: Pesan kembali oleh taksonomi
@@ -1945,7 +2043,6 @@ id:
     import_from_soundcloud_description: "Pilih suara dari akun SoundCloud untuk diubah menjadi pengamatan iNaturalist. Kami akan mengisi tanggal dan waktu dari metadata suara, dan mencoba untuk mencari nama spesies dari tag."
     import_from_sounds: Masukkan dari suara
     import_sounds: Masukkan Suara
-    link_your_soundcloud_account: Tautan akun SoundCloud Anda
     listen: Dengarkan
     no_photos_sounds: Tidak ada foto dan suara
     photos_sounds: Foto / Suara
@@ -1955,11 +2052,6 @@ id:
     sound: Suara
     soundcloud_replied_with_an_error: SoundCloud menjawab dengan kesalahan. Silakan coba lagi nanti.
     sounds: Suara
-    sounds_size_sound: "%{sounds_size} Suara"
-    sounds_size_sounds: "%{sounds_size} Suara"
-    view_all_soundcount_sounds: "Lihat semua %{sound_count} Suara"
-    we_didnt_find_any_sounds: Maaf! Kami tidak bisa mendapatkan suara apapun dari akun SoundCloud Anda.
-    you_need_to_link_your_soundcloud_account: Anda harus menautkan akun SoundCloud Anda untuk menambahkan suara.
     your_soundcloud_account: Akun SoundCloud Anda
   source: Sumber
   source_: 'Sumber:'
@@ -1986,6 +2078,7 @@ id:
   sources_youve_added: Sumber telah Anda tambahkan
   sources_and_credits: Sumber dan Kredit
   sourcing: Sumber
+  #Plural
   species: Spesies
   species_from_around_the_world: Spesies dari seluruh dunia
   species_guess: tamu spesial
@@ -2100,8 +2193,6 @@ id:
   the_user_x_has_been_suspended: "Pengguna %{user} telah ditangguhkan"
   the_user_x_has_been_unsuspended: "Pengguna %{user} telah dibatalkan penangguhannya"
   the_world: Dunia
-  the_world_is_full_of_interesting_places_short: |
-    Dunia ini penuh dengan tempat-tempat menarik, masing-masing diisi dengan bentuk kehidupan yang aneh dan indah. Beberapa di sisi lain dunia, sementara yang lain hanya jalan!
   there_is_no_wikipedia_page_matching: Tidak ada halaman Wikipedia yang cocok
   there_merge_problems_with_the_merge: "Ada masalah penggabungan dengan gabungan: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Ada masalah dalam menyimpan identifikasi Anda: %{error}"
@@ -2179,7 +2270,6 @@ id:
   unprocessable: Tidak diproses
   unpublish: Tidak dipublis
   unsubscribe: Berhenti berlangganan
-  unsubscribe_from_this: Hentikan langganan dari ini
   unsuspend_user: menangguhkan pengguna
   upcoming_bioblitzes: Bioblitzes yang akan datang
   update: Perbarui
@@ -2270,7 +2360,6 @@ id:
   welcome: Selamat datang
   welcome_back: Selamat datang kemabli
   what: Apa
-  what_color_was_it: Warna apakah itu?
   what_did_you_see: Apa yang dilihat?
   what_did_you_see?: <em>Apa</em> yang dilihat?
   what_do_you_think: Apa yang anda pikirkan?
@@ -2421,37 +2510,6 @@ id:
       show:
         reuse_desc: |
           Anda dapat menyalin takson ini ke panduan lain. Jika Anda adalah salah satu editor ini memandu harus menyalin segala sesuatu, tetapi jika Anda tidak, itu hanya akan menyalin isi konten berlisensi.
-    help:
-      index:
-        what_technologies_does_the_project_use?: sumber apa teknologi dan data yang proyek digunakan?
-        what_are_admins_and_curators?: Apa admin dan kurator?
-        what_is_considered_inappropriate_content?: Apa yang dianggap konten yang tidak pantas?
-        what_is_an_observation?: Apa pengamatan itu?
-        how_can_i_get_help_identifying_what_i_saw?: Bagaimana saya bisa mendapatkan bantuan mengidentifikasi apa yang saya lihat?
-        can_i_add_photos_without_a_flickr_account?: Dapatkan saya menambahkan foto tanpa memiliki akun Flickr?
-        what_are_tags?: Apakah tag itu?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Tag adalah kata kunci yang Anda dapat menambahkan untuk pengamatan untuk membuat mereka lebih mudah untuk menemukan.
-          Misalnya, jika Barakuda mengikuti Anda di perjalanan menyelam scuba di Turks dan Caicos,
-          Anda mungkin tag pengamatan & quot; menakutkan, barracuda, scuba diving, liburan, Turks dan Caicos & quot ;.
-        what_kind_of_photos_should_i_attach: Apa jenis foto yang harus saya lampirkan untuk pengamatan? Dapatkah saya melampirkan foto saya tidak mengambil?
-        photos_attached_to_observations_should_be: |
-          Foto melekat pengamatan harus dari individu yang diamati pada saat pengamatan. Jika Anda merekam sebuah pengamatan dari pohon, kemudian kembali sehari kemudian untuk mengambil gambar, tambahkan baru observasi untuk gambar, karena mewakili pohon di titik berbeda dalam waktu.
-        what_is_geoprivacy?: Apakah geoprivasi?
-        geoprivacy_is_a_setting_you_can: |
-          Geo Privasi adalah pengaturan yang dapat membuat pengamatan Anda yang mengontrol bagaimana koordinat spasial (lintang dan bujur) yang ditampilkan. Berikut adalah pilihan:
-        note_that_curators_of: |
-          Perhatikan bahwa kurator masing-masing proyek dapat selalu melihat koordinat terlepas dari pengaturan privasi Anda, jadi jika Anda prihatin tentang siapa yang memiliki akses ke koordinat Anda harus yakin
-          Anda percaya kurator proyek di mana Anda berpartisipasi.
-        what_is_does_it_mean_for: Apa artinya bagi pengamatan akan dikaburkan?
-        what_is_the_quality_assessment: Apa penilaian kualitas dan bagaimana pengamatan memenuhi syarat untuk menjadi "penelitian" kelas?
-        what_is_a_life_list?: Apakah daftar hidup itu?
-        just_a_simple_list: Hanya daftar sederhana taksa tanpa perilaku khusus.
-        you_can_also_make_additional_life_lists: |
-          Anda juga dapat membuat daftar hidup tambahan untuk kelompok tertentu organisme, seperti daftar kehidupan burung, atau daftar kehidupan milkweeds.
-        a_project_list_belongs: |
-          Sebuah daftar proyek milik proyek dan daftar semua taksa yang diamati oleh anggota proyek itu. daftar proyek juga dapat dihuni secara manual oleh admin dari proyek itu, dan dapat digunakan untuk membatasi kontribusi proyek untuk taksa yang ada di daftar.
-        i_observed_a_species: "Saya mengamati spesies, mengapa tidak muncul dalam daftar hidup saya?"
     listed_taxa:
       establishment_field:
         confirmation: |

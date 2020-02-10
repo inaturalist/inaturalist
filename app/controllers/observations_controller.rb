@@ -1310,7 +1310,7 @@ class ObservationsController < ApplicationController
     elsif @taxon
       observations_url(url_params.merge(:taxon_id => @taxon.id))
     elsif @project
-      project_observations_url(@project.id, url_params)
+      observations_for_project_url( @project.id, url_params )
     elsif logged_in?
       observations_by_login_feed_url(current_user.login, url_params)
     end
@@ -1340,7 +1340,6 @@ class ObservationsController < ApplicationController
     Observation.preload_for_component(@observations, logged_in: !!current_user)
     @project_observations = @project.project_observations.where(observation: @observations.map(&:id)).
       includes([ { :curator_identification => [ :taxon, :user ] } ])
-
     respond_to do |format|
       format.json do
         render_observations_to_json
@@ -1348,6 +1347,20 @@ class ObservationsController < ApplicationController
       format.csv do
         pagination_headers_for(@observations)
         render :text => ProjectObservation.to_csv(@project_observations, :user => current_user)
+      end
+      format.widget do
+        if params[:markup_only] == "true"
+          render js: render_to_string( partial: "widget.html.erb", locals: {
+            show_user: true,
+            target: params[:target],
+            default_image: params[:default_image],
+            silence: params[:silence]
+          })
+        else
+          render js: render_to_string( partial: "widget.js.erb", locals: {
+            show_user: true
+          } )
+        end
       end
     end
   end
@@ -1940,7 +1953,7 @@ class ObservationsController < ApplicationController
     @elastic_params = valid_map_params
     @default_color = params[:color] || (@taxa.empty? ? "heatmap" : nil)
     @map_style = (( params[:color] || @taxa.any? ) &&
-                    params[:color] != "heatmap" ) ? "colored_heatmap" : "heatmap"
+                    params[:color] != "heatmap" ) ? "grid" : "heatmap"
     @map_type = ( params[:type] == "map" ) ? "MAP" : "SATELLITE"
     @default_color = params[:heatmap_colors] if @map_style == "heatmap"
     @about_url = @site.map_about_url.blank? ? view_context.wiki_page_url('help', anchor: 'mapsymbols') : @site.map_about_url

@@ -2,6 +2,13 @@
 class ControlledTerm < ActiveRecord::Base
 
   include ActsAsElasticModel
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
 
   has_many :controlled_term_values, foreign_key: :controlled_attribute_id,
     class_name: "ControlledTermValue", dependent: :destroy

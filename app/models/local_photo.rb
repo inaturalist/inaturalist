@@ -175,8 +175,15 @@ class LocalPhoto < Photo
     return if Photo.valid_remote_photo_url?( interpolated_original_url )
     
     # If it's not, check the old path
+    attachment_opts = LocalPhoto.attachment_definitions[:file]
+    image_url_opts = if CONFIG.usingS3
+      { base_url: "#{attachment_opts[:s3_protocol]}://#{attachment_opts[:bucket]}" }
+    else
+      {}
+    end
     old_interpolated_original_url = FakeView.image_url(
-      Paperclip::Interpolations.interpolate("photos/:id/:style.:extension", self.file, "original")
+      Paperclip::Interpolations.interpolate( "photos/:id/:style.:extension", self.file, "original" ),
+      image_url_opts
     )
     url = if Photo.valid_remote_photo_url?( old_interpolated_original_url )
       old_interpolated_original_url

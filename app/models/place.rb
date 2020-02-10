@@ -2,6 +2,13 @@
 class Place < ActiveRecord::Base
 
   include ActsAsElasticModel
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
 
   has_ancestry orphan_strategy: :adopt
 
@@ -845,6 +852,24 @@ class Place < ActiveRecord::Base
   def bounding_box
     box = [swlat, swlng, nelat, nelng].compact
     box.blank? ? nil : box
+  end
+
+  # Note that swlng etc accommodate bounding boxes that cross the dateline,
+  # while using ST_Envelope( geom ) does not
+  def bounding_box_geojson
+    return nil unless bounding_box
+    {
+      type: "Polygon",
+      coordinates: [
+        [
+          [swlng.to_f, swlat.to_f],
+          [swlng.to_f, nelat.to_f],
+          [nelng.to_f, nelat.to_f],
+          [nelng.to_f, swlat.to_f],
+          [swlng.to_f, swlat.to_f]
+        ]
+      ]
+    }
   end
 
   def bounds

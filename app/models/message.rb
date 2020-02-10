@@ -93,6 +93,5 @@ class Message < ActiveRecord::Base
 
   def flagged_with(flag, options = {})
     evaluate_new_flag_for_spam(flag)
-    Message.where(:user_id => to_user_id, :thread_id => thread_id).destroy_all
   end
 end

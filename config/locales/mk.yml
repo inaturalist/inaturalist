@@ -125,7 +125,9 @@ mk:
   add_new_taxon_name: Додај ново таксонско име
   add_observations: Додај набљудувања
   add_photos: Додај слики
+  #As in a Taxon Framework Relationship
   add_relationship: 'Додај однос'
+  #As in a Guide Section
   add_section: Додај поднаслов
   add_several_observations_at_once: Додајте неколку набљудувања наеднаш.
   add_some_now: Додајте некого сега
@@ -149,7 +151,6 @@ mk:
   added_to_favorites_html: |
     Додадено во <a href="%{url}">омилени</a>
   adding: "Додавам..."
-  additional_range: Дополнителна распространетост
   admin: Админ
   admin_s: Администратор(и)
   admin_only: Само за администратори
@@ -161,7 +162,6 @@ mk:
   agreeing: Поднесувам согласност...
   aka: наречен и
   all: Сите
-  all_colors: "&laquo; Сите бои"
   all_comments: Сите коментари
   all_life: Сет живот
   all_names: Сите имиња
@@ -354,10 +354,8 @@ mk:
   citation: Наведување
   classification: Класификација
   clear: тргни
-  clear_color_filters: Тргни ги филтрите за бои
   clear_search: Исчисти го пребарувањето
   click_the_map: "<strong>Стиснете на картата</strong> за да додадете местоположба."
-  click_the_map_to_jump_new_place: Стиснете на картата за да прејдете на ново место
   code: Код
   colors: Бои
   comment_deleted: Коментарот е избришан
@@ -376,7 +374,8 @@ mk:
   comparing_versions_x_and_y: "Споредба на верзиите %{x} и %{y}"
   comparing_observations_from: "Споредба на набљудувањата на %{user} од %{dates}"
   compiled_by_name: "Составено од %{name}"
-  comprehensive: сеопфатен
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Сеопфатен?
   comprehensive_list: Сеопфатен список
   configure: Нагоди
@@ -620,7 +619,6 @@ mk:
   in_the_past: во изминатите
   in_the_past_week: во изминатата седмица
   inaturalist_places: "Места на %{site_name}"
-  inaturalist_places_are_way_record_what_lives_where: "„Места на %{site_name}“ е начин на заведување на видовите што живеат на дадено место, со што добивате слика за тоа што сè живее каде. Ако барате извесен вид, ќе знаете каде да пребарате. Секое место има контролен список на кој се заведуваат сите видови што живеат таму, па така згоден е и за барање на нешта што сте ги нашле во извесни месности."
   info: Инфо
   input_taxon: Влезен таксон
   insects: Инсекти
@@ -917,7 +915,9 @@ mk:
   out_of_range: Вон опсег
   output_taxon: Излезен таксон
   owner: Сопственик
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Матично
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Матично име
   password: Лозинка
   password_confirmation: 'Потврда на лозинката'
@@ -938,7 +938,6 @@ mk:
     medium: средна
     large: голема
     original: изворно
-  photos_size_photos: "%{photos_size} слики"
   photos_updated: Сликите се подновени.
   pink: розова
   place: Место
@@ -1120,8 +1119,10 @@ mk:
     subtribe: потплеме
     genus: род
     genushybrid: родов хибрид
+    #Singular
     species: вид
     hybrid: хибрид
+    #Singular
     subspecies: подвид
     variety: разновидност
     form: облик
@@ -1223,9 +1224,6 @@ mk:
     selected_sounds: Избрани звуци
     sound: Звук
     sounds: Звуци
-    sounds_size_sound: "%{sounds_size} звук"
-    sounds_size_sounds: "%{sounds_size} звуци"
-    view_all_soundcount_sounds: "Погл. сите %{sound_count} звуци"
   source: Извор
   source_: 'Извор:'
   source_list:
@@ -1246,6 +1244,7 @@ mk:
   sources_and_credits: Извори и приписи
   sourcing: Извори
   spam: спам
+  #Plural
   species: Видови
   species_from_around_the_world: Видови од целиот свет
   species_search: Пребарување на видови
@@ -1318,7 +1317,6 @@ mk:
   updating: Подновувам...
   unpublish: Отповикај објава
   unsubscribe: Отпиши ме
-  unsubscribe_from_this: Отпиши ме од ова
   unsuspend_user: Повторно прими го корисникот
   update: Поднови
   updated: Подновено
@@ -1452,16 +1450,6 @@ mk:
       pdf_layout_notes:
         grid: |
           Решетка од поединечни слики, без описи
-    help:
-      index:
-        who_is_behind_inaturalist: Кој стои зад %{site_name}?
-        curators_are_inat_users_who_volunteer_to_html: |
-          Кустосите се корисници на %{site_name} кои доброволно ги одржуваат нашите таксономски податоци. Ако сте заинтересирани да станете кустос, 
-          <a href="mailto:%{help_email}">обратете ни се</a>. Секој кустос може да унапредува други, доделувајќи им кустоски статус. Би ве замолиле да ги унапредувате само оние на кои им верувате и кои имаат извесни таксономски познавања.
-        check_the_id_please_checkbox_when_html: |
-          Штиклирајте го кутивчето „Препознајте“ кога додавате / менувате ваше
-          набљудување и набљудувањето ќе се појави во
-          „<a href="%{url}">Препознајте</a>“.
     projects:
       edit:
         start_time_desc: "Почетно време на вашиот биоблиц"

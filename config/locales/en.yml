@@ -25,10 +25,15 @@ en:
     other: '%{count} Identifications'
   # Number of people who have added identifications
   x_identifiers_html:
+    # Number of people who have added identifications
     zero: '<span class="count">%{count}</span> Identifiers'
+    # Number of people who have added identifications
     one: '<span class="count">%{count}</span> Identifier'
+    # Number of people who have added identifications
     few: '<span class="count">%{count}</span> Identifiers'
+    # Number of people who have added identifications
     many: '<span class="count">%{count}</span> Identifiers'
+    # Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identifiers'
   x_languages:
     zero: "%{count} languages"
@@ -38,7 +43,15 @@ en:
     other: "%{count} languages"
   # Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    # Count of number of taxa that represent the first addition to a life list
+    zero: "%{count} life list firsts"
+    # Count of number of taxa that represent the first addition to a life list
     one: "%{count} life list first"
+    # Count of number of taxa that represent the first addition to a life list
+    few: "%{count} life list firsts"
+    # Count of number of taxa that represent the first addition to a life list
+    many: "%{count} life list firsts"
+    # Count of number of taxa that represent the first addition to a life list
     other: "%{count} life list firsts"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> journal post'
@@ -134,6 +147,12 @@ en:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> research-grade observation ID'd to species or lower"
     other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower"
+  x_sounds:
+    zero: "%{count} sounds"
+    one: "%{count} sound"
+    few: "%{count} sounds"
+    many: "%{count} sounds"
+    other: "%{count} sounds"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taxon curated"
     other: "<span class='count'>%{count}</span> taxa curated"
@@ -315,7 +334,9 @@ en:
   add_life_stage_larva_annotation: 'Add "Life Stage: Larva" annotation'
   add_life_stage_juvenile_annotation: 'Add "Life Stage: Juvenile" annotation'
   add_life_stage_egg_annotation: 'Add "Life Stage: Egg" annotation'
+  # As in a Taxon Framework Relationship
   add_relationship: 'Add relationship'
+  # As in a Guide Section
   add_section: Add Section
   add_several_observations_at_once: Add several observations at once.
   add_sex_female_annotation: 'Add "Sex: Female" annotation'
@@ -361,8 +382,6 @@ en:
   added_to_favorites_html: |
     Added to <a href="%{url}">favorites</a>
   adding: "Adding..."
-  additional_range: Additional range
-  additional_range_data_from_an_unknown_source: Additional range data from an unknown source
   adjust_brightness: Adjust Brightness
   admin: Admin
   admin_s: Admin(s)
@@ -375,7 +394,6 @@ en:
   agreeing: Agreeing...
   aka: aka
   all: All
-  all_colors: "&laquo; All Colors"
   all_comments: All comments
   all_flags_must_be_resolved: All flags must be resolved
   all_life: All life
@@ -671,7 +689,6 @@ en:
   blog_widget: Blog widget
   blue: blue
   blue_butterfly_etc: "blue, butterfly, etc."
-  blue_icons_represent_political_units: "Blue icons represent political units like countries, states, provinces, counties, and the like, while green icons represent different kinds of open space (parks, reserves). If you zoom in you'll see more, smaller places."
   body: Body
   # Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
@@ -820,11 +837,9 @@ en:
   citation: Citation
   classification: Classification
   clear: clear
-  clear_color_filters: Clear color filters
   clear_filters: Clear filters
   clear_search: Clear search
   click_the_map: "<strong>Click the map</strong> to add a location."
-  click_the_map_to_jump_new_place: Click the map to jump to a new place
   close: Close
   code: Code
   colors: Colors
@@ -1385,10 +1400,13 @@ en:
   flag_an_item: Flag An Item
   flag_as_spammer: Flag As Spammer
   flag_as_non_spammer: Flag As Non-spammer
+  # Label for the date/time when a flag was created
+  flag_created: Flag Created
   flag_description: Flag this content to let the curators know something is wrong with it.
   flag_for_check_list_title_html: |
     Flag for Check List: %{title}
   flag_for_comment_id_html: Flag for <a href="%{url}">Comment %{id}</a>
+  flag_for_comment_id_deleted: Flag for Comment %{id} (deleted)
   flag_for_curation: Flag for Curation
   flag_for_guide_title_html: |
     Flag for Guide: %{title}
@@ -1677,7 +1695,6 @@ en:
   inat_user_profile: "%{site_name}: %{user}'s Profile"
   inaturalist_is_a_joint_initiative: "%{site_name} is a joint initiative of the California Academy of Sciences and the National Geographic Society."
   inaturalist_places: "%{site_name} Places"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name} Places are a way to record what lives where. If you're looking for a particular species, you'll know where to search. Each place has a check list to record all the species that occur there, so they can also be useful for looking up things you've found at particular spots."
   info: Info
   input_taxon: Input taxon
   insects: insects
@@ -2020,10 +2037,16 @@ en:
   membership_model: Membership Model
   mentioned_you_in_noun_html: "%{user} mentioned you in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} mentioned you in %{noun} by %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} mentioned you in %{noun} by %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} mentioned you in %{noun} by you"
   mentioned_you_in_a_x_on_noun_html: "%{user} mentioned you in a %{x} on %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} mentioned you in an %{x} on %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} mentioned you in a %{x} on %{noun} by %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} mentioned you in a %{x} on %{noun} by %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} mentioned you in a %{x} on %{noun} by you"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} mentioned you in an %{x} on %{noun} by %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} mentioned you in an %{x} on %{noun} by %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} mentioned you in an %{x} on %{noun} by you"
   merge: Merge
   merge_it_with_another_place: Merge it with another place
   merge_two_places_together: Merge two places together. All species on the checklists will be merged, as well as any geographic data.
@@ -2333,7 +2356,9 @@ en:
   observation_added: Observation added.
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
-  observation_brief_something_on_day: "something on %{day}"
+  observation_brief_something_on_day: "Something on %{day}"
+  observation_brief_something_on_day_at_time: "Something on %{day} at %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Something on %{day} at %{time} by %{user}"
   observation_brief_something_on_day_by_user: "Something on %{day} by %{user}"
   observation_brief_something_by_user: "Something by %{user}"
   observation_brief_something_from_place: "Something from %{place}"
@@ -2343,6 +2368,8 @@ en:
   observation_brief_something_from_place_on_day_at_time: "Something from %{place} on %{day} at %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Something from %{place} on %{day} at %{time} by %{user}"
   observation_brief_taxon_on_day: "%{taxon} on %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} on %{day} at %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} on %{day} at %{time} by %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} on %{day} by %{user}"
   observation_brief_taxon_by_user: "%{taxon} by %{user}"
   observation_brief_taxon_from_place: "%{taxon} from %{place}"
@@ -2587,7 +2614,9 @@ en:
   overview: Overview
   overlapping_downstream_taxon_frameworks_html: "Overlapping downstream Taxon Frameworks: %{count}"
   owner: Owner
+  # One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Parent
+  # Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Parent name
   parental_consent:
     must_specify_email: You must specify an email address
@@ -2647,7 +2676,6 @@ en:
       medium: medium
       large: large
       original: original
-  photos_size_photos: "%{photos_size} photos"
   photos_updated: Photos updated.
   pi_consent_desc_title: About Personal Information
   pi_consent_desc_html: |
@@ -3180,7 +3208,6 @@ en:
   radius_value: "Radius (m): %{radius}"
   random: Random
   range: Range
-  range_from: 'Range from '
   rank: Rank
   rank_position: Rank
   rank_restrictions: Rank restrictions
@@ -3215,8 +3242,10 @@ en:
       section: Section
       subsection: Subsection
       complex: Complex
+      # Singular
       species: Species
       hybrid: Hybrid
+      # Singular
       subspecies: Subspecies
       variety: Variety
       form: Form
@@ -3299,7 +3328,6 @@ en:
   remove_selected: Remove selected
   remove_tags: Remove tags
   removed: Removed
-  removed!: Removed!
   removed_project_user: Removed project user
   removing: "Removing..."
   reorder_by_taxonomy: Reorder by taxonomy
@@ -3500,6 +3528,8 @@ en:
   skip_to_next_page: "Skip to next page"
   small: small
   site_admin_tools: Site admin tools
+  # People who administrate a particular iNaturalist Network partner
+  site_admins: Site Admins
   site_name_place: "%{site_name} place"
   site_observations_export_from_date: "%{site_name} observations export from %{date}"
   site_site_admin: "%{site_name} Site Admin"
@@ -3544,7 +3574,6 @@ en:
     import_from_soundcloud_description: "Select sounds from your SoundCloud account to convert into iNaturalist observations. We'll fill in the date and time from a sound's metadata, and try to look up species names from the tags."
     import_from_sounds: Import from sounds
     import_sounds: Import Sounds
-    link_your_soundcloud_account: Link your SoundCloud account
     listen: Listen
     no_photos_sounds: No photos or sounds
     photos_sounds: Photos / Sounds
@@ -3555,11 +3584,6 @@ en:
     sound_has_been_flagged: This sound has been flagged.
     soundcloud_replied_with_an_error: SoundCloud replied with an error.  Please try again later.
     sounds: Sounds
-    sounds_size_sound: "%{sounds_size} Sound"
-    sounds_size_sounds: "%{sounds_size} Sounds"
-    view_all_soundcount_sounds: "View all %{sound_count} sounds"
-    we_didnt_find_any_sounds: Sorry! We couldn't get any sounds from your SoundCloud account. 
-    you_need_to_link_your_soundcloud_account: You need to link your SoundCloud account to add sounds.
     your_soundcloud_account: your SoundCloud account
   source: Source
   source_: 'Source:'
@@ -3593,6 +3617,7 @@ en:
   sourcing: Sourcing
   spam: Spam
   spammer: Spammer
+  # Plural
   species: Species
   species_by_category: species by category
   species_from_around_the_world: Species from around the world
@@ -3875,10 +3900,6 @@ en:
     wonderful life forms. Some are on the other side of the world, while
     others are just down the street! %{site_name} Places let you browse life
     from around the planet.  Start exploring!
-  the_world_is_full_of_interesting_places_short: |
-    The world is full of interesting places, each filled with weird and
-    wonderful life forms. Some are on the other side of the world, while
-    others are just down the street!
   then_keybord_sequence: then
   there_are_x_synonyms_html:
     one: "There is <span class='count'>1</span> synonym</span>"
@@ -4045,7 +4066,6 @@ en:
   unpublish: Unpublish
   unreview_all: Unreview All
   unsubscribe: Unsubscribe
-  unsubscribe_from_this: Unsubscribe from this
   unsuspend_user: Unsuspend user
   upcoming_bioblitzes: Upcoming bioblitzes
   update: Update
@@ -4128,6 +4148,8 @@ en:
   user_added_a_project_invitation_html: "%{user} added a project invitation"
   user_added_a_x: "%{user} added a %{x}"
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} added a %{x} to %{noun} by %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} added a %{x} to %{noun} by you"
   user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
   user_added_an_identification_html: "%{user} added an identification"
   user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
@@ -4135,6 +4157,8 @@ en:
   user_added_an_observation_html: "%{user} added an observation"
   user_added_an_x: "%{user} added an %{x}"
   user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} added an %{x} to %{noun} by %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} added an %{x} to %{noun} by you"
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_already_authenticated: User is already authenticated
@@ -4300,7 +4324,6 @@ en:
   were_pretty_sure_this_is_in_the_rank: We're pretty sure this is in the %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "We're sorry but your bulk import of %{filename} has failed."
   what: What
-  what_color_was_it: What color was it?
   what_did_you_see: What did you see?
   what_did_you_see?: <em>What</em> did you see?
   what_do_you_think: What do you think?
@@ -4608,12 +4631,20 @@ en:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          The flaggable content is the primary text attribute of the flagged
+          object at the time the flag was created. Only curators and staff can
+          see this. Only staff can see this for messages.
         flags_that_should_not_be_resolved_desc_html: |
           Please resolve <code>spam</code> and <code>copyright
           infringement</code> flags only if the content is not spam or not an
           infringement of copyright, respectively.
     guides:
       index:
+        deprecated_banner: |
+          Please note that as of January 2019, the Guides feature is presented
+          "as is"; while we don’t have any plans to delete it, we don’t plan
+          to develop it any further.
         funding_html: |
           Funding for the development of Guides was provided by
           <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
@@ -4762,198 +4793,6 @@ en:
           You can copy this taxon into another guide. If you are one of the
           editors of this guide it should copy everything, but if you're not, it
           will only copy the licensed content.
-    help:
-      index:
-        welcome_message_html: |
-          Howdy. If you're just getting started with %{site_name}, check out our
-          <a href="%{url}">%{getting_started}</a>
-          guide to tour some of the site's features. If you have a
-          question about the site, please peruse the FAQ below. If you're still
-          looking for answers, please 
-          <a href="%{feedback_url}">post your question to our feedback group</a>.
-        what_is_inaturalist?: What is %{site_name}?
-        who_is_behind_inaturalist?: Who is behind %{site_name}?
-        what_technologies_does_the_project_use?: What technologies and data sources does the project use?
-        inaturalist_provides_a_place_to: |
-          %{site_name} provides a place to record and organize nature findings,
-          meet other nature enthusiasts, and learn about the natural world. It
-          encourages the participation of a wide variety of nature
-          enthusiasts, including, but not exclusive to, hikers, hunters,
-          birders, beach combers, mushroom foragers, park rangers, ecologists,
-          and fishermen. Through connecting these different perceptions and
-          expertise of the natural world, %{site_name} hopes to create
-          extensive community awareness of local biodiversity and promote
-          further exploration of local environments.
-        who_is_behind_inaturalist: Who is behind %{site_name}?
-        inaturalist_was_originally_the_masters_final_html: |
-          %{site_name} was originally the Master's final project of Nathan Agrin,
-          Jessica Kline, and Ken-ichi Ueda at UC Berkeley's 
-          <a href="http://www.ischool.berkeley.edu">School of Information</a>.
-          Check out the <a href="/about">About page</a> for more info on the people currently managing the site.
-        what_technologies_does_the_project_use?: What technologies and data sources does the project use?
-        what_can_i_do_to_help_inaturalist?: What can I do to help %{site_name}
-        you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-          You can help %{site_name} by giving us your feedback: join our 
-          <a href="%{feedback_url}">feedback group</a> 
-          to report bugs and request new
-          features. You can also help %{site_name} by adding your observations
-          and helping other community members identify their unidentified
-          observations. If you know how to code and want to help work on some
-          features,
-          <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master - GitHub">fork us on GitHub</a>!
-        how_do_i_contact_inaturalist?: How do I contact %{site_name}
-        you_can_contact_us_at_html: 'You can contact us at <a href="mailto:%{help_email}">%{help_email}</a>'
-        what_are_admins_and_curators?: What are admins and curators?
-        inat_admins_are_the_people_who: |
-          %{site_name} admins are the people who run the site. They have direct access
-          to the underlying code and the database, and they can change anything
-          on the site.
-        curators_are_inat_users_who_volunteer_to_html: |
-          Curators are %{site_name} users who volunteer to help keep our taxonomic data
-          up to date. If you're interested in becoming a curator, please 
-          <a href="mailto:%{help_email}">contact us</a>. Curators can
-          also promote other users to curator status. Please only promote people
-          you trust and that you know to have some taxonomic knowledge.
-        what_is_considered_inappropriate_content?: What is considered inappropriate content?
-        you_know_it_when_you_see_it_html: | 
-          You <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">know it when you see it</a>, 
-          right?  Stuff that violates Section 2 of our <a href="/terms.html">Terms of Service</a> 
-          is definitely inappropriate and worth flagging or otherwise notifying
-          the admins about. Milder forms of rudeness are unfortunate, but
-          probably not something we'll delete. Observations of pets, captive
-          animals, humans, and other organisms most naturalists may not find
-          interesting are ok (they're alive, after all). Observations of things
-          that aren't organisms are a gray area. Things that clearly have
-          nothing to do with nature, like what someone had for lunch, are worth
-          flagging and may be deleted, but evidence of pollution or disturbance
-          could be interesting, and probably won't be removed.
-        what_is_an_observation?: What is an observation?
-        an_observation_is_the_what_where_and_when_html: |
-          An observation is the what, where, and when of a finding in nature. 
-          %{site_name} provides a place to add this information along with associated text, 
-          photos, and tags. %{site_name} encourages the recording of all nature findings, 
-          whether they feature identified species or simple narrative descriptions. 
-          (In %{site_name} the same lizard can be described as a Desert Horned Lizard as well 
-          as &quot;Mystery Lizard of Death Valley&quot;)
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Why doesn't %{site_name} recognize the name I've entered?"
-        inaturalist_has_name_information_for_mammals:  |
-          %{site_name} has name information for mammals, birds, reptiles,
-          and amphibians, and continues to add new species names into our
-          database. If we do not recognize a particular name, try
-          alternative names that we might recognize and add the original
-          name to the tags or description fields.
-        how_can_i_get_help_identifying_what_i_saw?: How can I get help identifying what I saw?
-        check_the_id_please_checkbox_when_html: | 
-          Check the "ID Please" checkbox when adding / editing your
-          observation and your observation will appear in
-          <a href="%{url}">ID Please</a>.
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: What does it mean to link %{site_name} to my Flickr account?
-        inaturalist_can_link_directly_to_the_flickr_photo_service: | 
-          %{site_name} can link directly to the Flickr photo service so
-          that you can add your Flickr photos to your observations. When
-          you agree to link your Flickr account, you are simply linking
-          two accounts; we do not have access to your Flickr password and
-          you are not forsaking your copyright nor giving us the ability
-          to use any of your photos in ways that you do not want.
-        can_i_add_photos_without_a_flickr_account?: Can I add photos without a Flickr account?
-        we_also_support_google_html:  'We also support Google Photos: <a href="%{url}">Configure your Google account &raquo;</a>'
-        we_also_support_uploading_photos: |
-                We also support uploading photos directly to %{site_name}, but it can be a bit
-                slow, so we only allow one upload at a time. Using Flickr or Google is
-                probably faster if you already use those services.
-        what_are_tags?:  What are tags?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Tags are keywords you can add to an observation to make them easier to find. 
-          For example, if a barracuda followed you on a scuba diving trip in Turks and Caicos, 
-          you might tag the observation &quot;scary, barracuda, scuba diving, vacation, turks and caicos&quot;.
-        can_i_include_my_observations_on_my_blog?: Can I include my %{site_name} observations on my own website of blog?
-        sure_check_out_our_widget_html: |
-          Sure, check out our <a href="%{url}" title="Observations Widget">Observations Widget</a>.
-        what_kind_of_photos_should_i_attach: What kind of photos should I attach to observations?  Can I attach photos I didn't take?
-        photos_attached_to_observations_should_be: | 
-          Photos attached to observations should be of the individual observed
-          at the time of the observation. If you record an observation of a
-          tree, then go back a day later to take a picture, please add a new
-          observation for the picture, because it represents the tree at a
-          different point in time.
-        please_do_not_upload_pictures_you_didnt_take_html: | 
-          Please <em>do not upload pictures you didn't take</em> unless you have
-          obtained permission from the photographer. It is illegal to publish
-          copyrighted works without some form of license granted by the creator
-          of the work, and all photographers have full copyright over their
-          photos by default. If the photo was of the thing you observed, and
-          someone else took it and you've obtained their permission to publish
-          it, you should also note the name of the photographer in the
-          observation's description.
-        what_is_geoprivacy?: What is geoprivacy?
-        geoprivacy_is_a_setting_you_can: |
-          Geoprivacy is a setting you can make on your observations that
-          controls how the spatial coordinates (latitude and longitude) are 
-          displayed. Here are the options:
-        note_that_curators_of: | 
-          Note that curators of individual projects can always see the
-          coordinates regardless of your geoprivacy setting, so if you are
-          concerned about who has access to the coordinates you should be sure
-          you trust the curators of the projects in which you participate.
-        what_is_does_it_mean_for: What is does it mean for an observation to be obscured?
-        when_coordinates_are_obscured_it_means_that: |
-          When coordinates are obscured it means that a random point within
-          %{km}KM of the true coordinates 
-          is shown publicly (i.e. on the home page, the observations page, and 
-          project pages), while the true coordinates are only visible when you
-          are viewing your own observations (i.e. on the individual project
-          pages and the list of your own observations). Note that curators of
-          the projects to which you've added an observation can also see the
-          true coordinates. Obscured coordinates should always be symbolized by
-          circular marker without stems on maps and in geospatial feeds.
-        coordinates_are_obscured_for_all_taxa: | 
-          Coordinates are automatically obscured for all taxa that are "NEAR
-          THREATENED" or worse according to the IUCN Red List. Some taxa may be
-          declared threatened according to other conservation authorities, and
-          some may be simply marked as threatened by %{site_name} site curators if they
-          believe it merits protection.
-        you_can_also_obscure_the_coordinates_html: | 
-          You can also obscure the coordinates of your own observations 
-          regardless of what the taxon is.  See <a href="#geoprivacy">geoprivacy</a> above.
-        what_is_the_quality_assessment: What is the quality assessment and how do observations qualify to become "research" grade?
-        what_is_a_life_list?: What is a life list?
-        just_a_simple_list: Just a simple list of taxa with no special behavior.
-        automatically_updates_based_on_your_observations: |
-          Automatically updates based on your observations. Everyone on %{site_name}
-          has a default life list that contains every species that person has
-          observed. If you delete an observation or change your ID, the
-          species will get removed. You can also manually add taxa to your
-          life list just like you can with an ordinary list. The species you
-          add manually won't get removed if you observe them and then delete
-          the observation.
-        you_can_also_make_additional_life_lists: |
-          You can also make additional life lists for specific groups of
-          organisms, like a life list of birds, or a life list of milkweeds.
-        a_project_list_belongs: |
-          A project list belongs to a project and lists all the taxa
-          observed by members of that project. Project lists can also be
-          populated manually by the admin of that project, and can be used
-          to restrict project contributions to taxa that are on the list.
-        a_check_list_is_html: |
-          A check list is a list of taxa that occur in a place. Every place
-          has a default check list, and whenever an observation is made
-          within the place's boundaries <em>and</em> it has achieved
-          research-grade status, the species observed will get automatically
-          added to the place's check list.
-        inat_users_can_also: |
-          %{site_name} users can also add additional check lists to places, but
-          these check lists are not automatically updated. They mainly
-          provide a way for people to bring in outside sources of data or
-          just list things based on their own experience.
-        is_a_list_of_every_species_that_you_have_seen: |
-          A life list is a list of every species that you have seen. Every %{site_name} user has a life 
-          list and these lists are automatically populated from the observations added to %{site_name}.
-        i_observed_a_species: "I observed a species, why isn't it showing up in my life list?"
-        while_the_life_list_is_automatically_populated: |
-                While the life list is automatically populated from added
-                observations, the species will not be added to this list if
-                %{site_name} does not recognize the name you used. We recommend
-                trying alternative names that we might recognize.
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -4991,6 +4830,11 @@ en:
           You'll be able to send new messages after you've added three
           verifiable observations or three identifications for others. For now
           you can read and reply to message other people send you.
+      show:
+        flag_notice_html: |
+          You flagged this conversation on %{date}. The flag will persist even
+          if you delete your copy of this conversation, so it is safe to do so
+          if you no longer want to see this.
     oauth:
       authorizations:
         new:
@@ -5071,31 +4915,51 @@ en:
         vertical: Vertical
         # Count of how many taxa several observation searches have in common
         x_in_common:
+          # Count of how many taxa several observation searches have in common
           zero: "%{count} in common"
+          # Count of how many taxa several observation searches have in common
           one: "%{count} in common"
+          # Count of how many taxa several observation searches have in common
           few: "%{count} in common"
+          # Count of how many taxa several observation searches have in common
           many: "%{count} in common"
+          # Count of how many taxa several observation searches have in common
           other: "%{count} in common"
         # Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
+          # Count of how many taxa are not present in *all* of several observation searches
           zero: "%{count} not in common"
+          # Count of how many taxa are not present in *all* of several observation searches
           one: "%{count} not in common"
+          # Count of how many taxa are not present in *all* of several observation searches
           few: "%{count} not in common"
+          # Count of how many taxa are not present in *all* of several observation searches
           many: "%{count} not in common"
+          # Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} not in common"
         # Count of how many taxa are present in an observation search
         x_total:
+          # Count of how many taxa are present in an observation search
           zero: "%{count} total"
+          # Count of how many taxa are present in an observation search
           one: "%{count} total"
+          # Count of how many taxa are present in an observation search
           few: "%{count} total"
+          # Count of how many taxa are present in an observation search
           many: "%{count} total"
+          # Count of how many taxa are present in an observation search
           other: "%{count} total"
         # Count of how many taxa in several observation searches are present in only one of those searches
         x_unique:
+          # Count of how many taxa in several observation searches are present in only one of those searches
           zero: "%{count} unique"
+          # Count of how many taxa in several observation searches are present in only one of those searches
           one: "%{count} unique"
+          # Count of how many taxa in several observation searches are present in only one of those searches
           few: "%{count} unique"
+          # Count of how many taxa in several observation searches are present in only one of those searches
           many: "%{count} unique"
+          # Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} unique"
       export:
         choose_columns_desc: Choose the columns you want to export
@@ -7080,6 +6944,8 @@ en:
       AssessmentSection: Assessment Section
       Atlas: Atlas
       CompleteSet: Complete Set
+      # Noun
+      Flag: Flag
       TaxonLink: Taxon Link
     attributes:
       assessment:
@@ -7313,8 +7179,10 @@ en:
         content on your behalf, and access your hidden coordinates and any
         other information you can access on the site.
       login: |
-        Access information relevant to sign in, like email address, username,
-        name, and user icon.
+        Access information relevant to signing into a third party service, like the email address, username,
+        name, and user icon associated with your account here.
+      account_delete: |
+        Delete your account on your behalf.
     errors:
       messages:
         # Common error messages
@@ -7381,6 +7249,8 @@ en:
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@n"
@@ -7388,6 +7258,8 @@ en:
         family: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         form: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)

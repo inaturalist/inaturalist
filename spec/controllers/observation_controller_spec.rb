@@ -246,6 +246,17 @@ describe ObservationsController do
     end
   end
 
+  describe "project" do
+    let(:project) { Project.make! }
+    let(:project_observation) { make_project_observation( project: project ) }
+    before { expect( project_observation ).not_to be_blank }
+    # Apparently people use the project widget
+    it "render widget content" do
+      get :project, id: project.id, format: "widget"
+      expect( response ).to be_success
+    end
+  end
+
   describe "project_all", "page cache" do
     before do
       @project = Project.make!

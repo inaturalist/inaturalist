@@ -1086,8 +1086,13 @@ button {
       margin-right: 5px;
     }
     .project-admin {
+      display: inline-block;
       .project-admin-span {
         white-space: nowrap;
+      }
+      .icon-person {
+        font-size: 16px;
+        line-height: 16px;
       }
       &:not(:last-child) {
         .project-admin-span {

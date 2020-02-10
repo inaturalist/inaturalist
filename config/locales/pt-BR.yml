@@ -208,7 +208,9 @@ pt-BR:
   add_life_stage_larva_annotation: 'Adicionar "Estágio de Vida: Larva" anotação'
   add_life_stage_juvenile_annotation: 'Adicionar "Estágio de Vida: Juvenil" anotação'
   add_life_stage_egg_annotation: 'Adicionar "Estágio de Vida: Ovo" anotação'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Adicionar relacionamento'
+  #As in a Guide Section
   add_section: Adicionar seção
   add_several_observations_at_once: Adicionar diversas observações de uma só vez.
   add_sex_female_annotation: 'Adicionar "Sexo: Fêmea" anotação'
@@ -240,8 +242,6 @@ pt-BR:
   added_to_favorites_html: |
     Adicionado a <a href="%{url}">favoritos</a>
   adding: "Adicionando..."
-  additional_range: Distribuição adicional
-  additional_range_data_from_an_unknown_source: Distribuição adicional para fontes desconhecidas
   adjust_brightness: Ajustar o brilho
   admin: Administrador
   admin_s: Administrador(es)
@@ -254,7 +254,6 @@ pt-BR:
   agreeing: Concordando...
   aka: também conhecido como
   all: Todas
-  all_colors: "&laquo; Todas as Cores"
   all_comments: Todos comentários
   all_flags_must_be_resolved: Todos os destaques devem ser identificados
   all_life: toda vida
@@ -500,7 +499,6 @@ pt-BR:
   be_the_first_to_fave_this_observation: Seja o primeiro a adicionar esta observação aos favoritos!
   because_of: por causa de
   before_importing_photos: antes de importar fotos
-  belives_this_is_a_comprehensive_list_of: acredita que esta é uma lista compreensiva de
   bg_color: Cor BG
   birds: aves
   birthday: Aniversário
@@ -511,7 +509,6 @@ pt-BR:
   blog_widget: Blog Widget
   blue: azul
   blue_butterfly_etc: "azul, borboleta, etc."
-  blue_icons_represent_political_units: "Ícones azuis representam unidades políticas como países, estados, cidades e ainda, os ícones verdes representam diferentes tipos de espaços abertos (parques, reservas). Se você der zoom e aproximar, irá ver outros lugares pequenos."
   body: Mensagem
   bounding_box: Quadro Delimitador
   breadcrumbs: Rastros de navegação
@@ -648,11 +645,9 @@ pt-BR:
   citation: Citação
   classification: Classificação
   clear: limpar
-  clear_color_filters: Limpe os filtros de cor
   clear_filters: Limpar filtros
   clear_search: Limpe a pesquisa
   click_the_map: "<strong>Clique no mapa</strong> para adicionar uma localização."
-  click_the_map_to_jump_new_place: Clique no mapa para ir para um novo lugar
   close: Fechar
   code: Código
   colors: Cores
@@ -691,10 +686,12 @@ pt-BR:
   comparing_versions_x_and_y: "Comparando as versões %{x} e %{y}"
   comparing_observations_from: "Comparando %{user} observações de %{dates}"
   compiled_by_name: "Compilada por %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Completo
   completed: Concluído
   completed_at: Concluído em
-  comprehensive: Completa
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Completa?
   comprehensive_list: Lista completa
   concept_status: Conceito de Status
@@ -1381,7 +1378,6 @@ pt-BR:
   inat_user_profile: "%{site_name}: Perfil de %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society."
   inaturalist_places: "%{site_name} Lugares"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name} Lugares são uma maneira de registrar o que vive aonde. Se você está procurando por uma espécie em particular, você saberá onde procurar. Todo lugar tem uma lista de verificação que registra todas as espécies que ocorrem lá, então elas também podem ser úteis para procurar organismos que você encontrou em determinados locais."
   info: Informação
   input_taxon: Táxon de entrada
   insects: insetos
@@ -2135,7 +2131,9 @@ pt-BR:
   output_taxon: Taxón de saída
   overview: Visão geral
   owner: Proprietário
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Pai
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nome da espécie pai
   parental_consent:
     must_specify_email: Você deve especificar um endereço de e-mail
@@ -2193,7 +2191,6 @@ pt-BR:
     small: pequeno
     medium: médio
     large: grande
-  photos_size_photos: "%{photos_size} fotos"
   photos_updated: Fotos atualizadas.
   pi_consent_desc_title: Sobre informações pessoais
   pi_consent_desc_html: |
@@ -2641,7 +2638,6 @@ pt-BR:
   radius_value: "Raio (m): %{radius}"
   random: Aleatório
   range: Área de Distribuição
-  range_from: 'Distribuição de'
   rank: Classificação
   rank_position: Classificação
   rank_restrictions: Restrição para classificação
@@ -2674,8 +2670,10 @@ pt-BR:
     section: Seção
     subsection: Subseção
     complex: Complexo
+    #Singular
     species: Espécies
     hybrid: Híbrido
+    #Singular
     subspecies: Subespécies
     variety: Variedade
     form: Formulário
@@ -2758,7 +2756,6 @@ pt-BR:
   remove_selected: Remova selecionado
   remove_tags: Remova marcações
   removed: Removido
-  removed!: Removido!
   removed_project_user: Usuário removido do projeto
   removing: "Removendo..."
   reorder_by_taxonomy: Reordenar por taxonomia
@@ -2984,7 +2981,6 @@ pt-BR:
     import_from_soundcloud_description: "Selecione arquivos da sua conta do SoundCloud para convertê-los em observações do iNaturalist. Informações sobre data e horário serão extraídas dos metadados, busque pelos nomes das espécies nas marcações."
     import_from_sounds: Importar dos sons
     import_sounds: Importar sons
-    link_your_soundcloud_account: Conecte sua conta do SoundCloud
     listen: Ouça
     no_photos_sounds: Nenhuma foto ou som
     photos_sounds: Fotos / Sons
@@ -2995,11 +2991,6 @@ pt-BR:
     sound_has_been_flagged: Este som foi sinalizado.
     soundcloud_replied_with_an_error: Houve um erro com a sua conexão ao SoundCloud. Por favor tente novamente.
     sounds: Sons
-    sounds_size_sound: "%{sounds_size} Som"
-    sounds_size_sounds: "%{sounds_size} Sons"
-    view_all_soundcount_sounds: "Exibir todos %{sound_count} sons"
-    we_didnt_find_any_sounds: Desculpe! Não foi possível acessar os sons da sua conta do SoundCloud.
-    you_need_to_link_your_soundcloud_account: É preciso conectar sua conta do SoundCloud para adicionar sons.
     your_soundcloud_account: sua conta do SoundCloud
   source: Fonte
   source_: 'Fonte:'
@@ -3028,6 +3019,7 @@ pt-BR:
   sources_youve_added: Fontes que você adicionou
   sources_and_credits: Fontes e Créditos
   sourcing: Buscando fonte
+  #Plural
   species: Espécies
   species_by_category: espécies por categoria
   species_from_around_the_world: Espécies de todo o mundo
@@ -3275,8 +3267,6 @@ pt-BR:
   the_world: O Mundo
   the_world_is_full_of_interesting_places: |
     O mundo está cheio de lugares interessantes, cada um repleto com as mais estranhas e maravilhosas formas de vida. Algumas estão do outro lado do mundo, enquanto outras estão exatamente na mesma rua onde você mora! Os Lugares de %{site_name} permite que você procure vida em todo o planeta. Comece agora a explorar!
-  the_world_is_full_of_interesting_places_short: |
-    O mundo está cheio de lugares interessantes, cada um repleto com as mais estranhas e maravilhosas formas de vida. Algumas delas estão do outro lado do mundo, enquanto isso muitas encontram-se na mesma rua que você está agora!
   then_keybord_sequence: então
   there_are_x_synonyms_html:
     one: "Existe um <span class='count'>1</span> synonym</span>"
@@ -3419,7 +3409,6 @@ pt-BR:
   unpublish: Não publicado
   unreview_all: Marcar todos como não revisados
   unsubscribe: Cancelar inscrição
-  unsubscribe_from_this: Cancelar assinatura de
   unsuspend_user: Reativar usuário
   upcoming_bioblitzes: Próximas bioblitz
   update: Atualizar
@@ -3643,7 +3632,6 @@ pt-BR:
   were_pretty_sure_this_is_in_the_rank: Temos certeza que isso é no %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Pedimos desculpas mas a importação em massa de %{filename} falhou."
   what: Qual
-  what_color_was_it: Qual era a cor?
   what_did_you_see: Oque você viu?
   what_did_you_see?: <em>O que</em> você viu?
   what_do_you_think: O que você acha?
@@ -3977,97 +3965,6 @@ pt-BR:
       show:
         reuse_desc: |
           Você pode copiar este táxon em outra guia. Se você é um dos editores desta guia isto deve copiar tudo, mas se você não é, isto irá copiar somente o conteúdo licenciado.
-    help:
-      index:
-        welcome_message_html: |
-          Olá! Se você está começando agora com o %{site_name}, dê uma olhada no nosso guia <a href="%{url}">%{getting_started}</a> para um tour em algumas das funções do site. Se você tem uma pergunta sobre o site, por favor utilize o FAQ de perguntas frequentes abaixo. Se você ainda está procurando respostas, por favor <a href="%{feedback_url}">publique sua pergunta no nosso grupo de feedback</a>.
-        what_is_inaturalist?: O que é %{site_name}?
-        who_is_behind_inaturalist?: Quem está por trás de %{site_name}?
-        what_technologies_does_the_project_use?: Quais tecnologias e fontes de informação o projeto utiliza?
-        inaturalist_provides_a_place_to: |
-          %{site_name} oferece um ambiente agradável para armazenar e organizar suas preciosas descobertas e observações da natureza, conhecer entusiastas como você, e aprender sobre o mundo natural. Nós encorajamos a participação de todos os amantes da natureza, incluindo, ciclistas, trilheiros, agentes do meio ambiente, surfistas, ecólogos, caçadores de cogumelos, adoradores de árvores, biólogos, pescadores, pesquisadores, observadores de aves, guarda-parques, guias, ativistas e ambientalistas. Criando um ambiente de convivência de todos estes grupos esperamos conectar diferentes conhecimentos e pontos de vista sobre a natureza, %{site_name} espera criar uma enorme comunidade preocupada em proteger a biodiversidade local e promover a expansão do conhecimento sobre os ecossistemas locais.
-        who_is_behind_inaturalist: Quem está por trás de %{site_name}?
-        inaturalist_was_originally_the_masters_final_html: |
-          %{site_name} foi originalmente um projeto final de Mestrado de Nathan Agrin,
-          Jessica Kline e Ken-ichi Ueda na Universidade de Berkeley
-          <a href="http://www.ischool.berkeley.edu">Informação da Escola</a>.
-          Veja a página <a href="/about">Sobre</a> para mais informações sobre as pessoas que atualmente gerenciam o site.
-        what_can_i_do_to_help_inaturalist?: O que eu posso fazer para ajudar %{site_name}
-        you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-          Você pode ajudar %{site_name} dando seu feedback: entre no nosso 
-          <a href="%{feedback_url}">grupo de feedback</a> 
-          para avisar sobre erros e requerer novas funções. Você também pode ajudar %{site_name} adicionando suas observações e ajudando os membros da comunidade a identificar as observações ainda sem identificação deles. Se você conhece códigos e quer ajudar trabalhando com algumas funções,
-          <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master - GitHub">encontre-nos no GitHub</a>!
-        how_do_i_contact_inaturalist?: Como eu entro em contato com %{site_name}
-        you_can_contact_us_at_html: 'Você pode nos contatar em <a href="mailto:%{help_email}">%{help_email}</a>'
-        what_are_admins_and_curators?: O que são os administradores e coordenadores?
-        inat_admins_are_the_people_who: |
-          Os administradores do %{site_name} são as pessoas que fazem a gestão do site. Elas tem acesso direto ao código base e ao banco de dados, e elas podem mudar qualquer coisa no site.
-        curators_are_inat_users_who_volunteer_to_html: |
-          Coordenadores de projetos do %{site_name} são usuários que voluntariamente se oferecem para ajudar a manter os dados taxonômicos do site atualizados. Se você tem interesse em se tornar um administrador, por favor <a href="mailto:%{help_email}">entre em contato</a>. Coordenadores também podem promover usuários para a categoria de coordenador. Por favor só promova pessoas de confiança com uma base mínima de conhecimento taxonômico.
-        what_is_considered_inappropriate_content?: O que é considerado conteúdo inapropriado?
-        you_know_it_when_you_see_it_html: |
-          Você <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">só pode afirmar o que é algo ao ver com seus próprios olhos</a>, 
-          certo? Qualquer conteúdo que viole os termos da Seção 2 do nosso <a href="/terms.html">Termo de Serviço</a> é definitivamente inapropriado e merece ser marcado com um alerta de advertência ou que seja enviada uma notificação aos administradores. Postagens agressivas e falta de educação, não são bem vindas mas provavelmente não serão deletadas. Observações de animais de estimação, animais domésticos ou em cativeiro, fotos de pessoas, e outros organismos que a maioria das naturalistas possivelmente não considerarão interessantes podem ser mantidos no site (afinal de contas, todos eles são seres vivos!). Registros que claramente não tem nada a ver com a natureza, como por exemplo um sanduíche, devem ser marcadas com alerta de advertência e posteriormente apagadas, mas evidências de poluição, desmatamento ou destruição ambiental devem ser mantidas e não serão removidas.
-        what_is_an_observation?: O que é uma observação?
-        an_observation_is_the_what_where_and_when_html: |
-          Uma observação é o que? aonde? e quando? de um achado na natureza.
-          %{site_name} providencia um local para adicionar esta informação em associação com textos, fotos e marcações. %{site_name} estimula a gravação de todos os achados na natureza, sejam de espécies identificadas ou somente descrições narrativas. 
-          (Em %{site_name} o nome lagarto pode ser descrito como 'Lagarto com chifres do Deserto' assim como  &quot;Lagarto Misterioso do Vale da Morte&quot;)
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Porque %{site_name} não reconhece o nome que eu digitei?"
-        inaturalist_has_name_information_for_mammals: |
-          %{site_name} tem informação de nomes para mamíferos, aves, répteis e anfíbios, e continua adicionando novos nomes de espécies no nosso banco de dados. Se você não reconhece um nome em particular, tente nomes alternativos que possamos reconhecer e adicione o nome original nas marcações ou descrições de campo.
-        how_can_i_get_help_identifying_what_i_saw?: Como posso conseguir ajuda para identificar o que vi?
-        check_the_id_please_checkbox_when_html: |
-          Marque a caixa "ID Por Favor" quando adicionar/modificar sua observação. Fazendo isto ela irá aparecer na secção <a href="%{url}">ID Por Favor</a>.
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: O que significa vincular %{site_name} com minha conta do Flickr?
-        inaturalist_can_link_directly_to_the_flickr_photo_service: |
-          %{site_name} pode conectar-se diretamente ao serviço de fotos do Flickr assim você pode adicionar suas fotos do Flickr nas suas observações. Quando você concorda em conectar com sua conta do Flickr, você simplesmente está ligando duas contas, nós não temos acesso à sua senha do Flickr e você não está abandonando seus direitos autorais e também não está nos autorizando a usar nenhuma das suas fotos de maneira que você não deseja.
-        can_i_add_photos_without_a_flickr_account?: Posso adicionar fotos sem ter uma conta do Flickr?
-        we_also_support_google_html: 'Também suportamos o Google Fotos: <a href="%{url}">Configure sua conta do Google &rarr;</a>'
-        we_also_support_uploading_photos: |
-          Nós também encorajamos que as fotos sejam adicionadas diretamente ao %{site_name}, mas isto pode ser um pouco lento, então nós só permitimos que você adicione uma por vez. Utilizando o Flickr ou o Google é provavelmente a maneira mais rápida se você já utiliza estes serviços.
-        what_are_tags?: O que são marcações?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Marcações são palavras-chave que você pode adicionar na sua observação fazendo ela ficar mais fácil de ser encontrada. Por exemplo, se um beija-flor ficou rodopiando em sua volta durante sua visita ao Jardim Botânico, você pode marcar sua observação &quot;beija-flor, voando perto, jardim botânico, flores, aves&quot;.
-        can_i_include_my_observations_on_my_blog?: Posso incluir minhas observações %{site_name} no meu próprio site ou blog?
-        sure_check_out_our_widget_html: |
-          Claro, veja nosso <a href="%{url}" title="Widget de Observações">Widget de Observações</a>.
-        what_kind_of_photos_should_i_attach: Que tipo de imagens eu devo anexar às minhas observações? Posso anexar fotos que eu não tirei?
-        photos_attached_to_observations_should_be: |
-          Fotos adicionadas às observações devem ser de quem observou no momento da observação. Se você gravou uma observação de uma árvore, e então voltou um dia depois para tirar a foto, por favor adicione uma nova observação para esta foto, porque isto representa a árvore em um momento diferente do tempo.
-        please_do_not_upload_pictures_you_didnt_take_html: |
-          Por favor <em> não carregue fotos que não sejam de sua autoria </em> a não ser que você tenha obtida permissão legal do fotógrafo. É crime publicar material com direitos autorais sem incluir uma licença válida de uso disponibilizada pelo autor, por padrão todos fotógrafo tem todos os direitos reservados sobre sua obra. Caso a foto em questão seja da espécie que você observou, uma outra pessoa fez o registro e permitiu que você a publicasse, por favor inclua o nome do fotógrafo nas descrições da observação.
-        what_is_geoprivacy?: O que é geo privacidade?
-        geoprivacy_is_a_setting_you_can: |
-          Geoprivacidade é uma configuração que você pode fazer em suas observações que controlam como as coordenadas especiais (latitude e longitude) são apresentadas. Aqui estão algumas opções.
-        note_that_curators_of: |
-          Note que os coordenadores de projetos individuais podem sempre ver as coordenadas independente da sua configuração de geoprivacidade. Caso você esteja preocupado sobre quem acessa as coordenadas você deve ter certeza que confia nos coordenadores dos projetos que participa.
-        what_is_does_it_mean_for: O que significa uma observação ser oculta?
-        when_coordinates_are_obscured_it_means_that: |
-          Quando as coordenadas são ocultas isto significa que um ponto qualquer dentro de %{km}KM da coordenada real é apresentado publicamente (ex: na página inicial, na página de observações e nas páginas de projeto), enquanto as coordenadas verdadeiras são somente visíveis quando você está visualizando suas próprias observações (ex: nas páginas de projeto individuais e na lista das suas próprias observações). Note que os coordenadores dos projetos que você adicionou uma observação também podem ver as coordenadas verdadeiras. Coordenadas ocultas devem sempre ser simbolizadas por uma marca circular sem traços nos mapas e nas feeds geoespaciais.
-        coordinates_are_obscured_for_all_taxa: |
-          Coordenadas são automaticamente ocultas para todos os táxons que estão "QUASE AMEAÇADOS" ou ainda pior de acordo com a Lista Vermelha da IUCN. Alguns táxons podem estar declarados como ameaçados por outras autoridades de conversação, e outros podem simplesmente estar marcados como ameaçados pelos coordenadores do %{site_name} se eles acreditam que é necessário o mérito de proteção.
-        you_can_also_obscure_the_coordinates_html: |
-          Você também pode ocultar as coordenadas das suas próprias observações independente do táxon. Veja <a href="#geoprivacy">geoprivacidade</a> acima.
-        what_is_the_quality_assessment: Qual é a avaliação de qualidade e como as observações se qualificam para tornarem-se aptas para o nível de pesquisa?
-        what_is_a_life_list?: O que é uma lista de vida?
-        just_a_simple_list: Somente uma lista simples de táxons sem um comportamento especial.
-        automatically_updates_based_on_your_observations: |
-          Atualiza automaticamente baseado em suas observações. Todos no %{site_name} tem uma lista de vida padrão que contém todas as espécies que a pessoa observou. Se você apaga uma observação ou muda a identificação, as espécies serão removidas. Você também pode adicionar táxons manualmente para a sua lista da mesma maneira que você pode com uma lista comum. As espécies que você adicionar manualmente não serão removidas se você observar e depois deletar a observação.
-        you_can_also_make_additional_life_lists: |
-          Você também pode fazer listas de vida adicionais com grupos específicos ou organismos, como por exemplo uma lista de vida de aves, ou uma lista de vida de margaridas.
-        a_project_list_belongs: |
-          Uma lista de projeto pertence a um projeto e organiza em lista todos os táxons observados pelos membros daquele projeto. As listas de Projeto também podem ser criadas manualmente pelo administrador daquele projeto, e podem ser utilizadas para restringir os colaboradores do projeto para táxons que estão na lista.
-        a_check_list_is_html: |
-          Uma lista de verificação é uma lista de táxons que ocorrem em um local. Todos os locais tem uma lista de verificação padrão, e quando uma observação é feita dentro dos limites <em>e</em> atingiu o status de nível de pesquisa, as espécies observadas irão automaticamente ser adicionadas na lista de verificação.
-        inat_users_can_also: |
-          Usuários do %{site_name} podem adicionar checklists (listas de verificação) a localidades específicas, mas estas checklists não serão atualizadas automaticamente. Basicamente elas oferecem um caminho alternativo para que os membros de projetos exportem dados ou adicionem registros baseados em experiência própria.
-        is_a_list_of_every_species_that_you_have_seen: |
-          Uma lista de vida são todas as espécies que você já viu. Todo usuário do %{site_name} tem uma lista da vida e essas listas são automaticamente alimentadas com as observações que você adicionou no %{site_name}.
-        i_observed_a_species: "Observei espécies, porque elas não estão aparecendo na minha lista de vida?"
-        while_the_life_list_is_automatically_populated: |
-          Enquanto a lista da vida é automaticamente preenchida com observações adicionadas, as espécies não podem ser adicionadas nesta lista se %{site_name} não reconhecer o nome utilizado. Nós recomendamos tentar nomes alternativos que nós podemos reconhecer.
     listed_taxa:
       establishment_field:
         confirmation: |

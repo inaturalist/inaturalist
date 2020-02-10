@@ -137,6 +137,7 @@ sq:
   add_life_stage_larva_annotation: 'Shto shënimin "Faza e Jetës: Larva"'
   add_life_stage_juvenile_annotation: 'Shto shënimin "Faza e Jetës: I ri"'
   add_life_stage_egg_annotation: 'Shto shënimin "Faza e Jetës: Vezë"'
+  #As in a Guide Section
   add_section: Shto seksion
   add_several_observations_at_once: Shto disa vëzhgime përnjëherë.
   add_sex_female_annotation: 'Shto shënimin "Gjinia: Femër"'
@@ -168,8 +169,6 @@ sq:
   added_to_favorites_html: |
     Shtuar te <a href="%{url}">favorites</a>
   adding: "Duke shtuar..."
-  additional_range: Shtrirje shtesë
-  additional_range_data_from_an_unknown_source: Të dhëna seri shtesë nga një burim i panjohur
   admin: Administrator
   admin_s: Administrator(ët)
   admin_tools: Veglat e administrimit
@@ -180,7 +179,6 @@ sq:
   agreeing: Duke u pajtuar...
   aka: pseudonimi
   all: Të gjitha
-  all_colors: "&laquo; Të gjitha ngjyrat"
   all_comments: Të gjitha komentet
   all_flags_must_be_resolved: Të gjitha shënimet duhet të zgjidhen
   all_life: Gjithë jetën
@@ -410,7 +408,6 @@ sq:
   be_the_first_to_fave_this_observation: Bëhu i pari që ta pëlqesh këtë vëzhgim!
   because_of: për arsye se
   before_importing_photos: para importimit të fotografive
-  belives_this_is_a_comprehensive_list_of: beson se kjo është një listë gjithëpërfshirëse e
   bg_color: Ngjyra e sfondit
   birds: zogjtë
   black: e zezë
@@ -420,7 +417,6 @@ sq:
   blog_widget: Vegla e blogut
   blue: kaltër
   blue_butterfly_etc: "kaltër, flutur, etj."
-  blue_icons_represent_political_units: "Ikonat e kaltra përfaqësojnë njësi politike si vende, shtete, krahina, qarqe dhe të ngjashme, ndërsa ikonat e gjelbra përfaqësojnë lloje të ndryshme të hapësirave (parqe, rezervate). Nëse zmadhoni, do të shihni më shumë vende të vogla."
   body: Trupi i mesazhit
   bounding_box: Kutia e kufizimit
   breadcrumbs: Thërrime buke
@@ -553,10 +549,8 @@ sq:
   citation: Citim
   classification: Klasifikim
   clear: fshije
-  clear_color_filters: Pastro filtrat e ngjyrave
   clear_search: Fshi kërkimin
   click_the_map: "<strong>Kliko në hartë</strong> për të shtuar një vendndodhje."
-  click_the_map_to_jump_new_place: Kliko në hartë për të kërcyer në një vend të ri
   close: Mbylle
   code: Kodi
   colors: Ngjyrat
@@ -597,7 +591,8 @@ sq:
   compiled_by_name: "Përpiluar nga %{name}"
   completed: I përfunduar
   completed_at: I përfunduar në
-  comprehensive: gjithëpërfshirës
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Gjithëpërfshirës?
   comprehensive_list: Lista gjithëpërfshirëse
   concept_status: Statusi i konceptit
@@ -1194,7 +1189,6 @@ sq:
   inat_believes_this_is_a_complete_listing: "%{site_name} beson që kjo është lista e plotë e këtij taxon-i në këtë vend."
   inat_user_profile: "%{site_name}: profili i %{user}"
   inaturalist_places: "%{site_name} Vendet"
-  inaturalist_places_are_way_record_what_lives_where: "Vendet në %{site_name} mundësojnë dokumentimin e krijesave që gjallojnë në vende të ndryshme. Nëse kërkoni një specie të veçantë, e dini ku të kërkoni. Secili vend ka një listë që dokumenton të gjitha speciet që ndodhen aty, çka ju ndihmon të hulumtoni rreth krijesave që mund të gjeni në vende të caktuara."
   info: Informacion
   input_taxon: Fut taxon
   insects: Insektet
@@ -1896,7 +1890,9 @@ sq:
   output_taxon: Taxoni i nxjerrë
   overview: Pamje e përgjithshme
   owner: Pronar
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Prindi
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Emri i prindit
   password: Fjalëkalimi
   password_confirmation: 'Konfirmim i fjalëkalimit'
@@ -1950,7 +1946,6 @@ sq:
     medium: e mesme
     large: e madhe
     original: origjinale
-  photos_size_photos: "fotografi %{photos_size}"
   photos_updated: fotografia u përditësua.
   pink: njgyre roze
   place: Vend
@@ -2229,7 +2224,6 @@ sq:
   queued: I rradhitur
   query: Pyetje
   range: Rangu
-  range_from: 'Rangu nga'
   rank: Renditja
   rank_position: Renditja
   rank_restrictions: Radhit kufizimit
@@ -2255,8 +2249,10 @@ sq:
     subgenus: nën-gjinia
     section: seksioni
     subsection: nën-seksioni
+    #Singular
     species: specjet
     hybrid: hibrid
+    #Singular
     subspecies: nën-speciet
     variety: llojllojshmëria
     form: forma
@@ -2322,7 +2318,6 @@ sq:
   remove_selected: Largo të përzgjedhurat
   remove_tags: Largo etiketat
   removed: U largua
-  removed!: U largua!
   removed_project_user: Përdoruesi i projektit u largua
   removing: "Duke e larguar ..."
   reorder_by_taxonomy: Renditja sipas taksonomisë
@@ -2519,7 +2514,6 @@ sq:
     import_from_soundcloud_description: "Zgjidh tinguj nfa llogaria juaj në SoundCloud që ti konvertoni në iNaturalist vëzhgime. Ne do ti plotësojmë fatën dhe kohën nga të dhënat përshkruese të tingullit dhe do të kërkojmë për emrin e specjes nga etiketimet."
     import_from_sounds: Importo nga tingujt
     import_sounds: Importo tinguj
-    link_your_soundcloud_account: Lidhe llogarinë tuaj SoundCloud
     listen: Dëgjo
     no_photos_sounds: Pa foto apo tinguj
     photos_sounds: Foto / Tinguj
@@ -2529,11 +2523,6 @@ sq:
     sound: Tingull
     soundcloud_replied_with_an_error: SoundCloud  u përgjigj me një gabim. Ju lutem provoni përsëri më vonë.
     sounds: Tingujt
-    sounds_size_sound: "%{sounds_size} Tingull"
-    sounds_size_sounds: "%{sounds_size} Tinguj"
-    view_all_soundcount_sounds: "Shih të gjithë %{sound_count} tingujt"
-    we_didnt_find_any_sounds: Na vjen keq! Nuk arritëm të marrim ndonjë nga tingujt prej llogarisë suaj në SoundCloud.
-    you_need_to_link_your_soundcloud_account: Ju duhet të lidheni me llogarinë tuaj në SoundCloud në mënyrë që të shtoni tingujt.
     your_soundcloud_account: Llogaria juaj SoundCloud
   source: Burimi
   source_: 'Burimi:'
@@ -2546,6 +2535,7 @@ sq:
   sources: Burimet
   sources_youve_added: Burimet që i keni shtuar
   sources_and_credits: Burimet dhe atributet
+  #Plural
   species: Specjet
   species_by_category: specjet sipas kategorisë
   species_from_around_the_world: Specjet nga e gjithë bota

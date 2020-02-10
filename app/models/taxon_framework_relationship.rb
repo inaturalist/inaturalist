@@ -20,8 +20,8 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   
   RELATIONSHIPS = [
     "match",
-    "one_to_one",
     "alternate_position",
+    "one_to_one",
     "many_to_many",
     "many_to_one",
     "one_to_many",
@@ -99,12 +99,6 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
          external_taxa.first.parent_rank.downcase == taxa.first.parent.rank
         self.relationship = "match"
       elsif external_taxa.first.name == taxa.first.name && 
-        external_taxa.first.rank == taxa.first.rank &&
-        taxa.first.ancestors.map{|a| { name: a.name, rank: a.rank } }.
-          select{ |a| a[:name] == external_taxa.first.parent_name && a[:rank] == external_taxa.first.parent_rank.downcase }.
-          count > 0
-        self.relationship = "match"
-      elsif external_taxa.first.name == taxa.first.name && 
          external_taxa.first.rank == taxa.first.rank
         self.relationship = "alternate_position"
       else
@@ -112,18 +106,51 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
       end
     elsif external_taxa_count > 1 && taxa_count > 1
       self.relationship = "many_to_many"
-    elsif external_taxa_count > 1 && taxa_count == 1
-      self.relationship = "many_to_one"
     elsif external_taxa_count == 1 && taxa_count > 1
+      self.relationship = "many_to_one"
+    elsif external_taxa_count > 1 && taxa_count == 1
       self.relationship = "one_to_many"
-    elsif external_taxa_count == 0 && taxa_count == 1
+    elsif external_taxa_count == 0 && taxa_count >= 1
       self.relationship = "not_external"
-    elsif external_taxa_count == 1 && taxa_count == 0
+    elsif external_taxa_count >= 1 && taxa_count == 0
       self.relationship = "not_internal"
     else
       self.relationship = "error"
     end
     true
+  end
+  
+  def as_json
+    internal_taxa = self.internal_taxa.map{ |it| 
+        { name: it.name, rank: it.rank, parent_name: it.parent.name, parent_rank: it.parent.rank, url: it.id }
+    }
+    if it_root = ( internal_taxa.map{ |it| it[:parent_name] + "_" + it[:parent_rank] }.uniq - internal_taxa.map{ |it| it[:name] + "_" + it[:rank] }.uniq )[0]
+      internal_taxa.unshift( { name: it_root.split( "_" )[0], rank: it_root.split( "_" )[1] } )
+    else
+      internal_taxa.unshift( { name: nil, rank: nil } )
+    end
+    external_taxa = self.external_taxa.map{ |et| 
+      { name: et.name, rank: et.rank, parent_name: et.parent_name, parent_rank: et.parent_rank, url: et.url }
+    }
+    if et_root = ( external_taxa.map{ |et| et[:parent_name] + "_" + et[:parent_rank] }.uniq - external_taxa.map{ |et| et[:name] + "_" + et[:rank] }.uniq)[0]
+      external_taxa.unshift( { name:  et_root.split( "_" )[0], rank: et_root.split( "_" )[1] } )
+    else
+      external_taxa.unshift( { name: nil, rank: nil } )
+    end
+    if external_taxa.count == 1 && external_taxa[0][:name].nil? && external_taxa[0][:rank].nil?
+      if it_root
+        external_taxa[0] = { name: it_root.split( "_" )[0], rank: it_root.split( "_" )[1] }
+      end
+    end
+    if internal_taxa.count == 1 && internal_taxa[0][:name].nil? && internal_taxa[0][:rank].nil?
+      if et_root
+        internal_taxa[0] = { name:  et_root.split( "_" )[0], rank: et_root.split( "_" )[1] }
+      end
+    end
+    {
+      internal_taxa: internal_taxa,
+      external_taxa: external_taxa
+    }
   end
   
 end

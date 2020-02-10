@@ -343,7 +343,7 @@
               <br>
               <%= label :rank, :species do %>
                 <%= radio_button_tag :rank, :species, @rank == "species"%>
-                <%= t(:species).downcase %>
+                <%= t( "ranks.species" ).downcase %>
               <% end -%>
               <%= label :rank, :leaves do %>
                 <%= radio_button_tag :rank, :leaves, @rank == "leaves"%>

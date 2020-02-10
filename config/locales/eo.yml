@@ -110,7 +110,9 @@ eo:
   add_one_now: Aldoni Unu Nun
   add_photos: Aldoni Fotojn
   add_place: Aldoni Lokon
+  #As in a Taxon Framework Relationship
   add_relationship: 'Aldoni rilaton'
+  #As in a Guide Section
   add_section: Aldoni Paragrafon
   add_some_now: Aldoni Kelkajn Nun
   add_tag: Aldoni Etikedon
@@ -142,7 +144,6 @@ eo:
   agreeing: Konsentante...
   aka: alinome
   all: Ĉiuj
-  all_colors: "&laquo; Ĉiuj Koloroj"
   all_comments: Ĉiuj komentoj
   all_life: Ĉiu vivo
   all_names: Ĉiuj Nomoj
@@ -331,7 +332,6 @@ eo:
   citation: Citaĵo
   classification: Klasifiko
   clear: vakigi
-  clear_color_filters: Vaklgi kolorajn filtrilojn
   clear_filters: Vakigi filtrilojn
   clear_search: Vakigi serĉon
   close: Fermi
@@ -357,10 +357,12 @@ eo:
   comparing_list_to_list: "Komparante liston %{list1} kun %{list2}"
   comparing_versions_x_and_y: "Komparante versiojn %{x} kaj %{y}"
   compiled_by_name: "Kompilita de %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Kompleta
   completed: Kompletigita
   completed_at: Kompletigita Je
-  comprehensive: ampleksa
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Ĉu ampleksa?
   comprehensive_list: Ampleksa listo
   concept_status: Stato de Koncepto
@@ -1372,8 +1374,10 @@ eo:
     section: Sekcio
     subsection: Subsekcio
     complex: Komplekso
+    #Singular
     species: Specio
     hybrid: Hibrido
+    #Singular
     subspecies: Subspecio
     form: Formo
   ray_finned_fishes: aktinopterigoj
@@ -1400,7 +1404,6 @@ eo:
   remove_relationship: Forigi Rilaton
   remove_tags: Forigi etikedojn
   removed: Forigita
-  removed!: Forigita!
   removing: "Foriganta..."
   replace_parentesis: (anstataŭigi)
   reply: Respondi
@@ -1525,6 +1528,7 @@ eo:
   sources: Fontoj
   spam: Trudmesaĝo
   spammer: Trudmesaĝisto
+  #Plural
   species: Specio
   species_by_category: specioj laŭ kategorio
   species_guess: konjekto pri specio
@@ -1661,7 +1665,6 @@ eo:
   welcome_to_inat: "Bonvenon al %{site_name}!"
   welcome_to_x_project: "Bonvenon al %{project}"
   what: Kiu
-  what_color_was_it: Kiu estis ĝia koloro?
   what_did_you_see: Kion vi vidis?
   what_did_you_see?: <em>Kion</em> vi vidis?
   whats_this?: Kio estas ĉi tio?
@@ -1725,12 +1728,6 @@ eo:
         grid: krado
         book: libro
         journal: ĵurnalo
-    help:
-      index:
-        what_is_inaturalist?: Kio estas %{site_name}?
-        what_are_tags?: Kio estas etikedoj?
-        what_is_geoprivacy?: Kio estas geografia privateco?
-        what_is_a_life_list?: Kio estas vivolisto?
     messages:
       from: De
       to: Al

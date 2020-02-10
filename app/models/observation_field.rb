@@ -1,6 +1,13 @@
 class ObservationField < ActiveRecord::Base
 
   include ActsAsElasticModel
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
 
   belongs_to :user
   has_many :observation_field_values, :dependent => :destroy

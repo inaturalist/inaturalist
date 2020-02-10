@@ -115,7 +115,9 @@ lb:
   add_life_stage_larva_annotation: 'Setzt d''Informatioun "Liewensstadium: Larv" derbäi'
   add_life_stage_juvenile_annotation: 'Setzt d''Informatioun "Liewensstadium: jonkt Déier" derbäi'
   add_life_stage_egg_annotation: 'Setzt d''Informatioun "Liewensstadium: Ee" derbäi'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Eng Relatioun derbäisetzen'
+  #As in a Guide Section
   add_section: Abschnitt derbäisetzen
   add_several_observations_at_once: E puer Observatiounen op eemol derbäisetzen.
   add_sex_female_annotation: 'Setzt d''Informatioun "Geschlecht: weiblech" derbäi'
@@ -144,7 +146,6 @@ lb:
   added_to_favorites_html: |
     Bei <a href="%{url}">Favoriten</a> derbäigesat
   adding: "Derbäisetzen..."
-  additional_range: Zousätzleche Beräich
   admin_s: Administrateur(en)
   admin_only: Just fir Administrateuren
   admin_tools: Geschier fir Administrateuren
@@ -153,7 +154,6 @@ lb:
   agree?: Zoustëmmen?
   agree_with_current_taxon: Si mam aktuellen Taxon d'accord
   agreeing: Sinn d'accord...
-  all_colors: "&laquo; All Faarwen"
   all_comments: All Bemierkungen
   all_life: All Liewesformen
   all_names: All Nimm
@@ -344,11 +344,9 @@ lb:
   citation: Citatioun
   classification: Klassifikatioun
   clear: eidel maachen
-  clear_color_filters: Faarffilter zrécksetzen
   clear_filters: Filteren zrécksetzen
   clear_search: Sich zrécksetzen
   click_the_map: "<strong>Klickt op d'Kaart</strong> fir eng Plaz dobäizesetzen."
-  click_the_map_to_jump_new_place: Klick op d'Kaart fir op eng nei Plaz ze sprangen
   close: Zoumaachen
   colors: Faarwen
   columns: Kolonnen
@@ -366,9 +364,11 @@ lb:
   compare: Vergläichen
   compare_with: Vergläiche mat
   comparing: vergläichen
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Komplettéieren
   completed: Fäerdeg
-  comprehensive: verständlech
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Verständlech?
   configure: Astellen
   configure_a_widget_to_show: Konfiguréiert de Widget esou, dass hien %{site_name} Observatiounen ob Ärem Blog oder Ärer Websäit weist. Et ka sinn dass Dir embedded CSS an den <code>&lt;head&gt;</code> vun Ärem HTML musst drasetzen. Dir kënnt gären den CSS ëmschreiwen.
@@ -987,7 +987,6 @@ lb:
     small: kleng
     medium: mëttel
     large: grouss
-  photos_size_photos: "%{photos_size} Fotoen"
   photos_updated: Fotoen aktualiséiert.
   pi_consent_desc_title: Iwwer Perséinlech Informatiounen
   pink: rosa
@@ -1375,7 +1374,6 @@ lb:
   welcome_to_inat: "Wëllkomm op %{site_name}!"
   welcome_to_x_project: "Wëllkomm op %{project}"
   what: Wat
-  what_color_was_it: Wat fir eng Faarf war et?
   what_did_you_see: Wat hutt Dir gesinn?
   what_do_you_think: Wat mengt Dir?
   whats_this?: Wat ass dat?
@@ -1450,13 +1448,6 @@ lb:
     guides:
       pdf_layouts:
         book: Buch
-    help:
-      index:
-        what_is_inaturalist?: Wat ass %{site_name}?
-        who_is_behind_inaturalist?: Wien ass hannert %{site_name}?
-        who_is_behind_inaturalist: Wien ass hannert %{site_name}?
-        what_is_an_observation?: Wat ass eng Observatioun?
-        can_i_include_my_observations_on_my_blog?: Kann ech meng %{site_name} Observatiounen op mäi Blog oder meng Websäit bäisetzen?
     messages:
       from: Vum
       to: Fir

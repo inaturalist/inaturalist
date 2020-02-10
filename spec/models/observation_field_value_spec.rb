@@ -42,6 +42,16 @@ describe ObservationFieldValue, "creation" do
   end
 end
 
+describe ObservationFieldValue, "update" do
+  it "should touch the observation" do
+    ofv = ObservationFieldValue.make!
+    o = ofv.observation
+    ofv.update_attributes( value: "this is a new value" )
+    o.reload
+    expect( o.updated_at ).to be >= ofv.updated_at
+  end
+end
+
 describe ObservationFieldValue, "updating for subscribers" do
   before do
     @ofv = ObservationFieldValue.make!(:value => "foo", :user => User.make!)

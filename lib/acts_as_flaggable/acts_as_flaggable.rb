@@ -9,7 +9,7 @@ module Gonzo
 
       module ClassMethods
         def acts_as_flaggable
-          has_many :flags, :as => :flaggable, :dependent => :destroy
+          has_many :flags, :as => :flaggable
           include Gonzo::Acts::Flaggable::InstanceMethods
           extend Gonzo::Acts::Flaggable::SingletonMethods
         end

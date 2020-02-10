@@ -40,7 +40,7 @@
         :style => "#{'display:none;' unless subscription}" do %>
       <%= hidden_field_tag :resource_type, resource.class.to_s %>
       <%= hidden_field_tag :resource_id, resource.id %>
-      <%= link_to_function t(:unsubscribe_from_this) + ' ' + t(resource.class.to_s.underscore.humanize.downcase).downcase, "$(this).parents('form:first').submit()" %>
+      <%= link_to_function t(:unsubscribe), "$(this).parents('form:first').submit()" %>
     <% end -%>
   </li>
 </ul>

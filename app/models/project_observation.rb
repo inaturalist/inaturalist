@@ -104,7 +104,6 @@ class ProjectObservation < ActiveRecord::Base
   after_create :revisit_curator_identifications_later
 
   after_save :update_project_list_if_curator_ident_changed
-  after_commit :reindex_observation, on: :update # after create and destroy should be handled by TouchesObservationModule
 
   attr_accessor :skip_touch_observation
 

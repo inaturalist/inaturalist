@@ -53,7 +53,7 @@
       - if taxon_framework.source  
         - if deviations_count > 0
           %p
-            - deviant_params = TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r != "match" }.map{ |r| [r, "1"] }.to_h
+            - deviant_params = TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r != "match" && r != "alternate_position" }.map{ |r| [r, "1"] }.to_h
             - deviants_path = taxon_framework_relationships_path( deviant_params.merge( taxon_framework_id: taxon_framework.id ) )
             =t :taxon_framework_deviations_with_count_html, count: link_to( deviations_count, deviants_path )
         - if relationship_unknown_count > 0

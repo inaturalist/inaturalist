@@ -5,8 +5,10 @@
     t(:flag_for_observation_title_html, title: link_to( @object.to_plain_s, @object ) )
   elsif @object.respond_to?( :title ) || @object.respond_to?( :name )
     t( "flag_for_#{@object.class.name.underscore}_title_html", title: link_to( @object.try_methods(:title, :name), @object ) )
+  elsif @object
+    t( "flag_for_#{@flag.flaggable_type.to_s.downcase}_id_html", id: @flag.flaggable_id, url: url_for(@object) )
   else
-    t( "flag_for_#{@object.class.name.underscore}_id_html", id: @object.id, url: url_for(@object) )
+    t( "flag_for_#{@flag.flaggable_type.to_s.downcase}_id_deleted", id: @flag.flaggable_id )
   end
 - content_for(:title) do
   = strip_tags @title
@@ -20,7 +22,7 @@
         %strong
           = link_to t(:back_to_flags_html), url_for_referrer_or_default( @object )
         .pull-right
-          - if @object.is_a?( Comment )
+          - if @object && @object.is_a?( Comment )
             = link_to t(:view_moderation_history_for_this_comment), comment_flags_url( comment_id: @object.id )
             &middot;
           = link_to t(:view_all_flags), flags_url
@@ -33,16 +35,23 @@
       %table.table
         %thead
           %tr
-            %th=t :created
+            %th=t :content_author
             %th=t :flag_object
             %th=t :flagger
+            %th=t :flag_created
             %th=t :reason
             %th=t :resolved_by
             %th=t :flag_resolution
         %tbody
           %tr
-            %td=l @flag.created_at
-            %td= link_to @object.to_plain_s, @object
+            %td
+              - if @flag.flaggable_user
+                = link_to_user( @flag.flaggable_user ) {|| char_wrap( @flag.flaggable_user.login, 20 )} 
+            %td
+              - if @object
+                = link_to @object.to_plain_s, @object
+              - else
+                =t "deleted_#{@flag.flaggable_type.underscore}"
             %td
               - if @flag.user
                 = link_to @flag.user.login, @flag.user
@@ -50,6 +59,7 @@
                 = @site.site_name_short
               - else
                 =t :deleted_user
+            %td=l @flag.created_at
             %td=formatted_user_text @flag.flag
             %td
               - unless @flag.resolver.nil?
@@ -70,6 +80,10 @@
                 = link_to @flag, class: "btn btn-link", data: { confirm: t(:you_sure_delete_flag?) }, method: :delete do
                   %i.fa.fa-trash
                   = t(:delete)
+  - if @flag.flaggable_content_viewable_by?( current_user )
+    %h3=t :flaggable_content
+    %p=t "views.flags.show.flaggable_content_desc"
+    %blockquote= formatted_user_text( @flag.flaggable_content )
   .row
     .col-xs-8
       = render "comments/comments", parent: @flag

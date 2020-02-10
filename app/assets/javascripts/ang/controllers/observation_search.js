@@ -1414,10 +1414,9 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     }
     window.inatTaxonMap.addObservationLayers( $scope.map, {
       title: "Observations",
-      mapStyle: "colored_heatmap",
+      mapStyle: "grid",
       observationLayers: [ layerParams ],
-      infoWindowCallback: $scope.infoWindowCallback,
-      style: "geotilegrid"
+      infoWindowCallback: $scope.infoWindowCallback
     });
     // fully remove any existing data layer
     if( $scope.selectedPlaceLayer ) { $scope.selectedPlaceLayer.setMap( null ); }

@@ -182,7 +182,9 @@ el:
   add_life_stage_larva_annotation: 'Προσθήκη ένδειξης "Στάδιο βιολογικού κύκλου: Προνύμφη"'
   add_life_stage_juvenile_annotation: 'Προσθήκη ένδειξης "Στάδιο βιολογικού κύκλου: Νεαρό"'
   add_life_stage_egg_annotation: 'Προσθήκη ένδειξης "Στάδιο βιολογικού κύκλου: Αυγό"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Προσθήκη σχέσης'
+  #As in a Guide Section
   add_section: Προσθήκη τμήματος
   add_several_observations_at_once: Προσθήκη πολλαπλών παρατηρήσεων με τη μία.
   add_sex_female_annotation: 'Προσθήκη ένδειξης "Φύλο: Θηλυκό"'
@@ -211,8 +213,6 @@ el:
   added_to_favorites_html: |
     Προστέθηκε στα <a href="%{url}">αγαπημένα</a>
   adding: "Προσθήκη..."
-  additional_range: Πρόσθετο εύρος
-  additional_range_data_from_an_unknown_source: Πρόσθετα στοιχεία εύρους κατανομής από μια άγνωστη πηγή
   admin: Διαχείριση
   admin_s: Διαχειριστής (-ές)
   admin_only: Μόνο για διαχειριστές
@@ -224,7 +224,6 @@ el:
   agreeing: Συμφώνηση σε εξέλιξη...
   aka: ή
   all: Όλα
-  all_colors: "&laquo; Όλα τα χρώματα"
   all_comments: Όλα τα σχόλια
   all_flags_must_be_resolved: Όλες οι αναφορές πρέπει να επιλυθούν
   all_life: Όλη η ζωή
@@ -467,7 +466,6 @@ el:
   blog_widget: Widget ιστολογίου
   blue: μπλε
   blue_butterfly_etc: "μπλε, πεταλούδα, κτλ."
-  blue_icons_represent_political_units: "Τα μπλε εικονίδια αντιπροσωπεύουν πολιτικές μονάδες όπως χώρες, πολιτείες, επαρχίες, κομητείες και τα σχετικά, ενώ τα πράσινα εικονίδια αντιπροσωπεύουν διάφορα είδη ανοιχτού χώρου (πάρκα, αποθέματα). Εάν μεγενθύνετε θα δείτε περισσότερους, μικρότερους τόπους."
   body: Κυρίως σώμα
   brief_caption: Σύντομη λεζάντα
   brown: καφέ
@@ -573,11 +571,9 @@ el:
   choose_what_kind_of_change_youre_creating: "Επιλογή του είδους της αλλαγής που δημιουργείτε."
   classification: Ταξινόμηση
   clear: Εκκαθάριση
-  clear_color_filters: Εκκαθάριση φίλτρων χρωμάτων
   clear_filters: Εκκαθάριση φίλτρων
   clear_search: Εκκαθάριση αναζήτησης
   click_the_map: "<strong>Κλικ στον χάρτη</strong> για προσθήκη τοποθεσίας."
-  click_the_map_to_jump_new_place: Κλικ στον χάρτη για μεταπήδηση σε νέο τόπο
   close: Κλείσιμο
   code: Κωδικός
   colors: Χρώματα
@@ -1101,7 +1097,6 @@ el:
   inat_believes_this_is_a_complete_listing: "Το %{site_name} πιστεύει πως αυτή είναι μια πλήρης καταγραφή αυτού του taxon σε αυτόν τον τόπο."
   inat_user_profile: "%{site_name}: Προφίλ του/της %{user}"
   inaturalist_places: "Τόποι του %{site_name}"
-  inaturalist_places_are_way_record_what_lives_where: "Οι τόποι του %{site_name} είναι ένας τρόπος για την καταγραφή του τί ζει πού. Αν ψάχνετε για ένα συγκεκριμένο είδος, θα ξέρετε πού να ψάξετε. Κάθε τόπος έχει μια λίστα ελέγχου στην οποία καταγράφονται όλα τα είδη που εμφανίζονται εκεί, έτσι μπορεί να είναι επίσης χρήσιμοι για να ψάξετε για κάτι που έχετε βρει σε ένα συγκεκριμένο σημείο."
   info: Πληροφορίες
   insects: Έντομα
   insect_life_stage: Στάδιο ζωής εντόμου
@@ -1671,7 +1666,9 @@ el:
   out_of_range: Εκτός εύρους
   overview: Επισκόπηση
   owner: Ιδιοκτήτης
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Γονέας
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Όνομα γονέα
   password: Κωδικός πρόσβασης
   password_confirmation: 'Επιβεβαίωση κωδικού'
@@ -1709,7 +1706,6 @@ el:
     medium: μέσο
     large: μεγάλο
     original: πρωτότυπο
-  photos_size_photos: "%{photos_size} φωτογραφίες"
   photos_updated: Οι φωτογραφίες ενημερώθηκαν
   pink: Ροζ
   place: Τόπος
@@ -2161,8 +2157,10 @@ el:
     subgenus: Υπογένος
     section: τμήμα
     subsection: υποτμήμα
+    #Singular
     species: Είδος
     hybrid: Υβρίδιο
+    #Singular
     subspecies: Υποείδος
     variety: Ποικιλία
     form: Μορφή
@@ -2222,7 +2220,6 @@ el:
   remove_selected: Αφαίρεση επιλεγμένων
   remove_tags: Αφαίρεση ετικετών
   removed: Έχει αφαιρεθεί
-  removed!: Αφαιρέθηκε!
   replace_parentesis: (αντικατάσταση)
   reply: Απάντηση
   reptiles: Ερπετά
@@ -2369,7 +2366,6 @@ el:
     before_importing_sounds: πριν την εισαγωγή ήχων
     import_from_sounds: Εισαγωγή από ήχους
     import_sounds: Εισαγωγή ήχων
-    link_your_soundcloud_account: Συνδέσεστε τον λογαριασμό σας στο SoundCloud
     listen: Ακούστε
     no_photos_sounds: Χωρίς φωτογραφίες ή ήχους
     photos_sounds: Φωτογραφίες / ήχοι
@@ -2378,9 +2374,6 @@ el:
     sound: Ήχος
     soundcloud_replied_with_an_error: Το SoundCloud απάντησε με σφάλμα. Παρακαλούμε προσπαθήστε πάλι αργότερα.
     sounds: Ήχοι
-    sounds_size_sound: "%{sounds_size} ήχος"
-    sounds_size_sounds: "%{sounds_size} Ήχοι"
-    view_all_soundcount_sounds: "Προβολή όλων των %{sound_count} ήχων"
     your_soundcloud_account: ο λογαριασμός σας στο SoundCloud
   source: Πηγή
   source_: 'Πηγή:'
@@ -2395,6 +2388,7 @@ el:
   sources_youve_added: Πηγές που έχετε προσθέσει
   sourcing: Πηγές
   spam: Σπαμ
+  #Plural
   species: Είδη
   species_by_category: είδη ανά κατηγορία
   species_from_around_the_world: Είδη από όλο το κόσμο
@@ -2667,33 +2661,6 @@ el:
           Πλέγμα σκέτων εικόνων, χωρίς περιγραφές
       sorts:
         alphaname: Αλφαβητικά με την επιστημονική ονομασία
-    help:
-      index:
-        what_is_inaturalist?: Τι είναι το %{site_name};
-        who_is_behind_inaturalist?: Ποιός βρίσκεται πίσω από το %{site_name};
-        what_technologies_does_the_project_use?: Ποιές τεχνολογίες και πηγές δεδομένων χρησιμοποιεί το πρότζεκτ;
-        who_is_behind_inaturalist: Ποιός βρίσκεται πίσω από το %{site_name};
-        what_can_i_do_to_help_inaturalist?: Τι μπορώ να κάνω για να βοηθήσω το %{site_name}
-        what_are_admins_and_curators?: Τι είναι οι διαχειριστές και οι επιμελητές;
-        curators_are_inat_users_who_volunteer_to_html: |
-          Οι επιμελητές είναι χρήστες του %{site_name} που βοηθούν εθελοντικά να διατηρούνται τα ταξινομικά μας δεδομένα ενημερωμένα. Αν ενδιαφέρεστε να γίνεται επιμελητής, παρακαλούμε \ 
-          <a href="mailto:%{help_email}">επικοινωνήστε μαζί μας</a>. Οι επιμελητές μπορούν επίσης να αποδίδουν σε άλλους χρήστες την ιδιότητα του επιμελητή. Παρακαλούμε να προωθείτε ως επιμελητές μόνον άτομα που εμπιστεύεστε και που γνωρίζετε πως έχουν κάποιες ταξινομικές γνώσεις.
-        what_is_considered_inappropriate_content?: Τι θεωρείται ακατάλληλο περιεχόμενο;
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Γιατί το %{site_name} δεν αναγνωρίζει την ονομασία που έχω εισάγει;"
-        can_i_add_photos_without_a_flickr_account?: Μπορώ να προσθέσω φωτογραφίες χωρίς να έχω λογαριασμό στο Flickr;
-        what_are_tags?: Τι είναι οι ετικέτες;
-        can_i_include_my_observations_on_my_blog?: Μπορώ να συμπεριλάβω τις παρατηρήσεις μου στο %{site_name} στον δικό μου ιστότοπο ή ιστολόγιο;
-        what_is_geoprivacy?: Τι είναι γεωαπόρρητο;
-        geoprivacy_is_a_setting_you_can: |
-          Γεωαπόρρητο είναι μια ρύθμιση που μπορείτε να κάνετε στις παρατηρήσεις σας ώστε να ελέγχετε τον τρόπο που εμφανίζονται οι γεωγραφικές συντεταγμένες (πλάτος και μήκος). Έχετε τις παρακάτω επιλογές:
-        what_is_the_quality_assessment: Τι είναι η αποτίμηση ποιότητας και πώς μπορούν οι παρατηρήσεις να καταστούν "ερευνητικού" επιπέδου;
-        a_check_list_is_html: |
-          Μια λίστα ελέγχου είναι ένας κατάλογος των taxa που απαντώνται σε έναν τόπο. Κάθε τόπος
-          έχει μια προεπιλεγμένη λίστα ελέγχου, και όταν μια παρατήρηση γίνεται 
-          στα όρια του τόπου <em>και</em> έχει επιτύχει
-          κατάσταση "ερευνητικού επιπέδου", το είδος που παρατηρήθηκε προστίθεται
-          αυτόματα στη λίστα ελέγχου του τόπου.
-        i_observed_a_species: "Παρατήρησα ένα είδος, γιατί δεν εμφανίζεται στη δική μου λίστα ζωής;"
     oauth:
       authorizations:
         new:

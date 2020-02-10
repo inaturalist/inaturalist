@@ -17,7 +17,7 @@ class Users::SessionsController < Devise::SessionsController
       format.html do
         flash.delete(:notice)
         if session[:return_to]
-          redirect_to session[:return_to]
+          redirect_to session[:return_to].gsub( /(%20|\s)/, "+" )
         else
           redirect_to after_sign_in_path_for(resource)
         end

@@ -114,7 +114,7 @@ module ApplicationHelper
   end
   
   def is_admin?
-    logged_in? && current_user.is_admin?
+    respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user.is_admin?
   end
 
   def is_site_admin?
@@ -1017,10 +1017,13 @@ module ApplicationHelper
     class_name_key = update.resource.class.to_s.underscore
     class_name = class_name_key.humanize.downcase
 
+    resource_txt = t( "activerecord.models.#{class_name_key.camelcase}",
+      default: t( class_name_key, default: class_name_key )
+    ).downcase
     resource_link = if options[:skip_links]
-      t(class_name_key, :default => class_name_key).downcase
+      resource_txt
     else
-      link_to(t(class_name_key, :default => class_name_key).downcase, url_for_resource_with_host(resource))
+      link_to( resource_txt, url_for_resource_with_host( resource ) )
     end
 
     if notifier.is_a?(Comment) || notifier.is_a?(Identification) || update.notification == "mention"
@@ -1185,8 +1188,17 @@ module ApplicationHelper
       opts[:noun] = options[:noun]
     end
     if update.resource_owner && update.resource_owner != notifier_user
-      key += '_by'
-      opts[:by] = you_or_login(update.resource_owner, :capitalize_it => false)
+      if is_admin?
+        if respond_to?(:current_user) && current_user == update.resource_owner
+          key += '_by_you'
+        else
+          key += '_by_user'
+          opts[:by] = update.resource_owner.login
+        end
+      else
+        key += '_by'
+        opts[:by] = you_or_login(update.resource_owner, :capitalize_it => false)
+      end
     end
     key += '_html'
 

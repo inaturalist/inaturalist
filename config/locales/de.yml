@@ -19,11 +19,15 @@ de:
     other: '%{count} Bestimmungen'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">%{count}</span> Bestimmer'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Bestimmer'
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} erste Lebensliste"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} erste Lebenslisten"
   x_journal_posts_html:
     one: '<span class="count">1</span> Journal-Beitrag'
@@ -92,6 +96,9 @@ de:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>Eine</span> Beobachtung mit Forschungsqualität auf Ebene der Art oder darunter bestimmt</span>"
     other: "<span class='count'>%{count}</span> Beobachtungen mit Forschungsqualität auf Ebene der Art oder darunter bestimmt</span>"
+  x_sounds:
+    one: "%{count} Ton"
+    other: "%{count} Töne"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> Taxon kuratiert"
     other: "<span class='count'>%{count}</span> Taxa kuratiert"
@@ -247,7 +254,9 @@ de:
   add_life_stage_larva_annotation: 'Vermerk "Lebensstadium: Larve" hinzufügen'
   add_life_stage_juvenile_annotation: 'Vermerk "Lebensstadium: Jungtier" hinzufügen'
   add_life_stage_egg_annotation: 'Vermerk "Lebensstadium: Ei" hinzufügen'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Beziehung hinzufügen'
+  #As in a Guide Section
   add_section: Abschnitt hinzufügen
   add_several_observations_at_once: Mehrere Beobachtungen gleichzeitig hinzufügen.
   add_sex_female_annotation: 'Vermerk "Geschlecht: Weiblich" hinzufügen'
@@ -284,8 +293,6 @@ de:
   added_to_favorites_html: |
     Zu <a href="%{url}">Favoriten</a> hinzugefügt
   adding: "Füge hinzu…"
-  additional_range: Zusätzlicher Bereich
-  additional_range_data_from_an_unknown_source: Zusätzliche Bereichsdaten von einer unbekannten Quelle
   adjust_brightness: Helligkeit anpassen
   admin: Administrator
   admin_s: Admin(s)
@@ -298,7 +305,6 @@ de:
   agreeing: Zustimmung …
   aka: auch bekannt als
   all: Alle
-  all_colors: "&laquo; Alle Farben"
   all_comments: Alle Kommentare
   all_flags_must_be_resolved: Alle Meldungen müssen geklärt sein
   all_life: Alle Lebensformen
@@ -549,7 +555,6 @@ de:
   be_the_first_to_fave_this_observation: Sei der erste, der diese Beobachtung favorisiert!
   because_of: wegen
   before_importing_photos: vor dem Importieren von Bildern
-  belives_this_is_a_comprehensive_list_of: glaubt, dass dies eine umfassende Liste ist von
   bg_color: Hintergrundfarbe
   bioblitz: Bioblitz
   birds: Vögel
@@ -561,7 +566,6 @@ de:
   blog_widget: Blog Widget
   blue: blau
   blue_butterfly_etc: "blau, Schmetterling, usw."
-  blue_icons_represent_political_units: "Blaue Symbole stellen politische Einheiten, wie Staaten, Bundesländer, Provinzen, Kreise und ähnliches dar, wohingegen grüne Symbole verschiedene Arten offenen Geländes (Parks, Reservate) darstellen. Zoome hinein und Du siehst mehr und kleinere Orte."
   body: Körper
   bounding_box: Rahmen
   breadcrumbs: Brotkrumen
@@ -692,11 +696,9 @@ de:
   citation: Zitat
   classification: Klassifikation
   clear: löschen
-  clear_color_filters: Farbfilter löschen
   clear_filters: Filter aufheben
   clear_search: Suche löschen
   click_the_map: "<strong>Klicke auf die Karte</strong> um ein Ort hinzuzufügen."
-  click_the_map_to_jump_new_place: Klicke auf die Karte, um zu einem neuen Ort zu wechseln
   close: Schließen
   code: Schlüssel
   colors: Farben
@@ -735,11 +737,16 @@ de:
   comparing_versions_x_and_y: "Vergleiche Versionen %{x} und %{y}"
   comparing_observations_from: "Vergleiche %{user} Beobachtungen von %{dates}"
   compiled_by_name: "Zusammengestellt von %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Vollständig
   completed: Abgeschlossen
   completed_at: Abgeschlossen um
-  comprehensive: umfassend
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Umfassend?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Umfassende</span>
+    Checkliste für %{taxon}
   comprehensive_list: Umfassende Liste
   concept_status: Konzeptzustand
   configure: Einrichten
@@ -1188,7 +1195,10 @@ de:
   flag_an_item: Objekt melden
   flag_as_spammer: Als Spammer markieren
   flag_as_non_spammer: Als Nicht-Spammer markieren
+  #Label for the date/time when a flag was created
+  flag_created: Meldung berichtet
   flag_description: Melde diesen Inhalt um Kuratoren wissen zu lassen, dass etwas nicht stimmt.
+  flag_for_comment_id_deleted: Meldung für Kommentar %{id} (gelöscht)
   flag_for_curation: Zur Kuratierung melden
   flag_it!: Markieren!
   flag_marked_as_resolved_html: '<span class="meta">Meldung als</span> <strong>geklärt.</strong><span class="meta">gekennzeichnet</span>.'
@@ -1410,7 +1420,6 @@ de:
   inat_user_profile: "%{site_name}:%{user}s Profil"
   inaturalist_is_a_joint_initiative: "%{site_name} ist eine gemeinsame Initiative der California Academy of Sciences und der National Geographic Society."
   inaturalist_places: "%{site_name} Orte"
-  inaturalist_places_are_way_record_what_lives_where: "%{site_name} Orte sind eine Möglichkeit zu erfassen, was wo lebt. Wenn du nach einer bestimmten Art suchst, weißt du, wo du suchen musst. Jeder Ort hat eine Checkliste, um alle dort vorkommenden Arten aufzuzeichnen, sodass sie auch nützlich sein können, um Dinge nachzuschlagen, die du an bestimmten Stellen gefunden hast."
   info: Info
   input_taxon: Taxon eingeben
   insects: Insekten
@@ -1731,6 +1740,7 @@ de:
   membership_model: Mitgliedersmodell
   mentioned_you_in_noun_html: "%{user} erwähnte dich in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} erwähnte dich in %{noun} von %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} erwähnte dich in %{noun} von %{by}"
   mentioned_you_in_a_x_on_noun_html: "%{user} erwähnte dich in einem %{x} über %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} erwähnte dich in einem %{x} am %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} erwähnte dich in einem %{x} über %{noun} von %{by}"
@@ -1975,7 +1985,11 @@ de:
   observation_: Beobachtung
   observation_added: Beobachtung hinzugefügt.
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
-  observation_brief_something_on_day_by_user: "Etwas am%{day} von %{user}"
+  observation_brief_something_on_day_at_time: "Etwas am %{day} um %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Etwas am %{day} um %{time} von %{user}"
+  observation_brief_something_on_day_by_user: "Etwas am %{day} von %{user}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} am %{day} um %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} am %{day} um %{time} von %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} am %{day} von %{user}"
   observations_by_category: "Beobachtungen nach Kategorie"
   observations_by_app: Beobachtungen nach App
@@ -2085,6 +2099,7 @@ de:
     observe_panel_title: Fangen wir an und posten ein paar Beobachtungen
     observe_panel_body_p1_local: Brauchen Sie Inspiration? Hier sind ein paar Organismen die in der Gegend beobachtet wurden...
     observe_panel_body_p1_global: Brauchst du Inspiration? Hier sind ein paar Organismen die beobachtet wurden...
+    observe_panel_body_p2: Gehe nach draußen und beobachte ein einzelnes Lebewesen (Tier, Pflanze, Pilz...). Such Dir dafür einen wilden Organismus und mache ein klares, gut erkennbares Bild. Wenn Du bereits ein Foto von etwas Wildem hast, <a href="%{new_observation_path}">füge es jetzt hinzu</a>. Du kannst auch die mobilen Apps von %{site_name} verwenden, um Beobachtungen zu dokumentieren.
     observe_panel_body_p3: Sobald Du Deine Beobachtungen geteilt hast, zeigt Dir diese Seite Updates aus der Community in Form von Kommentaren und Identifikationen. Wer weiß was Du entdecken wirst!
     follow_panel_title_local: Naturalisten in der Umgebung folgen
     follow_panel_title_global: Aktiven Naturalisten folgen
@@ -2167,7 +2182,9 @@ de:
   output_taxon: Taxon ausgeben
   overview: Übersicht
   owner: Besitzer
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Elternteil
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Eltern-Name
   parental_consent:
     must_specify_email: Du musst eine E-Mail-Adresse angeben
@@ -2224,7 +2241,6 @@ de:
     medium: mittel
     large: groß
     original: Original
-  photos_size_photos: "%{photos_size} Fotos"
   photos_updated: Fotos aktualisiert.
   pi_consent_desc_html: |
     Wir speichern personenbezogene Daten wie Benutzernamen und E-Mail-Adressen, um Konten auf dieser Website zu verwalten. Um die Datenschutzgesetze einzuhalten, benötigen wir deine Einwilligung in diese Nutzung personenbezogener Daten, indem du dieses Kästchen ankreuzt. Um mehr darüber zu erfahren, welche Informationen wir sammeln und wie wir sie verwenden, lese bitte unsere
@@ -2727,7 +2743,6 @@ de:
   radius_value: "Radius (m): %{radius}"
   random: Zufällig
   range: Bereich
-  range_from: 'Bereich von'
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbeschränkungen
@@ -2761,8 +2776,10 @@ de:
     section: Sektion
     subsection: Untersektion
     complex: Komplex
+    #Singular
     species: Art
     hybrid: Hybrid
+    #Singular
     subspecies: Unterart
     variety: Varietät
     form: Form
@@ -2844,7 +2861,6 @@ de:
   remove_selected: Ausgewählte entfernen
   remove_tags: Tags entfernen
   removed: Entfernet
-  removed!: Entfernet!
   removed_project_user: Projektbenutzer entfernen
   removing: "Entferne…"
   reorder_by_taxonomy: Neuordnen nach Taxonomie
@@ -2999,6 +3015,7 @@ de:
   show_observation_photos: Beobachtungsfotos zeigen
   show_off_your_recent_observations: Zeige Deine neuesten Beobachtungen auf Deinem Blog oder Deiner Webseite!
   show_only: Nur anzeigen
+  show_relative_proportions_of_all_observations: Relativen Anteil aller Beobachtungen anzeigen
   show_running_total: Gesamtzahl anzeigen
   show_scientific_name_first: Wissenschaftliche Namen bevorzugen
   show_taxa_from_both: (Taxa von beiden Listen anzeigen)
@@ -3020,6 +3037,8 @@ de:
   sizes: Größe
   skip_to_next_page: "Zur nächsten Seite springen"
   small: klein
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Seiten-Administratoren
   site_name_place: "%{site_name} Orte"
   site_observations_export_from_date: "%{site_name}-Beobachtungsexport vom %{date}"
   site_site_admin: "%{site_name}-Websiteadministrator"
@@ -3063,7 +3082,6 @@ de:
     import_from_soundcloud_description: "Wähle Sounds aus deinem SoundCloud-Account, um sie in iNaturalist-Beobachtungen umzuwandeln. Wir übernehmen das Datum und die Uhrzeit aus den Metadaten einer Audio-Datei und versuchen, die Namen der Arten aus den Tags herauszufinden."
     import_from_sounds: Audio importieren
     import_sounds: Audio importieren
-    link_your_soundcloud_account: Deinen SoundCloud-Account verlkinken
     listen: Anhören
     no_photos_sounds: Keine Bilder oder Audio
     photos_sounds: Bilder / Audio
@@ -3073,11 +3091,6 @@ de:
     sound: Audio
     soundcloud_replied_with_an_error: SoundCloud antwortete mit einem Fehler.  Bitte versuche es später noch einmal.
     sounds: Audio
-    sounds_size_sound: "%{sounds_size} Audio"
-    sounds_size_sounds: "%{sounds_size} Audio"
-    view_all_soundcount_sounds: "Alle %{sound_count} Audios aufrufen"
-    we_didnt_find_any_sounds: Sorry! Wir konnten keine Audio-Dateien von deinem SoundCloud-Account einspielen.
-    you_need_to_link_your_soundcloud_account: Du musst dein SoundCloud-Konto verlinken, um Audio-Dateien hinzuzufügen.
     your_soundcloud_account: dein SoundCloud-Account
   source: Quelle
   source_: 'Quelle:'
@@ -3103,6 +3116,7 @@ de:
   sources_youve_added: Von dir hinzugefügte Quellen
   sources_and_credits: Quellen und Bildnachweise
   sourcing: Beschaffung
+  #Plural
   species: Arten
   species_by_category: Arten nach Kategorie
   species_from_around_the_world: Arten aus aller Welt
@@ -3263,8 +3277,6 @@ de:
   the_world: Die Welt
   the_world_is_full_of_interesting_places: |
     Die Welt ist voller interessanter Orte, die alle voller seltsamer und wunderbarer Lebensformen sind. Einige sind auf der anderen Seite der Welt, während andere nur am Ende der Straße sind! %{site_name}-Orte erlauben es dir, das Leben rund um den Planeten zu erkunden.  Fang an zu erforschen!
-  the_world_is_full_of_interesting_places_short: |
-    Die Welt ist voller interessanter Orte, die alle voller seltsamer und wunderbarer Lebensformen sind. Einige sind auf der anderen Seite der Welt, während andere nur am Ende der Straße sind!
   then_keybord_sequence: dann
   there_is_no_wikipedia_page_matching: Es gibt keinen passenden Wikipedia-Eintrag
   there_isnt_a_wikipedia_article_titled_x_html: |
@@ -3371,7 +3383,6 @@ de:
   unprocessable: Unverarbeitbar
   unpublish: Veröffentlichung rückgängig machen
   unsubscribe: Abbestellen
-  unsubscribe_from_this: Neuigkeiten abbestellen von
   unsuspend_user: Benutzer entsperren
   upcoming_bioblitzes: Bevorstehende bioblitze
   update: Aktualisieren
@@ -3436,6 +3447,10 @@ de:
   user_added_x_observations_html: "%{user} hat %{x} Beobachtungen hinzugefügt"
   user_already_authenticated: Der Benutzer ist bereits authentifiziert
   user_autocomplete_placeholder: kueda, simon123, etc.
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} glaubt, dass dies eine umfassende Liste von %{taxon} in %{place} ist
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
   user_commented_on: "%{user} hat dein %{title} %{time} kommentiert"
@@ -3559,7 +3574,6 @@ de:
   were_pretty_sure_this_is_in_the_rank: Wir sind ziemlich sicher, es ist in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Es tut uns leid aber der Batch-Import von %{filename} ist fehlgeschlagen."
   what: Was
-  what_color_was_it: Welche Farbe hatte es?
   what_did_you_see: Was hast du gesehen?
   what_did_you_see?: <em>Was</em> hast du gesehen?
   what_do_you_think: Was glaubst du?
@@ -3745,8 +3759,14 @@ de:
       post_donate_social_media_text: Ich unterstütze iNaturalist weil...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Werde ein monatlicher Unterstützer von iNaturalist
+    flags:
+      show:
+        flaggable_content_desc: |
+          Der gemeldete Inhalt ist das primäre Textattribut des gemeldeten Objekts zum Zeitpunkt der Erstellung der Meldung. Nur Kuratoren und Mitarbeiter können dies sehen. Nur Mitarbeiter können dies bei Nachrichten sehen.
     guides:
       index:
+        deprecated_banner: |
+          Bitte beachte, dass ab Jänner 2019 die Guides-Funktion so wie ist verbleibt. Obwohl wir nicht vorhaben, die Guides zu löschen, planen wir auch nicht diese weiter zu entwickeln.
         welcome_message_html: |
           Guides helfen dir, mehr über die biologische Vielfalt auf der ganzen Welt zu erfahren.
           Ob du die Serengeti oder nur deinen örtlichen Park (der vielleicht die Serengeti ist) erkundest, Guides können dir helfen, die erstaunliche Vielfalt unseres Planeten zu verstehen.
@@ -3826,62 +3846,6 @@ de:
         reuse_desc: |
           Du kannst dieses Taxon in einen anderen Guide kopieren. Wenn du einer von den
           Editoren dieses Guides bist, sollte es alles kopieren, aber wenn du es nicht bist, wird es nur den lizenzierten Inhalt kopieren.
-    help:
-      index:
-        welcome_message_html: |
-          Howdy. Wenn Du ganz neu bei %{site_name} bist, schau Dir unsere <a href="%{url}">%{getting_started}</a>-Anleitung an, um einige Funktionen der Seite kennenzulernen. Wenn Du eine Frage zur Seite hast, schau bitte in die nachstehenden FAQs. Suchst Du dann immer noch nach Antworten, <a href="%{feedback_url}">stell Deine Frage unserer Feedback-Gruppe</a>.
-        what_is_inaturalist?: Was ist %{site_name}?
-        who_is_behind_inaturalist?: Wer verbirgt sich hinter %{site_name}?
-        what_technologies_does_the_project_use?: Welche Technologien und Datenquellen verwendet das Projekt?
-        who_is_behind_inaturalist: Wer verbirgt sich hinter %{site_name}?
-        what_can_i_do_to_help_inaturalist?: Wie kann ich %{site_name} helfen
-        how_do_i_contact_inaturalist?: Wie kontaktiere ich %{site_name}
-        you_can_contact_us_at_html: 'Sie können uns kontaktieren unter <a href="mailto:%{help_email}">%{help_email}</a>'
-        what_are_admins_and_curators?: Was sind Administratoren und Kuratoren?
-        what_is_considered_inappropriate_content?: Was wird als unangemessener Inhalt betrachtet?
-        what_is_an_observation?: Was ist eine Beobachtung?
-        an_observation_is_the_what_where_and_when_html: |
-          Eine Beobachtung ist das Was, Wo und Wann eines Fundes in der Natur. 
-          %{site_name} bietet einen Ort, an dem diese Informationen zusammen mit dem zugehörigen Text, Bildern und Tags hinzugefügt werden können. %{site_name} ermutigt zur Erfassung aller Naturfunde, unabhängig davon, ob sie identifizierte Arten oder einfache narrative Beschreibungen enthalten. 
-          (In %{site_name} kann die gleiche Eidechse sowohl als Wüstenhorneidechse als auch als &quot;Mysteriöse Eidechse des Death Valley&quot; bezeichnet werden.)
-        why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Wieso erkennt %{site_name} den von mir eingegebenen Namen nicht?"
-        inaturalist_has_name_information_for_mammals: |
-          %{site_name} enthält Namensinformationen für Säugetiere, Vögel, Reptilien,
-          und Amphibien und fügt immer wieder neue Artenbezeichnungen in unsere
-          Datenbank. Wenn wir einen bestimmten Namen nicht erkennen, versuch alternative Namen, die wir möglicherweise kennen und füge den Originalnamen zu den Tags oder Beschreibungsfeldern hinzu.
-        how_can_i_get_help_identifying_what_i_saw?: Wie bekomme ich Hilfe bei der Bestimmung dessen, was ich gesehen habe?
-        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: Was bedeutet es %{site_name} mit meinem Flickr Konto zu verbinden?
-        can_i_add_photos_without_a_flickr_account?: Kann ich ohne Flickr-Konto Fotos hinzufügen?
-        we_also_support_google_html: 'Wir unterstützen auch Google Photos:  <a href="%{url}">Richte Dein Google-Konto ein &raquo;</a>'
-        what_are_tags?: Was sind Tags?
-        tags_are_keywords_you_can_add_to_an_html: |
-          Tags sind Schlüsselwörter, die du zu einer Beobachtung hinzufügen kannst, um sie leichter zu finden. 
-          Zum Beispiel, wenn dir ein Barrakuda auf einer Tauchreise in Turks und Caicos gefolgt ist, kannst du die Beobachtung &quot;scary, barracuda, scuba diving, vacation, turks and caicos&quot; taggen.
-        can_i_include_my_observations_on_my_blog?: Kann ich meine %{site_name}-Beobachtungen auf meine Website oder meinen Blog stellen?
-        sure_check_out_our_widget_html: |
-          Klar, schau Dir unser <a href="%{url}" title="Observations Widget">Beobachtungs-Widget</a> an.
-        what_kind_of_photos_should_i_attach: Was für Fotos sollte ich Beobachtungen hinzufügen? Kann ich Fotos verwenden, die ich nicht selbst gemacht habe?
-        photos_attached_to_observations_should_be: |
-          Beobachtungsbilder sollten das beobachtete Individuum zum Zeitpunkt der Beobachtung zeigen. Wenn du die Beobachtung eines Baums erfasst und am nächsten Tag hingehst um ein Bild zu machen, erfasse bitte eine neue Beobachtung für dieses Bild, weil es den Baum zu einem anderen Zeitpunkt zeigt.
-        please_do_not_upload_pictures_you_didnt_take_html: |
-          Bitte <em>keine Bilder hochladen, die Du nicht gemacht hast</em>, es sei denn, Du hast die Genehmigung des Fotografen. Werke mit Urheberrecht ohne Lizenz des Urhebers zu veröffentlichen ist illegal, und alle Fotografen haben standardmäßig alle Rechte an ihren Werken. Wenn das Foto etwas zeigt, was Du beobachtet hast, jemand anders hat das Foto gemacht und Dir die Genehmigung erteilt, das Bild zu veröffentlichen, solltest Du auch den Namen des Fotografen in der Beschreibung vermerken.
-        what_is_geoprivacy?: Was ist Geo-Privatsphäre?
-        note_that_curators_of: |
-          Beachte, dass Kuratoren von Projekten unabhängig von Deinen Geo-Privatsphäre-Einstellungen immer die Koordinaten sehen können; wenn Du Dir also Sorgen darum machst, wer alles Zugang zu den Koordinaten hat, solltest Du Dir sicher sein, dass Du den Kuratoren der Projekte, bei denen Du mitmachst, vertraust.
-        what_is_does_it_mean_for: Was bedeutet es, eine Beobachtung zu verschleiern?
-        when_coordinates_are_obscured_it_means_that: |
-          Wenn Koordinaten verschleiert sind, bedeutet das, dass ein zufälliger Punkt innerhalb von
-          %{km}KM der wahren Koordinaten öffentlich angezeigt wird (z.B. auf der Startseite, der Beobachtungsseite und der 
-          Projektseiten), während die wahren Koordinaten nur dann sichtbar sind, wenn die eigenen Beobachtungen angesehen werden (z.B. bei den eigenen Projektseiten und in der Liste der eigenen Beobachtungen). Beachte, dass Kuratoren von
-          Projekten, zu denen du eine Beobachtung hinzugefügt hast, auch die tatsächlichen Koordinaten sehen können.
-        what_is_the_quality_assessment: Was ist die Qualitätprüfung und wie können Beobachtungen Forschungsqualität erreichen?
-        what_is_a_life_list?: Was ist eine Lebensliste?
-        is_a_list_of_every_species_that_you_have_seen: |
-          Eine Lebensliste ist eine Liste aller Arten, die du gesehen hast. Jeder %{site_name}-Benutzer hat eine Lebensliste
-          und diese Listen werden automatisch aus den zu %{site_name} hinzugefügten Beobachtungen befüllt.
-        i_observed_a_species: "Ich habe eine Art beobachtet, warum wird die in meiner Lebensliste nicht angezeigt?"
-        while_the_life_list_is_automatically_populated: |
-          Während Beobachtungen automatisch in der Lebensliste landen, wird die Art nicht hinzugefügt, falls %{site_name} den von Dir benutzten Namen nicht kennt. Wir empfehlen Dir, andere Namen auszuprobieren, die wir vielleicht erkennen.
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Titel der Lebenslisten können nicht geändert werden
@@ -3892,6 +3856,9 @@ de:
         show_messages_to_user: Zeige Nachrichten an %{user}
         speech_privilege_notice: |
           Du kannst neue Nachrichten senden, nachdem Du drei überprüfbare Beobachtungen oder drei Identifikationen für andere hinzugefügt hast. Im Moment kannst Du die Nachrichten lesen und beantworten, die andere Leute Dir schicken.
+      show:
+        flag_notice_html: |
+          Du hast diese Konversation am %{date} gemeldet. Die Meldung bleibt auch dann bestehen, wenn du deine Kopie dieser Unterhaltung löschst, also ist es sicher, dies zu tun, wenn du sie nicht mehr sehen willst.
     oauth:
       authorizations:
         new:
@@ -4321,6 +4288,8 @@ de:
           Wir zeigen auch Tabellen zur Saisonbedingtheit für Beobachtungsvermerke.
           Vermerke sind ein neues System, um Metadaten unter Verwendung eines kontrollierten Begriffsvokabulars zu Beobachtungen hinzuzufügen. Bis jetzt verwenden wir ausschließlich "Lebensstadium" und "Pflanzenphänologie" (wenn die Pflanze blüht oder Früchte trägt). Wir haben noch keine Möglichkeit, Vermerke direkt hinzuzufügen, daher konvertieren wir zunächst nur Daten von Beobachtungsfeldern in Vermerke. 
           Wenn du nicht abwarten kannst, bis wir unser Vermerksystem fertiggestellt haben, kannst du zu den "Lebensstadium"-Vermerken beitragen, indem du Beobachtungsfeldwerte mit folgenden Werten einträgst: Ausgewachsen, frisch geschlüpft, Puppe, Nymphe, Larve, Ei oder Jungtier. Also sind insbesondere die Felder "Lebensstadium" und "Insekten-Lebensstadium" gut. Für "Pflanzenphänologie" sehen wir uns jedes Feld mit dem Wort "Phänologie" im Namen und "Blüte" oder "Frucht" als Wert an, das Feld "Blütenphänologie" ist also zur Nutzung geeignet.
+        charts_help_relative_observations: |
+          Die Anzeige der Häufigkeit als relativer Anteil aller Beobachtungen hilft die Auswirkungen des Gesamtwachstums des Standorts zu mildern. Zum Beispiel, wenn die Website wächst, da wir mit jedem verstrichenen Jahr immer mehr Beobachtungen erhalten und von einzelnen Taxen, was nicht bedeutet, dass es noch mehr von diesem Taxon gibt, sondern nur dass es mehr Leute gibt, die es beobachtet haben. Das Anzeigen des relativen Anteils bedeutet, dass, wenn es insgesamt 100 Beobachtungen gibt, aber 20 Beobachtungen dieses Taxons, dass das Verhältnis dann 0,2 (20 / 100) beträgt. Wenn Menschen 2000 Beobachtungen im nächsten Jahr melden und 400 Beobachtungen von diesem Taxon, dann beträgt der Anteil immer noch 0,2 (400 / 2000). Dies verursacht einige Aberrationen, wenn es nur sehr wenige Beobachter in einem Gebiet gibt, oder für Taxa die sehr selten beobachtet werden, aber das gilt ebenso für die Gesamtzahlen.
         complete_taxon_desc: |
           Bei "vollständigen" Taxa sind alle bestehenden, untergeordneten Taxa unter einem bestimmten Rang in der Datenbank vorhanden. Ist ein Taxon beispielsweise bis zur Ebene der Art vollständig, können wir sagen, wie viele dieser Arten beobachtet wurden und wie viele noch beobachtet werden müssen. Die Anzahl Arten für "vollständige" Taxa bis zur Art beinhaltet keine "unzählbaren", wie ausgestorbene oder veraltete Arten; außerdem werden keine Taxa unterhalb der Art, wie Unterarten oder Varietäten, berücksichtigt.
         frequency:
@@ -4730,6 +4699,8 @@ de:
     models:
       AssessmentSection: Bewertungsabschnitt
       Atlas: Atlas
+      #Noun
+      Flag: Meldung
       TaxonLink: Taxon-Link
     attributes:
       assessment:
@@ -4884,6 +4855,9 @@ de:
             email:
               domain_is_not_supported: Domain wird nicht unterstützt
   doorkeeper:
+    scopes:
+      account_delete: |
+        Dein Konto in Deinem Namen zu löschen.
     errors:
       messages:
         #Access token errors
@@ -4923,6 +4897,8 @@ de:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@f"
@@ -4930,6 +4906,8 @@ de:
         family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)

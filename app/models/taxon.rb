@@ -23,9 +23,16 @@ class Taxon < ActiveRecord::Base
 
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
+  attr_accessor :skip_observation_indexing
 
   include ActsAsElasticModel
-
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
   acts_as_flaggable
   has_ancestry orphan_strategy: :adopt
 
@@ -314,6 +321,7 @@ class Taxon < ActiveRecord::Base
     "chiton",
     "cicada",
     "creeper",
+    "eos",
     "gall",
     "hong kong",
     "larva",
@@ -380,15 +388,6 @@ class Taxon < ActiveRecord::Base
     joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
     where("ST_Contains(place_geometries.geom, observations.geom)").
     select("DISTINCT ON (taxa.id) taxa.*")
-  }
-  
-  scope :colored, lambda {|colors|
-    colors = [colors] unless colors.is_a?(Array)
-    if colors.first.to_i == 0
-      joins(:colors).where("colors.value IN (?)", colors)
-    else
-      joins(:colors).where("colors.id IN (?)", colors)
-    end
   }
   
   scope :has_photos, -> { joins(:taxon_photos).where("taxon_photos.id IS NOT NULL") }
@@ -559,6 +558,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def index_observations
+    return if skip_observation_indexing
     Observation.elastic_index!(scope: observations.select(:id), delay: true)
   end
 
@@ -1043,13 +1043,14 @@ class Taxon < ActiveRecord::Base
   def graftable_destination_relative_to_taxon_framework_coverage
     return true unless new_record? || ancestry_changed?
     return true if ancestry.nil? || !is_active
-    destination_taxon_framework = parent.taxon_framework
-    if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !destination_taxon_framework.taxon_curators.where( user: current_user ).exists? ) )
-      errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} has a curated taxon framework attached to it. Contact the curators of that taxon to request changes." )
-    end
-    destination_upstream_taxon_framework = parent.get_upstream_taxon_framework
-    if !skip_taxon_framework_checks && destination_upstream_taxon_framework && parent.rank_level > destination_upstream_taxon_framework.rank_level && destination_upstream_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !destination_upstream_taxon_framework.taxon_curators.where( user: current_user ).exists? ) ) 
-      errors.add( :ancestry, "destination #{destination_upstream_taxon_framework.taxon} covered by a curated taxon framework. Contact the curators of that taxon to request changes." )
+    if destination_taxon_framework = parent.taxon_framework
+      if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !destination_taxon_framework.taxon_curators.where( user: current_user ).exists? ) )
+        errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} has a curated taxon framework attached to it. Contact the curators of that taxon to request changes." )
+      end
+    elsif destination_upstream_taxon_framework = parent.get_upstream_taxon_framework
+      if !skip_taxon_framework_checks && destination_upstream_taxon_framework && parent.rank_level > destination_upstream_taxon_framework.rank_level && destination_upstream_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !destination_upstream_taxon_framework.taxon_curators.where( user: current_user ).exists? ) ) 
+        errors.add( :ancestry, "destination #{destination_upstream_taxon_framework.taxon} covered by a curated taxon framework. Contact the curators of that taxon to request changes." )
+      end
     end
     true
   end

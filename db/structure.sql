@@ -875,7 +875,8 @@ CREATE TABLE public.controlled_terms (
     user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    blocking boolean DEFAULT false
+    blocking boolean DEFAULT false,
+    uuid uuid DEFAULT public.uuid_generate_v4()
 );
 
 
@@ -1254,7 +1255,9 @@ CREATE TABLE public.flags (
     resolved boolean DEFAULT false,
     updated_at timestamp without time zone,
     resolved_at timestamp without time zone,
-    flaggable_user_id integer
+    flaggable_user_id integer,
+    flaggable_content text,
+    uuid uuid DEFAULT public.uuid_generate_v4()
 );
 
 
@@ -2382,7 +2385,8 @@ CREATE TABLE public.observation_fields (
     updated_at timestamp without time zone,
     allowed_values text,
     values_count integer,
-    users_count integer
+    users_count integer,
+    uuid uuid DEFAULT public.uuid_generate_v4()
 );
 
 
@@ -2900,7 +2904,8 @@ CREATE TABLE public.photos (
     file_updated_at timestamp without time zone,
     metadata text,
     subtype character varying(255),
-    native_original_image_url character varying(512)
+    native_original_image_url character varying(512),
+    uuid uuid DEFAULT public.uuid_generate_v4()
 );
 
 
@@ -3054,7 +3059,8 @@ CREATE TABLE public.places (
     ancestry character varying(255),
     slug character varying(255),
     source_id integer,
-    admin_level integer
+    admin_level integer,
+    uuid uuid DEFAULT public.uuid_generate_v4()
 );
 
 
@@ -3099,7 +3105,8 @@ CREATE TABLE public.posts (
     longitude numeric(15,10),
     radius integer,
     distance double precision,
-    number integer
+    number integer,
+    uuid uuid DEFAULT public.uuid_generate_v4()
 );
 
 
@@ -3862,7 +3869,8 @@ CREATE TABLE public.sounds (
     file_content_type character varying,
     file_file_size integer,
     file_updated_at timestamp without time zone,
-    subtype character varying(255)
+    subtype character varying(255),
+    uuid uuid DEFAULT public.uuid_generate_v4()
 );
 
 
@@ -4087,7 +4095,8 @@ CREATE TABLE public.taxa (
     is_active boolean DEFAULT true NOT NULL,
     complete_rank character varying,
     complete boolean,
-    taxon_framework_relationship_id integer
+    taxon_framework_relationship_id integer,
+    uuid uuid DEFAULT public.uuid_generate_v4()
 );
 
 
@@ -4903,7 +4912,8 @@ CREATE TABLE public.users (
     donorbox_donor_id integer,
     donorbox_plan_type character varying,
     donorbox_plan_status character varying,
-    donorbox_plan_started_at date
+    donorbox_plan_started_at date,
+    uuid uuid DEFAULT public.uuid_generate_v4()
 );
 
 
@@ -7190,6 +7200,13 @@ CREATE INDEX index_controlled_term_taxa_on_taxon_id ON public.controlled_term_ta
 
 
 --
+-- Name: index_controlled_terms_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_controlled_terms_on_uuid ON public.controlled_terms USING btree (uuid);
+
+
+--
 -- Name: index_counties_simplified_01_on_geom; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7306,6 +7323,13 @@ CREATE INDEX index_exploded_atlas_places_on_place_id ON public.exploded_atlas_pl
 --
 
 CREATE INDEX index_flags_on_flaggable_id_and_flaggable_type ON public.flags USING btree (flaggable_id, flaggable_type);
+
+
+--
+-- Name: index_flags_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_flags_on_uuid ON public.flags USING btree (uuid);
 
 
 --
@@ -7841,6 +7865,13 @@ CREATE INDEX index_observation_fields_on_name ON public.observation_fields USING
 
 
 --
+-- Name: index_observation_fields_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_observation_fields_on_uuid ON public.observation_fields USING btree (uuid);
+
+
+--
 -- Name: index_observation_links_on_observation_id_and_href; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8212,6 +8243,13 @@ CREATE INDEX index_photos_on_user_id ON public.photos USING btree (user_id);
 
 
 --
+-- Name: index_photos_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_photos_on_uuid ON public.photos USING btree (uuid);
+
+
+--
 -- Name: index_picasa_identities_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8331,6 +8369,13 @@ CREATE INDEX index_places_on_user_id ON public.places USING btree (user_id);
 
 
 --
+-- Name: index_places_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_places_on_uuid ON public.places USING btree (uuid);
+
+
+--
 -- Name: index_posts_on_place_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8342,6 +8387,13 @@ CREATE INDEX index_posts_on_place_id ON public.posts USING btree (place_id);
 --
 
 CREATE INDEX index_posts_on_published_at ON public.posts USING btree (published_at);
+
+
+--
+-- Name: index_posts_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_posts_on_uuid ON public.posts USING btree (uuid);
 
 
 --
@@ -8618,6 +8670,13 @@ CREATE INDEX index_sounds_on_user_id ON public.sounds USING btree (user_id);
 
 
 --
+-- Name: index_sounds_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_sounds_on_uuid ON public.sounds USING btree (uuid);
+
+
+--
 -- Name: index_sources_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8762,6 +8821,13 @@ CREATE INDEX index_taxa_on_taxon_framework_relationship_id ON public.taxa USING 
 --
 
 CREATE INDEX index_taxa_on_unique_name ON public.taxa USING btree (unique_name);
+
+
+--
+-- Name: index_taxa_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_taxa_on_uuid ON public.taxa USING btree (uuid);
 
 
 --
@@ -9140,6 +9206,13 @@ CREATE INDEX index_users_on_updated_at ON public.users USING btree (updated_at);
 --
 
 CREATE INDEX index_users_on_uri ON public.users USING btree (uri);
+
+
+--
+-- Name: index_users_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
 
 
 --
@@ -10035,4 +10108,14 @@ INSERT INTO schema_migrations (version) VALUES ('20191115201008');
 INSERT INTO schema_migrations (version) VALUES ('20191203201511');
 
 INSERT INTO schema_migrations (version) VALUES ('20191210173400');
+
+INSERT INTO schema_migrations (version) VALUES ('20200116234248');
+
+INSERT INTO schema_migrations (version) VALUES ('20200117011717');
+
+INSERT INTO schema_migrations (version) VALUES ('20200122231601');
+
+INSERT INTO schema_migrations (version) VALUES ('20200127213714');
+
+INSERT INTO schema_migrations (version) VALUES ('20200130191142');
 

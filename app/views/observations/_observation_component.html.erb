@@ -88,14 +88,14 @@ Some notes:
               "data-medium-url" => photo.medium_url
             ), obs_url, :class => 'flickr photo'%>
             <% if photo_count > 1 -%>
-              <% link_text << t(:photos_size_photos, :photos_size => photos.size).downcase %>
+              <% link_text << t(:x_photos, count: photos.size) %>
             <% end -%>
           <% end %>
         <% end -%>
         <% if sound_count > 0 %>
           <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, obs_url, :class => "sound-icon#{' with-photo' if photo}" %>
           <% if sound_count > 1 %>
-            <% link_text << t(:'sounds.sounds_size_sounds', :sounds_size => sound_count).downcase %>
+            <% link_text << t(:x_sounds, count: sound_count) %>
           <% end -%>
         <% end %>
         <% unless link_text.blank? -%>

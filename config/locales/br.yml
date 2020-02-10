@@ -101,8 +101,6 @@ br:
   added_to_favorites_html: |
     Ouzhpennet d'ar<a href="%{url}">pennrolloù</a>
   adding: "Oc'h ouzhpennañ..."
-  additional_range: Lijorenn ouzhpenn
-  additional_range_data_from_an_unknown_source: Pajennad roadennoù ouzhpenn adalek un tarzh dianav
   admin: Merour
   admin_tools: Binvioù merañ
   agree: Degemer
@@ -110,7 +108,6 @@ br:
   agreeing: O tegemer...
   aka: alias
   all: An holl
-  all_colors: "&laquo; An holl livioù"
   all_comments: An holl evezhiadennoù
   all_life: An holl vev
   all_names: An holl anvioù
@@ -237,7 +234,6 @@ br:
   batch_operations: Oberiadennoù dre lod
   because_of: en abeg da
   before_importing_photos: a-raok enporzhiañ luc'hskeudennoù
-  belives_this_is_a_comprehensive_list_of: a soñj dezhañ ez eo ur roll klok eus
   bg_color: Liv an drekleur
   birds: laboused
   black: du
@@ -314,10 +310,8 @@ br:
   citation: Arroudenn
   classification: Rummatadur
   clear: riñsañ
-  clear_color_filters: Diverkañ ar silioù liv
   clear_search: Diverkañ an enklask
   click_the_map: "<strong>Klikit war gartenn</strong> evit ouzhpennañ ul lec'hiadur."
-  click_the_map_to_jump_new_place: Klikit war ar gartenn evit mont d'ul lec'h nevez
   code: Kod
   colors: Livioù
   columns: Bannoù
@@ -341,7 +335,8 @@ br:
   compiled_by_name: "Kempunet gant %{name}"
   completed: Klokaet
   completed_at: Klokaet e
-  comprehensive: Klok
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Klok?
   comprehensive_list: Roll klok
   concept_status: Stad ar meizad
@@ -959,7 +954,6 @@ br:
     medium: etre
     large: bras
     original: Orin
-  photos_size_photos: "luc'hskeudennoù %{photos_size}"
   photos_updated: Luc'hskeudennoù hizivaet
   pink: roz
   place: Lec'h

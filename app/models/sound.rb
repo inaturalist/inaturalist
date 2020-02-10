@@ -7,6 +7,13 @@ class Sound < ActiveRecord::Base
 
   include Shared::LicenseModule
   acts_as_flaggable
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
 
   attr_accessor :orphan
   

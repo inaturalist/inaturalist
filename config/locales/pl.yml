@@ -31,9 +31,13 @@ pl:
     other: '%{count} oznaczenia'
   #Number of people who have added identifications
   x_identifiers_html:
+    #Number of people who have added identifications
     one: '<span class="count">1</span> oznaczający'
+    #Number of people who have added identifications
     few: '<span class="count">%{count}</span> oznaczających'
+    #Number of people who have added identifications
     many: '<span class="count">%{count}</span> oznaczających'
+    #Number of people who have added identifications
     other: '<span class="count">%{count}</span> oznaczającego'
   x_languages:
     one: "%{count} język"
@@ -42,9 +46,13 @@ pl:
     other: "%{count} języka"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
     one: "%{count} pierwsza obserwacja na liście życia"
+    #Count of number of taxa that represent the first addition to a life list
     few: "%{count} pierwsze obserwacje na liście życia"
+    #Count of number of taxa that represent the first addition to a life list
     many: "%{count} pierwszych obserwacji na liście życia"
+    #Count of number of taxa that represent the first addition to a life list
     other: "%{count} pierwszej obserwacji na liście życia"
   x_journal_posts_html:
     one: '<span class="count">1</span> wpis w dzienniku'
@@ -323,7 +331,9 @@ pl:
   add_life_stage_larva_annotation: 'Dodaj adnotację "Stadium rozwoju: Larwa"'
   add_life_stage_juvenile_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik młodociany"'
   add_life_stage_egg_annotation: 'Dodaj adnotację "Stadium rozwoju: Jajo"'
+  #As in a Taxon Framework Relationship
   add_relationship: 'Dodaj powiązanie'
+  #As in a Guide Section
   add_section: Dodaj sekcję
   add_several_observations_at_once: Dodaj kilka obserwacji na raz.
   add_sex_female_annotation: 'Dodaj adnotację "Płeć: Samica"'
@@ -369,8 +379,6 @@ pl:
   added_to_favorites_html: |
     Dodane do <a href="%{url}">ulubionych</a>
   adding: "Dodawanie..."
-  additional_range: Dodatkowy zasięg
-  additional_range_data_from_an_unknown_source: Dodatkowe dane zasięgu z nieznanego źródła
   adjust_brightness: Dostosuj jasność
   admin: Administrator
   admin_s: Administratorzy
@@ -383,7 +391,6 @@ pl:
   agreeing: Zgoda...
   aka: vel
   all: Wszystkie
-  all_colors: "&laquo; Wszystkie kolory"
   all_comments: Wszystkie komentarze
   all_flags_must_be_resolved: Wszystkie zgłoszenia muszą zostać rozstrzygnięte
   all_life: Wszelkie życie
@@ -692,7 +699,6 @@ pl:
   be_the_first_to_fave_this_observation: Polub tę obserwację jako pierwszy!
   because_of: z powodu
   before_importing_photos: przed zaimportowaniem zdjęć
-  belives_this_is_a_comprehensive_list_of: uważa, że to jest kompleksowa lista
   bg_color: Kolor tła
   bioblitz: Bioblitz
   birds: ptaki
@@ -704,7 +710,6 @@ pl:
   blog_widget: Widżet bloga
   blue: niebieski
   blue_butterfly_etc: "modraszek, motyl, itp."
-  blue_icons_represent_political_units: "Niebieskie ikony oznaczają jednostki administracyjne, takie jak państwa, województwa, stany, prowincje i podobne, a zielone ikony oznaczają różnego rodzaju przestrzenie publiczne (parki, rezerwaty). Po przybliżeniu zobaczysz więcej szczegółów."
   body: Treść
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
@@ -833,11 +838,9 @@ pl:
   citation: Przypis
   classification: Klasyfikacja
   clear: wyczyść
-  clear_color_filters: Wyczyść filtry kolorów
   clear_filters: Wyczyść filtry
   clear_search: Wyczyść wyszukiwania
   click_the_map: "<strong>Kliknij mapę</strong>, aby dodać miejsce."
-  click_the_map_to_jump_new_place: Kliknij mapę, aby przeskoczyć do następnego miejsca
   close: Zamknij
   code: Kod
   colors: Kolory
@@ -875,10 +878,12 @@ pl:
   comparing_versions_x_and_y: "Porównanie wersji %{x} z %{y}"
   comparing_observations_from: "Porównanie obserwacji użytkownika %{user} z %{dates}"
   compiled_by_name: "Sporządzony przez %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
   complete: Kompletny
   complete_set_for_taxon_in_place_html: "Kompletny zbiór dla %{taxon} w %{place}"
   completed: Zakończone
-  comprehensive: kompleksowy
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Kompleksowy?
   comprehensive_list: Kompleksowa lista
   configure: Konfiguruj
@@ -1571,7 +1576,6 @@ pl:
   inat_user_profile: "%{site_name}: Profil użytkownika %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} to wspólna inicjatywa California Academy of Sciences i National Geographic Society."
   inaturalist_places: "Lokalizacje %{site_name}"
-  inaturalist_places_are_way_record_what_lives_where: "Miejsca na %{site_name} to sposób na rejestrowanie co gdzie żyje. Jeśli szukasz konkretnego gatunku, będziesz wiedzieć gdzie można go znaleźć. Każde miejsce posiada checklistę, która zapisuje wszystkie gatunki występujące na danym terenie - może to być pomocne przy identyfikowaniu organizmów znalezionych w konkretnym miejscu."
   info: Informacje
   input_taxon: Takson wejściowy
   insects: owady
@@ -2140,7 +2144,7 @@ pl:
   observation_: obserwacja
   observation_added: Dodano obserwację.
   observation_added_to_the_project: "Obserwacja dodana do projektu \"%{project}\""
-  observation_brief_something_on_day: "coś dnia %{day}"
+  observation_brief_something_on_day: "Coś dnia %{day}"
   observation_brief_something_by_user: "Coś przez %{user}"
   observation_brief_something_from_place: "Coś z %{place}"
   observation_brief_something_from_place_by_user: "Coś z %{place} przez %{user}"
@@ -2296,7 +2300,9 @@ pl:
   output_taxon: Takson wyjściowy
   overview: Przegląd
   owner: Właściciel
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Rodzic
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nazwa rodzica
   parental_consent:
     must_specify_email: Musisz podać adres e-mail
@@ -2340,7 +2346,6 @@ pl:
     medium: średni
     large: duży
     original: oryginalny
-  photos_size_photos: "%{photos_size} zdjęcia"
   photos_updated: Zdjęcia zaktualizowane.
   pin_verb: Przypnij
   pink: różowy
@@ -2778,8 +2783,10 @@ pl:
     section: Sekcja
     subsection: Podsekcja
     complex: Kompleks
+    #Singular
     species: Gatunek
     hybrid: Hybryda
+    #Singular
     subspecies: Podgatunek
     variety: Odmiana
     form: Forma
@@ -2825,7 +2832,6 @@ pl:
   remove_selected: Usuń zaznaczone
   remove_tags: Usuń tagi
   removed: Usunięto
-  removed!: Usunięto!
   removing: "Usuwanie..."
   replace_parentesis: (zamień)
   reply: Odpowiedz
@@ -2970,6 +2976,7 @@ pl:
   source_url: Źródłowy adres URL
   sources: Źródła
   spam: Spam
+  #Plural
   species: Gatunki
   species_by_category: gatunki według kategorii
   species_from_around_the_world: Gatunki z całego świata
@@ -3161,7 +3168,6 @@ pl:
   updating: Aktualizowanie...
   unpublish: Cofnij publikację
   unsubscribe: Anuluj subskrypcję
-  unsubscribe_from_this: Anuluj subskrypcję
   unsuspend_user: Cofnij zawieszenie użytkownika
   update: Zaktualizuj
   update_existing_observations_with_new_license: Zaktualizuj istniejące obserwacje z nowymi ustawieniami licencji
@@ -3315,7 +3321,6 @@ pl:
   welcome_to_x_project: "Witamy w %{project}"
   were_pretty_sure_this_is_in_the_rank: Jesteśmy pewni, że należy to do %{rank}
   what: Co
-  what_color_was_it: Jakiego było koloru?
   what_did_you_see: Co zaobserwowałeś?
   what_did_you_see?: <em>Co</em> zaobserwowałeś?
   what_do_you_think: Co myślisz?
@@ -3477,15 +3482,6 @@ pl:
       sorts:
         alphaname: Alfabetycznie według nazwy naukowej
         alphadisplay: Alfabetycznie według nazwy wyświetlanej
-    help:
-      index:
-        what_is_inaturalist?: Czym jest %{site_name}?
-        what_are_admins_and_curators?: Czym są administratorzy i kuratorzy?
-        what_is_an_observation?: Czym jest obserwacja?
-        check_the_id_please_checkbox_when_html: |
-          Zaznacz "Proszę o oznaczenie", kiedy dodajesz / edytujesz obserwację - dzięki temu twoja obserwacja pojawi się w dziale <a href="%{url}">Proszę o oznaczenie</a>.
-        can_i_add_photos_without_a_flickr_account?: Czy mogę dodać zdjęcia bez konta Flickr?
-        what_are_tags?: Czym są tagi?
     messages:
       from: Od
       to: Do
@@ -4028,6 +4024,8 @@ pl:
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
   activerecord:
     models:
+      #Noun
+      Flag: Zgłoszenie
       TaxonLink: Link do taksonu
     attributes:
       assessment:

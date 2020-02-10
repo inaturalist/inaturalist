@@ -1,6 +1,6 @@
 module Shared::TouchesObservationModule
   def self.included(base)
-    base.after_create  :touch_observation
+    base.after_save :touch_observation
     base.after_destroy :touch_observation
     base.attr_accessor :wait_for_obs_index_refresh
   end

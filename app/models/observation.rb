@@ -752,29 +752,30 @@ class Observation < ActiveRecord::Base
   end
   
   def to_plain_s(options = {})
-    # I18n.t( :observation_brief_something_on_day )
-    # I18n.t( :observation_brief_something_on_day_by_user )
     # I18n.t( :observation_brief_something_by_user )
     # I18n.t( :observation_brief_something_from_place )
     # I18n.t( :observation_brief_something_from_place_by_user )
     # I18n.t( :observation_brief_something_from_place_on_day )
-    # I18n.t( :observation_brief_something_from_place_on_day_by_user )
     # I18n.t( :observation_brief_something_from_place_on_day_at_time )
     # I18n.t( :observation_brief_something_from_place_on_day_at_time_by_user )
-    # I18n.t( :observation_brief_taxon_on_day )
-    # I18n.t( :observation_brief_taxon_on_day_by_user )
+    # I18n.t( :observation_brief_something_from_place_on_day_by_user )
+    # I18n.t( :observation_brief_something_on_day )
+    # I18n.t( :observation_brief_something_on_day_at_time )
+    # I18n.t( :observation_brief_something_on_day_at_time_by_user )
+    # I18n.t( :observation_brief_something_on_day_by_user )
     # I18n.t( :observation_brief_taxon_by_user )
     # I18n.t( :observation_brief_taxon_from_place )
     # I18n.t( :observation_brief_taxon_from_place_by_user )
     # I18n.t( :observation_brief_taxon_from_place_on_day )
-    # I18n.t( :observation_brief_taxon_from_place_on_day_by_user )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time_by_user )
+    # I18n.t( :observation_brief_taxon_from_place_on_day_by_user )
+    # I18n.t( :observation_brief_taxon_on_day )
+    # I18n.t( :observation_brief_taxon_on_day_at_time )
+    # I18n.t( :observation_brief_taxon_on_day_at_time_by_user )
+    # I18n.t( :observation_brief_taxon_on_day_by_user )
     i18n_vars = {}
-    key = if !species_guess.blank? && species_guess.to_s !~ /#{I18n.t(:something)}/
-      i18n_vars[:taxon] = species_guess
-      "taxon"
-    elsif taxon
+    key = if taxon
       i18n_vars[:taxon] = common_name( locale: I18n.locale )
       i18n_vars[:taxon] ||= taxon.name
       "taxon"
@@ -3203,6 +3204,7 @@ class Observation < ActiveRecord::Base
   end
 
   def reindex_identifications
+    return true if skip_indexing
     Identification.elastic_index!( ids: identification_ids )
   end
 

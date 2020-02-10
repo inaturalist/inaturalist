@@ -80,6 +80,45 @@ class AdminController < ApplicationController
     redirect_back_or_default(curate_users_path( user_id: u.id ) )
   end
 
+  def grant_user_privilege
+    @up = UserPrivilege.new( user_id: params[:user_id], privilege: params[:privilege] )
+    unless @up.save
+      flash[:error] = "Failed to grant privilege: #{@up.errors.full_messages.to_sentence}"
+    end
+    redirect_to user_detail_admin_path( id: params[:user_id] )
+  end
+
+  def revoke_user_privilege
+    unless @up = UserPrivilege.where( user_id: params[:user_id], privilege: params[:privilege] ).first
+      flash[:error] = "User #{params[:user_id]} doesn't have the #{params[:privilege]} privilege"
+      return redirect_to user_detail_admin_path( id: params[:user_id] )
+    end
+    @up.revoke!( revoke_user: current_user, revoke_reason: params[:reason] )
+    flash[:notice] = "Revoked #{params[:privilege]} privilege for user #{@up.user.login}"
+    redirect_to user_detail_admin_path( id: params[:user_id] )
+  end
+
+  def restore_user_privilege
+    unless @up = UserPrivilege.where( user_id: params[:user_id], privilege: params[:privilege] ).first
+      flash[:error] = "User #{params[:user_id]} doesn't have the #{params[:privilege]} privilege"
+      return redirect_to user_detail_admin_path( id: params[:user_id] )
+    end
+    unless @up.restore!
+      flash[:error] = "Failed to restore privilege: #{@up.errors.full_messages.to_sentence}"
+    end
+    redirect_to user_detail_admin_path( id: params[:user_id] )
+  end
+
+  def reset_user_privilege
+    unless @up = UserPrivilege.where( user_id: params[:user_id], privilege: params[:privilege] ).first
+      flash[:error] = "User #{params[:user_id]} doesn't have the #{params[:privilege]} privilege"
+      return redirect_to user_detail_admin_path( id: params[:user_id] )
+    end
+    @up.destroy if @up
+    UserPrivilege.check( params[:user_id], params[:privilege] )
+    redirect_to user_detail_admin_path( id: params[:user_id] )
+  end
+
   def destroy_user_content
     return unless load_user_content_info
     @records = @display_user.send(@reflection_name).
