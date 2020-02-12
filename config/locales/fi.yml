@@ -1897,13 +1897,17 @@ fi:
   members: Jäsenet
   membership_model: Jäsenyysmalli
   mentioned_you_in_noun_html: "%{user} mainitsi sinut kohteessa %{noun}"
-  mentioned_you_in_noun_by_html: "%{user} mainitsi sinut kohteessa %{noun} käyttäjältä %{by}"
-  mentioned_you_in_noun_by_user_html: "%{user} mainitsi sinut kohteessa %{noun} käyttäjältä %{by}"
+  mentioned_you_in_noun_by_html: "%{user} mainitsi sinut (%{noun} käyttäjältä %{by})"
+  mentioned_you_in_noun_by_user_html: "%{user} mainitsi sinut (%{noun} käyttäjältä %{by})"
   mentioned_you_in_noun_by_you_html: "%{user} mainitsi sinut kohteessasi %{noun}"
   mentioned_you_in_a_x_on_noun_html: "%{user} mainitsi sinut kohteessa %{x} %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} mainitsi sinut kohteessa %{x} %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} mainitsi sinut käyttäjän %{by} kohteessa %{x} %{noun}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} mainitsi sinut (%{x} käyttäjän %{by} kohteessa %{noun})"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} mainitsi sinut (%{x} kohteessasi %{noun})"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} mainitsi sinut käyttäjän %{by} kohteessa %{x} %{noun}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} mainitsi sinut (%{x} käyttäjän %{by} kohteessa %{noun})"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} mainitsi sinut (%{x} kohteessasi %{noun})"
   merge: Yhdistä
   merge_it_with_another_place: Yhdistä se toisen paikan kanssa
   merge_two_places_together: Yhdistä kaksi paikkaa yhteen. Kaikki lajit lajiluetteloissa yhdistetään, samoin kuin kaikki maantieteelliset tiedot.
@@ -2425,7 +2429,7 @@ fi:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
     #added an observation of a Human
-    observation: lisäsi %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
+    observation: lisäsi %{observation_link} taksonista @vow_or_con{vow:an|a} %{taxon_link}
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -3674,12 +3678,16 @@ fi:
   user_added_a_fave_html: "%{user} lisäsi suosikiksi"
   user_added_a_flag_html: "%{user} lisäsi lipun"
   user_added_a_x: "%{user} lisäsi %{x}n"
-  user_added_a_x_to_noun_by_html: "%{user} lisäsi %{x} kohteeseen %{noun}, jonka on luonut %{by}"
-  user_added_a_x_to_noun_html: "%{user} lisäsi %{x}n kohteeseen %{noun}"
+  user_added_a_x_to_noun_by_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  user_added_a_x_to_noun_by_user_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  user_added_a_x_to_noun_by_you_html: "%{x} sinulle käyttäjältä %{user} (%{noun})"
+  user_added_a_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
   user_added_an_observation_html: "%{user} lisäsi havainnon"
   user_added_an_x: "%{user} lisäsi %{x}"
-  user_added_an_x_to_noun_by_html: "%{user} lisäsi %{x}n käyttäjän %{by} kohteeseen %{noun}"
-  user_added_an_x_to_noun_html: "%{user} lisäsi %{x} kohteeseen %{noun}"
+  user_added_an_x_to_noun_by_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  user_added_an_x_to_noun_by_user_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  user_added_an_x_to_noun_by_you_html: "%{x} sinulle käyttäjältä %{user} (%{noun})"
+  user_added_an_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
   user_added_x_observations_html: "%{user} lisäsi %{x} havaintoa"
   user_already_authenticated: Käyttäjä on jo todennettu
   user_autocomplete_placeholder: elliesimerkki, matti123, yms.
@@ -4870,7 +4878,7 @@ fi:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Tunnistukset
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_mentions: Viittaukset sinuun
+        notification_preferences_mentions: Maininnat
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Viestit
         #Checkbox label for user preference about what to receive in the daily email update
