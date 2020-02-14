@@ -603,6 +603,7 @@ bg:
   delete: Изтриване
   delete_conversation: Изтрий разговора
   delete_icon?: Изтрий иконата?
+  delete_photo: Изтрий снимката
   delete_your_account: Изтриване на акаунта
   deleting: Изтриване...
   deleting_verb: Изтриване
@@ -1280,6 +1281,7 @@ bg:
   observation_fields_are_additional: Полетата за наблюдения са допълнителни полета за данни, които могат да бъдат добавяни към наблюденията.
   observation_fields_by_preferences_description: |
     Полетата за наблюдения са подобни на етикети, само че по подразбиране всеки може да ги добавя към Вашите наблюдения. Можете да промените това ако предпочитате само Вие (и кураторите) да правите това.
+  observed_on_datetime: Наблюдаване на %{datetime}
   observation_removed_from_the_project: "Наблюдението е премахнато от проекта %{project}"
   observation_was_deleted: Наблюдението е изтрито.
   observation_without_media: Наблюдение без медийно съдържание
@@ -2069,6 +2071,7 @@ bg:
     gbif_occurrences: Записи от GBIF
     it_may_take_google_a_while_to: Може да отнеме известно време на Google да зареди данните, в случай че GBIF разполага с такива.
   taxon_changes: Таксономични промени
+  taxon_observed_by_user: "%{taxon}, наблюдавано от %{user}"
   taxon_ranks: Таксономични рангове
   taxon_removed_from_list: Таксонът е премахнат от списъка.
   taxon_was_successfully_created: Таксонът беше създаден успешно.
