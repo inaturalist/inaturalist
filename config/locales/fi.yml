@@ -1420,7 +1420,7 @@ fi:
   georeferenced: Paikannettu?
   get_started: Aloita
   getting_started_guide: Aloitusopas
-  give_it_some_detail: Anna sille joitakin yksityiskohtia!
+  give_it_some_detail: Lisää joitakin yksityiskohtia!
   give_monthly_caps: LAHJOITA KUUKAUSITTAIN
   give_now_caps: LAHJOITA NYT
   global_names: Maailmanlaajuiset nimet
@@ -2493,7 +2493,7 @@ fi:
   place_geo:
     geo_planet_place_types:
       Aggregate: Koonti
-      aggregate: ryhmälaji
+      aggregate: koonti
       Airport: Lentokenttä
       airport: lentokenttä
       Building: Rakennus
@@ -2501,7 +2501,7 @@ fi:
       Canton: Kantoni
       canton: kantoni
       Colloquial: Puhekielinen
-      colloquial: puhekielinen
+      colloquial: epämuodollinen
       Commune: Kunta
       commune: kunta
       Continent: Maanosa
@@ -2514,8 +2514,8 @@ fi:
       district: piiri
       Division: Kaari
       division: kaari
-      Drainage: Salaojitus
-      drainage: salaojitus
+      Drainage: Kanava
+      drainage: kanava
       Estate: Maatila
       estate: maatila
       Governorate: Kuvernementti
@@ -2526,8 +2526,8 @@ fi:
       historical_state: historiallinen osavaltio
       Historical_Town: Historiallinen kaupunki
       historical_town: historiallinen kaupunki
-      Intersection: Leikkauspiste
-      intersection: leikkauspiste
+      Intersection: Risteys
+      intersection: risteys
       Island: Saari
       island: saari
       Land_Feature: Maamerkki
@@ -2570,8 +2570,8 @@ fi:
       street: katu
       Street_Segment: Katusegmentti
       street_segment: katusegmentti
-      Subdivision: Alakaari
-      subdivision: alakaari
+      Subdivision: Naapurusto
+      subdivision: naapurusto
       Suburb: Lähiö
       suburb: lähiö
       Supername: Ylänimi
@@ -3086,6 +3086,7 @@ fi:
   reorder_by_taxonomy: Järjestä uudelleen taksonomian perusteella
   repair_broken_urls: Korjaa rikkinäiset URL-osoitteet
   repair_doesnt_work_for_that_kind_of_photo: Korjaaminen ei onnistu tämäntyyppiselle valokuvalle
+  replace_boundary_with_kml: Korvaa nykyiset rajat KML-tiedostolla
   replace_parentesis: (korvaa)
   reply: Vastaa
   reptiles: matelijat
@@ -4418,8 +4419,14 @@ fi:
         invite_your_friends_description: |
           Voit tehdä Facebookin ja Flickrin käyttäjille superhelpoksi tehdä valokuvistaan %{site_name}in havaintoja. Jätä vain Facebookissa kommentti jossa on tämä kutsu-osoite (alla). Voit myös valita taksonin ja projektin uudelle havainnolle valmiiksi.
     places:
+      kml_field_desc: |
+        Paikan rajat KML-tiedostona. Voit tehdä tiedoston Google Mapsilla, Google Eartilla tai useimmilla paikkatietosovelluksilla. Paikassa täytyy olla ainakin yksi polygoni ja sen pitää olla pienempi kuin 1 Mt (5Mt kuraattoreille) sekä pienempi kuin Teksas.
+      edit:
+        complex_boundary_note_html: |
+          Tämän paikan rajat ovat liian monimutkaisia, jotta niitä voisi muokata verkossa. Voit <a href="%{url}">ladata KML-tiedoston</a>, muokata sitä paikkatietosovelluksessa ja tallentaa muokkamasi tiedoston uudelleen iNaturalistiin.
       new:
         check_list_note: "Huom: erittäin suurille paikoille ei voi tehdä lajilistoja."
+        coordinates_desc: Sinun täytyy määritellä koordinaatit, jos et piirrä paikan rajoja tai tallenna KML-tiedostoa.
         map_instruction: Käytä polygonityökalua paikan rajojen piirtämiseen.
     posts:
       formatting_none_help: "Ei HTML-asetusta, käytä vain syöttämiäsi merkintöjä."
