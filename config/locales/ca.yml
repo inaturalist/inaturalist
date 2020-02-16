@@ -102,6 +102,9 @@ ca:
   x_research_grade_observations_to_species_html:
     one: "<span class=count>1</span> observació amb grau de recerca ha IDentificat les espècies, subespècies o varietats</span>"
     other: "<span class=count>%{count}</span> observacions amb grau de recerca van IDentificar les espècies, subespècies o varietats</span>"
+  x_sounds:
+    one: "%{count} so"
+    other: "%{count} sons"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> tàxon supervisat"
     other: "<span class='count'>%{count}</span> tàxons supervisats"
@@ -1293,10 +1296,13 @@ ca:
   flag_an_item: Marca un contingut
   flag_as_spammer: Marca com a brossa
   flag_as_non_spammer: Marca com a no-brossa
+  #Label for the date/time when a flag was created
+  flag_created: Marca creada
   flag_description: Marca aquest contingut perquè els supervisors sàpiguen que alguna cosa no va bé.
   flag_for_check_list_title_html: |
     Marca per a la Llista de Comprovació: %{title}
   flag_for_comment_id_html: Marqueu per <a href="%{url}">Comentar %{id}</a>
+  flag_for_comment_id_deleted: Marca pel Comentari %{id} (esborrat)
   flag_for_curation: Marca per revisió.
   flag_for_guide_title_html: |
     Marqueu per a la Guia: %{title}
@@ -1909,7 +1915,10 @@ ca:
   mentioned_you_in_an_x_on_noun_html: "%{user} us ha esmentat en un %{x} a %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} us ha esmentat a una %{x} en %{noun} de %{by}"
   mentioned_you_in_a_x_on_noun_by_user_html: "%{user} us ha esmentat a un %{x} en %{noun} de %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} us ha esmentat a un %{x} en %{noun} vostre"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} us ha esmentat a una %{x} en %{noun} de %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} us ha esmentat a una %{x} en %{noun} de %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} us ha esmentat a un %{x} en %{noun} vostre"
   merge: Combina
   merge_it_with_another_place: Combina amb un altre lloc
   merge_two_places_together: Combina dos llocs. Totes les espècies a les llistes de verificació, així com les dades geogràfiques, es combinaran.
@@ -2211,6 +2220,8 @@ ca:
   observation_added_to_the_project: "Observació afegida al projecte %{project}"
   observation_aggregation: Agregació d'observació
   observation_brief_something_on_day: "Quelcom el %{day}"
+  observation_brief_something_on_day_at_time: "Alguna cosa el %{day} a les %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Alguna cosa el %{day} a les %{time} per %{user}"
   observation_brief_something_on_day_by_user: "Alguna cosa el %{day} per %{user}"
   observation_brief_something_by_user: "Quelcom de %{user}"
   observation_brief_something_from_place: "Quelcom a %{place}"
@@ -2220,6 +2231,8 @@ ca:
   observation_brief_something_from_place_on_day_at_time: "Quelcom a %{place} el %{day} a les %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Quelcom a %{place} el %{day} a les %{time} per %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a les %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a les %{time} per %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} per %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} a %{place}"
@@ -3331,6 +3344,8 @@ ca:
   skip_to_next_page: "Aneu a la pàgina següent"
   small: petit
   site_admin_tools: Eines d'administració del lloc
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Administrador del Lloc
   site_name_place: "Llocs d’%{site_name}"
   site_observations_export_from_date: "Observacions de %{site_name} exportades des de %{date}"
   site_site_admin: "%{site_name} Lloc del Adminstrador"
@@ -3900,6 +3915,8 @@ ca:
   user_added_a_project_invitation_html: "%{user} ha afegit una invitació al projecte"
   user_added_a_x: "%{user} ha afegit una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} per %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
   user_added_a_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha afegit una identificació"
   user_added_an_observation_field_html: '%{user} ha afegit un valor per a "%{field_name}" a una observació de %{owner}'
@@ -3907,6 +3924,8 @@ ca:
   user_added_an_observation_html: "%{user} ha afegit una observació"
   user_added_an_x: "%{user} ha afegit una %{x}"
   user_added_an_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
   user_added_an_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha afegit %{x} observacions"
   user_already_authenticated: L'usuari ja es va autenticar
@@ -4326,6 +4345,8 @@ ca:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          El contingut que es pot marcar és l'atribut de text principal de l'objecte marcat en el moment que es va crear la marca. Només els supervisors i el personal pot veure això. Només el nostre personal pot veure això en els missatges.
         flags_that_should_not_be_resolved_desc_html: |
           Si us plau, retireu les marques  per <code>spam</code> i <code>d'incompliment de copyright</code> únicament si els contingut no és spam o no hi ha cap incompliment del copyright, respectivament.
     guides:
@@ -4471,6 +4492,9 @@ ca:
         show_messages_to_user: Mostreu missatges a %{user}
         speech_privilege_notice: |
           Podreu enviar nous missatges després d'afegir tres observacions verificables o identificar tres observacions d'altres. Per ara podeu llegir i respondre als missatges que altres persones us envien.
+      show:
+        flag_notice_html: |
+          Vau marcar aquesta conversació el %{date}. La marca persistirà fins i tot si esborreu la vostra còpia d'aquesta conversa, per tant, fer-ho és segur si no voleu seguir veient-lo.
     oauth:
       authorizations:
         new:
@@ -6169,6 +6193,8 @@ ca:
         Creeu, actualitzeu, i elimineu les vostres observacions, identificacions, i altre contingut en el vostre nom, i accediu a les vostres coordenades ocultes i qualsevol altra informació d'aquest lloc a la qual pugueu accedir.
       login: |
         Accediu a informació rellevant per entrar, com l'adreça de correu electrònic, el nom d'usuari, el nom, i la icona d'usuari
+      account_delete: |
+        Esborreu el vostre compte en nom vostre.
     errors:
       messages:
         #Common error messages
