@@ -88,6 +88,7 @@ bg:
   about_blocking: Относно блокирането
   about_charts: Относно диаграмите
   about_community_taxa: За консенсусните разпознавания от общността
+  about_editing_observation_fields: Относно редактирането на полета за наблюдения
   about_licenses: За лицензите
   about_muting: Относно заглушаването
   #Header for a section describing taxon names
@@ -337,6 +338,7 @@ bg:
   back_to_calendar: "Обратно към календара на %{user}"
   back_to_editing_observation: Обратно към редактиране на наблюдението
   back_to_observation: Обратно към наблюдението
+  back_to_observation_fields: Обратно към полетата за наблюдения
   back_to_people: Обратно към хората
   back_to_possessive_user_profile: "Обратно към профила на %{possuser}"
   back_to_projects: Обратно към проекти
@@ -402,6 +404,8 @@ bg:
   change_geoprivacy: 'Промени геоповерителността'
   change_icon: Промени иконата
   change_password: Промени паролата
+  change_types:
+    merge: Обединяване
   change_your_password: Промяна на паролата
   check_back_soon: Проверете пак скоро!
   check_list: Видов списък
@@ -663,6 +667,7 @@ bg:
   edited_by_name_some_rights_reserved_html: |
     Редактирано от %{name}, някои права запазени (%{license})
   editing: Редактиране
+  editing_observation_field: Редактиране на поле за наблюдения
   editing_observation_id: "Редактиране на наблюдение %{obs_id}"
   editing_observations:
     one: 'Редактиране на <span class="count">1</span> наблюдение:'
@@ -1104,6 +1109,7 @@ bg:
     Част от <a href="%{url}">Мрежата на iNaturalist</a>
   members: Членове
   mentioned_you_in_noun_html: "%{user} Ви спомена във %{noun}"
+  merge: Обединяване
   message: Съобщение
   messages: Съобщения
   mollusks: мекотели
@@ -1949,6 +1955,7 @@ bg:
   sending: Изпращане...
   #Label for messages you've sent
   sent: изпратени
+  separate_values_with_a_pipe: Разделете отделните стойности с вертикална черта, например „да|не|може би“ или „зелен|червен|син“
   settings: настройки
   share: Споделяне
   show: Показване
@@ -2220,6 +2227,7 @@ bg:
   users_id: "ID на %{user}"
   users_profile: "Профила на %{user}"
   value: Стойност
+  values: Стойности
   verifiable_observations_by_observation_date: Потвърдими наблюдения по дата на наблюдение
   view: Виж
   view_all: Виж всички
@@ -2414,6 +2422,16 @@ bg:
       import:
         date_column_format: ГГГГ-ММ-ДД ЧЧ:ММ
         decimal_degrees_format: dd.dddd
+    observation_fields:
+      about_editing_observation_fields_desc_html: |
+        <p class='ui'>Можете да редактирате това поле, защото е създадено от Вас или защото сте куратор на сайта. Ако сте куратор, моля следвайте тези напътствия:
+        </p>
+        <ol>
+        <li>Не правете произволни промени на имената на полетата (например променяйки „хранене“ на „пиене на нектар“)</li>
+        <li>Имайте предвид, че полетата могат да се използват за всякакви таксони, така че се опитайте да използвате по-общи термини приложими за повече таксони</li>
+        <li>Не изтривайте полета, които се използват</li>
+        <li>Не превеждайте съществуващи полета на други езици. Английският е общият език на сайта. Ако наистина се нуждаете от поле изразяващо същото значение, но на друг език, моля създайте отделно поле за наблюдения.</li>
+        </ol>
     emailer:
       users_updates_suspended:
         message: |
