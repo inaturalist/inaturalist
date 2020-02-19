@@ -802,6 +802,7 @@ sv:
   favorite_taxa: Favorit taxa
   favorites: "Favoriter"
   feedback: Återkoppling
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Matningar'
   failed: Misslyckades
   fields: fält
@@ -1146,14 +1147,12 @@ sv:
   observer: Observatör
   observers: Observatörer
   observer_short: Observatör
-  of: av
   of_observations: observationer
   of_species: arter
   of_observers: observatörer
   of_identifiers: identifierare
   of_places: platser
   official_blog: Officiell blogg
-  on_: "på"
   on_date: "den %{date}"
   on_day: "på"
   onboarding:
@@ -1337,7 +1336,9 @@ sv:
     western_sahara: Västsahara
     yemen: Jemen
   possessive_user: "%{user}s"
+  #Post is a noun
   post_from_journal_by_parent_html: Inlägg från <a href="%{url}">journalen av %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Inlägg från <a href="%{url}">din journal</a>
   posted_by: Skrivet av
   powered_by: Drivs av
@@ -1610,6 +1611,7 @@ sv:
   view_your_year_stats: "Visa din statistik för %{year}"
   visually_similar: Visuellt liknande
   vulnerable: Sårbar
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Önskad
   we_also_support: |
     Vi stöder också <a href="http://flickr.com">Flickr</a>,
