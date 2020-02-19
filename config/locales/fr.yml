@@ -928,7 +928,6 @@ fr:
   couldnt_find_a_user_matching_x_param: "Impossible de trouver un utilisateur correspondant à %{id}"
   couldnt_find_that_taxon: Impossible de trouver ce taxon.
   countries: Pays
-  cover: Couverture
   create: Créer
   create_a_guide: Créer un guide
   create_a_new_field: Créer un nouveau champ
@@ -1204,6 +1203,7 @@ fr:
   endangered: Menacé
   endemic: Endémique
   endemic_to_x: "Endémique à %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EdlV
   eol_collection_url: "URL de la collection de l’EdlV"
   error_updating_photo: "Erreur de mise à jour de la photo : %{photo_errors}"
@@ -1268,6 +1268,7 @@ fr:
   featured: Mis en valeur
   featuring: Mis en valeur
   feedback: Commentaires
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Flux'
   failed: Échec
   field_note: |
@@ -1357,6 +1358,7 @@ fr:
   flickr_tagger: Étiquetter les photos Flickr
   flickr_tags: Étiquettes Flickr
   fluid_layout: Mise en page fluide
+  #Adjective, as in a fluid layout of images
   fluid: fluide
   follow: Suivre
   follow_receive_updates_about_new_observations: Suivre (recevoir les modifications sur les nouvelles observations)
@@ -2288,7 +2290,6 @@ fr:
     irregular: irrégulier
     doubtful: invraisemblable
     absent: absent
-  of: de
   of_observations: observations
   of_species: espèce
   of_observers: observateurs
@@ -2300,7 +2301,6 @@ fr:
   offline_access_enabled: Accès hors ligne activé
   old_observation_form: Ancien formulaire d’observation (désuet)
   ok: "OK"
-  on_: "le"
   on_date: "le %{date}"
   on_day: "le"
   on_your_life_list: dans votre liste des êtres vivants
@@ -2868,7 +2868,9 @@ fr:
   popular: Populaire
   position: Emplacement
   possessive_user: "%{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Publié depuis <a href="%{url}">le journal par %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Publié depuis <a href="%{url}">votre journal</a>
   post_published: Note publiée!
   posted_by: Publié par
@@ -3364,6 +3366,7 @@ fr:
   species_taxon_name: Nom de l’espèce ou du taxon
   species_unknown: Espèce inconnue
   specify_the_reason_youre_flagging: Spécifier le motif du marquage de cet élément
+  #Abbreviation for "source"
   src: Rech.
   start: Début
   start_a_new_project: Démarrer un nouveau projet
@@ -3375,7 +3378,6 @@ fr:
   start_typing_place_name: Commencez à taper le nom du lieu…
   start_typing_taxon_name: Commencez à taper le nom du taxon…
   start_typing_someones_name: "Commencez à taper le nom de quelqu’un…"
-  states: États
   stats: Statistiques
   stats_for_this_year_have_not_been_generated: Les statistiques pour cette année n’ont pas été générées.
   status: État
@@ -3694,6 +3696,7 @@ fr:
   threatened: Menacé
   time_: heure
   time_ago: "il y a %{time}"
+  #As in the title of a book or a blog post
   title: titre
   title_and_description: "Titre & description"
   to_add_comments: pour ajouter des commentaires
@@ -3984,6 +3987,7 @@ fr:
   w_photos_only: avec photos
   w_sounds: avec sons
   wait_file_generation: Veuiller patienter pendant que le fichier est généré. Cette action peut prendre quelques minutes pour les longues listes.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Recherché
   was_it_captive_cultivated?: "Était-il captif/cultivé?"
   we_also_support: |
@@ -5579,21 +5583,6 @@ fr:
           observant, mais il affichera des pics inhabituels dans les observations, et s’il
           semble plat ou en décroissance malgré un nombre croissant d’observateurs,
           cela peut suggérer une modification de son abondance.
-        charts_help_other: |
-          Nous affichons aussi des graphiques saisonniers pour les annotations d’observation.
-          Les annotations sont un nouveau système pour ajouter des métadonnées aux observations en utilisant
-          un vocabulaire restreint de termes. Ainsi, nous n’utilisons que « Étape de vie »
-          et « Phénologie de la plante » (quand la plante fleurit ou produit
-          des fruits). Nous n’avons pas encore de moyen d’ajouter directement des annotations, donc
-          pour le moment, nous convertissons les données des champs d’observation en annotations.
-          Si vous ne voulez pas attendre que nous construisions notre système d’annotations, vous pouvez
-          contribuer aux annotations d’« Étape de vie » en ajoutant des valeurs au champ d’observation
-          qui ont une des valeurs suivantes : Adulte, Ténéral, Chrysalide,
-          Nymphe, Larve, Œuf, ou Juvénile. Ainsi, en particulier, les champs « Étape de vie »
-          et «Étape de vie d’un insecte » sont bons. Pour la « Phgénologie des plantes », nous
-          chefchons n’importe quel champ contenant le mot « phénologie » dans son nom et
-          « fleur » ou « fruit » dans la valeur ; ainsi, le champ « Phénologie de floraison »
-          est un bon candidat à utiliser.
         charts_help_relative_observations: |
           Afficher la fréquence dans des proportions relatives par rapport à toutes les observations aide
           à aplanir l’effet de la croissance globale du site. Par exemple,
