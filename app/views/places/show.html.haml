@@ -155,15 +155,10 @@
             ?
 / end maintabs
 .clear
+- if @place.user
+  .meta.stacked
+    =t :added_by_user_on_date_html, user: link_to_user( @place.user ), date: l( @place.created_at, format: :long )
 .meta.stacked
-  - if @place.user
-    = t(:place_added_to_inat_by, :site_name => @site.preferred_site_name_short)
-    = link_to user_image(@place.user), @place.user
-    = link_to you_or_login(@place.user), @place.user
-    - date_format = @place.created_at.to_date.to_s(:long).split(" ")
-    = t :on_
-    = t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last)
-    |
   = link_to t(:add_new_place), new_place_path, :class => "readmore"
 
 - if @place.source

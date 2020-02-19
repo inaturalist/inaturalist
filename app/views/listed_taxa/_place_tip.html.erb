@@ -37,21 +37,17 @@
 </div>
 
 <div class="ui description">
-  <%=t :added %> 
-  <% if listed_taxon.user %>
-    <%=t :by %> 
-    <%= link_to you_or_login(listed_taxon.user), listed_taxon.user %>
-  <% end %>
-  <%=t :on %> <%= listed_taxon.created_at.to_s(:long) %>
+  <%=t :added_by_user_on_date_html,
+    user: link_to_user( listed_taxon.user, missing: t(:site_admins) ),
+    date: listed_taxon.created_at.to_s(:long)
+  %>
 </div>
 
 <div class="stacked ui description">
-  <%=t :updated %>
-  <% if listed_taxon.updater %>
-    <%=t :by %> 
-    <%= link_to you_or_login(listed_taxon.updater), listed_taxon.updater %>
-  <% end %>
-  <%=t :on %><%= listed_taxon.updated_at.to_s(:long) %>
+  <%=t :updated_by_user_on_date_html,
+    user: link_to_user( listed_taxon.updater, missing: t(:site_admins) ),
+    date: listed_taxon.updated_at.to_s(:long)
+  %>
 </div>
 
 <div>

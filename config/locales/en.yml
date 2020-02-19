@@ -138,6 +138,12 @@ en:
   x_suggestions_filtered_by_colon:
     one: "%{count} Suggestion Filtered By:"
     other: "%{count} Suggestions Filtered By:"
+  x_taxa:
+    zero: "%{count} taxa"
+    one: "%{count} taxon"
+    few: "%{count} taxa"
+    many: "%{count} taxa"
+    other: "%{count} taxa"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observed"
     other: "<span class='count'>%{count}</span> taxa observed"
@@ -861,6 +867,7 @@ en:
   commercial_solicitation: Commercial solicitation, links to nowhere, etc.
   commit: Commit
   committed: Committed
+  committed_by_user_on_date_html: Committed by %{user} on %{date}
   committed_on: Committed on %{date}
   committing: Committing...
   community: Community
@@ -1005,7 +1012,6 @@ en:
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
   couldnt_find_that_taxon: Could't find that taxon.
   countries: Countries
-  cover: Cover
   create: Create
   create_a_guide: Create a Guide
   create_a_new_field: Create a New Field
@@ -1286,6 +1292,7 @@ en:
   endangered: Endangered
   endemic: Endemic
   endemic_to_x: "Endemic to %{x}"
+  # Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "EOL collection URL"
   error_updating_photo: "Error updating photo: %{photo_errors}"
@@ -1351,6 +1358,7 @@ en:
   featured: Featured
   featuring: Featuring
   feedback: Feedback
+  # Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
   failed: Failed
   field_note: |
@@ -1465,6 +1473,7 @@ en:
   flickr_tagger: Flickr Tagger
   flickr_tags: Flickr Tags
   fluid_layout: Fluid Layout
+  # Adjective, as in a fluid layout of images
   fluid: fluid
   follow: Follow
   follow_receive_updates_about_new_observations: Follow (receive updated about new observations)
@@ -2489,7 +2498,6 @@ en:
     irregular: irregular
     doubtful: doubtful
     absent: absent
-  of: of
   of_observations: observations
   of_species: species
   of_observers: observers
@@ -2501,7 +2509,6 @@ en:
   offline_access_enabled: Offline access enabled
   old_observation_form: Old observation form (deprecated)
   ok: "OK"
-  on_: "on"
   on_date: "at %{date}"
   on_day: "on"
   on_your_life_list: on your life list
@@ -3099,7 +3106,9 @@ en:
   popular: Popular
   position: Position
   possessive_user: "%{user}'s"
+  # Post is a noun
   post_from_journal_by_parent_html: Post from <a href="%{url}">journal by %{parent}</a>
+  # Post is a noun
   post_from_your_journal_html: Post from <a href="%{url}">your journal</a>
   post_published: Post published!
   posted_by: Posted by
@@ -3628,6 +3637,7 @@ en:
   species_taxon_name: Species / Taxon Name
   species_unknown: Species unknown
   specify_the_reason_youre_flagging: Specify the reason you're flagging this item
+  # Abbreviation for "source"
   src: Src
   standard: Standard
   start: Start
@@ -3640,7 +3650,6 @@ en:
   start_typing_place_name: Start typing place name...
   start_typing_taxon_name: Start typing taxon name...
   start_typing_someones_name: "Start typing someone's name..."
-  states: States
   stats: Stats
   stats_for_this_year_have_not_been_generated: Stats for this year have not been generated.
   status: Status
@@ -3995,6 +4004,7 @@ en:
   threatened: Threatened
   time_: time
   time_ago: "%{time} ago"
+  # As in the title of a book or a blog post
   title: title
   title_and_description: "Title & Description"
   to_add_comments: to add comments
@@ -4087,6 +4097,7 @@ en:
   update_with_site_content: "Update with %{site_name} content"
   updated: Updated
   updated_by: Updated by
+  updated_by_user_on_date_html: Updated by %{user} on %{date}
   updated_daily: Updated daily
   updated_photo: Updated photo
   upload: Upload
@@ -4296,6 +4307,7 @@ en:
   w_photos_only: w/ photos
   w_sounds: w/ sounds
   wait_file_generation:  Please hold on while the file is generated.  It can take a couple minutes for large lists.
+  # Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
   we_also_support: |
@@ -4385,6 +4397,18 @@ en:
     one: "%{count} observation failed"
     other: "%{count} observations failed"
   x_of_y: "%{x} of %{y}"
+  x_of_count_confirmed:
+    zero: "%{x} of %{count} confirmed"
+    one: "%{x} of %{count} confirmed"
+    few: "%{x} of %{count} confirmed"
+    many: "%{x} of %{count} confirmed"
+    other: "%{x} of %{count} confirmed"
+  x_of_count_observed:
+    zero: "%{x} of %{count} observed"
+    one: "%{x} of %{count} confirmed"
+    few: "%{x} of %{count} observed"
+    many: "%{x} of %{count} observed"
+    other: "%{x} of %{count} observed"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} of %{y} people (over 2/3) agree it is"
   x_is_the_root_of_the_tree: "%{rank} %{name} is the root of the tree"
   x_project_journal: "%{project}'s %{name}"
@@ -6099,19 +6123,9 @@ en:
           that might suggest a change in abundance.
         charts_help_other: |
           We also show seasonality charts for observation annotations.
-          Annotations are a new system for adding metadata to observations using
-          a controlled vocabulary of terms. So far we are only using "Life
-          Stage" and "Plant Phenology" (when the plant is flowering or
-          fruiting). We do not yet have a way to add annotations directly, so
-          for now we are converting data from observation fields to annotations.
-          If you can't wait for us to build our annotating system, you can
-          contribute to "Life Stage" annotations by adding observation field
-          values that have any of the following values: Adult, Teneral, Pupa,
-          Nymph, Larva, Egg, or Juvenile. So in particular, the "Life Stage" and
-          "Insect Life Stage" fields are good. For "Plant Phenology," we're
-          looking at any field with the word "phenology" in its name and
-          "flower" or "fruit" in the value, so the "Flowering Phenology" field
-          is a good one to use.
+          Annotations are a way to add metadata to observations using
+          a controlled vocabulary of terms, e.g. whether an observation depicts
+          a plant that is flowering or fruiting.
         charts_help_relative_observations: |
           Showing frequency as a relative proportion of all observations helps
           smooth out the effect of the overall growth of the site. For example,
@@ -6424,7 +6438,9 @@ en:
         notification_preferences_project_journal_posts: Project journal posts
         # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: When a project adds your observations
-        # Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily
+        # email update. This one controls whether or not you get notifications
+        # when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Project curator changes
         # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Taxonomy changes
@@ -7260,7 +7276,7 @@ en:
         favorite: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@n"
-        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@n"
         # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@n"

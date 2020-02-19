@@ -299,15 +299,11 @@ class ObservationsController < ApplicationController
           @shareable_image_url = FakeView.image_url( op.photo.best_url(:large) )
         end
         @shareable_title = if @observation.taxon
-          if comname = FakeView.common_taxon_name( @observation.taxon, user: current_user, site: @site ).try(:name)
-            "#{comname} (#{@observation.taxon.name})"
-          else
-            @observation.taxon.name
-          end
+          render_to_string( partial: "taxa/taxon.txt", locals: { taxon: @observation.taxon } )
         else
           I18n.t( "something" )
         end
-        @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
+        @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable, viewer: current_user )
         @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
 
         @skip_application_js = true

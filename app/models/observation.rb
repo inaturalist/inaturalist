@@ -776,7 +776,11 @@ class Observation < ActiveRecord::Base
     # I18n.t( :observation_brief_taxon_on_day_by_user )
     i18n_vars = {}
     key = if taxon
-      i18n_vars[:taxon] = common_name( locale: I18n.locale )
+      i18n_vars[:taxon] = if options[:viewer]
+        FakeView.render( partial: "taxa/taxon.txt", locals: { taxon: taxon, viewer: options[:viewer] } )
+      else
+        common_name( locale: I18n.locale )
+      end
       i18n_vars[:taxon] ||= taxon.name
       "taxon"
     else

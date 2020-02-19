@@ -3,6 +3,7 @@ place ||= @place
 comname = common_taxon_name(taxon, place: place || @site.try(:place)).try(:name)
 comname = capitalize_name( comname ) if comname
 no_common ||= false
+viewer ||= defined?( current_user ) ? current_user : nil
 if taxon.rank == 'species' or taxon.rank == 'infraspecies'
   sciname = '%s' % taxon.name
 else
@@ -10,7 +11,7 @@ else
 end
 name = if comname.blank? || no_common
   sciname
-elsif current_user && current_user.prefers_scientific_name_first?
+elsif viewer && viewer.prefers_scientific_name_first?
   "#{sciname} (#{comname})"
 else
   "#{comname} (#{sciname})"

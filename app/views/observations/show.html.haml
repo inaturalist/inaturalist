@@ -1,27 +1,5 @@
 - content_for :title do
-  - if @observation.taxon
-    :ruby
-      common_name = [
-        common_taxon_name( @observation.taxon, place: current_user.try(:place) || @site.try(:place) ).try(:name),
-        common_taxon_name( @observation.taxon ).try(:name)
-      ].detect{|n| !n.blank?}
-      display_name = @observation.taxon.name unless common_name
-      display_name ||= current_user.try(:prefers_scientific_name_first) ?
-        "#{@observation.taxon.name} (#{capitalize_name( common_name )})" :
-        "#{capitalize_name( common_name )} (#{@observation.taxon.name})"
-    = raw display_name
-  - elsif !@observation.species_guess.blank?
-    = @observation.species_guess
-  - else
-    = t(:something)
-  = t(:observed_by).downcase
-  = @observation.user.login
-  - if @observation.time_observed_at && @coordinates_viewable
-    = l @observation.time_observed_at, :format => :observed_at
-  - if @observation.observed_on
-    - date_format = @observation.observed_on.to_s(:long).split(" ")
-    = t :on_
-    = t("date_format.date_long.#{date_format.first.downcase}", day: date_format[1], year:date_format.last)
+  = @shareable_description
 - content_for :extrahead do
   %meta{ property: "og:title", content: @shareable_title }
   %meta{ property: "twitter:title", content: t( :taxon_observed_by_user, taxon: @shareable_title, user: @observation.user.try_methods(:name, :login), default: @shareable_title ) } 
