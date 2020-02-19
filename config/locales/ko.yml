@@ -651,7 +651,6 @@ ko:
   couldnt_find_a_user_matching_x_param: "%{id}와(과) 일치하는 사용자를 찾을 수 없습니다"
   couldnt_find_that_taxon: 분류군을 찾지 못했습니다.
   countries: 국가
-  cover: 겉표지
   create: 만들기
   create_a_guide: 가이드 만들기
   create_a_new_field: 새로운 필드 생성
@@ -929,6 +928,7 @@ ko:
   favorite_taxa: 좋아하는 분류군
   favorites: "즐겨찾기"
   feedback: 피드백
+  #Plural noun, as in Atom and RSS feeds
   feeds: '피드'
   failed: 실패
   field_note: |
@@ -998,6 +998,7 @@ ko:
   flickr_style: Flickr-스타일
   flickr_tagger: Flickr 태그 단 사용자
   flickr_tags: Flickr 태그
+  #Adjective, as in a fluid layout of images
   fluid: 유체
   follow: 팔로우
   follow_user: "%{user} 팔로우"
@@ -1378,10 +1379,14 @@ ko:
   momentjs:
     shortRelativeTime:
       future: "%s로"
+      #Short text representing 1 second in the past
+      s: "1초 전"
       #Short text representing 1 minute in the past
       m: "1분 전"
       #Short text representing 1 month in the past
       M: "1달 전"
+      #Short text representing 1 year in the past
+      'y': "1년 전"
   month: 월
   months: 월별
   more: 더 보기
@@ -2261,6 +2266,7 @@ ko:
   this_user_has_been_suspended: 이 사용자는 일시 중지되었습니다
   this_year: 올해
   threatened: 위기종
+  #As in the title of a book or a blog post
   title: 제목
   too_many_results: 결과가 너무 많음
   total: 합계
