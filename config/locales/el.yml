@@ -904,6 +904,7 @@ el:
   favorites: "Αγαπημένα"
   feature_this_project_: "Παρουσιάστε Αυτό το Πρότζεκτ"
   featuring: Χαρακτηριστικό
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Ροές'
   failed: Απέτυχε
   field_note: |
@@ -1604,7 +1605,6 @@ el:
     uncommon: ασυνήθιστο
     irregular: ανώμαλο
     absent: απών
-  of: του
   of_observations: Παρατηρήσεις
   of_species: είδη
   of_observers: Παρατηρητές
@@ -1615,7 +1615,6 @@ el:
   official_blog: Επίσημο ιστολόγιο
   offline_access_enabled: Η πρόσβαση εκτός σύνδεσης ενεργοποιήθηκε
   ok: "Εντάξει"
-  on_: "εντός"
   on_date: "στις %{date}"
   on_day: "εντός"
   onboarding:
@@ -2070,7 +2069,9 @@ el:
   popular: Δημοφιλές
   position: Θέση
   possessive_user: "της/του %{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Δημοσίευση από το <a href="%{url}">ημερολόγιο από %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Δημοσίευση από το <a href="%{url}">ημερολόγιό σας</a>
   post_published: Η ανάρτηση δημοσιεύτηκε!
   posted_by: Αναρτήθηκε από
@@ -2408,7 +2409,6 @@ el:
   start_typing_place_name: Ξεκινήστε την πληκτρολόγηση της ονομασίας ενός τόπου...
   start_typing_taxon_name: Ξεκινήστε την πληκτρολόγηση της ονομασίας ενός taxon...
   start_typing_someones_name: "Ξεκινήστε την πληκτρολόγηση του ονόματος κάποιου..."
-  states: Πολιτείες
   stats: Στατιστικά
   stats_for_this_year_have_not_been_generated: Τα στατιστικά για αυτό το έτος δεν έχουν δημιουργηθεί ακόμα.
   status: Κατάσταση
@@ -2500,6 +2500,7 @@ el:
   threatened: απειλούμενο
   time_: Ώρα
   time_ago: "πρίν από %{time}"
+  #As in the title of a book or a blog post
   title: Τίτλος
   title_and_description: "Τίτλος και περιγραφή"
   to_recipient: προς
