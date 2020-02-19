@@ -135,7 +135,7 @@ zh-CN:
   add_from_your_observations: 从您的观察中添加
   add_link: 添加链接
   add_higher_level_taxon: 加入一个更高级分类（例如：“鸟类”）
-  add_id: 添加ID
+  add_id: 新增鉴定
   add_new_lexicon: 添加新的专属词汇
   add_new_photos_by_their_ids: 通过他们的Flickr ID添加新的照片（必须是知识共享授权！）
   add_new_place: 添加一处新的地点
@@ -429,7 +429,7 @@ zh-CN:
   based_on_the_evidence_can_id_be_improved: |
     根据此证据，社区ID能否得到确认或改善？
   batch: 批
-  batch_edit: 批编辑
+  batch_edit: 批量编辑
   batch_edit_taxa_for_x_html: "为 %{x} 批处理编辑分类"
   batch_operations: 批操作
   be_the_first_to_fave_this_observation: 成为第一个发表这一观察的人！
@@ -461,7 +461,7 @@ zh-CN:
   browse_people: 浏览人们
   browse_projects: 浏览项目
   browse_species_that_occur_near_this_observation: 浏览这条观察记录附近出现的物种
-  built_with_site_guides_html: "构造自<a href='%{url}'>%{site_name} 指南</a>"
+  built_with_site_guides_html: "使用指南<a href='%{url}'>%{site_name} 来打造</a>"
   bulk_import_of_filename_is_complete: "%{filename} 的大量导入完成"
   by: 由
   by_everyone: 由任何人
@@ -475,7 +475,7 @@ zh-CN:
   captive: 捕获
   captive_cultivated: 捕获的 / 种植的
   card: 卡
-  casual: 变装
+  casual: 非正式的
   casual_: 便装
   categories: 分类
   cc_0_description: "该许可协议会将您的作品发布至公有领域，这样其他人可以复制、修改、发布和执行您的工作，甚至商业目的，所有行为不需要请求许可或向您提供报酬。这是提供的许可协议中最具适应性的。推荐用于大规模传播和授权材料的使用。"
@@ -704,7 +704,6 @@ zh-CN:
   couldnt_find_a_user_matching_x_param: "找不到符合%{id}的用户"
   couldnt_find_that_taxon: 找不到这个分类单元。
   countries: 国家
-  cover: 封面
   create: 创建
   create_a_guide: 创建指导
   create_a_new_field: 创建一个新字段
@@ -994,6 +993,7 @@ zh-CN:
   favorites: "喜爱"
   featured: 特色
   feedback: 反馈
+  #Plural noun, as in Atom and RSS feeds
   feeds: '源'
   failed: 失败
   field_note: |
@@ -1068,6 +1068,7 @@ zh-CN:
   flickr_tagger: Flickr 贴标签者
   flickr_tags: Flickr 标签
   fluid_layout: 流动布局
+  #Adjective, as in a fluid layout of images
   fluid: 液体
   follow: 关注
   follow_user: "关注%{user}"
@@ -1133,7 +1134,7 @@ zh-CN:
   has_photo: 有照片
   has_photos: 有照片
   has_photo_and_sound: 有照片和声音
-  has_photos_or_sounds: 有照片或声音
+  has_photos_or_sounds: 有照片或音频
   has_sound: 有声音
   has_sounds: 有声音
   hasnt_contributed_any_observations: 没有对这一项目贡献观察记录
@@ -1252,7 +1253,7 @@ zh-CN:
   is_not_following_anyone: 未关注任何人。
   is_now: 现已
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: 有提供足够证据来确认这是%{taxon}么？
-  is_this_offensive_html: '这是<a href="/help#inappropriate">不可接受</a>、滥发消息或攻击性内容么？'
+  is_this_offensive_html: '这是一条<a href="/help#inappropriate">不当内容</a>、垃圾信息或攻击性内容么？'
   is_this_place_a_duplicate: 此地点是否重复？
   it_can_now_be_used_for_research: 它现在可以用于科学研究，并在其他网站上展示
   item_flagged_notice_html: |
@@ -1624,7 +1625,7 @@ zh-CN:
   ne_lon: 东北经度
   near_threatened: 近乎受到威胁
   nearby_observations_: 附近观察
-  needs_id: 需要ID
+  needs_id: 待鉴定
   needs_id_: 需要ID
   needs_id_expandable_html: "<span class='full'>需要</span>ID"
   needs_to_be_identified: 需要被鉴定
@@ -1861,7 +1862,6 @@ zh-CN:
     irregular: 无规律
     doubtful: 可疑
     absent: 缺席
-  of: 的
   of_observations: 观察
   of_species: 种
   of_observers: 观察者
@@ -1873,7 +1873,6 @@ zh-CN:
   offline_access_enabled: 启用离线访问
   old_observation_form: 旧观察表单（已弃用）
   ok: "确定"
-  on_: "在"
   on_date: "于 %{date}"
   on_day: "于"
   on_your_life_list: 在您的生物清单上
@@ -1881,7 +1880,7 @@ zh-CN:
     observe_panel_title: 让我们开始发表一些观察吧
     observe_panel_body_p1_local: 需要灵感？这里有一些在附近被观察到的生命体...
     observe_panel_body_p1_global: 需要灵感？这里有一些被观察到的生物...
-    observe_panel_body_p2: 到户外去，观察一种生物吧。找到一些野生生物，照一张清晰、整体的照片吧。如果您已经有某些野生动物的照片，可以<a href="%{new_observation_path}">现在就添加进来</a>。您也可以使用%{site_name}的移动端应用程序来做您的观察。
+    observe_panel_body_p2: 到户外去，观察一种生物吧。找到一些物种，照一张清晰、完整的照片吧。如果您已经有某些物种的照片，可以<a href="%{new_observation_path}">现在就添加进来</a>。您也可以使用%{site_name} 的移动端应用程序来记录您的观察。
     observe_panel_body_p3: 当您将您的观察结果分享给大家后，此页面会以评论和标识的形式向您显示社区的更新内容。谁知道您将会发现什么！
     follow_panel_title_local: 关注一些附近的自然法学家
     follow_panel_title_global: 关注一些活跃的自然法学家
@@ -2254,7 +2253,9 @@ zh-CN:
   popular: 热门
   position: 位置
   possessive_user: "%{user}的"
+  #Post is a noun
   post_from_journal_by_parent_html: 来自<a href="%{url}">%{parent}的日记</a>的帖子
+  #Post is a noun
   post_from_your_journal_html: 来自<a href="%{url}">您的日记</a>的帖子
   post_published: 贴子已发布！
   posted_by: 发帖人：
@@ -2400,7 +2401,7 @@ zh-CN:
   receive_email_notifications_when_people_leave_you: 接受电子邮件通知有关
   receive_updates_from_this_project: 从此项目接收更新
   recent: 最近
-  recent_evidence_of_organism: 对生物的最近证据
+  recent_evidence_of_organism: 生物的最新证据
   recent_observations: 最新观察
   recent_observations_: 最近观察
   recent_post: 最新贴子
@@ -2631,7 +2632,7 @@ zh-CN:
   some_of_those_photos_couldnt_be_saved: "某些照片无法保存：%{error}"
   some_other_reason: 您可以在下方说明其他一些原因。
   some_rights_reserved: 保留部分权利
-  something: 一些事
+  something: 某生物
   something_: 一些事
   something_went_wrong_adding: 将该物种添加到您的列表中时发生了错误
   something_went_wrong_deleting_the_taxon_name: "删除分类名称“%{taxon_name}”时发生了错误！"
@@ -2655,14 +2656,14 @@ zh-CN:
   soundcloud_needs_to_confirm: "SoundCloud需要确认您希望您的帐户与%{site_name}相关联。"
   sounds:
     add_media: 添加媒体
-    add_sounds: 添加声音
+    add_sounds: 添加音频
     before_importing_sounds: 在导入声音前
     import_from_soundcloud_description: "从您的SoundCloud帐户中选择声音来转换为iNaturalist观察结果。我们将从声音的元数据中填写日期和时间，并尝试从标签中查找物种名称。"
     import_from_sounds: 从声音导入
     import_sounds: 导入声音
     listen: 听
     no_photos_sounds: 没有照片或声音
-    photos_sounds: 照片 / 声音
+    photos_sounds: 照片 / 音频
     request_timed_out: 请求SoundCloud超时。请稍后再试。
     select_one_or_more_sounds: 请选择一个或多个声音
     selected_sounds: 已选择声音
@@ -2709,6 +2710,7 @@ zh-CN:
   species_taxon_name: 物种 / 分类名称
   species_unknown: 物种未知
   specify_the_reason_youre_flagging: 指定标记此项目的原因
+  #Abbreviation for "source"
   src: 源
   standard: 标准
   start: 开始
@@ -2721,7 +2723,6 @@ zh-CN:
   start_typing_place_name: 开始输入地点名称...
   start_typing_taxon_name: 开始输入分类名称……
   start_typing_someones_name: "开始输入某人的名字..."
-  states: 州
   stats: 统计
   stats_for_this_year_have_not_been_generated: 该年的统计尚未生成。
   status: 状态
@@ -2745,7 +2746,7 @@ zh-CN:
   subscribe_to_a_taxon: 订阅分类单元
   subscribe_to_a_place: 订阅地点
   subscribe_to_observations_in_a_taxon: 订阅来自一个物种或一个生物群（例如“蝎子”）的所有观察结果。
-  subscribe_to_observations_in_a_place: 订阅在此地点发布的所有观察结果。您还可以添加可选的分类过滤器（例如“scorpions from Texas”）。
+  subscribe_to_observations_in_a_place: 订阅在此地点发布的所有观察结果。您还可以添加一个分类过滤（例如：“位于得克萨斯州的蝎子”）。
   subscribe_to_places_to: |
     订阅地点来接收在那里进行的新观察的更新。您关注的人和您评论的内容的更新也通过订阅进行管理，另外，如果您想查看订阅的内容并取消订阅内容，可以点击下方的“管理所有订阅”。您还可以在此页面取消订阅网站上的任何内容。
   subscribe_to_this: 订阅此
@@ -2784,9 +2785,9 @@ zh-CN:
   taxon_geoprivacy: 分类地理敏感信息
   taxon_is_a_rank: "%{taxon}是一个%{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
-    other: "%{taxon}是%{iconic_taxon}中的%{rank}，共有%{count}次观察"
+    other: "%{taxon} 在%{iconic_taxon} 中排名%{rank}，共有%{count} 次观察"
   taxon_is_a_rank_of_amphibia_with_x_observations:
-    other: "%{taxon}是两栖动物中的%{rank}，共有%{count}次观察"
+    other: "%{taxon} 在两栖动物中排名 %{rank}，共有%{count} 次观察"
   taxon_is_a_rank_of_aves_with_x_observations:
     other: "%{taxon}是鸟类中的%{rank}，共有%{count}次观察"
   taxon_is_a_rank_of_mammalia_with_x_observations:
@@ -2971,6 +2972,7 @@ zh-CN:
   threatened: 受到威胁
   time_: 时间
   time_ago: "%{time}前"
+  #As in the title of a book or a blog post
   title: 标题
   title_and_description: "标题和描述"
   to_add_comments: 要添加评论
@@ -2983,7 +2985,7 @@ zh-CN:
   top_contributors: 顶尖贡献者
   top_identifier: 最多标识符
   top_identifiers: 顶端标识符
-  top_identifiers_of_taxon: '%{taxon}的顶级标识符'
+  top_identifiers_of_taxon: '%{taxon} 中排名靠前的鉴定者'
   top_observer: 最多观察者
   top_observers: 最多观察者
   top_species: 最多物种
@@ -3119,7 +3121,7 @@ zh-CN:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>对%{project_title}的贡献
   users_highlights_and_stats_from_year_on_site: "来自%{site}在%{year}年的%{user}的要点与统计数据"
   users_id: "%{user} 的ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>的ID"
+  users_identification_short_html: "<a href='%{url}'>%{user}</a>的鉴定"
   users_latest_observations_on_site: "%{user}在%{site}上的最近观察"
   users_profile: "%{user}的详细信息"
   users_projects: "%{user}的项目"
@@ -3156,7 +3158,7 @@ zh-CN:
   view_more_observations_from: 查看更多观察，来自
   view_more_observations_near_x_place: "查看更多在 <nobr>%{site_name}</nobr> 上 %{place} 附近的观察 &raquo;"
   view_more_observations_of_x_project: "查看在 <nobr>%{site_name}</nobr> 上的更多来自 %{project} 的观察 &raquo;"
-  view_more_observations_of_x_taxon: "查看在 <nobr>%{site_name}</nobr> 上的更多 %{taxon} 的观察 &raquo;"
+  view_more_observations_of_x_taxon: "查看更多在 <nobr>%{site_name}</nobr> 上的 %{taxon} 的观察记录 &raquo;"
   view_more_unreviewed: "查看更多未复核"
   view_observation: 查看观察
   view_observations: 查看观察
@@ -3184,7 +3186,7 @@ zh-CN:
   view_x: "查看%{x}"
   view_year_stats_for_site: "查看用于%{site}的%{year}统计"
   view_your_dashboard: 查看您的仪表板
-  view_your_dashboard_for_more_updates_html: "<a href='%{url}'>查看您的控制面板</a>以获取更多更新"
+  view_your_dashboard_for_more_updates_html: "<a href='%{url}'>查看您的仪表板</a> 获取更多更新"
   view_your_inbox: 查看您的收件箱
   view_your_observations: 查看您的观察
   view_your_year_stats: "查看您的%{year}统计"
@@ -3197,6 +3199,7 @@ zh-CN:
   w_photos_only: w/ 照片
   w_sounds: w/ 声音
   wait_file_generation: 请等待文件生成。较大的列表可能需要几分钟。
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 希望的
   was_it_captive_cultivated?: "被俘虏/培养了吗？"
   we_also_support: |
@@ -3372,7 +3375,7 @@ zh-CN:
   your_flickr_account: 您的Flickr账户
   your_flickr_photos_have_been_tagged: 您的Flickr照片已被标记！
   your_hard_drive: 您的硬盘驱动器
-  your_home: 您的家
+  your_home: 您的主页
   your_id: 您的ID
   your_identification: 您的身份证明
   your_membership: 您的成员
@@ -4076,8 +4079,6 @@ zh-CN:
           此图表显示按月分组的此分类单元的观察数量。请记住，这些是观察的数量，因此它们受到观察生物体的时间和人们懒得观察它们的影响。因此，一只鸟可能在五月似乎非常活跃，但这也可能是由于5月份有更多人观看，他们在后来的几个月里往往会忽视这一物种。同样，如果你在6月看到的蜻蜓比1月份更多，这可能是因为我们在北半球观察的人数多于南半球，而不是因为蜻蜓在6月更活跃，所以在考虑这些图表时请查看地图。当“可验证”和“研究级”观察数量之间的观察数量较少和/或存在较大差异时，对这些图表持怀疑态度总是一个好主意。
         charts_help_history: |
           该图表显示了过去十年中该分类单位的观察数量。同样，它受到观察人数的偏倚，但它会向你显示观察中不寻常的峰值，如果观察者数量增加，它看起来是平的还是减少，这可能表明丰度的变化。
-        charts_help_other: |
-          我们还显示了观察注释的季节性图表。注释是一种使用受控词汇表向观察添加元数据的新系统。 到目前为止，我们只使用“生命阶段”和“植物物候学”（当植物开花或结果时）。我们还没有办法直接添加注释，所以现在我们将数据从观察字段转换为注释。如果您不能等待我们构建我们的注释系统，您可以通过添加具有以下任何值的观察字段值来为“生命阶段”注释做出贡献：成人，幼体，蛹，若虫，幼虫，蛋或青年。特别是“生命阶段”和“昆虫生命阶段”领域都很好。对于“植物物候学”，我们正在寻找任何字段，其名称中带有“物候”一词，价值中带有“花”或“果实”，因此“开花物候学”字段是一个很好用的字段。
         charts_help_relative_observations: |
           将频率显示为所有观察的相对比例有助于平滑场地整体增长的影响。例如，如果网站正在增长，因为我们每过一年就会得到更多的观察结果，我们会对任何单独的分类单元进行更多的观察，这并没有告诉您是否有更多的分类单元要观察，只是有更多的人观察它。显示相对比例意味着如果总共有100个观察值但是对该分类单元进行了20次观察，则该比例为0.2（20/100）。如果人们观察到明年的2000次观察和400次该分类单位的观察，则该比例仍为0.2（400/2000）。当一个区域中的观察者很少，或者很少观察到的分类群时，这会导致一些异常情况，但总数也是如此。
         complete_taxon_desc: |
