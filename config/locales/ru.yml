@@ -1022,7 +1022,6 @@ ru:
   couldnt_find_a_user_matching_x_param: "Не удаётся найти пользователя, соответствующего %{id}"
   couldnt_find_that_taxon: Этот таксон не найден.
   countries: Страны
-  cover: Обложка
   create: Создать
   create_a_guide: Создать руководство
   create_a_new_field: Создать новое поле
@@ -1294,6 +1293,7 @@ ru:
   endangered: Под угрозой исчезновения
   endemic: Эндемичный
   endemic_to_x: "Эндемичен для %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "Ссылка на коллекцию EOL"
   error_updating_photo: "Ошибка обновления фото: %{photo_errors}"
@@ -1357,6 +1357,7 @@ ru:
   featured: Рекомендуемые
   featuring: Демонстрация
   feedback: Обратная связь
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Лента (feeds)'
   failed: Не удалось
   field_note: |
@@ -1467,6 +1468,7 @@ ru:
   flickr_tagger: Средство создания тегов Flickr
   flickr_tags: Теги Flickr
   fluid_layout: Гибкая разметка
+  #Adjective, as in a fluid layout of images
   fluid: жидкий
   follow: Подписаться на
   follow_receive_updates_about_new_observations: Подписаться (получать обновления о новых наблюдениях)
@@ -2446,7 +2448,6 @@ ru:
     irregular: нерегулярное
     doubtful: сомнительное
     absent: отсутствует
-  of: из
   of_observations: наблюдения
   of_species: вид
   of_observers: наблюдатели
@@ -2458,7 +2459,6 @@ ru:
   offline_access_enabled: Включён автономный доступ
   old_observation_form: Старая форма наблюдения (устарела)
   ok: "ОК"
-  on_: "в"
   on_date: "на %{date}"
   on_day: ", "
   on_your_life_list: в вашем списке жизни
@@ -3041,7 +3041,9 @@ ru:
   popular: Популярные
   position: Позиция
   possessive_user: "%{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Сообщение из <a href="%{url}">журнала от %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Сообщение из <a href="%{url}">вашего журнала</a>
   post_published: Сообщение опубликовано!
   posted_by: Сообщение
@@ -3556,6 +3558,7 @@ ru:
   species_taxon_name: Вид/Наименование таксона
   species_unknown: Вид неизвестен
   specify_the_reason_youre_flagging: Укажите причину, по которой вы помечаете этот элемент
+  #Abbreviation for "source"
   src: Ист
   standard: Стандартный
   start: Начало
@@ -3568,7 +3571,6 @@ ru:
   start_typing_place_name: Начните вводить название места...
   start_typing_taxon_name: Начните набирать наименование таксона...
   start_typing_someones_name: "Начните вводить чьё-либо имя..."
-  states: Штаты
   stats: Статистика
   stats_for_this_year_have_not_been_generated: Статистика за этот год не сформирована.
   status: Статус
@@ -3918,6 +3920,7 @@ ru:
   threatened: Под угрозой исчезновения
   time_: время
   time_ago: "%{time} назад"
+  #As in the title of a book or a blog post
   title: название
   title_and_description: "Заголовок и описание"
   to_add_comments: чтобы добавить комментарии
@@ -4214,6 +4217,7 @@ ru:
   w_photos_only: с фото
   w_sounds: со звуком
   wait_file_generation: Пожалуйста, подождите, пока файл будет сгенерирован. Для больших списков это может занять несколько минут.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Разыскиваемые
   was_it_captive_cultivated?: "Было ли оно в неволе / культивируемое?"
   we_also_support: |
@@ -5495,8 +5499,6 @@ ru:
           На этой диаграмме показано количество наблюдений этого таксона, сгруппированных по месяцам. Имейте в виду, что это количество наблюдений, поэтому на них влияет как то, когда организм можно наблюдать, так и то,  когда люди наблюдают. Таким образом, птица может показаться очень активной в мае, но это также может быть связано с тем, что больше людей её наблюдают в мае, но будут игнорировать этот вид в последующие месяцы. Аналогично, если вы видите больше стрекоз в июне, чем в январе, это, вероятно, связано с тем, что в северном полушарии наблюдает большее количество людей, чем в южном полушарии, а не потому, что стрекозы более активны в июне, поэтому проверьте карту при рассмотрении этих диаграмм. Всегда полезно скептически относиться к этим диаграммам, когда количество наблюдений невелико и/или когда имеются большие расхождения между числом наблюдений в статусе «Проверяемый» и «Исследовательский уровень».
         charts_help_history: |
           Этот график показывает число наблюдений этого таксона по месяцам за последние десять лет. Опять же, он смещен по количеству наблюдателей, но он покажет вам необычные всплески в наблюдениях, и если он кажется плоским или уменьшается, несмотря на увеличение числа наблюдателей, можно предположить изменение в распространенности.
-        charts_help_other: |
-          Мы также показываем графики сезонности для значений наблюдения. Значения - это новая система добавления метаданных к наблюдениям с использованием контролируемого словаря терминов. Сейчас мы используем только «Стадия жизни» и «Фенология растений» (когда растение цветёт или плодоносит). У нас пока ещё нет возможности добавлять значения напрямую, поэтому на данный момент мы преобразуем данные из полей наблюдения в значения. Если вы не можете дождаться, когда мы построим нашу систему значений, вы можете внести свой вклад в значения «Стадия жизни», добавив значения полей наблюдения, которые имеют любое из следующих значений: Взрослый, После линьки, Куколка, Нимфа, Личинка, Яйцо или Молодой. Так что, в частности, поля «Стадия жизни» и «Стадия жизни насекомого» хороши. Для «Фенологии растений» мы смотрим на любое поле со словом «фенология» в его названии и значения «цветок» или «плод», поэтому поле «Цветущая фенология» полезно использовать.
         charts_help_relative_observations: |
           Отображение частоты как относительной доли всех наблюдений помогает сгладить эффект общего роста сайта. Например, если сайт растет по мере того, как мы получаем больше наблюдений с каждым годом, мы получаем больше наблюдений за любым отдельным таксоном, что ничего не говорит вам о том, больше ли наблюдается этот таксон в данном месте, или просто есть больше людей, наблюдающих за ним. Показ относительной пропорции означает, что если есть всего 100 наблюдений, но 20 наблюдений этого таксона, то пропорция равна 0,2 (20 / 100). Если в следующем году люди сделают 2000 наблюдений и 400 наблюдений этого таксона, то доля по-прежнему равна 0,2 (400/2000). Это приводит к некоторым отклонениям, когда в области очень мало наблюдателей или есть таксоны, которые очень редко встречаются, но это верно и для общего количества.
         complete_taxon_desc: |
@@ -5684,7 +5686,9 @@ ru:
         notification_preferences_project_journal_posts: Сообщения журнала проекта
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Когда в проект добавлены ваши наблюдения
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Изменения куратора проекта
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Изменения таксонов
@@ -6514,7 +6518,7 @@ ru:
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@m"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@m"
