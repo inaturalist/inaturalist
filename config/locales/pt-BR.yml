@@ -783,7 +783,6 @@ pt-BR:
   couldnt_find_a_user_matching_x_param: "Não foi possível encontrar um usuário com parâmetros %{id}"
   couldnt_find_that_taxon: Não foi possível encontrar uma espécie ou grupo.
   countries: Países
-  cover: Capa
   create: Criar
   create_a_guide: Crie um guia
   create_a_new_field: Crie um novo campo
@@ -1177,6 +1176,7 @@ pt-BR:
   flickr_tagger: Marcador do Flickr
   flickr_tags: Marcações do Flickr
   fluid_layout: Layout Fluído
+  #Adjective, as in a fluid layout of images
   fluid: fluído
   follow: Seguir
   follow_receive_updates_about_new_observations: Seguir (recebe atualizações sobre novas observações)
@@ -2030,7 +2030,6 @@ pt-BR:
     uncommon: incomum
     doubtful: duvidoso
     absent: ausente
-  of: de
   of_observations: observações
   of_species: espécies
   of_observers: observadores
@@ -2041,7 +2040,6 @@ pt-BR:
   official_blog: Blog Oficial
   offline_access_enabled: Acesso offline habilitado
   old_observation_form: Registro antigo de observações
-  on_: "no"
   on_date: "em %{date}"
   on_day: "no"
   on_your_life_list: em sua lista
@@ -2538,7 +2536,9 @@ pt-BR:
   please_hold_on_while_the_file_is_generated: Por favor aguarde alguns minutos enquanto o arquivo é grado. Isto pode levar alguns minutos para listas grandes.
   position: Posição
   possessive_user: "Do(a) %{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Publicação do <a href="%{url}">boletim por %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Publicação de <a href="%{url}">seu jornal</a>
   post_published: Publicado!
   posted_by: Publicado por
@@ -3030,6 +3030,7 @@ pt-BR:
   species_taxon_name: Espécies / Nomes dos táxons
   species_unknown: Espécies desconhecidas
   specify_the_reason_youre_flagging: Especifique o motivo pelo qual você está marcando este item
+  #Abbreviation for "source"
   src: Fonte
   standard: Padrão
   start: Iniciar
@@ -3042,7 +3043,6 @@ pt-BR:
   start_typing_place_name: Comece a digitar o nome de um local
   start_typing_taxon_name: Comece a digitar o nome do táxon
   start_typing_someones_name: "Começa a digitar o nome de alguém"
-  states: Estados
   stats: Andamento
   stats_for_this_year_have_not_been_generated: As estatísticas para este ano não foram geradas.
   status_globally: "%{status} Globalmente"
@@ -3342,6 +3342,7 @@ pt-BR:
   threatened: Ameaçado
   time_: horário
   time_ago: "há %{time}"
+  #As in the title of a book or a blog post
   title: título
   title_and_description: "Titulo e Descrição"
   to_add_comments: para adicionar comentários
@@ -3604,6 +3605,7 @@ pt-BR:
   w_photos_only: com fotos
   w_sounds: com sons
   wait_file_generation: Por favor aguarde enquanto o arquivo é gerado. Isto pode levar alguns minutos para grandes listas de observação.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Procurado
   was_it_captive_cultivated?: "Era cultivada / mantida em cativeiro?"
   we_also_support: |
@@ -4697,8 +4699,6 @@ pt-BR:
           Este gráfico apresenta o número de observações deste táxon agrupadas por mês. Tenha em mente que estes são números de observações, então são influenciados tanto pelo melhor momento em que estes organismos podem ser observados quanto pelo engajamento dos membros para observá-los. Assim, uma ave pode aparentar estar mais ativa em Outubro, mas na verdade, os dados podem apenas estar exibindo um maior número de Observadores de Aves saindo para Passarinhar neste mês. Da mesma forma, se você ver um número maior de libélulas em Junho do que em Janeiro, isto é, provavelmente, a influência exercida por um número maior de observadores do hemisfério norte do que, do hemisfério sul e não por que as libélulas sejam mais ativas em Junho, então, sempre, lembre-se de checar os mapas quando avaliar estes gráficos. É sempre uma boa ideia sr cético em relação a estes gráficos especialmente quando os números de observações são baixos e/ou existem grandes discrepâncias entre o número de observações "Verificáveis" e com "Nível de Pesquisa".
         charts_help_history: |
           Este gráfico exibe o número de observações desde táxon por mês para os últimos dez anos. Lembre-se, pode ocorrer um desvio nos dados devido a diferença no número de pessoas coletando informações, mas irá exibir picos incomuns nas observações e, caso o gráfico aparente esta achatado ou diminuindo, independente do número de observadores, isto pode sugerir uma diferença na abundância das espécies.
-        charts_help_other: |
-          Nós também oferecemos gráficos de sazonalidade para as anotações contidas nas observações. Anotações são um sistema novo para adicionar metadados as observações utilizando termos específicos. Até o momento utilizamos apenas "Estágio de Vida" e "Fenologia" (quando as plantas frutificam ou florescem). Ainda não possuímos uma forma de adicionar estes dados diretamente, então, por enquanto, convertemos dados destes campos em anotações. Se você prefere não aguardar pelo nosso sistema automático, você pode optar por contribuir com dados sobre "Estágios de Vida" adicionando as anotações de campo palavras que se enquadrem em qualquer um destes termos: Adulto, Teneral, Pupa, Ninfa, Larva, Ovo ou Juvenil. Assim para um "Estágio de Vida" em particular para "EStágios de Vida de Insetos" os dados estarão completos. Da mesma forma, os dados para "Fenologia de Plantas" podem ser encontrados pelo sistema simplesmente ao se incluir a palavra "fenologia" e o ome do estágio atual como "flor" ou "fruto", assim nossa plataforma será capaz de encontrar os dados corretamente.
         charts_help_relative_observations: |
           A exibição da frequência como uma proporção relativa de todas as observações ajuda a suavizar o efeito do crescimento geral do site. Por exemplo, se o site está crescendo enquanto obtemos mais observações a cada ano que passa, temos mais observações de qualquer táxon individual. Isso não diz nada sobre se há mais indivíduos desse táxon ou se há mais pessoas que o observam. Mostrando a proporção relativa significa que, se houver um total de 100 observações no total, mas 20 deste táxon, a proporção será de 0,2 (20 / 100). Se as pessoas observarem 2.000 observações no próximo ano e 400 observações desse táxon, a proporção ainda será de 0,2 (400 / 2.000). Isso causa algumas aberrações quando há muito poucos observadores em uma área, ou para táxons que não são muito observados, mas o mesmo acontece com as contagens totais.
         complete_taxon_desc: |
