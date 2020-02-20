@@ -93,6 +93,9 @@ nb:
   x_suggestions_filtered_by_colon:
     one: "%{count} forslag filtrert etter:"
     other: "%{count} forslag filtrert etter:"
+  x_taxa:
+    one: "%{count} takson"
+    other: "%{count} taksa"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> takson observert"
     other: "<span class='count'>%{count}</span> taksa observert"
@@ -3850,6 +3853,7 @@ nb:
   update_with_site_content: "Oppdater med innhold fra %{site_name}"
   updated: Oppdatert
   updated_by: Oppdatert av
+  updated_by_user_on_date_html: Oppdatert av %{user} på %{date}
   updated_daily: Oppdatert daglig
   updated_photo: Oppdatert bilde
   upload: Last opp
@@ -4131,6 +4135,9 @@ nb:
     one: "%{count} observasjon mislykkes"
     other: "%{count} observasjoner mislykkes"
   x_of_y: "%{x} av %{y}"
+  x_of_count_confirmed:
+    one: "%{x} av %{count} bekreftet"
+    other: "%{x} av %{count} bekreftet"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} av %{y} personer (over 2/3) er enige i at det er"
   x_is_the_root_of_the_tree: "%{rank}%{name} er treets rot"
   x_project_journal: "%{project}s %{name}"
