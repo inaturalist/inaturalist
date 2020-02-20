@@ -22,7 +22,7 @@
   </label>
   <% @related_listed_taxa.each do |related_listed_taxon| %>
     <li>
-    <%= link_to "#{t(:on_)} #{display_list_title(related_listed_taxon.list, 40)}", related_listed_taxon %>
+    <%= link_to "(#{display_list_title(related_listed_taxon.list, 40)})", related_listed_taxon %>
     </li>
   <% end %>
 <% end %>

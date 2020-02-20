@@ -23,7 +23,11 @@
     %h2
       = link_to image_tag("#{taxon_change.class.name.underscore}-aaaaaa-48px.png", :style => "vertical-align:middle;"), taxon_change
       = link_to "Taxonomic #{taxon_change.class.name.split('Taxon')[1]} #{taxon_change.id}", taxon_change_path(taxon_change)
-      = "(#{taxon_change.committed_on.blank? ? t(:draft_) : t(:committed) + ' ' + t(:on_) + ' ' + l(taxon_change.committed_on)})"
+      = surround "(", ")" do
+        - if taxon_change.committed_on.blank?
+          =t :draft_
+        - else
+          =t :committed_on, date: l( taxon_change.committed_on )
   .meta.ui.stacked
     - unless taxon_change.description.blank?
       .meta.stacked.ui

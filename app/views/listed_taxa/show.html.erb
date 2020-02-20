@@ -18,8 +18,7 @@
     <%= link_to @taxon do %>
       <%= render :partial => "shared/taxon" %>
     <% end %>
-    <%=raw t(:on_).downcase %>
-        <%= link_to @list_title, @list %>
+    (<%= link_to @list_title, @list %>)
   <% end -%>
   <%= strip_tags(@title).html_safe %>
 <%- end -%>
