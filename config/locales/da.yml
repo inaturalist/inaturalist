@@ -783,6 +783,7 @@ da:
   commercial_solicitation: Kommerciel opfordring, fører ingen steder hen etc.
   commit: Engagér
   committed: Udført
+  committed_by_user_on_date_html: Effektueret af %{user} d. %{date}
   committed_on: Udført den %{date}
   committing: Engagerer
   community: Fællesskab
@@ -1930,7 +1931,11 @@ da:
   mentioned_you_in_a_x_on_noun_html: "%{user} nævnte dig i en %{x} på %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user}  nævnte dig i en %{x} på %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} nævnte dig i en %{x} på %{noun} af %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} nævnte dig i en %{x} på %{noun} af %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} nævnte dig i en %{x} på %{noun} af dig"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} nævnte dig i en %{x} på %{noun} af %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} nævnte dig i en %{x} på %{noun} af %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} nævnte dig i en %{x} på %{noun} af dig"
   merge: Sammenlæg
   merge_it_with_another_place: Sammenlæg stedet med et andet sted
   merge_two_places_together: Sammenlæg 2 steder. Alle arter på tjeklisterne vil blive sammenlagt, ligeså enhver geografisk data.
@@ -3979,6 +3984,8 @@ da:
   user_added_a_project_invitation_html: "%{user} tilføjede en projektinvitation"
   user_added_a_x: "%{user} tilføjede en %{x}"
   user_added_a_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} tilføjede en %{x} til %{noun} af dig"
   user_added_a_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
   user_added_an_identification_html: "%{user} tilføjede en identifikation"
   user_added_an_observation_field_html: '%{user} tilføjede en værdi i "%{field_name}" til en observation af %{owner}'
@@ -3986,6 +3993,8 @@ da:
   user_added_an_observation_html: "%{user} tilføjede en observation"
   user_added_an_x: "%{user} tilføjede en %{x}"
   user_added_an_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} tilføjede en %{x} til %{noun} af dig"
   user_added_an_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
   user_added_x_observations_html: "%{user} tilføjede %{x} observationer"
   user_already_authenticated: Brugeren er allerede godkendt
@@ -4213,8 +4222,8 @@ da:
     one: "%{x} of %{count} bekræftet"
     other: "%{x} of %{count} bekræftet"
   x_of_count_observed:
-    one: "%{x} of %{count} bekræftet"
-    other: "%{x} of %{count} observeret"
+    one: "%{x} af %{count} observeret"
+    other: "%{x} af %{count} observeret"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} af %{y} personer (over 2/3) er enig i det er"
   x_is_the_root_of_the_tree: "%{rank} %{name} er roden af træet"
   x_project_journal: "%{project}s %{name}"
