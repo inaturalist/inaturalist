@@ -77,6 +77,7 @@ EOS
   opt :photographed_taxa, "When core is taxon, only include taxa with observation photos", type: :boolean, default: false
   opt :ala, "Add ALA requested fields", type: :boolean, default: false
   opt :ofv_datatype, "Filter obs by datatype of observation field values", type: :string
+  opt :freq, "Frequency with which this archive gets updated. See MaintUpFreqType in http://rs.gbif.org/schema/eml-2.1.1/eml-dataset.xsd for values.", type: :string
 end
 
 if opts.debug
