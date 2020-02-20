@@ -1,5 +1,6 @@
 require "rubygems"
 require "optimist"
+require "parallel"
 
 OPTS = Optimist::options do
     banner <<-EOS
@@ -24,6 +25,7 @@ Usage:
 where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
+  opt :verbose, "Print extra log statements", :type => :boolean, :short => "-v"
   opt :file, "Where to write the zip archive. Default will be tmp path.", :type => :string, :short => "-f"
   opt :site_name, "Site name", type: :string, short: "-s"
   opt :site_id, "Site ID", type: :string, short: "-i"
@@ -93,6 +95,7 @@ end
 @site_name = @site.name
 @dbname = ActiveRecord::Base.configurations[Rails.env]["database"]
 @dbhost = ActiveRecord::Base.configurations[Rails.env]["host"]
+@max_obs_id = Observation.calculate(:maximum, :id)
 
 # Make a temp dir
 @work_dir = Dir.mktmpdir
@@ -129,7 +132,6 @@ cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO ST
 system_call cmd
 
 def export_observations( options = {} )
-  puts "Exporting observations, options: #{options}" if OPTS[:debug]
   filters = [
     { term: { spam: false } }
   ]
@@ -170,54 +172,95 @@ def export_observations( options = {} )
     } } }
   end
 
-  min_id = 0
-  if options[:csv_path]
-    csv_path = options[:csv_path]
-    mode = "a"
-  else
-    csv_path = File.join( @work_path, "#{@basename}-observations.csv" )
-    mode = "w"
+  base_es_params = {
+    track_total_hits: true,
+    filters: filters,
+    inverse_filters: inverse_filters,
+    sort: { id: "asc" },
+    per_page: 1000
+  }
+  base_results = Observation.elastic_search( base_es_params.merge( per_page: 0 ) )
+  total_entries = base_results.total_entries
+  num_partitions = total_entries < 10000 ? 1 : 3
+  partition_offset = @max_obs_id / num_partitions
+  partitions = num_partitions.times.map do |i|
+    (i*partition_offset...(i+1)*partition_offset)
   end
-  obs_i = 0
-  CSV.open( csv_path, mode ) do |csv|
-    unless options[:csv_path]
+
+  puts "[#{Time.now}] Exporting observations in #{num_partitions} partitions, options: #{options}" if OPTS[:verbose]
+
+  csv_path = options[:csv_path]
+  if options[:csv_path].blank?
+    csv_path = File.join( @work_path, "#{@basename}-observations.csv" )
+    CSV.open( csv_path, "w" ) do |csv|
       csv << OBS_COLUMNS
     end
-    while true do
-      filters << { range: { id: { gte: min_id } } }
-      observations = Observation.elastic_paginate(
-        filters: filters,
-        inverse_filters: inverse_filters,
-        sort: { id: "asc" },
-        per_page: 1000
-      )
-      break if observations.size == 0
-      Observation.preload_associations( observations, [
-        :user,
-        { identifications: [:stored_preferences] },
-        { photos: :user },
-        :sounds,
-        :quality_metrics,
-        { observations_places: :place }
-      ] )
-      observations.each do |o|
-        if OPTS[:debug]
-          msg = "Obs #{obs_i} (#{o.id})"
-          msg += " [#{options[:debug_label]}]" if options[:debug_label]
-          puts msg
+  end
+  puts "[#{Time.now}] Writing CSV to #{csv_path}" if OPTS[:verbose]
+
+  Parallel.each_with_index( partitions, in_processes: partitions.size ) do |partition, parition_i|
+    partition_filters = filters.dup
+    partition_filters << {
+      range: { id: { gte: partition.min, lte: partition.max } }
+    }
+    min_id = 0
+    obs_i = 0
+    CSV.open( csv_path, "a" ) do |csv|
+      while true do
+        # filters << { range: { id: { gte: min_id } } }
+        batch_filters = partition_filters.dup
+        batch_filters << { range: { id: { gte: min_id } } }
+        observations = try_and_try_again( [Patron::TimeoutError, Faraday::TimeoutError] ) do
+          Observation.elastic_paginate(
+            track_total_hits: true,
+            filters: batch_filters,
+            inverse_filters: inverse_filters,
+            sort: { id: "asc" },
+            per_page: 1000
+          )
         end
-        o.localize_locale = @site.locale
-        o.localize_place = @site.place
-        csv << OBS_COLUMNS.map do |c|
-          c = "cached_tag_list" if c == "tag_list"
-          if c =~ /^private_/ && !options[:force_coordinate_visibility]
-            nil
-          else
-            o.send(c) rescue nil
+        if observations.size == 0
+          puts if OPTS[:verbose]
+          break
+        end
+        if obs_i == 0
+          partition_total_entries = observations.total_entries
+        end
+        if OPTS[:verbose]
+          msg = "[#{Time.now}] "
+          msg += "[#{options[:debug_label]}] " if options[:debug_label]
+          msg += "Obs partition #{parition_i} (#{partition}) from #{min_id} (#{obs_i} / #{partition_total_entries}, #{( obs_i.to_f  / partition_total_entries * 100 ).round( 2 )}%)"
+          print msg
+          print "\r"
+          $stdout.flush
+        end
+        Observation.preload_associations( observations, [
+          :user,
+          { identifications: [:stored_preferences] },
+          { photos: :user },
+          :sounds,
+          :quality_metrics,
+          { observations_places: :place }
+        ] )
+        observations.each do |o|
+          if OPTS[:debug]
+            msg = "Obs #{obs_i} (#{o.id})"
+            msg += " [#{options[:debug_label]}]" if options[:debug_label]
+            puts msg
           end
+          o.localize_locale = @site.locale
+          o.localize_place = @site.place
+          csv << OBS_COLUMNS.map do |c|
+            c = "cached_tag_list" if c == "tag_list"
+            if c =~ /^private_/ && !options[:force_coordinate_visibility]
+              nil
+            else
+              o.send(c) rescue nil
+            end
+          end
+          obs_i += 1
+          min_id = o.id + 1
         end
-        obs_i += 1
-        min_id = o.id + 1
       end
     end
   end
