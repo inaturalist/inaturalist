@@ -79,7 +79,11 @@
               - else
                 = f.text_field "preferred_#{pref.name}", label: pref.name.humanize, class: "col-md-4", disabled: disabled, description: pref_descriptions[pref.name.to_sym]
       - if grp == 'geo'
-        = f.text_field :place_id
+        .row
+          .col-md-6
+            = f.text_field :place_id, description: "Primary place the site is associated with, generally the place used for default searches etc."
+          .col-md-6
+            = f.text_field :extra_place_id, description: "An additional place used for data export"
   .row
     .col-md-12
       = f.submit t(:save), :class => 'btn btn-primary'

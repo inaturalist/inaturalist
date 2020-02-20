@@ -46,6 +46,8 @@ class Site < ActiveRecord::Base
   # default place ID for place filters. Presently only used on /places, but use may be expanded
   belongs_to :place, inverse_of: :sites
 
+  belongs_to :extra_place, inverse_of: :extra_place_sites, class_name: "Place"
+
   # header logo, should be at least 118x22
   if CONFIG.usingS3
     has_attached_file :logo,
