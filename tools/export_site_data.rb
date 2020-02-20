@@ -276,7 +276,7 @@ obs_csv_path = export_observations(
 # Export observations in place by non-site users *only* obscured by taxon geoprivacy with private coordinates
 obs_csv_path = export_observations(
   not_site_id: @site.id,
-  place_id: @site.place_id,
+  place_id: [@site.place_id, @site.extra_place_id].compact,
   taxon_geoprivacy: ["obscured", "private"],
   geoprivacy: ["open"],
   force_coordinate_visibility: true,
@@ -285,7 +285,7 @@ obs_csv_path = export_observations(
 )
 obs_csv_path = export_observations(
   not_site_id: @site.id,
-  place_id: @site.place_id,
+  place_id: [@site.place_id, @site.extra_place_id].compact,
   taxon_geoprivacy: ["obscured", "private"],
   geoprivacy: ["obscured", "private"],
   csv_path: obs_csv_path,
@@ -294,7 +294,7 @@ obs_csv_path = export_observations(
 # Export observations in place by non-site users *not* obscured by taxon geoprivacy *without* private coordinates
 obs_csv_path = export_observations(
   not_site_id: @site.id,
-  place_id: @site.place_id,
+  place_id: [@site.place_id, @site.extra_place_id].compact,
   not_taxon_geoprivacy: ["obscured", "private"],
   csv_path: obs_csv_path,
   debug_label: "by non-site users of un-threatened taxa"
