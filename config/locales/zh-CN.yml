@@ -1683,7 +1683,7 @@ zh-CN:
   no_flickr_photos_tagged: 还没有Flickr照片标记！
   no_identifications: 没有鉴定
   no_identifications_added:
-    current_user: 您还没有对别人的观察添加过身份验证。
+    current_user: 您还没有向任何人的观察记录做过鉴定。
     user: "%{user}还没有对别人的观察添加过身份验证。"
   no_ids_have_been_suggested_yet: 没有建议ID
   no_interaction_data_available: 没有可用的交互数据
@@ -3645,6 +3645,8 @@ zh-CN:
         cumulative_count_desc: '单个分类单元及其所有后代的标识号'
         curator_coordinate_access_disabled_desc_html: |
           该项目不允许那些项目馆长无法查看坐标的观察。如果您不想与此项目的馆长共享此观察的坐标，则必须从项目中删除这些观察。
+        data_quality_assessment_desc_html: |
+          数据质量评估是对观察记录的精确程度的评估。科研级别的观察记录可能会被科学家用于科学研究。请在下方投票：
         disagreement_count_desc: "不属于同一分类单元祖先的已确定的分类群数量"
         identification_count_desc: '单个分类单元的标识数量'
         flagged_photos_desc_html: |
