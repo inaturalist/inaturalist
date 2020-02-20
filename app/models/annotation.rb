@@ -173,6 +173,14 @@ class Annotation < ActiveRecord::Base
     true
   end
 
+  def controlled_attribute_label
+    controlled_attribute.try(:label)
+  end
+
+  def controlled_value_label
+    controlled_value.try(:label)
+  end
+
   def self.reassess_annotations_for_taxon_ids( taxon_ids )
     Annotation.
         joins(
