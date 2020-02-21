@@ -929,7 +929,6 @@ tr:
   couldnt_find_a_user_matching_x_param: "Eşleşen bir kullanıcı bulunamıyor: %{id}"
   couldnt_find_that_taxon: Bu sınıf bulunamadı.
   countries: Ülkeler
-  cover: Kapak
   create: Oluştur
   create_a_guide: Bir Rehber Oluştur
   create_a_new_field: Yeni Bir Alan Oluştur
@@ -1198,6 +1197,7 @@ tr:
   endangered: Nesli tükenmekte
   endemic: Yöreye özgü
   endemic_to_x: "%{x} yöresine özgü"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: Yaşam Ansiklopedisi
   eol_collection_url: "EOL koleksiyon URL'si"
   error_updating_photo: "Fotoğraf yükleme hatası: %{photo_errors}"
@@ -1262,6 +1262,7 @@ tr:
   featured: Öne Çıkarılan
   featuring: Öne Çıkan
   feedback: Geri bildirim
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Akış'
   failed: Başarısız oldu
   field_note: |
@@ -1373,6 +1374,7 @@ tr:
   flickr_tagger: Flicker Etiketçisi
   flickr_tags: Flickr Etiketleri
   fluid_layout: Kayma Düzeni
+  #Adjective, as in a fluid layout of images
   fluid: kayma
   follow: Takip Et
   follow_receive_updates_about_new_observations: Takip et (yeni gözlemler ile ilgili güncelleme al)
@@ -2341,7 +2343,6 @@ tr:
     irregular: düzensiz
     doubtful: şüpheli
     absent: yok
-  of: '''un'
   of_observations: gözlemler
   of_species: türler
   of_observers: gözlemciler
@@ -2353,7 +2354,6 @@ tr:
   offline_access_enabled: Çevrimdışı erişim etkin
   old_observation_form: Eski gözlem formu (kullanımdan kaldırıldı)
   ok: "TAMAM"
-  on_: "şu tarihte"
   on_date: "%{date} tarihinde"
   on_day: "şu tarihte"
   on_your_life_list: yaşam listenizde
@@ -2935,7 +2935,9 @@ tr:
   popular: Popüler
   position: Konum
   possessive_user: "%{user}'ın"
+  #Post is a noun
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} yayınından</a> gönderi
+  #Post is a noun
   post_from_your_journal_html: <a href="%{url}">Yayınından</a> gönderi
   post_published: Gönderi yayınlandı!
   posted_by: Gönderen
@@ -3445,6 +3447,7 @@ tr:
   species_taxon_name: Tür / Sınıf İsmi
   species_unknown: Bilinmeyen türler
   specify_the_reason_youre_flagging: Bu öğeyi işaretleme nedeninizi belirtin
+  #Abbreviation for "source"
   src: Kaynak
   standard: Standart
   start: Başlangıç
@@ -3457,7 +3460,6 @@ tr:
   start_typing_place_name: Yer adını yazmaya başla...
   start_typing_taxon_name: Sınıf ismini yazmaya başla...
   start_typing_someones_name: "Birilerinin adını yazma başla..."
-  states: Eyaletler
   stats: İstatistikler
   stats_for_this_year_have_not_been_generated: Bu yıl için istatistikler oluşturulamadı.
   status: Durum
@@ -3772,6 +3774,7 @@ tr:
   threatened: Tehdit Altında
   time_: zaman
   time_ago: "%{time} önce"
+  #As in the title of a book or a blog post
   title: başlık
   title_and_description: "Başlık & Açıklama"
   to_add_comments: yorum eklemek
@@ -4058,6 +4061,7 @@ tr:
   w_photos_only: fotoğraflarla
   w_sounds: seslerle
   wait_file_generation: Dosya oluşturulurken lütfen bekleyin. Büyük listeler için birkaç dakika sürebilir.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gerekli
   was_it_captive_cultivated?: "Kısıtlanmış ya da ekili miydi?"
   we_also_support: |
@@ -5560,8 +5564,6 @@ tr:
           gözlemleyen kişi sayısı tarafından önyargılıdır, ancak gözlemlerde olağandışı ani artışlar 
           gösterecektir ve artan sayıda gözlemciye rağmen düz veya azalan görünüyorsa, 
           bu bollukta bir değişiklik önerebilir.
-        charts_help_other: |
-          Ayrıca açıklamalar için mevsimsellik çizelgeleri de gösteriyoruz. Açıklamalar, kontrol edilmiş terimler sözlüğü kullanarak gözlemlere meta veri eklemek için yeni bir sistemdir. Şimdiye kadar yalnızca “Yaşam Evresi” ve “Bitki Fenolojisi”ni kullanıyoruz (bitki çiçek açarken ya da meyve verirken). Doğrudan açıklama ekleme yolumuz henüz yok, bu yüzden şimdilik verileri gözlem alanlarından açıklamalara dönüştürüyoruz. Açıklama sistemimizi oluşturmamızı bekleyemezsen, şu değerlerden herhangi birine sahip olan gözlem alanı değerlerini ekleyerek "Yaşam Evresi" açıklamalarına katkıda bulunabilirsiniz: Yetişkin, Teneral, Pupa, Nimfa, Larva, Yumurta ya da Genç. Bu nedenle özellikle "Yaşam Evresi" ve "Böcek Yaşam Evresi" alanları iyidir. "Bitki Fenolojisi" için, adında "fenoloji" sözcüğünü ve değer olarak "çiçek" ya da "meyve" olan herhangi bir alana bakıyoruz, bu yüzden "Çiçekli Fenoloji" alanını kullanmak en iyisidir.
         charts_help_relative_observations: |
           Sıklığı, tüm gözlemlerin ilişkili bir oranı olarak göstermek, sayfanın genel büyümesinin etkisini düzeltmeye yardımcı olur. Örneğin, her geçen yıl daha çok gözlem yaptıkça sayfa büyüyorsa, bireysel sınıflara ilişkin daha çok gözlem ediniriz; bu, gözlemlemek için bu sınıfın daha çok olup olmadığıyla ilgili hiçbir şey söylemez yalnızca bunu gözlemleyen daha çok insan olduğunu anlatır. İlişkili oranın gösterilmesi, toplam 100 gözlem varsa ancak bu sınıfın 20 gözlemi varsa, oranın 0,2 (20/100) olduğu anlamına gelir. İnsanlar gelecek yıl 2000 gözlem yaparsa ve bu sınıfın 400 gözlemi olursa, oran hâlâ 0,2'dir (400/2000). Bu, bir alanda çok az sayıda gözlemci varken ya da nadiren gözlemlenen sınıflar için bazı sapmalara neden olur ancak toplam sayımlar için de geçerlidir.
         complete_taxon_desc: |
@@ -5823,7 +5825,9 @@ tr:
         notification_preferences_project_journal_posts: Proje yayın gönderileri
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Bir proje gözlemlerinizi eklediğinde
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Proje sorumlusu değişiklikleri
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Sınıflandırma değişiklikleri
@@ -6644,7 +6648,7 @@ tr:
         favorite: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@n"

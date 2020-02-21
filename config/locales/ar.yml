@@ -674,7 +674,6 @@ ar:
   couldnt_find_a_user_matching_x_param: "تعذر العثور على مستخدم يطابق %{id}"
   couldnt_find_that_taxon: لا يمكن العثور على أصنوفة.
   countries: بلدان
-  cover: غلاف
   create: إنشاء
   create_a_guide: إنشاء دليل
   create_a_new_field: إنشاء حقل جديد
@@ -929,6 +928,7 @@ ar:
   endangered: مهددة بالخطر
   endemic: متوطنة
   endemic_to_x: "متوطن في %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: موسوعة الحياة
   eol_collection_url: "مسار مجموعة موسوعة الحياة"
   error_updating_photo: "حدث خطأ أثناء تحديث الصورة: %{photo_errors}"
@@ -993,6 +993,7 @@ ar:
   featured: مميز
   featuring: تمييز
   feedback: ردود الفعل
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'التلقيمات'
   failed: فشل
   field_note: |
@@ -1075,6 +1076,7 @@ ar:
   flickr_tagger: محدد علامات فليكر
   flickr_tags: وسوم فليكر
   fluid_layout: تصميم السائل
+  #Adjective, as in a fluid layout of images
   fluid: مائع
   follow: تابع
   follow_receive_updates_about_new_observations: تابع (تلقى آخر المعلومات حول الملاحظات الجديدة)
@@ -1982,7 +1984,6 @@ ar:
     irregular: غير منتظم
     doubtful: مشكوك فيه
     absent: غائب
-  of: لـ
   of_observations: الملاحظات
   of_species: نوع
   of_observers: الملاحظون
@@ -1994,7 +1995,6 @@ ar:
   offline_access_enabled: تم تمكين الدخول بلا اتصال
   old_observation_form: استمارة الملاحظة القديمة (مهملة)
   ok: "موافق"
-  on_: "على"
   on_date: "في %{date}"
   on_day: "على"
   on_your_life_list: في قائمة حياتك
@@ -2573,7 +2573,9 @@ ar:
   popular: شائع
   position: موقع
   possessive_user: "%{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: منشور من <a href="%{url}">journal by %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: النشر من Post from <a href="%{url}">مجلتك</a>
   post_published: تم نشر المشاركة!
   posted_by: نشرها
@@ -3080,6 +3082,7 @@ ar:
   species_taxon_name: اسم النوع / الأصنوفة
   species_unknown: النوع غير معروف
   specify_the_reason_youre_flagging: حدد سبب التعليم على هذا العنصر
+  #Abbreviation for "source"
   src: كود مصدري
   standard: قياسي
   start: ابدأ
@@ -3092,7 +3095,6 @@ ar:
   start_typing_place_name: ابدأ في كتابة اسم المكان...
   start_typing_taxon_name: ابدأ في كتابة اسم الأصنوفة...
   start_typing_someones_name: "ابدأ في كتابة اسم شخص ما..."
-  states: الحالة
   stats: إحصائيات
   stats_for_this_year_have_not_been_generated: لم يتم إنشاء إحصاءات لهذا العام.
   status: الحالة
@@ -3365,6 +3367,7 @@ ar:
   threatened: مهددة
   time_: وقت
   time_ago: "قبل %{time}"
+  #As in the title of a book or a blog post
   title: العنوان
   title_and_description: "العنوان والوصف"
   to_add_comments: لإضافة تعليقات
@@ -3632,6 +3635,7 @@ ar:
   w_photos_only: بصور
   w_sounds: بأصوات
   wait_file_generation: يُرجَى الاستمرار في حين يتم إنشاء الملف، قد يستغرق الأمر بضع دقائق للقوائم الكبيرة.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: مطلوب
   was_it_captive_cultivated?: "هل كان أسير / مزروع؟"
   we_also_support: |
@@ -5192,21 +5196,6 @@ ar:
           الذين يلاحظون، لكنه سوف يظهر لك طفرات غير عادية في الملاحظات، وإذا 
           كان يبدو مستويا أو متناقصا على الرغم من العدد المتزايد من الملاحظين، 
           هذا قد يشير إلى تغيير في الوفرة.
-        charts_help_other: |
-          كما نعرض الرسوم البيانية الموسمية للملاحظات التوضيحية. 
-          تعد التعليقات التوضيحية نظاما جديدا لإضافة البيانات الوصفية إلى الملاحظات باستخدام 
-          مفردات مصطلحات الملاحظة، حتى الآن نستخدم فقط "مرحلة 
-          الحياة " و"علم النبات" (عندما يمزهر أو 
-          يثمر النبات)، ليست لدينا حتى الآن طريقة لإضافة التعليقات التوضيحية مباشرة; لذلك 
-          نقوم الآن بتحويل البيانات من حقول الملاحظة إلى التعليقات التوضيحية. 
-          إذا كنت لا تستطيع انتظارنا لبناء نظام التعليق التوضيحي الخاص بك، يمكنك 
-          المساهمة في شروح "مرحلة الحياة" بإضافة 
-          قيم حقل الملاحظة التي لديها أي من القيم التالية: بالغ أو انسلاخ أو عذراء أو 
-          حورية أو يرقة أو بيض أو يافع; لذلك على وجه الخصوص، حقول "مرحلة الحياة" و
-          "مرحلة حياة الحشرات" جيدة، بالنسبة ل"علم النبات"، نحن 
-          ننظر في أي حقل بكلمة "دراسة الأحداث البيولوجية" في اسمه و 
-          "زهرة" أو "فاكهة" في القيمة، وبالتالي فإن حقل "دراسة الأحداث البيولوجية للزهور" 
-          جيد للاستخدام.
         charts_help_relative_observations: |
           عرض التردد كنسبة مرتبطة لجميع الملاحظات يساعد على
           تخفيف تأثير النمو الكلي للموقع، على سبيل المثال،

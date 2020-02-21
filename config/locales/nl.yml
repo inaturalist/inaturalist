@@ -933,7 +933,6 @@ nl:
   couldnt_find_a_user_matching_x_param: "Kon geen gebruiker vinden die overeenstemt met %{id}"
   couldnt_find_that_taxon: Taxon niet gevonden.
   countries: Landen
-  cover: Omslag
   create: Aanmaken
   create_a_guide: Maak een gids aan
   create_a_new_field: Nieuw veld aanmaken
@@ -1203,6 +1202,7 @@ nl:
   endangered: Bedreigd
   endemic: Inheems
   endemic_to_x: "Endemisch in %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "EOL verzameling URL"
   error_updating_photo: "Fout bij bijwerken foto: %{photo_errors}"
@@ -1266,6 +1266,7 @@ nl:
   featured: Aanbevolen
   featuring: Karakteriseren
   feedback: Feedback
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
   failed: Mislukt
   field_note: |
@@ -1377,6 +1378,7 @@ nl:
   flickr_tagger: Flicker tagger
   flickr_tags: Flickr-tags
   fluid_layout: Fluid opmaak
+  #Adjective, as in a fluid layout of images
   fluid: vloeiend
   follow: Volg
   follow_receive_updates_about_new_observations: Volgen (ontvang informatie over nieuwe waarnemingen)
@@ -2373,7 +2375,6 @@ nl:
     irregular: onregelmatig
     doubtful: twijfelachtig
     absent: afwezig
-  of: van
   of_observations: waarnemingen
   of_species: soort
   of_observers: waarnemers
@@ -2385,7 +2386,6 @@ nl:
   offline_access_enabled: Offline toegang ingeschakeld
   old_observation_form: Oud waarnemingsformulier (verouderd)
   ok: "OK"
-  on_: "op"
   on_date: "op %{date}"
   on_day: "op"
   on_your_life_list: in je levenslijst
@@ -2971,7 +2971,9 @@ nl:
   popular: Populair
   position: Positie
   possessive_user: "van %{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Post vanuit <a href="%{url}">dagboek van %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Post vanuit <a href="%{url}">je dagboek</a>
   post_published: Bericht gepubliceerd!
   posted_by: Geplaatst door
@@ -3488,6 +3490,7 @@ nl:
   species_taxon_name: Naam soort / taxon
   species_unknown: Soort onbekend
   specify_the_reason_youre_flagging: Geef de reden waarom je dit item meldt
+  #Abbreviation for "source"
   src: Bron
   standard: Standaard
   start: Van
@@ -3500,7 +3503,6 @@ nl:
   start_typing_place_name: Type een plaatsnaam...
   start_typing_taxon_name: Type een taxonnaam...
   start_typing_someones_name: "Type iemands naam..."
-  states: statussen
   stats: Statistieken
   stats_for_this_year_have_not_been_generated: Statistieken voor dit jaar zijn niet gegenereerd.
   status: Status
@@ -3825,6 +3827,7 @@ nl:
   threatened: Bedreigd
   time_: tijd
   time_ago: "%{time} geleden"
+  #As in the title of a book or a blog post
   title: titel
   title_and_description: "Titel & Beschrijving"
   to_add_comments: om reacties toe te voegen
@@ -4116,6 +4119,7 @@ nl:
   w_photos_only: Met foto's
   w_sounds: Met geluiden
   wait_file_generation: Even geduld, het bestand wordt aangemaakt. Voor lange lijsten kan dit enkele minuten in beslag nemen.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gezocht
   was_it_captive_cultivated?: "Was het in gevangenschap/gecultiveerd?"
   we_also_support: |
@@ -5385,8 +5389,6 @@ nl:
           die waarnemingen invoeren maar het zal je opmerkelijke pieken in waarnemingen laten zien en zo
           lijkt het plat of dalend ondanks een toenemend aantal waarnemers,
           dat zou een verandering in het voorkomen kunnen suggereren.
-        charts_help_other: |
-          We tonen ook seizoensgebonden grafieken voor aantekeningen bij waarnemingen. Aantekeningen zijn een nieuw systeem om metadata toe te voegen aan waarnemingen door gebruik te maken van een gecontrolleerde woordenschat van begrippen. Tot nu toe gebruiken we enkel "Levensstadium" en "Plantenfenologie" (wanneer de plant bloeit of vruchten draagt). We hebben nog geen manier om aantekeningen rechtstreeks toe te voegen, voorlopig converteren we gegevens van velden op waarnemingen naar aantekeningen. Als je niet kan wachten tot we ons aantekeningensysteem hebben gebouwd, kan je bijdragen aan de "Levensstadium" aantekeningen door een veld met één van de volgende waarden toe te voegen aan een waarneming: Volwassen, Teneral, Pop, Nimf, Larve, Ei of Juveniel. Meer specifiek zijn dus de "Levensstadium" en "Levensstadium van het insect" velden goed. Voor "Plantenfenologie" kijken we naar elk veld met het woord "fenologie" in de naam en "bloem" of "fruit" in de waarde, dus het veld "Bloeifenologie" is een goede om te gebruiken.
         charts_help_relative_observations: |
           Het tonen van de frequentie als een relatief aandeel van alle waarnemingen helpt het effect van de algehele groei van de site uit te effenen. Als de site bijvoorbeeld groeit naarmate we elk jaar meer waarnemingen binnenkrijgen, krijgen we meer waarnemingen binnen van elk individueel taxon, wat niet betekent dat dat taxon vaker voorkomt, alleen maar dat er meer mensen het taxon waarnemen. Het tonen van het relatieve aandeel houdt in dat als er 100 waarnemingen in totaal zijn, waarvan 
           20 van dit taxon, het aandeel van dit taxon 0,2 is (20/100). Als er het jaar daarop
@@ -5587,7 +5589,9 @@ nl:
         notification_preferences_project_journal_posts: Berichten in projectdagboeken
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Wanneer een project je waarnemingen toevoegt
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Wijzigingen door projectcuratoren
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Taxonomische wijzigingen
@@ -6392,7 +6396,7 @@ nl:
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@m"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@n"

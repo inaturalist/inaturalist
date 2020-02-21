@@ -932,7 +932,6 @@ fi:
   couldnt_find_a_user_matching_x_param: "Emme löytäneet käyttäjää %{id}"
   couldnt_find_that_taxon: Taksonin löytäminen ei onnistunut.
   countries: Maat
-  cover: Kansikuva
   create: Luo
   create_a_guide: Luo opas
   create_a_new_field: Luo uusi kenttä
@@ -1197,6 +1196,7 @@ fi:
   endangered: Erittäin uhanalainen
   endemic: Endeeminen
   endemic_to_x: "Endeeminen paikassa %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "EOL-kokoelman URL-osoite"
   error_updating_photo: "Virhe %{photo_errors} päivitettäessä kuvaa"
@@ -1257,6 +1257,7 @@ fi:
   feature_this_project_: "Nosta tämä projekti esille"
   featured: Esittelyssä
   feedback: Palaute
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Syötteet'
   failed: Epäonnistui
   field_note: |
@@ -1368,6 +1369,7 @@ fi:
   flickr_tagger: Flickr tunnisteidenlisääjä
   flickr_tags: Flickr-merkinnät
   fluid_layout: Virtaava asettelu
+  #Adjective, as in a fluid layout of images
   fluid: neste
   follow: Seuraa
   follow_receive_updates_about_new_observations: Seuraa (saat päivityksiä uusista havainnoista)
@@ -2297,7 +2299,6 @@ fi:
     irregular: epäsäännöllinen
     doubtful: kyseenalainen
     absent: poissa
-  of: /
   of_observations: havainnot
   of_species: laji
   of_observers: havainnoijaa
@@ -2309,7 +2310,6 @@ fi:
   offline_access_enabled: Offline-yhteys käytössä
   old_observation_form: Vanha havaintomuoto (vanhentunut)
   ok: "OK"
-  on_: "päivänä"
   on_date: "%{date}"
   on_day: "päivänä"
   on_your_life_list: elämäluettelossasi
@@ -3344,6 +3344,7 @@ fi:
   species_taxon_name: Laji / Taksonin nimi
   species_unknown: Tuntematon laji
   specify_the_reason_youre_flagging: Kuvaile miksi liputat tämän asian
+  #Abbreviation for "source"
   src: Lähde
   standard: Standardi
   start: Alkaa
@@ -3356,7 +3357,6 @@ fi:
   start_typing_place_name: Aloita näppäilemällä paikan nimi...
   start_typing_taxon_name: Aloita näppäilemällä taksonin nimi...
   start_typing_someones_name: "Aloita näppäilemällä jonkun nimi..."
-  states: Osavaltiot
   stats: Tilastot
   status: Tila
   status_globally: "%{status} maailmanlaajuisesti"
@@ -3567,6 +3567,7 @@ fi:
   threatened: Uhanalainen
   time_: aika
   time_ago: "%{time} sitten"
+  #As in the title of a book or a blog post
   title: otsikko
   title_and_description: "Otsikko & kuvaus"
   to_add_comments: lisätäksesi kommentteja
@@ -3807,6 +3808,7 @@ fi:
   w_photos_only: kuvia
   w_sounds: ääniä
   wait_file_generation: Ole hyvä ja odota kun tiedostoa muodostetaan. Tämä voi kestää muutaman minuutin, jos luettelo on suuri.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
   we_also_support: |
@@ -4763,8 +4765,6 @@ fi:
           syynä se, että lintuharrastajat ovat kiinnostuneita lajista toukokuussa, mutta eivät kiinnitä siihen huomiota myöhemmin. Samoin, jos sudenkorentoja näyttää olevan enemmän kesäkuussa kuin tammikuussa, voi tämä johtua siitä, että pohjoisella pallonpuoliskolla on enemmän havainnoijia kuin eteläisellä, eikä siitä, että sudenkorennot olisivat aktiivisempia kesäkuussa. Kaavioihin kannattaa suhtautua varauksella, jos taksonista on vähän havaintoja ja/tai on suuria ristiriitoja "todennettavissa olevien" ja "tutkimustason" havaintojen lukumäärissä.
         charts_help_history: |
           Tämä kaavio näyttää taksonin havaintojen lukumäärän kuukausittain viimeisten kymmenen vuoden ajalta. Havaintojen lukumääriin vaikuttaa havainnoijien lukumäärä, mutta kaaviosta näkee epätavalliset piikit havainnoissa, ja jos kaavio näyttää tasaiselta tai laskevalta havainnoijien lukumäärän kasvusta huolimatta, voi tämä kertoa muutoksesta taksonin runsaudessa.
-        charts_help_other: |
-          Näytämme kausivaihtelutaulukot myös havaintojen annotoinneista. Annotaatiot ovat uusi menetelmä, jolla lisätään havaintoihin metadataa säännellyn sanaston avulla. Tähän mennessä olemme käyttäneet "Elinvaihe" ja "Kasvien fenologia" (milloin kasvi kukkii tai tekee hedelmiä) -sanastoa. Meillä ei vielä ole tapaa, jolla annotoinnin voisi liittää havaintoon suoraan, vaan tällä hetkellä siirrämme havaintokenttien tietoja annotaatioiksi. Jos et malta odottaa, että saamme annotointijärjestelmämme valmiiksi, voit lisätä "Elinvaihe"-annotaatioita havaintoihin lisäämällä havaintokenttään jonkin seuraavista arvoista: aikuinen, "Teneral", kotelo, nymfi, toukka, muna tai nuori. Erityisesti "Life Stage"- tai "Insect Life Stage" -kentät ovat hyviä. Kasvien fenologian osalta etsimme kenttiä, joiden nimessä on sana "phenology" tai arvoina "kukka" tai "hedelmä", joten "Flowering Phenology"-kenttää on hyvä käyttää.
         charts_help_relative_observations: |
           Frekvenssin näyttäminen suhteessa kokonaishavaintomäärään auttaa tasoittamaan iNaturalistin käyttäjämäärän kasvua. Esimerkiksi jos käyttäjien ja havaintojen määrä kasvaa joka vuosi, saamme enemmän havaintoja jostakin lajista. Tämä ei kerro että ko. lajia olisi enemmän, vaan että suurempi määrä ihmisiä havainnoi sitä. Suhteellisen frekvenssin näyttäminen tarkoittaa että jos havaintoja on 100 ja niistä 20 on tästä lajista, suhdeluku on 0,2 (20 / 100). Jos käyttäjät tekevät 2000 havaintoa seuraavana vuonna ja niistä 400 on tästä lajista, suhdeluku on edelleen 0,2 (400 / 2000). Tämä laskutapa aiheuttaa joitakin poikkeuksia kun alueella on hyvin vähän havainnoijia tai kun lajia havaitaan hyvin harvoin. Kuitenkin myös havaintojen kokonaismäärässä on on sama ongelma.
         frequency:
@@ -4892,7 +4892,9 @@ fi:
         notification_preferences_project_journal_posts: Projektien päiväkirjamerkinnät
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Kun havaintojasi liitetään projektiin
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Muutokset projektin kuraattoreissa
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Taksonomiamuutokset
