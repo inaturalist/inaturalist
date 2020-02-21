@@ -5,6 +5,11 @@ lt:
     many: '%{count} komentarai(-ų)'
     other: '%{count} komentarai(-ų)'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>"
+  x_taxa:
+    one: "%{count} taksonas"
+    few: "%{count} taksonai"
+    many: "%{count} taksonai"
+    other: "%{count} taksonai"
   x_research_grade_observations_html:
     one: "<span class='count'>%{count}</span> identifikuotas stebėjimas"
     few: "<span class='count'>%{count}</span>"
