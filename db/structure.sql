@@ -3792,7 +3792,8 @@ CREATE TABLE public.sites (
     logo_blog_file_name character varying,
     logo_blog_content_type character varying,
     logo_blog_file_size bigint,
-    logo_blog_updated_at timestamp without time zone
+    logo_blog_updated_at timestamp without time zone,
+    extra_place_id integer
 );
 
 
@@ -10118,4 +10119,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200122231601');
 INSERT INTO schema_migrations (version) VALUES ('20200127213714');
 
 INSERT INTO schema_migrations (version) VALUES ('20200130191142');
+
+INSERT INTO schema_migrations (version) VALUES ('20200220211829');
 
