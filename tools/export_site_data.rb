@@ -84,6 +84,7 @@ ASSOC_COLUMNS = {
   annotations: %w(
     id
     uuid
+    resource_type
     resource_id
     created_at
     controlled_attribute_id
@@ -96,6 +97,7 @@ ASSOC_COLUMNS = {
   comments: %w(
     id
     uuid
+    parent_type
     parent_id
     created_at
     updated_at
