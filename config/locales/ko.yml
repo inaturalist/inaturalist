@@ -2046,7 +2046,7 @@ ko:
     family: Family
     subfamily: Subfamily
     genus: Genus
-    subgenus: 아속
+    subgenus: Subgenus
     #Singular
     species: Species
     hybrid: 혼종
@@ -2685,9 +2685,9 @@ ko:
   datetime:
     distance_in_words:
       less_than_x_minutes:
-        other: '%{count}분 이하'
+        other: 약 %{count}분
       less_than_x_seconds:
-        other: '%{count} 초 이하'
+        other: 약 %{count}초
     countdown_x_days:
       other: 일
     countdown_x_hours:
