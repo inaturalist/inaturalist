@@ -28,7 +28,7 @@
 = form_for @taxon_framework_relationship do |f|
   .form-group
     = label_tag 'taxon_framework_id', t( :taxon_framework_taxon)
-    = f.collection_select( :taxon_framework_id, @taxon_frameworks, :id, :taxon_framework_taxon_name, {}, { :class => "form-control" } )
+    = f.collection_select( :taxon_framework_id, @taxon_frameworks, :id, :name, {}, { :class => "form-control" } )
     %smalll#taxonFrameworkHelp.form-text.text-muted Ancestor taxon with an attached Taxon Framework
   .form-group
     %label= t( :internal_taxa )
