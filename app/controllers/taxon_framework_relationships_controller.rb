@@ -131,7 +131,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
       render action: :new
       return
     end
-    
+
     if taxa_attributes
       taxa_attributes.values.each do |row|
         if taxon = Taxon.where( id: row["id"] ).first
@@ -148,6 +148,13 @@ class TaxonFrameworkRelationshipsController < ApplicationController
 
     if local_params["external_taxa_attributes"]
       local_params["external_taxa_attributes"].values.each do |row|
+        if ( row[:name] == "" || row[:parent_name] == "" ) && !( row[:name] == "" && row[:rank] == "species" && row[:parent_name] == "" && row[:parent_rank] == "genus" ) && row["_destroy"] == "false"
+          flash[:error] = "external taxa must have names and parent names"
+          @taxon_frameworks = taxon_frameworks_for_dropdowns
+          @taxon_framework_relationship.taxa.new
+          render action: :new
+          return
+        end
         if et = ExternalTaxon.joins("JOIN taxon_framework_relationships tfr ON external_taxa.taxon_framework_relationship_id = tfr.id").
           where("name = ? AND rank = ? AND tfr.taxon_framework_id = ?", row["name"], row["rank"], local_params["taxon_framework_id"]).first
           flash[:error] = "An external taxon with name #{ et.name } and rank #{ et.rank } is already represented in a Taxon Framework Relationship within this Taxon Framework"
@@ -204,14 +211,19 @@ class TaxonFrameworkRelationshipsController < ApplicationController
 
     if local_params["external_taxa_attributes"]
       local_params["external_taxa_attributes"].values.each do |row|
-        if ( row[:name] == "" || row[:rank] == "" || row[:parent_name] == "" || row[:parent_rank] == "" ) && row["_destroy"] == "false"
-          flash[:error] = "external taxa must have names, ranks, parent names, and parent ranks"
+        if ( row[:name] == "" || row[:parent_name] == "" ) && !( row[:name] == "" && row[:rank] == "species" && row[:parent_name] == "" && row[:parent_rank] == "genus" ) && row["_destroy"] == "false"
+          flash[:error] = "external taxa must have names and parent names"
           @taxon_frameworks = taxon_frameworks_for_dropdowns( @taxon_framework_relationship.taxa )
           render action: :edit
           return
         end
-        et = ExternalTaxon.joins("JOIN taxon_framework_relationships tfr ON external_taxa.taxon_framework_relationship_id = tfr.id").
-          where("name = ? AND rank = ? AND tfr.taxon_framework_id = ?", row["name"], row["rank"], local_params["taxon_framework_id"]).first
+        scope = ExternalTaxon.joins("JOIN taxon_framework_relationships tfr ON external_taxa.taxon_framework_relationship_id = tfr.id").
+          where("name = ? AND rank = ? AND tfr.taxon_framework_id = ?", row["name"], row["rank"], local_params["taxon_framework_id"])
+        if row["id"].nil?
+          et = scope.first
+        else
+          et = scope.where("external_taxa.id != ?", row["id"]).first
+        end
         if et && row["_destroy"] == "false"
           flash[:error] = "An external taxon with name #{ et.name } and rank #{ et.rank } is already represented in a Taxon Framework Relationship within this Taxon Framework"
           @taxon_frameworks = taxon_frameworks_for_dropdowns( @taxon_framework_relationship.taxa )
