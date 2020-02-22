@@ -16,7 +16,7 @@ function tfrD3Vis( data, tfrId ) {
     if ( d.data.rank === "species" ) {
       splitString.unshift( firstWord[0] + "." );
       splitString = splitString.join( " " );
-    } else if ( d.data.rank === "subspecies" ) {
+    } else if ( d.data.rank === "subspecies" || d.data.rank === "variety" ) {
       var secondWord = splitString.shift();
       splitString.unshift( secondWord[0] + "." );
       splitString.unshift( firstWord[0] + "." );
