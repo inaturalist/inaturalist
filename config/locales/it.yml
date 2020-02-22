@@ -918,7 +918,6 @@ it:
   couldnt_find_a_user_matching_x_param: "Impossibile trovare un utente che corrisponde a %{id}"
   couldnt_find_that_taxon: Impossibile trovare il taxon.
   countries: Stati
-  cover: Copertina
   create: Crea
   create_a_guide: Crea una guida
   create_a_new_field: Crea un nuovo campo
@@ -1187,6 +1186,7 @@ it:
   endangered: In Pericolo
   endemic: Endemiche
   endemic_to_x: "Endemico in %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "URL della raccolta EOL"
   error_updating_photo: "Errore nell'aggiornamento della foto: %{photo_errors}"
@@ -1251,6 +1251,7 @@ it:
   featured: In evidenza
   featuring: Presentando
   feedback: Feedback
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
   failed: Non riuscito
   field_note: |
@@ -1361,6 +1362,7 @@ it:
   flickr_tagger: Etichettatore di Flickr
   flickr_tags: Etichette di Flickr
   fluid_layout: Layout fluido
+  #Adjective, as in a fluid layout of images
   fluid: fluido
   follow: Segui
   follow_receive_updates_about_new_observations: Segui (ricevi aggiornamenti sulle nuove osservazioni)
@@ -2335,7 +2337,6 @@ it:
     irregular: irregolare
     doubtful: dubbia
     absent: assente
-  of: di
   of_observations: osservazioni
   of_species: specie
   of_observers: osservatori
@@ -2347,7 +2348,6 @@ it:
   offline_access_enabled: Accesso offline abilitato
   old_observation_form: Vecchio formulario dell'osservazione (obsoleto)
   ok: "OK"
-  on_: "nella lista"
   on_date: "in data %{date}"
   on_day: "in data"
   on_your_life_list: nella tua lista degli Esseri Viventi
@@ -2930,7 +2930,9 @@ it:
   popular: Popolare
   position: Posizione
   possessive_user: "di %{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Post dal <a href="%{url}">diario di %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Post dal <a href="%{url}">tuo diario</a>
   post_published: Post pubblicato!
   posted_by: Postato da
@@ -3439,6 +3441,7 @@ it:
   species_taxon_name: Specie / Nome taxon
   species_unknown: Specie sconosciuta
   specify_the_reason_youre_flagging: Specifica il motivo per cui stai segnalando quest’oggetto
+  #Abbreviation for "source"
   src: Fonte
   standard: Standard
   start: Inizia
@@ -3451,7 +3454,6 @@ it:
   start_typing_place_name: Inizia a digitare il nome di un luogo...
   start_typing_taxon_name: Inizia a digitare il nome del taxon...
   start_typing_someones_name: "Inizia a digitare il nome di qualcuno..."
-  states: Regioni
   stats: Statistiche
   stats_for_this_year_have_not_been_generated: Le statistiche per quest'anno non sono state generate.
   status: Stato
@@ -3766,6 +3768,7 @@ it:
   threatened: Minacciata
   time_: tempo
   time_ago: "%{time} fa"
+  #As in the title of a book or a blog post
   title: titolo
   title_and_description: "Titolo & Descrizione"
   to_add_comments: per aggiungere commenti
@@ -4056,6 +4059,7 @@ it:
   w_photos_only: con foto
   w_sounds: con suoni
   wait_file_generation: Per favore attendi la creazione del file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ricercate
   was_it_captive_cultivated?: "Era in cattività / coltivato?"
   we_also_support: |
@@ -5313,8 +5317,6 @@ it:
           Analogamente, se vedi più osservazioni di libellule in Giugno che in Gennaio, questo è dovuto al fatto che ci sono più persone attive nell'emisfero settentrionale che in quello meridionale, e non al fatto che le libellule sono più attive a Giugno: controlla la mappa quando esamini questi grafici! E' sempre una buona idea essere un po' scettici sui grafici qualora ci fossero poche osservazioni, e/o notevoli discrepanze tra il numero di osservazioni "Verificabili" e quelle "Livello Ricerca".
         charts_help_history: |
           Questo grafico mostra il numero di osservazioni di questo taxon al mese negli ultimi 10 anni. Di nuovo, è influenzato dal numero di persone, ma permette di vedere picchi inusuali nel numero di osservazioni; inoltre, se sembra piatto o decrescente nonostante un aumento del numero di osservatori, questo potrebbe suggerire una reale variazione nell'abbondanza del taxon.
-        charts_help_other: |
-          Mostriamo anche i grafici di stagionalità per le annotazioni delle osservazioni. Le annotazioni sono un nuovo sistema per aggiungere metadati alle osservazioni usando un vocabolario controllato di termini. Per ora stiamo usando solo "Stadio Vitale" e "Fenologia della Pianta" (quando la pianta è in fiore o in frutto). Non abbiamo ancora un modo per aggiungere le annotazioni direttamente, così per ora stiamo convertendo i dati dai campi delle osservazioni alle annotazioni. Se non riesci ad aspettare che implementiamo il nostro sistema delle annotazioni, puoi contribuire alle annotazioni "Stadio Vitale" aggiungendo campi di osservazione con questi valori: Adulto, Pupa, Ninfa, Larva, Uovo, Giovane. Campi idonei sono "Stadio Vitale di insetto" o "Stadio Vitale". Per la "Fenologia della Pianta" noi cerchiamo ogni campo con la parola "fenologia" nel nome, e "fiore" o "frutto" come valore; un campo adatto è ad esempio "Fenologia della fioritura".
         charts_help_relative_observations: |
           Mostrare la frequenza come proporzione relativa di tutte le osservazioni aiuta a mediare l’effetto della crescita globale della piattaforma. Per esempio, con la crescita della piattaforma raccogliamo sempre più osservazioni ogni anno che passa e di conseguenza abbiamo più osservazioni su ogni specifico taxon. Questo non significa che ci sono più individui di quel taxon ma che semplicemente ci sono più persone che l’osservano. Mostrare la proporzione relativa significa che se c’è un totale di 100 osservazioni totali, ma 20 di questo taxon, la proporzione è 0.2 (20 / 100). Se l’anno prossimo le persone osserveranno 2000 osservazioni di cui 400 osservazioni di questo taxon, la proporzione sarà sempre 0.2 (400 / 2000). Questo causa alcune aberrazioni quando ci sono troppo pochi osservatori in un’area, o per i taxa che non sono molto osservati, ma lo stesso accade con i totali.
         complete_taxon_desc: |
@@ -5477,7 +5479,9 @@ it:
         notification_preferences_project_journal_posts: Post del diario di progetto
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Quando un progetto aggiunge le tue osservazioni
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Cambi di curatore del progetto
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Modifiche tassonomiche
@@ -6255,7 +6259,7 @@ it:
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@m"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@m"

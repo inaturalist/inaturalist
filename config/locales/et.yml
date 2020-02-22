@@ -815,7 +815,6 @@ et:
   couldnt_find_a_user_matching_x_param: "Ei leidnud kasutajat, kes vastab tunnusele %{id}"
   couldnt_find_that_taxon: Ei leidnud taksonit.
   countries: Riigid
-  cover: Kaanepilt
   create: Loo
   create_a_guide: Loo juhend
   create_a_new_field: Loo uus väli
@@ -1121,6 +1120,7 @@ et:
   featured: Esiletõstetud
   featuring: Esiletõstetud
   feedback: Tagasiside
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Vood'
   failed: Ebaõnnestus
   field_note: |
@@ -1200,6 +1200,7 @@ et:
   flickr_tagger: Flickr märksõnad
   flickr_tags: Flickr märksõnad
   fluid_layout: Voolav ekraani asetus
+  #Adjective, as in a fluid layout of images
   fluid: voolav
   follow: Jälgi
   follow_receive_updates_about_new_observations: Jälgi (saa teateid uute vaatluste kohta)
@@ -2037,7 +2038,6 @@ et:
     irregular: ebaregulaarne
     doubtful: kaheldav
     absent: puudub
-  of: /
   of_observations: vaatlused
   of_species: liik
   of_observers: vaatlejad
@@ -2048,7 +2048,6 @@ et:
   official_blog: Ametlik blogi
   offline_access_enabled: Offline-ligipääs lubatud
   old_observation_form: Vana vaatlusvorm (mittekasutatav)
-  on_: "kuupäeval"
   on_date: "kuupäeval %{date}"
   on_day: "kuupäeval"
   on_your_life_list: sinu elunimekirjas
@@ -2505,7 +2504,9 @@ et:
   popular: Levinud
   position: Asukoht
   possessive_user: "Kasutaja %{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} päeviku</a> postitused
+  #Post is a noun
   post_from_your_journal_html: <a href="%{url}">Sinu päeviku</a> postitused
   post_published: Postitus avaldatud!
   posted_by: Postitanud
@@ -2986,6 +2987,7 @@ et:
   species_taxon_name: Liigi / taksoni nimi
   species_unknown: Liik teadmata
   specify_the_reason_youre_flagging: Põhjus märkuse lisamiseks
+  #Abbreviation for "source"
   src: Allikas
   standard: Normaalne
   start: Algus
@@ -2998,7 +3000,6 @@ et:
   start_typing_place_name: Trüki koha nimi...
   start_typing_taxon_name: Trüki taksoni nimi...
   start_typing_someones_name: "Trüki kellegi nimi..."
-  states: Osariigid
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Selle aasta statistikat pole veel loodud.
   status: Staatus
@@ -3288,6 +3289,7 @@ et:
   threatened: Ohustatud
   time_: aeg
   time_ago: "%{time} tagasi"
+  #As in the title of a book or a blog post
   title: pealkiri
   title_and_description: "Pealkiri ja kirjeldus"
   to_add_comments: lisada kommentaare
@@ -3526,6 +3528,7 @@ et:
   w_photos_only: fotodega
   w_sounds: helidega
   wait_file_generation: Palun oota hetk, kuni faili luuakse. Suurte nimekirjade puhul võib see võta paar minutit.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Otsime
   was_it_captive_cultivated?: "Oli see vangistatud / kultiveeritud?"
   we_also_support: |
@@ -4445,8 +4448,6 @@ et:
           See graafik kujutab selle taksoni vaatluseid kuu kaupa. Pea meeles, et tegu on vaatlustega, nii et neid mõjutavad nii aeg, kui organismi saab vaadelda, kui see, kunas inimesed viitsivad seda vaadelda. Mõni lind väib näida mais väga aktiivsena, kuid see võib tuleneda kas sellest, et palju inimesi vaatleb seda lindu mais ja ei huvitu sellest hilisemal ajal. Samuti, kui juunis on kiilide vaatlusi rohkem kui jaanuaris, siis tuleneb see tõenäoliselt tõsiasjast, et meie lehel on rohkem põhjapoolkera vaatlejaid kui lõunapoolkera omasid, ning mitte selles, et kiilid on aktiivsemad juunis. Seetõttu vaata alati ka vaatlustega seotud kaarte. Alati on kasulik olla skeptiline, kui vaatluste arv on väike ja/või kui "tõendatavate" ning "teaduskõlbulike" vaatluste arvuline erinevus on suur.
         charts_help_history: |
           See graafik näitab selle taksoni vaatluseid viimase kümne aasta jooksul kuude lõikes. See sõltub samuti vaatlejate arvust ning kui näib, et see on sama või ei suurene hoolimata kasvavast vaatlejate arvust, võib see viidata muutuvale arvukusele.
-        charts_help_other: |
-          Me näitame ka vaatluse märgete põhjal hooajalisuse graafikuid. Märked on uus süsteem, millega vaatlustele saab kindlaksmääratud sõnastike abil meta andmeid lisada. Praeguseks on kasutusel "elujärgu" ja "taime fenoloogia" märked (kuna taim õitseb ja vilja kannab). Meil pole veel võimalust märkeid otse sisestada, niiet praegu me teisendame märkeid vaatlusväljadest. Kui sa ei jõua oodata, et me märgetesüsteemi valmis ehitaks, saad lisada "elujärgu" märkeid lisades vaatlusvälju, millel on mõni järgnevatest väärtustest: täiskasvanud, valmik, nukk, tõuk, muna või nooruk. Seega sobivad eriti hästi "Elujärk" ja "Putuka elujärk" väljad. "Taime fenoloogia" puhul kontrollime kõiki välju, mille nimes on sõna "fenoloogia" ning väärtus sisaldab sõnu "õis" või "vili". Näiteks "Õitsemise fenoloogia" on hea valik.
         charts_help_relative_observations: |
           Sageduse näitamine proportsionaalse suhtarvuna kõigist vaatlustest silub natukene lehe kasvu üldist mõju. Kui näiteks leht kasvab ning iga aastaga tuleb vaatluseid juurde, siis kasvab ka iga üksiku taksoni vaatluste arv, mis ei näita aga seda, kas antud taksonit on vaatlemiseks rohkem, vaid lihtsalt, et vaatlejaid on rohkem. Proportsionaalse osa näitamine tähendab, et kui kokku on 100 vaatlust ja seda liiki on vaadeldud 20 korda, siis on proportsioon 0,2 (20 / 100). Kui järgmine aasta on 2000 vaatlust ning seda liiki vaadeldakse 400 korda, siis on proportsioon ikka 0,2 (400 / 2000). See tekitab teatud hälbimusi, kui mingis piirkonnas on vähe vaatlejaid või taksonite puhul, mida vaadeldakse harva, kuid see kehtiks ka üldarvude puhul.
         complete_taxon_desc: |

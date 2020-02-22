@@ -21,9 +21,21 @@
           %tr
             %td=t :site_admins
             %td
-              %ul.unstacked{ style: "padding-left: 1em" }
+              %ul{ style: "padding-left: 1em" }
                 - for sa in @record.site_admins
                   %li= link_to_user sa.user
+              %p These users are entitled to complete data exports including
+              %ul{ style: "padding-left: 1em" }
+                %li User data (including email addresses) of people affiliated with this site
+                %li Observations added by people affiliated with this site
+                - if @record.place
+                  %li
+                    Observations in 
+                    = link_to @record.place.display_name, @record.place
+                - if @record.extra_place
+                  %li
+                    Observations in 
+                    = link_to @record.extra_place.display_name, @record.extra_place
       - for grp, prefs in @pref_groups
         - prefs = prefs.select{|p| !@record.preferences[p.name].blank?}
         - next if prefs.blank?

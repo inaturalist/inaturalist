@@ -5,6 +5,11 @@ lt:
     many: '%{count} komentarai(-ų)'
     other: '%{count} komentarai(-ų)'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>"
+  x_taxa:
+    one: "%{count} taksonas"
+    few: "%{count} taksonai"
+    many: "%{count} taksonai"
+    other: "%{count} taksonai"
   x_research_grade_observations_html:
     one: "<span class='count'>%{count}</span> identifikuotas stebėjimas"
     few: "<span class='count'>%{count}</span>"
@@ -672,7 +677,6 @@ lt:
   couldnt_find_a_user_matching_x_param: "Nepavyko rasti vartotojo atitinkančio %{id}"
   couldnt_find_that_taxon: Taksonas nerastas
   countries: Šalys
-  cover: Viršelis
   create: Kurti
   create_a_guide: Kurti gidą
   create_a_new_field: Kurti naują lauką
@@ -979,6 +983,7 @@ lt:
   featured: Siūlomi
   featuring: Siūloma
   feedback: Atsiliepimai
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Srautai'
   failed: Nepavyko
   field_note: |
@@ -3021,6 +3026,7 @@ lt:
   threatened: Esantis pavojuje
   time_: laikas
   time_ago: "prieš %{time}"
+  #As in the title of a book or a blog post
   title: pavadinimas
   title_and_description: "Pavadinimas ir aprašymas"
   to_add_comments: pridėti komentarų
@@ -3245,6 +3251,7 @@ lt:
   w_photos_only: su nuotraukomis
   w_sounds: su garsais
   wait_file_generation: Prašome palaukti, kol bus sukurtas failas. Ilgiems sąrašams tai gali užtrukti kelias minutes.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ieškomas
   was_it_captive_cultivated?: "Ar tai buvo naminis / kultivuojamas?"
   we_also_support: |
@@ -3710,7 +3717,9 @@ lt:
         notification_preferences_project_journal_posts: Projekto žurnalo įrašai
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Kai projektas prideda jūsų stebėjimus
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Projektų kuratorių pasikeitimai
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Taksonominiai pakeitimai
@@ -4106,7 +4115,7 @@ lt:
         family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@f"

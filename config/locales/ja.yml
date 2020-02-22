@@ -820,7 +820,6 @@ ja:
   couldnt_find_a_user_matching_x_param: "%{id}というユーザーが見つかりません"
   couldnt_find_that_taxon: お探しのタクソンが見つかりません
   countries: 国
-  cover: カバー
   create: 作成
   create_a_guide: ガイドを作成
   create_a_new_field: 新規フィールドを作成
@@ -1112,6 +1111,7 @@ ja:
   favorites: "お気に入り"
   featured: 注目
   feedback: フィードバック
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'フィード'
   failed: 失敗しました
   field_note: |
@@ -1998,7 +1998,6 @@ ja:
     irregular: イレギュラー
     doubtful: 不在疑惑
     absent: 不在
-  of: の
   of_observations: 観察記録
   of_species: 種
   of_observers: 観察者
@@ -2525,7 +2524,9 @@ ja:
   popular: 人気
   position: 位置
   possessive_user: "%{user}の"
+  #Post is a noun
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} によるジャーナル</a>からの投稿
+  #Post is a noun
   post_from_your_journal_html: <a href="%{url}">貴誌</a>からの投稿
   post_published: 投稿されました！
   posted_by: 投稿者
@@ -2958,6 +2959,7 @@ ja:
   species_taxon_name: 種・分類群の名称
   species_unknown: 種不明
   specify_the_reason_youre_flagging: このアイテムにフラグを設定する理由を指定してください
+  #Abbreviation for "source"
   src: ソース
   standard: 標準
   start: 開始
@@ -2970,7 +2972,6 @@ ja:
   start_typing_place_name: 場所名を入力
   start_typing_taxon_name: 分類群を入力
   start_typing_someones_name: "ユーザーの名前を入力"
-  states: 州
   stats: 統計
   stats_for_this_year_have_not_been_generated: 今年の統計は作成されていません。
   status: 状況
@@ -3159,6 +3160,7 @@ ja:
   threatened: 絶滅危惧種
   time_: 時刻
   time_ago: "%{time}前"
+  #As in the title of a book or a blog post
   title: タイトル
   title_and_description: "タイトルおよび説明"
   to_add_comments: すれば、コメントを投稿することができます

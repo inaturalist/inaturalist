@@ -80,7 +80,7 @@
               label_after: true,                                                   |
               label: t("relationships.#{relationship}"),                           |
               checked: @relationships.include?( relationship )                     |
-        = f.select :taxon_framework_id, @taxon_frameworks.map{ |er| [er.taxon.name, er.id] }, include_blank: t( :any ), selected: @taxon_framework.try( :id ), label: t(:taxon_framework_taxon)
+        = f.select :taxon_framework_id, @taxon_frameworks.map{ |er| [er.name, er.id] }, include_blank: t( :any ), selected: @taxon_framework.try( :id ), label: t(:taxon_framework_taxon)
         = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:internal_taxon_including_descendants)
         = f.hidden_field :taxon_id, value: @internal_taxon ? @internal_taxon.id : nil
         = f.text_field :external_taxon_name, value: @external_taxon_name ? @external_taxon_name : nil, place_holder: t(:type_taxon_name), label: t(:external_taxon_including_children)

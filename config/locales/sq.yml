@@ -672,7 +672,6 @@ sq:
   couldnt_find_a_user_matching_x_param: "Nuk mund të gjendet përdoruesi që përputhet me %{id}"
   couldnt_find_that_taxon: Nuk mund të gjendet ky takson.
   countries: Shtetet
-  cover: Mbulim
   create: Krijo
   create_a_guide: Krijo një udhëzues
   create_a_new_field: Krijo një fushë të re
@@ -955,6 +954,7 @@ sq:
   favorites: "Favoritet"
   featured: i/e paraqitur
   feedback: Reagim
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Furnizime'
   failed: Dështoi
   field_note: |
@@ -1029,6 +1029,7 @@ sq:
   flickr_tagger: Etiketuesi i Flickr
   flickr_tags: Etiketimet në Flickr
   fluid_layout: Ekspozimi i lëngshëm
+  #Adjective, as in a fluid layout of images
   fluid: lëngshëm
   follow: Ndjek
   follow_user: "Ndiq %{user}"
@@ -1795,7 +1796,6 @@ sq:
     irregular: i ç'regullt
     doubtful: i dyshimtë
     absent: i munguar
-  of: i/të
   of_observations: vëzhgime
   of_species: specjet
   of_observers: vëzhguesit
@@ -1807,7 +1807,6 @@ sq:
   offline_access_enabled: Qasja pa internet e mundesuar
   old_observation_form: Formë e vjeter vëzhgimi (e zhvlerësuar)
   ok: "Në rregull"
-  on_: "në"
   on_date: "më %{date}"
   on_day: "në"
   on_your_life_list: Në listën tuaj të jetës
@@ -2133,7 +2132,9 @@ sq:
   popular: i popullarizuar
   position: Pozita
   possessive_user: "i/e %{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Publiko nga <a href="%{url}">ditari me %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
   post_published: Postimi u publikua!
   posted_by: Postuar nga
@@ -2556,7 +2557,6 @@ sq:
   start_typing_place_name: Fillo të shkruash emrin e vendit...
   start_typing_taxon_name: Filloni të shkruani emrin e takson...
   start_typing_someones_name: "Fillo të shkruash emrin e dikujt..."
-  states: Shtetet
   stats: Statistikat
   stats_for_this_year_have_not_been_generated: Statistikat për këtë vit nuk janë gjeneruar
   status: Statusi

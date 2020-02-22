@@ -641,7 +641,6 @@ sk:
   couldnt_find_a_user_matching_x_param: "Nebol nájdený odpovedajúci užívateľ %{id}"
   couldnt_find_that_taxon: Tento taxón nebol nájdený.
   countries: Krajiny
-  cover: Obal
   create: Vytvoriť
   create_a_guide: Vytvoriť sprievodcu
   create_a_new_field: Vytvoriť nové pole
@@ -938,6 +937,7 @@ sk:
   featured: Odporúčané
   featuring: Odporúčané
   feedback: Spätná väzba
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Kanály'
   failed: Chyba
   field_note: |
@@ -1016,6 +1016,7 @@ sk:
   flickr_tagger: Autor tagov na Flickr
   flickr_tags: Tagy na Flickr
   fluid_layout: Premenlivé rozloženie
+  #Adjective, as in a fluid layout of images
   fluid: premenlivé
   follow: Sledovať
   follow_receive_updates_about_new_observations: Sledujte (dostanete informácie o nových pozorovaniach)
@@ -1822,7 +1823,6 @@ sk:
     irregular: nepravideľný
     doubtful: nepravdepodobný
     absent: neprítomný
-  of: z
   of_observations: pozorovania
   of_species: druh
   of_observers: pozorovatelia
@@ -1833,7 +1833,6 @@ sk:
   official_blog: Oficiálny blog
   offline_access_enabled: Offline prístup povolený
   old_observation_form: Pôvodný formulár pozorovania (zastaraný)
-  on_: "na"
   on_date: "dňa %{date}"
   on_day: "dňa"
   on_your_life_list: na vašom zoznamu života
@@ -2312,7 +2311,9 @@ sk:
   popular: Obľúbené
   position: Pozícia
   possessive_user: "užívateľa %{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Príspevok z <a href="%{url}"> denníka od %{parent} </a>
+  #Post is a noun
   post_from_your_journal_html: Príspevok z <a href="%{url}">vášho denníka</a>
   post_published: Príspevok zverejnený!
   posted_by: Autor
@@ -2758,6 +2759,7 @@ sk:
   species_taxon_name: Druh / názov taxónu
   species_unknown: Neznámy druh
   specify_the_reason_youre_flagging: Špecifikujte dôvod prečo označujete túto položku
+  #Abbreviation for "source"
   src: Zdr.
   standard: Štandardný
   start: Začiatok
@@ -2770,7 +2772,6 @@ sk:
   start_typing_place_name: Začať písať názov miesta...
   start_typing_taxon_name: Začať písať názov taxónu...
   start_typing_someones_name: "Začať písať niekoho meno..."
-  states: Štáty
   stats: Štatistika
   stats_for_this_year_have_not_been_generated: Štatistika pre tento rok nebola vygenerovaná.
   status_globally: "%{status} globálne"
@@ -2928,6 +2929,7 @@ sk:
   threatened: Ohrozený
   time_: čas
   time_ago: "pred %{time}"
+  #As in the title of a book or a blog post
   title: názov
   title_and_description: "Názov a opis"
   to_add_comments: pridať komentáre
@@ -3145,8 +3147,6 @@ sk:
         high_status_conservation_status_notice_html: |
           Pridanie statusu ochrany vyššiemu taxónu ovplyvňuje pozorovania všetkých druhov v tomto taxóne. Nepridávajte prosím statusy pre taxóny, ktoré obsahujú druhy bez statusu pretože to zakryje súradnice pozorovaní týchto druhov.
       show:
-        charts_help_other: |
-          Tiež zobrazujeme grafy sezónnosti pre anotácie pozorovaní. Anotácie sú nový systém pridávania metadát k pozorovaniam prostredníctvom kontrolovaných termínov. Zatiaľ používame len "životné štádium" a "rastlinnú fenológiu" (keď rastlina kvitne alebo plodí). Zatiaľ nemáme žiadny spôsob, ako pridávať anotácie priamo, takže teraz prevádzame údaje z polí pozorovania do anotácií. Ak sa nemôžete dočkať, až vytvoríme systém anotácií, môžete prispieť k anotáciám "životného štádia" pridaním údajov o pozorovaní, ktoré majú jednu z nasledujúcich hodnôt: dospelý, po zvliekaní, kukla, nymfa, larva, vajíčko alebo mláďa. Dobré sú teda najmä polia "životné štádium" a "životné štádium hmyzu". Pokiaľ ide o "rastlinnú fenológiu", zameriavame sa na všetky polia s výrazom "fenológia" v názve a "kvet" alebo "plod" v hodnote, takže je vhodné použiť pole "fenológia kvitnutia".
         frequency:
           "Life Stage=teneral": Po zvliekaní
     users:

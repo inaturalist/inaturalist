@@ -861,7 +861,6 @@ es-AR:
   couldnt_find_a_user_matching_x_param: "No se pudo encontrar al usuario con parámetros: %{id}"
   couldnt_find_that_taxon: No se encontró la especie o grupo.
   countries: Países
-  cover: Portada
   create: Crea
   create_a_guide: Crea una guía
   create_a_new_field: Crea un nuevo campo
@@ -1128,6 +1127,7 @@ es-AR:
   endangered: En peligro
   endemic: Endémica
   endemic_to_x: "Endémica de %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: Enciclopedia de la Vida
   eol_collection_url: "URL de colección EOL"
   error_updating_photo: "Error al subir la foto: %{photo_errors}"
@@ -1191,6 +1191,7 @@ es-AR:
   featured: Destacados
   featuring: Presentando
   feedback: Retroalimentación
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Fuentes'
   failed: Fallido
   field_note: |
@@ -1300,6 +1301,7 @@ es-AR:
   flickr_tagger: Etiquetador de Flickr
   flickr_tags: Etiquetas de Flickr
   fluid_layout: Diseño fluido
+  #Adjective, as in a fluid layout of images
   fluid: fluida
   follow: Seguir
   follow_receive_updates_about_new_observations: Sigue (recibe actualizaciones sobre observaciones nuevas)
@@ -2257,7 +2259,6 @@ es-AR:
     irregular: irregular
     doubtful: dudoso
     absent: ausente
-  of: de
   of_observations: observaciones
   of_species: Especie
   of_observers: Observadores
@@ -2269,7 +2270,6 @@ es-AR:
   offline_access_enabled: Acceso sin conexión activado
   old_observation_form: Antiguo registro de observaciones
   ok: "Aceptar"
-  on_: "en"
   on_date: "en %{date}"
   on_day: "el"
   on_your_life_list: en tu lista de vida
@@ -2856,7 +2856,9 @@ es-AR:
   popular: Populares
   position: Posición
   possessive_user: "de %{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Publicación del <a href="%{url}">diario de %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Publicación de <a href="%{url}">tu diario</a>
   post_published: '¡Nota publicada!'
   posted_by: Publicado por
@@ -3360,6 +3362,7 @@ es-AR:
   species_taxon_name: Especie / Nombre del taxón
   species_unknown: Especies desconocidas
   specify_the_reason_youre_flagging: Especificar la razón por la que has marcado este elemento
+  #Abbreviation for "source"
   src: Fuente
   standard: Estándar
   start: Inicio
@@ -3372,7 +3375,6 @@ es-AR:
   start_typing_place_name: Comience a digitar el nombre del lugar…
   start_typing_taxon_name: Comience a digitar el nombre del especies…
   start_typing_someones_name: "Comience a digitar el nombre de alguien…"
-  states: Estados
   stats: Estadísticas
   stats_for_this_year_have_not_been_generated: No se han generado las estadísticas de este año.
   status: Estado
@@ -3684,6 +3686,7 @@ es-AR:
   threatened: Amenazada
   time_: vez
   time_ago: "hace %{time}"
+  #As in the title of a book or a blog post
   title: título
   title_and_description: "Título y Descripción"
   to_add_comments: para agregar comentarios.
@@ -3959,6 +3962,7 @@ es-AR:
   w_photos_only: con fotos solamente
   w_sounds: con sonidos
   wait_file_generation: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerido
   was_it_captive_cultivated?: "¿Fue cautiva / cultivado?"
   we_also_support: |
@@ -5181,10 +5185,6 @@ es-AR:
           Este gráfico muestra el número de observaciones de este taxón agrupadas por mes. Tenga en cuenta que se trata del número de observaciones, por lo que dependes tanto del momento en el que el organismo puede ser observado como de cuantas personas están participando en su observación. Así, un pájaro podría parecer muy activo en mayo, pero también podría ser debido a que la mayoría de los ornitólogos la citan en mayo pero que tienden a ignorarla los últimos meses. De manera similar, si indica más libélulas en junio que en enero, puede deberse a que hay más observadores en el hemisferio norte que en el hemisferio sur y no porque las libélulas sean más activas en junio, así que compruebe el mapa al considerar estos graficos. Siempre es mejor desconfiar de estos gráficos cuando hay un bajo número de observaciones y/o grandes discrepancias entre el número de observaciones "verificables" y de "grado de investigación".
         charts_help_history: |
           Este gráfico muestra el número de observaciones de este taxón por meses durante los últimos diez años. Una vez más, puede estar sesgada por el número de observadores, puede mostrar picos inusuales en las observaciones, pero si parece plana o decreciente a pesar de un número creciente de observadores, podría sugerir un cambio en la abundancia.
-        charts_help_other: |
-          También mostramos los gráficos de estacionalidad para anotar las observaciones.
-          Las anotaciones son un sistema nuevo de añadir metadatos a las observaciones, utilizando un vocabulario definido de términos. Por ahora sólo estamos usando "Etapa Vital" y "Fenología vegetal" (para determinar si la planta está floreciendo o fructificando). Todavía no tenemos una manera de añadir anotaciones directamente, por lo que estamos transformando datos de los campos de observación al de anotaciones.
-          Si no puedes esperar que acabamos el sistema de anotaciones, puedes contribuir a las anotaciones de "Etapa Vital" añadiendo al campo de observación algunos de los valores siguientes: edad, ecdisis, pupa, ninfa, larva, huevo, o juvenil para los campos "Etapa Vital" y "Etapa Vital de los Insectos". Para la "Fenología vegetal," buscamos cualquier campo con la palabra "Fenología" en su nombre y "Flor" o "Fruto" en el valor, por lo que el campo "Floración Fenología" puede ser buen nombre.
         charts_help_relative_observations: |
           El mostrar la frecuencia como proporción relativa de todas las observaciones ayuda a suavizar el efecto del crecimiento global del sitio. Por ejemplo, si el sitio está creciendo mientras conseguimos más observaciones con cada año que pasa, tenemos más observaciones de cualquier taxón individual. Esto no dices nada sobre si hay más individuos de ese taxón o si hay más personas que lo observan. Al mostrar la proporción relativa significa que si hay un total de 100 observaciones totales, pero 20 de este taxón, la proporción es 0.2 (20 / 100). Si las personas observan 2,000 observaciones el año entrante y 400 observaciones de este taxón, la proporción es todavía 0.2 (400 / 2,000). Esto causa algunas aberraciones cuando hay muy pocos observadores en una área, o para taxones que no son muy observados, pero lo mismo sucede con los conteos totales.
         complete_taxon_desc: |
@@ -6092,7 +6092,7 @@ es-AR:
         family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@m"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@m"

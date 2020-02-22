@@ -1037,7 +1037,6 @@ cs:
   couldnt_find_a_user_matching_x_param: "Nebyl nalezen odpovídající uživatel %{id}"
   couldnt_find_that_taxon: Tento taxon nebyl nalezen.
   countries: Země
-  cover: Obal
   create: Vytvořit
   create_a_guide: Vytvořit průvodce
   create_a_new_field: Vytvořit nové pole
@@ -1308,6 +1307,7 @@ cs:
   endangered: ohrožený
   endemic: endemický
   endemic_to_x: "Endemický v %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: Konec řádku (EOL)
   eol_collection_url: "URL souboru EOL"
   error_updating_photo: "Chyba při aktualizaci obrázku: %{photo_errors}"
@@ -1371,6 +1371,7 @@ cs:
   featured: doporučený
   featuring: Představující
   feedback: Zpětná vazba
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Kanály'
   failed: Chyba
   field_note: |
@@ -1478,6 +1479,7 @@ cs:
   flickr_tagger: Autor tagů na Flickru
   flickr_tags: Tagy na Flickru
   fluid_layout: Proměnlivé rozložení
+  #Adjective, as in a fluid layout of images
   fluid: proměnlivý
   follow: Sledovat
   follow_receive_updates_about_new_observations: Sledujte (obdržíte informace o nových pozorováních)
@@ -2456,7 +2458,6 @@ cs:
     irregular: nepravidelný
     doubtful: nepravděpodobný
     absent: nepřítomný
-  of: z
   of_observations: pozorování
   of_species: druh
   of_observers: pozorovatelé
@@ -2468,7 +2469,6 @@ cs:
   offline_access_enabled: Offline přístup povolen
   old_observation_form: Původní formulář pozorování (zastaralý)
   ok: "Jo"
-  on_: "na"
   on_date: "dne %{date}"
   on_day: "dne"
   on_your_life_list: na vašem seznamu života
@@ -3059,7 +3059,9 @@ cs:
   popular: oblíbené
   position: Pozice
   possessive_user: "uživatele %{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Příspěvek od <a href="%{url}"> novin od %{parent} </a>
+  #Post is a noun
   post_from_your_journal_html: Příspěvek od <a href="%{url}">your journal</a>
   post_published: Příspěvek byl zveřejněn!
   posted_by: Autor příspěvku
@@ -3573,6 +3575,7 @@ cs:
   species_taxon_name: Druh / název taxonu
   species_unknown: Neznámý druh
   specify_the_reason_youre_flagging: Uveďte důvod, proč označujete tuto položku
+  #Abbreviation for "source"
   src: Zdr.
   standard: Standardní
   start: Začít
@@ -3585,7 +3588,6 @@ cs:
   start_typing_place_name: Začít psát název místa...
   start_typing_taxon_name: Začít psát název taxonu...
   start_typing_someones_name: "Začít psát něčí jméno..."
-  states: Státy
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Statistika pro tento rok nebyla vygenerována.
   status: Stav
@@ -3599,9 +3601,6 @@ cs:
   stop_following_user: "Přestat sledovat uživatele %{user}"
   stop_testing: Zastavit testování
   stop_trusting_this_person_with_your_private_coordinates: Přestat věřit této osobě se skrytými souřadnicemi
-  #As in a place to purchase things. We use it as a link to a place where you
-  #can buy merchandise. Please try to keep translations as short as possible
-  store: SKLADOVAT
   studies_that_used_inaturalist_data_in_year: Studie používající iNaturalist data v %{year}
   stuff_just_added: "Zrovna jste přidali..."
   subject_resolved_noun_html: "%{subject} vyřešeno %{noun}"
@@ -3941,6 +3940,7 @@ cs:
   threatened: ohrožený
   time_: čas
   time_ago: "před %{time}"
+  #As in the title of a book or a blog post
   title: název
   title_and_description: "Název a popis"
   to_add_comments: přidat komentáře
@@ -4233,6 +4233,7 @@ cs:
   w_photos_only: s fotkami
   w_sounds: se zvuky
   wait_file_generation: Počkejte prosím, než se soubor vygeneruje. U velkých seznamů to může trvat několik minut.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Hledaný
   was_it_captive_cultivated?: "Byl v zajetí / pěstovaný?"
   we_also_support: |
@@ -5511,8 +5512,6 @@ cs:
           Tento graf zobrazuje počet pozorování tohoto taxonu podle měsíců. Nezapomeňte, že toto jsou počty pozorování, takže jsou ovlivněny jak tím, kdy je možné organismus pozorovat, tak také tím, kdy jsou lidé ochotní ho pozorovat. Takže to může vypadat, že nějaký pták je velmi aktivní v květnu, to však může být také proto, že v květnu ptáky pozoruje víc lidí, kteří tento druh v následujících měsících ignorují. Podobně když vidíte více vážek v červnu než v lednu, je to pravděpodobně proto, že máme více pozorovatelů na severní polokouli než na jižní polokouli a ne proto, že by vážky byly v červnu aktivnější, proto se podívejte společně s těmito grafy taky na mapu. Je vhodné být k těmto grafům mírně skeptický v případě, že je málo pozorování a/nebo velké rozpory mezi počtem „Ověřitelných“ a „Výzkumných“ pozorování.
         charts_help_history: |
           Tento graf ukazuje počet pozorování tohoto taxonu podle měsíců za posledních deset let. Opět je ovlivněn počtem pozorujících osob, ale ukáže vám neobvyklé nárůsty pozorování, a pokud je graf plochý nebo se snižuje navzdory rostoucímu počtu pozorovatelů, může to znamenat změnu množství.
-        charts_help_other: |
-          Také zobrazujeme grafy sezónnosti pro anotace pozorování. Anotace jsou nový systém přidávání metadat k pozorování prostřednictvím kontrolovaných termínů. Zatím používáme pouze „životní stádium“ a „rostlinnou fenologii“ (když rostlina kvete nebo plodí). Zatím nemáme žádný způsob, jak přidávat anotace přímo, takže nyní převádíme údaje z polí pozorování do anotací. Jestli se nemůžete dočkat, až vytvoříme systém anotací, můžete přispět k anotacím „životního stádia“ přidáním údajů o pozorování, které mají některou z následujících hodnot: dospělý, tenerální, kukla, nymfa, larva, vajíčko nebo mládě. Dobrá jsou tedy zejména pole „životní stádium“ a „životní stádium hmyzu“. Pokud jde o „rostlinnou fenologii“, zaměřujeme se na všechna pole s výrazem „fenologie“ v názvu a „květ“ nebo „plod“ v hodnotě, takže je vhodné použít pole „fenologie kvetení“.
         charts_help_relative_observations: |
           Zobrazení frekvence v relativních poměrech vzhledem ke všem pozorováním pomáhá vyhladit účinek celkového růstu místa. Pokud například lokalita roste, zatímco každý rok získáme více pozorování, budeme mít více pozorování jednotlivých taxonů, které vám nic neříkají o tom, že je jich více. Prostě existuje více lidí, kteří daný taxon sledují. Zobrazit relativní poměr znamená, že pokud existuje 100 pozorování, ale 20 pozorování tohoto taxonu, podíl je 20% (20/100). Pokud lidé v následujícím roce provedou 2000 pozorování a 400 z tohoto taxonu, zůstane tento podíl 20% (400/2000). To způsobuje určité odchylky, když je v oblasti velmi málo pozorovatelů, nebo taxony, které jsou velmi zřídka pozorovány, ale to platí i pro celkový počet pozorování.
         complete_taxon_desc: |
@@ -5711,7 +5710,9 @@ cs:
         notification_preferences_project_journal_posts: Příspěvky v deníku projektu
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Když projekt přidá vaše pozorování
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Změny kurátora projektu
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Taxonomické změny
@@ -6578,7 +6579,7 @@ cs:
         favorite: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@n"

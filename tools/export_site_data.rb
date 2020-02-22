@@ -80,6 +80,67 @@ OBS_COLUMNS = %w(
   taxon_id
 )
 
+ASSOC_COLUMNS = {
+  annotations: %w(
+    id
+    uuid
+    resource_type
+    resource_id
+    created_at
+    controlled_attribute_id
+    controlled_attribute_label
+    controlled_value_id
+    controlled_value_label
+    user_id
+    vote_score
+  ),
+  comments: %w(
+    id
+    uuid
+    parent_type
+    parent_id
+    created_at
+    updated_at
+    user_id
+    body
+  ),
+  identifications: %w(
+    id
+    observation_id
+    taxon_id
+    user_id
+    body
+    created_at
+    updated_at
+    current
+    taxon_change_id
+    category
+    uuid
+    previous_observation_taxon_id
+    disagreement
+  ),
+  quality_metrics: %w(
+    id
+    user_id
+    observation_id
+    metric
+    agree
+    created_at
+    updated_at
+  ),
+  observation_field_values: %w(
+    id
+    observation_id
+    observation_field_id
+    value
+    created_at
+    updated_at
+    user_id
+    updater_id
+    uuid
+  )
+}
+
 def system_call(cmd)
   puts "Running #{cmd}" if OPTS[:debug]
   system cmd
@@ -127,6 +188,86 @@ sql = <<-SQL
   WHERE
     site_id = #{@site.id}
     AND spammer != 't'
+SQL
+cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
+system_call cmd
+
+# Export taxa table
+path = File.join( @work_path, "#{@basename}-taxa.csv" )
+sql = <<-SQL
+  SELECT
+    id,
+    name,
+    rank,
+    created_at,
+    updated_at,
+    iconic_taxon_id,
+    is_iconic,
+    creator_id,
+    updater_id,
+    observations_count,
+    listed_taxa_count,
+    rank_level,
+    unique_name,
+    wikipedia_summary,
+    wikipedia_title,
+    featured_at,
+    ancestry,
+    locked,
+    is_active,
+    complete_rank,
+    complete,
+    taxon_framework_relationship_id,
+    uuid
+  FROM
+    taxa
+SQL
+cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
+system_call cmd
+
+# Export conservation_statuses table
+path = File.join( @work_path, "#{@basename}-conservation_statuses.csv" )
+sql = <<-SQL
+  SELECT
+    cs.id,
+    cs.taxon_id,
+    cs.user_id,
+    cs.place_id,
+    cs.source_id,
+    cs.authority,
+    cs.status,
+    cs.url,
+    cs.description,
+    cs.geoprivacy,
+    cs.iucn,
+    cs.created_at,
+    cs.updated_at,
+    places.name AS place_name,
+    places.display_name AS place_display_name
+  FROM
+    conservation_statuses cs
+      LEFT JOIN places ON places.id = cs.place_id
+SQL
+cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
+system_call cmd
+
+# Export observation_fields table
+path = File.join( @work_path, "#{@basename}-observation_fields.csv" )
+sql = <<-SQL
+  SELECT
+    id,
+    name,
+    datatype,
+    user_id,
+    description,
+    created_at,
+    updated_at,
+    allowed_values,
+    values_count,
+    users_count,
+    uuid
+  FROM
+    observation_fields
 SQL
 cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
 system_call cmd
@@ -189,14 +330,25 @@ def export_observations( options = {} )
 
   puts "[#{Time.now}] Exporting observations in #{num_partitions} partitions, options: #{options}" if OPTS[:verbose]
 
-  csv_path = options[:csv_path]
-  if options[:csv_path].blank?
-    csv_path = File.join( @work_path, "#{@basename}-observations.csv" )
+  csv_path = File.join( @work_path, "#{@basename}-observations.csv" )
+  unless File.exists?( csv_path )
     CSV.open( csv_path, "w" ) do |csv|
       csv << OBS_COLUMNS
     end
   end
   puts "[#{Time.now}] Writing CSV to #{csv_path}" if OPTS[:verbose]
+
+  # Set up CSV files for associate models
+  assoc_csv_paths = {}
+  ASSOC_COLUMNS.each do |k, columns|
+    path = File.join( @work_path, "#{@basename}-#{k}.csv" )
+    unless File.exists?( path )
+      CSV.open( path, "w" ) do |csv|
+        csv << columns
+      end
+    end
+    assoc_csv_paths[k] = path
+  end
 
   Parallel.each_with_index( partitions, in_processes: partitions.size ) do |partition, parition_i|
     partition_filters = filters.dup
@@ -205,43 +357,51 @@ def export_observations( options = {} )
     }
     min_id = 0
     obs_i = 0
-    CSV.open( csv_path, "a" ) do |csv|
-      while true do
-        # filters << { range: { id: { gte: min_id } } }
-        batch_filters = partition_filters.dup
-        batch_filters << { range: { id: { gte: min_id } } }
-        observations = try_and_try_again( [Patron::TimeoutError, Faraday::TimeoutError] ) do
-          Observation.elastic_paginate(
-            track_total_hits: true,
-            filters: batch_filters,
-            inverse_filters: inverse_filters,
-            sort: { id: "asc" },
-            per_page: 1000
-          )
-        end
-        if observations.size == 0
-          puts if OPTS[:verbose]
-          break
-        end
-        if obs_i == 0
-          partition_total_entries = observations.total_entries
-        end
-        if OPTS[:verbose]
-          msg = "[#{Time.now}] "
-          msg += "[#{options[:debug_label]}] " if options[:debug_label]
-          msg += "Obs partition #{parition_i} (#{partition}) from #{min_id} (#{obs_i} / #{partition_total_entries}, #{( obs_i.to_f  / partition_total_entries * 100 ).round( 2 )}%)"
-          print msg
-          print "\r"
-          $stdout.flush
-        end
-        Observation.preload_associations( observations, [
-          :user,
-          { identifications: [:stored_preferences] },
-          { photos: :user },
-          :sounds,
-          :quality_metrics,
-          { observations_places: :place }
-        ] )
+    while true do
+      # filters << { range: { id: { gte: min_id } } }
+      batch_filters = partition_filters.dup
+      batch_filters << { range: { id: { gte: min_id } } }
+      observations = try_and_try_again( [Patron::TimeoutError, Faraday::TimeoutError] ) do
+        Observation.elastic_paginate(
+          track_total_hits: true,
+          filters: batch_filters,
+          inverse_filters: inverse_filters,
+          sort: { id: "asc" },
+          per_page: 1000
+        )
+      end
+      if observations.size == 0
+        puts if OPTS[:verbose]
+        break
+      end
+      if obs_i == 0
+        partition_total_entries = observations.total_entries
+      end
+      if OPTS[:verbose]
+        msg = "[#{Time.now}] "
+        msg += "[#{options[:debug_label]}] " if options[:debug_label]
+        msg += "Obs partition #{parition_i} (#{partition}) from #{min_id} (#{obs_i} / #{partition_total_entries}, #{( obs_i.to_f  / partition_total_entries * 100 ).round( 2 )}%)"
+        print msg
+        print "\r"
+        $stdout.flush
+      end
+      Observation.preload_associations( observations, [
+        :user,
+        { identifications: [:stored_preferences] },
+        { photos: :user },
+        :sounds,
+        :quality_metrics,
+        { observations_places: :place },
+        {
+          annotations: {
+            controlled_attribute: [:labels],
+            controlled_value: [:labels]
+          },
+        },
+        :observation_field_values,
+        :comments
+      ] )
+      CSV.open( csv_path, "a" ) do |csv|
         observations.each do |o|
           if OPTS[:debug]
             msg = "Obs #{obs_i} (#{o.id})"
@@ -262,41 +422,48 @@ def export_observations( options = {} )
           min_id = o.id + 1
         end
       end
+      ASSOC_COLUMNS.each do |association, cols|
+        association = association.to_sym
+        CSV.open( assoc_csv_paths[association], "a" ) do |csv|
+          observations.each do |o|
+            o.send( association ).each do |associate|
+              csv << cols.map {|col| associate.send( col )}
+            end
+          end
+        end
+      end
     end
   end
   csv_path
 end
 
 # Export observations by site users with private coordinates
-obs_csv_path = export_observations(
+export_observations(
   site_id: @site.id,
   force_coordinate_visibility: true,
   debug_label: "by site users"
 )
 # Export observations in place by non-site users *only* obscured by taxon geoprivacy with private coordinates
-obs_csv_path = export_observations(
+export_observations(
   not_site_id: @site.id,
-  place_id: @site.place_id,
+  place_id: [@site.place_id, @site.extra_place_id].compact,
   taxon_geoprivacy: ["obscured", "private"],
   geoprivacy: ["open"],
   force_coordinate_visibility: true,
-  csv_path: obs_csv_path,
   debug_label: "by non-site users w/ taxon_geoprivacy but not geoprivacy"
 )
-obs_csv_path = export_observations(
+export_observations(
   not_site_id: @site.id,
-  place_id: @site.place_id,
+  place_id: [@site.place_id, @site.extra_place_id].compact,
   taxon_geoprivacy: ["obscured", "private"],
   geoprivacy: ["obscured", "private"],
-  csv_path: obs_csv_path,
   debug_label: "by non-site users of w/ taxon_geoprivacy AND geoprivacy"
 )
 # Export observations in place by non-site users *not* obscured by taxon geoprivacy *without* private coordinates
-obs_csv_path = export_observations(
+export_observations(
   not_site_id: @site.id,
-  place_id: @site.place_id,
+  place_id: [@site.place_id, @site.extra_place_id].compact,
   not_taxon_geoprivacy: ["obscured", "private"],
-  csv_path: obs_csv_path,
   debug_label: "by non-site users of un-threatened taxa"
 )
 

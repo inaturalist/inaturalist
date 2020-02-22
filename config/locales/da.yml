@@ -93,6 +93,9 @@ da:
   x_suggestions_filtered_by_colon:
     one: "%{count} forslag filtreret efter:"
     other: "%{count} forslag filtreret efter:"
+  x_taxa:
+    one: "%{count} takson"
+    other: "%{count} taksa"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> takson observeret"
     other: "<span class='count'>%{count}</span> taksa observeret"
@@ -780,6 +783,7 @@ da:
   commercial_solicitation: Kommerciel opfordring, fører ingen steder hen etc.
   commit: Engagér
   committed: Udført
+  committed_by_user_on_date_html: Effektueret af %{user} d. %{date}
   committed_on: Udført den %{date}
   committing: Engagerer
   community: Fællesskab
@@ -920,7 +924,6 @@ da:
   couldnt_find_a_user_matching_x_param: "Kunne ikke finde en matchende bruger %{id}"
   couldnt_find_that_taxon: Kunne ikke finde den takson.
   countries: Lande
-  cover: Bannerbillede
   create: Oprette
   create_a_guide: Opret en Guide
   create_a_new_field: Opret et nyt felt
@@ -1194,6 +1197,7 @@ da:
   endangered: Truet
   endemic: Endemisk
   endemic_to_x: "Endemisk over for %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "EOL samling´s URL"
   error_updating_photo: "Fejl ved opdatering af billede:%{photo_errors}"
@@ -1258,6 +1262,7 @@ da:
   featured: Udvalgte
   featuring: Indeholder
   feedback: Feedback
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
   failed: Mislykkedes
   field_note: |
@@ -1370,6 +1375,7 @@ da:
   flickr_tagger: Flickr Tagger
   flickr_tags: Flickr Tags
   fluid_layout: Flydende visning
+  #Adjective, as in a fluid layout of images
   fluid: flydende
   follow: Følg
   follow_receive_updates_about_new_observations: Følg (modtag besked om nye observationer)
@@ -1925,7 +1931,11 @@ da:
   mentioned_you_in_a_x_on_noun_html: "%{user} nævnte dig i en %{x} på %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user}  nævnte dig i en %{x} på %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} nævnte dig i en %{x} på %{noun} af %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} nævnte dig i en %{x} på %{noun} af %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} nævnte dig i en %{x} på %{noun} af dig"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} nævnte dig i en %{x} på %{noun} af %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} nævnte dig i en %{x} på %{noun} af %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} nævnte dig i en %{x} på %{noun} af dig"
   merge: Sammenlæg
   merge_it_with_another_place: Sammenlæg stedet med et andet sted
   merge_two_places_together: Sammenlæg 2 steder. Alle arter på tjeklisterne vil blive sammenlagt, ligeså enhver geografisk data.
@@ -2357,7 +2367,6 @@ da:
     irregular: uregelmæssig
     doubtful: tvivlsom
     absent: ikke til stede
-  of: af
   of_observations: observationer
   of_species: arter
   of_observers: observatører
@@ -2369,7 +2378,6 @@ da:
   offline_access_enabled: Offline adgang er aktiveret
   old_observation_form: Gammel observations formular (forældet)
   ok: "OK"
-  on_: "på"
   on_date: "den %{date}"
   on_day: "på"
   on_your_life_list: på din livsliste
@@ -2957,7 +2965,9 @@ da:
   popular: populær
   position: Position
   possessive_user: "%{user}'s"
+  #Post is a noun
   post_from_journal_by_parent_html: Indlæg af<a href="%{url}">journal af %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Indlæg af <a href="%{url}">din journal</a>
   post_published: Indlæg publiceret!
   posted_by: Indsendt af
@@ -3475,6 +3485,7 @@ da:
   species_taxon_name: Arter/Taksonomisk navn
   species_unknown: Ukendte arter
   specify_the_reason_youre_flagging: Angiv årsagen til, at du markerer dette emne
+  #Abbreviation for "source"
   src: Kilde
   standard: Standard
   start: Start
@@ -3487,7 +3498,6 @@ da:
   start_typing_place_name: Indtast navn på sted ...
   start_typing_taxon_name: Indtast taksonnavn ...
   start_typing_someones_name: "Indtast nogens navn ..."
-  states: Stadier
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik for dette år er ikke blevet genereret.
   status: Status
@@ -3825,6 +3835,7 @@ da:
   threatened: truet
   time_: tidspunkt
   time_ago: "%{time} siden"
+  #As in the title of a book or a blog post
   title: titel
   title_and_description: "Titel & beskrivelse"
   to_add_comments: for at tilføje kommentarer
@@ -3916,6 +3927,7 @@ da:
   update_with_site_content: "Opdatér med indhold fra %{site_name}"
   updated: Opdateret
   updated_by: Opdateret af
+  updated_by_user_on_date_html: Opdateret af %{user} d. %{date}
   updated_daily: Opdateres dagligt
   updated_photo: Opdateret foto
   upload: Upload
@@ -3972,6 +3984,8 @@ da:
   user_added_a_project_invitation_html: "%{user} tilføjede en projektinvitation"
   user_added_a_x: "%{user} tilføjede en %{x}"
   user_added_a_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} tilføjede en %{x} til %{noun} af dig"
   user_added_a_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
   user_added_an_identification_html: "%{user} tilføjede en identifikation"
   user_added_an_observation_field_html: '%{user} tilføjede en værdi i "%{field_name}" til en observation af %{owner}'
@@ -3979,6 +3993,8 @@ da:
   user_added_an_observation_html: "%{user} tilføjede en observation"
   user_added_an_x: "%{user} tilføjede en %{x}"
   user_added_an_x_to_noun_by_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} tilføjede en %{x} til %{noun} af %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} tilføjede en %{x} til %{noun} af dig"
   user_added_an_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
   user_added_x_observations_html: "%{user} tilføjede %{x} observationer"
   user_already_authenticated: Brugeren er allerede godkendt
@@ -4115,6 +4131,7 @@ da:
   w_photos_only: m/ foto´s
   w_sounds: m/ lyde
   wait_file_generation: Vent venligst, mens filen genereres. Det kan tage et par minutter for store lister.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ønsket
   was_it_captive_cultivated?: "Var det i fangenskab / dyrket?"
   we_also_support: |
@@ -4201,6 +4218,12 @@ da:
     one: "1 observation fejlede"
     other: "%{count} observationer fejlede"
   x_of_y: "%{x} af %{y}"
+  x_of_count_confirmed:
+    one: "%{x} of %{count} bekræftet"
+    other: "%{x} of %{count} bekræftet"
+  x_of_count_observed:
+    one: "%{x} af %{count} observeret"
+    other: "%{x} af %{count} observeret"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} af %{y} personer (over 2/3) er enig i det er"
   x_is_the_root_of_the_tree: "%{rank} %{name} er roden af træet"
   x_project_journal: "%{project}s %{name}"
@@ -5635,14 +5658,8 @@ da:
           det virker fladt eller faldende trods et stigende antal observatører, så kan
           det tyde på en ændring i forekomst.
         charts_help_other: |
-          Vi viser også diagrammer med sæsonudsving udfra observations anmærkninger.
-          Anmærkninger er et nyt system til at tilføje metadata til observationer ved hjælp af et foruddefineret sæt af termer. Indtil videre bruger vi kun "Livsstadie" og" plantefænologi "(når planten er blomstrende eller i
-          frugtsætning). Vi har endnu ikke mulighed for at tilføje anmærkninger direkte, så pt. konverterer vi data fra observationsfelter til anmærkninger.
-          Hvis du ikke kan vente på, at vi bygger vores anmærkningssystem, kan du til "Livsstadie" tilføje anmærkninger via et tilføjet observationsfelt, der har en af de følgende termer: Voksen, Teneral, Puppe,
-          Nymfe, Larve, Æg eller Juvenil. Så specielt er "Livsstadie" og 
-          "Insekt Livsstadie" felterne gode. For "Plantefænologi" ser vi på et hvilket som helst felt med ordet "fænologi" i sit navn og
-          "blomst" eller "frugt" i værdien, så feltet "Blomstrende fænologi"
-          er en god en at bruge.
+          Vi viser også diagrammer med sæsonudsving udfra observationsanmærkninger.
+          Anmærkninger er en måde at føje metadata til observationer vha. et foruddefineret sæt af termer, f.eks. hvorvidt en observation afspejler en plante, der er blomstrende eller i frugtsætning.
         charts_help_relative_observations: |
           Ved at vise hyppighed som en relativ andel af alle observationer, hjælper det med at udjævne effekten af websidens samlede vækst.
           For eksempel, når websiden hvert år vokser efterhånden som vi får flere observationer, tilgår der flere observationer af alle taksa. Dette fortæller dig ikke noget om, hvorvidt der er flere af denne takson omkring, der kan
@@ -5876,7 +5893,9 @@ da:
         notification_preferences_project_journal_posts: Projektjournalindlæg
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Når et projekt tilføjer dine observationer
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Projektkuratorændringer
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Taksonomiændringer
@@ -6700,7 +6719,7 @@ da:
         favorite: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@n"
