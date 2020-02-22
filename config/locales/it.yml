@@ -93,6 +93,9 @@ it:
   x_suggestions_filtered_by_colon:
     one: "1 suggerimento filtrato per:"
     other: "%{count} suggerimenti filtrati per:"
+  x_taxa:
+    one: "%{count} taxon"
+    other: "%{count} taxa"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxon osservato"
     other: "<span class='count'>%{count}</span> taxa osservati"
@@ -779,6 +782,7 @@ it:
   commercial_solicitation: Promozioni commerciali, link a nulla, etc.
   commit: Conferma
   committed: Confermato
+  committed_by_user_on_date_html: Creato da %{user} il %{date}
   committed_on: Validato il %{date}
   committing: Conferma in corso...
   community: Comunità
@@ -3860,6 +3864,7 @@ it:
   update_with_site_content: "Aggiorna con i contenuti di %{site_name}"
   updated: Aggiornata
   updated_by: Aggiornate da
+  updated_by_user_on_date_html: Aggiornato da %{user} il %{date}
   updated_daily: Aggiornate quotidianamente
   updated_photo: Foto aggiornate
   upload: Carica
@@ -4147,6 +4152,12 @@ it:
     one: "1 osservazione fallita"
     other: "%{count} osservazioni fallite"
   x_of_y: "%{x} di %{y}"
+  x_of_count_confirmed:
+    one: "%{x} di %{count} confermato"
+    other: "%{x} di %{count} confermati"
+  x_of_count_observed:
+    one: "%{x} di %{count} osservato"
+    other: "%{x} di %{count} osservati"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} di %{y} persone (oltre 2/3) concordano che è"
   x_is_the_root_of_the_tree: "%{rank}%{name} è la radice dell'albero"
   x_project_journal: "%{name} del progetto %{project}"
