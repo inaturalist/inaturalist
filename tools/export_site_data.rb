@@ -209,7 +209,6 @@ sql = <<-SQL
     listed_taxa_count,
     rank_level,
     unique_name,
-    wikipedia_summary,
     wikipedia_title,
     featured_at,
     ancestry,

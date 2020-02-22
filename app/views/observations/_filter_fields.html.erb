@@ -103,13 +103,13 @@
     <strong><%=t :show_only %></strong>
   </div>
   <%-
-    all_iconic_taxa = Taxon::ICONIC_TAXA
+    all_iconic_taxa = Taxon::ICONIC_TAXON_NAMES.keys.map{|name| Taxon::ICONIC_TAXA_BY_NAME[name]}
   -%>
   <% for iconic_taxon in all_iconic_taxa -%>
     <div id="iconic_taxon_<%= iconic_taxon.name.downcase %>" class="iconic_taxon_filter">
-      <input type="checkbox" name="iconic_taxa[]" 
-             value="<%= iconic_taxon.name %>" 
-             id="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'checked="checked"' if selected_taxa.include?(iconic_taxon) %>/>
+      <input type="checkbox" name="iconic_taxa[]"
+        value="<%= iconic_taxon.name %>"
+        id="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'checked="checked"' if selected_taxa.include?(iconic_taxon) %>/>
       <label for="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'class="selected"' if selected_taxa.include?(iconic_taxon) %>>
         <%- if iconic_taxon.name == 'Animalia' -%>
         <span><%=t :other_animals %></span>
