@@ -124,6 +124,19 @@ describe ConservationStatus, "updating geoprivacy" do
     expect( o.private_latitude ).to be_blank
   end
 
+  it "should obscure but not hide coordinates when geoprivacy changes from private to obscured" do
+    test_cs = ConservationStatus.make!( taxon: Taxon.make!( rank: Taxon::SPECIES ), geoprivacy: Observation::PRIVATE )
+    o = Observation.make!( taxon: test_cs.taxon, latitude: 1, longitude: 1 )
+    expect( o ).to be_coordinates_private
+    expect( o.latitude ).to be_blank
+    test_cs.update_attributes( geoprivacy: Observation::OBSCURED )
+    Delayed::Worker.new.work_off
+    o.reload
+    expect( o ).to be_coordinates_obscured
+    expect( o.latitude ).not_to be_blank
+    expect( o.private_latitude ).to eq 1
+  end
+
   it "should change geom for observations of taxon" do
     o = Observation.make!( taxon: cs.taxon, latitude: 1, longitude: 1 )
     lat = o.latitude
