@@ -14,6 +14,12 @@ bg:
   x_identifications_:
     one: '1 Разпознаване'
     other: '%{count} Разпознавания'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span>Разпознавач'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span>Разпознавачи'
   x_languages:
     one: "%{count} език"
     other: "%{count} езика"
@@ -581,6 +587,7 @@ bg:
     juvenile: Млад
     alive_or_dead: Жив или мъртъв
     alive: Жив
+    dead: Мъртъв
     cannot_be_determined: Неопределим
   controlled_term_definitions:
     alive: Организмът е жив и не показва признаци за предстояща смърт
@@ -623,6 +630,7 @@ bg:
   critically_endangered: Критично застрашен
   csv_file: CSV файл
   csv_should_not_contain_a_header_row: CSV не трябва да съдържа заглавен ред
+  curation: Куриране
   curator: Куратор
   curators: Куратори
   dashboard: Табло
@@ -704,7 +712,7 @@ bg:
   devise:
     failure:
       user:
-        suspended: Вашият акаунт е преустановен
+        suspended: Вашият акаунт е запориран
   disable: Изключване
   disagree_: Несъгласен
   disconnect_provider: "Откачи %{provider}"
@@ -740,6 +748,7 @@ bg:
   edit_field: Редактирай полето
   edit_license: Редактиране на лиценза
   edit_observations: Редактиране на наблюдения
+  edit_photos: Редактиране на снимки
   edit_photos_for_observation_id: "Редактиране на снимки на наблюдение %{obs_id}"
   edit_taxon_link: Редактирай таксономична препратка
   edit_your_account_and_profile_html: "Редактиране на вашия акаунт и профил"
@@ -845,6 +854,7 @@ bg:
   flag_an_item: Маркирай елемент
   flag_as_spammer: Маркирай като спамър
   flag_as_non_spammer: Маркирай като не-спамър
+  flag_for_curation: Маркирай за куриране
   flag_it!: Маркирай го!
   flag_marked_as_resolved_html: '<span class="meta">Маркерът е отбелязан като</span> <strong>резрешен.</strong>'
   flag_reason: "&ldquo;Маркирам %{record} защото"
@@ -852,6 +862,7 @@ bg:
   flag_this_observation: Маркирай това наблюдение
   flag_this_photo: Маркирай тази снимка
   flagged: маркира
+  flagged_for_curation: Маркирано за куриране
   flagged_thing_explanation: "Потребителите са маркирали текущ. %{thing}, защото"
   flagging_desc: |
     Маркирането поставя нещо под вниманието на доброволните куратори на сайта. Моля, не маркирайте проблеми, които можете да разрешите чрез добавяне на разпознаване, гласуване в карето Оценка на качеството на данните или чрез разговор с човека добавил съдържанието.
@@ -1393,6 +1404,7 @@ bg:
   observations_by_you: "Наблюдения от Вас"
   observations_by_you_on_date: "Наблюдения от Вас на %{date}"
   observation_calendar_for: "Календар на наблюденията на %{user} за %{year}"
+  observation_curation: Куриране на наблюдения
   observation_date: Дата
   observation_date?: Дата?
   observation_field: Поле за наблюдения
@@ -2199,6 +2211,7 @@ bg:
   suggest_or_require_that: Предложи или изисквай участниците да попълват тези полета за наблюдения които добавят към твоя проект.
   suggestions: Предложения
   summary: Резюме
+  suspend_user: Запорирай потребителя
   sw_lat: ЮЗ шир.
   sw_lon: ЮЗ дълж.
   sync_obs_with_photo_metadata: "Съгласувай с метаданните от снимката"
@@ -2211,6 +2224,7 @@ bg:
   tags_are_a_way: 'Етикетите са допълнителен начин за организиране на Вашите наблюдения. Например, можете да добавите етикет "пещера" към наблюденията си от пещери, за да ги намерите лесно по-късно.'
   taxa: Таксони
   taxa_info: Информация за таксони
+  taxa_needing_curation: Таксони нуждаещи се от куриране
   taxon: Таксон
   taxon_is_a_rank: "%{taxon} е %{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
@@ -2304,11 +2318,15 @@ bg:
   the_following_observations_could: "Следните наблюдения не можаха да бъдат добавени до %{link}"
   the_past: миналото
   the_people_of_inat: "Хората на %{site_name}"
+  the_user_x_has_been_suspended: "Потребителят %{user} беше запориран"
+  the_user_x_has_been_unsuspended: "Потребителят %{user} беше възстановен"
   the_world: Светът
   the_world_is_full_of_interesting_places: |
     Светът е пълен с интересни места, всяко изпълнено с чудати и чудесни форми на живот. Някои са на другия край на света, докато други са ти точно под носа! %{site_name} Места ти позволява да разгледаш живота по целия свят. Започни да го изучаваш!
   there_is_no_wikipedia_page_matching: Няма съответстваща страница в Уикипедия
   there_were_some_problems_with_fields: "Има проблеми със следните полета:"
+  these_are_items_people_on: |
+    Това са елементи, които хората на сайта са маркирали за куриране. Коментарите съдържащи спам трябва да бъдат изтрити, а потребителите които ги генерират - да бъдат запорирани (отидете на профилната им страница и изберете „Запорирай потребителя“ долу вдясно, за да им попречите да влизат в сайта). Другите маркирани елементи трябва да бъдат изтрити само ако са отявлено нелегални, демонстриращи омраза и т.н. Грубост, обиди и други подобни, трябва да се овладяват с вежлив коментар. Потребителите, които злоупотребяват многократно, трябва да се докладват на администратор на сайта или на %{email}
   these_folks_kindly_volunteer_to: Тези хора любезно и доброволно поддържат нашата таксономия и се занимават с някои други проблеми.
   this_bioblitz_beings_in: Този биоблиц започва след
   this_is_a_life_list_of: Това е житейски списък на
@@ -2326,6 +2344,9 @@ bg:
   this_taxon_has_no_default_photo: Този таксон няма примерна снимка!
   this_taxon_is_inactive_this_means: |
     Този таксон е <strong>неактивен</strong>. Това означава, че кураторите на %{site_name} са го заменили с по-нова таксономична концепция.
+  this_user_has_been_suspended: Този потребител е запориран
+  this_user_has_been_suspended_message: |
+    Ако това е Вашият акаунт и смятате, че това е направено по погрешка, моля <a href="mailto:%{email}">свържете се с нас</a>.
   this_will_re_apply_all_list_rules: |
     Това ще приложи наново всички правила на списъка към изброените таксони и ще обнови съответната статистика. Например ще премахне таксони, които не са дъщерни на таксона на списъка или не са от посочения ранг. Това няма да добави нови таксони. Може да отнеме няколко минути.
   threatened: Застрашен
@@ -2364,6 +2385,7 @@ bg:
   unlink_your_google_account: Откачи акаунта си на Google
   updating: Обновяване...
   unsubscribe: Отпиши ме
+  unsuspend_user: Възстанови потребителя
   upcoming_bioblitzes: Предстоящи биоблицове
   update: Обнови
   update_existing_observations_with_new_license: Обнови съществуващите наблюдения с новите избрани лицензи
@@ -2536,6 +2558,7 @@ bg:
   you_cant_leave_a_project_you_created: Не можете да напуснете проект, който самите Вие сте създали.
   you_curate_a_project_that_contains_this_observation_desc: |
     Можете да виждате замаскираните координати на наблюдение, когато то е част от проект който курирате и наблюдателят е решил да сподели координатите с кураторите на проекта.
+  you_dont_have_permission_to_edit_those_photos: Нямате права за редактиране на тези снимки.
   you_havent_linked_your_inaturalist_google_account: "Все още не сте свързали Вашия акаунт на %{site_name} с акаунта си на Google"
   you_havent_joined_any_projects: Не участвате в никакви проекти
   you_joined_this_project: Вие се включихте в проекта!
@@ -2778,6 +2801,9 @@ bg:
         translators_prompt: |
           Ако искате да помогнете с превода, %{link_tag}научете как%{link_tag_end}.
     taxa:
+      edit:
+        complete_desc_html: |
+          Един „пълен“ таксон съдържа <em>всички</em> известни дъщерни таксони с даден ранг отговарящи на политиката за куриране на таксони на iNaturalist, независимо дали са били наблюдавани или не. В момента, само администраторите на сайта могат да обявяват таксони като пълни.
       show:
         about_establishment_desc: |
           "Начин на заселване" описва как даден вид се е установил на мястото в което се среща. "Интродуциран" означава, че е пренесен от човека, докато "местен" означава, че се е заселил без намесата на човека. Ендемичните видове се срещат само на определено и ограничено място.
@@ -2893,6 +2919,7 @@ bg:
         this_only_applies_to_traditional_projects: |
           Това се отнася единствено за традиционните проекти. Не можете да изключвате наблюдения от Събирателни или Обединителни проекти, които по същество са преконфигурирани търсения. Можете да прочетете повече <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">тук</a>.
       show:
+        this_user_was_banned: Този потребител е запориран
         favorites_list_prompt_html: |
           Искате да покажете някои от любимите си таксони? %{link_start_tag}Създайте списък%{link_end_tag} озаглавен „Любими“ и най-новите попълнения в него ще се появят в този раздел.
     welcome:
