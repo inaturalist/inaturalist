@@ -93,6 +93,9 @@ ca:
   x_suggestions_filtered_by_colon:
     one: "1 Suggeriment filtrat per:"
     other: "%{count} Suggeriments Filtrats per:"
+  x_taxa:
+    one: "%{count} tàxon"
+    other: "%{count} tàxons"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> tàxon observat</span>"
     other: "<span class='count'>%{count}</span> tàxons observats</span>"
@@ -440,7 +443,7 @@ ca:
   amphibians: amfibis
   ancestor_taxon: Tàxon Ancestral
   and: i
-  and_other_taxa: "& altres tàxons"
+  and_other_taxa: "&amp; altres tàxons"
   android: Android
   animals: Animals
   annotation: Anotació
@@ -498,7 +501,7 @@ ca:
   are_you_sure_want_delete_taxon_listed_taxa: |
     Esteu segur que voleu eliminar aquest tàxon? Té tàxons llistats.
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
-    Esteu segur que voleu eliminar aquest tàxon? Té tàxons llistatsi identificacions.
+    Esteu segur que voleu eliminar aquest tàxon? Té tàxons llistats i identificacions
   are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
     Esteu segur que voleu eliminar aquest tàxon? Té tàxons llistats, identificacions i observacions.
   are_you_sure_want_delete_taxon_listed_taxa_observations: |
@@ -595,7 +598,7 @@ ca:
     Basat en l'evidència, pot confirmar o millorar el Tàxon de la Comunitat?
   batch: Grup
   batch_edit: Modifica el grup
-  batch_edit_taxa_for_x_html: "Edició de dades per lot per a %{x}"
+  batch_edit_taxa_for_x_html: "Edició de tàxons en lots per a %{x}"
   batch_operations: Operacions de grups
   be_the_first_to_fave_this_observation: Sigueu el primer en fer aquesta observació favorita!
   because_of: a causa de
@@ -777,6 +780,7 @@ ca:
   commercial_solicitation: Anuncieu alguna cosa, els enllaços no són vàlids, etc.
   commit: Desa
   committed: Desa
+  committed_by_user_on_date_html: Compromès per %{user} el %{date}
   committed_on: Validat el %{date}
   committing: Desant...
   community: Comunitat
@@ -2415,7 +2419,7 @@ ca:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: O
-  or_choose_high_level_taxa: "... O seleccioneu un tàxon de rang superior"
+  or_choose_high_level_taxa: "... o seleccioneu un tàxon de rang superior"
   or_if_you_dont_want_email: "O si no voleu cap correu electrònic..."
   or_upload: O descarregueu el
   orange: taronja
@@ -2437,16 +2441,16 @@ ca:
   other_names: Altres noms
   other_species_commonly_misidentified_as_this_species: Altres espècies habitualment identificades incorrectament com aquesta espècie
   other_species_commonly_misidentified_as_this_species_in_place_html: Altres espècies que habitualment identificat incorrectament com aquesta espècie a <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_complex: Altres tàxons generalment mal identificat com aquest complex
-  other_taxa_commonly_misidentified_as_this_complex_in_place_html: Altres tàxons habitualment mal identificar com aquest complex a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_complex: Altres tàxons generalment mal identificats com aquest complex
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: Altres tàxons habitualment mal identificats com aquest complex a <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_genus: Altres tàxons generalment mal identificats com aquest gènere
-  other_taxa_commonly_misidentified_as_this_genus_in_place_html: Altres tàxons habitualment mal identificar com aquest gènere a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: Altres tàxons habitualment mal identificats com aquest gènere a <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_genushybrid: Altres tàxons generalment mal identificats com aquest gènere híbrid
-  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Altres tàxons habitualment mal identificar com aquest gènere híbrid a <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_hybrid: Altre tàxons generalment mal identificats com aquest híbrid
-  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Altres tàxons habitualment mal identificar com aquest híbrid a <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_rank: Altre tàxon generalment mal identificat a aquest %{rank}
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Altres taxons habitualment mal identificar com aquest %{rank} a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Altres tàxons habitualment mal identificats com aquest gènere híbrid a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_hybrid: Altres tàxons generalment mal identificats com aquest híbrid
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Altres tàxons habitualment mal identificats com aquest híbrid a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Altres tàxons generalment mal identificats a aquest %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Altres taxons habitualment mal identificats com aquest %{rank} a <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_section: Altres tàxons generalment mal identificats com aquesta secció
   other_taxa_commonly_misidentified_as_this_section_in_place_html: Altres tàxons habitualment mal identificar com aquesta secció a <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_species: Altres tàxons generalment mal identificats com aquesta espècie
@@ -3322,7 +3326,7 @@ ca:
   show_relative_proportions_of_all_observations: Mostra les proporcions relatives de totes les observacions
   show_running_total: Mostrar l'acumulat total
   show_scientific_name_first: Mostra noms científics primer
-  show_taxa_from_both: (mostra un altre cop tàxons d'ambdues llistes)
+  show_taxa_from_both: (mostra tàxons d'ambdues llistes)
   show_taxa_from_everywhere: "Mostra tàxons de tot arreu"
   show_taxa_from_place: "Mostra tàxon de %{place}"
   show_total_counts: Mostra el recompte total
@@ -3605,6 +3609,7 @@ ca:
   taxon_curators: Supervisors del Taxon
   taxon_framework_complete: "Completat: sí"
   taxon_framework_deviations_with_count_html: "Desviacions: %{count}"
+  taxon_framework_relationships_with_count_html: "Relacions del Marc del Tàxon: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Tàxons inclosos marcats: %{count}"
   taxon_framework_notes: Notes del Marc de Tàxon
@@ -3866,6 +3871,7 @@ ca:
   update_with_site_content: "Actualitza amb el contingut de %{site_name}"
   updated: Actualitzat
   updated_by: Actualitzat per
+  updated_by_user_on_date_html: Actualitzat per %{user} el %{date}
   updated_daily: Actualitzat diàriament
   updated_photo: Foto actualitzada
   upload: Carrega
@@ -4151,6 +4157,12 @@ ca:
     one: "1 observació fallida"
     other: "%{count} observacions fallides"
   x_of_y: "%{x} de %{y}"
+  x_of_count_confirmed:
+    one: "%{x} de %{count} confirmat"
+    other: "%{x} de %{count} confirmats"
+  x_of_count_observed:
+    one: "%{x} de %{count} observat"
+    other: "%{x} de %{count} observats"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} de %{y} persones (per sobre de 2/3) estan d'acord amb això"
   x_is_the_root_of_the_tree: "%{rank}%{name} és l'arrel de l'arbre"
   x_project_journal: "%{name} del projecte %{project}"
@@ -5329,6 +5341,9 @@ ca:
           Aquest gràfic mostra el nombre d'observacions d'aquest tàxon agrupades per mes. Tingueu en compte que aquests són el número d'observacions, per tant estan influïts tant per quan l'organisme pot ser observat com quan la gent s'ha interessat per observar-lo. Així, pot semblar que un ocell és molt actiu al Maig, però que també podria ser degut a que més persones estan interessades en observar-lo, però el poden ignorar en mesos posteriors. D'igual forma, si veieu més odonats al juny que el gener, probablement sigui perquè hi ha més persones observant a l'hemisferi nord que a l'hemisferi sud i no perquè els odonats siguin més actius al juny, per tant cal comprovar el mapa a l'hora de considerar aquests gràfics. Sempre és convenient cert escepticisme sobre aquestes gràfiques quan mostren números petits o poques observacions i/o grans diferències entre el nombre d'observacions "Verificable" i de "Grau de Recerca".
         charts_help_history: |
           Aquest gràfic mostra el nombre d'observacions d'aquest tàxon per mes els darrers deu anys. Una vegada més, pot estar esbiaixada pel nombre de persones observant, però pot mostrar pics inusuals d'observacions, i si sembla plana o en disminució, malgrat l'augment del nombre d'observadors, podria suggerir un canvi en abundància.
+        charts_help_other: |
+          També mostrem les gràfiques d'estabilitat per les observacions anotades.
+          Les anotacions són una forma d'afegir metadades a les observacions utilitzant un vocabulari limitat de termes, p.e. en una observació s'indica que una planta està amb flors o fruits.
         charts_help_relative_observations: |
           Mostrar les freqüències com a proporció relativa de totes les observacions ajuda a relativitzar l'efecte del creixement global del lloc. Per exemple, si el lloc està creixent perquè aconseguim més observacions cada any que passa, tenim més observacions de tots els tàxons individuals. Això no informa sobre si hi ha més individus d'aquest tàxon o si hi ha més persones que l'observen. Mostrar la proporció relativa indica que si hi ha un total de 100 observacions totals, i 20 són d'aquest tàxon, la proporció és 0,2 (20/100). Si s'observen 2,000 observacions a l'any i 400 observacions són d'aquest tàxon, la proporció és també de 0,2 (400/2.000). Això causa algunes aberracions quan hi ha molt pocs observadors en una àrea, o per taxons que no són molt observats, però el mateix succeeiria amb els recomptes totals.
         complete_taxon_desc: |
