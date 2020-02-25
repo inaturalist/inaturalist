@@ -4,6 +4,11 @@ lt:
     few: '%{count} komentarai(-ų)'
     many: '%{count} komentarai(-ų)'
     other: '%{count} komentarai(-ų)'
+  x_others:
+    one: "%{count} kitas"
+    few: "%{count} kiti"
+    many: "%{count} kiti"
+    other: "%{count} kiti"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>"
   x_taxa:
     one: "%{count} taksonas"
