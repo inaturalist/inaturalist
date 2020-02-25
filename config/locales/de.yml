@@ -3027,6 +3027,7 @@ de:
   showing_x_of_y_listings: "Zeige %{x} von %{y} Ergebnissen"
   sign_in: Anmelden
   sign_in_with_provider: "Mit %{provider} anmelden"
+  sign_in_with_google: Mit Google anmelden
   sign_out: Abmelden
   sign_up: Registrieren
   similar_species: Ähnliche Arten
@@ -4325,6 +4326,8 @@ de:
           </p>
           </li>
           </ul>
+        places_help_html: |
+          Füge einen Namen zu einem Ort hinzu, um ihn für Sites und Benutzer dieses Ortes vorrangig zu verwenden. Wenn es mehrere Namen pro Ort gibt, kannst du sie <a href="%{url}">hier</a> priorisieren. Bitte füge <strong>nicht</strong> für JEDEN Ort, an dem der Name verwendet wird, einen Namen hinzu, sondern nur für Orte, die mit anderen Orten in Konflikt stehen.
       taxon:
         about_html: |
           Taxa können viele umgangssprachliche Namen haben. Wir unterstützen einen standardmäßigen umgangssprachlichen Namen, der hier geändert werden kann, indem ein Name an den Anfang der Liste gezogen wird. Du kannst auch Standardnamen an verschiedenen Orten angeben, indem du den Namen editierst und einen Ort hinzufügst, aber bitte nur, wenn verschiedene Orte widersprüchliche Namen haben.
