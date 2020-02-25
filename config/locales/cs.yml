@@ -170,6 +170,11 @@ cs:
     few: "<span class='count'>%{count}</span> ID pozorování na úrovni výzkumného stupně druhu nebo nižší"
     many: "<span class='count'>%{count}</span> ID pozorování na úrovni výzkumného stupně druhu nebo nižší"
     other: "<span class='count'>%{count}</span> ID pozorování na úrovni výzkumného stupně druhu nebo nižší"
+  x_sounds:
+    one: "%{count} zvuk"
+    few: "%{count} zvuků"
+    many: "%{count} zvuků"
+    other: "%{count} zvuky"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> kurátorský taxon"
     few: "<span class='count'>%{count}</span> kurátorských taxonů"
@@ -1419,10 +1424,13 @@ cs:
   flag_an_item: Označit položku
   flag_as_spammer: Označit jako spammera
   flag_as_non_spammer: Označit jako nespammera
+  #Label for the date/time when a flag was created
+  flag_created: Vlajka vytvořena
   flag_description: Označit tento obsah, aby správci mohli najít případné chyby.
   flag_for_check_list_title_html: |
     Vlajka pro kontrolní seznam: %{title}
   flag_for_comment_id_html: Vlajka pro <a href="%{url}">Komentář %{id}</a>
+  flag_for_comment_id_deleted: Vlajka pro komentář %{id} (odstraněno)
   flag_for_curation: Označit pro správu
   flag_for_guide_title_html: |
     Označit příručku: %{title}
@@ -2038,10 +2046,16 @@ cs:
   membership_model: Členský model
   mentioned_you_in_noun_html: "uživatel %{user} se o vás zmínil v %{noun}"
   mentioned_you_in_noun_by_html: "uživatel %{user} se o vás zmínil v %{noun} podle %{by}"
+  mentioned_you_in_noun_by_user_html: "uživatel %{user} se o vás zmínil v %{noun} podle %{by}"
+  mentioned_you_in_noun_by_you_html: "uživatel %{user} se o vás zmínil v %{noun} podle"
   mentioned_you_in_a_x_on_noun_html: "uživatel %{user} se o vás zmínil v %{x} na %{noun}"
   mentioned_you_in_an_x_on_noun_html: "uživatel %{user} se o vás zmínil v %{x} na %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "uživatel %{user} se o vás zmínil v %{x} na %{noun} podle %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "uživatel %{user} se o vás zmínil v %{x} na %{noun} podle %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "uživatel %{user} se o vás zmínil v %{x} na %{noun} podle"
   mentioned_you_in_an_x_on_noun_by_html: "uživatel %{user} se o vás zmínil v %{x} na %{noun} podle %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "uživatel %{user} se o vás zmínil v %{x} na %{noun} podle %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "uživatel %{user} se o vás zmínil v %{x} na %{noun} podle"
   merge: Sloučit
   merge_it_with_another_place: Sloučit s jiným místem
   merge_two_places_together: Sloučit dvě místa. Všechny druhy na seznamech a všechny geografické údaje budou sloučeny.
@@ -2345,6 +2359,8 @@ cs:
   observation_added_to_the_project: "Pozorování přidáno k projektu \"%{project}\""
   observation_aggregation: Seskupení pozorování
   observation_brief_something_on_day: "Něco na %{day}"
+  observation_brief_something_on_day_at_time: "Něco v %{day} v %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Něco dne %{day} v %{time} od %{user}"
   observation_brief_something_on_day_by_user: "Něco na %{day} od %{user}"
   observation_brief_something_by_user: "Něco od %{user}"
   observation_brief_something_from_place: "Něco z %{place}"
@@ -2354,6 +2370,8 @@ cs:
   observation_brief_something_from_place_on_day_at_time: "Něco z %{place} dne %{day} v %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Něco od %{place} dne %{day} v %{time} od %{user}"
   observation_brief_taxon_on_day: "%{taxon} na %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} dne %{day} v %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} dne %{day} v %{time} podle %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} dne %{day} od %{user}"
   observation_brief_taxon_by_user: "%{taxon} od %{user}"
   observation_brief_taxon_from_place: "%{taxon} od %{place}"
@@ -3478,6 +3496,8 @@ cs:
   skip_to_next_page: "Přeskočit na další stránku"
   small: malý
   site_admin_tools: Nástroje pro správu webových stránek
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Administrátoři webu
   site_name_place: "%{site_name} místo"
   site_observations_export_from_date: "%{site_name} export pozorování ze dne %{date}"
   site_site_admin: "%{site_name} Správce webu"
@@ -3601,6 +3621,9 @@ cs:
   stop_following_user: "Přestat sledovat uživatele %{user}"
   stop_testing: Zastavit testování
   stop_trusting_this_person_with_your_private_coordinates: Přestat věřit této osobě se skrytými souřadnicemi
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: OBCHOD
   studies_that_used_inaturalist_data_in_year: Studie používající iNaturalist data v %{year}
   stuff_just_added: "Zrovna jste přidali..."
   subject_resolved_noun_html: "%{subject} vyřešeno %{noun}"
@@ -4090,6 +4113,8 @@ cs:
   user_added_a_project_invitation_html: "Uživatel %{user} přidal pozvánku k projektu"
   user_added_a_x: "%{user} přidal(a) %{x}"
   user_added_a_x_to_noun_by_html: "%{user} přidal %{x} k %{noun} podle %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} přidal %{x} k %{noun} podle %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} přidal %{x} k %{noun} podle vás"
   user_added_a_x_to_noun_html: "%{user} přidal %{x} k %{noun}"
   user_added_an_identification_html: "Uživatel %{user} přidal pozorování"
   user_added_an_observation_field_html: 'Uživatel %{user} přidal hodnotu pro "%{field_name}" k pozorování %{owner}'
@@ -4097,6 +4122,8 @@ cs:
   user_added_an_observation_html: "Uživatel %{user} přidal pozorování"
   user_added_an_x: "%{user} přidal(a) %{x}"
   user_added_an_x_to_noun_by_html: "Uživatel %{user} přidal %{x} k %{noun} podle %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} přidal %{x} k %{noun} od %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} přidal %{x} k %{noun} podle vás"
   user_added_an_x_to_noun_html: "Uživatel %{user} přidal %{x} k %{noun}"
   user_added_x_observations_html: "Uživatel %{user} přidal %{x} pozorování"
   user_already_authenticated: Uživatel je již ověřen
@@ -4538,6 +4565,9 @@ cs:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          Označený obsah je primární atribut textu označeného
+          objektu v okamžiku vytvoření vlajky. Mohou ho vidět pouze kurátoři a zaměstnanci. Pouze zaměstnanci mohou vidět tyto zprávy.
         flags_that_should_not_be_resolved_desc_html: |
           Vyřešte prosím <code>spam</code> and <code>copyright
           infringement</code> pouze v případě, že obsah není spam nebo se nejedná o porušení autorských práv.
@@ -4683,6 +4713,10 @@ cs:
           Po přidání tří
           ověřitelných pozorování nebo tří identifikací pro ostatní budete moci poslat nové zprávy. Zatím
           si můžete přečíst a odpovědět na zprávu ostatním lidem.
+      show:
+        flag_notice_html: |
+          Označili jste tuto konverzaci na %{date}. Vlajka bude přetrvávat i
+          pokud odstraníte kopii této konverzace, takže je bezpečné tak činit, pokud už to nechcete vidět.
     oauth:
       authorizations:
         new:
@@ -6506,6 +6540,8 @@ cs:
         Vytvořte, aktualizujte a odstraňte své komentáře, identifikace a další obsah a získejte přístup ke skrytým kontaktním informacím a dalším informacím, ke kterým na webu můžete přistupovat.
       login: |
         Přístup k relevantním informacím pro přihlášení, jako je e-mailová adresa, uživatelské jméno, jméno a ikona uživatele.
+      account_delete: |
+        Vymazat svůj účet.
     errors:
       messages:
         #Common error messages

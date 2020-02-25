@@ -4,6 +4,11 @@ lt:
     few: '%{count} komentarai(-ų)'
     many: '%{count} komentarai(-ų)'
     other: '%{count} komentarai(-ų)'
+  x_others:
+    one: "%{count} kitas"
+    few: "%{count} kiti"
+    many: "%{count} kiti"
+    other: "%{count} kiti"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>"
   x_taxa:
     one: "%{count} taksonas"
@@ -2476,7 +2481,7 @@ lt:
     class: Klasė
     subclass: Poklasis
     infraclass: Infraklasė
-    superorder: Antbūrys
+    superorder: Antbūris
     order: Būrys
     suborder: Pobūris
     infraorder: Infrabūrys
@@ -3145,7 +3150,7 @@ lt:
   user_invited_you_to_join_project: "%{user} pakvietė jus prisijungti prie %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} %{date} pakvietė jus prisijungti prie šio projekto"
   user_invited_your_x_to_a_project_html: "%{user} pakvietė jūsų %{x} į projektą"
-  user_is_a_naturalist: "%{user} yra gamtininkas!"
+  user_is_a_naturalist: "%{user} myli gamtą!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> dabar yra %{project} administratorius
   user_is_now_a_manager_for_project_html: |

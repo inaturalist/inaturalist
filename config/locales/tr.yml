@@ -790,6 +790,7 @@ tr:
   commercial_solicitation: Ticari istek, hiçbir yerle bağlı olmayanlar vb.
   commit: Yap
   committed: Yapıldı
+  committed_by_user_on_date_html: '%{date} tarihinde%{user} tarafından yapıldı'
   committed_on: '%{date} tarihinde yapıldı'
   committing: Yapılıyor...
   community: Topluluk
@@ -1921,10 +1922,16 @@ tr:
   membership_model: Üyelik Modeli
   mentioned_you_in_noun_html: "%{user} şurada senden bahsetti %{noun}"
   mentioned_you_in_noun_by_html: "%{user} %{by} vasıtasıyla %{noun} içersinde senden bahsetti"
+  mentioned_you_in_noun_by_user_html: "%{user}%{noun}}%{by} tarafından sizden bahsetti"
+  mentioned_you_in_noun_by_you_html: "%{user}%{noun} içinde sizden bahsetti"
   mentioned_you_in_a_x_on_noun_html: "%{user} adlı kullanıcı %{x} içinde %{noun} tarihinde sizden söz etti"
   mentioned_you_in_an_x_on_noun_html: "%{user} adlı kullanıcı %{x} içinde %{noun} tarihinde sizden söz etti"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} %{noun} konusunda %{by} vasıtasıyla %{x}'te sizden bahsetti"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user}%{noun}}%{x} tarihinde%{by} içinde sizden bahsetti"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user}%{noun} tarihinde%{x} içinde sizden bahsetti"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} %{noun} konusunda %{by} vasıtasıyla %{x}'te sizden bahsetti"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user}%{noun}}%{x} tarihinde%{by} içinde sizden bahsetti"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user}%{noun} tarihinde%{x} içinde sizden bahsetti"
   merge: Birleştir
   merge_it_with_another_place: Başka bir yer ile birleştir
   merge_two_places_together: İki yeri bir araya getirin. Herhangi bir coğrafi verinin yanı sıra kontrol listelerindeki tüm türler birleştirilecektir.
@@ -3866,6 +3873,7 @@ tr:
   update_with_site_content: "%{site_name} içeriği ile güncelle"
   updated: Güncellendi
   updated_by: Güncelleyen
+  updated_by_user_on_date_html: '%{date} tarihinde%{user} tarafından güncellendi'
   updated_daily: Günlük güncellenir
   updated_photo: Güncel fotoğraf
   upload: Yükle

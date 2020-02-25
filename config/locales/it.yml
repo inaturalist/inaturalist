@@ -93,6 +93,9 @@ it:
   x_suggestions_filtered_by_colon:
     one: "1 suggerimento filtrato per:"
     other: "%{count} suggerimenti filtrati per:"
+  x_taxa:
+    one: "%{count} taxon"
+    other: "%{count} taxa"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxon osservato"
     other: "<span class='count'>%{count}</span> taxa osservati"
@@ -779,6 +782,7 @@ it:
   commercial_solicitation: Promozioni commerciali, link a nulla, etc.
   commit: Conferma
   committed: Confermato
+  committed_by_user_on_date_html: Creato da %{user} il %{date}
   committed_on: Validato il %{date}
   committing: Conferma in corso...
   community: Comunità
@@ -3600,6 +3604,7 @@ it:
   taxon_curators: Curatori del taxon
   taxon_framework_complete: "Completato: vero"
   taxon_framework_deviations_with_count_html: "Deviazioni: %{count}"
+  taxon_framework_relationships_with_count_html: "Relazioni del Quadro del Taxon: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Taxa contrassegnati coperti: %{count}"
   taxon_framework_notes: Note del quadro del taxon
@@ -3860,6 +3865,7 @@ it:
   update_with_site_content: "Aggiorna con i contenuti di %{site_name}"
   updated: Aggiornata
   updated_by: Aggiornate da
+  updated_by_user_on_date_html: Aggiornato da %{user} il %{date}
   updated_daily: Aggiornate quotidianamente
   updated_photo: Foto aggiornate
   upload: Carica
@@ -4147,6 +4153,12 @@ it:
     one: "1 osservazione fallita"
     other: "%{count} osservazioni fallite"
   x_of_y: "%{x} di %{y}"
+  x_of_count_confirmed:
+    one: "%{x} di %{count} confermato"
+    other: "%{x} di %{count} confermati"
+  x_of_count_observed:
+    one: "%{x} di %{count} osservato"
+    other: "%{x} di %{count} osservati"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} di %{y} persone (oltre 2/3) concordano che è"
   x_is_the_root_of_the_tree: "%{rank}%{name} è la radice dell'albero"
   x_project_journal: "%{name} del progetto %{project}"
@@ -5317,6 +5329,8 @@ it:
           Analogamente, se vedi più osservazioni di libellule in Giugno che in Gennaio, questo è dovuto al fatto che ci sono più persone attive nell'emisfero settentrionale che in quello meridionale, e non al fatto che le libellule sono più attive a Giugno: controlla la mappa quando esamini questi grafici! E' sempre una buona idea essere un po' scettici sui grafici qualora ci fossero poche osservazioni, e/o notevoli discrepanze tra il numero di osservazioni "Verificabili" e quelle "Livello Ricerca".
         charts_help_history: |
           Questo grafico mostra il numero di osservazioni di questo taxon al mese negli ultimi 10 anni. Di nuovo, è influenzato dal numero di persone, ma permette di vedere picchi inusuali nel numero di osservazioni; inoltre, se sembra piatto o decrescente nonostante un aumento del numero di osservatori, questo potrebbe suggerire una reale variazione nell'abbondanza del taxon.
+        charts_help_other: |
+          Mostriamo anche i grafici di stagionalità per le annotazioni delle osservazioni. Le annotazioni sono un sistema per aggiungere metadati alle osservazioni usando un vocabolario controllato di termini, ad esempio se un osservazione ritrae una pianta in fiore o in frutto.
         charts_help_relative_observations: |
           Mostrare la frequenza come proporzione relativa di tutte le osservazioni aiuta a mediare l’effetto della crescita globale della piattaforma. Per esempio, con la crescita della piattaforma raccogliamo sempre più osservazioni ogni anno che passa e di conseguenza abbiamo più osservazioni su ogni specifico taxon. Questo non significa che ci sono più individui di quel taxon ma che semplicemente ci sono più persone che l’osservano. Mostrare la proporzione relativa significa che se c’è un totale di 100 osservazioni totali, ma 20 di questo taxon, la proporzione è 0.2 (20 / 100). Se l’anno prossimo le persone osserveranno 2000 osservazioni di cui 400 osservazioni di questo taxon, la proporzione sarà sempre 0.2 (400 / 2000). Questo causa alcune aberrazioni quando ci sono troppo pochi osservatori in un’area, o per i taxa che non sono molto osservati, ma lo stesso accade con i totali.
         complete_taxon_desc: |

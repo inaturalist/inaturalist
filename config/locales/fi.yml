@@ -3512,6 +3512,7 @@ fi:
   the_following_photos_have_been_tagged: "Seuraaviin kuviin on lisätty merkinnät:"
   the_identotron_is_a_tool_to: |
     Identotron on työkalu, jonka avulla voit määrittää havaintoja %{site_name} lajiluettelon tietojen avulla. Jos annat ylemmän taksonin ja paikan (esimerkiksi nisäkkäät Intiassa), %{site_name} yrittää etsiä osumia kyseisestä paikasta, toimien ikään kuin dynaamisena kenttäoppaana, joka kattaa koko planeetan. Useimmat lajiluettelot ovat työn alla. Identotron näyttää huomatuksen kaikkien kattavien lajiluetteloiden osalta, eli luetteloista, jotka kattavat <em>kaikki</em> alueen taksonit.
+  the_observation_was_already_added_to_that_project: Havainto on jo lisätty tähän projektiin.
   the_past: menneisyys
   the_people_of_inat: "%{site_name}in käyttäjät"
   the_user_x_has_been_suspended: "Käyttäjä %{user} on hyllytetty"
@@ -3677,13 +3678,18 @@ fi:
   user: Käyttäjä
   user1_and_user2_faved_this_observation: "%{user1} ja %{user2} merkitsivät tämän havainnon suosikikseen"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, ja %{x_others} merkitsivät tämän havainnon suosikikseen"
+  user_added_a_comment_html: "%{user} lisäsi kommentin"
   user_added_a_fave_html: "%{user} lisäsi suosikiksi"
   user_added_a_flag_html: "%{user} lisäsi lipun"
+  user_added_a_project_invitation_html: "%{user} lisäsi projektikutsun"
   user_added_a_x: "%{user} lisäsi %{x}n"
   user_added_a_x_to_noun_by_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
   user_added_a_x_to_noun_by_user_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
   user_added_a_x_to_noun_by_you_html: "%{x} sinulle käyttäjältä %{user} (%{noun})"
   user_added_a_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
+  user_added_an_identification_html: "%{user} lisäsi tunnistuksen"
+  user_added_an_observation_field_html: '%{user} lisäsi arvon kentälle "%{field_name}" havaintoon, jonka teki %{owner}'
+  user_added_an_observation_field_value_html: "%{user} lisäsi havaintokentän arvon"
   user_added_an_observation_html: "%{user} lisäsi havainnon"
   user_added_an_x: "%{user} lisäsi %{x}"
   user_added_an_x_to_noun_by_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
@@ -4828,6 +4834,9 @@ fi:
       delete:
         by_deleting_your_account_you_will_remove: |
           Jos poistat tilisi poistat samalla
+        x_comments_html:
+          one: <strong class="count">%{count} lisäämäsi kommentti</strong>
+          other: <strong class="count">%{count} lisäämääsi kommenttia</strong>
         furthermore_cannot_undo_html: |
           Lisäksi, <strong>tätä ei voi peruuttaa.</strong> Jos muutat mieltäsi myöhemmin, et saa sisältöä enää palautettua.
         settings_and_mute_html: |
@@ -5158,6 +5167,8 @@ fi:
       not_a_number: ei ole numero
       not_an_integer: täytyy olla kokonaisluku
       odd: on oltava pariton
+      requires_privilege_speech: |
+        täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme muille tehtyä tunnistusta, jotta voisit tehdä tämän
       requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
       taken: on jo varattu
       too_long:
@@ -5212,6 +5223,13 @@ fi:
       separator: ','
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
@@ -5282,13 +5300,18 @@ fi:
         not_an_integer: on oltava kokonaisluku
         odd: on oltava pariton
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
+        requires_privilege_speech: täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
         requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
+        taken: on jo varattu
         too_long:
           one: on liian pitkä (maksimi on 1 merkki)
           other: on liian pitkä (maksimi on %{count} merkkiä)
         too_short:
           one: on liian lyhyt (minimi on 1 merkki)
           other: on liian lyhyt (minimi on %{count} merkkiä)
+        wrong_length:
+          one: on väärän pituinen (pitää olla %{count} merkkiä)
+          other: ovat väärän pituisia (pitää olla %{count} merkkiä)
       template:
         body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
@@ -5392,6 +5415,7 @@ fi:
       messages:
         accepted: tulee olla hyväksytty
         blank: ei voi olla tyhjä
+        confirmation: ei vastaa salasanaa
         empty: ei voi olla tyhjä
         equal_to: oltava yhtäsuuri kuin %{count}
         even: pitää olla parillinen
@@ -5409,6 +5433,15 @@ fi:
         requires_privilege_speech: sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
         requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
         taken: on jo varattu
+        too_long:
+          one: on liian pitkä (enintään %{count} merkki)
+          other: ovat liian pitkiä (enintään %{count} merkkiä)
+        too_short:
+          one: on liian lyhyt (vähintään %{count} merkki)
+          other: ovat liian lyhyitä (vähintään %{count} merkkiä)
+        wrong_length:
+          one: on väärän pituinen (pitää olla %{count} merkkiä)
+          other: ovat väärän pituisia (pitää olla %{count} merkkiä)
       template:
         body: 'Ongelmia seuraavissa kentissä:'
       models:
@@ -5505,6 +5538,7 @@ fi:
                 tulee alkaa kirjaimella, ei sisällä välilyöntejä, ja sisältää vain kirjaimia, numeroita, väliviivoja ja alaviivoja
             email:
               must_look_like_an_email_address: täytyy näyttää sähköpostiosoitteelta
+              domain_is_not_supported: verkkotunnusta ei voi käyttää
         user_parent:
           attributes:
             email:

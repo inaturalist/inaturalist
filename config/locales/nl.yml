@@ -93,6 +93,9 @@ nl:
   x_suggestions_filtered_by_colon:
     one: "%{count} suggestie gefilterd op:"
     other: "%{count} suggesties gefilterd op:"
+  x_taxa:
+    one: "%{count} taxon"
+    other: "%{count} taxa"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon waargenomen"
     other: "<span class='count'>%{count}</span> taxa waargenomen"
@@ -793,6 +796,7 @@ nl:
   commercial_solicitation: Commerciële advertenties, koppelingen naar nergens, enzovoort.
   commit: Vastleggen
   committed: Vastgelegd
+  committed_by_user_on_date_html: Vastgelegd door %{user} op %{date}
   committed_on: Vastgelegd op %{date}
   committing: Vastleggen...
   community: Gemeenschap
@@ -3649,6 +3653,7 @@ nl:
   taxon_curators: Taxon curatoren
   taxon_framework_complete: "Volledig: ja"
   taxon_framework_deviations_with_count_html: "Afwijkend: %{count}"
+  taxon_framework_relationships_with_count_html: "Taxonkader-relaties: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Gemelde gedekte taxa: %{count}"
   taxon_framework_notes: Taxonkader-notities
@@ -3920,6 +3925,7 @@ nl:
   update_with_site_content: "Bijwerken met %{site_name} content"
   updated: Bijgewerkt
   updated_by: Bijgewerkt door
+  updated_by_user_on_date_html: Bijgewerkt door %{user} op %{date}
   updated_daily: Dagelijks bijgewerkt
   updated_photo: Bijgewerkte foto
   upload: Uploaden
@@ -4205,6 +4211,12 @@ nl:
     one: "%{count} waarneming mislukt"
     other: "%{count} waarnemingen mislukt"
   x_of_y: "%{x} o=van %{y}"
+  x_of_count_confirmed:
+    one: "%{x} van %{count} bevestigd"
+    other: "%{x} van %{count} bevestigd"
+  x_of_count_observed:
+    one: "%{x} van %{count} waargenomen"
+    other: "%{x} van %{count} waargenomen"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} van %{y} mensen (meer dan 2/3) zijn het er over eens dat hij het is"
   x_is_the_root_of_the_tree: "%{rank} %{name} is de wortel van de boom"
   x_project_journal: "%{name} van %{project}"
@@ -5389,6 +5401,8 @@ nl:
           die waarnemingen invoeren maar het zal je opmerkelijke pieken in waarnemingen laten zien en zo
           lijkt het plat of dalend ondanks een toenemend aantal waarnemers,
           dat zou een verandering in het voorkomen kunnen suggereren.
+        charts_help_other: |
+          We tonen ook seizoensgebonden grafieken voor aantekeningen bij waarnemingen. Aantekeningen zijn een manier om metadata toe te voegen aan waarnemingen door gebruik te maken van een gecontrolleerd vocabulair van begrippen, bijv. of een waarneming een plant toont die bloeit of vruchten draagt.
         charts_help_relative_observations: |
           Het tonen van de frequentie als een relatief aandeel van alle waarnemingen helpt het effect van de algehele groei van de site uit te effenen. Als de site bijvoorbeeld groeit naarmate we elk jaar meer waarnemingen binnenkrijgen, krijgen we meer waarnemingen binnen van elk individueel taxon, wat niet betekent dat dat taxon vaker voorkomt, alleen maar dat er meer mensen het taxon waarnemen. Het tonen van het relatieve aandeel houdt in dat als er 100 waarnemingen in totaal zijn, waarvan 
           20 van dit taxon, het aandeel van dit taxon 0,2 is (20/100). Als er het jaar daarop
