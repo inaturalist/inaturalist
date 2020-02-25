@@ -93,6 +93,9 @@ es:
   x_suggestions_filtered_by_colon:
     one: "1 Sugerencia Filtrada por:"
     other: "%{count} Sugerencias Filtradas por:"
+  x_taxa:
+    one: "%{count} taxón"
+    other: "%{count} taxones"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxón observado"
     other: "<span class='count'>%{count}</span> taxones observados"
@@ -778,6 +781,7 @@ es:
   commercial_solicitation: Publicidad comercial, enlaces no llevan a ningún lugar, etc.
   commit: Guardar
   committed: Guardado
+  committed_by_user_on_date_html: Comprometido por %{user} el %{date}
   committed_on: Guardado el %{date}
   committing: Guardando...
   community: Comunidad
@@ -1925,6 +1929,7 @@ es:
   mentioned_you_in_a_x_on_noun_by_you_html: "%{user} te ha mencionado en un/a %{x} en %{noun} por ti"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} te ha mencionado en un %{x} en %{noun} sobre %{by}"
   mentioned_you_in_an_x_on_noun_by_user_html: "%{user} te ha mencionado en un/a %{x} en %{noun} por %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} te ha mencionado en un/a %{x} en %{noun} tuyo"
   merge: Combinar
   merge_it_with_another_place: Combinar con otro lugar
   merge_two_places_together: Combinar dos lugares. Todas las especies en las listas de verificación se combinarán, así como los datos geográficos.
@@ -3622,6 +3627,7 @@ es:
   taxon_curators: Curadores de grupos
   taxon_framework_complete: "Completado: sí"
   taxon_framework_deviations_with_count_html: "Desviaciones: %{count}"
+  taxon_framework_relationships_with_count_html: "Relaciones entre marcos de referencia de taxones: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Taxones marcados cubiertos: %{count}"
   taxon_framework_notes: Notas marco del taxón
@@ -3881,6 +3887,7 @@ es:
   update_with_site_content: "Actualización de contenidos con %{site_name}"
   updated: Actualizado
   updated_by: Actualizado por
+  updated_by_user_on_date_html: Actualizado por %{user} el %{date}
   updated_daily: Actualizado el día de hoy
   updated_photo: Foto subida
   upload: Cargar
@@ -3934,6 +3941,8 @@ es:
   user_added_a_project_invitation_html: "%{user} añadió una invitación al proyecto"
   user_added_a_x: "%{user} añadió una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} de %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} añadió un/a %{x} a %{noun} de %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} añadió un/a %{x} a %{noun} tuyo"
   user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
   user_added_an_identification_html: "%{user} añadió una identificación"
   user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}" a una observación de %{owner}'
@@ -3941,6 +3950,8 @@ es:
   user_added_an_observation_html: "%{user} añadió una observación"
   user_added_an_x: "%{user} añadió un %{x}"
   user_added_an_x_to_noun_by_html: "%{user} añadió una %{x} a %{noun} de %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} añadió un/a %{x} a %{noun} de %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} añadió un/a %{x} a %{noun} tuyo"
   user_added_an_x_to_noun_html: "%{user} añadió una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} agregó %{x} observaciones"
   user_already_authenticated: El usuario ya está verificado
@@ -4165,6 +4176,12 @@ es:
     one: "1 observación falló"
     other: "%{count} observaciones fallaron"
   x_of_y: "%{x} de %{y}"
+  x_of_count_confirmed:
+    one: "%{x} de %{count} confirmado/a"
+    other: "%{x} de %{count} confirmados/as"
+  x_of_count_observed:
+    one: "%{x} de %{count} observado/a"
+    other: "%{x} de %{count} observados/as"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} of %{y} gente (mas de 2/3) estan de acuerdo con esto"
   x_is_the_root_of_the_tree: "%{rank} %{name} es la raiz del arbol"
   x_project_journal: "%{name} del proyecto %{project}"
@@ -5367,6 +5384,9 @@ es:
           Este gráfico muestra el número de observaciones de este taxón agrupadas por mes. Tenga en cuenta que se trata del número de observaciones, por lo que dependes tanto del momento en el que el organismo puede ser observado como de cuantas personas están participando en su observación. Así, un pájaro podría parecer muy activo en mayo, pero también podría ser debido a que la mayoría de los ornitólogos la citan en mayo pero que tienden a ignorarla los últimos meses. De manera similar, si indica más libélulas en junio que en enero, puede deberse a que hay más observadores en el hemisferio norte que en el hemisferio sur y no porque las libélulas sean más activas en junio, así que compruebe el mapa al considerar estos graficos. Siempre es mejor desconfiar de estos gráficos cuando hay un bajo número de observaciones y/o grandes discrepancias entre el número de observaciones "verificables" y de "grado de investigación".
         charts_help_history: |
           Este gráfico muestra el número de observaciones de este taxón por meses durante los últimos diez años. Una vez más, puede estar sesgada por el número de observadores, puede mostrar picos inusuales en las observaciones, pero si parece plana o decreciente a pesar de un número creciente de observadores, podría sugerir un cambio en la abundancia.
+        charts_help_other: |
+          También mostramos los gráficos de estacionalidad para anotar las observaciones.
+          Las anotaciones son un sistema para añadir metadatos a las observaciones, utilizando un vocabulario definido de términos, p.e. para indicar si una planta está en flor o con frutos.
         charts_help_relative_observations: |
           El mostrar la frecuencia como proporción relativa de todas las observaciones ayuda a suavizar el efecto del crecimiento global del sitio. Por ejemplo, si el sitio está creciendo mientras conseguimos más observaciones con cada año que pasa, tenemos más observaciones de cualquier taxón individual. Esto no dices nada sobre si hay más individuos de ese taxón o si hay más personas que lo observan. Al mostrar la proporción relativa significa que si hay un total de 100 observaciones totales, pero 20 de este taxón, la proporción es 0.2 (20 / 100). Si las personas observan 2,000 observaciones el año entrante y 400 observaciones de este taxón, la proporción es todavía 0.2 (400 / 2,000). Esto causa algunas aberraciones cuando hay muy pocos observadores en una área, o para taxones que no son muy observados, pero lo mismo sucede con los conteos totales.
         complete_taxon_desc: |
