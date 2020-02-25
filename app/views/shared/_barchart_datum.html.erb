@@ -9,10 +9,11 @@
   <div class="value" style="width: <%= value_width %>%">
     <div class="label">
       <% if value_width > min_value_label_width -%>
-          <%= value -%>
-          <% if remainder_width < min_remainder_label_width -%>
-            <%= (value == 1 ? t("all_taxa.singularize.#{label_text.gsub(/[ ,]/, ' ' => '_', ',' => '').parameterize.downcase}", :default => label_text.singularize) : label_text).html_safe -%>
-          <% end -%>
+        <% if remainder_width < min_remainder_label_width -%>
+          <%= label_text %>
+        <% else %>
+          <%= value %>
+        <% end -%>
       <% else %>
         &nbsp;
       <% end -%>
@@ -20,14 +21,15 @@
   </div>
   <div class="remainder" style="width: <%= remainder_width %>%">
     <div class="label">
-      <%- if value_width <= min_value_label_width -%>
-        <%= value -%>
-      <%- end -%>
-      <%- if remainder_width >= min_remainder_label_width -%>
-          <%= (value == 1 ? t("all_taxa.singularize.#{label_text.gsub(/[ ,]/, ' ' => '_', ',' => '').parameterize.downcase}", :default => label_text.singularize) : label_text).html_safe -%>
-      <%- else %>
+      <% if value_width <= min_value_label_width -%>
+        <%- if remainder_width > min_remainder_label_width -%>
+          <%= label_text %>
+        <%- else -%>
+          <%= value -%>
+        <%- end -%>
+      <% else %>
         &nbsp;
-      <%- end -%>
+      <% end %>
     </div>
   </div>
 </div>

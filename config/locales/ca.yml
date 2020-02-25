@@ -102,6 +102,9 @@ ca:
   x_research_grade_observations_to_species_html:
     one: "<span class=count>1</span> observació amb grau de recerca ha IDentificat les espècies, subespècies o varietats</span>"
     other: "<span class=count>%{count}</span> observacions amb grau de recerca van IDentificar les espècies, subespècies o varietats</span>"
+  x_sounds:
+    one: "%{count} so"
+    other: "%{count} sons"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> tàxon supervisat"
     other: "<span class='count'>%{count}</span> tàxons supervisats"
@@ -914,7 +917,6 @@ ca:
   couldnt_find_a_user_matching_x_param: "No s’ha pogut trobar l'usuari amb els paràmetres següents: %{id}"
   couldnt_find_that_taxon: No es va trobar aquest tàxon
   countries: Països
-  cover: Coberta
   create: Crea
   create_a_guide: Crea una guia
   create_a_new_field: Crea un nou camp
@@ -1183,6 +1185,7 @@ ca:
   endangered: En perill
   endemic: Endèmica
   endemic_to_x: "Endèmica de %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "URL de la col·lecció EOL"
   error_updating_photo: "Error pujant la foto: %{photo_errors}"
@@ -1246,6 +1249,7 @@ ca:
   featured: Destacat
   featuring: Mostrant
   feedback: Participa
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Fonts:'
   failed: Ha fallat
   field_note: |
@@ -1293,10 +1297,13 @@ ca:
   flag_an_item: Marca un contingut
   flag_as_spammer: Marca com a brossa
   flag_as_non_spammer: Marca com a no-brossa
+  #Label for the date/time when a flag was created
+  flag_created: Marca creada
   flag_description: Marca aquest contingut perquè els supervisors sàpiguen que alguna cosa no va bé.
   flag_for_check_list_title_html: |
     Marca per a la Llista de Comprovació: %{title}
   flag_for_comment_id_html: Marqueu per <a href="%{url}">Comentar %{id}</a>
+  flag_for_comment_id_deleted: Marca pel Comentari %{id} (esborrat)
   flag_for_curation: Marca per revisió.
   flag_for_guide_title_html: |
     Marqueu per a la Guia: %{title}
@@ -1354,6 +1361,7 @@ ca:
   flickr_tagger: Etiquetador de Flickr
   flickr_tags: Etiquetes de Flickr
   fluid_layout: Disseny fluid
+  #Adjective, as in a fluid layout of images
   fluid: fluida
   follow: Seguiu
   follow_receive_updates_about_new_observations: Seguiu (rebre actualitzacions de les noves observacions)
@@ -1909,7 +1917,10 @@ ca:
   mentioned_you_in_an_x_on_noun_html: "%{user} us ha esmentat en un %{x} a %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} us ha esmentat a una %{x} en %{noun} de %{by}"
   mentioned_you_in_a_x_on_noun_by_user_html: "%{user} us ha esmentat a un %{x} en %{noun} de %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} us ha esmentat a un %{x} en %{noun} vostre"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} us ha esmentat a una %{x} en %{noun} de %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} us ha esmentat a una %{x} en %{noun} de %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} us ha esmentat a un %{x} en %{noun} vostre"
   merge: Combina
   merge_it_with_another_place: Combina amb un altre lloc
   merge_two_places_together: Combina dos llocs. Totes les espècies a les llistes de verificació, així com les dades geogràfiques, es combinaran.
@@ -2211,6 +2222,8 @@ ca:
   observation_added_to_the_project: "Observació afegida al projecte %{project}"
   observation_aggregation: Agregació d'observació
   observation_brief_something_on_day: "Quelcom el %{day}"
+  observation_brief_something_on_day_at_time: "Alguna cosa el %{day} a les %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Alguna cosa el %{day} a les %{time} per %{user}"
   observation_brief_something_on_day_by_user: "Alguna cosa el %{day} per %{user}"
   observation_brief_something_by_user: "Quelcom de %{user}"
   observation_brief_something_from_place: "Quelcom a %{place}"
@@ -2220,6 +2233,8 @@ ca:
   observation_brief_something_from_place_on_day_at_time: "Quelcom a %{place} el %{day} a les %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Quelcom a %{place} el %{day} a les %{time} per %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a les %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a les %{time} per %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} per %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} a %{place}"
@@ -2325,7 +2340,6 @@ ca:
     irregular: irregular
     doubtful: dubtós
     absent: absent
-  of: de
   of_observations: observacions
   of_species: espècies
   of_observers: observadors
@@ -2337,7 +2351,6 @@ ca:
   offline_access_enabled: Accés fora de línia activat
   old_observation_form: Antic registre de l'observació (obsolet)
   ok: "D’acord"
-  on_: "en"
   on_date: "el %{date}"
   on_day: "el"
   on_your_life_list: a la vostra llista de vida
@@ -2921,7 +2934,9 @@ ca:
   popular: Popular
   position: Posició
   possessive_user: "de %{user}"
+  #Post is a noun
   post_from_journal_by_parent_html: Publicació de <a href="%{url}">diari de %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Publicació de <a href="%{url}">el vostre diari</a>
   post_published: Nota publicada!
   posted_by: Publicat per
@@ -3331,6 +3346,8 @@ ca:
   skip_to_next_page: "Aneu a la pàgina següent"
   small: petit
   site_admin_tools: Eines d'administració del lloc
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Administrador del Lloc
   site_name_place: "Llocs d’%{site_name}"
   site_observations_export_from_date: "Observacions de %{site_name} exportades des de %{date}"
   site_site_admin: "%{site_name} Lloc del Adminstrador"
@@ -3428,6 +3445,7 @@ ca:
   species_taxon_name: Espècie / nom del tàxon
   species_unknown: Espècie desconeguda
   specify_the_reason_youre_flagging: Especificar la raó per la que marqueu aquest element
+  #Abbreviation for "source"
   src: Font
   standard: Estàndard
   start: Inici
@@ -3440,7 +3458,6 @@ ca:
   start_typing_place_name: Comenceu a escriure el nom del lloc…
   start_typing_taxon_name: Comença a escriure el nom del tàxon...
   start_typing_someones_name: "Comença a escriure el nom d'algú…"
-  states: Estats
   stats: Estadístiques
   stats_for_this_year_have_not_been_generated: Les estadístiques d'aquest no s'han generat
   status: Estat
@@ -3757,6 +3774,7 @@ ca:
   threatened: Amenaçat
   time_: hora
   time_ago: "fa %{time}"
+  #As in the title of a book or a blog post
   title: títol
   title_and_description: "Títol i Descripció"
   to_add_comments: per afegir comentaris.
@@ -3900,6 +3918,8 @@ ca:
   user_added_a_project_invitation_html: "%{user} ha afegit una invitació al projecte"
   user_added_a_x: "%{user} ha afegit una %{x}"
   user_added_a_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} per %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
   user_added_a_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha afegit una identificació"
   user_added_an_observation_field_html: '%{user} ha afegit un valor per a "%{field_name}" a una observació de %{owner}'
@@ -3907,6 +3927,8 @@ ca:
   user_added_an_observation_html: "%{user} ha afegit una observació"
   user_added_an_x: "%{user} ha afegit una %{x}"
   user_added_an_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
   user_added_an_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha afegit %{x} observacions"
   user_already_authenticated: L'usuari ja es va autenticar
@@ -4043,6 +4065,7 @@ ca:
   w_photos_only: amb fotos
   w_sounds: amb sons
   wait_file_generation: Espereu mentre es genera l'arxiu. El procés pot trigar uns minuts per a les llistes grans.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerit
   was_it_captive_cultivated?: "Estava captiva/conreada?"
   we_also_support: |
@@ -4326,6 +4349,8 @@ ca:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          El contingut que es pot marcar és l'atribut de text principal de l'objecte marcat en el moment que es va crear la marca. Només els supervisors i el personal pot veure això. Només el nostre personal pot veure això en els missatges.
         flags_that_should_not_be_resolved_desc_html: |
           Si us plau, retireu les marques  per <code>spam</code> i <code>d'incompliment de copyright</code> únicament si els contingut no és spam o no hi ha cap incompliment del copyright, respectivament.
     guides:
@@ -4471,6 +4496,9 @@ ca:
         show_messages_to_user: Mostreu missatges a %{user}
         speech_privilege_notice: |
           Podreu enviar nous missatges després d'afegir tres observacions verificables o identificar tres observacions d'altres. Per ara podeu llegir i respondre als missatges que altres persones us envien.
+      show:
+        flag_notice_html: |
+          Vau marcar aquesta conversació el %{date}. La marca persistirà fins i tot si esborreu la vostra còpia d'aquesta conversa, per tant, fer-ho és segur si no voleu seguir veient-lo.
     oauth:
       authorizations:
         new:
@@ -5301,11 +5329,6 @@ ca:
           Aquest gràfic mostra el nombre d'observacions d'aquest tàxon agrupades per mes. Tingueu en compte que aquests són el número d'observacions, per tant estan influïts tant per quan l'organisme pot ser observat com quan la gent s'ha interessat per observar-lo. Així, pot semblar que un ocell és molt actiu al Maig, però que també podria ser degut a que més persones estan interessades en observar-lo, però el poden ignorar en mesos posteriors. D'igual forma, si veieu més odonats al juny que el gener, probablement sigui perquè hi ha més persones observant a l'hemisferi nord que a l'hemisferi sud i no perquè els odonats siguin més actius al juny, per tant cal comprovar el mapa a l'hora de considerar aquests gràfics. Sempre és convenient cert escepticisme sobre aquestes gràfiques quan mostren números petits o poques observacions i/o grans diferències entre el nombre d'observacions "Verificable" i de "Grau de Recerca".
         charts_help_history: |
           Aquest gràfic mostra el nombre d'observacions d'aquest tàxon per mes els darrers deu anys. Una vegada més, pot estar esbiaixada pel nombre de persones observant, però pot mostrar pics inusuals d'observacions, i si sembla plana o en disminució, malgrat l'augment del nombre d'observadors, podria suggerir un canvi en abundància.
-        charts_help_other: |
-          També mostrem els gràfics d'estacionalitat per anotar les observacions.
-          Les anotacions són un sistema nou d'afegir metadades a les observacions utilitzant un vocabulari definit de termes. Per ara només estem fent servir "Etapa Vital" i "Fenologia vegetal" (per determinar si la planta està florint o fructificant). Encara no tenim una manera d'afegir anotacions directament, pel que ara estem convertint les dades dels camps d'observació al d'anotacions.
-          Si no podeu esperar que acabem el sistema d'anotacions, pots contribuir a les anotacions de "Etapa Vital" afegint al camp d'observació alguns dels valors següents: edat, ècdisi, Pupa,
-          Nimfa, larva, ou, o juvenil. En particular, els camps "Etapa Vital" i  "Etapa Vital dels Insectes" són correctes. Per a la "Fenologia vegetal," busquem qualsevol camp amb la paraula "Fenologia" en el seu nom i "Flor" o "Fruit" en el valor, de manera que el camp "Floració Fenologia" és una bon nom per utilitzar.
         charts_help_relative_observations: |
           Mostrar les freqüències com a proporció relativa de totes les observacions ajuda a relativitzar l'efecte del creixement global del lloc. Per exemple, si el lloc està creixent perquè aconseguim més observacions cada any que passa, tenim més observacions de tots els tàxons individuals. Això no informa sobre si hi ha més individus d'aquest tàxon o si hi ha més persones que l'observen. Mostrar la proporció relativa indica que si hi ha un total de 100 observacions totals, i 20 són d'aquest tàxon, la proporció és 0,2 (20/100). Si s'observen 2,000 observacions a l'any i 400 observacions són d'aquest tàxon, la proporció és també de 0,2 (400/2.000). Això causa algunes aberracions quan hi ha molt pocs observadors en una àrea, o per taxons que no són molt observats, però el mateix succeeiria amb els recomptes totals.
         complete_taxon_desc: |
@@ -5463,7 +5486,9 @@ ca:
         notification_preferences_project_journal_posts: Entrades diàries del Projecte
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Quan un projecte afegeix les vostres observacions
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Canvis del supervisor del projecte
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Canvis de taxonomia
@@ -6169,6 +6194,8 @@ ca:
         Creeu, actualitzeu, i elimineu les vostres observacions, identificacions, i altre contingut en el vostre nom, i accediu a les vostres coordenades ocultes i qualsevol altra informació d'aquest lloc a la qual pugueu accedir.
       login: |
         Accediu a informació rellevant per entrar, com l'adreça de correu electrònic, el nom d'usuari, el nom, i la icona d'usuari
+      account_delete: |
+        Esborreu el vostre compte en nom vostre.
     errors:
       messages:
         #Common error messages
@@ -6242,7 +6269,7 @@ ca:
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@f"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@m"

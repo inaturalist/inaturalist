@@ -13,7 +13,8 @@ const CLEAR_GROUPED_PHOTOS = "taxa-photos/photos/CLEAR_GROUPED_PHOTOS";
 
 const DEFAULT_PARAMS = {
   layout: "fluid",
-  order_by: "votes"
+  order_by: "votes",
+  quality_grade: "research"
 };
 
 export function setUrl( newParams, options = {} ) {
@@ -56,7 +57,8 @@ export function setUrl( newParams, options = {} ) {
 const DEFAULT_STATE = {
   observationPhotos: [],
   observationParams: {
-    order_by: "votes"
+    order_by: "votes",
+    quality_grade: "research"
   }
 };
 

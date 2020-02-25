@@ -570,7 +570,6 @@ id:
   couldnt_find_a_user_matching_x_param: "tidak dapat menemukan penggunan yang sesuai %{id}"
   couldnt_find_that_taxon: tidak dapat menemukan taksa tersebut
   countries: Negara
-  cover: Sampul
   create: Buat
   create_a_guide: Membuat panduan
   create_a_new_field: Membuat halaman baru
@@ -814,6 +813,7 @@ id:
   favorites: "Kesukaan"
   featured: Tergabung
   feedback: Umpan balik
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Umpan'
   failed: Gagal.
   field_note: |
@@ -882,6 +882,7 @@ id:
   flickr_style: Gaya Flickr
   flickr_tagger: Yang menandai Flickr
   flickr_tags: Tanda Flickr
+  #Adjective, as in a fluid layout of images
   fluid: cairan
   follow_user: "Ikuti %{user}"
   following: Mengikuti
@@ -1477,13 +1478,11 @@ id:
     irregular: luar biasa
     doubtful: ragu-ragu
     absent: absen
-  of: dari
   of_species: spesies
   offensive_inappropriate: ofensif / tidak pantas
   official_blog: Blog Resmi
   offline_access_enabled: Akses offline diaktifkan
   ok: "Oke"
-  on_: "Pada"
   on_date: "pada %{date}"
   on_day: "pada"
   on_your_life_list: pada daftar hidupmu
@@ -2085,6 +2084,7 @@ id:
   species_search: Pencarian Spesies
   species_taxon_name: Spesies / Nama Takson
   species_unknown: Spesies tidak diketahui
+  #Abbreviation for "source"
   src: Sumber
   standard: Standar
   start: Mulai
@@ -2096,7 +2096,6 @@ id:
   start_typing_place_name: Mulai ketik nama tempat...
   start_typing_taxon_name: Mulai ketik nama takson
   start_typing_someones_name: "Mulai ketik nama seseorang..."
-  states: Negara Bagian
   stats: Negara Bagian
   status_globally: "%{status} secara global"
   status_in_place: "%{status} dalam %{place}"
@@ -2233,6 +2232,7 @@ id:
   threatened: terancam
   time_: Waktu
   time_ago: "%{time} yang lalu"
+  #As in the title of a book or a blog post
   title: judul
   title_and_description: "Judul & Deskripsi"
   to_add_comments: untuk menambahkan komen

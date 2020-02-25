@@ -417,7 +417,6 @@ oc:
     attribution_license: Licéncia Atribucion
     gnu_free_documentation_license: Licéncia Documentacion liura GNU
   countries: Païses
-  cover: Tempa
   create: Crear
   create_a_guide: Crear un guida
   create_a_new_field: Crear un camp novèl
@@ -532,6 +531,7 @@ oc:
   endangered: en via de desaparicion
   endemic: endemica
   endemic_to_x: "Endemica a %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EdlV
   eol_collection_url: "URL de collècta d'EdlV"
   establishment:
@@ -566,6 +566,7 @@ oc:
   favorites: "Favorits"
   featured: remirable
   feedback: Vejaires
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Flux'
   failed: Fracàs
   fields: camps
@@ -599,6 +600,7 @@ oc:
   flickr_style: Estil Flickr
   flickr_tagger: Marcador Flickr
   flickr_tags: Balisas Flickr
+  #Adjective, as in a fluid layout of images
   fluid: fluida
   follow_user: "Seguir %{user}"
   following: seguiment
@@ -856,9 +858,7 @@ oc:
     common: comun
     uncommon: rare
     doubtful: dobtós
-  of: de
   ok: "D'acòrdi"
-  on_: "sus"
   on_date: "lo %{date}"
   on_day: "sus"
   onboarding:
@@ -1111,7 +1111,6 @@ oc:
   #Plural
   species: Espècias
   start: Aviar
-  states: Estats
   stats: Estatisticas
   status: Estat
   summary: Resumit
@@ -1122,6 +1121,7 @@ oc:
   the_past: lo passat
   time_: ora
   time_ago: "i a %{time}"
+  #As in the title of a book or a blog post
   title: títol
   today: Uèi
   tools: Aisinas

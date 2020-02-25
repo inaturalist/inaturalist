@@ -651,7 +651,6 @@ ko:
   couldnt_find_a_user_matching_x_param: "%{id}와(과) 일치하는 사용자를 찾을 수 없습니다"
   couldnt_find_that_taxon: 분류군을 찾지 못했습니다.
   countries: 국가
-  cover: 겉표지
   create: 만들기
   create_a_guide: 가이드 만들기
   create_a_new_field: 새로운 필드 생성
@@ -880,7 +879,7 @@ ko:
   error_updating_photo: "사진 업데이트 오류: %{photo_errors}"
   establishment:
     endemic: 고유종
-    establishment: 시설
+    establishment: 상태
     introduced: 도입종
     invasive: 외래종
     managed: 관리됨
@@ -929,6 +928,7 @@ ko:
   favorite_taxa: 좋아하는 분류군
   favorites: "즐겨찾기"
   feedback: 피드백
+  #Plural noun, as in Atom and RSS feeds
   feeds: '피드'
   failed: 실패
   field_note: |
@@ -998,6 +998,7 @@ ko:
   flickr_style: Flickr-스타일
   flickr_tagger: Flickr 태그 단 사용자
   flickr_tags: Flickr 태그
+  #Adjective, as in a fluid layout of images
   fluid: 유체
   follow: 팔로우
   follow_user: "%{user} 팔로우"
@@ -1194,6 +1195,7 @@ ko:
   least_concern: 관심 대상
   leave: 떠나기
   leave_a_comment: 댓글 달기
+  leave_this_project: 프로젝트 떠나기
   let_us_walk_you_through: 이 사이트의 주요 기능들을 살펴봅시다.
   lexicons:
     scientific_names: 학명
@@ -1377,10 +1379,14 @@ ko:
   momentjs:
     shortRelativeTime:
       future: "%s로"
+      #Short text representing 1 second in the past
+      s: "1초 전"
       #Short text representing 1 minute in the past
-      m: "1분"
+      m: "1분 전"
       #Short text representing 1 month in the past
-      M: "1분"
+      M: "1달 전"
+      #Short text representing 1 year in the past
+      'y': "1년 전"
   month: 월
   months: 월별
   more: 더 보기
@@ -1670,7 +1676,7 @@ ko:
   photo_type: 사진 종류
   photo_urls_repaired: 사진 URL이 수정됨
   photos_chosen_for_this_taxon: 이 분류군을 위해 선택된 사진
-  photos_from: 촬영 장소
+  photos_from: '사진 선택:'
   photos_of_taxon_html: "%{taxon}의 사진"
   photos_or_sounds: 사진 또는 음원
   photos_or_sounds?: 사진 또는 음원?
@@ -2029,18 +2035,18 @@ ko:
     class: Class
     subclass: Subclass
     infraclass: Infraclass
-    superorder: 상목
+    superorder: Superorder
     order: Order
     suborder: Suborder
     infraorder: Infraorder
     subterclass: Subterclass
-    parvorder: 소목
+    parvorder: Parvorder
     superfamily: Superfamily
     epifamily: Epifamily
     family: Family
     subfamily: Subfamily
     genus: Genus
-    subgenus: 아속
+    subgenus: Subgenus
     #Singular
     species: Species
     hybrid: 혼종
@@ -2260,6 +2266,7 @@ ko:
   this_user_has_been_suspended: 이 사용자는 일시 중지되었습니다
   this_year: 올해
   threatened: 위기종
+  #As in the title of a book or a blog post
   title: 제목
   too_many_results: 결과가 너무 많음
   total: 합계
@@ -2297,10 +2304,14 @@ ko:
   user: 사용자
   user_added_a_x: "%{user}님이 %{x}을(를) 추가했습니다"
   user_added_a_x_to_noun_by_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  user_added_a_x_to_noun_by_user_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  user_added_a_x_to_noun_by_you_html: "%{user}님이 나의 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_a_x_to_noun_html: "%{user}님이 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_an_observation_html: "%{user} 님이 관찰을 추가했습니다."
   user_added_an_x: "%{user}님이 %{x}을(를) 추가했습니다"
   user_added_an_x_to_noun_by_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  user_added_an_x_to_noun_by_user_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  user_added_an_x_to_noun_by_you_html: "%{user}님이 나의 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_an_x_to_noun_html: "%{user}님이 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_x_observations_html: "%{user} 님이 %{x}개의 관찰을 추가했습니다."
   user_already_authenticated: 사용자는 이미 인증되었습니다
@@ -2493,7 +2504,7 @@ ko:
           아직 프로젝트 큐레이터가 없습니다. 관리자로 지정 가능한 사용자는 프로젝트에 가입했으며, 프로젝트 큐레이터여야 합니다.
       new:
         are_you_ready_to_duplicate: |
-          이 프로젝트의 복제를 위해 이 페이지를 떠나시겠습니까?
+          이 프로젝트의 복제를 위해 이 페이지를 떠나시겠습니까? 프로젝트 아이콘과 배너는 복제되지 않으며, 복제된 프로젝트에 새로 업로드해야 합니다.
         are_you_sure_you_want_to_delete: 이 프로젝트를 삭제하시겠습니까?
         contain_entire_image_without_cropping: 잘라내지 않고 전체 그림 포함
         custom_banner_icon_and_project_description: 사용자 지정 배너, 아이콘, 프로젝트 설명
@@ -2674,9 +2685,9 @@ ko:
   datetime:
     distance_in_words:
       less_than_x_minutes:
-        other: '%{count}분 이하'
+        other: 약 %{count}분
       less_than_x_seconds:
-        other: '%{count} 초 이하'
+        other: 약 %{count}초
     countdown_x_days:
       other: 일
     countdown_x_hours:

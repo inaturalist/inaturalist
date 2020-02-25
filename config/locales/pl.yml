@@ -992,7 +992,6 @@ pl:
   couldnt_find_a_user_matching_x_param: "Nie udało się znaleźć użytkownika %{id}"
   couldnt_find_that_taxon: Nie udało się znaleźć podanego taksonu.
   countries: Kraje
-  cover: Okładka
   create: Utwórz
   create_a_guide: Stwórz przewodnik
   create_a_new_field: Stwórz nową notatkę
@@ -1240,6 +1239,7 @@ pl:
   endangered: Gatunki zagrożone
   endemic: Endemiczny
   endemic_to_x: "Endemiczny dla %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "Adres URL kolekcji EOL"
   error_updating_photo: "Wystąpił błąd podczas aktualizacji zdjęcia: %{photo_errors}"
@@ -2224,7 +2224,6 @@ pl:
     irregular: nieregularny
     doubtful: wątpliwy
     absent: nieobecny
-  of: z
   of_observations: obserwacje
   of_species: gatunek
   of_observers: obserwatorzy
@@ -2993,7 +2992,6 @@ pl:
   start_typing_place_name: Zacznij wpisywać nazwę lokalizacji...
   start_typing_taxon_name: Zacznij wpisywać nazwę taksonu...
   start_typing_someones_name: "Zacznij wpisywać czyjąś nazwę użytkownika..."
-  states: Stany
   stats: Statystyki
   stats_for_this_year_have_not_been_generated: Statystyki dla tego roku nie zostały wygenerowane.
   status: Status
@@ -3132,6 +3130,7 @@ pl:
   threatened: Gatunki zagrożone
   time_: czas
   time_ago: "%{time} temu"
+  #As in the title of a book or a blog post
   title: tytuł
   title_and_description: "Tytuł i opis"
   to_add_comments: aby dodać komentarze
@@ -3678,7 +3677,9 @@ pl:
         notification_preferences_project_journal_posts: Wpisach w dzienniku projektu
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Gdy projekt dodaje Twoje obserwacje
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Zmienia się kurator projektu
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Zmianach taksonomicznych
@@ -4278,7 +4279,7 @@ pl:
         family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@f"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@m"

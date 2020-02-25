@@ -29,13 +29,27 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     end
   end
   
+  def taxon_frameworks_for_dropdowns( taxon_framework_relationship_taxa = nil )
+    if taxon_framework_relationship_taxa && taxon_framework_relationship_taxa.any?
+      taxon = taxon_framework_relationship_taxa.first
+      return [TaxonFramework.select("taxon_frameworks.id, t.name").
+        joins( "JOIN taxa t ON t.id = taxon_frameworks.taxon_id" ).
+        where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
+        order( "t.rank_level ASC" ).first]
+    else
+      return TaxonFramework.select("taxon_frameworks.id, t.name").
+        joins( "JOIN taxa t ON t.id = taxon_frameworks.taxon_id" ).
+        where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "t.name" ).limit( 1000 )
+    end
+  end
+
   def index
     filter_params = params[:filters] || params
     @relationships = filter_params[:relationships]
     @relationships ||= TaxonFrameworkRelationship::RELATIONSHIPS.map{ |r| filter_params[r] == "1" ? r : nil }
     @relationships.delete_if{ |r| r.blank? }
     @taxon_framework = TaxonFramework.find_by_id( filter_params[:taxon_framework_id] ) unless filter_params[:taxon_framework_id].blank?    
-    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "taxa.name" ).limit( 100 )
+    @taxon_frameworks = taxon_frameworks_for_dropdowns
     @internal_taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
     @external_taxon_name = filter_params[:external_taxon_name] unless filter_params[:external_taxon_name].blank?
     @internal_rank = filter_params[:internal_rank] unless filter_params[:internal_rank].blank?
@@ -93,12 +107,13 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     @taxon_framework_relationship.external_taxa.new
     if ( taxon_id = params["taxon_id"] ).present? && taxon = Taxon.where( id: taxon_id ).first
       @taxon_framework_relationship.taxa.new( id: taxon_id, rank: nil )
-      @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).
+      @taxon_frameworks = [TaxonFramework.select("taxon_frameworks.id, t.name").
+      joins( "JOIN taxa t ON t.id = taxon_frameworks.taxon_id" ).
         where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
-        order( "taxa.rank_level ASC" ).first]
+        order( "t.rank_level ASC" ).first]
     else
       @taxon_framework_relationship.taxa.new
-      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
+      @taxon_frameworks = taxon_frameworks_for_dropdowns
     end
   end
   
@@ -111,20 +126,42 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     
     if @taxon_framework_relationship.taxon_framework.taxon_curators.any? && !@taxon_framework_relationship.taxon_framework.taxon_curators.where( user: current_user ).exists?
       flash[:error] = "only taxon curators can add taxon framework relationships to that taxon framework"
-      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
+      @taxon_frameworks = taxon_frameworks_for_dropdowns
+      @taxon_framework_relationship.taxa.new
       render action: :new
       return
     end
-    
+
     if taxa_attributes
       taxa_attributes.values.each do |row|
         if taxon = Taxon.where( id: row["id"] ).first
          if !taxon.taxon_framework_relationship_id.nil? && row["unlink"] == "false"
-            flash[:error] = "#{ taxon.name } is already represented in a Taxon Framework Relationship"
-            @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
+            flash[:error] = "#{ taxon.name } is already represented in a Taxon Framework Relationship within this Taxon Framework"
+            @taxon_frameworks = taxon_frameworks_for_dropdowns
+            @taxon_framework_relationship.taxa.new
             render action: :new
             return
           end
+        end
+      end
+    end
+
+    if local_params["external_taxa_attributes"]
+      local_params["external_taxa_attributes"].values.each do |row|
+        if ( row[:name] == "" || row[:parent_name] == "" ) && !( row[:name] == "" && row[:rank] == "species" && row[:parent_name] == "" && row[:parent_rank] == "genus" ) && row["_destroy"] == "false"
+          flash[:error] = "external taxa must have names and parent names"
+          @taxon_frameworks = taxon_frameworks_for_dropdowns
+          @taxon_framework_relationship.taxa.new
+          render action: :new
+          return
+        end
+        if et = ExternalTaxon.joins("JOIN taxon_framework_relationships tfr ON external_taxa.taxon_framework_relationship_id = tfr.id").
+          where("name = ? AND rank = ? AND tfr.taxon_framework_id = ?", row["name"], row["rank"], local_params["taxon_framework_id"]).first
+          flash[:error] = "An external taxon with name #{ et.name } and rank #{ et.rank } is already represented in a Taxon Framework Relationship within this Taxon Framework"
+          @taxon_frameworks = taxon_frameworks_for_dropdowns
+          @taxon_framework_relationship.taxa.new
+          render action: :new
+          return
         end
       end
     end
@@ -143,20 +180,13 @@ class TaxonFrameworkRelationshipsController < ApplicationController
       end
       redirect_to @taxon_framework_relationship
     else
-      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
+     @taxon_frameworks = taxon_frameworks_for_dropdowns
       render action: :new
     end
   end
   
   def edit
-    if @taxon_framework_relationship.taxa.any?
-      taxon = @taxon_framework_relationship.taxa.first
-      @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).
-          where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
-          order( "taxa.rank_level ASC" ).first]
-    else
-      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
-    end
+    @taxon_frameworks = taxon_frameworks_for_dropdowns( @taxon_framework_relationship.taxa )
   end
 
   def update
@@ -171,17 +201,34 @@ class TaxonFrameworkRelationshipsController < ApplicationController
         if taxon = Taxon.where( id: row["id"] ).first
          if !taxon.taxon_framework_relationship_id.nil? && row["unlink"] == "false" && taxon.taxon_framework_relationship_id != @taxon_framework_relationship.id
             flash[:error] = "#{ taxon.name } is already represented in a Taxon Framework Relationship"
-            if @taxon_framework_relationship.taxa.any?
-              taxon = @taxon_framework_relationship.taxa.first
-              @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).
-                  where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
-                  order( "taxa.rank_level ASC" ).first]
-            else
-              @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
-            end
+            @taxon_frameworks = taxon_frameworks_for_dropdowns( @taxon_framework_relationship.taxa )
             render action: :edit
             return
           end
+        end
+      end
+    end
+
+    if local_params["external_taxa_attributes"]
+      local_params["external_taxa_attributes"].values.each do |row|
+        if ( row[:name] == "" || row[:parent_name] == "" ) && !( row[:name] == "" && row[:rank] == "species" && row[:parent_name] == "" && row[:parent_rank] == "genus" ) && row["_destroy"] == "false"
+          flash[:error] = "external taxa must have names and parent names"
+          @taxon_frameworks = taxon_frameworks_for_dropdowns( @taxon_framework_relationship.taxa )
+          render action: :edit
+          return
+        end
+        scope = ExternalTaxon.joins("JOIN taxon_framework_relationships tfr ON external_taxa.taxon_framework_relationship_id = tfr.id").
+          where("name = ? AND rank = ? AND tfr.taxon_framework_id = ?", row["name"], row["rank"], local_params["taxon_framework_id"])
+        if row["id"].nil?
+          et = scope.first
+        else
+          et = scope.where("external_taxa.id != ?", row["id"]).first
+        end
+        if et && row["_destroy"] == "false"
+          flash[:error] = "An external taxon with name #{ et.name } and rank #{ et.rank } is already represented in a Taxon Framework Relationship within this Taxon Framework"
+          @taxon_frameworks = taxon_frameworks_for_dropdowns( @taxon_framework_relationship.taxa )
+          render action: :edit
+          return
         end
       end
     end
@@ -200,13 +247,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
       end
       redirect_to @taxon_framework_relationship
     else
-      if @taxon_framework_relationship.taxa.any?
-        taxon = @taxon_framework_relationship.taxa.first
-        @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).
-            where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).order( "taxa.rank_level ASC" ).first]
-      else
-        @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
-      end
+      @taxon_frameworks = taxon_frameworks_for_dropdowns( @taxon_framework_relationship.taxa )
       render action: :edit
     end
   end

@@ -7,20 +7,21 @@
 -%>
 <div id="sidecol">
   <div id="confirmedchart" class="barchart clear stacked">
-    <%= render :partial => "shared/barchart_datum", :locals => {
-      :value => @confirmed_listed_taxa_count.to_i, 
+    <%= render "shared/barchart_datum",
+      :value => @confirmed_listed_taxa_count.to_i,
       :max => @listed_taxa_count.to_i, 
-      :label_text => t(:of) + " #{@listed_taxa_count.to_i} " + t(:confirmed),
+      label_text: t(:x_of_count_confirmed, x: @confirmed_listed_taxa_count.to_i, count: @listed_taxa_count.to_i ),
       :min_remainder_label_width => 50
-    } %>
+    %>
   </div>
   <% if logged_in? && @place -%>
     <div class="stacked">
       <div id="observedchart" class="barchart inlineblock" data-original-count="<%= @current_user_observed_count.to_i %>" data-original-total="<%= @listed_taxa_count.to_i %>">
-        <%= render :partial => "shared/barchart_datum", :locals => {
+        <%= render "shared/barchart_datum",
           :value => @current_user_observed_count.to_i, 
           :max => @listed_taxa_count.to_i, 
-          :label_text => t(:of) + " #{@listed_taxa_count.to_i}" } %>
+          label_text: t(:x_of_count_observed, x: @current_user_observed_count.to_i, count: @listed_taxa_count.to_i )
+        %>
       </div>
       <div class="extralabel">
         <%-

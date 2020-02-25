@@ -183,7 +183,7 @@ de:
   add_a_batch_of_taxa: Taxa-Satz hinzufügen
   add_a_comment: Kommentar hinzufügen
   add_a_field: Feld hinzufügen
-  add_a_flag: Merker hinzufügen
+  add_a_flag: Meldung tätigen
   add_a_name: Namen hinzufügen
   add_a_new_change_group: Neue Änderungsgruppe hinzufügen
   add_a_single_observation: Einzelbeobachtung hinzufügen.
@@ -843,7 +843,6 @@ de:
   couldnt_find_a_user_matching_x_param: "Konnte keinen passenden Benutzer finden: %{id}"
   couldnt_find_that_taxon: Konnte das Taxon nicht finden.
   countries: Länder
-  cover: Bedeckung
   create: Erstellen
   create_a_guide: Erzeuge einen Guide
   create_a_new_field: Ein neues Feld erstellen
@@ -1150,6 +1149,7 @@ de:
   favorites: "Favoriten"
   featured: Vorgestellt
   feedback: Feedback
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
   failed: Fehlgeschlagen
   fields: Felder
@@ -2079,7 +2079,6 @@ de:
     irregular: unregelmäßig
     doubtful: zweifelhaft
     absent: abwesend
-  of: von
   of_observations: Beobachtungen
   of_species: Art
   of_observers: Beobachter
@@ -2091,7 +2090,6 @@ de:
   offline_access_enabled: Offlinezugriff ermöglichen
   old_observation_form: Altest Beobachtungsformular (veraltet)
   ok: "OK"
-  on_: "am"
   on_date: "am %{date}"
   on_day: "am"
   on_your_life_list: auf deiner Lebensliste
@@ -2652,7 +2650,9 @@ de:
   popular: beliebt
   position: Position
   possessive_user: "%{user}'s"
+  #Post is a noun
   post_from_journal_by_parent_html: Beitrag von <a href="%{url}">Journal von %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Beitrag von <a href="%{url}">deinem Journal</a>
   post_published: Eintrag veröffentlicht!
   posted_by: Gepostet von
@@ -2984,7 +2984,7 @@ de:
   select_one_of_your_albums: Wähle eines deiner Alben
   select_options: Optionen auswählen
   select_photos_from_your_photo_stream: |
-    Wähle Bilder von externen Foto-Sharing-Sites aus, um sie in %{site_name}-Beobachtungen umzuwandeln. Wir übernehmen Datum, Uhrzeit und Ort aus den Metadaten eines Bildes und versuchen die Namen der Arten aus den Tags herauszufinden.
+    Wähle Bilder von externen Foto-Sharing-Seiten aus, um sie in %{site_name}-Beobachtungen umzuwandeln. Wir übernehmen Datum, Uhrzeit und Ort aus den Metadaten eines Bildes und versuchen die Namen der Arten aus den Tags herauszufinden.
   select_photos_to_display: Wähle Bilder zum Anzeigen
   selected: Ausgewählt
   selected_photos: Ausgewählte Fotos
@@ -3136,7 +3136,6 @@ de:
   start_typing_place_name: Beginn mit der Eingabe des Ortsnamen...
   start_typing_taxon_name: Beginn mit der Eingabe des Taxonnamens...
   start_typing_someones_name: "Beginn mit der Eingabe eines Namens..."
-  states: Staaten
   stats: Statistiken
   stats_for_this_year_have_not_been_generated: Für dieses Jahr wurden keine Statistiken erstellt.
   status_globally: "%{status} Global"
@@ -3329,6 +3328,7 @@ de:
   threatened: bedroht
   time_: Zeit
   time_ago: "%{time} her"
+  #As in the title of a book or a blog post
   title: Titel
   title_and_description: "Titel & Beschreibung"
   to_add_comments: um Kommentare hinzuzufügen
@@ -3548,6 +3548,7 @@ de:
   w_photos_only: w/ Fotos
   w_sounds: w/ Sounds
   wait_file_generation: Bitte um Geduld während die Datei erzeugt wird. Bei großen Listen kann es ein paar Minuten dauern.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesucht
   was_it_captive_cultivated?: "War es in Gefangenschaft o. kultiviert?"
   we_also_support: |
@@ -4284,10 +4285,6 @@ de:
           "Verbreitung" beschreibt, wie eine Art dorthin gelangt ist, wo sie derzeit vorkommt. "Eingeführt" bedeutet, dass sie sich aufgrund menschlicher Eingriffe verbreitet hat, während "einheimisch" bedeutet, dass sie sich ohne menschliches Zutun dort verbreitet hat. Endemische Arten kommen nur an einem bestimmten Ort vor (z.B. einer Insel) und sonst nirgends.
         charts_help_seasonality: |
           Diese Tabelle zeigt die Anzahl von Beobachtungen von diesem Taxon, gruppiert nach Monaten. Bitte denke daran, dass dies Zahlen von Beobachtungen sind und diese somit dadurch beeinflusst werden, wann der Organismus beobachtet werden kann und wann Menschen versuchen, diesen zu beobachten. Es könnte so wirken, als sei ein Vogel im Mai sehr aktiv, aber es könnte auch sein, dass im Mai mehr Menschen Vögel beobachten und diese Spezies in späteren Monaten eher ignorieren. Und wenn du im Juni mehr Libellen als im Januar siehst, dann ist möglicherweise ein Grund dafür, dass wir mehr beobachtende Menschen auf der Nordhalbkugel als auf der Südhalbkugel haben. Dies liegt nicht daran, dass Libellen im Juni aktiver sind. Überprüfe also die Karte, wenn du diese Tabelle verwendest. Es ist immer eine gute Idee, diese Tabellen skeptisch zu betrachten, falls es eine geringe Anzahl von Beobachtungen und/oder große Unterschiede zwischen der Anzahl von „überprüfbaren“ und „forschungsartigen“ Beobachtungen gibt.
-        charts_help_other: |
-          Wir zeigen auch Tabellen zur Saisonbedingtheit für Beobachtungsvermerke.
-          Vermerke sind ein neues System, um Metadaten unter Verwendung eines kontrollierten Begriffsvokabulars zu Beobachtungen hinzuzufügen. Bis jetzt verwenden wir ausschließlich "Lebensstadium" und "Pflanzenphänologie" (wenn die Pflanze blüht oder Früchte trägt). Wir haben noch keine Möglichkeit, Vermerke direkt hinzuzufügen, daher konvertieren wir zunächst nur Daten von Beobachtungsfeldern in Vermerke. 
-          Wenn du nicht abwarten kannst, bis wir unser Vermerksystem fertiggestellt haben, kannst du zu den "Lebensstadium"-Vermerken beitragen, indem du Beobachtungsfeldwerte mit folgenden Werten einträgst: Ausgewachsen, frisch geschlüpft, Puppe, Nymphe, Larve, Ei oder Jungtier. Also sind insbesondere die Felder "Lebensstadium" und "Insekten-Lebensstadium" gut. Für "Pflanzenphänologie" sehen wir uns jedes Feld mit dem Wort "Phänologie" im Namen und "Blüte" oder "Frucht" als Wert an, das Feld "Blütenphänologie" ist also zur Nutzung geeignet.
         charts_help_relative_observations: |
           Die Anzeige der Häufigkeit als relativer Anteil aller Beobachtungen hilft die Auswirkungen des Gesamtwachstums des Standorts zu mildern. Zum Beispiel, wenn die Website wächst, da wir mit jedem verstrichenen Jahr immer mehr Beobachtungen erhalten und von einzelnen Taxen, was nicht bedeutet, dass es noch mehr von diesem Taxon gibt, sondern nur dass es mehr Leute gibt, die es beobachtet haben. Das Anzeigen des relativen Anteils bedeutet, dass, wenn es insgesamt 100 Beobachtungen gibt, aber 20 Beobachtungen dieses Taxons, dass das Verhältnis dann 0,2 (20 / 100) beträgt. Wenn Menschen 2000 Beobachtungen im nächsten Jahr melden und 400 Beobachtungen von diesem Taxon, dann beträgt der Anteil immer noch 0,2 (400 / 2000). Dies verursacht einige Aberrationen, wenn es nur sehr wenige Beobachter in einem Gebiet gibt, oder für Taxa die sehr selten beobachtet werden, aber das gilt ebenso für die Gesamtzahlen.
         complete_taxon_desc: |
@@ -4908,7 +4905,7 @@ de:
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@f"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@f"

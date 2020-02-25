@@ -23,7 +23,11 @@
     %h2
       = link_to image_tag("#{taxon_change.class.name.underscore}-aaaaaa-48px.png", :style => "vertical-align:middle;"), taxon_change
       = link_to "Taxonomic #{taxon_change.class.name.split('Taxon')[1]} #{taxon_change.id}", taxon_change_path(taxon_change)
-      = "(#{taxon_change.committed_on.blank? ? t(:draft_) : t(:committed) + ' ' + t(:on_) + ' ' + l(taxon_change.committed_on)})"
+      = surround "(", ")" do
+        - if taxon_change.committed_on.blank?
+          =t :draft_
+        - else
+          =t :committed_on, date: l( taxon_change.committed_on )
   .meta.ui.stacked
     - unless taxon_change.description.blank?
       .meta.stacked.ui
@@ -54,15 +58,10 @@
         =t :yes
         %span.helptip{ rel: t( "views.taxon_changes.move_children_desc" ) }
     - if taxon_change.user
-      %label= t :added_by
-      = link_to taxon_change.user.login, taxon_change.user
-      = t :on_
-      = taxon_change.created_at.to_date
+      =t :added_by_user_on_date_html, user: link_to_user( taxon_change.user ), date: l( taxon_change.created_at, format: :long )
     - if taxon_change.committed? && taxon_change.committer
       |
-      %label= t(:committed) + ' ' + t(:by).downcase
-      = link_to taxon_change.committer.login, taxon_change.committer
-      = t(:on_) + ' ' + l(taxon_change.committed_on)
+      =t :committed_by_user_on_date_html, user: link_to_user( taxon_change.committer ), date: l( taxon_change.committed_on, format: :long )
   %table.taxon-change-table{ border: 0, cellpadding: 5, cellspacing: 5 }
     %tr
       %td

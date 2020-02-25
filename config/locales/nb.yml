@@ -93,6 +93,9 @@ nb:
   x_suggestions_filtered_by_colon:
     one: "%{count} forslag filtrert etter:"
     other: "%{count} forslag filtrert etter:"
+  x_taxa:
+    one: "%{count} takson"
+    other: "%{count} taksa"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> takson observert"
     other: "<span class='count'>%{count}</span> taksa observert"
@@ -917,7 +920,6 @@ nb:
   couldnt_find_a_user_matching_x_param: "Kunne ikke finne en bruker som matcher %{id}"
   couldnt_find_that_taxon: Fant ikke det taksonet.
   countries: Land
-  cover: Coverbilde
   create: Opprett
   create_a_guide: Opprett en guide
   create_a_new_field: Opprett et nytt felt
@@ -1186,6 +1188,7 @@ nb:
   endangered: Truet
   endemic: Endemisk
   endemic_to_x: "Endemisk for %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "EOL samlings-URL"
   error_updating_photo: "Feil ved oppdatering av bilde: %{photo_errors}"
@@ -1249,6 +1252,7 @@ nb:
   featured: Fremhevet
   featuring: Fremhever
   feedback: Tilbakemelding
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Nyhetsstrømmer'
   failed: Mislykket
   field_note: |
@@ -1361,6 +1365,7 @@ nb:
   flickr_tagger: Flickr-etikettør
   flickr_tags: Flickr-etiketter
   fluid_layout: Flytende visning
+  #Adjective, as in a fluid layout of images
   fluid: flytende
   follow: Følg
   follow_receive_updates_about_new_observations: Følg (få beskjed om nye observasjoner)
@@ -2329,7 +2334,6 @@ nb:
     irregular: uregelmessig
     doubtful: tvilsom
     absent: fraværende
-  of: av
   of_observations: observasjoner
   of_species: arter
   of_observers: observatører
@@ -2341,7 +2345,6 @@ nb:
   offline_access_enabled: Offline tilgang aktivert
   old_observation_form: Gammelt observasjonsskjema (foreldret)
   ok: "Ok"
-  on_: "på"
   on_date: "på %{date}"
   on_day: "på"
   on_your_life_list: på din livsliste
@@ -2922,7 +2925,9 @@ nb:
   popular: Populær
   position: Posisjon
   possessive_user: "%{user} sin"
+  #Post is a noun
   post_from_journal_by_parent_html: Innlegg fra <a href="%{url}">journalen til %{parent}</a>
+  #Post is a noun
   post_from_your_journal_html: Innlegg fra <a href="%{url}">din journal</a>
   post_published: Innlegg publisert!
   posted_by: Publisert av
@@ -3431,6 +3436,7 @@ nb:
   species_taxon_name: Arts/taksonnavn
   species_unknown: Art ukjent
   specify_the_reason_youre_flagging: Oppgi grunnen til at du markerer dette
+  #Abbreviation for "source"
   src: Kilde
   standard: Standard
   start: Start
@@ -3443,7 +3449,6 @@ nb:
   start_typing_place_name: Start å skrive stedsnavn...
   start_typing_taxon_name: Start å skrive taksonnavn...
   start_typing_someones_name: "Start å skrive navnet til noen..."
-  states: Stadier
   stats: Statistikker
   stats_for_this_year_have_not_been_generated: Det har ikke blitt generert statistikker for dette året.
   status: Status
@@ -3756,6 +3761,7 @@ nb:
   threatened: Truet
   time_: klokkeslett
   time_ago: "for %{time} siden"
+  #As in the title of a book or a blog post
   title: tittel
   title_and_description: "Tittel & beskrivelse"
   to_add_comments: for å legge til kommentarer
@@ -3847,6 +3853,7 @@ nb:
   update_with_site_content: "Oppdater med innhold fra %{site_name}"
   updated: Oppdatert
   updated_by: Oppdatert av
+  updated_by_user_on_date_html: Oppdatert av %{user} på %{date}
   updated_daily: Oppdatert daglig
   updated_photo: Oppdatert bilde
   upload: Last opp
@@ -4042,6 +4049,7 @@ nb:
   w_photos_only: med bilder
   w_sounds: med lyder
   wait_file_generation: Vennligst vent mens denne filen genereres. Det kan ta noen minutter for store lister.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ønskes
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
   we_also_support: |
@@ -4127,6 +4135,9 @@ nb:
     one: "%{count} observasjon mislykkes"
     other: "%{count} observasjoner mislykkes"
   x_of_y: "%{x} av %{y}"
+  x_of_count_confirmed:
+    one: "%{x} av %{count} bekreftet"
+    other: "%{x} av %{count} bekreftet"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} av %{y} personer (over 2/3) er enige i at det er"
   x_is_the_root_of_the_tree: "%{rank}%{name} er treets rot"
   x_project_journal: "%{project}s %{name}"
@@ -5243,8 +5254,6 @@ nb:
           Denne grafen viser antallet observasjoner av dette taksonet gruppert per måned. Husk at dette er antall observasjoner, så det påvirkes både av hvor organismen kan observeres og når folk gidder å observere de. Så en fugl kan virke veldig aktiv i mai, men det kan også være fordi flere folk ser på fugler i mai som bruker å overse den arten i senere måneder. På samme måte, hvis du ser flere øyenstikkere i juni enn i januar, er det sannsynligvis fordi vi har flere folk som observerer de på den nordlige halvkulen enn på den sørlige, og ikke fordi øyenstikkere er mer aktive i juli, så sjekk kartet når du jobber med slike grafer. Det er alltid en god idé å være skeptisk til disse grafer når det er lave antall observasjoner og/eller store avvik mellom antallet "verifiserbare" og observasjoner av "forskningskvalitet".
         charts_help_history: |
           Denne grafen viser antallet observasjoner av dette taksonet per måned over de siste ti år. Igjen, det er påvirket av antallet personer som observerer, men det vil vise deg uvanlige topper i observasjoner, og hvis det virker flatt eller minkende til tross for et voksende antall observatører, kan det tyde på en endring i forekomster.
-        charts_help_other: |
-          Vi viser også sesongsgrafer for merknader til observasjoner. Merknader er et nytt system for å legge til metadata til observasjonerved bruk av et kontrollert vokabular av begrep. Hittil har vi kun brukt "livsstadium" og "plantefenologi" (når planten blomster eller bærer frukt). Vi har ingen måte ennå for å legge til merknader direkte, så for øyeblikket konverterer vi data fra observasjonsfelt til merknader. Hvis du ikke kan vente til vi hsr bygget systemet for merknader, kan du bidra til merknader om "livsstadium" ved å legge til verdier for observasjonsfelt som en sv følgende verdier: voksen, teneral, puppe, nymfe, larve, egg, eller juvenil. Så nærmere bestemt, feltene for "livsstadium" og "insekters livsstadium" er ok. For "plantefenologi" ser vi på alle felt med ordet "fenologi" i navnet og "blomst" eller "frukt" i verdien, så "blomstringsfenologi" feltet er et godt et å bruke.
         charts_help_relative_observations: |
           Å vise forekomst som en relativ andel av alle observasjoner hjelper å jevne ut effekten av generell vekst av siden. Hvis siden for eksempel vokser ettersom vi får inn flere observasjoner med hvert år som går, får vi flere observasjoner av hvert takson, og det sier ingenting om det er flere individer av det taksonet å observere, kun at det er flere som observerer det. Å vise relative antall betyr at hvis det er 100 observasjoner sammenlagt, men 20 av det taksonet, det relative antallet blir 0,2 (20 / 100). Hvis folk observerer 2000 observasjoner året etter og 400 av dette taksonet, er det relative antallet fortsatt 0,2 (400/2000). Dette kan gi noen avvik når det er veldig få observatører i et område, eller for taksa som observeres veldig sjeldent, men det er også tilfellet for vanlige antall.
         complete_taxon_desc: |
@@ -5435,7 +5444,9 @@ nb:
         notification_preferences_project_journal_posts: Innligg i prosjektjournaler
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Når et prosjekt legger til dine observasjoner
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Prosjektkurator-endringer
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Taksonomiske endringer
@@ -6211,7 +6222,7 @@ nb:
         favorite: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@m"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@m"

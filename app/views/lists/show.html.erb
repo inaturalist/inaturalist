@@ -216,27 +216,28 @@
                 <%= render :partial => "shared/barchart_datum", :locals => {
                   :value => @total_listed_taxa,
                   :max => @total_listed_taxa,
-                  :label_text => t(:taxa).downcase,
+                  :label_text => t(:x_taxa, count: @total_listed_taxa),
                   :min_value_label_width => 30 } %>
               <% else -%>
                 <%= render :partial => "shared/barchart_datum", :locals => {
                   :value => @total_observed_taxa,
                   :max => @total_listed_taxa,
-                  :label_text => "#{t(:of)} #{@total_listed_taxa} #{t(:taxa_observed)}",
+                  label_text: t(:x_of_count_observed, x: @total_observed_taxa, count: @total_listed_taxa.to_i ),
                   :min_value_label_width => 30 } %>
               <% end -%>
             </div>
           </a>
           <% for grouper, count in @iconic_taxon_counts.sort_by{ |_key, value| -1.0 * value }.to_h -%>
             <% next unless (count && count != 0) %>
-            <% if grouper.respond_to?(:common_name) && grouper.common_name %>
-              <% grouper_name = grouper.common_name.name rescue 'Unclassified' -%>
-            <% elsif grouper.respond_to?(:name) %>
-              <% grouper_name = grouper.name -%>
-            <% else %>
-              <% grouper_name = t(:unclassified) -%>
-            <% end -%>
-            <%- grouper_name = t(:other_animals) if grouper_name == 'Animals' -%>
+            <%-
+              grouper_name = if grouper.try(:name) == "Animalia"
+                t( "all_taxa.x_other_animals", count: count )
+              elsif grouper.is_a?( Taxon )
+                t( "all_taxa.x_#{grouper.name.underscore}", count: count )
+              else
+                nil
+              end
+            -%>
             <%- grouper_class = grouper.name rescue 'Unknown' -%>
             <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params({:iconic_taxon => grouper.id, :without => [:page, :q]}) %>">
               <div class="readable title">
@@ -244,10 +245,11 @@
               </div>
 
               <div class="barchart">
-                <%= render :partial => "shared/barchart_datum", :locals => {
-                  :value => count, 
-                  :max => @total_listed_taxa, 
-                  :label_text => grouper_name } %>
+                <%= render "shared/barchart_datum",
+                  value: count, 
+                  max: @total_listed_taxa, 
+                  label_text: grouper_name
+                %>
               </div>
             </a>
           <% end %>

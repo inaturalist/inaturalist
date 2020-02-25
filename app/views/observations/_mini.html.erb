@@ -36,10 +36,10 @@ image_url ||= observation_image_url(observation, :size => image_size) ||
   </div>
   <div class="meta">
     <% if observation.observed_on %>
-      <span class="observed_on"><%=t :on %> <span class="date"><%=l observation.observed_on %></span></span>
+      <span class="observed_on"><span class="date"><%=l observation.observed_on %></span></span>
     <% end %>
     <% unless observation.place_guess.blank? %>
-      <span class="place_guess"> <%=t :in %> <%=h observation.place_guess %></span>
+      <span class="place_guess"><%=h observation.place_guess %></span>
     <% end %>
   </div>
   

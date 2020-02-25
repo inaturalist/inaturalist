@@ -859,7 +859,6 @@ zh-TW:
   couldnt_find_a_user_matching_x_param: "查無用戶符合 %{id}"
   couldnt_find_that_taxon: 找不到分類。
   countries: 國家
-  cover: 封面
   create: 建立
   create_a_guide: 建立一個指南
   create_a_new_field: 創建一個新欄位
@@ -1128,6 +1127,7 @@ zh-TW:
   endangered: 瀕危
   endemic: 特有
   endemic_to_x: "%{x}的特有種"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: 生命大百科
   eol_collection_url: "生命大百科收藏 URL"
   error_updating_photo: "上傳照片錯誤： %{photo_errors}"
@@ -1191,6 +1191,7 @@ zh-TW:
   featured: 精選
   featuring: 精選
   feedback: 意見回饋
+  #Plural noun, as in Atom and RSS feeds
   feeds: '訊息來源'
   failed: 已失敗
   field_note: |
@@ -1301,6 +1302,7 @@ zh-TW:
   flickr_tagger: Flickr 標記者
   flickr_tags: Flickr 標記
   fluid_layout: 流動佈局
+  #Adjective, as in a fluid layout of images
   fluid: 流動
   follow: 追蹤
   follow_receive_updates_about_new_observations: 追蹤（接收有關新觀察的更新）
@@ -2261,7 +2263,6 @@ zh-TW:
     irregular: 異常
     doubtful: 可疑
     absent: 缺失
-  of: 的
   of_observations: 項觀察記錄
   of_species: 個物種
   of_observers: 個觀察者
@@ -2273,7 +2274,6 @@ zh-TW:
   offline_access_enabled: 離線存取已啟用
   old_observation_form: 舊式觀察表單（已廢棄使用）
   ok: "確定"
-  on_: "在"
   on_date: "於 %{date}"
   on_day: "在"
   on_your_life_list: 在妳的生命清單中
@@ -2854,7 +2854,9 @@ zh-TW:
   popular: 熱門
   position: 位置
   possessive_user: "%{user} 的"
+  #Post is a noun
   post_from_journal_by_parent_html: 來自 <a href="%{url}">%{parent} 的日誌</a>的發佈文章
+  #Post is a noun
   post_from_your_journal_html: 來自<a href="%{url}">您的日誌</a>的發佈文章
   post_published: 貼文已發佈！
   posted_by: 發佈由
@@ -3359,6 +3361,7 @@ zh-TW:
   species_taxon_name: 物種 / 物種分類名稱
   species_unknown: 不明物種
   specify_the_reason_youre_flagging: 指名您標記此項目的原因
+  #Abbreviation for "source"
   src: 來源
   standard: 標準
   start: 開始
@@ -3371,7 +3374,6 @@ zh-TW:
   start_typing_place_name: 開始輸入地點名稱…
   start_typing_taxon_name: 開始輸入物種分類名稱…
   start_typing_someones_name: "開始輸入某個名稱…"
-  states: 州
   stats: 統計
   stats_for_this_year_have_not_been_generated: 今年份尚未產生的統計內容。
   status: 狀態
@@ -3658,6 +3660,7 @@ zh-TW:
   threatened: 受威脅
   time_: 時間
   time_ago: "%{time} 前"
+  #As in the title of a book or a blog post
   title: 標題
   title_and_description: "標題與描述"
   to_add_comments: 添加評論
@@ -3932,6 +3935,7 @@ zh-TW:
   w_photos_only: 帶有照片
   w_sounds: 帶有聲音
   wait_file_generation: 請等待檔案產生。較大的清單可能會花費數分鐘。
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 徵求
   was_it_captive_cultivated?: "是被圈養/栽培？"
   we_also_support: |
@@ -5072,8 +5076,6 @@ zh-TW:
           此圖表顯示出物種分類依月份區分的觀察次數。請記住這些是觀察次數，因此會被當生物可被觀察的期間，以及被人們有前來觀察它們的行為所影響。因此某隻鳥在五月裡的觀察次數看似很活躍，但有可能是人們剛好一同在五月觀察，而將其它月份給忽略掉。相同地，如果您發現蜻蜓在六月的次數比一月多，這可能是因為在北半球有比南半球較多人口，而並非蜻蜓是剛好在六月比較活躍，因此在考量這些圖表時可以先查看地圖。當圖表上「可驗證」與「研究等級」觀察次數之間，有出現較低觀察次數以及/或是較大差異時，對這些情況做出疑慮是正確的。
         charts_help_history: |
           此圖表會顯示過去十年依各月份呈現的物種分類觀察數量。這些是由人們觀察次數所形成的傾向，且會為您顯示觀察裡的不尋常尖峰點。如果觀察數量增加，但圖表是呈現平坦或下降的情況，可能是因為有著大量的變化。
-        charts_help_other: |
-          我們也另外顯示出用於觀察註解的季節性圖表。註解是用在替觀察添加詮釋資料的採用控制詞彙項目之新系統。就目前為止我們僅使用「生命階段」與「植物物候」（植物開花或結果時期）。我們目前沒有直接添加註解的方式，因此現在我們正試著將來自於觀察欄位的資料轉換至註解。如果您已等不及我們建置好註解系統，您可以透過添加俱有下列值之一的觀察欄位值來貢獻到「生命階段」註解：成體、初羽化、蛹、若蟲、幼蟲、卵，或亞成體。所以特別的是，「生命階段」與「昆蟲生命階段」的欄位都是可行的。對於「植物物候」，我們正查看任何欄位名稱有著字詞「物候」並帶著「開花」或是「結果」，因此「開花物候」欄位也是可使用的。
         charts_help_relative_observations: |
           顯示所有觀察相對比例次數可協助修正有關網站整體成長效益。例如，若網站每年因我們獲取更多的觀察而成長，我們會取得更多各物種分類的觀察，但這僅會您曉得有許多人在觀察物種分類，而不會了解告訴您有關是否有更多物種分類包含在觀察裡。顯示相對比例代表著如果總共有 100 個觀察，其中
           20 個觀察為某個物種分類，那麼比例是 0.2（20 / 100）。若大家在隔年做出 2000 個觀察並且當中有 400 個觀察為某物種分類，那麼比例便是 0.2（400 / 2000）。而縱使是總計計數，也會導致在僅有少數觀察者的地區，或是很少有被觀察到的物種分類群產生偏差情況。
@@ -5259,7 +5261,9 @@ zh-TW:
         notification_preferences_project_journal_posts: 專案日誌發佈文章
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: 當一個專案已添加了您的觀察
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: 專案策展人更動
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: 物種分類更動
@@ -5961,7 +5965,7 @@ zh-TW:
         favorite: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@n"

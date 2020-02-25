@@ -824,10 +824,18 @@ shared_examples_for "an ObservationsController" do
 
     it "should not allow observations where latitude AND longitude are 0" do
       o = Observation.make!( user: user )
-      post :update, id: o.id, format: :json, observation: { latitude: 0, longitude: 0 }
+      put :update, id: o.id, format: :json, observation: { latitude: 0, longitude: 0 }
       expect( response.status ).to eq 422
       o.reload
       expect( o.latitude ).not_to eq 0
+    end
+
+    it "should not allow alteration of created_at" do
+      o = Observation.make!( user: user, created_at: 3.weeks.ago )
+      expect( o.created_at ).to be <= 2.week.ago
+      put :update, id: o.id, format: :json, observation: { created_at: 1.week.ago.iso8601 }
+      o.reload
+      expect( o.created_at ).to be <= 2.week.ago
     end
   end
 

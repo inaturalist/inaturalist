@@ -19,6 +19,7 @@ module DarwinCore
       @uri        = FakeView.observations_url( @observations_params )
       @taxon      = Taxon.find_by_id( @observations_params[:taxon_id] )
       @place      = Place.find_by_id( @observations_params[:place_id] )
+      @freq       = options[:freq]
     end
   end
 end

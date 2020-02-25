@@ -748,6 +748,7 @@ eu:
   favorites: "Gogokoak"
   featured: Nabarmendutakoak
   feedback: Atzeraelikadura
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Iturriak:'
   failed: Hutsegitea
   field_note: |
@@ -811,6 +812,7 @@ eu:
   flickr_style: Flickr-eko estiloan
   flickr_tagger: Flickr-eko etiketatzailea
   flickr_tags: Flickr-eko etiketak
+  #Adjective, as in a fluid layout of images
   fluid: arina
   follow: Jarraitu
   follow_user: "Honi jarraitu: %{user}"
@@ -1324,9 +1326,7 @@ eu:
     irregular: irregularra
     doubtful: zalantzagarria
     absent: ez dago
-  of: 'hemendik:'
   offensive_inappropriate: Iraingarria/ Desegokia
-  on_: "hemen:"
   on_date: "egun honetan: %{date}"
   on_your_life_list: zure bizitzako zerrendan
   one_of_your_lists: "zure zerrendetako bat..."
@@ -1842,6 +1842,7 @@ eu:
   species_search: Espezieen bilaketa
   species_taxon_name: Espeziea / Taxonaren izena
   species_unknown: Espezie ezezagunak
+  #Abbreviation for "source"
   src: Iturria
   start: Hasiera
   start_a_new_project: Proiektu berria hasi
@@ -1851,7 +1852,6 @@ eu:
   start_typing_field_name: Eremuaren izena sartzen hasi...
   start_typing_place_name: Lekuaren izena sartzen hasi...
   start_typing_someones_name: "Hasi norbaiten izena sartzen..."
-  states: Egoerak
   stats: Estatistikak
   status: Estatua
   still_no_luck?: Aurkitu gabe jarraitzen duzu?
@@ -1993,6 +1993,7 @@ eu:
   threatened: Mehatxatuta
   time_: ordua
   time_ago: "duela %{time}"
+  #As in the title of a book or a blog post
   title: izenburua
   to_add_comments: aipamenak gehitzeko.
   to_add_ids: identifikazioak gehitzeko

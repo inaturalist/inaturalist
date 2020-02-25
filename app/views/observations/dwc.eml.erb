@@ -31,7 +31,10 @@
     <intellectualRights>
       <para>
         <% if @license %>
-          This archive is licensed under a <ulink url="<%=raw FakeView.url_for_license( @license ) %>"><citetitle><%= FakeView.license_name( @license ) %></citetitle></ulink>. Individual records may be published under less-restrictive conditions; please see individual records for guidance on usage.
+          This archive is licensed under a
+          <ulink url=<%=raw FakeView.url_for_license( @license ).encode( xml: :attr ) %>>
+            <citetitle><%= FakeView.license_name( @license ) %></citetitle>
+          </ulink>. Individual records may be published under less-restrictive conditions; please see individual records for guidance on usage.
         <% else %>
           These data are licensed under a variety of Creative Commons licenses and waivers. Please see individual records for their usage requirements.
         <% end %>
@@ -76,12 +79,22 @@
           <itemizedList>
             <% if @taxon %>
               <listitem>
-                <para>Depicts an individual in <ulink url="<%=raw FakeView.taxon_url( @taxon ) %>"><citetitle><%= render "taxa/taxon.txt", taxon: @taxon, no_common: true %></citetitle></ulink></para>
+                <para>
+                  Depicts an individual in
+                  <ulink url=<%=raw FakeView.taxon_url( @taxon ).encode( xml: :attr ) %>>
+                    <citetitle><%= render "taxa/taxon.txt", taxon: @taxon, no_common: true %></citetitle>
+                  </ulink>
+                </para>
               </listitem>
             <% end %>
             <% if @place %>
               <listitem>
-                <para>Coordinates in <ulink url="<%=raw FakeView.place_url( @place ) %>"><citetitle><%= @place.display_name %></ulink></citetitle></ulink></para>
+                <para>
+                  Coordinates in
+                  <ulink url=<%=raw FakeView.place_url( @place ).encode( xml: :attr ) %>>
+                    <citetitle><%= @place.display_name %></ulink></citetitle>
+                  </ulink>
+                </para>
               </listitem>
             <% end %>
             <% if @observations_params[:license] == "none" %>
@@ -98,7 +111,9 @@
                     <% licenses.each do |license| %>
                       <listitem>
                         <para>
-                          <ulink url="<%=raw FakeView.url_for_license( license ) %>"><citetitle><%= FakeView.license_name( license ) %></citetitle></ulink>
+                          <ulink url=<%=raw FakeView.url_for_license( license ).encode( xml: :attr ) %>>
+                            <citetitle><%= FakeView.license_name( license ) %></citetitle>
+                          </ulink>
                         </para>
                       </listitem>
                     <% end %>
@@ -115,7 +130,7 @@
                       <% if ( project = Project.find( project_id ) rescue nil ) %>
                         <listitem>
                           <para>
-                            <ulink url="<%=raw FakeView.project_url( project ) %>">
+                            <ulink url=<%=raw FakeView.project_url( project ).encode( xml: :attr ) %>>
                               <citetitle><%= project.title %></citetitle>
                             </ulink>
                           </para>
@@ -137,7 +152,7 @@
               <listitem>
                 <para>
                   Affiliated with the iNaturalist Network Partner
-                  <ulink url="<%=raw FakeView.site_url( site ) %>">
+                  <ulink url=<%=raw FakeView.site_url( site ).encode( xml: :attr ) %>>
                     <citetitle><%= site.name %></citetitle>
                   </ulink>
                 </para>
@@ -164,10 +179,22 @@
               </listitem>
             <% end %>
           </itemizedList>
-          You can view observations meeting these requirements at <ulink url="<%=raw @uri %>"><citetitle><%=raw @uri %></ulink>
+          You can view observations meeting these requirements at
+          <ulink url=<%=raw @uri.encode( xml: :attr ) %>>
+            <citetitle><![CDATA[<%=raw @uri %>]]></citetitle>
+          </ulink>
         <% end %>
       </para>
     </purpose>
+
+    <% if @freq %>
+      <maintenance>
+        <description>
+          New observations are constantly being added to iNaturalist. Observations are dynamic, so identifications and other aspects of data quality can change at any time due to crowdsourced curation. Observations belong to the people who added them, so those people may remove them at any time, or change their licensing.
+        </description>
+        <maintenanceUpdateFrequency><%= @freq %></maintenanceUpdateFrequency>
+      </maintenance>
+    <% end %>
 
     <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "contact", :data => @contact} %>
 

@@ -246,6 +246,7 @@ class TaxaController < ApplicationController
         @flagged_taxa = @taxon_framework.get_flagged_taxa
         @flagged_taxa_count = @taxon_framework.get_flagged_taxa_count
         if @taxon_framework.source_id
+          @tfr_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ?", @taxon_framework.id ).count
           @deviations_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match' AND relationship != 'alternate_position'", @taxon_framework.id ).count
           @relationship_unknown_count = @taxon_framework.get_internal_taxa_covered_by_taxon_framework.where(taxon_framework_relationship_id: nil).count
         end

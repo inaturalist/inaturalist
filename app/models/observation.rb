@@ -776,7 +776,11 @@ class Observation < ActiveRecord::Base
     # I18n.t( :observation_brief_taxon_on_day_by_user )
     i18n_vars = {}
     key = if taxon
-      i18n_vars[:taxon] = common_name( locale: I18n.locale )
+      i18n_vars[:taxon] = if options[:viewer]
+        FakeView.render( partial: "taxa/taxon.txt", locals: { taxon: taxon, viewer: options[:viewer] } )
+      else
+        common_name( locale: I18n.locale )
+      end
       i18n_vars[:taxon] ||= taxon.name
       "taxon"
     else
@@ -1526,7 +1530,9 @@ class Observation < ActiveRecord::Base
   def obscure_coordinates
     return unless prefers_auto_obscuration? || [OBSCURED, PRIVATE].include?( geoprivacy )
     return if obscuration_changed
-    geoprivacy_changed_from_private_to_obscured = geoprivacy_was == PRIVATE && geoprivacy == OBSCURED
+    geoprivacy_changed_from_private_to_obscured = latitude.blank? &&
+      ![geoprivacy, taxon_geoprivacy].include?( PRIVATE ) &&
+      [geoprivacy, taxon_geoprivacy].include?( OBSCURED )
     if !geoprivacy_changed_from_private_to_obscured && ( latitude.blank? || longitude.blank? )
       self.obscuration_changed = geoprivacy_changed?
       return
@@ -1546,7 +1552,11 @@ class Observation < ActiveRecord::Base
     )
       self.latitude, self.longitude = [latitude_was, longitude_was]
       set_geom_from_latlon
-    elsif private_latitude_changed? || private_longitude_changed? || geoprivacy_changed_from_private_to_obscured
+    elsif !private_latitude.blank? && !private_longitude.blank?  && (
+        private_latitude_changed? ||
+        private_longitude_changed? ||
+        geoprivacy_changed_from_private_to_obscured
+      )
       self.latitude, self.longitude = Observation.random_neighbor_lat_lon( private_latitude, private_longitude )
       set_geom_from_latlon
       self.obscuration_changed = true

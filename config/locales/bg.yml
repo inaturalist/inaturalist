@@ -14,6 +14,9 @@ bg:
   x_identifications_:
     one: '1 Разпознаване'
     other: '%{count} Разпознавания'
+  x_languages:
+    one: "%{count} език"
+    other: "%{count} езика"
   x_matching_taxa:
     one: '1 съвпадащ таксон'
     other: '%{count} съвпадащи таксона'
@@ -35,12 +38,25 @@ bg:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> рецензирано наблюдение"
     other: "<span class='count'>%{count}</span> рецензирани наблюдения"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> наблюдател'
+    other: '<span class="count">%{count}</span> наблюдатели'
+  x_others:
+    one: "%{count} друг"
+    other: "%{count} други"
+  x_people:
+    one: "%{count} човек"
+    other: "%{count} човека"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} човека</strong> са помогнали на %{user} със <strong>%{y} разпознавания</strong>"
   x_photos:
     one: "1 снимка"
     other: "%{count} снимки"
   x_new_species:
     one: "1 нов вид"
     other: "%{count} нови вида"
+  x_new_users:
+    one: '%{count} нов потребител'
+    other: '%{count} нови потребители'
   x_species:
     one: '1 вид'
     other: '%{count} вида'
@@ -50,15 +66,24 @@ bg:
   x_species_link_html:
     one: "<a href='%{url}'>1 вид</a>"
     other: "<a href='%{url}'>%{count} вида</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} предложение филтрирано по:"
+    other: "%{count} предложения филтрирани по:"
+  x_taxa:
+    one: "%{count} таксон"
+    other: "%{count} таксона"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> наблюдаван таксон"
     other: "<span class='count'>%{count}</span> наблюдавани таксона"
   x_research_grade_observations_html:
     one: "<span class='count'>1</span> наблюдение от изследователски клас</span>"
-    other: "<span class='count'>%{count}</span> наблюдения от изследователски клас</span>"
+    other: "<span class='count'>%{count}</span> наблюдения от Изследователско качество"
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> наблюдение от изследователски клас определено до вид</span>"
-    other: "<span class='count'>%{count}</span> наблюдения от изследователски клас определени до вид</span>"
+    other: "<span class='count'>%{count}</span> наблюдения от Изследователско качество определени до вид"
+  x_sounds:
+    one: "%{count} звук"
+    other: "%{count} звука"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> куриран таксон"
     other: "<span class='count'>%{count}</span> курирани таксона"
@@ -72,9 +97,31 @@ bg:
   a_community_for_naturalist: Общност за естествоизпитатели
   a_member_of: "Представител на"
   a_member_of_taxon_html: "представител на %{taxon}"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Относно
   about_blocking: Относно блокирането
-  about_community_taxa: За таксоните от общността
+  about_charts: Относно диаграмите
+  about_community_taxa: За консенсусните разпознавания от общността
+  about_editing_observation_fields: Относно редактирането на полета за наблюдения
   about_licenses: За лицензите
   about_muting: Относно заглушаването
   #Header for a section describing taxon names
@@ -82,11 +129,13 @@ bg:
   about_places: Относно местата
   about_the_cc_licenses: За лицензите Creative Commons
   about_these_licenses: Относно тези лицензи
+  about_this_bioblitz: Относно този биоблиц
   about_this_map: За тази карта
   about_this_project: За този проект
   about_x: "За %{x}"
   acc: 'Точност (m)'
   account: Акаунт
+  account_creation: Създаване на акаунт
   account_settings: Настройки на акаунта
   accept: приеми
   accept_community_identifications: Приемай разпознаванията от общността
@@ -108,6 +157,7 @@ bg:
   add_a_field: Добавяне на поле
   add_a_flag: Добавяне на маркер
   add_a_name: Добавяне на име
+  add_a_new_change_group: Добави нова група от промени
   add_a_single_observation: Добавяне на единично наблюдение.
   add_a_taxon: Добавяне на таксон
   add_an_assessment: Добавяне на оценка
@@ -115,6 +165,11 @@ bg:
   add_an_observation: Добавяне на наблюдение
   add_an_observation?: Добавяне на наблюдение?
   add_an_observation_of: "Добави наблюдение на %{taxon}"
+  add_annotations_for_x: Добави анотации за „%{x}“
+  add_annotations_for_controlled_attribute:
+    sex: Добави анотации за „Пол“
+    plant_phenology: Добави анотации за „Фенология на растение“
+    life_stage: Добави анотации за „Жизнен стадий“
   add_another_flag: Добавяне на друг маркер
   add_another_photo: Добавяне на друга снимка
   add_another_section: Добавяне на друг раздел
@@ -126,6 +181,7 @@ bg:
   add_custom_project_fields: Добавяне на потребителски полета на проекта
   add_from_your_observations: Добавяне от своите наблюдения
   add_higher_level_taxon: Добавяне на родителски таксон (напр. „птици“)
+  add_id: Добави разпознаване
   add_new_lexicon: Добави нова лексика
   add_new_photos_by_their_ids: Добави нови снимки чрез техния Flickr идентификатор (трябва да са с лиценз Creative Commons!)
   add_new_place: Добавяне на ново място
@@ -137,11 +193,29 @@ bg:
   add_one: Добави!
   add_photos: Добавяне на снимки
   add_place: Добави място
+  add_alive_or_dead_alive_annotation: 'Добави анотация „Жив или мъртъв: Жив“'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Добави анотация „Жив или мъртъв: Неопределим“'
+  add_alive_or_dead_dead_annotation: 'Добави анотация „Жив или мъртъв: Мъртъв“'
+  add_plant_phenology_budding_annotation: 'Добави анотация „Фенология на растение: Напъпване“'
+  add_plant_phenology_flower_budding_annotation: 'Добави анотация „Фенология на растение: Напъпване на цветове“'
+  add_plant_phenology_flowering_annotation: 'Добави анотация „Фенология на растение: Цъфтене“'
+  add_plant_phenology_fruiting_annotation: 'Добави анотация „Фенология на растение: Плодообразуване“'
+  add_life_stage_adult_annotation: 'Добави анотация „Жизнен стадий: Възрастен“'
+  add_life_stage_teneral_annotation: 'Добави анотация „Жизнен стадий: Новоимагинирал“'
+  add_life_stage_subimago_annotation: 'Добави анотация „Жизнен стадий: Субимаго“'
+  add_life_stage_pupa_annotation: 'Добави анотация „Жизнен стадий: Какавида“'
+  add_life_stage_nymph_annotation: 'Добави анотация „Жизнен стадий: Нимфа“'
+  add_life_stage_larva_annotation: 'Добави анотация „Жизнен стадий: Ларва“'
+  add_life_stage_juvenile_annotation: 'Добави анотация „Жизнен стадий: Млад“'
+  add_life_stage_egg_annotation: 'Добави анотация „Жизнен стадий: Яйце“'
   add_several_observations_at_once: Добавяне на няколко наблюдения наведнъж.
+  add_sex_female_annotation: 'Добави анотация „Пол: Женски“'
+  add_sex_male_annotation: 'Добави анотация „Пол: Мъжки“'
   add_tag: Добавяне на етикет
   add_tags: Добавяне на етикети
   add_tags_to_selected_taxa: Добавяне на етикети към избраните таксони
   add_taxa: Добавяне на таксони
+  add_to_a_scheme: Добави към схема
   add_to_a_project: Добавяне към проект
   add_to_calendar: Добавяне в календара
   add_to_favorites: Добавяне към любими
@@ -152,12 +226,19 @@ bg:
     Добавете своя имейл за да получавате известия от общността за Вашите наблюдения. Ако предпочитате да не го споделяте, посетете ни отново скоро!
   added: Добавено
   added!: Добавено!
+  added_as_a_part_of_a_taxon_merge_html: |
+    Добавено като част от <a target="%{target}" class="%{class}" href="%{url}">обединяване на таксони</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    Добавено като част от <a target="%{target}" class="%{class}" href="%{url}">разделяне на таксон</a>
   added_by: Добавено от
   added_by_user_on_date_html: "Добавено от %{user} на %{date}"
+  added_on_datetime: "Добавено на %{datetime}"
   added_to_favorites_html: |
     Добавено в <a href="%{url}">любими</a>
   adding: "Добавяне..."
+  adjust_brightness: Регулиране на яркост
   admin: Администратор
+  admin_s: Администратор(и)
   agree: съгласен съм
   agree_: Съгласен
   agree?: Съгласни ли сте?
@@ -246,12 +327,16 @@ bg:
   alphabetical: По азбучен ред
   alphabetical_order: По азбучен ред
   amphibians: земноводни
+  ancestor_taxon: Родителски таксон
   and: и
   and_other_taxa: "и други таксони"
   android: Андроид
   animals: Животни
+  annotation: Анотация
   annotations: Анотации
   any: без значение
+  any_: Без значение
+  anyone: Всеки
   arachnids: паякообразни
   archives: Архиви
   are_you_really_sure_want_delete_this_user: Напълно ли сте сигурни, че искате да изтриете този потребител и цялото негово съдържание?
@@ -266,6 +351,7 @@ bg:
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Сигурни ли сте? Това ще презареди страницата и може да изгубите някои от промените си.
   are_you_sure_want_delete_taxon: "Сигурни ли сте, че искате да изтриете този таксон?"
+  are_you_sure_want_delete_taxon_link: Сигурни ли сте, че искате да изтриете тази таксономична препратка?
   are_you_sure_want_delete_this_name: Сигурни ли сте, че искате да изтриете това име?
   are_you_sure_you_want_to_delete_this: Сигурни ли сте, че искате да изтриете това?
   are_you_sure_you_want_to_delete_this_photo?: Сигурни ли сте, че искате да изтриете тази снимка?
@@ -294,12 +380,15 @@ bg:
   attribute: Атрибут
   authority_list:
     iucn_red_list: Червен списък на IUCN
+    natureserve: NatureServe
+  authorize: Разрешавам
   automatically_update_my_content_for_taxon_changes: Автоматично обновявай съдържанието ми при промяна на таксон
   back: Назад
   back_to_all_species: Обратно към всички видове
   back_to_calendar: "Обратно към календара на %{user}"
   back_to_editing_observation: Обратно към редактиране на наблюдението
   back_to_observation: Обратно към наблюдението
+  back_to_observation_fields: Обратно към полетата за наблюдения
   back_to_people: Обратно към хората
   back_to_possessive_user_profile: "Обратно към профила на %{possuser}"
   back_to_projects: Обратно към проекти
@@ -320,11 +409,13 @@ bg:
   be_the_first_to_fave_this_observation: Станете първият добавил наблюдението в Любими!
   because_of: заради
   bg_color: Цвят на фона
+  bioblitz: Биоблиц
   birds: птици
   birthday: Рожден ден
   black: черно
   block_user: Блокиране на потребител
   blocked_users: Блокирани потребители
+  blog_widget: Приставка за блог
   blue: синьо
   blue_butterfly_etc: "червен, пеперуда и т.н."
   body: Съдържание
@@ -338,11 +429,13 @@ bg:
   by_you: От Вас
   calendar: Календар
   cancel: Отказ
+  cant_merge_a_taxon_with_itself: Таксон не може да бъде обединен със себе си.
   captive: В плен
   captive_cultivated: В плен / култивиран
   card: Резюме
-  casual: тривиален
-  categories: категории
+  casual: тривиално качество
+  casual_: Тривиално качество
+  categories: Категории
   cc_0_description: "Този лиценз прави творбата Ви обществено достояние и всеки ще може да я споделя, променя и използва, дори за комерсиални цели, без да иска разрешение и без да указва авторство. Това е най-свободният лиценз и способства за най-широка употреба и разпространение на творбите."
   cc_0_name: Без авторски права (CC0)
   cc_attribution_license: Лиценз Криейтив комънс Признание
@@ -359,9 +452,36 @@ bg:
   cc_by_sa_description: "Този лиценз позволява на други хора да разпространяват, променят, допълват и използват Вашата творба, включително за комерсиални цели, стига да посочат Вас като автор на оригинала и стига да лицензират своите производни творби под същия лиценз."
   cc_by_sa_name: Признание-СподелянеСподеленото
   change_cover: Промени корицата
+  change_descriptions:
+    split: Старият таксон се разделя на няколко нови
+    swap: Промяна на име „едно към едно“
   change_geoprivacy: 'Промени геоповерителността'
+  change_group: Група от промени
   change_icon: Промени иконата
   change_password: Промени паролата
+  change_types:
+    change_types: Типове промени
+    split: Разделяне
+    merge: Обединяване
+    swap: Размяна
+    drop: Отпадане
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_from: отделено от
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_into: разделено на
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merge_into: обедини във
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merged_into: обединени във
+    input_taxon_was_split_into_output_taxa_html: "%{input_taxon} беше разделен на %{output_taxa}"
+    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} ще бъде разделен на %{output_taxa}"
+    input_taxon_was_dropped_html: "%{input_taxon} отпадна"
+    input_taxon_will_be_dropped_html: "%{input_taxon} ще отпадне"
+    input_taxon_will_be_activated_soon_html: "%{input_taxon} ще бъде активиран скоро"
+    input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} беше заменен със %{output_taxon}"
+    input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} ще бъде заменен със %{output_taxon}"
+    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} бяха обединени във %{output_taxon}"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} ще бъдат обединени във %{output_taxon}"
   change_your_password: Промяна на паролата
   check_back_soon: Проверете пак скоро!
   check_list: Видов списък
@@ -403,20 +523,22 @@ bg:
   comments_by_me: Коментари от мен
   comments_on: Коментари на
   comments_on_my_observations: Коментари на мои наблюдения
+  commercial_solicitation: Комерсиални предложения, препратки доникъде и т.н.
   community: Общност
   community_curated: Курирано от общността
   community_guidelines: Правила на общността
-  community_id_heading: Разпознаване от общността
-  community_id_at_species_or_lower?: Разпознаване от общността до вид или по-точно?
-  community_id_at_species_level_or_lower: ID от общността на ниво вид или по-ниско
+  community_id_heading: Консенсусно разпознаване
+  community_id_at_species_or_lower?: Консенсусно разпознаване до вид или по-точно?
+  community_id_at_species_level_or_lower: Консенсусно разпознаване до ниво вид или по-ниско
   community_moderation_settings: Настройки на редактиране от общността
-  community_supported_id: Разпознаване от общността?
+  community_supported_id: Консенсусно разпознаване от общността?
   compare: Сравняване
   compare_with: Сравни с
   comparing_list_to_list: "Сравняване на %{list1} със %{list2}"
   comparing_versions_x_and_y: "Сравняване на версии %{x} и %{y}"
   comparing_observations_from: "Сравняване на наблюденията на %{user} от %{dates}"
   configure: Конфигуриране
+  configure_a_widget_to_show: Конфигурирайте приставка, която да показва наблюдения от %{site_name} на Вашия уебсайт или блог. Може да се наложи да включите вградения CSS в <code>&lt;head&gt;</code> етикета на Вашия HTML код. Ако желаете - можете да промените CSS стила по Ваше усмотрение.
   confirm_new_password: Потвърдете новата парола
   confirmed: потвърдено
   connect_to_provider: "Свържи с %{provider}"
@@ -445,6 +567,7 @@ bg:
     female: Женски
     plant_phenology: Фенология на растение
     budding: Напъпване
+    flower_budding: Напъпване на цветове
     flowering: Цъфтене
     fruiting: Плодообразуване
     life_stage: Жизнен стадий
@@ -456,6 +579,13 @@ bg:
     larva: Ларва
     egg: Яйце
     juvenile: Млад
+    alive_or_dead: Жив или мъртъв
+    alive: Жив
+    cannot_be_determined: Неопределим
+  controlled_term_definitions:
+    alive: Организмът е жив и не показва признаци за предстояща смърт
+    flower_budding: Виждат се цветни пъпки, но не са разтворени
+    fruiting: Плодът се вижда и все още е прикрепен към растението
   coordinate_systems: Координатни системи
   coordinates: Координати
   copy: Копирай
@@ -477,7 +607,6 @@ bg:
   copyright_info_and_more: Информация за авторско право и други
   couldnt_change_your_password: "Не можахме да променим паролата Ви: %{e}"
   countries: Държави
-  cover: Корица
   create: Създай
   create_a_guide: Създай ръководство
   create_a_new_field: Създай ново поле
@@ -491,7 +620,7 @@ bg:
   created_by_user_on_date: Създадено от %{user} на %{date}
   created_on: Създадено на
   creating_your_account: "Създаване на акаунт..."
-  critically_endangered: критично застрашен
+  critically_endangered: Критично застрашен
   csv_file: CSV файл
   csv_should_not_contain_a_header_row: CSV не трябва да съдържа заглавен ред
   curator: Куратор
@@ -545,7 +674,9 @@ bg:
   date_range: Интервал от време
   date_specified: Указана дата
   date_time: Дата/Час
+  date_updated: Дата на обновяване
   day: Ден
+  decrease_brightness: Намали яркостта
   default: по подразбиране
   default_invite_comment: "Страхотна снимка! Трябва да я публикувате на %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Лиценз на наблюдение по подразбиране
@@ -554,9 +685,13 @@ bg:
   delete: Изтриване
   delete_conversation: Изтрий разговора
   delete_icon?: Изтрий иконата?
+  delete_photo: Изтрий снимката
+  delete_taxon_and_merge_most_data_html: |
+    Изтрий таксона <i>%{taxon}</i> и обедини повечето от данните му с друг таксон. Използвайте този инструмент за <strong>премахване на дублиращи се таксони</strong>. Ако искате да премахнете неактуален таксон, моля създайте таксономична размяна. <strong>БЪДЕТЕ ВНИМАТЕЛНИ!</strong> Изтриването на таксони може да бъде много разрушително. Погледнете <a href="%{curator_url}">Наръчника за куратори</a> за повече подробности.
   delete_your_account: Изтриване на акаунта
   deleting: Изтриване...
   deleting_verb: Изтриване
+  deny: Отказвам
   desc: низх.
   descending: низходящо
   describe_purpose: Опишете целите на проекта.
@@ -596,6 +731,7 @@ bg:
   draft_saved: Черновата е запазена!
   drafts: Чернови
   drag_and_drop_some_photos_or_sounds: Завлачи и пусни снимки или звуци
+  duplicate_verb: Дублиране
   each_place_displays_all_species_inat_knows: "Страницата на всяко място показва всички видове от това място за които %{site_name} знае, както и информация за тяхното изобилие, природозащитен статут и кой е бил първият наблюдател на дадения вид от това място на %{site_name}. Може да филтрирате видовете по таксон, цвят, природозащитен статут или да използвате просто търсене."
   edit: Редактирай
   edit_account_settings_and_profile: "Промени настройките на акаунта и профила"
@@ -605,6 +741,7 @@ bg:
   edit_license: Редактиране на лиценза
   edit_observations: Редактиране на наблюдения
   edit_photos_for_observation_id: "Редактиране на снимки на наблюдение %{obs_id}"
+  edit_taxon_link: Редактирай таксономична препратка
   edit_your_account_and_profile_html: "Редактиране на вашия акаунт и профил"
   edit_your_identification: Промени разпознаването си
   edit_your_settings_for_this_project: Промени настройките си за този проект
@@ -612,28 +749,32 @@ bg:
   edited_by_name_some_rights_reserved_html: |
     Редактирано от %{name}, някои права запазени (%{license})
   editing: Редактиране
+  editing_observation_field: Редактиране на поле за наблюдения
   editing_observation_id: "Редактиране на наблюдение %{obs_id}"
   editing_observations:
     one: 'Редактиране на <span class="count">1</span> наблюдение:'
     other: 'Редактиране на <span class="count">%{count}</span> наблюдения:'
   editing_project: Редактиране на %{project}
+  editing_taxon_link: Редактиране на таксономична препратка
   either_that_user_doesnt_exist_or: "Или потребителят не съществува или вече го следвате."
-  eligible_for_research_grade: Приемливо за „Изследователски клас“
+  eligible_for_research_grade: Годно за „Изследователско качество“
   email: Електронна поща
+  email_addresses_description: Имейл адреси, разделени със запетаи. Ограничение от 60 на всеки 30 дена.
   email_copyright: "Авторско право &copy; %{x}, всички права запазени"
   email_settings: Настройки за имейл
-  embed_widget_project: Вмъкни widget за този проект на сайта си
+  embed_place_widget: Вмъкни приставка за място
+  embed_widget_project: Вмъкни приставка за този проект на сайта си
   enable_offline_access: Разреши извънмрежов достъп
   enable_offline_access_for_mobile: Разреши извънмрежов достъп за мобилни устройства
   encompassing_places: Обхващащи места
   end: Край
-  endangered: застрашен
+  endangered: Застрашен
   endemic: ендемичен
   endemic_to_x: "Ендемичен за %{x}"
   establishment:
     endemic: ендемичен
     establishment: Заселване
-    introduced: интродуциран
+    introduced: Интродуциран
     invasive: инвазивен
     managed: контролиран
     native: местен
@@ -661,6 +802,8 @@ bg:
   facebook_account_information: Информация за вашия акаунт на Facebook
   facebook_account_not_linked: "%{user} вече не е със свързан Фейсбук акаунт, затова %{site_name} няма достъп до тази снимка."
   'false': 'Невярно'
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: Харесвания
   Family: Семейство
   favorite_taxa: Любими таксони
   favorites: "Любими"
@@ -710,6 +853,8 @@ bg:
   flag_this_photo: Маркирай тази снимка
   flagged: маркира
   flagged_thing_explanation: "Потребителите са маркирали текущ. %{thing}, защото"
+  flagging_desc: |
+    Маркирането поставя нещо под вниманието на доброволните куратори на сайта. Моля, не маркирайте проблеми, които можете да разрешите чрез добавяне на разпознаване, гласуване в карето Оценка на качеството на данните или чрез разговор с човека добавил съдържанието.
   flags: Маркери
   flags_explanation: "Потребителите на %{site_name} могат да маркират неща когато сметнат нещо за нередно. Ето някои от нередностите които все още не са ревизирани от кураторите."
   flags_on_users_content: "Маркери на съдържанието на %{user}"
@@ -726,6 +871,8 @@ bg:
   formatting: Форматиране
   forgot_your_password: Забравена парола?
   forum: Форум
+  forum_desc: |
+    Форумът е място за обсъждане на самия iNat - за помощ, предложения за подобрения, докладване на бъгове и проблеми, известия и др.
   frequency: Честота
   from: От
   from_a_place: от място
@@ -735,16 +882,19 @@ bg:
   fungi:
     one: гъба
     other: гъби
+  generate_widget: Генериране на приставка
   Genus: Род
   geoprivacy: Геоповерителност
   geoprivacy_is_obscured: Геоповерителността е замаскирана
   geoprivacy_is_obscured_desc: Наблюдателят е решил да замаскира координатите.
   geoprivacy_is_private_desc: Наблюдателят е решил да скрие координатите.
+  get_started: Започни
   getting_started_guide: Ръководство за начинаещи
   give_it_some_detail: Добави детайли
   globally: глобално
   go: Напред
   go_back: Върни се
+  google: Google
   got_it!: Разбраx!
   grid: Решетка
   grid_layout: Решетъчно оформление
@@ -757,23 +907,27 @@ bg:
   has_id_supported_by_two_or_more: Има разпознаване подкрепяно от двама или повече
   has_one_or_more_faves: Има едно или повече харесвания
   has_photo: Има снимка
-  has_photos: има снимки
+  has_photos: Има снимки
   has_photo_and_sound: Има снимка и звук
   has_photos_or_sounds: Има снимки или звуци
   has_sound: Има звук
-  has_sounds: има звуци
+  has_sounds: Има звуци
+  header_your_favorites: Вашите любими
   header_your_profile: Вашият профил
   help: Помощ
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
+  help_translate!: Помогнете с превода!
   here_are_our_top_species_suggestions: Ето нашите най-добри предложения за видове
   hex_color_eg: Цвят в шестнайсетичен код, например 6564BF
   hi: Привет,
   hi_user: "Здравей %{user}"
+  high: Висок
   highest_rank: Най-висок ранг
   history: История
   home: Начало
   icon: Иконка
   icon_size: Размер на иконката
+  iconic_taxon: Таксон за иконка
   identify: Разпознаване
   identify_observations: "Разпознай наблюдения"
   identify_title: "Разпознай"
@@ -801,7 +955,11 @@ bg:
   in_n: "във %{n}"
   #Label for messages you've received
   inbox: входящи
+  increase_brightness: Увеличи яркостта
+  in_the_past_week: През изминалата седмица
+  inactive: Неактивен
   inactive_taxon: неактивен таксон
+  inactive_taxon_concepts_are: Неактивните таксони са или таксономично остарели, или са подготвяни за таксономична промяна. Остарелите таксони се съхраняват за да се поддържа история и съвместимост с някои партньорски сайтове.
   inappropriate_content: Неуместно съдържание?
   inat_believes_this_is_a_complete_listing: "%{site_name} смята, че това е пълен списък за този таксон на това място."
   inat_user_profile: "%{site_name}: Профил на %{user}"
@@ -809,7 +967,7 @@ bg:
   info: Информация
   insects: насекоми
   internal_server_error: Вътрешна грешка на сървъра
-  introduced: интродуциран
+  introduced: Интродуциран
   introduced_in_place: "Интродуциран във %{place}"
   invitation: Покана
   invite: покани
@@ -819,6 +977,7 @@ bg:
   invite_someone_to: "Покани някого на %{name}!"
   invite_your_friends: Покани приятелите си
   is_not_following_anyone: не следва никого.
+  it_can_now_be_used_for_research: Сега може да се използва в научни изследвания и да се показва на други сайтове
   join: Включи се
   join_and_add_an_observation_to_project_html: Присъединете се и добавете наблюдение към %{project}
   join_project: Включи се в проекта
@@ -833,8 +992,10 @@ bg:
   journal_post_deleted: Публикацията в дневника е изтрита.
   journal_posts: Публикации в дневник
   jpg_png_or_gif: "JPG, PNG или GIF"
+  keyboard_shortcuts: Клавишни комбинации
   kml_file_size_error: "KML файла трябва да е по-малък от 1MB"
   labels: Етикети
+  label_to_group_a_batch_of_taxon_changes: Етикет за групиране на множество таксономични промени
   language_slash_type: Език / Тип
   #Large photo size
   large: голям
@@ -857,7 +1018,7 @@ bg:
   learn_more: Научете повече
   learn_more_raquo: "Научи повече &raquo;"
   learn_what_these_licenses_mean: Научи какво означават тези лицензи
-  least_concern: незастрашен
+  least_concern: Незастрашен
   leave_a_comment: Остави коментар
   leave_this_project: Напусни проекта
   let_us_walk_you_through: Нека Ви запознаем с основните функции на сайта.
@@ -990,6 +1151,7 @@ bg:
     sk: словашки
     sq: албански
     sv: шведски
+    tr: турски
     zh-CN: китайски (опростен)
     zh-TW: китайски (традиционен)
   locality_notes: Бележки за местността
@@ -1013,6 +1175,7 @@ bg:
   longitude: Геогр. дължина
   longitude_in_decimal: 'Геогр. дължина в десетични градуси, например -122.123'
   lookup: Потърси
+  low: Нисък
   lowest_rank: Най-нисък ранг
   make_it_a_life_list?: Направи житейски списък?
   mammals: бозайници
@@ -1032,6 +1195,8 @@ bg:
       gbif_network: мрежата GBIF
       gbif_network_description: Записи от музеи и други източници на данни за разпространение достъпни от GBIF мрежата
       observations: Наблюдения
+      checklist_places: Места по видови списъци
+      checklist_places_description: Места, в чийто видов списък присъства този таксон
       range: Диапазон
   map_tooltip: Покажи на картата
   mark_as_reviewed: Отбелязване като проверено
@@ -1045,24 +1210,39 @@ bg:
     Част от <a href="%{url}">Мрежата на iNaturalist</a>
   members: Членове
   mentioned_you_in_noun_html: "%{user} Ви спомена във %{noun}"
+  merge: Обединяване
+  merge_it_with_another_place: Обедини с друго място
   message: Съобщение
   messages: Съобщения
+  misleading_or_illegal_content_html: |
+    Подвеждащо или нелегално съдържание, расистки или етнически нападки и т.н. За по-подробна дефиниция на „неуместно“, погледнете <a href="/help#inappropriate">ЧЗВ</a>.
   mollusks: мекотели
   momentjs:
     shortRelativeTime:
       future: "след %s"
+      past: "%s"
       #Short text representing 1 second in the past
       s: "1сек"
       #Short text representing 1 minute in the past
       m: "1мин"
+      #Short text representing %d minutes in the past
+      mm: "%dмин"
       #Short text representing 1 hour in the past
       h: "1ч"
+      #Short text representing %d hours in the past
+      hh: "%dч"
       #Short text representing 1 day in the past
       d: "1д"
+      #Short text representing %d days in the past
+      dd: "%dд"
       #Short text representing 1 month in the past
       M: "1мес"
+      #Short text representing %d months in the past
+      MM: "%dмес"
       #Short text representing 1 year in the past
       'y': "1г"
+      #Short text representing %d years in the past
+      yy: "%dг"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display a time zone code and not an offset, so
     #please use z and not Z
@@ -1081,11 +1261,13 @@ bg:
   more_journal_posts: Още публикации от дневника
   more_observations: Още наблюдения
   more_photos: Още снимки
+  more_than_a_week_ago: Преди повече от седмица
   most_browser_print_pdf: "Забележка: Повечето браузъри предлагат възможност за принтиране в PDF"
   most_comments_and_faves: Най-много коментари и харесвания
   most_observations: Най-много наблюдения
   most_species: Най-много видове
   most_observed_species: Най-наблюдавани видове
+  multiple_taxa_for_taxon_change: "Множество таксони (вход за размяна/обединяване, изход за разделяне)"
   must_be_observed_after: |
     трябва да е наблюдавано след %{operand}
   must_be_observed_before: |
@@ -1113,10 +1295,11 @@ bg:
   native_to_place: "Местен за %{place}"
   ne_lat: СИ шир.
   ne_lon: СИ дълж.
-  near_threatened: почти застрашен
+  near_threatened: Почти застрашен
   nearby_observations_: Наблюдения наблизо
-  needs_id: нуждае се от ID
-  needs_id_expandable_html: "<span class='full'>Нуждае се от </span>ID"
+  needs_id: нуждае се от разпознаване
+  needs_id_: Нуждае се от разпознаване
+  needs_id_expandable_html: "<span class='full'>Нуждае се от </span>разпознаване"
   needs_to_be_identified: Нуждае се от разпознаване
   new_and_noteworthy: Ново и интересно
   new_check_list: Нов видов списък
@@ -1137,6 +1320,7 @@ bg:
   new_post: Нова публикация
   new_project: Нов проект
   new_source: Нов източник
+  new_taxon_link: Нова таксономична препратка
   new_taxon_name_for: Ново име на таксон за
   new_users: Нови потребители
   new_users_w_7_obs: Нови потребители със 7 набл.
@@ -1145,11 +1329,13 @@ bg:
   next_observation: Следващо наблюдение
   next_page: След. страница
   next_photo: Следваща снимка
+  next_tab: Следващ раздел
   'no': 'Не'
   no_comments_yet: Няма коментари.
   no_description: Липсва описание
   no_identifications: Няма разпознавания
   no_identifications_added:
+    current_user: Не сте добавили разпознавания към наблюденията на никого.
     user: "Потребителят %{user} не е добавял разпознавания към чужди наблюдения."
   no_ids_have_been_suggested_yet: Все още не е предложено разпознаване
   no_favorites_added:
@@ -1181,6 +1367,7 @@ bg:
   noble_curators: "Знатните куратори на %{site}"
   none: Нищо
   none_found: Няма намерени
+  normal: нормален
   not_evaluated: неоценен
   not_linked_facebook: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Фейсбук"
   not_linked_flickr: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Flickr"
@@ -1220,12 +1407,14 @@ bg:
   observation_fields_are_additional: Полетата за наблюдения са допълнителни полета за данни, които могат да бъдат добавяни към наблюденията.
   observation_fields_by_preferences_description: |
     Полетата за наблюдения са подобни на етикети, само че по подразбиране всеки може да ги добавя към Вашите наблюдения. Можете да промените това ако предпочитате само Вие (и кураторите) да правите това.
+  observed_on_datetime: Наблюдаване на %{datetime}
   observation_removed_from_the_project: "Наблюдението е премахнато от проекта %{project}"
   observation_was_deleted: Наблюдението е изтрито.
   observation_without_media: Наблюдение без медийно съдържание
   observations: Наблюдения
   observations_: наблюдения
   observations_added_by_x_html: "Наблюдения добавени от %{x}"
+  observations_annotated_with_annotation: "Наблюдения с анотация %{annotation}"
   observations_by: Наблюдения от
   observations_by_user: "Наблюдения от %{user}"
   observations_fields_are: |
@@ -1258,14 +1447,13 @@ bg:
   observer: Наблюдател
   observers: Наблюдатели
   observer_short: Налюдател
-  of: от
   of_observations: наблюдения
   of_species: вид
   of_observers: наблюдатели
   of_identifiers: разпознавачи
   of_places: места
   of_this_taxon: От този таксон
-  offensive_inappropriate: обидно / неуместно
+  offensive_inappropriate: Обидно / неуместно
   official_blog: Официален блог
   offline_access_enabled: Извънмрежовият достъп е разрешен
   old_observation_form: Стар формуляр за наблюдения (неактуален)
@@ -1318,7 +1506,7 @@ bg:
   original: Оригинал
   original_page_url_for_this_photo: "Оригинален уеб адрес на снимката."
   organism_appears_captive_cultivated: Организмът изглежда отгледан от човек
-  other: Други
+  other: Друго
   other_animals: други животни
   other_species_commonly_misidentified_as_this_species: Други видове често обърквани с този вид
   other_species_commonly_misidentified_as_this_species_in_place_html: Други видове често обърквани с този вид във <a href="%{url}">%{place}</a>
@@ -1353,7 +1541,7 @@ bg:
   per_day: На ден
   per_month: На месец
   per_week: На седмица
-  person: човек
+  person: Човек
   personal_message: Лично съобщение
   personal_message_description: Никой не обича да получава писма от машини! Защо не кажеш на приятелите си защо ги каниш?
   per_page: "На страница"
@@ -1688,6 +1876,7 @@ bg:
   previous_observation: Предишно наблюдение
   previous_page: Пред. страница
   previous_photo: Предишна снимка
+  previous_tab: Предишен раздел
   print_verb: Печат
   privacy: Защита на лични данни
   private: поверително
@@ -1701,6 +1890,7 @@ bg:
     other: Администратори на проекта
   project_cover: Корица на проекта
   project_created_on: създаде този проект на %{date}
+  project_curators: Куратори на проекта
   project_group_label: Група
   project_group_description: Група, към която принадлежи проектът
   project_icon: Икона на проекта
@@ -1725,8 +1915,9 @@ bg:
   public_domain: Обществено достояние
   publish: Публикувай
   purple: лилаво
-  quality_grade: Качество
-  quality_grade_colon: "Качество:"
+  quality_grade: Оценка на качество
+  quality_grade_: Оценка на качество
+  quality_grade_colon: "Оценка на качество:"
   range: Диапазон
   rank: Ранг
   rank_position: Ранг
@@ -1745,6 +1936,8 @@ bg:
     suborder: Подразред
     infraorder: Инфраразред
     parvorder: Парворазред
+    zoosection: Зоосекция
+    zoosubsection: Зооподсекция
     superfamily: Надсемейство
     epifamily: Еписемейство
     family: Семейство
@@ -1757,6 +1950,7 @@ bg:
     subgenus: Подрод
     section: Секция
     subsection: Подсекция
+    complex: Комплекс
     #Singular
     species: Вид
     hybrid: Хибрид
@@ -1792,6 +1986,7 @@ bg:
   refresh: Опресни
   refreshing: опресняване
   reject?: Отхвърли?
+  relative_observations: Относителен дял на наблюденията
   reload_from_observations: Презареди от наблюденията
   reload_timed_out: 'Презареждането е неуспешно. Моля опитайте пак по-късно.'
   remarks_optional: 'Забележки <span class="small description">(незадължително)</span>'
@@ -1809,9 +2004,11 @@ bg:
   removing: "Премахване..."
   reptiles: влечуги
   research: изследователско
-  research_grade: изследователски клас
+  research_grade: Изследователско качество
   research_grade_short_html: "И<span class='full'>зследователско </span>К<span class='full'>ачество</span>"
-  research_grade_observations_have: 'Наблюденията от "изследователски клас" имат дата, снимка, координати и ID потвърдено от общността. Щракнете за да видите оценката на качеството на данните.'
+  research_grade_observations_have: 'Наблюденията от "Изследователско качество" имат дата, снимка, координати и ID потвърдено от общността. Щракнете за да видите оценката на качеството на данните.'
+  research_grade_qualification: Годност за Изследователско качество
+  reset_brightness: Възстанови яркостта
   reset_search_filters: Нулирай филтрите за търсене
   resolver_said_x_html: '<span class="meta">%{resolver} каза:</span> "%{x}"'
   restore: Възстанови
@@ -1845,6 +2042,8 @@ bg:
     one: Запазване на наблюдение...
     other: Запазване на %{num} от %{count} наблюдения...
   saving_verb: Запазване
+  schemes: Схеми
+  schemes_including: Схеми включващи
   search: Търси
   search_all_fields: търси по всички полета
   search_by_name_or_email: Търси по име или имейл
@@ -1882,17 +2081,20 @@ bg:
   sending: Изпращане...
   #Label for messages you've sent
   sent: изпратени
+  separate_values_with_a_pipe: Разделете отделните стойности с вертикална черта, например „да|не|може би“ или „зелен|червен|син“
   settings: настройки
   share: Споделяне
   show: Показване
   show_active_and_inactive_taxa: Покажи активни и неактивни таксони
   show_common_names: Показвай народните имена
   show_default_taxon_photos: показвай снимките по подразбиране за таксоните
+  show_keyboard_shortcuts: Покажи клавишните комбинации
   show_less: Покажи по-малко
   show_more: Покажи повече
   show_observation_photos: показвай снимки от наблюденията
   show_off_your_recent_observations: Покажете най-новите си наблюдения на своя блог или сайт!
   show_only: Покажи само
+  show_relative_proportions_of_all_observations: Покажи относителният дял на наблюденията към общия брой наблюдения
   show_scientific_name_first: Показвай първо научните имена
   show_taxa_from_both: (покажи таксони и от двата списъка)
   show_taxa_from_everywhere: "Покажи таксони отвсякъде"
@@ -1902,15 +2104,20 @@ bg:
   showing_taxa_from_place: "Показване на таксони от %{place}"
   sign_in: Влизане
   sign_in_with_provider: "Влезте чрез %{provider}"
+  sign_in_with_google: Влез чрез Google
   sign_out: Излизане
   sign_up: Регистриране
   similar_species: Подобни видове
+  similar_taxa: Подобни таксони
   #Journal post formatting option
   simple: Просто
   sizes: Размери
   skip_to_next_page: "Направо към следващата страница"
   small: малък
   site_stats: Статистика за сайта
+  some_other_reason: Други причини, които можете да обясните по-долу.
+  duplicate_observation_flag_warning: |
+    При дублирани наблюдения, моля обърнете се към наблюдателя за разрешаване на проблема, вместо да добавяте маркер. Кураторите на сайта не могат да изтриват наблюдения.
   some_rights_reserved: някои права запазени
   something: Нещо
   something_: нещо
@@ -1942,6 +2149,13 @@ bg:
     ubio: uBio
     catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
+    nzbrn_birds: NZBRN Птици
+    nzbrn_fungi: NZBRN Гъби
+    nzbrn_herpetofauna: NZBRN Херпетофауна
+    nzbrn_invertebrates: NZBRN Безгръбначни
+    nzbrn_mammals: NZBRN Бозайници
+    nzbrn_plants: NZBRN Растения
+    nzbrn_other: NZBRN Други
     catalogue_of_life_2012_annual_checklist: 'Catalogue of Life: 2012, Годишен видов списък'
     catalogue_of_life_2013_annual_checklist: 'Catalogue of Life: 2013, Годишен видов списък'
   source_url: Уебадрес на източника
@@ -1956,6 +2170,7 @@ bg:
   species_names: имена на видове
   species_taxon_name: Вид / таксон
   species_unknown: Непознат вид
+  specify_the_reason_youre_flagging: Опишете причината, заради която маркирате това
   start: Начало
   start_a_new_project: Започни нов проект
   start_a_project: Започни проект
@@ -1997,12 +2212,66 @@ bg:
   taxa: Таксони
   taxa_info: Информация за таксони
   taxon: Таксон
+  taxon_is_a_rank: "%{taxon} е %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: "%{taxon} е %{rank} от %{iconic_taxon} с 1 наблюдение"
+    other: "%{taxon} е %{rank} от %{iconic_taxon} със %{count} наблюдения"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} е %{rank} земноводни с едно наблюдение"
+    other: "%{taxon} е %{rank} земноводни със %{count} наблюдения"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} е %{rank} птици с 1 наблюдение"
+    other: "%{taxon} е %{rank} птици със %{count} наблюдения"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} е %{rank} бозайници с 1 наблюдение"
+    other: "%{taxon} е %{rank} бозайници със %{count} наблюдения"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} е %{rank} влечуги с 1 наблюдение"
+    other: "%{taxon} е %{rank} влечуги със %{count} наблюдения"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} е %{rank} растения с 1 наблюдение"
+    other: "%{taxon} е %{rank} растения със %{count} наблюдения"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} е %{rank} лъчеперки с 1 наблюдение"
+    other: "%{taxon} е %{rank} лъчеперки със %{count} наблюдения"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} е %{rank} животни с 1 наблюдение"
+    other: "%{taxon} е %{rank} животни със %{count} наблюдения"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} е %{rank} насекоми с 1 наблюдение"
+    other: "%{taxon} е %{rank} насекоми със %{count} наблюдения"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} е %{rank} паякообразни с 1 наблюдение"
+    other: "%{taxon} е %{rank} паякообразни със %{count} наблюдения"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} е %{rank} гъби с 1 наблюдение"
+    other: "%{taxon} е %{rank} гъби със %{count} наблюдения"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: "%{taxon} е %{rank} първаци с 1 наблюдение"
+    other: "%{taxon} е %{rank} първаци със %{count} наблюдения"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} е %{rank} мекотели с 1 наблюдение"
+    other: "%{taxon} е %{rank} мекотели със %{count} наблюдения"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: "%{taxon} е %{rank} хромисти (кафяви водорасли и сродни) с 1 наблюдение"
+    other: "%{taxon} е %{rank} хромисти (кафяви водорасли и сродни) със %{count} наблюдения"
   taxonomy: Таксономия
+  taxon_drop: отпадане на таксон
   taxon_map:
     gbif_occurrences: Записи от GBIF
+    it_may_take_google_a_while_to: Може да отнеме известно време на Google да зареди данните, в случай че GBIF разполага с такива.
+    overlays: Слоеве
   taxon_changes: Таксономични промени
+  taxon_merge: обединяване на таксони
+  taxon_observed_by_user: "%{taxon}, наблюдавано от %{user}"
   taxon_ranks: Таксономични рангове
   taxon_removed_from_list: Таксонът е премахнат от списъка.
+  taxon_scheme: Таксономична схема
+  taxon_schemes: "Таксономични схеми"
+  taxon_split: разделяне на таксон
+  taxon_swap: таксономична размяна
+  taxon_swap_only_has_one_input: допустима е само една входяща стойност при таксономична размяна
+  taxon_swap_has_inputs_and_outputs: таксономичната размяна трябва да има както входящи, така и изходни стойности
   taxon_was_successfully_created: Таксонът беше създаден успешно.
   taxon_was_successfully_updated: Таксонът беше обновен успешно.
   taxonomic_changes: Таксономични промени
@@ -2010,12 +2279,15 @@ bg:
   taxonomic_order: Таксономичен ред
   taxonomic_status: Таксономичен статут
   taxonomic_tags_for_flickr: Таксономични етикети за Flickr
+  taxonomy_details: Таксономични детайли
+  taxonomy_details_for: Таксономични детайли за
   taxonomy_settings: Таксономични настройки
   tell_everyone_a_little_about_you: Разкажете на останалите малко за себе си
   tell_the_world_a_little_about_yourself: Разкажете ни за себе си
   tell_us_why: Обяснете защо...
   terms: Условия
   terms_and_rules_html: "Условия и правила"
+  terms_new_users: "Ако добавите условия, новите потребители ще трябва да се съгласят с тях, преди да се присъединят към проекта."
   terms_service: Условия за ползване
   terrain: терен
   text: Текст
@@ -2027,6 +2299,8 @@ bg:
   thats_not_a_real_date: Това не е действителна дата!
   the_admin_is_the_person_who: |
     Администратор е човекът създал проекта. Той може да прави всичко което могат управителите и кураторите, както и да изтрие проекта.
+  the_below_items_are_needed_to_achieve: |
+    Долните елементи са необходими за достигане на <span className="bold">Изследователско качество:</span>
   the_following_observations_could: "Следните наблюдения не можаха да бъдат добавени до %{link}"
   the_past: миналото
   the_people_of_inat: "Хората на %{site_name}"
@@ -2036,6 +2310,7 @@ bg:
   there_is_no_wikipedia_page_matching: Няма съответстваща страница в Уикипедия
   there_were_some_problems_with_fields: "Има проблеми със следните полета:"
   these_folks_kindly_volunteer_to: Тези хора любезно и доброволно поддържат нашата таксономия и се занимават с някои други проблеми.
+  this_bioblitz_beings_in: Този биоблиц започва след
   this_is_a_life_list_of: Това е житейски списък на
   this_is_a_life_list_from_place_html: "Това е житейски списък от %{place}"
   this_is_a_life_list_of_taxon_in_place: "Това е житейски списък на%{taxon} от %{place}"
@@ -2044,15 +2319,21 @@ bg:
   this_observation_is_featured_on_x_sites:
     one: Това наблюдение се използва на 1 сайт
     other: Това наблюдение се използва на %{count} сайта
+  this_observation_is_research_grade: Това наблюдение е с Изследователско качество!
   this_observation_was_created_using: "Това наблюдение е създадено със:"
   this_place_has_no_check_list: "Това място няма видов списък."
+  this_taxon_concept_is_inactive: този таксон е неактивен
   this_taxon_has_no_default_photo: Този таксон няма примерна снимка!
+  this_taxon_is_inactive_this_means: |
+    Този таксон е <strong>неактивен</strong>. Това означава, че кураторите на %{site_name} са го заменили с по-нова таксономична концепция.
   this_will_re_apply_all_list_rules: |
     Това ще приложи наново всички правила на списъка към изброените таксони и ще обнови съответната статистика. Например ще премахне таксони, които не са дъщерни на таксона на списъка или не са от посочения ранг. Това няма да добави нови таксони. Може да отнеме няколко минути.
-  threatened: застрашен
+  threatened: Застрашен
   time_ago: "преди %{time}"
+  #As in the title of a book or a blog post
   title: заглавие
   title_and_description: "Заглавие и описание"
+  to_configure_your_widget: за да конфигурирате приставката си.
   to_recipient: до
   today: Днес
   tools: Инструменти
@@ -2067,18 +2348,23 @@ bg:
   'true': 'Вярно'
   trending: В тенденция
   trends: Тенденции
+  trust_this_person_with_your_private_coordinates: Довери скритите си координати на този човек
   type_one_name_per_line: Въведи по едно име на ред
   type_place_name: Въведи място
+  type_source_name: Въведи източник
   type_species_name: "Въведи вид"
   type_taxon_name: "Въведи таксон"
   uicn_red_list_status: "Статут според черв. списък на IUCN:"
+  umbrella_projects: Обединителни проекти
   unblock: Отблокиране
   unique_observers: различни наблюдатели
   unknown: Неизвестен
   unknown_rank: '(Неизвестен ранг)'
   unfollow: Спри следването
+  unlink_your_google_account: Откачи акаунта си на Google
   updating: Обновяване...
   unsubscribe: Отпиши ме
+  upcoming_bioblitzes: Предстоящи биоблицове
   update: Обнови
   update_existing_observations_with_new_license: Обнови съществуващите наблюдения с новите избрани лицензи
   update_existing_photos_with_new_license: Обнови съществуващите снимки с новите избрани лицензи
@@ -2086,12 +2372,15 @@ bg:
   update_observations: Обнови наблюденията
   update_photos: Обнови снимките
   update_search: Обнови търсенето
+  update_your_content: Обнови съдържанието си
   updated: Обновено
   updated_daily: Обновявано ежедневно
   upload: Качване
   upload_a_csv_file: Качи CSV файл
   uploaded_by: Качено от
   uploader:
+    errors:
+      unsupported_file_type: Този файлов тип не се поддържа. Приемаме JPG, PNG, GIF, WAV, AAC, MP3 и MP4 (само аудио)
     tooltips:
       add: Добави наблюдения
       combine: Обедини избраните наблюдения
@@ -2105,11 +2394,17 @@ bg:
     other: Качване на %{num} от %{count} снимки...
   US_states: Щати на САЩ
   usage_stats: Статистика на използването
+  use_this_form_to_create_a_new: |
+    Използвайте този формуляр за да създадете нов проект за таксономична промяна - описващ предлагано разделяне, обединяване или размяна на активни таксони - който да бъде изпълнен по-късно.
+  use_well_formed_csv: |
+    Използвайте добре форматиран CSV. Това означава, че буквалните запетаи в текста трябва да бъдат оградени с двойни кавички. Повечето приложения за електронни таблици би трябвало да експортират CSV в този формат.
   user: Потребител
   user_added_a_x: "%{user} добави %{x}"
   user_added_a_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
   user_added_a_x_to_noun_html: "%{user} добави %{x} към %{noun}"
+  user_added_an_identification_html: "%{user} добави разпознаване"
   user_added_an_observation_field_html: '%{user} добави стойност на %{field_name} към наблюдение от %{owner}'
+  user_added_an_observation_field_value_html: "%{user} добави стойност към поле за наблюдения"
   user_added_an_observation_html: "%{user} добави наблюдение"
   user_added_an_x: "%{user} добави %{x}"
   user_added_an_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
@@ -2139,6 +2434,8 @@ bg:
   users_id: "ID на %{user}"
   users_profile: "Профила на %{user}"
   value: Стойност
+  values: Стойности
+  verifiable_observations_by_observation_date: Потвърдими наблюдения по дата на наблюдение
   view: Виж
   view_all: Виж всички
   view_all_members: Виж всичките членове
@@ -2163,7 +2460,9 @@ bg:
   view_original_by: "Виж оригинала от %{by} на %{photo}"
   view_original_ccD_photo: "Виж оригиналната снимка от %{owner}"
   view_photos_ranges_observations_more: "Вижте снимки, разпространение, наблюдения от %{site_name} и още много! Събрали сме информация от много различни източници и сме я обединили в удобно резюме за всеки биологичен вид от всяко място."
+  view_sample: Виж пример
   view_taxon_changes: Виж таксономичните промени
+  view_taxononomy_details_for_taxon: "Виж таксономични детайли за %{taxon}"
   view_user_observations: "Виж наблюденията на %{user}"
   view_your_dashboard: Виж информационното табло
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Вижте Вашето информационното табло</a> за повече новости"
@@ -2199,6 +2498,9 @@ bg:
   why_the_coordinates_are_obscured: Защо координатите са замаскирани
   with_annotation: С анотация
   without_annotation: Без анотация
+  widget: Приставка
+  widget_code: Код за приставката
+  widget_for: Приставка за
   wikipedia_entry: Статия на Уикипедия
   withdraw: Оттегли
   withdrawing: Оттегляне...
@@ -2234,12 +2536,14 @@ bg:
   you_cant_leave_a_project_you_created: Не можете да напуснете проект, който самите Вие сте създали.
   you_curate_a_project_that_contains_this_observation_desc: |
     Можете да виждате замаскираните координати на наблюдение, когато то е част от проект който курирате и наблюдателят е решил да сподели координатите с кураторите на проекта.
+  you_havent_linked_your_inaturalist_google_account: "Все още не сте свързали Вашия акаунт на %{site_name} с акаунта си на Google"
   you_havent_joined_any_projects: Не участвате в никакви проекти
   you_joined_this_project: Вие се включихте в проекта!
   you_must_be_a_member_of_this_project_to_do_that: Трябва да членувате в проекта за да направите това
   you_must_fill_out_the_required_fields: Трябва да попълните задължителните полета
   you_must_select_at_least_one_taxon: Трябва да изберете поне един таксон
   you_retain_full_copyright: "Запазвате пълни права над своето съдържание, с изключение на правата предоставени на %{site_name} в нашите Условия за ползване."
+  you_retain_full_copyright_over_your_content: "Запазвате пълни права над своето съдържание, с изключение на правата предоставени на %{site_name} в нашите Условия за ползване."
   youve_joined_the_x_project: "Присъединихте се към проекта %{project_invitation} и наблюдението Ви беше добавено"
   your_account_has_been_activated: Вашият акаунт е активиран!
   your_activation_code_was_missing: "Липсва активационен код. Моля, използвайте препратката във Вашата електронна поща."
@@ -2257,6 +2561,8 @@ bg:
   your_observations_couldnt_be_added_to_that_project: "Вашите наблюдения не можеха да бъдат добавени към този проект: %{errors}"
   your_photos_have_been_tagged: Снимките Ви бяха тагнати!
   your_projects: Вашите проекти
+  your_google_account: Вашият акаунт на Google
+  your_google_account_info: Информация за Вашия акаунт на Google
   your_profile_was_successfully_updated: Вашият профил беше успешно обновен!
   your_recent_projects: Вашите скорошни проекти
   your_relationships: Вашите взаимоотношения
@@ -2264,8 +2570,10 @@ bg:
   yours: Вашите
   youre_not_following_anyone: |-
     Не следвате никого. Като следвате други естествоизпитатели ще можете да проследявате техните най-нови наблюдения. Разберете какво <a href="%{observations_path}">наблюдават</a> другите хора и създайте нови <a href="%{people_path}">запознанства</a>.
+  youve_linked_your_inaturalist_google_account: "Свързахте акаунта си на %{site_name} с акаунта си на Google. Това ще Ви позволи да свържете снимките си на Google с наблюдения си на %{site_name}."
   youve_successfully_linked_your_provider_account: "Успешно свързахте Вашия %{provider} акаунт"
-  verifiable: проверим
+  verifiable: Потвърдимо
+  verifiable_observations: Потвърдими наблюдения
   views:
     guides:
       index:
@@ -2301,6 +2609,12 @@ bg:
       index:
         show_messages_from_user: Покажи съобщенията от %{user}
         show_messages_to_user: Покажи съобщенията до %{user}
+    oauth:
+      authorizations:
+        new:
+          authorize_application_to_use_your_account?: Разрешавате ли на %{application} да използва Вашия акаунт?
+          this_application_will_be_able_to_colon: "Това приложение ще може да:"
+          more_about_application: Повече относно %{application}
     observations:
       community_id:
         agreement: Съгласие
@@ -2323,6 +2637,19 @@ bg:
       import:
         date_column_format: ГГГГ-ММ-ДД ЧЧ:ММ
         decimal_degrees_format: dd.dddd
+      show:
+        data_quality_assessment_desc_html: |
+          Оценката на качеството на данните представлява оценка на точността на данните. Наблюдения с Изследователско качество могат да се използват от учените за изследвания. Дайте своя вот по-долу:
+    observation_fields:
+      about_editing_observation_fields_desc_html: |
+        <p class='ui'>Можете да редактирате това поле, защото е създадено от Вас или защото сте куратор на сайта. Ако сте куратор, моля следвайте тези напътствия:
+        </p>
+        <ol>
+        <li>Не правете произволни промени на имената на полетата (например променяйки „хранене“ на „пиене на нектар“)</li>
+        <li>Имайте предвид, че полетата могат да се използват за всякакви таксони, така че се опитайте да използвате по-общи термини приложими за повече таксони</li>
+        <li>Не изтривайте полета, които се използват</li>
+        <li>Не превеждайте съществуващи полета на други езици. Английският е общият език на сайта. Ако наистина се нуждаете от поле изразяващо същото значение, но на друг език, моля създайте отделно поле за наблюдения.</li>
+        </ol>
     emailer:
       users_updates_suspended:
         message: |
@@ -2362,19 +2689,62 @@ bg:
         revoke_observations_desc: |
           Ако единствената причина да напускате е за да не позволите на кураторите на проекта да видят Вашите поверителни координати.
       edit:
+        bioblitz_desc_html: |
+          <p>
+          Биоблиц е мероприятие, в което участниците се стремят да наблюдават възможно най-голям брой видове за определен период от време. Това е забавен начин хората да се запознаят с биоразнообразието и същевременно да се съберат ценни данни.
+          </p>
+        cover_desc: "Незадължително изображение за заглавното каре, което се показва най-отгоре на страницата на проекта. Трябва да е широко 950 пиксела и високо по-малко от 400 пиксела."
+        icon_desc: "Ще бъде изрязано до квадрат"
         rules:
           has_media: имат медия (снимка или звук)
+          verifiable: е потвърдимо
         submission_models:
           any: всеки
+          curators: куратори на проекта
       new:
+        a_project_allows_you_to_gather: |
+          Събирателният проект Ви позволява да събирате и визуализирате наблюдения чрез основните инструменти за търсене на iNaturalist. Всичко, което отговаря на критериите зададени в проекта, ще бъде автоматично включено.
+        an_umbrella_project_can_be_used_to: |
+          Обединителният проект може да се използва за сравняване на статистиката на два или повече Събирателни или Традиционни проекта. Другите проекти трябва вече да съществуват, за да можете да ги добавите в Обединителен проект. Обединителните проекти не могат да включват други Обединителни проекти.
+        can_be_included_in_multiple: Може да бъде включен в множество Обединителни проекти
+        click_through_to_individual_projects: Препратки към отделните проекти
+        collection_projects: Събирателни проекти
+        collection_project_features: "Особености на Събирателния проект:"
+        custom_banner_icon_and_project_description: Собствено заглавно каре, иконка и описание
+        data_visualizations: Визуализации на данни
+        do_you_need_features_from_traditional: |
+          Нуждаете ли се от особеностите на Традиционните проекти като достъп до реалните координати, собствени полета за наблюдения или ръчно добавяне на наблюдения, които не могат да бъдат автоматично открити?
+        leaderboards_among_individuals: Водачества за <strong>потребители</strong>
+        leaderboards_among_projects_and_bioblitzes: |
+          Водачества за <strong>проекти</strong>
+        multiple_project_administrators: Множество администратори на проекта
+        no_need_to_rely_on_manual_addition: |
+          Без ръчно добавяне на наблюдения
         project_background_color: Цвят на фона на резюмето на проекта
         project_background_color_help: Уверете се, че избраният цвят е достатъчно тъмен, за да може да се чете белият текст върху него.
+        project_banner: Заглавно каре на проекта (PNG, JPG или GIF)
+        project_banner_help: Незадължително изображение за заглавното каре. Най-подходящ е размер 760x320 пиксела.
+        project_icon: Иконка на проекта (PNG, JPG или GIF)
+        project_icon_help: |
+          Незадължителна иконка. Трябва да е с големина поне 72x72 пиксела и ще бъде изрязана до квадрат.
         project_name: Име на проекта
         project_summary: Резюме на проекта
         project_summary_help: |
           Добавете кратко описание на проекта. Приблизително първите 200 символа ще са видими вдясно от заглавното каре на началната страница на проекта, затова опишете най-важното в началото.
+        start_and_end_times_for_bioblitzes: Начална и крайна дата и време (за биоблицове)
+        umbrella_project_features: "Особености на Обединителния проект:"
+        unique_url_for_outreach: Уникален URL за по-лесно споделяне
+        users_can_follow_your_project: Потребителите могат да следят проекта за новости чрез публикации в журнала
+        use_this_link_to_create_html: |
+          Тогава използвайте <a href="%{url}">тази препратка</a> за да създадете Традиционен проект.
+        visual_comparison_of_data_among: Визуално сравняване на данни от отделните включени проекти
+        we_have_redesigned_projects: |
+          Проектите са направени така, че да включват автоматично всички наблюдения, които отговарят на зададените от Вас места, таксони, потребители, качество и дати. Изберете измежду два основни типа: Събирателен проект или Обединителен проект, които имат следните общи черти:
         welcome_to_projects: Добре дошли в Проекти!
+        you_can_learn_more_html: |
+          Можете да научите повече за управлението на проекти <a href="https://www.inaturalist.org/pages/managing-projects">тук</a> или да прочетете за историята на проектите на <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">нашия блог</a>.
         errors:
+          cannot_have_more_than_x_project_rules: Проектът не може да има повече от %{x} правила
           summary_is_required: Необходимо е добавянето на резюме на проекта
       project_location_privacy_notice_html: |
         <p>Моля, имайте предвид, че кураторите на проекта ще могат да виждат всичките поверителни или замаскирани координати на Вашите наблюдения добавени в проекта, освен ако не отмените това им право. Също така, ще могат да добавят което и да е Ваше наблюдение към проекта, освен ако не промените това в <a href="/users/edit">настройките си</a>. Можете да давате или отменяте достъпа до наблюдения в проекта и поотделно.</p>
@@ -2400,20 +2770,38 @@ bg:
         android_desc_html: Създадено с приложението на <a href="%{url}">iNaturalist за Андроид</a>
         iphone_desc_html: Създадено с приложението на <a href="%{url}">iNaturalist за iPhone</a>
         other_desc_html: Създадено с други приложения <a href="%{url}">направени от разработчици</a>
+        TTCID_desc: Време за получаване на разпознаване от някой друг, съответстващо на консенсусното разпознаване от общността.
         website_desc_html: |
           Създадено чрез <a href="https://www.inaturalist.org">iNaturalist</a>
           или чрез сайтове от <a href="%{url}">Мрежата на iNaturalist</a>
+      year:
+        translators_prompt: |
+          Ако искате да помогнете с превода, %{link_tag}научете как%{link_tag_end}.
     taxa:
       show:
         about_establishment_desc: |
           "Начин на заселване" описва как даден вид се е установил на мястото в което се среща. "Интродуциран" означава, че е пренесен от човека, докато "местен" означава, че се е заселил без намесата на човека. Ендемичните видове се срещат само на определено и ограничено място.
+        charts_help_seasonality: |
+          Тази диаграма показва броя наблюдения на този таксон на месец. Имайте предвид, че това е броят на самите наблюдения, а той се влияе от това - кога организмите могат да бъдат наблюдавани, както и от това - кога наблюдателите искат да ги наблюдават. Така че, един вид птица може да изглежда по-активен през месец май, но това да се дължи на по-голямата активност на наблюдателите през този месец. Ако пък виждате повече наблюдения на водни кончета направени през юни, отколкото през януари - това вероятно се дължи на факта, че имаме повече наблюдатели от северното полукълбо, отколкото от южното, а не защото водните кончета са по-активни през юни в световен мащаб - в такива случаи е полезно да направите справка и с картата за географското разпределение на наблюденията. Трябва да сте особено внимателни със статистика основана на малък брой наблюдения, както и когато има големи несъответствия между наблюденията оценени като „Потвърдими“ и тези с “Изследователско качество“.
+        charts_help_history: |
+          Тази диаграма показва броя наблюдения на този таксон на месец за последните десет години. Тя също е повлияна от броя наблюдатели, но може да Ви посочи необикновени резки изменения на наблюденията. А ако кривата е равна или намаляваща, въпреки растящия брой наблюдатели - това може да означава намаляващи популации на таксона.
+        charts_help_relative_observations: |
+          Показването на относителния дял на наблюденията - като брой наблюдения на таксона отнесени към общия брой наблюдения, позволява да се премахне ефекта от растежа на наблюдателите на сайта. Например, когато сайтът се разраства и получаваме повече наблюдения всяка година, обикновено получаваме повече наблюдения и за всеки един таксон - но това не означава, че популациите на този таксон непременно нарастват, а просто означава, че има повече хора които го наблюдават. Например ако има общо 100 наблюдения, 20 от които на този таксон - относителният дял на този таксон е 0,2 (20 / 100). Ако следващата година хората направят общо 2000 наблюдения, 400 от които са на този таксон - относителният дял на таксона ще е отново 0,2 (400 / 2000). Това може да причини отклонения, когато има много малко наблюдатели в даден район или когато таксонът е наблюдаван рядко, но това важи и за абсолютните стойности.
         frequency:
+          verifiable: Потвърдимо
+          "Alive or Dead=Alive": Жив
+          "Alive or Dead=Dead": Мъртъв
+          "Plant Phenology=Budding": Напъпване
+          "Plant Phenology=Flower Budding": Напъпване на цветове
+          "Plant Phenology=Fruiting": Плодообразуване
           "Life Stage=egg": Яйце
           "Life Stage=larva": Ларва
           "Life Stage=teneral": Новоимагинирал
+          "Life Stage=subimago": Субимаго
           "Life Stage=nymph": Нимфа
           "Life Stage=pupa": Какавида
           "Life Stage=adult": Възрастен
+          unannotated: Без анотация
         rare_desc: Най-малко наблюдаваните застрашени таксони
         rare_in_place_desc_html: Най-малко наблюдаваните застрашени таксони във <a href="%{url}">%{place}</a>
         trending_desc: Най-наблюдаваните таксони през последния месец
@@ -2436,21 +2824,64 @@ bg:
         curators_can_see: |
           Просто напомняне: кураторите на проекта могат да виждат поверителните и замаскираните координати на наблюденията които добавяте към проекта.
       edit:
+        about_third_party_tracking: Относно следенето от трети страни
         common_names_desc: |
           Показвай народните имена. Деактивирайте, ако искате да виждате само научните имена. Забележете, че можете да контролирате кои народни имена виждате, като промените настройките на своя локал и място.
         licensing_desc_html: |
           Лицензирайки своето съдържание, Вие давате законово право на всеки да го използва без да се допитва до Вас, стига да се придържа към условията на лиценза. Освен това, %{site_name} включва Вашето съдържание лицензирано под Криейтив комънс в редовно обновявани архиви поддържани за партньорски организации интересуващи се от данните. Например, включваме записи лицензирани като Без авторски права (CC0), Признание (CC BY) и Признание-Некомерсиално (CC BY-NC) в архива който поддържаме за <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF) - международна, междуправителствена организация, която обединява и разпространява информация за биоразнообразието от целия свят.
+        license_description_attribution_html: |
+          Описанията на лицензите и изображенията са &copy; %{year} Creative Commons, използвани под лиценз <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons</a> (толкова мета!)
         muting_desc_html: |
           <p> Ако заглушите някого, вече няма да получавате известия за нещата които прави, включително когато коментира Ваши наблюдения, изпраща Ви съобщения, споменава Ви и т.н. Заглушаването ще Ви помогне да игнорирате някого, без да му попречите да прави каквото и да било. </p>
           <p> Можете да заглушите колкото хора искате, но имайте предвид, че така може да пропуснете потенциално важни известия, например за разпознавания които променят консенсусното разпознаване от общността на наблюденията Ви. </p>
         name_place_help_html: |
           Дай приоритет на народните имена използвани на това място.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Коментари
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Разпознавания
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Споменавания
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Съобщения
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Публикации в дневника на проект
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Когато проект добави Ваши наблюдения
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
+        notification_preferences_project_curator_changes: Променени куратори на проект
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Таксономични промени
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Наблюдения от хора които следвам
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Наблюдения на таксони или от места, за които съм абониран(а)
         project_addition_preferences:
           any: Всички
           joined: Проекти, в които участвате
           none: "Никои, само Вие можете да добавяте наблюденията си към проекти"
         prefers_community_taxa_desc: |
-          %{site_name} следи както Вашето мнение за това какво мислите, че сте наблюдавали, така и мнението на общността. Разпознатият таксон, който споделяме с информационните си партньори, винаги е този на общността. Но ако не искате никога мнението на общността да натежава над Вашето собствено, изключете от тук тази функция. Хората все още ще могат да разпознават наблюденията Ви, но тяхното мнение няма да е с по-голям приоритет от Вашето. Това означава също и, че Вашите наблюдения няма да получават „изследователски клас“, когато мнението Ви е различно от това на общността.
+          %{site_name} следи както Вашето мнение за това какво мислите, че сте наблюдавали, така и мнението на общността. Разпознатият таксон, който споделяме с информационните си партньори, винаги е този по консенсус на общността. Но ако не искате никога мнението на общността да натежава над Вашето собствено, изключете от тук тази функция. Хората все още ще могат да разпознават наблюденията Ви, но тяхното мнение няма да е с по-голям приоритет от Вашето. Това означава също и, че Вашите наблюдения няма да получават „Изследователско качество“, когато мнението Ви е различно от това на общността.
+        prefers_no_tracking_label: Не събирай данни за стабилността и потреблението използвайки услугите на трети страни
+        prefers_no_tracking_label_desc_we_use: |
+          Използваме разнообразни услуги от трети страни за да следим стабилността и за да диагностицираме бъгове и проблеми в софтуера ни. Тези трети страни са
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          Информацията, която може да споделим с тези трети страни, включва
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          IP адреси, които могат да се използват за установяване на местоположение до ниво град и за проследяване сред различни уебсайтове и услуги. Имайте предвид, че сме активирали <a href="https://support.google.com/analytics/answer/2763052">анонимизацията на IP</a> в Google Analytics. Firebase Crashlytics <a href="<a href="https://firebase.google.com/support/privacy">може да съхранява IP адресите</a> временно.
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Информация за браузъра като марка, модел и версия
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Информация за софтуерен срив, например кой ред от кода е предизвикал срива
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Информация за устройството, например марка и модел на мобилен телефон
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Тези услуги от трети страни ни предоставят огромни улеснения</strong> при поддържането на стабилността и ползваемостта на iNaturalist от нашия сравнително малък персонал. За мобилни устройства, практически няма друг начин по който да разберем възникващите проблеми, тъй като софтуерът се изпълнява на устройства, над които нямаме никакъв контрол. Понякога дори не знаем, че е възникнал проблем, докато не го видим в данните, които тези услуги ни предоставят. <strong>Споделяйки тази информация, ни помагате да обслужваме както Вас, така и цялата общност на iNaturalist.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Имайте предвид, че тази настройка се отнася единствено за данните за анализ и сривове, които изрично изпращаме на тези компании. Всичките сървъри на iNaturalist са предоставени от Microsoft, всичките изображения са съхранявани от Amazon и почти всички карти са предоставени от Google (или Apple за приложението на iPhone). Това означава, че всеки път щом погледнете наблюдение на iNaturalist, Вие използвате услуги на тези компании и им предоставяте поне своя IP адрес. iNaturalist едва ли би бил възможен без услугите на тези компании и - въпреки, че можем да ограничим количеството и вида на информацията, която достига до тях докато използвате iNaturalist - не можем напълно да спрем потока от информация.
         project_settings_desc: |
           Помнете, това не дава достъп на проектите до Вашите поверителни координати, нито им позволява да Ви изпращат новини. Трябва да се включите в проект, за да стане това възможно, или да дадете такива права собственоръчно.
         search_place_help_html: |
@@ -2459,6 +2890,11 @@ bg:
           Показвай научните имена преди народните имена.
         taxon_change_desc: |
           Когато таксон бъде променен или преименуван на %{site_name}, Вашите наблюдения, списъци, разпознавания и т.н. ще бъдат автоматично обновени до новия таксон, ако тези промени са еднозначни. Ако изключите тази функция или ако промяната е двузначна (например разделяне на таксон), ще получите известие за промяната с препратка към инструмент, с който собственоръчно да обновите съдържанието си ако пожелаете.
+        this_only_applies_to_traditional_projects: |
+          Това се отнася единствено за традиционните проекти. Не можете да изключвате наблюдения от Събирателни или Обединителни проекти, които по същество са преконфигурирани търсения. Можете да прочетете повече <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">тук</a>.
+      show:
+        favorites_list_prompt_html: |
+          Искате да покажете някои от любимите си таксони? %{link_start_tag}Създайте списък%{link_end_tag} озаглавен „Любими“ и най-новите попълнения в него ще се появят в този раздел.
     welcome:
       index:
         connect_with_nature: Опознайте природата
@@ -2758,6 +3194,7 @@ bg:
         project_type: Тип на проект
         description: Описание
         terms: Условия
+        zoom_level: Степен на увеличение
         start_time: Час на започване
       place:
         code: Код
@@ -2799,9 +3236,141 @@ bg:
                 да е наблюдавано след %{time}
               must_be_observed_before: |
                 да е наблюдавано преди %{time}
+  doorkeeper:
+    scopes:
+      write: |
+        Създава, обновява и изтрива Ваши наблюдения, разпознавания и друго съдържание от Ваше име, както и да получава скритите Ви координати и всяка друга информация, до която Вие самите имате достъп.
+      login: |
+        Получава информация необходима при влизането и използването на услуги от трети страни, като имейла, потребителското име и потребителската иконка на акаунта Ви тук.
+      account_delete: |
+        Изтрие акаунта Ви от Ваше име.
+    flash:
+      applications:
+        create:
+          #Application as in a software application
+          notice: 'Приложението е създадено.'
+        destroy:
+          #Application as in a software application
+          notice: 'Приложението е изтрито.'
+        update:
+          #Application as in a software application
+          notice: 'Приложението е обновено.'
+      authorized_applications:
+        destroy:
+          #Application as in a software application
+          notice: 'Приложението е отменено.'
+  i18n:
+    inflections:
+      "@gender":
+        m: мъжки
+        f: женски
+        "n": среден
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@m"
+        #Default gender for nouns that aren't listed here
+        default: "@m"
   wild: Див
   will_paginate:
     previous_label: "&#8592; Пред."
     next_label: "След. &#8594;"
   zoom_in: Приближи
   zoom_out: Отдалечи
+  zoom_photo: Увеличи снимката

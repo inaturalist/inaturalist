@@ -26,8 +26,8 @@ module UsersHelper
   #   link_to_user @user, :content_text => 'Your user page'
   #   # => <a href="/users/3" title="barmy" class="nickname">Your user page</a>
   #
-  def link_to_user(user, options = {}, &block)
-    return "deleted user" unless user
+  def link_to_user(user, options = { missing: t(:deleted_user) }, &block)
+    return options[:missing] unless user
     url = options.delete(:url) || person_url(user.login)
     options.reverse_merge! :content_method => :login, :title_method => :login, :class => :nickname
     if block_given?

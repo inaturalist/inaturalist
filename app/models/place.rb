@@ -23,6 +23,7 @@ class Place < ActiveRecord::Base
   has_many :projects, :dependent => :nullify, :inverse_of => :place
   has_many :trips, :dependent => :nullify, :inverse_of => :place
   has_many :sites, :dependent => :nullify, :inverse_of => :place
+  has_many :extra_place_sites, dependent: :nullify, inverse_of: :extra_place, class_name: "Site", foreign_key: :extra_place_id
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :place
   has_many :taxon_names, :through => :place_taxon_names
   has_many :users, :inverse_of => :place, :dependent => :nullify

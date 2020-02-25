@@ -18,8 +18,7 @@
     <%= link_to @taxon do %>
       <%= render :partial => "shared/taxon" %>
     <% end %>
-    <%=raw t(:on_).downcase %>
-        <%= link_to @list_title, @list %>
+    (<%= link_to @list_title, @list %>)
   <% end -%>
   <%= strip_tags(@title).html_safe %>
 <%- end -%>
@@ -125,23 +124,17 @@
   <%= separator %>
   
   <p class="ui description">
-    <%= t(:added).titleize %>
-    <% if @listed_taxon.user %>
-      <%= t(:by).downcase %>
-      <%= link_to user_image(@listed_taxon.user), @listed_taxon.user %>
-      <%= link_to you_or_login(@listed_taxon.user), @listed_taxon.user %>
-    <% end %>
-    <%=t :on_day %> <%= l(@listed_taxon.created_at.to_date, :format => :long) %>
+    <%=t :added_by_user_on_date_html,
+      user: link_to_user( @listed_taxon.user, missing: t(:site_admins) ),
+      date: @listed_taxon.created_at.to_s(:long)
+    %>
   </p>
   
   <p class="ui description">
-    <%=t :updated %>
-    <% if @listed_taxon.updater %>
-      <%= t(:by).downcase %>
-      <%= link_to user_image(@listed_taxon.updater), @listed_taxon.updater %>
-      <%= link_to you_or_login(@listed_taxon.updater), @listed_taxon.updater %>
-    <% end %>
-    <%=t :on_day %> <%= l(@listed_taxon.updated_at.to_date, :format => :long) %>
+    <%=t :updated_by_user_on_date_html,
+      user: link_to_user( @listed_taxon.updater, missing: t(:site_admins) ),
+      date: @listed_taxon.updated_at.to_s(:long)
+    %>
   </p>
   
   <%- if(@related_listed_taxa.present?) %>

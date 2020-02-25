@@ -246,7 +246,7 @@ fi:
   add_new_place: Lisää uusi paikka
   add_new_rule: Lisää uusi sääntö
   add_new_source: "Lisää uusi lähde..."
-  add_new_taxon_name: Lisätä uuden taksonin nimi
+  add_new_taxon_name: Lisää uusi taksonin nimi
   add_notes_about_this_taxon: Lisää muistiinpanoja tästä taksonista tässä paikassa, esim. missä ja milloin se tapahtuu.
   add_obs_from_a_link: "Lisää havainto luettelosta: %{link}"
   add_obs_from_a_list: Lisää havainto luettelosta
@@ -932,7 +932,6 @@ fi:
   couldnt_find_a_user_matching_x_param: "Emme löytäneet käyttäjää %{id}"
   couldnt_find_that_taxon: Taksonin löytäminen ei onnistunut.
   countries: Maat
-  cover: Kansikuva
   create: Luo
   create_a_guide: Luo opas
   create_a_new_field: Luo uusi kenttä
@@ -1197,6 +1196,7 @@ fi:
   endangered: Erittäin uhanalainen
   endemic: Endeeminen
   endemic_to_x: "Endeeminen paikassa %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "EOL-kokoelman URL-osoite"
   error_updating_photo: "Virhe %{photo_errors} päivitettäessä kuvaa"
@@ -1257,6 +1257,7 @@ fi:
   feature_this_project_: "Nosta tämä projekti esille"
   featured: Esittelyssä
   feedback: Palaute
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Syötteet'
   failed: Epäonnistui
   field_note: |
@@ -1368,6 +1369,7 @@ fi:
   flickr_tagger: Flickr tunnisteidenlisääjä
   flickr_tags: Flickr-merkinnät
   fluid_layout: Virtaava asettelu
+  #Adjective, as in a fluid layout of images
   fluid: neste
   follow: Seuraa
   follow_receive_updates_about_new_observations: Seuraa (saat päivityksiä uusista havainnoista)
@@ -1420,7 +1422,7 @@ fi:
   georeferenced: Paikannettu?
   get_started: Aloita
   getting_started_guide: Aloitusopas
-  give_it_some_detail: Anna sille joitakin yksityiskohtia!
+  give_it_some_detail: Lisää joitakin yksityiskohtia!
   give_monthly_caps: LAHJOITA KUUKAUSITTAIN
   give_now_caps: LAHJOITA NYT
   global_names: Maailmanlaajuiset nimet
@@ -1897,13 +1899,17 @@ fi:
   members: Jäsenet
   membership_model: Jäsenyysmalli
   mentioned_you_in_noun_html: "%{user} mainitsi sinut kohteessa %{noun}"
-  mentioned_you_in_noun_by_html: "%{user} mainitsi sinut kohteessa %{noun} käyttäjältä %{by}"
-  mentioned_you_in_noun_by_user_html: "%{user} mainitsi sinut kohteessa %{noun} käyttäjältä %{by}"
+  mentioned_you_in_noun_by_html: "%{user} mainitsi sinut (%{noun} käyttäjältä %{by})"
+  mentioned_you_in_noun_by_user_html: "%{user} mainitsi sinut (%{noun} käyttäjältä %{by})"
   mentioned_you_in_noun_by_you_html: "%{user} mainitsi sinut kohteessasi %{noun}"
   mentioned_you_in_a_x_on_noun_html: "%{user} mainitsi sinut kohteessa %{x} %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} mainitsi sinut kohteessa %{x} %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} mainitsi sinut käyttäjän %{by} kohteessa %{x} %{noun}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} mainitsi sinut (%{x} käyttäjän %{by} kohteessa %{noun})"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} mainitsi sinut (%{x} kohteessasi %{noun})"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} mainitsi sinut käyttäjän %{by} kohteessa %{x} %{noun}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} mainitsi sinut (%{x} käyttäjän %{by} kohteessa %{noun})"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} mainitsi sinut (%{x} kohteessasi %{noun})"
   merge: Yhdistä
   merge_it_with_another_place: Yhdistä se toisen paikan kanssa
   merge_two_places_together: Yhdistä kaksi paikkaa yhteen. Kaikki lajit lajiluetteloissa yhdistetään, samoin kuin kaikki maantieteelliset tiedot.
@@ -2293,7 +2299,6 @@ fi:
     irregular: epäsäännöllinen
     doubtful: kyseenalainen
     absent: poissa
-  of: /
   of_observations: havainnot
   of_species: laji
   of_observers: havainnoijaa
@@ -2305,7 +2310,6 @@ fi:
   offline_access_enabled: Offline-yhteys käytössä
   old_observation_form: Vanha havaintomuoto (vanhentunut)
   ok: "OK"
-  on_: "päivänä"
   on_date: "%{date}"
   on_day: "päivänä"
   on_your_life_list: elämäluettelossasi
@@ -2425,7 +2429,7 @@ fi:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
     #added an observation of a Human
-    observation: lisäsi %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
+    observation: lisäsi %{observation_link} taksonista @vow_or_con{vow:an|a} %{taxon_link}
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -2489,7 +2493,7 @@ fi:
   place_geo:
     geo_planet_place_types:
       Aggregate: Koonti
-      aggregate: ryhmälaji
+      aggregate: koonti
       Airport: Lentokenttä
       airport: lentokenttä
       Building: Rakennus
@@ -2497,7 +2501,7 @@ fi:
       Canton: Kantoni
       canton: kantoni
       Colloquial: Puhekielinen
-      colloquial: puhekielinen
+      colloquial: epämuodollinen
       Commune: Kunta
       commune: kunta
       Continent: Maanosa
@@ -2510,8 +2514,8 @@ fi:
       district: piiri
       Division: Kaari
       division: kaari
-      Drainage: Salaojitus
-      drainage: salaojitus
+      Drainage: Kanava
+      drainage: kanava
       Estate: Maatila
       estate: maatila
       Governorate: Kuvernementti
@@ -2522,8 +2526,8 @@ fi:
       historical_state: historiallinen osavaltio
       Historical_Town: Historiallinen kaupunki
       historical_town: historiallinen kaupunki
-      Intersection: Leikkauspiste
-      intersection: leikkauspiste
+      Intersection: Risteys
+      intersection: risteys
       Island: Saari
       island: saari
       Land_Feature: Maamerkki
@@ -2566,8 +2570,8 @@ fi:
       street: katu
       Street_Segment: Katusegmentti
       street_segment: katusegmentti
-      Subdivision: Alakaari
-      subdivision: alakaari
+      Subdivision: Naapurusto
+      subdivision: naapurusto
       Suburb: Lähiö
       suburb: lähiö
       Supername: Ylänimi
@@ -3082,6 +3086,7 @@ fi:
   reorder_by_taxonomy: Järjestä uudelleen taksonomian perusteella
   repair_broken_urls: Korjaa rikkinäiset URL-osoitteet
   repair_doesnt_work_for_that_kind_of_photo: Korjaaminen ei onnistu tämäntyyppiselle valokuvalle
+  replace_boundary_with_kml: Korvaa nykyiset rajat KML-tiedostolla
   replace_parentesis: (korvaa)
   reply: Vastaa
   reptiles: matelijat
@@ -3339,6 +3344,7 @@ fi:
   species_taxon_name: Laji / Taksonin nimi
   species_unknown: Tuntematon laji
   specify_the_reason_youre_flagging: Kuvaile miksi liputat tämän asian
+  #Abbreviation for "source"
   src: Lähde
   standard: Standardi
   start: Alkaa
@@ -3351,7 +3357,6 @@ fi:
   start_typing_place_name: Aloita näppäilemällä paikan nimi...
   start_typing_taxon_name: Aloita näppäilemällä taksonin nimi...
   start_typing_someones_name: "Aloita näppäilemällä jonkun nimi..."
-  states: Osavaltiot
   stats: Tilastot
   status: Tila
   status_globally: "%{status} maailmanlaajuisesti"
@@ -3562,6 +3567,7 @@ fi:
   threatened: Uhanalainen
   time_: aika
   time_ago: "%{time} sitten"
+  #As in the title of a book or a blog post
   title: otsikko
   title_and_description: "Otsikko & kuvaus"
   to_add_comments: lisätäksesi kommentteja
@@ -3674,12 +3680,16 @@ fi:
   user_added_a_fave_html: "%{user} lisäsi suosikiksi"
   user_added_a_flag_html: "%{user} lisäsi lipun"
   user_added_a_x: "%{user} lisäsi %{x}n"
-  user_added_a_x_to_noun_by_html: "%{user} lisäsi %{x} kohteeseen %{noun}, jonka on luonut %{by}"
-  user_added_a_x_to_noun_html: "%{user} lisäsi %{x}n kohteeseen %{noun}"
+  user_added_a_x_to_noun_by_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  user_added_a_x_to_noun_by_user_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  user_added_a_x_to_noun_by_you_html: "%{x} sinulle käyttäjältä %{user} (%{noun})"
+  user_added_a_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
   user_added_an_observation_html: "%{user} lisäsi havainnon"
   user_added_an_x: "%{user} lisäsi %{x}"
-  user_added_an_x_to_noun_by_html: "%{user} lisäsi %{x}n käyttäjän %{by} kohteeseen %{noun}"
-  user_added_an_x_to_noun_html: "%{user} lisäsi %{x} kohteeseen %{noun}"
+  user_added_an_x_to_noun_by_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  user_added_an_x_to_noun_by_user_html: "%{x} käyttäjälle %{by} käyttäjältä %{user} (%{noun})"
+  user_added_an_x_to_noun_by_you_html: "%{x} sinulle käyttäjältä %{user} (%{noun})"
+  user_added_an_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
   user_added_x_observations_html: "%{user} lisäsi %{x} havaintoa"
   user_already_authenticated: Käyttäjä on jo todennettu
   user_autocomplete_placeholder: elliesimerkki, matti123, yms.
@@ -3798,6 +3808,7 @@ fi:
   w_photos_only: kuvia
   w_sounds: ääniä
   wait_file_generation: Ole hyvä ja odota kun tiedostoa muodostetaan. Tämä voi kestää muutaman minuutin, jos luettelo on suuri.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
   we_also_support: |
@@ -4410,8 +4421,14 @@ fi:
         invite_your_friends_description: |
           Voit tehdä Facebookin ja Flickrin käyttäjille superhelpoksi tehdä valokuvistaan %{site_name}in havaintoja. Jätä vain Facebookissa kommentti jossa on tämä kutsu-osoite (alla). Voit myös valita taksonin ja projektin uudelle havainnolle valmiiksi.
     places:
+      kml_field_desc: |
+        Paikan rajat KML-tiedostona. Voit tehdä tiedoston Google Mapsilla, Google Eartilla tai useimmilla paikkatietosovelluksilla. Paikassa täytyy olla ainakin yksi polygoni ja sen pitää olla pienempi kuin 1 Mt (5Mt kuraattoreille) sekä pienempi kuin Teksas.
+      edit:
+        complex_boundary_note_html: |
+          Tämän paikan rajat ovat liian monimutkaisia, jotta niitä voisi muokata verkossa. Voit <a href="%{url}">ladata KML-tiedoston</a>, muokata sitä paikkatietosovelluksessa ja tallentaa muokkamasi tiedoston uudelleen iNaturalistiin.
       new:
         check_list_note: "Huom: erittäin suurille paikoille ei voi tehdä lajilistoja."
+        coordinates_desc: Sinun täytyy määritellä koordinaatit, jos et piirrä paikan rajoja tai tallenna KML-tiedostoa.
         map_instruction: Käytä polygonityökalua paikan rajojen piirtämiseen.
     posts:
       formatting_none_help: "Ei HTML-asetusta, käytä vain syöttämiäsi merkintöjä."
@@ -4748,8 +4765,6 @@ fi:
           syynä se, että lintuharrastajat ovat kiinnostuneita lajista toukokuussa, mutta eivät kiinnitä siihen huomiota myöhemmin. Samoin, jos sudenkorentoja näyttää olevan enemmän kesäkuussa kuin tammikuussa, voi tämä johtua siitä, että pohjoisella pallonpuoliskolla on enemmän havainnoijia kuin eteläisellä, eikä siitä, että sudenkorennot olisivat aktiivisempia kesäkuussa. Kaavioihin kannattaa suhtautua varauksella, jos taksonista on vähän havaintoja ja/tai on suuria ristiriitoja "todennettavissa olevien" ja "tutkimustason" havaintojen lukumäärissä.
         charts_help_history: |
           Tämä kaavio näyttää taksonin havaintojen lukumäärän kuukausittain viimeisten kymmenen vuoden ajalta. Havaintojen lukumääriin vaikuttaa havainnoijien lukumäärä, mutta kaaviosta näkee epätavalliset piikit havainnoissa, ja jos kaavio näyttää tasaiselta tai laskevalta havainnoijien lukumäärän kasvusta huolimatta, voi tämä kertoa muutoksesta taksonin runsaudessa.
-        charts_help_other: |
-          Näytämme kausivaihtelutaulukot myös havaintojen annotoinneista. Annotaatiot ovat uusi menetelmä, jolla lisätään havaintoihin metadataa säännellyn sanaston avulla. Tähän mennessä olemme käyttäneet "Elinvaihe" ja "Kasvien fenologia" (milloin kasvi kukkii tai tekee hedelmiä) -sanastoa. Meillä ei vielä ole tapaa, jolla annotoinnin voisi liittää havaintoon suoraan, vaan tällä hetkellä siirrämme havaintokenttien tietoja annotaatioiksi. Jos et malta odottaa, että saamme annotointijärjestelmämme valmiiksi, voit lisätä "Elinvaihe"-annotaatioita havaintoihin lisäämällä havaintokenttään jonkin seuraavista arvoista: aikuinen, "Teneral", kotelo, nymfi, toukka, muna tai nuori. Erityisesti "Life Stage"- tai "Insect Life Stage" -kentät ovat hyviä. Kasvien fenologian osalta etsimme kenttiä, joiden nimessä on sana "phenology" tai arvoina "kukka" tai "hedelmä", joten "Flowering Phenology"-kenttää on hyvä käyttää.
         charts_help_relative_observations: |
           Frekvenssin näyttäminen suhteessa kokonaishavaintomäärään auttaa tasoittamaan iNaturalistin käyttäjämäärän kasvua. Esimerkiksi jos käyttäjien ja havaintojen määrä kasvaa joka vuosi, saamme enemmän havaintoja jostakin lajista. Tämä ei kerro että ko. lajia olisi enemmän, vaan että suurempi määrä ihmisiä havainnoi sitä. Suhteellisen frekvenssin näyttäminen tarkoittaa että jos havaintoja on 100 ja niistä 20 on tästä lajista, suhdeluku on 0,2 (20 / 100). Jos käyttäjät tekevät 2000 havaintoa seuraavana vuonna ja niistä 400 on tästä lajista, suhdeluku on edelleen 0,2 (400 / 2000). Tämä laskutapa aiheuttaa joitakin poikkeuksia kun alueella on hyvin vähän havainnoijia tai kun lajia havaitaan hyvin harvoin. Kuitenkin myös havaintojen kokonaismäärässä on on sama ongelma.
         frequency:
@@ -4870,14 +4885,16 @@ fi:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Tunnistukset
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_mentions: Viittaukset sinuun
+        notification_preferences_mentions: Maininnat
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Viestit
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: Projektien päiväkirjamerkinnät
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Kun havaintojasi liitetään projektiin
-        #Checkbox label for user preference about what to receive in the daily email update
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Muutokset projektin kuraattoreissa
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Taksonomiamuutokset
@@ -5100,7 +5117,7 @@ fi:
         other: '%{count} minuuttia'
       x_months:
         one: "1 kuukausi"
-        other: '%{count} kuukauta'
+        other: '%{count} kuukautta'
       x_seconds:
         one: "1 sekunti"
         other: '%{count} sekuntia'
