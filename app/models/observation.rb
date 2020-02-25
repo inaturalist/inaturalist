@@ -1552,7 +1552,11 @@ class Observation < ActiveRecord::Base
     )
       self.latitude, self.longitude = [latitude_was, longitude_was]
       set_geom_from_latlon
-    elsif private_latitude_changed? || private_longitude_changed? || geoprivacy_changed_from_private_to_obscured
+    elsif !private_latitude.blank? && !private_longitude.blank?  && (
+        private_latitude_changed? ||
+        private_longitude_changed? ||
+        geoprivacy_changed_from_private_to_obscured
+      )
       self.latitude, self.longitude = Observation.random_neighbor_lat_lon( private_latitude, private_longitude )
       set_geom_from_latlon
       self.obscuration_changed = true
