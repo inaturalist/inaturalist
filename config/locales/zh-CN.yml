@@ -11,6 +11,8 @@ zh-CN:
     other: '<span class="count">%{count}</span> 个标识'
   x_identifications_:
     other: '%{count} 次鉴定'
+  x_languages:
+    other: "%{count} 种语言"
   x_journal_posts_html:
     other: '<span class="count">%{count}</span>个日记帖子'
   x_matching_taxa:
@@ -29,8 +31,18 @@ zh-CN:
     other: "<a href='%{url}'>%{count} 次观察</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> 次观察已复核"
+  x_observers_html:
+    other: '<span class="count">%{count}</span> 观察者'
   x_others:
     other: "%{count}个其他的"
+  x_people:
+    other: "%{count} 人"
+  x_photos:
+    other: "%{count} 张照片"
+  x_new_species:
+    other: "%{count} 个新物种"
+  x_new_users:
+    other: '%{count} 个新用户'
   x_species:
     other: '%{count} 种物种'
   x_species_html:
@@ -39,12 +51,16 @@ zh-CN:
     other: "<a href='%{url}'>%{count} 种物种</a>"
   x_suggestions_filtered_by_colon:
     other: "%{count}个建议过滤者："
+  x_taxa:
+    other: "%{count} 种分类"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span> 个分类群已观察"
   x_research_grade_observations_html:
     other: "<span class='count'>%{count}</span> 个研究级观察</span>"
   x_research_grade_observations_to_species_html:
     other: "<span class='count'>%{count}</span> 个研究级观察ID已降级至物种或更低</span>"
+  x_sounds:
+    other: "%{count} 条音频"
   x_taxa_curated_html:
     other: "<span class='count'>%{count}</span>个分类单元已有馆长"
   x_taxa_matching_current_filters:
@@ -112,6 +128,7 @@ zh-CN:
   add_an_observation: 添加一个观察
   add_an_observation?: 添加一个观察？
   add_an_observation_of: "添加 %{taxon} 的观察"
+  add_an_observation_to_project_html: 为项目 %{project} 新增一项观察记录
   add_annotations_for_x: 添加用于“%{x}”的注释
   add_annotations_for_controlled_attribute:
     sex: 添加用于“性”的注释
@@ -311,6 +328,7 @@ zh-CN:
   allowed_html: 允许的HTML
   allowed_occurrence_status_values: 被允许的发生状态值
   allowed_values: 允许的值
+  almost_there_: 即将完成...
   alphabetical: 按字母排序
   alphabetical_order: 按字母顺序
   amphibians: 两栖动物
@@ -597,6 +615,7 @@ zh-CN:
   commercial_solicitation: 商业征集，链接至任何地方等
   commit: 提交
   committed: 已提交
+  committed_by_user_on_date_html: 由 %{user} 在 %{date} 提交
   committed_on: 提交于%{date}
   committing: 提交中……
   community: 社区
@@ -649,6 +668,7 @@ zh-CN:
   conservation_status_geoprivacy_desc: |
     默认的地理敏感信息应用到该地址的所有观察到的分类上
   contain_all_descendants?: 这个清单是否包含这个分类单元在此地的所有后代？
+  content_hidden: 内容已被隐藏
   continue: 继续
   contributor_cannot_be_found: 找不到贡献者
   contributors_to_project: "贡献至 %{project}"
@@ -1138,18 +1158,23 @@ zh-CN:
   has_sound: 有声音
   has_sounds: 有声音
   hasnt_contributed_any_observations: 没有对这一项目贡献观察记录
+  header_your_observations: 您的观察记录
+  header_your_identifications: 你的鉴定
   heads_up: 小心
   heads_up_this_photo_has_been_flagged: "请注意：这张照片已被标记过。"
   heads_up_this_photo_is_already_associated_with: "请注意：这张照片已经同<a target='_blank' href='%{url}'>另一条观察记录</a>进行过关联"
   heads_up_you_have_multiple: "请注意：您有多个关于鉴定状态等级的分类学机读标签。这些标签是按下列状态等级进行颜色编码的。"
   help: 帮助
   help_confirm_observations!: 帮助确认观察！
+  help_support_inaturalist: "帮助支持 iNaturalist"
   helped_the_observer_make: 帮助观察者制作他们最终的ID（就是他们在最终ID之前制作并且匹配它的）
   here_are_3_examples: 这里是3个格式良好数据的例子
   here_are_our_top_species_suggestions: 这里有我们最常用的物种建议
   hex_color_eg: 十六进制颜色代码，例如：65644F
   hi: 嗨，
   hi_user: "您好，%{user}"
+  #Verb, usually a button to hide an interface element
+  hide: 隐藏
   hide_uncountable_species: 隐藏无法计数的物种
   high: 高
   highest_rank: 最高等级
@@ -1161,6 +1186,7 @@ zh-CN:
   icon: 图标
   icon_size: 图标大小
   iconic_taxon: 标志性的分类单元
+  id: 鉴定
   id_categories:
     tooltips:
       leading: |
@@ -1173,6 +1199,7 @@ zh-CN:
   ids_by_taxon: ID（按分类单元排序）
   identify: 鉴定
   identify_observations: "对观察记录进行鉴定"
+  identify_observations_by_these_users: 鉴定这些用户的观察结果
   identify_title: "鉴定"
   identification: 鉴定
   identification_by_user: 由 %{user} 做出的身份证明
@@ -1262,6 +1289,7 @@ zh-CN:
   join: 加入
   join_project: 加入这个项目
   join_some_projects_and_invite_some_observations_html: "加入一些<a href='%{join_url}'>项目</a>，并<a href='%{invite_url}'>邀请一些观察</a>"
+  join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的自然爱好者社群
   join_this_project: 加入这个项目
   'joined!': 已加入！
   joined_projects: 加入的项目
@@ -1645,6 +1673,7 @@ zh-CN:
   new_message: 新消息
   new_observation_field: 新观察字段
   new_observations: 新观察
+  new_observations_in_year: "%{year} 年新增的观察"
   new_observations_ellispsis: "新观察..."
   new_observations_from_place_html: "来自 %{place} 的新观察"
   new_observations_may_take_up_to: 新的观察可能需要至多%{widget_expiration}分钟才能显示在小部件中。
@@ -2541,6 +2570,7 @@ zh-CN:
   search_for_a_location: 搜索位置
   search_for_species: 搜索物种
   search_list: 搜索列表
+  search_observations: "搜索观察结果"
   search_projects: 搜索项目
   search_results_for: 搜索结果用于
   search_results_for_query: '搜索“%{query}”的结果'
@@ -2594,6 +2624,7 @@ zh-CN:
   show_active_and_inactive_taxa: 显示有效和无效的分类群
   show_common_names: 显示常用名
   show_default_taxon_photos: 显示默认的分类群照片
+  show_hidden_content: 显示隐藏内容
   show_keyboard_shortcuts: 显示键盘快捷键
   show_less: 显示更少
   show_more: 显示更多
@@ -2677,6 +2708,7 @@ zh-CN:
   source_list_: "来源列表"
   source_list:
     catalogue_of_life: 生命目录（Catalogue of Life）
+    inaturalist: iNaturalist
     new_zeland_organisms_register: 新西兰生物注册
     nzbrn_birds: NZBRN鸟类
     nzbrn_fungi: NZBRN真菌
@@ -2942,6 +2974,7 @@ zh-CN:
     这是查找分类单元ID的便捷方法。这是实际存储的分类单元ID。此搜索仅适用于活跃的分类群。
   this_is_taking_forever: 无响应。请稍后再试。
   this_is_the_primary_listing: 这是主要列表
+  this_is_your_observation: 这是您的观察记录
   this_job_failed_to_run: 此工作运行失败。请联络%{email}
   this_list_is_empty!: 此列表是空的！
   this_observation: 此观察
@@ -3053,6 +3086,7 @@ zh-CN:
   update_with_site_content: "使用%{site_name}内容进行更新"
   updated: 已更新
   updated_by: 更新者
+  updated_by_user_on_date_html: 由 %{user} 于 %{date} 更新
   updated_daily: 每日更新
   updated_photo: 已更新照片
   upload: 上传
@@ -3270,6 +3304,10 @@ zh-CN:
   x_observations_failed:
     other: "%{count} 次观察已失败"
   x_of_y: "%{y}的%{x}"
+  x_of_count_confirmed:
+    other: "%{count} 中的 %{x} 已被确认"
+  x_of_count_observed:
+    other: "%{count} 中的 %{x} 已被确认"
   x_of_y_people_over_two_thirds_agree_it_is: "在%{y}人中，有%{x}人（超过2/3）同意这个"
   x_project_journal: "%{project}的%{name}"
   x_project_stats: "%{project}状态"
@@ -3418,6 +3456,8 @@ zh-CN:
     donate:
       donate_short_desc: "帮助捐赠者支持捐赠！"
       post_donate_social_media_text: 我支持主义者！你也应该检查一下。
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: 成为iNaturalist 的月捐支持者
     guides:
       index:
         funding_html: |
@@ -3534,6 +3574,10 @@ zh-CN:
       show:
         project_list_desc: |
           那些由项目馆长手动添加的分类群以及添加到项目中的研究级观察所代表的分类群已被列在项目清单中。
+    messages:
+      index:
+        speech_privilege_notice: |
+          在给出3次可靠的鉴定结果之后您才具有发送新消息的权限。在此之前，您仅可以阅读和回复其他人发给您的消息。
     observations:
       community_id:
         agreement: 协议
