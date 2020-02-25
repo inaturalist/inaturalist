@@ -15,7 +15,7 @@ class ExternalTaxon < ActiveRecord::Base
   def must_be_unique_to_taxon_framework
     return true unless tfr = TaxonFrameworkRelationship.where(id: taxon_framework_relationship_id).first
     if et = ExternalTaxon.joins("JOIN taxon_framework_relationships tfr ON external_taxa.taxon_framework_relationship_id = tfr.id").
-      where("name = ? AND rank = ? AND tfr.taxon_framework_id = ?", name, rank, tfr.taxon_framework_id).first
+      where("name = ? AND rank = ? AND tfr.taxon_framework_id = ? AND external_taxa.id != ?", name, rank, tfr.taxon_framework_id, id).first
       errors.add(:id, "external taxon with this name and rank already represented in this taxon framework")
     end
     true
