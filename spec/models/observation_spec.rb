@@ -435,6 +435,29 @@ describe Observation do
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude, user: user )
         expect( o.place_guess ).to match /#{ I18n.t( "places_name.mexico", locale: user.locale ) }/
       end
+      it "should get changed when coordinates are obscured" do
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
+        original_place_guess = o.place_guess
+        o.update_attributes( geoprivacy: Observation::OBSCURED )
+        o.reload
+        expect( o.place_guess ).not_to be_blank
+        expect( o.place_guess ).not_to eq original_place_guess
+      end
+      it "should get removed when coordinates are hidden" do
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
+        o.update_attributes( geoprivacy: Observation::PRIVATE )
+        o.reload
+        expect( o.place_guess ).to be_blank
+      end
+      it "should get restored when geoprivacy changes from private to obscured" do
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude, geoprivacy: Observation::PRIVATE )
+        expect( o.place_guess ).to be_blank
+        expect( o.latitude ).to be_blank
+        o.update_attributes( geoprivacy: Observation::OBSCURED )
+        o.reload
+        expect( o.latitude ).not_to be_blank
+        expect( o.place_guess ).not_to be_blank
+      end
     end
   
     describe "quality_grade" do

@@ -1529,7 +1529,6 @@ class Observation < ActiveRecord::Base
   
   def obscure_coordinates
     return unless prefers_auto_obscuration? || [OBSCURED, PRIVATE].include?( geoprivacy )
-    return if obscuration_changed
     geoprivacy_changed_from_private_to_obscured = latitude.blank? &&
       ![geoprivacy, taxon_geoprivacy].include?( PRIVATE ) &&
       [geoprivacy, taxon_geoprivacy].include?( OBSCURED )
@@ -1589,6 +1588,9 @@ class Observation < ActiveRecord::Base
         end
       elsif private_latitude_changed? && private_place_guess.blank?
         self.private_place_guess = place_guess
+        self.place_guess = public_place_guess
+      # This covers the case where the coordinates were hidden but are now obscured
+      elsif latitude_changed? && latitude && latitude_was.blank? && place_guess.blank?
         self.place_guess = public_place_guess
       end
     else
