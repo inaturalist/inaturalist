@@ -5311,17 +5311,119 @@ sv:
         TTCID_desc: Tid till bestämning från någon annan som matchar gemenskapstaxon.
         TTID: TTB
         TTID_desc: Tid till bestämning från någon annan
+        TTID_note: |
+          Denna statistik är gjord för observationer skapade en vecka tidigare, vilket
+          innebär att den kommer att missa bestämningar som lagts till observationerna
+          efter mer än en vecka, och därmed få statistiken att se sämre ut än om
+          man beräknade den igen i nuet, men den bör fortfarande ge en anständig
+          bild av hur snabbt gemenskapen bestämmer under 1 vecka. Observera
+          att denna statistik endast gäller för observationer med bilder.
         website_desc_html: |
           Skapad via <a href="https://www.inaturalist.org">iNaturalist</a> 
           eller <a href="%{url}">iNaturalist Network</a> webbplatser
       year:
+        donate_title: "Ett särskilt tack till alla våra supportrar"
+        donate_desc_html: |
+          Tack för att du bidrar med din tid, uppmärksamhet, expertis och
+          dina donationer! iNaturalist är ett icke-kommersiellt initiativ som
+          drivs gemensamt av California Academy of Sciences och National
+          Geographic Society. Det supportas av ett
+          <a href="%{team_url}">litet team</a> som
+          gör all design och mjukvaruutveckling
+           för webben, mobiler, och
+          <a href="%{seek_url}">Seek av iNaturalist</a>, och hanterar dessutom
+          support till gemenskapen, samarbeten och integrationer som håller
+          saker igång (och som växer snabbt!). Initiativet förlitar sig på många
+          bidrag och donationer, inklusive välgörenhetsgåvor från mindre än 0,2 %
+          av bidragsgivarna. Vi är särskilt tacksamma till Månatliga givare
+          vars regelbundna gåvor hjälper oss att planera för framtiden. Du kan
+          donera via mer än 30 valutor för att stödja iNaturalists kärnverksamhet.
+          Tack till alla för er medverkan till att göra 2019 till iNaturalists
+          främsta år hittills!
+        inaturalist_network: iNaturalist-nätverket
+        inaturalist_network_desc: |
+          Kolla in Året som gått för medlemmarna i iNaturalist-nätverket.
         include_usa: Inkludera USA
+        growth_by_country_desc_html: |
+          Var sker tillväxten? Denna karta och detta diagram försöker dela upp
+          detta efter land, vilket visar sig vara komplicerat eftersom tillväxten per
+          land kan vara mycket obalanserad. Här har vi valt att utelämna USA
+          och använda en loggskala som standard för att tydliggöra skillnader
+          mellan andra länder. Om ett land är färgat svart betyder det att det
+          inte bidrog på ett avgörande sätt till en procentsats, eller hade inte
+          någon tillväxt detta år, eller det inte hade fler observationer i år än förra
+          året (håll pekaren på ett land för lite fler detaljer). <strong>"% av
+          total tillväxt"</strong> avser hur mycket av hela världens tillväxt som
+          kom från ett visst land, t.ex. om det fanns 20 observationer 2018 och 10
+          2017, blir det 10 observationers tillväxt, och om 5 av dessa
+          observationer kom från Benin, så bidrog Benin med 50 % av den totala
+          tillväxten. <strong>"% tillväxt"</strong> betyder antalet observationer
+          i år i det landet som procent av observationerna förra året i
+          samma land, så om det fanns 10 observationer i Laos förra året, men
+          20 i år, innebär det 100 % tillväxt, och om det var 0 förra året
+          men 1 i år, är % tillväxt oändlig.
         growth_by_country_title: Tillväxt efter land
+        growth_desc: |
+          "Observationer"- och "Taxa"-diagrammen kan innehålla data som är
+          synliga på %{site_name} men kommer från personer som inte är anslutna till
+          %{site_name}, medan "Användare"-diagrammet endast visar datum då
+          användare som redan är anslutna till %{site_name} gick med i iNaturalist.
         growth_in_year_obs: "Tillväxt i %{year} (obs)"
         growth_title: Tillväxt
+        new_species_desc: |
+          Arter som observerades för första gången på %{site_name} i år.
+          Visar %{x} av <a href="%{url}">%{y} arter</a>.
+        new_species_desc_html: |
+          Arter som lades till för första gången i år.
+          Klicka på en månad för att se några av de nya arter som lagts till den månaden.
+          Du kan också se det sammanlagda totala antalet, eller flytta reglaget
+          bakåt i tiden för att se andra nya observerade arter. Detta diagram visar
+          arter från verifierbara observationer från månaden de laddades upp
+          till %{site_name} (inte den månad de observerades). Det innehåller inte
+          taxa på högre eller lägre nivå, så en observation som bestämts till
+          Mammalia räknas inte, och en observation av <i>Canis lupus arctos</i>
+          räknas bara som <i>Canis lupus</i>.
         obs_in_year: Obs i %{year}
         percent_growth_in_year: "% tillväxt i %{year}"
         percent_of_total_growth: "% av total tillväxt"
+        publications_desc_html: |
+          Klicka på blomdiagrammen för mer information om vad siffrorna
+          och färgerna betyder. Påverkansdata och -diagram tack vare
+          <a href="https://www.altmetric.com">Altmetric</a>. Information
+          om dataanvändning tack vare våra vänner på
+          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          <br/>
+          <a href="%{url}">Se alla %{numStudies} studier</a>
+        publications_desc_short_html: |
+          Klicka på blomdiagrammen för mer information om vad siffrorna
+          och färgerna betyder. Påverkansdata och -diagram tack vare
+          <a href="https://www.altmetric.com">Altmetric</a>. Information
+          om dataanvändning tack vare våra vänner på
+          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Observationsräcka
+        observation_streaks_color_desc: |
+          Färgen motsvarar antalet dagar på en logaritmisk skala:
+        observation_streaks_desc: |
+          En observationsräcka är en tidsperiod under vilken någon gick ut och
+          gjorde nya, verifierbara observationer varje dag. Här visas de längsta
+          räckorna som påbörjades i år eller redan pågick när denna statistik
+          skapades.
+        stats_generated_datetime: Statistik skapad den %{datetime}
+        store_prompt: |
+          Vill du visa din stolthet över iNat vart du än är? Kolla in iNat-butiken!
+        sunburst_desc_html: |
+          Observerade taxa ordnade i ett hierarkiskt soldiagram. Hierarkins
+          bas är i centrum, där den börjar med "Liv" för att sluta med arter i
+          ytterkanterna. Storleken på varje båge är proportionell mot antalet
+          observationer av detta taxon, och färgerna motsvarar ungefär de
+          vanliga "klassiska" taxonfärgerna (grönt för växter,
+          orange för insekter, blått för de flesta andra djur etc.), så om du
+          ser en hel del grönt, betyder det att du observerat en hel del växter.
+          <strong>Klicka på en båge för att placera detta taxon i mitten</strong>
+          och dess barn runt det, eller <strong>klicka på mitten för att gå upp i
+          hierarkin igen</strong>.
+        translators_title: Översättare
     taxa:
       show:
         discoveries_desc: "Senast upptäckta arter i denna taxon"
