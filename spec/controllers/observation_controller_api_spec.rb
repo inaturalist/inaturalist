@@ -692,37 +692,6 @@ shared_examples_for "an ObservationsController" do
         o.reload
         expect( o.private_place_guess ).to eq original_place_guess
       end
-      it "should not disappear when updating an obs made private by another obs" do
-        user.update_attributes(
-          prefers_coordinate_interpolation_protection: true,
-          prefers_coordinate_interpolation_protection_test: true
-        )
-        o1 = Observation.make!(
-          observed_on_string: "2018-06-01",
-          latitude: 1,
-          longitude: 1,
-          user: user,
-          geoprivacy: Observation::PRIVATE,
-          place_guess: "place guess 1"
-        )
-        o2 = Observation.make!(
-          observed_on_string: "2018-06-01",
-          latitude: 1,
-          longitude: 1,
-          user: user,
-          place_guess: "place guess 2"
-        )
-        Delayed::Worker.new.work_off
-        o2.reload
-        expect( o2 ).to be_coordinates_private
-        expect( o2.place_guess ).to be_blank
-        expect( o2.private_place_guess ).to eq "place guess 2"
-        put :update, format: :json, id: o.id, observation: { latitude: 1, longitude: 1, description: "what now" }
-        o2.reload
-        expect( o2 ).to be_coordinates_private
-        expect( o2.place_guess ).to be_blank
-        expect( o2.private_place_guess ).to eq "place guess 2"
-      end
     end
 
     describe "existing photos" do

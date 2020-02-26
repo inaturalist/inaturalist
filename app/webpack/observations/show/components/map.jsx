@@ -20,9 +20,7 @@ class Map extends React.Component {
       observation,
       observationPlaces,
       config,
-      updateCurrentUser,
-      disableAutoObscuration,
-      restoreAutoObscuration
+      updateCurrentUser
     } = this.props;
     const currentUserPrefersMedialessObs = config.currentUser
       && config.currentUser.prefers_medialess_obs_maps;
@@ -34,13 +32,11 @@ class Map extends React.Component {
       && (
         observation.geoprivacy
         || observation.taxon_geoprivacy
-        || observation.context_geoprivacy
       )
     ) {
       if (
         observation.geoprivacy === "private"
         || observation.taxon_geoprivacy === "private"
-        || observation.context_geoprivacy === "private"
       ) {
         geoprivacyIconClass = "icon-icn-location-private";
         geoprivacyTitle = I18n.t( "location_is_private" );
@@ -215,8 +211,6 @@ class Map extends React.Component {
                     observation={observation}
                     observationPlaces={observationPlaces}
                     config={config}
-                    disableAutoObscuration={disableAutoObscuration}
-                    restoreAutoObscuration={restoreAutoObscuration}
                   />
                 </li>
               </Dropdown.Menu>
@@ -232,9 +226,7 @@ Map.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
   config: PropTypes.object,
-  updateCurrentUser: PropTypes.func,
-  disableAutoObscuration: PropTypes.func,
-  restoreAutoObscuration: PropTypes.func
+  updateCurrentUser: PropTypes.func
 };
 
 export default Map;

@@ -205,12 +205,6 @@
         label_after: true,
         description: no_tracking_desc
       %>
-      <% if current_user.prefers_coordinate_interpolation_protection_test? %>
-        <%= f.check_box "prefers_coordinate_interpolation_protection", 
-          label: t( "views.users.edit.same_day_geoprivacy_protection" ),
-          label_after: true,
-          description: t( "views.users.edit.prefers_coordinate_interpolation_protection_desc" ) %>
-      <% end %>
     </div>
     
     <div class="column span-18">

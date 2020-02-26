@@ -77,7 +77,6 @@ class Observation < ActiveRecord::Base
 
   # Track whether obscuration has changed over the life of this instance
   attr_accessor :obscuration_changed
-  attr_accessor :skip_reassess_same_day_observations
 
   def captive_flag
     @captive_flag ||= !quality_metrics.detect{|qm| 
@@ -258,7 +257,6 @@ class Observation < ActiveRecord::Base
   ALLOWED_DESCRIPTION_TAGS = %w(a abbr acronym b blockquote br cite em i img pre s small strike strong sub sup)
 
   preference :community_taxon, :boolean, :default => nil
-  preference :auto_obscuration, :boolean, default: true
   
   belongs_to :user
   belongs_to :taxon
@@ -396,8 +394,7 @@ class Observation < ActiveRecord::Base
              :set_captive,
              :set_taxon_photo,
              :create_observation_review,
-             :reassess_annotations,
-             :reassess_same_day_observations
+             :reassess_annotations
   after_create :set_uri, :update_user_counter_caches_after_create
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
@@ -1466,10 +1463,8 @@ class Observation < ActiveRecord::Base
   end
 
   def reassess_coordinate_obscuration
-    geoprivacies = [geoprivacy, taxon_geoprivacy, context_geoprivacy]
-    if prefers_auto_obscuration == false && ![OBSCURED, PRIVATE].include?( geoprivacy )
-      unobscure_coordinates
-    elsif geoprivacies.include?( PRIVATE )
+    geoprivacies = [geoprivacy, taxon_geoprivacy]
+    if geoprivacies.include?( PRIVATE )
       hide_coordinates
     elsif geoprivacies.include?( OBSCURED )
       obscure_coordinates
@@ -1478,57 +1473,15 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  # I.e. what should the geoprivacy be given other observations in context.
-  # Currently the "context" is observations made by the same user on the same
-  # day.
-  def context_geoprivacy
-    geoprivacies = [context_taxon_geoprivacy]
-    geoprivacies << context_user_geoprivacy if user.prefers_coordinate_interpolation_protection?
-    if geoprivacies.include?( PRIVATE )
-      return PRIVATE
-    end
-    if geoprivacies.include?( OBSCURED )
-      return OBSCURED
-    end
-  end
-
-  def context_user_geoprivacy
-    return if observed_on.blank?
-    return unless user && user.prefers_coordinate_interpolation_protection_test?
-    scope = user.observations.on( observed_on )
-    scope = scope.where( "id != ?", id ) if persisted?
-    geoprivacies = scope.pluck(:geoprivacy).flatten.uniq
-    if geoprivacies.include?( PRIVATE )
-      return PRIVATE
-    end
-    if geoprivacies.include?( OBSCURED )
-      return OBSCURED
-    end
-  end
-
-  def context_taxon_geoprivacy
-    return if observed_on.blank?
-    return unless user && user.prefers_coordinate_interpolation_protection_test?
-    scope = user.observations.on( observed_on )
-    scope = scope.where( "id != ?", id ) if persisted?
-    geoprivacies = scope.pluck(:taxon_geoprivacy).flatten.uniq
-    if geoprivacies.include?( PRIVATE )
-      return PRIVATE
-    end
-    if geoprivacies.include?( OBSCURED )
-      return OBSCURED
-    end
-  end
-
   def hide_coordinates
-    return unless prefers_auto_obscuration? || [OBSCURED, PRIVATE].include?( geoprivacy )
+    return unless ( [geoprivacy, taxon_geoprivacy] & [OBSCURED, PRIVATE] ).size > 0
     return if coordinates_private?
     obscure_coordinates
     self.latitude, self.longitude = [nil, nil]
   end
   
   def obscure_coordinates
-    return unless prefers_auto_obscuration? || [OBSCURED, PRIVATE].include?( geoprivacy )
+    return unless ( [geoprivacy, taxon_geoprivacy] & [OBSCURED, PRIVATE] ).size > 0
     geoprivacy_changed_from_private_to_obscured = latitude.blank? &&
       ![geoprivacy, taxon_geoprivacy].include?( PRIVATE ) &&
       [geoprivacy, taxon_geoprivacy].include?( OBSCURED )
@@ -2771,45 +2724,6 @@ class Observation < ActiveRecord::Base
       a.destroy unless a.valid?
     end
     true
-  end
-
-  def reassess_same_day_observations
-    return true if skip_reassess_same_day_observations
-    return true unless obscuration_changed || observed_on_changed?
-    return true unless user && user.prefers_coordinate_interpolation_protection_test?
-    unless observed_on.blank?
-      Observation.
-        delay(
-          priority: USER_INTEGRITY_PRIORITY,
-          unique_hash: {
-            "Observation::reassess_obscuration_by_user_and_date": [user_id, observed_on.to_s]
-          }
-        ).
-        reassess_obscuration_by_user_and_date( user_id, observed_on.to_s )
-    end
-    if !observed_on_was.blank? && observed_on_changed?
-      Observation.
-        delay(
-          priority: USER_INTEGRITY_PRIORITY,
-          unique_hash: {
-            "Observation::reassess_obscuration_by_user_and_date": [user_id, observed_on_was.to_s]
-          }
-        ).
-        reassess_obscuration_by_user_and_date( user_id, observed_on_was.to_s )
-    end
-    true
-  end
-
-  def self.reassess_obscuration_by_user_and_date( user, date )
-    user = user.is_a?( User ) ? user : User.find_by_id( user )
-    return unless user
-    date = date.is_a?( Date ) ? date : Date.parse( date )
-    return unless date
-    user.observations.on( date ).each do |o|
-      o.reassess_coordinate_obscuration
-      o.skip_reassess_same_day_observations = true
-      o.save! if o.changed?
-    end
   end
 
   def create_deleted_observation

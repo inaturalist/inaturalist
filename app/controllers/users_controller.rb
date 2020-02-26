@@ -1145,8 +1145,6 @@ protected
       :prefers_no_place,
       :prefers_no_site,
       :prefers_no_tracking,
-      :prefers_coordinate_interpolation_protection,
-      :prefers_coordinate_interpolation_protection_test,
       :prefers_monthly_supporter_badge,
       :search_place_id,
       :site_id,

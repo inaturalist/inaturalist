@@ -1151,82 +1151,18 @@ describe User do
     end
   end
 
-  describe "coordinate_interpolation_protection" do
-    let(:user) { User.make!( prefers_coordinate_interpolation_protection_test: true ) }
-    let(:obscured_o) {
-      Observation.make!(
-        user: user,
-        geoprivacy: "obscured",
-        observed_on_string: "2018-05-01",
-        latitude: 1,
-        longitude: 1
-      )
-    }
-    describe "becomes true" do
-      it "should obscure an observation on the same day as an observation where geoprivacy is obscured" do
-        o = Observation.make!(
-          user: user,
-          observed_on_string: obscured_o.observed_on_string,
-          latitude: 1,
-          longitude: 1
-        )
-        expect( o.geoprivacy ).to be_blank
-        expect( o.private_latitude ).to be_blank
-        user.update_attributes( prefers_coordinate_interpolation_protection: true )
-        o.reload
-        Delayed::Worker.new.work_off
-        o.reload
-        expect( o ).to be_coordinates_obscured
-        expect( o.private_latitude ).to eq 1
-      end
-      it "should not obscure an observation not on the same day as an observation where geoprivacy is obscured" do
-        o = Observation.make!(
-          user: user,
-          observed_on_string: "2017-04-01",
-          latitude: 1,
-          longitude: 1
-        )
-        expect( o.geoprivacy ).to be_blank
-        expect( o.private_latitude ).to be_blank
-        user.update_attributes( prefers_coordinate_interpolation_protection: true )
-        Delayed::Worker.new.work_off
-        o.reload
-        expect( o.private_latitude ).to be_blank
-      end
-    end
-    describe "becomes false" do
-      it "should unobscure an observation on the same day as an observation where geoprivacy is obscured" do
-        o = Observation.make!(
-          user: user,
-          observed_on_string: obscured_o.observed_on_string,
-          latitude: 1,
-          longitude: 1
-        )
-        user.update_attributes( prefers_coordinate_interpolation_protection: true )
-        Delayed::Worker.new.work_off
-        o.reload
-        expect( o.private_latitude ).to eq 1
-        user.update_attributes( prefers_coordinate_interpolation_protection: false )
-        Delayed::Worker.new.work_off
-        o.reload
-        expect( o.private_latitude ).to be_blank
-        expect( o.latitude ).to eq 1
-      end
-    end
-
-    describe "forget" do
-      elastic_models( Observation )
-      it "changes user_id in flags to -1" do
-        f = Flag.make!
-        other_f = Flag.make!
-        flag_user_id = f.user.id
-        expect( flag_user_id ).not_to be_blank
-        User.forget( f.user_id, skip_aws: true )
-        f.reload
-        expect( f.user_id ).to eq -1
-        other_f.reload
-        expect( other_f.user_id ).to be > 0
-      end
+  describe "forget" do
+    elastic_models( Observation )
+    it "changes user_id in flags to -1" do
+      f = Flag.make!
+      other_f = Flag.make!
+      flag_user_id = f.user.id
+      expect( flag_user_id ).not_to be_blank
+      User.forget( f.user_id, skip_aws: true )
+      f.reload
+      expect( f.user_id ).to eq -1
+      other_f.reload
+      expect( other_f.user_id ).to be > 0
     end
   end
 

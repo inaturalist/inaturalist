@@ -1,20 +1,4 @@
 - site = @site || CONFIG
-- if is_admin? && controller.controller_name == "users" && action_name == "edit"
-  .bootstrap
-    .container
-      .row
-        .col-xs-12
-          .box.text-center.upstacked.alert.alert-warning
-            - if current_user.prefers_coordinate_interpolation_protection_test?
-              = form_for current_user do |f|
-                = f.hidden_field :prefers_coordinate_interpolation_protection_test, value: false
-                = f.submit "Opt-out of coordinate obscuration by day", class: "btn btn-warning"
-            - else
-              = form_for current_user do |f|
-                = f.hidden_field :prefers_coordinate_interpolation_protection_test, value: true
-                = f.submit "Opt-in to coordinate obscuration by day", class: "btn btn-success"
-              %p
-                This will automatically obscure all observations you make on the same day as an observation of a threatened taxon. During this test, it will only apply to observations you create or update after opting in to the test, so to see the change on past observations, you will have to change their coordinates or add an ID of a threatened taxon.
 
 #footer.bootstrap
   .container
