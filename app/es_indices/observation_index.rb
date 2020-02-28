@@ -78,6 +78,7 @@ class Observation < ActiveRecord::Base
             indexes :login, type: "keyword"
             indexes :spam, type: "boolean"
             indexes :suspended, type: "boolean"
+            indexes :site_id, type: "integer"
           end
         end
         indexes :user do
@@ -301,7 +302,7 @@ class Observation < ActiveRecord::Base
     else
       json.merge!({
         uuid: uuid,
-        user: user ? user.as_indexed_json(no_details: true) : nil,
+        user: user ? user.as_indexed_json(no_details: true).merge( site_id: user.site_id ) : nil,
         captive: captive,
         created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
         updated_at: updated_at.in_time_zone(timezone_object || "UTC"),

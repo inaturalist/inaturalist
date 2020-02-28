@@ -29,6 +29,7 @@ EOS
   opt :file, "Where to write the zip archive. Default will be tmp path.", :type => :string, :short => "-f"
   opt :site_name, "Site name", type: :string, short: "-s"
   opt :site_id, "Site ID", type: :string, short: "-i"
+  opt :taxon_id, "Taxon ID (just for testing on smaller exports)", type: :string, short: "-t"
 end
 
 OBS_COLUMNS = %w(
@@ -277,10 +278,24 @@ def export_observations( options = {} )
   ]
   inverse_filters = []
   if options[:site_id]
-    filters << { term: { site_id: options[:site_id]} }
+    filters << {
+      bool: {
+        should: [
+          { term: { site_id: options[:site_id]} },
+          { term: { "user.site_id" => options[:site_id] } }
+        ]
+      }
+    }
   end
   if options[:not_site_id]
-    inverse_filters << { term: { site_id: options[:not_site_id]} }
+    inverse_filters << {
+      bool: {
+        should: [
+          { term: { site_id: options[:not_site_id]} },
+          { term: { "user.site_id" => options[:not_site_id] } }
+        ]
+      }
+    }
   end
   if options[:place_id]
     filters << { terms: { "private_place_ids" => [ options[:place_id] ].flatten.map{ |v|
@@ -311,6 +326,11 @@ def export_observations( options = {} )
       ElasticModel.id_or_object(v)
     } } }
   end
+  if OPTS[:taxon_id]
+    filters << {
+      terms: { "taxon.ancestor_ids" => ElasticModel.id_or_object( options[:taxon_id] ) }
+    }
+  end
 
   base_es_params = {
     track_total_hits: true,
@@ -324,7 +344,7 @@ def export_observations( options = {} )
   num_partitions = total_entries < 10000 ? 1 : 3
   partition_offset = @max_obs_id / num_partitions
   partitions = num_partitions.times.map do |i|
-    (i*partition_offset...(i+1)*partition_offset)
+    (i*partition_offset..(i+1)*partition_offset)
   end
 
   puts "[#{Time.now}] Exporting observations in #{num_partitions} partitions, options: #{options}" if OPTS[:verbose]
@@ -357,9 +377,14 @@ def export_observations( options = {} )
     min_id = 0
     obs_i = 0
     while true do
-      # filters << { range: { id: { gte: min_id } } }
       batch_filters = partition_filters.dup
       batch_filters << { range: { id: { gte: min_id } } }
+      if OPTS[:debug]
+        msg = ""
+        msg += "[#{options[:debug_label]}]" if options[:debug_label]
+        msg += " batch_filters: #{batch_filters}"
+        puts msg
+      end
       observations = try_and_try_again( [Patron::TimeoutError, Faraday::TimeoutError] ) do
         Observation.elastic_paginate(
           track_total_hits: true,
