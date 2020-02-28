@@ -263,8 +263,8 @@ fi:
   add_alive_or_dead_alive_annotation: 'Lisää "elävä tai kuollut: elävä" -merkintä'
   add_alive_or_dead_cannot_be_determined_annotation: 'Lisää "elävä tai kuollut: ei voida määrittää" -merkintä'
   add_alive_or_dead_dead_annotation: 'Lisää "elävä tai kuollut: kuollut" -merkintä'
-  add_plant_phenology_budding_annotation: 'Lisää "Plant Phenology: Budding" selitys'
-  add_plant_phenology_flower_budding_annotation: 'Lisää "Kasvin fenologia: Orastava kukka" merkintä'
+  add_plant_phenology_budding_annotation: 'Lisää "Kasvin fenologia: Verso puhkeamssa" selitys'
+  add_plant_phenology_flower_budding_annotation: 'Lisää "Kasvin fenologia: Kukka puhkeamssa" selitys'
   add_plant_phenology_flowering_annotation: 'Lisää "Plant Phenology: Flowering" selitys'
   add_plant_phenology_fruiting_annotation: 'Lisää "Plant Phenology: Fruiting" selitys'
   add_life_stage_adult_annotation: 'Lisää "Life Stage: Adult" selitys'
@@ -871,7 +871,7 @@ fi:
     female: Naaras
     plant_phenology: Kasvin fenologia
     budding: Verso puhkeamassa
-    flower_budding: Kukan puhkeaminen
+    flower_budding: Kukka puhkeamassa
     flowering: Kukinta
     fruiting: Hedelmiä
     life_stage: Elinvaihe
@@ -4778,8 +4778,8 @@ fi:
           verifiable: Todennettavissa
           "Alive or Dead=Alive": Elävä
           "Alive or Dead=Dead": Kuollut
-          "Plant Phenology=Budding": Orastava
-          "Plant Phenology=Flower Budding": Kukka aukeamassa
+          "Plant Phenology=Budding": Verso puhkeamassa
+          "Plant Phenology=Flower Budding": Kukka puhkeamassa
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
           "Life Stage=egg": Muna
@@ -4992,7 +4992,7 @@ fi:
         welcome_message_html: |
           %{image}iin, jossa voit <strong>pitää kirjaa</strong> siitä mitä olet nähnyt luonnossa, <strong>tavata</strong> muita luonnonystäviä ja <strong>oppia</strong> uutta luonnosta.
         connect_with_nature: Vietä aikaa luonnossa
-        explore_and_share: Tutki luontoa ja jaa luontohavaintosi.
+        explore_and_share: Tutki luontoa ja jaa havaintosi.
         observations_to_date: 'havaintoa tällä hetkellä'
         species_observed: 'lajia havaittu'
         people_signed_up: 'rekisteröitynyttä käyttäjää'
@@ -5014,7 +5014,7 @@ fi:
         become_a_citizen_scientist: Ryhdy kansalaistutkijaksi
         find_a_project: "Löydä sinua kiinnostava projekti tai aloita omasi."
         learn_about_nature: Opi luonnosta
-        build_your_knowledge: Rakenna tietämystäsi keskustelemalla muiden luonnontieteilijöiden kanssa ja auttamalla muita.
+        build_your_knowledge: Lisää tietämystäsi keskustelemalla muiden luonnontieteilijöiden kanssa ja auttamalla muita.
         run_a_bioblitz: Järjestä Bioblitz
         hold_an_event: Järjestä tapahtuma, jossa ihmiset yrittävät havaita mahdollisimman monta lajia.
         works_on_all_your_devices: Toimii kaikissa laitteissasi
