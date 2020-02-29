@@ -1,5 +1,5 @@
 - content_for :title do
-  = @shareable_description
+  =raw strip_tags @shareable_description
 - content_for :extrahead do
   %meta{ property: "og:title", content: @shareable_title }
   %meta{ property: "twitter:title", content: t( :taxon_observed_by_user, taxon: @shareable_title, user: @observation.user.try_methods(:name, :login), default: @shareable_title ) } 
