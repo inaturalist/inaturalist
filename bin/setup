@@ -12,10 +12,19 @@ Dir.chdir APP_ROOT do
   system "gem install bundler --conservative"
   system "bundle check || bundle install"
 
-  # puts "\n== Copying sample files =="
-  # unless File.exist?("config/database.yml")
-  #   system "cp config/database.yml.sample config/database.yml"
-  # end
+  puts "\n== Copying sample files =="
+  unless File.exist?("config/config.yml")
+    system "cp config/config.yml.example config/config.yml"
+  end
+  unless File.exist?("config/database.yml")
+    system "cp config/database.yml.example config/database.yml"
+  end
+  unless File.exist?("config/secrets.yml")
+    system "cp config/secrets.yml.example config/secrets.yml"
+  end
+  unless File.exist?("config/smtp.yml")
+    system "cp config/smtp.yml.example config/smtp.yml"
+  end
 
   puts "\n== Preparing database =="
   system "bin/rake db:setup"
