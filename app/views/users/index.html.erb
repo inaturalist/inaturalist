@@ -54,10 +54,7 @@
               <%= link_to_user update.user, :class => "userlink" %>
               <%- case update.class.name -%>
               <%- when 'Observation' %>
-                <%= raw t 'people_added.observation',
-                  observation_link: link_to(t(:observation).downcase, update),
-                  taxon_link: update.taxon ? link_to(update.species_guess, update.taxon) : t(:something_),
-                  vow_or_con: (update.species_guess ? update.species_guess : t(:something_)).first.downcase %>
+                <%= raw t 'people_added.observation', observation_url: observation_url( update ) %>
               <%- when 'Identification' %>
                 <%
                   if update.observation

@@ -217,7 +217,9 @@ class UsersController < ApplicationController
       end
       Observation.preload_associations(@updates, :user)
       @updates.delete_if do |u|
-        (u.is_a?(Post) && u.draft?) || (u.is_a?(Identification) && u.taxon_change_id)
+        ( u.is_a?( Post ) && u.draft? ) ||
+        ( u.is_a?( Identification ) && u.taxon_change_id ) ||
+        ( u.is_a?( Identification ) && u.observation.user_id == u.user_id )
       end
       hash = {}
       @updates.sort_by(&:created_at).each do |record|
