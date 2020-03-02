@@ -26,6 +26,20 @@ Dir.chdir APP_ROOT do
     system "cp config/smtp.yml.example config/smtp.yml"
   end
 
+  puts "\n== Creating Template Database =="
+  if system "command -v createdb"
+    system "createdb template_postgis"
+    system "psql -d template_postgis -c 'create extension postgis'"
+    system "psql -d template_postgis -c 'create extension \"uuid-ossp\"'"
+    system <<~STRING
+      psql template_postgis -c \
+      "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
+    STRING
+  else
+    puts "\nError: PostgreSQL needs to be installed before setup can be completed."
+    abort
+  end
+
   puts "\n== Preparing database =="
   system "bin/rake db:setup"
 
