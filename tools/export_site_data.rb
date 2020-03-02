@@ -328,7 +328,7 @@ def export_observations( options = {} )
   end
   if OPTS[:taxon_id]
     filters << {
-      terms: { "taxon.ancestor_ids" => ElasticModel.id_or_object( options[:taxon_id] ) }
+      terms: { "taxon.ancestor_ids" => [ElasticModel.id_or_object( OPTS[:taxon_id] )] }
     }
   end
 
