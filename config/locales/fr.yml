@@ -57,8 +57,8 @@ fr:
     one: "<span class='count'>%{count}</span> observation"
     other: "<span class='count'>%{count}</span> observations"
   x_observations_link_html:
-    one: "<a href='%{url}'>Observation de%{count}</a>"
-    other: "<a href='%{url}'>observations de%{count}</a>"
+    one: "<a href='%{url}'>%{count} observation</a>"
+    other: "<a href='%{url}'>%{count} observations</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observation revue"
     other: "<span class='count'>%{count}</span> observations revues"
@@ -246,7 +246,7 @@ fr:
   add_one: Ajoutez-en une!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
-  add_one_now: En ajouter un maintenant
+  add_one_now: En ajouter une maintenant
   add_photos: Ajouter des photos
   add_place: Ajouter un lieu
   add_alive_or_dead_alive_annotation: 'Ajouter l''annotation "Vivant ou Mort : Vivant"'
@@ -655,7 +655,7 @@ fr:
   casual: occasionnel
   casual_: Occasionnel
   categories: Catégories
-  cc_0_description: "Cette licence place votre travail dans le domaine public, de telle sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder, même pour des raisons commerciales, le tout sans demander de permission ou vous accorder quelque crédit. C’est la plus accommodante des licences offertes. Recommandée pour une dissémination maximale et l’utilisation de matériaux sous licence."
+  cc_0_description: "Cette licence place votre travail dans le domaine public, de telle sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder, même pour des raisons commerciales, le tout sans demander de permission ou vous accorder quelque crédit. C’est la plus accommodante des licences offertes. Recommandée pour une diffusion maximale et l’utilisation de matériels sous licence."
   cc_0_name: Pas de droit d’auteur (CC0)
   cc_attribution_license: Licence d’attribution de Creative Commons
   cc_by_description: "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version, même à des fins commerciales, tant et aussi longtemps qu’ils vous donnent le crédit pour la création initiale."
@@ -1473,6 +1473,8 @@ fr:
   hex_color_eg: Couleur en hexadécimal, par ex. 65644F
   hi: Bonjour,
   hi_user: "Bonjour %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Cacher
   hide_content: Masquer le contenu
   hide_desc: |
     Masquer du contenu le rendra invisible au public, mais celui-ci pourra
@@ -1581,6 +1583,7 @@ fr:
   input_taxon: Entrer un taxon
   insects: insectes
   insect_life_stage: Stade de l'insecte
+  instagram: Instagram
   interactions: Interactions
   internal_server_error: Erreur interne du serveur
   internal_taxon_including_descendants: Taxon interne (incluant les descendants)
@@ -1601,7 +1604,7 @@ fr:
   iphone: iPhone
   is_not_following_anyone: ne suit personne.
   is_now: est maintenant
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Est-ce que l'évidence est suffisammnt flagrante pour confirmer que ceci est %{taxon} ?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Est-ce que l'information fournie est suffisante pour confirmer que ceci est %{taxon} ?
   is_this_offensive_html: 'S’agit-il de quelque chose <a href="/help#inappropriate">d’inapproprié</a>, d’injurieux ou du pourriel ?'
   is_this_place_a_duplicate: Ce lieu est-il en double?
   it_can_now_be_used_for_research: Il peut maintenant être utilisé pour la recherche et mis en vedette sur d’autres sites web
@@ -1646,11 +1649,13 @@ fr:
   last_observation: Dernière observation
   last_seen: Vu la dernière fois
   last_year: Année dernière
+  lat: Lat.
+  latitude: Latitude
   latitude_in_decimals: 'Latitude en degrés décimaux, par ex. 38,123'
   latitude_slash_y_coord_slash_northing: Latitude/coord. y/ordonnée
   latitude_value: "Latitude : %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
-  layers: Couches
+  layers: Calques
   layout: Mise en page
   leaderboard: Classement
   leaderboard_for_x: "Classement de %{x}"
@@ -1794,6 +1799,7 @@ fr:
     en: anglais
     eo: Espéranto
     es: Espagnol
+    es-AR: Espagnol (Argentine)
     es-MX: espagnol mexicain
     et: Estonien
     eu: Basque
@@ -1835,10 +1841,13 @@ fr:
   log_scale_label: Trace
   login_slash_username: Connexion/nom d’utilisateur
   logo:
+    logo: Logo
     white_bg_gif: GIF à fond blanc
     transparent_png: PNG transparent
     white_text_transparent_png: PNG transparent à texte blanc
     none: aucun
+  long: Long.
+  longitude: Longitude
   longitude_in_decimal: 'Longitude en degrés décimaux, par ex. -122,123'
   longitude_slash_x_coord_slash_easting: Longitude/coord. x/abscisse
   longitude_value: "Longitude : %{longitude}"
@@ -1881,6 +1890,7 @@ fr:
       featured_observations: Observations mises en valeur
       gbif_network: Réseau SMIB
       gbif_network_description: Enregistrements de musées et autres fournisseurs de présences distribués par le Système mondial d’informations sur la biodiversité
+      observations: Observations
       place_boundary: Frontière du lieu
       checklist_places: Lieux de la liste de contrôle
       checklist_places_description: Lieux où ce taxon a été répertorié
@@ -1890,6 +1900,7 @@ fr:
   mark_all_as_reviewed: Marquer l’ensemble comme relu
   mark_all_as_unreviewed: Marquer tout comme non relu
   matching_species_will_shown_up_here: Les espèces correspondantes seront affichées ici. Les cartes afficheront une aire de répartition pour cette espèce si elle existe à %{place}.
+  maverick: Divergent
   media: Média
   media_type: Type de média
   medium: moyen
@@ -1910,9 +1921,11 @@ fr:
   merge_observation_field_x_into: 'Fusionner le champ de l’observation « %{x} » dans…'
   merging: Fusion en cours
   merging_places: Fusion des lieux en cours
+  message: Message
   message_deleted: Message supprimé
   message_from_user_at_time: De %{user} à %{time}
   message_from_user_on_date: De %{user} le %{date}
+  messages: Messages
   misidentifications: Identifications erronées
   misleading_or_illegal_content_html: |
     Contenu trompeur ou illégal, insultes raciales ou ethniques, etc.
@@ -1920,14 +1933,29 @@ fr:
   momentjs:
     shortRelativeTime:
       future: "en %s"
+      past: "%s"
+      #Short text representing 1 second in the past
+      s: "1s"
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
       mm: "%d min"
+      #Short text representing 1 hour in the past
+      h: "1h"
+      #Short text representing %d hours in the past
+      hh: "%d h"
+      #Short text representing 1 day in the past
+      d: "1j"
+      #Short text representing %d days in the past
+      dd: "%d j"
       #Short text representing 1 month in the past
       M: "1min"
       #Short text representing %d months in the past
       MM: "%d mois"
+      #Short text representing 1 year in the past
+      'y': "1an"
+      #Short text representing %d years in the past
+      yy: "%d a"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display a time zone code and not an offset, so
     #please use z and not Z
@@ -1953,7 +1981,7 @@ fr:
   most_comments_and_faves: La plupart des commentaires et favoris
   most_observations: Par nombre d'observations
   most_recent_observation_by_date_observed: Observation vérifiable la plus récente observée par date
-  most_species: Plus d’espèces
+  most_species: Par nombre d'espèces
   most_observed_species: Espèces les plus observées
   most_observed_introduced_species: Espèces introduites les plus observées
   most_observed_threatened_species: Espèces menacées les plus observées
@@ -2788,20 +2816,28 @@ fr:
     north_korea: Corée du Nord
     northern_cyprus: Chypre du nord
     norway: Norvège
+    oman: Sultanat d'Oman
+    pakistan: Pakistan
+    panama: Panama
     papua_new_guinea: Papouasie Nouvelle Guinée
+    paraguay: Paraguay
     peru: Pérou
+    philippines: Philippines
     pitcairn_islands: Îles Pitcairn
     poland: Pologne
+    portugal: Portugal
     puerto_rico: Porto Rico
     qatar: Quatar
     republic_of_congo: Congo
     reunion: Réunion
     romania: Roumanie
     russia: Russie
+    rwanda: Rwanda
     saint_barthelemy: Saint-Barthélémy
     saint_helena: Sainte Hélène
     saint_kitts_and_nevis: Saint Kitts et Nevis
     saint_lucia: Sainte Lucie
+    saint_martin: Saint-Martin
     saint_pierre_and_miquelon: Saint Pierre et Miquelon
     saint_vincent_and_the_grenadines: Saint Vincent et les Grenadines
     san_marino: Saint Marin
@@ -2809,6 +2845,7 @@ fr:
     saudi_arabia: Arabie saoudite
     senegal: Sénégal
     serbia: Serbie
+    sierra_leone: Sierra Leone
     singapore: Singapour
     sint_maarten: Saint Martin
     slovakia: Slovaquie
@@ -2830,26 +2867,32 @@ fr:
     taiwan: Taïwan
     tanzania: Tanzanie
     thailand: Thaïlande
+    togo: Togo
     trinidad_and_tobago: Trinité-et-Tobago
     tunisia: Tunisie
     turkey: Turquie
     turkmenistan: Turkménistan
     turks_and_caicos_islands: Îles Turques-et-Caïques
     uganda: Ouganda
+    ukraine: Ukraine
     united_arab_emirates: Union des Emirats Arabes
     united_kingdom: Royaume-Uni
     united_states: États-Unis
     united_states_minor_outlying_islands: Îles mineures éloignées des États-Unis
     united_states_virgin_islands: Îles Vierges des États-Unis
+    uruguay: Uruguay
     uzbekistan: Ouzbékistan
+    vanuatu: Vanuatu
     vatican_city: Cité du Vatican
     venezuela: Vénézuela
+    vietnam: Vietnam
     virgin_islands: Îles Vierges
     wallis_and_futuna: Wallis et Futuna
     west_africa: Afrique occidentale
     western_sahara: Sahara Occidental
     yemen: Yémen
     zambia: Zambie
+    zimbabwe: Zimbabwe
   places_of_interest: Endroits intéressants
   places_merged_successfully: Les lieux ont bien été fusionnés!
   plants: plantes
@@ -2998,6 +3041,7 @@ fr:
     genus: Genre
     genushybrid: Genre hybride
     subgenus: Sous-genre
+    section: Section
     subsection: Sous-section
     complex: Complexe
     #Singular
@@ -3095,6 +3139,7 @@ fr:
   replace_boundary_with_kml: Remplacer la frontière par format KML
   replace_parentesis: (remplacez)
   reply: Répondre
+  reptiles: reptiles
   request_failed: "Échec de la requête"
   request_timed_out: Le délai de demande s’est écoulé!
   required: obligatoire
@@ -3152,6 +3197,7 @@ fr:
     période. Les individus peuvent aussi appliquer cette protection aux coordonnées qu’ils ont
     choisi de masquer.
   said: a dit
+  satellite: satellite
   save: Enregistrer
   save_all: Enregistrer tout
   save_and_add_another: Enregistrer et ajouter un autre
@@ -3263,6 +3309,7 @@ fr:
   showing_x_of_y_listings: "Affiche %{x} de %{y} listes"
   sign_in: S’identifier
   sign_in_with_provider: "Connectez-vous avec %{provider}"
+  sign_in_with_google: Connectez-vous avec Google
   sign_out: Déconnexion
   sign_up: Inscrivez-vous
   similar_species: Espèces proches
@@ -3328,10 +3375,12 @@ fr:
     soundcloud_replied_with_an_error: SoundCloud affiche une erreur. Veuillez réessayer plus tard.
     sounds: Sons
     your_soundcloud_account: votre compte SoundCloud
+  source: Source
   source_: 'Source :'
   source_wikipedia: "Source : Wikipédia"
   source_list_: "Liste de source"
   source_list:
+    inaturalist: iNaturalist
     new_zeland_organisms_register: New-Zealand Organisms Register
     nzbrn_birds: Oiseaux du NZBRN
     nzbrn_fungi: Champignons du NZBRN
@@ -3350,6 +3399,7 @@ fr:
   source_url: URL de la source
   source_of_coordinates: 'Source des coordonnées et mesure de précision établies automatiquement.'
   sourced_to: Obtenu depuis
+  sources: Sources
   sources_youve_added: Sources que vous avez ajoutées
   sources_and_credits: Sources et générique
   sourcing: Source
@@ -3867,8 +3917,8 @@ fr:
   user_disagrees_with_previous_finer_identifications: "%{user} est en désaccord avec les identifications précédentes plus fines"
   user_faved_a_noun_by_owner: "%{user} a mis en favori %{noun} par %{owner}"
   user_faved_this_observation: "%{user} a mis cette observation en favori"
-  user_flagged_as_a_non_spammer_html: "%{user} marqué comme non pollueur"
-  user_flagged_as_a_spammer_html: "%{user} marqué comme pollueur"
+  user_flagged_as_a_non_spammer_html: "%{user} signalé comme non spammeur"
+  user_flagged_as_a_spammer_html: "%{user} signalé comme spammeur"
   user_has_opted_out_of_community_id: L’utilisateur a refusé le taxon de communauté
   user_hasnt_joined_any_projects: "%{user} n'a rejoint aucun projet"
   user_helped_x_people_with_y_ids_html: "%{user} a aidé <strong>%{x} personne(s)</strong> avec <strong>%{y} IDs</strong>"
@@ -6591,7 +6641,17 @@ fr:
         f: féminin
         "n": neutre
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         note: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6599,13 +6659,49 @@ fr:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_drop: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6618,6 +6714,10 @@ fr:
         taxon_stage: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@n"
   wild: Sauvage
