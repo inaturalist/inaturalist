@@ -719,6 +719,7 @@ de:
   commercial_solicitation: Kommerzielle Werbung, Verknüpfungen ins Nirgendwo, usw.
   commit: Einreichen
   committed: Eingereicht
+  committed_by_user_on_date_html: Von %{user} am %{date} eingereicht
   committed_on: Eingereicht am %{date}
   committing: Übertragung …
   community: Community
@@ -792,7 +793,7 @@ de:
     flowering: Blühend
     fruiting: Fruchttragend
     life_stage: Altersstufe
-    adult: Volljährig
+    adult: Ausgewachsen
     pupa: Puppe
     nymph: Nymphe
     larva: Larve
@@ -3218,6 +3219,7 @@ de:
   taxon_changes: Taxon-Änderungen
   taxon_colors: Taxon-Farben
   taxon_curators: Taxon-Kuratoren
+  taxon_framework_relationships_with_count_html: "Beziehungen im taxonomischen Gerüst: %{count}"
   taxon_merge: Taxon-Zusammenführung
   taxon_name: Taxonname
   taxon_observed_by_user: "%{taxon} beobachtet von %{user}"
@@ -3401,6 +3403,7 @@ de:
   update_with_site_content: "Mit dem Inhalt von %{site_name} aktualisieren"
   updated: Aktualisiert
   updated_by: Aktualisiert von
+  updated_by_user_on_date_html: Aktualisiert von %{user} am %{date}
   updated_daily: Täglich aktualisiert
   updated_photo: Foto aktualisiert
   upload: Hochladen
