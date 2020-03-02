@@ -93,6 +93,9 @@ fi:
   x_suggestions_filtered_by_colon:
     one: "1 ehdotuksen suodattanut:"
     other: "%{count} ehdotusta suodattanut:"
+  x_taxa:
+    one: "%{count} taksoni"
+    other: "%{count} taksonia"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taksoni havaittu"
     other: "<span class='count'>%{count}</span> taksonia havaittu"
@@ -795,6 +798,7 @@ fi:
   commercial_solicitation: Kaupallinen tarjous, linkit ei mihinkään, yms.
   commit: Sitoutua
   committed: Sitoutunut
+  committed_by_user_on_date_html: Tallentanut %{user} %{date}
   committed_on: Tehty %{date}
   committing: Suoritetaan...
   community: Yhteisö
@@ -3647,6 +3651,7 @@ fi:
   update_with_site_content: "Päivitä %{site_name}-sisällöllä"
   updated: Päivitetty
   updated_by: Päivittänyt
+  updated_by_user_on_date_html: Päivittänyt %{user} %{date}
   updated_daily: Päivitetään päivittäin
   updated_photo: Päivitetty kuva
   upload: Tallenna
