@@ -1536,10 +1536,6 @@ bg:
   people_following_user: "Хора следващи %{user}"
   people_user_follows: "Хора които %{user} следва"
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation of a Human
-    observation: добави %{observation_link} на %{taxon_link}
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
