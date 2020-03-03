@@ -13,7 +13,7 @@ module ActiveRecord
       end
       coder.map = {
         "attributes" => {
-          self.class.primary_key => self[self.class.primary_key]
+          self.class.primary_key => self[self.class.primary_key].to_s
         }
       }
     end
