@@ -1548,10 +1548,6 @@ id:
   people_following_user: "Para pengikut %{user}"
   people_user_follows: "Orang %{user} Ikuti"
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation of a Human
-    observation: tambahkan %{observation_link} pada @vow_or_con{vow:an|a} %{taxon_link}
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda

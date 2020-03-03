@@ -1902,10 +1902,6 @@ sq:
   people_following_user: "Njerëz që ndjekin %{user}"
   people_user_follows: "Njerëz që %{user} i ndjek"
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation of a Human
-    observation: Shtoi nje %{observation_link} te %{taxon_link}
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
