@@ -2486,10 +2486,6 @@ tr:
   people_following_user: "İnsanlar %{user} Kullanıcısını Takip Ediyor"
   people_user_follows: "%{user} Kişi Takip Ediyor"
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation of a Human
-    observation: '@vow_or_con{vow:an|a} %{taxon_link} bağlantısına bir %{observation_link} eklendi'
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
