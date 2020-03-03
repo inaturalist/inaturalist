@@ -2517,10 +2517,6 @@ nl:
   people_following_user: "Personen die %{user} volgen"
   people_user_follows: "Personen die %{user} volgt"
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation of a Human
-    observation: heeft een %{observation_link} van een %{taxon_link} toegevoegd
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
