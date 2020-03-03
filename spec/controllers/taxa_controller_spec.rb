@@ -219,10 +219,8 @@ describe TaxaController do
     end
 
     it "should return photos from Research Grade obs even if there are multiple synonymous taxa" do
-      parent = Taxon.make!( rank: Taxon::GENUS )
-      o.taxon.update_attributes( rank: Taxon::SPECIES, parent: parent )
-      t2 = Taxon.make!( parent: parent, rank: Taxon::SPECIES )
-      t2n = TaxonName.make!( taxon: t2, name: o.taxon.name, is_valid: true, lexicon: TaxonName::SCIENTIFIC_NAMES )
+      o.taxon.update_attributes( rank: Taxon::SPECIES, parent: Taxon.make!( rank: Taxon::GENUS ) )
+      t2 = Taxon.make!( name: o.taxon.name, rank: Taxon::SPECIES, parent: Taxon.make!( rank: Taxon::GENUS ) )
       o2 = make_research_grade_observation( taxon: t2 )
       Delayed::Worker.new.work_off
       expect( Taxon.single_taxon_for_name( o.taxon.name ) ).to be_nil

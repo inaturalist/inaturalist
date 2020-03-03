@@ -801,7 +801,9 @@ describe Taxon, "merging" do
   
   it "should delete duplicate taxon_names from the reject" do
     old_sciname = @reject.scientific_name
-    @keeper.taxon_names << old_sciname.dup
+    synonym = old_sciname.dup
+    synonym.is_valid = false
+    @keeper.taxon_names << synonym
     @keeper.merge(@reject)
     expect(TaxonName.find_by_id(old_sciname.id)).to be_nil
   end
