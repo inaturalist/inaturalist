@@ -100,10 +100,10 @@ fi:
     one: "<span class='count'>1</span> taksoni havaittu"
     other: "<span class='count'>%{count}</span> taksonia havaittu"
   x_research_grade_observations_html:
-    one: "<span class='count'>1</span> tutkimusasteen havainto</span>"
+    one: "<span class='count'>1</span> tutkimutason havainto"
     other: "<span class='count'>%{count}</span> tutkimusasteen havaintoa</span>"
   x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> tutkimusasteen havainto määritetty lajin tasolle tai sitä alemmaksi</span>"
+    one: "<span class='count'>1</span> tutkimustason havainto tunnistettu lajin tasolle tai sitä tarkemmin"
     other: "<span class='count'>%{count}</span> tutkimustason havaintoa tunnistettu lajilleen tai sitä tarkemmin"
   x_sounds:
     one: "%{count} äänite"
@@ -664,8 +664,8 @@ fi:
   cant_edit_or_delete_hidden_content: Et voi muokata tai poistaa sisältöä jonka sivuston kuraattorit ovat piilottaneet
   cant_flag_an_object_that_doesnt_exist: Olematonta kohdetta ei voi liputtaa.
   cant_merge_a_taxon_with_itself: Ei voi yhdistää taksonia itsensä kanssa.
-  captive: Tarhattu
-  captive_cultivated: Tarhattu / viljelty
+  captive: Vangittu
+  captive_cultivated: Vangittu / viljelty
   card: Kortti
   casual: epämuodollinen
   casual_: Epämuodollinen
@@ -1533,7 +1533,7 @@ fi:
   ids: "Tunnistukset"
   ids_made_for_others: muille tehtyä tunnistusta
   if_for_some_reason_a_user_doesnt_agree: |
-    Jos jotain syystä et hyväksy yhteisön tunnistusta, voit hylätä sen, mikä tarkoittaa, että omaa tunnistustasi käytetään linkittämään muihin havaintoihin, päivittämään pinnalistoja jne. Voit kuitenkin saada havainnollesi Tutkimusaste-merkinnän vain, jos yhteisö on samaa mieltä kanssasi.
+    Jos jotain syystä et hyväksy yhteisön tunnistusta, voit hylätä sen, mikä tarkoittaa, että omaa tunnistustasi käytetään linkittämään muihin havaintoihin, päivittämään pinnalistoja jne. Voit kuitenkin saada havainnollesi Tutkimustaso-merkinnän vain, jos yhteisö on samaa mieltä kanssasi.
   if_this_is_a_scientific_name: Jos tämä on tieteellinen nimi, onko se hyväksytty tällä hetkellä?
   if_you_have_any_trouble_with_the_site_check_out: 'Jos sinulla on kysyttävää, tutustu <a href="%{help_url}">apuosioomme</a> tai lähetä viesti <a href="%{feedback_url}">palauteryhmäämme</a>.'
   if_your_project_is: Jos projekti koskee tiettyä paikkaa, aseta koordinaatit klikkaamalla karttaa tai syöttämällä ne manuaalisesti.
@@ -1794,7 +1794,7 @@ fi:
     es-MX: Espanja (Meksiko)
     et: Viro
     eu: Baski
-    fi: Suomi
+    fi: suomi
     fr: Ranska
     fr-CA: Ranska (Kanada)
     gl: Galicia
@@ -3334,7 +3334,7 @@ fi:
   spam: Roskaposti
   spammer: Roskapostittaja
   #Plural
-  species: Lajit
+  species: Laji
   species_by_category: lajit luokan mukaan
   species_from_around_the_world: Lajeja ympäri maailmaa
   species_guess: lajin arvaus
@@ -4931,7 +4931,7 @@ fi:
           Muista että tämä ei anna projekteille pääsyä havaintojesi salattuihin koordinaatteihin eikä lupaa lähettää sinulle viestejä. Jos haluat antaa näitä oikeuksia täytyy sinun joko liittyä projektiin, tai myöntää projektille pääsy yksi jokaiseen havaintoon erikseen.
         same_day_geoprivacy_protection: Saman päivän sijainnin suojaus
         search_place_help_html: |
-          Oletuspaikka havaintohauille.
+          Kun haet havaintoja, haku tehdään oletusarvoisesti tästä paikasta.
         scientific_name_first_desc: |
           Näytä tieteelliset nimet ennen yleisnimiä.
         taxon_change_desc: |
@@ -5409,7 +5409,7 @@ fi:
         name: Nimi
         locale: Maa
         time_zone: Aikavyöhyke
-        search_place_id: Hae paikkaa
+        search_place_id: Havaintohaun oletuspaikka
         place_id: Paikka
         preferred_observation_fields_by: Salli havaintokentät
     errors:
@@ -5527,6 +5527,9 @@ fi:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: ei saa sisältää pilkkuja tai kauttaviivoja
+            name:
+              must_match_the_taxon_if_valid: |
+                pitää vastata taksonin nimeä, jos kyseessä on hyväksytty tieteellinen nimi
         taxon_photo:
           attributes:
             taxon:
