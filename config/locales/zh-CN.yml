@@ -11,8 +11,16 @@ zh-CN:
     other: '<span class="count">%{count}</span> 个标识'
   x_identifications_:
     other: '%{count} 次鉴定'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span>个鉴定者'
   x_languages:
     other: "%{count} 种语言"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} 个物种为首次观察到"
   x_journal_posts_html:
     other: '<span class="count">%{count}</span>个日记帖子'
   x_matching_taxa:
@@ -21,6 +29,8 @@ zh-CN:
     other: '<span class="count">%{count}</span> 个匹配的分类群'
   x_misidentifications_of_this_species:
     other: "该物种的%{count}个错误鉴定"
+  x_misidentifications_of_species_in_this_rank:
+    other: "在%{rank}中有%{count}个错误鉴定"
   x_observations:
     other: "%{count} 次观察"
   x_observations_:
@@ -37,6 +47,7 @@ zh-CN:
     other: "%{count}个其他的"
   x_people:
     other: "%{count} 人"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} 人</strong> 用 <strong>%{y} 个鉴定</strong>帮助了 %{user}"
   x_photos:
     other: "%{count} 张照片"
   x_new_species:
@@ -4674,6 +4685,8 @@ zh-CN:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 不能匹配指定此词汇的物种名
+              must_match_the_taxon_if_valid: |
+                如果这是一个有效的学名那它一定符合分类群名称
         user:
           attributes:
             login:
