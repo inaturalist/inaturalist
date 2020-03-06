@@ -36,7 +36,6 @@ class Identification < ActiveRecord::Base
   after_commit :update_categories,
                  :update_observation,
                  :update_user_counter_cache,
-                 :skip_observation_indexing,
                unless: Proc.new { |i| i.observation.destroyed? }
   
   # Rails 3.x runs after_commit callbacks in reverse order from after_destroy.
@@ -246,6 +245,7 @@ class Identification < ActiveRecord::Base
     observation.identifications.reload
     observation.set_community_taxon(force: true)
     observation.set_taxon_geoprivacy
+    observation.skip_identification_indexing = true
     observation.update_attributes(attrs)
     true
   end
@@ -466,15 +466,6 @@ class Identification < ActiveRecord::Base
         wait_for_obs_index_refresh: wait_for_obs_index_refresh
       } )
     end
-    true
-  end
-
-  # Should only run after commit and should be the final thing to run before
-  # commit. If the observation attached to this instance is dirty for some
-  # reason, ignore those changes b/c they've probably already been set in the
-  # database in an obs callback
-  def skip_observation_indexing
-    observation.skip_indexing = true
     true
   end
 
