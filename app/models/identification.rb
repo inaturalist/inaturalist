@@ -33,6 +33,9 @@ class Identification < ActiveRecord::Base
   after_update :update_obs_stats,
                :update_curator_identification,
                :update_quality_metrics
+
+  # Note: update_categories must run last, or at least after update_observation,
+  # b/c it relies on the community taxon being up to date
   after_commit :update_categories,
                  :update_observation,
                  :update_user_counter_cache,
@@ -246,6 +249,7 @@ class Identification < ActiveRecord::Base
     observation.set_community_taxon(force: true)
     observation.set_taxon_geoprivacy
     observation.skip_identification_indexing = true
+    observation.skip_indexing = true
     observation.update_attributes(attrs)
     true
   end
