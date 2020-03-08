@@ -2465,10 +2465,6 @@ nb:
   people_following_user: "Personer som følger %{user}"
   people_user_follows: "Personer som %{user} følger"
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation of a Human
-    observation: har lagt til en %{observation_link} av @gender{m:en|f:ei|n:et} %{taxon_link}
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
