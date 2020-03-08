@@ -1662,8 +1662,11 @@ class TaxaController < ApplicationController
   
   def load_form_variables
     @conservation_status_authorities = ConservationStatus.
-      select('DISTINCT authority').where("authority IS NOT NULL").
-      map(&:authority).compact.reject(&:blank?).map(&:strip)
+      group(:authority).
+      order( "count(*) DESC").
+      limit( 500 ).
+      count.
+      map(&:first).compact.reject(&:blank?).map(&:strip)
     @conservation_status_authorities += ConservationStatus::AUTHORITIES
     @conservation_status_authorities = @conservation_status_authorities.uniq.sort
   end

@@ -920,7 +920,10 @@ en:
   conservation_status_descriptions:
     status: Status code, rank, etc. If a short code like E or CR exists, please use that, but if not, please use the full status, e.g. endangered or critically endangered.
     description: Brief description of why this was listed.
-    authority: Organization that declared this status. You can skip this if *you* want to be listed as the authority.
+    authority: |
+      Organization that declared this status. Please use the autocomplete to
+      choose an existing authority before adding a new one. You can skip this if
+      *you* want to be listed as the authority.
     place: Place to which this status is restricted.
     url: URL for a page describing this status.
     geoprivacy: Default geoprivacy for observations of this taxon

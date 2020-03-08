@@ -77,10 +77,6 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
 
   $.fn.conservationStatus = function() {
     this.each(function() {
-      $('.authority_field input', this).chooser({
-        source: CONSERVATION_STATUS_AUTHORITIES,
-        chosen: $('.authority_field input', this).val()
-      })
       $('.place_id_field input', this).chooser({
         collectionUrl: '/places/autocomplete.json',
         resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
