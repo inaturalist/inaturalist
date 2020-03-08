@@ -144,7 +144,7 @@ ko:
   add_link: 링크 추가
   add_higher_level_taxon: '상위 계층 분류군 추가하기 (예: "새")'
   add_id: 동정 추가하기
-  add_new_lexicon: 새로운 어휘 목록 추가하기
+  add_new_lexicon: 새로운 언어 추가하기
   add_new_photos_by_their_ids: 플리커 ID를 이용해 새로운 사진 추가하기 (크리에이티브 커먼즈에 속해야 함!)
   add_new_place: 새로운 장소 추가하기
   add_new_rule: 새로운 규칙 추가하기
@@ -1199,37 +1199,40 @@ ko:
   leave_a_comment: 댓글 달기
   leave_this_project: 프로젝트 떠나기
   let_us_walk_you_through: 이 사이트의 주요 기능들을 살펴봅시다.
+  lexicon: 언어
   lexicons:
     scientific_names: 학명
     albanian: 알바니아어
-    bengali: বাঙালি
+    bengali: 벵골어
     chinese_simplified: 중국어(간체)
     chinese_traditional: 중국어(정체)
     czech: 체코어
     danish: 덴마크어
-    dutch: Nederlands
+    dutch: 네덜란드어
     english: 영어
     estonian: 에스토니아어
     finnish: 핀란드어
-    french: français
-    german: Deutsch
+    french: 프랑스어
+    german: 독일어
     greek: 그리스어
-    hebrew: עברית
-    icelandic: Íoslainnis
-    italian: italiano
-    japanese: 日本語
+    hawaiian: 하와이어
+    hebrew: 히브리어
+    icelandic: 아이슬란드어
+    italian: 이탈리아어
+    japanese: 일본어
     korean: 한국어
     lithuanian: 리투아니아어
     luxembourgish: 룩셈부르크어
-    maltese: maltese
-    norwegian: norsk
+    maltese: 몰타어
+    maori: 마오리어
+    norwegian: 노르웨이어
     portuguese: 포르투갈어
-    romanian: român
-    russian: русский
-    spanish: español
-    swedish: svenska
-    tagalog: tagalog
-    turkish: Türk
+    romanian: 루마니아어
+    russian: 러시아어
+    spanish: 스페인어
+    swedish: 스웨덴어
+    tagalog: 타갈로그어
+    turkish: 터키어
   less: 줄이기
   license: 라이선스
   licensing_your_content_gives_others_legal: "콘텐츠를 라이선스하면 다른 사람들이 라이선스 규칙을 지키는 한 합법적으로 해당 콘텐츠를 이용할 수 있습니다. %{site_name}은 당신의 크리에이티브 커먼즈 라이선스가 된 콘텐츠를 데이터 파트너와 공유합니다."
@@ -1432,6 +1435,7 @@ ko:
   new_flag_for: 새로운 플래그
   new_guide: 새로운 가이드
   new_journal_post: 새로운 일지
+  new_lexicon: 새 언어
   new_list: 새 목록
   new_members: "새 회원"
   new_message: 새 메시지
@@ -1636,7 +1640,7 @@ ko:
   original_page_url_for_this_photo: "이 사진에 대한 원본 페이지 URL"
   organism_appears_captive_cultivated: 관찰된 생물이 포획 / 사육되었음
   other: 기타
-  other_lexicons: 기타 어휘 목록
+  other_lexicons: 기타 언어 목록
   other_names: 다른 이름
   other_species_commonly_misidentified_as_this_species: 이 종으로 자주 오동정되는 종들
   other_species_commonly_misidentified_as_this_species_in_place_html: <a href="%{url}">%{place}</a>에서 이 종으로 자주 오동정되는 종들
