@@ -170,6 +170,48 @@ describe TaxaController do
       taxon.reload
       expect(taxon.parent_id).to eq locked_parent.id
     end
+
+    describe "conservation statuses" do
+      let(:taxon) { Taxon.make!( rank: Taxon::SPECIES ) }
+      let(:user) { make_curator }
+      before do
+        sign_in user
+      end
+      it "should allow addition" do
+        put :update, id: taxon.id, taxon: {
+          conservation_statuses_attributes: {
+            1 => {
+              status: "EN"
+            }
+          }
+        }
+        taxon.reload
+        expect( taxon.conservation_statuses.size ).to eq 1
+      end
+      it "should assign the current user ID as the user_id for new statuses" do
+        put :update, id: taxon.id, taxon: {
+          conservation_statuses_attributes: {
+            1 => {
+              status: "EN"
+            }
+          }
+        }
+        taxon.reload
+        expect( taxon.conservation_statuses.first.user_id ).to eq user.id
+      end
+      it "should not assign the current user ID as the user_id for existing statuses" do
+        cs = ConservationStatus.make!( taxon: taxon )
+        put :update, id: taxon.id, taxon: {
+          conservation_statuses_attributes: {
+            cs.id => {
+              status: "EN"
+            }
+          }
+        }
+        cs.reload
+        expect( cs.user_id ).not_to eq user.id
+      end
+    end
   end
 
   describe "autocomplete" do

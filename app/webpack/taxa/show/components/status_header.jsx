@@ -1,6 +1,6 @@
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
-import _ from "lodash";
 
 const StatusHeader = ( { status } ) => {
   let text = status.statusText( );
@@ -25,6 +25,18 @@ const StatusHeader = ( { status } ) => {
     default:
       // ok
   }
+  let sourceText = I18n.t( "unknown" );
+  if ( status.url && status.authority ) {
+    sourceText = ReactDOMServer.renderToString(
+      <a href={status.url}>{ status.authority }</a>
+    );
+  } else if ( status.authority ) {
+    sourceText = status.authority;
+  } else if ( status.user ) {
+    sourceText = ReactDOMServer.renderToString(
+      <a href={`/people/${status.user.login}`}>{ status.user.login }</a>
+    );
+  }
   return (
     <div className={`alert ${alertClass} StatusHeader`}>
       <i className="glyphicon glyphicon-flag" />
@@ -36,10 +48,11 @@ const StatusHeader = ( { status } ) => {
             : I18n.t( "status_globally", { status: I18n.t( text, { defaultValue: text } ) } )
         }
       </strong>
-      { " " }
-      { I18n.t( "label_colon", { label: I18n.t( "source" ) } ) }
-      { " " }
-      <a href={status.url}>{ status.authority }</a>
+      <span
+        dangerouslySetInnerHTML={{
+          __html: ` (${I18n.t( "bold_label_colon_value_html", { label: I18n.t( "source" ), value: sourceText } )})`
+        }}
+      />
     </div>
   );
 };

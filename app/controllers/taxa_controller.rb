@@ -1594,9 +1594,6 @@ class TaxaController < ApplicationController
     if params[:taxon_names]
       TaxonName.update(params[:taxon_names].keys, params[:taxon_names].values)
     end
-    if params[:taxon][:colors]
-      @taxon.colors = Color.find(params[:taxon].delete(:colors))
-    end
     
     unless params[:taxon][:parent_id].blank?
       unless Taxon.exists?(params[:taxon][:parent_id].to_i)
@@ -1616,6 +1613,15 @@ class TaxaController < ApplicationController
       params[:taxon][:featured_at] = Time.now
     else
       params[:taxon][:featured_at] = ""
+    end
+
+    # Assign the current user to any new conservation statuses
+    if params[:taxon][:conservation_statuses_attributes]
+      params[:taxon][:conservation_statuses_attributes].each do |cs_id, status|
+        unless existing = @taxon.conservation_statuses.detect{|cs| cs.id == cs_id }
+          params[:taxon][:conservation_statuses_attributes][cs_id][:user_id] = current_user.id
+        end
+      end
     end
     true
   end

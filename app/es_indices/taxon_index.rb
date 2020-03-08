@@ -96,6 +96,7 @@ class Taxon < ActiveRecord::Base
         indexes :geoprivacy, type: "keyword"
         indexes :iucn, type: "byte"
         indexes :place_id, type: "integer"
+        indexes :user_id, type: "integer"
         indexes :source_id, type: "short"
         indexes :status, type: "keyword"
         indexes :status_name, type: "keyword"
