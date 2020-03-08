@@ -1,9 +1,19 @@
 lt:
   x_comments:
     one: '%{count} komentaras'
-    few: '%{count} komentarai(-ų)'
-    many: '%{count} komentarai(-ų)'
+    few: '%{count} komentarai'
+    many: '%{count} komentarai'
     other: '%{count} komentarai(-ų)'
+  x_faves:
+    one: '%{count} pamėgimas'
+    few: '%{count} pamėgimai'
+    many: '%{count} pamėgimai'
+    other: '%{count} pamėgimai'
+  x_languages:
+    one: "%{count} kalba"
+    few: "%{count} kalbos"
+    many: "%{count} kalbos"
+    other: "%{count} kalbos"
   x_others:
     one: "%{count} kitas"
     few: "%{count} kiti"

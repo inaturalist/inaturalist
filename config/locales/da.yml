@@ -2504,6 +2504,10 @@ da:
   people_following_user: "Personer, der følger %{user}"
   people_user_follows: "Personer %{user} følger"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: tilføjede en <a href="%{observation_url}">-observation</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -3645,6 +3649,7 @@ da:
   taxon_curators: Takson kuratorer
   taxon_framework_complete: "Fuldstændig: Ja"
   taxon_framework_deviations_with_count_html: "Afvigelser: %{count}"
+  taxon_framework_relationships_with_count_html: "Taksonrammerelationer: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Markeret dækket taksa: %{count}"
   taxon_framework_notes: Taksonramme noter
@@ -6612,6 +6617,8 @@ da:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan ikke matche det videnskabelige navn på en art i dette leksikon
+              must_match_the_taxon_if_valid: |
+                skal matche taksonens navn, hvis dette er et gyldigt videnskabeligt navn
               bad_format: |
                 kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
                 ×; Bemærk, at formodede taksa og sorter ikke er tilladt

@@ -2477,6 +2477,10 @@ it:
   people_following_user: "Persone stanno seguendo %{user}"
   people_user_follows: "Persone che %{user} segue"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: ha aggiunto un'<a href="%{observation_url}">osservazione</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -6168,6 +6172,8 @@ it:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 non corrisponde al nome scientifico di una specie in questa lingua
+              must_match_the_taxon_if_valid: |
+                deve corrispondere al nome del taxon se questo è un nome scientifico valido
               bad_format: |
                 può solo contenere caratteri Latino standard, trattini, spazi, e ×; nota che taxa presunti e cultivar non sono permessi
         taxon_photo:
