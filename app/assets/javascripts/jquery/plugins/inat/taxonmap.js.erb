@@ -157,16 +157,17 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     if ( map.getMapTypeId( ) !== preferredMapTypeId ) {
       map.setMapTypeId( preferredMapTypeId );
     }
-    if ( !map.mapTypeListener ) {
-      function setMapTypeAndUpdateSession( ) {
-        if ( options.updateCurrentUser ) {
-          options.updateCurrentUser( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
-        } else {
-          updateSession( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
-        }
+  }
+
+  if ( !map.mapTypeListener ) {
+    function setMapTypeAndUpdateSession( ) {
+      if ( options.updateCurrentUser ) {
+        options.updateCurrentUser( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
+      } else {
+        updateSession( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
       }
-      map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", setMapTypeAndUpdateSession );
     }
+    map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", setMapTypeAndUpdateSession );
   }
 
   if( options.showLegend && !map._legend ) {
