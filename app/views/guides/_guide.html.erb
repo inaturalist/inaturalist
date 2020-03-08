@@ -10,28 +10,9 @@
     <%= render "shared/barchart_datum",
       :value => @confirmed_listed_taxa_count.to_i,
       :max => @listed_taxa_count.to_i, 
-      label_text: t(:x_of_count_confirmed, x: @confirmed_listed_taxa_count.to_i, count: @listed_taxa_count.to_i ),
       :min_remainder_label_width => 50
     %>
   </div>
-  <% if logged_in? && @place -%>
-    <div class="stacked">
-      <div id="observedchart" class="barchart inlineblock" data-original-count="<%= @current_user_observed_count.to_i %>" data-original-total="<%= @listed_taxa_count.to_i %>">
-        <%= render "shared/barchart_datum",
-          :value => @current_user_observed_count.to_i, 
-          :max => @listed_taxa_count.to_i, 
-          label_text: t(:x_of_count_observed, x: @current_user_observed_count.to_i, count: @listed_taxa_count.to_i )
-        %>
-      </div>
-      <div class="extralabel">
-        <%-
-          percent = @listed_taxa_count.to_i == 0 ? 0 : (@current_user_observed_count.to_f / @listed_taxa_count.to_f * 100).round
-        -%>
-        <strong><span class="value"><%= percent %></span>%</strong>
-        <%= link_to t(:on_your_life_list), compare_lists_url(@place.check_list_id, :with => current_user.life_list_id) %>
-      </div>
-    </div>
-  <% end -%>
 
   <div id="browsingtaxa" class="stacked">
     <ul class="taxon_links">
