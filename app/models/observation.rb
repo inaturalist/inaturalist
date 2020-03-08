@@ -948,6 +948,14 @@ class Observation < ActiveRecord::Base
     elsif ( offset = date_string[tz_moment_offset_pattern, 1] ) &&
         ( parsed_time_zone = ActiveSupport::TimeZone[offset.to_i] )
       date_string = date_string.sub( tz_moment_offset_pattern, "" )
+
+    # Dumb hack for Adelaide's half hour time zone offset
+    elsif (offset = date_string[tz_js_offset_pattern, 2]) &&
+        %w(+0930 +1030).include?( offset )
+      parsed_time_zone = ActiveSupport::TimeZone["Australia/Adelaide"]
+      date_string = date_string.sub( tz_js_offset_pattern, "" )
+      date_string = date_string.sub( /^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, "" )
+      date_string = date_string.sub(/\(.+\)/, "" )
     end
     
     if parsed_time_zone && observed_on_string_changed?
