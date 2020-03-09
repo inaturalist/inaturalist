@@ -671,7 +671,6 @@ zh-CN:
   conservation_status_descriptions:
     status: 状态代码、排名等。如果存在类似E或CR的短代码，请使用它，但如果没有，请使用完整的状态，例如濒临灭绝或极度濒危。
     description: 简单描述为什么列出这个。
-    authority: 宣布此状态的组织。如果*您*希望被列为权威，您可以跳过这条。
     place: 此状态受限制的地点。
     url: 描述此状态的页面的URL。
     geoprivacy: 用于此分类单元观察的默认位置隐私
@@ -2765,8 +2764,6 @@ zh-CN:
   stats: 统计
   stats_for_this_year_have_not_been_generated: 该年的统计尚未生成。
   status: 状态
-  status_globally: "%{status} 全球"
-  status_in_place: "%{status} 在 %{place}"
   stay_and_try_again: 停留并重试
   still_no_luck?: 仍然不高兴？
   still_needs_id?: 社群可以确认/改进ID么？
