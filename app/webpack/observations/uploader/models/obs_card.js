@@ -33,21 +33,21 @@ const ObsCard = class ObsCard {
 
   blank( ) {
     return (
-      _.isEmpty( this.files ) &&
-      _.isEmpty( this.tags ) &&
-      _.isEmpty( this.observation_field_values ) &&
-      _.isEmpty( this.projects ) &&
-      !this.description &&
-      !this.date &&
-      !this.taxon_id &&
-      !this.latitude &&
-      !this.species_guess
+      _.isEmpty( this.files )
+      && _.isEmpty( this.tags )
+      && _.isEmpty( this.observation_field_values )
+      && _.isEmpty( this.projects )
+      && !this.description
+      && !this.date
+      && !this.taxon_id
+      && !this.latitude
+      && !this.species_guess
     );
   }
 
   nonUploadedFiles( ) {
-    return _.filter( this.files, f =>
-      f.uploadState === "uploading" || f.uploadState === "pending" );
+    return _.filter( this.files,
+      f => f.uploadState === "uploading" || f.uploadState === "pending" );
   }
 
   uploadedFiles( ) {
@@ -60,20 +60,27 @@ const ObsCard = class ObsCard {
 
   momentDate( ) {
     let m;
-    if ( this.date &&
-         this.date.match( /\d{2}\/\d{2}\/\d{2}(\d{2})? \d{1,2}:\d{2} [AP]M [-+]\d{1,2}:\d{2}/ ) ) {
+    if (
+      this.date
+      && this.date.match( /\d{2}\/\d{2}\/\d{2}(\d{2})? \d{1,2}:\d{2} [AP]M [-+]\d{1,2}:\d{2}/ )
+    ) {
       const d = new Date( this.date );
       m = d && moment( d );
       if ( m && m.isValid( ) ) {
         return m;
       }
     }
-    return undefined;
+    return null;
   }
 
   visionParams( ) {
-    const firstThumbnail = _.first( _.compact(
-      _.map( _.sortBy( this.files, "sort" ), f => f.visionThumbnail ) ) );
+    const firstThumbnail = _.first(
+      _.compact(
+        _.map(
+          _.sortBy( this.files, "sort" ), f => f.visionThumbnail
+        )
+      )
+    );
     if ( !firstThumbnail ) { return null; }
     const params = { image: firstThumbnail };
     if ( this.latitude ) { params.lat = this.latitude; }
@@ -89,10 +96,12 @@ const ObsCard = class ObsCard {
     const newMetadata = { };
     const fileMetadata = Object.assign( { }, file.metadata, file.serverMetadata );
     _.each( fileMetadata, ( v, k ) => {
-      if ( _.isEmpty( this[k] ) &&
-          !_.isBoolean( this[k] ) &&
-          !_.isNumber( this[k] ) &&
-          !_.has( this.changedFields, k ) ) {
+      if (
+        _.isEmpty( this[k] )
+        && !_.isBoolean( this[k] )
+        && !_.isNumber( this[k] )
+        && !_.has( this.changedFields, k )
+      ) {
         newMetadata[k] = v;
       }
     } );
