@@ -532,7 +532,6 @@ id:
   conservation_status_descriptions:
     status: Kode status, peringkat, dll Jika kode pendek seperti E atau CR ada, silakan gunakan itu, tetapi jika tidak, silakan gunakan status penuh, misalnya terancam punah atau kritis.
     description: Deskripsi singkat tentang mengapa ini tercantum.
-    authority: Organisasi yang menyatakan status ini. Anda dapat melewatkan ini jika *Anda* ingin terdaftar sebagai otoritas.
     place: letakkan ke status yang dibatasi.
     url: URL untuk sebuah halaman yang menjelaskan status ini.
     geoprivacy: Default geo privasi untuk pengamatan takson ini
@@ -2093,8 +2092,6 @@ id:
   start_typing_taxon_name: Mulai ketik nama takson
   start_typing_someones_name: "Mulai ketik nama seseorang..."
   stats: Negara Bagian
-  status_globally: "%{status} secara global"
-  status_in_place: "%{status} dalam %{place}"
   still_no_luck?: masih belum beruntung?
   still_needs_id?: Komunitas dapat konfirmasi/meningkatkan ID?
   still_working_on_classifying_taxon: Masih bekerja pada mengklasifikasi takson ini. Periksa kembali nanti
