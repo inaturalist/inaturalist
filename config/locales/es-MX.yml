@@ -703,7 +703,6 @@ es-MX:
   conservation_status_descriptions:
     status: Estatus, clasificación, etc. Si existe una abreviatura corta como E o CR, por favor úsela, de lo contrario, usa el estatus completo, ej. En peligro de extinción.
     description: Descripción muy corta del porque esta en la lista.
-    authority: Es la organizacivn que declara el estatus. Puedes saltarte esta parte si deseas aparecer tu como la autoridad.
     place: Lugar en el cual el estatus esta restringido.
     url: URL que describa este estaus.
     geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
@@ -2976,8 +2975,6 @@ es-MX:
   stats: Estadísticas
   stats_for_this_year_have_not_been_generated: No se han generado las estadísticas de este año.
   status: Estatus
-  status_globally: "%{status} Globalmente"
-  status_in_place: "%{status} en %{place}"
   stay_and_try_again: Permanecer e intentar de nuevo
   still_no_luck?: '¿Sigues sin encontrarlo?'
   still_needs_id?: '¿La comunidad puede confirmar/mejorar la ID?'
