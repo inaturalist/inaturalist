@@ -951,7 +951,6 @@ cs:
   conservation_status_descriptions:
     status: Kód statusu, kategorie atd. Pokud existuje zkratka kódu, např. E nebo CR, použijte ji prosím, pokud však neexistuje, uveďte prosím celý status, např. ohrožený nebo kriticky ohrožený.
     description: Krátký popis důvodů uvedení v seznamu.
-    authority: Organizace, která tento status vyhlásila. Můžete přeskočit, pokud chcete být jako autorita uvedeni *vy*.
     place: Místo, na které je tento status omezen.
     url: URL stránky popisující tento status.
     geoprivacy: Standardně nastavené geosoukromí pro pozorování tohoto taxonu
@@ -3607,8 +3606,6 @@ cs:
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Statistika pro tento rok nebyla vygenerována.
   status: Stav
-  status_globally: "%{status} globálně"
-  status_in_place: "%{status} v %{place}"
   stay_and_try_again: Zůstat a zkusit znovu
   still_no_luck?: Pořád nic?
   still_needs_id?: Může komunita potvrdit/zlepšit identifikaci?
