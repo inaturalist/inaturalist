@@ -159,6 +159,7 @@ module DarwinCore
       end
 
       def identifiedById
+        return unless dwc_taxon
         taxon_id = dwc_taxon.id
         idents = identifications.select(&:current?).sort_by(&:id)
         first_improving = idents.detect{|i| i.taxon_id == taxon_id && i.category == Identification::IMPROVING }
