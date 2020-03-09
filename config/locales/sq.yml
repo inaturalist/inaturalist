@@ -613,7 +613,6 @@ sq:
   conservation_status_descriptions:
     status: Kodi i statusit, kategorisë etj. Nëse ekziston një kod i shkurtër si E apo CR, atëherë lirisht përdoreni; por nëse nuk ka, atëherë përdorni statusin e plotë, p.sh. e rrezikuar ose e tepër e rrezikuar (në masë kritike).
     description: Përshkrimi i shkurtër i arsyes se pse kjo u rendit.
-    authority: Organizata që deklaroi këtë status. Ju mund të kaloni këtë nëse *ju* dëshironi të listoheni si autoritet.
     place: Vendi ku ky status është i kufizuar.
     url: URL për një faqe që përshkruan këtë status.
     geoprivacy: Gjeo-lokacioni i paracaktuar për vëzhgimet e këtij taxon
@@ -2556,8 +2555,6 @@ sq:
   stats: Statistikat
   stats_for_this_year_have_not_been_generated: Statistikat për këtë vit nuk janë gjeneruar
   status: Statusi
-  status_globally: "%{status} Globalisht"
-  status_in_place: "%{status} në %{place}"
   stay_and_try_again: Rri dhe provo përsëri
   still_no_luck?: Ende pa fat?
   still_needs_id?: Komuniteti mund të konfirmojë/përmirësojë identitetin?
