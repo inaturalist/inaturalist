@@ -1,6 +1,6 @@
-# extend ActiveRecord::Base to add an attribute which can be used to change
+# Extend ActiveRecord::Base to add an attribute which can be used to change
 # how the model is serialized to YAML. This attribute is only meant to be set
-# during the enquing of delayed jobs. It will serialize only the primary key
+# during the enqueuing of delayed jobs. It will serialize only the primary key
 # to minimize the size of the delayed job handler attribute
 module ActiveRecord
   class Base
@@ -36,17 +36,19 @@ module Delayed
             payload_object.object && payload_object.object.is_a?(::ActiveRecord::Base) &&
             payload_object.respond_to?("dj_serialize_minimal=")
 
-          # enable minimal sereialization on the instancee
+          # enable minimal serialization on the instancee
           if is_ar_instance
             payload_object.object.dj_serialize_minimal = true
           end
           
-          enqueue_job(job_options)
+          job = enqueue_job(job_options)
           
-          # disable minimal sereialization on the instancee
+          # disable minimal serialization on the instancee
           if is_ar_instance
             payload_object.object.dj_serialize_minimal = nil
           end
+
+          job
         end
 
       end
