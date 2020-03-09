@@ -768,7 +768,6 @@ zh-TW:
   conservation_status_descriptions:
     status: 狀態代碼、級別、其它。如果存在像「E」、「CR」這類的短代碼，請使用它；如果沒有，請使用像「瀕危」、「極度瀕危」這類的完整狀態。
     description: 簡單描述為何這被列出。
-    authority: 宣佈此狀態的組織。若*您*想被列為權威可信，您可忽略此。
     place: 狀態被限制的地點。
     url: 描述此狀態的頁面 URL。
     geoprivacy: 用於此物種分類觀察的預設位置隱私
@@ -3373,8 +3372,6 @@ zh-TW:
   stats: 統計
   stats_for_this_year_have_not_been_generated: 今年份尚未產生的統計內容。
   status: 狀態
-  status_globally: "%{status} 全球"
-  status_in_place: "%{status}在%{place}"
   stay_and_try_again: 延遲並重試
   still_no_luck?: 仍然運氣糟嗎？
   still_needs_id?: 社群可以確認/改進鑑定嗎？
