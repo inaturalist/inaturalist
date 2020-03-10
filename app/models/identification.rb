@@ -27,18 +27,17 @@ class Identification < ActiveRecord::Base
   before_create :set_disagreement
   after_create :update_observation_if_test_env,
                :create_observation_review,
-               :update_obs_stats,
                :update_curator_identification,
                :update_quality_metrics
-  after_update :update_obs_stats,
-               :update_curator_identification,
+  after_update :update_curator_identification,
                :update_quality_metrics
 
   # Note: update_categories must run last, or at least after update_observation,
   # b/c it relies on the community taxon being up to date
   after_commit :update_categories,
-                 :update_observation,
-                 :update_user_counter_cache,
+               :update_obs_stats,
+               :update_observation,
+               :update_user_counter_cache,
                unless: Proc.new { |i| i.observation.destroyed? }
   
   # Rails 3.x runs after_commit callbacks in reverse order from after_destroy.
@@ -46,7 +45,7 @@ class Identification < ActiveRecord::Base
   # because of the unique index constraint on current, which will complain if
   # you try to set the last ID as current when this one hasn't really been
   # deleted yet, i.e. before the transaction is complete.
-  after_commit :update_obs_stats,
+  after_commit :update_obs_stats_after_destroy,
                  :update_observation_after_destroy,
                  :revisit_curator_identification, 
                  :set_last_identification_as_current,
@@ -294,6 +293,10 @@ class Identification < ActiveRecord::Base
     observation.update_stats(:include => self)
     true
   end
+
+  def update_obs_stats_after_destroy
+    update_obs_stats
+  end
   
   # Set the project_observation curator_identification_id if the
   # identifier is a curator of a project that the observation is submitted to
@@ -313,7 +316,7 @@ class Identification < ActiveRecord::Base
   def update_user_counter_cache
     return true unless self.user && self.observation
     return true if user.destroyed?
-    return if bulk_delete
+    return true if bulk_delete
     if self.user_id != self.observation.user_id
       User.delay(unique_hash: { "User::update_identifications_counter_cache": user_id }).
         update_identifications_counter_cache(user_id)
@@ -462,7 +465,7 @@ class Identification < ActiveRecord::Base
   end
 
   def update_categories
-    return if bulk_delete
+    return true if bulk_delete
     if skip_observation
       Identification.delay.update_categories_for_observation( observation_id )
     else
