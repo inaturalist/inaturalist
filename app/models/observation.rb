@@ -2316,7 +2316,7 @@ class Observation < ActiveRecord::Base
     results_remaining = true
     batch_start_id = 0
     while results_remaining
-      puts batch_start_id
+      # puts batch_start_id
       observations = Observation.page_of_results( search_params.merge( id_above: batch_start_id ) )
       if observations.blank? || observations.total_entries == 0
         results_remaining = false

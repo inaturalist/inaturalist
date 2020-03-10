@@ -2563,6 +2563,8 @@ describe Observation do
 
   describe "update_stats_for_observations_of" do
     elastic_models( Identification )
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     it "should work" do
       parent = Taxon.make!(rank: Taxon::GENUS)
