@@ -833,7 +833,6 @@ da:
   conservation_status_descriptions:
     status: Status kode, rang osv. Hvis der findes en kort kode som E eller CR, skal du bruge det, men hvis ikke, skal du bruge den fulde status, f.eks. truet eller kritisk truet.
     description: Kort beskrivelse af hvorfor denne blev opført.
-    authority: Organisation, der erklærede denne status. Du kan springe over dette, hvis * du * ønsker at blive opført som myndighed.
     place: Sted, hvor denne status er begrænset.
     url: URL for en side, der beskriver denne status.
     geoprivacy: Standard geofortrolighed for denne taksons observationer
@@ -3501,8 +3500,6 @@ da:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik for dette år er ikke blevet genereret.
   status: Status
-  status_globally: "%{status} Globalt"
-  status_in_place: "%{status} i %{place}"
   stay_and_try_again: Bliv og prøv igen
   still_no_luck?: Stadig ingen held?
   still_needs_id?: Fællesskabet kan bekræfte / forbedre id?

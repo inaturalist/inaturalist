@@ -101,7 +101,7 @@ fi:
     other: "<span class='count'>%{count}</span> taksonia havaittu"
   x_research_grade_observations_html:
     one: "<span class='count'>1</span> tutkimutason havainto"
-    other: "<span class='count'>%{count}</span> tutkimusasteen havaintoa</span>"
+    other: "<span class='count'>%{count}</span> tutkimustason havaintoa"
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> tutkimustason havainto tunnistettu lajin tasolle tai sitä tarkemmin"
     other: "<span class='count'>%{count}</span> tutkimustason havaintoa tunnistettu lajilleen tai sitä tarkemmin"
@@ -845,7 +845,6 @@ fi:
   conservation_status_descriptions:
     status: Esim. uhanlaisuusluokan koodi tai merkki. Jos käytettävissä on lyhyt määre, kuten E tai CR, käytä sitä, jos sellaista ei ole, kirjota koko merkitys, kuten erittäin uhanalainen tai äärimmäisen uhanalainen.
     description: Kirjoita lyhyt kuvaus luokitteluun johtaneista syistä.
-    authority: Organisaatio, joka on laatinut luokkitelun. Voit ohittaa tämän kohdan, jos *oma organisaatiosi* tulisi merkitä luokittelun vastuutahoksi.
     place: Paikka, johon tämä status on rajattu.
     url: URL-sivusto, jossa luokittelut on määritelty.
     geoprivacy: Sijainnin tietosuojan oletusarvo havainnoille tässä taksonissa.
@@ -3359,8 +3358,6 @@ fi:
   start_typing_someones_name: "Aloita näppäilemällä jonkun nimi..."
   stats: Tilastot
   status: Tila
-  status_globally: "%{status} maailmanlaajuisesti"
-  status_in_place: "%{status} paikassa %{place}"
   stay_and_try_again: Jää ja yritä uudelleen
   still_no_luck?: Vieläkään onnea?
   still_working_on_classifying_taxon: Taksonin luokittelu edelleen käynnissä. Tarkista myöhemmin

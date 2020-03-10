@@ -837,7 +837,6 @@ fr:
   conservation_status_descriptions:
     status: "Code de situation, classement, etc. Si un code court comme Disp. ou CR existe, veuillez\nl’utiliser. Sinon, inscrivez la situation quant à la conservation dans son intégralité, comme en voie de disparition\nou gravement menacée."
     description: Courte description de pourquoi l’espèce figure sur la liste.
-    authority: Organisation qui a déclaré la situation. Vous pouvez sauter cette étape si *vous* voulez être indiqué comme source.
     place: Lieu auquel la situation est limitée.
     url: URL d’une page décrivant la situation.
     geoprivacy: Géoconfidentialité par défaut pour les observations liées à ce taxon
@@ -3427,8 +3426,6 @@ fr:
   stats: Statistiques
   stats_for_this_year_have_not_been_generated: Les statistiques pour cette année n’ont pas été générées.
   status: État
-  status_globally: "%{status} globalement"
-  status_in_place: "%{status} dans %{place}"
   stay_and_try_again: Rester et réessayer
   still_no_luck?: Toujours pas de chance?
   still_needs_id?: La communauté peut-elle confirmer/améliorer une ID ?

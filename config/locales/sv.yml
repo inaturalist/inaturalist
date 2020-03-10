@@ -843,7 +843,6 @@ sv:
   conservation_status_descriptions:
     status: Statuskod, rang, etc. Om en kortkod som E eller CR finns, använd den, men om inte, använd den fullständiga statusen, t.ex. starkt hotad eller akut hotad.
     description: Kort beskrivning av varför detta är på listan.
-    authority: Organisation som fastställt denna status. Du kan hoppa över detta om *du* vill anges som auktoriteten.
     place: Plats som denna status är begränsad till.
     url: URL till en sida som beskriver denna status.
     geoprivacy: Standard geosekretess för observationer av detta taxon
@@ -3555,8 +3554,6 @@ sv:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik för detta år har ännu inte genererats.
   status: Status
-  status_globally: "%{status} Globalt"
-  status_in_place: "%{status} i %{place}"
   stay_and_try_again: Stanna kvar och försök igen
   still_no_luck?: Funkar fortfarande inte?
   still_needs_id?: Kan gemenskapen bekräfta/förbättra bestämningen?

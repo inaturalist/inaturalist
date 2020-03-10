@@ -846,7 +846,6 @@ nl:
   conservation_status_descriptions:
     status: Statuscode, rang, enz. Als er een korte code zoals E of CR bestaat, gebruik die dan, maar zo niet, gebruik dan de volledige status, bv. "bedreigd" of "ernstig bedreigd".
     description: Korte beschrijving van de reden waarom dit in een lijst is opgenomen.
-    authority: Organisatie die deze status aangeeft. Je kan dit overslaan als *jij* wil worden genoemd als de autoriteit.
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
@@ -3506,8 +3505,6 @@ nl:
   stats: Statistieken
   stats_for_this_year_have_not_been_generated: Statistieken voor dit jaar zijn niet gegenereerd.
   status: Status
-  status_globally: "Wereldwijd %{status}"
-  status_in_place: "%{status} in %{place}"
   stay_and_try_again: Blijf en probeer het opnieuw
   still_no_luck?: Nog steeds geen geluk?
   still_needs_id?: Kan gemeenschap ID bevestigen/verbeteren?

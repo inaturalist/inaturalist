@@ -839,7 +839,6 @@ tr:
   conservation_status_descriptions:
     status: Durum kodu, sıra, vb. E ya da CR gibi kısa bir kod varsa, lütfen bunu kullanın ancak yoksa, lütfen tam durumu kullanın örn. tehlikede ya da kritik tehlikede.
     description: Bunun neden listelendiğinin kısa açıklaması.
-    authority: Bu durumu ilan eden kuruluş. Yetkili olarak listelenmek *istiyorsanız* bunu atlayabilirsiniz.
     place: Bu durumun kısıtlandığı yer.
     url: Bu durumu açıklayan bir sayfanın URL'si.
     geoprivacy: Bu sınıfın gözlemleri için varsayılan coğrafi gizlilik
@@ -3466,8 +3465,6 @@ tr:
   stats: İstatistikler
   stats_for_this_year_have_not_been_generated: Bu yıl için istatistikler oluşturulamadı.
   status: Durum
-  status_globally: "%{status} Küresel"
-  status_in_place: "%{place} içindeki %{status}"
   stay_and_try_again: Bekle ve yeniden dene
   still_no_luck?: Hala şans yok mu?
   still_needs_id?: Topluluk tanımlamayı doğrulayabilir/geliştirebilir mi?

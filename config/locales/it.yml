@@ -831,7 +831,8 @@ it:
   conservation_status_descriptions:
     status: Il codice dello stato, del rango, etc. Se esiste un codice breve come E o CR, si consiglia di utilizzarlo, ma se non è disponibile, è meglio utilizzare il nome per esteso, ad esempio, in pericolo o in via di estinzione.
     description: Breve descrizione del motivo per cui è stato elencato.
-    authority: Organizzazione che ha dichiarato questo stato conservazionistico. Puoi saltare questo passaggio se *tu* vuoi essere elencato come l'ente di controllo.
+    authority: |
+      Organizzazione che ha dichiarato questo stato conservazionistico. Per favore usa la funzione di autocompletamento per scegliere un'autorità già esistente prima di aggiungerne una nuova. Puoi saltare questo passaggio se *tu* vuoi essere elencato come l'ente di controllo.
     place: Luogo al quale si riferisce questo stato conservazionistico.
     url: URL di una pagina che descrive questo stato conservazionistico.
     geoprivacy: Geoprivacy predefinita per le osservazioni di questo taxon
@@ -3461,8 +3462,8 @@ it:
   stats: Statistiche
   stats_for_this_year_have_not_been_generated: Le statistiche per quest'anno non sono state generate.
   status: Stato
-  status_globally: "%{status} a livello Globale"
-  status_in_place: "%{status} in %{place}"
+  status_globally: '"%{status}" a livello Globale'
+  status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Rimani e prova ancora
   still_no_luck?: Ancora sfortunato?
   still_needs_id?: La comunità può confermare/migliorare l'ID?
