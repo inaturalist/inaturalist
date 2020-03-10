@@ -183,4 +183,26 @@ class ProjectUser < ActiveRecord::Base
       end
     end
   end
+
+  # This will remove all duplicates by grouping on project_id and user_id.
+  # Probably only useful when it gets used by User.merge, otherwise probably
+  # rather dangerous
+  def self.merge_duplicates( options = {} )
+    debug = options.delete(:debug)
+    where = options.map{|k,v| "#{k} = #{v}"}.join(" AND ") unless options.blank?
+    sql = <<-SQL
+      SELECT project_id, user_id, array_agg(id) AS ids, count(*)
+      FROM project_users
+      #{"WHERE #{where}" if where}
+      GROUP BY project_id, user_id HAVING count(*) > 1
+    SQL
+    puts "Finding project_users WHERE #{where}" if debug
+    connection.execute( sql.gsub(/\s+/, " " ).strip ).each do |row|
+      to_merge_ids = row["ids"].to_s.gsub( /[\{\}]/, "" ).split( "," ).sort
+      pu = ProjectUser.find_by_id( to_merge_ids.first )
+      puts "pu: #{pu}, merging #{to_merge_ids}" if debug
+      rejects = ProjectUser.where( id: to_merge_ids[1..-1] )
+      rejects.destroy_all
+    end
+  end
 end

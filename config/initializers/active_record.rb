@@ -1,7 +1,7 @@
 module ActiveRecord
   class Base
     # Move has many associates from a reject to the current record.  Note this 
-    # uses update_all, so you need to deal with integreity issues yourself, or 
+    # uses update_all, so you need to deal with integrity issues yourself, or 
     # in a Class.merge_duplicates method
     def merge_has_many_associations(reject)
       has_many_reflections = self.class.reflections.select{|k,v| v.macro == :has_many}

@@ -858,6 +858,16 @@ describe User do
       # puts jobs.map(&:handler).inspect
       expect(jobs.select{|j| j.handler =~ /User.*\:merge_cleanup/m}).not_to be_blank
     end
+
+    it "should not result in duplicate project users" do
+      project = Project.make!
+      keeper_pu = ProjectUser.make!( project: project, user: keeper )
+      reject_pu = ProjectUser.make!( project: project, user: reject )
+      expect( keeper.project_users.count ).to eq 1
+      keeper.merge( reject )
+      keeper.reload
+      expect( keeper.project_users.count ).to eq 1
+    end
   end
 
   describe "suggest_login" do
