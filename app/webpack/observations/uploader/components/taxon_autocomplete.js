@@ -284,7 +284,7 @@ class TaxonAutocomplete extends React.Component {
       if ( visionParams.image ) {
         inaturalistjs.computervision.score_image( visionParams ).then( r => {
           this.cachedVisionResponse = r;
-          this.returnVisionResults( r, callback );
+          TaxonAutocomplete.returnVisionResults( r, callback );
         } ).catch( e => {
           console.log( ["Error fetching vision response for photo", e] );
         } );
@@ -295,7 +295,7 @@ class TaxonAutocomplete extends React.Component {
         inaturalistjs.computervision.score_observation( params ).then( r => {
           this.cachedVisionResponse = r;
           this.fetchingVision = false;
-          this.returnVisionResults( r, callback );
+          TaxonAutocomplete.returnVisionResults( r, callback );
         } ).catch( e => {
           console.log( ["Error fetching vision response for observation", e] );
         } );
