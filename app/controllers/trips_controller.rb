@@ -111,7 +111,7 @@ class TripsController < ApplicationController
         if @trip.radius.blank? || @trip.radius == 0
           @trip_obsevations = Observation.where("1 = 2")
         else
-          obs = INatAPIService.observations( {
+          observations = INatAPIService.observations( {
             taxon_is_active: true,
             lat: @trip.latitude,
             lng: @trip.longitude,
@@ -121,15 +121,15 @@ class TripsController < ApplicationController
             user_id: @trip.user_id,
             per_page: 200
           } ).results
-          @trip_obsevations = Observation.where( id: obs.map{ |a| a["id"] } )
+          @trip_obsevations = Observation.where( id: observations.map{ |a| a["id"] } )
         end
         @target_list_set = []
         @target_list_taxa.each do |tlt|
-          if o = obs.select{ |o| o["taxon"]["ancestor_ids"].include? tlt.id }[0..8]
-            @target_list_set << { taxon: tlt, observations: o }
-          else
-            @target_list_set << { taxon: tlt, observations: [] }
+          tlt_observations = if observations
+            observations.select{ |o| o["taxon"]["ancestor_ids"].include? tlt.id }[0..8]
           end
+          tlt_observations ||= []
+          @target_list_set << { taxon: tlt, observations: tlt_observations }
         end
       end
       format.json do
