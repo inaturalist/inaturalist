@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
   #   c.parent.respond_to?(:user) && c.parent.user.id != user.id
   # }
 
-  belongs_to :parent, polymorphic: true
+  belongs_to_with_uuid :parent, polymorphic: true
   belongs_to :user
 
   validates_length_of :body, within: 1..5000

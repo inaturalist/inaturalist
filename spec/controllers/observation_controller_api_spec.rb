@@ -270,6 +270,12 @@ shared_examples_for "an ObservationsController" do
       post :create, format: :json, observation: { latitude: 0, longitude: 0 }
       expect( response.status ).to eq 422
     end
+
+    it "should assign a taxon by UUID" do
+      t = Taxon.make!
+      post :create, format: :json, observation: { taxon_id: t.uuid }
+      expect( user.observations.last.taxon ).to eq t
+    end
   end
 
   describe "destroy" do

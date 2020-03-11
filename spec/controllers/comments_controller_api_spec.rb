@@ -23,6 +23,16 @@ shared_examples_for "a CommentsController" do
       }
       expect(response.status).to eq 422
     end
+
+    it "should assign an observation as a parent by UUID" do
+      post :create, format: :json, comment: {
+        parent_type: "Observation",
+        parent_id: observation.uuid,
+        body: "polymorphism ruins everything"
+      }
+      observation.reload
+      expect( observation.comments.size ).to eq 1
+    end
   end
 
   describe "update" do
@@ -67,10 +77,5 @@ describe CommentsController, "oauth authentication" do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
   end
-  it_behaves_like "a CommentsController"
-end
-
-describe CommentsController, "devise authentication" do
-  before { http_login(user) }
   it_behaves_like "a CommentsController"
 end

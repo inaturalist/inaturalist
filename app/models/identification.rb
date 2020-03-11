@@ -7,9 +7,9 @@ class Identification < ActiveRecord::Base
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
   has_moderator_actions
-  belongs_to :observation
+  belongs_to_with_uuid :observation
   belongs_to :user
-  belongs_to :taxon
+  belongs_to_with_uuid :taxon
   belongs_to :taxon_change
   belongs_to :previous_observation_taxon, class_name: "Taxon"
   has_many :project_observations, :foreign_key => :curator_identification_id, :dependent => :nullify

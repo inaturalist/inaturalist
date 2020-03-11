@@ -260,7 +260,7 @@ class Observation < ActiveRecord::Base
   preference :community_taxon, :boolean, :default => nil
   
   belongs_to :user
-  belongs_to :taxon
+  belongs_to_with_uuid :taxon
   belongs_to :community_taxon, :class_name => 'Taxon'
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'

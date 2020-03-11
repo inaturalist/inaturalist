@@ -114,6 +114,26 @@ shared_examples_for "an IdentificationsController" do
       ident = Identification.find( json["id"] )
       expect( ident.vision ).to be true
     end
+
+    it "should assign a taxon by UUID" do
+      t = Taxon.make!
+      post :create, format: :json, identification: {
+        taxon_id: t.uuid,
+        observation_id: observation.id
+      }
+      expect( response ).to be_success
+      expect( user.identifications.last.taxon ).to eq t
+    end
+
+    it "should assign an observation by UUID" do
+      t = Taxon.make!
+      post :create, format: :json, identification: {
+        taxon_id: t.id,
+        observation_id: observation.uuid
+      }
+      expect( response ).to be_success
+      expect( user.identifications.last.observation ).to eq observation
+    end
   end
 
   describe "update" do
