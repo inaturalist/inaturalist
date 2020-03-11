@@ -737,18 +737,23 @@ class Project < ActiveRecord::Base
     
     project_curators = project.project_users.where(role: [ ProjectUser::MANAGER, ProjectUser::CURATOR ])
     project_curator_user_ids = project_curators.map{|pu| pu.user_id}
-    
-    project.project_observations.where(find_options[:conditions]).joins(find_options[:include]).each do |po|
-      curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
-      po.update_attributes(curator_identification: curator_ident)
-      ProjectUser.delay(priority: INTEGRITY_PRIORITY,
-        unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
-          [ project_id, po.observation.user_id ] }
-      ).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
-      ProjectUser.delay(priority: INTEGRITY_PRIORITY,
-        unique_hash: { "ProjectUser::update_taxa_counter_cache_from_project_and_user":
-          [ project_id, po.observation.user_id ] }
-      ).update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+
+    project.project_observations.where(find_options[:conditions]).joins(find_options[:include]).find_in_batches do |batch|
+      Identification.preload_associations( batch, { observation: :identifications } )
+      Observation.preload_for_elastic_index( batch.map( &:observation ) )
+      Observation.prepare_batch_for_index( batch.map( &:observation ) )
+      batch.each do |po|
+        curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
+        po.update_attributes(curator_identification: curator_ident)
+        ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
+            [ project_id, po.observation.user_id ] }
+        ).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+        ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "ProjectUser::update_taxa_counter_cache_from_project_and_user":
+            [ project_id, po.observation.user_id ] }
+        ).update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      end
     end
   end
   
