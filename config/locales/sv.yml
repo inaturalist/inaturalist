@@ -2544,6 +2544,10 @@ sv:
   people_following_user: "Personer som följer %{user}"
   people_user_follows: "Personer %{user} följer"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: lade till en <a href="%{observation_url}">observation</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
