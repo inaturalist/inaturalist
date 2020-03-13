@@ -3257,7 +3257,7 @@ de:
   thats_not_a_real_date: Das ist kein echtes Datum!
   the_below_items_are_needed_to_achieve: |
     Die folgenden Punkte werden benötigt, um <span className="bold">Forschungsqualität</span> zu erreichen:
-  the_community_id_requires_at_least_two_identifications: Die Community-ID erfordert mindestens zwei Identifikationen.
+  the_community_id_requires_at_least_two_identifications: Die Community-ID erfordert mindestens zwei Bestimmungen.
   the_community_must_feel_that: |
     Die Gemeinschaft muss der Ansicht sein, dass das Community-Taxon das bestmögliche anhand der Belege Erreichbare ist.
   the_following_observations_could: "Die folgenden Beobachtungen konnten nicht zu %{link} hinzugefügt werden"
@@ -3277,7 +3277,7 @@ de:
   there_merge_problems_with_the_merge: "Es gab Probleme mit der Zusammenführung: %{merged_errors}"
   there_was_a_problem_creating_this_account: |
     Es trat ein Problem beim Erstellen dieses Kontos auf. Bitte kontaktiere uns, wenn dieses Problem weiterhin besteht
-  there_was_a_problem_saving_your_identification: "Es gab ein Problem beim Speichern Deiner Identifikation: %{error}"
+  there_was_a_problem_saving_your_identification: "Es gab ein Problem beim Speichern Deiner Bestimmung: %{error}"
   there_were_problems_adding_taxa: "Es gab Probleme beim Hinzufügen dieser Taxa: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Es gab Probleme beim Hinzufügen dieser Beobachtung zu diesem Projekt:"
   there_were_problems_importing_that_place: "Problem bei Importieren vom Ort: %{place_error}"
@@ -3328,7 +3328,7 @@ de:
   to_add_comments: um Kommentare hinzuzufügen
   to_add_ids: um Kennungen hinzuzufügen
   to_recipient: an
-  to_suggest_an_identification: eine Identifikation vorschlagen
+  to_suggest_an_identification: eine Bestimmung vorschlagen
   today: Heute
   too_many_results: Zu viele Ergebnisse
   tools: Werkzeuge
@@ -3432,7 +3432,7 @@ de:
   user_added_a_x: "%{user}: %{x} hinzugefügt"
   user_added_a_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
   user_added_a_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
-  user_added_an_identification_html: "%{user} hat eine Identifikation hinzugefügt"
+  user_added_an_identification_html: "%{user} hat eine Bestimmung hinzugefügt"
   user_added_an_observation_field_html: '%{user} hat einen Wert für %{field_name} zu einer Beobachtung von %{owner} hinzugefügt'
   user_added_an_observation_field_value_html: "%{user} hat einen Beobachtungsfeldwert hinzugefügt"
   user_added_an_observation_html: "%{user} hat eine Beobachtung hinzugefügt"
@@ -3868,7 +3868,7 @@ de:
         cumulative_count: Gesamtanzahl
         disagreement: Unstimmigkeit
         disagreement_count: Unstimmigkeit Anzahl
-        identification_count: Bestimmung Anzahl
+        identification_count: Anzahl an Bestimmungen
         score: Punktzahl
         explanation: |
           <p>
@@ -3945,7 +3945,7 @@ de:
           </p>
         data_quality_assessment_desc_html: |
           Die Bewertung der Datenqualität ist eine Beurteilung der Genauigkeit einer Beobachtung. Beobachtungen mit Forschungsqualität können von Wissenschaftlern für die Forschung genutzt werden. Gib deine Beurteilung unten ab:
-        identification_count_desc: '# von Bestimmungen einer individuellen Art'
+        identification_count_desc: '# an Bestimmungen einer bestimmten Art'
         flagged_photos_desc_html: |
           Einige dieser Bilder wurden wegen unangemessener Inhalte oder Urheberrechtsverletzungen gemeldet. Für Details siehe %{links}
         quality_assessment_help_html: |
@@ -4223,7 +4223,7 @@ de:
         obs_cid_d_to_genus_desc: In den letzten 7 Tagen erstellt, mit Community-ID auf Gattungsebene oder darunter
         obs_id_d_desc: In den letzten 7 Tagen erstellt, mit ID (auch vom Beobachter)
         recent_w_7_obs_desc: In den letzten 7 Tagen registriert und mindestens 7 Beobachtungen hinzugefügt
-        time_to_id_desc: Zeit bis Bestimmung (Stunden, 1 Woche gleitender Wert)
+        time_to_id_desc: Zeitdauer bis zur Bestimmung (in Stunden, 1 Woche gleitender Wert)
         TTCID: TTCID
         TTID: TTID
       year:
