@@ -221,7 +221,7 @@ de:
   add_higher_level_taxon: Höheren Taxonrang (z.B. „Vögel“) hinzufügen
   add_id: ID hinzufügen
   add_new_lexicon: Neues Lexikon hinzufügen
-  add_new_photos_by_their_ids: Neue Fotos durch deine Flickr-Kennung hinzufügen (muss Creative-Commons-Lizenz sein!)
+  add_new_photos_by_their_ids: Neue Fotos durch die Flickr-IDs hinzufügen (muss Creative-Commons-Lizenz sein!)
   add_new_place: Neuen Ort hinzufügen
   add_new_rule: Neue Regel hinzufügen
   add_new_source: "Neue Quelle hinzufügen …"
@@ -229,14 +229,14 @@ de:
   add_notes_about_this_taxon: Füge Anmerkungen über dieses Taxon an diesem Ort hinzu, z.B. wo und wann es erscheint.
   add_obs_from_a_link: "Beobachtungen aus Liste %{link} hinzufügen"
   add_obs_from_a_list: Beobachtungen aus einer Liste hinzufügen
-  add_observations: Beobachtungen hinzufügen
-  add_observations_by_checking_off: Beobachtungen aus einer Arten-Checkliste hinzufügen
+  add_observations: Beobachtung(en) hinzufügen
+  add_observations_by_checking_off: Füge Beobachtungen durch das Auswählen von Arten aus einer Liste hinzu.
   add_observations_project: Beobachtungen zu diesem Projekt hinzufügen
   #Prompt to add a new journal post
   add_one: Einen hinzufügen!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
-  add_one_now: Jetzt einen hinzufügen
+  add_one_now: Jetzt hinzufügen
   add_photos: Fotos hinzufügen
   add_place: Ort hinzufügen
   add_alive_or_dead_alive_annotation: 'Annotation "lebendig oder tot: lebendig" hinzufügen'
@@ -266,7 +266,7 @@ de:
   add_tags: Tags hinzufügen
   add_tags_to_selected_taxa: Tags zu ausgewählten Taxa hinzufügen
   add_taxa: Taxa hinzufügen
-  add_taxon_batch_to: "Taxon-Bündel zu %{list} hinzufügen"
+  add_taxon_batch_to: "Taxon-Batch zu %{list} hinzufügen"
   add_taxon_range: Taxonbereich hinzufügen
   add_taxonomic_tags_to: "Taxonomie-Tags zu ausgewählten Flickr-Bildern hinzufügen &raquo;"
   add_to_a_scheme: Zu einem Schema hinzufügen
@@ -411,7 +411,7 @@ de:
   all_taxa_: Alle Taxa
   all_taxa_in_this_guide: Alle Taxa in diesem Guide
   all_taxonomic_groups: "&laquo; Alle taxonomischen Gruppen"
-  all_updates: Alle Neuigkeiten
+  all_updates: Alle Aktualisierungen
   all_your_observations_will_default_this_time_zone: Alle deine Beobachtungen werden dieser Zeitzone zugeordnet, sofern du nichts anderes angibst.
   all_your_observations_will_default_to_this_time_zone: Alle deine Beobachtungen werden dieser Zeitzone zugeordnet, sofern du nichts anderes angibst.
   #Option to allow any taxa on a list
@@ -548,9 +548,9 @@ de:
   back_to_your_projects: Zurück zu deinen Projekten
   based_on_the_evidence_can_id_be_improved: |
     Kann die Community-ID mithilfe der vorhandenen Belege bestätigt oder weiter verbessert werden?
-  batch: Bündel
+  batch: Batch
   batch_edit: Stapelbearbeitung
-  batch_edit_taxa_for_x_html: "Taxa als Bündel bearbeiten für %{x}"
+  batch_edit_taxa_for_x_html: "mehrere Taxa für %{x} auf einmal bearbeiten"
   batch_operations: Stapeloperationen
   be_the_first_to_fave_this_observation: Sei der erste, der diese Beobachtung favorisiert!
   because_of: wegen
@@ -587,7 +587,7 @@ de:
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalender zeigen nur %{x} Beobachtungen auf einmal
   cancel: Abbrechen
-  cant_edit_or_delete_hidden_content: Du kannst keine Inhalte bearbeiten oder löschen die von Kuratoren versteckt wurden
+  cant_edit_or_delete_hidden_content: Du kannst keine Inhalte bearbeiten oder löschen, die von Kuratoren versteckt wurden
   cant_flag_an_object_that_doesnt_exist: Nicht vorhandenes Objekt kann nicht gemeldet werden.
   cant_merge_a_taxon_with_itself: Kann kein Taxon mit sich selbst zusammenführen.
   captive: in Gefangenschaft
@@ -703,7 +703,7 @@ de:
   code: Schlüssel
   colors: Farben
   columns: Spalten
-  combine: Kombinieren
+  combine: Zusammenfügen
   comma_separated_list_of_tracking_codes: |
     Komma-getrennte Liste von Nachverfolgungsschlüsseln. Fügen Sie dies hinzu, wenn Sie einen Nachverfolgungsschlüssel anhängen möchten während Sie Benutzer auf das Neue-Beobachtung-Formular weiterleiten, z.B. %{root_url}observations/new?project_id=%{project_id}&tracking_code=IhrSchluessel123.
     Sie können damit Beteiligungen von verschiedenen Quellen nachverfolgen. Sie können auf diese Schlüssel zugreifen, in dem Sie die Beobachtungen Ihres Projektes als CSV-Datei herunterladen.
@@ -971,7 +971,7 @@ de:
   description_tags_more: "Beschreibung, Markierungen &amp; Mehr"
   desription: Beschreibung
   destroy: Zerstören
-  details: Einzelheiten
+  details: Details
   deviation: Abweichung
   devise:
     failure:
@@ -1016,7 +1016,7 @@ de:
   draft_: Entwurf
   draft_saved: Entwurf gespeichert!
   drafts: Entwürfe
-  drag_and_drop_some_photos_or_sounds: Drag & Drop einige Bilder oder Audio-Dateien
+  drag_and_drop_some_photos_or_sounds: durch Drag & Drop Bilder oder Audio-Dateien hinzufügen
   drawings: Zeichnungen
   duplicate_verb: Duplizieren
   duration_value: "Dauer: %{duration} Minuten"
@@ -1287,7 +1287,7 @@ de:
   going_to_your_observations: Gehe zu Deinen Beobachtungen...
   good_choice_for_sharing: Gute Auswahl zum teilen mit Wissenschaftler
   google: Google
-  got_it!: Verstanden!
+  got_it!: Alles klar!
   got_your_data_somewhere_else?: Haben Sie Ihre Daten irgendwo anders?  Wir können helfen.
   grid: Gitter
   grid_layout: Gitter-Layout
@@ -1353,7 +1353,7 @@ de:
       improving: |
         Erster Vorschlag dieses Taxons, dem die Community anschließend zustimmte. Dies half dabei, das Community-Taxon zu verfeinern.
   id_withdrawn: ID zurückgezogen
-  ids_by_taxon: Kennungen nach Taxon
+  ids_by_taxon: IDs nach Taxon
   identify: Identifizieren
   identify_observations: "Beobachtungen bestimmen"
   identify_observations_by_these_users: Identifiziere Beobachtungen dieser Benutzer
@@ -1826,7 +1826,7 @@ de:
   nearby_observations_: Beobachtungen in der Umgebung
   needs_id: benötigt ID
   needs_id_: benötigt ID
-  needs_id_expandable_html: "<span class='full'>Benötigt</span> Kennung"
+  needs_id_expandable_html: "<span class='full'>Benötigt</span> ID"
   needs_to_be_identified: Muss bestimmt werden
   new_and_noteworthy: Neu & Nennenswert
   new_announcement: Neue Ankündigungen
@@ -1868,7 +1868,7 @@ de:
   newly_added_species: Kürzlich hinzugefügte Arten
   newly_observed_species: Kürzlich beobachtete Arten
   newly_observed_species_in_year: "Neu hinzugefügte Arten in %{year}"
-  news: Neuigkeiten
+  news: News
   next: Weiter
   next_observation: Nächste Beobachtung
   next_page: Nächste Seite
@@ -1910,7 +1910,7 @@ de:
   no_more_taxa_to_load: Keine Taxa mehr zu laden!
   no_more_results_found: Keine weiteren Ergebnisse gefunden
   no_new_messages: Keine neuen Nachrichten
-  no_news_yet: Noch keine Neuigkeiten
+  no_news_yet: Noch keine News
   no_observations: keine Beobachtungen
   no_observations_from_this_place_yet: Noch keine Beobachtungen von diesem Ort.
   no_observations_matching_those_ids: Keine Beobachtungen, die zu diesen IDs passen.
@@ -1999,7 +1999,7 @@ de:
   observation_date: Datum
   observation_date?: Datum?
   observation_field: Beobachtungsfeld
-  observation_field_details: Einzelheiten zum Beobachtungsfeld
+  observation_field_details: Details zum Beobachtungsfeld
   observation_field_type_text: Text
   observation_field_type_numeric: Numerisch
   observation_field_type_date: Datum
@@ -2105,15 +2105,15 @@ de:
     comments_panel_title: Neugierig welche Diskussionen auf %{site_name} stattfinden?
     comments_panel_body: "<p>Auf %{site_name} dreht sich alles um das Teilen und Diskutieren von Beobachtungen von lebenden Organismen. Unten sind Diskussionen, die jetzt gerade stattfinden. (Hinweis: Du abonnierst automatisch alle Diskussionen, zu denen du Kommentare oder Bestimmungen beisteuerst. Diese Updates können im Abschnitt \"Abonnements\" rechts verwaltet werden</p>"
     updates_by_you_panel_title: Mit diesem Tab lassen sich schnell Aktualisierungen nur zu Deinen Inhalten herausfiltern.
-    updates_by_you_panel_body: Merke, im Reiter "Alle Updates" erhältst du nicht nur Updates zu deinen eigenen Inhalten, sondern auch zu den Inhalten von Personen, denen du folgst, und zu den Taxa oder Orten, die du über das Abonnementwerkzeug auf der rechten Seite abonniert hast.
-    youve_got_updates_panel_title: Du hast Neuigkeiten!
+    updates_by_you_panel_body: Merke, im Reiter "Alle Aktualisierungen" erhältst du nicht nur Updates zu deinen eigenen Inhalten, sondern auch zu den Inhalten von Personen, denen du folgst, und zu den Taxa oder Orten, die du über das Abonnementwerkzeug auf der rechten Seite abonniert hast.
+    youve_got_updates_panel_title: Es gibt Aktualisierungen für dich!
     youve_got_updates_panel_body_p1: Bleib auf dem Laufenden mit Updates zu den folgenden Punkten....
     youve_got_updates_panel_body_p2: |
       <ul>
-      <li><strong>Dein Inhalt:</strong> Aktivität deiner Beobachtungen wie Kommentare, Identifikationen oder Favoriten der %{site_name}-Community. Du wirst auch Updates erhalten, wenn jemand deine Beobachtung zu einem Projekt hinzufügt oder sie mit zusätzlichen Feldern annotiert.</li>
+      <li><strong>Deine Inhalte:</strong> Aktivität deiner Beobachtungen wie Kommentare, Identifikationen oder Favoriten der %{site_name}-Community. Du wirst auch Updates erhalten, wenn jemand deine Beobachtung zu einem Projekt hinzufügt oder sie mit zusätzlichen Beobachtungsfeldern versieht.</li>
       <li><strong>Personen:</strong> Neue Beobachtungen oder Journalbeiträge von den Personen, denen du folgst.</li>
-      <li><strong>Organismen, Projekte & Orte:</strong> Neue Beobachtungen von bestimmten Organismen oder Orten, die du abonniert hast. Du kannst auch Projekten beitreten, so dass du benachrichtigt wirst, wenn Projektjournalbeiträge veröffentlicht werden.</li>
-      <li><strong>Diskussionen, an denen du teilgenommen hast:</strong> Das Kommentieren oder Hinzufügen von Identifikationen zum Inhalt eines anderen hat zur Folge, dass du automatisch über jede neue Aktivität zu diesem Inhalt benachrichtigt wirst. Benutze das Tool'Abonnements verwalten', um keine Updates mehr zu erhalten.</li>
+      <li><strong>Taxa, Projekte & Orte:</strong> Neue Beobachtungen von bestimmten Taxa oder Orten, die du abonniert hast. Du kannst auch Projekten beitreten, so dass du benachrichtigt wirst, wenn Projektjournalbeiträge veröffentlicht werden.</li>
+      <li><strong>Diskussionen, an denen du teilgenommen hast:</strong> Das Kommentieren oder Hinzufügen von Bestimmungen zum Inhalt eines anderen Beutzers hat zur Folge, dass du automatisch über jede neue Aktivität zu diesem Inhalt benachrichtigt wirst. Benutze die Schaltfläche 'Abonnements verwalten', um keine Updates mehr zu erhalten.</li>
       </ul>
   one_by_one: "einer nach dem anderen"
   one_of_your_lists: "eine deiner Listen..."
@@ -2238,7 +2238,8 @@ de:
     <a href='%{privacy_url}' target='_blank'>Datenschutzrichtlinie</a>
     und unsere <a href='%{terms_url}' target='_blank'>Geschäftsbedingungen</a>.
   pi_consent_label: |
-    Ich bin damit einverstanden, dass iNaturalist begrenzte Arten von Inhalten speichert und verarbeitet persönliche Informationen über mich, um mein Konto zu verwalten
+    Ich stimme zu, dass iNaturalist begrenzte Arten von
+    persönlichen Daten über mich speichern und verarbeiten darf, um mein Konto zu verwalten
   pi_consent_child_label: |
     Ich bin damit einverstanden, dass iNaturalist bestimmte personenbezogene Daten über mein Kind speichert und verarbeitet, um das Konto meines Kindes verwalten zu können.
   pin_verb: Anpinnen
@@ -2686,7 +2687,7 @@ de:
   project_assessments: Projektbewertungen
   project_cover: Projektcover
   project_created_on: hat dieses Projekt am %{date} erstellt
-  project_curator_id: Projektkurator-Kennung
+  project_curator_id: Projekt-Kurator-ID
   project_curator_tools: Projektkurator-Werkzeuge
   project_curators: Projekt Kuratoren
   project_group_label: Gruppe
@@ -2938,8 +2939,8 @@ de:
   search: Suchen
   search_all_fields: Alle Felder suchen
   search_by_name_or_email: Nach Namen oder E-Mail suchen
-  search_by_taxon_name_or_observation_id: Nach Taxonnamen oder Beobachtungskennung suchen
-  search_by_taxon_name_or_flickr_photo_id: Nach Taxonnamen oder Flickr-Fotokennung suchen
+  search_by_taxon_name_or_observation_id: Nach Taxonnamen oder Beobachtungs-ID suchen
+  search_by_taxon_name_or_flickr_photo_id: Nach Taxonnamen oder Flickr Foto-ID suchen
   search_catalogue_of_life: 'Durchsuche <a href="http://www.catalogueoflife.org">Catalogue of Life</a>'
   search_catalogue_of_life_raquo: "Durchsuche Catalogue of Life &raquo;"
   search_external_name_providers: Durchsuchen von externen Namensprovidern
@@ -3001,7 +3002,7 @@ de:
   show_active_and_inactive_taxa: Aktive und inaktive Taxa anzeigen
   show_common_names: Umgangssprachliche Namen anzeigen
   show_default_taxon_photos: Standard-Taxon-Fotos anzeigen
-  show_hidden_content: Versteckte Inhalte anzeigen
+  show_hidden_content: Ausgeblendeten Inhalt anzeigen
   show_keyboard_shortcuts: Tastaturkürzel anzeigen
   show_less: Weniger anzeigen
   show_more: Mehr anzeigen
@@ -3201,8 +3202,8 @@ de:
   taxon_deleted: Taxon gelöscht.
   taxon_doesnt_have_a_range: Das Taxon hat keinen Bereich
   taxon_drop: Taxon-Löschung
-  taxon_id: Taxonkennung
-  taxon_ids: Taxonkennungen
+  taxon_id: Taxon-ID
+  taxon_ids: Taxon-IDs
   taxon_map:
     gbif_occurrences: GBIF Vorkommnisse
     data_url: Daten-URL
@@ -3234,7 +3235,7 @@ de:
   taxonomic_order: Taxonomische Reihenfolge
   taxonomic_status: Taxonomischer Status
   taxonomic_tags_for_flickr: Taxonomische Tags für Flickr
-  taxonomy_details: Einzelheiten zur Taxonomie
+  taxonomy_details: Details zur Taxonomie
   taxonomy_settings: Taxonomieeinstellungen
   tell_everyone_a_little_about_you: Erzähle jedem ein Bisschen über dich selbst
   tell_the_world_a_little_about_yourself: Erzähl uns etwas über dich
@@ -3326,7 +3327,7 @@ de:
   title: Titel
   title_and_description: "Titel & Beschreibung"
   to_add_comments: um Kommentare hinzuzufügen
-  to_add_ids: um Kennungen hinzuzufügen
+  to_add_ids: um IDs hinzuzufügen
   to_recipient: an
   to_suggest_an_identification: eine Bestimmung vorschlagen
   today: Heute
@@ -3399,15 +3400,15 @@ de:
   updated_photo: Foto aktualisiert
   upload: Hochladen
   upload_a_csv_file: CSV-Datei hochladen
-  upload_photo: Bild hochladen
-  upload_range: Bereich hochladen
+  upload_photo: Foto hochladen
+  upload_range: Verbreitung hochladen
   uploaded_by: Hochgeladen von
   uploader:
     errors:
       file_too_big: Datei muss kleiner als %{megabytes} MB sein
     tooltips:
       add: Beobachtung(en) hinzufügen
-      combine: Ausgewählte Beobachtungen kombinieren
+      combine: Ausgewählte Beobachtungen zusammenfügen
       photo_failed: Das Foto konnte nicht hochgeladen werden
       remove: Ausgewählte Beobachtungen entfernen
       remove_observation: Beobachtung entfernen
@@ -3425,14 +3426,14 @@ de:
     one: 1 Mal benutzt
     other: '%{count} Mal benutzt'
   user: Benutzer
-  user_added_a_comment_html: "%{user} hat einen Kommentar hinzugefügt"
+  user_added_a_comment_html: "Kommentar hinzugefügt von: %{user}"
   user_added_a_fave_html: "%{user} hat einen Favoriten hinzugefügt"
   user_added_a_flag_html: "%{user} hat etwas gemeldet"
   user_added_a_project_invitation_html: "%{user} hat eine Projekt-Einladung hinzugefügt"
   user_added_a_x: "%{user}: %{x} hinzugefügt"
   user_added_a_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
   user_added_a_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
-  user_added_an_identification_html: "%{user} hat eine Bestimmung hinzugefügt"
+  user_added_an_identification_html: "Bestimmung hinzugefügt von: %{user}"
   user_added_an_observation_field_html: '%{user} hat einen Wert für %{field_name} zu einer Beobachtung von %{owner} hinzugefügt'
   user_added_an_observation_field_value_html: "%{user} hat einen Beobachtungsfeldwert hinzugefügt"
   user_added_an_observation_html: "%{user} hat eine Beobachtung hinzugefügt"
@@ -3468,7 +3469,7 @@ de:
   users_comment_html: "Kommentar von <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: Beiträge von <a href="%{url}">%{login}</a> zu %{project_title}
   users_id: "%{user}s ID"
-  users_identification_short_html: "Kennung von <a href='%{url}'>%{user}</a>"
+  users_identification_short_html: "ID von <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Die jüngsten Beobachtungen von %{user} bei %{site}"
   users_profile: "%{user}s Profil"
   users_projects: "Projekte von %{user}"
@@ -3531,7 +3532,7 @@ de:
   view_user_observations: "Beobachtungen von %{user} ansehen"
   view_x: "%{x} anzeigen"
   view_your_dashboard: Dein Dashboard anzeigen
-  view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Dein Dashboar anzeigen</a> für weitere Neuigkeiten"
+  view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Dein Dashboard anzeigen</a> für weitere Aktualisierungen"
   view_your_inbox: Inbox anzeigen
   view_your_observations: Deine Beobachtungen ansehen
   view_your_year_stats: "Deine Statistik für %{year} anzeigen"
@@ -3732,7 +3733,7 @@ de:
   your_tags: Deine Tags
   yours: Dein
   youre_not_following_anyone: |-
-    Du folgst niemandem. Das Folgen anderer Naturfreunde erlaubt es dir, Benachrichtigungen über ihre neuesten Beobachtungen zu erhalten. Finde heraus, was Personen <a href="%{observations_path}">beobachten</a> und mache einige neue <a href="%{people_path}">Bekanntschaften</a>.
+    Du folgst bisher niemandem. Indem du anderen Benutzern folgst, erhältst du Benachrichtigungen über deren neueste Beobachtungen. Finde heraus, was Personen <a href="%{observations_path}">beobachten</a> und mache einige neue <a href="%{people_path}">Bekanntschaften</a>.
   youve_linked_your_inaturalist_google_account: "Du hast Dein %{site_name}-Konto mit Deinem Google-Konto verbunden. Jetzt kannst Du Deine Google-Fotos mit %{site_name}-Beobachtungen verknüpfen."
   youve_successfully_linked_your_provider_account: "Du hast erfolgreich dein %{provider}-Konto verknüpft"
   verifiable: verifizierbar
@@ -3910,7 +3911,7 @@ de:
         user_login: Benutzername des Beobachters
         created_at: Datetime des Erstellen der Beobachtung
         updated_at: Datetime der Aktualisierung der Beobachtung
-        quality_grade: Qualitätsstufe der Beobachtung. Siehe Hilfe für Details was dies bedeutet
+        quality_grade: Qualitätsbewertung dieser Beobachtung. Siehe im Hilfe-Abschnitt für Details, was das genau bedeutet
         license: Lizenz die der Beobachter für seine Beobachtung gewählt hat
         url: URL der Beobachtung
         image_url: URL für das Standardbild
@@ -4204,7 +4205,7 @@ de:
         curated_checklist_desc: |
           Dies ist die kuratierte Checkliste und die Anzahl der Taxa aus Beobachtungen, die explizit zu diesem Projekt hinzugefügt wurden, nicht alle Beobachtungen, die am Ort und zur Zeit dieses Ereignisses aufgezeichnet wurden.
       updates_desc: |
-        Erhalte Updates zu diesem Projekt auf deinem Dashboard und in der täglichen E-Mail über Neuigkeiten.
+        Erhalte Aktualisierungen zu diesem Projekt auf deinem Dashboard und in der täglichen Updates-E-Mail.
     shared:
       blocked:
         youve_been_blocked: Du wurdest gesperrt
