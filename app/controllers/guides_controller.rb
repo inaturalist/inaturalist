@@ -234,15 +234,16 @@ class GuidesController < ApplicationController
       format.json { render json: @guide.as_json(:root => true) }
       format.xml
       format.ngz do
-        path = "public/guides/#{@guide.to_param}.ngz"
+        path = File.join( Rails.root, "public/guides/#{@guide.to_param}.ngz" )
         job_id = Rails.cache.read(@guide.generate_ngz_cache_key)
         job = Delayed::Job.find_by_id(job_id)
         if job
-          # Still working
+          # Still working"
+          raise "Failed to generate NGZ for guide #{@guide.id}" unless job.last_error.blank?
         else
           # no job id, no job, let's get this party started
           Rails.cache.delete(@guide.generate_ngz_cache_key)
-          job = @guide.delay(:priority => USER_INTEGRITY_PRIORITY).generate_ngz(:path => path)
+          job = @guide.generate_ngz_later( path: path )
           Rails.cache.write(@guide.generate_ngz_cache_key, job.id, :expires_in => 1.hour)
         end
         prevent_caching
