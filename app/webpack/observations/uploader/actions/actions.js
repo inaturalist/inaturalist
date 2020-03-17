@@ -562,7 +562,31 @@ const actions = class actions {
           }
         }, 100 );
       } ).catch( e => {
-        console.log( "Upload failed:", e );
+        // console.log( "Upload failed:", e );
+        file.saveTries = ( parseInt( file.saveTries, 0 ) || 0 ) + 1;
+        if (
+          e.response
+          && e.response.status === 503
+          && [
+            // Request Timeout: we probably never respond with this, but just in case
+            408,
+            // Too Many Requests: theoretically normal users might hit our rate
+            // limits, but unlikely
+            429,
+            // Service Unavailable: this might happen during downtime, but is
+            // intended to handle intermittent cases where Varnish doesn't seem to
+            // find a working app server
+            503
+          ].indexOf( e.response.status ) >= 0
+          && file.saveTries <= 4
+        ) {
+          const waitFor = file.saveTries * 3000;
+          setTimeout( ( ) => {
+            dispatch( actions.uploadImage( file ) );
+          }, waitFor );
+          return;
+        }
+        file.saveTries = 0;
         dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
         setTimeout( ( ) => {
           dispatch( actions.uploadFiles( ) );
