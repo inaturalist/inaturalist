@@ -31,7 +31,8 @@ class MessagesController < ApplicationController
     end
     unless params[:q].blank?
       @q = params[:q].to_s[0..100]
-      @messages = @messages.where( "subject ILIKE ? OR body ILIKE ?", "%#{@q}%", "%#{@q}%" )
+      @messages = @messages.joins( :from_user ).
+        where( "subject ILIKE ? OR body ILIKE ? OR users.name ILIKE ? OR users.login = ?", "%#{@q}%", "%#{@q}%", "%#{@q}%", @q )
     end
     respond_to do |format|
       format.html do
