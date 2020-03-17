@@ -780,6 +780,7 @@ nb:
   commercial_solicitation: Kommersielle meldinger, lenker til ingenting, osv.
   commit: Gjennomfør
   committed: Gjennomført
+  committed_by_user_on_date_html: Gjennomført av %{user} på %{date}
   committed_on: Gjennomført på %{date}
   committing: Gjennomfører...
   community: Fellesskap
@@ -829,6 +830,8 @@ nb:
   conservation_status_descriptions:
     status: Statuskode, nivå, osv. Vennligst bruk en kort kode som E eller CR hvis det finnes, men hvis ikke, vennligst bruk hele statusen, f.eks. truet eller kritisk truet.
     description: Kort beskrivelse av hvorfor dette ble oppført på listen.
+    authority: |
+      Organisasjon som erklærte denne statusen. Vennligst bruk auto-fullfør for å velge en eksisterende autoritet før du legger til en ny en. Du kan hoppe over dette dersom *du* vil oppføres som autoriteten.
     place: Sted som statusen er begrenset til.
     url: Url til en side som beskriver denne statusen.
     geoprivacy: Standard geosperring for observasjoner av dette taksonet
@@ -2464,6 +2467,10 @@ nb:
   people_following_user: "Personer som følger %{user}"
   people_user_follows: "Personer som %{user} følger"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: har lagt til en <a href="%{observation_url}">observasjon</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -3447,6 +3454,8 @@ nb:
   stats: Statistikker
   stats_for_this_year_have_not_been_generated: Det har ikke blitt generert statistikker for dette året.
   status: Status
+  status_globally: 'Globalt "%{status}"'
+  status_in_place: '"%{status}" i %{place}'
   stay_and_try_again: Bli og prøv igjen
   still_no_luck?: Fortsatt ingen hell?
   still_needs_id?: Felleskapet kan bekrefte/forbedre id?
@@ -4131,6 +4140,9 @@ nb:
   x_of_count_confirmed:
     one: "%{x} av %{count} bekreftet"
     other: "%{x} av %{count} bekreftet"
+  x_of_count_observed:
+    one: "%{x} av %{count} observert"
+    other: "%{x} av %{count} observert"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} av %{y} personer (over 2/3) er enige i at det er"
   x_is_the_root_of_the_tree: "%{rank}%{name} er treets rot"
   x_project_journal: "%{project}s %{name}"
@@ -6114,6 +6126,8 @@ nb:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan ikke matche det vitenskapelige navnet av en art for dette leksikonet
+              must_match_the_taxon_if_valid: |
+                må stemme overens med taksonets navn hvis dette er et gyldig vitenskapelig navn
               bad_format: |
                 kan kun inneholde standard latinske bokstaver, bindestreker, mellomrom, og ×; merk at antatte taksa og kultivarer ikke er tillatt
         taxon_photo:

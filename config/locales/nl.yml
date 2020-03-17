@@ -846,6 +846,8 @@ nl:
   conservation_status_descriptions:
     status: Statuscode, rang, enz. Als er een korte code zoals E of CR bestaat, gebruik die dan, maar zo niet, gebruik dan de volledige status, bv. "bedreigd" of "ernstig bedreigd".
     description: Korte beschrijving van de reden waarom dit in een lijst is opgenomen.
+    authority: |
+      Organisatie die deze status heeft vastgesteld. Gebruik alsjeblieft de autocomplete-functie om een bestaande autoriteit te kiezen voordat je een nieuwe toevoegt. Je kunt dit overslaan als *jij* als de autoriteit wilt worden aangemerkt.
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
@@ -2516,6 +2518,10 @@ nl:
   people_following_user: "Personen die %{user} volgen"
   people_user_follows: "Personen die %{user} volgt"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: heeft een <a href="%{observation_url}">waarneming</a> toegevoegd
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -3505,6 +3511,8 @@ nl:
   stats: Statistieken
   stats_for_this_year_have_not_been_generated: Statistieken voor dit jaar zijn niet gegenereerd.
   status: Status
+  status_globally: 'Wereldwijd "%{status}"'
+  status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Blijf en probeer het opnieuw
   still_no_luck?: Nog steeds geen geluk?
   still_needs_id?: Kan gemeenschap ID bevestigen/verbeteren?
@@ -6300,6 +6308,8 @@ nl:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan geen passende wetenschappelijke naam van een soort vinden voor dit lexicon
+              must_match_the_taxon_if_valid: |
+                moet overeenkomen met de naam van het taxon als dit een geldige wetenschappelijke naam is
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
