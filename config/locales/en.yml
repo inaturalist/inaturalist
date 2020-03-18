@@ -5018,6 +5018,50 @@ en:
         taking_a_while: "This is taking a while. Please try one of the options below."
         date_range_help: "Max and min dates observed in YYYY-MM-DD format, e.g. 2015-01-17"
         created_on_help: "Date observations were created, not observed, e.g. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Other Options</h3>
+          <p>
+            Large exports slow down our infrastructure and make it harder for us
+            to release new changes. Here are some other options to consider:
+          </p>
+          <ul>
+            <li>
+              <p>
+                <a
+                rel="nofollow noreferrer noopener"
+                href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+                GBIF ingests most of our Research Grade, licensed observations,
+                and their export tools are excellent. GBIF exports also come
+                with a <a href="https://www.doi.org/">DOI</a> you can cite if
+                you publish research based on the data you export, and these
+                citations are enormously helpful to us as they allow us to see
+                how iNat data gets used.
+              </p>
+            </li>
+            <li>
+              <p>
+                <a
+                rel="nofollow noreferrer noopener"
+                href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
+                Archive (DwC-A) for GBIF</a>: this is the <a
+                href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
+                file we generate for GBIF to ingest, so it should not contain
+                anything that isn't in GBIF, but if you want the whole archive,
+                you can download it. It is a very large zip file containing
+                records in CSV. Updated weekly.
+              </p>
+            </li>
+            <li>
+              <p>
+                <a
+                rel="nofollow noreferrer noopener"
+                href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist
+                Challenge at FGVC 2017</a>: links to 675,000 licensed
+                iNaturalist photos of 5,089 species for use in computer vision
+                training. Created June 2017, not updated.
+              </p>
+            </li>
+          </ul>
       field_descriptions:
         id: "Unique identifier for the observation"
         species_guess: "Name the observer entered for the observed taxon"
