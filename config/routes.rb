@@ -431,7 +431,7 @@ Rails.application.routes.draw do
   get '/taxa/curation' => 'taxa#curation', :as => :curate_taxa
   get "taxa/*q" => 'taxa#try_show'
   
-  resources :sources, :except => [:new, :create]
+  resources :sources
   get 'journal' => 'posts#browse', :as => :journals
   get 'journal/:login' => 'posts#index', :as => :journal_by_login, :constraints => { :login => simplified_login_regex }
   get 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => simplified_login_regex }

@@ -207,7 +207,7 @@ CSV.foreach( csv_path, skip_blanks: true ) do |row|
   puts "\tCreated #{taxon}"
   num_created += 1
   save_common_names(taxon, common_names)
-  add_to_place( taxon, @place) if @place
+  add_to_place( taxon, @place) if @place && !OPTS.skip_check_lists
 
   begin
     taxon.graft
