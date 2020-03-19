@@ -833,6 +833,10 @@ da:
   conservation_status_descriptions:
     status: Status kode, rang osv. Hvis der findes en kort kode som E eller CR, skal du bruge det, men hvis ikke, skal du bruge den fulde status, f.eks. truet eller kritisk truet.
     description: Kort beskrivelse af hvorfor denne blev opført.
+    authority: |
+      Organisation, der erklærede denne status. Benyt autoudfyldningen til at
+      vælg en eksisterende autoritet, før du tilføjer en ny. Du kan overspringe dette, såfremt
+      *du* ønsker at blive opført som autoritet.
     place: Sted, hvor denne status er begrænset.
     url: URL for en side, der beskriver denne status.
     geoprivacy: Standard geofortrolighed for denne taksons observationer
@@ -3500,6 +3504,8 @@ da:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik for dette år er ikke blevet genereret.
   status: Status
+  status_globally: '"%{status}" Global'
+  status_in_place: '"%{status}" i %{place}'
   stay_and_try_again: Bliv og prøv igen
   still_no_luck?: Stadig ingen held?
   still_needs_id?: Fællesskabet kan bekræfte / forbedre id?
@@ -4734,6 +4740,36 @@ da:
         taking_a_while: "Det tager et stykke tid. Prøv venligst en af nedenstående muligheder."
         date_range_help: "Start- og slutdatoer observeret i formatet ÅÅÅÅ-MM-DD, f.eks. 2015-01-17"
         created_on_help: "Dato for oprettelse af observationer, ikke observeret, f.eks. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3> Andre indstillinger </h3>
+          <p>
+          Stor eksporter gør vores infrastruktur langsommere og gør det sværere for os for at frigive nye ændringer. Her er nogle andre muligheder at overveje:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF indtager det meste af vores Forskningskvalitet, licenserede observationer og deres eksportværktøjer er fremragende. GBIF-eksport kommer også med en <a href="https://www.doi.org/">DOI</a>, du kan nævne, hvis du offentliggør forskning baseret på de data, du eksporterer, og disse citater er enormt nyttige for os, da de lader os at se, hvordan iNat-data bliver benyttet.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip"> DarwinCore Arkiv (DwC-A) til GBIF </a>: Dette er <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DWC-A</a>-filen, vi genererer til GBIF at indtage, så den bør ikke indeholde alt, hvad der ikke er i GBIF, men hvis du vil have hele arkivet, kan du downloade den. Det er en meget stor zip-fil, der indeholder poster i CSV. Opdateres ugentligt.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist Udfordring på FGVC 2017</a>: Links til 675.000 licens iNaturalistiske fotos af 5.089 arter til brug for computervisionstræning. Oprettet juni 2017, ikke opdateret.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Unik identifikator til observation"
         species_guess: "Navngiv observatøren, der er indtastet for den observerede takson"
