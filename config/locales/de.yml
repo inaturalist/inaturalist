@@ -170,7 +170,7 @@ de:
   accuracy: Genauigkeit
   accuracy_meters: Genauigkeit (Meter)
   accuracy_of_the_coordinates: |
-    Genauigkeit der Koordinaten in Metern. Diese kannst du abändern, indem du oben auf den Link „Bearbeiten“ klickst oder indem du auf den Kartenmarker klickst und an den Greifpunkten ziehst. Versuche, den Kreis groß genug zu ziehen, damit du sicher sein kannst, dass du irgendwo darin warst.
+    Genauigkeit der Koordinaten in Metern. Diese kannst du bearbeiten, indem du oben auf den Link „Bearbeiten“ klickst oder indem du auf den Kartenpin klickst und dann an den Punkten ziehst. Versuche, den Kreis groß genug zu ziehen, sodass du sicher sein kannst, dass du dich innerhalb aufgehalten hast.
   action: Aktion
   actions: Aktionen
   active: Aktiv
@@ -196,11 +196,11 @@ de:
   add_an_observation?: Beobachtung hinzufügen?
   add_an_observation_of: "Beobachtung von %{taxon} hinzufügen"
   add_an_observation_to_project_html: Beobachtung zu %{project} hinzufügen
-  add_annotations_for_x: Vermerke für "%{x}" hinzufügen
+  add_annotations_for_x: Annotationen für "%{x}" hinzufügen
   add_annotations_for_controlled_attribute:
-    sex: Vermerke für "Geschlecht" hinzufügen
-    plant_phenology: Vermerke zur "Pflanzenphänologie" hinzufügen
-    life_stage: Vermerke zum "Lebensstadium" hinzufügen
+    sex: Annotationen für "Geschlecht" hinzufügen
+    plant_phenology: Annotationen zur "Pflanzenphänologie" hinzufügen
+    life_stage: Annotationen zum "Entwicklungsstadium" hinzufügen
   add_another_flag: Weiteren Marker hinzufügen
   add_another_photo: Weiteres Foto hinzufügen
   add_another_section: Weiteren Abschnitt hinzufügen
@@ -365,7 +365,7 @@ de:
     protozoans: Protozoen
     ray_finned_fishes: Strahlenflosser
     reptiles: Reptilien
-    life: Leben
+    life: Lebewesen
     x_plantae:
       one: "Eine Pflanze"
       other: "%{count} Pflanzen"
@@ -433,7 +433,7 @@ de:
   android: Android
   animals: Tiere
   annotation: Vermerk
-  annotations: Vermerke
+  annotations: Annotationen
   announcement_was_successfully_created: Ankündigung wurde erfolgreich erstellt.
   announcement_was_successfully_updated: Ankündigung wurde erfolgreich aktualisiert.
   announcements: Ankündigungen
@@ -506,7 +506,7 @@ de:
   atom: Atom
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
-  attribute: Attribut
+  attribute: Eigenschaft
   attribution: Namensnennung
   authority_list:
     iucn_red_list: Rote Liste der IUCN
@@ -707,7 +707,7 @@ de:
   comma_separated_list_of_tracking_codes: |
     Komma-getrennte Liste von Nachverfolgungsschlüsseln. Fügen Sie dies hinzu, wenn Sie einen Nachverfolgungsschlüssel anhängen möchten während Sie Benutzer auf das Neue-Beobachtung-Formular weiterleiten, z.B. %{root_url}observations/new?project_id=%{project_id}&tracking_code=IhrSchluessel123.
     Sie können damit Beteiligungen von verschiedenen Quellen nachverfolgen. Sie können auf diese Schlüssel zugreifen, in dem Sie die Beobachtungen Ihres Projektes als CSV-Datei herunterladen.
-  comma_separated_please: Komma-getrennt, bitte
+  comma_separated_please: müssen durch Komma getrennt sein
   comment: Kommentar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
@@ -791,7 +791,7 @@ de:
     flower_budding: Knospend
     flowering: Blühend
     fruiting: Fruchttragend
-    life_stage: Altersstufe
+    life_stage: Entwicklungsstufe
     adult: Ausgewachsen
     pupa: Puppe
     nymph: Nymphe
@@ -1313,7 +1313,7 @@ de:
   has_sound: Mit Audio
   has_sounds: mit Audio
   hasnt_contributed_any_observations: hat keine Beobachtungen zu diesem Projekt beigetragen.
-  header_your_observations: Deine Beobachtungen
+  header_your_observations: Eigene Beobachtungen
   header_your_calendar: Dein Kalender
   header_your_favorites: Deine Favoriten
   header_your_lists: Deine Listen
@@ -1420,7 +1420,7 @@ de:
   info: Info
   input_taxon: Taxon eingeben
   insects: Insekten
-  insect_life_stage: Insekten-Lebensstadium
+  insect_life_stage: Entwicklungsstufe (Insekten)
   interactions: Interaktionen
   internal_server_error: Interner Serverfehler
   internal_taxon_including_descendants: Internes Taxon (einschließlich Nachkommen)
@@ -1565,9 +1565,9 @@ de:
   license: Lizenz
   licensing: Lizenzierung
   licensing_your_content_gives_others_legal: "Die Lizenzierung deiner Inhalte gibt anderen das Recht, sie zu nutzen, wenn die Lizenzbestimmungen eingehalten werden. %{site_name} verwendet deine Creative Commons-lizenzierten Inhalte, um sie mit Datenpartnern zu teilen, wie"
-  life: Leben
-  life_list: "Lebensliste von %{user}"
-  life_list_updated: Lebensliste ist aktualisiert!
+  life: Lebewesen
+  life_list: "Life-Liste von %{user}"
+  life_list_updated: Life-Liste wurde aktualisiert!
   life_list_updated_we_also_saved_a: Lebensliste aktualisiert! Wir haben auch eine leere Beobachtung dieses Taxons gespeichert.
   life_lists_automatically_fill: Lebenslisten füllen sich automatisch mit neuen Taxa, sobald Du diese beobachtest, und sie können auf übergeordnete Taxa beschränkt werden, z.B. eine Lebensliste der Rabenvögel (Corvidae).
   link: Link
@@ -1930,7 +1930,7 @@ de:
   no_projects_yet: Noch keine Projekte
   no_range_data_available: Keine Verbreitungsdaten verfügbar.
   no_recent_activity: Keine kürzliche Aktivität
-  no_relevant_annotations: Keine relevanten Vermerke
+  no_relevant_annotations: Keine relevanten Annotationen
   no_reply_yet: Noch keine Antwort
   no_results_found: Keine Ergebnisse gefunden
   no_results_for: 'Keine Ergebnisse für'
@@ -2197,7 +2197,7 @@ de:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: ': <strong>ID</strong> zu %{observation_link} von %{user_link} hinzugefügt'
+      with_observation: hat eine <strong>ID</strong> zu einer %{observation_link} von %{user_link} hinzugefügt
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
@@ -2652,7 +2652,7 @@ de:
   posted_by: Gepostet von
   posted_on: Gepostet am
   posts: Beiträge
-  potential_disagreement: Potentielle Unstimmigkeit
+  potential_disagreement: Möglicher Widerspruch
   powered_by: Betrieben mit
   powered_by_inaturalist_open_source_software_html: 'Betrieben mit <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist Open Source Software</a>'
   present: vorhanden
@@ -3578,7 +3578,7 @@ de:
   what_want_to_list?: Was möchtest du auflisten?
   whats_this?: Was ist das?
   when: Wann
-  when_did_you_see_it?: Wann hast du es gesehen?
+  when_did_you_see_it?: Wann war die Beobachtung?
   when_did_you_see_them?: <em>Wann</em> hast du sie gesehen?
   where: Wo
   where_do_x_live: Wo leben %{taxa}?
@@ -3867,8 +3867,8 @@ de:
         agreement: Zustimmung
         algorithm_summary: Algorithmus Zusammenfassung
         cumulative_count: Gesamtanzahl
-        disagreement: Unstimmigkeit
-        disagreement_count: Unstimmigkeit Anzahl
+        disagreement: Widersprüchlichkeit
+        disagreement_count: Anzahl Widersprüchlichkeiten
         identification_count: Anzahl an Bestimmungen
         score: Punktzahl
         explanation: |
@@ -3902,7 +3902,7 @@ de:
       field_descriptions:
         id: "Eindeutige Kennung für diese Beobachtung"
         num_identification_agreements: Anzahl der Identifikationen, die mit der Identifikation des Beobachters übereinstimmen
-        num_identification_disagreements: Anzahl der Identifikationen, die mit der Identifikation des Beobachters nicht übereinstimmen
+        num_identification_disagreements: Anzahl der Bestimmungen, die mit der Bestimmung des Beobachters nicht übereinstimmen
         observed_on_string: Datum/Zeit wie vom Beobachter eingegeben
         time_zone: Zeitzone der Beobachtung
         latitude: Öffentlich sichtbarer Breitengrad
@@ -3934,15 +3934,15 @@ de:
         ancestor_disagreements_desc: "# Anzahl der identifizierten Taxa, die zu den Vorfahren eines Taxons gehören, aber nicht mit dem Taxon übereinstimmen (d.h. \"Ich denke, es ist in der Gattung, aber ich bin nicht der Meinung, dass es diese Art ist\")"
         community_taxon_desc_html: |
           <p class="ui">
-            Das Community-Taxon (oder die Community-Identifikation) spiegelt wider, welches Taxon die %{site_name}-Community denkt, einer Beobachtung entspricht. Wenn du dich dafür interessierst, wie wir das Community-Taxon bestimmen, siehe die Hinweise zum Algorithmus unten, aber in allgemein versuchen wir, <strong>ein Taxon zu wählen, womit mehr als 2/3 der Bestimmer zustimmen </strong>. Manchmal bedeutet das, dass eines übergeordnetes Taxon ausgewählt wird, wenn es Unstimmigkeiten über die Taxa gibt (z.B. du denkst, dass es sich Königsnattern handelt und ich, dass es eine Klapperschlange ist. Also wählt iNat die Unterordnung Serpentes, die alle Schlangen enthält). eines übergeordnetes Taxon ausgewählt wird, wenn es Unstimmigkeiten über die Taxa gibt (z.B. du denkst, dass es sich Königsnattern handelt und ich, dass es eine Klapperschlange ist. Also wählt iNat die Unterordnung Serpentes, die alle Schlangen enthält). 
-          Der Algorithmus begünstigt auch leichte abweichende Meinungen, weil wir festgestellt haben, dass diese oft korrekt sind.
+           Das Community-Taxon (oder die Gemeinschafts-Identifikation) gibt an, welches Taxon nach Meinung der %{site_name}-Community einer Beobachtung entspricht. Wenn du dich dafür interessierst, wie wir das Community-Taxon bestimmen, siehe die Hinweise zum Algorithmus unten, aber generell versuchen wir, <strong>ein Taxon zu wählen, mit dem mehr als 2/3 der Bestimmer zustimmen </strong>. Manchmal bedeutet das, dass eines übergeordnetes Taxon ausgewählt wird, wenn es Unstimmigkeiten über die Taxa gibt (z.B. du denkst, dass es sich um eine Blaumeise handelt und ich, dass es eine Kohlmeise ist. Also wählt iNat die Familie <em>Paridae</em>, die alle Meisen enthält). 
+          Der Algorithmus begünstigt zudem abweichende Meinungen, weil wir festgestellt haben, dass diese oft korrekt sind.
           </p>
           <p class="ui">
-            Das Community-Taxon ist das Taxon, das wir verwenden, um Beobachtungen mit Datenpartnern auszutauschen, Beobachtungen desselben Taxons auf der Website zu verlinken, deine Lebensliste zu aktualisieren, etc. Wenn du aus irgendeinem Grund mit dem Community-Taxon nicht einverstanden bist, kannst du es ablehnen, was bedeutet, dass deine Bestimmung (ID) diejenige ist, die für die Verlinkung mit anderen Beobachtungen, die Aktualisierung von Lebenslisten usw. verwendet wird. Es bedeutet auch, dass deine Beobachtung nur dann Forschungsqualität erreichen kann, wenn die Community <em>dir</em> zustimmt.
-            Wenn dir die ganze Idee der Community-Taxa nicht gefällt, kannst du austreten, indem du <a href="/users/edit" target="_blank"> deine Einstellungen editierst.
+           Eine Beobachtung mit Forschungsquslität muss (neben anderen Kriterien) ein Community-Taxon haben. Falls eine Beobachtung nur eine einzige Bestimmung hat, erhält sie kein Community-Taxon. Alle Beobachtungen mit zumindest einer Bestimmung haben auch ein Beobachtungs-Taxon. Das Beobachtungs-Taxon ist das Taxon, das wir verwenden, um Beobachtungen mit Datenpartnern auszutauschen, Beobachtungen desselben Taxons verlinken, deine Life-Liste zu aktualisieren, etc. In den meisten Fällen wird das Beobachtungs-Taxon dem Community-Taxon entsprechen, aber manchmal unterscheiden sie sich - insbesondere wenn die Community sich noch nicht auf ein Taxon geeinigt hat. Zum Beispiel wenn du denkst es handelt sich um eine Meise (Familie <i>Paridae</i>) und ich glaube es ist eine Blaumeise (Genus <i>Cyanistes</i>), wird das Beobachtungs-Taxon 'Blaumeise' sein (durch meine einzelne Bestimmung), aber das Community-Taxon wird auf Familienniveau (Meisen) stehen. Wenn du aus irgendeinem Grund mit dem Community-Taxon nicht einverstanden bist, kannst du es ablehnen. Das bedeutet, dass deine Bestimmung (ID) diejenige ist, die für die Verlinkung mit anderen Beobachtungen, die Aktualisierung von Life-Listen usw. verwendet wird. Es bedeutet auch, dass deine Beobachtung nur dann Forschungsqualität erreichen kann, wenn die Community <em>dir</em> zustimmt.
+           Wenn dir die ganze Idee der Community-Taxa nicht gefällt, kannst du austreten, indem du <a href="/users/edit" target="_blank">deine Einstellungen editierst</a>.
           </p>
           <p class="ui">
-            <strong>The algorithm:</strong> for all identified taxa and the taxa that contain them (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score each as the ratio between the number of cumulative IDs for that taxon over the sum of the cumulative IDs, the number of more conservative IDs added after the first ID of that taxon, and the number of IDs that are completely different (i.e. IDs of taxa that do not contain the taxon being scored). For the identified taxa that have a score over 2/3 and at least 2 identifications, choose the lowest ranked taxon.
+           <strong>Der Algorithmus:</strong> Für alle identifizierten Taxa und die Taxa, die sie enthalten (z.B. Gattung <i>Homo</i> enthält <i>Homo sapiens</i>), bewerte jedes als das Verhältnis zwischen der Anzahl an 'Zustimmungen' - kumulative IDs für dieses Taxon über die Summe der kumulativen IDs, 'Widersprüche' - die Anzahl an IDs, die komplett unterschiedlich sind (d.h. IDs von Taxa, die nicht das Taxon enthalten welches gewertet wird) sowie 'Widersprüche in den Vorfahren' - die Anzahl an zurückhaltenden IDs, die den genaueren IDs widersprechen. Wähle das rangniedrigere Taxon für die identifizierten Taxa, die einen Wert über 2/3 und mindestens 2 Bestimmungen haben.
           </p>
         data_quality_assessment_desc_html: |
           Die Bewertung der Datenqualität ist eine Beurteilung der Genauigkeit einer Beobachtung. Beobachtungen mit Forschungsqualität können von Wissenschaftlern für die Forschung genutzt werden. Gib deine Beurteilung unten ab:
