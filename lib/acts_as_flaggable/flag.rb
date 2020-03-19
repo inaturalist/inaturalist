@@ -37,7 +37,7 @@ class Flag < ActiveRecord::Base
   belongs_to :resolver, :class_name => 'User', :foreign_key => 'resolver_id'
   has_many :comments, :as => :parent, :dependent => :destroy
 
-  before_save :set_resolved_at
+  before_save :check_resolved
   before_create :set_flaggable_user_id
   before_create :set_flaggable_content
 
@@ -138,11 +138,13 @@ class Flag < ActiveRecord::Base
     end
   end
 
-  def set_resolved_at
+  def check_resolved
     if resolved_changed? && resolved
       self.resolved_at = Time.now
     elsif resolved_changed?
       self.resolved_at = nil
+      self.resolver = nil
+      self.comment = nil
     end
     true
   end

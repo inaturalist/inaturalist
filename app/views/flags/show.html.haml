@@ -71,7 +71,7 @@
                 - if @flag.resolved?
                   = form_for( @flag, action: "update", html: { class: "inlineblock" }, data: { confirm: t(:are_you_sure_unresolve_flag?) } ) do |f|
                     = text_field_tag :comment, @flag.comment, class: "form-control", disabled: true
-                    = f.hidden_field :comment, class: "form-control", disabled: true, value: nil
+                    = f.hidden_field :comment, class: "form-control"
                     = f.hidden_field :resolver_id, value: nil
                     = f.hidden_field :resolved, value: false
                     = hidden_field_tag :return_to, url_for( @flag )
