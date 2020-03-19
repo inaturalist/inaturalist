@@ -62,24 +62,31 @@ describe FlagsController do
     
     let(:curator) { make_curator }
     let(:user) { make_curator }
+    let(:admin) { make_admin }
     let(:flag) { Flag.make!(flaggable: Photo.make!, user: user) }
 
-    it "allows curators to update" do
+    it "does not allow curators to destroy" do
       http_login(curator)
       post :destroy, id: flag.id
-      expect(flash[:error]).to be_blank
+      expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end
 
-    it "allows the flag creator to update" do
+    it "does not allow the flag creator to destroy" do
       http_login(user)
       post :destroy, id: flag.id
-      expect(flash[:error]).to be_blank
+      expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end
 
-    it "does not allow other users to update" do
+    it "does not allow other users to destroy" do
       http_login(User.make!)
       post :destroy, id: flag.id
-      expect(flash[:error]).to eq "You don't have permission to do that."
+      expect( Flag.find_by_id( flag.id ) ).not_to be_blank
+    end
+
+    it "allows admins to destroy" do
+      http_login( admin )
+      post :destroy, id: flag.id
+      expect( Flag.find_by_id( flag.id ) ).to be_blank
     end
   end
 

@@ -27,8 +27,11 @@
     = link_to t(:details), flag
     - if is_curator?
       &middot;
-      %strong= link_to t(:resolve), flag
-    - if is_me?(flag.user) || is_curator?
+      - if flag.resolved?
+        %strong= link_to t(:unresolve), flag
+      - else
+        %strong= link_to t(:resolve), flag
+    - if is_admin?
       &middot;
       = link_to t(:delete), flag, data: { confirm: t(:you_sure_delete_flag?) }, method: :delete
 - if flag.resolved? && !flag.comment.blank?

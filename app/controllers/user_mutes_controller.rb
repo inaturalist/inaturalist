@@ -11,10 +11,16 @@ class UserMutesController < ApplicationController
           flash[:notice] = I18n.t( :user_muted )
           redirect_to( generic_edit_user_path )
         end
+        format.json do
+          render json: @user_mute
+        end
       else
         format.html do
           flash[:error] = @user_mute.errors.full_messages.to_sentence
           redirect_to( generic_edit_user_path )
+        end
+        format.json do
+          render status: :unprocessable_entity, json: @user_mute.errors
         end
       end
     end
@@ -30,6 +36,7 @@ class UserMutesController < ApplicationController
         flash[:notice] = I18n.t( :mute_removed )
         redirect_to( generic_edit_user_path )
       end
+      format.json { head :no_content }
     end
   end
 end

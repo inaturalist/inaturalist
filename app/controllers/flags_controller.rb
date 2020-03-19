@@ -1,9 +1,11 @@
 class FlagsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show]
-  before_filter :set_model, :except => [:update, :show, :destroy, :on]
-  before_filter :model_required, :except => [:index, :update, :show, :destroy, :on]
-  before_filter :load_flag, :only => [:show, :destroy, :update]
-  before_filter :curator_or_owner_required, only: [ :update, :destroy ]
+  before_action :doorkeeper_authorize!, if: lambda { authenticate_with_oauth? }, except: [:show]
+  before_filter :authenticate_user!, unless: lambda { authenticated_with_oauth? }, except: [:show]
+  before_filter :set_model, except: [:update, :show, :destroy, :on]
+  before_filter :model_required, except: [:index, :update, :show, :on, :destroy]
+  before_filter :load_flag, only: [:show, :destroy, :update]
+  before_filter :curator_or_owner_required, only: [:update]
+  before_filter :admin_required, only: [:destroy]
   
   # put the parameters for the foreign keys here
   FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
@@ -175,7 +177,7 @@ class FlagsController < ApplicationController
   
   def update
     if resolver_id = params[:flag].delete("resolver_id")
-      params[:flag]["resolver"] = User.find(resolver_id)
+      params[:flag]["resolver"] = User.find_by_id(resolver_id)
     end
     if @flag.flaggable && @flag.flaggable_type == "Observation"
       @flag.flaggable.wait_for_index_refresh = true
@@ -183,16 +185,24 @@ class FlagsController < ApplicationController
       @flag.flaggable.wait_for_obs_index_refresh = true
     end
     respond_to do |format|
-      if @flag.update_attributes(params[:flag])
-        flash[:notice] = t(:flag_saved)
+      msg = if @flag.update_attributes(params[:flag])
+        t(:flag_saved)
       else
-        flash[:notice] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
+        t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
       end
       if @object.is_a?(Project)
         Project.refresh_es_index
       end
       format.html do 
+        flash[:notice] = msg
         redirect_back_or_default(@flag)
+      end
+      format.json do
+        if @flag.valid?
+          render json: @flag
+        else
+          render status: :unprocessable_entity, json: @flag.errors
+        end
       end
     end
     

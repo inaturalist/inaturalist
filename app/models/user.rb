@@ -119,6 +119,7 @@ class User < ActiveRecord::Base
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
+  has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :friendships, dependent: :destroy
 
   def followees
