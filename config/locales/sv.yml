@@ -47,9 +47,18 @@ sv:
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} felbestämning av arter i denna %{rank}"
     other: "%{count} felbestämningar av arter i denna %{rank}"
+  x_observations:
+    one: "%{count} observation"
+    other: "%{count} observationer"
   x_observations_:
     one: "1 observation"
     other: "%{count} observationer"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> observation"
+    other: "<span class='count'>%{count}</span> observationer"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} observation</a>"
+    other: "<a href='%{url}'>%{count} observationer</a>"
   x_observations_reviewed_html:
     one: "<span class='antal'>1</span> observation granskad"
     other: "<span class='antal'>%{count}</span> observationer granskade"
@@ -423,6 +432,9 @@ sv:
     x_fungi:
       one: "1 svamp"
       other: "%{count} svampar"
+    x_chromista:
+      one: "%{count} kromist"
+      other: "%{count} kromister"
     x_protozoa:
       one: "#1 protozoer"
       other: "%{count} protozoer"
@@ -843,6 +855,8 @@ sv:
   conservation_status_descriptions:
     status: Statuskod, rang, etc. Om en kortkod som E eller CR finns, använd den, men om inte, använd den fullständiga statusen, t.ex. starkt hotad eller akut hotad.
     description: Kort beskrivning av varför detta är på listan.
+    authority: |
+      Organisation som fastställt denna status. Använd autocomplete för att välja en befintlig auktoritet innan du lägger till en ny. Du kan hoppa över detta om *du* vill anges som auktoriteten.
     place: Plats som denna status är begränsad till.
     url: URL till en sida som beskriver denna status.
     geoprivacy: Standard geosekretess för observationer av detta taxon
@@ -3558,6 +3572,8 @@ sv:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik för detta år har ännu inte genererats.
   status: Status
+  status_globally: '%{status} Globalt'
+  status_in_place: '%{status} i %{place}'
   stay_and_try_again: Stanna kvar och försök igen
   still_no_luck?: Funkar fortfarande inte?
   still_needs_id?: Kan gemenskapen bekräfta/förbättra bestämningen?
@@ -5563,13 +5579,159 @@ sv:
         please_specify_the_requirements: |
           Vänligen ange villkoren för de observationer som ska läggas till i
           detta projekt.
+        please_specify_the_requirements_html: |
+          Vänligen ange kraven för de observationer som ska läggas till i
+          detta projekt. Du kan ange flera arter, platser, användare eller
+          kvalitetsnivåer som automatiskt inkluderas eller lämna ett fält tomt om
+          du inte har något specifikt krav på det. Förklaringar för varje fält
+          hittar du <a href="%{url}">här</a>.
+        project_background_color: Bakgrundsfärg för projektsammanställning
+        project_background_color_help: Se till att välja en tillräckligt mörk färg mörk så att den vita texten ovanpå blir läsbar.
+        project_banner: Projektbanderoll (PNG, JPG eller GIF)
+        project_banner_help: Valfri banderollbild. Idealiska mått är 760px gånger 320px.
+        project_details: Projektdetaljer
+        project_icon: Projektikon (PNG, JPG eller GIF)
+        project_icon_help: |
+          Valfri ikon. Bör vara minst 72px x 72px och kommer att beskäras till en kvadrat.
         project_name: Projektnamn
+        project_summary: Projektsammanfattning
+        project_summary_help: |
+          Förklara kortfattat ditt projekt. Ungefär de första 200 tecknen kommer att
+          synas till höger om banderollen på projektets startskärm så ta det viktigaste först!
+        project_summary_placeholder: Upptäck och håll reda på Golden Gate-parkens fåglar...
         show_projects_as_flags: Visar projekt som flaggor på kartan
+        start_and_end_times_for_bioblitzes: Start- och slutdatum/-tider (för evenemang av bioblitz-typ)
+        traditional_projects_cannot_be_copied: Traditionellt projekt kan inte kopieras
+        umbrella_project_features: "Funktionalitet för paraplyprojekt"
+        unique_url_for_outreach: Unik publik URL
+        users_can_follow_your_project: Användare kan följa ditt projekt och få uppdateringar via dagboksinlägg
         use_this_link_to_create_html: |
           Använd <a href="%{url}">denna länk</a> för att istället skapa ett traditionellt projekt.
+        visual_comparison_of_data_among: Visuella jämförelser av data mellan projekt under paraplyet
+        we_have_redesigned_projects: |
+          Projekt är utformade för att automatiskt inkludera alla observationer som matchar de
+          platser, taxa, användare, kvalitet och datum som du definierar. Välj mellan två huvudtyper:
+          Samlingsprojekt och Paraplyprojekt, som delar följande funktionalitet:
         welcome_to_projects: Välkommen till projekt!
+        you_can_learn_more_html: |
+          Du kan lära dig mer om att hantera projekt
+          <a href="https://www.inaturalist.org/pages/managing-projects">här</a>
+          eller läsa om bakgrunden för projekt på
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">vår blogg</a>.
+        you_have_not_defined_any_observation_requirements: |
+          Du har inte definierat några observationskrav. Se till att välja ett eller flera taxa
+          (t.ex. fåglar, barrträd), platser (t.ex. Brasilien, Yellowstone), användare och/eller
+          datum för att definiera de observationer du vill inkludera i ditt projekt.
+        errors:
+          name_is_required: Projektnamn är obligatoriskt
+          name_less_than_100_characters: Projektets namn måste vara mindre än 100 tecken
+          name_already_taken: Projektnamnet är redan taget
+          cannot_have_more_than_x_project_rules: Kan inte ha fler än %{x} projektregler
+          summary_is_required: Projektsammanfattning är obligatorisk
+      project_location_privacy_notice_html: |
+        <p>
+        Tänk på att projektförvaltare kommer att kunna se alla privata eller
+        diffuserade platser för dina observationer i detta projekt om du inte
+        drar tillbaka tillståndet, och de kommer att kunna lägga till vilken som
+        av dina observationer i projektet såvida du inte <a href="/users/edit">
+        ändrar dina inställningar</a>. Du kan också bevilja eller återkalla
+        åtkomst till projektobservationer från fall till fall.
+        </p>
+        <p>
+        Om du är bekymrad över platssekretess, gå inte med i projekt
+        om du inte litar på projektets förvaltare.
+        </p>
       project_user_curator_coordinate_access_labels:
+        observer: Ja, men bara om jag lägger till observationen till projektet själv.
+        any: Ja, oavsett vem som lägger till observationen till projektet.
         none: Nej.
+      curator_coordinate_access_label: |
+        Vill du göra dina privata/diffuserade observationskoordinater synliga för projektets förvaltare?
+      curator_coordinate_access_note: |
+        Du kan också välja att dela dolda koordinater för observationer
+        i detta projekt från fall till fall. Detta är bara standardinställningarna
+        för nya observationer som läggs till i projektet.
+      project_terms_desc_html: |
+        Tillåt förvaltarna av detta projekt att använda dina observationer i
+        enlighet med <a href="%{url}">projektvillkoren</a>.
+      show:
+        are_you_sure_you_want_to_convert: |
+          Är du säker på att du vill konvertera detta projekt till ett Samlingsprojekt?
+        bioblitz_results_desc_html: |
+          <p>
+          Till skillnad från vanliga projekt visar bioblitzar händelsestatistik från
+          <em>alla</em> observationer inom en plats och tidsperiod, inte bara
+          observationer som människor avsiktligt har lagt till projektet. Detta,
+          för att ta bort hindret med att lägga till observationer till ett projekt
+          bara för att köra statistiken i realtid. Observera att observationer inte
+          kommer att vara tillgängliga för export eller visning i olika projektvyer
+          såsom medlemsbidrag på webbplatsen eller sökning på projekt-
+          observationer i mobilapparna såvida inte projektgruppen och
+          deltagarna aktivt lägger till relevanta observationer som de skulle
+          göra i ett vanligt projekt.
+          </p>
+          <p>
+          Observera att även om denna typ av projekt visar statistik för
+          observationer som inte medvetet har lagts till i projektet, tillåter
+          det inte förvaltarna att se privata eller diffuserade koordinater för
+          dessa observationer eller förutsätta att observatörer har godkänt
+          projektets villkor. Om du är en projektförvaltare och behöver tillgång
+          till privata koordinater behöver du få dina deltagare att godkänna
+          projektets villkor, eller om du vill ha observationer medräknade i den
+          förvaltade projektchecklistan, se då till att dina deltagare går med i
+          projektet och lägger till sina observationer som de skulle i ett vanligt
+          projekt.
+          </p>
+        click_here_to_convert_this_project: |
+          Klicka här för att konvertera detta projekt till ett Samlingsprojekt.
+        no_journal_blurb_html: |
+          <p>
+          Din projektdagbok är ett verktyg för att kommunicera med projekt-
+          medlemmarna. Med den kan du göra meddelanden, sätta prioriteringar, eller
+          prata om ditt projekts resultat.
+          </p>
+          <p>
+          <a href="%{url}" class="readmore">Skapa ett inlägg</a> för att komma igång
+          </p>
+        curated_checklist_desc: |
+          Detta är den förvaltade checklistan och antalet taxa från observationer som uttryckligen
+          lagts till i detta projekt, inte alla observationer som registrerats på samma plats och tid
+          som denna händelse.
+        make_sure_you_have_read_about_the_differences: |
+          Se till att du har läst om skillnaderna i
+          vårt <a href="%{url}" target="_blank">blogginlägg om Samlingsprojekt</a>.
+        this_is_a_preview: |
+          Detta är en förhandsvisning av hur detta projekt skulle se ut som ett Samlingsprojekt.
+      updates_desc: |
+        Få uppdateringar om detta projekt på din anslagstavla och i e-post om
+        dagens uppdateringar.
+    search:
+      index:
+        no_taxa_options_html: |
+          <p>Det finns några alternativ:</p>
+          <ul class="list-unstyled">
+          <li>
+          <strong>Lägg till en flagga på ett taxon av högre nivå</strong>
+          <p>
+          T.ex. släktet som innehåller en art. Förhoppningsvis lägger en 
+          schysst förvaltare till detta taxon om det är möjligt.
+          </p>
+          </li>
+          <li>
+          <strong><a href="%{feedback_url}">Kontakta forumet</a></strong>
+          <p>
+          Många förvaltare håller reda på meddelanden till forumet.
+          </p>
+          </li>
+          <li>
+          <strong>
+          <a href="mailto:%{help_email}">Kontakta support</a>
+          </strong>
+          <p>
+          Ha tålmod, vi har inte mycket supportpersonal på heltid.
+          </p>
+          </li>
+          </ul>
     shared:
       blocked:
         youve_been_blocked: Du har blivit blockerad
@@ -5580,9 +5742,24 @@ sv:
         youve_blocked_desc: |
           Du har blockerat ägaren av denna resurs, vilket förhindrar dig från att
           kommunicera med dem. De flesta interaktiva funktionerna på denna sida kommer inte att fungera.
+      spam:
+        message_for_owner_and_curators_html: |
+          Denna post har flaggats som spam och är inte längre publikt
+          synlig. Du kan se den eftersom du skapade den, eller för att du
+          är en webbplatsförvaltare. Om du tror att detta är ett misstag,
+          var vänlig och <a href="mailto:%{email}">kontakta oss</a>.
+        this_has_been_flagged_as_spam: Detta har flaggats som spam
+      not_found:
+        sorry_that_doesnt_exist: Tyvärr, det finns inte!
+        even_our_dedicated_search_mole_couldnt: Inte ens vår hängivna sökmullvad kunde hitta någonting!
     stats:
       index:
+        active_desc: Skapade en bestämning, obs, kommentar eller inlägg under de senaste 30 dagarna
+        active_users_desc: Skapade en bestämning, obs, kommentar eller inlägg under de senaste 30 dagarna
         android_desc_html: Skapad via <a href="%{url}">iNaturalist Android app</a>
+        avg_ttcid: Medel TTGB
+        avg_ttid: Medel TTB
+        identifiers_desc: Lade till en bestämning till någon annans obs denna dag
         iphone_desc_html: Skapad via <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTCID
         med_ttid: Med TTID
@@ -6296,10 +6473,32 @@ sv:
           iNaturalist, behöver du förse oss med lite person- och kontakt-
           uppgifter.
         step2_title: BEKRÄFTA DIN IDENTITET MED ETT KREDITKORT
+        step2_desc: |
+          För att bekräfta att du är vuxen behöver du göra en nominell
+          donation på minst 1 USD till iNaturalist med ett kreditkort. Detta är
+          den minst inkräktande formen av identitetskontroll där vi ändå
+          följer integritetslagstiftning. Var noga med att använda samma
+          e-postadress som du angav som "vårdnadshavares e-post" i
+          föregående steg.
+        step3_title: VÄNTA PÅ BEKRÄFTELSEMEJL
+        step3_desc: |
+          När vi väl matchat e-postadressen som används i donationen med
+          e-postadressen du angav som "vårdnadshavares e-post" kommer vi att
+          aktivera barnets konto och skicka vårdnadshavaren ett e-postmeddelande
+          med inloggningsinstruktioner. Detta kan ta upp till 24 timmar.
+        step3_donor_title: DITT BARNS KONTO HAR AKTIVERATS
+        step3_donor_desc: |
+          Eftersom du är en iNaturalist-bidragsgivare kunde vi verifiera din
+          identitet med din befintliga donation.
     welcome:
       index:
+        welcome_message_html: |
+          till %{image}, där du kan <strong>spara</strong> det du ser i naturen,
+          <strong>träffa</strong> andra naturälskare,
+          och <strong>lära dig</strong> om naturen.
         connect_with_nature: Anslut med naturen
         explore_and_share: Utforska och dela dina observationer från naturlig värld.
+        observations_to_date: 'Observationer hittills'
         species_observed: 'Arter observerade'
         people_signed_up: 'Människor registrerade'
         how_it_works: Hur den fungerar
@@ -6307,17 +6506,38 @@ sv:
         share_with_fellow_naturalists: Dela med kamrat naturforskare
         discuss_your_findings: Diskutera dina resultat
         contribute_to_science: Bidra till vetenskap
+        science_desc_html: |
+          Varje observation kan bidra till forskning om biologisk mångfald,
+          allt från den ovanligaste fjärilen till det vanligaste trädgårdsogräset.
+          Vi delar dina resultat med vetenskapliga databaser som
+          <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a>
+          för att hjälpa forskare att hitta och använda dina data. Allt du
+          behöver göra är observera.
         nature_at_your_fingertips: Naturen till dina fingertoppar
         keep_track: Håll koll
+        record_your_encounters: |
+          Spara dina möten med andra organismer och upprätthåll livslistor,
+          allt i molnet.
         create_useful_data: Skapa användbar data
+        help_scientists: Hjälp forskare och förvaltare att förstå när och var organismer förekommer.
         crowdsource_identifications: Crowdsource identifieringar
+        connect_with_experts: Träffa experter som kan bestämma de organismer du observerar.
         become_a_citizen_scientist: Bli en medborgarforskare
+        find_a_project: "Hitta ett projekt med en inriktning som intresserar dig, eller starta ett eget."
         learn_about_nature: Lära om naturen
+        build_your_knowledge: Utöka din kunskap genom att prata med andra naturforskare och hjälpa andra.
         run_a_bioblitz: Kör Bioblitz
+        hold_an_event: Fixa en händelse där folk försöker hitta så många arter som möjligt.
         works_on_all_your_devices: Fungerar på alla dina enheter
+        install_our_mobile_apps: |
+          Installera våra mobilappar så att du alltid kan observera, även utan
+          mobilmottagning eller wifi.
         who_uses_site_name: "Vem använder %{site_name}?"
         what_are_you_waiting_for: Vad väntar du på?
         join_today: Gå med idag
+    wiki_pages:
+      form:
+        save_and_edit_to_add_attachments: Spara och redigera för att lägga till bilagor
   date:
     abbr_day_names:
       - Sön
@@ -6355,7 +6575,7 @@ sv:
       3: Ti
       4: "On"
       5: To
-      6: Fr
+      6: Fre
       7: Lö
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
@@ -6365,7 +6585,11 @@ sv:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%-d %b'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%e %b"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%-d %b %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_year: '%B %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%-d %B %Y'
     month_names:
@@ -6384,10 +6608,25 @@ sv:
       - december
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: ungefär %{count} timme
+        other: uungefär %{count} timmar
+      about_x_months:
+        one: ungefär %{count} månad
+        other: ungefär %{count} månader
+      about_x_years:
+        one: ungefär %{count} år
+        other: ungefär %{count} år
+      almost_x_years:
+        one: nästan %{count} år
+        other: nästan %{count} år
       half_a_minute: en halv minut
       less_than_x_minutes:
         one: mindre än en minut
         other: mindre än %{count} minuter
+      less_than_x_seconds:
+        one: mindre än %{count} sekund
+        other: mindre än %{count} sekunder
       over_x_years:
         one: över 1 år
         other: över %{count} år
@@ -6409,6 +6648,9 @@ sv:
     countdown_x_hours:
       one: timme
       other: timmar
+    countdown_x_minutes:
+      one: min
+      other: min
     countdown_x_seconds:
       one: sek
       other: sek
@@ -6420,14 +6662,95 @@ sv:
       second: Sekunder
       year: År
   errors:
+    format: '%{attribute} %{message}'
     messages:
+      accepted: måste accepteras
+      blank: kan inte vara tomt
       confirmation: stämde inte överens med lösenordet
+      empty: kan inte vara tomt
+      equal_to: måste vara lika med %{count}
+      even: måste vara jämnt
+      exclusion: är reserverad
+      greater_than: måste vara större än %{count}
+      greater_than_or_equal_to: måste vara större än eller lika med %{count}
+      inclusion: finns inte med i listan
+      invalid: är ogiltig
+      less_than: måste vara mindre än %{count}
+      less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+      not_a_number: är inte ett nummer
+      not_an_integer: måste vara ett heltal
+      odd: måste vara udda
+      record_invalid: 'Validering misslyckades: %{errors}'
+      requires_privilege_speech: |
+        måste ha tre verifierbara observationer eller tre bestämningar
+        för att andra ska kunna göra det
+      requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
+      taken: har redan tagits
+      too_long:
+        one: är för långt (maximalt %{count} tecken)
+        other: är för långt (maximalt %{count} tecken)
+      too_short:
+        one: är för kort (minimum %{count} tecken)
+        other: är för kort (minimum %{count} tecken)
+      wrong_length:
+        one: är av fel längd (borde vara %{count} tecken)
+        other: är av fel längd (borde vara %{count} tecken)
+    template:
+      body: 'Det uppstod problem med följande fält:'
+      header:
+        one: "%{count} fel hindrade denna %{model} från att sparas"
+        other: '%{count} fel hindrade denna %{model} från att sparas'
   helpers:
+    defaults:
+      title: "DETTA ÄR EN TITEL"
+    select:
+      prompt: Välj
     submit:
+      create: Skapa %{model}
       submit: Spara %{model}
+      update: Uppdatera %{model}
   number:
+    currency:
+      format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
+        delimiter: ' '
+        format: '%n%u'
+        precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
+        separator: ','
+        significant: false
+        strip_insignificant_zeros: false
+        unit: USD
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: ' '
+      precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: ','
+      significant: false
+      strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
+        format: '%n %u'
         units:
           billion: Miljard
           million: Miljon
@@ -6435,14 +6758,26 @@ sv:
           thousand: Tusen
           trillion: Biljon
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
       last_word_connector: ', och'
       two_words_connector: 'och'
       words_connector: ','
   time:
+    am: fm
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%-d %b %Y %H:%M:%S %z'
@@ -6451,6 +6786,8 @@ sv:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%-d %b %H:%M'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%H:%M"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       observed_at: '%H:%M %Z'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       rfc: "%-d %B %Y"
@@ -6458,28 +6795,140 @@ sv:
       day_month_year: "%-d %B %Y"
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       hours: "%H:%M"
+    pm: em
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
+      format: '%{attribute} %{message}'
       messages:
+        accepted: måste accepteras
+        blank: kan inte vara tomt
         confirmation: stämde inte överens med lösenordet
+        empty: kan inte vara tomt
+        equal_to: måste vara lika med %{count}
+        even: måste vara jämnt
+        exclusion: är reserverat
+        greater_than: måste vara större än %{count}
+        greater_than_or_equal_to: måste vara större än eller lika med %{count}
+        inclusion: finns inte med i listan
+        invalid: är ogiltig
+        less_than: måste vara mindre än %{count}
+        less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        not_a_number: är inte ett nummer
+        not_an_integer: måste vara ett heltal
+        odd: måste vara udda
+        record_invalid: 'Validering misslyckades: %{errors}'
+        requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
+        requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
+        taken: har redan tagits
+        too_long:
+          one: är för långt (maximalt %{count} tecken)
+          other: är för långt (maximalt %{count} tecken)
+        too_short:
+          one: är för kort (minimum %{count} tecken)
+          other: är för kort (minimum %{count} tecken)
+        wrong_length:
+          one: är fel längd (ska vara %{count} tecken)
+          other: är fel längd (ska vara %{count} tecken)
+      template:
+        body: 'Det uppstod problem med följande fält:'
+        header:
+          one: '%{count} fel hindrade denna %{model} från att sparas'
+          other: '%{count} fel hindrade denna %{model} från att sparas'
   activerecord:
     models:
+      AssessmentSection: Bedömningsdel
+      Atlas: Atlas
+      CompleteSet: Fullständig uppsättning
+      #Noun
+      Flag: Flagga
       TaxonLink: Taxonlänk
     attributes:
       assessment:
         description: Beskrivning
       assessment_section:
         title: Titel
+        body: Innehåll
+      conservation_status:
+        status: Status
+        description: Beskrivning
+        authority: Myndighet
+        place_id: Plats
+        url: URL
+        geoprivacy: Geosekretess
+        iucn: IUCN-motsvarighet
+      flag:
+        reason: Anledning
+        flag: Flagga
+      guide:
+        source_url: Källans URL
+        published_at: Publikation
+      listed_taxon:
+        occurrence_status_level: Nivå för förekomststatus
+        establishment_means: Invandringshistoria
+      observation:
+        geo_x: Östlig
+        geo_y: Nordlig
+        observed_on: observerat datum
+      observation_field_value:
+        value: 'Värde'
+      post:
+        title: Rubrik
+        body: Innehåll
       project:
+        title: Titel
+        project_icon: Projektikon
+        project_type: Projekttyp
+        preferred_count_by: Föredraget antal från
+        prefers_count_from_list: Föredrar antal från lista
+        description: Beskrivning
+        end_time: Sluttid
+        event_url: URL för evenemangsregistrering
         terms: Villkor
+        map_type: Karttyp
+        zoom_level: Zoomnivå
+        preferred_membership_model: Föredragen medlemsmodell
+        preferred_submission_model: Föredragen inlämningsmodell
+        prefers_place_boundary_visible: Visa platsgräns på kartan
+        tracking_codes: Spårningskoder
+        source_url: Källans URL
+        start_time: Starttid
+        last_aggregated_at: Observationer senast aggregerade
+      project_observation:
+        user_id: Rapportör
       place:
         code: Kod
+        display_name: Visa namn
         latitude: Latitud
         longitude: Longitud
         name: Namn
+        parent_id: förälder
+        place_type: Platstyp
+        prefers_check_lists: Tillåta checklistor?
+        woeid: WOEID (Where On Earth IDentifier)
+      site:
+        logo: Ordmärke
+        logo_email_banner: E-postbanderoll
+      source:
+        title: Rubrik
+        in_text: I text
+        url: URL
+        citation: Citering
       taxon:
         name: Namn
+        rank: Rang
+        parent_id: Föräldra-ID
+        locked: Låst
+        auto_photos: Automatiska bilder
+        auto_description: Automatisk beskrivning
+        wikipedia_title: Wikipedia-titel
+        wikipedia_summary: Wikipedia-sammanfattning
+        source_identifier: Källans identifierare
+        source_url: Källans URL
+      taxon_name:
+        name_provider: Namnleverantör
+        source_url: Källans URL
+        source_identifier: Källans identifierare
       user:
         email: E-post
         login: Användarnamn
@@ -6488,7 +6937,9 @@ sv:
         time_zone: Tidszon
         search_place_id: Sökplats
         place_id: Plats
+        preferred_observation_fields_by: Tillåt observationsfält från
     errors:
+      format: '%{attribute} %{message}'
       messages:
         accepted: måste accepteras
         blank: kan inte vara tom
@@ -6498,6 +6949,7 @@ sv:
         even: måste vara jämnt
         exclusion: är reserverad
         greater_than: måste vara större än %{count}
+        greater_than_or_equal_to: måste vara större än eller lika med %{count}
         inclusion: ingår inte i listan
         invalid: är ogiltig
         less_than: måste vara mindre än %{count}
@@ -6505,33 +6957,329 @@ sv:
         not_a_number: är inte en siffra
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
+        record_invalid: 'Validering misslyckades: %{errors}'
+        requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
+        requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
         taken: har redan tagits
+        too_long:
+          one: är för långt (maximalt %{count} tecken)
+          other: är för långt (maximalt %{count} tecken)
+        too_short:
+          one: är för kort (minimum %{count} tecken)
+          other: är för kort (minimum %{count} tecken)
         wrong_length:
           one: har fel längd (bör vara 1 tecken)
           other: har fel längd (bör vara %{count} tecken)
+      template:
+        body: 'Det uppstod problem med följande fält:'
+        header:
+          one: '%{count} fel hindrade denna %{model} från att sparas'
+          other: '%{count} fel hindrade denna %{model} från att sparas'
       models:
         application:
           attributes:
             redirect_uri:
               fragment_present: "kan inte innehålla ett fragment."
+              has_query_parameter: "kan inte innehålla en förfrågansparameter."
               invalid_uri: "måste vara en giltig URI."
+              relative_uri: "måste vara en absolut URI."
+        flag:
+          attributes:
+            user_id:
+              already_flagged: "redan flaggat det objektet"
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: "kräver minst 3 taxa i din guide"
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: "guide kan bara ha 500 taxa"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: "API-nyckel importerar eller köad för import"
         observation:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "koordinaterna kan inte vara 0,0"
+            observed_on:
+              cannot_be_greater_than_date_created: |
+                kan inte vara större än det datum som observationen lades till
         observation_field_value:
           attributes:
+            value:
+              dna_only_atcg: "för DNA kan endast innehålla tecknen A, T, C eller G"
+              date_format: |
+                måste vara av formen YYYY-MM-DD för ett datumfält ("%{observation_field_name}"
+                i din observation av "%{observation_species_guess}")
+              time_format: |
+                måste vara av formen hh:mm för ett tidsfält ("%{observation_field_name}"
+                i din observation av "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: användare accepterar inte fält från andra
+              user_only_accepts_fields_from_site_curators: användaren accepterar bara fält från webbplatsen förvaltare
         place:
           attributes:
             place_geometry:
               is_too_large_to_edit: är för stor att redigeras
               is_too_large_to_import: är för stor för att importera
+              contains_too_many_observations: innehåller för många observationer för import
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: |
+                måste ha registrerat sig för mer än 24 timmar sedan för att publicera.
+                Vi får en hel del spam, och detta är ett rätt lamt sätt att hantera
+                det. Du kan fortfarande spara ett utkast, och om du fortfarande
+                använder webbplatsen om en dag, kommer du att kunna publicera.
+        project_observation:
+          attributes:
+            base:
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                samlings- och paraplyprojekt tillåter inte direkta inskick
+            user_id:
+              must_be_curator: måste vara förvaltare av detta project
+            observation_id:
+              must_be_observed_after: |
+                måste ha observerats efter %{time}
+              must_be_observed_before: |
+                måste ha observerats innan %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kan endast ändras av en förvaltare av detta taxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kan endast ändras av en förvaltare av detta taxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kan endast ändras av en förvaltare av detta taxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kan endast ändras av en förvaltare av detta taxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kan endast ändras av en förvaltare av detta taxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kan endast ändras av en förvaltare av detta taxon
+            name:
+              bad_format: |
+                kan endast innehålla vanliga latinska tecken, bindestreck, mellanslag och
+                ×; observera att preliminära taxa och sortnamn inte är tillåtna
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: bör inte innehålla kommatecken eller snedstreck
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
+                kan inte matcha det vetenskapliga namnet på en art i detta lexikon
+              must_match_the_taxon_if_valid: |
+                måste matcha detta taxons namn om det är ett giltigt vetenskapligt namn
+              bad_format: |
+                kan endast innehålla vanliga latinska tecken, bindestreck, mellanslag och
+                ×; observera att preliminära taxa och sortnamn inte är tillåtna
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: |
+                kan inte ha fler än %{max} foton
         user:
           attributes:
+            login:
+              must_begin_with_a_letter: |
+                måste börja med en bokstav, inte innehålla några mellanslag,
+                och endast använda bokstäver, siffror, bindestreck och understreck
             email:
               must_look_like_an_email_address: måste se ut som en e-postadress
+              domain_is_not_supported: domänen stöds inte
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: |
+                tillhör en befintlig användare; om du har ett konto, vänligen logga in
+                innan du fortsätter, eller använd en annan e-postadress
+  doorkeeper:
+    scopes:
+      write: |
+        Skapa, uppdatera och ta bort dina observationer, bestämningar och annat
+        innehåll å dina vägnar, samt få tillgång till dina dolda koordinater och all
+        annan information som du kan komma åt på webbplatsen.
+      login: |
+        Få tillgång till information som är relevant för att logga in på en tredjepartstjänst, som e-postadress,
+        användarnamn, namn och användarikon som associeras med ditt konto här.
+      account_delete: |
+        Radera ditt konto för din räkning.
+    errors:
+      messages:
+        #Common error messages
+        invalid_request: 'Begäran saknar en obligatorisk parameter, innehåller ett parametervärde som inte stöds, eller är på annat sätt felformulerad.'
+        invalid_redirect_uri: 'Den omdirigerings-uri som ingår är inte giltig.'
+        unauthorized_client: 'Klienten har inte behörighet att utföra denna begäran med denna metod.'
+        access_denied: 'Resursägaren eller auktoriseringsservern nekade begäran.'
+        invalid_scope: 'Begärans omfattning är ogiltig, okänd eller felformulerad.'
+        server_error: 'Auktoriseringsservern stötte på ett oväntat tillstånd som hindrade den från att uppfylla begäran.'
+        temporarily_unavailable: 'Auktoriseringsservern kan för närvarande inte hantera begäran på grund av en tillfällig överbelastning eller underhåll av servern.'
+        #Configuration error messages
+        credential_flow_not_configured: 'Lösenordsflödet för resursägaren misslyckades på grund av att Doorkeeper.configure.resource_owner_from_credentials inte är konfigurerad.'
+        resource_owner_authenticator_not_configured: 'Det gick inte att hitta resursägare på grund av att Doorkeeper.configure.resource_owner_authenticator inte är konfigurerad.'
+        #Access grant errors
+        unsupported_response_type: 'Auktoriseringsservern stöder inte denna svarstyp.'
+        #Access token errors
+        invalid_client: 'Klientautentisering misslyckades på grund av okänd klient, ingen inkluderad klientautentisering eller en autentiseringsmetod som inte stöds.'
+        invalid_grant: 'Den angivna beviljade behörigheten är ogiltig, har löpt ut, återkallats, matchar inte den omdirigerings-URI som används i begäran om behörighet eller utfärdades till en annan klient.'
+        unsupported_grant_type: 'Den beviljade behörighetstypen stöds inte av auktoriseringsservern.'
+        #Password Access token errors
+        invalid_resource_owner: 'De angivna uppgifterna om resursägaren är inte giltiga, eller så kan inte resursägaren hittas'
+    flash:
+      applications:
+        create:
+          #Application as in a software application
+          notice: 'Applikationen har skapats.'
+        destroy:
+          #Application as in a software application
+          notice: 'Applikationen raderad.'
+        update:
+          #Application as in a software application
+          notice: 'Applikationen uppdaterad.'
+      authorized_applications:
+        destroy:
+          #Application as in a software application
+          notice: 'Applikationen har återkallats.'
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: vokal
+        con: konsonant
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
+      "@gender":
+        m: maskulin
+        f: feminin
+        "n": neutrum
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@n"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
+  wild: Vilda
+  will_paginate:
+    previous_label: "&#8592; Föreg"
+    next_label: "Nästa &#8594;"
+    page_gap: "&hellip;"
   zoom_in: Zooma in
   zoom_out: Zooma ut
   zoom_photo: Zooma foto
