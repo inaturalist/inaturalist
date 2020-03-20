@@ -480,6 +480,9 @@ it:
   are_you_sure_remove_taxon_from_list: "Sei sicuro di voler rimuovere questo taxon dall'elenco?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Sei sicuro? Questa operazione aggiornerà la pagina, potresti perdere alcune delle tue modifiche.
+  are_you_sure_unresolve_flag?: |
+    Sei sicuro di voler rimuovere la risoluzione di questo contrassegno? Questo rimuoverà la risoluzione
+    e l'utente risolutore da questo contrassegno.
   are_you_sure_want_delete_taxon: "Sei sicuro di voler eliminare questo taxon?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Sei sicuro di voler eliminare questo taxon? Ha dei taxa discendenti.
@@ -3843,6 +3846,8 @@ it:
   updating: Aggiornamento...
   unprocessable: Non processabile
   unpublish: Togli dai pubblicati
+  #Undo the action of resolving a flag
+  unresolve: Rimuovi la risoluzione
   unreview_all: Rimuovi tutte le revisioni
   unsubscribe: Cancella iscrizione
   unsuspend_user: Riammetti utente
