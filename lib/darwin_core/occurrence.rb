@@ -15,8 +15,8 @@ module DarwinCore
       %w(occurrenceRemarks http://rs.tdwg.org/dwc/terms/occurrenceRemarks),
       %w(occurrenceDetails http://rs.tdwg.org/dwc/terms/occurrenceDetails),
       %w(recordedBy http://rs.tdwg.org/dwc/terms/recordedBy),
-      %w(recordedById http://rs.gbif.org/terms/1.0/recordedByID),
-      %w(identifiedById http://rs.gbif.org/terms/1.0/identifiedById),
+      %w(recordedByID http://rs.gbif.org/terms/1.0/recordedByID),
+      %w(identifiedByID http://rs.gbif.org/terms/1.0/identifiedByID),
       %w(establishmentMeans http://rs.tdwg.org/dwc/terms/establishmentMeans),
       %w(eventDate http://rs.tdwg.org/dwc/terms/eventDate),
       %w(eventTime http://rs.tdwg.org/dwc/terms/eventTime),
@@ -152,13 +152,13 @@ module DarwinCore
         user.login
       end
 
-      def recordedById
+      def recordedByID
         orcid_id = user.provider_authorizations.detect{|pa| pa.provider_name == "orcid"}.try(:provider_uid)
         return unless orcid_id
         "https://orcid.org/#{orcid_id}"
       end
 
-      def identifiedById
+      def identifiedByID
         return unless dwc_taxon
         taxon_id = dwc_taxon.id
         idents = identifications.select(&:current?).sort_by(&:id)
