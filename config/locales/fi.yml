@@ -1058,7 +1058,7 @@ fi:
   deleted_vote: Poistettu äänestys
   deleting: Poistaa...
   deleting_verb: Poistaminen
-  deny: Kiellä
+  deny: Estä
   desc: Laskeva
   descending: Laskeva
   describe_purpose: Kuvaile tämän projektin tarkoitus.
@@ -4134,6 +4134,8 @@ fi:
     oauth:
       authorizations:
         new:
+          authorize_application_to_use_your_account?: Annatko sovellukselle %{application} luvan käyttää tunnustasi?
+          this_application_will_be_able_to_colon: "Tämä sovellus:"
           more_about_application: Lisätietoa sovelluksesta %{application}
     observations:
       community_id:
@@ -5559,7 +5561,9 @@ fi:
   doorkeeper:
     scopes:
       write: |
-        Luoda, päivittää ja poistaa havaintojasi, tunnistuksiasi ja muuta sisältöä puolestasi ja päästä näkemään piilotetut koordinaattisi ja kaiken muun tiedon, johon sinulla on sivustolla pääsy.
+        Voi luoda, päivittää ja poistaa havaintojasi, tunnistuksiasi ja muuta sisältöä puolestasi. Se myös pääsee näkemään piilotetut koordinaattisi ja kaiken muun tiedon, johon sinulla on sivustolla pääsy.
+      login: |
+        Pääsee käsiksi tietoon, jota tarvitaan kirjautumiseen kolmannen osapuolen palveluun. Näistä tietoja ovat esim. sähköpostiosoitteesi, käyttäjätunnuksesi, nimesi ja profiilikuvasi.
       account_delete: |
         Poistaa käyttäjätilini puolestani.
     flash:
