@@ -1289,8 +1289,8 @@ de:
   google: Google
   got_it!: Alles klar!
   got_your_data_somewhere_else?: Haben Sie Ihre Daten irgendwo anders?  Wir können helfen.
-  grid: Gitter
-  grid_layout: Gitter-Layout
+  grid: Raster
+  grid_layout: Rasteransicht
   grid_tooltip: Rasteransicht anzeigen
   group: Gruppe
   grouping: Gruppieren
@@ -1330,7 +1330,7 @@ de:
   help_support_inaturalist: "iNaturalist unterstützen"
   help_translate!: Hilf beim Übersetzen!
   here_are_3_examples: Hier sind 3 Exemplare von gut formatierten Datensätzen.
-  here_are_our_top_species_suggestions: Hier unsere top Arten-Vorschläge
+  here_are_our_top_species_suggestions: Hier sind unsere besten Vorschläge
   hex_color_eg: Hex Farbe, z.B. 65644F
   hi: Hallo,
   hi_user: "Hallo %{user}"
@@ -1358,7 +1358,7 @@ de:
   identify_observations: "Beobachtungen bestimmen"
   identify_observations_by_these_users: Identifiziere Beobachtungen dieser Benutzer
   identify_title: "ID-Modul"
-  identification: Bestimmung
+  identification: ID
   identification_by_user: Bestimmung durch %{user}
   identification_deleted: Bestimmung gelöscht.
   identification_saved: "Bestimmung gespeichert!"
@@ -2178,7 +2178,7 @@ de:
   overview: Übersicht
   owner: Besitzer
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
-  parent: Elternteil
+  parent: Überklasse
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Eltern-Name
   parental_consent:
@@ -3568,7 +3568,7 @@ de:
   welcome_to_inat: "Willkommen bei %{site_name}!"
   welcome_to_guides: "Willkommen bei %{site_name}-Guides!"
   welcome_to_x_project: "Willkommen bei %{project}"
-  were_pretty_sure_this_is_in_the_rank: Wir sind ziemlich sicher, es ist in %{rank}
+  were_pretty_sure_this_is_in_the_rank: Wir schlagen vor dass es in dieser %{rank} sein könnte
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Es tut uns leid aber der Batch-Import von %{filename} ist fehlgeschlagen."
   what: Was
   what_did_you_see: Was hast du gesehen?
