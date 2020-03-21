@@ -268,7 +268,7 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
   }
   map.taxonLayerSignatures[sig] = true;
   if( layer.places && layer.taxon && taxonData.listed_places ) {
-    layerOptions = _.isObject( layer.places ) ?
+    var layerOptions = _.isObject( layer.places ) ?
       layer.places : { };
     map.addTaxonPlacesLayer( _.defaults( layerOptions, {
       taxon: layer.taxon,
@@ -279,7 +279,7 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
     }));
   }
   if( layer.ranges && taxonData.ranges ) {
-    layerOptions = _.isObject( layer.ranges ) ?
+    var layerOptions = _.isObject( layer.ranges ) ?
       layer.ranges : { };
     map.addTaxonRangeLayer( _.defaults( layerOptions, {
       taxon: layer.taxon,
@@ -290,7 +290,7 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
     }));
   }
   if( layer.observations ) {
-    layerOptions = _.isObject( layer.observations ) ?
+    var layerOptions = _.isObject( layer.observations ) ?
       layer.observations : { };
     map.addObservationsLayer( options.taxonObservationsLayerLabel, _.defaults( layerOptions, {
       taxon: layer.taxon,

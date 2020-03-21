@@ -5,6 +5,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon } from "../../shared/util";
+import { COLORS } from "../../../shared/util";
 
 const TaxonPageMap = ( {
   taxon,
@@ -19,6 +20,8 @@ const TaxonPageMap = ( {
   let taxonMap;
   const currentUserPrefersMedialessObs = config.currentUser
     && config.currentUser.prefers_medialess_obs_maps;
+  const currentUserPrefersCaptiveObs = config.currentUser
+    && config.currentUser.prefers_captive_obs_maps;
   if ( taxon ) {
     const t = Object.assign( { }, taxon, {
       forced_name: ReactDOMServer.renderToString(
@@ -44,13 +47,27 @@ const TaxonPageMap = ( {
         taxonLayers={[{
           taxon: t,
           observationLayers: [
-            { label: I18n.t( "verifiable_observations" ), verifiable: true },
+            {
+              label: I18n.t( "verifiable_observations" ),
+              verifiable: true
+              // legendColor: COLORS.orange
+            },
             {
               label: I18n.t( "observations_without_media" ),
               verifiable: false,
+              captive: false,
+              // color: COLORS.maroon,
               disabled: !currentUserPrefersMedialessObs,
               onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
             }
+            // {
+            //   label: I18n.t( "captive_cultivated" ),
+            //   verifiable: false,
+            //   captive: true,
+            //   color: COLORS.blue,
+            //   disabled: !currentUserPrefersCaptiveObs,
+            //   onChange: e => updateCurrentUser( { prefers_captive_obs_maps: e.target.checked } )
+            // }
           ],
           gbif: { disabled: true },
           places: true,

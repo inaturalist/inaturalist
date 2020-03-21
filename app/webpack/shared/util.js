@@ -212,7 +212,20 @@ const COLORS = {
     Mammalia: "#1E90FF",
     Actinopterygii: "#1E90FF",
     Chromista: "#993300"
-  }
+  },
+
+  // 2019 branding guidelines colors
+  successGreen: "#A8CC09",
+  warningYellow: "#FFEE91",
+  blue: "#2E78B8",
+  darkGreen: "#228A22",
+  orange: "#E66C39",
+  mediumGray: "#999999",
+  maroon: "#842203",
+  purple: "#801A80",
+  darkMagenta: "#AA0044",
+  pink: "#E65C93",
+  yellow: "#E6A939"
 };
 
 export {
