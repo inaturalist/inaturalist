@@ -777,16 +777,16 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   legendLeft.append( checkbox );
   var legendRight = $( "<div class='legend-right' />" );
   legendRight.append( label );
-  // // Append an element to show the color of this layer in the legend. Note the
-  // // legend color can be specified independently of the layer color with
-  // // legendColor, otherwise it defaults to color
-  // var legendColor = options.legendColor || options.color;
-  // if ( legendColor ) {
-  //   li.addClass( "with-legend-mark" );
-  //   legendLeft.append(
-  //     $( "<div class='legend-mark' />" ).css( { backgroundColor: legendColor } )
-  //   );
-  // }
+  // Append an element to show the color of this layer in the legend. Note the
+  // legend color can be specified independently of the layer color with
+  // legendColor, otherwise it defaults to color
+  var legendColor = options.legendColor || options.color;
+  if ( legendColor ) {
+    li.addClass( "with-legend-mark" );
+    legendLeft.append(
+      $( "<div class='legend-mark' />" ).css( { backgroundColor: legendColor } )
+    );
+  }
   li.append( legendLeft, legendRight );
   if( options.endpoint === "gbif" && options.gbif_id ) {
      label.append(
