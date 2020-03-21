@@ -3,7 +3,7 @@ class UserMutesController < ApplicationController
   before_filter :authenticate_user!, unless: ->{ authenticated_with_oauth? }
 
   def create
-    @user_mute = UserMute.new( params[:user_mute] )
+    @user_mute = UserMute.new( whitelist_params )
     @user_mute.user = current_user
     respond_to do |format|
       if @user_mute.save
@@ -38,5 +38,12 @@ class UserMutesController < ApplicationController
       end
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def whitelist_params
+    return if params[:user_mute].blank?
+    params.require(:user_mute).permit(:muted_user_id)
   end
 end

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     only: [ :edit ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :write },
-    only: [ :create, :update, :dashboard, :new_updates, :api_token ],
+    only: [ :create, :update, :dashboard, :new_updates, :api_token, :mute, :unmute ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :account_delete },
     only: [ :destroy ],
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       :search, :update_session, :parental_consent ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
     :show, :update, :followers, :following, :relationships, :add_role,
-    :remove_role, :set_spammer, :merge, :trust, :untrust ]
+    :remove_role, :set_spammer, :merge, :trust, :untrust, :mute, :unmute ]
   before_filter :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
@@ -903,6 +903,34 @@ class UsersController < ApplicationController
     end
   end
 
+  def mute
+    @user_mute = current_user.user_mutes.where( muted_user_id: @user ).first
+    @user_mute ||= current_user.user_mutes.create( muted_user: @user )
+    respond_to do |format|
+      format.json do
+        if @user_mute.valid?
+          render head: :no_content, layout: false, text: nil
+        else
+          render status: :unprocessable_entity, json: { errors: @user_mute.errors }
+        end
+      end
+    end
+  end
+
+  def unmute
+    @user_mute = current_user.user_mutes.where( muted_user_id: @user ).first
+    @user_mute.destroy if @user_mute
+    respond_to do |format|
+      format.json do
+        if @user_mute
+          render head: :no_content, layout: false, text: nil
+        else
+          render status: :unprocessable_entity, json: { errors: ["User #{@user.id} was not muted"] }
+        end
+      end
+    end
+  end
+
 protected
 
   def add_friend
@@ -974,6 +1002,7 @@ protected
       @user = User.find(params[:id])
     rescue
       @user = User.where("lower(login) = ?", params[:id].to_s.downcase).first
+      @user = User.where( uuid: params[:id] ).first
       render_404 if @user.blank?
     end
   end

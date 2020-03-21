@@ -182,6 +182,8 @@ Rails.application.routes.draw do
   post 'users/set_spammer' => 'users#set_spammer'
   post 'users/:id/set_spammer' => 'users#set_spammer', :as => :set_spammer, :constraints => { :id => /\d+/ }
   delete 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }
+  post "users/:id/mute" => "users#mute", as: :mute_user
+  delete "users/:id/mute" => "users#unmute", as: :unmute_user
   get 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
   put '/photos/:id/repair' => "photos#repair", :as => :photo_repair
   resources :photos, :only => [:show, :update, :destroy, :create] do

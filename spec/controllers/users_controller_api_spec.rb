@@ -210,6 +210,40 @@ shared_examples_for "a signed in UsersController" do
     end
   end
 
+  describe "mute" do
+    let(:muted_user) { User.make! }
+    it "should mute the specified user on behalf of the authenticated user" do
+      expect( user.user_mutes.where( muted_user_id: muted_user.id ).first ).to be_blank
+      post :mute, format: :json, id: muted_user.id
+      user.reload
+      expect( user.user_mutes.where( muted_user_id: muted_user.id ).first ).not_to be_blank
+    end
+    it "should return an error if the specified user doesn't exist" do
+      post :mute, format: :json, id: User.maximum(:id).to_i + 1
+      expect( response.status ).to eq 404
+    end
+    it "should succeed if the specified user has already been muted" do
+      user_mute = UserMute.make!( user: user, muted_user: muted_user )
+      post :mute, format: :json, id: muted_user.id
+      expect( response ).to be_ok
+      user.reload
+      expect( user.user_mutes.where( muted_user_id: muted_user.id ).first ).not_to be_blank
+    end
+  end
+
+  describe "unmute" do
+    it "should unmute the specified user on behalf of the authenticated user" do
+      user_mute = UserMute.make!( user: user )
+      delete :unmute, format: :json, id: user_mute.muted_user_id
+      user.reload
+      expect( user.user_mutes.where( muted_user_id: user_mute.muted_user_id ).first ).to be_blank
+    end
+    it "should return an error if the specified user doesn't exist" do
+      delete :unmute, format: :json, id: User.maximum(:id).to_i + 1
+      expect( response.status ).to eq 404
+    end
+  end
+
 end
 
 describe UsersController, "oauth authentication" do
