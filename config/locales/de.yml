@@ -147,7 +147,7 @@ de:
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: Über Verbreitung
+  about_establishment_means: Über Art der Verbreitung
   about_licenses: Über Lizenzen
   about_muting: Über Stummstellen
   #Header for a section describing taxon names
@@ -438,10 +438,10 @@ de:
   announcement_was_successfully_updated: Ankündigung wurde erfolgreich aktualisiert.
   announcements: Ankündigungen
   any: alle
-  any_: Beliebige
+  any_: Alle
   anyone: Alle
   apply_to_selected: Für Ausgewählte übernehmen
-  apply_captive_cultivated: "In Gefangenschaft/kultiviert anwenden"
+  apply_captive_cultivated: "In Haltung/kultiviert anwenden"
   apply_fields: Felder übernehmen
   apply_geoprivacy: Geo-Privatsphäre anwenden
   apply_darr: "Übernehmen &darr;"
@@ -590,8 +590,8 @@ de:
   cant_edit_or_delete_hidden_content: Du kannst keine Inhalte bearbeiten oder löschen, die von Kuratoren versteckt wurden
   cant_flag_an_object_that_doesnt_exist: Nicht vorhandenes Objekt kann nicht gemeldet werden.
   cant_merge_a_taxon_with_itself: Kann kein Taxon mit sich selbst zusammenführen.
-  captive: in Gefangenschaft
-  captive_cultivated: In Gefangenschaft/kultiviert
+  captive: Haltung/Zucht
+  captive_cultivated: In Haltung/kultiviert
   card: Karte
   casual: Hobbyqualität
   casual_: Hobbyqualität
@@ -1097,14 +1097,14 @@ de:
   establishment:
     endemic: endemisch
     establishment: Verbreitung
-    introduced: Eingeführt
+    introduced: eingeführt
     invasive: Invasiv
     managed: Verwaltet
     native: Einheimisch
     naturalised: Ausgewildert
-  establishment_means: Verbreitung
+  establishment_means: Art der Verbreitung
   establishment_means_describes_how: |
-    "Verbreitung" bezeichnet wie das Taxon sich in einem Gebiet verbreitet hat.  
+    "Art der Verbreitung" bezeichnet wie das Taxon sich in einem Gebiet verbreitet hat. 
     Siehe DarwinCore für <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">über mehr Informationen zur Terminologie</a>.
   event_in_progress: Event läuft
   event_stats: Ereignisstatistiken
@@ -1425,7 +1425,7 @@ de:
   internal_server_error: Interner Serverfehler
   internal_taxon_including_descendants: Internes Taxon (einschließlich Nachkommen)
   internal_taxon_rank: Interner Taxonrang
-  introduced: Eingeführt
+  introduced: eingeführt
   introduced_in_place: "Eingeführt in %{place}"
   invitation: Einladung
   invite: einladen
@@ -1790,7 +1790,7 @@ de:
   most_recent_observation_by_date_observed: Neueste verifizierbare Beobachtung nach Beobachtungsdatum
   most_species: Meiste Arten
   most_observed_species: Meist beobachtete Art
-  most_observed_introduced_species: Meist beobachtete eingeführte Art
+  most_observed_introduced_species: Eingeführte Art mit den meisten Beobachtungen
   most_observed_threatened_species: Meiste beobachtete bedrohte Art
   multiple: mehrfach
   multiple_select_option: '--mehrfach--'
@@ -1811,6 +1811,7 @@ de:
   n_person_agrees: "%{amount} Personen stimmen zu"
   n_person_disagrees: "%{amount} Personen stimmen nicht zu"
   name_entered: Name eingegeben
+  name_or_slug: "Name oder URL Slug, z.B. /mein-Projekt"
   name_of_the_place_you: Name des Ortes an dem du die Beobachtung gemacht hast
   names: Namen
   names_for_taxon_html: "Namen für %{taxon}"
@@ -2068,7 +2069,7 @@ de:
     absent: Tritt nicht im Bereich auf
     common: Erscheint regelmäßig
     present: Erscheint im Bereich
-  occurrence_status_establishment_means: Vorkommensstatus, Verbreitung
+  occurrence_status_establishment_means: Vorkommensstatus, Art der Verbreitung
   occurrence_status_levels:
     present: vorhanden
     common: häufig
@@ -2162,7 +2163,7 @@ de:
   original_page_url_for_this_photo: "Ursprüngliche Seiten-URL für dieses Foto."
   original_rights_holder: Ursprünglicher Rechteinhaber
   original_url_for_this_map: Ursprüngliche URL für diese Karte
-  organism_appears_captive_cultivated: Organismus scheint in Gefangenschaft / kultiviert zu sein
+  organism_appears_captive_cultivated: Organismus scheint in Haltung/kultiviert zu sein
   other: Andere
   other_animals: andere Tiere
   other_lexicons: Andere Lexika
@@ -2694,7 +2695,7 @@ de:
   project_group_description: Gruppe der das Projekt angehört
   project_home: Projekt-Startseite
   project_icon: Projektsymbol
-  project_id_or_url_slug: Projekt ID order URL slug, z.B. 333 oder mein-projekt
+  project_id_or_url_slug: Projekt ID oder URL slug, z.B. 333 oder mein-projekt
   project_invitations: 'Projekteinladungen'
   project_list: Projektliste
   project_list_defaults:
@@ -2890,7 +2891,7 @@ de:
   restoring: Stelle wieder her …
   results: Ergebnisse
   review_all: Alle Überprüfen
-  reviewed: Überprüfte
+  reviewed: begutachtet
   rg_observations: FQ Beobachtungen
   role: Rolle
   rotate_left: Nach links drehen
@@ -3546,7 +3547,7 @@ de:
   wait_file_generation: Bitte um Geduld während die Datei erzeugt wird. Bei großen Listen kann es ein paar Minuten dauern.
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesucht
-  was_it_captive_cultivated?: "War es in Gefangenschaft o. kultiviert?"
+  was_it_captive_cultivated?: "War es in Haltung, gezüchtet o. kultiviert?"
   we_also_support: |
     Von <a href="http://flickr.com">Flickr</a>,
     <a href="http://photos.google.com">Google Fotos</a> und
@@ -3721,7 +3722,7 @@ de:
   your_identification: Deine Bestimmung
   your_membership: Deine Mitgliedschaft
   your_name_was_saved: Dein Name wurde gespeichert.
-  your_observations: Deine Beobachtungen
+  your_observations: Eigene Beobachtungen
   your_observations_couldnt_be_added_to_that_project: "Deine Beobachtungen konnten nicht zum Projekt hinzugefügt werden: %{errors}"
   your_photos_have_been_tagged: Deine Bilder wurden getaggt!
   your_projects: Deine Projekte
@@ -3883,7 +3884,7 @@ de:
       copy_tip: "Füge eine neue Beobachtung hinzu, indem du Datum, Ort, Bilder und Beobachtungsfelder dieser Beobachtung kopierst."
       captive_help_html: |
         War der Organismus <strong>kultiviert</strong> oder
-        <strong>in Gefangenschaft</strong>? Zum Beispiel, war er in einem <strong>Garten, Zoo, Aquarium</strong> oder in einer anderen Situation, in der es nur präsent war <strong>weil ihn die Menschen dort vorgesehen haben</strong>? Alle Beobachtungen von Lebewesen sind willkommen, aber wir möchten wissen, wenn etwas nicht wild oder naturbelassen ist.
+        <strong>in Haltung</strong>? Zum Beispiel, war er in einem <strong>Garten, Zoo, Aquarium</strong> oder in einer anderen Situation, in der es nur präsent war <strong>weil ihn die Menschen dort vorgesehen haben</strong>? Alle Beobachtungen von Lebewesen sind willkommen, aber wir möchten wissen, wenn etwas nicht wild oder naturbelassen ist.
       compare:
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Zeitintervall
@@ -3977,7 +3978,7 @@ de:
           Nilpferde in Bürogebäuden usw.)
           </li>
           <li>
-          der <strong>Organismus nicht wild/verwildert ist</strong> (z.B. kultiviert oder in Gefangenschaft gehalten von Menschen oder auch von intelligenten Außerirdischen)
+          der <strong>Organismus nicht wild/verwildert ist</strong> (z.B. kultiviert oder in Haltung von Menschen oder auch von intelligenten Außerirdischen)
           </li>
           <li>
           die Beobachtung <strong>keine Hinweise auf einen
@@ -4131,7 +4132,7 @@ de:
           </li>
           </ol>
         rules:
-          captive: in Gefangenschaft/kultiviert sein
+          captive: in Haltung/kultiviert sein
           georeferenced: haben Koordinaten
           has_a_sound: haben einen Ton
           has_media: haben Medien (Foto oder Ton)
@@ -4282,7 +4283,7 @@ de:
           Wir versuchen, diese Unzulänglichkeiten zu beheben, indem wir, wo immer möglich, sowohl umgangssprachliche als auch wissenschaftliche Namen zeigen und umgangssprachliche Namen auf der Grundlage der Sprache und der geografischen Präferenzen des Betrachters auswählen.
           </p>
         about_establishment_desc: |
-          "Verbreitung" beschreibt, wie eine Art dorthin gelangt ist, wo sie derzeit vorkommt. "Eingeführt" bedeutet, dass sie sich aufgrund menschlicher Eingriffe verbreitet hat, während "einheimisch" bedeutet, dass sie sich ohne menschliches Zutun dort verbreitet hat. Endemische Arten kommen nur an einem bestimmten Ort vor (z.B. einer Insel) und sonst nirgends.
+          "Art der Verbreitung" beschreibt, wie eine Art dorthin gelangt ist, wo sie derzeit vorkommt. "Eingeführt" bedeutet, dass sie sich aufgrund menschlicher Eingriffe verbreitet hat, während "einheimisch" bedeutet, dass sie sich ohne menschliches Zutun dort verbreitet hat. Endemische Arten kommen nur an einem bestimmten Ort vor (z.B. einer Insel) und sonst nirgends.
         charts_help_seasonality: |
           Diese Tabelle zeigt die Anzahl von Beobachtungen von diesem Taxon, gruppiert nach Monaten. Bitte denke daran, dass dies Zahlen von Beobachtungen sind und diese somit dadurch beeinflusst werden, wann der Organismus beobachtet werden kann und wann Menschen versuchen, diesen zu beobachten. Es könnte so wirken, als sei ein Vogel im Mai sehr aktiv, aber es könnte auch sein, dass im Mai mehr Menschen Vögel beobachten und diese Spezies in späteren Monaten eher ignorieren. Und wenn du im Juni mehr Libellen als im Januar siehst, dann ist möglicherweise ein Grund dafür, dass wir mehr beobachtende Menschen auf der Nordhalbkugel als auf der Südhalbkugel haben. Dies liegt nicht daran, dass Libellen im Juni aktiver sind. Überprüfe also die Karte, wenn du diese Tabelle verwendest. Es ist immer eine gute Idee, diese Tabellen skeptisch zu betrachten, falls es eine geringe Anzahl von Beobachtungen und/oder große Unterschiede zwischen der Anzahl von „überprüfbaren“ und „forschungsartigen“ Beobachtungen gibt.
         charts_help_relative_observations: |
@@ -4377,7 +4378,7 @@ de:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Wenn ein Projekt deine Beobachtungen hinzufügt
         project_addition_preferences:
-          any: gesamter Zeitraum
+          any: alle
           joined: Projekte, denen du beigetreten bist
           none: "Keine, nur du kannst deine Beobachtungen zu Projekten hinzufügen."
         prefers_community_taxa_desc: |
@@ -4722,7 +4723,7 @@ de:
         source_url: Quell-URL
         published_at: Publikation
       listed_taxon:
-        establishment_means: Verbreitung
+        establishment_means: Art der Verbreitung
       observation_field_value:
         value: 'Wert'
       post:
