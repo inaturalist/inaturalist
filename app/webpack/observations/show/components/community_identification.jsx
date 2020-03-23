@@ -5,12 +5,11 @@ import { Popover, OverlayTrigger, Panel } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import CommunityIDPopover from "./community_id_popover";
 import TaxonSummaryPopover from "./taxon_summary_popover";
-import ConservationStatusBadge from "../components/conservation_status_badge";
-import EstablishmentMeansBadge from "../components/establishment_means_badge";
+import ConservationStatusBadge from "./conservation_status_badge";
+import EstablishmentMeansBadge from "./establishment_means_badge";
 import util from "../util";
 
 class CommunityIdentification extends React.Component {
-
   constructor( props ) {
     super( props );
     this.ownerID = null;
@@ -30,25 +29,27 @@ class CommunityIdentification extends React.Component {
   setInstanceVars( ) {
     const { observation, config } = this.props;
     this.loggedIn = config && config.currentUser;
-    this.observerOptedOut = ( observation.user.preferences &&
-      observation.user.preferences.prefers_community_taxa === false );
-    this.observationOptedIn = ( observation.preferences &&
-      observation.preferences.prefers_community_taxon === true );
-    this.observationOptedOut = ( observation.preferences &&
-      observation.preferences.prefers_community_taxon === false );
+    this.observerOptedOut = ( observation.user.preferences
+      && observation.user.preferences.prefers_community_taxa === false );
+    this.observationOptedIn = ( observation.preferences
+      && observation.preferences.prefers_community_taxon === true );
+    this.observationOptedOut = ( observation.preferences
+      && observation.preferences.prefers_community_taxon === false );
     this.userIsObserver = this.loggedIn && config.currentUser.id === observation.user.id;
-    this.communityIDIsRejected = ( this.observationOptedOut ||
-      ( this.observerOptedOut && !this.observationOptedIn ) );
+    this.communityIDIsRejected = ( this.observationOptedOut
+      || ( this.observerOptedOut && !this.observationOptedIn ) );
   }
 
   communityIDOptIn( e ) {
     e.preventDefault( );
-    this.props.updateObservation( { prefers_community_taxon: true } );
+    const { updateObservation } = this.props;
+    updateObservation( { prefers_community_taxon: true } );
   }
 
   communityIDOptOut( e ) {
     e.preventDefault( );
-    this.props.updateObservation( { prefers_community_taxon: false } );
+    const { updateObservation } = this.props;
+    updateObservation( { prefers_community_taxon: false } );
     this.optOutPopoverClose( );
   }
 
@@ -62,9 +63,9 @@ class CommunityIdentification extends React.Component {
         className="CommunityIDInfoOverlay"
         id="popover-community-id-info"
       >
-        <div dangerouslySetInnerHTML={ { __html:
-          I18n.t( "views.observations.community_id.explanation" ) } }
-        />
+        <div dangerouslySetInnerHTML={{
+          __html: I18n.t( "views.observations.community_id.explanation" )
+        }}/>
       </Popover>
     );
   }
@@ -78,7 +79,7 @@ class CommunityIdentification extends React.Component {
         <span className="bold">
           { I18n.t( "views.observations.community_id.you_have_opted_out" ) }.
         </span>
-        <a href="#" onClick={ this.communityIDOptIn }>
+        <a href="#" onClick={this.communityIDOptIn}>
           { I18n.t( "views.observations.community_id.opt_in_for_this_observation" ) }
         </a>
         <span className="separator">·</span>
@@ -92,39 +93,49 @@ class CommunityIdentification extends React.Component {
   communityIDOverrideStatement( ) {
     let statement;
     if ( this.communityIDIsRejected ) {
-      statement = ( <div className="opted_out stacked">
-        { I18n.t( "user_has_opted_out_of_community_id" ) }
-        <OverlayTrigger
-          trigger="click"
-          rootClose
-          placement="top"
-          overlay={ this.communityIDInfoPopover( ) }
-          containerPadding={ 20 }
-        >
-          <i className="fa fa-question-circle" />
-        </OverlayTrigger>
-      </div> );
+      statement = (
+        <div className="opted_out stacked">
+          { I18n.t( "user_has_opted_out_of_community_id" ) }
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            overlay={this.communityIDInfoPopover( )}
+            containerPadding={20}
+          >
+            <i className="fa fa-question-circle" />
+          </OverlayTrigger>
+        </div>
+      );
     }
     return statement;
   }
 
   optOutPopover( ) {
+    const { observation } = this.props;
     // must be observer, IDer, must not have opted out already
-    if ( !( this.userIsObserver && this.ownerID && this.props.observation.taxon && !this.observationOptedOut ) ) {
+    if ( !( this.userIsObserver && this.ownerID
+      && observation.taxon && !this.observationOptedOut ) ) {
       return null;
     }
     // the taxa must be different, or the user defaults to opt-out, but opted in here
-    if ( this.ownerID.taxon.id === this.props.observation.taxon.id &&
-         !( this.observerOptedOut && this.observationOptedIn ) ) {
+    if ( this.ownerID.taxon.id === observation.taxon.id
+      && !( this.observerOptedOut && this.observationOptedIn ) ) {
       return null;
     }
     let dissimilarMessage;
     const idName = this.ownerID.taxon.preferred_common_name || this.ownerID.taxon.name;
-    if ( this.ownerID.taxon.id !== this.props.observation.taxon.id ) {
-      dissimilarMessage = ( <span className="something" dangerouslySetInnerHTML={ { __html:
-        I18n.t( "views.observations.community_id.your_id_does_not_match", {
-          taxon_name: idName } ) } }
-      /> );
+    if ( this.ownerID.taxon.id !== observation.taxon.id ) {
+      dissimilarMessage = (
+        <span
+          className="something"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.observations.community_id.your_id_does_not_match", {
+              taxon_name: idName
+            } )
+          }}
+        />
+      );
     }
     const popover = (
       <Popover
@@ -139,14 +150,15 @@ class CommunityIdentification extends React.Component {
         </p>
         <div className="action">
           <button
+            type="button"
             className="btn btn-default reject"
-            onClick={ this.communityIDOptOut }
+            onClick={this.communityIDOptOu}
           >
             { I18n.t( "yes_reject_it" ) }
           </button>
           <div
             className="cancel linky"
-            onClick={ this.optOutPopoverClose }
+            onClick={this.optOutPopoverClose}
           >
             { I18n.t( "cancel" ) }
           </div>
@@ -158,8 +170,8 @@ class CommunityIdentification extends React.Component {
         trigger="click"
         rootClose
         placement="top"
-        containerPadding={ 20 }
-        overlay={ popover }
+        containerPadding={20}
+        overlay={popover}
         ref="popover-trigger"
       >
         <div className="reject linky">
@@ -175,11 +187,12 @@ class CommunityIdentification extends React.Component {
 
   sortedIdents( ) {
     const { observation } = this.props;
-    const currentIdents = _.filter( observation.identifications, i => ( i.current && i.taxon.is_active ) );
+    const currentIdents = _.filter( observation.identifications,
+      i => ( i.current && i.taxon.is_active ) );
     const taxonCounts = _.countBy( currentIdents, i => i.taxon.id );
     // Mavericks last, then sort by counts desc
-    return _.sortBy( currentIdents, i =>
-      `${i.category === "maverick" ? 1 : 0}-${taxonCounts[i.taxon.id] * -1 + 1000}` );
+    return _.sortBy( currentIdents,
+      i => `${i.category === "maverick" ? 1 : 0}-${taxonCounts[i.taxon.id] * -1 + 1000}` );
   }
 
   dataForTaxon( taxon ) {
@@ -211,45 +224,60 @@ class CommunityIdentification extends React.Component {
       if ( observation.communityTaxon.ancestry ) {
         obsTaxonAncestry = `${observation.communityTaxon.ancestry}/${observation.communityTaxon.id}`;
       }
+      const obsTaxonAncestors = obsTaxonAncestry.split( "/" );
+      const ancestriesMatch = ( ancestry, testAncestry = null ) => {
+        const compareAncestors = testAncestry ? testAncestry.split( "/" ) : obsTaxonAncestors;
+        const ancestors = ancestry.split( "/" );
+        return _.isEmpty( _.difference( ancestors, compareAncestors ) );
+      };
       const taxonAncestry = `${taxon.ancestry}/${taxon.id}`;
       taxonIsMaverick = (
-        !obsTaxonAncestry.includes( taxonAncestry ) && !taxonAncestry.includes( obsTaxonAncestry )
+        !ancestriesMatch( taxonAncestry ) && !ancestriesMatch( obsTaxonAncestry, taxonAncestry )
       );
-      const first_ident_of_taxon = _.filter( sortedIdents, si => ( si.taxon.id == `${observation.communityTaxon.id}` ) )[0];
+      const firstIdentOfTaxon = _.filter( sortedIdents,
+        si => ( si.taxon.id === observation.communityTaxon.id ) )[0];
       _.each( sortedIdents, i => {
         const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
-        if ( obsTaxonAncestry.includes( idAncestry ) || idAncestry.includes( obsTaxonAncestry ) ) {
-          if ( obsTaxonAncestry.includes( idAncestry ) && obsTaxonAncestry !== idAncestry && i.disagreement ) {
+        if ( ancestriesMatch( idAncestry ) || ancestriesMatch( obsTaxonAncestry, idAncestry ) ) {
+          if ( ancestriesMatch( idAncestry )
+            && obsTaxonAncestry !== idAncestry
+            && i.disagreement ) {
             votesAgainst.push( i );
-          } else if ( first_ident_of_taxon && obsTaxonAncestry.includes( idAncestry ) && obsTaxonAncestry !== idAncestry && i.disagreement == null && i.id > first_ident_of_taxon.id ) {
+          } else if ( firstIdentOfTaxon
+            && ancestriesMatch( idAncestry )
+            && obsTaxonAncestry !== idAncestry
+            && i.disagreement == null
+            && i.id > firstIdentOfTaxon.id ) {
             votesAgainst.push( i );
-          } else if ( observation.communityTaxon.ancestry && !observation.communityTaxon.ancestry.includes( i.taxon.id ) ) {
+          } else if ( observation.communityTaxon.ancestry
+            && !observation.communityTaxon.ancestry.split( "/" ).includes( i.taxon.id ) ) {
             votesFor.push( i );
           }
-        } else if ( observation.communityTaxon.ancestry && !observation.communityTaxon.ancestry.includes( i.taxon.id ) ) {
+        } else if ( observation.communityTaxon.ancestry
+          && !observation.communityTaxon.ancestry.split( "/" ).includes( i.taxon.id ) ) {
           votesAgainst.push( i );
         }
       } );
     }
     const totalVotes = votesFor.length + votesAgainst.length;
-    let voteCells = [];
+    const voteCells = [];
     const width = `${_.round( 100 / totalVotes, 3 )}%`;
     let taxaSeen = [];
     _.each( votesFor, v => {
       if ( taxaSeen.indexOf( v.taxon.id ) < 0 ) {
         taxaSeen.push( v.taxon.id );
       }
-      let voteCellClassName = `for taxon-${taxaSeen.indexOf( v.taxon.id )} ${taxon.id === v.taxon.id ? "exact" : "not-exact"}`;
+      const voteCellClassName = `for taxon-${taxaSeen.indexOf( v.taxon.id )} ${taxon.id === v.taxon.id ? "exact" : "not-exact"}`;
       voteCells.push( (
         <CommunityIDPopover
-          className={ taxon.id === v.taxon.id ? "exact" : "not-exact" }
-          key={ `community-id-${v.id}` }
+          className={taxon.id === v.taxon.id ? "exact" : "not-exact"}
+          key={`community-id-${v.id}`}
           keyPrefix="ids"
-          identification={ v }
-          communityIDTaxon={ observation.communityTaxon }
+          identification={v}
+          communityIDTaxon={observation.communityTaxon}
           agreement
-          style={ { width } }
-          contents={ ( <div className={ voteCellClassName } /> ) }
+          style={{ width }}
+          contents={( <div className={voteCellClassName} /> )}
         />
       ) );
     } );
@@ -258,17 +286,17 @@ class CommunityIdentification extends React.Component {
       if ( taxaSeen.indexOf( v.taxon.id ) < 0 ) {
         taxaSeen.push( v.taxon.id );
       }
-      let voteCellClassName = `against taxon-${taxaSeen.indexOf( v.taxon.id )} ${taxon.id === v.taxon.id ? "exact" : "not-exact"}`;
+      const voteCellClassName = `against taxon-${taxaSeen.indexOf( v.taxon.id )} ${taxon.id === v.taxon.id ? "exact" : "not-exact"}`;
       voteCells.push( (
         <CommunityIDPopover
-          className={ taxon.id === v.taxon.id ? "exact" : "not-exact" }
-          key={ `community-id-${v.id}` }
+          className={taxon.id === v.taxon.id ? "exact" : "not-exact"}
+          key={`community-id-${v.id}`}
           keyPrefix="ids"
-          identification={ v }
-          communityID={ observation.communityTaxon }
-          agreement={ false }
-          style={ { width } }
-          contents={ ( <div className={ voteCellClassName } /> ) }
+          identification={v}
+          communityID={observation.communityTaxon}
+          agreement={false}
+          style={{ width }}
+          contents={( <div className={voteCellClassName} /> )}
         />
       ) );
     } );
@@ -291,8 +319,8 @@ class CommunityIdentification extends React.Component {
     const stats = (
       <span>
         <span className="cumulative">
-          { voteCells.length > 1 ?
-            I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) : "" }
+          { voteCells.length > 1
+            ? I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) : "" }
         </span>
         <div className="graphic">
           <div className="vote-cells">
@@ -323,10 +351,13 @@ class CommunityIdentification extends React.Component {
   }
 
   render( ) {
-    const { observation, config, addID, onClickCompare } = this.props;
-    const test = $.deparam.querystring( ).test;
+    const {
+      observation, config, addID, onClickCompare
+    } = this.props;
+    const { open } = this.state;
+    const { test } = $.deparam.querystring( );
     const loggedIn = config && config.currentUser;
-    let communityTaxon = observation.communityTaxon;
+    const { communityTaxon } = observation;
     if ( !observation || !observation.user ) {
       return ( <div /> );
     }
@@ -364,17 +395,23 @@ class CommunityIdentification extends React.Component {
       );
       photo = taxonImageTag;
     }
-    const agreeButton = loggedIn ?
-      (
-        <button className="btn btn-default" disabled={ !canAgree }
-          onClick={ ( ) => { addID( communityTaxon, { agreedTo: "communityID" } ); } }
+    const agreeButton = loggedIn
+      ? (
+        <button
+          type="button"
+          className="btn btn-default"
+          disabled={!canAgree}
+          onClick={( ) => { addID( communityTaxon, { agreedTo: "communityID" } ); }}
         >
-        { userAgreedToThis ? ( <div className="loading_spinner" /> ) :
-          ( <i className="fa fa-check" /> ) } { I18n.t( "agree_" ) }
+          {userAgreedToThis ? ( <div className="loading_spinner" /> )
+            : ( <i className="fa fa-check" /> )} { I18n.t( "agree_" ) }
         </button>
       ) : (
         <a href="/login">
-          <button className="btn btn-default">
+          <button
+            type="button"
+            className="btn btn-default"
+          >
             <i className="fa fa-check" />
             { I18n.t( "agree_" ) }
           </button>
@@ -388,7 +425,7 @@ class CommunityIdentification extends React.Component {
     const proposedTaxonItems = [];
     if ( test === "cid-vis3" || test === "cid-vis4" ) {
       if ( sortedIdents.length > 1 ) {
-        for ( let i = 0; i < sortedIdents.length; i++ ) {
+        for ( let i = 0; i < sortedIdents.length; i += 1 ) {
           const ident = sortedIdents[i];
           if ( !proposedTaxa[ident.taxon.id] ) {
             proposedTaxonItems.push( this.dataForTaxon( ident.taxon ) );
@@ -407,16 +444,16 @@ class CommunityIdentification extends React.Component {
                 } ) }
                 { loggedIn ? (
                   <a
-                    href={ compareLink }
+                    href={compareLink}
                     className="pull-right compare-link"
-                    onClick={ e => {
+                    onClick={e => {
                       if ( onClickCompare ) {
                         return onClickCompare( e, observation.communityTaxon, observation );
                       }
                       return true;
-                    } }
+                    }}
                   >
-                    <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+                    <i className="fa fa-exchange" /> {I18n.t( "compare" )}
                   </a>
                 ) : null }
               </div>
@@ -430,20 +467,20 @@ class CommunityIdentification extends React.Component {
                 <div className="photo">{ photo }</div>
                 <div className="stats-and-name">
                   <div className="badges">
-                    <ConservationStatusBadge taxon={ communityTaxon } />
-                    <EstablishmentMeansBadge taxon={ communityTaxon } />
+                    <ConservationStatusBadge taxon={communityTaxon} />
+                    <EstablishmentMeansBadge taxon={communityTaxon} />
                   </div>
                   <SplitTaxon
-                    taxon={ communityTaxon }
-                    url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
-                    user={ config.currentUser }
+                    taxon={communityTaxon}
+                    url={communityTaxon ? `/taxa/${communityTaxon.id}` : null}
+                    user={config.currentUser}
                   />
                   { stats }
                 </div>
               </div>
             ) : null }
           </div>
-          <Panel collapsible expanded={ this.state.open }>
+          <Panel collapsible expanded={open}>
             <div className="proposed-taxa">
               { proposedTaxonItems.length <= 1 ? null : (
                 _.map( proposedTaxonItems, proposedTaxonData => {
@@ -451,28 +488,28 @@ class CommunityIdentification extends React.Component {
                   if ( proposedTaxonData.taxonIsMaverick && !maverickEncountered ) {
                     about = (
                       <div className="about stacked maverick">
-                        <i className="fa fa-bolt" /> { I18n.t( "proposed_taxa_that_contradict_the_community_id" ) }:
+                        <i className="fa fa-bolt" /> {I18n.t( "proposed_taxa_that_contradict_the_community_id" )}:
                       </div>
                     );
                     maverickEncountered = true;
                   } else if ( !supportingEncountered ) {
                     about = (
                       <div className="about supporting stacked">
-                        { I18n.t( "proposed_taxa_that_support_the_community_id" ) }:
+                        {I18n.t( "proposed_taxa_that_support_the_community_id" )}:
                       </div>
                     );
                     supportingEncountered = true;
                   }
                   return (
-                    <div className="info" key={ `proposed-taxon-${proposedTaxonData.taxon.id}` }>
+                    <div className="info" key={`proposed-taxon-${proposedTaxonData.taxon.id}`}>
                       { about }
                       <div className="inner">
                         <div className="photo">{ proposedTaxonData.photo }</div>
                         <div className="stats-and-name">
                           <SplitTaxon
-                            taxon={ proposedTaxonData.taxon }
-                            url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
-                            user={ config.currentUser }
+                            taxon={proposedTaxonData.taxon}
+                            url={proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null}
+                            user={config.currentUser}
                           />
                           { proposedTaxonData.stats }
                         </div>
@@ -490,50 +527,50 @@ class CommunityIdentification extends React.Component {
         <div className="info">
           <div className="photo">{ photo }</div>
           <div className="badges">
-            <ConservationStatusBadge taxon={ communityTaxon } />
-            <EstablishmentMeansBadge taxon={ communityTaxon } />
+            <ConservationStatusBadge taxon={communityTaxon} />
+            <EstablishmentMeansBadge taxon={communityTaxon} />
           </div>
           <SplitTaxon
-            taxon={ communityTaxon }
-            url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
-            user={ config.currentUser }
+            taxon={communityTaxon}
+            url={communityTaxon ? `/taxa/${communityTaxon.id}` : null}
+            user={config.currentUser}
           />
           { stats }
         </div>
       ) : (
         <div className="info">
           <div className="about">
-            { I18n.t( "the_community_id_requires_at_least_two_identifications" ) }
+            {I18n.t( "the_community_id_requires_at_least_two_identifications" )}
           </div>
         </div>
       );
     }
 
     return (
-      <div className={ `CommunityIdentification collapsible-section ${test}` }>
+      <div className={`CommunityIdentification collapsible-section ${test}`}>
         <h4
-          className={ proposedTaxonItems.length === 0 ? "" : "collapsible"}
-          onClick={ ( ) => {
+          className={proposedTaxonItems.length === 0 ? "" : "collapsible"}
+          onClick={( ) => {
             if ( proposedTaxonItems.length <= 1 ) {
               return;
             }
             if ( loggedIn ) {
-              this.props.updateSession( { prefers_hide_obs_show_expanded_cid: this.state.open } );
+              this.props.updateSession( { prefers_hide_obs_show_expanded_cid: open } );
             }
-            this.setState( { open: !this.state.open } );
-          } }
+            this.setState( { open: !open } );
+          }}
         >
           { proposedTaxonItems.length <= 1 ? null : (
-            <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
+            <i className={`fa fa-chevron-circle-${open ? "down" : "right"}`} />
           ) }
           { I18n.t( "community_id_heading" ) }
           <span className="header-actions pull-right">
             { this.optOutPopover( ) }
             { loggedIn && !observation.communityTaxon ? (
               <a
-                href={ compareLink }
+                href={compareLink}
                 className="linky compare-link"
-                onClick={ e => {
+                onClick={e => {
                   if ( onClickCompare ) {
                     return onClickCompare( e, observation.taxon, observation );
                   }
@@ -543,7 +580,7 @@ class CommunityIdentification extends React.Component {
                 { I18n.t( "compare" ) }
               </a>
             ) : null }
-            <div className="linky" onClick={ this.showCommunityIDModal }>
+            <div className="linky" onClick={this.showCommunityIDModal}>
               { I18n.t( "whats_this?" ) }
             </div>
           </span>
@@ -559,22 +596,29 @@ class CommunityIdentification extends React.Component {
             { loggedIn ? (
               <div className="btn-space">
                 <a
-                  href={ compareLink }
-                  onClick={ e => {
+                  href={compareLink}
+                  onClick={e => {
                     if ( onClickCompare ) {
                       return onClickCompare( e, communityTaxon, observation );
                     }
                     return true;
                   }}
                 >
-                  <button className="btn btn-default">
+                  <button
+                    type="button"
+                    className="btn btn-default"
+                  >
                     <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
                   </button>
                 </a>
               </div>
             ) : null }
             <div className="btn-space">
-              <button className="btn btn-default" onClick={ this.showCommunityIDModal }>
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={this.showCommunityIDModal}
+              >
                 <i className="fa fa-info-circle" /> { I18n.t( "about" ) }
               </button>
             </div>
