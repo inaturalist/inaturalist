@@ -91,6 +91,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   LOCALES = {
+    "afrikaans"             => "af",
     "albanian"              => "sq",
     "arabic"                => "ar",
     "basque"                => "eu",
