@@ -1002,7 +1002,7 @@ protected
       @user = User.find(params[:id])
     rescue
       @user = User.where("lower(login) = ?", params[:id].to_s.downcase).first
-      @user = User.where( uuid: params[:id] ).first
+      @user ||= User.where( uuid: params[:id] ).first
       render_404 if @user.blank?
     end
   end
