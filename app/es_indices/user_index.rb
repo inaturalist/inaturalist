@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
       indexes :created_at, type: "date"
       indexes :icon, type: "keyword", index: false
       indexes :id, type: "integer"
-      indexes :uuid, type: "keyword"
+      # This will require rebuilding the index ~~kueda 2030-03-24
+      # indexes :uuid, type: "keyword"
       indexes :identifications_count, type: "integer"
       indexes :journal_posts_count, type: "integer"
       indexes :login, analyzer: "ascii_snowball_analyzer"
@@ -33,7 +34,6 @@ class User < ActiveRecord::Base
   def as_indexed_json(options={})
     json = {
       id: id,
-      uuid: uuid,
       login: login,
       spam: known_spam?,
       suspended: suspended?,
