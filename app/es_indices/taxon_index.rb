@@ -136,6 +136,7 @@ class Taxon < ActiveRecord::Base
       end
       indexes :taxon_schemes_count, type: "byte"
       indexes :universal_search_rank, type: "integer"
+      indexes :uuid, type: "keyword"
       indexes :wikipedia_url, type: "keyword", index: false
     end
   end
@@ -147,6 +148,7 @@ class Taxon < ActiveRecord::Base
     end
     json = {
       id: id,
+      uuid: uuid,
       rank: rank,
       rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
