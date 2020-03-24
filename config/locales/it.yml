@@ -480,6 +480,9 @@ it:
   are_you_sure_remove_taxon_from_list: "Sei sicuro di voler rimuovere questo taxon dall'elenco?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Sei sicuro? Questa operazione aggiornerà la pagina, potresti perdere alcune delle tue modifiche.
+  are_you_sure_unresolve_flag?: |
+    Sei sicuro di voler rimuovere la risoluzione di questo contrassegno? Questo rimuoverà la risoluzione
+    e l'utente risolutore da questo contrassegno.
   are_you_sure_want_delete_taxon: "Sei sicuro di voler eliminare questo taxon?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Sei sicuro di voler eliminare questo taxon? Ha dei taxa discendenti.
@@ -3843,6 +3846,8 @@ it:
   updating: Aggiornamento...
   unprocessable: Non processabile
   unpublish: Togli dai pubblicati
+  #Undo the action of resolving a flag
+  unresolve: Rimuovi la risoluzione
   unreview_all: Rimuovi tutte le revisioni
   unsubscribe: Cancella iscrizione
   unsuspend_user: Riammetti utente
@@ -4597,6 +4602,37 @@ it:
         taking_a_while: "L'operazione sta durando troppo. Per favore prova una delle opzioni qui sotto."
         date_range_help: "Prima ed ultima data di osservazione in formato AAAA-MM-GG, e.g. 2015-01-17"
         created_on_help: "Data in cui l'osservazione è stata inserita, non osservata, e.g., 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Altre Opzioni</h3>
+          <p>
+          Esportazioni molto grandi rallentano la nostra infrastruttura e rendono più difficoltoso per noi rilasciare le nuove modifiche. Qui trovi qualche altra opzione che puoi considerare:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF incorpora la maggior parte delle osservazioni con licenza, di Livello Ricerca, e i loro strumenti di esportazione sono eccellenti. Le esportazioni GBIF includono un <a href="https://www.doi.org/">DOI</a> che puoi citare se pubblichi studi basati sui dati che esporti, e queste citazioni ci sono di enorme aiuto in quanto ci permettono di vedere in che modo i dati di iNat sono utilizzati..
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">Archivio DarwinCore (DwC-A) per GBIF</a>: questo è il file <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a> che generiamo per GBIF, perciò non dovrebbe contenere nulla che non è in GBIF, ma se desideri l'archivio completo, puoi scaricarlo. E' un file zip molto pesante con i dati in CSV. Aggiornato settimanalmente.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist
+          Challenge su FGVC 2017</a>: collegamenti a 675,000 foto iNaturalist con licenza di 5,089 specie utilizzate per allenare la Visione Artificiale. Creato nel Giugno 2017, non aggiornato.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Identificatore univoco per l'osservazione"
         species_guess: "Il nome che ha inserito l'osservatore per il taxon osservato"

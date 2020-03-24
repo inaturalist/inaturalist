@@ -477,6 +477,8 @@ ca:
   are_you_sure_remove_taxon_from_list: "Esteu segur que voleu eliminar de la llista aquesta espècie o grup?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Esteu segur? Això tornarà a carregar la pàgina, i podeu perdre alguns dels vostres canvis.
+  are_you_sure_unresolve_flag?: |
+    Esteu segur que voleu eliminar la resolució d'aquesta marca? Aquesta acció eliminarà tant l'usuari com la resposta a aquesta marca.
   are_you_sure_want_delete_taxon: "Esteu segur que voleu eliminar aquest tàxon?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Esteu segur que voleu eliminar aquest tàxon? Té tàxons descendents.
@@ -3849,6 +3851,8 @@ ca:
   updating: Actualitzant...
   unprocessable: No es pot processar
   unpublish: No publiquis
+  #Undo the action of resolving a flag
+  unresolve: No resolt
   unreview_all: Marcar-los tots com no revisats
   unsubscribe: Elimineu subscripció
   unsuspend_user: Reactiva usuari
@@ -4620,6 +4624,34 @@ ca:
         taking_a_while: "Això està requerint una mica de temps. Si us plau, prova una de les opcions de sota."
         date_range_help: "Dates d'observació màxima i mínima en format AAA-MM-DD, p.e. 2015-01-17"
         created_on_help: "Data a la que es va crear l'observació, no d'observació, p.e. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Altres opcions</h3>
+          <p>
+          Les exportacions grans alenteixen la nostra infraestructura i ens fan més difícil llançar nous canvis. Aquestes són algunes de les opcions que podeu contemplar:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a rel="nofollow noreferrer noopener" href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF incorpora la majoria de les observacions amb llicència de Grau de Recerca, i les seves eines d'exportació són excel·lents. GBIF exporta també el <a href="https://www.doi.org/">DOI</a>, per la qual cosa podeu citar-ho si publiqueu recerques basades en les dades que heu exportat. Aquestes citacions són molt útils per a nosaltres perquè ens permet conèixer com s'usen les dades de iNat.
+
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener" href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">Arxiu DarwinCore (DwC-A) per a GBIF</a>: aquest és l'arxiu <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-Al </a> que generem per a la seva incorporació a GBIF, per la qual cosa podria no contenir tot allò que està en GBIF, però si desitgeu l'arxiu sencer, el podeu descarregar. Es tracta d'un arxiu gran en ZIP que conté els registres en CSV. S'actualitza setmanalment.
+
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener" href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist Challenge en FGVC 2017</a>: enllaços a 675.000 fotografies amb llicència d'iNaturalist de 5.089 espècies, usades per a l'entrenament del sistema de reconeixement d'imatges. Creat en 2017 i no actualitzat.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Identificador únic de l'observació"
         species_guess: "Nom que va introduir l'observador pel tàxon observat"
