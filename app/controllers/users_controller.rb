@@ -352,14 +352,23 @@ class UsersController < ApplicationController
         @shareable_description = @selected_user.description
         @shareable_description = I18n.t(:user_is_a_naturalist, :user => @selected_user.login) if @shareable_description.blank?
         if @selected_user.last_active.blank?
-          @selected_user.last_active = [
-            INatAPIService.identifications(
-              user_id: @selected_user.id, order_by: "created_at", order: "desc", is_change: false
-            ).results.first.try(:[], "created_at" ).try(:to_time),
+          times = [
             Observation.elastic_query(
-              user_id: @selected_user.id, order_by: "created_at", order: "desc"
+              user_id: @selected_user.id,
+              order_by: "created_at",
+              order: "desc"
             ).first.try(&:created_at)
-          ].compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
+          ]
+          idents = INatAPIService.identifications(
+            user_id: @selected_user.id,
+            order_by: "created_at",
+            order: "desc",
+            is_change: false
+          )
+          if idents && idents.results
+            times << idents.results.first.try(:[], "created_at" ).try(:to_time)
+          end
+          @selected_user.last_active = times.compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
         end
         @donor_since = @selected_user.display_donor_since ? @selected_user.display_donor_since.to_date : nil
         render layout: "bootstrap"
