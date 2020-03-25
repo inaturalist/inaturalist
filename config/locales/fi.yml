@@ -496,6 +496,8 @@ fi:
   are_you_sure_remove_taxon_from_list: "Haluatko varmasti poistaa tämän taksonin luettelosta?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Oletko varma? Tämä lataa sivun uudelleen, saatat menettää joitakin muutoksistasi.
+  are_you_sure_unresolve_flag?: |
+    Olet varma että haluat poistaa tämän lipun ratkaisun? Tämä poistaa myös ratkaisun tehneen käyttäjän tästä lipusta.
   are_you_sure_want_delete_taxon: "Haluatko varmasti poistaa tämän taksonin?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Haluatko varmasti poistaa tämän taksonin? Sillä on alempia taksoneita.
@@ -3628,6 +3630,8 @@ fi:
   updating: Päivitetään...
   unprocessable: Ei voida prosessoida
   unpublish: Julkaisematon
+  #Undo the action of resolving a flag
+  unresolve: Poista ratkaisu
   unsubscribe: Peruuta tilaus
   unsuspend_user: Jäädytetty käyttäjä
   upcoming_bioblitzes: Tulevat bioblitzit
