@@ -1134,36 +1134,6 @@ describe Taxon, "grafting" do
     expect( s.ancestor_ids ).to include g.id
     expect( s.ancestor_ids ).to include f.id
   end
-
-  describe "indexing" do
-    elastic_models( Identification )
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
-
-    it "should re-index identifications in the observations index" do
-      o = make_research_grade_candidate_observation
-      3.times { Identification.make!( observation: o, taxon: @Pseudacris ) }
-      i = Identification.make!( observation: o )
-      i.reload
-      expect( i.taxon ).not_to be_grafted
-      expect( i.category ).to eq Identification::MAVERICK
-      categories = Observation.elastic_search( where: { id: o.id } ).results.
-        results[0].identification_categories.uniq.sort
-      expect( categories[0] ).to eq Identification::IMPROVING
-      expect( categories[1] ).to eq Identification::MAVERICK
-      expect( categories[2] ).to eq Identification::SUPPORTING
-      without_delay { i.taxon.update_attributes( rank: Taxon::SPECIES ) }
-      without_delay { i.taxon.update_attributes( parent: @Pseudacris ) }
-      i.reload
-      expect( i.taxon.ancestor_ids ).to include( @Pseudacris.id)
-      expect( i.category ).to eq Identification::LEADING
-      categories = Observation.elastic_search( where: { id: o.id } ).results.
-        results[0].identification_categories.uniq.sort
-      expect( categories[0] ).to eq Identification::IMPROVING
-      expect( categories[1] ).to eq Identification::LEADING
-      expect( categories[2] ).to eq Identification::SUPPORTING
-    end
-  end
 end
 
 describe Taxon, "single_taxon_for_name" do
