@@ -1220,7 +1220,7 @@ class Observation < ActiveRecord::Base
   #
   def set_iconic_taxon
     if taxon
-      self.iconic_taxon_id ||= taxon.iconic_taxon_id
+      self.iconic_taxon_id = taxon.iconic_taxon_id
     else
       self.iconic_taxon_id = nil
     end
@@ -1580,11 +1580,15 @@ class Observation < ActiveRecord::Base
   end
   
   def iconic_taxon_name
-    return nil if iconic_taxon_id.blank?
+    return nil if taxon_id.blank?
     if Taxon::ICONIC_TAXA_BY_ID.blank?
-      association(:iconic_taxon).loaded? ? iconic_taxon.try(:name) : Taxon.select("id, name").where(:id => iconic_taxon_id).first.try(:name)
+      if taxon.association(:iconic_taxon).loaded?
+        taxon.iconic_taxon.try(:name)
+      else
+        Taxon.select("id, name").where(:id => taxon.iconic_taxon_id).first.try(:name)
+      end
     else
-      Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
+      Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)
     end
   end
 
