@@ -863,11 +863,11 @@ de:
     egg: Ei
     juvenile: Juvenil
     alive_or_dead: lebendig oder tot
-    alive: Lebend
+    alive: lebendig
     dead: tot
     cannot_be_determined: Nicht bestimmbar
   controlled_term_definitions:
-    alive: Der Organismus ist lebendig und zeigt keine Anzeichen eines nahendenTodes
+    alive: Der Organismus ist lebendig und zeigt keine Anzeichen eines nahenden Todes
     dead: Der Organismus ist tot oder zeigt Anzeichen eines nahenden Todes
     flower_budding: Blütenknospen sind sichtbar, aber nicht geöffnet
     flowering: Blumen sichtbar, geöffnet und noch an der Pflanze befestigt
@@ -1233,7 +1233,9 @@ de:
   Family: Familie
   favorite_taxa: bevorzugte Taxa
   favorites: "Favoriten"
+  feature_this_project_: "Dieses Projekt featuren"
   featured: Ausgewählt
+  featuring: featuring
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
@@ -1305,7 +1307,11 @@ de:
   flagged: gemeldet
   flagged_: Gekennzeichnet
   flagged_for_curation: Zur Kuratierung gemeldet
+  flagged_taxon: Taxon mit Meldung
   flagged_thing_explanation: "Benutzer haben dieses %{thing} gemeldet, weil"
+  flagging_desc: |
+    Die Meldefunktion macht freiwillige Webseiten-Kuratoren auf einen Sachverhalt aufmerksam.
+    Bitte keine Probleme melden, die auch anderweitig gelöst werden können, z.B. durch Bestimmungen, die Qualitätsprüfung oder im Gespräch mit der Person, die den Inhalt erstellt hat.
   flagger: Melder
   flags: Meldungen
   flags_with_count: Markierungen (%{count})
@@ -1315,9 +1321,11 @@ de:
   flickr_account_information: Informationen zu deinem Flickr-Konto
   flickr_has_no_creative_commons: Bei Flickr gibt es keine Bilder von diesem Ort unter Creative-Commons-Lizenz.
   flickr_identity: Flickr-Identität
+  flickr_needs_to_confirm: "Flickr möchte bestätigt haben, dass dein Account mit %{site_name} verbunden sein soll."
   flickr_photo: Flickr-Foto
   flickr_photos: Flickr-Fotos
   flickr_style: Flickr-Stil
+  flickr_tagger: Flickr Tagger
   flickr_tags: Flickr Tags
   follow: Folgen
   follow_receive_updates_about_new_observations: Folgen (über neue Beobachtungen informiert werden)
@@ -1364,7 +1372,9 @@ de:
   generating_mobile_archive: "Mobiles Archiv wird erstellt"
   Genus: Gattung
   geoprivacy: Geo-Privatsphäre
+  geoprivacy_is_obscured: Geo-Privatsphäre ist <i>verborgen</i>
   geoprivacy_is_obscured_desc: Der Beobachter hat beschlossen, die Koordinaten zu verschleiern.
+  geoprivacy_is_private: Geo-Privatsphäre ist <i>privat</i>
   geoprivacy_is_private_desc: Der Beobachter hat beschlossen, die Koordinaten zu verbergen.
   georeferenced: Georeferenziert?
   get_started: Erste Schritte
@@ -1381,6 +1391,8 @@ de:
   google: Google
   got_it!: Alles klar!
   got_your_data_somewhere_else?: Haben Sie Ihre Daten irgendwo anders?  Wir können helfen.
+  graft: Graft
+  grafting_attemps_to_insert_this_taxon: Grafting beschreibt den Versuch, dieses Taxon in unseren Stammbaum einzufügen, ein existierendes übergeordnetes Taxon zu finden oder alle notwendigen Zwischentaxa zu erstellen, um es an ein bestehendes höheres Taxon anzuhängen.
   grid: Raster
   grid_layout: Rasteransicht
   grid_tooltip: Rasteransicht anzeigen
@@ -1421,11 +1433,14 @@ de:
   help_confirm_observations!: Hilf Beobachtungen zu bestätigen!
   help_support_inaturalist: "iNaturalist unterstützen"
   help_translate!: Hilf beim Übersetzen!
+  helped_the_observer_make: hat dem Beobachter geholfen, seine endgültige ID zu erstellen (d.h. sie wurde vor der endgültigen ID gemacht und sie stimmt mit ihr überein)
   here_are_3_examples: Hier sind 3 Exemplare von gut formatierten Datensätzen.
   here_are_our_top_species_suggestions: Hier sind unsere besten Vorschläge
   hex_color_eg: Hex Farbe, z.B. 65644F
   hi: Hallo,
   hi_user: "Hallo %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: ausblenden
   hide_content: Inhalt ausblenden
   hide_desc: |
     Das Verstecken von Inhalten macht sie für die Öffentlichkeit unsichtbar, aber andere Benutzer werden immer noch in der Lage sein zu erkennen, dass etwas verborgen ist, und Kuratoren und der Autor des Inhalts wird weiterhin in der Lage sein, den versteckten Inhalt zu sehen. Im Allgemeinen gilt dies nur für schriftliche Inhalte, z.B. wenn du den Inhalt eines Artikels ausblendst, sind Bestimmungen immer noch sichtbar, aber die Bemerkungen nicht mehr. Du kannst dies nicht rückgängig machen, und nur das Personal der Website kann es wieder einblenden. Also sei vorsichtig und verwende dies nur für sehr anstößige Inhalte.
@@ -1440,10 +1455,17 @@ de:
   i_dont_know_but_i_am_sure_this_is_taxon: Ich weiß nicht, aber bin mir sicher, dass dies %{taxon} ist
   icon: Symbol
   icon_size: Symbolgröße
+  iconic_taxon: Symbol-Taxon
+  id: ID
   id_categories:
     tooltips:
+      leading: |
+        Taxon leitet sich vom Community-Taxon ab. Diese ID könnte zur richtigen Antwort
+        führen.
       improving: |
         Erster Vorschlag dieses Taxons, dem die Community anschließend zustimmte. Dies half dabei, das Community-Taxon zu verfeinern.
+      maverick: |
+        Taxon steht außerhalb des Community-Taxons (weder abgeleitet noch übergeordnet), d.h. die Community stimmt diesem Taxon nicht zu.
   id_withdrawn: ID zurückgezogen
   ids_by_taxon: IDs nach Taxon
   identify: Identifizieren
@@ -1469,6 +1491,7 @@ de:
   ids_made_for_others: für andere gemachte IDs
   if_for_some_reason_a_user_doesnt_agree: |
     Wenn du aus irgendeinem Grund mit dem Community-Taxon nicht einverstanden bist, kannst du es ablehnen: das bedeutet, dass deine Bestimmung (ID) diejenige ist, die für die Verlinkung mit anderen Beobachtungen, die Aktualisierung von Life-Listen usw. verwendet wird. Es bedeutet auch, dass deine Beobachtung nur dann Forschungsqualität erreichen kann, wenn die Community dir zustimmt.
+  if_matches_come_from_a_comprehensive_list: Falls Treffer aus einer vollständigen Liste kommen, wird hier eine grüne Leiste angezeigt.
   if_this_is_a_scientific_name: Falls dies ein wissenschaftlicher Name ist, ist er derzeit anerkannt?
   if_this_link_will_apply_to_descendant: Wenn dieser Link auf nachkommende Taxa zutrifft, kannst du Template-Tags verwenden, um den Taxon-Namen in die URL einzutragen
   if_you_have_any_trouble_with_the_site_check_out: 'Wenn du Fragen hast, schau bitte auf unsere <a href="%{help_url}">Hilfe-Seite</a> oder schreib eine Nachricht an unsere <a href="%{feedback_url}">Feedback-Gruppe</a>.'
@@ -1546,6 +1569,7 @@ de:
     öffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte<a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
     <a href="%{manage_flags_path}">Meldungen verwalten</a>
   join: Beitreten
+  join_and_add_an_observation_to_project_html: Beitreten und eine Beobachtung zu %{project} hinzufügen
   join_project: Diesem Projekt beitreten
   join_some_projects_and_invite_some_observations_html: "Tritt einigen <a href='%{join_url}'>Projekten</a> bei und <a href='%{invite_url}'>importiere einige Beobachtungen</a>"
   join_the_largest_group_of_naturalists_in_the_world: Treten Sie der größten Gruppe von Naturwissenschaftlern der Welt bei!
@@ -1870,7 +1894,19 @@ de:
       d: "1 d"
       #Short text representing %d days in the past
       dd: "%dT"
+      #Short text representing %d years in the past
+      yy: "%dj"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display a time zone code and not an offset, so
+    #please use z and not Z
+    datetime_with_zone: "MMM D, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "MMM D, YYYY · LT Z"
   month: Monat
+  monthly_supporter_since_date_html: |
+    <a href="%{url}">Monatlicher Unterstützer</a> seit %{date}
   months: Monate
   more: Mehr
   more_fields: Mehr Felder
@@ -1895,6 +1931,7 @@ de:
   most_observed_threatened_species: Meiste beobachtete bedrohte Art
   multiple: mehrfach
   multiple_select_option: '--mehrfach--'
+  multiple_taxon_ids_separated_by_commas: 'Mehrere Taxon-IDs getrennt durch Kommas, z.B. 123,654'
   must_be_observed_after: |
     muss beobachtet worden sein nach %{operand}
   must_be_observed_before: |
@@ -1935,6 +1972,12 @@ de:
   needs_id_: benötigt ID
   needs_id_expandable_html: "<span class='full'>Benötigt</span> ID"
   needs_to_be_identified: Muss bestimmt werden
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, Teil des internationalen iNaturalist-Netzwerks, konzentriert sich auf Artenvielfalt und Personen in %{place}. Möchtest du die Zugehörigkeit deines
+    Kontos von iNaturalist.org auf %{site_name} ändern?
+  network_affiliation_prompt_from_other_site_html: |
+    Möchtest du deine Zugehörigkeit von <strong>%{other_site_name}</strong> auf
+    <strong>%{site_name}</strong> ändern?
   new_and_noteworthy: Neu & Nennenswert
   new_announcement: Neue Ankündigungen
   new_assessment: Neue Beurteilung
