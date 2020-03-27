@@ -49,8 +49,7 @@ const TaxonPageMap = ( {
           observationLayers: [
             {
               label: I18n.t( "verifiable_observations" ),
-              verifiable: true,
-              legendColor: COLORS.orange
+              verifiable: true
             },
             {
               label: I18n.t( "observations_without_media" ),
