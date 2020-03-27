@@ -26,13 +26,14 @@ class TextEditor extends React.Component {
     return (
       <div className={`TextEditor ${className} ${preview && "with-preview"}`}>
         { this.textarea && this.textarea.current && (
-          <div className="btn-toolbar stacked" role="toolbar" aria-label={I18n.t( "text_editing_controls" )}>
-            <div className="btn-group format-control" role="group" aria-label={I18n.t( "text_formatting_controls" )}>
+          <div className="btn-toolbar" role="toolbar" aria-label={I18n.t( "text_editing_controls" )}>
+            <div className="btn-group format-controls" role="group" aria-label={I18n.t( "text_formatting_controls" )}>
               <TextEditorFormatButton
                 textarea={this.textarea.current}
                 className="btn btn-default btn-xs"
-                label={<strong>B</strong>}
+                label={<i className="fa fa-bold" />}
                 template={text => `**${text}**`}
+                placeholder={I18n.t( "bold_text", { defaultValue: "bold text" } )}
                 newSelectionOffset={2}
                 newSelectionOffsetLength={textLength => textLength}
                 disabled={preview}
@@ -40,8 +41,9 @@ class TextEditor extends React.Component {
               <TextEditorFormatButton
                 textarea={this.textarea.current}
                 className="btn btn-default btn-xs"
-                label={<em>I</em>}
+                label={<i className="fa fa-italic" />}
                 template={text => `*${text}*`}
+                placeholder={I18n.t( "italic_text", { defaultValue: "italic text" } )}
                 newSelectionOffset={1}
                 newSelectionOffsetLength={textLength => textLength}
                 disabled={preview}
@@ -51,12 +53,13 @@ class TextEditor extends React.Component {
                 className="btn btn-default btn-xs"
                 label={<i className="icon-link" />}
                 template={text => `[${text}](url)`}
+                placeholder={I18n.t( "linked_text", { defaultValue: "linked text" } )}
                 newSelectionOffset={textLength => textLength + 3}
                 newSelectionOffsetLength={3}
                 disabled={preview}
               />
             </div>
-            <div className="btn-group format-control" role="group" aria-label={I18n.t( "text_block_controls" )}>
+            <div className="btn-group block-controls" role="group" aria-label={I18n.t( "text_block_controls" )}>
               <TextEditorFormatButton
                 textarea={this.textarea.current}
                 className="btn btn-default btn-xs"
@@ -67,7 +70,7 @@ class TextEditor extends React.Component {
                     return newTxt;
                   }
                   if ( prevTxt[prevTxt.length - 1] === "\n" ) {
-                    return `\n${newTxt}`;  
+                    return `\n${newTxt}`;
                   }
                   return `\n\n${newTxt}`;
                 }}
@@ -83,7 +86,7 @@ class TextEditor extends React.Component {
                     return newTxt;
                   }
                   if ( prevTxt[prevTxt.length - 1] === "\n" ) {
-                    return `\n${newTxt}`;  
+                    return `\n${newTxt}`;
                   }
                   return `\n\n${newTxt}`;
                 }}
@@ -99,14 +102,14 @@ class TextEditor extends React.Component {
                     return newTxt;
                   }
                   if ( prevTxt[prevTxt.length - 1] === "\n" ) {
-                    return `\n${newTxt}`;  
+                    return `\n${newTxt}`;
                   }
                   return `\n\n${newTxt}`;
                 }}
                 disabled={preview}
               />
             </div>
-            <div className="btn-group pull-right" role="group" aria-label={I18n.t( "preview" )}>
+            <div className="btn-group" role="group" aria-label={I18n.t( "preview" )}>
               <button
                 type="button"
                 className="btn btn-default btn-xs btn-preview"

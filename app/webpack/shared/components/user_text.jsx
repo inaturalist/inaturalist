@@ -9,8 +9,8 @@ import MarkdownIt from "markdown-it";
 const ALLOWED_TAGS = (
   "div a abbr acronym b blockquote br cite code dl dt em h1 h2 h3 h4 h5 h6 hr i"
   + " img li ol p pre s small strike strong sub sup tt ul"
-  // + "table tr td th"
-  // + "audio source embed iframe object param"
+  + " table thead tbody tr td th"
+  // + " audio source embed iframe object param"
 ).split( " " );
 
 const ALLOWED_ATTRIBUTES_NAMES = (
@@ -77,7 +77,15 @@ class UserText extends React.Component {
     html = html.replace( /&(\w+=)/g, "&amp;$1" );
     if ( markdown ) {
       const md = new MarkdownIt( { html: true } );
-      html = md.render( html );
+      md.renderer.rules.table_open = ( ) => "<table class=\"table\">\n";
+      // If we're truncating, don't use the default paragraph insertion
+      // markdown-it will apply and instead replace newlines with br tags
+      if ( truncate && !more ) {
+        html = text.trim( ).replace( /\n/gm, "<br />" );
+        html = md.renderInline( html );
+      } else {
+        html = md.render( html );
+      }
     } else {
       // use BRs for newlines
       html = text.trim( ).replace( /\n/gm, "<br />" );
@@ -96,7 +104,7 @@ class UserText extends React.Component {
             this.toggle( );
             return false;
           }}
-          className={`btn btn-link ${truncate && truncate > 0 ? "more" : "collapse"}`}
+          className={`btn btn-nostyle linky ${truncate && truncate > 0 ? "more" : "collapse"}`}
         >
           { more ? I18n.t( "less" ) : I18n.t( "more" ) }
         </button>

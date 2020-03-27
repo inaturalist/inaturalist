@@ -290,7 +290,6 @@ export function callAPI( method, payload, options = { } ) {
     if ( !options.callback ) {
       opts.actionTime = getActionTime( );
     }
-    console.log( "[DEBUG] callAPI, method: ", method, ", payload: ", payload );
     method( payload ).then( ( ) => {
       dispatch( afterAPICall( opts ) );
     } ).catch( e => {

@@ -8,7 +8,8 @@ const TextEditorFormatButton = ( {
   className,
   newSelectionOffset,
   newSelectionOffsetLength,
-  disabled
+  disabled,
+  placeholder
 } ) => (
   <button
     type="button"
@@ -17,10 +18,13 @@ const TextEditorFormatButton = ( {
     onClick={( ) => {
       const { selectionStart } = textarea;
       if ( textarea.selectionStart !== undefined && textarea.selectionEnd !== undefined ) {
-        const selection = textarea.value.substring(
+        let selection = textarea.value.substring(
           textarea.selectionStart,
           textarea.selectionEnd
         );
+        if ( selection.length === 0 && placeholder ) {
+          selection = placeholder;
+        }
         const selectionWithMarkup = template(
           selection,
           textarea.value.substring( 0, textarea.selectionStart )
@@ -35,13 +39,13 @@ const TextEditorFormatButton = ( {
           + selectionWithMarkup
           + textarea.value.substring( textarea.selectionEnd, textarea.value.length );
         const rangeStart = selectionStart + newSelectionOffsetVal;
-        console.log( "[DEBUG] rangeStart: ", rangeStart );
         const rangeEnd = selectionStart
           + newSelectionOffsetVal
-          + ( newSelectionOffsetLengthVal === undefined ? selectionWithMarkup.length : newSelectionOffsetLengthVal );
-        console.log( "[DEBUG] newSelectionOffsetLengthVal: ", newSelectionOffsetLengthVal );
-        console.log( "[DEBUG] selectionWithMarkup.length: ", selectionWithMarkup.length );
-        console.log( "[DEBUG] rangeEnd: ", rangeEnd );
+          + (
+            newSelectionOffsetLengthVal === undefined
+              ? selectionWithMarkup.length
+              : newSelectionOffsetLengthVal
+          );
         textarea.setSelectionRange( rangeStart, rangeEnd );
       }
       textarea.focus( );
@@ -65,7 +69,8 @@ TextEditorFormatButton.propTypes = {
   // length of the new selection
   newSelectionOffsetLength: PropTypes.oneOfType( [PropTypes.number, PropTypes.func] ),
 
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string
 };
 
 TextEditorFormatButton.defaultProps = {

@@ -306,6 +306,9 @@ module ApplicationHelper
     text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
     text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
+    unless options[:skip_simple_format]
+      text = simple_format_with_structure( text, sanitize: false )
+    end
     # Ensure all tags are closed
     text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
     text.html_safe
@@ -355,8 +358,9 @@ module ApplicationHelper
     h( text ).gsub( "&amp;", "&" ).gsub( "&#39;", "'" ).html_safe
   end
   
-  def markdown(text)
-    BlueCloth::new(text).to_html
+  def markdown( text )
+    @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML, tables: true, strikethrough: true )
+    @markdown.render( text )
   end
   
   def render_in_format(format, *args)
