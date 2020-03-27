@@ -1,0 +1,25 @@
+@import "./colors";
+
+.TextEditor {
+  .preview,
+  .btn-edit {
+    display: none;
+  }
+  &.with-preview {
+    .preview, {
+      display: block;
+    }
+    .btn-edit {
+      display: inline-block;
+    }
+    textarea,
+    .btn-preview,
+    .chars-remaining {
+      display: none;
+    }
+  }
+  .preview {
+    border: 1px dotted $border-grey;
+    padding: 6px 12px;
+  }
+}

@@ -265,8 +265,12 @@ export function afterAPICall( options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( options.error ) {
-      dispatch( handleAPIError( options.error,
-        options.errorMessage || I18n.t( "failed_to_save_record" ) ) );
+      dispatch(
+        handleAPIError(
+          options.error,
+          options.errorMessage || I18n.t( "failed_to_save_record" )
+        )
+      );
     }
     if ( options.callback ) {
       options.callback( );
@@ -406,12 +410,16 @@ export function addComment( body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    dispatch( setAttributes( { comments: state.observation.comments.concat( [{
-      created_at: moment( ).format( ),
-      user: state.config.currentUser,
-      body,
-      api_status: "saving"
-    }] ) } ) );
+    dispatch(
+      setAttributes( {
+        comments: state.observation.comments.concat( [{
+          created_at: moment( ).format( ),
+          user: state.config.currentUser,
+          body,
+          api_status: "saving"
+        }] )
+      } )
+    );
 
     const payload = {
       parent_type: "Observation",

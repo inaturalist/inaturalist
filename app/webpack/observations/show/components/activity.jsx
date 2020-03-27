@@ -7,6 +7,7 @@ import moment from "moment-timezone";
 import { addImplicitDisagreementsToActivity } from "../../../shared/util";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
 import UserImage from "../../../shared/components/user_image";
+import TextEditor from "../../../shared/components/text_editor";
 import ActivityItem from "./activity_item";
 
 class Activity extends React.Component {
@@ -40,7 +41,7 @@ class Activity extends React.Component {
     }
   }
 
-  componentDidUpdate( ) {
+  componentDidUpdate( prevProps ) {
     this.setUpMentionsAutocomplete( );
   }
 
@@ -124,7 +125,7 @@ class Activity extends React.Component {
     const {
       observation,
       config,
-      commentIDPanel,
+      activeTab,
       setActiveTab
     } = this.props;
     if ( !observation ) { return ( <div /> ); }
@@ -148,9 +149,11 @@ class Activity extends React.Component {
     const commentContent = loggedIn
       ? (
         <div className="form-group">
-          <textarea
+          <TextEditor
             placeholder={I18n.t( "leave_a_comment" )}
-            className="form-control"
+            textareaClassName="form-control"
+            maxLength={5000}
+            showCharsRemainingAt={4000}
           />
         </div>
       ) : (
@@ -183,9 +186,10 @@ class Activity extends React.Component {
             config={config}
           />
           <div className="form-group">
-            <textarea
+            <TextEditor
               placeholder={I18n.t( "tell_us_why" )}
-              className="form-control"
+              className="upstacked"
+              textareaClassName="form-control"
             />
           </div>
         </div>
@@ -208,7 +212,7 @@ class Activity extends React.Component {
     const tabs = (
       <Tabs
         id="comment-id-tabs"
-        activeKey={commentIDPanel.activeTab}
+        activeKey={activeTab}
         onSelect={key => {
           setActiveTab( key );
         }}
@@ -249,7 +253,7 @@ class Activity extends React.Component {
 Activity.propTypes = {
   observation: PropTypes.object,
   config: PropTypes.object,
-  commentIDPanel: PropTypes.object,
+  activeTab: PropTypes.string,
   observation_places: PropTypes.object,
   addComment: PropTypes.func,
   addID: PropTypes.func,
