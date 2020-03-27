@@ -177,6 +177,7 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
       </Col>
     );
   }
+  const userCanEdit = ( userIsManager || viewerIsAdmin );
   return (
     <div id="ProjectsShow">
       { project.is_traditional && (
@@ -239,7 +240,7 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
                   { I18n.t( "read_more" ) }
                   <i className="fa fa-chevron-right" />
                 </div>
-                { ( userIsManager || viewerIsAdmin ) && (
+                { userCanEdit && (
                   <div className="header-about-edit">
                     <a href={ `/projects/${project.slug}/edit` }>
                       <button className="btn btn-default btn-white">
@@ -247,6 +248,11 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
                         { I18n.t( "edit_project" ) }
                       </button>
                     </a>
+                  </div>
+                ) }
+                { !userCanEdit && (
+                  <div className="header-about-edit">
+                    Members Only
                   </div>
                 ) }
                 <div className="header-about-news">

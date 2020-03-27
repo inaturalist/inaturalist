@@ -47,7 +47,7 @@ class ProjectForm extends React.Component {
                   onClick={( ) => window.open( `/observations?${project.previewSearchParamsString}`, "_blank" )}
                 >
                   <i className="fa fa-external-link" />
-                  { I18n.t( "preview_observations" ) }
+                  Preview Observations With These Settings
                 </button>
               </div>
             </Col>

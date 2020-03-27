@@ -232,6 +232,10 @@ body>div>.popover[role="tooltip"].popover-error {
   }
   label.checkboxradio {
     margin-right: 20px;
+    line-height: inherit;
+  }
+  .members-only label.inline {
+    line-height: inherit;
   }
   .icon-previews {
     margin-top: 15px;
@@ -318,7 +322,7 @@ body>div>.popover[role="tooltip"].popover-error {
   }
   .date-row {
     padding-bottom: 5px;
-    & > div > div {
+    & > div > div:not(.help-text) {
       display: inline-block;
       position: relative;
       vertical-align: middle;

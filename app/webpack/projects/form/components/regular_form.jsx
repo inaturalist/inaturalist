@@ -16,7 +16,7 @@ class RegularForm extends React.Component {
   constructor( props ) {
     super( props );
     this.state = {
-      inverseFiltersOpen: false
+      inverseFiltersOpen: null
     };
   }
 
@@ -27,33 +27,42 @@ class RegularForm extends React.Component {
 
   render( ) {
     const {
+      config,
       project,
       setRulePreference,
       updateProject,
       allControlledTerms
     } = this.props;
-    const { inverseFiltersOpen } = this.state;
+    let { inverseFiltersOpen } = this.state;
     const monthNames = ( "january february march april may june july august "
       + "september october november december" ).split( " " );
     const inverseFilterCount = _.size( project.notTaxonRules )
       + _.size( project.notPlaceRules ) + _.size( project.notUserRules );
+    if ( inverseFiltersOpen === null && inverseFilterCount > 0 ) {
+      inverseFiltersOpen = true;
+    }
     const chosenTerm = project.rule_term_id
       ? allControlledTerms.find( t => t.id === _.toInteger( project.rule_term_id ) ) : null;
+    const viewerIsAdmin = config.currentUser.roles
+      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     return (
       <div id="RegularForm" className="Form">
         <Grid>
           <Row className="text">
             <Col xs={12}>
               <h2>{ I18n.t( "observation_requirements" ) }</h2>
-              <div
-                className="help-text"
-                dangerouslySetInnerHTML={{
-                  __html: I18n.t(
-                    "views.projects.new.please_specify_the_requirements_html",
-                    { url: "/pages/managing-projects#collectionsettings" }
-                  )
-                }}
-              />
+              <div className="help-text">
+                <p>
+                  Specify the filters for which observations to include in your project.
+                  You can select multiple species (or taxa), places, dates, or other criteria for
+                  observations to be automatically included.
+                </p>
+                <p>
+                  <b>
+                    Note: If you do not select taxa, places, or users, all will be included by default.
+                  </b>
+                </p>
+              </div>
             </Col>
           </Row>
           <Row>
@@ -104,10 +113,34 @@ class RegularForm extends React.Component {
               </Panel>
             </Col>
           </Row>
+          { viewerIsAdmin ? (
+            <Row>
+              <Col xs={12} className="members-only">
+                <label className="sectionlabel">Project Members Only (admin-only testing)</label>
+                <div className="help-text">
+                  Check the box below to only include observations made by users who have joined this project.
+                </div>
+                <input
+                  type="checkbox"
+                  id="project-members-only"
+                  defaultChecked={project.rule_members_only}
+                  onChange={e => setRulePreference( "members_only", e.target.checked || null )}
+                />
+                <label className="inline" htmlFor="project-members-only">
+                  Only display observations from project members (people who have joined the project)
+                </label>
+              </Col>
+            </Row>
+          ) : null }
           <Row>
-            <Col xs={6}>
+            <Col xs={12}>
               <div className="form-group annotations-form-group">
                 <label className="sectionlabel">{ I18n.t( "with_annotation" ) }</label>
+                <div className="help-text">
+                  Include only observations annotated with a particular attribute (e.g. life stage),
+                  or a particular attribute and value (e.g life stage = adult).
+                  There is a limit of one annotation filter per project.
+                </div>
                 <select
                   id="project-term-id"
                   className="form-control"
@@ -161,6 +194,10 @@ class RegularForm extends React.Component {
           <Row>
             <Col xs={4}>
               <label>{ I18n.t( "data_quality" ) }</label>
+              <div className="help-text">
+                Select at least one Quality Grade. Further explanation for each Quality Grade can be found on
+                our <a href="/pages/help#quality" target="_blank">FAQ page</a>.
+              </div>
               <label className="inline checkboxradio" htmlFor="project-quality-research">
                 <input
                   type="checkbox"
@@ -170,7 +207,7 @@ class RegularForm extends React.Component {
                   defaultChecked={project.rule_quality_grade.research}
                   onChange={( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) )}
                 />
-                { I18n.t( "research_" ) }
+                Research Grade
               </label>
               <label className="inline checkboxradio" htmlFor="project-quality-needs-id">
                 <input
@@ -197,6 +234,9 @@ class RegularForm extends React.Component {
             </Col>
             <Col xs={4}>
               <label>{ I18n.t( "media_type" ) }</label>
+              <div className="help-text">
+                Optionally filter for observations with photos, sounds, or both.
+              </div>
               <label className="inline checkboxradio" htmlFor="project-media-any">
                 <input
                   type="radio"
@@ -252,6 +292,11 @@ class RegularForm extends React.Component {
             </Col>
             <Col xs={4}>
               <label>{ I18n.t( "establishment_means" ) }</label>
+              <div className="help-text">
+                Select "Native" to include only taxa that have been marked as "Native" to the
+                place(s) in your project. Select "Introduced" to include only taxa that have been
+                marked as "Introduced" to the place(s) in your project.
+              </div>
               <label
                 key="project-establishment-any"
                 className="inline checkboxradio"
@@ -320,6 +365,14 @@ class RegularForm extends React.Component {
           <Row className="date-row">
             <Col xs={12}>
               <label>{ I18n.t( "date_observed_" ) }</label>
+              <div className="help-text">
+                Use this for a time-limited event, bioblitz, or seasonal project. Select a single
+                date, range of dates, or which months of the year the observations must be made
+                in (regardless of year). If using the Date Range section, make sure you have the
+                correct times and time zones selected, or delete the time/time zone text to include
+                observations made anytime that entire day. You can leave the Start Date or End Date
+                blank if you want to limit the project by only one date.
+              </div>
               <label className="inline checkboxradio" htmlFor="project-date-type-any">
                 <input
                   type="radio"
@@ -339,6 +392,7 @@ class RegularForm extends React.Component {
                 { I18n.t( "exact" ) }
               </label>
               <DateTimeFieldWrapper
+                className="datefield"
                 mode="date"
                 ref="exactDate"
                 inputFormat="YYYY-MM-DD"
