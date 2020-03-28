@@ -707,7 +707,7 @@ de:
   change_your_password: Dein Kennwort ändern
   changing_the_geoprivacy: 'Die Änderung der Geo-Privatsphäre bestimmt, wie andere Personen den Ort deiner Beobachtung sehen.'
   check_above_for_errors: Oben nach Fehlern suchen
-  check_back_soon: Komm bald wieder vorbei!
+  check_back_soon: Schau demnächst wieder vorbei!
   check_here_to_autoload_description: Hier klicken, um die Beschreibung von Wikipedia automatisch zu laden. Vielleicht möchtest du es deaktivieren, wenn der wissenschaftliche Name eines Taxons auch ein nichtwissenschaftliches Wort oder eine häufige falsche Schreibweise wie "Parus" ist.
   check_here_to_autoload_photos: Wähle dies aus, wenn Fotos von Flickr automatisch geladen werden sollen. Du solltest es abwählen, wenn der wissenschaftliche Name eines Taxons auch ein nichtwissenschaftliches Wort oder eine häufige Falschschreibung (z.B. "Parus") ist.
   check_list: Checkliste
@@ -1282,7 +1282,7 @@ de:
   first_observer: Erster Beobachter
   #Verb form, as in "Flag this item"
   flag: Melden
-  flag_as_inappropriate: Als unangemessen melden
+  flag_as_inappropriate: Jetzt melden
   flag_an_item: Objekt melden
   flag_as_spammer: Als Spammer markieren
   flag_as_non_spammer: Als Nicht-Spammer markieren
@@ -1634,7 +1634,7 @@ de:
   let_us_walk_you_through: Wir führen dich durch die wichtigsten Funktionen dieser Website.
   lexicon: Lexikon
   lexicons:
-    scientific_names: Wissenschaftliche Namen
+    scientific_names: Wissenschaftlicher Name
     afrikaans: Afrikaans
     albanian: Albanisch
     bengali: Bengali
@@ -1923,10 +1923,10 @@ de:
   most_browser_print_pdf: "Anmerkung: Die meisten Browser haben eine Option zum Drucken nach PDF"
   most_disagree: meisten widersprechen
   most_comments_and_faves: Die meisten Kommentare und am häufigsten favorisiert
-  most_observations: Meisten Beobachtungen
+  most_observations: Meiste Beobachtungen
   most_recent_observation_by_date_observed: Neueste verifizierbare Beobachtung nach Beobachtungsdatum
   most_species: Meiste Arten
-  most_observed_species: Meist beobachtete Art
+  most_observed_species: Am häufigsten beobachtete Art
   most_observed_introduced_species: Eingeführte Art mit den meisten Beobachtungen
   most_observed_threatened_species: Meiste beobachtete bedrohte Art
   multiple: mehrfach
@@ -2115,7 +2115,7 @@ de:
   not_linked_flickr: "Dein %{site_name}-Benutzerkonto ist nicht mit deinem Flickr-Benutzerkonto verknüpft"
   not_on_this_list: Nicht auf dieser Liste.
   not_recorded: Nicht erfasst
-  not_seeing_what_looking_for: Du siehst nicht, was du suchst?
+  not_seeing_what_looking_for: Dir wird kein Ergebnis angezeigt?
   note: Notiz
   notes: Notizen
   notify_me_of_mentions: Mich über Erwähnungen benachrichtigen (z.B. @username)
@@ -2325,8 +2325,14 @@ de:
   other_names: Andere Namen
   other_species_commonly_misidentified_as_this_species: Andere Arten, die häufig als diese Art fehlbestimmt werden
   other_species_commonly_misidentified_as_this_species_in_place_html: Andere Arten, die häufig als diese Art in <a href="%{url}">%{place}</a> fehlbestimmt werden
+  other_taxa_commonly_misidentified_as_this_genus: Andere Taxa, die häufig mit dieser Gattung verwechselt werden
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: Andere Arten, die häufig als diese Gattung in <a href="%{url}">%{place}</a> fehlbestimmt werden
+  other_taxa_commonly_misidentified_as_this_genushybrid: Andere Taxa, die häufig als dieser Genushybrid falsch identifiziert werden
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Andere Taxa, die häufig als dieser Genushybrid in <a href="%{url}">%{place}</a> fehlbestimmt werden
   other_taxa_commonly_misidentified_as_this_rank: Andere Taxa, die häufig mit diesem verwechselt werden %{rank}
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: Andere Taxa, die üblicherweise als dieser %{rank} in <a href="%{url}">%{place}</a> falsch identifiziert wurden
+  other_taxa_commonly_misidentified_as_this_subgenus: Andere Taxa, die häufig fälschlicherweise als diese Untergattung bestimmt werden
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Andere Taxa, die häufig fälschlicherweise als diese Untergattung in <a href="%{url}">%{place}</a> bestimmt werden
   our_blog: Unser Blog
   out_of_range: Außer Reichweite
   output_taxon: Taxon ausgeben
@@ -3210,7 +3216,7 @@ de:
   somewhere_on_earth: irgendwo auf der Erde
   somewhere: (Irgendwo...)
   sorry_flickr_isnt_responding_at_the_moment: "Sorry, Flickr antwortet im Moment nicht."
-  sorry_how_about_we_try_repeat: "Entschuldigung! Wie wäre es wenn wie die Suche in einer anderen Datenbank für Artennamen wiederholen. Wenn wir etwas finden, speichern wir dies so dass du es das nächste mal finden kannst."
+  sorry_how_about_we_try_repeat: "Wie wäre es, die Suche in einer anderen Datenbank für Artennamen zu wiederholen? Wenn wir etwas finden, speichern wir dies so dass du es das nächste mal finden kannst."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Entschuldigung, eines dieser Flickr Fotos existiert nicht oder du hast keine Erlaubnis um es anzusehen."
   sorry_that_photo_provider_isnt_responding: "Entschuldigung, dieser Foto-Anbieter ist im Moment nicht erreichbar. Bitte versuche es erneut."
   sorry_that_service_is_not_responding: "Entschuldigung, dieser Dienst ist im Moment nicht erreichbar. Bitter versuche es später erneut."
@@ -4090,6 +4096,10 @@ de:
         choose_columns_desc: Wähle die Spalte die du exportieren willst
         ident_by_user_desc_html: |
           Spalte für die aktuellen Bestimmungen nach %{user}
+        geo_help_html: |
+          Felder auf Stadt-, Landkreis-, Bundesländer- oder Staatsebene, basierend auf den Koordinaten. Analoge Verwaltungsebenen werden für Beobachtungen verwendet, in denen diese Ortsangaben
+          nicht gelten.
+          Die privaten_*-Felder werden bei der Verwendung des Benutzer-Filters nur dann angeben, wenn du der Benutzer bist, oder bei der Verwendung des Projekt-Filters, wenn du das Projekt erstellt hast.
         be_patient: |
           Bitte um Geduld, das kann einige Minuten dauern. Wenn es zu lange dauert, kannst du
         receive_an_email_with_your_data: Eine Email mit deinen Daten erhalten
@@ -4385,6 +4395,7 @@ de:
         leaderboards_among_projects_and_bioblitzes: |
           Ranglisten zwischen den einzelnen <strong>Projekten</strong>
         multiple_project_administrators: Mehrere Projektadministratoren
+        name_placeholder: Vögel von Berlin, besondere Schmetterlinge, etc.
         no_need_to_rely_on_manual_addition: |
           Keine manuelle Ergänzung von Beobachtungen
         note_you_can_delete_the_time: |
@@ -4439,6 +4450,10 @@ de:
         youve_been_blocked: Du wurdest gesperrt
         youve_been_blocked_desc: |
           Der Besitzer dieser Ressource hat dich gesperrt, was dich daran hindert,
+          mit ihm zu kommunizieren. Die meisten interaktiven Funktionen auf dieser Seite werden
+          nicht funktionieren.
+        youve_blocked_desc: |
+          Du hast den Eigentümer dieser Ressource gesperrt, was dich daran hindert,
           mit ihm zu kommunizieren. Die meisten interaktiven Funktionen auf dieser Seite werden
           nicht funktionieren.
       not_found:
@@ -4497,6 +4512,10 @@ de:
         translators_prompt: |
           Wenn du beim Übersetzen helfen möchtest, %{link_tag}lerne hier wie%{link_tag_end}.
     taxa:
+      edit:
+        complete_rank_desc_html: |
+          Taxonomischer Rang auf dem dieses Taxon komplett ist, z.B. wenn diese Familie
+          alle ihre untergeordneten Gattungen enthält, aber nicht alle ihre Arten, würde der Rang auf "Gattung" gesetzt. Standard ist <b>Art</b>.
       show:
         about_names_desc: |
           <p>
@@ -4525,6 +4544,7 @@ de:
           "Plant Phenology=Fruiting": Fruchttragend
           "Life Stage=egg": Ei
           "Life Stage=larva": Larve
+          "Life Stage=subimago": Subimago
           "Life Stage=nymph": Nymphe
           "Life Stage=pupa": Puppe
           "Life Stage=adult": Ausgewachsen
