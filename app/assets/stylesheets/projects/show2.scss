@@ -233,6 +233,14 @@ button {
           font-size: 25px;
           margin-top: 5px;
         }
+        .header-about-members-only {
+          text-transform: uppercase;
+          position: absolute;
+          bottom: 7px;
+          left: 0;
+          letter-spacing: 1px;
+          max-width: 170px;
+        }
         .header-members-button {
           border: 1px solid rgba(255, 255, 255, 0.3);
           border-radius: 100px;
@@ -301,15 +309,21 @@ button {
           .btn-white {
             border-radius: 2px;
             color: #333;
+            padding: 6px 8px;
           }
         }
         .header-about-news {
           position: absolute;
           bottom: 4px;
           right: 0;
-          text-transform: uppercase;
-          font-size: 16px;
-          i {
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 100px;
+          overflow: hidden;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2px 14px;
+          .glyphicon {
+            top: 2px;
+            font-size: 12px;
             margin-right: 5px;
           }
         }
@@ -1186,11 +1200,17 @@ button {
         height: 264px;
         padding: 20px;
         width: 313px;
-        .header-about-content .header-about-text {
-          margin-top: 15px;
-          font-size: 15px;
-          line-height: 19px;
-          max-height: 114px;
+        .header-about-content {
+          .header-about-text {
+            margin-top: 15px;
+            font-size: 15px;
+            line-height: 19px;
+            max-height: 114px;
+          }
+          .header-about-members-only {
+            max-width: 110px;
+            bottom: 0;
+          }
         }
       }
     }
