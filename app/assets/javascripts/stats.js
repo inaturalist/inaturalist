@@ -56,31 +56,29 @@ Stats.loadChartsFromJSON = function ( json ) {
 };
 
 Stats.loadObsSpark = function ( json ) {
-  const data = _.map( json, function ( stat ) {
-    return [Stats.dateForStat( stat ), stat.data.observations.today];
-  } );
   google.setOnLoadCallback( Stats.sparkline( {
     element_id: "obsspark",
     series: [
       { label: "Today" }
     ],
-    data
+    data: _.map( json, function ( stat ) {
+      return [Stats.dateForStat( stat ), stat.data.observations.today];
+    } )
   } ) );
 };
 
 Stats.loadPercentIdSpark = function ( json ) {
-  const data = _.map( json, function ( stat ) {
-    if ( stat.data.identifier ) {
-      return [Stats.dateForStat( stat ), stat.data.identifier.percent_id];
-    }
-    return [Stats.dateForStat( stat ), 0];
-  } );
   google.setOnLoadCallback( Stats.sparkline( {
     element_id: "percentidspark",
     series: [
       { label: "% ID" }
     ],
-    data
+    data: _.map( json, function ( stat ) {
+      if ( stat.data.identifier ) {
+        return [Stats.dateForStat( stat ), stat.data.identifier.percent_id];
+      }
+      return [Stats.dateForStat( stat ), 0];
+    } )
   } ) );
 };
 
