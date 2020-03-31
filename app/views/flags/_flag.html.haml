@@ -34,14 +34,22 @@
     - if is_admin?
       &middot;
       = link_to t(:delete), flag, data: { confirm: t(:you_sure_delete_flag?) }, method: :delete
-- if flag.resolved? && !flag.comment.blank?
+- if flag.resolved?
   .resolution.description
-    %strong
-      = succeed ":" do
-        - if flag.resolver
-          = t :resolved_by
-          = link_to flag.resolver.login, flag.resolver
+    - if flag.comment.blank?
+      %strong
+        = t :resolved_by
+        - if flag.resolver_id <= 0
+          iNaturalist
         - else
-          = t :resolved
-    = surround "\"", "\"" do
-      = formatted_user_text( flag.comment, skip_simple_format: true )
+          = link_to_user flag.resolver
+    - else
+      %strong
+        = succeed ":" do
+          = t :resolved_by
+          - if flag.resolver_id && flag.resolver_id <= 0
+            iNaturalist
+          - else
+            = link_to_user flag.resolver
+      = surround "\"", "\"" do
+        = formatted_user_text( flag.comment, skip_simple_format: true )
