@@ -53,7 +53,7 @@ const Requirements = ( {
     ) );
   let userRules;
   if ( project.rule_members_only ) {
-    userRules = "Members Only";
+    userRules = I18n.t( "project_members_only" );
   } else if ( _.isEmpty( project.userRules ) ) {
     userRules = I18n.t( "any" );
   } else {

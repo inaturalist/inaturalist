@@ -47,7 +47,7 @@ class ProjectForm extends React.Component {
                   onClick={( ) => window.open( `/observations?${project.previewSearchParamsString}`, "_blank" )}
                 >
                   <i className="fa fa-external-link" />
-                  Preview Observations with these Observation Requirements
+                  { I18n.t( "preview_observations_with_these_observation_requirements" ) }
                 </button>
               </div>
             </Col>
@@ -56,7 +56,7 @@ class ProjectForm extends React.Component {
             <Col xs={12}>
               <label>{ I18n.t( "admin_s" ) }</label>
               <div className="help-text">
-                { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
+                { I18n.t( "views.projects.new.include_annotated_observations" ) }
               </div>
               <UserAutocomplete
                 ref={this.ua}

@@ -84,12 +84,16 @@ const App = ( {
         window.location = `/projects/${project.slug}/join`;
       };
     }
+  } else {
+    membershipAction = ( ) => {
+      $( ".header-members-button .UsersPopover" ).click( );
+    };
   }
 
   const headerButton = (
     <div className="header-members-button">
       <div
-        className={`action ${membershipLabel !== I18n.t( "members" ) && "clicky"}`}
+        className="action clicky"
         onClick={membershipAction}
       >
         { membershipLabel }
@@ -254,13 +258,13 @@ const App = ( {
                 ) }
                 { !userCanEdit && project.rule_members_only && (
                   <div className="header-about-members-only">
-                    Members Only
+                    { I18n.t( "project_members_only" ) }
                   </div>
                 ) }
                 <div className="header-about-news">
                   <a href={`/projects/${project.slug}/journal`}>
                     <span className="glyphicon glyphicon-book" />
-                    Project Journal
+                    { I18n.t( "project_journal" ) }
                   </a>
                 </div>
               </div>

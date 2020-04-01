@@ -25,7 +25,7 @@ const UmbrellaNews = ( { project } ) => {
       { noNews ?
         (
           <div className="empty-text">
-            No journal posts yet. { I18n.t( "check_back_soon" ) }
+            { I18n.t( "no_journal_posts_yet" ) }. { I18n.t( "check_back_soon" ) }
           </div>
         ) : (
           <div>
