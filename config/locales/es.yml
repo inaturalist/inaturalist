@@ -479,6 +479,9 @@ es:
   are_you_sure_remove_taxon_from_list: "¿Estás seguro que quieres eliminar a este taxón de la lista?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     ¿Estás seguro? Esto volverá a cargar la página y es posible que pierdas algunos de tus cambios.
+  are_you_sure_unresolve_flag?: |
+    ¿Estás seguro de que deseas borrar la respuesta a esta marca? Esto eliminará la resolución
+    y el usuario que ha resuelto esta marca.
   are_you_sure_want_delete_taxon: "¿Estás seguro que quieres eliminar este taxón?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes.
@@ -2489,6 +2492,10 @@ es:
   people_following_user: "Personas que siguen a %{user}"
   people_user_follows: "Gente %{user} Seguidores"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: añadió una <a href="%{observation_url}">observación</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -3474,6 +3481,8 @@ es:
   stats: Estadísticas
   stats_for_this_year_have_not_been_generated: No se han generado las estadísticas de este año.
   status: Estado
+  status_globally: '"%{status}" Globalmente'
+  status_in_place: '"%{status}" en %{place}'
   stay_and_try_again: Permanecer e intentar de nuevo
   still_no_luck?: '¿Sigues sin encontrarlo?'
   still_needs_id?: '¿La comunidad puede confirmar/mejorar la ID?'
@@ -3857,6 +3866,8 @@ es:
   updating: Actualizando...
   unprocessable: No se puede procesar
   unpublish: Despublicar
+  #Undo the action of resolving a flag
+  unresolve: No resolver
   unreview_all: Marcar todos como no revisados
   unsubscribe: Quitar suscripción
   unsuspend_user: Reactivar usuario
@@ -4665,6 +4676,38 @@ es:
         taking_a_while: "Esto está tomando un tiempo. Por favor, intente una de las siguientes opciones."
         date_range_help: "Fechas máxima y mínima de la observación en formato YYYY-MM-DD, p.e. 2015-01-17"
         created_on_help: "Fecha en la que las observaciones se crearon, no observadas, p.e. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Otras opciones</h3>
+          <p>
+          Grandes exportaciones ralentizan nuestra infraestructura y nos hacen más difícil lanzar nuevos cambios. Estas son algunas de las opciones que puedes considerar:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a rel="nofollow noreferrer noopener" href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF incorpora la mayoría de las observaciones con licencia de Grado de Investigación, y sus herramientas de exportación son excelentes. GBIF exporta también el <a href="https://www.doi.org/">DOI</a>, por lo que puedes citarlo si publicas investigaciones basada en los datos que has exportado y estas citaciones son muy útiles para nosotros pues nos permite conocer cómo se usan los datos de iNat.
+
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">Archivo DarwinCore
+          (DwC-A) para GBIF</a>: este es el archivo <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>que generamos para la incorporación a GBIF, por lo que podría no contener todo aquello que está en GBIF, pero si deseas el archivo entero lo puedes descargar. Es un archivo grande en ZIP que contiene los registros en CSV. Se actualiza semanalmente.
+
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist
+          Challenge en FGVC 2017</a>: enlaces a 675.000 fotografías con licencia de iNaturalist de 5.089 especies usadas para el entrenamiento del sistema de reconocimiento de imágenes. Creado en 2017 y no actualizado.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Identificador único para la observación"
         species_guess: "Nombra al observador que incluyó el taxón observado"
@@ -6292,6 +6335,8 @@ es:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 No puede encontrar el nombre científico de una especie para este léxico
+              must_match_the_taxon_if_valid: |
+                debe coincidir con el nombre del taxón si este es un nombre científico válido
               bad_format: |
                 solo puede contener caracteres latinos estándar, guiones, espacios, y ×; nota que no se permiten taxones putativos ni cultivares
         taxon_photo:
