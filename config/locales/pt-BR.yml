@@ -5717,7 +5717,7 @@ pt-BR:
         #"one million and two and a half dollars" this would be written as
         #"$1,000,002.50" in English, and "," is the delimiter. This should not
         #be the same as the separator.
-        delimiter: ','
+        delimiter: '.'
         format: '%u%n'
         precision: 2
         #The separator separates an integer from a decimal fraction, so if the
