@@ -479,6 +479,9 @@ da:
   are_you_sure_remove_taxon_from_list: "Er du sikker på, at du vil fjerne denne takson fra listen?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Er du sikker? Dette vil genindlæse siden og du kan miste nogle af dine ændringer.
+  are_you_sure_unresolve_flag?: |
+    Sikker på, at du vil fjerne løsningen for dette flag? Både løsningen
+    og den bruger, der har leveret den, fjernes fra dette flag.
   are_you_sure_want_delete_taxon: "Er du sikker på, at du vil slette denne takson?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Er du sikker på, at du vil slette denne takson? Den har afledte taksa.
@@ -2581,6 +2584,8 @@ da:
       building: bygning
       Canton: Kanton
       canton: kanton
+      City Building: Bygning (by)
+      city building: bygning (by)
       Colloquial: Dialektal
       colloquial: dialektal
       Commune: Kommune
@@ -2591,6 +2596,10 @@ da:
       country: land
       County: Amt
       county: amt
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegation
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegation
       District: Distrikt
       district: distrikt
       Division: Afdeling
