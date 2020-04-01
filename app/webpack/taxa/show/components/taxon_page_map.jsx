@@ -50,24 +50,23 @@ const TaxonPageMap = ( {
             {
               label: I18n.t( "verifiable_observations" ),
               verifiable: true
-              // legendColor: COLORS.orange
             },
             {
               label: I18n.t( "observations_without_media" ),
               verifiable: false,
               captive: false,
-              // color: COLORS.maroon,
+              color: COLORS.maroon,
               disabled: !currentUserPrefersMedialessObs,
               onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+            },
+            {
+              label: I18n.t( "captive_cultivated" ),
+              verifiable: false,
+              captive: true,
+              color: COLORS.blue,
+              disabled: !currentUserPrefersCaptiveObs,
+              onChange: e => updateCurrentUser( { prefers_captive_obs_maps: e.target.checked } )
             }
-            // {
-            //   label: I18n.t( "captive_cultivated" ),
-            //   verifiable: false,
-            //   captive: true,
-            //   color: COLORS.blue,
-            //   disabled: !currentUserPrefersCaptiveObs,
-            //   onChange: e => updateCurrentUser( { prefers_captive_obs_maps: e.target.checked } )
-            // }
           ],
           gbif: { disabled: true },
           places: true,
