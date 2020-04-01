@@ -458,6 +458,9 @@ class Identification < ActiveRecord::Base
     end
     unless options[:skip_indexing]
       Identification.elastic_index!( ids: idents.map(&:id) )
+      o.reload
+      o.wait_for_index_refresh = !!options[:wait_for_obs_index_refresh]
+      o.elastic_index!
     end
   end
 
@@ -471,7 +474,9 @@ class Identification < ActiveRecord::Base
       # identification after that happens, and in fact that may result in
       # indexing stale data, e.g. a blank category
       self.skip_indexing = true
-      Identification.update_categories_for_observation( observation )
+      Identification.update_categories_for_observation( observation, {
+        wait_for_obs_index_refresh: wait_for_obs_index_refresh
+      } )
     end
     true
   end
