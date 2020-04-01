@@ -4003,7 +4003,10 @@ en:
   this_list_only_accepts_taxa_that_are_species_or_lower: This list only accepts taxa that are species or lower
   this_observation: This observation
   this_observation_is_featured_on_x_sites:
-    one: This observation is featured on 1 site
+    zero: This observation is featured on %{count} sites
+    one: This observation is featured on %{count} site
+    few: This observation is featured on %{count} sites
+    many: This observation is featured on %{count} sites
     other: This observation is featured on %{count} sites
   this_observation_is_research_grade: This observation is Research Grade!
   this_observation_was_created_using: "This observation was created using:"
