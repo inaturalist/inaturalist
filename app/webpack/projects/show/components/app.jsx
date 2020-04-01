@@ -260,7 +260,7 @@ const App = ( {
                 <div className="header-about-news">
                   <a href={`/projects/${project.slug}/journal`}>
                     <span className="glyphicon glyphicon-book" />
-                    View Project Journal
+                    Project Journal
                   </a>
                 </div>
               </div>
