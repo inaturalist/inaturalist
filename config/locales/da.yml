@@ -2590,6 +2590,8 @@ da:
       colloquial: dialektal
       Commune: Kommune
       commune: kommune
+      Constituency: Valgkreds
+      constituency: valgkreds
       Continent: Kontinent
       continent: kontinent
       Country: Land
@@ -2600,6 +2602,8 @@ da:
       Delegation: Delegation
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegation
+      Department_Segment: Afdelingssegment
+      department_segment: afdelingssegment
       District: Distrikt
       district: distrikt
       Division: Afdeling
@@ -2640,6 +2644,12 @@ da:
       open_space: åbent rum
       Parish: Sogn
       parish: sogn
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Poblacion
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: poblacion
+      Prefecture: Præfektur
+      prefecture: præfektur
       Prefecture_City: Præfektur by
       prefecture_city: præfektur by
       Point_of_Interest: Seværdighed
@@ -2648,6 +2658,8 @@ da:
       postal_code: postnummer
       Province: Provins
       province: provins
+      Regency: Regency
+      regency: Herredømme
       Region: Region
       region: region
       Republic: Republik
@@ -2666,6 +2678,10 @@ da:
       subdivision: underinddeling
       Suburb: Forstad
       suburb: forstad
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
       Supername: Supernavn
       supername: supernavn
       Territory: Territorium
@@ -2678,6 +2694,8 @@ da:
       undefined: udefineret
       Unknown: Ukendt
       unknown: ukendt
+      Village_block: Landsbykvarter
+      village_block: lndsbykvarter
       Zone: Zone
       zone: zone
   place_guess: sted gæt
@@ -3917,6 +3935,8 @@ da:
   updating: Opdaterer...
   unprocessable: Ikke til at bearbejde
   unpublish: Afpublicer
+  #Undo the action of resolving a flag
+  unresolve: Fjern løsning
   unreview_all: Fjern gennemgang for alle
   unsubscribe: Afmeld abonnement
   unsuspend_user: Bruger ikke længere suspenderet
@@ -5520,6 +5540,7 @@ da:
         obs_desc: Oprettet i de foregående 7 dage
         obs_id_d_desc: Oprettet indenfor de seneste 7 dage og har et ID (kan være observatørens)
         observations_1_week_moving_window: Observationer (1 løbende uge)
+        observers_desc: Tilføjede en observation på denne dag
         other_desc_html: Oprettet via andre applikationer<a href="%{url}">Skabt af udviklere</a>
         recent_desc: Tilmeldte sig i de seneste 7 dage
         recent_w_0_obs: Nylige m/0 obs
