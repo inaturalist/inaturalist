@@ -496,6 +496,8 @@ fi:
   are_you_sure_remove_taxon_from_list: "Haluatko varmasti poistaa tämän taksonin luettelosta?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Oletko varma? Tämä lataa sivun uudelleen, saatat menettää joitakin muutoksistasi.
+  are_you_sure_unresolve_flag?: |
+    Olet varma että haluat poistaa tämän lipun ratkaisun? Tämä poistaa myös ratkaisun tehneen käyttäjän tästä lipusta.
   are_you_sure_want_delete_taxon: "Haluatko varmasti poistaa tämän taksonin?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Haluatko varmasti poistaa tämän taksonin? Sillä on alempia taksoneita.
@@ -1350,6 +1352,7 @@ fi:
   flag_this_photo: Liputa tämä kuva
   flag_this_sound: Liputa tämä ääni
   flagged: lisäsi lipun
+  flagged_: Liputettu
   flagged_for_curation: Liputettu kuraattorin tarkastusta varten
   flagged_taxon: Liputettu taksoni
   flagged_thing_explanation: "Käyttäjät ovat liputtaneet tämän: %{thing}, koska"
@@ -2432,6 +2435,10 @@ fi:
   people_following_user: "Käyttäjän %{user} seuraajat"
   people_user_follows: "Ihmiset, joita %{user} seuraa"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: lisäsi <a href="%{observation_url}">havainnon</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -2502,6 +2509,8 @@ fi:
       building: rakennus
       Canton: Kantoni
       canton: kantoni
+      City Building: Kaupunkirakennus
+      city building: kaupunkirakennus
       Colloquial: Puhekielinen
       colloquial: epämuodollinen
       Commune: Kunta
@@ -3550,7 +3559,7 @@ fi:
   this_list_is_empty!: Tämä luettelo on tyhjä!
   this_observation: Tämä havainto
   this_observation_is_featured_on_x_sites:
-    one: Tämä havainto on esillä 1 sivustolla
+    one: Tämä havainto on esillä %{count} sivustolla
     other: Tämä havainto on esillä %{count} sivustolla
   this_observation_is_research_grade: Tämä havainto on tutkimustasoa!
   this_observation_was_created_using: "Tämä havainto luotiin käyttämällä:"
@@ -3628,6 +3637,8 @@ fi:
   updating: Päivitetään...
   unprocessable: Ei voida prosessoida
   unpublish: Julkaisematon
+  #Undo the action of resolving a flag
+  unresolve: Poista ratkaisu
   unsubscribe: Peruuta tilaus
   unsuspend_user: Jäädytetty käyttäjä
   upcoming_bioblitzes: Tulevat bioblitzit
@@ -4718,6 +4729,7 @@ fi:
         obs_desc: Luotu viimeisen 7 päivän aikana
         obs_id_d_desc: Luotu viimeisen 7 päivän aikana ja sillä on tunnistus (voi olla havainnoijan)
         observations_1_week_moving_window: Havainnot (1 viikon siirtyvä aikaikkuna)
+        observers_desc: Lisäsi havainnon tänä päivänä.
         other_desc_html: Luotu muiden <a href="%{url}">kehittäjien rakentamien</a> sovellusten kautta
         recent_desc: Rekisteröity viimeisen 7 päivän aikana
         recent_w_0_obs_desc: Rekisteröitynyt edeltävinä 7 päivänä ja lisännyt 0 havaintoa

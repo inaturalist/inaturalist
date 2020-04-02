@@ -586,6 +586,8 @@ ru:
   are_you_sure_remove_taxon_from_list: "Вы уверены что хотите удалить этот таксон из списка?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Вы уверены? Это приведёт к перезагрузке страницы и вы можете потерять несохранённые изменения.
+  are_you_sure_unresolve_flag?: |
+    Вы уверены, что хотите отменить этот флаг? Это приведет к отмене решения проблемы и удалению пользователя-автора из этого флага.
   are_you_sure_want_delete_taxon: "Вы уверены, что хотите удалить этот таксон?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Вы уверены, что хотите удалить этот таксон? Он включает таксоны-потомки.
@@ -2658,16 +2660,26 @@ ru:
       building: здание
       Canton: Кантон
       canton: кантон
+      City Building: Зона градостроительства
+      city building: зона градостроительства
       Colloquial: Разговорный
       colloquial: разговорный
       Commune: Коммуна
       commune: коммуна
+      Constituency: Округ
+      constituency: округ
       Continent: Континент
       continent: континент
       Country: Страна
       country: страна
       County: Округ
       county: округ
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Подокруг
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: подокруг
+      Department_Segment: Подразделение департамента
+      department_segment: подразделение департамента
       District: Район
       district: район
       Division: Участок
@@ -2708,6 +2720,12 @@ ru:
       open_space: открытое пространство
       Parish: Округ
       parish: округ
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Деловой центр
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: деловой центр
+      Prefecture: Префектура
+      prefecture: префектура
       Prefecture_City: Город-центр префектуры
       prefecture_city: город-центр префектуры
       Point_of_Interest: Достопримечательность
@@ -2716,6 +2734,8 @@ ru:
       postal_code: почтовый индекс
       Province: Провинция
       province: провинция
+      Regency: Регентство
+      regency: регентство
       Region: Регион
       region: регион
       Republic: Республика
@@ -2734,6 +2754,10 @@ ru:
       subdivision: подразделение
       Suburb: Пригород
       suburb: пригород
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Сомон
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: сомон
       Supername: Supername (GeoPlanet)
       supername: supername (GeoPlanet)
       Territory: Территория
@@ -2746,6 +2770,8 @@ ru:
       undefined: не определено
       Unknown: Неизвестно
       unknown: неизвестно
+      Village_block: Сельское поселение
+      village_block: сельское поселение
       Zone: Зона
       zone: зона
   place_guess: приблизительное определение места
@@ -3575,6 +3601,8 @@ ru:
   stats: Статистика
   stats_for_this_year_have_not_been_generated: Статистика за этот год не сформирована.
   status: Статус
+  status_globally: 'Глобальный "%{status}"'
+  status_in_place: '"%{status}" в %{place}'
   stay_and_try_again: Остановитесь и попробуйте ещё раз
   still_no_luck?: Всё ещё не получается?
   still_needs_id?: Может ли сообщество подтвердить/улучшить идентификацию?
@@ -3890,7 +3918,7 @@ ru:
   this_list_only_accepts_taxa_that_are_species_or_lower: В этом списке допустимы только таксоны-виды или ниже
   this_observation: Данное наблюдение
   this_observation_is_featured_on_x_sites:
-    one: Это наблюдение размещено на 1 сайте
+    one: Это наблюдение размещено на %{count} сайте
     few: Это наблюдение размещено на %{count} сайтах
     many: Это наблюдение размещено на %{count} сайтах
     other: Это наблюдение размещено на %{count} сайтах
@@ -3989,6 +4017,8 @@ ru:
   updating: Обновление...
   unprocessable: Не подлежащий обработке
   unpublish: Не опубликовано
+  #Undo the action of resolving a flag
+  unresolve: Не разрешено
   unreview_all: Отметить все как непросмотренные
   unsubscribe: Отменить подписку
   unsuspend_user: Разблокированный пользователь
@@ -4778,6 +4808,43 @@ ru:
         taking_a_while: "Это займет некоторое время. Пожалуйста, попробуйте один из вариантов, указанных ниже."
         date_range_help: "Максимальные и минимальные даты наблюдений в формате ГГГГ-ММ-ДД, например, 2015-01-17"
         created_on_help: "Даты наблюдения - это даты, когда наблюдения были созданы, а не наблюдались, например 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Другие источники</h3>
+          <p>
+          Большие объёмы экспорта тормозят нашу инфраструктуру и усложняют для нас введение новых изменений. Следует рассмотреть следующие другие источники:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF принимает большинство наших лицензированных наблюдений исследовательского уровня, и их инструменты экспорта превосходны. Экспорт GBIF также идет с <a href="https://www.doi.org/"> DOI </a>, который вы можете указать, если публикуете исследования на основе данных, которые вы экспортируете, и эти
+          ссылки чрезвычайно полезны для нас, поскольку они позволяют нам видеть,
+          как используются данные iNat.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
+          архив (DwC-A) для GBIF</a>: это <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
+          файл, который мы генерируем для GBIF, поэтому он не должен содержать
+          все, что не содержится в GBIF, но если вы хотите получить весь архив, вы можете скачать его. Это очень большой почтовый файл, содержащий записи в CSV. Обновляется еженедельно.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist
+          соревнование на FGVC 2017</a>: ссылки на 675 000 лицензированных фото 
+          iNaturalist 5 089 видов для использования в системе компьютерного распознавания. Создано в июне 2017, не обновляется.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Уникальный идентификатор наблюдения"
         species_guess: "Имя, которое наблюдатель ввёл для наблюдаемого таксона"
@@ -5378,6 +5445,7 @@ ru:
         obs_desc: Созданные в пред 7 дней
         obs_id_d_desc: Созданные в пред 7 дней и имеющие идентификацию (включая идентификацию наблюдателем)
         observations_1_week_moving_window: Наблюдения(еженедельно меняющиеся данные в окне)
+        observers_desc: Добавлено наблюдение за этот день
         other_desc_html: Создано с помощью других приложений, <a href="%{url}">созданных разработчиками</a>
         recent_desc: Зарегистрировались в предыдущие 7 дней
         recent_w_0_obs: Недавние с 0 набл
@@ -6430,6 +6498,8 @@ ru:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 не удаётся найти соответствие названия вида в этом языке научному названию
+              must_match_the_taxon_if_valid: |
+                должно совпадать с названием таксона, если это действующее научное название
               bad_format: |
                 может содержать только стандартные латинские символы, дефисы, пробелы и ×; обратите внимание, что предполагаемые таксоны и сорта не допускаются
         taxon_photo:

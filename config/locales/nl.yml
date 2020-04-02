@@ -3808,7 +3808,7 @@ nl:
   this_list_only_accepts_taxa_that_are_species_or_lower: Deze lijst accepteert alleen taxa die soorten of lager zijn
   this_observation: Deze waarneming
   this_observation_is_featured_on_x_sites:
-    one: Deze waarneming is te zien op 1 site
+    one: Deze waarneming is te zien op %{count} site
     other: Deze waarneming is te zien op %{count} sites
   this_observation_is_research_grade: Deze waarneming is van onderzoekskwaliteit!
   this_observation_was_created_using: "Deze waarneming is gemaakt met:"
@@ -4702,7 +4702,7 @@ nl:
           href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
           GBIF neemt het grootste deel van onze waarnemingen met onderzoekskwaliteit over
           en hun exporttools zijn uitstekend. GBIF-exports komen ook
-          met een <a href="https://www.doi.org/">DOI</a>die je kunt citeren als
+          met een <a href="https://www.doi.org/">DOI</a> die je kunt citeren als
           je onderzoek publiceert op basis van de data die je exporteert, en deze
           citaties zijn enorm nuttig voor ons omdat ze ons in staat stellen te zien
           hoe iNat-gegevens worden gebruikt.

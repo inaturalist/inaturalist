@@ -70,6 +70,16 @@ he:
     two: '%{count} מינים'
     many: '%{count} מינים'
     other: '%{count} מינים'
+  x_research_grade_observations_html:
+    one: "תצפית בדרגת מחקר <span class='count'>%{count}</span>"
+    two: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר"
+    many: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר"
+    other: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר"
+  x_research_grade_observations_to_species_html:
+    one: "תצפית <span class='count'>%{count}</span> באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
+    two: "<span class='count'>%{count}</span> תצפיות באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
+    many: "<span class='count'>%{count}</span> תצפיות באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
+    other: "<span class='count'>%{count}</span> תצפיות באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
   x_sounds:
     one: "%{count} צליל"
     two: "%{count} צלילים"
@@ -1041,6 +1051,7 @@ he:
   exact_location: מיקום_מדויק
   exact_rank: דרוג מדויק
   except: למעט
+  exclude_x: הוצא %{x}
   existing_flags: דגלים קיימים
   exit_full_screen: "יציאה ממסך מלא"
   explore: גלו את העולם
@@ -1068,6 +1079,8 @@ he:
   feature_this_project_: "הצגת פרוייקט זה"
   featured: נבחרים
   feedback: משוב
+  #Plural noun, as in Atom and RSS feeds
+  feeds: 'פיידים'
   failed: נכשל
   field_note: |
     <strong>לתשומת לבך:</strong> אם ברצונך להוסיף שדה, יש לבדוק אם הדבר טרם נעשה, על מנת להמנע מכפילויות.
@@ -1166,6 +1179,8 @@ he:
   flickr_tagger: מתייג Flickr
   flickr_tags: תגיות Flickr
   fluid_layout: פריסה גמישית
+  #Adjective, as in a fluid layout of images
+  fluid: זורם
   follow: עקוב
   follow_receive_updates_about_new_observations: לעקוב ולקבלת עידכונים על תצפיות חדשות
   follow_user: "לעקוב אחרי %{user}"
@@ -1225,6 +1240,7 @@ he:
   grid_layout: פריסת רשת
   grid_tooltip: הצג בתצוגת רשת
   group: קבוצה
+  grouping: קיבוץ
   guides: מגדירים
   guide_compiled_by: המגדיר נערך על ידי
   guide_deleted: המגדיר נמחק
@@ -1290,8 +1306,11 @@ he:
   identifications: זיהויים
   identifications_by: "הזיהויים של %{user}"
   identifiers: מזהים
+  identotron: Identotron
   ids: "זיהויים"
   ids_made_for_others: זיהויים של אחרים
+  if_for_some_reason_a_user_doesnt_agree: |
+    אם משום סיבה את/ה לא מסכימ/ה עם טקסון הקהילה, ניתן לדחות אותו, כלומר שזיהוי שלך יופיע לקשרים עם תצפיות אחרות, לרשימות-חיים, וכו'. זאת גם אומרת שתצפית זאת תוכל להסיג דרגת מחקר רק אם הזיהוי שלך וטקסון הקהילה זהים.
   if_matches_come_from_a_comprehensive_list: אם התאמות יגיעו מרשימה כללית אז קו ירוק יופיע פה.
   if_this_is_a_scientific_name: אם זהו שם מדעי, האם זה השם המקובל כעת?
   if_your_project_is: במידה והפרוייקט מתמקד באזור ספציפי, יש להגדיר את הקוארדינטות באמצעות הקלקה על המפה או על ידי הזנתן.
@@ -1328,6 +1347,7 @@ he:
   inaturalist_is_a_joint_initiative: "%{site_name} הוא מיזם משותף של האקדמיה למדעים של קליפורניה ונשיונל ג'יאוגרפיק"
   inaturalist_places: "מיקומי %{site_name}"
   info: מידע
+  input_taxon: טקסון אינפוט
   insects: חרקים
   insect_life_stage: שלב חיים של החרק
   instagram: אינסטגרם
@@ -1397,6 +1417,7 @@ he:
     observations: מספר התצפיות הרב ביותר ב%{time}
     identifications: מספר הזיהויים הרב ביותר ב%{time}
   leading: מוביל
+  learn: למדו
   learn_about_the_species_live_in: הכירו את המינים שחיים ב
   learn_more: מידע נוסף
   learn_more_raquo: "מידע נוסף &raquo;"
@@ -1487,6 +1508,8 @@ he:
     taxonomic: טקסונומי
     photo: תמונה
   list_was_successfully_created: הרשימה נוצרה בהצלחה.
+  listed_taxon: טקסון רשום
+  listing_taxa: רושם טקסונים
   lists: רשימות
   lists_by_login:
     title:
@@ -1571,6 +1594,7 @@ he:
   lookup: חיפוש
   low: נמוך
   lowest_rank: הדירוג הנמוך ביותר
+  make_admin: עשה אדמיניסטרטור
   #Header for main content section of the project detail page when editing custom project data.
   main_content: תוכן ראשי
   #Stub text for the main content section when editing custom project data
@@ -1610,6 +1634,7 @@ he:
   media: מדיה
   media_type: סוג המדיה
   medium: בינוני
+  meet: הכירו
   members: חברים
   membership_model: מודל חברות
   mentioned_you_in_noun_html: "%{user} הזכיר אותך ב%{noun}"
@@ -1701,11 +1726,15 @@ he:
   name_of_the_place_you: שם המקום בו בוצעה התצפית
   name_providers:
     col: קטלוג החיים
+    ubio: uBio
     nzor: New Zealand Organisms Register
   names: שמות
   names_for_taxon_html: "שמות ל%{taxon}"
   native: מקומי
   native_to_place: "מקומי ל%{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
+  nav: ניווט
   #Stub text to show where the nav section of the project detail page is.
   nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: קו רוחב צפון מזרחי
@@ -2049,8 +2078,13 @@ he:
   other_taxa_commonly_misidentified_as_this_subgenus: טקסונים אחרים המוגדרים בטעות כתת-סוג זה
   our_blog: הבלוג שלנו
   out_of_range: מחוץ לטווח
+  output_taxon: טקסון אווטפוט
   overview: סקירה כללית
   owner: בעלים
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
+  parent: אב
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  parent_name: שם אב
   parental_consent:
     must_specify_email: יש צורך בציון כתובת מייל
     invalid_email: שגיאה בתבנית המייל
@@ -2135,12 +2169,16 @@ he:
       estate: אחוזה
       Governorate: ממשל
       governorate: ממשל
+      Historical_State: ארץ היסטורית
+      historical_state: ארץ היסטורית
       Historical_Town: עיר היסטורית
       historical_town: עיר היסטורית
       Intersection: צומת
       intersection: צומת
       Island: אי
       island: אי
+      Land_Feature: תצורת קרקע
+      land_feature: תצורת קרקע
       Local_Administrative_Area: רשות אדמיניסטרטיבית מקומית
       local_administrative_area: רשות אדמיניסטרטיבית מקומית
       Local_Authority: רשות מקומית
@@ -2157,6 +2195,8 @@ he:
       nearby_intersection: צומת קרוב
       Open_Space: שטח פתוח
       open_space: שטח פתוח
+      Parish: קהילה
+      parish: קהילה
       Prefecture_City: עיר פריפקטורה
       prefecture_city: עיר פריפקטורה
       Point_of_Interest: מקום בעל עיניין
@@ -2514,6 +2554,8 @@ he:
   processing: מתבצע עיבוד…
   processing3p: "מתבצע עיבוד…"
   profile: פרופיל
+  profile_visibility_desc: |
+    כדי למנוע הפצת ספאם ב%{site_name}, פרופילים של משתמשים חדשים מוסתרים עד שיש להם כמה תצפיות בדרגת מחקר.
   project: פרוייקט
   project_admins:
     one: מנהל פרוייקט
@@ -2682,7 +2724,9 @@ he:
   research: מחקר
   research_: מחקר
   research_grade: דרגת מחקר
+  research_grade_short_html: "ד<span class='full'>רגת </span>מ<span class='full'>חקר</span>"
   research_grade_observations_have: 'לתצפיות ב"רמה מחקרית" קיימים תאריך, תמונה, קואורדינטות, וזיהוי שנתמך על ידי הקהילה. הקלקה תוביל אותך לראות את אומדן איכות הנתונים.'
+  research_grade_qualification: אישור על ציון מחקר מדעי
   reset_filters_short: איפוס
   reset_search_filters: איפוס פילטרים
   resolve: פתור
@@ -2843,7 +2887,9 @@ he:
   source: מקור
   source_: 'מקור:'
   source_wikipedia: "מקור: ויקיפידיה"
+  source_list_: "רשימת מקורות"
   source_list:
+    ubio: uBio
     catalogue_of_life: Catalogue of Life
     inaturalist: איי-נטורליסט
     new_zeland_organisms_register: New Zealand Organisms Register
@@ -2862,10 +2908,13 @@ he:
     url: לדוגמא 'http://www.ucpress.edu/book.php?isbn=9780520224872'
     citation: 'לדוגמא Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
   source_url: URL המקור
+  sourced_to: מן מקור
   sources: מקורות
   sources_youve_added: מקורות שהוספת
   sources_and_credits: מקורות וקרדיטים
+  sourcing: מקור
   spam: ספאם
+  spammer: מפיץ ספאם
   #Plural
   species: מינים
   species_by_category: מינים לפי קטגוריה
@@ -2893,6 +2942,8 @@ he:
   stats: סטטיסטיקות
   stats_for_this_year_have_not_been_generated: סטטיסטיקות לשנה זו טרם סוכמו.
   status: סטטוס
+  status_globally: '%{status} גלובלי'
+  status_in_place: '%{status} ב%{place}'
   still_no_luck?: עדיין אין מזל?
   still_needs_id?: הקהילה יכולה לאשר/לשפר זיהוי?
   stop_editing: סיום עריכה
@@ -2961,14 +3012,17 @@ he:
   taxon_id: זיהוי טקסונומי
   taxon_ids: זיהויי טקסון
   taxon_map:
+    data_url: Data URL
     overlays: שכבות
   taxon_changes: שינויי טקסון
   taxon_colors: צבעי טקסון
   taxon_curators: אוצרי טקסון
   taxon_framework_complete: "שלם: כן"
+  taxon_merge: איחוד טקסונים
   taxon_name: שם הטקסון
   taxon_observed_by_user: "%{taxon} נצפה על ידי %{user}"
   taxon_photos_updated: תמונות הטקסון עודכנו!
+  taxon_ranks: דרגות טקסונים
   taxon_removed_from_list: טקסון הוסר מהרשימה
   taxon_scheme: סכמת הטקסון
   taxon_schemes: "סכמות הטקסון"
@@ -3008,6 +3062,8 @@ he:
   that_role_doesnt_exist: תפקיד זה אינו קיים
   that_was_the_last_observation_matching_the_current_filters: זו התצפית האחרונה שמתאימה למסננים הנוכחיים.
   thats_not_a_real_date: זה לא תאריך אמיתי!
+  the_below_items_are_needed_to_achieve: |
+    דברים הבאים דרושים לקבל <span className="bold">דרגת מחקר:</span>
   the_following_observations_could: "לא ניתן היה להוסיף את התצפיות הבאות ל%{link}"
   the_following_photos_have_been_tagged: "התמונות הבאות תויגו:"
   the_past: בעבר
@@ -3051,6 +3107,7 @@ he:
   this_list_only_accepts_taxa_that_are_species: לרשימה זו ניתן להזין טקסות ברמת המין בלבד
   this_list_only_accepts_taxa_that_are_species_or_lower: לרשימה זו ניתן להזין טקסות ברמת המין או רמה טקסונומית נמוכה יותר בלבד
   this_observation: תצפית זו
+  this_observation_is_research_grade: תצפית זאת היא בדרגת מחקר!
   this_observation_was_created_using: "תצפית זו נוצרה באמצעות:"
   this_photo_is_already_associated: תמונה זו משוייכת כבר לאחת מתצפיותך
   this_user_has_been_suspended: משתמש זה מושעה
@@ -3060,6 +3117,8 @@ he:
   those_observations_no_longer_exist: תצפיות אלו לא קיימות יותר.
   time_: זמן
   time_ago: "לפני %{time}"
+  #As in the title of a book or a blog post
+  title: כותרת
   title_and_description: "כותרת ותיאור"
   to_add_comments: להוספת הערות
   to_add_ids: להוספת זיהויים
@@ -3092,12 +3151,15 @@ he:
   type: סוג
   type_one_name_per_line: יש להזין שם אחד בשורה
   type_place_name: הקלד שם של המקום
+  type_source_name: הקלד שם מקור
+  type_source_title: "הקלד שם מקור"
   type_taxon_name: "הקלד שם הטקסון"
   uicn_red_list_status: "סטטוס הרשימה האדומה של IUCN:"
   umbrella_projects: פרוייקטי מטריה
   unblock: הסרת חסימה
   unclassified: לא מסווג
   uninvite: בטל הזמנה
+  unique_identifier_of_this_taxon: מזהה ייחודי של טקסון זה במסד הנתונים של מקור זה
   unique_observers: מתצפתים יחודיים
   unknown: לא ידוע
   unknown_error: שגיאה לא ידועה
@@ -3139,6 +3201,7 @@ he:
       remove_photo: הסרת התמונה
       select_all: בחירת כל התצפיות
       upload_failed: העלאה נכשלה
+  url_of_this_taxon_on_the_source_website: URL של טקסון זה באתר המקור
   US_states: מדינות ארה"ב
   usage_stats: סטטיסטיקות שימוש
   used_x_times:
@@ -3176,6 +3239,7 @@ he:
     כעת <strong>%{user}</strong> מנהל/ת ב %{project}
   user_is_now_a_curator_for_project_html: |
     כעת <strong>%{user}</strong> אוצר/ת ב%{project}
+  user_muted: משתמש מושתק
   user_observed_on_on_date_in_place: |
     תוצפת על ידי %{user} ב%{date} ב%{place}
   user_suggested_an_id: "%{user} הציע זיהוי"
@@ -3239,6 +3303,8 @@ he:
   vulnerable: רגיש
   w_photos_only: עם תמונות
   w_sounds: עם קולות
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
+  wanted: מחופש
   we_also_support: |
     אנחנו תומכים גם ב־<a href="http://flickr.com">Flickr</a>&rlm;, <a href="http://picasaweb.google.com">Picasa</a> ו־<a href="http://facebook.com">Facebook</a> כדי לאחסן תמונות.
   we_can_only_understand_csv_in: אנחנו יכולים להבין CSV רק בפורמט הבא
@@ -3278,6 +3344,9 @@ he:
   with_annotation: עם תווית
   without_annotation: ללא תווית
   widget: ווידג'ט
+  widget_for: ווידג'ט בשביל
+  wikipedia_attribution_cc_by_sa_3: |
+    מקור: ויקיפדיה, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_entry: ערך ויקיפידיה
   with: עם
   withdraw: לסגת
@@ -3428,6 +3497,10 @@ he:
       sorts:
         default: סדר המדריך
         alphaname: שמות המינים בסדר אלף-ביתי
+    lists:
+      show:
+        project_list_desc: |
+          טקסונים אשר הוספו ידנית על ידי מנהלי הפרויקט וטקסונים אשר הוספו לפרויקט על ידי תצפיות מתאימות בדרגת מחקר יופיעו ברשימות הפרויקט.
     messages:
       from: מ
       to: אל
@@ -3716,6 +3789,7 @@ he:
           verifiable: ניתן לבדיקה
           "Alive or Dead=Alive": בחיים
           "Alive or Dead=Dead": מת
+          "Plant Phenology=Budding": שלב הניצן
           "Plant Phenology=Flowering": פריחה
           "Plant Phenology=Fruiting": עם פירות
           "Life Stage=egg": ביצה
@@ -4147,6 +4221,7 @@ he:
       conservation_status:
         status: סטטוס
         description: תיאור
+        authority: רשות
         place_id: מקום
         url: URL
         geoprivacy: פרטיות נתוני מיקום
@@ -4156,6 +4231,7 @@ he:
         flag: סימון
       guide:
         source_url: URL המקור
+        published_at: פירסום
       observation:
         geo_x: אייסטינג
         geo_y: נורת'ינג
@@ -4187,22 +4263,29 @@ he:
         latitude: קו רוחב
         longitude: קו אורך
         name: שם מקום
+        parent_id: אב
         place_type: סוג מקום
         prefers_check_lists: רשימות מינים מותרות?
+        woeid: WOEID
       source:
         title: כותרת
+        in_text: בתוך הטקסט
         url: URL
         citation: מקור ביבליוגרפי
       taxon:
         name: שם
         rank: דרגה
+        parent_id: זיהוי אב
         locked: נעול
+        auto_photos: תמונות אוטומטיות
         wikipedia_title: כותרת ויקיפדיה
         wikipedia_summary: תקציר ויקיפידיה
+        source_identifier: מזהה מקור
         source_url: URL המקור
       taxon_name:
         name_provider: מספק שם
         source_url: URL המקור
+        source_identifier: מזהה מקור
       user:
         email: דוא״ל
         login: שם משתמש
@@ -4292,6 +4375,11 @@ he:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 ניתן לשינוי רק על ידי האוצר של טקסון זה
+        taxon_name:
+          attributes:
+            name:
+              must_match_the_taxon_if_valid: |
+                יש צורך לקלוע לשם הטקסונומי, במידה וזהו שם מדעי
         user:
           attributes:
             login:
@@ -4305,6 +4393,8 @@ he:
         באפשרותך ליצור, לעדכן ולמחוק תצפיות, אמצעי זיהוי ותוכן אחר שלך מטעמך לרבות לגשת לנקודות הציון המוסתרות שלך וכל מידע נוסף שאליו ניתן לגשת באתר.
     errors:
       messages:
+        #Configuration error messages
+        credential_flow_not_configured: 'Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.'
         #Access grant errors
         unsupported_response_type: 'שרת האימות לא תומך בתגובה מהסוג הזה.'
         #Access token errors
@@ -4332,19 +4422,27 @@ he:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         application: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         atlas: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         comment: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4354,11 +4452,23 @@ he:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         listed_taxon: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4368,7 +4478,33 @@ he:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4385,6 +4521,8 @@ he:
         taxon_stage: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         variety: "@f"
         #Default gender for nouns that aren't listed here

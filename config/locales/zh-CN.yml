@@ -397,6 +397,8 @@ zh-CN:
   are_you_sure_remove_taxon_from_list: "您确定要从列表中移除这个分类单元吗？"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     您确定么？这将重新加载页面，您可能会丢失您的一些更改。
+  are_you_sure_unresolve_flag?: |
+    你确定要将这个旗标问题标志为未解决吗？这将会把目前的解决方案以及解决此事的用户从旗标问题中移除出去。
   are_you_sure_want_delete_taxon: "您确定要删除这个分类单元吗？"
   are_you_sure_want_delete_taxon_link: 您确定要删除此分类链接么？
   are_you_sure_want_delete_this_name: 您确定要删除此名称吗？
@@ -3089,6 +3091,8 @@ zh-CN:
   updating: 正在更新...
   unprocessable: 不可加工
   unpublish: 取消发布
+  #Undo the action of resolving a flag
+  unresolve: 未解决
   unreview_all: 取消复核全部
   unsubscribe: 取消订阅
   unsuspend_user: 停用用户

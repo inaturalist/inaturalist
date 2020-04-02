@@ -3373,6 +3373,8 @@ es-AR:
   stats: Estadísticas
   stats_for_this_year_have_not_been_generated: No se han generado las estadísticas de este año.
   status: Estado
+  status_globally: '"%{status}" Globalmente'
+  status_in_place: '"%{status}" en %{place}'
   stay_and_try_again: Permanecer e intentar de nuevo
   still_no_luck?: '¿Sigues sin encontrarlo?'
   still_needs_id?: '¿La comunidad puede confirmar/mejorar la ID?'
@@ -3652,7 +3654,7 @@ es-AR:
   this_list_only_accepts_taxa_that_are_species_or_lower: Esta lista solo acepta taxones al nivel de especie o inferiores
   this_observation: Esta observación
   this_observation_is_featured_on_x_sites:
-    one: Esta observación se presenta en 1 sitio
+    one: Esta observación se presenta en %{count} sitio
     other: Esta observación se presenta en %{count} sitios
   this_observation_is_research_grade: Esta observación es de Grado de Investigación!
   this_observation_was_created_using: "Esta observación fue creada usando:"

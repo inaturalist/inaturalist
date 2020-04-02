@@ -3465,6 +3465,8 @@ tr:
   stats: İstatistikler
   stats_for_this_year_have_not_been_generated: Bu yıl için istatistikler oluşturulamadı.
   status: Durum
+  status_globally: '"%{status}" Küresel'
+  status_in_place: '%{place} içindeki "%{status}"'
   stay_and_try_again: Bekle ve yeniden dene
   still_no_luck?: Hala şans yok mu?
   still_needs_id?: Topluluk tanımlamayı doğrulayabilir/geliştirebilir mi?
@@ -3746,7 +3748,7 @@ tr:
   this_list_only_accepts_taxa_that_are_species_or_lower: Bu liste yalnızca tür ya da daha aşağı olan sınıfları kabul eder
   this_observation: Bu gözlem
   this_observation_is_featured_on_x_sites:
-    one: Bu gözlem 1 sitede yayınlandı
+    one: Bu gözlem %{count} sitede yayınlandı
     other: Bu gözlem %{count} sitede yayınlandı
   this_observation_is_research_grade: Bu gözlem Araştırma Sınıfı!
   this_observation_was_created_using: "Bu gözlem kullanılarak oluşturuldu:"

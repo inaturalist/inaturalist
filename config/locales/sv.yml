@@ -2641,16 +2641,26 @@ sv:
       building: byggnad
       Canton: Kanton
       canton: kanton
+      City Building: Stadsbyggnad
+      city building: stadsbyggnad
       Colloquial: Vardaglig
       colloquial: vardaglig
       Commune: Kommun
       commune: kommun
+      Constituency: Valkrets
+      constituency: valkrets
       Continent: Kontinent
       continent: kontinent
       Country: Land
       country: land
       County: Län
       county: län
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegation
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegation
+      Department_Segment: Institutionsenhet
+      department_segment: institutionsenhet
       District: Distrikt
       district: distrikt
       Division: Avdelning
@@ -2691,6 +2701,12 @@ sv:
       open_space: öppen yta
       Parish: Församling
       parish: församling
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Centrum
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: centrum
+      Prefecture: Prefektur
+      prefecture: prefektur
       Prefecture_City: Prefekturstad
       prefecture_city: prefekturstad
       Point_of_Interest: Sevärdhet
@@ -2699,6 +2715,8 @@ sv:
       postal_code: postnummer
       Province: Provins
       province: provins
+      Regency: Regentområde
+      regency: regentområde
       Region: Region
       region: region
       Republic: Republik
@@ -2717,6 +2735,10 @@ sv:
       subdivision: tomtområde
       Suburb: Förort
       suburb: förort
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
       Supername: Övernamn
       supername: övernamn
       Territory: Territorium
@@ -2729,6 +2751,8 @@ sv:
       undefined: odefinierat
       Unknown: Okänd
       unknown: Okänd
+      Village_block: Samhällskvarter
+      village_block: samhällskvarter
       Zone: Zon
       zone: zon
   place_guess: platsgissning
@@ -3894,7 +3918,7 @@ sv:
   this_list_only_accepts_taxa_that_are_species_or_lower: Denna lista accepterar endast taxa på artnivå eller lägre
   this_observation: Denna observation
   this_observation_is_featured_on_x_sites:
-    one: Denna observation uppmärksammas på 1 sajt
+    one: Denna observation uppmärksammas på %{count} sajt
     other: Denna observation uppmärksammas på %{count} sajter
   this_observation_is_research_grade: Denna observation är av forskningskvalitet!
   this_observation_was_created_using: "Denna observation skapades med:"
@@ -5822,6 +5846,7 @@ sv:
         obs_desc: Skapad under 7 föreg. dagar
         obs_id_d_desc: Skapad under 7 föreg. d. och är best. (kan vara av observatören)
         observations_1_week_moving_window: Observationer (1 löpande vecka)
+        observers_desc: Lade till en observation denna dag
         other_desc_html: Skapad via andra program <a href="%{url}">byggda av utvecklare</a>
         recent_desc: Gick med under 7 föreg. d.
         recent_w_0_obs: Senaste m. 0 obs
