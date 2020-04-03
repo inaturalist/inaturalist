@@ -950,10 +950,14 @@ class Observation < ActiveRecord::Base
       date_string = date_string.sub( tz_moment_offset_pattern, "" )
 
     # Dumb hack for Adelaide's half hour time zone offset
-    elsif (offset = date_string[tz_js_offset_pattern, 2]) &&
-        %w(+0930 +1030).include?( offset )
+    elsif (offset = date_string[tz_js_offset_pattern, 2]) && %w(+0930 +1030).include?( offset )
       parsed_time_zone = ActiveSupport::TimeZone["Australia/Adelaide"]
       date_string = date_string.sub( tz_js_offset_pattern, "" )
+      date_string = date_string.sub( /^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, "" )
+      date_string = date_string.sub(/\(.+\)/, "" )
+    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && %w(+09:30 +10:30).include?( offset )
+      parsed_time_zone = ActiveSupport::TimeZone["Australia/Adelaide"]
+      date_string = date_string.sub( tz_colon_offset_pattern, "" )
       date_string = date_string.sub( /^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, "" )
       date_string = date_string.sub(/\(.+\)/, "" )
     end
