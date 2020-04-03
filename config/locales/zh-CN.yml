@@ -204,7 +204,11 @@ zh-CN:
   add_one_now: 现在添加一个
   add_photos: 添加照片
   add_place: 添加地点
+  add_alive_or_dead_alive_annotation: '添加注释 "活体或死亡:活体"'
+  add_alive_or_dead_cannot_be_determined_annotation: '添加注释 "活体或死亡: 不确定"'
+  add_alive_or_dead_dead_annotation: '添加注释 "活体或死亡: 死亡"'
   add_plant_phenology_budding_annotation: '添加“植物物候学：发芽”注释'
+  add_plant_phenology_flower_budding_annotation: '添加注释"植物物候: 花苞"'
   add_plant_phenology_flowering_annotation: '添加“植物物候学：开花”注释'
   add_plant_phenology_fruiting_annotation: '添加“植物物候学：结果”注释'
   add_life_stage_adult_annotation: '添加“生命阶段：成人”注释'
@@ -215,6 +219,8 @@ zh-CN:
   add_life_stage_larva_annotation: '添加“生活期：幼虫”注解'
   add_life_stage_juvenile_annotation: '添加“生命阶段：青少年”注释'
   add_life_stage_egg_annotation: '为“生命阶段：卵”添加注释'
+  #As in a Taxon Framework Relationship
+  add_relationship: '添加关系'
   #As in a Guide Section
   add_section: 添加章节
   add_several_observations_at_once: 马上添加几个观察。
@@ -245,11 +251,14 @@ zh-CN:
   added!: 已添加！
   added_by: 添加自
   added_by_user_on_date_html: "由%{user}加入于%{date}"
+  added_on_datetime: "添加于 %{datetime}"
   added_to_favorites_html: |
     已添加至<a href="%{url}">收藏夹</a>
   adding: "正在添加……"
+  adjust_brightness: 调整亮度
   admin: 管理员
   admin_s: 管理员
+  admin_only: 仅限管理员
   admin_tools: 管理员工具
   agree: 同意
   agree_: 同意
@@ -363,6 +372,7 @@ zh-CN:
   almost_there_: 即将完成...
   alphabetical: 按字母排序
   alphabetical_order: 按字母顺序
+  already_have_an_account_log_in_html: 已有账户? <strong>请登录。</strong>
   amphibians: 两栖动物
   and: 和
   and_other_taxa: "&amp; 其他分类"
@@ -375,6 +385,7 @@ zh-CN:
   announcements: 公告
   any: 任何
   any_: 任何
+  anyone: 任何人
   apply_to_selected: 申请选择
   apply_captive_cultivated: "应用俘虏 / 耕作"
   apply_fields: 申请字段
