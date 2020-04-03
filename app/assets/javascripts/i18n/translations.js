@@ -16092,7 +16092,7 @@ I18n.translations["en"] = {
         "are_you_ready_to_duplicate": "Are you ready to leave this page to duplicate this project? Please note the project icon\nand banner will not be duplicated, and would need to be re-uploaded in the duplicate\nproject.\n",
         "are_you_sure_you_want_to_delete": "Are you sure you want to delete this project?",
         "can_be_included_in_multiple": "Can be included in multiple umbrella projects",
-        "check_the_box_to_include_member_observations": "Check the box below to only include observations made by users who have joined this project.\n",
+        "check_the_box_to_include_member_observations": "Check the box below to only include observations made by users who have joined this project.\nUse the Exclude Users filter above to exclude observations from specific users,\nincluding the project owner and admins.\n",
         "click_through_to_individual_projects": "Click through to individual projects",
         "collection_project_features": "Collection Project features:",
         "collection_projects": "Collection Projects",

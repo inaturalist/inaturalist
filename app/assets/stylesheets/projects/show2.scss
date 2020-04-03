@@ -236,7 +236,7 @@ button {
         .header-about-members-only {
           text-transform: uppercase;
           position: absolute;
-          bottom: 7px;
+          bottom: 0;
           left: 0;
           letter-spacing: 1px;
           max-width: 170px;
@@ -1208,7 +1208,7 @@ button {
             max-height: 114px;
           }
           .header-about-members-only {
-            max-width: 110px;
+            max-width: 130px;
             bottom: 0;
           }
         }
