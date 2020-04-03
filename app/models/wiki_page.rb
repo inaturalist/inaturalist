@@ -3,6 +3,7 @@ class WikiPage < ActiveRecord::Base
   ALLOWED_TAGS = %w(
     a abbr acronym b blockquote br cite code div dl dt em embed h1 h2 h3 h4 h5 h6 hr i
     iframe img li object ol p param pre small span strong sub sup tt ul script
+    del ins
   )
   ALLOWED_ATTRIBUTES = %w(
     abbr

@@ -110,20 +110,23 @@ class TextEditor extends React.Component {
               />
             </div>
             <div className="btn-group" role="group" aria-label={I18n.t( "preview" )}>
-              <button
-                type="button"
-                className="btn btn-default btn-xs btn-preview"
-                onClick={( ) => this.setState( { preview: true } )}
-              >
-                { I18n.t( "preview" ) }
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary btn-xs btn-edit"
-                onClick={( ) => this.setState( { preview: false } )}
-              >
-                { I18n.t( "edit" ) }
-              </button>
+              { preview ? (
+                <button
+                  type="button"
+                  className="btn btn-primary btn-xs btn-edit"
+                  onClick={( ) => this.setState( { preview: false } )}
+                >
+                  { I18n.t( "edit" ) }
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-default btn-xs btn-preview"
+                  onClick={( ) => this.setState( { preview: true } )}
+                >
+                  { I18n.t( "preview" ) }
+                </button>
+              ) }
             </div>
           </div>
         ) }

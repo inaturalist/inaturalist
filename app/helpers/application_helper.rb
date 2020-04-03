@@ -359,7 +359,7 @@ module ApplicationHelper
   end
   
   def markdown( text )
-    @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML, tables: true, strikethrough: true )
+    @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML, tables: true )
     @markdown.render( text )
   end
   

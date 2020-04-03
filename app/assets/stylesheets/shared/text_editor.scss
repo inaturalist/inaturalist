@@ -1,19 +1,8 @@
 @import "./colors";
 
 .TextEditor {
-  .preview,
-  .btn-edit {
-    display: none;
-  }
   &.with-preview {
-    .preview, {
-      display: block;
-    }
-    .btn-edit {
-      display: inline-block;
-    }
     textarea,
-    .btn-preview,
     .chars-remaining {
       display: none;
     }
@@ -26,6 +15,10 @@
     margin-bottom: 5px;
     .btn {
       min-width: 30px;
+    }
+    .btn-edit,
+    .btn-preview {
+      min-width: 75px;
     }
   }
 }

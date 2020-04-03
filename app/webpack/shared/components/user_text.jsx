@@ -8,7 +8,7 @@ import MarkdownIt from "markdown-it";
 
 const ALLOWED_TAGS = (
   "div a abbr acronym b blockquote br cite code dl dt em h1 h2 h3 h4 h5 h6 hr i"
-  + " img li ol p pre s small strike strong sub sup tt ul"
+  + " img li ol p pre s small strike strong sub sup tt ul del ins"
   + " table thead tbody tr td th"
   // + " audio source embed iframe object param"
 ).split( " " );
@@ -76,7 +76,7 @@ class UserText extends React.Component {
     // interpretted by safeHtml
     html = html.replace( /&(\w+=)/g, "&amp;$1" );
     if ( markdown ) {
-      const md = new MarkdownIt( { html: true } );
+      const md = new MarkdownIt( { html: true, paragraph: false } );
       md.renderer.rules.table_open = ( ) => "<table class=\"table\">\n";
       // If we're truncating, don't use the default paragraph insertion
       // markdown-it will apply and instead replace newlines with br tags
@@ -84,7 +84,22 @@ class UserText extends React.Component {
         html = text.trim( ).replace( /\n/gm, "<br />" );
         html = md.renderInline( html );
       } else {
-        html = md.render( html );
+        const lines = html.split( "\n" );
+        let newHtml = "";
+        for ( let i = 0; i < lines.length; i += 1 ) {
+          newHtml += lines[i];
+          if (
+            // This line is part of a table
+            lines[i].match( /^\s*\|/ )
+            // This is a blank line
+            || lines[i].match( /^\s*$/ )
+          ) {
+            newHtml += "\n";
+          } else {
+            newHtml += "<br />\n";
+          }
+        }
+        html = md.render( newHtml );
       }
     } else {
       // use BRs for newlines
