@@ -15,16 +15,14 @@ import RemoveModal from "./remove_modal";
 import StatusModal from "./status_modal";
 import TopMenu from "./top_menu";
 import HeaderUserMenu from "./header_user_menu";
+import InsertionDropTarget from "./insertion_drop_target";
 import { ACCEPTED_FILE_TYPES, MAX_FILE_SIZE } from "../models/util";
 
 const fileTarget = {
-  drop( props, monitor, component ) {
+  drop( props, monitor ) {
     if ( monitor.didDrop( ) ) { return; }
     const item = monitor.getItem( );
-    const dropResult = component.props;
-    if ( dropResult ) {
-      props.newCardFromMedia( item, dropResult.obsCard );
-    }
+    props.newCardFromMedia( item );
   }
 };
 
@@ -216,9 +214,12 @@ class DragDropZone extends Component {
       observationFieldValue,
       onDrop,
       photoViewer,
+      obsPositions,
       removeModal,
       saveStatus,
-      selectedObsCards
+      selectedObsCards,
+      insertCardsBefore,
+      insertFilesBefore
     } = this.props;
     let leftColumn;
     let intro;
@@ -318,18 +319,43 @@ class DragDropZone extends Component {
               { connectDropTarget(
                 <div id="imageGrid" className="col-offset-290 col-md-12">
                   <Row>
-                    <ul className="obs">
-                      { _.map( obsCards, obsCard => (
-                        <ObsCardComponent
-                          {...this.props}
-                          key={obsCard.id}
-                          ref={`obsCard${obsCard.id}`}
-                          obsCard={obsCard}
-                          selectCard={this.selectCard}
-                          confirmRemoveObsCard={( ) => confirmRemoveObsCard( obsCard )}
-                        />
-                      ) ) }
-                    </ul>
+                    <div className="obs">
+                      { _.map( obsPositions, ( cardID, position ) => {
+                        const obsCard = obsCards[cardID];
+                        return (
+                          <div className="card-and-inserts" key={`card-and-inserts-${obsCard.id}`}>
+                            <InsertionDropTarget
+                              className="before"
+                              beforeCardId={cardID}
+                              insertCardsBefore={insertCardsBefore}
+                              insertFilesBefore={insertFilesBefore}
+                            />
+                            <ObsCardComponent
+                              {...this.props}
+                              key={obsCard.id}
+                              ref={`obsCard${obsCard.id}`}
+                              obsCard={obsCard}
+                              selectCard={this.selectCard}
+                              confirmRemoveObsCard={( ) => confirmRemoveObsCard( obsCard )}
+                            />
+                            { position >= obsPositions.length - 1 ? (
+                              <InsertionDropTarget
+                                className="after"
+                                insertCardsBefore={insertCardsBefore}
+                                insertFilesBefore={insertFilesBefore}
+                              />
+                            ) : (
+                              <InsertionDropTarget
+                                className="after"
+                                beforeCardId={obsPositions[position + 1]}
+                                insertCardsBefore={insertCardsBefore}
+                                insertFilesBefore={insertFilesBefore}
+                              />
+                            ) }
+                          </div>
+                        );
+                      } ) }
+                    </div>
                   </Row>
                 </div>
               ) }
@@ -387,7 +413,10 @@ DragDropZone.propTypes = {
   selectObsCards: PropTypes.func,
   setState: PropTypes.func,
   shiftKeyPressed: PropTypes.bool,
-  updateCurrentUser: PropTypes.func
+  updateCurrentUser: PropTypes.func,
+  obsPositions: PropTypes.array,
+  insertCardsBefore: PropTypes.func,
+  insertFilesBefore: PropTypes.func
 };
 
 export default pipe(

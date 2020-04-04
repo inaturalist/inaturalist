@@ -69,6 +69,14 @@ const actions = class actions {
     return { type: types.SELECT_ALL };
   }
 
+  static insertCardsBefore( cardIds, beforeCardId ) {
+    return {
+      type: types.INSERT_CARDS_BEFORE,
+      cardIds,
+      beforeCardId
+    };
+  }
+
   static createBlankObsCard( ) {
     return function ( dispatch, getState ) {
       dispatch( { type: types.CREATE_BLANK_OBS_CARD } );
@@ -267,16 +275,19 @@ const actions = class actions {
     };
   }
 
-  static newCardFromMedia( media ) {
+  static newCardFromMedia( media, options = {} ) {
     return function ( dispatch ) {
       const time = new Date( ).getTime( );
       const obsCards = { [time]: new ObsCard( { id: time } ) };
       dispatch( actions.appendObsCards( obsCards ) );
       dispatch( actions.updateFile( media.file, { cardID: time, sort: time } ) );
+      if ( options.beforeCardId !== undefined ) {
+        dispatch( actions.insertCardsBefore( [time], options.beforeCardId ) );
+      }
 
       const fromCard = new ObsCard( Object.assign( { }, media.obsCard ) );
       delete fromCard.files[media.file.id];
-      // the card from where the photo was move can be removed if it has no data
+      // the card from where the photo was moved can be removed if it has no data
       // or if its data is untouched from when it was imported
       if ( fromCard.blank( ) || ( _.isEmpty( fromCard.files ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
@@ -382,7 +393,8 @@ const actions = class actions {
         failed: 0
       };
       let nextToSave;
-      _.each( s.dragDropZone.obsCards, c => {
+      _.each( s.dragDropZone.obsPositions, cardID => {
+        const c = s.dragDropZone.obsCards[cardID];
         stateCounts[c.saveState] = stateCounts[c.saveState] || 0;
         stateCounts[c.saveState] += 1;
         if ( c.saveState === "pending" && !nextToSave ) {

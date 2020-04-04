@@ -226,7 +226,10 @@ class ObsCardComponent extends Component {
     }
 
     return cardDropTarget( fileDropTarget( cardDragSource(
-      <li onClick={() => selectCard( obsCard ) }>
+      <div
+        className="ObsCardComponent"
+        onClick={() => selectCard( obsCard )}
+      >
         <Dropzone
           ref="dropzone"
           className={className}
@@ -366,7 +369,7 @@ class ObsCardComponent extends Component {
             </div>
           </div>
         </Dropzone>
-      </li>
+      </div>
     ) ) );
   }
 }

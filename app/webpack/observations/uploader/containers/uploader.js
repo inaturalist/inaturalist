@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import HTML5Backend from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
+import _ from "lodash";
 import DragDropZone from "../components/drag_drop_zone";
 import actions from "../actions/actions";
 import { createSavedLocation, removeSavedLocation } from "../ducks/saved_locations";
@@ -67,8 +68,8 @@ const mapDispatchToProps = dispatch => ( {
   movePhoto: ( photo, toObsCard ) => {
     dispatch( actions.movePhoto( photo, toObsCard ) );
   },
-  newCardFromMedia: media => {
-    dispatch( actions.newCardFromMedia( media ) );
+  newCardFromMedia: ( media, options = {} ) => {
+    dispatch( actions.newCardFromMedia( media, options ) );
   },
   combineSelected: ( ) => {
     dispatch( actions.combineSelected( ) );
@@ -86,7 +87,16 @@ const mapDispatchToProps = dispatch => ( {
     dispatch( createSavedLocation( params ) );
   },
   removeSavedLocation: savedLocation => dispatch( removeSavedLocation( savedLocation ) ),
-  updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
+  updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
+  insertCardsBefore: ( cardIds, beforeCardId ) => {
+    dispatch( actions.insertCardsBefore( cardIds, beforeCardId ) );
+  },
+  // Here items are Photo or File components, which have files and obs cards
+  insertFilesBefore: ( items, beforeCardId ) => {
+    _.each( items, item => {
+      dispatch( actions.newCardFromMedia( item, { beforeCardId } ) );
+    } );
+  }
 } );
 
 /* eslint new-cap: [2, { capIsNewExceptions: ["DragDropContext"] }] */

@@ -3,6 +3,8 @@
 @import "../shared/saved_location_chooser";
 @import "../shared/google_maps";
 
+$obs-card-width: 220px;
+
 body {
   background-color: #eee;
 }
@@ -330,14 +332,44 @@ input.failed, textarea.failed {
 
 // Card grid
 
-ul.obs {
+.obs {
   padding: 0;
   margin: 0
 }
-ul.obs > li {
-  float: left;
-  list-style: none;
-  margin: 10px;
+.InsertionDropTarget {
+  display: inline-block;
+  vertical-align: top;
+  $insertion-drop-border-width: 2px;
+  $insertion-drop-width: 10px;
+  width: $insertion-drop-width;
+  height: 363px;
+  margin: 2px 0 20px;
+  &.hover {
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    animation: grow-insertion-drop-target 0.2s forwards;
+    &.before {
+      margin-right: $insertion-drop-width;
+    }
+    &.after {
+      margin-left: $insertion-drop-width;
+    }
+  }
+  @keyframes grow-insertion-drop-target {
+    0% {
+      width: $insertion-drop-width;
+    }
+    100% {
+      width: $obs-card-width;
+    }
+  }
+}
+.card-and-inserts {
+  display: inline-block;
+  vertical-align: top;
+}
+.obs .ObsCardComponent {
+  display: inline-block;
   &:hover {
     .card {
       box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
@@ -347,9 +379,9 @@ ul.obs > li {
     }
   }
 }
-ul.obs > li .card {
+.obs .ObsCardComponent .card {
   margin: 3px;
-  width: 220px;
+  width: $obs-card-width;
   position: relative;
   &.ui-selecting {
     box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
