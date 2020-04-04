@@ -79,6 +79,7 @@ zh-CN:
   x_taxon_changes_added_html:
     other: "<span class='count'>%{count}</span> 个分类单元变化已增加"
   _100_day_trends: 100天动态
+  _percent_ID_d: "% 已鉴定"
   a_community_for_naturalist: 一个自然爱好者的社区
   a_default_taxon_name_will_automatically_created: |
     一个来自归属于此分类的学名的默认分类名称将被创建。
@@ -86,6 +87,26 @@ zh-CN:
   a_flag_for_x: "用于%{x}的旗帜"
   a_member_of: "会员属于"
   a_member_of_taxon_html: "%{taxon} 的成员"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: 关于
   about_blocking: 关于封禁
   about_charts: 关于图表
@@ -376,6 +397,8 @@ zh-CN:
   are_you_sure_remove_taxon_from_list: "您确定要从列表中移除这个分类单元吗？"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     您确定么？这将重新加载页面，您可能会丢失您的一些更改。
+  are_you_sure_unresolve_flag?: |
+    你确定要将这个旗标问题标志为未解决吗？这将会把目前的解决方案以及解决此事的用户从旗标问题中移除出去。
   are_you_sure_want_delete_taxon: "您确定要删除这个分类单元吗？"
   are_you_sure_want_delete_taxon_link: 您确定要删除此分类链接么？
   are_you_sure_want_delete_this_name: 您确定要删除此名称吗？
@@ -3068,6 +3091,8 @@ zh-CN:
   updating: 正在更新...
   unprocessable: 不可加工
   unpublish: 取消发布
+  #Undo the action of resolving a flag
+  unresolve: 未解决
   unreview_all: 取消复核全部
   unsubscribe: 取消订阅
   unsuspend_user: 停用用户

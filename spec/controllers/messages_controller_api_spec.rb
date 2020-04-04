@@ -130,6 +130,36 @@ shared_examples_for "an MessagesController" do
       json = JSON.parse( response.body )
       expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
     end
+    it "should search messages by subject" do
+      subject = "great grievous greaves"
+      message = make_message( user: user, from_user: to_user, to_user: user, subject: subject )
+      get :index, format: :json, q: "greaves"
+      json = JSON.parse( response.body )
+      expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+    end
+    it "should search messages by body" do
+      body = "great grievous greaves"
+      message = make_message( user: user, from_user: to_user, to_user: user, body: body )
+      get :index, format: :json, q: "greaves"
+      json = JSON.parse( response.body )
+      expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+    end
+    it "should search messages by sender login" do
+      login = "arcturus"
+      to_user.update_attributes( login: login )
+      message = make_message( user: user, from_user: to_user, to_user: user )
+      get :index, format: :json, q: login
+      json = JSON.parse( response.body )
+      expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+    end
+    it "should search messages by sender name" do
+      name = "arcturus"
+      to_user.update_attributes( name: name )
+      message = make_message( user: user, from_user: to_user, to_user: user )
+      get :index, format: :json, q: name
+      json = JSON.parse( response.body )
+      expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+    end
   end
 
   describe "count" do

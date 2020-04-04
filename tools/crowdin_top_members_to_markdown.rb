@@ -42,7 +42,7 @@ end
 
 ci_authors.keys.sort.each do |language|
   locale = locale_codes_by_name[language.parameterize]
-  authors = ci_authors[language].select{|author| author !~ /kueda|alexinat|loarie|carrieseltzer|kroodsmad/}
+  authors = ci_authors[language].select{|author| author !~ /kueda|alexinat|loarie|carrieseltzer|kroodsmad|REMOVED_USER/}
   next if authors.blank?
   # # Uncomment if you want to only use locales in the rails repo
   if @opts.rails_only

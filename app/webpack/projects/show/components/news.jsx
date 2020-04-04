@@ -12,7 +12,7 @@ const News = ( { project } ) => {
   return (
     <div className="News">
       <h2>
-        { I18n.t( "news" ) }
+        { I18n.t( "journal" ) }
         <a href={ `/projects/${project.slug}/journal` }>
           <i className="fa fa-arrow-circle-right" />
         </a>
@@ -20,7 +20,7 @@ const News = ( { project } ) => {
       { noNews ?
         (
           <div className="empty-text">
-            { I18n.t( "no_news_yet" ) }. { I18n.t( "check_back_soon" ) }
+            { I18n.t( "no_journal_posts_yet" ) }. { I18n.t( "check_back_soon" ) }
           </div>
         ) : (
           <div>

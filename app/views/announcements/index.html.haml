@@ -3,6 +3,8 @@
     #controls { display: flex; justify-content: space-between; }
     #controls .btn-primary { margin-right: 20px; }
     #controls form { max-width: 50%; }
+    .sidebar-body { max-width: 360px; }
+    .sidebar-body img, .general-body img { max-width: 100%; }
 .container
   .row
     .col-xs-12
@@ -28,7 +30,11 @@
               %td= h announcement.placement
               %td=l announcement.start
               %td=l announcement.end
-              %td=raw announcement.body
+              %td
+                - if announcement.placement === "users/dashboard#sidebar"
+                  %div.sidebar-body=raw announcement.body
+                - else
+                  %div.general-body=raw announcement.body
               %td= link_to t(:show), announcement
               %td= link_to t(:edit), edit_announcement_path(announcement)
               %td= link_to t(:destroy), announcement, :data => {:confirm => t(:are_you_sure?)}, :method => :delete

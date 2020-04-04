@@ -20,8 +20,8 @@ class TaxonSelector extends React.Component {
       inverse
     } = this.props;
     const label = inverse
-      ? I18n.t( "exclude_x", { x: I18n.t( "taxa" ) } )
-      : I18n.t( "taxa" );
+      ? I18n.t( "exclude_taxa" )
+      : I18n.t( "include_taxa" );
     const rule = inverse ? "not_in_taxon?" : "in_taxon?";
     const rulesAttribute = inverse ? "notTaxonRules" : "taxonRules";
     return (

@@ -155,22 +155,46 @@ const ObsCard = class ObsCard {
         serverResponse: r && r[0]
       } ) );
     } ).catch( e => {
-      let errors;
-      const err = util.errorJSON( e.message );
-      if ( err && err.errors && err.errors[0] ) {
-        errors = err.errors[0];
+      this.saveTries = ( parseInt( this.saveTries, 0 ) || 0 ) + 1;
+      if (
+        e.response
+        && e.response.status === 503
+        && [
+          // Request Timeout: we probably never respond with this, but just in case
+          408,
+          // Too Many Requests: theoretically normal users might hit our rate
+          // limits, but unlikely
+          429,
+          // Service Unavailable: this might happen during downtime, but is
+          // intended to handle intermittent cases where Varnish doesn't seem to
+          // find a working app server
+          503
+        ].indexOf( e.response.status ) >= 0
+        && this.saveTries <= 4
+      ) {
+        const waitFor = this.saveTries * 3000;
+        setTimeout( ( ) => {
+          this.save( dispatch );
+        }, waitFor );
+        return;
       }
-      if ( errors ) {
-        dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
-      } else {
-        e.response.json( ).then( errorJSON => {
-          errors = [I18n.t( "unknown_error" )];
+      this.saveTries = 0;
+      let errors = [I18n.t( "unknown_error" )];
+      e.response.json( )
+        .then( errorJSON => {
           if ( errorJSON && errorJSON.errors && errorJSON.errors[0] ) {
             errors = errorJSON.errors[0];
           }
+        } )
+        .catch( ( ) => {
+          // This will happen if for some reason we get an error that doesn't
+          // have a parsable JSON response body, e.g. something unexpected above
+          // the application, e.g. in Varnish
+          errors = [I18n.t( "unknown_error" )];
+        } )
+        .finally( ( ) => {
           dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
         } );
-      }
     } );
   }
 };

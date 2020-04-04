@@ -1,0 +1,37 @@
+- content_for(:title) do
+  = @title = t(:sources)
+.container
+  .row
+    .col-xs-12
+      %form.form-search.form-inline.pull-right{ method: "get" }
+        .input-group
+          %input#search.form-control{ name: "q", placeholder: t(:search), type: "text", value: @q }
+          .input-group-btn
+            %input.inline.default.btn.btn-primary{ type: "submit", value: t(:search) }
+      %h2= @title
+      %p.description
+        Sources track the origin of external data incorporated into
+        = succeed "," do
+          = @site.site_name_short
+        usually in the form of a citation.
+      %table.table
+        %thead
+          %tr
+            %th id
+            %th title
+            %th details
+            %th actions
+        %tbody
+          - for source in @sources
+            %tr
+              %th= source.id
+              %th= source.title
+              %td
+                %dl.stacked
+                  - for c in Source.column_names - %w(id title)
+                    %dt= c.humanize
+                    %dd= source.send(c)
+              %td.nobr
+                = link_to t(:show), source, class: "btn btn-link"
+                = link_to t(:edit), edit_source_path(source), class: "btn btn-default" if source.editable_by?( current_user )
+      = will_paginate @sources

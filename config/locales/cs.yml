@@ -155,6 +155,11 @@ cs:
     few: "%{count} návrhů fitrováno podle:"
     many: "%{count} návrhů fitrováno podle:"
     other: "%{count} návrhy fitrovány podle:"
+  x_taxa:
+    one: "taxon"
+    few: "taxonů"
+    many: "taxonů"
+    other: "taxony"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> pozorovaný taxon"
     few: "<span class='count'>%{count}</span> pozorovaných taxonů"
@@ -902,6 +907,7 @@ cs:
   commercial_solicitation: Komerční žádost, neplatné odkazy atd.
   commit: Provést
   committed: Commitováno
+  committed_by_user_on_date_html: Přidáno uživatelem %{user} dne %{date}
   committed_on: Provedeno dne %{date}
   committing: Commituji...
   community: Komunita
@@ -3778,6 +3784,7 @@ cs:
   taxon_curators: Kurátoři taxonů
   taxon_framework_complete: "Dokončeno: pravda"
   taxon_framework_deviations_with_count_html: "Odchylky: %{count}"
+  taxon_framework_relationships_with_count_html: "Rámcový vztah taxonu: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Označené kryté taxony: %{count}"
   taxon_framework_notes: Poznámky k rámci taxonu
@@ -3926,7 +3933,7 @@ cs:
   this_list_only_accepts_taxa_that_are_species_or_lower: Tento seznam přijímá pouze taxony druh a nebo nižší
   this_observation: Toto pozorování
   this_observation_is_featured_on_x_sites:
-    one: Toto pozorování je uvedeno na 1 místě
+    one: Toto pozorování je uvedeno na %{count} místě
     few: Toto pozorování je uvedeno na %{count} místech
     many: Toto pozorování je uvedeno na %{count} místech
     other: Toto pozorování je uvedeno na %{count} místech
@@ -4025,6 +4032,8 @@ cs:
   updating: Aktualizování...
   unprocessable: Nezpracovatelný
   unpublish: Zrušit zveřejnění
+  #Undo the action of resolving a flag
+  unresolve: Nevyřešeno
   unreview_all: Označit všechny za nezkontrolované
   unsubscribe: Zrušit odebírání
   unsuspend_user: Zrušit vyloučení uživatele
@@ -4050,6 +4059,7 @@ cs:
   update_with_site_content: "Aktualizovat o obsah %{site_name}"
   updated: Aktualizováno
   updated_by: Aktualizováno uživatelem
+  updated_by_user_on_date_html: Aktualizováno uživatelem %{user} dne %{date}
   updated_daily: Aktualizováno denně
   updated_photo: Aktualizovaná fotka
   upload: Nahrát
@@ -4344,6 +4354,16 @@ cs:
     many: "%{count} pozorování selhala"
     other: "%{count} pozorování selhala"
   x_of_y: "%{x} z %{y}"
+  x_of_count_confirmed:
+    one: "%{x} z %{count} potvrzeno"
+    few: "%{x} z %{count} potvrzeno"
+    many: "%{x} z %{count} potvrzeno"
+    other: "%{x} z %{count} potvrzeny"
+  x_of_count_observed:
+    one: "%{x} z %{count} pozorován"
+    few: "%{x} z %{count} pozorováno"
+    many: "%{x} z %{count} pozorováno"
+    other: "%{x} z %{count} pozorovány"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} z %{y} lidí (více než 2/3) souhlasí, že ano"
   x_is_the_root_of_the_tree: "%{rank} %{name} je kořen stromu"
   x_project_journal: "%{project} %{name}"
@@ -6505,6 +6525,8 @@ cs:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 nemůže odpovídat vědeckému názvu druhu pro tento slovníček
+              must_match_the_taxon_if_valid: |
+                musí odpovídat názvu taxonu, pokud se jedná o platný vědecký název
               bad_format: |
                 může obsahovat pouze standartní písmena Latinky, pomlčky, mezery a ×; všimněte si že zamýšlené taxony a odrůdy nejsou povoleny
         taxon_photo:

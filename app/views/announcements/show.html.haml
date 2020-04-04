@@ -11,7 +11,9 @@
             %td= @announcement.send( a )
         %tr
           %th=t :body
-          %td{style: "width: 100%"}= raw @announcement.body
+          - width = @announcement.placement === "users/dashboard#sidebar" ? "360px" : "100%"
+          %td
+            %div{style: "width: #{width};"}= raw @announcement.body
         - if @announcement.dismissible?
           %tr
             %th=t :dismissed_by

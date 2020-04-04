@@ -1007,6 +1007,7 @@ bg:
   kml_file_size_error: "KML файла трябва да е по-малък от 1MB"
   labels: Етикети
   label_to_group_a_batch_of_taxon_changes: Етикет за групиране на множество таксономични промени
+  location_unknown: Неизвестно местоположение
   language_slash_type: Език / Тип
   #Large photo size
   large: голям
@@ -2333,7 +2334,7 @@ bg:
   this_list_is_empty!: Този списък е празен!
   this_observation: Това наблюдение
   this_observation_is_featured_on_x_sites:
-    one: Това наблюдение се използва на 1 сайт
+    one: Това наблюдение се използва на %{count} сайт
     other: Това наблюдение се използва на %{count} сайта
   this_observation_is_research_grade: Това наблюдение е с Изследователско качество!
   this_observation_was_created_using: "Това наблюдение е създадено със:"

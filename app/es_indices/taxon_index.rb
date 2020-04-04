@@ -136,6 +136,8 @@ class Taxon < ActiveRecord::Base
       end
       indexes :taxon_schemes_count, type: "byte"
       indexes :universal_search_rank, type: "integer"
+      # This will require rebuilding the index ~~kueda 2030-03-24
+      # indexes :uuid, type: "keyword"
       indexes :wikipedia_url, type: "keyword", index: false
     end
   end

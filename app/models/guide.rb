@@ -345,17 +345,19 @@ class Guide < ActiveRecord::Base
     true
   end
 
-  def generate_ngz_later
-    delay(priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "Guide::generate_ngz": id }).generate_ngz
+  def generate_ngz_later( options = {} )
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "Guide::generate_ngz": id }
+    ).generate_ngz( options )
   end
 
   def generate_ngz_cache_key
     "gen_ngz_#{id}"
   end
 
-  def generate_ngz(options = {})
-    zip_path = to_ngz
+  def generate_ngz( options = {} )
+    zip_path = to_ngz( options )
     open(zip_path) do |f|
       unless update_attributes(:ngz => f)
         Rails.logger.error "[ERROR #{Time.now}] Failed to save NGZ attachment for guide #{id}: #{errors.full_messages.to_sentence}"
@@ -373,7 +375,7 @@ class Guide < ActiveRecord::Base
     @ngz_work_path = File.join(Dir::tmpdir, "#{basename}-#{Time.now.to_i}")
   end
 
-  def to_ngz
+  def to_ngz( options = {} )
     start_log_timer "#{self} to_ngz"
     ordered_guide_taxa = guide_taxa.order(:position).includes({:guide_photos => [:photo]}, :guide_ranges, :guide_sections, :tags)
     image_sizes = %w(thumb small medium)
@@ -397,33 +399,34 @@ class Guide < ActiveRecord::Base
     FileUtils.mkdir_p full_asset_path, :mode => 0755
     # loop over all photos and ranges, downloading assets to the asset dir
     ordered_guide_taxa.each do |gt|
-      threads = []
       (gt.guide_photos + gt.guide_ranges).each do |gp|
         image_sizes.each do |s|
           next unless url = gp.send("#{s}_url") rescue nil
           fname = FakeView.guide_asset_filename(gp, :size => s)
           path = File.join(full_asset_path, fname)
-          threads << Thread.new(path, url) do |thread_path,thread_url|
-            Rails.logger.info "[INFO #{Time.now}] Fetching #{thread_url} to #{thread_path}"
-            begin
-              open(thread_path, 'wb') do |f|
-                open(URI.parse(URI.encode(thread_url))) do |fr|
-                  f.write(fr.read)
-                end
+          Rails.logger.info "[INFO #{Time.now}] Fetching #{url} to #{path}"
+          begin
+            open(path, 'wb') do |f|
+              open( URI.parse( URI.encode( url ) ) ) do |fr|
+                f.write( fr.read )
               end
-            rescue Exception => e
-              Rails.logger.error "[ERROR #{Time.now}] Failed to download #{thread_url}: #{e}"
-              next
             end
+          rescue Exception => e
+            Rails.logger.error "[ERROR #{Time.now}] Failed to download #{url}: #{e}"
+            next
           end
         end
       end
-      threads.each(&:join) # block until all threads finished
     end
 
     # zip up the results & return the path
     zip_path = "#{work_path}.ngz"
     system "cd #{work_path} && zip -qr #{zip_path} #{xml_fname} #{local_asset_path}"
+    Rails.logger.debug "[DEBUG] options[:path]: #{options[:path]}"
+    if options[:path]
+      Rails.logger.debug "[DEBUG] moving from #{zip_path} to #{options[:path]}"
+      FileUtils.mv( zip_path, options[:path] )
+    end
     FileUtils.rm_rf work_path # clean up all those big files
     end_log_timer
     zip_path

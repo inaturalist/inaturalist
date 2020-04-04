@@ -7,9 +7,9 @@ class Identification < ActiveRecord::Base
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
   has_moderator_actions
-  belongs_to :observation
+  belongs_to_with_uuid :observation
   belongs_to :user
-  belongs_to :taxon
+  belongs_to_with_uuid :taxon
   belongs_to :taxon_change
   belongs_to :previous_observation_taxon, class_name: "Taxon"
   has_many :project_observations, :foreign_key => :curator_identification_id, :dependent => :nullify
@@ -469,6 +469,11 @@ class Identification < ActiveRecord::Base
     if skip_observation
       Identification.delay.update_categories_for_observation( observation_id )
     else
+      # update_categories_for_observation will reindex all the observation's
+      # identifications, so we both do not need to re-index this individual
+      # identification after that happens, and in fact that may result in
+      # indexing stale data, e.g. a blank category
+      self.skip_indexing = true
       Identification.update_categories_for_observation( observation, {
         wait_for_obs_index_refresh: wait_for_obs_index_refresh
       } )

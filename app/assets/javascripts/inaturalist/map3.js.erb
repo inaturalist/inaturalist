@@ -773,10 +773,25 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     .attr("id", id)
     .attr("name", title)
     .attr("checked", ! options.disabled);
-  li.append( checkbox, label );
+  var legendLeft = $( "<div class='legend-left' />" );
+  legendLeft.append( checkbox );
+  var legendRight = $( "<div class='legend-right' />" );
+  legendRight.append( label );
+  // Append an element to show the color of this layer in the legend. Note the
+  // legend color can be specified independently of the layer color with
+  // legendColor, otherwise it defaults to color
+  var legendColor = options.legendColor || options.color;
+  if ( legendColor ) {
+    li.addClass( "with-legend-mark" );
+    legendLeft.append(
+      $( "<div class='legend-mark' />" ).css( { backgroundColor: legendColor } )
+    );
+  }
+  li.append( legendLeft, legendRight );
   if( options.endpoint === "gbif" && options.gbif_id ) {
-     li.append("<a href='http://www.gbif.org/species/" + options.gbif_id +
-       "' target='_blank'><span class='ui-icon ui-icon-extlink'>&nbsp;</span></a>");
+     label.append(
+       " <a href='http://www.gbif.org/species/" + options.gbif_id + "' target='_blank'><i class='icon-link' /></a>"
+     );
   }
   if( options.taxon ) {
     addWindshaftOverlayTaxonDiv( ul, li, options );
@@ -797,7 +812,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     }
   })
   if( description ) {
-    li.append($("<div/>").addClass("small meta").html( description ));
+    legendRight.append($("<div/>").addClass("small meta").html( description ));
   }
   ul.append( li );
   updateCheckboxInteractions( ul );
@@ -841,16 +856,18 @@ var addWindshaftOverlayTaxonDiv = function( ul, li, options ) {
   taxon_id = "taxon_layers_" + options.taxon.id;
   // give a data-taxon-id to all the LIs that have a taxon
   // for example the LI for the taxon range layer will get data-taxon-id
-  li.attr( "class", "for_taxon" ).attr( "data-taxon-id", taxon_id );
+  li.addClass( "for_taxon" );
+  li.attr( "data-taxon-id", taxon_id );
 
   // if the taxon LI with checkbox doesn't exist, create it
   if( ul.find( "#" + taxon_id ).length == 0 ) {
-    taxon_checkbox = $("<input type='checkbox'/>")
+    var taxonCheckbox = $("<input type='checkbox'/>")
       .attr("id", taxon_id)
       .attr("name", options.taxon.name);
     var primaryName;
+    var taxonLabel;
     if ( options.taxon.forced_name ) {
-      taxon_label = $("<label/>").attr("for", taxon_id).html( options.taxon.forced_name );
+      taxonLabel = $("<label/>").attr("for", taxon_id).html( options.taxon.forced_name );
     } else {
       primaryName = options.taxon.common_name ?
         options.taxon.common_name.name : options.taxon.to_styled_s;
@@ -861,22 +878,25 @@ var addWindshaftOverlayTaxonDiv = function( ul, li, options ) {
         primaryName = options.taxon.name;
       }
       // prepare the label for the input, the taxon's scientific Name
-      taxon_label = $("<label/>").attr("for", taxon_id).html(primaryName);
+      taxonLabel = $("<label/>").attr("for", taxon_id).html(primaryName);
     }
     // append the checkbox and label
-    taxon_li = $("<li/>").attr("class", "taxon").attr("data-taxon-id", taxon_id)
-      .append( taxon_checkbox, taxon_label );
+    var legendLeft = $( "<div class='legend-left' />" );
+    legendLeft.append( taxonCheckbox );
+    var legendRight = $( "<div class='legend-right' />" );
+    legendRight.append( taxonLabel );
+    var taxonLi = $("<li/>").attr("class", "taxon").attr("data-taxon-id", taxon_id)
+      .append( legendLeft, legendRight );
     if( options.taxon.url ) {
       // add a link icon that goes to the taxon page
-       taxon_li.append("<a href='" + options.taxon.url +
-         "'><span class='ui-icon ui-icon-extlink'>&nbsp;</span></a>");
+       legendRight.append(" <a href='" + options.taxon.url + "'><i class='icon-link' /></a>");
     }
     // add the common name as a sub-heading if available
     if( primaryName !== options.taxon.to_styled_s) {
-      taxon_li.append($("<div/>").addClass( "small meta" )
+      legendRight.append($("<div/>").addClass( "small meta" )
         .html( options.taxon.to_styled_s ));
     }
-    ul.append( taxon_li );
+    ul.append( taxonLi );
   }
 };
 
@@ -1100,6 +1120,13 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
       gridmaxzoom = options.gridmaxzoom || 9;
   options.title = title;
   options.tile_size = 512;
+  // If iconic colors requested, use the default API behavior, which is to show
+  // iconic colors at close zooms
+  if ( options.color === "iconic" ) {
+    delete options.color;
+  } else {
+    options.color = options.color || "#FF4500"; // default the points to the same color as the grid
+  }
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // using a less generic name for the elasticmaps param to not show
   // an observation on a tile, because we have a Google marker for it
@@ -1146,6 +1173,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "list_id",
     "lng",
     "lrank",
+    "members_of_project",
     "month",
     "native",
     "nelat",

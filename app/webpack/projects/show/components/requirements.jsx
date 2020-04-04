@@ -51,12 +51,18 @@ const Requirements = ( {
         { r.place.display_name }
       </a>
     ) );
-  const userRules = _.isEmpty( project.userRules ) ? I18n.t( "any" )
-    : _.map( project.userRules, r => (
+  let userRules;
+  if ( project.rule_members_only ) {
+    userRules = I18n.t( "project_members_only" );
+  } else if ( _.isEmpty( project.userRules ) ) {
+    userRules = I18n.t( "any" );
+  } else {
+    userRules = _.map( project.userRules, r => (
       <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
         { r.user.login }
       </a>
     ) );
+  }
   const exceptUserRules = !_.isEmpty( project.notUserRules )
     && _.map( project.notUserRules, r => (
       <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>

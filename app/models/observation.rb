@@ -260,7 +260,7 @@ class Observation < ActiveRecord::Base
   preference :community_taxon, :boolean, :default => nil
   
   belongs_to :user
-  belongs_to :taxon
+  belongs_to_with_uuid :taxon
   belongs_to :community_taxon, :class_name => 'Taxon'
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
@@ -950,10 +950,14 @@ class Observation < ActiveRecord::Base
       date_string = date_string.sub( tz_moment_offset_pattern, "" )
 
     # Dumb hack for Adelaide's half hour time zone offset
-    elsif (offset = date_string[tz_js_offset_pattern, 2]) &&
-        %w(+0930 +1030).include?( offset )
+    elsif (offset = date_string[tz_js_offset_pattern, 2]) && %w(+0930 +1030).include?( offset )
       parsed_time_zone = ActiveSupport::TimeZone["Australia/Adelaide"]
       date_string = date_string.sub( tz_js_offset_pattern, "" )
+      date_string = date_string.sub( /^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, "" )
+      date_string = date_string.sub(/\(.+\)/, "" )
+    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && %w(+09:30 +10:30).include?( offset )
+      parsed_time_zone = ActiveSupport::TimeZone["Australia/Adelaide"]
+      date_string = date_string.sub( tz_colon_offset_pattern, "" )
       date_string = date_string.sub( /^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, "" )
       date_string = date_string.sub(/\(.+\)/, "" )
     end
@@ -1220,7 +1224,7 @@ class Observation < ActiveRecord::Base
   #
   def set_iconic_taxon
     if taxon
-      self.iconic_taxon_id ||= taxon.iconic_taxon_id
+      self.iconic_taxon_id = taxon.iconic_taxon_id
     else
       self.iconic_taxon_id = nil
     end
@@ -1580,11 +1584,15 @@ class Observation < ActiveRecord::Base
   end
   
   def iconic_taxon_name
-    return nil if iconic_taxon_id.blank?
+    return nil if taxon_id.blank?
     if Taxon::ICONIC_TAXA_BY_ID.blank?
-      association(:iconic_taxon).loaded? ? iconic_taxon.try(:name) : Taxon.select("id, name").where(:id => iconic_taxon_id).first.try(:name)
+      if taxon.association(:iconic_taxon).loaded?
+        taxon.iconic_taxon.try(:name)
+      else
+        Taxon.select("id, name").where(:id => taxon.iconic_taxon_id).first.try(:name)
+      end
     else
-      Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
+      Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)
     end
   end
 
@@ -2316,7 +2324,7 @@ class Observation < ActiveRecord::Base
     results_remaining = true
     batch_start_id = 0
     while results_remaining
-      puts batch_start_id
+      # puts batch_start_id
       observations = Observation.page_of_results( search_params.merge( id_above: batch_start_id ) )
       if observations.blank? || observations.total_entries == 0
         results_remaining = false

@@ -100,11 +100,12 @@ class Project < ActiveRecord::Base
   preference :rule_term_value_id, :integer
   preference :rule_native, :boolean
   preference :rule_introduced, :boolean
+  preference :rule_members_only, :boolean
   RULE_PREFERENCES = [
     "rule_quality_grade", "rule_photos", "rule_sounds",
     "rule_observed_on", "rule_d1", "rule_d2", "rule_month",
     "rule_term_id", "rule_term_value_id", "rule_native",
-    "rule_introduced"
+    "rule_introduced", "rule_members_only"
   ]
   
   SUBMISSION_BY_ANYONE = 'any'
@@ -335,7 +336,7 @@ class Project < ActiveRecord::Base
 
   def project_observations_count
     if is_new_project?
-      INatAPIService.observations( collection_search_parameters.merge( per_page: 0 ) ).total_results
+      INatAPIService.observations( collection_search_parameters.merge( per_page: 0 ) ).try(:total_results)
     else
       project_observations.count
     end
@@ -737,18 +738,23 @@ class Project < ActiveRecord::Base
     
     project_curators = project.project_users.where(role: [ ProjectUser::MANAGER, ProjectUser::CURATOR ])
     project_curator_user_ids = project_curators.map{|pu| pu.user_id}
-    
-    project.project_observations.where(find_options[:conditions]).joins(find_options[:include]).each do |po|
-      curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
-      po.update_attributes(curator_identification: curator_ident)
-      ProjectUser.delay(priority: INTEGRITY_PRIORITY,
-        unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
-          [ project_id, po.observation.user_id ] }
-      ).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
-      ProjectUser.delay(priority: INTEGRITY_PRIORITY,
-        unique_hash: { "ProjectUser::update_taxa_counter_cache_from_project_and_user":
-          [ project_id, po.observation.user_id ] }
-      ).update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+
+    project.project_observations.where(find_options[:conditions]).joins(find_options[:include]).find_in_batches do |batch|
+      Identification.preload_associations( batch, { observation: :identifications } )
+      Observation.preload_for_elastic_index( batch.map( &:observation ) )
+      Observation.prepare_batch_for_index( batch.map( &:observation ) )
+      batch.each do |po|
+        curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
+        po.update_attributes(curator_identification: curator_ident)
+        ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
+            [ project_id, po.observation.user_id ] }
+        ).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+        ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "ProjectUser::update_taxa_counter_cache_from_project_and_user":
+            [ project_id, po.observation.user_id ] }
+        ).update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      end
     end
   end
   

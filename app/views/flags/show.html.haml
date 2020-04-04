@@ -45,8 +45,7 @@
         %tbody
           %tr
             %td
-              - if @flag.flaggable_user
-                = link_to_user( @flag.flaggable_user ) {|| char_wrap( @flag.flaggable_user.login, 20 )} 
+              = link_to_user( @flag.flaggable_user ) {|| char_wrap( @flag.flaggable_user.login, 20 )} 
             %td
               - if @object
                 = link_to @object.to_plain_s, @object
@@ -62,21 +61,33 @@
             %td=l @flag.created_at
             %td=formatted_user_text @flag.flag
             %td
-              - unless @flag.resolver.nil?
-                = link_to @flag.resolver.login, @flag.resolver
+              - if @flag.resolved?
+                - if @flag.resolver_id && @flag.resolver_id <= 0
+                  iNaturalist
+                - else
+                  = link_to_user @flag.resolver
               - else
                 =t :not_resolved
             %td.nobr.form-inline
               - if is_curator?
-                = form_for( @flag, action: "update", html: { class: "inlineblock" } ) do |f|
-                  = f.text_field :comment, class: "form-control"
-                  = f.hidden_field :resolver_id, value: current_user.id
-                  = f.hidden_field :resolved, value: true
-                  = hidden_field_tag :return_to, url_for( @flag )
-                  = f.submit t(:resolve), class: "btn btn-success"
+                - if @flag.resolved?
+                  = form_for( @flag, action: "update", html: { class: "inlineblock" }, data: { confirm: t(:are_you_sure_unresolve_flag?) } ) do |f|
+                    = text_field_tag :comment, @flag.comment, class: "form-control", disabled: true
+                    = f.hidden_field :comment, class: "form-control"
+                    = f.hidden_field :resolver_id, value: nil
+                    = f.hidden_field :resolved, value: false
+                    = hidden_field_tag :return_to, url_for( @flag )
+                    = f.submit t(:unresolve), class: "btn btn-warning"
+                - else
+                  = form_for( @flag, action: "update", html: { class: "inlineblock" } ) do |f|
+                    = f.text_field :comment, class: "form-control"
+                    = f.hidden_field :resolver_id, value: current_user.id
+                    = f.hidden_field :resolved, value: true
+                    = hidden_field_tag :return_to, url_for( @flag )
+                    = f.submit t(:resolve), class: "btn btn-success"
               - else
                 = formatted_user_text @flag.comment
-              - if is_me?( @flag.user )
+              - if is_admin?
                 = link_to @flag, class: "btn btn-link", data: { confirm: t(:you_sure_delete_flag?) }, method: :delete do
                   %i.fa.fa-trash
                   = t(:delete)

@@ -102,7 +102,8 @@ class PhotoChooserModal extends React.Component {
     }
     inatjs.observations.search( queryParams ).then( response => {
       const isLastPage = ( response.page * response.per_page ) >= response.total_results;
-      const obsPhotos = _.compact( _.flatten( _.map( response.results, "photos" ) ) );
+      const obsPhotos = _.filter( _.compact( _.flatten( _.map( response.results, "photos" ) ) ),
+        p => p.url );
       const photos = _.map( obsPhotos, p => Object.assign( {}, p, {
         small_url: p.url.replace( "square", "small" ),
         chooserID: this.keyForPhoto( p )

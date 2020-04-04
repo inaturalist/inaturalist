@@ -493,6 +493,9 @@ nl:
   are_you_sure_remove_taxon_from_list: "Weet je zeker dat je dit taxon uit de lijst wilt verwijderen?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Weet je het zeker? Dit zal de pagina herladen waardoor je je wijzigingen deels kunt verliezen.
+  are_you_sure_unresolve_flag?: |
+    Weet je zeker dat je deze markering wilt verwijderen? Dit zal de oplossing 
+    en de gebruiker die de oplossing gaf van deze markering verwijderen.
   are_you_sure_want_delete_taxon: "Weet je zeker dat je dit taxon wilt verwijderen?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Weet je zeker dat je dit taxon wilt verwijderen? Het heeft onderliggende taxa.
@@ -846,6 +849,8 @@ nl:
   conservation_status_descriptions:
     status: Statuscode, rang, enz. Als er een korte code zoals E of CR bestaat, gebruik die dan, maar zo niet, gebruik dan de volledige status, bv. "bedreigd" of "ernstig bedreigd".
     description: Korte beschrijving van de reden waarom dit in een lijst is opgenomen.
+    authority: |
+      Organisatie die deze status heeft vastgesteld. Gebruik alsjeblieft de autocomplete-functie om een bestaande autoriteit te kiezen voordat je een nieuwe toevoegt. Je kunt dit overslaan als *jij* als de autoriteit wilt worden aangemerkt.
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
@@ -2516,6 +2521,10 @@ nl:
   people_following_user: "Personen die %{user} volgen"
   people_user_follows: "Personen die %{user} volgt"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: heeft een <a href="%{observation_url}">waarneming</a> toegevoegd
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -3505,6 +3514,8 @@ nl:
   stats: Statistieken
   stats_for_this_year_have_not_been_generated: Statistieken voor dit jaar zijn niet gegenereerd.
   status: Status
+  status_globally: 'Wereldwijd "%{status}"'
+  status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Blijf en probeer het opnieuw
   still_no_luck?: Nog steeds geen geluk?
   still_needs_id?: Kan gemeenschap ID bevestigen/verbeteren?
@@ -3797,7 +3808,7 @@ nl:
   this_list_only_accepts_taxa_that_are_species_or_lower: Deze lijst accepteert alleen taxa die soorten of lager zijn
   this_observation: Deze waarneming
   this_observation_is_featured_on_x_sites:
-    one: Deze waarneming is te zien op 1 site
+    one: Deze waarneming is te zien op %{count} site
     other: Deze waarneming is te zien op %{count} sites
   this_observation_is_research_grade: Deze waarneming is van onderzoekskwaliteit!
   this_observation_was_created_using: "Deze waarneming is gemaakt met:"
@@ -3895,6 +3906,8 @@ nl:
   updating: Bezig met bijwerken ...
   unprocessable: Onverwerkbaar
   unpublish: Publicatie ongedaan maken
+  #Undo the action of resolving a flag
+  unresolve: Oplossing ongedaan maken
   unreview_all: Alles opnieuw nakijken
   unsubscribe: Uitschrijven
   unsuspend_user: Gebruiker niet schorsen
@@ -4676,6 +4689,46 @@ nl:
         taking_a_while: "Dit duurt even. Probeer alsjeblieft een van de onderstaande opties."
         date_range_help: "Max en min data in het formaat YYYY-MM-DD, bijv. 2015-01-17"
         created_on_help: "Datumwaarnemingen werden gecreëerd, niet waargenomen, bijv. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Andere opties</h3>
+          <p>
+          Grote exporten maken onze infrastructuur trager en moeilijker om wijzigingen te releasen. Hier zijn een aantal opties om te overwegen:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF neemt het grootste deel van onze waarnemingen met onderzoekskwaliteit over
+          en hun exporttools zijn uitstekend. GBIF-exports komen ook
+          met een <a href="https://www.doi.org/">DOI</a> die je kunt citeren als
+          je onderzoek publiceert op basis van de data die je exporteert, en deze
+          citaties zijn enorm nuttig voor ons omdat ze ons in staat stellen te zien
+          hoe iNat-gegevens worden gebruikt.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
+          Archive (DwC-A) voor GBIF</a>: dit is het <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
+          bestand dat we genereren voor GBIF, dus het bestand bevat als het goed is niets dat niet ook in GBIF zit, maar als je het hele archief wilt kun je het downloaden. Het is een zeer groot zip-bestand in CSV-formaat. Het wordt wekelijks bijgewerkt.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist
+          Challenge op FGVC 2017</a>: links naar 675.000 gelicentieerde
+          iNaturalist foto's van 5.089 soorten voor gebruik in computer vision
+          training. Aangemaakt in juni 2017, wordt niet bijgewerkt.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Unieke identifier voor de waarneming"
         species_guess: "Naam door de waarnemer ingegeven voor het waargenomen taxon"
@@ -6300,6 +6353,8 @@ nl:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan geen passende wetenschappelijke naam van een soort vinden voor dit lexicon
+              must_match_the_taxon_if_valid: |
+                moet overeenkomen met de naam van het taxon als dit een geldige wetenschappelijke naam is
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan

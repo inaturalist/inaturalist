@@ -270,6 +270,12 @@ shared_examples_for "an ObservationsController" do
       post :create, format: :json, observation: { latitude: 0, longitude: 0 }
       expect( response.status ).to eq 422
     end
+
+    it "should assign a taxon by UUID" do
+      t = Taxon.make!
+      post :create, format: :json, observation: { taxon_id: t.uuid }
+      expect( user.observations.last.taxon ).to eq t
+    end
   end
 
   describe "destroy" do
@@ -1158,12 +1164,16 @@ shared_examples_for "an ObservationsController" do
       expect(jsono['taxon']['common_name']['name']).to eq tn.name
     end
 
-    it "should include identifications_count" do
-      o = Observation.make!
-      i = Identification.make!(:observation => o)
-      get :index, :format => :json
-      obs = JSON.parse(response.body).detect{|jo| jo['id'] == i.observation_id}
-      expect(obs['identifications_count']).to eq 1
+    describe "identifications_count" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+      it "should get incremented" do
+        o = Observation.make!
+        i = Identification.make!(:observation => o)
+        get :index, :format => :json
+        obs = JSON.parse(response.body).detect{|jo| jo['id'] == i.observation_id}
+        expect(obs['identifications_count']).to eq 1
+      end
     end
 
     it "should include comments_count" do

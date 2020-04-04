@@ -558,6 +558,9 @@ en:
   are_you_sure_remove_taxon_from_list: "Are you sure you want to remove this taxon from the list?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Are you sure? This will reload the page you may lose some of your changes.
+  are_you_sure_unresolve_flag?: |
+    Are you sure you want to unresolve this flag? This will remove the
+    resolution and the resolving user from this flag.
   are_you_sure_want_delete_taxon: "Are you sure you want to delete this taxon?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Are you sure you want to delete this taxon? It has descendant taxa.
@@ -1058,6 +1061,7 @@ en:
   custom_project_was_successfully_updated: Project customizations updated
   customize_location: Customize Location
   darr_apply_darr: "&darr; Apply &darr;"
+  daily_users: Daily Users
   dashboard: Dashboard
   data_deficient: Data Deficient
   data_quality: Data Quality
@@ -1325,7 +1329,10 @@ en:
   exact_location: Exact_location
   exact_rank: Exact Rank
   except: except
-  exclude_x: Exclude %{x}
+  exclude_places: Exclude Places
+  exclude_projects: Exclude Projects
+  exclude_taxa: Exclude Taxa
+  exclude_users: Exclude Users
   exclusion_filters: Exclusion Filters
   existing_flags: Existing Flags
   exit_full_screen: "Exit Full Screen"
@@ -1691,6 +1698,10 @@ en:
   inaturalist_network_affiliation: iNaturalist Network Affiliation
   # Label for messages you've received
   inbox: Inbox
+  include_places: Include Places
+  include_projects: Include Projects
+  include_taxa: Include Taxa
+  include_users: Include Users
   including: including
   increase_brightness: Increase Brightness
   in_progress: in progress
@@ -2263,6 +2274,7 @@ en:
   no_favorites_added:
     current_user: You haven't added favorites yet.
     user: "%{user} hasn't added favorites."
+  no_journal_posts_yet: No journal posts yet
   no_license_all_rights_reserved: No license (all rights reserved)
   no_managers_set: No managers set
   no_matching_article_from_x: "No matching article from %{x}"
@@ -2721,16 +2733,26 @@ en:
             building: building
             Canton: Canton
             canton: canton
+            City Building: City Building
+            city building: city building
             Colloquial: Colloquial
             colloquial: colloquial
             Commune: Commune
             commune: commune
+            Constituency: Constituency
+            constituency: constituency
             Continent: Continent
             continent: continent
             Country: Country
             country: country
             County: County
             county: county
+            # https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+            Delegation: Delegation
+            # https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+            delegation: delegation
+            Department_Segment: Department Segment
+            department_segment: department segment
             District: District
             district: district
             Division: Division
@@ -2771,6 +2793,12 @@ en:
             open_space: open space
             Parish: Parish
             parish: parish
+            # https://en.wikipedia.org/wiki/Poblacion
+            Poblacion: Poblacion
+            # https://en.wikipedia.org/wiki/Poblacion
+            poblacion: poblacion
+            Prefecture: Prefecture
+            prefecture: prefecture
             Prefecture_City: Prefecture City
             prefecture_city: prefecture city
             Point_of_Interest: Point of Interest
@@ -2779,6 +2807,8 @@ en:
             postal_code: postal code
             Province: Province
             province: province
+            Regency: Regency
+            regency: regency
             Region: Region
             region: region
             Republic: Republic
@@ -2797,6 +2827,10 @@ en:
             subdivision: subdivision
             Suburb: Suburb
             suburb: suburb
+            # https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+            Sum: Sum
+            # https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+            sum: sum
             Supername: Supername
             supername: supername
             Territory: Territory
@@ -2809,6 +2843,8 @@ en:
             undefined: undefined
             Unknown: Unknown
             unknown: unknown
+            Village_block: Village block
+            village_block: village block
             Zone: Zone
             zone: zone
   place_guess: place guess
@@ -3124,6 +3160,7 @@ en:
   press: Press
   preview: Preview
   preview_observations: Preview Observations
+  preview_observations_with_these_observation_requirements: Preview Observations with these Observation Requirements
   preview_of_synced_observation: "<strong>Preview</strong> of synced observation.  <a href=\"%{url}\">Undo?</a>"
   preview_personal_message:  "I'd like you to join me on %{site}, a website where you can record your observations of plants and animals, keep track of your life list, and learn about the natural world!"
   preview_your_message: Preview your message
@@ -3167,6 +3204,7 @@ en:
   project_group_description: Group the project belongs to
   project_home: Project home
   project_icon: Project icon
+  project_journal: Project Journal
   project_id_or_url_slug: Project ID or URL slug, e.g. 333 or my-project
   project_invitations: 'Project invitations'
   project_list: Project List
@@ -3176,6 +3214,7 @@ en:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> curators added some of your observations
   project_members: "%{project} Members"
+  project_members_only: Project Members Only
   project_membership_model_description: Is your project open to everyone or only to people you invite?
   project_observations: Project Observations
   project_post: Project Post
@@ -3976,7 +4015,10 @@ en:
   this_list_only_accepts_taxa_that_are_species_or_lower: This list only accepts taxa that are species or lower
   this_observation: This observation
   this_observation_is_featured_on_x_sites:
-    one: This observation is featured on 1 site
+    zero: This observation is featured on %{count} sites
+    one: This observation is featured on %{count} site
+    few: This observation is featured on %{count} sites
+    many: This observation is featured on %{count} sites
     other: This observation is featured on %{count} sites
   this_observation_is_research_grade: This observation is Research Grade!
   this_observation_was_created_using: "This observation was created using:"
@@ -4078,6 +4120,8 @@ en:
   updating: Updating...
   unprocessable: Unprocessable
   unpublish: Unpublish
+  # Undo the action of resolving a flag
+  unresolve: Unresolve
   unreview_all: Unreview All
   unsubscribe: Unsubscribe
   unsuspend_user: Unsuspend user
@@ -5018,6 +5062,50 @@ en:
         taking_a_while: "This is taking a while. Please try one of the options below."
         date_range_help: "Max and min dates observed in YYYY-MM-DD format, e.g. 2015-01-17"
         created_on_help: "Date observations were created, not observed, e.g. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Other Options</h3>
+          <p>
+            Large exports slow down our infrastructure and make it harder for us
+            to release new changes. Here are some other options to consider:
+          </p>
+          <ul>
+            <li>
+              <p>
+                <a
+                rel="nofollow noreferrer noopener"
+                href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+                GBIF ingests most of our Research Grade, licensed observations,
+                and their export tools are excellent. GBIF exports also come
+                with a <a href="https://www.doi.org/">DOI</a> you can cite if
+                you publish research based on the data you export, and these
+                citations are enormously helpful to us as they allow us to see
+                how iNat data gets used.
+              </p>
+            </li>
+            <li>
+              <p>
+                <a
+                rel="nofollow noreferrer noopener"
+                href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
+                Archive (DwC-A) for GBIF</a>: this is the <a
+                href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
+                file we generate for GBIF to ingest, so it should not contain
+                anything that isn't in GBIF, but if you want the whole archive,
+                you can download it. It is a very large zip file containing
+                records in CSV. Updated weekly.
+              </p>
+            </li>
+            <li>
+              <p>
+                <a
+                rel="nofollow noreferrer noopener"
+                href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist
+                Challenge at FGVC 2017</a>: links to 675,000 licensed
+                iNaturalist photos of 5,089 species for use in computer vision
+                training. Created June 2017, not updated.
+              </p>
+            </li>
+          </ul>
       field_descriptions:
         id: "Unique identifier for the observation"
         species_guess: "Name the observer entered for the observed taxon"
@@ -5672,6 +5760,10 @@ en:
           project.
         are_you_sure_you_want_to_delete: Are you sure you want to delete this project?
         can_be_included_in_multiple: Can be included in multiple umbrella projects
+        check_the_box_to_include_member_observations: |
+          Check the box below to only include observations made by users who have joined this project.
+          Use the Exclude Users filter above to exclude observations from specific users,
+          including the project owner and admins.
         click_through_to_individual_projects: Click through to individual projects
         collection_projects: Collection Projects
         collection_project_features: "Collection Project features:"
@@ -5685,6 +5777,10 @@ en:
           custom observation fields, or adding individual observations that can’t be automatically
           filtered?
         duplicate_project: Duplicate Project
+        include_annotated_observations: |
+          Include only observations annotated with a particular attribute (e.g. life stage),
+          or a particular attribute and value (e.g life stage = adult).
+          There is a limit of one annotation filter per project.
         leaderboards_among_individuals: Leaderboards among <strong>individuals</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Leaderboards among <strong>projects</strong>
@@ -5696,16 +5792,15 @@ en:
           Note: these users will be able to edit ALL project details including admins.
         note_you_can_delete_the_time: |
           (Note: you can delete the time zone and precise times if you want to include whole days.)
+        note_about_unselected_filters: |
+          Note: If you do not select taxa, places, or users, all will be included by default.
+        only_display_member_observations: |
+          Only display observations from project members (people who have joined the project)
+        optionally_filter_media: Optionally filter for observations with photos, sounds, or both.
         or_drag_and_drop: (or drag and drop)
         please_specify_the_requirements: |
           Please specify the requirements for the observations to be added to
           this project.
-        please_specify_the_requirements_html: |
-          Please specify the requirements for the observations to be added to
-          this project. You can specify multiple species, places, users, or
-          quality grades to be automatically included, or leave a field blank if
-          you have no specific requirement for it. Explanations for each field
-          can found <a href="%{url}">here</a>.
         project_background_color: Project Summary Background Color
         project_background_color_help: Make sure to choose a color dark enough so the white overlaid text is legible.
         project_banner: Project Banner (PNG, JPG, or GIF)
@@ -5720,11 +5815,29 @@ en:
           Give a concise explanation of your project. Approximately the first 200 characters will
           be visible to the right of the project home screen banner so put the best stuff first!
         project_summary_placeholder: Discover and track the birds of Golden Gate Park...
+        select_native_to_include: |
+          Select "Native" to include only taxa that have been marked as "Native" to the
+          place(s) in your project. Select "Introduced" to include only taxa that have been
+          marked as "Introduced" to the place(s) in your project.
+        select_quality_grade: |
+          Select at least one Quality Grade. Further explanation for each Quality Grade can be found on
+          our <a href="%{url}">FAQ page</a>.
         show_projects_as_flags: Show projects as flags in map
+        specify_project_filters: |
+          Specify the filters for which observations to include in your project.
+          You can select multiple species (or taxa), places, dates, or other criteria for
+          observations to be automatically included.
         start_and_end_times_for_bioblitzes: Start and end date/times (for bioblitz-type events)
         traditional_projects_cannot_be_copied: Traditional project cannot be copied
         umbrella_project_features: "Umbrella Project features:"
         unique_url_for_outreach: Unique URL for outreach
+        use_this_for_a_time_limited_event: |
+          Use this for a time-limited event, bioblitz, or seasonal project. Select a single
+          date, range of dates, or which months of the year the observations must be made
+          in (regardless of year). If using the Date Range section, make sure you have the
+          correct times and time zones selected, or delete the time/time zone text to include
+          observations made anytime that entire day. You can leave the Start Date or End Date
+          blank if you want to limit the project by only one date.
         users_can_follow_your_project: Users can follow your project for updates via journal posts
         use_this_link_to_create_html: |
           Use <a href="%{url}">this link</a> to create a traditional project instead.
@@ -5895,6 +6008,7 @@ en:
         obs_desc: Created in prev 7 days
         obs_id_d_desc: Created in prev 7 days and have an ID (could be observer's)
         observations_1_week_moving_window: Observations (1 week moving window)
+        observers_desc: Added an observation on this day
         other_desc_html: Created via other applications <a href="%{url}">built by developers</a>
         recent_desc: Signed up in prev 7 days
         recent_w_0_obs: Recent w/ 0 obs

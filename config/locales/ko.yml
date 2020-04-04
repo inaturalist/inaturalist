@@ -149,7 +149,7 @@ ko:
   add_new_place: 새로운 장소 추가하기
   add_new_rule: 새로운 규칙 추가하기
   add_new_source: "새로운 출처 추가하기..."
-  add_new_taxon_name: 새로운 분류균 이름 추가하기
+  add_new_taxon_name: 새로운 분류군 이름 추가하기
   add_notes_about_this_taxon: '이 장소에 있는 분류군에 대해 메모 추가하기 (예: 언제 어디서 나타나는지)'
   add_obs_from_a_link: "목록에서 관찰 추가하기: %{link}"
   add_obs_from_a_list: 목록에서 관찰 추가하기
@@ -837,7 +837,7 @@ ko:
   edit_the_observation: 관찰 편집
   edit_your_account_and_profile_html: "계정 및 프로필 편집"
   edit_your_default_settings: "내 기본 설정 편집하기"
-  edit_your_global_project_settings: 내 전역 프로젝트 설정 편집
+  edit_your_global_project_settings: 내 전체 프로젝트 설정 편집
   edit_your_identification: 내 동정 편집
   edit_your_settings_for_this_project: 이 프로젝트에 대한 내 설정 편집
   edited_by_name_html: "편집자 : %{name}"
@@ -1172,7 +1172,7 @@ ko:
   journal_post: 일지 포스트
   journal_post_deleted: 일지 포스트 삭제
   jpg_png_or_gif: "JPG, PNG나 GIF"
-  just_added!: 그냥 추가했습니다!
+  just_added!: 추가했습니다!
   keep_editing: 편집 계속
   keyboard_shortcuts: 단축 키
   kml_file_size_error: "KML은 1MB보다 크기가 작아야 합니다."
@@ -1231,6 +1231,7 @@ ko:
     spanish: 스페인어
     swedish: 스웨덴어
     tagalog: 타갈로그어
+    tahitian: 타히티어
     turkish: 터키어
   less: 줄이기
   license: 라이선스
@@ -1422,7 +1423,7 @@ ko:
   ne_lat: NE 위도
   ne_lon: NE 경도
   near_threatened: 준위협(NT)
-  needs_id: 동정이 필요합니다.
+  needs_id: ID가 필요합니다.
   needs_id_: ID가 필요합니다
   needs_to_be_identified: 동정 필요
   new_and_noteworthy: 새롭고 주목할 만한 사항
@@ -1443,7 +1444,7 @@ ko:
   new_observations_ellispsis: "새로운 관찰..."
   new_observations_from_place_html: "%{place}의 새로운 관찰"
   new_observations_may_take_up_to: 새로운 관찰은 위젯에 표시될 때까지 최대 %{widget_expiration}분이 걸릴 수 있습니다.
-  new_observations_of_x_html: "%{x} 새로운 관찰"
+  new_observations_of_x_html: "%{x}의 새로운 관찰"
   new_password: 새 비밀번호
   new_post: 새 게시글
   new_project: 새 프로젝트
@@ -2309,13 +2310,14 @@ ko:
   user: 사용자
   user_added_a_x: "%{user}님이 %{x}을(를) 추가했습니다"
   user_added_a_x_to_noun_by_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
-  user_added_a_x_to_noun_by_user_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  user_added_a_x_to_noun_by_user_html: "%{user}님이 %{by}님의 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_a_x_to_noun_by_you_html: "%{user}님이 나의 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_a_x_to_noun_html: "%{user}님이 %{noun}에 %{x}을(를) 추가했습니다."
+  user_added_an_identification_html: "%{user} 님이 동정을 추가했습니다."
   user_added_an_observation_html: "%{user} 님이 관찰을 추가했습니다."
   user_added_an_x: "%{user}님이 %{x}을(를) 추가했습니다"
   user_added_an_x_to_noun_by_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
-  user_added_an_x_to_noun_by_user_html: "%{user}님이 %{by}의 %{noun}에 %{x}을(를) 추가했습니다."
+  user_added_an_x_to_noun_by_user_html: "%{user}님이 %{by}님의 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_an_x_to_noun_by_you_html: "%{user}님이 나의 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_an_x_to_noun_html: "%{user}님이 %{noun}에 %{x}을(를) 추가했습니다."
   user_added_x_observations_html: "%{user} 님이 %{x}개의 관찰을 추가했습니다."
@@ -2329,8 +2331,9 @@ ko:
   username_or_email: 사용자 이름이나 이메일
   username_or_user_id: 사용자 이름이나 사용자 ID
   users: 사용자
+  users_comment_html: "<a href='%{url}'>%{user}</a>님의 댓글"
   users_id: "%{user}의 ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a> ID"
+  users_identification_short_html: "<a href='%{url}'>%{user}</a>님의 동정"
   users_profile: "%{user}의 프로필"
   users_projects: "%{user}님의 프로젝트"
   valid_options_are: '유효한 옵션:'

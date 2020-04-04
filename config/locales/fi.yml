@@ -203,7 +203,7 @@ fi:
   activity_settings: Aktiivisuusasetukset
   adapted_by_name_from_a_work_by_original: "Muokannut %{name} käyttäjän %{original} työstä"
   add: Lisää
-  add_a_batch_of_observations: Lisää erä havaintoja
+  add_a_batch_of_observations: Tallenna erä havaintoja
   add_a_batch_of_taxa: Lisää erä taksoneita
   add_a_comment: Lisää kommentti
   add_a_field: Lisää kenttä
@@ -253,9 +253,9 @@ fi:
   add_notes_about_this_taxon: Lisää muistiinpanoja tästä taksonista tässä paikassa, esim. missä ja milloin se tapahtuu.
   add_obs_from_a_link: "Lisää havainto luettelosta: %{link}"
   add_obs_from_a_list: Lisää havainto luettelosta
-  add_observations: Lisää havaintoja
-  add_observations_by_checking_off: Lisää havaintoja ruksaamalla lajeja luettelosta.
-  add_observations_project: Lisää havaintoja tähän projektiin
+  add_observations: Tallenna havaintoja
+  add_observations_by_checking_off: Tallenna havaintoja ruksaamalla lajeja luettelosta.
+  add_observations_project: Tallenna havaintoja tähän projektiin
   #Prompt to add a new journal post
   add_one: Lisää yksi!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -282,7 +282,7 @@ fi:
   add_relationship: 'Lisää suhde'
   #As in a Guide Section
   add_section: Lisää osa
-  add_several_observations_at_once: Lisää useita havaintoja kerralla.
+  add_several_observations_at_once: Tallenna useita havaintoja kerralla.
   add_sex_female_annotation: 'Lisää merkintä "Sukupuoli: Naaras"'
   add_sex_male_annotation: 'Lisää merkintä "Sukupuoli: Koiras"'
   add_some_now: Lisää jotain nyt
@@ -305,7 +305,7 @@ fi:
   add_your_email_to_get: |
     Lisää sähköpostiosoitteesi saadaksesi palautetta yhteisöltä.
     Jos et halua jakaa sitä, seuraa tätä sivustoa säännöllisesti.
-  add_your_own_observations_at: "Lisää omia havaintojasi %{site_name}iin"
+  add_your_own_observations_at: "Tallenna omia havaintojasi %{site_name}iin"
   added: Lisätty
   added!: Lisätty!
   added_as_a_part_of_a_taxon_change_html: |
@@ -496,6 +496,8 @@ fi:
   are_you_sure_remove_taxon_from_list: "Haluatko varmasti poistaa tämän taksonin luettelosta?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Oletko varma? Tämä lataa sivun uudelleen, saatat menettää joitakin muutoksistasi.
+  are_you_sure_unresolve_flag?: |
+    Olet varma että haluat poistaa tämän lipun ratkaisun? Tämä poistaa myös ratkaisun tehneen käyttäjän tästä lipusta.
   are_you_sure_want_delete_taxon: "Haluatko varmasti poistaa tämän taksonin?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Haluatko varmasti poistaa tämän taksonin? Sillä on alempia taksoneita.
@@ -1058,7 +1060,7 @@ fi:
   deleted_vote: Poistettu äänestys
   deleting: Poistaa...
   deleting_verb: Poistaminen
-  deny: Kiellä
+  deny: Estä
   desc: Laskeva
   descending: Laskeva
   describe_purpose: Kuvaile tämän projektin tarkoitus.
@@ -1341,15 +1343,15 @@ fi:
   flag_it!: Liputa!
   flag_marked_as_resolved_html: '<span class="meta">Lippu merkitty</span> <strong>ratkaistuksi.</strong>'
   #Label for the object that was flagged, e.g. a table header
-  flag_object: Objekti
+  flag_object: Kohde
   flag_reason: "&ldquo;Liputan tämän: %{record}, koska"
-  flag_resolution: Resoluutio
+  flag_resolution: Ratkaisu
   flag_saved: Lippu tallennettu
   flag_saved_thanks_html: Lippu tallennettu. Kiitos! <a href="%{url}" class="readmore">Katso lippua</a>
   flag_this_observation: Liputa tämä havainto.
   flag_this_photo: Liputa tämä kuva
   flag_this_sound: Liputa tämä ääni
-  flagged: liputettu
+  flagged: lisäsi lipun
   flagged_: Liputettu
   flagged_for_curation: Liputettu kuraattorin tarkastusta varten
   flagged_taxon: Liputettu taksoni
@@ -1379,7 +1381,7 @@ fi:
   follow_user: "Seuraa käyttäjää %{user}"
   followed_projects: Seuratut projektit
   followers: Seuraajat
-  following: Seurataan
+  following: Seuraamasi
   following_x_people:
     one: 'Seurataan 1 henkilöä'
     other: 'Seurataan %{count} henkilöä'
@@ -1488,7 +1490,7 @@ fi:
   hide: Piilota
   hide_content: Piilota sisältö
   hide_desc: |
-    Sisällön piilottaminen aiheuttaa sen, että tiedot eivät ole julkisesti näkyvillä. Sen sijaan näkyvillä on tieto siitä, että jotakin on piilotettu. Sivuston kuraattorit ja sisällön tallentaja voivat edelleen nähdä piilotetun sisällön. Sääntöä sovelletaan lähinnä tekstuaaliseen sisältöön: esimerkiksi, jos piilotat määrityksen, määritys on edelleen näkyvillä mutta sen kommentit piilotetaan. Et voi perua tätä toimintoa. Ainoastaan sivuston ylläpito voi palauttaa piilotetun sisällön julkisesti näkyväksi, joten ole varovainen toiminnon kanssa ja käytä sitä ainoastaan arkaluontoiselle sisällölle.
+    Sisällön piilottaminen aiheuttaa sen, että tiedot eivät ole julkisesti näkyvillä. Sen sijaan näkyvillä on tieto siitä, että jotakin on piilotettu. Sivuston kuraattorit ja sisällön tallentaja voivat edelleen nähdä piilotetun sisällön. Sääntöä sovelletaan lähinnä tekstuaaliseen sisältöön: esimerkiksi, jos piilotat määrityksen, määritys on edelleen näkyvillä mutta sen kommentit piilotetaan. Et voi perua tätä toimintoa. Ainoastaan sivuston ylläpitäjät voivat palauttaa piilotetun sisällön julkisesti näkyväksi, joten ole varovainen toiminnon kanssa ja käytä sitä ainoastaan arkaluontoiselle sisällölle.
   hide_running_total: Piilota kumulatiivinen yhteismäärä
   hide_uncountable_species: Piilota ei-laskettavat lajit
   high: Korkea
@@ -1556,7 +1558,7 @@ fi:
   improving: Parannus
   in_n: "paikassa %{n}"
   in_place_x: paikassa %{place}
-  inaturalist_network_affiliation: iNaturalist Network -verkoston jäsenyys
+  inaturalist_network_affiliation: iNaturalist kotiverkosto
   #Label for messages you've received
   inbox: Saapuneet
   including: mukaan lukien
@@ -1778,46 +1780,46 @@ fi:
   locale_description: Maa asettaa kieli- ja päivämäärämuotoiluasetuksesi.
   locales_: Kieli
   locales:
-    ar: Arabia
-    bg: Bulgaria
-    br: Bretoni
-    ca: Katalaani
+    ar: arabia
+    bg: bulgaria
+    br: bretoni
+    ca: katalaani
     cs: tšekki
-    da: Tanska
-    de: Saksa
-    el: Kreikka
-    en: Englanti
-    eo: Esperanto
-    es: Espanja
-    es-AR: Espanja (Argentina)
-    es-MX: Espanja (Meksiko)
-    et: Viro
-    eu: Baski
+    da: tanska
+    de: saksa
+    el: kreikka
+    en: englanti
+    eo: esperanto
+    es: espanja
+    es-AR: espanja (Argentiina)
+    es-MX: espanja (Meksiko)
+    et: viro
+    eu: baski
     fi: suomi
-    fr: Ranska
-    fr-CA: Ranska (Kanada)
-    gl: Galicia
-    he: Heprea
-    id: Indonesia
-    it: Italia
-    ja: Japani
-    ko: Korea
-    lb: Luxemburg
-    lt: Liettua
-    mk: Makedonia
-    nb: Kirjanorja
-    nl: Hollanti
-    oc: Oksitaani
-    pl: Puola
-    pt: Portugali
-    pt-BR: Portugali (Brasilia)
-    ru: Venäjä
-    sk: Slovakia
-    sq: Albania
-    sv: Ruotsi
+    fr: ranska
+    fr-CA: ranska (Kanada)
+    gl: galicia
+    he: heprea
+    id: indonesia
+    it: italia
+    ja: japani
+    ko: korea
+    lb: luxemburg
+    lt: liettua
+    mk: makedonia
+    nb: kirjanorja
+    nl: hollanti
+    oc: oksitaani
+    pl: puola
+    pt: portugali
+    pt-BR: portugali (Brasilia)
+    ru: venäjä
+    sk: slovakia
+    sq: albania
+    sv: ruotsi
     tr: turkki
-    zh-CN: Kiina (yksinkertaistettu)
-    zh-TW: Kiina (perinteinen)
+    zh-CN: kiina (yksinkertaistettu)
+    zh-TW: kiina (perinteinen)
   locality_notes: Paikkamerkinnät
   localized_species_accounts: Paikalliset lajitilit
   location: Sijainti
@@ -2035,6 +2037,10 @@ fi:
   needs_id_: Tarvitsee tunnistuksen
   needs_id_expandable_html: "<span class='full'>Tarvitsee </span>tunnistuksen"
   needs_to_be_identified: On tunnistettava
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong> on osa kansainvälistä iNaturalist-verkostoa. Haluatko vaihtaa sen kotiverkostoksesi %{site_name}:in sijaan?
+  network_affiliation_prompt_from_other_site_html: |
+    Haluatko vaihtaa kotiverkostosi niin että se on jatkossa <strong>%{site_name}</strong> nykyisen <strong>%{other_site_name}</strong> sijasta?
   new: Uusi
   new_and_noteworthy: Uutta ja huomionarvoista
   new_announcement: Uusi ilmoitus
@@ -2320,11 +2326,11 @@ fi:
     observe_panel_title: Aloita tallentamalla havaintoja
     observe_panel_body_p1_local: Tarvitsetko inspiraatiota? Tässä on joitain lähellä havaittuja eliöitä...
     observe_panel_body_p1_global: Tarvitsetko inspiraatiota? Tässä on joitain havaittuja eliöitä...
-    observe_panel_body_p2: Mene ulos, ja tarkkaile yksittäistä eliötä. Valitse jotakin villiä ja ota selvä, täyskehyskuva. Jos sinulla on jo valokuva jostain villistä, <a href="%{new_observation_path}">lisää se nyt</a>. Voit myös käyttää %{site_name}-mobiilisovelluksia tallentaaksesi havaintoja.
-    observe_panel_body_p3: Jaettuasi havaintosi, tälle sivulle tulee tietoa yhteisön tekemistä kommenteista ja tunnistuksista. Kukapa tietää, mitä kaikkea löydät!
+    observe_panel_body_p2: Lähde retkelle ja etsi kiinnostava vapaana elävä tai kasvava eliö. Ota terävä valokuva, jossa se näkyy kokonaan. Jos sinulla on jo tällaisia kuvia, <a href="%{new_observation_path}">tallenna ne havainnoiksi</a>. Voit myös käyttää %{site_name}-mobiilisovellusta (Android tai iPhone) tallentaaksesi havaintoja.
+    observe_panel_body_p3: Kun olet tallentanut havaintojasi, tulee tälle sivulle yhteisön niille tekemiä tunnistuksia ja kommentteja. Kukapa tietää, mitä kaikkea löydät!
     follow_panel_title_local: Seuraa joitakin läheisiä luonnontieteilijöitä
     follow_panel_title_global: Seuraa joitakin aktiivisia luonnontieteilijöitä
-    follow_panel_body: Jos vierailet näissä profiileissa ja klikkaat seuraa-painiketta, sinulle ilmoitetaan kun he lähettävät havaintoja
+    follow_panel_body: Voit seurata muita käyttäjiä, jolloin saat tiedon kun he tallentavat havaintoja. (Käy käyttäjän profiilissa ja klikkaa seuraa-nappia.)
     following_panel_title: Pidä kirjaa ihmisistä, taksoneista ja paikoista
     following_panel_body: |
       %{site_name}issa voit seurata henkilöitä saadaksesi tietää heidän uusista havainnoistaan. Voit myös seurata lajeja ja paikkoja.
@@ -2429,6 +2435,10 @@ fi:
   people_following_user: "Käyttäjän %{user} seuraajat"
   people_user_follows: "Ihmiset, joita %{user} seuraa"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: lisäsi <a href="%{observation_url}">havainnon</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -2499,6 +2509,8 @@ fi:
       building: rakennus
       Canton: Kantoni
       canton: kantoni
+      City Building: Kaupunkirakennus
+      city building: kaupunkirakennus
       Colloquial: Puhekielinen
       colloquial: epämuodollinen
       Commune: Kunta
@@ -2969,6 +2981,7 @@ fi:
   rank: Sija
   rank_position: Sija
   ranks:
+    stateofmatter: Olomuoto
     kingdom: Kunta
     subkingdom: Alakunta
     phylum: Pääjakso
@@ -3260,7 +3273,7 @@ fi:
   site_name_place: "%{site_name} paikka"
   site_observations_export_from_date: "%{site_name} havaintojen vienti päivästä %{date}"
   site_site_admin: "%{site_name} sivuston ylläpitäjä"
-  site_staff: "%{site_name} henkilökunta"
+  site_staff: "%{site_name} ylläpitäjät"
   site_stats: Sivuston tilastot
   site_taxon_page: "%{site_name} taksonisivu"
   some_agree: jotkut ovat samaa mieltä
@@ -3546,7 +3559,7 @@ fi:
   this_list_is_empty!: Tämä luettelo on tyhjä!
   this_observation: Tämä havainto
   this_observation_is_featured_on_x_sites:
-    one: Tämä havainto on esillä 1 sivustolla
+    one: Tämä havainto on esillä %{count} sivustolla
     other: Tämä havainto on esillä %{count} sivustolla
   this_observation_is_research_grade: Tämä havainto on tutkimustasoa!
   this_observation_was_created_using: "Tämä havainto luotiin käyttämällä:"
@@ -3624,6 +3637,8 @@ fi:
   updating: Päivitetään...
   unprocessable: Ei voida prosessoida
   unpublish: Julkaisematon
+  #Undo the action of resolving a flag
+  unresolve: Poista ratkaisu
   unsubscribe: Peruuta tilaus
   unsuspend_user: Jäädytetty käyttäjä
   upcoming_bioblitzes: Tulevat bioblitzit
@@ -4047,9 +4062,9 @@ fi:
     flags:
       show:
         flaggable_content_desc: |
-          Huomautus (liputus) voi liittyä vain liputetun kohteen luontiaikaiseen alkuperäiseen sisältöön. Vain kuraattorit ja henkilöstö voivat nähdä näitä tietoja. Vain henkilökunta näkee huomatukset jotka koskevat viestejä.
+          Huomautus (liputus) voi liittyä vain liputetun kohteen luontiaikaiseen alkuperäiseen sisältöön. Vain kuraattorit ja ylläpitäjät voivat nähdä näitä tietoja. Vain ylläpitäjät näkevät viestejä koskevat huomautukset.
         flags_that_should_not_be_resolved_desc_html: |
-          Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> merkinnät ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
+          Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> -liput ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
     guides:
       index:
         funding_html: |
@@ -4130,6 +4145,8 @@ fi:
     oauth:
       authorizations:
         new:
+          authorize_application_to_use_your_account?: Annatko sovellukselle %{application} luvan käyttää tunnustasi?
+          this_application_will_be_able_to_colon: "Tämä sovellus:"
           more_about_application: Lisätietoa sovelluksesta %{application}
     observations:
       community_id:
@@ -4712,6 +4729,7 @@ fi:
         obs_desc: Luotu viimeisen 7 päivän aikana
         obs_id_d_desc: Luotu viimeisen 7 päivän aikana ja sillä on tunnistus (voi olla havainnoijan)
         observations_1_week_moving_window: Havainnot (1 viikon siirtyvä aikaikkuna)
+        observers_desc: Lisäsi havainnon tänä päivänä.
         other_desc_html: Luotu muiden <a href="%{url}">kehittäjien rakentamien</a> sovellusten kautta
         recent_desc: Rekisteröity viimeisen 7 päivän aikana
         recent_w_0_obs_desc: Rekisteröitynyt edeltävinä 7 päivänä ja lisännyt 0 havaintoa
@@ -4724,7 +4742,7 @@ fi:
           Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
           tai <a href="%{url}">iNaturalist Network -verkon</a> verkkosivustojen kautta
       year:
-        inaturalist_network: iNaturalist Network -verkko
+        inaturalist_network: iNaturalist-verkosto
         include_usa: Sisällytä Yhdysvallat
         growth_by_country_desc_html: |
           Missä kasvua tapahtuu? Tämä kartta ja taulukko koettavat kuvata kasvua maittain, mutta se on mutkikasta, koska kasvu maittain voi olla hyvin epätasapainossa. Tässä on oletusasetuksena jätetty Yhdysvallat pois ja käytetty logaritmista asteikkoa muiden maiden välisten erojen korostamiseksi. Maan musta väri tarkoittaa, että sillä ei ollut merkittävää vaikutusta prosenttiosuuteen, havaintomäärät eivät kasvaneet tänä vuonna, tai havaintoja ei ollut tänä vuonna enempää kuin viime vuonna (lisätietoja saat viemällä hiiren maan kohdalle). <strong>"% kokonaiskasvusta"</strong> tarkoittaa tietyn maan osuutta maailmanlaajuisesta kasvusta. Esimerkiksi jos vuonna 2018 olisi 20 havaintoa, vuonna 2017 10 havaintoa, kasvua olisi 10 havainnon verran ja jos 5 havainnosta olisi Beninistä, Beninin osuus kokonaiskasvusta olisi 50%. <strong>"% kasvua"</strong> tarkoittaa tämänvuotisten havaintojen määrää prosentteina viime vuotisista havainnoista kyseisessä maassa. Esimerkiksi jos Laosista on 10 havaintoa viime vuodelta, mutta 20 tältä vuodelta, kasvuprosentti olisi 100%. Ja jos havaintoja ei ollut ollenkaan viime vuonna ja tänä vuonna 1, on kasvuprosentti ääretön.
@@ -4863,11 +4881,15 @@ fi:
           Jos muutat mielesi, voit aina <a href='/users/edit'>muokata asetuksiasi</a>.
         inaturalist_network_affiliation_desc_html: |
           <a href="%{url}" target="_blank">iNaturalist-verkosto</a> on 
-          kokoelma lokalisoituja verkkosivuja kytkettynä maailmanlaajuiseen iNaturalist
-          -yhteisöön. Voit vaihtaa ensisijaisen sivustosi jäsenyyden, joka tarkoittaa että
-          sisällölläsi on etusijalla kyseisellä sivustolla, mutta tarkoittaa myös sitä että kyseisen sivuston omistajilla on oikeus ladata ja
-          nähdä kaikki tietosi aivan kuten iNaturalist-sivuston ylläpitäjät voivat. Jos 
-          tämä sivusto jättää verkon, kaikki tilisi ja tietosi menevät tämän sivuston mukana.
+          joukko eri alueille mukautettuja (lokalisoituja) verkkosivustoja, jotka on kytketty yhteen maailmanlaajuiseen iNaturalist
+          -yhteisöön. Verkoston sivustoja ylläpidetään yhteistyössä paikallisten instituutioiden kanssa, Suomessa yhdessä Suomen Lajitietokeskuksen kanssa.
+          </p><p>
+          Nämä instituutiot ovat allekirjoittaneet sopimuksen iNaturalistin kanssa ja edistävät sen paikallista käyttöä luonnon monimuotoisuuden hyväksi. Paikalliset instituutiot pääsevät käsiksi havaintojen tarkkoihin koordinaatteihin oman valtionsa alueelta, vaikka koordinaatit muuten olisivat karkeistettuja uhattujen eliölajien suojelemiseksi.
+          </p><p>
+          Käyttäjätunnuksesi ja salasanasi toimivat kaikilla sivustoilla, jotka ovat mukana iNaturalist-verkostossa. Jos liityt verkoston sivustoon, paikallinen instituutio pääsee käsiksi sähköpostiosoitteeseesi (viestiäkseen sinulle sivustoon liittyvistä asioista) ja karkeistettujen ja yksitysten havaintojesi tarkkoihin koodinaatteihin.
+          </p><p>
+          Huom: Ole hyvä äläkä vaihda verkostoa vain kokeillaksesi vaihtamista, jos sinulla on yli 1000 havaintoa.
+          </p>
         licensing_desc_html: |
           Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
           (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
@@ -5551,7 +5573,9 @@ fi:
   doorkeeper:
     scopes:
       write: |
-        Luoda, päivittää ja poistaa havaintojasi, tunnistuksiasi ja muuta sisältöä puolestasi ja päästä näkemään piilotetut koordinaattisi ja kaiken muun tiedon, johon sinulla on sivustolla pääsy.
+        Voi luoda, päivittää ja poistaa havaintojasi, tunnistuksiasi ja muuta sisältöä puolestasi. Se myös pääsee näkemään piilotetut koordinaattisi ja kaiken muun tiedon, johon sinulla on sivustolla pääsy.
+      login: |
+        Pääsee käsiksi tietoon, jota tarvitaan kirjautumiseen kolmannen osapuolen palveluun. Näistä tietoja ovat esim. sähköpostiosoitteesi, käyttäjätunnuksesi, nimesi ja profiilikuvasi.
       account_delete: |
         Poistaa käyttäjätilini puolestani.
     flash:
