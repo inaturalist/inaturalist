@@ -3,7 +3,7 @@
 - content_for(:extracss) do
   = stylesheet_link_tag :stats
 - content_for(:extrajs) do
-  = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
+  = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','language':'#{I18n.locale}','packages':['corechart','annotationchart']}]}"
   = javascript_include_tag :stats, "d3.min"
   :javascript
     var STATS_JSON = #{ @stats.to_json.html_safe };
@@ -95,7 +95,7 @@
         %dd=t "views.stats.index.active_desc"
   .row
     .col-md-12
-      %h3=t :recent_users
+      %h3=t :recent_new_users
       #recent-users.stacked.vis
         .loading.status=t :loading
     .col-md-6
