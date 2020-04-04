@@ -969,6 +969,7 @@ da:
   custom_project_was_successfully_updated: Brugerdefineret projekt blev opdateret.
   customize_location: Tilpas sted
   darr_apply_darr: "&darr; Anvend &darr;"
+  daily_users: Daglige brugere
   dashboard: Betjeningspanel
   data_deficient: Mangelfuld data
   data_quality: Datakvalitet
@@ -1233,7 +1234,10 @@ da:
   exact_location: Eksakt_sted
   exact_rank: Eksakt række
   except: bort set fra
-  exclude_x: Ekskluder %{x}
+  exclude_places: Ekskludér steder
+  exclude_projects: Ekskludér projekter
+  exclude_taxa: Ekskludér taksa
+  exclude_users: Ekskludér brugere
   exclusion_filters: Eksklusionsfiltre
   existing_flags: Eksisterende markeringer
   exit_full_screen: "Afslut fuld skærm"
@@ -1580,6 +1584,10 @@ da:
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
   inbox: Indbakke
+  include_places: Inkludér steder
+  include_projects: Inkludér projekter
+  include_taxa: Inkludér taksa
+  include_users: Inkludér brugere
   including: inklusiv
   increase_brightness: Øg lysstyrke
   in_progress: i gang
@@ -2143,6 +2151,7 @@ da:
   no_favorites_added:
     current_user: Du har ikke tilføjet favoritter endnu.
     user: "%{user} har ikke tilføjet favoritter."
+  no_journal_posts_yet: Endnu ingen journaoptegnelser
   no_license_all_rights_reserved: Ingen licens (alle rettigheder forbeholdt)
   no_managers_set: Ingen ledere valgt
   no_matching_article_from_x: "Ingen matchende artikel fra %{x}"
@@ -3010,6 +3019,7 @@ da:
   press: Presse
   preview: Forhåndsvisning
   preview_observations: Forhåndsvis observationer
+  preview_observations_with_these_observation_requirements: Forhåndsvis Observationer med disse Observationskrav
   preview_of_synced_observation: "<strong>Preview</strong> af synkroniseret observation.  <a href=\"%{url}\">Undo?</a>"
   preview_personal_message: "Jeg vil gerne invitere dig til %{site}, som er et websted, hvor du kan registrere dine observationer af planter og dyr. Du kan også oprette en liste med alle de dyr du har observeret samt lære noget mere om naturen."
   preview_your_message: Forhåndsvisning af din besked
@@ -3051,6 +3061,7 @@ da:
   project_group_description: Gruppe projektet tilhører
   project_home: Projekt hjem
   project_icon: Projekt ikon
+  project_journal: Projektjournal
   project_id_or_url_slug: Projekt ID eller URL adresse
   project_invitations: 'Projekt invitationer'
   project_list: Projekt liste
@@ -3060,6 +3071,7 @@ da:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> kuratorer tilføjede nogle af dine observationer
   project_members: "%{project} Medlemmer"
+  project_members_only: Kun Projektmedlemmer
   project_membership_model_description: Er dit projekt åbent for alle eller kun for personer, du inviterer?
   project_observations: Projekt observationer
   project_post: Projekt indlæg
@@ -5349,6 +5361,9 @@ da:
           Er du klar til at forlade denne side for at duplikere dette projekt?
         are_you_sure_you_want_to_delete: Er du sikker på, at du vil slette dette projekt?
         can_be_included_in_multiple: Kan inkluderes i flere paraplyprojekter
+        check_the_box_to_include_member_observations: |
+          Markér afkrydsningsfeltet nedenfor for kun at inkludere observationer foretaget af brugere, som er projektmedlemmer.
+          Benyt Ekskludér brugere-filteret ovenfor til observationseksklusioner fra specifikke brugere, inkl. projektejer og -admins.
         click_through_to_individual_projects: Klik videre til individuelle projekter
         collection_projects: Samlingsprojekter
         collection_project_features: "Samlingsprojekt egenskaber:"
@@ -5360,6 +5375,10 @@ da:
         do_you_need_features_from_traditional: |
           Har du brug for egenskaber fra de traditionelle projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?
         duplicate_project: Duplikér Projekt
+        include_annotated_observations: |
+          Inkludér kun observationer kommenteret med én bestemt attribut (f.eks. Livsfase),
+          eller én bestemt attribut og værdi (f.eks. livsfase = voksen).
+          Der er en grænse på ét annotationsfilter pr. projekt.
         leaderboards_among_individuals: Toplister iblandt <strong>individuelle</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Toplister iblandt <strong>projekter</strong>
@@ -5371,15 +5390,14 @@ da:
           OBS: Disse brugere er i stand til at redigere ALLE projektdetaljer inklusiv administratorer.
         note_you_can_delete_the_time: |
           (OBS: Du kan slette tidszone og nøjagtige tidspunkt, hvis du i stedet vil bruge hele dage.)
+        note_about_unselected_filters: |
+          Bemærk: Vælges ikke taxa, steder eller brugere, inkluderes alle som standard.
+        only_display_member_observations: |
+          Vis kun observationer fra projektmedlemmer (personer, som har tilmeldt sig projektet)
+        optionally_filter_media: Valgfri filtrering af observationer med fotos, lyde eller begge.
         or_drag_and_drop: (eller træk og slip)
         please_specify_the_requirements: |
           Præcisér venligst betingelserne for at observationerne kan tilføjes til projektet.
-        please_specify_the_requirements_html: |
-          Angiv venligst kravene til de observationer, der kan tilføjes til
-          dette projekt. Du kan angive flere arter, steder, brugere eller
-          kvalitetsgrader, der automatisk indgår eller efterlad et felt tomt hvis
-          du ikke har noget specifikt krav til det. Forklaringer for hvert felt
-          kan findes <a href="%{url}">here</a>.
         project_background_color: Projektoversigt baggrundsfarve
         project_background_color_help: Sørg for at vælge en farve, der er mørk nok, så den hvide overlejrede tekst er læselig.
         project_banner: Projektbanner (PNG, JPG eller GIF)
@@ -5393,11 +5411,25 @@ da:
         project_summary_help: |
           Angiv en koncis beskrivelse af dit projekt. De første ca. 200 karakterer vil blive synlige i banneret i højre side på projektsiden, så begynd med det bedste!
         project_summary_placeholder: Opdag og følg Golden Gate Parks fugle...
+        select_native_to_include: |
+          Vælg "Indfødt" for kun at medtage taksa markeret som "Indfødt" til
+          sted(et/erne) i dit projekt. Vælg "Introduceret" for kun at medtage taksa, som har været
+          markeret som "Introduceret" til sted(et/erne i dit projekt.
+        select_quality_grade: |
+          Vælg mindst én Kvalitetsgrad. Yderligere forklaring på hver Kvalitetsgrad findes på
+          vores
+          <a href="%fterurl"">OSS (FAQ) side</a>.
         show_projects_as_flags: Vis projekter som flag på kort
+        specify_project_filters: |
+          Angiv filtrene for de observationer, som skal medtages i dit projekt.
+          Du kan vælge flere arter (eller taksa), steder, datoer eller andre kriterier for 
+          observationer, som automatisk bliver medtaget.
         start_and_end_times_for_bioblitzes: Start og slut tidspunkt for bioblitzer
         traditional_projects_cannot_be_copied: Det oprindelige projekt kan ikke kopieres
         umbrella_project_features: "Paraplyprojekt egenskaber:"
         unique_url_for_outreach: Unik URL til opsøgning
+        use_this_for_a_time_limited_event: |
+          Benyt dette til en tidsafgrænset begivenhed, bioblitz eller sæsonbestemt projekt. Vælg en enkelt dato, datoområde, eller i hvilke måneder af året, observationer skal foretages (uanset år). Benyttes afsnittet Datoområde, så vær sikker på, at de korrekte tidsangivelser og tidszoner er valgt, eller slet tidsangivelsen/tidszoneteksten for at medtage observationer foretaget uanset dagstidspunkt. Felterne Startdato/Slutdato kan være tomme, hvis projektet kun skal datoafgrænses.
         users_can_follow_your_project: Brugere kan følge dit projekt for opdateringer via journalindlæg
         use_this_link_to_create_html: |
           Brug <a href="%{url}">dette link</a> for at oprette et traditionelt projekt istedet.
