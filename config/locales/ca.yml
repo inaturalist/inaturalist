@@ -1221,7 +1221,10 @@ ca:
   exact_location: Ubicació exacta
   exact_rank: Rang exacte
   except: excepte
-  exclude_x: Exclou %{x}
+  exclude_places: Excloure Llocs
+  exclude_projects: Excloure Projectes
+  exclude_taxa: Excloure Tàxons
+  exclude_users: Excloure Usuaris
   exclusion_filters: Filtres d'exclusió
   existing_flags: Marques existents.
   exit_full_screen: "Surt del mode de pantalla completa."
@@ -1565,6 +1568,10 @@ ca:
   inaturalist_network_affiliation: Afiliació a la Xarxa d'iNaturalist
   #Label for messages you've received
   inbox: bústia
+  include_places: Incloure Llocs
+  include_projects: Incloure Projectes
+  include_taxa: Incloure Tàxons
+  include_users: Incloure Usuaris
   including: inclou
   increase_brightness: Augmenteu brillantor
   in_progress: en curs
@@ -2128,6 +2135,7 @@ ca:
   no_favorites_added:
     current_user: No heu afegit preferits encara.
     user: "%{user} no ha afegit preferits."
+  no_journal_posts_yet: Encara no hi ha articles
   no_license_all_rights_reserved: No hi ha llicència (tots els drets reservats)
   no_managers_set: Encara no hi ha gestors
   no_matching_article_from_x: "No hi ha articles corresponents a %{x}"
@@ -2956,6 +2964,7 @@ ca:
   press: Premsa
   preview: Vista prèvia
   preview_observations: Previsualitzeu observacions
+  preview_observations_with_these_observation_requirements: Previsualitzar Observacions amb aquests Requisits de les Observacions
   preview_of_synced_observation: "<strong>Previsualització</strong> de l'observació sincronitzada.  <a href=\"%{url}\">La voleu desfer?</a>"
   preview_personal_message: "M'agradaria que em seguissis a %{site}, un lloc web on podreu registrar les observacions de plantes i animals, portar un control de la vostra llista de vida i aprendre sobre el món natural."
   preview_your_message: Vista prèvia del missatge
@@ -2995,6 +3004,7 @@ ca:
   project_group_description: Grup al que pertany el projecte
   project_home: Inici del projecte
   project_icon: Icona de projecte
+  project_journal: Diari del Projecte
   project_id_or_url_slug: ID o enllaç del projecte, ex. 333 o el-vostre-projecte
   project_invitations: 'Invitacions al Projecte'
   project_list: Llista del projecte
@@ -3004,6 +3014,7 @@ ca:
   project_curators_added_some_of_your_observations_html: |
     els supervisors de <a href="%{url}">%{project}</a> han afegit algunes de les vostres observacions
   project_members: "Membres de %{project}"
+  project_members_only: Només membres del Projecte
   project_membership_model_description: El vostre projecte és obert a tothom o només per a les persones qui convideu?
   project_observations: Observacions del projecte
   project_post: Nota de projecte
@@ -5098,6 +5109,9 @@ ca:
           Esteu preparats per abandonar aquesta pàgina per duplicar aquest projecte? Si un plau, tingue en compte que la icona del projecte i el bàner no es duplicaran, i necessitareu tornar a pujar-los en el projecte duplicat.
         are_you_sure_you_want_to_delete: Esteu segurs que voleu esborrar aquest projecte?
         can_be_included_in_multiple: Pot ser inclòs en diversos projectes paraigua
+        check_the_box_to_include_member_observations: |
+          Marqueu a sota per incloure observacions fetes per usuaris units a aquest projecte.
+          Utilitzeu el filtre "Excloure Usuaris" de més amunt per excloure observacions de determinats usuaris, incloent-hi el propietari de projecte i els administradors.
         click_through_to_individual_projects: Clic a través de projectes individuals
         collection_projects: Col·lecció de Projectes
         collection_project_features: "Característiques de la col·lecció de Projectes:"
@@ -5109,6 +5123,8 @@ ca:
         do_you_need_features_from_traditional: |
           Necessiteu característiques del projectes tradicionals, com accedir a coordenades correctes, camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
         duplicate_project: Duplica el projecte
+        include_annotated_observations: |
+          Incloure només observacions marcades amb un atribut determinat (p.e. estat biològic), o un atribut i valors determinats (p.e. estat biològic=adult). Hi ha una limitació d'un filtre d'atribut per projecte.
         leaderboards_among_individuals: Els més actius entre els <strong>individus</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Els més actius entre <strong>projectes</strong>
@@ -5120,13 +5136,14 @@ ca:
           Nota: aquests usuaris poden editar TOTS els detalls del project incloent l'administració.
         note_you_can_delete_the_time: |
           (Nota: podeu eliminar la zona horària i precisar el moment si voleu indicar dies sencers.)
+        note_about_unselected_filters: |
+          Nota: Si no seleccioneu tàxons, llocs o usuaris, s'inclouran tots per defecte.
+        only_display_member_observations: |
+          Només mostra observacions de membre del projecte (persones que s'han unit al projecte)
+        optionally_filter_media: Filtres opcionals per a les observacions amb fotos, sons o ambdós.
         or_drag_and_drop: (o arrossegar i enganxar)
         please_specify_the_requirements: |
           Si us plau, especifiqueu els requisits que han de complir les observacions per poder incorporar-les en aquest projecte.
-        please_specify_the_requirements_html: |
-          Si us plau especifiqueu els requisits per afegir observacions a aquest projecte.
-          Podeu especificar diverses espècies, llocs, usuaris, o graus de qualitat perquè siguin automàticament afegides, o deixar-ho en blanc si no hi ha cap requisit específic.
-          Les explicacions de cada camp podeu veure-les <a href="%{url}">aquí</a>.
         project_background_color: Color de fons del resum del Projecte
         project_background_color_help: Assegureu-vos d'escollir un color prou fosc perquè el text blanc sobreposar sigui llegible.
         project_banner: Banner del projecte (PNG, JPG, o GIF)
@@ -5140,11 +5157,20 @@ ca:
         project_summary_help: |
           Feu una explicació clara del vostre projecte.Aproximadament, els primers 200 caràcters seran visibles a la dreta de la pancarta de la pàgina d'inici projecte, poseu els més important al començament!
         project_summary_placeholder: Descobriu i seguiu els ocells del Parc dels Aiguamolls...
+        select_native_to_include: |
+          Seleccioneu "Nadiu" per incloure només tàxons que s'han marcat com a "Nadius" del lloc o llocs del vostre projecte. Seleccioneu "Introduïda" per incloure només els tàxons que s'han marcat com a "Introduïts" en els llocs del vostre projecte.
+        select_quality_grade: |
+          Seleccioneu almenys un Grau de Qualitat. Podeu trobar més informació sobre cada Grau de Qualitat a ala nostra <a href="%{url}">pàgina de FAQs</a>.
         show_projects_as_flags: Mostra projectes com a banderes en el mapa
+        specify_project_filters: |
+          Especifiqueu els filtres que voleu utilitzar per incloure observacions al vostre projecte.
+          Podeu seleccionar diverses espècies (o tàxons), llocs, dates, o altres criteris per què s'incloguin les observacions automàticament.
         start_and_end_times_for_bioblitzes: Data i hora d'inici i final (per a projectes del tipus bioblitz)
         traditional_projects_cannot_be_copied: Els projectes tradicionals no es poden copiar
         umbrella_project_features: "Característiques del Projecte Paraigua:"
         unique_url_for_outreach: URL única per a la promoció
+        use_this_for_a_time_limited_event: |
+          Utilitzeu-lo per esdeveniments limitats en el temps, bioblitz o projectes estacionals. Seleccioneu una data concreta, un rang de dates o els mesos de l'any durant els quals es poden fer observacions (amb independència de l'any). Si utilitzeu la secció de Rang de Dates, verifiqueu que heu seleccionat correctament les hores i les zones horàries adequades, o esborreu el text hora/zona horària per incloure les observacions efectuades al llarg de tot el dia. Podeu deixar la Data d'Inici o Data Final en blanc si voleu limitar el projecte a una única data.
         users_can_follow_your_project: Els usuaris poden seguir les actualitzacions del vostre a través de les publicacions.
         use_this_link_to_create_html: |
           Utilitzeu <a href="%{url}">aquest enllaç</a> per crear una projecte tradicional en comptes d'aquest.
