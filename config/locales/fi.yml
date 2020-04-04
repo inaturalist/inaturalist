@@ -71,7 +71,7 @@ fi:
   x_people:
     one: "%{count} henkilö"
     other: "%{count} henkilöt"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} ihmistä</strong> auttoi käyttäjää %{user} <strong>%{y} tunnisteen kanssa</strong>"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} ihmistä</strong> auttoi tunnistuksessa käyttäjää %{user} <strong>%{y}</strong>"
   x_photos:
     one: "1 kuva"
     other: "%{count} kuvaa"
@@ -767,7 +767,7 @@ fi:
   choose_files: Valitse tiedostot
   choose_from_your_lists: Valitse luetteloistasi
   choose_photos_for_this_taxon: Valitse kuvat tälle taksoninille
-  choose_photos_to_tag_from_photostream: Valitse kuvia valokuvavirrastasi tunnisteiden lisäämiseksi.
+  choose_photos_to_tag_from_photostream: Valitse kuvia tagattaviksi valokuvavirrastasi
   choose_rule: Valitse sääntö
   choose_subjects: Valitse aiheet
   choose_tags: Valitse merkinnät
@@ -1230,7 +1230,6 @@ fi:
   exact_location: Tarkka_sijainti
   exact_rank: Tarkka arvo
   except: paitsi
-  exclude_x: Sulje pois nämä %{x}
   exclusion_filters: Poissulkevat suotimet
   existing_flags: Nykyiset liput
   exit_full_screen: "Poistu kokoruututilasta"
@@ -1371,7 +1370,7 @@ fi:
   flickr_photo: Flickr Valokuva
   flickr_photos: Flickr-valokuvia
   flickr_style: Flickr-tyyli
-  flickr_tagger: Flickr tunnisteidenlisääjä
+  flickr_tagger: Flickr-tagienlisääjä
   flickr_tags: Flickr-merkinnät
   fluid_layout: Virtaava asettelu
   #Adjective, as in a fluid layout of images
@@ -3408,7 +3407,7 @@ fi:
   suggest_or_require_that: Ehdota tai vaadi, että osallistujat täyttävät nämä kentät projektiisi lisäämilleen havainnoille.
   suggestions: Ehdotukset
   summary: Yhteenveto
-  supporting: Tukeminen
+  supporting: Tukee määritystä
   support_inaturalist: Tue iNaturalistia
   suspend_user: Hyllytetty käyttäjä
   sw_lat: SW leveysaste
@@ -3420,7 +3419,7 @@ fi:
   table_of_contents: Sisällysluettelo
   #Noun, as in "add a tag to this observation"
   tag: Tagi
-  tagging: 'Tunnisteita lisätään...'
+  tagging: 'Tageja lisätään...'
   tags: Merkinnät
   tags_are_a_way: 'Merkinnät ovat tapa järjestää havaintojasi. Esimerkiksi, saatat merkitä kaikki tidepool-havaintosi merkinnällä "tidepools" helpottaaksesi niiden myöhempää löytymistä.'
   take_me_facebook: Kyllä, vie minut Facebookiin!
@@ -3723,7 +3722,7 @@ fi:
   user_flagged_as_a_spammer_html: "%{user} merkitsi spaammaajaksi"
   user_has_opted_out_of_community_id: Käyttäjä on jättänyt yhteisön taksonin pois
   user_hasnt_joined_any_projects: "%{user} ei ole liittynyt mihinkään projektiin"
-  user_helped_x_people_with_y_ids_html: "%{user} auttoi <strong>%{x} henkilöä</strong> <strong>%{y} tunnisteiden</strong> kanssa"
+  user_helped_x_people_with_y_ids_html: "%{user} auttoi <strong>%{x} käyttäjää</strong> <strong>%{y} tunnistamaan havaintoja</strong>"
   user_invite_observation_to_project: '%{user} haluaisi kutsua havaintosi "%{observation}" projektiin %{project}.'
   user_invited_you_to_join_html: "%{user} kutsui sinut liittymään"
   user_invited_you_to_join_project: "%{user} kutsui sinut liittymään projektiin %{project}"
@@ -4195,9 +4194,9 @@ fi:
         date_range_help: "Max ja min päivämäärät havaittu PP-KK-VVVV formaatissa, esim. 17-01-2015"
         created_on_help: "Päiväys jolloin havainnot luotiin, ei havaittu, esim. 17-01-2015, 01-2015, 2015"
       field_descriptions:
-        id: "Havainnon uniikki tunniste"
+        id: "Havainnon yksilöllinen tunniste"
         common_name: "Havaitun taksonin yleis- tai kansankielinen nimi tämän sivuston mukaan"
-        taxon_id: Havaitun taksonin uniikki tunniste
+        taxon_id: Havaitun taksonin yksilöllinen tunniste
         num_identification_agreements: Tunnistusten lukumäärä jotka ovat yksimielisiä havainnoijan tunnistuksen kanssa
         num_identification_disagreements: Tunnistusten lukumäärä jotka ovat ristiriidassa havainnoijan tunnistuksen kanssa
         observed_on_string: Havainnoijan syöttämä päivämäärä
@@ -4592,8 +4591,6 @@ fi:
         or_drag_and_drop: (tai vedä ja pudota)
         please_specify_the_requirements: |
           Ole hyvä ja määrittele vaatimukset tähän projektiin lisättäville havainnoille.
-        please_specify_the_requirements_html: |
-          Määrittele millä ehdoilla havaintoja lisätään tähän projektiin. Voit määritellä useita taksoneita (lajeja), paikkoja, käyttäjiä tai laatutasoja jotka sisällytetään projektiin, tai jättää kentän tyhjäksi jos sinulla ei ole sille tarvetta. Katso <a href="%{url}">jokaisen kentän selitteet (englanniksi)</a>.
         project_background_color: Projektin yhteenvedon taustaväri
         project_background_color_help: Valitse riittävän tumma väri, jotta sen päällä oleva valkoinen teksti on luettavissa.
         project_banner: Projektin banneri (PNG, JPG, tai GIF)
