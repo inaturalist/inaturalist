@@ -1224,7 +1224,10 @@ it:
   exact_location: Località_esatta
   exact_rank: Rank esatto
   except: eccetto
-  exclude_x: Escludi %{x}
+  exclude_places: Escludi Luoghi
+  exclude_projects: Escludi Progetti
+  exclude_taxa: Escludi Taxa
+  exclude_users: Escludi Utenti
   exclusion_filters: Filtri di esclusione
   existing_flags: Contrassegni esistenti
   exit_full_screen: "Esci dalla modalità a tutto schermo"
@@ -1567,6 +1570,10 @@ it:
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
   #Label for messages you've received
   inbox: Posta in arrivo
+  include_places: Includi Luoghi
+  include_projects: Includi Progetti
+  include_taxa: Includi Taxa
+  include_users: Includi Utenti
   including: incluso
   increase_brightness: Aumenta luminosità
   in_progress: in corso
@@ -2126,6 +2133,7 @@ it:
   no_favorites_added:
     current_user: Non hai ancora aggiunto dei preferiti
     user: "%{user} non aggiunto ai preferiti"
+  no_journal_posts_yet: Ancora nessun post del diario
   no_license_all_rights_reserved: Nessuna licenza (tutti i diritti riservati)
   no_managers_set: Nessun gestore stabilito
   no_matching_article_from_x: "Nessuna articolo da %{x} corrisponde"
@@ -2977,6 +2985,7 @@ it:
   press: Stampa
   preview: Anteprima
   preview_observations: Anteprima osservazioni
+  preview_observations_with_these_observation_requirements: Anteprima delle Osservazioni con questi Requisiti di Osservazione
   preview_of_synced_observation: "<strong>Anteprima</strong> dell'osservazione sincronizzata. <a href=\"%{url}\">Annulla?</a>"
   preview_personal_message: "Mi piacerebbe unirmi a %{site}, un sito dove puoi registrare le tue osservazioni di piante ed animali, conservare un elenco aggiornato degli esseri viventi che hai osservato e imparare a conoscere la natura."
   preview_your_message: Anteprima del messaggio
@@ -3016,6 +3025,7 @@ it:
   project_group_description: Gruppo del quale il progetto fa parte
   project_home: Homepage del progetto
   project_icon: Icona del progetto
+  project_journal: Diario del Progetto
   project_id_or_url_slug: ID del progetto o URL, e.g. 333 o mio-progetto
   project_invitations: 'Inviti ai progetti'
   project_list: Lista del progetto
@@ -3025,6 +3035,7 @@ it:
   project_curators_added_some_of_your_observations_html: |
     I curatori di <a href="%{url}">%{project}</a> hanno aggiunto alcune delle tue osservazioni
   project_members: "Membri di %{project}"
+  project_members_only: Solo Membri del Progetto
   project_membership_model_description: Il tuo progetto è aperto a tutti o solo alle persone che inviti?
   project_observations: Osservazioni del Progetto
   project_post: Post del Progetto
@@ -5103,6 +5114,9 @@ it:
           Sei pronto a lasciare questa pagina per duplicare il progetto? Nota che l'icona del progetto e il banner non saranno duplicati e sarà necessario ricaricarli nel progetto duplicato.
         are_you_sure_you_want_to_delete: Sei sicuro di voler eliminare questo progetto?
         can_be_included_in_multiple: Può essere incluso in più progetti Ombrello
+        check_the_box_to_include_member_observations: |
+          Seleziona la casella qui sotto per includere solo le osservazioni degli utenti che si sono uniti a questo progetto.
+          Utilizza il filtro Escludi Utenti di sopra per escludere le osservazioni di utenti specifici, compresi il proprietario del progetto e gli amministratori.
         click_through_to_individual_projects: Navigazione tra i singoli progetti
         collection_projects: Progetti Collezione
         collection_project_features: "Caratteristiche del Progetto collezione:"
@@ -5114,6 +5128,10 @@ it:
         do_you_need_features_from_traditional: |
           Hai bisogno di caratteristiche dei progetti tradizionali, come l'accesso alle coordinate precise, campi di osservazione personalizzati, o di aggiungere osservazioni che non possono essere filtrate automaticamente?
         duplicate_project: Duplica progetto
+        include_annotated_observations: |
+          Includi solo le osservazioni annotate con un particolare attributo (ad es. stadio di vita),
+          o un particolare attributo e valore (es. stadio di vita = adulto).
+          C'è un limite di un solo filtro di annotazione per progetto.
         leaderboards_among_individuals: Classifiche tra <strong>utenti</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Classifiche tra <strong>progetti</strong>
@@ -5125,11 +5143,14 @@ it:
           Nota: questi utenti saranno in grado di editare tutti le caratteristiche dei progetti compresi gli amministratori.
         note_you_can_delete_the_time: |
           (Nota: puoi cancellare il fuso orario e precisare le ore se vuoi includere giornate intere.)
+        note_about_unselected_filters: |
+          Nota: se non selezioni taxa, luoghi o utenti, sarà incluso tutto in modo predefinito.
+        only_display_member_observations: |
+          Mostra solo osservazioni da parte dei membri del progetto (le persone che si sono unite al progetto)
+        optionally_filter_media: Facoltativamente, filtra le osservazioni con foto, suoni o entrambi.
         or_drag_and_drop: (o trascina e rilascia)
         please_specify_the_requirements: |
           Per favore specifica i requisiti per le osservazioni da aggiungere a questo progetto.
-        please_specify_the_requirements_html: |
-          Per favore specifica i requisiti delle osservazioni da aggiungere al progetto. Puoi specificare più specie, luoghi, utenti e gradi di qualità da inserire automaticamente, o lasciare un campo vuoto se non hai alcun requisito specifico per esso. Spiegazioni per ogni campo possono essere trovate <a href="%{url}">qui</a>.
         project_background_color: Colore di sfondo dell'indice del progetto
         project_background_color_help: Assicurati di scegliere un colore abbastanza scuro in modo che il testo bianco sia visibile.
         project_banner: Banner del Progetto (PNG, JPG o GIF)
@@ -5143,11 +5164,23 @@ it:
         project_summary_help: |
           Fornisci una breve spiegazione del tuo progetto. I primi 200 caratteri circa saranno visibili a destra del banner, perciò metti il meglio all'inizio!
         project_summary_placeholder: Scopri e registra gli uccelli del Golden Gate Park...
+        select_native_to_include: |
+          Seleziona "Nativo" per includere solo i taxa che sono stati contrassegnati come "Nativi" nel
+          luogo/luoghi del progetto. Seleziona "Introdotto" per includere solo i taxa che sono stati
+          contrassegnati come "Introdotti" nel luogo/ luoghi del tuo progetto.
+        select_quality_grade: |
+          Seleziona almeno un Grado di Qualità. Ulteriori spiegazioni per ogni Grado di Qualità possono essere trovate nella nostra <a href="%{url}">pagina FAQ</a>.
         show_projects_as_flags: Mostra i progetti come segnalini sulla mappa
+        specify_project_filters: |
+          Specifica i filtri di inclusione delle osservazioni nel tuo progetto.
+          È possibile selezionare più specie (o taxa), luoghi, date o altri criteri per le osservazioni da includere automaticamente.
         start_and_end_times_for_bioblitzes: Ora/data di inizio e fine (per eventi tipo bioblitz)
         traditional_projects_cannot_be_copied: I progetti tradizionali non possono essere copiati
         umbrella_project_features: "Caratteristiche dei Progetti Ombrello"
         unique_url_for_outreach: Unico URL per raggiungerlo
+        use_this_for_a_time_limited_event: |
+          Usalo per un evento a tempo limitato, bioblitz o progetto stagionale. Seleziona una singola data, un intervallo di date, o in quali mesi dell'anno le osservazioni devono essere fatte
+          (indipendentemente dall'anno). Se si utilizzi la sezione Intervallo Date, assicurarsi di avere selezionato orari e fusi orari corretti, o elimina il testo contenuto in orario/fuso orario per includere osservazioni fatte in qualsiasi momento quel giorno. È possibile lasciare vuota la data di inizio o la data di fine se si desidera limitare il progetto ad una sola data.
         users_can_follow_your_project: Gli utenti possono seguire il tuo progetto per aggiornamenti tramite i post del diario
         use_this_link_to_create_html: |
           Usa <a href="%{url}">questo link</a>, invece, per creare un progetto tradizionale.
