@@ -349,9 +349,9 @@ cs:
   add_one_now: Přidat nyní
   add_photos: Vložit fotku
   add_place: Přidat místo
-  add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živé nebo Mrtvé: Živé"'
+  add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Živý"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živý nebo mrtvý: Nelze určit“'
-  add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živé nebo Mrtvé: Mrtvé"'
+  add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Mrtvý"'
   add_plant_phenology_budding_annotation: 'Přidat anotaci „Fenologie rostliny: pučení“'
   add_plant_phenology_flower_budding_annotation: 'Přidejte anotaci „Fenologie rostlin: pučící květ“'
   add_plant_phenology_flowering_annotation: 'Přidat anotaci „Fenologie rostliny: kvetení“'
@@ -370,7 +370,7 @@ cs:
   add_section: Přidat sekci
   add_several_observations_at_once: Vložit několik pozorování naráz.
   add_sex_female_annotation: 'Přidat anotaci „Pohlaví: ženské“'
-  add_sex_male_annotation: 'Přidat anotaci „Pohlaví: mužské“'
+  add_sex_male_annotation: 'Přidat anotaci „Pohlaví: samec“'
   add_some_now: Vložit nyní nějaké
   add_tag: Přidat tag
   add_tags: Přidat tagy
@@ -982,8 +982,8 @@ cs:
   contributors_to_project: "Přispěvatelé do %{project}"
   controlled_term_labels:
     sex: Pohlaví
-    male: Muž
-    female: Žena
+    male: Samec
+    female: Samice
     plant_phenology: Fenologie rostlin
     budding: Pučení
     flower_budding: Květinové pučení
@@ -998,9 +998,9 @@ cs:
     larva: Larva
     egg: Vejce
     juvenile: Mládě
-    alive_or_dead: Živé nebo mrtvé
+    alive_or_dead: Živý nebo mrtvý
     alive: Živé
-    dead: Mrtvé
+    dead: Mrtvý
     cannot_be_determined: Nelze určit
   controlled_term_definitions:
     alive: Organismus žije a nevykazuje žádné známky bezprostřední smrti
@@ -1346,7 +1346,10 @@ cs:
   exact_location: Přesné_místo
   exact_rank: Přesné pořadí
   except: mimo
-  exclude_x: Vyloučit %{x}
+  exclude_places: Vyloučit místa
+  exclude_projects: Vyloučit projekty
+  exclude_taxa: Vyloučit taxony
+  exclude_users: Vyloučit uživatele
   exclusion_filters: Vylučovací filtry
   existing_flags: Existující štítky
   exit_full_screen: "Ukončit celou obrazovku"
@@ -1699,6 +1702,10 @@ cs:
   inaturalist_network_affiliation: Přidružení k síti iNaturalist
   #Label for messages you've received
   inbox: doručená pošta
+  include_places: Zahrnout místa
+  include_projects: Zahrnout projekty
+  include_taxa: Zahrnout taxony
+  include_users: Zahrnout uživatele
   including: včetně
   increase_brightness: Zvýšit jas
   in_progress: probíhá
@@ -2694,16 +2701,24 @@ cs:
       building: budova
       Canton: Kanton
       canton: Kanton
+      City Building: Městská budova
+      city building: městská budova
       Colloquial: Hovorový
       colloquial: hovorový
       Commune: Obec
       commune: Obec
+      Constituency: Volební obvod
+      constituency: volební obvod
       Continent: Světadíl
       continent: světadíl
       Country: Země
       country: země
       County: Oblast
       county: oblast
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegace
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegace
       District: Okres
       district: okres
       Division: Část
@@ -2744,6 +2759,8 @@ cs:
       open_space: otevřený prostor
       Parish: Farnost
       parish: farnost
+      Prefecture: Prefektura
+      prefecture: prefektura
       Prefecture_City: Město prefektury
       prefecture_city: město prefektury
       Point_of_Interest: Zajímavé místo
@@ -2752,6 +2769,8 @@ cs:
       postal_code: poštovní směrovací číslo
       Province: Provincie
       province: provincie
+      Regency: Regentství
+      regency: regentství
       Region: Region
       region: oblast
       Republic: republika
@@ -2770,6 +2789,10 @@ cs:
       subdivision: sekce
       Suburb: Městská část
       suburb: městská část
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Součet
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: součet
       Supername: Nadřazený název
       supername: nadřazený název
       Territory: Území
@@ -5276,8 +5299,6 @@ cs:
         please_specify_the_requirements: |
           Uveďte požadavky na pozorování, která mají být přidána do
           tohoto projektu.
-        please_specify_the_requirements_html: |
-          Uveďte požadavky na pozorování, které mají být do tohoto projektu přidány. Můžete určit více druhů, umístění, uživatelů nebo úrovní kvality, které mají být automaticky zahrnuty, nebo ponechat pole prázdné, pokud nemáte speciální požadavky <a href="%{url}">here</a>.
         project_background_color: Barva pozadí projektu
         project_background_color_help: Ujistěte se, že je barva dostatečně tmavá, aby byl bílý  text čitelný.
         project_banner: Banner projektu (PNG, JPG nebo GIF)
@@ -5567,8 +5588,8 @@ cs:
         frequency:
           research: Výzkumný stupeň
           verifiable: Ověřitelné
-          "Alive or Dead=Alive": Živé
-          "Alive or Dead=Dead": Mrtvé
+          "Alive or Dead=Alive": Živý
+          "Alive or Dead=Dead": Mrtvý
           "Plant Phenology=Budding": Pučení
           "Plant Phenology=Flower Budding": Květinové pučení
           "Plant Phenology=Flowering": Kvetoucí
@@ -6605,8 +6626,8 @@ cs:
         u: "@vow"
         default: "@con"
       "@gender":
-        m: muž
-        f: žena
+        m: samec
+        f: samice
         "n": neutrum
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         application: "@n"
