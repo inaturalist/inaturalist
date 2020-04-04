@@ -1256,7 +1256,10 @@ sv:
   exact_location: Exakt plats
   exact_rank: Exakt rang
   except: förutom
-  exclude_x: Exkludera %{x}
+  exclude_places: Uteslut platser
+  exclude_projects: Uteslut projekt
+  exclude_taxa: Uteslut taxa
+  exclude_users: Uteslut användare
   exclusion_filters: Exkluderingsfilter
   existing_flags: Befintliga flaggor
   exit_full_screen: "Avsluta helskärmsläge"
@@ -1619,6 +1622,10 @@ sv:
   inaturalist_network_affiliation: iNaturalist Network anknytning
   #Label for messages you've received
   inbox: Inkorg
+  include_places: Inkludera platser
+  include_projects: Inkludera projekt
+  include_taxa: Inkludera taxa
+  include_users: Inkludera användare
   including: inklusive
   increase_brightness: Öka ljusstyrkan
   in_progress: pågår
@@ -2186,6 +2193,7 @@ sv:
   no_favorites_added:
     current_user: Du har inte lagt till favoriter än.
     user: "%{user} har inte lagt till favoriter."
+  no_journal_posts_yet: Inga dagboksinlägg ännu
   no_license_all_rights_reserved: Ingen licens (alla rättigheter reserverade)
   no_managers_set: Inga ledare angivna
   no_matching_article_from_x: "Ingen matchande artikel från %{x}"
@@ -3068,6 +3076,7 @@ sv:
   press: Tryck
   preview: Förhandsgranska
   preview_observations: Förhandsgranska observationer
+  preview_observations_with_these_observation_requirements: Förhandsgranska observationer med dessa observationskrav
   preview_of_synced_observation: "<strong>Förhandsgranskning</strong> av synkroniserad observation.  <a href=\"%{url}\">Ångra?</a>"
   preview_personal_message: "Jag vill bjuda in dig till %{site}, en webbplats där du kan spara dina observationer av växter och djur, hålla koll på din livslista och lär dig om naturen!"
   preview_your_message: Förhandsgranska ditt meddelande
@@ -3111,6 +3120,7 @@ sv:
   project_group_description: Grupp som projektet tillhör
   project_home: Projekt hem
   project_icon: Projektikon
+  project_journal: Projektdagbok
   project_id_or_url_slug: ProjektID eller URL-slug, t.ex. 333 eller mitt-projekt
   project_invitations: 'Projektinbjudningar'
   project_list: Projektlista
@@ -3120,6 +3130,7 @@ sv:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> förvaltare lade till några av dina observationer
   project_members: "%{project}-medlemmar"
+  project_members_only: Endast projektmedlemmar
   project_membership_model_description: Är ditt projekt öppet för alla eller bara för personer du bjuder in?
   project_observations: Projekt observationer
   project_post: Projekt inlägg
@@ -5624,6 +5635,10 @@ sv:
           att projektikonen och bannern inte kommer att kopieras och måste laddas upp igen i dubblettprojektet.
         are_you_sure_you_want_to_delete: Är du säker på att du vill radera detta projekt?
         can_be_included_in_multiple: Kan inkluderas i flera paraplyprojekt
+        check_the_box_to_include_member_observations: |
+          Kryssa i rutan nedan för att endast inkludera observationer gjorda av användare som har anslutit
+          sig till detta projekt. Använd Exkludera användare-filtret ovan för att utesluta observationer från
+          specifika användare, inklusive projektägaren och administratörerna.
         click_through_to_individual_projects: Klicka vidare till enskilda projekt
         collection_projects: Samlingsprojekt
         collection_project_features: "Samlingsprojektsfunktioner:"
@@ -5637,6 +5652,10 @@ sv:
           anpassade observationsfält eller möjlighet att lägga till individuella observationer som
           inte kan filtreras automatiskt?
         duplicate_project: Dubblettprojekt
+        include_annotated_observations: |
+          Inkludera endast observationer kommenterade med ett visst attribut (t.ex. livsstadium),
+          eller ett visst attribut och värde (t.ex. livsstadium = adult).
+          Detta är begränsat till ett kommentarsfilter per projekt.
         leaderboards_among_individuals: Topplistor för <strong>individer</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Topplistor för <strong>projekt</strong>
@@ -5648,16 +5667,15 @@ sv:
           Obs: dessa användare kommer att kunna redigera ALLA projektdetaljer inklusive administratörer.
         note_you_can_delete_the_time: |
           (Obs: du kan ta bort tidszonen och exakta tider om du vill inkludera hela dagar.)
+        note_about_unselected_filters: |
+          Obs: Om du inte väljer taxa, platser eller användare, kommer alla att inkluderas som standard.
+        only_display_member_observations: |
+          Visa endast observationer från projektmedlemmar (personer som gått med i projektet)
+        optionally_filter_media: Filtrera valfritt ut observationer med foton, ljud eller både och.
         or_drag_and_drop: (eller dra och släpp)
         please_specify_the_requirements: |
           Vänligen ange villkoren för de observationer som ska läggas till i
           detta projekt.
-        please_specify_the_requirements_html: |
-          Vänligen ange kraven för de observationer som ska läggas till i
-          detta projekt. Du kan ange flera arter, platser, användare eller
-          kvalitetsnivåer som automatiskt inkluderas eller lämna ett fält tomt om
-          du inte har något specifikt krav på det. Förklaringar för varje fält
-          hittar du <a href="%{url}">här</a>.
         project_background_color: Bakgrundsfärg för projektsammanställning
         project_background_color_help: Se till att välja en tillräckligt mörk färg mörk så att den vita texten ovanpå blir läsbar.
         project_banner: Projektbanderoll (PNG, JPG eller GIF)
@@ -5672,11 +5690,29 @@ sv:
           Förklara kortfattat ditt projekt. Ungefär de första 200 tecknen kommer att
           synas till höger om banderollen på projektets startskärm så ta det viktigaste först!
         project_summary_placeholder: Upptäck och håll reda på Golden Gate-parkens fåglar...
+        select_native_to_include: |
+          Välj "Inhemsk" för att endast inkludera taxa som har markerats som "Inhemsk"
+          för din(a) projektplats(er). Välj "Införd" för att endast inkludera taxa som har
+          markerats som "Införd" för din(a) projektplats(er).
+        select_quality_grade: |
+          Välj minst en kvalitetsnivå. Ytterligare förklaring av varje kvalitetsnivå finns på
+          på vår <a href="%{url}">FAQ-sida</a>.
         show_projects_as_flags: Visar projekt som flaggor på kartan
+        specify_project_filters: |
+          Ange filter som avgör vilka observationer som ska ingå i ditt projekt.
+          Du kan välja flera arter (eller taxa), platser, datum eller andra kriterier för
+          observationer som ska inkluderas automatiskt.
         start_and_end_times_for_bioblitzes: Start- och slutdatum/-tider (för evenemang av bioblitz-typ)
         traditional_projects_cannot_be_copied: Traditionellt projekt kan inte kopieras
         umbrella_project_features: "Funktionalitet för paraplyprojekt"
         unique_url_for_outreach: Unik publik URL
+        use_this_for_a_time_limited_event: |
+          Använd detta för en tidsbegränsad händelse, bioblitz eller säsongsprojekt. Välj
+          ett enskilt datum, ett intervall av datum, eller de månader på året observationerna
+          måste göras i (oavsett år). Om du använder sektionen Datumintervall, se till att
+          du har rätt tider och tidszoner valda, eller ta bort tid/tidszon-texten så att observationer
+          gjorda när som helst hela dagen inkluderas. Du kan lämna startdatum eller slutdatum
+          tomt om du vill begränsa projektet med endast ett datum.
         users_can_follow_your_project: Användare kan följa ditt projekt och få uppdateringar via dagboksinlägg
         use_this_link_to_create_html: |
           Använd <a href="%{url}">denna länk</a> för att istället skapa ett traditionellt projekt.
