@@ -1227,7 +1227,6 @@ tr:
   exact_location: Tam_konum
   exact_rank: Tam Düzey
   except: dışında
-  exclude_x: '%{x} dışında'
   exclusion_filters: Dışında Tutma Filtreleri
   existing_flags: Mevcut İşaretler
   exit_full_screen: "Tam Ekrandan Çık"
@@ -5215,11 +5214,6 @@ tr:
         or_drag_and_drop: (veya sürükle ve bırak)
         please_specify_the_requirements: |
           Lütfen bu projeye eklenecek gözlemlerin gerekliliklerini belirtiniz.
-        please_specify_the_requirements_html: |
-          Lütfen bu projeye eklenecek gözlemlerin gerekliliklerini belirtiniz. 
-          Otomatik olarak eklenecek birden fazla tür, yer, kullanıcı veya kalite derecesi 
-          belirtebilir veya belirli bir gereksiniminiz yoksa bir alanı boş bırakabilirsiniz.
-          Her alan için açıklamaları <a href="%{url}">buradan</a> bulabilirsiniz.
         project_background_color: Proje Özeti Arka Plan Rengi
         project_background_color_help: Beyaz kaplanmış metnin okunaklı olması için yeterince koyu bir renk seçtiğinize emin olun.
         project_banner: Proje Afişi (PNG, JPG, veya GIF)
