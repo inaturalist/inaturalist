@@ -18,8 +18,8 @@ class ProjectSelector extends React.Component {
       inverse
     } = this.props;
     const label = inverse
-      ? I18n.t( "exclude_x", { x: I18n.t( "projects" ) } )
-      : I18n.t( "projects" );
+      ? I18n.t( "exclude_projects" )
+      : I18n.t( "include_projects" );
     const rule = inverse ? "not_in_project?" : "in_project?";
     const rulesAttribute = inverse ? "notProjectRules" : "projectRules";
     const notTypes = ["umbrella"];
