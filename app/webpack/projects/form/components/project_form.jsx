@@ -56,7 +56,7 @@ class ProjectForm extends React.Component {
             <Col xs={12}>
               <label>{ I18n.t( "admin_s" ) }</label>
               <div className="help-text">
-                { I18n.t( "views.projects.new.include_annotated_observations" ) }
+                { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
               </div>
               <UserAutocomplete
                 ref={this.ua}
