@@ -121,7 +121,9 @@ module DarwinCore
       end
 
       def informationWithheld
-        if geoprivacy_private?
+        if @show_private_coordinates
+          nil
+        elsif geoprivacy_private?
           "Coordinates hidden at the request of the observer"
         elsif geoprivacy_obscured?
           "Coordinate uncertainty increased to #{public_positional_accuracy}m at the request of the observer"
@@ -212,7 +214,6 @@ module DarwinCore
       end
 
       def decimalLongitude
-        # longitude.to_f unless longitude.blank?
         if @show_private_coordinates
           if private_longitude.blank?
             longitude.to_f unless longitude.blank?
@@ -225,7 +226,11 @@ module DarwinCore
       end
 
       def coordinateUncertaintyInMeters
-        public_positional_accuracy
+        if @show_private_coordinates
+          positional_accuracy
+        else
+          public_positional_accuracy
+        end
       end
 
       def countryCode
