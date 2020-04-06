@@ -2269,6 +2269,7 @@ cs:
   no_favorites_added:
     current_user: Zatím jste nepřidali k oblíbeným.
     user: "Uživatel %{user} nepřidal oblíbené."
+  no_journal_posts_yet: Zatím žádné příspěvky v deníku
   no_license_all_rights_reserved: Žádná licence (všechna práva vyhrazena)
   no_managers_set: Žádní vedoucí nejsou nastaveni
   no_matching_article_from_x: "Žádný odpovídající článek z %{x}"
@@ -3157,6 +3158,7 @@ cs:
   project_group_description: Skupina, do které projekt patří
   project_home: Domov projektu
   project_icon: Ikona projektu
+  project_journal: Deník projektu
   project_id_or_url_slug: ID projektu nebo řádek URL, např. 333 nebo můj projekt
   project_invitations: 'Pozvánky do projektu'
   project_list: Seznam projektů
@@ -3166,6 +3168,7 @@ cs:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> k některým vašim pozorováním byli přidáni kurátoři
   project_members: "Členové %{project}"
+  project_members_only: Pouze členové projektu
   project_membership_model_description: Je váš projekt otevřený všem, nebo jen pozvaným lidem?
   project_observations: Pozorování v projektu
   project_post: Příspěvek v projektu
@@ -3635,6 +3638,8 @@ cs:
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Statistika pro tento rok nebyla vygenerována.
   status: Stav
+  status_globally: '%{status} globálně'
+  status_in_place: '%{status} v %{place}'
   stay_and_try_again: Zůstat a zkusit znovu
   still_no_luck?: Pořád nic?
   still_needs_id?: Může komunita potvrdit/zlepšit identifikaci?
@@ -5295,6 +5300,9 @@ cs:
           Poznámka: Tito uživatelé budou moci upravovat VŠECHNY detaily projektu včetně administrátorů.
         note_you_can_delete_the_time: |
           (Poznámka: časové pásmo můžete smazat a určit časy, pokud chcete zahrnout celé dny).
+        only_display_member_observations: |
+          Zobrazit pouze pozorování od členů projektu (lidí, kteří se k projektu připojili)
+        optionally_filter_media: Volitelně filtrovat pozorování s fotografiemi, zvuky nebo obojím.
         or_drag_and_drop: (nebo přetáhněte)
         please_specify_the_requirements: |
           Uveďte požadavky na pozorování, která mají být přidána do
@@ -5443,6 +5451,7 @@ cs:
         obs_desc: Vytvořeno před 7 dny
         obs_id_d_desc: Vytvořeno během posledních 7 dnů s ID (mohou být pozorovateli)
         observations_1_week_moving_window: Pozorování (1 týden pohyblivého okna)
+        observers_desc: V tento den bylo přidáno pozorování
         other_desc_html: Vytvořeno pomocí jiných aplikací <a href="%{url}"> vytvořených vývojáři </a>
         recent_desc: Registrován v 7 dnech
         recent_w_0_obs: Nedávné s nulovým pozorováním
