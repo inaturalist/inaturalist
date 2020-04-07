@@ -741,7 +741,6 @@ ja:
   confirm_new_password: パスワード再入力
   confirm_now: 今すぐ確認
   confirm_your_info: 登録情報をご確認ください
-  confirmed: 確認済
   connect_to_provider: "%{provider}に接続"
   connected_accounts: 関連づけられたアカウント
   connecting_flickr: "Flickrに接続中..."
@@ -1627,7 +1626,6 @@ ja:
   loading: "読み込み中..."
   loading_flickr_photos: "Flickr写真を読み込み中..."
   loading_images: 画像を読み込み中...
-  loading_map: マップを読み込み中...
   loading_metadata: メタデータを読込中...
   loading_preview_and_code: プレビュー及びコードを読み込み中...
   loading_suggestions: 提案を読み込み中…
@@ -1943,7 +1941,6 @@ ja:
   no_more_taxa_to_load: 未読込の分類群がありません
   no_more_results_found: これ以上結果がありません
   no_new_messages: 新着メッセージはありません
-  no_news_yet: ニュースはまだありません。
   no_observations: 観測記録ありません
   no_observations_from_this_place_yet: この場所からの観測記録はまだありません
   no_observations_matching_those_ids: 同定に該当する観察記録がありません
@@ -2115,7 +2112,6 @@ ja:
   old_observation_form: 旧観察記録記入フォーム（非推奨）
   ok: "OK"
   on_date: "%{date}"
-  on_your_life_list: 自分のライフリストに
   onboarding:
     observe_panel_title: 早速観察記録を投稿しよう！
     observe_panel_body_p1_local: 何を投稿すればいいのかわからない？近くに観察されている生き物を見ましょう...
@@ -2293,7 +2289,6 @@ ja:
     後で使用できるように、座標、精度、地理的位置、および地域の注釈の設定を保存します。
   place: 場所
   placeholder: プレースホルダー
-  place_added_to_inat_by: "%{site_name}にこの場所を追加したユーザ:"
   place_autocomplete_placeholder: ザイオン国立公園、マイアミなど。
   place_deleted: 場所が削除されました
   place_geo:
@@ -2702,7 +2697,6 @@ ja:
   powered_by_inaturalist_open_source_software_html: '<a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalistオープンソースソフト</a>搭載'
   present: 生息
   preview: プレビュー
-  preview_observations: 観察記録のプレビュー
   preview_of_synced_observation: "同期済の観察記録の<strong>プレビュー</strong>です。<a href=\\\"%{url}\\\">取り消しますか？</a>"
   preview_personal_message: "あなたの動植物の観察情報を記録し、ライフリストを追跡し、自然界について学ぶことができるウェブサイト%{site} に参加してください!"
   preview_your_message: メッセージをプレビュー
@@ -2935,12 +2929,6 @@ ja:
     must_be_in: 分類群に含まれなければなりません
     must_be_coordinates_shareable_by_project_curators: 観察者は、プロジェクトのキュレーターが座標を表示できるようにしなければなりません。
   running_total: 現在の総計
-  same_day_obscured: この日のこの人のもう一つの観察記録は不明瞭です。
-  same_day_obscured_desc: |
-    絶滅に瀕している分類群のために座標が不明瞭になった場合、その人がその日に観測した他のすべての観察記録も不明瞭になり、前後の観察記録から座標を特定されることを防ぐことができます。個人はこの保護を自分で選んだ座標にも適用することができます。
-  same_day_private: この日のこの人のもう一つの観察記録はプライベートです。
-  same_day_private_desc: |
-    絶滅に瀕している分類群のために座標が隠されている場合、その人がその日に観測した他のすべての観察記録の座標も隠され、前後の観察記録から座標を特定されないようにします。この保護は、個人が選択した座標にも適用することができます。
   said: が発言しました
   satellite: 航空写真
   save: 保存
@@ -3044,7 +3032,6 @@ ja:
   show_taxa_from_place: "%{place}からの分類群を表示"
   show_total_counts: 合計数を表示
   show_uncountable_species: 数えられない種を表示
-  showing_one_to: 表示 1 -
   showing_taxa_from_everywhere: "すべての場所からの分類群を表示中"
   showing_taxa_from_place: "%{place}からの分類群を表示中"
   showing_x_of_y: '%{y} 中の%{x} を表示中'
