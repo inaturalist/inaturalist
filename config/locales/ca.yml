@@ -821,7 +821,6 @@ ca:
   confirm_new_password: Confirmeu la contrasenya nova
   confirm_now: Confirmeu ara
   confirm_your_info: Confirmeu les vostres dades
-  confirmed: confirmada
   connect_to_provider: "Connecteu-vos a %{provider}"
   connected_accounts: Comptes vinculats
   connecting_flickr: "Connectant-se a Flickr..."
@@ -1787,7 +1786,6 @@ ca:
   loading: "Carregant..."
   loading_flickr_photos: "Carregant fotos de Flickr..."
   loading_images: Carregant imatges...
-  loading_map: Carregant mapa...
   loading_metadata: Carregant metadades...
   loading_preview_and_code: Carregant previsualització i codi...
   loading_suggestions: Carregant suggeriments...
@@ -2152,7 +2150,6 @@ ca:
   no_more_taxa_to_load: Ja no queden més tàxons per carregar!
   no_more_results_found: No s'han trobat més resultats
   no_new_messages: No hi ha nous missatges
-  no_news_yet: No hi ha encara cap notícia
   no_observations: Sense observacions
   no_observations_from_this_place_yet: Encara no hi ha observacions per a aquest lloc.
   no_observations_matching_those_ids: No hi ha observacions que coincideixin amb aquestes ID.
@@ -2368,7 +2365,6 @@ ca:
   ok: "D’acord"
   on_date: "el %{date}"
   on_day: "el"
-  on_your_life_list: a la vostra llista de vida
   onboarding:
     observe_panel_title: Anem a començar publicant algunes observacions
     observe_panel_body_p1_local: Necessiteu inspiració? Aquí teniu alguns organismes observats a prop...
@@ -2552,7 +2548,6 @@ ca:
     Enganxeu aquesta combinació de coordenades, precisió, geoprivacitat i notes de localitat per utilitzar-les més tard.
   place: Lloc
   placeholder: Posició
-  place_added_to_inat_by: "Lloc afegit a %{site_name} per"
   place_autocomplete_placeholder: Parc Nacional Zion, Miami, etc.
   place_deleted: Lloc eliminat.
   place_geo:
@@ -2963,7 +2958,6 @@ ca:
   present: present
   press: Premsa
   preview: Vista prèvia
-  preview_observations: Previsualitzeu observacions
   preview_observations_with_these_observation_requirements: Previsualitzar Observacions amb aquests Requisits de les Observacions
   preview_of_synced_observation: "<strong>Previsualització</strong> de l'observació sincronitzada.  <a href=\"%{url}\">La voleu desfer?</a>"
   preview_personal_message: "M'agradaria que em seguissis a %{site}, un lloc web on podreu registrar les observacions de plantes i animals, portar un control de la vostra llista de vida i aprendre sobre el món natural."
@@ -3228,12 +3222,6 @@ ca:
     must_be_in: ha d'estar en el tàxon
     must_be_coordinates_shareable_by_project_curators: l'observador ha de permetre als supervisors del projecte veure les coordenades.
   running_total: Acumulat total
-  same_day_obscured: Una altra observació d'aquesta persona aquest dia està enfosquida
-  same_day_obscured_desc: |
-    Quan les coordenades són enfosquides a causa d'un tàxon en perill, la resta d'observacions d'aquella persona en aquell dia també és enfosquida per impedir que altres persones puguin endevinar les coordenades a partir de les observacions fetes al voltant d'aquella al mateix moment. Els individus també poden aplicar aquesta protecció a coordenades que han escollit enfoquir.
-  same_day_private: Un altra observació d'aquesta persona aquest dia és privada
-  same_day_private_desc: |
-    Quan les coordenades s'oculten a causa d'un tàxon en perill, la resta d'observacions d'aquella persona en aquell dia també s'oculten per impedir que altres persones puguin endevinar les coordenades a partir de les observacions fetes al voltant d'aquella al mateix moment. Els individus també poden aplicar aquesta protecció a coordenades que han escollit ocultar.
   said: deia
   satellite: satèl·lit
   save: Desa
@@ -3345,7 +3333,9 @@ ca:
   show_taxa_from_place: "Mostra tàxon de %{place}"
   show_total_counts: Mostra el recompte total
   show_uncountable_species: Mostra espècies incomptables
-  showing_one_to: Mostrant 1 -
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Primers %{x}
   showing_taxa_from_everywhere: "Mostrant tàxons de tot arreu"
   showing_taxa_from_place: "Mostrant tàxons de %{place}"
   showing_x_of_y: Mostrant %{x} de %{y}
@@ -4045,8 +4035,6 @@ ca:
   view_observation_flags: Veure marques de l'observació
   view_observations_by_everyone: Veure observacions de tothom
   view_observations_by_these_users: Veure Observacions d'aquests Usuaris
-  view_observations_causing_this_observation_to_be_obscured: |
-    Veure les observacions que provoquen l'enfosquiment d'aquesta observació
   view_observations_of_this_taxon_by: Veure observacions d'aquest tàxon de
   view_on: Mostra a
   view_on_flickr: Mostra-ho a Flickr
