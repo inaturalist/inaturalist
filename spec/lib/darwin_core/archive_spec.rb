@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe DarwinCore::Archive, "make_metadata" do
+  elastic_models( Observation )
+  before do
+    make_research_grade_observation
+  end
   it "should include an archive license if specified" do
     license = "CC0"
     archive = DarwinCore::Archive.new( license: license )

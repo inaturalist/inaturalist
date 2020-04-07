@@ -7,14 +7,28 @@ module DarwinCore
       @contact = site.contact || {}
       @creator = @contact || {}
       @metadata_provider = @contact || {}
-      scope = ::Observation.query( @observations_params )
-      if options[:extensions] && 
-          (options[:extensions].include?("EolMedia") || options[:extensions].include?("SimpleMultimedia"))
-        scope = scope.has_photos
-      end
-      @extent     = scope.calculate(:extent, :geom)
-      @start_date = scope.minimum(:observed_on)
-      @end_date   = scope.maximum(:observed_on)
+      es_response = Observation.elastic_search( Observation.params_to_elastic_query( @observations_params ).merge( {
+        aggs: {
+          bbox: {
+            geo_bounds: {
+              field: "location"
+            }
+          },
+          start_date: {
+            min: {
+              field: "observed_on"
+            }
+          },
+          end_date: {
+            max: {
+              field: "observed_on"
+            }
+          }
+        }
+      } ) )
+      @extent     = es_response.aggregations.bbox.bounds if es_response.aggregations.bbox
+      @start_date = Date.parse( es_response.aggregations.start_date.value_as_string ) if es_response.aggregations.start_date
+      @end_date   = Date.parse( es_response.aggregations.end_date.value_as_string ) if es_response.aggregations.end_date
       @license    = options[:license]
       @uri        = ::FakeView.observations_url( @observations_params )
       @taxa       = ::Taxon.where( id: @observations_params[:taxon_ids] ).limit( 200 ).all

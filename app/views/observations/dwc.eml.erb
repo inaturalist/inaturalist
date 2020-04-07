@@ -117,10 +117,10 @@
       <geographicCoverage>
         <geographicDescription>Bounding Box</geographicDescription>
         <boundingCoordinates>
-          <westBoundingCoordinate><%= [@extent.lower_corner.x, -180].max %></westBoundingCoordinate>
-          <eastBoundingCoordinate><%= [@extent.upper_corner.x, 180].min %></eastBoundingCoordinate>
-          <northBoundingCoordinate><%= [@extent.upper_corner.y, 90].min %></northBoundingCoordinate>
-          <southBoundingCoordinate><%= [@extent.lower_corner.y, -90].max %></southBoundingCoordinate>
+          <westBoundingCoordinate><%= [@extent.top_left.lon, -180].max %></westBoundingCoordinate>
+          <eastBoundingCoordinate><%= [@extent.bottom_right.lon, 180].min %></eastBoundingCoordinate>
+          <northBoundingCoordinate><%= [@extent.top_left.lat, 90].min %></northBoundingCoordinate>
+          <southBoundingCoordinate><%= [@extent.bottom_right.lat, -90].max %></southBoundingCoordinate>
         </boundingCoordinates>
       </geographicCoverage>
       <% end %>
