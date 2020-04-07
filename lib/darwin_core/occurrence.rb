@@ -194,11 +194,15 @@ module DarwinCore
       end
 
       def verbatimEventDate
-        dwc_filter_text(observed_on_string) unless observed_on_string.blank?
+        dwc_filter_text( observed_on_string ) unless observed_on_string.blank?
       end
 
       def verbatimLocality
-        dwc_filter_text(place_guess) unless place_guess.blank?
+        if @show_private_coordinates
+          dwc_filter_text(private_place_guess || place_guess) unless place_guess.blank?
+        else
+          dwc_filter_text( place_guess ) unless place_guess.blank?
+        end
       end
 
       def decimalLatitude

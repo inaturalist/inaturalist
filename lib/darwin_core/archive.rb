@@ -179,7 +179,7 @@ module DarwinCore
       params = {}
       params[:license] = [@opts[:licenses]].flatten.compact.join( "," ) unless @opts[:licenses].include?( "ignore" )
       params[:place_id] = @place.id if @place
-      params[:taxon_ids] = @taxa.map(&:id).join( "," ) if @taxa
+      params[:taxon_ids] = @taxa.map(&:id) if @taxa
       params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality] === "verifiable" ? "research,needs_id" : @opts[:quality]
       params[:site_id] = @opts[:site_id]
