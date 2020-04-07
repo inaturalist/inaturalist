@@ -836,7 +836,6 @@ fi:
   confirm_new_password: Vahvista uusi salasana
   confirm_now: Vahvista nyt
   confirm_your_info: Vahvista tietosi
-  confirmed: vahvistettu
   connect_to_provider: "Yhdistä palveluun %{provider}"
   connected_accounts: Yhdistetyt tilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
@@ -1778,7 +1777,6 @@ fi:
   loading: "Ladataan..."
   loading_flickr_photos: "Ladataan Flickr kuvia..."
   loading_images: Ladataan kuvia...
-  loading_map: Ladataan karttaa...
   loading_metadata: Ladataan metadataa...
   loading_preview_and_code: Ladataan esikatselua ja koodia...
   loading_suggestions: Ladataan ehdotuksia...
@@ -2131,7 +2129,6 @@ fi:
   no_more_taxa_to_load: Ei enempää taksoneita ladattavissa!
   no_more_results_found: Enenpää tuloksia ei löytynyt
   no_new_messages: Ei uusia viestejä
-  no_news_yet: Ei vielä uutisia
   no_observations: Ei havaintoja
   no_observations_from_this_place_yet: Ei vielä havaintoja tästä paikasta.
   no_observations_matching_those_ids: Ei havaintoja, jotka vastaavat näitä tunnistuksia
@@ -2330,7 +2327,6 @@ fi:
   ok: "OK"
   on_date: "%{date}"
   on_day: "päivänä"
-  on_your_life_list: elämänpinnalistallasi
   onboarding:
     observe_panel_title: Aloita tallentamalla havaintoja
     observe_panel_body_p1_local: Tarvitsetko inspiraatiota? Tässä on joitain lähellä havaittuja eliöitä...
@@ -2505,7 +2501,6 @@ fi:
     Kiinnitä tämä yhdistelmä koordinaateista, tarkkuudesta, paikannuksen yksityisyydestä ja sijainnista myöhempää käyttöä varten.
   place: Paikka
   placeholder: Väliaikainen nimi
-  place_added_to_inat_by: "Paikan %{site_name}iin lisännyt"
   place_autocomplete_placeholder: Pirkanmaa, Tampere tms.
   place_deleted: Paikka poistettu.
   place_geo:
@@ -2909,7 +2904,6 @@ fi:
   present: nykyisyys
   press: Lehdistö
   preview: Esikatsele
-  preview_observations: Esikatsele havaintoja
   preview_observations_with_these_observation_requirements: Esikatsele havaintoja, joilla on nämä vaatimukset
   preview_personal_message: "Haluaisin sinun liittyvän %{site}iin, verkkosivulle missä voit tallentaa havaintojasi kasveista ja eläimistä, pitää kirjaa elämäluettelostasi ja oppia luonnollisesta maailmasta!"
   preview_your_message: Esikatsele viestiäsi
@@ -3157,8 +3151,6 @@ fi:
     must_be_in: täytyy olla taksonissa
     must_be_coordinates_shareable_by_project_curators: havainnoijan on annettava projektin kuraattoreille mahdollisuus tarkistella koordinaatteja.
   running_total: Kumulatiivinen summa
-  same_day_obscured_desc: |
-    Kun uhanalaisen lajin havainnon koordinaatit karkeistetaan, karkeistetaan myös muut havainnoitsijan samana päivänä tekemät havainnot, jotta muista samaan aikaan tehdyistä havainnoista ei voida päätellä karkeistetun havainnon sijaintia. Saman karkeistuksen voi valita myös niille havainnoille, jotka itse päättää karkeistaa.
   said: sanoi
   satellite: satelliitti
   save: Tallenna
@@ -3261,7 +3253,6 @@ fi:
   show_taxa_from_place: "Näytä taksonit paikasta %{place}"
   show_total_counts: Näytä yhteismäärä
   show_uncountable_species: Näytä ei-laskettavat lajit
-  showing_one_to: Näytetään 1 -
   showing_taxa_from_everywhere: "Näytetään taksonit kaikkialta"
   showing_taxa_from_place: "Näytetään taksonit paikasta %{place}"
   showing_x_of_y: Näytetään %{x}/%{y}
