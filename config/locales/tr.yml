@@ -828,7 +828,6 @@ tr:
   confirm_new_password: Yeni Şifreyi Onayla
   confirm_now: Şimdi onayla
   confirm_your_info: Bilgini onayla
-  confirmed: onaylandı
   connect_to_provider: "%{provider}'a bağlandı"
   connected_accounts: Hesaplara bağlandı
   connecting_flickr: "Flickr'ye bağlanıyor... "
@@ -1782,7 +1781,6 @@ tr:
   loading: "Yükleniyor..."
   loading_flickr_photos: "Flickr fotoğrafları yükleniyor..."
   loading_images: Resimler yükleniyor...
-  loading_map: Harita yükleniyor...
   loading_metadata: Üst veri yükleniyor...
   loading_preview_and_code: Ön izleme ve kod yükleniyor...
   loading_suggestions: Öneriler yükleniyor...
@@ -2146,7 +2144,6 @@ tr:
   no_more_taxa_to_load: Yüklenecek başka sınıflar yok!
   no_more_results_found: Başka sonuç bulunamadı
   no_new_messages: Yeni ileti yok
-  no_news_yet: Henüz haber yok
   no_observations: Gözlem Yok
   no_observations_from_this_place_yet: Bu yerden henüz gözlem yok.
   no_observations_matching_those_ids: Bu tanımlamalarla eşleşen gözlem yok.
@@ -2361,7 +2358,6 @@ tr:
   ok: "TAMAM"
   on_date: "%{date} tarihinde"
   on_day: "şu tarihte"
-  on_your_life_list: yaşam listenizde
   onboarding:
     observe_panel_title: Haydi Bazı Gözlemler Göndererek Başlayalım
     observe_panel_body_p1_local: Düşüceye mi gereksiniminiz var? İşte yakınlarda bazı organizmalar gözlemleniyor...
@@ -2539,7 +2535,6 @@ tr:
     Daha sonra kullanmak üzere bu koordinat, doğruluk, coğrafi gizlilik ve konum notlarının birleşimini işaretleyin.
   place: Yer
   placeholder: Yer imi
-  place_added_to_inat_by: "Yer, şu kişi tarafından, %{site_name} eklendi"
   place_autocomplete_placeholder: Zion Ulusal Parkı, Miami, vb.
   place_deleted: Yer silindi.
   place_geo:
@@ -2950,7 +2945,6 @@ tr:
   present: mevcut
   press: Basın
   preview: Ön İzleme
-  preview_observations: Gözlemleri Ön İzle
   preview_of_synced_observation: "Eşitlenmiş gözlemi <strong>ön izleme</strong>. <a href=\"%{url}\">Geri alınsın mı?</a>"
   preview_personal_message: "Bitkiler ve hayvanlarla ilgili gözlemlerinizi kaydedebileceğin, yaşam listenizi izleyebileceğin ve doğal dünyayı öğrenebileceğin yer olan %{site} sayfasında bana katılmanı istiyorum!"
   preview_your_message: İletini ön izle
@@ -3213,12 +3207,6 @@ tr:
     must_be_in: bir sınıfta olmalı
     must_be_coordinates_shareable_by_project_curators: gözlemci, proje sorumlularının koordinatları görmesine izin vermelidir.
   running_total: Toplam Bulunan
-  same_day_obscured: Bu kişinin, bu gün başka bir gözlemi gizlendi
-  same_day_obscured_desc: |
-    Tehdit edilen bir sınıf nedeniyle koordinatlar gizlendiğinde, aynı günlerde yapılan gözlemlere dayanarak, insanların o koordinatları öngörmelerini engellemek için o kişinin o gün yaptığı diğer tüm gözlemler de gizlenir. Kişiler, bu korumayı gizlemeyi seçtikleri koordinatlara da uygulayabilirler.
-  same_day_private: Bu kişinin, bu gün başka bir gözlemi özel
-  same_day_private_desc: |
-    Tehdit edilen bir sınıf nedeniyle koordinatlar saklandığında, aynı günlerde yapılan gözlemlere dayanarak, insanların o koordinatları öngörmelerini engellemek için o kişinin o gün yaptığı diğer tüm gözlemler de saklanır. Kişiler, bu korumayı saklamayı seçtikleri koordinatlara da uygulayabilirler.
   said: şunu dedi
   satellite: uydu
   save: Kaydet
@@ -3330,7 +3318,6 @@ tr:
   show_taxa_from_place: "%{place} konumundan sınıfları göster"
   show_total_counts: Toplam sayıyı göster
   show_uncountable_species: Sayılamayan türleri göster
-  showing_one_to: Gösterilen 1 -
   showing_taxa_from_everywhere: "Her yerden sınıflar gösteriliyor"
   showing_taxa_from_place: "%{place} konumundan sınıflar gösteriliyor"
   showing_x_of_y: Gösterilen %{y} / %{x}
@@ -4024,8 +4011,6 @@ tr:
   view_observation_flags: Gözlem işaretlerini görüntüle
   view_observations_by_everyone: Herkesin gözlemlerini görüntüle
   view_observations_by_these_users: Bu Kullanıcıların Gözlemlerini Görüntüle
-  view_observations_causing_this_observation_to_be_obscured: |
-    Bu gözlemin gizlenmesine yol açan gözlemleri incele
   view_observations_of_this_taxon_by: Bu sınıfın gözlemlerini şu açıdan görüntüle
   view_on: Şunun üzerinden görüntüle
   view_on_flickr: Flickr'da Görüntüle
