@@ -826,7 +826,6 @@ fr:
   confirm_new_password: Confirmer le nouveau mot de passe
   confirm_now: Confirmer maintenant
   confirm_your_info: Confirmer votre information
-  confirmed: confirmé(s)
   connect_to_provider: "Connectez-vous à %{provider}"
   connected_accounts: Comptes connectés
   connecting_flickr: "Connexion à Flickr…"
@@ -1791,7 +1790,6 @@ fr:
   loading: "Chargement en cours…"
   loading_flickr_photos: "Chargement des photos de Flickr…"
   loading_images: Chargement des images…
-  loading_map: Chargement de la carte…
   loading_metadata: Chargement des métadonnées...
   loading_preview_and_code: Chargement de l’aperçu et du code…
   loading_suggestions: Chargement des suggestions ...
@@ -2125,7 +2123,6 @@ fr:
   no_more_taxa_to_load: Il ne reste plus de taxons à charger!
   no_more_results_found: Pas d'autres résultats trouvés
   no_new_messages: Aucun nouveau message
-  no_news_yet: Encore aucune actualité
   no_observations: Pas d'observations
   no_observations_from_this_place_yet: Aucune observation dans ce lieu jusqu’à présent.
   no_observations_matching_those_ids: Aucune observation correspondant à ces identifications.
@@ -2345,7 +2342,6 @@ fr:
   ok: "OK"
   on_date: "le %{date}"
   on_day: "le"
-  on_your_life_list: dans votre liste des êtres vivants
   onboarding:
     observe_panel_title: Commençons par publier quelques observations
     observe_panel_body_p1_local: Besoin d’inspiration ? Voici quelques organismes observés à proximité…
@@ -2534,7 +2530,6 @@ fr:
     Épingler cette combinaison de coordonnées, de précision, de confidentialité géographique et de notes de lieux, pour un usage ultérieur.
   place: Lieu
   placeholder: Signet (élément de substitution)
-  place_added_to_inat_by: "Lieu ajouté à %{site_name} par"
   place_autocomplete_placeholder: Parc National de Zion, Miami, etc...
   place_deleted: Lieu supprimé.
   place_geo:
@@ -2945,7 +2940,6 @@ fr:
   present: présent
   press: Presse
   preview: Aperçu
-  preview_observations: Aperçu des observations
   preview_of_synced_observation: "<strong>Aperçu</strong> de l’observation synchronisée. <a href=\"%{url}\">Annulez ?</a>"
   preview_personal_message: "J’aimerais que vous me rejoigniez sur %{site}, un site web où vous pouvez enregistrer vos observations sur les plantes et les animaux, garder trace des espèces observées et en apprendre plus sur le monde de la nature !"
   preview_your_message: Aperçu de votre message
@@ -3203,20 +3197,6 @@ fr:
     must_be_in: doit être dans le taxon
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser les responsables du projet à voir les coordonnées.
   running_total: Total actuel
-  same_day_obscured: Une autre observation de cette personne faite ce jour est obscurcie
-  same_day_obscured_desc: |
-    Quand les coordonnées sont masquées à cause d’un taxon menacé, toutes les autres
-    observations faites par cette personne le même jour sont aussi masquées, pour éviter que les gens
-    devinent les coordonnées d’après les observations faites aux alentours pendant la même
-    période. Les individus peuvent aussi appliquer cette protection aux coordonnées qu’ils ont
-    choisi de masquer.
-  same_day_private: Une autre observation de cette personne faite ce jour est privée
-  same_day_private_desc: |
-    Quand les coordonnées sont masquées à cause d’un taxon menacé, toutes les autres
-    observations faites par cette personne le même jour sont aussi masquées, pour éviter que les gens
-    devinent les coordonnées d’après les observations faites aux alentours pendant la même
-    période. Les individus peuvent aussi appliquer cette protection aux coordonnées qu’ils ont
-    choisi de masquer.
   said: a dit
   satellite: satellite
   save: Enregistrer
@@ -3326,7 +3306,6 @@ fr:
   show_taxa_from_place: "Afficher les taxons de %{place}"
   show_total_counts: Afficher les compteurs totaux
   show_uncountable_species: Afficher les espèces indénombrables
-  showing_one_to: Affichage de 1 à
   showing_taxa_from_everywhere: "Affichage des taxons de partout"
   showing_taxa_from_place: "Affichage des taxons de %{place}"
   showing_x_of_y_listings: "Affiche %{x} de %{y} listes"
@@ -4027,8 +4006,6 @@ fr:
   view_observation_flags: Voir les signalements pour cette observation
   view_observations_by_everyone: Afficher les observations de tout le monde
   view_observations_by_these_users: Afficher les observations faites par ces utilisateurs
-  view_observations_causing_this_observation_to_be_obscured: |
-    Afficher les observations provoquant le masquage de celle-ci
   view_observations_of_this_taxon_by: Afficher les observations de ce taxon par
   view_on: Afficher sur
   view_on_flickr: Afficher sur Flickr
