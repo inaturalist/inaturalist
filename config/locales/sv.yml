@@ -847,7 +847,6 @@ sv:
   confirm_new_password: Bekräfta nytt lösenord
   confirm_now: Bekräfta nu
   confirm_your_info: Bekräfta din info
-  confirmed: bekräftad
   connect_to_provider: "Anslut till %{provider}"
   connected_accounts: Anslutna konton
   connecting_flickr: "Ansluter till Flickr..."
@@ -1843,7 +1842,6 @@ sv:
   loading: "Laddar..."
   loading_flickr_photos: "Laddar Flickr-bilder..."
   loading_images: Laddar bilder...
-  loading_map: Laddar karta...
   loading_metadata: Laddar metadata...
   loading_preview_and_code: Laddar förhandsgranskning och kod...
   loading_suggestions: Läser in förslag...
@@ -2211,7 +2209,6 @@ sv:
   no_more_taxa_to_load: Inga fler taxa att ladda!
   no_more_results_found: Inga fler resultat hittades
   no_new_messages: Inga nya inlägg
-  no_news_yet: Inga nyheter ännu
   no_observations: Inga observationer
   no_observations_from_this_place_yet: Inga observationer från denna plats än.
   no_observations_matching_those_ids: Inga observationer som matchar de bestämningarna.
@@ -2444,7 +2441,6 @@ sv:
   ok: "OK"
   on_date: "den %{date}"
   on_day: "på"
-  on_your_life_list: på din livslista
   onboarding:
     observe_panel_title: Låt oss komma igång genom att posta några observationer
     observe_panel_body_p1_local: Behöver du inspiration? Här är några organismer som observeras i närheten...
@@ -2637,7 +2633,6 @@ sv:
     Nåla denna kombination av koordinater, noggrannhet, geosekretess och lokalanteckningar för senare användning.
   place: Plats
   placeholder: Platshållare
-  place_added_to_inat_by: "Plats lades till i %{site_name} av"
   place_autocomplete_placeholder: Zion National Park, Miami, etc.
   place_deleted: Plats borttagen.
   place_geo:
@@ -3076,7 +3071,6 @@ sv:
   present: påträffad
   press: Tryck
   preview: Förhandsgranska
-  preview_observations: Förhandsgranska observationer
   preview_observations_with_these_observation_requirements: Förhandsgranska observationer med dessa observationskrav
   preview_of_synced_observation: "<strong>Förhandsgranskning</strong> av synkroniserad observation.  <a href=\"%{url}\">Ångra?</a>"
   preview_personal_message: "Jag vill bjuda in dig till %{site}, en webbplats där du kan spara dina observationer av växter och djur, hålla koll på din livslista och lär dig om naturen!"
@@ -3349,20 +3343,6 @@ sv:
     must_be_in: måste finnas i taxon
     must_be_coordinates_shareable_by_project_curators: observatören måste tillåta projekthandläggare att se koordinater.
   running_total: Ackumulerat
-  same_day_obscured: En annan observation av denna person denna dag är diffuserad
-  same_day_obscured_desc: |
-    När koordinater diffuseras på grund av ett hotat taxon, är alla andra
-    observationer av den personen på samma dag också diffuserade för att
-    förhindra att man gissar koordinaterna baserat på observationer
-    gjorda ungefär samtidigt. Man kan också tillämpa detta skydd för
-    koordinater man har valt att diffusera.
-  same_day_private: En annan observation av denna person denna dag är privat
-  same_day_private_desc: |
-    När koordinater döljs på grund av ett hotat taxon, är alla andra
-    observationer av den personen på samma dag också dolda för att
-    förhindra att man gissar koordinaterna baserat på observationer
-    gjorda ungefär samtidigt. Man kan också tillämpa detta skydd för
-    koordinater man har valt att dölja.
   said: sade
   satellite: satellit
   save: Spara
@@ -3476,7 +3456,9 @@ sv:
   show_taxa_from_place: "Visa taxa från %{place}"
   show_total_counts: Visa totalt antal
   show_uncountable_species: Visa oräkneliga arter
-  showing_one_to: Visar 1 -
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Visar %{x} första
   showing_taxa_from_everywhere: "Visa taxa från alla ställen"
   showing_taxa_from_place: "Visa taxa från %{place}"
   showing_x_of_y: Visar %{x} av %{y}
@@ -4227,8 +4209,6 @@ sv:
   view_observation_flags: Visa observationsflaggor
   view_observations_by_everyone: Visa observationer av alla
   view_observations_by_these_users: Visa observationer av dessa användare
-  view_observations_causing_this_observation_to_be_obscured: |
-    Visa observationer som gör att denna observation diffuseras
   view_observations_of_this_taxon_by: Visa observationer av detta taxon av
   view_on: Visa på
   view_on_flickr: Visa på Flickr
