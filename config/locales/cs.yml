@@ -2,8 +2,8 @@ cs:
   x_comments:
     one: '%{count} komentář'
     few: '%{count} komentáře'
-    many: '%{count} komentáře'
-    other: '%{count} komentáře'
+    many: '%{count} komentářů'
+    other: '%{count} komentářů'
   x_faves:
     one: '%{count} oblíbený'
     few: '%{count} oblíbené'
@@ -127,9 +127,9 @@ cs:
     other: "%{count} fotek"
   x_new_species:
     one: "1 nový druh"
-    few: "%{count} Nové druhy"
-    many: "%{count} Nové druhy"
-    other: "%{count} Nové druhy"
+    few: "%{count} nové druhy"
+    many: "%{count} nových druhů"
+    other: "%{count} nových druhů"
   x_new_users:
     one: '%{count} nový uživatel'
     few: '%{count} noví uživatelé'
@@ -946,7 +946,6 @@ cs:
   confirm_new_password: Potvrzení nového hesla
   confirm_now: potvrďte nyní
   confirm_your_info: Potvrďte vaše informace
-  confirmed: potvrzeno
   connect_to_provider: "Připojit se k %{provider}"
   connected_accounts: Připojené účty
   connecting_flickr: "Připojování k Flickru..."
@@ -1086,6 +1085,7 @@ cs:
   custom_project_was_successfully_updated: Vlastní projekt byl úspěšně aktualizován.
   customize_location: Upravit lokalitu
   darr_apply_darr: "&darr; Použít &darr;"
+  daily_users: Denní uživatelé
   dashboard: Nástěnka
   data_deficient: chybějící údaje
   data_quality: Kvalita údajů
@@ -1919,7 +1919,6 @@ cs:
   loading: "Načítání..."
   loading_flickr_photos: "Nahrávání fotografií z Flickru..."
   loading_images: Načítání obrázků...
-  loading_map: Načítání mapy...
   loading_metadata: Načítání metadat...
   loading_preview_and_code: Načítání náhledů a kódu...
   loading_suggestions: Načítání návrhů...
@@ -2286,7 +2285,6 @@ cs:
   no_more_taxa_to_load: Žádné další taxony k nahrání!
   no_more_results_found: Žádné další nalezené výsledky
   no_new_messages: Žádné nové zprávy
-  no_news_yet: Žádné novinky ještě
   no_observations: žádná pozorování
   no_observations_from_this_place_yet: Zatím žádná pozorování z tohoto místa.
   no_observations_matching_those_ids: Žádná pozorování odpovídající těmto ID.
@@ -2502,7 +2500,6 @@ cs:
   ok: "Jo"
   on_date: "dne %{date}"
   on_day: "dne"
-  on_your_life_list: na vašem seznamu života
   onboarding:
     observe_panel_title: Začněme odesláním nějakých pozorování
     observe_panel_body_p1_local: Hledáte inspiraci? Zde najdete několik organismů, které jsou pozorovány v okolí...
@@ -2689,7 +2686,6 @@ cs:
     Připojte tuto kombinaci souřadnic, přesnosti, geografické důvěrnosti a poznámky k místům pro pozdější použití.
   place: Místo
   placeholder: Zástupný text
-  place_added_to_inat_by: "Místo přidáno na %{site_name} uživatelem"
   place_autocomplete_placeholder: Zion National Park, Miami, atd.
   place_deleted: Místo bylo smazáno.
   place_geo:
@@ -3116,7 +3112,7 @@ cs:
   present: přítomný
   press: Tisk
   preview: Náhled
-  preview_observations: Předchozí pozorování
+  preview_observations_with_these_observation_requirements: Náhled pozorování s těmito požadavky na pozorování
   preview_of_synced_observation: "<strong>Náhled</strong> synchronizovaného pozorování.  <a href=\"%{url}\">Zpět?</a>"
   preview_personal_message: "Rád/a bych, abyste se ke mně připojili na stránce %{site}, kde můžete zaznamenávat svá pozorování rostlin a živočichů, sledovat svůj seznam života a dozvídat se o světě přírody!"
   preview_your_message: Náhled vaší zprávy
@@ -3384,13 +3380,6 @@ cs:
     must_be_in: musí být v taxonu
     must_be_coordinates_shareable_by_project_curators: pozorovatel musí kurátorům projektu zpřístupnit náhled souřadnic.
   running_total: Spuštění celkem
-  same_day_obscured: Další pozorování této osoby v tento den je zakryto
-  same_day_obscured_desc: |
-    Když jsou souřadnice zakryty kvůli taxonu, všechny ostatní
-    pozorování této osoby v tento den jsou také zakryty, aby se zabránilo lidem uhádnout souřadnice na základě pozorování kolem sebe ve stejný čas. Tuto ochranu mohou uplatnit i jednotlivci a byla zvolena tak, aby zakryla souřadnice.
-  same_day_private: Další pozorování této osoby v tento den je soukromé
-  same_day_private_desc: |
-    Když je taxon ohrožený, pozorování této osoby v tento den je také skryté, aby se zabránilo lidem uhádnout souřadnice na základě pozorování kolem sebe ve stejný čas. Tuto ochranu mohou uplatnit i jednotlivci a skrýt souřadnice.
   said: řekl/a
   satellite: satelitní
   save: Uložit
@@ -3504,7 +3493,9 @@ cs:
   show_taxa_from_place: "Zobrazit taxony z %{place}"
   show_total_counts: Zobrazit celkový počet
   show_uncountable_species: Zobrazit nespočitatelné druhy
-  showing_one_to: Zobrazení 1 -
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Zobrazeno prvních %{x}
   showing_taxa_from_everywhere: "Zobrazení taxonů ze všech míst"
   showing_taxa_from_place: "Zobrazení taxonů z %{place}"
   showing_x_of_y: Zobrazování %{x} z %{y}
@@ -4252,8 +4243,6 @@ cs:
   view_observation_flags: Zobrazit vlajky pozorování
   view_observations_by_everyone: Zobrazit pozorování všech
   view_observations_by_these_users: Zobrazit pozorování od těchto uživatelů
-  view_observations_causing_this_observation_to_be_obscured: |
-    Zobrazte pozorování, která způsobí, že toto pozorování bude zakryto
   view_observations_of_this_taxon_by: Zobrazit pozorování tohoto taxonu
   view_on: Zobrazit na
   view_on_flickr: Zobrazit na Flickru
@@ -5289,6 +5278,10 @@ cs:
           Potřebujete informace z tradičních projektů, jako je přístup k souřadnicím, nebo přidávání jednotlivých pozorování, která nemohou být automaticky
           filtrována?
         duplicate_project: Duplikovat projekt
+        include_annotated_observations: |
+          Zahrnout pouze pozorování anotované určitým atributem (např. životní stádium),
+          nebo konkrétním atributem a hodnotou (např. životní fáze = dospělý).
+          Na projekt je limit jednoho anotačního filtru.
         leaderboards_among_individuals: Výsledkové tabulky mezi <strong>individuals</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Výsledková tabulky mezi <strong>projects and bioblitzes</strong>
@@ -5320,6 +5313,9 @@ cs:
         project_summary_help: |
           Uveďte stručné vysvětlení svého projektu. Prvních 200  znaků bude vidět napravo od banneru domovské obrazovky projektu, takže dejte to nejlepší!
         project_summary_placeholder: Objevte a sledujte ptáky v Golden Gate parku...
+        select_quality_grade: |
+          Vyberte alespoň jeden stupeň kvality. Další vysvětlení pro každý stupeň kvality naleznete na
+          naší <a href="%{url}">FAQ stránce</a>.
         show_projects_as_flags: Zobrazit projekty jako vlajky na mapě
         start_and_end_times_for_bioblitzes: Časy začátku a konce pro bioblitzes
         traditional_projects_cannot_be_copied: Tradiční projekt nelze kopírovat
