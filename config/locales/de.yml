@@ -810,7 +810,6 @@ de:
   confirm_new_password: Neues Kennwort bestätigen
   confirm_now: Jetzt bestätigen
   confirm_your_info: Bestätige deine Info
-  confirmed: bestätigt
   connect_to_provider: "Verbinde mit %{provider}"
   connected_accounts: Verbundene Konten
   connecting_flickr: "Verbinde mit Flickr..."
@@ -1764,7 +1763,6 @@ de:
   loading: "Lädt..."
   loading_flickr_photos: "Lade Flickr-Fotos …"
   loading_images: Lade Bilder…
-  loading_map: Lade Karte...
   loading_metadata: Lade Metadaten...
   loading_preview_and_code: Lade Vorschau und Code...
   loading_suggestions: Lade Vorschläge...
@@ -2102,7 +2100,6 @@ de:
   no_more_taxa_to_load: Keine Taxa mehr zu laden!
   no_more_results_found: Keine weiteren Ergebnisse gefunden
   no_new_messages: Keine neuen Nachrichten
-  no_news_yet: Noch keine News
   no_observations: keine Beobachtungen
   no_observations_from_this_place_yet: Noch keine Beobachtungen von diesem Ort.
   no_observations_matching_those_ids: Keine Beobachtungen, die zu diesen IDs passen.
@@ -2308,7 +2305,6 @@ de:
   ok: "OK"
   on_date: "am %{date}"
   on_day: "am"
-  on_your_life_list: auf deiner Life-Liste
   onboarding:
     observe_panel_title: Fangen wir an und posten ein paar Beobachtungen
     observe_panel_body_p1_local: Brauchst du Inspiration? Hier sind ein paar Lebewesen, die in der Gegend beobachtet wurden...
@@ -2492,7 +2488,6 @@ de:
     Setze diese Kombination aus Koordinaten, Genauigkeit, Geodatenschutz und Ortsangaben für die spätere Verwendung fest.
   place: Gebiet
   placeholder: Platzhalter
-  place_added_to_inat_by: "Ort zu %{site_name} hinzugefügt von"
   place_autocomplete_placeholder: Zion National Park, Miami, etc.
   place_deleted: Ort gelöscht.
   place_geo:
@@ -2927,7 +2922,6 @@ de:
   present: vorhanden
   press: Presse
   preview: Vorschau
-  preview_observations: Vorschau der Beobachtungen
   preview_observations_with_these_observation_requirements: Vorschau von Beobachtungen mit diesen Beobachtungsanforderungen
   preview_of_synced_observation: "<strong>Vorschau</strong> der synchronisierten Beobachtung.  <a href=\"%{url}\">Rückgängig?</a>"
   preview_personal_message: "Es wäre toll, wenn du ebenso wie ich %{site} verwenden würdest - eine Website, auf der du deine Beobachtungen von Pflanzen und Tieren dokumentieren, deine Meldungen organisieren und etwas über die Natur erfahren kannst!"
@@ -3194,12 +3188,6 @@ de:
     must_be_in: muss in Taxon sein
     must_be_coordinates_shareable_by_project_curators: Der Beobachter muss den Projektkuratoren erlauben, die Koordinaten einzusehen.
   running_total: Gesamtzahl
-  same_day_obscured: Eine weitere Beobachtung dieser Person an diesem Tag ist verdeckt
-  same_day_obscured_desc: |
-    Wenn Koordinaten einer Meldung aufgrund des Gefährdungsstatus des Taxons verdeckt wurden, werden alle anderen Beobachtungen dieses Benutzers am gleichen Tag ebenfalls verdeckt, um zu verhindern, dass die Koordinaten durch andere Beobachtungen erraten werden können, die um die gleiche Zeit gemacht wurden. Benutzer können diesen Schutz auch auf Koordinaten anwenden, die zum Verdecken ausgewählt wurden.
-  same_day_private: Eine weitere Beobachtung dieser Person an diesem Tag ist privat
-  same_day_private_desc: |
-    Wenn Koordinaten einer Meldung aufgrund des Gefährdungsstatus des Taxons verdeckt wurden, werden alle anderen Beobachtungen dieses Benutzers am gleichen Tag ebenfalls verdeckt, um zu verhindern, dass die Koordinaten durch andere Beobachtungen erraten werden können, die um die gleiche Zeit gemacht wurden. Benutzer können diesen Schutz auch auf Koordinaten anwenden, die zum Verdecken ausgewählt wurden.
   said: sagte
   satellite: Satellit
   save: Speichern
@@ -3871,8 +3859,6 @@ de:
   view_observation_flags: Meldungen für Beobachtung anzeigen
   view_observations_by_everyone: Beobachtungen von allen anzeigen
   view_observations_by_these_users: Beobachtungen dieser Benutzer anzeigen
-  view_observations_causing_this_observation_to_be_obscured: |
-    Beobachtungen anzeigen, wegen denen diese Beobachtung verdeckt wird
   view_observations_of_this_taxon_by: Beobachtungen dieses Taxons anzeigen von
   view_on: Ansehen auf
   view_on_flickr: Ansehen auf Flickr
@@ -4508,8 +4494,8 @@ de:
         score_desc: "Punktzahl = kumulative Zählung / (kumulative Zählung + Anzahl Widersprüchlichkeiten + abweichende Vorfahren)"
         observation_flagged_notice_html: |
           Diese Beobachtung ist als Spam gemeldet worden und ist nicht mehr
-          öffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte<a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
-          <a href="%{manage_flags_path}">Meldungen verwalten</a>
+          öffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte <a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
+          <a href="/observations/%{observation_id}/flags">Meldungen verwalten</a>
         observer_does_not_allow_observation_fields: Beobachter erlaubt keine weiteren Beobachtungsfelder
         observer_only_allows_curators_to_add_fields: Beobachter erlaubt es nur Kuratoren Beobachtungsfelder hinzuzufügen
       user_stats:
