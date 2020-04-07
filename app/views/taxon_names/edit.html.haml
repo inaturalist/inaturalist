@@ -27,7 +27,7 @@
         %h3= t :synonyms
         %p.ui
           = t :there_are_x_synonyms_html, :count => @synonyms.total_entries
-          (#{t :showing_one_to}#{@synonyms.size}).
+          (#{t :showing_first_x, x: @synonyms.size}).
           %span.button= link_to t(:delete_all), delete_synonyms_of_taxon_name_path(@taxon_name), :method => :delete, :confirm => t(:are_you_sure?)
         %table.nobr
           %tr

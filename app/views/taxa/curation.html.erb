@@ -98,7 +98,8 @@
   </p>
 <% elsif @ungrafted.total_entries > @ungrafted.size %>
   <p class="description">
-  <%= t(:showing_one_to) %> <%= @ungrafted.size %> of <%= @ungrafted.total_entries %>
+  <%=t :showing_x_of_y, x: 1, y: @ungrafted.size %>
+  (<%=t "views.observations.compare.x_total", count: @ungrafted.total_entries %>)
   </p>
 <% end %>
 
