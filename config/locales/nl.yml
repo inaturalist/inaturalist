@@ -838,7 +838,6 @@ nl:
   confirm_new_password: Bevestig nieuw wachtwoord
   confirm_now: Bevestig nu
   confirm_your_info: Bevestig je informatie
-  confirmed: bevestigd
   connect_to_provider: "Verbinden met %{provider}"
   connected_accounts: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
@@ -1801,7 +1800,6 @@ nl:
   loading: "Laden..."
   loading_flickr_photos: "Flickr foto's laden..."
   loading_images: Afbeeldingen laden ..
-  loading_map: Kaart laden ...
   loading_metadata: Metadata laden...
   loading_preview_and_code: Preview en code laden ...
   loading_suggestions: Suggesties laden ...
@@ -2165,7 +2163,6 @@ nl:
   no_more_taxa_to_load: Geen taxa meer om te laden!
   no_more_results_found: Geen resultaten meer gevonden
   no_new_messages: Geen nieuwe berichten
-  no_news_yet: Nog geen nieuws
   no_observations: Geen Waarnemingen
   no_observations_from_this_place_yet: Nog geen waarnemingen voor deze plaats
   no_observations_matching_those_ids: Er zijn geen waarnemingen die overeenkomen met die ID's.
@@ -2395,7 +2392,6 @@ nl:
   ok: "OK"
   on_date: "op %{date}"
   on_day: "op"
-  on_your_life_list: in je levenslijst
   onboarding:
     observe_panel_title: Laten we beginnen door een paar waarnemingen te posten
     observe_panel_body_p1_local: Inspiratie nodig? Deze organismen zijn dichtbij waargenomen...
@@ -2581,7 +2577,6 @@ nl:
     Bewaar deze combinatie van coördinaten, nauwkeurigheid, geoprivacy en locatienotities voor later gebruik.
   place: Plaats
   placeholder: Tijdelijke aanduiding
-  place_added_to_inat_by: "Plaats toegevoegd aan %{site_name} door"
   place_autocomplete_placeholder: Zion National Park, Miami, enz.
   place_deleted: Plaats verwijderd.
   place_geo:
@@ -2992,7 +2987,6 @@ nl:
   present: aanwezig
   press: Pers
   preview: Voorvertoning
-  preview_observations: Preview Waarnemingen
   preview_of_synced_observation: "<strong>Voorbeeld</strong>van een gesynchroniseerde waarneming. <a href=\"%{url}\">Ongedaan maken?</a>"
   preview_personal_message: "Ik zou graag willen dat je met me meedoet op %{site}, een website waar je je waarnemingen van planten en dieren kunt registreren, je levenslijst kunt bijhouden, en meer kunt leren over de natuur!"
   preview_your_message: Voorbeeld van je bericht
@@ -3260,12 +3254,6 @@ nl:
     must_be_in: moet in het taxon zitten
     must_be_coordinates_shareable_by_project_curators: waarnemer moet projectcuratoren toestaan om coordinaten te bekijken.
   running_total: Lopend Totaal
-  same_day_obscured: Een andere waarneming door deze persoon op deze dag is verborgen
-  same_day_obscured_desc: |
-    Wanneer coördinaten worden verduisterd vanwege een bedreigd taxon zijn alle andere waarnemingen van die persoon op die dag ook verduisterd om te voorkomen dat de coördinaten worden afgeleid van waarnemingen die in dezelfde periode zijn gemaakt. Waarnemers kunnen ook zelf kiezen om de coördinaten te verduisteren.
-  same_day_private: Een andere waarneming door deze persoon op deze dag is privé
-  same_day_private_desc: |
-    Wanneer coördinaten worden verborgen vanwege een bedreigd taxon zijn alle andere waarnemingen van die persoon op die dag ook verborgen om te voorkomen dat de coördinaten worden afgeleid van waarnemingen die in dezelfde periode zijn gemaakt. Waarnemers kunnen ook zelf kiezen om de coördinaten te verbergen.
   said: gezegd
   satellite: satelliet
   save: Opslaan
@@ -3378,7 +3366,6 @@ nl:
   show_taxa_from_place: "Toon taxa uit %{place}"
   show_total_counts: Toon totale aantallen
   show_uncountable_species: Laat ontelbare soorten zien
-  showing_one_to: Toon 1 -
   showing_taxa_from_everywhere: "Toon taxa van overal"
   showing_taxa_from_place: "Toon taxa van %{place}"
   showing_x_of_y: '%{x} van de %{y} zichtbaar'
@@ -4091,8 +4078,6 @@ nl:
   view_observation_flags: Meldingen over waarneming bekijken
   view_observations_by_everyone: Alle waarnemingen weergeven
   view_observations_by_these_users: Bekijk waarnemingen van deze gebruikers
-  view_observations_causing_this_observation_to_be_obscured: |
-    Bekijk waarnemingen waardoor deze waarneming wordt vervaagd
   view_observations_of_this_taxon_by: Geef de waarnemingen weer van dit taxon door
   view_on: Bekijk op
   view_on_flickr: Bekijk op Flickr
