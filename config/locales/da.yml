@@ -825,7 +825,6 @@ da:
   confirm_new_password: Bekræft ny adgangskode
   confirm_now: Bekræft nu
   confirm_your_info: Bekræft din info
-  confirmed: bekræftet
   connect_to_provider: "Tilknyt %{provider}"
   connected_accounts: Tilknyttede konti
   connecting_flickr: "Tilknytter til Flickr..."
@@ -969,6 +968,7 @@ da:
   custom_project_was_successfully_updated: Brugerdefineret projekt blev opdateret.
   customize_location: Tilpas sted
   darr_apply_darr: "&darr; Anvend &darr;"
+  daily_users: Daglige brugere
   dashboard: Betjeningspanel
   data_deficient: Mangelfuld data
   data_quality: Datakvalitet
@@ -1233,7 +1233,10 @@ da:
   exact_location: Eksakt_sted
   exact_rank: Eksakt række
   except: bort set fra
-  exclude_x: Ekskluder %{x}
+  exclude_places: Ekskludér steder
+  exclude_projects: Ekskludér projekter
+  exclude_taxa: Ekskludér taksa
+  exclude_users: Ekskludér brugere
   exclusion_filters: Eksklusionsfiltre
   existing_flags: Eksisterende markeringer
   exit_full_screen: "Afslut fuld skærm"
@@ -1580,6 +1583,10 @@ da:
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
   inbox: Indbakke
+  include_places: Inkludér steder
+  include_projects: Inkludér projekter
+  include_taxa: Inkludér taksa
+  include_users: Inkludér brugere
   including: inklusiv
   increase_brightness: Øg lysstyrke
   in_progress: i gang
@@ -1794,7 +1801,6 @@ da:
   loading: "Indlæser…"
   loading_flickr_photos: "Indlæser Flickr fotos..."
   loading_images: Indlæser billeder...
-  loading_map: Indlæser kort...
   loading_metadata: Indlæser metadata...
   loading_preview_and_code: Indlæser forhåndsvisning og kode...
   loading_suggestions: Indlæser forslag...
@@ -2143,6 +2149,7 @@ da:
   no_favorites_added:
     current_user: Du har ikke tilføjet favoritter endnu.
     user: "%{user} har ikke tilføjet favoritter."
+  no_journal_posts_yet: Endnu ingen journaoptegnelser
   no_license_all_rights_reserved: Ingen licens (alle rettigheder forbeholdt)
   no_managers_set: Ingen ledere valgt
   no_matching_article_from_x: "Ingen matchende artikel fra %{x}"
@@ -2159,7 +2166,6 @@ da:
   no_more_taxa_to_load: Ikke flere taksa at indlæse!
   no_more_results_found: Ikke flere resultater fundet
   no_new_messages: Ingen nye beskeder
-  no_news_yet: Ingen nyheder endnu
   no_observations: Ingen observationer
   no_observations_from_this_place_yet: Ingen observationer fra dette sted endnu.
   no_observations_matching_those_ids: Ingen observationer matcher disse IDs.
@@ -2386,7 +2392,6 @@ da:
   ok: "OK"
   on_date: "den %{date}"
   on_day: "på"
-  on_your_life_list: på din livsliste
   onboarding:
     observe_panel_title: Lad os komme i gang med at indsende nogle observationer
     observe_panel_body_p1_local: Har du brug for inspiration? Her er nogle organismer observeret i nærheden ...
@@ -2571,7 +2576,6 @@ da:
     Gem denne kombination af koordinater, geofortrolighed og stedbeskrivelser til senere brug.
   place: Sted
   placeholder: Pladsholder
-  place_added_to_inat_by: "Sted tilføjet til %{site_name} af"
   place_autocomplete_placeholder: Zion National Park, Miami, osv.
   place_deleted: Sted slettet.
   place_geo:
@@ -3009,7 +3013,7 @@ da:
   present: til stede
   press: Presse
   preview: Forhåndsvisning
-  preview_observations: Forhåndsvis observationer
+  preview_observations_with_these_observation_requirements: Forhåndsvis Observationer med disse Observationskrav
   preview_of_synced_observation: "<strong>Preview</strong> af synkroniseret observation.  <a href=\"%{url}\">Undo?</a>"
   preview_personal_message: "Jeg vil gerne invitere dig til %{site}, som er et websted, hvor du kan registrere dine observationer af planter og dyr. Du kan også oprette en liste med alle de dyr du har observeret samt lære noget mere om naturen."
   preview_your_message: Forhåndsvisning af din besked
@@ -3051,6 +3055,7 @@ da:
   project_group_description: Gruppe projektet tilhører
   project_home: Projekt hjem
   project_icon: Projekt ikon
+  project_journal: Projektjournal
   project_id_or_url_slug: Projekt ID eller URL adresse
   project_invitations: 'Projekt invitationer'
   project_list: Projekt liste
@@ -3060,6 +3065,7 @@ da:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> kuratorer tilføjede nogle af dine observationer
   project_members: "%{project} Medlemmer"
+  project_members_only: Kun Projektmedlemmer
   project_membership_model_description: Er dit projekt åbent for alle eller kun for personer, du inviterer?
   project_observations: Projekt observationer
   project_post: Projekt indlæg
@@ -3273,18 +3279,6 @@ da:
     must_be_in: skal være takson
     must_be_coordinates_shareable_by_project_curators: observatør skal tillade projektkuratorer at se koordinater.
   running_total: Igangværende total
-  same_day_obscured: Endnu en observation af denne person på denne dag er sløret
-  same_day_obscured_desc: |
-    Når koordinater er sløret grundet en truet takson, er alle andre
-    observationer på den pågældende dag også sløret for at forhindre folk
-    i at gætte koordinaterne baseret på observationer foretaget omkring samme
-    tidspunkt. Man kan også anvende denne beskyttelse på andre koordinater for at skjule dem.
-  same_day_private: En anden observation af denne person på denne dag er fortrolig
-  same_day_private_desc: |
-    Når koordinater er skjult grundet en truet takson, er alle andre
-    observationer fra denne person på denne dag også skjulte for at forhindre folk
-    i at gætte koordinaterne baseret på observationer foretaget omkring samme
-    tidspunkt. Andre kan også anvende denne beskyttelse på koordinater, de ønsker at skjule.
   said: sagde
   satellite: satellit
   save: Gem
@@ -3396,7 +3390,6 @@ da:
   show_taxa_from_place: "Vis taksa fra %{place}"
   show_total_counts: Vis totalt antal
   show_uncountable_species: Skjul arter der ikke medregnes
-  showing_one_to: Viser 1-
   showing_taxa_from_everywhere: "Viser taksa fra overalt"
   showing_taxa_from_place: "Viser taksa fra %{place}"
   showing_x_of_y: Viser af %{x} af %{y}
@@ -4125,8 +4118,6 @@ da:
   view_observation_flags: Vis observations markeringer
   view_observations_by_everyone: Vis observation af alle
   view_observations_by_these_users: Vis observationer af disse brugere
-  view_observations_causing_this_observation_to_be_obscured: |
-    Se observationer som gør, at denne observation er sløret
   view_observations_of_this_taxon_by: Vis observationer af denne takson af
   view_on: Vis på
   view_on_flickr: Vis på Flickr
@@ -5349,6 +5340,9 @@ da:
           Er du klar til at forlade denne side for at duplikere dette projekt?
         are_you_sure_you_want_to_delete: Er du sikker på, at du vil slette dette projekt?
         can_be_included_in_multiple: Kan inkluderes i flere paraplyprojekter
+        check_the_box_to_include_member_observations: |
+          Markér afkrydsningsfeltet nedenfor for kun at inkludere observationer foretaget af brugere, som er projektmedlemmer.
+          Benyt Ekskludér brugere-filteret ovenfor til observationseksklusioner fra specifikke brugere, inkl. projektejer og -admins.
         click_through_to_individual_projects: Klik videre til individuelle projekter
         collection_projects: Samlingsprojekter
         collection_project_features: "Samlingsprojekt egenskaber:"
@@ -5360,6 +5354,10 @@ da:
         do_you_need_features_from_traditional: |
           Har du brug for egenskaber fra de traditionelle projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?
         duplicate_project: Duplikér Projekt
+        include_annotated_observations: |
+          Inkludér kun observationer kommenteret med én bestemt attribut (f.eks. Livsfase),
+          eller én bestemt attribut og værdi (f.eks. livsfase = voksen).
+          Der er en grænse på ét annotationsfilter pr. projekt.
         leaderboards_among_individuals: Toplister iblandt <strong>individuelle</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Toplister iblandt <strong>projekter</strong>
@@ -5371,15 +5369,14 @@ da:
           OBS: Disse brugere er i stand til at redigere ALLE projektdetaljer inklusiv administratorer.
         note_you_can_delete_the_time: |
           (OBS: Du kan slette tidszone og nøjagtige tidspunkt, hvis du i stedet vil bruge hele dage.)
+        note_about_unselected_filters: |
+          Bemærk: Vælges ikke taxa, steder eller brugere, inkluderes alle som standard.
+        only_display_member_observations: |
+          Vis kun observationer fra projektmedlemmer (personer, som har tilmeldt sig projektet)
+        optionally_filter_media: Valgfri filtrering af observationer med fotos, lyde eller begge.
         or_drag_and_drop: (eller træk og slip)
         please_specify_the_requirements: |
           Præcisér venligst betingelserne for at observationerne kan tilføjes til projektet.
-        please_specify_the_requirements_html: |
-          Angiv venligst kravene til de observationer, der kan tilføjes til
-          dette projekt. Du kan angive flere arter, steder, brugere eller
-          kvalitetsgrader, der automatisk indgår eller efterlad et felt tomt hvis
-          du ikke har noget specifikt krav til det. Forklaringer for hvert felt
-          kan findes <a href="%{url}">here</a>.
         project_background_color: Projektoversigt baggrundsfarve
         project_background_color_help: Sørg for at vælge en farve, der er mørk nok, så den hvide overlejrede tekst er læselig.
         project_banner: Projektbanner (PNG, JPG eller GIF)
@@ -5393,11 +5390,25 @@ da:
         project_summary_help: |
           Angiv en koncis beskrivelse af dit projekt. De første ca. 200 karakterer vil blive synlige i banneret i højre side på projektsiden, så begynd med det bedste!
         project_summary_placeholder: Opdag og følg Golden Gate Parks fugle...
+        select_native_to_include: |
+          Vælg "Indfødt" for kun at medtage taksa markeret som "Indfødt" til
+          sted(et/erne) i dit projekt. Vælg "Introduceret" for kun at medtage taksa, som har været
+          markeret som "Introduceret" til sted(et/erne i dit projekt.
+        select_quality_grade: |
+          Vælg mindst én Kvalitetsgrad. Yderligere forklaring på hver Kvalitetsgrad findes på
+          vores
+          <a href="%fterurl"">OSS (FAQ) side</a>.
         show_projects_as_flags: Vis projekter som flag på kort
+        specify_project_filters: |
+          Angiv filtrene for de observationer, som skal medtages i dit projekt.
+          Du kan vælge flere arter (eller taksa), steder, datoer eller andre kriterier for 
+          observationer, som automatisk bliver medtaget.
         start_and_end_times_for_bioblitzes: Start og slut tidspunkt for bioblitzer
         traditional_projects_cannot_be_copied: Det oprindelige projekt kan ikke kopieres
         umbrella_project_features: "Paraplyprojekt egenskaber:"
         unique_url_for_outreach: Unik URL til opsøgning
+        use_this_for_a_time_limited_event: |
+          Benyt dette til en tidsafgrænset begivenhed, bioblitz eller sæsonbestemt projekt. Vælg en enkelt dato, datoområde, eller i hvilke måneder af året, observationer skal foretages (uanset år). Benyttes afsnittet Datoområde, så vær sikker på, at de korrekte tidsangivelser og tidszoner er valgt, eller slet tidsangivelsen/tidszoneteksten for at medtage observationer foretaget uanset dagstidspunkt. Felterne Startdato/Slutdato kan være tomme, hvis projektet kun skal datoafgrænses.
         users_can_follow_your_project: Brugere kan følge dit projekt for opdateringer via journalindlæg
         use_this_link_to_create_html: |
           Brug <a href="%{url}">dette link</a> for at oprette et traditionelt projekt istedet.

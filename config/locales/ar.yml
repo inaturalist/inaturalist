@@ -589,7 +589,6 @@ ar:
   confirm_new_password: تأكيد كلمة السر الجديدة
   confirm_now: أكد الآن
   confirm_your_info: أكد معلوماتك
-  confirmed: تم التأكيد
   connect_to_provider: "الاتصال بـ%{provider}"
   connected_accounts: حسابات متصلة
   connecting_flickr: "جارٍ الاتصال بفليكر..."
@@ -957,7 +956,6 @@ ar:
   exact_location: التاريخ_المحدد
   exact_rank: الترتيب الدقيق
   except: إلا
-  exclude_x: استبعاد %{x}
   exclusion_filters: مرشحات الاستبعاد
   existing_flags: الأعلام الموجودة
   exit_full_screen: "إنهاء وضع الشاشة الكاملة"
@@ -1481,7 +1479,6 @@ ar:
   loading: "جارٍ التحميل..."
   loading_flickr_photos: "جارٍ تحميل صور فليكر..."
   loading_images: جارٍ تحميل الصور...
-  loading_map: جارٍ تحميل الخريطة...
   loading_metadata: جارٍ تحميل البيانات الوصفية...
   loading_preview_and_code: جارٍ تحميل المعاينة والكود...
   loading_suggestions: جارٍ تحميل الاقتراحات...
@@ -1798,7 +1795,6 @@ ar:
   no_more_taxa_to_load: لا يوجد المزيد من الأصناف للتحميل!
   no_more_results_found: لم يتم العثور على مزيد من النتائج
   no_new_messages: لا توجد رسائل جديدة
-  no_news_yet: لا توجد أخبار حتى الآن
   no_observations: لا توجد ملاحظات
   no_observations_from_this_place_yet: لا توجد ملاحظات من هذا المكان حتى الآن.
   no_observations_matching_those_ids: لا توجد ملاحظات مطابقة لهذه المعرفات.
@@ -1996,7 +1992,6 @@ ar:
   ok: "موافق"
   on_date: "في %{date}"
   on_day: "على"
-  on_your_life_list: في قائمة حياتك
   onboarding:
     observe_panel_title: دعونا نبدأ من خلال نشر بعض الملاحظات
     observe_panel_body_p1_local: تحتاج إلهاما؟ هنا بعض الكائنات الحية التي تتم ملاحظتها في مكان قريب...
@@ -2168,7 +2163,6 @@ ar:
     تثبيت هذه المجموعة من الإحداثيات والدقة والخصوصية الجغرافية وملاحظات المكان لاستخدامها لاحقا.
   place: مكان
   placeholder: نائب
-  place_added_to_inat_by: "تمت إضافة المكان إلى %{site_name} بواسطة"
   place_autocomplete_placeholder: حديقة صهيون الوطنية ، ميامي، إلخ.
   place_deleted: تم حذف المكان.
   place_geo:
@@ -2582,7 +2576,6 @@ ar:
   present: الحالي
   press: صحافة
   preview: معاينة
-  preview_observations: معاينة الملاحظات
   preview_of_synced_observation: "<strong>معاينة </strong> الملاحظة التي تمت مزامنتها <a href=\"%{url}\">تراجع؟</a>"
   preview_personal_message: "أود منك أن تنضم لي في %{site}، وهو موقع على شبكة الانترنت حيث يمكنك تسجيل ملاحظاتك للنباتات والحيوانات، وتتبع قائمة حياتك، والتعرف على العالم الطبيعي!"
   preview_your_message: معاينة رسالتك
@@ -2842,20 +2835,6 @@ ar:
     must_be_in: يجب أن يكون في أصنوفة
     must_be_coordinates_shareable_by_project_curators: يجب أن يسمح المراقب لأمناء المشروع بعرض الإحداثيات.
   running_total: مجموع التشغيل
-  same_day_obscured: ملاحظة أخرى من قبل هذا الشخص في هذا اليوم غامضة
-  same_day_obscured_desc: |
-    عندما تكون الإحداثيات مشوشة بسبب أصنوفة مهددة، فإن كل 
-    الملاحظات الأخرى التي يقوم بها ذلك الشخص في ذلك اليوم تكون مشوشة أيضا لمنع الناس 
-    من تخمين الإحداثيات بناءً على الملاحظات التي يتم إجراؤها في نفس 
-    الوقت تقريبا، يمكن للأفراد أيضا تطبيق هذه الحماية على الإحداثيات التي 
-    اختاروا تشويشها.
-  same_day_private: ملاحظة أخرى من قبل هذا الشخص في هذا اليوم خاصة
-  same_day_private_desc: |
-    عندما تكون الإحداثيات مخفية بسبب أصنوفة مهددة، فإن كل 
-    الملاحظات الأخرى التي يقوم بها ذلك الشخص في ذلك اليوم تكون مخفية أيضا لمنع الناس 
-    من تخمين الإحداثيات بناءً على الملاحظات التي يتم إجراؤها في نفس 
-    الوقت تقريبا، يمكن للأفراد أيضا تطبيق هذه الحماية على الإحداثيات التي 
-    اختاروا إخفاءها.
   said: قال
   satellite: القمر الصناعي
   save: حفظ
@@ -2962,7 +2941,6 @@ ar:
   show_taxa_from_place: "عرض أصناف من %{place}"
   show_total_counts: إظهار العدد الإجمالي
   show_uncountable_species: عرض الأنواع التي لا تُحصَى
-  showing_one_to: عرض 1 -
   showing_taxa_from_everywhere: "عرض أصناف من كل مكان"
   showing_taxa_from_place: "عرض أصناف من %{place}"
   showing_x_of_y_listings: "عرض %{x} من قوائم %{y}"
@@ -3589,8 +3567,6 @@ ar:
   view_observation_flags: عرض أعلام الملاحظة
   view_observations_by_everyone: عرض الملاحظات من قبل الجميع
   view_observations_by_these_users: عرض الملاحظات من قبل هؤلاء المستخدمين
-  view_observations_causing_this_observation_to_be_obscured: |
-    عرض الملاحظات التي تجعل هذه الملاحظة غامضة
   view_observations_of_this_taxon_by: عرض ملاحظات هذ الأصنوفة من قبل
   view_on: عرض في
   view_on_flickr: عرض في فليكر
@@ -4850,12 +4826,6 @@ ar:
         please_specify_the_requirements: |
           ُيرجَى تحديد متطلبات الملاحظات التي ستُضاف إلى
           هذا المشروع.
-        please_specify_the_requirements_html: |
-          يُرجَى تحديد متطلبات الملاحظات التي ستُضاف إلى 
-          هذا المشروع، يمكنك تحديد أنواع أو أماكن أو مستخدمين أو 
-          درجات جودة متعددة لإدراجها تلقائيا، أو ترك الحقل فارغا إذا 
-          لم يكن لديك أي متطلبات محددة لذلك، يمكن العثور على 
-          تفسيرات لكل حقل <a href="%{url}">هنا</a>.
         project_background_color: لون خلفية ملخص المشروع
         project_background_color_help: تأكد من اختيار لون داكن بدرجة كافية حتى يصبح النص المتراكب الأبيض مقروءا.
         project_banner: بانر المشروع (PNG أو JPG أو GIF)
