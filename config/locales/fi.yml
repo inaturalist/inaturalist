@@ -91,8 +91,8 @@ fi:
     one: "<a href='%{url}'>1 laji</a>"
     other: "<a href='%{url}'>%{count} lajia</a>"
   x_suggestions_filtered_by_colon:
-    one: "1 ehdotuksen suodattanut:"
-    other: "%{count} ehdotusta suodattanut:"
+    one: "1 ehdotus, perustuen suodattimiin:"
+    other: "%{count} ehdotusta, perustuen suodattimiin:"
   x_taxa:
     one: "%{count} taksoni"
     other: "%{count} taksonia"
