@@ -3390,6 +3390,9 @@ da:
   show_taxa_from_place: "Vis taksa fra %{place}"
   show_total_counts: Vis totalt antal
   show_uncountable_species: Skjul arter der ikke medregnes
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Viser første %{x}
   showing_taxa_from_everywhere: "Viser taksa fra overalt"
   showing_taxa_from_place: "Viser taksa fra %{place}"
   showing_x_of_y: Viser af %{x} af %{y}
