@@ -110,11 +110,9 @@ const actions = class actions {
     };
   }
 
-  static onFileDrop( droppedFiles, e ) {
+  static onFileDrop( droppedFiles, options = {} ) {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
-      // skip drops onto cards
-      if ( $( "ul.obs li" ).has( e.nativeEvent.target ).length > 0 ) { return; }
       const obsCards = { };
       const files = { };
       let i = 0;
@@ -139,11 +137,17 @@ const actions = class actions {
         dispatch( actions.appendObsCards( obsCards ) );
         dispatch( actions.appendFiles( files ) );
         dispatch( actions.uploadFiles( ) );
+        if ( options.beforeCardId ) {
+          dispatch( actions.insertCardsBefore(
+            Object.keys( obsCards ),
+            options.beforeCardId
+          ) );
+        }
       }
     };
   }
 
-  static onFileDropOnCard( droppedFiles, e, obsCard ) {
+  static onFileDropOnCard( droppedFiles, obsCard ) {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
       const files = { };

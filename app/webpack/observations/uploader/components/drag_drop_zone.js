@@ -219,7 +219,8 @@ class DragDropZone extends Component {
       saveStatus,
       selectedObsCards,
       insertCardsBefore,
-      insertFilesBefore
+      insertExistingFilesBefore,
+      insertDroppedFilesBefore
     } = this.props;
     let leftColumn;
     let intro;
@@ -264,7 +265,20 @@ class DragDropZone extends Component {
       <div onClick={DragDropZone.closeAutocompletes}>
         <Dropzone
           ref="dropzone"
-          onDrop={onDrop}
+          onDrop={( acceptedFiles, rejectedFiles, dropEvent ) => {
+            // Skip drops on components that handle drops themselves. Dropping a
+            // file on a Dropzone component will propagate drop events to *all*
+            // Dropzone components that contain it. Since our DragDropZone
+            // components contains the ObsCardComponent, for example, we need to
+            // ensure that drops onto obs cards that do *not* behave like
+            // dropping a file on the DragDropZone. So here ensuring that if the
+            // element that was the target of the drop event matches selectors
+            // for components we know will handle file drops themselves, just
+            // ignore this event
+            if ( $( ".ObsCardComponent, .InsertionDropTarget" ).has( dropEvent.nativeEvent.target ).length === 0 ) {
+              onDrop( acceptedFiles, rejectedFiles );
+            }
+          }}
           className={className}
           activeClassName="hover"
           disableClick
@@ -318,45 +332,46 @@ class DragDropZone extends Component {
               { leftColumn }
               { connectDropTarget(
                 <div id="imageGrid" className="col-offset-290 col-md-12">
-                  <Row>
-                    <div className="obs">
-                      { _.map( obsPositions, ( cardID, position ) => {
-                        const obsCard = obsCards[cardID];
-                        return (
-                          <div className="card-and-inserts" key={`card-and-inserts-${obsCard.id}`}>
+                  <div id="imageGridObs" className="obs">
+                    { _.map( obsPositions, ( cardID, position ) => {
+                      const obsCard = obsCards[cardID];
+                      return (
+                        <div className="card-and-inserts" key={`card-and-inserts-${obsCard.id}`}>
+                          <InsertionDropTarget
+                            className="before"
+                            beforeCardId={cardID}
+                            insertCardsBefore={insertCardsBefore}
+                            insertExistingFilesBefore={insertExistingFilesBefore}
+                            insertDroppedFilesBefore={insertDroppedFilesBefore}
+                          />
+                          <ObsCardComponent
+                            {...this.props}
+                            key={obsCard.id}
+                            ref={`obsCard${obsCard.id}`}
+                            obsCard={obsCard}
+                            selectCard={this.selectCard}
+                            confirmRemoveObsCard={( ) => confirmRemoveObsCard( obsCard )}
+                          />
+                          { position >= obsPositions.length - 1 ? (
                             <InsertionDropTarget
-                              className="before"
-                              beforeCardId={cardID}
+                              className="after"
                               insertCardsBefore={insertCardsBefore}
-                              insertFilesBefore={insertFilesBefore}
+                              insertExistingFilesBefore={insertExistingFilesBefore}
+                              insertDroppedFilesBefore={insertDroppedFilesBefore}
                             />
-                            <ObsCardComponent
-                              {...this.props}
-                              key={obsCard.id}
-                              ref={`obsCard${obsCard.id}`}
-                              obsCard={obsCard}
-                              selectCard={this.selectCard}
-                              confirmRemoveObsCard={( ) => confirmRemoveObsCard( obsCard )}
+                          ) : (
+                            <InsertionDropTarget
+                              className="after"
+                              beforeCardId={obsPositions[position + 1]}
+                              insertCardsBefore={insertCardsBefore}
+                              insertExistingFilesBefore={insertExistingFilesBefore}
+                              insertDroppedFilesBefore={insertDroppedFilesBefore}
                             />
-                            { position >= obsPositions.length - 1 ? (
-                              <InsertionDropTarget
-                                className="after"
-                                insertCardsBefore={insertCardsBefore}
-                                insertFilesBefore={insertFilesBefore}
-                              />
-                            ) : (
-                              <InsertionDropTarget
-                                className="after"
-                                beforeCardId={obsPositions[position + 1]}
-                                insertCardsBefore={insertCardsBefore}
-                                insertFilesBefore={insertFilesBefore}
-                              />
-                            ) }
-                          </div>
-                        );
-                      } ) }
-                    </div>
-                  </Row>
+                          ) }
+                        </div>
+                      );
+                    } ) }
+                  </div>
                 </div>
               ) }
             </div>
@@ -416,7 +431,8 @@ DragDropZone.propTypes = {
   updateCurrentUser: PropTypes.func,
   obsPositions: PropTypes.array,
   insertCardsBefore: PropTypes.func,
-  insertFilesBefore: PropTypes.func
+  insertExistingFilesBefore: PropTypes.func,
+  insertDroppedFilesBefore: PropTypes.func
 };
 
 export default pipe(

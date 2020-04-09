@@ -17,14 +17,14 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ( {
-  onDrop: ( droppedFiles, rejectedFiles, e ) => {
+  onDrop: ( droppedFiles, rejectedFiles ) => {
     if ( rejectedFiles.length > 0 ) {
       dispatch( actions.onRejectedFiles( rejectedFiles ) );
     }
-    dispatch( actions.onFileDrop( droppedFiles, e ) );
+    dispatch( actions.onFileDrop( droppedFiles ) );
   },
-  onCardDrop: ( droppedFiles, e, obsCard ) => {
-    dispatch( actions.onFileDropOnCard( droppedFiles, e, obsCard ) );
+  onCardDrop: ( droppedFiles, obsCard ) => {
+    dispatch( actions.onFileDropOnCard( droppedFiles, obsCard ) );
   },
   updateObsCard: ( obsCard, updates ) => {
     dispatch( actions.updateObsCard( obsCard, updates ) );
@@ -92,10 +92,13 @@ const mapDispatchToProps = dispatch => ( {
     dispatch( actions.insertCardsBefore( cardIds, beforeCardId ) );
   },
   // Here items are Photo or File components, which have files and obs cards
-  insertFilesBefore: ( items, beforeCardId ) => {
+  insertExistingFilesBefore: ( items, beforeCardId ) => {
     _.each( items, item => {
       dispatch( actions.newCardFromMedia( item, { beforeCardId } ) );
     } );
+  },
+  insertDroppedFilesBefore: ( files, beforeCardId ) => {
+    dispatch( actions.onFileDrop( files, { beforeCardId } ) );
   }
 } );
 

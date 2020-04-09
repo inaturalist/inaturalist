@@ -332,23 +332,24 @@ const dragDropZone = ( state = defaultState, action ) => {
           [obsCard.id]: { $set: obsCard }
         },
         obsPositions: {
-          $push: [obsCard.id]
+          $push: [parseInt( obsCard.id, 0 )]
         }
       } );
     }
 
     case types.INSERT_CARDS_BEFORE: {
       let newPositions = [];
+      const cardIds = action.cardIds.map( cardId => parseInt( cardId, 0 ) );
       _.each( state.obsPositions, cardId => {
         if ( cardId === action.beforeCardId ) {
-          newPositions = newPositions.concat( action.cardIds );
+          newPositions = newPositions.concat( cardIds );
         }
-        if ( action.cardIds.indexOf( cardId ) < 0 ) {
+        if ( cardIds.indexOf( cardId ) < 0 ) {
           newPositions.push( cardId );
         }
       } );
       if ( !action.beforeCardId || action.beforeCardId === undefined ) {
-        newPositions = newPositions.concat( action.cardIds );
+        newPositions = newPositions.concat( cardIds );
       }
       return Object.assign( { }, state, {
         obsPositions: newPositions

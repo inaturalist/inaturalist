@@ -229,13 +229,14 @@ class ObsCardComponent extends Component {
       <div
         className="ObsCardComponent"
         onClick={() => selectCard( obsCard )}
+        draggable
       >
         <Dropzone
           ref="dropzone"
           className={className}
           data-id={obsCard.id}
           disableClick
-          onDrop={( f, e ) => onCardDrop( f, e, obsCard )}
+          onDrop={f => onCardDrop( f, obsCard )}
           onDragEnter={this.onDragEnter}
           activeClassName="hover"
           accept={ACCEPTED_FILE_TYPES}
