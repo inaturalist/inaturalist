@@ -3,9 +3,9 @@
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, class: "crumb" %></strong>
   </div><!-- /#breadcrumbs -->
-  <h2><%=t :join %> <%= h @project.title %>?</h2>
+  <h2><%=t :join_project?, project: @project.title %></h2>
 </div>
 
-<%= render 'join' %>
+<%= render "join" %>
