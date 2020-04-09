@@ -13,8 +13,8 @@ function mapStateToProps( state ) {
   let nextTaxon;
   let prevTaxon;
   if ( state.suggestions.detailTaxon ) {
-    const detailTaxonIndex = _.findIndex( state.suggestions.response.results, r =>
-      r.taxon.id === state.suggestions.detailTaxon.id );
+    const detailTaxonIndex = _.findIndex( state.suggestions.response.results,
+      r => r.taxon.id === state.suggestions.detailTaxon.id );
     const prevResult = state.suggestions.response.results[detailTaxonIndex - 1];
     prevTaxon = prevResult ? prevResult.taxon : null;
     const nextResult = state.suggestions.response.results[detailTaxonIndex + 1];

@@ -85,7 +85,7 @@ const SuggestionRow = ( {
                 taxon={taxon}
                 height={200}
                 backgroundSize={backgroundSize}
-                showTaxonPhotoModal={ p => {
+                showTaxonPhotoModal={p => {
                   const index = _.findIndex( taxon.taxonPhotos,
                     taxonPhoto => taxonPhoto.photo.id === p.id );
                   setDetailTaxon( taxon, { detailPhotoIndex: index } );

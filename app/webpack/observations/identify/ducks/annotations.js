@@ -1,5 +1,5 @@
 export default function reducer( state = [], action ) {
-  switch( action.type ) {
+  switch ( action.type ) {
     default:
       // nothing to do
   }

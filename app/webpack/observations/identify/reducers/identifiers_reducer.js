@@ -11,11 +11,13 @@ const identifiersReducer = ( state = { users: [], loading: false }, action ) => 
       loading: true,
       users: []
     };
-  } else if ( action.type === UPDATE_IDENTIFIERS ) {
+  }
+  if ( action.type === UPDATE_IDENTIFIERS ) {
     return Object.assign( { }, state, action.updates, {
       users: _.cloneDeep( state.users )
     } );
-  } else if ( action.type === RECEIVE_IDENTIFIERS ) {
+  }
+  if ( action.type === RECEIVE_IDENTIFIERS ) {
     return {
       loading: false,
       users: action.users.slice( 0, 10 )

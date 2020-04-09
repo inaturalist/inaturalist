@@ -73,10 +73,9 @@ const currentObservationReducer = ( state = { tab: "info" }, action ) => {
     case LOADING_DISCUSSION_ITEM: {
       return Object.assign( {}, state, {
         observation:
-          action.item ?
-            updateLoadingForItemInObs( action.item, state.observation, true )
-            :
-            state.observation,
+          action.item
+            ? updateLoadingForItemInObs( action.item, state.observation, true )
+            : state.observation,
         loadingDiscussionItem: true,
         identificationFormVisible: false,
         commentFormVisible: false
@@ -85,10 +84,9 @@ const currentObservationReducer = ( state = { tab: "info" }, action ) => {
     case STOP_LOADING_DISCUSSION_ITEM: {
       return Object.assign( {}, state, {
         observation:
-          action.item ?
-            updateLoadingForItemInObs( action.item, state.observation, false )
-            :
-            state.observation,
+          action.item
+            ? updateLoadingForItemInObs( action.item, state.observation, false )
+            : state.observation,
         loadingDiscussionItem: false,
         identificationFormVisible: false,
         commentFormVisible: false

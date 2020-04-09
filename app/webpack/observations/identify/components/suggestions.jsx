@@ -326,8 +326,9 @@ class Suggestions extends React.Component {
           <div className="suggestions-detail">
             <div className="suggestions-inner">
               <div className="column-header">
-                <a
-                  href="#"
+                <button
+                  type="button"
+                  className="btn btn-nostyle header-text"
                   onClick={e => {
                     e.preventDefault( );
                     setDetailTaxon( null );
@@ -338,7 +339,7 @@ class Suggestions extends React.Component {
                   <i className="fa fa-chevron-circle-left" />
                   { " " }
                   { I18n.t( "back_to_suggestions" ) }
-                </a>
+                </button>
                 <div className="prevnext pull-right">
                   <Button
                     disabled={prevTaxon === null}

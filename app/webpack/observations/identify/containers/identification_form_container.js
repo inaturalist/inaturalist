@@ -6,7 +6,6 @@ import {
   fetchCurrentObservation,
   loadingDiscussionItem,
   fetchObservationsStats,
-  fetchIdentifiers,
   stopLoadingDiscussionItem,
   showAlert,
   addIdentification

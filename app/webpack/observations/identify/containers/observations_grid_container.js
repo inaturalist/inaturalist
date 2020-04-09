@@ -16,14 +16,14 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    onObservationClick: ( observation ) => {
+    onObservationClick: observation => {
       dispatch( showCurrentObservation( observation ) );
       dispatch( fetchCurrentObservation( observation ) );
     },
-    toggleReviewed: ( observation ) => {
+    toggleReviewed: observation => {
       dispatch( toggleReviewed( observation ) );
     },
-    onAgree: ( observation ) => {
+    onAgree: observation => {
       dispatch( agreeWithObservaiton( observation ) );
     }
   };

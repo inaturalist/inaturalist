@@ -7,7 +7,6 @@ import {
   fetchCurrentObservation,
   loadingDiscussionItem,
   fetchObservationsStats,
-  fetchIdentifiers,
   stopLoadingDiscussionItem,
   submitIdentificationWithConfirmation,
   deleteComment,
@@ -49,7 +48,6 @@ function mapDispatchToProps( dispatch, ownProps ) {
               $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
             } );
             dispatch( fetchObservationsStats( ) );
-            // dispatch( fetchIdentifiers( ) );
           } );
       } else {
         const ident = {

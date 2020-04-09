@@ -10,7 +10,9 @@ const IdentifierStats = ( {
   if ( loading ) {
     content = (
       <div className="text-center text-muted">
-        <i className="fa fa-refresh fa-spin"></i> { I18n.t( "loading" ) }
+        <i className="fa fa-refresh fa-spin" />
+        { " " }
+        { I18n.t( "loading" ) }
       </div>
     );
   } else if ( users.length === 0 ) {
@@ -31,8 +33,8 @@ const IdentifierStats = ( {
             >
               <td className="position">{ i + 1 }</td>
               <td className="user">
-                <UserImage user={ item.user } />
-                <a href={ `/people/${item.user.login}` }>{ item.user.login }</a>
+                <UserImage user={item.user} />
+                <a href={`/people/${item.user.login}`}>{ item.user.login }</a>
               </td>
               <td className="identifications">
                 { I18n.toNumber( item.count, { precision: 0 } ) }

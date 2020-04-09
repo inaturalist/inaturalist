@@ -26,6 +26,7 @@ class FiltersButton extends React.Component {
       show: false
     };
     this.clickOffEventNamespace = "click.FiltersButtonClickOff";
+    this.target = React.createRef( );
   }
 
   toggle( ) {
@@ -67,15 +68,12 @@ class FiltersButton extends React.Component {
       updateSearchParams,
       replaceSearchParams,
       defaultParams,
-      terms,
-      config
+      terms
     } = this.props;
     const {
       moreFiltersHidden,
       show
     } = this.state;
-    const viewerIsAdmin = config.currentUser.roles
-      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const paramsForUrl = ( ) => window.location.search.replace( /^\?/, "" );
     const closeFilters = ( ) => {
       // yes it's a horrible hack
@@ -785,7 +783,7 @@ class FiltersButton extends React.Component {
           bsRole="toggle"
           bsStyle="default"
           className="FiltersButton"
-          ref="target"
+          ref={this.target}
           onClick={( ) => this.toggle( )}
         >
           <i className="fa fa-sliders" />
@@ -801,7 +799,7 @@ class FiltersButton extends React.Component {
           onHide={( ) => this.setState( { show: false } )}
           container={$( "#wrapper.bootstrap" ).get( 0 )}
           placement="bottom"
-          target={( ) => ReactDOM.findDOMNode( this.refs.target )}
+          target={( ) => ReactDOM.findDOMNode( this.target.current )}
         >
           <Popover
             id="FiltersButtonPopover"
@@ -821,8 +819,7 @@ FiltersButton.propTypes = {
   defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func,
   replaceSearchParams: PropTypes.func,
-  terms: PropTypes.array,
-  config: PropTypes.object
+  terms: PropTypes.array
 };
 
 FiltersButton.defaultProps = {

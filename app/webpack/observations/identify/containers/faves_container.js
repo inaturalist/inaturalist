@@ -13,8 +13,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    fave: ( id ) => { dispatch( fave( id ) ); },
-    unfave: ( id ) => { dispatch( unfave( id ) ); }
+    fave: id => dispatch( fave( id ) ),
+    unfave: id => dispatch( unfave( id ) )
   };
 }
 

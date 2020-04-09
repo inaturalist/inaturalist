@@ -8,7 +8,6 @@ import _ from "lodash";
 import inatjs from "inaturalistjs";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
-import { objectToComparable } from "../../../shared/util";
 
 class TaxonChooserPopover extends React.Component {
   constructor( props ) {
@@ -34,6 +33,7 @@ class TaxonChooserPopover extends React.Component {
   }
 
   setTaxaFromProps( props ) {
+    const { taxon, defaultTaxon } = this.props;
     if ( props.taxon ) {
       if ( props.taxon.ancestors && props.taxon.ancestors.length > 0 ) {
         this.setState( { taxa: _.sortBy( props.taxon.ancestors, t => ( t.rank_level || 999 ) ) } );
@@ -41,12 +41,12 @@ class TaxonChooserPopover extends React.Component {
         inatjs.taxa.fetch( props.taxon.ancestor_ids ).then( response => {
           let newTaxa = _.sortBy( response.results, t => ( t.rank_level || 999 ) );
           if (
-            this.props.defaultTaxon &&
-            this.props.taxon &&
-            this.props.taxon.id !== this.props.defaultTaxon.id
+            defaultTaxon
+            && taxon
+            && taxon.id !== defaultTaxon.id
           ) {
-            newTaxa = _.filter( newTaxa, p => p.id !== this.props.defaultTaxon.id );
-            newTaxa.splice( 0, 0, this.props.defaultTaxon );
+            newTaxa = _.filter( newTaxa, p => p.id !== defaultTaxon.id );
+            newTaxa.splice( 0, 0, defaultTaxon );
           }
           this.setState( { taxa: newTaxa } );
         } );
@@ -56,13 +56,15 @@ class TaxonChooserPopover extends React.Component {
 
 
   chooseCurrent( ) {
-    const currentTaxon = this.state.taxa[this.state.current];
+    const { taxa, current } = this.state;
+    const { setTaxon, clearTaxon } = this.props;
+    const currentTaxon = taxa[current];
     // Dumb, but I don't see a better way to explicity close the popover
     $( "body" ).click( );
     if ( currentTaxon ) {
-      this.props.setTaxon( currentTaxon );
+      setTaxon( currentTaxon );
     } else {
-      this.props.clearTaxon( );
+      clearTaxon( );
     }
   }
 
@@ -71,6 +73,7 @@ class TaxonChooserPopover extends React.Component {
       id,
       container,
       taxon,
+      defaultTaxon,
       className,
       setTaxon,
       clearTaxon,
@@ -79,48 +82,48 @@ class TaxonChooserPopover extends React.Component {
       label,
       config
     } = this.props;
+    const { current, taxa } = this.state;
     return (
       <OverlayTrigger
         trigger="click"
         placement="bottom"
         rootClose
         container={container}
-        overlay={
-          <Popover id={ id } className="TaxonChooserPopover RecordChooserPopover">
+        overlay={(
+          <Popover id={id} className="TaxonChooserPopover RecordChooserPopover">
             <TaxonAutocomplete
               initialSelection={taxon}
               bootstrapClear
               searchExternal={false}
               resetOnChange={false}
-              afterSelect={ result => {
+              afterSelect={result => {
                 setTaxon( result.item );
                 $( "body" ).click( );
-              } }
-              afterUnselect={ ( ) => {
-                if ( typeof( clearTaxon ) === "function" ) {
+              }}
+              afterUnselect={( ) => {
+                if ( typeof ( clearTaxon ) === "function" ) {
                   clearTaxon( );
                 }
-              } }
+              }}
             />
             <ul className="list-unstyled">
               <li
-                className={this.state.current === -1 ? "current" : ""}
+                className={current === -1 ? "pinned current" : "pinned"}
                 onMouseOver={( ) => {
                   this.setState( { current: -1 } );
                 }}
                 onClick={( ) => this.chooseCurrent( )}
-                className="pinned"
-                style={{ display: this.props.taxon ? "block" : "none" }}
+                style={{ display: taxon ? "block" : "none" }}
               >
-                <i className="fa fa-times"></i>
+                <i className="fa fa-times" />
                 { I18n.t( "clear" ) }
               </li>
-              { _.map( this.state.taxa, ( t, i ) => (
+              { _.map( taxa, ( t, i ) => (
                 <li
                   key={`taxon-chooser-taxon-${t.id}`}
                   className={
-                    `media ${this.state.current === i ? "current" : ""}
-                    ${this.props.defaultTaxon && t.id === this.props.defaultTaxon.id ? "pinned" : ""}`
+                    `media ${current === i ? "current" : ""}
+                    ${defaultTaxon && t.id === defaultTaxon.id ? "pinned" : ""}`
                   }
                   onClick={( ) => this.chooseCurrent( )}
                   onMouseOver={( ) => {
@@ -128,7 +131,7 @@ class TaxonChooserPopover extends React.Component {
                   }}
                 >
                   <div className="media-left">
-                    <i className={`media-object icon-iconic-${( t.iconic_taxon_name || "unknown" ).toLowerCase( )}`}></i>
+                    <i className={`media-object icon-iconic-${( t.iconic_taxon_name || "unknown" ).toLowerCase( )}`} />
                   </div>
                   <div className="media-body">
                     <SplitTaxon taxon={t} user={ config.currentUser } />
@@ -137,20 +140,19 @@ class TaxonChooserPopover extends React.Component {
               ) ) }
             </ul>
           </Popover>
-        }
+        )}
       >
         <div
           className={`TaxonChooserPopoverTrigger RecordChooserPopoverTrigger ${taxon ? "chosen" : ""} ${className}`}
         >
-          { preIconClass ? <i className={`${preIconClass} pre-icon`}></i> : null }
+          { preIconClass ? <i className={`${preIconClass} pre-icon`} /> : null }
           { label ? ( <label>{ label }</label> ) : null }
           {
-            taxon ?
-              <SplitTaxon taxon={taxon} user={ config.currentUser } />
-              :
-              I18n.t( "filter_by_taxon" )
+            taxon
+              ? <SplitTaxon taxon={taxon} user={config.currentUser} />
+              : I18n.t( "filter_by_taxon" )
           }
-          { postIconClass ? <i className={`${postIconClass} post-icon`}></i> : null }
+          { postIconClass ? <i className={`${postIconClass} post-icon`} /> : null }
         </div>
       </OverlayTrigger>
     );

@@ -609,16 +609,20 @@ class ObservationModal extends React.Component {
             <ul className="inat-tabs">
               {activeTabs.map( tabName => (
                 <li key={`obs-modal-tabs-${tabName}`} className={activeTab === tabName ? "active" : ""}>
-                  <a
-                    href="#"
+                  <button
+                    type="button"
+                    className="btn btn-nostyle"
                     onClick={e => {
                       e.preventDefault( );
                       chooseTab( tabName, { observation } );
                       return false;
                     }}
                   >
-                    { tabTitles[tabName] || I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } ) }
-                  </a>
+                    {
+                      tabTitles[tabName]
+                      || I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } )
+                    }
+                  </button>
                 </li>
               ) ) }
             </ul>
@@ -650,7 +654,12 @@ class ObservationModal extends React.Component {
                               >
                                 <i className="fa fa-binoculars" />
                                 { " " }
-                                { I18n.toNumber( observation.user.observations_count, { precision: 0 } ) }
+                                {
+                                  I18n.toNumber(
+                                    observation.user.observations_count,
+                                    { precision: 0 }
+                                  )
+                                }
                               </a>
                             </li>
                           ) }
