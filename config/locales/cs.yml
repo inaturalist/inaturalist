@@ -609,6 +609,9 @@ cs:
   are_you_sure_remove_taxon_from_list: "Jste si jisti, že chcete tento taxon odebrat ze seznamu?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Jste si jisti? Tohle znovunačte stránku a Vy můžete ztratit nějaké Vaše změny.
+  are_you_sure_unresolve_flag?: |
+    Jste si jisti, že chcete tuto vlajku odstranit? Tímto odstraníte
+    řešení a uživatele, který řeší tuhle vlajku.
   are_you_sure_want_delete_taxon: "Opravdu chcete smazat tento taxon?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Opravdu chcete tento taxon smazat? Obsahuje sestupné taxony.
@@ -1756,6 +1759,8 @@ cs:
   join: Přidat se
   join_and_add_an_observation_to_project_html: Připojte se a přidejte pozorování k %{project}
   join_project: Zapojit se do tohoto projektu
+  #Prompt to join a specific project
+  join_project?: Připojit se k %{project}?
   join_some_projects_and_invite_some_observations_html: "Zapojte se do některých <a href='%{join_url}'>projektů</a> a <a href='%{invite_url}'>požádejte o pozorování</a>"
   join_the_largest_group_of_naturalists_in_the_world: Připojte se k největší skupině přírodovědců na světě!
   join_this_project: Zapojit se do tohoto projektu
@@ -2622,6 +2627,10 @@ cs:
   people_following_user: "lidí sleduje uživatele %{user}"
   people_user_follows: "Lidé, které sleduje uživatel %{user}"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: přidal <a href="%{observation_url}">pozorování</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -5266,6 +5275,9 @@ cs:
           projekt.
         are_you_sure_you_want_to_delete: Jste si jistí, že chcete smazat tento projekt?
         can_be_included_in_multiple: Může být zařazen do několika zastřešujících projektů
+        check_the_box_to_include_member_observations: |
+          Zaškrtněte políčko níže, chcete-li zahrnout pouze pozorování uživatelů, kteří se k projektu připojili.
+          Chcete-li vyloučit pozorování od konkrétních uživatelů, včetně vlastníka projektu a správců, použijte výše uvedený filtr Vyloučit uživatele, .
         click_through_to_individual_projects: Proklikejte jednotlivé projekty
         collection_projects: Sbírka projektů
         collection_project_features: "Funkce projektů"
@@ -5293,6 +5305,8 @@ cs:
           Poznámka: Tito uživatelé budou moci upravovat VŠECHNY detaily projektu včetně administrátorů.
         note_you_can_delete_the_time: |
           (Poznámka: časové pásmo můžete smazat a určit časy, pokud chcete zahrnout celé dny).
+        note_about_unselected_filters: |
+          Poznámka: Pokud nevyberete taxony, místa nebo uživatele, budou ve výchozím nastavení zahrnuty všechny.
         only_display_member_observations: |
           Zobrazit pouze pozorování od členů projektu (lidí, kteří se k projektu připojili)
         optionally_filter_media: Volitelně filtrovat pozorování s fotografiemi, zvuky nebo obojím.
@@ -5317,6 +5331,10 @@ cs:
           Vyberte alespoň jeden stupeň kvality. Další vysvětlení pro každý stupeň kvality naleznete na
           naší <a href="%{url}">FAQ stránce</a>.
         show_projects_as_flags: Zobrazit projekty jako vlajky na mapě
+        specify_project_filters: |
+          Určete filtry, pro které mají být pozorování zahrnuta do vašeho projektu.
+          Můžete vybrat více druhů (nebo taxonů), místa, data nebo jiná kritéria
+          pozorování, která mají být automaticky zahrnuta.
         start_and_end_times_for_bioblitzes: Časy začátku a konce pro bioblitzes
         traditional_projects_cannot_be_copied: Tradiční projekt nelze kopírovat
         umbrella_project_features: "Vlastnosti zastřešujících projektů:"
