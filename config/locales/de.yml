@@ -170,7 +170,7 @@ de:
   about_trips_html: |
     <h4>Trips ermöglichen die Erfassung von Daten über Fehlen/Vorhandensein, durch Hinzufügen von Kontext zu Ihren Beobachtungen</h4><p><strong>Warum</strong> Daten über Fehlen/Vorhandensein enthalten Informationen über den Aufwand der Erfassung, die für wissenschaftliche Analysen wie die Verteilungsmodellierung nützlich sind (normale iNaturalist Beobachtungen enthalten nur Daten über das Vorhandensein").</p> <p><strong>How</strong> Ein Trip fügt Deinen Beobachtungen einen Kontext hinzu, durch Protokollierung von:</p> <ul> <li><strong>Was</strong> Du gesucht hast (Zielliste)</li> <li><strong>Wo</strong> Du gesucht hast (Suchgebiet)</li> <li><strong>Wann</strong>Du gesucht hast (Suchintervall)</li> </ul> </ul> <p> Arten auf Deiner Zielliste, die Du innerhalb des Suchgebietes und Intervalls beobachten konntest, werden als vorhanden interpretiert. Während Arten auf Deiner Zielliste, die Du nicht beobachten konntest, als fehlend interpretiert werden. Klicke auf 'Zusammenfassen von Fehlen-Vorhandensein von Trips', um eine Tabelle mit Daten über das Fehlen-Vorhandensein für eine Spezies aus Trips und zugehörigen Beobachtungen zu erstellen. <a href='%{url}'>Mehr erfahren</a></p>
   about_x: "Über %{x}"
-  acc: 'Genauigkeit (m)'
+  acc: 'Genauigkeit(m)'
   account: Benutzerkonto
   account_creation: Benutzerkontenerstellung
   account_settings: Kontoeinstellungen
@@ -217,7 +217,7 @@ de:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Bestand hinzufügen
   add_batch: Satz hinzufügen
-  add_comma_separated_tags: "Kommagetrennte Tags (Suchwörter) hinzufügen"
+  add_comma_separated_tags: "Komma-getrennte Stichwörter hinzufügen"
   add_comment: Kommentar hinzufügen
   add_conservation_status: Schutzstatus hinzufügen
   add_countries: Länder hinzufügen
@@ -270,10 +270,10 @@ de:
   add_several_observations_at_once: Mehrere Beobachtungen gleichzeitig hinzufügen.
   add_sex_female_annotation: 'Annotation "Geschlecht: Weiblich" hinzufügen'
   add_sex_male_annotation: 'Vermerk "Geschlecht: Männlich" hinzufügen'
-  add_some_now: Einiges jetzt hinzufügen
+  add_some_now: Jetzt welche hinzufügen
   add_tag: Tag hinzufügen
-  add_tags: Tags hinzufügen
-  add_tags_to_selected_taxa: Tags zu ausgewählten Taxa hinzufügen
+  add_tags: Stichwörter hinzufügen
+  add_tags_to_selected_taxa: Stichwörter zu ausgewählten Taxa hinzufügen
   add_taxa: Taxa hinzufügen
   add_taxon_batch_to: "Taxon-Batch zu %{list} hinzufügen"
   add_taxon_range: Taxonbereich hinzufügen
@@ -511,7 +511,7 @@ de:
   are_you_sure_you_want_to_delete_this_photo?: Bist du sicher, dass du dieses Bild entfernen willst?
   are_you_sure_you_want_to_delete_this_post: Bist du sicher, dass du diesen Beitrag löschen möchtest?
   are_you_sure_you_want_to_delete_this_taxon_change: Bist du sicher, dass du diese Taxon-Änderung löschen möchtest?
-  are_you_sure_you_want_to_remove_all_tags: Bist du sicher, dass du alle Tags entfernen möchtest?
+  are_you_sure_you_want_to_remove_all_tags: Bist du sicher, dass du alle Stichwörter entfernen möchtest?
   are_you_sure_you_want_to_remove_curator: Bist du sicher, dass du %{user} als Kurator entfernen möchtest?
   are_you_sure_you_want_to_remove_from_project: Bist du sicher, dass du %{user} aus diesem Projekt entfernen möchtest?
   are_you_sure_you_want_to_remove_manager: Bist du sicher, dass du %{user} als Manager entfernen möchtest?
@@ -741,7 +741,7 @@ de:
   choose_photos_to_tag_from_photostream: Wähle Bilder zum Taggen aus deinen Bildern aus
   choose_rule: Wähle eine Regel
   choose_subjects: Wähle Themen aus
-  choose_tags: Wähle Tags aus
+  choose_tags: Wähle Stichwörter aus
   choose_taxon: Wähle ein Taxon
   choose_what_kind_of_change_youre_creating: "Wähle aus, welche Art von Änderung du vornimmst."
   cid_d_to_genus: CID auf Gattungsebene
@@ -759,7 +759,7 @@ de:
   comma_separated_list_of_tracking_codes: |
     Komma-getrennte Liste von Nachverfolgungsschlüsseln. Fügen Sie dies hinzu, wenn Sie einen Nachverfolgungsschlüssel anhängen möchten während Sie Benutzer auf das Neue-Beobachtung-Formular weiterleiten, z.B. %{root_url}observations/new?project_id=%{project_id}&tracking_code=IhrSchluessel123.
     Sie können damit Beteiligungen von verschiedenen Quellen nachverfolgen. Sie können auf diese Schlüssel zugreifen, in dem Sie die Beobachtungen Ihres Projektes als CSV-Datei herunterladen.
-  comma_separated_please: müssen durch Komma getrennt sein
+  comma_separated_please: müssen durch Kommas getrennt sein
   comment: Kommentar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
@@ -844,7 +844,7 @@ de:
   continue: Fortfahren
   continue_to_site: Weiter zu %{site_name}
   contributor_cannot_be_found: Mitwirkender kann nicht gefunden werden
-  contributors_to_project: "Mitwirkende bei %{project}"
+  contributors_to_project: "Teilnehmer vom Projekt %{project}"
   controlled_term_labels:
     sex: Geschlecht
     male: Männlich
@@ -1044,7 +1044,7 @@ de:
   description: Beschreibung
   description_from: Beschreibung von
   description_sections: Beschreibungsabschnitte
-  description_slash_tags: Beschreibung/Tags
+  description_slash_tags: Beschreibung/Stichwörter
   description_tags_more: "Beschreibung, Markierungen &amp; Mehr"
   desription: Beschreibung
   destroy: Zerstören
@@ -1084,8 +1084,8 @@ de:
   double_click_to_finish: (Doppelklicken um abzuschließen)
   download: Herunterladen
   download_bulk_import_template_html: |
-    <a href="%{url}">Vorlage herunterladen</a> zur Nutzung im
-    <a href="/observations/import?project_id=%{project_id}#csv_import">Bulk Uploader</a>
+    <a href="%{url}">Vorlage herunterladen</a> für die Verwendung im
+    <a href="/observations/import?project_id=%{project_id}#csv_import">"Bulk-Uploader"</a>
   download_csv: CSV herunterladen
   download_csv_template: CSV-Vorlage herunterladen
   download_kml: KML herunterladen
@@ -1540,7 +1540,7 @@ de:
   import_photos: Fotos importieren
   import_ranges: Reichweite importieren
   import_sections: Abschnitte importieren
-  import_tags_from_csv: Tags aus CSV importieren
+  import_tags_from_csv: Stichwörter aus CSV importieren
   importing: "Importiere…"
   improving: Wird besser
   in_n: "in %{n}"
@@ -1602,12 +1602,14 @@ de:
   join: Beitreten
   join_and_add_an_observation_to_project_html: Beitreten und eine Beobachtung zu %{project} hinzufügen
   join_project: Diesem Projekt beitreten
+  #Prompt to join a specific project
+  join_project?: Dem Projekt %{project} beitreten?
   join_some_projects_and_invite_some_observations_html: "Tritt einigen <a href='%{join_url}'>Projekten</a> bei und <a href='%{invite_url}'>importiere einige Beobachtungen</a>"
   join_the_largest_group_of_naturalists_in_the_world: Treten Sie der größten Gruppe von Naturwissenschaftlern der Welt bei!
   join_this_project: Diesem Projekt beitreten
   'joined!': Beigetreten!
   joined_projects: Beigetretene Projekte
-  joined_with_date: "Beigetreten: %{date}"
+  joined_with_date: "Mitglied seit: {date}"
   journal: Journal
   journal_archives_for: Journal-Archiv für
   journal_post: Journal-Eintrag
@@ -1766,7 +1768,7 @@ de:
   loading_metadata: Lade Metadaten...
   loading_preview_and_code: Lade Vorschau und Code...
   loading_suggestions: Lade Vorschläge...
-  loading_tags: "Lade Tags..."
+  loading_tags: "Lade Stichwörter..."
   loading_taxa_from_your: "Lade Taxa von deinen Beobachtungen..."
   loading_wikipedia_description: "Lade Wikipedia-Beschreibung..."
   locale_description: Legt die Sprache und Datumsformatierung fest.
@@ -1828,7 +1830,7 @@ de:
     white_bg_gif: weißer Hintergrund GIF
     transparent_png: transparentes PNG
     white_text_transparent_png: weißer Text transparent PNG
-    none: keine
+    none: Nichts
   long: Länge
   longitude: Längengrad
   longitude_in_decimal: 'Längengrad in dezimal Grad, z.B. 38.123'
@@ -1890,6 +1892,9 @@ de:
   meet: Treffen
   member_of_the_inaturalist_network_html: |
     Mitglied des <a href="%{url}">iNaturalist Netzwerkes</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Mitglied des %{partial_inat_network_tag_html}iNaturalist-Netwerks</a>, einer
+    gemeinsamen Initiative der %{cas_tag_html} und der %{nat_geo_tag_html}.
   members: Mitglieder
   membership_model: Mitgliedschaftsmodell
   mentioned_you_in_noun_html: "%{user} erwähnte dich in %{noun}"
@@ -1973,7 +1978,7 @@ de:
     muss beobachtet worden sein nach %{operand}
   must_be_observed_before: |
     muss beobachtet worden sein bevor %{operand}
-  must_be_observed_in: muss beobachtet worden sin in
+  must_be_observed_in: muss beobachtet worden sein in
   must_be_less_than_x_MB: "Muss weniger sein als %{x} MB"
   must_have_observation_field: "muss das Beobachtungsfeld '%{operand}'ausgefüllt haben"
   must_have_x: "muss %{x} haben"
@@ -2170,7 +2175,7 @@ de:
   number_of_observers: "Anzahl der Beobachter"
   number_selected: "# ausgewählt"
   obs: Beobachtungen
-  obscured: Verdeckt
+  obscured: verdeckt
   obscured_or_private: verdeckt oder privat
   obscured_description: |
     Öffentliche Koordinaten werden als Zufallspunkt innerhalb der 0.2 Grad-Zelle (Länge-/Breitengrad) angezeigt, die die wahren Koordinaten enthält.
@@ -2218,7 +2223,7 @@ de:
   observation_fields: Beobachtungsfelder
   observation_fields_are_additional: Beobachtungsfelder sind zusätzliche Datenfelder, die zu Beobachtungen hinzugefügt werden können.
   observation_fields_by_preferences_description: |
-    Beobachtungsfelder sind ein bisschen wie Tags, außer, dass jeder sie standardmäßig zu deiner Beobachtung hinzufügen kann. Ändere dies, wenn du es bevorzugst, dass nur du oder die Website-Kuratoren dies tun können.
+    Beobachtungsfelder sind ähnlich wie Stichwörter, nur dass jeder sie standardmäßig zu deiner Beobachtung hinzufügen kann. Ändere dies, wenn du es bevorzugst, dass das nur du oder die Website-Kuratoren tun können.
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     z.B. 2019-10-29 13:12:21
@@ -2944,7 +2949,7 @@ de:
   processing3p: "Verarbeite…"
   profile: Profil
   profile_visibility_desc: |
-    In dem Bestreben, Spam von %{site_name}abzuhalten, sind Benutzerprofile nur dann
+    In dem Bestreben, Spam von %{site_name} abzuhalten, sind Benutzerprofile nur dann
     öffentlich sichtbar, nachdem ein Benutzer mehrere Beobachtungen mit Forschungsqualität
     eingebracht hat.
   project: Projekt
@@ -2958,7 +2963,7 @@ de:
   project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_id: Projekt-Kurator-ID
   project_curator_tools: Projektkurator-Werkzeuge
-  project_curators: Projekt Kuratoren
+  project_curators: Projekt-Kuratoren
   project_group_label: Gruppe
   project_group_description: Gruppe der das Projekt angehört
   project_home: Projekt-Startseite
@@ -2971,7 +2976,7 @@ de:
     title: "Checkliste von %{owner_name}"
     description: Die Artenliste für %{owner_name}
   project_curators_added_some_of_your_observations_html: |
-    <a href="%{url}">%{project}</a> Kuratoren haben einige deiner Beobachtungen hinzugefügt
+    Kuratoren von<a href="%{url}">%{project}</a> haben einige deiner Beobachtungen hinzugefügt
   project_members: "Mitglieder von %{project}"
   project_members_only: Nur Projektmitglieder
   project_membership_model_description: Ist dein Projekt offen für alle oder nur für Personen, die du einlädst?
@@ -3111,9 +3116,9 @@ de:
   remarks_optional: 'Anmerkungen <span class="small description">(optional)</span>'
   remember_me: Angemeldet bleiben
   remove: Entfernen
-  remove_all_tags: Alle Tags entfernen
+  remove_all_tags: Alle Stichwörter entfernen
   remove_boundary: Grenze entfernen
-  remove_comma_separated_tags: "Komma-getrennte Tags entfernen"
+  remove_comma_separated_tags: "Komma-getrennte Stichwörter entfernen"
   remove_conservation_status: Konservierungsstatus entfernen
   remove_from: Entfernen aus
   remove_curator: Kurator entfernen
@@ -3133,7 +3138,7 @@ de:
   remove_relationship: Beziehung entfernen
   remove_section: Abschnitt entfernen
   remove_selected: Ausgewählte entfernen
-  remove_tags: Tags entfernen
+  remove_tags: Stichwörter entfernen
   removed: Entfernet
   removed_project_user: Projektbenutzer entfernen
   removing: "Entferne…"
@@ -3185,7 +3190,7 @@ de:
     must_be_identified: muss identifiziert werden
     must_be_on_list: muss auf der Liste stehen
     must_be_observed_in_place: muss im Gebiet beobachtet werden
-    must_be_in: muss in Taxon sein
+    must_be_in: 'muss in diesem Taxon sein:'
     must_be_coordinates_shareable_by_project_curators: Der Beobachter muss den Projektkuratoren erlauben, die Koordinaten einzusehen.
   running_total: Gesamtzahl
   said: sagte
@@ -3271,7 +3276,7 @@ de:
   send_the_invites: Einladungen senden
   sending: Sende …
   #Label for messages you've sent
-  sent: Versandt
+  sent: Gesendet
   separate_values_with_a_pipe: Werte mit einer Pipe trennen, z.B. "1-5|6-10|a lot" oder "yes|no|maybe".
   set_a_place_if_this_link_only_applies_to: Wähle ein Gebiet, wenn dieser Link nur für Taxa von einem bestimmten Ort gilt. Lass es leer, wenn es für Taxa auf der ganzen Welt gilt.
   set_license: Lizenz festlegen
@@ -3493,8 +3498,8 @@ de:
   #Noun, as in "add a tag to this observation"
   tag: Tag
   tagging: 'Tagge...'
-  tags: Stichworte
-  tags_are_a_way: 'Tags sind eine Möglichkeit, deine Beobachtungen zu organisieren. Zum Beispiel kannst du alle deine Beobachtungen im Wald mit "Wald" versehen, um sie später leichter zu finden.'
+  tags: Stichwörter
+  tags_are_a_way: 'Stichwörter sind eine Möglichkeit, deine Beobachtungen zu organisieren. Zum Beispiel kannst du alle deine Beobachtungen im Wald mit "Wald" versehen, um sie später leichter zu finden.'
   take_me_facebook: Ja, bring mich zu Facebook!
   take_me_flickr!: Ja, bring mich zu Flickr!
   target_list_alert: Bist du sicher, dass du versucht hast, alle Arten zu beobachten, die von deiner Zielliste abgedeckt sind? Denke daran, dass alles, was von der Zielliste abgedeckt ist und nicht beobachtet wurde, als Abwesenheit interpretiert wird, so dass es sehr wichtig ist, dass die Zielliste genau die Menge der Arten widerspiegelt, die du zu entdecken versucht hast
@@ -3561,6 +3566,7 @@ de:
   tell_us_why: Sag uns warum...
   terms: Bedingungen
   terms_and_rules_html: "Bedingungen &amp; Regeln"
+  terms_new_users: "Wenn du Bedingungen hinzufügst, müssen neue Benutzer ihnen zustimmen, bevor sie diesem Projekt beitreten."
   terms_service: Nutzungsbedingungen
   terrain: Gelände
   text: Text
@@ -3796,11 +3802,20 @@ de:
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   user_faved_a_noun_by_owner: "%{user}: %{noun} von %{owner} favorisiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
+  user_hasnt_joined_any_projects: "%{user} ist keinem Projekt beigetreten"
   user_helped_x_people_with_y_ids_html: "%{user} hat <strong>%{x} Personen</strong> mit <strong>%{y} IDs</strong> geholfen"
+  user_invite_observation_to_project: '%{user} möchte diese Beobachtung "%{observation}" für das Projekt %{project} einladen.'
+  user_invited_you_to_join_html: "%{user} hat dich zum Beitritt eingeladen"
   user_invited_you_to_join_project: "%{user} hat Dich eingeladen, bei %{project} mitzumachen"
   user_invited_you_to_join_this_project_on_date_html: "%{user} hat Dich eingeladen, diesem Projekt am %{date} beizutreten"
   user_invited_your_x_to_a_project_html: "%{user} hat deine %{x} zu einem Projekt eingeladen"
   user_is_a_naturalist: "%{user} ist ein Naturalist!"
+  user_is_now_the_admin_for_project_html: |
+    <strong>%{user}</strong> ist jetzt der Admin für %{project}
+  user_is_now_a_manager_for_project_html: |
+    <strong>%{user}</strong> ist jetzt ein Manager für %{project}
+  user_is_now_a_curator_for_project_html: |
+    <strong>%{user}</strong> ist jetzt ein Kurator für %{project}
   user_muted: Benutzer gesperrt
   user_observed_on_on_date_in_place: |
     %{user} beobachtete dies am %{date} in %{place}
@@ -3901,7 +3916,7 @@ de:
   wait_file_generation: Bitte um Geduld während die Datei erzeugt wird. Bei großen Listen kann es ein paar Minuten dauern.
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesucht
-  was_it_captive_cultivated?: "War es in Haltung, gezüchtet o. kultiviert?"
+  was_it_captive_cultivated?: "In Haltung, gezüchtet oder kultiviert?"
   we_also_support: |
     Von <a href="http://flickr.com">Flickr</a>,
     <a href="http://photos.google.com">Google Fotos</a> und
@@ -3941,7 +3956,7 @@ de:
   where_do_x_live: Wo leben %{taxa}?
   where_does_x_live: Wo lebt %{taxa}?
   where_were_they?: Wo befanden sie sich?
-  where_were_you?: Wo warst du?
+  where_were_you?: Wo war das?
   which_projects_can_add_your_observations?: Welche traditionellen Projekte können deine Beobachtungen hinzufügen?
   white: weiß
   why_you_can_see_the_coordinates: Warum Du die Koordinaten sehen kannst
@@ -3992,7 +4007,7 @@ de:
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} von %{y} Leute (mehr als 2/3) sind damit einverstanden"
   x_is_the_root_of_the_tree: "%{rank} %{name} ist die Basis des Stammbaums"
   x_project_journal: "%{project}'s %{name}"
-  x_project_stats: "%{project} Statistik"
+  x_project_stats: "Statistiken für %{project}"
   x_sent_you_a_new_message_on_y_html: "%{x} hat Ihnen eine neue Nachricht gesendet am %{y}:"
   x_site_is_a_social_network_for_naturalist: |
     %{site} ist ein soziales Netzwerk für Naturalisten! Erfasse Deine Beobachtungen von Pflanzen und Tieren, teile sie mit Freunden und Forschern und erfahre mehr über die Welt der Natur.
@@ -4004,7 +4019,7 @@ de:
   yellow: gelb
   'yes': "Ja"
   yes_find_them!: "Ja, findet sie!"
-  yes_i_want_to_join: Ja, ich will beitreten
+  yes_i_want_to_join: Ja, ich möchte beitreten
   yes_license_my_childs_observations: Ja, lizenzieren Sie die Fotos, Geräusche und Beobachtungen meines Kindes, damit Wissenschaftler die Daten verwenden können.
   yes_license_my_observations_so_scientists_can_use: Ja, lizenziere meine Fotos, Tonaufnahmen und Beobachtungen so, dass Wissenschaftler meine Daten verwenden können.
   yes_reject_it: Ja, ablehnen!
@@ -4125,7 +4140,7 @@ de:
   your_recent_projects: Deine Aktuellen Projekte
   your_relationships: Deine Beziehungen
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} benötigt mehr Berechtigungen von %{provider} , um fortzufahren:"
-  your_tags: Deine Tags
+  your_tags: Deine Stichwörter
   yours: Dein
   youre_not_following_anyone: |-
     Du folgst bisher niemandem. Indem du anderen Benutzern folgst, erhältst du Benachrichtigungen über deren neueste Beobachtungen. Finde heraus, was Personen <a href="%{observations_path}">beobachten</a> und mache einige neue <a href="%{people_path}">Bekanntschaften</a>.
@@ -4209,7 +4224,7 @@ de:
           Ob du die Serengeti oder nur deinen örtlichen Park (der vielleicht die Serengeti ist) erkundest, Guides können dir helfen, die erstaunliche Vielfalt unseres Planeten zu verstehen.
       edit:
         add_color_tags_help: |
-          Füge Farb-Tags aus den mit den ausgewählten Taxa assoziierten Farben hinzu.
+          Füge Farb-Markierungen aus den mit den ausgewählten Taxa assoziierten Farben hinzu.
         add_rank_tags_help_html: |
           Füge Taxon-Rang-Tags basierend auf unserer Taxonomie hinzu, z.B. 
           <code>Familie=Laridae</code>
@@ -4463,7 +4478,7 @@ de:
         url: URL der Beobachtung
         image_url: URL für das Standardbild
         sound_url: URL für den voreingestellten Sound. Beachte, dass dies nur für direkte Uploads funktioniert, nicht für Töne von Drittanbieter-Diensten
-        tag_list: Komma-getrennte Liste der Tags.
+        tag_list: Komma-getrennte Liste der Stichwörter.
         place_admin1_name: Name des administrativen Ortes ein Rang unterhalb der Landesebene
         place_admin2_name: Name des administrativen Ortes zwei Ränge unterhalb der Landesebene
         positioning_method: Wie die Koordinaten bestimmt wurden
@@ -4518,6 +4533,11 @@ de:
         identification_count_desc: '# an Bestimmungen einer bestimmten Art'
         flagged_photos_desc_html: |
           Einige dieser Bilder wurden wegen unangemessener Inhalte oder Urheberrechtsverletzungen gemeldet. Für Details siehe %{links}
+        join_project_desc_html: |
+          Der Beitritt zum Projekt verleiht den Projektkuratoren
+          die Möglichkeit, die versteckten Koordinaten dieser oder jeder anderen
+          Beobachtung im Projekt zu sehen und impliziert, dass du
+          den <a href="%{url}" target="_blank">Bedingungen</a> des Projekts zuzustimmst.
         quality_assessment_help_html: |
           <p>
           Die Beurteilung der Datenqualität ist eine Zusammenfassung über die Genauigkeit einer Beobachtung. Alle Beobachtungen starten zunächst als <strong>"Hobbyqualität"</strong> und erhalten dann den Status <strong>"benötigt ID"</strong>, falls </p>
@@ -4735,6 +4755,8 @@ de:
         den Projektkuratoren vertraust, die versteckten Koordinaten deiner
         Beobachtungen, die zu diesem Projekt hinzugefügt werden könnten, zu sehen. Wenn du dich entscheidest, diese Berechtigung nicht zu erteilen, kannst du dennoch fallweise entscheiden, Zugriff auf versteckte Koordinaten zu gewähren.
       confirm_leave:
+        what_would_you_like: |
+          Was möchtest du mit deinen Beobachtungen in diesem Projekt tun?
         keep_observations_desc: |
           Deine Beobachtungen bleiben im Projekt und die Kuratoren können weiterhin die versteckten Koordinaten einsehen.
         project_requires_curator_coordinate_access_desc: |
@@ -4765,6 +4787,10 @@ de:
           beginnt.
         it_looks_like_this_project_can_be_converted: |
           Es sieht so aus, als könne dieses Projekt in ein neues <a href="%{url}">Sammel-Projekt</a> umgewandelt werden.
+        no_curators: |
+          Es existieren keine Projektkuratoren. Wenn du eine neue Person als
+          Admin zuweisen möchtest, muss sie zuerst diesem Projekt beitreten und du musst sie
+          zu einem Kurator machen.
         observation_aggregation_desc_html: |
           <p class="description">
           Die Beobachtungs-Aggregation fügt automatisch geeignete Beobachtungen zu dem Projekt hinzu, wie in den Projektregeln festgelegt. Da es keine Möglichkeit gibt, viele Beobachtungen gleichzeitig aus einem Projekt zu entfernen, ist dies potentiell gefährlich, also stelle bitte sicher, dass du den Ort und die Taxonregeln gewählt hast, die du willst, oder du könntest mit einer Menge ungeeigneter Beobachtungen enden, die du manuell entfernen musst.
@@ -4814,6 +4840,11 @@ de:
           <p class="ui">
           Nur Projektkuratoren können Personen zu einem Projekt einladen. Du solltest in der Lage sein, nach Personen anhand deren iNat-Benutzernamen zu suchen oder deren <em>vollständigen</em> E-Mail-Adresse.
           </p>
+      join:
+        invite_only_description: |
+          Die Mitgliedschaft in diesem Projekt erfolgt nur auf Einladung. Wenn du
+          beitreten möchtest, kontaktiere einen der unten aufgeführten Kuratoren und fordern eine
+          Einladung an.
       new:
         a_project_allows_you_to_gather: |
           Ein Sammel-Projekt ermöglicht das Sammeln und Visualisieren von Beobachtungen
@@ -4913,11 +4944,11 @@ de:
       project_user_curator_coordinate_access_labels:
         observer: Ja, aber nur, wenn ich die Beobachtung dem Projekt selbst hinzufüge.
         any: Ja, egal wer die Beobachtung dem Projekt hinzufügt.
-        none: Keine.
+        none: Nein.
       curator_coordinate_access_label: |
         Sollen die privaten/verdeckten Koordinaten deiner Beobachtungen für die Projekt-Kuratoren sichtbar gemacht werden?
       curator_coordinate_access_note: |
-        Du kannst auch die versteckten Koordinaten von Beobachtungen in diesem Projekt von Fall zu Fall teilen. Dies sind nur die Standardeinstellungen für neue Beobachtungen, die dem Projekt hinzugefügt wurden.
+        Du kannst die versteckten Koordinaten von Beobachtungen in diesem Projekt auch von Fall zu Fall verfügbar machen. Dies sind nur die Standardeinstellungen für neue Beobachtungen, die dem Projekt hinzugefügt wurden.
       project_terms_desc_html: |
         Ermögliche den Kuratoren dieses Projekts, deine Beobachtungen gemäß
         den <a href="%{url}">Projekt-Bestimmungen</a> zu verwenden.
@@ -5831,6 +5862,7 @@ de:
     errors:
       format: '%{attribute} %{message}'
       messages:
+        accepted: muss akzeptiert werden
         blank: darf nicht leer sein
         confirmation: stimmt nicht mit dem Passwort überein
         empty: darf nicht leer sein
