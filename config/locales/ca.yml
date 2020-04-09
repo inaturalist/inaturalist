@@ -962,6 +962,7 @@ ca:
   custom_project_was_successfully_updated: El projecte de l'usuari s'ha actualitzat correctament.
   customize_location: Personalitzar la ubicació
   darr_apply_darr: "↓ Aplica ↓"
+  daily_users: Usuaris Diaris
   dashboard: Tauler
   data_deficient: Dades Insuficients
   data_quality: Qualitat de les dades
@@ -1622,6 +1623,8 @@ ca:
   join: Uniu-vos a
   join_and_add_an_observation_to_project_html: Unir-se i afegir una observació a %{project}
   join_project: Uniu-vos a aquest projecte
+  #Prompt to join a specific project
+  join_project?: Voleu unir-vos a %{project}?
   join_some_projects_and_invite_some_observations_html: "Uniu-vos a certs <a href='%{join_url}'>projectes</a> i <a href='%{invite_url}'>compartiu algunes observacions</a>"
   join_the_largest_group_of_naturalists_in_the_world: Uniu-vos al major grup de naturalistes del món!
   join_this_project: Uniu-vos a aquest projecte
@@ -2560,16 +2563,26 @@ ca:
       building: construcció
       Canton: Cantó
       canton: cantó
+      City Building: Edifici de la ciutat
+      city building: edifici de la ciutat
       Colloquial: Col·loquial
       colloquial: col·loquial
       Commune: Comuna
       commune: comuna
+      Constituency: Circumscripció
+      constituency: circumscripció
       Continent: Continent
       continent: continent
       Country: Estat
       country: estat
       County: País
       county: país
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegació
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegació
+      Department_Segment: Part de Departament
+      department_segment: part de departament
       District: Districte
       district: districte
       Division: Divisió
@@ -2610,6 +2623,10 @@ ca:
       open_space: espai obert
       Parish: Districte
       parish: districte
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Població
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: població
       Prefecture_City: Prefectura de la Ciutat
       prefecture_city: prefectura de la ciutat
       Point_of_Interest: Punt d'interès
@@ -2618,6 +2635,8 @@ ca:
       postal_code: codi postal
       Province: Província
       province: província
+      Regency: Regència
+      regency: regència
       Region: Regió
       region: regió
       Republic: República
@@ -2636,6 +2655,10 @@ ca:
       subdivision: Subdivisió
       Suburb: Suburbi
       suburb: suburbi
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sumu
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sumu
       Supername: Supernom
       supername: supernom
       Territory: Territori
@@ -2648,6 +2671,8 @@ ca:
       undefined: indefinit
       Unknown: Desconegut
       unknown: desconegut
+      Village_block: Nucli aïllat
+      village_block: nucli aïllat
       Zone: Zona
       zone: zona
   place_guess: lloc suggerit
@@ -5284,6 +5309,7 @@ ca:
         obs_desc: Creat en els 7 dies anteriors
         obs_id_d_desc: Creat els darrers 7 dies i té una ID (podria ser de l'observador)
         observations_1_week_moving_window: Observacions (Finestra temporal d'una setmana)
+        observers_desc: Ha afegit una observació aquest dia
         other_desc_html: Creat des d'altres aplicacions <a href="%{url}">fet per desenvolupadors</a>
         recent_desc: Connectat en els darrer 7 dies
         recent_w_0_obs: Recent sense observacions
