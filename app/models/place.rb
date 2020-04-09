@@ -149,6 +149,9 @@ class Place < ActiveRecord::Base
   GADM_PLACE_TYPES = {
     1000 => 'Municipality',
     1001 => 'Parish',
+    # As far as I can tell, this is not actually present in GADM, but people
+    # have started using it so I guess we have to keep it... whatever it means.
+    # ~~kueda 20200409
     1002 => 'Department Segment',
     1003 => 'City Building',
     1004 => 'Commune',

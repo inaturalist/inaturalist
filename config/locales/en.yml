@@ -2748,7 +2748,13 @@ en:
             Delegation: Delegation
             # https://en.wikipedia.org/wiki/Delegations_of_Tunisia
             delegation: delegation
+            # Added by mistake with some GADM place types, but subsequently used
+            # by some of our users. Assume it's a type of place contained within
+            # a "department"
             Department_Segment: Department Segment
+            # Added by mistake with some GADM place types, but subsequently used
+            # by some of our users. Assume it's a type of place contained within
+            # a "department"
             department_segment: department segment
             District: District
             district: district
