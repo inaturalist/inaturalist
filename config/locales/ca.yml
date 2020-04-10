@@ -2581,7 +2581,13 @@ ca:
       Delegation: Delegació
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegació
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       Department_Segment: Part de Departament
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       department_segment: part de departament
       District: Districte
       district: districte
