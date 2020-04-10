@@ -5074,6 +5074,67 @@ cs:
           <a href="%{url}">export pozorování</a>, kde najdete přehled svých exportů.
       parental_consent:
         subject: Vaše dítě by rádo použilo iNaturalist
+        content_html: |
+          <p> 
+          Vaše dítě používá vzdělávací aplikaci <strong>Seek by iNaturalist</strong> a rádo by sdílelo data s občansko-vědní platformou iNaturalist. Protože zveřejňování příspěvků na iNaturalist odhaluje osobní data, nemůže být iNaturalist používán osobami mladšími 13 let bez souhlasu rodiče. 
+          </p> 
+          <p> 
+          <strong>Seek by iNaturalist</strong> sice může být používán bez vytvoření účtu a funguje bez sdílení osobích dat, ale Vaše dítě pak nebude moci přispět pozorováním pro iNaturalist. iNaturalist je občansko-vědní sociální sítí kde účastníci sdílejí pozorování a identifikace živých věcí, aby se navzájem učili o přírodě a vytvářeli údaje o biologické rozmanitosti pro vědu. 
+          </p> 
+          <p> 
+          Pokud chcete dát svému dítěti souhlas s používáním iNaturalist, budeme od Vás potřebovat následující: 
+          </p> 
+          <ol> 
+          <li> 
+          <p> 
+          Vytvořte pro své dítě účet na iNaturalist kliknutím na následující odkaz: 
+          <a href="%{registration_url}">%{registration_url}</a> 
+          </p> 
+          </li> 
+          <li> 
+          <p> 
+          Poté, co svému dítěti založíte účet, vás požádáme o malý dar pro iNaturalist ve výši 1 USD placený kreditní kartou, abychom ověřili, že jste dospělý/á. Při darování nezapomeňte použít stejnou e-mailovou adresu, kterou jste zadali do pole „Email rodiče“. 
+          </p> 
+          </li> 
+          <li> 
+          <p> 
+          Jakmile dar zpracujeme, pošleme vám další e-mail s upozorněním, že účet Vašeho dítěte byl aktivován a že můžete použít uživatelské jméno a heslo k iNaturalist pro přihlášení do aplikace Seek Vašeho dítěte. 
+          </p> 
+          </li> 
+          </ol> 
+          <p> 
+          iNaturalist sbírá následující osobní údaje: 
+          </p> 
+          <ol> 
+          <li> 
+          <p> 
+          <strong>emailovou adresu (soukromá):</strong> každý účet na iNaturalist je propojen s emailem, který ale není nikde zveřejněn. 
+          </p> 
+          </li> 
+          <li> 
+          <p> <strong>uživatelské jméno (veřejné, požadované):</strong> každý účet na iNaturalist má veřejné uživatelské jméno a identifikační číslo uživatele. Uživatelské jméno nemusí být podobné jménu skutečnému, ale může být použito ke kontaktování osoby skrze veřejné komentáře a přímé soukromé zprávy. 
+          </p> 
+          </li> 
+          <li> 
+          <p> 
+          <strong>IP adresu (soukromá, požadovaná):</strong> iNaturalist uchovává, ale nezveřejňuje uživatelovu IP adresu, která může být použita k odvození osobních údajů, jako je například poloha (s přesností na úrovni města). 
+          </p> 
+          </li> 
+          <li> 
+          <p> 
+          <strong>profilový obrázek (veřejný, nepovinný):</strong> Účty na iNaturalist mívají profilové obrázky, jimiž jsou často fotografie samotných uživatelů. 
+          </p> 
+          </li> 
+          <li> 
+          <p> 
+          <strong>poloha pozorování (veřejná nebo soukromá, požadovaná):</strong> Pozorování na iNaturalist obsahuje informace o místě pozorování. To může být zveřejněno, nebo ponecháno jako soukromé, ale ve výchozím nastavení je vždy veřejné. 
+          </p> 
+          </li> 
+          </ol> 
+          <p> iNaturalist také umožňuje uživatelům sdílet veřejné obrázky, veřejné komentáře a soukromé přímé zprávy spojené s jejich účtem. Je možné, že by uživatelé do tohoto uživateli tvořeného obsahu mohli zahrnout i své osobní údaje. 
+          </p> 
+          <p> 
+          Další informace o zásadách ochrany osobních údajů platformy iNaturalist: <a href="%{privacy_policy_url}">zde</a>. </p>
       photos_missing:
         subject: Některé fotky vyžadují opravu
         we_have_been_housekeeping: |
