@@ -1637,6 +1637,8 @@ da:
   join: Tilslut
   join_and_add_an_observation_to_project_html: Deltag og tilføj en observation til %{project}
   join_project: Bliv medlem af dette projekt
+  #Prompt to join a specific project
+  join_project?: Tilmeld dig %{project}?
   join_some_projects_and_invite_some_observations_html: "Tilslut dig <a href='%{join_url}'>projekter</a> og <a href='%{invite_url}'>invitér nogle observationer</a>"
   join_the_largest_group_of_naturalists_in_the_world: Tilslut dig verdens største gruppe af naturelskere
   join_this_project: Bliv medlem af dette projekt
@@ -2606,7 +2608,13 @@ da:
       Delegation: Delegation
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegation
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       Department_Segment: Afdelingssegment
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       department_segment: afdelingssegment
       District: Distrikt
       district: distrikt
