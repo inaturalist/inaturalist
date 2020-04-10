@@ -188,7 +188,7 @@ de:
   activity_settings: Aktivitätseinstellungen
   adapted_by_name_from_a_work_by_original: "Angepasst von %{name} aus einer Arbeit von %{original}"
   add: Hinzufügen
-  add_a_batch_of_observations: Beobachtungssatz hinzufügen
+  add_a_batch_of_observations: Einen Satz an Beobachtungen hinzufügen
   add_a_batch_of_taxa: Taxa-Satz hinzufügen
   add_a_comment: Kommentar hinzufügen
   add_a_field: Feld hinzufügen
@@ -1111,7 +1111,7 @@ de:
   edit_custom_project_fields: Benutzerdefinierte Projektfelder bearbeiten
   edit_field: Feld bearbeiten
   edit_license: Lizenz bearbeiten
-  edit_multiple_dates: Mehrere Daten bearbeiten
+  edit_multiple_dates: Datumsangaben bearbeiten
   edit_multiple_descriptions: Mehrere Beschreibungen bearbeiten
   edit_multiple_locations: Mehrere Standorte bearbeiten
   edit_multiple_species: Mehrere Arten bearbeiten
@@ -1144,8 +1144,8 @@ de:
   editing_observation_field: Beobachtungsfeld bearbeiten
   editing_observation_id: "Beobachtung %{obs_id} bearbeiten"
   editing_observations:
-    one: 'Bearbeitung <span class="count">einer</span> Beobachtung:'
-    other: 'Bearbeitung von <span class="count">%{count}</span> Beobachtungen:'
+    one: 'Bearbeiten <span class="count">einer</span> Beobachtung:'
+    other: 'Bearbeiten von <span class="count">%{count}</span> Beobachtungen:'
   editing_project: '%{project} bearbeiten'
   editing_subscription_to_x_html: "Abonnements für %{x} bearbeiten"
   editing_taxon_link: Taxonlink bearbeiten
@@ -1417,7 +1417,7 @@ de:
   good_choice_for_sharing: Gute Auswahl zum teilen mit Wissenschaftler
   google: Google
   got_it!: Alles klar!
-  got_your_data_somewhere_else?: Haben Sie Ihre Daten irgendwo anders?  Wir können helfen.
+  got_your_data_somewhere_else?: Hast du deine Daten bereits woanders hochgeladen? Wir könnten helfen.
   graft: Graft
   grafting_attemps_to_insert_this_taxon: Grafting beschreibt den Versuch, dieses Taxon in unseren Stammbaum einzufügen, ein existierendes übergeordnetes Taxon zu finden oder alle notwendigen Zwischentaxa zu erstellen, um es an ein bestehendes höheres Taxon anzuhängen.
   grid: Raster
@@ -1636,9 +1636,9 @@ de:
   last_seen: Zuletzt gesehen
   last_year: Letztes Jahr
   lat: Breite
-  latitude: Geografische Breite
+  latitude: Breitengrad
   latitude_in_decimals: 'Geografische Breite in Dezimalgrad, z.B. 38.123'
-  latitude_slash_y_coord_slash_northing: Geographische Breite / y Koordinate / nichts
+  latitude_slash_y_coord_slash_northing: Breitengrad/ y-Koordinate/ Hochwert
   latitude_value: "Breitengrad: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Ebenen
@@ -1814,6 +1814,7 @@ de:
     tr: Türkisch
     zh-CN: Chinesisch (vereinfacht)
     zh-TW: Chinesisch (traditionell)
+  locality_notes: Gebietsangaben
   localized_species_accounts: Lokalisierter Arten-Überblick
   location: Standort
   location_is_accurate: Standort ist akkurat
@@ -1834,6 +1835,7 @@ de:
   long: Länge
   longitude: Längengrad
   longitude_in_decimal: 'Längengrad in dezimal Grad, z.B. 38.123'
+  longitude_slash_x_coord_slash_easting: Längengrad/ x-Koordinate/ Rechtswert
   longitude_value: "Längengrad: %{longitude}"
   look_up_name: "Namen nachschlagen"
   looks_like_neither_have!: Sieht aus, als hätten beide keine Taxa!
@@ -1993,7 +1995,7 @@ de:
   name: Name
   name_entered: Name eingegeben
   name_or_slug: "Name o. URL-Slug, z.B. mein-Projekt"
-  name_of_the_place_you: Name des Ortes an dem du die Beobachtung gemacht hast
+  name_of_the_place_you: Name des Ortes wo die Beobachtung gemacht wurde
   name_providers:
     col: Catalogue of Life
     ubio: uBio
@@ -2178,7 +2180,7 @@ de:
   obscured: verdeckt
   obscured_or_private: verdeckt oder privat
   obscured_description: |
-    Öffentliche Koordinaten werden als Zufallspunkt innerhalb der 0.2 Grad-Zelle (Länge-/Breitengrad) angezeigt, die die wahren Koordinaten enthält.
+    Öffentliche Koordinaten werden als Zufallspunkt innerhalb der 0.2 Grad-Zelle (Längen-/Breitengrad) angezeigt, die die wahren Koordinaten enthält.
   observation: Beobachtung
   observation_: Beobachtung
   observation_added: Beobachtung hinzugefügt.
@@ -2342,7 +2344,7 @@ de:
   only_an_admin_can_remove_project_users: Nur Administratoren können Projektbenutzer entfernen.
   only_curators_can_add_edit_scientific_names: Nur Kuratoren können wissenschaftliche Namen hinzufügen oder bearbeiten.
   only_curators_can_access_that_page: Nur Kuratoren können auf diese Seite zugreifen.
-  only_files_with_10000_rows_at_a_time: Bitte nur Dateien mit 10000 Zeilen auf einmal
+  only_files_with_10000_rows_at_a_time: Bitte nur Dateien mit weniger als 10000 Zeilen auf einmal
   only_letters_numbers: "Nur Buchstaben und Zahlen, keine Leerzeichen, muss mit einem Buchstaben beginnen."
   only_one_coordinate_system_per_file: |
     Nur ein Koordinatensystem kann pro Datei verwendet werden, sonst wird eine falsche Konvertierung oder Anzeige auftreten.
@@ -2523,7 +2525,13 @@ de:
       Delegation: Delegation
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: Delegation
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       Department_Segment: Segment eines Departments
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       department_segment: Segment eines Departments
       District: Bezirk
       district: Bezirk
@@ -3130,7 +3138,7 @@ de:
   remove_this_section: Diesen Abschnitt entfernen
   remove_manager: Manager Entfernen
   remove_observations:
-    one: Eine Beobachtung entfernen?
+    one: Diese Beobachtung entfernen?
     other: '%{count} Beobachtungen entfernen?'
   remove_photo: Bild entfernen
   remove_place: Gebiet entfernen
@@ -3459,8 +3467,8 @@ de:
   submission_model: Art der Einreichung
   submission_model_description: Wer kann dem Projekt Beobachtungen hinzufügen?
   submit_observations:
-    one: 1 Beobachtung einreichen
-    other: '%{count} Beobachtungen einreichen'
+    one: 1 Beobachtung absenden
+    other: '%{count} Beobachtungen absenden'
   submitted: Hinzugefügt
   subscribe_to_a_taxon: Taxon abonnieren
   subscribe_to_a_place: Einen Ort abonnieren
@@ -3535,6 +3543,7 @@ de:
   taxon_framework_relationships_with_count_html: "Beziehungen im taxonomischen Gerüst: %{count}"
   taxon_merge: Taxon-Zusammenführung
   taxon_name: Taxonname
+  taxon_name_must_match_an_existing_taxon_in_our_database: Taxonname muss mit einem existierenden Taxon in unserer Datenbank übereinstimmen
   taxon_observed_by_user: "%{taxon} beobachtet von %{user}"
   taxon_photos_updated: Taxon-Bilder aktualisiert!
   taxon_range: Taxon-Bereich
@@ -3743,6 +3752,9 @@ de:
   updated_photo: Foto aktualisiert
   upload: Hochladen
   upload_a_csv_file: CSV-Datei hochladen
+  upload_a_csv_file_with_observation: |
+    Lade eine CSV-Datei mit Beobachtungsdaten hoch. Wenn deine Daten in einer
+    Tabelle oder Datenbank enthalten sind, ist dies wahrscheinlich der richtige Weg.
   upload_photo: Foto hochladen
   upload_range: Verbreitung hochladen
   uploaded_by: Hochgeladen von
@@ -3770,6 +3782,11 @@ de:
     Benutze <span class='ac-placeholder'>"%{name}"</span> als Platzhalter
   use_this_form_to_create_a_new: |
     Benutze dieses Formular, um einen neuen Entwurf einer taxonomischen Änderung zu erstellen, der einen Vorschlag für eine Aufspaltung, Zusammenführung oder einen Tausch von aktiven Taxa beschreibt, die später eingereicht werden sollen.
+  use_unique_file_names_for_separate_uploads: Verwende eindeutige Dateinamen für separate Uploads
+  use_well_formed_csv: |
+    Verwende gut formatierte CSV. Das bedeutet, dass Text mit Kommas von
+    doppelten Anführungszeichen eingeschlossen sein muss. Die meisten Tabellenkalkulationsanwendungen sollten CSV im diesem Format
+    exportieren.
   used_x_times:
     one: 1 Mal benutzt
     other: '%{count} Mal benutzt'
@@ -3955,7 +3972,7 @@ de:
   where: Wo
   where_do_x_live: Wo leben %{taxa}?
   where_does_x_live: Wo lebt %{taxa}?
-  where_were_they?: Wo befanden sie sich?
+  where_were_they?: Wo waren die Beobachtungen?
   where_were_you?: Wo war das?
   which_projects_can_add_your_observations?: Welche traditionellen Projekte können deine Beobachtungen hinzufügen?
   white: weiß
@@ -4449,7 +4466,7 @@ de:
         receive_an_email_with_your_data_help: Du wirst eine Email erhalten mit deinem Export als Anhang.
         well_email_you: "Ok, wir schicken Ihnen eine Email wenn es bereit ist."
         taking_a_while: "Dies braucht einige Zeit. Bitte versuche eine der folgenden Optionen."
-        date_range_help: "Max und min Beobachtungsdatum in JJJJJ-MM-TT Format, z.B. 2015-01-17"
+        date_range_help: "Frühestes und spätestes Beobachtungsdatum in JJJJJ-MM-TT Format, z.B. 2015-01-17"
         created_on_help: "Datum an dem die Beobachtung erstellt wurde, nicht der Beobachtung, z.B. 2015-01-17, 2015-01, 2015"
       field_descriptions:
         id: "Eindeutige Kennung für diese Beobachtung"
@@ -4469,6 +4486,8 @@ de:
         latitude: Öffentlich sichtbarer Breitengrad
         longitude: Öffentlich sichtbarer Längengrad
         positional_accuracy: "Genauigkeit der Koordinaten (ja, ja, ja, Genauigkeit! = Präzision -- schlechte Terminologie)"
+        geoprivacy: "Ob der Beobachter die Koordinaten verdeckt oder unsichtbar gemacht hat"
+        coordinates_obscured: "Ob die Koordinaten verdeckt wurden oder nicht, sei es wegen Geoprivatsphäre oder wegen eines Gefährdungsstatus"
         user_id: Eindeutige Kennung für diesen Beobachter
         user_login: Benutzername des Beobachters
         created_at: Datetime des Erstellen der Beobachtung
@@ -4495,10 +4514,13 @@ de:
       import:
         coordinate_systems_help: |
           %{site_name} akzeptiert Koordinaten aus verschiedenen Koordinatensystemen; wenn Du ein anderes System als geographische Breite und Länge verwendest, müssen wir Dein verwendetes Koordinatensystem wissen, um die Koordinaten richtig zu interpretieren. Bitte versichere Dich, dass Du das richtige Koordinatensystem für Deine Daten gewählt hast, sonst könnte der Ort weit entfernt von dort landen, wo er sollte. Hast Du die Koordinaten aus einem GPS-Gerät, erfährst Du das Koordinatensystem in dessen Einstellungen. Beachte, dass wir keine benutzerdefinierten Koordinaten speichern, nur deren Umrechnung in geographische Breite und Länge.
-        date_column_format: JJJJ-MM-DD HH:MM
+        date_column_format: JJJJ-MM-TT HH:MM
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           Die Geo-Privatsphäre muss in Englisch und leer sein oder auf "verdeckt" oder "privat" gesetzt sein.
+        project_csv_template_notice_html: |
+          Es gibt eine Vorlagen-Datei für dieses Projekt, die bei der Struktur der CSV-Datei helfen könnte.
+          <a href="%{url}">Vorlage herunterladen</a>
         soundcloud_notice_html: |
           Im Jahr 2018 änderte Soundcloud ihre API und machte es uns unmöglich,
           neue Verbindungen zu deinem Soundcloud Konto herzustellen. Falls
@@ -4920,6 +4942,7 @@ de:
           Es können mehrere Arten (oder Taxa), Gebiete, Daten oder andere Kriterien ausgewählt werden, damit 
           Beobachtungen automatisch aufgenommen werden.
         umbrella_project_features: "Charakteristiken von Dach-Projekten:"
+        unique_url_for_outreach: Eindeutige URL zum Verlinken
         use_this_for_a_time_limited_event: |
           Verwende dies für ein zeitlich begrenztes Event, Bioblitz oder saisonales Projekt. Wähle ein bestimmtes Datum, ein Zeitfenster oder in welchen Monaten des Jahres die Beobachtungen
           gemacht werden müssen (unabhängig vom Jahr). Wenn der Abschnitt "Datumsbereich" verwenden wird, stelle sicher, dass die korrekten Zeiten und Zeitzonen ausgewählt wurden, oder lösche den Text bzgl. Zeit/Zeitzone, um Beobachtungen zu enthalten, die irgendwann an diesem Tag gemacht wurden. Das Startdatum oder Enddatum kann leer bleiben, wenn das Projekt nur auf ein Datum begrenzt ist.
@@ -5801,6 +5824,8 @@ de:
         occurrence_status_level: Verbreitungsstatus
         establishment_means: Art der Verbreitung
       observation:
+        geo_x: Rechtswert
+        geo_y: Hochwert
         observed_on: Beobachtungsdatum
       observation_field_value:
         value: 'Wert'
