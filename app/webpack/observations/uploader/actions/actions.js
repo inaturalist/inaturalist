@@ -236,6 +236,69 @@ const actions = class actions {
     };
   }
 
+  static duplicateObsCards( obsCards ) {
+    return function ( dispatch, getState ) {
+      let serialId = new Date( ).getTime( );
+      const { files, obsPositions } = getState( ).dragDropZone;
+      const newCards = [];
+      // for each obs card
+      _.each( obsCards, c => {
+        // make a new card
+        const id = serialId;
+        const newCard = new ObsCard( Object.assign( { },
+          _.pick( c, [
+            "accuracy",
+            "bounds",
+            "captive",
+            "date",
+            "description",
+            "geoprivacy",
+            "latitude",
+            "longitude",
+            "observation_field_values",
+            "place_guess",
+            "positional_accuracy",
+            "projects",
+            "species_guess",
+            "tags",
+            "taxon_id",
+            "zoom"
+          ] ),
+          { id } ) );
+        // update that card with the old card's attributes
+        dispatch( actions.appendObsCards( { [newCard.id]: newCard } ) );
+        newCards.push( newCard );
+        // insert the new card after the old one
+        const cardPosition = obsPositions.indexOf( c.id );
+        const beforeCardId = cardPosition === obsPositions.length - 1
+          ? null
+          : obsPositions[cardPosition + 1];
+        dispatch( actions.insertCardsBefore( [newCard.id], beforeCardId ) );
+        const cardFiles = _.filter( files, f => f.cardID === c.id );
+        if ( cardFiles.length > 0 ) {
+          const newFiles = {};
+          _.each( cardFiles, cf => {
+            // make a new file
+            // update the new file with the old file's attributes
+            newFiles[serialId] = new DroppedFile( Object.assign( {},
+              _.pick( cf, ["name", "type", "uploadState", "sort", "metadata", "photo", "serverMetadata"] ),
+              {
+                id: serialId,
+                cardID: newCard.id
+              } ) );
+            serialId += 1;
+          } );
+          dispatch( actions.appendFiles( newFiles ) );
+        }
+        serialId += 1;
+      } );
+      dispatch( actions.selectObsCards( _.reduce( newCards, ( o, card ) => {
+        o[card.id] = true;
+        return o;
+      }, { } ) ) );
+    };
+  }
+
   static combineSelected( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
@@ -688,6 +751,13 @@ const actions = class actions {
           hideCancel: true
         }
       } ) );
+    };
+  }
+
+  static duplicateSelected( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      dispatch( actions.duplicateObsCards( s.dragDropZone.selectedObsCards ) );
     };
   }
 };

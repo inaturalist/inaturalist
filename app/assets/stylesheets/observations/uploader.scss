@@ -334,7 +334,7 @@ input.failed, textarea.failed {
   margin: 0
 }
 .InsertionDropTarget {
-  $insertion-drop-border-width: 2px;
+  $insertion-drop-border-width: 3px;
   $insertion-drop-width: 10px;
   display: inline-block;
   vertical-align: top;
@@ -368,11 +368,11 @@ input.failed, textarea.failed {
       // animation: grow-insertion-drop-target 0.2s forwards;
       &.before {
         // margin-right: $insertion-drop-width;
-        border-left: $insertion-drop-border-width dashed $text-grey;
+        border-left: $insertion-drop-border-width dashed #666;
       }
       &.after {
         // margin-left: $insertion-drop-width;
-        border-right: $insertion-drop-border-width dashed $text-grey;
+        border-right: $insertion-drop-border-width dashed #666;
       }
     }
   }

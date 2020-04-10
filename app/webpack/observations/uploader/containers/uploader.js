@@ -99,6 +99,9 @@ const mapDispatchToProps = dispatch => ( {
   },
   insertDroppedFilesBefore: ( files, beforeCardId ) => {
     dispatch( actions.onFileDrop( files, { beforeCardId } ) );
+  },
+  duplicateSelected: ( ) => {
+    dispatch( actions.duplicateSelected( ) );
   }
 } );
 
