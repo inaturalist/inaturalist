@@ -311,6 +311,7 @@ lt:
   add_plant_phenology_flower_budding_annotation: 'Pridėti „Augalų fenologija: sprogsta žiedai“ pastabą'
   add_plant_phenology_flowering_annotation: 'Pridėti „Augalų fenologija: žydi“ pastabą'
   add_plant_phenology_fruiting_annotation: 'Pridėti pastabą "Augalo fenologija: vaisių vedimas"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Pridėti „Augalų fenologija: Nėra žydėjimo požymių“ pastabą'
   add_life_stage_adult_annotation: 'Pridėti „Amžiaus tarpsnis: Suaugęs“ papildomą informaciją'
   add_life_stage_teneral_annotation: 'Pridėti „Amžiaus tarpsnis: išsinėręs“ papildomą informaciją'
   add_life_stage_subimago_annotation: 'Pridėti „Amžiaus tarpsnis: subimago“ papildomą informaciją'
@@ -890,6 +891,7 @@ lt:
     teneral: Išsinėręs
     subimago: Subimago
     pupa: Lėliukė
+    no_evidence_of_flowering: Nėra žydėjimo požymių
     nymph: Nimfa
     larva: Lerva
     egg: Kiaušinis
@@ -904,6 +906,7 @@ lt:
     flower_budding: Žiediniai pumpurai yra matomi, bet ne išsiskleidę
     flowering: Žiedai matomi, prasiskleidę ir vis dar prisitvirtinę prie augalo
     fruiting: Vaisiai matomi ir vis dar prisitvirtinę prie augalo
+    no_evidence_of_flowering: Nuotraukoje nesimato jokių dauginimosi struktūrų
     teneral: Išsinėrė paskutinį kartą, bet dar nėra pilnai subrendęs suaugėlis
   controls: Valdikliai
   convert: Konvertuoti
@@ -4158,6 +4161,7 @@ lt:
           "Plant Phenology=Flower Budding": Su sprogstančiais žiedais
           "Plant Phenology=Flowering": Žydi
           "Plant Phenology=Fruiting": Dera
+          "Plant Phenology=No Evidence of Flowering": Nėra įrodymų
           "Life Stage=egg": Kiaušinis
           "Life Stage=larva": Lerva
           "Life Stage=teneral": Išsinėręs
