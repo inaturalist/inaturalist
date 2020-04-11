@@ -962,6 +962,7 @@ nb:
   custom_project_was_successfully_updated: Prosjekttilpasninger oppdatert
   customize_location: Tilpass lokalitet
   darr_apply_darr: "&darr; Bruk &darr;"
+  daily_users: Daglig brukere
   dashboard: Oversikt
   data_deficient: Datamangel
   data_quality: Datakvalitet
@@ -1220,6 +1221,10 @@ nb:
   exact_location: Nøyaktig_lokalitet
   exact_rank: Nøyaktig rang
   except: unntatt
+  exclude_places: Ekskluder steder
+  exclude_projects: Ekskluder prosjekter
+  exclude_taxa: Ekskluder taksa
+  exclude_users: Ekskluder brukere
   exclusion_filters: Ekskluderingsfiltre
   existing_flags: Eksisterende markeringer
   exit_full_screen: "Avslutt fullskjermmodus"
@@ -1564,6 +1569,10 @@ nb:
   inaturalist_network_affiliation: iNaturalist nettverkstilknytning
   #Label for messages you've received
   inbox: Innboks
+  include_places: Inkluder steder
+  include_projects: Inkluder prosjekter
+  include_taxa: Inkluder taksa
+  include_users: Inkluder brukere
   including: inklusiv
   increase_brightness: Øk lysstyrken
   in_progress: pågående
@@ -1612,6 +1621,8 @@ nb:
   join: Bli med
   join_and_add_an_observation_to_project_html: Bli med og legg til en observasjon til %{project}
   join_project: Bli med i dette prosjektet
+  #Prompt to join a specific project
+  join_project?: Bli med på %{project}?
   join_some_projects_and_invite_some_observations_html: "Bli med i noen <a href='%{join_url}'>prosjekter</a> og <a href='%{invite_url}'>inviter noen observasjoner</a>"
   join_the_largest_group_of_naturalists_in_the_world: Bli med i verdens største gruppe av naturalister!
   join_this_project: Bli med i dette prosjektet
