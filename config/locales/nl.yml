@@ -268,6 +268,7 @@ nl:
   add_plant_phenology_flower_budding_annotation: 'Voeg aantekening "Plantenfenologie: bloemknoppen" toe'
   add_plant_phenology_flowering_annotation: 'Voeg "Plantenfenologie: Bloeiend" aantekening toe'
   add_plant_phenology_fruiting_annotation: 'Voeg "Plantenfenologie: Vruchtdragend" aantekening toe'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Voeg "Plantenfenologie: Geen bewijs voor bloei" aantekening toe'
   add_life_stage_adult_annotation: 'Voeg "Levenstadium: Volwassen" aantekening toe'
   add_life_stage_teneral_annotation: 'Voeg "Levenstadium: teneral" aantekening toe'
   add_life_stage_subimago_annotation: 'Voeg "Levenstadium: subimago" aantekening toe'
@@ -887,6 +888,7 @@ nl:
     teneral: Net verveld
     subimago: Subimago
     pupa: Pop
+    no_evidence_of_flowering: Geen bewijs voor bloei
     nymph: Nimf
     larva: Larve
     egg: Ei
@@ -901,6 +903,7 @@ nl:
     flower_budding: Bloemknoppen zijn zichtbaar maar niet open
     flowering: Bloemen zichtbaar, open, en nog vast aan de plant
     fruiting: Vruchten zichtbaar en nog vast aan de plant
+    no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
     teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
   controls: Besturing
   convert: Converteren
@@ -979,6 +982,7 @@ nl:
   custom_project_was_successfully_updated: Projectaanpassingen bijgewerkt
   customize_location: Locatie aanpassen
   darr_apply_darr: "&darr; Toepassen &darr;"
+  daily_users: Dagelijkse gebruikers
   dashboard: Dashboard
   data_deficient: Gegevens Tekort
   data_quality: Gegevenskwaliteit
@@ -1238,6 +1242,10 @@ nl:
   exact_location: Exacte locatie
   exact_rank: Exacte rang
   except: met uitzondering van
+  exclude_places: Plaatsen uitsluiten
+  exclude_projects: Projecten uitsluiten
+  exclude_taxa: Taxa uitsluiten
+  exclude_users: Gebruikers uitsluiten
   exclusion_filters: Uitsluitingsfilters
   existing_flags: Bestaande meldingen
   exit_full_screen: "Volledig Schermmodus Verlaten"
@@ -1584,6 +1592,10 @@ nl:
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
   inbox: Postvak IN
+  include_places: Plaatsen inbegrijpen
+  include_projects: Projecten inbegrijpen
+  include_taxa: Taxa inbegrijpen
+  include_users: Gebruikers inbegrijpen
   including: inclusief
   increase_brightness: Helderheid verhogen
   in_progress: bezig
@@ -1636,6 +1648,8 @@ nl:
   join: Lid worden
   join_and_add_an_observation_to_project_html: Word lid en voeg een waarneming toe aan %{project}
   join_project: Doe mee aan dit project
+  #Prompt to join a specific project
+  join_project?: Deelnemen aan %{project}?
   join_some_projects_and_invite_some_observations_html: "Doe mee aan enkele <a href='%{join_url}'>projecten</a> en <a href='%{invite_url}'>nodig enkele waarnemingen uit</a>"
   join_the_largest_group_of_naturalists_in_the_world: Sluit je aan bij de grootste groep naturalisten ter wereld!
   join_this_project: Doe mee aan dit project
@@ -2147,6 +2161,7 @@ nl:
   no_favorites_added:
     current_user: Je hebt nog geen favorieten toegevoegd.
     user: "%{user} heeft geen favorieten toegevoegd."
+  no_journal_posts_yet: Nog geen dagboekberichten
   no_license_all_rights_reserved: Geen licentie (alle rechten voorbehouden)
   no_managers_set: Geen beheerders ingesteld
   no_matching_article_from_x: "Geen overeenkomend artikel van %{x}"
@@ -2589,16 +2604,32 @@ nl:
       building: gebouw
       Canton: Kanton
       canton: kanton
+      City Building: Stadsgebouw
+      city building: stadsgebouw
       Colloquial: Gemeenzaam
       colloquial: gemeenzaam
       Commune: gemeente
       commune: gemeente
+      Constituency: Kiesdistrict
+      constituency: kiesdistrict
       Continent: Continent
       continent: continent
       Country: Land
       country: land
       County: Streek
       county: streek
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegatie
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegatie
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Departementsdeel
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: departementsdeel
       District: District
       district: district
       Division: Divisie
@@ -2639,6 +2670,12 @@ nl:
       open_space: open ruimte
       Parish: Parochie
       parish: parochie
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Poblacion
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: poblacion
+      Prefecture: Prefectuur
+      prefecture: prefectuur
       Prefecture_City: Prefectuurstad
       prefecture_city: prefectuurstad
       Point_of_Interest: Nuttige plaats
@@ -2647,6 +2684,8 @@ nl:
       postal_code: postcode
       Province: Provincie
       province: provincie
+      Regency: Regentschap
+      regency: regentschap
       Region: Regio
       region: regio
       Republic: Republiek
@@ -2665,6 +2704,10 @@ nl:
       subdivision: onderverdeling
       Suburb: Voorstad
       suburb: voorstad
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
       Supername: Overkoepelende naam
       supername: overkoepelende naam
       Territory: Territorium
@@ -2677,6 +2720,8 @@ nl:
       undefined: niet gedefiniëerd
       Unknown: Onbekend
       unknown: onbekend
+      Village_block: Dorpswijk
+      village_block: dorpswijk
       Zone: Zone
       zone: zone
   place_guess: plaats raden
@@ -3029,6 +3074,7 @@ nl:
   project_group_description: Groep waartoe het project behoort
   project_home: Startpagina project
   project_icon: Projecticoon
+  project_journal: Projectdagboek
   project_id_or_url_slug: Project-ID of URL-slug, bijv. 333 of mijn project
   project_invitations: 'Project uitnodigingen'
   project_list: Projectlijst
@@ -3038,6 +3084,7 @@ nl:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a>-curatoren hebben enkele van je waarnemingen toegevoegd
   project_members: "%{project} Leden"
+  project_members_only: Alleen projectdeelnemers
   project_membership_model_description: Is je project voor iedereen toegankelijk of enkel voor genodigden?
   project_observations: Projectwaarnemingen
   project_post: Project Bericht
@@ -3366,6 +3413,9 @@ nl:
   show_taxa_from_place: "Toon taxa uit %{place}"
   show_total_counts: Toon totale aantallen
   show_uncountable_species: Laat ontelbare soorten zien
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Toont de eerste %{x}
   showing_taxa_from_everywhere: "Toon taxa van overal"
   showing_taxa_from_place: "Toon taxa van %{place}"
   showing_x_of_y: '%{x} van de %{y} zichtbaar'
@@ -5141,6 +5191,8 @@ nl:
           Let op: deze gebruikers zullen ALLE projectdetails, inclusief administratoren, kunnen bewerken.
         note_you_can_delete_the_time: |
           (Opmerking: je kunt de tijdzone en precieze tijden verwijderen als je hele dagen wilt noteren.)
+        only_display_member_observations: |
+          Toon alleen waarnemingen van projectleden (mensen die zich bij het project hebben aangesloten)
         or_drag_and_drop: (of sleep en plaats)
         please_specify_the_requirements: |
           Geef de vereisten op voor de waarnemingen die moeten worden toegevoegd aan dit project.
@@ -5293,6 +5345,7 @@ nl:
         obs_desc: Gemaakt in de afgelopen 7 dagen
         obs_id_d_desc: Gemaakt in de afgelopen 7 dagen met een ID (kan van de waarnemer zijn)
         observations_1_week_moving_window: Waarnemingen (meeschuivend tijdsbestek van 1 week)
+        observers_desc: Waarneming toegevoegd op deze dag
         other_desc_html: Gemaakt met andere applicaties <a href="%{url}">gebouwd door ontwikkelaars</a>
         recent_desc: Aangemeld in de afgelopen 7 dagen
         recent_w_0_obs: Recent met 0 wrn
@@ -5452,6 +5505,7 @@ nl:
           "Plant Phenology=Flower Budding": Bloemknoppen
           "Plant Phenology=Flowering": Bloeiend
           "Plant Phenology=Fruiting": Vruchtdragend
+          "Plant Phenology=No Evidence of Flowering": Geen bewijs
           "Life Stage=egg": Ei
           "Life Stage=larva": Larve
           "Life Stage=teneral": Net verveld
