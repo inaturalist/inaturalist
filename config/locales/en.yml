@@ -332,6 +332,7 @@ en:
   add_plant_phenology_flower_budding_annotation: 'Add "Plant Phenology: Flower Budding" annotation'
   add_plant_phenology_flowering_annotation: 'Add "Plant Phenology: Flowering" annotation'
   add_plant_phenology_fruiting_annotation: 'Add "Plant Phenology: Fruiting" annotation'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Add "Plant Phenology: No Evidence of Flowering" annotation'
   add_life_stage_adult_annotation: 'Add "Life Stage: Adult" annotation'
   add_life_stage_teneral_annotation: 'Add "Life Stage: teneral" annotation'
   add_life_stage_subimago_annotation: 'Add "Life Stage: subimago" annotation'
@@ -963,6 +964,7 @@ en:
     teneral: Teneral
     subimago: Subimago
     pupa: Pupa
+    no_evidence_of_flowering: No Evidence of Flowering
     nymph: Nymph
     larva: Larva
     egg: Egg
@@ -977,6 +979,7 @@ en:
     flower_budding: Flower buds are visible but not open
     flowering: Flowers visible, open, and still attached to the plant
     fruiting: Fruit visible and still attached to the plant
+    no_evidence_of_flowering: Media provides no evidence of reproductive structures
     teneral: Adult that has recently pupated but has not yet achieved its final adult form
   controls: Controls
   convert: Convert
@@ -6265,6 +6268,7 @@ en:
           "Plant Phenology=Flower Budding": Flower Budding
           "Plant Phenology=Flowering": Flowering
           "Plant Phenology=Fruiting": Fruiting
+          "Plant Phenology=No Evidence of Flowering": No Evidence
           "Life Stage=egg": Egg
           "Life Stage=larva": Larva
           "Life Stage=teneral": Teneral

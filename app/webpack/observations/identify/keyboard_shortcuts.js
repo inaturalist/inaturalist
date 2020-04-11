@@ -87,6 +87,11 @@ const annotationShortcuts = [
     term: "Plant Phenology",
     value: "Fruiting"
   },
+  {
+    shortcut: "p n",
+    term: "Plant Phenology",
+    value: "No Evidence of Flowering"
+  },
 
   // Sex
   {
