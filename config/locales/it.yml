@@ -255,6 +255,7 @@ it:
   add_plant_phenology_flower_budding_annotation: 'Aggiungi annotazione "Fenologia della Pianta: Bocciolo di Fiore"'
   add_plant_phenology_flowering_annotation: 'Aggiungi nota "Fenologia della Pianta: Fioritura"'
   add_plant_phenology_fruiting_annotation: 'Aggiungi nota "Fenologia della Pianta: Fruttificazione"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Aggiungi annotazione "Fenologia della Pianta: Nessuna evidenza di Fioritura"'
   add_life_stage_adult_annotation: 'Aggiungi nota "Stadio vitale: Adulto"'
   add_life_stage_teneral_annotation: 'Aggiungi nota "Stadio vitale: immaturo"'
   add_life_stage_subimago_annotation: 'Aggiungi nota "Stadio vitale: Subimago"'
@@ -872,6 +873,7 @@ it:
     teneral: Immaturo
     subimago: Subimago
     pupa: Pupa
+    no_evidence_of_flowering: Nessuna evidenza di Fioritura
     nymph: Ninfa
     larva: Larva
     egg: Uovo
@@ -886,6 +888,7 @@ it:
     flower_budding: I boccioli di fiore sono visibili ma non aperti
     flowering: Fiori visibili, aperti, ed ancora attaccati alla pianta
     fruiting: Frutti visibili ed ancora attaccati alla pianta
+    no_evidence_of_flowering: Il contenuto multimediale non fornisce alcuna evidenza delle strutture riproduttive
     teneral: Adulto che ha recentemente superato lo stadio di pupa ma che non ha ancora raggiunto la sua forma adulta definitiva
   controls: Controlli
   convert: Converti
@@ -5437,6 +5440,7 @@ it:
           "Plant Phenology=Flower Budding": Bocciolo di Fiore
           "Plant Phenology=Flowering": In Fiore
           "Plant Phenology=Fruiting": In Frutto
+          "Plant Phenology=No Evidence of Flowering": Nessuna evidenza
           "Life Stage=egg": Uovo
           "Life Stage=larva": Larva
           "Life Stage=teneral": Muta
