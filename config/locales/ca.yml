@@ -255,6 +255,7 @@ ca:
   add_plant_phenology_flower_budding_annotation: 'Afegiu anotació "Fenologia vegetal: Gemmes Florals"'
   add_plant_phenology_flowering_annotation: 'Afegiu nota "Fenologia de la planta: Floració"'
   add_plant_phenology_fruiting_annotation: 'Afegiu nota "Fenologia de la planta: Fructificació"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Afegiu la nota "Fenologia de la planta: Sense evidències de Floració"'
   add_life_stage_adult_annotation: 'Afegiu nota "Estat del Cicle biològic: Adult"'
   add_life_stage_teneral_annotation: 'Afegiu nota "Estat del Cicle biològic: Imago tendre"'
   add_life_stage_subimago_annotation: 'Afegir l''anotació «Etapa de la vida: subimago»'
@@ -870,6 +871,7 @@ ca:
     teneral: Imago tendre
     subimago: Subimago
     pupa: Pupa
+    no_evidence_of_flowering: Sense evidència de Floració
     nymph: Nimfa
     larva: Larva
     egg: Ou
@@ -884,6 +886,7 @@ ca:
     flower_budding: Es veuen les flors però no s'han obert
     flowering: Flors visibles, obertes, i encara fixades a la planta
     fruiting: Fruit visible i encara fixat a la planta
+    no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
     teneral: Adult que ja pupat recentment però no ha assolit encara la seva forma adulta definitiva
   controls: Controls
   convert: Convertiu
@@ -2633,6 +2636,8 @@ ca:
       Poblacion: Població
       #https://en.wikipedia.org/wiki/Poblacion
       poblacion: població
+      Prefecture: Prefectura
+      prefecture: prefectura
       Prefecture_City: Prefectura de la Ciutat
       prefecture_city: prefectura de la ciutat
       Point_of_Interest: Punt d'interès
@@ -3786,6 +3791,9 @@ ca:
   this_list_only_accepts_taxa_that_are_species: Aquesta llista només accepta tàxons que són espècies
   this_list_only_accepts_taxa_that_are_species_or_lower: Aquesta llista només accepta tàxons que són espècies o inferiors
   this_observation: Aquesta observació
+  this_observation_is_featured_on_x_sites:
+    one: Aquesta observació és presentada a %{count} lloc
+    other: Aquesta observació és presentada a %{count} llocs
   this_observation_is_research_grade: Aquesta observació és de Grau de Recerca!
   this_observation_was_created_using: "Aquesta observació va ser creada utilitzant:"
   this_photo_is_already_associated: Aquesta foto ja està associada amb una de les vostres observacions.
@@ -5434,6 +5442,7 @@ ca:
           "Plant Phenology=Flower Budding": Gemmes florals
           "Plant Phenology=Flowering": Florint
           "Plant Phenology=Fruiting": Fructificant
+          "Plant Phenology=No Evidence of Flowering": Sense evidències
           "Life Stage=egg": Ou
           "Life Stage=larva": Larva
           "Life Stage=teneral": Muda
