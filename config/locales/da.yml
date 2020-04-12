@@ -254,6 +254,7 @@ da:
   add_plant_phenology_flower_budding_annotation: 'Tilføj "Plantefænologi: Blomstknopbærende" anmærkning'
   add_plant_phenology_flowering_annotation: 'Tilføj noten "Plantefænologi: Blomstrende"'
   add_plant_phenology_fruiting_annotation: 'Tilføj anmærkningen "Plantefænologi: I frugt"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Tilføj anmærkningen "Plantefenologi: Intet bevis på Blomstring"'
   add_life_stage_adult_annotation: 'Tilføj noten "Livsstadie: Voksen"'
   add_life_stage_teneral_annotation: 'Tilføj anmærkningen "Livsstadie: teneral"'
   add_life_stage_subimago_annotation: 'Tilføj noten "Livsstadie: subimago"'
@@ -876,6 +877,7 @@ da:
     teneral: Tenerel
     subimago: Subimago
     pupa: Puppe
+    no_evidence_of_flowering: Intet bevis på Blomstring
     nymph: Nymfe
     larva: Larve
     egg: Æg
@@ -890,6 +892,7 @@ da:
     flower_budding: Blomsterknopper er synlige, men ikke åbne
     flowering: Blomster synlige, åbne og stadig fastgjort til planten
     fruiting: Frugt synlig og stadig fastgjort til planten
+    no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
     teneral: Udvokset, der for nylig har forpubbet sig, men endnu ikke har opnået sin endelige udvokset form
   controls: Kontrolpanel
   convert: Konvertér
@@ -5771,6 +5774,7 @@ da:
           "Plant Phenology=Flower Budding": Blomsterknopbærende
           "Plant Phenology=Flowering": Blomsbærende
           "Plant Phenology=Fruiting": Frugtbærende
+          "Plant Phenology=No Evidence of Flowering": Intet Bevis
           "Life Stage=egg": Æg
           "Life Stage=larva": Larve
           "Life Stage=teneral": Tenerel
