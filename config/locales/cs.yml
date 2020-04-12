@@ -102,7 +102,7 @@ cs:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> pozorování bylo zkontrolováno"
     few: "<span class='count'>%{count}</span> pozorování byla zkontrolována"
-    many: "<span class='count'>%{count}</span> pozorování byla zkontrolována"
+    many: "<span class='count'>%{count}</span> pozorování bylo zkontrolováno"
     other: "<span class='count'>%{count}</span> pozorování byla zkontrolována"
   x_observers_html:
     one: '<span class="count">%{count}</span> Pozorovatel'
@@ -353,9 +353,10 @@ cs:
   add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živý nebo mrtvý: Nelze určit“'
   add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Mrtvý"'
   add_plant_phenology_budding_annotation: 'Přidat anotaci „Fenologie rostliny: pučení“'
-  add_plant_phenology_flower_budding_annotation: 'Přidejte anotaci „Fenologie rostlin: pučící květ“'
+  add_plant_phenology_flower_budding_annotation: 'Přidejte anotaci „Fenologie rostliny: pučící květ“'
   add_plant_phenology_flowering_annotation: 'Přidat anotaci „Fenologie rostliny: kvetení“'
   add_plant_phenology_fruiting_annotation: 'Přidat anotaci „Fenologie rostliny: plození“'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Přidat anotaci „Fenologie rostliny: žádný důkaz o kvetení"'
   add_life_stage_adult_annotation: 'Přidat anotaci „Stádium života: dospělý“'
   add_life_stage_teneral_annotation: 'Přidat anotaci „Stádium života: tenerální“'
   add_life_stage_subimago_annotation: 'Přidat anotaci „Stádium života: subimago“'
@@ -986,7 +987,7 @@ cs:
     sex: Pohlaví
     male: Samec
     female: Samice
-    plant_phenology: Fenologie rostlin
+    plant_phenology: Fenologie rostliny
     budding: Pučení
     flower_budding: Květinové pučení
     flowering: Kvetení
@@ -996,6 +997,7 @@ cs:
     teneral: Tenerální
     subimago: Subimago
     pupa: Kukla
+    no_evidence_of_flowering: Žádný důkaz o kvetení
     nymph: Nymfa
     larva: Larva
     egg: Vejce
@@ -1010,6 +1012,7 @@ cs:
     flower_budding: Květinové pupeny jsou viditelné a nejsou otevřené
     flowering: Květiny viditelné, otevřené a stále připojené k rostlině
     fruiting: Květiny viditelné a stále připojené k rostlině
+    no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
     teneral: Dospělá rostlina, která nedávno zakořenila, ale dosud nedosáhla konečné dospělé formy
   controls: Ovládací prvky
   convert: Převést
@@ -1733,7 +1736,7 @@ cs:
   internal_taxon_including_descendants: Vnitřní taxon (včetně potomků)
   internal_taxon_rank: Vnitřní hodnost taxonů
   introduced: zavedený
-  introduced_in_place: "Zavedený v %{place}"
+  introduced_in_place: "Zavlečen do %{place}"
   invitation: Pozvánka
   invite: pozvat
   invite_more: Pozvat další
@@ -2811,6 +2814,8 @@ cs:
       undefined: není známo
       Unknown: Neznámé
       unknown: Neznámé
+      Village_block: Část vesnice
+      village_block: část vesnice
       Zone: Zóna
       zone: zóna
   place_guess: hádat místo
@@ -5388,6 +5393,8 @@ cs:
         project_summary_help: |
           Uveďte stručné vysvětlení svého projektu. Prvních 200  znaků bude vidět napravo od banneru domovské obrazovky projektu, takže dejte to nejlepší!
         project_summary_placeholder: Objevte a sledujte ptáky v Golden Gate parku...
+        select_native_to_include: |
+          Zvolte "Původní", abyste zahrnuli pouze taxony, které byly označeny jako "Původní" k místu/místům vašeho projektu. Zvolte "Nepůvodní/zavlečení", abyste zahrnuli pouze taxony, které byly označeny jako "nepůvodní/zavlečení" k místu/místům ve vašem projektu.
         select_quality_grade: |
           Vyberte alespoň jeden stupeň kvality. Další vysvětlení pro každý stupeň kvality naleznete na
           naší <a href="%{url}">FAQ stránce</a>.
@@ -5678,6 +5685,7 @@ cs:
           "Plant Phenology=Flower Budding": Květinové pučení
           "Plant Phenology=Flowering": Kvetoucí
           "Plant Phenology=Fruiting": Plození
+          "Plant Phenology=No Evidence of Flowering": Bez důkazu
           "Life Stage=egg": Vejce
           "Life Stage=larva": Larva
           "Life Stage=teneral": Tenerální
