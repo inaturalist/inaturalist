@@ -255,7 +255,8 @@ de:
   add_plant_phenology_flower_budding_annotation: 'Vermerk "Pflanzenphänologie: Knospend" hinzufügen'
   add_plant_phenology_flowering_annotation: 'Vermerk "Pflanzenphänologie: Blühend" hinzufügen'
   add_plant_phenology_fruiting_annotation: 'Vermerk "Pflanzenphänologie: Fruchttragend" hinzufügen'
-  add_life_stage_adult_annotation: 'Vermerk "Lebensstadium: Adult" hinzufügen'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Annotation "Phänologie (Pflanze): Nicht blühend" hinzufügen'
+  add_life_stage_adult_annotation: 'Annotation "Entwicklungssstadium: Adult" hinzufügen'
   add_life_stage_teneral_annotation: 'Vermerk "Lebensstadium: Frisch geschlüpft" hinzufügen'
   add_life_stage_subimago_annotation: 'Vermerk "Lebensstadium: Subimago" hinzufügen'
   add_life_stage_pupa_annotation: 'Vermerk "Lebensstadium: Puppe" hinzufügen'
@@ -855,17 +856,18 @@ de:
     flowering: Blühend
     fruiting: Fruchttragend
     life_stage: Entwicklungsstufe
-    adult: Ausgewachsen
+    adult: Adult
     teneral: frisch gehäutet
     subimago: Subimago
     pupa: Puppe
+    no_evidence_of_flowering: Nicht blühend
     nymph: Nymphe
     larva: Larve
     egg: Ei
     juvenile: Juvenil
-    alive_or_dead: lebendig oder tot
-    alive: lebendig
-    dead: tot
+    alive_or_dead: Lebendig oder tot
+    alive: Lebendig
+    dead: Tot
     cannot_be_determined: Nicht bestimmbar
   controlled_term_definitions:
     alive: Der Organismus ist lebendig und zeigt keine Anzeichen eines nahenden Todes
@@ -873,6 +875,7 @@ de:
     flower_budding: Blütenknospen sind sichtbar, aber nicht geöffnet
     flowering: Blumen sichtbar, geöffnet und noch an der Pflanze befestigt
     fruiting: Frucht sichtbar und noch an der Pflanze befestigt
+    no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
     teneral: Ein ausgewachsenes Individuum, das sich kürzlich gehäutet hat, aber noch nicht fertig ausgefärbt ist
   controls: Steuerung
   convert: Konvertieren
@@ -4146,7 +4149,7 @@ de:
   your_identification: Deine Bestimmung
   your_membership: Deine Mitgliedschaft
   your_name_was_saved: Dein Name wurde gespeichert.
-  your_observations: Eigene Beobachtungen
+  your_observations: eigene Beobachtungen
   your_observations_couldnt_be_added_to_that_project: "Deine Beobachtungen konnten nicht zum Projekt hinzugefügt werden: %{errors}"
   your_photos_have_been_tagged: Deine Bilder wurden getaggt!
   your_projects: Deine Projekte
@@ -4466,7 +4469,7 @@ de:
         receive_an_email_with_your_data_help: Du wirst eine Email erhalten mit deinem Export als Anhang.
         well_email_you: "Ok, wir schicken Ihnen eine Email wenn es bereit ist."
         taking_a_while: "Dies braucht einige Zeit. Bitte versuche eine der folgenden Optionen."
-        date_range_help: "Frühestes und spätestes Beobachtungsdatum in JJJJJ-MM-TT Format, z.B. 2015-01-17"
+        date_range_help: "Frühestes und spätestes Beobachtungsdatum in JJJJ-MM-TT Format, z.B. 2015-01-17"
         created_on_help: "Datum an dem die Beobachtung erstellt wurde, nicht der Beobachtung, z.B. 2015-01-17, 2015-01, 2015"
       field_descriptions:
         id: "Eindeutige Kennung für diese Beobachtung"
@@ -5172,13 +5175,14 @@ de:
           "Plant Phenology=Flower Budding": Knospend
           "Plant Phenology=Flowering": blühend
           "Plant Phenology=Fruiting": Fruchttragend
+          "Plant Phenology=No Evidence of Flowering": Kein Nachweis
           "Life Stage=egg": Ei
           "Life Stage=larva": Larve
           "Life Stage=teneral": frisch gehäutet
           "Life Stage=subimago": Subimago
           "Life Stage=nymph": Nymphe
           "Life Stage=pupa": Puppe
-          "Life Stage=adult": Ausgewachsen
+          "Life Stage=adult": adult
           unannotated: Keine Anmerkungen
         max_photos_desc: |
           Ein Taxon kann nur %{max} Fotos haben. Es müssen vorhandene
