@@ -271,6 +271,7 @@ sv:
   add_plant_phenology_flower_budding_annotation: 'Lägg till anteckning "Växtfenologi: Blomknopp"'
   add_plant_phenology_flowering_annotation: 'Lägg till notering "Växtfenologi: Blomning"'
   add_plant_phenology_fruiting_annotation: 'Lägg till notering "Växtfenologi: I frukt"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Inga tecken på blomning"'
   add_life_stage_adult_annotation: 'Lägg till notering "Livsstadium: Adult"'
   add_life_stage_teneral_annotation: 'Lägg till notering "Livsstadium: teneral"'
   add_life_stage_subimago_annotation: 'Lägg till notering "Livsstadium: subimago"'
@@ -896,6 +897,7 @@ sv:
     teneral: Teneral
     subimago: Subimago
     pupa: Puppa
+    no_evidence_of_flowering: Inga tecken på blomning
     nymph: Nymf
     larva: Larv
     egg: Ägg
@@ -910,6 +912,7 @@ sv:
     flower_budding: Blomknoppar är synliga men inte öppna
     flowering: Blommor synliga, öppna och fortfarande kvar på växten
     fruiting: Frukt synlig och kvarsittande
+    no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
     teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga vuxna utseende
   controls: Kontroller
   convert: Konvertera
@@ -6137,6 +6140,7 @@ sv:
           "Plant Phenology=Flower Budding": Blomknopp
           "Plant Phenology=Flowering": Blomning
           "Plant Phenology=Fruiting": I frukt
+          "Plant Phenology=No Evidence of Flowering": Inga tecken
           "Life Stage=egg": Ägg
           "Life Stage=larva": Larv
           "Life Stage=teneral": Teneral
