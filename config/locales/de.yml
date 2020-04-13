@@ -279,7 +279,7 @@ de:
   add_taxon_batch_to: "Taxon-Batch zu %{list} hinzufügen"
   add_taxon_range: Taxonbereich hinzufügen
   add_taxonomic_tags_to: "Taxonomie-Tags zu ausgewählten Flickr-Bildern hinzufügen &raquo;"
-  add_to_a_scheme: Zu einem Schema hinzufügen
+  add_to_a_scheme: Zu einer Vorlage hinzufügen
   add_to_a_project: Zu einem Projekt hinzufügen
   add_to_calendar: Zum Kalender hinzufügen
   add_to_checklist: Zur Checkliste hinzufügen
@@ -665,10 +665,10 @@ de:
   change_admin: Administrator ändern
   change_cover: Front ändern
   change_descriptions:
-    split: Altes Taxon in mehrere neue Taxa geteilt
-    merge: Mehrere alte Taxa unter einem neuen Taxon zusammengefasst
+    split: Altes Taxon in mehrere neue Taxa aufspalten
+    merge: Mehrere alte Taxa unter einem neuen Taxon zusammenfassen
     swap: 1-zu-1-Namensänderung
-    drop: Taxonkonzept vollständig ungültig, aus geschichtlichen oder Partnerkompatibilitätsgründen beibehalten.
+    drop: Taxonkonzept vollständig ungültig; aus historischen Gründen oder zwecks Kompatibilität mit Partnern beibehalten.
     stage: Ein inaktives Konzept als Teil einer Änderungsgruppe zur Veröffentlichung vorbereiten
   change_geoprivacy: 'Geo-Privatsphäre ändern'
   change_group: Gruppen ändern
@@ -679,8 +679,8 @@ de:
     change_types: Typen ändern
     split: Aufteilen
     merge: Zusammenführen
-    swap: Austauschen
-    stage: Stufe
+    swap: Tauschen
+    stage: Phase
     drop: Löschen
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: abspalten von
@@ -1976,6 +1976,7 @@ de:
   most_observed_species: Am häufigsten beobachtete Art
   most_observed_introduced_species: Eingeführte Art mit den meisten Beobachtungen
   most_observed_threatened_species: Meiste beobachtete bedrohte Art
+  move_input_children_to_output?: Untergeordnete Taxa zum Output verschieben?
   multiple: mehrfach
   multiple_select_option: '--mehrfach--'
   multiple_taxon_ids_separated_by_commas: 'Mehrere Taxon-IDs getrennt durch Kommas, z.B. 123,654'
@@ -2417,7 +2418,7 @@ de:
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andere Taxa, die häufig fälschlicherweise als diese Untersektion in <a href="%{url}">%{place}</a> bestimmt werden
   our_blog: Unser Blog
   out_of_range: außerhalb des Areals
-  output_taxon: Taxon ausgeben
+  output_taxon: Output-Taxon
   overview: Übersicht
   owner: Besitzer
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3229,7 +3230,7 @@ de:
     other: Speichere %{num} von %{count} Beobachtungen...
   saving_verb: Speichere
   scale_colon: "Maßstab:"
-  schemes: Schemata
+  schemes: Vorlagen
   schemes_including: Schemata einschließlich
   search: Suchen
   search_all_fields: alle Felder durchsuchen
@@ -3395,7 +3396,7 @@ de:
   source: Quelle
   source_: 'Quelle:'
   source_wikipedia: "Quelle: Wikipedia"
-  source_list_: "Quelle Liste"
+  source_list_: "Quellenangaben:"
   source_list:
     ubio: uBio
     catalogue_of_life: Catalogue of Life
@@ -3415,13 +3416,13 @@ de:
     in_text: 'Z.B. Greene, 2000'
     url: Z.B. 'http://www.ucpress.edu/book.php?isbn=9780520224872'
     citation: 'Z.B. Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
-  source_url: Quellen-URL
+  source_url: Link zur Quelle
   source_of_coordinates: 'Quelle der Koordinaten und Genauigkeit automatisch eingefügt.'
   sourced_to: basierend auf
   sources: Quellen
   sources_youve_added: Von dir hinzugefügte Quellen
   sources_and_credits: Quellen und Bildnachweise
-  sourcing: Beschaffung
+  sourcing: Referenzen
   spam: Spam
   spammer: Spammer
   #Plural
@@ -3552,8 +3553,8 @@ de:
   taxon_range: Taxon-Bereich
   taxon_ranks: Taxonränge
   taxon_removed_from_list: Taxon aus der Liste entfernt.
-  taxon_scheme: Taxon-Schema
-  taxon_schemes: "Taxonschemen"
+  taxon_scheme: Taxon-Vorlage
+  taxon_schemes: "Taxon-Vorlagen"
   taxon_search: Taxon-Suche
   taxon_search_results_for: Taxon-Suchergebnisse für
   taxon_split: Taxon-Aufteilung
@@ -3646,6 +3647,9 @@ de:
   this_is_a_life_list_of: Dies ist eine Life-Liste von
   this_is_a_life_list_from_place_html: "Dies ist eine Life-Liste von %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dies ist eine Life-Liste von %{taxon} in %{place}"
+  this_is_more_convenient_way_find_parent: Dies ist eine bequemere Möglichkeit, eine höherrangige ID zu finden. Es ist die übergeordnete ID, die tatsächlich gespeichert wird.
+  this_is_a_more_convenient_way_to_find_a_taxon_id: |
+    Dies ist eine bequemere Möglichkeit, eine TaxonID zu finden. Es ist die TaxonID, die gespeichert wird. Diese Suche funktioniert nur für aktive Taxa.
   this_is_the_primary_listing: Dies ist die primäre Auflistung
   this_is_your_observation: Dies ist Deine Beobachtung
   this_is_your_observation_desc: Die Koordinaten Deiner eigenen Beobachtungen kannst Du immer sehen.
@@ -3712,7 +3716,7 @@ de:
   type: Typ
   type_one_name_per_line: Einen Namen pro Zeile eingeben
   type_place_name: Namen des Gebiets eingeben
-  type_source_title: "Quelltitel eingeben"
+  type_source_title: "Titel der Quelle eingeben"
   type_species_name: "Namen der Spezies eingeben"
   type_taxon_name: "Namen des Taxons eingeben"
   uicn_red_list_status: "Rote-Listen-Status der IUCN"
@@ -5206,6 +5210,8 @@ de:
         trending_in_place_desc_html: Meistbeobachtete Taxa im letzten Monat in <a href="%{url}">%{place}</a>
         wanted_desc: Arten in diesem Taxon, die noch nicht beobachtet wurden.
     taxon_changes:
+      move_children_desc: |
+        Untergeordnete Taxa des Input-Taxons auf Gattungsebene oder höher werden zum Output verschoben; Arten, Unterarten, Sorten usw. werden entsprechend der neuen Gattung oder des neuen Artennamens getauscht.
       form:
         move_children_desc_html: |
           Wenn du dieses Kästchen aktivierst, werden alle untergeordneten Taxa des Eingabetaxons in das
