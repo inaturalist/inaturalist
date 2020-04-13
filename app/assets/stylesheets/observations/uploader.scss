@@ -3,6 +3,8 @@
 @import "../shared/saved_location_chooser";
 @import "../shared/google_maps";
 
+$obs-card-width: 220px;
+
 body {
   background-color: #eee;
 }
@@ -41,7 +43,6 @@ input.failed, textarea.failed {
   padding-top: 0;
   margin-top: 32px;
   margin-left: 0px;
-  // border-width: 0 0 1px 0;
   border: 0;
   background-color: white;
   box-shadow: 0px 3px 10px #e7e7e7;
@@ -134,8 +135,6 @@ input.failed, textarea.failed {
   .col-offset-290 {
     margin-left: 275px;
     position: inherit;
-    // Not sure what this was doing other than causing some weird wrapping issues
-    // width: 70%;
   }
   .left-col-padding {
     padding-left: 5px;
@@ -330,14 +329,60 @@ input.failed, textarea.failed {
 
 // Card grid
 
-ul.obs {
+.obs {
   padding: 0;
   margin: 0
 }
-ul.obs > li {
-  float: left;
-  list-style: none;
-  margin: 10px;
+.InsertionDropTarget {
+  $insertion-drop-border-width: 3px;
+  $insertion-drop-width: 10px;
+  display: inline-block;
+  vertical-align: top;
+  .dropzone {
+    width: $insertion-drop-width;
+    height: 363px;
+    margin: 2px 0 20px;
+    &.before {
+      border-left: $insertion-drop-border-width dashed transparent;
+      position: relative;
+      right: $insertion-drop-border-width;
+    }
+    &.after {
+      border-right: $insertion-drop-border-width dashed transparent;
+    }
+    &.hover {
+      // The following commented out styles were an experiment in expanding the
+      // drop area on hover. It makes it easier to drop on an area, but changing
+      // the margin causes some serious jitter
+      // @keyframes grow-insertion-drop-target {
+      //   0% {
+      //     width: $insertion-drop-width;
+      //   }
+      //   100% {
+      //     width: $obs-card-width;
+      //   }
+      // }
+      // border: 2px dashed #ccc;
+      // border-radius: 4px;
+      // margin-left: 20px;
+      // animation: grow-insertion-drop-target 0.2s forwards;
+      &.before {
+        // margin-right: $insertion-drop-width;
+        border-left: $insertion-drop-border-width dashed #666;
+      }
+      &.after {
+        // margin-left: $insertion-drop-width;
+        border-right: $insertion-drop-border-width dashed #666;
+      }
+    }
+  }
+}
+.card-and-inserts {
+  display: inline-block;
+  vertical-align: top;
+}
+.obs .ObsCardComponent {
+  display: inline-block;
   &:hover {
     .card {
       box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
@@ -347,9 +392,9 @@ ul.obs > li {
     }
   }
 }
-ul.obs > li .card {
+.obs .ObsCardComponent .card {
   margin: 3px;
-  width: 220px;
+  width: $obs-card-width;
   position: relative;
   &.ui-selecting {
     box-shadow: 0 0 0 3px rgba(116, 172, 0, 0.3);
