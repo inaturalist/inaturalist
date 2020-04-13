@@ -270,6 +270,7 @@ fi:
   add_plant_phenology_flower_budding_annotation: 'Lisää "Kasvin fenologia: Kukka puhkeamssa" selitys'
   add_plant_phenology_flowering_annotation: 'Lisää "Plant Phenology: Flowering" selitys'
   add_plant_phenology_fruiting_annotation: 'Lisää "Plant Phenology: Fruiting" selitys'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Lisää merkintä "Kasvin fenologia: ei näyttöä kukinnasta"'
   add_life_stage_adult_annotation: 'Lisää "Life Stage: Adult" selitys'
   add_life_stage_teneral_annotation: 'Lisää "Life Stage: teneral" selitys'
   add_life_stage_subimago_annotation: 'Lisää "Life Stage: subimago" selitys'
@@ -616,7 +617,7 @@ fi:
   back_to_your_profile: Takaisin profiiliisi
   back_to_your_projects: Takaisin projekteihisi
   based_on_the_evidence_can_id_be_improved: |
-    Voiko yhteisön tekemää tunnistusta vielä vahvistaa tai parantaa perustuen havainnon tietoihin?
+    Voiko yhteisön tekemää tunnistusta vielä vahvistaa tai parantaa perustuen näyttöön?
   batch: Erä
   batch_edit: Erän muokkaus
   batch_edit_taxa_for_x_html: "Massamuokkaa taksoneita kohteelle %{x}"
@@ -883,6 +884,7 @@ fi:
     teneral: Teneraali (vastakuoriutunut hyönteinen)
     subimago: Alaimago
     pupa: Kotelo
+    no_evidence_of_flowering: Ei näyttöä kukinnasta
     nymph: Nymfi
     larva: Toukka
     egg: Muna
@@ -897,6 +899,7 @@ fi:
     flower_budding: Nuput näkyvissä, mutta eivät auenneita
     flowering: Kukat näkyvissä, auki ja vielä kiinni kasvissa
     fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
+    no_evidence_of_flowering: Kuvissa ei näy genitaaleja
     teneral: Aikuinen, joka on äskettäin koteloitunut, mutta ei ole vielä saanut lopullista aikuismuotoa
   controls: Ohjaimet
   convert: Muunna
@@ -1246,7 +1249,7 @@ fi:
   extinct: kuollut sukupuuttoon
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
-  evidence_of_organism: Todiste eliöstä
+  evidence_of_organism: Näyttö eliöstä
   facebook: Facebook
   facebook_account_information: Oman Facebook-tilisi tiedot
   facebook_account_not_linked: "Käyttäjällä %{user} ei ole enää linkitettyä Facebook-tiliä, joten %{site_name}lla ei ole lupaa saada tätä kuvaa."
@@ -1619,6 +1622,8 @@ fi:
   join: Liity
   join_and_add_an_observation_to_project_html: Liity ja lisää havainto projektiin %{project}
   join_project: Liity tähän projektiin
+  #Prompt to join a specific project
+  join_project?: Liity projektiin %{project}?
   join_some_projects_and_invite_some_observations_html: "Liity joihinkin <a href='%{join_url}'>projekteihin</a> ja <a href='%{invite_url}'>pyydä joitakin havaintoja</a>"
   join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luonnontieteilijöiden joukkoon!
   join_this_project: Liity tähän projektiin
@@ -2302,7 +2307,7 @@ fi:
   occurrence_status_descriptions:
     absent: Ei esiinny alueella
     common: Esiintyy säännöllisesti
-    doubtful: Oletettavasti esiintyy, mutta todistusaineistosta epävarmuutta
+    doubtful: Oletettavasti esiintyy, mutta näyttö on epävarmaa
     irregular: Esiintyminen ennalta-arvaamatonta, mukaanlukien vaeltajat; voi olla tavallinen joinain vuosina ja kadoksissa muulloin
     present: Esiintyy alueella
     uncommon: Esiintyy säännöllisesti, mutta pieninä määrinä; vatii huolellista sopivan ympäristön etsimistä
@@ -3037,7 +3042,7 @@ fi:
   receive_email_notifications_when_people_leave_you: Vastaanota sähköposti-ilmoituksia
   receive_updates_from_this_project: Haluan saada tätä projektia koskevia päivityksiä
   recent: Viimeaikainen
-  recent_evidence_of_organism: Viimeaikainen todiste eliöstä
+  recent_evidence_of_organism: Näyttöä että eliö ollut paikalla lähiaikoina
   recent_new_users: Viimeaikaiset uudet käyttäjät
   recent_observations: Viimeaikaiset havainnot
   recent_observations_: Viimeaikaiset havainnot
@@ -3521,7 +3526,7 @@ fi:
     <span className="bold">Tutkimustason</span> saavuttamiseen tarvitaan:
   the_community_id_requires_at_least_two_identifications: Yhteisön tekemä tunnistus edellyttää ainakin kahta tunnistusta.
   the_community_must_feel_that: |
-    Yhteisön on oltava sitä mieltä että sen tekemä tunnistus on niin hyvä kuin se voi olla, perustuen havainnoista tallennettuihin tietoihin
+    Yhteisön on oltava sitä mieltä että sen tekemä tunnistus on niin hyvä kuin se voi olla, perustuen näyttöön
   the_following_photos_have_been_tagged: "Seuraaviin kuviin on lisätty merkinnät:"
   the_identotron_is_a_tool_to: |
     Identotron on työkalu, jonka avulla voit määrittää havaintoja %{site_name} lajiluettelon tietojen avulla. Jos annat ylemmän taksonin ja paikan (esimerkiksi nisäkkäät Intiassa), %{site_name} yrittää etsiä osumia kyseisestä paikasta, toimien ikään kuin dynaamisena kenttäoppaana, joka kattaa koko planeetan. Useimmat lajiluettelot ovat työn alla. Identotron näyttää huomatuksen kaikkien kattavien lajiluetteloiden osalta, eli luetteloista, jotka kattavat <em>kaikki</em> alueen taksonit.
@@ -4327,7 +4332,7 @@ fi:
            <strong>eliö ei ole luonnonvarainen</strong> (esim. vangittu eläin tai viljelykasvi)
            </li>
            <li>
-           havainto <strong>ei esitä todisteita eliöstä</strong>, esim. kuvia maisemista, vesistöistä,
+           havainto <strong>ei esitä näyttöä eliöstä</strong>, esim. kuvia maisemista, vesistöistä,
            kivistä yms.
            </li>
            <li>
@@ -4336,7 +4341,7 @@ fi:
            ovat ok)
            </li>
            <li>
-           havainto ei enää tarvitse tunnistusta<em>ja</em> yhteisön tekemä tunniste on heimon yläpuolella
+           havainto ei enää tarvitse tunnistusta<em>ja</em> yhteisön tekemä tunnistus on heimoa ylemmällä tasolla
            </li>
            <li>
            havainnoija hylkäsi yhteisön tekemän tunnistuksen ja yhteisön
@@ -4856,6 +4861,7 @@ fi:
           "Plant Phenology=Flower Budding": Kukka puhkeamassa
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
+          "Plant Phenology=No Evidence of Flowering": Ei näyttöä
           "Life Stage=egg": Muna
           "Life Stage=larva": Toukka
           "Life Stage=teneral": Teneraali
