@@ -342,6 +342,11 @@ input.failed, textarea.failed {
     width: $insertion-drop-width;
     height: 363px;
     margin: 2px 0 20px;
+    // the Dropzone component sticks this input in that doesn't really do
+    // anything other than screw up the layout
+    input {
+      display: none;
+    }
     &.before {
       border-left: $insertion-drop-border-width dashed transparent;
       position: relative;

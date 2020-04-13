@@ -280,14 +280,26 @@ const actions = class actions {
         if ( cardFiles.length > 0 ) {
           const newFiles = {};
           _.each( cardFiles, cf => {
-            // make a new file
-            // update the new file with the old file's attributes
-            newFiles[serialId] = new DroppedFile( Object.assign( {},
-              _.pick( cf, ["name", "type", "uploadState", "sort", "metadata", "photo", "serverMetadata"] ),
-              {
-                id: serialId,
-                cardID: newCard.id
-              } ) );
+            // make a new file and update with the old file's attributes
+            // TODO Make it so you don't upload a file twice. Responding to an
+            // upload event should just upload all the local file records
+            // associated with that upload
+            if ( cf.uploadState === "uploaded" ) {
+              newFiles[serialId] = new DroppedFile( Object.assign( {},
+                _.pick( cf, ["name", "type", "uploadState", "sort", "metadata", "photo", "serverMetadata"] ),
+                {
+                  id: serialId,
+                  cardID: newCard.id
+                } ) );
+            } else {
+              newFiles[serialId] = new DroppedFile( Object.assign( {},
+                _.pick( cf, ["name", "type", "sort", "metadata", "photo", "preview", "file"] ),
+                {
+                  id: serialId,
+                  cardID: newCard.id,
+                  uploadState: "pending"
+                } ) );
+            }
             serialId += 1;
           } );
           dispatch( actions.appendFiles( newFiles ) );
