@@ -2672,7 +2672,13 @@ ru:
       Delegation: Подокруг
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: подокруг
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       Department_Segment: Подразделение департамента
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       department_segment: подразделение департамента
       District: Район
       district: район

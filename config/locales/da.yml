@@ -254,6 +254,7 @@ da:
   add_plant_phenology_flower_budding_annotation: 'Tilføj "Plantefænologi: Blomstknopbærende" anmærkning'
   add_plant_phenology_flowering_annotation: 'Tilføj noten "Plantefænologi: Blomstrende"'
   add_plant_phenology_fruiting_annotation: 'Tilføj anmærkningen "Plantefænologi: I frugt"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Tilføj anmærkningen "Plantefenologi: Intet bevis på Blomstring"'
   add_life_stage_adult_annotation: 'Tilføj noten "Livsstadie: Voksen"'
   add_life_stage_teneral_annotation: 'Tilføj anmærkningen "Livsstadie: teneral"'
   add_life_stage_subimago_annotation: 'Tilføj noten "Livsstadie: subimago"'
@@ -876,6 +877,7 @@ da:
     teneral: Tenerel
     subimago: Subimago
     pupa: Puppe
+    no_evidence_of_flowering: Intet bevis på Blomstring
     nymph: Nymfe
     larva: Larve
     egg: Æg
@@ -890,6 +892,7 @@ da:
     flower_budding: Blomsterknopper er synlige, men ikke åbne
     flowering: Blomster synlige, åbne og stadig fastgjort til planten
     fruiting: Frugt synlig og stadig fastgjort til planten
+    no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
     teneral: Udvokset, der for nylig har forpubbet sig, men endnu ikke har opnået sin endelige udvokset form
   controls: Kontrolpanel
   convert: Konvertér
@@ -1637,6 +1640,8 @@ da:
   join: Tilslut
   join_and_add_an_observation_to_project_html: Deltag og tilføj en observation til %{project}
   join_project: Bliv medlem af dette projekt
+  #Prompt to join a specific project
+  join_project?: Tilmeld dig %{project}?
   join_some_projects_and_invite_some_observations_html: "Tilslut dig <a href='%{join_url}'>projekter</a> og <a href='%{invite_url}'>invitér nogle observationer</a>"
   join_the_largest_group_of_naturalists_in_the_world: Tilslut dig verdens største gruppe af naturelskere
   join_this_project: Bliv medlem af dette projekt
@@ -2606,7 +2611,13 @@ da:
       Delegation: Delegation
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegation
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       Department_Segment: Afdelingssegment
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       department_segment: afdelingssegment
       District: Distrikt
       district: distrikt
@@ -3390,6 +3401,9 @@ da:
   show_taxa_from_place: "Vis taksa fra %{place}"
   show_total_counts: Vis totalt antal
   show_uncountable_species: Skjul arter der ikke medregnes
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Viser første %{x}
   showing_taxa_from_everywhere: "Viser taksa fra overalt"
   showing_taxa_from_place: "Viser taksa fra %{place}"
   showing_x_of_y: Viser af %{x} af %{y}
@@ -5760,6 +5774,7 @@ da:
           "Plant Phenology=Flower Budding": Blomsterknopbærende
           "Plant Phenology=Flowering": Blomsbærende
           "Plant Phenology=Fruiting": Frugtbærende
+          "Plant Phenology=No Evidence of Flowering": Intet Bevis
           "Life Stage=egg": Æg
           "Life Stage=larva": Larve
           "Life Stage=teneral": Tenerel

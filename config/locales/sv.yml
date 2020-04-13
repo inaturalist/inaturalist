@@ -271,6 +271,7 @@ sv:
   add_plant_phenology_flower_budding_annotation: 'Lägg till anteckning "Växtfenologi: Blomknopp"'
   add_plant_phenology_flowering_annotation: 'Lägg till notering "Växtfenologi: Blomning"'
   add_plant_phenology_fruiting_annotation: 'Lägg till notering "Växtfenologi: I frukt"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Inga tecken på blomning"'
   add_life_stage_adult_annotation: 'Lägg till notering "Livsstadium: Adult"'
   add_life_stage_teneral_annotation: 'Lägg till notering "Livsstadium: teneral"'
   add_life_stage_subimago_annotation: 'Lägg till notering "Livsstadium: subimago"'
@@ -896,6 +897,7 @@ sv:
     teneral: Teneral
     subimago: Subimago
     pupa: Puppa
+    no_evidence_of_flowering: Inga tecken på blomning
     nymph: Nymf
     larva: Larv
     egg: Ägg
@@ -910,6 +912,7 @@ sv:
     flower_budding: Blomknoppar är synliga men inte öppna
     flowering: Blommor synliga, öppna och fortfarande kvar på växten
     fruiting: Frukt synlig och kvarsittande
+    no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
     teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga vuxna utseende
   controls: Kontroller
   convert: Konvertera
@@ -1678,6 +1681,8 @@ sv:
   join: Gå med
   join_and_add_an_observation_to_project_html: Gå med och lägg till en observation till %{project}
   join_project: Gå med detta projektet
+  #Prompt to join a specific project
+  join_project?: Gå med i %{project}?
   join_some_projects_and_invite_some_observations_html: "Gå med i några <a href='%{join_url}'>projekt</a> och <a href='%{invite_url}'>bjud in några observationer</a>"
   join_the_largest_group_of_naturalists_in_the_world: Gå med i den största gruppen naturforskare i världen!
   join_this_project: Gå med detta projektet
@@ -2663,7 +2668,13 @@ sv:
       Delegation: Delegation
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegation
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       Department_Segment: Institutionsenhet
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       department_segment: institutionsenhet
       District: Distrikt
       district: distrikt
@@ -6129,6 +6140,7 @@ sv:
           "Plant Phenology=Flower Budding": Blomknopp
           "Plant Phenology=Flowering": Blomning
           "Plant Phenology=Fruiting": I frukt
+          "Plant Phenology=No Evidence of Flowering": Inga tecken
           "Life Stage=egg": Ägg
           "Life Stage=larva": Larv
           "Life Stage=teneral": Teneral
