@@ -189,7 +189,7 @@ de:
   adapted_by_name_from_a_work_by_original: "Angepasst von %{name} aus einer Arbeit von %{original}"
   add: Hinzufügen
   add_a_batch_of_observations: Einen Satz an Beobachtungen hinzufügen
-  add_a_batch_of_taxa: Taxa-Satz hinzufügen
+  add_a_batch_of_taxa: Taxa-Batch hinzufügen
   add_a_comment: Kommentar hinzufügen
   add_a_field: Feld hinzufügen
   add_a_flag: Jetzt melden
@@ -216,7 +216,7 @@ de:
   add_another_subscription: Weiteres Abonnement hinzufügen
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Bestand hinzufügen
-  add_batch: Satz hinzufügen
+  add_batch: Batch hinzufügen
   add_comma_separated_tags: "Komma-getrennte Stichwörter hinzufügen"
   add_comment: Kommentar hinzufügen
   add_conservation_status: Schutzstatus hinzufügen
@@ -235,7 +235,7 @@ de:
   add_new_rule: Neue Regel hinzufügen
   add_new_source: "Neue Quelle hinzufügen …"
   add_new_taxon_name: Neuen Taxonnamen hinzufügen
-  add_notes_about_this_taxon: Füge Anmerkungen über dieses Taxon an diesem Ort hinzu, z.B. wo und wann es erscheint.
+  add_notes_about_this_taxon: Füge Anmerkungen über dieses Taxon an diesem Ort hinzu, z.B. wo und wann es auftritt.
   add_obs_from_a_link: "Beobachtungen aus Liste %{link} hinzufügen"
   add_obs_from_a_list: Beobachtungen aus einer Liste hinzufügen
   add_observations: Beobachtung(en) hinzufügen
@@ -873,8 +873,8 @@ de:
     alive: Der Organismus ist lebendig und zeigt keine Anzeichen eines nahenden Todes
     dead: Der Organismus ist tot oder zeigt Anzeichen eines nahenden Todes
     flower_budding: Blütenknospen sind sichtbar, aber nicht geöffnet
-    flowering: Blumen sichtbar, geöffnet und noch an der Pflanze befestigt
-    fruiting: Frucht sichtbar und noch an der Pflanze befestigt
+    flowering: Blüten sichtbar, geöffnet und noch fest mit der Pflanze verbunden
+    fruiting: Frucht sichtbar und noch fest mit der Pflanze verbunden
     no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
     teneral: Ein ausgewachsenes Individuum, das sich kürzlich gehäutet hat, aber noch nicht fertig ausgefärbt ist
   controls: Steuerung
@@ -1154,8 +1154,8 @@ de:
   editing_taxon_link: Taxonlink bearbeiten
   editing_taxon_name_for_taxon_html: Taxonname "%{name}" für %{taxon} bearbeiten
   editing_taxon_range: Taxonbereich bearbeiten
-  editing_this: Bearbeiten %{elem}
-  editing_x_in_y: "Bearbeiten %{x} in %{y}"
+  editing_this: '%{elem} bearbeiten'
+  editing_x_in_y: "Bearbeiten von %{x} in %{y}"
   editors: Autoren
   either: Oder
   either_that_user_doesnt_exist_or: "Entweder existiert dieser Benutzer nicht oder du folgst ihm bereits."
@@ -1607,7 +1607,7 @@ de:
   join_project: Diesem Projekt beitreten
   #Prompt to join a specific project
   join_project?: Dem Projekt %{project} beitreten?
-  join_some_projects_and_invite_some_observations_html: "Tritt einigen <a href='%{join_url}'>Projekten</a> bei und <a href='%{invite_url}'>importiere einige Beobachtungen</a>"
+  join_some_projects_and_invite_some_observations_html: "Tritt <a href='%{join_url}'>Projekten</a> bei und <a href='%{invite_url}'>importiere passende Beobachtungen</a>"
   join_the_largest_group_of_naturalists_in_the_world: Treten Sie der größten Gruppe von Naturwissenschaftlern der Welt bei!
   join_this_project: Diesem Projekt beitreten
   'joined!': Beigetreten!
@@ -1663,7 +1663,7 @@ de:
   leave: Verlassen
   leave_a_comment: Einen Kommentar hinterlassen
   leave_this_project: Dieses Projekt verlassen
-  leaves: verlässt
+  leaves: '''Blätter'''
   legacy_authentication_notice_html: |
     Sieht so aus, als ob du ein Passwort von einer älteren Version dieser Website benutzt.
     Bitte denke daran, dein Passwort für die neue Version <a href="%{url}">zu ändern</a>.
@@ -1756,7 +1756,7 @@ de:
   list_was_successfully_created: Die Liste wurde erfolgreich erstellt.
   listed_taxa: Gelistete Taxa
   listed_taxon: Gelistetes Taxon
-  listed_taxon_updated: Gelistete Taxon aktualisiert
+  listed_taxon_updated: Gelistetes Taxon aktualisiert
   listing_lists: Listen auflisten
   listing_taxa: Taxa auflisten
   lists: Listen
@@ -2290,10 +2290,10 @@ de:
   occurrence_status: Vorkommens-Status
   occurrence_status_descriptions:
     absent: Tritt nicht im Bereich auf
-    common: Erscheint regelmäßig
+    common: Tritt häufig auf
     doubtful: Kommt vielleicht vor, aber es gibt Zweifel an den Belegen
     irregular: Vorkommen unvorhersehbar, einschließlich gelegentlichen Besuchen; kann in einigen Jahren häufig sein und in anderen fehlen
-    present: Erscheint im Bereich
+    present: Kommt im Gebiet vor
     uncommon: Kommt regelmäßig vor, aber in geringer Anzahl; erfordert sorgfältige Suche in geeignetem Lebensraum
   occurrence_status_establishment_means: Vorkommensstatus, Art der Verbreitung
   occurrence_status_levels:
@@ -2342,7 +2342,7 @@ de:
       <li><strong>Diskussionen, an denen du teilgenommen hast:</strong> Das Kommentieren oder Hinzufügen von Bestimmungen zum Inhalt eines anderen Beutzers hat zur Folge, dass du automatisch über jede neue Aktivität zu diesem Inhalt benachrichtigt wirst. Benutze die Schaltfläche 'Abonnements verwalten', um keine Updates mehr zu erhalten.</li>
       </ul>
   one_by_one: "einer nach dem anderen"
-  one_of_your_lists: "eine deiner Listen..."
+  one_of_your_lists: "einer deiner Listen..."
   only_a_project_manager_can_add: Nur ein Projektmanager kann den Status eines Projektkurators hinzufügen.
   only_administrators_may_access_that_page: Nur Administratoren dürfen auf diese Seite zugreifen
   only_an_admin_can_remove_project_users: Nur Administratoren können Projektbenutzer entfernen.
@@ -2431,7 +2431,7 @@ de:
   password: Passwort
   password_confirmation: 'Passwort bestätigen'
   paste: Einfügen
-  paste_in_a_bunch_of_names: Trage mehrere Namen ein. Einen pro Zeile und klicke auf den Button!
+  paste_in_a_bunch_of_names: Trage mehrere Namen ein, einen pro Zeile, und klicke auf den Button!
   paste_in_a_comma_separated_list: Füge eine kommagetrennte Liste von Ländern ein.
   people: Personen
   people_following_user: "Personen, die %{user} folgen"
@@ -3242,7 +3242,7 @@ de:
   search_external_name_providers: Durchsuchen von externen Namensprovidern
   search_for_a_location: Einen Ort suchen
   search_for_species: Suche nach Art
-  search_list: Liste suchen
+  search_list: Liste durchsuchen
   search_observations: "Suche nach Beobachtungen"
   search_projects: Projekte suchen
   #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
@@ -3715,10 +3715,10 @@ de:
   two_thirds: 2/3
   type: Typ
   type_one_name_per_line: Einen Namen pro Zeile eingeben
-  type_place_name: Namen des Gebiets eingeben
+  type_place_name: Name des Gebiets eingeben
   type_source_title: "Titel der Quelle eingeben"
   type_species_name: "Namen der Spezies eingeben"
-  type_taxon_name: "Namen des Taxons eingeben"
+  type_taxon_name: "Name des Taxons eingeben"
   uicn_red_list_status: "Rote-Listen-Status der IUCN"
   umbrella_projects: Dach-Projekte
   unblock: Entsperren
@@ -3774,6 +3774,7 @@ de:
     tooltips:
       add: Beobachtung(en) hinzufügen
       combine: Ausgewählte Beobachtungen zusammenfügen
+      duplicate: Ausgewählte Beobachtungen duplizieren
       photo_failed: Das Foto konnte nicht hochgeladen werden
       remove: Ausgewählte Beobachtungen entfernen
       remove_observation: Beobachtung entfernen
@@ -4422,6 +4423,7 @@ de:
         horizontal: horizontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Zeitintervall
+        some_queries_missing_taxa: Bei einigen Abfragen fehlen Taxa
         total_taxa: Gesamtanzahl Taxa
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: vertikal
@@ -4649,6 +4651,10 @@ de:
         warning_html: |
           Bitte gehe respektvoll mit den Daten anderer Personen um und <strong>kommuniziere mit dem Ersteller eines Beobachtungsfeldes vor dem zusammenführen.</strong> Dieses Vorgehen vernichtet das Beobachtungsfeld, welches zusammengeführt wird und verschiebt alle Beobachtungen, die es verwenden, zum anderen Feld. <strong>Dieser Prozess kann nicht rückgängig gemacht werden</strong>, also sei vorsichtig.
     emailer:
+      bulk_import_success:
+        success_message: |
+          Der Massenimport von %{filename} war erfolgreich. Die Beobachtungen
+          werden jetzt bearbeitet und werden bald auf der Website erscheinen.
       bulk_import_error:
         taxon_spelling_notice_html: |
           Bitte überprüfe die Schreibweise für jeden Eintrag auf Richtigkeit. Dann suche die Arten unter %{search_taxa_url}. Wenn der Name noch nicht in der Datenbank von %{site_name} ist, musst du ihn
@@ -4656,6 +4662,11 @@ de:
           der Suchseite, um neue Namen zu importieren. Wenn der Name vorhanden ist, aber
           auf mehrere gültige Taxa zutrifft, versuche einen mehr oder weniger spezifischen
           Namen zu verwenden, der nur mit einem einzigen Taxon übereinstimmt.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |
+          Der Export ist fertig. Es wird eine Kopie an diese E-Mail angehängt, oder <a href="%{url}">lade den Export hier herunter</a>.
+        your_observations_export_failed_html: |
+          Der Export ist fehlgeschlagen. Besuche die <a href="%{url}">Beobachtungs-Export-Seite</a> für eine Liste deiner Exporte.
       parental_consent:
         subject: Dein Kind würde gerne iNaturalist benutzen
         content_html: |
@@ -4733,11 +4744,19 @@ de:
           Wir möchten alle Verweise auf beschädigte Fotos in naher Zukunft entfernen aber wir
           wollen nichts beseitigen, was gespeichert werden kann. Es ist möglich, dass einige dieser Fotos
           noch bei ihren externen Anbietern vorhanden sind und repariert werden können. Einige Fotos wurden möglicherweise hochgeladen, indem das <a href='%{account_url}'>%{site_name} Konto</a> mit einem anderen Foto-Hosting-Konto verbunden wurde und diese Verbindung ist abgelaufen und muss aktualisiert werden.
+        you_can_attempt_repair: |
+          Du kannst versuchen, die Fotos zu reparieren, indem du auf die Fotoseite gehst und auf den Link
+          "%{repair_link_text}" klickst. Wenn das Foto nicht mehr existiert, kannst du es
+          löschen.
         please_address: |
           Bitte diese Probleme <b>in den nächsten 30 Tagen</b> beheben. Nach 30
           Tagen werden wir mit dem Löschen defekter Fotos von iNaturalist beginnen. Alle Beobachtungen
           bleiben erhalten. Sie werden nach dem Löschen der Fotos neu bewertet und es ist möglich,
           dass einige Beobachtungen mit Forschungsqualität zu Hobbyqualität herabgestuft werden, falls sie keine Fotos mehr enthalten.
+        we_included_links: |
+          Wir haben unten Links zu den betroffenen Fotos angegeben.
+      user_parent_confirmation:
+        subject: Das iNaturalist-Konto deines Kindes wurde aktiviert
     photos:
       forbidden_notice_html: |
         Wir haben derzeit keine Berechtigung auf diese Fotos zuzugreifen. Möglicherweise musst du
@@ -4745,6 +4764,7 @@ de:
         <a href="/users/edit">Einstellungen</a> neu verbinden, um uns zusätzliche Berechtigungen zu erteilen.
       inviter:
         automatically_add_to_project: Automatisch zum Projekt hinzufügen
+        automatically_id_the_new_obs_as: Neue Beob. automatisch identifizieren als
         dont_forget_the_invite_link_placeholder: "den {{INVITE_LINK}} Platzhalter nicht vergessen"
         invite_other_photographers_to_inat: "Andere Fotografen zu %{site_name} einladen"
         invite_your_friends_description: |
@@ -4769,6 +4789,7 @@ de:
         map_instruction: Verwende das Polygonwerkzeug um die Gebietsgrenze zu zeichnen.
     posts:
       formatting_none_help: "Kein HTML eingefügt, sondern nur die von dir eingegebenen Tags."
+      formatting_simple_help: "Verlinke URLs automatisch und füge Zeilenumbrüche ein."
     projects:
       project_type: Projekttyp
       collection: Sammlung
@@ -4786,6 +4807,8 @@ de:
       confirm_leave:
         what_would_you_like: |
           Was möchtest du mit deinen Beobachtungen in diesem Projekt tun?
+        keep_observations_label: |
+          Belasse deine Beobachtungen in diesem Projekt
         keep_observations_desc: |
           Deine Beobachtungen bleiben im Projekt und die Kuratoren können weiterhin die versteckten Koordinaten einsehen.
         project_requires_curator_coordinate_access_desc: |
@@ -4795,6 +4818,10 @@ de:
           musst du sie aus dem Projekt entfernen.
         remove_observations_label: |
           Alle deine Beobachtungen aus diesem Projekt entfernen
+        remove_observations_desc_html: |
+          Denke daran, dass die Projekt-Kuratoren deine
+          Beobachtungen zu ihrem Projekt hinzufügen können, es sei denn, du änderst deine
+          <a href="/users/edit">Kontoeinstellungen</a>.
         revoke_observations_label: |
           Deine Beobachtungen in diesem Projekt belassen, aber die Kuratoren daran hindern, die versteckten Koordinaten einzusehen.
         revoke_observations_desc: |
@@ -4805,6 +4832,11 @@ de:
           und überprüfe, dass der Namen des Ortes korrekt ist. Wenn der gewünschter Ort wirklich nicht gefunden wird, gibt es die Möglichkeit 
           <a href="%{new_place_url}" target="_blank">ein neues Gebiet zu erstellen</a>,
           Bitte vergewissere dich, dass kein bereits existierender Ort dupliziert wird.
+        bioblitz_desc_html: |
+          <p>
+          Ein Bioblitz ist ein Ereignis, bei dem die Teilnehmer versuchen, innerhalb eines bestimmten Zeitraums möglichst viele Arten zu beobachten. Es ist eine spielerische Möglichkeit, andere Personen in die biologische Vielfalt einzuführen und gleichzeitig wertvolle
+          Daten zu sammeln.
+          </p>
         change_admin_desc: Wähle einen der Projektkuratoren aus, der der neue Administrator werden soll.
         cover_desc: "Optionales Banner, das oben auf deiner Projektseite erscheint. Muss 950px breit und weniger als 400px hoch sein."
         custom_project_fields_means: "Passe das Banner des Projekts an, füge Seiteninhalte hinzu und bearbeite die CSS."
@@ -4814,6 +4846,7 @@ de:
           Wenn dies eine Eventbrite URL ist, die eine numerische ID enthält, 
           fügen wir ein Anmelde-Widget auf Ihrer Projektseite ein, bis Ihr Bioblitz
           beginnt.
+        icon_desc: "Wird auf ein Quadrat zugeschnitten"
         it_looks_like_this_project_can_be_converted: |
           Es sieht so aus, als könne dieses Projekt in ein neues <a href="%{url}">Sammel-Projekt</a> umgewandelt werden.
         no_curators: |
