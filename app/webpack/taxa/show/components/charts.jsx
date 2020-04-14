@@ -96,7 +96,14 @@ class Charts extends React.Component {
   }
 
   defaultC3Config( ) {
-    const { colors } = this.props;
+    const { colors, chartedFieldValues } = this.props;
+    _.each( chartedFieldValues, values => {
+      _.each( values, value => {
+        if ( value.controlled_value.label === "No Annotation" ) {
+          colors[`${value.controlled_attribute.label}=No Annotation`] = colors.unannotated;
+        }
+      } );
+    } );
     return {
       data: {
         colors,
@@ -149,17 +156,25 @@ class Charts extends React.Component {
     if ( unAnnotatedItem ) {
       items.push( unAnnotatedItem );
     }
-    const tipRows = items.map( item => `
-      <div class="series">
-        <span class="swatch" style="background-color: ${color( item )}"></span>
-        <span class="column-label">
-          ${I18n.t( `views.taxa.show.frequency.${item.name}`, { defaultValue: item.name.split( "=" )[1] } )}:
-        </span>
-        <span class="value">
-          ${this.formatNumber( item.value )}
-        </span>
-      </div>
-    ` );
+    const tipRows = items.map( item => {
+      let columnLabel = I18n.t( `views.taxa.show.frequency.${item.name}`, {
+        defaultValue: item.name.split( "=" )[1]
+      } );
+      if ( item.name.match( /No Annotation/ ) ) {
+        columnLabel = I18n.t( "views.taxa.show.frequency.unannotated" );
+      }
+      return `
+        <div class="series">
+          <span class="swatch" style="background-color: ${color( item )}"></span>
+          <span class="column-label">
+            ${columnLabel}:
+          </span>
+          <span class="value">
+            ${this.formatNumber( item.value )}
+          </span>
+        </div>
+      `;
+    } );
     return `
       <div class="frequency-chart-tooltip">
         <div class="title">${tipTitle}</div>
@@ -222,25 +237,17 @@ class Charts extends React.Component {
     this.fieldValueCharts = this.fieldValueCharts || { };
     const { chartedFieldValues, seasonalityColumns } = this.props;
     if ( !chartedFieldValues ) { return; }
-    _.each( chartedFieldValues, ( values, termID ) => {
+    _.each( chartedFieldValues, ( values, attributeId ) => {
       const columns = _.filter(
         seasonalityColumns,
         column => _.startsWith( column[0], `${values[0].controlled_attribute.label}=` )
       );
-      const verifiableColumn = _.find( seasonalityColumns, c => c[0] === "verifiable" );
-      if ( verifiableColumn ) {
-        const unAnnotatedColumn = verifiableColumn.slice( 0 );
-        unAnnotatedColumn[0] = "unannotated";
-        _.each( columns, column => {
-          for ( let i = 1; i < column.length; i += 1 ) {
-            unAnnotatedColumn[i] -= column[i];
-          }
-        } );
-        columns.unshift( unAnnotatedColumn );
-      }
       const labelsToValueIDs = _.fromPairs( _.map( values, v => (
-        [`${v.controlled_attribute.label}=${v.controlled_value.label}`,
-          v.controlled_value.id] ) ) );
+        [
+          `${v.controlled_attribute.label}=${v.controlled_value.label}`,
+          v.controlled_value.id
+        ]
+      ) ) );
       const config = this.seasonalityConfigForColumns( columns, {
         controlled_attribute: values[0].controlled_attribute,
         labels_to_value_ids: labelsToValueIDs
@@ -250,8 +257,8 @@ class Charts extends React.Component {
         config.data.types[columns[i][0]] = "area-spline";
       }
       config.data.order = null;
-      const mountNode = $( `#FieldValueChart${termID}`, ReactDOM.findDOMNode( this ) ).get( 0 );
-      this.fieldValueCharts[termID] = c3.generate(
+      const mountNode = $( `#FieldValueChart${attributeId}`, ReactDOM.findDOMNode( this ) ).get( 0 );
+      this.fieldValueCharts[attributeId] = c3.generate(
         Object.assign( { bindto: mountNode }, config )
       );
     } );

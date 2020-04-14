@@ -17,7 +17,7 @@ function mapStateToProps( state ) {
     monthOfYearFrequencyVerifiable
   ).map( k => parseInt( k, 0 ) ).sort( ( a, b ) => a - b );
   const seasonalityColumns = [];
-  const order = [
+  const seriesNames = [
     "verifiable",
     "research"
   ];
@@ -28,20 +28,23 @@ function mapStateToProps( state ) {
     }
     chartedFieldValues[termID] = values;
     _.each( values, v => {
-      order.push( `${v.controlled_attribute.label}=${v.controlled_value.label}` );
+      seriesNames.push( `${v.controlled_attribute.label}=${v.controlled_value.label}` );
     } );
   } );
-  const scaledSeasonality = state.config.prefersScaledFrequencies &&
-    state.observations.monthOfYearFrequency.background;
-  for ( let i = 0; i < order.length; i++ ) {
-    const series = order[i];
+  const scaledSeasonality = state.config.prefersScaledFrequencies
+    && state.observations.monthOfYearFrequency.background;
+  for ( let i = 0; i < seriesNames.length; i += 1 ) {
+    const series = seriesNames[i];
     const frequency = state.observations.monthOfYearFrequency[series];
     if ( frequency ) {
       seasonalityColumns.push(
         [series, ...seasonalityKeys.map( key => {
           let freq = frequency[key.toString( )] || 0;
           if ( scaledSeasonality ) {
-            freq = freq / ( state.observations.monthOfYearFrequency.background[key.toString( )] || 1 );
+            freq /= (
+              state.observations.monthOfYearFrequency.background[key.toString( )]
+              || 1
+            );
           }
           return freq;
         } )]
@@ -54,8 +57,8 @@ function mapStateToProps( state ) {
   const monthFrequencyResearch = state.observations.monthFrequency.research || {};
   const historyKeys = _.keys( monthFrequencyVerifiable ).sort( );
   const historyColumns = [];
-  const scaledHistory = state.config.prefersScaledFrequencies &&
-    state.observations.monthFrequency.background;
+  const scaledHistory = state.config.prefersScaledFrequencies
+    && state.observations.monthFrequency.background;
   if ( !_.isEmpty( _.keys( state.observations.monthFrequency ) ) ) {
     historyColumns.push( ["x", ...historyKeys] );
     historyColumns.push( ["verifiable", ...historyKeys.map( d => {

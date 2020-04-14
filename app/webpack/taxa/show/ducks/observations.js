@@ -1,7 +1,7 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
-import { defaultObservationParams } from "../../shared/util";
 import { stringify } from "querystring";
+import { defaultObservationParams } from "../../shared/util";
 import { setConfig } from "../../../shared/ducks/config";
 
 const SET_MONTH_FREQUENCY = "taxa-show/observations/SET_MONTH_FREQUENCY";
@@ -183,7 +183,8 @@ export function fetchMonthOfYearFrequency( ) {
         _.each( values, value => {
           dispatch( setMonthOfYearFrequecy(
             `${value.controlled_attribute.label}=${value.controlled_value.label}`,
-            value.month_of_year ) );
+            value.month_of_year
+          ) );
         } );
       } );
     }
@@ -206,14 +207,13 @@ export function setObservationsCount( count ) {
 }
 
 export function fetchRecentObservations( ) {
-  return ( dispatch, getState ) =>
-    inatjs.observations.search(
-      Object.assign( { return_bounds: true }, defaultObservationParams( getState( ) ) )
-    ).then( response => {
-      dispatch( setRecentObservations( response.results ) );
-      dispatch( setObservationsCount( response.total_results ) );
-      dispatch( setConfig( { mapBounds: response.total_bounds } ) );
-    } );
+  return ( dispatch, getState ) => inatjs.observations.search(
+    Object.assign( { return_bounds: true }, defaultObservationParams( getState( ) ) )
+  ).then( response => {
+    dispatch( setRecentObservations( response.results ) );
+    dispatch( setObservationsCount( response.total_results ) );
+    dispatch( setConfig( { mapBounds: response.total_bounds } ) );
+  } );
 }
 
 export function setFirstObservation( observation ) {
@@ -261,4 +261,3 @@ export function openObservationsSearch( params ) {
     window.open( `/observations?${stringify( searchParams )}`, "_blank" );
   };
 }
-

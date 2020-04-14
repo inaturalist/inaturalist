@@ -197,6 +197,10 @@ export function fetchTerms( ) {
       params.place_id = s.config.chosenPlace.id;
     }
     return inatjs.observations.popularFieldValues( params ).then( r => {
+      const controlledAttributes = _.reduce( r.results, ( memo, result ) => {
+        memo[result.controlled_attribute.id] = result.controlled_attribute;
+        return memo;
+      }, {} );
       const relevantResults = _.filter( r.results, f => (
         !f.controlled_attribute.taxon_ids
         || _.intersection(
@@ -205,9 +209,20 @@ export function fetchTerms( ) {
         ).length > 0
         || f.controlled_attribute.taxon_ids.length === 0
       ) );
+      const fieldValues = _.groupBy( relevantResults, f => f.controlled_attribute.id );
+      _.each( r.without_annotations, ( data, controlledAttributeId ) => {
+        fieldValues[Number( controlledAttributeId )].push( {
+          count: data.count,
+          month_of_year: data.month_of_year,
+          controlled_attribute: controlledAttributes[Number( controlledAttributeId )],
+          controlled_value: {
+            label: "No Annotation"
+          }
+        } );
+      } );
       dispatch( {
         type: SET_FIELD_VALUES,
-        fieldValues: _.groupBy( relevantResults, f => f.controlled_attribute.id )
+        fieldValues
       } );
     } ).catch( e => { console.log( e ); } );
   };
