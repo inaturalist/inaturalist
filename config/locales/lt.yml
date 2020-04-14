@@ -505,7 +505,7 @@ lt:
   #Option to allow any taxa on a list
   allow_any: leisti bet kuriuos
   allow_curator_access: Leisti kuratoriaus prieigą
-  allow_project_curators_to_view_your_private_coordinates: Leisti projekto kuratoriams peržiūrėti paslėptas koordinates
+  allow_project_curators_to_view_your_private_coordinates: Leisti projekto kuratoriams peržiūrėti privačias koordinates
   allowed_establish_means_values: Leidžiama nustatyti reikšmes
   allowed_html: Leidžiamas HTML
   allowed_values: Leistinos reikšmės
@@ -1411,7 +1411,7 @@ lt:
   geoprivacy_is_obscured: Vietos privatumas yra paslėptas
   geoprivacy_is_obscured_desc: Stebėtojas pasirinko paslėpti koordinates.
   geoprivacy_is_private: Vietos privatumas yra privatus
-  geoprivacy_is_private_desc: Stebėtojas pasirinko paslėpti koordinates.
+  geoprivacy_is_private_desc: Stebėtojas koordinates padarė privačiomis.
   get_started: Pradėti
   getting_started_guide: Darbo Pradžios Vadovas
   give_it_some_detail: Pridėkite informacijos!
@@ -1429,7 +1429,7 @@ lt:
   grant_role: "%{grant} %{role} vaidmenį"
   grid: Tinklelis
   grid_layout: Tinklelio išdėstymas
-  grid_tooltip: Rodyti tinklelį
+  grid_tooltip: Rodyti tinklelyje
   group: Grupė
   grouping: Grupavimas
   guides: Gidai
@@ -1443,7 +1443,7 @@ lt:
   guidelines: Gairės
   has_already_been_flagged_by: jau buvo pažymėtas
   has_id_supported_by_two_or_more: Identifikacijai pritaria du ar daugiau vartotojų
-  has_one_or_more_faves: Turi vieną ar daugiau patinka
+  has_one_or_more_faves: Turi vieną ar daugiau pamėgimus
   has_photo: Turi nuotraukų
   has_photos: Turi nuotraukų
   has_photo_and_sound: Turi nuotraukų ir garsų
@@ -1725,7 +1725,7 @@ lt:
   list: Sąrašas
   list_deleted: Sąrašas ištrintas.
   list_saved: Sąrašas išsaugotas.
-  list_tooltip: Rodyti sąrašo rodinį
+  list_tooltip: Rodyti sąraše
   list_updated: Sąrašas atnaujintas!
   list_views:
     plain: paprastas
@@ -1779,6 +1779,7 @@ lt:
     lb: Liuksemburgiečių
     lt: Lietuvių
     mk: Makedonų
+    nb: Norvegų Bukmolas
     nl: Olandų
     oc: Oksitanų
     pl: Lenkų
@@ -1801,6 +1802,7 @@ lt:
   location_is_private: Vieta yra privati
   location_specified: Vieta nurodyta
   log_in: Prisijungti
+  log_scale_label: Įrašas
   login_slash_username: Prisijungimo / vartotojo vardas
   logo:
     logo: Logotipas
@@ -1816,6 +1818,7 @@ lt:
   look_up_name: "Pažiūrėti pavadinimą"
   looks_like_neither_have!: Panašu, kad nė vienas neturi jokių taksonų!
   looks_like_no_species_in_guide: Panašu, kad savo vadove dar neturite rūšių.
+  lookup: Ieškoti
   low: Žemas
   lowest_rank: Žemiausias rangas
   make_admin: Padaryti administratoriumi
@@ -1826,11 +1829,14 @@ lt:
   make_a_new_place: Sukurti naują vietą
   make_curator: Padaryti kuratoriumi
   make_it_a_life_list?: Padaryti tai gyvenimo sąrašu?
+  make_manager: Padaryti valdytoju
+  make_sure_the_default_photo_looks_good: Įsitikinkite, kad numatytoji nuotrauka gerai atrodo išdidinta.
   mammals: žinduoliai
   manage_all_your_subscriptions: Valdykite visas savo prenumeratas
   manage_names: Valdyti pavadinimus
   manage_your_projects: Tvarkyti savo projektus
   manage_your_project_invitations: Valdykite projektų kvietimus
+  manage_your_relationships: Valdyti jūsų santykius
   manager: Vadovas
   managers: Vadovai
   managers_can_do: Vadovai gali daryti viską, ką gali kuratoriai, taip pat redaguoti projektų nustatymus ir kurti projektų žurnalų įrašus.
@@ -1851,7 +1857,7 @@ lt:
       checklist_places: Kontrolinio sąrašo vieos
       checklist_places_description: Vietos, kuriose šis taksonas buvo įtrauktas į sąrašus
       range: Ribos
-  map_tooltip: Rodyti žemėlapio rodinį
+  map_tooltip: Rodyti žemėlapyje
   mark_as_reviewed: Pažymėti kaip peržiūrėtą
   mark_all_as_reviewed: Pažymėti visus kaip peržiūrėtus
   mark_all_as_unreviewed: Pažymėti visus kaip neperžiūrėtus
@@ -1940,7 +1946,7 @@ lt:
   most_agree: dauguma sutinka
   most_browser_print_pdf: "Pastaba: dauguma naršyklių leidžia spausdinti į PDF"
   most_disagree: dauguma nesutinka
-  most_comments_and_faves: Daugiausia Komentarų ir Favoritų
+  most_comments_and_faves: Daugiausia komentarų ir pamėgimų
   most_observations: Daugiausia stebėjimų
   most_recent_observation_by_date_observed: Naujausias identifikuotinas stebėjimas pagal stebėjimo datą
   most_species: Dauguma rūšių
@@ -2128,6 +2134,7 @@ lt:
   obs: Stb
   obs_cid_d: Stb BID
   obs_id_d: Stb ID
+  obscured: Paslėptas
   obscured_or_private: paslėptas arba privatus
   observation: Stebėjimas
   observation_: stebėjimas
@@ -2221,7 +2228,10 @@ lt:
   only_show_taxa_fom_this_list: "Rodyti taksonus tik iš šio sąrašo"
   only_species: tik rūšys
   only_you: Tik jūs
+  open: atviras
+  open_: Atviras
   open_description: "Visi gali matyti koordinates, nebent taksonui gresia išnykimas."
+  open_street_map: OpenStreetMap
   optional: neprivaloma
   or: arba
   #Usually used to separate buttons or functional areas of the interface, e.g.
@@ -2747,8 +2757,8 @@ lt:
   previous_tab: Ankstesnis skirtukas
   print_verb: Spausdinti
   privacy: Privatumas
-  private: privatu
-  private_: Privatu
+  private: privatus
+  private_: Privatus
   probably_spam: Tikriausiai šlamštas
   proceed: Tęsti
   processing: Apdorojama
@@ -3195,7 +3205,7 @@ lt:
   stop_editing: Nutraukti redagavimą
   stop_following_user: "Nebesekti %{user}"
   stop_testing: Nutraukti testavimą
-  stop_trusting_this_person_with_your_private_coordinates: Nebepatikėti šiam žmogui paslėptų koordinačių
+  stop_trusting_this_person_with_your_private_coordinates: Nebepatikėkite šiam žmogui paslėptų koordinačių
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: PIRKTI
@@ -3320,6 +3330,7 @@ lt:
     few: "%{taxon} yra gyvybės karalystė su %{count} stebėjimais"
     many: "%{taxon} yra gyvybės karalystė su %{count} stebėjimais"
     other: "%{taxon} yra gyvybės karalystė su %{count} stebėjimais"
+  taxon_is_threatened_coordinates_obscured: Taxonui gresia išnykimas, todėl numatyta koordinates paslėpti
   taxonomy: Taksonomija
   taxon_change_must_be_committed_to_update_records: Taksono pakeitimas turi būti patvirtintas, kad įrašai būtų atnaujinti
   taxon_deleted: Taksonas ištrintas.
@@ -3550,6 +3561,7 @@ lt:
     tooltips:
       add: Pridėti pastabą(-s)
       combine: Sujungti pasirinktus stebėjimus
+      duplicate: Sukurti pasirinktų stebėjimų kopijas
       photo_failed: Nepavyko įkelti nuotraukos
       remove: Pašalinti pasirinktus stebėjimus
       remove_observation: Pašalinti stebėjimą
@@ -3761,7 +3773,7 @@ lt:
   who_can_see_the_coordinates_trusted: Žmonės, kuriems stebėtojas patiki paslėptas koordinates
   who_helped_user_the_most: "Kas Daugiausiai Padėjo %{user}"
   who_user_helped_the_most: "Kam %{user} Daugiausiai Padėjo"
-  why_the_coordinates_are_obscured: Kodėl koordinatės užslėptos
+  why_the_coordinates_are_obscured: Kodėl koordinatės paslėptos
   with_annotation: Su papildoma informacija
   without_annotation: Su papildoma informacija
   widget: Valdiklis
@@ -4274,7 +4286,7 @@ lt:
         about_recent_users: Apie
       show:
         favorites_list_prompt_html: |
-          Norite parodyti savo mėgstamaiusius taksonus? %{link_start_tag}Sukurkite sąrašą%{link_end_tag} pavadinimu „Favorites“ ir šioje vietoje atsiras naujausiai įkelti taksonai.
+          Norite parodyti savo mėgstamiausius taksonus? %{link_start_tag}Sukurkite sąrašą%{link_end_tag} pavadinimu „Favorites“ ir šioje vietoje atsiras naujausiai įkelti taksonai.
     user_parents:
       new:
         child_name_private: Vaiko vardas (privati informacija)
