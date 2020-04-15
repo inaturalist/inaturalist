@@ -346,6 +346,7 @@ class Charts extends React.Component {
     const fieldValuePanels = [];
     if ( chartedFieldValues ) {
       _.each( chartedFieldValues, ( values, termID ) => {
+        const loading = !values[0].month_of_year;
         fieldValueTabs.push( (
           <li role="presentation" key={`charts-field-values-${termID}`}>
             <a
@@ -372,6 +373,13 @@ class Charts extends React.Component {
               }
             >
               { I18n.t( "no_observations_yet" ) }
+            </div>
+            <div
+              className={
+                `no-content text-muted text-center ${loading ? "" : "hidden"}`
+              }
+            >
+              { I18n.t( "loading" ) }
             </div>
             <div
               id={`FieldValueChart${termID}`}
