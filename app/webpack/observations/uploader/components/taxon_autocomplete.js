@@ -305,13 +305,19 @@ class TaxonAutocomplete extends React.Component {
   }
 
   taxonAutocompleteSource( request, callback ) {
-    const { perPage, searchExternal, showPlaceholder } = this.props;
-    inaturalistjs.taxa.autocomplete( {
+    const {
+      perPage, searchExternal, showPlaceholder, notIDs
+    } = this.props;
+    const params = {
       q: request.term,
       per_page: perPage || 10,
       locale: I18n.locale,
       preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
-    } ).then( r => {
+    };
+    if ( notIDs ) {
+      params.not_id = notIDs.slice( 0, 750 ).join( "," );
+    }
+    inaturalistjs.taxa.autocomplete( params ).then( r => {
       const results = r.results || [];
       // show as the last item an option to search external name providers
       if ( searchExternal !== false ) {
@@ -537,6 +543,7 @@ TaxonAutocomplete.propTypes = {
   visionParams: PropTypes.object,
   initialSelection: PropTypes.object,
   initialTaxonID: PropTypes.number,
+  notIDs: PropTypes.array,
   perPage: PropTypes.number,
   config: PropTypes.object
 };

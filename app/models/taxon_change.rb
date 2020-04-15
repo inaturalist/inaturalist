@@ -9,6 +9,7 @@ class TaxonChange < ActiveRecord::Base
   belongs_to :committer, :class_name => 'User'
 
   has_subscribers
+  include ContentFreeze
   after_create :index_taxon
   after_destroy :index_taxon
   after_update :commit_records_later

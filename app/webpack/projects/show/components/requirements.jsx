@@ -164,110 +164,111 @@ const Requirements = ( {
       </tr>
     );
   }
+  const requirementContents = project.hasInsufficientRequirements( )
+    ? I18n.t( "views.projects.show.this_project_has_not_defined_requirements" )
+    : (
+      <div>
+        <div className="section-intro">
+          { I18n.t( "label_colon", { label: I18n.t( "observations_in_this_project_must" ) } )}
+        </div>
+        <table>
+          <tbody>
+            <tr>
+              <td className="param">
+                <i className="fa fa-leaf" />
+                { I18n.t( "taxa" ) }
+              </td>
+              <td className="value">
+                { taxonRules }
+                { exceptTaxonRules && (
+                  <span className="except">
+                    <span className="bold">
+                      { I18n.t( "except" ) }
+                    </span>
+                    { exceptTaxonRules }
+                  </span>
+                ) }
+              </td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-map-marker" />
+                { I18n.t( "location" ) }
+              </td>
+              <td className="value">
+                { locationRules }
+                { exceptLocationRules && (
+                  <span className="except">
+                    <span className="bold">
+                      { I18n.t( "except" ) }
+                    </span>
+                    { exceptLocationRules }
+                  </span>
+                ) }
+              </td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-user" />
+                { I18n.t( "users" ) }
+              </td>
+              <td className="value">
+                { userRules }
+                { exceptUserRules && (
+                  <span className="except">
+                    <span className="bold">
+                      { I18n.t( "except" ) }
+                    </span>
+                    { exceptUserRules }
+                  </span>
+                ) }
+              </td>
+            </tr>
+            { projectsRequirement }
+            <tr>
+              <td className="param">
+                <i className="fa fa-certificate" />
+                { I18n.t( "quality_grade_" ) }
+              </td>
+              <td className="value">{ qualityGradeRules }</td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-file-image-o" />
+                { I18n.t( "media_type" ) }
+              </td>
+              <td className="value">{ mediaRules }</td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-calendar" />
+                { I18n.t( "date_" ) }
+              </td>
+              <td className="value">{ dateRules }</td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-globe" />
+                { I18n.t( "establishment.establishment" ) }
+              </td>
+              <td className="value">{ establishmentRules }</td>
+            </tr>
+            { annotationRequirement }
+          </tbody>
+        </table>
+      </div> );
   return (
     <div className="Requirements">
       <h2>
         { I18n.t( "project_requirements" ) }
         { includeArrowLink && (
-          <button
-            type="button"
-            className="btn btn-nostyle"
-            onClick={( ) => setSelectedTab( "about" )}
-          >
-            <i
-              className="fa fa-arrow-circle-right"
-            />
-          </button>
+          <i
+            className="fa fa-arrow-circle-right"
+            onClick={ ( ) => setSelectedTab( "about" ) }
+          />
         ) }
       </h2>
-      <div className="section-intro">
-        { I18n.t( "label_colon", { label: I18n.t( "observations_in_this_project_must" ) } )}
-      </div>
-      <table>
-        <tbody>
-          <tr>
-            <td className="param">
-              <i className="fa fa-leaf" />
-              { I18n.t( "taxa" ) }
-            </td>
-            <td className="value">
-              { taxonRules }
-              { exceptTaxonRules && (
-                <span className="except">
-                  <span className="bold">
-                    { I18n.t( "except" ) }
-                  </span>
-                  { exceptTaxonRules }
-                </span>
-              ) }
-            </td>
-          </tr>
-          <tr>
-            <td className="param">
-              <i className="fa fa-map-marker" />
-              { I18n.t( "location" ) }
-            </td>
-            <td className="value">
-              { locationRules }
-              { exceptLocationRules && (
-                <span className="except">
-                  <span className="bold">
-                    { I18n.t( "except" ) }
-                  </span>
-                  { exceptLocationRules }
-                </span>
-              ) }
-            </td>
-          </tr>
-          <tr>
-            <td className="param">
-              <i className="fa fa-user" />
-              { I18n.t( "users" ) }
-            </td>
-            <td className="value">
-              { userRules }
-              { exceptUserRules && (
-                <span className="except">
-                  <span className="bold">
-                    { I18n.t( "except" ) }
-                  </span>
-                  { exceptUserRules }
-                </span>
-              ) }
-            </td>
-          </tr>
-          { projectsRequirement }
-          <tr>
-            <td className="param">
-              <i className="fa fa-certificate" />
-              { I18n.t( "quality_grade_" ) }
-            </td>
-            <td className="value">{ qualityGradeRules }</td>
-          </tr>
-          <tr>
-            <td className="param">
-              <i className="fa fa-file-image-o" />
-              { I18n.t( "media_type" ) }
-            </td>
-            <td className="value">{ mediaRules }</td>
-          </tr>
-          <tr>
-            <td className="param">
-              <i className="fa fa-calendar" />
-              { I18n.t( "date_" ) }
-            </td>
-            <td className="value">{ dateRules }</td>
-          </tr>
-          <tr>
-            <td className="param">
-              <i className="fa fa-globe" />
-              { I18n.t( "establishment.establishment" ) }
-            </td>
-            <td className="value">{ establishmentRules }</td>
-          </tr>
-          { annotationRequirement }
-        </tbody>
-      </table>
+      { requirementContents }
     </div>
   );
 };
