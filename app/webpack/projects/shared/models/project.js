@@ -79,6 +79,7 @@ const Project = class Project {
     if ( dateType === "range" && !_.isEmpty( this.rule_d2 ) ) { empty = false; }
     if ( dateType === "months" && !_.isEmpty( this.rule_month ) ) { empty = false; }
     if ( !_.isEmpty( this.project_observation_rules ) ) { empty = false; }
+    if ( this.rule_members_only ) { empty = false; }
     return empty;
   }
 
