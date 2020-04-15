@@ -189,12 +189,17 @@ export function showPhotoChooserIfSignedIn( ) {
   };
 }
 
-export function fetchTerms( ) {
+export function fetchTerms( options = { histograms: false } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const params = { taxon_id: s.taxon.taxon.id, per_page: 50, verifiable: true };
     if ( s.config.chosenPlace ) {
       params.place_id = s.config.chosenPlace.id;
+    }
+    if ( options.histograms ) {
+      params.unannotated = true;
+    } else {
+      params.no_histograms = true;
     }
     return inatjs.observations.popularFieldValues( params ).then( r => {
       const controlledAttributes = _.reduce( r.results, ( memo, result ) => {
@@ -210,16 +215,18 @@ export function fetchTerms( ) {
         || f.controlled_attribute.taxon_ids.length === 0
       ) );
       const fieldValues = _.groupBy( relevantResults, f => f.controlled_attribute.id );
-      _.each( r.without_annotations, ( data, controlledAttributeId ) => {
-        fieldValues[Number( controlledAttributeId )].push( {
-          count: data.count,
-          month_of_year: data.month_of_year,
-          controlled_attribute: controlledAttributes[Number( controlledAttributeId )],
-          controlled_value: {
-            label: "No Annotation"
-          }
+      if ( options.histograms ) {
+        _.each( r.unannotated, ( data, controlledAttributeId ) => {
+          fieldValues[Number( controlledAttributeId )].push( {
+            count: data.count,
+            month_of_year: data.month_of_year,
+            controlled_attribute: controlledAttributes[Number( controlledAttributeId )],
+            controlled_value: {
+              label: "No Annotation"
+            }
+          } );
         } );
-      } );
+      }
       dispatch( {
         type: SET_FIELD_VALUES,
         fieldValues

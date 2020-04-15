@@ -82,7 +82,7 @@ export function fetchMonthFrequencyBackground( ) {
     delete params.taxon_id;
     return inatjs.observations.histogram( params ).then( response => {
       dispatch( setMonthFrequecy( "background", response.results.month ) );
-      return new Promise( ( resolve ) => resolve( response.results.month ) );
+      return new Promise( resolve => resolve( response.results.month ) );
     } );
   };
 }
@@ -95,7 +95,7 @@ export function fetchMonthFrequencyVerifiable( ) {
     } );
     return inatjs.observations.histogram( params ).then( response => {
       dispatch( setMonthFrequecy( "verifiable", response.results.month ) );
-      return new Promise( ( resolve ) => resolve( response.results.month ) );
+      return new Promise( resolve => resolve( response.results.month ) );
     } );
   };
 }
@@ -109,7 +109,7 @@ export function fetchMonthFrequencyResearchGrade( ) {
     } );
     return inatjs.observations.histogram( params ).then( response => {
       dispatch( setMonthFrequecy( "research", response.results.month ) );
-      return new Promise( ( resolve ) => resolve( response.results.month ) );
+      return new Promise( resolve => resolve( response.results.month ) );
     } );
   };
 }
@@ -136,7 +136,7 @@ export function fetchMonthOfYearFrequencyBackground( ) {
     delete params.taxon_id;
     return inatjs.observations.histogram( params ).then( response => {
       dispatch( setMonthOfYearFrequecy( "background", response.results.month_of_year ) );
-      return new Promise( ( resolve ) => resolve( response.results.month_of_year ) );
+      return new Promise( resolve => resolve( response.results.month_of_year ) );
     } );
   };
 }
@@ -149,7 +149,7 @@ export function fetchMonthOfYearFrequencyVerifiable( ) {
     } );
     return inatjs.observations.histogram( params ).then( response => {
       dispatch( setMonthOfYearFrequecy( "verifiable", response.results.month_of_year ) );
-      return new Promise( ( resolve ) => resolve( response.results.month_of_year ) );
+      return new Promise( resolve => resolve( response.results.month_of_year ) );
     } );
   };
 }
@@ -163,7 +163,7 @@ export function fetchMonthOfYearFrequencyResearchGrade( ) {
     } );
     return inatjs.observations.histogram( params ).then( response => {
       dispatch( setMonthOfYearFrequecy( "research", response.results.month_of_year ) );
-      return new Promise( ( resolve ) => resolve( response.results.month_of_year ) );
+      return new Promise( resolve => resolve( response.results.month_of_year ) );
     } );
   };
 }
@@ -176,17 +176,6 @@ export function fetchMonthOfYearFrequency( ) {
     ];
     if ( getState( ).config.prefersScaledFrequencies ) {
       promises.push( dispatch( fetchMonthOfYearFrequencyBackground( ) ) );
-    }
-    const fieldValues = getState( ).taxon.fieldValues;
-    if ( fieldValues && _.size( fieldValues ) > 0 ) {
-      _.each( fieldValues, values => {
-        _.each( values, value => {
-          dispatch( setMonthOfYearFrequecy(
-            `${value.controlled_attribute.label}=${value.controlled_value.label}`,
-            value.month_of_year
-          ) );
-        } );
-      } );
     }
     return Promise.all( promises );
   };

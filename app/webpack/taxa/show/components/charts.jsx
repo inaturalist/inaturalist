@@ -77,6 +77,7 @@ class Charts extends React.Component {
 
   resetChartTabEvents( ) {
     const domNode = ReactDOM.findDOMNode( this );
+    const { loadFieldValueChartData } = this.props;
     $( "a[data-toggle=tab]", domNode ).unbind( "shown.bs.tab" );
     $( "a[data-toggle=tab]", domNode ).bind( "shown.bs.tab", e => {
       if ( e.target.hash === "#charts-seasonality" ) {
@@ -90,6 +91,7 @@ class Charts extends React.Component {
       } else {
         const match = e.target.hash.match( /field-values-([0-9]+)$/ );
         if ( match && this.fieldValueCharts[Number( match[1] )] ) {
+          loadFieldValueChartData( );
           this.fieldValueCharts[Number( match[1] )].flush( );
         }
       }
@@ -538,7 +540,8 @@ Charts.propTypes = {
   scaled: PropTypes.bool,
   setScaledPreference: PropTypes.func,
   taxon: PropTypes.object,
-  config: PropTypes.object
+  config: PropTypes.object,
+  loadFieldValueChartData: PropTypes.func
 };
 
 Charts.defaultProps = {
