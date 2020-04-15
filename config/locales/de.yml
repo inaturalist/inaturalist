@@ -529,7 +529,7 @@ de:
   you_sure_delete_taxon_from_list?: "Bist du sicher, dass du %{taxon} von der Liste entfernen möchtest?"
   asc: aufsteigend
   ascending: aufsteigend
-  assessment: Bewertung
+  assessment: Assessment
   assessment_has_benn_completed: Bewertung abgeschlossen
   assessment_sections: Bewertungabschnitte
   assessment_was_deleted: Bewertung gelöscht
@@ -758,8 +758,8 @@ de:
   columns: Spalten
   combine: Zusammenfügen
   comma_separated_list_of_tracking_codes: |
-    Komma-getrennte Liste von Nachverfolgungsschlüsseln. Fügen Sie dies hinzu, wenn Sie einen Nachverfolgungsschlüssel anhängen möchten während Sie Benutzer auf das Neue-Beobachtung-Formular weiterleiten, z.B. %{root_url}observations/new?project_id=%{project_id}&tracking_code=IhrSchluessel123.
-    Sie können damit Beteiligungen von verschiedenen Quellen nachverfolgen. Sie können auf diese Schlüssel zugreifen, in dem Sie die Beobachtungen Ihres Projektes als CSV-Datei herunterladen.
+    Komma-separierte Liste von Tracking-Codes. Füge diese hinzu, um einen Tracking-Code anzuhängen, wenn Personen auf das neue Beobachtungsformular weitergeleitet werden sollen, z.B. %{root_url}observations/new?project_id=%{project_id}&tracking_code=deincode123.
+    Damit kann die Beteiligung aus verschiedenen Quellen verfolgt werden. Auf diese Codes kannst du zugreifen, wenn die Beobachtungen des Projekts als CSV heruntergeladen werden.
   comma_separated_please: müssen durch Kommas getrennt sein
   comment: Kommentar
   #Verb, generally a label on a button that allows the user to add a comment
@@ -1530,6 +1530,7 @@ de:
   ignore_and_continue: Ignorieren und fortfahren
   ignore_times: Ignoriere Zeiten
   image_must_be_exactly: Bild muss genau 950 px breit und maximal 400 px hoch sein
+  image_size_control: Kontrolle der Bild-Größe
   imperiled: Gefährdet
   import: Importieren
   import_all_photos_as_observations: Alle Fotos als Beobachtungen importieren
@@ -3201,7 +3202,7 @@ de:
     must_be_georeferenced: muss georeferenziert sein
     must_be_identified: muss identifiziert werden
     must_be_on_list: muss auf der Liste stehen
-    must_be_observed_in_place: muss im Gebiet beobachtet werden
+    must_be_observed_in_place: muss im Gebiet beobachtet worden sein
     must_be_in: 'muss in diesem Taxon sein:'
     must_be_coordinates_shareable_by_project_curators: Der Beobachter muss den Projektkuratoren erlauben, die Koordinaten einzusehen.
   running_total: Gesamtzahl
@@ -3339,7 +3340,7 @@ de:
   site_admin_tools: Tools für Website-Admins
   #People who administrate a particular iNaturalist Network partner
   site_admins: Seiten-Administratoren
-  site_name_place: "%{site_name} Gebiete"
+  site_name_place: "%{site_name}-Gebiete"
   site_observations_export_from_date: "%{site_name}-Beobachtungsexport vom %{date}"
   site_site_admin: "%{site_name}-Websiteadministrator"
   site_staff: "%{site_name}-Mitarbeiter"
@@ -3494,7 +3495,7 @@ de:
   subscriptions_arent_available_for: Abonnements sind für Orte ohne Begrenzungen nicht möglich.
   successfully_changed_your_password: Dein Passwort wurde erfolgreich geändert.
   suggest_an_identification: Eine Bestimmung vorschlagen
-  suggest_or_require_that: Erbitte oder verlange, dass die Mitwirkenden diese Felder für die zum Projekt hinzufügenden Beobachtungen ausfüllen.
+  suggest_or_require_that: Wähle optionale oder verpflichtende Felder aus, die für zum Projekt hinzuzufügende Beobachtungen ausgefüllt werden können/müssen.
   suggestions: Vorschläge
   summary: Zusammenfassung
   supporting: Unterstützen
@@ -4876,14 +4877,19 @@ de:
           </p>
         rules:
           captive: in Haltung/kultiviert sein
-          georeferenced: haben Koordinaten
-          has_a_sound: haben einen Ton
-          has_media: haben Medien (Foto oder Ton)
+          coordinates_shareable_by_project_curators: einsehbare Koordinaten für Projektkuratoren haben
+          georeferenced: Koordinaten enthalten
+          has_a_sound: eine Tonaufnahme enthalten
+          has_media: Medien (Foto oder Ton) enthalten
+          identified: eine ID haben
+          in_taxon: in diesem Taxon sein
           observed_in_place: im Gebiet beobachtet
+          on_list: ein Taxon auf der Projektliste sein
           verifiable: verifizierbar sein
+          wild: wild/verwildert sein
         start_time_desc: "Startzeit für deinen Bioblitz. Format: JJJJ-MM-TTZh:mm:ss±hh:mm"
         submission_models:
-          any: allen
+          any: Jeder
           curators: Projekt Kuratoren
         you_can_preview: |
           Du kannst eine Vorschau des Projekts als Sammel-Projekt
@@ -5885,9 +5891,10 @@ de:
         terms: Bedingungen
         map_type: Kartendarstellung
         zoom_level: Vergrößerungsstufe
+        preferred_membership_model: Bevorzugtes Modell zur Teilnahme
         preferred_submission_model: Bevorzugte Art der Einreichung
         prefers_place_boundary_visible: Gebietsgrenze auf der Karte anzeigen
-        tracking_codes: Verfolgungscodes
+        tracking_codes: Tracking-Codes
         source_url: Quell-URL
         start_time: Startzeit
       project_observation:
