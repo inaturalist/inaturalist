@@ -9,7 +9,8 @@ const ObservationsGrid = ( {
   toggleReviewed,
   onAgree,
   grid,
-  currentUser
+  currentUser,
+  imageSize
 } ) => {
   let noObservationsNotice;
   if ( observations.length === 0 ) {
@@ -20,18 +21,19 @@ const ObservationsGrid = ( {
     );
   }
   return (
-    <Row className={`ObservationsGrid ${grid ? "gridded" : "flowed"}`}>
+    <Row className={`ObservationsGrid ${grid ? "gridded" : "flowed"} ${imageSize === "large" && "image-size-large"}`}>
       <Col xs={12}>
         { noObservationsNotice }
-        { observations.map( ( observation ) => (
+        { observations.map( observation => (
           <ObservationsGridItemForIdentify
-            key={ observation.id }
-            observation={ observation }
-            onObservationClick={ onObservationClick }
-            toggleReviewed={ toggleReviewed }
-            onAgree={ onAgree }
+            key={observation.id}
+            observation={observation}
+            onObservationClick={onObservationClick}
+            toggleReviewed={toggleReviewed}
+            onAgree={onAgree}
             showMagnifier
-            currentUser={ currentUser }
+            currentUser={currentUser}
+            imageSize={imageSize}
           />
         ) ) }
       </Col>
@@ -50,7 +52,8 @@ ObservationsGrid.propTypes = {
   onAgree: PropTypes.func,
   toggleReviewed: PropTypes.func,
   grid: PropTypes.bool,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  imageSize: PropTypes.string
 };
 
 export default ObservationsGrid;

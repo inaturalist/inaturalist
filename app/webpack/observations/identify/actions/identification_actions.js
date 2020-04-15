@@ -7,7 +7,6 @@ import {
 } from "./current_observation_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
-import { fetchIdentifiers } from "./identifiers_actions";
 import { showAlert } from "./alert_actions";
 
 const POST_IDENTIFICATION = "post_identification";
@@ -49,8 +48,7 @@ function updateIdentification( ident, updates ) {
 }
 
 function agreeWithObservaiton( observation ) {
-  return function ( dispatch, getState ) {
-    const { config } = getState( );
+  return dispatch => {
     dispatch( loadingDiscussionItem( ) );
     dispatch( updateObservationInCollection( observation, { agreeLoading: true } ) );
     return dispatch(
@@ -59,9 +57,6 @@ function agreeWithObservaiton( observation ) {
       dispatch( updateObservationInCollection( observation, { agreeLoading: false } ) );
       dispatch( fetchCurrentObservation( observation ) );
       dispatch( fetchObservationsStats( ) );
-      dispatch( fetchIdentifiers( {
-        forUserID: config && config.currentUser && config.currentUser.id
-      } ) );
     } );
   };
 }
@@ -97,8 +92,7 @@ function agreeWithCurrentObservation( ) {
 }
 
 function submitIdentificationWithConfirmation( identification, options = {} ) {
-  return ( dispatch, getState ) => {
-    const { config } = getState( );
+  return dispatch => {
     dispatch( loadingDiscussionItem( identification ) );
     const boundPostIdentification = ( ) => {
       dispatch( postIdentification( identification ) )
@@ -110,9 +104,6 @@ function submitIdentificationWithConfirmation( identification, options = {} ) {
             $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
           } );
           dispatch( fetchObservationsStats( ) );
-          dispatch( fetchIdentifiers( {
-            forUserID: config && config.currentUser && config.currentUser.id
-          } ) );
         } );
     };
     if ( options.confirmationText ) {

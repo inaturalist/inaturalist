@@ -97,6 +97,8 @@ class User < ActiveRecord::Base
   preference :map_tile_test, :boolean, default: false
   preference :no_site, :boolean, default: false
   preference :no_tracking, :boolean, default: false
+  preference :identify_image_size, :string, default: nil
+  preference :identify_side_bar, :boolean, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification

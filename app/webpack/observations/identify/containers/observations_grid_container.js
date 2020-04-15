@@ -10,7 +10,8 @@ import {
 function mapStateToProps( state ) {
   return {
     observations: state.observations.results || [],
-    currentUser: state.config.currentUser
+    currentUser: state.config.currentUser,
+    imageSize: state.config.imageSize
   };
 }
 
