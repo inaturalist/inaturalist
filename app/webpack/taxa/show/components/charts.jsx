@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import c3 from "c3";
+import { schemeCategory10 } from "d3";
 import moment from "moment";
 import { Modal } from "react-bootstrap";
 import { objectToComparable } from "../../../shared/util";
@@ -238,10 +239,11 @@ class Charts extends React.Component {
     const { chartedFieldValues, seasonalityColumns } = this.props;
     if ( !chartedFieldValues ) { return; }
     _.each( chartedFieldValues, ( values, attributeId ) => {
-      const columns = _.filter(
+      let columns = _.filter(
         seasonalityColumns,
         column => _.startsWith( column[0], `${values[0].controlled_attribute.label}=` )
       );
+      columns = _.sortBy( columns, c => ( -1 * _.sum( c.slice( 1 ) ) ) );
       const labelsToValueIDs = _.fromPairs( _.map( values, v => (
         [
           `${v.controlled_attribute.label}=${v.controlled_value.label}`,
@@ -543,7 +545,14 @@ Charts.defaultProps = {
   colors: {
     research: "#74ac00",
     verifiable: "#dddddd",
-    unannotated: "#dddddd"
+    unannotated: "#dddddd",
+
+    // d3 schemeCategory10 colors are what c3 will use by default. Here's we're
+    // just ensuring consistent color for each of these series
+    "Plant Phenology=Flower Budding": schemeCategory10[1],
+    "Plant Phenology=Flowering": schemeCategory10[3],
+    "Plant Phenology=Fruiting": schemeCategory10[0],
+    "Plant Phenology=No Evidence of Flowering": schemeCategory10[2]
   }
 };
 
