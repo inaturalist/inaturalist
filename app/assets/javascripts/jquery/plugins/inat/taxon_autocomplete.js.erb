@@ -170,12 +170,7 @@ $.fn.taxonAutocomplete = function( options ) {
       url: "<%= CONFIG.node_api_url %>/taxa/autocomplete",
       cache: true,
       headers: headers,
-      data: {
-        q: request.term,
-        per_page: options.perPage || 10,
-        locale: I18n.locale,
-        preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
-      },
+      data: params,
       success: function( data ) {
         var results = data.results || [ ];
         // show as the last item an option to search external name providers
