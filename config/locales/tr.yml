@@ -4680,6 +4680,38 @@ tr:
         taking_a_while: "Bu biraz zaman alıyor. Lütfen aşağıdaki seçeneklerden birini deneyin."
         date_range_help: "GG-AA-YYYY biçiminde gözlemlenen en çok ve en az tarihler, örn. 17-01-2015"
         created_on_help: "Tarih gözlemleri oluşturuldu, gözlenmedi, örn. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Diğer Ayarlar</h3>
+          <p>
+          Büyük dışa aktarmalar altyapımızı yavaşlatıyor ve yeni değişiklikler yapmamızı zorlaştırıyor. Dikkate almanız gereken diğer seçenekler şunlardır:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF, Araştırma Sınıfımızın çoğunu içinde biriktirir, lisanslı gözlemler ve bunların dışa aktarım araçları mükemmeldir. GBIF dışa aktarımları da bir <a href="https://www.doi.org/">DOI</a> ile birlikte gelir, dışa aktardığınız verilere dayalı olarak araştırma yayınlarsanız alıntı yapabilirsiniz ve bu alıntılar, iNat verilerinin nasıl kullanıldığını görmemize izin verdiği için bizim için çok yararlıdır.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip"> GBIF için DarwinCore
+          Archive (DwC-A)</a>: bu site
+          GBIF'ın biriktirmesi için oluşturduğumuz <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a> dosyasıdır, bu nedenle GBIF'da olmayan bir şey içermemelidir ancak tüm arşivi istiyorsanız, indirebilirsiniz. CSV'deki kayıtları içeren çok büyük bir zip dosyasıdır. Haftalık olarak güncellenir.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">FGVC 2017'de iNaturalist Mücadelesi</a>: bilgisayarla görüş eğitiminde kullanılmak üzere 5.089 türün 675.000 lisanslı iNaturalist fotoğrafını bu sayfayla bağlantılı duruma getirir. Haziran 2017 tarihinde oluşturuldu, güncellenmedi.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Gözlem için benzersiz tanımlayıcı"
         species_guess: "Gözlemlenen sınıf için girilen gözlemcinin adı"
