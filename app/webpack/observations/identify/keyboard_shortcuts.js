@@ -104,6 +104,11 @@ const annotationShortcuts = [
     term: "Sex",
     value: "Male"
   },
+  {
+    shortcut: "s c",
+    term: "Sex",
+    value: "Cannot Be Determined"
+  },
 
   // Alive or Dead
   {
