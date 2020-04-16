@@ -45,7 +45,8 @@
         %tbody
           %tr
             %td
-              = link_to_user( @flag.flaggable_user ) {|| char_wrap( @flag.flaggable_user.login, 20 )} 
+              - if @flag.flaggable_user
+                = link_to_user( @flag.flaggable_user ) {|| char_wrap( @flag.flaggable_user.login, 20 )}
             %td
               - if @object
                 = link_to @object.to_plain_s, @object
