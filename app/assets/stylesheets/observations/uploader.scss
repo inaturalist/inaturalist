@@ -50,6 +50,17 @@ input.failed, textarea.failed {
   width: 100%;
   z-index: 1000;
   top: 20px;
+  > .container-fluid {
+    display: flex;
+    .navbar-nav {
+      width: 100%;
+      .navbar-btn,
+      [role="button"],
+      .navbar-form {
+        white-space: nowrap;
+      }
+    }
+  }
   .navbar-right {
     margin-right: 0px;
   }
@@ -127,7 +138,6 @@ input.failed, textarea.failed {
 .row-fluid {
   .col-fixed-250 {
     width: 250px;
-    float: left;
     overflow: visible;
     position: fixed;
     z-index: 10;
@@ -143,7 +153,6 @@ input.failed, textarea.failed {
 }
 
 .uploader {
-  min-width: 800px;
   margin-top: 100px;
   &.hover {
     opacity: 0.7;
@@ -961,11 +970,10 @@ input.failed, textarea.failed {
 
 @media (min-width: 1px) {
   .navbar-nav {
-    float: left;
+    display: flex;
     margin: 0;
   }
   .navbar-nav>li {
-    float: left;
     margin: 0;
   }
   .navbar-right {

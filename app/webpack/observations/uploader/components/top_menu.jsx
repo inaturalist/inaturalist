@@ -141,9 +141,7 @@ const TopMenu = ( {
           </li>
         </OverlayTrigger>
       </Nav>
-      <div className="pull-right">
-        { saveButton }
-      </div>
+      { saveButton }
     </Navbar>
   );
 };
