@@ -14895,6 +14895,7 @@ I18n.translations["en"] = {
   "are_you_sure_remove_photo": "Are you sure you want to remove this photo?",
   "are_you_sure_you_want_to_remove_all_tags": "Are you sure you want to remove all tags?",
   "are_you_sure_you_want_to_remove_these_x_taxa?": "Are you sure you want to remove these %{x} taxa?",
+  "are_you_sure_you_want_to_remove_this_observation_from_project": "Are you sure you want to remove this observation from %{project}?\n",
   "asc": "Asc",
   "ascending": "Ascending",
   "atom": "Atom",
@@ -14973,6 +14974,7 @@ I18n.translations["en"] = {
   "continue": "Continue",
   "controlled_term_definitions": {
     "alive": "Organism is living and shows no signs of imminent death",
+    "cannot_be_determined": "Cannot be determined from the evidence provided",
     "dead": "Organism is dead or shows signs of imminent death",
     "flower_budding": "Flower buds are visible but not open",
     "flowering": "Flowers visible, open, and still attached to the plant",
