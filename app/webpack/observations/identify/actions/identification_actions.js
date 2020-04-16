@@ -1,8 +1,10 @@
 import inatjs from "inaturalistjs";
+import _ from "lodash";
 import {
   loadingDiscussionItem,
   stopLoadingDiscussionItem,
   fetchCurrentObservation,
+  fetchObservation,
   addIdentification
 } from "./current_observation_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
@@ -48,15 +50,18 @@ function updateIdentification( ident, updates ) {
 }
 
 function agreeWithObservaiton( observation ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
     dispatch( loadingDiscussionItem( ) );
     dispatch( updateObservationInCollection( observation, { agreeLoading: true } ) );
     return dispatch(
       postIdentification( { observation_id: observation.id, taxon_id: observation.taxon.id } )
     ).then( ( ) => {
-      dispatch( updateObservationInCollection( observation, { agreeLoading: false } ) );
-      dispatch( fetchCurrentObservation( observation ) );
-      dispatch( fetchObservationsStats( ) );
+      const observations = getState( ).observations.results || [];
+      if ( _.find( observations, o => o.id === observation.id ) ) {
+        dispatch( updateObservationInCollection( observation, { agreeLoading: false } ) );
+        dispatch( fetchObservation( observation ) );
+        dispatch( fetchObservationsStats( ) );
+      }
     } );
   };
 }
