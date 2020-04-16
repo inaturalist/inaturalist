@@ -9,9 +9,6 @@ import OverviewMap from "./overview_map";
 
 const BeforeEventTab = props => {
   const { project, config, updateCurrentUser } = props;
-  if ( !project.recent_observations_loaded ) {
-    return ( <div className="loading_spinner huge" /> );
-  }
   return (
     <div className="OverviewTab">
       <Grid className="info-grid">

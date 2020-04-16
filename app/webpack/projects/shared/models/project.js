@@ -69,6 +69,20 @@ const Project = class Project {
     this.errors = this.errors || { };
   }
 
+  hasInsufficientRequirements( ) {
+    let empty = true;
+    const dateType = this.date_type;
+    if ( !_.isEmpty( this.rule_term_id ) ) { empty = false; }
+    if ( !_.isEmpty( this.rule_term_value_id ) ) { empty = false; }
+    if ( dateType === "exact" && !_.isEmpty( this.rule_observed_on ) ) { empty = false; }
+    if ( dateType === "range" && !_.isEmpty( this.rule_d1 ) ) { empty = false; }
+    if ( dateType === "range" && !_.isEmpty( this.rule_d2 ) ) { empty = false; }
+    if ( dateType === "months" && !_.isEmpty( this.rule_month ) ) { empty = false; }
+    if ( !_.isEmpty( this.project_observation_rules ) ) { empty = false; }
+    if ( this.rule_members_only ) { empty = false; }
+    return empty;
+  }
+
   bannerURL( ) {
     if ( this.droppedBanner ) {
       return this.droppedBanner.preview;

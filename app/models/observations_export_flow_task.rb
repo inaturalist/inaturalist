@@ -220,7 +220,7 @@ class ObservationsExportFlowTask < FlowTask
     else
       NOTIFICATION_PRIORITY
     end
-    opts[:queue] = "slow" if count > 10000
+    opts[:queue] = "csv" if count > 5000
     opts[:unique_hash] = {'ObservationsExportFlowTask': id}
     opts
   end

@@ -2,11 +2,12 @@ class TaxonChangesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :curator_required, :except => [:index, :show, :commit_for_user, :commit_records, :group]
   before_filter :admin_required, :only => [:commit_taxon_change]
+  before_filter :blocked_by_content_freeze, except: [ :index, :show, :new, :create, :edit, :update ]
   before_filter :load_taxon_change, :except => [:index, :new, :create, :group]
-  before_filter :return_here, :only => [:index, :show, :new, :edit, :commit_for_user] 
+  before_filter :return_here, :only => [:index, :show, :new, :edit, :commit_for_user]
 
   layout "bootstrap"
-  
+
   def index
     filter_params = params[:filters] || params
     @committed = filter_params[:committed]

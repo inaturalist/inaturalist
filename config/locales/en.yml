@@ -919,6 +919,7 @@ en:
   connect_to_flickr_again_to_authorize_write_permissions: Connect to Flickr again to authorize write permissions
   connecting_to_facebook: "Connecting to Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecting your %{site_name} account to accounts on other sites will allow you to login to %{site_name} using your credentials from those sites."
+  cannot_be_changed_during_a_content_freeze: Cannot be changed during a content freeze
   conservation_status: Conservation Status
   conservation_status_descriptions:
     status: Status code, rank, etc. If a short code like E or CR exists, please use that, but if not, please use the full status, e.g. endangered or critically endangered.
@@ -5929,6 +5930,10 @@ en:
           our <a href="%{url}" target="_blank">blog post about Collection Projects</a>.
         this_is_a_preview: |
           This is a preview of what this project would look like as a Collection Project.
+        this_project_has_not_defined_requirements: |
+          This project has not defined any observation requirements. Projects need to select one or
+          more taxa (e.g. birds, conifers), places (e.g. Brazil, Yellowstone), users, and/or dates
+          to begin displaying observations.
       updates_desc: |
         Receive updates about this project on your dashboard and in the daily
         updates email.
