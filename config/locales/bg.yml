@@ -29,6 +29,12 @@ bg:
   x_matching_taxa_html:
     one: '<span class="count">1</span> съвпадащ таксон'
     other: '<span class="count">%{count}</span> съвпадащи таксона'
+  x_misidentifications_of_this_species:
+    one: "%{count} погрешно разпознаване на този вид"
+    other: "%{count} погрешни разпознавания на този вид"
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} погрешно разпознаване на видове от @gender{m:този|f:тази|n:това} %{rank}"
+    other: "%{count} погрешни разпознавания на видове от @gender{m:този|f:тази|n:това} %{rank}"
   x_observations:
     one: "1 наблюдение"
     other: "%{count} наблюдения"
@@ -171,6 +177,7 @@ bg:
   add_an_observation: Добавяне на наблюдение
   add_an_observation?: Добавяне на наблюдение?
   add_an_observation_of: "Добави наблюдение на %{taxon}"
+  add_an_observation_to_project_html: Добави наблюдение към %{project}
   add_annotations_for_x: Добави анотации за „%{x}“
   add_annotations_for_controlled_attribute:
     sex: Добави анотации за „Пол“
@@ -183,9 +190,13 @@ bg:
   add_batch: Добавяне групово
   add_comma_separated_tags: "Добави етикети (разделени със запетаи)"
   add_comment: Добавяне на коментар
+  add_conservation_status: Добави природозащитен статут
   add_countries: Добавяне на държави
   add_custom_project_fields: Добавяне на потребителски полета на проекта
+  add_editor: Добави редактор
+  add_description: "Добави %{description_name}"
   add_from_your_observations: Добавяне от своите наблюдения
+  add_link: Добави препратка
   add_higher_level_taxon: Добавяне на родителски таксон (напр. „птици“)
   add_id: Добави разпознаване
   add_new_lexicon: Добави нова лексика
@@ -206,6 +217,7 @@ bg:
   add_plant_phenology_flower_budding_annotation: 'Добави анотация „Фенология на растение: Напъпване на цветове“'
   add_plant_phenology_flowering_annotation: 'Добави анотация „Фенология на растение: Цъфтене“'
   add_plant_phenology_fruiting_annotation: 'Добави анотация „Фенология на растение: Плодообразуване“'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Добави анотация „Фенология на растение: Няма свидетелства за цъфтене“'
   add_life_stage_adult_annotation: 'Добави анотация „Жизнен стадий: Възрастен“'
   add_life_stage_teneral_annotation: 'Добави анотация „Жизнен стадий: Новоимагинирал“'
   add_life_stage_subimago_annotation: 'Добави анотация „Жизнен стадий: Субимаго“'
@@ -330,6 +342,7 @@ bg:
   allow_any: позволявай всякакви
   allowed_html: Разрешен HTML
   allowed_values: Допустими стойности
+  almost_there_: Почти готово...
   alphabetical: По азбучен ред
   alphabetical_order: По азбучен ред
   amphibians: земноводни
@@ -387,6 +400,7 @@ bg:
   authority_list:
     iucn_red_list: Червен списък на IUCN
     natureserve: NatureServe
+    cites: Конвенция CITES
   authorize: Разрешавам
   automatically_update_my_content_for_taxon_changes: Автоматично обновявай съдържанието ми при промяна на таксон
   back: Назад
@@ -580,6 +594,7 @@ bg:
     teneral: Новоимагинирал
     subimago: Субимаго
     pupa: Какавида
+    no_evidence_of_flowering: Няма свидетелства за цъфтене
     nymph: Нимфа
     larva: Ларва
     egg: Яйце
@@ -592,6 +607,7 @@ bg:
     alive: Организмът е жив и не показва признаци за предстояща смърт
     flower_budding: Виждат се цветни пъпки, но не са разтворени
     fruiting: Плодът се вижда и все още е прикрепен към растението
+    no_evidence_of_flowering: Медията не свидетелства за наличието на репродуктивни структури
   coordinate_systems: Координатни системи
   coordinates: Координати
   copy: Копирай
@@ -987,6 +1003,7 @@ bg:
   invite_someone_to: "Покани някого на %{name}!"
   invite_your_friends: Покани приятелите си
   is_not_following_anyone: не следва никого.
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Наличните свидетелства достатъчни ли са за да се потвърди, че това е %{taxon}?
   it_can_now_be_used_for_research: Сега може да се използва в научни изследвания и да се показва на други сайтове
   join: Включи се
   join_and_add_an_observation_to_project_html: Присъединете се и добавете наблюдение към %{project}
@@ -2814,6 +2831,7 @@ bg:
           "Plant Phenology=Budding": Напъпване
           "Plant Phenology=Flower Budding": Напъпване на цветове
           "Plant Phenology=Fruiting": Плодообразуване
+          "Plant Phenology=No Evidence of Flowering": Няма свидетелства
           "Life Stage=egg": Яйце
           "Life Stage=larva": Ларва
           "Life Stage=teneral": Новоимагинирал
