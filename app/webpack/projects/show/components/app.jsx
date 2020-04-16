@@ -279,7 +279,7 @@ const App = ( {
           </Row>
         </Grid>
       </div>
-      { !showingCountdown && !project.hasInsufficientRequirements && ( <StatsHeaderContainer /> ) }
+      { !showingCountdown && !project.hasInsufficientRequirements( ) && ( <StatsHeaderContainer /> ) }
       <div className="Content">
         { view }
       </div>
