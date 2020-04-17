@@ -372,6 +372,7 @@ cs:
   add_several_observations_at_once: Vložit několik pozorování naráz.
   add_sex_female_annotation: 'Přidat anotaci „Pohlaví: ženské“'
   add_sex_male_annotation: 'Přidat anotaci „Pohlaví: samec“'
+  add_sex_cannot_be_determined_annotation: 'Přidat anotaci "Pohlaví: Nelze určit"'
   add_some_now: Vložit nyní nějaké
   add_tag: Přidat tag
   add_tags: Přidat tagy
@@ -661,6 +662,8 @@ cs:
     Jste si jistí, že tohoto uživatele považujete za čestného? Veškeré spamové prapory v jeho obsahu budou opraveny.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Jste si jistí, že chcete odstranit tyto %{x} taxony?"
   are_you_sure_you_want_to_remove_this_invitation: Jste si jistí, že chcete odstranit tuto pozvánku?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Jste si jisti, že chcete odstranit toto pozorování z projektu %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Jste si jistí, že chcete odstranit tento taxon ze seznamu %{place}?"
   associated_observations: Související pozorování
   associated_taxa: Související taxony
@@ -956,6 +959,7 @@ cs:
   connect_to_flickr_again_to_authorize_write_permissions: Připojte se znovu k Flickru a autorizujte oprávnění pro zápis
   connecting_to_facebook: "Připojování k Facebooku..."
   connecting_your_inat_account_to_accounts_other_sites: "Propojení vašeho účtu na %{site_name} s účty na ostatních stránkách vám umožní se přihlašovat na %{site_name} pomocí oprávnění z těchto ostatních stránek."
+  cannot_be_changed_during_a_content_freeze: Nelze změnit během zmrazení obsahu
   conservation_status: Stav ochrany
   conservation_status_descriptions:
     status: Kód statusu, kategorie atd. Pokud existuje zkratka kódu, např. E nebo CR, použijte ji prosím, pokud však neexistuje, uveďte prosím celý status, např. ohrožený nebo kriticky ohrožený.
@@ -1014,6 +1018,7 @@ cs:
     fruiting: Květiny viditelné a stále připojené k rostlině
     no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
     teneral: Dospělá rostlina, která nedávno zakořenila, ale dosud nedosáhla konečné dospělé formy
+    cannot_be_determined: Na základě poskytnutých důkazů nelze určit
   controls: Ovládací prvky
   convert: Převést
   coordinate_systems: Systémy souřadnic
@@ -2769,6 +2774,10 @@ cs:
       open_space: otevřený prostor
       Parish: Farnost
       parish: farnost
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Poblacion
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: poblacion
       Prefecture: Prefektura
       prefecture: prefektura
       Prefecture_City: Město prefektury
@@ -5471,6 +5480,8 @@ cs:
           Ujistěte se, že jste si přečetli rozdíly v našem <a href="%{url}" target="_blank"> blogovém příspěvku o Sbírce projektů </a>.
         this_is_a_preview: |
           Toto je náhled, jak se tento projekt bude vypadat Sbírka projektu.
+        this_project_has_not_defined_requirements: |
+          Tento projekt nedefinoval žádné požadavky na pozorování. Projekty musí zvolit jeden či více taxonů (např. ptáci, jehličnany), místa (např. Brazílie, Yellowstone), uživatele, a/nebo data, aby mohl začít zobrazovat pozorování.
       updates_desc: |
         Získejte aktualizace o tomto projektu na přístrojové desce a v denních aktualizacích e-mailu.
     search:
