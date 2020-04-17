@@ -28,24 +28,17 @@ export default function reducer( state = { }, action ) {
       // If we're just updating the same observation, make sure we preserve the
       // existing taxon summaries if the new data doesn't replace them
       if ( action.observation && action.observation.id === state.id ) {
-        if (
-          state.taxon
-          && state.taxon.taxon_summary
-          && action.observation
-          && action.observation.taxon
-          && !action.observation.taxon.taxon_summary
-        ) {
-          action.observation.taxon.taxon_summary = state.taxon.taxon_summary;
-        }
-        if (
-          state.community_taxon
-          && state.community_taxon_summary
-          && action.observation
-          && action.observation.community_taxon
-          && !action.observation.community_taxon.taxon_summary
-        ) {
-          action.observation.community_taxon.taxon_summary = state.community_taxon.taxon_summary;
-        }
+        _.each( ["taxon", "community_taxon", "communityTaxon"], attr => {
+          if (
+            state[attr]
+            && state[attr].taxon_summary
+            && action.observation
+            && action.observation[attr]
+            && !action.observation[attr].taxon_summary
+          ) {
+            action.observation[attr].taxon_summary = state[attr].taxon_summary;
+          }
+        } );
       }
       return action.observation;
     }
