@@ -303,6 +303,7 @@ export function fetchOverviewData( ) {
     const { project } = getState( );
     if ( project.hasInsufficientRequirements( )
       || ( project.startDate && !project.started ) ) {
+      dispatch( fetchMembers( ) );
       dispatch( fetchPosts( ) );
       return;
     }
