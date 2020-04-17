@@ -271,6 +271,7 @@ it:
   add_several_observations_at_once: Aggiungere più osservazioni in una sola volta.
   add_sex_female_annotation: 'Aggiungi nota "Sesso: Femmina"'
   add_sex_male_annotation: 'Aggiungi nota "Sesso: Maschio"'
+  add_sex_cannot_be_determined_annotation: 'Aggiungi annotazione "Sesso: Impossibile Da Determinare"'
   add_some_now: Aggiungine alcune ora
   add_tag: Aggiungi etichetta
   add_tags: Aggiungi etichetta
@@ -533,6 +534,8 @@ it:
     Qualsiasi avviso di spam sul suo contenuto sarà risolta.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Sei sicuro di voler cancellare questi %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: Sei sicuro di voler rimuovere questo invito?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Sei sicuro di voler rimuovere questa osservazione da %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Sei sicuro di voler rimuovere questo taxon dalla checklist di %{place}?"
   associated_observations: Osservazioni associate
   associated_taxa: Taxa associati
@@ -830,6 +833,7 @@ it:
   connect_to_flickr_again_to_authorize_write_permissions: Connettiti nuovamente a Flickr per autorizzare i permessi di scrittura
   connecting_to_facebook: "Connessione a Facebook in corso..."
   connecting_your_inat_account_to_accounts_other_sites: "La connessione del tuo account di %{site_name} ad altri account su altri siti ti permetterà di accedere a %{site_name} usando le credenziali di quei siti."
+  cannot_be_changed_during_a_content_freeze: Non può essere modificato durante un blocco dei contenuti
   conservation_status: Stato di conservazione
   conservation_status_descriptions:
     status: Il codice dello stato, del rango, etc. Se esiste un codice breve come E o CR, si consiglia di utilizzarlo, ma se non è disponibile, è meglio utilizzare il nome per esteso, ad esempio, in pericolo o in via di estinzione.
@@ -890,6 +894,7 @@ it:
     fruiting: Frutti visibili ed ancora attaccati alla pianta
     no_evidence_of_flowering: Il contenuto multimediale non fornisce alcuna evidenza delle strutture riproduttive
     teneral: Adulto che ha recentemente superato lo stadio di pupa ma che non ha ancora raggiunto la sua forma adulta definitiva
+    cannot_be_determined: Non può essere determinato in base alle prove fornite
   controls: Controlli
   convert: Converti
   coordinate_systems: Sistemi di coordinate
@@ -5244,6 +5249,8 @@ it:
           Assicurati di aver letto circa le differenze nel nostro <a href="%{url}" target="_blank">blog post riguardo Collection Projects</a>.
         this_is_a_preview: |
           Questa è un'anteprima di coma questo progetto potrebbe rendere come Collection Project
+        this_project_has_not_defined_requirements: |
+          Questo progetto non ha definito alcun requisito per le osservazioni. I progetti devono selezionare uno o più taxa (ad es. uccelli, conifere), luoghi (es. Brasile, Yellowstone), utenti, e/o date per iniziare a visualizzare le osservazioni.
       updates_desc: |
         Ricevi gli aggiornamenti relativi a questo progetto sulla tua bacheca e tramite gli aggiornamenti email giornalieri.
     search:
