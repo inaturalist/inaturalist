@@ -286,6 +286,7 @@ fi:
   add_several_observations_at_once: Tallenna useita havaintoja kerralla.
   add_sex_female_annotation: 'Lisää merkintä "Sukupuoli: Naaras"'
   add_sex_male_annotation: 'Lisää merkintä "Sukupuoli: Koiras"'
+  add_sex_cannot_be_determined_annotation: 'Lisää "sukupuoli: ei voida määrittää" -merkintä'
   add_some_now: Lisää jotain nyt
   add_tag: Lisää merkintä
   add_tags: Lisää merkintöjä
@@ -548,6 +549,8 @@ fi:
     Kaikki roskapostiliput hänen sisällössään ratkaistaan.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Haluatko varmasti poistaa nämä %{x} taksonia?"
   are_you_sure_you_want_to_remove_this_invitation: Haluatko varmasti poistaa tämän kutsun?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Oletko varma että haluat poistaa tämän havainnon projektista %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Haluatko varmasti poistaa tämän taksonin paikan %{place} lajiluettelosta?"
   associated_observations: Liittyvät havainnot
   associated_taxa: Liittyvät taksonit
@@ -843,6 +846,7 @@ fi:
   connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
   connecting_to_facebook: "Yhdistetään Facebookiin..."
   connecting_your_inat_account_to_accounts_other_sites: "Yhdistämällä %{site_name}-tilisi muiden sivustojen tileihin sallii sinun kirjautua %{site_name}iin käyttämällä pääsytietojasi näiltä sivustoilta."
+  cannot_be_changed_during_a_content_freeze: Tätä ei voi väliaikaisesti muuttaa sisällön jäädytyksen aikana
   conservation_status: Uhanalaisuusluokitus
   conservation_status_descriptions:
     status: Esim. uhanlaisuusluokan koodi tai merkki. Jos käytettävissä on lyhyt määre, kuten E tai CR, käytä sitä, jos sellaista ei ole, kirjota koko merkitys, kuten erittäin uhanalainen tai äärimmäisen uhanalainen.
@@ -901,6 +905,7 @@ fi:
     fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
     no_evidence_of_flowering: Kuvissa ei näy genitaaleja
     teneral: Aikuinen, joka on äskettäin koteloitunut, mutta ei ole vielä saanut lopullista aikuismuotoa
+    cannot_be_determined: Ei voida määrittää perustuen annettuun näyttöön
   controls: Ohjaimet
   convert: Muunna
   coordinate_systems: Koordinaattijärjestelmät
@@ -1082,7 +1087,7 @@ fi:
       user:
         suspended: Käyttäjätunnuksesi on suljettu
   discoveries: Löydöt
-  did_not_send_invitations_because: Älä lähetä kutsuja seuraaville koska...
+  did_not_send_invitations_because: Kutsuja ei lähetetty seuraaville koska...
   did_you_mean: 'Tarkoititko'
   did_you_photos_flickr?: Laitoitko mitään kuvia Flickr'iin?
   disable: Poista käytöstä
@@ -1187,9 +1192,9 @@ fi:
   either_that_user_doesnt_exist_or: "Joko kyseistä käyttäjää ei ole olemassa, tai seuraat jo häntä."
   eligible_for_research_grade: Sovelias tutkimustasolle
   email: Sähköposti
-  email_addresses_description: Pilkulla erotellut sähköpostiosoitteet, enintään 60 joka 30 päivä.
+  email_addresses_description: Sähköpostiosoitteet pilkuilla eroteltuina. (Voit lähettää enintään 60 kutsua kuukaudessa.)
   email_address_for_comments_and_other_feedback: Sähköpostiosoite kommenteille ja muulle palautteelle
-  email_addresses_to_receive_invites: Sähköpostiosoitteet kutsujen vastaanottamiseen
+  email_addresses_to_receive_invites: Kutsun vastaanottajien sähköpostiosoitteet
   email_copyright: "Copyright &copy; %{x}, kaikki oikeudet pidätetään"
   email_settings: Sähköpostiasetukset
   embed: 'Upota'
@@ -1406,7 +1411,7 @@ fi:
   forum_desc: |
     Foorumi on paikka iNatista keskustelemiseen, mukaan lukien apu & tuki, ominaisuuspyynnöt, bugiraportit, ilmoitukset ja muuta.
   frequency: Lukumäärä
-  from: paikasta
+  from: Keneltä
   from_a_place: paikasta
   from_eol_collection: EOL-kokoelmasta
   from_flickr_facebook_etc: Flickristä, Facebookista, yms.
@@ -1548,6 +1553,7 @@ fi:
   ignore_and_continue: Hylkää ja jatka
   ignore_times: Jätä kellonaika huomioimatta
   image_must_be_exactly: kuvan on oltava täsmälleen 950px leveä ja enintään 400px korkea
+  image_size_control: Kuvan koon hallinta
   imperiled: Vaarantunut
   import: Tuo
   import_all_photos_as_observations: Tuo kaikki kuvat havaintoina
@@ -1601,8 +1607,8 @@ fi:
   invite_people: Kutsu ihmisiä
   invite_people_to_project: "Kutsu ihmisiä projektiin %{project}"
   invite_someone_to: "Kutsu joku %{name}iin!"
-  invite_your_friends: Kutsu ystäviäsi
-  invite_your_friends_description: "Auta tekemään %{site_name}ista isompi, parempi yhteisö kutsumalla ystäviäsi liittymään!"
+  invite_your_friends: Kutsu kavereitasi
+  invite_your_friends_description: "Auta tekemään %{site_name} -yhteisöstä suurempi ja parempi kutsumalla kavereitasi liittymään!"
   #Type of project where people can only join after they have been invited
   inviteonly: vain kutsusta
   invited_x: "Kutsuttu %{x}"
@@ -2268,7 +2274,7 @@ fi:
   observation_was_deleted: Havainto poistettiin.
   observation_without_media: Havainto ilman mediaa
   observations: Havaintoa
-  observations_: havaintoa
+  observations_: havainnot
   observations_added_by_x_html: "Havainnon lisäsi %{x}"
   observations_by: Havainnot käyttäjältä
   observations_by_user: "Käyttäjän %{user} havainnot"
@@ -2301,7 +2307,7 @@ fi:
   observed_by: Havainnut
   observed_on: Havaittu
   observer: Havainnoi
-  observers: Havainnoijat
+  observers: Havainnoijaa
   observer_short: Havainnoija
   occurrence_status: Esiintymisen tila
   occurrence_status_descriptions:
@@ -2467,7 +2473,7 @@ fi:
   per_week: Per viikko
   person: Henkilö
   personal_message: Henkilökohtainen viesti
-  personal_message_description: Kukaan ei halua saada sähköpostia koneelta! Mikset antaisi ystäviesi tietää, miksi kutsut heidät?
+  personal_message_description: Kukaan ei halua saada sähköpostia koneelta! Kerro kavereillesi miksi kutsut heidät mukaan.
   per_page: "Per sivu"
   photo: Kuva
   photo_attribution: "Kuva: %{attribution}"
@@ -2910,7 +2916,7 @@ fi:
   press: Lehdistö
   preview: Esikatsele
   preview_observations_with_these_observation_requirements: Esikatsele havaintoja, joilla on nämä vaatimukset
-  preview_personal_message: "Haluaisin sinun liittyvän %{site}iin, verkkosivulle missä voit tallentaa havaintojasi kasveista ja eläimistä, pitää kirjaa elämäluettelostasi ja oppia luonnollisesta maailmasta!"
+  preview_personal_message: "Tule mukaan %{site} -yhteisöön, jossa voit tallentaa havaintojasi kasveista ja eläimistä, sekä saada apua niiden tunnistamiseen! Samalla tuotat hyödyllistä tietoa luonnosta tutkijoille ym. hyötykäyttöön Suomen Lajitietokeskuksen kautta."
   preview_your_message: Esikatsele viestiäsi
   previewing: "Esikatsellaan..."
   previous: Edellinen
@@ -3049,7 +3055,7 @@ fi:
   recent_post: Viimeisimmät kirjoitukset
   recent_atom_observations_by: "Viimeaikaiset havainnot käyttäjältä %{login} (Atom)"
   recent_observations_by: "Tuoreet havainnot käyttäjältä %{login}"
-  recently_active: Äskettäin aktiivinen
+  recently_active: Viime aikoina aktiiviset
   recently_created: Äskettäin luodut
   recently_finished: Saatu äskettäin valmiiksi
   recently_observed: Äskettäin havaitut
@@ -3149,6 +3155,7 @@ fi:
   rules_for_becoming_a_member: Jäseneksi liittymisen ohjeet
   rules_for_becoming_memner: Jäseneksi liittymisen ohjeet
   rules_types:
+    must_be_captive: Täytyy olla vangittu /viljelty
     must_be_georeferenced: täytyy olla paikannettu
     must_be_identified: on oltava tunnistettu
     must_be_on_list: on oltava luettelossa
@@ -3227,7 +3234,7 @@ fi:
   selected_taxon: Valitut taksonit
   select_this_taxon: Valitse tämä taksoni
   send: lähetä
-  send_invites_to: Lähetä kutsuja
+  send_invites_to: Lähetä kutsut
   send_me_reset_password_instructions: Lähetä minulle salasanan nollausohjeet
   send_the_invites: Lähetä kutsut
   sending: Lähetetään...
@@ -3532,7 +3539,7 @@ fi:
     Identotron on työkalu, jonka avulla voit määrittää havaintoja %{site_name} lajiluettelon tietojen avulla. Jos annat ylemmän taksonin ja paikan (esimerkiksi nisäkkäät Intiassa), %{site_name} yrittää etsiä osumia kyseisestä paikasta, toimien ikään kuin dynaamisena kenttäoppaana, joka kattaa koko planeetan. Useimmat lajiluettelot ovat työn alla. Identotron näyttää huomatuksen kaikkien kattavien lajiluetteloiden osalta, eli luetteloista, jotka kattavat <em>kaikki</em> alueen taksonit.
   the_observation_was_already_added_to_that_project: Havainto on jo lisätty tähän projektiin.
   the_past: menneisyys
-  the_people_of_inat: "%{site_name}in käyttäjät"
+  the_people_of_inat: "%{site_name} -käyttäjät"
   the_user_x_has_been_suspended: "Käyttäjä %{user} on hyllytetty"
   the_user_x_has_been_unsuspended: "Käyttäjän %{user} hyllytys on peruutettu"
   the_world: Maailma
@@ -3604,14 +3611,14 @@ fi:
   top_identifiers: Parhaimmat tunnistajat
   top_identifiers_of_taxon: Taksonin %{taxon} parhaimmat tunnistajat
   top_observer: Paras havainnoija
-  top_observers: Ylimmät havainnoijat
+  top_observers: Eniten havainnoineet
   top_species: Kaikkein edustavimmat lajit
   total: Yhteensä
   totals: Yhteensä
   total_members: Jäseniä yhteensä
   total_observations: Havaintoja yhteensä
   total_species_observed: Lajeja havaittu yhteensä
-  total_unique_observers: Uniikit havainnoijat yhteensä
+  total_unique_observers: Yksilölliset havainnoijat yhteensä
   translated_languages: Käännetyt kielet
   'true': 'Kyllä'
   trending: Nousussa
@@ -3634,7 +3641,7 @@ fi:
   ungrafted_taxa: Liittämätön taksoni
   unhide_content: Peru sisällön piilottaminen
   uninvite: poista kutsu
-  unique_observers: uniikit havainnoijat
+  unique_observers: yksilölliset havainnoijat
   unknown: Tuntematon
   unknown_error: Tuntematon virhe
   unknown_rank: '(Tuntematon arvo)'
@@ -3670,7 +3677,7 @@ fi:
   updated: Päivitetty
   updated_by: Päivittänyt
   updated_by_user_on_date_html: Päivittänyt %{user} %{date}
-  updated_daily: Päivitetään päivittäin
+  updated_daily: Päivitetään joka päivä
   updated_photo: Päivitetty kuva
   upload: Tallenna
   upload_a_csv_file: Lataa CSV-tiedosto
@@ -3682,6 +3689,7 @@ fi:
     tooltips:
       add: Lisää havainto(ja)
       combine: Yhdistä valitut havainnot
+      duplicate: Monista valitut havainnot
       photo_failed: Kuvan tallentaminen epäonnistui
       remove: Poista valitut havainnot
       remove_observation: Poista havainto
@@ -3940,6 +3948,7 @@ fi:
     Näytät olevan offline-tilassa. Yritä uudelleen, kun olet yhteydessä Internetiin.
   youre_a_site_curator_which_means: |
     Olet sivuston kuraattori, mikä tarkoittaa, että olet tarjoutunut vaapaehtoiseksi avustamaan datan hallinnassa ja sisällön valvonnassa. Sinun ei tarvitse käsitellä kaikkia ongelmia, mutta hienoa, jos ehdit katsastaa niistä osan, sillä arvostamme kaikkea saamaamme apua. Jos sinulla on jotain kysyttävää sisällön kuratointiin liittyen tai et halua olla enää kuraattori, ota yhteyttä osoitteeseen %{email}
+  you_are_over_your_invites_quota: ...olet lähettänyt enimmäismäärän kutsuja (60 kpl kuukaudessa).
   you_are_now: Olet nyt
   you_are_now_following_x: "Seuraat nyt ystävää %{friend_user}."
   you_are_not_editing_any_guides_add_one_html: |
@@ -4724,6 +4733,8 @@ fi:
           Varmista että olet lukenut <a href="%{url}" target="_blank">koontiprojektin eroista blogikirjoituksestamme (englanniksi)</a>.
         this_is_a_preview: |
           Tämä on esikatselu siitä millaiselta projekti näyttäisi koontiprojektina.
+        this_project_has_not_defined_requirements: |
+          Tämä projekti ei ole määritellyt mitään vaatimuksia havainnoille. Jotta projekteissa näytettäisiin havaintojam niiden pitää valita yksi tai useampi taksoni (esim. linnut, havupuut), paikka (esim. Suomi, Turku), käyttäjä ja/tai päivämäärä.
       updates_desc: |
         Vastaanota tiedotteita tästä projektista kojelaudassasi ja päivittäisissä sähköpostiviesteissä.
     search:
