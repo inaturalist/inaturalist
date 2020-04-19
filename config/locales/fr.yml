@@ -93,6 +93,9 @@ fr:
   x_suggestions_filtered_by_colon:
     one: "1 suggestion filtrée par :"
     other: "%{count} suggestions filtrées par :"
+  x_taxa:
+    one: "%{count} taxon"
+    other: "%{count} taxons"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxon observé"
     other: "<span class='count'>%{count}</span> taxons observés"
@@ -269,8 +272,9 @@ fr:
   #As in a Guide Section
   add_section: Ajouter une section
   add_several_observations_at_once: Ajouter plusieurs observations à la fois
-  add_sex_female_annotation: 'Ajouter l''annotation "Sex: Female"'
-  add_sex_male_annotation: 'Ajouter l''annotation "Sex: Male"'
+  add_sex_female_annotation: 'Ajouter l''annotation "Sexe: femelle"'
+  add_sex_male_annotation: 'Ajouter l''annotation "Sexe: mâle"'
+  add_sex_cannot_be_determined_annotation: 'Ajouter l''annotation "Sexe : Indéterminé"'
   add_some_now: En ajouter maintenant
   add_tag: Ajouter une balise
   add_tags: Ajouter des balises
@@ -530,6 +534,8 @@ fr:
     Êtes-vous certain que vous considérez cet utilisateur comme fiable ? Tout signalement de pourriel dans ses contenus sera enlevé.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Êtes-vous certain de vouloir supprimer ces %{x} taxons ?"
   are_you_sure_you_want_to_remove_this_invitation: Êtes-vous certain de vouloir supprimer cette invitation ?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Êtes-vous sûr de vouloir supprimer cette observation de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Êtes-vous certain de vouloir supprimer ce taxon de la liste de contrôle de « %{place} » ?"
   associated_observations: Observations connexes
   associated_taxa: Taxons connexes
@@ -602,7 +608,7 @@ fr:
     D’après les preuves, le taxon de communauté peut-il être encore confirmé ou amélioré ?
   batch: Lot
   batch_edit: Modification groupée
-  batch_edit_taxa_for_x_html: "Modification en groupe des taxons %{x}"
+  batch_edit_taxa_for_x_html: "Modification groupée des taxons %{x}"
   batch_operations: Opérations par lot
   be_the_first_to_fave_this_observation: Soyez le premier à mettre cette observation en favori !
   because_of: en raison de
@@ -788,6 +794,7 @@ fr:
   commercial_solicitation: Démarchage commercial, liens vers nulle part, etc.
   commit: Valider
   committed: Validé
+  committed_by_user_on_date_html: Créé par %{user} le %{date}
   committed_on: Validé le %{date}
   committing: Validation en cours…
   community: Communauté
@@ -832,10 +839,15 @@ fr:
   connect_to_flickr_again_to_authorize_write_permissions: Se connecter à nouveau à Flickr pour autoriser les autorisations d'écriture
   connecting_to_facebook: "Connexion à Facebook…"
   connecting_your_inat_account_to_accounts_other_sites: "La connexion de votre compte\n%{site_name} aux comptes d’autres sites vous permettra d’ouvrir une session\n%{site_name} au moyen de vos identifiants de ces sites."
+  cannot_be_changed_during_a_content_freeze: Non modifiable pendant un gel des données
   conservation_status: Situation quant à la conservation
   conservation_status_descriptions:
     status: "Code de situation, classement, etc. Si un code court comme Disp. ou CR existe, veuillez\nl’utiliser. Sinon, inscrivez la situation quant à la conservation dans son intégralité, comme en voie de disparition\nou gravement menacée."
     description: Courte description de pourquoi l’espèce figure sur la liste.
+    authority: |
+      Organisation à l'origine de la déclaration de statut. Veuillez utiliser la saisie automatique pour
+      choisir une organisation existante avant d'en ajouter une nouvelle. Vous pouvez ignorer ce choix si
+      *vous* voulez être listé comme organisation.
     place: Lieu auquel la situation est limitée.
     url: URL d’une page décrivant la situation.
     geoprivacy: Géoconfidentialité par défaut pour les observations liées à ce taxon
@@ -887,7 +899,9 @@ fr:
     flower_budding: Les bourgeons floraux sont visibles mais pas ouverts
     flowering: Fleurs visibles, ouvertes, et encore attachées à la plante
     fruiting: Fruit visible et toujours attaché à la plante
+    no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
     teneral: Adulte qui a récemment marié mais n'a pas encore atteint sa forme adulte finale
+    cannot_be_determined: Ne peut être déterminé à partir des données fournies
   controls: Contrôles
   convert: Convertir
   coordinate_systems: Systèmes des coordonnées
@@ -1231,6 +1245,10 @@ fr:
   exact_location: Emplacement exact
   exact_rank: Rang exact
   except: exception
+  exclude_places: Exclure des lieux
+  exclude_projects: Exclure des projets
+  exclude_taxa: Exclure des taxons
+  exclude_users: Exclude des utilisateurs
   exclusion_filters: Filtres d'exclusion
   existing_flags: Signalements existants
   exit_full_screen: "Sortir du mode plein écran"
@@ -1343,7 +1361,7 @@ fr:
   flag_saved_thanks_html: Drapeau enregistré. Merci ! <a href="%{url}" class="readmore">Afficher le drapeau</a>
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
-  flag_this_sound: Marquer ce son
+  flag_this_sound: Signaler ce son
   flagged: a signalé
   flagged_: Marqué
   flagged_for_curation: Marqué pour supervision
@@ -1574,6 +1592,10 @@ fr:
   inaturalist_network_affiliation: Affiliation au réseau iNaturalist
   #Label for messages you've received
   inbox: Boîte de réception
+  include_places: Ajouter des lieux
+  include_projects: Ajouter des projets
+  include_taxa: Ajouter des taxons
+  include_users: Ajouter des utilisateurs
   including: y compris
   increase_brightness: Augmenter la luminosité
   in_progress: en cours
@@ -2218,6 +2240,8 @@ fr:
   observation_brief_something_from_place_on_day_at_time: "Quelque chose de %{place} le %{day} à %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Quelque chose de %{place} le %{day} à %{time} par %{user}"
   observation_brief_taxon_on_day: "%{taxon} le %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} le %{day} à %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} le %{day} par %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} le %{day} par %{user}"
   observation_brief_taxon_by_user: "%{taxon} par %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
@@ -3373,7 +3397,7 @@ fr:
     select_one_or_more_sounds: Sélectionnez un ou plusieurs sons
     selected_sounds: Sons sélectionnés
     sound: Son
-    sound_has_been_flagged: Ce son a été marqué.
+    sound_has_been_flagged: Ce son a été signalé.
     soundcloud_replied_with_an_error: SoundCloud affiche une erreur. Veuillez réessayer plus tard.
     sounds: Sons
     your_soundcloud_account: votre compte SoundCloud
@@ -5312,6 +5336,10 @@ fr:
           dupliqué.
         are_you_sure_you_want_to_delete: Êtes-vous sûr de vouloir supprimer ce projet ?
         can_be_included_in_multiple: Peut être inclus dans plusieurs projets chapeau
+        check_the_box_to_include_member_observations: |
+          Cochez la case ci-dessous pour inclure uniquement les observations faites par les utilisateurs qui font partie de ce projet.
+          Utilisez le filtre Exclure Utilisateurs ci-dessus pour exclure les observations d'utilisateurs spécifiques,
+          y compris le propriétaire du projet et les administrateurs.
         click_through_to_individual_projects: Cliquez parmi les projets individuels
         collection_projects: Projets de collections
         collection_project_features: "Fonctionalités des projets de collection"
@@ -5335,6 +5363,8 @@ fr:
           Note : ces utilisateurs pourront modifier TOUS les détails du projet, y compris les administrateurs.
         note_you_can_delete_the_time: |
           (Note: vous pouvez supprimer le fuseau horaire et l'heure locale si vous voulez inclure les journées complètes.)
+        note_about_unselected_filters: |
+          Remarque : Si vous ne sélectionnez pas de taxons, lieux ou utilisateurs, tous seront inclus par défaut.
         or_drag_and_drop: (ou glissez et déposez)
         please_specify_the_requirements: |
           Veuillez spécifier les prérequis des observations à ajouter à ce projet.
