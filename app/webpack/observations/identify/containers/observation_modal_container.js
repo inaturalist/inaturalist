@@ -36,7 +36,9 @@ function mapStateToProps( state ) {
     controlledTerms: state.controlledTerms.terms,
     currentUser: state.config.currentUser,
     mapZoomLevel: state.config.mapZoomLevel,
-    mapZoomLevelLocked: state.config.mapZoomLevelLocked === undefined ? false : state.config.mapZoomLevelLocked
+    mapZoomLevelLocked: state.config.mapZoomLevelLocked === undefined
+      ? false
+      : state.config.mapZoomLevelLocked
   }, state.currentObservation );
 }
 

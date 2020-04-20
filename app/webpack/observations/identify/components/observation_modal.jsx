@@ -718,7 +718,7 @@ class ObservationModal extends React.Component {
                               <label className="zoom-level-lock-control">
                                 <input
                                   type="checkbox"
-                                  defaultValue={mapZoomLevelLocked}
+                                  defaultChecked={mapZoomLevelLocked}
                                   onChange={e => setMapZoomLevelLocked( e.target.checked )}
                                 />
                                 { I18n.t( "lock_zoom_level" ) }
