@@ -1790,6 +1790,9 @@ en:
   label_to_group_a_batch_of_taxon_changes: Label to group a batch of taxon changes
   location_private: Location Private
   location_unknown: Location Unknown
+  # Option to lock the zoom level for maps on Identify so the zoom level remains
+  # the same as you move from one observation to another
+  lock_zoom_level: Lock zoom level
   language_slash_type: Language / Type
   # Large photo size
   large: large
