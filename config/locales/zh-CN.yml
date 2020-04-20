@@ -226,6 +226,7 @@ zh-CN:
   add_several_observations_at_once: 马上添加几个观察。
   add_sex_female_annotation: '添加“性别：女”注释'
   add_sex_male_annotation: '添加“性别：男”注释'
+  add_sex_cannot_be_determined_annotation: '添加“性别：无法确定”注释'
   add_some_now: 现在添加一些
   add_tag: 添加标签
   add_tags: 添加标签
@@ -429,6 +430,8 @@ zh-CN:
     如果如此，他们所有垃圾邮件标志将会被去除。
   are_you_sure_you_want_to_remove_these_x_taxa?: "您确定要移除这 %{x} 个分类群么？"
   are_you_sure_you_want_to_remove_this_invitation: 您确定要移除此邀请么？
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    您确定要从%{project}中移除这条观察记录吗？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您确定要从%{place}的名录中移除这个分类单元吗？"
   associated_observations: 相关观察
   associated_taxa: 相关分类群
@@ -700,6 +703,7 @@ zh-CN:
   connecting_flickr: "正在连接至Flickr..."
   connecting_to_facebook: "连接至Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "连接您的 %{site_name} 账户至其他网站上的账户将允许您使用您来自这些网站上的凭据登录 %{site_name}。"
+  cannot_be_changed_during_a_content_freeze: 内容锁定期间无法被更改
   conservation_status: 保护状态
   conservation_status_descriptions:
     status: 状态代码、排名等。如果存在类似E或CR的短代码，请使用它，但如果没有，请使用完整的状态，例如濒临灭绝或极度濒危。
@@ -732,6 +736,8 @@ zh-CN:
     larva: 幼虫
     egg: 蛋
     juvenile: 青少年
+  controlled_term_definitions:
+    cannot_be_determined: 无法根据已提供的证据确认。
   controls: 控制
   convert: 转换
   coordinate_systems: 坐标系
