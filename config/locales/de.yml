@@ -71,7 +71,7 @@ de:
   x_people:
     one: "%{count} Person"
     other: "%{count} Personen"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} Pesonen</strong> halfen%{user} mit <strong>%{y} IDs</strong>"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} Pesonen</strong> halfen %{user} mit <strong>%{y} IDs</strong>"
   x_photos:
     one: "Ein Foto"
     other: "%{count} Fotos"
@@ -271,6 +271,7 @@ de:
   add_several_observations_at_once: Mehrere Beobachtungen gleichzeitig hinzufügen.
   add_sex_female_annotation: 'Annotation "Geschlecht: Weiblich" hinzufügen'
   add_sex_male_annotation: 'Vermerk "Geschlecht: Männlich" hinzufügen'
+  add_sex_cannot_be_determined_annotation: 'Annotation "Geschlecht: Kann nicht bestimmt werden" hinzufügen'
   add_some_now: Jetzt welche hinzufügen
   add_tag: Tag hinzufügen
   add_tags: Stichwörter hinzufügen
@@ -373,7 +374,7 @@ de:
     animals: Tiere
     arachnids: Spinnentiere
     birds: Vögel
-    chromista: Stramenopile
+    chromista: Heterokonta
     fungi: Pilze
     fungi_including_lichens: Pilze (inkl. Flechten)
     insects: Insekten
@@ -419,7 +420,7 @@ de:
       one: "Ein Pilz"
       other: "%{count} Pilze"
     x_chromista:
-      one: "1 Stramenopil"
+      one: "1 Heterokont"
       other: "%{count} Stramenopile"
     x_protozoa:
       one: "1 Protozoon"
@@ -521,6 +522,8 @@ de:
     Sämtliche Spammarkierungen seiner Inhalte würden entfernt.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Sollen diese %{x} Taxa wirklich entfernt werden?"
   are_you_sure_you_want_to_remove_this_invitation: Bist du sicher, dass du diese Einladung entfernen willst?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Bist du sicher, dass du diese Beobachtung aus %{project} entfernen möchtest?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bist du sicher, dass du dieses Taxon aus der Prüfliste von %{place} entfernen willst?"
   associated_observations: Verbundene Beobachtungen
   associated_taxa: Verbundene Taxa
@@ -817,6 +820,7 @@ de:
   connect_to_flickr_again_to_authorize_write_permissions: Mit Flickr erneut verbinden, um Schreibrechte zu autorisieren
   connecting_to_facebook: "Verbinde mit Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Dein %{site_name}-Konto mit den Konten anderer Portale zu verknüpfen ermöglicht es Dir, Dich bei %{site_name} anzumelden, indem Du die Anmeldedaten dieser Portale nutzen."
+  cannot_be_changed_during_a_content_freeze: Kann beim Einfrieren von Inhalten nicht geändert werden
   conservation_status: Schutzstatus
   conservation_status_descriptions:
     status: Statusschlüssel, Rang, o.ä. Falls es einen Kurzschlüssel wie E oder CR gibt, bitte diesen verwenden, falls nicht, bitte den vollständigen Status angeben, z.B. gefährdet oder vom Aussterben bedroht.
@@ -877,6 +881,7 @@ de:
     fruiting: Frucht sichtbar und noch fest mit der Pflanze verbunden
     no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
     teneral: Ein ausgewachsenes Individuum, das sich kürzlich gehäutet hat, aber noch nicht fertig ausgefärbt ist
+    cannot_be_determined: Kann anhand der zur Verfügung stehenden Daten nicht bestimmt werden
   controls: Steuerung
   convert: Konvertieren
   coordinate_systems: Koordinatensysteme
@@ -962,7 +967,7 @@ de:
   data_used: "Verwendete Daten:"
   datatype: Datentyp
   date_: Datum
-  date_added: Datum hinzugefügt
+  date_added: Hinzugefügt
   date_created: Datum erstellt
   date_format:
     date_long:
@@ -993,7 +998,7 @@ de:
       december: Dezember
   date_is_accurate: Datum stimmt
   date_joined: Beitrittsdatum
-  date_observed: Beobachtungsdatum
+  date_observed: Beobachtet am
   date_observed_: Beobachtungsdatum
   date_observed_on: Beobachtungsdatum
   date_picker:
@@ -1518,7 +1523,7 @@ de:
   identotron_for: Identotron für
   identotron_help: Identotron Hilfe
   ids: "IDs"
-  ids_made_for_others: für andere gemachte IDs
+  ids_made_for_others: Für Andere gemachte IDs
   if_for_some_reason_a_user_doesnt_agree: |
     Wenn du aus irgendeinem Grund mit dem Community-Taxon nicht einverstanden bist, kannst du es ablehnen: das bedeutet, dass deine Bestimmung (ID) diejenige ist, die für die Verlinkung mit anderen Beobachtungen, die Aktualisierung von Life-Listen usw. verwendet wird. Es bedeutet auch, dass deine Beobachtung nur dann Forschungsqualität erreichen kann, wenn die Community dir zustimmt.
   if_matches_come_from_a_comprehensive_list: Falls Treffer aus einer vollständigen Liste kommen, wird hier eine grüne Leiste angezeigt.
@@ -2262,7 +2267,7 @@ de:
   observations_near_a_place_are: |
     Beobachtungen "in der Nähe" eines Ortes befinden sich innerhalb eines Rechtecks, das um die Grenze des Gebiets gezeichnet wird, was zu ungenauen Ergebnissen für Orte führen kann, wenn Orte einem Rechteck entsprechen. Dies ist auf eine Einschränkung unserer Datenbank zurückzuführen, an deren Lösung wir arbeiten.
   observations_needing_curation: Beobachtungen, die einer Kuration bedürfen
-  observations_observed_this_month: Diesen Monat <em>beobachtete</em> Beobachtungen, nicht hinzugefügte. Finde noch mehr!
+  observations_observed_this_month: Diesen Monat <em>beobachtete</em> Beobachtungen (nicht hinzugefügte). Finde noch mehr!
   observations_of_relatives: Beobachtungen von Verwandten
   observations_of_taxon: "Beobachtungen von %{taxon_name}"
   observations_per_month: Beobachtungen/Monat
@@ -3199,6 +3204,7 @@ de:
   rules_for_becoming_a_member: Regeln für die Mitgliedschaft
   rules_for_becoming_memner: Regeln für die Mitgliedschaft
   rules_types:
+    must_be_captive: muss in Haltung/kultiviert sein
     must_be_georeferenced: muss georeferenziert sein
     must_be_identified: muss identifiziert werden
     must_be_on_list: muss auf der Liste stehen
@@ -3464,7 +3470,7 @@ de:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: Store
-  studies_that_used_inaturalist_data_in_year: Studien, die im Jahr %{year} iNaturalist-Daten verwendet haben
+  studies_that_used_inaturalist_data_in_year: Publikationen, die im Jahr %{year} iNaturalist-Daten verwendet haben
   stuff_just_added: "Dinge, die du gerade hinzugefügt hast...."
   subject_resolved_noun_html: "%{subject} hat %{noun} geklärt"
   subject_affecting_stuff_html: "%{subject} mit Einfluss auf %{stuff}"
@@ -3545,13 +3551,25 @@ de:
   taxon_changes: Taxon-Änderungen
   taxon_colors: Taxon-Farben
   taxon_curators: Taxon-Kuratoren
+  taxon_framework_complete: "Vollständig: ja"
+  taxon_framework_deviations_with_count_html: "Abweichungen: %{count}"
   taxon_framework_relationships_with_count_html: "Beziehungen im taxonomischen Gerüst: %{count}"
+  #Count of taxa covered by the Taxon Framework that have been flagged
+  taxon_framework_flagged_covered_taxa_count_html: "Gemeldete Taxa: %{count}"
+  taxon_framework_notes: Angaben zum Taxon-Framework
+  taxon_framework_relationship: Taxon Framework-Beziehung
+  taxon_framework_relationship_number: "Taxon Framework-Beziehung %{number}"
+  taxon_framework_relationships: Taxon Framework-Beziehungen
   taxon_merge: Taxon-Zusammenführung
   taxon_name: Taxonname
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonname muss mit einem existierenden Taxon in unserer Datenbank übereinstimmen
+  taxon_observed_by_html: |
+    <a href="%{url}">%{taxon}</a> beobachtet von
   taxon_observed_by_user: "%{taxon} beobachtet von %{user}"
   taxon_photos_updated: Taxon-Bilder aktualisiert!
   taxon_range: Taxon-Bereich
+  taxon_range_created_notice: Verbreitungsgebiet des Taxons wurde erfolgreich erstellt. Bitte warte ein paar Minuten, damit es auf den Karten angezeigt wird.
+  taxon_range_updated_notice: Verbreitungsgebiet des Taxons wurde erfolgreich aktualisiert. Bitte warte ein paar Minuten, damit die Änderungen auf den Karten sichtbar werden.
   taxon_ranks: Taxonränge
   taxon_removed_from_list: Taxon aus der Liste entfernt.
   taxon_scheme: Taxon-Vorlage
@@ -3559,7 +3577,11 @@ de:
   taxon_search: Taxon-Suche
   taxon_search_results_for: Taxon-Suchergebnisse für
   taxon_split: Taxon-Aufteilung
+  #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
+  taxon_stage: Taxon-Vorbereitung
   taxon_swap: Taxon-Tausch
+  taxon_swap_only_has_one_input: nur eine einzelne Eingabe für einen Swap erlaubt
+  taxon_swap_has_inputs_and_outputs: Swap muss sowohl Inputs als auch Outputs haben
   taxon_name_was_deleted: Der Taxonname wurde gelöscht.
   taxon_name_was_successfully_updated: Der Name des Taxons wurde erfolgreich aktualisiert.
   taxon_was_successfully_created: Das Taxon wurde erfolgreich erstellt.
@@ -3595,6 +3617,9 @@ de:
   that_role_doesnt_exist: Dieses Rolle existiert nicht.
   that_was_the_last_observation_matching_the_current_filters: Das war die letzte Beobachtung, die dem aktuellen Filter entsprach.
   thats_not_a_real_date: Das ist kein echtes Datum!
+  the_admin_is_the_person_who: |
+    Der Administrator ist die Person, die das Projekt erstellt hat. Er kann alles tun, was
+    Manager und Kuratoren tun können, sowie das Projekt löschen.
   the_below_items_are_needed_to_achieve: |
     Die folgenden Punkte werden benötigt, um <span className="bold">Forschungsqualität</span> zu erreichen:
   the_community_id_requires_at_least_two_identifications: Die Community-ID erfordert mindestens zwei Bestimmungen.
@@ -3613,6 +3638,8 @@ de:
   the_observation_was_already_added_to_that_project: Die Beobachtung wurde bereits zu diesem Projekt hinzugefügt.
   the_past: in der Vergangenheit
   the_people_of_inat: "Die Menschen von %{site_name}"
+  the_species_listed_below_were_not_found_in_the_site_database: |
+    Die unten aufgeführten Arten wurden in der %{site_name}-Datenbank nicht gefunden.
   the_user_x_has_been_suspended: "Der Benutzer %{user} wurde gesperrt."
   the_user_x_has_been_unsuspended: "Der Benutzer %{user} wurde entsperrt."
   the_world: Die Welt
@@ -3651,10 +3678,14 @@ de:
   this_is_more_convenient_way_find_parent: Dies ist eine bequemere Möglichkeit, eine höherrangige ID zu finden. Es ist die übergeordnete ID, die tatsächlich gespeichert wird.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Dies ist eine bequemere Möglichkeit, eine TaxonID zu finden. Es ist die TaxonID, die gespeichert wird. Diese Suche funktioniert nur für aktive Taxa.
+  this_is_taking_forever: Das dauert ewig. Bitte versuche es später erneut.
   this_is_the_primary_listing: Dies ist die primäre Auflistung
   this_is_your_observation: Dies ist Deine Beobachtung
   this_is_your_observation_desc: Die Koordinaten Deiner eigenen Beobachtungen kannst Du immer sehen.
+  this_job_failed_to_run: Dieser Vorgang konnte nicht ausgeführt werden. Bitte kontaktiere %{email}
   this_list_is_empty!: Diese Liste ist leer!
+  this_list_only_accepts_taxa_that_are_species: Diese Liste akzeptiert nur Taxa auf Artniveau
+  this_list_only_accepts_taxa_that_are_species_or_lower: Diese Liste akzeptiert nur Taxa auf Artniveau oder darunter
   this_observation: Dieser Beobachtung
   this_observation_is_featured_on_x_sites:
     one: Diese Beobachtung wird auf %{count} Webseiten gefeatured
@@ -3668,6 +3699,11 @@ de:
     Bitte bearbeite die Taxa nicht.  Die Bearbeitung anderer Felder ist in Ordnung.
   this_taxon_concept_is_inactive: Dieses Taxonkonzept ist inaktiv
   this_taxon_has_no_default_photo: Dieses Taxon hat kein Standardbild!
+  this_taxon_is_inactive_this_means: |
+    Dieses Taxon ist <strong>inaktiv</strong>. Das bedeutet, dass es die Kuratoren von %{site_name}
+    durch ein taxonomisch aktuelles Konzept ersetzt haben.
+  this_taxon_name_was_originally_imported: "Dieser Taxonname wurde ursprünglich von diesem externen Anbieter importiert:"
+  this_taxon_was_originally_imported_from: "Dieses Taxon wurde ursprünglich von diesem externen Anbieter importiert:"
   this_user_has_been_suspended: Dieser Benutzer wurde gesperrt.
   this_user_has_been_suspended_message: |
     Wenn dies Dein Konto ist und Du denkst, dass dies fälschlicherweise passiert ist, <a href="mailto:%{email}">kontaktiere uns</a> bitte.
@@ -3992,7 +4028,7 @@ de:
   who_can_see_the_coordinates_projects: Kuratoren der folgenden Projekte
   who_can_see_the_coordinates_trusted: Personen, denen der Beobachter die versteckten Koordinaten anvertraut hat
   who_helped_user_the_most: "Wer half %{user} am meisten"
-  who_user_helped_the_most: "Wer %{user} half am meisten"
+  who_user_helped_the_most: "Wem %{user} am meisten geholfen hat"
   why_the_coordinates_are_obscured: Warum die Koordinaten verdeckt sind
   with_annotation: Mit Annotation
   without_annotation: Ohne Annotation
@@ -4040,8 +4076,9 @@ de:
   x_wrote_a_new_post_html: "%{x} hat einen neuen Eintrag geschrieben"
   x_wrote_y_new_posts_html: "%{x} hat %{y} neue Beiträge geschrieben"
   year: Jahr
-  year_in_review: "Jahresrückblick auf %{year}"
+  year_in_review: "Jahresrückblick von %{year}"
   year_month: Jahr/Monat
+  year_on_site: "Das Jahr %{year} auf %{site} "
   yellow: gelb
   'yes': "Ja"
   yes_find_them!: "Ja, findet sie!"
@@ -4425,6 +4462,13 @@ de:
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Zeitintervall
         some_queries_missing_taxa: Bei einigen Abfragen fehlen Taxa
+        some_queries_missing_taxa_desc: |
+          Wir können nur 500 der am meisten beobachteten Taxa pro Abfrage laden, also wenn
+          mehr Taxa in der Abfrage dargestellt sind, werden sie entweder nicht angezeigt oder erscheinen
+          als "?" , wenn sie in anderen Abfragen vorhanden sind. Versuche, die Abfragen einzugrenzen, damit sie maximal 500 Taxa anzeigen, um einen optimalen Vergleich zu erzielen.
+        taxa_not_observed_in_all_queries: Nicht in allen Abfragen beobachtete Taxa
+        taxa_observed_in_all_queries: In allen Abfragen beobachtete Taxa
+        taxa_observed_in_only_one_query: Nur in einer Abfrage beobachtete Taxa
         total_taxa: Gesamtanzahl Taxa
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: vertikal
@@ -4879,6 +4923,7 @@ de:
           captive: in Haltung/kultiviert sein
           coordinates_shareable_by_project_curators: einsehbare Koordinaten für Projektkuratoren haben
           georeferenced: Koordinaten enthalten
+          has_a_photo: ein Foto enthalten
           has_a_sound: eine Tonaufnahme enthalten
           has_media: Medien (Foto oder Ton) enthalten
           identified: eine ID haben
@@ -5048,6 +5093,8 @@ de:
           unserem <a href="%{url}" target="_blank">Blogbeitrag über Sammel-Projekte</a> informiert hast.
         this_is_a_preview: |
           Dies ist eine Vorschau, wie dieses Projekt als Sammel-Projekt aussehen würde.
+        this_project_has_not_defined_requirements: |
+          Dieses Projekt hat keinerlei Kriterien für Beobachtungen definiert. Projekte müssen ein Auswahl von einem oder mehrerer Taxa (z. B. Vögel, Nadelbäume), Orten (z.B. Belgien, Bayern, Bottrop), Benutzern und/oder Datumsangaben treffen, bevor sie Beobachtungen anzeigen können.
       updates_desc: |
         Erhalte Aktualisierungen zu diesem Projekt auf deinem Dashboard und in der täglichen Updates-E-Mail.
     shared:
@@ -5105,7 +5152,7 @@ de:
       year:
         donate_title: "Besonderer Dank an alle unsere Unterstützer"
         donate_desc_html: |
-          Vielen Dank für deine Großzügigkeit mit deiner Zeit, Aufmerksamkeit, Kompetenz und Spenden! iNaturalist ist eine gemeinnützige Gemeinschaftsinitiative der California Academy of Sciences und der National Geographic Society. Sie wird von einem internationalen <a href="%{team_url}">kleinem Team</a> betrieben, das das ganze Design und die Softwareentwicklung für Web, Mobile und <a href="%{seek_url}">Seek von iNaturalist</a> macht, zusätzlich zur Organisation von gemeinschaftlicher Unterstützungen, Kollaborationen und Integrationen, die die Dinge laufen lassen (und sich schnell weiterentwickeln!). Das Programm stützt sich auf zahlreiche Zuschüsse und Spenden, einschließlich der karitativen Beiträge von weniger als 0,2% der Spender. Besonders dankbar sind wir den monatlichen Unterstützern deren wiederkehrende Gaben uns helfen, für die Zukunft zu planen. Du kannst in mehr als 30 Währungen spenden, um die Kernaktivitäten von iNaturalist zu unterstützen. Vielen Dank an alle, die dazu beigetragen haben, dass 2019 das bisher größte Jahr überhaupt für iNaturalis war!
+          Vielen Dank für deine Großzügigkeit mit deiner Zeit, Aufmerksamkeit, Kompetenz und Spenden! iNaturalist ist eine gemeinnützige Gemeinschaftsinitiative der California Academy of Sciences und der National Geographic Society. Sie wird von einem <a href="%{team_url}">kleinem Team</a> betrieben, welches das ganze Design und die Softwareentwicklung für Web, Smartphone und <a href="%{seek_url}">Seek von iNaturalist</a> macht, und das sich zusätzlich um den Support für die Community, Kollaborationen und Integrationen kümmert, damit die Dinge am Laufen bleiben (und beständig größer werden!). Das Programm stützt sich auf zahlreiche Zuschüsse und Spenden, einschließlich der karitativen Beiträge von weniger als 0,2% der Benutzer. Besonders dankbar sind wir den monatlichen Unterstützern deren wiederkehrende Gaben uns helfen, für die Zukunft zu planen. Du kannst in mehr als 30 Währungen spenden, um die Kernaktivitäten von iNaturalist zu unterstützen. Vielen Dank an alle, die dazu beigetragen haben, dass 2019 das bisher größte Jahr überhaupt für iNaturalist war!
         inaturalist_network: iNaturalist-Netzwerk
         inaturalist_network_desc: |
           Schau dir den Jahresrückblick für die Mitglieder des iNaturalist-Netzwerks an.
@@ -5130,7 +5177,7 @@ de:
           Die Diagramme "Beobachtungen" und "Taxa" könnten Daten enthalten, die auf
           %{site_name} sichtbar sind, die von Personen bereitgestellt werden, die nicht mit
           %{site_name} verbunden sind, während das Diagramm "Benutzer" nur die Daten anzeigt, wenn derzeit mit %{site_name} verbundene Benutzer iNaturalist beigetreten sind.
-        growth_in_year_obs: "Wachstum in %{year} (obs)"
+        growth_in_year_obs: "Wachstum in %{year} (Beob)"
         growth_title: Wachstum
         new_species_desc: |
           Arten, die dieses Jahr zum ersten Mal auf %{site_name} beobachtet wurden.
@@ -5156,16 +5203,18 @@ de:
           Eine Beobachtungssträhne ist ein Zeitraum, in dem jemand nach draußen gegangen ist und jeden Tag neue, verifizierbare Beobachtungen aufgenommen hat. Hier zeigen wir die längsten solche Strähnen, die in diesem Jahr begannen oder im Gange waren, als diese Statistiken erstellt wurden.
         stats_generated_datetime: Statistiken generiert am %{datetime}
         store_prompt: |
-          Willst du deinen iNat-Stolz überall zeigen, wohin du gehst? Dann schau dir den iNat Store an!
+          Willst du deine iNat-Zugehörigkeit überall mit Stolz zeigen? Dann schau dir den iNat-Store an!
+        sunburst_desc_html: |
+          Beobachtete Taxa sind in einem hierarchischen 'Sonnenstrahlen'-Diagramm angeordnet. Die Basis ist im Zentrum, beginnend mit 'Lebewesen' und schließlich endend auf Artlevel an den äußeren Rändern. Die Größe eines jeden Kreissegments is proportional zur Anzahl an Beobachtungen in diesem Taxon, und die Farben entsprechen ungefähr denen unserer Taxon-Hauptkategorien (grün für Pflanzen, orange für Insekten, rosa für Pilze etc.), d.h. wenn viel Grün im Diagramm zu sehen ist, wurden viele Pflanzen beobachtet. <strong>Klicke auf ein Segment, um dieses Taxon neu zu zentrieren</strong> und seine Untergruppen drumherum anzuordnen, oder <strong>klicke ins Zentrum, um in der Hierarchie zurück nach oben zu gehen.</strong>
         translators_title: Übersetzer
         translators_desc: |
-          Wusstest du, dass iNaturalist in %{x_languages} übersetzt wurde und fast ausschließlich von %{x_people}, von denen einige nicht einmal iNat benutzen? Hier sind all die erstaunlichen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet mit der Anzahl der von Ihnen übersetzten Wörter für die
-          %{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end} und %{android_link_tag}Android%{link_tag_end} Apps, und %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories %{view_all_web_link_tag}web%{link_tag_end} und %{view_all_mobile_link_tag}mobile%{link_tag_end} ansehen.
+          Wusstest du, dass iNaturalist in %{x_languages} übersetzt wurde und dies fast ausschließlich von %{x_people} (von denen einige nicht einmal iNat verwenden)? Hier sind all die großartigen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet nach der Anzahl der von ihnen übersetzten Wörter für die
+          %{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end}- und %{android_link_tag}Android%{link_tag_end}-Apps, sowie %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories für %{view_all_web_link_tag}Web%{link_tag_end} und %{view_all_mobile_link_tag}Smartphone%{link_tag_end} ansehen.
         translators_desc_for_site: |
-          Wusstest du, dass %{site_name} fast ausschließlich von %{x_people} übersetzt wurde? Hier sind all die erstaunlichen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet mit der Anzahl der von Ihnen übersetzten Wörter für die
-          %{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end} und %{android_link_tag}Android%{link_tag_end} Apps, und %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen in allen Sprachen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories %{view_all_web_link_tag}web%{link_tag_end} und %{view_all_mobile_link_tag}mobile%{link_tag_end} ansehen.
+          Wusstest du, dass %{site_name} fast ausschließlich von %{x_people} übersetzt wurde? Hier sind all die großartigen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet nach der Anzahl der von ihnen übersetzten Wörter für die
+          %{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end}- und %{android_link_tag}Android%{link_tag_end}-Apps, sowie %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen in den jeweiligen Sprachen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories für %{view_all_web_link_tag}Web%{link_tag_end} und %{view_all_mobile_link_tag}Smartphone%{link_tag_end} ansehen.
         translators_prompt: |
-          Wenn du beim Übersetzen helfen möchtest, %{link_tag}lerne hier wie%{link_tag_end}.
+          Wenn du beim Übersetzen helfen möchtest, %{link_tag}lerne hier%{link_tag_end} wie es geht.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |

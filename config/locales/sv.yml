@@ -287,6 +287,7 @@ sv:
   add_several_observations_at_once: Lägg till flera observationer på en gång.
   add_sex_female_annotation: 'Lägg till anteckning "Kön: Hona"'
   add_sex_male_annotation: 'Lägg till anteckning "Kön: Hane"'
+  add_sex_cannot_be_determined_annotation: 'Lägg till anteckningen "Kön: Kan inte fastställas"'
   add_some_now: Lägg till lite nu
   add_tag: Lägg till taggning
   add_tags: Lägg till taggningar
@@ -549,6 +550,8 @@ sv:
     Eventuella spam-flaggor på användarens innehåll kommer avlägsnas.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Är du säker på att du vill ta bort dessa %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: Är du säker på att du vill ta bort denna inbjudan?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Är du säker på att du vill ta bort denna observation från %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Är du säker på att du vill ta bort detta taxon från %{place}s checklista?"
   associated_observations: Tillhörande observationer
   associated_taxa: Tillhörande taxa
@@ -854,6 +857,7 @@ sv:
   connect_to_flickr_again_to_authorize_write_permissions: Anslut till Flickr igen för att godkänna skrivrättigheter
   connecting_to_facebook: "Ansluter till Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Genom att ansluta ditt %{site_name}-konto till konton på andra webbplatser kan du logga in till %{site_name} med inloggningsuppgifterna från dessa webbplatser."
+  cannot_be_changed_during_a_content_freeze: Kan inte ändras när innehåll är fryst
   conservation_status: Bevarandestatus
   conservation_status_descriptions:
     status: Statuskod, rang, etc. Om en kortkod som E eller CR finns, använd den, men om inte, använd den fullständiga statusen, t.ex. starkt hotad eller akut hotad.
@@ -914,6 +918,7 @@ sv:
     fruiting: Frukt synlig och kvarsittande
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
     teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga vuxna utseende
+    cannot_be_determined: Kan inte bestämmas utifrån angiven information
   controls: Kontroller
   convert: Konvertera
   coordinate_systems: Koordinatsystem

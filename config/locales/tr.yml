@@ -286,6 +286,7 @@ tr:
   add_several_observations_at_once: Aynı anda birkaç gözlem ekle.
   add_sex_female_annotation: '"Cinsiyet: Dişi" açıklamasını ekle'
   add_sex_male_annotation: '"Cinsiyet: Erkek" açıklamasını ekle'
+  add_sex_cannot_be_determined_annotation: '"Cinsiyet: Belirlenemeyen" açıklaması ekle'
   add_some_now: Şimdi Bir Şey Ekle
   add_tag: Etiket Ekle
   add_tags: Etiket Ekle
@@ -543,6 +544,8 @@ tr:
     Bu kullanıcıyı güvenilir bulduğuna emin misin? İçeriğindeki gereksiz işaretleri kaldırılacak.
   are_you_sure_you_want_to_remove_these_x_taxa?: "%{x} sınıflarını kaldırmak istediğine emin misin?"
   are_you_sure_you_want_to_remove_this_invitation: Bu çağrıyı kaldırmak istediğine emin misin?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Bu gözlemi %{project} projesinden kaldırmak istediğinizden emin misiniz?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bu sınıfı %{place} kısmındaki kontrol listesinden kaldırmak istediğine emin misin?"
   associated_observations: İlgili gözlemler
   associated_taxa: İlgili sınıflar
@@ -840,6 +843,7 @@ tr:
   connect_to_flickr_again_to_authorize_write_permissions: Yazma izinlerini yetkilendirmek için Flickr'ye yeniden bağlanın
   connecting_to_facebook: "Facebook'a bağlanıyor..."
   connecting_your_inat_account_to_accounts_other_sites: "%{site_name} hesabınızı başka sitelerdeki hesaplara bağlamak, bu sitelerdeki kimlik bilgilerinizi kullanarak %{site_name} hesabınıza giriş yapmanızı sağlar."
+  cannot_be_changed_during_a_content_freeze: İçerik dondurulduğunda değiştirilemez
   conservation_status: Koruma Durumu
   conservation_status_descriptions:
     status: Durum kodu, sıra, vb. E ya da CR gibi kısa bir kod varsa, lütfen bunu kullanın ancak yoksa, lütfen tam durumu kullanın örn. tehlikede ya da kritik tehlikede.
@@ -900,6 +904,7 @@ tr:
     fruiting: Meyveler görünür ve hala bitkiye bağlı
     no_evidence_of_flowering: Medya üreme yapılarıyla ilgili bir kanıt sunmuyor
     teneral: Son zamanlarda pupa evresini geçirmiş ancak henüz son yetişkin durumunu almamış bir yetişkin
+    cannot_be_determined: Sununlan kanıtlardan tespit edilemez
   controls: Kontroller
   convert: Dönüştür
   coordinate_systems: Koordinat sistemleri
@@ -5436,6 +5441,8 @@ tr:
           farklılıkları okuduğunuza emin olun.
         this_is_a_preview: |
           Bu, bu projenin bir Koleksiyon Projesi olarak nasıl görüneceğinin bir ön izlemesidir.
+        this_project_has_not_defined_requirements: |
+          Bu proje herhangi bir gözlem gerekliliği tanımlamamıştır. Projelerin, gözlem görüntülemeye başlamak için bir ya da daha çok sınıf (ör. kuşlar, kozalaklı ağaçlar), yerler (örneğin Brezilya, Yellowstone), kullanıcılar ve/ya da tarihler seçmesi gerekir.
       updates_desc: |
         Bu proje hakkındaki güncellemeleri kontrol panelinizden ve günlük güncellemeler e-postasında alın.
     search:
