@@ -238,6 +238,11 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       preserveViewport = true;
     }
   }
+  if ( options.onZoomChanged ) {
+    map.onZoomChagedListener = google.maps.event.addListener( map, "zoom_changed", function( e ) {
+      options.onZoomChanged( e, map );
+    } );
+  }
   if( !preserveViewport ) {
     inatTaxonMap.fit( elt )
   }

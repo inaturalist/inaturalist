@@ -59,8 +59,6 @@ class ObservationModal extends React.Component {
     const {
       addComment,
       addIdentification,
-      agreeingWithObservation,
-      agreeWithCurrentObservation,
       blind,
       captiveByCurrentUser,
       chooseSuggestedTaxon,
@@ -68,7 +66,6 @@ class ObservationModal extends React.Component {
       commentFormVisible,
       controlledTerms,
       currentUser,
-      currentUserIdentification,
       hidePrevNext,
       hideTools,
       identificationFormVisible,
@@ -89,7 +86,11 @@ class ObservationModal extends React.Component {
       toggleKeyboardShortcuts,
       toggleReviewed,
       visible,
-      updateCurrentUser
+      updateCurrentUser,
+      mapZoomLevel,
+      onMapZoomChanged,
+      mapZoomLevelLocked,
+      setMapZoomLevelLocked
     } = this.props;
     if ( !observation ) {
       return <div />;
@@ -142,7 +143,10 @@ class ObservationModal extends React.Component {
           clickable={!blind}
           latitude={obsForMap.latitude}
           longitude={obsForMap.longitude}
-          zoomLevel={obsForMap.map_scale || 5}
+          zoomLevel={
+            mapZoomLevelLocked && mapZoomLevel ? mapZoomLevel : ( obsForMap.map_scale || 5 )
+          }
+          onZoomChanged={onMapZoomChanged}
           mapTypeControl
           mapTypeControlOptions={{
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
@@ -633,81 +637,95 @@ class ObservationModal extends React.Component {
                     <div className="info-tab-inner">
                       <div className="map-and-details">
                         { taxonMap }
-                        <ul className="details">
-                          { blind ? null : (
-                            <li className="user-obs-count">
-                              <a
-                                href={`/people/${observation.user.login}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="user-link"
-                              >
-                                <i className="icon-person bullet-icon" />
-                                { " " }
-                                <span className="login">{ observation.user.login }</span>
-                              </a>
-                              <span className="separator">&bull;</span>
-                              <a
-                                href={`/observations?user_id=${observation.user.login}&verifiable=any&place_id=any`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <i className="fa fa-binoculars" />
-                                { " " }
-                                {
-                                  I18n.toNumber(
-                                    observation.user.observations_count,
-                                    { precision: 0 }
-                                  )
-                                }
-                              </a>
-                            </li>
-                          ) }
-                          <li>
-                            <i className="fa fa-calendar bullet-icon" />
-                            { " " }
-                            { dateTimeObserved }
-                          </li>
-                          <li>
-                            <i className="fa fa-map-marker bullet-icon" />
-                            { " " }
-                            { observation.place_guess || I18n.t( "unknown" ) }
-                          </li>
-                          { observation.positional_accuracy && (
+                        <div className="details">
+                          <ul>
+                            { blind ? null : (
+                              <li className="user-obs-count">
+                                <a
+                                  href={`/people/${observation.user.login}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="user-link"
+                                >
+                                  <i className="icon-person bullet-icon" />
+                                  { " " }
+                                  <span className="login">{ observation.user.login }</span>
+                                </a>
+                                <span className="separator">&bull;</span>
+                                <a
+                                  href={`/observations?user_id=${observation.user.login}&verifiable=any&place_id=any`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  <i className="fa fa-binoculars" />
+                                  { " " }
+                                  {
+                                    I18n.toNumber(
+                                      observation.user.observations_count,
+                                      { precision: 0 }
+                                    )
+                                  }
+                                </a>
+                              </li>
+                            ) }
                             <li>
-                              <i className="fa fa-circle-o bullet-icon" />
-                              { `${I18n.t( "label_colon", { label: I18n.t( "acc" ) } )}` }
+                              <i className="fa fa-calendar bullet-icon" />
                               { " " }
-                              { I18n.toNumber( observation.positional_accuracy, { precision: 0 } ) }
+                              { dateTimeObserved }
                             </li>
-                          ) }
-                          <li>
-                            <i className="fa fa-globe bullet-icon" />
-                            { " " }
-                            { country ? (
-                              I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "somewhere_on_earth" )
-                            ) : I18n.t( "somewhere_on_earth" ) }
-                          </li>
-                          { blind ? null : (
-                            <li className="view-follow">
-                              <a
-                                className="permalink"
-                                href={`/observations/${observation.id}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <i className="icon-link-external bullet-icon" />
-                                { I18n.t( "view" ) }
-                              </a>
-                              { observation.user.id === currentUser.id ? null : (
-                                <div style={{ display: "inline-block" }}>
-                                  <span className="separator">&bull;</span>
-                                  <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
-                                </div>
-                              ) }
+                            <li>
+                              <i className="fa fa-map-marker bullet-icon" />
+                              { " " }
+                              { observation.place_guess || I18n.t( "unknown" ) }
                             </li>
+                            { observation.positional_accuracy && (
+                              <li>
+                                <i className="fa fa-circle-o bullet-icon" />
+                                { `${I18n.t( "label_colon", { label: I18n.t( "acc" ) } )}` }
+                                { " " }
+                                { I18n.toNumber( observation.positional_accuracy, { precision: 0 } ) }
+                              </li>
+                            ) }
+                            <li>
+                              <i className="fa fa-globe bullet-icon" />
+                              { " " }
+                              { country ? (
+                                I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "somewhere_on_earth" )
+                              ) : I18n.t( "somewhere_on_earth" ) }
+                            </li>
+                            { blind ? null : (
+                              <li className="view-follow">
+                                <a
+                                  className="permalink"
+                                  href={`/observations/${observation.id}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  <i className="icon-link-external bullet-icon" />
+                                  { I18n.t( "view" ) }
+                                </a>
+                                { observation.user.id === currentUser.id ? null : (
+                                  <div style={{ display: "inline-block" }}>
+                                    <span className="separator">&bull;</span>
+                                    <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
+                                  </div>
+                                ) }
+                              </li>
+                            ) }
+                          </ul>
+                          { mapZoomLevel !== undefined && mapZoomLevelLocked !== undefined && (
+                            <div>
+                              <label className="zoom-level-lock-control">
+                                <input
+                                  type="checkbox"
+                                  defaultValue={mapZoomLevelLocked}
+                                  onChange={e => setMapZoomLevelLocked( e.target.checked )}
+                                />
+                                { I18n.t( "lock_zoom_level" ) }
+                              </label>
+                            </div>
                           ) }
-                        </ul>
+                        </div>
                       </div>
                       { blind ? null : (
                         <UserText
@@ -803,8 +821,6 @@ class ObservationModal extends React.Component {
 ObservationModal.propTypes = {
   addComment: PropTypes.func,
   addIdentification: PropTypes.func,
-  agreeingWithObservation: PropTypes.bool,
-  agreeWithCurrentObservation: PropTypes.func,
   blind: PropTypes.bool,
   captiveByCurrentUser: PropTypes.bool,
   chooseSuggestedTaxon: PropTypes.func,
@@ -812,7 +828,6 @@ ObservationModal.propTypes = {
   commentFormVisible: PropTypes.bool,
   controlledTerms: PropTypes.array,
   currentUser: PropTypes.object,
-  currentUserIdentification: PropTypes.object,
   hidePrevNext: PropTypes.bool,
   hideTools: PropTypes.bool,
   identificationFormVisible: PropTypes.bool,
@@ -833,7 +848,11 @@ ObservationModal.propTypes = {
   toggleKeyboardShortcuts: PropTypes.func,
   toggleReviewed: PropTypes.func,
   updateCurrentUser: PropTypes.func,
-  visible: PropTypes.bool
+  visible: PropTypes.bool,
+  mapZoomLevel: PropTypes.number,
+  onMapZoomChanged: PropTypes.func,
+  mapZoomLevelLocked: PropTypes.bool,
+  setMapZoomLevelLocked: PropTypes.func
 };
 
 ObservationModal.defaultProps = {
