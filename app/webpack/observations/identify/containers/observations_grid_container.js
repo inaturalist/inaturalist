@@ -10,20 +10,21 @@ import {
 function mapStateToProps( state ) {
   return {
     observations: state.observations.results || [],
-    currentUser: state.config.currentUser
+    currentUser: state.config.currentUser,
+    imageSize: state.config.imageSize
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    onObservationClick: ( observation ) => {
+    onObservationClick: observation => {
       dispatch( showCurrentObservation( observation ) );
       dispatch( fetchCurrentObservation( observation ) );
     },
-    toggleReviewed: ( observation ) => {
+    toggleReviewed: observation => {
       dispatch( toggleReviewed( observation ) );
     },
-    onAgree: ( observation ) => {
+    onAgree: observation => {
       dispatch( agreeWithObservaiton( observation ) );
     }
   };

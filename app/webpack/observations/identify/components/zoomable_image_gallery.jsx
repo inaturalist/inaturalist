@@ -5,7 +5,6 @@ import ImageGallery from "react-image-gallery";
 import EasyZoom from "EasyZoom/dist/easyzoom";
 
 class ZoomableImageGallery extends ImageGallery {
-
   constructor( props ) {
     super( props );
     this.setupEasyZoom = this.setupEasyZoom.bind( this );
@@ -32,19 +31,19 @@ class ZoomableImageGallery extends ImageGallery {
 
   setupEasyZoom( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    const items = this.props.items;
+    const { items } = this.props;
     // Note that it's important to wrap the image with something so we can tell
     // when things have been set up for easyzoom and when they haven't
     const unzoomable = "<div class=\"unzoomable\"></div>";
     $( ".image-gallery-image > img", domNode ).wrap( function ( ) {
       const standardImgUrl = $( this ).attr( "src" );
-      const image = items.find( ( i ) => ( i.original === standardImgUrl ) );
+      const image = items.find( i => ( i.original === standardImgUrl ) );
       if ( image ) {
         if (
-          image.originalDimensions &&
-          (
-            image.originalDimensions.width <= $( domNode ).width( ) &&
-            image.originalDimensions.height <= $( domNode ).height( )
+          image.originalDimensions
+          && (
+            image.originalDimensions.width <= $( domNode ).width( )
+            && image.originalDimensions.height <= $( domNode ).height( )
           )
         ) {
           return unzoomable;

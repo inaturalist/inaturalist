@@ -16,7 +16,9 @@ class TaxonCuratorsController < ApplicationController
   # end
 
   def new
-    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "taxa.name" ).limit( 100 )
+    @taxon_frameworks = TaxonFramework.select("taxon_frameworks.id, t.name").
+        joins( "JOIN taxa t ON t.id = taxon_frameworks.taxon_id" ).
+        where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "t.name" ).limit( 1000 )
     @taxon_curator = TaxonCurator.new
     respond_with( @taxon_curator )
   end

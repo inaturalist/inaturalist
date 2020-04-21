@@ -736,7 +736,6 @@ et:
   confirm_new_password: Kinnita uus salasõna
   confirm_now: Konnita kohe
   confirm_your_info: Kinnita oma info
-  confirmed: kinnitatud
   connect_to_provider: "Ühendan: %{provider}"
   connected_accounts: Ühendatud kontod
   connecting_flickr: "Ühendan lehega Flickr..."
@@ -746,7 +745,6 @@ et:
   conservation_status_descriptions:
     status: Staatuse kood, kategooria, jne. Kui eksisteerib lühike kood nagu E või CR, siis palun kasuta seda, kui mitte, siis kasuta täielikku sõnastust, nt. hävimisohus või kriitilises seisus.
     description: Lühike põhjendus kaitse alla panemiseks.
-    authority: Staatuse määranud organisatsioon. Võid selle vahele, kui soovid, et *sind* määratletaks staatuse andjana.
     place: Koht, kus staatus kehtib.
     url: Staatust kirjeldava lehe URL.
     geoprivacy: Selle taksoni vaatluste asukoha privaatsuse vaikimisi säte
@@ -1087,7 +1085,6 @@ et:
   exact_location: Täpne asukoht
   exact_rank: Täpne kategooria
   except: väljaarvatud
-  exclude_x: Väljaarvatud %{x}
   exclusion_filters: Välistusfiltrid
   existing_flags: Praegused märkused
   exit_full_screen: "Sule täisekraan"
@@ -1570,7 +1567,6 @@ et:
   loading: "Laen..."
   loading_flickr_photos: "Laen Flick fotosid..."
   loading_images: Laen pilte...
-  loading_map: Laen kaarti...
   loading_metadata: Laen metaandmeid...
   loading_preview_and_code: Laen eelvaadet ja koodi...
   loading_suggestions: Laen pakkumisi...
@@ -1882,7 +1878,6 @@ et:
   no_more_taxa_to_load: Rohkem taksoneid pole!
   no_more_results_found: Rohkem tulemusi pole
   no_new_messages: Uus sõnumeid pole
-  no_news_yet: Uudiseid veel pole
   no_observations: Pole vaatluseid
   no_observations_from_this_place_yet: Selles kohas pole vaatluseid veel tehtud.
   no_observations_matching_those_ids: Nendele määratlustele vastavaid vaatlusi pole
@@ -2050,7 +2045,6 @@ et:
   old_observation_form: Vana vaatlusvorm (mittekasutatav)
   on_date: "kuupäeval %{date}"
   on_day: "kuupäeval"
-  on_your_life_list: sinu elunimekirjas
   onboarding:
     observe_panel_title: Alustame mõne vaatluse lisamisega
     observe_panel_body_p1_local: Vajad inspiratsiooni? Siin on mõned lähipiirkonnas tehtud vaatlused...
@@ -2149,10 +2143,6 @@ et:
   people_following_user: "Kasutaja %{user} jälgijad"
   people_user_follows: "Kasutaja %{user} jälgitavad"
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation of a Human
-    observation: lisas %{observation_link} taksonist %{taxon_link}
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -2201,7 +2191,6 @@ et:
     Säilita see koordinaatide, täpsuse, asukoha privaatsuse ja asukoha märkuste komplekt hilisemaks kasutamiseks.
   place: Koht
   placeholder: Ajutine
-  place_added_to_inat_by: "Koha lisa lehele %{site_name} kasutaja"
   place_autocomplete_placeholder: Lahemaa rahvuspark, Eesti, jne.
   place_deleted: Koht kustutatud.
   place_geo:
@@ -2518,7 +2507,6 @@ et:
   present: eksisteerib
   press: Meedia
   preview: Eelvaade
-  preview_observations: Vaatluste eelvaade
   preview_of_synced_observation: "Sünkroniseeritud vaatluse <strong>eelvaade</strong>. <a href=\"%{url}\">Annulleerin?</a>"
   preview_personal_message: "Soovin, et liituksid minuga lehel %{site}, mis on mõeldud taimede ja loomade vaatluste kogumiseks, oma elunimekirja jälgimiseks ning loodusliku maailma kohta õppimiseks!"
   preview_your_message: Teate eelvaade
@@ -2877,7 +2865,6 @@ et:
   show_taxa_from_place: "Näita taksoneid kohast %{place}"
   show_total_counts: Näita koguseid
   show_uncountable_species: Näita loendamatuid liike
-  showing_one_to: Näitan 1 -
   showing_taxa_from_everywhere: "Näitan taksoneid kõikjalt"
   showing_taxa_from_place: "Näitan taksoneid kohast %{place}"
   showing_x_of_y_listings: "Näitan kandeid %{x}/%{y}"
@@ -3003,8 +2990,6 @@ et:
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Selle aasta statistikat pole veel loodud.
   status: Staatus
-  status_globally: "%{status} globaalselt"
-  status_in_place: "%{status} kohas %{place}"
   stay_and_try_again: Proovi uuesti
   still_no_luck?: Pole õnne?
   still_needs_id?: Kogukond saab määratlust kinnitada/parandada?
@@ -3261,7 +3246,7 @@ et:
   this_list_is_empty!: Nimekiri on tühi!
   this_observation: See vaatlus
   this_observation_is_featured_on_x_sites:
-    one: Seda vaatlust kasutatakse ühel lehel
+    one: Seda vaatlust kasutatakse %{count} lehel
     other: Seda vaatlust kasutatakse %{count} lehel
   this_observation_is_research_grade: See vaatlus on teaduskõlbulik!
   this_observation_was_created_using: "Selle vaatluse tegemiseks kasutati:"
@@ -4255,8 +4240,6 @@ et:
         note_you_can_delete_the_time: |
           (NB: Kui soovid kasutada terveid päevi, võid ajavööndi ja täpse aja kustutada.)
         or_drag_and_drop: (või lohista see siia)
-        please_specify_the_requirements_html: |
-          Palun määra nõuded vaatlustele, mida sellele projektile lisada saab. Võid automaatseks lisamiseks valida korraga mitu liiki, kohta ja kasutajat või jätta antud väli tühjaks, kui sul spetsiifilised kriteeriumid puuduvad. Väljade kohta leiad seletused <a href="%{url}">siit</a>.
         project_background_color: Projekti kokkuvõtte tausta värv
         project_background_color_help: Vali kindlasti piisavalt tume värv, et valge pealistekst oleks loetav.
         project_banner: Projekti bänner (PNG, JPG või GIF)

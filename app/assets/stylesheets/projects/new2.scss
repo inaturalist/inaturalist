@@ -176,8 +176,8 @@ body>div>.popover[role="tooltip"].popover-error {
     }
   }
   .row {
-    padding-bottom: 20px;
-    &.text {
+    padding-bottom: 43px;
+    &.text, &.separator-row {
       padding: 0;
     }
   }
@@ -195,6 +195,9 @@ body>div>.popover[role="tooltip"].popover-error {
     border: 1px solid #ddd;
     margin: 0 15px;
     padding: 10px 15px;
+    .row {
+      padding-bottom: 20px;
+    }
     .inverse-toggle {
       cursor: pointer;
       .fa {
@@ -232,6 +235,10 @@ body>div>.popover[role="tooltip"].popover-error {
   }
   label.checkboxradio {
     margin-right: 20px;
+    line-height: inherit;
+  }
+  .members-only label.inline {
+    line-height: inherit;
   }
   .icon-previews {
     margin-top: 15px;
@@ -318,7 +325,7 @@ body>div>.popover[role="tooltip"].popover-error {
   }
   .date-row {
     padding-bottom: 5px;
-    & > div > div {
+    & > div > div:not(.help-text) {
       display: inline-block;
       position: relative;
       vertical-align: middle;
@@ -419,7 +426,7 @@ body>div>.popover[role="tooltip"].popover-error {
 
 .row.separator-row .col-xs-12 .separator {
   border-bottom: 1px solid $border-grey;
-  padding-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .preview {

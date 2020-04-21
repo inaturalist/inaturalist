@@ -289,6 +289,10 @@ $flowedDim: 150px;
     height: 100%;
     background-color: rgba(0,0,0,0.8);
     overflow: hidden;
+    img {
+      width: 50%;
+      height: 50%;
+    }
   }
 }
 .ObservationsGridItem:hover {

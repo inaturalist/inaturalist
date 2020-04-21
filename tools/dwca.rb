@@ -63,6 +63,7 @@ EOS
   ".strip.gsub( /\s+/m, " " ), type: :strings
   opt :photos, "Whether or not to include obs with photos", type: :string
   opt :private_coordinates, "Include private coordinates", type: :boolean, default: false
+  opt :taxon_private_coordinates, "Include private coordinates if obscured by taxon geoprivacy but not user geoprivacy", type: :boolean, default: false
   opt :site_id, "Only include obs from a particular site", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :benchmark, "Print benchmarks", type: :boolean, short: "-b"

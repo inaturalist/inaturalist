@@ -10,6 +10,18 @@ module Gonzo
       module ClassMethods
         def acts_as_flaggable
           has_many :flags, :as => :flaggable
+          # In case we ever want to automatically resolve flags when the
+          # flaggable was deleted
+          # after_destroy do |record|
+          #   Flag.where( flaggable: record ).each do |f|
+          #     f.update_attributes(
+          #       resolver_id: -1,
+          #       resolved: true,
+          #       comment: "#{f.flaggable_type} deleted"
+          #     )
+          #   end
+          #   true
+          # end
           include Gonzo::Acts::Flaggable::InstanceMethods
           extend Gonzo::Acts::Flaggable::SingletonMethods
         end

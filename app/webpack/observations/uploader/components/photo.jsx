@@ -15,7 +15,6 @@ const photoSource = {
 };
 
 class Photo extends Component {
-
   static collect( connect, monitor ) {
     return {
       connectDragSource: connect.dragSource( ),
@@ -26,20 +25,28 @@ class Photo extends Component {
 
   render( ) {
     let className = "photoDrag";
-    if ( this.props.draggingProps &&
-         this.props.draggingProps.file &&
-         this.props.draggingProps.file.id === this.props.file.id ) {
+    const {
+      draggingProps,
+      file,
+      connectDragSource,
+      onClick
+    } = this.props;
+    if (
+      draggingProps
+      && draggingProps.file
+      && draggingProps.file.id === file.id
+    ) {
       className += " drag";
     }
     return (
       <div>
-        { this.props.connectDragSource(
-          <div className={ className }>
+        { connectDragSource(
+          <div className={className}>
             <img
+              alt={file.name}
               className="img-thumbnail"
-              src={ this.props.file.photo ?
-                this.props.file.photo.large_url : this.props.file.preview }
-              onClick={ this.props.onClick }
+              src={file.photo ? file.photo.large_url : file.preview}
+              onClick={onClick}
             />
           </div>
         ) }
@@ -49,15 +56,10 @@ class Photo extends Component {
 }
 
 Photo.propTypes = {
-  src: PropTypes.string,
-  obsCard: PropTypes.object,
   file: PropTypes.object,
   onClick: PropTypes.func,
-  setState: PropTypes.func,
-  confirmRemoveFile: PropTypes.func,
   draggingProps: PropTypes.object,
-  connectDragSource: PropTypes.func,
-  connectDragPreview: PropTypes.func
+  connectDragSource: PropTypes.func
 };
 
 export default pipe(

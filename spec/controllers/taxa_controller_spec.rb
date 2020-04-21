@@ -170,6 +170,48 @@ describe TaxaController do
       taxon.reload
       expect(taxon.parent_id).to eq locked_parent.id
     end
+
+    describe "conservation statuses" do
+      let(:taxon) { Taxon.make!( rank: Taxon::SPECIES ) }
+      let(:user) { make_curator }
+      before do
+        sign_in user
+      end
+      it "should allow addition" do
+        put :update, id: taxon.id, taxon: {
+          conservation_statuses_attributes: {
+            1 => {
+              status: "EN"
+            }
+          }
+        }
+        taxon.reload
+        expect( taxon.conservation_statuses.size ).to eq 1
+      end
+      it "should assign the current user ID as the user_id for new statuses" do
+        put :update, id: taxon.id, taxon: {
+          conservation_statuses_attributes: {
+            1 => {
+              status: "EN"
+            }
+          }
+        }
+        taxon.reload
+        expect( taxon.conservation_statuses.first.user_id ).to eq user.id
+      end
+      it "should not assign the current user ID as the user_id for existing statuses" do
+        cs = ConservationStatus.make!( taxon: taxon )
+        put :update, id: taxon.id, taxon: {
+          conservation_statuses_attributes: {
+            cs.id => {
+              status: "EN"
+            }
+          }
+        }
+        cs.reload
+        expect( cs.user_id ).not_to eq user.id
+      end
+    end
   end
 
   describe "autocomplete" do
@@ -219,10 +261,8 @@ describe TaxaController do
     end
 
     it "should return photos from Research Grade obs even if there are multiple synonymous taxa" do
-      parent = Taxon.make!( rank: Taxon::GENUS )
-      o.taxon.update_attributes( rank: Taxon::SPECIES, parent: parent )
-      t2 = Taxon.make!( parent: parent, rank: Taxon::SPECIES )
-      t2n = TaxonName.make!( taxon: t2, name: o.taxon.name, is_valid: true, lexicon: TaxonName::SCIENTIFIC_NAMES )
+      o.taxon.update_attributes( rank: Taxon::SPECIES, parent: Taxon.make!( rank: Taxon::GENUS ) )
+      t2 = Taxon.make!( name: o.taxon.name, rank: Taxon::SPECIES, parent: Taxon.make!( rank: Taxon::GENUS ) )
       o2 = make_research_grade_observation( taxon: t2 )
       Delayed::Worker.new.work_off
       expect( Taxon.single_taxon_for_name( o.taxon.name ) ).to be_nil

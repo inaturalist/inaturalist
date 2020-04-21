@@ -2,6 +2,8 @@ class SourcesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :load_source, :only => [:show, :edit, :update, :destroy]
   before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
+
+  layout "bootstrap"
   
   def index
     @q = params[:q] || params[:term]
@@ -12,7 +14,7 @@ class SourcesController < ApplicationController
       format.html
       format.json do
         @sources = @sources.map do |source|
-          source.html = render_to_string(:partial => "chooser.html.erb", :object => source)
+          source.html = render_to_string(:partial => "chooser.html.haml", :object => source)
           source
         end
         render :json => @sources.to_json(:methods => [:html])
@@ -24,7 +26,7 @@ class SourcesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        @source.html = render_to_string(:partial => "chooser.html.erb", :object => @source)
+        @source.html = render_to_string(:partial => "chooser.html.haml", :object => @source)
         render :json => @source.to_json(:methods => [:html])
       end
     end
@@ -47,24 +49,27 @@ class SourcesController < ApplicationController
     end
   end
   
-  # def new
-  #   
-  # end
-  # 
-  # def create
-  #   @source = Source.new(params[:source])
-  #   respond_to do |format|
-  #     format.html do
-  #       if @source.valid?
-  #         flash[:notice] = "Source created"
-  #         redirect_to @source
-  #       else
-  #         flash[:notice] = "Errors: #{@source.errors.full_messages.to_sentence}"
-  #         render :action => "new"
-  #       end
-  #     end
-  #   end
-  # end
+  def new
+    @source = Source.new
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def create
+    @source = Source.new(params[:source])
+    respond_to do |format|
+      format.html do
+        if @source.save
+          flash[:notice] = "Source created"
+          redirect_to @source
+        else
+          flash[:notice] = "Errors: #{@source.errors.full_messages.to_sentence}"
+          render :action => "new"
+        end
+      end
+    end
+  end
   
   def destroy
     @source.destroy

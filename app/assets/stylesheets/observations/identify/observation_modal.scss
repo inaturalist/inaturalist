@@ -113,7 +113,6 @@ body > [role="dialog"] .ObservationModal {
     object-position: 50% 50%;
   }
   .TaxonMap {
-    height: 140px;
     border-radius: 2px;
     border: 1px solid #DDD;
   }
@@ -441,8 +440,9 @@ body > [role="dialog"] .ObservationModal {
     font-size: 18px;
     margin-bottom: 10px;
 
-    a {
+    .header-text {
       color: black;
+      font-size: 18px;
     }
     i {
       color: $inat-green;
@@ -466,7 +466,6 @@ body > [role="dialog"] .ObservationModal {
     color: white;
   }
 
-  .inat-tabs,
   .inat-tabs {
     display: flex;
     list-style: none;
@@ -475,14 +474,13 @@ body > [role="dialog"] .ObservationModal {
     width: 100%;
     background-color: #eee;
   }
-  .inat-tabs li,
   .inat-tabs li {
     text-align: center;
     flex: 1;
     display: flex;
   }
   .inat-tabs li a,
-  .inat-tabs li a {
+  .inat-tabs li .btn-nostyle {
     border: 0 transparent;
     border-bottom: 3px solid transparent;
     color: #555;
@@ -494,11 +492,11 @@ body > [role="dialog"] .ObservationModal {
     line-height: 45px;
   }
   .inat-tabs li a:focus,
-  .inat-tabs li a:focus {
+  .inat-tabs li .btn-nostyle:focus {
     text-decoration: none;
   }
   .inat-tabs li.active a,
-  .inat-tabs li.active a {
+  .inat-tabs li.active .btn-nostyle {
     border-bottom: 3px solid #74ac00;
   }
 
@@ -517,70 +515,83 @@ body > [role="dialog"] .ObservationModal {
       width: 50%;
     }
     .details {
-      list-style: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       padding-left: 20px;
+      ul {
+        padding-left: 0px;
+        list-style: none;
 
-      a {
-        color: black;
-      }
-
-      > li {
-        position: relative;
-        padding-left: 20px;
-        margin-bottom: 4px;
-      }
-      .separator {
-        color: #999;
-        margin: 0 5px;
-      }
-      i.bullet-icon {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 15px;
-        text-align: center;
-        display: block;
-        line-height: 16px;
-        &.fa-globe {
-          top: 1px;
-        }
-      }
-      .user-obs-count {
-        .fa-binoculars {
-          font-size: 11px;
-          position: relative;
-          top: -1px;
-          margin-right: 1px;
-        }
-      }
-      .view-follow {
-        .permalink,
-        .FollowButton button {
+        a {
           color: black;
-          font-weight: bold;
         }
-        a.permalink:focus,
-        .FollowButton button:focus,
-        a.permalink:hover,
-        .FollowButton button:hover {
-          text-decoration: none
+
+        > li {
+          position: relative;
+          padding-left: 20px;
+          margin-bottom: 4px;
+        }
+        .separator {
+          color: #999;
+          margin: 0 5px;
+        }
+        i.bullet-icon {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 15px;
+          text-align: center;
+          display: block;
+          line-height: 16px;
+          &.fa-globe {
+            top: 1px;
+          }
+        }
+        .user-obs-count {
+          .fa-binoculars {
+            font-size: 11px;
+            position: relative;
+            top: -1px;
+            margin-right: 1px;
+          }
+        }
+        .view-follow {
+          .permalink,
+          .FollowButton button {
+            color: black;
+            font-weight: bold;
+          }
+          a.permalink:focus,
+          .FollowButton button:focus,
+          a.permalink:hover,
+          .FollowButton button:hover {
+            text-decoration: none
+          }
+        }
+        .FollowButton {
+          display: inline-block;
+          .btn {
+            padding: 0;
+            border: 0;
+            position: relative;
+            top: -1px;
+          }
+          .open .dropdown-toggle.btn-default,
+          .dropdown-toggle.btn-default:focus {
+            background: none;
+          }
+          .unfollow {
+            color: #468cc7;
+            margin-left: 5px;
+          }
         }
       }
-      .FollowButton {
-        display: inline-block;
-        .btn {
-          padding: 0;
-          border: 0;
-          position: relative;
-          top: -1px;
-        }
-        .open .dropdown-toggle.btn-default,
-        .dropdown-toggle.btn-default:focus {
-          background: none;
-        }
-        .unfollow {
-          color: #468cc7;
-          margin-left: 5px;
+      .zoom-level-lock-control {
+        margin-bottom: 0px;
+        input {
+          margin-left: 1px;
+          margin-right: 7px;
         }
       }
     }

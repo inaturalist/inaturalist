@@ -778,6 +778,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def blocked_by_content_freeze
+    if CONFIG.content_freeze_enabled
+      render template: "content_freeze", status: 403, layout: "application"
+    end
+  end
+
 end
 
 # Override the Google Analytics insertion code so it won't track admins

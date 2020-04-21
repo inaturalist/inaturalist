@@ -63,6 +63,12 @@ shared_examples_for "an ObservationPhotosController" do
         ).to eq Observation::NEEDS_ID
       end
     end
+
+    it "should assign an observation by UUID" do
+      post :create, format: :json, observation_photo: { observation_id: observation.uuid }, file: file
+      observation.reload
+      expect( observation.photos.size ).to eq 1
+    end
   end
 
   describe "update" do
@@ -128,15 +134,6 @@ describe ObservationPhotosController, "oauth authentication" do
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
-  end
-  it_behaves_like "an ObservationPhotosController"
-end
-
-describe ObservationPhotosController, "devise authentication" do
-  let(:user) { User.make! }
-  let(:observation) { Observation.make!(:user => user)}
-  before do
-    http_login user
   end
   it_behaves_like "an ObservationPhotosController"
 end

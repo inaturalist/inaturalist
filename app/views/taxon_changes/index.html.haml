@@ -77,7 +77,7 @@
 .container
   .row
     .col-xs-12
-      = link_to t(:new_taxon_change), new_taxon_change_path, :class => "pull-right btn btn-default"
+      = link_to t(:new_taxon_change), (@taxon ? new_taxon_change_path( input_taxon_ids: [@taxon.id] ) : new_taxon_change_path), :class => "pull-right btn btn-default"
       %h2= @title
   .row
     .col-xs-4

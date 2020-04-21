@@ -1,7 +1,6 @@
 import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
-import { fetchIdentifiers } from "./identifiers_actions";
 import { setConfig } from "../../../shared/ducks/config";
 import { showAlert, hideAlert } from "./alert_actions";
 import { paramsForSearch } from "../reducers/search_params_reducer";
@@ -78,7 +77,6 @@ function fetchObservations( ) {
           results: obs
         } ) );
         dispatch( fetchObservationsStats( ) );
-        dispatch( fetchIdentifiers( ) );
         dispatch( fetchObservationPlaces( ) );
       } ).catch( e => {
         e.response.json( ).then( json => {

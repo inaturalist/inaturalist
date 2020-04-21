@@ -1011,7 +1011,8 @@ class ObservationsController < ApplicationController
     Delayed::Job.enqueue(
       bof, 
       priority: USER_PRIORITY,
-      unique_hash: unique_hash
+      unique_hash: unique_hash,
+      queue: "csv"
     )
 
     # Notify the user that it's getting processed and return them to the upload screen.
@@ -1740,7 +1741,6 @@ class ObservationsController < ApplicationController
       :positioning_device,
       :positioning_method,
       :prefers_community_taxon,
-      :prefers_auto_obscuration,
       :quality_grade,
       :species_guess,
       :tag_list,

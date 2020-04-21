@@ -16,7 +16,7 @@ const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
     if ( !t ) {
       return I18n.t( "unknown" );
     }
-    return `<a href=${urlForTaxon( t )} class="sciname ${t.rank.toLowerCase( )}">${t.name} [${t.id}]</a>`;
+    return `<a href=${urlForTaxon( t )}><span class="sciname ${t.rank.toLowerCase( )}">${t.name}</span> [${t.id}]</a>`;
   };
   const renderTaxonSwap = ( ) => {
     if ( committedOn ) {
@@ -85,17 +85,13 @@ const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
     <Row>
       <Col xs={12}>
         <div className="alert alert-warning">
-          <strong>{ I18n.t( "heads_up" ) }:</strong>
+          <strong>
+            { I18n.t( "label_colon", { label: I18n.t( "heads_up" ) } ) }
+          </strong>
           { " " }
           { taxon.is_active ? null : `${I18n.t( "this_taxon_concept_is_inactive" )}.` }
           { " " }
-          {
-            content ? (
-              <span>
-                <span dangerouslySetInnerHTML={{ __html: content }} />.
-              </span>
-            ) : null
-          }
+          { content && <span dangerouslySetInnerHTML={{ __html: `${content}.` }} /> }
           { " " }
           <a className="readmore" href={`/taxon_changes/${taxonChange.id}`}>
             { I18n.t( "view_taxon_change" ) }

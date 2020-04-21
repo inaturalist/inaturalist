@@ -1352,14 +1352,13 @@ class Taxon < ActiveRecord::Base
     # Update or destroy merged taxon_names
     reject_taxon_names.each do |taxon_name|
       taxon_name.reload
+      if taxon_name.is_scientific_names? && taxon_name.is_valid?
+        taxon_name.update_attributes(:is_valid => false)
+      end
       unless taxon_name.valid?
         Rails.logger.info "[INFO] Destroying #{taxon_name} while merging taxon " + 
           "#{reject.id} into taxon #{id}: #{taxon_name.errors.full_messages.to_sentence}"
-        taxon_name.destroy 
-        next
-      end
-      if taxon_name.is_scientific_names? && taxon_name.is_valid?
-        taxon_name.update_attributes(:is_valid => false)
+        taxon_name.destroy
       end
     end
     
@@ -1674,6 +1673,7 @@ class Taxon < ActiveRecord::Base
   def editable_by?( user )
     return false unless user.is_a?( User )
     return true if user.is_admin?
+    return true if user.is_curator? && get_upstream_taxon_framework
     user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end
 

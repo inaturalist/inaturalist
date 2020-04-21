@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { setConfig } from "../../../shared/ducks/config";
 import SearchBar from "../components/search_bar";
 import {
   updateSearchParams,

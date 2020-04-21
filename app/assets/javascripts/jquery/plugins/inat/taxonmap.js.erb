@@ -157,16 +157,17 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     if ( map.getMapTypeId( ) !== preferredMapTypeId ) {
       map.setMapTypeId( preferredMapTypeId );
     }
-    if ( !map.mapTypeListener ) {
-      function setMapTypeAndUpdateSession( ) {
-        if ( options.updateCurrentUser ) {
-          options.updateCurrentUser( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
-        } else {
-          updateSession( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
-        }
+  }
+
+  if ( !map.mapTypeListener ) {
+    function setMapTypeAndUpdateSession( ) {
+      if ( options.updateCurrentUser ) {
+        options.updateCurrentUser( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
+      } else {
+        updateSession( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
       }
-      map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", setMapTypeAndUpdateSession );
     }
+    map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", setMapTypeAndUpdateSession );
   }
 
   if( options.showLegend && !map._legend ) {
@@ -237,6 +238,11 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       preserveViewport = true;
     }
   }
+  if ( options.onZoomChanged ) {
+    map.onZoomChagedListener = google.maps.event.addListener( map, "zoom_changed", function( e ) {
+      options.onZoomChanged( e, map );
+    } );
+  }
   if( !preserveViewport ) {
     inatTaxonMap.fit( elt )
   }
@@ -267,7 +273,7 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
   }
   map.taxonLayerSignatures[sig] = true;
   if( layer.places && layer.taxon && taxonData.listed_places ) {
-    layerOptions = _.isObject( layer.places ) ?
+    var layerOptions = _.isObject( layer.places ) ?
       layer.places : { };
     map.addTaxonPlacesLayer( _.defaults( layerOptions, {
       taxon: layer.taxon,
@@ -278,7 +284,7 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
     }));
   }
   if( layer.ranges && taxonData.ranges ) {
-    layerOptions = _.isObject( layer.ranges ) ?
+    var layerOptions = _.isObject( layer.ranges ) ?
       layer.ranges : { };
     map.addTaxonRangeLayer( _.defaults( layerOptions, {
       taxon: layer.taxon,
@@ -289,7 +295,7 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
     }));
   }
   if( layer.observations ) {
-    layerOptions = _.isObject( layer.observations ) ?
+    var layerOptions = _.isObject( layer.observations ) ?
       layer.observations : { };
     map.addObservationsLayer( options.taxonObservationsLayerLabel, _.defaults( layerOptions, {
       taxon: layer.taxon,

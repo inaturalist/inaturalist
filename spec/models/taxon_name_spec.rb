@@ -105,6 +105,16 @@ describe TaxonName, 'creation' do
     expect( tn ).not_to be_valid
     expect( tn.errors[:name] ).not_to be_blank
   end
+
+  it "should not allow two valid scientific names per taxon" do
+    t = Taxon.make!
+    tn1 = t.taxon_names.where( lexicon: TaxonName::LEXICONS[:SCIENTIFIC_NAMES] ).first
+    expect( tn1 ).to be_is_valid
+    tn2 = TaxonName.make( taxon: t, lexicon: TaxonName::LEXICONS[:SCIENTIFIC_NAMES], is_valid: true )
+    expect( tn2 ).not_to be_valid
+    puts "errors: #{tn2.errors.full_messages.to_sentence}"
+    expect( tn2.errors[:name] ).not_to be_blank
+  end
 end
 
 describe TaxonName, "strip_author" do

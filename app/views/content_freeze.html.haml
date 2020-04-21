@@ -1,0 +1,11 @@
+- content_for( :extracss ) do
+  = stylesheet_link_tag "shared/404"
+- content_for( :title ) do
+  403 Forbidden
+#wrapper.clear
+  %img{ src: asset_path( "404mole.png" ) }
+  #message
+    %h1 Content Freeze
+    .readable.description
+      During the content freeze some records cannot be created, destroyed, or modified.
+      This functionality will return as soon as the content freeze is over.

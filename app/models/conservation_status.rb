@@ -139,6 +139,7 @@ class ConservationStatus < ActiveRecord::Base
     {
       place_id: place_id,
       source_id: source_id,
+      user_id: user_id,
       authority: authority,
       status: status ? status.downcase : nil,
       status_name: status_name,

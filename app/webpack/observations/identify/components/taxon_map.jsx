@@ -82,8 +82,7 @@ class TaxonMap extends React.Component {
     }
     if (
       ( reloadKey || objectToComparable( this.props ) )
-      ===
-      ( prevProps.reloadKey || objectToComparable( prevProps ) )
+      === ( prevProps.reloadKey || objectToComparable( prevProps ) )
     ) {
       // props didn't change, don't re-render
       return;
@@ -97,8 +96,9 @@ class TaxonMap extends React.Component {
   }
 
   render( ) {
+    const { className } = this.props;
     return (
-      <div className={`TaxonMap ${this.props.className}`} style={ { minHeight: "10px" } } />
+      <div className={`TaxonMap ${className}`} style={{ minHeight: "10px" }} />
     );
   }
 }
@@ -106,8 +106,7 @@ class TaxonMap extends React.Component {
 TaxonMap.propTypes = {
   className: PropTypes.string,
   reloadKey: PropTypes.string,
-  static: PropTypes.bool,
-  observations: PropTypes.array
+  static: PropTypes.bool
 };
 
 export default TaxonMap;

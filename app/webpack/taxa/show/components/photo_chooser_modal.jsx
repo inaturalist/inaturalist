@@ -24,7 +24,7 @@ class PhotoChooserModal extends React.Component {
       photos: [],
       loading: true,
       submitting: false,
-      provider: "inat",
+      provider: "inat-rg",
       chosen: [],
       page: 1
     };
@@ -66,7 +66,7 @@ class PhotoChooserModal extends React.Component {
   fetchPhotos( props, options = {} ) {
     const { provider } = this.state;
     this.setState( { loading: true, isLastPage: false } );
-    const chosenProvider = options.provider || provider || "inat";
+    const chosenProvider = options.provider || provider || "inat-rg";
     this.setState( { page: options.page || 1, photos: [] } );
     switch ( chosenProvider ) {
       case "inat":
@@ -102,7 +102,8 @@ class PhotoChooserModal extends React.Component {
     }
     inatjs.observations.search( queryParams ).then( response => {
       const isLastPage = ( response.page * response.per_page ) >= response.total_results;
-      const obsPhotos = _.compact( _.flatten( _.map( response.results, "photos" ) ) );
+      const obsPhotos = _.filter( _.compact( _.flatten( _.map( response.results, "photos" ) ) ),
+        p => p.url );
       const photos = _.map( obsPhotos, p => Object.assign( {}, p, {
         small_url: p.url.replace( "square", "small" ),
         chooserID: this.keyForPhoto( p )
@@ -243,7 +244,7 @@ class PhotoChooserModal extends React.Component {
       isLastPage
     } = this.state;
     let searchPlaceholder = I18n.t( "type_species_name" );
-    if ( provider === "inat" ) {
+    if ( provider === "inat" || provider === "inat-rg" ) {
       searchPlaceholder = I18n.t( "search_by_taxon_name_or_observation_id" );
     } else if ( provider === "flickr" ) {
       searchPlaceholder = I18n.t( "search_by_taxon_name_or_flickr_photo_id" );
@@ -316,8 +317,8 @@ class PhotoChooserModal extends React.Component {
                       className="form-control"
                       onChange={e => this.setProvider( e.target.value )}
                     >
-                      <option value="inat">{ I18n.t( "observations" ) }</option>
                       <option value="inat-rg">{ I18n.t( "rg_observations" ) }</option>
+                      <option value="inat">{ I18n.t( "observations" ) }</option>
                       <option value="flickr">Flickr</option>
                       <option value="eol">EOL</option>
                       <option value="wikimedia_commons">Wikimedia Commons</option>
@@ -407,7 +408,6 @@ class PhotoChooserModal extends React.Component {
 PhotoChooserModal.propTypes = {
   initialQuery: PropTypes.string,
   initialTaxon: PropTypes.object,
-  photos: PropTypes.array,
   chosen: PropTypes.array,
   visible: PropTypes.bool,
   onSubmit: PropTypes.func,

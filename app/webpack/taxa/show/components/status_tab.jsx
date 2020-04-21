@@ -81,6 +81,16 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
             } else if ( status.geoprivacy === "private" ) {
               geoprivacy = I18n.t( "private_" );
             }
+            let source = I18n.t( "unknown" );
+            if ( status.url && status.authority ) {
+              source = (
+                <a href={status.url}>{ status.authority }</a>
+              );
+            } else if ( status.authority ) {
+              source = status.authority;
+            } else if ( status.user ) {
+              source = <a href={`/people/${status.user.login}`}>{ status.user.login }</a>;
+            }
             return (
               <tr
                 key={`statuses-${status.authority}-${status.place ? status.place.id : "global"}`}
@@ -126,20 +136,18 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                   ) : null }
                 </td>
                 <td>
-                  { status.url ? (
-                    <div className="media">
-                      <div className="media-body">
-                        <a href={status.url}>
-                          { status.authority }
-                        </a>
-                      </div>
+                  <div className="media">
+                    <div className="media-body">
+                      { source }
+                    </div>
+                    { status.url && (
                       <div className="media-right">
                         <a href={status.url}>
                           <i className="glyphicon glyphicon-new-window" />
                         </a>
                       </div>
-                    </div>
-                  ) : null }
+                    ) }
+                  </div>
                 </td>
                 <td>
                   { geoprivacy }

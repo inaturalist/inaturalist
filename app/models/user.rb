@@ -91,13 +91,14 @@ class User < ActiveRecord::Base
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
   preference :medialess_obs_maps, :boolean, default: false
-  preference :coordinate_interpolation_protection, default: false
-  preference :coordinate_interpolation_protection_test, default: false
+  preference :captive_obs_maps, :boolean, default: false
   preference :forum_topics_on_dashboard, :boolean, default: true
   preference :monthly_supporter_badge, :boolean, default: false
   preference :map_tile_test, :boolean, default: false
   preference :no_site, :boolean, default: false
   preference :no_tracking, :boolean, default: false
+  preference :identify_image_size, :string, default: nil
+  preference :identify_side_bar, :boolean, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
@@ -121,6 +122,7 @@ class User < ActiveRecord::Base
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
+  has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :friendships, dependent: :destroy
 
   def followees
@@ -246,7 +248,6 @@ class User < ActiveRecord::Base
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
-  after_update :reassess_coordinate_obscuration_if_pref_changed
   after_update :update_photo_properties
   after_update :update_life_list
   after_create :create_default_life_list
@@ -1138,13 +1139,6 @@ class User < ActiveRecord::Base
   def set_observations_taxa_if_pref_changed
     if prefers_community_taxa_changed? && !id.blank?
       Observation.delay( priority: USER_INTEGRITY_PRIORITY ).set_observations_taxa_for_user( id )
-    end
-    true
-  end
-
-  def reassess_coordinate_obscuration_if_pref_changed
-    if prefers_coordinate_interpolation_protection_changed? && !id.blank?
-      Observation.delay( priority: USER_INTEGRITY_PRIORITY ).reassess_coordinates_for_observations_by( id )
     end
     true
   end

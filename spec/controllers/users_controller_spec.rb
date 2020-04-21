@@ -313,3 +313,12 @@ describe UsersController, "unsuspend" do
     expect( user.suspended_by_user ).to be_nil
   end
 end
+
+describe UsersController, "show" do
+  it "should with a login" do
+    u = User.make!
+    get :show, id: u.login
+    expect( assigns(:user) ).to eq u
+    expect( response ).to be_success
+  end
+end

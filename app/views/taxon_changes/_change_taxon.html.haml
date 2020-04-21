@@ -56,9 +56,9 @@
       - if show_atlas_alert && taxon_change && taxon_change.is_a?( TaxonSplit )
         |
         - if change_taxon.atlased?
-          %span.text-success Atlased
+          = link_to t(:atlased), atlas_path( change_taxon.atlas ), {class: "text-success"}
         - else
-          %span.text-danger Not Atlased!
+          = link_to t(:not_atlased), ( change_taxon.atlas ? atlas_path( change_taxon.atlas ) : new_atlas_path( taxon_id: change_taxon.id) ), {class: "text-danger"}
     .meta
       .small
         - if taxon_framework

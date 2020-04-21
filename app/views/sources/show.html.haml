@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-xs-8.col-xs-offset-2
+      = link_to t(:sources), sources_path, class: "back crumb"
+      %h2=t :bold_label_colon_value_html, label: t(:source), value: @source.title
+      %table.table
+        %tbody
+          - for c in Source.column_names
+            %tr
+              %td= c.humanize
+              %td= @source.send(c)
+      - if @source.editable_by?( current_user )
+        = link_to t(:edit), edit_source_path( @source ), class: "btn btn-default"

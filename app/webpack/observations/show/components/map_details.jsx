@@ -40,17 +40,11 @@ class MapDetails extends React.Component {
     const {
       observation,
       observationPlaces,
-      config,
-      disableAutoObscuration,
-      restoreAutoObscuration
+      config
     } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
-    const viewerIsAdmin = config && config.currentUser && config.currentUser.roles
-      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const { showAllPlaces } = this.state;
     const { currentUser } = config;
-    const testingContextGeoprivacy = currentUser
-      && currentUser.prefers_coordinate_interpolation_protection_test;
     let accuracy = observation.private_geojson
       ? observation.positional_accuracy : observation.public_positional_accuracy;
     let accuracyUnits = "m";
@@ -65,8 +59,6 @@ class MapDetails extends React.Component {
       geoprivacy = I18n.t( "obscured" );
     } else if ( observation.geoprivacy ) {
       geoprivacy = I18n.t( observation.geoprivacy );
-    } else if ( !testingContextGeoprivacy && observation.context_geoprivacy === "obscured" ) {
-      geoprivacy = I18n.t( "obscured" );
     }
     let currentUserHasProjectCuratorCoordinateAccess;
     if ( currentUser && currentUser.id ) {
@@ -96,26 +88,6 @@ class MapDetails extends React.Component {
         { I18n.t( "geoprivacy_is_obscured_desc" ) }
       </li>
     );
-    let sameDayLinks;
-    if ( currentUser && currentUser.id === observation.user.id ) {
-      let obscuredObsURL = `/observations?user_id=${observation.user.login}&on=${observation.observed_on}&taxon_geoprivacy=obscured,private`;
-      if ( currentUser.prefers_coordinate_interpolation_protection ) {
-        obscuredObsURL += "&geoprivacy=obscured,private";
-      }
-      sameDayLinks = (
-        <ul>
-          <li>
-            <a
-              href={obscuredObsURL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              { I18n.t( "view_observations_causing_this_observation_to_be_obscured" ) }
-            </a>
-          </li>
-        </ul>
-      );
-    }
     return (
       <div className="MapDetails">
         <div className="top_info">
@@ -176,7 +148,6 @@ class MapDetails extends React.Component {
         { observation.obscured && (
           observation.geoprivacy
           || observation.taxon_geoprivacy
-          || observation.context_geoprivacy
         ) && (
           <div className="obscured">
             <h4>{ I18n.t( "why_the_coordinates_are_obscured" ) }</h4>
@@ -210,36 +181,6 @@ class MapDetails extends React.Component {
                   </strong>
                   { " " }
                   { I18n.t( "taxon_is_threatened_coordinates_hidden_desc" ) }
-                </li>
-              ) }
-              {
-                observation.context_geoprivacy === "obscured" && (
-                  testingContextGeoprivacy ? (
-                    <li>
-                      <p>
-                        <strong>
-                          <i className="fa fa-calendar" />
-                          { I18n.t( "label_colon", { label: I18n.t( "same_day_obscured" ) } ) }
-                        </strong>
-                        { " " }
-                        { I18n.t( "same_day_obscured_desc" ) }
-                      </p>
-                      { sameDayLinks }
-                    </li>
-                  ) : (
-                    obscurationExplanationGeoprivacy
-                  )
-                )
-              }
-              { testingContextGeoprivacy && observation.context_geoprivacy === "private" && (
-                <li>
-                  <strong>
-                    <i className="fa fa-calendar" />
-                    { I18n.t( "label_colon", { label: I18n.t( "same_day_private" ) } ) }
-                  </strong>
-                  { " " }
-                  { I18n.t( "same_day_private_desc" ) }
-                  { sameDayLinks }
                 </li>
               ) }
             </ul>
@@ -310,33 +251,6 @@ class MapDetails extends React.Component {
             ) }
           </div>
         ) }
-        { viewerIsAdmin && currentUser && currentUser.id === observation.user.id && (
-          ( observation.taxon_geoprivacy === "open" || _.isEmpty( observation.taxon_geoprivacy ) )
-          && ["obscured", "private"].indexOf( observation.context_geoprivacy ) >= 0
-        ) && (
-          <div className="auto-obscuration-preference admin">
-            { observation.preferences.auto_obscuration === false ? (
-              <button
-                type="button"
-                className="btn btn-default btn-xs"
-                onClick={( ) => restoreAutoObscuration( )}
-              >
-                Restore Auto-obscuration
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="btn btn-default btn-xs"
-                onClick={( ) => disableAutoObscuration( )}
-              >
-                Disable Auto-obscuration
-              </button>
-            ) }
-            <p>
-              For now this will only let you disable auto-obscuration for same-day obscuration.
-            </p>
-          </div>
-        ) }
         <div className="links">
           <span className="attr">{ I18n.t( "view_on" ) }</span>
           <span>
@@ -376,8 +290,6 @@ MapDetails.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
   config: PropTypes.object,
-  disableAutoObscuration: PropTypes.func,
-  restoreAutoObscuration: PropTypes.func
 };
 
 MapDetails.defaultProps = {

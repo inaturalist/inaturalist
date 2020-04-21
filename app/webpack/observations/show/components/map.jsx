@@ -4,7 +4,7 @@ import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import { Dropdown } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../../../taxa/shared/util";
+import { urlForTaxon, taxonLayerForTaxon } from "../../../taxa/shared/util";
 import TaxonMap from "../../identify/components/taxon_map";
 import MapDetails from "./map_details";
 
@@ -20,12 +20,8 @@ class Map extends React.Component {
       observation,
       observationPlaces,
       config,
-      updateCurrentUser,
-      disableAutoObscuration,
-      restoreAutoObscuration
+      updateCurrentUser
     } = this.props;
-    const currentUserPrefersMedialessObs = config.currentUser
-      && config.currentUser.prefers_medialess_obs_maps;
     let geoprivacyIconClass = "fa fa-map-marker";
     let geoprivacyTitle = I18n.t( "location_is_public" );
     let geoprivacyLabel = I18n.t( "location_unknown" );
@@ -34,13 +30,11 @@ class Map extends React.Component {
       && (
         observation.geoprivacy
         || observation.taxon_geoprivacy
-        || observation.context_geoprivacy
       )
     ) {
       if (
         observation.geoprivacy === "private"
         || observation.taxon_geoprivacy === "private"
-        || observation.context_geoprivacy === "private"
       ) {
         geoprivacyIconClass = "icon-icn-location-private";
         geoprivacyTitle = I18n.t( "location_is_private" );
@@ -124,25 +118,13 @@ class Map extends React.Component {
         <TaxonMap
           key={mapKey}
           reloadKey={mapKey}
-          taxonLayers={[{
-            taxon: obsForMap.taxon,
-            observationLayers: [
-              {
-                label: I18n.t( "verifiable_observations" ),
-                verifiable: true,
-                observation_id: observation.obscured && observation.private_geojson && obsForMap.id
-              },
-              {
-                label: I18n.t( "observations_without_media" ),
-                verifiable: false,
-                disabled: !currentUserPrefersMedialessObs,
-                observation_id: observation.obscured && observation.private_geojson && obsForMap.id,
-                onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
-              }
-            ],
-            places: { disabled: true },
-            gbif: { disabled: true }
-          }]}
+          taxonLayers={[
+            taxonLayerForTaxon( obsForMap.taxon, {
+              currentUser: config.currentUser,
+              updateCurrentUser,
+              observation
+            } )
+          ]}
           observations={[obsForMap]}
           zoomLevel={observation.map_scale || 8}
           showAccuracy
@@ -215,8 +197,6 @@ class Map extends React.Component {
                     observation={observation}
                     observationPlaces={observationPlaces}
                     config={config}
-                    disableAutoObscuration={disableAutoObscuration}
-                    restoreAutoObscuration={restoreAutoObscuration}
                   />
                 </li>
               </Dropdown.Menu>
@@ -232,9 +212,7 @@ Map.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
   config: PropTypes.object,
-  updateCurrentUser: PropTypes.func,
-  disableAutoObscuration: PropTypes.func,
-  restoreAutoObscuration: PropTypes.func
+  updateCurrentUser: PropTypes.func
 };
 
 export default Map;

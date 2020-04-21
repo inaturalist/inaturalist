@@ -1130,10 +1130,24 @@ module ApplicationHelper
         })
       t(:new_observations_of_x_html, :x => name)
     when "Flag"
-      noun = t(:a_flag_for_x, :x => resource.flaggable.try_methods(:name, :title, :to_plain_s))
+      noun = t(:a_flag_for_x, x: resource.flaggable.try_methods( :name, :title, :to_plain_s ) )
       if notifier.is_a?(Flag)
-        subject = options[:skip_links] ? notifier.resolver.login : link_to(notifier.resolver.login, person_url(notifier.resolver))
-        t(:subject_resolved_noun_html, :subject => subject, :noun => noun)
+        subject = if options[:skip_links]
+          if notifier.resolver
+            notifier.resolver.login
+          elsif notifier.resolver_id && notifier.resolver_id <= 0
+            "iNaturalist"
+          else
+            t(:deleted_user)
+          end
+        else
+          if notifier.resolver_id && notifier.resolver_id <= 0
+            "iNaturalist"
+          else
+            link_to_user( notifier.resolver )
+          end
+        end
+        t(:subject_resolved_noun_html, subject: subject, noun: noun)
       else
         activity_snippet(update, notifier, notifier_user, options.merge(:noun => noun))
       end

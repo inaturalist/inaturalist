@@ -7,9 +7,9 @@ class Identification < ActiveRecord::Base
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
   has_moderator_actions
-  belongs_to :observation
+  belongs_to_with_uuid :observation
   belongs_to :user
-  belongs_to :taxon
+  belongs_to_with_uuid :taxon
   belongs_to :taxon_change
   belongs_to :previous_observation_taxon, class_name: "Taxon"
   has_many :project_observations, :foreign_key => :curator_identification_id, :dependent => :nullify
@@ -27,16 +27,17 @@ class Identification < ActiveRecord::Base
   before_create :set_disagreement
   after_create :update_observation_if_test_env,
                :create_observation_review,
-               :update_obs_stats,
                :update_curator_identification,
                :update_quality_metrics
-  after_update :update_obs_stats,
-               :update_curator_identification,
+  after_update :update_curator_identification,
                :update_quality_metrics
+
+  # Note: update_categories must run last, or at least after update_observation,
+  # b/c it relies on the community taxon being up to date
   after_commit :update_categories,
-                 :update_observation,
-                 :update_user_counter_cache,
-                 :skip_observation_indexing,
+               :update_obs_stats,
+               :update_observation,
+               :update_user_counter_cache,
                unless: Proc.new { |i| i.observation.destroyed? }
   
   # Rails 3.x runs after_commit callbacks in reverse order from after_destroy.
@@ -44,7 +45,7 @@ class Identification < ActiveRecord::Base
   # because of the unique index constraint on current, which will complain if
   # you try to set the last ID as current when this one hasn't really been
   # deleted yet, i.e. before the transaction is complete.
-  after_commit :update_obs_stats,
+  after_commit :update_obs_stats_after_destroy,
                  :update_observation_after_destroy,
                  :revisit_curator_identification, 
                  :set_last_identification_as_current,
@@ -246,6 +247,8 @@ class Identification < ActiveRecord::Base
     observation.identifications.reload
     observation.set_community_taxon(force: true)
     observation.set_taxon_geoprivacy
+    observation.skip_identification_indexing = true
+    observation.skip_indexing = true
     observation.update_attributes(attrs)
     true
   end
@@ -290,6 +293,10 @@ class Identification < ActiveRecord::Base
     observation.update_stats(:include => self)
     true
   end
+
+  def update_obs_stats_after_destroy
+    update_obs_stats
+  end
   
   # Set the project_observation curator_identification_id if the
   # identifier is a curator of a project that the observation is submitted to
@@ -309,7 +316,7 @@ class Identification < ActiveRecord::Base
   def update_user_counter_cache
     return true unless self.user && self.observation
     return true if user.destroyed?
-    return if bulk_delete
+    return true if bulk_delete
     if self.user_id != self.observation.user_id
       User.delay(unique_hash: { "User::update_identifications_counter_cache": user_id }).
         update_identifications_counter_cache(user_id)
@@ -458,23 +465,19 @@ class Identification < ActiveRecord::Base
   end
 
   def update_categories
-    return if bulk_delete
+    return true if bulk_delete
     if skip_observation
       Identification.delay.update_categories_for_observation( observation_id )
     else
+      # update_categories_for_observation will reindex all the observation's
+      # identifications, so we both do not need to re-index this individual
+      # identification after that happens, and in fact that may result in
+      # indexing stale data, e.g. a blank category
+      self.skip_indexing = true
       Identification.update_categories_for_observation( observation, {
         wait_for_obs_index_refresh: wait_for_obs_index_refresh
       } )
     end
-    true
-  end
-
-  # Should only run after commit and should be the final thing to run before
-  # commit. If the observation attached to this instance is dirty for some
-  # reason, ignore those changes b/c they've probably already been set in the
-  # database in an obs callback
-  def skip_observation_indexing
-    observation.skip_indexing = true
     true
   end
 

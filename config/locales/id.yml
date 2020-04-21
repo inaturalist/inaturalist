@@ -522,7 +522,6 @@ id:
   confirm_new_password: Konfirmasi kata sandi
   confirm_now: Konfirmasi sekarang
   confirm_your_info: Konfirmasi info anda
-  confirmed: (telah dikonfirmasi)
   connect_to_provider: "menghubungkan ke %{provider}"
   connected_accounts: akun telah terhubungkan
   connecting_flickr: "hubungkan ke flickr..."
@@ -532,7 +531,6 @@ id:
   conservation_status_descriptions:
     status: Kode status, peringkat, dll Jika kode pendek seperti E atau CR ada, silakan gunakan itu, tetapi jika tidak, silakan gunakan status penuh, misalnya terancam punah atau kritis.
     description: Deskripsi singkat tentang mengapa ini tercantum.
-    authority: Organisasi yang menyatakan status ini. Anda dapat melewatkan ini jika *Anda* ingin terdaftar sebagai otoritas.
     place: letakkan ke status yang dibatasi.
     url: URL untuk sebuah halaman yang menjelaskan status ini.
     geoprivacy: Default geo privasi untuk pengamatan takson ini
@@ -1151,7 +1149,6 @@ id:
   loading: "Menunggah..."
   loading_flickr_photos: "Mengunggah foto Flickr..."
   loading_images: Mengunggah gambar...
-  loading_map: Mengunggah peta...
   loading_preview_and_code: Mengunggah pratinjau dan kode...
   loading_tags: "Mengunggah tanda..."
   loading_taxa_from_your: "Mengunggah taksa dari pengamatan anda..."
@@ -1485,7 +1482,6 @@ id:
   ok: "Oke"
   on_date: "pada %{date}"
   on_day: "pada"
-  on_your_life_list: pada daftar hidupmu
   one_by_one: "satu per satu"
   one_of_your_lists: "satu dari daftar Anda..."
   only_a_project_manager_can_add: Hanya manajer proyek yang dapat menambahkan status proyek kurator
@@ -1548,10 +1544,6 @@ id:
   people_following_user: "Para pengikut %{user}"
   people_user_follows: "Orang %{user} Ikuti"
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation of a Human
-    observation: tambahkan %{observation_link} pada @vow_or_con{vow:an|a} %{taxon_link}
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -1587,7 +1579,6 @@ id:
   photos_updated: Foto diperbarui.
   pink: merah muda
   place: Tempat
-  place_added_to_inat_by: "Tempat ditambahkan ke %{site_name} oleh"
   place_deleted: Tempat dihapus
   place_geo:
     geo_planet_place_types:
@@ -1993,7 +1984,6 @@ id:
   show_taxa_from_both: (tampilkan taksa dari kedua daftar)
   show_taxa_from_everywhere: "Tampilkan taksa dari manapun"
   show_taxa_from_place: "Tampilkan taksa dari %{place}"
-  showing_one_to: Tampilkan 1 -
   showing_taxa_from_everywhere: "Tampilkan taksa dari manapun"
   showing_taxa_from_place: "Tampilkan taksa dari %{place}"
   sign_in: Masuk
@@ -2097,8 +2087,6 @@ id:
   start_typing_taxon_name: Mulai ketik nama takson
   start_typing_someones_name: "Mulai ketik nama seseorang..."
   stats: Negara Bagian
-  status_globally: "%{status} secara global"
-  status_in_place: "%{status} dalam %{place}"
   still_no_luck?: masih belum beruntung?
   still_needs_id?: Komunitas dapat konfirmasi/meningkatkan ID?
   still_working_on_classifying_taxon: Masih bekerja pada mengklasifikasi takson ini. Periksa kembali nanti

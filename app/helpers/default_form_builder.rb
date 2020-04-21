@@ -4,7 +4,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
             %w{date_select datetime_select time_select} +
             %w{collection_select select country_select time_zone_select} -
             %w{hidden_field label fields_for} # Don't decorate these
-  custom_params = %w(description label label_after wrapper label_class field_value)
+  custom_params = %w(description label label_after wrapper label_class field_value datalist)
   helpers.each do |name|
     define_method(name) do |field, *args, &block|
       options = if name.to_s == "select"
@@ -33,7 +33,12 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       end
       args.each_with_index do |a,i|
         custom_params.each do |p|
-          args[i].delete(p.to_sym) if a.is_a?(Hash)
+          if a.is_a?(Hash)
+            if p == "datalist" && a[:datalist]
+              a[:list] = "#{@auto_index}-datalist"
+            end
+            args[i].delete(p.to_sym)
+          end
         end
       end
       content = super(field, *args, &block)
@@ -156,13 +161,22 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     
     description = content_tag(:div, options[:description], :class => "description") if options[:description]
     content = "#{content}#{block_given? ? @template.capture(&block) : field_content}"
+
+    datalist = nil
+    if options[:datalist]
+      datalist = content_tag(
+        :datalist,
+        options[:datalist].map{|item| content_tag( :option, item, value: item ) }.join( "\n" ).html_safe,
+        id: "#{@auto_index}-datalist"
+      )
+    end
     
     content = if options[:label_after]
-      "#{content} #{label_content} #{description}"
+      "#{content} #{datalist} #{label_content} #{description}"
     elsif options[:description_after]
-      "#{label_content} #{content} #{description}"
+      "#{label_content} #{content} #{datalist} #{description}"
     else
-      "#{label_content} #{description} #{content}"
+      "#{label_content} #{description} #{content} #{datalist}"
     end
     
     @template.content_tag(:div, content.html_safe, wrapper_options)

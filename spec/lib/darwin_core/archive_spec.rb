@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe DarwinCore::Archive, "make_metadata" do
+  elastic_models( Observation )
+  before do
+    make_research_grade_observation
+  end
   it "should include an archive license if specified" do
     license = "CC0"
     archive = DarwinCore::Archive.new( license: license )
@@ -216,6 +220,19 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids ).not_to include not_in_taxon.id
   end
 
+  it "should filter by multiple taxa" do
+    t1 = Taxon.make!( rank: Taxon::SPECIES )
+    t2 = Taxon.make!( rank: Taxon::SPECIES )
+    in_t1 = make_research_grade_observation( taxon: t1 )
+    in_t2 = make_research_grade_observation( taxon: t2 )
+    not_in_either_taxon = make_research_grade_observation
+    archive = DarwinCore::Archive.new( taxon: "#{t1.id},#{t2.id}" )
+    ids = CSV.read( archive.make_occurrence_data, headers: true ).map{|r| r[0].to_i}
+    expect( ids ).to include in_t1.id
+    expect( ids ).to include in_t2.id
+    expect( ids ).not_to include not_in_either_taxon.id
+  end
+
   it "should filter by place" do
     p = make_place_with_geom
     in_place = make_research_grade_observation(latitude: p.latitude, longitude: p.longitude)
@@ -335,20 +352,77 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( obs['decimalLongitude'] ).not_to eq o.private_longitude.to_s
   end
 
-  it "should optionally include private coordinates" do
-    o = make_research_grade_observation(geoprivacy: Observation::PRIVATE)
-    archive = DarwinCore::Archive.new(private_coordinates: true)
-    obs = CSV.read(archive.make_occurrence_data, headers: true).first
-    expect( obs['id'] ).to eq o.id.to_s
-    expect( obs['decimalLatitude'] ).to eq o.private_latitude.to_s
-    expect( obs['decimalLongitude'] ).to eq o.private_longitude.to_s
-  end
-
   it "should report coordinateUncertaintyInMeters as the longest diagonal across the uncertainty cell" do
     o = make_research_grade_observation(geoprivacy: Observation::OBSCURED)
-    archive = DarwinCore::Archive.new(private_coordinates: true)
+    archive = DarwinCore::Archive.new
     obs = CSV.read(archive.make_occurrence_data, headers: true).first
     expect( obs['coordinateUncertaintyInMeters'] ).to eq o.uncertainty_cell_diagonal_meters.to_s
+  end
+
+  describe "private_coordinates" do
+    it "should include private coordinates" do
+      o = make_research_grade_observation(geoprivacy: Observation::PRIVATE)
+      archive = DarwinCore::Archive.new(private_coordinates: true)
+      obs = CSV.read(archive.make_occurrence_data, headers: true).first
+      expect( obs['id'] ).to eq o.id.to_s
+      expect( obs['decimalLatitude'] ).to eq o.private_latitude.to_s
+      expect( obs['decimalLongitude'] ).to eq o.private_longitude.to_s
+      expect( obs["informationWithheld"] ).to be_blank
+    end
+
+    it "should report coordinateUncertaintyInMeters as the positional_accuracy" do
+      o = make_research_grade_observation( geoprivacy: Observation::OBSCURED, positional_accuracy: 10 )
+      archive = DarwinCore::Archive.new(private_coordinates: true)
+      obs = CSV.read(archive.make_occurrence_data, headers: true).first
+      expect( obs['coordinateUncertaintyInMeters'] ).to eq o.positional_accuracy.to_s
+    end
+
+    it "should report coordinateUncertaintyInMeters as blank if positional_accuracy is blank" do
+      o = make_research_grade_observation(geoprivacy: Observation::OBSCURED)
+      archive = DarwinCore::Archive.new(private_coordinates: true)
+      obs = CSV.read(archive.make_occurrence_data, headers: true).first
+      expect( obs['coordinateUncertaintyInMeters'] ).to be_blank
+    end
+  end
+
+  describe "taxon_private_coordinates" do
+    let(:threatened_taxon) {
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      ct = ConservationStatus.make!( taxon: t )
+      t
+    }
+    it "should include private coordinates for an observation of a threatened taxon" do
+      o = make_research_grade_observation( taxon: threatened_taxon )
+      expect( o ).to be_coordinates_obscured
+      archive = DarwinCore::Archive.new( taxon_private_coordinates: true )
+      obs = CSV.read( archive.make_occurrence_data, headers: true, ).first
+      expect( obs["id"] ).to eq o.id.to_s
+      expect( obs["decimalLatitude"] ).to eq o.private_latitude.to_s
+      expect( obs["decimalLongitude"] ).to eq o.private_longitude.to_s
+      expect( obs["informationWithheld"] ).to be_blank
+    end
+    it "should not include private coordinates for an observation of a threatened taxon with obscured geoprivacy" do
+      o = make_research_grade_observation(
+        taxon: threatened_taxon,
+        geoprivacy: Observation::OBSCURED
+      )
+      expect( o ).to be_coordinates_obscured
+      archive = DarwinCore::Archive.new( taxon_private_coordinates: true )
+      obs = CSV.read(archive.make_occurrence_data, headers: true).first
+      expect( obs["id"] ).to eq o.id.to_s
+      expect( obs["decimalLatitude"] ).not_to eq o.private_latitude.to_s
+      expect( obs["decimalLongitude"] ).not_to eq o.private_longitude.to_s
+      expect( obs["informationWithheld"] ).not_to be_blank
+    end
+    it "should not include private coordinates for an observation of a unthreatened taxon with obscured geoprivacy" do
+      o = make_research_grade_observation( geoprivacy: Observation::OBSCURED )
+      expect( o ).to be_coordinates_obscured
+      archive = DarwinCore::Archive.new( taxon_private_coordinates: true )
+      obs = CSV.read(archive.make_occurrence_data, headers: true).first
+      expect( obs["id"] ).to eq o.id.to_s
+      expect( obs["decimalLatitude"] ).not_to eq o.private_latitude.to_s
+      expect( obs["decimalLongitude"] ).not_to eq o.private_longitude.to_s
+    end
   end
 
   it "should filter by site_id" do

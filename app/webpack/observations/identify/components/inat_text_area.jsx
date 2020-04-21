@@ -5,21 +5,28 @@ import ReactDOM from "react-dom";
 class INatTextArea extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    if ( this.props.mentions ) {
+    const { mentions } = this.props;
+    if ( mentions ) {
       $( "textarea", domNode ).textcompleteUsers( );
     }
   }
 
   render( ) {
+    const {
+      elementKey,
+      name,
+      className,
+      value
+    } = this.props;
     return (
       <div
         className="form-group"
-        key={ this.props.elementKey }
+        key={elementKey}
       >
         <textarea
-          name={this.props.name}
-          className={this.props.className}
-          value={this.props.value}
+          name={name}
+          className={className}
+          value={value}
         />
       </div>
     );

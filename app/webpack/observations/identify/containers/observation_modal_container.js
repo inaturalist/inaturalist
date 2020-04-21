@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { updateCurrentUser } from "../../../shared/ducks/config";
+import { updateCurrentUser, setConfig } from "../../../shared/ducks/config";
 import ObservationModal from "../components/observation_modal";
 import {
   hideCurrentObservation,
@@ -34,7 +34,11 @@ function mapStateToProps( state ) {
     images,
     blind: state.config.blind,
     controlledTerms: state.controlledTerms.terms,
-    currentUser: state.config.currentUser
+    currentUser: state.config.currentUser,
+    mapZoomLevel: state.config.mapZoomLevel,
+    mapZoomLevelLocked: state.config.mapZoomLevelLocked === undefined
+      ? false
+      : state.config.mapZoomLevelLocked
   }, state.currentObservation );
 }
 
@@ -87,7 +91,9 @@ function mapDispatchToProps( dispatch ) {
         confirmationText: options.confirmationText
       } ) );
     },
-    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
+    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
+    onMapZoomChanged: ( e, map ) => dispatch( setConfig( { mapZoomLevel: map.getZoom( ) } ) ),
+    setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) )
   };
 }
 

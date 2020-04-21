@@ -78,7 +78,7 @@
               <div class="container">
                 <%=t :network_affiliation_prompt_from_inat_html, site_name: session[:potential_site][:name], place: session[:potential_site][:place_name] %>
                 <span class="nobr">
-                  <%= link_to t(:yes), generic_edit_user_path( anchor: "network" ), class: "btn btn-success btn-xs" %>
+                  <%= link_to t(:yes), user_path( current_user,  user: { site_id: session[:potential_site][:id] }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
                   <%= link_to t(:learn_more), wiki_page_url( "network" ), class: "btn btn-default btn-xs" %>
                   <%= link_to t(:no), user_path( current_user,  user: { prefers_no_site: true }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
                 </span>
@@ -89,9 +89,9 @@
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
-                <%=t :network_affiliation_prompt_from_other_site_html, site_name: @site.name, other_site_name: current_user.site.name %>
+                <%=t :network_affiliation_prompt_from_other_site_html, site_name: @site.name, other_site_name: ( current_user.site || Site.default ).name %>
                 <span class="nobr">
-                  <%= link_to t(:yes), generic_edit_user_path( anchor: "network" ), class: "btn btn-success btn-xs" %>
+                  <%= link_to t(:yes), user_path( current_user,  user: { site_id: @site.id }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
                   <%= link_to t(:learn_more), wiki_page_url( "network" ), class: "btn btn-default btn-xs" %>
                   <%= link_to t(:no), user_path( current_user,  user: { prefers_no_site: true }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
                 </span>
@@ -162,6 +162,7 @@
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
           prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>,
+          prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
         };
       <% end -%>

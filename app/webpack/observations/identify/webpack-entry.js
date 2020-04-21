@@ -72,8 +72,11 @@ window.onpopstate = e => {
 const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
 const newParams = normalizeParams( urlParams );
 if ( urlParams.hasOwnProperty( "blind" ) ) {
-  store.dispatch( setConfig( { blind: true } ) );
+  store.dispatch( setConfig( { blind: true, sideBarHidden: false } ) );
+} else {
+  store.dispatch( setConfig( { sideBarHidden: !CURRENT_USER.prefers_identify_side_bar } ) );
 }
+store.dispatch( setConfig( { imageSize: CURRENT_USER.preferred_identify_image_size } ) );
 store.dispatch( updateSearchParamsWithoutHistory( newParams ) );
 store.dispatch( fetchAllControlledTerms( ) );
 

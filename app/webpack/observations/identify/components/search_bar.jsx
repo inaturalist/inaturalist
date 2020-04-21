@@ -7,6 +7,7 @@ import FiltersButton from "./filters_button";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import PlaceAutocomplete from "./place_autocomplete";
 import MarkAllAsReviewedButtonContainer from "../containers/mark_all_as_reviewed_button_container";
+import ImageSizeControlButtonContainer from "../containers/image_size_control_button_container";
 
 class SearchBar extends React.Component {
   shouldComponentUpdate( nextProps ) {
@@ -44,6 +45,7 @@ class SearchBar extends React.Component {
     return (
       <form className="SearchBar form-inline">
         <div className="pull-right">
+          <ImageSizeControlButtonContainer />
           <MarkAllAsReviewedButtonContainer />
         </div>
         <span className="form-group">

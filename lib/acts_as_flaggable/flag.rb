@@ -33,11 +33,11 @@ class Flag < ActiveRecord::Base
   blockable_by lambda {|flag| flag.flaggable.try(:user_id) }, on: :create
   
   # NOTE: Flags belong to a user
-  belongs_to :user
+  belongs_to :user, inverse_of: :flags
   belongs_to :resolver, :class_name => 'User', :foreign_key => 'resolver_id'
   has_many :comments, :as => :parent, :dependent => :destroy
 
-  before_save :set_resolved_at
+  before_save :check_resolved
   before_create :set_flaggable_user_id
   before_create :set_flaggable_content
 
@@ -57,6 +57,10 @@ class Flag < ActiveRecord::Base
     :resolved_at
   ], message: :already_flagged, on: :create
   validate :flaggable_type_valid
+
+  def to_s
+    "<Flag #{id} user_id: #{user_id} flaggable_type: #{flaggable_type} flaggable_id: #{flaggable_id}>"
+  end
   
   def flaggable_type_valid
     if FlagsController::FLAG_MODELS.include?(flaggable_type)
@@ -134,11 +138,13 @@ class Flag < ActiveRecord::Base
     end
   end
 
-  def set_resolved_at
+  def check_resolved
     if resolved_changed? && resolved
       self.resolved_at = Time.now
     elsif resolved_changed?
       self.resolved_at = nil
+      self.resolver = nil
+      self.comment = nil
     end
     true
   end

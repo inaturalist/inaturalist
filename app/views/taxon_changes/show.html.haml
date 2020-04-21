@@ -9,13 +9,6 @@
 - content_for :extrajs do
   :javascript
     $( document ).ready( function( ) {
-      $( "#mapwrapper" ).shades( "open", {
-        css: { "background-color": "white" },
-        content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">#{t :loading_map}</span></center>'
-      } );
-      $( "iframe" ).load( function( ) {
-        $( "#mapwrapper" ).shades( "close" );
-      } );
       $( "#comment_body" ).textcompleteUsers( );
     } );
 .container

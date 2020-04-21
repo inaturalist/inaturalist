@@ -396,7 +396,8 @@ export function submitProject( ) {
         prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month )
           ? "" : project.rule_month,
         prefers_rule_native: _.isEmpty( project.rule_native ) ? "" : project.rule_native,
-        prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced
+        prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced,
+        prefers_rule_members_only: _.isEmpty( project.rule_members_only ) ? "" : project.rule_members_only
       }
     };
     if ( !payload.project.icon && project.iconDeleted ) {
@@ -470,21 +471,7 @@ export function confirmSubmitProject( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const { project } = state.form;
-    let empty = true;
-    const dateType = project.date_type;
-    if ( !_.isEmpty( project.rule_quality_grade ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_photos ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_sounds ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_term_id ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_term_value_id ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_native ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_introduced ) ) { empty = false; }
-    if ( dateType === "exact" && !_.isEmpty( project.rule_observed_on ) ) { empty = false; }
-    if ( dateType === "range" && !_.isEmpty( project.rule_d1 ) ) { empty = false; }
-    if ( dateType === "range" && !_.isEmpty( project.rule_d2 ) ) { empty = false; }
-    if ( dateType === "months" && !_.isEmpty( project.rule_month ) ) { empty = false; }
-    if ( !_.isEmpty( project.project_observation_rules ) ) { empty = false; }
-    if ( !empty ) {
+    if ( !project.hasInsufficientRequirements( ) ) {
       dispatch( submitProject( ) );
       return;
     }

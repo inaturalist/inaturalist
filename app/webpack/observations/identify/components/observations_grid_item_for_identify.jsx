@@ -12,7 +12,8 @@ const ObservationsGridItemForIdentify = ( {
   onObservationClick,
   onAgree,
   toggleReviewed,
-  currentUser
+  currentUser,
+  imageSize
 } ) => {
   const agreeButton = (
     <OverlayTrigger
@@ -90,6 +91,7 @@ const ObservationsGridItemForIdentify = ( {
       user={currentUser}
       splitTaxonOptions={{ noParens: true }}
       showAllPhotosPreview
+      photoSize={imageSize === "large" ? "medium" : "small"}
     />
   );
 };
@@ -99,7 +101,8 @@ ObservationsGridItemForIdentify.propTypes = {
   onObservationClick: PropTypes.func,
   onAgree: PropTypes.func,
   toggleReviewed: PropTypes.func,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  imageSize: PropTypes.string
 };
 
 export default ObservationsGridItemForIdentify;

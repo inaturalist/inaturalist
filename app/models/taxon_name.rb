@@ -14,7 +14,8 @@ class TaxonName < ActiveRecord::Base
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
   validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
-  validate :species_name_cannot_match_taxon_name
+  validate :species_common_name_cannot_match_taxon_name
+  validate :valid_scientific_name_must_match_taxon_name
   NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
   validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
@@ -90,6 +91,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   LOCALES = {
+    "afrikaans"             => "af",
     "albanian"              => "sq",
     "arabic"                => "ar",
     "basque"                => "eu",
@@ -308,9 +310,15 @@ class TaxonName < ActiveRecord::Base
     taxon.elastic_index! if taxon
   end
 
-  def species_name_cannot_match_taxon_name
+  def species_common_name_cannot_match_taxon_name
     if !is_scientific_names? && taxon && taxon.rank_level.to_i <= Taxon::SPECIES_LEVEL && taxon.name == name
       errors.add(:name, :cannot_match_the_scientific_name_of_a_species_for_this_lexicon)
+    end
+  end
+
+  def valid_scientific_name_must_match_taxon_name
+    if is_valid? && is_scientific_names? && taxon && name != taxon.name
+      errors.add(:name, :must_match_the_taxon_if_valid)
     end
   end
 

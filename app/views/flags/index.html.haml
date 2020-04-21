@@ -1,7 +1,7 @@
 - items = [@flags, @moderator_actions].flatten.compact.sort_by(&:created_at).reverse
 - content_for(:title) do
   - @title = t( :flags_for_x_html, x: link_to( @object.try_methods(:to_plain_s, :to_s), @object ) )
-  = strip_tags @title
+  =raw strip_tags @title
 .container
   .row
     .col-xs-12

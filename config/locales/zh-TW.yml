@@ -757,7 +757,6 @@ zh-TW:
   confirm_new_password: 確認新密碼
   confirm_now: 現在確認
   confirm_your_info: 確認您的資訊
-  confirmed: 已確認
   connect_to_provider: "連接至%{provider}"
   connected_accounts: 已連接帳號
   connecting_flickr: "連接至 Flickr..."
@@ -768,7 +767,6 @@ zh-TW:
   conservation_status_descriptions:
     status: 狀態代碼、級別、其它。如果存在像「E」、「CR」這類的短代碼，請使用它；如果沒有，請使用像「瀕危」、「極度瀕危」這類的完整狀態。
     description: 簡單描述為何這被列出。
-    authority: 宣佈此狀態的組織。若*您*想被列為權威可信，您可忽略此。
     place: 狀態被限制的地點。
     url: 描述此狀態的頁面 URL。
     geoprivacy: 用於此物種分類觀察的預設位置隱私
@@ -1156,7 +1154,6 @@ zh-TW:
   exact_location: 精確位置
   exact_rank: 精確級別
   except: 除外
-  exclude_x: 不包含%{x}
   exclusion_filters: 排除的篩選
   existing_flags: 精確標記
   exit_full_screen: "結束全螢幕"
@@ -1709,7 +1706,6 @@ zh-TW:
   loading: "載入中…"
   loading_flickr_photos: "正在載入 Flickr 照片…"
   loading_images: 讀取圖片中...
-  loading_map: 讀取地圖中...
   loading_metadata: 正在載入詮釋資料...
   loading_preview_and_code: 正在載入預覽和代碼…
   loading_suggestions: 正在載入建議…
@@ -2065,7 +2061,6 @@ zh-TW:
   no_more_taxa_to_load: 沒有更多要載入的物種分類群！
   no_more_results_found: 沒有找到更多結果
   no_new_messages: 沒有新訊息
-  no_news_yet: 尚無最新消息
   no_observations: 沒有觀察
   no_observations_from_this_place_yet: 尚未有來自此地點的觀察。
   no_observations_matching_those_ids: 沒有符合這些鑑定的觀察。
@@ -2276,7 +2271,6 @@ zh-TW:
   ok: "確定"
   on_date: "於 %{date}"
   on_day: "在"
-  on_your_life_list: 在妳的生命清單中
   onboarding:
     observe_panel_title: 讓我們來開始發佈一些觀察
     observe_panel_body_p1_local: 需要靈感？這裡有一些在附近被觀察到的生物...
@@ -2398,10 +2392,6 @@ zh-TW:
   people_following_user: "關注 %{user} 的人"
   people_user_follows: "%{user} 關注的人"
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation of a Human
-    observation: 添加一個@vow_or_con{vow:an|a} %{taxon_link}的%{observation_link}
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -2457,7 +2447,6 @@ zh-TW:
     釘選此座標、精確度、位置隱私以及地點標註的組合內容來供日後使用。
   place: 地點
   placeholder: 位置標誌符
-  place_added_to_inat_by: "地點已增加至 %{site_name} 由"
   place_autocomplete_placeholder: 錫安國家公園、邁阿密等等。
   place_deleted: 地點已刪除。
   place_geo:
@@ -2868,7 +2857,6 @@ zh-TW:
   present: 現今
   press: 報刊
   preview: 預覽
-  preview_observations: 預覽觀察
   preview_of_synced_observation: "<strong>預覽</strong>同步觀察。<a href=\"%{url}\">要取消？</a>"
   preview_personal_message: "我希望您能與我一同加入 %{site}，這網站可以讓您紀錄您對動植物觀察的資料，替您觀察到的生物建立清單，並來探索自然世界！"
   preview_your_message: 預覽您的訊息
@@ -3129,12 +3117,6 @@ zh-TW:
     must_be_in: 需在物種分類中
     must_be_coordinates_shareable_by_project_curators: 觀察者必須允許策展人檢視座標。
   running_total: 運行總計
-  same_day_obscured: 此人在這天的其它觀察是被遮蔽的
-  same_day_obscured_desc: |
-    當座標是因為受威脅物種緣故而遮蔽時，此人當天其它的所有觀察紀錄也會被遮蔽起來，以防止其他人藉由相同的觀察時間來猜測座標位置。每個人也可以使用此保護機制在他們想要遮蔽的座標。
-  same_day_private: 此人在這天的其它觀察是隱私的
-  same_day_private_desc: |
-    當座標是因為受威脅物種緣故而隱藏時，所有由該人的當天其它觀察也會一同隱藏，以防止其他人基於圍繞在同一時間所做出的觀察來猜測座標位置。個人也可以套用此保護到所挑選出想隱藏的座標。
   said: 說
   satellite: 衛星
   save: 儲存
@@ -3245,7 +3227,6 @@ zh-TW:
   show_taxa_from_place: "顯示來自於%{place}的物種分類"
   show_total_counts: 顯示總計計數
   show_uncountable_species: 顯示無法計數的物種
-  showing_one_to: 顯示 1 -
   showing_taxa_from_everywhere: "進行顯示來自於任何地點的物種分類群"
   showing_taxa_from_place: "進行顯示來自於%{place}的物種分類群"
   showing_x_of_y: 顯示 %{y} 的 %{x}
@@ -3377,8 +3358,6 @@ zh-TW:
   stats: 統計
   stats_for_this_year_have_not_been_generated: 今年份尚未產生的統計內容。
   status: 狀態
-  status_globally: "%{status} 全球"
-  status_in_place: "%{status}在%{place}"
   stay_and_try_again: 延遲並重試
   still_no_luck?: 仍然運氣糟嗎？
   still_needs_id?: 社群可以確認/改進鑑定嗎？
@@ -3896,8 +3875,6 @@ zh-TW:
   view_observation_flags: 檢視觀察標記
   view_observations_by_everyone: 檢視每個人的觀察
   view_observations_by_these_users: 檢視由這些使用者所做的觀察
-  view_observations_causing_this_observation_to_be_obscured: |
-    檢視導致此觀察給遮蔽的觀察
   view_observations_of_this_taxon_by: 檢視此分類群的觀察，由
   view_on: 檢視在
   view_on_flickr: 在 Flickr 上檢視
@@ -4850,8 +4827,6 @@ zh-TW:
         or_drag_and_drop: '（或是拖拉）'
         please_specify_the_requirements: |
           請指定添加至此專案的觀察之需求。
-        please_specify_the_requirements_html: |
-          請指名添加至此專案的觀察所需內容。您可以指定多項物種、地點、自動包含的品質等級。若您對此沒有特別需求，欄位可以留空。對於各欄位的解釋可<a href="%{url}">在此</a>找尋。
         project_background_color: 專案摘要背景顏色
         project_background_color_help: 請確認挑選顏色的暗度足夠讓所覆蓋白色文字能辨識出。
         project_banner: 專案橫幅（PNG、JPG、或 GIF 檔案）

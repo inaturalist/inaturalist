@@ -224,6 +224,15 @@ module ActsAsElasticModel
         __elasticsearch__.refresh_index! unless Rails.env.test?
       end
 
+    def preload_for_elastic_index( instances )
+      return if instances.blank?
+      klass = instances.first.class
+      if klass.respond_to?(:load_for_index)
+        klass.preload_associations( instances,
+          klass.load_for_index.values[:includes] )
+      end
+    end
+
       private
 
       # standard wrapper for bulk indexing with Elasticsearch::Model

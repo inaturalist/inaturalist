@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     only: [ :edit ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :write },
-    only: [ :create, :update, :dashboard, :new_updates, :api_token ],
+    only: [ :create, :update, :dashboard, :new_updates, :api_token, :mute, :unmute ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :account_delete },
     only: [ :destroy ],
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       :search, :update_session, :parental_consent ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
     :show, :update, :followers, :following, :relationships, :add_role,
-    :remove_role, :set_spammer, :merge, :trust, :untrust ]
+    :remove_role, :set_spammer, :merge, :trust, :untrust, :mute, :unmute ]
   before_filter :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
@@ -217,7 +217,9 @@ class UsersController < ApplicationController
       end
       Observation.preload_associations(@updates, :user)
       @updates.delete_if do |u|
-        (u.is_a?(Post) && u.draft?) || (u.is_a?(Identification) && u.taxon_change_id)
+        ( u.is_a?( Post ) && u.draft? ) ||
+        ( u.is_a?( Identification ) && u.taxon_change_id ) ||
+        ( u.is_a?( Identification ) && u.observation.user_id == u.user_id )
       end
       hash = {}
       @updates.sort_by(&:created_at).each do |record|
@@ -350,14 +352,23 @@ class UsersController < ApplicationController
         @shareable_description = @selected_user.description
         @shareable_description = I18n.t(:user_is_a_naturalist, :user => @selected_user.login) if @shareable_description.blank?
         if @selected_user.last_active.blank?
-          @selected_user.last_active = [
-            INatAPIService.identifications(
-              user_id: @selected_user.id, order_by: "created_at", order: "desc", is_change: false
-            ).results.first.try(:[], "created_at" ).try(:to_time),
+          times = [
             Observation.elastic_query(
-              user_id: @selected_user.id, order_by: "created_at", order: "desc"
+              user_id: @selected_user.id,
+              order_by: "created_at",
+              order: "desc"
             ).first.try(&:created_at)
-          ].compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
+          ]
+          idents = INatAPIService.identifications(
+            user_id: @selected_user.id,
+            order_by: "created_at",
+            order: "desc",
+            is_change: false
+          )
+          if idents && idents.results
+            times << idents.results.first.try(:[], "created_at" ).try(:to_time)
+          end
+          @selected_user.last_active = times.compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
         end
         @donor_since = @selected_user.display_donor_since ? @selected_user.display_donor_since.to_date : nil
         render layout: "bootstrap"
@@ -500,7 +511,7 @@ class UsersController < ApplicationController
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
     if @site && !@site.discourse_url.blank? && @discourse_url = @site.discourse_url
-      cache_key = "dashboard-discourse-data"
+      cache_key = "dashboard-discourse-data-#{@site.id}"
       begin
         unless @discourse_data = Rails.cache.read( cache_key )
           @discourse_data = {}
@@ -901,6 +912,34 @@ class UsersController < ApplicationController
     end
   end
 
+  def mute
+    @user_mute = current_user.user_mutes.where( muted_user_id: @user ).first
+    @user_mute ||= current_user.user_mutes.create( muted_user: @user )
+    respond_to do |format|
+      format.json do
+        if @user_mute.valid?
+          render head: :no_content, layout: false, text: nil
+        else
+          render status: :unprocessable_entity, json: { errors: @user_mute.errors }
+        end
+      end
+    end
+  end
+
+  def unmute
+    @user_mute = current_user.user_mutes.where( muted_user_id: @user ).first
+    @user_mute.destroy if @user_mute
+    respond_to do |format|
+      format.json do
+        if @user_mute
+          render head: :no_content, layout: false, text: nil
+        else
+          render status: :unprocessable_entity, json: { errors: ["User #{@user.id} was not muted"] }
+        end
+      end
+    end
+  end
+
 protected
 
   def add_friend
@@ -972,6 +1011,7 @@ protected
       @user = User.find(params[:id])
     rescue
       @user = User.where("lower(login) = ?", params[:id].to_s.downcase).first
+      @user ||= User.where( uuid: params[:id] ).first
       render_404 if @user.blank?
     end
   end
@@ -1114,6 +1154,7 @@ protected
       :password_confirmation,
       :per_page,
       :place_id,
+      :preferred_identify_image_size,
       :preferred_observation_fields_by,
       :preferred_observation_license,
       :preferred_observations_search_map_type,
@@ -1121,9 +1162,11 @@ protected
       :preferred_photo_license,
       :preferred_project_addition_by,
       :preferred_sound_license,
+      :prefers_captive_obs_maps,
       :prefers_comment_email_notification,
       :prefers_forum_topics_on_dashboard,
       :prefers_identification_email_notification,
+      :prefers_identify_side_bar,
       :prefers_message_email_notification,
       :prefers_medialess_obs_maps,
       :prefers_project_invitation_email_notification,
@@ -1145,8 +1188,6 @@ protected
       :prefers_no_place,
       :prefers_no_site,
       :prefers_no_tracking,
-      :prefers_coordinate_interpolation_protection,
-      :prefers_coordinate_interpolation_protection_test,
       :prefers_monthly_supporter_badge,
       :search_place_id,
       :site_id,

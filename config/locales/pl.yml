@@ -774,6 +774,8 @@ pl:
     stage: Przygotowanie
     drop: Dezaktywacja
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_from: podziel z
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podziel na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: włącz do
@@ -786,6 +788,7 @@ pl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: zastąpione przez
     dropped: odrzucone
+    staged: etapy
     input_taxon_was_split_into_output_taxa_html: "takson %{input_taxon} został podzielony na taksony %{output_taxa}"
     input_taxon_will_be_split_into_output_taxa_html: "takson %{input_taxon} zostanie podzielony na taksony %{output_taxa}"
     input_taxon_was_dropped_html: "takson %{input_taxon} został odrzucony"
@@ -862,6 +865,7 @@ pl:
   commit: Przychodzące
   committed: Wykonane
   committed_on: Wykonano dnia %{date}
+  committing: Zatwierdzanie...
   community: Społeczność
   community_curated: Pod opieką społeczności
   community_guidelines: Standardy społeczności
@@ -893,7 +897,6 @@ pl:
   confirm_new_password: Potwierdź nowe hasło
   confirm_now: Potwierdź teraz
   confirm_your_info: Potwierdź swoje dane
-  confirmed: potwierdzono
   connect_to_provider: "Połącz z %{provider}"
   connected_accounts: Podłączone konta
   connecting_flickr: "Łączenie z Flickr..."
@@ -904,7 +907,6 @@ pl:
   conservation_status_descriptions:
     status: Kategorie statusu. Jeśli podany krótki kod statusu (np. EN lub CR) istnieje, to go użyj. Jeśli nie, to użyj pełnego kodu statusu (np. zagrożony lub krytycznie zagrożony).
     description: Zwięzły opis wyjaśniający dlaczego zostało to ujęte na liście.
-    authority: Organizacja, która uznała ten status. Możesz pominąć, jeśli *ty* chcesz zostać uznany na autora.
     place: Miejsce, do którego odnosi się podatny status.
     url: URL do strony opisującej ten status.
     geoprivacy: Domyślne ustawienia geoprywatności dla obserwacji tego taksonu
@@ -1247,6 +1249,7 @@ pl:
     endemic: Endemiczny
     introduced: Introdukowany
     invasive: Inwazyjny
+    managed: Zarządzane
     native: Rodzimy
     naturalised: Introdukowany
   establishment_means: Sposoby ustanowienia
@@ -1264,7 +1267,6 @@ pl:
   exact_location: Dokładna lokalizacja
   exact_rank: Dokładna kategoria
   except: poza
-  exclude_x: Wyklucz %{x}
   exclusion_filters: Filtry wykluczające
   existing_flags: Istniejące zgłoszenia
   exit_full_screen: "Wyjdź z trybu pełnoekranowego"
@@ -1296,7 +1298,10 @@ pl:
   favorites: "Ulubione"
   feature_this_project_: "Ujmij w tym projekcie"
   featured: Ujęto
+  featuring: Zawiera
   feedback: Opinia
+  #Plural noun, as in Atom and RSS feeds
+  feeds: 'Kanały'
   failed: Nie powiodło się
   field_note: |
     <strong>Uwaga:</strong> zanim dodasz kolejną notatkę terenową, upewnij się, że nie istnieje podobna.
@@ -1343,6 +1348,8 @@ pl:
   flag_an_item: Zgłoś element
   flag_as_spammer: Zgłoś spamera
   flag_as_non_spammer: To nie spamer
+  #Label for the date/time when a flag was created
+  flag_created: Flaga utworzona
   flag_description: Zgłoś tę zawartość, aby powiadomić kuratorów, że coś jest z nią nie tak.
   flag_for_check_list_title_html: |
     Zgłoszenie dla checklisty: %{title}
@@ -1395,6 +1402,7 @@ pl:
   flickr_needs_to_confirm: "Flickr oczekuje potwierdzenia połączenia konta z %{site_name}."
   flickr_photo: Zdjęcie z Flickra
   flickr_photos: Zdjęcia z Flickra
+  flickr_style: Styl Flickra
   flickr_tagger: Tagger Flickr
   flickr_tags: Tagi z Flickra
   follow: Obserwuj
@@ -1757,7 +1765,6 @@ pl:
   loading: "Wczytywanie..."
   loading_flickr_photos: "Wczytywanie zdjęć z Flickra..."
   loading_images: Wczytywanie obrazków...
-  loading_map: Wczytywanie mapy...
   loading_metadata: Wczytywanie metadanych...
   loading_preview_and_code: Wczytywanie podglądu i kodu...
   loading_suggestions: Wczytywanie sugestii...
@@ -1831,6 +1838,7 @@ pl:
   look_up_name: "Wyszukaj nazwę"
   looks_like_no_species_in_guide: Wygląda na to, że jeszcze nie masz żadnych gatunków w przewodniku.
   lookup: Wyszukaj
+  low: Słaby
   lowest_rank: Najniższa kategoria
   make_admin: Nadaj uprawnienia administratora
   mail_disclaimer: "%{site_name} nie zezwoli swoim użytkownikom na wysyłanie Ci dodatkowych zaproszeń za pośrednictwem naszego zaproszenia. Zgłoś nadużycie zaproszenia do %{site}."
@@ -2072,7 +2080,6 @@ pl:
   no_more_taxa_to_load: Nie ma więcej taksonów do wczytania!
   no_more_results_found: Nie znaleziono więcej wyników
   no_new_messages: Brak nowych wiadomości
-  no_news_yet: Brak aktualności
   no_observations: Brak Obserwacji
   no_observations_from_this_place_yet: Brak obserwacji z tej lokalizacji.
   no_observations_matching_those_ids: Brak obserwacji pasujących do tych oznaczeń.
@@ -2236,7 +2243,6 @@ pl:
   old_observation_form: Stary formularz obserwacji (przestarzały)
   ok: "OK"
   on_date: "o %{date}"
-  on_your_life_list: na Twojej liście życia
   onboarding:
     observe_panel_body_p1_local: Potrzebujesz inspiracji? Oto kilka organizmów obserwowanych w pobliżu...
     follow_panel_title_local: Obserwuj przyrodników z okolicy
@@ -2350,7 +2356,6 @@ pl:
   pink: różowy
   place: Lokalizacja
   placeholder: Tekst zastępczy
-  place_added_to_inat_by: "Miejsce dodane do %{site_name} przez"
   place_autocomplete_placeholder: Park Narodowy Zion, Miami, itp.
   place_deleted: Lokalizacja usunięta.
   place_geo:
@@ -2697,6 +2702,8 @@ pl:
   post_published: Post opublikowany!
   posts: Posty
   potential_disagreement: Potencjalna niezgodność
+  powered_by: Wsparcie dzięki
+  powered_by_inaturalist_open_source_software_html: 'Wsparcie dzięki <a href="https://github.com/inaturalist/inaturalist" target="_new" >oprogramowaniu open source iNaturalist</a>'
   press: Prasa
   preview: Podgląd
   preview_your_message: Podgląd wiadomości
@@ -3735,9 +3742,14 @@ pl:
       index:
         connect_with_nature: Połącz się z naturą
         how_it_works: Jak to działa
+        record_your_observations: Obserwuj i notuj
         share_with_fellow_naturalists: Podziel się ze znajomymi
+        discuss_your_findings: Omawiaj swoje badania
+        contribute_to_science: Przyczyń się do nauki
         build_your_knowledge: Zdobywaj doświadczenie i wiedzę poprzez dyskusje z przyrodnikami oraz pomoc innym użytkownikom.
         works_on_all_your_devices: Działa na wszystkich Twoich urządzeniach
+        install_our_mobile_apps: |
+          Zainstaluj nasze aplikacje mobilne, aby móc robić badania kiedykolwiek chcesz, nawet bez połączenia z siecią.
         what_are_you_waiting_for: Nie czekaj!
         join_today: Dołącz już dziś
   date:

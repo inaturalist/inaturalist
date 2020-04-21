@@ -93,6 +93,9 @@ nl:
   x_suggestions_filtered_by_colon:
     one: "%{count} suggestie gefilterd op:"
     other: "%{count} suggesties gefilterd op:"
+  x_taxa:
+    one: "%{count} taxon"
+    other: "%{count} taxa"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon waargenomen"
     other: "<span class='count'>%{count}</span> taxa waargenomen"
@@ -265,6 +268,7 @@ nl:
   add_plant_phenology_flower_budding_annotation: 'Voeg aantekening "Plantenfenologie: bloemknoppen" toe'
   add_plant_phenology_flowering_annotation: 'Voeg "Plantenfenologie: Bloeiend" aantekening toe'
   add_plant_phenology_fruiting_annotation: 'Voeg "Plantenfenologie: Vruchtdragend" aantekening toe'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Voeg "Plantenfenologie: Geen bewijs voor bloei" aantekening toe'
   add_life_stage_adult_annotation: 'Voeg "Levenstadium: Volwassen" aantekening toe'
   add_life_stage_teneral_annotation: 'Voeg "Levenstadium: teneral" aantekening toe'
   add_life_stage_subimago_annotation: 'Voeg "Levenstadium: subimago" aantekening toe'
@@ -490,6 +494,9 @@ nl:
   are_you_sure_remove_taxon_from_list: "Weet je zeker dat je dit taxon uit de lijst wilt verwijderen?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Weet je het zeker? Dit zal de pagina herladen waardoor je je wijzigingen deels kunt verliezen.
+  are_you_sure_unresolve_flag?: |
+    Weet je zeker dat je deze markering wilt verwijderen? Dit zal de oplossing 
+    en de gebruiker die de oplossing gaf van deze markering verwijderen.
   are_you_sure_want_delete_taxon: "Weet je zeker dat je dit taxon wilt verwijderen?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Weet je zeker dat je dit taxon wilt verwijderen? Het heeft onderliggende taxa.
@@ -793,6 +800,7 @@ nl:
   commercial_solicitation: Commerciële advertenties, koppelingen naar nergens, enzovoort.
   commit: Vastleggen
   committed: Vastgelegd
+  committed_by_user_on_date_html: Vastgelegd door %{user} op %{date}
   committed_on: Vastgelegd op %{date}
   committing: Vastleggen...
   community: Gemeenschap
@@ -831,7 +839,6 @@ nl:
   confirm_new_password: Bevestig nieuw wachtwoord
   confirm_now: Bevestig nu
   confirm_your_info: Bevestig je informatie
-  confirmed: bevestigd
   connect_to_provider: "Verbinden met %{provider}"
   connected_accounts: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
@@ -842,7 +849,8 @@ nl:
   conservation_status_descriptions:
     status: Statuscode, rang, enz. Als er een korte code zoals E of CR bestaat, gebruik die dan, maar zo niet, gebruik dan de volledige status, bv. "bedreigd" of "ernstig bedreigd".
     description: Korte beschrijving van de reden waarom dit in een lijst is opgenomen.
-    authority: Organisatie die deze status aangeeft. Je kan dit overslaan als *jij* wil worden genoemd als de autoriteit.
+    authority: |
+      Organisatie die deze status heeft vastgesteld. Gebruik alsjeblieft de autocomplete-functie om een bestaande autoriteit te kiezen voordat je een nieuwe toevoegt. Je kunt dit overslaan als *jij* als de autoriteit wilt worden aangemerkt.
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
@@ -880,6 +888,7 @@ nl:
     teneral: Net verveld
     subimago: Subimago
     pupa: Pop
+    no_evidence_of_flowering: Geen bewijs voor bloei
     nymph: Nimf
     larva: Larve
     egg: Ei
@@ -894,6 +903,7 @@ nl:
     flower_budding: Bloemknoppen zijn zichtbaar maar niet open
     flowering: Bloemen zichtbaar, open, en nog vast aan de plant
     fruiting: Vruchten zichtbaar en nog vast aan de plant
+    no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
     teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
   controls: Besturing
   convert: Converteren
@@ -972,6 +982,7 @@ nl:
   custom_project_was_successfully_updated: Projectaanpassingen bijgewerkt
   customize_location: Locatie aanpassen
   darr_apply_darr: "&darr; Toepassen &darr;"
+  daily_users: Dagelijkse gebruikers
   dashboard: Dashboard
   data_deficient: Gegevens Tekort
   data_quality: Gegevenskwaliteit
@@ -1231,7 +1242,10 @@ nl:
   exact_location: Exacte locatie
   exact_rank: Exacte rang
   except: met uitzondering van
-  exclude_x: '%{x} uitsluiten'
+  exclude_places: Plaatsen uitsluiten
+  exclude_projects: Projecten uitsluiten
+  exclude_taxa: Taxa uitsluiten
+  exclude_users: Gebruikers uitsluiten
   exclusion_filters: Uitsluitingsfilters
   existing_flags: Bestaande meldingen
   exit_full_screen: "Volledig Schermmodus Verlaten"
@@ -1578,6 +1592,10 @@ nl:
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
   inbox: Postvak IN
+  include_places: Plaatsen inbegrijpen
+  include_projects: Projecten inbegrijpen
+  include_taxa: Taxa inbegrijpen
+  include_users: Gebruikers inbegrijpen
   including: inclusief
   increase_brightness: Helderheid verhogen
   in_progress: bezig
@@ -1630,6 +1648,8 @@ nl:
   join: Lid worden
   join_and_add_an_observation_to_project_html: Word lid en voeg een waarneming toe aan %{project}
   join_project: Doe mee aan dit project
+  #Prompt to join a specific project
+  join_project?: Deelnemen aan %{project}?
   join_some_projects_and_invite_some_observations_html: "Doe mee aan enkele <a href='%{join_url}'>projecten</a> en <a href='%{invite_url}'>nodig enkele waarnemingen uit</a>"
   join_the_largest_group_of_naturalists_in_the_world: Sluit je aan bij de grootste groep naturalisten ter wereld!
   join_this_project: Doe mee aan dit project
@@ -1794,7 +1814,6 @@ nl:
   loading: "Laden..."
   loading_flickr_photos: "Flickr foto's laden..."
   loading_images: Afbeeldingen laden ..
-  loading_map: Kaart laden ...
   loading_metadata: Metadata laden...
   loading_preview_and_code: Preview en code laden ...
   loading_suggestions: Suggesties laden ...
@@ -2142,6 +2161,7 @@ nl:
   no_favorites_added:
     current_user: Je hebt nog geen favorieten toegevoegd.
     user: "%{user} heeft geen favorieten toegevoegd."
+  no_journal_posts_yet: Nog geen dagboekberichten
   no_license_all_rights_reserved: Geen licentie (alle rechten voorbehouden)
   no_managers_set: Geen beheerders ingesteld
   no_matching_article_from_x: "Geen overeenkomend artikel van %{x}"
@@ -2158,7 +2178,6 @@ nl:
   no_more_taxa_to_load: Geen taxa meer om te laden!
   no_more_results_found: Geen resultaten meer gevonden
   no_new_messages: Geen nieuwe berichten
-  no_news_yet: Nog geen nieuws
   no_observations: Geen Waarnemingen
   no_observations_from_this_place_yet: Nog geen waarnemingen voor deze plaats
   no_observations_matching_those_ids: Er zijn geen waarnemingen die overeenkomen met die ID's.
@@ -2388,7 +2407,6 @@ nl:
   ok: "OK"
   on_date: "op %{date}"
   on_day: "op"
-  on_your_life_list: in je levenslijst
   onboarding:
     observe_panel_title: Laten we beginnen door een paar waarnemingen te posten
     observe_panel_body_p1_local: Inspiratie nodig? Deze organismen zijn dichtbij waargenomen...
@@ -2515,8 +2533,8 @@ nl:
   people_added:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
-    #added an observation of a Human
-    observation: heeft een %{observation_link} van een %{taxon_link} toegevoegd
+    #added an observation
+    observation: heeft een <a href="%{observation_url}">waarneming</a> toegevoegd
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -2574,7 +2592,6 @@ nl:
     Bewaar deze combinatie van coördinaten, nauwkeurigheid, geoprivacy en locatienotities voor later gebruik.
   place: Plaats
   placeholder: Tijdelijke aanduiding
-  place_added_to_inat_by: "Plaats toegevoegd aan %{site_name} door"
   place_autocomplete_placeholder: Zion National Park, Miami, enz.
   place_deleted: Plaats verwijderd.
   place_geo:
@@ -2587,16 +2604,32 @@ nl:
       building: gebouw
       Canton: Kanton
       canton: kanton
+      City Building: Stadsgebouw
+      city building: stadsgebouw
       Colloquial: Gemeenzaam
       colloquial: gemeenzaam
       Commune: gemeente
       commune: gemeente
+      Constituency: Kiesdistrict
+      constituency: kiesdistrict
       Continent: Continent
       continent: continent
       Country: Land
       country: land
       County: Streek
       county: streek
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegatie
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegatie
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Departementsdeel
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: departementsdeel
       District: District
       district: district
       Division: Divisie
@@ -2637,6 +2670,12 @@ nl:
       open_space: open ruimte
       Parish: Parochie
       parish: parochie
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Poblacion
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: poblacion
+      Prefecture: Prefectuur
+      prefecture: prefectuur
       Prefecture_City: Prefectuurstad
       prefecture_city: prefectuurstad
       Point_of_Interest: Nuttige plaats
@@ -2645,6 +2684,8 @@ nl:
       postal_code: postcode
       Province: Provincie
       province: provincie
+      Regency: Regentschap
+      regency: regentschap
       Region: Regio
       region: regio
       Republic: Republiek
@@ -2663,6 +2704,10 @@ nl:
       subdivision: onderverdeling
       Suburb: Voorstad
       suburb: voorstad
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
       Supername: Overkoepelende naam
       supername: overkoepelende naam
       Territory: Territorium
@@ -2675,6 +2720,8 @@ nl:
       undefined: niet gedefiniëerd
       Unknown: Onbekend
       unknown: onbekend
+      Village_block: Dorpswijk
+      village_block: dorpswijk
       Zone: Zone
       zone: zone
   place_guess: plaats raden
@@ -2985,7 +3032,6 @@ nl:
   present: aanwezig
   press: Pers
   preview: Voorvertoning
-  preview_observations: Preview Waarnemingen
   preview_of_synced_observation: "<strong>Voorbeeld</strong>van een gesynchroniseerde waarneming. <a href=\"%{url}\">Ongedaan maken?</a>"
   preview_personal_message: "Ik zou graag willen dat je met me meedoet op %{site}, een website waar je je waarnemingen van planten en dieren kunt registreren, je levenslijst kunt bijhouden, en meer kunt leren over de natuur!"
   preview_your_message: Voorbeeld van je bericht
@@ -3028,6 +3074,7 @@ nl:
   project_group_description: Groep waartoe het project behoort
   project_home: Startpagina project
   project_icon: Projecticoon
+  project_journal: Projectdagboek
   project_id_or_url_slug: Project-ID of URL-slug, bijv. 333 of mijn project
   project_invitations: 'Project uitnodigingen'
   project_list: Projectlijst
@@ -3037,6 +3084,7 @@ nl:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a>-curatoren hebben enkele van je waarnemingen toegevoegd
   project_members: "%{project} Leden"
+  project_members_only: Alleen projectdeelnemers
   project_membership_model_description: Is je project voor iedereen toegankelijk of enkel voor genodigden?
   project_observations: Projectwaarnemingen
   project_post: Project Bericht
@@ -3253,12 +3301,6 @@ nl:
     must_be_in: moet in het taxon zitten
     must_be_coordinates_shareable_by_project_curators: waarnemer moet projectcuratoren toestaan om coordinaten te bekijken.
   running_total: Lopend Totaal
-  same_day_obscured: Een andere waarneming door deze persoon op deze dag is verborgen
-  same_day_obscured_desc: |
-    Wanneer coördinaten worden verduisterd vanwege een bedreigd taxon zijn alle andere waarnemingen van die persoon op die dag ook verduisterd om te voorkomen dat de coördinaten worden afgeleid van waarnemingen die in dezelfde periode zijn gemaakt. Waarnemers kunnen ook zelf kiezen om de coördinaten te verduisteren.
-  same_day_private: Een andere waarneming door deze persoon op deze dag is privé
-  same_day_private_desc: |
-    Wanneer coördinaten worden verborgen vanwege een bedreigd taxon zijn alle andere waarnemingen van die persoon op die dag ook verborgen om te voorkomen dat de coördinaten worden afgeleid van waarnemingen die in dezelfde periode zijn gemaakt. Waarnemers kunnen ook zelf kiezen om de coördinaten te verbergen.
   said: gezegd
   satellite: satelliet
   save: Opslaan
@@ -3371,7 +3413,9 @@ nl:
   show_taxa_from_place: "Toon taxa uit %{place}"
   show_total_counts: Toon totale aantallen
   show_uncountable_species: Laat ontelbare soorten zien
-  showing_one_to: Toon 1 -
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Toont de eerste %{x}
   showing_taxa_from_everywhere: "Toon taxa van overal"
   showing_taxa_from_place: "Toon taxa van %{place}"
   showing_x_of_y: '%{x} van de %{y} zichtbaar'
@@ -3506,8 +3550,8 @@ nl:
   stats: Statistieken
   stats_for_this_year_have_not_been_generated: Statistieken voor dit jaar zijn niet gegenereerd.
   status: Status
-  status_globally: "Wereldwijd %{status}"
-  status_in_place: "%{status} in %{place}"
+  status_globally: 'Wereldwijd "%{status}"'
+  status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Blijf en probeer het opnieuw
   still_no_luck?: Nog steeds geen geluk?
   still_needs_id?: Kan gemeenschap ID bevestigen/verbeteren?
@@ -3649,6 +3693,7 @@ nl:
   taxon_curators: Taxon curatoren
   taxon_framework_complete: "Volledig: ja"
   taxon_framework_deviations_with_count_html: "Afwijkend: %{count}"
+  taxon_framework_relationships_with_count_html: "Taxonkader-relaties: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Gemelde gedekte taxa: %{count}"
   taxon_framework_notes: Taxonkader-notities
@@ -3799,7 +3844,7 @@ nl:
   this_list_only_accepts_taxa_that_are_species_or_lower: Deze lijst accepteert alleen taxa die soorten of lager zijn
   this_observation: Deze waarneming
   this_observation_is_featured_on_x_sites:
-    one: Deze waarneming is te zien op 1 site
+    one: Deze waarneming is te zien op %{count} site
     other: Deze waarneming is te zien op %{count} sites
   this_observation_is_research_grade: Deze waarneming is van onderzoekskwaliteit!
   this_observation_was_created_using: "Deze waarneming is gemaakt met:"
@@ -3897,6 +3942,8 @@ nl:
   updating: Bezig met bijwerken ...
   unprocessable: Onverwerkbaar
   unpublish: Publicatie ongedaan maken
+  #Undo the action of resolving a flag
+  unresolve: Oplossing ongedaan maken
   unreview_all: Alles opnieuw nakijken
   unsubscribe: Uitschrijven
   unsuspend_user: Gebruiker niet schorsen
@@ -3920,6 +3967,7 @@ nl:
   update_with_site_content: "Bijwerken met %{site_name} content"
   updated: Bijgewerkt
   updated_by: Bijgewerkt door
+  updated_by_user_on_date_html: Bijgewerkt door %{user} op %{date}
   updated_daily: Dagelijks bijgewerkt
   updated_photo: Bijgewerkte foto
   upload: Uploaden
@@ -4080,8 +4128,6 @@ nl:
   view_observation_flags: Meldingen over waarneming bekijken
   view_observations_by_everyone: Alle waarnemingen weergeven
   view_observations_by_these_users: Bekijk waarnemingen van deze gebruikers
-  view_observations_causing_this_observation_to_be_obscured: |
-    Bekijk waarnemingen waardoor deze waarneming wordt vervaagd
   view_observations_of_this_taxon_by: Geef de waarnemingen weer van dit taxon door
   view_on: Bekijk op
   view_on_flickr: Bekijk op Flickr
@@ -4205,6 +4251,12 @@ nl:
     one: "%{count} waarneming mislukt"
     other: "%{count} waarnemingen mislukt"
   x_of_y: "%{x} o=van %{y}"
+  x_of_count_confirmed:
+    one: "%{x} van %{count} bevestigd"
+    other: "%{x} van %{count} bevestigd"
+  x_of_count_observed:
+    one: "%{x} van %{count} waargenomen"
+    other: "%{x} van %{count} waargenomen"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} van %{y} mensen (meer dan 2/3) zijn het er over eens dat hij het is"
   x_is_the_root_of_the_tree: "%{rank} %{name} is de wortel van de boom"
   x_project_journal: "%{name} van %{project}"
@@ -4671,6 +4723,46 @@ nl:
         taking_a_while: "Dit duurt even. Probeer alsjeblieft een van de onderstaande opties."
         date_range_help: "Max en min data in het formaat YYYY-MM-DD, bijv. 2015-01-17"
         created_on_help: "Datumwaarnemingen werden gecreëerd, niet waargenomen, bijv. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Andere opties</h3>
+          <p>
+          Grote exporten maken onze infrastructuur trager en moeilijker om wijzigingen te releasen. Hier zijn een aantal opties om te overwegen:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF neemt het grootste deel van onze waarnemingen met onderzoekskwaliteit over
+          en hun exporttools zijn uitstekend. GBIF-exports komen ook
+          met een <a href="https://www.doi.org/">DOI</a> die je kunt citeren als
+          je onderzoek publiceert op basis van de data die je exporteert, en deze
+          citaties zijn enorm nuttig voor ons omdat ze ons in staat stellen te zien
+          hoe iNat-gegevens worden gebruikt.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
+          Archive (DwC-A) voor GBIF</a>: dit is het <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
+          bestand dat we genereren voor GBIF, dus het bestand bevat als het goed is niets dat niet ook in GBIF zit, maar als je het hele archief wilt kun je het downloaden. Het is een zeer groot zip-bestand in CSV-formaat. Het wordt wekelijks bijgewerkt.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist
+          Challenge op FGVC 2017</a>: links naar 675.000 gelicentieerde
+          iNaturalist foto's van 5.089 soorten voor gebruik in computer vision
+          training. Aangemaakt in juni 2017, wordt niet bijgewerkt.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Unieke identifier voor de waarneming"
         species_guess: "Naam door de waarnemer ingegeven voor het waargenomen taxon"
@@ -5099,11 +5191,11 @@ nl:
           Let op: deze gebruikers zullen ALLE projectdetails, inclusief administratoren, kunnen bewerken.
         note_you_can_delete_the_time: |
           (Opmerking: je kunt de tijdzone en precieze tijden verwijderen als je hele dagen wilt noteren.)
+        only_display_member_observations: |
+          Toon alleen waarnemingen van projectleden (mensen die zich bij het project hebben aangesloten)
         or_drag_and_drop: (of sleep en plaats)
         please_specify_the_requirements: |
           Geef de vereisten op voor de waarnemingen die moeten worden toegevoegd aan dit project.
-        please_specify_the_requirements_html: |
-          Specificeer de eisen voor de waarnemingen die aan dit project moeten worden toegevoegd. Je kunt meerdere soorten, plaatsen, gebruikers of kwaliteitsklassen opgeven die automatisch worden opgenomen of laat een veld leeg als u er geen specifieke eis voor hebt. Verklaringen voor elk veld staan <a href="%{url}">hier</a>.
         project_background_color: Projectoverzicht Achtergrondkleur
         project_background_color_help: Zorg ervoor dat u een kleur kiest die donker genoeg is zodat de witte overlay leesbaar is.
         project_banner: Project banner (PNG, JPG, of GIF)
@@ -5253,6 +5345,7 @@ nl:
         obs_desc: Gemaakt in de afgelopen 7 dagen
         obs_id_d_desc: Gemaakt in de afgelopen 7 dagen met een ID (kan van de waarnemer zijn)
         observations_1_week_moving_window: Waarnemingen (meeschuivend tijdsbestek van 1 week)
+        observers_desc: Waarneming toegevoegd op deze dag
         other_desc_html: Gemaakt met andere applicaties <a href="%{url}">gebouwd door ontwikkelaars</a>
         recent_desc: Aangemeld in de afgelopen 7 dagen
         recent_w_0_obs: Recent met 0 wrn
@@ -5389,6 +5482,8 @@ nl:
           die waarnemingen invoeren maar het zal je opmerkelijke pieken in waarnemingen laten zien en zo
           lijkt het plat of dalend ondanks een toenemend aantal waarnemers,
           dat zou een verandering in het voorkomen kunnen suggereren.
+        charts_help_other: |
+          We tonen ook seizoensgebonden grafieken voor aantekeningen bij waarnemingen. Aantekeningen zijn een manier om metadata toe te voegen aan waarnemingen door gebruik te maken van een gecontrolleerd vocabulair van begrippen, bijv. of een waarneming een plant toont die bloeit of vruchten draagt.
         charts_help_relative_observations: |
           Het tonen van de frequentie als een relatief aandeel van alle waarnemingen helpt het effect van de algehele groei van de site uit te effenen. Als de site bijvoorbeeld groeit naarmate we elk jaar meer waarnemingen binnenkrijgen, krijgen we meer waarnemingen binnen van elk individueel taxon, wat niet betekent dat dat taxon vaker voorkomt, alleen maar dat er meer mensen het taxon waarnemen. Het tonen van het relatieve aandeel houdt in dat als er 100 waarnemingen in totaal zijn, waarvan 
           20 van dit taxon, het aandeel van dit taxon 0,2 is (20/100). Als er het jaar daarop
@@ -5410,6 +5505,7 @@ nl:
           "Plant Phenology=Flower Budding": Bloemknoppen
           "Plant Phenology=Flowering": Bloeiend
           "Plant Phenology=Fruiting": Vruchtdragend
+          "Plant Phenology=No Evidence of Flowering": Geen bewijs
           "Life Stage=egg": Ei
           "Life Stage=larva": Larve
           "Life Stage=teneral": Net verveld
@@ -6293,6 +6389,8 @@ nl:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan geen passende wetenschappelijke naam van een soort vinden voor dit lexicon
+              must_match_the_taxon_if_valid: |
+                moet overeenkomen met de naam van het taxon als dit een geldige wetenschappelijke naam is
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan

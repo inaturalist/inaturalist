@@ -56,7 +56,7 @@
           - if tfr_count > 0
             .col-xs-4
               %p
-                =t :taxon_framework_relationships_with_count_html, count: link_to( tfr_count, taxon_framework_relationships_path )
+                =t :taxon_framework_relationships_with_count_html, count: link_to( tfr_count, taxon_framework_relationships_path( taxon_framework_id: taxon_framework.id ) )
             - if deviations_count > 0
               
               - deviant_params = TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r != "match" && r != "alternate_position" }.map{ |r| [r, "1"] }.to_h

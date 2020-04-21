@@ -251,6 +251,7 @@ namespace :inaturalist do
       "blue",
       "brown",
       "browse",
+      "captive_observations",
       "casual",
       "checklist",
       "copyright",

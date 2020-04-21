@@ -16,6 +16,7 @@ module DarwinCore
       @opts[:licenses] ||= ["any"]
       @opts[:licenses] = @opts[:licenses].first if @opts[:licenses].size == 1
       @opts[:private_coordinates] ||= false
+      @opts[:taxon_private_coordinates] ||= false
       @opts[:photographed_taxa] ||= false
       @logger = @opts[:logger] || Rails.logger
       @logger.level = Logger::DEBUG if @opts[:debug]
@@ -26,12 +27,21 @@ module DarwinCore
 
       @place = Place.find_by_id(@opts[:place].to_i) || Place.find_by_name(@opts[:place])
       logger.debug "Found place: #{@place}"
-      @taxon = if @opts[:taxon].is_a?(::Taxon)
-        @opts[:taxon]
-      else
-        ::Taxon.find_by_id(@opts[:taxon].to_i) || ::Taxon.active.find_by_name(@opts[:taxon])
+      @taxa = [@opts[:taxon]].flatten.compact.map do |taxon|
+        if taxon.is_a?( Taxon )
+          taxon
+        else
+          taxon.to_s.split( "," ).map do |t|
+            ::Taxon.find_by_id( t.to_i ) || ::Taxon.active.find_by_name( t )
+          end
+        end
+      end.flatten.compact
+      logger.debug "Found taxa: "
+      unless @taxa.blank?
+        @taxa.each do |t|
+          logger.debug "\t#{t}"
+        end
       end
-      logger.debug "Found taxon: #{@taxon}"
       @project = if @opts[:project].is_a?(::Project)
         @opts[:project]
       else
@@ -169,7 +179,7 @@ module DarwinCore
       params = {}
       params[:license] = [@opts[:licenses]].flatten.compact.join( "," ) unless @opts[:licenses].include?( "ignore" )
       params[:place_id] = @place.id if @place
-      params[:taxon_id] = @taxon.id if @taxon
+      params[:taxon_ids] = @taxa.map(&:id) if @taxa
       params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality] === "verifiable" ? "research,needs_id" : @opts[:quality]
       params[:site_id] = @opts[:site_id]
@@ -220,10 +230,15 @@ module DarwinCore
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
-          observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
+          observations_in_batches( observations_params, preloads, label: "make_occurrence_data" ) do |o|
             benchmark(:obs) do
+              private_coordinates = if @opts[:private_coordinates]
+                true
+              elsif @opts[:taxon_private_coordinates]
+                [nil, Observation::OPEN].include?( o.geoprivacy )
+              end
               o = DarwinCore::Occurrence.adapt(o, view: fake_view,
-                private_coordinates: @opts[:private_coordinates],
+                private_coordinates: private_coordinates,
                 community_taxon: @opts[:community_taxon]
               )
               row = terms.map do |field, uri, default, method|
@@ -267,14 +282,22 @@ module DarwinCore
       else
         scope = scope.where( "is_active" )
       end
-      
-      scope = scope.where(@taxon.descendant_conditions[0]) if @taxon
-      
+
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        scope.find_each do |t|
-          DarwinCore::Taxon.adapt(t)
-          csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
+        if @taxa.blank?
+          scope.find_each do |t|
+            DarwinCore::Taxon.adapt(t)
+            csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
+          end
+        else
+          @taxa.each do |taxon|
+            taxon_scope = scope.where( taxon.descendant_conditions[0] )
+            taxon_scope.find_each do |t|
+              DarwinCore::Taxon.adapt(t)
+              csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
+            end
+          end
         end
       end
       
@@ -300,19 +323,27 @@ module DarwinCore
       elsif @opts[:quality] == "verifiable"
         scope = scope.where("observations.quality_grade IN (?, ?)", Observation::RESEARCH_GRADE, Observation::NEEDS_ID)
       end
-      
-      scope = scope.where(@taxon.descendant_conditions) if @taxon
 
       if @place
         scope = scope.joins("JOIN place_geometries ON place_geometries.place_id = #{@place.id}")
         scope = scope.where("ST_Intersects(place_geometries.geom, observations.private_geom)")
       end
-      
+
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        scope.find_each do |record|
-          DarwinCore::EolMedia.adapt(record)
-          csv << DarwinCore::EolMedia::TERMS.map{|field, uri, default, method| record.send(method || field)}
+        if @taxa.blank?
+          scope.find_each do |record|
+            DarwinCore::EolMedia.adapt(record)
+            csv << DarwinCore::EolMedia::TERMS.map{|field, uri, default, method| record.send(method || field)}
+          end
+        else
+          @taxa.each do |taxon|
+            taxon_scope = scope.where( taxon.descendant_conditions )
+            taxon_scope.find_each do |record|
+              DarwinCore::EolMedia.adapt(record)
+              csv << DarwinCore::EolMedia::TERMS.map{|field, uri, default, method| record.send(method || field)}
+            end
+          end
         end
       end
       

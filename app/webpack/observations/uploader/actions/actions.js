@@ -69,6 +69,14 @@ const actions = class actions {
     return { type: types.SELECT_ALL };
   }
 
+  static insertCardsBefore( cardIds, beforeCardId ) {
+    return {
+      type: types.INSERT_CARDS_BEFORE,
+      cardIds,
+      beforeCardId
+    };
+  }
+
   static createBlankObsCard( ) {
     return function ( dispatch, getState ) {
       dispatch( { type: types.CREATE_BLANK_OBS_CARD } );
@@ -102,11 +110,9 @@ const actions = class actions {
     };
   }
 
-  static onFileDrop( droppedFiles, e ) {
+  static onFileDrop( droppedFiles, options = {} ) {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
-      // skip drops onto cards
-      if ( $( "ul.obs li" ).has( e.nativeEvent.target ).length > 0 ) { return; }
       const obsCards = { };
       const files = { };
       let i = 0;
@@ -131,11 +137,17 @@ const actions = class actions {
         dispatch( actions.appendObsCards( obsCards ) );
         dispatch( actions.appendFiles( files ) );
         dispatch( actions.uploadFiles( ) );
+        if ( options.beforeCardId ) {
+          dispatch( actions.insertCardsBefore(
+            Object.keys( obsCards ),
+            options.beforeCardId
+          ) );
+        }
       }
     };
   }
 
-  static onFileDropOnCard( droppedFiles, e, obsCard ) {
+  static onFileDropOnCard( droppedFiles, obsCard ) {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
       const files = { };
@@ -224,6 +236,83 @@ const actions = class actions {
     };
   }
 
+  static duplicateObsCards( obsCards ) {
+    return function ( dispatch, getState ) {
+      let serialId = new Date( ).getTime( );
+      const { files, obsPositions } = getState( ).dragDropZone;
+      const newCards = [];
+      // for each obs card
+      _.each( obsCards, c => {
+        // make a new card
+        const id = serialId;
+        const newCard = new ObsCard( Object.assign( { },
+          _.pick( c, [
+            "accuracy",
+            "bounds",
+            "captive",
+            "date",
+            "description",
+            "geoprivacy",
+            "latitude",
+            "locality_notes",
+            "longitude",
+            "manualPlaceGuess",
+            "modified",
+            // "observation_field_values",
+            "positional_accuracy",
+            // "projects",
+            // "species_guess",
+            "tags",
+            // "taxon_id",
+            "zoom"
+          ] ),
+          { id } ) );
+        // update that card with the old card's attributes
+        dispatch( actions.appendObsCards( { [newCard.id]: newCard } ) );
+        newCards.push( newCard );
+        // insert the new card after the old one
+        const cardPosition = obsPositions.indexOf( c.id );
+        const beforeCardId = cardPosition === obsPositions.length - 1
+          ? null
+          : obsPositions[cardPosition + 1];
+        dispatch( actions.insertCardsBefore( [newCard.id], beforeCardId ) );
+        const cardFiles = _.filter( files, f => f.cardID === c.id );
+        if ( cardFiles.length > 0 ) {
+          const newFiles = {};
+          _.each( cardFiles, cf => {
+            // make a new file and update with the old file's attributes
+            // TODO Make it so you don't upload a file twice. Responding to an
+            // upload event should just upload all the local file records
+            // associated with that upload
+            if ( cf.uploadState === "uploaded" ) {
+              newFiles[serialId] = new DroppedFile( Object.assign( {},
+                _.pick( cf, ["name", "type", "uploadState", "sort", "metadata", "photo", "serverMetadata"] ),
+                {
+                  id: serialId,
+                  cardID: newCard.id
+                } ) );
+            } else {
+              newFiles[serialId] = new DroppedFile( Object.assign( {},
+                _.pick( cf, ["name", "type", "sort", "metadata", "photo", "preview", "file"] ),
+                {
+                  id: serialId,
+                  cardID: newCard.id,
+                  uploadState: "pending"
+                } ) );
+            }
+            serialId += 1;
+          } );
+          dispatch( actions.appendFiles( newFiles ) );
+        }
+        serialId += 1;
+      } );
+      dispatch( actions.selectObsCards( _.reduce( newCards, ( o, card ) => {
+        o[card.id] = true;
+        return o;
+      }, { } ) ) );
+    };
+  }
+
   static combineSelected( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
@@ -267,16 +356,19 @@ const actions = class actions {
     };
   }
 
-  static newCardFromMedia( media ) {
+  static newCardFromMedia( media, options = {} ) {
     return function ( dispatch ) {
       const time = new Date( ).getTime( );
       const obsCards = { [time]: new ObsCard( { id: time } ) };
       dispatch( actions.appendObsCards( obsCards ) );
       dispatch( actions.updateFile( media.file, { cardID: time, sort: time } ) );
+      if ( options.beforeCardId !== undefined ) {
+        dispatch( actions.insertCardsBefore( [time], options.beforeCardId ) );
+      }
 
       const fromCard = new ObsCard( Object.assign( { }, media.obsCard ) );
       delete fromCard.files[media.file.id];
-      // the card from where the photo was move can be removed if it has no data
+      // the card from where the photo was moved can be removed if it has no data
       // or if its data is untouched from when it was imported
       if ( fromCard.blank( ) || ( _.isEmpty( fromCard.files ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
@@ -382,7 +474,8 @@ const actions = class actions {
         failed: 0
       };
       let nextToSave;
-      _.each( s.dragDropZone.obsCards, c => {
+      _.each( s.dragDropZone.obsPositions, cardID => {
+        const c = s.dragDropZone.obsCards[cardID];
         stateCounts[c.saveState] = stateCounts[c.saveState] || 0;
         stateCounts[c.saveState] += 1;
         if ( c.saveState === "pending" && !nextToSave ) {
@@ -562,7 +655,31 @@ const actions = class actions {
           }
         }, 100 );
       } ).catch( e => {
-        console.log( "Upload failed:", e );
+        // console.log( "Upload failed:", e );
+        file.saveTries = ( parseInt( file.saveTries, 0 ) || 0 ) + 1;
+        if (
+          e.response
+          && e.response.status === 503
+          && [
+            // Request Timeout: we probably never respond with this, but just in case
+            408,
+            // Too Many Requests: theoretically normal users might hit our rate
+            // limits, but unlikely
+            429,
+            // Service Unavailable: this might happen during downtime, but is
+            // intended to handle intermittent cases where Varnish doesn't seem to
+            // find a working app server
+            503
+          ].indexOf( e.response.status ) >= 0
+          && file.saveTries <= 4
+        ) {
+          const waitFor = file.saveTries * 3000;
+          setTimeout( ( ) => {
+            dispatch( actions.uploadImage( file ) );
+          }, waitFor );
+          return;
+        }
+        file.saveTries = 0;
         dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
         setTimeout( ( ) => {
           dispatch( actions.uploadFiles( ) );
@@ -648,6 +765,13 @@ const actions = class actions {
           hideCancel: true
         }
       } ) );
+    };
+  }
+
+  static duplicateSelected( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      dispatch( actions.duplicateObsCards( s.dragDropZone.selectedObsCards ) );
     };
   }
 };

@@ -16,19 +16,22 @@ class ChooserPopover extends React.Component {
   }
 
   componentWillReceiveProps( newProps ) {
+    const { choices } = this.state;
     this.setState( {
-      current: this.state.choices.indexOf( newProps.chosen || newProps.defaultChoice )
+      current: choices.indexOf( newProps.chosen || newProps.defaultChoice )
     } );
   }
 
   chooseCurrent( ) {
-    const currentChoice = this.state.choices[this.state.current];
+    const { choices, current } = this.state;
+    const { setChoice, clearChoice } = this.props;
+    const currentChoice = choices[current];
     // Dumb, but I don't see a better way to explicity close the popover
     $( "body" ).click( );
     if ( currentChoice ) {
-      this.props.setChoice( currentChoice );
+      setChoice( currentChoice );
     } else {
-      this.props.clearChoice( );
+      clearChoice( );
     }
   }
 
@@ -46,40 +49,40 @@ class ChooserPopover extends React.Component {
       choiceIconClass,
       choiceLabels
     } = this.props;
+    const { current, choices } = this.state;
     return (
       <OverlayTrigger
         trigger="click"
         placement="bottom"
         rootClose
         container={container}
-        overlay={
-          <Popover id={ id } className="ChooserPopover RecordChooserPopover">
+        overlay={(
+          <Popover id={id} className="ChooserPopover RecordChooserPopover">
             <ul className="list-unstyled">
               { hideClear ? null : (
                 <li
-                  className={this.state.current === -1 ? "current" : ""}
+                  className={current === -1 ? "current pinned" : "pinned"}
                   onMouseOver={( ) => {
                     this.setState( { current: -1 } );
                   }}
                   onClick={( ) => this.chooseCurrent( )}
-                  className="pinned"
-                  style={{ display: this.props.chosen ? "block" : "none" }}
+                  style={{ display: chosen ? "block" : "none" }}
                 >
-                  <i className="fa fa-times"></i>
+                  <i className="fa fa-times" />
                   { I18n.t( "clear" ) }
                 </li>
               ) }
-              { _.map( this.state.choices, ( s, i ) => (
+              { _.map( choices, ( s, i ) => (
                 <li
                   key={`source-chooser-source-${s}`}
-                  className={ `media ${this.state.current === i ? "current" : ""}` }
+                  className={`media ${current === i ? "current" : ""}`}
                   onClick={( ) => this.chooseCurrent( )}
                   onMouseOver={( ) => {
                     this.setState( { current: i } );
                   }}
                 >
                   <div className="media-left">
-                    { choiceIconClass ? <i className={`media-object ${choiceIconClass}`}></i> : null }
+                    { choiceIconClass ? <i className={`media-object ${choiceIconClass}`} /> : null }
                   </div>
                   <div className="media-body">
                     { I18n.t( choiceLabels[s] || s ) }
@@ -88,17 +91,18 @@ class ChooserPopover extends React.Component {
               ) ) }
             </ul>
           </Popover>
-        }
+        )}
       >
         <div
           className={
             `ChooserPopoverTrigger RecordChooserPopoverTrigger ${chosen ? "chosen" : ""} ${className}`
           }
         >
-          { preIconClass ? <i className={`${preIconClass} pre-icon`}></i> : null }
+          { preIconClass ? <i className={`${preIconClass} pre-icon`} /> : null }
           { label ? ( <label>{ label }</label> ) : null }
-          { I18n.t( choiceLabels[chosen] || chosen || choiceLabels[defaultChoice] || defaultChoice ) }
-          { postIconClass ? <i className={`${postIconClass} post-icon`}></i> : null }
+          { I18n.t( choiceLabels[chosen] || chosen
+            || choiceLabels[defaultChoice] || defaultChoice ) }
+          { postIconClass ? <i className={`${postIconClass} post-icon`} /> : null }
         </div>
       </OverlayTrigger>
     );

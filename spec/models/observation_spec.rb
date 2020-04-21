@@ -85,6 +85,8 @@ describe Observation do
         ["2019-01-29 9:21:46 a. m. GMT-05:00", month: 1, day: 29, hour: 9, offset: "-05:00"],
 
         ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
+        ["Thu Feb 20 2020 11:46:32 GMT+1030 (GMT+10:30)", month: 2, day: 20, hour: 11, offset: "+10:30"],
+        ["Thu Feb 20 2020 11:46:32 GMT+10:30", month: 2, day: 20, hour: 11, offset: "+10:30"],
         # ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
         ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"],
         ["2017-03-12 12:17:00 pm PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
@@ -434,6 +436,29 @@ describe Observation do
         user = User.make!( locale: "es-MX" )
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude, user: user )
         expect( o.place_guess ).to match /#{ I18n.t( "places_name.mexico", locale: user.locale ) }/
+      end
+      it "should get changed when coordinates are obscured" do
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
+        original_place_guess = o.place_guess
+        o.update_attributes( geoprivacy: Observation::OBSCURED )
+        o.reload
+        expect( o.place_guess ).not_to be_blank
+        expect( o.place_guess ).not_to eq original_place_guess
+      end
+      it "should get removed when coordinates are hidden" do
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
+        o.update_attributes( geoprivacy: Observation::PRIVATE )
+        o.reload
+        expect( o.place_guess ).to be_blank
+      end
+      it "should get restored when geoprivacy changes from private to obscured" do
+        o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude, geoprivacy: Observation::PRIVATE )
+        expect( o.place_guess ).to be_blank
+        expect( o.latitude ).to be_blank
+        o.update_attributes( geoprivacy: Observation::OBSCURED )
+        o.reload
+        expect( o.latitude ).not_to be_blank
+        expect( o.place_guess ).not_to be_blank
       end
     end
   
@@ -2539,6 +2564,8 @@ describe Observation do
 
   describe "update_stats_for_observations_of" do
     elastic_models( Identification )
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     it "should work" do
       parent = Taxon.make!(rank: Taxon::GENUS)
@@ -3955,42 +3982,6 @@ describe Observation, "taxon_geoprivacy" do
     o.reload
     expect( o ).not_to be_coordinates_private
     expect( o ).to be_coordinates_obscured
-  end
-end
-
-describe Observation, "prefers_auto_obscuration" do
-  elastic_models( Observation )
-  describe "when false" do
-    let(:o) do
-      Observation.make!(
-        latitude: 1,
-        longitude: 1,
-        observed_on_string: 2.days.ago.to_date.to_s,
-        prefers_auto_obscuration: false
-      )
-    end
-    it "should override taxon obscuration" do
-      o.update_attributes( taxon: make_threatened_taxon )
-      o.reload
-      expect( o ).not_to be_coordinates_obscured
-    end
-    it "should override context obscuration" do
-      o.user.update_attributes( prefers_coordinate_interpolation_protection_test: true )
-      o2 = Observation.make!(
-        latitude: 1,
-        longitude: 1,
-        observed_on_string: o.observed_on_string,
-        taxon: make_threatened_taxon,
-        user: o.user
-      )
-      Delayed::Worker.new.work_off
-      o.reload
-      expect( o ).not_to be_coordinates_obscured
-    end
-    it "should not override user obscuration" do
-      o.update_attributes( geoprivacy: Observation::OBSCURED )
-      expect( o ).to be_coordinates_obscured
-    end
   end
 end
 
