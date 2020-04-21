@@ -228,7 +228,14 @@ class Suggestions extends React.Component {
                   label={I18n.t( "source" )}
                   container={$( ".ObservationModal" ).get( 0 )}
                   chosen={query.source}
-                  choices={["observations", "rg_observations", "checklist", "misidentifications", "visual"]}
+                  choices={[
+                    "observations",
+                    "rg_observations",
+                    "captive_observations",
+                    "checklist",
+                    "misidentifications",
+                    "visual"
+                  ]}
                   choiceLabels={{ visual: "visually_similar" }}
                   defaultChoice="observations"
                   preIconClass={false}

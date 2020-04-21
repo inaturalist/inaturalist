@@ -513,11 +513,11 @@ body > [role="dialog"] .ObservationModal {
     .TaxonMap,
     .details {
       width: 50%;
+    }
+    .details {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    }
-    .details {
       padding-left: 20px;
       ul {
         padding-left: 0px;
