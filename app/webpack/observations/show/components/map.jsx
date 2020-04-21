@@ -4,8 +4,7 @@ import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import { Dropdown } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { COLORS } from "../../../shared/util";
-import { urlForTaxon } from "../../../taxa/shared/util";
+import { urlForTaxon, taxonLayerForTaxon } from "../../../taxa/shared/util";
 import TaxonMap from "../../identify/components/taxon_map";
 import MapDetails from "./map_details";
 
@@ -23,8 +22,6 @@ class Map extends React.Component {
       config,
       updateCurrentUser
     } = this.props;
-    const currentUserPrefersMedialessObs = config.currentUser
-      && config.currentUser.prefers_medialess_obs_maps;
     let geoprivacyIconClass = "fa fa-map-marker";
     let geoprivacyTitle = I18n.t( "location_is_public" );
     let geoprivacyLabel = I18n.t( "location_unknown" );
@@ -121,26 +118,13 @@ class Map extends React.Component {
         <TaxonMap
           key={mapKey}
           reloadKey={mapKey}
-          taxonLayers={[{
-            taxon: obsForMap.taxon,
-            observationLayers: [
-              {
-                label: I18n.t( "verifiable_observations" ),
-                verifiable: true,
-                observation_id: observation.obscured && observation.private_geojson && obsForMap.id
-              },
-              {
-                label: I18n.t( "observations_without_media" ),
-                verifiable: false,
-                color: COLORS.maroon,
-                disabled: !currentUserPrefersMedialessObs,
-                observation_id: observation.obscured && observation.private_geojson && obsForMap.id,
-                onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
-              }
-            ],
-            places: { disabled: true },
-            gbif: { disabled: true, legendColor: "#F7005A" }
-          }]}
+          taxonLayers={[
+            taxonLayerForTaxon( obsForMap.taxon, {
+              currentUser: config.currentUser,
+              updateCurrentUser,
+              observation
+            } )
+          ]}
           observations={[obsForMap]}
           zoomLevel={observation.map_scale || 8}
           showAccuracy

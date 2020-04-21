@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
-import { urlForTaxon } from "../../../taxa/shared/util";
+import { urlForTaxon, taxonLayerForTaxon } from "../../../taxa/shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import PlaceChooserPopover from "../../../taxa/shared/components/place_chooser_popover";
 import ObservationPhotoAttribution from "../../../shared/components/observation_photo_attribution";
@@ -94,8 +94,6 @@ class Suggestions extends React.Component {
       updateCurrentUser
     } = this.props;
     let detailTaxonImages;
-    const currentUserPrefersMedialessObs = config.currentUser
-      && config.currentUser.prefers_medialess_obs_maps;
     if ( detailTaxon && detailTaxon.taxonPhotos && detailTaxon.taxonPhotos.length > 0 ) {
       // Note key is critical here. See comment below on renderItem
       detailTaxonImages = detailTaxon.taxonPhotos.map( taxonPhoto => ( {
@@ -396,23 +394,12 @@ class Suggestions extends React.Component {
                     observations={[observation]}
                     gestureHandling="auto"
                     reloadKey={`taxondetail-${detailTaxon.id}`}
-                    taxonLayers={[{
-                      taxon: detailTaxon,
-                      observationLayers: [
-                        { label: I18n.t( "verifiable_observations" ), verifiable: true },
-                        {
-                          label: I18n.t( "observations_without_media" ),
-                          verifiable: false,
-                          disabled: !currentUserPrefersMedialessObs,
-                          onChange: e => updateCurrentUser( {
-                            prefers_medialess_obs_maps: e.target.checked
-                          } )
-                        }
-                      ],
-                      gbif: { disabled: true },
-                      places: true,
-                      ranges: true
-                    }]}
+                    taxonLayers={[
+                      taxonLayerForTaxon( detailTaxon, {
+                        currentUser: config.currentUser,
+                        updateCurrentUser
+                      } )
+                    ]}
                     currentUser={config.currentUser}
                     updateCurrentUser={updateCurrentUser}
                   />
