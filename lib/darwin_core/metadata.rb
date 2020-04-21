@@ -26,9 +26,13 @@ module DarwinCore
           }
         }
       } ) )
+      if es_response.aggregations.start_date && es_response.aggregations.start_date.value_as_string
+        @start_date = Date.parse( es_response.aggregations.start_date.value_as_string )
+      end
+      if es_response.aggregations.end_date && es_response.aggregations.end_date.value_as_string
+        @end_date = Date.parse( es_response.aggregations.end_date.value_as_string )
+      end
       @extent     = es_response.aggregations.bbox.bounds if es_response.aggregations.bbox
-      @start_date = Date.parse( es_response.aggregations.start_date.value_as_string ) if es_response.aggregations.start_date
-      @end_date   = Date.parse( es_response.aggregations.end_date.value_as_string ) if es_response.aggregations.end_date
       @license    = options[:license]
       @uri        = ::FakeView.observations_url( @observations_params )
       @taxa       = ::Taxon.where( id: @observations_params[:taxon_ids] ).limit( 200 ).all
