@@ -673,6 +673,7 @@ sv:
   cant_merge_a_taxon_with_itself: Det går inte slå ihop en taxon med sig själv.
   captive: I fångenskap
   captive_cultivated: I fångenskap / odlad
+  captive_observations: Observationer i fångenskap
   card: Kort
   casual: informell
   casual_: Informell
@@ -1713,6 +1714,9 @@ sv:
   label_to_group_a_batch_of_taxon_changes: Etikett för att gruppera taxonändringar
   location_private: Privat plats
   location_unknown: Plats okänd
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Lås zoomnivå
   language_slash_type: Språk / Typ
   #Large photo size
   large: stor
