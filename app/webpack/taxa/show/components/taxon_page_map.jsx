@@ -68,7 +68,7 @@ const TaxonPageMap = ( {
               onChange: e => updateCurrentUser( { prefers_captive_obs_maps: e.target.checked } )
             }
           ],
-          gbif: { disabled: true },
+          gbif: { disabled: true, legendColor: "#F7005A" },
           places: true,
           ranges: true
         }]}

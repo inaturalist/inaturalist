@@ -4,6 +4,7 @@ import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import { Dropdown } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import { COLORS } from "../../../shared/util";
 import { urlForTaxon } from "../../../taxa/shared/util";
 import TaxonMap from "../../identify/components/taxon_map";
 import MapDetails from "./map_details";
@@ -131,13 +132,14 @@ class Map extends React.Component {
               {
                 label: I18n.t( "observations_without_media" ),
                 verifiable: false,
+                color: COLORS.maroon,
                 disabled: !currentUserPrefersMedialessObs,
                 observation_id: observation.obscured && observation.private_geojson && obsForMap.id,
                 onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
               }
             ],
             places: { disabled: true },
-            gbif: { disabled: true }
+            gbif: { disabled: true, legendColor: "#F7005A" }
           }]}
           observations={[obsForMap]}
           zoomLevel={observation.map_scale || 8}
