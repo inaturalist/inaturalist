@@ -1636,6 +1636,9 @@ de:
   labels: Etikett
   location_private: Standort privat
   location_unknown: Standort unbekannt
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Zoomstufe fixieren
   language_slash_type: Sprache/Typ
   #Large photo size
   large: groß
@@ -3897,6 +3900,7 @@ de:
   users_latest_observations_on_site: "Die jüngsten Beobachtungen von %{user} bei %{site}"
   users_profile: "%{user}s Profil"
   users_projects: "Projekte von %{user}"
+  users_year_on_site: "Das Jahr %{year} von %{user} auf %{site}"
   valid_options_are: Gültige Optionen sind
   value: Wert
   values: Werte
