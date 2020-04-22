@@ -127,6 +127,7 @@ class Taxon < ActiveRecord::Base
   validate :only_inactive_children_if_inactive
   validate :active_parent_if_active
   validate :has_ancestry_and_active_if_taxon_framework
+  validate :cannot_edit_parent_during_content_freeze
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -455,7 +456,15 @@ class Taxon < ActiveRecord::Base
     const_set('ICONIC_TAXA_BY_NAME', Taxon::ICONIC_TAXA.index_by(&:name))
   end
 
-  # Callbacks ###############################################################  
+  # Callbacks ###############################################################
+
+  def cannot_edit_parent_during_content_freeze
+    return unless CONFIG.content_freeze_enabled
+    return if new_record?
+    return unless ancestry_changed?
+    errors.add( :parent_id, I18n.t( "cannot_be_changed_during_a_content_freeze" ) )
+  end
+
   def handle_after_move
     return true unless ancestry_changed?
     set_iconic_taxon

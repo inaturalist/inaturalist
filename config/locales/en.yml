@@ -4634,6 +4634,14 @@ en:
         you chose en it will not appear for people who have chosen en-US. If you
         want to target both, choose both. If you want to show an announcement
         for all members of a site, just leave this blank.
+    content_freeze:
+      content_freeze: Content Freeze
+      during_this_time: |
+        During the content freeze some types of content cannot be created, destroyed, or modified.
+      this_functionality_will_return: |
+        This functionality will return as soon as the content freeze is over.
+      we_expect_this_functionality_will_return_by_date: |
+        We expect this functionality to return by %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
