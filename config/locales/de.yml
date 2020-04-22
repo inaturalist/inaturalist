@@ -645,6 +645,7 @@ de:
   cant_merge_a_taxon_with_itself: Kann kein Taxon mit sich selbst zusammenführen.
   captive: Haltung/Zucht
   captive_cultivated: In Haltung/kultiviert
+  captive_observations: Beobachtungen in Haltung/Zucht
   card: Karte
   casual: Hobbyqualität
   casual_: Hobbyqualität
@@ -1914,6 +1915,7 @@ de:
   mentioned_you_in_noun_html: "%{user} erwähnte dich in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} erwähnte dich in %{noun} von %{by}"
   mentioned_you_in_noun_by_user_html: "%{user} erwähnte dich hier: %{noun} von %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} erwähnte dich hier: %{noun} von dir"
   mentioned_you_in_a_x_on_noun_html: "%{user} erwähnte dich in einem %{x} über %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} erwähnte dich in einem %{x} am %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} erwähnte dich in einem %{x} über %{noun} von %{by}"
@@ -1926,6 +1928,8 @@ de:
   merging_places: Gebiete zusammenführen
   message: Nachricht
   message_deleted: Nachricht gelöscht
+  message_from_user_at_time: Von %{user} um %{time}
+  message_from_user_on_date: Von %{user} am %{date}
   messages: Nachrichten
   misidentifications: Fehlbestimmungen
   misleading_or_illegal_content_html: |
@@ -1936,18 +1940,25 @@ de:
   momentjs:
     shortRelativeTime:
       future: "in %s"
+      past: "%s"
       #Short text representing 1 second in the past
       s: "1 s"
       #Short text representing 1 minute in the past
       m: "1 min"
+      #Short text representing %d minutes in the past
+      mm: "%d min"
       #Short text representing 1 hour in the past
       h: "1 h"
+      #Short text representing %d hours in the past
+      hh: "%d Std."
       #Short text representing 1 day in the past
       d: "1 d"
       #Short text representing %d days in the past
       dd: "%dT"
       #Short text representing 1 month in the past
       M: "1Monat"
+      #Short text representing %d months in the past
+      MM: "%d Mo"
       #Short text representing 1 year in the past
       'y': "1 J"
       #Short text representing %d years in the past
@@ -2203,6 +2214,10 @@ de:
   observation_brief_something_on_day_at_time_by_user: "Etwas am %{day} um %{time} von %{user}"
   observation_brief_something_on_day_by_user: "Etwas am %{day} von %{user}"
   observation_brief_something_by_user: "Irgendetwas von %{user}"
+  observation_brief_something_from_place: "Etwas aus %{place}"
+  observation_brief_something_from_place_by_user: "Etwas aus %{place} von %{user}"
+  observation_brief_something_from_place_on_day: "Etwas aus %{place} am %{day}"
+  observation_brief_something_from_place_on_day_by_user: "Etwas aus %{place} am %{day} von %{user}"
   observation_brief_something_from_place_on_day_at_time: "Etwas von %{place} am %{day} um %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Etwas von %{place} am %{day} um %{time} von %{user}"
   observation_brief_taxon_on_day: "%{taxon} am %{day}"
@@ -3446,6 +3461,8 @@ de:
   species_taxon_name: Art- / Taxonname
   species_unknown: Art unbekannt
   specify_the_reason_youre_flagging: Gib den Grund an, warum du diesen Eintrag meldest
+  #Abbreviation for "source"
+  src: 'aus:'
   standard: Standard
   start: Beginn
   start_a_new_project: Neues Projekt beginnen
@@ -3536,10 +3553,61 @@ de:
   taxon_autocomplete_placeholder: Vögel, Monarchen, etc.
   taxon_geoprivacy: Taxon-Geoprivatsphäre
   taxon_is_a_rank: "%{taxon} ist ein %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der %{iconic_taxon} mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der %{iconic_taxon} mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Amphibien mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Amphibien mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Vögel mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Vögel mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Säugetiere mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Säugetiere mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Reptilien mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Reptilien mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Pflanzen mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Pflanzen mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Strahlenfische mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Strahlenfische mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Tiere mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Tiere mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Insekten mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Insekten mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Spinnentiere mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Spinnentiere mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Pilze mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Pilze mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Einzeller mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Einzeller mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Weichtiere mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Weichtiere mit %{count} Beobachtungen"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: "%{taxon} ist eine %{rank} der Chromista (Braunalgen und Verwandte) mit 1 Beobachtung"
+    other: "%{taxon} ist eine %{rank} der Chromista (Braunalgen und Verwandte) mit %{count} Beobachtungen"
   taxon_is_kingdom_of_life_with_x_observations:
     one: "%{taxon} ist ein Reich des Lebens mit 1 Beobachtung"
     other: "%{taxon} ist ein Reich des Lebens mit %{count} Beobachtungen"
   taxon_is_threatened_coordinates_hidden: Taxon ist gefährdet, Koordinaten automatisch verborgen
+  taxon_is_threatened_coordinates_hidden_desc: |
+    Eines der Taxa, welches als Bestimmung vorgeschlagen wird, oder eines der Taxa, das
+    irgendeines dieser Taxa enthält, ist als selten und/oder bedroht eingeordnet, sodass der
+    Standort dieser Beobachtung versteckt wurde.
+  taxon_is_threatened_coordinates_obscured: Taxon ist bedroht, Koordinaten werden standardmäßig verdeckt
+  taxon_is_threatened_coordinates_obscured_desc: |
+    Eines der Taxa, welches als Bestimmung vorgeschlagen wird, oder eines der Taxa, das
+    irgendeines dieser Taxa enthält, ist als selten und/oder bedroht eingeordnet, sodass der
+    Standort dieser Beobachtung versteckt wurde.
   taxonomy: Taxonomie
   taxon_change_must_be_committed_to_update_records: Die Taxon-Änderung muss eingereicht werden, um Aufzeichnungen zu aktualisieren.
   taxon_deleted: Taxon gelöscht.
@@ -3672,6 +3740,7 @@ de:
     Diese Beobachtungen wurden noch nicht hochgeladen.
   they_already_have_iNat_accounts: "...sie haben bereits %{site_name}-Accounts"
   they_have_been_invited: ...sie wurden bereits eingeladen
+  third_person_possessive_singular: "%{noun} von %{object_phrase}"
   third_person_possessive_plural: "%{object_phrase}'s %{noun}"
   this: dies
   this_bioblitz_beings_in: Dieser Bioblitz beginnt in
@@ -3744,7 +3813,7 @@ de:
   translated_languages: Übersetzte Sprachen
   'true': 'Wahr'
   trending: Im Trend
-  trends: Tendenzen
+  trends: Im Trend
   trip_target_list_info: 'Alle von dieser Zielliste abgedeckten Arten, die nicht innerhalb des Radius und der Dauer dieser Reise beobachtet wurden, werden als Abwesenheit interpretiert. <a href="/pages/trips">Weitere Informationen</a>.'
   trusted: Vertrauenswürdig
   trusted_project?: Vertrauenswürdiges Projekt?
@@ -3789,6 +3858,9 @@ de:
   update_selected_taxa: Ausgewählte Taxa aktualisieren
   update_subscription: Abonnement aktualisieren
   update_subscription_preferences: Abonnement-Einstellungen aktualisieren
+  update_x_selected_taxa:
+    one: "1 ausgewähltes Taxon aktualisieren"
+    other: "%{count} ausgewählte Taxa aktualisieren"
   update_your_content: Deinen Inhalt aktualisieren
   update_with_eol_content: Mit EOL-Inhalt aktualisieren
   update_with_site_content: "Mit dem Inhalt von %{site_name} aktualisieren"
@@ -3808,6 +3880,7 @@ de:
   uploader:
     errors:
       file_too_big: Datei muss kleiner als %{megabytes} MB sein
+      unsupported_file_type: Dateityp nicht unterstützt. Wir akzeptieren JPG, PNG, GIF, WAV, AAC, MP3 und MP4 (nur Audio)
     resize_tip: |
       Wenn deine Fotodateien zu groß sind, versuche sie auf maximal 2048 bis 2048 Pixel zuzuschneiden. Dies geschieht sowieso mit allen Fotos auf dem Server
       und sorgt für einen schnelleren Upload.
@@ -3839,12 +3912,16 @@ de:
     one: 1 Mal benutzt
     other: '%{count} Mal benutzt'
   user: Benutzer
+  user1_and_user2_faved_this_observation: "%{user1} und %{user2} haben diese Beobachtung zu ihren Favoriten hinzugefügt"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} und %{x_others} haben diese Beobachtung zu ihren Favoriten hinzugefügt"
   user_added_a_comment_html: "Kommentar hinzugefügt von: %{user}"
   user_added_a_fave_html: "%{user} hat einen Favoriten hinzugefügt"
   user_added_a_flag_html: "%{user} hat etwas gemeldet"
   user_added_a_project_invitation_html: "%{user} hat eine Projekt-Einladung hinzugefügt"
   user_added_a_x: "%{user}: %{x} hinzugefügt"
   user_added_a_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
+  user_added_a_x_to_noun_by_user_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
+  user_added_a_x_to_noun_by_you_html: "%{user}: %{x} zu %{noun} von dir hinzugefügt"
   user_added_a_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
   user_added_an_identification_html: "Bestimmung hinzugefügt von: %{user}"
   user_added_an_observation_field_html: '%{user} hat einen Wert für %{field_name} zu einer Beobachtung von %{owner} hinzugefügt'
@@ -3852,6 +3929,8 @@ de:
   user_added_an_observation_html: "%{user} hat eine Beobachtung hinzugefügt"
   user_added_an_x: "%{user}: %{x} hinzugefügt"
   user_added_an_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
+  user_added_an_x_to_noun_by_user_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
+  user_added_an_x_to_noun_by_you_html: "%{user}: %{x} zu %{noun} von dir hinzugefügt"
   user_added_an_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
   user_added_x_observations_html: "%{user} hat %{x} Beobachtungen hinzugefügt"
   user_already_authenticated: Der Benutzer ist bereits authentifiziert
@@ -3866,7 +3945,10 @@ de:
   user_disagrees_this_is_taxon: "%{user} ist nicht der Meinung, dass es sich um %{taxon} handelt"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   user_faved_a_noun_by_owner: "%{user}: %{noun} von %{owner} favorisiert"
+  user_faved_this_observation: "%{user} hat diese Beobachtung zu seinen Favoriten hinzugefügt"
+  user_flagged_as_a_non_spammer_html: "%{user} als Nicht-Spammer markiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
+  user_has_opted_out_of_community_id: Benutzer hat sich für die Nicht-Teilnahme am Community-Taxon entschieden
   user_hasnt_joined_any_projects: "%{user} ist keinem Projekt beigetreten"
   user_helped_x_people_with_y_ids_html: "%{user} hat <strong>%{x} Personen</strong> mit <strong>%{y} IDs</strong> geholfen"
   user_invite_observation_to_project: '%{user} möchte diese Beobachtung "%{observation}" für das Projekt %{project} einladen.'
@@ -3885,9 +3967,11 @@ de:
   user_observed_on_on_date_in_place: |
     %{user} beobachtete dies am %{date} in %{place}
   user_suggested_an_id: "%{user} hat eine Bestimmung (ID) vorgeschlagen"
+  user_thinks_yours_is: "%{user} %{noun} deine Beobachtung %{observation} ist"
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut Dir seine/ihre verborgenen Koordinaten an"
   user_trusts_you_with_their_private_coordinates_desc: |
     Der Beobachter hat beschlossen, Dir die verborgenen Koordinaten all seiner Beobachtungen anzuvertrauen.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schrieb,
   username: Benutzername
   username_or_email: Benutzername oder E-Mail
   username_or_user_id: Benutzername oder Benutzer-ID
@@ -3949,6 +4033,7 @@ de:
   view_on_flickr: Ansehen auf Flickr
   view_original: "Original ansehen"
   view_original_by: "Original von %{by} auf %{photo} ansehen"
+  view_original_ccD_photo: "Lizenziertes Original-Foto von %{owner} ansehen"
   view_photos_ranges_observations_more: "Erkunde Bilder, die Artenvielfalt, %{site_name}-Beobachtungen und vieles mehr! Wir haben Informationen aus vielen verschiedenen Quellen zusammengetragen, um einen schnellen Überblick über jede Art an jedem Ort zu erhalten."
   view_place: Ort ansehen
   view_post: Eintrag anzeigen
@@ -4014,6 +4099,7 @@ de:
   what_do_you_think: Was glaubst du?
   what_to_keep: Was bleiben soll
   what_want_to_list?: Was möchtest du auflisten?
+  what_were_you_looking_for?: "Wonach hast du gesucht? (Zielliste)"
   whats_this?: Was ist das?
   when: Wann
   when_did_you_see_it?: Wann war die Beobachtung?
@@ -4806,6 +4892,9 @@ de:
           Wir haben unten Links zu den betroffenen Fotos angegeben.
       user_parent_confirmation:
         subject: Das iNaturalist-Konto deines Kindes wurde aktiviert
+      users_updates_suspended:
+        message: |
+          Du warst eine ganze Weile nicht mehr aktiv auf %{site_name}, daher haben wir deine Abonnements ausgesetzt. Wenn du wieder Updates von Aktivitäten auf der Webseite erhalten möchtest, bitte <a href="%{login_url}">logge dich wiederin dein Konto ein</a>.
     photos:
       forbidden_notice_html: |
         Wir haben derzeit keine Berechtigung auf diese Fotos zuzugreifen. Möglicherweise musst du
@@ -5036,12 +5125,15 @@ de:
           Wähle die Filter aus, die für Beobachtungen im jeweiligen Projekt gelten sollen.
           Es können mehrere Arten (oder Taxa), Gebiete, Daten oder andere Kriterien ausgewählt werden, damit 
           Beobachtungen automatisch aufgenommen werden.
+        traditional_projects_cannot_be_copied: Traditionelles Projekt kann nicht kopiert werden
         umbrella_project_features: "Charakteristiken von Dach-Projekten:"
         unique_url_for_outreach: Eindeutige URL zum Verlinken
         use_this_for_a_time_limited_event: |
           Verwende dies für ein zeitlich begrenztes Event, Bioblitz oder saisonales Projekt. Wähle ein bestimmtes Datum, ein Zeitfenster oder in welchen Monaten des Jahres die Beobachtungen
           gemacht werden müssen (unabhängig vom Jahr). Wenn der Abschnitt "Datumsbereich" verwenden wird, stelle sicher, dass die korrekten Zeiten und Zeitzonen ausgewählt wurden, oder lösche den Text bzgl. Zeit/Zeitzone, um Beobachtungen zu enthalten, die irgendwann an diesem Tag gemacht wurden. Das Startdatum oder Enddatum kann leer bleiben, wenn das Projekt nur auf ein Datum begrenzt ist.
         users_can_follow_your_project: Benutzer können deinem Projekt folgen, und über Neuigkeiten durch Journalbeiträge informiert zu werden
+        use_this_link_to_create_html: |
+          Verwende <a href="%{url}">diesen Link</a> um stattdessen ein traditionelles Projekt zu erstellen.
         visual_comparison_of_data_among: Visuelle Vergleiche zwischen den Projekten innerhalb eines Dachprojekts
         we_have_redesigned_projects: |
           Projekte sind so gestaltet, dass sie automatisch alle Beobachtungen einbeziehen, die zu den von dir definierten Orten, Taxa, Benutzern, Qualität und Daten passen. Wähle zwischen zwei Haupttypen:
@@ -5489,6 +5581,8 @@ de:
           none: "Keine, nur du kannst deine Beobachtungen zu Projekten hinzufügen."
         prefers_community_taxa_desc: |
           %{site_name}erfasst, was du denkst, was deine Beobachtungen sind und was die Community denkt, was sie sind. Die Identifikation, die wir mit Datenpartnern teilen, ist die Community-Identifikation, aber wenn du nicht der Meinung bist, dass die Meinung der Community jemals deine eigene überstimmen sollte, kannst du hier dagegen entscheiden. Die Leute werden immer noch in der Lage sein, Bestimmungen hinzuzufügen, aber die Meinung der Community wird gegenüber deiner nicht bevorzugt. Das bedeutet, dass deine Beobachtungen nicht "Forschungsqualität" erhalten, es sei denn, du stimmst der Mehrheit zu.
+        prefers_coordinate_interpolation_protection_desc: |
+          Wenn du die Geo-Privatsphäre einer Beobachtung auf "verdeckt" oder "privat" stellst, wird das die Einstellungen aller deiner anderen Beobachtungen vom gleichen Tag ebenfalls betreffen. Damit wird es für andere Personen schwieriger, die wahren Koordinaten herauszufinden aufgrund deiner anderen Beobachtungen in der Nähe
         prefers_no_tracking_label: Keine Stabilitäts- und Nutzungsdaten mit Hilfe von Diensten durch Dritte erfassen
         prefers_no_tracking_label_desc_we_use: |
           Wir verwenden verschiedene Dienste von Drittanbietern, um die Stabilität zu überwachen und
