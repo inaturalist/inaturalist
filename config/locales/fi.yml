@@ -118,8 +118,8 @@ fi:
     one: "<span class='count'>1</span> taksonimuutos lisätty"
     other: "<span class='count'>%{count}</span> taksonimuutosta lisätty"
   _100_day_trends: 100 päivän kehitys
-  _percent_ID_d: "% määritetty"
-  a_community_for_naturalist: Luonnontieteilijöiden yhteisö
+  _percent_ID_d: "% tunnistettu"
+  a_community_for_naturalist: Luontoharrastajien yhteisö
   a_default_taxon_name_will_automatically_created: |
     Oletusarvoinen taksonin nimi luodaan automaattisesti tämän taksonin tieteellisestä nimestä. Kun olet tallentanut tämän uuden taksonin, voit lisätä muita nimiä (yleiskieliset nimet, vanhentuneet tieteelliset nimet, jne).
   a_flag_for_x: "lippu kohteelle %{x}"
@@ -672,6 +672,7 @@ fi:
   cant_merge_a_taxon_with_itself: Ei voi yhdistää taksonia itsensä kanssa.
   captive: Vangittu
   captive_cultivated: Vangittu / viljelty
+  captive_observations: Ei-luonnonvaraiset havainnot
   card: Kortti
   casual: epämuodollinen
   casual_: Epämuodollinen
@@ -1409,7 +1410,7 @@ fi:
     news_and_updates: Uutiset & päivitykset
     tutorials: Oppaat
   forum_desc: |
-    Foorumi on paikka iNatista keskustelemiseen, mukaan lukien apu & tuki, ominaisuuspyynnöt, bugiraportit, ilmoitukset ja muuta.
+    iNaturalistin foorumilla voi keskustella englanniksi iNaturalistin käytöstä ja luontoharrastuksesta. Lajitietokeskuksen foorumilla (foorumi.laji.fi) voi keskustella suomeksi.
   frequency: Lukumäärä
   from: Keneltä
   from_a_place: paikasta
@@ -1631,7 +1632,7 @@ fi:
   #Prompt to join a specific project
   join_project?: Liity projektiin %{project}?
   join_some_projects_and_invite_some_observations_html: "Liity joihinkin <a href='%{join_url}'>projekteihin</a> ja <a href='%{invite_url}'>pyydä joitakin havaintoja</a>"
-  join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luonnontieteilijöiden joukkoon!
+  join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luonnontieteilijöiden yhteisöön!
   join_this_project: Liity tähän projektiin
   'joined!': Liitytty!
   joined_projects: Liitytyt projektit
@@ -1653,6 +1654,9 @@ fi:
   labels: Merkinnät
   location_private: Yksityinen sijainti
   location_unknown: Tuntematon sijainti
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Lukitse zoomaustaso
   language_slash_type: Kieli / Tyyppi
   #Large photo size
   large: suuri
@@ -3806,6 +3810,7 @@ fi:
   view_more_observations_from: Näytä lisää havaintoja paikasta
   view_more_observations_of_x_project: "Näytä lisää havaintoja projektista %{project} sivustolla <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Näytä lisää havaintoja taksonista %{taxon} <nobr>%{site_name}issa &raquo;</nobr>"
+  view_more_unreviewed: "Katso lisää tarkistamattomia"
   view_observation: Näytä havainto
   view_observations: Näytä havainnot
   view_observation_flags: Näytä havaintoliput
