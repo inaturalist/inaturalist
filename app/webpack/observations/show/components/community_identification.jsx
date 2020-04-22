@@ -162,7 +162,7 @@ class CommunityIdentification extends React.Component {
           <button
             type="button"
             className="btn btn-default reject"
-            onClick={this.communityIDOptOu}
+            onClick={this.communityIDOptOut}
           >
             { I18n.t( "yes_reject_it" ) }
           </button>
