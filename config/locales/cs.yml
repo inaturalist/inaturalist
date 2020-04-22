@@ -1794,6 +1794,9 @@ cs:
   label_to_group_a_batch_of_taxon_changes: Společný štítek pro soubor změn taxonů
   location_private: Soukromá lokalita
   location_unknown: Neznámá lokalita
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Zamknout úroveň přiblížení
   language_slash_type: Jazyk / Typ
   #Large photo size
   large: velký
@@ -1802,7 +1805,7 @@ cs:
   last_observation: Poslední pozorování
   last_seen: Naposledy viděný
   last_year: Minulý rok
-  lat: Z.š.
+  lat: Zeměpisná šířka
   latitude: Zeměpisná šířka
   latitude_in_decimals: 'Zeměpisná šířka v desetinných stupních, např. 38.123'
   latitude_slash_y_coord_slash_northing: Zeměpisná šířka / souřadnice y / severně od rovníku
@@ -2001,7 +2004,7 @@ cs:
     transparent_png: průhledný PNG
     white_text_transparent_png: bílý text transparentní PNG
     none: nic
-  long: zeměpisná dílka
+  long: zeměpisná délka
   longitude: zeměpisná délka
   longitude_in_decimal: 'Zeměpisná šířka v desetinných stupních, např. -122.123'
   longitude_slash_x_coord_slash_easting: Zeměpisná délka / x souřadnice / orientace
