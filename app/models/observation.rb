@@ -2494,7 +2494,8 @@ class Observation < ActiveRecord::Base
       Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
       [
         19126, # City Nature Challenge 2018
-        29625  # City Nature Challenge 2019
+        29625, # City Nature Challenge 2019
+        40364  # City Nature Challenge 2020
       ].map {|umbrella_project_id|
         if umbrella = Project.find_by_id( umbrella_project_id )
           umbrella.project_observation_rules.select{|por| por.operator == "in_project?"}.map {|por|
