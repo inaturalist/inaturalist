@@ -302,7 +302,7 @@ export function fetchOverviewData( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
     if ( project.hasInsufficientRequirements( )
-      || ( project.startDate && !project.started ) ) {
+      || ( project.startDate && !project.started && project.durationToEvent.asDays( ) > 1 ) ) {
       dispatch( fetchMembers( ) );
       dispatch( fetchPosts( ) );
       return;
