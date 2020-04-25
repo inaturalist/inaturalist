@@ -4363,6 +4363,14 @@ it:
     announcements:
       locales_desc: |
         CMD- o SHIFT-click per selezione multipla. Non selezionando niente verranno mostrate le notizie relative e tutti gli utenti indipendentemente dalla posizione locale. Scegliendo una lingua senza una regione *non" saranno selezionate le localizzazioni insieme alla regione, e.g. se scegli en non appariranno alle persone che hanno scelto en-US. Se vuoi che appaiano ad entrambe, sceglile entrambe. Se vuoi mostrare una notizia a tutti i membri del sito, lascia vuoto.
+    content_freeze:
+      content_freeze: Blocco Contenuti
+      during_this_time: |
+        Durante il blocco dei contenuti alcuni tipi di contenuti non possono essere creati, eliminati o modificati.
+      this_functionality_will_return: |
+        Questa funzionalità tornerà non appena il blocco dei contenuti sarà terminato.
+      we_expect_this_functionality_will_return_by_date: |
+        Ci aspettiamo che questa funzionalità venga ripristinata entro il %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
