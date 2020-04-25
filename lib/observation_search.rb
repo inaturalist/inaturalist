@@ -489,7 +489,6 @@ module ObservationSearch
       scope = scope.in_projects(params[:projects]) if params[:projects]
       scope = scope.in_places(place_ids) unless place_ids.empty?
       scope = scope.created_on(params[:created_on]) if params[:created_on]
-      scope = scope.out_of_range if params[:out_of_range] == 'true'
       scope = scope.in_range if params[:out_of_range] == 'false'
       scope = scope.license(params[:license]) unless params[:license].blank?
       scope = scope.photo_license(params[:photo_license]) unless params[:photo_license].blank?

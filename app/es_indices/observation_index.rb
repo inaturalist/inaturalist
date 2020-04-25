@@ -160,6 +160,7 @@ class Observation < ActiveRecord::Base
         indexes :value, type: "keyword"
         indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
       end
+      # TODO Remove out_of_range from the index
       indexes :out_of_range, type: "boolean"
       indexes :outlinks do
         indexes :source, type: "keyword"
@@ -315,8 +316,6 @@ class Observation < ActiveRecord::Base
         place_guess: place_guess.blank? ? nil : place_guess,
         private_place_guess: private_place_guess.blank? ? nil : private_place_guess,
         observed_on_string: observed_on_string,
-        id_please: id_please,
-        out_of_range: out_of_range,
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
         taxon_geoprivacy: taxon_geoprivacy,
@@ -604,7 +603,9 @@ class Observation < ActiveRecord::Base
       { http_param: :threatened, es_field: "taxon.threatened" },
       { http_param: :native, es_field: "taxon.native" },
       { http_param: :endemic, es_field: "taxon.endemic" },
+      # TODO remove id_please when we remove it from the ES index
       { http_param: :id_please, es_field: "id_please" },
+      # TODO remove out_of_range when we remove it from the ES index
       { http_param: :out_of_range, es_field: "out_of_range" },
       { http_param: :mappable, es_field: "mappable" },
       { http_param: :captive, es_field: "captive" }
