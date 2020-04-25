@@ -4562,6 +4562,10 @@ cs:
     announcements:
       locales_desc: |
         Podržte CMD- nebo SHIFT a klikněte, pokud chcete vybrat více položek. Pokud nevyberete žádné, oznámení se zobrazí všem uživatelům bez ohledu na místo. Když vyberete místo jazyka bez regionu, *nedojde* k nastavení míst společně s regiony, např. pokud chcete vybrat angličtinu, nezobrazí se lidem, kteří vybrali angličtina-US. Pokud chcete cílit na obojí, vyberte obojí. Pokud chcete oznámení zobrazit všem členům na stránce, nechte pole prázdné.
+    content_freeze:
+      content_freeze: Zmrazení obsahu
+      we_expect_this_functionality_will_return_by_date: |
+        Očekáváme, že se tato funkce vrátí do %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
