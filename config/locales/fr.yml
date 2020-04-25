@@ -329,7 +329,7 @@ fr:
   aka: alias
   all: Tous
   all_comments: Tous les commentaires
-  all_flags_must_be_resolved: Toutes les signalements doivent être résolus
+  all_flags_must_be_resolved: Tous les signalements doivent être résolus
   all_life: Tous les êtres vivants
   all_names: Tous les noms
   all_observations: Toutes les observations
@@ -1329,12 +1329,12 @@ fr:
   #Verb form, as in "Flag this item"
   flag: Signaler
   flag_as_inappropriate: Signaler comme non approprié
-  flag_an_item: Marquer un élément
-  flag_as_spammer: Marquer comme polluposteur
-  flag_as_non_spammer: Marquer comme non-polluposteur
+  flag_an_item: Signaler un élément
+  flag_as_spammer: Signaler comme spammeur
+  flag_as_non_spammer: Signaler comme non-spammeur
   #Label for the date/time when a flag was created
-  flag_created: Drapeau créé
-  flag_description: Signaler aux responsables de l’organisation qu’il y a un problème avec le contenu
+  flag_created: Signalement créé
+  flag_description: Signaler ce contenu aux responsables de l’organisation pour les informer d'un problème.
   flag_for_check_list_title_html: |
     Indicateur de la liste de contrôle : %{title}
   flag_for_comment_id_html: Signaler pour <a href="%{url}">Commentaire %{id}</a>
