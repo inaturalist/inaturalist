@@ -4047,6 +4047,14 @@ fi:
   verifiable: Todennettavissa
   views:
     views: 'Näyttökerrat'
+    content_freeze:
+      content_freeze: Sisällön jäädytys
+      during_this_time: |
+        Sisällön jäädytyksen aikana että tietyn tyyppistä sisältöä ei voi luoda, poistaa tai muokata.
+      this_functionality_will_return: |
+        Tämä toiminto palautuu heti kun sisällön jäädytys päättyy.
+      we_expect_this_functionality_will_return_by_date: |
+        Arvioimme tämän toiminnon tulevan taas käyttöön %{date} mennessä.
     devise:
       mailer:
         confirmation_instructions:
