@@ -5,10 +5,20 @@ import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 
-const MoreFromUser = ( { observation, otherObservations, showNewObservation, config } ) => {
-  if ( !observation || !observation.user ||
-       ( _.isEmpty( otherObservations.earlierUserObservations ) &&
-         _.isEmpty( otherObservations.laterUserObservations ) ) ) {
+const MoreFromUser = ( {
+  observation,
+  otherObservations,
+  showNewObservation,
+  config
+} ) => {
+  if (
+    !observation
+    || !observation.user
+    || (
+      _.isEmpty( otherObservations.earlierUserObservations )
+      && _.isEmpty( otherObservations.laterUserObservations )
+    )
+  ) {
     return ( <div /> );
   }
   let dateObserved;
@@ -23,7 +33,7 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation, con
   const loadObservationCallback = ( e, o ) => {
     if ( !e.metaKey ) {
       e.preventDefault( );
-      showNewObservation( o, { useInstance: true } );
+      showNewObservation( o );
     }
   };
   const userLogin = observation.user.login;
@@ -41,7 +51,8 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation, con
   if ( observations.length < 6 ) {
     // if we don't have 6 yet, add as many more previous obs as we need
     const moreEarlier = _.take(
-      otherObservations.earlierUserObservations.slice( 3 ), 6 - observations.length );
+      otherObservations.earlierUserObservations.slice( 3 ), 6 - observations.length
+    );
     moreEarlier.reverse( );
     observations = moreEarlier.concat( observations );
   }
@@ -49,22 +60,24 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation, con
     <div className="MoreFromUser">
       <Col xs={12}>
         <h3>
-          <span dangerouslySetInnerHTML={ { __html:
-            I18n.t( "more_from_x", { x: `<a href="/people/${userLogin}">${userLogin}</a>` } ) } }
+          <span
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "more_from_x", { x: `<a href="/people/${userLogin}">${userLogin}</a>` } )
+            }}
           />
           <div className="links">
-            <span className="view">{ I18n.t( "view" ) }:</span>
-            <a href={ `/observations?user_id=${userLogin}&place_id=any&verifiable=any` }>
+            <span className="view">{ I18n.t( "label_colon", { label: I18n.t( "view" )} ) }</span>
+            <a href={`/observations?user_id=${userLogin}&place_id=any&verifiable=any`}>
               { I18n.t( "all" ) }
             </a>
             { dateObserved ? (
               <span>
                 <span className="separator">·</span>
-                <a href={ `/observations?user_id=${userLogin}&on=${onDate}&place_id=any&verifiable=any` }>
+                <a href={`/observations?user_id=${userLogin}&on=${onDate}&place_id=any&verifiable=any`}>
                   { dateObserved.format( "MMMM D, YYYY" ) }
                 </a>
                 <span className="separator">·</span>
-                <a href={ `/calendar/${userLogin}/${calendarDate}` }>
+                <a href={`/calendar/${userLogin}/${calendarDate}`}>
                   { I18n.t( "calendar" ) }
                 </a>
               </span>
@@ -77,25 +90,27 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation, con
           let taxonJSX = I18n.t( "unknown" );
           if ( o.taxon && o.taxon !== null ) {
             taxonJSX = (
-              <SplitTaxon noParens taxon={o.taxon} url={`/observations/${o.id}`} user={ config.currentUser } />
+              <SplitTaxon noParens taxon={o.taxon} url={`/observations/${o.id}`} user={config.currentUser} />
             );
           }
-          const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name ?
-            o.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
+          const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name
+            ? o.taxon.iconic_taxon_name.toLowerCase( )
+            : "unknown";
           return (
-            <Col xs={ 2 } key={ `more-obs-${o.id}` }>
+            <Col xs={2} key={`more-obs-${o.uuid}`}>
               <div className="obs">
                 <div className="photo">
                   <a
                     href={`/observations/${o.id}`}
-                    style={ o.photo( ) ? {
-                      backgroundImage: `url( '${o.photo( "medium" )}' )`
-                    } : null }
+                    style={o.photo( )
+                      ? { backgroundImage: `url( '${o.photo( "medium" )}' )` }
+                      : null
+                    }
                     target="_self"
                     className={`${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
-                    onClick={ e => { loadObservationCallback( e, o ); } }
+                    onClick={e => { loadObservationCallback( e, o ); }}
                   >
-                    <i className={ `taxon-image icon icon-iconic-${iconicTaxonName}`} />
+                    <i className={`taxon-image icon icon-iconic-${iconicTaxonName}`} />
                   </a>
                 </div>
                 <div className="caption">

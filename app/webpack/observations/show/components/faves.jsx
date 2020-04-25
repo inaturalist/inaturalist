@@ -22,22 +22,22 @@ const Faves = ( {
   const FaveToggle = ( { text } ) => (
     <a
       className="linky"
-      onClick={ ( ) => {
+      onClick={( ) => {
         if ( userHasFavedThis ) {
           unfave( observation.id );
         } else {
           fave( observation.id );
         }
         return false;
-      } }
-      onMouseOver={ e => {
+      }}
+      onMouseOver={e => {
         $( e.target ).siblings( "i" ).removeClass( starIconClass );
         $( e.target ).siblings( "i" ).addClass( hoverStarIconClass );
-      } }
-      onMouseOut={ e => {
+      }}
+      onMouseOut={e => {
         $( e.target ).siblings( "i" ).removeClass( hoverStarIconClass );
         $( e.target ).siblings( "i" ).addClass( starIconClass );
-      } }
+      }}
     >
       { text }
     </a>

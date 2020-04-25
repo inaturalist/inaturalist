@@ -101,7 +101,7 @@ class ObservationFields extends React.Component {
           return (
             <ObservationFieldValue
               ofv={ofv}
-              key={`field-value-${ofv.uuid || ofv.observation_field.id}`}
+              key={`field-value-${ofv.uuid || ofv.observation_field.uuid}`}
               setEditingFieldValue={fieldValue => {
                 this.setState( { editingFieldValue: fieldValue } );
               }}

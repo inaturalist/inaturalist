@@ -35,11 +35,20 @@ export function fetchIdentifiers( params ) {
   return ( dispatch, getState ) => {
     const time = Date.now( );
     dispatch( setLastFetchTime( time ) );
-    inatjs.identifications.identifiers( params ).then( response => {
+    const identifiersParams = Object.assign( { }, params, {
+      fields: {
+        count: true,
+        user: {
+          login: true,
+          icon_url: true
+        }
+      }
+    } );
+    inatjs.identifications.identifiers( identifiersParams ).then( response => {
       const { identifications } = getState( );
       if ( time === identifications.lastFetchTime ) {
         dispatch( setIdentifiers( response.results ) );
       }
-    } ).catch( e => { } );
+    } ).catch( ( ) => { } );
   };
 }

@@ -190,6 +190,7 @@ class Annotations extends React.Component {
       collapsible,
       updateSession
     } = this.props;
+    const observationAnnotations = observation.annotations || [];
     const {
       open: isOpen
     } = this.state;
@@ -215,11 +216,13 @@ class Annotations extends React.Component {
     }
     this.loggedIn = config && config.currentUser;
     this.viewerIsObserver = this.loggedIn && config.currentUser.id === observation.user.id;
-    if ( !this.loggedIn && _.isEmpty( observation.annotations ) ) {
+    if ( !this.loggedIn && _.isEmpty( observationAnnotations ) ) {
       return ( <span /> );
     }
-    const annotations = observation.annotations.filter(
-      a => a.controlled_attribute && a.controlled_value );
+    const annotations = _.filter(
+      observationAnnotations,
+      a => a.controlled_attribute && a.controlled_value
+    );
     const groupedAnnotations = _.groupBy( annotations, a => a.controlled_attribute.id );
     const rows = [];
     _.each( availableControlledTerms, ct => {
@@ -360,7 +363,7 @@ class Annotations extends React.Component {
       );
     }
 
-    const count = observation.annotations.length > 0 ? `(${observation.annotations.length})` : "";
+    const count = observationAnnotations.length > 0 ? `(${observationAnnotations.length})` : "";
     return (
       <div className="Annotations collapsible-section">
         <h4

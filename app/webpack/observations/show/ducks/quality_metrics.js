@@ -23,9 +23,19 @@ export function fetchQualityMetrics( options = {} ) {
   return ( dispatch, getState ) => {
     const observation = options.observation || getState( ).observation;
     if ( !observation ) { return null; }
-    const params = { id: observation.id, ttl: -1 };
+    const fields = {
+      agree: true,
+      id: true,
+      metric: true,
+      user: {
+        id: true,
+        login: true,
+        icon_url: true
+      }
+    };
+    const params = { id: observation.uuid, ttl: -1, fields };
     return inatjs.observations.qualityMetrics( params ).then( response => {
       dispatch( setQualityMetrics( response.results ) );
-    } ).catch( e => { } );
+    } ).catch( ( ) => { } );
   };
 }

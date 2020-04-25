@@ -403,8 +403,12 @@ class CommunityIdentification extends React.Component {
           disabled={!canAgree}
           onClick={( ) => { addID( communityTaxon, { agreedTo: "communityID" } ); }}
         >
-          {userAgreedToThis ? ( <div className="loading_spinner" /> )
-            : ( <i className="fa fa-check" /> )} { I18n.t( "agree_" ) }
+          { userAgreedToThis
+            ? <div className="loading_spinner" />
+            : <i className="fa fa-check" />
+          }
+          { " " }
+          { I18n.t( "agree_" ) }
         </button>
       ) : (
         <a href="/login">
@@ -453,7 +457,9 @@ class CommunityIdentification extends React.Component {
                       return true;
                     }}
                   >
-                    <i className="fa fa-exchange" /> {I18n.t( "compare" )}
+                    <i className="fa fa-exchange" />
+                    { " " }
+                    {I18n.t( "compare" )}
                   </a>
                 ) : null }
               </div>
@@ -488,14 +494,16 @@ class CommunityIdentification extends React.Component {
                   if ( proposedTaxonData.taxonIsMaverick && !maverickEncountered ) {
                     about = (
                       <div className="about stacked maverick">
-                        <i className="fa fa-bolt" /> {I18n.t( "proposed_taxa_that_contradict_the_community_id" )}:
+                        <i className="fa fa-bolt" />
+                        { " " }
+                        { I18n.t( "label_colon", { label: I18n.t( "proposed_taxa_that_contradict_the_community_id" ) } ) }
                       </div>
                     );
                     maverickEncountered = true;
                   } else if ( !supportingEncountered ) {
                     about = (
                       <div className="about supporting stacked">
-                        {I18n.t( "proposed_taxa_that_support_the_community_id" )}:
+                        { I18n.t( "label_colon", { label: I18n.t( "proposed_taxa_that_support_the_community_id" ) } ) }
                       </div>
                     );
                     supportingEncountered = true;
@@ -575,14 +583,18 @@ class CommunityIdentification extends React.Component {
                     return onClickCompare( e, observation.taxon, observation );
                   }
                   return true;
-                } }
+                }}
               >
                 { I18n.t( "compare" ) }
               </a>
             ) : null }
-            <div className="linky" onClick={this.showCommunityIDModal}>
+            <button
+              type="button"
+              className="btn btn-nostyle linky"
+              onClick={this.showCommunityIDModal}
+            >
               { I18n.t( "whats_this?" ) }
-            </div>
+            </button>
           </span>
         </h4>
         { this.communityIDOverrideStatement( ) }
@@ -608,7 +620,9 @@ class CommunityIdentification extends React.Component {
                     type="button"
                     className="btn btn-default"
                   >
-                    <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+                    <i className="fa fa-exchange" />
+                    { " " }
+                    { I18n.t( "compare" ) }
                   </button>
                 </a>
               </div>
@@ -619,7 +633,9 @@ class CommunityIdentification extends React.Component {
                 className="btn btn-default"
                 onClick={this.showCommunityIDModal}
               >
-                <i className="fa fa-info-circle" /> { I18n.t( "about" ) }
+                <i className="fa fa-info-circle" />
+                { " " }
+                { I18n.t( "about" ) }
               </button>
             </div>
           </div>

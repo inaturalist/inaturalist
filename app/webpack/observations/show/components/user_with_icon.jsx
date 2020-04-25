@@ -7,15 +7,21 @@ const UserWithIcon = ( { user, subtitle, subtitleIconClass } ) => {
   return (
     <div className="UserWithIcon">
       <div className="icon">
-        <UserImage user={ user } />
+        <UserImage user={user} />
       </div>
       <div className="title">
-        <a href={ `/people/${user.login}` }>{ user.login }</a>
+        <a href={`/people/${user.login}`}>{ user.login }</a>
       </div>
       <div className="subtitle">
-        <a href={ `/observations?user_id=${user.login}&place_id=any&verifiable=any` }>
-          <i className={ subtitleIconClass} />
-          { subtitle || I18n.t( "x_observations", { count: user.observations_count.toLocaleString( ) } ) }
+        <a href={`/observations?user_id=${user.login}&place_id=any&verifiable=any`}>
+          <i className={subtitleIconClass} />
+          {
+            subtitle
+            || (
+              user.observations_count
+              && I18n.t( "x_observations", { count: user.observations_count.toLocaleString( ) } )
+            )
+           }
         </a>
       </div>
     </div>

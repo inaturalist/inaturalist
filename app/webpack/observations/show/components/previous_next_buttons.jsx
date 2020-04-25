@@ -2,18 +2,34 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 
-const PreviousNextButtons = ( { otherObservations, showNewObservation, config } ) => {
+const PreviousNextButtons = ( {
+  otherObservations,
+  showNewObservation,
+  config,
+  observation
+} ) => {
   const previousDisabled = _.isEmpty( otherObservations.earlierUserObservations );
   const nextDisabled = _.isEmpty( otherObservations.laterUserObservations );
-  let prevAction = ( ) => { };
-  let nextAction = ( ) => { };
+  let prevAction = e => {
+    e.preventDefault( );
+    return false;
+  };
+  let nextAction = e => {
+    e.preventDefault( );
+    return false;
+  };
   let prevAlt = I18n.t( "unknown" );
   let nextAlt = I18n.t( "unknown" );
-  const userPrefersSciname = config && config.currentUser &&
-    config.currentUser.prefers_scientific_name_first;
+  const userPrefersSciname = config && config.currentUser
+    && config.currentUser.prefers_scientific_name_first;
+  let previousObs;
   if ( !previousDisabled ) {
-    const previousObs = otherObservations.earlierUserObservations[0];
-    prevAction = ( ) => { showNewObservation( previousObs, { useInstance: true } ); };
+    previousObs = otherObservations.earlierUserObservations[0];
+    prevAction = e => {
+      e.preventDefault( );
+      showNewObservation( previousObs );
+      return false;
+    };
     if ( previousObs.taxon ) {
       prevAlt = previousObs.taxon.name;
       if ( previousObs.taxon.preferred_common_name && !userPrefersSciname ) {
@@ -23,9 +39,14 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation, config } 
       prevAlt = previousObs.species_guess;
     }
   }
+  let nextObs;
   if ( !nextDisabled ) {
-    const nextObs = otherObservations.laterUserObservations[0];
-    nextAction = ( ) => { showNewObservation( nextObs, { useInstance: true } ); };
+    nextObs = otherObservations.laterUserObservations[0];
+    nextAction = e => {
+      e.preventDefault( );
+      showNewObservation( nextObs );
+      return false;
+    };
     if ( nextObs.taxon ) {
       nextAlt = nextObs.taxon.name;
       if ( nextObs.taxon.preferred_common_name && !userPrefersSciname ) {
@@ -37,22 +58,30 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation, config } 
   }
   return (
     <div className="PreviousNextButtons">
-      <div
-        className={ `previous ${previousDisabled ? "disabled" : ""}` }
-        onClick={ prevAction }
-        alt={ prevAlt }
-        title={ prevAlt }
+      <a
+        href={previousObs
+          ? `/observations/${previousObs.id || previousObs.uuid}`
+          : `/observations/${observation.user.login}`
+        }
+        className={`previous ${previousDisabled ? "disabled" : ""}`}
+        onClick={prevAction}
+        alt={prevAlt}
+        title={prevAlt}
       >
         <i className="fa fa-chevron-left" />
-      </div>
-      <div
-        className={ `next ${nextDisabled ? "disabled" : ""}` }
-        onClick={ nextAction }
-        alt={ nextAlt }
-        title={ nextAlt }
+      </a>
+      <a
+        href={nextObs
+          ? `/observations/${nextObs.id || nextObs.uuid}`
+          : `/observations/${observation.user.login}`
+        }
+        className={`next ${nextDisabled ? "disabled" : ""}`}
+        onClick={nextAction}
+        alt={nextAlt}
+        title={nextAlt}
       >
         <i className="fa fa-chevron-right" />
-      </div>
+      </a>
     </div>
   );
 };
@@ -60,7 +89,8 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation, config } 
 PreviousNextButtons.propTypes = {
   otherObservations: PropTypes.object,
   showNewObservation: PropTypes.func,
-  config: PropTypes.object
+  config: PropTypes.object,
+  observation: PropTypes.object
 };
 
 export default PreviousNextButtons;

@@ -11,6 +11,7 @@ import {
   combineReducers
 } from "redux";
 import moment from "moment";
+import inatjs from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import commentIDPanelReducer from "./ducks/comment_id_panel";
 import communityIDModalReducer from "./ducks/community_id_modal";
@@ -32,6 +33,9 @@ import setupKeyboardShortcuts from "./keyboard_shortcuts";
 import currentObservationReducer from "../identify/reducers/current_observation_reducer";
 import suggestionsReducer from "../identify/ducks/suggestions";
 import moderatorActionsReducer from "../../shared/ducks/moderator_actions";
+
+// For some reason this seems to set it everywhere...
+inatjs.setConfig( { apiURL: "http://localhost:4000/v2" } );
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
@@ -91,8 +95,8 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
   } ) );
 }
 
-/* global INITIAL_OBSERVATION_ID */
-store.dispatch( fetchObservation( INITIAL_OBSERVATION_ID, {
+/* global INITIAL_OBSERVATION_UUID */
+store.dispatch( fetchObservation( INITIAL_OBSERVATION_UUID, {
   fetchAll: true,
   replaceState: true,
   callback: ( ) => {
