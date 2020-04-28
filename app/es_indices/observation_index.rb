@@ -777,12 +777,14 @@ class Observation < ActiveRecord::Base
     end
 
     if p[:d1] || p[:d2]
+      p[:d1] = p[:d1].to_s
       d1 = DateTime.parse(p[:d1]) rescue DateTime.parse("1800-01-01")
+      p[:d2] = p[:d2].to_s
       d2 = DateTime.parse(p[:d2]) rescue Time.now
       # d2 = Time.now if d2 && d2 > Time.now # not sure why we need to prevent queries into the future
       query_by_date = (
-        (p[:d1] && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
-        (p[:d2] && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))
+        (!p[:d1].blank? && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
+        (!p[:d2].blank? && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))
       date_filter = { "observed_on_details.date": {
         gte: d1.strftime("%F"),
         lte: d2.strftime("%F") }}
