@@ -795,6 +795,15 @@ shared_examples_for "an ObservationsController" do
         update_to_obscured( obs )
         expect( obs.latitude ).not_to eq obs.private_latitude
       end
+      it "should not reveal the private coordinates when updating with the private coordinates" do
+        put :update, format: :json, id: obs.id, observation: {
+          geoprivacy: Observation::OBSCURED,
+          latitude: obs.private_latitude,
+          longitude: obs.private_longitude
+        }
+        update_to_obscured( obs )
+        expect( obs.latitude ).not_to eq obs.private_latitude
+      end
     end
 
     it "should not allow observations where latitude AND longitude are 0" do

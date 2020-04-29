@@ -2231,6 +2231,23 @@ describe Observation do
       expect( o.to_plain_s ).not_to be =~ /#{original_place_guess}/
       expect( o.private_place_guess ).not_to be_blank
     end
+
+    it "should set public coordinates to something other than the private coordinates when going from private to obscured" do
+      o = Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.private_latitude ).not_to eq o.latitude
+      o.update_attributes( geoprivacy: Observation::PRIVATE )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.private_latitude ).not_to eq o.latitude
+      o.update_attributes( geoprivacy: Observation::OBSCURED )
+      Delayed::Worker.new.work_off
+      o.reload
+      puts "o.private_latitude: #{o.private_latitude}"
+      puts "o.latitude:         #{o.latitude}"
+      expect( o.private_latitude ).not_to eq o.latitude
+    end
   end
 
   describe "geom" do

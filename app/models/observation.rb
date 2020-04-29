@@ -1487,7 +1487,7 @@ class Observation < ActiveRecord::Base
   
   def obscure_coordinates
     return unless ( [geoprivacy, taxon_geoprivacy] & [OBSCURED, PRIVATE] ).size > 0
-    geoprivacy_changed_from_private_to_obscured = latitude.blank? &&
+    geoprivacy_changed_from_private_to_obscured = latitude_was.blank? &&
       ![geoprivacy, taxon_geoprivacy].include?( PRIVATE ) &&
       [geoprivacy, taxon_geoprivacy].include?( OBSCURED )
     if !geoprivacy_changed_from_private_to_obscured && ( latitude.blank? || longitude.blank? )
