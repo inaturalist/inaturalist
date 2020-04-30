@@ -59,6 +59,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
   
   # Override to get better attrs in there
   def time_zone_select(method, priority_zones = nil, options = {}, html_options = {})
+    options[:include_blank] = true if options[:include_blank].nil?
     html_options[:class] = "#{html_options[:class]} time_zone_select"
     zone_options = "".html_safe
     selected = options.delete(:selected)

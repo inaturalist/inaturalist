@@ -8,7 +8,6 @@ $( document ).ready( function ( ) {
       var option = $( ".time_zone_select option[data-tz-name='" + userZone + "']" );
       $( ".time_zone_select" ).val( option.attr( "value" ) );
     }
-    $( ".time_zone_select" ).selectLocalTimeZone( );
     $( "html" ).click( function ( ) {
       $( '[data-toggle="popover"]' ).popover( "hide" );
     } );
