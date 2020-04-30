@@ -2618,7 +2618,6 @@ cs:
   other_taxa_commonly_misidentified_as_this_subsection: Ostatní taxony jsou běžně nesprávně identifikované jako tento pododdíl
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Jiné taxony jsou běžně chybně identifikovány jako tento pododdíl v<a href="%{url}">%{place}</a>
   our_blog: Náš blog
-  out_of_range: Mimo dosah
   output_taxon: Výstupní taxon
   overview: Přehled
   overlapping_downstream_taxon_frameworks_html: "Překrývající se rámce taxonů:%{count}"
@@ -4562,6 +4561,10 @@ cs:
     announcements:
       locales_desc: |
         Podržte CMD- nebo SHIFT a klikněte, pokud chcete vybrat více položek. Pokud nevyberete žádné, oznámení se zobrazí všem uživatelům bez ohledu na místo. Když vyberete místo jazyka bez regionu, *nedojde* k nastavení míst společně s regiony, např. pokud chcete vybrat angličtinu, nezobrazí se lidem, kteří vybrali angličtina-US. Pokud chcete cílit na obojí, vyberte obojí. Pokud chcete oznámení zobrazit všem členům na stránce, nechte pole prázdné.
+    content_freeze:
+      content_freeze: Zmrazení obsahu
+      we_expect_this_functionality_will_return_by_date: |
+        Očekáváme, že se tato funkce vrátí do %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |

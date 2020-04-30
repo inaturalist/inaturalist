@@ -1946,7 +1946,7 @@ de:
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
-      mm: "%d min"
+      mm: "%d Min"
       #Short text representing 1 hour in the past
       h: "1 h"
       #Short text representing %d hours in the past
@@ -1954,7 +1954,7 @@ de:
       #Short text representing 1 day in the past
       d: "1 d"
       #Short text representing %d days in the past
-      dd: "%dT"
+      dd: "%d T"
       #Short text representing 1 month in the past
       M: "1Monat"
       #Short text representing %d months in the past
@@ -1962,7 +1962,7 @@ de:
       #Short text representing 1 year in the past
       'y': "1 J"
       #Short text representing %d years in the past
-      yy: "%dj"
+      yy: "%d J"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display a time zone code and not an offset, so
     #please use z and not Z
@@ -2114,7 +2114,7 @@ de:
   no_favorites_added:
     current_user: Du hast noch keine Favoriten hinzugefügt.
     user: "%{user} hat keine Favoriten hinzugefügt."
-  no_journal_posts_yet: Noch keine Beiträge bisher.
+  no_journal_posts_yet: Noch keine Beiträge bisher..
   no_license_all_rights_reserved: Keine Lizenz (alle Rechte vorbehalten)
   no_managers_set: Keine Verwalter festgelegt
   no_matching_article_from_x: "Keine passenden Artikel für %{x}"
@@ -2441,7 +2441,6 @@ de:
   other_taxa_commonly_misidentified_as_this_subsection: Andere Taxa, die häufig fälschlicherweise als diese Untersektion bestimmt werden
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andere Taxa, die häufig fälschlicherweise als diese Untersektion in <a href="%{url}">%{place}</a> bestimmt werden
   our_blog: Unser Blog
-  out_of_range: außerhalb des Areals
   output_taxon: Output-Taxon
   overview: Übersicht
   owner: Besitzer
@@ -3948,7 +3947,7 @@ de:
   user_faved_this_observation: "%{user} hat diese Beobachtung zu seinen Favoriten hinzugefügt"
   user_flagged_as_a_non_spammer_html: "%{user} als Nicht-Spammer markiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
-  user_has_opted_out_of_community_id: Benutzer hat sich für die Nicht-Teilnahme am Community-Taxon entschieden
+  user_has_opted_out_of_community_id: Benutzer hat sich gegen die Teilnahme am Community-Taxon entschieden
   user_hasnt_joined_any_projects: "%{user} ist keinem Projekt beigetreten"
   user_helped_x_people_with_y_ids_html: "%{user} hat <strong>%{x} Personen</strong> mit <strong>%{y} IDs</strong> geholfen"
   user_invite_observation_to_project: '%{user} möchte diese Beobachtung "%{observation}" für das Projekt %{project} einladen.'
@@ -4306,6 +4305,14 @@ de:
     announcements:
       locales_desc: |
         STRG- oder SHIFT-Taste mit der linken Maustaste benutzen, um mehrere auszuwählen. Wenn du keine auswählst, wird die Ankündigung für alle Benutzer unabhängig vom Gebietsschema angezeigt. Wenn du ein Sprachgebietsschema ohne eine Region wählst, wird es *nicht* für Gebietsschemata mit Regionen verwendet, z.B. wenn du "en" gewählt hast, erscheint es nicht für Leute, die "en-US" gewählt haben. Wenn du beide erreichen willst, wähle beides. Wenn du eine Ankündigung allen Mitgliedern einer Seite anzeigen möchtest, lass das einfach leer.
+    content_freeze:
+      content_freeze: Inhalt eingefroren
+      during_this_time: |
+        Während des Einfrierens von Inhalten können einige Bereiche der Website nicht erstellt, gelöscht oder verändert werden.
+      this_functionality_will_return: |
+        Diese Funktion wird wieder ermöglicht, sobald das Einfrieren des Inhalts beendet ist.
+      we_expect_this_functionality_will_return_by_date: |
+        Wir erwarten, dass die Funktionalität am %{date} wieder zurückkehrt.
     custom_projects:
       edit:
         custom_project_fields_warning: |

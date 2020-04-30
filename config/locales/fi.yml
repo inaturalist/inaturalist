@@ -302,7 +302,7 @@ fi:
   add_to_favorites: Lisää suosikkeihin
   add_to_list: Lisää listaan
   add_to_project: Lisää projektiin
-  add_to_your_life_list: Lisää elämänpinnalistallesi!
+  add_to_your_life_list: Lisää pinnalistallesi!
   add_to_your_list: Lisää luetteloosi
   add_your_email_to_get: |
     Lisää sähköpostiosoitteesi saadaksesi palautetta yhteisöltä.
@@ -1749,9 +1749,9 @@ fi:
   licensing: Lisensointi
   licensing_your_content_gives_others_legal: "Lisensisoimalla sisältösi annat muille oikeuden käyttää sitä, jos he noudattavat lisenssin ehtoja. %{site_name} käyttää Creative Commons -lisensoitua sisältöäsi jakaakseen niitä tietokumppanien kanssa kuten"
   life: Elämä
-  life_list: "Käyttäjän %{user} elämäluettelo"
+  life_list: "Käyttäjän %{user} pinnalista"
   life_list_updated: Elämänlista päivitetty!
-  life_list_updated_we_also_saved_a: Elämäluettelo päivitetty! Säästimme myös tämän taksonin tyhjän havainnon.
+  life_list_updated_we_also_saved_a: Pinnalista päivitetty! Säästimme myös tämän taksonin tyhjän havainnon.
   life_lists_automatically_fill: Kun havaitset uusia taksoneita, ne lisätään automaattisesti pinnalistoille. Pinnalistoja voi myös rajata ylemmille taksoneille, esim. pinnalista kaikista varislinnuista (Corvidae-heimo).
   linear_scale_label: Lineraarinen
   link: Linkki
@@ -1880,7 +1880,7 @@ fi:
   make_a_new_place: Tee uusi paikka
   make_a_taxon_swap_instead?: Tee sen sijaan Taksoninvaihto?
   make_curator: Tee kuraattori
-  make_it_a_life_list?: Tee siitä elämäluettelo?
+  make_it_a_life_list?: Tee tästä pinnalista?
   make_manager: Tee manageri
   make_sure_the_default_photo_looks_good: Varmista, että oletuskuva näyttää hyvältä isossa koossa.
   make_this_your_default_license: "Tee tästä oletus %{type} lisenssisi"
@@ -2173,7 +2173,7 @@ fi:
   no_species_observed: Ei havaittuja lajeja
   no_species_on_this_list: Ei vielä lajeja tässä luettelossa!
   no_species_on_this_list_for_owner_html: |
-    Voit aloittaa lisäämällä lajeja suoraan tähän luetteloon, tai jos tämä on elämäluettelo, se päivitetään automaattisesti lajien kanssa kun <a href="%{url}" class="nobr">lisäät havaintoja</a>.
+    Voit aloittaa lisäämällä lajeja suoraan tähän luetteloon, tai jos tämä on pinnalista, se päivitetään automaattisesti uusilla lajeilla <a href="%{url}" class="nobr">lisäät havaintoja</a>.
   no_subject_parens: "(Ei otsikkoa)"
   no_suggestions_available: Ehdotuksia ei saatavissa
   no_summary_from_wikipedia: Ei yhteenvetoa Wikipediasta
@@ -2437,7 +2437,6 @@ fi:
   other_taxa_commonly_misidentified_as_this_subsection: Muita taksoneita, joita usein määritetään virheellisesti kuuluvaksi tähän alasektioon
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Muita taksoneita, joita usein määritetään virheellisesti kuuluvaksi tähän alasektioon paikassa <a href="%{url}">%{place}</a>
   our_blog: Blogi
-  out_of_range: Pois alueelta
   overview: Yleiskatsaus
   owner: Omistaja
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3315,7 +3314,7 @@ fi:
   sorry_we_didnt_find_that_photo: "Valitettavasti emme löytäneet tuota kuvaa."
   sorry_x_is_not_responding: "%{x} ei vastaa. Yritä myöhemmin uudelleen."
   sorry_you_can_only_add_1000_at_a_time: "Valitettavasti voit lisätä vain 1000 kerrallaan."
-  sorry_you_cant_delete_your_own_life_list: "Valitettavasti et voi poistaa omaa elämäluetteloasi."
+  sorry_you_cant_delete_your_own_life_list: "Valitettavasti et voi poistaa omaa elämänpinnalistaasi."
   sort: Lajittele
   sort_by: Lajitteluperuste
   sorting_by: 'Lajittele:'
@@ -3572,8 +3571,8 @@ fi:
   this: tämä
   this_bioblitz_beings_in: Aikaa tämän bioblitzin alkuun
   this_is_a_life_list_of: Tämä on elämänpinnalista käyttäjälle
-  this_is_a_life_list_from_place_html: "Tämä on elämäluettelo paikasta %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Tämä on elämäluettelo taksonista %{taxon} paikassa %{place}"
+  this_is_a_life_list_from_place_html: "Tämä on pinnalista paikasta %{place}"
+  this_is_a_life_list_of_taxon_in_place: "Tämä on pinnalista taksonista %{taxon} paikassa %{place}"
   this_is_taking_forever: Tämä vie ikuisuuden.  Yritä myöhemmin uudelleen.
   this_is_your_observation: Tämä on havaintosi
   this_list_is_empty!: Tämä luettelo on tyhjä!
@@ -4047,6 +4046,14 @@ fi:
   verifiable: Todennettavissa
   views:
     views: 'Näyttökerrat'
+    content_freeze:
+      content_freeze: Sisällön jäädytys
+      during_this_time: |
+        Sisällön jäädytyksen aikana että tietyn tyyppistä sisältöä ei voi luoda, poistaa tai muokata.
+      this_functionality_will_return: |
+        Tämä toiminto palautuu heti kun sisällön jäädytys päättyy.
+      we_expect_this_functionality_will_return_by_date: |
+        Arvioimme tämän toiminnon tulevan taas käyttöön %{date} mennessä.
     devise:
       mailer:
         confirmation_instructions:

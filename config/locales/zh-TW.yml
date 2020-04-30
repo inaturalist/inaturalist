@@ -804,6 +804,7 @@ zh-TW:
     teneral: 初羽化
     subimago: 亞成蟲
     pupa: 蛹
+    no_evidence_of_flowering: 沒有開花的跡象
     nymph: 若蟲
     larva: 幼蟲
     egg: 卵
@@ -2045,6 +2046,7 @@ zh-TW:
   no_favorites_added:
     current_user: 您尚未添加最愛。
     user: "%{user} 尚未添加最愛。"
+  no_journal_posts_yet: 還未有日誌貼文
   no_license_all_rights_reserved: 無許可協議（保留所有權利）
   no_managers_set: 沒有設定負責人
   no_matching_article_from_x: "沒有來自%{x}的符合條目"
@@ -2145,6 +2147,8 @@ zh-TW:
   observation_added_to_the_project: "觀察已添加至專案「%{project}」"
   observation_aggregation: 觀察聚集
   observation_brief_something_on_day: "在 %{day} 的某種生物"
+  observation_brief_something_on_day_at_time: "在 %{day} %{time} 所記錄的某些生物"
+  observation_brief_something_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_something_on_day_by_user: "由使用者 %{user} 在 %{day} 所記錄的"
   observation_brief_something_by_user: "由使用者 %{user} 所記錄的"
   observation_brief_something_from_place: "在 %{place} 所記錄的"
@@ -2154,6 +2158,8 @@ zh-TW:
   observation_brief_something_from_place_on_day_at_time: "於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
+  observation_brief_taxon_on_day_at_time: "在 %{day} %{time} 所記錄的 %{taxon}"
+  observation_brief_taxon_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
   observation_brief_taxon_from_place: "位於 %{place} 的 %{taxon}"
@@ -2372,9 +2378,9 @@ zh-TW:
   other_taxa_commonly_misidentified_as_this_subsection: 常被誤認為此亞節的其他分類群
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: 常在 <a href="%{url}">%{place}</a> 被誤認為此亞節的其他分類群
   our_blog: 我們的部落格
-  out_of_range: 超出範圍
   output_taxon: 輸出物種分類
   overview: 概要
+  overlapping_downstream_taxon_frameworks_html: "重複的下游物種分類框架數量：%{count}"
   owner: 擁有者
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: 父級
@@ -2392,6 +2398,10 @@ zh-TW:
   people_following_user: "關注 %{user} 的人"
   people_user_follows: "%{user} 關注的人"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: 新增一筆<a href="%{observation_url}">觀察記錄</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -4183,6 +4193,8 @@ zh-TW:
           infringement</code> 標記。
     guides:
       index:
+        deprecated_banner: |
+          請注意：從 2019 年一月開始，指南的功能就依此現狀("as is")來呈現；也就是我們不打算刪除它，未來也不打算開發新功能。
         funding_html: |
           指南開發的資金由 <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a> 提供
         welcome_message_html: |
@@ -4295,6 +4307,8 @@ zh-TW:
           這將會更改<em>全部</em>在所有<a href="%{place_url}">%{place_name}</a>派生地點的物種分類清單之定居方式成為<strong>「%{establishment_means}」</strong>. 僅策展人可使用此工具。更改定居方式
           為「引進」會有大致相同的效果，但不會更改現有內容值，僅是填為空白。
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: 無法更改生涯清單的標題
       new:
         place_desc: |
           自動填寫帶有此地點物種分類群觀察的列表。請注意您僅能選擇具有便界的地點。
@@ -4311,6 +4325,9 @@ zh-TW:
         show_messages_to_user: 顯示給%{user}的訊息
         speech_privilege_notice: |
           在您新增 3 個可驗證觀察、或是 3 個替別人所做的鑑定之後，您就可以發送新訊息。目前您可以閱讀和回覆別人發送給您的訊息。
+      show:
+        flag_notice_html: |
+          在 %{date} 時您標記了此對話。這個標記即便您刪除此對話的副本後，還會存在，所以如果您不想再看到這個的話，刪除它是沒問題的。
     oauth:
       authorizations:
         new:
@@ -4347,9 +4364,16 @@ zh-TW:
         <strong>捕獲</strong>的？例如：是存在<strong>花園、動物園、魚缸</strong>或一些其它存在情況是<strong>因為人類行為意圖而在這裡</strong>？我們歡迎所有生物的觀察，不過請讓我們了解該生物是屬於野化或歸化。
       compare:
         about_missing_taxa: 關於找不到的分類群
+        about_total_taxa: "關於全部的分類群"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: 合併
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: 水平的
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: 時間區間
         some_queries_missing_taxa: 有些查詢缺少分類群資料
+        taxa_observed_in_all_queries: 在所有查詢中所觀察到的分類群
+        taxa_observed_in_only_one_query: 僅在一筆查詢中所觀察到的分類群
       export:
         choose_columns_desc: 選擇您所想要匯出的欄位
         create_a_query_desc_html: |
@@ -5066,6 +5090,7 @@ zh-TW:
           "Plant Phenology=Flower Budding": 花芽
           "Plant Phenology=Flowering": 開花
           "Plant Phenology=Fruiting": 結果
+          "Plant Phenology=No Evidence of Flowering": 沒有證據
           "Life Stage=egg": 卵
           "Life Stage=larva": 幼蟲
           "Life Stage=teneral": 初羽化

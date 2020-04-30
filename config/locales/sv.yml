@@ -2560,7 +2560,6 @@ sv:
   other_taxa_commonly_misidentified_as_this_subsection: Andra taxa som ofta felbestäms som denna undersektion
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andra taxa som ofta felbestäms till denna undersektion i <a href="%{url}">%{place}</a>
   our_blog: Vår blogg
-  out_of_range: Utanför intervallet
   output_taxon: Uttaxon
   overview: Översikt
   overlapping_downstream_taxon_frameworks_html: "Överlappande underliggande taxonkontexter: %{count}"
@@ -4538,6 +4537,14 @@ sv:
         som har valt en-US. Om du vill rikta dig mot båda, välj båda. Om du vill
         visa ett meddelande för alla medlemmar på en webbplats, lämna helt
         enkelt detta tomt.
+    content_freeze:
+      content_freeze: Låsning av innehåll
+      during_this_time: |
+        När innehållet är låst kan vissa typer av innehåll inte skapas, förstöras eller ändras.
+      this_functionality_will_return: |
+        Denna funktionalitet återinrättas så snart låsningen av innehållet är borta.
+      we_expect_this_functionality_will_return_by_date: |
+        Vi förväntar oss att denna funktionalitet är tillbaka den %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |

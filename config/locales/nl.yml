@@ -545,6 +545,8 @@ nl:
     Weet je zeker dat je deze gebruiker als eervol beschouwt? Alle meldingen van spam in inhoud van deze gebruiker worden opgelost.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Weet je zeker dat je deze %{x} taxa wilt verwijderen?"
   are_you_sure_you_want_to_remove_this_invitation: Weet je zeker dat je deze uitnodiging wilt verwijderen?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Weet je zeker dat je deze waarneming uit %{project} wilt verwijderen?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Weet je zeker dat je dit taxon wilt verwijderen uit de checklist voor %{place}?"
   associated_observations: Bijhorende waarnemingen
   associated_taxa: Bijhorende taxa
@@ -666,6 +668,7 @@ nl:
   cant_merge_a_taxon_with_itself: Kan een taxon niet met zichzelf samenvoegen.
   captive: Gevangenschap
   captive_cultivated: In gevangenschap / Gecultiveerd
+  captive_observations: Waarnemingen in gevangenschap
   card: Kaart
   casual: onvolledig
   casual_: Onvolledig
@@ -905,6 +908,7 @@ nl:
     fruiting: Vruchten zichtbaar en nog vast aan de plant
     no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
     teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
+    cannot_be_determined: Kan niet worden gedetermineerd met het geleverde bewijs
   controls: Besturing
   convert: Converteren
   coordinate_systems: Coördinaatsystemen
@@ -1571,6 +1575,7 @@ nl:
   ignore_and_continue: Negeren en verdergaan
   ignore_times: Tijden negeren
   image_must_be_exactly: afbeelding moet exact 950px breed en maximaal 400px hoog zijn
+  image_size_control: Grootte afbeelding bepalen
   imperiled: In gevaar brengen
   import: Importeren
   import_all_photos_as_observations: Importeer alle foto's als waarnemingen
@@ -1674,6 +1679,9 @@ nl:
   label_to_group_a_batch_of_taxon_changes: Label om een batch van taxonwijzigingen te groeperen
   location_private: Locatie privé
   location_unknown: Locatie onbekend
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Zoomniveau vergrendelen
   language_slash_type: Taal / Type
   #Large photo size
   large: groot
@@ -2510,7 +2518,6 @@ nl:
   other_taxa_commonly_misidentified_as_this_subsection: Andere taxa die vaak ten onrechte worden gedetermineerd als deze ondersectie
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als deze ondersectie in <a href="%{url}">%{place}</a>
   our_blog: Ons blog
-  out_of_range: Buiten het verspreidingsgebied
   output_taxon: Uitvoer taxon
   overview: Overzicht
   overlapping_downstream_taxon_frameworks_html: "Overlappende onderliggende taxonkaders: %{count}"
@@ -3032,6 +3039,7 @@ nl:
   present: aanwezig
   press: Pers
   preview: Voorvertoning
+  preview_observations_with_these_observation_requirements: Voorbeeld van waarnemingen met deze waarnemingsvereisten
   preview_of_synced_observation: "<strong>Voorbeeld</strong>van een gesynchroniseerde waarneming. <a href=\"%{url}\">Ongedaan maken?</a>"
   preview_personal_message: "Ik zou graag willen dat je met me meedoet op %{site}, een website waar je je waarnemingen van planten en dieren kunt registreren, je levenslijst kunt bijhouden, en meer kunt leren over de natuur!"
   preview_your_message: Voorbeeld van je bericht
@@ -3294,6 +3302,7 @@ nl:
   rules_for_becoming_a_member: Voorwaarden om lid te kunnen worden
   rules_for_becoming_memner: Voorwaarden om lid te kunnen worden
   rules_types:
+    must_be_captive: moet in gevangenschap / gecultiveerd zijn
     must_be_georeferenced: moet worden geogereferentieerd
     must_be_identified: moet geïdentificeerd worden
     must_be_on_list: moet(en) in de lijst aanwezig zijn
@@ -4411,6 +4420,11 @@ nl:
     announcements:
       locales_desc: |
         CMD- of SHIFT-klik om meerdere opties te selecteren. Als je niets selecteert wordt de standaardaankondiging voor alle gebruikers getoond, ongeacht lokalisatie-instelling. Het kiezen van een taal zonder een regio zal *niet* toepasbaar zijn op lokalisatie-instellingen mét regio's, bijvoorbeeld als je "en" kiest zal dit het niet zichbaar zijn voor mensen die "en-US" hebben gekozen. Als je beide wilt bereiken, kies dan beide. Als je een aankondiging wilt weergeven voor alle leden van een site, laat je dit gewoon leeg.
+    content_freeze:
+      during_this_time: |
+        Tijdens het bevriezen van inhoud kunnen bepaalde types inhoud niet worden gemaakt, vernietigd of gewijzigd.
+      this_functionality_will_return: |
+        Deze functionaliteit zal terugkeren zodra het bevriezen van de inhoud voorbij is.
     custom_projects:
       edit:
         custom_project_fields_warning: |

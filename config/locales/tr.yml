@@ -667,6 +667,7 @@ tr:
   cant_merge_a_taxon_with_itself: Bir sınıfı kendisiyle birleştiremezsin.
   captive: Kısıtlanmış
   captive_cultivated: Kısıtlanmış / Ekili
+  captive_observations: Kısıtlanmış Gözlemler
   card: Kart
   casual: sıradan
   casual_: Sıradan
@@ -1669,6 +1670,9 @@ tr:
   label_to_group_a_batch_of_taxon_changes: Sınıf değişiklikleri yığınını gruplandırmak için etiket
   location_private: Özel Konum
   location_unknown: Bilinmeyen Konum
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Yakınlaştırma düzeyini kilitleme
   language_slash_type: Dil / Tür
   #Large photo size
   large: büyük
@@ -2487,7 +2491,6 @@ tr:
   other_taxa_commonly_misidentified_as_this_subsection: Bu alt seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflar
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Bu alt seksiyon olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar
   our_blog: Blogumuz
-  out_of_range: Kapsam dışı
   output_taxon: Sınıf çıkışı
   overview: Genel Bakış
   overlapping_downstream_taxon_frameworks_html: "Üst üste gelen alt sınıf Sınıf Yapıları: %{count}"
@@ -4377,6 +4380,14 @@ tr:
     announcements:
       locales_desc: |
         Birden çok seçmek için CMD ya da SHIFT-tıkla tuşuna basın. Hiçbirini seçmemek ne olursa olsun yeri tüm kullanıcılar için duyuru olarak gösterecek. Bölgesiz bir dil seçmek, bölgeleri olan yerleri hedeflemeyecektir, örn. EN'i seçtiyseniz, en-US seçmiş kişiler için görünmeyecektir. Her ikisini de hedeflemek istiyorsanız, ikisini de seçin. Bir sitenin tüm üyeleri için bir duyuru göstermek istiyorsanız, bunu boş bırakmanız yeterlidir.
+    content_freeze:
+      content_freeze: İçeriği Dondurma
+      during_this_time: |
+        İçeriği dondurma sırasında bazı içerik türleri oluşturulamaz, silinemez ya da değiştirilemez.
+      this_functionality_will_return: |
+        Bu işlevsellik içerik dondurması biter bitmez geri gelecektir.
+      we_expect_this_functionality_will_return_by_date: |
+        Bu işlevselliğin %{date} tarihinde dönmesini bekliyoruz.
     custom_projects:
       edit:
         custom_project_fields_warning: |
