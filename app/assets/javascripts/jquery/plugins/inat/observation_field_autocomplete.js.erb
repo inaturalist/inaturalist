@@ -19,7 +19,7 @@ $.fn.observationFieldAutocomplete = function( options ) {
               return !_.includes( options.notIDs, f.id );
             }) : RECENT_OBSERVATION_FIELDS;
           response( _.map( defaultFields, function( r ) {
-              return Object.assign( { }, r, { title: r.name } );
+              return _.assign( { }, r, { title: r.name } );
             } ) );
         } else {
           response( [] );
@@ -37,7 +37,7 @@ $.fn.observationFieldAutocomplete = function( options ) {
           },
           success: function( data ) {
             response( _.map(data.results, function(r) {
-              return Object.assign( { }, r, { title: r.name } );
+              return _.assign( { }, r, { title: r.name } );
             } ) );
           }
         });

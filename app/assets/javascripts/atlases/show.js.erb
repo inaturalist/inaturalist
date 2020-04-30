@@ -1,5 +1,4 @@
-
-// globals
+/* global _ */
 
 var atlasState = {
   map: null,
@@ -26,12 +25,12 @@ atlasJS.introducedStyle = {
   fillOpacity: 0.3
 };
 
-atlasJS.failedStyle = Object.assign( { }, atlasJS.nativeStyle, {
+atlasJS.failedStyle = _.assign( { }, atlasJS.nativeStyle, {
   strokeColor: "red",
   fillColor: "red",
 });
 
-atlasJS.pendingStyle = Object.assign( { }, atlasJS.nativeStyle, {
+atlasJS.pendingStyle = _.assign( { }, atlasJS.nativeStyle, {
   strokeColor: "#202020",
   fillColor: "#202020",
 });
@@ -93,7 +92,7 @@ atlasJS.addPlaceToMap = function( p, type, options ) {
   }
 
   if( isSelection ) {
-    style = Object.assign( { }, style, {
+    style = _.assign( { }, style, {
       strokeWeight: 5
     });
   }
