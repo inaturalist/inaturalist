@@ -408,10 +408,12 @@ iNaturalist.Map.createMap = function(options) {
     zoom: 1,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     streetViewControl: false,
+    rotateControl: false,
     backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
     clickableIcons: false,
     gestureHandling: "greedy",
-    controlSize: 26
+    controlSize: 26,
+    tilt: 0
   }, options);
   
   var map;

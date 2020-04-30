@@ -421,6 +421,7 @@ class LocationChooserMap extends React.Component {
         options={{
           streetViewControl: false,
           fullscreenControl: true,
+          rotateControl: false,
           gestureHandling: "greedy",
           controlSize: 26
         }}
