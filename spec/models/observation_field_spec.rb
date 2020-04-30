@@ -42,6 +42,18 @@ describe ObservationField do
       expect( Observation.page_of_results({ "field:oldname": nil }).total_entries ).to eq 0
       expect( Observation.page_of_results({ "field:newname": nil }).total_entries ).to eq 1
     end
+
+    it "should reindex projects" do
+      of = ObservationField.make!( datatype: "numeric" )
+      proj = Project.make!
+      pof = ProjectObservationField.make!( project: proj, observation_field: of )
+      Project.elastic_index!( ids: [proj.id] )
+      expect( Project.elastic_search( id: proj.id ).results.results.first.
+        project_observation_fields.first.observation_field.datatype ).to eq "numeric"
+      without_delay{ of.update_attributes( datatype: "text" ) }
+      expect( Project.elastic_search( id: proj.id ).results.results.first.
+        project_observation_fields.first.observation_field.datatype ).to eq "text"
+    end
   end
 
   describe "destruction" do
