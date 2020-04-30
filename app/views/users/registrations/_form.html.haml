@@ -52,4 +52,4 @@
       %a{ href: "#", onclick: "return false;", data: { toggle: "popover", content: t(:pi_consent_desc_html, privacy_url: privacy_policy_url, terms_url: terms_of_service_url ), placement: "top" }, title: t(:pi_consent_desc_title) }
         =t :learn_more
 .form-group.hidden
-  = f.select :time_zone, ActiveSupport::TimeZone.all.sort.map{|tz| [tz.to_s, tz.name, { "data-tz-name": tz.tzinfo.name } ]}, { }, { class: "time_zone_select" }
+  = f.select :time_zone, ActiveSupport::TimeZone.all.sort.map{|tz| [tz.to_s, tz.name, { "data-tz-name": tz.tzinfo.name } ]}, { include_blank: true }, { class: "time_zone_select" }
