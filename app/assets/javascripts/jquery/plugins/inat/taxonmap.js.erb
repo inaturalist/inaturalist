@@ -259,7 +259,7 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
     if ( map.taxonLayerSignatures[sig] ) {
       return;
     }
-    $.getJSON( "/taxa/" + layer.taxon.id + "/map_layers", function( taxonData ) {
+    $.getJSON( "<%= CONFIG.node_api_url %>/taxa/" + layer.taxon.id + "/map_layers", function( taxonData ) {
       inatTaxonMap.addTaxonLayer( map, layer, options, taxonData );
     });
   });
