@@ -3518,7 +3518,7 @@ el:
     other: "%{taxon} είναι 1 %{rank} ερπετών με %{count} παρατηρήσεις"
   taxon_is_a_rank_of_plantae_with_x_observations:
     one: "%{taxon} είναι ένα %{rank} φυτών με 1 παρατήρηση"
-    other: "%{taxon} είναι ένα %{rank } φυτών με %{count} παρατηρήσεις"
+    other: "%{taxon} είναι ένα %{rank} φυτών με %{count} παρατηρήσεις"
   taxon_is_a_rank_of_animalia_with_x_observations:
     one: "%{taxon} είναι ένα %{rank} ζώων με 1 παρατήρηση"
     other: "%{taxon} είναι ένα %{rank} ζώων με %{count} παρατηρήσεις"
@@ -4593,8 +4593,6 @@ el:
         identification_count_desc: '# ταυτοποιήσεων για μια μεμονωμένη ταξινομική βαθμίδα'
         join_project_desc_html: |
           Μπαίνοντας σε αυτό το πρότζεκτ θα δώσετε στους επιμελητές του τη δυνατότητα να δουν τις κρυμμένες συντεταγμένες σας από αυτή ή οποιαδήποτε άλλη παρατήρηση στο πρότζεκτ και υπονοείται ότι συμφωνείτε με το πρότζεκτ <a href="%{url}" target="_blank">όροι</a>.
-        observation_flagged_notice_html: |
-          Αυτή η παρατήρηση έχει αναφερθεί ως σπαμ και δεν είναι πια διαθέσιμο δημόσια. Μπορείτε να το δείτε γιατί το δημιουργήσατε, ή είστε ο επιμελητής της σελίδας. Αν πιστεύετε ότι αυτό είναι λάθος, παρακαλούμε <a href="mailto:%{help_email}" class="contact">επικοινωνήστε μαζί μας</a>. <a href="%{manage_flags_path}">Διαχείριση Αναφορών</a>
         observer_does_not_allow_observation_fields: Ο παρατηρητής δεν επιτρέπει επιπλέον πεδία παρατήρησης
         observer_only_allows_curators_to_add_fields: Ο παρατηρητής επιτρέπει μόνο στους επιμελητές της σελίδας να προσθέσουν πεδία παρατηρήσεων
     emailer:
