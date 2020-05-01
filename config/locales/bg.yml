@@ -1270,9 +1270,7 @@ bg:
       'y': "1г"
       #Short text representing %d years in the past
       yy: "%dг"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
