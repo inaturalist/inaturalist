@@ -861,9 +861,7 @@ eo:
       'y': "1j"
       #Short text representing %d years in the past
       yy: "%j"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "YYYY-MM-DD · LT z"
   month: Monato
   months: Monatoj
