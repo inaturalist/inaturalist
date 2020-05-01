@@ -1883,7 +1883,7 @@ fi:
   make_it_a_life_list?: Tee tästä pinnalista?
   make_manager: Tee manageri
   make_sure_the_default_photo_looks_good: Varmista, että oletuskuva näyttää hyvältä isossa koossa.
-  make_this_your_default_license: "Tee tästä oletus %{type} lisenssisi"
+  make_this_your_default_license: "Tee tästä oletusarvoinen %{type}-lisenssisi"
   make_this_the_primary_listing: "Tee tästä ensisijainen luettelo"
   mammals: nisäkkäät
   manage_all_your_subscriptions: Hallitse kaikkia tilauksiasi
@@ -1980,9 +1980,7 @@ fi:
       'y': "1v"
       #Short text representing %d years in the past
       yy: "%dv"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
@@ -3666,6 +3664,7 @@ fi:
   update_existing_photos_with_new_license: Päivitä olemassa olevat kuvat uusilla lisenssivaihtoehdoilla
   update_existing_sounds_with_new_license: Päivitä olemassa olevat äänet uusilla lisenssivaihtoehdoilla
   update_observations: Päivitä havaintoja
+  update_past: "Päivitä aikaisemmat"
   update_photos: Päivitä kuvat
   update_search: Päivitä haku
   update_selected_taxa: Päivitä valitut taksonit
@@ -4653,6 +4652,7 @@ fi:
         leaderboards_among_projects_and_bioblitzes: |
           <strong>Projektien</strong> välinen tulostaulukko
         multiple_project_administrators: Useita projektin ylläpitäjiä
+        name_placeholder: Oulun kasvit, Mahtavat sudenkorennot tms.
         no_need_to_rely_on_manual_addition: |
           Soveliaat havainnot tulevat projektiin mukaan automaattisesti
         note_these_users_will_be_able_to_edit: |
