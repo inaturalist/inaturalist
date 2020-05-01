@@ -16,6 +16,13 @@ EOS
   opt :rails_only, "Filter out locales that aren't in the Rails repo", type: :boolean
 end
 
+if ARGV[0].blank?
+  Optimist::die <<-TXT
+    You must specify a Crowdin top members report CSV export from
+    https://crowdin.com/project/inaturalistweb/settings#reports-top-members
+  TXT
+end
+
 locale_codes_by_name = I18n.t(:locales).inject({}) do |memo, pair|
   memo[pair[1].parameterize] = pair[0]
   memo

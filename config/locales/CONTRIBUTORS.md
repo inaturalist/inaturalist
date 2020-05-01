@@ -24,10 +24,10 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 
 ### Czech (`cs`)
 * [radana](https://crowdin.com/profile/radana)
-* [Petra2017](https://crowdin.com/profile/Petra2017)
-* [Petra Caltová (caltovapetra)](https://crowdin.com/profile/caltovapetra)
 * [TheKakarinka (lenkakremlickova)](https://crowdin.com/profile/lenkakremlickova)
 * [trendspotter](https://crowdin.com/profile/trendspotter)
+* [Petra2017](https://crowdin.com/profile/Petra2017)
+* [Petra Caltová (caltovapetra)](https://crowdin.com/profile/caltovapetra)
 
 ### Danish (`da`)
 * [NCAA](https://crowdin.com/profile/NCAA)
@@ -58,9 +58,9 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Chris971](https://crowdin.com/profile/Chris971)
 * [Marcel Hospers (optilete)](https://crowdin.com/profile/optilete)
 * [marcelhospers](https://crowdin.com/profile/marcelhospers)
+* [clementjoly](https://crowdin.com/profile/clementjoly)
 * [ldacosta](https://crowdin.com/profile/ldacosta)
 * [Jules Seigneur (jules.seigneur77)](https://crowdin.com/profile/jules.seigneur77)
-* [clementjoly](https://crowdin.com/profile/clementjoly)
 * [cassi (boucur)](https://crowdin.com/profile/boucur)
 * [clematis70](https://crowdin.com/profile/clematis70)
 * [JeanPhilippeB](https://crowdin.com/profile/JeanPhilippeB)
@@ -82,6 +82,8 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 ### Greek (`el`)
 * [Dim28](https://crowdin.com/profile/Dim28)
 * [Evelinalouk](https://crowdin.com/profile/Evelinalouk)
+* [rozaliaper](https://crowdin.com/profile/rozaliaper)
+* [Ch_katia](https://crowdin.com/profile/Ch_katia)
 
 ### Hebrew (`he`)
 * [dan.translate](https://crowdin.com/profile/dan.translate)
@@ -161,6 +163,8 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 
 ### Spanish, Mexico (`es-MX`)
 * [Adolfo Jayme (fitoschido)](https://crowdin.com/profile/fitoschido)
+* [Carlos Alonso (calonsogeek)](https://crowdin.com/profile/calonsogeek)
+* [denilsonoz](https://crowdin.com/profile/denilsonoz)
 * [Jaime López (jaimelopezherrera)](https://crowdin.com/profile/jaimelopezherrera)
 
 ### Swedish (`sv`)
@@ -173,7 +177,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [ilaydaejeyit](https://crowdin.com/profile/ilaydaejeyit)
 * [Alperen Yıldız (Sparrow34)](https://crowdin.com/profile/Sparrow34)
 * [Aleyna Çil (buzlulatte)](https://crowdin.com/profile/buzlulatte)
-* [Aleph (toishoki)](https://crowdin.com/profile/toishoki)
+* [alef (toishoki)](https://crowdin.com/profile/toishoki)
 
 ### Ukrainian
 * [Roman  Evseev (roman_evseev)](https://crowdin.com/profile/roman_evseev)
