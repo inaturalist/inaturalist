@@ -316,6 +316,7 @@ class ProjectsController < ApplicationController
 
   def new_traditional
     @project = Project.new
+    @project_types = [Project::ASSESSMENT_TYPE]
   end
 
   def new
@@ -357,6 +358,7 @@ class ProjectsController < ApplicationController
       where( "user_id != ?", @project.user_id ).
       limit( 100 ).
       includes(:user).order( "users.login" )
+    @project_types = @project.bioblitz? ? Project::PROJECT_TYPES : [Project::ASSESSMENT_TYPE]
   end
 
   def create
@@ -370,6 +372,7 @@ class ProjectsController < ApplicationController
           render :json => @project.to_json
         }
       else
+        @project_types = [Project::ASSESSMENT_TYPE]
         format.html { render :action => "new_traditional" }
         format.json { render :status => :unprocessable_entity,
           :json => { :error => @project.errors.full_messages } }
@@ -388,6 +391,12 @@ class ProjectsController < ApplicationController
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
         format.json { render json: @project }
       else
+        @project_types = Project::PROJECT_TYPES
+        @project_types = if [@project.project_type, @project.project_type_was].include?( Project::BIOBLITZ_TYPE )
+          Project::PROJECT_TYPES
+        else
+          [Project::ASSESSMENT_TYPE]
+        end
         format.html { render :action => "edit" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
