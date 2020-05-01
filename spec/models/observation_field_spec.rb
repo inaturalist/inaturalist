@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ObservationField do
-  elastic_models( Observation )
+  elastic_models( Observation, Project )
 
   describe "creation" do
     it "should stip allowd values" do
