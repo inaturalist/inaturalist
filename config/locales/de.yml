@@ -440,7 +440,7 @@ de:
   allow_project_curators_to_view_your_private_coordinates: Projektkuratoren die Ansicht deiner verborgenen Koordinaten erlauben
   allowed_establish_means_values: Erlaubte Werte für die Verbreitung
   allowed_html: Erlaubte HTML-Tags
-  allowed_occurrence_status_values: Erlaubte Vorkommensstatus-Werte
+  allowed_occurrence_status_values: Erlaubte Verbreitungsstatus-Werte
   allowed_values: Erlaubte Werte
   almost_there_: Fast geschafft...
   alphabetical: Alphabetisch
@@ -1194,7 +1194,7 @@ de:
     introduced: eingeführt
     invasive: Invasiv
     managed: Verwaltet
-    native: Einheimisch
+    native: einheimisch
     naturalised: Ausgewildert
   establishment_means: Art der Verbreitung
   establishment_means_describes_how: |
@@ -1963,14 +1963,18 @@ de:
       'y': "1 J"
       #Short text representing %d years in the past
       yy: "%d J"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM T h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "MMM D, YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "MMMM T, JJJJ"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "MMMM T"
   month: Monat
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monatlicher Unterstützer</a> seit %{date}
@@ -2311,7 +2315,7 @@ de:
   observers: Beobachter
   observer_short: Beobachter
   occurence_status_describes_how: 'Der Status des Auftretens beschreibt die Häufigkeit oder Seltenheit eines Taxons in einem bestimmten Gebiet. Siehe DarwinCore für <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">weitere Informationen zur Terminologie</a>.'
-  occurrence_status: Vorkommens-Status
+  occurrence_status: Verbreitungs-Status
   occurrence_status_descriptions:
     absent: Tritt nicht im Bereich auf
     common: Tritt häufig auf
@@ -2319,7 +2323,7 @@ de:
     irregular: Vorkommen unvorhersehbar, einschließlich gelegentlichen Besuchen; kann in einigen Jahren häufig sein und in anderen fehlen
     present: Kommt im Gebiet vor
     uncommon: Kommt regelmäßig vor, aber in geringer Anzahl; erfordert sorgfältige Suche in geeignetem Lebensraum
-  occurrence_status_establishment_means: Vorkommensstatus, Art der Verbreitung
+  occurrence_status_establishment_means: Verbreitungsstatus, Art der Verbreitung
   occurrence_status_levels:
     present: vorhanden
     common: häufig
@@ -4177,7 +4181,7 @@ de:
   yes_reject_it: Ja, ablehnen!
   yes_show_this_in_the_box: Ja, zeige dies in der großen Box oben auf /taxa an
   yesterday: Gestern
-  you: dir
+  you: Dir
   you_: Du
   you_appear_offline_try_again: |
     Du scheinst offline zu sein. Bitte versuche es wieder, wenn Du mit dem Internet verbunden bist.
