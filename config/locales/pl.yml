@@ -155,6 +155,11 @@ pl:
     few: "%{count} sugestie odfiltrowane na podstawie:"
     many: "%{count} sugestii odfiltrowanych na podstawie:"
     other: "%{count} sugestii odfiltrowanej na podstawie:"
+  x_taxa:
+    one: "%{count} takson"
+    few: "%{count} taksony"
+    many: "%{count} taksonów"
+    other: "%{count} taksona"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> zaobserwowany takson"
     few: "<span class='count'>%{count}</span> zaobserwowane taksony"
@@ -338,6 +343,7 @@ pl:
   add_several_observations_at_once: Dodaj kilka obserwacji na raz.
   add_sex_female_annotation: 'Dodaj adnotację "Płeć: Samica"'
   add_sex_male_annotation: 'Dodaj adnotację "Płeć: Samiec"'
+  add_sex_cannot_be_determined_annotation: 'Dodaj adnotację "Płeć: Nie można określić"'
   add_some_now: Dodaj jakieś teraz
   add_tag: Dodaj tag
   add_tags: Dodaj tagi
@@ -1933,14 +1939,18 @@ pl:
       'y': "1r"
       #Short text representing %d years in the past
       yy: "%dl"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM k:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Miesiąc
   months: Miesiące
   more: Więcej
