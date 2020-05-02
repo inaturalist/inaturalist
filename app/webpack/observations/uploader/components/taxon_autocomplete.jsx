@@ -520,7 +520,8 @@ class TaxonAutocomplete extends React.Component {
       small,
       value,
       onChange,
-      placeholder
+      placeholder,
+      onKeyDown
     } = this.props;
     const smallClass = small ? "input-sm" : "";
     return (
@@ -538,6 +539,7 @@ class TaxonAutocomplete extends React.Component {
             onChange={onChange}
             placeholder={placeholder || I18n.t( "species_name_cap" )}
             autoComplete="off"
+            onKeyDown={onKeyDown}
           />
           <Glyphicon
             className="searchclear"
@@ -567,7 +569,8 @@ TaxonAutocomplete.propTypes = {
   initialTaxonID: PropTypes.number,
   notIDs: PropTypes.array,
   perPage: PropTypes.number,
-  config: PropTypes.object
+  config: PropTypes.object,
+  onKeyDown: PropTypes.func
 };
 
 export default TaxonAutocomplete;
