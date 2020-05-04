@@ -10,6 +10,7 @@ debug = true
 num_plans = 0
 num_updated_users = 0
 num_invalid_users = 0
+active_user_ids = []
 while true
   url = "https://donorbox.org/api/v1/plans?page=#{page}&per_page=#{per_page}"
   puts url if debug
@@ -33,6 +34,14 @@ while true
       # important to record when a user is a monthly donor or not
       next
     end
+    if active_user_ids.include?( user.id )
+      # If we've already encountered this user in this sync and that user has an
+      # active monthly plan, ignore all other plans. They might be cancelled,
+      # and we don't want to register the user as having a cancelled plan on our
+      # end
+      next
+    end
+    active_user_ids << user.id
     user.donorbox_donor_id = donor["id"]
     user.donorbox_plan_type = plan["type"]
     user.donorbox_plan_status = plan["status"]
