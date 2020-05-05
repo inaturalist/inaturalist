@@ -6122,6 +6122,9 @@ de:
           other: ist die falsche Länge (sollte %{count} Zeichen sein)
       template:
         body: 'Es gab Probleme mit den folgenden Feldern:'
+        header:
+          one: '%{count} Fehler verhinderte das Speichern von %{model}'
+          other: '%{count} Fehler verhinderten das Speichern von %{model}'
       models:
         application:
           attributes:
