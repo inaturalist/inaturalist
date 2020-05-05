@@ -100,6 +100,7 @@ class Taxon < ActiveRecord::Base
   after_create :denormalize_ancestry
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
+             :reindex_identifications_after_save,
              :handle_after_move,
              :update_taxon_framework_relationship
   after_destroy :update_taxon_framework_relationship
@@ -463,6 +464,20 @@ class Taxon < ActiveRecord::Base
     return if new_record?
     return unless ancestry_changed?
     errors.add( :parent_id, I18n.t( "cannot_be_changed_during_a_content_freeze" ) )
+  end
+
+  def reindex_identifications_after_save
+    return if new_record?
+    reindex_needed = %w(rank rank_level iconic_taxon_id ancestry).detect do |a|
+      send("#{a}_changed?")
+    end
+    if reindex_needed
+      Identification.delay(
+        priority: INTEGRITY_PRIORITY,
+        queue: "slow",
+        unique_hash: { "Identification::reindex_for_taxon": id }
+      ).reindex_for_taxon( id )
+    end
   end
 
   def handle_after_move

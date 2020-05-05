@@ -671,4 +671,26 @@ class Identification < ActiveRecord::Base
     end
   end
 
+  def self.reindex_for_taxon( taxon_id )
+    page = 1
+    ident_ids = []
+    while true
+      r = Identification.elastic_search(
+        source: {
+          includes: ["id"],
+        },
+        filters: [
+          { terms: { "taxon.id" => [taxon_id] } }
+        ],
+        track_total_hits: true
+      ).page( page ).per_page( 1000 )
+      break unless r.response && r.response.hits && r.response.hits.hits
+      new_ident_ids = r.response.hits.hits.map(&:_id)
+      break if new_ident_ids.blank?
+      ident_ids += new_ident_ids
+      page += 1
+    end
+    Identification.elastic_index!( ids: ident_ids )
+  end
+
 end
