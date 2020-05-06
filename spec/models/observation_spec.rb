@@ -2042,7 +2042,7 @@ describe Observation do
       expect( o.coordinates_viewable_by?( pu.user ) ).to be false
     end
 
-    it "should be visible to managers of projects if observer prefers it" do
+    it "should be visible to managers of projects if observer allows it for this observation" do
       po = ProjectObservation.make!( prefers_curator_coordinate_access: true )
       expect( po.observation.user.project_ids ).not_to include po.project_id
       o = po.observation
@@ -2059,6 +2059,104 @@ describe Observation do
       i = Identification.make!( observation: o )
       o.reload
       expect( o.private_place_guess ).to eq original_place_guess
+    end
+
+    describe "curator_coordinate_access_for" do
+      elastic_models( Observation )
+      let(:place) { make_place_with_geom }
+      let(:project) do
+        proj = Project.make(:collection)
+        proj.project_observation_rules << ProjectObservationRule.new( operator: "observed_in_place?", operand: place )
+        proj
+      end
+      let(:curator) do
+        u = ProjectUser.make!( project: project ).user
+        u.reload
+        u
+      end
+      def stub_api_response_for_observation( o )
+        response_json = <<-JSON
+          {
+            "results": [
+              {
+                "id": #{o.id},
+                "non_traditional_projects": [
+                  {
+                    "project": {
+                      "id": #{project.id}
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        JSON
+        stub_request(:get, /#{INatAPIService::ENDPOINT}/).to_return(
+          status: 200,
+          body: response_json,
+          headers: { "Content-Type" => "application/json" }
+        )
+      end
+      let(:o) do
+        Observation.make!( latitude: place.latitude, longitude: place.longitude, taxon: make_threatened_taxon )
+      end
+      it "should not allow curator access by default" do
+        pu = ProjectUser.make!( project: project, user: o.user )
+        stub_api_response_for_observation( o )
+        expect( o ).to be_in_collection_projects( [project] )
+        expect( o ).to be_coordinates_obscured
+        expect( o.coordinates_viewable_by?( curator ) ).to be false
+      end
+      describe "taxon" do
+        let(:pu) do
+          ProjectUser.make!(
+            project: project,
+            user: o.user,
+            prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
+          )
+        end
+        before do
+          expect( pu.preferred_curator_coordinate_access_for ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
+        end
+        it "should allow curator access to coordinates of a threatened taxon" do
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( curator ) ).to be true
+        end
+        it "should not allow curator access to coordinates of a threatened taxon if geoprivacy is obscured" do
+          o.update_attributes( geoprivacy: Observation::OBSCURED )
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( curator ) ).to be false
+        end
+      end
+      describe "any" do
+        let(:pu) do
+          ProjectUser.make!(
+            project: project,
+            user: o.user,
+            prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+          )
+        end
+        before do
+          expect( pu.preferred_curator_coordinate_access_for ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        end
+        it "should allow curator access to coordinates of a threatened taxon" do
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( curator ) ).to be true
+        end
+        it "should allow curator access to coordinates of a threatened taxon if geoprivacy is obscured" do
+          o.update_attributes( geoprivacy: Observation::OBSCURED )
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( curator ) ).to be true
+        end
+      end
     end
   end
   
