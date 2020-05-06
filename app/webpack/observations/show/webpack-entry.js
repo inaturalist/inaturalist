@@ -35,7 +35,10 @@ import suggestionsReducer from "../identify/ducks/suggestions";
 import moderatorActionsReducer from "../../shared/ducks/moderator_actions";
 
 // For some reason this seems to set it everywhere...
-inatjs.setConfig( { apiURL: "http://localhost:4000/v2" } );
+inatjs.setConfig( {
+  apiURL: "http://localhost:4000/v2",
+  writeApiURL: "http://localhost:4000/v2"
+} );
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;

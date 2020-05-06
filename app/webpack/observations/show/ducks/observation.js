@@ -298,6 +298,15 @@ export function fetchObservation( uuid, options = { } ) {
         controlled_value: controlledTermFields,
         user: userFields
       },
+      comments: {
+        body: true,
+        created_at: true,
+        flags: { id: true },
+        id: true,
+        moderator_actions: moderatorActionFields,
+        spam: true,
+        user: userFields
+      },
       community_taxon: taxonFields,
       created_at: true,
       faves: {
@@ -424,7 +433,7 @@ export function afterAPICall( options = { } ) {
     } else {
       if ( options.actionTime && lastAction !== options.actionTime ) { return; }
       if ( state.observation ) {
-        dispatch( fetchObservation( state.observation.id, options ) );
+        dispatch( fetchObservation( state.observation.uuid, options ) );
       }
     }
   };
@@ -557,16 +566,18 @@ export function addComment( body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    dispatch( setAttributes( { comments: state.observation.comments.concat( [{
-      created_at: moment( ).format( ),
-      user: state.config.currentUser,
-      body,
-      api_status: "saving"
-    }] ) } ) );
+    dispatch( setAttributes( {
+      comments: state.observation.comments.concat( [{
+        created_at: moment( ).format( ),
+        user: state.config.currentUser,
+        body,
+        api_status: "saving"
+      }] )
+    } ) );
 
     const payload = {
       parent_type: "Observation",
-      parent_id: state.observation.id,
+      parent_id: state.observation.uuid,
       body
     };
     dispatch( callAPI( inatjs.comments.create, payload ) );
