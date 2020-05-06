@@ -1,5 +1,5 @@
 - site = @site || CONFIG
-- header_search_open = session[:header_search_open].yesish? || ( logged_in? && session[:header_search_open].blank? )
+- header_search_open = session[:header_search_open].yesish? || ( logged_in? && session[:header_search_open] != false )
 #header.bootstrap{ class: header_search_open ? "search-open" : nil }
   #logonav.navtabs
     - if site && !site.custom_logo.blank?
