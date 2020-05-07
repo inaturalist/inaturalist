@@ -290,7 +290,8 @@ const actions = class actions {
                   "sort",
                   "sound",
                   "type",
-                  "uploadState"
+                  "uploadState",
+                  "visionThumbnail"
                 ] ), {
                   id: serialId,
                   cardID: newCard.id
@@ -305,7 +306,8 @@ const actions = class actions {
                   "preview",
                   "sort",
                   "sound",
-                  "type"
+                  "type",
+                  "visionThumbnail"
                 ] ), {
                   id: serialId,
                   cardID: newCard.id,
