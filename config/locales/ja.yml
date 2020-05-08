@@ -3555,6 +3555,7 @@ ja:
   user_added_an_x_to_noun_html: "%{user}が%{noun}に%{x}を追加しました"
   user_added_x_observations_html: "%{user}は%{x}件の観察記録を追加しました。"
   user_commented_on: "%{user}はあなたの%{title}にコメントしました（%{time}）"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}が%{owner}の%{noun}をお気に入りに追加しました"
   user_has_opted_out_of_community_id: 利用者はコミュニティー分類の通知を受け取りません
   user_invited_you_to_join_html: "%{user}から招待が届いています："
