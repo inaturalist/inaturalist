@@ -2525,7 +2525,6 @@ sv:
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller välj från något taxon på högre nivå"
   or_if_you_dont_want_email: "Eller om du helt enkelt inte vill ha någon e-post..."
-  or_upload: Eller ladda upp
   orange: orange
   order: Ordning
   order_by: Sortera efter
@@ -3158,10 +3157,6 @@ sv:
   project_settings: Projektinställningar
   project_start_time_datetime: "Starttid: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt som inte innehåller dessa observationer
-  project_type_description: |
-    Bedömningar och bioblitzer är speciella typer av projekt. Bedömningar är till
-    för att samarbeta kring en uppsättning artbedömningar, vanligtvis för att bedöma
-    naturvårdsbetydelse. Bioblitzer är händelser som har en bestämd början och slut.
   project_user_cannot_be_found: Kunde inte hitta projektanvändaren
   project_user_was_invalid: "Ogiltig projektanvändare: %{project_user}"
   project_was_successfully_created: Lyckades skapa projektet.
@@ -4150,6 +4145,7 @@ sv:
   user_commented_on: "%{user} kommenterade på din %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} favoritmarkerade %{noun} av %{owner}"
   user_faved_this_observation: "%{user} favoritmarkerade denna observation"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"

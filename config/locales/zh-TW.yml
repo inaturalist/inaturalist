@@ -778,6 +778,8 @@ zh-TW:
   conservation_status_descriptions:
     status: 狀態代碼、級別、其它。如果存在像「E」、「CR」這類的短代碼，請使用它；如果沒有，請使用像「瀕危」、「極度瀕危」這類的完整狀態。
     description: 簡單描述為何這被列出。
+    authority: |
+      組織單位已宣告此保育狀態。在新增一個之前，請使用自動補齊來選擇既有的職權單位。如果*您*想被列為職權單位的話，您可以略過這一步。
     place: 狀態被限制的地點。
     url: 描述此狀態的頁面 URL。
     geoprivacy: 用於此物種分類觀察的預設位置隱私
@@ -1261,6 +1263,7 @@ zh-TW:
   flag_for_check_list_title_html: |
     標記此物種名錄：%{title}
   flag_for_comment_id_html: 標記此 <a href="%{url}">評論 %{id}</a>
+  flag_for_comment_id_deleted: 標記評論 %{id} (已刪除)
   flag_for_curation: 標記為策展
   flag_for_guide_title_html: |
     標記此指南：%{title}
@@ -1872,6 +1875,8 @@ zh-TW:
   membership_model: 成員模組
   mentioned_you_in_noun_html: "%{user} 在 %{noun} 提到了您"
   mentioned_you_in_noun_by_html: "%{user} 透過 %{by} 在 %{noun} 提到了您"
+  mentioned_you_in_noun_by_user_html: "%{user} 透過 %{by} 在 %{noun} 中提到了您"
+  mentioned_you_in_noun_by_you_html: "%{user} 在 %{noun} 中提到了您"
   mentioned_you_in_a_x_on_noun_html: "%{user} 在 %{noun} 中的 %{x} 提到了您"
   mentioned_you_in_an_x_on_noun_html: "%{user} 在 %{noun} 中的 %{x} 提到了您"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您"
@@ -1921,6 +1926,8 @@ zh-TW:
       yy: "%d年前"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "YYYY/MM/DD · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "M 月 D 日 h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -2365,7 +2372,6 @@ zh-TW:
   or_all_caps: 或
   or_choose_high_level_taxa: "...或從更高階物種分類挑選"
   or_if_you_dont_want_email: "或者是您不想要接受任何電子郵件..."
-  or_upload: 或上傳
   orange: 橘色
   order: 排序
   order_by: 排序依
@@ -2981,8 +2987,6 @@ zh-TW:
   project_settings: 專案設定
   project_start_time_datetime: "開始時間：%{datetime}"
   project_that_does_not_contain_these_observations: 專案沒有包含這些觀察
-  project_type_description: |
-    評估與 bioblitz 是專案裡的特殊類別。評估用於在協作物種集合上，通常用來衡量保育的重要性。Bioblitz 則是擁有特定起始和結束的事件活動。
   project_user_cannot_be_found: 找不到專案用戶
   project_user_was_invalid: "專案用戶無效：%{project_user}"
   project_was_successfully_created: 專案創建成功。
@@ -3876,6 +3880,7 @@ zh-TW:
   user_commented_on: "%{user} 已評論您的 %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} 不同意這是%{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} 不同意之前較佳的鑑定"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} 將一共 %{noun} 個由 %{owner} 所作內容加為個人最愛"
   user_flagged_as_a_non_spammer_html: "%{user}已被標記為並不是濫發垃圾訊息者"
   user_flagged_as_a_spammer_html: "%{user}已被標記為濫發垃圾訊息者"

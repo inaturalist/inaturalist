@@ -2397,7 +2397,6 @@ fi:
   or_all_caps: TAI
   or_choose_high_level_taxa: "... tai valitse joistakin korkeatasoisista taksoneista"
   or_if_you_dont_want_email: "Tai jos et vain halua mitään sähköpostia..."
-  or_upload: Tai tallenna
   orange: oranssi
   order: Lahko
   order_by: 'Järjestä:'
@@ -2969,8 +2968,6 @@ fi:
   project_settings: Projektin asetukset
   project_start_time_datetime: "Alkamisaika: %{datetime}"
   project_that_does_not_contain_these_observations: Projekti, joka ei sisällä näitä havaintoja
-  project_type_description: |
-    Arvioinnit ja bioblitzit ovat projektien erikoistyyppejä. Arviointi on tarkoitettu yhteistyön tekemiseen lajien kartoittamiseksi, yleensä jotta voitaisiin arvioidan lajien suojelun tarvetta. Bioblitzit ovat tapahtumia, joilla on tämsälinen alku- ja loppuaika.
   project_was_successfully_created: Projekti luotiin onnistuneesti.
   project_was_successfully_updated: Projekti päivitettiin onnistuneesti.
   projects: Projektit
@@ -3037,7 +3034,7 @@ fi:
     leaves: Lehdet
   ranges: Vaihteluvälit
   ray_finned_fishes: viuhkaeväiset
-  re_apply_list_rules: Hae luettelon säännöt uudelleen
+  re_apply_list_rules: Päivitä luettelon säännöt
   re_order_photos: "Uudelleenjärjestä valokuvat &raquo;"
   read_more: Lue lisää
   read_our_getting_started_guide: lue aloitusoppaamme
@@ -3082,7 +3079,7 @@ fi:
     not_internal: ei sisäinen
     error: virhe
   relationship_html: "Suhde: %{link}"
-  reload_from_observations: Päivitä havainnoista
+  reload_from_observations: Päivitä luettelo havaintojesi perusteella
   reload_timed_out: 'Sivun uudelleenlataaminen aikakatkaisu. Yritä myöhemmin uudelleen.'
   remarks_optional: 'Huomautukset <span class="small description">(valinnainen)</span>'
   remember_me: Muista minut
@@ -3590,7 +3587,7 @@ fi:
   this_user_has_been_suspended: Tämä käyttäjä on hyllytetty
   this_user_has_been_suspended_message: |
     Jos tämä on sinun tilisi ja luulet että tämä on tehty vahingossa, <a href="mailto:%{email}">ota yhteyttä</a>.
-  this_will_add_listed_taxa: Tämä lisää havainnoista luetteloidut taksonit. Tämä vie jonkin aikaa joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
+  this_will_add_listed_taxa: Tämä päivittää luettelon havaintojesi perusteella. Tämä voi kestää jonkin aikaa, joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
   this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä merkintöjä Flickr-valokuvillesi. Jatketaan?
   this_year: Tänä vuonna
   threatened: Uhanalainen
@@ -3736,6 +3733,7 @@ fi:
   user_commented: "%{user} kommentoi"
   user_commented_on: "%{user} kommentoi sinun %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} on eri mieltä siitä että tämä on %{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} merkitsi käyttäjän %{owner} %{noun} suosikiksi"
   user_faved_this_observation: "%{user} merkitsi tämän havainnon suosikiksi"
   user_flagged_as_a_non_spammer_html: "%{user} merkitsi ettei ole spammaaja"
@@ -4026,7 +4024,7 @@ fi:
   your_id: Tunnistuksesi
   your_identification: Tunnistuksesi
   your_membership: Jäsenyytesi
-  your_name_was_saved: Nimesi tallettiin.
+  your_name_was_saved: Nimi tallennettiin.
   your_observations: Omat havainnot
   your_observations_couldnt_be_added_to_that_project: "Havaintojasi ei voitu lisätä tähän projektiin: %{errors}"
   your_projects: Omat projektit

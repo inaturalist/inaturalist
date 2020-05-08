@@ -2055,7 +2055,6 @@ ar:
   or_all_caps: أو
   or_choose_high_level_taxa: "...أو الاختيار من بعض الأصناف عالية المستوى"
   or_if_you_dont_want_email: "أو إذا كنت لا تريد أي بريد إلكتروني..."
-  or_upload: أو تحميل
   orange: برتقالي
   order: الترتيب
   order_by: ترتيب حسب
@@ -2629,10 +2628,6 @@ ar:
   project_rules: قواعد المشروع
   project_settings: إعدادات المشروع
   project_that_does_not_contain_these_observations: المشروع الذي لا يحتوي على هذه الملاحظات
-  project_type_description: |
-    التقييمات وبيوبليتزس أنواع خاصة من المشاريع، والتقييمات هي 
-    التعاون على مجموعة من تقييمات الأنواع; عادة لقياس 
-    أهمية الحفظ. بيوبليتزس هي الأحداث التي لها بداية ونهاية محددة.
   project_user_cannot_be_found: لا يمكن العثور على مستخدم المشروع
   project_user_was_invalid: "مستخدم المشروع غير صالح: %{project_user}"
   project_was_successfully_created: تم إنشاء المشروع بنجاح.
@@ -3487,6 +3482,7 @@ ar:
   user_commented_on: "علق %{user} على %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user}غير موافق على هذا %{taxon}"
   user_disagrees_with_previous_finer_identifications: "لا يوافق %{user} على التعريفات الدقيقة السابقة"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} فضل %{noun} بواسطة %{owner}"
   user_flagged_as_a_non_spammer_html: "تم تعليم %{user} كغير مرسل لرسائل غير مرغوب فيها"
   user_flagged_as_a_spammer_html: "تم تعليم %{user} كمرسل رسائل غير مرغوب فيها"

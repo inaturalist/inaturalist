@@ -1993,10 +1993,16 @@ it:
       yy: "%d anni"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM D h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "MMMM D, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "MMMM D"
   month: Mese
   monthly_supporter_since_date_html: |
     <a href="%{url}">Sostenitore mensile</a> dal %{date}
@@ -2439,7 +2445,6 @@ it:
   or_all_caps: O
   or_choose_high_level_taxa: "... o scegli da taxa di livello superiore"
   or_if_you_dont_want_email: "O se semplicemente non vuoi nessuna email..."
-  or_upload: Oppure carica
   orange: arancione
   order: Ordina
   order_by: Ordina per
@@ -3058,7 +3063,7 @@ it:
   project_start_time_datetime: "Ora d'inizio: %{datetime}"
   project_that_does_not_contain_these_observations: Progetto che non contiene queste osservazioni
   project_type_description: |
-    Valutazioni e Bioblitz sono tipologie speciali di progetto. Le valutazioni sono fatte per collaborare nella valutazione di un gruppo di specie, di solito per determinarne la loro importanza conservazionistica. I Biobliz sono eventi che hanno un inizio e fine specificata.
+    Le Valutazioni sono fatte per collaborare nella valutazione di un gruppo di specie, di solito per determinarne la loro importanza conservazionistica.
   project_user_cannot_be_found: Impossibile trovare l'utente del progetto
   project_user_was_invalid: "L'utente del progetto non è valido: %{project_user}"
   project_was_successfully_created: Il progetto è stato creato con successo.
@@ -3994,6 +3999,7 @@ it:
   user_commented_on: "%{user} ha commentato la tua %{title} alle ore %{time}"
   user_disagrees_this_is_taxon: "%{user} non concorda che sia %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} non è d'accordo con le identificazioni precedenti di maggior dettaglio"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} ha messo nei preferiti %{noun} di %{owner}"
   user_faved_this_observation: "%{user} ha messo nei preferiti questa osservazione"
   user_flagged_as_a_non_spammer_html: "%{user} l'ha segnato come un non-spammer"

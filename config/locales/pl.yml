@@ -2278,7 +2278,6 @@ pl:
   #sign in fields OR sign in with Facebook
   or_all_caps: LUB
   or_if_you_dont_want_email: "Lub gdy nie chcesz otrzymywać żadnych e-maili..."
-  or_upload: Lub prześlij
   orange: pomarańczowy
   order: Kolejność
   organism_is_wild: Organizm jest dziki
@@ -3250,6 +3249,7 @@ pl:
   user_commented: "%{user} skomentował"
   user_disagrees_this_is_taxon: "%{user} nie zgadza się, że jest to %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nie zgadza się z poprzednimi dokładniejszymi oznaczeniami"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} dodał do ulubionych %{noun} przez %{owner}"
   user_faved_this_observation: "%{user} dodał tę obserwację do ulubionych"
   user_flagged_as_a_spammer_html: "%{user} zgłoszony jako spamer"

@@ -2013,7 +2013,6 @@ zh-CN:
   or: 或
   or_choose_high_level_taxa: "...或者从一些高级别的分类群里选择"
   or_if_you_dont_want_email: "或如果您不希望接受任何电子邮件的话..."
-  or_upload: 或上传
   orange: 橙色
   order: 排序
   order_by: 排序方式：
@@ -2393,8 +2392,6 @@ zh-CN:
   project_rules: 项目规则
   project_settings: 项目设置
   project_that_does_not_contain_these_observations: 没有包括这些观察记录的项目
-  project_type_description: |
-    评估和bioblitzes是特殊类型的项目。评估是为了对一系列物种评估进行合作，通常是为了衡量保护的重要性。Bioblitzes是具有特定开始和结束的事件。
   project_user_cannot_be_found: 找不到项目用户
   project_user_was_invalid: "项目用户无效：%{project_user}"
   project_was_successfully_created: 已成功创建项目。
@@ -3180,6 +3177,7 @@ zh-CN:
   user_commented: "%{user} 已评论"
   user_commented_on: "%{user}评论了您的%{title}于%{time}"
   user_disagrees_this_is_taxon: "%{user}不同意这是%{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}喜欢了%{owner}的%{noun}"
   user_has_opted_out_of_community_id: 用户已选择退出社区ID
   user_invite_observation_to_project: '%{user}邀请把您的观察“%{observation}”加入至%{project}项目。'

@@ -2326,7 +2326,6 @@ es-AR:
   or_all_caps: o
   or_choose_high_level_taxa: "... o seleccione de algunos taxones de alto nivel"
   or_if_you_dont_want_email: "O si no quieres ningún correo electrónico..."
-  or_upload: O descarga el
   orange: naranja
   order: Orden
   order_by: Ordenar por
@@ -2912,8 +2911,6 @@ es-AR:
   project_settings: Configuración de proyectos
   project_start_time_datetime: "Hora de inicio: %{datetime}"
   project_that_does_not_contain_these_observations: Proyecto que no contenga estas observaciones
-  project_type_description: |
-    Los inventarios rápidos (maratón naturalista) son tipos especiales de proyectos. Los inventarios son una forma de colaboración sobre la evaluación de un conjunto de especies, generalmente para medir su importancia para la conservación. Los inventarios rápidos son eventos que tienen un principio y un final preestablecidos.
   project_user_cannot_be_found: El usuario del proyecto no pudo ser encontrado
   project_user_was_invalid: "El usuario del proyecto no era válido: %{project_user}"
   project_was_successfully_created: El proyecto fue creado satisfactoriamente.
@@ -3818,6 +3815,7 @@ es-AR:
   user_commented_on: "%{user} comentó sobre tu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} marcó como favorito %{noun} por %{owner}"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
   user_flagged_as_a_spammer_html: "%{user} marcado como spammer"

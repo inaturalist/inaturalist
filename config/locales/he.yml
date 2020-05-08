@@ -2049,7 +2049,6 @@ he:
   #sign in fields OR sign in with Facebook
   or_all_caps: או
   or_choose_high_level_taxa: "...או שניתן לבחור מרמה טקסונית גבוהה יותר"
-  or_upload: או העלה
   orange: כתום
   order: סדרה
   order_by: 'סדר לפי:'
@@ -3218,6 +3217,7 @@ he:
   user_commented_on: "%{user} העיר על %{title}%{time} שלך"
   user_disagrees_this_is_taxon: "%{user} אינו מסכים שזה %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} אינו מסכים עם הפרטים הקטנים הקודמים"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} העדיף %{noun} של %{owner}"
   user_faved_this_observation: "%{user} אהב/ה תצפית זו"
   user_hasnt_joined_any_projects: "%{user} טרם הצטרף/ה לאף פרויקט"

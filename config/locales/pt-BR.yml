@@ -2386,7 +2386,6 @@ pt-BR:
   or_all_caps: OU
   or_choose_high_level_taxa: "... ou escolha a partir de um táxon de alto nível"
   or_if_you_dont_want_email: "Ou se você simplesmente não quer receber nenhum email..."
-  or_upload: Ou carregue
   orange: laranja
   order: Ordem
   order_by: Ordenar por
@@ -2952,8 +2951,6 @@ pt-BR:
   project_settings: Configurações do Projeto
   project_start_time_datetime: "Horário de início: %{datetime}"
   project_that_does_not_contain_these_observations: Projeto que não inclui estas observações
-  project_type_description: |
-    Inventários e bioblitz são tipos especiais de projetos. Inventários são uma forma de amostragem colaborativa em geral, para a avaliação de um conjunto de espécies para, por exemplo, analisar sua importância na conservação. Inventários rápidos são eventos com um período de começo e fim pré-estabelecidos.
   project_user_cannot_be_found: Usuário do projeto não pode ser encontrado
   project_user_was_invalid: "Usuário do projeto é inválido: %{project_user}"
   project_was_successfully_created: Projeto foi criado com sucesso.
@@ -3837,6 +3834,7 @@ pt-BR:
   user_commented_on: "%{user} comentou sobre seu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} discorda que seja um(a) %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} discorda de identificações anteriores mais precisas"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} favorito %{noun} por %{owner}"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como não-spammer"
   user_flagged_as_a_spammer_html: "%{user} sinalizado como spammer"

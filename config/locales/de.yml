@@ -599,7 +599,7 @@ de:
   batch_edit_taxa_for_x_html: "mehrere Taxa für %{x} auf einmal bearbeiten"
   batch_operations: Stapeloperationen
   be_the_first_to_fave_this_observation: Sei der erste, der diese Beobachtung favorisiert!
-  because_of: wegen
+  because_of: because of
   before_importing_photos: vor dem Importieren von Bildern
   bg_color: Hintergrundfarbe
   bioblitz: Bioblitz
@@ -1340,7 +1340,7 @@ de:
   flag_this_observation: Diese Beobachtung melden
   flag_this_photo: Dieses Foto melden
   flag_this_sound: Dieses Audio melden
-  flagged: gemeldet
+  flagged: flagged
   flagged_: Gekennzeichnet
   flagged_for_curation: Zur Kuratierung gemeldet
   flagged_taxon: Taxon mit Meldung
@@ -2406,7 +2406,6 @@ de:
   or_all_caps: ODER
   or_choose_high_level_taxa: "... oder wähle aus einem höheren Taxon aus"
   or_if_you_dont_want_email: "Oder wenn du gar keine Emails möchtest ..."
-  or_upload: Oder hochladen
   orange: Orange
   order: Sortierung
   order_by: Sortieren nach
@@ -3026,9 +3025,6 @@ de:
   project_settings: Projekt-Einstellungen
   project_start_time_datetime: "Startpunkt: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt, das diese Beobachtungen nicht enthält
-  project_type_description: |
-    Assessments und Bioblitze sind spezielle Arten von Projekten. Assessments dienen der Zusammenarbeit bei einer Reihe von Bewertungen, normalerweise um
-    die Notwendigkeit von Schutzmaßnahmen zu beurteilen. Bioblitze sind Ereignisse, die einen bestimmten Anfang und Ende haben.
   project_user_cannot_be_found: Der Projektbenutzer kann nicht gefunden werden
   project_user_was_invalid: "Der Projektbenutzer war ungültig: %{project_user}"
   project_was_successfully_created: Projekt wurde erfolgreich erstellt.
@@ -3947,6 +3943,7 @@ de:
   user_commented_on: "%{user} hat dein %{title} %{time} kommentiert"
   user_disagrees_this_is_taxon: "%{user} ist nicht der Meinung, dass es sich um %{taxon} handelt"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}: %{noun} von %{owner} favorisiert"
   user_faved_this_observation: "%{user} hat diese Beobachtung zu seinen Favoriten hinzugefügt"
   user_flagged_as_a_non_spammer_html: "%{user} als Nicht-Spammer markiert"
@@ -6126,6 +6123,9 @@ de:
           other: ist die falsche Länge (sollte %{count} Zeichen sein)
       template:
         body: 'Es gab Probleme mit den folgenden Feldern:'
+        header:
+          one: '%{count} Fehler verhinderte das Speichern von %{model}'
+          other: '%{count} Fehler verhinderten das Speichern von %{model}'
       models:
         application:
           attributes:
