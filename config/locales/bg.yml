@@ -2442,6 +2442,7 @@ bg:
   user_added_x_observations_html: "%{user} добави %{x} наблюдения"
   user_commented_on: "%{user} коментира Ваш(а/е) %{title} %{time}"
   user_disagrees_this_is_taxon: "Потребителят %{user} не е съгласен, че това е %{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} хареса %{noun} на %{owner}"
   user_hasnt_joined_any_projects: "%{user} не участва в никакви проекти"
   user_invite_observation_to_project: '%{user} би искал да покани Вашето наблюдение "%{observation}" към проекта %{project}.'
