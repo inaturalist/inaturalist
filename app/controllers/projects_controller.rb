@@ -242,7 +242,11 @@ class ProjectsController < ApplicationController
         # if previewing, or the project is a new-style, fetch the API
         # response and render the React projects show page
         if @project.is_new_project? || preview
-          projects_response = INatAPIService.project( @project.id, { rule_details: true, ttl: -1 } )
+          projects_response = INatAPIService.project( @project.id, {
+            rule_details: true,
+            ttl: -1,
+            authenticate: current_user
+          } )
           if projects_response.blank?
             flash[:error] = I18n.t( :doh_something_went_wrong )
             return redirect_to projects_path
