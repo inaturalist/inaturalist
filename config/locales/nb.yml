@@ -3972,6 +3972,7 @@ nb:
   user_commented_on: "%{user} har kommentert på @gender{n:ditt|din} %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} er uenig i at dette er %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig i tidligere finere identifikasjoner"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} har favorittisert %{noun} av %{owner}"
   user_faved_this_observation: "%{user} har lagt til denne observasjonen til sine favoritter"
   user_flagged_as_a_non_spammer_html: "%{user} markert som ikke-spammer"
