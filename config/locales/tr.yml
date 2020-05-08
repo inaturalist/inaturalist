@@ -4010,6 +4010,7 @@ tr:
   user_commented_on: "%{user}, %{time} zamanında %{title} başlığınıza yorum yaptı"
   user_disagrees_this_is_taxon: "%{user} bunun %{taxon} olduğunu kabul etmiyor"
   user_disagrees_with_previous_finer_identifications: "%{user} önceki iyi tanımları kabul etmiyor"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}, %{owner} tarafından yapılan %{noun}'i favori yaptı"
   user_faved_this_observation: "%{user} bu gözlemi favorilerine ekledi"
   user_flagged_as_a_non_spammer_html: "%{user} gereksiz işaretçi değil olarak işaretlendi"
