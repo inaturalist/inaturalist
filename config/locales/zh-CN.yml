@@ -3177,6 +3177,7 @@ zh-CN:
   user_commented: "%{user} 已评论"
   user_commented_on: "%{user}评论了您的%{title}于%{time}"
   user_disagrees_this_is_taxon: "%{user}不同意这是%{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}喜欢了%{owner}的%{noun}"
   user_has_opted_out_of_community_id: 用户已选择退出社区ID
   user_invite_observation_to_project: '%{user}邀请把您的观察“%{observation}”加入至%{project}项目。'
