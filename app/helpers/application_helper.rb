@@ -278,7 +278,7 @@ module ApplicationHelper
     return text if text.blank?
     split ||= "\n\n"
     text = text.split(split)[0]
-    sanitize( text, tags: %w(a b strong i em) ).html_safe
+    sanitize( text, tags: %w(a b strong i em), attributes: %w(href rel target) ).html_safe
   end
   
   def remaining_paragraphs_of_text(text,split)
