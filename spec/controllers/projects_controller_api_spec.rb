@@ -182,7 +182,7 @@ shared_examples_for "ProjectsController from node API" do
       project.reload
       expect( project.user ).to eq original_owner
     end
-    it "should not allow changing owner to someone without the ORGANIZER privilege" do
+    it "should allow changing owner to someone without the ORGANIZER privilege" do
       UserPrivilege.make!( user: user, privilege: UserPrivilege::ORGANIZER )
       project = Project.make!( user: user )
       expect( project ).to be_valid
@@ -191,7 +191,7 @@ shared_examples_for "ProjectsController from node API" do
         user_id: other_user.id
       }
       project.reload
-      expect( project.user ).to eq user
+      expect( project.user ).to eq other_user
     end
     it "should not allow changing owner to someone who hasn't joined the project" do
       UserPrivilege.make!( user: user, privilege: UserPrivilege::ORGANIZER )

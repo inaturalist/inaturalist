@@ -398,8 +398,6 @@ class ProjectsController < ApplicationController
           I18n.t( :x_does_not_exist, x: I18n.t( :user ) )
         elsif !@project.project_users.where( user_id: new_admin, role: ProjectUser::MANAGER ).exists?
           I18n.t( "errors.messages.new_project_owner_must_be_a_manager" )
-        elsif !new_admin.privileged_with?( UserPrivilege::ORGANIZER )
-          I18n.t( "errors.messages.new_project_owner_must_have_the_50_verifiable_observations" )
         end
       end
       if msg
