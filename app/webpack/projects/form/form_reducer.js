@@ -507,19 +507,11 @@ export function changeOwner( projectUser ) {
     const { project } = getState( ).form;
     if ( !project || !projectUser ) { return; }
     if ( confirm( I18n.t( "views.projects.edit.change_owner_alert" ) ) ) {
-      dispatch( updateProject( { saving: true } ) );
-      inatjs.projects.update( { id: project.id, project: { user_id: projectUser.user.id } } )
-        .then( ( ) => {
-          dispatch( updateProject( {
-            user: projectUser.user,
-            user_id: projectUser.user.id,
-            saving: false
-          } ) );
-        } )
-        .catch( e => {
-          dispatch( showError( e ) );
-          dispatch( updateProject( { saving: false } ) );
-        } );
+      dispatch( updateProject( {
+        user: projectUser.user,
+        user_id: projectUser.user.id,
+        saving: false
+      } ) );
     }
   };
 }
