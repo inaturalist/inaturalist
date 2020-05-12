@@ -390,9 +390,9 @@ class ProjectsController < ApplicationController
     @project.icon = nil if params[:icon_delete]
     @project.cover = nil if params[:cover_delete]
     if params[:project] && params[:project][:user_id]
-      msg = if current_user.id != @project.user_id
+      msg = if current_user.id != @project.user_id && @project.user_id != params[:project][:user_id].to_i
         I18n.t( "errors.messages.only_project_owner_can_change_project_owner" )
-      else
+      elsif @project.user_id != params[:project][:user_id].to_i
         new_admin = User.find_by_id( params[:project][:user_id] )
         if new_admin.blank?
           I18n.t( :x_does_not_exist, x: I18n.t( :user ) )
