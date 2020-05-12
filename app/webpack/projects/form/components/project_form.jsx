@@ -83,7 +83,7 @@ class ProjectForm extends React.Component {
                           <td>
                             <span className="badge">
                               { admin.user.login }
-                              { ( admin.user.id === project.user_id ) ? " (owner)" : (
+                              { ( admin.user.id === project.user.id ) ? " (owner)" : (
                                 <button
                                   type="button"
                                   className="btn btn-nostyle"

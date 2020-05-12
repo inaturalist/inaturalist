@@ -5658,7 +5658,9 @@ en:
             data at the same time.
           </p>
         change_admin_desc: Choose one of the project curators to be the new admin.
-        change_owner_alert: This will remove your ability to delete this project or transfer ownership. Do you want to proceed?
+        change_owner_alert: |
+          This will remove your ability to delete this project or transfer
+          ownership again. Do you want to proceed?
         cover_desc: "Optional banner image that will appear at the top of your project page. Must be 950px wide, less than 400px tall."
         custom_project_fields_means: "Customize the project's banner, add side content, and edit CSS."
         end_time_desc: "End time for your bioblitz. Must be less than one year after start time"

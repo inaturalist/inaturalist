@@ -17135,7 +17135,7 @@ I18n.translations["en"] = {
     "projects": {
       "collection": "Collection",
       "edit": {
-        "change_owner_alert": "This will remove your ability to delete this project or transfer ownership. Do you want to proceed?",
+        "change_owner_alert": "This will remove your ability to delete this project or transfer\nownership again. Do you want to proceed?\n",
         "make_owner": "Make Owner"
       },
       "new": {
