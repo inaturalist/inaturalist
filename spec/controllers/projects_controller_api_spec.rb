@@ -156,6 +156,69 @@ shared_examples_for "a ProjectsController" do
   end
 end
 
+shared_examples_for "ProjectsController from node API" do
+  describe "update" do
+    it "should allow the owner to change the owner" do
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::ORGANIZER )
+      project = Project.make!( user: user )
+      expect( project ).to be_valid
+      other_user = make_user_with_privilege( UserPrivilege::ORGANIZER )
+      ProjectUser.make!( project: project, user: other_user, role: ProjectUser::MANAGER )
+      put :update, format: :json, id: project.id, project: {
+        user_id: other_user.id
+      }
+      expect( response.status ).to eq 200
+      project.reload
+      expect( project.user ).to eq other_user
+    end
+    it "should not allow a manager to change the owner" do
+      manager = ProjectUser.make!( user: user, role: ProjectUser::MANAGER )
+      project = manager.project
+      original_owner = project.user
+      other_user = make_user_with_privilege( UserPrivilege::ORGANIZER )
+      put :update, format: :json, id: project.id, project: {
+        user_id: other_user.id
+      }
+      project.reload
+      expect( project.user ).to eq original_owner
+    end
+    it "should not allow changing owner to someone without the ORGANIZER privilege" do
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::ORGANIZER )
+      project = Project.make!( user: user )
+      expect( project ).to be_valid
+      other_user = ProjectUser.make!( project: project, role: ProjectUser::MANAGER ).user
+      put :update, format: :json, id: project.id, project: {
+        user_id: other_user.id
+      }
+      project.reload
+      expect( project.user ).to eq user
+    end
+    it "should not allow changing owner to someone who hasn't joined the project" do
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::ORGANIZER )
+      project = Project.make!( user: user )
+      expect( project ).to be_valid
+      other_user = make_user_with_privilege( UserPrivilege::ORGANIZER )
+      put :update, format: :json, id: project.id, project: {
+        user_id: other_user.id
+      }
+      project.reload
+      expect( project.user ).to eq user
+    end
+    it "should not allow changing owner to a project member who isn't a manager" do
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::ORGANIZER )
+      project = Project.make!( user: user )
+      expect( project ).to be_valid
+      other_user = make_user_with_privilege( UserPrivilege::ORGANIZER )
+      ProjectUser.make!( user: other_user, project: project )
+      put :update, format: :json, id: project.id, project: {
+        user_id: other_user.id
+      }
+      project.reload
+      expect( project.user ).to eq user
+    end
+  end
+end
+
 describe ProjectsController, "oauth authentication" do
   let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
   before do
@@ -165,9 +228,11 @@ describe ProjectsController, "oauth authentication" do
   it_behaves_like "a ProjectsController"
 end
 
-describe ProjectsController, "devise authentication" do
+
+describe ProjectsController, "jwt authentication" do
+  let(:user) { User.make! }
   before do
-    http_login user
+    request.env["HTTP_AUTHORIZATION"] = JsonWebToken.encode(user_id: user.id)
   end
-  it_behaves_like "a ProjectsController"
+  it_behaves_like "ProjectsController from node API"
 end

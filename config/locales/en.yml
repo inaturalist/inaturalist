@@ -5658,6 +5658,7 @@ en:
             data at the same time.
           </p>
         change_admin_desc: Choose one of the project curators to be the new admin.
+        change_owner_alert: This will remove your ability to delete this project or transfer ownership. Do you want to proceed?
         cover_desc: "Optional banner image that will appear at the top of your project page. Must be 950px wide, less than 400px tall."
         custom_project_fields_means: "Customize the project's banner, add side content, and edit CSS."
         end_time_desc: "End time for your bioblitz. Must be less than one year after start time"
@@ -5671,6 +5672,8 @@ en:
           It looks like this project can be converted to a new <a href="%{url}">Collection Project</a>.
         last_aggregated_at_desc: |
           Time when the aggregator last finished adding observations to this project
+        # Label for button to make another user the owner of a project
+        make_owner: Make Owner
         no_curators: |
           There are no project curators. If you want to assign a new person as
           the admin, they must first join this project and you must make them
@@ -6956,9 +6959,12 @@ en:
       invalid: is invalid
       less_than: must be less than %{count}
       less_than_or_equal_to: must be less than or equal to %{count}
+      new_project_owner_must_be_a_manager: New project owner must be an admin
+      new_project_owner_must_have_the_50_verifiable_observations: New project owner must have 50 verifiable observations
       not_a_number: is not a number
       not_an_integer: must be an integer
       odd: must be odd
+      only_project_owner_can_change_project_owner: Only the project owner can change the project owner
       record_invalid: 'Validation failed: %{errors}'
       requires_privilege_speech: |
         must have three verifiable observations or three identifications

@@ -257,7 +257,7 @@ export function removeProjectRule( ruleToRemove ) {
   };
 }
 
-export function removeProjectUser( projectUser ) {
+export function removeProjectManager( projectUser ) {
   return ( dispatch, getState ) => {
     const { project } = getState( ).form;
     if ( !project || !projectUser ) { return; }
@@ -499,5 +499,21 @@ export function duplicateProject( ) {
         window.location = `/projects/new?copy_project_id=${project.slug}`;
       }
     } ) );
+  };
+}
+
+export function changeOwner( projectUser ) {
+  return ( dispatch, getState ) => {
+    const { project } = getState( ).form;
+    if ( !project || !projectUser ) { return; }
+    if ( confirm( I18n.t( "views.projects.edit.change_owner_alert" ) ) ) {
+      inatjs.projects.update( { id: project.id, project: { user_id: projectUser.user.id } } )
+        .then( ( ) => {
+          window.location.reload( );
+        } )
+        .catch( e => {
+          dispatch( showError( e ) );
+        } );
+    }
   };
 }
