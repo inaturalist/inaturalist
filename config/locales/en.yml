@@ -1280,6 +1280,7 @@ en:
   editing_project: Editing %{project}
   editing_project_asset: Editing Project Asset for
   editing_subscription_to_x_html: "Editing subscription to %{x}"
+  editing_taxon: Editing %{taxon}
   editing_taxon_link: Editing Taxon Link
   editing_taxon_name_for_taxon_html: Editing Taxon Name "%{name}" for %{taxon}
   editing_taxon_range: Editing Taxon Range
@@ -1559,6 +1560,7 @@ en:
   got_it!: Got it!
   got_your_data_somewhere_else?: Got your data somewhere else?  We can help.
   graft: Graft
+  graft_taxon: Graft %{taxon}
   grafting_attemps_to_insert_this_taxon: Grafting attempts to insert this taxon into our taxonomic tree, finding an existing parent taxon or creating all the necessary in-between taxa in order to attach it to an existing higher level taxon.
   grant_role: "%{grant} %{role} role"
   grid: Grid
@@ -3476,6 +3478,8 @@ en:
   scale_colon: "Scale:"
   schemes: Schemes
   schemes_including: Schemes including
+  # E.g. "Homo sapiens" instead of "human"
+  scientific_name: Scientific Name
   search: Search
   search_all_fields: search all fields
   search_by_name_or_email: Search by name or email

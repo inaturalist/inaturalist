@@ -9,7 +9,7 @@
     <%= link_to t(:back_to_viewing, :taxon => @taxon.name).html_safe, 
                 taxon_path(@taxon), :class => 'back crumb' %>
   </span>
-  <h2><%= t(:editing) %> <%= @taxon.name %></h2>
+  <h2><%= t :editing_taxon, taxon: @taxon.name %></h2>
   <div class="description">
     <% if @taxon.creator -%>
       <%=t :created_by_user_on_date, :user => @taxon.creator.login, :date => l(@taxon.created_at) %>
@@ -21,12 +21,12 @@
 
 <% if @taxon.creator -%>
   <div class="clear description">
-    <%= t(:created_by, gender: 'taxon') %> <%= link_to @taxon.creator.login, @taxon.creator %> <%= t :on_day %> <%= l(@taxon.created_at.to_date, :format => :long) %>
+    <%=raw t :created_by_user_on_date, user: link_to_user( @taxon.creator ), date: l( @taxon.created_at.to_date, format: :long ) %>
   </div>
 <% end -%>
 
 <% if @taxon.updater -%>
   <div class="clear description">
-    <%= t(:updated_by, gender: 'taxon') %> <%= link_to @taxon.updater.login, @taxon.updater %> <%= t :on_day %> <%= l(@taxon.updated_at.to_date, :format => :long) %>
+    <%=t :updated_by_user_on_date_html, user: link_to_user( @taxon.updater ), date: l( @taxon.updated_at.to_date, format: :long ) %>
   </div>
 <% end -%>

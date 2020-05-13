@@ -48,7 +48,7 @@
       <% if !taxon.new_record? && @protected_attributes_editable -%>
         <div class="column span-5">
           <label><%= t(:graft) %></label><br/>
-          <%= link_to "#{t(:graft)} <i>#{taxon.name}</i>".html_safe, graft_taxon_path(taxon), :class => "button", :method => :patch, :data => {:loading_click => true} %>
+          <%= link_to t(:graft_taxon, taxon: taxon.name), graft_taxon_path( taxon ), class: "button", method: :patch, data: { loading_click: true } %>
         </div>
         <div class="last column span-6 description">
           <%= t(:grafting_attemps_to_insert_this_taxon) %>
@@ -59,13 +59,13 @@
     <div class="column span-23">
       <%= f.check_box :locked, :label_after => true %>
       <p class="description ui">
-        <%= t(:locked_taxa_will_not_allow_new) %>
+        <%= t(:locked_taxa_will_not_allow_new).html_safe %>
       </p>
     </div>
   </fieldset>
   
   <fieldset class="column span-24">
-    <legend><%= t(:photos) %></legend>
+    <legend><%= t(:edit_photos) %></legend>
 
     <div id="taxon_photos" class="clear stacked">
       <%= f.fields_for :taxon_photos do |tp| %>
@@ -75,7 +75,7 @@
           <%= tp.text_field :position, :class => "sortable-position", :label => false %>
           <%= image_tag(tp.object.photo.small_url) %>
           <div class="upstacked">
-            <%= link_to t(:view_photo), photo_path(tp.object.photo), :class => "readmore left", :target => "_blank" %>
+            <%= link_to t(:view_details), photo_path(tp.object.photo), :class => "readmore left", :target => "_blank" %>
             <%= tp.check_box :_destroy, :label_after => true, :label => t(:delete), :wrapper => {:class => "right"} %>
           </div>
         </div>
