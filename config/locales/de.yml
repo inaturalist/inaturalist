@@ -318,7 +318,6 @@ de:
   admin_s: Admin(s)
   admin_only: Nur Administratoren
   admin_tools: Verwaltungswerkzeuge
-  agree: zustimmen
   agree_: Zustimmen
   agree?: Zustimmen?
   agree_with_current_taxon: Bin mit aktuellem Taxon einverstanden
@@ -1221,6 +1220,7 @@ de:
   exclusion_filters: Ausschluss-Filter
   existing_flags: Vorhandene Meldungen
   exit_full_screen: "Vollbild beenden"
+  examples_of_ranking_organizations: Beispiele für Verzeichnisse gefährdeter Arten
   explore: Entdecken
   export: Exportieren
   export_observations: Beobachtungen exportieren
@@ -3944,7 +3944,7 @@ de:
   user_disagrees_this_is_taxon: "%{user} ist nicht der Meinung, dass es sich um %{taxon} handelt"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user}: %{noun} von %{owner} favorisiert"
+  user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
   user_faved_this_observation: "%{user} hat diese Beobachtung zu seinen Favoriten hinzugefügt"
   user_flagged_as_a_non_spammer_html: "%{user} als Nicht-Spammer markiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
@@ -3976,11 +3976,9 @@ de:
   username_or_email: Benutzername oder E-Mail
   username_or_user_id: Benutzername oder Benutzer-ID
   users: Benutzer
-  users_comment_html: "Kommentar von <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: Beiträge von <a href="%{url}">%{login}</a> zu %{project_title}
   users_highlights_and_stats_from_year_on_site: "Highlights und Statistiken aus %{year} von %{user} auf %{site}"
   users_id: "%{user}s ID"
-  users_identification_short_html: "ID von <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Die jüngsten Beobachtungen von %{user} bei %{site}"
   users_profile: "%{user}s Profil"
   users_projects: "Projekte von %{user}"
@@ -4984,6 +4982,9 @@ de:
           Daten zu sammeln.
           </p>
         change_admin_desc: Wähle einen der Projektkuratoren aus, der der neue Administrator werden soll.
+        change_owner_alert: |
+          Dies wird dir die Möglichkeit nehmen, dieses Projekt zu löschen oder
+          erneut an jemanden zu übertragen. Möchtest du fortfahren?
         cover_desc: "Optionales Banner, das oben auf deiner Projektseite erscheint. Muss 950px breit und weniger als 400px hoch sein."
         custom_project_fields_means: "Passe das Banner des Projekts an, füge Seiteninhalte hinzu und bearbeite die CSS."
         end_time_desc: "Endzeit für deinen bioblitz. Muß weniger als ein Jahr nach der Startzeit sein."
@@ -4995,6 +4996,8 @@ de:
         icon_desc: "Wird auf ein Quadrat zugeschnitten"
         it_looks_like_this_project_can_be_converted: |
           Es sieht so aus, als könne dieses Projekt in ein neues <a href="%{url}">Sammel-Projekt</a> umgewandelt werden.
+        #Label for button to make another user the owner of a project
+        make_owner: zum Besitzer machen
         no_curators: |
           Es existieren keine Projektkuratoren. Wenn du eine neue Person als
           Admin zuweisen möchtest, muss sie zuerst diesem Projekt beitreten und du musst sie
@@ -5840,9 +5843,11 @@ de:
       invalid: ist ungültig
       less_than: muss kleiner als %{count} sein
       less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
+      new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
       not_a_number: ist keine Zahl
       not_an_integer: muss eine ganze Zahl sein
       odd: muss ungerade sein
+      only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
       record_invalid: 'Überprüfung fehlgeschlagen: %{errors}'
       requires_privilege_speech: |
         muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
@@ -5976,9 +5981,11 @@ de:
         invalid: ist ungültig
         less_than: muss kleiner als %{count} sein
         less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
+        new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
         not_a_number: ist keine Zahl
         not_an_integer: muss eine Ganzzahl sein
         odd: muss ungerade sein
+        only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
         record_invalid: 'Überprüfung fehlgeschlagen: %{errors}'
         requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
         requires_privilege_organizer: muss 50 überprüfbare Beobachtungen haben, um dies zu tun
@@ -6105,9 +6112,11 @@ de:
         invalid: ist ungültig
         less_than: muss kleiner als %{count} sein
         less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
+        new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
         not_a_number: ist keine Zahl
         not_an_integer: muss eine ganze Zahl sein
         odd: muss ungerade sein
+        only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
         record_invalid: 'Validierung fehlgeschlagen: %{errors}'
         requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
         requires_privilege_organizer: muss 50 überprüfbare Beobachtungen haben, um dies zu tun
