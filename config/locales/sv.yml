@@ -333,7 +333,6 @@ sv:
   admin_s: Administratör(er)
   admin_only: Endast admin.
   admin_tools: Admin-verktyg
-  agree: håller med
   agree_: Håller med
   agree?: Håller med?
   agree_with_current_taxon: Håller med om aktuellt taxon
@@ -3157,6 +3156,10 @@ sv:
   project_settings: Projektinställningar
   project_start_time_datetime: "Starttid: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt som inte innehåller dessa observationer
+  project_type_description: |
+    Bedömningar och bioblitzer är speciella typer av projekt. Bedömningar är till
+    för att samarbeta kring en uppsättning artbedömningar, vanligtvis för att bedöma
+    naturvårdsbetydelse. Bioblitzer är händelser som har en bestämd början och slut.
   project_user_cannot_be_found: Kunde inte hitta projektanvändaren
   project_user_was_invalid: "Ogiltig projektanvändare: %{project_user}"
   project_was_successfully_created: Lyckades skapa projektet.
@@ -4179,11 +4182,9 @@ sv:
   username_or_email: Användarnamn eller e-post
   username_or_user_id: Användarnamn eller användar-ID
   users: Användare
-  users_comment_html: "<a href='%{url}'>%{user}</a>s kommentar"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>s bidrag till %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}s höjdpunkter och statistik från %{year} på %{site}"
   users_id: "%{user}s ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>s ID"
   users_latest_observations_on_site: "%{user}senaste observationer på %{site}"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s projekt"
@@ -5532,6 +5533,9 @@ sv:
           som man samlar in värdefulla data.
           </p>
         change_admin_desc: Välj den av projektförvaltarna som ska bli den nya administratören.
+        change_owner_alert: |
+          Detta kommer att ta bort din möjlighet att ta bort detta projekt eller överföra
+          äganderätt igen. Vill du fortsätta?
         cover_desc: "Valfri banner-bild som visas högst upp på din projektsida. Måste vara 950px bred, mindre än 400px hög."
         custom_project_fields_means: "Anpassa projektets banner, lägg till sidoinnehåll och redigera CSS."
         end_time_desc: "Sluttid för din bioblitz. Måste vara mindre än ett år efter starttiden"
@@ -5545,6 +5549,8 @@ sv:
           Det verkar som om detta projekt kan konverteras till ett nytt <a href="%{url}">Samlingsprojekt</a>.
         last_aggregated_at_desc: |
           Tid när aggregeraren senast lade till observationer till detta projekt
+        #Label for button to make another user the owner of a project
+        make_owner: Gör till ägare
         no_curators: |
           Det finns inga projektetförvaltare. Om du vill tilldela en ny person rollen som
           administratör, måste denne först gå med i projektet och sedan måste du
@@ -5822,6 +5828,10 @@ sv:
           vårt <a href="%{url}" target="_blank">blogginlägg om Samlingsprojekt</a>.
         this_is_a_preview: |
           Detta är en förhandsvisning av hur detta projekt skulle se ut som ett Samlingsprojekt.
+        this_project_has_not_defined_requirements: |
+          Detta projekt har inte definierat några observationskrav. Projekt måste välja ett eller
+          flera taxa (t.ex. fåglar, barrträd), platser (t.ex. Brasilien, Yellowstone), användare och/eller datum
+          för att börja visa observationer.
       updates_desc: |
         Få uppdateringar om detta projekt på din anslagstavla och i e-post om
         dagens uppdateringar.
@@ -6799,9 +6809,11 @@ sv:
       invalid: är ogiltig
       less_than: måste vara mindre än %{count}
       less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+      new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
       not_a_number: är inte ett nummer
       not_an_integer: måste vara ett heltal
       odd: måste vara udda
+      only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
       record_invalid: 'Validering misslyckades: %{errors}'
       requires_privilege_speech: |
         måste ha tre verifierbara observationer eller tre bestämningar
@@ -6936,9 +6948,11 @@ sv:
         invalid: är ogiltig
         less_than: måste vara mindre än %{count}
         less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte ett nummer
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
+        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
         requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
         requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
@@ -7076,9 +7090,11 @@ sv:
         invalid: är ogiltig
         less_than: måste vara mindre än %{count}
         less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte en siffra
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
+        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
         requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
         requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
