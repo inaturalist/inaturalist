@@ -418,7 +418,6 @@ cs:
   admin_s: Administrátoři
   admin_only: Pouze správce
   admin_tools: Správcovské nástroje
-  agree: Souhlasím
   agree_: Souhlasím
   agree?: Souhlasíte?
   agree_with_current_taxon: Souhlasím s aktuálním taxonem
@@ -4232,11 +4231,9 @@ cs:
   username_or_email: Uživatelské jméno nebo e-mail
   username_or_user_id: Uživatelské jméno nebo uživatelské ID
   users: Uživatelé
-  users_comment_html: "komentář uživatele <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>příspěvky k %{project_title}
   users_highlights_and_stats_from_year_on_site: "významné události a statistiky uživatele %{user} za rok %{year} na %{site}"
   users_id: "ID uživatele %{user}"
-  users_identification_short_html: "ID uživatele <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "poslední pozorování uživatele %{user} na %{site}"
   users_profile: "Profil uživatele %{user}"
   users_projects: "%{user} projekty"
@@ -5326,6 +5323,9 @@ cs:
           Bioblitz je událost, při které se účastníci v dané době snaží pozorovat co nejvíc druhů. Je to zábavný způsob, jak ukázat lidem biodiverzitu a zároveň shromáždit cenné údaje.
           </p>
         change_admin_desc: Vyberte jednoho z kurátorů projektu, který bude novým správcem.
+        change_owner_alert: |
+          Tímto odstraníte vaši schopnost odstranit tento projekt nebo znovu převést
+          vlastnictví. Chcete pokračovat?
         cover_desc: "Nepovinný obrázek na banner, který se zobrazí v horní části stránky vašeho projektu. Šířka musí být 950px, výška do 400px."
         custom_project_fields_means: "Upravte banner projektu, přidejte postranní obsah a editujte CSS."
         end_time_desc: "Čas ukončení vašeho bioblitzu. Musí být méně než jeden rok od času zahájení"
@@ -5336,6 +5336,8 @@ cs:
           Zdá se, že tento projekt může být převeden na nový <a href="%{url}"> Projekt kolekce </a>.
         last_aggregated_at_desc: |
           Čas, kdy osoba provádějící seskupení naposledy dokončila přidávání pozorování k tomuto projektu
+        #Label for button to make another user the owner of a project
+        make_owner: Učinit vlastníkem
         no_curators: |
           Projekt nemá žádné kurátory. Pokud chcete správcem jmenovat novou osobu, nejdřív se musí přidat k tomuto projektu a vy ji musíte jmenovat kurátorem.
         observation_aggregation_desc_html: |
@@ -6299,9 +6301,11 @@ cs:
       invalid: je neplatné
       less_than: musí být méně než %{count}
       less_than_or_equal_to: musí být menší než nebo rovno %{count}
+      new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
       not_a_number: není číslo
       not_an_integer: musí být celé číslo
       odd: musí být liché číslo
+      only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
       record_invalid: 'Schválení se nezdařilo: %{errors}'
       requires_privilege_speech: |
         musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
@@ -6445,9 +6449,11 @@ cs:
         invalid: je neplatné
         less_than: musí být méně než %{count}
         less_than_or_equal_to: musí být menší než nebo rovno %{count}
+        new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
         not_a_number: není číslo
         not_an_integer: musí být celé číslo
         odd: musí být liché číslo
+        only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
         record_invalid: 'Schválení se nezdařilo: %{errors}'
         requires_privilege_speech: musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
         requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování
@@ -6593,9 +6599,11 @@ cs:
         invalid: je neplatné
         less_than: musí být méně než %{count}
         less_than_or_equal_to: musí být menší než nebo rovno %{count}
+        new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
         not_a_number: není číslo
         not_an_integer: musí být celé číslo
         odd: musí být liché číslo
+        only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
         record_invalid: 'Schválení se nezdařilo: %{errors}'
         requires_privilege_speech: musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
         requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování
