@@ -389,6 +389,30 @@ class ProjectsController < ApplicationController
   def update
     @project.icon = nil if params[:icon_delete]
     @project.cover = nil if params[:cover_delete]
+    if params[:project] && params[:project][:user_id]
+      msg = if current_user.id != @project.user_id && @project.user_id != params[:project][:user_id].to_i
+        I18n.t( "errors.messages.only_project_owner_can_change_project_owner" )
+      elsif @project.user_id != params[:project][:user_id].to_i
+        new_admin = User.find_by_id( params[:project][:user_id] )
+        if new_admin.blank?
+          I18n.t( :x_does_not_exist, x: I18n.t( :user ) )
+        elsif !@project.project_users.where( user_id: new_admin, role: ProjectUser::MANAGER ).exists?
+          I18n.t( "errors.messages.new_project_owner_must_be_a_manager" )
+        end
+      end
+      if msg
+        respond_to do |format|
+          format.html do
+            flash[:error] = msg
+            redirect_back_or_default( @project )
+          end
+          format.json do
+            render json: { error: msg }, status: :unprocessable_entity
+          end
+        end
+        return
+      end
+    end
     respond_to do |format|
       if @project.update_attributes(params[:project])
         Project.refresh_es_index
