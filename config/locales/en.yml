@@ -395,7 +395,6 @@ en:
   admin_s: Admin(s)
   admin_only: Admin-only
   admin_tools: Admin Tools
-  agree: agree
   agree_: Agree
   agree?: Agree?
   agree_with_current_taxon: Agree with current taxon
@@ -4275,11 +4274,9 @@ en:
   username_or_email: Username or email
   username_or_user_id: Username or User ID
   users: Users
-  users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>'s ID"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_profile: "%{user}'s Profile"
   users_projects: "%{user}'s Projects"
@@ -6966,7 +6963,6 @@ en:
       less_than: must be less than %{count}
       less_than_or_equal_to: must be less than or equal to %{count}
       new_project_owner_must_be_a_manager: New project owner must be an admin
-      new_project_owner_must_have_the_50_verifiable_observations: New project owner must have 50 verifiable observations
       not_a_number: is not a number
       not_an_integer: must be an integer
       odd: must be odd
