@@ -216,7 +216,6 @@ ko:
   admin_s: 관리자
   admin_only: 관리자 전용
   admin_tools: 관리자 도구
-  agree: 동의
   agree_: 동의
   agree?: 동의하십니까?
   agree_with_current_taxon: 현재 분류군에 동의
@@ -2116,6 +2115,7 @@ ko:
   restore: 복구
   restoring: 복구 중...
   reviewed: 검토함
+  rg_observations: 연구 자료 등급 관찰
   rules_for_adding_observations: 관찰을 추가할 때의 규칙
   save: 저장
   save_all: 모두 저장
@@ -2234,7 +2234,7 @@ ko:
   subscribe_to_places_to: |
     장소에 대한 알림을 설정해서 그 장소의 새로운 관찰에 대한 알림을 받아보세요. 팔로우하는 사용자들과 댓글 또한 알림 설정을 통하여 관리되기 때문에, 알림을 설정한 항목을 확인하거나 알림을 취소하고 싶을 때는 아래의 '알림 관리' 항목을 클릭하세요. 또한, iNaturalist의 대부분 항목에 대한 알림을 취소할 수 있습니다.
   subscriptions: 알림 받기
-  suggest_an_identification: 동정 제안하기
+  suggest_an_identification: 동정하기
   suggestions: 제안
   support_inaturalist: iNaturalist 지원
   sync: 동기화하시겠습니까?
@@ -2333,9 +2333,7 @@ ko:
   username_or_email: 사용자 이름이나 이메일
   username_or_user_id: 사용자 이름이나 사용자 ID
   users: 사용자
-  users_comment_html: "<a href='%{url}'>%{user}</a>님의 댓글"
   users_id: "%{user}의 ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>님의 동정"
   users_profile: "%{user}의 프로필"
   users_projects: "%{user}님의 프로젝트"
   valid_options_are: '유효한 옵션:'
