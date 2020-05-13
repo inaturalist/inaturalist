@@ -333,7 +333,6 @@ fi:
   admin_s: Ylläpitäjä(t)
   admin_only: Vain ylläpidolle
   admin_tools: Hallintatyökalut
-  agree: samaa mieltä
   agree_: Samaa mieltä
   agree?: Samaa mieltä?
   agree_with_current_taxon: Samaa mieltä tämän tunnistuksen kanssa
@@ -3763,11 +3762,9 @@ fi:
   username_or_email: Käyttäjänimi tai sähköposti
   username_or_user_id: Käyttäjänimi tai käyttäjätunniste
   users: Käyttäjät
-  users_comment_html: "Käyttäjän <a href='%{url}'>%{user}</a> kommentti"
   users_contributions_to_project_html: Käyttäjän <a href="%{url}">%{login}</a> muokkaukset projektiin %{project_title}
   users_highlights_and_stats_from_year_on_site: "Käyttäjän %{user} kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   users_id: "Käyttäjän %{user} tunniste"
-  users_identification_short_html: "Käyttäjän <a href='%{url}'>%{user}</a> tunniste"
   users_latest_observations_on_site: "Käyttäjän %{user} viimeisimmät havainnot sivustolla %{site}"
   users_profile: "Käyttäjän %{user} profiili"
   users_projects: "Käyttäjän %{user} projektit"
@@ -4553,10 +4550,14 @@ fi:
           Bioblitz on tapahtuma, jossa osallistujat yrittävät havaita mahdollismman monta lajia tietyn ajan sisällä. Tämä on hauska tapa saada ihmisiä kiinnostumaan luonnosta ja samalla kerätä havaintotietoa.
           </p>
         change_admin_desc: Valitse yksi projektin kuraattoreista uudeksi ylläpitäjäksi.
+        change_owner_alert: |
+          Tämän jälkeen et voi enää poistaa projektia tai siirtää sen omistajuutta uudelleen. Haluatko jatkaa?
         cover_desc: "Valinnainen kansikuva, joka tulee näkyviin projektisivusi yläreunaan. Pitää olla 950px leveä, alle 400px pitkä."
         icon_desc: "Rajataan neliöksi"
         it_looks_like_this_project_can_be_converted: |
           Näyttää siltä että tämä projekti voidaan muuntaa uudeksi <a href="%{url}">koontiprojektiksi</a>.
+        #Label for button to make another user the owner of a project
+        make_owner: Tee käyttäjästä omistaja
         no_curators: |
           Projektilla ei ole kuraattoreita. Jos haluat nimittää uuden henkilön ylläpitäjäksi, henkilön pitää ensin liittyä tähän projektiin ja sinun tulee nimittää hänet kuraattoriksi.
         observation_aggregation_desc_html: |
@@ -5270,9 +5271,11 @@ fi:
       invalid: on virheellinen
       less_than: täytyy olla vähemmän kuin %{count}
       less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
+      new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
       not_a_number: ei ole numero
       not_an_integer: täytyy olla kokonaisluku
       odd: on oltava pariton
+      only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
       requires_privilege_speech: |
         täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme muille tehtyä tunnistusta, jotta voisit tehdä tämän
       requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
@@ -5402,9 +5405,11 @@ fi:
         invalid: on virheellinen
         less_than: täytyy olla vähemmän kuin %{count}
         less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
+        new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
         not_a_number: ei ole numero
         not_an_integer: on oltava kokonaisluku
         odd: on oltava pariton
+        only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
         requires_privilege_speech: täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
         requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
@@ -5532,9 +5537,11 @@ fi:
         invalid: on virheellinen
         less_than: oltava vähemmän kuin %{count}
         less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
+        new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
         not_a_number: ei ole numero
         not_an_integer: on oltava kokonaisluku
         odd: on oltava pariton
+        only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
         requires_privilege_speech: sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
         requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
