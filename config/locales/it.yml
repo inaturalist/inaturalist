@@ -4984,13 +4984,6 @@ it:
     photos:
       forbidden_notice_html: |
         Non abbiamo i permessi di accedere a quelle foto al momento. Potresti aver necessità di disconnettere e riconnettere l'account nelle tue <a href="/users/edit">impostazioni</a> per fornirci permessi aggiuntivi.
-      inviter:
-        automatically_add_to_project: Aggiungi automaticamente al progetto
-        automatically_id_the_new_obs_as: Identifica automaticamente le nuove osservazioni come
-        dont_forget_the_invite_link_placeholder: "non dimenticare il segnaposto {{INVITE_LINK}}"
-        invite_other_photographers_to_inat: "Invita altri fotografi su %{site_name}"
-        invite_your_friends_description: |
-          Puoi rendere molto facile per le persone su Facebook e Flickr aggiungere le loro foto come osservazioni %{site_name}. Basta lasciare qui sotto un commento contenente l'URL di questo speciale invito. Puoi anche preselezionare un taxon ed un progetto per la nuova osservazione.
       show:
         view_original_html: |
           Puoi vedere l'originale al link <a href="%{url}">%{url}</a>. Per favore lascia la segnalazione di violazione del copyright come "non risolto" se la foto viola il copyright.
