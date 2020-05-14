@@ -1156,6 +1156,7 @@ de:
     other: 'Bearbeiten von <span class="count">%{count}</span> Beobachtungen:'
   editing_project: '%{project} bearbeiten'
   editing_subscription_to_x_html: "Abonnements für %{x} bearbeiten"
+  editing_taxon: '%{taxon} bearbeiten'
   editing_taxon_link: Taxonlink bearbeiten
   editing_taxon_name_for_taxon_html: Taxonname "%{name}" für %{taxon} bearbeiten
   editing_taxon_range: Taxonbereich bearbeiten
@@ -1427,8 +1428,9 @@ de:
   google: Google
   got_it!: Alles klar!
   got_your_data_somewhere_else?: Hast du deine Daten bereits woanders hochgeladen? Wir könnten helfen.
-  graft: Graft
-  grafting_attemps_to_insert_this_taxon: Grafting beschreibt den Versuch, dieses Taxon in unseren Stammbaum einzufügen, ein existierendes übergeordnetes Taxon zu finden oder alle notwendigen Zwischentaxa zu erstellen, um es an ein bestehendes höheres Taxon anzuhängen.
+  graft: eingliedern
+  graft_taxon: '%{taxon} eingliedern'
+  grafting_attemps_to_insert_this_taxon: '"Eingliedern" beschreibt den Ansatz, dieses Taxon in unseren Stammbaum zu integrieren: ein existierendes übergeordnetes Taxon zu finden oder alle notwendigen Zwischentaxa zu erstellen, um es an ein bestehendes höheres Taxon anzuhängen.'
   grid: Raster
   grid_layout: Rasteransicht
   grid_tooltip: Rasteransicht anzeigen
@@ -3256,6 +3258,8 @@ de:
   scale_colon: "Maßstab:"
   schemes: Vorlagen
   schemes_including: Schemata einschließlich
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Wissenschaftlicher Name
   search: Suchen
   search_all_fields: alle Felder durchsuchen
   search_by_name_or_email: Nach Namen oder E-Mail suchen
@@ -3831,6 +3835,7 @@ de:
   umbrella_projects: Dach-Projekte
   unblock: Entsperren
   unclassified: Nicht klassifiziert
+  ungrafted_taxa: nicht zugeordnete Taxa
   uninvite: ausladen
   unknown: Unbekannt
   unknown_error: Unbekannter Fehler
@@ -4059,7 +4064,7 @@ de:
   video_tutorials: Videoanleitungen
   visually_similar: Sieht ähnlich aus
   vulnerable: gefährdet
-  w00t_no_ungrafted_taxa: Juhuu! Keine nicht zugeorndeten Taxa!
+  w00t_no_ungrafted_taxa: Juhuu! Keine nicht zugeordneten Taxa!
   w_photos_only: mit Fotos
   w_sounds: mit Ton
   wait_file_generation: Bitte um Geduld während die Datei erzeugt wird. Bei großen Listen kann es ein paar Minuten dauern.
@@ -4906,13 +4911,6 @@ de:
         Wir haben derzeit keine Berechtigung auf diese Fotos zuzugreifen. Möglicherweise musst du
         die Verbindung trennen und das Konto in deinen
         <a href="/users/edit">Einstellungen</a> neu verbinden, um uns zusätzliche Berechtigungen zu erteilen.
-      inviter:
-        automatically_add_to_project: Automatisch zum Projekt hinzufügen
-        automatically_id_the_new_obs_as: Neue Beob. automatisch identifizieren als
-        dont_forget_the_invite_link_placeholder: "den {{INVITE_LINK}} Platzhalter nicht vergessen"
-        invite_other_photographers_to_inat: "Andere Fotografen zu %{site_name} einladen"
-        invite_your_friends_description: |
-          Du kannst es den Benutzern auf Facebook und Flickr super einfach machen, ihre Fotos als %{site_name} Beobachtungen hinzuzufügen. Hinterlasse einfach einen Kommentar mit dieser speziellen Einladungs-URL unten. Du kannst auch ein Taxon und ein Projekt für die neue Beobachtung vorselektieren.
       show:
         view_original_html: |
           Du kannst das Original unter <a href="%{url}">%{url}</a> ansehen. Bitte
