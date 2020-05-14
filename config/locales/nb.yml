@@ -4891,13 +4891,6 @@ nb:
     photos:
       forbidden_notice_html: |
         Vi har ikke tillatelse til å få tilgang til disse bilder akkurat nå. Du må kanskje koble fra og til kontoen i dine <a href="/users/edit">innstillinger</a> for å gi oss ytterlige tillatelser.
-      inviter:
-        automatically_add_to_project: Legg til i prosjekt automatisk
-        automatically_id_the_new_obs_as: ID den nye observasjonen automatisk som
-        dont_forget_the_invite_link_placeholder: "ikke glem {{INVITE_LINK}} plassholderen"
-        invite_other_photographers_to_inat: "Inviter andre fotografer til %{site_name}"
-        invite_your_friends_description: |
-          Du kan gjøre det superenkelt for folk på Facebook og Flickr å legge til sine bilder som observasjoner på %{site_name}. Bare legg igjen en kommentar med denne spesiale invitasjons-URL-en nedenfor. Du kan også forhåndsvelge et takson og prosjekt for den nye observasjonen.
       show:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vennligst ikke marker markeringer om brudd av opphavsrett som løst hvis dette bildet er brudd på opphavsrett.
