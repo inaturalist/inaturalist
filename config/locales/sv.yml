@@ -1207,6 +1207,7 @@ sv:
   editing_project: Redigerar %{project}
   editing_project_asset: Redigerar projekttillgång för
   editing_subscription_to_x_html: "Redigerar prenumeration på %{x}"
+  editing_taxon: Redigerar %{taxon}
   editing_taxon_link: Redigerar taxonlänk
   editing_taxon_name_for_taxon_html: Redigerar taxonnamn "%{name}" för %{taxon}
   editing_taxon_range: Redigerar taxonintervall
@@ -1483,6 +1484,7 @@ sv:
   got_it!: Uppfattat!
   got_your_data_somewhere_else?: Har du dina uppgifter någon annanstans? Vi kan hjälpa till.
   graft: Ympa
+  graft_taxon: Ympa %{taxon}
   grafting_attemps_to_insert_this_taxon: Ympning försöker lägga till detta taxon till taxonomiska träd, hitta ett befintligt föräldrataxon eller skapa alla nödvändiga mellanliggande taxa för att kunna lägga det till ett befintligt taxon på högre nivå.
   grant_role: "%{grant} %{role} roll"
   grid: Rutnät
@@ -3393,6 +3395,8 @@ sv:
   scale_colon: "Skala:"
   schemes: Sammanställning
   schemes_including: Sammanställningar som inkluderar
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Vetenskapligt namn
   search: Sök
   search_all_fields: sök alla fält
   search_by_name_or_email: Sök efter namn eller e-post
@@ -5440,16 +5444,6 @@ sv:
         Vi har inte behörighet att komma åt de bilderna just nu. Du kan
         behöva koppla bort och återansluta kontot i
         <a href="/users/edit">-inställningarna</a> för att ge oss ytterligare behörighet.
-      inviter:
-        automatically_add_to_project: Lägg automatiskt till i projektet
-        automatically_id_the_new_obs_as: Bestäm automatiskt nya obsar till
-        dont_forget_the_invite_link_placeholder: "glöm inte platshållaren {{INVITE_LINK}}"
-        invite_other_photographers_to_inat: "Bjud in andra fotografer till %{site_name}"
-        invite_your_friends_description: |
-          Du kan göra det superenkelt för människor på Facebook och Flickr att lägga till sina
-          bilder som %{site_name}-observationer. Lämna bara en kommentar som inkluderar denna
-          speciella inbjudnings-URL nedan. Du kan också förhandsvälja ett taxon och ett projekt för
-          den nya observationen.
       show:
         view_original_html: |
           Du kan se originalet på <a href="%{url}">%{url}</a>.
