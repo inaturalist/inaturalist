@@ -4080,13 +4080,6 @@ et:
         message: |
           Sa pole mõnda aega olnud lehel %{site_name} aktiivne, nii et oleme katkestanud sinu jälgimised. Et jätkuvalt saada teateid lehel toimuvast, palun <a href="%{login_url}">logi uuesti sisse</a>.
     photos:
-      inviter:
-        automatically_add_to_project: Lisa automaatselt projekti
-        automatically_id_the_new_obs_as: Määratle uus vaatlus automaatselt kui
-        dont_forget_the_invite_link_placeholder: "ära unusta {{INVITE_LINK}} (kutse lingi) kohahoidjat"
-        invite_other_photographers_to_inat: "Kutsu teisi fotograafe lehele %{site_name}"
-        invite_your_friends_description: |
-          Saad muuta väga lihtsaks Facebooki ja Flickri fotode lisamise %{site_name} vaatlustele. Jäta lihtsalt kommentaar, milles sisaldub allolev spetsiaalne kutse-URL. Saad uue vaatluse jaoks ka taksoni ja projekti ette ära valida.
       show:
         view_original_html: |
           Originaali näed aadressil <a href="%{url}">%{url}</a>. Palun märgi autoriõiguste rikkumise märkused lahendatuks, kui see foto neid ei riku.
