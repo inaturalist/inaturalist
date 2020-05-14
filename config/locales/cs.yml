@@ -1303,6 +1303,7 @@ cs:
   editing_project: Editování %{project}
   editing_project_asset: Editování položky projektu pro
   editing_subscription_to_x_html: "Editovat přihlášení k %{x}"
+  editing_taxon: Editace %{taxon}
   editing_taxon_link: Editování odkazu na taxon
   editing_taxon_name_for_taxon_html: Úprava názvu taxonu "%{name}" pro %{taxon}
   editing_taxon_range: Editování rozsahu taxonu
@@ -3447,6 +3448,8 @@ cs:
   scale_colon: "Měřítko:"
   schemes: Plány
   schemes_including: Plány obsahující
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Vědecký název
   search: Hledat
   search_all_fields: prohledat všechna pole
   search_by_name_or_email: Hledat podle jména nebo e-mailu
@@ -5254,13 +5257,6 @@ cs:
     photos:
       forbidden_notice_html: |
         Momentálně nemáme přístup k těmto fotografiím. Pravděpodobně bude nutné odpojit a znovu připojit účet v <a href="/users/edit"> nastavení </a>, abyste nám udělili více práv.
-      inviter:
-        automatically_add_to_project: Automaticky přidat k projektu
-        automatically_id_the_new_obs_as: Automaticky přiřadit ID novým pozorováním jako
-        dont_forget_the_invite_link_placeholder: "nezapomeňte placeholder {{INVITE_LINK}}"
-        invite_other_photographers_to_inat: "Pozvat další fotografy na %{site_name}"
-        invite_your_friends_description: |
-          Lidé na Facebooku a Flickru mohou díky vám přidávat své fotky jako pozorování %{site_name} úplně jednoduše. Jen vložte komentář obsahující toto speciální URL pozvánky níže. Také můžete předem vybrat taxon a projekt pro nové pozorování.
       show:
         view_original_html: |
           Originál si můžete zobrazit na <a href="%{url}">%{url}</a>. Pokud tato fotka porušuje autorská práva, nechte prosím vlajky označující porušení autorských práv jako nevyřešené.
