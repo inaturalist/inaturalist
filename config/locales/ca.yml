@@ -4974,14 +4974,6 @@ ca:
     photos:
       forbidden_notice_html: |
         No tenim autorització per accedir aquelles fotos ara mateix. Podeu necessitar desconnectar i reconnectar el compte en la vostra <a href="/users/edit">configuració</a> per concedir-nos permisos addicionals.
-      inviter:
-        automatically_add_to_project: Afegeix automàticament al projecte
-        automatically_id_the_new_obs_as: Identifica automàticament una nova observació com a
-        dont_forget_the_invite_link_placeholder: "penseu a incloure el {{INVITE_LINK}} marcador de posició"
-        invite_other_photographers_to_inat: "Convideu altres fotògrafs %{site_name}"
-        invite_your_friends_description: |
-          Podeu facilitar que altres persones afegeixin les seves fotos a Flickr com a observacions d’%{site_name}. Només heu de deixar-los un comentari i incloure aquest vincle d'invitació especial. També podeu preseleccionar un tàxon i
-          projecte per a la nova observació.
       show:
         view_original_html: |
           Podeu veure l'original a <a href="%{url}">%{url}</a>. Si us plau no marqueu les caselles sobre violació dels drets d'autor si aquesta foto no els viola.
