@@ -4,17 +4,15 @@ import { toggleTaxon, setDetailsTaxon } from "../reducers/lifelist";
 
 function mapStateToProps( state ) {
   return {
-    taxa: state.lifelist.taxa,
-    children: state.lifelist.children,
-    openTaxa: state.lifelist.openTaxa,
-    showPhotos: state.lifelist.showPhotos
+    config: state.config,
+    lifelist: state.lifelist
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    toggleTaxon: ( taxonID, options ) => dispatch( toggleTaxon( taxonID, options ) ),
-    setDetailsTaxon: taxonID => dispatch( setDetailsTaxon( taxonID ) )
+    toggleTaxon: ( taxon, options ) => dispatch( toggleTaxon( taxon, options ) ),
+    setDetailsTaxon: ( taxon, options ) => dispatch( setDetailsTaxon( taxon, options ) )
   };
 }
 

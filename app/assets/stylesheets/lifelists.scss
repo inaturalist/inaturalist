@@ -1,49 +1,139 @@
 @import "./shared/loading_spinner";
 @import "./shared/split_taxon";
 @import "./users/user_image";
+@import "./shared/taxon_autocomplete";
 
 #bodywrapper {
-  background: #ddd;
+  // background: #ddd;
+  min-height: auto;
+  height: 100%;
+  margin-bottom: -30px;
 }
 
 #bodywrapper:after {
-  height: 196px;
+  height: 0;
 }
 
-#App {
+#wrapper.bootstrap {
+  position: inherit;
+}
+
+#initial-loading {
   width: 100%;
-  padding: 0px 30px;
 }
 
-div, span {
+#app {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  display: flex;
+}
+
+#Lifelist {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  min-width: 980px;
+  padding: 0px 30px;
+  .lifelist-title button.export {
+    float: right;
+    vertical-align: middle;
+    border-radius: 20px;
+  }
+  .view-selectors {
+    padding: 5px 0 15px;
+  }
+  .pill-button {
+    border-radius: 20px;
+    border: 1px solid #e7e7e7;
+    letter-spacing: 0.02em;
+    .fa {
+      margin-right: 6px;
+      color: $inat-green;
+    }
+    &.selected {
+      border: none;
+      background: $inat-green;
+      color: white;
+      .fa {
+        color: white;
+      }
+    }
+    &:not(:first-child) {
+      margin-left: 15px;
+    }
+  }
+}
+
+.bootstrap h2 {
+  font-size: 24px;
+  margin-top: 15px;
+}
+
+div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   outline: none;
 }
 
-#App > .menu {
-  height: 50px;
-  background: #fff;
-  margin-bottom: 20px;
-  line-height: 50px;
-  padding: 0px 10px;
+.iconic-taxa-selectors {
+  .jump-to {
+    display: inline-block;
+    margin-bottom: 5px;
+    vertical-align: middle;
+  }
+  .iconic-taxon-icon {
+    border: 1px solid #e7e7e7;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 23px;
+    padding: 1px 1px;
+    color: #979797;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    margin-left: 4px;
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+    &.selected {
+      color: $inat-green;
+      border: 1px solid #aaa;
+    }
+    &[disabled] {
+      opacity: 0.2;
+      cursor: default;
+    }
+  }
 }
 
 .FlexGrid {
   display: flex;
   flex: 1;
-  height: 75vh;
   background: #fff;
-  margin-bottom: 20px
+  overflow: hidden;
 }
 
 .FlexCol {
-  overflow: auto;
-  overscroll-behavior-y: contain;
   &.tree-col {
-    margin-top: 10px;
-    width: 40%;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 633px;
+    padding-right: 20px;
   }
   &.details-col {
-    width: 60%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 50%;
+    border-left: 1px solid #ddd;
+    padding-left: 20px;
+    .Details {
+      height: 80%;
+    }
   }
   .loading_spinner {
     margin: 0px auto;
@@ -53,20 +143,66 @@ div, span {
   h3 {
     text-align: center;
   }
+  #TaxaTree, .ObservationsGrid, .ObservationsTab, .SpeciesGrid {
+    height: 100%;
+    overflow: auto;
+    overscroll-behavior-y: contain;
+  }
 }
 
 .name-row {
   white-space: nowrap;
-  .name-label, .fa-info-circle {
+  & > .name-label, & > .fa, & > span {
     cursor: pointer;
+  }
+  & > .fa.disabled {
+    cursor: default;
+    color: #ddd;
+  }
+  & > .fa {
+    font-size: 13px;
+    vertical-align: middle;
+  }
+  & > .fa-binoculars {
+    font-size: 12px;
+    vertical-align: text-top;
+  }
+  & > span {
+    margin-left: 5px;
+    color: #979797;
+  }
+  & > .fa-chevron-down {
+    margin-left: 2px;
+  }
+  .descendants {
+    color: $inat-green;
+  }
+  .badge {
+    padding: 3px 7px 1px 7px;
+    vertical-align: inherit;
+    background-color: $inat-green;
+    font-size: 14px;
+    font-weight: 500;
   }
 }
 .name-label {
   display: inline-block;
+  &.featured {
+    font-weight: 600;
+    color: $inat-green;
+  }
+  &.featured-ancestor {
+    font-weight: 600;
+  }
 }
 
 
 .Details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
   .stats {
     text-align: center;
     margin-bottom: 10px;
@@ -80,6 +216,21 @@ div, span {
   .value {
     margin-left: 3px;
   }
+  .flex-container {
+    height: 100%;
+    overflow: hidden;
+    .more {
+      width: 100%;
+      margin: 30px 0px;
+      text-align: center;
+      .loading_spinner {
+        margin-top: 0px;
+        width: 30px;
+        height: 30px;
+        border-width: 6px;
+      }
+    }
+  }
 }
 
 
@@ -89,15 +240,6 @@ div, span {
   width: 25px;
   height: 25px;
   margin: 1px;
-}
-
-.ObservationFlexGridView {
-  .col-xs-12 {
-    width: 65% !important
-  }
-  .container {
-    width: auto !important;
-  }
 }
 
 .ObservationsGrid {
@@ -185,15 +327,14 @@ div, span {
 }
 
 
-.tree, .tree ul {
-  margin: 0 0 0 1em;
+.tree, .tree > * ul {
   padding: 0;
   list-style: none;
   position: relative;
 }
 
-.tree ul {
-  margin-left:.5em;
+.tree > * ul {
+  margin: 0 0 0 1em;
 }
 
 .tree:before, .tree ul:before {
@@ -237,4 +378,97 @@ div, span {
 
 .tree li:last-child {
   margin-bottom: 10px;
+}
+
+
+
+.bootstrap .form-group.TaxonAutocomplete {
+  margin-top: 10px;
+  .ac-select-thumb {
+    border: none;
+    background: inherit;
+    text-align: left;
+    width: 26px;
+    color: #979797;
+  }
+  .input-group input.form-control {
+    border-radius: 20px;
+  }
+}
+
+.ui-autocomplete {
+  .ac-result, .category {
+    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    .ac-label {
+      color: #333;
+    }
+  }
+  .ac-thumb i.icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 3px;
+  }
+}
+
+.SpeciesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  .result {
+    flex-grow: 1;
+    padding: 5px;
+    min-width: 100px;
+    margin: 0px auto;
+    .thumbnail {
+      padding: 0;
+      margin-bottom: 0;
+      position: relative;
+      .overlay {
+        position: absolute;
+        background-color: rgba(0,0,0,0.3);
+        color: white;
+        width: 100%;
+        line-height: 30px;
+        padding: 0 9px;
+        margin-top: -30px;
+        a {
+          color: white;
+        }
+      }
+      .display-name {
+        display: block;
+        font-weight: 700;
+        color: inherit;
+        font-size: 16px;
+      }
+      .caption {
+        height: 58px;
+        .display-name, .secondary-name {
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      &.TaxonThumbnail .photo {
+        line-height: 170px !important;
+        font-size: 170px;
+        text-align: center;
+        background-color: #ccc;
+        color: white;
+      }
+    }
+  }
+}
+
+@media (min-width: 1345px) {
+  .FlexCol {
+    &.tree-col {
+      min-width: 633px;
+      width: 633px;
+    }
+    &.details-col {
+      width: 100%;
+    }
+  }
 }

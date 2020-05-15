@@ -10,11 +10,12 @@ import {
 import AppContainer from "./containers/app_container";
 import lifelistReducer, { fetchUser } from "./reducers/lifelist";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-/* global SITE */
+import inatAPIReducer from "../../shared/ducks/inat_api_duck";
 
 const rootReducer = combineReducers( {
   config: configReducer,
-  lifelist: lifelistReducer
+  lifelist: lifelistReducer,
+  inatAPI: inatAPIReducer
 } );
 
 const store = createStore(

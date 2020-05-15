@@ -635,7 +635,7 @@ Rails.application.routes.draw do
 
   resources :lifelists do
     collection do
-      get ":login", to: "lifelists#by_login", constraints: { login: simplified_login_regex }
+      get ":login", to: "lifelists#by_login"
     end
   end
 

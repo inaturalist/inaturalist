@@ -1,20 +1,25 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import Observation from "../../../projects/show/components/observation";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import APIWrapper from "../../../shared/containers/inat_api_duck_container";
+import Observations from "./observations";
+import Species from "./species";
+
+const ObservationsGridContainer = APIWrapper( "observations", Observations );
+const SpeciesGridContainer = APIWrapper( "species", Species );
 
 const DetailsView = ( {
-  config, taxon, observations, totalObservations, totalLeaves
+  lifelist
 } ) => {
-  const loader = ( <div key="observations-flex-grid-view-loading" className="loading_spinner huge" /> );
-  const leafCount = taxon ? taxon.descendantCount : totalLeaves;
-  const observationCount = taxon ? taxon.count : totalObservations;
+  const leafCount = lifelist.detailsTaxon
+    ? lifelist.detailsTaxon.descendantCount : lifelist.leavesCount;
+  const observationCount = lifelist.detailsTaxon
+    ? lifelist.detailsTaxon.descendant_obs_count : lifelist.observationsCount;
   return (
     <div className="Details">
       <h3>
-        { taxon
-          ? ( <SplitTaxon taxon={taxon} noInactive /> )
+        { lifelist.detailsTaxon
+          ? ( <SplitTaxon taxon={lifelist.detailsTaxon} noInactive /> )
           : "All Observations" }
       </h3>
       <div className="stats">
@@ -27,42 +32,16 @@ const DetailsView = ( {
           <span className="value">{ leafCount.toLocaleString( ) }</span>
         </span>
       </div>
-      {
-        _.isEmpty( observations ) ? loader : (
-          <div className="ObservationsGrid" key="observations-flex-grid">
-            { observations.map( o => {
-              const itemDim = 200;
-              let width = itemDim;
-              const dims = o.photos.length > 0 && o.photos[0].dimensions( );
-              if ( dims ) {
-                width = itemDim / dims.height * dims.width;
-              } else {
-                width = itemDim;
-              }
-              return (
-                <Observation
-                  key={`obs-${o.id}`}
-                  observation={o}
-                  width={width}
-                  height={itemDim}
-                  config={config}
-                />
-              );
-            } )
-          }
-        </div>
-      )
-    }
+      { lifelist.detailsView === "observations"
+        ? ( <ObservationsGridContainer /> )
+        : ( <SpeciesGridContainer lifelist={lifelist} /> )
+      }
     </div>
   );
 };
 
 DetailsView.propTypes = {
-  config: PropTypes.object,
-  totalObservations: PropTypes.number,
-  totalLeaves: PropTypes.number,
-  taxon: PropTypes.object,
-  observations: PropTypes.array
+  lifelist: PropTypes.object
 };
 
 export default DetailsView;

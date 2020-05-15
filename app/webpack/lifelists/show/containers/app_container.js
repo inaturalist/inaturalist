@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/app";
-import { togglePhotos } from "../reducers/lifelist";
+import { setNavView, setDetailsView, zoomToTaxon } from "../reducers/lifelist";
 
 function mapStateToProps( state ) {
   return {
@@ -11,7 +11,9 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    togglePhotos: ( ) => dispatch( togglePhotos( ) )
+    setNavView: view => dispatch( setNavView( view ) ),
+    setDetailsView: view => dispatch( setDetailsView( view ) ),
+    zoomToTaxon: taxonID => dispatch( zoomToTaxon( taxonID ) )
   };
 }
 
