@@ -310,7 +310,20 @@ class TaxonAutocomplete extends React.Component {
       q: request.term,
       per_page: perPage || 10,
       locale: I18n.locale,
-      preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+      preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null,
+      fields: {
+        default_photo: {
+          square_url: true
+        },
+        iconic_taxon_id: true,
+        iconic_taxon_name: true,
+        is_active: true,
+        matched_term: true,
+        name: true,
+        preferred_common_name: true,
+        rank: true,
+        rank_level: true
+      }
     } ).then( r => {
       const results = r.results || [];
       // show as the last item an option to search external name providers

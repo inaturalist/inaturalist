@@ -364,6 +364,9 @@ export function fetchObservation( uuid, options = { } ) {
       place_guess: true,
       place_ids: true,
       positional_accuracy: true,
+      preferences: {
+        prefers_community_taxon: true
+      },
       private_geojson: true,
       private_place_ids: true,
       project_observations: {
@@ -399,7 +402,10 @@ export function fetchObservation( uuid, options = { } ) {
       user: Object.assign( {}, userFields, {
         id: true,
         name: true,
-        observations_count: true
+        observations_count: true,
+        preferences: {
+          prefers_community_taxa: true
+        }
       } ),
       votes: {
         id: true,
