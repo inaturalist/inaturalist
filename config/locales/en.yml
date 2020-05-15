@@ -395,7 +395,6 @@ en:
   admin_s: Admin(s)
   admin_only: Admin-only
   admin_tools: Admin Tools
-  agree: agree
   agree_: Agree
   agree?: Agree?
   agree_with_current_taxon: Agree with current taxon
@@ -1280,6 +1279,7 @@ en:
   editing_project: Editing %{project}
   editing_project_asset: Editing Project Asset for
   editing_subscription_to_x_html: "Editing subscription to %{x}"
+  editing_taxon: Editing %{taxon}
   editing_taxon_link: Editing Taxon Link
   editing_taxon_name_for_taxon_html: Editing Taxon Name "%{name}" for %{taxon}
   editing_taxon_range: Editing Taxon Range
@@ -1559,6 +1559,7 @@ en:
   got_it!: Got it!
   got_your_data_somewhere_else?: Got your data somewhere else?  We can help.
   graft: Graft
+  graft_taxon: Graft %{taxon}
   grafting_attemps_to_insert_this_taxon: Grafting attempts to insert this taxon into our taxonomic tree, finding an existing parent taxon or creating all the necessary in-between taxa in order to attach it to an existing higher level taxon.
   grant_role: "%{grant} %{role} role"
   grid: Grid
@@ -2127,14 +2128,18 @@ en:
       'y':  "1y"
       # Short text representing %d years in the past
       yy: "%dy"
-    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    # Note that this should display a time zone code and not an offset, so
-    # please use z and not Z
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM D h:mma z"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     # Note that this should display an offset and not a time zone code, so
     # please use Z and not z
     datetime_with_offset: "MMM D, YYYY · LT Z"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "MMMM D, YYYY"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "MMMM D"
   month: Month
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monthly Supporter</a> since %{date}
@@ -2603,7 +2608,6 @@ en:
   or_all_caps: OR
   or_choose_high_level_taxa: "... or choose from some high-level taxa"
   or_if_you_dont_want_email: "Or if you just don't want any email..."
-  or_upload: Or upload
   orange: orange
   order: Order
   order_by: Order by
@@ -2642,7 +2646,6 @@ en:
   other_taxa_commonly_misidentified_as_this_subsection: Other taxa commonly misidentified as this subsection
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Other taxa commonly misidentified as this subsection in <a href="%{url}">%{place}</a>
   our_blog: Our Blog
-  out_of_range: Out of range
   output_taxon: Output taxon
   overview: Overview
   overlapping_downstream_taxon_frameworks_html: "Overlapping downstream Taxon Frameworks: %{count}"
@@ -3239,9 +3242,8 @@ en:
   project_start_time_datetime: "Start time: %{datetime}"
   project_that_does_not_contain_these_observations: Project that does not contain these observations
   project_type_description: |
-    Assessments and bioblitzes are special types of projects. Assessments are
-    for collaborating on a set of species assessments, usually to gauge
-    conservation importance. Bioblitzes are events that have a specified beginning and end.
+    Assessments are for collaborating on a set of species assessments, usually
+    to gauge conservation importance.
   project_user_cannot_be_found: Project user cannot be found
   project_user_was_invalid: "Project user was invalid: %{project_user}"
   project_was_successfully_created: Project was successfully created.
@@ -3475,6 +3477,8 @@ en:
   scale_colon: "Scale:"
   schemes: Schemes
   schemes_including: Schemes including
+  # E.g. "Homo sapiens" instead of "human"
+  scientific_name: Scientific Name
   search: Search
   search_all_fields: search all fields
   search_by_name_or_email: Search by name or email
@@ -4236,6 +4240,7 @@ en:
   user_commented_on: "%{user} commented on your %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
+  # %{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
   user_faved_this_observation: "%{user} faved this observation"
   user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
@@ -4269,11 +4274,9 @@ en:
   username_or_email: Username or email
   username_or_user_id: Username or User ID
   users: Users
-  users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>'s ID"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_profile: "%{user}'s Profile"
   users_projects: "%{user}'s Projects"
@@ -4634,6 +4637,14 @@ en:
         you chose en it will not appear for people who have chosen en-US. If you
         want to target both, choose both. If you want to show an announcement
         for all members of a site, just leave this blank.
+    content_freeze:
+      content_freeze: Content Freeze
+      during_this_time: |
+        During the content freeze some types of content cannot be created, destroyed, or modified.
+      this_functionality_will_return: |
+        This functionality will return as soon as the content freeze is over.
+      we_expect_this_functionality_will_return_by_date: |
+        We expect this functionality to return by %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -5555,16 +5566,6 @@ en:
         We don't have permission to access those photos right now. You might
         need to disconnect and reconnect the account in your
         <a href="/users/edit">settings</a> to grant us additional permissions.
-      inviter:
-        automatically_add_to_project: Automatically add to project
-        automatically_id_the_new_obs_as: Automatically ID the new obs as
-        dont_forget_the_invite_link_placeholder: "don't forget the {{INVITE_LINK}} placeholder"
-        invite_other_photographers_to_inat: "Invite other photographers to %{site_name}"
-        invite_your_friends_description: |
-          You can make it super easy for people on Facebook and Flickr to add their 
-          photos as %{site_name} observations. Just leave a comment including this 
-          special invite URL below. You can also pre-select a taxon and project for 
-          the new observation.
       show:
         view_original_html: |
           You can view the original at <a href="%{url}">%{url}</a>. Please
@@ -5648,6 +5649,9 @@ en:
             data at the same time.
           </p>
         change_admin_desc: Choose one of the project curators to be the new admin.
+        change_owner_alert: |
+          This will remove your ability to delete this project or transfer
+          ownership again. Do you want to proceed?
         cover_desc: "Optional banner image that will appear at the top of your project page. Must be 950px wide, less than 400px tall."
         custom_project_fields_means: "Customize the project's banner, add side content, and edit CSS."
         end_time_desc: "End time for your bioblitz. Must be less than one year after start time"
@@ -5661,6 +5665,8 @@ en:
           It looks like this project can be converted to a new <a href="%{url}">Collection Project</a>.
         last_aggregated_at_desc: |
           Time when the aggregator last finished adding observations to this project
+        # Label for button to make another user the owner of a project
+        make_owner: Make Owner
         no_curators: |
           There are no project curators. If you want to assign a new person as
           the admin, they must first join this project and you must make them
@@ -6946,9 +6952,11 @@ en:
       invalid: is invalid
       less_than: must be less than %{count}
       less_than_or_equal_to: must be less than or equal to %{count}
+      new_project_owner_must_be_a_manager: New project owner must be an admin
       not_a_number: is not a number
       not_an_integer: must be an integer
       odd: must be odd
+      only_project_owner_can_change_project_owner: Only the project owner can change the project owner
       record_invalid: 'Validation failed: %{errors}'
       requires_privilege_speech: |
         must have three verifiable observations or three identifications

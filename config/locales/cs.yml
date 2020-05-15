@@ -785,6 +785,7 @@ cs:
   cant_merge_a_taxon_with_itself: Nelze sloučit taxon se stejným taxonem.
   captive: V zajetí
   captive_cultivated: V zajetí / pěstovaný
+  captive_observations: Pozorováno v zajetí/pěstováno
   card: Karta
   casual: neformální
   casual_: neformální
@@ -964,6 +965,8 @@ cs:
   conservation_status_descriptions:
     status: Kód statusu, kategorie atd. Pokud existuje zkratka kódu, např. E nebo CR, použijte ji prosím, pokud však neexistuje, uveďte prosím celý status, např. ohrožený nebo kriticky ohrožený.
     description: Krátký popis důvodů uvedení v seznamu.
+    authority: |
+      Organizace, která tento stav vyhlásila. Před přidáním nového si prosím zvolte již existujícího představitele pomocí automatického dokončování. Můžete přeskočit, pokud chcete být *vy* uvedeni jako autorita.
     place: Místo, na které je tento status omezen.
     url: URL stránky popisující tento status.
     geoprivacy: Standardně nastavené geosoukromí pro pozorování tohoto taxonu
@@ -1794,6 +1797,9 @@ cs:
   label_to_group_a_batch_of_taxon_changes: Společný štítek pro soubor změn taxonů
   location_private: Soukromá lokalita
   location_unknown: Neznámá lokalita
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Zamknout úroveň přiblížení
   language_slash_type: Jazyk / Typ
   #Large photo size
   large: velký
@@ -1802,7 +1808,7 @@ cs:
   last_observation: Poslední pozorování
   last_seen: Naposledy viděný
   last_year: Minulý rok
-  lat: Z.š.
+  lat: Zeměpisná šířka
   latitude: Zeměpisná šířka
   latitude_in_decimals: 'Zeměpisná šířka v desetinných stupních, např. 38.123'
   latitude_slash_y_coord_slash_northing: Zeměpisná šířka / souřadnice y / severně od rovníku
@@ -2001,7 +2007,7 @@ cs:
     transparent_png: průhledný PNG
     white_text_transparent_png: bílý text transparentní PNG
     none: nic
-  long: zeměpisná dílka
+  long: zeměpisná délka
   longitude: zeměpisná délka
   longitude_in_decimal: 'Zeměpisná šířka v desetinných stupních, např. -122.123'
   longitude_slash_x_coord_slash_easting: Zeměpisná délka / x souřadnice / orientace
@@ -2124,14 +2130,18 @@ cs:
       'y': "1 r"
       #Short text representing %d years in the past
       yy: "%d let"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM D h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "MMM D, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "MMMM D, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "MMMM D"
   month: Měsíc
   monthly_supporter_since_date_html: |
     <a href="%{url}">Měsíční podporovatel</a> od %{date}
@@ -2576,7 +2586,6 @@ cs:
   or_all_caps: NEBO
   or_choose_high_level_taxa: "... nebo vybrat z taxonů vyšší úrovně"
   or_if_you_dont_want_email: "Nebo pokud nechcete žádné e-maily..."
-  or_upload: Nebo nahrát
   orange: oranžový
   order: Řadit
   order_by: Řadit podle
@@ -2615,7 +2624,6 @@ cs:
   other_taxa_commonly_misidentified_as_this_subsection: Ostatní taxony jsou běžně nesprávně identifikované jako tento pododdíl
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Jiné taxony jsou běžně chybně identifikovány jako tento pododdíl v<a href="%{url}">%{place}</a>
   our_blog: Náš blog
-  out_of_range: Mimo dosah
   output_taxon: Výstupní taxon
   overview: Přehled
   overlapping_downstream_taxon_frameworks_html: "Překrývající se rámce taxonů:%{count}"
@@ -2734,6 +2742,14 @@ cs:
       Delegation: Delegace
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegace
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Část oddělení
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: část oddělení
       District: Okres
       district: okres
       Division: Část
@@ -3197,8 +3213,6 @@ cs:
   project_settings: Nastavení projektu
   project_start_time_datetime: "Čas zahájení: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt, který neobsahuje tato pozorování
-  project_type_description: |
-    Hodnocení a bioblitzy jsou zvláštní typy projektů. Hodnocení jsou určena ke spolupráci na souboru hodnocení druhů, obvykle s cílem vyhodnotit význam ochrany. Bioblitzy jsou události s konkrétním začátkem a koncem.
   project_user_cannot_be_found: Projektový uživatel nebyl nalezen
   project_user_was_invalid: "Projektový uživatel byl neplatný: %{project_user}"
   project_was_successfully_created: Projekt byl úspěšně vytvořen.
@@ -4185,6 +4199,7 @@ cs:
   user_commented_on: "Uživatel %{user} okomentoval váš %{title} %{time}"
   user_disagrees_this_is_taxon: "Uživatel %{user} nesouhlasí s tím, že toto je %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nesouhlasí s předchozí identifikací"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "Uživatel %{user} označený jako oblíbený %{noun} %{owner}"
   user_faved_this_observation: "Uživatel %{user} upřednostnil toto pozorování"
   user_flagged_as_a_non_spammer_html: "%{user} označen jako nespammer"
@@ -4559,6 +4574,14 @@ cs:
     announcements:
       locales_desc: |
         Podržte CMD- nebo SHIFT a klikněte, pokud chcete vybrat více položek. Pokud nevyberete žádné, oznámení se zobrazí všem uživatelům bez ohledu na místo. Když vyberete místo jazyka bez regionu, *nedojde* k nastavení míst společně s regiony, např. pokud chcete vybrat angličtinu, nezobrazí se lidem, kteří vybrali angličtina-US. Pokud chcete cílit na obojí, vyberte obojí. Pokud chcete oznámení zobrazit všem členům na stránce, nechte pole prázdné.
+    content_freeze:
+      content_freeze: Zmrazení obsahu
+      during_this_time: |
+        Během zmrazení obsahu nelze některé druhy obsahu vytvořit, smazat nebo upravit.
+      this_functionality_will_return: |
+        Tato funkce se vrátí, jakmile zmražení obsahu skončí.
+      we_expect_this_functionality_will_return_by_date: |
+        Očekáváme, že se tato funkce vrátí do %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -4904,6 +4927,43 @@ cs:
         taking_a_while: "Trvá to dlouho. Vyzkoušejte prosím jednu z níže uvedených možností."
         date_range_help: "Max. a min. data pozorování ve formátu RRRR-MM-DD, např. 2015-01-17"
         created_on_help: "Datum, kdy byla pozorování vytvořena, ne provedena, např. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3> Další možnosti </h3>
+          <p>
+          Velký export zpomaluje naši infrastrukturu a ztěžuje nám vydávání nových změn. Zde je několik dalších možností, které je třeba zvážit:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7"> GBIF: </a>
+          GBIF přijímá většinu našich výzkumných stupňů, licencovaná pozorování,
+          a jejich exportní nástroje jsou vynikající. Export GBIF také přichází
+          s <a href="https://www.doi.org/"> DOI </a> můžete citovat, pokud
+          publikujete průzkum založený na exportovaných datech a tyto 
+          citace jsou pro nás nesmírně užitečné, protože nám umožňují vidět
+          jak se data iNat používají.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a rel="nofollow noreferrer noopener" href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip"> DarwinCore
+          Archiv (DwC-A) pro GBIF </a>: Toto je <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a"> DwC-A </a>
+          soubor, který vygenerujeme pro příjem GBIF, takže by neměl obsahovat
+          cokoli, co není v GBIF, ale pokud chcete celý archiv,
+          můžete si ho stáhnout. Jedná se o velmi velký soubor ZIP obsahující
+          záznamy v CSV. Aktualizováno týdně.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a rel="nofollow noreferrer noopener" href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017"> iNaturalist
+          Výzva na FGVC 2017 </a>: odkazy na 675 000 licencovaných fotografií 
+          iNaturalist z 5 089 druhů pro použití k treninku počítačového vidění. Vytvořeno v červnu 2017, neaktualizováno.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Jedinečný identifikátor pozorování"
         species_guess: "Název, který pozorovatel zadal pro pozorovaný taxon"
@@ -5419,6 +5479,12 @@ cs:
         traditional_projects_cannot_be_copied: Tradiční projekt nelze kopírovat
         umbrella_project_features: "Vlastnosti zastřešujících projektů:"
         unique_url_for_outreach: Jedinečná adresa URL pro předávání
+        use_this_for_a_time_limited_event: |
+          Toto použijte pro časově omezenou akci, bioblitz nebo sezónní projekt. Vyberte jedno
+          datum, rozsah dat nebo měsíce v roce, ve kterách musí být pozorování provedena
+          (bez ohledu na rok). Pokud používáte sekci Časové období, ujistěte se, že máte
+          opravte vybrané časy a časové zóny nebo odstraňte text čas/časové zóny, chcete-li zahrnout pozorování po celý daný den. Můžete nechat počáteční datum nebo datum ukončení
+          prázdné, pokud chcete omezit projekt pouze na jedno datum.
         users_can_follow_your_project: Uživatelé mohou sledovat aktualizace vašeho projektu prostřednictvím denních příspěvků
         use_this_link_to_create_html: |
           Místo toho použijte <a href="%{url}"> tento odkaz </a> k vytvoření tradičního projektu.
@@ -5685,6 +5751,11 @@ cs:
           Tento graf zobrazuje počet pozorování tohoto taxonu podle měsíců. Nezapomeňte, že toto jsou počty pozorování, takže jsou ovlivněny jak tím, kdy je možné organismus pozorovat, tak také tím, kdy jsou lidé ochotní ho pozorovat. Takže to může vypadat, že nějaký pták je velmi aktivní v květnu, to však může být také proto, že v květnu ptáky pozoruje víc lidí, kteří tento druh v následujících měsících ignorují. Podobně když vidíte více vážek v červnu než v lednu, je to pravděpodobně proto, že máme více pozorovatelů na severní polokouli než na jižní polokouli a ne proto, že by vážky byly v červnu aktivnější, proto se podívejte společně s těmito grafy taky na mapu. Je vhodné být k těmto grafům mírně skeptický v případě, že je málo pozorování a/nebo velké rozpory mezi počtem „Ověřitelných“ a „Výzkumných“ pozorování.
         charts_help_history: |
           Tento graf ukazuje počet pozorování tohoto taxonu podle měsíců za posledních deset let. Opět je ovlivněn počtem pozorujících osob, ale ukáže vám neobvyklé nárůsty pozorování, a pokud je graf plochý nebo se snižuje navzdory rostoucímu počtu pozorovatelů, může to znamenat změnu množství.
+        charts_help_other: |
+          Také zobrazujeme sezónní grafy pro poznámky pozorování.
+          Poznámky jsou způsob, jak přidat metadata k pozorování pomocí
+          kontrolovaného slovníku pojmů, např. zda pozorování znázorňuje
+          rostlinu, která kvete nebo plodí.
         charts_help_relative_observations: |
           Zobrazení frekvence v relativních poměrech vzhledem ke všem pozorováním pomáhá vyhladit účinek celkového růstu místa. Pokud například lokalita roste, zatímco každý rok získáme více pozorování, budeme mít více pozorování jednotlivých taxonů, které vám nic neříkají o tom, že je jich více. Prostě existuje více lidí, kteří daný taxon sledují. Zobrazit relativní poměr znamená, že pokud existuje 100 pozorování, ale 20 pozorování tohoto taxonu, podíl je 20% (20/100). Pokud lidé v následujícím roce provedou 2000 pozorování a 400 z tohoto taxonu, zůstane tento podíl 20% (400/2000). To způsobuje určité odchylky, když je v oblasti velmi málo pozorovatelů, nebo taxony, které jsou velmi zřídka pozorovány, ale to platí i pro celkový počet pozorování.
         complete_taxon_desc: |

@@ -392,9 +392,9 @@ lt:
     family: Visos šeimos pridėtos į duomenų bazę
     subfamily: Visi pošeimiai pridėti į duomenų bazę
     tribe: Visos gentys pridėtos į duomenų bazę
-    subtribe: Visos pogentės pridėtos į duomenų bazę
+    subtribe: Visi pogenčiai pridėti į duomenų bazę
     genus: Visos gentys pridėtos į duomenų bazę
-    subgenus: Visos pogentės pridėtos į duomenų bazę
+    subgenus: Visi pogenčiai pridėti į duomenų bazę
     section: Visi skyriai pridėti į duomenų bazę
     subsection: Visi poskyriai pridėti į duomenų bazę
     complex: Visi kompleksai pridėti į duomenų bazę
@@ -2052,6 +2052,7 @@ lt:
   no_comments_yet: Dar nėra komentarų.
   no_countries_added_yet: Dar nepridėta jokia šalis
   no_creative_commons_flickr_photos_tagged_x: 'Nepažymėta jokių Creative Commons Flickr nuotraukų „%{x}“'
+  no_curators_set: Nėra nustatytų kuratorių
   no_curators_yet: Dar nėra kuratorių!
   no_description: Nėra aprašymo
   no_flags: Šį kartą nėra žymių
@@ -2067,6 +2068,7 @@ lt:
     user: "%{user} nepridėjo mėgstamiausių."
   no_journal_posts_yet: Dar nėra žurnalo įrašų
   no_license_all_rights_reserved: Nėra licencijos (visos teisės saugomos)
+  no_managers_set: Nėra nustatytų vadovų
   no_matching_article_from_x: "Nėra atitinkamo straipsnio iš %{x}"
   no_matching_invitations: Nėra atitinkamų kvietimų
   no_matching_observations: Nėra sutampančių stebėjimų.
@@ -2103,6 +2105,7 @@ lt:
   no_results_found: Rezultatų nerasta
   no_results_for: 'Jokių rezultatų '
   no_results_matching: Atitinkančių rezultatų nerasta
+  no_species_have_been_listed: Dar jokia rūšis nebuvo įtraukta į šios vietos rūšių sąrašą!
   no_species_observed: Nebuvo stebėta jokių rūšių
   no_species_on_this_list: Šiame sąraše dar nėra rūšių!
   no_subject_parens: "(Nėra temos)"
@@ -2146,6 +2149,7 @@ lt:
   observation_: stebėjimas
   observation_added: Stebėjimas pridėtas.
   observation_added_to_the_project: "Stebėjimas pridėtas prie šio projekto \"%{project}\""
+  observation_brief_something_on_day: "Kažkas %{day}"
   observation_brief_something_on_day_at_time: "Kažkas %{day} %{time}"
   observation_brief_something_on_day_at_time_by_user: "Kažkas atliko %{user} %{day} %{time}"
   observation_brief_something_on_day_by_user: "%{user} kažką atliko %{day}"
@@ -2198,6 +2202,7 @@ lt:
   observations_this_year_vs_last_year: Stebėjimai šiais metais palyginus su praėjusiais
   observations_total: Iš viso stebėjimų
   observations_w: Stebėjimai su
+  observations_w_field: Stebėjimas su lauku
   observations_was_successfully_updated: Stebėjimas(-ai) buvo sėkmingai atnaujintas(-i).
   observations_widget: Stebėjimų valdiklis
   observations_without_media: Stebėjimai be medijos
@@ -2231,6 +2236,7 @@ lt:
     youve_got_updates_panel_title: Jūs turite atnaujinimų!
   one_of_your_lists: "vienas iš jūsų sąrašų..."
   only_show_active_taxa: Rodyti tik aktyvius taksonus
+  only_show_events_that_last_less_than_2_weeks: Rodyti tik tuos įvykius, kurie trunka trumpiau nei 2 savaites
   only_show_taxa_fom_this_list: "Rodyti taksonus tik iš šio sąrašo"
   only_species: tik rūšys
   only_you: Tik jūs
@@ -2245,7 +2251,6 @@ lt:
   or_all_caps: ARBA
   or_choose_high_level_taxa: "...arba rinkitės aukštesnio lygio taksonus"
   or_if_you_dont_want_email: "Arba jeigu tiesiog nenorite el. laiškų..."
-  or_upload: Arba įkelti
   orange: oranžinė
   order_by: Rikiuoti pagal
   organism_is_wild: Organizmas yra laukinis
@@ -2278,7 +2283,6 @@ lt:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 'Kiti taksonai dažnai palaikomi šia pogentimi vietovėje: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_subsection: Kiti taksonai dažnai palaikomi šiuo poskirsniu
   our_blog: Mūsų tinklaraštis
-  out_of_range: Už ribų
   overview: Apžvalga
   owner: Savininkas
   parental_consent:
@@ -2310,6 +2314,7 @@ lt:
   personal_message_description: Niekam nepatinka, kai jiems rašo kompiuteris! Geriau pakvieskite draugus asmeniškai!
   per_page: "Puslapyje"
   photo: Nuotrauka
+  photo_attribution: "%{attribution} nuotrauka"
   photo_browser: Nuotraukų naršyklė
   photo_deleted: Nuotrauka ištrinta
   photo_destroyed_because_it_was_deleted_from: "Nuotrauka sunaikinta, nes ji buvo ištrinta iš išorinio tinklalapio arba %{site_name} nebeturi leidimo jos rodyti"
@@ -2851,7 +2856,7 @@ lt:
     subfamily: Pošeimis
     tribe: Triba
     genus: Gentis
-    subgenus: Pogentė
+    subgenus: Pogentis
     complex: Kompleksas
     #Singular
     species: Rūšys
@@ -3616,6 +3621,7 @@ lt:
   user_commented_on: "%{user} paliko komentarą %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} nesutinka, kai tai %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nesutinka su ankstesnėmis smulkesnėmis identifikacijomis"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} pamėgo %{noun}, kurį sukūrė %{owner}"
   user_faved_this_observation: "%{user} pamėgo šį stebėjimą"
   user_flagged_as_a_non_spammer_html: "%{user} pažymėtas kaip ne šiukšlintojas"
@@ -3791,6 +3797,7 @@ lt:
   wikipedia_entry: Vikipedijos straipsnis
   with: su
   withdraw: Atsiimti
+  withdrawing: Atšaukiama...
   with_errors: Su klaidomis
   worldwide: Visame pasaulyje
   would_you_like_to: Ar norėtumėte
@@ -3862,6 +3869,7 @@ lt:
   you_dont_have_permission_to_edit_that_project: Jūs neturite leidimo redaguoti šį projektą.
   you_faved_this: Jūs tai pamėgote!
   you_have_left_x_project: "Jūs palikote %{project}"
+  you_havent_joined_any_projects: Jūs neprisijungėte prie jokių projektų
   you_joined_this_project: Prisijungėte prie šio projekto!
   you_need_to_select_some_observations_first: Pirma turite pasirinkti stebėjimus.
   you_sure_delete_check_list: "Ar tikrai norite tai ištrinti? Gali būti, jog žmonės į tai įdėjo daug darbo..."
@@ -3900,6 +3908,14 @@ lt:
   verifiable_observations: Identifikuotini stebėjimai
   views:
     views: 'Peržiūros'
+    content_freeze:
+      content_freeze: Turinio užšaldymas
+      during_this_time: |
+        Esant turinio užšaldymui, kai kurių tipų turinys negali būti sukuriamas, naikinamas ar modifikuojamas.
+      this_functionality_will_return: |
+        Ši funkcija sugrįš iškart, kai pasibaigs turinio užšaldymas.
+      we_expect_this_functionality_will_return_by_date: |
+        Mes numatome, kad funkcija sugrįš iki %{date}.
     donate:
       donate_short_desc: "Paremkite mus paaukodami dabar!"
       donate_desc_html: |
@@ -4070,6 +4086,7 @@ lt:
           Bioblicas yra renginys, kuriame dalyviai bando surasti kiek galima daugiau rūšių per tam tikrą laiko tarpą. Tai smagus būdas žmones supažindinti su biologine įvairove ir tuo pačiu surinkti naudingų duomenų.
           </p>
         change_admin_desc: Pasirinkite vieną iš projekto kuratorių, kuris bus naujas administratorius.
+        cover_desc: "Neprivaloma reklamjuostė bus matoma projekto puslapio viršuje. Paveikslėlis turi būti 950 pikselių pločio ir 400 pikselių aukščio."
         end_time_desc: "Bioblico pabaiga. Ji turi būti ne vėliau nei po metų nuo pradžios"
         no_curators: |
           Nėra projekto kuratorių. Jei norite paskirti naują asmenį
@@ -4117,6 +4134,10 @@ lt:
         welcome_to_projects: Sveiki atvykę į projektus!
         you_can_learn_more_html: |
           Apie projektų valdymą daugiau sužinoti galite <a href="https://www.inaturalist.org/pages/managing-projects">čia</a> arba galite paskaityti apie mūsų projektų istoriją <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">mūsų tinklaraštyje</a>.
+        errors:
+          name_is_required: Projekto pavadinimas yra būtinas
+          name_less_than_100_characters: Projekto pavadinimas negali viršyti 100 simbolių
+          name_already_taken: Projekto pavadinimas yra užimtas
       project_user_curator_coordinate_access_labels:
         none: Ne.
       show:
@@ -4399,6 +4420,16 @@ lt:
         many: maždaug %{count} mėnesiai
         other: maždaug %{count} mėnesiai
       half_a_minute: pusė minutės
+      less_than_x_minutes:
+        one: mažiau nei %{count} min.
+        few: mažiau nei %{count} min.
+        many: mažiau nei %{count} min.
+        other: mažiau nei %{count} min.
+      less_than_x_seconds:
+        one: mažiau nei %{count} sek.
+        few: mažiau nei %{count} sek.
+        many: mažiau nei %{count} sek.
+        other: mažiau nei %{count} sek.
       x_days:
         one: "%{count} diena"
         few: '%{count} dienos'

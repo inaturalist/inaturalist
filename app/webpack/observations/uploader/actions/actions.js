@@ -258,12 +258,8 @@ const actions = class actions {
             "longitude",
             "manualPlaceGuess",
             "modified",
-            // "observation_field_values",
             "positional_accuracy",
-            // "projects",
-            // "species_guess",
             "tags",
-            // "taxon_id",
             "zoom"
           ] ),
           { id } ) );
@@ -286,15 +282,33 @@ const actions = class actions {
             // associated with that upload
             if ( cf.uploadState === "uploaded" ) {
               newFiles[serialId] = new DroppedFile( Object.assign( {},
-                _.pick( cf, ["name", "type", "uploadState", "sort", "metadata", "photo", "serverMetadata"] ),
-                {
+                _.pick( cf, [
+                  "metadata",
+                  "name",
+                  "photo",
+                  "serverMetadata",
+                  "sort",
+                  "sound",
+                  "type",
+                  "uploadState",
+                  "visionThumbnail"
+                ] ), {
                   id: serialId,
                   cardID: newCard.id
                 } ) );
             } else {
               newFiles[serialId] = new DroppedFile( Object.assign( {},
-                _.pick( cf, ["name", "type", "sort", "metadata", "photo", "preview", "file"] ),
-                {
+                _.pick( cf, [
+                  "file",
+                  "metadata",
+                  "name",
+                  "photo",
+                  "preview",
+                  "sort",
+                  "sound",
+                  "type",
+                  "visionThumbnail"
+                ] ), {
                   id: serialId,
                   cardID: newCard.id,
                   uploadState: "pending"

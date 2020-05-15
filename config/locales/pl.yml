@@ -155,6 +155,11 @@ pl:
     few: "%{count} sugestie odfiltrowane na podstawie:"
     many: "%{count} sugestii odfiltrowanych na podstawie:"
     other: "%{count} sugestii odfiltrowanej na podstawie:"
+  x_taxa:
+    one: "%{count} takson"
+    few: "%{count} taksony"
+    many: "%{count} taksonów"
+    other: "%{count} taksona"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> zaobserwowany takson"
     few: "<span class='count'>%{count}</span> zaobserwowane taksony"
@@ -338,6 +343,7 @@ pl:
   add_several_observations_at_once: Dodaj kilka obserwacji na raz.
   add_sex_female_annotation: 'Dodaj adnotację "Płeć: Samica"'
   add_sex_male_annotation: 'Dodaj adnotację "Płeć: Samiec"'
+  add_sex_cannot_be_determined_annotation: 'Dodaj adnotację "Płeć: Nie można określić"'
   add_some_now: Dodaj jakieś teraz
   add_tag: Dodaj tag
   add_tags: Dodaj tagi
@@ -1933,14 +1939,18 @@ pl:
       'y': "1r"
       #Short text representing %d years in the past
       yy: "%dl"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM k:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Miesiąc
   months: Miesiące
   more: Więcej
@@ -2268,7 +2278,6 @@ pl:
   #sign in fields OR sign in with Facebook
   or_all_caps: LUB
   or_if_you_dont_want_email: "Lub gdy nie chcesz otrzymywać żadnych e-maili..."
-  or_upload: Lub prześlij
   orange: pomarańczowy
   order: Kolejność
   organism_is_wild: Organizm jest dziki
@@ -2301,7 +2310,6 @@ pl:
   other_taxa_commonly_misidentified_as_this_subsection: Inne taksony często błędnie oznaczane jako ta podsekcja
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Inne taksony często błędnie oznaczane jako ta podsekcja w <a href="%{url}">%{place}</a>
   our_blog: Nasz blog
-  out_of_range: Poza zasięgiem
   output_taxon: Takson wyjściowy
   overview: Przegląd
   owner: Właściciel
@@ -2449,7 +2457,7 @@ pl:
     armenia: Armenia
     aruba: Aruba
     australia: Australia
-    austria: Australia
+    austria: Austria
     azerbaijan: Azerbejdżan
     bahamas: Bahamy
     bahrain: Bahrajn
@@ -3241,6 +3249,7 @@ pl:
   user_commented: "%{user} skomentował"
   user_disagrees_this_is_taxon: "%{user} nie zgadza się, że jest to %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nie zgadza się z poprzednimi dokładniejszymi oznaczeniami"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} dodał do ulubionych %{noun} przez %{owner}"
   user_faved_this_observation: "%{user} dodał tę obserwację do ulubionych"
   user_flagged_as_a_spammer_html: "%{user} zgłoszony jako spamer"
@@ -4222,6 +4231,8 @@ pl:
     scopes:
       write: |
         Dodawaj, aktualizuj i usuwaj swoje obserwacje, oznaczenia i inne treści a także uzyskaj dostęp do swoich do których może ukrytych współrzędnych i innych informacji do których możesz uzyskać dostęp na tej stronie.
+      account_delete: |
+        Usunąć konto w Twoim imieniu
     errors:
       messages:
         #Common error messages

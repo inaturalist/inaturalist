@@ -114,17 +114,18 @@ class Map extends React.Component {
       }
       obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
       const mapKey = `map-for-${observation.id}-${observation.taxon ? observation.taxon.id : null}`;
+      const taxonLayer = taxonLayerForTaxon( obsForMap.taxon, {
+        currentUser: config.currentUser,
+        updateCurrentUser,
+        observation
+      } );
+      taxonLayer.places = false;
+      taxonLayer.ranges = false;
       taxonMap = (
         <TaxonMap
           key={mapKey}
           reloadKey={mapKey}
-          taxonLayers={[
-            taxonLayerForTaxon( obsForMap.taxon, {
-              currentUser: config.currentUser,
-              updateCurrentUser,
-              observation
-            } )
-          ]}
+          taxonLayers={[taxonLayer]}
           observations={[obsForMap]}
           zoomLevel={observation.map_scale || 8}
           showAccuracy

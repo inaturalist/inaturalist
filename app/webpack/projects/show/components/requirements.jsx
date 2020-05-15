@@ -8,11 +8,15 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 function dateToString( date, spansYears = false ) {
   let format;
   if ( date.match( /^\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{2} [+-]\d{1,2}:\d{2}/ ) ) {
-    format = spansYears ? "MMMM D, YYYY h:mma z" : "MMMM D h:mma z";
+    format = spansYears
+      ? I18n.t( "momentjs.datetime_with_zone" )
+      : I18n.t( "momentjs.datetime_with_zone_without_year" );
     return moment( date, "YYYY-MM-DD HH:mm Z" )
       .parseZone( ).tz( TIMEZONE ).format( format );
   }
-  format = spansYears ? "MMMM D, YYYY" : "MMMM D";
+  format = spansYears
+    ? I18n.t( "momentjs.date_long" )
+    : I18n.t( "momentjs.date_long_without_year" );
   return moment( date ).format( format );
 }
 
@@ -95,7 +99,7 @@ const Requirements = ( {
     : media.join( ` ${I18n.t( "and" )} ` );
   let dateRules = I18n.t( "any" );
   if ( project.rule_d1 && project.rule_d2 ) {
-    const spansYears = project.startDate.year( ) !== project.endDate.year( );
+    const spansYears = true;
     dateRules = I18n.t( "date_to_date", {
       d1: dateToString( project.rule_d1, spansYears ),
       d2: dateToString( project.rule_d2, spansYears )
@@ -104,6 +108,9 @@ const Requirements = ( {
     dateRules = dateToString( project.rule_observed_on );
   } else if ( project.rule_d1 ) {
     dateRules = I18n.t( "project_start_time_datetime", { datetime: dateToString( project.rule_d1 ) } );
+  } else if ( project.rule_month ) {
+    const monthIndices = project.rule_month.split( "," ).map( m => parseInt( m, 0 ) );
+    dateRules = monthIndices.map( m => I18n.t( "date.month_names" )[m] ).join( ", " );
   }
   let establishmentRules = I18n.t( "any" );
   if ( project.rule_native || project.rule_introduced ) {
@@ -262,10 +269,13 @@ const Requirements = ( {
       <h2>
         { I18n.t( "project_requirements" ) }
         { includeArrowLink && (
-          <i
-            className="fa fa-arrow-circle-right"
-            onClick={ ( ) => setSelectedTab( "about" ) }
-          />
+          <button
+            type="button"
+            className="btn btn-nostyle"
+            onClick={( ) => setSelectedTab( "about" )}
+          >
+            <i className="fa fa-arrow-circle-right" />
+          </button>
         ) }
       </h2>
       { requirementContents }

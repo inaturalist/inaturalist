@@ -1982,9 +1982,7 @@ ca:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "LT, D MMM YYYY z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
@@ -2434,7 +2432,6 @@ ca:
   or_all_caps: O
   or_choose_high_level_taxa: "... o seleccioneu un tàxon de rang superior"
   or_if_you_dont_want_email: "O si no voleu cap correu electrònic..."
-  or_upload: O descarregueu el
   orange: taronja
   order: Ordre
   order_by: Ordenar per
@@ -2473,7 +2470,6 @@ ca:
   other_taxa_commonly_misidentified_as_this_subsection: Altres tàxons generalment mal identificats com aquesta subsecció
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Altres tàxons habitualment mal identificar com aquesta subsecció a <a href="%{url}">%{place}</a>
   our_blog: El nostre blog
-  out_of_range: Fora del rang
   output_taxon: Tàxon de sortida
   overview: Vista general
   overlapping_downstream_taxon_frameworks_html: "Superposició dels marcs taxonòmics descendents: %{count}"
@@ -3053,8 +3049,6 @@ ca:
   project_settings: Configuració del projecte
   project_start_time_datetime: "Hora d'inici: %{datetime}"
   project_that_does_not_contain_these_observations: Projecte que no conté aquestes observacions
-  project_type_description: |
-    Valoracions i Bioblitzes són tipus especials de projectes. Les Valoracions son col·laboracions per a valorar l'estat d'un grup d'espècies, normalment d'importància per a la conservació. Els Bioblitzes són esdeveniments que tenen un inici i final determinats.
   project_user_cannot_be_found: No s'ha trobat l'usuari del projecte
   project_user_was_invalid: "L'usuari del projecte no és vàlid: %{project_user}"
   project_was_successfully_created: El projecte s'ha creat satisfactòriament.
@@ -3990,6 +3984,7 @@ ca:
   user_commented_on: "%{user} ha comentat el teu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} no creu que sigui %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} discrepa amb identificacions anteriors adequades"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} preferit %{noun} per %{owner}"
   user_faved_this_observation: "%{user} ha marcat com a favorita aquesta observació"
   user_flagged_as_a_non_spammer_html: "%{user} marca com a no spammer"

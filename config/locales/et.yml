@@ -541,6 +541,8 @@ et:
   blue: sinine
   blue_butterfly_etc: "sinine, sajajalgne, jne"
   body: Tekst
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Piirkast
   breadcrumbs: Hierarhia
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -570,6 +572,7 @@ et:
   cant_merge_a_taxon_with_itself: Taksonit ei saa ühendada iseendaga.
   captive: Vangistatud
   captive_cultivated: Vangistatud / kultiveeritud
+  captive_observations: Vangistatuks määratud vaatlused
   card: Kaart
   casual: juhuvaatlus
   casual_: Juhuvaatlus
@@ -751,6 +754,7 @@ et:
     iucn: Samaväärne IUCNi punase nimestiku kood
   contact_support: Klienditugi
   contain_all_descendants?: Kas see kontrollnimekiri sisaldab kõiki selles kohas leiduvaid antud taksoni järglasi?
+  content_hidden: Sisu on peidetud
   continue: Jätka
   contributor_cannot_be_found: Täjendajat ei leita
   contributors_to_project: "Projekti %{project} täjendajad"
@@ -773,6 +777,8 @@ et:
     juvenile: Nooruk
     alive_or_dead: Elus või surnud
     alive: Elus
+    dead: Surnud
+    cannot_be_determined: Ei saa kindlaks teha
   controlled_term_definitions:
     alive: Organism on elus ja puuduvad peatse surma märgid
     dead: Organism on surnud või on naha peatse surma märgid
@@ -1725,10 +1731,14 @@ et:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM D h:mma z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "MMMM D, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "MMMM D"
   month: Kuu
   months: Kuud
   more: Veel
@@ -2105,7 +2115,6 @@ et:
   or_all_caps: VÕI
   or_choose_high_level_taxa: "... või vali mõni kõrgema taseme takson"
   or_if_you_dont_want_email: "Või kui sa ei taha e-posti..."
-  or_upload: Või lae üles
   orange: oranž
   order: Järjestus
   order_by: Järjesta
@@ -2126,7 +2135,6 @@ et:
   other_species_commonly_misidentified_as_this_species: Selle liigiga sageli segamini aetavad liigid
   other_species_commonly_misidentified_as_this_species_in_place_html: Kohas <a href="%{url}">%{place}</a> selle liigiga sageli segamini aetavad liigid
   our_blog: Meie blogi
-  out_of_range: Pole piirkonnas
   output_taxon: Väljundtakson
   overview: Ülevaade
   owner: Omanik
@@ -2562,8 +2570,6 @@ et:
   project_rules: Projekti reeglid
   project_settings: Projekti sätted
   project_that_does_not_contain_these_observations: Projekt, mis ei sisalda neid vaatlusid
-  project_type_description: |
-    Hinnagud ja välkvaatlused on erilised projektitüübid. Hinnanguid saab kasutada liigi arvukuse hindamiseks, mis on tavaliselt oluline kaitsestaatuse määramisel. Välkvaatlused on sündmused, millel on kindel algus ja lõpp.
   project_user_cannot_be_found: Projekti kasutajat ei leitud
   project_user_was_invalid: "Projekti kasutaja oli vigane: %{project_user}"
   project_was_successfully_created: Projekti loomine õnnestus.
@@ -2753,6 +2759,7 @@ et:
   rules_for_becoming_a_member: Liikmeks saamise reeglid
   rules_for_becoming_memner: Liikmeks saamise reeglid
   rules_types:
+    must_be_captive: peab olema vangistatud / kultiveeritud
     must_be_georeferenced: peab olema asukoha andmetega
     must_be_identified: peab olema määratletud
     must_be_on_list: peab olema nimekirjas
@@ -3410,6 +3417,7 @@ et:
   user_commented: "%{user} kommenteeris"
   user_commented_on: "Kasutaja %{user} kommenteeris sinu %{title} (%{time})"
   user_disagrees_this_is_taxon: "Kasutaja %{user} ei nõustu, et tegmist on taksoniga %{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "Kasutaja %{user} märkis lemmikuks kasutaja %{owner} %{noun}"
   user_flagged_as_a_non_spammer_html: "Kasutaja %{user} on märgitud mitte-rämpspostitajaks"
   user_flagged_as_a_spammer_html: "Kasutaja %{user} on märgitud rämpspostitajaks"

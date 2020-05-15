@@ -254,6 +254,7 @@ nb:
   add_plant_phenology_flower_budding_annotation: 'Legg til merknaden "Plantefenologi: blomsterknopper"'
   add_plant_phenology_flowering_annotation: 'Legg til merknaden "Plantefenologi: Blomstrende"'
   add_plant_phenology_fruiting_annotation: 'Legg til merknaden "Plantefenologi: Fruktbærende"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Legg til merknaden "Plantefenologi: Ingen bevis for blomstring"'
   add_life_stage_adult_annotation: 'Legg til merknaden "Livsstadium: Voksen"'
   add_life_stage_teneral_annotation: 'Legg til merknaden "Livsstadium: teneral"'
   add_life_stage_subimago_annotation: 'Legg til merknaden "Livsstadium: subimago"'
@@ -269,6 +270,7 @@ nb:
   add_several_observations_at_once: Legg til flere observasjoner på en gang.
   add_sex_female_annotation: 'Legg til merknaden "Kjønn: Hunkjønn"'
   add_sex_male_annotation: 'Legg til merknaden "Kjønn: Hankjønn"'
+  add_sex_cannot_be_determined_annotation: 'Legg til merknad "Kjønn: kan ikke bestemmes"'
   add_some_now: Legg til enkelte nå
   add_tag: Legg til etikett
   add_tags: Legg til etiketter
@@ -526,6 +528,8 @@ nb:
     Er du sikker på at du anser denne brukeren som respektabel? Alle spam-markeringer på deres innhold vil bli løst.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Er du sikker på at du vil fjerne disse %{x} taksa?"
   are_you_sure_you_want_to_remove_this_invitation: Er du sikker på at du vil fjerne denne invitasjonen?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Er du sikker på at du vil fjerne denne observasjonen fra %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Er du sikker på at du vil fjerne dette taksonet fra sjekklisten til %{place}?"
   associated_observations: Tilknyttede observasjoner
   associated_taxa: Tilknyttede taksa
@@ -647,6 +651,7 @@ nb:
   cant_merge_a_taxon_with_itself: Kan ikke slå sammen et takson med seg selv.
   captive: I fangenskap
   captive_cultivated: I fangenskap / dyrket
+  captive_observations: Observasjoner i fangenskap
   card: Kort
   casual: uformell
   casual_: Uformell
@@ -870,6 +875,7 @@ nb:
     teneral: Teneral
     subimago: Subimago
     pupa: Puppe
+    no_evidence_of_flowering: Ingen bevis for blomstring
     nymph: Nymfe
     larva: Larve
     egg: Egg
@@ -884,6 +890,7 @@ nb:
     flower_budding: Blomsterknopper er synlige men ikke åpne
     flowering: Blomster synlige, åpne, og fortsatt knyttet til planten
     fruiting: Frukt synlig og fortsatt knyttet til planten
+    no_evidence_of_flowering: Media gir ingen bevis for reproduksjonsstrukturer
     teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
   controls: Kontrollpanel
   convert: Konverter
@@ -1548,6 +1555,7 @@ nb:
   ignore_and_continue: Ignorer og fortsett
   ignore_times: Ignorer klokkeslett
   image_must_be_exactly: bildet må være nøyaktig 950 piksler bred og maksimalt 400 piksler høy
+  image_size_control: Bildestørrelse-styring
   imperiled: I fare
   import: Importer
   import_all_photos_as_observations: Importer alle bilder som observasjoner
@@ -1647,6 +1655,9 @@ nb:
   label_to_group_a_batch_of_taxon_changes: Etikett for å gruppere en batch med taksonendringer
   location_private: Posisjon privat
   location_unknown: Posisjon ukjent
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Lås zoomnivå
   language_slash_type: Språk / type
   #Large photo size
   large: stor
@@ -1973,14 +1984,18 @@ nb:
       'y': "1å"
       #Short text representing %d years in the past
       yy: "%då"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D. MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM, YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D. MMMM, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D. MMMM"
   month: Måned
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månedlig supporter</a> siden %{date}
@@ -2128,6 +2143,7 @@ nb:
   no_favorites_added:
     current_user: Du har ikke lagt til favoritter ennå.
     user: "%{user} har ikke lagt til favoritter."
+  no_journal_posts_yet: Ingen journalinnlegg ennå
   no_license_all_rights_reserved: Ingen lisens (alle rettigheter forbeholdt)
   no_managers_set: Ingen managere valgt
   no_matching_article_from_x: "Ingen matchende artikkel fra %{x}"
@@ -2147,7 +2163,7 @@ nb:
   no_observations: Ingen observasjoner
   no_observations_from_this_place_yet: Ingen observasjoner fra dette stedet ennå.
   no_observations_matching_those_ids: Ingen observasjoner med treff for disse ID-er.
-  no_observations_submitted: "Ingen observasjoner sendt inn!"
+  no_observations_submitted: "Ingen observasjoner lagt inn!"
   no_observations_yet: Ingen observasjoner ennå
   no_one_has_added_any: Ingen har lagt til noen notater for dette stedet
   no_one_has_been_invited_yet: Ingen har blitt invitert ennå
@@ -2415,7 +2431,6 @@ nb:
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller velg fra noen høyere taksa"
   or_if_you_dont_want_email: "Eller hvis du ikke ønsker noe som helst e-post..."
-  or_upload: Eller last opp
   orange: oransje
   order: Sorter
   order_by: Sorter etter
@@ -2454,7 +2469,6 @@ nb:
   other_taxa_commonly_misidentified_as_this_subsection: Andre arter som ofte blir feilidentifisert som denne underseksjonen
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andre arter som ofte blir feilidentifisert som denne underseksjonen i <a href="%{url}">%{place}</a>
   our_blog: Bloggen vår
-  out_of_range: Utenfor utbredelsen
   output_taxon: Outputtakson
   overview: Oversikt
   overlapping_downstream_taxon_frameworks_html: "Overlappende underliggende taksonrammeverk: %{count}"
@@ -2550,16 +2564,24 @@ nb:
       building: bygning
       Canton: Kanton
       canton: kanton
+      City Building: Bygning i by
+      city building: bygning i by
       Colloquial: Uformelt
       colloquial: uformelt
       Commune: Kommune
       commune: kommune
+      Constituency: Valgkrets
+      constituency: valgkrets
       Continent: Kontinent
       continent: kontinent
       Country: Land
       country: land
       County: County
       county: county
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegasjon
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegasjon
       District: Distrikt
       district: distrikt
       Division: Divisjon
@@ -2600,6 +2622,12 @@ nb:
       open_space: åpent område
       Parish: Sogn
       parish: sogn
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Poblacion
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: poblacion
+      Prefecture: Prefektur
+      prefecture: prefektur
       Prefecture_City: Prefekturby
       prefecture_city: prefekturby
       Point_of_Interest: Punkt av interesse
@@ -2608,6 +2636,8 @@ nb:
       postal_code: postnummer
       Province: Provins
       province: provins
+      Regency: Regentskap
+      regency: regentskap
       Region: Region
       region: region
       Republic: Republikk
@@ -2626,6 +2656,10 @@ nb:
       subdivision: underdivisjon
       Suburb: Forstad
       suburb: forstad
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
       Supername: Supernavn
       supername: supernavn
       Territory: Territorium
@@ -2948,6 +2982,7 @@ nb:
   present: tilstedeværende
   press: Presse
   preview: Forhåndsvisning
+  preview_observations_with_these_observation_requirements: Forhåndsvis observasjoner med disse observasjonskrav
   preview_of_synced_observation: "<strong>Forhåndsvisning</strong> av synkronisert observasjon. <a href=\"%{url}\">Angre?</a>"
   preview_personal_message: "Jeg hadde likt det om du ble med på %{site}, et nettsted hvor du kan registrere dine observasjoner av planter og dyr, hold oversikt over din livsliste, og lær om den naturlige verden!"
   preview_your_message: Forhåndsvis din beskjed
@@ -2987,6 +3022,7 @@ nb:
   project_group_description: Gruppen prosjektet hører til
   project_home: Prosjekt hjem
   project_icon: Prosjektikon
+  project_journal: Journal for prosjekt
   project_id_or_url_slug: Prosjekt ID eller URL-slug, f.eks. 333 eller mitt-prosjekt
   project_invitations: 'Prosjektinvitasjoner'
   project_list: Prosjektliste
@@ -2996,6 +3032,7 @@ nb:
   project_curators_added_some_of_your_observations_html: |
     Kuratorer til <a href="%{url}">%{project}</a> har lagt til noen av dine observasjoner
   project_members: "Medlemmer av %{project}"
+  project_members_only: Kun for prosjekt-medlemmer
   project_membership_model_description: Er prosjektet ditt åpent til alle, eller kun til personer som du inviterer?
   project_observations: Prosjektets observasjoner
   project_post: Projektinnlegg
@@ -3005,7 +3042,7 @@ nb:
   project_start_time_datetime: "Starttid: %{datetime}"
   project_that_does_not_contain_these_observations: Prosjekt som ikke inneholder disse observasjoner
   project_type_description: |
-    Vurderinger og bioblitzer er det spesielle typer prosjekter. Vurderinger er for å samarbeide om et sett med artsvurderinger, vanligvis for å peile bevaringsprioritet. Bioblitzer er arrangement med en bestemt start og slutt.
+    Vurderinger er for å samarbeide om et sett med artsvurderinger, vanligvis for å peile bevaringsprioritet.
   project_user_cannot_be_found: Prosjektbruker ble ikke funnet
   project_user_was_invalid: "Prosjektbruker er ugyldig: %{project_user}"
   project_was_successfully_created: Prosjektet ble opprettet.
@@ -3202,6 +3239,7 @@ nb:
   rules_for_becoming_a_member: Regler for å bli medlem
   rules_for_becoming_memner: Regler for å bli medlem
   rules_types:
+    must_be_captive: må være i fangenskap / dyrket
     must_be_georeferenced: må være georeferert
     must_be_identified: må være identifisert
     must_be_on_list: må være på liste
@@ -3320,6 +3358,9 @@ nb:
   show_taxa_from_place: "Vis taksa fra %{place}"
   show_total_counts: Vis totale antall
   show_uncountable_species: Vis arter som ikke kan telles
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Viser første %{x}
   showing_taxa_from_everywhere: "Viser taksa fra overalt"
   showing_taxa_from_place: "Viser taksa fra %{place}"
   showing_x_of_y: Viser %{x} av %{y}
@@ -3474,9 +3515,9 @@ nb:
   submission_model: Innsendingsmodell
   submission_model_description: Hvem kan legge til observasjoner i ditt prosjekt?
   submit_observations:
-    one: Send 1 observasjon
-    other: Send %{count} observasjoner
-  submitted: Sendt
+    one: Legg inn 1 observasjon
+    other: Legg inn %{count} observasjoner
+  submitted: Lagt inn
   subscribe_to_a_taxon: Abonner på et takson
   subscribe_to_a_place: Abonner på et sted
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonner%{tag_end} på kommentarer på denne markeringen"
@@ -3876,6 +3917,7 @@ nb:
     tooltips:
       add: Legg til observasjon(er)
       combine: Kombiner valgte observasjoner
+      duplicate: Dupliser valgte observasjoner
       photo_failed: Bildeopplastingen mislykkes
       remove: Fjern valgte observasjoner
       remove_observation: Fjern observasjon
@@ -3930,6 +3972,7 @@ nb:
   user_commented_on: "%{user} har kommentert på @gender{n:ditt|din} %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} er uenig i at dette er %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig i tidligere finere identifikasjoner"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} har favorittisert %{noun} av %{owner}"
   user_faved_this_observation: "%{user} har lagt til denne observasjonen til sine favoritter"
   user_flagged_as_a_non_spammer_html: "%{user} markert som ikke-spammer"
@@ -5166,6 +5209,7 @@ nb:
         obs_desc: Opprettet i foreg. 7 dager
         obs_id_d_desc: Opprettet i foreg. 7 dager og har en ID (kan være observatørens)
         observations_1_week_moving_window: Observasjoner (1 løpende uke)
+        observers_desc: La til en observasjon på denne dagen
         other_desc_html: Laget med andre applikasjoner <a href="%{url}">laget av utviklere</a>
         recent_desc: Påmeldt i foreg. 7 dager
         recent_w_0_obs: Nylig m/ 0 obs
@@ -5271,6 +5315,7 @@ nb:
           "Plant Phenology=Flower Budding": Blomsterknopper
           "Plant Phenology=Flowering": Blomstrende
           "Plant Phenology=Fruiting": Fruktbærende
+          "Plant Phenology=No Evidence of Flowering": Ingen bevis
           "Life Stage=egg": Egg
           "Life Stage=larva": Larve
           "Life Stage=teneral": Teneral
@@ -5945,7 +5990,7 @@ nb:
         start_time: Starttid
         last_aggregated_at: Observasjoner sist aggregert
       project_observation:
-        user_id: Innsender
+        user_id: Lagt inn av
       place:
         code: Kode
         display_name: Visningsnavn

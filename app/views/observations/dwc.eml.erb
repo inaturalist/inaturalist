@@ -37,8 +37,8 @@
       <para>
         * Depicts an individual in the following taxa:
         <%=raw @taxa.each_with_index.map {|taxon, i| "#{i+1}) #{taxon.name} (<![CDATA[#{FakeView.taxon_url( taxon )}]]>)" }.join( ", " ) %>
-      <% end %>
       </para>
+      <% end %>
       <% if @place %>
       <para>
         * Coordinates in <%=raw @place.display_name %> (<![CDATA[<%= FakeView.place_url( @place ) %>]]>)
@@ -100,9 +100,12 @@
     <intellectualRights>
       <para>
         <% if @license %>
-          This archive is licensed under a <![CDATA[<%=raw FakeView.url_for_license( @license ) %>]]> license. Individual records may be published under less-restrictive conditions; please see individual records for guidance on usage.
+        This archive is licensed under a
+        <ulink url=<%=raw FakeView.url_for_license( @license ).encode( xml: :attr ) %>>
+          <citetitle><%= FakeView.license_name( @license ) %></citetitle>
+        </ulink>. Individual records may be published under less-restrictive conditions; please see individual records for guidance on usage.
         <% else %>
-          These data are licensed under a variety of Creative Commons licenses and waivers. Please see individual records for their usage requirements.
+        These data are licensed under a variety of Creative Commons licenses and waivers. Please see individual records for their usage requirements.
         <% end %>
       </para>
     </intellectualRights>
@@ -135,11 +138,9 @@
         </rangeOfDates>
       </temporalCoverage>
 
+      <% unless @taxa.blank? %>
       <taxonomicCoverage>
         <generalTaxonomicCoverage>
-          <% if @taxa.blank? %>
-          No taxonomic restrictions have been placed on this dataset.
-          <% end %>
           For information about iNaturalist's taxonomy, see https://www.inaturalist.org/pages/curator+guide.
         </generalTaxonomicCoverage>
       <% unless @taxa.blank? %>
@@ -151,6 +152,7 @@
       <% end %>
       <% end %>
       </taxonomicCoverage>
+      <% end %>
     </coverage>
 
     <purpose>

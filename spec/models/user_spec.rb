@@ -502,6 +502,12 @@ describe User do
       es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
       expect( es_response.votes.size ).to eq 0
     end
+
+    it "should destroy friendships where user is the friend" do
+      f = Friendship.make!
+      f.friend.destroy
+      expect( Friendship.find_by_id( f.id ) ).to be_blank
+    end
   end
 
   describe "sane_destroy" do

@@ -460,7 +460,9 @@ zh-CN:
   attribution: 署名
   authority_list:
     iucn_red_list: IUCN红色名录
+  authorize: 授权
   authorize_permissions_from_provider: "来自%{provider}的授权权限"
+  automatic_short: 自动
   automatically_add_observations_to_this_project: 自动添加观察至此项目
   automatically_update_my_content_for_taxon_changes: 自动更新我的内容，以为分类单元更改
   back: 返回
@@ -502,7 +504,9 @@ zh-CN:
   because_of: 因为
   before_importing_photos: 在导入照片前
   bg_color: 背景颜色
+  bioblitz: 生物限时寻
   birds: 鸟
+  birthday: 生日
   black: 黑色
   block_user: 封禁用户
   block_removed: 封禁已移除
@@ -592,6 +596,8 @@ zh-CN:
     replaced_by: 取代自
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: 替代为
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_with: 替代为
     dropped: 已放弃
     staged: 已上演
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon}已拆分至%{output_taxa}"
@@ -612,6 +618,7 @@ zh-CN:
   check_list: 监视列表
   check_list_description: 选择您想在此列表中列入的高阶分类单元，如为鸟类选择“Aves”，为两栖动物选择“Amphibia”。一旦做这样的设置，不再这一分类单元中之下的分类单元便不允许列入列表。例如，如果您创建了一个鸟类列表，那么就不能再向其中添加蛙类。
   check_list_for_individual_taxa_that: '在此地栖息的某一个分类单元的名录，例如，“%{place}的鸟类”。'
+  check_list_for_taxon_html: "查看 %{taxon} 列表"
   check_lists_must_belong_to_a_place: |
     名录必须属于某一个地点。要创建一个新名录，请访问该地点的默认名录，并点击“创建新名录”的链接。
   check_list_of_species_occuring_in: 在以下地点出现的物种名录
@@ -2006,7 +2013,6 @@ zh-CN:
   or: 或
   or_choose_high_level_taxa: "...或者从一些高级别的分类群里选择"
   or_if_you_dont_want_email: "或如果您不希望接受任何电子邮件的话..."
-  or_upload: 或上传
   orange: 橙色
   order: 排序
   order_by: 排序方式：
@@ -2027,7 +2033,6 @@ zh-CN:
   other_species_commonly_misidentified_as_this_species: 会被误认为这个物种的其他物种
   other_species_commonly_misidentified_as_this_species_in_place_html: 其他物种通常会被误认为这个物种在<a href="%{url}">%{place}</a>
   our_blog: 我们的博客
-  out_of_range: 超出范围
   output_taxon: 输出分类单元
   overview: 概述
   owner: 所有者
@@ -2387,8 +2392,6 @@ zh-CN:
   project_rules: 项目规则
   project_settings: 项目设置
   project_that_does_not_contain_these_observations: 没有包括这些观察记录的项目
-  project_type_description: |
-    评估和bioblitzes是特殊类型的项目。评估是为了对一系列物种评估进行合作，通常是为了衡量保护的重要性。Bioblitzes是具有特定开始和结束的事件。
   project_user_cannot_be_found: 找不到项目用户
   project_user_was_invalid: "项目用户无效：%{project_user}"
   project_was_successfully_created: 已成功创建项目。
@@ -3174,6 +3177,7 @@ zh-CN:
   user_commented: "%{user} 已评论"
   user_commented_on: "%{user}评论了您的%{title}于%{time}"
   user_disagrees_this_is_taxon: "%{user}不同意这是%{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}喜欢了%{owner}的%{noun}"
   user_has_opted_out_of_community_id: 用户已选择退出社区ID
   user_invite_observation_to_project: '%{user}邀请把您的观察“%{observation}”加入至%{project}项目。'

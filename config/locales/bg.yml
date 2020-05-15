@@ -1270,9 +1270,7 @@ bg:
       'y': "1г"
       #Short text representing %d years in the past
       yy: "%dг"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
@@ -1539,7 +1537,6 @@ bg:
   other_species_commonly_misidentified_as_this_species: Други видове често обърквани с този вид
   other_species_commonly_misidentified_as_this_species_in_place_html: Други видове често обърквани с този вид във <a href="%{url}">%{place}</a>
   our_blog: Нашият блог
-  out_of_range: Извън обхват
   overview: Общ преглед
   owner: Собственик
   password: Парола
@@ -2445,6 +2442,7 @@ bg:
   user_added_x_observations_html: "%{user} добави %{x} наблюдения"
   user_commented_on: "%{user} коментира Ваш(а/е) %{title} %{time}"
   user_disagrees_this_is_taxon: "Потребителят %{user} не е съгласен, че това е %{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} хареса %{noun} на %{owner}"
   user_hasnt_joined_any_projects: "%{user} не участва в никакви проекти"
   user_invite_observation_to_project: '%{user} би искал да покани Вашето наблюдение "%{observation}" към проекта %{project}.'

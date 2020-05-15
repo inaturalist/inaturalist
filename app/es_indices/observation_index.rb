@@ -160,6 +160,7 @@ class Observation < ActiveRecord::Base
         indexes :value, type: "keyword"
         indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
       end
+      # TODO Remove out_of_range from the index
       indexes :out_of_range, type: "boolean"
       indexes :outlinks do
         indexes :source, type: "keyword"
@@ -315,8 +316,6 @@ class Observation < ActiveRecord::Base
         place_guess: place_guess.blank? ? nil : place_guess,
         private_place_guess: private_place_guess.blank? ? nil : private_place_guess,
         observed_on_string: observed_on_string,
-        id_please: id_please,
-        out_of_range: out_of_range,
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
         taxon_geoprivacy: taxon_geoprivacy,
@@ -344,7 +343,9 @@ class Observation < ActiveRecord::Base
         tags: tags.map(&:name).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
         annotations: annotations.map(&:as_indexed_json),
-        photos_count: photos.any? ? photos.length : nil,
+        photos_count: photos.any? ? photos.select{|p|
+          p.flags.detect{|f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?}.blank?
+        }.length : nil,
         sounds_count: sounds.any? ? sounds.length : nil,
         photo_licenses: photos.map(&:index_license_code).compact.uniq,
         sound_licenses: sounds.map(&:index_license_code).compact.uniq,
@@ -604,7 +605,9 @@ class Observation < ActiveRecord::Base
       { http_param: :threatened, es_field: "taxon.threatened" },
       { http_param: :native, es_field: "taxon.native" },
       { http_param: :endemic, es_field: "taxon.endemic" },
+      # TODO remove id_please when we remove it from the ES index
       { http_param: :id_please, es_field: "id_please" },
+      # TODO remove out_of_range when we remove it from the ES index
       { http_param: :out_of_range, es_field: "out_of_range" },
       { http_param: :mappable, es_field: "mappable" },
       { http_param: :captive, es_field: "captive" }
@@ -776,12 +779,14 @@ class Observation < ActiveRecord::Base
     end
 
     if p[:d1] || p[:d2]
+      p[:d1] = p[:d1].to_s
       d1 = DateTime.parse(p[:d1]) rescue DateTime.parse("1800-01-01")
+      p[:d2] = p[:d2].to_s
       d2 = DateTime.parse(p[:d2]) rescue Time.now
       # d2 = Time.now if d2 && d2 > Time.now # not sure why we need to prevent queries into the future
       query_by_date = (
-        (p[:d1] && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
-        (p[:d2] && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))
+        (!p[:d1].blank? && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
+        (!p[:d2].blank? && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))
       date_filter = { "observed_on_details.date": {
         gte: d1.strftime("%F"),
         lte: d2.strftime("%F") }}

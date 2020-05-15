@@ -131,7 +131,7 @@ $.fn.genericAutocomplete = function ( acOptions ) {
 
   ac = field.autocomplete( {
     minLength: ( options.minLength || options.minLength === 0 ) ? options.minLength : 1,
-    delay: 0,
+    delay: options.delay || 250,
     source: options.source,
     select: options.select || field.select,
     focus: options.focus || genericAutocomplete.focus,

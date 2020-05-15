@@ -408,10 +408,12 @@ iNaturalist.Map.createMap = function(options) {
     zoom: 1,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     streetViewControl: false,
+    rotateControl: false,
     backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
     clickableIcons: false,
     gestureHandling: "greedy",
-    controlSize: 26
+    controlSize: 26,
+    tilt: 0
   }, options);
   
   var map;
@@ -1185,7 +1187,6 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "oauth_application_id",
     "on",
     "opacity",
-    "out_of_range",
     "photo_license",
     "photos",
     "place_id",

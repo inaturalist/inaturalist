@@ -1989,7 +1989,6 @@ pt:
   or: ou
   or_choose_high_level_taxa: "... ou escolha a partir de um taxa de nível superior"
   or_if_you_dont_want_email: "Ou se simplesmente não quer nenhum email..."
-  or_upload: Ou carregar
   orange: laranja
   order: Ordem
   order_by: Ordenar por
@@ -2008,7 +2007,6 @@ pt:
   other_species_commonly_misidentified_as_this_species: Outras espécies que costumam ser confundidas com esta
   other_species_commonly_misidentified_as_this_species_in_place_html: Outras espécies que costumam ser confundidas com esta espécie em <a href="%{url}">%{place}</a>
   our_blog: O nosso blogue
-  out_of_range: Fora de alcance
   output_taxon: Táxon resultante
   overview: Visão geral
   owner: Proprietário
@@ -2351,8 +2349,6 @@ pt:
   project_rules: Regras do Projeto
   project_settings: Definições do Projeto
   project_that_does_not_contain_these_observations: Projeto que não inclui essas observações
-  project_type_description: |
-    Avaliações e bioblitz são um tipo especial de projetos. As avaliações são uma forma de colaboração num conjunto de avaliações de espécies, em geral para medir a sua importância para a conservação. Os bioblitz são eventos com um começo e um fim especificados.
   project_user_cannot_be_found: Não foi encontrado o utilizador do projecto
   project_user_was_invalid: "Utilizador do projeto não é válido: %{project_user}"
   project_was_successfully_created: O projeto foi criado com sucesso.
@@ -2863,6 +2859,7 @@ pt:
   user_commented: "%{user} comentou"
   user_commented_on: "%{user} comentou o seu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} discorda que seja um(a) %{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} adicionou %{noun} por %{owner} como favorito"
   user_is_a_naturalist: "%{user} é um naturalista!"
   user_muted: Utilizador silenciado

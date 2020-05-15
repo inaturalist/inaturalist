@@ -124,6 +124,8 @@ class User < ActiveRecord::Base
   has_many :deleted_sounds
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :friendships, dependent: :destroy
+  has_many :friendships_as_friend, class_name: "Friendship",
+    foreign_key: "friend_id", inverse_of: :friend, dependent: :destroy
 
   def followees
     User.where( "friendships.user_id = ?", id ).

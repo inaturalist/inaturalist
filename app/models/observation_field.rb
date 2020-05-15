@@ -31,6 +31,7 @@ class ObservationField < ActiveRecord::Base
   validate :allowed_values_has_pipes
 
   after_save :reindex_observations_if_name_changed
+  after_save :reindex_associated_projects
 
   scope :recently_used_by, lambda {|user|
     user_id = user.is_a?(User) ? user.id : user.to_i
@@ -143,6 +144,10 @@ class ObservationField < ActiveRecord::Base
         ObservationFieldValue.where( observation_field_id: self.id).pluck(:observation_id),
         delay: true)
     end
+  end
+
+  def reindex_associated_projects
+    Project.elastic_index!( ids: project_observation_fields.map( &:project_id ) )
   end
 
   def self.default_json_options

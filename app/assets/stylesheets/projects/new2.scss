@@ -243,6 +243,20 @@ body>div>.popover[role="tooltip"].popover-error {
   .icon-previews {
     margin-top: 15px;
     .badge-div {
+      .UserImage {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 16px;
+        border: 0 transparent;
+      }
+      .btn-sm {
+        padding-top: 2px;
+        padding-bottom: 2px;
+      }
+      td:last-child {
+        width: 100%;
+      }
       & + .badge-div {
         margin-top: 3px;
       }

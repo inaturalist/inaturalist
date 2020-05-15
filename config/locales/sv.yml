@@ -673,6 +673,7 @@ sv:
   cant_merge_a_taxon_with_itself: Det går inte slå ihop en taxon med sig själv.
   captive: I fångenskap
   captive_cultivated: I fångenskap / odlad
+  captive_observations: Observationer i fångenskap
   card: Kort
   casual: informell
   casual_: Informell
@@ -1713,6 +1714,9 @@ sv:
   label_to_group_a_batch_of_taxon_changes: Etikett för att gruppera taxonändringar
   location_private: Privat plats
   location_unknown: Plats okänd
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Lås zoomnivå
   language_slash_type: Språk / Typ
   #Large photo size
   large: stor
@@ -2045,14 +2049,18 @@ sv:
       'y': "1å"
       #Short text representing %d years in the past
       yy: "%då"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM k:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Månad
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månatlig supporter</a> sedan %{date}
@@ -2517,7 +2525,6 @@ sv:
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller välj från något taxon på högre nivå"
   or_if_you_dont_want_email: "Eller om du helt enkelt inte vill ha någon e-post..."
-  or_upload: Eller ladda upp
   orange: orange
   order: Ordning
   order_by: Sortera efter
@@ -2556,7 +2563,6 @@ sv:
   other_taxa_commonly_misidentified_as_this_subsection: Andra taxa som ofta felbestäms som denna undersektion
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andra taxa som ofta felbestäms till denna undersektion i <a href="%{url}">%{place}</a>
   our_blog: Vår blogg
-  out_of_range: Utanför intervallet
   output_taxon: Uttaxon
   overview: Översikt
   overlapping_downstream_taxon_frameworks_html: "Överlappande underliggande taxonkontexter: %{count}"
@@ -3151,10 +3157,6 @@ sv:
   project_settings: Projektinställningar
   project_start_time_datetime: "Starttid: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt som inte innehåller dessa observationer
-  project_type_description: |
-    Bedömningar och bioblitzer är speciella typer av projekt. Bedömningar är till
-    för att samarbeta kring en uppsättning artbedömningar, vanligtvis för att bedöma
-    naturvårdsbetydelse. Bioblitzer är händelser som har en bestämd början och slut.
   project_user_cannot_be_found: Kunde inte hitta projektanvändaren
   project_user_was_invalid: "Ogiltig projektanvändare: %{project_user}"
   project_was_successfully_created: Lyckades skapa projektet.
@@ -4143,6 +4145,7 @@ sv:
   user_commented_on: "%{user} kommenterade på din %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} favoritmarkerade %{noun} av %{owner}"
   user_faved_this_observation: "%{user} favoritmarkerade denna observation"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"
@@ -4534,6 +4537,14 @@ sv:
         som har valt en-US. Om du vill rikta dig mot båda, välj båda. Om du vill
         visa ett meddelande för alla medlemmar på en webbplats, lämna helt
         enkelt detta tomt.
+    content_freeze:
+      content_freeze: Låsning av innehåll
+      during_this_time: |
+        När innehållet är låst kan vissa typer av innehåll inte skapas, förstöras eller ändras.
+      this_functionality_will_return: |
+        Denna funktionalitet återinrättas så snart låsningen av innehållet är borta.
+      we_expect_this_functionality_will_return_by_date: |
+        Vi förväntar oss att denna funktionalitet är tillbaka den %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |

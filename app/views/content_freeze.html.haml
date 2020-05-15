@@ -5,7 +5,10 @@
 #wrapper.clear
   %img{ src: asset_path( "404mole.png" ) }
   #message
-    %h1 Content Freeze
+    %h1= t( "views.content_freeze.content_freeze" )
     .readable.description
-      During the content freeze some records cannot be created, destroyed, or modified.
-      This functionality will return as soon as the content freeze is over.
+      = t( "views.content_freeze.during_this_time" )
+      - if CONFIG.content_freeze_end_date
+        = t( "views.content_freeze.we_expect_this_functionality_will_return_by_date", date: l( Date.parse( CONFIG.content_freeze_end_date ), format: :long ) )
+      - else
+        = t( "views.content_freeze.this_functionality_will_return" )

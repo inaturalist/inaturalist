@@ -667,6 +667,7 @@ tr:
   cant_merge_a_taxon_with_itself: Bir sınıfı kendisiyle birleştiremezsin.
   captive: Kısıtlanmış
   captive_cultivated: Kısıtlanmış / Ekili
+  captive_observations: Kısıtlanmış Gözlemler
   card: Kart
   casual: sıradan
   casual_: Sıradan
@@ -1669,6 +1670,9 @@ tr:
   label_to_group_a_batch_of_taxon_changes: Sınıf değişiklikleri yığınını gruplandırmak için etiket
   location_private: Özel Konum
   location_unknown: Bilinmeyen Konum
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Yakınlaştırma düzeyini kilitleme
   language_slash_type: Dil / Tür
   #Large photo size
   large: büyük
@@ -1997,14 +2001,18 @@ tr:
       'y': "1 y"
       #Short text representing %d years in the past
       yy: "%dyıl"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Ay
   monthly_supporter_since_date_html: |
     %{date} tarihinden beri <a href="%{url}">Aylık Destekçi</a>
@@ -2448,7 +2456,6 @@ tr:
   or_all_caps: YA DA
   or_choose_high_level_taxa: "... veya bazı üst düzey sınıflardan seçin"
   or_if_you_dont_want_email: "Ya da yalnızca hergangi bir e-posta istemiyorsanız..."
-  or_upload: Ya da yükle
   orange: turuncu
   order: Sıralama
   order_by: Sıralama ölçütü
@@ -2487,7 +2494,6 @@ tr:
   other_taxa_commonly_misidentified_as_this_subsection: Bu alt seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflar
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Bu alt seksiyon olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar
   our_blog: Blogumuz
-  out_of_range: Kapsam dışı
   output_taxon: Sınıf çıkışı
   overview: Genel Bakış
   overlapping_downstream_taxon_frameworks_html: "Üst üste gelen alt sınıf Sınıf Yapıları: %{count}"
@@ -3067,7 +3073,7 @@ tr:
   project_start_time_datetime: "Başlangıç zamanı: %{datetime}"
   project_that_does_not_contain_these_observations: Bu gözlemleri içermeyen proje
   project_type_description: |
-    Değerlendirmeler ve bioblitzler projelerin özel türleridir. Değerlendirmeler, genellikle koruma önemini ölçmek için bir dizi tür değerlendirmesi üzerinde iş birliği yapmak içindir. Bioblitzler, belirli bir başlangıcı ve bitişi olan olaylardır.
+    Değerlendirmeler, genellikle koruma önemini ölçmek için bir dizi tür değerlendirmesi üzerinde işbirliği yapmak içindir.
   project_user_cannot_be_found: Proje kullanıcısı bulunamadı
   project_user_was_invalid: "Proje kullanıcısı geçerli değil: %{project_user}"
   project_was_successfully_created: Proje başarıyla oluşturuldu.
@@ -4004,6 +4010,7 @@ tr:
   user_commented_on: "%{user}, %{time} zamanında %{title} başlığınıza yorum yaptı"
   user_disagrees_this_is_taxon: "%{user} bunun %{taxon} olduğunu kabul etmiyor"
   user_disagrees_with_previous_finer_identifications: "%{user} önceki iyi tanımları kabul etmiyor"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}, %{owner} tarafından yapılan %{noun}'i favori yaptı"
   user_faved_this_observation: "%{user} bu gözlemi favorilerine ekledi"
   user_flagged_as_a_non_spammer_html: "%{user} gereksiz işaretçi değil olarak işaretlendi"
@@ -4377,6 +4384,14 @@ tr:
     announcements:
       locales_desc: |
         Birden çok seçmek için CMD ya da SHIFT-tıkla tuşuna basın. Hiçbirini seçmemek ne olursa olsun yeri tüm kullanıcılar için duyuru olarak gösterecek. Bölgesiz bir dil seçmek, bölgeleri olan yerleri hedeflemeyecektir, örn. EN'i seçtiyseniz, en-US seçmiş kişiler için görünmeyecektir. Her ikisini de hedeflemek istiyorsanız, ikisini de seçin. Bir sitenin tüm üyeleri için bir duyuru göstermek istiyorsanız, bunu boş bırakmanız yeterlidir.
+    content_freeze:
+      content_freeze: İçeriği Dondurma
+      during_this_time: |
+        İçeriği dondurma sırasında bazı içerik türleri oluşturulamaz, silinemez ya da değiştirilemez.
+      this_functionality_will_return: |
+        Bu işlevsellik içerik dondurması biter bitmez geri gelecektir.
+      we_expect_this_functionality_will_return_by_date: |
+        Bu işlevselliğin %{date} tarihinde dönmesini bekliyoruz.
     custom_projects:
       edit:
         custom_project_fields_warning: |

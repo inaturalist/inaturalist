@@ -60,8 +60,21 @@ class Activity extends React.Component {
     );
   }
 
+  postIdentification( ) {
+    const { addID } = this.props;
+    const input = $( ".id_tab input[name='taxon_name']" );
+    const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
+    if ( selectedTaxon ) {
+      addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
+      input.trigger( "resetSelection" );
+      input.val( "" );
+      input.data( "uiAutocomplete" ).selectedItem = null;
+      $( ".id_tab textarea" ).val( "" );
+    }
+  }
+
   doneButton( ) {
-    const { config, addComment, addID } = this.props;
+    const { config, addComment } = this.props;
     return config && config.currentUser ? (
       <Button
         className="comment_id"
@@ -75,15 +88,7 @@ class Activity extends React.Component {
                 $( ".comment_tab textarea" ).val( "" );
               }
             } else {
-              const input = $( ".id_tab input[name='taxon_name']" );
-              const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
-              if ( selectedTaxon ) {
-                addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
-                input.trigger( "resetSelection" );
-                input.val( "" );
-                input.data( "uiAutocomplete" ).selectedItem = null;
-                $( ".id_tab textarea" ).val( "" );
-              }
+              this.postIdentification( );
             }
           }
         }
@@ -181,6 +186,12 @@ class Activity extends React.Component {
               visionEligiblePhotos.length > 0 ? { observationID: observation.id } : null
             }
             config={config}
+            onKeyDown={e => {
+              const key = e.keyCode || e.which;
+              if ( key === 13 ) {
+                this.postIdentification( );
+              }
+            }}
           />
           <div className="form-group">
             <textarea

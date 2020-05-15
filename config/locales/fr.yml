@@ -259,6 +259,7 @@ fr:
   add_plant_phenology_flower_budding_annotation: 'Ajouter l''annotation "Phénologie de la plante : Boudin des fleurs"'
   add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie de plante : Floraison »'
   add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie de plante : Fruits »'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Ajouter l''annotation "Phénologie végétale : aucune preuve de fleur"'
   add_life_stage_adult_annotation: 'Ajoute l''annotation "Stade d''évolution : Adulte"'
   add_life_stage_teneral_annotation: 'Ajoute l''annotation "Stade d''évolution : Ténéral"'
   add_life_stage_subimago_annotation: 'Ajouter l’annotation « Stade de vie : Subimago »'
@@ -329,7 +330,7 @@ fr:
   aka: alias
   all: Tous
   all_comments: Tous les commentaires
-  all_flags_must_be_resolved: Toutes les signalements doivent être résolus
+  all_flags_must_be_resolved: Tous les signalements doivent être résolus
   all_life: Tous les êtres vivants
   all_names: Tous les noms
   all_observations: Toutes les observations
@@ -885,6 +886,7 @@ fr:
     teneral: Ténéral
     subimago: Subimago
     pupa: Chrysalide
+    no_evidence_of_flowering: Aucune preuve de floraison
     nymph: Nymphe
     larva: Larve
     egg: Oeuf
@@ -979,6 +981,7 @@ fr:
   custom_project_was_successfully_updated: Le projet personnalisé a bien été mis à jour.
   customize_location: Personnaliser l’emplacement
   darr_apply_darr: "&darr; Appliquez &darr;"
+  daily_users: Utilisateurs journaliers
   dashboard: Tableau de bord
   data_deficient: Données insuffisantes
   data_quality: Qualité des données
@@ -1329,12 +1332,12 @@ fr:
   #Verb form, as in "Flag this item"
   flag: Signaler
   flag_as_inappropriate: Signaler comme non approprié
-  flag_an_item: Marquer un élément
-  flag_as_spammer: Marquer comme polluposteur
-  flag_as_non_spammer: Marquer comme non-polluposteur
+  flag_an_item: Signaler un élément
+  flag_as_spammer: Signaler comme spammeur
+  flag_as_non_spammer: Signaler comme non-spammeur
   #Label for the date/time when a flag was created
-  flag_created: Drapeau créé
-  flag_description: Signaler aux responsables de l’organisation qu’il y a un problème avec le contenu
+  flag_created: Signalement créé
+  flag_description: Signaler ce contenu aux responsables de l’organisation pour les informer d'un problème.
   flag_for_check_list_title_html: |
     Indicateur de la liste de contrôle : %{title}
   flag_for_comment_id_html: Signaler pour <a href="%{url}">Commentaire %{id}</a>
@@ -1571,6 +1574,7 @@ fr:
   ignore_and_continue: Ignorer et continuer
   ignore_times: Ignorer le nombre de fois
   image_must_be_exactly: la largeur de l’image doit être exactement 950px et la hauteur d’un maximum de 400px
+  image_size_control: Contrôle de la taille de l'image
   imperiled: En péril
   import: Importer
   import_all_photos_as_observations: Importer toutes les photos comme des observations
@@ -1648,6 +1652,8 @@ fr:
   join: Joignez-vous à
   join_and_add_an_observation_to_project_html: Rejoindre et ajouter une observation à %{project}
   join_project: Joignez-vous à ce projet
+  #Prompt to join a specific project
+  join_project?: Rejoindre %{project} ?
   join_some_projects_and_invite_some_observations_html: "Joignez des <a href='%{join_url}'>projets</a> et <a href='%{invite_url}'>invitez des gens à afficher quelques observations</a>"
   join_the_largest_group_of_naturalists_in_the_world: Rejoignez le plus grand groupe de naturalistes du monde !
   join_this_project: Joignez-vous à ce projet
@@ -1672,6 +1678,9 @@ fr:
   label_to_group_a_batch_of_taxon_changes: Apposer une étiquette pour regrouper un lot de modifications de taxons
   location_private: Emplacement privé
   location_unknown: Emplacement inconnu
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Verrouiller le niveau de zoom
   language_slash_type: Langue / Type
   #Large photo size
   large: grand
@@ -1990,9 +1999,7 @@ fr:
       'y': "1an"
       #Short text representing %d years in the past
       yy: "%d a"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
   month: Mois
   monthly_supporter_since_date_html: |
@@ -2129,6 +2136,7 @@ fr:
   no_favorites_added:
     current_user: Vous n’avez pas encore ajouté de favori.
     user: "%{user} n’a pas ajouté de favoris."
+  no_journal_posts_yet: Aucun article de journal pour le moment
   no_license_all_rights_reserved: Aucune licence (tous droits réservés)
   no_managers_set: Aucun gestionnaire n’a été défini
   no_matching_article_from_x: "Aucun article correspondant à %{x}"
@@ -2431,7 +2439,6 @@ fr:
   or_all_caps: OU
   or_choose_high_level_taxa: "...ou choisissez à partir de taxons de haut niveau"
   or_if_you_dont_want_email: "Ou si vous ne voulez juste pas de courriels..."
-  or_upload: Ou téléverser un
   orange: orange
   order: Ordre
   order_by: 'Trier par :'
@@ -2470,7 +2477,6 @@ fr:
   other_taxa_commonly_misidentified_as_this_subsection: Autres taxons communément mal identifiés comme ce paragraphe
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Autres taxons communément mal identifiés comme cette sous-section dans <a href="%{url}">%{place}</a>
   our_blog: notre blogue
-  out_of_range: Hors de portée
   output_taxon: Taxon en sortie
   overview: Vue d’ensemble
   overlapping_downstream_taxon_frameworks_html: "Chevauchement des cadres de taxon en aval : %{count}"
@@ -2964,6 +2970,7 @@ fr:
   present: présent
   press: Presse
   preview: Aperçu
+  preview_observations_with_these_observation_requirements: Aperçu des observations avec ces critères d’observation
   preview_of_synced_observation: "<strong>Aperçu</strong> de l’observation synchronisée. <a href=\"%{url}\">Annulez ?</a>"
   preview_personal_message: "J’aimerais que vous me rejoigniez sur %{site}, un site web où vous pouvez enregistrer vos observations sur les plantes et les animaux, garder trace des espèces observées et en apprendre plus sur le monde de la nature !"
   preview_your_message: Aperçu de votre message
@@ -3003,6 +3010,7 @@ fr:
   project_group_description: Groupe duquel les projets font partie
   project_home: Accueil du projet
   project_icon: Icône du projet
+  project_journal: Journal du projet
   project_id_or_url_slug: ID ou raccourci d’URL du projet, par ex. 333 ou mon-projet
   project_invitations: 'Invitations à se joindre au projet'
   project_list: Liste du projet
@@ -3013,6 +3021,7 @@ fr:
     les responsables de <a href="%{url}">%{project}</a>
     ont ajouté certaines de vos observations
   project_members: "Membres de %{project}"
+  project_members_only: Membres du projet uniquement
   project_membership_model_description: Votre projet est-il ouvert à tout le monde ou seulement aux personnes que vous invitez?
   project_observations: Observations du projet
   project_post: Note du projet
@@ -3021,8 +3030,6 @@ fr:
   project_settings: Paramètres du projet
   project_start_time_datetime: "Date de début : %{datetime}"
   project_that_does_not_contain_these_observations: Projet qui ne contient pas ces observations
-  project_type_description: |
-    Les évaluations et les bioblitz sont des types de projet spéciaux. Les évaluations servent à collaborer sur un ensemble d’évaluations d’espèces, en général pour estimer l’importance de leur conservation. Les bioblitz sont des événements qui ont un début et une fin définis.
   project_user_cannot_be_found: L’utilisateur du projet ne peut pas être trouvé
   project_user_was_invalid: "L’utilisateur du projet n’est pas valide : %{project_user}"
   project_was_successfully_created: Le projet a bien été créé.
@@ -3214,6 +3221,7 @@ fr:
   rules_for_becoming_a_member: Règles pour devenir membre
   rules_for_becoming_memner: Règles pour devenir membre
   rules_types:
+    must_be_captive: doit être en captivité / cultivé
     must_be_georeferenced: doit être géoréférencé
     must_be_identified: doit être identifié
     must_be_on_list: doit être dans la liste
@@ -3330,6 +3338,9 @@ fr:
   show_taxa_from_place: "Afficher les taxons de %{place}"
   show_total_counts: Afficher les compteurs totaux
   show_uncountable_species: Afficher les espèces indénombrables
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Affichage des %{x} premiers
   showing_taxa_from_everywhere: "Affichage des taxons de partout"
   showing_taxa_from_place: "Affichage des taxons de %{place}"
   showing_x_of_y_listings: "Affiche %{x} de %{y} listes"
@@ -3888,6 +3899,7 @@ fr:
     tooltips:
       add: Ajouter les observations
       combine: Combiner les observations sélectionnées
+      duplicate: Dupliquer les observations sélectionnées
       photo_failed: Échec du téléversement de la photo
       remove: Supprimer les observations sélectionnées
       remove_observation: Supprimer l’observation
@@ -3946,6 +3958,7 @@ fr:
   user_commented_on: "%{user} a fait un commentaire sur votre %{title} à %{time}"
   user_disagrees_this_is_taxon: "%{user} ne pense pas que ce soit %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} est en désaccord avec les identifications précédentes plus fines"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} a mis en favori %{noun} par %{owner}"
   user_faved_this_observation: "%{user} a mis cette observation en favori"
   user_flagged_as_a_non_spammer_html: "%{user} signalé comme non spammeur"
@@ -4326,6 +4339,14 @@ fr:
         CMD- ou SHIFT-clic pour une sélection multiple. Ne rien sélectionner affichera l’avertissement pour tous les utilisateurs quelle que soit leur localisation. Choisir une langue
         sans région ne ciblera *pas* les localisations avec région, par exemple si
         vous choisissez l'anglais en, il n’apparaîtra pas pour les personnes qui ont choisi l'anglais en-US. Si vous voulez cibler les deux, choisissez les deux. Si vous voulez afficher un avertissement pour tous les membres du site, laissez-le simplement vide.
+    content_freeze:
+      content_freeze: Gel du contenu
+      during_this_time: |
+        Pendant le gel du contenu, certains types de contenu ne peuvent être ni créés, ni détruits, ni modifiés.
+      this_functionality_will_return: |
+        Cette fonctionnalité sera réactivée dès que le gel du contenu sera levé.
+      we_expect_this_functionality_will_return_by_date: |
+        Nous prévoyons que cette fonctionnalité sera réactivée le %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -5352,6 +5373,10 @@ fr:
           Avez-vous besoin des fonctionnalités des projets traditionnels, comme accéder aux coordonnées réelles,
           des champs d’observation personnalisés, ou ajouter des observations qui ne peuvent pas être filtrées automatiquement ?
         duplicate_project: Dupliquer le projet
+        include_annotated_observations: |
+          Inclure uniquement les observations annotées avec un attribut particulier (par exemple le stade de développement),
+          ou un attribut et une valeur (par exemple, stade de développement = adulte).
+          La limite est d'un seul filtre d'annotation par projet.
         leaderboards_among_individuals: Classements entre <strong>individus</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Classements entre <strong>projets</strong>
@@ -5365,6 +5390,8 @@ fr:
           (Note: vous pouvez supprimer le fuseau horaire et l'heure locale si vous voulez inclure les journées complètes.)
         note_about_unselected_filters: |
           Remarque : Si vous ne sélectionnez pas de taxons, lieux ou utilisateurs, tous seront inclus par défaut.
+        only_display_member_observations: |
+          Afficher uniquement les observations des membres du projet (les personnes qui ont rejoint le projet)
         or_drag_and_drop: (ou glissez et déposez)
         please_specify_the_requirements: |
           Veuillez spécifier les prérequis des observations à ajouter à ce projet.
@@ -5542,6 +5569,7 @@ fr:
         obs_desc: Créé depuis moins de 7 jours
         obs_id_d_desc: Créés pendant ces 7 derniers jours et ayant un ID (peuvent être des observateurs)
         observations_1_week_moving_window: Observations (fenêtre glissante de 1 semaine)
+        observers_desc: Qui ont ajouté une observation ce jour-là
         other_desc_html: Créés avec d'autres applications <a href="%{url}">conçut par des développeurs</a>
         recent_desc: Signé il y a 7 jours
         recent_w_0_obs: Récent avec zéro observation
@@ -5725,6 +5753,7 @@ fr:
           "Plant Phenology=Flower Budding": Bourgeonnement floral
           "Plant Phenology=Flowering": Floraison
           "Plant Phenology=Fruiting": Fructification
+          "Plant Phenology=No Evidence of Flowering": Aucune preuve
           "Life Stage=egg": Oeuf
           "Life Stage=larva": Larve
           "Life Stage=teneral": Ténéral

@@ -2113,7 +2113,6 @@ class ObservationsController < ApplicationController
     @reviewed = search_params[:reviewed]
     @captive = search_params[:captive]
     @identifications = search_params[:identifications]
-    @out_of_range = search_params[:out_of_range]
     @license = search_params[:license]
     @photo_license = search_params[:photo_license]
     @sound_license = search_params[:sound_license]
@@ -2159,7 +2158,6 @@ class ObservationsController < ApplicationController
       !@identifications.blank? ||
       !@quality_grade.blank? ||
       !@captive.blank? ||
-      !@out_of_range.blank? ||
       !@observed_on.blank? ||
       !@place.blank? ||
       !@ofv_params.blank? ||

@@ -118,8 +118,8 @@ fi:
     one: "<span class='count'>1</span> taksonimuutos lisätty"
     other: "<span class='count'>%{count}</span> taksonimuutosta lisätty"
   _100_day_trends: 100 päivän kehitys
-  _percent_ID_d: "% määritetty"
-  a_community_for_naturalist: Luonnontieteilijöiden yhteisö
+  _percent_ID_d: "% tunnistettu"
+  a_community_for_naturalist: Luontoharrastajien yhteisö
   a_default_taxon_name_will_automatically_created: |
     Oletusarvoinen taksonin nimi luodaan automaattisesti tämän taksonin tieteellisestä nimestä. Kun olet tallentanut tämän uuden taksonin, voit lisätä muita nimiä (yleiskieliset nimet, vanhentuneet tieteelliset nimet, jne).
   a_flag_for_x: "lippu kohteelle %{x}"
@@ -302,7 +302,7 @@ fi:
   add_to_favorites: Lisää suosikkeihin
   add_to_list: Lisää listaan
   add_to_project: Lisää projektiin
-  add_to_your_life_list: Lisää elämänpinnalistallesi!
+  add_to_your_life_list: Lisää pinnalistallesi!
   add_to_your_list: Lisää luetteloosi
   add_your_email_to_get: |
     Lisää sähköpostiosoitteesi saadaksesi palautetta yhteisöltä.
@@ -672,6 +672,7 @@ fi:
   cant_merge_a_taxon_with_itself: Ei voi yhdistää taksonia itsensä kanssa.
   captive: Vangittu
   captive_cultivated: Vangittu / viljelty
+  captive_observations: Ei-luonnonvaraiset havainnot
   card: Kortti
   casual: epämuodollinen
   casual_: Epämuodollinen
@@ -1409,7 +1410,7 @@ fi:
     news_and_updates: Uutiset & päivitykset
     tutorials: Oppaat
   forum_desc: |
-    Foorumi on paikka iNatista keskustelemiseen, mukaan lukien apu & tuki, ominaisuuspyynnöt, bugiraportit, ilmoitukset ja muuta.
+    iNaturalistin foorumilla voi keskustella englanniksi iNaturalistin käytöstä ja luontoharrastuksesta. Lajitietokeskuksen foorumilla (foorumi.laji.fi) voi keskustella suomeksi.
   frequency: Lukumäärä
   from: Keneltä
   from_a_place: paikasta
@@ -1631,7 +1632,7 @@ fi:
   #Prompt to join a specific project
   join_project?: Liity projektiin %{project}?
   join_some_projects_and_invite_some_observations_html: "Liity joihinkin <a href='%{join_url}'>projekteihin</a> ja <a href='%{invite_url}'>pyydä joitakin havaintoja</a>"
-  join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luonnontieteilijöiden joukkoon!
+  join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luonnontieteilijöiden yhteisöön!
   join_this_project: Liity tähän projektiin
   'joined!': Liitytty!
   joined_projects: Liitytyt projektit
@@ -1653,6 +1654,9 @@ fi:
   labels: Merkinnät
   location_private: Yksityinen sijainti
   location_unknown: Tuntematon sijainti
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Lukitse zoomaustaso
   language_slash_type: Kieli / Tyyppi
   #Large photo size
   large: suuri
@@ -1745,9 +1749,9 @@ fi:
   licensing: Lisensointi
   licensing_your_content_gives_others_legal: "Lisensisoimalla sisältösi annat muille oikeuden käyttää sitä, jos he noudattavat lisenssin ehtoja. %{site_name} käyttää Creative Commons -lisensoitua sisältöäsi jakaakseen niitä tietokumppanien kanssa kuten"
   life: Elämä
-  life_list: "Käyttäjän %{user} elämäluettelo"
+  life_list: "Käyttäjän %{user} pinnalista"
   life_list_updated: Elämänlista päivitetty!
-  life_list_updated_we_also_saved_a: Elämäluettelo päivitetty! Säästimme myös tämän taksonin tyhjän havainnon.
+  life_list_updated_we_also_saved_a: Pinnalista päivitetty! Säästimme myös tämän taksonin tyhjän havainnon.
   life_lists_automatically_fill: Kun havaitset uusia taksoneita, ne lisätään automaattisesti pinnalistoille. Pinnalistoja voi myös rajata ylemmille taksoneille, esim. pinnalista kaikista varislinnuista (Corvidae-heimo).
   linear_scale_label: Lineraarinen
   link: Linkki
@@ -1876,10 +1880,10 @@ fi:
   make_a_new_place: Tee uusi paikka
   make_a_taxon_swap_instead?: Tee sen sijaan Taksoninvaihto?
   make_curator: Tee kuraattori
-  make_it_a_life_list?: Tee siitä elämäluettelo?
+  make_it_a_life_list?: Tee tästä pinnalista?
   make_manager: Tee manageri
   make_sure_the_default_photo_looks_good: Varmista, että oletuskuva näyttää hyvältä isossa koossa.
-  make_this_your_default_license: "Tee tästä oletus %{type} lisenssisi"
+  make_this_your_default_license: "Tee tästä oletusarvoinen %{type}-lisenssisi"
   make_this_the_primary_listing: "Tee tästä ensisijainen luettelo"
   mammals: nisäkkäät
   manage_all_your_subscriptions: Hallitse kaikkia tilauksiasi
@@ -1976,9 +1980,7 @@ fi:
       'y': "1v"
       #Short text representing %d years in the past
       yy: "%dv"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
@@ -2169,7 +2171,7 @@ fi:
   no_species_observed: Ei havaittuja lajeja
   no_species_on_this_list: Ei vielä lajeja tässä luettelossa!
   no_species_on_this_list_for_owner_html: |
-    Voit aloittaa lisäämällä lajeja suoraan tähän luetteloon, tai jos tämä on elämäluettelo, se päivitetään automaattisesti lajien kanssa kun <a href="%{url}" class="nobr">lisäät havaintoja</a>.
+    Voit aloittaa lisäämällä lajeja suoraan tähän luetteloon, tai jos tämä on pinnalista, se päivitetään automaattisesti uusilla lajeilla <a href="%{url}" class="nobr">lisäät havaintoja</a>.
   no_subject_parens: "(Ei otsikkoa)"
   no_suggestions_available: Ehdotuksia ei saatavissa
   no_summary_from_wikipedia: Ei yhteenvetoa Wikipediasta
@@ -2395,7 +2397,6 @@ fi:
   or_all_caps: TAI
   or_choose_high_level_taxa: "... tai valitse joistakin korkeatasoisista taksoneista"
   or_if_you_dont_want_email: "Tai jos et vain halua mitään sähköpostia..."
-  or_upload: Tai tallenna
   orange: oranssi
   order: Lahko
   order_by: 'Järjestä:'
@@ -2433,7 +2434,6 @@ fi:
   other_taxa_commonly_misidentified_as_this_subsection: Muita taksoneita, joita usein määritetään virheellisesti kuuluvaksi tähän alasektioon
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Muita taksoneita, joita usein määritetään virheellisesti kuuluvaksi tähän alasektioon paikassa <a href="%{url}">%{place}</a>
   our_blog: Blogi
-  out_of_range: Pois alueelta
   overview: Yleiskatsaus
   owner: Omistaja
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -2968,8 +2968,6 @@ fi:
   project_settings: Projektin asetukset
   project_start_time_datetime: "Alkamisaika: %{datetime}"
   project_that_does_not_contain_these_observations: Projekti, joka ei sisällä näitä havaintoja
-  project_type_description: |
-    Arvioinnit ja bioblitzit ovat projektien erikoistyyppejä. Arviointi on tarkoitettu yhteistyön tekemiseen lajien kartoittamiseksi, yleensä jotta voitaisiin arvioidan lajien suojelun tarvetta. Bioblitzit ovat tapahtumia, joilla on tämsälinen alku- ja loppuaika.
   project_was_successfully_created: Projekti luotiin onnistuneesti.
   project_was_successfully_updated: Projekti päivitettiin onnistuneesti.
   projects: Projektit
@@ -3036,7 +3034,7 @@ fi:
     leaves: Lehdet
   ranges: Vaihteluvälit
   ray_finned_fishes: viuhkaeväiset
-  re_apply_list_rules: Hae luettelon säännöt uudelleen
+  re_apply_list_rules: Päivitä luettelon säännöt
   re_order_photos: "Uudelleenjärjestä valokuvat &raquo;"
   read_more: Lue lisää
   read_our_getting_started_guide: lue aloitusoppaamme
@@ -3081,7 +3079,7 @@ fi:
     not_internal: ei sisäinen
     error: virhe
   relationship_html: "Suhde: %{link}"
-  reload_from_observations: Päivitä havainnoista
+  reload_from_observations: Päivitä luettelo havaintojesi perusteella
   reload_timed_out: 'Sivun uudelleenlataaminen aikakatkaisu. Yritä myöhemmin uudelleen.'
   remarks_optional: 'Huomautukset <span class="small description">(valinnainen)</span>'
   remember_me: Muista minut
@@ -3311,7 +3309,7 @@ fi:
   sorry_we_didnt_find_that_photo: "Valitettavasti emme löytäneet tuota kuvaa."
   sorry_x_is_not_responding: "%{x} ei vastaa. Yritä myöhemmin uudelleen."
   sorry_you_can_only_add_1000_at_a_time: "Valitettavasti voit lisätä vain 1000 kerrallaan."
-  sorry_you_cant_delete_your_own_life_list: "Valitettavasti et voi poistaa omaa elämäluetteloasi."
+  sorry_you_cant_delete_your_own_life_list: "Valitettavasti et voi poistaa omaa elämänpinnalistaasi."
   sort: Lajittele
   sort_by: Lajitteluperuste
   sorting_by: 'Lajittele:'
@@ -3568,8 +3566,8 @@ fi:
   this: tämä
   this_bioblitz_beings_in: Aikaa tämän bioblitzin alkuun
   this_is_a_life_list_of: Tämä on elämänpinnalista käyttäjälle
-  this_is_a_life_list_from_place_html: "Tämä on elämäluettelo paikasta %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Tämä on elämäluettelo taksonista %{taxon} paikassa %{place}"
+  this_is_a_life_list_from_place_html: "Tämä on pinnalista paikasta %{place}"
+  this_is_a_life_list_of_taxon_in_place: "Tämä on pinnalista taksonista %{taxon} paikassa %{place}"
   this_is_taking_forever: Tämä vie ikuisuuden.  Yritä myöhemmin uudelleen.
   this_is_your_observation: Tämä on havaintosi
   this_list_is_empty!: Tämä luettelo on tyhjä!
@@ -3589,7 +3587,7 @@ fi:
   this_user_has_been_suspended: Tämä käyttäjä on hyllytetty
   this_user_has_been_suspended_message: |
     Jos tämä on sinun tilisi ja luulet että tämä on tehty vahingossa, <a href="mailto:%{email}">ota yhteyttä</a>.
-  this_will_add_listed_taxa: Tämä lisää havainnoista luetteloidut taksonit. Tämä vie jonkin aikaa joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
+  this_will_add_listed_taxa: Tämä päivittää luettelon havaintojesi perusteella. Tämä voi kestää jonkin aikaa, joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
   this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä merkintöjä Flickr-valokuvillesi. Jatketaan?
   this_year: Tänä vuonna
   threatened: Uhanalainen
@@ -3663,6 +3661,7 @@ fi:
   update_existing_photos_with_new_license: Päivitä olemassa olevat kuvat uusilla lisenssivaihtoehdoilla
   update_existing_sounds_with_new_license: Päivitä olemassa olevat äänet uusilla lisenssivaihtoehdoilla
   update_observations: Päivitä havaintoja
+  update_past: "Päivitä aikaisemmat"
   update_photos: Päivitä kuvat
   update_search: Päivitä haku
   update_selected_taxa: Päivitä valitut taksonit
@@ -3734,6 +3733,7 @@ fi:
   user_commented: "%{user} kommentoi"
   user_commented_on: "%{user} kommentoi sinun %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} on eri mieltä siitä että tämä on %{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} merkitsi käyttäjän %{owner} %{noun} suosikiksi"
   user_faved_this_observation: "%{user} merkitsi tämän havainnon suosikiksi"
   user_flagged_as_a_non_spammer_html: "%{user} merkitsi ettei ole spammaaja"
@@ -3806,6 +3806,7 @@ fi:
   view_more_observations_from: Näytä lisää havaintoja paikasta
   view_more_observations_of_x_project: "Näytä lisää havaintoja projektista %{project} sivustolla <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Näytä lisää havaintoja taksonista %{taxon} <nobr>%{site_name}issa &raquo;</nobr>"
+  view_more_unreviewed: "Katso lisää tarkistamattomia"
   view_observation: Näytä havainto
   view_observations: Näytä havainnot
   view_observation_flags: Näytä havaintoliput
@@ -4023,7 +4024,7 @@ fi:
   your_id: Tunnistuksesi
   your_identification: Tunnistuksesi
   your_membership: Jäsenyytesi
-  your_name_was_saved: Nimesi tallettiin.
+  your_name_was_saved: Nimi tallennettiin.
   your_observations: Omat havainnot
   your_observations_couldnt_be_added_to_that_project: "Havaintojasi ei voitu lisätä tähän projektiin: %{errors}"
   your_projects: Omat projektit
@@ -4042,6 +4043,14 @@ fi:
   verifiable: Todennettavissa
   views:
     views: 'Näyttökerrat'
+    content_freeze:
+      content_freeze: Sisällön jäädytys
+      during_this_time: |
+        Sisällön jäädytyksen aikana että tietyn tyyppistä sisältöä ei voi luoda, poistaa tai muokata.
+      this_functionality_will_return: |
+        Tämä toiminto palautuu heti kun sisällön jäädytys päättyy.
+      we_expect_this_functionality_will_return_by_date: |
+        Arvioimme tämän toiminnon tulevan taas käyttöön %{date} mennessä.
     devise:
       mailer:
         confirmation_instructions:
@@ -4641,6 +4650,7 @@ fi:
         leaderboards_among_projects_and_bioblitzes: |
           <strong>Projektien</strong> välinen tulostaulukko
         multiple_project_administrators: Useita projektin ylläpitäjiä
+        name_placeholder: Oulun kasvit, Mahtavat sudenkorennot tms.
         no_need_to_rely_on_manual_addition: |
           Soveliaat havainnot tulevat projektiin mukaan automaattisesti
         note_these_users_will_be_able_to_edit: |

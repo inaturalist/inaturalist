@@ -278,7 +278,7 @@ module ApplicationHelper
     return text if text.blank?
     split ||= "\n\n"
     text = text.split(split)[0]
-    sanitize( text, tags: %w(a b strong i em) ).html_safe
+    sanitize( text, tags: %w(a b strong i em), attributes: %w(href rel target) ).html_safe
   end
   
   def remaining_paragraphs_of_text(text,split)
@@ -1007,6 +1007,28 @@ module ApplicationHelper
   def bootstrapTargetID
      return rand(36**8).to_s(36)
   end
+
+  def lowercase_equivalent_model_name_for( klass )
+    class_name_key = klass.to_s.underscore
+    class_name = class_name_key.humanize.downcase
+    potential_keys = [
+      "activerecord.models.#{class_name_key.camelcase}",
+      class_name_key,
+      "#{class_name_key}_"
+    ]
+    # Find the key that is lowercase in English, b/c we're maddeningly
+    # inconsistent about this
+    lowercase_key = potential_keys.detect do |k|
+      en_t = I18n.t( k, locale: "en", default: nil )
+      en_t && en_t[0].downcase == en_t[0]
+    end
+    lowercase_model_name = if lowercase_key
+      I18n.t( lowercase_key, default: nil )
+    end
+    lowercase_model_name ||= potential_keys.map{|k| I18n.t( k, default: nil ) }.compact.first
+    lowercase_model_name ||= class_name
+    lowercase_model_name
+  end
     
   def update_tagline_for(update, options = {})
     resource = update.resource
@@ -1015,11 +1037,7 @@ module ApplicationHelper
       notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
     end
     class_name_key = update.resource.class.to_s.underscore
-    class_name = class_name_key.humanize.downcase
-
-    resource_txt = t( "activerecord.models.#{class_name_key.camelcase}",
-      default: t( class_name_key, default: class_name_key )
-    ).downcase
+    resource_txt = lowercase_equivalent_model_name_for( update.resource.class )
     resource_link = if options[:skip_links]
       resource_txt
     else
@@ -1044,7 +1062,8 @@ module ApplicationHelper
     if notifier.is_a?(ActsAsVotable::Vote)
       noun = t( :activity_snipped_resource_with_indefinite_article,
         resource: resource_link.html_safe,
-        vow_or_con: t(class_name_key, default: class_name_key)[0].downcase
+        vow_or_con: t(class_name_key, default: class_name_key)[0].downcase,
+        gender: class_name_key
       ).html_safe
       s = t(:user_faved_a_noun_by_owner, 
         user: notifier_user.login, 
@@ -1178,7 +1197,7 @@ module ApplicationHelper
     opts = {}
     if update.notification == "activity" && notifier_user
       notifier_class_name_key = notifier.class.to_s.underscore
-      notifier_class_name = t(notifier_class_name_key).downcase
+      notifier_class_name = lowercase_equivalent_model_name_for( notifier.class )
       key = "user_added_"
       opts = {
         user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
