@@ -41,7 +41,7 @@ EOS
   opt :core,
     "Core type. Options: occurrence, taxon. Default: occurrence.",
     type: :string, short: "-c", default: "occurrence"
-  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations, User",
+  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations, User, VernacularNames (taxon core only)",
     type: :strings, short: "-x"
   opt :metadata, "
     Path to metadata template. Default: observations/dwc.eml.erb. \"skip\" will skip EML file generation.

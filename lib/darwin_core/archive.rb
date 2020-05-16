@@ -152,6 +152,12 @@ module DarwinCore
               file_location: "users.csv",
               terms: DarwinCore::User::TERMS
             }
+          when "VernacularNames"
+            extensions << {
+              row_type: "http://rs.gbif.org/terms/1.0/VernacularName",
+              file_location: "vernacular_names.csv",
+              terms: DarwinCore::VernacularName::TERMS
+            }
           end
         end
       end
@@ -476,6 +482,26 @@ module DarwinCore
         end
       end
       
+      tmp_path
+    end
+
+    def make_vernacular_names_data
+      unless @opts[:core] == "taxon"
+        raise "VernacularNames extension can only be used with a taxon core"
+      end
+      headers = DarwinCore::VernacularName::TERM_NAMES
+      fname = "vernacular_names.csv"
+      tmp_path = File.join(@work_path, fname)
+      CSV.open(tmp_path, 'w') do |csv|
+        csv << headers
+        TaxonName.joins(:taxon).
+            where( "is_valid AND lexicon != ? AND taxa.is_active", TaxonName::SCIENTIFIC_NAMES ).
+            includes(:taxon, place_taxon_names: :place).
+            find_each do |tn|
+          DarwinCore::VernacularName.adapt( tn, core: @opts[:core] )
+          csv << DarwinCore::VernacularName::TERMS.map{|field, uri, default, method| tn.send(method || field)}
+        end
+      end
       tmp_path
     end
 
