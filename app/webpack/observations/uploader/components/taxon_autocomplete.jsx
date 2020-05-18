@@ -190,11 +190,11 @@ class TaxonAutocomplete extends React.Component {
     } );
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
-    this.inputElement( ).bind( "assignSelection", ( e, t ) => {
+    this.inputElement( ).bind( "assignSelection", ( e, t, options ) => {
       if ( !t.title ) {
         t.title = this.resultTitle( t );
       }
-      this.updateWithSelection( t );
+      this.updateWithSelection( t, options );
     } );
     this.inputElement( ).unbind( "resetSelection" );
     this.inputElement( ).bind( "resetSelection", ( ) => {
@@ -211,7 +211,7 @@ class TaxonAutocomplete extends React.Component {
       }
     } );
     if ( initialSelection ) {
-      this.inputElement( ).trigger( "assignSelection", initialSelection );
+      this.inputElement( ).trigger( "assignSelection", [ initialSelection, { initial: true } ] );
     }
     this._mounted = true;
   }
@@ -284,7 +284,7 @@ class TaxonAutocomplete extends React.Component {
     }
   }
 
-  updateWithSelection( item ) {
+  updateWithSelection( item, options = { } ) {
     const { onSelectReturn, afterSelect, noThumbnail } = this.props;
     if ( onSelectReturn ) {
       onSelectReturn( { item } );
@@ -314,7 +314,7 @@ class TaxonAutocomplete extends React.Component {
       }
     }
     this.inputElement( ).selection = item;
-    if ( afterSelect ) { afterSelect( { item } ); }
+    if ( afterSelect && !options.initial ) { afterSelect( { item } ); }
   }
 
   visionAutocompleteSource( callback ) {

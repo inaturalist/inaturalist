@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import TaxaTreeContainer from "../containers/taxa_tree_container";
 import TaxonAutocomplete from "../../../observations/uploader/components/taxon_autocomplete";
-import DetailsView from "./details_view";
+import DetailsViewContainer from "../containers/details_view_container";
 
 /* global inaturalist */
 
@@ -71,11 +71,13 @@ class App extends React.Component {
               ) ) }
             </div>
             <TaxonAutocomplete
+              key={`autocomplete-details-${lifelist.detailsTaxon ? lifelist.detailsTaxon.id : null}`}
               ref={this.taxonAutocomplete}
               bootstrap
               noThumbnail
               perPage={6}
               searchExternal={false}
+              initialSelection={lifelist.detailsTaxon}
               afterSelect={e => {
                 zoomToTaxon( e.item.id );
               }}
@@ -107,11 +109,16 @@ class App extends React.Component {
                 <span className="fa fa-leaf" />
                 Species
               </button>
+              <button
+                type="button"
+                className={`btn pill-button ${lifelist.detailsView === "unobservedSpecies" ? "selected" : ""}`}
+                onClick={( ) => setDetailsView( "unobservedSpecies" )}
+              >
+                <span className="fa fa-eye-slash" />
+                Unobserved Species
+              </button>
             </div>
-            <DetailsView
-              config={config}
-              lifelist={lifelist}
-            />
+            <DetailsViewContainer />
           </div>
         </div>
       </div>

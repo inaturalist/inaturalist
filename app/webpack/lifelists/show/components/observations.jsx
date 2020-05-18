@@ -1,10 +1,6 @@
-import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Row, Col } from "react-bootstrap";
 import Observation from "../../../projects/show/components/observation";
-import UserImage from "../../../shared/components/user_image";
-import SplitTaxon from "../../../shared/components/split_taxon";
 
 class Observations extends Component {
   constructor( props, context ) {
@@ -22,11 +18,11 @@ class Observations extends Component {
     if ( loading ) {
       view = ( <div className="loading_spinner huge" /> );
       if ( search && !search.loading ) {
-        fetchFirstPage( { firstPageSize: 4 } );
+        fetchFirstPage( );
       }
     } else {
       view = observations.map( o => {
-        const itemDim = 200;
+        const itemDim = 210;
         let width = itemDim;
         const dims = o.photos.length > 0 && o.photos[0].dimensions( );
         if ( dims ) {
@@ -51,11 +47,12 @@ class Observations extends Component {
         ? ( <div className="loading_spinner big" /> )
         : (
           <button
+            type="button"
             className="btn btn-sm btn-default"
             onClick={fetchNextPage}
           >
-            <i className="fa fa-caret-square-o-down" />
-            Show More...
+            <i className="fa fa-caret-down" />
+            Show More
           </button>
         );
     }

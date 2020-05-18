@@ -7,7 +7,7 @@
   // background: #ddd;
   min-height: auto;
   height: 100%;
-  margin-bottom: -30px;
+  margin-bottom: -15px;
 }
 
 #bodywrapper:after {
@@ -27,7 +27,7 @@
   top: 56px;
   left: 0;
   right: 0;
-  bottom: 30px;
+  bottom: 15px;
   display: flex;
 }
 
@@ -50,6 +50,7 @@
     border-radius: 20px;
     border: 1px solid #e7e7e7;
     letter-spacing: 0.02em;
+    background: inherit;
     .fa {
       margin-right: 6px;
       color: $inat-green;
@@ -77,7 +78,16 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   outline: none;
 }
 
+.bootstrap .more button.btn {
+  border-radius: 20px;
+  padding: 5px 15px;
+  i.fa {
+    margin-right: 5px;
+  }
+}
+
 .iconic-taxa-selectors {
+  margin-bottom: 10px;
   .jump-to {
     display: inline-block;
     margin-bottom: 5px;
@@ -85,6 +95,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   }
   .iconic-taxon-icon {
     border: 1px solid #e7e7e7;
+    background: inherit;
     display: inline-block;
     border-radius: 20px;
     font-size: 23px;
@@ -142,6 +153,15 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   }
   h3 {
     text-align: center;
+    margin-top: 5px;
+    .fa {
+      font-size: 13px;
+      font-weight: 100;
+      line-height: 24px;
+      vertical-align: text-top;
+      margin-right: 5px;
+      cursor: pointer;
+    }
   }
   #TaxaTree, .ObservationsGrid, .ObservationsTab, .SpeciesGrid {
     height: 100%;
@@ -177,13 +197,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   .descendants {
     color: $inat-green;
   }
-  .badge {
-    padding: 3px 7px 1px 7px;
-    vertical-align: inherit;
-    background-color: $inat-green;
-    font-size: 14px;
-    font-weight: 500;
-  }
 }
 .name-label {
   display: inline-block;
@@ -195,6 +208,14 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     font-weight: 600;
   }
 }
+.bootstrap .badge.green {
+  padding: 3px 7px 1px 7px;
+  vertical-align: inherit;
+  background-color: $inat-green;
+  font-size: 14px;
+  font-weight: 500;
+}
+
 
 
 .Details {
@@ -206,15 +227,30 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   .stats {
     text-align: center;
     margin-bottom: 10px;
+    .loading_spinner {
+      display: inline-block;
+      margin: 0;
+    }
   }
   .stat {
     padding: 0 15px;
-  }
-  .attr {
-    font-weight: 700;
-  }
-  .value {
-    margin-left: 3px;
+    display: block;
+    &.clicky{
+      cursor: pointer;
+    }
+    &:not(:first-child) {
+      margin-top: 3px;
+    }
+    .attr {
+      font-weight: 700;
+      margin-right: 4px;
+    }
+    &.selected .attr {
+      font-weight: 800;
+    }
+    .value {
+      margin-left: 3px;
+    }
   }
   .flex-container {
     height: 100%;
@@ -247,9 +283,10 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   flex-wrap: wrap;
   .ObservationsGridCell {
     flex-grow: 1;
-    padding: 2px;
+    padding-right: 5px;
+    padding-bottom: 5px;
     min-width: 100px;
-    margin: 0px auto;
+    margin-right: auto;
   }
   .Observation {
     position: relative;
@@ -382,17 +419,59 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 
 
 
-.bootstrap .form-group.TaxonAutocomplete {
-  margin-top: 10px;
+.bootstrap .form-group.TaxonAutocomplete, .bootstrap .place-search {
+  max-width: 500px;
   .ac-select-thumb {
+    float: left;
     border: none;
     background: inherit;
     text-align: left;
-    width: 26px;
+    width: 23px;
     color: #979797;
+    margin: 0;
   }
-  .input-group input.form-control {
+  input.form-control.ui-autocomplete-input {
     border-radius: 20px;
+  }
+}
+
+.bootstrap .search-options {
+  display: flex;
+  margin-bottom: 10px;
+  min-height: 34px;
+  .place-search {
+    display: inline-block;
+    margin-right: 20px;
+    flex-grow: 1;
+    .PlaceAutocomplete .form-group {
+      margin-bottom: 0;
+    }
+  }
+  .sortDropdown {
+    margin-left: auto;
+    line-height: 33px;
+    button.btn {
+      border-radius: 20px;
+      background: #ddd;
+      border: none;
+      font-weight: 700;
+      padding: 5px 12px;
+      .caret {
+        margin-left: 5px;
+      }
+    }
+    .dropdown-menu {
+      left: auto;
+      right: 0;
+      white-space: nowrap;
+      li {
+        padding: 3px 20px;
+        cursor: pointer;
+        &.selected, &:hover {
+          background-color: #f5f5f5;
+        }
+      }
+    }
   }
 }
 
@@ -416,9 +495,11 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   flex-wrap: wrap;
   .result {
     flex-grow: 1;
-    padding: 5px;
-    min-width: 100px;
-    margin: 0px auto;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    min-width: 160px;
+    max-width: 300px;
+    margin-right: 0;
     .thumbnail {
       padding: 0;
       margin-bottom: 0;

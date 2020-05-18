@@ -24,7 +24,7 @@ class TaxaTree extends React.Component {
 
   showNodeList( taxon ) {
     const {
-      lifelist, toggleTaxon, setDetailsTaxon, config
+      lifelist, toggleTaxon, setDetailsTaxon, config, setDetailsView
     } = this.props;
     const isLeaf = !lifelist.children[taxon.id];
     const isOpen = _.includes( lifelist.openTaxa, taxon.id );
@@ -72,34 +72,53 @@ class TaxaTree extends React.Component {
             <span
               className={`fa fa-chevron-up ${isOpen ? "" : "disabled"}`}
               onClick={( ) => toggleTaxon( taxon, { collapse: true } )}
+              title="Expand all nodes in this branch"
             />
           ) }
           { ( taxon.descendantCount <= 200 && !isLeaf ) ? (
             <span
               className="fa fa-chevron-down"
               onClick={( ) => toggleTaxon( taxon, { expand: true } )}
+              title="Collapse this branch"
             />
           ) : null }
           <span
             className="fa fa-square-o"
             onClick={( ) => toggleTaxon( taxon, { feature: true } )}
+            title="Focus tree on this taxon"
           />
           { ( !isLeaf && taxon.descendant_obs_count ) ? (
             <span
               className="descendants"
               onClick={( ) => setDetailsTaxon( taxon )}
+              title="All observations in this taxon"
             >
               { taxon.descendant_obs_count }
             </span>
           ) : null }
           { taxon.direct_obs_count ? (
-            <Badge onClick={( ) => setDetailsTaxon( taxon, { without_descendants: true } )}>
+            <Badge
+              className="green"
+              onClick={( ) => {
+                setDetailsTaxon( taxon, { without_descendants: true } );
+                setDetailsView( "observations" );
+              }}
+              title="Observations of exactly this taxon"
+            >
               { taxon.direct_obs_count }
             </Badge>
           ) : null }
           <span
-            className="icon icon-binoculars"
-            onClick={( ) => setDetailsTaxon( taxon )}
+            className={`${lifelist.detailsView === "observations" ? "icon icon-binoculars" : "fa fa-leaf"}`}
+            onClick={( ) => {
+              setDetailsTaxon( taxon );
+              if ( lifelist.detailsView === "observations" ) {
+                setDetailsView( "observations" );
+              } else {
+                setDetailsView( "species" );
+              }
+            }}
+            title={`${lifelist.detailsView === "observations" ? "View observations" : "View speciews"}`}
           />
         </div>
         { isOpen && !isLeaf ? (
@@ -128,6 +147,7 @@ TaxaTree.propTypes = {
   config: PropTypes.object,
   lifelist: PropTypes.object,
   setDetailsTaxon: PropTypes.func,
+  setDetailsView: PropTypes.func,
   toggleTaxon: PropTypes.func
 };
 
