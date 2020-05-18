@@ -397,8 +397,8 @@ gl:
     reptiles: Réptiles
     life: Vida
     x_plantae:
-      one: "1 pranta"
-      other: "%{count} prantas"
+      one: "%{count} planta"
+      other: "%{count} plantas"
     x_animalia:
       one: "%{count} animal"
       other: "%{count} animais"
@@ -3843,51 +3843,106 @@ gl:
   this_user_has_been_suspended_message: |
     Se esta é a túa conta e cres que isto foi feito por engano, por favor, <a href="mailto:%{email}">contáctanos</a>.
   this_will_add_listed_taxa: Isto engadirá taxons listados dende as observacións. Isto pode levar algún tempo, asi que por favor, emprégao en listas de comprobación pequenas
+  this_will_refresh_listed_taxa: Isto actualizará os taxons listados nesta lista. Isto pode levar algún tempo, asi que por favor, emprégao pouco en en listas de comprobacións pequenas
   this_will_re_apply_all_list_rules: |
     Isto aplicará novamente todas as regras da lista aos taxóns, por exemplo, para rexeitar taxóns que non están dentro do taxón da lista de vida ou dentro do rango seleccionado. Non agregará ningún taxón. Esta acción podería tardar uns minutos.
   this_will_try_to_add_tags_to_your_flickr: Con isto tratarase de engadir etiquetas ás túas fotos de Flickr. Desexas continuar?
+  this_year: Este Ano
   those_observations_no_longer_exist: Estas observacións xa non existen.
   threatened: Ameazado
   time_: Hora
   time_ago: "hai %{time}"
   #As in the title of a book or a blog post
   title: Título
+  title_and_description: "Título e Descrición"
   to_add_comments: para engadir comentarios.
   to_add_ids: para engadir identificacións
   to_configure_your_widget: para configurar o teu widget.
+  to_recipient: a
+  to_suggest_an_identification: para suxerir unha identificación
   today: Hoxe
+  too_many_results: Demasiados Resultados
+  too_many_taxa_to_render: |
+    Esta consulta proporciona demasiados taxons para mostralos todos ó tempo. Téntao engadindo máis filtros
   tools: Ferramentas
   top_contributors: Maiores contribuíntes
+  top_identifier: Maior Identificador
+  top_identifiers: Maiores Identificadores
+  top_identifiers_of_taxon: Maiores Identificadores de %{taxon}
+  top_observer: Maior Observador
+  top_observers: Maiores Observadores
+  top_species: Especies Máis Observadas
+  total: Total
+  totals: Totais
   total_members: Total de membros
   total_observations: Total de observacións
+  total_species_observed: Total das Especies Observadas
   total_unique_observers: Total de observadores únicos
+  translated_languages: Línguas Traducidas
+  'true': 'Si'
+  trending: Tendencias
+  trends: Tendencias
+  trip_target_list_info: 'Calquera especie cuberta nesta listaxe de obxectivos que non sexa observada dentro do radio e duración desta excursión interpretarase como ausencia. <a href="/pages/trips">Sabe máis</a>.'
+  trusted: Fiable
   trusted_project?: '¿É un proxecto verificado?'
+  trust_this_person_with_your_private_coordinates: Confía as túas coordenadas a esta persoa
+  trust_with_private_coordinates: Confiar con coordenadas ocultas
   try_adding_species_form: Tenta agregar algunha especie empregando o formulario desta páxina.
+  twitter: Twitter
+  two_thirds: 2/3
   type: Tipo
+  type_authority: Escribe o nome da autoridade...
+  type_one_name_per_line: Escribe un nome por liña
   type_place_name: Incorpora o nome do lugar
   type_source_name: Nome da fonte
   type_source_title: "Título do tipo de fonte..."
   type_species_name: "Teclea o nome da especie..."
   type_taxon_name: "Teclea o nome do taxón"
   uicn_red_list_status: "Estado da Lista Vermella de UICN"
+  umbrella_projects: Proxectos Paraugas
+  unblock: Desbloquear
   unclassified: Sen clasificar
   ungrafted_taxa: Taxóns sen introducir
+  unhide_content: Desvelar Contido
+  unhide_desc: |
+    Ó desvelar, revelarase todo o contido ó público. Os conservadores aínda poderán escoller se ocultar o contido de novo no futuro.
   uninvite: Cancelar invitación
   unique_identifier_of_this_taxon: Identificador único para esta especie ou grupo na base de datos.
   unique_observers: observadores únicos
   unknown: Descoñecido
+  unknown_error: Erro descoñecido
   unknown_rank: '(Clasificación descoñecida)'
+  unfollow: Deixar de Seguir
+  unlink_your_google_account: Desvincula A Túa Conta De Google
+  unlink_your_flickr_account: "Desvincula A Túa Conta De Flickr"
+  unmute: Desactivar Silenciamento
   updates_notification_email_subject: "%{prefix} Novas actualizacións %{date}"
+  updates_suspension_email_subject: "%{prefix} As túas suscricións están pausadas"
+  updating: Actualizando...
+  unprocessable: Non se pode procesar
   unpublish: Non publicar
+  #Undo the action of resolving a flag
+  unresolve: Desfacer solución
+  unreview_all: Desfacer Tódalas Revisións
   unsubscribe: Quitar subscrición
   unsuspend_user: Reactivar usuario
+  upcoming_bioblitzes: Próximas Bioblitzes
   update: Actualizar
   update_existing_observations_with_new_license: Actualizar as observacións existentes coa licenza elixida
   update_existing_photos_with_new_license: Actualizar as fotos existentes coa licenza elixida
   update_existing_sounds_with_new_license: Actualiza os sons existentes coa licenza elixida
+  update_observations: Renovar Observacións
   update_past: "Actualizar %{type} pasado"
   update_photos: Actualizar fotos
+  update_search: Renovar Busca
+  update_selected_taxa: Renovar os Taxons Seleccionados
+  update_subscription: Renovar Subscrición
+  update_subscription_preferences: Renovar as Preferencias da Subscrición
+  update_x_selected_taxa:
+    one: "Renovar 1 taxon seleccionado"
+    other: "Renovar %{count} taxons seleccionados"
   update_your_content: Actualiza o teu contido
+  update_with_eol_content: Renovar con contidos de EOL
   update_with_site_content: "Actualizar có contido de %{site_name}"
   updated: Actualizado
   updated_by: Actualizado por
@@ -3944,20 +3999,20 @@ gl:
   user_added_a_flag_html: "%{user} engadíu unha marca"
   user_added_a_project_invitation_html: "%{user} engadíu un convite a un proxecto"
   user_added_a_x: "%{user} engadíu un %{x}"
-  user_added_a_x_to_noun_by_html: "%{user} engadiches un %{x} a %{noun} de %{by}"
+  user_added_a_x_to_noun_by_html: "%{user} engadíu un %{x} a %{noun} de %{by}"
   user_added_a_x_to_noun_by_user_html: "%{user} engadíu un %{x} a unha %{noun} de %{by}"
   user_added_a_x_to_noun_by_you_html: "%{user} engadíu un %{x} a unha %{noun} túa"
-  user_added_a_x_to_noun_html: "%{user} engadiches un %{x} a %{noun}"
+  user_added_a_x_to_noun_html: "%{user} engadíu un %{x} a %{noun}"
   user_added_an_identification_html: "%{user} engadíu unha identificación"
   user_added_an_observation_field_html: '%{user} engadíu un valor para "%{field_name}" a unha observación de %{owner}'
   user_added_an_observation_field_value_html: "%{user} engadíu un valor nun campo de observación"
-  user_added_an_observation_html: "%{user} engadiches unha observación"
+  user_added_an_observation_html: "%{user} engadíu unha observación"
   user_added_an_x: "%{user} engadíu un %{x}"
-  user_added_an_x_to_noun_by_html: "%{user} engadiches unha %{x} a %{noun} de %{by}"
+  user_added_an_x_to_noun_by_html: "%{user} engadíu unha %{x} a %{noun} de %{by}"
   user_added_an_x_to_noun_by_user_html: "%{user} engadíu un %{x} a %{noun} de %{by}"
   user_added_an_x_to_noun_by_you_html: "%{user} engadíu un %{x} a %{noun} teu"
-  user_added_an_x_to_noun_html: "%{user} engadiches unha %{x} a %{noun}"
-  user_added_x_observations_html: "%{user} engadiches %{x} observacións"
+  user_added_an_x_to_noun_html: "%{user} engadíu unha %{x} a %{noun}"
+  user_added_x_observations_html: "%{user} engadíu %{x} observacións"
   user_already_authenticated: O usuario xa está verificado
   user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
@@ -4215,26 +4270,59 @@ gl:
   you_are_now_following_x: "Estás seguindo a %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     Agora es <strong>ti</strong> o administrador de %{project}
+  you_are_now_a_curator_for_project_html: |
+    <strong>ti</strong> agora es conservador de %{project}
+  you_are_now_a_manager_for_project_html: |
+    <strong>ti</strong> agora es xestor de %{project}
+  you_are_not_editing_any_guides_add_one_html: |
+    Non estás a editar guías. <a href="/guides/new">Engade unha</a>
   you_are_already_a_member_of_this_project: "¡Xa es un membro deste proxecto!"
   you_are_no_longer_following_x: "Xa non estás seguindo a %{friend}."
+  you_are_setting_this_project_to_aggregate: |
+    Estás configurando este proxecto para agregar tódalas observacións que concorden cás seguintes regras: %{rules} ¿Queres continuar?
+  you_are_submitting_obs_without_photos_and_names: |
+    Estás presentando observacións sen fotos nin nomes taxonómicos. As observacións sen esta información frecuentemente son imposibles de identificar e non serán visibles de xeito predetermindado en buscas de observacións.
+  you_are_submitting_obs_with_no_date_or_no_location: |
+    Estás presentando observacións sen data ou ubicación. As observacións sen esta información frecuentemente son imposibles de identificar e non serán visibles de xeito predeterminado nas buscas de observacións.
+  you_are_subscribed_to_comments_on_this_flag: Estás subscrito/a ós comentarios desta marca.
+  you_are_subscribed_to_comments_on_this_post: Estás subscrito/a a comentarios desta publicación.
+  you_are_subscribed_to_observations_from_this_place: Estás subscrito/a ós comentarios deste lugar.
   you_arent_a_member_of_that_project: Non es un membro do proxecto.
   you_arent_following_that_person: "Non estás seguindo a esa persoa."
   you_can_accept_invitations: Podes aceptar a invitación aquí.
   you_can_choose_observations_associated: Podes seleccionar observacións para asocialas con este artigo do diario.
+  you_can_edit_this_default_check_list_because: |
+    Podes editar esta listaxe de verificación predeterminada porque es un administrador, pero non debería haber necesidade de facelo.
+  you_can_only_destroy_taxa_you_created: "Só podes destruir taxons que ti creaches, e non podes destruir taxons que están sendo usados en cambios de taxon."
+  you_can_only_block_three_users: Só podes bloquear tres usuarios
   you_can_show_the_boundary_of: Podes mostrar os límites do lugar na páxina do teu proxecto só se o lugar ten límites.
   you_can_sign_free_at: "Podes rexistrarse nunha conta gratis con %{site_name} neste enlace"
   you_cant_compare_a_list_with_nothing: '¡Non podes comparar unha lista con nada!'
+  you_cant_delete_a_project_list: "Non podes borrar unha listaxe de proxecto"
+  you_cant_delete_observation_fields_that_people_are_using: "Non podes borrar campos de observación que outra xente está a usar"
+  you_cant_do_that_for_the_default_check_list_place: '¡Non podes facer iso para listaxe de verificación predeterminada dun lugar!'
   you_cant_flag_that: Non podes poñer iso como advertencia
   you_cant_leave_a_project_you_created: Non podes abandonar un proxecto que ti creaches.
   you_cant_rotate_photos_hostde_outside: "Non podes xirar fotos que estean almacenadas fóra de %{site_name}."
+  you_cannot_delete_taxa_involved_in_taxon_changes: Non podes borrar taxons ligados a cambios de taxon ou que conteñan taxons ligados en cambios de taxon
+  you_curate_a_project_that_contains_this_observation: Conservas un proxecto que contén esta observación
+  you_curate_a_project_that_contains_this_observation_desc: |
+    Poderás ver coordenadas ocultas cando conserves un proxecto que contén unha observación e o observador escolleu compartir as coordenadas con conservadores dese proxecto.
   you_didnt_select_any_observations: Non seleccionaches ningunha observación.
   you_didnt_select_any_photos_to_tag: '¡Non seleccionaches ningunha foto para etiquetar!'
   you_dont_have_permission_to_do_that: Non tes permisos para facer iso.
   you_dont_have_permission_to_edit_that_observation: "Non tes permisos para editar esa observación."
   you_dont_have_permission_to_edit_that_project: Non tes permisos para editar ese proxecto.
+  you_dont_have_permission_to_edit_that_taxon: |
+    Non tes consentemento para editar ese taxon. Por favor, contacta un dos conservadores do taxon ou márcao para pedir mudanzas.
   you_dont_have_permission_to_edit_those_photos: Non tes permisos para editar esas fotos.
+  you_faved_this: '¡Engadíchelo a favoritos!'
   you_have_left_x_project: "Abandonaches o proxecto %{project}."
+  you_havent_linked_your_inaturalist_google_account: "Aínda non vinculaches a túa conta de %{site_name} á túa conta de Google."
+  you_havent_joined_any_projects: Non te uniches a ningún proxecto
+  you_joined_this_project: '¡Unícheste a este proxecto!'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un membro do proxecto para poder facer iso.
+  you_must_choose_an_observation_field: Debes escoller un campo de observación
   you_must_select_a_place_to_merge_with: Debes seleccionar un lugar para combinar.
   you_must_select_dates_to_compare: Debes seleccionar as datas que queres comparar
   you_must_specify_and_confirm_a_new_password: Debes especificar e confirmar un novo contrasinal.
@@ -4312,6 +4400,49 @@ gl:
       post_donate_social_media_text: Eu apoio iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Faite Patrocinador Mensual de iNaturalist
+        desc_html: |
+          <p class="lead">
+          <strong>iNaturalist é unha das comunidades meirandes do mundo dedicadas á exploración da biodiversidade. ¡Graciñas por formar parte dela!</strong>
+          </p>
+          <p class="lead">
+          Queremos manter a gratuidade de uso de iNaturalist, mais operalo non sae de balde. Se che gusta iNaturalist, pensa se queres convertirte nun patrocinador mensual. As doazóns recurrentes axúdannos a asegurármonos de poder ampliar as infraestructuras e ós traballadores de iNaturalist provendo uns ingresos predicibles. Tamén podes optar por mostrar o teu estado de patrocinador mensual no teu perfil.
+          </p>
+          <p class="lead">
+          As túas doazóns caritativas axúdannos a manter iNaturalist namentres a comunidade medra, dende evolucionar a visión artificial e implementar novas características, ó apoio ós nosos servidores e traballadores. Se prefires facer unha doazón puntual, por favor <a href="%{donate_url}">preme aquí</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist é unha iniciativa conxunta da Academia de Ciencias de California e a Sociedade National Geographic. Tódalas doazóns recibiranas a Academia de Ciencias de California, unha organización sen ánimo de lucro baseada nos Estados Unidos de América exenta de impostos 501(c)(3) (Tax ID: 94-1156258).
+          </p>
+    flags:
+      show:
+        flaggable_content_desc: |
+          O contido marcable é o atributo de texto primario do obxecto marcado no momento en que a marca foi creada. Só os conservadores e traballadores poden ver isto. Só os traballadores poden ver isto para mensaxes.
+        flags_that_should_not_be_resolved_desc_html: |
+          Por favor, resolve as marcas de <code>spam</code> e <code>violación de dereitos de autor</code> soamente se o contido non é correo lixo ou unha violación de dereitos de autor respectivamente.
+    guides:
+      index:
+        deprecated_banner: |
+          Por favor, repara que dende Xaneiro de 2019, a característica Guías é presentada "coma é"; aínda que non temos intención de eliminala, non pensamos desenvolvela máis.
+        funding_html: |
+          Os fondos para o desenvolvemento de Guías foron proporcionados por <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        welcome_message_html: |
+          As Guías axúdante a aprender sobre a diversidade ó redor do mundo enteiro. Se estás explorando o Serengueti ou o teu parque local (que tamén pode ser o Serengueti), as Guías axudarante a concibir a imponente biodiversidade do noso planeta.
+      edit:
+        add_eol_content: |
+          Engade contidos de EOL a taxons seleccionados coma un lote. Isto pode levar algún tempo, por favor, se paciente.
+        add_color_tags_help: |
+          Engade etiquetas de cores asociadas cós taxons seleccionados.
+        add_rank_tags_help_html: |
+          Engadir etiquetas de rango de taxon baseadas na nosa taxonomía, p.e.
+          <code>familia=Laridae</code>
+          ou
+          <code>familia=Gaivotas e Aliados</code>
+        coordinates_desc: |
+          Dar coordenadas á túa guía axudará a que a xente a atope cando busque por ubicación.
+        eol_subjects_desc: |
+          EOL publica contidos baixo diferentes títulos de materias, e non todos están dispoñibles para cata taxon. Se escolles "Vista Xeral" só se importará a primeira sección de texto de EOL, que xeralmente contén un resumo cando está dispoñible.
+        licensing_explanation: |
+          Licenciar o teu contido garante a outra xente o dereito de copialo e modificalo sen pedir o teu consentimento. Así é máis sinxelo compartir o teu traballo, e se incorporas contidos de terceiros de outras fontes con licenzas Creative Commons ShareAlike (coma Wikipedia), xa estás obrigado/a a usar unha licenza semellante. Aquí tes unha visión xeral de tódalas licenzas Creative Commons e qué significan:
     listed_taxa:
       establishment_field:
         confirmation: |
