@@ -270,6 +270,7 @@ da:
   add_several_observations_at_once: Tilføj flere observationer på en gang.
   add_sex_female_annotation: 'Tilføj anmærkningen "Køn: Hunkøn"'
   add_sex_male_annotation: 'Tilføj noten "Køn: Hankøn"'
+  add_sex_cannot_be_determined_annotation: 'Tilføj "Køn: Kan ikke bestemmes" anmærkning'
   add_some_now: Tilføj noget nu
   add_tag: Tilføj tag
   add_tags: Tilføj tags
@@ -531,6 +532,8 @@ da:
     Eventuelle spam-markeringer på deres indhold vil blive løst.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Er du sikker på at du vil fjerne disse %{x} taksa?"
   are_you_sure_you_want_to_remove_this_invitation: Er du sikker på, at du ønsker at fjerne denne invitation?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Sikker på, at du vil fjerne denne observation fra %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Er du sikker på at du vil fjerne denne takson %{place}'s tjekliste?"
   associated_observations: Tilknyttede observationer
   associated_taxa: Tilknyttede taksa
@@ -652,6 +655,7 @@ da:
   cant_merge_a_taxon_with_itself: Kan ikke sammenlægge en takson med sig selv.
   captive: I fangenskab
   captive_cultivated: I fangenskab / dyrket
+  captive_observations: Opdrætsobservationer
   card: Kort
   casual: uformel
   casual_: Almindelig
@@ -831,6 +835,7 @@ da:
   connect_to_flickr_again_to_authorize_write_permissions: Forbind til Flickr igen for at godkende skriverettigheder
   connecting_to_facebook: "Tilknytter til Facebook"
   connecting_your_inat_account_to_accounts_other_sites: "Ved at tilknytte din %{site_name} konto med konti på andre websteder kan du logge ind på %{site_name} ved hjælp af dine legitimationsoplysninger fra disse websteder."
+  cannot_be_changed_during_a_content_freeze: Kan ikke ændres under en indholdsfrysning
   conservation_status: Bevaringsstatus
   conservation_status_descriptions:
     status: Status kode, rang osv. Hvis der findes en kort kode som E eller CR, skal du bruge det, men hvis ikke, skal du bruge den fulde status, f.eks. truet eller kritisk truet.
@@ -893,6 +898,7 @@ da:
     fruiting: Frugt synlig og stadig fastgjort til planten
     no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
     teneral: Udvokset, der for nylig har forpubbet sig, men endnu ikke har opnået sin endelige udvokset form
+    cannot_be_determined: Kan ikke bestemmes ud fra det leverede bevis
   controls: Kontrolpanel
   convert: Konvertér
   coordinate_systems: Koordinatsystem
@@ -1178,6 +1184,7 @@ da:
   editing_project: Redigering af %{project}
   editing_project_asset: Redigering af projektvurderinger for
   editing_subscription_to_x_html: "Redigerer abonnement på %{x}"
+  editing_taxon: Redigering af %{taxon}
   editing_taxon_link: Redigering af takson link
   editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
   editing_taxon_range: Redigering af takson område
@@ -1454,6 +1461,7 @@ da:
   got_it!: Forstået!
   got_your_data_somewhere_else?: Har du dine data et andet sted? Vi kan hjælpe.
   graft: Pode
+  graft_taxon: Podet %{taxon}
   grafting_attemps_to_insert_this_taxon: Podning forsøger at indsætte denne takson i vores taksonomiske træ, finde et eksisterende overordnet takson eller opret alle de nødvendige mellemliggende taksa for at vedhæfte det til et eksisterende højere takson niveau.
   grant_role: "%{grant} %{role} rolle"
   grid: Gitter
@@ -1666,6 +1674,9 @@ da:
   label_to_group_a_batch_of_taxon_changes: Mærke til at grupperer et bundt af takson ændringer
   location_private: Fortrolig lokalitet
   location_unknown: Sted ukendt
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Lås zoomniveau
   language_slash_type: Sprog / Type
   #Large photo size
   large: stor
@@ -1998,10 +2009,16 @@ da:
       yy: "%då"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MM HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Måned
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månedlig Supporter</a> sinden %{date}
@@ -3081,6 +3098,9 @@ da:
   project_settings: Projekt indstillinger
   project_start_time_datetime: "Starttidspunkt: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt, der ikke indeholder disse observationer
+  project_type_description: |
+    Evalueringer er til samarbejde om et sæt artsvurderinger, 
+    normalt til bedømmelse af bevaringsværdighed.
   project_user_cannot_be_found: Projektbruger kan ikke findes
   project_user_was_invalid: "Projektbrugeren var ugyldig: %{project_user}"
   project_was_successfully_created: Projekt blev oprettet.
@@ -3312,6 +3332,8 @@ da:
   scale_colon: "Skala:"
   schemes: Systemer
   schemes_including: Systemer der inkluderer
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Videnskabeligt navn
   search: Søg
   search_all_fields: søg i alle felter
   search_by_name_or_email: Søg efter navn eller e-mail
@@ -4416,6 +4438,14 @@ da:
         CTRL- eller SHIFT -klik for at vælge flere på én gang. Hvis du ikke vælger nogen, vises meddelelsen til alle brugere uanset lokalitet. Valg af et lokalt sprog uden en region vil *ikke* målrette lokaliteter med regioner, f.eks. hvis du valgte "en" vises det ikke til personer der har valgt "en-us". Hvis du
         vil nå ud til begge, så vælg begge. Hvis du vil vise en meddelelse
         til alle medlemmer af en side, skal du bare lade dette stå tomt.
+    content_freeze:
+      content_freeze: Indholdsfrysning
+      during_this_time: |
+        Under indefrysningen kan visse typer indhold ikke oprettes, destrueres eller ændres.
+      this_functionality_will_return: |
+        Denne funktionalitet er atter tilgængelig, når indholdsfrysning er slut.
+      we_expect_this_functionality_will_return_by_date: |
+        Denne funktionalitet forventes atter tilgængelig pr. %{date}
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -5241,6 +5271,9 @@ da:
           indsamler værdifuld data.
           </p>
         change_admin_desc: Vælg en af projekt kuratorerne til at være den nye administrator.
+        change_owner_alert: |
+          Dette fjerner din mulighed for at slette dette projekt eller overføre
+          ejerskab igen. Fortsæt?
         cover_desc: "Valgfrit bannerbillede, der vises øverst på din projektside. Skal være 950px bred,og mindre end 400px høj."
         custom_project_fields_means: "Tilpas projektetbanner, tilføj sideindhold og rediger CSS."
         end_time_desc: "Slut tidspunkt for din bioblitz. Skal være mindre end et år efter starttidspunktet"
@@ -5253,6 +5286,8 @@ da:
           Det ser ud til at dette projekt kan konverteres til et nyt <a href="%{url}">samlingsprojekt</a>.
         last_aggregated_at_desc: |
           Tidspunkt, hvor samleren sidst var færdig med at tilføje observationer til dette projekt
+        #Label for button to make another user the owner of a project
+        make_owner: Gør til Ejer
         no_curators: |
           Der er ingen projektkuratorer. Hvis du vil udnævne en ny person som
           administrator, skal de først være medlem af dette projekt, og du skal gøre dem
@@ -5481,6 +5516,10 @@ da:
           Husk at læse om forskellene i vores <a href="%{url}" target="_blank">blogindlæg om samlingsprojekter</a>.
         this_is_a_preview: |
           Dette er en forhåndsvisning af hvordan projektet vil se ud som et samlingsprojekt.
+        this_project_has_not_defined_requirements: |
+          Dette projekt har ikke defineret nogen observationskrav. Projekter skal vælge én eller flere
+          taksaer (f.eks. fugle, nåletræer), steder (f.eks. Brasilien, Yellowstone), brugere og/eller datoer
+          for at begynde at vise observationer.
       updates_desc: |
         Modtag underretninger om dette projekt på dit betjeningspanel samt i den daglige underretnings e-mail.
     search:
@@ -6292,9 +6331,11 @@ da:
       invalid: er ugyldig
       less_than: skal være mindre end %{count}
       less_than_or_equal_to: skal være mindre end, eller lig med, %{count}
+      new_project_owner_must_be_a_manager: Den nye projektejer skal være en admin
       not_a_number: er ikke et tal
       not_an_integer: skal være et heltal
       odd: skal være ulige
+      only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
       record_invalid: 'Validering mislykkedes: %{errors}'
       requires_privilege_speech: |
         skal have tre verificérbare observationer eller tre identifikationer
@@ -6429,9 +6470,11 @@ da:
         invalid: er ugyldig
         less_than: skal være mindre end %{count}
         less_than_or_equal_to: skal være mindre end, eller lig med, %{count}
+        new_project_owner_must_be_a_manager: Ny projektejer skal være en admin
         not_a_number: er ikke et tal
         not_an_integer: skal være et heltal
         odd: skal være ulige
+        only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
         record_invalid: 'Validering mislykkedes: %{errors}'
         requires_privilege_speech: "skal have tre verificérbare observationer eller tre identifikationer\nfor at andre kan gøre det"
         requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
@@ -6569,9 +6612,11 @@ da:
         invalid: er ugyldig
         less_than: skal være mindre end %{count}
         less_than_or_equal_to: skal være mindre end eller lig med %{count}
+        new_project_owner_must_be_a_manager: Ny projektejer skal være en admin
         not_a_number: er ikke et tal
         not_an_integer: skal være et helt tal
         odd: skal være et ulige tal
+        only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
         record_invalid: 'Validering fejlede: %{errors}'
         requires_privilege_speech: "skal have tre verificérbare observationer eller tre identifikationer\nfor at andre kan gøre det"
         requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
