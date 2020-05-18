@@ -4322,6 +4322,10 @@ he:
             observed_on:
               cannot_be_greater_than_date_created: |
                 לא יכול להיות מאוחר יותר מאשר התאריך שבו התצפית הועלתה
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: "לDNA חייב לכול רק אותיות A T C G"
         place:
           attributes:
             place_geometry:
