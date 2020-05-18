@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import { objectToComparable } from "../util";
@@ -240,15 +241,21 @@ const SplitTaxon = props => {
     }
     if ( groupAncestor ) {
       memberGroup = (
-        <span key={`${keyBase}-memberGroup`} className="member-group">
-          { I18n.t( "a_member_of" ) }
-          { " " }
-          <SplitTaxon
-            taxon={groupAncestor}
-            url={`/taxa/${groupAncestor.id}`}
-            user={user}
-          />
-        </span>
+        <span
+          key={`${keyBase}-memberGroup`}
+          className="member-group"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "a_member_of_taxon_html", {
+              taxon: ReactDOMServer.renderToString(
+                <SplitTaxon
+                  taxon={groupAncestor}
+                  url={`/taxa/${groupAncestor.id}`}
+                  user={user}
+                />
+              )
+            } )
+          }}
+        />
       );
     }
   }

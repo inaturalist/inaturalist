@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   resources :guide_photos
   resources :guide_taxa do
     member do
-      get :edit_photos
       post :update_photos
       post :sync
     end
@@ -410,7 +409,6 @@ Rails.application.routes.draw do
   get 'taxa/:id/children' => 'taxa#children', :as => :taxon_children
   get 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
   get 'taxa/:id/photos' => 'taxa#photos', :as => :taxon_photos
-  get 'taxa/:id/edit_photos' => 'taxa#edit_photos', :as => :edit_taxon_photos
   put 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
   match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places, :via => [:get, :post]
   get 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger

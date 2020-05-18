@@ -1,6 +1,6 @@
 I18n.translations || (I18n.translations = {});
 I18n.translations["ar"] = {
-  "a_member_of": "عضو في",
+  "a_member_of_taxon_html": "عضو في %{taxon}",
   "about": "حول",
   "about_charts": "حول الرسوم البيانية",
   "about_community_taxa": "معلومات حول مجتمع الأصناف",
@@ -462,7 +462,6 @@ I18n.translations["ar"] = {
   "fluid_layout": "تصميم السائل",
   "follow": "تابع",
   "frequency": "تردد",
-  "from": "من",
   "from_flickr_facebook_etc": "من فليكر، فيسبوك، إلخ.",
   "from_soundcloud": "من ساوند كلاود",
   "full_screen": "ملء الشاشة",
@@ -1801,7 +1800,7 @@ I18n.translations["ar"] = {
   "zoom_photo": "تكبير الصورة"
 };
 I18n.translations["bg"] = {
-  "a_member_of": "Представител на",
+  "a_member_of_taxon_html": "представител на %{taxon}",
   "about": "Относно",
   "about_charts": "Относно диаграмите",
   "about_community_taxa": "За консенсусните разпознавания от общността",
@@ -2257,7 +2256,6 @@ I18n.translations["bg"] = {
   "flagging_desc": "Маркирането поставя нещо под вниманието на доброволните куратори на сайта. Моля, не маркирайте проблеми, които можете да разрешите чрез добавяне на разпознаване, гласуване в карето Оценка на качеството на данните или чрез разговор с човека добавил съдържанието.\n",
   "follow": "Следвай",
   "frequency": "Честота",
-  "from": "От",
   "from_flickr_facebook_etc": "От Flickr, Facebook и др.",
   "from_soundcloud": "От Soundcloud",
   "full_screen": "Пълен екран",
@@ -3414,6 +3412,7 @@ I18n.translations["bg"] = {
   "zoom_photo": "Увеличи снимката"
 };
 I18n.translations["br"] = {
+  "a_member_of_taxon_html": "un ezel eus %{taxon}",
   "about": "Diwar-benn",
   "about_community_taxa": "Diwar-benn taksonioù ar gumuniezh",
   "account": "Kont",
@@ -3629,7 +3628,6 @@ I18n.translations["br"] = {
   "finished_with_page": "Echuet eo gant ar bajenn",
   "flag": "Banniel",
   "flag_an_item": "Merkañ un elfenn",
-  "from": "Eus",
   "full_screen": "Skramm leun",
   "geoprivacy": "Douarbrevezded",
   "get_started": "Kregiñ",
@@ -3963,7 +3961,7 @@ I18n.translations["br"] = {
   "who_helped_user_the_most": "Piv en deus sikouret ar muiañ %{user}"
 };
 I18n.translations["ca"] = {
-  "a_member_of": "Un membre de",
+  "a_member_of_taxon_html": "un tipus de %{taxon}",
   "about": "Quant a",
   "about_charts": "Quant als gràfics",
   "about_community_taxa": "Sobre la comunitat de tàxons",
@@ -4526,7 +4524,6 @@ I18n.translations["ca"] = {
   "fluid_layout": "Disseny fluid",
   "follow": "Seguiu",
   "frequency": "Freqüència",
-  "from": "de",
   "from_flickr_facebook_etc": "Des de Flickr, Facebook, etc.",
   "from_soundcloud": "Des de Soundcloud",
   "full_screen": "Pantalla completa",
@@ -4971,6 +4968,7 @@ I18n.translations["ca"] = {
   "obscured": "Enfosquida",
   "observation": "Observació",
   "observation_": "observació",
+  "observation_brief_taxon_from_place": "%{taxon} a %{place}",
   "observation_date": "Data",
   "observation_field_details": "Detalls del camp d'observació",
   "observation_fields": "Camps d'observació",
@@ -6218,7 +6216,7 @@ I18n.translations["ca"] = {
   "zoom_photo": "Zoom de la Foto"
 };
 I18n.translations["cs"] = {
-  "a_member_of": "Člen",
+  "a_member_of_taxon_html": "člen %{taxon}",
   "about": "O",
   "about_charts": "O grafech",
   "about_community_taxa": "O komunitních taxonech",
@@ -6824,7 +6822,6 @@ I18n.translations["cs"] = {
   "fluid_layout": "Proměnlivé rozložení",
   "follow": "Sledovat",
   "frequency": "Frekvence",
-  "from": "Od",
   "from_flickr_facebook_etc": "Z Flickru, Facebooku, apod.",
   "from_soundcloud": "Ze Soundcloudu",
   "full_screen": "Celá obrazovka",
@@ -7276,6 +7273,7 @@ I18n.translations["cs"] = {
   "obscured": "Skrytý",
   "observation": "Pozorování",
   "observation_": "pozorování",
+  "observation_brief_taxon_from_place": "%{taxon} od %{place}",
   "observation_date": "Datum",
   "observation_field_details": "Podrobnosti pole pozorování",
   "observation_fields": "Pole pozorování",
@@ -8601,7 +8599,7 @@ I18n.translations["cs"] = {
   "zoom_photo": "Přiblížit fotku"
 };
 I18n.translations["da"] = {
-  "a_member_of": "Et medlem af",
+  "a_member_of_taxon_html": "et medlem af %{taxon}",
   "about": "Om",
   "about_charts": "Om diagrammer",
   "about_community_taxa": "Om fællesskabs-taksa",
@@ -9164,7 +9162,6 @@ I18n.translations["da"] = {
   "fluid_layout": "Flydende visning",
   "follow": "Følg",
   "frequency": "Hyppighed",
-  "from": "Fra",
   "from_flickr_facebook_etc": "Fra Flickr, Facebook, etc.",
   "from_soundcloud": "Fra Soundcloud",
   "full_screen": "Fuldskærm",
@@ -9610,6 +9607,7 @@ I18n.translations["da"] = {
   "obscured": "Sløret",
   "observation": "Observation",
   "observation_": "observation",
+  "observation_brief_taxon_from_place": "%{taxon} fra %{place}",
   "observation_date": "Dato",
   "observation_field_details": "Observationsfelt detaljer",
   "observation_fields": "Observationsfelter",
@@ -10858,7 +10856,7 @@ I18n.translations["da"] = {
   "zoom_photo": "Zoom foto"
 };
 I18n.translations["de"] = {
-  "a_member_of": "Gehört zu:",
+  "a_member_of_taxon_html": "gehört zu: %{taxon}",
   "about": "Information",
   "about_charts": "Über Diagramme",
   "about_community_taxa": "Über Gemeinschafts-Taxa",
@@ -11422,7 +11420,6 @@ I18n.translations["de"] = {
   "flickr_has_no_creative_commons": "Bei Flickr gibt es keine Bilder von diesem Ort unter Creative-Commons-Lizenz.",
   "follow": "Folgen",
   "frequency": "Häufigkeit",
-  "from": "Von",
   "from_flickr_facebook_etc": "Von Flickr, Facebook, usw.",
   "from_soundcloud": "Von Soundcloud",
   "full_screen": "Vollbild",
@@ -11861,6 +11858,7 @@ I18n.translations["de"] = {
   "obscured": "verdeckt",
   "observation": "Beobachtung",
   "observation_": "Beobachtung",
+  "observation_brief_taxon_from_place": "%{taxon} von %{place}",
   "observation_date": "Datum",
   "observation_field_details": "Details zum Beobachtungsfeld",
   "observation_fields": "Beobachtungsfelder",
@@ -13092,7 +13090,7 @@ I18n.translations["de"] = {
   "zoom_photo": "Foto zoomen"
 };
 I18n.translations["el"] = {
-  "a_member_of": "Ένα μέλος του",
+  "a_member_of_taxon_html": "Ένα μέλος του %{taxon}",
   "about": "Σχετικά",
   "about_charts": "Σχετικά με γραφήματα",
   "about_community_taxa": "Σχετικά με τα taxa της κοινότητας",
@@ -13657,7 +13655,6 @@ I18n.translations["el"] = {
   "fluid_layout": "Ρευστή Διάταξη",
   "follow": "Ακολουθήστε",
   "frequency": "Συχνότητα",
-  "from": "Από",
   "from_flickr_facebook_etc": "Από το Flickr, Facebook, κτλ.",
   "from_soundcloud": "Από το Soundcloud",
   "full_screen": "Πλήρης οθόνη",
@@ -14045,6 +14042,7 @@ I18n.translations["el"] = {
   "obscured": "Αποκρύφτηκε",
   "observation": "Παρατήρηση",
   "observation_": "παρατήρηση",
+  "observation_brief_taxon_from_place": "%{taxon} από %{place}",
   "observation_date": "Ημερομηνία",
   "observation_field_details": "Λεπτομέρειες πεδίου παρατήρησης",
   "observation_fields": "Πεδία παρατήρησης",
@@ -15196,7 +15194,7 @@ I18n.translations["el"] = {
   "zoom_photo": "Μεγέθυνση φωτογραφίας"
 };
 I18n.translations["en"] = {
-  "a_member_of": "A member of",
+  "a_member_of_taxon_html": "a member of %{taxon}",
   "about": "About",
   "about_charts": "About Charts",
   "about_community_taxa": "About community taxa",
@@ -15762,7 +15760,6 @@ I18n.translations["en"] = {
   "fluid_layout": "Fluid Layout",
   "follow": "Follow",
   "frequency": "Frequency",
-  "from": "From",
   "from_flickr_facebook_etc": "From Flickr, Facebook, etc.",
   "from_soundcloud": "From Soundcloud",
   "full_screen": "Full screen",
@@ -16212,6 +16209,7 @@ I18n.translations["en"] = {
   "obscured": "Obscured",
   "observation": "Observation",
   "observation_": "observation",
+  "observation_brief_taxon_from_place": "%{taxon} from %{place}",
   "observation_date": "Date",
   "observation_field_details": "Observation field details",
   "observation_fields": "Observation Fields",
@@ -17811,7 +17809,7 @@ I18n.translations["en-US"] = {
   }
 };
 I18n.translations["eo"] = {
-  "a_member_of": "Ano de",
+  "a_member_of_taxon_html": "ano de %{taxon}",
   "about": "Pri",
   "about_charts": "Pri Diagramoj",
   "about_community_taxa": "Pri komunumaj taksonoj",
@@ -19025,7 +19023,7 @@ I18n.translations["eo"] = {
   "zoom_photo": "Zomi Foton"
 };
 I18n.translations["es"] = {
-  "a_member_of": "Un miembro de",
+  "a_member_of_taxon_html": "un miembro de %{taxon}",
   "about": "Acerca de",
   "about_charts": "Acerca de los gráficos",
   "about_community_taxa": "Acerca de los taxones comunitarios",
@@ -19591,7 +19589,6 @@ I18n.translations["es"] = {
   "fluid_layout": "Diseño fluido",
   "follow": "Seguir",
   "frequency": "Frecuencia",
-  "from": "de",
   "from_flickr_facebook_etc": "De Flickr, Facebook, etc.",
   "from_soundcloud": "De Soundcloud",
   "full_screen": "Pantalla completa",
@@ -20038,6 +20035,7 @@ I18n.translations["es"] = {
   "obscured": "Difusa",
   "observation": "Observación",
   "observation_": "observación",
+  "observation_brief_taxon_from_place": "%{taxon} de %{place}",
   "observation_date": "Fecha",
   "observation_field_details": "Detalles del campo de observación",
   "observation_fields": "Campos de observación",
@@ -21287,7 +21285,7 @@ I18n.translations["es"] = {
   "zoom_photo": "Ampliar foto"
 };
 I18n.translations["es-AR"] = {
-  "a_member_of": "Un miembro de",
+  "a_member_of_taxon_html": "un miembro de %{taxon}",
   "about": "Acerca de",
   "about_charts": "Acerca de los gráficos",
   "about_community_taxa": "Acerca de los taxones comunitarios",
@@ -21822,7 +21820,6 @@ I18n.translations["es-AR"] = {
   "fluid_layout": "Diseño fluido",
   "follow": "Seguir",
   "frequency": "Frecuencia",
-  "from": "de",
   "from_flickr_facebook_etc": "De Flickr, Facebook, etc.",
   "from_soundcloud": "De Soundcloud",
   "full_screen": "Pantalla completa",
@@ -22244,6 +22241,7 @@ I18n.translations["es-AR"] = {
   "obscured": "Difusa",
   "observation": "Observación",
   "observation_": "observación",
+  "observation_brief_taxon_from_place": "%{taxon} de %{place}",
   "observation_date": "Fecha",
   "observation_field_details": "Detalles del campo de observación",
   "observation_fields": "Campos de observación",
@@ -23584,7 +23582,7 @@ I18n.translations["es-ES"] = {
   }
 };
 I18n.translations["es-MX"] = {
-  "a_member_of": "Un miembro de",
+  "a_member_of_taxon_html": "un miembro de %{taxon}",
   "about": "Acerca",
   "about_charts": "Acerca de los gráficos",
   "about_community_taxa": "Acerca de los taxa de la comunidad",
@@ -24090,7 +24088,6 @@ I18n.translations["es-MX"] = {
   "fluid_layout": "Diseño fluido",
   "follow": "Seguir",
   "frequency": "Frecuencia",
-  "from": "De",
   "from_flickr_facebook_etc": "De Flickr, Facebook, etc.",
   "from_soundcloud": "De Soundcloud",
   "full_screen": "Pantalla completa",
@@ -25395,7 +25392,7 @@ I18n.translations["es-MX"] = {
   "zoom_photo": "Ampliar foto"
 };
 I18n.translations["et"] = {
-  "a_member_of": "Kuulub:",
+  "a_member_of_taxon_html": "taksoni %{taxon} liige",
   "about": "Info",
   "about_charts": "Graafikutest",
   "about_community_taxa": "Kogukondlikest taksonitest",
@@ -25920,7 +25917,6 @@ I18n.translations["et"] = {
   "fluid_layout": "Voolav ekraani asetus",
   "follow": "Jälgi",
   "frequency": "Sagedus",
-  "from": "Kellelt",
   "from_flickr_facebook_etc": "Lehtedelt Flickr, Facebook, jms.",
   "from_soundcloud": "SoundCloudist",
   "full_screen": "Täisekraan",
@@ -27269,7 +27265,7 @@ I18n.translations["et"] = {
   "zoom_photo": "Suurenda fotot"
 };
 I18n.translations["eu"] = {
-  "a_member_of": "ren kidea",
+  "a_member_of_taxon_html": "honetako kide bat: %{taxon}",
   "about": "Honi buruz:",
   "about_community_taxa": "Komunitate taxoien inguruan",
   "about_conservation_status": "Kontserbazio egoerari buruz",
@@ -27653,7 +27649,6 @@ I18n.translations["eu"] = {
   "flickr_has_no_creative_commons": "Flickr-ek ez du leku horretarako Creative Commons-ekin etiketatutako argazkirik.",
   "follow": "Jarraitu",
   "frequency": "Maiztasuna",
-  "from": "hemendik:",
   "full_screen": "Pantaila osoa",
   "fungi": {
     "one": "onddoa",
@@ -28224,7 +28219,7 @@ I18n.translations["eu"] = {
   "zoom_photo": "Argazkia handitu"
 };
 I18n.translations["fi"] = {
-  "a_member_of": "Jäsen",
+  "a_member_of_taxon_html": "%{taxon} jäsen",
   "about": "Tietoja",
   "about_charts": "Tietoja kaavioista",
   "about_community_taxa": "Tietoja yhteisön taksoneista",
@@ -28788,7 +28783,6 @@ I18n.translations["fi"] = {
   "fluid_layout": "Virtaava asettelu",
   "follow": "Seuraa",
   "frequency": "Lukumäärä",
-  "from": "Keneltä",
   "from_flickr_facebook_etc": "Flickristä, Facebookista, yms.",
   "from_soundcloud": "Soundcloudista",
   "full_screen": "Koko ruutu",
@@ -29193,6 +29187,7 @@ I18n.translations["fi"] = {
   "obscured": "Karkeistettu",
   "observation": "Havainto",
   "observation_": "havainto",
+  "observation_brief_taxon_from_place": "%{taxon} paikasta %{place}",
   "observation_date": "Päivämäärä",
   "observation_field_details": "Havaintokentän tiedot",
   "observation_fields": "Havainnointikentät",
@@ -30491,7 +30486,7 @@ I18n.translations["fil"] = {
   }
 };
 I18n.translations["fr"] = {
-  "a_member_of": "Un membre de",
+  "a_member_of_taxon_html": "un membre de %{taxon}",
   "about": "À propos",
   "about_charts": "À propos des graphiques",
   "about_community_taxa": "À propos des taxons de la communauté",
@@ -31056,7 +31051,6 @@ I18n.translations["fr"] = {
   "fluid_layout": "Mise en page fluide",
   "follow": "Suivre",
   "frequency": "Fréquence",
-  "from": "À partir de",
   "from_flickr_facebook_etc": "Depuis Flickr, Facebook, etc.",
   "from_soundcloud": "Depuis Soundcloud",
   "full_screen": "Plein écran",
@@ -31498,6 +31492,7 @@ I18n.translations["fr"] = {
   "obscured": "Masqué",
   "observation": "Observation",
   "observation_": "observation",
+  "observation_brief_taxon_from_place": "%{taxon} de %{place}",
   "observation_date": "Date",
   "observation_field_details": "Détails du champ de l’observation",
   "observation_fields": "Champs de l’observation",
@@ -33053,7 +33048,7 @@ I18n.translations["gd"] = {
   }
 };
 I18n.translations["gl"] = {
-  "a_member_of": "Un membro de",
+  "a_member_of_taxon_html": "un membro de %{taxon}",
   "about": "Acerca de",
   "about_charts": "Sobre Gráficas",
   "about_community_taxa": "Sobre os taxons da comunidade",
@@ -33403,7 +33398,6 @@ I18n.translations["gl"] = {
   "fluid_layout": "Deseño Fluído",
   "follow": "Seguir",
   "frequency": "Frecuencia",
-  "from": "De",
   "from_flickr_facebook_etc": "Dende Flickr, Facebook, etc.",
   "from_soundcloud": "Dende Soundcloud",
   "full_screen": "Pantalla completa",
@@ -34156,7 +34150,7 @@ I18n.translations["gl"] = {
   "your_observations": "As túas observacións"
 };
 I18n.translations["he"] = {
-  "a_member_of": "שייך ל",
+  "a_member_of_taxon_html": "שייך ל%{taxon}",
   "about": "אודות",
   "about_charts": "גרף סיכום",
   "about_community_taxa": "אודות קהילות של טקסונים",
@@ -34673,7 +34667,6 @@ I18n.translations["he"] = {
   "fluid_layout": "פריסה גמישית",
   "follow": "עקוב",
   "frequency": "תדירות",
-  "from": "מ",
   "from_flickr_facebook_etc": "מתוך Flickr, Facebook, וכו'.",
   "from_soundcloud": "מתוך Soundcloud",
   "full_screen": "מסך מלא",
@@ -35090,6 +35083,7 @@ I18n.translations["he"] = {
   "obscured": "מוסתר",
   "observation": "תצפית",
   "observation_": "הבחנה",
+  "observation_brief_taxon_from_place": "%{taxon} מ%{place}",
   "observation_date": "תאריך",
   "observation_field_details": "פרטי שדה התצפית",
   "observation_fields": "שדות תצפית",
@@ -36248,7 +36242,7 @@ I18n.translations["hu"] = {
   }
 };
 I18n.translations["id"] = {
-  "a_member_of": "Anggota dari",
+  "a_member_of_taxon_html": "anggota dari %{taxon}",
   "about": "Tentang",
   "about_charts": "Tentang Grafik",
   "about_community_taxa": "Tentang komunitas taksa",
@@ -36569,7 +36563,6 @@ I18n.translations["id"] = {
   "flag_this_observation": "Tandai pengamatan ini",
   "flag_this_photo": "Tandai foto ini",
   "flickr_has_no_creative_commons": "Flickr tidak memiliki Creative Commons-lisensi foto dari tempat ini.",
-  "from": "Dari",
   "from_flickr_facebook_etc": "Dari Flickr, Facebook, dll",
   "from_soundcloud": "dari SoundCloud",
   "full_screen": "Layar penuh",
@@ -37240,7 +37233,7 @@ I18n.translations["id"] = {
   "zoom_out": "Perjauh"
 };
 I18n.translations["it"] = {
-  "a_member_of": "Un membro di",
+  "a_member_of_taxon_html": "un membro di %{taxon}",
   "about": "Informazioni",
   "about_charts": "Riguardo i grafici",
   "about_community_taxa": "A proposito dei taxa della community",
@@ -37806,7 +37799,6 @@ I18n.translations["it"] = {
   "fluid_layout": "Layout fluido",
   "follow": "Segui",
   "frequency": "Frequenza",
-  "from": "Da",
   "from_flickr_facebook_etc": "Da Flickr, Facebook, etc.",
   "from_soundcloud": "Da Soundcloud",
   "full_screen": "A schermo intero",
@@ -38256,6 +38248,7 @@ I18n.translations["it"] = {
   "obscured": "Oscurata",
   "observation": "Osservazione",
   "observation_": "osservazione",
+  "observation_brief_taxon_from_place": "%{taxon} in %{place}",
   "observation_date": "Data",
   "observation_field_details": "Dettagli del campo dell'osservazione",
   "observation_fields": "Campi dell'osservazione",
@@ -39627,7 +39620,7 @@ I18n.translations["iw"] = {
   }
 };
 I18n.translations["ja"] = {
-  "a_member_of": "属する分類は",
+  "a_member_of_taxon_html": "%{taxon}の1つ",
   "about": "詳細",
   "about_charts": "図表について",
   "about_community_taxa": "コミュニティー分類群について",
@@ -40148,7 +40141,6 @@ I18n.translations["ja"] = {
   "flickr_has_no_creative_commons": "Flickrにはこの場所からのクリエイティブ・コモンズライセンス写真がありません",
   "fluid_layout": "可変レイアウト",
   "follow": "フォロー",
-  "from": "次の場所から：",
   "from_flickr_facebook_etc": "Flickr、Facebookなどから",
   "from_soundcloud": "Soundcloudから",
   "full_screen": "全画面表示",
@@ -41575,7 +41567,7 @@ I18n.translations["ka"] = {
   }
 };
 I18n.translations["ko"] = {
-  "a_member_of": "소속:",
+  "a_member_of_taxon_html": "%{taxon}에 속함",
   "about": "소개",
   "about_charts": "차트에 대하여",
   "about_community_taxa": "공동체 분류군에 대하여",
@@ -42004,7 +41996,6 @@ I18n.translations["ko"] = {
   "flickr_has_no_creative_commons": "Flickr는 이곳에서 크리에이티브 커먼즈 인증된 사진들이 없습니다.",
   "follow": "팔로우",
   "frequency": "주기",
-  "from": "게시한 사용자:",
   "from_flickr_facebook_etc": "Flickr, Facebook 등으로부터",
   "from_soundcloud": "사운드클라우드로부터",
   "full_screen": "전체 화면",
@@ -42950,7 +42941,7 @@ I18n.translations["ko"] = {
   "zoom_photo": "사진 확대/축소"
 };
 I18n.translations["lb"] = {
-  "a_member_of": "E Member vu(n)",
+  "a_member_of_taxon_html": "e Member vu(n) %{taxon}",
   "about": "Iwwer",
   "about_charts": "Iwwer Diagrammer",
   "about_names": "Iwwer Nimm",
@@ -43270,7 +43261,6 @@ I18n.translations["lb"] = {
   "flagged_": "Markéiert",
   "follow": "Iwwerwaachen",
   "frequency": "Frequenz",
-  "from": "Vum",
   "from_flickr_facebook_etc": "Vu Flickr, Facebook, asw.",
   "full_screen": "Ganzen Ecran",
   "generate_your_stats": "Generéiert Är Statistiken",
@@ -43905,7 +43895,7 @@ I18n.translations["lb"] = {
   "zoom_photo": "Zoom Foto"
 };
 I18n.translations["lt"] = {
-  "a_member_of": "Narys",
+  "a_member_of_taxon_html": " %{taxon} narys",
   "about": "Apie",
   "about_charts": "Apie Diagramas",
   "about_community_taxa": "Apie bendrijos taksonus",
@@ -44474,7 +44464,6 @@ I18n.translations["lt"] = {
   "flags_with_count": "Žymės (%{count})",
   "follow": "Sekti",
   "frequency": "Dažnumas",
-  "from": "Nuo",
   "from_flickr_facebook_etc": "Iš Flickr, Facebook ir t.t.",
   "from_soundcloud": "Iš Soundcloud",
   "full_screen": "Visas Ekranas",
@@ -45999,7 +45988,7 @@ I18n.translations["lt"] = {
   "zoom_photo": "Padidinti nuotrauką"
 };
 I18n.translations["mk"] = {
-  "a_member_of": "Член на",
+  "a_member_of_taxon_html": "член на %{taxon}",
   "about": "За",
   "about_community_taxa": "За таксоните од заедницата",
   "about_names": "За имињата",
@@ -46296,7 +46285,6 @@ I18n.translations["mk"] = {
   "flag_for_curation": "Обележи за згрижување",
   "flag_this_observation": "Обележи го набљудувањево",
   "flag_this_photo": "Обележи ја сликава",
-  "from": "Од",
   "fungi": {
     "one": "габа",
     "other": "габи"
@@ -46966,7 +46954,7 @@ I18n.translations["ms"] = {
   }
 };
 I18n.translations["nb"] = {
-  "a_member_of": "Et medlem av",
+  "a_member_of_taxon_html": "et medlem av %{taxon}",
   "about": "Om",
   "about_charts": "Om diagrammer",
   "about_community_taxa": "Om fellesskapstaksa",
@@ -47531,7 +47519,6 @@ I18n.translations["nb"] = {
   "fluid_layout": "Flytende visning",
   "follow": "Følg",
   "frequency": "Frekvens",
-  "from": "Fra",
   "from_flickr_facebook_etc": "Fra Flickr, Facebook, osv.",
   "from_soundcloud": "Fra Soundcloud",
   "full_screen": "Fullskjerm",
@@ -47981,6 +47968,7 @@ I18n.translations["nb"] = {
   "obscured": "Tilslørt",
   "observation": "Observasjon",
   "observation_": "observasjon",
+  "observation_brief_taxon_from_place": "%{taxon} fra %{place}",
   "observation_date": "Dato",
   "observation_field_details": "Detaljer for observasjonsfelt",
   "observation_fields": "Observasjonsfelt",
@@ -49215,7 +49203,7 @@ I18n.translations["nb"] = {
   "zoom_photo": "Zoom bilde"
 };
 I18n.translations["nl"] = {
-  "a_member_of": "Een lid van",
+  "a_member_of_taxon_html": "een lid van %{taxon}",
   "about": "Over",
   "about_charts": "Over grafieken",
   "about_community_taxa": "Over gemeenschapstaxa",
@@ -49781,7 +49769,6 @@ I18n.translations["nl"] = {
   "fluid_layout": "Fluid opmaak",
   "follow": "Volg",
   "frequency": "Frequentie",
-  "from": "Van",
   "from_flickr_facebook_etc": "Van Flickr, Facebook, etc.",
   "from_soundcloud": "Van Soundcloud",
   "full_screen": "Volledig scherm",
@@ -50231,6 +50218,7 @@ I18n.translations["nl"] = {
   "obscured": "Verborgen",
   "observation": "Waarneming",
   "observation_": "waarneming",
+  "observation_brief_taxon_from_place": "%{taxon} uit %{place}",
   "observation_date": "Datum",
   "observation_field_details": "waarnemingsveld details",
   "observation_fields": "Waarnemingsvelden",
@@ -51658,7 +51646,7 @@ I18n.translations["nn"] = {
   }
 };
 I18n.translations["oc"] = {
-  "a_member_of": "Un membre de",
+  "a_member_of_taxon_html": "un membre de %{taxon}",
   "about": "A prepaus",
   "about_charts": "A prepaus dels grafics",
   "about_community_taxa": "A prepaus dels taxons de la comunautat",
@@ -51939,7 +51927,6 @@ I18n.translations["oc"] = {
   "find_photos": "Recercar de fòtos",
   "finished": "Acabat",
   "flag": "Marcar",
-  "from": "De",
   "full_screen": "Ecran complet",
   "fungi": {
     "one": "campairòl",
@@ -52389,7 +52376,7 @@ I18n.translations["oc"] = {
   }
 };
 I18n.translations["pl"] = {
-  "a_member_of": "Należy do",
+  "a_member_of_taxon_html": "należy do %{taxon}",
   "about": "Informacje",
   "about_charts": "O wykresach",
   "about_community_taxa": "O taksonach społeczności",
@@ -52978,7 +52965,6 @@ I18n.translations["pl"] = {
   "flickr_has_no_creative_commons": "Flickr nie posiada zdjęć na licencji Creative Commons z tego miejsca.",
   "follow": "Obserwuj",
   "frequency": "Częstotliwość",
-  "from": "Od",
   "from_flickr_facebook_etc": "Z Flickra, Facebooka itd.",
   "from_soundcloud": "Z Soundclouda",
   "full_screen": "Pełny ekran",
@@ -54380,7 +54366,7 @@ I18n.translations["pl"] = {
   "zoom_photo": "Powiększ zdjęcie"
 };
 I18n.translations["pt"] = {
-  "a_member_of": "Um membro de",
+  "a_member_of_taxon_html": "um membro de %{taxon}",
   "about": "Acerca de",
   "about_charts": "Acerca dos gráficos",
   "about_community_taxa": "Sobre os táxons da comunidade",
@@ -54880,7 +54866,6 @@ I18n.translations["pt"] = {
   "fluid_layout": "Composição fluída",
   "follow": "Seguir",
   "frequency": "Frequência",
-  "from": "De",
   "from_flickr_facebook_etc": "Do Flickr, Facebook, etc.",
   "from_soundcloud": "Do Soundcloud",
   "full_screen": "Ecrã inteiro",
@@ -55812,7 +55797,7 @@ I18n.translations["pt"] = {
   "zoom_photo": "Ampliar Foto"
 };
 I18n.translations["pt-BR"] = {
-  "a_member_of": "Um membro de",
+  "a_member_of_taxon_html": "um membro de %{taxon}",
   "about": "Sobre",
   "about_charts": "Sobre os Gráficos",
   "about_community_taxa": "Sobre os táxons da comunidade",
@@ -56369,7 +56354,6 @@ I18n.translations["pt-BR"] = {
   "fluid_layout": "Layout Fluído",
   "follow": "Seguir",
   "frequency": "Frequência",
-  "from": "De",
   "from_flickr_facebook_etc": "Do Flickr, Facebook, etc.",
   "from_soundcloud": "Do Soundcloud",
   "full_screen": "Tela cheia",
@@ -57941,7 +57925,7 @@ I18n.translations["pt-BR"] = {
   "zoom_photo": "Ampliar Foto"
 };
 I18n.translations["ru"] = {
-  "a_member_of": "Член",
+  "a_member_of_taxon_html": "член %{taxon}",
   "about": "Подробно",
   "about_charts": "О Диаграммах",
   "about_community_taxa": "О таксонах сообщества",
@@ -58547,7 +58531,6 @@ I18n.translations["ru"] = {
   "fluid_layout": "Гибкая разметка",
   "follow": "Подписаться на",
   "frequency": "Частота наблюдения",
-  "from": "Из",
   "from_flickr_facebook_etc": "Из Flickr, Facebook и т.д.",
   "from_soundcloud": "Из Soundcloud",
   "full_screen": "Полный экран",
@@ -58999,6 +58982,7 @@ I18n.translations["ru"] = {
   "obscured": "Скрытое",
   "observation": "Наблюдение",
   "observation_": "наблюдение",
+  "observation_brief_taxon_from_place": "%{taxon} из %{place}",
   "observation_date": "Дата",
   "observation_field_details": "Детали поля наблюдения",
   "observation_fields": "Поля наблюдения",
@@ -60323,7 +60307,7 @@ I18n.translations["ru"] = {
   "zoom_photo": "Увеличить фото"
 };
 I18n.translations["sk"] = {
-  "a_member_of": "Člen",
+  "a_member_of_taxon_html": "člen %{taxon}",
   "about": "O projekte",
   "about_charts": "O grafoch",
   "about_community_taxa": "O komunitných taxónoch",
@@ -60772,7 +60756,6 @@ I18n.translations["sk"] = {
   "fluid_layout": "Premenlivé rozloženie",
   "follow": "Sledovať",
   "frequency": "Frekvencia",
-  "from": "Od",
   "from_flickr_facebook_etc": "Z Facebooku, Flickr atď.",
   "from_soundcloud": "Zo Soundcloud",
   "full_screen": "Celá obrazovka",
@@ -61996,7 +61979,7 @@ I18n.translations["sl"] = {
   }
 };
 I18n.translations["sq"] = {
-  "a_member_of": "Një anëtar i",
+  "a_member_of_taxon_html": "një anëtar i %{taxon}",
   "about": "Për",
   "about_charts": "Për grafikët",
   "about_community_taxa": "Për taxa komunitetin",
@@ -62478,7 +62461,6 @@ I18n.translations["sq"] = {
   "fluid_layout": "Ekspozimi i lëngshëm",
   "follow": "Ndjek",
   "frequency": "Shpeshtësia",
-  "from": "Prej",
   "from_flickr_facebook_etc": "Nga Flickr, Facebook, etc.",
   "from_soundcloud": "Nga Soundcloud",
   "full_screen": "Ekran i plotë",
@@ -63258,7 +63240,7 @@ I18n.translations["sq"] = {
   "zoom_photo": "Zmadho foton"
 };
 I18n.translations["sv"] = {
-  "a_member_of": "En medlem av",
+  "a_member_of_taxon_html": "en medlem i %{taxon}",
   "about": "Om",
   "about_charts": "Om diagram",
   "about_community_taxa": "Om gemenskapstaxa",
@@ -63824,7 +63806,6 @@ I18n.translations["sv"] = {
   "fluid_layout": "Responsiv design",
   "follow": "Följ",
   "frequency": "Frekvens",
-  "from": "Från",
   "from_flickr_facebook_etc": "Från Flickr, Facebook, etc.",
   "from_soundcloud": "Från Soundcloud",
   "full_screen": "Helskärm",
@@ -64274,6 +64255,7 @@ I18n.translations["sv"] = {
   "obscured": "Diffuserad",
   "observation": "Observation",
   "observation_": "observation",
+  "observation_brief_taxon_from_place": "%{taxon} från %{place}",
   "observation_date": "Datum",
   "observation_field_details": "Observationsfältsdetaljer",
   "observation_fields": "Observationsfält",
@@ -65522,7 +65504,7 @@ I18n.translations["sv"] = {
   "zoom_photo": "Zooma foto"
 };
 I18n.translations["tr"] = {
-  "a_member_of": "Şunun bir üyesi",
+  "a_member_of_taxon_html": "%{taxon} sınıfının bir üyesi",
   "about": "Hakkında",
   "about_charts": "Grafikler Hakkında",
   "about_community_taxa": "Topluluk sınıfları hakkında",
@@ -66088,7 +66070,6 @@ I18n.translations["tr"] = {
   "fluid_layout": "Kayma Düzeni",
   "follow": "Takip Et",
   "frequency": "Sıklık",
-  "from": "Şuradan",
   "from_flickr_facebook_etc": "Flickr, Facebook vb'den.",
   "from_soundcloud": "Soundcloud'dan",
   "full_screen": "Tam ekran",
@@ -66538,6 +66519,7 @@ I18n.translations["tr"] = {
   "obscured": "Gizlenmiş",
   "observation": "Gözlem",
   "observation_": "gözlem",
+  "observation_brief_taxon_from_place": "%{place} yerinden %{taxon}",
   "observation_date": "Tarih",
   "observation_field_details": "Gözlem alanı detayları",
   "observation_fields": "Gözlem Alanları",
@@ -68159,7 +68141,7 @@ I18n.translations["vi"] = {
   }
 };
 I18n.translations["zh-CN"] = {
-  "a_member_of": "会员属于",
+  "a_member_of_taxon_html": "%{taxon} 的成员",
   "about": "关于",
   "about_charts": "关于图表",
   "about_community_taxa": "关于社区分类群",
@@ -68664,7 +68646,6 @@ I18n.translations["zh-CN"] = {
   "fluid_layout": "流动布局",
   "follow": "关注",
   "frequency": "频率",
-  "from": "来自",
   "from_flickr_facebook_etc": "来自Flickr、Facebook等",
   "from_soundcloud": "来自Soundcloud",
   "full_screen": "全屏",
@@ -70039,7 +70020,7 @@ I18n.translations["zh-HK"] = {
   }
 };
 I18n.translations["zh-TW"] = {
-  "a_member_of": "成員隸屬於",
+  "a_member_of_taxon_html": "%{taxon} 之一員",
   "about": "關於",
   "about_charts": "關於圖表",
   "about_community_taxa": "關於社群之分類群",
@@ -70584,7 +70565,6 @@ I18n.translations["zh-TW"] = {
   "fluid_layout": "流動佈局",
   "follow": "追蹤",
   "frequency": "頻率",
-  "from": "來自",
   "from_flickr_facebook_etc": "來自 Flickr、臉書、或其它。",
   "from_soundcloud": "來自 Soundcloud",
   "full_screen": "全螢幕",
@@ -71031,6 +71011,7 @@ I18n.translations["zh-TW"] = {
   "obscured": "不清",
   "observation": "觀察",
   "observation_": "觀察",
+  "observation_brief_taxon_from_place": "位於 %{place} 的 %{taxon}",
   "observation_date": "日期",
   "observation_field_details": "觀察欄位詳細內容",
   "observation_fields": "觀察欄位",

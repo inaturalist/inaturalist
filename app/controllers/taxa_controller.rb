@@ -17,14 +17,14 @@ class TaxaController < ApplicationController
   include Shared::WikipediaModule
   
   before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms, :browse_photos]
-  before_filter :authenticate_user!, :only => [:edit_photos, :update_photos,
+  before_filter :authenticate_user!, :only => [:update_photos,
     :set_photos,
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
     :flickr_photos_tagged, :add_places, :synonyms]
   before_filter :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms, :graft]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
-    :children, :graft, :describe, :edit_photos, :update_photos, :set_photos, :edit_colors,
+    :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
   before_filter :taxon_curator_required, :only => [:edit, :update,
@@ -807,11 +807,6 @@ class TaxaController < ApplicationController
       end
       format.json { render json: @photos }
     end
-  end
-  
-  def edit_photos
-    @photos = @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}
-    render :layout => false
   end
   
   def add_places

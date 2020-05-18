@@ -29,25 +29,6 @@
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @title %>">
   <meta property="og:url" content="<%= request.original_url %>"/>
-  <%-
-    desc = ""
-    unless @iconic_taxon_counts.blank?
-      desc += commas_and(@iconic_taxon_counts.map {|id,c| 
-        if @iconic_taxon_counts.size > 1 && (id == Taxon::ICONIC_TAXA_BY_NAME['Animalia'])
-          t("all_taxa.x_other_animals", :count => c)
-        else
-          t("all_taxa.x_#{Taxon::ICONIC_TAXA_BY_ID[id].name.downcase}",
-            :count => c, 
-            :default => default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).downcase.pluralize
-          ).downcase
-        end
-      })
-    end
-    unless @place_name_counts.blank?
-      desc += " #{t(:from).downcase} #{commas_and @place_name_counts.uniq{|n,c| c}.map{|n,c| n.split('-').first.split(',').first}}"
-    end
-  -%>
-  <meta property="og:description" content="<%= desc %>">
   <%- photo_observations = @observations.select{|o| o.observation_photos_count > 0}.sort_by{|o| [o.comments_count.to_i, o.id]}[0..3] %>
   <% if photo_obs = photo_observations.last -%>
     <% if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>

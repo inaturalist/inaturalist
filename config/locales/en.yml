@@ -175,7 +175,6 @@ en:
     A default taxon name will automatically be created from the scientific name attribute of this taxon. 
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   a_flag_for_x: "a flag for %{x}"
-  a_member_of: "A member of"
   a_member_of_taxon_html: "a member of %{taxon}"
   # Used as a noun phrase in sentences like "kueda added a comment to *an
   # observation*". %{resource} could be any of the following:
@@ -631,7 +630,6 @@ en:
   assessments: assessments
   associations: Associations
   atlas_for_taxon_html: Atlas for %{taxon}
-  at_time: "at %{time}"
   # As in the Atom Syndication Format:
   # https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   # an Atom representation of the content shown on the current page
@@ -834,7 +832,6 @@ en:
   choose_a_list_above: Choose a list above.
   choose_a_place: Choose a place
   choose_a_taxon: Choose a taxon (optional)
-  choose_cc_licensed_photos_html: 'Choose <a href="http://creativecommons.org/">open</a>-licensed photos from other sites or pick from %{site_name} observations. Try to choose images that <em>show diagnostic features</em> and <em>look good as icons</em>.  The <em>first is the default</em>.'
   choose_columns: Choose columns
   choose_file: Choose file
   choose_files: Choose files
@@ -1518,7 +1515,6 @@ en:
     The forum is a place to discuss iNat itself, including help & support,
     feature requests, bug reports, announcements, and more.
   frequency: Frequency
-  from: From
   from_a_place: from a place
   from_eol_collection: From EOL collection
   from_flickr_facebook_etc: From Flickr, Facebook, etc.
@@ -1526,8 +1522,6 @@ en:
   from_photos: From photos
   from_place: From place
   from_soundcloud: From Soundcloud
-  from_your_site_observations: "From %{site_name} observations"
-  from_licensed_site_observations: "From licensed %{site_name} observations"
   full_screen: Full screen
   fungi:
     one: fungus
@@ -2541,7 +2535,6 @@ en:
   offline_access_enabled: Offline access enabled
   old_observation_form: Old observation form (deprecated)
   ok: "OK"
-  on_date: "at %{date}"
   on_day: "on"
   onboarding:
       observe_panel_title: Let's Get Started by Posting Some Observations

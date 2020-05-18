@@ -54,7 +54,7 @@
   <%= form_tag(:action => 'invite_send') do %>
   
   <div class="clear field">
-    <%= label :email, :sender_name, t(:from) %>
+    <%= label :email, :sender_name, t( "views.messages.from" ) %>
     <%= text_field(:email, :sender_name, :value => @sending_user_real_name, :class => 'text') %>
   </div>
   
