@@ -1175,6 +1175,7 @@ it:
   editing_project: Modifica di %{project} in corso
   editing_project_asset: Modifica in corso della risorsa del progetto per
   editing_subscription_to_x_html: "Modifica in corso dell'iscrizione a %{x}"
+  editing_taxon: Modifica %{taxon}
   editing_taxon_link: Modifica in corso del link del Taxon
   editing_taxon_name_for_taxon_html: Modifica il Nome del Taxon "%{name}" di %{taxon}
   editing_taxon_range: Modifica in corso dell'areale del Taxon
@@ -1448,6 +1449,7 @@ it:
   got_it!: Capito!
   got_your_data_somewhere_else?: Avete ottenuto i dati in un altro modo? Vi possiamo aiutare.
   graft: Innesta
+  graft_taxon: Innesta %{taxon}
   grafting_attemps_to_insert_this_taxon: L'innesto prova a inserire il taxon nel nostro albero tassonomico, cercando di trovare un taxon parentale o creando tutti i necessari taxa intermedi al fine di collegarlo ad un taxon esistente di livello superiore
   grant_role: "%{grant} %{role} ruolo"
   grid: Griglia
@@ -3294,6 +3296,8 @@ it:
   scale_colon: "Scala:"
   schemes: Schemi
   schemes_including: Schemi che includono
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Nome Scientifico
   search: Cerca
   search_all_fields: cerca in tutti i campi
   search_by_name_or_email: Cerca per nome o email
@@ -5040,6 +5044,8 @@ it:
           È un modo divertente per introdurre le persone alla biodiversità e nello stesso tempo raccogliere dati utili.
           </p>
         change_admin_desc: Scegli uno dei curatori del progetto quale nuovo amministratore.
+        change_owner_alert: |
+          Questo rimuoverà la tua possibilità di eliminare questo progetto o di trasferire nuovamente la proprietà. Vuoi procedere?
         cover_desc: "Immagine del banner, opzionale, che apparirà in alto nella pagina del tuo progetto. Deve essere larga 950 px e alta meno di 400 px."
         custom_project_fields_means: "Personalizza il banner del progetto, aggiungi contenuti, e modifica il codice CSS."
         end_time_desc: "Orario di fine del tuo bioblitz. Deve essere a meno di un anno dell'orario di inizio."
@@ -5050,6 +5056,8 @@ it:
           Sembra che questo progetto può essere convertito in un nuovo <a href="%{url}">Collection Project</a>.
         last_aggregated_at_desc: |
           Ora in cui l'ultimo aggregatore ha finito di aggiungere le osservazioni al progetto
+        #Label for button to make another user the owner of a project
+        make_owner: Rendi Proprietario
         no_curators: |
           Non esistono curatori del progetto. Se vuoi rendere qualcuno un amministratore, questo deve prima unirsi al progetto e poi tu devi renderlo curatore.
         observation_aggregation_desc_html: |
@@ -5885,9 +5893,11 @@ it:
       invalid: non è valido
       less_than: deve essere minore di %{count}
       less_than_or_equal_to: deve essere minore o uguale a %{count}
+      new_project_owner_must_be_a_manager: Il nuovo proprietario del progetto deve essere un amministratore
       not_a_number: non è un numero
       not_an_integer: deve essere un numero intero
       odd: deve essere dispari
+      only_project_owner_can_change_project_owner: Solo il proprietario del progetto può cambiare il proprietario del progetto
       record_invalid: 'Validazione fallita: %{errors}'
       requires_privilege_speech: |
         devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
@@ -6021,9 +6031,11 @@ it:
         invalid: non è valido
         less_than: deve essere meno di %{count}
         less_than_or_equal_to: deve essere minore o uguale a %{count}
+        new_project_owner_must_be_a_manager: Il nuovo proprietario del progetto deve essere un amministratore
         not_a_number: non è un numero
         not_an_integer: deve essere un numero intero
         odd: deve essere dispari
+        only_project_owner_can_change_project_owner: Solo il proprietario del progetto può cambiare il proprietario del progetto
         record_invalid: 'Validazione fallita: %{errors}'
         requires_privilege_speech: devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
         requires_privilege_organizer: devi avere 50 osservazioni verificabili per fare questo
@@ -6161,9 +6173,11 @@ it:
         invalid: non è valido
         less_than: deve essere meno di %{count}
         less_than_or_equal_to: deve essere minore o uguale a %{count}
+        new_project_owner_must_be_a_manager: Il nuovo proprietario del progetto deve essere un amministratore
         not_a_number: non è un numero
         not_an_integer: deve essere un numero intero
         odd: deve essere dispari
+        only_project_owner_can_change_project_owner: Solo il proprietario del progetto può cambiare il proprietario del progetto
         record_invalid: 'Validazione fallita: %{errors}'
         requires_privilege_speech: devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
         requires_privilege_organizer: devi avere 50 osservazioni verificabili per fare questo
