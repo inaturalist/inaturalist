@@ -49,7 +49,7 @@ module DarwinCore
       end
 
       def locality
-        place_taxon_names.map{|ptn| ptn.place.display_name}.join( " | " )
+        place_taxon_names.map{|ptn| ptn.place.try(:display_name)}.compact.join( " | " )
       end
 
       def countryCode
@@ -57,7 +57,9 @@ module DarwinCore
         if ( locale_pieces = locale_for_lexicon.split("-") ) && locale_pieces[1]
           codes << locale_pieces[1]
         end
-        codes += place_taxon_names.map{|ptn| ptn.place.admin_level == Place::COUNTRY_LEVEL && ptn.place.code}
+        codes += place_taxon_names.select{|ptn|
+          ptn.place && ptn.place.admin_level == Place::COUNTRY_LEVEL
+        }.map{|ptn| ptn.place.code}
         codes.select{|c| !c.blank?}.join( "," )
       end
 
