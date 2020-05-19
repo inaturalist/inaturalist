@@ -85,7 +85,6 @@ zh-CN:
     一个来自归属于此分类的学名的默认分类名称将被创建。
     当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
   a_flag_for_x: "用于%{x}的旗帜"
-  a_member_of: "会员属于"
   a_member_of_taxon_html: "%{taxon} 的成员"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -448,7 +447,6 @@ zh-CN:
   assessment_x: "%{assessment} 评定"
   assessments: 评定
   associations: 关联
-  at_time: "在 %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -632,7 +630,6 @@ zh-CN:
   choose_a_list_above: 在上方选择一个列表。
   choose_a_place: 选择一个地方
   choose_a_taxon: 选择一个分类单元（可选）
-  choose_cc_licensed_photos_html: '从其他网站选择<a href="http://creativecommons.org/">开放</a>授权的照片，或从 %{site_name} 的观察中挑选一个。尝试选择<em>展示诊断特性</em>并且<em>看起来适合图标</em>的照片。<em>第一个为默认照片</em>。'
   choose_columns: 选择列
   choose_file: 选择文件
   choose_files: 选择文件
@@ -1153,7 +1150,6 @@ zh-CN:
   formatting: 格式化
   forgot_your_password: 忘记密码？
   frequency: 频率
-  from: 来自
   from_a_place: 来自一个地方
   from_eol_collection: 来自EOL收藏
   from_flickr_facebook_etc: 来自Flickr、Facebook等
@@ -1161,8 +1157,6 @@ zh-CN:
   from_photos: 来自照片
   from_place: 来自地方
   from_soundcloud: 来自Soundcloud
-  from_your_site_observations: "来自 %{site_name} 观察"
-  from_licensed_site_observations: "来自%{site_name}已协议许可的观察记录"
   full_screen: 全屏
   fungi:
     other: 真菌
@@ -1954,7 +1948,6 @@ zh-CN:
   offline_access_enabled: 启用离线访问
   old_observation_form: 旧观察表单（已弃用）
   ok: "确定"
-  on_date: "于 %{date}"
   on_day: "于"
   onboarding:
     observe_panel_title: 让我们开始发表一些观察吧
