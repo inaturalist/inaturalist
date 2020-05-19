@@ -201,7 +201,6 @@ ru:
   a_default_taxon_name_will_automatically_created: |
     Название таксона по умолчанию будет автоматически создано из атрибута научного названия этого таксона. Когда вы сохраните этот новый таксон, вы сможете добавлять здесь другие названия  (народные названия, устаревшие научные названия и т.д.).
   a_flag_for_x: "флаг для %{x}"
-  a_member_of: "Член"
   a_member_of_taxon_html: "член %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -658,7 +657,6 @@ ru:
   assessments: оценки
   associations: Ассоциации
   atlas_for_taxon_html: Атлас для %{taxon}
-  at_time: "в %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -854,7 +852,6 @@ ru:
   choose_a_list_above: Выберите список из приведённых выше
   choose_a_place: Выберите место
   choose_a_taxon: Выберите таксон (опционально)
-  choose_cc_licensed_photos_html: 'Выберите <a href="http://creativecommons.org/">открыть</a>-лицензированные фото с других сайтов или укажите наблюдения с %{site_name}. Постарайтесь выбрать изображения, которые <em>показывают диагностические особенности</em> и <em>выглядят так хорошо, как иконки</em>. <em>По умолчанию используется первое из изображений</em>.'
   choose_columns: Выберите столбцы
   choose_file: Выберите файл
   choose_files: Выберите файлы
@@ -1514,7 +1511,6 @@ ru:
   forum_desc: |
     Форум - это место для обсуждения самого iNat, включая помощь и поддержку, пожелания, отчеты об ошибках, объявления и многое другое.
   frequency: Частота наблюдения
-  from: Из
   from_a_place: в месте
   from_eol_collection: Из коллекции EOL
   from_flickr_facebook_etc: Из Flickr, Facebook и т.д.
@@ -1522,8 +1518,6 @@ ru:
   from_photos: Из фотографий
   from_place: Из места
   from_soundcloud: Из Soundcloud
-  from_your_site_observations: "Из наблюдений %{site_name}"
-  from_licensed_site_observations: "Из лицензированных наблюдений %{site_name}"
   full_screen: Полный экран
   fungi:
     one: гриб
@@ -2490,7 +2484,6 @@ ru:
   offline_access_enabled: Включён автономный доступ
   old_observation_form: Старая форма наблюдения (устарела)
   ok: "ОК"
-  on_date: "на %{date}"
   on_day: ", "
   onboarding:
     observe_panel_title: Давайте начнём публиковать некоторые наблюдения
