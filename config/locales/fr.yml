@@ -124,7 +124,6 @@ fr:
     Un nom de taxon par défaut sera créé automatiquement à partir de l’attribut du nom scientifique de ce taxon. 
     Quand vous aurez enregistré ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms communs, noms scientifiques obsolètes, etc.).
   a_flag_for_x: "un repère pour %{x}"
-  a_member_of: "Un membre de"
   a_member_of_taxon_html: "un membre de %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -554,7 +553,6 @@ fr:
   assessments: évaluations
   associations: Associations
   atlas_for_taxon_html: Atlas pour %{taxon}
-  at_time: "à %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -751,7 +749,6 @@ fr:
   choose_a_list_above: Choisisser une liste ci-dessus.
   choose_a_place: Choisissez un lieu
   choose_a_taxon: Choisissez un taxon (facultatif)
-  choose_cc_licensed_photos_html: "Choisissez <a href=\"http://creativecommons.org/\">ouvrir</a> les photos sous\nlicence des autres sites ou sélectionnez à partir des observations\nd’%{site_name}. Essayez de choisir des images qui <em>affichent des\nfonctionnalités de diagnostic</em> et <em>s’affichent bien comme\nicônes</em>.  La <em>première est l’icône par défaut</em>."
   choose_columns: Choisir les colonnes
   choose_file: Choisir le fichier
   choose_files: Choisir les fichiers
@@ -1413,7 +1410,6 @@ fr:
   forum_desc: |
     Le forum est un endroit pour discuter de iNat lui-même, y compris pour l’aide et le soutien, les demandes de fonctionnalité, les rapports de bogues, les annonces, et autres.
   frequency: Fréquence
-  from: À partir de
   from_a_place: À partir d’un lieu
   from_eol_collection: À partir de la collection de l’EdlV
   from_flickr_facebook_etc: Depuis Flickr, Facebook, etc.
@@ -1421,8 +1417,6 @@ fr:
   from_photos: À partir des photos
   from_place: À partir du lieu
   from_soundcloud: Depuis Soundcloud
-  from_your_site_observations: "À partir ses observations d’%{site_name}"
-  from_licensed_site_observations: "À partir des observations sous licence  d’%{site_name}"
   full_screen: Plein écran
   fungi:
     one: champignon
@@ -2371,7 +2365,6 @@ fr:
   offline_access_enabled: Accès hors ligne activé
   old_observation_form: Ancien formulaire d’observation (désuet)
   ok: "OK"
-  on_date: "le %{date}"
   on_day: "le"
   onboarding:
     observe_panel_title: Commençons par publier quelques observations
