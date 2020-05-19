@@ -94,7 +94,6 @@ el:
     Μια προεπιλεγμένη ονομασία taxon θα δημιουργηθεί αυτόματα από την επιστημονική ονομασία αυτού του taxon.
     Όταν θα έχετε αποθηκεύσει αυτό το νέο taxon, θα έχετε τη δυνατότητα να προσθέσετε άλλες ονομασίες εδώ (κοινές ονομασίες, παρωχημένες επιστημονικές ονομασίες κλπ.).
   a_flag_for_x: "μια αναφορά για το  %{x}"
-  a_member_of: "Ένα μέλος του"
   a_member_of_taxon_html: "Ένα μέλος του %{taxon}"
   about: Σχετικά
   about_blocking: Σχετικά με την φραγή
@@ -514,7 +513,6 @@ el:
   assessments: αποτιμήσεις
   associations: Συσχετισμοί
   atlas_for_taxon_html: Άτλας για %{taxon}
-  at_time: "στις %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -711,7 +709,6 @@ el:
   choose_a_list_above: Επιλέξτε μια λίστα παραπάνω.
   choose_a_place: Επιλογή ενός τόπου
   choose_a_taxon: Επιλογή ενός taxon (προαιρετικό)
-  choose_cc_licensed_photos_html: 'Διαλέξτε <a href="http://creativecommons.org/">άνοιγμα</a>φωτογραφίες με άδεια χρήσης από άλλους ιστοτόπους ή διαλέξτε από τις παρατηρήσεις του%{site_name}. Προσπαθήστε να επιλέξετε εικόνες που <em>δείχνουν διαγνωστικά χαρακτηριστικά</em>και<em>φαίνονται καλά ως εικονίδια.</em>.Το πρώτο <em> είναι και το προεπιλεγμένο</em>.'
   choose_columns: Επιλογή στηλών
   choose_file: Επιλογή αρχείου
   choose_files: Επιλογή αρχείων
@@ -1358,7 +1355,6 @@ el:
   forum_desc: |
     Το φόρουμ είναι ένα μέρος συζήτησης για το ίδιο το iNat, το οποίο περιλαμβάνει βοήθεια και υποστήριξη, αιτήματα για νέα χαρακτηριστικά, αναφορές σφαλμάτων, ανακοινώσεις και πολλά άλλα.
   frequency: Συχνότητα
-  from: Από
   from_a_place: από έναν τόπο
   from_eol_collection: Απο την συλλογή της EOL
   from_flickr_facebook_etc: Από το Flickr, Facebook, κτλ.
@@ -1366,8 +1362,6 @@ el:
   from_photos: από φωτογραφίες
   from_place: Από τόπο
   from_soundcloud: Από το Soundcloud
-  from_your_site_observations: "Από %{site_name} παρατηρήσεις"
-  from_licensed_site_observations: "Από αδειοδοτημένες %{site_name} παρατηρήσεις"
   full_screen: Πλήρης οθόνη
   fungi:
     one: μήκυτας
@@ -2312,7 +2306,6 @@ el:
   offline_access_enabled: Η πρόσβαση εκτός σύνδεσης ενεργοποιήθηκε
   old_observation_form: Παλιά παρατήρηση από (παρωχημένο)
   ok: "Εντάξει"
-  on_date: "στις %{date}"
   on_day: "εντός"
   onboarding:
     observe_panel_title: Ας ξεκινήσουμε αναρτώντας κάποιες παρατηρήσεις
