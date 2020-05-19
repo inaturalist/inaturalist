@@ -123,7 +123,6 @@ gl:
   a_default_taxon_name_will_automatically_created: |
     Crearase automaticamente un nome por defecto do taxón a partir do atributo do nome científico deste taxón. Cando teñas gardado este taxón, poderás engadir outros nomes aquí (nomes comúns, nomes científicos actualizados, etc.).
   a_flag_for_x: "unha marca de %{x}"
-  a_member_of: "Un membro de"
   a_member_of_taxon_html: "un membro de %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -564,7 +563,6 @@ gl:
   assessments: avaliacións
   associations: Asociacións
   atlas_for_taxon_html: Atlas para %{taxon}
-  at_time: "en %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -761,7 +759,6 @@ gl:
   choose_a_list_above: Seleccionar unha lista arriba
   choose_a_place: Selecciona un lugar
   choose_a_taxon: Escolle unha especie ou grupo (opcional)
-  choose_cc_licensed_photos_html: 'Atopar fotos con licenza de <a href="http://creativecommons.org/">CC</a> en Flickr ou seleccionalas das túas observacións en %{site_name}. Proba a seleccionar imaxes que <em>mostren características de diagnóstico</em> e <em> que se vexan ben coma iconas</em>. A <em>primeira aparece por defecto</em>.'
   choose_columns: Escolle as columnas
   choose_file: Escolle un ficheiro
   choose_files: Escolle os ficheiros
@@ -1420,7 +1417,6 @@ gl:
   forum_desc: |
     O foro é un lugar para falar de INat, incluíndo axuda e apoio, novas características, informes de erros, anuncios e máis.
   frequency: Frecuencia
-  from: De
   from_a_place: dun lugar
   from_eol_collection: Da Colección EOL
   from_flickr_facebook_etc: Dende Flickr, Facebook, etc.
@@ -1428,8 +1424,6 @@ gl:
   from_photos: De fotos
   from_place: dun lugar
   from_soundcloud: Dende Soundcloud
-  from_your_site_observations: "Observacións de %{site_name}"
-  from_licensed_site_observations: "Observacións de %{site_name} licenza"
   full_screen: Pantalla completa
   fungi:
     one: Fungo
@@ -2394,7 +2388,6 @@ gl:
   offline_access_enabled: Acesso sen conexión activado
   old_observation_form: Formularios de observacións antigas (obsoleto)
   ok: "Aceptar"
-  on_date: "en %{date}"
   on_day: "O"
   onboarding:
     observe_panel_title: Imos Comezar Engadindo Algunhas Observacións
@@ -4323,7 +4316,10 @@ gl:
   you_joined_this_project: '¡Unícheste a este proxecto!'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un membro do proxecto para poder facer iso.
   you_must_choose_an_observation_field: Debes escoller un campo de observación
+  you_must_fill_out_the_required_fields: Debes cumprimentar os campos obrigatorios
+  you_must_have_a_header_row: Debes ter unha fila de cabeceira
   you_must_select_a_place_to_merge_with: Debes seleccionar un lugar para combinar.
+  you_must_select_at_least_one_taxon: Debes seleccionar polo menos un taxon
   you_must_select_dates_to_compare: Debes seleccionar as datas que queres comparar
   you_must_specify_and_confirm_a_new_password: Debes especificar e confirmar un novo contrasinal.
   you_need_to_have_linked_flickr_account: Debes ter unha conta de Flickr vinculada para etiquetar as túas fotos.
@@ -4338,31 +4334,58 @@ gl:
   you_sure_delete_project?: '¿Seguro que queres eliminar este proxecto?'
   you_sure_delete_this_observation: "Estás seguro de que desexas eliminar esta observación?"
   you_sure_remove_taxon_from?: "Estás seguro de que desexas quitar este taxón de %{list}?"
+  you_unlinked_your_provider_account: "Desvinculaches a túa conta de %{provider}"
   youll_need_to_link: Deberás vincular
   youve_joined_the_x_project: "Unícheste ao proxecto %{project_invitation} e engadíronse as túas observacións"
   your_account_has_been_activated: A túa conta foi activada.
   your_account_has_been_verified: "A túa conta de %{site_name} foi confirmada! Por favor accede ao sistema para continuar."
   your_activation_code_was_missing: "O teu código de activación perdeuse. Por favor, segue o enlace dende o teu correo"
+  your_browser_does_not_support_the_audio_element: O teu navegador non soporta o elemento de audio
   your_comment_was_saved: O teu comentario foi gardado.
+  your_content: O Teu Contido
+  your_contributions_to_project: "As túas contribucións a %{project_title}"
   your_default: os teus valores por defecto
   your_default_time_zone: A túa zona horaria actual
+  your_email_address: O teu enderezo de correo electrónico
   your_flickr_account: a túa conta de Flickr
   your_flickr_photos_have_been_tagged: Etiquetáronse as túas fotos de Flickr!
   your_hard_drive: O teu disco duro
   your_home: A túa páxina de inicio
   your_id: A túa identificación
   your_identification: A túa identificación
+  your_membership: A Túa Afiliación
   your_name_was_saved: O nome gardouse.
   your_observations: As túas observacións
   your_observations_couldnt_be_added_to_that_project: "As túas observacións non poden ser engadidas a este proxecto: %{errors}"
   your_photos_have_been_tagged: '¡As túas fotos foron etiquetadas!'
+  your_projects: Os Teus Proxectos
+  your_google_account: a túa conta de Google
+  your_google_account_info: Información Da Túa Conta De Google
+  your_pinned_locations: As Túas Ubicacións Fixadas
   your_profile_was_successfully_updated: O teu perfil foi actualizado satisfactoriamente.
+  your_recent_projects: Os Teus Proxectos Recentes
+  your_relationships: As Túas Relacións
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} necesita que autorices máis permisos de %{provider} que proceden:"
+  your_tags: As Túas Etiquetas
+  yours: Teu
   youre_not_following_anyone: |-
     Non segues a ninguén. Seguir a outros naturalistas permitirache levar un control das túas observacións máis recentes. Pescuda o que a xente está facendo
+  youve_linked_your_inaturalist_google_account: "Vinculaches a túa conta de %{site_name} e a túa conta de Google. Isto permitirache asociar as túas fotos de Google cás túas observacións de %{site_name}."
   youve_seen_it_want_to: "Víchelo! Deséxalo?"
+  youve_successfully_linked_your_provider_account: "Vinculaches correctamente a túa conta de %{provider}"
+  verifiable: Verificable
+  verifiable_observations: Observacións Verificables
   views:
+    views: 'Vistas'
+    announcements:
+      locales_desc: |
+        Premer CMD ou SHIFT para selección múltiple. Non seleccionar ningún amosará o anuncio a tódolos usuarios independentemente da ubicación. Escoller unha língua sen unha rexión *non* terá como obxectivo lugares con rexións, p.e. se escolles inglés, non aparecerá para persoas que escolleron inglés-EEUU. Se queres que aparezan nos dous, terás que escoller ambos. Se queres mostrar un anuncio a tódolos membros dun sitio, simplemente deixa isto baleiro.
     content_freeze:
+      content_freeze: Contido Pausado
+      during_this_time: |
+        Durante a pausa de contidos, algúns tipos de contidos non poden ser creados, destruídos ou modificados.
+      this_functionality_will_return: |
+        Esta funcionalidade retornará logo de que a pausa de contidos remate.
       we_expect_this_functionality_will_return_by_date: |
         Esperamos que esta función regrese ata o %{date}
     custom_projects:
@@ -4441,12 +4464,116 @@ gl:
           Dar coordenadas á túa guía axudará a que a xente a atope cando busque por ubicación.
         eol_subjects_desc: |
           EOL publica contidos baixo diferentes títulos de materias, e non todos están dispoñibles para cata taxon. Se escolles "Vista Xeral" só se importará a primeira sección de texto de EOL, que xeralmente contén un resumo cando está dispoñible.
+        eol_collection_desc_html: |
+          A <a href="http://eol.org/" target="_blank">Enciclopedia da Vida (EOL)</a> é un almacén de información sobre a vida na Terra. Na EOL podes crear <a href="http://eol.org/info/252" target="_blank">coleccións</a> de especies. Se queres importar especies dunha colección da EOL, cola a URL desa colección aquí.
+        guide_place_desc: |
+          Asociando a túa guía có lugar fará que a xente a atope cando busque por ubicación, e mostrará os límites do lugar no mapa de %{site_name}, onde se mostran, se algún límite foi establecido (p.e. vista de "tarxeta", páxinas de taxon, etc.)
+        import_tags_from_csv_help_html: |
+          <p>
+          Carga un ficheiro CSV que conteña etiquetas para taxons nesta guía. Os teus ficheiros CSV deben semellarse a isto:
+          </p>
+          <table class="table">
+          <tbody>
+          <tr>
+          <th>Nome</th>
+          <th>Cor</th>
+          <th>Número de mans</th>
+          <th></th>
+          </tr>
+          <tr>
+          <td>Homo sapiens</td>
+          <td></td>
+          <td>2</td>
+          <td>bípede</td>
+          </tr>
+          <tr>
+          <td>Vulpes vulpes</td>
+          <td>vermello|negro</td>
+          <td>0</td>
+          <td>cuadrípede</td>
+          </tr>
+          </tbody>
+          </table>
+          <p>
+          A primeira fila comeza con "Nome", seguida da etiqueta predicado/categoría. Logo, cada unha das filas seguintes comeza có nome do taxon, seguido das etiquetas predicado correspondentes na parte de enriba da columna. Neste exemplo, <i>Homo sapiens</i>, leva as etiquetas <code>bípede</code> e <code>Número de mans=2</code>, e <i>Vulpes vulpes</i> leva <code>cuadrípede</code>,<code>cor=vermello</code>, <code>cor=negro</code>, e <code>Número de mans=0</code>. Os espacios baldeiros ignoraranse, e podes engadir varias liñas por taxon. Tamém podes engadir varios valores por cela separados polo caracter da liña vertical.
+          </p>
         licensing_explanation: |
           Licenciar o teu contido garante a outra xente o dereito de copialo e modificalo sen pedir o teu consentimento. Así é máis sinxelo compartir o teu traballo, e se incorporas contidos de terceiros de outras fontes con licenzas Creative Commons ShareAlike (coma Wikipedia), xa estás obrigado/a a usar unha licenza semellante. Aquí tes unha visión xeral de tódalas licenzas Creative Commons e qué significan:
+        paste_note_html: |
+          Cola ata 500 nomes de especies, un por liña. %{site_name} fará o mellor posible para atopar os nomes comúns correspondentes ós conceptos de especie, pero para evitar a ambigüidade, é mellor empregar nomes científicos. Se queres especificar ambos, separa o nome científico do vernacular cunha coma, asi: <code>Homo sapiens,Human</code>.
+        places_note: |
+          Nota: non tódolos lugares teñen listaxes de verificación con taxons. Se non das atopado un lugar con taxons, tenta escoller áreas maiores con límites políticos, como nacións, países, provinicias ou concellos.
+        replace_existing_eol_desc: Borra o contido existente antes de importar da EOL
+        place_choose_taxon_note: |
+          Escolle un taxon polo que filtrar se queres facer unha busca máis afinada, p.e. "plantas"
+      eolupdate_notice: |
+        Por favor, un pouco de paciencia, importar contidos de EOL pode levar uns intres.
+      show:
+        draft_desc: |
+          Esta guía só será visible para xente que poida editala ata que a publiques.
+      generating_mobile_archive_tip_html: |
+        Isto pode levar un rato, así que tenta actualizar esta páxina nuns intres.
+      mobile_downloads_tip_html: |
+        Esta guía pode ser descargada na aplicación móbil para usos sen liña.
+      mobile_downloads_help_html: |
+        <p>Isto creará un arquivo descargable para tódolos dados e medios asociados con esta guía, de xeito que esta guía pode ser vista por usuarios da aplicación móbil poden ver o contido da guía sen conexión a Internet. A xeración do arquivo levará uns minutos, pero unha vez isto estea activo, o arquivo actualizarase cada vez que fagas mudanzas na guía.</p>
+        <p class="alert status">
+        Por favor, <strong> non actives as descargas móbiles sen conexión agás teñas a intención de empregalas.</strong> Estes arquivos representan unha carga considerable no noso sistema.
+        </p>
+      pdf_layouts:
+        grid: cuadrícula
+        book: libro
+        journal: diario
+      pdf_layout_notes:
+        grid: |
+          Cuadrícula de imaxes simples, sen descricións
+        journal: |
+          Dividir a páxina, a información das especies á esquerda, espacio para notas á dereita. A infomaciónd das especies truncarase para caber na páxina.
+        book: |
+          Guía completa incluíndo tódalas fotos e descricións, abarcando varias páxinas.
+      pdf_generation_notice: |
+        Por favor, un pouco de paciencia, a xeración de PDFs longos pode levar uns minutos.
+      tags_help_html: |
+        As etiquetas son coma categorías para as especies na túa guía, agás que varias especies poden levar a mesma etiqueta. Entra as etiquetas coma listas separadas por comas aqui, p.e. <code>pequeno, peludo</code>. Para engadir categorías nomeadas, emprega etiquetas coma <code>nome_categoría=valor_categoría</code>, p.e. <code>cor=amarela</code>.
+      sorts:
+        default: Orde das Guías
+        alphaname: Alfabético por nome científico
+        alphadisplay: Alfabético por nome mostrado
+    guide_taxa:
+      edit:
+        eol_explanation: "Engadir un nome común, ata 5 imaxes, 1 sección de descrición, e 1 mapa de EOL."
+        site_explanation: "Engade un nome común, ata 5 imaxes con licenza e un resumo de Wikipedia de %{site_name}."
+      show:
+        reuse_desc: |
+          Podes copiar este taxon noutra guía. Se es un dos editores desta guía, deberíase copiar todo, pero se non o es, só copiará o contido con licenza.
     listed_taxa:
       establishment_field:
         confirmation: |
           ¿Seguro? Isto mudará os medios de establecemento para TODOS os taxons listados pertencentes a lugares dentro deste lugar. Poderías estar a desfacer unha morea de traballo.
+        description_html: |
+          Isto mudará os medios de establecemento de <em>todas</em> as listaxes deste taxon en tódalas ubicacións de<a href="%{place_url}">%{place_name}</a> a <strong>%{establishment_means}</strong>. Só os conservadores poden usar esta ferramenta. Cambiar os medios de establecemento a "introducido" terá máis ou menos o mesmo efecto, pero non mudarán os valores existentes, só cumprimentará os que estean baleiros.
+    lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Os títulos das Listas de Vida non se poden cambiar
+      new:
+        place_desc: |
+          Popular esta lista automáticamente con taxons observados neste sitio. Repara que só ti podes escoller ubicacións que teñan límites.
+      show:
+        project_list_desc: |
+          Os taxons engadidos manualmente por conservadores de proxectos e os taxons representados por observacións con grao de investigación engadidas a proxectos son listadas nas listaxes de proxectos
+    messages:
+      from: De
+      to: A
+      subject: Asunto
+      subject_body: Asunto / Corpo
+      index:
+        show_messages_from_user: Mostrar mensaxes de %{user}
+        show_messages_to_user: Mostrar mensaxes a %{user}
+        speech_privilege_notice: |
+          Serás quen de enviar novas mensaxes logo de engadir tres observacións verificables ou tres identificacións para outros. Polo de agora podes ler e responder a mensaxes que outra xente te enviou.
+      show:
+        flag_notice_html: |
+          Marcaches esta conversación no %{date}. A marca persistirá aínda que borres a túa copia desta conversa, así que é seguro borrala se xa non queres vela.
     oauth:
       authorizations:
         new:
@@ -4454,6 +4581,27 @@ gl:
           this_application_will_be_able_to_colon: "Esta aplicación poderá:"
           more_about_application: Máis sobre %{application}
     observations:
+      community_id:
+        agreement: Acordo
+        algorithm_summary: Resumo do Algoritmo
+        ancestor_disagreements: Desacordos Sobre Ancestros
+        below_cutoff: Embaixo do Corte
+        cumulative_count: Conta Acumulada
+        disagreement: Desacordo
+        disagreement_count: Conta de Desacordos
+        identification_count: Conta de Identificacións
+        score: Cualificación
+        explanation: |
+          <p>
+          Se por algún motivo algún usuario non está de acordo có taxon de comunidade, pode rexeitalo, o que significa que a súa identificación é a usada para vincular a outras observacións, actualizar listas de vida, etc. Tamén significa que a súa observación só pode chegar ó grao de investigación cando a comunidade estea de acordo con el.
+          </p>
+          <p>
+          De tódolos xeitos, a identificación da comunidade amosarase, así que todos poden ver as diferentes identificacións que se suxeriron.
+          </p>
+        you_have_opted_out: Rexeitaches as identificacións da comunidade
+        opt_in_for_this_observation: Optar inclusión para esta observación
+        your_id_does_not_match: |
+          A túa identificación (<span class="bold">%{taxon_name}</span>) non coincide có taxon da comunidade
       copy_tip: "Engadir unha nova observación copiando a data desta observación, o lugar, as fotos e os campos de observación."
       captive_help_html: |
         ¿Foi o organismo que observou <strong>cultivado</strong> ou en <strong> catividade</strong>? Por exemplo,
@@ -4462,6 +4610,175 @@ gl:
         estar alí</strong>? Todas as observacións sobre seres vivos son
         benvidas, pero gustaríanos saber se estes seres non son salvaxes
         ou se se naturalizaron.
+      compare:
+        about_missing_taxa: Sobre Taxons Ausentes
+        about_total_taxa: "Sobre o Total dos Taxons"
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Combinadas
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Horizontal
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Intervalo
+        interval_limit_warning_hour: Mostrando só o valor en horas dunha semana
+        interval_limit_warning_day: Mostrando só o valor en días dun ano
+        interval_limit_warning_week: Mostrando só o valor en semanas de 10 anos
+        interval_limit_warning_month: Mostrando só o valor en meses de 100 anos
+        interval_limit_warning_year: Mostrando só o valor en anos de  un século
+        some_queries_missing_taxa: Faltan taxons nalgunhas consultas
+        some_queries_missing_taxa_desc: |
+          Só podemos cargar 500 dos taxons máis observados por consulta, así que se hai máis taxons representados na consulta, ou non aparecerán ou aparecerán como "?" se están presentes noutras consultas. Tenta afinar as túas consultas de xeito que só mostren 500 taxons como moito para comparanzas óptimas.
+        taxa_not_observed_in_all_queries: Taxons non observados en tódalas consultas
+        taxa_observed_in_all_queries: Taxons observados en tódalas consultas
+        taxa_observed_in_only_one_query: Taxons observados só nunha consulta
+        total_taxa: Taxons Totais
+        total_taxa_desc: |
+          Este é o número total de taxons "folla" representados na consulta. Ás veces verás máis filas que este con contas distintas a cero porque hai un taxon de nivel superior engadido doutras consultas. P.e. se Consulta 1 ten unha observación de Homo sapiens e Consulta 2 ten unha observación do xénero Homo, ámbolos dous aparecerán na táboa, pero representarase unha fila adicional para o xénero Homo da Consulta 1, que non se incluía no cómputo total porque só countou a especie Homo sapiens dentro dese xénero, porque iso era a "folla" desa parte da súa árbore.
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Vertical
+        #Count of how many taxa several observation searches have in common
+        x_in_common:
+          #Count of how many taxa several observation searches have in common
+          one: "%{count} en común"
+          #Count of how many taxa several observation searches have in common
+          other: "%{count} en común"
+        #Count of how many taxa are not present in *all* of several observation searches
+        x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
+          one: "%{count} non en común"
+          #Count of how many taxa are not present in *all* of several observation searches
+          other: "%{count} non en común"
+        #Count of how many taxa are present in an observation search
+        x_total:
+          #Count of how many taxa are present in an observation search
+          one: "%{count} total"
+          #Count of how many taxa are present in an observation search
+          other: "%{count} total"
+        #Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          one: "%{count} único"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          other: "%{count} únicos"
+      export:
+        choose_columns_desc: Escolle as columnas que queres exportar
+        create_a_query_desc_html: |
+          Crea unha consulta sobre observacións como farías noutro sitio calquera dentro do sitio web. Tamén podes cortar e colar a URL dunha observación doutra parte do sitio. Debes especificar un <strong>taxon</strong>, <strong>ubicación</strong>, <strong>usuario</strong>, <strong>proxecto</strong>, ou <strong>consulta de busca</strong>.
+        ident_by_user_desc_html: |
+          Columnas para a identificación actual de %{user}
+        query_placeholder: "Escolle abaixo os parámetros de consulta ou cola a URL dunha observación"
+        taxon_extras_help_html: "Nota: estas columnas frearán a xeración da túa exportación"
+        geo_help_html: |
+          Os campos vila, concello, estado, país son baseados en coordenadas. Niveis administrativos análogos usaranse para observacións onde este tipo de ubicacións non son aplicables.
+          Os campos privado_* so se incluirán cnado se empregue o filtro de usuario e ti es o usuario, ou cando se empregue o filtro de proxectos e ti conservas o proxecto.
+        be_patient: |
+          Por favor, un pouco de paciencia, isto pode levar uns minutos. Se está a levar demasiado tempo, podes
+        check_back: |
+          Se recargares esta páxina nuns intres, a túa exportación deberá aparecer na listaxe ó fondo da páxina.
+        receive_an_email_with_your_data: Recibir un correo electrónico cos teus dados
+        receive_an_email_with_your_data_help: Recibirás un correo electrónico cá túa exportación adxunta.
+        well_email_you: "Ok, enviarémosche un correo electrónico cando estea preparado."
+        taking_a_while: "Isto está levando moito. Por favor, tenta unha das seguintes opcións."
+        date_range_help: "Observado en datas máxima e mínima en formato AAAA-MM-DD, p.e. 2015-01-12"
+        created_on_help: "As datas das observacións foron creadas, non observadas, p.e. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Outras Opcións</h3>
+          <p>
+          As exportacións grandes frean a nosa infraestructuras e fannos difícil sacar novas mudanzas. Aquí tes outras opcións a considerar:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF inxere a maioría dos nosos Graos de Investigación, observacións licenciadas e as súas ferramentas de exportación son excelentes. As exportacións GBIF veñen tamén cun <a href="https://www.doi.org/">DOI</a> que podes citar se publicas investigacións baseadas nos dados que exportaches, e estas citas son moi útiles para nós porque nos permite ver o uso dos dados de iNat.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">Arquivo DarwinCore (DwC-A) para GBIF</a>: este é o ficheiro <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a> que xeramos para que GBIF inxira, polo que non debe conter nada que non sexa GBIF, pero se queres o arquivo enteiro, podes descargalo. É un ficheiro ZIP que contén tódolos rexistros en CSV. Actualízase semanalmente.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017"> Reto de iNaturalist en FGVC 2017</a>: vincula a 675.000 fotos de iNaturalist con licencia de 5.089 especies para usar no adestramento da visión artificial. Creado en Xuño de 2017, sen actualizar.
+          </p>
+          </li>
+          </ul>
+      field_descriptions:
+        id: "Identificador único da observación"
+        species_guess: "Nomea ó observador que introducíu o taxon observado"
+        scientific_name: "Nome científico do taxon observado de acordo con este sitio"
+        common_name: "Nome común ou vernáculo do taxon observado de acordo con este sitio"
+        iconic_taxon_name: Categoría taxonómica superior para o taxon observado
+        taxon_id: Identificador único do taxon observado
+        id_please: Se o observador requiríu axuda para a identificación
+        num_identification_agreements: Número de identificacións en concurrencia cá identificación do observador
+        num_identification_disagreements: Número de identificacións en conflito cá identificación do observador
+        observed_on_string: Data/hora como foi introducida polo observador
+        observed_on: Data normalizada da observación
+        time_observed_at: Data e hora da observación normalizadas
+        time_zone: Zona horaria da observación
+        place_guess: Descrición da localidade como foi introducida polo observador
+        latitude: Latitude visible publicamente
+        longitude: Lonxitude visible publicamente
+        positional_accuracy: "Precisión das coordenadas (si, si, exactitude != precisión, mala escolla de nomes)"
+        private_latitude: "Latitude privada, pór se a observación é privada ou está escurecida"
+        private_longitude: "Lonxitude privada, pór se a observación é privada ou está escurecida"
+        geoprivacy: "Se o observador escolleu escurecer ou ocultar as coordenadas"
+        taxon_geoprivacy: "A xeoprivacidade máis conservadora aplicada debido ó estado de conservación de taxons que están a seren identificados."
+        coordinates_obscured: "Se as coordenadas foron escurecidas, ben pola xeoprivacidade ou porque é un taxon ameazado"
+        out_of_range: Se esta observación cae fóra do rango coñecido do taxon
+        user_id: Identificador único do observador
+        user_login: Nome de usuario do observador
+        created_at: Data e hora na que a observación foi creada
+        updated_at: Data e hora na que a observación foi actualizada por última vez
+        quality_grade: Grao de calidade desta observación. Ver a sección Axuda para obter detalles do que isto significa
+        license: Licenza que o observador escolleu para esta observación
+        url: URL da observación
+        image_url: URL da imaxe predeterminada
+        sound_url: URL do son predeterminado. Repara que só funcionará para cargas directas, non para sons albergados en servicios de terceiros
+        tag_list: Listaxe de etiquetas separada por comas
+        place_admin1_name: Nome da ubicación administrativa un rango por baixo do nivel de país
+        place_admin2_name: Nome da ubicación administrativa dous niveis por baixo do nivel de país
+        positioning_method: Cómo se determinaron as coordenadas
+        positioning_device: Dispositivo usado para determinar as coordenadas
+      identify:
+        review_all_tooltip: "Sinalar tódalas observacións na páxina como revistas"
+        you_reviewed_message: "Revisaches %{reviewed} de %{pageTotal} observacións nesta páxina de %{total} observacións coincidentes."
+        unreview_all_tooltip: "Retira o estado de revisto para tódalas observacións na páxina"
+        too_many_results_desc: |
+          O número de páxina multiplicado polo número de resultados por páxina non pode pasar de 10.000. Téntao activando filtros para reducir o número de resultados, ou sinala observacións como revistas e logo usa o botón "Ver Máis" no canto da paxinación
+      import:
+        coordinate_systems_help: |
+          %{site_name} acepta coordenadas usando moitos sistemas de coordenadas diferentes, así que cando proporcionas coordenadas dun sistema diferente do de latitude/lonxitude, precisamos saber cal sistema de coordenadas estás a empregar para ser quen de interpretalas correctamente. Por favor, asegúrate de escoller o sistema de coordenadas correcto para os dados ou a ubicación pode rematar moi lonxe de onde era suposta estar. Se as túas coordenadas son dunha unidade GPS, busca na configuración o nome do sistema de coordenadas que utiliza. Repara que non almacenamos coordenadas personalizadas, só as súas conversións lat/lon.
+        date_column_format: AAAA-MM-DD HH:MM
+        decimal_degrees_format: dd.dddd
+        geoprivacy_must_be_in_english: |
+          A columna de xeoprivacidade debe estar en Inglés e debe estar baleira ou ter un valor de "escuro" ou "privado"
+        google_photos_notice_html: |
+          En Febreiro de 2019, Google mudou o seu API, facéndonos imposible o acceso a coordenadas GPS, infomación sobre licenzas, e case calquera información que pudésemos empregar para engadir unha identificación (como etiquetas). Tamén eliminaron a busca de texto e a paxinación numérica. Inda por riba, obrigaron a que tódalas contas vinculadas conten con un consentimento adicional, e antes de que un terceiro poida pedir este consentimento dos usuarios, o terceiro ten que estar verificado. Aínda estamos á espera da verificación, pero ata que a teñamos, non vas ser quen de importar fotos dende Google. Se acadamos a verificación, poderñas importar fotos, pero non van incluír información sobre ubicacións nin licenzas que poideras ver en Google Fotos. Podes ler máis sobre isto en <a
+          href="https://developers.google.com/picasa-
+          web"> https://developers.google.com/picasa-web</a>. Descargar os ficheiros orixinais e engadíndoos usando o <a
+          href="/observations/upload">Cargador</a> é a mellor alternativa.
+        project_csv_template_notice_html: |
+          Hai un ficheiro modelo para este proxecto que che pode axudar cá estructura do ficheiro CSV. <a href="%{url}">Descargar modelo</a>
+        soundcloud_notice_html: |
+          en 2018 Soundcoud mudou o seu API e imposibilitounos facer novas conexións á túa conta de Soundcloud. Se reactivaren esta funcionalidade, poderemos reiniciar o vínculo de contas a Soundcloud. Namentres, podes cargar ficheiros de son directamnte empregando o <a href="/observations/upload">Cargador</a>.
+      show:
+        allow_curator_coordinate_access_desc_html: |
+          Permitir que os conservadores do proxecto vexan as coordenadas ocultas para esta observación
+        ancestor_disagreements_desc: "Nº de taxons identificados están entre os ancestros do taxon, pero desacordan có taxon (p.e.\"Creo que está no xénero pero desacordo que é esa especie)"
+        cumulative_count_desc: 'Nº de identificacións para un taxon individual e tódolos seus descendentes'
+        curator_coordinate_access_disabled_desc_html: |
+          Este proxecto non permite observacións con coordenadas que os conservadores non poidan ver. Se non queres compartit as coordenadas desta observación cós conservadores do proxecto, debes quitar a observación do proxecto.
+        data_quality_assessment_desc_html: |
+          A Avaliación da Calidade de Dados é unha avaliación da exactitude dunha observación. As observacións con Grao de Investigación poden ser usadas por científicos para a súa investigación. Vota embaixo:
     observation_fields:
       merge:
         warning_html: |
@@ -4982,3 +5299,4 @@ gl:
         "n": neutro
   zoom_in: Ampliar
   zoom_out: Encoller
+  zoom_photo: Aumentar Foto
