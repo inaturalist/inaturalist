@@ -124,7 +124,6 @@ de:
     Ein voreingestellter Taxonname wird automatisch aus dem Attribut der wissenschaftlichen Bezeichnung dieses Taxons erstellt.
     Wenn du das neue Taxon gespeichert hast, kannst du hier andere Namen (umgangssprachliche Namen, veraltete wissenschaftliche Bezeichnungen usw.) hinzufügen.
   a_flag_for_x: "eine Meldung für %{x}"
-  a_member_of: "Gehört zu:"
   a_member_of_taxon_html: "gehört zu: %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -541,7 +540,6 @@ de:
   assessments: Bewertungen
   associations: Vereine
   atlas_for_taxon_html: Atlas für %{taxon}
-  at_time: "um %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -736,7 +734,6 @@ de:
   choose_a_list_above: Wähle eine der obigen Listen.
   choose_a_place: Wähle ein Gebiet
   choose_a_taxon: Wähle ein Taxon (optional)
-  choose_cc_licensed_photos_html: 'Wähle <a href="http://creativecommons.org/">open</a>-lizenzierte Fotos von anderen Webseiten oder wähle %{site_name}-Beobachtungen. Versuche, Bilder auszuwählen, die <em>diagnostische Eigenschaften</em> enthalten und <em>als auch im Kleinformat gut aussehen</em>. Das <em>erste Foto ist der Standard</em>.'
   choose_columns: Spalten auswählen
   choose_file: Datei auswählen
   choose_files: Dateien auswählen
@@ -1388,7 +1385,6 @@ de:
   forum_desc: |
     Im Forum (auf englisch) kannst du Sachen rund um iNat diskutieren, z.B. nach Hilfe fragen, Feature-Requests posten, Fehler melden, aktuelle Ankündigungen lesen, etc.
   frequency: Häufigkeit
-  from: Von
   from_a_place: von einem Ort
   from_eol_collection: Aus EOL Sammlung
   from_flickr_facebook_etc: Von Flickr, Facebook, usw.
@@ -1396,8 +1392,6 @@ de:
   from_photos: Von Bildern
   from_place: Vom Gebiet
   from_soundcloud: Von Soundcloud
-  from_your_site_observations: "Von %{site_name} Beobachtungen"
-  from_licensed_site_observations: "Von lizenzierten %{site_name}-Beobachtungen"
   full_screen: Vollbild
   fungi:
     one: Pilz
@@ -2344,7 +2338,6 @@ de:
   offline_access_enabled: Offlinezugriff ermöglichen
   old_observation_form: Altes Beobachtungsformular (veraltet)
   ok: "OK"
-  on_date: "am %{date}"
   on_day: "am"
   onboarding:
     observe_panel_title: Fangen wir an und posten ein paar Beobachtungen
