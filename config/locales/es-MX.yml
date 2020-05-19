@@ -90,7 +90,6 @@ es-MX:
   a_default_taxon_name_will_automatically_created: |
     Se creará un nombre predeterminado para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos obsoletos, etc.)
   a_flag_for_x: "una alerta para %{x}"
-  a_member_of: "Un miembro de"
   a_member_of_taxon_html: "un miembro de %{taxon}"
   about: Acerca
   about_blocking: Acerca de los bloqueos
@@ -431,7 +430,6 @@ es-MX:
   assessment_x: "Evaluación de %{assessment}"
   assessments: Evaluaciones
   associations: Asociaciones
-  at_time: "a las %{time}"
   attached_taxon: Taxón adjunto
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -617,7 +615,6 @@ es-MX:
   choose_a_list_above: Escoge una lista de las anteriores.
   choose_a_place: Selecciona un lugar
   choose_a_taxon: Escoge especie o grupo (opcional)
-  choose_cc_licensed_photos_html: 'Escoge una licencia  <a href="http://creativecommons.org/">CC</a>-para las fotos de Flickr o selecciona de las observaciones de %{site_name}. Intenta escoger imágenes que  <em>muestren rasgos diagnósticos</em> y <em>que se ven bien como íconos</em>. La<em> primera es la predeterminada</em>.'
   choose_columns: Selecciona columnas
   choose_file: Selecciona un archivo
   choose_files: Selecciona archivos
@@ -1180,7 +1177,6 @@ es-MX:
   forum_desc: |
     El foro es un sitio para hablar sobre iNat, incluyendo soporte técnico y ayuda, peticiones de nuevas características, informes de errores, anuncios y más.
   frequency: Frecuencia
-  from: De
   from_a_place: de un lugar
   from_eol_collection: De una colección de EOL
   from_flickr_facebook_etc: De Flickr, Facebook, etc.
@@ -1188,8 +1184,6 @@ es-MX:
   from_photos: De fotos
   from_place: De un lugar
   from_soundcloud: De Soundcloud
-  from_your_site_observations: "De las observaciones de %{site_name}"
-  from_licensed_site_observations: "De observaciones con licencia de  %{site_name}"
   full_screen: Pantalla completa
   fungi:
     one: Hongo
@@ -2010,7 +2004,6 @@ es-MX:
   offline_access_enabled: El acceso sin conexión habilitado
   old_observation_form: Antiguó registro de observaciones
   ok: "Aceptar"
-  on_date: "el %{date}"
   on_day: "el"
   onboarding:
     observe_panel_title: Empieza añadiendo observaciones
