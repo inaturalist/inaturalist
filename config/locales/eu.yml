@@ -33,7 +33,6 @@ eu:
     beste izen batzuk gehitu ahal izango dituzu hemen (izen arruntak,
     eguneratutako izen zientifikoak eta abar).
   a_flag_for_x: "marka bat: %{x}"
-  a_member_of: "ren kidea"
   a_member_of_taxon_html: "honetako kide bat: %{taxon}"
   about: 'Honi buruz:'
   about_community_taxa: Komunitate taxoien inguruan
@@ -292,7 +291,6 @@ eu:
   ascending: Goranzkoa
   assessment: balorazioa
   associations: Elkarteak
-  at_time: "hemen: %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -422,7 +420,6 @@ eu:
   choose_a_list_above: Zerrenda hautatu goian
   choose_a_place: Leku bat hautatu
   choose_a_taxon: Espeziea edo taldea hautatu (aukerakoa)
-  choose_cc_licensed_photos_html: 'Lizentzia hau duten argazkiak topatu: <a href="http://creativecommons.org/">CC</a> Flickr-en edo zure oharretatik hautatu hemen: %{site_name}. Egin proba eta hautatu diagnosiko ezaugarriak</em> erakusten dituzten <em> eta <em> ikono</em> gisa ondo ikusten diren irudiak.  <em>Lehenengoa lehenetsita</em> azaltzen da.'
   choose_file: Fitxategia aukeratu
   choose_files: Artxiboak hautatu
   choose_from_your_lists: Zure zerrendetatik hautatu
@@ -820,12 +817,9 @@ eu:
   for_a_taxon: taxon batena
   forgot_your_password: Zure pasahitza ahaztu duzu?
   frequency: Maiztasuna
-  from: 'hemendik:'
   from_a_place: leku batekoa
   from_list: Zerrendakoa
   from_photos: Argazkiena
-  from_your_site_observations: "Honi buruzko oharrak: %{site_name}"
-  from_licensed_site_observations: "Honi buruzko oharrak: %{site_name} lizentzia"
   full_screen: Pantaila osoa
   fungi:
     one: onddoa 
@@ -1324,7 +1318,6 @@ eu:
     doubtful: zalantzagarria
     absent: ez dago
   offensive_inappropriate: Iraingarria/ Desegokia
-  on_date: "egun honetan: %{date}"
   one_of_your_lists: "zure zerrendetako bat..."
   only_a_project_manager_can_add: Proiektuko kudeatzaileak soilik eman diezaioke sailkapena proiektuko administratzaileari
   only_an_admin_can_remove_project_users: Administratzaileak soilik ezaba ditzake proiektuko erabiltzaileak.
