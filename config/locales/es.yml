@@ -123,7 +123,6 @@ es:
   a_default_taxon_name_will_automatically_created: |
     Se creará automáticamente un nombre de taxón predeterminado a partir del atributo de nombre científico para este taxón. Después de guardar este nuevo taxón, se podrán añadir aquí otros nombres (nombres comunes, nombres científicos obsoletos, etc.).
   a_flag_for_x: "una marca para %{x}"
-  a_member_of: "Un miembro de"
   a_member_of_taxon_html: "un miembro de %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -552,7 +551,6 @@ es:
   assessments: evaluaciones
   associations: Asociaciones
   atlas_for_taxon_html: Atlas para %{taxon}
-  at_time: "en %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -749,7 +747,6 @@ es:
   choose_a_list_above: Selecciona una lista de arriba
   choose_a_place: Selecciona un lugar
   choose_a_taxon: Selecciona un taxón (opcional)
-  choose_cc_licensed_photos_html: 'Selecciona fotos con licencia <a href=\"http://creativecommons.org/\">abierta</a> de otros lugares o selecciona de observaciones en %{site_name}. Trata de seleccionar imágenes que <em>muestren características de diagnóstico</em> y <em>se vean bien como íconos</em>.  La <em>primera aparece por defecto</em>.'
   choose_columns: Seleccionar columnas
   choose_file: Seleccionar un archivo
   choose_files: Seleccionar archivos
@@ -1411,7 +1408,6 @@ es:
   forum_desc: |
     El foro es un sitio para hablar sobre iNat, incluyendo soporte técnico y ayuda, peticiones de nuevas características, informes de errores, anuncios y más.
   frequency: Frecuencia
-  from: de
   from_a_place: de un lugar
   from_eol_collection: De colección EOL
   from_flickr_facebook_etc: De Flickr, Facebook, etc.
@@ -1419,8 +1415,6 @@ es:
   from_photos: De fotos
   from_place: De lugar
   from_soundcloud: De Soundcloud
-  from_your_site_observations: "Observaciones de %{site_name}"
-  from_licensed_site_observations: "Observaciones de %{site_name} licencia"
   full_screen: Pantalla completa
   fungi:
     one: hongo
@@ -2389,7 +2383,6 @@ es:
   offline_access_enabled: Acceso sin conexión activado
   old_observation_form: Antiguo registro de observaciones
   ok: "Aceptar"
-  on_date: "en %{date}"
   on_day: "el"
   onboarding:
     observe_panel_title: Vamos a añadir observaciones
