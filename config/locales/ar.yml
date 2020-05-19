@@ -7,7 +7,6 @@ ar:
     سيتم تلقائيا إنشاء اسم أصنوفة افتراضي من سمة الاسم العلمي لهذه الأصنوفة
     عند حفظ هذه الأصنوفة الجديدة، ستتمكن من إضافة أسماء أخرى هنا (الأسماء الشائعة والأسماء العلمية القديمة وغير ذلك).
   a_flag_for_x: "علم ل%{x}"
-  a_member_of: "عضو في"
   a_member_of_taxon_html: "عضو في %{taxon}"
   about: حول
   about_blocking: حول الحظر
@@ -317,7 +316,6 @@ ar:
   assessment_x: "تقييم %{assessment}"
   assessments: تقييمات
   associations: مرتبطة
-  at_time: "في %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -516,7 +514,6 @@ ar:
   choose_a_list_above: اختر قائمة أعلاه.
   choose_a_place: اختر مكانا
   choose_a_taxon: اختر أصنوفة (اختياري)
-  choose_cc_licensed_photos_html: 'اختر الصور <a href="http://creativecommons.org/">المفتوحة</a>-المرخصة من مواقع أخرى أو اختر من ملاحظات %{site_name}، حاول اختيار الصور التي <em>تعرض الميزات التشخيصية</em> و<em> تبدو جيدة كأيقونات</em>، <em>الأول هو الافتراضي</em>.'
   choose_columns: اختر أعمدة
   choose_file: اختر ملفا
   choose_files: اختر الملفات
@@ -1096,7 +1093,6 @@ ar:
     feature requests, bug reports, announcements, and more.
     المنتدى هو مكان لمناقشة إنات نفسه، بما في ذلك المساعدة والدعم، وطلبات الميزات، وتقارير الأخطاء، والإعلانات، والمزيد.
   frequency: تردد
-  from: من
   from_a_place: من مكان
   from_eol_collection: من مجموعة موسوعة الحياة
   from_flickr_facebook_etc: من فليكر، فيسبوك، إلخ.
@@ -1104,8 +1100,6 @@ ar:
   from_photos: من الصور
   from_place: من مكان
   from_soundcloud: من ساوند كلاود
-  from_your_site_observations: "من ملاحظات %{site_name}"
-  from_licensed_site_observations: "من ملاحظات %{site_name} المرخصة"
   full_screen: ملء الشاشة
   gbif_occurrences: أحداث المرفق العالمي لمعلومات التنوع البيولوجي
   generate_taxonomic_tags_for_flickr: توفير علامات تصنيفية لصور فليكر الخاصة بك
@@ -1987,7 +1981,6 @@ ar:
   offline_access_enabled: تم تمكين الدخول بلا اتصال
   old_observation_form: استمارة الملاحظة القديمة (مهملة)
   ok: "موافق"
-  on_date: "في %{date}"
   on_day: "على"
   onboarding:
     observe_panel_title: دعونا نبدأ من خلال نشر بعض الملاحظات
