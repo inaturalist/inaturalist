@@ -123,7 +123,6 @@ fi:
   a_default_taxon_name_will_automatically_created: |
     Oletusarvoinen taksonin nimi luodaan automaattisesti tämän taksonin tieteellisestä nimestä. Kun olet tallentanut tämän uuden taksonin, voit lisätä muita nimiä (yleiskieliset nimet, vanhentuneet tieteelliset nimet, jne).
   a_flag_for_x: "lippu kohteelle %{x}"
-  a_member_of: "Jäsen"
   a_member_of_taxon_html: "%{taxon} jäsen"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -568,7 +567,6 @@ fi:
   assessments: arvioinnit
   associations: Yhdistykset
   atlas_for_taxon_html: Atlas taksonille%{taxon}
-  at_time: "klo %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -765,7 +763,6 @@ fi:
   choose_a_list_above: Valitse luettelo yläpuolelta.
   choose_a_place: Valitse paikka
   choose_a_taxon: Valitse taksoni (valinnainen)
-  choose_cc_licensed_photos_html: 'Valitse<a href="http://creativecommons.org/">avoimen </a>-lisenssin alaiset valokuvat muilta sivustoilta tai poimi %{site_name} havainnoista. Yritä valita kuvat, joissa <em>on  kuvaavia ominaisuuksia</em> ja jotka<em>sopivat kuvakkeiksi</em>.  Järjestyksessä <em>ensimmäinen valitaan oletuksena</em>.'
   choose_columns: Valitse sarakkeet
   choose_file: Valitse tiedosto
   choose_files: Valitse tiedostot
@@ -1411,7 +1408,6 @@ fi:
   forum_desc: |
     iNaturalistin foorumilla voi keskustella englanniksi iNaturalistin käytöstä ja luontoharrastuksesta. Lajitietokeskuksen foorumilla (foorumi.laji.fi) voi keskustella suomeksi.
   frequency: Lukumäärä
-  from: Keneltä
   from_a_place: paikasta
   from_eol_collection: EOL-kokoelmasta
   from_flickr_facebook_etc: Flickristä, Facebookista, yms.
@@ -1419,7 +1415,6 @@ fi:
   from_photos: Kuvista
   from_place: Paikasta
   from_soundcloud: Soundcloudista
-  from_your_site_observations: "Sivuston %{site_name} havainnot"
   full_screen: Koko ruutu
   fungi:
     one: sieni
@@ -2337,7 +2332,6 @@ fi:
   offline_access_enabled: Offline-yhteys käytössä
   old_observation_form: Vanha havaintomuoto (vanhentunut)
   ok: "OK"
-  on_date: "%{date}"
   on_day: "päivänä"
   onboarding:
     observe_panel_title: Aloita tallentamalla havaintoja
