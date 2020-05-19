@@ -123,7 +123,6 @@ da:
   a_default_taxon_name_will_automatically_created: |
     Et standard taksonnavn vil automatisk blive dannet ud fra det videnskabelige navn af denne takson. Når du har gemt den nye takson, vil du kunne tilføje andre navne her (lokale navne, forældede videnskabelige navne osv.)
   a_flag_for_x: "en markering for %{x}"
-  a_member_of: "Et medlem af"
   a_member_of_taxon_html: "et medlem af %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -552,7 +551,6 @@ da:
   assessments: vurderinger
   associations: Foreninger
   atlas_for_taxon_html: Atlas for %{taxon}
-  at_time: "ved %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -751,7 +749,6 @@ da:
   choose_a_list_above: Vælg en af ovenstående lister.
   choose_a_place: Vælg et sted
   choose_a_taxon: Vælg en takson (valgfrit)
-  choose_cc_licensed_photos_html: 'Vælg <a href="http://creativecommons.org/">åben</a> licenserede fotos fra andre websteder eller vælg fra %{site_name} observationer. Prøv at vælge billeder, der <em>viser diagnostiske egenskaber</em> og <em> ser godt ud som ikoner</em>. <em>Det første bliver standard fotoet</em>.'
   choose_columns: Vælg kolonner
   choose_file: Vælg fil
   choose_files: Vælg filer
@@ -1420,7 +1417,6 @@ da:
     Forum er en platform hvor selve iNaturalist og dets funktioner kan diskuteres, herunder hjælp, support,
     funktions anmodninger, fejlrapporter, meddelelser og meget mere.
   frequency: Hyppighed
-  from: Fra
   from_a_place: fra et sted
   from_eol_collection: Fra EOL-samling
   from_flickr_facebook_etc: Fra Flickr, Facebook, etc.
@@ -1428,8 +1424,6 @@ da:
   from_photos: Fra fotos
   from_place: Fra et sted
   from_soundcloud: Fra Soundcloud
-  from_your_site_observations: "Fra %{site_name} observationer"
-  from_licensed_site_observations: "Fra licens %{site_name} observationer"
   full_screen: Fuldskærm
   fungi:
     one: svamp
@@ -2410,7 +2404,6 @@ da:
   offline_access_enabled: Offline adgang er aktiveret
   old_observation_form: Gammel observations formular (forældet)
   ok: "OK"
-  on_date: "den %{date}"
   on_day: "på"
   onboarding:
     observe_panel_title: Lad os komme i gang med at indsende nogle observationer
