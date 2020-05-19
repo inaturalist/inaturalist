@@ -123,7 +123,6 @@ nb:
   a_default_taxon_name_will_automatically_created: |
     Et standard taksonnavn vil automatisk bli laget ut fra taksonets vitenskapelige navn. Når du har lagret det nye taksonet, vil du kunne legge til andre navn her (lokalnavn, utdaterte vitenskapelige navn, osv.).
   a_flag_for_x: "en markering for %{x}"
-  a_member_of: "Et medlem av"
   a_member_of_taxon_html: "et medlem av %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -547,7 +546,6 @@ nb:
   assessments: vurderinger
   associations: Tilknytninger
   atlas_for_taxon_html: Atlas for %{taxon}
-  at_time: "kl. %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -748,7 +746,6 @@ nb:
   choose_a_list_above: Velg en liste ovenfor.
   choose_a_place: Velg et sted
   choose_a_taxon: Velg et takson (valgfritt)
-  choose_cc_licensed_photos_html: 'Velg bilder med en <a href="http://creativecommons.org/">åpen</a> lisens fra andre sider eller velg fra %{site_name}-observasjoner. Prøv å velge bilder som <em>viser diagnostiske egenskaper</em> og <em>ser bra ut som ikoner</em>. Det <em>første blir standardbildet</em>.'
   choose_columns: Velg kolonner
   choose_file: Velg fil
   choose_files: Velg filer
@@ -1404,7 +1401,6 @@ nb:
   forum_desc: |
     Forumet er et sted hvor selve iNat kan diskuteres, inkludert hjelp & brukerstøtte, etterspurt funksjonalitet, feilrapportering, kunngjøringer, og mer.
   frequency: Frekvens
-  from: Fra
   from_a_place: fra et sted
   from_eol_collection: Fra EOL-samling
   from_flickr_facebook_etc: Fra Flickr, Facebook, osv.
@@ -1412,8 +1408,6 @@ nb:
   from_photos: Fra bilder
   from_place: Fra sted
   from_soundcloud: Fra Soundcloud
-  from_your_site_observations: "Fra %{site_name}-observasjoner"
-  from_licensed_site_observations: "Fra lisensierte %{site_name}-observasjoner"
   full_screen: Fullskjerm
   fungi:
     one: sopp
@@ -2371,7 +2365,6 @@ nb:
   offline_access_enabled: Offline tilgang aktivert
   old_observation_form: Gammelt observasjonsskjema (foreldret)
   ok: "Ok"
-  on_date: "på %{date}"
   on_day: "på"
   onboarding:
     observe_panel_title: La oss komme i gang ved å legge ut noen observasjoner
