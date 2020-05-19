@@ -8,8 +8,14 @@ module DarwinCore
     def initialize(opts = {})
       @opts = opts
       @opts[:path] ||= "dwca.zip"
-      @opts[:core] ||= "occurrence"
-      @opts[:metadata] ||= File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
+      @opts[:core] ||= DarwinCore::Cores::OCCURRENCE
+      puts "@opts[:core]: #{@opts[:core]}"
+      @opts[:metadata] ||= if @opts[:core] == DarwinCore::Cores::OCCURRENCE
+        File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
+      else
+        File.join(Rails.root, "app", "views", "taxa", "dwc.eml.erb")
+      end
+      puts "@opts[:metadata]: #{@opts[:metadata]}"
       @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "dwc.descriptor.builder")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC0", "CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
