@@ -69,7 +69,6 @@ ko:
   a_default_taxon_name_will_automatically_created: |
     학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을 저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
   a_flag_for_x: "%{x}을 위한 플래그"
-  a_member_of: "소속:"
   a_member_of_taxon_html: "%{taxon}에 속함"
   about: 소개
   about_blocking: 차단에 대하여
@@ -370,7 +369,6 @@ ko:
   assessment_x: "%{assessment} 평가"
   assessments: 평가
   associations: 협회
-  at_time: "%{time} 시간에"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -1015,7 +1013,6 @@ ko:
     feature_requests: 기능 요청
     news_and_updates: 소식 및 업데이트
   frequency: 주기
-  from: '게시한 사용자:'
   from_a_place: 어떤 장소로부터
   from_eol_collection: EOL 모음집으로부터
   from_flickr_facebook_etc: Flickr, Facebook 등으로부터
@@ -1023,8 +1020,6 @@ ko:
   from_photos: 사진들로부터
   from_place: 장소로부터
   from_soundcloud: 사운드클라우드로부터
-  from_your_site_observations: "%{site_name} 관찰로부터"
-  from_licensed_site_observations: "인증된 %{site_name} 관찰로부터"
   full_screen: 전체 화면
   gbif_occurrences: GBIF 발생건들
   generate_taxonomic_tags_for_flickr: Flickr 사진들을 위한 분류군 태그를 생성합니다.
