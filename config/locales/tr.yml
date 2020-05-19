@@ -123,7 +123,6 @@ tr:
   a_default_taxon_name_will_automatically_created: |
     Varsayılan bir sınıf adı, kendiliğinden bu sınıfın bilimsel ad özelliğinden oluşturulacak. Bu yeni sınıfı kaydettikten sonra, buraya başka adlar ekleyebilirsiniz (yaygın adlar, eski bilimsel adlar vb.).
   a_flag_for_x: "%{x} için bir işaret"
-  a_member_of: "Şunun bir üyesi"
   a_member_of_taxon_html: "%{taxon} sınıfının bir üyesi"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -563,7 +562,6 @@ tr:
   assessments: değerlendirmeler
   associations: İlişikler
   atlas_for_taxon_html: '%{taxon} için Atlas'
-  at_time: "%{time} zamanında"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -760,7 +758,6 @@ tr:
   choose_a_list_above: Yukarıdan bir liste seç.
   choose_a_place: Bir alan seç
   choose_a_taxon: Bir sınıf seç (isteğe bağlı)
-  choose_cc_licensed_photos_html: 'Diğer sayfalardan <a href="http://creativecommons.org/">açık</a> lisanslı fotoğraflar seçin ya da %{site_name} sayfasındaki gözlemlerden birini seçin. <em>Tanılama özelliklerini gösteren</em> ve <em>simgeler olarak iyi görünen</em> görüntüler seçmeyi deneyin. İlki <em>varsayılandır</em>.'
   choose_columns: Sütun seç
   choose_file: Dosya seç
   choose_files: Dosyaları seç
@@ -1418,7 +1415,6 @@ tr:
   forum_desc: |
     Forum; yardım ve destek, özellik istekleri, hata raporları, duyurular ve daha çoğunu içermek üzere iNat’ın kendisini tartışacağı bir yerdir.
   frequency: Sıklık
-  from: Şuradan
   from_a_place: bir yerden
   from_eol_collection: EOL koleksiyonundan
   from_flickr_facebook_etc: Flickr, Facebook vb'den.
@@ -1426,8 +1422,6 @@ tr:
   from_photos: Fotoğraflardan
   from_place: Yerden
   from_soundcloud: Soundcloud'dan
-  from_your_site_observations: "%{site_name} gözlemlerinden"
-  from_licensed_site_observations: "Lisanslı %{site_name} gözlemlerinden"
   full_screen: Tam ekran
   fungi:
     one: mantar
@@ -2391,7 +2385,6 @@ tr:
   offline_access_enabled: Çevrimdışı erişim etkin
   old_observation_form: Eski gözlem formu (kullanımdan kaldırıldı)
   ok: "TAMAM"
-  on_date: "%{date} tarihinde"
   on_day: "şu tarihte"
   onboarding:
     observe_panel_title: Haydi Bazı Gözlemler Göndererek Başlayalım
