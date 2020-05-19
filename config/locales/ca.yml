@@ -124,7 +124,6 @@ ca:
     Es crearà automàticament un nom per defecte del tàxon a partir de l'atribut del seu nom científic.
     Quan hagueu desat aquest tàxon, podreu afegir-hi altres noms (noms comuns, noms científics actualitzats, etc.).
   a_flag_for_x: "una marca de %{x}"
-  a_member_of: "Un membre de"
   a_member_of_taxon_html: "un tipus de %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -546,7 +545,6 @@ ca:
   assessments: valoracions
   associations: Associacions
   atlas_for_taxon_html: Atles de %{taxon}
-  at_time: "a %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -741,7 +739,6 @@ ca:
   choose_a_list_above: Selecciona una llista de dalt
   choose_a_place: Selecciona un lloc
   choose_a_taxon: Escull un tàxon (opcional)
-  choose_cc_licensed_photos_html: 'Trobeu fotos amb llicència de <a href=\"http://creativecommons.org/\">CC</a> a Flickr o seleccioneu-les de les vostres observacions a %{site_name}. Proveu de seleccionar imatges que <em>mostrin característiques de diagnòstic</em> i <em> que es vegin bé com a icones</em>.  La <em>primera apareix per defecte</em>.'
   choose_columns: Escolliu columnes
   choose_file: Escolliu arxiu
   choose_files: Escolliu els fitxers
@@ -1399,7 +1396,6 @@ ca:
   forum_desc: |
     Aquest fórum és el lloc per parlar sobre iNat, incloent la demanda d'ajuda, suport o de característiques, informar d'errades, anuncis i més.
   frequency: Freqüència
-  from: de
   from_a_place: d'un lloc
   from_eol_collection: De la col·lecció EOL
   from_flickr_facebook_etc: Des de Flickr, Facebook, etc.
@@ -1407,8 +1403,6 @@ ca:
   from_photos: De fotos
   from_place: Del lloc
   from_soundcloud: Des de Soundcloud
-  from_your_site_observations: "Observacions de %{site_name}"
-  from_licensed_site_observations: "Observacions amb llicència de %{site_name}"
   full_screen: Pantalla completa
   fungi:
     one: fong
@@ -2366,7 +2360,6 @@ ca:
   offline_access_enabled: Accés fora de línia activat
   old_observation_form: Antic registre de l'observació (obsolet)
   ok: "D’acord"
-  on_date: "el %{date}"
   on_day: "el"
   onboarding:
     observe_panel_title: Anem a començar publicant algunes observacions
