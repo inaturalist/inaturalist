@@ -201,7 +201,6 @@ cs:
   a_default_taxon_name_will_automatically_created: |
     Z vědeckého názvu tohoto taxonu bude automaticky vytvořen standardní taxonomický název. Jakmile tento nový taxon uložíte, budete sem moci přidávat další názvy (obecné názvy, zastaralé vědecké názvy atd.).
   a_flag_for_x: "prapor pro %{x}"
-  a_member_of: "Člen"
   a_member_of_taxon_html: "člen %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -681,7 +680,6 @@ cs:
   assessments: hodnocení
   associations: Asociace
   atlas_for_taxon_html: Atlas pro %{taxon}
-  at_time: "v %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -876,7 +874,6 @@ cs:
   choose_a_list_above: Vybrat seznam výše.
   choose_a_place: Vybrat místo
   choose_a_taxon: Vybrat taxon (volitelné)
-  choose_cc_licensed_photos_html: 'Vybrat fotky s licencí <a href="http://creativecommons.org/">open</a>z jiných stránek nebo z pozorování %{site_name}. Snažte se vybírat obrázky, které <em>ukazují rozpoznávací znaky</em> a <em>vypadají dobře jako ikony</em>. <em>První je základní</em>.'
   choose_columns: Vybrat sloupce
   choose_file: Vyberte soubor
   choose_files: Vybrat soubory
@@ -1537,7 +1534,6 @@ cs:
   forum_desc: |
     Fórum je místem, kde můžete diskutovat iNat sám o sobě, včetně pomoci a podpory, požadavků na funkce, hlášení chyb, reklam a dalších informací.
   frequency: Frekvence
-  from: Od
   from_a_place: Z místa
   from_eol_collection: Ze souboru EOL
   from_flickr_facebook_etc: Z Flickru, Facebooku, apod.
@@ -1545,8 +1541,6 @@ cs:
   from_photos: Z fotek
   from_place: Z místa
   from_soundcloud: Ze Soundcloudu
-  from_your_site_observations: "Z pozorování %{site_name}"
-  from_licensed_site_observations: "Z pozorování %{site_name} s licencí"
   full_screen: Celá obrazovka
   fungi:
     one: houby
@@ -2523,7 +2517,6 @@ cs:
   offline_access_enabled: Offline přístup povolen
   old_observation_form: Původní formulář pozorování (zastaralý)
   ok: "Jo"
-  on_date: "dne %{date}"
   on_day: "dne"
   onboarding:
     observe_panel_title: Začněme odesláním nějakých pozorování
