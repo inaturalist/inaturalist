@@ -6,7 +6,6 @@ sk:
   a_default_taxon_name_will_automatically_created: |
     Z vedeckého názvu tohto taxónu bude automaticky vytvorený štandardný taxonomický názov. Hneď ako tento nový taxón uložíte, budete sem môcť pridávať ďalšie názvy (všeobecné názvy, zastarané vedecké názvy atď.).
   a_flag_for_x: "značka pre %{x}"
-  a_member_of: "Člen"
   a_member_of_taxon_html: "člen %{taxon}"
   about: O projekte
   about_blocking: O blokovaní
@@ -315,7 +314,6 @@ sk:
   assessment_x: "%{assessment} hodnotenie"
   assessments: hodnotenia
   associations: Asociácie
-  at_time: "v %{time}"
   attached_taxon: Pripojený taxón
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -1035,7 +1033,6 @@ sk:
   forum_desc: |
     Fórum je miestom, kde môžete diskutovať o samotnom iNat, vrátane pomoci a podpory, požadavok na funkcie, hlásenie chýb, reklám  a ďalších informácií.
   frequency: Frekvencia
-  from: Od
   from_a_place: z miesta
   from_eol_collection: Z kolekcie EOL
   from_flickr_facebook_etc: Z Facebooku, Flickr atď.
@@ -1043,8 +1040,6 @@ sk:
   from_photos: Z fotiek
   from_place: Z miesta
   from_soundcloud: Zo Soundcloud
-  from_your_site_observations: "Z pozorovaní %{site_name}"
-  from_licensed_site_observations: "Z pozorovaní %{site_name} s licenciou"
   full_screen: Celá obrazovka
   gbif_occurrences: Výskyty GBIF
   generate_taxonomic_tags_for_flickr: Generovať taxonomické tagy pre vaše fotky na Flickr.
@@ -1827,7 +1822,6 @@ sk:
   official_blog: Oficiálny blog
   offline_access_enabled: Offline prístup povolený
   old_observation_form: Pôvodný formulár pozorovania (zastaraný)
-  on_date: "dňa %{date}"
   on_day: "dňa"
   onboarding:
     observe_panel_title: Začneme odoslaním nejakých pozorovaní
