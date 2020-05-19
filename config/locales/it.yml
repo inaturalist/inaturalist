@@ -124,7 +124,6 @@ it:
     Un taxon di default sarà creato automaticamente a partire dal nome scientifico di questa unità tassonomica. 
     Non appena avrai salvato questo nuovo taxon, potrai aggiungere qui nuovi nomi (nomi comuni, nomi scientifici in disuso, ecc.).
   a_flag_for_x: "un contrassegno per %{x}"
-  a_member_of: "Un membro di"
   a_member_of_taxon_html: "un membro di %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -553,7 +552,6 @@ it:
   assessments: valutazioni
   associations: Associazioni
   atlas_for_taxon_html: Atlante per %{taxon}
-  at_time: "alle ore %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -750,7 +748,6 @@ it:
   choose_a_list_above: Scegli una lista qua sopra
   choose_a_place: Scegli un luogo
   choose_a_taxon: Scegli un taxon (opzionale)
-  choose_cc_licensed_photos_html: 'Scegli <a href="http://creativecommons.org/">open</a>-foto licenziate da altri siti o seleziona osservazioni da %{site_name}. Prova a scegliere immagini che <em>mostrano caratteri diagnostici</em> e <em>si prestano bene ad essere utilizzate come icone </em>.  La <em>prima e quella predefinita</em>.'
   choose_columns: Scegli colonne
   choose_file: Seleziona file
   choose_files: Seleziona i file
@@ -1408,7 +1405,6 @@ it:
   forum_desc: |
     Il Forum è il luogo dove discutere su iNat, incluso l'aiuto e il supporto, richiedere implementazioni, segnalare i bug, fare annunci e altro ancora.
   frequency: Frequenza
-  from: Da
   from_a_place: da un luogo
   from_eol_collection: Da una collezione EOL
   from_flickr_facebook_etc: Da Flickr, Facebook, etc.
@@ -1416,8 +1412,6 @@ it:
   from_photos: Da foto
   from_place: Dal luogo
   from_soundcloud: Da Soundcloud
-  from_your_site_observations: "Dalle osservazioni di %{site_name}"
-  from_licensed_site_observations: "Dalle osservazioni con licenza di %{site_name}"
   full_screen: A schermo intero
   fungi:
     one: fungo
@@ -2382,7 +2376,6 @@ it:
   offline_access_enabled: Accesso offline abilitato
   old_observation_form: Vecchio formulario dell'osservazione (obsoleto)
   ok: "OK"
-  on_date: "in data %{date}"
   on_day: "in data"
   onboarding:
     observe_panel_title: Inizia con l'invio di alcune Osservazioni
