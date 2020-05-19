@@ -85,7 +85,6 @@ zh-TW:
     拉丁文學名會自動成為此物種之預設分類群名稱。
     當您儲存這個新分類群後，您將可為這個物種加上其他名稱(例如俗名、過時的學名等)。
   a_flag_for_x: "%{x} 已被標記"
-  a_member_of: "成員隸屬於"
   a_member_of_taxon_html: "%{taxon} 之一員"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -495,7 +494,6 @@ zh-TW:
   assessments: 評估
   associations: 關聯
   atlas_for_taxon_html: '%{taxon} 的地圖集'
-  at_time: "在%{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -690,7 +688,6 @@ zh-TW:
   choose_a_list_above: 選擇一個在上方的清單。
   choose_a_place: 挑選一個地點
   choose_a_taxon: 挑選一個分類（可選）
-  choose_cc_licensed_photos_html: '從其它網站挑選<a href="http://creativecommons.org/">開放</a>授權的照片，或從 %{site_name} 的觀察來選出。請嘗試挑選<em>顯示偵測屬性</em>並<em>看起來適合作為圖示</em>的圖片。其中<em>第一張為預設照片</em>。'
   choose_columns: 選擇欄位
   choose_file: 選擇檔案
   choose_files: 挑選檔案
@@ -1345,7 +1342,6 @@ zh-TW:
   forum_desc: |
     此討論區是用來談論 iNaturalist 本身的地方，包含協助、支援、功能請求、程式錯誤回報、公告、以及其它。
   frequency: 頻率
-  from: 來自
   from_a_place: 來自一個地點
   from_eol_collection: 來自生命大百科收藏
   from_flickr_facebook_etc: 來自 Flickr、臉書、或其它。
@@ -1353,8 +1349,6 @@ zh-TW:
   from_photos: 來自照片
   from_place: 來自地點
   from_soundcloud: 來自 Soundcloud
-  from_your_site_observations: "來自 %{site_name} 觀察"
-  from_licensed_site_observations: "來自 %{site_name} 的授權許可觀察"
   full_screen: 全螢幕
   fungi:
     other: 個真菌
@@ -2307,7 +2301,6 @@ zh-TW:
   offline_access_enabled: 離線存取已啟用
   old_observation_form: 舊式觀察表單（已廢棄使用）
   ok: "確定"
-  on_date: "於 %{date}"
   on_day: "在"
   onboarding:
     observe_panel_title: 讓我們來開始發佈一些觀察
