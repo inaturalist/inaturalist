@@ -123,7 +123,6 @@ nl:
   a_default_taxon_name_will_automatically_created: |
     Een standaard taxonnaam wordt automatisch aangemaakt op basis van de wetenschappelijke naam van dit taxon. Als je het nieuwe taxon hebt opgeslagen kun je hier andere namen aan toevoegen (lokale namen, verouderde wetenschappelijke namen, etc.).
   a_flag_for_x: "een melding voor %{x}"
-  a_member_of: "Een lid van"
   a_member_of_taxon_html: "een lid van %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -565,7 +564,6 @@ nl:
   assessments: beoordelingen
   associations: Koppelingen
   atlas_for_taxon_html: Atlas voor %{taxon}
-  at_time: "om %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -763,7 +761,6 @@ nl:
   choose_a_list_above: Kies een lijst hierboven.
   choose_a_place: Kies een locatie
   choose_a_taxon: Kies een taxon (optioneel)
-  choose_cc_licensed_photos_html: 'Kies foto''s met een <a href="http://creativecommons.org/">open</a> licentie van andere sites of kies uit %{site_name}-waarnemingen. Probeer afbeeldingen te kiezen die <em>diagnostische eigenschappen</em> tonen en <em>er goed uitzien als pictogrammen</em>. De <em>eerste is de standaardfoto</em>.'
   choose_columns: Kies kolommen
   choose_file: Bestand kiezen
   choose_files: Bestanden kiezen
@@ -1423,7 +1420,6 @@ nl:
   forum_desc: |
     Op het forum kun je vragen stellen over iNaturalist, bijvoorbeeld over vertalingen, hulp & ondersteuning, functieverzoeken, foutmeldingen, aankondigingen en meer.
   frequency: Frequentie
-  from: Van
   from_a_place: van een plaats
   from_eol_collection: Van EOL collectie
   from_flickr_facebook_etc: Van Flickr, Facebook, etc.
@@ -1431,8 +1427,6 @@ nl:
   from_photos: Van fotos
   from_place: van plaats
   from_soundcloud: Van Soundcloud
-  from_your_site_observations: "Van %{site_name} waarnemingen"
-  from_licensed_site_observations: "Van gelicensieerde waarnemingen op %{site_name}"
   full_screen: Volledig scherm
   fungi:
     one: schimmel
@@ -2418,7 +2412,6 @@ nl:
   offline_access_enabled: Offline toegang ingeschakeld
   old_observation_form: Oud waarnemingsformulier (verouderd)
   ok: "OK"
-  on_date: "op %{date}"
   on_day: "op"
   onboarding:
     observe_panel_title: Laten we beginnen door een paar waarnemingen te posten
