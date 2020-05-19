@@ -197,7 +197,6 @@ pl:
     Domyślna nazwa taksonu zostanie utworzona automatycznie z nazwy naukowej tego taksonu.
     Gdy zapiszesz ten takson, będziesz mógł dodawać tutaj inne nazwy (nazwy zwyczajowe, przestarzałe nazwy naukowe, itp.).
   a_flag_for_x: "zgłoszenie dla %{x}"
-  a_member_of: "Należy do"
   a_member_of_taxon_html: "należy do %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -646,7 +645,6 @@ pl:
   assessments: oceny
   associations: Powiązania
   atlas_for_taxon_html: Atlas dla %{taxon}
-  at_time: "o %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -830,7 +828,6 @@ pl:
   choose_a_list_above: Wybierz listę powyżej.
   choose_a_place: Wybierz lokalizację
   choose_a_taxon: Wybierz takson (opcjonalne)
-  choose_cc_licensed_photos_html: 'Wybierz zdjęcie na prawach <a href="http://creativecommons.org/">wolnej licencji</a> z innych stron lub wybierz spośród obserwacji dostępnych na %{site_name}. Staraj się wybrać zdjęcia, które <em>ukazują kryteria diagnostyczne pomocne w oznaczaniu</em> i <em>wyglądają dobrze jako ikony</em>. <em>Pierwsze zdjęcie jest domyślnym</em>.'
   choose_columns: Wybierz kolumny
   choose_file: Wybierz plik
   choose_files: Wybierz pliki
@@ -1434,7 +1431,6 @@ pl:
   forum_desc: |
     Forum jest miejscem do dyskusji na temat iNata - uzyskiwania pomocy, proszenia o ulepszenia, raportowania błędów, dodawania ogłoszeń i wielu innych.
   frequency: Częstotliwość
-  from: Od
   from_a_place: z miejsca
   from_eol_collection: Z kolekcji EOL
   from_flickr_facebook_etc: Z Flickra, Facebooka itd.
@@ -1442,8 +1438,6 @@ pl:
   from_photos: Ze zdjęć
   from_place: Z miejsca
   from_soundcloud: Z Soundclouda
-  from_your_site_observations: "Z obserwacji na %{site_name}"
-  from_licensed_site_observations: "Z licencjonowanych obserwacji na %{site_name}"
   full_screen: Pełny ekran
   fungi:
     one: grzyb
@@ -2251,7 +2245,6 @@ pl:
   offline_access_enabled: Dostęp offline włączony
   old_observation_form: Stary formularz obserwacji (przestarzały)
   ok: "OK"
-  on_date: "o %{date}"
   onboarding:
     observe_panel_body_p1_local: Potrzebujesz inspiracji? Oto kilka organizmów obserwowanych w pobliżu...
     follow_panel_title_local: Obserwuj przyrodników z okolicy
