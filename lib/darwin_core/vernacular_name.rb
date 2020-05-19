@@ -73,5 +73,60 @@ module DarwinCore
         created_at.iso8601
       end
     end
+
+    def self.descriptor
+      {
+        row_type: "http://rs.gbif.org/terms/1.0/VernacularName",
+        files: file_names.values,
+        terms: TERMS
+      }
+    end
+
+    def self.data( options = {} )
+      unless options[:core] == DarwinCore::Cores::TAXON
+        raise "VernacularNames extension can only be used with a taxon core"
+      end
+      # fname = "vernacular_names.csv"
+      if options[:work_path]
+        work_path = options[:work_path]
+      else
+        work_path = Dir.mktmpdir
+        FileUtils.mkdir_p work_path, mode: 0755
+      end
+      paths = []
+      file_names.each do |lexicon, fname|
+        tmp_path = File.join( work_path, fname )
+        CSV.open(tmp_path, 'w') do |csv|
+          csv << TERM_NAMES
+          DarwinCore::VernacularName.base_scope.
+              where( lexicon: lexicon ).
+              includes(:taxon, :source, :creator, :updater, place_taxon_names: :place).
+              order("taxon_id").
+              find_each do |tn|
+            DarwinCore::VernacularName.adapt( tn, core: options[:core] )
+            csv << DarwinCore::VernacularName::TERMS.map{|field, uri, default, method| tn.send(method || field)}
+          end
+        end
+        paths << tmp_path
+      end
+      paths
+    end
+
+    def self.base_scope
+      TaxonName.joins(:taxon).
+        where( "taxa.is_active" ).
+        where( "lexicon IS NOT NULL" ).
+        where( "lexicon NOT IN (?)", [TaxonName::SCIENTIFIC_NAMES, ""] )
+    end
+
+    def self.file_names
+      base_scope.
+          select("DISTINCT lexicon").
+          pluck(:lexicon).
+          inject({}) do |memo, lexicon|
+        memo[lexicon] = "VernacularNames-#{lexicon.gsub(/[\s\(\)]+/, "_").gsub( /(.+)_$/, "\\1" )}.csv"
+        memo
+      end
+    end
   end
 end
