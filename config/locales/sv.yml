@@ -123,7 +123,6 @@ sv:
   a_default_taxon_name_will_automatically_created: |
     Ett standardtaxonnamn kommer automatiskt skapas utifrån detta taxons vetenskapliga namn. När du har sparat detta nya taxon, kommer du kunna lägga till andra namn här (trivialnamn, vetenskapliga synonymer osv.)
   a_flag_for_x: "en flagga för %{x}"
-  a_member_of: "En medlem av"
   a_member_of_taxon_html: "en medlem i %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -569,7 +568,6 @@ sv:
   assessments: bedömningar
   associations: Kopplingar
   atlas_for_taxon_html: Atlas för %{taxon}
-  at_time: "kl. %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -772,7 +770,6 @@ sv:
   choose_a_list_above: Välj en lista ovan.
   choose_a_place: Välj en plats
   choose_a_taxon: Välj en taxon (valfritt)
-  choose_cc_licensed_photos_html: 'Välj <a href="http://creativecommons.org/">öppna</a>-licensierade foton från andra webbplatser eller välj från %{site_name}-observationer. Försök att välja bilder som <em>visar diagnostiska egenskaper</em> och <em>ser bra ut som ikoner</em>. Den <em>första är standard</em>.'
   choose_columns: Välj kolumner
   choose_file: Välj fil
   choose_files: Välj filer
@@ -1443,7 +1440,6 @@ sv:
     Forumet är en plats för diskussioner om iNat, inklusive hjälp & support,
     funktionsförfrågningar, felrapporter, tillkännagivanden med mera.
   frequency: Frekvens
-  from: Från
   from_a_place: från en plats
   from_eol_collection: Från EOL-samling
   from_flickr_facebook_etc: Från Flickr, Facebook, etc.
@@ -1451,8 +1447,6 @@ sv:
   from_photos: Från foton
   from_place: Från plats
   from_soundcloud: Från Soundcloud
-  from_your_site_observations: "Från %{site_name}-observationer"
-  from_licensed_site_observations: "Från licensierade %{site_name}-observationer"
   full_screen: Helskärm
   fungi:
     one: svamp
@@ -2459,7 +2453,6 @@ sv:
   offline_access_enabled: Offline-åtkomst aktiverad
   old_observation_form: Gammalt observationsformulär (utfasat)
   ok: "OK"
-  on_date: "den %{date}"
   on_day: "på"
   onboarding:
     observe_panel_title: Låt oss komma igång genom att posta några observationer
