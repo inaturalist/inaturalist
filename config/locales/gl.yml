@@ -1278,6 +1278,7 @@ gl:
   favorites: "Favoritos"
   feature_this_project_: "Presenta Este Proxecto"
   featured: Destacados
+  #Title for a button or section describing the "featured" status of a project
   featuring: Presentando
   feedback: Retroalimentación
   #Plural noun, as in Atom and RSS feeds
@@ -4751,7 +4752,7 @@ gl:
       identify:
         review_all_tooltip: "Sinalar tódalas observacións na páxina como revistas"
         you_reviewed_message: "Revisaches %{reviewed} de %{pageTotal} observacións nesta páxina de %{total} observacións coincidentes."
-        unreview_all_tooltip: "Retira o estado de revisto para tódalas observacións na páxina"
+        unreview_all_tooltip: "Retira o estado de revisto para tódalas observacións na páxina"
         too_many_results_desc: |
           O número de páxina multiplicado polo número de resultados por páxina non pode pasar de 10.000. Téntao activando filtros para reducir o número de resultados, ou sinala observacións como revistas e logo usa o botón "Ver Máis" no canto da paxinación
       import:
