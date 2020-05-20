@@ -4182,6 +4182,13 @@ fi:
         disagreement_count: Erimielisyyksien määrä
         identification_count: Tunnistuksien määrä
         score: Pisteet
+        explanation: |
+          <p>
+          Jos havainnoija ei jostain syystä ole samaa mieltä yhteisön taksonin kanssa, hän voi hylätä sen. Tämä tarkoittaa että vain hänen omaa tunnistustaan käytetään havainnon linkittämiseen esim. pinnalistoihin. Tämä tarkoittaa myös että havainnosta voi tulla tutkimustasoa ainoastaan jos yhteisö on samaa mieltä tunnistuksesta hänen kanssaan. (Muuten havainto pysyy epämuodollisena.)
+          </p>
+          <p>
+          Yhteisön taksoni näytetään kuitenkin aina, joten kaikki voivat nähdä kaikki havainnolle ehdotetut tunnistukset.
+          </p>
         your_id_does_not_match: |
           Tunnistuksesi (<span class="bold">%{taxon_name}</span>) ei vastaa yhteisön tekemää tunnistusta
       captive_help_html: |
