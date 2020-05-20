@@ -4774,17 +4774,116 @@ gl:
         allow_curator_coordinate_access_desc_html: |
           Permitir que os conservadores do proxecto vexan as coordenadas ocultas para esta observación
         ancestor_disagreements_desc: "Nº de taxons identificados están entre os ancestros do taxon, pero desacordan có taxon (p.e.\"Creo que está no xénero pero desacordo que é esa especie)"
+        community_taxon_desc_html: |
+          <p class="ui">
+          O taxon da comunidade (ou a identificación da comunidade) representa qué taxon pensa a comunidade de %{site_name} está representado nunha observación. Se estás interesado en saber cómo escollemos o taxon da comunidade, ve as notas do algoritmo embaixo, pero xeralmente, tentamos <strong>escoller un taxon có que 2/3 da comunidade estean de acordo</strong>. Ás veces, isto significa escoller un nivel taxonómico superior que contén unha cantidade de taxons desconcordantes (p.e. pensas que é unha serpe-rei e eu penso que é unha serpe de cascabel, logo iNat escolle a suborde Serpentes que contén tódalas serpes). O algoritmo tamén favorece lixeiramente ós disidentes, porque atopamos que os disidentes frecuentemente están no certo.
+          </p>
+          <p class="ui">
+          Unha observación có grao de investigación debe ter, entre outros, un taxon de comunidade. Se unha observación só ten unha identificación, non terá un taxon de comunidade. Tódalas observacións con alomenos unha identificación terán tamén un taxon de observación. O taxon da observación é o taxon que empregamos cando compartimos observacións con socios de dados, vinculando observacións do mesmo taxon no sitio, actualizando a túa lista de vida, etc. Na maioría dos casos o taxon de observación será o taxon de comunidade, pero algunhas veces diferirá, especialmente antes de que a comunidade se decida por unha identificación. Por exemplo, se pensas que é unha serpe (suborder Serpentes) e eu penso que é unha serpe-rei (xénero <i>Lampropeltis</i>) o taxon de observación será a serpe-rei (apoiado só pola miña identificación) pero o taxon da comunidade sera Serpentes, apoiado polo menos por dúas identificacións). Se por algún motivo non estás de acordo có taxon da comunidade, podes rexeitalo nas túas observacións, o que sigunifica que o taxon de observación nunca vai ser posto como taxon de comunidade. Tamén significa que a túa observación só pode acadar o grao de investigación cando a comunidade estea de acordo <em>contigo</em>. Se non che gusta a idea do taxon da comunidade, podes retiralo <a href="/users/edit" target="_blank">editando as túas configuracións</a>.
+          </p>
+          <p class="ui">
+          <strong>O algoritmo:</strong> para tódolos taxons identificados e os taxons que os conteñen (p.e. xénero <i>Homo</i> contén <i>Homo sapiens</i>), puntúase cada un como o ratio entre o número de "de acordos" - identificacións cumulativas para ese taxon sobre a suma das identificacións "en desacordo"- o número de identificacións que son completamente distintos (p.e. identificacións de taxons que non conteñen o taxon a ser puntuado), e os desacordos dos ancestros - o número de identificacións máis conservadoras que desacordan cun taxon máis afinado. Para os taxons identificados que teñen unha puntuación de máis de 2/3 e alomenos 2 identificacións, escolle o taxon de menor rango.
+          </p>
         cumulative_count_desc: 'Nº de identificacións para un taxon individual e tódolos seus descendentes'
         curator_coordinate_access_disabled_desc_html: |
           Este proxecto non permite observacións con coordenadas que os conservadores non poidan ver. Se non queres compartit as coordenadas desta observación cós conservadores do proxecto, debes quitar a observación do proxecto.
         data_quality_assessment_desc_html: |
           A Avaliación da Calidade de Dados é unha avaliación da exactitude dunha observación. As observacións con Grao de Investigación poden ser usadas por científicos para a súa investigación. Vota embaixo:
+        disagreement_count_desc: "Nº de taxons identificados que non están entre os ancestros dun taxon"
+        identification_count_desc: 'Nº de identificacións para un taxon individual'
+        flagged_photos_desc_html: |
+          Algunhas destas fotos foron marcadas por contidos inapropiados ou violacións de dereitos de autor. Para ver detalles preme %{links}
+        join_project_desc_html: |
+          Unirse ó proxecto daralle ós conservadores do proxecto o poder de ver as coordenadas ocultas desta ou outras observacións no proxecto e implica que ti estás de acordo cós <a href="%{url}" target="_blank">termos</a> do proxecto.
+        quality_assessment_help_html: |
+          <p>
+          A avaliación da calidade dos dados é un resumo da exactitude dunha observación. Tódalas observacións comezan có grao <strong>"casual"</strong>, e pasa a <strong>"necesita identificación</strong> cando
+          </p>
+
+          <ul>
+          <li>a observación <strong>ten unha data</strong></li>
+          <li>a observación <strong>está xeorreferenciada</strong> (i.e. ten coordenadas lon/lat)</li>
+          <li>a observación <strong>ten fotos ou sons</strong></li>
+          <li>a observación <strong>non é dun humano</strong></li>
+          </ul>
+          <p>
+          As observacións pasan ó <strong>grao de investigación</strong> cando
+          </p>
+          <ul>
+          <li>
+          A <strong> comunidade de %{site_name} está de acordo cá identificación a nivel de especie ou inferior</strong>, p.e. cando ó menos 2/3 dos identificadores están de acordo nun taxon
+          </li>
+          </ul>
+          <p>
+          As observacións revertiranse a <strong>"casual" </strong>se as condicións anteriores non se cumpren ou se a comunidade está de acordo en que
+          </p>
+          <ul>
+          <li>
+          a <strong>ubicación non semella acertada</strong> (p.e. monos no medio do océano, hipopótamos en edificios de oficinas, etc.)
+          </li>
+          <li>
+          o <strong>organismo non é silvestre/ naturalizado</strong> (p.e. cativos ou cultidavos por humanos ou alieníxenas intelixentes do espacio exterior)
+          </li>
+          <li>
+          a observación <strong>non presenta evidencias dun organismo</strong> (p.e. imaxes de paisaxes, características acuáticas, rochas, etc.)
+          </li>
+          <li>
+          a observación <strong>non presenta evidencias recentes (~100 anos) dun organismo</strong> (p.e. fósiles, pero pegadas, dexeccións e follas mortas valen)
+          </li>
+          <li>
+          a observación xa non precisa unha identificación <em>e</em> a identificación da comunidade é superior ó nivel de familia
+          </li>
+          <li>
+          o observador rexeitou o taxon da comunidade e o taxon da comunidade non é ancestro nin descendente do taxon asociado cá identificación da observación
+          </li>
+          </ul>
+          <p>
+          E se isto non fose o suficientemente complicado, hai tamén situacións onde o sistema vota:
+          </p>
+          <ul>
+          <li>
+          O sistema votará que a observación non é silvestre/naturalizada se hai polo menos 10 observacións diferentes dun xénero ou nivel inferior no lugar equivalente menor do condado, estado ou pais que conteña esta observación e 80% ou máis desas observacións foron marcadas como non silvestre ou naturalizada.
+          </li>
+          </ul>
+        score_desc: "puntuación = conta cumulativa / (conta cumulativa + conta de desacordos + desacordos de ancestros)"
+        observation_flagged_notice_html: |
+          Esta observación marcouse como lixo e xa non é visible publicamente. Ti podes vela porque ti a creaches, ou es un conservador do sitio. Se pensas que isto é un erro, por favor <a href="mailto:%{help_email}" class="contact">contacta con nós</a>.
+          <a href="/observations/%{observation_id}/flags">Xestionar marcas</a>
+        observer_does_not_allow_observation_fields: O observador non permite campos de observación adicionais
+        observer_only_allows_curators_to_add_fields: O observador só permite ós conservadores do sitio engadir campos de observación
+      user_stats:
+        user_stats_desc: |
+          As estatísticas do usuario están limitadas a un máximo de 500 por conta de observacións ou conta de especies, así que o total listado é xeralmente un pouco maior de 500, xa que as dúas listas probablemente non conteñen os mesmos usuarios. Un valor marcado "*" significa que non estaba nos primeiros 500 para esa estatística.
     observation_fields:
+      about_editing_observation_fields_desc_html: |
+        <p class='ui'>
+        Podes editar este campo de observación porque ti o creaches ou porque es un conservador do sitio. Se es un conservador do sitio, por favor, segue estas directrices:
+        </p>
+        <ol>
+        <li>Non fagas mudanzas de nome arbitrarias (p.e. cambiar "comendo" por "chuchando néctar")</li>
+        <li>Lembra que os campos de observación poden ser usados para observacións de calquera taxon, asi que tenta non usar terminoloxía específica dun taxon</li>
+        <li>Non borres campos que a xente empregue</li>
+        <li>Non traduzas campos de nomes existentes a línguas diferentes. O inglés é a língua franca deste sitio. Se realmente precisas un campo que encapsule o mesmo concepto pero nunha língua distinta, crea un campo de observación novo.</li>
+        </ol>
+      dna_help: |
+        Para habilitar as funcionalidades correspondentes ó código de barras BOLD DNA, asegúrate de incluir no nome de campo as palabras "COI", "COX1", "ITS", ou "matK" correspondentes ao xen obxectivo dese campo.
       merge:
         warning_html: |
           Por favor, respecta os dados de outras persoas e <strong>fala có creador dun campo de observación antes de o combinar</strong>. Esta ferramenta destruirá o campo de observación sendo combiando e movendo tódalas observacións ó campo mantido. <strong>Este proceso non se pode desfacer</strong>, así que ten tino.
     emailer:
+      bulk_import_success:
+        success_message: |
+          A túa importación masiva de %{filename} foi exitosa. As túas observacións están procesándose e estarán no sitio web nuns intres.
+      bulk_import_error:
+        taxon_spelling_notice_html: |
+          Por favor, comproba a ortografía en cada entrada. Se a túa ortografía é correcta, busca a especie en %{search_taxa_url}. Se o nome aínda non está na base de dados de %{site_name}, precisarás engadilo antes de facer unha carga masiva. Usa a caixa no fondo da páxina de busca para importar noves novos. Se o nome está presente pero é aplicable a taxons válidos varios, tenta empregar un nome máis ou menos específico que só coincida cun único taxon.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |
+          A túa exportación de observacións está preparada. Hai unha copia adxunta neste email, ou podes <a href="%{url}">descargar a exportación</a>.
+        your_observations_export_failed_html: |
+          A exportación das túas observacións fallou. Visita a <a href="%{url}">páxina de exportacións de observacións</a> para ver unha lista das túas exportacións.
       parental_consent:
+        subject: Ó teu fillo ou túa filla gustaríalle usar iNaturalist
         content_html: |
           <p> 
           O teu fillo ou a túa filla está a usar a aplicación educativa <strong> Seek por iNaturalist</strong> e gustaríalle compartir dados coa plataforma cidadán-ciencia de iNaturalist. Como publicar en iNaturalist revela Información de Identificiación Persoal, iNaturalist non pode ser usada por persoas menores de 13 anos sen permiso parental.
@@ -4849,11 +4948,77 @@ gl:
           <p>
           Saber máis sobre a Política de Privacidade de iNaturalist <a href="%{privacy_policy_url}">aquí</a>.
           </p>
+      photos_missing:
+        subject: Algunhas fotos necesitan reparación
+        we_have_been_housekeeping: |
+          Estivemos limpando e atopamos fotos conectadas ás túas observacións que xa non son accesibles dende a fonte orixinal. As fotos están hospedadas por %{providers}.
+        we_would_like_to_remove: |
+          Gustaríanos eliminar tódalas referencias a fotos quebradas no futuro próximo, pero non queremos desfacernos de nada que poida ser salvado. É posible que algunas destas fotos aínda existan nos seus sitios externos e poidan ser reparadas. Algunhas fotos poden ter sido cargas conectando a túa <a href='%{account_url}'>%{site_name}conta</a> a outra conta que aloxe fotos, e esta conexión expirou e precisa ser actualizada.
+        you_can_attempt_repair: |
+          Podes tentar reparar as fotos visitando a páxina de fotos e premendo o vínculo "%{repair_link_text}". Se sabes que esa foto xa non existe, podes escoller borrala.
+        please_address: |
+          Por favor, aborda estes problemas <b>nos próximos 30 días</b>. Despois de 30 días comezaremos a borrar fotos quebradas de iNaturalist. Tódalas túas observacións manteranse. Serán reavaliadas logo de que as fotos sexan borradas e é posible que algunhas observacións con grao de investigación volveranse casuais se xa non tiveren fotos.
+        we_included_links: |
+          Incluímos vínculos ás fotos afectadas embaixo.
+      user_parent_confirmation:
+        subject: A conta do teu fillo ou filla en iNaturalist foi activada
+        content_html: |
+          <p>
+          ¡Gracias por crear unha conta de iNaturalista para o teu fillo ou filla! A conta foi activada. Aquí tes os detalles que nos forneceches que temos nos nosos rexistros:
+          </p>
+          <ul>
+          <li><strong>Nome de pai, nai ou titor legal:</strong>%{parent_name}</li>
+          <li><strong>Correo electrónico de pai, nai ou titor legal:</strong>%{parent_email}</li>
+          <li><strong>Nome do rapaz:</strong>%{child_name}</li>
+          <li><strong>Data de nacemento do rapaz:</strong>%{child_birthday}</li>
+          <li><strong>Conta de correo electrónico do rapaz:</strong>%{child_email}</li>
+          <li><strong>Nome do usuario da conta do rapaz:</strong>%{child_username}</li>
+          </ul>
+          <p>
+          Por favor, entra na conta de Seek do teu neno ou nena, toca o botón "iNaturalist" no menú e logo "Entrar en iNaturalist" no fondo da pantalla.
+          </p>
+          <p>
+          O rapaz vai ser quen de publicar observacións á súa conta iNaturalist usando a aplicación Seek, de xeito que poderán ser vistas en iNaturalist.org.
+          </p>
+      users_updates_suspended:
+        message: |
+          Estiveches moito tempo inactivo en %{site_name}, así que suspendimos as túas subscricións. Para retomar o recibo de novas na actividade do sitio, por favor, <a href="%{login_url}">entra na túa conta</a> outra vez.
+    photos:
+      forbidden_notice_html: |
+        Neste intre non temos permiso para acceder a esas fotos. Se cadra necesitas desconectar e conectar a conta nas <a href="/users/edit">túas configuracións</a> para garantizarnos permisos adicionais.
+      show:
+        view_original_html: |
+          Podes ver o orixinal en<a href="%{url}">%{url}</a>. Por favor, deixa as marcas por violación de dereitos de autor sen resolver se de feito esta foto viola os dereitos de autor.
     places:
+      kml_field_desc: |
+        KML do límite do lugar. Podes facer un empregando Google Maps, Google
+        Earth ou a maioría das aplicacións GIS. Debe ter polo menos un polígono de
+        menos de 1 MB (5 MB para conservadores do sitio), e ter un área menor do que o
+        Estado de Texas nos EEUU.
+      edit:
+        complex_boundary_note_html: |
+          Este límite é demasiado complexo para editalo na web. Aínda así podes<a href="%{url}">descargar o KML</a>, editalo na aplicación GIS da túa escolla e cargar o teu KML editado directamente.
+        admin_level_desc: |
+          Só debería ser posto para áreas políticas. En termos de equivalencias con EEUU: 0 =p aís, 1 = estado, 2 = condado, 3 = cidade
       new:
         check_list_note: "Nota: As listas de verificación desactívanse automaticamente para sitios moi grandes."
         map_instruction: Emprega a ferramenta de polígono para debuxar o contorno do lugar.
+    posts:
+      formatting_none_help: "Non se inseríu HTML, só usa as etiquetas que tí proporcionas."
+      formatting_simple_help: "Vincula URLs automáticamente e inserta saltos de liña."
     projects:
+      project_type: Tipo de Proxecto
+      collection: Colección
+      umbrella: Paraugas
+      tracks_multiple_projects: segue proxectos varios
+      projects_included: Proxectos Incluídos
+      collection_and_umbrellas_do_not_support: |
+        Os proxectos de recolla e os proxectos paraugas actualmente non soportan o acceso a coordenadas ocultas
+      confirm_leave:
+        keep_observations_label: |
+          Deixa as túas observacións neste proxecto
+        keep_observations_desc: |
+          As túas observación continuarán no proxecto e os conservadores aínda poderán ver as coordenadas ocultas.
       edit:
         bioblitz_desc_html: |
           <p>
@@ -4897,23 +5062,94 @@ gl:
           </li>
           <li>Os arquivos KML e KMZ engadiranse ao mapa na páxina do proxecto</li>
           </ol>
+        submission_models:
+          any: calquera
+          curators: conservadores de proxecto
         trusted_project_means: |
           Cando un proxecto está verificado, os administradores e xestores do proxecto poden crear, actualizar e borrar os seus recursos do proxecto.
       new:
         are_you_sure_you_want_to_delete: '¿Seguro que queres eliminar este proxecto?'
+        data_visualizations: Visualización de dados
+        delete_project: Eliminar Proxecto
+        display_project_name: Mostrar nome do proxecto
+        duplicate_project: Duplicar proxecto
+        multiple_project_administrators: Varios administradores de proxecto
+        name_placeholder: Paxaros de Chicago, Libeliñas Fantásticas, etc.
+        or_drag_and_drop: (ou arrástrao e sóltao)
+        project_name: Nome do Proxecto
+        project_summary: Resumo do Proxecto
+        show_projects_as_flags: Amosar proxectos como bandeiras no mapa
+        errors:
+          name_less_than_100_characters: O nome do proxecto debe ter menos de 100 caracteres
+          name_already_taken: O nome do proxecto xa está collido
+          cannot_have_more_than_x_project_rules: Non pode ter máis de %{x} regras de proxecto
+          summary_is_required: O texto de resumo do proxecto é obrigatorio
+      project_user_curator_coordinate_access_labels:
+        observer: Si, pero só se engado a observación ó proxecto eu.
+        any: Si, non importa quen engada a observación ó proxecto.
+        none: Non.
+      curator_coordinate_access_note: |
+        Tamén podes escoller compartir as coordenadas das observacións neste proxecto baseandote en casos individuais. Estes son só as predeterminacións para as novas observacións engadidas ó proxecto.
+      project_terms_desc_html: |
+        Permite que os conservadores deste proxecto usen as túas observacións de acordo cós <a href="%{url}">termos do proxecto</a>.
       show:
         are_you_sure_you_want_to_convert: |
           ¿Seguro que queres convertir este proxecto nun Proxecto de Recolleita?
+        click_here_to_convert_this_project: |
+          Preme aquí para convertires este proxecto nun Proxecto de Colleita.
+      updates_desc: |
+        Recibe novas sobre este proxecto no teu panel e nos correos electrónicos de actualizacións diarios.
+    shared:
+      blocked:
+        youve_been_blocked: Foches Bloqueado
+        youve_blocked: Bloqueaches A Esta Persoa
+        youve_blocked_desc: |
+          Bloqueaches ó propietario deste recurso, o que che impide comunicarte con eles. A meirande parte das características desta páxina non funcionarán.
+      spam:
+        this_has_been_flagged_as_spam: Isto foi marcado como spam
     stats:
       index:
+        new_users_desc: Rexistráronse neste día
+        obs_1_day_desc: "Observacións creadas nun só día"
+        observers_desc: Engadiron unha observación neste día
         TTID_note: |
           Estas estatísticas están feitas para as observacións creadas para a semana previa, o que significa que non inclúen identificacións engadidas despois de máis dunha semana, polo que as estatísticas semellan máis baixas que se se refixesen no presente. Aínda así, deberían proporcionar unha medida decente da velocidade con que a comunidade está identificando en xanelas dunha semana. Nótese que estas estatísticas están feitas só con observacións con fotos.
+      year:
+        growth_title: Crecemento
+        obs_in_year: Observacións en %{year}
+        percent_growth_in_year: "% de Crecemento en %{year}"
+        percent_of_total_growth: "% de Crecemento Total"
+        observation_streaks_color_desc: |
+          A cor representa o número de días nunha escala logarítmica:
+        stats_generated_datetime: Estatísticas xeradas no %{datetime}
+        translators_title: Tradutores
+        translators_prompt: |
+          Se queres axudar a traducir, %{link_tag}aprende como%{link_tag_end}.
     taxa:
       show:
+        about_conservation_status_desc: |
+          O estado de conservación resume o risco de extinción para un grupo de organismos.
         charts_help_other: |
           Tamén amosamos gráficas de estacionalidade para as anotacións das observacións. As anotacións son un xeito de engadir metadados ás observacións usando un vocabulario controlado, p.e. se a observación mostra unha planta que está florecendo ou fructificando.
         frequency:
+          research: Grao De Investigación
+          verifiable: Verificable
+          "Alive or Dead=Alive": Vivo
+          "Alive or Dead=Dead": Morto
           "Plant Phenology=Fruiting": Fructificando
+          "Plant Phenology=No Evidence of Flowering": Sen Evidencias
+          "Life Stage=egg": Ovo
+          "Life Stage=larva": Larva
+          "Life Stage=subimago": Subimago
+          "Life Stage=nymph": Ninfa
+          "Life Stage=pupa": Pupa
+          "Life Stage=adult": Adulto
+          unannotated: Sen Anotación
+        max_photos_desc: |
+          Un taxon só pode ter %{max} fotos. Para engadir máis, tes que borrar fotos existentes.
+        no_trending_desc: Nada por baixo deste taxon foi observado no último mes
+        photo_chooser_modal_desc: |
+          Arrastra fotos aquí dende a esquerda, ou arrastra fotos aquí para ordenalas.
     users:
       dashboard:
         taxon_change_desc: |
@@ -4935,6 +5171,37 @@ gl:
         curators_can_see: |
           Só un recordatorio, os administradores do proxecto poden ver as coordenadas
           privadas e ocultas das observacións que se agregan a este proxecto.
+      edit:
+        display_monthly_supporter_status_on_my_profile: |
+          Amosar o estado de Patrocinador Mensual no meu perfil
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |
+          Se mudares de idea sempre podes <a href='/users/edit'>editar as túas configuracións</a>.
+        monthly_supporter: Patrocinador Mensual
+        name_place_help_html: |
+          Priorizar nomes vernáculos usados neste lugar.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Comentarios
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identificacións
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Mencións
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Mensaxes
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Publicacións no diario do proxecto
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Cando un proxecto engade as túas observacións
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Observacións da xente á que sigo
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Observacións dos taxons ou dos lugares ós que me suscribín
+        project_addition_preferences:
+          joined: Proxectos ós que te uniches
+          none: "Ningún, só ti podes engadir as túas observacións a proxectos"
+        prefers_no_tracking_label_desc_info_we_share: |
+          A información que poderiamos compartir con estes terceiros inclúe
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Detalles do buscador, como marca, modelo e versión
     user_parents:
       new:
         step2_desc: |
