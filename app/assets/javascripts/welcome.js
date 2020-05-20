@@ -39,7 +39,7 @@ function addObservations(observations) {
                 I18n.t( "observation_brief_taxon_from_place", {
                   taxon: $( "<span class='taxonname'>" ).html( o.taxon.default_name.name ).prop( "outerHTML" ),
                   place: $( "<span class='location'>" ).html( o.place_guess ).prop( "outerHTML" )
-                } ),
+                } )
               )
             )
           )
