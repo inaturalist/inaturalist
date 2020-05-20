@@ -143,19 +143,7 @@ class ProviderOauthController < ApplicationController
       nil
     end
     return nil unless user
-    access_token = Doorkeeper::AccessToken.
-      where(:application_id => client.id, :resource_owner_id => user.id, :revoked_at => nil).
-      order('created_at desc').
-      limit(1).
-      first
-    if client.trusted?
-      access_token ||= Doorkeeper::AccessToken.create!(
-        application_id: client.id,
-        resource_owner_id: user.id,
-        scopes: scopes_from_params( params, client )
-      )
-    end
-    access_token
+    assertion_access_token_for_client_and_user( client, user )
   end
 
   def oauth_access_token_from_google_token(client_id, provider_token)
@@ -221,17 +209,27 @@ class ProviderOauthController < ApplicationController
     end
 
     return nil unless user && user.persisted?
+    assertion_access_token_for_client_and_user( client, user )
+  end
+
+  def assertion_access_token_for_client_and_user( client, user )
     access_token = Doorkeeper::AccessToken.
-      where(:application_id => client.id, :resource_owner_id => user.id, :revoked_at => nil).
-      order('created_at desc').
-      limit(1).
+      where( application_id: client.id, resource_owner_id: user.id, revoked_at: nil ).
+      order( "created_at desc" ).
+      limit( 1 ).
       first
     if client.trusted?
-      access_token ||= Doorkeeper::AccessToken.create!(
-        application_id: client.id,
-        resource_owner_id: user.id,
-        scopes: scopes_from_params( params, client )
-      )
+      if access_token
+        # If the user already has a token for this client, ensure that the
+        # scopes match what they're requesting
+        access_token.update_attributes( scopes: scopes_from_params( params, client ) )
+      else
+        access_token = Doorkeeper::AccessToken.create!(
+          application_id: client.id,
+          resource_owner_id: user.id,
+          scopes: scopes_from_params( params, client )
+        )
+      end
     end
     access_token
   end
