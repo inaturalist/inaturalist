@@ -56,7 +56,7 @@ Stats.loadChartsFromJSON = function ( json ) {
 };
 
 Stats.loadObsSpark = function ( json ) {
-  google.setOnLoadCallback( Stats.sparkline( {
+  google.charts.setOnLoadCallback( Stats.sparkline( {
     element_id: "obsspark",
     series: [
       { label: "Today" }
@@ -68,7 +68,7 @@ Stats.loadObsSpark = function ( json ) {
 };
 
 Stats.loadPercentIdSpark = function ( json ) {
-  google.setOnLoadCallback( Stats.sparkline( {
+  google.charts.setOnLoadCallback( Stats.sparkline( {
     element_id: "percentidspark",
     series: [
       { label: "% ID" }
@@ -83,7 +83,7 @@ Stats.loadPercentIdSpark = function ( json ) {
 };
 
 Stats.loadPercentCIDToGenusSpark = function ( json ) {
-  google.setOnLoadCallback( Stats.sparkline( {
+  google.charts.setOnLoadCallback( Stats.sparkline( {
     element_id: "percentcidtogenusspark",
     series: [
       { label: "% ID" }
@@ -98,7 +98,7 @@ Stats.loadPercentCIDToGenusSpark = function ( json ) {
 };
 
 Stats.loadActiveUsersSpark = function ( json ) {
-  google.setOnLoadCallback( Stats.sparkline( {
+  google.charts.setOnLoadCallback( Stats.sparkline( {
     element_id: "activeusersspark",
     series: [
       { label: "% ID" }
@@ -110,7 +110,7 @@ Stats.loadActiveUsersSpark = function ( json ) {
 };
 
 Stats.loadNewUsersSpark = function ( json ) {
-  google.setOnLoadCallback( Stats.sparkline( {
+  google.charts.setOnLoadCallback( Stats.sparkline( {
     element_id: "newusersspark",
     series: [
       { label: "% ID" }
@@ -122,7 +122,7 @@ Stats.loadNewUsersSpark = function ( json ) {
 };
 
 Stats.load7ObsUsersSpark = function ( json ) {
-  google.setOnLoadCallback( Stats.sparkline( {
+  google.charts.setOnLoadCallback( Stats.sparkline( {
     element_id: "new7obsusersspark",
     series: [
       { label: "% ID" }
@@ -134,7 +134,7 @@ Stats.load7ObsUsersSpark = function ( json ) {
 };
 
 Stats.loadObservations = function ( json ) {
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     chartOptions: {
       legend: { position: "bottom" }
     },
@@ -155,7 +155,7 @@ Stats.loadObservations = function ( json ) {
 };
 
 Stats.loadCumulativePlatforms = function ( json ) {
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     element_id: "cumulative-platforms",
     chartOptions: { isStacked: true },
     series: [
@@ -178,9 +178,9 @@ Stats.loadCumulativePlatforms = function ( json ) {
 };
 
 Stats.loadObservations7Days = function ( json ) {
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     element_id: "obs_7",
-    chartType: google.visualization.AnnotationChart,
+    chartType: "AnnotationChart",
     series: [
       { label: I18n.t( "obs" ) },
       { label: I18n.t( "obs_id_d" ) },
@@ -202,9 +202,9 @@ Stats.loadObservations7Days = function ( json ) {
 };
 
 Stats.loadPlatforms = function ( json ) {
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     element_id: "platforms",
-    chartType: google.visualization.AnnotationChart,
+    chartType: "AnnotationChart",
     series: [
       { label: I18n.t( "website" ) },
       { label: I18n.t( "iphone" ) },
@@ -229,9 +229,9 @@ Stats.loadTTID = function ( json ) {
   var ldodgerblue = d3.rgb( dodgerblue.r + 75, dodgerblue.g + 75, dodgerblue.b + 75);
   var pink = d3.rgb( "deeppink" );
   var lpink = d3.rgb( pink.r + 100, pink.g + 100, pink.b + 100 );
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     element_id: "ttid",
-    chartType: google.visualization.AnnotationChart,
+    chartType: "AnnotationChart",
     series: [
       { label: I18n.t( "views.stats.index.med_ttid" ) },
       { label: I18n.t( "views.stats.index.avg_ttid" ) },
@@ -263,7 +263,7 @@ Stats.loadTTID = function ( json ) {
 };
 
 Stats.loadProjects = function ( json ) {
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     chartOptions: {
       legend: { position: "none" }
     },
@@ -276,7 +276,7 @@ Stats.loadProjects = function ( json ) {
 };
 
 Stats.loadCumulativeUsers = function ( json ) {
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     chartOptions: {
       legend: { position: "bottom" }
     },
@@ -298,9 +298,9 @@ Stats.loadCumulativeUsers = function ( json ) {
 };
 
 Stats.loadDailyUsers = function ( json ) {
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     element_id: "daily-users",
-    chartType: google.visualization.AnnotationChart,
+    chartType: "AnnotationChart",
     series: [
       { label: I18n.t( "new" ) },
       { label: I18n.t( "observers" ) },
@@ -318,9 +318,9 @@ Stats.loadDailyUsers = function ( json ) {
 };
 
 Stats.loadActiveUsers = function ( json ) {
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     element_id: "active-users",
-    chartType: google.visualization.AnnotationChart,
+    chartType: "AnnotationChart",
     series: [
       { label: I18n.t( "active" ) }
     ],
@@ -334,9 +334,9 @@ Stats.loadActiveUsers = function ( json ) {
 };
 
 Stats.loadRecentUsers = function ( json ) {
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     element_id: "recent-users",
-    chartType: google.visualization.AnnotationChart,
+    chartType: "AnnotationChart",
     series: [
       { label: I18n.t( "recent" ) },
       { label: I18n.t( "views.stats.index.recent_w_7_obs" ) },
@@ -355,7 +355,7 @@ Stats.loadRecentUsers = function ( json ) {
 
 Stats.loadRanks = function ( json ) {
   var ranks = _.keys( json[0].data.taxa.count_by_rank ).reverse( );
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     element_id: "ranks",
     series: _.map( ranks, function ( rank ) {
       return {
@@ -380,12 +380,12 @@ Stats.loadRanks = function ( json ) {
 };
 
 Stats.loadRanksPie = function ( json ) {
-  google.setOnLoadCallback( Stats.simpleChart( {
+  google.charts.setOnLoadCallback( Stats.simpleChart( {
     element_id: "ranks_pie",
     data: _.map( json[0].data.taxa.count_by_rank, function ( value, rank ) {
       return [I18n.t( "ranks." + rank, { defaultValue: rank } ), parseInt( value, 0 )];
     } ),
-    chartType: google.visualization.PieChart
+    chartType: "PieChart"
   } ) );
 };
 
@@ -406,8 +406,12 @@ Stats.monthAgoDate = function ( ) {
   return monthAgo;
 };
 
-Stats.simpleChart = function ( options ) {
+Stats.simpleChart = function ( opts ) {
+  var options = _.assign( {}, opts );
   options.chartType = options.chartType || google.visualization.AreaChart;
+  if ( typeof ( options.chartType ) === "string" ) {
+    options.chartType = google.visualization[options.chartType];
+  }
   var chartOptions = options.chartOptions || { };
   var data = new google.visualization.DataTable( );
   if ( options.chartType === google.visualization.AreaChart ) {

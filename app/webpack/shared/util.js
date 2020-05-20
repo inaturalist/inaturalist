@@ -3,8 +3,9 @@ import _ from "lodash";
 import moment from "moment-timezone";
 
 // Light wrapper around fetch to ensure credentials are always passed through
-const fetch = ( url, options = {} ) =>
-  baseFetch( url, Object.assign( {}, options, { credentials: "same-origin" } ) );
+const fetch = ( url, options = {} ) => baseFetch( url, Object.assign( {}, options, {
+  credentials: "same-origin"
+} ) );
 
 function updateSession( params ) {
   const data = new FormData( );
