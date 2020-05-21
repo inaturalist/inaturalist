@@ -7,9 +7,9 @@ import APIWrapper from "../../../shared/containers/inat_api_duck_container";
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 import Observations from "./observations";
 import Species from "./species";
+import SpeciesNoAPIContainer from "../containers/species_noapi_container";
 
 const ObservationsGridContainer = APIWrapper( "observations", Observations );
-const SpeciesGridContainer = APIWrapper( "species", Species );
 const UnobservedSpeciesGridContainer = APIWrapper( "unobservedSpecies", Species );
 
 const DetailsView = ( {
@@ -19,13 +19,7 @@ const DetailsView = ( {
   let view;
   let searchOptions;
   if ( lifelist.detailsView === "species" ) {
-    view = (
-      <SpeciesGridContainer
-        lifelist={lifelist}
-        zoomToTaxon={zoomToTaxon}
-        setSpeciesPlaceFilter={setSpeciesPlaceFilter}
-      />
-    );
+    view = ( <SpeciesNoAPIContainer /> );
   } else if ( lifelist.detailsView === "unobservedSpecies" ) {
     view = (
       <UnobservedSpeciesGridContainer
@@ -104,16 +98,12 @@ const DetailsView = ( {
       );
     } else {
       title = "All Observations";
-      inatAPIsearch = inatAPI.observations;
-      searchLoaded = inatAPIsearch && inatAPIsearch.searchResponse;
       stats = (
         <div className="stats">
           <span className="stat">
             <span className="attr">Total Observations:</span>
             <span className="value">
-              { searchLoaded
-                ? inatAPIsearch.searchResponse.total_results.toLocaleString( )
-                : ( <div className="loading_spinner" /> ) }
+              { lifelist.observationsCount }
             </span>
           </span>
         </div>
@@ -128,9 +118,7 @@ const DetailsView = ( {
         <span className="stat">
           <span className="attr">Observed Species:</span>
           <span className="value">
-            { searchLoaded
-              ? inatAPIsearch.searchResponse.total_results.toLocaleString( )
-              : ( <div className="loading_spinner" /> ) }
+            { lifelist.detailsTaxon ? lifelist.detailsTaxon.descendantCount : lifelist.leavesCount }
           </span>
         </span>
       </div>
@@ -168,23 +156,25 @@ const DetailsView = ( {
         </h3>
       )}
       { stats }
-      <div className="search-options">
-        <div className="place-search">
-          <span className="glyphicon glyphicon-search ac-select-thumb" />
-          <PlaceAutocomplete
-            resetOnChange={false}
-            initialPlaceID={lifelist.speciesPlaceFilter}
-            bootstrapClear
-            afterSelect={result => {
-              setSpeciesPlaceFilter( result.item.id );
-            }}
-            afterUnselect={( ) => {
-              setSpeciesPlaceFilter( null );
-            }}
-          />
+      { lifelist.detailsView === "unobservedSpecies" && (
+        <div className="search-options">
+          <div className="place-search">
+            <span className="glyphicon glyphicon-search ac-select-thumb" />
+            <PlaceAutocomplete
+              resetOnChange={false}
+              initialPlaceID={lifelist.speciesPlaceFilter}
+              bootstrapClear
+              afterSelect={result => {
+                setSpeciesPlaceFilter( result.item.id );
+              }}
+              afterUnselect={( ) => {
+                setSpeciesPlaceFilter( null );
+              }}
+            />
+          </div>
+          { searchOptions }
         </div>
-        { searchOptions }
-      </div>
+      ) }
       { view }
     </div>
   );

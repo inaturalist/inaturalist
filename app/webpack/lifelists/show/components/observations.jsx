@@ -10,16 +10,13 @@ class Observations extends Component {
 
   render( ) {
     const {
-      search, fetchFirstPage, fetchNextPage, config
+      search, fetchNextPage, config
     } = this.props;
     let view;
     const loading = !search || ( !search.searchResponse && !search.loaded );
     const observations = loading ? null : search.searchResponse.results || [];
     if ( loading ) {
       view = ( <div className="loading_spinner huge" /> );
-      if ( search && !search.loading ) {
-        fetchFirstPage( );
-      }
     } else {
       view = observations.map( o => {
         const itemDim = 210;
@@ -44,25 +41,25 @@ class Observations extends Component {
     let moreButton;
     if ( search && search.hasMore ) {
       moreButton = !search.loaded
-        ? ( <div className="loading_spinner big" /> )
+        ? ( <div className="more"><div className="loading_spinner big" /></div> )
         : (
-          <button
-            type="button"
-            className="btn btn-sm btn-default"
-            onClick={fetchNextPage}
-          >
-            <i className="fa fa-caret-down" />
-            Show More
-          </button>
+          <div className="more">
+            <button
+              type="button"
+              className="btn btn-sm btn-default"
+              onClick={fetchNextPage}
+            >
+              <i className="fa fa-caret-down" />
+              Show More
+            </button>
+          </div>
         );
     }
     return (
       <div className="flex-container">
         <div className="ObservationsGrid" key="observations-flex-grid">
           { view }
-          <div className="more">
-            { moreButton }
-          </div>
+          { moreButton }
         </div>
       </div>
     );
@@ -72,7 +69,6 @@ class Observations extends Component {
 Observations.propTypes = {
   config: PropTypes.object,
   search: PropTypes.object,
-  fetchFirstPage: PropTypes.func,
   fetchNextPage: PropTypes.func
 };
 

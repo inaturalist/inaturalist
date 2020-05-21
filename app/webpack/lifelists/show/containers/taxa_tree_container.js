@@ -17,9 +17,9 @@ function mapDispatchToProps( dispatch ) {
   };
 }
 
-const TreeTaxaContainer = connect(
+const TaxaTreeContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )( TaxaTree );
 
-export default TreeTaxaContainer;
+export default TaxaTreeContainer;

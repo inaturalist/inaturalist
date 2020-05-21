@@ -90,7 +90,10 @@ class TaxaTree extends React.Component {
           { ( !isLeaf && taxon.descendant_obs_count ) ? (
             <span
               className="descendants"
-              onClick={( ) => setDetailsTaxon( taxon )}
+              onClick={( ) => {
+                setDetailsTaxon( taxon );
+                setDetailsView( "observations" );
+              }}
               title="All observations in this taxon"
             >
               { taxon.descendant_obs_count }

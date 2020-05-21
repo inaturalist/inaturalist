@@ -1,6 +1,7 @@
 class LifelistsController < ApplicationController
 
   before_filter :load_user, only: [:by_login]
+  before_filter :admin_required
 
   def by_login
     respond_to do |format|

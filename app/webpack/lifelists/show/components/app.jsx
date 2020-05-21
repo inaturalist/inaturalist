@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import TaxaTreeContainer from "../containers/taxa_tree_container";
+import TaxaListContainer from "../containers/taxa_list_container";
 import TaxonAutocomplete from "../../../observations/uploader/components/taxon_autocomplete";
 import DetailsViewContainer from "../containers/details_view_container";
 
@@ -87,7 +88,7 @@ class App extends React.Component {
             />
             { lifelist.navView === "tree"
               ? ( <TaxaTreeContainer /> )
-              : "todo"
+              : ( <TaxaListContainer /> )
             }
           </div>
           <div className="FlexCol details-col">

@@ -36,6 +36,8 @@
   :javascript
     var LIFELIST_USER = #{ js_lifelist_user.to_json.html_safe };
     var CURRENT_USER = #{ js_current_user ? js_current_user.to_json.html_safe : "{ }" };
+    var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(
+      only: [ :id ], include: { default_name: { only: [ :name ] } } ).html_safe : "{ }" };
     var SITE = {
       name: "#{@site.name}",
       short_name: "#{@site.site_name_short}",
