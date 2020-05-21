@@ -123,7 +123,6 @@ nb:
   a_default_taxon_name_will_automatically_created: |
     Et standard taksonnavn vil automatisk bli laget ut fra taksonets vitenskapelige navn. Når du har lagret det nye taksonet, vil du kunne legge til andre navn her (lokalnavn, utdaterte vitenskapelige navn, osv.).
   a_flag_for_x: "en markering for %{x}"
-  a_member_of: "Et medlem av"
   a_member_of_taxon_html: "et medlem av %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -313,7 +312,6 @@ nb:
   admin_s: Administrator(er)
   admin_only: Kun administratorer
   admin_tools: Administrasjonsverktøy
-  agree: enig
   agree_: Enig
   agree?: Enig?
   agree_with_current_taxon: Enig i det aktuelle taksonet
@@ -548,7 +546,6 @@ nb:
   assessments: vurderinger
   associations: Tilknytninger
   atlas_for_taxon_html: Atlas for %{taxon}
-  at_time: "kl. %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -749,7 +746,6 @@ nb:
   choose_a_list_above: Velg en liste ovenfor.
   choose_a_place: Velg et sted
   choose_a_taxon: Velg et takson (valgfritt)
-  choose_cc_licensed_photos_html: 'Velg bilder med en <a href="http://creativecommons.org/">åpen</a> lisens fra andre sider eller velg fra %{site_name}-observasjoner. Prøv å velge bilder som <em>viser diagnostiske egenskaper</em> og <em>ser bra ut som ikoner</em>. Det <em>første blir standardbildet</em>.'
   choose_columns: Velg kolonner
   choose_file: Velg fil
   choose_files: Velg filer
@@ -1264,6 +1260,7 @@ nb:
   favorites: "Favoritter"
   feature_this_project_: "Fremhev dette prosjektet"
   featured: Fremhevet
+  #Title for a button or section describing the "featured" status of a project
   featuring: Fremhever
   feedback: Tilbakemelding
   #Plural noun, as in Atom and RSS feeds
@@ -1405,7 +1402,6 @@ nb:
   forum_desc: |
     Forumet er et sted hvor selve iNat kan diskuteres, inkludert hjelp & brukerstøtte, etterspurt funksjonalitet, feilrapportering, kunngjøringer, og mer.
   frequency: Frekvens
-  from: Fra
   from_a_place: fra et sted
   from_eol_collection: Fra EOL-samling
   from_flickr_facebook_etc: Fra Flickr, Facebook, osv.
@@ -1413,8 +1409,6 @@ nb:
   from_photos: Fra bilder
   from_place: Fra sted
   from_soundcloud: Fra Soundcloud
-  from_your_site_observations: "Fra %{site_name}-observasjoner"
-  from_licensed_site_observations: "Fra lisensierte %{site_name}-observasjoner"
   full_screen: Fullskjerm
   fungi:
     one: sopp
@@ -2372,7 +2366,6 @@ nb:
   offline_access_enabled: Offline tilgang aktivert
   old_observation_form: Gammelt observasjonsskjema (foreldret)
   ok: "Ok"
-  on_date: "på %{date}"
   on_day: "på"
   onboarding:
     observe_panel_title: La oss komme i gang ved å legge ut noen observasjoner
@@ -4005,11 +3998,9 @@ nb:
   username_or_email: Brukernavn eller e-post
   username_or_user_id: Brukernavn eller bruker id
   users: Brukere
-  users_comment_html: "<a href='%{url}'>%{user}</a> sin kommentar"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> sine bidrag til %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}s høydepunkter og statistikker fra %{year} på %{site}"
   users_id: "%{user}s id"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a> sin ID"
   users_latest_observations_on_site: "%{user}s siste observasjoner på %{site}"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s prosjekter"
@@ -4894,13 +4885,6 @@ nb:
     photos:
       forbidden_notice_html: |
         Vi har ikke tillatelse til å få tilgang til disse bilder akkurat nå. Du må kanskje koble fra og til kontoen i dine <a href="/users/edit">innstillinger</a> for å gi oss ytterlige tillatelser.
-      inviter:
-        automatically_add_to_project: Legg til i prosjekt automatisk
-        automatically_id_the_new_obs_as: ID den nye observasjonen automatisk som
-        dont_forget_the_invite_link_placeholder: "ikke glem {{INVITE_LINK}} plassholderen"
-        invite_other_photographers_to_inat: "Inviter andre fotografer til %{site_name}"
-        invite_your_friends_description: |
-          Du kan gjøre det superenkelt for folk på Facebook og Flickr å legge til sine bilder som observasjoner på %{site_name}. Bare legg igjen en kommentar med denne spesiale invitasjons-URL-en nedenfor. Du kan også forhåndsvelge et takson og prosjekt for den nye observasjonen.
       show:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vennligst ikke marker markeringer om brudd av opphavsrett som løst hvis dette bildet er brudd på opphavsrett.

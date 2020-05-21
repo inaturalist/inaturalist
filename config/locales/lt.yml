@@ -202,7 +202,6 @@ lt:
     Numatytasis taksono pavadinimas bus automatiškai sukurtas iš šio taksono mokslinio pavadinimo požymių. 
     Kai jūs išsaugojote šį naują taksoną, jūs galėsite čia pridėti kitus pavadinimus (panašūs pavadinimai, pasenę moksliniai pavadinimai ir t.t.).
   a_flag_for_x: "%{x} žymė"
-  a_member_of: "Narys"
   a_member_of_taxon_html: " %{taxon} narys"
   about: Apie
   about_blocking: Apie bokavimą
@@ -362,7 +361,6 @@ lt:
   admin_s: Administratorius(-iai)
   admin_only: Tik administratorius
   admin_tools: Administratoriaus Įrankiai
-  agree: sutinku
   agree_: Sutikti
   agree?: Sutinkate?
   agree_with_current_taxon: Pritarti esamam taksonui
@@ -621,7 +619,6 @@ lt:
   assessments: vertinimai
   associations: Asociacijos
   atlas_for_taxon_html: '%{taxon} atlasas'
-  at_time: "%{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -1172,6 +1169,7 @@ lt:
   editing_project: Redaguojama %{project}
   editing_project_asset: Redaguojama Projekto Atributą
   editing_subscription_to_x_html: "Redaguojama %{x} prenumerata"
+  editing_taxon: Redaguojamas %{taxon}
   editing_taxon_link: Redaguojama taksono nuorodą
   editing_taxon_name_for_taxon_html: Redaguojamas taksono %{taxon} pavadinimas „%{name}“
   editing_taxon_range: Redaguojamas taksono arealas
@@ -1256,6 +1254,7 @@ lt:
   favorites: "Mėgstamiausi"
   feature_this_project_: "Siūlyti šį projektą"
   featured: Siūlomi
+  #Title for a button or section describing the "featured" status of a project
   featuring: Siūloma
   feedback: Atsiliepimai
   #Plural noun, as in Atom and RSS feeds
@@ -1392,7 +1391,6 @@ lt:
   forum_desc: |
     Forumas yra vieta, kurioje galima diskutuoti apie iNat, padėti vieni kitiems, siūlyti idėjas tinklalapiui, pranešti apie klaidas ir t. t.
   frequency: Dažnumas
-  from: Nuo
   from_a_place: iš vietos
   from_eol_collection: Iš EOL kolekcijos
   from_flickr_facebook_etc: Iš Flickr, Facebook ir t.t.
@@ -1400,7 +1398,6 @@ lt:
   from_photos: Iš Nuotraukų
   from_place: Iš vietos
   from_soundcloud: Iš Soundcloud
-  from_your_site_observations: "Stebėjimai iš %{site_name}"
   full_screen: Visas Ekranas
   fungi:
     one: grybas
@@ -3013,6 +3010,8 @@ lt:
   saving_verb: Saugoma
   scale_colon: "Mastelis:"
   schemes: Schemos
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Mokslinis pavadinimas
   search: Paieška
   search_by_name_or_email: Ieškoti pagal vardą arba el. pašto adresą
   search_by_taxon_name_or_observation_id: Ieškoti pagal taksono pavadinimą arba stebėjimo ID
@@ -3651,11 +3650,9 @@ lt:
   username_or_email: Vartotojo vardas arba el. paštas
   username_or_user_id: Vartotojo vardas arba vartotojo ID
   users: Vartotojai
-  users_comment_html: "<a href='%{url}'>%{user}</a> komentaras"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> indėlis projekte %{project_title}
   users_highlights_and_stats_from_year_on_site: "Svarbiausi %{user} %{site} momentai ir statistika iš %{year} metų"
   users_id: "%{user} ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a> ID"
   users_latest_observations_on_site: "%{user} paskutiniai stebėjimai %{site}"
   users_profile: "%{user} profilis"
   users_projects: "%{user} projektai"
@@ -4058,11 +4055,6 @@ lt:
         subject: Jūsų vaikas norėtų naudotis iNaturalist
       photos_missing:
         subject: Kai kurias nuotraukas reikia sutaisyti
-    photos:
-      inviter:
-        automatically_add_to_project: Automatiškai pridėti į projektą
-        dont_forget_the_invite_link_placeholder: "nepamirškite {{INVITE_LINK}} užpildo"
-        invite_other_photographers_to_inat: "Pakviesti kitus fotografus į %{site_name}"
     places:
       new:
         check_list_note: "Dėmesio: kontroliniai sąrašai automatiškai išjungiami labai didelėms vietoms."
@@ -4086,8 +4078,12 @@ lt:
           Bioblicas yra renginys, kuriame dalyviai bando surasti kiek galima daugiau rūšių per tam tikrą laiko tarpą. Tai smagus būdas žmones supažindinti su biologine įvairove ir tuo pačiu surinkti naudingų duomenų.
           </p>
         change_admin_desc: Pasirinkite vieną iš projekto kuratorių, kuris bus naujas administratorius.
+        change_owner_alert: |
+          Tai pašalins jūsų galimybę ištrinti šį projektą arba vėl ką nors padaryti savininku. Ar norite tęsti?
         cover_desc: "Neprivaloma reklamjuostė bus matoma projekto puslapio viršuje. Paveikslėlis turi būti 950 pikselių pločio ir 400 pikselių aukščio."
         end_time_desc: "Bioblico pabaiga. Ji turi būti ne vėliau nei po metų nuo pradžios"
+        #Label for button to make another user the owner of a project
+        make_owner: Padaryti savininku
         no_curators: |
           Nėra projekto kuratorių. Jei norite paskirti naują asmenį
           administratoriumi, jie privalo pirmą prisijungti prie šio projekto ir jūs privalote juos padaryti
@@ -4483,9 +4479,11 @@ lt:
       invalid: yra neteisinga
       less_than: turi būti mažiau už %{count}
       less_than_or_equal_to: turi būti mažiau arba lygu %{count}
+      new_project_owner_must_be_a_manager: Naujasis projekto savininkas turi būti administratorius
       not_a_number: yra ne skaičius
       not_an_integer: turi būti sveikas skaičius
       odd: turi būti nelyginis
+      only_project_owner_can_change_project_owner: Tik projekto savininkas gali pakeisti projekto savininką
       record_invalid: 'Patvirtinimas nepavyko: %{errors}'
       taken: jau užimtas
       too_long:
@@ -4602,9 +4600,11 @@ lt:
         invalid: yra neteisinga
         less_than: turi būti mažiau už %{count}
         less_than_or_equal_to: turi būti mažiau arba lygu %{count}
+        new_project_owner_must_be_a_manager: Naujasis projekto savininkas turi būti administratorius
         not_a_number: yra ne skaičius
         not_an_integer: turi būti sveikas skaičius
         odd: turi būti nelyginis
+        only_project_owner_can_change_project_owner: Tik projekto savininkas gali pakeisti projekto savininką
         record_invalid: 'Patvirtinimas nepavyko: %{errors}'
         taken: jau užimtas
         too_long:
@@ -4724,9 +4724,11 @@ lt:
         invalid: yra teisinga
         less_than: turi būti mažiau už %{count}
         less_than_or_equal_to: turi būti mažiau arba lygu %{count}
+        new_project_owner_must_be_a_manager: Naujasis projekto savininkas turi būti administratorius
         not_a_number: yra ne skaičius
         not_an_integer: turi būti sveikas skaičius
         odd: turi būti nelyginis
+        only_project_owner_can_change_project_owner: Tik projekto savininkas gali pakeisti projekto savininką
         record_invalid: 'Patvirtinimas nepavyko: %{errors}'
         taken: jau užimtas
       models:

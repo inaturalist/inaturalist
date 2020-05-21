@@ -94,7 +94,6 @@ el:
     Μια προεπιλεγμένη ονομασία taxon θα δημιουργηθεί αυτόματα από την επιστημονική ονομασία αυτού του taxon.
     Όταν θα έχετε αποθηκεύσει αυτό το νέο taxon, θα έχετε τη δυνατότητα να προσθέσετε άλλες ονομασίες εδώ (κοινές ονομασίες, παρωχημένες επιστημονικές ονομασίες κλπ.).
   a_flag_for_x: "μια αναφορά για το  %{x}"
-  a_member_of: "Ένα μέλος του"
   a_member_of_taxon_html: "Ένα μέλος του %{taxon}"
   about: Σχετικά
   about_blocking: Σχετικά με την φραγή
@@ -279,7 +278,6 @@ el:
   admin_s: Διαχειριστής (-ές)
   admin_only: Μόνο για διαχειριστές
   admin_tools: Διαχειριστικά εργαλεία
-  agree: συμφωνώ
   agree_: Συμφωνώ
   agree?: Συμφωνείτε;
   agree_with_current_taxon: Συμφωνώ με το παρόν taxon
@@ -515,7 +513,6 @@ el:
   assessments: αποτιμήσεις
   associations: Συσχετισμοί
   atlas_for_taxon_html: Άτλας για %{taxon}
-  at_time: "στις %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -712,7 +709,6 @@ el:
   choose_a_list_above: Επιλέξτε μια λίστα παραπάνω.
   choose_a_place: Επιλογή ενός τόπου
   choose_a_taxon: Επιλογή ενός taxon (προαιρετικό)
-  choose_cc_licensed_photos_html: 'Διαλέξτε <a href="http://creativecommons.org/">άνοιγμα</a>φωτογραφίες με άδεια χρήσης από άλλους ιστοτόπους ή διαλέξτε από τις παρατηρήσεις του%{site_name}. Προσπαθήστε να επιλέξετε εικόνες που <em>δείχνουν διαγνωστικά χαρακτηριστικά</em>και<em>φαίνονται καλά ως εικονίδια.</em>.Το πρώτο <em> είναι και το προεπιλεγμένο</em>.'
   choose_columns: Επιλογή στηλών
   choose_file: Επιλογή αρχείου
   choose_files: Επιλογή αρχείων
@@ -1223,6 +1219,7 @@ el:
   favorites: "Αγαπημένα"
   feature_this_project_: "Παρουσιάστε Αυτό το Πρότζεκτ"
   featured: Περιλαμβάνεται
+  #Title for a button or section describing the "featured" status of a project
   featuring: Χαρακτηριστικό
   feedback: Ανατροφοδότηση
   #Plural noun, as in Atom and RSS feeds
@@ -1359,7 +1356,6 @@ el:
   forum_desc: |
     Το φόρουμ είναι ένα μέρος συζήτησης για το ίδιο το iNat, το οποίο περιλαμβάνει βοήθεια και υποστήριξη, αιτήματα για νέα χαρακτηριστικά, αναφορές σφαλμάτων, ανακοινώσεις και πολλά άλλα.
   frequency: Συχνότητα
-  from: Από
   from_a_place: από έναν τόπο
   from_eol_collection: Απο την συλλογή της EOL
   from_flickr_facebook_etc: Από το Flickr, Facebook, κτλ.
@@ -1367,8 +1363,6 @@ el:
   from_photos: από φωτογραφίες
   from_place: Από τόπο
   from_soundcloud: Από το Soundcloud
-  from_your_site_observations: "Από %{site_name} παρατηρήσεις"
-  from_licensed_site_observations: "Από αδειοδοτημένες %{site_name} παρατηρήσεις"
   full_screen: Πλήρης οθόνη
   fungi:
     one: μήκυτας
@@ -2313,7 +2307,6 @@ el:
   offline_access_enabled: Η πρόσβαση εκτός σύνδεσης ενεργοποιήθηκε
   old_observation_form: Παλιά παρατήρηση από (παρωχημένο)
   ok: "Εντάξει"
-  on_date: "στις %{date}"
   on_day: "εντός"
   onboarding:
     observe_panel_title: Ας ξεκινήσουμε αναρτώντας κάποιες παρατηρήσεις
@@ -3914,11 +3907,9 @@ el:
   username_or_email: Όνομα χρήστη ή email
   username_or_user_id: Όνομα χρήστη η ID χρήστη
   users: Χρήστες
-  users_comment_html: "Το σχόλιο του <a href='%{url}'>%{user}</a>'"
   users_contributions_to_project_html: Η συνεισφορά του χρήστη <a href="%{url}">%{login}</a> στο πρότζεκτ %{project_title}
   users_highlights_and_stats_from_year_on_site: "Τα καλύτερα σημεία και στατιστικά του χρήστη %{user} από το έτος %{year} στο %{site}"
   users_id: "Η ταυτότητα του χρήστη %{user}"
-  users_identification_short_html: "Η ταυτοποίηση του/της <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Οι πιο πρόσφατες παρατηρήσεις της/του %{user} στο %{site}"
   users_profile: "Το προφίλ του χρήστη %{user}"
   users_projects: "Τα πρότζεκτ του/της %{user}"
@@ -4646,12 +4637,6 @@ el:
     photos:
       forbidden_notice_html: |
         Δεν έχουμε άδεια για πρόσβαση σε αυτές τις φωτογραφίες αυτή τη στιγμή. Μπορεί να χρειαστεί να αποσυνδεθείτε και να ξανασυνδεθείτε στον λογαριασμό σας <a href="/users/edit">ρυθμίσεις</a> για να μας δώσετε επιπλέον άδειες.
-      inviter:
-        automatically_add_to_project: Αυτόματη προσθήκη στο πρότζεκτ
-        automatically_id_the_new_obs_as: Αυτόματο ID των νέων παρ/σεων ως
-        invite_other_photographers_to_inat: "Προσκαλέστε άλλους φωτογράφους στο %{site_name}"
-        invite_your_friends_description: |
-          Μπορείτε να το κάνετε πανεύκολο για άτομα στο Facebook και Flickr να προσθέτουν φωτογραφίες ως %{site_name} παρατηρήσεις. Απλά αφήστε ένα σχόλιο συμπεριλαμβανομένου αυτού του ειδικού URL πρόσκλησης που είναι παρακάτω. Μπορείτε επίσης να προεπιλέξετε μία ταξινομική βαθμίδα και πρότζεκτ για τη νέα παρατήρηση.
       show:
         view_original_html: |
           Μπορείτε να δείτε το πρωτότυπο στο <a href="%{url}">%{url}</a>. Παρακαλούμε να αφήνετε ως μη επιλυμένες τις αναφορές για παραβάσεις δικαιωμάτων δημιουργού αν αυτή η φωτογραφία όντως παραβιάζει πνευματικά δικαιώματα.

@@ -201,7 +201,6 @@ ru:
   a_default_taxon_name_will_automatically_created: |
     Название таксона по умолчанию будет автоматически создано из атрибута научного названия этого таксона. Когда вы сохраните этот новый таксон, вы сможете добавлять здесь другие названия  (народные названия, устаревшие научные названия и т.д.).
   a_flag_for_x: "флаг для %{x}"
-  a_member_of: "Член"
   a_member_of_taxon_html: "член %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -395,7 +394,6 @@ ru:
   admin_s: Администратор(ы)
   admin_only: Только администраторы
   admin_tools: Средства Администрирования
-  agree: согласен
   agree_: Согласен
   agree?: Согласны?
   agree_with_current_taxon: Согласен с текущим таксоном
@@ -659,7 +657,6 @@ ru:
   assessments: оценки
   associations: Ассоциации
   atlas_for_taxon_html: Атлас для %{taxon}
-  at_time: "в %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -855,7 +852,6 @@ ru:
   choose_a_list_above: Выберите список из приведённых выше
   choose_a_place: Выберите место
   choose_a_taxon: Выберите таксон (опционально)
-  choose_cc_licensed_photos_html: 'Выберите <a href="http://creativecommons.org/">открыть</a>-лицензированные фото с других сайтов или укажите наблюдения с %{site_name}. Постарайтесь выбрать изображения, которые <em>показывают диагностические особенности</em> и <em>выглядят так хорошо, как иконки</em>. <em>По умолчанию используется первое из изображений</em>.'
   choose_columns: Выберите столбцы
   choose_file: Выберите файл
   choose_files: Выберите файлы
@@ -1374,6 +1370,7 @@ ru:
   favorites: "Фавориты"
   feature_this_project_: "Рекомендовать этот проект"
   featured: Рекомендуемые
+  #Title for a button or section describing the "featured" status of a project
   featuring: Демонстрация
   feedback: Обратная связь
   #Plural noun, as in Atom and RSS feeds
@@ -1515,7 +1512,6 @@ ru:
   forum_desc: |
     Форум - это место для обсуждения самого iNat, включая помощь и поддержку, пожелания, отчеты об ошибках, объявления и многое другое.
   frequency: Частота наблюдения
-  from: Из
   from_a_place: в месте
   from_eol_collection: Из коллекции EOL
   from_flickr_facebook_etc: Из Flickr, Facebook и т.д.
@@ -1523,8 +1519,6 @@ ru:
   from_photos: Из фотографий
   from_place: Из места
   from_soundcloud: Из Soundcloud
-  from_your_site_observations: "Из наблюдений %{site_name}"
-  from_licensed_site_observations: "Из лицензированных наблюдений %{site_name}"
   full_screen: Полный экран
   fungi:
     one: гриб
@@ -2491,7 +2485,6 @@ ru:
   offline_access_enabled: Включён автономный доступ
   old_observation_form: Старая форма наблюдения (устарела)
   ok: "ОК"
-  on_date: "на %{date}"
   on_day: ", "
   onboarding:
     observe_panel_title: Давайте начнём публиковать некоторые наблюдения
@@ -3170,6 +3163,8 @@ ru:
   project_settings: Параметры проекта
   project_start_time_datetime: "Начало: %{datetime}"
   project_that_does_not_contain_these_observations: Проект, не содержащий данные наблюдения
+  project_type_description: |
+    Оценки и биоблицы - специальные типы проектов. Оценки используются в совместных работах с наборами оценок видов, обычно для целей охраны природы. Биоблицы - это события, имеющие заданные начало и конец.
   project_user_cannot_be_found: Участник проекта не найден
   project_user_was_invalid: "Недействительный пользователь проекта: %{project_user}"
   project_was_successfully_created: Проект был успешно создан.
@@ -4183,11 +4178,9 @@ ru:
   username_or_email: Имя пользователя или адрес электронной почты
   username_or_user_id: Имя пользователя или его идентификатор
   users: Пользователи
-  users_comment_html: "<a href='%{url}'>%{user}</a> комментарий"
   users_contributions_to_project_html: вклад <a href="%{url}">%{login}</a> в %{project_title}
   users_highlights_and_stats_from_year_on_site: "Основные моменты и статистика %{user} за %{year} на %{site}"
   users_id: "Идентификация %{user}"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a> идентификация"
   users_latest_observations_on_site: "последние наблюдения %{user} на %{site}"
   users_profile: "Профиль %{user}"
   users_projects: "Проекты %{user}"
@@ -5157,13 +5150,6 @@ ru:
     photos:
       forbidden_notice_html: |
         В данный момент у нас нет разрешения на доступ к этим фото. Возможно, вам понадобится отключить и снова подключить учётную запись в ваших <a href="/users/edit">настройках</a>, чтобы предоставить нам дополнительные разрешения.
-      inviter:
-        automatically_add_to_project: Автоматически добавлять к проекту
-        automatically_id_the_new_obs_as: Автоматически идентифицировать нов набл как
-        dont_forget_the_invite_link_placeholder: "не забудьте заполнить {{INVITE_LINK}}"
-        invite_other_photographers_to_inat: "Пригласите других фотографов на %{site_name}"
-        invite_your_friends_description: |
-          Для людей с Facebook и Flickr можно с легкостью обеспечить добавление их фото в качестве %{site_name} наблюдений. Просто оставьте комментарий, включающий специальное указанное ниже URL-приглашение. Вы также можете предварительно выбрать таксон и проект для нового наблюдения.
       show:
         view_original_html: |
           Вы можете просмотреть оригинал здесь <a href="%{url}">%{url}</a>. Пожалуйста, проставьте флаги нарушения авторских прав, если это фото нарушает авторские права.

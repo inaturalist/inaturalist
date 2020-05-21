@@ -75,7 +75,6 @@ id:
   a_community_for_naturalist: Komunitas untuk Naturalis
   a_default_taxon_name_will_automatically_created: |
     Sebuah nama standar takson akan secara otomatis dibuat dari atribut nama ilmiah takson ini. Bila Anda telah menyimpan takson baru ini, Anda akan dapat menambahkan nama lain di sini (nama umum, nama ilmiah usang, dll).
-  a_member_of: "Anggota dari"
   a_member_of_taxon_html: "anggota dari %{taxon}"
   about: Tentang
   about_blocking: Tentang pemblokiran
@@ -210,7 +209,6 @@ id:
   added_by: Ditambahkan oleh
   adding: "Menambahkan..."
   admin_tools: Peralatan Pengurus
-  agree: Setuju
   agree_: Setuju
   agree?: Setuju?
   agree_with_current_taxon: Setuju dengan takson saat ini
@@ -325,7 +323,6 @@ id:
   assessment_was_successfully_updated: Penilaian itu berhasil diperbarui.
   assessments: Penilaian
   associations: asosiasi
-  at_time: "di %{time}"
   authority_list:
     iucn_red_list: Daftar Merah IUCN
   authorize_permissions_from_provider: "Otorisasi izin dari %{provider}"
@@ -890,7 +887,6 @@ id:
     tutorials: Tutorial
   forum_desc: |
     Forum adalah tempat berdiskusi iNat itu sendiri, termasuk bantuan dan dukungan, permohonan fitur, laporan masalah, pengumuman, dan lain-lain.
-  from: Dari
   from_a_place: Dari tempat
   from_eol_collection: Dari koleksi EOL
   from_flickr_facebook_etc: Dari Flickr, Facebook, dll
@@ -898,8 +894,6 @@ id:
   from_photos: Dari foto
   from_place: Dari tempat
   from_soundcloud: dari SoundCloud
-  from_your_site_observations: "Dari %{site_name} observasi"
-  from_licensed_site_observations: "Dari pengamtan berlisensi %{site_name}"
   full_screen: Layar penuh
   gbif_occurrences: Kemunculan GBIF
   generate_taxonomic_tags_for_flickr: Menghasilkan tag taksonomi untuk foto Flickr Anda.
@@ -1480,7 +1474,6 @@ id:
   official_blog: Blog Resmi
   offline_access_enabled: Akses offline diaktifkan
   ok: "Oke"
-  on_date: "pada %{date}"
   on_day: "pada"
   one_by_one: "satu per satu"
   one_of_your_lists: "satu dari daftar Anda..."
@@ -2558,10 +2551,6 @@ id:
           Memungkinkan kurator proyek untuk melihat koordinat pribadi untuk pengamatan ini.
         curator_coordinate_access_disabled_desc_html: |
           Proyek ini tidak memungkinkan pengamatan dengan koordinat yang kurator proyek tidak dapat melihat. Jika Anda tidak ingin berbagi koordinat pengamatan ini dengan kurator proyek ini, Anda harus menghapus pengamatan dari proyek tersebut.
-    photos:
-      inviter:
-        automatically_add_to_project: Secara otomatis ditambahkan ke proyek
-        automatically_id_the_new_obs_as: Secara otomatis ID pengamatan sebagai
     places:
       kml_field_desc: |
         KML dari batas tempat. Anda dapat membuat satu menggunakan Google Maps, Google Earth , atau sebagian besar aplikasi GIS. Harus memiliki setidaknya satu polygon dan menjadi di bawah 1 MB (5 MB untuk kurator situs)

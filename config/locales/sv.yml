@@ -123,7 +123,6 @@ sv:
   a_default_taxon_name_will_automatically_created: |
     Ett standardtaxonnamn kommer automatiskt skapas utifrån detta taxons vetenskapliga namn. När du har sparat detta nya taxon, kommer du kunna lägga till andra namn här (trivialnamn, vetenskapliga synonymer osv.)
   a_flag_for_x: "en flagga för %{x}"
-  a_member_of: "En medlem av"
   a_member_of_taxon_html: "en medlem i %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -333,7 +332,6 @@ sv:
   admin_s: Administratör(er)
   admin_only: Endast admin.
   admin_tools: Admin-verktyg
-  agree: håller med
   agree_: Håller med
   agree?: Håller med?
   agree_with_current_taxon: Håller med om aktuellt taxon
@@ -570,7 +568,6 @@ sv:
   assessments: bedömningar
   associations: Kopplingar
   atlas_for_taxon_html: Atlas för %{taxon}
-  at_time: "kl. %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -773,7 +770,6 @@ sv:
   choose_a_list_above: Välj en lista ovan.
   choose_a_place: Välj en plats
   choose_a_taxon: Välj en taxon (valfritt)
-  choose_cc_licensed_photos_html: 'Välj <a href="http://creativecommons.org/">öppna</a>-licensierade foton från andra webbplatser eller välj från %{site_name}-observationer. Försök att välja bilder som <em>visar diagnostiska egenskaper</em> och <em>ser bra ut som ikoner</em>. Den <em>första är standard</em>.'
   choose_columns: Välj kolumner
   choose_file: Välj fil
   choose_files: Välj filer
@@ -1208,6 +1204,7 @@ sv:
   editing_project: Redigerar %{project}
   editing_project_asset: Redigerar projekttillgång för
   editing_subscription_to_x_html: "Redigerar prenumeration på %{x}"
+  editing_taxon: Redigerar %{taxon}
   editing_taxon_link: Redigerar taxonlänk
   editing_taxon_name_for_taxon_html: Redigerar taxonnamn "%{name}" för %{taxon}
   editing_taxon_range: Redigerar taxonintervall
@@ -1301,6 +1298,7 @@ sv:
   favorites: "Favoriter"
   feature_this_project_: "Uppmärksamma detta projekt"
   featured: Uppmärksammat
+  #Title for a button or section describing the "featured" status of a project
   featuring: Uppmärksammat
   feedback: Återkoppling
   #Plural noun, as in Atom and RSS feeds
@@ -1443,7 +1441,6 @@ sv:
     Forumet är en plats för diskussioner om iNat, inklusive hjälp & support,
     funktionsförfrågningar, felrapporter, tillkännagivanden med mera.
   frequency: Frekvens
-  from: Från
   from_a_place: från en plats
   from_eol_collection: Från EOL-samling
   from_flickr_facebook_etc: Från Flickr, Facebook, etc.
@@ -1451,8 +1448,6 @@ sv:
   from_photos: Från foton
   from_place: Från plats
   from_soundcloud: Från Soundcloud
-  from_your_site_observations: "Från %{site_name}-observationer"
-  from_licensed_site_observations: "Från licensierade %{site_name}-observationer"
   full_screen: Helskärm
   fungi:
     one: svamp
@@ -1484,6 +1479,7 @@ sv:
   got_it!: Uppfattat!
   got_your_data_somewhere_else?: Har du dina uppgifter någon annanstans? Vi kan hjälpa till.
   graft: Ympa
+  graft_taxon: Ympa %{taxon}
   grafting_attemps_to_insert_this_taxon: Ympning försöker lägga till detta taxon till taxonomiska träd, hitta ett befintligt föräldrataxon eller skapa alla nödvändiga mellanliggande taxa för att kunna lägga det till ett befintligt taxon på högre nivå.
   grant_role: "%{grant} %{role} roll"
   grid: Rutnät
@@ -2458,7 +2454,6 @@ sv:
   offline_access_enabled: Offline-åtkomst aktiverad
   old_observation_form: Gammalt observationsformulär (utfasat)
   ok: "OK"
-  on_date: "den %{date}"
   on_day: "på"
   onboarding:
     observe_panel_title: Låt oss komma igång genom att posta några observationer
@@ -3157,6 +3152,10 @@ sv:
   project_settings: Projektinställningar
   project_start_time_datetime: "Starttid: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt som inte innehåller dessa observationer
+  project_type_description: |
+    Bedömningar och bioblitzer är speciella typer av projekt. Bedömningar är till
+    för att samarbeta kring en uppsättning artbedömningar, vanligtvis för att bedöma
+    naturvårdsbetydelse. Bioblitzer är händelser som har en bestämd början och slut.
   project_user_cannot_be_found: Kunde inte hitta projektanvändaren
   project_user_was_invalid: "Ogiltig projektanvändare: %{project_user}"
   project_was_successfully_created: Lyckades skapa projektet.
@@ -3390,6 +3389,8 @@ sv:
   scale_colon: "Skala:"
   schemes: Sammanställning
   schemes_including: Sammanställningar som inkluderar
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Vetenskapligt namn
   search: Sök
   search_all_fields: sök alla fält
   search_by_name_or_email: Sök efter namn eller e-post
@@ -4179,11 +4180,9 @@ sv:
   username_or_email: Användarnamn eller e-post
   username_or_user_id: Användarnamn eller användar-ID
   users: Användare
-  users_comment_html: "<a href='%{url}'>%{user}</a>s kommentar"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>s bidrag till %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}s höjdpunkter och statistik från %{year} på %{site}"
   users_id: "%{user}s ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>s ID"
   users_latest_observations_on_site: "%{user}senaste observationer på %{site}"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s projekt"
@@ -5439,16 +5438,6 @@ sv:
         Vi har inte behörighet att komma åt de bilderna just nu. Du kan
         behöva koppla bort och återansluta kontot i
         <a href="/users/edit">-inställningarna</a> för att ge oss ytterligare behörighet.
-      inviter:
-        automatically_add_to_project: Lägg automatiskt till i projektet
-        automatically_id_the_new_obs_as: Bestäm automatiskt nya obsar till
-        dont_forget_the_invite_link_placeholder: "glöm inte platshållaren {{INVITE_LINK}}"
-        invite_other_photographers_to_inat: "Bjud in andra fotografer till %{site_name}"
-        invite_your_friends_description: |
-          Du kan göra det superenkelt för människor på Facebook och Flickr att lägga till sina
-          bilder som %{site_name}-observationer. Lämna bara en kommentar som inkluderar denna
-          speciella inbjudnings-URL nedan. Du kan också förhandsvälja ett taxon och ett projekt för
-          den nya observationen.
       show:
         view_original_html: |
           Du kan se originalet på <a href="%{url}">%{url}</a>.
@@ -5532,6 +5521,9 @@ sv:
           som man samlar in värdefulla data.
           </p>
         change_admin_desc: Välj den av projektförvaltarna som ska bli den nya administratören.
+        change_owner_alert: |
+          Detta kommer att ta bort din möjlighet att ta bort detta projekt eller överföra
+          äganderätt igen. Vill du fortsätta?
         cover_desc: "Valfri banner-bild som visas högst upp på din projektsida. Måste vara 950px bred, mindre än 400px hög."
         custom_project_fields_means: "Anpassa projektets banner, lägg till sidoinnehåll och redigera CSS."
         end_time_desc: "Sluttid för din bioblitz. Måste vara mindre än ett år efter starttiden"
@@ -5545,6 +5537,8 @@ sv:
           Det verkar som om detta projekt kan konverteras till ett nytt <a href="%{url}">Samlingsprojekt</a>.
         last_aggregated_at_desc: |
           Tid när aggregeraren senast lade till observationer till detta projekt
+        #Label for button to make another user the owner of a project
+        make_owner: Gör till ägare
         no_curators: |
           Det finns inga projektetförvaltare. Om du vill tilldela en ny person rollen som
           administratör, måste denne först gå med i projektet och sedan måste du
@@ -5822,6 +5816,10 @@ sv:
           vårt <a href="%{url}" target="_blank">blogginlägg om Samlingsprojekt</a>.
         this_is_a_preview: |
           Detta är en förhandsvisning av hur detta projekt skulle se ut som ett Samlingsprojekt.
+        this_project_has_not_defined_requirements: |
+          Detta projekt har inte definierat några observationskrav. Projekt måste välja ett eller
+          flera taxa (t.ex. fåglar, barrträd), platser (t.ex. Brasilien, Yellowstone), användare och/eller datum
+          för att börja visa observationer.
       updates_desc: |
         Få uppdateringar om detta projekt på din anslagstavla och i e-post om
         dagens uppdateringar.
@@ -6799,9 +6797,11 @@ sv:
       invalid: är ogiltig
       less_than: måste vara mindre än %{count}
       less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+      new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
       not_a_number: är inte ett nummer
       not_an_integer: måste vara ett heltal
       odd: måste vara udda
+      only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
       record_invalid: 'Validering misslyckades: %{errors}'
       requires_privilege_speech: |
         måste ha tre verifierbara observationer eller tre bestämningar
@@ -6936,9 +6936,11 @@ sv:
         invalid: är ogiltig
         less_than: måste vara mindre än %{count}
         less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte ett nummer
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
+        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
         requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
         requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
@@ -7076,9 +7078,11 @@ sv:
         invalid: är ogiltig
         less_than: måste vara mindre än %{count}
         less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte en siffra
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
+        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
         requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
         requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det

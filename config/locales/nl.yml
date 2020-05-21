@@ -123,7 +123,6 @@ nl:
   a_default_taxon_name_will_automatically_created: |
     Een standaard taxonnaam wordt automatisch aangemaakt op basis van de wetenschappelijke naam van dit taxon. Als je het nieuwe taxon hebt opgeslagen kun je hier andere namen aan toevoegen (lokale namen, verouderde wetenschappelijke namen, etc.).
   a_flag_for_x: "een melding voor %{x}"
-  a_member_of: "Een lid van"
   a_member_of_taxon_html: "een lid van %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -330,7 +329,6 @@ nl:
   admin_s: Administrator(en)
   admin_only: Alleen administratoren
   admin_tools: Administrator-hulpmiddelen
-  agree: akkoord
   agree_: Akkoord
   agree?: Akkoord?
   agree_with_current_taxon: Akkoord gaan met huidige taxon
@@ -566,7 +564,6 @@ nl:
   assessments: beoordelingen
   associations: Koppelingen
   atlas_for_taxon_html: Atlas voor %{taxon}
-  at_time: "om %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -764,7 +761,6 @@ nl:
   choose_a_list_above: Kies een lijst hierboven.
   choose_a_place: Kies een locatie
   choose_a_taxon: Kies een taxon (optioneel)
-  choose_cc_licensed_photos_html: 'Kies foto''s met een <a href="http://creativecommons.org/">open</a> licentie van andere sites of kies uit %{site_name}-waarnemingen. Probeer afbeeldingen te kiezen die <em>diagnostische eigenschappen</em> tonen en <em>er goed uitzien als pictogrammen</em>. De <em>eerste is de standaardfoto</em>.'
   choose_columns: Kies kolommen
   choose_file: Bestand kiezen
   choose_files: Bestanden kiezen
@@ -1284,6 +1280,7 @@ nl:
   favorites: "Favorieten"
   feature_this_project_: "Dit project aanbevelen"
   featured: Aanbevolen
+  #Title for a button or section describing the "featured" status of a project
   featuring: Karakteriseren
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
@@ -1424,7 +1421,6 @@ nl:
   forum_desc: |
     Op het forum kun je vragen stellen over iNaturalist, bijvoorbeeld over vertalingen, hulp & ondersteuning, functieverzoeken, foutmeldingen, aankondigingen en meer.
   frequency: Frequentie
-  from: Van
   from_a_place: van een plaats
   from_eol_collection: Van EOL collectie
   from_flickr_facebook_etc: Van Flickr, Facebook, etc.
@@ -1432,8 +1428,6 @@ nl:
   from_photos: Van fotos
   from_place: van plaats
   from_soundcloud: Van Soundcloud
-  from_your_site_observations: "Van %{site_name} waarnemingen"
-  from_licensed_site_observations: "Van gelicensieerde waarnemingen op %{site_name}"
   full_screen: Volledig scherm
   fungi:
     one: schimmel
@@ -2419,7 +2413,6 @@ nl:
   offline_access_enabled: Offline toegang ingeschakeld
   old_observation_form: Oud waarnemingsformulier (verouderd)
   ok: "OK"
-  on_date: "op %{date}"
   on_day: "op"
   onboarding:
     observe_panel_title: Laten we beginnen door een paar waarnemingen te posten
@@ -4091,11 +4084,9 @@ nl:
   username_or_email: Gebruikersnaam of e-mail
   username_or_user_id: Gebruikersnaam of Gebruikers-ID
   users: Gebruikers
-  users_comment_html: "<a href='%{url}'>reactie van %{user}</a>"
   users_contributions_to_project_html: Bijdragen van <a href="%{url}">%{login}</a> aan %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}'s hoogtepunten en statistieken van %{year} op %{site}"
   users_id: "ID van %{user}"
-  users_identification_short_html: "ID door <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Laatste waarnemingen van %{user} op %{site}"
   users_profile: "Profiel van %{user}"
   users_projects: "Projecten van %{user}"
@@ -5031,13 +5022,6 @@ nl:
     photos:
       forbidden_notice_html: |
         We hebben momenteel geen rechten om deze foto's te openen. Misschien moet je het account ontkoppelen en opnieuw verbinden in je <a href="/users/edit">instellingen</a> om ons aanvullende toestemming te verlenen.
-      inviter:
-        automatically_add_to_project: Automatisch aan project toevoegen
-        automatically_id_the_new_obs_as: ID de nieuwe waarneming automatisch als
-        dont_forget_the_invite_link_placeholder: "vergeet de {{INVITE_LINK}} placeholder niet"
-        invite_other_photographers_to_inat: "Nodig andere fotografen uit op %{site_name}"
-        invite_your_friends_description: |
-          Je kunt het super gemakkelijk maken voor mensen op Facebook en Flickr om hun foto's toe te voegen als %{site_name} waarnemingen. Laat een reactie achter zoals deze speciale uitnodigings-URL hieronder. U kunt ook een taxon en project vooraf selecteren voor de nieuwe waarneming.
       show:
         view_original_html: |
           Je kunt het origineel bekijken op <a href="%{url}">%{url}</a>. 

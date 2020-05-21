@@ -125,7 +125,6 @@ pt-BR:
 
     Quando você salvar este novo táxon, você será capaz de adicionar outros nomes aqui (nomes comuns, nomes em desuso, antigos nomes científicos, entre outros.).
   a_flag_for_x: "Um alerta para %{x}"
-  a_member_of: "Um membro de"
   a_member_of_taxon_html: "um membro de %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -316,7 +315,6 @@ pt-BR:
   admin_s: Administrador(es)
   admin_only: Somente administrador
   admin_tools: Ferramentas Administrativas
-  agree: Concordo
   agree_: Concordo
   agree?: Você concorda?
   agree_with_current_taxon: Concordo com taxon atual
@@ -548,7 +546,6 @@ pt-BR:
   assessments: avaliações
   associations: Associações
   atlas_for_taxon_html: Atlas para %{taxon}
-  at_time: "às %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -744,7 +741,6 @@ pt-BR:
   choose_a_list_above: Escolha uma lista acima.
   choose_a_place: Escolha um lugar
   choose_a_taxon: Escolha um táxon (opcional)
-  choose_cc_licensed_photos_html: 'Escolha <a href="http://creativecommons.org/">abrir</a>-fotos licenciadas de outros sites ou carregue de %{site_name} observações. Tente escolher imagens que <em>com características que possibilitem a identificação</em> e <em>sejam bonitas com ícones</em>.  A <em>primeira será a padrão</em>.'
   choose_columns: Escolha colunas
   choose_file: Escolher arquivo
   choose_files: Escolher arquivos
@@ -1253,6 +1249,7 @@ pt-BR:
   favorites: "Favoritos"
   feature_this_project_: "Apresentar este projeto"
   featured: Destacado
+  #Title for a button or section describing the "featured" status of a project
   featuring: Apresentando
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
@@ -1394,7 +1391,6 @@ pt-BR:
   forum_desc: |
     O fórum é um lugar para discutir o próprio iNat, incluindo ajuda e suporte, solicitações de recursos, relatórios de bugs, anúncios e muito mais.
   frequency: Frequência
-  from: De
   from_a_place: de um local
   from_eol_collection: Da coleção da EOL
   from_flickr_facebook_etc: Do Flickr, Facebook, etc.
@@ -1402,8 +1398,6 @@ pt-BR:
   from_photos: De fotos
   from_place: De um local
   from_soundcloud: Do Soundcloud
-  from_your_site_observations: "De %{site_name} observações"
-  from_licensed_site_observations: "Licenciados por %{site_name} observações"
   full_screen: Tela cheia
   fungi:
     one: Fungo
@@ -2323,7 +2317,6 @@ pt-BR:
   offline_access_enabled: Acesso offline habilitado
   old_observation_form: Registro antigo de observações
   ok: "Ok"
-  on_date: "em %{date}"
   on_day: "no"
   onboarding:
     observe_panel_title: Vamos começar adicionando algumas observações
@@ -3859,11 +3852,9 @@ pt-BR:
   username_or_email: Nome de usuário ou email
   username_or_user_id: Nome de usuário ou identificação do usuário
   users: Usuários
-  users_comment_html: "Comentário de <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: Contribuições de <a href="%{url}">%{login}</a> a %{project_title}
   users_highlights_and_stats_from_year_on_site: "Destaques e estatísticas de %{user} durante %{year} no %{site}"
   users_id: "Identificação de %{user}"
-  users_identification_short_html: "Identificador de <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Últimas observações de %{user} em %{site}"
   users_profile: "Perfil de %{user}"
   users_projects: "Projetos de %{user}"
@@ -4647,13 +4638,6 @@ pt-BR:
         Não temos permissão para acessar essas fotos no momento. Você pode
         precisa desconectar e reconectar a conta no seu
         <a href="/users/edit">configurações</a> para nos conceder permissões adicionais.
-      inviter:
-        automatically_add_to_project: Adicione ao projeto automaticamente
-        automatically_id_the_new_obs_as: Identifique automaticamente as novas observações como
-        dont_forget_the_invite_link_placeholder: "não esqueça o {{INVITE_LINK}} para reservar a posição"
-        invite_other_photographers_to_inat: "Convidar outros fotógrafos para %{site_name}"
-        invite_your_friends_description: |
-          Você pode deixar super fácil para as pessoas que tem Facebook e Flickr adicionarem as fotos delas como observações de %{site_name}. Deixe somente um comentário incluindo este URL com o convite que está abaixo. Você também pode pré-selecionar um táxon e projeto para a nova observação.
       show:
         view_original_html: |
           Você pode visualizar o original em <a href="%{url}">%{url}</a>. Por favor deixe um alerta de infração de direitos autorais como não resolvido se esta foto estar de fato infringindo direitos.

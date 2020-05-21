@@ -201,7 +201,6 @@ cs:
   a_default_taxon_name_will_automatically_created: |
     Z vědeckého názvu tohoto taxonu bude automaticky vytvořen standardní taxonomický název. Jakmile tento nový taxon uložíte, budete sem moci přidávat další názvy (obecné názvy, zastaralé vědecké názvy atd.).
   a_flag_for_x: "prapor pro %{x}"
-  a_member_of: "Člen"
   a_member_of_taxon_html: "člen %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -418,7 +417,6 @@ cs:
   admin_s: Administrátoři
   admin_only: Pouze správce
   admin_tools: Správcovské nástroje
-  agree: Souhlasím
   agree_: Souhlasím
   agree?: Souhlasíte?
   agree_with_current_taxon: Souhlasím s aktuálním taxonem
@@ -682,7 +680,6 @@ cs:
   assessments: hodnocení
   associations: Asociace
   atlas_for_taxon_html: Atlas pro %{taxon}
-  at_time: "v %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -877,7 +874,6 @@ cs:
   choose_a_list_above: Vybrat seznam výše.
   choose_a_place: Vybrat místo
   choose_a_taxon: Vybrat taxon (volitelné)
-  choose_cc_licensed_photos_html: 'Vybrat fotky s licencí <a href="http://creativecommons.org/">open</a>z jiných stránek nebo z pozorování %{site_name}. Snažte se vybírat obrázky, které <em>ukazují rozpoznávací znaky</em> a <em>vypadají dobře jako ikony</em>. <em>První je základní</em>.'
   choose_columns: Vybrat sloupce
   choose_file: Vyberte soubor
   choose_files: Vybrat soubory
@@ -1304,6 +1300,7 @@ cs:
   editing_project: Editování %{project}
   editing_project_asset: Editování položky projektu pro
   editing_subscription_to_x_html: "Editovat přihlášení k %{x}"
+  editing_taxon: Editace %{taxon}
   editing_taxon_link: Editování odkazu na taxon
   editing_taxon_name_for_taxon_html: Úprava názvu taxonu "%{name}" pro %{taxon}
   editing_taxon_range: Editování rozsahu taxonu
@@ -1396,6 +1393,7 @@ cs:
   favorites: "Oblíbené"
   feature_this_project_: "Znaky toho projektu"
   featured: doporučený
+  #Title for a button or section describing the "featured" status of a project
   featuring: Představující
   feedback: Zpětná vazba
   #Plural noun, as in Atom and RSS feeds
@@ -1537,7 +1535,6 @@ cs:
   forum_desc: |
     Fórum je místem, kde můžete diskutovat iNat sám o sobě, včetně pomoci a podpory, požadavků na funkce, hlášení chyb, reklam a dalších informací.
   frequency: Frekvence
-  from: Od
   from_a_place: Z místa
   from_eol_collection: Ze souboru EOL
   from_flickr_facebook_etc: Z Flickru, Facebooku, apod.
@@ -1545,8 +1542,6 @@ cs:
   from_photos: Z fotek
   from_place: Z místa
   from_soundcloud: Ze Soundcloudu
-  from_your_site_observations: "Z pozorování %{site_name}"
-  from_licensed_site_observations: "Z pozorování %{site_name} s licencí"
   full_screen: Celá obrazovka
   fungi:
     one: houby
@@ -1580,6 +1575,7 @@ cs:
   got_it!: Jasně!
   got_your_data_somewhere_else?: Máte své údaje někde jinde? Dokážeme vám pomoct.
   graft: Připojit
+  graft_taxon: Připojit %{taxon}
   grafting_attemps_to_insert_this_taxon: Cílem připojení je vložit tento taxon do našeho taxonomického stromu, nalezení stávajícího hlavního taxonu nebo vytvoření všech nezbytných pomocných taxonů pro připojení ke stávajícímu taxonu vyšší úrovně.
   grant_role: "%{grant} %{role} funkce"
   grid: mřížka
@@ -2522,7 +2518,6 @@ cs:
   offline_access_enabled: Offline přístup povolen
   old_observation_form: Původní formulář pozorování (zastaralý)
   ok: "Jo"
-  on_date: "dne %{date}"
   on_day: "dne"
   onboarding:
     observe_panel_title: Začněme odesláním nějakých pozorování
@@ -3448,6 +3443,8 @@ cs:
   scale_colon: "Měřítko:"
   schemes: Plány
   schemes_including: Plány obsahující
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Vědecký název
   search: Hledat
   search_all_fields: prohledat všechna pole
   search_by_name_or_email: Hledat podle jména nebo e-mailu
@@ -4232,11 +4229,9 @@ cs:
   username_or_email: Uživatelské jméno nebo e-mail
   username_or_user_id: Uživatelské jméno nebo uživatelské ID
   users: Uživatelé
-  users_comment_html: "komentář uživatele <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>příspěvky k %{project_title}
   users_highlights_and_stats_from_year_on_site: "významné události a statistiky uživatele %{user} za rok %{year} na %{site}"
   users_id: "ID uživatele %{user}"
-  users_identification_short_html: "ID uživatele <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "poslední pozorování uživatele %{user} na %{site}"
   users_profile: "Profil uživatele %{user}"
   users_projects: "%{user} projekty"
@@ -5257,13 +5252,6 @@ cs:
     photos:
       forbidden_notice_html: |
         Momentálně nemáme přístup k těmto fotografiím. Pravděpodobně bude nutné odpojit a znovu připojit účet v <a href="/users/edit"> nastavení </a>, abyste nám udělili více práv.
-      inviter:
-        automatically_add_to_project: Automaticky přidat k projektu
-        automatically_id_the_new_obs_as: Automaticky přiřadit ID novým pozorováním jako
-        dont_forget_the_invite_link_placeholder: "nezapomeňte placeholder {{INVITE_LINK}}"
-        invite_other_photographers_to_inat: "Pozvat další fotografy na %{site_name}"
-        invite_your_friends_description: |
-          Lidé na Facebooku a Flickru mohou díky vám přidávat své fotky jako pozorování %{site_name} úplně jednoduše. Jen vložte komentář obsahující toto speciální URL pozvánky níže. Také můžete předem vybrat taxon a projekt pro nové pozorování.
       show:
         view_original_html: |
           Originál si můžete zobrazit na <a href="%{url}">%{url}</a>. Pokud tato fotka porušuje autorská práva, nechte prosím vlajky označující porušení autorských práv jako nevyřešené.
@@ -5326,6 +5314,9 @@ cs:
           Bioblitz je událost, při které se účastníci v dané době snaží pozorovat co nejvíc druhů. Je to zábavný způsob, jak ukázat lidem biodiverzitu a zároveň shromáždit cenné údaje.
           </p>
         change_admin_desc: Vyberte jednoho z kurátorů projektu, který bude novým správcem.
+        change_owner_alert: |
+          Tímto odstraníte vaši schopnost odstranit tento projekt nebo znovu převést
+          vlastnictví. Chcete pokračovat?
         cover_desc: "Nepovinný obrázek na banner, který se zobrazí v horní části stránky vašeho projektu. Šířka musí být 950px, výška do 400px."
         custom_project_fields_means: "Upravte banner projektu, přidejte postranní obsah a editujte CSS."
         end_time_desc: "Čas ukončení vašeho bioblitzu. Musí být méně než jeden rok od času zahájení"
@@ -5336,6 +5327,8 @@ cs:
           Zdá se, že tento projekt může být převeden na nový <a href="%{url}"> Projekt kolekce </a>.
         last_aggregated_at_desc: |
           Čas, kdy osoba provádějící seskupení naposledy dokončila přidávání pozorování k tomuto projektu
+        #Label for button to make another user the owner of a project
+        make_owner: Učinit vlastníkem
         no_curators: |
           Projekt nemá žádné kurátory. Pokud chcete správcem jmenovat novou osobu, nejdřív se musí přidat k tomuto projektu a vy ji musíte jmenovat kurátorem.
         observation_aggregation_desc_html: |
@@ -6299,9 +6292,11 @@ cs:
       invalid: je neplatné
       less_than: musí být méně než %{count}
       less_than_or_equal_to: musí být menší než nebo rovno %{count}
+      new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
       not_a_number: není číslo
       not_an_integer: musí být celé číslo
       odd: musí být liché číslo
+      only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
       record_invalid: 'Schválení se nezdařilo: %{errors}'
       requires_privilege_speech: |
         musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
@@ -6445,9 +6440,11 @@ cs:
         invalid: je neplatné
         less_than: musí být méně než %{count}
         less_than_or_equal_to: musí být menší než nebo rovno %{count}
+        new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
         not_a_number: není číslo
         not_an_integer: musí být celé číslo
         odd: musí být liché číslo
+        only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
         record_invalid: 'Schválení se nezdařilo: %{errors}'
         requires_privilege_speech: musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
         requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování
@@ -6593,9 +6590,11 @@ cs:
         invalid: je neplatné
         less_than: musí být méně než %{count}
         less_than_or_equal_to: musí být menší než nebo rovno %{count}
+        new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
         not_a_number: není číslo
         not_an_integer: musí být celé číslo
         odd: musí být liché číslo
+        only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
         record_invalid: 'Schválení se nezdařilo: %{errors}'
         requires_privilege_speech: musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
         requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování

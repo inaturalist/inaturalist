@@ -124,7 +124,6 @@ de:
     Ein voreingestellter Taxonname wird automatisch aus dem Attribut der wissenschaftlichen Bezeichnung dieses Taxons erstellt.
     Wenn du das neue Taxon gespeichert hast, kannst du hier andere Namen (umgangssprachliche Namen, veraltete wissenschaftliche Bezeichnungen usw.) hinzufügen.
   a_flag_for_x: "eine Meldung für %{x}"
-  a_member_of: "Gehört zu:"
   a_member_of_taxon_html: "gehört zu: %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -318,7 +317,6 @@ de:
   admin_s: Admin(s)
   admin_only: Nur Administratoren
   admin_tools: Verwaltungswerkzeuge
-  agree: zustimmen
   agree_: Zustimmen
   agree?: Zustimmen?
   agree_with_current_taxon: Bin mit aktuellem Taxon einverstanden
@@ -542,7 +540,6 @@ de:
   assessments: Bewertungen
   associations: Vereine
   atlas_for_taxon_html: Atlas für %{taxon}
-  at_time: "um %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -737,7 +734,6 @@ de:
   choose_a_list_above: Wähle eine der obigen Listen.
   choose_a_place: Wähle ein Gebiet
   choose_a_taxon: Wähle ein Taxon (optional)
-  choose_cc_licensed_photos_html: 'Wähle <a href="http://creativecommons.org/">open</a>-lizenzierte Fotos von anderen Webseiten oder wähle %{site_name}-Beobachtungen. Versuche, Bilder auszuwählen, die <em>diagnostische Eigenschaften</em> enthalten und <em>als auch im Kleinformat gut aussehen</em>. Das <em>erste Foto ist der Standard</em>.'
   choose_columns: Spalten auswählen
   choose_file: Datei auswählen
   choose_files: Dateien auswählen
@@ -1157,6 +1153,7 @@ de:
     other: 'Bearbeiten von <span class="count">%{count}</span> Beobachtungen:'
   editing_project: '%{project} bearbeiten'
   editing_subscription_to_x_html: "Abonnements für %{x} bearbeiten"
+  editing_taxon: '%{taxon} bearbeiten'
   editing_taxon_link: Taxonlink bearbeiten
   editing_taxon_name_for_taxon_html: Taxonname "%{name}" für %{taxon} bearbeiten
   editing_taxon_range: Taxonbereich bearbeiten
@@ -1221,6 +1218,7 @@ de:
   exclusion_filters: Ausschluss-Filter
   existing_flags: Vorhandene Meldungen
   exit_full_screen: "Vollbild beenden"
+  examples_of_ranking_organizations: Beispiele für Verzeichnisse gefährdeter Arten
   explore: Entdecken
   export: Exportieren
   export_observations: Beobachtungen exportieren
@@ -1249,6 +1247,7 @@ de:
   favorites: "Favoriten"
   feature_this_project_: "Dieses Projekt featuren"
   featured: Ausgewählt
+  #Title for a button or section describing the "featured" status of a project
   featuring: featuring
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
@@ -1387,7 +1386,6 @@ de:
   forum_desc: |
     Im Forum (auf englisch) kannst du Sachen rund um iNat diskutieren, z.B. nach Hilfe fragen, Feature-Requests posten, Fehler melden, aktuelle Ankündigungen lesen, etc.
   frequency: Häufigkeit
-  from: Von
   from_a_place: von einem Ort
   from_eol_collection: Aus EOL Sammlung
   from_flickr_facebook_etc: Von Flickr, Facebook, usw.
@@ -1395,8 +1393,6 @@ de:
   from_photos: Von Bildern
   from_place: Vom Gebiet
   from_soundcloud: Von Soundcloud
-  from_your_site_observations: "Von %{site_name} Beobachtungen"
-  from_licensed_site_observations: "Von lizenzierten %{site_name}-Beobachtungen"
   full_screen: Vollbild
   fungi:
     one: Pilz
@@ -1427,8 +1423,9 @@ de:
   google: Google
   got_it!: Alles klar!
   got_your_data_somewhere_else?: Hast du deine Daten bereits woanders hochgeladen? Wir könnten helfen.
-  graft: Graft
-  grafting_attemps_to_insert_this_taxon: Grafting beschreibt den Versuch, dieses Taxon in unseren Stammbaum einzufügen, ein existierendes übergeordnetes Taxon zu finden oder alle notwendigen Zwischentaxa zu erstellen, um es an ein bestehendes höheres Taxon anzuhängen.
+  graft: eingliedern
+  graft_taxon: '%{taxon} eingliedern'
+  grafting_attemps_to_insert_this_taxon: '"Eingliedern" beschreibt den Ansatz, dieses Taxon in unseren Stammbaum zu integrieren: ein existierendes übergeordnetes Taxon zu finden oder alle notwendigen Zwischentaxa zu erstellen, um es an ein bestehendes höheres Taxon anzuhängen.'
   grid: Raster
   grid_layout: Rasteransicht
   grid_tooltip: Rasteransicht anzeigen
@@ -2342,7 +2339,6 @@ de:
   offline_access_enabled: Offlinezugriff ermöglichen
   old_observation_form: Altes Beobachtungsformular (veraltet)
   ok: "OK"
-  on_date: "am %{date}"
   on_day: "am"
   onboarding:
     observe_panel_title: Fangen wir an und posten ein paar Beobachtungen
@@ -3256,6 +3252,8 @@ de:
   scale_colon: "Maßstab:"
   schemes: Vorlagen
   schemes_including: Schemata einschließlich
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Wissenschaftlicher Name
   search: Suchen
   search_all_fields: alle Felder durchsuchen
   search_by_name_or_email: Nach Namen oder E-Mail suchen
@@ -3831,6 +3829,7 @@ de:
   umbrella_projects: Dach-Projekte
   unblock: Entsperren
   unclassified: Nicht klassifiziert
+  ungrafted_taxa: nicht zugeordnete Taxa
   uninvite: ausladen
   unknown: Unbekannt
   unknown_error: Unbekannter Fehler
@@ -3944,7 +3943,7 @@ de:
   user_disagrees_this_is_taxon: "%{user} ist nicht der Meinung, dass es sich um %{taxon} handelt"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user}: %{noun} von %{owner} favorisiert"
+  user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
   user_faved_this_observation: "%{user} hat diese Beobachtung zu seinen Favoriten hinzugefügt"
   user_flagged_as_a_non_spammer_html: "%{user} als Nicht-Spammer markiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
@@ -3976,11 +3975,9 @@ de:
   username_or_email: Benutzername oder E-Mail
   username_or_user_id: Benutzername oder Benutzer-ID
   users: Benutzer
-  users_comment_html: "Kommentar von <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: Beiträge von <a href="%{url}">%{login}</a> zu %{project_title}
   users_highlights_and_stats_from_year_on_site: "Highlights und Statistiken aus %{year} von %{user} auf %{site}"
   users_id: "%{user}s ID"
-  users_identification_short_html: "ID von <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Die jüngsten Beobachtungen von %{user} bei %{site}"
   users_profile: "%{user}s Profil"
   users_projects: "Projekte von %{user}"
@@ -4061,7 +4058,7 @@ de:
   video_tutorials: Videoanleitungen
   visually_similar: Sieht ähnlich aus
   vulnerable: gefährdet
-  w00t_no_ungrafted_taxa: Juhuu! Keine nicht zugeorndeten Taxa!
+  w00t_no_ungrafted_taxa: Juhuu! Keine nicht zugeordneten Taxa!
   w_photos_only: mit Fotos
   w_sounds: mit Ton
   wait_file_generation: Bitte um Geduld während die Datei erzeugt wird. Bei großen Listen kann es ein paar Minuten dauern.
@@ -4908,13 +4905,6 @@ de:
         Wir haben derzeit keine Berechtigung auf diese Fotos zuzugreifen. Möglicherweise musst du
         die Verbindung trennen und das Konto in deinen
         <a href="/users/edit">Einstellungen</a> neu verbinden, um uns zusätzliche Berechtigungen zu erteilen.
-      inviter:
-        automatically_add_to_project: Automatisch zum Projekt hinzufügen
-        automatically_id_the_new_obs_as: Neue Beob. automatisch identifizieren als
-        dont_forget_the_invite_link_placeholder: "den {{INVITE_LINK}} Platzhalter nicht vergessen"
-        invite_other_photographers_to_inat: "Andere Fotografen zu %{site_name} einladen"
-        invite_your_friends_description: |
-          Du kannst es den Benutzern auf Facebook und Flickr super einfach machen, ihre Fotos als %{site_name} Beobachtungen hinzuzufügen. Hinterlasse einfach einen Kommentar mit dieser speziellen Einladungs-URL unten. Du kannst auch ein Taxon und ein Projekt für die neue Beobachtung vorselektieren.
       show:
         view_original_html: |
           Du kannst das Original unter <a href="%{url}">%{url}</a> ansehen. Bitte
@@ -4984,6 +4974,9 @@ de:
           Daten zu sammeln.
           </p>
         change_admin_desc: Wähle einen der Projektkuratoren aus, der der neue Administrator werden soll.
+        change_owner_alert: |
+          Dies wird dir die Möglichkeit nehmen, dieses Projekt zu löschen oder
+          erneut an jemanden zu übertragen. Möchtest du fortfahren?
         cover_desc: "Optionales Banner, das oben auf deiner Projektseite erscheint. Muss 950px breit und weniger als 400px hoch sein."
         custom_project_fields_means: "Passe das Banner des Projekts an, füge Seiteninhalte hinzu und bearbeite die CSS."
         end_time_desc: "Endzeit für deinen bioblitz. Muß weniger als ein Jahr nach der Startzeit sein."
@@ -4995,6 +4988,8 @@ de:
         icon_desc: "Wird auf ein Quadrat zugeschnitten"
         it_looks_like_this_project_can_be_converted: |
           Es sieht so aus, als könne dieses Projekt in ein neues <a href="%{url}">Sammel-Projekt</a> umgewandelt werden.
+        #Label for button to make another user the owner of a project
+        make_owner: zum Besitzer machen
         no_curators: |
           Es existieren keine Projektkuratoren. Wenn du eine neue Person als
           Admin zuweisen möchtest, muss sie zuerst diesem Projekt beitreten und du musst sie
@@ -5840,9 +5835,11 @@ de:
       invalid: ist ungültig
       less_than: muss kleiner als %{count} sein
       less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
+      new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
       not_a_number: ist keine Zahl
       not_an_integer: muss eine ganze Zahl sein
       odd: muss ungerade sein
+      only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
       record_invalid: 'Überprüfung fehlgeschlagen: %{errors}'
       requires_privilege_speech: |
         muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
@@ -5976,9 +5973,11 @@ de:
         invalid: ist ungültig
         less_than: muss kleiner als %{count} sein
         less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
+        new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
         not_a_number: ist keine Zahl
         not_an_integer: muss eine Ganzzahl sein
         odd: muss ungerade sein
+        only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
         record_invalid: 'Überprüfung fehlgeschlagen: %{errors}'
         requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
         requires_privilege_organizer: muss 50 überprüfbare Beobachtungen haben, um dies zu tun
@@ -6105,9 +6104,11 @@ de:
         invalid: ist ungültig
         less_than: muss kleiner als %{count} sein
         less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
+        new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
         not_a_number: ist keine Zahl
         not_an_integer: muss eine ganze Zahl sein
         odd: muss ungerade sein
+        only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
         record_invalid: 'Validierung fehlgeschlagen: %{errors}'
         requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
         requires_privilege_organizer: muss 50 überprüfbare Beobachtungen haben, um dies zu tun

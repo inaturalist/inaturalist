@@ -91,7 +91,6 @@ pt:
     Um nome predefinido será automaticamente criado a partir do nome científico deste táxon.
     Quando tiver guardado este novo táxon, vai ter a possibilidade de acrescentar outros nomes aqui (nomes comuns, nomes científicos desatualizados, etc.).
   a_flag_for_x: "um sinalizador para %{x}"
-  a_member_of: "Um membro de"
   a_member_of_taxon_html: "um membro de %{taxon}"
   about: Acerca de
   about_blocking: Sobre Bloquear
@@ -237,7 +236,6 @@ pt:
   admin_s: Administrador(es)
   admin_only: Apenas administradores
   admin_tools: Ferramentas de Administração
-  agree: concordar
   agree_: Concordar
   agree?: Concordar?
   agree_with_current_taxon: Concordar com o táxon atual
@@ -459,7 +457,6 @@ pt:
   assessment_x: "%{assessment} avaliação"
   assessments: avaliações
   associations: Associações
-  at_time: "às %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -637,7 +634,6 @@ pt:
   choose_a_list_above: Escolha uma lista acima.
   choose_a_place: Escolha um local
   choose_a_taxon: Escolha um taxon (opcional)
-  choose_cc_licensed_photos_html: 'Escolha <a href="http://creativecommons.org/">abrir</a>-fotos licenciadas de outros sites ou carregue das observações de %{site_name}. Tente escolher imagens que <em>mostrem características que possibilitem a identificação</em> e sejam <em>bonitas com ícones</em>.  A <em>primeira será a padrão</em>.'
   choose_columns: Escolha colunas
   choose_file: Escolher ficheiros
   choose_files: Escolher ficheiros
@@ -1147,7 +1143,6 @@ pt:
   forgot_your_password: Esqueceu-se da sua palavra-passe?
   forum: Fórum
   frequency: Frequência
-  from: De
   from_a_place: de um local
   from_eol_collection: Da coleção da EOL
   from_flickr_facebook_etc: Do Flickr, Facebook, etc.
@@ -1155,8 +1150,6 @@ pt:
   from_photos: Das fotografias
   from_place: De um local
   from_soundcloud: Do Soundcloud
-  from_your_site_observations: "Observações de %{site_name}"
-  from_licensed_site_observations: "Observações licenciadas por %{site_name}"
   full_screen: Ecrã inteiro
   fungi:
     one: fungo
@@ -1932,7 +1925,6 @@ pt:
   official_blog: Blogue oficial
   offline_access_enabled: Acesso offline permitido
   old_observation_form: Formulário antigo de registo de observação (descontinuado)
-  on_date: "em %{date}"
   on_day: "no"
   onboarding:
     observe_panel_title: Vamos começar adicionando algumas observações
@@ -2869,10 +2861,8 @@ pt:
   username_or_email: Nome de utilizador ou email
   username_or_user_id: Nome de utilizador ou identificação do utilizador
   users: Utilizadores
-  users_comment_html: "Comentário de <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: Contribuições de <a href="%{url}">%{login}</a> ao projeto %{project_title}
   users_id: "Identificação de %{user}"
-  users_identification_short_html: "Identificação de <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Últimas observações de %{user} no %{site}"
   users_profile: "Perfil de %{user}"
   users_projects: "Projetos de %{user}"

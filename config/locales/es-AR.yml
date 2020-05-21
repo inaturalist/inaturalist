@@ -108,7 +108,6 @@ es-AR:
   a_default_taxon_name_will_automatically_created: |
     Se creará automáticamente un nombre de taxón predeterminado a partir del atributo de nombre científico para este taxón. Después de guardar este nuevo taxón, se podrán añadir aquí otros nombres (nombres comunes, nombres científicos obsoletos, etc.).
   a_flag_for_x: "una marca para %{x}"
-  a_member_of: "Un miembro de"
   a_member_of_taxon_html: "un miembro de %{taxon}"
   about: Acerca de
   about_blocking: Acerca de los bloqueos
@@ -274,7 +273,6 @@ es-AR:
   admin_s: Administrador(es)
   admin_only: Solamente administrador
   admin_tools: Herramientas administrativas
-  agree: de acuerdo
   agree_: Aceptar
   agree?: '¿De acuerdo?'
   agree_with_current_taxon: De acuerdo con el taxón actual
@@ -505,7 +503,6 @@ es-AR:
   assessment_x: "%{assessment} evaluación"
   assessments: evaluaciones
   associations: Asociaciones
-  at_time: "en %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -698,7 +695,6 @@ es-AR:
   choose_a_list_above: Selecciona una lista de arriba
   choose_a_place: Selecciona un lugar
   choose_a_taxon: Selecciona un taxón (opcional)
-  choose_cc_licensed_photos_html: 'Selecciona fotos con licencia <a href=\"http://creativecommons.org/\">abierta</a> de otros lugares o selecciona de observaciones en %{site_name}. Trata de seleccionar imágenes que <em>muestren características de diagnóstico</em> y <em>se vean bien como íconos</em>.  La <em>primera aparece por defecto</em>.'
   choose_columns: Seleccionar columnas
   choose_file: Seleccionar un archivo
   choose_files: Seleccionar archivos
@@ -1186,6 +1182,7 @@ es-AR:
   favorites: "Favoritos"
   feature_this_project_: "Presenta este proyecto"
   featured: Destacados
+  #Title for a button or section describing the "featured" status of a project
   featuring: Presentando
   feedback: Retroalimentación
   #Plural noun, as in Atom and RSS feeds
@@ -1324,7 +1321,6 @@ es-AR:
   forum_desc: |
     El foro es un sitio para hablar sobre iNat, incluyendo soporte técnico y ayuda, peticiones de nuevas características, informes de errores, anuncios y más.
   frequency: Frecuencia
-  from: de
   from_a_place: de un lugar
   from_eol_collection: De colección EOL
   from_flickr_facebook_etc: De Flickr, Facebook, etc.
@@ -1332,8 +1328,6 @@ es-AR:
   from_photos: De fotos
   from_place: De lugar
   from_soundcloud: De Soundcloud
-  from_your_site_observations: "Observaciones de %{site_name}"
-  from_licensed_site_observations: "Observaciones de %{site_name} licencia"
   full_screen: Pantalla completa
   fungi:
     one: hongo
@@ -2263,7 +2257,6 @@ es-AR:
   offline_access_enabled: Acceso sin conexión activado
   old_observation_form: Antiguo registro de observaciones
   ok: "Aceptar"
-  on_date: "en %{date}"
   on_day: "el"
   onboarding:
     observe_panel_title: Vamos a añadir observaciones
@@ -3847,11 +3840,9 @@ es-AR:
   username_or_email: Nombre de usuario o correo electrónico
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
-  users_comment_html: "Comentario de <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: Contribuciones de <a href="%{url}">%{login}</a> a %{project_title}
   users_highlights_and_stats_from_year_on_site: "Destaques y estadísticas de %{user} durante %{year} en %{site}"
   users_id: "Identificación de %{user}"
-  users_identification_short_html: "Identificador de <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Lates observaciones de %{user} en %{site}"
   users_profile: "Perfil de %{user}"
   users_projects: "Proyectos de %{user}"
@@ -4763,16 +4754,6 @@ es-AR:
     photos:
       forbidden_notice_html: |
         No tenemos permiso para acceder a esas fotos justo ahora. Puede que necesite desconectar y reconectar la cuenta en sus <a href="/users/edit">settings</a> para concedernos permisos adicionales.
-      inviter:
-        automatically_add_to_project: Añadir automáticamente al proyecto
-        automatically_id_the_new_obs_as: Identificar automáticamente la nueva observación como
-        dont_forget_the_invite_link_placeholder: "no se olvide de incluir el {{INVITE_LINK}} marcador de posición"
-        invite_other_photographers_to_inat: "Invitar a otros fotógrafos %{site_name}"
-        invite_your_friends_description: |
-          Usted puede facilitar que otras personas agreguen sus fotos en Flickr como 
-          observaciones %{site_name}. Sólo déjeles un comentario incluyendo este 
-          vínculo de invitación especial.  También puede preseleccionar un taxón y 
-          proyecto para la observación nueva.
       show:
         view_original_html: |
           Puedes ver el original en <a href="%{url}">%{url}</a>. Deja sin resolver las marcas de violación de derechos de autor si esta foto viola los derechos de autor.

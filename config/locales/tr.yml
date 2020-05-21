@@ -123,7 +123,6 @@ tr:
   a_default_taxon_name_will_automatically_created: |
     Varsayılan bir sınıf adı, kendiliğinden bu sınıfın bilimsel ad özelliğinden oluşturulacak. Bu yeni sınıfı kaydettikten sonra, buraya başka adlar ekleyebilirsiniz (yaygın adlar, eski bilimsel adlar vb.).
   a_flag_for_x: "%{x} için bir işaret"
-  a_member_of: "Şunun bir üyesi"
   a_member_of_taxon_html: "%{taxon} sınıfının bir üyesi"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -329,7 +328,6 @@ tr:
   admin_s: Yönetici(ler)
   admin_only: Yalnızca Yönetici
   admin_tools: Yönetici Araçları
-  agree: onayla
   agree_: Onayla
   agree?: Onaylansın mı?
   agree_with_current_taxon: Geçerli sınıfla onayla
@@ -564,7 +562,6 @@ tr:
   assessments: değerlendirmeler
   associations: İlişikler
   atlas_for_taxon_html: '%{taxon} için Atlas'
-  at_time: "%{time} zamanında"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -761,7 +758,6 @@ tr:
   choose_a_list_above: Yukarıdan bir liste seç.
   choose_a_place: Bir alan seç
   choose_a_taxon: Bir sınıf seç (isteğe bağlı)
-  choose_cc_licensed_photos_html: 'Diğer sayfalardan <a href="http://creativecommons.org/">açık</a> lisanslı fotoğraflar seçin ya da %{site_name} sayfasındaki gözlemlerden birini seçin. <em>Tanılama özelliklerini gösteren</em> ve <em>simgeler olarak iyi görünen</em> görüntüler seçmeyi deneyin. İlki <em>varsayılandır</em>.'
   choose_columns: Sütun seç
   choose_file: Dosya seç
   choose_files: Dosyaları seç
@@ -1279,6 +1275,7 @@ tr:
   favorites: "Favoriler"
   feature_this_project_: "Bu Projeyi Öne Çıkar"
   featured: Öne Çıkarılan
+  #Title for a button or section describing the "featured" status of a project
   featuring: Öne Çıkan
   feedback: Geri bildirim
   #Plural noun, as in Atom and RSS feeds
@@ -1419,7 +1416,6 @@ tr:
   forum_desc: |
     Forum; yardım ve destek, özellik istekleri, hata raporları, duyurular ve daha çoğunu içermek üzere iNat’ın kendisini tartışacağı bir yerdir.
   frequency: Sıklık
-  from: Şuradan
   from_a_place: bir yerden
   from_eol_collection: EOL koleksiyonundan
   from_flickr_facebook_etc: Flickr, Facebook vb'den.
@@ -1427,8 +1423,6 @@ tr:
   from_photos: Fotoğraflardan
   from_place: Yerden
   from_soundcloud: Soundcloud'dan
-  from_your_site_observations: "%{site_name} gözlemlerinden"
-  from_licensed_site_observations: "Lisanslı %{site_name} gözlemlerinden"
   full_screen: Tam ekran
   fungi:
     one: mantar
@@ -2392,7 +2386,6 @@ tr:
   offline_access_enabled: Çevrimdışı erişim etkin
   old_observation_form: Eski gözlem formu (kullanımdan kaldırıldı)
   ok: "TAMAM"
-  on_date: "%{date} tarihinde"
   on_day: "şu tarihte"
   onboarding:
     observe_panel_title: Haydi Bazı Gözlemler Göndererek Başlayalım
@@ -4043,11 +4036,9 @@ tr:
   username_or_email: Kullanıcı adı veya e-posta
   username_or_user_id: Kullanıcı Adı ya da Kimliği
   users: Kullanıcılar
-  users_comment_html: "<a href='%{url}'>%{user}</a> kullanıcısının yorumu"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'in %{project_title} projesine katkıları
   users_highlights_and_stats_from_year_on_site: "%{user} kullanıcısının %{year} yerinde %{site} sayfasındaki öne çıkanları ve istatistikleri"
   users_id: "%{user} Kimliği"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a> Kullanıcısının Kimliği"
   users_latest_observations_on_site: "%{user} kullanıcısının %{site} sayfasındaki son gözlemleri"
   users_profile: "%{user} Kullanıcısının Profili"
   users_projects: "%{user} Kullanıcısının Projeleri"
@@ -5115,15 +5106,6 @@ tr:
         Şu anda bu fotoğraflara erişim iznimiz yok. Bize ek izinler vermek için 
         <a href="/users/edit">ayarlarınızdaki</a> hesabın bağlantısını kesmeniz 
         ve yeniden bağlamanız gerekebilir.
-      inviter:
-        automatically_add_to_project: Projeye otomatik olarak ekle
-        automatically_id_the_new_obs_as: Yeni gözlemleri otomatik olarak tanımla
-        dont_forget_the_invite_link_placeholder: "{{INVITE_LINK}} yer imini unutmayın"
-        invite_other_photographers_to_inat: "Diğer fotoğrafçıları %{site_name}'e davet et"
-        invite_your_friends_description: |
-          Facebook ve Flickr'daki kişiler için, fotoğraflarını %{site_name} gözlemi olarak eklemelerini 
-          çok kolaylaştırabilirsiniz. Aşağıda bu özel davet URL’si dahil bir yorum bırakın. 
-          Ayrıca yeni gözlem için sınıf ve ön proje seçebilirsiniz.
       show:
         view_original_html: |
           <a href="%{url}">%{url}</a> bağlantısından aslını görebilirsin. Bu fotoğraf telif hakkını ihlal ederse, lütfen telif hakkı ihlali işaretlerini çözümlenmemiş olarak bırakın.

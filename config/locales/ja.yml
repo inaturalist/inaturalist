@@ -85,7 +85,6 @@ ja:
     当分類群の学名がデフォルト名となります。
     保存が完了しましたら、別の名称（俗名、旧学名など）を追加することができます。
   a_flag_for_x: "%{x}用のフラグ"
-  a_member_of: "属する分類は"
   a_member_of_taxon_html: "%{taxon}の1つ"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -274,7 +273,6 @@ ja:
   admin_s: 管理者
   admin_only: 管理者のみ
   admin_tools: 管理者ツール
-  agree: 賛成
   agree_: 同意
   agree?: 賛成？
   agree_with_current_taxon: 現在の分類群に賛成
@@ -492,7 +490,6 @@ ja:
   assessments: 評価
   associations: 関連情報
   atlas_for_taxon_html: '%{taxon} の一覧'
-  at_time: "%{time}"
   attached_taxon: 関連する分類群
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -673,7 +670,6 @@ ja:
   choose_a_list_above: 上記からリストを選択してください。
   choose_a_place: 場所を選ぶ
   choose_a_taxon: 分類群を選択（任意）
-  choose_cc_licensed_photos_html: '別のサイトの<a href=\"http://creativecommons.org/\">公開ライセンス</a>の写真を選択するか、%{site_name}の観察記録からお選びください。<em>同定に役立つ特徴</em>がはっきり写っている写真、<em>アイコンとしてよく見える</em>写真を推奨しています。<em>1枚目の写真はデファルトとなります。'
   choose_columns: 列の選択
   choose_file: ファイルを選択
   choose_files: ファイルを選択
@@ -1278,7 +1274,6 @@ ja:
   forum_desc: |
     フォーラムはヘルプやサポートを含め、iNatそのものについて議論する場です。
     機能のリクエスト、バグ報告、アナウンスなど。
-  from: 次の場所から：
   from_a_place: 場所から
   from_eol_collection: EOLコレクションより
   from_flickr_facebook_etc: Flickr、Facebookなどから
@@ -1286,8 +1281,6 @@ ja:
   from_photos: 写真から
   from_place: 場所から
   from_soundcloud: Soundcloudから
-  from_your_site_observations: "%{site_name}の観察記録の中から"
-  from_licensed_site_observations: "%{site_name}のライセンス付き観察記録の中から"
   full_screen: 全画面表示
   fungi:
     other: 菌類
@@ -2152,7 +2145,6 @@ ja:
   offline_access_enabled: オフラインアクセス対応
   old_observation_form: 旧観察記録記入フォーム（非推奨）
   ok: "OK"
-  on_date: "%{date}"
   onboarding:
     observe_panel_title: 早速観察記録を投稿しよう！
     observe_panel_body_p1_local: 何を投稿すればいいのかわからない？近くに観察されている生き物を見ましょう...
@@ -3566,7 +3558,6 @@ ja:
   username_or_email: ユーザー名またはメールアドレス
   username_or_user_id: ユーザー名またはユーザーID
   users: ユーザー
-  users_comment_html: "<a href='%{url}'>%{user}</a>のコメント"
   users_id: "%{user}さんのID"
   users_latest_observations_on_site: "%{site}における%{user}の最新観察記録"
   users_profile: "%{user}のプロフィール"
@@ -3884,11 +3875,6 @@ ja:
       users_updates_suspended:
         message: |
           しばらくのあいだ%{site_name}で活動をお休みしていたようなので、購読を停止しました。再びサイト活動の更新情報を受けるには、<a href="%{login_url}">ご自分のアカウントにログインし直して</a>ください。
-    photos:
-      inviter:
-        automatically_add_to_project: プロジェクトに自動的に追加する
-        invite_your_friends_description: |
-          FacebookやFlickrのユーザーが簡単に%{site_name}観測写真を追加できるように操作します。下記の特別な招待URLを含めてコメントを残すだけです。新しい観察に関して分類群とプロジェクトを事前に選択しておくこともできます。
     places:
       new:
         map_instruction: 場所の境界線を描くには多角形ツールを使用してください。

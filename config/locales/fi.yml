@@ -123,7 +123,6 @@ fi:
   a_default_taxon_name_will_automatically_created: |
     Oletusarvoinen taksonin nimi luodaan automaattisesti tämän taksonin tieteellisestä nimestä. Kun olet tallentanut tämän uuden taksonin, voit lisätä muita nimiä (yleiskieliset nimet, vanhentuneet tieteelliset nimet, jne).
   a_flag_for_x: "lippu kohteelle %{x}"
-  a_member_of: "Jäsen"
   a_member_of_taxon_html: "%{taxon} jäsen"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -333,7 +332,6 @@ fi:
   admin_s: Ylläpitäjä(t)
   admin_only: Vain ylläpidolle
   admin_tools: Hallintatyökalut
-  agree: samaa mieltä
   agree_: Samaa mieltä
   agree?: Samaa mieltä?
   agree_with_current_taxon: Samaa mieltä tämän tunnistuksen kanssa
@@ -569,7 +567,6 @@ fi:
   assessments: arvioinnit
   associations: Yhdistykset
   atlas_for_taxon_html: Atlas taksonille%{taxon}
-  at_time: "klo %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -766,7 +763,6 @@ fi:
   choose_a_list_above: Valitse luettelo yläpuolelta.
   choose_a_place: Valitse paikka
   choose_a_taxon: Valitse taksoni (valinnainen)
-  choose_cc_licensed_photos_html: 'Valitse<a href="http://creativecommons.org/">avoimen </a>-lisenssin alaiset valokuvat muilta sivustoilta tai poimi %{site_name} havainnoista. Yritä valita kuvat, joissa <em>on  kuvaavia ominaisuuksia</em> ja jotka<em>sopivat kuvakkeiksi</em>.  Järjestyksessä <em>ensimmäinen valitaan oletuksena</em>.'
   choose_columns: Valitse sarakkeet
   choose_file: Valitse tiedosto
   choose_files: Valitse tiedostot
@@ -1412,7 +1408,6 @@ fi:
   forum_desc: |
     iNaturalistin foorumilla voi keskustella englanniksi iNaturalistin käytöstä ja luontoharrastuksesta. Lajitietokeskuksen foorumilla (foorumi.laji.fi) voi keskustella suomeksi.
   frequency: Lukumäärä
-  from: Keneltä
   from_a_place: paikasta
   from_eol_collection: EOL-kokoelmasta
   from_flickr_facebook_etc: Flickristä, Facebookista, yms.
@@ -1420,7 +1415,6 @@ fi:
   from_photos: Kuvista
   from_place: Paikasta
   from_soundcloud: Soundcloudista
-  from_your_site_observations: "Sivuston %{site_name} havainnot"
   full_screen: Koko ruutu
   fungi:
     one: sieni
@@ -2289,7 +2283,7 @@ fi:
   observations_map: Havainnot / Kartta
   observation_must_dotdotdot: Havainnon pitää...
   observations_observed_this_month: Havainnot jotka pn <em>havaittu</em> tässä kuussa, ei lisätty tässä kuussa. Lähde ulos!
-  observations_of_relatives: Sukulaisten havainnot
+  observations_of_relatives: Havainnot lähisukuisista lajeista
   observations_of_taxon: "Taksonin %{taxon_name} havainnot"
   observations_per_month: Havaintoa / kuukausi
   observations_removed_from_the_project: "Havainnot poistettu projektista \"%{project}\""
@@ -2338,7 +2332,6 @@ fi:
   offline_access_enabled: Offline-yhteys käytössä
   old_observation_form: Vanha havaintomuoto (vanhentunut)
   ok: "OK"
-  on_date: "%{date}"
   on_day: "päivänä"
   onboarding:
     observe_panel_title: Aloita tallentamalla havaintoja
@@ -3678,7 +3671,7 @@ fi:
   updated_by_user_on_date_html: Päivittänyt %{user} %{date}
   updated_daily: Päivitetään joka päivä
   updated_photo: Päivitetty kuva
-  upload: Tallenna
+  upload: Lisää havaintoja
   upload_a_csv_file: Lataa CSV-tiedosto
   upload_photo: Tallenna kuva
   uploaded_by: Tallentanut
@@ -3763,11 +3756,9 @@ fi:
   username_or_email: Käyttäjänimi tai sähköposti
   username_or_user_id: Käyttäjänimi tai käyttäjätunniste
   users: Käyttäjät
-  users_comment_html: "Käyttäjän <a href='%{url}'>%{user}</a> kommentti"
   users_contributions_to_project_html: Käyttäjän <a href="%{url}">%{login}</a> muokkaukset projektiin %{project_title}
   users_highlights_and_stats_from_year_on_site: "Käyttäjän %{user} kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   users_id: "Käyttäjän %{user} tunniste"
-  users_identification_short_html: "Käyttäjän <a href='%{url}'>%{user}</a> tunniste"
   users_latest_observations_on_site: "Käyttäjän %{user} viimeisimmät havainnot sivustolla %{site}"
   users_profile: "Käyttäjän %{user} profiili"
   users_projects: "Käyttäjän %{user} projektit"
@@ -4191,6 +4182,13 @@ fi:
         disagreement_count: Erimielisyyksien määrä
         identification_count: Tunnistuksien määrä
         score: Pisteet
+        explanation: |
+          <p>
+          Jos havainnoija ei jostain syystä ole samaa mieltä yhteisön taksonin kanssa, hän voi hylätä sen. Tämä tarkoittaa että vain hänen omaa tunnistustaan käytetään havainnon linkittämiseen esim. pinnalistoihin. Tämä tarkoittaa myös että havainnosta voi tulla tutkimustasoa ainoastaan jos yhteisö on samaa mieltä tunnistuksesta hänen kanssaan. (Muuten havainto pysyy epämuodollisena.)
+          </p>
+          <p>
+          Yhteisön taksoni näytetään kuitenkin aina, joten kaikki voivat nähdä kaikki havainnolle ehdotetut tunnistukset.
+          </p>
         your_id_does_not_match: |
           Tunnistuksesi (<span class="bold">%{taxon_name}</span>) ei vastaa yhteisön tekemää tunnistusta
       captive_help_html: |
@@ -4501,12 +4499,6 @@ fi:
       users_updates_suspended:
         message: |
           Et ole käyttänyt sivustoa %{site_name} vähään aikaan, joten olemme jäädyttäneet tilauksesi. Saadaksesi taas päivityksiä sivuston tapahtumista, <a href="%{login_url}">kirjaudu tilillesi</a>.
-    photos:
-      inviter:
-        automatically_add_to_project: Lisää automaattisesti projektiin
-        invite_other_photographers_to_inat: "Kutsu muita valokuvaajia %{site_name}iin"
-        invite_your_friends_description: |
-          Voit tehdä Facebookin ja Flickrin käyttäjille superhelpoksi tehdä valokuvistaan %{site_name}in havaintoja. Jätä vain Facebookissa kommentti jossa on tämä kutsu-osoite (alla). Voit myös valita taksonin ja projektin uudelle havainnolle valmiiksi.
     places:
       kml_field_desc: |
         Paikan rajat KML-tiedostona. Voit tehdä tiedoston Google Mapsilla, Google Eartilla tai useimmilla paikkatietosovelluksilla. Paikassa täytyy olla ainakin yksi polygoni ja sen pitää olla pienempi kuin 1 Mt (5Mt kuraattoreille) sekä pienempi kuin Teksas.
@@ -4553,10 +4545,14 @@ fi:
           Bioblitz on tapahtuma, jossa osallistujat yrittävät havaita mahdollismman monta lajia tietyn ajan sisällä. Tämä on hauska tapa saada ihmisiä kiinnostumaan luonnosta ja samalla kerätä havaintotietoa.
           </p>
         change_admin_desc: Valitse yksi projektin kuraattoreista uudeksi ylläpitäjäksi.
+        change_owner_alert: |
+          Tämän jälkeen et voi enää poistaa projektia tai siirtää sen omistajuutta uudelleen. Haluatko jatkaa?
         cover_desc: "Valinnainen kansikuva, joka tulee näkyviin projektisivusi yläreunaan. Pitää olla 950px leveä, alle 400px pitkä."
         icon_desc: "Rajataan neliöksi"
         it_looks_like_this_project_can_be_converted: |
           Näyttää siltä että tämä projekti voidaan muuntaa uudeksi <a href="%{url}">koontiprojektiksi</a>.
+        #Label for button to make another user the owner of a project
+        make_owner: Tee käyttäjästä omistaja
         no_curators: |
           Projektilla ei ole kuraattoreita. Jos haluat nimittää uuden henkilön ylläpitäjäksi, henkilön pitää ensin liittyä tähän projektiin ja sinun tulee nimittää hänet kuraattoriksi.
         observation_aggregation_desc_html: |
@@ -5270,9 +5266,11 @@ fi:
       invalid: on virheellinen
       less_than: täytyy olla vähemmän kuin %{count}
       less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
+      new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
       not_a_number: ei ole numero
       not_an_integer: täytyy olla kokonaisluku
       odd: on oltava pariton
+      only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
       requires_privilege_speech: |
         täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme muille tehtyä tunnistusta, jotta voisit tehdä tämän
       requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
@@ -5402,9 +5400,11 @@ fi:
         invalid: on virheellinen
         less_than: täytyy olla vähemmän kuin %{count}
         less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
+        new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
         not_a_number: ei ole numero
         not_an_integer: on oltava kokonaisluku
         odd: on oltava pariton
+        only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
         requires_privilege_speech: täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
         requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
@@ -5532,9 +5532,11 @@ fi:
         invalid: on virheellinen
         less_than: oltava vähemmän kuin %{count}
         less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
+        new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
         not_a_number: ei ole numero
         not_an_integer: on oltava kokonaisluku
         odd: on oltava pariton
+        only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
         requires_privilege_speech: sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
         requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
