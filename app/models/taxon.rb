@@ -316,6 +316,8 @@ class Taxon < ActiveRecord::Base
     where( "places.admin_level < 2" ).
     pluck(:name).uniq.sort.map(&:downcase)
   PROBLEM_NAMES = [
+    "aba",
+    "asa",
     "bee hive",
     "canon",
     "caterpillar",

@@ -326,7 +326,7 @@ class LocalPhoto < Photo
       # still a high chance of encoding weirdness happening
       words = file.original_filename.scan(/[\p{L}\p{M}\'\’]+/)
       words = words.reject do |word|
-        word.size == 1 || word =~ /^original|img|inat|dsc.?|jpe?g|png|gif|open-uri$/i
+        word.size < 4 || word =~ /^original|img|inat|dsc.?|jpe?g|png|gif|open-uri$/i
       end
       # Collect all combinations of these words from 1-word combinations up to
       # the combination that includes all words. Note that a combination

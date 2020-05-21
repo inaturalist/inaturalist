@@ -107,19 +107,21 @@
       <div class="last class column span-4">
         <div class="lilun">
           <% for place_name, count in (@place_name_counts || []) %>
-            <%- name, id = [place_name.split('-')[0..-2].join('-'), place_name.split('-').last] -%>
+            <%-
+              name, id = [place_name.split('-')[0..-2].join('-'), place_name.split('-').last]
+              place_name = if place_name.blank?
+                t(:somewhere)
+              elsif id.blank?
+                name
+              else
+                link_to( name, place_path( id ) )
+              end
+              count_link = link_to(observations_by_login_path(@selected_user.login, :place_id => id, :on => @date)) do
+                "<span class='count'>#{count}</span>".html_safe
+              end
+            -%>
             <div>
-              <%= link_to(observations_by_login_path(@selected_user.login, :place_id => id, :on => @date)) do %>
-                <span class="count"><%= count %></span>
-              <% end -%>
-              <%= t(:from).downcase %>
-              <% if place_name.blank? -%>
-                somewhere
-              <% elsif id.blank? %>
-                <%= name %>
-              <% else %>
-                <%= link_to(name, place_path(id)) %>
-              <% end -%>
+              <%=t :bold_label_colon_value_html, label: place_name, value: count_link %>
             </div>
           <% end %>
         </div>
