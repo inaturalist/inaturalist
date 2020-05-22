@@ -296,7 +296,12 @@ export function fetchObservation( uuid, options = { } ) {
       annotations: {
         controlled_attribute: controlledTermFields,
         controlled_value: controlledTermFields,
-        user: userFields
+        user: userFields,
+        vote_score: true,
+        votes: {
+          vote_flag: true,
+          user: userFields
+        }
       },
       comments: {
         body: true,
@@ -437,7 +442,9 @@ export function afterAPICall( options = { } ) {
     if ( options.callback ) {
       options.callback( );
     } else {
-      if ( options.actionTime && lastAction !== options.actionTime ) { return; }
+      if ( options.actionTime && lastAction !== options.actionTime ) {
+        return;
+      }
       if ( state.observation ) {
         dispatch( fetchObservation( state.observation.uuid, options ) );
       }
@@ -804,7 +811,6 @@ export function unfollowUser( ) {
       id: state.config.currentUser.id,
       remove_friend_id: state.observation.user.id
     };
-    console.log( "[DEBUG] payload: ", payload );
     dispatch( callAPI( inatjs.users.update, payload, {
       callback: ( ) => {
         dispatch( fetchSubscriptions( ) );
@@ -869,8 +875,9 @@ export function deleteAnnotation( id ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = _.map( state.observation.annotations, a => (
-      ( a.user.id === state.config.currentUser.id && a.uuid === id ) ?
-        Object.assign( { }, a, { api_status: "deleting" } ) : a
+      ( a.user.id === state.config.currentUser.id && a.uuid === id )
+        ? Object.assign( { }, a, { api_status: "deleting" } )
+        : a
     ) );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
     dispatch( callAPI( inatjs.annotations.delete, { id } ) );
@@ -882,15 +889,16 @@ export function voteAnnotation( id, voteValue ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = _.map( state.observation.annotations, a => (
-      ( a.uuid === id ) ?
-        Object.assign( { }, a, {
+      ( a.uuid === id )
+        ? Object.assign( { }, a, {
           api_status: "voting",
           votes: ( a.votes || [] ).concat( [{
             vote_flag: ( voteValue !== "bad" ),
             user: state.config.currentUser,
             api_status: "saving"
           }] )
-        } ) : a
+        } )
+        : a
     ) );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
     dispatch( callAPI( inatjs.annotations.vote, { id, vote: voteValue } ) );
@@ -902,14 +910,16 @@ export function unvoteAnnotation( id ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = _.map( state.observation.annotations, a => (
-      ( a.uuid === id ) ?
-        Object.assign( { }, a, {
+      ( a.uuid === id )
+        ? Object.assign( { }, a, {
           api_status: "voting",
           votes: _.map( a.votes, v => (
-            v.user.id === state.config.currentUser.id ?
-              Object.assign( { }, v, { api_status: "deleting" } ) : v
+            v.user.id === state.config.currentUser.id
+              ? Object.assign( { }, v, { api_status: "deleting" } )
+              : v
           ) )
-        } ) : a
+        } )
+        : a
     ) );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
     dispatch( callAPI( inatjs.annotations.unvote, { id } ) );
