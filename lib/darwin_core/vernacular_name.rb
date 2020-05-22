@@ -96,8 +96,9 @@ module DarwinCore
       paths = []
       file_names.each do |lexicon, fname|
         tmp_path = File.join( work_path, fname )
-        CSV.open(tmp_path, 'w') do |csv|
-          csv << TERM_NAMES
+        mode = File.exists?( tmp_path ) ? "a" : "w"
+        CSV.open( tmp_path, mode ) do |csv|
+          csv << TERM_NAMES if mode == "w"
           DarwinCore::VernacularName.base_scope.
               where( lexicon: lexicon ).
               includes(:taxon, :source, :creator, :updater, place_taxon_names: :place).
@@ -120,11 +121,9 @@ module DarwinCore
     end
 
     def self.file_names
-      base_scope.
-          select("DISTINCT lexicon").
-          pluck(:lexicon).
-          inject({}) do |memo, lexicon|
-        memo[lexicon] = "VernacularNames-#{lexicon.gsub(/[\s\(\)]+/, "_").gsub( /(.+)_$/, "\\1" )}.csv"
+      lexicons = base_scope.select("DISTINCT lexicon").pluck(:lexicon).uniq.select{|l| !l.blank?}
+      lexicons.inject( {} ) do |memo, lexicon|
+        memo[lexicon] = "VernacularNames-#{lexicon.parameterize}.csv"
         memo
       end
     end
