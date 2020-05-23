@@ -1612,9 +1612,9 @@ class TaxaController < ApplicationController
 
     # Assign the current user to any new conservation statuses
     if params[:taxon][:conservation_statuses_attributes]
-      params[:taxon][:conservation_statuses_attributes].each do |cs_id, status|
-        unless existing = @taxon.conservation_statuses.detect{|cs| cs.id == cs_id }
-          params[:taxon][:conservation_statuses_attributes][cs_id][:user_id] = current_user.id
+      params[:taxon][:conservation_statuses_attributes].each do |position, status|
+        unless existing = @taxon.conservation_statuses.detect{|cs| cs.id == status["id"].to_i }
+          params[:taxon][:conservation_statuses_attributes][position][:user_id] = current_user.id
         end
       end
     end

@@ -180,36 +180,48 @@ describe TaxaController do
       it "should allow addition" do
         put :update, id: taxon.id, taxon: {
           conservation_statuses_attributes: {
-            1 => {
+            Time.now.to_i.to_s => {
               status: "EN"
             }
           }
         }
+        expect( response ).to be_redirect
         taxon.reload
         expect( taxon.conservation_statuses.size ).to eq 1
       end
       it "should assign the current user ID as the user_id for new statuses" do
         put :update, id: taxon.id, taxon: {
           conservation_statuses_attributes: {
-            1 => {
+            Time.now.to_i.to_s => {
               status: "EN"
             }
           }
         }
+        expect( response ).to be_redirect
         taxon.reload
         expect( taxon.conservation_statuses.first.user_id ).to eq user.id
       end
       it "should not assign the current user ID as the user_id for existing statuses" do
-        cs = ConservationStatus.make!( taxon: taxon )
+        cs = ConservationStatus.make!( taxon: taxon, user: nil, authority: "foo" )
+        expect( cs.user_id ).to be_blank
         put :update, id: taxon.id, taxon: {
           conservation_statuses_attributes: {
-            cs.id => {
-              status: "EN"
+            "0" => {
+              "id" => cs.id,
+              "status" => cs.status,
+              "authority" => cs.authority
+            },
+            Time.now.to_i.to_s => {
+              "status" => "EN",
+              "authority" => "bar"
             }
           }
         }
+        expect( response ).to be_redirect
+        taxon.reload
+        expect( taxon.conservation_statuses.size ).to eq 2
         cs.reload
-        expect( cs.user_id ).not_to eq user.id
+        expect( cs.user_id ).to be_blank
       end
     end
   end
