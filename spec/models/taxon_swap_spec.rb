@@ -765,6 +765,20 @@ describe TaxonSwap, "commit_records" do
     ofv.reload
     expect( ofv.value ).to eq @swap.output_taxon.id.to_s
   end
+
+  it "should not change the quality_grade of an RG observation" do
+    genus = Taxon.make!( rank: Taxon::GENUS, name: "Genus" )
+    input_taxon = Taxon.make!( rank: Taxon::SPECIES, name: "Species one", parent: genus )
+    output_taxon = Taxon.make!( rank: Taxon::SPECIES, name: "Species two", parent: genus )
+    swap = TaxonSwap.make
+    swap.add_input_taxon( input_taxon )
+    swap.add_output_taxon( output_taxon )
+    swap.save!
+    o = make_research_grade_observation( taxon: swap.input_taxon )
+    swap.commit_records
+    o.reload
+    expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+  end
 end
 
 describe "move_input_children_to_output" do
