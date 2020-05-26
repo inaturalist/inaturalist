@@ -3333,8 +3333,8 @@ gl:
   search_your_photos: Procurar as túas fotos
   searching: "Procurando..."
   seasonality: Estacionalidade
-  second_person_possessive_plural: "A túa %{noun}"
-  second_person_possessive_singular: "As túas %{noun}"
+  second_person_possessive_plural: "Teus %{noun}"
+  second_person_possessive_singular: "Teu %{noun}"
   see_something_wrong_with_taxon: Ves algo malo neste taxón? Comunícallelo aos administradores.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5242,6 +5242,13 @@ gl:
       show:
         are_you_sure_you_want_to_convert: |
           ¿Seguro que queres convertir este proxecto nun Proxecto de Recolla?
+        bioblitz_results_desc_html: |
+          <p>
+          A diferencia dos proxectos regulares, os bioblitzes mostran estatísticas do evento de <em>tódalas</em> observacións nun lugar e un periodo de tempo, non só as observacións que a xente engadíu con intención ó proxecto. Isto elimina a dificuldade de engadir observacións ó proxecto só para levar as estatísticas en tempo real. Repara que as observacións non estarán listas para exportar ou mostrar nalgunhas vistas do proxecto, como contribucións de membros no sitio web ou buscas de observacións do proxecto nas aplicacións de móbil, agás que o equipo do proxecto e os participantes engadan activamente observacións relevantes, como farían nun proxecto normal.
+          </p>
+          <p>
+          Repara que aínda que este tipo de proxecto mostra estatísticas para as observacións que non foron deliberadamente engadidas ó proxecto, non se permite ós conservadores ver as coordenadas privadas ou escurecidas desas observacións ou asumen que os observadores acordaron cós termos do proxecto. Se es un conservador do proxecto e precisas acceso a coordenadas privadas, necesitas que os participantes estean de acordo cós termos do proxecto; e se queres que as observacións sexan contadas cara unha listaxe de comprobación do proxecto supervisada, asegúrate de que os participantes se unen ó proxecto e engaden as súas observacións como se fose nun proxecto normal.
+          </p>
         click_here_to_convert_this_project: |
           Preme aquí para convertires este proxecto nun Proxecto de Recolla.
         no_journal_blurb_html: |
@@ -5251,6 +5258,8 @@ gl:
           <p>
           Para comezar, <a href="%{url}" class="readmore">crea unha entrada</a>
           </p>
+        curated_checklist_desc: |
+          Esta é unha listaxe de comprobación supervisada e conta de taxons de observacións explícitamente engadidos a este proxecto, non de tódalas observacións rexistradas nun lugar e hora deste evento.
         make_sure_you_have_read_about_the_differences: |
           Asegúrate que liches sobre as diferencias na nosa <a href="%{url}" target="_blank">publicación do blog sobre Proxectos de Recolla</a>.
         this_is_a_preview: |
@@ -5259,6 +5268,32 @@ gl:
           Este proxecto non ten ningún requisito definido para observacións. Os proxectos precisan seleccionar un ou máis taxons (p.e. aves, coníferas), lugares (p.e. Brasil, Yellowstone), usuarios e/ou datas para comezar a mostrar observacións.
       updates_desc: |
         Recibe novas sobre este proxecto no teu panel e nos correos electrónicos de actualizacións diarios.
+    search:
+      index:
+        no_taxa_options_html: |
+          <p>Tes algunhas opcións:</p>
+          <ul class="list-unstyled">
+          <li>
+          <strong>Engade unha Marca a un Taxon de un Nivel Superior</strong>
+          <p>
+          P.e. o xénero que contén á especie. Cun pouco de sorte, un conservador amigable engadirá o taxon se é posible.
+          </p>
+          </li>
+          <li>
+          <strong><a href="%{feedback_url}">Contacta có Foro</a></strong>
+          <p>
+          Moitos conservadores do sitio seguen as conversacións do Foro.
+          </p>
+          </li>
+          <li>
+          <strong>
+          <a href="mailto:%{help_email}">Contacta có Apoio</a>
+          </strong>
+          <p>
+          Por favor, se paciente, non temos moitos traballadores dedicados.
+          </p>
+          </li>
+          </ul>
     shared:
       blocked:
         youve_been_blocked: Foches Bloqueado
@@ -5312,32 +5347,66 @@ gl:
         website_desc_html: |
           Creado vía <a href="https://www.inaturalist.org">iNaturalist</a> ou sitios web da<a href="%{url}">Rede de iNaturalist</a>
       year:
+        donate_title: "Especial Agradecemento A Tódolos Nosos Colaboradores"
+        donate_desc_html: |
+          ¡Grazas por ser xeneroso/a có teu tempo, atención, experiencia e doazóns! iNaturalist é unha iniciativa sen ánimo de lucro conxunta da Academia de Ciencias De California e a Sociedade National Geographic. É levada a cabo por un <a href="%{team_url}">pequeno equipo</a> que fai todo o traballo de deseño e enxeñería de software para a web, mobil e <a href="%{seek_url}">Seek por iNaturalist</a>, ademáis de xestionar o apoio á comunidade, colaboracións e integracións para manter as cousas marchando (¡e crecendo rapidamente!). O programa depende de numerosas becas e doazóns, incluíndo regalos caritativos de menos de 0.2% dos contribuíntes. Agradecemos particularmente ós nosos Patrocinadores Mensuais, cuxos regalos recorrentes nos fan posible planificar para o futuro. Podes doar en máis de 30 moedas para apoiar as operacións centrais de iNaturalist. ¡Graciñas a todos por facer de 2019 o meriande ano ata o de agora!
         inaturalist_network: Rede iNaturalist
+        inaturalist_network_desc: |
+          Bótalle unha ollada á Revisión do Ano para os membros da Rede iNaturalist.
         include_usa: Incluír EEUU
         growth_by_country_title: Crecemento Por País
+        growth_desc: |
+          As gráficas de "Observacións" e "Taxons" poden incluír dados visibles en %{site_name} contribuídos por xente que non está afiliada con %{site_name}, mentres que a gráfica de "Usuarios" só mostra as datas de cando os usuarios que están afiliados con %{site_name} se uniron a iNaturalist.
         growth_in_year_obs: "Crecemento en %{year} (obs)"
         growth_title: Crecemento
         new_species_desc: |
           Especies que foron observadas pola primeira vez en %{site_name} este ano.
           Mostrando %{x} de <a href="%{url}">%{y} especies</a>.
+        new_species_desc_html: |
+          Especies que foron engadidas pola primeira vez este ano. 
+          Preme nun mes para ver algunhas das novas especies engadidas nese mes.
+          Tamén podes ver o total acumulado de especies , ou mover o control deslizante atrás no tempo para ver outras especies observadas recentemente. Esta gráfica mostra especies de observacións verificables polo mes que foron cargadas a %{site_name} (non polo mes que foron observadas). Isto non inclúe taxons de maior ou menor nivel, así que unha observación identificada como Mammalia non conta, e unha observación de <i>Canis lupus</i> ssp. <i>arctos</i> contará só como <i>Canis lupus</i>.
         obs_in_year: Observacións en %{year}
         percent_growth_in_year: "% de Crecemento en %{year}"
         percent_of_total_growth: "% de Crecemento Total"
+        publications_desc_html: |
+          Preme nas gráficas de pétalos para ver máis información sobre o que significan os números e as cores. Os dados de impacto e gráficas son cortesía de <a href="https://www.altmetric.com">Altmetric</a>. A información sobre uso de dados é cortesía dos nosos amigos na <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          <br/>
+          <a href="%{url}">Ver Todos%{numStudies} os estudos</a>
+        publications_desc_short_html: |
+          Preme nos gráficos de pétalos para máis información sobre o que significan os números e as cores. Os dados e gráficas de impacto son cortesía de <a href="https://www.altmetric.com">Altmetric</a>. 
+          A información sobre uso de dados é cortesía dos nosos amigos da <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Series de Observacións
         observation_streaks_color_desc: |
           A cor representa o número de días nunha escala logarítmica:
+        observation_streaks_desc: |
+          Unha serie de observacións é un periodo de tempo cando alguén saíu fóra e rexistrou observacións novas e verificables tódolos días. Aquí mostramos as series máis longas que comezaron este ano ou estaban progresando cando estas estatísticas foron xeradas.
         stats_generated_datetime: Estatísticas xeradas no %{datetime}
         store_prompt: |
           ¿Queres amosar o teu orgullo iNat onde queira que vaias? ¡Entra na Tenda iNat!
+        sunburst_desc_html: |
+          Taxons observados como un diagrama xerárquico "sunburst". A base da xerarquía está no centro, comezando con "Vida" e rematando con especies nos cantos exteriores. O tamaño de cada arco é proporcional ó número de observacións dese taxon, e as cores máis ou menos corresponden ás nosas  cores taxonómicas "icónicas" usuais (verde para plantas, laranxa para insectos, azul para a maioría do resto dos animais, etc.), así que se estás vendo moito verde, significa que observaches moitas plantas. <strong>Preme nun arco para colocar ese taxon no centro</strong> e ós seus fillos ó seu redor, ou <strong>preme o centro para subir na xerarquía</strong>.
         translators_title: Tradutores
+        translators_desc: |
+          ¿Sabías que iNaturalist foi traducido a %{x_languages}, case enteiramente por %{x_people}, algúns deles nen sequera empregan iNat? Aquí están tódolos incribles tradutores que engadiron traduccións este ano, xunto có número de palabras que traduciron para o %{website_link_tag}sitio web%{link_tag_end}, as nosas aplicacións para %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, e %{seek_link_tag}Seek%{link_tag_end}. Podes ver toda a xente que contribuíu con traduccións, incluíndo anos pasados e amigos de Translatewiki, nos nosos repositorios de códigos da %{view_all_web_link_tag}web%{link_tag_end} e%{view_all_mobile_link_tag}mobiles%{link_tag_end}.
+        translators_desc_for_site: |
+          ¿Sabías que %{site_name} foi traducido case enteiramente por %{x_people}? Aquí están tódolos incribles tradutores que engadiron traduccións este ano, xunto có número de palabras que traduciron para o %{website_link_tag}sitio web%{link_tag_end}, as aplicacións de iNaturalist para %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, e %{seek_link_tag}Seek%{link_tag_end}. Podes ver toda a xente que contribuíu con traduccións en tódalas línguas, incluíndo xente de anos anteriores e amigos de Translatewiki, nos nosos repositorios de código da %{view_all_web_link_tag}web%{link_tag_end} e %{view_all_mobile_link_tag}móbiles%{link_tag_end}.
         translators_prompt: |
           Se queres axudar a traducir, %{link_tag}aprende como%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
           Engadindo un estado de conservación dun taxon superior afecta ás observacións de tódalas especies nese taxon. Por favor, non engadas estados para taxons que conteñen especies que non contan con estado designado porque isto vai escurecer incorrectamente as coordenadas de observacións desas especies.
+        complete_desc_html: |
+          Un taxon "completo contén <em>tódolos</em> taxons descendentes coñecidos nun rango específico que cumpre cás políticas de conservación de iNaturalist, foran observados ou non. Só os administradores do sitio poden declarar taxons completos.
+        complete_rank_desc_html: |
+          Rango no que un taxon está completo, p.e. se esta familia contén tódolos seus xéneros pero on tódalas súas especies, isto estableceríase para "xénero". O rango predeterminado é o de especie.
       show:
         about_conservation_status_desc: |
           O estado de conservación resume o risco de extinción para un grupo de organismos.
+        about_establishment_desc: |
+          "Medios de establecemento" describe como chegou a especie a onde aparece actualmente. Introducido significa que chegou por actividade humana, mentres que medios nativos indican que chegou sen asistencia humana. As especies endémicas só aparecen en ubicacións específicas e en ningún lugar máis.
         charts_help_other: |
           Tamén amosamos gráficas de estacionalidade para as anotacións das observacións. As anotacións son un xeito de engadir metadados ás observacións usando un vocabulario controlado, p.e. se a observación mostra unha planta que está florecendo ou fructificando.
         frequency:
