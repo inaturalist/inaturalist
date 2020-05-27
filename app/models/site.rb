@@ -349,7 +349,7 @@ class Site < ActiveRecord::Base
   end
 
   def to_s
-    "<Site #{id} #{url}>"
+    "<Site #{id} #{name} #{url}>"
   end
 
   def contact
