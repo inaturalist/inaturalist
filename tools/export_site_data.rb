@@ -45,10 +45,16 @@ else
 end
 
 max_obs_id = Observation.calculate(:maximum, :id)
+export_params = {
+  max_obs_id: max_obs_id,
+  debug: OPTS.debug,
+  verbose: OPTS.verbose,
+  taxon_id: OPTS.taxon_id
+}
 paths = sites.to_a.compact.collect do |site|
   puts
   puts "Exporting data for #{site}..."
-  path = SiteDataExporter.new( site, OPTS.merge( max_obs_id: max_obs_id ) ).export
+  path = SiteDataExporter.new( site, export_params ).export
   if OPTS.dir
     new_path = File.join( File.expand_path( OPTS.dir ), File.basename( path ) )
     FileUtils.move( path, new_path )

@@ -115,6 +115,7 @@ class SiteDataExporter
     @dbname = ActiveRecord::Base.configurations[Rails.env]["database"]
     @dbhost = ActiveRecord::Base.configurations[Rails.env]["host"]
     @max_obs_id = options[:max_obs_id] || Observation.calculate(:maximum, :id)
+    @options = options
   end
 
   def export
@@ -270,7 +271,7 @@ class SiteDataExporter
 
   private
   def system_call(cmd)
-    puts "Running #{cmd}" if OPTS[:debug]
+    puts "Running #{cmd}" if @options[:debug]
     system cmd
   end
 
@@ -328,9 +329,9 @@ class SiteDataExporter
         ElasticModel.id_or_object(v)
       } } }
     end
-    if options[:taxon_id]
+    if @options[:taxon_id]
       filters << {
-        terms: { "taxon.ancestor_ids" => [ElasticModel.id_or_object( options[:taxon_id] )] }
+        terms: { "taxon.ancestor_ids" => [ElasticModel.id_or_object( @options[:taxon_id] )] }
       }
     end
 
@@ -349,7 +350,7 @@ class SiteDataExporter
       (i*partition_offset..(i+1)*partition_offset)
     end
 
-    puts "[#{Time.now}] Exporting observations in #{num_partitions} partitions, options: #{options}" if options[:verbose]
+    puts "[#{Time.now}] Exporting observations in #{num_partitions} partitions, options: #{options}" if @options[:verbose]
 
     csv_path = File.join( @work_path, "#{@basename}-observations.csv" )
     unless File.exists?( csv_path )
@@ -357,7 +358,7 @@ class SiteDataExporter
         csv << OBS_COLUMNS
       end
     end
-    puts "[#{Time.now}] Writing CSV to #{csv_path}" if options[:verbose]
+    puts "[#{Time.now}] Writing CSV to #{csv_path}" if @options[:verbose]
 
     # Set up CSV files for associate models
     assoc_csv_paths = {}
@@ -381,7 +382,7 @@ class SiteDataExporter
       while true do
         batch_filters = partition_filters.dup
         batch_filters << { range: { id: { gte: min_id } } }
-        if options[:debug]
+        if @options[:debug]
           msg = ""
           msg += "[#{options[:debug_label]}]" if options[:debug_label]
           msg += " batch_filters: #{batch_filters}"
@@ -397,13 +398,13 @@ class SiteDataExporter
           )
         end
         if observations.size == 0
-          puts if options[:verbose]
+          puts if @options[:verbose]
           break
         end
         if obs_i == 0
           partition_total_entries = observations.total_entries
         end
-        if options[:verbose]
+        if @options[:verbose]
           msg = "[#{Time.now}] "
           msg += "[#{options[:debug_label]}] " if options[:debug_label]
           msg += "Obs partition #{parition_i} (#{partition}) from #{min_id} (#{obs_i} / #{partition_total_entries}, #{( obs_i.to_f  / partition_total_entries * 100 ).round( 2 )}%)"
@@ -429,7 +430,7 @@ class SiteDataExporter
         ] )
         CSV.open( csv_path, "a" ) do |csv|
           observations.each do |o|
-            if options[:debug]
+            if @options[:debug]
               msg = "Obs #{obs_i} (#{o.id})"
               msg += " [#{options[:debug_label]}]" if options[:debug_label]
               puts msg
