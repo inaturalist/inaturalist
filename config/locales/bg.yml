@@ -23,6 +23,9 @@ bg:
   x_languages:
     one: "%{count} език"
     other: "%{count} езика"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> публикация в дневника'
+    other: '<span class="count">%{count}</span> публикации в дневника'
   x_matching_taxa:
     one: '1 съвпадащ таксон'
     other: '%{count} съвпадащи таксона'
@@ -376,6 +379,7 @@ bg:
   are_you_sure_you_want_to_remove_all_tags: Сигурни ли сте, че искате да премахнете всички етикети?
   are_you_sure_you_want_to_remove_curator: Сигурни ли сте, че искате да премахнете %{user} като куратор?
   are_you_sure_you_want_to_remove_from_project: Сигурни ли сте, че искате да отстраните %{user} от проекта?
+  are_you_sure_you_want_to_remove_manager: Сигурни ли сте, че искате да отстраните %{user} като управител?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Сигурни ли сте, че искате да премахнете тези %{x} таксона?"
   are_you_sure_you_want_to_remove_this_invitation: Сигурни ли сте, че искате да премахнете тази покана?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Сигурни ли сте, че искате да премахнете този таксон от видовия списък (чеклиста) на %{place}?"
@@ -521,6 +525,7 @@ bg:
   choose_files: Избор на файлове
   choose_from_your_lists: Изберете от вашите списъци
   choose_photos_for_this_taxon: Избери снимки за този таксон
+  choose_rule: Изберете правило
   choose_subjects: Избери теми
   choose_tags: Избери етикети
   choose_taxon: Избери таксон
@@ -729,6 +734,7 @@ bg:
   disable: Изключване
   disagree_: Несъгласен
   disconnect_provider: "Откачи %{provider}"
+  display_link_to_checklist: Показвай препратка към проектния списък на страницата на проекта
   documentation_for_developers_html: Документация за <a href="/pages/developers">разработчици</a>
   do_not_show_this_message_again: Не показвай това събщение повече
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
@@ -805,6 +811,7 @@ bg:
   every_species_seen_by: Всеки вид видян от
   everyone: всички
   everyone_: Всички
+  everyone_journal_posts: Публикации в дневника от всички потребители
   everywhere: навсякъде
   exact_date: Точна дата
   exact_location: Точно местоположение
@@ -936,6 +943,7 @@ bg:
   has_sound: Има звук
   has_sounds: Има звуци
   header_your_favorites: Вашите любими
+  header_your_journal: Вашият дневник
   header_your_profile: Вашият профил
   help: Помощ
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
@@ -966,6 +974,7 @@ bg:
   ids: "Разпознавания"
   ids_made_for_others: Разпознавания направени за други
   if_this_is_a_scientific_name: Ако това е научно име, общоприето ли е в момента?
+  if_your_project_is: Ако проектът е за конкретно място, задайте координати чрез щракване върху картата или ги въведете ръчно.
   import: Импортиране
   import_date_time_location_taxonomic: "Извлечи дата, време, място, описание и таксономична информация от снимката."
   import_from_csv: Импорт от CSV
@@ -976,6 +985,7 @@ bg:
   import_tags_from_csv: Импортирай етикети от CSV
   importing: "Импортиране..."
   in_n: "във %{n}"
+  in_place_x: във %{place}
   #Label for messages you've received
   inbox: входящи
   increase_brightness: Увеличи яркостта
@@ -999,6 +1009,8 @@ bg:
   invite_people_to_project: "Покани хора във %{project}"
   invite_someone_to: "Покани някого на %{name}!"
   invite_your_friends: Покани приятелите си
+  #Type of project where people can only join after they have been invited
+  inviteonly: само с покана
   is_not_following_anyone: не следва никого.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Наличните свидетелства достатъчни ли са за да се потвърди, че това е %{taxon}?
   it_can_now_be_used_for_research: Сега може да се използва в научни изследвания и да се показва на други сайтове
@@ -1202,11 +1214,15 @@ bg:
   low: Нисък
   lowest_rank: Най-нисък ранг
   make_it_a_life_list?: Направи житейски списък?
+  make_manager: Направи управител
   mammals: бозайници
   manage_all_your_subscriptions: Управление на всичките Ви абонаменти
   manage_your_projects: Управление на проекти
   manage_your_project_invitations: Управление на Вашите покани за проекти
   manage_your_relationships: Управление на взаимоотношения
+  manager: Управител
+  managers: Управители
+  managers_can_do: Управителите могат да правят всичко, което могат и кураторите, както и да променят настройките на проекта и да пишат в дневника му.
   map: Карта
   map_legend: легенда на картата
   map_marker_size: размер на маркера на картата
@@ -1364,7 +1380,9 @@ bg:
   no_favorites_added:
     current_user: Все още не сте добавили любими.
     user: "%{user} няма добавени любими."
+  no_journal_posts_yet: Все още няма публикации в дневника
   no_license_all_rights_reserved: Няма лиценз (всички права запазени)
+  no_managers_set: Няма зададени управители
   no_matching_article_from_x: "Няма намерена статия от %{x}"
   no_matching_invitations: Няма намерени покани
   no_matching_observations: Няма намерени наблюдения
@@ -1392,6 +1410,7 @@ bg:
   none_found: Няма намерени
   normal: нормален
   not_evaluated: неоценен
+  not_finding_place_you_want?: Не намирате нужното място?
   not_linked_facebook: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Фейсбук"
   not_linked_flickr: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Flickr"
   note: Бележка
@@ -1433,6 +1452,9 @@ bg:
     Полетата за наблюдения са подобни на етикети, само че по подразбиране всеки може да ги добавя към Вашите наблюдения. Можете да промените това ако предпочитате само Вие (и кураторите) да правите това.
   observed_on_datetime: Наблюдаване на %{datetime}
   observation_removed_from_the_project: "Наблюдението е премахнато от проекта %{project}"
+  observation_rules: Правила за наблюдения
+  observation_rules_description: |
+    Можете да зададете правила, определящи кои наблюдения могат да бъдат добавяни към проекта, например ограничавайки наблюденията до определено място или таксон. Ако има повече от едно правило от даден вид, наблюденията ще са приемливи, ако отговарят на което и да е от правилата. Например, ако имате правила „Трябва да е от Земноводни“ и „Трябва да е от Влечуги“, то проектът ще приема наблюдения както на земноводни, така и на влечуги.
   observation_was_deleted: Наблюдението е изтрито.
   observation_without_media: Наблюдение без медийно съдържание
   observations: Наблюдения
@@ -1500,6 +1522,7 @@ bg:
       </ul>
   one_by_one: "Един по един"
   one_of_your_lists: "един от Вашите списъци..."
+  only_a_project_manager_can_add: Само управител на проекта може да задава кураторски статут
   only_administrators_may_access_that_page: Само администраторите имат достъп до страницата
   only_an_admin_can_remove_project_users: Само администратор може да премахва потребители от проект
   only_curators_can_add_edit_scientific_names: Само кураторите могат да редактират научни имена.
@@ -1875,6 +1898,10 @@ bg:
   please_hold_on_while_the_file_is_generated: Моля изчакайте докато файлът се генерира. Може да отнеме няколко минути за дълги списъци.
   popular: Популярно
   position: Позиция
+  #Post is a noun
+  post_from_journal_by_parent_html: Публикация от <a href="%{url}">дневника на %{parent}</a>
+  #Post is a noun
+  post_from_your_journal_html: Публикация от <a href="%{url}">Вашия дневник</a>
   post_published: Публикувано!
   posted_by: Публикувано от
   posted_on: Публикувано на
@@ -1911,10 +1938,14 @@ bg:
   project_group_label: Група
   project_group_description: Група, към която принадлежи проектът
   project_icon: Икона на проекта
+  project_journal: Дневник на проекта
   project_invitations: 'Покани за проекти'
   project_list: Проектен списък
   project_list_defaults:
     title: "Житейски списък на %{owner_name}"
+  project_members: "Членове на „%{project}“"
+  project_members_only: Само за членове на проекта
+  project_membership_model_description: Проектът Ви отворен ли е за всички или е само за хора които поканите?
   project_requirements: Изисквания на проекта
   project_rules: Правила на проекта
   project_settings: Настройки за проекти
@@ -2013,6 +2044,7 @@ bg:
   remove_comma_separated_tags: "Премахни етикети (разделени със запетаи)"
   remove_conservation_status: премахни природозащитен статут
   remove_from: Премахни от
+  remove_manager: Премахни управител
   remove_observations:
     one: Премахни 1 наблюдение?
     other: Премахни %{count} наблюдения?
@@ -2020,6 +2052,7 @@ bg:
   removed: Премахнато
   removing: "Премахване..."
   reptiles: влечуги
+  required_field: задължително поле
   research: изследователско
   research_grade: Изследователско качество
   research_grade_short_html: "И<span class='full'>зследователско </span>К<span class='full'>ачество</span>"
@@ -2033,6 +2066,7 @@ bg:
   results: резултати
   review_all: Рецензирай всичко
   reviewed: Рецензиран
+  role: Роля
   rotate_left: Завърти наляво
   rotate_right: Завърти надясно
   row_singular_or_plural: Ред(ове)
@@ -2130,7 +2164,11 @@ bg:
   sizes: Размери
   skip_to_next_page: "Направо към следващата страница"
   small: малък
+  site_name_place: "Място от %{site_name}"
+  site_site_admin: "Администратор на сайта %{site_name}"
+  site_staff: "Персонал на %{site_name}"
   site_stats: Статистика за сайта
+  site_taxon_page: "Таксономична страница на %{site_name}"
   some_other_reason: Други причини, които можете да обясните по-долу.
   duplicate_observation_flag_warning: |
     При дублирани наблюдения, моля обърнете се към наблюдателя за разрешаване на проблема, вместо да добавяте маркер. Кураторите на сайта не могат да изтриват наблюдения.
@@ -2197,6 +2235,7 @@ bg:
   stats: Статистика
   status: Статус
   stop_following_user: "Спри да следваш %{user}"
+  submission_model_description: Кой може да добавя наблюдения към Вашия проект?
   submit_observations:
     one: Публикувай 1 наблюдение
     other: Публикувай %{count} наблюдения
@@ -2314,9 +2353,10 @@ bg:
   that_observation_doesnt_have_any_photos: "Това наблюдение няма никакви снимки."
   that_observation_no_longer_exists: Това наблюдение вече не съществува.
   that_project_doesnt_exist: "Този проект не съществува."
+  that_role_doesnt_exist: Тази роля не съществува
   thats_not_a_real_date: Това не е действителна дата!
   the_admin_is_the_person_who: |
-    Администратор е човекът създал проекта. Той може да прави всичко което могат управителите и кураторите, както и да изтрие проекта.
+    Администратор е човекът създал проекта. Той може да прави всичко, което могат управителите и кураторите, както и да изтрие проекта.
   the_below_items_are_needed_to_achieve: |
     Долните елементи са необходими за достигане на <span className="bold">Изследователско качество:</span>
   the_following_observations_could: "Следните наблюдения не можаха да бъдат добавени до %{link}"
@@ -2449,6 +2489,8 @@ bg:
   user_is_a_naturalist: "%{user} е естествоизпитател!"
   user_is_now_the_admin_for_project_html: |
     Вече <strong>%{user}</strong> е администратор на %{project}
+  user_is_now_a_manager_for_project_html: |
+    <strong>%{user}</strong> стана управител на %{project}
   user_muted: Потребителят е заглушен
   user_suggested_an_id: "%{user} предложи ID"
   user_trusts_you_with_their_private_coordinates_desc: |
@@ -2522,6 +2564,7 @@ bg:
   where_were_you?: Къде се намирахте?
   which_projects_can_add_your_observations?: Кои проекти могат да добавят Ваши наблюдения?
   white: бяло
+  who_can_add_observations_to_this_project?: Кой може да добавя наблюдения към проекта?
   why_the_coordinates_are_obscured: Защо координатите са замаскирани
   with_annotation: С анотация
   without_annotation: Без анотация
@@ -2552,11 +2595,14 @@ bg:
   you_appear_offline_try_again: |
     Изглежда, че нямате мрежова връзка. Моля, опитайте отново, когато възобновите връзката с Интернет.
   you_are_now_following_x: "Вече следвате %{friend_user}."
+  you_are_now_a_manager_for_project_html: |
+    <strong>Вие</strong> станахте управител на %{project}
   you_are_already_a_member_of_this_project: "Вече членувате в този проект!"
   you_are_no_longer_following_x: "Вече не следвате %{friend}."
   you_arent_a_member_of_that_project: Вие не членувате в този проект.
   you_arent_following_that_person: "Не следвате този човек."
   you_can_choose_observations_associated: Можете да изберете наблюдения, които да свържете с тази публикация в дневника.
+  you_can_show_the_boundary_of: Можете да покажете границите на мястото в страницата на проекта, ако мястото има зададени граници.
   you_cant_delete_a_project_list: "Не можете да изтриете проектен списък"
   you_cant_delete_observation_fields_that_people_are_using: "Не можете да изтривате полета (за наблюдения), които хората използват"
   you_cant_do_that_for_the_default_check_list_place: Не можете да правите това за подразбиращия се видов списък на място!
@@ -2717,18 +2763,37 @@ bg:
         revoke_observations_desc: |
           Ако единствената причина да напускате е за да не позволите на кураторите на проекта да видят Вашите поверителни координати.
       edit:
+        new_place_desc_html: |
+          Разгледайте <a href="%{places_url}" target="_blank">нашите съществуващи места</a> и се уверете, че въвеждате името на мястото правилно. Ако не намирате необходимото място, бихте могли да <a href="%{new_place_url}" target="_blank">създадете ново място</a>, но Ви умоляваме да се уверите, че не дублирате вече съществуващо място.
         bioblitz_desc_html: |
           <p>
           Биоблиц е мероприятие, в което участниците се стремят да наблюдават възможно най-голям брой видове за определен период от време. Това е забавен начин хората да се запознаят с биоразнообразието и същевременно да се съберат ценни данни.
           </p>
         cover_desc: "Незадължително изображение за заглавното каре, което се показва най-отгоре на страницата на проекта. Трябва да е широко 950 пиксела и високо по-малко от 400 пиксела."
         icon_desc: "Ще бъде изрязано до квадрат"
+        project_list_desc_html: |
+          <p class="description">
+          Можете да създадете проектен списък от таксони и да го свържете с Вашия проект. Такъв списък може да се използва за ограничаване на наблюденията добавяни към проекта само до такива отговарящи на таксон от списъка - чрез правилото „Трябва да е от таксон от списъка на проекта“.
+          </p>
         rules:
-          has_media: имат медия (снимка или звук)
+          captive: бъде в плен / култивирано
+          coordinates_shareable_by_project_curators: има координати достъпни за споделяне от кураторите на проекта
+          georeferenced: има координати
+          has_a_photo: има снимка
+          has_a_sound: има звук
+          has_media: има медия (снимка или звук)
+          identified: е разпознато
+          in_taxon: е от определен таксон
+          observed_in_place: е от определено място
+          on_list: е от таксон от списъка на проекта
           verifiable: е потвърдимо
+          wild: е диво/натурализирано
         submission_models:
           any: всеки
           curators: куратори на проекта
+      join:
+        invite_only_description: |
+          Членството в този проект е само по покана. Ако искате да се присъедините, свържете се с някой от кураторите по-долу и поискайте покана.
       new:
         a_project_allows_you_to_gather: |
           Събирателният проект Ви позволява да събирате и визуализирате наблюдения чрез основните инструменти за търсене на iNaturalist. Всичко, което отговаря на критериите зададени в проекта, ще бъде автоматично включено.
@@ -2748,6 +2813,8 @@ bg:
         multiple_project_administrators: Множество администратори на проекта
         no_need_to_rely_on_manual_addition: |
           Без ръчно добавяне на наблюдения
+        only_display_member_observations: |
+          Показвай само наблюдения от членове на проекта (хора които са се присъединили към проекта)
         project_background_color: Цвят на фона на резюмето на проекта
         project_background_color_help: Уверете се, че избраният цвят е достатъчно тъмен, за да може да се чете белият текст върху него.
         project_banner: Заглавно каре на проекта (PNG, JPG или GIF)
@@ -3090,6 +3157,7 @@ bg:
       invalid: е невалидно
       less_than: трябва да е по-малко от %{count}
       less_than_or_equal_to: трябва да е по-малко или равно на %{count}
+      new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
       not_a_number: не е число
       not_an_integer: трябва да е цяло число
       odd: трябва да е нечетно
@@ -3186,6 +3254,7 @@ bg:
         invalid: е невалидно
         less_than: трябва да е по-малко от %{count}
         less_than_or_equal_to: трябва да е по-малко или равно на %{count}
+        new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
         not_a_number: не е число
         not_an_integer: трябва да е цяло число
         odd: трябва да е нечетно
@@ -3227,7 +3296,11 @@ bg:
         project_type: Тип на проект
         description: Описание
         terms: Условия
+        map_type: Тип карта
         zoom_level: Степен на увеличение
+        preferred_membership_model: Начин на членство
+        preferred_submission_model: Начин на публикуване
+        prefers_place_boundary_visible: Покажи границите на мястото върху картата
         start_time: Час на започване
       place:
         code: Код
@@ -3257,6 +3330,7 @@ bg:
     errors:
       messages:
         blank: не може да е празно
+        new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
       models:
         place:
           attributes:

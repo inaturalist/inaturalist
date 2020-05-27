@@ -1021,7 +1021,7 @@ gl:
       december: decembro
   date_is_accurate: A data é acertada
   date_joined: Data de Unión
-  date_observed: Data observada
+  date_observed: Observado na Data
   date_observed_: Observado na Data
   date_observed_on: data que se observou
   date_picker:
@@ -2004,9 +2004,9 @@ gl:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
-    datetime_with_offset: "MMM D, YYYY · LT Z"
+    datetime_with_offset: "MMM D, AAAA · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long: "MMMM D, YYYY"
+    date_long: "MMMM D, AAAA"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM D"
   month: Mes
@@ -3333,8 +3333,8 @@ gl:
   search_your_photos: Procurar as túas fotos
   searching: "Procurando..."
   seasonality: Estacionalidade
-  second_person_possessive_plural: "A túa %{noun}"
-  second_person_possessive_singular: "As túas %{noun}"
+  second_person_possessive_plural: "Teus %{noun}"
+  second_person_possessive_singular: "Teu %{noun}"
   see_something_wrong_with_taxon: Ves algo malo neste taxón? Comunícallelo aos administradores.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5003,6 +5003,7 @@ gl:
           Só debería ser posto para áreas políticas. En termos de equivalencias con EEUU: 0 =p aís, 1 = estado, 2 = condado, 3 = cidade
       new:
         check_list_note: "Nota: As listas de verificación desactívanse automaticamente para sitios moi grandes."
+        coordinates_desc: Debes especificar as coordenadas se non debuxas límites ou cargas un KML.
         map_instruction: Emprega a ferramenta de polígono para debuxar o contorno do lugar.
     posts:
       formatting_none_help: "Non se inseríu HTML, só usa as etiquetas que tí proporcionas."
@@ -5015,12 +5016,30 @@ gl:
       projects_included: Proxectos Incluídos
       collection_and_umbrellas_do_not_support: |
         Os proxectos de recolla e os proxectos paraugas actualmente non soportan o acceso a coordenadas ocultas
+      curator_coordinate_access_desc_html: |
+        Lembra, <strong>os conservadores de proxecto poden engadir as túas observacións ós seus proxectos</strong> agás cando exclúas esta opción nas túas <a
+        href="/users/edit">configuracións de conta</a>. Marca este cadro só se lles confías ós conservadores dos proxectos as túas coordenadas ocultas, caso algunhas das túas observacións poidan ser engadidas a este proxecto. Se escolles non lles dar este consentemento, aínda lles podes conceder acceso ás coordenadas ocultas de observación a observación.
       confirm_leave:
+        what_would_you_like: |
+          ¿Que che gustaría facer coas túas observacións neste proxecto?
         keep_observations_label: |
           Deixa as túas observacións neste proxecto
         keep_observations_desc: |
           As túas observación continuarán no proxecto e os conservadores aínda poderán ver as coordenadas ocultas.
+        project_requires_curator_coordinate_access_desc: |
+          Este proxecto non permite observacións con coordenadas que os conservadores de proxecto non poden ver. Se non queres compartir as coordenadas das túas observacións cós conservadores deste proxecto, terás que borralas do mesmo.
+        remove_observations_label: |
+          Borrar tódalas túas observacións deste proxecto
+        remove_observations_desc_html: |
+          Ten en conta que os conservadores de proxecto aínda serán quen de engadir as túas observacións ós seus proxectos agás que mudes as túas<a href="/users/edit">configuracións da conta</a>.
+        revoke_observations_label: |
+          Deixa as túas observacións neste proxecto, pero impide que os conservadores vexan as coordenadas ocultas
+        revoke_observations_desc: |
+          Se a única razón pola que marchas é impedir ós conservadores de proxecto ver as túas coordenadas ocultas.
       edit:
+        aggregation_pending: Agregación pendente
+        new_place_desc_html: |
+          Tenta mirando polos <a href="%{places_url}" target="_blank">nosos lugares existenes</a> e asegúrate de que tes o nome correcto da ubicación. Se realmente non atopas o lugar que queres, considera <a href="%{new_place_url}" target="_blank">crear un novo lugar</a>, pero por favor, asegúrate de non duplicar un lugar existente.
         bioblitz_desc_html: |
           <p>
           Un bioblitz é un evento no que ti tentas que outras persoas observen tantas
@@ -5029,6 +5048,9 @@ gl:
           divertida de introducir á xente á biodiversidade mentres que, á vez,
           se recollen datos valiosos.
           </p>
+        change_admin_desc: Escolle un dos conservadores do proxecto para ser o novo administrador.
+        change_owner_alert: |
+          Isto retirará a túa capacidade de borrar este proxecto ou transferir a súa propiedade de novo. ¿Queres continuar?
         cover_desc: "Imaxe do banner opcional que aparecerá na parte superior da\npáxina do proxecto. Debe ter... 950px de ancho, menos de 400px de\nalto."
         custom_project_fields_means: "Permite modificar o banner do proxecto, engadir contido á parte\ndereita do proxecto e darlle certo estilo para mellorar o seu aspecto visual."
         end_time_desc: "Rematar a hora para a túa bioblitz. Debe ser inferior a un ano despois da hora de inicio"
@@ -5037,6 +5059,14 @@ gl:
           Se se trata dunha URL Eventbrite que inclúe un identificador numérico, imos
           incluír un widget de inscrición na túa páxina de proxecto ata que comece o bioblitz.
         icon_desc: "Recortarase a un cadrado"
+        it_looks_like_this_project_can_be_converted: |
+          Semella que este proxecto pode ser convertido nun novo <a href="%{url}">Proxecto de Recolla</a>.
+        last_aggregated_at_desc: |
+          Momento cando o agregador rematou de engadir observacións a este proxecto
+        #Label for button to make another user the owner of a project
+        make_owner: Facer Dono
+        no_curators: |
+          Non hai conservadores do proxecto. Se queres asignar unha nova persoa como administrador, primeiro debe unirse ó proxecto e ti debes facelo logo conservador.
         observation_aggregation_desc_html: |
           <p class="description">
           A agregación de observacións engadirá automáticamente observacións axeitadas para o teu proxecto, seguindo as túas regras especificadas no proxecto. Como non hai xeito de eliminar moitas observacións dun proxecto dunha vez isto é potencialmente perigoso, así que por favor, asegúrate que escolleches a ubicación e as regras taxonómicas que queres, senón podes acabar con moitas observacións inadecuadas que se terán que eliminar manualmente.
@@ -5063,73 +5093,320 @@ gl:
           </li>
           <li>Os arquivos KML e KMZ engadiranse ao mapa na páxina do proxecto</li>
           </ol>
+        project_list_desc_html: |
+          <p class="description">
+          Podes crear unha lista de taxons de proxecto personalizada e vinculala ó teu proxecto. Isto pode ser útil para restrinxir observacións engadidas ó teu proxecto a aquelas coincidentes cós taxons da túa lista a través da regra "debe ser un taxon da lista do proxecto".
+          </p>
+        rules:
+          captive: ser cativo/cultivado
+          coordinates_shareable_by_project_curators: coordenadas compartibles por conservadores de proxecto
+          georeferenced: ter coordenadas
+          has_a_photo: ter unha foto
+          has_a_sound: ter un son
+          has_media: ter medios (foto ou son)
+          identified: estar identificada
+          in_taxon: estar no taxon
+          observed_in_place: ser observada na ubicación
+          on_list: ser dun taxon da lista do proxecto
+          verifiable: ser verificable
+          wild: ser silvestre/naturalizado
+        start_time_desc: "Hora de comezo do teu bioblitz. Formato: AAAA-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: calquera
           curators: conservadores de proxecto
         trusted_project_means: |
           Cando un proxecto está verificado, os administradores e xestores do proxecto poden crear, actualizar e borrar os seus recursos do proxecto.
+        you_can_preview: |
+          Podes previsualizar como quedaría o teu proxecto como Proxecto de Recolla <a href="%{url}">premendo aquí</a>.
+      invite:
+        description_html: |
+          <h3>Sobre Convites</h3>
+          <p class="ui">
+          Convidar xente ó teu proxecto é un pouco distinto a convidar observacións individuais. Convidar xente
+          </p>
+          <ol>
+          <li>Enviaralles un email convidándoos a unirense ó teu proxecto</li>
+          <li>Mostraralles un convite no seu panel</li>
+          <li>Permitiralles unirse ó teu proxecto se foi determinado como só para convidados</li>
+          </ol>
+          <p class="ui">
+          Soamente os conservadores do proxecto poden convidar xente para unirense a un proxecto. Has ser quen de atopar xente polo seu nome de usuario de iNat ou seu enderezo de correo electrónico <em>completo</em>, asumindo que o temos nos ficheiros.
+          </p>
+      join:
+        invite_only_description: |
+          A afiliación a este proxecto é unicamente por convite. Se te queres unir, por favor, contacta con algún dos conservadores do proxecto embaixo e pídelle unha invitación.
       new:
+        a_project_allows_you_to_gather: |
+          Un proxecto de recolla permítete reunir e visualizar observacións empregando as ferramentas de busca centrais de iNaturalist. Todo o que cumpra os parámetros impostos polo proxecto será automáticamente incluído.
+        an_umbrella_project_can_be_used_to: |
+          Un proxecto paraugas pode ser empregado para comparar estatísticas entre dous ou más Proxectos de Recolla ou Tradicionais. Podes incluír centos de proxectos baixo o mesmo paraugas. Os proxectos paraugas non poden conter outros proxectos paraugas.
+        are_you_ready_to_duplicate: |
+          ¿Estás preparado/a para deixar esta páxina para duplicar este proxecto? Por favor, repara que a icona do proxecto e cabeceira non serán duplicados, e terán que ser recargados no proxecto duplicado.
         are_you_sure_you_want_to_delete: '¿Seguro que queres eliminar este proxecto?'
+        can_be_included_in_multiple: Pode ser incluído en varios proxectos paraugas
+        check_the_box_to_include_member_observations: |
+          Marca a caixa embaixo para incluir soamente as observacións feitas polos usuarios que se uniron a este proxecto. Emprega o filtro Excluir Usuarios enriba para excluír observacións de usuarios específicos, incluíndo ó dono do proxecto e ós administradores.
+        click_through_to_individual_projects: Vínculos directos a proxectos individuais
+        collection_projects: Proxectos De Recolla
+        collection_project_features: "Os Proxectos De Recolla presentan:"
+        contain_entire_image_without_cropping: Conter a imaxe enteira sen recortar
+        custom_banner_icon_and_project_description: Cabeceira personalizada, icona e descrición do proxecto
         data_visualizations: Visualización de dados
         delete_project: Eliminar Proxecto
         display_project_name: Mostrar nome do proxecto
+        do_you_need_features_from_traditional: |
+          ¿Necesitas características de proxectos tradicionais, tales coma accesso ás coordenadas verdadeiras, campos de observación personalizados, ou engadir observacións individuais que non poidan ser filtrados automáticamente?
         duplicate_project: Duplicar proxecto
+        include_annotated_observations: |
+          Incluír só observacións anotadas cun atributo particular (p.e. estadio de vida), ou cun atributo particular e seu valor (p.e. estadio de vida = adulto).
+          Hai un límite de un filtro de anotacións por proxecto.
+        leaderboards_among_individuals: Táboas de liderado entre <strong>individuos</strong>
+        leaderboards_among_projects_and_bioblitzes: |
+          Táboas de liderado entre <strong>proxectos</strong>
         multiple_project_administrators: Varios administradores de proxecto
         name_placeholder: Paxaros de Chicago, Libeliñas Fantásticas, etc.
+        no_need_to_rely_on_manual_addition: |
+          Sen adición manual de observacións
+        note_these_users_will_be_able_to_edit: |
+          Nota: estes usuarios poderán editar TODOS os detalles do proxecto incluíndo administradores.
+        note_you_can_delete_the_time: |
+          (Nota: podes borrar a zona horaria e horas precisas se queres incluír días enteiros.)
+        note_about_unselected_filters: |
+          Nota: Se non seleccionas taxons, ubicacións ou usuarios, incluiranse todos predeterminadamente.
+        only_display_member_observations: |
+          Mostrar soamente observacións de membros do proxecto (xente que se uníu ó proxecto)
+        optionally_filter_media: Filtra de xeito opcional observacións con fotos, sons ou ambos.
         or_drag_and_drop: (ou arrástrao e sóltao)
+        please_specify_the_requirements: |
+          Por favor, especifica os requisitos para que as observacións sexan engadidas a este proxecto.
+        project_background_color: Cor De Fondo Do Resumo Do Proxecto
+        project_background_color_help: Asegúrate de escoller unha cor suficientemente escura para que o texto branco sobreposto sexa lexible.
+        project_banner: Cabeceiro do Proxecto (PNG, JPG, ou GIF)
+        project_banner_help: Imaxe opcional para a cabeceira. As dimensións ideais son760px por 320px.
+        project_details: Detalles Do Proxecto
+        project_icon: Icona Do Proxecto (PNG, JPG, ou GIF)
+        project_icon_help: |
+          Icona opcional. Debe ser no mínimo de 72px por 72px e será recortada coma un cadrado.
         project_name: Nome do Proxecto
         project_summary: Resumo do Proxecto
+        project_summary_help: |
+          Explica concisamente o teu proxecto. Aproximadamente os primeiros 200 caracteres serán visibles á dereita, na cabeceira da páxina principal do proxecto, así que escribe o mellor ó comezo!
+        project_summary_placeholder: Descubre e segue ás aves do Parke do Golden Gate...
+        select_native_to_include: |
+          Selecciona "Nativo" para incluír só taxons que foron marcados como "Nativo" da(s) ubicación(s) do teu proxecto. Selecciona "Introducido" para incluír só taxons que foron marcados como "Introducido" na(s) ubicación(s) do teu proxecto.
+        select_quality_grade: |
+          Selecciona polo menos un Grao de Calidade. Explicacións máis exhaustivas para cada Grao de Calidade pódense atopar na nosa <a href="%{url}">páxina de FAQ</a>
         show_projects_as_flags: Amosar proxectos como bandeiras no mapa
+        specify_project_filters: |
+          Especifica os filtros polos que incluír observacións no teu proxecto. Podes seleccionar varias especies (ou taxons), lugares, datas ou outros criterios para incluír observacións automáticamente.
+        start_and_end_times_for_bioblitzes: Data e hora de comezo e fin (para eventos tipo bioblitz)
+        traditional_projects_cannot_be_copied: O proxecto tradicional non se pode copiar
+        umbrella_project_features: "O Proxecto Paraugas presenta:"
+        unique_url_for_outreach: URL única para participación
+        use_this_for_a_time_limited_event: |
+          Emprega isto para un evento limitado o tempo, bioblitz, ou proxecto estacional. Selecciona unha data, rango de datas ou os meses do ano nos que as observacións deban ser feitas, independentemente do ano. Se empregares a sección Rango de Datas, asegúrate de que tes os tempos e as zonas horarias correctos seleccionados, ou borra o texto tempos/zona horaria para incluir observacións feitas a calquera hora durante o dia enteiro. Podes deixar a Data de Comezo ou a Data de Fin en branco se queres limitar o proxecto soamente con unha data.
+        users_can_follow_your_project: Os usuarios poden seguir ó teu proxecto para novas a través das entradas no diario
+        use_this_link_to_create_html: |
+          Emprega <a href="%{url}">este vínculo</a> para crear un proxecto tradicional.
+        visual_comparison_of_data_among: Comparacións visuais de dados entre proxectos baixo o paraugas
+        we_have_redesigned_projects: |
+          Os proxectos están deseñados para incluír automáticamente tódalas observacións que cumpran cás definicións de ubicacións, taxons, usuarios, calidade e datas que ti definas. Escolle entre dous tipos principais: Proxectos de Recolla ou Proxectos Paraugas, que comparten as seguintes características:
+        welcome_to_projects: '¡Benvido/a a Proxectos!'
+        you_can_learn_more_html: |
+          Podes aprender máis sobre a xestión de proxectos <a href="https://www.inaturalist.org/pages/managing-projects">aquí</a> ou le a historia dos proxectos no <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">noso blog</a>.
+        you_have_not_defined_any_observation_requirements: |
+          Non definiches ningún requisito para as observacións. Asegúrate de seleccionar un ou máis taxons (p.e. aves, coníferas), lugares (p.e. Brasil, Yellowstone), usuarios, e/ou datas para definir as observacións que queres incluír no teu proxecto.
         errors:
+          name_is_required: O nome do proxecto é obrigatorio
           name_less_than_100_characters: O nome do proxecto debe ter menos de 100 caracteres
           name_already_taken: O nome do proxecto xa está collido
           cannot_have_more_than_x_project_rules: Non pode ter máis de %{x} regras de proxecto
           summary_is_required: O texto de resumo do proxecto é obrigatorio
+      project_location_privacy_notice_html: |
+        <p>
+        Por favor, sé consciente de que os conservadores do proxecto poderán ver as ubicacións privadas ou escurecidas das túas observacións engadidas a este proxecto, agás que ti revogues a autorización, e que eles poderán engadir calquera das túas observacións a este proxecto agás que <a href="/users/edit">mudes as túas configuracións</a>. Tamén podes permitir ou revogar o acceso ás observacións do proxecto caso a caso.
+        </p>
+        <p>
+        Se te preocupa a privacidade da ubicación, non te unas a proxectos se non confías nos conservadores dos proxectos.
+        </p>
       project_user_curator_coordinate_access_labels:
         observer: Si, pero só se engado a observación ó proxecto eu.
         any: Si, non importa quen engada a observación ó proxecto.
         none: Non.
+      curator_coordinate_access_label: |
+        ¿Queres visibilizar as coordenadas privadas ou escurecidas das túas observacións para os conservadores do proxecto?
       curator_coordinate_access_note: |
         Tamén podes escoller compartir as coordenadas das observacións neste proxecto baseandote en casos individuais. Estes son só as predeterminacións para as novas observacións engadidas ó proxecto.
       project_terms_desc_html: |
         Permite que os conservadores deste proxecto usen as túas observacións de acordo cós <a href="%{url}">termos do proxecto</a>.
       show:
         are_you_sure_you_want_to_convert: |
-          ¿Seguro que queres convertir este proxecto nun Proxecto de Recolleita?
+          ¿Seguro que queres convertir este proxecto nun Proxecto de Recolla?
+        bioblitz_results_desc_html: |
+          <p>
+          A diferencia dos proxectos regulares, os bioblitzes mostran estatísticas do evento de <em>tódalas</em> observacións nun lugar e un periodo de tempo, non só as observacións que a xente engadíu con intención ó proxecto. Isto elimina a dificuldade de engadir observacións ó proxecto só para levar as estatísticas en tempo real. Repara que as observacións non estarán listas para exportar ou mostrar nalgunhas vistas do proxecto, como contribucións de membros no sitio web ou buscas de observacións do proxecto nas aplicacións de móbil, agás que o equipo do proxecto e os participantes engadan activamente observacións relevantes, como farían nun proxecto normal.
+          </p>
+          <p>
+          Repara que aínda que este tipo de proxecto mostra estatísticas para as observacións que non foron deliberadamente engadidas ó proxecto, non se permite ós conservadores ver as coordenadas privadas ou escurecidas desas observacións ou asumen que os observadores acordaron cós termos do proxecto. Se es un conservador do proxecto e precisas acceso a coordenadas privadas, necesitas que os participantes estean de acordo cós termos do proxecto; e se queres que as observacións sexan contadas cara unha listaxe de comprobación do proxecto supervisada, asegúrate de que os participantes se unen ó proxecto e engaden as súas observacións como se fose nun proxecto normal.
+          </p>
         click_here_to_convert_this_project: |
-          Preme aquí para convertires este proxecto nun Proxecto de Colleita.
+          Preme aquí para convertires este proxecto nun Proxecto de Recolla.
+        no_journal_blurb_html: |
+          <p>
+          O diario do teu proxecto é unha feramenta para comunicareste cós membros do proxecto. Podes usalo para facer anuncios, indicar prioridades ou falar das descubertas do teu proxecto.
+          </p>
+          <p>
+          Para comezar, <a href="%{url}" class="readmore">crea unha entrada</a>
+          </p>
+        curated_checklist_desc: |
+          Esta é unha listaxe de comprobación supervisada e conta de taxons de observacións explícitamente engadidos a este proxecto, non de tódalas observacións rexistradas nun lugar e hora deste evento.
+        make_sure_you_have_read_about_the_differences: |
+          Asegúrate que liches sobre as diferencias na nosa <a href="%{url}" target="_blank">publicación do blog sobre Proxectos de Recolla</a>.
+        this_is_a_preview: |
+          Isto é unha previsualización de como se vería este proxecto como un Proxecto de Recolla.
+        this_project_has_not_defined_requirements: |
+          Este proxecto non ten ningún requisito definido para observacións. Os proxectos precisan seleccionar un ou máis taxons (p.e. aves, coníferas), lugares (p.e. Brasil, Yellowstone), usuarios e/ou datas para comezar a mostrar observacións.
       updates_desc: |
         Recibe novas sobre este proxecto no teu panel e nos correos electrónicos de actualizacións diarios.
+    search:
+      index:
+        no_taxa_options_html: |
+          <p>Tes algunhas opcións:</p>
+          <ul class="list-unstyled">
+          <li>
+          <strong>Engade unha Marca a un Taxon de un Nivel Superior</strong>
+          <p>
+          P.e. o xénero que contén á especie. Cun pouco de sorte, un conservador amigable engadirá o taxon se é posible.
+          </p>
+          </li>
+          <li>
+          <strong><a href="%{feedback_url}">Contacta có Foro</a></strong>
+          <p>
+          Moitos conservadores do sitio seguen as conversacións do Foro.
+          </p>
+          </li>
+          <li>
+          <strong>
+          <a href="mailto:%{help_email}">Contacta có Apoio</a>
+          </strong>
+          <p>
+          Por favor, se paciente, non temos moitos traballadores dedicados.
+          </p>
+          </li>
+          </ul>
     shared:
       blocked:
         youve_been_blocked: Foches Bloqueado
+        youve_been_blocked_desc: |
+          O dono deste recurso bloqueoute, o que che impide comunicarte con el. A maioría das características interactivas desta páxina non che funcionarán.
         youve_blocked: Bloqueaches A Esta Persoa
         youve_blocked_desc: |
           Bloqueaches ó propietario deste recurso, o que che impide comunicarte con eles. A meirande parte das características desta páxina non funcionarán.
       spam:
+        message_for_owner_and_curators_html: |
+          Este rexistro foi marcado como lixo e xa non é visible públicamente. Podes velo porque es ti o creaches, ou porque es un un conservador do sitio. Se cres que isto é un erro, por favor, <a href="mailto:%{email}">contáctanos</a>.
         this_has_been_flagged_as_spam: Isto foi marcado como spam
+      not_found:
+        sorry_that_doesnt_exist: Desculpa, ¡iso non existe!
+        even_our_dedicated_search_mole_couldnt: '¡Incluso a nosa dedicada toupa de busca non puido atopar nada!'
     stats:
       index:
+        active_desc: Identificaron, observaron, comentaron ou publicaron nos 30 días anteriores
+        active_users_desc: Identificaron, observaron, comentaron ou publicaron nos 30 días anteriores
+        android_desc_html: Creados coa <a href="%{url}">app iNaturalist para Android</a>
+        avg_ttcid: Media TTCID
+        avg_ttid: Media TTID
+        identifiers_desc: Identificaron algunha observación allea neste día
+        iphone_desc_html: Creadas coa <a href="%{url}">app iNaturalist para iPhone</a>
+        med_ttcid: Mediana TTCID
+        med_ttid: Mediana TTID
         new_users_desc: Rexistráronse neste día
+        obs_1_day: "Observacións (1 día)"
         obs_1_day_desc: "Observacións creadas nun só día"
+        obs_cid_d_desc: Creadas nos 7 días previos e teñen identificación da comunidade
+        #Short for "observations community-identified to genus"
+        obs_cid_d_to_genus: Observacións con Idenficación da Comunidade ata xénero
+        obs_cid_d_to_genus_desc: Creadas nos 7 días anteriores e teñen unha identificación da comunidade ó nivel de xénero ou inferior
+        obs_desc: Creadas nos 7 días previos
+        obs_id_d_desc: Creadas nos 7 días previos e teñen identificación (pode ser do observador)
+        observations_1_week_moving_window: Observacións (Fiestra mobil dunha semana)
         observers_desc: Engadiron unha observación neste día
+        other_desc_html: Creadas con outras aplicacións <a href="%{url}">construidas por desenvolvedores</a>
+        recent_desc: Rexistrados nos 7 días previos
+        recent_w_0_obs: Recentes con 0 obs
+        recent_w_0_obs_desc: Rexistráronse nos 7 días previos e engadiron 0 obs
+        recent_w_7_obs: Recentes con >= 7 obs
+        recent_w_7_obs_desc: Rexistráronse nos 7 días previos e engadiron >= 7 obs
+        time_to_id_desc: Tempo ata a identificación (horas, fiestra mobil dunha semana)
+        TTCID: TTCID
+        TTCID_desc: Tempo que leva recibir unha identificación de outro que coincide có taxon da comunidade.
+        TTID: TTID
+        TTID_desc: Tempo que leva recibir unha identificación de outro
         TTID_note: |
           Estas estatísticas están feitas para as observacións creadas para a semana previa, o que significa que non inclúen identificacións engadidas despois de máis dunha semana, polo que as estatísticas semellan máis baixas que se se refixesen no presente. Aínda así, deberían proporcionar unha medida decente da velocidade con que a comunidade está identificando en xanelas dunha semana. Nótese que estas estatísticas están feitas só con observacións con fotos.
+        website_desc_html: |
+          Creado vía <a href="https://www.inaturalist.org">iNaturalist</a> ou sitios web da<a href="%{url}">Rede de iNaturalist</a>
       year:
+        donate_title: "Especial Agradecemento A Tódolos Nosos Colaboradores"
+        donate_desc_html: |
+          ¡Grazas por ser xeneroso/a có teu tempo, atención, experiencia e doazóns! iNaturalist é unha iniciativa sen ánimo de lucro conxunta da Academia de Ciencias De California e a Sociedade National Geographic. É levada a cabo por un <a href="%{team_url}">pequeno equipo</a> que fai todo o traballo de deseño e enxeñería de software para a web, mobil e <a href="%{seek_url}">Seek por iNaturalist</a>, ademáis de xestionar o apoio á comunidade, colaboracións e integracións para manter as cousas marchando (¡e crecendo rapidamente!). O programa depende de numerosas becas e doazóns, incluíndo regalos caritativos de menos de 0.2% dos contribuíntes. Agradecemos particularmente ós nosos Patrocinadores Mensuais, cuxos regalos recorrentes nos fan posible planificar para o futuro. Podes doar en máis de 30 moedas para apoiar as operacións centrais de iNaturalist. ¡Graciñas a todos por facer de 2019 o meriande ano ata o de agora!
+        inaturalist_network: Rede iNaturalist
+        inaturalist_network_desc: |
+          Bótalle unha ollada á Revisión do Ano para os membros da Rede iNaturalist.
+        include_usa: Incluír EEUU
+        growth_by_country_title: Crecemento Por País
+        growth_desc: |
+          As gráficas de "Observacións" e "Taxons" poden incluír dados visibles en %{site_name} contribuídos por xente que non está afiliada con %{site_name}, mentres que a gráfica de "Usuarios" só mostra as datas de cando os usuarios que están afiliados con %{site_name} se uniron a iNaturalist.
+        growth_in_year_obs: "Crecemento en %{year} (obs)"
         growth_title: Crecemento
+        new_species_desc: |
+          Especies que foron observadas pola primeira vez en %{site_name} este ano.
+          Mostrando %{x} de <a href="%{url}">%{y} especies</a>.
+        new_species_desc_html: |
+          Especies que foron engadidas pola primeira vez este ano. 
+          Preme nun mes para ver algunhas das novas especies engadidas nese mes.
+          Tamén podes ver o total acumulado de especies , ou mover o control deslizante atrás no tempo para ver outras especies observadas recentemente. Esta gráfica mostra especies de observacións verificables polo mes que foron cargadas a %{site_name} (non polo mes que foron observadas). Isto non inclúe taxons de maior ou menor nivel, así que unha observación identificada como Mammalia non conta, e unha observación de <i>Canis lupus</i> ssp. <i>arctos</i> contará só como <i>Canis lupus</i>.
         obs_in_year: Observacións en %{year}
         percent_growth_in_year: "% de Crecemento en %{year}"
         percent_of_total_growth: "% de Crecemento Total"
+        publications_desc_html: |
+          Preme nas gráficas de pétalos para ver máis información sobre o que significan os números e as cores. Os dados de impacto e gráficas son cortesía de <a href="https://www.altmetric.com">Altmetric</a>. A información sobre uso de dados é cortesía dos nosos amigos na <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          <br/>
+          <a href="%{url}">Ver Todos%{numStudies} os estudos</a>
+        publications_desc_short_html: |
+          Preme nos gráficos de pétalos para máis información sobre o que significan os números e as cores. Os dados e gráficas de impacto son cortesía de <a href="https://www.altmetric.com">Altmetric</a>. 
+          A información sobre uso de dados é cortesía dos nosos amigos da <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Series de Observacións
         observation_streaks_color_desc: |
           A cor representa o número de días nunha escala logarítmica:
+        observation_streaks_desc: |
+          Unha serie de observacións é un periodo de tempo cando alguén saíu fóra e rexistrou observacións novas e verificables tódolos días. Aquí mostramos as series máis longas que comezaron este ano ou estaban progresando cando estas estatísticas foron xeradas.
         stats_generated_datetime: Estatísticas xeradas no %{datetime}
+        store_prompt: |
+          ¿Queres amosar o teu orgullo iNat onde queira que vaias? ¡Entra na Tenda iNat!
+        sunburst_desc_html: |
+          Taxons observados como un diagrama xerárquico "sunburst". A base da xerarquía está no centro, comezando con "Vida" e rematando con especies nos cantos exteriores. O tamaño de cada arco é proporcional ó número de observacións dese taxon, e as cores máis ou menos corresponden ás nosas  cores taxonómicas "icónicas" usuais (verde para plantas, laranxa para insectos, azul para a maioría do resto dos animais, etc.), así que se estás vendo moito verde, significa que observaches moitas plantas. <strong>Preme nun arco para colocar ese taxon no centro</strong> e ós seus fillos ó seu redor, ou <strong>preme o centro para subir na xerarquía</strong>.
         translators_title: Tradutores
+        translators_desc: |
+          ¿Sabías que iNaturalist foi traducido a %{x_languages}, case enteiramente por %{x_people}, algúns deles nen sequera empregan iNat? Aquí están tódolos incribles tradutores que engadiron traduccións este ano, xunto có número de palabras que traduciron para o %{website_link_tag}sitio web%{link_tag_end}, as nosas aplicacións para %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, e %{seek_link_tag}Seek%{link_tag_end}. Podes ver toda a xente que contribuíu con traduccións, incluíndo anos pasados e amigos de Translatewiki, nos nosos repositorios de códigos da %{view_all_web_link_tag}web%{link_tag_end} e%{view_all_mobile_link_tag}mobiles%{link_tag_end}.
+        translators_desc_for_site: |
+          ¿Sabías que %{site_name} foi traducido case enteiramente por %{x_people}? Aquí están tódolos incribles tradutores que engadiron traduccións este ano, xunto có número de palabras que traduciron para o %{website_link_tag}sitio web%{link_tag_end}, as aplicacións de iNaturalist para %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, e %{seek_link_tag}Seek%{link_tag_end}. Podes ver toda a xente que contribuíu con traduccións en tódalas línguas, incluíndo xente de anos anteriores e amigos de Translatewiki, nos nosos repositorios de código da %{view_all_web_link_tag}web%{link_tag_end} e %{view_all_mobile_link_tag}móbiles%{link_tag_end}.
         translators_prompt: |
           Se queres axudar a traducir, %{link_tag}aprende como%{link_tag_end}.
     taxa:
+      edit:
+        high_status_conservation_status_notice_html: |
+          Engadindo un estado de conservación dun taxon superior afecta ás observacións de tódalas especies nese taxon. Por favor, non engadas estados para taxons que conteñen especies que non contan con estado designado porque isto vai escurecer incorrectamente as coordenadas de observacións desas especies.
+        complete_desc_html: |
+          Un taxon "completo contén <em>tódolos</em> taxons descendentes coñecidos nun rango específico que cumpre cás políticas de conservación de iNaturalist, foran observados ou non. Só os administradores do sitio poden declarar taxons completos.
+        complete_rank_desc_html: |
+          Rango no que un taxon está completo, p.e. se esta familia contén tódolos seus xéneros pero on tódalas súas especies, isto estableceríase para "xénero". O rango predeterminado é o de especie.
       show:
         about_conservation_status_desc: |
           O estado de conservación resume o risco de extinción para un grupo de organismos.
+        about_establishment_desc: |
+          "Medios de establecemento" describe como chegou a especie a onde aparece actualmente. Introducido significa que chegou por actividade humana, mentres que medios nativos indican que chegou sen asistencia humana. As especies endémicas só aparecen en ubicacións específicas e en ningún lugar máis.
         charts_help_other: |
           Tamén amosamos gráficas de estacionalidade para as anotacións das observacións. As anotacións son un xeito de engadir metadados ás observacións usando un vocabulario controlado, p.e. se a observación mostra unha planta que está florecendo ou fructificando.
         frequency:
@@ -5172,6 +5449,10 @@ gl:
         curators_can_see: |
           Só un recordatorio, os administradores do proxecto poden ver as coordenadas
           privadas e ocultas das observacións que se agregan a este proxecto.
+      delete:
+        type_confirmation_code: Escribe %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: |
+          Debes entrar "%{confirmation_code}" no formulario para eliminar a túa conta
       edit:
         display_monthly_supporter_status_on_my_profile: |
           Amosar o estado de Patrocinador Mensual no meu perfil
@@ -5193,18 +5474,46 @@ gl:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Cando un proxecto engade as túas observacións
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Mudanzas taxonómicas
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: Observacións da xente á que sigo
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Observacións dos taxons ou dos lugares ós que me suscribín
         project_addition_preferences:
           joined: Proxectos ós que te uniches
           none: "Ningún, só ti podes engadir as túas observacións a proxectos"
+        prefers_no_tracking_label: Non recoller dados de estabilidade e de uso usando servicios de terceiros
         prefers_no_tracking_label_desc_info_we_share: |
           A información que poderiamos compartir con estes terceiros inclúe
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Detalles do buscador, como marca, modelo e versión
+        search_place_help_html: |
+          Ubicación predeterminada para as buscas de observacións.
+        scientific_name_first_desc: |
+          Mostrar os nomes científicos antes de que os vernaculares.
+        this_only_applies_to_traditional_projects: |
+          Istó só é aplicable a proxectos tradicionais. Non podes excluír observacións de proxectos de recolla ou paraugas, que son esencialmente buscas gardadas.
+          Podes ler máis <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
+        youve_used_all_of_your_blocks: Xa usaches tódolos teus bloqueos. Elimina un bloqueo para engadir un novo.
+      recent:
+        about_recent_users: Acerca de
+      show:
+        this_user_was_banned: Este usuario foi suspenso.
     user_parents:
+      confirm:
+        thanks_for_creating_a_minor_account: '¡GRACIÑAS POR CREAR UNHA CONTA INFANTIL!'
+        we_will_send_you_an_email: |
+          Enviarémoste un correo electrónico cando a conta infantil sexa activada.
       new:
+        child_name_private: Nome do/a neno/a (privado)
+        create_a_minor_account: Crear unha Conta Infantil
+        create_minor_account: Crear Conta Infantil
+        parent_name_private: Nome do pai, nai ou titor (privado)
+        parent_email: Enderezo electrónico do pai, nai ou titor (privado)
+        inaturalist_minor_account_signup: Rexistro de Conta Infantil en iNaturalist
+        parent_information_private: Información Parental (privado)
+        step1_title: CREA UNHA CONTA PARA O TEU FILLO OU FILLA
+        step2_title: CONFIRMA A TÚA IDENTIDADE CON UNHA TARXETA DE CRÉDITO
         step2_desc: |
           Para confirmar a túa identidade como adulto, precisas de fornecer unha doazón nominal de polo menos $1 US a iNaturalist usando unha tarxeta de crédito. Este é o xeito menos intrusivo de verificación de identidade que nos permite cumprir coas leis de privacidade. Por favor, asegúrate de usar o mesmo enderezo de correo electrónico que usaches no campo "enderezo de correo electrónico parental" no paso anterior.
     welcome:
@@ -5213,6 +5522,33 @@ gl:
           %{image} convídate a empregar este portal de información sobre biodiversidade,
           no que poderás compartir o que observas na natureza, aprender dela e
           intercambiar información con outros naturalistas.
+        connect_with_nature: Conecta coa Natureza
+        observations_to_date: 'Observacións ata a Data'
+        species_observed: 'Especies Observadas'
+        how_it_works: Como Funciona
+        record_your_observations: Rexistra as túas observación
+        share_with_fellow_naturalists: Comparte con outros naturalistas
+        contribute_to_science: Contribúe á Ciencia
+        nature_at_your_fingertips: Natureza Ó Alcance Da Túa Man
+        create_useful_data: Crea Dados Útiles
+        help_scientists: Axuda ós científicos e xestores de recursos a entender cando e como aparecen os organismos.
+        crowdsource_identifications: Identificacións Participativas
+        connect_with_experts: Conecta con expertos que poden identificar os organismos que observas.
+        become_a_citizen_scientist: Convértete nun Cidadán Científico
+        find_a_project: "Atopa un proxecto con unha misión que che interese, ou comeza o teu propio."
+        learn_about_nature: Aprende Sobre a Natureza
+        build_your_knowledge: Aumenta o teu coñecemento falando con outros naturalistas e axudando ós demais.
+        run_a_bioblitz: Organiza un Bioblitz
+        hold_an_event: Organiza un evento onde a xente tenta atopar tantas especies coma lles é posible.
+        works_on_all_your_devices: Funciona En Tódolos Teus Aparellos
+        install_our_mobile_apps: |
+          Instala as nosas aplicacións para mobil, de xeito que sempre poderás observar, incluso sen cobertura ou wifi.
+        who_uses_site_name: "¿Quen Usa %{site_name}?"
+        what_are_you_waiting_for: '¿A que esperas?'
+        join_today: Únete Hoxe
+    wiki_pages:
+      form:
+        save_and_edit_to_add_attachments: Garda e edita para engadir adxuntos
   date:
     abbr_day_names:
       - dom
@@ -5309,6 +5645,18 @@ gl:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
+    countdown_x_days:
+      one: día
+      other: días
+    countdown_x_hours:
+      one: hora
+      other: horas
+    countdown_x_minutes:
+      one: min
+      other: mins
+    countdown_x_seconds:
+      one: seg
+      other: segs
     prompts:
       day: Día
       hour: Hora
@@ -5317,6 +5665,7 @@ gl:
       second: Segundos
       year: Ano
   errors:
+    format: '%{attribute} %{message}'
     messages:
       accepted: Débese aceptar
       blank: non pode estar en branco
@@ -5331,10 +5680,15 @@ gl:
       invalid: non é válido
       less_than: debe ser menor que %{count}
       less_than_or_equal_to: debe ser menor que ou igual a %{count}
+      new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
       not_a_number: non é un número
       not_an_integer: debe ser un número enteiro
       odd: debe ser impar
+      only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
       record_invalid: 'A validación fallou: %{errors}'
+      requires_privilege_speech: |
+        debe ter tres observacións verificables ou tres identificacións para outros para facer iso
+      requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
       taken: xa está en uso
     template:
       body: 'Atopáronse problemas nos seguintes campos:'
@@ -5342,6 +5696,8 @@ gl:
         one: "Non se puido gardar este/a %{model} porque se atopou 1 erro."
         other: 'Non se puido gardar este/a %{model} porque se atoparon %{count} erros.'
   helpers:
+    defaults:
+      title: "ISTO É UN TÍTULO"
     select:
       prompt: Por favor selecciona
     submit:
@@ -5357,6 +5713,7 @@ gl:
         #be the same as the separator.
         delimiter: '.'
         format: '%n%u'
+        precision: 2
         #The separator separates an integer from a decimal fraction, so if the
         #number is "one million and two and a half dollars" this would be
         #written as "$1,000,002.50" in English, and "." is the separator. This
@@ -5371,6 +5728,7 @@ gl:
       #"1,000,002.5" in English, and "," is the delimiter. This should not be
       #the same as the separator.
       delimiter: '.'
+      precision: 3
       #The separator separates an integer from a decimal fraction, so if the
       #number is "one million and two and a half" this would be written as
       #"1,000,002.5" in English, and "." is the separator. This should not be
@@ -5409,6 +5767,13 @@ gl:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %b. %Y"
     pm: Tarde
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      messages:
+        accepted: debe ser aceptado
+        blank: non se pode deixar en branco
+        confirmation: non coincide cá palabra chave
   activerecord:
     attributes:
       assessment:
@@ -5419,13 +5784,22 @@ gl:
       conservation_status:
         status: Estado
         description: Descrición
+        authority: Autoridade
         place_id: Lugar
+        url: URL
+        geoprivacy: Xeoprivacidade
+        iucn: Equivalente da IUCN
       flag:
         reason: Razón
         flag: Marca
+      guide:
+        source_url: URL Fonte
+        published_at: Publicación
       listed_taxon:
         occurrence_status_level: Status de ocorrencia
         establishment_means: Medio de establecemento.
+      observation:
+        observed_on: observados na data
       observation_field_value:
         value: 'valor'
       post:
@@ -5443,9 +5817,11 @@ gl:
         prefers_place_boundary_visible: Mostrar os límites do lugar no mapa
         tracking_codes: Códigos de rastreo
         source_url: Dirección web da fonte
+        start_time: Hora de inicio
       place:
         code: Código
         display_name: Nome a mostrar
+        latitude: Latitude
         longitude: Lonxitude
         name: Nome
         parent_id: Lugar relacionado
@@ -5474,13 +5850,29 @@ gl:
         source_identifier: Identificador da fonte
       user:
         email: Correo
+        login: Nome de usuario
         name: Nome
         locale: Local
         time_zone: Zona horaria
         search_place_id: Procurar lugar
         place_id: Lugar
+        preferred_observation_fields_by: Permitir campos de observación de
     errors:
+      messages:
+        accepted: debe ser aceptado
+        blank: non se pode deixar en branco
+        confirmation: non coincide cá palabra chave
+        empty: non pode estar baleiro
+        invalid: non é válido
+        new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
+        not_a_number: non é un número
+        taken: xa está en uso
       models:
+        observation_field_value:
+          attributes:
+            value:
+              date_format: |
+                Debe estar no formato AAAA-MM-DD para un campo de data ("%{observation_field_name}" na túa observación de "%{observation_species_guess}")
         place:
           attributes:
             place_geometry:
@@ -5500,7 +5892,7 @@ gl:
               #basically saved searches so you don't have to add anything to
               #them
               collection_and_umbrella_projects_do_not_allow_direct_submission: |
-                proxectos de recolleita e de paraugas non permiten entregas directas
+                os proxectos de recolla e de paraugas non permiten entregas directas
             user_id:
               must_be_curator: debe ser un conservador deste proxecto
             observation_id:
