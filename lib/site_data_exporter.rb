@@ -8,6 +8,7 @@ class SiteDataExporter
     out_of_range
     user_id
     user_login
+    site_id
     created_at
     updated_at
     quality_grade
