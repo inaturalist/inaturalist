@@ -6,6 +6,7 @@ import News from "./news";
 import Requirements from "./requirements";
 import EventCountdown from "./event_countdown";
 import OverviewMap from "./overview_map";
+import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 
 const BeforeEventTab = props => {
   const { project, config, updateCurrentUser } = props;
@@ -36,6 +37,16 @@ const BeforeEventTab = props => {
             updateCurrentUser={updateCurrentUser}
           />
         ) }
+      </Grid>
+      <Grid>
+        <Row>
+          <Col xs={12}>
+            <FlagAnItemContainer
+              item={project}
+              manageFlagsPath={`/projects/${project.id}/flags`}
+            />
+          </Col>
+        </Row>
       </Grid>
     </div>
   );
