@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_preferred_place
   before_filter :check_preferred_site
   before_filter :sign_out_spammers
+  before_filter :set_session_oauth_application_id
 
   # /ping should skip all before filters and just render
   skip_filter *_process_action_callbacks.map(&:filter), only: :ping
@@ -690,6 +691,21 @@ class ApplicationController < ActionController::Base
     response.headers['X-Total-Entries'] = collection.total_entries.to_s
     response.headers['X-Page'] = collection.current_page.to_s
     response.headers['X-Per-Page'] = collection.per_page.to_s
+  end
+
+  def set_session_oauth_application_id
+    if doorkeeper_token && (a = doorkeeper_token.application)
+      session["oauth_application_id"] = a.id
+    elsif ( auth_header = request.headers["Authorization"] ) && ( token = auth_header.split(" ").last )
+      jwt_claims = begin
+        ::JsonWebToken.decode(token)
+      rescue JWT::DecodeError => e
+        nil
+      end
+      if jwt_claims && ( oauth_application_id = jwt_claims["oauth_application_id"] )
+        session["oauth_application_id"] = oauth_application_id
+      end
+    end
   end
 
   # Encapsulates common pattern for actions that start a bg task get called 

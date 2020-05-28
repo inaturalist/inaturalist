@@ -13,52 +13,47 @@ const News = ( { project } ) => {
     <div className="News">
       <h2>
         { I18n.t( "journal" ) }
-        <a href={ `/projects/${project.slug}/journal` }>
+        <a href={`/projects/${project.slug}/journal`}>
           <i className="fa fa-arrow-circle-right" />
         </a>
       </h2>
-      { noNews ?
-        (
-          <div className="empty-text">
-            { I18n.t( "no_journal_posts_yet" ) }. { I18n.t( "check_back_soon" ) }
+      { noNews ? (
+        <div className="empty-text">
+          { I18n.t( "no_journal_posts_yet" ) }. { I18n.t( "check_back_soon" ) }
+        </div>
+      ) : (
+        <div>
+          <div className="posts">
+            { _.map( project.posts.results, post => (
+              <div className="post" key={`post_${post.id}`}>
+                <a href={`/projects/${project.slug}/journal/${post.id}`}>
+                  <div className="date">{ moment( post.published_at ).format( "LL - LT" ) }</div>
+                  <div className="title">{ post.title }</div>
+                  <div className="body">
+                    <UserText
+                      text={post.body}
+                      truncate={120}
+                      moreToggle={false}
+                      stripWhitespace
+                    />
+                  </div>
+                </a>
+              </div>
+            ) ) }
           </div>
-        ) : (
-          <div>
-            <div className="posts">
-              { _.map( project.posts.results, post => (
-                <div className="post" key={ `post_${post.id}` }>
-                  <a href={ `/projects/${project.slug}/journal/${post.id}` }>
-                    <div className="date">{ moment( post.created_at ).format( "LL - LT" ) }</div>
-                    <div className="title">{ post.title }</div>
-                    <div className="body">
-                      <UserText
-                        text={ post.body }
-                        truncate={ 120 }
-                        moreToggle={ false }
-                        stripWhitespace
-                      />
-                    </div>
-                  </a>
-                </div>
-              ) ) }
-            </div>
-            <a href={ `/projects/${project.slug}/journal` }>
-              <button className="btn-green" >
-                { I18n.t( "view_all" ) }
-              </button>
-            </a>
-          </div>
-        )
-      }
+          <a href={`/projects/${project.slug}/journal`}>
+            <button className="btn-green" type="button">
+              { I18n.t( "view_all" ) }
+            </button>
+          </a>
+        </div>
+      ) }
     </div>
   );
 };
 
 News.propTypes = {
-  config: PropTypes.object,
-  project: PropTypes.object,
-  leaders: PropTypes.array,
-  type: PropTypes.string
+  project: PropTypes.object
 };
 
 export default News;

@@ -498,7 +498,7 @@ const actions = class actions {
       } );
       dispatch( { type: types.SET_STATE, attrs: { saveCounts: stateCounts } } );
       if ( nextToSave && stateCounts.saving < s.dragDropZone.maximumNumberOfUploads ) {
-        nextToSave.save( dispatch );
+        nextToSave.save( dispatch, { refresh: stateCounts.pending === 1 } );
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {

@@ -61,7 +61,7 @@ class ObservationPhotosController < ApplicationController
     end
     
     begin
-      @observation_photo.observation.wait_for_index_refresh = true
+      @observation_photo.observation.wait_for_index_refresh = true if params[:refresh_index]
       @observation_photo.save
     rescue PG::UniqueViolation => e
       raise e unless e.message =~ /index_observation_photos_on_uuid/

@@ -2,8 +2,11 @@ class CloudfrontACLUpdater
   IP_SET_NAME = "Rate-based Block Set"
   HOUR_LIMIT = 5.gigabytes
   TWELVE_HOUR_LIMIT = 24.gigabytes
+  TWENTY_FOUR_HOUR_LIMIT = 48.gigabytes
   attr_reader :aws_client
   attr_reader :ip_set_id
+
+  PREFIXES_TO_GROUP = CONFIG.cloudfront_ip_prefixes_to_group || []
 
   def initialize
     return unless CONFIG.kibana_es_uri
@@ -20,7 +23,8 @@ class CloudfrontACLUpdater
     return unless @aws_client && @ip_set_id
     one_hour_ips = query_for_ips_to_block( 1.hour, CloudfrontACLUpdater::HOUR_LIMIT ) || []
     twelve_hour_ips = query_for_ips_to_block( 12.hour, CloudfrontACLUpdater::TWELVE_HOUR_LIMIT ) || []
-    restrict_acl_to_ips( one_hour_ips + twelve_hour_ips )
+    twenty_four_hour_ips = query_for_ips_to_block( 24.hour, CloudfrontACLUpdater::TWENTY_FOUR_HOUR_LIMIT ) || []
+    restrict_acl_to_ips( one_hour_ips + twelve_hour_ips + twenty_four_hour_ips )
   end
 
   private
@@ -107,12 +111,27 @@ class CloudfrontACLUpdater
 
   def ips_over_limit_from_results( buckets, limit )
     ips_over_limit = []
+    prefix_sums = {}
     buckets.each do |bucket|
       if bucket["sum_of_bytes"]["value"] >= limit
         ips_over_limit << bucket["key"]
       end
+      PREFIXES_TO_GROUP.each do |prefix|
+        if bucket["key"].starts_with?( prefix )
+          prefix_sums[prefix] ||= { }
+          prefix_sums[prefix][:sum] ||= 0
+          prefix_sums[prefix][:sum] += bucket["sum_of_bytes"]["value"]
+          prefix_sums[prefix][:ips] ||= []
+          prefix_sums[prefix][:ips] << bucket["key"]
+        end
+      end
     end
-    ips_over_limit
+    prefix_sums.each do |prefix, data|
+      if data[:sum] >= limit * 1.8
+        ips_over_limit += data[:ips]
+      end
+    end
+    ips_over_limit.uniq
   end
 
   def remove_descriptor( descriptor )

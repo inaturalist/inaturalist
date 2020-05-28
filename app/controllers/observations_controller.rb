@@ -620,7 +620,7 @@ class ObservationsController < ApplicationController
     
     @observations.compact.each do |o|
       o.user = current_user
-      o.wait_for_index_refresh = true
+      o.wait_for_index_refresh = true if params[:refresh_index]
       o.save
     end
     create_project_observations
