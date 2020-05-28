@@ -123,6 +123,9 @@ class ObservationModal extends React.Component {
           {
             label: I18n.t( "observations_without_media" ),
             verifiable: false,
+            captive: false,
+            photos: false,
+            sounds: false,
             disabled: !currentUserPrefersMedialessObs,
             onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } ),
             observation_id: observation.obscured && observation.private_geojson && obsForMap.id

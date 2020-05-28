@@ -147,6 +147,8 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
         label: I18n.t( "observations_without_media" ),
         verifiable: false,
         captive: false,
+        photos: false,
+        sounds: false,
         color: COLORS.maroon,
         disabled: !currentUserPrefersMedialessObs,
         observation_id: observation
