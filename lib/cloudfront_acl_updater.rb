@@ -127,7 +127,7 @@ class CloudfrontACLUpdater
       end
     end
     prefix_sums.each do |prefix, data|
-      if data[:sum] >= limit * 1.8
+      if data[:sum] >= limit
         ips_over_limit += data[:ips]
       end
     end
