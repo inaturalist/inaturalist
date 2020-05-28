@@ -11,10 +11,6 @@ class TaxaTree extends React.Component {
   constructor( ) {
     super( );
     this.showNodeList = this.showNodeList.bind( this );
-    this.state = {
-      clickedTaxonID: null,
-      doubleClickedTaxonID: null
-    };
   }
 
   roots( ) {
@@ -41,26 +37,7 @@ class TaxaTree extends React.Component {
         <div className="name-row">
           <div
             className={nameClasses.join( " " )}
-            onClick={e => {
-              const clickedTaxonID = $( $( e.nativeEvent.target ).parents( "li.branch" )[0] )
-                .attr( "taxon-id" );
-              if ( this.state.clickedTaxonID && this.state.clickedTaxonID === clickedTaxonID ) {
-                setDetailsTaxon( taxon );
-                this.state.clickedTaxonID = null;
-                this.state.doubleClickedTaxonID = clickedTaxonID;
-                return;
-              }
-              this.state.clickedTaxonID = clickedTaxonID;
-              setTimeout( ( ) => {
-                if ( this.state.doubleClickedTaxonID && this.state.doubleClickedTaxonID === clickedTaxonID ) {
-                  this.state.doubleClickedTaxonID = null;
-                  return;
-                }
-                toggleTaxon( taxon );
-                this.state.clickedTaxonID = null;
-              }, 150 );
-              e.preventDefault();
-            }}
+            onClick={( ) => toggleTaxon( taxon )}
           >
             <SplitTaxon
               taxon={taxon}
