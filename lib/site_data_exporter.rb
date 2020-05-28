@@ -122,7 +122,7 @@ class SiteDataExporter
   def export
     # Make a temp dir
     @work_dir = Dir.mktmpdir
-    @basename = "#{@site_name.parameterize}-#{Date.today.to_s.gsub(/\-/, '')}-#{Time.now.to_i}"
+    @basename = "#{@site_name.parameterize}-#{@site.id}-#{Date.today.to_s.gsub(/\-/, '')}-#{Time.now.to_i}"
     @work_path = File.join( @work_dir, @basename )
     FileUtils.mkdir_p @work_path, :mode => 0755
 
