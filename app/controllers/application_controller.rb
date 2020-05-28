@@ -694,7 +694,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_session_oauth_application_id
-    if doorkeeper_token && (a = doorkeeper_token.application)
+    if doorkeeper_token && doorkeeper_token.accessible? && (a = doorkeeper_token.try(:application))
       session["oauth_application_id"] = a.id
     elsif ( auth_header = request.headers["Authorization"] ) && ( token = auth_header.split(" ").last )
       jwt_claims = begin
