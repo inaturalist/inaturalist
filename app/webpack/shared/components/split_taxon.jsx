@@ -18,9 +18,10 @@ const SplitTaxon = props => {
     noInactive,
     showMemberGroup,
     user,
-    iconLink
+    iconLink,
+    sciFirst
   } = props;
-  const showScinameFirst = user && user.prefers_scientific_name_first;
+  const showScinameFirst = sciFirst || ( user && user.prefers_scientific_name_first );
   const LinkElement = ( url || onClick ) ? "a" : "span";
   const keyBase = objectToComparable( props );
   let title = "";
@@ -310,7 +311,8 @@ SplitTaxon.propTypes = {
   noInactive: PropTypes.bool,
   showMemberGroup: PropTypes.bool,
   user: PropTypes.object,
-  iconLink: PropTypes.bool
+  iconLink: PropTypes.bool,
+  sciFirst: PropTypes.bool
 };
 SplitTaxon.defaultProps = {
   target: "_self"

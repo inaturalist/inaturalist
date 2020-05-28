@@ -190,11 +190,11 @@ class TaxonAutocomplete extends React.Component {
     } );
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
-    this.inputElement( ).bind( "assignSelection", ( e, t ) => {
+    this.inputElement( ).bind( "assignSelection", ( e, t, options ) => {
       if ( !t.title ) {
         t.title = this.resultTitle( t );
       }
-      this.updateWithSelection( t );
+      this.updateWithSelection( t, options );
     } );
     this.inputElement( ).unbind( "resetSelection" );
     this.inputElement( ).bind( "resetSelection", ( ) => {
@@ -211,7 +211,7 @@ class TaxonAutocomplete extends React.Component {
       }
     } );
     if ( initialSelection ) {
-      this.inputElement( ).trigger( "assignSelection", initialSelection );
+      this.inputElement( ).trigger( "assignSelection", [ initialSelection, { initial: true } ] );
     }
     this._mounted = true;
   }
@@ -284,8 +284,8 @@ class TaxonAutocomplete extends React.Component {
     }
   }
 
-  updateWithSelection( item ) {
-    const { onSelectReturn, afterSelect } = this.props;
+  updateWithSelection( item, options = { } ) {
+    const { onSelectReturn, afterSelect, noThumbnail } = this.props;
     if ( onSelectReturn ) {
       onSelectReturn( { item } );
       return;
@@ -297,22 +297,24 @@ class TaxonAutocomplete extends React.Component {
     // set the hidden taxon_id
     this.idElement( ).val( item.id );
     // set the selection's thumbnail image
-    if ( item.default_photo ) {
-      this.thumbnailElement( ).css( {
-        "background-image": `url('${item.default_photo.square_url}')`,
-        "background-repeat": "no-repeat",
-        "background-size": "cover",
-        "background-position": "center"
-      } );
-      this.thumbnailElement( ).html( "" );
-    } else {
-      this.thumbnailElement( ).css( { "background-image": "none" } );
-      this.thumbnailElement( ).html(
-        ReactDOMServer.renderToString( TaxonAutocomplete.itemIcon( item ) )
-      );
+    if ( !noThumbnail ) {
+      if ( item.default_photo ) {
+        this.thumbnailElement( ).css( {
+          "background-image": `url('${item.default_photo.square_url}')`,
+          "background-repeat": "no-repeat",
+          "background-size": "cover",
+          "background-position": "center"
+        } );
+        this.thumbnailElement( ).html( "" );
+      } else {
+        this.thumbnailElement( ).css( { "background-image": "none" } );
+        this.thumbnailElement( ).html(
+          ReactDOMServer.renderToString( TaxonAutocomplete.itemIcon( item ) )
+        );
+      }
     }
     this.inputElement( ).selection = item;
-    if ( afterSelect ) { afterSelect( { item } ); }
+    if ( afterSelect && !options.initial ) { afterSelect( { item } ); }
   }
 
   visionAutocompleteSource( callback ) {
@@ -345,7 +347,7 @@ class TaxonAutocomplete extends React.Component {
 
   taxonAutocompleteSource( request, callback ) {
     const {
-      perPage, searchExternal, showPlaceholder, notIDs
+      perPage, searchExternal, showPlaceholder, notIDs, observedByUserID
     } = this.props;
     const params = {
       q: request.term,
@@ -355,6 +357,9 @@ class TaxonAutocomplete extends React.Component {
     };
     if ( notIDs ) {
       params.not_id = notIDs.slice( 0, 750 ).join( "," );
+    }
+    if ( observedByUserID ) {
+      params.observed_by_user_id = observedByUserID;
     }
     inaturalistjs.taxa.autocomplete( params ).then( r => {
       const results = r.results || [];
@@ -560,6 +565,7 @@ TaxonAutocomplete.propTypes = {
   searchExternal: PropTypes.bool,
   showPlaceholder: PropTypes.bool,
   allowPlaceholders: PropTypes.bool,
+  noThumbnail: PropTypes.bool,
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
   onSelectReturn: PropTypes.func,
@@ -568,6 +574,7 @@ TaxonAutocomplete.propTypes = {
   initialSelection: PropTypes.object,
   initialTaxonID: PropTypes.number,
   notIDs: PropTypes.array,
+  observedByUserID: PropTypes.number,
   perPage: PropTypes.number,
   config: PropTypes.object,
   onKeyDown: PropTypes.func

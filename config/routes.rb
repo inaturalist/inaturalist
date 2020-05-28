@@ -268,7 +268,6 @@ Rails.application.routes.draw do
   get 'observations/project/:id.all' => 'observations#project_all', :as => :all_project_observations
   get 'observations/of/:id.:format' => 'observations#of', :as => :observations_of
   match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
-  
 
   match 'projects/:id/join' => 'projects#join', :as => :join_project, :via => [:get, :post]
   delete 'projects/:id/leave' => 'projects#leave', :as => :leave_project
@@ -631,6 +630,12 @@ Rails.application.routes.draw do
     end
   end
   resources :moderator_actions, only: [:create]
+
+  resources :lifelists do
+    collection do
+      get ":login", to: "lifelists#by_login"
+    end
+  end
 
   get "/google_photos(/:action(/:id))", controller: :picasa
 
