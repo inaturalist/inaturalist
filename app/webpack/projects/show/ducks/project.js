@@ -57,7 +57,21 @@ export function fetchMembers( ) {
         members_loaded: true,
         members: response
       } ) );
-    } ).catch( e => { } );
+    } ).catch( ( ) => { } );
+  };
+}
+
+export function fetchCurrentProjectUser( ) {
+  return ( dispatch, getState ) => {
+    const { project } = getState( );
+    return inatjs.projects.membership( { id: project.id } )
+      .then( response => {
+        if ( response.results[0] ) {
+          console.log( "[DEBUG] response: ", response );
+          dispatch( setAttributes( { currentProjectUser: response.results[0] } ) );
+        }
+      } )
+      .catch( e => console.log( e ) );
   };
 }
 
@@ -501,5 +515,14 @@ export function deleteFlag( id ) {
     return inatjs.flags.delete( { id } ).then( ( ) => {
       dispatch( afterFlagChange( ) );
     } ).catch( e => console.log( e ) );
+  };
+}
+
+export function updateProjectUser( projectUser ) {
+  return dispatch => {
+    console.log( "[DEBUG] projectUser: ", projectUser );
+    inatjs.project_users.update( { id: projectUser.id, project_user: projectUser } )
+      .then( ( ) => dispatch( fetchCurrentProjectUser( ) ) )
+      .catch( e => alert( e ) );
   };
 }

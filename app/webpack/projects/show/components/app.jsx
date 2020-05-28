@@ -19,6 +19,7 @@ import ConfirmModalContainer from "../../shared/containers/confirm_modal_contain
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import UsersPopover from "../../../observations/show/components/users_popover";
 import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
+import ProjectMembershipButtonContainer from "../containers/project_membership_button_container";
 
 const App = ( {
   config, project, leave, setSelectedTab, convertProject
@@ -263,6 +264,7 @@ const App = ( {
                     </a>
                   </div>
                 ) }
+                <ProjectMembershipButtonContainer />
                 { !userCanEdit && project.rule_members_only && (
                   <div className="header-about-members-only">
                     { I18n.t( "project_members_only" ) }

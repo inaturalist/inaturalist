@@ -1659,3 +1659,19 @@ $tip-opacity: 1;
   max-height: 60px;
   box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.2);
 }
+
+.collapsible-section {
+  i.fa {
+    margin-right: 5px;
+    color: $inat-green;
+  }
+  .collapsible-content {
+    overflow: hidden;
+  }
+  .collapsible-content.closed {
+    display: none;
+  }
+  .collapsible-content.open {
+    display: block;
+  }
+}
