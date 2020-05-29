@@ -5353,6 +5353,8 @@ gl:
         inaturalist_network_desc: |
           Bótalle unha ollada á Revisión do Ano para os membros da Rede iNaturalist.
         include_usa: Incluír EEUU
+        growth_by_country_desc_html: |
+          ¿Onde se está o crecemento? Este mapa e a gráfica tentan explicalo por país, o que é complicado porque o crecemento por país pode ser moi desequilibrado. Aquí decidimos omitir EEUU e usar unha escala logarítmica de xeito predeterminado para acentuar as diferenzas entre outros países. Se un país está de cor negra, significa que non contribúe de xeito significativo a unha porcentaxe, ou que non creceu neste ano, ou que non tivo máis observacións este ano que o ano pasado (pasa por riba dun país para ver máis detalles). <strong>"%do crecemento total"</strong> representa canto do crecemento mundial ven de un país en particular, p.e. se houbo 20 observacións en 2018 e 10 en 2017, isto sería un crecemento de 10 observacións, e se desas observacións, 5 foron en Benin, logo Benin contribuíu o 50% do crecemento total. <strong>% de crecemento</strong> representa o número de observacións deste ano nese país como porcentaxe de observacións do ano pasado nese país, así que se houbo 10 observacións en Laos o ano pasado, pero 20 este ano, sería un crecemento do 100%, e se houbese 0 o ano pasado e 1 este ano, sería un crecemento de % infinita.
         growth_by_country_title: Crecemento Por País
         growth_desc: |
           As gráficas de "Observacións" e "Taxons" poden incluír dados visibles en %{site_name} contribuídos por xente que non está afiliada con %{site_name}, mentres que a gráfica de "Usuarios" só mostra as datas de cando os usuarios que están afiliados con %{site_name} se uniron a iNaturalist.
@@ -5402,10 +5404,22 @@ gl:
         complete_rank_desc_html: |
           Rango no que un taxon está completo, p.e. se esta familia contén tódolos seus xéneros pero on tódalas súas especies, isto estableceríase para "xénero". O rango predeterminado é o de especie.
       show:
+        about_names_desc: |
+          <p>
+          A maioría das categorías dos organismos teñen "nomes comúns" en línguas faladas. Estes nomes son recoñecibles a cotío, fáciles de pronunciar, e estables ó longo do tempo, pero moitos organismos teñen varios nomes distintos en lugares diferentes, incluso na mesma língua, o que pode dificultar a comunicación sobre estes organismos sen crear confusión. Os científicos resolven este problema empregando un único "nome científico" para cada categoría de organismos que conforma as regras da <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biolóxica</a>, mais estes nomes tenden a estar baseados no Latín, unha língua que xa ninguén fala, así que non son tan fáciles de lembrar para moita xente como os nomes comúns. Os nomes científicos tamén reflicten a localización taxonómica dun organismo, así que estes poden cambiar cando os científicos desenvolven teorías máis acertadas sobre as relacións evolutivas entre diferentes organismos, reducindo outra vez a súa utilidade na comunicación, incluso entre xente que coñece os nomes científicos.
+          </p>
+          <p>
+          Xa o di o vello adaxio: "Os nomes comúns cambian de lugar en lugar, os nomes científicos cambian de tempo en tempo."
+          </p>
+          <p>
+          Tentamos solucionar estes contratempos mostrando ámbolos nomes, científico e común, sempre que nos é posible, e escollendo os nomes comúns baseados na língua e área xeográfica preferidas do espectador.
+          </p>
         about_conservation_status_desc: |
           O estado de conservación resume o risco de extinción para un grupo de organismos.
         about_establishment_desc: |
           "Medios de establecemento" describe como chegou a especie a onde aparece actualmente. Introducido significa que chegou por actividade humana, mentres que medios nativos indican que chegou sen asistencia humana. As especies endémicas só aparecen en ubicacións específicas e en ningún lugar máis.
+        about_taxon_curators_desc: |
+          Esta xente xestiona a parte da árbore taxonómica que inclúe este taxon. Se queres facer mudanzas, por favor, marca este taxon ou contacta a algunha destas persoas.
         charts_help_history: |
           Esta gráfica mostra o número de observacións deste taxon por mes para os últimos dez anos. De novo, ten un sesgo polo número de persoas observando, pero amosará picos inusuais en observacións, e se semella plana ou descendente aínda que haxa un incremento no número de observadores, pode suxerir unha mudanza na abundancia.
         charts_help_other: |
@@ -5524,7 +5538,7 @@ gl:
         settings_and_mute_html: |
           Se este sitio xera demasiadas notificacións, considera <a href="/users/edit">editar as túas configuracións</a> para deixar de recibir correos nosos. Se tes problemas con algunha persoa en particular no sitio, considera <a href="/users/edit">acalala</a> en vez de borrar a túa conta.
         still_want_to_delete_html: |
-          Se aínda estás seguro/a de que queres eliminar a túa conta, pon <code>%{confirmation_code}</code> no formulario de abaixo e preme no bótón para eliminar a túa conta e tódolos teus dados.
+          Se aínda estás seguro/a de que queres eliminar a túa conta, pon <code>%{confirmation_code}</code> no formulario de abaixo e preme no botón para eliminar a túa conta e tódolos teus dados.
         type_confirmation_code: Escribe %{confirmation_code}
         you_must_enter_confirmation_code_in_the_form: |
           Debes entrar "%{confirmation_code}" no formulario para eliminar a túa conta
