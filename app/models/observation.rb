@@ -3191,6 +3191,7 @@ class Observation < ActiveRecord::Base
       end
       return Project.where( id: project_ids ).limit( 500 )
     end
+    []
   end
 
   def self.dedupe_for_user(user, options = {})
