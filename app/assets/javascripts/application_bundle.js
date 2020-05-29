@@ -22,7 +22,6 @@
 //= require jquery/plugins/inat/taxon_autocomplete
 //= require jquery/plugins/inat/place_autocomplete
 //= require jquery/plugins/inat/user_autocomplete
-//= require jquery/plugins/inat/project_user_autocomplete
 //= require jquery/plugins/inat/project_autocomplete
 //= require jquery/plugins/inat/observation_field_autocomplete
 //= require jquery/plugins/inat/universal_autocomplete

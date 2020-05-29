@@ -9,11 +9,7 @@ class UserAutocomplete extends React.Component {
     const opts = Object.assign( {}, this.props, {
       idEl: $( "input[name='user_id']", domNode )
     } );
-    if ( opts.projectID !== undefined ) {
-      $( "input[name='user_login']", domNode ).projectUserAutocomplete( opts );
-    } else {
-      $( "input[name='user_login']", domNode ).userAutocomplete( opts );
-    }
+    $( "input[name='user_login']", domNode ).userAutocomplete( opts );
     this.fetchUser( );
   }
 
