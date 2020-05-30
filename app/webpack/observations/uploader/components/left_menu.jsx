@@ -81,7 +81,7 @@ class LeftMenu extends SelectionBasedComponent {
   }
 
   details( ) {
-    const { updateSelectedObsCards } = this.props;
+    const { updateSelectedObsCards, config } = this.props;
     const count = _.keys( this.props.selectedObsCards ).length;
     const singleObservation = count === 1 ? _.values( this.props.selectedObsCards )[0] : null;
     const uniqDescriptions = this.valuesOf( "description" );
@@ -102,6 +102,7 @@ class LeftMenu extends SelectionBasedComponent {
       <option>{ I18n.t( "multiple_select_option" ) }</option>
     );
     const invalidDate = util.dateInvalid( commonDate );
+    const inputFormat = "YYYY/MM/DD h:mm A z";
     return (
       <div>
         <TaxonAutocomplete
@@ -139,10 +140,12 @@ class LeftMenu extends SelectionBasedComponent {
         />
         <DateTimeFieldWrapper
           ref="datetime"
+          inputFormat={inputFormat}
           key={`multidate${commonDate}`}
           reactKey={`multidate${commonDate}`}
+          timeZone={config.currentUser.time_zone || moment.tz.guess()}
           dateTime={commonDate
-            ? moment( commonDate, "YYYY/MM/DD h:mm A z" ).format( "x" )
+            ? moment( commonDate, inputFormat ).format( "x" )
             : undefined
           }
           onChange={dateString => updateSelectedObsCards( {
