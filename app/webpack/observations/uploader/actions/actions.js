@@ -29,6 +29,24 @@ const actions = class actions {
     };
   }
 
+  static enforceLimit( src, dest ) {
+    const cardFileDropLimit = 20;
+    const obeysLimit = ( src + dest <= cardFileDropLimit );
+    return function ( dispatch ) {
+      if ( !obeysLimit ) {
+        dispatch( actions.setState( {
+          confirmModal: {
+            show: true,
+            message: I18n.t( "observations_can_only_have_n_photos", { limit: cardFileDropLimit } ),
+            confirmText: I18n.t( "ok" ),
+            hideCancel: true
+          }
+        } ) );
+      }
+      return ( obeysLimit );
+    };
+  }
+
   static appendFiles( files ) {
     return { type: types.APPEND_FILES, files };
   }
@@ -149,7 +167,9 @@ const actions = class actions {
 
   static onFileDropOnCard( droppedFiles, obsCard ) {
     return function ( dispatch ) {
+      const cardFileCount = Object.keys( obsCard.files ).length;
       if ( droppedFiles.length === 0 ) { return; }
+      if ( !dispatch( actions.enforceLimit( droppedFiles.length, cardFileCount ) ) ) { return; }
       const files = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
@@ -219,7 +239,14 @@ const actions = class actions {
       const ids = _.keys( obsCards );
       const targetIDString = targetCard ? targetCard.id : _.min( ids );
       const targetID = parseInt( targetIDString, 10 );
-
+      const targetFileCount = Object.keys( obsCards[targetID].files ).length;
+      let remainingCount = 0;
+      _.each( obsCards, c => {
+        if ( c.id !== targetID ) {
+          remainingCount += Object.keys( c.files ).length;
+        }
+      } );
+      if ( !dispatch( actions.enforceLimit( remainingCount, targetFileCount ) ) ) { return; }
       let i = 0;
       const startTime = new Date( ).getTime( );
       _.each( obsCards, c => {
@@ -357,6 +384,8 @@ const actions = class actions {
 
   static movePhoto( photo, toObsCard ) {
     return function ( dispatch ) {
+      const targetFileCount = Object.keys( toObsCard.files ).length;
+      if ( !dispatch( actions.enforceLimit( 1, targetFileCount ) ) ) { return; }
       const time = new Date( ).getTime( );
       dispatch( actions.updateFile( photo.file, { cardID: toObsCard.id, sort: time } ) );
 

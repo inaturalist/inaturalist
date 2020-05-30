@@ -16218,6 +16218,7 @@ I18n.translations["en"] = {
   "observations": "Observations",
   "observations_": "observations",
   "observations_annotated_with_annotation": "Observations annotated with %{annotation}",
+  "observations_can_only_have_n_photos": "Observations can only have %{limit} photos. To add more you will need to remove some.",
   "observations_by_category": "Observations By category",
   "observations_in_this_project_must": "Observations in this project must meet the following criteria",
   "observations_map": "Observations / Map",
