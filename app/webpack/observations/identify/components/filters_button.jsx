@@ -654,7 +654,7 @@ class FiltersButton extends React.Component {
               </option>
             ) ) }
           </select>
-          { rejectedTerm ? (
+          { rejectedTerm && chosenTerm && (
             <div className="term-value">
               <big>=</big>
               <select
@@ -673,7 +673,7 @@ class FiltersButton extends React.Component {
                 ) ) }
               </select>
             </div>
-          ) : null }
+          ) }
         </div>
         <div className="form-group recent-users-form-group">
           <label htmlFor="account-creation" className="sectionlabel">{ I18n.t( "account_creation" ) }</label>
