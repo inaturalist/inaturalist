@@ -236,7 +236,7 @@ class User < ActiveRecord::Base
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
-  before_save :set_time_zone
+  before_validation :set_time_zone
   before_save :whitelist_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
