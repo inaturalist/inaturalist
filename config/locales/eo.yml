@@ -11,6 +11,15 @@ eo:
   x_identifications_:
     one: '1 Identigado'
     other: '%{count} Identigadoj'
+  x_languages:
+    one: "%{count} lingvo"
+    other: "%{count} lingvoj"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} vivlisto unue"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} vivlisto unue"
   x_journal_posts_html:
     one: '<span class="count">1</span> ĵurnala afiŝo'
     other: '<span class="count">%{count}</span> ĵurnalaj afiŝoj'
@@ -26,12 +35,18 @@ eo:
   x_others:
     one: "1 alio"
     other: "%{count} alioj"
+  x_people:
+    one: "%{count} persono"
+    other: "%{count} homoj"
   x_photos:
     one: "1 foto"
     other: "%{count} fotoj"
   x_new_species:
     one: "1 Nova Specio"
     other: "%{count} Novaj Specioj"
+  x_new_users:
+    one: '%{count} nova uzanto'
+    other: '%{count} novaj uzantoj'
   x_species:
     one: '1 Specio'
     other: '%{count} Specioj'
@@ -41,6 +56,22 @@ eo:
   x_species_link_html:
     one: "<a href='%{url}'>1 specio</a>"
     other: "<a href='%{url}'>%{count} specioj</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} Sugesto Filtrita de:"
+    other: "%{count} Sugestoj Filtritaj de:"
+  x_taxa:
+    one: "%{count} taksono"
+    other: "%{count} taksonoj"
+  x_sounds:
+    one: "%{count} sono"
+    other: "%{count} sonoj"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> taksono komisiita"
+    other: "<span class='count'>%{count}</span> taksonoj prizorgitaj"
+  x_taxa_matching_current_filters:
+    one: "%{count} taksono kongruanta aktualajn filtrilojn"
+    other: "%{count} taksonoj egalantaj aktualajn filtrilojn"
+  _100_day_trends: 100 tagaj tendencoj
   a_community_for_naturalist: Komunumo por Naturistoj
   a_flag_for_x: "flago por %{x}"
   a_member_of_taxon_html: "ano de %{taxon}"
@@ -49,7 +80,14 @@ eo:
   about_charts: Pri Diagramoj
   about_community_taxa: Pri komunumaj taksonoj
   about_complete_taxa: Pri Kompletaj Taksonoj
+  about_conservation_status: Pri Konserva Stato
+  about_editing_observation_fields: Pri Redaktado de Observaj Kampoj
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Pri Rimedoj pri Establado
   about_licenses: Pri permesiloj
+  about_muting: Pri Mutacio
   #Header for a section describing taxon names
   about_names: Pri Nomoj
   about_places: Pri Lokoj
@@ -64,15 +102,20 @@ eo:
   account_creation: Kreado de Konto
   account_settings: Agordoj de Konto
   accept: akcepti
+  accept_community_identifications: Akceptu komunumajn identigojn
   accuracy: Precizeco
   accuracy_meters: Precizeco (metroj)
+  accuracy_of_the_coordinates: |
+    Precizeco de la koordinatoj en metroj. Vi povas redakti ĉi tion alklakante la ligon "redakti" supre aŭ alklakante la mapan markilon kaj trenante la tenilojn. Provu fari la rondon sufiĉe granda, ke vi certas, ke vi estis ie en ĝi.
   action: Ago
   actions: Agoj
   active: Aktiva
   active_users: Aktivaj Uzantoj
   activity: Aktiveco
   activity_settings: Agordoj pri akiveco
+  adapted_by_name_from_a_work_by_original: "Adaptite de %{name} el la verko de %{original}"
   add: Aldoni
+  add_a_batch_of_observations: Aldonu aron da Observoj
   add_a_batch_of_taxa: Aldoni Taksonaron
   add_a_comment: Aldoni Komenton
   add_a_field: Aldoni Kampon
@@ -109,6 +152,7 @@ eo:
   add_one_now: Aldoni Unu Nun
   add_photos: Aldoni Fotojn
   add_place: Aldoni Lokon
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Aldonu "Planto-Fenologio: Neniu Evidemo pri Florigado"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Aldoni rilaton'
   #As in a Guide Section
@@ -248,6 +292,7 @@ eo:
   and: kaj
   and_other_taxa: "&amp; Aliaj Taksonoj"
   animals: Animaloj
+  annotations: Komentarioj
   announcements: Anoncoj
   any: ajna
   any_: Ajna
@@ -347,7 +392,9 @@ eo:
   committed: Enmetita
   committing: Enmetante...
   community: Komunumo
+  community_curated: Komunuma Komisiono
   community_guidelines: Komunumaj Gvidnormoj
+  community_id_heading: Komunuma Takso
   compare: Kompari
   compare_with: Kompari kun
   comparing: komparanta
@@ -390,10 +437,13 @@ eo:
     teneral: Tenera imagino
     subimago: Subimagino
     pupa: Pupo
+    no_evidence_of_flowering: Neniu evidenteco de florado
     nymph: Nimfo
     larva: Larvo
     egg: Ovo
     juvenile: Junulo
+  controlled_term_definitions:
+    no_evidence_of_flowering: Amaskomunikilaro ne donas pruvojn pri reproduktaj strukturoj
   convert: Konverti
   coordinate_systems: Koordinatsistemoj
   coordinates: Koordinatoj
@@ -877,6 +927,7 @@ eo:
   names_for_taxon_html: "Nomoj de %{taxon}"
   native: indiĝena
   ne_lat: Latitudo NE
+  nearby_observations_: Proksimaj observoj
   new_announcement: Nova anonco
   new_guide: Nova Gvidilo
   new_journal_post: Nova Ĵurnala Afiŝo
@@ -1584,6 +1635,7 @@ eo:
   terrain: tereno
   text: Teksto
   thanks!: Dankon!
+  the_community_id_requires_at_least_two_identifications: La Komunuma Identigo postulas almenaŭ du identigojn.
   the_world: La Mondo
   then_keybord_sequence: sekve
   this: ĉi tiu
@@ -1623,6 +1675,7 @@ eo:
   user_autocomplete_placeholder: kueda, simon123, ktp.
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} favoras %{noun} far %{owner}"
+  user_suggested_an_id: "%{user} sugestis identigon"
   username: Uzantnomo
   username_or_email: Uzantnomo aŭ retpoŝta adreso
   users: Uzantoj
@@ -1783,6 +1836,7 @@ eo:
     taxa:
       show:
         frequency:
+          "Plant Phenology=No Evidence of Flowering": Neniu evidenteco
           "Life Stage=egg": Ovo
           "Life Stage=larva": Larvo
           "Life Stage=teneral": Tenera imagino

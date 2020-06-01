@@ -348,6 +348,7 @@ he:
   add_several_observations_at_once: הוספת מספר תצפיות בפעולה אחת.
   add_sex_female_annotation: 'הוספת תווית "זוויג: נקבה"'
   add_sex_male_annotation: 'הוספת תווית "זוויג: זכר"'
+  add_sex_cannot_be_determined_annotation: 'הוסף תווית "זוויד: לא ניתן לקביעה"'
   add_some_now: הוספה עכשיו
   add_tag: הוספת תגית
   add_tags: הוספת תגיות
@@ -375,6 +376,10 @@ he:
     נוסף בגלל <a target="%{target}" class="%{class}" href="%{url}">שינוי טקסונומי</a>
   added_as_a_part_of_a_taxon_merge_html: |
     נוסף בגלל <a target="%{target}" class="%{class}" href="%{url}">איחוד טקסונים</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    נוסף בגלל <a target="%{target}" class="%{class}" href="%{url}">איחוד טקסונים</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    נוסף בגלל <a target="%{target}" class="%{class}" href="%{url}">שינוי טקסונומי</a>
   added_by: נוסף על־ידי
   added_by_user_on_date_html: "נוסף על־ידי %{user} בתאריך %{date}"
   added_on_datetime: "הוסף בתאריך %{datetime}"
@@ -428,6 +433,7 @@ he:
     hybrid: כל בני הכילאיים הוספו לבסיס הנתנוים
     subspecies: כל תתי-המינים הוספו לבסיס הנתונים
     variety: כל הזנים הוספו לבסיס הנתונים
+    form: כל הטפסים הוספו לבסיס הנתונים
   all_rights_reserved: כל הזכויות שמורות
   all_taxa:
     rank:
@@ -541,6 +547,7 @@ he:
   alphabetical_order: סדר אלפביתי
   already_have_an_account_log_in_html: כבר יש לך חשבון? <strong>כניסה לחשבון.</strong>
   amphibians: דו־חיים
+  ancestor_taxon: טקסון אבא
   and: וגם
   and_other_taxa: "&amp; טקסונים אחרים"
   android: אנדרואיד
@@ -572,12 +579,41 @@ he:
   are_you_sure_leave_this_project: האם ברצונך לעזוב את הפרויקט הזה?
   are_you_sure_merge_these_places: האם ברצונך למזג את המקומות האלה? לא ניתן לבטל את הפעולה הזאת.
   are_you_sure_remove_photo: "האם ברצונך להסיר תמונה זו?"
+  are_you_sure_remove_relationship: האם לנתק את הקשר בוודאות? זה ינתק את אדם זה מלעקוב אחריכם ויבטל את ההרשאות שלהם לראות את מיקומכם אם אישרתם גישה זו.
   are_you_sure_remove_taxon_from_list: "האם ברצונך להסיר את הטקסון הזה מהרשימה?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     אתם בטוחים? זה יטען מחדש את הדף, ואתם עלולים לאבד חלק מהשינויים שלכם.
+  are_you_sure_unresolve_flag?: |
+    האם לבטל את הפתרון של הערה זו? פעולה זו תסיר את הפתרון ואת הפותר מהערה זו.
   are_you_sure_want_delete_taxon: "האם ברצונך למחוק טקסון זה באופן סופי?"
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו וזיהויים.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו וזיהויים, ותצפיות.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו ורשימות טקסה.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו וזיהויים, ורשימות טקסוניות.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו ורשימות טקסוניות, וזיהויים, ותצפיות.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו, רשימות טקסוניות ותצפיות.
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו ותצפיות.
   are_you_sure_want_delete_taxon_identifications: |
     האם את/ה בטוח/ה שברצונך למחוק טקסון זה? קיימים זיהויום עבורו.
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנם זיהויים, ותצפיות עבורו.
+  are_you_sure_want_delete_taxon_listed_taxa: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו.
+  are_you_sure_want_delete_taxon_listed_taxa_identifications: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו וזיהויים.
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו וזיהויים, ותצפיות.
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו ותצפיות.
   are_you_sure_want_delete_taxon_observations: |
     האם את/ה בטוח/ה שברצונך למחוק טקסון זה? קיימות תצפיות עבורו.
   are_you_sure_want_delete_taxon_link: האם ברצונך למחוק את הקישור של הטקסון הזה?
@@ -598,6 +634,8 @@ he:
     כל דגלי הספאם על התוכן שלו יוסרו.
   are_you_sure_you_want_to_remove_these_x_taxa?: "האם ברצונך להסיר את %{x} הטקסונים האלה?"
   are_you_sure_you_want_to_remove_this_invitation: האם ברצונך להסיר הזמנה זו?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    האם ברצונך למחוק את התצפית הזאת מהפרויקט "%{project}"?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "האם ברצונך להסיר את הטקסון הזה מרשימת המינים של %{place}?"
   associated_observations: תצפיות משויכות
   associated_taxa: טקסונים משויכים
@@ -620,6 +658,7 @@ he:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
   atom: אטום
+  attached_taxon: טקסון מקושר
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: תכונה
@@ -651,6 +690,7 @@ he:
   back_to_suggestions: חזרה להצעות
   back_to_taxon: "חזרה ל\"%{defaulttaxon}\""
   back_to_taxon_changes: "חזרה לשינויי טקסון"
+  back_to_taxon_framework_for_x: "חזרה למבנה טקסוני עבור %{taxon_name}"
   back_to_viewing: "חזרה לטקסון <i>%{taxon}</i>"
   back_to_x: "חזרה ל\"%{noun}\""
   back_to_x_assessment: "חזרה לאומדנים של %{project}"
@@ -684,8 +724,15 @@ he:
   blue: כחול
   blue_butterfly_etc: "כחול, פרפר, וכו'"
   body: גוף
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong>%{value}"
   bounding_box: תיבת מסגרת
   breadcrumbs: סימני דרך
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
+  breadcrumbs_description: "זה יחליף את h1 ואת ברירת המחדל של קריאות לפעולה, יש להוסיף אותם אם הם חשובים לפרויקט הזה ולזכור שמרוחב המקסימלי הוא 950 פיקסלים"
   brief_caption: תיאור קצר
   brown: חום
   browse: חיפוש
@@ -709,6 +756,7 @@ he:
   cant_merge_a_taxon_with_itself: לא ניתן למזג טקסון עם עצמו.
   captive: בשבי
   captive_cultivated: בשבי/ מתורבת
+  captive_observations: תצפיות בשבי
   card: כרטיס
   casual: יומיומי
   casual_: יומיומי
@@ -769,6 +817,7 @@ he:
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} יפוצל ל%{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon} הושמט"
     input_taxon_will_be_dropped_html: "%{input_taxon} יושמט"
+    input_taxon_will_be_activated_soon_html: "%{input_taxon} יופעל בקרוב"
     input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} הוחלף ב%{output_taxon}"
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} יוחלף ב%{output_taxon}"
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} אוחדו ל%{output_taxon}"
@@ -792,6 +841,10 @@ he:
   check_out_my_observations_at: אם תרצו, תוכלו לראות את התצפיות שלי ב
   check_out_our_blog: ראו את הבלוג שלנו
   check_out_what_the_observation: בִדקו כיצד נראית התצפית שאתם מנסים לזהות.
+  check_this_box_if_html: |
+    סמן תיבה זו אם ברצונך לקבל רשיון <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'> קריאטיב קומונס </a> להעלות תוכן. המשמעות היא כי כל אחד יכול להעתיק ולהשתמש בתמונות וגם/או בתצפיות ללא קבלת אישור כל עוד הם נותנים קרדיט לך ולא עושים שימוש מסחרי. ניתן לבחור רשיון אחר או להסיר רשיון זה מאוחר יותר, אבל זוהי הצורה הטובה ביותר לשיתוף מידע עם חוקרים.
   checklist: רשימת מינים
   choose_a_field: בחירת שדה
   choose_a_list_above: נא לבחור רשימה למעלה.
@@ -835,11 +888,16 @@ he:
   commercial_solicitation: פרסומת מסחרית, קישורים לא תקינים, וכו'
   commit: ביצוע
   committed: בוצע
+  committed_by_user_on_date_html: הופעל על־ידי %{user} בתאריך %{date}
+  committed_on: הועלה ב %{date}
   committing: מבצע...
   community: קהילה
   community_curated: נאצר על ידי הקהילה
   community_guidelines: כללי הקהילה
   community_id_heading: טקסון הקהילה
+  community_id_at_species_or_lower?: רמת זיהוי קהילתי של מין או רמה נמוכה יותר
+  community_id_at_genus_level_or_lower: רמת זיהוי קהילתי של סוג או רמה נמוכה יותר
+  community_id_at_species_level_or_lower: רמת זיהוי קהילתי של מינים או רמה נמוכה יותר
   community_moderation_settings: הגדרות מתינות הקהילה
   community_supported_id: טקסון שנתמך על־ידי הקהילה
   compare: השווה
@@ -851,11 +909,15 @@ he:
   compiled_by_name: "לוקט על־ידי %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: שלם
+  complete_set_for_taxon_in_place_html: "סט מלא עבור %{taxon} ב%{place}"
   completed: הושלם
   completed_at: הושלם ב
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: שלמה?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}"> מלא </span>
+    לבדוק רשימה עבור %{taxon}
   comprehensive_list: רשימה שלמה
   concept_status: מצב הקונספט
   configure: הגדרה
@@ -872,6 +934,7 @@ he:
   cannot_be_changed_during_a_content_freeze: לא ניתן לשינוי בעת קפיאת תוכן
   conservation_status: סטטוס שימור
   conservation_status_descriptions:
+    status: קוד ססטוס. אם יש קוז מקוצר כמו E או CR יש להשתמש בו, אבל אם אין, נא לתת שם המלא, לדוגמה, "בסכנת הכחדה".
     description: תיאור קצר מדוע מין זה הוסף לרשימה.
     authority: |
       אירגון אשר קבע ססטוס זה. אנא בדקו ברשימת האירגונים לפני הוספת אירגון חדש. ניתן להשאיר ריק אם תרצו להיסמן כמקבע הססטוס בעצמכם.
@@ -981,7 +1044,10 @@ he:
   curators: אוצרים
   current_flags: דגלים כעת
   custom_project_fields: שדות יחודיים לפרוייקט
+  custom_project_was_successfully_created: התאמות פרויטקט נוספו
+  custom_project_was_successfully_updated: התאמות פרויטקט עודכנו
   customize_location: התאמת מיקום
+  daily_users: משתמשים היום
   dashboard: לוח בקרה
   data_deficient: מיעוט נתונים
   data_quality: איכות הנתון
@@ -1044,6 +1110,7 @@ he:
   default_observation_license: רשיון ברירת המחדל של התצפית
   default_photo_license: רשיון ברירת המחדל של התמונה
   default_sound_license: רשיון ברירת המחדל של הקול
+  defaults_to_your_name_or_username: ברירת מחדל לשם או שםמשתמש שלך
   definitions: הגדרות
   delete: מחיקה
   delete_all: מחק הכל
@@ -1150,6 +1217,7 @@ he:
     נערך על ידי %{name}, חלק מזכויות היוצרים שמורות (%{license})
   editing: עריכה
   editing_announcement: עריכת הודעה
+  editing_custom_project_fields_for: עורך שדות פרויקט מותאמים אישית
   editing_observation_field: עריכת שדה תצפיות
   editing_observation_id: "עריכת תצפית %{obs_id}"
   editing_project: עריכת %{project}
@@ -1203,6 +1271,8 @@ he:
   exact_location: מיקום_מדויק
   exact_rank: דרוג מדויק
   except: למעט
+  exclude_users: הוצא משתמשים
+  exclusion_filters: פילטרי אי-כלילה
   existing_flags: דגלים קיימים
   exit_full_screen: "יציאה ממסך מלא"
   explore: גלו את העולם
@@ -1229,6 +1299,8 @@ he:
   favorites: "מועדפים"
   feature_this_project_: "הצגת פרוייקט זה"
   featured: נבחרים
+  #Title for a button or section describing the "featured" status of a project
+  featuring: כולל
   feedback: משוב
   #Plural noun, as in Atom and RSS feeds
   feeds: 'פיידים'
@@ -1486,6 +1558,7 @@ he:
   in_place_x: ב%{place}
   #Label for messages you've received
   inbox: דואר נכנס
+  include_users: כולל משתמשים
   including: כולל
   in_progress: בתהליך
   in_the_past: בעבר
@@ -1519,6 +1592,7 @@ he:
   is_now: עכשיו
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: האם הנתונים מאפשרים לאשר שזהו %{taxon}?
   is_this_place_a_duplicate: האם מקום זה קיים כבר?
+  it_can_now_be_used_for_research: מעכשיו ניתן לשימוש במחקר והכללה שאתרים אחרים
   join: הצטרפות
   join_and_add_an_observation_to_project_html: הצטרפות והוספת תצפית ל%{project}
   join_project: הצטרף לפרוייקט זה
@@ -1787,10 +1861,13 @@ he:
   members: חברים
   membership_model: מודל חברות
   mentioned_you_in_noun_html: "%{user} הזכיר אותך ב%{noun}"
+  mentioned_you_in_noun_by_user_html: "%{user} הזכיר אותך ב%{noun} של %{by}"
   mentioned_you_in_a_x_on_noun_html: "%{user} הזכיר אותך ב%{x} על %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} הזכיר אותך ב%{x} על %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} הזכיר אותך ב%{x} על %{noun} של %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} הזכיר אותך ב%{x} על %{noun} של %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} הזכיר אותך ב%{x} על %{noun} של %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} הזכיר אותך ב%{x} על %{noun} של %{by}"
   merge: מיזוג
   merge_it_with_another_place: מיזוג עם מקום נוסף
   merge_two_places_together: איחוד שני מקומות. כל המינים ברשימות המינים יאוחדו, וכן גם כל המידע הגאוגרפי.
@@ -1860,6 +1937,7 @@ he:
     שנצפה לפני %{operand}
   must_be_observed_in: הנצפים ביותר ב
   must_be_less_than_x_MB: "חייב להיות קטן מ %{x} MB"
+  must_have_observation_field: "חובה ששדה '%{operand}' יימלא"
   must_have_x: "חייב להכיל %{x}"
   mute_user: השתקת משתמש
   mute_removed: ביטול השתקה
@@ -1956,6 +2034,7 @@ he:
   no_its_as_good_as_it_can_be: לא, זה הכי טוב שאפשר
   no_favorites_added:
     current_user: טרם הוספת מועדפים.
+    user: "%{user} טרם הוסיף מועדפים."
   no_license_all_rights_reserved: אין רשיון (כל הזכויות שמורות)
   no_managers_set: לא הוגדרו מנהלים
   no_matching_invitations: אין הזמנות תואמות
@@ -2038,6 +2117,8 @@ he:
   observation_added: תצפית הוספה
   observation_added_to_the_project: "תצפית הוספה לפרויקט %{project}"
   observation_brief_something_on_day: "משהו ביום %{day}"
+  observation_brief_something_on_day_at_time_by_user: "משהו ביום %{day} בשעה %{time} על ידי %{user}"
+  observation_brief_something_on_day_by_user: "משהו ביום %{day} על ידי %{user}"
   observation_brief_something_by_user: "משהו מאת %{user}"
   observation_brief_something_from_place: "משהו מ%{place}"
   observation_brief_something_from_place_by_user: "משהו מ %{place} על ידי %{user}"
@@ -2046,6 +2127,8 @@ he:
   observation_brief_something_from_place_on_day_at_time: "משהו מ%{place} ביום%{day} בשעה %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "משהו מ%{place} ביום %{day} בשעה %{time} על ידי %{user}"
   observation_brief_taxon_on_day: "%{taxon} ביום %{day}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} ביום %{day} בשעה %{time} על ידי %{user}"
+  observation_brief_taxon_on_day_by_user: "%{taxon} ביום %{day} על ידי %{user}"
   observation_brief_taxon_by_user: "%{taxon} על ידי %{user}"
   observation_brief_taxon_from_place: "%{taxon} מ%{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} מ%{place} על ידי %{user}"
@@ -2119,12 +2202,14 @@ he:
   observer: מתצפת/ת
   observers: מתצפתים
   observer_short: מתצפת/ת
+  occurence_status_describes_how: 'ססטוס הימצאות מתאר את שכיחות טקסון מסיום באיזור מסוים. <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">לצפייה בפרטים בDarwinCore''''.</a>'
   occurrence_status: סטטוס הופעה
   occurrence_status_descriptions:
     absent: לא מופיע בשטח זה
     common: מופיע בשכיחות גבוהה
     present: מופיע באזור זה
     uncommon: מופיע באופן קבוע אך במספרים קטנים.יש צורך בחיפוש מדוקדק של בית הגידול
+  occurrence_status_establishment_means: סטטוס הימצאות, דרך התבוססות
   occurrence_status_levels:
     present: נמצא
     common: שכיח
@@ -2173,6 +2258,7 @@ he:
   one_by_one: "אחד אחד"
   one_of_your_lists: "אחת מהרשימות שלך..."
   only_administrators_may_access_that_page: רק לאדמיניסטורים גישה לדף זה
+  only_an_admin_can_remove_project_users: רק מנהל יכול להסיר משתמשים מפרויקט
   only_curators_can_add_edit_scientific_names: רק אוצרים יכולים להוסיף/לערוך שמות מדעיים
   only_curators_can_access_that_page: רק לאוצרים גישה לדף זה.
   only_files_with_10000_rows_at_a_time: רק קובצים בעלי פחות מ10,000 שורות בבקשה
@@ -2218,6 +2304,7 @@ he:
   other_names: שמות אחרים
   other_species_commonly_misidentified_as_this_species: מינים אחרים שמזוהים בטעות עם מין זה
   other_taxa_commonly_misidentified_as_this_genus: טקסונים אחרים המוגדרים בטעות כמין זה
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: טקסונים אחרים אשר נזהו בטעות כסוג זה ב<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: טקסונים אחרים המוגדרים בטעות כבן-כלאיים זה
   other_taxa_commonly_misidentified_as_this_rank: טקסונים אחרים המוגדרים בטעות כ%{rank} לעתים קרובים
   other_taxa_commonly_misidentified_as_this_species: טקסונים אחרים המוגדרים בטעות כמין זה
@@ -2298,6 +2385,8 @@ he:
       building: מבנה
       Canton: מחוז
       canton: מחוז
+      City Building: בניין עירוני
+      city building: בניין עירוני
       Colloquial: סיגנון דיבור
       colloquial: סיגנון דיבור
       Commune: מחוז מנהלי
@@ -3197,6 +3286,7 @@ he:
   taxonomy_details_for: פרטים טקסונומיים של
   taxonomy_settings: הגדרות טקסונומיות
   teachers_guide: מדריך למורה
+  tell_everyone_a_little_about_you: ספרו לכולם על עצמכם...
   tell_the_world_a_little_about_yourself: ספרו לנו על עצמכם
   tell_us_why: ספרו לנו למה...
   terms: תנאים
@@ -4012,6 +4102,8 @@ he:
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           המידע שאנו עשויים לחלוק עם גופים אלו כולל
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          כתובות IP. ניתן איתן לחשב את מיקומך עד לרמת עיר מסוימת, ולעקוב אחרייך באינטרנט. שים לב כי הפעלנו <a href="https://support.google.com/analytics/answer/2763052">IPים אנונימיים</a> בGoogle Analytics. Firebase Crashlytics <a href="<a href="https://firebase.google.com/support/privacy">יכולים לשמור כתובות IP לזמנים מוגבלים</a>.
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           פרטי דפדפן כגון בית יוצר, מודל וגריסה
         prefers_no_tracking_label_desc_info_we_share_crash_details: |

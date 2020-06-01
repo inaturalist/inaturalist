@@ -1997,10 +1997,16 @@ es:
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Mes
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
@@ -5125,6 +5131,7 @@ es:
           </p>
         rules:
           captive: ser cautivo/cultivada
+          coordinates_shareable_by_project_curators: coordinables para ser compartidos por los curadores del proyecto
           georeferenced: tener coordenadas
           has_a_photo: tener una foto
           has_a_sound: tener un sonido

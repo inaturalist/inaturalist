@@ -485,6 +485,8 @@ fr:
   are_you_sure_remove_taxon_from_list: "Êtes-vous certain de vouloir enlever ce taxon de la liste?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Êtes-vous certain
+  are_you_sure_unresolve_flag?: |
+    Êtes-vous sûr de vouloir annuler la résolution du problème signalé ? Ceci supprimera le changement et l'utilisateur qui l'a résolu de cette page.
   are_you_sure_want_delete_taxon: "Êtes-vous certain de vouloir supprimer ce taxon?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des taxons descendants.
@@ -655,6 +657,7 @@ fr:
   cant_merge_a_taxon_with_itself: Impossible de fusionner un taxon avec lui-même.
   captive: En captivité
   captive_cultivated: En captivité / cultivé
+  captive_observations: Observation captive
   card: Carte
   casual: occasionnel
   casual_: Occasionnel
@@ -1187,6 +1190,7 @@ fr:
   editing_project: Modification de %{project}
   editing_project_asset: Modification du bien du projet pour
   editing_subscription_to_x_html: "Modification de l’abonnement à %{x}"
+  editing_taxon: Edition de %{taxon}
   editing_taxon_link: Modification du lien relatif au taxon
   editing_taxon_name_for_taxon_html: Modification du nom du taxon "%{name}" pour %{taxon}
   editing_taxon_range: Modification de l’aire de répartition de taxon
@@ -1338,7 +1342,13 @@ fr:
   flag_for_check_list_title_html: |
     Indicateur de la liste de contrôle : %{title}
   flag_for_comment_id_html: Signaler pour <a href="%{url}">Commentaire %{id}</a>
+  flag_for_comment_id_deleted: Signalement pour le commentaire %{id} (supprimé)
   flag_for_curation: Marquer pour la supervision
+  flag_for_guide_title_html: |
+    Signalement du Guide : %{title}
+  flag_for_identification_id_html: Signalement pour <a href="%{url}">Identification %{id}</a>
+  flag_for_list_title_html: |
+    Signalement de la liste: %{title}
   flag_for_observation_title_html: |
     Signalement pour l'Observation : %{title}
   flag_for_photo_id_html: Signalement pour la <a href="%{url}">Photo %{id}</a>
@@ -1449,6 +1459,7 @@ fr:
   got_it!: C’est bon !
   got_your_data_somewhere_else?: Avez-vous obtenu vos données ailleurs ? Nous pouvons vous aider.
   graft: Greffer
+  graft_taxon: Rattacher %{taxon}
   grafting_attemps_to_insert_this_taxon: Le greffage tente d’insérer ce taxon dans notre arbre taxinomique en trouvant un taxon de rang supérieur ou en créant tous les taxons intermédiaires afin de le rattacher à un taxon de rang supérieur.
   grant_role: "%{grant} rôle %{role}"
   grid: Grille
@@ -1898,6 +1909,8 @@ fr:
   mail_disclaimer: "%{site_name} ne permettra pas à ses utilisateurs de vous envoyer des invitations supplémentaires au moyen de notre système d’invitation. Merci de signaler les abus d’invitation à %{site}."
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contenu principal
+  #Stub text for the main content section when editing custom project data
+  main_content_description: Tapez ici le contenu principal
   make_a_new_place: Créer un nouveau lieu
   make_a_taxon_swap_instead?: voulez-vous plutôt faire un échange de taxons?
   make_curator: Créer un responsable de l’organisation
@@ -1966,6 +1979,7 @@ fr:
   misidentifications: Identifications erronées
   misleading_or_illegal_content_html: |
     Contenu trompeur ou illégal, insultes raciales ou ethniques, etc.
+  mobile: Portable
   mollusks: mollusques
   momentjs:
     shortRelativeTime:
@@ -2043,6 +2057,8 @@ fr:
   name_entered: Nom saisi
   name_or_slug: "Nom ou identifiant de l’URL, par ex. mon-projet"
   name_of_the_place_you: Nom du lieu où vous avez fait l’observation
+  name_providers:
+    col: Catalogue of Life
   names: Noms
   names_for_taxon_html: "Noms de %{taxon}"
   native: indigène
@@ -2641,6 +2657,10 @@ fr:
       subdivision: Sous-division
       Suburb: Banlieue
       suburb: banlieue
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Soum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: soum
       Supername: Surnom
       supername: surnom
       Territory: Territoire
@@ -2653,6 +2673,8 @@ fr:
       undefined: indéfini
       Unknown: Inconnu
       unknown: inconnu
+      Village_block: Quartier
+      village_block: quartier
       Zone: Zone
       zone: zone
   place_guess: lieu au hasard
@@ -3249,6 +3271,8 @@ fr:
   scale_colon: "Échelle :"
   schemes: Plans
   schemes_including: Plans comprenant
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Nom scientifique
   search: Rechercher
   search_all_fields: chercher tous les champs
   search_by_name_or_email: Rechercher par nom ou par adresse électronique
@@ -3262,6 +3286,8 @@ fr:
   search_list: Liste de recherche
   search_observations: "Rechercher des observations"
   search_projects: Rechercher des projets
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: Chercher la raison
   search_results_for: Rechercher des résultats pour
   search_results_for_query: 'Résultats de recherche pour « %{query} »'
   search_remote: Recherche à distance
@@ -3344,6 +3370,8 @@ fr:
   sign_up: Inscrivez-vous
   similar_species: Espèces proches
   similar_taxa: Taxons similaires
+  #Journal post formatting option
+  simple: Simple
   single_observation: Observation unique
   sizes: Tailles
   skip_to_next_page: "Passer à la page suivante"
@@ -3410,6 +3438,8 @@ fr:
   source_wikipedia: "Source : Wikipédia"
   source_list_: "Liste de source"
   source_list:
+    ubio: uBio
+    catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
     new_zeland_organisms_register: New-Zealand Organisms Register
     nzbrn_birds: Oiseaux du NZBRN
@@ -3448,6 +3478,7 @@ fr:
   specify_the_reason_youre_flagging: Spécifier le motif du marquage de cet élément
   #Abbreviation for "source"
   src: Rech.
+  standard: Standard
   start: Début
   start_a_new_project: Démarrer un nouveau projet
   start_a_project: Démarrer un projet
@@ -3461,6 +3492,8 @@ fr:
   stats: Statistiques
   stats_for_this_year_have_not_been_generated: Les statistiques pour cette année n’ont pas été générées.
   status: État
+  status_globally: '"%{status}" Global'
+  status_in_place: '"%{status}" à %{place}'
   stay_and_try_again: Rester et réessayer
   still_no_luck?: Toujours pas de chance?
   still_needs_id?: La communauté peut-elle confirmer/améliorer une ID ?
@@ -3600,6 +3633,7 @@ fr:
   taxon_changes: Modifications de taxon
   taxon_colors: Couleurs des taxons
   taxon_curators: Responsables des taxons
+  taxon_framework_complete: "Complet : Vrai"
   taxon_framework_notes: Notes du cadre de taxon
   taxon_framework_relationship: Relation du cadre de taxon
   taxon_framework_relationship_number: "Relation du cadre du taxon %{number}"
@@ -5232,6 +5266,8 @@ fr:
           précieuses.
           </p>
         change_admin_desc: Choisir un des responsables du projet pour être le nouvel administrateur.
+        change_owner_alert: |
+          Cela supprimera votre possibilité de supprimer ce projet ou d'en transférer à nouveau la propriété. Voulez-vous continuer ?
         cover_desc: "Image de bannière facultative qui apparaîtra en haut de votre page de projet. Elle doit faire 950px de large et moins de 400px de haut."
         custom_project_fields_means: "Personnalisez la bannière du projet, ajoutez du contenu au site et modifiez le CSS."
         end_time_desc: "Date de fin du bioblitz. Doit être moins d’un an après la date de début"
@@ -5245,6 +5281,8 @@ fr:
           On dirait que ce projet peut être converti en un nouveau <a href="%{url}">project Collection</a>.
         last_aggregated_at_desc: |
           Moment où l’agrégateur a terminé d’ajouter des observations à ce projet
+        #Label for button to make another user the owner of a project
+        make_owner: Rendre Propriétaire
         no_curators: |
           Il n’y a pas de responsable de projet. Si vous voulez affecter une nouvelle personne comme administrateur, elle doit d’abord rejoindre ce projet, et vous devez la rendre responsable.
         observation_aggregation_desc_html: |
@@ -5283,6 +5321,7 @@ fr:
           </p>
         rules:
           captive: être captif/cultivé
+          coordinates_shareable_by_project_curators: coordonnées partageables par les responsables du projet
           georeferenced: avoir des coordonnées
           has_a_photo: avoir une photo
           has_a_sound: avoir un son
@@ -5374,6 +5413,7 @@ fr:
           Remarque : Si vous ne sélectionnez pas de taxons, lieux ou utilisateurs, tous seront inclus par défaut.
         only_display_member_observations: |
           Afficher uniquement les observations des membres du projet (les personnes qui ont rejoint le projet)
+        optionally_filter_media: Filtrer les observations en fonction de la présence d'image(s), de son(s) ou des deux
         or_drag_and_drop: (ou glissez et déposez)
         please_specify_the_requirements: |
           Veuillez spécifier les prérequis des observations à ajouter à ce projet.
@@ -5391,6 +5431,8 @@ fr:
           Donner une explication concise de votre projet. Les deux cents premiers caractères environ seront
           visibles à droite de la bannière de l’écran d’accueil du projet, donc mettez le meilleur en premier !
         project_summary_placeholder: Découvrir et suivre les oiseaux du parc de Golden Gate…
+        select_native_to_include: |
+          Sélectionnez "Natif" pour inclure uniquement les taxons qui ont été marqués comme "Natif" sur le(s) lieu(x) de votre projet. Sélectionnez "Introduit" pour inclure uniquement les taxons qui ont été marqués comme "Introduit" sur le(s) lieu(x) de votre projet.
         show_projects_as_flags: Afficher les projets avec des drapeaux sur la carte
         start_and_end_times_for_bioblitzes: Heures de début et de fin (pour les événements de type bioblitz)
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
@@ -6291,6 +6333,7 @@ fr:
       invalid: n’est pas valide
       less_than: doit être inférieur à %{count}
       less_than_or_equal_to: doit être inférieur ou égal à %{count}
+      new_project_owner_must_be_a_manager: Le nouveau propriétaire du projet doit être un administrateur
       not_a_number: n’est pas un nombre
       not_an_integer: doit être un nombre entier
       odd: doit être impair
@@ -6404,6 +6447,7 @@ fr:
         invalid: n’est pas valide
         less_than: doit être inférieur à %{count}
         less_than_or_equal_to: doit être inférieur ou égal à %{count}
+        new_project_owner_must_be_a_manager: Le nouveau propriétaire du projet doit être un administrateur
         not_a_number: n’est pas un nombre
         not_an_integer: doit être un entier
         odd: doit être impair
@@ -6538,6 +6582,7 @@ fr:
         invalid: n’est pas valide
         less_than: doit être inférieur à %{count}
         less_than_or_equal_to: doit être inférieur ou égal à %{count}
+        new_project_owner_must_be_a_manager: Le nouveau propriétaire du projet doit être un administrateur
         not_a_number: n’est pas un nombre
         not_an_integer: doit être un entier
         odd: doit être impair

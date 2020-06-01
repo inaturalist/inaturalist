@@ -1188,6 +1188,7 @@ nl:
   editing_project: '%{project} aan het bewerken'
   editing_project_asset: Projectbestand bewerken voor
   editing_subscription_to_x_html: "Abonnement op %{x} bewerken"
+  editing_taxon: Bewerk %{taxon}
   editing_taxon_link: Taxonkoppeling bewerken
   editing_taxon_name_for_taxon_html: Taxonnaam "%{name}" voor %{taxon} bewerken
   editing_taxon_range: Taxonreeks bewerken
@@ -1459,6 +1460,7 @@ nl:
   got_it!: Begrepen!
   got_your_data_somewhere_else?: Heb je je data ergens anders? We kunnen helpen.
   graft: Enten
+  graft_taxon: Ent %{taxon}
   grafting_attemps_to_insert_this_taxon: Enten probeert dit taxon in onze taxonomische boom in te voegen, door een bestaand oudertaxon te vinden of alle noodzakelijke tussenliggende taxa te creëren om het aan een bestaand hoger taxon te koppelen.
   grant_role: "%{grant} %{role} rol"
   grid: Raster
@@ -3334,6 +3336,8 @@ nl:
   scale_colon: "Schaal:"
   schemes: Schema's
   schemes_including: Schemes inclusief
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Wetenschappelijke naam
   search: Zoeken
   search_all_fields: Doorzoek alle velden
   search_by_name_or_email: Zoek op naam of e-mail
@@ -5084,6 +5088,9 @@ nl:
              op hetzelfde moment.
           </p>
         change_admin_desc: Kies één van de projectcuratoren als de nieuwe administrator.
+        change_owner_alert: |
+          Hiermee verwijder jij jouw mogelijkheid om dit project te verwijderen of
+          het eigendom opnieuw over te dragen. Wilt je doorgaan?
         cover_desc: "Optionele bannerafbeelding die bovenaan je projectpagina wordt weergegeven. Moet 950 px breed zijn, en minder dan 400 px hoog."
         custom_project_fields_means: "Pas de projectbanner aan je eigen wensen, voeg inhoud aan de zijkant toe en bewerk  de CSS."
         end_time_desc: "Eindtijd voor je bioblitz. Moet minder dan een jaar na de starttijd zijn"
@@ -5096,6 +5103,8 @@ nl:
           Het lijkt erop dat dit project kan worden geconverteerd naar een nieuw <a href="%{url}">verzamelproject</a>.
         last_aggregated_at_desc: |
           Tijd dat de aggregator voor het laatst klaar was met het toevoegen van waarnemingen aan dit project
+        #Label for button to make another user the owner of a project
+        make_owner: Eigenaar maken
         no_curators: |
           Er zijn geen projectcuratoren. Als je een nieuw persoon wilt toewijzen als de administrator, moet deze zich eerst aansluiten bij dit project en moet je ze curator maken.
         observation_aggregation_desc_html: |
@@ -5124,6 +5133,7 @@ nl:
           </p>
         rules:
           captive: in gevangenschap/gecultiveerd zijn
+          coordinates_shareable_by_project_curators: hebben coördinaten die zichtbaar zijn voor projectcuratoren
           georeferenced: coördinaten hebben
           has_a_photo: een foto hebben
           has_a_sound: een geluid hebben
@@ -5204,6 +5214,7 @@ nl:
           Opmerking: als je geen taxa, plaatsen of gebruikers selecteert worden alle volgens de standaard opgenomen.
         only_display_member_observations: |
           Toon alleen waarnemingen van projectleden (mensen die zich bij het project hebben aangesloten)
+        optionally_filter_media: Optioneel filter op waarnemingen met foto's, geluiden of beide.
         or_drag_and_drop: (of sleep en plaats)
         please_specify_the_requirements: |
           Geef de vereisten op voor de waarnemingen die moeten worden toegevoegd aan dit project.
@@ -5220,11 +5231,18 @@ nl:
         project_summary_help: |
           Geef een beknopte uitleg van je project. Ongeveer de eerste 200 karakters zullen zichtbaar zijn aan de rechterkant van de banner van het startscherm van het project, dus begin met de beste dingen!
         project_summary_placeholder: Ontdek en volg de vogels van het Zuiderpark ...
+        select_quality_grade: |
+          Selecteer ten minste één kwaliteitsbeoordeling. Verdere uitleg voor elke kwaliteitsbeoordeling kan worden gevonden op
+          onze <a href="%{url}">FAQ pagina</a>.
         show_projects_as_flags: Toon projecten als vlaggetjes op de kaart
         start_and_end_times_for_bioblitzes: Start- en eindtijd/-datum voor bioblitz-achtige activiteiten
         traditional_projects_cannot_be_copied: Traditioneel project kan niet worden gekopieerd.
         umbrella_project_features: "Kenmerken van het overkoepelende project:"
         unique_url_for_outreach: Unieke URL voor outreach
+        use_this_for_a_time_limited_event: |
+          Gebruik dit voor een tijdelijk evenement, bioblitz of seizoensgebonden project. Selecteer een datum, datumbereik of in welke maanden van het jaar de waarnemingen moeten zijn ingevoerd (ongeacht het jaar). Wanneer je de datumbereik sectie gebruikt, zorg er dan voor dat je de juiste tijden en tijdzones hebt geselecteerd of verwijder de tekst van de tijdzone om
+          waarnemingen toe te voegen die op elk moment die hele dag worden gemaakt. Je kunt de startdatum of einddatum
+          leeg laten als je het project wilt beperken tot slechts één datum.
         users_can_follow_your_project: Gebruikers kunnen je projectnieuws volgen via dagboekberichten.
         use_this_link_to_create_html: |
           Gebruik <a href="%{url}">deze link</a> om in plaats daarvan een traditioneel project te maken.
@@ -5999,9 +6017,11 @@ nl:
       invalid: is ongeldig
       less_than: moet kleiner zijn dan %{count}
       less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
+      new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
       not_a_number: is geen getal
       not_an_integer: moet een geheel getal zijn
       odd: moet oneven zijn
+      only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
       record_invalid: 'Validatie is mislukt: %{errors}'
       requires_privilege_speech: |
         je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
@@ -6135,9 +6155,11 @@ nl:
         invalid: is ongeldig
         less_than: moet kleiner zijn dan %{count}
         less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
+        new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
         not_a_number: is geen getal
         not_an_integer: moet een geheel getal zijn
         odd: moet oneven zijn
+        only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
         record_invalid: 'Validatie is mislukt: %{errors}'
         requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
         requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
@@ -6275,9 +6297,11 @@ nl:
         invalid: is ongeldig
         less_than: moet kleiner zijn dan %{count}
         less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
+        new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
         not_a_number: is geen getal
         not_an_integer: moet een geheel getal zijn
         odd: moet oneven zijn
+        only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
         record_invalid: 'Validatie is mislukt: %{errors}'
         requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
         requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen

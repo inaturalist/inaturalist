@@ -1180,6 +1180,7 @@ fi:
   editing_project: Muokataan projektia %{project}
   editing_project_asset: Muokataan projektitiedostoja
   editing_subscription_to_x_html: "Muokataan tilausta kohteelle %{x}"
+  editing_taxon: Muokataan taksonia %{taxon}
   editing_taxon_link: Muokataan Taksonin Linkkiä
   editing_taxon_range: Muokataan taksonin aluetta
   editing_this: Muokataan %{elem}
@@ -1976,10 +1977,16 @@ fi:
       yy: "%dv"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D.MM HH.mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D. MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D.MM.YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D.MM"
   month: Kuukausi
   monthly_supporter_since_date_html: |
     <a href="%{url}">Kuukausittainen tukija</a> %{date} lähtien
@@ -3180,6 +3187,8 @@ fi:
   saving_verb: Tallennetaan
   scale_colon: "Mittakaava:"
   schemes: Suunnitelmat
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Tieteellinen nimi
   search: Hae
   search_all_fields: etsi kaikista kentistä
   search_by_name_or_email: Hae nimellä tai sähköpostilla
