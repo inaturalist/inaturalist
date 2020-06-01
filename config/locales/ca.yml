@@ -270,6 +270,7 @@ ca:
   add_several_observations_at_once: Afegiu diverses observacions a la vegada.
   add_sex_female_annotation: 'Afegiu nota "Sexe: Femella"'
   add_sex_male_annotation: 'Afegiu nota "Sexe: Mascle"'
+  add_sex_cannot_be_determined_annotation: 'Afegir anotació "Sexe: No es pot determinar"'
   add_some_now: Afegiu-ne algunes ara
   add_tag: Afegiu etiqueta
   add_tags: Afegiu etiquetes
@@ -527,6 +528,8 @@ ca:
     Qualsevol indicador de correu brossa del seu contingut s'eliminarà.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Esteu segur que voleu eliminar aquests %{x} tàxons?"
   are_you_sure_you_want_to_remove_this_invitation: Esteu segur que voleu cancel·lar aquesta invitació?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Esteu segur que voleu eliminar aquesta observació de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Esteu segur que voleu eliminar aquesta espècie o grup de la llista de comprovació de %{place}?"
   associated_observations: Observacions associades
   associated_taxa: Tàxons associats
@@ -647,6 +650,7 @@ ca:
   cant_merge_a_taxon_with_itself: No podeu combinar aquest tàxon amb ell mateix.
   captive: Captiu
   captive_cultivated: En captivitat / Cultivat
+  captive_observations: Observació en Captivitat
   card: Targeta
   casual: ocasional
   casual_: Ocasional
@@ -824,6 +828,7 @@ ca:
   connect_to_flickr_again_to_authorize_write_permissions: Connecteu el Flickr novament per a autoritzar els permesos d’escriptura
   connecting_to_facebook: "Connectant-se a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecteu el vostre compte de %{site_name} amb comptes en altres llocs permetrà que entreu a %{site_name} amb les dades d'aquests llocs."
+  cannot_be_changed_during_a_content_freeze: No es pot canviar mentre el contingut està congelat
   conservation_status: Estat de conservació
   conservation_status_descriptions:
     status: Codi d'estat, rang, etc. Si ja existeix un codi curt com E o CR, si us plau, utilitzeu-lo, en cas contrari utilitzeu el full d'estat, per exemple, en perill o en perill crític.
@@ -884,6 +889,7 @@ ca:
     fruiting: Fruit visible i encara fixat a la planta
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
     teneral: Adult que ja pupat recentment però no ha assolit encara la seva forma adulta definitiva
+    cannot_be_determined: No es pot determinar a partir de les dades aportades
   controls: Controls
   convert: Convertiu
   coordinate_systems: Sistemes de coordenades
@@ -1544,6 +1550,7 @@ ca:
   ignore_and_continue: Ignora i continuar
   ignore_times: Ignoreu les vegades
   image_must_be_exactly: la imatge ha de ser d'una amplada exacta de 950px i un màxim de 400px d'alçada
+  image_size_control: Control de la mida de la imatge
   imperiled: En perill
   import: Importa
   import_all_photos_as_observations: Importa totes les fotos com a observacions
@@ -1646,6 +1653,9 @@ ca:
   label_to_group_a_batch_of_taxon_changes: Nom de l'etiqueta per agrupar un lot de canvis als tàxons
   location_private: Ubicació Privada
   location_unknown: Ubicació desconeguda
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Bloquejar el nivell de zoom
   language_slash_type: Idioma / Tipus
   #Large photo size
   large: gran
@@ -1978,10 +1988,16 @@ ca:
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "LT, D MMM YYYY z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Mes
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> des de %{date}
@@ -3042,6 +3058,8 @@ ca:
   project_settings: Configuració del projecte
   project_start_time_datetime: "Hora d'inici: %{datetime}"
   project_that_does_not_contain_these_observations: Projecte que no conté aquestes observacions
+  project_type_description: |
+    Valoracions i Bioblitzes són tipus especials de projectes. Les Valoracions són col·laboracions per a valorar l'estat d'un grup d'espècies, normalment d'importància per a la conservació. Els Bioblitzes són esdeveniments que tenen un inici i un final determinats.
   project_user_cannot_be_found: No s'ha trobat l'usuari del projecte
   project_user_was_invalid: "L'usuari del projecte no és vàlid: %{project_user}"
   project_was_successfully_created: El projecte s'ha creat satisfactòriament.
@@ -3238,6 +3256,7 @@ ca:
   rules_for_becoming_a_member: Normes per ser membre
   rules_for_becoming_memner: Regles per ser un Membre
   rules_types:
+    must_be_captive: ha de ser captiva / conreada
     must_be_georeferenced: han d'estar georeferenciades
     must_be_identified: ha de ser identificada
     must_be_on_list: ha d'estar a la llista
@@ -3919,6 +3938,7 @@ ca:
     tooltips:
       add: Afegiu observació(ns)
       combine: Combineu les observacions seleccionades
+      duplicate: Dupliqueu les observacions seleccionades
       photo_failed: Fallada al pujar la foto
       remove: Elimineu les observacions seleccionades
       remove_observation: Traieu l'observació
@@ -4340,6 +4360,14 @@ ca:
     announcements:
       locales_desc: |
         Premeu CMD- o SHIFT- per a seleccions múltiples. Si no seleccioneu cap es mostrarà un avís a tots els usuaris, amb independència de la seva localització. Si escolliu un idioma, sense cap regió, *no* seleccionarà les regions locals, per exemple, si escolliu en no li apareixerà a les persines que hagin escollit en-US. Si voleu dirigir-ho a ambdues, cal que es escolliu ambdues. Si voleu mostrar l'anunci per a tots els membres de un lloc, deixeu-lo en blanc.
+    content_freeze:
+      content_freeze: Congela el contingut
+      during_this_time: |
+        Mentre el contingut està congelat alguns continguts no poden ser creats, destruïts o modificats
+      this_functionality_will_return: |
+        Aquesta funció es recuperarà tan bon punt la congelació del contingut acabi.
+      we_expect_this_functionality_will_return_by_date: |
+        Esperem que aquesta funció es recuperarà el %{date}
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -5068,6 +5096,7 @@ ca:
           </p>
         rules:
           captive: captiva/conreada
+          coordinates_shareable_by_project_curators: Coordenades compartides pels supervisors del projecte
           georeferenced: té coordenades
           has_a_photo: té foto
           has_a_sound: té só
@@ -5236,6 +5265,8 @@ ca:
           Assegureu-vos de llegir sobre les diferències en el nostre <a href="%{url}" target="_blank">blog sobre Projectes de Col·leció</a>.
         this_is_a_preview: |
           Aquesta és una previsualització de com quedaria el vostre projecte com a Projecte de Col·lecció.
+        this_project_has_not_defined_requirements: |
+          Aquest projecte no ha definit cap requeriment de les observacions. Els projectes necessiten que se seleccioni un o més tàxons (p.e. ocells, coníferes), llocs (Brasil, Yellowstone), usuaris, i/o dates per començar a mostrar observacions.
       updates_desc: |
         Rebre les actualitzacions d'aquest projecte en el vostre tauler i en el correu electrònic diari d'actualitzacions.
     search:
