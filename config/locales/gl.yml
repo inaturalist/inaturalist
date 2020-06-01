@@ -1615,7 +1615,7 @@ gl:
   internal_server_error: Erro do Servidor Interno
   internal_taxon_including_descendants: Taxon interno (incluíndo descendentes)
   internal_taxon_rank: Rango de taxon interno
-  introduced: Introduciu
+  introduced: Introducida
   introduced_in_place: "Introducido en %{place}"
   invitation: Convite
   invite: Convidar
@@ -5420,10 +5420,16 @@ gl:
           "Medios de establecemento" describe como chegou a especie a onde aparece actualmente. Introducido significa que chegou por actividade humana, mentres que medios nativos indican que chegou sen asistencia humana. As especies endémicas só aparecen en ubicacións específicas e en ningún lugar máis.
         about_taxon_curators_desc: |
           Esta xente xestiona a parte da árbore taxonómica que inclúe este taxon. Se queres facer mudanzas, por favor, marca este taxon ou contacta a algunha destas persoas.
+        charts_help_seasonality: |
+          Esta gráfica mostra o número de observacións deste taxon agrupado mensualmente. Repara que estes son números de observacións, así que están influídos polo tempo no que organismo pode ser observado e cando a xente se interesa por observalos. Así, un paxaro pode parecer moi activo en maio, pero pode ser debido a que máis observadores de paxaros tenden a ignorar esta especie nos meses seguintes. De xeito semellante, se vires máis libeliñas en xuño ca en xaneiro, probablemente sexa debido a que temos máis observadores delas no hemisferio norte ca no sur e non porque as libeliñas sexan máis activas en xuño, así que ve o mapa cando consideres estas gráficas. Sempre será unha boa idea achegarse a estas gráficas con escepticismo cando haxa números baixos de observacións e/ou grandes discrepancias entre o número de observacións "Verificables" e "Grao de Investigación".
         charts_help_history: |
           Esta gráfica mostra o número de observacións deste taxon por mes para os últimos dez anos. De novo, ten un sesgo polo número de persoas observando, pero amosará picos inusuais en observacións, e se semella plana ou descendente aínda que haxa un incremento no número de observadores, pode suxerir unha mudanza na abundancia.
         charts_help_other: |
           Tamén amosamos gráficas de estacionalidade para as anotacións das observacións. As anotacións son un xeito de engadir metadados ás observacións usando un vocabulario controlado, p.e. se a observación mostra unha planta que está florecendo ou fructificando.
+        charts_help_relative_observations: |
+          A mostra da frecuencia como proporción relativa de tódalas observacións axuda a suavizar o efecto do crecemento xeral do sitio. Por exemplo, se o sitio está crecendo ó obter máis observacións a cada ano que pasa, obtemos máis observacións dun taxon individual, o que non che di nada sobre se hai máis dese taxon para observar ó redor, só que hai máis xente observando ese taxon. Mostrar a proporción relativa significa que se hai 100 observacións en total e 20 son deste taxon, a proporción é de 0,2 (20 / 100). Se a xente fai 2000 observacións no ano seguinte e 400 son deste taxon, a proporción segue sendo 0,2 (400 / 2000). Isto causa algunhas aberracións cando hai moi poucos observadores nun área, ou para os taxons que son observados raramente, pero o mesmo acontece para as contas totais.
+        complete_taxon_desc: |
+          Os taxons "completos" conteñen tódolos descendentes, taxons vixentes dun rango específico presente na base de dados do sitio. Cando un taxon está completo ata o nivel especie, por exemplo, podemos dicir cantas das súas especies foron observadas e a cantas lles falta aínda seren observadas. As contas de especies para taxons "completos" ata o nivel especie non inclúen especies incontables coma especies extintas ou conceptos inactivos de especies, e só inclúen especies e non taxons intraespecíficos coma subespecies ou variedades.
         discoveries_desc: "Especies recén identificadas máis recentes neste taxon"
         frequency:
           research: Grao De Investigación
@@ -5575,11 +5581,20 @@ gl:
           </p>
         licensing_desc_html: |
           A Licenza do teu contido dalle a calquera o dereito legal de usalo sen pedir o teu consentemento, sempre que cumpra cós termos da licenza. Ademáis, %{site_name} inclúe o teu contido con licenza Creative Commons en arquivos que se actualizan regularmente producidos por selectas organizacións socias interesadas nos nosos dados. Por exemplo, incluímos rexistros Sen Dereitos De Autor (CC0), Atribución (CC BY), e Atribución-Non Comercial (CC BY-NC) no arquivo que xeramos para a <a href="http://www.gbif.org/"> Global Biodiversity Information Facility</a> (GBIF), unha organización internacional e intergubernamental que compila e distribúe información sobre a biodiversidade de todo o mundo.
+        license_description_attribution_html: |
+          As descricións de licenzas e imaxes &copy;%{year} Creative Commons, usados baixo unha <a href="http://creativecommons.org/licenses/by/3.0/">Licenza Creative Commons Attribution</a> (que meta!)
         monthly_supporter: Patrocinador Mensual
         monthly_supporter_desc_html: |
           Os Patrocinadores Mensuais de iNaturalist fan contribucións automáticas que son recibidas pola Academia de Ciencias de California (EEUU IRS FIN 94-1156258) para apoiar a operación sen ánimo de lucro de iNaturalist e dos sitios da Rede iNaturalist.
           <a href="%{url}">Preme aquí para ser un Patrocinador Mensual</a>.
           Cando confirmemos o teu apoio, poderás marcar esta caixa para mostrar este estado no teu perfil. Nota: necesitarás empregar o mesmo enderezo de correo electrónico que usas en iNaturalist na Caixa de Doador para que poidamos confirmar que te fixeches Patrocinador Mensual.
+        muting_desc_html: |
+          <p>
+          Acalar a alguén evita que recibas notificacións sobre cousas que ese alguén faga, incluíndo comentarios nas túas observacións, enviarte mensaxes, mencionarte, etc. Acalar axúdache a ignorar a alguén sen que se lle impida facer nada.
+          </p>
+          <p>
+          Tamén podes acalar a canta xente queiras, pero pensa que podes estar ignorando notificacións potencialmente importantes, como identificacións que mudan a Identificación da Comunidade nas túas observacións.
+          </p>
         name_place_help_html: |
           Priorizar nomes vernáculos usados neste lugar.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5610,6 +5625,10 @@ gl:
           any: Calquera
           joined: Proxectos ós que te uniches
           none: "Ningún, só ti podes engadir as túas observacións a proxectos"
+        prefers_community_taxa_desc: |
+          %{site_name} segue o que cres que son as túas observacións e o que a comunidade pensa que son. A identificación que compartimos cós nosos socios de dados é a identificación da comunidade, pero se pensas que a opinión da comunidade non debe desautorizar a túa, podes optar por excluíla aquí. A xente aínda será capaz de engadir identificacións, pero a opinión da comunidade non será favorecida perante a túa. Isto significa que as túas observacións non poderán optar ó grao de investigación, non sendo que tí esteas de acordo cá comunidade.
+        prefers_coordinate_interpolation_protection_desc: |
+          Cando pós a xeoprivacidade dunha observación "escurecida" ou "privada", aplicarase a mesma xeoprivacidade a tódalas outras observacións do mesmo día para dificutar que outra xente atope as coordenadas verdadeiras baseándose nas observacións feitas ó redor do mesmo tempo.
         prefers_no_tracking_label: Non recoller dados de estabilidade e de uso usando servicios de terceiros
         prefers_no_tracking_label_desc_we_use: |
           Empregamos unha variedade de servicios de terceiros para monitorizar a estabilidade e diagnosticar erros e problemas no noso software. Estes terceiros inclúen
@@ -5624,19 +5643,37 @@ gl:
           Detalles do fallo, como exactamente cal foi a liña de código que causou o fallo
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Detalles do dispositivo, como marca e modelo dun teléfono mobil
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Os servicios de terceiros engaden un enorme valor para nós</strong>, mantendo a estabilidade e usabilidade de iNaturalist có noso relativamente pequeno cadro de persoal. En dispositivos móbiles, case non hai outro xeito para percibir os problemas que ocorren, xa que o software emprégase en dispositivos que non controlamos. Ás veces nin sequera nos decatamos dos problemas que ocorren ata que os vemos nos dados que estes servicios nos provén. <strong>Compartindo esta información, axúdasnos a atenderte a ti e á comunidade de iNaturalist enteira.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Repara que esta opción só se aplica a dados para anáise e de erros que estamos enviando explícitamente a estas compañías. Tódolos servidores de iNaturalist son fornecidos e aloxados por Microsoft, tódalas imaxes de iNaturalist están aloxadas por Amazon, e case tódolos mapas de iNaturalist están fornecidos por Google, o que significa que de cada vez que ves unha observación en iNaturalist, estás conectando ós servicios fornecidos por estas compañías e expoñéndolles o teu enderezo IP, no mínimo (na aplicación para iPhone empregamos os mapas de Apple). iNaturalist probablemente non existiría sen os servicios que estas empresas fornecen, e anque poidamos limitar a cantidade e os tipos de dados que compartimos con eles usando iNat, non podemos parar a corrente de dados por completo.
+        project_settings_desc: |
+          Lembra, isto non da permiso ós proxectos para acceder ás túas coordenadas ocultas ou para enviarte novas. Debes de unirte ós proxectos para concederlles estes permisos, or darllos caso a caso.
         same_day_geoprivacy_protection: Protección de xeoprivacidade no mesmo día
         search_place_help_html: |
           Ubicación predeterminada para as buscas de observacións.
         scientific_name_first_desc: |
           Mostrar os nomes científicos antes de que os vernaculares.
+        taxon_change_desc: |
+          Cando se combinan ou renomean taxons en %{site_name}, as túas observacións, taxons listados, identificacións, etc. serán actualizados automáticamente ós novos taxons se o cambio non é ambíguo. Se optas por excluílo ou o cambio é ambíguo (p.e. unha división), recibirás novas sobre o cambio vinculadas a unha ferramenta que poderás empregar para actualizar o teu contido se así o decides.
+        thanks_for_supporting_us!: '¡Agradecemos o teu apoio!'
         this_only_applies_to_traditional_projects: |
           Istó só é aplicable a proxectos tradicionais. Non podes excluír observacións de proxectos de recolla ou paraugas, que son esencialmente buscas gardadas.
           Podes ler máis <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
         youve_used_all_of_your_blocks: Xa usaches tódolos teus bloqueos. Elimina un bloqueo para engadir un novo.
       recent:
         about_recent_users: Acerca de
+        definitions_html: <dl><dt>Probablemente Lixo</dt><dd> O usuario probablemente é un remitente de correo lixo, o que significa que non ten observacións nin identificacións pero ten unha descrición no seu perfil. </dd><dt> Auto Lixo</dt><dd> Remitente de lixo que foi marcado como remitente de correo lixo polo sistema. </dd><dt> Lixo Manual</dt><dd> Remitente de lixo que foi marcado manualmente como remitente de correo lixo por un conservador do sitio. </dd><dt>Falsos Positivos</dt><dd> Usuarios que foron marcados como remitentes de lixo pero as marcas foron resoltas por conservadores do sitio porque realmente non eran remitentes de correo lixo.</dd></dl>
+        recent_users_desc_html: |
+          <p>
+          Queremos recibir novos usuarios, mais tamén combatir ós remitentes de correo lixo. Con sorte, esta ferramente axudaranos con ambas tarefas. Estamos marcando automáticamente moitos usuarios coma remitentes de correo lixo empregando <a
+          href="https://akismet.com/">Akismet</a>, pero Akismet non é perfecto, así que se queres pasar uns minutos marcando novas contas como remitentes de correo lixo ou non, axudarasnos.
+          </p>
       show:
+        take_a_chance_to_review_html: 'Aproveita a oportunidade para revisar <a href="%{link}">as nosas directrices</a>.'
         this_user_was_banned: Este usuario foi suspenso.
+        favorites_list_prompt_html: |
+          ¿Quéreste gabar dalgún dos teus taxons favoritos?%{link_start_tag}Crea unha lista%{link_end_tag} chamada "Favoritos" e as adicións máis recentes aparecerán neste espazo.
     user_parents:
       confirm:
         thanks_for_creating_a_minor_account: '¡GRACIÑAS POR CREAR UNHA CONTA INFANTIL!'
@@ -5657,6 +5694,8 @@ gl:
         step2_desc: |
           Para confirmar a túa identidade como adulto, precisas de fornecer unha doazón nominal de polo menos $1 US a iNaturalist usando unha tarxeta de crédito. Este é o xeito menos intrusivo de verificación de identidade que nos permite cumprir coas leis de privacidade. Por favor, asegúrate de usar o mesmo enderezo de correo electrónico que usaches no campo "enderezo de correo electrónico parental" no paso anterior.
         step3_title: AGARDA POLO CORREO ELECTRÓNICO DE CONFIRMACIÓN
+        step3_desc: |
+          Unha vez que comprobemos que o correo electrónico empregado na doazón e que o que entraches como "correo electrónico parental" coinciden, activaremos a conta infantil e enviarémoslle ó proxenitor un correo electrónico cás instruccións para iniciar sesión. Isto pode levar ata 24 horas.
         step3_donor_title: A CONTA INFANTIL FOI ACTIVADA
         step3_donor_desc: |
           Porque es un patrocinador de iNaturalist, conseguimos verificar a túa identidade coa túa doazón.
@@ -5676,7 +5715,10 @@ gl:
         share_with_fellow_naturalists: Comparte con outros naturalistas
         discuss_your_findings: Comenta os teus achados
         contribute_to_science: Contribúe á Ciencia
+        science_desc_html: |
+          Tódalas observacións poden contribuír á ciencia da biodiversidade, dende a unha bolboreta rara ata a mala herba máis común do teu xardín. Compartimos os teus achados con repositorios de dados científicos como <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a> para axudar a científicos a atopar e usar os teus dados. Todo o que tes que facer é observar.
         nature_at_your_fingertips: Natureza Ó Alcance Da Túa Man
+        keep_track: Segue de Preto
         record_your_encounters: |
           Rexitra os teus encontros con outros organismos e mantén listaxes de vida, todo na nube.
         create_useful_data: Crea Dados Útiles
@@ -6063,6 +6105,7 @@ gl:
         exclusion: está reservado
         greater_than: debe ser maior que %{count}
         greater_than_or_equal_to: debe ser maior ou igual a %{count}
+        inclusion: non está incluído na lista
         invalid: non é válido
         new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
         not_a_number: non é un número
@@ -6160,10 +6203,34 @@ gl:
       "@vow_or_con":
         vow: vogal
         con: consoante
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
       "@gender":
         m: macho
         f: femia
         "n": neutro
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
