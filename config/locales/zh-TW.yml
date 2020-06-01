@@ -1874,7 +1874,11 @@ zh-TW:
   mentioned_you_in_a_x_on_noun_html: "%{user} 在 %{noun} 中的 %{x} 提到了您"
   mentioned_you_in_an_x_on_noun_html: "%{user} 在 %{noun} 中的 %{x} 提到了您"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} 透過您在 %{noun} 中的 %{x} 提到了您"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} 透過您在 %{noun} 中的 %{x} 提到了您"
   merge: 合併
   merge_it_with_another_place: 與其它地點合併此
   merge_two_places_together: 將兩個地點合併為一。所有在名錄上的物種，以及地理資料將會合併。
@@ -1926,6 +1930,8 @@ zh-TW:
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "YYYY/MM/DD · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "YYYY 年 M 月 D 日"
   month: 月
   monthly_supporter_since_date_html: |
     <a href="%{url}">每月捐款者</a> since %{date}
@@ -4445,6 +4451,8 @@ zh-TW:
         taxa_observed_in_all_queries: 在所有查詢中所觀察到的分類群
         taxa_observed_in_only_one_query: 僅在一筆查詢中所觀察到的分類群
         total_taxa: 分類群總計
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: 垂直方向
       export:
         choose_columns_desc: 選擇您所想要匯出的欄位
         create_a_query_desc_html: |
@@ -4845,6 +4853,7 @@ zh-TW:
           </p>
         rules:
           captive: 被捕獲/培育
+          coordinates_shareable_by_project_curators: 專案策展人的可共享座標
           georeferenced: 有座標
           has_a_photo: 有一張照片
           has_a_sound: 擁有一段聲音
