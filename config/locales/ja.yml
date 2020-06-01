@@ -40,7 +40,7 @@ ja:
   x_observations_link_html:
     other: "<a href='%{url}'>%{count}件の観察記録</a>"
   x_observations_reviewed_html:
-    other: "<span class='count'>%{count}</span>件の観察記録を査読"
+    other: "<span class='count'>%{count}</span>件の観察記録を既読"
   x_observers_html:
     other: '<span class="count">%{count}</span> 観察者'
   x_others:
@@ -85,7 +85,7 @@ ja:
     当分類群の学名がデフォルト名となります。
     保存が完了しましたら、別の名称（俗名、旧学名など）を追加することができます。
   a_flag_for_x: "%{x}用のフラグ"
-  a_member_of_taxon_html: "%{taxon}の1つ"
+  a_member_of_taxon_html: "%{taxon} のメンバー"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -390,10 +390,10 @@ ja:
   ancestor_taxon: 祖先の分類群
   and: そして
   and_other_taxa: "&amp; その他の分類群"
-  android: アンドロイド
+  android: Android
   animals: 動物
   annotation: 注釈
-  annotations: 注釈
+  annotations: より詳細な情報
   announcement_was_successfully_created: お知らせは無事作成されました
   announcement_was_successfully_updated: お知らせは無事更新されました
   announcements: お知らせ
@@ -658,7 +658,7 @@ ja:
   check_list_place: "%{place} チェックリスト"
   check_list_updated: チェックリスト更新されました！
   check_lists_for: "%{place}のその他のチェックリスト"
-  check_out_my_observations_at: よかったら、次の場所で私の観察記録をご覧ください：
+  check_out_my_observations_at: よかったら、下記リンクから私の観察記録をご覧ください。
   check_out_our_blog: 公式ブログも読んでみてください
   check_out_what_the_observation: あなたが同定しようとしている観察がどのように見えるか確認してみてください。
   check_this_box_if_html: |
@@ -681,6 +681,7 @@ ja:
   choose_tags: タグを選択
   choose_taxon: 分類群を選択してください
   choose_what_kind_of_change_youre_creating: "変更の種類を選択してください"
+  cid_d_to_genus: 属レベルのコミュニティ分類
   citation: 引用
   classification: 分類
   clear: クリア
@@ -880,7 +881,7 @@ ja:
   data_used: "使用データ："
   datatype: データタイプ
   date_: 日付
-  date_added: 追加した日
+  date_added: 観察記録を追加した日付
   date_created: 作成日
   date_format:
     date_long:
@@ -1066,6 +1067,7 @@ ja:
   editing_project_asset: プロジェクトアセット編集中：
   editing_subscription_to_x_html: "%{x}の購読を編集中"
   editing_taxon_link: タクソンリンクを編集中
+  editing_taxon_name_for_taxon_html: '%{taxon}の分類群名 " %{name} " を編集'
   editing_taxon_range: 生息区域を編集中
   editing_this: '%{elem}を編集中'
   editing_x_in_y: "%{y}の中の%{x}を編集中"
@@ -1096,7 +1098,7 @@ ja:
   establishment:
     endemic: 固有種
     establishment: 定着
-    introduced: 移入種
+    introduced: 外来種
     invasive: 外来種
     managed: 管理種
     native: 在来
@@ -1116,6 +1118,7 @@ ja:
   exact_date: 正確な日付
   exact_location: 正確な位置情報
   exact_rank: 階級指定
+  except: を除いて
   exclude_places: 場所を除く
   exclude_projects: プロジェクトを除く
   exclude_taxa: 分類群を除く
@@ -1275,6 +1278,7 @@ ja:
   forum_desc: |
     フォーラムはヘルプやサポートを含め、iNatそのものについて議論する場です。
     機能のリクエスト、バグ報告、アナウンスなど。
+  frequency: 出現頻度
   from_a_place: 場所から
   from_eol_collection: EOLコレクションより
   from_flickr_facebook_etc: Flickr、Facebookなどから
@@ -1460,23 +1464,23 @@ ja:
   instagram: Instagram
   interactions: 連携
   internal_server_error: サーバー内部エラー
-  introduced: 移入種
-  introduced_in_place: "%{place}の移入種"
+  introduced: 外来種
+  introduced_in_place: "%{place}の外来種"
   invitation: 招待
   invite: 招待する
   invite_more: もっと招待
   invite_people: ユーザーを紹介する
   invite_people_to_project: "%{project}にメンバーを招待"
-  invite_someone_to: "%{name}に人を紹介しましょう！"
+  invite_someone_to: "%{name}をみんなに紹介しよう！"
   invite_your_friends: 友人を招待する
-  invite_your_friends_description: "%{site_name}をより大きくより良いコミュニティーにしましょう。友達を参加するように招待を送りましょう！"
+  invite_your_friends_description: "%{site_name}をより大きくより良いコミュニティーにしよう。友達を招待しよう！"
   #Type of project where people can only join after they have been invited
   inviteonly: 招待のみ
   invited_x: "%{x}を招待しました"
   iphone: iPhone
   is_not_following_anyone: 誰もフォローしていません
   is_now: は今
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: これが%{taxon} だと確認できる十分な証拠が提供されていますか？
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: この観察記録は%{taxon} だと確認できる十分な証拠を提供していますか？
   is_this_offensive_html: 'この内容は<a href="/help#inappropriate">不適切</a>、迷惑、不愉快ですか？'
   is_this_place_a_duplicate: この場所は重複していますか？
   it_can_now_be_used_for_research: 研究に利用できるようになり、他のサイトでも紹介されるようになります。
@@ -1531,9 +1535,9 @@ ja:
   leaderboard_for_x: "%{x}の達人"
   leaderboards: リーダーボード
   leaderboard_most:
-    species: '%{time}以内に種の最多数'
-    observations: '%{time}以内に観察記録の最多数'
-    identifications: '%{time}以内で最多数の同定'
+    species: '%{time} 観察種数ランキング'
+    observations: '%{time} 観察記録数ランキング'
+    identifications: '%{time} 同定数ランキング'
   leading: 主導
   learn: 学習
   learn_about_the_species_live_in: 次の場所で生息する生き物について学ぶ：
@@ -1760,9 +1764,9 @@ ja:
       checklist_places_description: この分類群がリストされている場所
       range: 分布・生息区域
   map_tooltip: マップを表示
-  mark_as_reviewed: 査読済の印を付ける
-  mark_all_as_reviewed: すべてに査読済の印を付ける
-  mark_all_as_unreviewed: すべてに未査読の印を付ける
+  mark_as_reviewed: 既読の印をつける
+  mark_all_as_reviewed: すべてに既読の印をつける
+  mark_all_as_unreviewed: すべてに未読の印を付ける
   matching_species_will_shown_up_here: 該当する種はここに表示されます。%{place}におけるその種の棲息区域情報があれば、マップに表示されます。
   media: メディア
   media_type: メディアの種類
@@ -1819,7 +1823,7 @@ ja:
   month: 月
   monthly_supporter_since_date_html: |
     <a href="%{url}">マンスリーサポーター</a>: %{date} から
-  months: ヶ月
+  months: 月
   more: 続き
   more_fields: 追加フィールド
   more_filters: その他のフィルター
@@ -1923,6 +1927,7 @@ ja:
   new_updates_in_the_last_24_hours_from: "去24時間以内の%{site_name}の過新着情報"
   new_users: 新規ユーザ
   new_users_in_year: "%{year} の新規ユーザ"
+  new_users_w_7_obs: 新規ユーザー(最低観察記録数：7)
   newly_added: 新しく追加されました
   newly_added_species: 新たに追加された種
   newly_observed_species: 新たに観察された種
@@ -1935,7 +1940,7 @@ ja:
   next_tab: 次のタブ
   'no': 'いいえ'
   no_assessments_have_been_added_to_this_project_yet: このプロジェクトにはまだ評価がありません。
-  no_but_it_is_a_member_of_taxon: "いいえ、しかしそれは %{taxon} のメンバーです。"
+  no_but_it_is_a_member_of_taxon: "証拠は不十分です(別分類群の可能性あり)。しかし %{taxon} のメンバーではあります。"
   no_comments_yet: まだコメントはありません
   no_countries_added_yet: まだ国は追加されていません
   no_creative_commons_flickr_photos_tagged_x: 'Flickrには「%{x}」とタグ付けられたクリエイティブ・コモンズの写真がありません'
@@ -2039,7 +2044,7 @@ ja:
   number_of_observers_value: "観察者数：%{number}"
   number_of_observers: "観察者数"
   number_selected: "# 選択済み"
-  obs: 不明瞭
+  obs: 観察記録
   obscured: 不明瞭
   obscured_or_private: 不明瞭または非公開
   obscured_description: |
@@ -2055,6 +2060,8 @@ ja:
   observation_brief_something_on_day_by_user: "%{user} による %{day} の何か"
   observation_brief_something_by_user: "%{user} による何か"
   observation_brief_something_from_place: "%{place} からの何か"
+  observations_by_app: アプリケーションによる観察記録
+  observations_by_rank: 階級ごとの観察記録数
   observations_by_user_on_date: "%{date}の%{user}の観察記録"
   observations_by_you: "自分の観測記録"
   observations_by_you_on_date: "%{date}のあなたの観察記録"
@@ -2288,7 +2295,7 @@ ja:
   per_week: 1週間あたり
   person: 人
   personal_message: 個人的なメッセージ
-  personal_message_description: 機械からメールが届くのを好む人はいません！誘っている理由を友達に知らせてみませんか？
+  personal_message_description: 機械からメールが届くのを好む人はいません！誘っている理由を友達に伝えてみよう！
   per_page: "１ページあたり"
   photo: 写真
   photo_attribution: "写真 %{attribution}"
@@ -2735,7 +2742,7 @@ ja:
   preview: プレビュー
   preview_observations_with_these_observation_requirements: これらの観察条件で観察記録をプレビューする
   preview_of_synced_observation: "同期済の観察記録の<strong>プレビュー</strong>です。<a href=\\\"%{url}\\\">取り消しますか？</a>"
-  preview_personal_message: "あなたの動植物の観察情報を記録し、ライフリストを追跡し、自然界について学ぶことができるウェブサイト%{site} に参加してください!"
+  preview_personal_message: "%{site} は、動植物の観察を記録し、今までにあなたが見つけた生き物リストをまとめ、自然界について学ぶことができるウェブサイトです。あなたも参加してみませんか？"
   preview_your_message: メッセージをプレビュー
   previewing: "プレビュー中"
   previous: 前へ
@@ -3045,7 +3052,7 @@ ja:
   select_observations_to_edit: 編集する観察記録を選択...
   select_one_of_friends_albums: '%{friend} のアルバムからいずれかを選択'
   select_one_of_your_albums: アルバムの1つを選択
-  select_options: オプションを選択
+  select_options: 選択
   select_photos_from_your_photo_stream: |
     外部の写真共有サイトから写真を選択すると、%{site_name} の観察記録に変換されます。写真のメタデータから日付、時刻、場所を補完し、タグから種名を検索します。
   select_photos_to_display: 表示する写真を選択
@@ -3132,7 +3139,7 @@ ja:
   somewhere: '（どこかで…）'
   sorry_flickr_isnt_responding_at_the_moment: "申し訳ありません。現在Flickrから応答がありません。"
   sorry_how_about_we_try_repeat: "ごめんなさい! 他の種名のデータベースを検索してみてはどうでしょう? 何か見つかったら、今度見つけられるように保存しておきます。"
-  sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "申し訳ありませんが、Flickrの写真のうちの1つが存在しないか、表示する権限がありません。"
+  sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "申し訳ありませんが、Flickrの写真は存在しないか、表示する権限がありません。"
   sorry_that_photo_provider_isnt_responding: "申し訳ありませんが、その写真提供者は現在応答していません。後でもう一度試してください。"
   sorry_that_service_is_not_responding: "申し訳ありません。サービスの応答がありません。しばらくしてからもう一度お試しください。"
   sorry_there_were_problems_with_your_request: "要求に問題がありました：%{project_user}"
@@ -3429,6 +3436,7 @@ ja:
   this_observation_is_featured_on_x_sites:
     other: この観察はウェブサイト %{count}箇所に掲載されています
   this_observation_is_research_grade: この観察記録は研究用グレードです！
+  this_observation_was_created_using: "この観察記録は以下を使用して作成されました："
   this_photo_is_already_associated: この写真はすでに別の観察記録で使用されています。
   this_place_has_no_check_list: "この場所にはチェックリストがありません。"
   this_taxon_change_has_been_commited: |
@@ -3473,6 +3481,7 @@ ja:
   total_observations: 合計観察記録数
   total_species_observed: 観察された総種数
   'true': '真'
+  trends: トレンド
   trusted_project?: 信頼できるプロジェクト？
   twitter: ツイッター
   type: 種類
@@ -3627,6 +3636,7 @@ ja:
   we_had_trouble_saving_comment: "コメントを保存できませんでした"
   we_have_no_conservation_status_for_this_taxon: この分類群の保護ステータス情報がありません
   we_have_no_establishment_data_for_this_taxon: "こちらの分類群の定着方法情報がありません。"
+  website: ウェブサイト
   welcome: ようこそ
   welcome_back: おかえりなさい
   welcome_to_inat: "%{site_name}へようこそ！"
@@ -3637,6 +3647,7 @@ ja:
   what_did_you_see?: <em>何を</em>見ましたか？
   what_do_you_think: どう思いますか？
   what_want_to_list?: リストにまとめたいものは？
+  whats_this?: もっと詳しく
   when: いつ？
   when_did_you_see_it?: いつ見ましたか？
   when_did_you_see_them?: <em>いつ</em>見ましたか？
@@ -3664,6 +3675,7 @@ ja:
   x_journal_middot: "%{user}さんのジャーナル •"
   x_observations_failed:
     other: "%{count}件の観察失敗記録"
+  x_of_y_people_over_two_thirds_agree_it_is: "%{y} 人中 %{x} 人（2/3を超える）が同意しています"
   x_project_journal: "%{project}の%{name}"
   x_project_stats: "%{project}の統計"
   x_site_is_a_social_network_for_naturalist: |
@@ -3688,6 +3700,7 @@ ja:
   you_arent_following_that_person: "そのユーザーをフォローしていません"
   you_can_accept_invitations: ここで招待を承諾することができます
   you_can_choose_observations_associated: このジャーナル投稿に関連付ける観察記録を選択することができます。
+  you_can_sign_free_at: "無料の%{site_name}アカウントは以下から登録できます。"
   you_cant_compare_a_list_with_nothing: 比較先のリストがないと比較できません！
   you_cant_delete_a_project_list: "プロジェクトリストを削除することができません"
   you_cant_delete_observation_fields_that_people_are_using: "現在使われている観察フィールドを削除することができません"
@@ -3766,7 +3779,7 @@ ja:
         confirmation: |
           本当によろしいですか？この場所に属する複数の場所のすべての分類群の定着方法が変更されます。たくさんの大事な情報を取り消すことになります。
         description_html: |
-          <a href="%{place_url}">%{place_name}</a>において、この分類群の<em>すべての記録</em>の定着方法が「<strong>"%{establishment_means}"</strong>」に変更されます。こちらの機能は、キュレーター専用です。「移入種」に変更するとやはりほぼ同じ結果になりますが、既存の値は変更されず、空白の場合のみ、新しい値に変更されます。
+          <a href="%{place_url}">%{place_name}</a>において、この分類群の<em>すべての記録</em>の定着方法が「<strong>"%{establishment_means}"</strong>」に変更されます。こちらの機能はキュレーター専用です。「外来種」に変更するとほぼ同じ結果になりますが、既存の値は変更されず、空白の場合のみ、新しい値に変更されます。
     lists:
       show:
         project_list_desc: |
@@ -3936,21 +3949,32 @@ ja:
     stats:
       index:
         active_desc: 過去30日以内にID作成、観察記録、コメントあるいは投稿をした
-        obs_cid_d_desc: 過去7日間に作成しコミュニティー判定がある
-        obs_cid_d_to_genus_desc: 過去7日間に作成し層レベル以下のコミュニティー判定がある
+        android_desc_html: Androidの<a href="%{url}">iNaturalistアプリ</a>で作成
+        avg_ttcid: TTCIDの平均値
+        avg_ttid: TTIDの平均値
+        iphone_desc_html: iPhoneの<a href="%{url}">iNaturalistアプリ</a>で作成
+        med_ttcid: TTCIDの中央値
+        med_ttid: TTIDの中央値
+        obs_1_day_desc: "1日に作成された観察記録"
+        obs_cid_d_desc: 過去7 日前に作成されたコミュニティ ID がある観察記録
+        #Short for "observations community-identified to genus"
+        obs_cid_d_to_genus: 属レベル以下のコミュニティ分類を持つ観察記録
+        obs_cid_d_to_genus_desc: 過去7日間に作成された属レベル以下のコミュニティIDがある観察記録
+        obs_desc: 過去7日間に作成された観察記録
+        obs_id_d_desc: 過去7日間に作成されたIDを持つ観察記録(観察者によるIDを含める)
+        observations_1_week_moving_window: 1週間ごとの観察記録数
+        other_desc_html: <a href="%{url}">開発者が作成した</a>他のアプリケーションを経由して作成
         TTCID_desc: 誰かにコミュニティの分類群と一致する同定をしてもらう準備ができました
         TTID_desc: 誰かに同定してもらう準備ができました
         TTID_note: |
-          この統計には過去1週間の観察記録に基づいています。そのため
-          それ以前の観察記録の同定は含まれず、現時点で統計を取り直す
-          よりも統計値が低めに出ています。それでもコミュニティが1週間
-          で同定する作業の速さを知る十分な目安にはなります。ただし、
-          これらの統計は写真付きの観察記録のみ対象にしています。
+          この統計は、1週間前に作成された観察記録に対して作成されています。これは1週間以上経過してから観察記録に追加されたIDを見逃してしまうことを意味し、そのため、現在再度計算した場合よりも統計は低く見えますが、コミュニティが1週間でどのくらい識別できるかについては、きちんとした指標を提供するはずです。これらの統計は写真付きの観測のみであることに注意してください。
+        website_desc_html: |
+          <a href="https://www.inaturalist.org">iNaturalist</a>または<a href="%{url}">iNaturalist Network</a>を介して作成
     taxa:
       show:
         about_names_desc: |
           <p>
-          生物のほとんどのカテゴリーには、話し言葉の中に「一般名」があります。これらの名前は通常、認識でき、発音しやすく、時間の経過とともに安定していますが、多くの生物は、同じ言語であっても、異なる場所で複数の異なる名前を持っており、これらの生物について混乱することなくコミュニケーションをとることが困難になることがあります。科学者はこの問題に対処するために、<a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">生物学的命名法</a>のルールに準拠した生物のカテゴリーごとに単一の「学名」を使用していますが、これらの名前は誰も話さない言語であるラテン語に基づいている傾向があり、多くの人にとっては一般的な名前ほど記憶に残りにくいものではありません。また、科学的な名前は生物の分類学的配置を反映することもあるため、科学者が異なる生物間の進化の関係についてより正確な理論を開発したときに変更されることもあり、科学的な名前を知っている人たちの間でも、コミュニケーションにおける有用性は低下します。
+          ほとんどの生き物には、話し言葉の中に「一般名」があります。これらの名前は通常、認識・発音しやすく、時間が経過しても安定していますが、多くの生物は同じ言語であっても、場所により複数の異なる名前を持っています。そのため、生物について混乱することなくコミュニケーションをとることが困難になることがあります。科学者はこの問題に対処するために、<a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">二名法</a>のルールに準拠した、生物の分類群ごとに単一の「学名」を使用しています。しかし、多くの学名は誰も話さない言語であるラテン語に基づいているため、ほとんどの人にとっては一般名に比べて記憶に残りません。また、学名は生物の分類学的配置を反映することもあるため、科学者が生物間の進化関係についてより正確な理解を得たときに変更されることもあり、学名を知っている人たちの間でも、コミュニケーションにおける有用性は低下します。
           </p>
           <p>
           古い格言がそれを要約しています。"一般的な名前は場所によって変わり、科学的な名前は時と場合によって変わる。
@@ -3959,7 +3983,7 @@ ja:
           我々はこのような欠点に対応するために、可能な限り一般名と学名の両方を表示し、見る人の言語や地理的な好みに基づいて一般名を選択するようにしています。
           </p>
         about_establishment_desc: |
-          「定着方法」とは、あるが種がどのように現在の場所で棲息することになったことを示します。「移入種」とは、人間の活動によりこの場所で棲息するようになった場合を指し、「在来種」とは、人間の活動に頼らず、以前から棲息していたことを示します。「固定種」とは、特定の場所にしか存在しないことを表します。
+          「定着方法」とは、ある種がどのように現在の場所で棲息することになったかを示します。「外来種」とは、人間の活動によりこの場所で棲息するようになった場合を指し、「在来種」とは、人間の活動に頼らず、以前から棲息していたことを示します。「固有種」とは、特定の場所にしか存在しないことを表します。
         frequency:
           research: 研究用
           verifiable: 確認できる
