@@ -1527,4 +1527,28 @@ module ApplicationHelper
    url_for params.merge(new_params)
   end
 
+  def errors_for_hidden_fields( record, options = {} )
+    hidden_fields = options[:hidden_fields]
+    hidden_fields ||= record.errors.messages.keys - ( options[:visible_fields] || [] )
+    hidden_errors = record.errors.messages.slice( *hidden_fields )
+    return if hidden_errors.blank?
+    content_tag(:div, class: "alert alert-warning" ) do
+      s = content_tag(:h4, I18n.t( "errors.template.body" ) )
+      s += content_tag(:ul) do
+        hidden_errors.inject( "" ) do |memo, pair|
+          k, errors = pair
+          memo << errors.inject( "" ) do |memo, e|
+            memo << content_tag( :li, I18n.t( "errors.format",
+              attribute: I18n.t( "activerecord.attributes.#{record.class.name.underscore}.#{k}" ),
+              message: e
+            ) )
+            memo.html_safe
+          end
+          memo.html_safe
+        end
+      end
+      s.html_safe
+    end
+  end
+
 end

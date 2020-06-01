@@ -1,6 +1,7 @@
 - f = builder
 - u = user
 - child ||= false
+= errors_for_hidden_fields u, visible_fields: [:email, :login, :password, :password_confirmation, :birthday, :recaptcha]
 .form-group.text-field.email
   = f.text_field :email, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( :email ), type: "email", class: "form-control"
   - unless u.errors[:email].blank?
