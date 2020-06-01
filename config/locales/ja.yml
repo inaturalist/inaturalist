@@ -110,7 +110,7 @@ ja:
   about_blocking: ブロック処理について
   about_charts: 図表について
   about_community_taxa: コミュニティー分類群について
-  about_complete_taxa: 通知停止とは
+  about_complete_taxa: 完全な分類群とは
   about_conservation_status: 保全状況について
   about_editing_observation_fields: 観察記録欄の編集
   #Header for a section explaining Establishment Means. See the
@@ -187,7 +187,7 @@ ja:
   add_link: リンクを追加
   add_higher_level_taxon: より高い階級の分類群を追加（例：鳥類）
   add_id: 同定を追加
-  add_new_lexicon: 新規用語集（言語）を追加
+  add_new_lexicon: 新しい言語を追加
   add_new_photos_by_their_ids: Flickr IDを検索して画像を追加（Creative Commonsを遵守すること）
   add_new_place: 新しい場所を追加
   add_new_rule: 新しいルールを追加
@@ -472,6 +472,8 @@ ja:
     このユーザーを信用して本当によろしいですか。これまで付いていたスパムフラグは解消されます。
   are_you_sure_you_want_to_remove_these_x_taxa?: "この%{x}個の分類群を削除して本当によろしいですか？"
   are_you_sure_you_want_to_remove_this_invitation: この招待を取り消しても本当によろしいですか？
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    %{project} からこの観測記録を削除して本当によろしいですか？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "%{place}のチェックリストからこの分類群を削除して本当によろしいですか？"
   associated_observations: 関連している観測記録
   associated_taxa: 関連する分類群
@@ -549,6 +551,7 @@ ja:
   birthday: 誕生日
   black: 黒
   block_user: ユーザーをブロック
+  block_removed: ブロックを削除しました
   blocked_users: ブロックされているユーザー
   blog_widget: ブログ用のウィジェット
   blue: 青
@@ -581,6 +584,7 @@ ja:
   cant_merge_a_taxon_with_itself: 同じ分類群と統合できません
   captive: 飼育
   captive_cultivated: 飼育／栽培
+  captive_observations: 捕獲観察
   card: カード
   casual: カジュアル
   casual_: カジュアル
@@ -632,6 +636,8 @@ ja:
     replaced_by: 置き換えられた
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: '置換用:'
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_with: 置換後
     staged: 段階的な
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon}は%{output_taxa}に分割されました"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon}を%{output_taxa}に分割します"
@@ -746,8 +752,10 @@ ja:
   connect_to_flickr_again_to_authorize_write_permissions: Flickrに再接続して書き込み権限を承認してください
   connecting_to_facebook: "Facebookに接続中..."
   connecting_your_inat_account_to_accounts_other_sites: "%{site_name} アカウントを他のサイトのアカウントに連携すると、それらのサイトの認証情報を使用して%{site_name} にログインできます。"
+  cannot_be_changed_during_a_content_freeze: コンテンツ凍結中は変更できません
   conservation_status: 保全状況
   conservation_status_descriptions:
+    status: ステータスコード、ランクなど。EやCRのようなショートコードが存在する場合は、それを使用してください。それらが無い場合は完全なステータス、例えば endangered や critically endangered を使用してください。
     description: 記載理由
     place: このステータスが制限されている場所。
     url: 保全状況を明記するウェブページのURL
@@ -786,6 +794,7 @@ ja:
     teneral: 脱皮直後
     subimago: 亜成虫
     pupa: 蛹
+    no_evidence_of_flowering: 開花の証拠なし
     nymph: 幼虫・幼体・幼生・若虫 (Nymph)
     larva: 幼虫・幼生 (Larva)
     egg: 卵
@@ -800,7 +809,9 @@ ja:
     flower_budding: 花芽は見えるが開いていない
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
+    no_evidence_of_flowering: メディアは生殖構造の証拠を提供しません
     teneral: 羽化したばかりで、まだ成熟していない成体・成虫
+    cannot_be_determined: 提供された証拠から判断することはできません
   controls: 設定
   coordinate_systems: 座標システム
   coordinates: 緯度経度
@@ -843,6 +854,7 @@ ja:
   create_a_new_taxon: 新規分類群を作成
   create_a_query: クエリーを作成
   create_an_account: アカウント作成
+  create_an_atlas: 地図を作成
   create_new_taxon: 新規タクソン作成
   create_observations: 観測記録を作成
   created: 作成日時
@@ -860,6 +872,7 @@ ja:
   cumulative_ids: "累積ID:%{total} 件中%{count} 件"
   curate_observations: 観察記録を管理
   curate_taxa: 分類群を管理
+  curate_user: キュレーター管理者
   curating: キュレーター管理中
   curation: キュレーター管理
   curator: キュレーター管理者
@@ -1025,8 +1038,11 @@ ja:
   edit_a_batch_of_observations: 観察記録の一括編集
   edit_account_settings_and_profile: "アカウント設定・プロフィール編集"
   edit_assessment: 評定を編集
+  edit_atlas: 地図を編集
+  edit_atlas_for_taxon_html: '%{taxon} の地図を編集'
   edit_body: 本文を編集
   edit_comment: コメントを編集
+  edit_complete_set_for_taxon_in_place_html: "%{place} での %{taxon} の完全なセットを編集"
   edit_custom_project_fields: プロジェクト専用フィールドを編集
   edit_field: フィールドを編集
   edit_license: ライセンスを編集
@@ -1093,6 +1109,8 @@ ja:
   endangered: 絶滅危惧IB類
   endemic: 固有種
   endemic_to_x: "%{x}の固有種"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  eol: EOL
   eol_collection_url: "EOLコレクションURL"
   error_updating_photo: "写真更新にエラーが発生しました：%{photo_errors}"
   establishment:
@@ -1112,6 +1130,7 @@ ja:
   events_only: イベントのみ
   every_species_seen_by: 次のユーザが観察したすべての種：
   everyone: 全てのユーザー
+  everyone_: みんな
   everyone_journal_posts: みんなのジャーナル投稿
   everywhere: すべての場所
   exact: 完全一致
@@ -1151,6 +1170,8 @@ ja:
   favorite_taxa: お気に入り分類群
   favorites: "お気に入り"
   featured: 注目
+  #Title for a button or section describing the "featured" status of a project
+  featuring: 特長
   feedback: フィードバック
   #Plural noun, as in Atom and RSS feeds
   feeds: 'フィード'
@@ -1198,6 +1219,8 @@ ja:
   flag_an_item: 項目をフラグ
   flag_as_spammer: 荒らしのフラグを付ける
   flag_as_non_spammer: 荒らしではないとフラグを付ける
+  #Label for the date/time when a flag was created
+  flag_created: フラグ作成
   flag_description: このコンテンツにフラグを付けて、問題があることを管理者に知らせます。
   flag_for_check_list_title_html: |
     チェックリストのフラグ: %{title}
@@ -1431,6 +1454,7 @@ ja:
   import_observations_from_a_photo: 写真共有サイト及びパソコンの写真ファイルから観察記録をインポート
   import_photos: 写真をインポート
   import_ranges: 範囲の読み込み
+  import_sections: セクションのインポート
   import_tags_from_csv: CSVからタグをインポート
   importing: "インポート中..."
   improving: 改善
@@ -1552,7 +1576,7 @@ ja:
     このWebサイトの古いバージョンのパスワードを使用しているようです。
     新しいバージョンのパスワードを忘れずに<a href="%{url}">変更してください</a>。
   let_us_walk_you_through: 本サイトの主な機能をご紹介します。
-  lexicon: 言語/用語集
+  lexicon: 言語
   lexicons:
     scientific_names: 学名
     afrikaans: アフリカーンス語
@@ -2229,7 +2253,7 @@ ja:
   organism_appears_captive_cultivated: 飼育/栽培と推定
   other: その他
   other_animals: その他の動物
-  other_lexicons: その他の辞書
+  other_lexicons: その他の言語
   other_listings_of_this_taxon_for_this_place: この場所で同じ分類群の他の観察記録
   other_names: 別名
   other_species_commonly_misidentified_as_this_species: この種とよく間違われる種
@@ -3010,6 +3034,8 @@ ja:
   saving_verb: 保存中
   schemes: スキーム
   schemes_including: 次の含むスキーム
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: 学名
   search: 検索
   search_all_fields: すべてのフィールドを検索
   search_by_name_or_email: 名前またはメールアドレスで検索
@@ -3559,6 +3585,7 @@ ja:
   user_added_an_x_to_noun_html: "%{user}が%{noun}に%{x}を追加しました"
   user_added_x_observations_html: "%{user}は%{x}件の観察記録を追加しました。"
   user_commented_on: "%{user}はあなたの%{title}にコメントしました（%{time}）"
+  user_disagrees_this_is_taxon: "%{user} さんは %{taxon} ではないと考えています"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}が%{owner}の%{noun}をお気に入りに追加しました"
   user_has_opted_out_of_community_id: 利用者はコミュニティー分類の通知を受け取りません
@@ -3772,7 +3799,7 @@ ja:
         大きなPDFファイルを作成するには数分かかる場合がありますので、ご了承ください。
       sorts:
         default: ガイドの順番
-        alphaname: 学名のアルファベット順で
+        alphaname: 学名のアルファベット順
         alphadisplay: 表示名称のアルファベット順で
     listed_taxa:
       establishment_field:
@@ -3813,6 +3840,7 @@ ja:
         well_email_you: "準備ができましたら電子メールでお知らせします。"
         created_on_help: "作成された日付、「観察された」ではない、たとえば 2015-01-17, 2015-01, 2015"
       field_descriptions:
+        scientific_name: "このサイトにより観察された分類群の学名"
         taxon_id: 観察された分類群の一意の識子
         num_identification_agreements: 観察者の同定と一致する同定
         num_identification_disagreements: 観察者の同定と一致しない同定
@@ -4018,6 +4046,8 @@ ja:
           </p>
           </li>
           </ul>
+        places_help_html: |
+          場所に名前を追加して、その場所のサイトやユーザーに優先順位をつけます。1つの場所に複数の名前がある場合は、 <a href="%{url}">ここ</a>で優先順位をつけることができます。 <strong>名前が使われているすべての場所に名前を追加するのではなく</strong>、他の場所と競合する場所にだけ名前を追加してください。
     users:
       delete:
         x_comments_html:
@@ -4067,10 +4097,14 @@ ja:
           joined: 自分の参加しているプロジェクト
         prefers_community_taxa_desc: |
           %{site_name}は、あなたの観察記録に対するあなた自身やコミュニティによる評価を追跡します。データ提携先と共有する同定情報はコミュニティの同定ですが、もしコミュニティの意見であなた自身の同定を上書きしないほうがよいと考える場合、これを解除できます。人々は引き続き同定情報を追加できても、あなたの意見よりコミュニティの意見が優先されることはありません。これにより、コミュニティ同定に同意しない限り、あなたの観察記録は研究用になりません。
+        scientific_name_first_desc: |
+          一般名の前に学名を表示します。
         taxon_change_desc: |
           分類群が%{site_name}で統合や改名されると、変化が明確であれば、あなたの観察記録、一覧にした分類群や同定などは自動的に新しいものに更新されます。通知の解除または変更があいまい（例：分割）な場合は、更新通知が届き、手動でコンテンツを更新するツールへのリンクから、自分で更新ができます。
       show:
         this_user_was_banned: このユーザーは利用停止されました
+        favorites_list_prompt_html: |
+          あなたのお気に入りの分類群を紹介してみませんか？「%{link_start_tag}お気に入り%{link_end_tag}」というタイトルのリストを作成してみよう。最近追加されたものがこのスペースに表示されます。
     welcome:
       index:
         connect_with_nature: 自然とふれ合おう
@@ -4376,6 +4410,13 @@ ja:
                 %{time}より後に観察されていなければなりません
               must_be_observed_before: |
                 %{time}より前に観察されていなければなりません
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: カンマまたはスラッシュを含めないでください
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
+                この言語の名前は種の学名と一致してはいけません
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 前へ"
