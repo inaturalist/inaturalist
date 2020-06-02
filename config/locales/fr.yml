@@ -1153,7 +1153,6 @@ fr:
   edit_field: Modifier le champ
   edit_license: Modifier la licence
   edit_multiple_dates: Modifier des dates multiples
-  edit_multiple_descriptions: Modifier des descriptions multiples
   edit_multiple_locations: Modifier des emplacements multiples
   edit_multiple_species: Modifier plusieurs espèces
   edit_notes: Modifier les notes
@@ -5753,6 +5752,11 @@ fr:
           observant, mais il affichera des pics inhabituels dans les observations, et s’il
           semble plat ou en décroissance malgré un nombre croissant d’observateurs,
           cela peut suggérer une modification de son abondance.
+        charts_help_other: |
+          Nous présentons également des tableaux saisonniers pour les annotations d’observation.
+          Les annotations sont un moyen d'ajouter des métadonnées aux observations en utilisant
+          un vocabulaire contrôlé, par exemple pour indiquer si une observation représente
+          une plante au stade floraison ou bien fructification.
         charts_help_relative_observations: |
           Afficher la fréquence dans des proportions relatives par rapport à toutes les observations aide
           à aplanir l’effet de la croissance globale du site. Par exemple,
