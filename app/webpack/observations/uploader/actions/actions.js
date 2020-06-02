@@ -29,6 +29,13 @@ const actions = class actions {
     };
   }
 
+  static fileCounts( files ) {
+    return {
+      photos: _.filter( files, f => /^image\//.test( f.type ) ).length,
+      sounds: _.filter( files, f => /^audio\//.test( f.type ) ).length
+    };
+  }
+
   static enforceLimit( src, dest ) {
     const cardFileDropLimit = 20;
     const obeysLimit = ( src + dest <= cardFileDropLimit );
@@ -43,7 +50,7 @@ const actions = class actions {
           }
         } ) );
       }
-      return ( obeysLimit );
+      return obeysLimit;
     };
   }
 
@@ -167,9 +174,11 @@ const actions = class actions {
 
   static onFileDropOnCard( droppedFiles, obsCard ) {
     return function ( dispatch ) {
-      const cardFileCount = Object.keys( obsCard.files ).length;
       if ( droppedFiles.length === 0 ) { return; }
-      if ( !dispatch( actions.enforceLimit( droppedFiles.length, cardFileCount ) ) ) { return; }
+      const { photos: targetPhotos, sounds: targetSounds } = actions.fileCounts( obsCard.files );
+      const { photos: droppedPhotos, sounds: droppedSounds } = actions.fileCounts( droppedFiles );
+      if ( !dispatch( actions.enforceLimit( droppedPhotos, targetPhotos ) ) ) { return; }
+      if ( !dispatch( actions.enforceLimit( droppedSounds, targetSounds ) ) ) { return; }
       const files = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
@@ -239,14 +248,18 @@ const actions = class actions {
       const ids = _.keys( obsCards );
       const targetIDString = targetCard ? targetCard.id : _.min( ids );
       const targetID = parseInt( targetIDString, 10 );
-      const targetFileCount = Object.keys( obsCards[targetID].files ).length;
-      let remainingCount = 0;
+      const targetFiles = obsCards[targetID].files;
+      const { photos: targetPhotos, sounds: targetSounds } = actions.fileCounts( targetFiles );
+      let { remainingPhotos, remainingSounds } = { remainingPhotos: 0, remainingSounds: 0 };
       _.each( obsCards, c => {
         if ( c.id !== targetID ) {
-          remainingCount += Object.keys( c.files ).length;
+          const { photos: toAddPhotos, sounds: toAddSounds } = actions.fileCounts( c.files );
+          remainingPhotos += toAddPhotos;
+          remainingSounds += toAddSounds;
         }
       } );
-      if ( !dispatch( actions.enforceLimit( remainingCount, targetFileCount ) ) ) { return; }
+      if ( !dispatch( actions.enforceLimit( remainingPhotos, targetPhotos ) ) ) { return; }
+      if ( !dispatch( actions.enforceLimit( remainingSounds, targetSounds ) ) ) { return; }
       let i = 0;
       const startTime = new Date( ).getTime( );
       _.each( obsCards, c => {
@@ -384,8 +397,10 @@ const actions = class actions {
 
   static movePhoto( photo, toObsCard ) {
     return function ( dispatch ) {
-      const targetFileCount = Object.keys( toObsCard.files ).length;
-      if ( !dispatch( actions.enforceLimit( 1, targetFileCount ) ) ) { return; }
+      const { photos: targetPhotos, sounds: targetSounds } = actions.fileCounts( toObsCard.files );
+      const { photos: movedPhotos, sounds: movedSounds } = actions.fileCounts( [photo.file.file] );
+      if ( !dispatch( actions.enforceLimit( movedPhotos, targetPhotos ) ) ) { return; }
+      if ( !dispatch( actions.enforceLimit( movedSounds, targetSounds ) ) ) { return; }
       const time = new Date( ).getTime( );
       dispatch( actions.updateFile( photo.file, { cardID: toObsCard.id, sort: time } ) );
 
