@@ -92,7 +92,13 @@ const App = ( {
   const description = observation.description ? (
     <Row>
       <Col xs={12}>
-        <h3>{ I18n.t( "description" ) }</h3>
+        <h3>
+          {
+            I18n.t( "notes", {
+              defaultValue: I18n.t( "activerecord.attributes.observation.description" )
+            } )
+          }
+        </h3>
         <UserText text={observation.description} />
       </Col>
     </Row> ) : "";

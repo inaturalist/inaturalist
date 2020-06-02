@@ -362,7 +362,11 @@ class ObsCardComponent extends Component {
             </div>
             <div className="form-group">
               <textarea
-                placeholder={I18n.t( "description" )}
+                placeholder={
+                  I18n.t( "notes", {
+                    defaultValue: I18n.t( "activerecord.attributes.observation.description" )
+                  } )
+                }
                 className="form-control input-sm"
                 value={obsCard.description || ""}
                 onChange={e => updateObsCard( obsCard, { description: e.target.value } )}

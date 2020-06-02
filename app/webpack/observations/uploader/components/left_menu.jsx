@@ -202,7 +202,7 @@ class LeftMenu extends SelectionBasedComponent {
           <textarea
             placeholder={uniqDescriptions.length > 1
               ? I18n.t( "edit_multiple_descriptions" )
-              : I18n.t( "description" )
+              : I18n.t( "notes", { defaultValue: "activerecord.attributes.observation.description" } )
             }
             className="form-control"
             value={commonDescription || ""}
