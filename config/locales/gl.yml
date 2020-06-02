@@ -690,7 +690,7 @@ gl:
   change_cover: Mudar a cabeceira
   change_descriptions:
     split: A especie ou grupo está separada
-    merge: Moitas especies agrúpanse formando unha nova clase ou grupo
+    merge: Varios taxons amoreados formando un novo taxon
     swap: Intercambio de nomes, o vello polo novo
     drop: O concepto da especie ou grupo é totalmente inválido, só se mantén co obxectivo de levar unha cronoloxía ou compatibilidade con outros sitios
     stage: Prepara un concepto inactivo como parte dun cambio de taxonomía dun grupo de especies.
@@ -702,7 +702,7 @@ gl:
     activated_soon: activado hai pouco
     change_types: Tipo de cambios
     split: Separar
-    merge: Mesturar
+    merge: Combinar
     swap: Intercambiar
     stage: Etapa
     drop: Eliminar
@@ -711,7 +711,7 @@ gl:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividido en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: mesturado en
+    merge_into: combinar en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: foi combinado en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -1148,7 +1148,7 @@ gl:
   edit_field: Editar Campo
   edit_license: Modificar licenza
   edit_multiple_dates: Editar Varias Datas
-  edit_multiple_descriptions: Editar Varias Descricións
+  edit_multiple_descriptions: Editar Varias Notas
   edit_multiple_locations: Editar Varias Ubicacións
   edit_multiple_species: Editar Varias Especies
   edit_notes: Modificar as notas
@@ -1958,7 +1958,7 @@ gl:
   merge: Combinar
   merge_it_with_another_place: Combinar con outro lugar
   merge_two_places_together: Combinar dous lugares. Todas as especies nas listas de verificación combinaranse, así coma os datos xeográficos.
-  merge_observation_field_x_into: 'Incorporar o campo de observación "%{x}" a...'
+  merge_observation_field_x_into: 'Combinar campo de observación "%{x}" con...'
   merging: Combinando
   merging_places: Combinar lugares
   message: Mensaxe
@@ -2037,7 +2037,7 @@ gl:
   move_input_children_to_output?: '¿Mover ós descendientes ó resultado?'
   multiple: múltiple
   multiple_select_option: '-- varios --'
-  multiple_taxa_for_taxon_change: "Máis dunha especie ou grupo (entrada de datos para intercambiar/mesturar, saída de datos para separar)"
+  multiple_taxa_for_taxon_change: "Máis dunha especie ou grupo (entrada de datos para intercambiar/combinar, saída de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'Varias identificacións de taxons separadas por comas, p.e. 123,654'
   must_be_observed_after: |
     debe ser observado despois de %{operand}
@@ -3787,11 +3787,9 @@ gl:
   these_are_items_people_on: |
     Son contidos que a xente introduciu como advertencia para administración. Os contidos de correo lixo borraranse e o usuario que os introduciu debería ser suspendido (vai á páxina do seu perfil e na parte inferior esquerda selecciona o enlace Suspender usuario para que xa non poida entrar ao sitio). Os contidos de tipo ilegal, enganoso, racista, xenófobo, etc, deben borrarse e teñen que responderse cun comentario correcto. As persoas que repitan estes comentarios teñen que comunicarse a
   these_are_taxa_that: |
-    Son especies ou grupos que %{site} non puido engadir automaticamente
-    á árbore taxonómica. Ti podes engadilas á árbore seleccionando o
-    enlace "editar" e escollendo unha clase pai á cal pertenza.
-    Por exemplo, o pai de <i>Homo sapiens</i> podería ser
-    <i>Homo</i>. Tamén pode buscar por especie ou grupos que sexan
+    Son especies ou grupos que %{site} non puido engadir automáticamente
+    á árbore taxonómica. Podes engadilas á árbore editando o taxon e escollendo un rexistro do taxon superior. Por exemplo, o taxon superior de Homo sapiens podería ser
+    Homo. Tamén pode buscar por especie ou grupos que sexan
     sinónimos e combinalos.
   these_folks_kindly_volunteer_to: Estas persoas amablemente ofrécense voluntarias para manter a taxonomía e resolver outros problemas.
   these_observations_have_not_been_uploaded_yet: |
@@ -3976,7 +3974,7 @@ gl:
   use_name_as_a_placeholder: |
     Usar <span class='ac-placeholder'>%{name}</span> como marcador de posición
   use_this_form_to_create_a_new: |
-    Emprega esta forma para crear un cambio taxonómico no borrador, especificando se é para separar, xuntar ou se é un cambio no grupo ou especie, para que despois se garde.
+    Emprega esta formulario para crear un borrador de cambio taxonómico, especificando se é para dividir, combinar ou intercambiar nos taxons activos, para que despois se garde.
   use_this_if_the_url_needs_genus_species_separated: |
     Emprega isto se a URL ten os xéneros e especies separados de forma particular. Se o taxón non é unha especie ou infraespecie, todo o que estea entre [XÉNERO] e [ESPECIE] será substituído polo nome do taxón, así que emprégao moderadamente. <br/><br/> <strong>Exemplo.</strong><br/>
   use_unique_file_names_for_separate_uploads: Usar nomes de ficheiros únicos para cargas separadas
@@ -5099,6 +5097,7 @@ gl:
           </p>
         rules:
           captive: ser cativo/cultivado
+          coordinates_shareable_by_project_curators: ter coordenadas visibles para conservadores de proxecto
           georeferenced: ter coordenadas
           has_a_photo: ter unha foto
           has_a_sound: ter un son
@@ -5676,6 +5675,16 @@ gl:
           ¿Quéreste gabar dalgún dos teus taxons favoritos?%{link_start_tag}Crea unha lista%{link_end_tag} chamada "Favoritos" e as adicións máis recentes aparecerán neste espazo.
     user_parents:
       confirm:
+        thanks_donor_html: |
+          <p>
+          ¡Grazas por doar a iNaturalist! Puidemos usar a túa doazón anterior para confirmar a túa identidade, e xa non necesita máis accións da túa parte. <strong>A conta infantil foi activada.</strong>
+          </p>
+          <p>
+          Por favor, inicia sesión na conta de Seek do teu fillo ou filla premendo no botón de "iNaturalist" no menú e logo en "Iniciar sesión con iNaturalist" na parte de abaixo da pantalla.
+          </p>
+          <p>
+          O teu fillo ou filla poderá compartir observacións na súa conta de iNaturalist usando a aplicación de Seek de xeito que se poderán ver en iNaturalist.org.
+          </p>
         thanks_for_creating_a_minor_account: '¡GRACIÑAS POR CREAR UNHA CONTA INFANTIL!'
         we_will_send_you_an_email: |
           Enviarémoste un correo electrónico cando a conta infantil sexa activada.
@@ -5786,6 +5795,14 @@ gl:
       long: '%d de %B de %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d de %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%b %e"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short_with_year: '%d %b,%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_year: '%B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_day_year: '%d de %B, %Y'
     month_names:
       - 
       - xaneiro
@@ -5881,6 +5898,15 @@ gl:
         debe ter tres observacións verificables ou tres identificacións para outros para facer iso
       requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
       taken: xa está en uso
+      too_long:
+        one: é demasiado longo (o máximo é %{count} caracter)
+        other: é demasiado longo (o máximo son %{count} caracteres)
+      too_short:
+        one: é demasiado curto (o mínimo é %{count} caracter)
+        other: é demasiado curto (o mínimo son %{count} caracteres)
+      wrong_length:
+        one: ten a longura errada (debe ter %{count} caracter)
+        other: ten a longura errada (debe ter %{count} caracteres)
     template:
       body: 'Atopáronse problemas nos seguintes campos:'
       header:
@@ -5927,8 +5953,16 @@ gl:
       separator: ','
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
+        format: '%n %u'
         units:
           billion: mil millóns
           million: Millón
@@ -5939,6 +5973,16 @@ gl:
         precision: 1
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
       last_word_connector: ', e'
@@ -5953,6 +5997,8 @@ gl:
       long: '%d de %B de %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d/%m/%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%I:%M %p"
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       observed_at: 'ás %I:%M %p %Z'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
@@ -6000,6 +6046,9 @@ gl:
           other: ten a longura errada (debe ter %{count} caracteres)
       template:
         body: 'Houbo problemas cós seguintes campos:'
+        header:
+          one: '%{count} erro prohibíu este %{model} ser gardado.'
+          other: '%{count} erros prohibiron este %{model} ser gardado'
   activerecord:
     models:
       AssessmentSection: Sección de Avaliación
@@ -6032,6 +6081,9 @@ gl:
         occurrence_status_level: Status de ocorrencia
         establishment_means: Medio de establecemento.
       observation:
+        description: Notas
+        geo_x: Leste
+        geo_y: Norte
         observed_on: observados na data
       observation_field_value:
         value: 'valor'
@@ -6042,6 +6094,7 @@ gl:
         title: Título
         project_icon: Icona de proxecto
         project_type: Tipo de proxecto
+        preferred_count_by: Contaxe preferida por
         prefers_count_from_list: Prefires un cálculo da lista
         description: Descrición
         end_time: Hora do fin
@@ -6056,6 +6109,8 @@ gl:
         source_url: Dirección web da fonte
         start_time: Hora de inicio
         last_aggregated_at: Observacións últimas agregadas
+      project_observation:
+        user_id: Autor
       place:
         code: Código
         display_name: Nome a mostrar
@@ -6066,6 +6121,9 @@ gl:
         place_type: Tipo de lugar
         prefers_check_lists: '¿Comprobar listas permitidas?'
         woeid: Identificador único mundial (de acordo con Yahoo)
+      site:
+        logo: Marca
+        logo_email_banner: Cabeceira de Email
       source:
         title: Título
         in_text: Referencia
@@ -6096,26 +6154,86 @@ gl:
         place_id: Lugar
         preferred_observation_fields_by: Permitir campos de observación de
     errors:
+      format: '%{attribute} %{message}'
       messages:
         accepted: debe ser aceptado
         blank: non se pode deixar en branco
         confirmation: non coincide cá palabra chave
         empty: non pode estar baleiro
+        equal_to: debe ser igual a %{count}
         even: debe ser par
         exclusion: está reservado
         greater_than: debe ser maior que %{count}
         greater_than_or_equal_to: debe ser maior ou igual a %{count}
         inclusion: non está incluído na lista
         invalid: non é válido
+        less_than: debe ser inferior a %{count}
+        less_than_or_equal_to: debe ser inferior ou igual a %{count}
         new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
         not_a_number: non é un número
+        not_an_integer: debe ser un número enteiro
+        odd: debe ser impar
+        only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
+        record_invalid: 'A validación fallou: %{errors}'
+        requires_privilege_speech: debe ter tres observacións verificables ou tres identificacións para outros para facer iso
+        requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
         taken: xa está en uso
+        too_long:
+          one: é demasiado longo (o máximo é %{count} caracter)
+          other: é demasiado longo (o máximo son %{count} caracteres)
+        too_short:
+          one: é demasiado curto (o mínimo é %{count} caracter)
+          other: é demasiado curto (o mínimo son %{count} caracteres)
+        wrong_length:
+          one: ten a longura errada (debe ter %{count} caracter)
+          other: ten a longura errada (debe ter %{count} caracteres)
+      template:
+        body: 'Atopáronse problemas nos seguintes campos:'
+        header:
+          one: '%{count} erro prohibíu este %{model} ser gardado'
+          other: '%{count} erros prohibiron este %{model} ser gardado'
       models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: "non pode conter un fragmento."
+              has_query_parameter: "non pode conter un parámetro de consulta."
+              invalid_uri: "debe ser un URI válido."
+              relative_uri: "debe ser un URI absoluto."
+        flag:
+          attributes:
+            user_id:
+              already_flagged: "elemento xa marcado"
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: "require ó menos 3 taxons na túa guía"
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: "a guía só pode ter 500 taxons"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: "Importando chave API ou na cola para a importación"
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: "as coordenadas non poden ser 0,0"
+            observed_on:
+              cannot_be_greater_than_date_created: |
+                non pode ser maior cá data na que se engadíu a observación
         observation_field_value:
           attributes:
             value:
+              dna_only_atcg: "para ADN, só pode conter os caracteres A, T, C ou G"
               date_format: |
                 Debe estar no formato AAAA-MM-DD para un campo de data ("%{observation_field_name}" na túa observación de "%{observation_species_guess}")
+              time_format: |
+                debe ser en formato hh:mm para un campo de tempo ("%{observation_field_name}" na túa observación de "%{observation_species_guess}")
+            observation_id:
+              user_does_not_accept_fields_from_others: o usuario non acepta campos de outros
+              user_only_accepts_fields_from_site_curators: o usuario só acepta campos de conservadores do sitio
         place:
           attributes:
             place_geometry:
@@ -6163,6 +6281,20 @@ gl:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 só pode ser cambiado por un conservador deste taxon
+            name:
+              bad_format: |
+                só pode conter caracteres latinos estándar, guións, espacios e ×; repara que taxons putativos e cultivares non están permitidos
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: debe non conter comas nin barras
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
+                non se atopa o nome específico dunha especie para este léxico
+              must_match_the_taxon_if_valid: |
+                debe coincidir có nome taxonómico se é un nome científico válido
+              bad_format: |
+                só pode conter caracteres latinos estándar, guións, espacios e ×; repara que taxons putativos e cultivares non están permitidos
         taxon_photo:
           attributes:
             taxon:
@@ -6175,12 +6307,39 @@ gl:
                 debe comezar cunha letra, non ter espazos, e usa só letras, díxitos, guións e barras baixas
             email:
               must_look_like_an_email_address: Ten que ser semellante a un enderezo de correo electrónico
+              domain_is_not_supported: o dominio non está soportado
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: |
+                pertence a un usuario existente; se tes unha conta, por favor, inicia sesión antes de continuar, ou emprega un enderezo de correo electrónico distinto
   doorkeeper:
+    scopes:
+      write: |
+        Crear, actualizar e borrar as túas observacións, identificacións e outros contidos da túa parte, e acceder ás túas coordenadas ocultas e outras informacións ás que poidas acceder no sitio.
+      login: |
+        Acceder a información relevante cara a iniciar sesión en servicios de terceiros, como o enderezo de correo electrónico, o nome de usuario e a icona de usuario asociada cá túa conta daquí.
+      account_delete: |
+        Eliminar a túa conta da túa parte.
     errors:
       messages:
+        #Common error messages
+        invalid_request: 'Á petición fáltalle un parámetro obrigatorio, inclúe un valor de parámetro non soportado, ou dalgún xeito non ten o formato axeitado.'
+        invalid_redirect_uri: 'A uri de redirección incluída non é válida.'
+        unauthorized_client: 'O cliente non está autorizado a realizar esta petición empregando este método.'
+        access_denied: 'O dono do recurso ou o servidor de autorizacións rexeitou a petición.'
+        invalid_scope: 'O ámbito solicitado non é válido, descóñécese ou ten un formato non axeitado.'
+        server_error: 'O servidor de autorizacións atopou unha condición inesperada, o que lle impedíu completar a petición.'
         temporarily_unavailable: 'O servidor da autorización non pode manexar a petición debido a unha sobrecarga temporal ou a manutención do servidor.'
+        #Configuration error messages
+        credential_flow_not_configured: 'O fluxo de Resource Owner Password Credentials fallou porque Doorkeeper.configure.resource_owner_from_credentials non está configurado.'
+        resource_owner_authenticator_not_configured: 'Resource Owner fallou porque Doorkeeper.configure.resource_owner_authenticator non está configurado.'
         #Access grant errors
         unsupported_response_type: 'O servidor da autorización non soporta este tipo de resposta.'
+        #Access token errors
+        invalid_client: 'A autenticación de cliente fallou debido a un cliente descoñecido, porque non se incluíu unha autenticación do cliente ou por un método de autenticación non soportado.'
+        invalid_grant: 'A autorización proporcionada non é válida, caducou, foi rexeitada, non coincide cá redirección URI empregada na petición de autorización, ou foille emitida a outro cliente.'
+        unsupported_grant_type: 'O tipo de autorización non é soportado polo servidor de autorizacións.'
         #Password Access token errors
         invalid_resource_owner: 'As credenciais do dono da recurso provisto non son válidas, ou o dono da fonte non se pode atopar'
     flash:
@@ -6232,6 +6391,8 @@ gl:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@m"
@@ -6279,6 +6440,51 @@ gl:
         subfamily: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@f"
+        #Default gender for nouns that aren't listed here
+        default: "@m"
+  wild: Silvestre
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Seguinte &#8594;"
+    page_gap: "&hellip;"
   zoom_in: Ampliar
   zoom_out: Encoller
   zoom_photo: Aumentar Foto
