@@ -6,7 +6,7 @@ ja:
   x_flags_resolved_html:
     other: "<span class='count'>%{count}</span>件の解決済みフラグ"
   x_identifications:
-    other: '%{count} 同定'
+    other: '%{count} 件の同定'
   x_identifications_html:
     other: '<span class="count">%{count}</span>件の同定'
   x_identifications_:
@@ -44,7 +44,7 @@ ja:
   x_observers_html:
     other: '<span class="count">%{count}</span> 観察者'
   x_others:
-    other: "その他%{count}件"
+    other: "その他%{count}人"
   x_people:
     other: "%{count} 人"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました"
@@ -663,7 +663,7 @@ ja:
   check_list_of_species_occuring_in: 種チェックリスト：
   check_list_place: "%{place} チェックリスト"
   check_list_updated: チェックリスト更新されました！
-  check_lists_for: "%{place}のその他のチェックリスト"
+  check_lists_for: "その他の%{place}のチェックリスト"
   check_out_my_observations_at: よかったら、下記リンクから私の観察記録をご覧ください。
   check_out_our_blog: 公式ブログも読んでみてください
   check_out_what_the_observation: あなたが同定しようとしている観察がどのように見えるか確認してみてください。
@@ -687,7 +687,7 @@ ja:
   choose_tags: タグを選択
   choose_taxon: 分類群を選択してください
   choose_what_kind_of_change_youre_creating: "変更の種類を選択してください"
-  cid_d_to_genus: 属レベルのコミュニティ分類
+  cid_d_to_genus: 属レベルのコミュニティ判定
   citation: 引用
   classification: 分類
   clear: クリア
@@ -1047,7 +1047,6 @@ ja:
   edit_field: フィールドを編集
   edit_license: ライセンスを編集
   edit_multiple_dates: 複数の日付を編集
-  edit_multiple_descriptions: 複数の説明欄を編集
   edit_multiple_locations: 複数の場所を編集
   edit_multiple_species: 複数の種を編集
   edit_notes: メモを編集
@@ -1218,7 +1217,7 @@ ja:
   flag_as_inappropriate: 不適切なフラグ
   flag_an_item: 項目をフラグ
   flag_as_spammer: 荒らしのフラグを付ける
-  flag_as_non_spammer: 荒らしではないとフラグを付ける
+  flag_as_non_spammer: 荒らしではないことを示すフラグを付ける
   #Label for the date/time when a flag was created
   flag_created: フラグ作成
   flag_description: このコンテンツにフラグを付けて、問題があることを管理者に知らせます。
@@ -1432,9 +1431,9 @@ ja:
   identotron: らくらくID判定
   identotron_help: らくらくID判定ヘルプ
   ids: "ID"
-  ids_made_for_others: 他のユーザのためのID
+  ids_made_for_others: 他のユーザーへ提案したID
   if_for_some_reason_a_user_doesnt_agree: |
-    何らかの理由でコミュニティ分類群に同意しない場合は拒否することができます。これは、あなたの同定が他の観察記録へのリンクや生物リストの更新などに使用される同定であることを意味します。また、あなたの観察記録は、コミュニティがあなたに同意した場合にのみ研究段階になることができます。
+    何らかの理由でコミュニティ分類群に同意しない場合はそれを拒否することができます。これは、あなたの同定が他の観察記録へのリンクや生物リストの更新などに使用される同定であることを意味します。また、あなたの観察記録は、コミュニティがあなたに同意した場合にのみ研究用として使用可能になります。
   if_matches_come_from_a_comprehensive_list: 包括的なリストからのマッチの場合、緑色のバーがここに表示されます。
   if_this_is_a_scientific_name: 学名の場合、現在認められているものでしょうか？
   if_you_have_any_trouble_with_the_site_check_out: 'ご質問がある場合は、<a href="%{help_url}">ヘルプセクション</a>を参照するか、<a href="%{feedback_url}">フィードバックグループ</a>にメッセージを投稿してください。'
@@ -1449,7 +1448,7 @@ ja:
   import_as_another_observation: 新しい観測記録としてインポートしますか？
   import_date_time_location_taxonomic: "この写真から日付、時間、場所、説明、分類群情報を読み込む。"
   import_from_csv: CSVからインポート
-  import_from_other_photo_sites: その他の写真ウェブサイトからインポート
+  import_from_other_photo_sites: 他の写真ウェブサイトからインポート
   import_observations: 観測記録をインポート
   import_observations_from_a_photo: 写真共有サイト及びパソコンの写真ファイルから観察記録をインポート
   import_photos: 写真をインポート
@@ -1539,6 +1538,9 @@ ja:
   label_to_group_a_batch_of_taxon_changes: 分類群の変更を一括してグループ化するためのラベル
   location_private: 位置情報は非公開
   location_unknown: 不明な位置
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: ズームレベルを固定
   language_slash_type: 言語／種類
   #Large photo size
   large: 大
@@ -2225,7 +2227,7 @@ ja:
   only_species_and_subspecies: 種、亜種および品種のみ
   only_staff_can_edit_large_places: 非常に大きな場所を編集できるのはサイトスタッフだけです
   only_staff_can_edit_standard_places: 標準階層内の場所を編集できるのはサイトスタッフのみです。
-  only_the_owner_of_this_list_can_do_that: リストの作成者ではないとできません。いたずらしちゃダメですよ。
+  only_the_owner_of_this_list_can_do_that: リストの作成者でなければできません。いたずらしてはダメですよ。
   only_the_project_admin_can_delete_this_project: プロジェクト管理者以外の方は削除できません。
   only_you: 自分のみ
   open: 公開
@@ -3466,7 +3468,7 @@ ja:
   this_photo_is_already_associated: この写真はすでに別の観察記録で使用されています。
   this_place_has_no_check_list: "この場所にはチェックリストがありません。"
   this_taxon_change_has_been_commited: |
-    <strong>この分類群変更が確定されました</strong>。分類群を編集しないでください。その他のフィールド編集は可です。
+    <strong>この分類群の変更が確定されました</strong>。分類群を編集しないでください。他のフィールドを編集することは可能です。
   this_taxon_concept_is_inactive: この分類群概念は廃止されました
   this_taxon_has_no_default_photo: この分類群のデファルト写真がありません
   this_taxon_is_inactive_this_means: |
@@ -3576,6 +3578,8 @@ ja:
   used_x_times:
     other: '%{count}回使用'
   user: ユーザー
+  user1_and_user2_faved_this_observation: "%{user1}さんと%{user2}さんがこの観察記録をお気に入りに追加しました"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}さんと%{user2}さんと%{x_others}さんがこの観察記録をお気に入りに追加しました"
   user_added_a_x: "%{user}が%{x}を追加しました"
   user_added_a_x_to_noun_by_html: "%{user}は%{by}の%{noun}に%{x}を追加しました"
   user_added_a_x_to_noun_html: "%{user}が%{noun}に%{x}を追加しました"
@@ -3585,9 +3589,10 @@ ja:
   user_added_an_x_to_noun_html: "%{user}が%{noun}に%{x}を追加しました"
   user_added_x_observations_html: "%{user}は%{x}件の観察記録を追加しました。"
   user_commented_on: "%{user}はあなたの%{title}にコメントしました（%{time}）"
-  user_disagrees_this_is_taxon: "%{user} さんは %{taxon} ではないと考えています"
+  user_disagrees_this_is_taxon: "%{user} さんは %{taxon} ではない(または同定に必要な情報が無い)と考えています"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user}が%{owner}の%{noun}をお気に入りに追加しました"
+  user_faved_a_noun_by_owner: "%{user}さんが%{owner}さんの%{noun}をお気に入りに追加しました"
+  user_faved_this_observation: "%{user}さんがこの観察記録をお気に入りに追加しました"
   user_has_opted_out_of_community_id: 利用者はコミュニティー分類の通知を受け取りません
   user_invited_you_to_join_html: "%{user}から招待が届いています："
   user_invited_you_to_join_project: "%{user}から%{project}に参加するように招待されました"
@@ -3818,15 +3823,10 @@ ja:
         identification_count: 同定件数
         explanation: |
           <p>
-          もし利用者が何らかの理由でコミュニティのタクソンに同意しない
-          場合は否定できます。するとその利用者の判定がその他の鑑定への
-          リンク、その他の観察、人生リストの更新などに使われます。また
-          　コミュニティーの同意が得られた場合にのみ、その観察は学術研究
-          　レベルと認められます。
+          もしユーザーが何らかの理由でコミュニティの分類群に同意しない場合はそれを否定できます。その場合、そのユーザーの判定が他の観察やライフリストの更新へのリンクなどに使われます。またコミュニティーの同意が得られた場合にのみ、その観察は研究用に使用できます。
           </p>
           <p>
-          その場合であっても、コミュニティーの判定は表示され、判定の差
-          　をだれでも確認できます。
+          しかしその場合でも、コミュニティの判定は表示されるため、判定の違いを誰でも確認できます。
           </p>
         you_have_opted_out: コミュニティー判定の通知を解除しました
         your_id_does_not_match: |
@@ -3870,49 +3870,38 @@ ja:
         ancestor_disagreements_desc: "提案された分類群に対して、その分類群を含む上位分類群であることは認めるが、その分類群であることは同意しない場合 (例：私はこの属ではあると思うが、その種類であるとは思わない)"
         community_taxon_desc_html: |
           <p class="ui">
-          コミュニティ分類（もしくはコミュニティ判定）とは
-          %{site_name}コミュニティが特定の観察において
-          認定した分類です。もしコミュニティ判定の選択基準に
-          関心がある場合は、以下のアルゴリズムの注記を参照できますが、一般的に
-          <strong>判定者の 2/3 より多いユーザーが同意した分類
-          群を選択しています</strong>。場合によっては、これは
-          異なる分類群を複数含むより上位の分類群を選択することを
-          意味します（たとえばキングヘビだと予想するあなたと
-          ガラガラヘビと考える私がいると iNat ではすべてのヘビ類を含む
-          ヘビ亜目を採用するなど）。また、このアルゴリズムは反対派が
-          正しいことが多いことがわかったため、反対派を
-          やや優先しがちです。
+          コミュニティ分類群（もしくはコミュニティ判定）とは
+          特定の観察記録において%{site_name}コミュニティが
+          考えている分類群が何かを表しています。もしコミュニティ分類群
+          がどのように決定されるのか関心がある場合は、下記のアルゴリズムを参照してください。
+          一般的には<strong>同定の提案者の 2/3 を超える同意がある分類群</strong>が
+          コミュニティ分類群となります。場合によっては、これは
+          異なる分類群を複数含むより上位の分類群がコミュニティ分類群となることを
+          意味します（例：あなたがキングヘビだと予想し、
+          私がガラガラヘビだと考えている場合、 iNat ではすべてのヘビ類を含む
+          ヘビ亜目をコミュニティ分類群とする）。また、このアルゴリズムは反対派が
+          正しいことが多いとわかっているため、反対派を
+          やや優先する傾向にあります。
           </p>
           <p class="ui">
-          研究レベルの観察では（その他の規定に優先して）コミュニティ
-          分類が必要です。特定の観察において識別が
-          1件のみの場合、コミュニティ分類はゼロです。すべての
-          観察で最低識別が1件ある場合は必ず観察
-          分類を伴います。観察分類とはデータ提供者と
-          観察を共有するときに用いる分類であり、その観察地における
-          同一の分類の観察の共有やライフリスト更新その他に用います。ほとんどの
-          場合、観察分類は結局はコミュニティ分類を採用することに
-          なるものの、ときには合致しないことがあり、特にコミュニティが
-          識別の合意を得ないうちは起こりがちです。たとえばあなたは
-          ヘビ（ヘビ亜目）だと考え、私はキングヘビ
-          （<i>キングヘビ</i>属）だと考えた場合、識別分類はキングヘビ属（根拠は私の識別のみ）であって、コミュニティ分類としては
-          ヘビ亜目（最低2件の識別が支持）になります。あるいは
-          その他の理由であなたがコミュニティ分類に不賛同な場合、
-          それを個人の識別では否定しておき、観察
-          分類は（あなた個人の識別となり）コミュニティ分類と合致しません。
-          さらに、あなた個人の観察は、コミュニティの<em>同意</em>を得るまでは研究レベルの観察とは
-          なりえないことを意味します。コミュニティ分類という考え方そのものを
-          容認できない場合、<a href="/users/edit" target="_blank">個人設定を編集し</a>
-          まったく不採用にすることも可能です。
+          研究用レベルとなる観察記録には（他にも基準はありますが）コミュニティ
+          分類群が必要です。特定の観察記録において同定の提案が
+          1件のみの場合、コミュニティ分類群はありません。すべての
+          観察記録で、同定の提案が1件でもあれば必ず観察
+          分類群を伴います。観察分類群は、データパートナーと観察を共有したり、
+          サイト上で同じ分類群の観察をリンクしたり、ライフリストを更新したりするときに
+          使用する分類群です。ほとんどの場合、最終的に観察分類群はコミュニティ分類群と
+          一致しますが、特にコミュニティが同定を決定する前では、その２つは異なる場合があります。
+          例えば、あなたがヘビ亜目 Serpentesだと考えていて、私がキングヘビ属 <i>Lampropeltis</i> だと
+          考えている場合は、観察分類群はキングヘビ属  <i>Lampropeltis</i> になります
+          （私の同定にのみ支持される）。しかし、コミュニティ分類群はヘビ亜目 Serpentes となります
+          （こちらは最低２人の同意が必要）。もし自分の観察記録で、あなたが何らかの理由でコミュニティ分類群に同意できない場合は、コミュニティ分類群を拒否することができます。つまり、観察分類群がコミュニティ分類群とはなりません（あなたが設定した分類群になります）。
+          これは、コミュニティがあなたに同意した場合のみ、観察記録が研究用となることを意味しています。
+          コミュニティ分類群という考え方そのものを
+          認められない場合、<a href="/users/edit" target="_blank">アカウント設定・プロフィール編集</a>を編集してコミュニティ分類群を採用しないことも可能です。
           </p>
           <p class="ui">
-          <strong>アルゴリズム：</strong>すべての識別された分類群とそれを含む分類群
-          (たとえば<i>ホモ</i>属には<i>ホモサピエンス</i>が含まれる)が、互いを「賛成」の件数 - その分類群の累積IDに対する
-          「反対」の件数 - まったく異なるIDの件数（たとえば分類群IDで
-          計算した分類群を含まない物）と、「祖先の不一致」 - より
-          保守的なIDでより詳細な分類群と不一致の件数の割合として算出します。スコアが 2/3 より多い識別分類で
-          最低2件の識別がある分類群のうち、もっとも下位の分類群を選択します。
-          </p>
+          <strong>アルゴリズム：</strong>すべての提案された分類群とそれを含むより上位の分類群 (例：ヒト <i>Homo sapiens</i> とそれを含む分類群であるヒト属 <i>Homo</i>) について、・①「一致」 - その分類群に同意している提案・②「不一致」 - 完全に異なる分類群の提案 (すなわち、その分類群に同意しない)・③「祖先の不一致」 - 詳細な（より下位の）分類群に同意しない上位の分類群の提案、、、これら３つの数の比としてスコアが計算されます。同定を提案された分類群とそれらを含むより上位の分類群のうち、スコアが2/3を超え、少なくとも２人の同意がある最も下位の分類群がコミュニティ分類群になります。</p>
         cumulative_count_desc: '単一の分類群とその下位分類に対する同定の総数'
         data_quality_assessment_desc_html: |
           データ品質評価は、観察記録の精度の評価です。研究グレードの観察記録は、科学者が研究のために使用することができます。以下に投票してください。
@@ -3986,7 +3975,7 @@ ja:
         obs_1_day_desc: "1日に作成された観察記録"
         obs_cid_d_desc: 過去7 日前に作成されたコミュニティ ID がある観察記録
         #Short for "observations community-identified to genus"
-        obs_cid_d_to_genus: 属レベル以下のコミュニティ分類を持つ観察記録
+        obs_cid_d_to_genus: 属レベル以下のコミュニティ判定を持つ観察記録
         obs_cid_d_to_genus_desc: 過去7日間に作成された属レベル以下のコミュニティIDがある観察記録
         obs_desc: 過去7日間に作成された観察記録
         obs_id_d_desc: 過去7日間に作成されたIDを持つ観察記録(観察者によるIDを含める)
