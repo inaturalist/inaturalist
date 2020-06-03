@@ -287,7 +287,7 @@ class ObservationModal extends React.Component {
           );
         } else {
           player = (
-            <audio key={soundKey} controls preload="none">
+            <audio key={soundKey} controls preload="none" controlsList="nodownload">
               <source src={s.file_url} type={s.file_content_type} />
               { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
             </audio>
