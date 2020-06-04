@@ -4097,7 +4097,8 @@ CREATE TABLE public.taxa (
     complete_rank character varying,
     complete boolean,
     taxon_framework_relationship_id integer,
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid uuid DEFAULT public.uuid_generate_v4(),
+    photos_locked boolean DEFAULT false
 );
 
 
@@ -10123,4 +10124,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200130191142');
 INSERT INTO schema_migrations (version) VALUES ('20200220211829');
 
 INSERT INTO schema_migrations (version) VALUES ('20200226211718');
+
+INSERT INTO schema_migrations (version) VALUES ('20200604181750');
 

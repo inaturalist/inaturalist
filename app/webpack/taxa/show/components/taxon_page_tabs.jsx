@@ -59,6 +59,7 @@ class TaxonPageTabs extends React.Component {
       : 0;
     if ( currentUser && currentUser.id ) {
       const isCurator = currentUser.roles.indexOf( "curator" ) >= 0 || currentUser.roles.indexOf( "admin" ) >= 0;
+      const isAdmin = currentUser.roles.indexOf( "admin" ) >= 0;
       let atlasItem;
       if ( isCurator && taxon.rank_level <= 10 ) {
         atlasItem = taxon.atlas_id ? (
@@ -125,13 +126,27 @@ class TaxonPageTabs extends React.Component {
                 { " " }
                 <span className="text-muted">{ `(${flagsCount})` }</span>
               </MenuItem>
-              <MenuItem
-                eventKey="edit-photos"
-              >
-                <i className="fa fa-picture-o" />
-                { " " }
-                { I18n.t( "edit_photos" ) }
-              </MenuItem>
+              { taxon.photos_locked && !isAdmin
+                ? (
+                  <MenuItem
+                    className="disabled"
+                    title={I18n.t( "photos_locked_desc" )}
+                  >
+                    <i className="fa fa-picture-o" />
+                    { " " }
+                    { I18n.t( "photos_locked" ) }
+                  </MenuItem>
+                )
+                : (
+                  <MenuItem
+                    eventKey="edit-photos"
+                  >
+                    <i className="fa fa-picture-o" />
+                    { " " }
+                    { I18n.t( "edit_photos" ) }
+                  </MenuItem>
+                )
+              }
               <MenuItem
                 className={isCurator ? "" : "hidden"}
                 eventKey="edit-taxon"

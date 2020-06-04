@@ -895,6 +895,20 @@ class TaxaController < ApplicationController
   end
   
   def update_photos
+    if @taxon.photos_locked? && !current_user.is_admin?
+      respond_to do |format|
+        format.json do
+          render status: :forbidden, json: {
+            error: t(:you_dont_have_permission_to_edit_those_photos)
+          }
+        end
+        format.any do
+          flash[:error] = t(:you_dont_have_permission_to_edit_those_photos)
+          redirect_back_or_default( taxon_path( @taxon ) )
+        end
+      end
+      return
+    end
     photos = retrieve_photos
     errors = photos.map do |p|
       p.valid? ? nil : p.errors.full_messages
@@ -950,6 +964,16 @@ class TaxaController < ApplicationController
   # sets them as the photos, respecting their position.
   #
   def set_photos
+    if @taxon.photos_locked? && !current_user.is_admin?
+      respond_to do |format|
+        format.json do
+          render status: :forbidden, json: {
+            error: t(:you_dont_have_permission_to_edit_those_photos)
+          }
+        end
+      end
+      return
+    end
     photos = ( params[:photos] || [] ).map { |photo|
       subclass = LocalPhoto
       if photo[:type]
@@ -1617,6 +1641,11 @@ class TaxaController < ApplicationController
           params[:taxon][:conservation_statuses_attributes][position][:user_id] = current_user.id
         end
       end
+    end
+
+    if !current_user.is_admin? && params[:taxon][:photos_locked] &&
+        params[:taxon][:photos_locked] != @taxon.photos_locked
+      params[:taxon].delete(:photos_locked)
     end
     true
   end
