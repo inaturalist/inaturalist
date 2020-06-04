@@ -1,7 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { Grid, Row, Col, Dropdown, MenuItem } from "react-bootstrap";
+import {
+  Grid,
+  Row,
+  Col,
+  Dropdown,
+  MenuItem
+} from "react-bootstrap";
 import _ from "lodash";
 import TaxonPageMapContainer from "../containers/taxon_page_map_container";
 import StatusTab from "./status_tab";
@@ -44,7 +50,7 @@ class TaxonPageTabs extends React.Component {
       currentUser,
       showPhotoChooserModal
     } = this.props;
-    const test = $.deparam.querystring( ).test;
+    const { test } = $.deparam.querystring( );
     const speciesOrLower = taxon && taxon.rank_level <= 10;
     const genusOrSpecies = taxon && ( taxon.rank_level === 20 || taxon.rank_level === 10 );
     let curationTab;
