@@ -779,6 +779,32 @@ describe TaxonSwap, "commit_records" do
     o.reload
     expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
   end
+
+  it "should update a listed taxon's taxon when last observation exists" do
+    tc = make_taxon_swap
+    l = CheckList.make!
+    lt = l.add_taxon tc.input_taxon
+    o = make_research_grade_observation( latitude: l.place.latitude, longitude: l.place.longitude, taxon: lt.taxon )
+    without_delay do
+      ListedTaxon.update_cache_columns_for( lt )
+    end
+    lt.reload
+    expect( lt.last_observation ).not_to be_blank
+    tc.commit_records
+    lt.reload
+    expect( lt.taxon ).to eq tc.output_taxon
+  end
+
+  it "should merge listed taxa when a listed taxon for the output taxon already exists" do
+    tc = make_taxon_swap
+    l = CheckList.make!
+    lt_input = l.add_taxon tc.input_taxon, description: "foo"
+    lt_output = l.add_taxon tc.output_taxon
+    tc.commit_records
+    expect( ListedTaxon.find_by_id( lt_input.id ) ).to be_blank
+    lt_output.reload
+    expect( lt_output.description ).to eq "foo"
+  end
 end
 
 describe "move_input_children_to_output" do
