@@ -398,7 +398,7 @@ const actions = class actions {
   static movePhoto( photo, toObsCard ) {
     return function ( dispatch ) {
       const { photos: targetPhotos, sounds: targetSounds } = actions.fileCounts( toObsCard.files );
-      const { photos: movedPhotos, sounds: movedSounds } = actions.fileCounts( [photo.file.file] );
+      const { photos: movedPhotos, sounds: movedSounds } = actions.fileCounts( [photo.file] );
       if ( !dispatch( actions.enforceLimit( movedPhotos, targetPhotos ) ) ) { return; }
       if ( !dispatch( actions.enforceLimit( movedSounds, targetSounds ) ) ) { return; }
       const time = new Date( ).getTime( );
