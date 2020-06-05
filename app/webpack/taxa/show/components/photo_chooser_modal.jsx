@@ -253,6 +253,10 @@ class PhotoChooserModal extends React.Component {
     } else if ( provider === "flickr" ) {
       searchPlaceholder = I18n.t( "search_by_taxon_name_or_flickr_photo_id" );
     }
+    const photosToDisplay = _.filter(
+      photos,
+      p => p.small_url.match( /\.(jpe?g|gif|png)/ )
+    );
     const prevNextButtons = (
       <ButtonGroup className="pull-right">
         <Button
@@ -331,7 +335,7 @@ class PhotoChooserModal extends React.Component {
                   { ( photos.length > 0 || page > 1 ) && prevNextButtons }
                 </form>
                 <div className="photos">
-                  { photos.map( photo => (
+                  { photosToDisplay.map( photo => (
                     <ExternalPhoto
                       key={PhotoChooserModal.keyForPhoto( photo )}
                       chooserID={PhotoChooserModal.keyForPhoto( photo )}

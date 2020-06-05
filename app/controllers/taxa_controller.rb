@@ -88,7 +88,7 @@ class TaxaController < ApplicationController
             taxon_obs_params[:site_id] = @site.id
           end
           Observation.page_of_results(taxon_obs_params).first
-        end.compact
+        end.compact.select{|o| o.taxon}
         Observation.preload_associations(@featured_taxa_obs, [:user, :taxon])
         
         flash[:notice] = @status unless @status.blank?

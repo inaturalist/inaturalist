@@ -68,7 +68,7 @@ class LocalPhoto < Photo
   # LocalPhotos with subtypes are former remote photos, and subtype
   # is the former subclass. Those subclasses don't validate :user
   validates_presence_of :user, unless: :subtype
-  validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
+  validates_attachment_content_type :file, content_type: Photo::MIME_PATTERNS,
     :message => "must be JPG, PNG, or GIF"
 
   attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation
