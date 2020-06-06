@@ -1153,7 +1153,6 @@ fr:
   edit_field: Modifier le champ
   edit_license: Modifier la licence
   edit_multiple_dates: Modifier des dates multiples
-  edit_multiple_descriptions: Modifier des descriptions multiples
   edit_multiple_locations: Modifier des emplacements multiples
   edit_multiple_species: Modifier plusieurs espèces
   edit_notes: Modifier les notes
@@ -5433,6 +5432,8 @@ fr:
         project_summary_placeholder: Découvrir et suivre les oiseaux du parc de Golden Gate…
         select_native_to_include: |
           Sélectionnez "Natif" pour inclure uniquement les taxons qui ont été marqués comme "Natif" sur le(s) lieu(x) de votre projet. Sélectionnez "Introduit" pour inclure uniquement les taxons qui ont été marqués comme "Introduit" sur le(s) lieu(x) de votre projet.
+        select_quality_grade: |
+          Sélectionnez au moins une note de qualité. Vous trouverez plus d'explications pour chaque note de qualité sur notre page de <a href="%{url}">FAQ</a>.
         show_projects_as_flags: Afficher les projets avec des drapeaux sur la carte
         start_and_end_times_for_bioblitzes: Heures de début et de fin (pour les événements de type bioblitz)
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
@@ -5753,6 +5754,11 @@ fr:
           observant, mais il affichera des pics inhabituels dans les observations, et s’il
           semble plat ou en décroissance malgré un nombre croissant d’observateurs,
           cela peut suggérer une modification de son abondance.
+        charts_help_other: |
+          Nous présentons également des tableaux saisonniers pour les annotations d’observation.
+          Les annotations sont un moyen d'ajouter des métadonnées aux observations en utilisant
+          un vocabulaire contrôlé, par exemple pour indiquer si une observation représente
+          une plante au stade floraison ou bien fructification.
         charts_help_relative_observations: |
           Afficher la fréquence dans des proportions relatives par rapport à toutes les observations aide
           à aplanir l’effet de la croissance globale du site. Par exemple,
@@ -6499,6 +6505,7 @@ fr:
         occurrence_status_level: Niveau d’état de la présence
         establishment_means: Moyens d’établissement
       observation:
+        description: Notes
         geo_x: Abscisse
         geo_y: Ordonnée
         observed_on: date d’observation
