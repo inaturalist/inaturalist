@@ -34,12 +34,6 @@ import currentObservationReducer from "../identify/reducers/current_observation_
 import suggestionsReducer from "../identify/ducks/suggestions";
 import moderatorActionsReducer from "../../shared/ducks/moderator_actions";
 
-// For some reason this seems to set it everywhere...
-inatjs.setConfig( {
-  apiURL: "http://localhost:4000/v2",
-  writeApiURL: "http://localhost:4000/v2"
-} );
-
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
 const relativeTime = Object.assign(
@@ -98,8 +92,22 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
   } ) );
 }
 
-/* global INITIAL_OBSERVATION_UUID */
-store.dispatch( fetchObservation( INITIAL_OBSERVATION_UUID, {
+/* global INITIAL_OBSERVATION_ID */
+let obsId = INITIAL_OBSERVATION_ID;
+if ( window.location.search.match( /test=apiv2/ ) ) {
+  /* global INITIAL_OBSERVATION_UUID */
+  obsId = INITIAL_OBSERVATION_UUID;
+  store.dispatch( setConfig( {
+    testingApiV2: true
+  } ) );
+  // For some reason this seems to set it everywhere...
+  inatjs.setConfig( {
+    apiURL: "http://localhost:4000/v2",
+    writeApiURL: "http://localhost:4000/v2"
+  } );
+}
+
+store.dispatch( fetchObservation( obsId, {
   fetchAll: true,
   replaceState: true,
   callback: ( ) => {

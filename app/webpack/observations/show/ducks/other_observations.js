@@ -90,6 +90,7 @@ export function setMoreFromClade( data ) {
 export function fetchNearby( ) {
   return ( dispatch, getState ) => {
     const s = getState( );
+    const { testingApiV2 } = s.config;
     const { observation } = s;
     if ( !observation || !observation.geojson ) { return null; }
     const baseParams = {
@@ -100,9 +101,11 @@ export function fetchNearby( ) {
       order_by: "observed_on",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
-      ttl: -1,
-      fields: OTHER_OBSERVATION_FIELDS
+      ttl: -1
     };
+    if ( testingApiV2 ) {
+      baseParams.fields = OTHER_OBSERVATION_FIELDS;
+    }
     const fetchParams = Object.assign( { }, baseParams, {
       photos: true,
       not_id: observation.uuid,
@@ -118,6 +121,7 @@ export function fetchNearby( ) {
 export function fetchMoreFromClade( ) {
   return ( dispatch, getState ) => {
     const { observation, config } = getState( );
+    const { testingApiV2 } = config;
     if (
       !observation
       || !observation.geojson
@@ -132,9 +136,11 @@ export function fetchMoreFromClade( ) {
       order_by: "votes",
       preferred_place_id: config.preferredPlace ? config.preferredPlace.id : null,
       locale: I18n.locale,
-      ttl: -1,
-      fields: OTHER_OBSERVATION_FIELDS
+      ttl: -1
     };
+    if ( testingApiV2 ) {
+      baseParams.fields = OTHER_OBSERVATION_FIELDS;
+    }
     const fetchParams = Object.assign( { }, baseParams, {
       photos: true, not_id: observation.uuid, per_page: 6, details: "all"
     } );
@@ -147,6 +153,7 @@ export function fetchMoreFromClade( ) {
 export function fetchMoreFromThisUser( ) {
   return ( dispatch, getState ) => {
     const s = getState( );
+    const { testingApiV2 } = s.config;
     const { observation } = s;
     if ( !observation || !observation.user ) { return null; }
     const baseParams = {
@@ -156,9 +163,11 @@ export function fetchMoreFromThisUser( ) {
       details: "all",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
-      ttl: -1,
-      fields: OTHER_OBSERVATION_FIELDS
+      ttl: -1
     };
+    if ( testingApiV2 ) {
+      baseParams.fields = OTHER_OBSERVATION_FIELDS;
+    }
     const prevParams = Object.assign( {}, baseParams, { order: "desc", id_below: observation.id } );
     const nextParams = Object.assign( {}, baseParams, { order: "asc", id_above: observation.id } );
     return inatjs.observations.search( prevParams ).then(

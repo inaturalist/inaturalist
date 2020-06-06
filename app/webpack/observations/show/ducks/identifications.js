@@ -33,19 +33,27 @@ export function setLastFetchTime( lastFetchTime ) {
 
 export function fetchIdentifiers( params ) {
   return ( dispatch, getState ) => {
+    const state = getState( );
+    const { testingApiV2 } = state.config;
     const time = Date.now( );
     dispatch( setLastFetchTime( time ) );
-    const identifiersParams = Object.assign( { }, params, {
-      fields: {
-        count: true,
-        user: {
-          login: true,
-          icon_url: true
+    const identifiersParams = Object.assign(
+      { },
+      params,
+      testingApiV2
+        ? {
+          fields: {
+            count: true,
+            user: {
+              login: true,
+              icon_url: true
+            }
+          }
         }
-      }
-    } );
+        : {}
+    );
     inatjs.identifications.identifiers( identifiersParams ).then( response => {
-      const { identifications } = getState( );
+      const { identifications } = state;
       if ( time === identifications.lastFetchTime ) {
         dispatch( setIdentifiers( response.results ) );
       }

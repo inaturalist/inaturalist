@@ -21,7 +21,8 @@ export function setObservationPlaces( places ) {
 
 export function fetchObservationPlaces( ) {
   return ( dispatch, getState ) => {
-    const { observation } = getState( );
+    const { observation, config } = getState( );
+    const { testingApiV2 } = config;
     if ( !observation || !observation.latitude || !observation.longitude ) {
       return null;
     }
@@ -29,16 +30,18 @@ export function fetchObservationPlaces( ) {
       lat: observation.latitude,
       lng: observation.longitude,
       no_geom: true,
-      order_by: "admin_and_distance",
-      fields: {
+      order_by: "admin_and_distance"
+    };
+    if ( testingApiV2 ) {
+      params.fields = {
         admin_level: true,
         display_name: true,
         id: true,
         name: true,
         place_type: true,
         uuid: true
-      }
-    };
+      };
+    }
     let placeIDs;
     if ( observation.private_place_ids && observation.private_place_ids.length > 0 ) {
       placeIDs = observation.private_place_ids;

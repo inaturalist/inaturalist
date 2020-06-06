@@ -21,19 +21,24 @@ export function setQualityMetrics( metrics ) {
 
 export function fetchQualityMetrics( options = {} ) {
   return ( dispatch, getState ) => {
+    const s = getState( );
+    const { testingApiV2 } = s.config;
     const observation = options.observation || getState( ).observation;
     if ( !observation ) { return null; }
-    const fields = {
-      agree: true,
-      id: true,
-      metric: true,
-      user: {
+    const params = { id: observation.id, ttl: -1 };
+    if ( testingApiV2 ) {
+      params.id = observation.uuid;
+      params.fields = {
+        agree: true,
         id: true,
-        login: true,
-        icon_url: true
-      }
-    };
-    const params = { id: observation.uuid, ttl: -1, fields };
+        metric: true,
+        user: {
+          id: true,
+          login: true,
+          icon_url: true
+        }
+      };
+    }
     return inatjs.observations.qualityMetrics( params ).then( response => {
       dispatch( setQualityMetrics( response.results ) );
     } ).catch( ( ) => { } );

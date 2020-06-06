@@ -251,181 +251,184 @@ export function renderObservation( observation, options = { } ) {
 export function fetchObservation( uuid, options = { } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const userFields = {
-      login: true,
-      icon_url: true
-    };
-    const moderatorActionFields = {
-      action: true,
-      id: true,
-      created_at: true,
-      reason: true,
-      user: userFields
-    };
-    const taxonFields = {
-      ancestry: true,
-      ancestor_ids: true,
-      ancestors: {
-        id: true,
-        uuid: true,
-        name: true,
-        iconic_taxon_name: true,
-        is_active: true,
-        preferred_common_name: true,
-        rank: true,
-        rank_level: true
-      },
-      default_photo: {
-        attribution: true,
-        license_code: true,
-        url: true
-      },
-      iconic_taxon_name: true,
-      id: true,
-      is_active: true,
-      name: true,
-      preferred_common_name: true,
-      rank: true,
-      rank_level: true
-    };
-    const controlledTermFields = {
-      id: true,
-      label: true
-    };
-    const fields = {
-      annotations: {
-        controlled_attribute: controlledTermFields,
-        controlled_value: controlledTermFields,
-        user: userFields,
-        vote_score: true,
-        votes: {
-          vote_flag: true,
-          user: userFields
-        }
-      },
-      comments: {
-        body: true,
-        created_at: true,
-        flags: { id: true },
-        id: true,
-        moderator_actions: moderatorActionFields,
-        spam: true,
-        user: userFields
-      },
-      community_taxon: taxonFields,
-      created_at: true,
-      faves: {
-        user: userFields
-      },
-      geojson: true,
-      geoprivacy: true,
-      id: true,
-      identifications: {
-        body: true,
-        category: true,
-        created_at: true,
-        current: true,
-        disagreement: true,
-        flags: { id: true },
-        moderator_actions: moderatorActionFields,
-        previous_observation_taxon: taxonFields,
-        spam: true,
-        taxon: taxonFields,
-        taxon_change: { id: true, type: true },
-        updated_at: true,
-        user: Object.assign( { }, userFields, { id: true } ),
-        uuid: true,
-        vision: true
-      },
-      // TODO refactor to rely on geojson instead of lat and lon
-      latitude: true,
-      license_code: true,
-      location: true,
-      longitude: true,
-      observed_on: true,
-      ofvs: {
-        name: true,
-        observation_field: {
-          name: true,
-          taxon: {
-            name: true
-          },
-          uuid: true
-        },
-        user: userFields,
-        uuid: true,
-        value: true
-      },
-      outlinks: {
-        source: true,
-        url: true
-      },
-      photos: {
-        id: true,
-        uuid: true,
-        url: true,
-        license_code: true
-      },
-      place_guess: true,
-      place_ids: true,
-      positional_accuracy: true,
-      preferences: {
-        prefers_community_taxon: true
-      },
-      private_geojson: true,
-      private_place_ids: true,
-      project_observations: {
-        preferences: {
-          allows_curator_coordinate_access: true
-        },
-        project: {
-          admins: {
-            user_id: true
-          },
-          icon: true,
-          title: true
-        }
-      },
-      public_positional_accuracy: true,
-      quality_grade: true,
-      // quality_metrics: {
-      //   agree: true,
-      //   id: true,
-      //   metric: true,
-      //   user: Object.assign( { }, userFields, { id: true } )
-      // },
-      sounds: {
-        id: true,
-        uuid: true,
-        url: true,
-        license_code: true
-      },
-      tags: true,
-      taxon: taxonFields,
-      time_observed_at: true,
-      time_zone: true,
-      user: Object.assign( {}, userFields, {
-        id: true,
-        name: true,
-        observations_count: true,
-        preferences: {
-          prefers_community_taxa: true
-        }
-      } ),
-      votes: {
-        id: true,
-        user: Object.assign( {}, userFields, { id: true } ),
-        vote_flag: true,
-        vote_scope: true
-      }
-    };
+    const { testingApiV2 } = s.config;
     const params = {
       include_new_projects: "true",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
-      ttl: -1,
-      fields
+      ttl: -1
     };
+    if ( testingApiV2 ) {
+      const userFields = {
+        login: true,
+        icon_url: true
+      };
+      const moderatorActionFields = {
+        action: true,
+        id: true,
+        created_at: true,
+        reason: true,
+        user: userFields
+      };
+      const taxonFields = {
+        ancestry: true,
+        ancestor_ids: true,
+        ancestors: {
+          id: true,
+          uuid: true,
+          name: true,
+          iconic_taxon_name: true,
+          is_active: true,
+          preferred_common_name: true,
+          rank: true,
+          rank_level: true
+        },
+        default_photo: {
+          attribution: true,
+          license_code: true,
+          url: true
+        },
+        iconic_taxon_name: true,
+        id: true,
+        is_active: true,
+        name: true,
+        preferred_common_name: true,
+        rank: true,
+        rank_level: true
+      };
+      const controlledTermFields = {
+        id: true,
+        label: true
+      };
+      const fields = {
+        annotations: {
+          controlled_attribute: controlledTermFields,
+          controlled_value: controlledTermFields,
+          user: userFields,
+          vote_score: true,
+          votes: {
+            vote_flag: true,
+            user: userFields
+          }
+        },
+        comments: {
+          body: true,
+          created_at: true,
+          flags: { id: true },
+          id: true,
+          moderator_actions: moderatorActionFields,
+          spam: true,
+          user: userFields
+        },
+        community_taxon: taxonFields,
+        created_at: true,
+        faves: {
+          user: userFields
+        },
+        geojson: true,
+        geoprivacy: true,
+        id: true,
+        identifications: {
+          body: true,
+          category: true,
+          created_at: true,
+          current: true,
+          disagreement: true,
+          flags: { id: true },
+          moderator_actions: moderatorActionFields,
+          previous_observation_taxon: taxonFields,
+          spam: true,
+          taxon: taxonFields,
+          taxon_change: { id: true, type: true },
+          updated_at: true,
+          user: Object.assign( { }, userFields, { id: true } ),
+          uuid: true,
+          vision: true
+        },
+        // TODO refactor to rely on geojson instead of lat and lon
+        latitude: true,
+        license_code: true,
+        location: true,
+        longitude: true,
+        observed_on: true,
+        ofvs: {
+          name: true,
+          observation_field: {
+            name: true,
+            taxon: {
+              name: true
+            },
+            uuid: true
+          },
+          user: userFields,
+          uuid: true,
+          value: true
+        },
+        outlinks: {
+          source: true,
+          url: true
+        },
+        photos: {
+          id: true,
+          uuid: true,
+          url: true,
+          license_code: true
+        },
+        place_guess: true,
+        place_ids: true,
+        positional_accuracy: true,
+        preferences: {
+          prefers_community_taxon: true
+        },
+        private_geojson: true,
+        private_place_ids: true,
+        project_observations: {
+          preferences: {
+            allows_curator_coordinate_access: true
+          },
+          project: {
+            admins: {
+              user_id: true
+            },
+            icon: true,
+            title: true
+          }
+        },
+        public_positional_accuracy: true,
+        quality_grade: true,
+        // quality_metrics: {
+        //   agree: true,
+        //   id: true,
+        //   metric: true,
+        //   user: Object.assign( { }, userFields, { id: true } )
+        // },
+        sounds: {
+          id: true,
+          uuid: true,
+          url: true,
+          license_code: true
+        },
+        tags: true,
+        taxon: taxonFields,
+        time_observed_at: true,
+        time_zone: true,
+        user: Object.assign( {}, userFields, {
+          id: true,
+          name: true,
+          observations_count: true,
+          preferences: {
+            prefers_community_taxa: true
+          }
+        } ),
+        votes: {
+          id: true,
+          user: Object.assign( {}, userFields, { id: true } ),
+          vote_flag: true,
+          vote_scope: true
+        }
+      };
+      params.fields = fields;
+    }
     return inatjs.observations.fetch( uuid, params ).then( response => {
       dispatch( renderObservation( response.results[0], options ) );
     } ).catch( e => console.log( e ) );
@@ -435,6 +438,7 @@ export function fetchObservation( uuid, options = { } ) {
 export function afterAPICall( options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    const { testingApiV2 } = state.config;
     if ( options.error ) {
       dispatch( handleAPIError( options.error,
         options.errorMessage || I18n.t( "failed_to_save_record" ) ) );
@@ -446,7 +450,12 @@ export function afterAPICall( options = { } ) {
         return;
       }
       if ( state.observation ) {
-        dispatch( fetchObservation( state.observation.uuid, options ) );
+        dispatch(
+          fetchObservation(
+            testingApiV2 ? state.observation.uuid : state.observation.id,
+            options
+          )
+        );
       }
     }
   };
@@ -1152,16 +1161,23 @@ export function onFileDrop( droppedFiles ) {
 export function showNewObservation( observation, options = { } ) {
   return ( dispatch, getState ) => {
     window.scrollTo( 0, 0 );
-    const s = windowStateForObservation( observation, getState( ) );
+    const s = getState( );
+    const { testingApiV2 } = s.config;
+    const combinedState = windowStateForObservation( observation, getState( ) );
     if ( !( options && options.skipSetState ) ) {
-      history.pushState( s.state, s.title, s.url );
+      history.pushState( combinedState.state, combinedState.title, combinedState.url );
     }
-    document.title = s.title;
+    document.title = combinedState.title;
     dispatch( resetStates( ) );
     if ( options.useInstance ) {
       dispatch( renderObservation( observation, { fetchAll: true } ) );
     } else {
-      dispatch( fetchObservation( observation.uuid || observation.id, { fetchAll: true } ) );
+      dispatch(
+        fetchObservation(
+          testingApiV2 ? ( observation.uuid || observation.id ) : observation.id,
+          { fetchAll: true }
+        )
+      );
     }
   };
 }

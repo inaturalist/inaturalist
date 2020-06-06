@@ -4,7 +4,7 @@ import _ from "lodash";
 const SET_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_CONTROLLED_TERMS";
 const SET_ALL_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_ALL_CONTROLLED_TERMS";
 
-const BASE_REQUEST_PARAMS = {
+const API_V2_BASE_REQUEST_PARAMS = {
   fields: {
     label: true,
     values: {
@@ -47,19 +47,26 @@ export function setAllControlledTerms( terms ) {
 export function fetchControlledTerms( options = {} ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    const { testingApiV2 } = state.config;
     const observation = options.observation || state.observation;
     if ( !observation || !observation.taxon || !observation.taxon.ancestor_ids ) {
       if ( state.controlledTerms.allTerms && state.controlledTerms.allTerms.length > 0 ) {
         dispatch( setControlledTerms( state.controlledTerms.allTerms ) );
       } else {
-        inatjs.controlled_terms.search( BASE_REQUEST_PARAMS ).then( response => {
+        inatjs.controlled_terms.search(
+          testingApiV2 ? API_V2_BASE_REQUEST_PARAMS : {}
+        ).then( response => {
           dispatch( setAllControlledTerms( response.results ) );
           dispatch( setControlledTerms( response.results ) );
         } );
       }
       return null;
     }
-    const params = Object.assign( {}, BASE_REQUEST_PARAMS, { taxon_id: observation.taxon.ancestor_ids.join( "," ), ttl: -1 } );
+    const params = Object.assign(
+      {},
+      testingApiV2 ? API_V2_BASE_REQUEST_PARAMS : {},
+      { taxon_id: observation.taxon.ancestor_ids.join( "," ), ttl: -1 }
+    );
     return inatjs.controlled_terms.for_taxon( params ).then( response => {
       dispatch( setControlledTerms( response.results ) );
     } ).catch( ( ) => { } );
