@@ -181,6 +181,10 @@ const ObsCard = class ObsCard {
       }
       this.saveTries = 0;
       let errors = [I18n.t( "unknown_error" )];
+      if ( !e.response ) {
+        dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
+        return;
+      }
       e.response.json( )
         .then( errorJSON => {
           if ( errorJSON && errorJSON.errors && errorJSON.errors[0] ) {
