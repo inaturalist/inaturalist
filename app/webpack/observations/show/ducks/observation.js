@@ -403,10 +403,13 @@ export function fetchObservation( uuid, options = { } ) {
         //   user: Object.assign( { }, userFields, { id: true } )
         // },
         sounds: {
+          file_url: true,
+          file_content_type: true,
           id: true,
-          uuid: true,
+          license_code: true,
+          play_local: true,
           url: true,
-          license_code: true
+          uuid: true
         },
         tags: true,
         taxon: taxonFields,
