@@ -92,6 +92,9 @@ class TaxonPageTabs extends React.Component {
                 case "edit-photos":
                   showPhotoChooserModal( );
                   break;
+                case "edit-photos-locked":
+                  // If photos are locked, do nothing
+                  break;
                 case "edit-atlas":
                   window.location = `/atlases/${taxon.atlas_id}`;
                   break;
@@ -131,6 +134,7 @@ class TaxonPageTabs extends React.Component {
                   <MenuItem
                     className="disabled"
                     title={I18n.t( "photos_locked_desc" )}
+                    eventKey="edit-photos-locked"
                   >
                     <i className="fa fa-picture-o" />
                     { " " }
