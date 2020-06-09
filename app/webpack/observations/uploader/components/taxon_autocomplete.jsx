@@ -347,7 +347,7 @@ class TaxonAutocomplete extends React.Component {
 
   taxonAutocompleteSource( request, callback ) {
     const {
-      perPage, searchExternal, showPlaceholder, notIDs, observedByUserID, apiV2
+      perPage, searchExternal, showPlaceholder, notIDs, observedByUserID, config
     } = this.props;
     const params = {
       q: request.term,
@@ -361,7 +361,7 @@ class TaxonAutocomplete extends React.Component {
     if ( observedByUserID ) {
       params.observed_by_user_id = observedByUserID;
     }
-    if ( apiV2 ) {
+    if ( config && config.testingApiV2 ) {
       params.fields = {
         default_photo: {
           square_url: true
